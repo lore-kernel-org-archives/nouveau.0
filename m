@@ -1,13 +1,16 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: [RFC PATCH 17/29] clk: thermal throttling
-Date: Sun, 8 Oct 2017 20:49:41 +0200
-Message-ID: <20171008184941.7gvipzqztuly7mzj@pmoreau.org>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [RFC PATCH 16/29] clk: parse thermal policies for
+ throttling thresholds
+Date: Sun, 8 Oct 2017 20:58:21 +0200
+Message-ID: <CAEXux-Z8j-P133rfkGn+DuWrsp7oNJUEPkZSO+9G4weGQ97tGg@mail.gmail.com>
 References: <20170915171129.5009-1-karolherbst@gmail.com>
- <20170915171129.5009-18-karolherbst@gmail.com>
+ <20170915171129.5009-17-karolherbst@gmail.com>
+ <20171008183618.fvszybhbe2u3m2nv@pmoreau.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0219921965=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170915171129.5009-18-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <20171008183618.fvszybhbe2u3m2nv-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,184 +20,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0219921965==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="v36nkxvwlhr37pj2"
-Content-Disposition: inline
-
-
---v36nkxvwlhr37pj2
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Reviewed-by: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-
-On 2017-09-15 =E2=80=94 17:11, Karol Herbst wrote:
-> v2: make message about relaxed throttling an info
->     rework reporting about current clk state
->=20
-> Signed-off-by: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> ---
->  drm/nouveau/include/nvkm/subdev/clk.h |  1 +
->  drm/nouveau/nvkm/subdev/clk/base.c    | 44 +++++++++++++++++++++++++----=
-------
->  2 files changed, 33 insertions(+), 12 deletions(-)
->=20
-> diff --git a/drm/nouveau/include/nvkm/subdev/clk.h b/drm/nouveau/include/=
-nvkm/subdev/clk.h
-> index f5ff1fd9..b79bf657 100644
-> --- a/drm/nouveau/include/nvkm/subdev/clk.h
-> +++ b/drm/nouveau/include/nvkm/subdev/clk.h
-> @@ -106,6 +106,7 @@ struct nvkm_clk {
->  	u8  temp;
->  	u8  max_temp;
->  	u8  relax_temp;
-> +	bool throttled;
-> =20
->  	bool allow_reclock;
->  #define NVKM_CLK_BOOST_NONE 0x0
-> diff --git a/drm/nouveau/nvkm/subdev/clk/base.c b/drm/nouveau/nvkm/subdev=
-/clk/base.c
-> index 54e14936..72ca5e0c 100644
-> --- a/drm/nouveau/nvkm/subdev/clk/base.c
-> +++ b/drm/nouveau/nvkm/subdev/clk/base.c
-> @@ -279,7 +279,7 @@ nvkm_pstate_prog(struct nvkm_clk *clk, int pstateid)
->  	struct nvkm_fb *fb =3D subdev->device->fb;
->  	struct nvkm_pci *pci =3D subdev->device->pci;
->  	struct nvkm_pstate *pstate;
-> -	int ret;
-> +	int ret, cstate;
-> =20
->  	if (pstateid =3D=3D NVKM_CLK_PSTATE_DEFAULT)
->  		return 0;
-> @@ -308,7 +308,12 @@ nvkm_pstate_prog(struct nvkm_clk *clk, int pstateid)
->  		ram->func->tidy(ram);
->  	}
-> =20
-> -	return nvkm_cstate_prog(clk, pstate, clk->exp_cstateid);
-> +	if (clk->throttled)
-> +		cstate =3D list_first_entry(&pstate->list, struct nvkm_cstate, head)->=
-id;
-> +	else
-> +		cstate =3D clk->exp_cstateid;
-> +
-> +	return nvkm_cstate_prog(clk, pstate, cstate);
->  }
-> =20
->  static void
-> @@ -322,22 +327,20 @@ nvkm_clk_update_work(struct work_struct *work)
->  		return;
->  	clk->pwrsrc =3D power_supply_is_system_supplied();
-> =20
-> -	if (clk->pstate)
-> -		pstate =3D clk->pstate->pstate;
-> -	else
-> -		pstate =3D NVKM_CLK_PSTATE_DEFAULT;
-> -	nvkm_trace(subdev, "P %d PWR %d U(AC) %d U(DC) %d A %d C %d T %d=C2=B0C=
-\n",
-> -		   pstate, clk->pwrsrc, clk->ustate_ac, clk->ustate_dc,
-> -		   clk->astate, clk->exp_cstateid, clk->temp);
-> -
->  	pstate =3D clk->pwrsrc ? clk->ustate_ac : clk->ustate_dc;
->  	if (clk->state_nr && pstate !=3D -1) {
-> -		pstate =3D (pstate < 0) ? clk->astate : pstate;
-> +		if (clk->throttled)
-> +			pstate =3D list_first_entry(&clk->states, struct nvkm_pstate, head)->=
-pstate;
-> +		else
-> +			pstate =3D (pstate < 0) ? clk->astate : pstate;
->  	} else {
->  		pstate =3D NVKM_CLK_PSTATE_DEFAULT;
->  	}
-> =20
-> -	nvkm_trace(subdev, "-> %d\n", pstate);
-> +	nvkm_trace(subdev, "PWR %d U(AC) %d U(DC) %d A %d C %d T %d=C2=B0C\n",
-> +		   clk->pwrsrc, clk->ustate_ac, clk->ustate_dc,
-> +		   clk->astate, clk->exp_cstateid, clk->temp);
-> +
->  	if (!clk->pstate || pstate !=3D clk->pstate->pstate) {
->  		int ret =3D nvkm_pstate_prog(clk, pstate);
->  		if (ret) {
-> @@ -564,9 +567,25 @@ nvkm_clk_astate(struct nvkm_clk *clk, int req, int r=
-el, bool wait)
->  int
->  nvkm_clk_tstate(struct nvkm_clk *clk, u8 temp)
->  {
-> +	struct nvkm_subdev *subdev =3D &clk->subdev;
->  	if (clk->temp =3D=3D temp)
->  		return 0;
->  	clk->temp =3D temp;
-> +	if (clk->max_temp && clk->relax_temp) {
-> +		if (!clk->throttled && temp > clk->max_temp) {
-> +			nvkm_warn(subdev,
-> +				  "temperature (%d C) hit the 'downclock' "
-> +				  "threshold\n",
-> +				  temp);
-> +			clk->throttled =3D true;
-> +		} else if (clk->throttled && temp < clk->relax_temp) {
-> +			nvkm_info(subdev,
-> +				  "temperature (%d C) went below the "
-> +				  "'relax' threshold\n",
-> +				  temp);
-> +			clk->throttled =3D false;
-> +		}
-> +	}
->  	return nvkm_clk_update(clk, false);
->  }
-> =20
-> @@ -727,6 +746,7 @@ nvkm_clk_ctor(const struct nvkm_clk_func *func, struc=
-t nvkm_device *device,
->  	clk->ustate_dc =3D -1;
->  	clk->exp_cstateid =3D NVKM_CLK_CSTATE_DEFAULT;
->  	clk->temp =3D 90; /* reasonable default value */
-> +	clk->throttled =3D false;
-> =20
->  	clk->allow_reclock =3D allow_reclock;
-> =20
-> --=20
-> 2.14.1
->=20
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---v36nkxvwlhr37pj2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEYgBv5JnnDxeItcEHU3l4X80+KSQFAlnac0EACgkQU3l4X80+
-KSSl5hAAskjnq4Wf4/qrvVpY7S8TlMqnPntw2qCD3ABrEPoik17hRAPxWXPuxUWP
-4eWHyFU1bvu2gpadrRlzi3mu7V/uBnm6aQmOI14tnlouX6/tfbFvDc4RPphCcEv0
-Ez6CjO/fxiSXeb+bgUMT9hXM8IEXQOsP4dvfumpM9iXV8fReqwBmiyzJkARpd0vx
-q8i6QWySKPwtGLVROeKNRM6gGIj8rA35Gnwb7MgeLJcD4Y7nPwBPKPd4gTVybU1N
-pOZPN8o/w/7fLHtOOJ+OBCAWFRIKyNNdXpCY1wrecmc7M2tu1hahpwzLYewgAXE0
-efYlDu/mY/f9CdxJBRb7FTekg0kdqpaFhT1ODj7XCtziKl65jWwcYc5hLQc2tvr2
-09ucZjgMjJijdu0hFrBQpHxRjxO5xi+p4OKD3QgKDJXzyPNY9NppZqDQa/mhEVF9
-hRtAq1gzIQYe6sqM1VVnvyS57fCWK9GTG2GFV0CfuZmErqmDkzVu8+Wv8a71xUYF
-FiH+YwK/WwzlO9DiDM8m/8pFYqFJLlq2NpQmVP87RghQURmpE5PrNP/XUT//oDOX
-RHBH1WkpfJS+0L4T9gkOoaSpG9bwK9days+F18DjE9bltgkH++QBYSiXa+LAkSR/
-eE2DovxGq7M77EizM2lrps6Nwc3KmZ1kM6ZJIH/FoZzjd+LHRZo=
-=j4EH
------END PGP SIGNATURE-----
-
---v36nkxvwlhr37pj2--
-
---===============0219921965==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0219921965==--
+T24gU3VuLCBPY3QgOCwgMjAxNyBhdCA4OjM2IFBNLCBQaWVycmUgTW9yZWF1IDxwaWVycmUubW9y
+cm93QGZyZWUuZnI+IHdyb3RlOgo+IE9uIDIwMTctMDktMTUg4oCUIDE3OjExLCBLYXJvbCBIZXJi
+c3Qgd3JvdGU6Cj4+IHYyOiB1c2UgbWluX3QKPj4KPj4gU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVy
+YnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Cj4+IC0tLQo+PiAgZHJtL25vdXZlYXUvaW5jbHVk
+ZS9udmttL3N1YmRldi9jbGsuaCB8ICAyICsrCj4+ICBkcm0vbm91dmVhdS9udmttL3N1YmRldi9j
+bGsvYmFzZS5jICAgIHwgNDIgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysKPj4g
+IDIgZmlsZXMgY2hhbmdlZCwgNDQgaW5zZXJ0aW9ucygrKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJt
+L25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9jbGsuaCBiL2RybS9ub3V2ZWF1L2luY2x1ZGUv
+bnZrbS9zdWJkZXYvY2xrLmgKPj4gaW5kZXggZjM1NTE4YzMuLmY1ZmYxZmQ5IDEwMDY0NAo+PiAt
+LS0gYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Nsay5oCj4+ICsrKyBiL2RybS9u
+b3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvY2xrLmgKPj4gQEAgLTEwNCw2ICsxMDQsOCBAQCBz
+dHJ1Y3QgbnZrbV9jbGsgewo+PiAgICAgICBzdHJ1Y3QgbnZrbV9jc3RhdGUgKmNzdGF0ZTsKPj4g
+ICAgICAgaW50IGV4cF9jc3RhdGVpZDsKPj4gICAgICAgdTggIHRlbXA7Cj4+ICsgICAgIHU4ICBt
+YXhfdGVtcDsKPj4gKyAgICAgdTggIHJlbGF4X3RlbXA7Cj4KPiBJIGd1ZXNzIHRob3NlIHNob3Vs
+ZCBiZSBpbnQsIHNpbWlsYXIgdG8gdGhlIGNoYW5nZXMgeW91IG1hZGUgaW4gcGF0Y2ggMS4KPgo+
+Pgo+PiAgICAgICBib29sIGFsbG93X3JlY2xvY2s7Cj4+ICAjZGVmaW5lIE5WS01fQ0xLX0JPT1NU
+X05PTkUgMHgwCj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFz
+ZS5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYwo+PiBpbmRleCA1NDE4OGQy
+Yi4uNTRlMTQ5MzYgMTAwNjQ0Cj4+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9i
+YXNlLmMKPj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYwo+PiBAQCAt
+MjcsNiArMjcsNyBAQAo+PiAgI2luY2x1ZGUgPHN1YmRldi9iaW9zL2Jvb3N0Lmg+Cj4+ICAjaW5j
+bHVkZSA8c3ViZGV2L2Jpb3MvY3N0ZXAuaD4KPj4gICNpbmNsdWRlIDxzdWJkZXYvYmlvcy9wZXJm
+Lmg+Cj4+ICsjaW5jbHVkZSA8c3ViZGV2L2Jpb3MvdGhlcm1hbF9wb2xpY2llcy5oPgo+PiAgI2lu
+Y2x1ZGUgPHN1YmRldi9iaW9zL3Zwc3RhdGUuaD4KPj4gICNpbmNsdWRlIDxzdWJkZXYvZmIuaD4K
+Pj4gICNpbmNsdWRlIDxzdWJkZXYvdGhlcm0uaD4KPj4gQEAgLTY1OSw2ICs2NjAsNDQgQEAgbnZr
+bV9jbGsgPSB7Cj4+ICAgICAgIC5maW5pID0gbnZrbV9jbGtfZmluaSwKPj4gIH07Cj4+Cj4+ICtz
+dGF0aWMgdm9pZAo+PiArbnZrbV9jbGtfcGFyc2VfbWF4X3RlbXAoc3RydWN0IG52a21fY2xrICpj
+bGspCj4+ICt7Cj4+ICsgICAgIHN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2ID0gJmNsay0+c3Vi
+ZGV2Owo+PiArICAgICBzdHJ1Y3QgbnZrbV9iaW9zICpiaW9zID0gc3ViZGV2LT5kZXZpY2UtPmJp
+b3M7Cj4+ICsgICAgIHN0cnVjdCBudmJpb3NfdGhlcm1hbF9wb2xpY2llc19oZWFkZXIgaGVhZGVy
+Owo+PiArICAgICBzdHJ1Y3QgbnZiaW9zX3RoZXJtYWxfcG9saWNpZXNfZW50cnkgZW50cnk7Cj4+
+ICsgICAgIHU4IGk7Cj4+ICsgICAgIHMxNiBtdCA9IDB4ZmY7Cj4+ICsgICAgIHMxNiBydCA9IDB4
+ZmY7Cj4KPiBXaHkgMHhmZj8gSSBtZWFuLCBzdXJlLCB0aGVyZSBpcyBhIGhpZ2ggcG9zc2liaWxp
+dHkgdGhhdCB0aGUgR1BVIHdvbuKAmXQgbGlrZQo+IHRlbXBlcmF0dXJlcyBhYm92ZSAyNTXihIMs
+IGJ1dCBzdGlsbC4KCmp1c3QgYSBoYWNrIHRvIHByb3Blcmx5IGNoZWNrIGlmIHdlIHNldCBhbnkg
+dmFsdWVzIHdlIGNhbiB1c2UgYW5kIG1ha2UKYXZhaWxhYmxlLgoKPgo+PiArCj4+ICsgICAgIGlm
+IChudmJpb3NfdGhlcm1hbF9wb2xpY2llc19wYXJzZShiaW9zLCAmaGVhZGVyKSkKPj4gKyAgICAg
+ICAgICAgICByZXR1cm47Cj4+ICsKPj4gKyAgICAgaWYgKCFoZWFkZXIuZWNvdW50KQo+PiArICAg
+ICAgICAgICAgIHJldHVybjsKPj4gKwo+PiArICAgICBmb3IgKGkgPSAwOyBpIDwgaGVhZGVyLmVj
+b3VudDsgaSsrKSB7Cj4+ICsgICAgICAgICAgICAgaWYgKG52Ymlvc190aGVybWFsX3BvbGljaWVz
+X2VudHJ5KGJpb3MsICZoZWFkZXIsIGksICZlbnRyeSkpCj4+ICsgICAgICAgICAgICAgICAgICAg
+ICByZXR1cm47Cj4+ICsKPj4gKyAgICAgICAgICAgICBpZiAoZW50cnkubW9kZSAhPSAxKQo+PiAr
+ICAgICAgICAgICAgICAgICAgICAgY29udGludWU7Cj4+ICsKPj4gKyAgICAgICAgICAgICBtdCA9
+IG1pbl90KHMxNiwgbXQsIChlbnRyeS50MCArIGVudHJ5LmRvd25fb2Zmc2V0KSAvIDMyKTsKPj4g
+KyAgICAgICAgICAgICBydCA9IG1pbl90KHMxNiwgcnQsIChlbnRyeS50MCArIGVudHJ5LnVwX29m
+ZnNldCkgLyAzMik7Cj4+ICsgICAgIH0KPj4gKwo+PiArICAgICBpZiAobXQgPT0gMHhmZiB8fCBy
+dCA9PSAweGZmKQo+PiArICAgICAgICAgICAgIHJldHVybjsKPj4gKwo+PiArICAgICBjbGstPm1h
+eF90ZW1wID0gbXQ7Cj4+ICsgICAgIGNsay0+cmVsYXhfdGVtcCA9IHJ0Owo+PiArCj4+ICsgICAg
+IG52a21fZGVidWcoc3ViZGV2LCAic2V0dGluZyB1cCBzdyB0aHJvdHRsaW5nIHRocmVzaG9sZHMg
+KCV1LyV1wrBDKVxuIiwKPj4gKyAgICAgICAgICAgICAgICBjbGstPm1heF90ZW1wLCBjbGstPnJl
+bGF4X3RlbXApOwo+PiArfQo+PiArCj4+ICBpbnQKPj4gIG52a21fY2xrX2N0b3IoY29uc3Qgc3Ry
+dWN0IG52a21fY2xrX2Z1bmMgKmZ1bmMsIHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlLAo+PiAg
+ICAgICAgICAgICBpbnQgaW5kZXgsIGJvb2wgYWxsb3dfcmVjbG9jaywgc3RydWN0IG52a21fY2xr
+ICpjbGspCj4+IEBAIC03MzMsNiArNzcyLDkgQEAgbnZrbV9jbGtfY3Rvcihjb25zdCBzdHJ1Y3Qg
+bnZrbV9jbGtfZnVuYyAqZnVuYywgc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UsCj4+Cj4+ICAg
+ICAgIGNsay0+Ym9vc3RfbW9kZSA9IG52a21fbG9uZ29wdChkZXZpY2UtPmNmZ29wdCwgIk52Qm9v
+c3QiLAo+PiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTlZLTV9DTEtfQk9P
+U1RfTk9ORSk7Cj4+ICsKPj4gKyAgICAgbnZrbV9jbGtfcGFyc2VfbWF4X3RlbXAoY2xrKTsKPj4g
+Kwo+PiAgICAgICByZXR1cm4gMDsKPj4gIH0KPj4KPj4gLS0KPj4gMi4xNC4xCj4+Cj4+IF9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+IE5vdXZlYXUgbWFp
+bGluZyBsaXN0Cj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
+b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
