@@ -1,13 +1,13 @@
 From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: [RFC PATCH 15/29] bios: add thermal policies table
-Date: Sun, 8 Oct 2017 20:40:11 +0200
-Message-ID: <20171008184011.caivpkpoz2prju4c@pmoreau.org>
+Subject: Re: [RFC PATCH 17/29] clk: thermal throttling
+Date: Sun, 8 Oct 2017 20:49:41 +0200
+Message-ID: <20171008184941.7gvipzqztuly7mzj@pmoreau.org>
 References: <20170915171129.5009-1-karolherbst@gmail.com>
- <20170915171129.5009-16-karolherbst@gmail.com>
+ <20170915171129.5009-18-karolherbst@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0895205630=="
+Content-Type: multipart/mixed; boundary="===============0219921965=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170915171129.5009-16-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <20170915171129.5009-18-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,183 +22,141 @@ Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0895205630==
+--===============0219921965==
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dz7ooao7f7kg4ekh"
+	protocol="application/pgp-signature"; boundary="v36nkxvwlhr37pj2"
 Content-Disposition: inline
 
 
---dz7ooao7f7kg4ekh
+--v36nkxvwlhr37pj2
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Looking good. It would be nice to have some defines/enums for the different
-modes. Some comments about t0, t1 and t2 would be nice. I saw you are using=
- t0
-in patch 16, but I have no idea why use t0 rather than t1 or t2.
-
-Otherwise,
-Acked-by: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Reviewed-by: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
 
 On 2017-09-15 =E2=80=94 17:11, Karol Herbst wrote:
+> v2: make message about relaxed throttling an info
+>     rework reporting about current clk state
+>=20
 > Signed-off-by: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 > ---
->  .../include/nvkm/subdev/bios/thermal_policies.h    | 27 ++++++++
->  drm/nouveau/nvkm/subdev/bios/Kbuild                |  1 +
->  drm/nouveau/nvkm/subdev/bios/thermal_policies.c    | 81 ++++++++++++++++=
-++++++
->  3 files changed, 109 insertions(+)
->  create mode 100644 drm/nouveau/include/nvkm/subdev/bios/thermal_policies=
-=2Eh
->  create mode 100644 drm/nouveau/nvkm/subdev/bios/thermal_policies.c
+>  drm/nouveau/include/nvkm/subdev/clk.h |  1 +
+>  drm/nouveau/nvkm/subdev/clk/base.c    | 44 +++++++++++++++++++++++++----=
+------
+>  2 files changed, 33 insertions(+), 12 deletions(-)
 >=20
-> diff --git a/drm/nouveau/include/nvkm/subdev/bios/thermal_policies.h b/dr=
-m/nouveau/include/nvkm/subdev/bios/thermal_policies.h
-> new file mode 100644
-> index 00000000..c9215fdd
-> --- /dev/null
-> +++ b/drm/nouveau/include/nvkm/subdev/bios/thermal_policies.h
-> @@ -0,0 +1,27 @@
-> +#ifndef __NVBIOS_THERMAL_POLICIES_H__
-> +#define __NVBIOS_THERMAL_POLICIES_H__
+> diff --git a/drm/nouveau/include/nvkm/subdev/clk.h b/drm/nouveau/include/=
+nvkm/subdev/clk.h
+> index f5ff1fd9..b79bf657 100644
+> --- a/drm/nouveau/include/nvkm/subdev/clk.h
+> +++ b/drm/nouveau/include/nvkm/subdev/clk.h
+> @@ -106,6 +106,7 @@ struct nvkm_clk {
+>  	u8  temp;
+>  	u8  max_temp;
+>  	u8  relax_temp;
+> +	bool throttled;
+> =20
+>  	bool allow_reclock;
+>  #define NVKM_CLK_BOOST_NONE 0x0
+> diff --git a/drm/nouveau/nvkm/subdev/clk/base.c b/drm/nouveau/nvkm/subdev=
+/clk/base.c
+> index 54e14936..72ca5e0c 100644
+> --- a/drm/nouveau/nvkm/subdev/clk/base.c
+> +++ b/drm/nouveau/nvkm/subdev/clk/base.c
+> @@ -279,7 +279,7 @@ nvkm_pstate_prog(struct nvkm_clk *clk, int pstateid)
+>  	struct nvkm_fb *fb =3D subdev->device->fb;
+>  	struct nvkm_pci *pci =3D subdev->device->pci;
+>  	struct nvkm_pstate *pstate;
+> -	int ret;
+> +	int ret, cstate;
+> =20
+>  	if (pstateid =3D=3D NVKM_CLK_PSTATE_DEFAULT)
+>  		return 0;
+> @@ -308,7 +308,12 @@ nvkm_pstate_prog(struct nvkm_clk *clk, int pstateid)
+>  		ram->func->tidy(ram);
+>  	}
+> =20
+> -	return nvkm_cstate_prog(clk, pstate, clk->exp_cstateid);
+> +	if (clk->throttled)
+> +		cstate =3D list_first_entry(&pstate->list, struct nvkm_cstate, head)->=
+id;
+> +	else
+> +		cstate =3D clk->exp_cstateid;
 > +
-> +struct nvbios_thermal_policies_header {
-> +	u32 offset;
+> +	return nvkm_cstate_prog(clk, pstate, cstate);
+>  }
+> =20
+>  static void
+> @@ -322,22 +327,20 @@ nvkm_clk_update_work(struct work_struct *work)
+>  		return;
+>  	clk->pwrsrc =3D power_supply_is_system_supplied();
+> =20
+> -	if (clk->pstate)
+> -		pstate =3D clk->pstate->pstate;
+> -	else
+> -		pstate =3D NVKM_CLK_PSTATE_DEFAULT;
+> -	nvkm_trace(subdev, "P %d PWR %d U(AC) %d U(DC) %d A %d C %d T %d=C2=B0C=
+\n",
+> -		   pstate, clk->pwrsrc, clk->ustate_ac, clk->ustate_dc,
+> -		   clk->astate, clk->exp_cstateid, clk->temp);
+> -
+>  	pstate =3D clk->pwrsrc ? clk->ustate_ac : clk->ustate_dc;
+>  	if (clk->state_nr && pstate !=3D -1) {
+> -		pstate =3D (pstate < 0) ? clk->astate : pstate;
+> +		if (clk->throttled)
+> +			pstate =3D list_first_entry(&clk->states, struct nvkm_pstate, head)->=
+pstate;
+> +		else
+> +			pstate =3D (pstate < 0) ? clk->astate : pstate;
+>  	} else {
+>  		pstate =3D NVKM_CLK_PSTATE_DEFAULT;
+>  	}
+> =20
+> -	nvkm_trace(subdev, "-> %d\n", pstate);
+> +	nvkm_trace(subdev, "PWR %d U(AC) %d U(DC) %d A %d C %d T %d=C2=B0C\n",
+> +		   clk->pwrsrc, clk->ustate_ac, clk->ustate_dc,
+> +		   clk->astate, clk->exp_cstateid, clk->temp);
 > +
-> +	u8 version;
-> +	u8 hlen;
-> +	u8 ecount;
-> +	u8 elen;
-> +};
-> +struct nvbios_thermal_policies_entry {
-> +	u8  mode;
-> +	u16 t0;
-> +	u16 t1;
-> +	u16 t2;
-> +	s16 down_offset;
-> +	s16 up_offset;
-> +};
-> +
-> +int nvbios_thermal_policies_parse(struct nvkm_bios *,
-> +				  struct nvbios_thermal_policies_header *);
-> +int nvbios_thermal_policies_entry(struct nvkm_bios *,
-> +				  struct nvbios_thermal_policies_header *,
-> +				  u8 idx,
-> +				  struct nvbios_thermal_policies_entry *);
-> +#endif
-> diff --git a/drm/nouveau/nvkm/subdev/bios/Kbuild b/drm/nouveau/nvkm/subde=
-v/bios/Kbuild
-> index 6b4f1e06..38f31dd0 100644
-> --- a/drm/nouveau/nvkm/subdev/bios/Kbuild
-> +++ b/drm/nouveau/nvkm/subdev/bios/Kbuild
-> @@ -30,6 +30,7 @@ nvkm-y +=3D nvkm/subdev/bios/shadowramin.o
->  nvkm-y +=3D nvkm/subdev/bios/shadowrom.o
->  nvkm-y +=3D nvkm/subdev/bios/timing.o
->  nvkm-y +=3D nvkm/subdev/bios/therm.o
-> +nvkm-y +=3D nvkm/subdev/bios/thermal_policies.o
->  nvkm-y +=3D nvkm/subdev/bios/vmap.o
->  nvkm-y +=3D nvkm/subdev/bios/volt.o
->  nvkm-y +=3D nvkm/subdev/bios/vpstate.o
-> diff --git a/drm/nouveau/nvkm/subdev/bios/thermal_policies.c b/drm/nouvea=
-u/nvkm/subdev/bios/thermal_policies.c
-> new file mode 100644
-> index 00000000..5105194e
-> --- /dev/null
-> +++ b/drm/nouveau/nvkm/subdev/bios/thermal_policies.c
-> @@ -0,0 +1,81 @@
-> +/*
-> + * Copyright 2017 Karol Herbst
-> + *
-> + * Permission is hereby granted, free of charge, to any person obtaining=
- a
-> + * copy of this software and associated documentation files (the "Softwa=
-re"),
-> + * to deal in the Software without restriction, including without limita=
-tion
-> + * the rights to use, copy, modify, merge, publish, distribute, sublicen=
-se,
-> + * and/or sell copies of the Software, and to permit persons to whom the
-> + * Software is furnished to do so, subject to the following conditions:
-> + *
-> + * The above copyright notice and this permission notice shall be includ=
-ed in
-> + * all copies or substantial portions of the Software.
-> + *
-> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRE=
-SS OR
-> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILI=
-TY,
-> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SH=
-ALL
-> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES=
- OR
-> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-> + * OTHER DEALINGS IN THE SOFTWARE.
-> + *
-> + * Authors: Karol Herbst
-> + */
-> +#include <subdev/bios.h>
-> +#include <subdev/bios/bit.h>
-> +#include <subdev/bios/thermal_policies.h>
-> +
-> +static u32
-> +nvbios_thermal_policies_offset(struct nvkm_bios *b)
-> +{
-> +	struct bit_entry bit_P;
-> +
-> +	if (!bit_entry(b, 'P', &bit_P)) {
-> +		if (bit_P.version =3D=3D 2 && bit_P.length >=3D 0x50)
-> +			return nvbios_rd32(b, bit_P.offset + 0x50);
+>  	if (!clk->pstate || pstate !=3D clk->pstate->pstate) {
+>  		int ret =3D nvkm_pstate_prog(clk, pstate);
+>  		if (ret) {
+> @@ -564,9 +567,25 @@ nvkm_clk_astate(struct nvkm_clk *clk, int req, int r=
+el, bool wait)
+>  int
+>  nvkm_clk_tstate(struct nvkm_clk *clk, u8 temp)
+>  {
+> +	struct nvkm_subdev *subdev =3D &clk->subdev;
+>  	if (clk->temp =3D=3D temp)
+>  		return 0;
+>  	clk->temp =3D temp;
+> +	if (clk->max_temp && clk->relax_temp) {
+> +		if (!clk->throttled && temp > clk->max_temp) {
+> +			nvkm_warn(subdev,
+> +				  "temperature (%d C) hit the 'downclock' "
+> +				  "threshold\n",
+> +				  temp);
+> +			clk->throttled =3D true;
+> +		} else if (clk->throttled && temp < clk->relax_temp) {
+> +			nvkm_info(subdev,
+> +				  "temperature (%d C) went below the "
+> +				  "'relax' threshold\n",
+> +				  temp);
+> +			clk->throttled =3D false;
+> +		}
 > +	}
-> +
-> +	return 0;
-> +}
-> +
-> +int
-> +nvbios_thermal_policies_parse(struct nvkm_bios *b, struct nvbios_thermal=
-_policies_header *h)
-> +{
-> +	if (!h)
-> +		return -EINVAL;
-> +
-> +	h->offset =3D nvbios_thermal_policies_offset(b);
-> +	if (!h->offset)
-> +		return -ENODEV;
-> +
-> +	h->version =3D nvbios_rd08(b, h->offset);
-> +	switch (h->version) {
-> +	case 0x10:
-> +		h->hlen     =3D nvbios_rd08(b, h->offset + 0x1);
-> +		h->elen     =3D nvbios_rd08(b, h->offset + 0x2);
-> +		h->ecount   =3D nvbios_rd08(b, h->offset + 0x3);
-> +		return 0;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +int
-> +nvbios_thermal_policies_entry(struct nvkm_bios *b, struct nvbios_thermal=
-_policies_header *h,
-> +		     u8 idx, struct nvbios_thermal_policies_entry *e)
-> +{
-> +	u32 offset;
-> +
-> +	if (!e || !h || idx > h->ecount)
-> +		return -EINVAL;
-> +
-> +	offset =3D h->offset + h->hlen + idx * h->elen;
-> +	e->mode =3D nvbios_rd08(b, offset);
-> +	e->t0 =3D nvbios_rd16(b, offset + 0x2);
-> +	e->t1 =3D nvbios_rd16(b, offset + 0x4);
-> +	e->t2 =3D nvbios_rd16(b, offset + 0x6);
-> +	e->down_offset =3D nvbios_rd16(b, offset + 0x12);
-> +	e->up_offset =3D nvbios_rd16(b, offset + 0x14);
-> +
-> +	return 0;
-> +}
+>  	return nvkm_clk_update(clk, false);
+>  }
+> =20
+> @@ -727,6 +746,7 @@ nvkm_clk_ctor(const struct nvkm_clk_func *func, struc=
+t nvkm_device *device,
+>  	clk->ustate_dc =3D -1;
+>  	clk->exp_cstateid =3D NVKM_CLK_CSTATE_DEFAULT;
+>  	clk->temp =3D 90; /* reasonable default value */
+> +	clk->throttled =3D false;
+> =20
+>  	clk->allow_reclock =3D allow_reclock;
+> =20
 > --=20
 > 2.14.1
 >=20
@@ -207,29 +165,29 @@ _policies_header *h,
 > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 > https://lists.freedesktop.org/mailman/listinfo/nouveau
 
---dz7ooao7f7kg4ekh
+--v36nkxvwlhr37pj2
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEYgBv5JnnDxeItcEHU3l4X80+KSQFAlnacQoACgkQU3l4X80+
-KSQgfhAAwaRofc60rfaiNEPmKDbNzbVl/JmVBoQU0QigHKe7pdenUa/E38EVlaqD
-2X5faZp6WJC/oCWK+IACXAAyuGZ6YEjKfb50fyghxHT0R/bub3DATJa0liSmh3Gu
-4GUqEKuUWXfQXXLPCW3WocVcFlxqsQpc5rAhucNPFc5EHjaUGQFEqZyT1lMaM0T3
-vBqYfP7FhSC7lmaK2abECZg1rrZ6KgWuXLWAnNbGwV6QaqgLX7OrLNJyufVSjD+j
-IObrJwd2lvMJ8jO4PVPpaq+55lJqinjXQVS+54oDyq1ZV6EB17gnyChIeFahts7d
-LDxfoSCVOAropuHF2Y6aeN8K1NLyxjQqxaeBG4QdAde5inE3PhAQvt4/uqu4mepe
-Csu5+Cma4EeWnswBqMIKnd+zN11iuBnTSLjUUak9nDwT9+oh1k44Xg1HiPB3ze4D
-N2Aoh5hpLa0DpKVm1UwwvC0xRjVuIl/6YMKQ4u4/CvuokBiue4vZrdgW4GiM31pg
-n7w/uiplpfpdpnGf9aGGM0t2ElFgS+vN3jBgBmRKq4YkSOyNLySm9LCvIjnTZom4
-IbKwXe/IOukkr2ExaooR2OKfBtfMqE9IgOJDjhh2vDpZouZbWvAJV1+Ef8BVZHId
-ieU/UfxIRhAzqy6gjnezXrmxqJsP22wN2MzACULnJs8rcgm4om4=
-=POPf
+iQIzBAABCgAdFiEEYgBv5JnnDxeItcEHU3l4X80+KSQFAlnac0EACgkQU3l4X80+
+KSSl5hAAskjnq4Wf4/qrvVpY7S8TlMqnPntw2qCD3ABrEPoik17hRAPxWXPuxUWP
+4eWHyFU1bvu2gpadrRlzi3mu7V/uBnm6aQmOI14tnlouX6/tfbFvDc4RPphCcEv0
+Ez6CjO/fxiSXeb+bgUMT9hXM8IEXQOsP4dvfumpM9iXV8fReqwBmiyzJkARpd0vx
+q8i6QWySKPwtGLVROeKNRM6gGIj8rA35Gnwb7MgeLJcD4Y7nPwBPKPd4gTVybU1N
+pOZPN8o/w/7fLHtOOJ+OBCAWFRIKyNNdXpCY1wrecmc7M2tu1hahpwzLYewgAXE0
+efYlDu/mY/f9CdxJBRb7FTekg0kdqpaFhT1ODj7XCtziKl65jWwcYc5hLQc2tvr2
+09ucZjgMjJijdu0hFrBQpHxRjxO5xi+p4OKD3QgKDJXzyPNY9NppZqDQa/mhEVF9
+hRtAq1gzIQYe6sqM1VVnvyS57fCWK9GTG2GFV0CfuZmErqmDkzVu8+Wv8a71xUYF
+FiH+YwK/WwzlO9DiDM8m/8pFYqFJLlq2NpQmVP87RghQURmpE5PrNP/XUT//oDOX
+RHBH1WkpfJS+0L4T9gkOoaSpG9bwK9days+F18DjE9bltgkH++QBYSiXa+LAkSR/
+eE2DovxGq7M77EizM2lrps6Nwc3KmZ1kM6ZJIH/FoZzjd+LHRZo=
+=j4EH
 -----END PGP SIGNATURE-----
 
---dz7ooao7f7kg4ekh--
+--v36nkxvwlhr37pj2--
 
---===============0895205630==
+--===============0219921965==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -239,4 +197,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0895205630==--
+--===============0219921965==--
