@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103202] Tearing with reverse prime (intel primary,
  nouveau secondary)
-Date: Tue, 10 Oct 2017 21:06:40 +0000
-Message-ID: <bug-103202-8800-20RdtoECXH@http.bugs.freedesktop.org/>
+Date: Tue, 10 Oct 2017 21:16:29 +0000
+Message-ID: <bug-103202-8800-skBJPSwh0o@http.bugs.freedesktop.org/>
 References: <bug-103202-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1683836055=="
+Content-Type: multipart/mixed; boundary="===============1656526322=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103202-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1683836055==
-Content-Type: multipart/alternative; boundary="15076695991.5F98C91.7404";
+--===============1656526322==
+Content-Type: multipart/alternative; boundary="15076701891.Aea5C.8668";
  charset="UTF-8"
 
 
---15076695991.5F98C91.7404
-Date: Tue, 10 Oct 2017 21:06:39 +0000
+--15076701891.Aea5C.8668
+Date: Tue, 10 Oct 2017 21:16:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103202
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I'm told that tearing with reverse prime is expected. Not really a nouveau
-issue. My guess is that if you were to flip them around and run the nvidia
-board as primary, you'd see tearing on the intel-connected screen.
+--- Comment #2 from Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> ---
+Both DRI2 and DRI3 do prime by copying onto the slaves (though DRI3 should =
+be
+quite capable of passing over scanout buffers fitting to the slave CRTC). T=
+his
+requires additional steps in the slave ddx to avoid the tear. -intel/radeon
+both offer the option to stage that copy into a back buffer for flipping to
+avoid the tear; but yes, X tears by default.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15076695991.5F98C91.7404
-Date: Tue, 10 Oct 2017 21:06:39 +0000
+--15076701891.Aea5C.8668
+Date: Tue, 10 Oct 2017 21:16:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +68,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Tearing with reverse prime (intel primary, nouveau second=
 ary)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103202#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103202#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Tearing with reverse prime (intel primary, nouveau second=
@@ -73,13 +77,16 @@ ary)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103202">bug 10320=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+chris&#64;chris-wilson.co.uk" title=3D"Chris Wilson &lt;chris&#64;chris-wil=
+son.co.uk&gt;"> <span class=3D"fn">Chris Wilson</span></a>
 </span></b>
-        <pre>I'm told that tearing with reverse prime is expected. Not real=
-ly a nouveau
-issue. My guess is that if you were to flip them around and run the nvidia
-board as primary, you'd see tearing on the intel-connected screen.</pre>
+        <pre>Both DRI2 and DRI3 do prime by copying onto the slaves (though=
+ DRI3 should be
+quite capable of passing over scanout buffers fitting to the slave CRTC). T=
+his
+requires additional steps in the slave ddx to avoid the tear. -intel/radeon
+both offer the option to stage that copy into a back buffer for flipping to
+avoid the tear; but yes, X tears by default.</pre>
         </div>
       </p>
 
@@ -93,9 +100,9 @@ board as primary, you'd see tearing on the intel-connected screen.</pre>
     </body>
 </html>=
 
---15076695991.5F98C91.7404--
+--15076701891.Aea5C.8668--
 
---===============1683836055==
+--===============1656526322==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1683836055==--
+--===============1656526322==--
