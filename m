@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103217] Recent noveau causes errors with scilab
  5.5.2 on NVIDIA G84GL [Quadro FX 570]
-Date: Wed, 11 Oct 2017 13:38:02 +0000
-Message-ID: <bug-103217-8800-R6TRXxc30r@http.bugs.freedesktop.org/>
+Date: Wed, 11 Oct 2017 13:40:51 +0000
+Message-ID: <bug-103217-8800-Lt2qkp9sDx@http.bugs.freedesktop.org/>
 References: <bug-103217-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1638638847=="
+Content-Type: multipart/mixed; boundary="===============1749150453=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103217-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1638638847==
-Content-Type: multipart/alternative; boundary="15077290810.cCd2bA.3790";
+--===============1749150453==
+Content-Type: multipart/alternative; boundary="15077292510.2F52.4531";
  charset="UTF-8"
 
 
---15077290810.cCd2bA.3790
-Date: Wed, 11 Oct 2017 13:38:01 +0000
+--15077292510.2F52.4531
+Date: Wed, 11 Oct 2017 13:40:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,26 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103217
 
---- Comment #2 from sergio.callegari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Contrary to what I have just said, scilab does not work anymore with LLVMPI=
-PE
-either, aka LIBGL_ALWAYS_SOFTWARE=3D1.
-
-Almost impossible for me to bisect, since this machine is shared by multiple
-users.  Currently, the machine is on git version of drivers only thanks to =
-the
-fact that there is a PPA for up to date drivers on ubuntu.  Unfortunately, =
-PPAs
-do not make easy to downgrade to previous versions of packages on the same =
-PPA.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+So it sounds like an issue not related to nouveau then?
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15077290810.cCd2bA.3790
-Date: Wed, 11 Oct 2017 13:38:01 +0000
+--15077292510.2F52.4531
+Date: Wed, 11 Oct 2017 13:40:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,8 +63,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Recent noveau causes errors with scilab 5.5.2 on NVIDIA G=
 84GL [Quadro FX 570]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103217#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103217#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Recent noveau causes errors with scilab 5.5.2 on NVIDIA G=
@@ -82,20 +72,10 @@ t # 2</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103217">bug 10321=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sergio.callegari&#64;gmail.com" title=3D"sergio.callegari&#64;gmail.com">se=
-rgio.callegari&#64;gmail.com</a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Contrary to what I have just said, scilab does not work anymor=
-e with LLVMPIPE
-either, aka LIBGL_ALWAYS_SOFTWARE=3D1.
-
-Almost impossible for me to bisect, since this machine is shared by multiple
-users.  Currently, the machine is on git version of drivers only thanks to =
-the
-fact that there is a PPA for up to date drivers on ubuntu.  Unfortunately, =
-PPAs
-do not make easy to downgrade to previous versions of packages on the same =
-PPA.</pre>
+        <pre>So it sounds like an issue not related to nouveau then?</pre>
         </div>
       </p>
 
@@ -104,15 +84,15 @@ PPA.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15077290810.cCd2bA.3790--
+--15077292510.2F52.4531--
 
---===============1638638847==
+--===============1749150453==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -122,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1638638847==--
+--===============1749150453==--
