@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103202] Tearing with reverse prime (intel primary,
  nouveau secondary)
-Date: Wed, 11 Oct 2017 09:06:32 +0000
-Message-ID: <bug-103202-8800-h5LocdgOyr@http.bugs.freedesktop.org/>
+Date: Wed, 11 Oct 2017 09:11:57 +0000
+Message-ID: <bug-103202-8800-GQvLsQvMwy@http.bugs.freedesktop.org/>
 References: <bug-103202-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1795943511=="
+Content-Type: multipart/mixed; boundary="===============1964656861=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103202-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1795943511==
-Content-Type: multipart/alternative; boundary="15077127920.1949fde6c.23397";
+--===============1964656861==
+Content-Type: multipart/alternative; boundary="15077131170.1241.24769";
  charset="UTF-8"
 
 
---15077127920.1949fde6c.23397
-Date: Wed, 11 Oct 2017 09:06:32 +0000
+--15077131170.1241.24769
+Date: Wed, 11 Oct 2017 09:11:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,32 +36,23 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103202
 
---- Comment #5 from post+fdo-8yesU2pFZgY@public.gmane.org ---
-> if the drivers for both GPUs use the ScreenRec::SyncSharedPixmap hook. Yo=
-u can take a look at xf86-video-amdgpu/ati for an example. (The driver of t=
-he displaying GPU also needs to separately prevent tearing of the scanout p=
-rocess itself. xf86-video-amdgpu/ati do this by default for PRIME outputs)
+Michel D=C3=A4nzer <michel-otUistvHUpPR7s880joybQ@public.gmane.org> changed:
 
-So this would be a matter of patching modesetting to do both of these thing=
-s?=20
-(I also wouldn't mind using the intel/nouveau Xorg drivers, but I got the
-impression that modesetting is actually preferred, at least for newer Intel
-cards.)
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+          Component|Driver/nouveau              |Driver/modesetting
+           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+                   |rg                          |
 
-That talk btw says that modesetting supports both "PRIME sync output slave"=
- and
-"PRIME sync output master", which makes me wonder why it is not able to sync
-with itself.  Either there's a bug in that (so I should reassign), or the
-underlying DRM lacks some support for something (so this bugreport would be=
- in
-the right place).  How could I figure that out?
+--- Comment #6 from Michel D=C3=A4nzer <michel-otUistvHUpPR7s880joybQ@public.gmane.org> ---
+Please attach the corresponding Xorg log file.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15077127920.1949fde6c.23397
-Date: Wed, 11 Oct 2017 09:06:32 +0000
+--15077131170.1241.24769
+Date: Wed, 11 Oct 2017 09:11:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,15 +63,47 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:michel&#6=
+4;daenzer.net" title=3D"Michel D=C3=A4nzer &lt;michel&#64;daenzer.net&gt;">=
+ <span class=3D"fn">Michel D=C3=A4nzer</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Tearing with reverse prime (intel primary, nouveau second=
+ary)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103202">bug 10320=
+2</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Component</td>
+           <td>Driver/nouveau
+           </td>
+           <td>Driver/modesetting
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+           <td>xorg-team&#64;lists.x.org
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Tearing with reverse prime (intel primary, nouveau second=
 ary)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103202#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103202#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Tearing with reverse prime (intel primary, nouveau second=
@@ -88,29 +111,10 @@ ary)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103202">bug 10320=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-post+fdo&#64;ralfj.de" title=3D"post+fdo&#64;ralfj.de">post+fdo&#64;ralfj.d=
-e</a>
+michel&#64;daenzer.net" title=3D"Michel D=C3=A4nzer &lt;michel&#64;daenzer.=
+net&gt;"> <span class=3D"fn">Michel D=C3=A4nzer</span></a>
 </span></b>
-        <pre><span class=3D"quote">&gt; if the drivers for both GPUs use th=
-e ScreenRec::SyncSharedPixmap hook. You can take a look at xf86-video-amdgp=
-u/ati for an example. (The driver of the displaying GPU also needs to separ=
-ately prevent tearing of the scanout process itself. xf86-video-amdgpu/ati =
-do this by default for PRIME outputs)</span >
-
-So this would be a matter of patching modesetting to do both of these thing=
-s?=20
-(I also wouldn't mind using the intel/nouveau Xorg drivers, but I got the
-impression that modesetting is actually preferred, at least for newer Intel
-cards.)
-
-That talk btw says that modesetting supports both &quot;PRIME sync output s=
-lave&quot; and
-&quot;PRIME sync output master&quot;, which makes me wonder why it is not a=
-ble to sync
-with itself.  Either there's a bug in that (so I should reassign), or the
-underlying DRM lacks some support for something (so this bugreport would be=
- in
-the right place).  How could I figure that out?</pre>
+        <pre>Please attach the corresponding Xorg log file.</pre>
         </div>
       </p>
 
@@ -124,9 +128,9 @@ the right place).  How could I figure that out?</pre>
     </body>
 </html>=
 
---15077127920.1949fde6c.23397--
+--15077131170.1241.24769--
 
---===============1795943511==
+--===============1964656861==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -136,4 +140,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1795943511==--
+--===============1964656861==--
