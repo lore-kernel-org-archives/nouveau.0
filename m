@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103217] Recent noveau causes errors with scilab
  5.5.2 on NVIDIA G84GL [Quadro FX 570]
-Date: Wed, 11 Oct 2017 14:04:55 +0000
-Message-ID: <bug-103217-8800-odoguNOTol@http.bugs.freedesktop.org/>
+Date: Wed, 11 Oct 2017 15:56:02 +0000
+Message-ID: <bug-103217-8800-GYKqfwH237@http.bugs.freedesktop.org/>
 References: <bug-103217-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0200422950=="
+Content-Type: multipart/mixed; boundary="===============1626399129=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103217-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0200422950==
-Content-Type: multipart/alternative; boundary="15077306951.e73e.10931";
+--===============1626399129==
+Content-Type: multipart/alternative; boundary="15077373610.7A7b.6712";
  charset="UTF-8"
 
 
---15077306951.e73e.10931
-Date: Wed, 11 Oct 2017 14:04:55 +0000
+--15077373610.7A7b.6712
+Date: Wed, 11 Oct 2017 15:56:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,32 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103217
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Is scilab an application that I can run myself? If not, you're probably on =
-your
-own.
+--- Comment #6 from sergio.callegari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Yes, it is. It is free software. You can download it at www.scilab.org. Ple=
+ase,
+take version 5.5.2 (http://www.scilab.org/en/download/previous) since the
+latest version (6) is young and has some problems on its own.
+
+Once you have downloaded it, just unpack it in some dir. Then,
+
+1) try simply starting. There is a bin dir, with the scilab executable in i=
+n.
+With nouveau on my hardware I already get issues at this point.
+
+2) If it starts, you get an application window which may include multiple
+panels ( I do not remember if on a fresh install you have multiple panels or
+just one). One of the panels is the Scilab Console. In it write
+plot([0 0], [1 1])
+and see what happens.
+Most likely, you will get an empty plot and a java exception.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15077306951.e73e.10931
-Date: Wed, 11 Oct 2017 14:04:55 +0000
+--15077373610.7A7b.6712
+Date: Wed, 11 Oct 2017 15:56:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +79,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Recent noveau causes errors with scilab 5.5.2 on NVIDIA G=
 84GL [Quadro FX 570]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103217#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103217#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Recent noveau causes errors with scilab 5.5.2 on NVIDIA G=
@@ -74,12 +88,27 @@ t # 5</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103217">bug 10321=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+sergio.callegari&#64;gmail.com" title=3D"sergio.callegari&#64;gmail.com">se=
+rgio.callegari&#64;gmail.com</a>
 </span></b>
-        <pre>Is scilab an application that I can run myself? If not, you're=
- probably on your
-own.</pre>
+        <pre>Yes, it is. It is free software. You can download it at www.sc=
+ilab.org. Please,
+take version 5.5.2 (<a href=3D"http://www.scilab.org/en/download/previous">=
+http://www.scilab.org/en/download/previous</a>) since the
+latest version (6) is young and has some problems on its own.
+
+Once you have downloaded it, just unpack it in some dir. Then,
+
+1) try simply starting. There is a bin dir, with the scilab executable in i=
+n.
+With nouveau on my hardware I already get issues at this point.
+
+2) If it starts, you get an application window which may include multiple
+panels ( I do not remember if on a fresh install you have multiple panels or
+just one). One of the panels is the Scilab Console. In it write
+plot([0 0], [1 1])
+and see what happens.
+Most likely, you will get an empty plot and a java exception.</pre>
         </div>
       </p>
 
@@ -88,15 +117,15 @@ own.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15077306951.e73e.10931--
+--15077373610.7A7b.6712--
 
---===============0200422950==
+--===============1626399129==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +135,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0200422950==--
+--===============1626399129==--
