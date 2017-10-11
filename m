@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103217] Recent noveau causes errors with scilab
- 5.5.2 on NVIDIA G84GL [Quadro FX 570]
-Date: Wed, 11 Oct 2017 15:56:02 +0000
-Message-ID: <bug-103217-8800-GYKqfwH237@http.bugs.freedesktop.org/>
-References: <bug-103217-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 103132] GTX 1060 6GB corrupts screen drawing in
+ Konsole and other apps
+Date: Wed, 11 Oct 2017 19:05:39 +0000
+Message-ID: <bug-103132-8800-c4pRnWoFP0@http.bugs.freedesktop.org/>
+References: <bug-103132-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1626399129=="
+Content-Type: multipart/mixed; boundary="===============0681036863=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103217-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-103132-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,47 +21,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1626399129==
-Content-Type: multipart/alternative; boundary="15077373610.7A7b.6712";
+--===============0681036863==
+Content-Type: multipart/alternative; boundary="15077487391.Ca7e.27559";
  charset="UTF-8"
 
 
---15077373610.7A7b.6712
-Date: Wed, 11 Oct 2017 15:56:01 +0000
+--15077487391.Ca7e.27559
+Date: Wed, 11 Oct 2017 19:05:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103217
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103132
 
---- Comment #6 from sergio.callegari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Yes, it is. It is free software. You can download it at www.scilab.org. Ple=
-ase,
-take version 5.5.2 (http://www.scilab.org/en/download/previous) since the
-latest version (6) is young and has some problems on its own.
+--- Comment #1 from barry-LJgwZTY9oXz8xeUnPfcrCQ@public.gmane.org ---
+On Saturday, 7 October 2017 11:20:03 BST bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org=20
+wrote:
+> https://bugs.freedesktop.org/show_bug.cgi?id=3D103132
+>=20
+> barry-LJgwZTY9oXz8xeUnPfcrCQ@public.gmane.org changed:
+>=20
+>            What    |Removed                     |Added
+> -------------------------------------------------------------------------=
+---
+> Summary|GTX 1060 6GB corrupts       |GTX 1060 6GB corrupts
+>                    |screen drawing in Kconsole
+  |screen drawing in Konsole
+>                    |and other apps              |and other apps
 
-Once you have downloaded it, just unpack it in some dir. Then,
+Is there any experiment I can run to help debug this?
 
-1) try simply starting. There is a bin dir, with the scilab executable in i=
-n.
-With nouveau on my hardware I already get issues at this point.
-
-2) If it starts, you get an application window which may include multiple
-panels ( I do not remember if on a fresh install you have multiple panels or
-just one). One of the panels is the Scilab Console. In it write
-plot([0 0], [1 1])
-and see what happens.
-Most likely, you will get an empty plot and a java exception.
+Barry
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---15077373610.7A7b.6712
-Date: Wed, 11 Oct 2017 15:56:01 +0000
+--15077487391.Ca7e.27559
+Date: Wed, 11 Oct 2017 19:05:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,38 +76,45 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Recent noveau causes errors with scilab 5.5.2 on NVIDIA G=
-84GL [Quadro FX 570]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103217#c6">Commen=
-t # 6</a>
+   title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
+ apps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132#c1">Commen=
+t # 1</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Recent noveau causes errors with scilab 5.5.2 on NVIDIA G=
-84GL [Quadro FX 570]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103217">bug 10321=
-7</a>
+   title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
+ apps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132">bug 10313=
+2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sergio.callegari&#64;gmail.com" title=3D"sergio.callegari&#64;gmail.com">se=
-rgio.callegari&#64;gmail.com</a>
+barry&#64;barrys-emacs.org" title=3D"barry&#64;barrys-emacs.org">barry&#64;=
+barrys-emacs.org</a>
 </span></b>
-        <pre>Yes, it is. It is free software. You can download it at www.sc=
-ilab.org. Please,
-take version 5.5.2 (<a href=3D"http://www.scilab.org/en/download/previous">=
-http://www.scilab.org/en/download/previous</a>) since the
-latest version (6) is young and has some problems on its own.
+        <pre>On Saturday, 7 October 2017 11:20:03 BST <a href=3D"mailto:bug=
+zilla-daemon&#64;freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a>=20
+wrote:
+<span class=3D"quote">&gt; <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
+ apps"
+   href=3D"show_bug.cgi?id=3D103132">https://bugs.freedesktop.org/show_bug.=
+cgi?id=3D103132</a>
+&gt;=20
+&gt; <a href=3D"mailto:barry&#64;barrys-emacs.org">barry&#64;barrys-emacs.o=
+rg</a> changed:
+&gt;=20
+&gt;            What    |Removed                     |Added
+&gt; ----------------------------------------------------------------------=
+------
+&gt; Summary|GTX 1060 6GB corrupts       |GTX 1060 6GB corrupts
+&gt;                    |screen drawing in Kconsole</span >
+  |screen drawing in Konsole
+<span class=3D"quote">&gt;                    |and other apps              =
+|and other apps</span >
 
-Once you have downloaded it, just unpack it in some dir. Then,
+Is there any experiment I can run to help debug this?
 
-1) try simply starting. There is a bin dir, with the scilab executable in i=
-n.
-With nouveau on my hardware I already get issues at this point.
-
-2) If it starts, you get an application window which may include multiple
-panels ( I do not remember if on a fresh install you have multiple panels or
-just one). One of the panels is the Scilab Console. In it write
-plot([0 0], [1 1])
-and see what happens.
-Most likely, you will get an empty plot and a java exception.</pre>
+Barry</pre>
         </div>
       </p>
 
@@ -118,14 +124,13 @@ Most likely, you will get an empty plot and a java exception.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15077373610.7A7b.6712--
+--15077487391.Ca7e.27559--
 
---===============1626399129==
+--===============0681036863==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +140,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1626399129==--
+--===============0681036863==--
