@@ -1,103 +1,88 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101322] GM108/NV118: 0 MiB DDR3 and boot crash in
- gf100_ltc_oneinit_tag_ram
-Date: Thu, 12 Oct 2017 08:31:11 +0000
-Message-ID: <bug-101322-8800-0lEq6lwgVi@http.bugs.freedesktop.org/>
-References: <bug-101322-8800@http.bugs.freedesktop.org/>
+From: Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [Nouveau] [PATCH v2] drm/nouveau: Document nouveau support for
+ Tegra in DRIVER_DESC
+Date: Thu, 12 Oct 2017 13:41:44 +0200
+Message-ID: <20171012114144.GA4453@ulmo>
+References: <20170811105616.9727-1-rhyskidd@gmail.com>
+ <20171001141353.25420-1-rhyskidd@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1381549593=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101322-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============1493322253=="
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20171001141353.25420-1-rhyskidd@gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Rhys Kidd <rhyskidd@gmail.com>
+Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1381549593==
-Content-Type: multipart/alternative; boundary="15077970710.5DbAac.24161";
- charset="UTF-8"
+--===============1493322253==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="8t9RHnE3ZwKMSgU+"
+Content-Disposition: inline
 
 
---15077970710.5DbAac.24161
-Date: Thu, 12 Oct 2017 08:31:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+--8t9RHnE3ZwKMSgU+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101322
+On Sun, Oct 01, 2017 at 10:13:53AM -0400, Rhys Kidd wrote:
+> nouveau supports the Tegra K1 and higher after the SoC-based GPUs converg=
+ed
+> with the main GeForce GPU families.
+>=20
+> v2:
+> - Qualify that support is Tegra K1+ (Martin Peres)
+>=20
+> Signed-off-by: Rhys Kidd <rhyskidd@gmail.com>
+> Reviewed-by: Martin Peres <martin.peres@free.fr>
+> Acked-by: Pierre Moreau <pierre.morrow@free.fr>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_drv.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
---- Comment #9 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
-Problem still present on 4.14-rc4
+Ben's probably picked this up already, but FWIW:
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+Acked-by: Thierry Reding <treding@nvidia.com>
 
---15077970710.5DbAac.24161
-Date: Thu, 12 Oct 2017 08:31:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+--8t9RHnE3ZwKMSgU+
+Content-Type: application/pgp-signature; name="signature.asc"
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
-it_tag_ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322#c9">Commen=
-t # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
-it_tag_ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322">bug 10132=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dan&#64;reactivated.net" title=3D"Daniel Drake &lt;dan&#64;reactivated.net&=
-gt;"> <span class=3D"fn">Daniel Drake</span></a>
-</span></b>
-        <pre>Problem still present on 4.14-rc4</pre>
-        </div>
-      </p>
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlnfVPgACgkQ3SOs138+
+s6ER7w//d8fuBSblsLBiDUN1RL9putsTqjI7WVD3w09kWJrgMy3MnkjEmJTSbMIH
+Awi2O6MZN0Q/y88zGd3p315waDvzh+r68IQBYbc/U8MAIDvge1E5OuUadaMWYyag
+aNo1Ph2ZA+NDgLXqcwYa/mXjrKEZ0VAhpAJ1PylU8uiFcH5fmeEGMu1iR0wNn36G
+bj7HSzoPkPw9cCK1169Rs/c8jZI3p80ayZYD1APDQ3ADA49jQZ1tsyuPD2ejotU2
+grEo9JrzV30RPHitxAlr6ECOiafPl4lEcWDg/c+MV3dg7P4024RvcWRswI1And/u
+DGCyGagvmEXO+Wj1KE0KBFZPK+10Sv7S/xviWUrgLpg2dtXJS6e9rfDB+47Aclpf
+Bvds3HTUoI5mVVDLhHlLmkcenF9fgVt/CzCadCtLnSdfVWUAo8IZt4xOY6tbn+P+
+/A9ewEmNpK4cYS997WMtTjpdZWvMmO0XwVoaQ/x7OUxOhzHlOJVTiGgy0vvwjBTo
+uRk60/IXyXKjsH8FQtXZic70tje6s1SlxbSlkjAeER/yyu8fAsAt33bJ1E+N5hjO
+sFLKpRgi+TS8VtZ+/347UcAfkqXvr8pfQRivikZu1lD1sDCMBrOczUctuiMhmLfG
+LR4vEDu5by/qvrRoX7rOpUprxXUEDHBTJRZd+RzMtd2zSG38mYA=
+=9sIk
+-----END PGP SIGNATURE-----
 
-      <hr>
-      <span>You are receiving this mail because:</span>
+--8t9RHnE3ZwKMSgU+--
 
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15077970710.5DbAac.24161--
-
---===============1381549593==
+--===============1493322253==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
 Content-Disposition: inline
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
 
---===============1381549593==--
+--===============1493322253==--
