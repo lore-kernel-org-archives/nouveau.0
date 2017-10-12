@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103132] GTX 1060 6GB corrupts screen drawing in
- Konsole and other apps
-Date: Wed, 11 Oct 2017 19:14:42 +0000
-Message-ID: <bug-103132-8800-yEk5xvqsYj@http.bugs.freedesktop.org/>
-References: <bug-103132-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101322] GM108/NV118: 0 MiB DDR3 and boot crash in
+ gf100_ltc_oneinit_tag_ram
+Date: Thu, 12 Oct 2017 08:31:11 +0000
+Message-ID: <bug-101322-8800-0lEq6lwgVi@http.bugs.freedesktop.org/>
+References: <bug-101322-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1493047887=="
+Content-Type: multipart/mixed; boundary="===============1381549593=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103132-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101322-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,44 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1493047887==
-Content-Type: multipart/alternative; boundary="15077492820.1DBcc7bc.28751";
+--===============1381549593==
+Content-Type: multipart/alternative; boundary="15077970710.5DbAac.24161";
  charset="UTF-8"
 
 
---15077492820.1DBcc7bc.28751
-Date: Wed, 11 Oct 2017 19:14:41 +0000
+--15077970710.5DbAac.24161
+Date: Thu, 12 Oct 2017 08:31:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103132
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101322
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-My guess is that the difference is due to enablement of acceleration? Not s=
-ure
-if that's when GP106 happened though. You could boot with nouveau.noaccel=
-=3D1 to
-disable it.
-
-I've recently fixed a bug in mesa introduced in 17.2 which could maybe cause
-some of these issues. What version of mesa are you using? [commit
-b20bccbcacc6170cfc4f18332491131df5bac811 upstream.]
-
-"Overlayed with blobs" generally means either texture corruption or ...
-something else.
-
-Are you using the 'modesetting' DDX? If so, I strongly recommend using the
-'nouveau' one.
+--- Comment #9 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
+Problem still present on 4.14-rc4
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15077492820.1DBcc7bc.28751
-Date: Wed, 11 Oct 2017 19:14:42 +0000
+--15077970710.5DbAac.24161
+Date: Thu, 12 Oct 2017 08:31:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -74,36 +60,21 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
- apps"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132#c2">Commen=
-t # 2</a>
+   title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
+it_tag_ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
- apps"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132">bug 10313=
+   title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
+it_tag_ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322">bug 10132=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+dan&#64;reactivated.net" title=3D"Daniel Drake &lt;dan&#64;reactivated.net&=
+gt;"> <span class=3D"fn">Daniel Drake</span></a>
 </span></b>
-        <pre>My guess is that the difference is due to enablement of accele=
-ration? Not sure
-if that's when GP106 happened though. You could boot with nouveau.noaccel=
-=3D1 to
-disable it.
-
-I've recently fixed a bug in mesa introduced in 17.2 which could maybe cause
-some of these issues. What version of mesa are you using? [commit
-b20bccbcacc6170cfc4f18332491131df5bac811 upstream.]
-
-&quot;Overlayed with blobs&quot; generally means either texture corruption =
-or ...
-something else.
-
-Are you using the 'modesetting' DDX? If so, I strongly recommend using the
-'nouveau' one.</pre>
+        <pre>Problem still present on 4.14-rc4</pre>
         </div>
       </p>
 
@@ -117,9 +88,9 @@ Are you using the 'modesetting' DDX? If so, I strongly recommend using the
     </body>
 </html>=
 
---15077492820.1DBcc7bc.28751--
+--15077970710.5DbAac.24161--
 
---===============1493047887==
+--===============1381549593==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -129,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1493047887==--
+--===============1381549593==--
