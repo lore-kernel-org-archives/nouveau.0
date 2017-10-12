@@ -1,125 +1,47 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
-	rescan
-Date: Thu, 12 Oct 2017 15:04:47 +0000
-Message-ID: <bug-75985-8800-EAdeAFqYWx@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [Nouveau] [PATCH 03/10] driver:gpu: return -ENOMEM on allocation
+ failure.
+Date: Thu, 12 Oct 2017 19:55:41 +0200
+Message-ID: <20171012175541.5jh3ovdzpyj5fflv@phenom.ffwll.local>
+References: <1505287939-14106-1-git-send-email-allen.lkml@gmail.com>
+ <1505287939-14106-3-git-send-email-allen.lkml@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0494727002=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <1505287939-14106-3-git-send-email-allen.lkml@gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Allen Pais <allen.lkml@gmail.com>
+Cc: linux-fbdev@vger.kernel.org, linux-scsi@vger.kernel.org, nouveau@lists.freedesktop.org, megaraidlinux.pdl@broadcom.com, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, target-devel@vger.kernel.org, linux-crypto@vger.kernel.org, netdev@vger.kernel.org, MPT-FusionLinux.pdl@broadcom.com, linux-btrfs@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0494727002==
-Content-Type: multipart/alternative; boundary="15078206860.bC185cEEb.29836";
- charset="UTF-8"
-
-
---15078206860.bC185cEEb.29836
-Date: Thu, 12 Oct 2017 15:04:46 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
-
---- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-So an interesting thought here is that GRUB also supports the setpci comman=
-d,
-and runs early enough for it to matter. This would be the functional equiva=
-lent
-of an early pci quirk. If someone having the issue could try adding
-
-setpci -s 01:00.0 0x488.l=3D0x2000000:0x2000000
-
-to be run by grub, and reporting back whether that helped or not, with `lsp=
-ci
--nn -d 10de:` output, that'd be interesting to see. [Not everyone can use
-01:00.0 -- double-check where your GPU is at. But that'll be right for most
-people.]
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15078206860.bC185cEEb.29836
-Date: Thu, 12 Oct 2017 15:04:46 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c16">Commen=
-t # 16</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>So an interesting thought here is that GRUB also supports the =
-setpci command,
-and runs early enough for it to matter. This would be the functional equiva=
-lent
-of an early pci quirk. If someone having the issue could try adding
-
-setpci -s 01:00.0 0x488.l=3D0x2000000:0x2000000
-
-to be run by grub, and reporting back whether that helped or not, with `lsp=
-ci
--nn -d 10de:` output, that'd be interesting to see. [Not everyone can use
-01:00.0 -- double-check where your GPU is at. But that'll be right for most
-people.]</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15078206860.bC185cEEb.29836--
-
---===============0494727002==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0494727002==--
+T24gV2VkLCBTZXAgMTMsIDIwMTcgYXQgMDE6MDI6MTJQTSArMDUzMCwgQWxsZW4gUGFpcyB3cm90
+ZToKPiBTaWduZWQtb2ZmLWJ5OiBBbGxlbiBQYWlzIDxhbGxlbi5sa21sQGdtYWlsLmNvbT4KCkFw
+cGxpZWQgdG8gZHJtLW1pc2MtbmV4dCwgdGhhbmtzLgotRGFuaWVsCgo+IC0tLQo+ICBkcml2ZXJz
+L2dwdS9kcm0vZ21hNTAwL21pZF9iaW9zLmMgfCAyICstCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGlu
+c2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vZ21hNTAwL21pZF9iaW9zLmMgYi9kcml2ZXJzL2dwdS9kcm0vZ21hNTAwL21pZF9iaW9zLmMK
+PiBpbmRleCBkNzVlY2IzLi4xZmExNjMzIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9n
+bWE1MDAvbWlkX2Jpb3MuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9nbWE1MDAvbWlkX2Jpb3Mu
+Ywo+IEBAIC0yMzcsNyArMjM3LDcgQEAgc3RhdGljIGludCBtaWRfZ2V0X3ZidF9kYXRhX3IxMChz
+dHJ1Y3QgZHJtX3BzYl9wcml2YXRlICpkZXZfcHJpdiwgdTMyIGFkZHIpCj4gIAo+ICAJZ2N0ID0g
+a21hbGxvYyhzaXplb2YoKmdjdCkgKiB2YnQucGFuZWxfY291bnQsIEdGUF9LRVJORUwpOwo+ICAJ
+aWYgKCFnY3QpCj4gLQkJcmV0dXJuIC0xOwo+ICsJCXJldHVybiAtRU5PTUVNOwo+ICAKPiAgCWdj
+dF92aXJ0dWFsID0gaW9yZW1hcChhZGRyICsgc2l6ZW9mKHZidCksCj4gIAkJCXNpemVvZigqZ2N0
+KSAqIHZidC5wYW5lbF9jb3VudCk7Cj4gLS0gCj4gMi43LjQKPiAKPiBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4g
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKCi0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJl
+IEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgpodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGlu
+ZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
