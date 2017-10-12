@@ -1,16 +1,14 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Nouveau] [PATCH 03/10] driver:gpu: return -ENOMEM on allocation
- failure.
-Date: Thu, 12 Oct 2017 19:55:41 +0200
-Message-ID: <20171012175541.5jh3ovdzpyj5fflv@phenom.ffwll.local>
-References: <1505287939-14106-1-git-send-email-allen.lkml@gmail.com>
- <1505287939-14106-3-git-send-email-allen.lkml@gmail.com>
+From: Ben Skeggs <bskeggs@redhat.com>
+Subject: Re: [Nouveau] [PATCH v2] drm/nouveau: Document nouveau support for
+ Tegra in DRIVER_DESC
+Date: Fri, 13 Oct 2017 06:09:36 +1000
+Message-ID: <166a2478-1b55-797f-4a3e-e15e4ee4b4fd@redhat.com>
+References: <20170811105616.9727-1-rhyskidd@gmail.com>
+ <20171001141353.25420-1-rhyskidd@gmail.com> <20171012114144.GA4453@ulmo>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1776493994=="
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <1505287939-14106-3-git-send-email-allen.lkml@gmail.com>
+In-Reply-To: <20171012114144.GA4453@ulmo>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
@@ -20,28 +18,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: dri-devel-bounces@lists.freedesktop.org
 Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Allen Pais <allen.lkml@gmail.com>
-Cc: linux-fbdev@vger.kernel.org, linux-scsi@vger.kernel.org, nouveau@lists.freedesktop.org, megaraidlinux.pdl@broadcom.com, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, target-devel@vger.kernel.org, linux-crypto@vger.kernel.org, netdev@vger.kernel.org, MPT-FusionLinux.pdl@broadcom.com, linux-btrfs@vger.kernel.org
+To: Thierry Reding <thierry.reding@gmail.com>, Rhys Kidd <rhyskidd@gmail.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBTZXAgMTMsIDIwMTcgYXQgMDE6MDI6MTJQTSArMDUzMCwgQWxsZW4gUGFpcyB3cm90
-ZToKPiBTaWduZWQtb2ZmLWJ5OiBBbGxlbiBQYWlzIDxhbGxlbi5sa21sQGdtYWlsLmNvbT4KCkFw
-cGxpZWQgdG8gZHJtLW1pc2MtbmV4dCwgdGhhbmtzLgotRGFuaWVsCgo+IC0tLQo+ICBkcml2ZXJz
-L2dwdS9kcm0vZ21hNTAwL21pZF9iaW9zLmMgfCAyICstCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGlu
-c2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vZ21hNTAwL21pZF9iaW9zLmMgYi9kcml2ZXJzL2dwdS9kcm0vZ21hNTAwL21pZF9iaW9zLmMK
-PiBpbmRleCBkNzVlY2IzLi4xZmExNjMzIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9n
-bWE1MDAvbWlkX2Jpb3MuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9nbWE1MDAvbWlkX2Jpb3Mu
-Ywo+IEBAIC0yMzcsNyArMjM3LDcgQEAgc3RhdGljIGludCBtaWRfZ2V0X3ZidF9kYXRhX3IxMChz
-dHJ1Y3QgZHJtX3BzYl9wcml2YXRlICpkZXZfcHJpdiwgdTMyIGFkZHIpCj4gIAo+ICAJZ2N0ID0g
-a21hbGxvYyhzaXplb2YoKmdjdCkgKiB2YnQucGFuZWxfY291bnQsIEdGUF9LRVJORUwpOwo+ICAJ
-aWYgKCFnY3QpCj4gLQkJcmV0dXJuIC0xOwo+ICsJCXJldHVybiAtRU5PTUVNOwo+ICAKPiAgCWdj
-dF92aXJ0dWFsID0gaW9yZW1hcChhZGRyICsgc2l6ZW9mKHZidCksCj4gIAkJCXNpemVvZigqZ2N0
-KSAqIHZidC5wYW5lbF9jb3VudCk7Cj4gLS0gCj4gMi43LjQKPiAKPiBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4g
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKCi0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJl
-IEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgpodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGlu
-ZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1776493994==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="OvrPorKQjp2aJD9tvwurpbgmCFitDwpKh"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--OvrPorKQjp2aJD9tvwurpbgmCFitDwpKh
+Content-Type: multipart/mixed; boundary="bLKWAfEnnhqX28fl2bJQj6CQNb6EVpsi9";
+ protected-headers="v1"
+From: Ben Skeggs <bskeggs@redhat.com>
+To: Thierry Reding <thierry.reding@gmail.com>, Rhys Kidd <rhyskidd@gmail.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <166a2478-1b55-797f-4a3e-e15e4ee4b4fd@redhat.com>
+Subject: Re: [Nouveau] [PATCH v2] drm/nouveau: Document nouveau support for
+ Tegra in DRIVER_DESC
+References: <20170811105616.9727-1-rhyskidd@gmail.com>
+ <20171001141353.25420-1-rhyskidd@gmail.com> <20171012114144.GA4453@ulmo>
+In-Reply-To: <20171012114144.GA4453@ulmo>
+
+--bLKWAfEnnhqX28fl2bJQj6CQNb6EVpsi9
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+On 10/12/2017 09:41 PM, Thierry Reding wrote:
+> On Sun, Oct 01, 2017 at 10:13:53AM -0400, Rhys Kidd wrote:
+>> nouveau supports the Tegra K1 and higher after the SoC-based GPUs conv=
+erged
+>> with the main GeForce GPU families.
+>>
+>> v2:
+>> - Qualify that support is Tegra K1+ (Martin Peres)
+>>
+>> Signed-off-by: Rhys Kidd <rhyskidd@gmail.com>
+>> Reviewed-by: Martin Peres <martin.peres@free.fr>
+>> Acked-by: Pierre Moreau <pierre.morrow@free.fr>
+>> ---
+>>  drivers/gpu/drm/nouveau/nouveau_drv.h | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> Ben's probably picked this up already, but FWIW:
+It's queued in my tree, but, I've added your ack.  Thanks!
+
+>=20
+> Acked-by: Thierry Reding <treding@nvidia.com>
+>=20
+
+
+--bLKWAfEnnhqX28fl2bJQj6CQNb6EVpsi9--
+
+--OvrPorKQjp2aJD9tvwurpbgmCFitDwpKh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEETp/uv2nr9kIVth0/dgucYlCSkfsFAlnfzAEACgkQdgucYlCS
+kft2gg//R3n7zEI4jJPxQ/2GI6UvvaPjxSbqtZT+kiA157MsyLkhe2j/7nd0qMml
++t3kM82d/S5TKc/zOZlRb9NKEjDWWKzo8gzNZaJvg08qNDO+a8sWOx0NAPKa5NDR
+0jmQios8xq38WCIFlJXYXbaGNP3bUclZCxxELX/qUC6gztnKE3khz7vhJn0n7OML
+KLHyY6fX5INTpT6QGrNwolm+VCAPg+YS20NiI8pPqRe9RwihF6AwfYu3TpEIBNnT
+qTboD2xfSEJ+dRe+wfwn6PEMVeLOA/SFKnnA7WhdOF3KqTJtL8INdpCMp3/FhVTd
+xZie5DkG1G1S1q24eI4rnOYYjx43Y04fi2BMazeWr/I5wzCueAzSU5iegQOWTvE0
+qGicCQaKha0y89mEW0L7kBYtn1HacfLj/QnwobEF2jTNDBZgF3wWSq2yGp0sov/9
+rS/iZfSR1Ou4or1Fjr8JBoaF2pa+TTjSiNCvvpd9Jm/fSt7BKfVn7uhhUfCGklku
+1FG+pJDFopnzUps5C7Qil09iDXat/XtMA+L4KX9o3s/13Ftts02n/yzkY7lge2U8
+hCWzS8/LhDZz3ItJvtTYPBty76dBnFczJbQADAX7+eRfuRy2j5pAAAvKEWsPeLqR
+0reT0Yy2bfaN6is244Rc7+ntm2+gBGNEZ/JU7sP8fbmpUWctXYU=
+=QENp
+-----END PGP SIGNATURE-----
+
+--OvrPorKQjp2aJD9tvwurpbgmCFitDwpKh--
+
+--===============1776493994==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============1776493994==--
