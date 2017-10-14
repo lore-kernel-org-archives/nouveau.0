@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103132] GTX 1060 6GB corrupts screen drawing in
- Konsole and other apps
-Date: Sat, 14 Oct 2017 09:37:06 +0000
-Message-ID: <bug-103132-8800-G3s1zHOY2F@http.bugs.freedesktop.org/>
-References: <bug-103132-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+	rescan
+Date: Sat, 14 Oct 2017 19:36:25 +0000
+Message-ID: <bug-75985-8800-evK8EWyGov@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1943604945=="
+Content-Type: multipart/mixed; boundary="===============1534085672=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103132-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,49 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1943604945==
-Content-Type: multipart/alternative; boundary="15079738250.4EA4BE5e.7631";
+--===============1534085672==
+Content-Type: multipart/alternative; boundary="15080097851.143B.17034";
  charset="UTF-8"
 
 
---15079738250.4EA4BE5e.7631
-Date: Sat, 14 Oct 2017 09:37:05 +0000
+--15080097851.143B.17034
+Date: Sat, 14 Oct 2017 19:36:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103132
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #3 from barry-LJgwZTY9oXz8xeUnPfcrCQ@public.gmane.org ---
-nouveau.noaccel=3D1 seems to fix the problem.
-
-But your "modesetting" DDX comment made me dig into the Xorg config.
-I was using the modesetting DDX and added the following config:
-
-$ cat /etc/X11/xorg.conf.d/20-nouveau.conf=20
-Section "Device"
-    Identifier "Nvidia card"
-    Driver "nouveau"
-EndSection
-
-That also seems to fix the problem.
-
-I'm saying "seems" because I have not done a lot of testing.
-
-I will update this bug once I have made sure this is "user error" (no nouve=
-au
-config).
-
-Oh and mesa is at 17.2.2-2.fc26.x86_64.
+--- Comment #17 from Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #16)
+> So an interesting thought here is that GRUB also supports the setpci
+> command
+Really smart thinking but users trying it had no success. Register always
+returning value 0xFFFFFFFF. Which would normally(?) mean, no device there.
+Which led me to dig a bit into setpci and it seems to me that without the
+kernel and its mmio, setpci is only able to work on the standard 256 pci
+registers but not the extended config space. So out of luck there?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15079738250.4EA4BE5e.7631
-Date: Sat, 14 Oct 2017 09:37:05 +0000
+--15080097851.143B.17034
+Date: Sat, 14 Oct 2017 19:36:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -79,41 +67,28 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
- apps"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132#c3">Commen=
-t # 3</a>
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c17">Commen=
+t # 17</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
- apps"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132">bug 10313=
-2</a>
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-barry&#64;barrys-emacs.org" title=3D"barry&#64;barrys-emacs.org">barry&#64;=
-barrys-emacs.org</a>
+hhfeuer&#64;gmx.de" title=3D"Maik Freudenberg &lt;hhfeuer&#64;gmx.de&gt;"> =
+<span class=3D"fn">Maik Freudenberg</span></a>
 </span></b>
-        <pre>nouveau.noaccel=3D1 seems to fix the problem.
-
-But your &quot;modesetting&quot; DDX comment made me dig into the Xorg conf=
-ig.
-I was using the modesetting DDX and added the following config:
-
-$ cat /etc/X11/xorg.conf.d/20-nouveau.conf=20
-Section &quot;Device&quot;
-    Identifier &quot;Nvidia card&quot;
-    Driver &quot;nouveau&quot;
-EndSection
-
-That also seems to fix the problem.
-
-I'm saying &quot;seems&quot; because I have not done a lot of testing.
-
-I will update this bug once I have made sure this is &quot;user error&quot;=
- (no nouveau
-config).
-
-Oh and mesa is at 17.2.2-2.fc26.x86_64.</pre>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D759=
+85#c16">comment #16</a>)
+<span class=3D"quote">&gt; So an interesting thought here is that GRUB also=
+ supports the setpci
+&gt; command</span >
+Really smart thinking but users trying it had no success. Register always
+returning value 0xFFFFFFFF. Which would normally(?) mean, no device there.
+Which led me to dig a bit into setpci and it seems to me that without the
+kernel and its mmio, setpci is only able to work on the standard 256 pci
+registers but not the extended config space. So out of luck there?</pre>
         </div>
       </p>
 
@@ -127,9 +102,9 @@ Oh and mesa is at 17.2.2-2.fc26.x86_64.</pre>
     </body>
 </html>=
 
---15079738250.4EA4BE5e.7631--
+--15080097851.143B.17034--
 
---===============1943604945==
+--===============1534085672==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -139,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1943604945==--
+--===============1534085672==--
