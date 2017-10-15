@@ -1,14 +1,13 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: Project ideas for GSoC/EVoC
-Date: Mon, 16 Oct 2017 01:15:58 +0300
-Message-ID: <d426484f-8304-38d5-387b-49cc471d563e@free.fr>
-References: <CAEXux-a1MTanxrCPO0HKq-cPM-sCpsHU9D_5Jz8UjJtB=1MTCg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103284] Unable to handle kernel NULL pointer
+ dereference on 4.13.0-1-sparc64-smp
+Date: Sun, 15 Oct 2017 23:19:21 +0000
+Message-ID: <bug-103284-8800-HGgvdGdek4@http.bugs.freedesktop.org/>
+References: <bug-103284-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1003744781=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAEXux-a1MTanxrCPO0HKq-cPM-sCpsHU9D_5Jz8UjJtB=1MTCg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Content-Language: fr-xx-moderne
+In-Reply-To: <bug-103284-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,56 +17,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTUvMTAvMTcgMjI6MTMsIEthcm9sIEhlcmJzdCB3cm90ZToKPiBIaSBldmVyeWJvZHksCj4g
-Cj4gY3VycmVudGx5IG9uIHRoZSBYb3JnIFdpa2kgcGFnZSBbMV0gdGhlcmUgYXJlIG9ubHkgdGhy
-ZWUgcHJvamVjdHMKPiBpZGVhcywgdHdvIGJlaW5nIHF1aXRlIHNpbWlsaWFyOgo+IDEuIEluc3Ry
-dWN0aW9uIHNjaGVkdWxpbmcKPiAyLiBNYXh3ZWxsIFZpZGVvIEFjY2VsIERlY29kaW5nCj4gMy4g
-S2VwbGVyIFZpZGVvIEFjY2VsIEVuY29kaW5nCj4gYW5kIGFsc28gdGhlIHJlZmVyZW5jZSB0byBv
-dXIgVHJlbGxvIGJvYXJkLgo+IAo+IEJlY2F1c2UgSSBkb24ndCBleHBlY3QgYW55IHN0dWRlbnQg
-aW50ZXJlc3RlZCBpbiBhIEdTb0MvRVZvQyBwcm9qZWN0Cj4gdG8gcmVhZCBvdXIgd2lraSBvciB0
-cmVsbG8sIEkgYW0gc3VyZSB0byBhdHRyYWN0IG1vcmUgc3R1ZGVudHMsIHdlCj4gc2hvdWxkIGdp
-dmUgbW9yZSBwcm9qZWN0IGV4YW1wbGVzLCBiZXN0IGlmIHRob3NlIGFyZSBhbGwgaW4gZGlmZmVy
-ZW50Cj4gYXJlYXMgb2YgdGhlIGRyaXZlci4KPiAKPiBJIGFtIGZpbmUgd2l0aCB3cml0aW5nIGFu
-ZCBhZGRpbmcgbmV3IGlkZWFzIG9uIHRoZSB3aWtpLCBidXQgaXQgd291bGQKPiBiZSBuaWNlIGlm
-IHlvdSBjb21lIHVwIHdpdGggaW50ZXJlc3RpbmcgcHJvamVjdHMgYXMgd2VsbCwgc28gdGhhdCBJ
-Cj4gY2FuIHdvcmsgb24gdGhvc2UgYW5kIGFkZCB0aGVtIHRvIHRoZSB3aWtpLgo+IAo+IE15IHNw
-b250YW5lb3VzIGlkZWFzIGFyZToKPiAKPiAqIEJldHRlciBoYW5kbGluZyBvZiBPT00gc2l0dWF0
-aW9uczoKPiAqKiBtb3JlIHN3YXBwaW5nIHRvIHN5c3RlbSBtZW1vcnkKPiAqKiBtZW1vcnkgdXNh
-Z2UgcmVwb3J0aW5nIHRvIHVzZXJzcGFjZQoKVGhhdCBzb3VuZHMgd2F5IG92ZXIgdGhlIHNjb3Bl
-IG9mIGEgR1NvQy4KPiAKPiAqIFBlcmZvcm1hbmNlIGFuYWx5c2lzOgo+ICoqIHdoYXQgYXJlIE5v
-dmVhdXMgbW9zdCBoaXQgYm90dGxlbmVja3MKPiAqKiBob3cgZWFzeSBpcyBpdCB0byBmaWd1cmUg
-dGhvc2Ugb3V0Cj4gKiogaW1wcm92ZS93cml0ZSB0b29scyBhbmQgbm91dmVhdXMgc3VwcG9ydCBm
-b3IgdGhvc2UgdG8gZmlndXJlIHRob3NlCj4gb3V0IChtYXliZSBtb3JlIGNvdW50ZXJzIG5lZWRl
-ZCwgc29tZXRoaW5nIGVsc2U/KQoKWWVzLCB0aGlzIGlzIGRlZmluaXRlbHkgbW9yZSBkb2FibGUh
-IEJlaW5nIGFibGUgdG8gcnVuIGZyYW1lcmV0cmFjZXIgb24Kbm91dmVhdSB3b3VsZCBiZSBpZGVh
-bCwgYXMgaXQgaXMgYW4gaW1wcmVzc2l2ZSB0b29sIHRvIGRlYnVnIHBlcmZvcm1hbmNlCmlzc3Vl
-IG9uIEludGVsIHBsYXRmb3JtcyAoYW5kIGl0IG1heSBhbHJlYWR5IHNvbWV3aGF0IHdvcmspLgoK
-PiAKPiAqIGluaXRpYWwgVnVsa2FuIGRyaXZlcgo+IAo+ICogT3BlbkNMCj4gKiogZmluaXNoaW5n
-IHVwIHdoYXQgd2UgYWxyZWFkeSBoYXZlCj4gKiogcGFzcyB0aGUgQ1RTCgpXZWxsLCBJIGtub3cg
-eW91IGFyZSBvcHRpbWlzdGljLCBidXQgdGhhdCBzb3VuZHMgaW1wb3NzaWJsZSB0byBzb21lb25l
-CndobyBpcyBub3QgYWxyZWFkeSBhIGNvbnRyaWJ1dG9yIQoKPiAKPiAqIGV4cGVyaW1lbnRhbCBu
-aXIgc3VwcG9ydCAod2h5IG5vdCBpZiBzb21lYm9keSB3YW50cyB0byBzcGVuZCB0aW1lIG9uIHRo
-aXM/KQoKWWVzLCB0aGF0IGNvdWxkIGJlIGEgZ29vZCBvbmUuIFRoaXMgaXMgYSBwcmV0dHkgc2Vs
-Zi1jb250YWluZWQgcHJvamVjdC4KTm90IHN1cmUgdGhpcyBpcyB3aGF0IHdlIHdhbnQgdG8gYmUg
-d29ya2luZyB0b3dhcmRzLCBidXQgYW55dGhpbmcgd2UgY2FuCmRvIHRvIHJlZHVjZSBvdXIgd29y
-a2xvYWQgaXMgYXBwcmVjaWF0ZWQgOikKCj4gCj4gKiBzb21lIHN1cGVyIGRpZmZpY3VsdCBjb21w
-aWxlciBvcHRpbWl6YXRpb25zCj4gKiogd2hpY2ggb25lcyBpbmRlZWQ/CgpJIHdvdWxkIHJhdGhl
-ciBnbyBmb3IgaW1wbGVtZW50aW5nIGEgbG90IG9mIHNpbXBsZSBvbmVzLCBhbmQgaG9wZSB0aGF0
-CnRoZSBzdHVkZW50IHdpbGwgc3RheSBsb25nIGVub3VnaCB0byBnZXQgdG8gdGhlIHVzZWZ1bCBv
-bmVzIDspCgo+IAo+ICogcmFuZG9tIHJlY2xvY2tpbmcgc3R1ZmYKPiAqKiBiaWcgZW5vdWdoIGZv
-ciBhbiBlbnRpcmUgR1NvQy9FVm9DIHByb2plY3Q/Cj4gKiogUm95LCBCZW46IFN0YXR1cyBvbiBG
-ZXJtaS9UZXNsYQoKQmlnIGVub3VnaD8gSXQgaXMgYmlnLWVub3VnaCBmb3IgYSBkZWNhZGUgYXBw
-YXJlbnRseSBnaXZlbiBob3cgc2xvdyB3ZQpoYXZlIGJlZW4gOnMKCj4gCj4gQW5kIGJlY2F1c2Ug
-SSBkb24ndCBqdXN0IGdvIGFoZWFkIGFuZCBhZGQgdGhvc2UgdGhpbmdzLCBJIGFsc28gd291bGQK
-PiBsaWtlIHRvIGdldCB5b3VyIGZlZWRiYWNrIG9uIHRoZSBpZGVhcyBJIG1lbnRpb25lZCBoZXJl
-LiBJbiB0aGUgZW5kIEkKPiB3b3VsZCBsaWtlIHRvIGdldCAxMCBvciBtb3JlIGlkZWFzIHdyaXR0
-ZW4gZG93biBzb21ld2hlcmUsIG1heWJlIGV2ZW4KPiBvbiB0aGUgWG9yZyB3aWtpIHBhZ2UsIGJ1
-dCB0aGVuIGl0IHdvdWxkIGJlIGxpa2UgNTAlIE5vdXZlYXUsIGJ1dCB0aGlzCj4gc2hvdWxkbid0
-IGJlIG91ciBwcm9ibGVtLgoKVGhhbmtzIGZvciBkb2luZyB0aGlzLCB3ZSBuZWVkIHRvIGdldCBt
-b3JlIGNvbnRyaWJ1dG9ycywgYW5kIHRoaXMgaXMgdGhlCmZpcnN0IHN0ZXAhCgpNYXJ0aW4KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1003744781==
+Content-Type: multipart/alternative; boundary="15081095612.5Ff8F8B07.21481";
+ charset="UTF-8"
+
+
+--15081095612.5Ff8F8B07.21481
+Date: Sun, 15 Oct 2017 23:19:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103284
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Looks like if we error out somewhere we never have before, and the attempt =
+to
+clean things up ends up using something that hasn't been initialized yet. C=
+an
+you try booting with nouveau.debug=3Dtrace to see where we end up going wro=
+ng,
+which should hopefully point out the bad piece of code wrt error recovery?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15081095612.5Ff8F8B07.21481
+Date: Sun, 15 Oct 2017 23:19:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Unable to handle kernel NULL pointer dereference on 4.13.=
+0-1-sparc64-smp"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103284#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Unable to handle kernel NULL pointer dereference on 4.13.=
+0-1-sparc64-smp"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103284">bug 10328=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Looks like if we error out somewhere we never have before, and=
+ the attempt to
+clean things up ends up using something that hasn't been initialized yet. C=
+an
+you try booting with nouveau.debug=3Dtrace to see where we end up going wro=
+ng,
+which should hopefully point out the bad piece of code wrt error recovery?<=
+/pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15081095612.5Ff8F8B07.21481--
+
+--===============1003744781==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1003744781==--
