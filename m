@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
-	rescan
-Date: Sun, 15 Oct 2017 04:14:11 +0000
-Message-ID: <bug-75985-8800-z5IXj1GOmL@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 103132] GTX 1060 6GB corrupts screen drawing in
+ Konsole and other apps
+Date: Sun, 15 Oct 2017 13:08:09 +0000
+Message-ID: <bug-103132-8800-YzxxhInnaT@http.bugs.freedesktop.org/>
+References: <bug-103132-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1353396921=="
+Content-Type: multipart/mixed; boundary="===============0668369370=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-103132-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,45 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1353396921==
-Content-Type: multipart/alternative; boundary="15080408514.bf9AFf1.28369";
+--===============0668369370==
+Content-Type: multipart/alternative; boundary="15080728891.9E0e.10479";
  charset="UTF-8"
 
 
---15080408514.bf9AFf1.28369
-Date: Sun, 15 Oct 2017 04:14:11 +0000
+--15080728891.9E0e.10479
+Date: Sun, 15 Oct 2017 13:08:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103132
 
---- Comment #18 from Fede <fedevx-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> ---
-(In reply to Maik Freudenberg from comment #17)
-> (In reply to Ilia Mirkin from comment #16)
-> > So an interesting thought here is that GRUB also supports the setpci
-> > command
-> Really smart thinking but users trying it had no success. Register always
-> returning value 0xFFFFFFFF. Which would normally(?) mean, no device there.
-> Which led me to dig a bit into setpci and it seems to me that without the
-> kernel and its mmio, setpci is only able to work on the standard 256 pci
-> registers but not the extended config space. So out of luck there?
+--- Comment #4 from barry-LJgwZTY9oXz8xeUnPfcrCQ@public.gmane.org ---
+The problems are all gone.
 
-
-I can confirm this. It does not work from GRUB. The best work-around so far=
- is
-to have a service do the setpci step before the nvidia drivers are loaded a=
-nd
-display-manager.service starts (for those on systemd).
+Please chalk this up to user error
+- did not configure Xorg to use the nouveau driver.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15080408514.bf9AFf1.28369
-Date: Sun, 15 Oct 2017 04:14:11 +0000
+--15080728891.9E0e.10479
+Date: Sun, 15 Oct 2017 13:08:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,42 +63,24 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c18">Commen=
-t # 18</a>
+   title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
+ apps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
+   title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
+ apps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132">bug 10313=
+2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-fedevx&#64;yahoo.com" title=3D"Fede &lt;fedevx&#64;yahoo.com&gt;"> <span cl=
-ass=3D"fn">Fede</span></a>
+barry&#64;barrys-emacs.org" title=3D"barry&#64;barrys-emacs.org">barry&#64;=
+barrys-emacs.org</a>
 </span></b>
-        <pre>(In reply to Maik Freudenberg from <a href=3D"show_bug.cgi?id=
-=3D75985#c17">comment #17</a>)
-<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
-g.cgi?id=3D75985#c16">comment #16</a>)
-&gt; &gt; So an interesting thought here is that GRUB also supports the set=
-pci
-&gt; &gt; command
-&gt; Really smart thinking but users trying it had no success. Register alw=
-ays
-&gt; returning value 0xFFFFFFFF. Which would normally(?) mean, no device th=
-ere.
-&gt; Which led me to dig a bit into setpci and it seems to me that without =
-the
-&gt; kernel and its mmio, setpci is only able to work on the standard 256 p=
-ci
-&gt; registers but not the extended config space. So out of luck there?</sp=
-an >
+        <pre>The problems are all gone.
 
-
-I can confirm this. It does not work from GRUB. The best work-around so far=
- is
-to have a service do the setpci step before the nvidia drivers are loaded a=
-nd
-display-manager.service starts (for those on systemd).</pre>
+Please chalk this up to user error
+- did not configure Xorg to use the nouveau driver.</pre>
         </div>
       </p>
 
@@ -124,9 +94,9 @@ display-manager.service starts (for those on systemd).</pre>
     </body>
 </html>=
 
---15080408514.bf9AFf1.28369--
+--15080728891.9E0e.10479--
 
---===============1353396921==
+--===============0668369370==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -136,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1353396921==--
+--===============0668369370==--
