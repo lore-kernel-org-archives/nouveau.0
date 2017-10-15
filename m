@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103132] GTX 1060 6GB corrupts screen drawing in
  Konsole and other apps
-Date: Sun, 15 Oct 2017 13:08:09 +0000
-Message-ID: <bug-103132-8800-YzxxhInnaT@http.bugs.freedesktop.org/>
+Date: Sun, 15 Oct 2017 13:44:57 +0000
+Message-ID: <bug-103132-8800-Be0L1OFu9F@http.bugs.freedesktop.org/>
 References: <bug-103132-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0668369370=="
+Content-Type: multipart/mixed; boundary="===============0588600906=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103132-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0668369370==
-Content-Type: multipart/alternative; boundary="15080728891.9E0e.10479";
+--===============0588600906==
+Content-Type: multipart/alternative; boundary="15080750971.5fcE491.22505";
  charset="UTF-8"
 
 
---15080728891.9E0e.10479
-Date: Sun, 15 Oct 2017 13:08:09 +0000
+--15080750971.5fcE491.22505
+Date: Sun, 15 Oct 2017 13:44:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,27 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103132
 
---- Comment #4 from barry-LJgwZTY9oXz8xeUnPfcrCQ@public.gmane.org ---
-The problems are all gone.
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to barry from comment #4)
+> The problems are all gone.
+>=20
+> Please chalk this up to user error
+> - did not configure Xorg to use the nouveau driver.
 
-Please chalk this up to user error
-- did not configure Xorg to use the nouveau driver.
+More like "distro error" -- "listened to the cacophony of people saying
+modesetting is the way to go".
+
+The real issue is that there's some issue in the GL, hence the display issu=
+es.
+Now they will be limited to applications that use GL [which sadly is "a lot"
+these days].
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15080728891.9E0e.10479
-Date: Sun, 15 Oct 2017 13:08:09 +0000
+--15080750971.5fcE491.22505
+Date: Sun, 15 Oct 2017 13:44:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +74,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
  apps"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
@@ -74,13 +83,25 @@ t # 4</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132">bug 10313=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-barry&#64;barrys-emacs.org" title=3D"barry&#64;barrys-emacs.org">barry&#64;=
-barrys-emacs.org</a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>The problems are all gone.
+        <pre>(In reply to barry from <a href=3D"show_bug.cgi?id=3D103132#c4=
+">comment #4</a>)
+<span class=3D"quote">&gt; The problems are all gone.
+&gt;=20
+&gt; Please chalk this up to user error
+&gt; - did not configure Xorg to use the nouveau driver.</span >
 
-Please chalk this up to user error
-- did not configure Xorg to use the nouveau driver.</pre>
+More like &quot;distro error&quot; -- &quot;listened to the cacophony of pe=
+ople saying
+modesetting is the way to go&quot;.
+
+The real issue is that there's some issue in the GL, hence the display issu=
+es.
+Now they will be limited to applications that use GL [which sadly is &quot;=
+a lot&quot;
+these days].</pre>
         </div>
       </p>
 
@@ -94,9 +115,9 @@ Please chalk this up to user error
     </body>
 </html>=
 
---15080728891.9E0e.10479--
+--15080750971.5fcE491.22505--
 
---===============0668369370==
+--===============0588600906==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +127,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0668369370==--
+--===============0588600906==--
