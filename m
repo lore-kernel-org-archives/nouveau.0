@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103284] Unable to handle kernel NULL pointer
  dereference on 4.13.0-1-sparc64-smp
-Date: Mon, 16 Oct 2017 22:13:52 +0000
-Message-ID: <bug-103284-8800-5hsqTQZL4t@http.bugs.freedesktop.org/>
+Date: Mon, 16 Oct 2017 22:30:20 +0000
+Message-ID: <bug-103284-8800-RUY17pCFwr@http.bugs.freedesktop.org/>
 References: <bug-103284-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0795274324=="
+Content-Type: multipart/mixed; boundary="===============1168577426=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103284-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0795274324==
-Content-Type: multipart/alternative; boundary="15081920321.6CAe.16536";
+--===============1168577426==
+Content-Type: multipart/alternative; boundary="15081930202.D94bB13.21178";
  charset="UTF-8"
 
 
---15081920321.6CAe.16536
-Date: Mon, 16 Oct 2017 22:13:52 +0000
+--15081930202.D94bB13.21178
+Date: Mon, 16 Oct 2017 22:30:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,32 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103284
 
---- Comment #2 from James <theholyettlz-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-Created attachment 134875
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134875&action=3Dedit
-debug.trace output from modprobe nouveau
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+OK, so looks like it very successfully creates a GT214_DISP object, and then
+proceeds to call nv50_display_create. This then does not trigger *any* furt=
+her
+traces, and errors out. It errors out before the dmac is initialized, and I
+think something in the list head thing fails.
 
-Requested info attached -- taken from manually doing modprobe nouveau
-debug=3Dtrace.
+Now, as I recall, SPARC has 8k pages. You could try bumping some of those 4=
+096
+values up to 8192 and see if that magically makes it work, at least a little
+(like the nouveau_bo_new).
+
+If you're sufficiently interested, you could add a lot more prints througho=
+ut
+that file to see exactly what fails, and then try to resolve it.
+
+It might be an uphill battle though - a bunch of stuff is tied to 4K pages,=
+ I
+think.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15081920321.6CAe.16536
-Date: Mon, 16 Oct 2017 22:13:52 +0000
+--15081930202.D94bB13.21178
+Date: Mon, 16 Oct 2017 22:30:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,8 +79,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Unable to handle kernel NULL pointer dereference on 4.13.=
 0-1-sparc64-smp"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103284#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103284#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Unable to handle kernel NULL pointer dereference on 4.13.=
@@ -76,17 +88,28 @@ t # 2</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103284">bug 10328=
 4</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-theholyettlz&#64;googlemail.com" title=3D"James &lt;theholyettlz&#64;google=
-mail.com&gt;"> <span class=3D"fn">James</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134875=
-" name=3D"attach_134875" title=3D"debug.trace output from modprobe nouveau"=
->attachment 134875</a> <a href=3D"attachment.cgi?id=3D134875&amp;action=3De=
-dit" title=3D"debug.trace output from modprobe nouveau">[details]</a></span>
-debug.trace output from modprobe nouveau
+        <pre>OK, so looks like it very successfully creates a GT214_DISP ob=
+ject, and then
+proceeds to call nv50_display_create. This then does not trigger *any* furt=
+her
+traces, and errors out. It errors out before the dmac is initialized, and I
+think something in the list head thing fails.
 
-Requested info attached -- taken from manually doing modprobe nouveau
-debug=3Dtrace.</pre>
+Now, as I recall, SPARC has 8k pages. You could try bumping some of those 4=
+096
+values up to 8192 and see if that magically makes it work, at least a little
+(like the nouveau_bo_new).
+
+If you're sufficiently interested, you could add a lot more prints througho=
+ut
+that file to see exactly what fails, and then try to resolve it.
+
+It might be an uphill battle though - a bunch of stuff is tied to 4K pages,=
+ I
+think.</pre>
         </div>
       </p>
 
@@ -100,9 +123,9 @@ debug=3Dtrace.</pre>
     </body>
 </html>=
 
---15081920321.6CAe.16536--
+--15081930202.D94bB13.21178--
 
---===============0795274324==
+--===============1168577426==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +135,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0795274324==--
+--===============1168577426==--
