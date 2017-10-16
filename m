@@ -1,14 +1,13 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Project ideas for GSoC/EVoC
-Date: Mon, 16 Oct 2017 11:43:08 +0200
-Message-ID: <CAEXux-ZGfV_70gnQseQuDFH7U0h=JvG8edBLocxTuKh9n97Bsw@mail.gmail.com>
-References: <CAEXux-a1MTanxrCPO0HKq-cPM-sCpsHU9D_5Jz8UjJtB=1MTCg@mail.gmail.com>
- <d426484f-8304-38d5-387b-49cc471d563e@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103132] GTX 1060 6GB corrupts screen drawing in
+ Konsole and other apps
+Date: Mon, 16 Oct 2017 17:48:34 +0000
+Message-ID: <bug-103132-8800-exzLQusgwX@http.bugs.freedesktop.org/>
+References: <bug-103132-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1075541446=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <d426484f-8304-38d5-387b-49cc471d563e-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-103132-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,88 +17,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBPY3QgMTYsIDIwMTcgYXQgMTI6MTUgQU0sIE1hcnRpbiBQZXJlcyA8bWFydGluLnBl
-cmVzQGZyZWUuZnI+IHdyb3RlOgo+IE9uIDE1LzEwLzE3IDIyOjEzLCBLYXJvbCBIZXJic3Qgd3Jv
-dGU6Cj4+IEhpIGV2ZXJ5Ym9keSwKPj4KPj4gY3VycmVudGx5IG9uIHRoZSBYb3JnIFdpa2kgcGFn
-ZSBbMV0gdGhlcmUgYXJlIG9ubHkgdGhyZWUgcHJvamVjdHMKPj4gaWRlYXMsIHR3byBiZWluZyBx
-dWl0ZSBzaW1pbGlhcjoKPj4gMS4gSW5zdHJ1Y3Rpb24gc2NoZWR1bGluZwo+PiAyLiBNYXh3ZWxs
-IFZpZGVvIEFjY2VsIERlY29kaW5nCj4+IDMuIEtlcGxlciBWaWRlbyBBY2NlbCBFbmNvZGluZwo+
-PiBhbmQgYWxzbyB0aGUgcmVmZXJlbmNlIHRvIG91ciBUcmVsbG8gYm9hcmQuCj4+Cj4+IEJlY2F1
-c2UgSSBkb24ndCBleHBlY3QgYW55IHN0dWRlbnQgaW50ZXJlc3RlZCBpbiBhIEdTb0MvRVZvQyBw
-cm9qZWN0Cj4+IHRvIHJlYWQgb3VyIHdpa2kgb3IgdHJlbGxvLCBJIGFtIHN1cmUgdG8gYXR0cmFj
-dCBtb3JlIHN0dWRlbnRzLCB3ZQo+PiBzaG91bGQgZ2l2ZSBtb3JlIHByb2plY3QgZXhhbXBsZXMs
-IGJlc3QgaWYgdGhvc2UgYXJlIGFsbCBpbiBkaWZmZXJlbnQKPj4gYXJlYXMgb2YgdGhlIGRyaXZl
-ci4KPj4KPj4gSSBhbSBmaW5lIHdpdGggd3JpdGluZyBhbmQgYWRkaW5nIG5ldyBpZGVhcyBvbiB0
-aGUgd2lraSwgYnV0IGl0IHdvdWxkCj4+IGJlIG5pY2UgaWYgeW91IGNvbWUgdXAgd2l0aCBpbnRl
-cmVzdGluZyBwcm9qZWN0cyBhcyB3ZWxsLCBzbyB0aGF0IEkKPj4gY2FuIHdvcmsgb24gdGhvc2Ug
-YW5kIGFkZCB0aGVtIHRvIHRoZSB3aWtpLgo+Pgo+PiBNeSBzcG9udGFuZW91cyBpZGVhcyBhcmU6
-Cj4+Cj4+ICogQmV0dGVyIGhhbmRsaW5nIG9mIE9PTSBzaXR1YXRpb25zOgo+PiAqKiBtb3JlIHN3
-YXBwaW5nIHRvIHN5c3RlbSBtZW1vcnkKPj4gKiogbWVtb3J5IHVzYWdlIHJlcG9ydGluZyB0byB1
-c2Vyc3BhY2UKPgo+IFRoYXQgc291bmRzIHdheSBvdmVyIHRoZSBzY29wZSBvZiBhIEdTb0MuCgpJ
-IHRhbGtlZCB3aXRoIElsaWEgYWJvdXQgdGhhdCBhIGJpdCBvbiBJUkMsIGFuZCBpdCBzb3VuZGVk
-IGxpa2UgdGhhdAphdCBsZWFzdCBvbiBGZXJtaSwgaXQgc2hvdWxkIGJlIHNpbXBsZSBlbm91Z2gg
-dG8gcmVmZXJlbmNlIG1lbW9yeQppbnNpZGUgc3lzdGVtIG1lbW9yeSBpbiBkcmF3IGNhbGxzLCB3
-aGVyZSB3ZSBhbHdheXMgdXNlIHZyYW0gZm9yIG5vdy4KQXBwYXJlbnRseSBkcm0gc3R1ZmYgYWxy
-ZWFkeSBnZXRzIG1vdmVkIG91dCBpbnRvIHN5c3JhbSBpZiBub3QgdXNlZApmb3IgYSBkcmF3IGNh
-bGwgb3Igc29tZXRoaW5nLCBtYXliZSBub3QuIE5lZWRzIGludmVzdGlnYXRpb24sIGJ1dCBJCmdv
-dCB0aGUgaW1wcmVzc2lvbiBpdCB3b3VsZCBiZSB0b3RhbGx5IGRvYWJsZSwgYmVjYXVzZSBpdCB3
-b3VsZG4ndApldmVuIG5lZWQgdG8gbGFuZCBhbGwgYXQgb25jZS4gQnV0IHllYWgsIEkgc2VlIHRo
-YXQgaXQgY291bGQgYmUgb25lIG9mCnRoZSBtb3JlIGNoYWxsZW5naW5nIG9uZXMgZGVwZW5kaW5n
-IG9uIHRoZSBjdXJyZW50IHNpdHVhdGlvbi4KCj4+Cj4+ICogUGVyZm9ybWFuY2UgYW5hbHlzaXM6
-Cj4+ICoqIHdoYXQgYXJlIE5vdmVhdXMgbW9zdCBoaXQgYm90dGxlbmVja3MKPj4gKiogaG93IGVh
-c3kgaXMgaXQgdG8gZmlndXJlIHRob3NlIG91dAo+PiAqKiBpbXByb3ZlL3dyaXRlIHRvb2xzIGFu
-ZCBub3V2ZWF1cyBzdXBwb3J0IGZvciB0aG9zZSB0byBmaWd1cmUgdGhvc2UKPj4gb3V0IChtYXli
-ZSBtb3JlIGNvdW50ZXJzIG5lZWRlZCwgc29tZXRoaW5nIGVsc2U/KQo+Cj4gWWVzLCB0aGlzIGlz
-IGRlZmluaXRlbHkgbW9yZSBkb2FibGUhIEJlaW5nIGFibGUgdG8gcnVuIGZyYW1lcmV0cmFjZXIg
-b24KPiBub3V2ZWF1IHdvdWxkIGJlIGlkZWFsLCBhcyBpdCBpcyBhbiBpbXByZXNzaXZlIHRvb2wg
-dG8gZGVidWcgcGVyZm9ybWFuY2UKPiBpc3N1ZSBvbiBJbnRlbCBwbGF0Zm9ybXMgKGFuZCBpdCBt
-YXkgYWxyZWFkeSBzb21ld2hhdCB3b3JrKS4KPgo+Pgo+PiAqIGluaXRpYWwgVnVsa2FuIGRyaXZl
-cgo+Pgo+PiAqIE9wZW5DTAo+PiAqKiBmaW5pc2hpbmcgdXAgd2hhdCB3ZSBhbHJlYWR5IGhhdmUK
-Pj4gKiogcGFzcyB0aGUgQ1RTCj4KPiBXZWxsLCBJIGtub3cgeW91IGFyZSBvcHRpbWlzdGljLCBi
-dXQgdGhhdCBzb3VuZHMgaW1wb3NzaWJsZSB0byBzb21lb25lCj4gd2hvIGlzIG5vdCBhbHJlYWR5
-IGEgY29udHJpYnV0b3IhCgpUaGUgZ29hbCBzaG91bGRuJ3QgYmUgdG8gZ2V0IGEgMTAwJSBwYXNz
-aW5nIHRlc3QuIEJ1dCB0aGUgQ1RTIGlzCnNvbWV0aGluZyB3ZSBjb3VsZCBtZWFzdXJlIHByb2dy
-ZXNzIGluLiBBbmQgaXQgYnJlYWtzIHRoYXQgc3BsaXR0aW5nCndvcmsgaW50byBzcGVjaWZpY2F0
-aW9uL2ltcGxlbWVudGF0aW9uL3Rlc3RpbmcgcGF0dGVybi4gSWYgZm9yIGV4YW1wbGUKd2UgcGFz
-cyA1MCUgYmVmb3JlIGFuZCA3MCUgYWZ0ZXIgdGhlIHByb2plY3QsIGl0IHdvdWxkIGJlIGFscmVh
-ZHkgYQpiaWcgaGVscC4KClZ1bGthbiBvbiB0aGUgb3RoZXIgaGFuZCB3b3VsZCBiZSB0b28gYmln
-LCByaWdodC4gSSBzdGlsbCB3b3VsZCBsaWtlCnRvIHB1dCBpdCBvbiB0aGUgbGlzdCwgYmVjYXVz
-ZSBJIGNhbiBpbWFnaW5lIHRoZXJlIGFyZSBzZXZlcmFsIHBlb3BsZQppbnRlcmVzdGVkIGluIHZ1
-bGthbiBhbmQgZXZlbiBpZiB3ZSBjYW4ndCB1c2UgdGhlIHJlc3VsdHMgZGlyZWN0bHkgdGhlCnN0
-dWRlbnQgY291bGQgbGVhcm4gcXVpdGUgYSBsb3QgYW5kIGNvbnRpbnVlIHdpdGggdGhlIHdvcmsg
-aWYgc3RpbGwKaW50ZXJlc3RlZC4gSXQgY291bGQgYmUgd2FzdGVkIHRpbWUgaW4gdGhlIGVuZCB0
-aG91Z2guCgo+Cj4+Cj4+ICogZXhwZXJpbWVudGFsIG5pciBzdXBwb3J0ICh3aHkgbm90IGlmIHNv
-bWVib2R5IHdhbnRzIHRvIHNwZW5kIHRpbWUgb24gdGhpcz8pCj4KPiBZZXMsIHRoYXQgY291bGQg
-YmUgYSBnb29kIG9uZS4gVGhpcyBpcyBhIHByZXR0eSBzZWxmLWNvbnRhaW5lZCBwcm9qZWN0Lgo+
-IE5vdCBzdXJlIHRoaXMgaXMgd2hhdCB3ZSB3YW50IHRvIGJlIHdvcmtpbmcgdG93YXJkcywgYnV0
-IGFueXRoaW5nIHdlIGNhbgo+IGRvIHRvIHJlZHVjZSBvdXIgd29ya2xvYWQgaXMgYXBwcmVjaWF0
-ZWQgOikKPgo+Pgo+PiAqIHNvbWUgc3VwZXIgZGlmZmljdWx0IGNvbXBpbGVyIG9wdGltaXphdGlv
-bnMKPj4gKiogd2hpY2ggb25lcyBpbmRlZWQ/Cj4KPiBJIHdvdWxkIHJhdGhlciBnbyBmb3IgaW1w
-bGVtZW50aW5nIGEgbG90IG9mIHNpbXBsZSBvbmVzLCBhbmQgaG9wZSB0aGF0Cj4gdGhlIHN0dWRl
-bnQgd2lsbCBzdGF5IGxvbmcgZW5vdWdoIHRvIGdldCB0byB0aGUgdXNlZnVsIG9uZXMgOykKCmZh
-aXIgZW5vdWdoLiBJIHRoaW5rIGJlc3Qgd291bGQgYmUgdG8gaGF2ZSBhIGRlY2VudCBtaXggaW4g
-dGhlCnByb3Bvc2FsLiBNYXliZSB0aGUgc3R1ZGVudCBpcyBjYXBhYmxlIG9mIGRvaW5nIHRoZSB0
-cmlja3kgb25lcywgbWF5YmUKbm90LiBJIHdvdWxkIGtlZXAgaXQgb3BlbiBhbmQgd2UgY2FuIGFk
-YXB0IGluIGNhc2Ugc29tZWJvZHkgd2FudHMgdG8Kd29yayBvbiB0aGF0LgoKPgo+Pgo+PiAqIHJh
-bmRvbSByZWNsb2NraW5nIHN0dWZmCj4+ICoqIGJpZyBlbm91Z2ggZm9yIGFuIGVudGlyZSBHU29D
-L0VWb0MgcHJvamVjdD8KPj4gKiogUm95LCBCZW46IFN0YXR1cyBvbiBGZXJtaS9UZXNsYQo+Cj4g
-QmlnIGVub3VnaD8gSXQgaXMgYmlnLWVub3VnaCBmb3IgYSBkZWNhZGUgYXBwYXJlbnRseSBnaXZl
-biBob3cgc2xvdyB3ZQo+IGhhdmUgYmVlbiA6cwo+Cgp5ZWFoLi4uIGJ1dCBvdXIgcHJvYmxlbSBp
-cyB0aW1lLCBub3QgdGhhdCBpdCBpcyBzdXBlciBoYXJkIGFuZCB0aGF0J3MKd2h5IHdlIGRvbid0
-IGZpbmlzaCBpdC4gSXQgaXMgc3RpbGwgaGFyZCwgYnV0IGdldHRpbmcgdGhlIEdQVSB0byBydW4K
-ZmFzdGVyIG1pZ2h0IGJlIGEgZ29vZCBtb3RpdmF0b3IgZm9yIHNvbWUuIEF0IGxlYXN0IGl0IHdh
-cyBmb3IgbWUuCgo+Pgo+PiBBbmQgYmVjYXVzZSBJIGRvbid0IGp1c3QgZ28gYWhlYWQgYW5kIGFk
-ZCB0aG9zZSB0aGluZ3MsIEkgYWxzbyB3b3VsZAo+PiBsaWtlIHRvIGdldCB5b3VyIGZlZWRiYWNr
-IG9uIHRoZSBpZGVhcyBJIG1lbnRpb25lZCBoZXJlLiBJbiB0aGUgZW5kIEkKPj4gd291bGQgbGlr
-ZSB0byBnZXQgMTAgb3IgbW9yZSBpZGVhcyB3cml0dGVuIGRvd24gc29tZXdoZXJlLCBtYXliZSBl
-dmVuCj4+IG9uIHRoZSBYb3JnIHdpa2kgcGFnZSwgYnV0IHRoZW4gaXQgd291bGQgYmUgbGlrZSA1
-MCUgTm91dmVhdSwgYnV0IHRoaXMKPj4gc2hvdWxkbid0IGJlIG91ciBwcm9ibGVtLgo+Cj4gVGhh
-bmtzIGZvciBkb2luZyB0aGlzLCB3ZSBuZWVkIHRvIGdldCBtb3JlIGNvbnRyaWJ1dG9ycywgYW5k
-IHRoaXMgaXMgdGhlCj4gZmlyc3Qgc3RlcCEKPgoKeWVhaCwgd2UgcmVhbGx5IGhhdmUgdG8uCgo+
-IE1hcnRpbgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1075541446==
+Content-Type: multipart/alternative; boundary="15081761130.f118cC22.11569";
+ charset="UTF-8"
+
+
+--15081761130.f118cC22.11569
+Date: Mon, 16 Oct 2017 17:48:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103132
+
+--- Comment #6 from barry-LJgwZTY9oXz8xeUnPfcrCQ@public.gmane.org ---
+I raised this with fedora:
+
+https://bugzilla.redhat.com/show_bug.cgi?id=3D1483037
+
+and have updated to comment that the wrong driver is might be used by defau=
+lt.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15081761130.f118cC22.11569
+Date: Mon, 16 Oct 2017 17:48:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
+ apps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132#c6">Commen=
+t # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
+ apps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132">bug 10313=
+2</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+barry&#64;barrys-emacs.org" title=3D"barry&#64;barrys-emacs.org">barry&#64;=
+barrys-emacs.org</a>
+</span></b>
+        <pre>I raised this with fedora:
+
+<a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1483037">https://b=
+ugzilla.redhat.com/show_bug.cgi?id=3D1483037</a>
+
+and have updated to comment that the wrong driver is might be used by defau=
+lt.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15081761130.f118cC22.11569--
+
+--===============1075541446==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1075541446==--
