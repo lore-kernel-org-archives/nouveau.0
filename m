@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103284] Unable to handle kernel NULL pointer
- dereference on 4.13.0-1-sparc64-smp
-Date: Sun, 15 Oct 2017 23:19:21 +0000
-Message-ID: <bug-103284-8800-HGgvdGdek4@http.bugs.freedesktop.org/>
-References: <bug-103284-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?q?J=C3=A9r=C3=A9my=20Lefaure?= <jeremy.lefaure-tU7rkvAWjlwhT4uAktR2oQ@public.gmane.org>
+Subject: [PATCH] drm/nouveau/bios/init: use ARRAY_SIZE
+Date: Sun, 15 Oct 2017 22:33:09 -0400
+Message-ID: <20171016023309.19863-1-jeremy.lefaure@lse.epita.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1003744781=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103284-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,100 +15,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>
+Cc: =?UTF-8?q?J=C3=A9r=C3=A9my=20Lefaure?= <jeremy.lefaure-tU7rkvAWjlwhT4uAktR2oQ@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1003744781==
-Content-Type: multipart/alternative; boundary="15081095612.5Ff8F8B07.21481";
- charset="UTF-8"
-
-
---15081095612.5Ff8F8B07.21481
-Date: Sun, 15 Oct 2017 23:19:21 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103284
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Looks like if we error out somewhere we never have before, and the attempt =
-to
-clean things up ends up using something that hasn't been initialized yet. C=
-an
-you try booting with nouveau.debug=3Dtrace to see where we end up going wro=
-ng,
-which should hopefully point out the bad piece of code wrt error recovery?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15081095612.5Ff8F8B07.21481
-Date: Sun, 15 Oct 2017 23:19:21 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Unable to handle kernel NULL pointer dereference on 4.13.=
-0-1-sparc64-smp"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103284#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Unable to handle kernel NULL pointer dereference on 4.13.=
-0-1-sparc64-smp"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103284">bug 10328=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Looks like if we error out somewhere we never have before, and=
- the attempt to
-clean things up ends up using something that hasn't been initialized yet. C=
-an
-you try booting with nouveau.debug=3Dtrace to see where we end up going wro=
-ng,
-which should hopefully point out the bad piece of code wrt error recovery?<=
-/pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15081095612.5Ff8F8B07.21481--
-
---===============1003744781==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1003744781==--
+VXNpbmcgdGhlIEFSUkFZX1NJWkUgbWFjcm8gaW1wcm92ZXMgdGhlIHJlYWRhYmlsaXR5IG9mIHRo
+ZSBjb2RlLiBBbHNvLAppdCBpcyB1c2VsZXNzIHRvIHJlLWludmVudCBpdC4KCkZvdW5kIHdpdGgg
+Q29jY2luZWxsZSB3aXRoIHRoZSBmb2xsb3dpbmcgc2VtYW50aWMgcGF0Y2g6CkByIGRlcGVuZHMg
+b24gKG9yZyB8fCByZXBvcnQpQAp0eXBlIFQ7ClRbXSBFOwpwb3NpdGlvbiBwOwpAQAooCiAoc2l6
+ZW9mKEUpQHAgL3NpemVvZigqRSkpCnwKIChzaXplb2YoRSlAcCAvc2l6ZW9mKEVbLi4uXSkpCnwK
+IChzaXplb2YoRSlAcCAvc2l6ZW9mKFQpKQopCgpSZXZpZXdlZC1ieTogVGhpZXJyeSBSZWRpbmcg
+PHRyZWRpbmdAbnZpZGlhLmNvbT4KU2lnbmVkLW9mZi1ieTogSsOpcsOpbXkgTGVmYXVyZSA8amVy
+ZW15LmxlZmF1cmVAbHNlLmVwaXRhLmZyPgotLS0KVGhpcyBwYXRjaCB3YXMgcGFydCBvZiBhIGJp
+Z2dlciBwYXRjaCBbMV0gcmV2aWV3ZWQgYnkgVGhpZXJyeSBSZWRpbmcKYmVmb3JlIGl0IHdhcyBz
+cGxpdCBpbiBzZXZlcmFsIHBhdGNoZXMuCgpbMV06IGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5v
+cmcvcGF0Y2gvOTk3OTg0My8KCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9i
+aW9zL2luaXQuYyB8IDcgKysrKy0tLQogMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwg
+MyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmtt
+L3N1YmRldi9iaW9zL2luaXQuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2
+L2Jpb3MvaW5pdC5jCmluZGV4IGI1OGVlOTlmN2JmYy4uOWNjMTBlNDM4YjNkIDEwMDY0NAotLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL2luaXQuYworKysgYi9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL2luaXQuYwpAQCAtMzYsNiAr
+MzYsOCBAQAogI2luY2x1ZGUgPHN1YmRldi9pMmMuaD4KICNpbmNsdWRlIDxzdWJkZXYvdmdhLmg+
+CiAKKyNpbmNsdWRlIDxsaW51eC9rZXJuZWwuaD4KKwogI2RlZmluZSBiaW9zbG9nKGx2bCwgZm10
+LCBhcmdzLi4uKSBkbyB7ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwK
+IAludmttX3ByaW50ayhpbml0LT5zdWJkZXYsIGx2bCwgaW5mbywgIjB4JTA4eFslY106ICJmbXQs
+ICAgICAgICAgICAgICAgIFwKIAkJICAgIGluaXQtPm9mZnNldCwgaW5pdF9leGVjKGluaXQpID8g
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgXApAQCAtMjI3MSw4ICsyMjczLDYgQEAgc3RhdGlj
+IHN0cnVjdCBudmJpb3NfaW5pdF9vcGNvZGUgewogCVsweGFhXSA9IHsgaW5pdF9yZXNlcnZlZCB9
+LAogfTsKIAotI2RlZmluZSBpbml0X29wY29kZV9uciAoc2l6ZW9mKGluaXRfb3Bjb2RlKSAvIHNp
+emVvZihpbml0X29wY29kZVswXSkpCi0KIGludAogbnZiaW9zX2V4ZWMoc3RydWN0IG52Ymlvc19p
+bml0ICppbml0KQogewpAQCAtMjI4MSw3ICsyMjgxLDggQEAgbnZiaW9zX2V4ZWMoc3RydWN0IG52
+Ymlvc19pbml0ICppbml0KQogCWluaXQtPm5lc3RlZCsrOwogCXdoaWxlIChpbml0LT5vZmZzZXQp
+IHsKIAkJdTggb3Bjb2RlID0gbnZiaW9zX3JkMDgoYmlvcywgaW5pdC0+b2Zmc2V0KTsKLQkJaWYg
+KG9wY29kZSA+PSBpbml0X29wY29kZV9uciB8fCAhaW5pdF9vcGNvZGVbb3Bjb2RlXS5leGVjKSB7
+CisJCWlmIChvcGNvZGUgPj0gQVJSQVlfU0laRShpbml0X29wY29kZSkgfHwKKwkJICAgICFpbml0
+X29wY29kZVtvcGNvZGVdLmV4ZWMpIHsKIAkJCWVycm9yKCJ1bmtub3duIG9wY29kZSAweCUwMnhc
+biIsIG9wY29kZSk7CiAJCQlyZXR1cm4gLUVJTlZBTDsKIAkJfQotLSAKMi4xNC4yCgpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
+bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
