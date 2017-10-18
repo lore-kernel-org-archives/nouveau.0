@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101322] GM108/NV118: 0 MiB DDR3 and boot crash in
  gf100_ltc_oneinit_tag_ram
-Date: Wed, 18 Oct 2017 08:00:04 +0000
-Message-ID: <bug-101322-8800-OCUhO2P19G@http.bugs.freedesktop.org/>
+Date: Wed, 18 Oct 2017 19:07:17 +0000
+Message-ID: <bug-101322-8800-EimXX2XJiy@http.bugs.freedesktop.org/>
 References: <bug-101322-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1154061610=="
+Content-Type: multipart/mixed; boundary="===============0519993057=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101322-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1154061610==
-Content-Type: multipart/alternative; boundary="15083136040.D9EbA739c.22861";
+--===============0519993057==
+Content-Type: multipart/alternative; boundary="15083536361.d4145F5.8618";
  charset="UTF-8"
 
 
---15083136040.D9EbA739c.22861
-Date: Wed, 18 Oct 2017 08:00:04 +0000
+--15083536361.d4145F5.8618
+Date: Wed, 18 Oct 2017 19:07:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,26 +36,23 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101322
 
---- Comment #11 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
-Sent partial dump from nvidia proprietary driver to mmio.dumps address:
+--- Comment #12 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This patch should (hopefully) help with the issues faced while tracing the
+binary driver, it will apply to their kernel shim layer sourcecode that can=
+ be
+found if you extract the installer package with --extract-only (and run
+./nvidia-installer inside the extracted directory to build the patched kern=
+el
+module).
 
-
-I loaded the module and then started an empty X session.
-Unfortunately with tracing enabled, this results in an instant hard hang
-upon starting X, before it has rendered the black screen.
-
-However I managed to capture these messages over the network up until
-the point of hang.
-
-Captured on Linux 4.13. No external displays connected. The all-in-one PC
-has one internal LCD display.
+https://paste.fedoraproject.org/paste/LkiC1cJdfPGOLc~NlKWkcA
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15083136040.D9EbA739c.22861
-Date: Wed, 18 Oct 2017 08:00:04 +0000
+--15083536361.d4145F5.8618
+Date: Wed, 18 Oct 2017 19:07:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,8 +70,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
 it_tag_ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322#c11">Comme=
-nt # 11</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322#c12">Comme=
+nt # 12</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GM108/NV118: 0 MiB DDR3 and boot crash in gf100_ltc_onein=
@@ -82,22 +79,20 @@ it_tag_ram"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101322">bug 10132=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dan&#64;reactivated.net" title=3D"Daniel Drake &lt;dan&#64;reactivated.net&=
-gt;"> <span class=3D"fn">Daniel Drake</span></a>
+skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
+<span class=3D"fn">Ben Skeggs</span></a>
 </span></b>
-        <pre>Sent partial dump from nvidia proprietary driver to mmio.dumps=
- address:
+        <pre>This patch should (hopefully) help with the issues faced while=
+ tracing the
+binary driver, it will apply to their kernel shim layer sourcecode that can=
+ be
+found if you extract the installer package with --extract-only (and run
+./nvidia-installer inside the extracted directory to build the patched kern=
+el
+module).
 
-
-I loaded the module and then started an empty X session.
-Unfortunately with tracing enabled, this results in an instant hard hang
-upon starting X, before it has rendered the black screen.
-
-However I managed to capture these messages over the network up until
-the point of hang.
-
-Captured on Linux 4.13. No external displays connected. The all-in-one PC
-has one internal LCD display.</pre>
+<a href=3D"https://paste.fedoraproject.org/paste/LkiC1cJdfPGOLc~NlKWkcA">ht=
+tps://paste.fedoraproject.org/paste/LkiC1cJdfPGOLc~NlKWkcA</a></pre>
         </div>
       </p>
 
@@ -111,9 +106,9 @@ has one internal LCD display.</pre>
     </body>
 </html>=
 
---15083136040.D9EbA739c.22861--
+--15083536361.d4145F5.8618--
 
---===============1154061610==
+--===============0519993057==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1154061610==--
+--===============0519993057==--
