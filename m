@@ -1,10 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103357] New: Nouveau - GTX 1060 - Screen doesn't go
- on again after power saving settings set blank screen
-Date: Thu, 19 Oct 2017 10:39:24 +0000
-Message-ID: <bug-103357-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Project ideas for GSoC/EVoC v2
+Date: Thu, 19 Oct 2017 18:08:54 +0200
+Message-ID: <CAEXux-bRUP4_suiH6YrSw8s1gUm1LnWPuXmRkbewnY4iaL4aCw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1616253904=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,212 +15,185 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1616253904==
-Content-Type: multipart/alternative; boundary="15084095640.b6Fb.1075";
- charset="UTF-8"
-
-
---15084095640.b6Fb.1075
-Date: Thu, 19 Oct 2017 10:39:24 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103357
-
-            Bug ID: 103357
-           Summary: Nouveau - GTX 1060 - Screen doesn't go on again after
-                    power saving settings set blank screen
-           Product: Mesa
-           Version: 17.2
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: fedevx-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-Created attachment 134917
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134917&action=3Dedit
-Journal
-
-As mentioned in the subject, when Gnome power saving kicks in switching the
-screen to blank, it does not recover back.
-
-Moving the mouse or pressing the keys do not bring the screen up again. This
-does not happen with the NVIDIA drivers, only with Nouveau.
-
-Kernel: 4.13.7-1
-xf86-video-nouveau 1.0.15-2
-gnome-shell 3.26.1+3+g43ec5280b-1
-mesa 17.2.2-1
-
-Attached are the journal entries from the moment the laptop switched off the
-screen until I tried to bring it back up, you'll see I tried changing its
-brightness (but then again brightness control doesn't work anyway as you can
-see in  https://bugzilla.kernel.org/show_bug.cgi?id=3D196931 )
-
-Thanks!
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15084095640.b6Fb.1075
-Date: Thu, 19 Oct 2017 10:39:24 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau - GTX 1060 - Screen doesn't go on again after pow=
-er saving settings set blank screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103357">103357</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Nouveau - GTX 1060 - Screen doesn't go on again after power s=
-aving settings set blank screen
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>17.2
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>fedevx&#64;yahoo.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134917=
-" name=3D"attach_134917" title=3D"Journal">attachment 134917</a> <a href=3D=
-"attachment.cgi?id=3D134917&amp;action=3Dedit" title=3D"Journal">[details]<=
-/a></span>
-Journal
-
-As mentioned in the subject, when Gnome power saving kicks in switching the
-screen to blank, it does not recover back.
-
-Moving the mouse or pressing the keys do not bring the screen up again. This
-does not happen with the NVIDIA drivers, only with Nouveau.
-
-Kernel: 4.13.7-1
-xf86-video-nouveau 1.0.15-2
-gnome-shell 3.26.1+3+g43ec5280b-1
-mesa 17.2.2-1
-
-Attached are the journal entries from the moment the laptop switched off the
-screen until I tried to bring it back up, you'll see I tried changing its
-brightness (but then again brightness control doesn't work anyway as you can
-see in  <a href=3D"https://bugzilla.kernel.org/show_bug.cgi?id=3D196931">ht=
-tps://bugzilla.kernel.org/show_bug.cgi?id=3D196931</a> )
-
-Thanks!</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15084095640.b6Fb.1075--
-
---===============1616253904==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1616253904==--
+SGVyZSBpcyBhbiB1cGRhdGUgdG8gdGhlIHByb2plY3QgaWRlYXMgbGlzdCBmb3IgR1NvQy9FVm9D
+LiBJZiB0aGVyZQphcmUgbm8gY29tcGxhaW5zIHdpdGhpbiB0aGUgbmV4dCBmZXcgZGF5cywgSSBq
+dXN0IGdvIGFoZWFkIGFuZCBhZGQKdGhlbSB0byB0aGUgd2lraSBwYWdlLiBNYW55IHRoYW5rcyBm
+b3IgcmV2aWV3aW5nIGFuZCBzdWdnZXN0aW5nCmNoYW5nZXMhCgpJbnN0cnVjdGlvbiBTY2hlZHVs
+ZXIKCkRpZmZpY3VsdHk6IERpZmZpY3VsdApTa2lsbHMgUmVxdWlyZWQ6IEMrKwpVc2VmdWwgc2tp
+bGxzOiBDb21waWxlcnMKSGFyZHdhcmUvU29mdHdhcmUgcmVxdWlyZWQ6IE5WSURJQSBGZXJtaSBv
+ciBsYXRlcgpXaGVyZSB0byBhc2sgcXVlc3Rpb25zOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZywgI25vdXZlYXUgb24KaXJjLmZyZWVub2RlLm5ldApEZXNjcmlwdGlvbjogV3JpdGUgYW4g
+aW5zdHJ1Y3Rpb24gc2NoZWR1bGluZyBwYXNzIGZvciBiYXNpYyBibG9ja3MgaW4KdGhlIG5vdXZl
+YXUgY29kZWdlbiBjb21waWxlci4gQ3JlYXRlIHNjaGVkdWxpbmcgcG9saWNpZXMgdGhhdCBpbXBy
+b3ZlCnBlcmZvcm1hbmNlLgoKCk1heHdlbGwgQWNjZWxlcmF0ZWQgVmlkZW8gRGVjb2RpbmcKCkRp
+ZmZpY3VsdHk6IE1lZGl1bQpTa2lsbHMgUmVxdWlyZWQ6IEMKVXNlZnVsIHNraWxsczogUmV2ZXJz
+ZSBFbmdpbmVlcmluZywgVmlkZW8gZm9ybWF0cwpIYXJkd2FyZS9Tb2Z0d2FyZSByZXF1aXJlZDog
+TlZJRElBIE1heHdlbGwgR00xMDcgLyBHTTEwOCBjaGlwCldoZXJlIHRvIGFzayBxdWVzdGlvbnM6
+IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnLCAjbm91dmVhdSBvbgppcmMuZnJlZW5vZGUu
+bmV0CkRlc2NyaXB0aW9uOiBSRSB0aGUgbWVjaGFuaXNtIGZvciB2aWRlbyBkZWNvZGluZyBpbiBW
+UDYgKHRoZSB2aWRlbwplbmdpbmUgaXRlcmF0aW9uIHVzZWQgaW4gR00xMHggY2hpcHMpLiBJbXBs
+ZW1lbnQgc3VwcG9ydCBmb3IgZHJpdmluZwp0aGUgZW5naW5lLgoKCktlcGxlciBBY2NlbGVyYXRl
+ZCBWaWRlbyBFbmNvZGluZwoKRGlmZmljdWx0eTogTWVkaXVtLURpZmZpY3VsdApTa2lsbHMgUmVx
+dWlyZWQ6IEMKVXNlZnVsIHNraWxsczogUmV2ZXJzZSBFbmdpbmVlcmluZywgVmlkZW8gZm9ybWF0
+cwpIYXJkd2FyZS9Tb2Z0d2FyZSByZXF1aXJlZDogTlZJRElBIEtlcGxlciBHS3h4eCBjaGlwCldo
+ZXJlIHRvIGFzayBxdWVzdGlvbnM6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnLCAjbm91
+dmVhdSBvbgppcmMuZnJlZW5vZGUubmV0CkRlc2NyaXB0aW9uOiBSRSB0aGUgdmlkZW8gZW5jb2Rp
+bmcgY29tcG9uZW50IG9mIEtlcGxlciBjaGlwcyBhbmQKcHJvZHVjZSBzdWZmaWNpZW50IGRvY3Vt
+ZW50YXRpb24gZm9yIGFuIG9wZW4gc291cmNlIGltcGxlbWVudGF0aW9uCih3aGlsZSByZXVzaW5n
+IGJsb2IgZmlybXdhcmUpLiBBIHN0cmV0Y2ggZ29hbCB3b3VsZCBiZSB0byBpbnRlZ3JhdGUKc29t
+ZXRoaW5nIGludG8gbm91dmVhdSB0byBiZSBhYmxlIHRvIGRyaXZlIHRoZSBlbmdpbmUsIGFuZCBh
+IHRveQp1c2VyLXNwYWNlIGFwcGxpY2F0aW9uIHRvIGVuY29kZSBhIHZpZGVvLgoKCkR5bmFtaWMg
+UmVjbG9ja2luZwoKRGlmZmljdWx0eTogTWVkaXVtLURpZmZpY3VsdApTa2lsbHMgUmVxdWlyZWQ6
+IEMKVXNlZnVsIHNraWxsczogTW9kZWxpbmcsIGNvbnRyb2wgc3lzdGVtcywgYW5kIHN0YXRpc3Rp
+Y3MKSGFyZHdhcmUvU29mdHdhcmUgcmVxdWlyZWQ6IEEgS2VwbGVyIE5WSURJQSBHUFUgd2l0aCBh
+IHN1cGVyLXJlbGlhYmxlCnJlY2xvY2tpbmcgc3VwcG9ydCBhbmQgYSBwb3dlciBzZW5zb3IKV2hl
+cmUgdG8gYXNrIHF1ZXN0aW9uczogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcsICNub3V2
+ZWF1IG9uCmlyYy5mcmVlbm9kZS5uZXQKRGVzY3JpcHRpb246IENyZWF0ZSBhIHBlcmZvcm1hbmNl
+IHRlc3QgcmlnIHRoYXQgd2lsbCB0ZXN0IGRpZmZlcmVudAp1c2UtY2FzZXMgd2Ugd2FudCB0byBz
+dXBwb3J0IGZvciBvdXIgZHluYW1pYyByZWNsb2NraW5nLgpUaGlzIHNldHVwIHdpbGwgbmVlZCB0
+byBiZSByZXBsaWNhYmxlIGFuZCB3aWxsIHNlcnZlIGFzIGEgYmVuY2htYXJrCmZvciBib3RoIHBv
+d2VyIGNvbnN1bXB0aW9uIGFuZCBwZXJmb3JtYW5jZS4gVGhlIG5leHQgc3RlcCB3aWxsIGJlIHRv
+CmV4cGVyaW1lbnQgd2l0aCBkaWZmZXJlbnQgaGV1cmlzdGljcyBpbiB0aGUgdXNlcnNwYWNlIHRo
+YXQgd2lsbCBwb2xsCnRoZSBwZXJmb3JtYW5jZSBjb3VudGVycywgYW5kIGR5bmFtaWNhbGx5IGNo
+YW5nZSB0aGUgY2xvY2tzIHRvIGFjaGlldmUKdGhlIGhpZ2hlc3QgcG9zc2libGUgcGVyZm9ybWFu
+Y2UsIGF0IHRoZSBsb3dlc3QgcG93ZXIgY29uc3VtcHRpb24KcG9zc2libGUgYW5kIHdpdGggdGhl
+IHNpbXBsZXN0IHBvc3NpYmxlIGhldXJpc3RpYy4KCgpFbmFibGluZyBwZXJmb3JtYW5jZSBhbmFs
+eXNpcyBvbiBmcmFtZXJldHJhY2VyCgpEaWZmaWN1bHR5OiBNZWRpdW0KU2tpbGxzIFJlcXVpcmVk
+OiBDLCBDKysKVXNlZnVsIHNpbGxzOiBRdCwgT3BlbkdMLCBBcGl0cmFjZQpIYXJkd2FyZS9Tb2Z0
+d2FyZSByZXF1aXJlZDogQW55IE5WSURJQSBUZXNsYSBvciBuZXdlcgpXaGVyZSB0byBhc2sgcXVl
+c3Rpb25zOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZywgI25vdXZlYXUgb24KaXJjLmZy
+ZWVub2RlLm5ldApEZXNjcmlwdGlvbjogRnJhbWVyZXRyYWNlciBpcyBhIHdvbmRlcmZ1bCB0b29s
+IHRvIGZpbmQgYW5kIGRlYnVnCnBlcmZvcm1hbmNlIGJvdHRsZW5lY2tzLiBIb3dldmVyLCBpdCBo
+YXMgYmVlbiBkZXNpZ25lZCBmb3IgSW50ZWwgR1BVcwphbmQgcmVxdWlyZXMgY2hhbmdlcyBpbiBi
+b3RoIEZyYW1lcmV0cmFjZXIgYW5kIE5vdXZlYXUgaW4gb3JkZXIgdG8gZ2V0CnRoZSBtYXhpbXVt
+IG91dCBvZiB0aGUgdG9vbC4gVGhlIHByb2plY3Qgd291bGQgYmUgdG8gbWFrZSB0aGUKbmVjZXNz
+YXJ5IGNoYW5nZXMgaW4gYm90aCBOb3V2ZWF1IGFuZCBGcmFtZXJldHJhY2VyIHRvIGVuYWJsZQpw
+ZXJmb3JtYW5jZSBhbmFseXNpcyBvbiBOb3V2ZWF1LgoKCkluaXRpYWwgTm91dmVhdSBWdWxrYW4g
+ZHJpdmVyCgpEaWZmaWN1bHR5OiBWZXJ5IERpZmZpY3VsdApTa2lsbHMgUmVxdWlyZWQ6IEMsIEMr
+KywgUHl0aG9uClVzZWZ1bCBzaWxsczogVnVsa2FuCkhhcmR3YXJlL1NvZnR3YXJlIHJlcXVpcmVk
+OiBBbnkgTlZJRElBIEtlcGxlciBvciBuZXdlcgpXaGVyZSB0byBhc2sgcXVlc3Rpb25zOiBub3V2
+ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZywgI25vdXZlYXUgb24KaXJjLmZyZWVub2RlLm5ldApE
+ZXNjcmlwdGlvbjogV3JpdGUgYW4gaW5pdGlhbCB2dWxrYW4gZHJpdmVyLCB3aGljaCBzaG91bGQg
+cGFzcyB0aGUKbW9zdCBiYXNpYyB0ZXN0cyBmcm9tIHRoZSBraHJvbm9zIENUUy4KCgpIZWxwaW5n
+IG91dCB3aXRoIE5vdXZlYXUgT3BlbkNMIGRyaXZlcgoKRGlmZmljdWx0eTogVmVyeSBEaWZmaWN1
+bHQKU2tpbGxzIFJlcXVpcmVkOiBDKysKVXNlZnVsIHNpbGxzOiBPcGVuQ0wKSGFyZHdhcmUvU29m
+dHdhcmUgcmVxdWlyZWQ6IEFueSBOVklESUEgVGVzbGEgb3IgbmV3ZXIKV2hlcmUgdG8gYXNrIHF1
+ZXN0aW9uczogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcsICNub3V2ZWF1IG9uCmlyYy5m
+cmVlbm9kZS5uZXQKRGVzY3JpcHRpb246IEhlbHBpbmcgUGllcnJlIE1vcmVhdSB0byBnZXQgaGlz
+IGN1cnJlbnQgT3BlbkNMIE5vdXZlYXUKY29kZSB0byBhIHVzYWJsZSBzdGF0ZS4gVGhpcyB3aWxs
+IGluY2x1ZGUgd29ya2luZyBhIGxvdCBvbiB0aGUgTm91dmVhdQpjb21waWxlciBhbmQgaW1wcm92
+aW5nIHRoZSBPcGVuQ0wgR2FsbGl1bSBzdGF0ZSB0cmFja2VyIENsb3Zlci4KCgpleHBlcmltZW50
+YWwgTklSIHN1cHBvcnQKCkRpZmZpY3VsdHk6IE1lZGl1bS1EaWZmaWN1bHQKU2tpbGxzIFJlcXVp
+cmVkOiBDLCBDKysKVXNlZnVsIHNpbGxzOiBDb21waWxlciwgTmlyCkhhcmR3YXJlL1NvZnR3YXJl
+IHJlcXVpcmVkOiBBbnkgTlZJRElBIFRlc2xhIG9yIG5ld2VyCldoZXJlIHRvIGFzayBxdWVzdGlv
+bnM6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnLCAjbm91dmVhdSBvbgppcmMuZnJlZW5v
+ZGUubmV0CkRlc2NyaXB0aW9uOiBNYWtlIGl0IHBvc3NpYmxlIGZvciBOb3V2ZWF1cyBjb2RlZ2Vu
+IHRvIGNvbnN1bWUgTklSIGluCmFkZGl0aW9uIHRvIFRHU0kuIEluIHRoZSBlbmQgaXQgc2hvdWxk
+IGJlIGFzc2Vzc2VkIGlmIHVzaW5nIE5JUiBvcgpzcGVuZGluZyB0aW1lIG9uIGltcHJvdmluZyB0
+aGUgY3VycmVudCBjb21waWxlciBicmluZ3MgYSBiaWdnZXIKYmVuZWZpdCB0byBOb3V2ZWF1IGlu
+IGxvbmd0ZXJtLgoKCkFkZGluZyBuZXcgY29tcGlsZXIgb3B0aW1pemF0aW9uIFBhc3NlcyB0byBD
+b2RlZ2VuCgpEaWZmaWN1bHR5OiBFYXN5IHRvIERpZmZpY3VsdApTa2lsbHMgUmVxdWlyZWQ6IEMr
+KwpVc2VmdWwgc2lsbHM6IENvbXBpbGVyIE9wdGltaXphdGlvbnMKSGFyZHdhcmUvU29mdHdhcmUg
+cmVxdWlyZWQ6IEFueSBOVklESUEgVGVzbGEgb3IgbmV3ZXIKV2hlcmUgdG8gYXNrIHF1ZXN0aW9u
+czogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcsICNub3V2ZWF1IG9uCmlyYy5mcmVlbm9k
+ZS5uZXQKRGVzY3JpcHRpb246IEFkZCBuZXcgcGFzc2VzIHRvIE5vdXZlYXVzIGNvZGVnZW4gdG8g
+aW1wcm92ZSB0aGUgY3VycmVudApnZW5lcmF0ZWQgY29kZS4gVGhpcyBjYW4gbWVhbiBhZGRpbmcg
+YSBsb3Qgb2YgdHJpdmlhbCBwYXNzZXMgb3IgYSBmZXcKY29tcGxleCBvbmUuCgoKRml4aW5nIG91
+dHN0YW5kaW5nIHJlY2xvY2tpbmcgaXNzdWVzIG9uIGFscmVhZHkgcmVjbG9ja2FibGUgR1BVcwoK
+RGlmZmljdWx0eTogTWVkaXVtLURpZmZpY3VsdApTa2lsbHMgUmVxdWlyZWQ6IEMKVXNlZnVsIHNp
+bGxzOiBSZXZlcnNlIEVuZ2luZWVyaW5nCkhhcmR3YXJlL1NvZnR3YXJlIHJlcXVpcmVkOiBBbnkg
+TlZJRElBIFRlc2xhLCBLZXBsZXIgb3IgTWF4d2VsbCBHUFUKV2hlcmUgdG8gYXNrIHF1ZXN0aW9u
+czogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcsICNub3V2ZWF1IG9uCmlyYy5mcmVlbm9k
+ZS5uZXQKRGVzY3JpcHRpb246IFdlIGFscmVhZHkgc3VwcG9ydCBhIGhhbmRmdWwgb2YgY2hpcHNl
+dHMgcXVpdGUgd2VsbC4KRml4aW5nIGxhc3Qgb3V0c3RhbmRpbmcgaXNzdWVzIG9uIHRob3NlIHdv
+dWxkIHRha2UgdXMgYSBzdGVwIGZvcndhcmQKdG8gYWN0dWFsbHkgaGF2aW5nIGR5bmFtaWMgcmVj
+bG9ja2luZyBlbmFibGVkIGJ5IGRlZmF1bHQgKHdoaWNoIHdlCmRvbid0IGltcGxlbWVudCB5ZXQg
+dGhvdWdoKQoKCk9uIE1vbiwgT2N0IDE2LCAyMDE3IGF0IDExOjQzIEFNLCBLYXJvbCBIZXJic3Qg
+PGthcm9saGVyYnN0QGdtYWlsLmNvbT4gd3JvdGU6Cj4gT24gTW9uLCBPY3QgMTYsIDIwMTcgYXQg
+MTI6MTUgQU0sIE1hcnRpbiBQZXJlcyA8bWFydGluLnBlcmVzQGZyZWUuZnI+IHdyb3RlOgo+PiBP
+biAxNS8xMC8xNyAyMjoxMywgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+Pj4gSGkgZXZlcnlib2R5LAo+
+Pj4KPj4+IGN1cnJlbnRseSBvbiB0aGUgWG9yZyBXaWtpIHBhZ2UgWzFdIHRoZXJlIGFyZSBvbmx5
+IHRocmVlIHByb2plY3RzCj4+PiBpZGVhcywgdHdvIGJlaW5nIHF1aXRlIHNpbWlsaWFyOgo+Pj4g
+MS4gSW5zdHJ1Y3Rpb24gc2NoZWR1bGluZwo+Pj4gMi4gTWF4d2VsbCBWaWRlbyBBY2NlbCBEZWNv
+ZGluZwo+Pj4gMy4gS2VwbGVyIFZpZGVvIEFjY2VsIEVuY29kaW5nCj4+PiBhbmQgYWxzbyB0aGUg
+cmVmZXJlbmNlIHRvIG91ciBUcmVsbG8gYm9hcmQuCj4+Pgo+Pj4gQmVjYXVzZSBJIGRvbid0IGV4
+cGVjdCBhbnkgc3R1ZGVudCBpbnRlcmVzdGVkIGluIGEgR1NvQy9FVm9DIHByb2plY3QKPj4+IHRv
+IHJlYWQgb3VyIHdpa2kgb3IgdHJlbGxvLCBJIGFtIHN1cmUgdG8gYXR0cmFjdCBtb3JlIHN0dWRl
+bnRzLCB3ZQo+Pj4gc2hvdWxkIGdpdmUgbW9yZSBwcm9qZWN0IGV4YW1wbGVzLCBiZXN0IGlmIHRo
+b3NlIGFyZSBhbGwgaW4gZGlmZmVyZW50Cj4+PiBhcmVhcyBvZiB0aGUgZHJpdmVyLgo+Pj4KPj4+
+IEkgYW0gZmluZSB3aXRoIHdyaXRpbmcgYW5kIGFkZGluZyBuZXcgaWRlYXMgb24gdGhlIHdpa2ks
+IGJ1dCBpdCB3b3VsZAo+Pj4gYmUgbmljZSBpZiB5b3UgY29tZSB1cCB3aXRoIGludGVyZXN0aW5n
+IHByb2plY3RzIGFzIHdlbGwsIHNvIHRoYXQgSQo+Pj4gY2FuIHdvcmsgb24gdGhvc2UgYW5kIGFk
+ZCB0aGVtIHRvIHRoZSB3aWtpLgo+Pj4KPj4+IE15IHNwb250YW5lb3VzIGlkZWFzIGFyZToKPj4+
+Cj4+PiAqIEJldHRlciBoYW5kbGluZyBvZiBPT00gc2l0dWF0aW9uczoKPj4+ICoqIG1vcmUgc3dh
+cHBpbmcgdG8gc3lzdGVtIG1lbW9yeQo+Pj4gKiogbWVtb3J5IHVzYWdlIHJlcG9ydGluZyB0byB1
+c2Vyc3BhY2UKPj4KPj4gVGhhdCBzb3VuZHMgd2F5IG92ZXIgdGhlIHNjb3BlIG9mIGEgR1NvQy4K
+Pgo+IEkgdGFsa2VkIHdpdGggSWxpYSBhYm91dCB0aGF0IGEgYml0IG9uIElSQywgYW5kIGl0IHNv
+dW5kZWQgbGlrZSB0aGF0Cj4gYXQgbGVhc3Qgb24gRmVybWksIGl0IHNob3VsZCBiZSBzaW1wbGUg
+ZW5vdWdoIHRvIHJlZmVyZW5jZSBtZW1vcnkKPiBpbnNpZGUgc3lzdGVtIG1lbW9yeSBpbiBkcmF3
+IGNhbGxzLCB3aGVyZSB3ZSBhbHdheXMgdXNlIHZyYW0gZm9yIG5vdy4KPiBBcHBhcmVudGx5IGRy
+bSBzdHVmZiBhbHJlYWR5IGdldHMgbW92ZWQgb3V0IGludG8gc3lzcmFtIGlmIG5vdCB1c2VkCj4g
+Zm9yIGEgZHJhdyBjYWxsIG9yIHNvbWV0aGluZywgbWF5YmUgbm90LiBOZWVkcyBpbnZlc3RpZ2F0
+aW9uLCBidXQgSQo+IGdvdCB0aGUgaW1wcmVzc2lvbiBpdCB3b3VsZCBiZSB0b3RhbGx5IGRvYWJs
+ZSwgYmVjYXVzZSBpdCB3b3VsZG4ndAo+IGV2ZW4gbmVlZCB0byBsYW5kIGFsbCBhdCBvbmNlLiBC
+dXQgeWVhaCwgSSBzZWUgdGhhdCBpdCBjb3VsZCBiZSBvbmUgb2YKPiB0aGUgbW9yZSBjaGFsbGVu
+Z2luZyBvbmVzIGRlcGVuZGluZyBvbiB0aGUgY3VycmVudCBzaXR1YXRpb24uCj4KPj4+Cj4+PiAq
+IFBlcmZvcm1hbmNlIGFuYWx5c2lzOgo+Pj4gKiogd2hhdCBhcmUgTm92ZWF1cyBtb3N0IGhpdCBi
+b3R0bGVuZWNrcwo+Pj4gKiogaG93IGVhc3kgaXMgaXQgdG8gZmlndXJlIHRob3NlIG91dAo+Pj4g
+KiogaW1wcm92ZS93cml0ZSB0b29scyBhbmQgbm91dmVhdXMgc3VwcG9ydCBmb3IgdGhvc2UgdG8g
+ZmlndXJlIHRob3NlCj4+PiBvdXQgKG1heWJlIG1vcmUgY291bnRlcnMgbmVlZGVkLCBzb21ldGhp
+bmcgZWxzZT8pCj4+Cj4+IFllcywgdGhpcyBpcyBkZWZpbml0ZWx5IG1vcmUgZG9hYmxlISBCZWlu
+ZyBhYmxlIHRvIHJ1biBmcmFtZXJldHJhY2VyIG9uCj4+IG5vdXZlYXUgd291bGQgYmUgaWRlYWws
+IGFzIGl0IGlzIGFuIGltcHJlc3NpdmUgdG9vbCB0byBkZWJ1ZyBwZXJmb3JtYW5jZQo+PiBpc3N1
+ZSBvbiBJbnRlbCBwbGF0Zm9ybXMgKGFuZCBpdCBtYXkgYWxyZWFkeSBzb21ld2hhdCB3b3JrKS4K
+Pj4KPj4+Cj4+PiAqIGluaXRpYWwgVnVsa2FuIGRyaXZlcgo+Pj4KPj4+ICogT3BlbkNMCj4+PiAq
+KiBmaW5pc2hpbmcgdXAgd2hhdCB3ZSBhbHJlYWR5IGhhdmUKPj4+ICoqIHBhc3MgdGhlIENUUwo+
+Pgo+PiBXZWxsLCBJIGtub3cgeW91IGFyZSBvcHRpbWlzdGljLCBidXQgdGhhdCBzb3VuZHMgaW1w
+b3NzaWJsZSB0byBzb21lb25lCj4+IHdobyBpcyBub3QgYWxyZWFkeSBhIGNvbnRyaWJ1dG9yIQo+
+Cj4gVGhlIGdvYWwgc2hvdWxkbid0IGJlIHRvIGdldCBhIDEwMCUgcGFzc2luZyB0ZXN0LiBCdXQg
+dGhlIENUUyBpcwo+IHNvbWV0aGluZyB3ZSBjb3VsZCBtZWFzdXJlIHByb2dyZXNzIGluLiBBbmQg
+aXQgYnJlYWtzIHRoYXQgc3BsaXR0aW5nCj4gd29yayBpbnRvIHNwZWNpZmljYXRpb24vaW1wbGVt
+ZW50YXRpb24vdGVzdGluZyBwYXR0ZXJuLiBJZiBmb3IgZXhhbXBsZQo+IHdlIHBhc3MgNTAlIGJl
+Zm9yZSBhbmQgNzAlIGFmdGVyIHRoZSBwcm9qZWN0LCBpdCB3b3VsZCBiZSBhbHJlYWR5IGEKPiBi
+aWcgaGVscC4KPgo+IFZ1bGthbiBvbiB0aGUgb3RoZXIgaGFuZCB3b3VsZCBiZSB0b28gYmlnLCBy
+aWdodC4gSSBzdGlsbCB3b3VsZCBsaWtlCj4gdG8gcHV0IGl0IG9uIHRoZSBsaXN0LCBiZWNhdXNl
+IEkgY2FuIGltYWdpbmUgdGhlcmUgYXJlIHNldmVyYWwgcGVvcGxlCj4gaW50ZXJlc3RlZCBpbiB2
+dWxrYW4gYW5kIGV2ZW4gaWYgd2UgY2FuJ3QgdXNlIHRoZSByZXN1bHRzIGRpcmVjdGx5IHRoZQo+
+IHN0dWRlbnQgY291bGQgbGVhcm4gcXVpdGUgYSBsb3QgYW5kIGNvbnRpbnVlIHdpdGggdGhlIHdv
+cmsgaWYgc3RpbGwKPiBpbnRlcmVzdGVkLiBJdCBjb3VsZCBiZSB3YXN0ZWQgdGltZSBpbiB0aGUg
+ZW5kIHRob3VnaC4KPgo+Pgo+Pj4KPj4+ICogZXhwZXJpbWVudGFsIG5pciBzdXBwb3J0ICh3aHkg
+bm90IGlmIHNvbWVib2R5IHdhbnRzIHRvIHNwZW5kIHRpbWUgb24gdGhpcz8pCj4+Cj4+IFllcywg
+dGhhdCBjb3VsZCBiZSBhIGdvb2Qgb25lLiBUaGlzIGlzIGEgcHJldHR5IHNlbGYtY29udGFpbmVk
+IHByb2plY3QuCj4+IE5vdCBzdXJlIHRoaXMgaXMgd2hhdCB3ZSB3YW50IHRvIGJlIHdvcmtpbmcg
+dG93YXJkcywgYnV0IGFueXRoaW5nIHdlIGNhbgo+PiBkbyB0byByZWR1Y2Ugb3VyIHdvcmtsb2Fk
+IGlzIGFwcHJlY2lhdGVkIDopCj4+Cj4+Pgo+Pj4gKiBzb21lIHN1cGVyIGRpZmZpY3VsdCBjb21w
+aWxlciBvcHRpbWl6YXRpb25zCj4+PiAqKiB3aGljaCBvbmVzIGluZGVlZD8KPj4KPj4gSSB3b3Vs
+ZCByYXRoZXIgZ28gZm9yIGltcGxlbWVudGluZyBhIGxvdCBvZiBzaW1wbGUgb25lcywgYW5kIGhv
+cGUgdGhhdAo+PiB0aGUgc3R1ZGVudCB3aWxsIHN0YXkgbG9uZyBlbm91Z2ggdG8gZ2V0IHRvIHRo
+ZSB1c2VmdWwgb25lcyA7KQo+Cj4gZmFpciBlbm91Z2guIEkgdGhpbmsgYmVzdCB3b3VsZCBiZSB0
+byBoYXZlIGEgZGVjZW50IG1peCBpbiB0aGUKPiBwcm9wb3NhbC4gTWF5YmUgdGhlIHN0dWRlbnQg
+aXMgY2FwYWJsZSBvZiBkb2luZyB0aGUgdHJpY2t5IG9uZXMsIG1heWJlCj4gbm90LiBJIHdvdWxk
+IGtlZXAgaXQgb3BlbiBhbmQgd2UgY2FuIGFkYXB0IGluIGNhc2Ugc29tZWJvZHkgd2FudHMgdG8K
+PiB3b3JrIG9uIHRoYXQuCj4KPj4KPj4+Cj4+PiAqIHJhbmRvbSByZWNsb2NraW5nIHN0dWZmCj4+
+PiAqKiBiaWcgZW5vdWdoIGZvciBhbiBlbnRpcmUgR1NvQy9FVm9DIHByb2plY3Q/Cj4+PiAqKiBS
+b3ksIEJlbjogU3RhdHVzIG9uIEZlcm1pL1Rlc2xhCj4+Cj4+IEJpZyBlbm91Z2g/IEl0IGlzIGJp
+Zy1lbm91Z2ggZm9yIGEgZGVjYWRlIGFwcGFyZW50bHkgZ2l2ZW4gaG93IHNsb3cgd2UKPj4gaGF2
+ZSBiZWVuIDpzCj4+Cj4KPiB5ZWFoLi4uIGJ1dCBvdXIgcHJvYmxlbSBpcyB0aW1lLCBub3QgdGhh
+dCBpdCBpcyBzdXBlciBoYXJkIGFuZCB0aGF0J3MKPiB3aHkgd2UgZG9uJ3QgZmluaXNoIGl0LiBJ
+dCBpcyBzdGlsbCBoYXJkLCBidXQgZ2V0dGluZyB0aGUgR1BVIHRvIHJ1bgo+IGZhc3RlciBtaWdo
+dCBiZSBhIGdvb2QgbW90aXZhdG9yIGZvciBzb21lLiBBdCBsZWFzdCBpdCB3YXMgZm9yIG1lLgo+
+Cj4+Pgo+Pj4gQW5kIGJlY2F1c2UgSSBkb24ndCBqdXN0IGdvIGFoZWFkIGFuZCBhZGQgdGhvc2Ug
+dGhpbmdzLCBJIGFsc28gd291bGQKPj4+IGxpa2UgdG8gZ2V0IHlvdXIgZmVlZGJhY2sgb24gdGhl
+IGlkZWFzIEkgbWVudGlvbmVkIGhlcmUuIEluIHRoZSBlbmQgSQo+Pj4gd291bGQgbGlrZSB0byBn
+ZXQgMTAgb3IgbW9yZSBpZGVhcyB3cml0dGVuIGRvd24gc29tZXdoZXJlLCBtYXliZSBldmVuCj4+
+PiBvbiB0aGUgWG9yZyB3aWtpIHBhZ2UsIGJ1dCB0aGVuIGl0IHdvdWxkIGJlIGxpa2UgNTAlIE5v
+dXZlYXUsIGJ1dCB0aGlzCj4+PiBzaG91bGRuJ3QgYmUgb3VyIHByb2JsZW0uCj4+Cj4+IFRoYW5r
+cyBmb3IgZG9pbmcgdGhpcywgd2UgbmVlZCB0byBnZXQgbW9yZSBjb250cmlidXRvcnMsIGFuZCB0
+aGlzIGlzIHRoZQo+PiBmaXJzdCBzdGVwIQo+Pgo+Cj4geWVhaCwgd2UgcmVhbGx5IGhhdmUgdG8u
+Cj4KPj4gTWFydGluCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
