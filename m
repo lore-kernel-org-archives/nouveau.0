@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103382] Flickering / Artifacts on TTY with GTX 1060
-Date: Sat, 21 Oct 2017 02:37:17 +0000
-Message-ID: <bug-103382-8800-bbIZrqGFxx@http.bugs.freedesktop.org/>
+Date: Sat, 21 Oct 2017 03:00:50 +0000
+Message-ID: <bug-103382-8800-Ffa53inpax@http.bugs.freedesktop.org/>
 References: <bug-103382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0692355212=="
+Content-Type: multipart/mixed; boundary="===============1563478810=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0692355212==
-Content-Type: multipart/alternative; boundary="15085534370.0b2c8.7223";
+--===============1563478810==
+Content-Type: multipart/alternative; boundary="15085548511.3e6AE6f.12287";
  charset="UTF-8"
 
 
---15085534370.0b2c8.7223
-Date: Sat, 21 Oct 2017 02:37:17 +0000
+--15085548511.3e6AE6f.12287
+Date: Sat, 21 Oct 2017 03:00:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,20 +35,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103382
 
---- Comment #6 from Lukas Sabota <lukas-8mWp1bEDydJWk0Htik3J/w@public.gmane.org> ---
-Created attachment 134962
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134962&action=3Dedit
-dmesg with debugging enabled
+--- Comment #7 from Lukas Sabota <lukas-8mWp1bEDydJWk0Htik3J/w@public.gmane.org> ---
+Created attachment 134963
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134963&action=3Dedit
+Verbose dmesg output:  Booting with only LG Ultrawide
 
-I booted again with nouveau and additional kernel parameters to provide more
-verbose dmesg output.
+On this run, I only had the LG Ultrawide monitor physically connected to the
+machine.  After the bootloader and a few (5-10) early console output lines,=
+ I
+lost video signal to the monitor.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15085534370.0b2c8.7223
-Date: Sat, 21 Oct 2017 02:37:17 +0000
+--15085548511.3e6AE6f.12287
+Date: Sat, 21 Oct 2017 03:00:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +67,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Flickering / Artifacts on TTY with GTX 1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103382#c6">Commen=
-t # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103382#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Flickering / Artifacts on TTY with GTX 1060"
@@ -76,14 +78,17 @@ t # 6</a>
 lukas&#64;lwsabota.com" title=3D"Lukas Sabota &lt;lukas&#64;lwsabota.com&gt=
 ;"> <span class=3D"fn">Lukas Sabota</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134962=
-" name=3D"attach_134962" title=3D"dmesg with debugging enabled">attachment =
-134962</a> <a href=3D"attachment.cgi?id=3D134962&amp;action=3Dedit" title=
-=3D"dmesg with debugging enabled">[details]</a></span>
-dmesg with debugging enabled
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134963=
+" name=3D"attach_134963" title=3D"Verbose dmesg output:  Booting with only =
+LG Ultrawide">attachment 134963</a> <a href=3D"attachment.cgi?id=3D134963&a=
+mp;action=3Dedit" title=3D"Verbose dmesg output:  Booting with only LG Ultr=
+awide">[details]</a></span>
+Verbose dmesg output:  Booting with only LG Ultrawide
 
-I booted again with nouveau and additional kernel parameters to provide more
-verbose dmesg output.</pre>
+On this run, I only had the LG Ultrawide monitor physically connected to the
+machine.  After the bootloader and a few (5-10) early console output lines,=
+ I
+lost video signal to the monitor.</pre>
         </div>
       </p>
 
@@ -97,9 +102,9 @@ verbose dmesg output.</pre>
     </body>
 </html>=
 
---15085534370.0b2c8.7223--
+--15085548511.3e6AE6f.12287--
 
---===============0692355212==
+--===============1563478810==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0692355212==--
+--===============1563478810==--
