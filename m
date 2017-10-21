@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103382] Flickering / Artifacts on TTY with GTX 1060
-Date: Sat, 21 Oct 2017 03:00:50 +0000
-Message-ID: <bug-103382-8800-Ffa53inpax@http.bugs.freedesktop.org/>
+Date: Sat, 21 Oct 2017 03:02:04 +0000
+Message-ID: <bug-103382-8800-98lLu4HQJk@http.bugs.freedesktop.org/>
 References: <bug-103382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1563478810=="
+Content-Type: multipart/mixed; boundary="===============1315094546=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1563478810==
-Content-Type: multipart/alternative; boundary="15085548511.3e6AE6f.12287";
+--===============1315094546==
+Content-Type: multipart/alternative; boundary="15085549240.de8bc53ba.12287";
  charset="UTF-8"
 
 
---15085548511.3e6AE6f.12287
-Date: Sat, 21 Oct 2017 03:00:51 +0000
+--15085549240.de8bc53ba.12287
+Date: Sat, 21 Oct 2017 03:02:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,22 +35,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103382
 
---- Comment #7 from Lukas Sabota <lukas-8mWp1bEDydJWk0Htik3J/w@public.gmane.org> ---
-Created attachment 134963
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134963&action=3Dedit
-Verbose dmesg output:  Booting with only LG Ultrawide
+--- Comment #8 from Lukas Sabota <lukas-8mWp1bEDydJWk0Htik3J/w@public.gmane.org> ---
+Created attachment 134964
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134964&action=3Dedit
+Verbose dmesg output: Booting only with Samsung 4K
 
-On this run, I only had the LG Ultrawide monitor physically connected to the
-machine.  After the bootloader and a few (5-10) early console output lines,=
- I
-lost video signal to the monitor.
+In this test, I booted with only the Samsung 4K monitor attached.  There wa=
+s no
+flickering or artifacting in tty and no visible problems in sway.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15085548511.3e6AE6f.12287
-Date: Sat, 21 Oct 2017 03:00:51 +0000
+--15085549240.de8bc53ba.12287
+Date: Sat, 21 Oct 2017 03:02:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,8 +66,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Flickering / Artifacts on TTY with GTX 1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103382#c7">Commen=
-t # 7</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103382#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Flickering / Artifacts on TTY with GTX 1060"
@@ -78,17 +77,16 @@ t # 7</a>
 lukas&#64;lwsabota.com" title=3D"Lukas Sabota &lt;lukas&#64;lwsabota.com&gt=
 ;"> <span class=3D"fn">Lukas Sabota</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134963=
-" name=3D"attach_134963" title=3D"Verbose dmesg output:  Booting with only =
-LG Ultrawide">attachment 134963</a> <a href=3D"attachment.cgi?id=3D134963&a=
-mp;action=3Dedit" title=3D"Verbose dmesg output:  Booting with only LG Ultr=
-awide">[details]</a></span>
-Verbose dmesg output:  Booting with only LG Ultrawide
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134964=
+" name=3D"attach_134964" title=3D"Verbose dmesg output: Booting only with S=
+amsung 4K">attachment 134964</a> <a href=3D"attachment.cgi?id=3D134964&amp;=
+action=3Dedit" title=3D"Verbose dmesg output: Booting only with Samsung 4K"=
+>[details]</a></span>
+Verbose dmesg output: Booting only with Samsung 4K
 
-On this run, I only had the LG Ultrawide monitor physically connected to the
-machine.  After the bootloader and a few (5-10) early console output lines,=
- I
-lost video signal to the monitor.</pre>
+In this test, I booted with only the Samsung 4K monitor attached.  There wa=
+s no
+flickering or artifacting in tty and no visible problems in sway.</pre>
         </div>
       </p>
 
@@ -102,9 +100,9 @@ lost video signal to the monitor.</pre>
     </body>
 </html>=
 
---15085548511.3e6AE6f.12287--
+--15085549240.de8bc53ba.12287--
 
---===============1563478810==
+--===============1315094546==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1563478810==--
+--===============1315094546==--
