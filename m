@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103382] Flickering / Artifacts on TTY with GTX 1060
-Date: Sat, 21 Oct 2017 02:34:26 +0000
-Message-ID: <bug-103382-8800-9csnpef5lF@http.bugs.freedesktop.org/>
+Date: Sat, 21 Oct 2017 02:37:17 +0000
+Message-ID: <bug-103382-8800-bbIZrqGFxx@http.bugs.freedesktop.org/>
 References: <bug-103382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1928502160=="
+Content-Type: multipart/mixed; boundary="===============0692355212=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1928502160==
-Content-Type: multipart/alternative; boundary="15085532651.2f2c7.6935";
+--===============0692355212==
+Content-Type: multipart/alternative; boundary="15085534370.0b2c8.7223";
  charset="UTF-8"
 
 
---15085532651.2f2c7.6935
-Date: Sat, 21 Oct 2017 02:34:25 +0000
+--15085534370.0b2c8.7223
+Date: Sat, 21 Oct 2017 02:37:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,19 +35,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103382
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 134961
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134961&action=3Dedit
-decoded edids
+--- Comment #6 from Lukas Sabota <lukas-8mWp1bEDydJWk0Htik3J/w@public.gmane.org> ---
+Created attachment 134962
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134962&action=3Dedit
+dmesg with debugging enabled
 
-Ran the EDIDs through the latest edid-decode.
+I booted again with nouveau and additional kernel parameters to provide more
+verbose dmesg output.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15085532651.2f2c7.6935
-Date: Sat, 21 Oct 2017 02:34:25 +0000
+--15085534370.0b2c8.7223
+Date: Sat, 21 Oct 2017 02:37:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,24 +65,25 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Flickering / Artifacts on TTY with GTX 1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103382#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103382#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Flickering / Artifacts on TTY with GTX 1060"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103382">bug 10338=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+lukas&#64;lwsabota.com" title=3D"Lukas Sabota &lt;lukas&#64;lwsabota.com&gt=
+;"> <span class=3D"fn">Lukas Sabota</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134961=
-" name=3D"attach_134961" title=3D"decoded edids">attachment 134961</a> <a h=
-ref=3D"attachment.cgi?id=3D134961&amp;action=3Dedit" title=3D"decoded edids=
-">[details]</a></span>
-decoded edids
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134962=
+" name=3D"attach_134962" title=3D"dmesg with debugging enabled">attachment =
+134962</a> <a href=3D"attachment.cgi?id=3D134962&amp;action=3Dedit" title=
+=3D"dmesg with debugging enabled">[details]</a></span>
+dmesg with debugging enabled
 
-Ran the EDIDs through the latest edid-decode.</pre>
+I booted again with nouveau and additional kernel parameters to provide more
+verbose dmesg output.</pre>
         </div>
       </p>
 
@@ -95,9 +97,9 @@ Ran the EDIDs through the latest edid-decode.</pre>
     </body>
 </html>=
 
---15085532651.2f2c7.6935--
+--15085534370.0b2c8.7223--
 
---===============1928502160==
+--===============0692355212==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1928502160==--
+--===============0692355212==--
