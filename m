@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103351] Nouveau fails when booting with a screen
- connected to displayport since 13a86519202c5d119d83640d6f781f3181205d2c
-Date: Mon, 23 Oct 2017 12:49:02 +0000
-Message-ID: <bug-103351-8800-0wcPeIQrrd@http.bugs.freedesktop.org/>
-References: <bug-103351-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 103421] New: Kernel 4.13+ nouveau breaks screen
+	output
+Date: Mon, 23 Oct 2017 13:28:16 +0000
+Message-ID: <bug-103421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0392408022=="
+Content-Type: multipart/mixed; boundary="===============0833740142=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +19,73 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0392408022==
-Content-Type: multipart/alternative; boundary="15087629420.fd71.19001";
+--===============0833740142==
+Content-Type: multipart/alternative; boundary="15087652961.0C7dB39dA.28635";
  charset="UTF-8"
 
 
---15087629420.fd71.19001
-Date: Mon, 23 Oct 2017 12:49:02 +0000
+--15087652961.0C7dB39dA.28635
+Date: Mon, 23 Oct 2017 13:28:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103351
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103421
 
---- Comment #2 from Chris Glass <chris.glass-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> ---
-This issues persists in 4.14-rc6
+            Bug ID: 103421
+           Summary: Kernel 4.13+ nouveau breaks screen output
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: kbaikov-IBi9RG/b67k@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Let me know if there is anything I can do to help here.
+Created attachment 135010
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135010&action=3Dedit
+kernel log
+
+There is a regression with my
+
+02:00.0 VGA compatible controller [0300]: NVIDIA Corporation GF119 [NVS
+310] [10de:107d] (rev a1)
+
+where I would not get any graphics output anymore with Linux kernel
+4.13.x, not even (framebuffer) text consoles.
+
+There is a NULL pointer dereference around nvkm_dp_train_drive
+visible in dmesg (attached)
+
+and looking at the nouveau.ko disassembly, the faulting instruction was
+a call to a variable address e.g. from
+drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.c:
+        ior->func->dp.drive(ior, i, ocfg.pc, ocfg.dc,
+                                    ocfg.pe, ocfg.tx_pu);
+
+which was introduced in commit af85389c614ae
+so maybe you have a hint at what might be wrong or how to further debug
+this problem...
+
+
+With 4.12.8, there was a different NULL pointer deref but some working
+graphics.
+I also tried 4.14-rc3 or such but that still had broken graphics.
+
+Thanks in advance for any help
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15087629420.fd71.19001
-Date: Mon, 23 Oct 2017 12:49:02 +0000
+--15087652961.0C7dB39dA.28635
+Date: Mon, 23 Oct 2017 13:28:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,28 +96,122 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel 4.13+ nouveau breaks screen output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421">103421</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Kernel 4.13+ nouveau breaks screen output
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>kbaikov&#64;suse.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau fails when booting with a screen connected to dis=
-playport since 13a86519202c5d119d83640d6f781f3181205d2c"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103351#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau fails when booting with a screen connected to dis=
-playport since 13a86519202c5d119d83640d6f781f3181205d2c"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103351">bug 10335=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-chris.glass&#64;canonical.com" title=3D"Chris Glass &lt;chris.glass&#64;can=
-onical.com&gt;"> <span class=3D"fn">Chris Glass</span></a>
-</span></b>
-        <pre>This issues persists in 4.14-rc6
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135010=
+" name=3D"attach_135010" title=3D"kernel log">attachment 135010</a> <a href=
+=3D"attachment.cgi?id=3D135010&amp;action=3Dedit" title=3D"kernel log">[det=
+ails]</a></span>
+kernel log
 
-Let me know if there is anything I can do to help here.</pre>
+There is a regression with my
+
+02:00.0 VGA compatible controller [0300]: NVIDIA Corporation GF119 [NVS
+310] [10de:107d] (rev a1)
+
+where I would not get any graphics output anymore with Linux kernel
+4.13.x, not even (framebuffer) text consoles.
+
+There is a NULL pointer dereference around nvkm_dp_train_drive
+visible in dmesg (attached)
+
+and looking at the nouveau.ko disassembly, the faulting instruction was
+a call to a variable address e.g. from
+drivers/gpu/drm/nouveau/nvkm/engine/disp/dp.c:
+        ior-&gt;func-&gt;dp.drive(ior, i, ocfg.pc, ocfg.dc,
+                                    ocfg.pe, ocfg.tx_pu);
+
+which was introduced in commit af85389c614ae
+so maybe you have a hint at what might be wrong or how to further debug
+this problem...
+
+
+With 4.12.8, there was a different NULL pointer deref but some working
+graphics.
+I also tried 4.14-rc3 or such but that still had broken graphics.
+
+Thanks in advance for any help</pre>
         </div>
       </p>
 
@@ -88,15 +220,14 @@ Let me know if there is anything I can do to help here.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15087629420.fd71.19001--
+--15087652961.0C7dB39dA.28635--
 
---===============0392408022==
+--===============0833740142==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +237,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0392408022==--
+--===============0833740142==--
