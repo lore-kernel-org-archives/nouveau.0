@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103284] Unable to handle kernel NULL pointer
- dereference on 4.13.0-1-sparc64-smp
-Date: Sun, 22 Oct 2017 20:57:54 +0000
-Message-ID: <bug-103284-8800-9gPst9emTm@http.bugs.freedesktop.org/>
-References: <bug-103284-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 103409] New: [GM107] reboot/suspend/lspci hang with
+	nouveau
+Date: Mon, 23 Oct 2017 07:38:17 +0000
+Message-ID: <bug-103409-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0577727367=="
+Content-Type: multipart/mixed; boundary="===============0220938744=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103284-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +19,58 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0577727367==
-Content-Type: multipart/alternative; boundary="15087058730.dEbAEBb.31912";
+--===============0220938744==
+Content-Type: multipart/alternative; boundary="15087442970.fAbfB.11455";
  charset="UTF-8"
 
 
---15087058730.dEbAEBb.31912
-Date: Sun, 22 Oct 2017 20:57:53 +0000
+--15087442970.fAbfB.11455
+Date: Mon, 23 Oct 2017 07:38:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103284
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103409
 
---- Comment #5 from James <theholyettlz-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-OK -- I'll try giving that a go some time this week. To be honest I'm no too
-bothered about actually getting this card working on an Ultra 45...
+            Bug ID: 103409
+           Summary: [GM107] reboot/suspend/lspci hang with nouveau
+           Product: Mesa
+           Version: 17.2
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: lnicola-loYLBSFlYLg@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 134998
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D134998&action=3Dedit
+dmesg log
+
+I have an ASUS ROG laptop (GL752V) with dual graphics. I've just installed
+Linux and GNOME seems to pick the Intel card by default, but the nouveau mo=
+dule
+still gets loaded.
+
+The issue is that I can't power off, reboot or suspend the laptop. On reboot
+and power off it hangs with a "watchdog0 did not stop" message on the conso=
+le.
+I also noticed that simply running lspci hangs in uninterruptible sleep.
+
+Blacklisting the nouveau driver fixes all these issues.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15087058730.dEbAEBb.31912
-Date: Sun, 22 Oct 2017 20:57:53 +0000
+--15087442970.fAbfB.11455
+Date: Mon, 23 Oct 2017 07:38:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -56,28 +81,106 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM107] reboot/suspend/lspci hang with nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103409">103409</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[GM107] reboot/suspend/lspci hang with nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>17.2
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>lnicola&#64;dend.ro
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Unable to handle kernel NULL pointer dereference on 4.13.=
-0-1-sparc64-smp"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103284#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Unable to handle kernel NULL pointer dereference on 4.13.=
-0-1-sparc64-smp"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103284">bug 10328=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-theholyettlz&#64;googlemail.com" title=3D"James &lt;theholyettlz&#64;google=
-mail.com&gt;"> <span class=3D"fn">James</span></a>
-</span></b>
-        <pre>OK -- I'll try giving that a go some time this week. To be hon=
-est I'm no too
-bothered about actually getting this card working on an Ultra 45...</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D134998=
+" name=3D"attach_134998" title=3D"dmesg log">attachment 134998</a> <a href=
+=3D"attachment.cgi?id=3D134998&amp;action=3Dedit" title=3D"dmesg log">[deta=
+ils]</a></span>
+dmesg log
+
+I have an ASUS ROG laptop (GL752V) with dual graphics. I've just installed
+Linux and GNOME seems to pick the Intel card by default, but the nouveau mo=
+dule
+still gets loaded.
+
+The issue is that I can't power off, reboot or suspend the laptop. On reboot
+and power off it hangs with a &quot;watchdog0 did not stop&quot; message on=
+ the console.
+I also noticed that simply running lspci hangs in uninterruptible sleep.
+
+Blacklisting the nouveau driver fixes all these issues.</pre>
         </div>
       </p>
 
@@ -87,13 +190,14 @@ bothered about actually getting this card working on an Ultra 45...</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15087058730.dEbAEBb.31912--
+--15087442970.fAbfB.11455--
 
---===============0577727367==
+--===============0220938744==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +207,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0577727367==--
+--===============0220938744==--
