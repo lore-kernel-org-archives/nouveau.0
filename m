@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102349] nv4x crashing with plasmashell - gdb log
-	included
-Date: Mon, 23 Oct 2017 22:30:34 +0000
-Message-ID: <bug-102349-8800-Gmyi7K2Z1A@http.bugs.freedesktop.org/>
-References: <bug-102349-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 102352] nv4x fan run whole time at 100%,
+ stable patch existing since about 1 year, please merge
+Date: Mon, 23 Oct 2017 22:49:46 +0000
+Message-ID: <bug-102352-8800-5StPDoCHC2@http.bugs.freedesktop.org/>
+References: <bug-102352-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1619725771=="
+Content-Type: multipart/mixed; boundary="===============1399223169=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-102349-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-102352-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1619725771==
-Content-Type: multipart/alternative; boundary="15087978341.26DACdEF.19544";
+--===============1399223169==
+Content-Type: multipart/alternative; boundary="15087989861.8BbA45.24187";
  charset="UTF-8"
 
 
---15087978341.26DACdEF.19544
-Date: Mon, 23 Oct 2017 22:30:34 +0000
+--15087989861.8BbA45.24187
+Date: Mon, 23 Oct 2017 22:49:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102349
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102352
 
 --- Comment #8 from caguduzexi-ybJNiJ/GDrisTnJN9+BGXg@public.gmane.org ---
-Error also exist on Geforce 7900 - NV49 (G71)
+I bought extra for this bug an Nvidia 7900GS card. It have a bigger and
+powerfull fan - that is running the whole time at 100%. Kernel 4.13.9 . Bec=
+ause
+its such a powerful fan, you have to speak louder to other people in the sa=
+me
+room when you are both next to the computer...
+Should i do something to help fixing this bug?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15087978341.26DACdEF.19544
-Date: Mon, 23 Oct 2017 22:30:34 +0000
+--15087989861.8BbA45.24187
+Date: Mon, 23 Oct 2017 22:49:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,19 +66,28 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349#c8">Commen=
+   title=3D"NEW - nv4x fan run whole time at 100%, stable patch existing si=
+nce about 1 year, please merge"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102352#c8">Commen=
 t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349">bug 10234=
-9</a>
+   title=3D"NEW - nv4x fan run whole time at 100%, stable patch existing si=
+nce about 1 year, please merge"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102352">bug 10235=
+2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 caguduzexi&#64;go2vpn.net" title=3D"caguduzexi&#64;go2vpn.net">caguduzexi&#=
 64;go2vpn.net</a>
 </span></b>
-        <pre>Error also exist on Geforce 7900 - NV49 (G71)</pre>
+        <pre>I bought extra for this bug an Nvidia 7900GS card. It have a b=
+igger and
+powerfull fan - that is running the whole time at 100%. Kernel 4.13.9 . Bec=
+ause
+its such a powerful fan, you have to speak louder to other people in the sa=
+me
+room when you are both next to the computer...
+Should i do something to help fixing this bug?</pre>
         </div>
       </p>
 
@@ -86,9 +101,9 @@ caguduzexi&#64;go2vpn.net" title=3D"caguduzexi&#64;go2vpn.net">caguduzexi&#=
     </body>
 </html>=
 
---15087978341.26DACdEF.19544--
+--15087989861.8BbA45.24187--
 
---===============1619725771==
+--===============1399223169==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1619725771==--
+--===============1399223169==--
