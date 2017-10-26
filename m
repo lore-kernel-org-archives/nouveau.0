@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103467] [NVC0/GF108] fifo: read fault at cd90f4d000
- engine 07 [PFIFO] client 07 [BAR_READ] reason 00 [PT_NOT_PRESENT] on
- channel 1 [003fe11000 DRM]
-Date: Thu, 26 Oct 2017 17:39:27 +0000
-Message-ID: <bug-103467-8800-1JblNQhq06@http.bugs.freedesktop.org/>
-References: <bug-103467-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93934] DRI_PRIME=1: DeadIsland crash
+Date: Thu, 26 Oct 2017 23:28:55 +0000
+Message-ID: <bug-93934-8800-pL6AIS7L7B@http.bugs.freedesktop.org/>
+References: <bug-93934-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0559849572=="
+Content-Type: multipart/mixed; boundary="===============1371539509=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103467-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93934-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,34 +20,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0559849572==
-Content-Type: multipart/alternative; boundary="15090395661.73fECe3.32079";
+--===============1371539509==
+Content-Type: multipart/alternative; boundary="15090605350.d365b.11404";
  charset="UTF-8"
 
 
---15090395661.73fECe3.32079
-Date: Thu, 26 Oct 2017 17:39:26 +0000
+--15090605350.d365b.11404
+Date: Thu, 26 Oct 2017 23:28:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103467
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93934
 
---- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to erhard_f from comment #11)
-> Created attachment 135083 [details]
-> journalctl -b output with nouveau.debug=3Dtrace
+Timothy Arceri <t_arceri-/E1597aS9LT0CCvOHzKKcA@public.gmane.org> changed:
 
-Success! (I think. At least much more success than previous times.)
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
+
+--- Comment #6 from Timothy Arceri <t_arceri-/E1597aS9LT0CCvOHzKKcA@public.gmane.org> ---
+
+
+*** This bug has been marked as a duplicate of bug 85564 ***
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15090395661.73fECe3.32079
-Date: Thu, 26 Oct 2017 17:39:26 +0000
+--15090605350.d365b.11404
+Date: Thu, 26 Oct 2017 23:28:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,37 +64,60 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:t_arceri&=
+#64;yahoo.com.au" title=3D"Timothy Arceri &lt;t_arceri&#64;yahoo.com.au&gt;=
+"> <span class=3D"fn">Timothy Arceri</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - DRI_PRIME=3D1: DeadIsland crash"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93934">bug 93934<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC0/GF108] fifo: read fault at cd90f4d000 engine 07 [PF=
-IFO] client 07 [BAR_READ] reason 00 [PT_NOT_PRESENT] on channel 1 [003fe110=
-00 DRM]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103467#c12">Comme=
-nt # 12</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - DRI_PRIME=3D1: DeadIsland crash"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93934#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC0/GF108] fifo: read fault at cd90f4d000 engine 07 [PF=
-IFO] client 07 [BAR_READ] reason 00 [PT_NOT_PRESENT] on channel 1 [003fe110=
-00 DRM]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103467">bug 10346=
-7</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - DRI_PRIME=3D1: DeadIsland crash"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93934">bug 93934<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+t_arceri&#64;yahoo.com.au" title=3D"Timothy Arceri &lt;t_arceri&#64;yahoo.c=
+om.au&gt;"> <span class=3D"fn">Timothy Arceri</span></a>
 </span></b>
-        <pre>(In reply to erhard_f from <a href=3D"show_bug.cgi?id=3D103467=
-#c11">comment #11</a>)
-<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
-gi?id=3D135083" name=3D"attach_135083" title=3D"journalctl -b output with n=
-ouveau.debug=3Dtrace">attachment 135083</a> <a href=3D"attachment.cgi?id=3D=
-135083&amp;action=3Dedit" title=3D"journalctl -b output with nouveau.debug=
-=3Dtrace">[details]</a></span>
-&gt; journalctl -b output with nouveau.debug=3Dtrace</span >
+        <pre>
 
-Success! (I think. At least much more success than previous times.)</pre>
+*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Dead Island rendering issues"
+   href=3D"show_bug.cgi?id=3D85564">bug 85564</a> ***</pre>
         </div>
       </p>
 
@@ -100,13 +127,14 @@ Success! (I think. At least much more success than previous times.)</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15090395661.73fECe3.32079--
+--15090605350.d365b.11404--
 
---===============0559849572==
+--===============1371539509==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -116,4 +144,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0559849572==--
+--===============1371539509==--
