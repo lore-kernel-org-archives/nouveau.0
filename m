@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103467] [NVC0/GF108] fifo: read fault at cd90f4d000
  engine 07 [PFIFO] client 07 [BAR_READ] reason 00 [PT_NOT_PRESENT] on
  channel 1 [003fe11000 DRM]
-Date: Thu, 26 Oct 2017 15:31:16 +0000
-Message-ID: <bug-103467-8800-9L2la7iVZs@http.bugs.freedesktop.org/>
+Date: Thu, 26 Oct 2017 15:31:42 +0000
+Message-ID: <bug-103467-8800-c1iggjiUTo@http.bugs.freedesktop.org/>
 References: <bug-103467-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1002860989=="
+Content-Type: multipart/mixed; boundary="===============1519669820=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103467-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,13 +22,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1002860989==
-Content-Type: multipart/alternative; boundary="15090318761.1D256b1.2926";
+--===============1519669820==
+Content-Type: multipart/alternative; boundary="15090319011.9bBA21.3011";
  charset="UTF-8"
 
 
---15090318761.1D256b1.2926
-Date: Thu, 26 Oct 2017 15:31:16 +0000
+--15090319011.9bBA21.3011
+Date: Thu, 26 Oct 2017 15:31:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -37,20 +37,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103467
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to erhard_f from comment #4)
-> Created attachment 135071 [details]
-> dmesg output
-
-This log appears to only capture kernel messages logged at the 'error' leve=
-l.
+--- Comment #6 from erhard_f-cl+VPiYnx/1AfugRpC6u6w@public.gmane.org ---
+Created attachment 135072
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135072&action=3Dedit
+dmesg output with nouveau.debug=3Dtrace
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15090318761.1D256b1.2926
-Date: Thu, 26 Oct 2017 15:31:16 +0000
+--15090319011.9bBA21.3011
+Date: Thu, 26 Oct 2017 15:31:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,8 +66,8 @@ Auto-Submitted: auto-generated
    title=3D"NEW - [NVC0/GF108] fifo: read fault at cd90f4d000 engine 07 [PF=
 IFO] client 07 [BAR_READ] reason 00 [PT_NOT_PRESENT] on channel 1 [003fe110=
 00 DRM]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103467#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103467#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC0/GF108] fifo: read fault at cd90f4d000 engine 07 [PF=
@@ -79,19 +76,14 @@ IFO] client 07 [BAR_READ] reason 00 [PT_NOT_PRESENT] on channel 1 [003fe110=
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103467">bug 10346=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+erhard_f&#64;mailbox.org" title=3D"erhard_f&#64;mailbox.org">erhard_f&#64;m=
+ailbox.org</a>
 </span></b>
-        <pre>(In reply to erhard_f from <a href=3D"show_bug.cgi?id=3D103467=
-#c4">comment #4</a>)
-<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
-gi?id=3D135071" name=3D"attach_135071" title=3D"dmesg output">attachment 13=
-5071</a> <a href=3D"attachment.cgi?id=3D135071&amp;action=3Dedit" title=3D"=
-dmesg output">[details]</a></span>
-&gt; dmesg output</span >
-
-This log appears to only capture kernel messages logged at the 'error' leve=
-l.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135072=
+" name=3D"attach_135072" title=3D"dmesg output with nouveau.debug=3Dtrace">=
+attachment 135072</a> <a href=3D"attachment.cgi?id=3D135072&amp;action=3Ded=
+it" title=3D"dmesg output with nouveau.debug=3Dtrace">[details]</a></span>
+dmesg output with nouveau.debug=3Dtrace</pre>
         </div>
       </p>
 
@@ -105,9 +97,9 @@ l.</pre>
     </body>
 </html>=
 
---15090318761.1D256b1.2926--
+--15090319011.9bBA21.3011--
 
---===============1002860989==
+--===============1519669820==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1002860989==--
+--===============1519669820==--
