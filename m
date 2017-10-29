@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93934] DRI_PRIME=1: DeadIsland crash
-Date: Thu, 26 Oct 2017 23:28:55 +0000
-Message-ID: <bug-93934-8800-pL6AIS7L7B@http.bugs.freedesktop.org/>
-References: <bug-93934-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
+ 409800 [ TIMEOUT ]
+Date: Sun, 29 Oct 2017 00:49:58 +0000
+Message-ID: <bug-100228-8800-miB3yPwXVS@http.bugs.freedesktop.org/>
+References: <bug-100228-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1371539509=="
+Content-Type: multipart/mixed; boundary="===============2022351693=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93934-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,40 +21,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1371539509==
-Content-Type: multipart/alternative; boundary="15090605350.d365b.11404";
+--===============2022351693==
+Content-Type: multipart/alternative; boundary="15092381984.aa29413.29035";
  charset="UTF-8"
 
 
---15090605350.d365b.11404
-Date: Thu, 26 Oct 2017 23:28:55 +0000
+--15092381984.aa29413.29035
+Date: Sun, 29 Oct 2017 00:49:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93934
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
 
-Timothy Arceri <t_arceri-/E1597aS9LT0CCvOHzKKcA@public.gmane.org> changed:
+Aaron Ball <nullspoon-f/Z1F5yPGLM@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |DUPLICATE
+                 CC|                            |nullspoon-f/Z1F5yPGLM@public.gmane.org
 
---- Comment #6 from Timothy Arceri <t_arceri-/E1597aS9LT0CCvOHzKKcA@public.gmane.org> ---
+--- Comment #16 from Aaron Ball <nullspoon-f/Z1F5yPGLM@public.gmane.org> ---
+Created attachment 135146
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135146&action=3Dedit
+NVIDIA GTX 1050 Ti vbios.rom (GP107)
 
+Got mine working (finally) with imirkin's help (thanks very much!). Per
+harry_x's comment, I just had to modprobe nouveau with runpm=3D0.
 
-*** This bug has been marked as a duplicate of bug 85564 ***
+ASUS ROG GL753VE with NVIDIA GTX 1050 Ti (see attached vbios rom, per
+rhyskidd's request on irc)
+
+Running kernel 4.14.0-rc6
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---15090605350.d365b.11404
-Date: Thu, 26 Oct 2017 23:28:55 +0000
+--15092381984.aa29413.29035
+Date: Sun, 29 Oct 2017 00:49:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,15 +71,16 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:t_arceri&=
-#64;yahoo.com.au" title=3D"Timothy Arceri &lt;t_arceri&#64;yahoo.com.au&gt;=
-"> <span class=3D"fn">Timothy Arceri</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:nullspoon=
+&#64;oper.io" title=3D"Aaron Ball &lt;nullspoon&#64;oper.io&gt;"> <span cla=
+ss=3D"fn">Aaron Ball</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - DRI_PRIME=3D1: DeadIsland crash"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93934">bug 93934<=
-/a>
+          bz_status_NEW "
+   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
+OUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
+8</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -82,42 +90,44 @@ Auto-Submitted: auto-generated
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
+           <td>nullspoon&#64;oper.io
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - DRI_PRIME=3D1: DeadIsland crash"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93934#c6">Comment=
- # 6</a>
+          bz_status_NEW "
+   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
+OUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c16">Comme=
+nt # 16</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - DRI_PRIME=3D1: DeadIsland crash"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93934">bug 93934<=
-/a>
+          bz_status_NEW "
+   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
+OUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
+8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-t_arceri&#64;yahoo.com.au" title=3D"Timothy Arceri &lt;t_arceri&#64;yahoo.c=
-om.au&gt;"> <span class=3D"fn">Timothy Arceri</span></a>
+nullspoon&#64;oper.io" title=3D"Aaron Ball &lt;nullspoon&#64;oper.io&gt;"> =
+<span class=3D"fn">Aaron Ball</span></a>
 </span></b>
-        <pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135146=
+" name=3D"attach_135146" title=3D"NVIDIA GTX 1050 Ti vbios.rom (GP107)">att=
+achment 135146</a> <a href=3D"attachment.cgi?id=3D135146&amp;action=3Dedit"=
+ title=3D"NVIDIA GTX 1050 Ti vbios.rom (GP107)">[details]</a></span>
+NVIDIA GTX 1050 Ti vbios.rom (GP107)
 
-*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Dead Island rendering issues"
-   href=3D"show_bug.cgi?id=3D85564">bug 85564</a> ***</pre>
+Got mine working (finally) with imirkin's help (thanks very much!). Per
+harry_x's comment, I just had to modprobe nouveau with runpm=3D0.
+
+ASUS ROG GL753VE with NVIDIA GTX 1050 Ti (see attached vbios rom, per
+rhyskidd's request on irc)
+
+Running kernel 4.14.0-rc6</pre>
         </div>
       </p>
 
@@ -127,14 +137,13 @@ om.au&gt;"> <span class=3D"fn">Timothy Arceri</span></a>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15090605350.d365b.11404--
+--15092381984.aa29413.29035--
 
---===============1371539509==
+--===============2022351693==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -144,4 +153,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1371539509==--
+--===============2022351693==--
