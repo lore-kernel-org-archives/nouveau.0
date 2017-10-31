@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 99922] [NVE4] [regression,
  bisected] 4.10 (atomic): X shows black screen with cursor after
  monitors turn off
-Date: Tue, 31 Oct 2017 22:21:00 +0000
-Message-ID: <bug-99922-8800-flK99m2l3N@http.bugs.freedesktop.org/>
+Date: Tue, 31 Oct 2017 22:24:43 +0000
+Message-ID: <bug-99922-8800-MJUihZdjlI@http.bugs.freedesktop.org/>
 References: <bug-99922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0648334766=="
+Content-Type: multipart/mixed; boundary="===============1659047571=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-99922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,13 +22,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0648334766==
-Content-Type: multipart/alternative; boundary="15094884602.f64DC170.11402";
+--===============1659047571==
+Content-Type: multipart/alternative; boundary="15094886833.59Bc9cF79.11402";
  charset="UTF-8"
 
 
---15094884602.f64DC170.11402
-Date: Tue, 31 Oct 2017 22:21:00 +0000
+--15094886833.59Bc9cF79.11402
+Date: Tue, 31 Oct 2017 22:24:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -37,28 +37,26 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D99922
 
---- Comment #14 from sergio.callegari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I see this regularly on a system with
+--- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to sergio.callegari from comment #14)
+> I see this regularly on a system with
+>=20
+> Kubuntu 17.10 (that is linux 4.13.x)
+> Nvidia G84GL [Quadro FX 570]
+> Xserver xserver-xorg-video-nouveau 1.0.15
 
-Kubuntu 17.10 (that is linux 4.13.x)
-Nvidia G84GL [Quadro FX 570]
-Xserver xserver-xorg-video-nouveau 1.0.15
+That's a contradiction in terms. This bug was for a GK104. You have a G84.
 
-so the issue does not seem to be solved yet.
-
-When the power management kicks in and the screen dims, it is then impossib=
-le
-to get back to work. Ideally, by moving the mouse you should get the screen=
-lock
-screen and the possibility to enter a password to disable the lock. In fact,
-you only get a black screen with a moving cursor.
+Have you gone through all the diagnostic stages that the OP went through and
+you've found the same thing? Seems highly unlikely. Even if it's true, it's
+still a different bug.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15094884602.f64DC170.11402
-Date: Tue, 31 Oct 2017 22:21:00 +0000
+--15094886833.59Bc9cF79.11402
+Date: Tue, 31 Oct 2017 22:24:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,8 +74,8 @@ Auto-Submitted: auto-generated
           bz_status_RESOLVED  bz_closed"
    title=3D"RESOLVED FIXED - [NVE4] [regression, bisected] 4.10 (atomic): X=
  shows black screen with cursor after monitors turn off"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922#c14">Commen=
-t # 14</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922#c15">Commen=
+t # 15</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
    title=3D"RESOLVED FIXED - [NVE4] [regression, bisected] 4.10 (atomic): X=
@@ -85,23 +83,22 @@ t # 14</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99922">bug 99922<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sergio.callegari&#64;gmail.com" title=3D"sergio.callegari&#64;gmail.com">se=
-rgio.callegari&#64;gmail.com</a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I see this regularly on a system with
+        <pre>(In reply to sergio.callegari from <a href=3D"show_bug.cgi?id=
+=3D99922#c14">comment #14</a>)
+<span class=3D"quote">&gt; I see this regularly on a system with
+&gt;=20
+&gt; Kubuntu 17.10 (that is linux 4.13.x)
+&gt; Nvidia G84GL [Quadro FX 570]
+&gt; Xserver xserver-xorg-video-nouveau 1.0.15</span >
 
-Kubuntu 17.10 (that is linux 4.13.x)
-Nvidia G84GL [Quadro FX 570]
-Xserver xserver-xorg-video-nouveau 1.0.15
+That's a contradiction in terms. This bug was for a GK104. You have a G84.
 
-so the issue does not seem to be solved yet.
-
-When the power management kicks in and the screen dims, it is then impossib=
-le
-to get back to work. Ideally, by moving the mouse you should get the screen=
-lock
-screen and the possibility to enter a password to disable the lock. In fact,
-you only get a black screen with a moving cursor.</pre>
+Have you gone through all the diagnostic stages that the OP went through and
+you've found the same thing? Seems highly unlikely. Even if it's true, it's
+still a different bug.</pre>
         </div>
       </p>
 
@@ -115,9 +112,9 @@ you only get a black screen with a moving cursor.</pre>
     </body>
 </html>=
 
---15094884602.f64DC170.11402--
+--15094886833.59Bc9cF79.11402--
 
---===============0648334766==
+--===============1659047571==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -127,4 +124,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0648334766==--
+--===============1659047571==--
