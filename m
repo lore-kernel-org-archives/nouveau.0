@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69827] [NVC1] Uneven, jerky mouse movement,
- increasing CPU usage
-Date: Wed, 01 Nov 2017 20:45:39 +0000
-Message-ID: <bug-69827-8800-FkYBPT9naY@http.bugs.freedesktop.org/>
-References: <bug-69827-8800@http.bugs.freedesktop.org/>
+From: Colin King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: [PATCH] drm/nouveau/bios: make const arrays
+	hwsq_signature and edid_sig static
+Date: Thu,  2 Nov 2017 18:48:12 +0000
+Message-ID: <20171102184812.15263-1-colin.king@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1258076810=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69827-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,102 +16,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1258076810==
-Content-Type: multipart/alternative; boundary="15095691391.ebA9c9E1.26174";
- charset="UTF-8"
-
-
---15095691391.ebA9c9E1.26174
-Date: Wed, 1 Nov 2017 20:45:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D69827
-
---- Comment #27 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to James Moe from comment #26)
-> Was this ever resolved?
-
-No, although someone else came in the other day to #nouveau complaining abo=
-ut
-high CPU usage when there's tons of output on an xterm. I've seen that beha=
-vior
-myself although I haven't investigated it.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15095691391.ebA9c9E1.26174
-Date: Wed, 1 Nov 2017 20:45:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_UNCONFIRMED "
-   title=3D"UNCONFIRMED - [NVC1] Uneven, jerky mouse movement, increasing C=
-PU usage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69827#c27">Commen=
-t # 27</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_UNCONFIRMED "
-   title=3D"UNCONFIRMED - [NVC1] Uneven, jerky mouse movement, increasing C=
-PU usage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69827">bug 69827<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to James Moe from <a href=3D"show_bug.cgi?id=3D69827=
-#c26">comment #26</a>)
-<span class=3D"quote">&gt; Was this ever resolved?</span >
-
-No, although someone else came in the other day to #nouveau complaining abo=
-ut
-high CPU usage when there's tons of output on an xterm. I've seen that beha=
-vior
-myself although I haven't investigated it.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15095691391.ebA9c9E1.26174--
-
---===============1258076810==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1258076810==--
+RnJvbTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KCkRvbid0IHBv
+cHVsYXRlIGFycmF5cyBod3NxX3NpZ25hdHVyZSBhbmQgZWRpZF9zaWcgb24gdGhlIHN0YWNrIGJ1
+dAppbnN0ZWFkIG1ha2UgdGhlbSBzdGF0aWMuIE1ha2VzIHRoZSBvYmplY3QgY29kZSBzbWFsbGVy
+IGJ5IG92ZXIgMTkwCmJ5dGVzOgoKQmVmb3JlOgogICB0ZXh0ICAgIGRhdGEgICAgIGJzcyAgICAg
+ZGVjICAgICBoZXggZmlsZW5hbWUKICAzNTY3NiAgICAzMzEyICAgICAgNjQgICAzOTA1MiAgICA5
+ODhjIG5vdXZlYXVfYmlvcy5vCgpBZnRlcjoKICAgdGV4dCAgICBkYXRhICAgICBic3MgICAgIGRl
+YyAgICAgaGV4IGZpbGVuYW1lCiAgMzUzMTkgICAgMzQ3MiAgICAgIDY0ICAgMzg4NTUgICAgOTdj
+NyBub3V2ZWF1X2Jpb3MubwoKKGdjYyB2ZXJzaW9uIDcuMi4wIHg4Nl82NCkKClNpZ25lZC1vZmYt
+Ynk6IENvbGluIElhbiBLaW5nIDxjb2xpbi5raW5nQGNhbm9uaWNhbC5jb20+Ci0tLQogZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iaW9zLmMgfCA0ICsrLS0KIDEgZmlsZSBjaGFuZ2Vk
+LCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbm91dmVhdV9iaW9zLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2Jpb3MuYwppbmRleCBkZDZmYmE1NWFkNWQuLjE4YzVmNTg3NDIzOSAxMDA2NDQKLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iaW9zLmMKKysrIGIvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbm91dmVhdV9iaW9zLmMKQEAgLTE5NjQsNyArMTk2NCw3IEBAIHN0YXRp
+YyBpbnQgbG9hZF9udjE3X2h3X3NlcXVlbmNlcl91Y29kZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2
+LAogCSAqIFRoZSBtaWNyb2NvZGUgZW50cmllcyBhcmUgZm91bmQgYnkgdGhlICJIV1NRIiBzaWdu
+YXR1cmUuCiAJICovCiAKLQljb25zdCB1aW50OF90IGh3c3Ffc2lnbmF0dXJlW10gPSB7ICdIJywg
+J1cnLCAnUycsICdRJyB9OworCXN0YXRpYyBjb25zdCB1aW50OF90IGh3c3Ffc2lnbmF0dXJlW10g
+PSB7ICdIJywgJ1cnLCAnUycsICdRJyB9OwogCWNvbnN0IGludCBzeiA9IHNpemVvZihod3NxX3Np
+Z25hdHVyZSk7CiAJaW50IGh3c3Ffb2Zmc2V0OwogCkBAIC0xOTgwLDcgKzE5ODAsNyBAQCB1aW50
+OF90ICpub3V2ZWF1X2Jpb3NfZW1iZWRkZWRfZWRpZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQog
+ewogCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oZGV2KTsKIAlzdHJ1Y3Qg
+bnZiaW9zICpiaW9zID0gJmRybS0+dmJpb3M7Ci0JY29uc3QgdWludDhfdCBlZGlkX3NpZ1tdID0g
+eworCXN0YXRpYyBjb25zdCB1aW50OF90IGVkaWRfc2lnW10gPSB7CiAJCQkweDAwLCAweGZmLCAw
+eGZmLCAweGZmLCAweGZmLCAweGZmLCAweGZmLCAweDAwIH07CiAJdWludDE2X3Qgb2Zmc2V0ID0g
+MDsKIAl1aW50MTZfdCBuZXdvZmZzZXQ7Ci0tIAoyLjE0LjEKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
