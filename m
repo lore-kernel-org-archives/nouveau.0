@@ -1,52 +1,63 @@
-From: Colin King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Subject: [PATCH] drm/nouveau/bios: make const arrays
-	hwsq_signature and edid_sig static
-Date: Thu,  2 Nov 2017 18:48:12 +0000
-Message-ID: <20171102184812.15263-1-colin.king@canonical.com>
+From: "Gustavo A. R. Silva" <garsilva@embeddedor.com>
+Subject: [PATCH] drm/nouveau/devinit/nv04: mark expected switch fall-throughs
+Date: Thu, 2 Nov 2017 15:06:25 -0500
+Message-ID: <20171102200625.GA9199@embeddedor.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, "Gustavo A. R. Silva" <garsilva@embeddedor.com>
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KCkRvbid0IHBv
-cHVsYXRlIGFycmF5cyBod3NxX3NpZ25hdHVyZSBhbmQgZWRpZF9zaWcgb24gdGhlIHN0YWNrIGJ1
-dAppbnN0ZWFkIG1ha2UgdGhlbSBzdGF0aWMuIE1ha2VzIHRoZSBvYmplY3QgY29kZSBzbWFsbGVy
-IGJ5IG92ZXIgMTkwCmJ5dGVzOgoKQmVmb3JlOgogICB0ZXh0ICAgIGRhdGEgICAgIGJzcyAgICAg
-ZGVjICAgICBoZXggZmlsZW5hbWUKICAzNTY3NiAgICAzMzEyICAgICAgNjQgICAzOTA1MiAgICA5
-ODhjIG5vdXZlYXVfYmlvcy5vCgpBZnRlcjoKICAgdGV4dCAgICBkYXRhICAgICBic3MgICAgIGRl
-YyAgICAgaGV4IGZpbGVuYW1lCiAgMzUzMTkgICAgMzQ3MiAgICAgIDY0ICAgMzg4NTUgICAgOTdj
-NyBub3V2ZWF1X2Jpb3MubwoKKGdjYyB2ZXJzaW9uIDcuMi4wIHg4Nl82NCkKClNpZ25lZC1vZmYt
-Ynk6IENvbGluIElhbiBLaW5nIDxjb2xpbi5raW5nQGNhbm9uaWNhbC5jb20+Ci0tLQogZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iaW9zLmMgfCA0ICsrLS0KIDEgZmlsZSBjaGFuZ2Vk
-LCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV9iaW9zLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2Jpb3MuYwppbmRleCBkZDZmYmE1NWFkNWQuLjE4YzVmNTg3NDIzOSAxMDA2NDQKLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iaW9zLmMKKysrIGIvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV9iaW9zLmMKQEAgLTE5NjQsNyArMTk2NCw3IEBAIHN0YXRp
-YyBpbnQgbG9hZF9udjE3X2h3X3NlcXVlbmNlcl91Y29kZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2
-LAogCSAqIFRoZSBtaWNyb2NvZGUgZW50cmllcyBhcmUgZm91bmQgYnkgdGhlICJIV1NRIiBzaWdu
-YXR1cmUuCiAJICovCiAKLQljb25zdCB1aW50OF90IGh3c3Ffc2lnbmF0dXJlW10gPSB7ICdIJywg
-J1cnLCAnUycsICdRJyB9OworCXN0YXRpYyBjb25zdCB1aW50OF90IGh3c3Ffc2lnbmF0dXJlW10g
-PSB7ICdIJywgJ1cnLCAnUycsICdRJyB9OwogCWNvbnN0IGludCBzeiA9IHNpemVvZihod3NxX3Np
-Z25hdHVyZSk7CiAJaW50IGh3c3Ffb2Zmc2V0OwogCkBAIC0xOTgwLDcgKzE5ODAsNyBAQCB1aW50
-OF90ICpub3V2ZWF1X2Jpb3NfZW1iZWRkZWRfZWRpZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQog
-ewogCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oZGV2KTsKIAlzdHJ1Y3Qg
-bnZiaW9zICpiaW9zID0gJmRybS0+dmJpb3M7Ci0JY29uc3QgdWludDhfdCBlZGlkX3NpZ1tdID0g
-eworCXN0YXRpYyBjb25zdCB1aW50OF90IGVkaWRfc2lnW10gPSB7CiAJCQkweDAwLCAweGZmLCAw
-eGZmLCAweGZmLCAweGZmLCAweGZmLCAweGZmLCAweDAwIH07CiAJdWludDE2X3Qgb2Zmc2V0ID0g
-MDsKIAl1aW50MTZfdCBuZXdvZmZzZXQ7Ci0tIAoyLjE0LjEKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQo=
+In preparation to enabling -Wimplicit-fallthrough, mark switch cases
+where we are expecting to fall through.
+
+Addresses-Coverity-ID: 143119
+Addresses-Coverity-ID: 143120
+Addresses-Coverity-ID: 143121
+Addresses-Coverity-ID: 143122
+Addresses-Coverity-ID: 143123
+Addresses-Coverity-ID: 143124
+Signed-off-by: Gustavo A. R. Silva <garsilva@embeddedor.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv04.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv04.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv04.c
+index 158977f..c3dae05 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv04.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/nv04.c
+@@ -119,11 +119,11 @@ powerctrl_1_shift(int chip_version, int reg)
+ 
+ 	switch (reg) {
+ 	case 0x680520:
+-		shift += 4;
++		shift += 4; /* fall through */
+ 	case 0x680508:
+-		shift += 4;
++		shift += 4; /* fall through */
+ 	case 0x680504:
+-		shift += 4;
++		shift += 4; /* fall through */
+ 	case 0x680500:
+ 		shift += 4;
+ 	}
+@@ -245,11 +245,11 @@ setPLL_double_highregs(struct nvkm_devinit *init, u32 reg1,
+ 
+ 		switch (reg1) {
+ 		case 0x680504:
+-			shift_c040 += 2;
++			shift_c040 += 2; /* fall through */
+ 		case 0x680500:
+-			shift_c040 += 2;
++			shift_c040 += 2; /* fall through */
+ 		case 0x680520:
+-			shift_c040 += 2;
++			shift_c040 += 2; /* fall through */
+ 		case 0x680508:
+ 			shift_c040 += 2;
+ 		}
+-- 
+2.7.4
