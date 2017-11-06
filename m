@@ -1,52 +1,42 @@
-From: "Gustavo A. R. Silva" <garsilva@embeddedor.com>
-Subject: [PATCH] drm/nouveau/bios/timing: mark expected switch fall-throughs
-Date: Thu, 2 Nov 2017 15:20:33 -0500
-Message-ID: <20171102202033.GA10647@embeddedor.com>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] fbcon: fix NULL pointer access in
+	nouveau_fbcon_destroy
+Date: Mon,  6 Nov 2017 16:20:33 +0100
+Message-ID: <20171106152033.11174-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, "Gustavo A. R. Silva" <garsilva@embeddedor.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-In preparation to enabling -Wimplicit-fallthrough, mark switch cases
-where we are expecting to fall through.
-
-Addresses-Coverity-ID: 1260018
-Addresses-Coverity-ID: 1260019
-Addresses-Coverity-ID: 1260022
-Signed-off-by: Gustavo A. R. Silva <garsilva@embeddedor.com>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/timing.c | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/timing.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/timing.c
-index 7e83c39..20ff517 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/timing.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/timing.c
-@@ -115,16 +115,21 @@ nvbios_timingEp(struct nvkm_bios *bios, int idx,
- 		switch (min_t(u8, *hdr, 25)) {
- 		case 25:
- 			p->timing_10_24  = nvbios_rd08(bios, data + 0x18);
-+			/* fall through */
- 		case 24:
- 		case 23:
- 		case 22:
- 			p->timing_10_21  = nvbios_rd08(bios, data + 0x15);
-+			/* fall through */
- 		case 21:
- 			p->timing_10_20  = nvbios_rd08(bios, data + 0x14);
-+			/* fall through */
- 		case 20:
- 			p->timing_10_CWL = nvbios_rd08(bios, data + 0x13);
-+			/* fall through */
- 		case 19:
- 			p->timing_10_18  = nvbios_rd08(bios, data + 0x12);
-+			/* fall through */
- 		case 18:
- 		case 17:
- 			p->timing_10_16  = nvbios_rd08(bios, data + 0x10);
--- 
-2.7.4
+V2hlbiB0aGUgZmJjb24gb2JqZWN0IGlzIGluaXRpYWxpemVkLCBidXQgbm91dmVhdV9mYmNvbl9j
+cmVhdGUgaXMgbm90CmNhbGxlZCwgd2UgcnVuIGludG8gYSBOVUxMIHBvaW50ZXIgYWNjZXNzIHdp
+dGhpbiBub3V2ZWF1X2ZiY29uX2NyZWF0ZSB3aGVuCnVubG9hZGluZyBub3V2ZWF1LgoKVGhlIGNh
+bGwgdG8gZHJtX2ZiX2hlbHBlcl9mdW5jcy5mYl9wcm9iZSBpcyBkZWZlcnJlZCB1bnRpbCB0aGVy
+ZSBpcyBhCmRpc3BsYXkgZm9yIHJlYWwgc2luY2UgNC4xNCwgdGhhdCdzIHdoeSBmYmNvbi0+aGVs
+cGVyLmZiIGlzIHN0aWxsIG5vdCBzZXQuCgpTaWduZWQtb2ZmLWJ5OiBLYXJvbCBIZXJic3QgPGto
+ZXJic3RAcmVkaGF0LmNvbT4KLS0tCiBkcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMgfCAyICst
+CiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1n
+aXQgYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMgYi9kcm0vbm91dmVhdS9ub3V2ZWF1X2Zi
+Y29uLmMKaW5kZXggYzUzM2Q4ZTAuLmJlNzM1N2JmIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2ZiY29uLmMKKysrIGIvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jCkBAIC00Mjks
+NyArNDI5LDcgQEAgbm91dmVhdV9mYmNvbl9kZXN0cm95KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYs
+IHN0cnVjdCBub3V2ZWF1X2ZiZGV2ICpmYmNvbikKIAlkcm1fZmJfaGVscGVyX3VucmVnaXN0ZXJf
+ZmJpKCZmYmNvbi0+aGVscGVyKTsKIAlkcm1fZmJfaGVscGVyX2ZpbmkoJmZiY29uLT5oZWxwZXIp
+OwogCi0JaWYgKG5vdXZlYXVfZmItPm52Ym8pIHsKKwlpZiAobm91dmVhdV9mYiAmJiBub3V2ZWF1
+X2ZiLT5udmJvKSB7CiAJCW5vdXZlYXVfdm1hX2RlbCgmbm91dmVhdV9mYi0+dm1hKTsKIAkJbm91
+dmVhdV9ib191bm1hcChub3V2ZWF1X2ZiLT5udmJvKTsKIAkJbm91dmVhdV9ib191bnBpbihub3V2
+ZWF1X2ZiLT5udmJvKTsKLS0gCjIuMTQuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1Cg==
