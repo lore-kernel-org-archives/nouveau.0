@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103421] Kernel 4.13+ nouveau breaks screen output
-Date: Fri, 10 Nov 2017 15:16:00 +0000
-Message-ID: <bug-103421-8800-Nanl83oeVZ@http.bugs.freedesktop.org/>
-References: <bug-103421-8800@http.bugs.freedesktop.org/>
+From: Josef Larsson <josef.lar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] Accept 3d controllers and not only VGA
+	controllers.
+Date: Fri, 10 Nov 2017 19:49:20 +0100
+Message-ID: <91cc0a88-96b5-9099-2add-37bee1127eda@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0594066170=="
+Content-Type: multipart/mixed; boundary="===============1468126197=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,85 +18,101 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============1468126197==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="1L1jKi3WOLGHV73G7MuDsXB7jWkskanVW"
 
---===============0594066170==
-Content-Type: multipart/alternative; boundary="15103269602.B9b9B8C2C.10335";
- charset="UTF-8"
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--1L1jKi3WOLGHV73G7MuDsXB7jWkskanVW
+Content-Type: multipart/mixed; boundary="qqt2cJnj0XjxsaiWMuCXjXSBoXHcu3gHF";
+ protected-headers="v1"
+From: Josef Larsson <josef.lar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Message-ID: <91cc0a88-96b5-9099-2add-37bee1127eda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] Accept 3d controllers and not only VGA controllers.
 
+--qqt2cJnj0XjxsaiWMuCXjXSBoXHcu3gHF
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+Content-Language: en-US
 
---15103269602.B9b9B8C2C.10335
-Date: Fri, 10 Nov 2017 15:16:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+QWNjZXB0IDNkIGNvbnRyb2xsZXJzIGFuZCBub3Qgb25seSBWR0EgY29udHJvbGxlcnMuIEFj
+Y29yZGluZyB0byBJbGlhCk1pcmtpbiwKdGhlIFZHQSBjb250cm9sbGVyIGNoZWNrIHNob3Vs
+ZCBiZSByZW1vdmVkLiBUaGlzIG1ha2VzIGl0IHBvc3NpYmxlCnRvIHVzZSBleHRlcm5hbCBj
+b25uZWN0b3JzIG9uIGEgZG9ja2luZyBzdGF0aW9uICg0MEE1KSBmb3IgYSBUaGlua3BhZCBQ
+NTEuCihTZWUgQnVnIDEwMTc3OCkuCgpsc3BjaSBleGFtcGxlOgoKMDE6MDAuMCAzRCBjb250
+cm9sbGVyOiBOVklESUEgQ29ycG9yYXRpb24gR00xMDdHTE0gW1F1YWRybyBNMTIwMCBNb2Jp
+bGVdCihyZXYgYTIpCgpBbHNvIGluY2x1ZGUgc2FmZS1ndWFyZHMgdG8gYXZvaWQgTlVMTCBk
+ZXJlZmVyZW5jaW5nIG9mIGZiY29uLCB3aGljaCBpcwpob3cgdGhpcyBidWcgd2FzIGZvdW5k
+LgotLS0KwqBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMgfMKgIDMg
+Ky0tCsKgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmPCoCB8IDEzICsr
+KysrKysrKysrKysKwqAyIGZpbGVzIGNoYW5nZWQsIDE0IGluc2VydGlvbnMoKyksIDIgZGVs
+ZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9mYmNvbi5jCmIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jCmlu
+ZGV4IDJiMTJkODJhYWMxNS4uNmI0ZDM3NGE5ZDgyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9mYmNvbi5jCkBAIC00OTgsOCArNDk4LDcgQEAgbm91dmVhdV9mYmNv
+bl9pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCsKgwqDCoMKgIGludCBwcmVmZXJyZWRf
+YnBwOwrCoMKgwqDCoCBpbnQgcmV0OwrCoAotwqDCoMKgIGlmICghZGV2LT5tb2RlX2NvbmZp
+Zy5udW1fY3J0YyB8fAotwqDCoMKgIMKgwqDCoCAoZGV2LT5wZGV2LT5jbGFzcyA+PiA4KSAh
+PSBQQ0lfQ0xBU1NfRElTUExBWV9WR0EpCivCoMKgwqAgaWYgKCFkZXYtPm1vZGVfY29uZmln
+Lm51bV9jcnRjKQrCoMKgwqDCoCDCoMKgwqAgcmV0dXJuIDA7CsKgCsKgwqDCoMKgIGZiY29u
+ID0ga3phbGxvYyhzaXplb2Yoc3RydWN0IG5vdXZlYXVfZmJkZXYpLCBHRlBfS0VSTkVMKTsK
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCmIv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMKaW5kZXggZmI0N2Q0NjA1
+MGVjLi4wNjFkYWYwMzY0MDcgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L252NTBfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlz
+cGxheS5jCkBAIC0zMjE0LDYgKzMyMTQsMTMgQEAgbnY1MF9tc3RtX2Rlc3Ryb3lfY29ubmVj
+dG9yKHN0cnVjdApkcm1fZHBfbXN0X3RvcG9sb2d5X21nciAqbWdyLArCoMKgwqDCoCBzdHJ1
+Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKGNvbm5lY3Rvci0+ZGV2KTsKwqDC
+oMKgwqAgc3RydWN0IG52NTBfbXN0YyAqbXN0YyA9IG52NTBfbXN0Yyhjb25uZWN0b3IpOwrC
+oAorwqDCoMKgIGlmICghZHJtLT5mYmNvbikKK8KgwqDCoCB7CivCoMKgwqAgwqDCoMKgIE5W
+X1dBUk4oZHJtLCAiZHJtLT5mYmNvbiBvZiAlcyBwb2ludCB0byBOVUxMLiBXaWxsIG5vdCBk
+ZXN0cm95CmNvbm5lY3RvclxuIiwKK8KgwqDCoCDCoMKgwqAgwqDCoMKgIGNvbm5lY3Rvci0+
+bmFtZSk7CivCoMKgwqAgwqDCoMKgIHJldHVybjsKK8KgwqDCoCB9CisKwqDCoMKgwqAgZHJt
+X2Nvbm5lY3Rvcl91bnJlZ2lzdGVyKCZtc3RjLT5jb25uZWN0b3IpOwrCoArCoMKgwqDCoCBk
+cm1fbW9kZXNldF9sb2NrX2FsbChkcm0tPmRldik7CkBAIC0zMjI5LDYgKzMyMzYsMTIgQEAg
+bnY1MF9tc3RtX3JlZ2lzdGVyX2Nvbm5lY3RvcihzdHJ1Y3QgZHJtX2Nvbm5lY3RvcgoqY29u
+bmVjdG9yKQrCoHsKwqDCoMKgwqAgc3RydWN0IG5vdXZlYXVfZHJtICpkcm0gPSBub3V2ZWF1
+X2RybShjb25uZWN0b3ItPmRldik7CsKgCivCoMKgwqAgaWYgKCFkcm0tPmZiY29uKQorwqDC
+oMKgIHsKK8KgwqDCoCDCoMKgwqAgTlZfV0FSTihkcm0sICJkcm0tPmZiY29uIG9mICVzIHBv
+aW50IHRvIE5VTEwuIFdpbGwgbm90IHJlZ2lzdGVyCmNvbm5lY3RvclxuIiwKK8KgwqDCoCDC
+oMKgwqAgwqDCoMKgIGNvbm5lY3Rvci0+bmFtZSk7CivCoMKgwqAgwqDCoMKgIHJldHVybjsK
+K8KgwqDCoCB9CsKgwqDCoMKgIGRybV9tb2Rlc2V0X2xvY2tfYWxsKGRybS0+ZGV2KTsKwqDC
+oMKgwqAgZHJtX2ZiX2hlbHBlcl9hZGRfb25lX2Nvbm5lY3RvcigmZHJtLT5mYmNvbi0+aGVs
+cGVyLCBjb25uZWN0b3IpOwrCoMKgwqDCoCBkcm1fbW9kZXNldF91bmxvY2tfYWxsKGRybS0+
+ZGV2KTsKLS0gCjIuMTMuNgoK
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103421
+--qqt2cJnj0XjxsaiWMuCXjXSBoXHcu3gHF--
 
---- Comment #5 from m-mickan-cl+VPiYnx/1AfugRpC6u6w@public.gmane.org ---
-Created attachment 135375
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135375&action=3Dedit
-dmesg after plugging monitor in
+--1L1jKi3WOLGHV73G7MuDsXB7jWkskanVW
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
-Commit: af85389c614ae04970c0eea7a5c50fb889c8a480
+-----BEGIN PGP SIGNATURE-----
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+iQJIBAEBCAAyFiEEXOZ5DdYY2uMl8/NHxUD9C+gJpGAFAloF9LAUHGpvc2VmLmxh
+ckBnbWFpbC5jb20ACgkQxUD9C+gJpGCFbhAAhEN/1rCyjEpJmLeFavG0uEJBALaJ
+gP21JF7+AX+fucdK+I/K5OT6a0wnNHiaBJFBA/S1wPdK1kcD0vpTOgC+QZ/J50DY
+UNnj2VoKUXacKZ2HU5MWLnzxRVKl4ge+NhNCobZfXx86Y0wNVDIG7FghW34tCXJp
+ItlNClwhkcKJiJLn6JUlGGGmy/2hjDJQOyjNaWyf3Bs0cejb7Qh4nDLCMHvVy8bZ
+QgDhiG6x7kUP578sg9SyvXMboO6uacgjIh62aLRW7pYhxaJk1iQxCmL6fwGWE9GF
+O4fphVw4mXdPYZ6A5PMvTHzTitsCM7rjmg9hPBA03I74dyuyVRrnSRT+WeRa+Qpv
+6nK37bb0DpX8h5YTSchHyxjGqvKyMcDU8GdJoBbsjWwatD9/Vo7IYNk5iHf7Bww9
+Ap73sU0B5WRWdTLO2ev5PIgrEklfm0EzV/oVXXdPo7OkW2gFrQQoFCK345WZ4y7z
+O8OX6gkE4NGPn08aIHNZqTH3VXClDEKuGjrIGYlVMpfC5/tZztkGRMt62BOxOVjk
+TEWNxF6Wn1+UpKCeveLcNZpc96V/LnhCWOIwNs6DbRIvjEnxgZGfigUSpDPJI0Un
+HQKb6pvdwEyoJdiKQCWjeIwYUsna2zH0Rg7L/3LTzAc/Rr/0jPTYwx0/Kxzu4qlS
+d4vVYXeEvan3v6w=
+=QEk+
+-----END PGP SIGNATURE-----
 
---15103269602.B9b9B8C2C.10335
-Date: Fri, 10 Nov 2017 15:16:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+--1L1jKi3WOLGHV73G7MuDsXB7jWkskanVW--
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Kernel 4.13+ nouveau breaks screen output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Kernel 4.13+ nouveau breaks screen output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421">bug 10342=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-m-mickan&#64;mailbox.org" title=3D"m-mickan&#64;mailbox.org">m-mickan&#64;m=
-ailbox.org</a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135375=
-" name=3D"attach_135375" title=3D"dmesg after plugging monitor in">attachme=
-nt 135375</a> <a href=3D"attachment.cgi?id=3D135375&amp;action=3Dedit" titl=
-e=3D"dmesg after plugging monitor in">[details]</a></span>
-dmesg after plugging monitor in
-
-Commit: af85389c614ae04970c0eea7a5c50fb889c8a480</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15103269602.B9b9B8C2C.10335--
-
---===============0594066170==
+--===============1468126197==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0594066170==--
+--===============1468126197==--
