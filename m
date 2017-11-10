@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 94832] Reverse Prime corruption with nouveau using
- radeon outputs
-Date: Fri, 10 Nov 2017 23:25:46 +0000
-Message-ID: <bug-94832-8800-GgIXdhv7s1@http.bugs.freedesktop.org/>
-References: <bug-94832-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+	rescan
+Date: Fri, 10 Nov 2017 23:32:17 +0000
+Message-ID: <bug-75985-8800-TZxoNRl1kd@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0485625277=="
+Content-Type: multipart/mixed; boundary="===============1080540408=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-94832-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0485625277==
-Content-Type: multipart/alternative; boundary="15103563461.f5bC5d6F.8493";
+--===============1080540408==
+Content-Type: multipart/alternative; boundary="15103567374.a69E4C323.10524";
  charset="UTF-8"
 
 
---15103563461.f5bC5d6F.8493
-Date: Fri, 10 Nov 2017 23:25:46 +0000
+--15103567374.a69E4C323.10524
+Date: Fri, 10 Nov 2017 23:32:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D94832
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #9 from danon-Mmb7MZpHnFY@public.gmane.org ---
-Same problem here, try build a multi monitor setup with a 6600 LE (nouveau)=
- and
-a Radeon 2400 Pro (radeon). Xinemara works fine, but Reverse PRIME does not.
+--- Comment #19 from Denis Lisov <dennis.lissov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Having the same bug.
 
-When i try to render nouveau -> radeon i get a segfault.
-When i try to render radeon -> nouveau i get glitches, similar to the one
-Christoph Haag posted.
+Thinkpad P50, Quadro M1000M.
+
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM107GLM [Quad=
+ro
+M1000M] [10de:13b1] (rev a2)
+
+Ready to test patches.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15103563461.f5bC5d6F.8493
-Date: Fri, 10 Nov 2017 23:25:46 +0000
+--15103567374.a69E4C323.10524
+Date: Fri, 10 Nov 2017 23:32:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,26 +68,27 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Reverse Prime corruption with nouveau using radeon output=
-s"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94832#c9">Comment=
- # 9</a>
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c19">Commen=
+t # 19</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Reverse Prime corruption with nouveau using radeon output=
-s"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D94832">bug 94832<=
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-danon&#64;gmx.de" title=3D"danon&#64;gmx.de">danon&#64;gmx.de</a>
+dennis.lissov&#64;gmail.com" title=3D"Denis Lisov &lt;dennis.lissov&#64;gma=
+il.com&gt;"> <span class=3D"fn">Denis Lisov</span></a>
 </span></b>
-        <pre>Same problem here, try build a multi monitor setup with a 6600=
- LE (nouveau) and
-a Radeon 2400 Pro (radeon). Xinemara works fine, but Reverse PRIME does not.
+        <pre>Having the same bug.
 
-When i try to render nouveau -&gt; radeon i get a segfault.
-When i try to render radeon -&gt; nouveau i get glitches, similar to the one
-Christoph Haag posted.</pre>
+Thinkpad P50, Quadro M1000M.
+
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM107GLM [Quad=
+ro
+M1000M] [10de:13b1] (rev a2)
+
+Ready to test patches.</pre>
         </div>
       </p>
 
@@ -99,9 +102,9 @@ Christoph Haag posted.</pre>
     </body>
 </html>=
 
---15103563461.f5bC5d6F.8493--
+--15103567374.a69E4C323.10524--
 
---===============0485625277==
+--===============1080540408==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0485625277==--
+--===============1080540408==--
