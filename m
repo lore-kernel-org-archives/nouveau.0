@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
-	rescan
-Date: Sat, 11 Nov 2017 00:59:10 +0000
-Message-ID: <bug-75985-8800-wIQRFqviLY@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+From: Mikko Perttunen <cyndis-/1wQRMveznE@public.gmane.org>
+Subject: Re: GP10B regression
+Date: Sat, 11 Nov 2017 15:02:57 +0200
+Message-ID: <582d1472-1287-0eb2-dcd7-3e48178489b3@kapsi.fi>
+References: <343f2346-1a6b-682b-97f3-12d5dd71c856@kapsi.fi>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0542668183=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <343f2346-1a6b-682b-97f3-12d5dd71c856-/1wQRMveznE@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,115 +18,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0542668183==
-Content-Type: multipart/alternative; boundary="15103619500.FCb61Aff.30873";
- charset="UTF-8"
-
-
---15103619500.FCb61Aff.30873
-Date: Sat, 11 Nov 2017 00:59:10 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
-
---- Comment #20 from Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org> ---
-(In reply to Denis Lisov from comment #19)
-> Ready to test patches.
-Try the workaround in
-https://devtalk.nvidia.com/default/topic/1024022/linux/gtx-1060-no-audio-ov=
-er-hdmi-only-hda-intel-detected-azalia/post/5211273/#5211273
-for now.
-Some implications met. Workaround seems to have effects/depends on ACPI,
-backlight control not working, sleep/resume breaking audio, see same thread.
-Most interesting issue met in
-https://devtalk.nvidia.com/default/topic/1025831/linux/gtx-1060m-with-linux=
--no-hdmi-audio-device-/
-Workaround there works on linux 4.4 but not on 4.9, turning acpi off makes
-audio device appear on 4.9 without workaround.
-Another green acpi hell needing kernel quirks?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15103619500.FCb61Aff.30873
-Date: Sat, 11 Nov 2017 00:59:10 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c20">Commen=
-t # 20</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-hhfeuer&#64;gmx.de" title=3D"Maik Freudenberg &lt;hhfeuer&#64;gmx.de&gt;"> =
-<span class=3D"fn">Maik Freudenberg</span></a>
-</span></b>
-        <pre>(In reply to Denis Lisov from <a href=3D"show_bug.cgi?id=3D759=
-85#c19">comment #19</a>)
-<span class=3D"quote">&gt; Ready to test patches.</span >
-Try the workaround in
-<a href=3D"https://devtalk.nvidia.com/default/topic/1024022/linux/gtx-1060-=
-no-audio-over-hdmi-only-hda-intel-detected-azalia/post/5211273/#5211273">ht=
-tps://devtalk.nvidia.com/default/topic/1024022/linux/gtx-1060-no-audio-over=
--hdmi-only-hda-intel-detected-azalia/post/5211273/#5211273</a>
-for now.
-Some implications met. Workaround seems to have effects/depends on ACPI,
-backlight control not working, sleep/resume breaking audio, see same thread.
-Most interesting issue met in
-<a href=3D"https://devtalk.nvidia.com/default/topic/1025831/linux/gtx-1060m=
--with-linux-no-hdmi-audio-device-/">https://devtalk.nvidia.com/default/topi=
-c/1025831/linux/gtx-1060m-with-linux-no-hdmi-audio-device-/</a>
-Workaround there works on linux 4.4 but not on 4.9, turning acpi off makes
-audio device appear on 4.9 without workaround.
-Another green acpi hell needing kernel quirks?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15103619500.FCb61Aff.30873--
-
---===============0542668183==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0542668183==--
+QmlzZWN0aW9uIHN0YXR1cyByZXBvcnQ6CgpUaGUgbGF0ZXN0IGNvbW1pdCBJIGhhdmUgZ290dGVu
+IHRvIHdvcmsgaXMKCjEwODQyYmEwNzRlOSBkcm0vbm91dmVhdTogcmVtb3ZlIHVudXNlZCBub3V2
+ZWF1X2ZlbmNlX3dvcmsoKQoKaS5lLiB0aGUgZmlyc3QgYmFkIGNvbW1pdCBpcwoKZDc3MjIxMzRi
+ODI1IGRybS9ub3V2ZWF1OiBzd2l0Y2ggb3ZlciB0byBuZXcgbWVtb3J5IGFuZCB2bW0gaW50ZXJm
+YWNlcwoKRXZlbiB3aXRoIHRoZSBmaXJzdCBvbmUgc29tZSBwYXRjaGVzL2hhY2tzIGFyZSBuZWVk
+ZWQ6CgotIGluIG1tdS9ncDEwYi5jLCBpbiB0aGUgY29uc3RydWN0b3Igd2UgbmVlZCB0byBzZWxl
+Y3QgdGhlIEdNMjAwIHBhdGggLSAKdGhlIEdQMTAwIHBhdGggc2VlbXMgdG8gbm90IHRvIHdvcmsK
+Ci0gYXMgbWVudGlvbmVkIGluIHRoZSBmaXJzdCBtYWlsLCB3ZSBuZWVkIHRvIHNldCAubW11ID0g
+Z3AxMGJfbW11X25ldywKCi0gYW5kIGluIG5vdXZlYXVfbWVtX21lbW9yeV90YXJnZXQgd2UgbmVl
+ZCB0byByZXR1cm4gCk5WS01fTUVNX1RBUkdFVF9OQ09IIGluc3RlYWQgb2YgTlZLTV9NRU1fVEFS
+R0VUX0hPU1QuCgpDaGVlcnMsCk1pa2tvCgpPbiAxMS8xMC8yMDE3IDExOjI3IFBNLCBNaWtrbyBQ
+ZXJ0dHVuZW4gd3JvdGU6Cj4gSGVsbG8gZXZlcnlvbmUsCj4gCj4gaXQgc2VlbXMgdGhhdCBHUDEw
+QiBzdXBwb3J0IGhhcyByZWdyZXNzZWQgcmVjZW50bHkuIFdpdGggbGludXgtbmV4dCwgSSAKPiBu
+ZWVkIHRvIG1vZGlmeSBkZXZpY2UvYmFzZS5jIHRvIHNldAo+IAo+ICDCoMKgwqDCoC5tbXUgPSBn
+cDEwYl9tbXVfbmV3Cj4gCj4gZm9yIEdQMTBCIChtYWtlcyBzZW5zZSAtIEkgZ3Vlc3MgdGhpcyB3
+YXMgbGVmdCBhcyBnZjEwMF9tbXVfbmV3IGFzIGEgCj4gdHlwbykgdG8gcHJvYmUuIEFmdGVyIHRo
+YXQsIHJ1bm5pbmcgYSB0cml2aWFsIHRlc3RjYXNlIChydW5uaW5nIGEgTk9QIAo+IG1ldGhvZCBp
+biAzRCBjbGFzcykgZmFpbHMgd2l0aAo+IAo+IFvCoCAxMTAuMDg0NjQ5XSBub3V2ZWF1IDE3MDAw
+MDAwLmdwdTogZmlmbzogcmVhZCBmYXVsdCBhdCAwMDAwMDExMDAwIAo+IGVuZ2luZSAwNiBbSE9T
+VDBdIGNsaWVudCAwNiBbR1BDMC9MMV8yXSByZWFzfAo+IG9uIDAyIFtQVEVdIG9uIGNoYW5uZWwg
+MSBbMDBmMjA2YTAwMCBub3V2ZWF1X25vb3BfdGVbMjQxM11dIAo+ICDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIHwKPiBbwqAgMTEwLjEwMTQyM10gbm91dmVhdSAxNzAwMDAwMC5ncHU6IGZpZm86IGNoYW5u
+ZWwgMToga2lsbGVkIAo+ICDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwKPiBbwqAgMTEwLjEwNjgyN10g
+bm91dmVhdSAxNzAwMDAwMC5ncHU6IGZpZm86IHJ1bmxpc3QgMDogc2NoZWR1bGVkIGZvciAKPiBy
+ZWNvdmVyecKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgfAo+IFN1Ym1pdHRlZCBwdXNoYnVmZmVyLiDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIHwKPiBbwqAgMTEwLjExMzg2N10gbm91dmVhdSAxNzAwMDAwMC5ncHU6IG5vdXZl
+YXVfbm9vcF90ZVsyNDEzXTogY2hhbm5lbCAxIAo+IGtpbGxlZCHCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8Cj4gW8Kg
+IDEyNS4wODQ4NThdIG5vdXZlYXUgMTcwMDAwMDAuZ3B1OiBub3V2ZWF1X25vb3BfdGVbMjQxM106
+IGZhaWxlZCB0byAKPiBpZGxlIGNoYW5uZWwgMSBbbm91dmVhdV9ub29wX3RlWzI0MTNdXQo+IAo+
+IEkgaGF2ZW4ndCBtYW5hZ2VkIHRvIHRyYWNrIHRoaXMgZG93biB5ZXQuIEhvd2V2ZXIsIEkgZGlk
+IGZpbmQgb3V0IHRoYXQgCj4gY2hlY2tpbmcgb3V0IHRoZSBkcm0vbm91dmVhdSBkaXJlY3Rvcnkg
+YXQgY29tbWl0ICJkcm0vbm91dmVhdS9rbXMvbnY1MDogCj4gdXNlIHRoZSBjb3JyZWN0IHN0YXRl
+IGZvciBiYXNlIGNoYW5uZWwgbm90aWZpZXIgc2V0dXAiIG1ha2VzIHRoaW5ncyB3b3JrIAo+IGFn
+YWluLgo+IAo+IEknbGwgY29udGludWUgdG8gdGFrZSBsb29rLCB0aG91Z2ggYmlzZWN0aW5nIGlz
+IGEgYml0IGhhcmRlciB0aGFuIHVzdWFsIAo+IGR1ZSB0byBzb21lIG90aGVyIGlzc3VlcyBpbiBU
+ZWdyYTE4NiByZWNlbnRseSwgc28gYW55IHBvaW50ZXJzIGluIHRoZSAKPiByaWdodCBkaXJlY3Rp
+b24gd291bGQgYmUgdXNlZnVsIDopCj4gCj4gVGhhbmtzLAo+IE1pa2tvCj4gX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlz
+dAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
