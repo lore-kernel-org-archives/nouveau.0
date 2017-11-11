@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
-	rescan
-Date: Fri, 10 Nov 2017 23:32:17 +0000
-Message-ID: <bug-75985-8800-TZxoNRl1kd@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: Re: [PATCH] Accept 3d controllers and not only VGA
+ controllers.
+Date: Sat, 11 Nov 2017 01:05:55 +0100
+Message-ID: <833b7158-c15d-0f4f-b003-8b7b8810a74a@mni.thm.de>
+References: <91cc0a88-96b5-9099-2add-37bee1127eda@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1080540408=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <91cc0a88-96b5-9099-2add-37bee1127eda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,101 +19,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Josef Larsson <josef.lar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1080540408==
-Content-Type: multipart/alternative; boundary="15103567374.a69E4C323.10524";
- charset="UTF-8"
-
-
---15103567374.a69E4C323.10524
-Date: Fri, 10 Nov 2017 23:32:17 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
-
---- Comment #19 from Denis Lisov <dennis.lissov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Having the same bug.
-
-Thinkpad P50, Quadro M1000M.
-
-01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM107GLM [Quad=
-ro
-M1000M] [10de:13b1] (rev a2)
-
-Ready to test patches.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15103567374.a69E4C323.10524
-Date: Fri, 10 Nov 2017 23:32:17 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c19">Commen=
-t # 19</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dennis.lissov&#64;gmail.com" title=3D"Denis Lisov &lt;dennis.lissov&#64;gma=
-il.com&gt;"> <span class=3D"fn">Denis Lisov</span></a>
-</span></b>
-        <pre>Having the same bug.
-
-Thinkpad P50, Quadro M1000M.
-
-01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM107GLM [Quad=
-ro
-M1000M] [10de:13b1] (rev a2)
-
-Ready to test patches.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15103567374.a69E4C323.10524--
-
---===============1080540408==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1080540408==--
+Ck9uIDExLzEwLzE3IDc6NDkgUE0sIEpvc2VmIExhcnNzb24gd3JvdGU6Cj4gQWNjZXB0IDNkIGNv
+bnRyb2xsZXJzIGFuZCBub3Qgb25seSBWR0EgY29udHJvbGxlcnMuIEFjY29yZGluZyB0byBJbGlh
+Cj4gTWlya2luLAo+IHRoZSBWR0EgY29udHJvbGxlciBjaGVjayBzaG91bGQgYmUgcmVtb3ZlZC4g
+VGhpcyBtYWtlcyBpdCBwb3NzaWJsZQo+IHRvIHVzZSBleHRlcm5hbCBjb25uZWN0b3JzIG9uIGEg
+ZG9ja2luZyBzdGF0aW9uICg0MEE1KSBmb3IgYSBUaGlua3BhZCBQNTEuCj4gKFNlZSBCdWcgMTAx
+Nzc4KS4KPgo+IGxzcGNpIGV4YW1wbGU6Cj4KPiAwMTowMC4wIDNEIGNvbnRyb2xsZXI6IE5WSURJ
+QSBDb3Jwb3JhdGlvbiBHTTEwN0dMTSBbUXVhZHJvIE0xMjAwIE1vYmlsZV0KPiAocmV2IGEyKQo+
+Cj4gQWxzbyBpbmNsdWRlIHNhZmUtZ3VhcmRzIHRvIGF2b2lkIE5VTEwgZGVyZWZlcmVuY2luZyBv
+ZiBmYmNvbiwgd2hpY2ggaXMKPiBob3cgdGhpcyBidWcgd2FzIGZvdW5kLgo+IC0tLQo+ICDCoGRy
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYyB8wqAgMyArLS0KPiAgwqBkcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuY8KgIHwgMTMgKysrKysrKysrKysrKwo+
+ICDCoDIgZmlsZXMgY2hhbmdlZCwgMTQgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPgo+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMKPiBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYwo+IGluZGV4IDJiMTJkODJh
+YWMxNS4uNmI0ZDM3NGE5ZDgyIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L25vdXZlYXVfZmJjb24uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
+ZmJjb24uYwo+IEBAIC00OTgsOCArNDk4LDcgQEAgbm91dmVhdV9mYmNvbl9pbml0KHN0cnVjdCBk
+cm1fZGV2aWNlICpkZXYpCj4gIMKgwqDCoMKgIGludCBwcmVmZXJyZWRfYnBwOwo+ICDCoMKgwqDC
+oCBpbnQgcmV0Owo+ICAgCj4gLcKgwqDCoCBpZiAoIWRldi0+bW9kZV9jb25maWcubnVtX2NydGMg
+fHwKPiAtwqDCoMKgIMKgwqDCoCAoZGV2LT5wZGV2LT5jbGFzcyA+PiA4KSAhPSBQQ0lfQ0xBU1Nf
+RElTUExBWV9WR0EpCj4gK8KgwqDCoCBpZiAoIWRldi0+bW9kZV9jb25maWcubnVtX2NydGMpCj4g
+IMKgwqDCoMKgIMKgwqDCoCByZXR1cm4gMDsKPiAgIAo+ICDCoMKgwqDCoCBmYmNvbiA9IGt6YWxs
+b2Moc2l6ZW9mKHN0cnVjdCBub3V2ZWF1X2ZiZGV2KSwgR0ZQX0tFUk5FTCk7Cj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCj4gYi9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwo+IGluZGV4IGZiNDdkNDYwNTBlYy4uMDYxZGFm
+MDM2NDA3IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxh
+eS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMKPiBAQCAt
+MzIxNCw2ICszMjE0LDEzIEBAIG52NTBfbXN0bV9kZXN0cm95X2Nvbm5lY3RvcihzdHJ1Y3QKPiBk
+cm1fZHBfbXN0X3RvcG9sb2d5X21nciAqbWdyLAo+ICDCoMKgwqDCoCBzdHJ1Y3Qgbm91dmVhdV9k
+cm0gKmRybSA9IG5vdXZlYXVfZHJtKGNvbm5lY3Rvci0+ZGV2KTsKPiAgwqDCoMKgwqAgc3RydWN0
+IG52NTBfbXN0YyAqbXN0YyA9IG52NTBfbXN0Yyhjb25uZWN0b3IpOwo+ICAgCj4gK8KgwqDCoCBp
+ZiAoIWRybS0+ZmJjb24pCj4gK8KgwqDCoCB7Cj4gK8KgwqDCoCDCoMKgwqAgTlZfV0FSTihkcm0s
+ICJkcm0tPmZiY29uIG9mICVzIHBvaW50IHRvIE5VTEwuIFdpbGwgbm90IGRlc3Ryb3kKPiBjb25u
+ZWN0b3JcbiIsCj4gK8KgwqDCoCDCoMKgwqAgwqDCoMKgIGNvbm5lY3Rvci0+bmFtZSk7Cj4gK8Kg
+wqDCoCDCoMKgwqAgcmV0dXJuOwo+ICvCoMKgwqAgfQo+ICsKPiAgwqDCoMKgwqAgZHJtX2Nvbm5l
+Y3Rvcl91bnJlZ2lzdGVyKCZtc3RjLT5jb25uZWN0b3IpOwo+ICAgCj4gIMKgwqDCoMKgIGRybV9t
+b2Rlc2V0X2xvY2tfYWxsKGRybS0+ZGV2KTsKPiBAQCAtMzIyOSw2ICszMjM2LDEyIEBAIG52NTBf
+bXN0bV9yZWdpc3Rlcl9jb25uZWN0b3Ioc3RydWN0IGRybV9jb25uZWN0b3IKPiAqY29ubmVjdG9y
+KQo+ICDCoHsKPiAgwqDCoMKgwqAgc3RydWN0IG5vdXZlYXVfZHJtICpkcm0gPSBub3V2ZWF1X2Ry
+bShjb25uZWN0b3ItPmRldik7Cj4gICAKPiArwqDCoMKgIGlmICghZHJtLT5mYmNvbikKPiArwqDC
+oMKgIHsKPiArwqDCoMKgIMKgwqDCoCBOVl9XQVJOKGRybSwgImRybS0+ZmJjb24gb2YgJXMgcG9p
+bnQgdG8gTlVMTC4gV2lsbCBub3QgcmVnaXN0ZXIKPiBjb25uZWN0b3JcbiIsCj4gK8KgwqDCoCDC
+oMKgwqAgwqDCoMKgIGNvbm5lY3Rvci0+bmFtZSk7Cj4gK8KgwqDCoCDCoMKgwqAgcmV0dXJuOwo+
+ICvCoMKgwqAgfQo+ICDCoMKgwqDCoCBkcm1fbW9kZXNldF9sb2NrX2FsbChkcm0tPmRldik7Cj4g
+IMKgwqDCoMKgIGRybV9mYl9oZWxwZXJfYWRkX29uZV9jb25uZWN0b3IoJmRybS0+ZmJjb24tPmhl
+bHBlciwgY29ubmVjdG9yKTsKPiAgwqDCoMKgwqAgZHJtX21vZGVzZXRfdW5sb2NrX2FsbChkcm0t
+PmRldik7Cj4KPgoKSGksCgp0aGUgcGF0Y2ggbG9va3MgT0sgdG8gbWUsIHlldCBhcyBub3RlZCBp
+biBJUkMsIGknZCBsaWtlIHRvIGhhdmUgdGhpcyAKcGF0Y2ggc3BsaXQgaW50byB0d28gYW5kIGhh
+dmUgdGhlIC0+ZmJjb24gY2hlY2sgYXMgYSBwcmVjb25kaXRpb24gdG8gdGhlIAozRCBDb250cm9s
+bGVyIHBhcnQuIEJ1dCBsZXRzIHNlZSB3aGF0IHRoZSBvdGhlciBhbmQgbW9yZSBjbGV2ZXIgcGVv
+cGxlIAp0aGluayBhYm91dCBpdCEgOikKCkdyZWV0aW5ncywKClRvYmlhcwoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
