@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103689] there is an exploitable page fault that can
- be reliably triggered from the chromium sandbox can possibly lead to remote
- attackers causing a denial of service condition or possibly running system
- code.
-Date: Sun, 12 Nov 2017 11:54:48 +0000
-Message-ID: <bug-103689-8800-045s1c9GzQ@http.bugs.freedesktop.org/>
+Subject: [Bug 103689] WARN on nouveau_bo_move_ntfy when allocating
+	new bo
+Date: Sun, 12 Nov 2017 15:13:44 +0000
+Message-ID: <bug-103689-8800-mdiIFwR6Ls@http.bugs.freedesktop.org/>
 References: <bug-103689-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0783949800=="
+Content-Type: multipart/mixed; boundary="===============0322073959=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103689-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -23,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0783949800==
-Content-Type: multipart/alternative; boundary="15104876880.1fC66ab.4065";
+--===============0322073959==
+Content-Type: multipart/alternative; boundary="15104996241.E1e9.11606";
  charset="UTF-8"
 
 
---15104876880.1fC66ab.4065
-Date: Sun, 12 Nov 2017 11:54:48 +0000
+--15104996241.E1e9.11606
+Date: Sun, 12 Nov 2017 15:13:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -38,61 +36,42 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103689
 
---- Comment #1 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Which kernel version does your Ubuntu installation have? And with which GPU=
- was
-it?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-I tried opening that page on my computer with Chromium, but it didn=E2=80=
-=99t trigger a
-page fault. This is what I got instead:
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Severity|critical                    |minor
+            Summary|there is an exploitable     |WARN on
+                   |page fault that can be      |nouveau_bo_move_ntfy when
+                   |reliably triggered from the |allocating new bo
+                   |chromium sandbox can        |
+                   |possibly lead to remote     |
+                   |attackers causing a denial  |
+                   |of service condition or     |
+                   |possibly running system     |
+                   |code.                       |
 
-    [Nov12 12:40] nouveau 0000:04:00.0: Xorg[394]: fail ttm_validate
-    [  +0.000006] nouveau 0000:04:00.0: Xorg[394]: validating bo list
-    [  +0.000006] nouveau 0000:04:00.0: Xorg[394]: validate: -12
-    [  +1.124277] nouveau 0000:04:00.0: gr: TRAP ch 10 [007fa04000 Xorg[394=
-]]
-    [  +0.000014] nouveau 0000:04:00.0: gr: SHADER a244020e, sph: 0x44020e,
-stage: 0x22
-    [  +5.515843] nouveau 0000:04:00.0: gr: TRAP ch 10 [007fa04000 Xorg[394=
-]]
-    [  +0.000016] nouveau 0000:04:00.0: gr: SHADER a244020e, sph: 0x44020e,
-stage: 0x22
-    [Nov12 12:41] nouveau 0000:04:00.0: Xorg[394]: fail ttm_validate
-    [  +0.000005] nouveau 0000:04:00.0: Xorg[394]: validating bo list
-    [  +0.000005] nouveau 0000:04:00.0: Xorg[394]: validate: -12
-    [Nov12 12:42] nouveau 0000:04:00.0: gr: TRAP ch 10 [007fa04000 Xorg[394=
-]]
-    [  +0.000010] nouveau 0000:04:00.0: gr: SHADER a244020e, sph: 0x44020e,
-stage: 0x22
-    [Nov12 12:43] nouveau 0000:04:00.0: gr: TRAP ch 10 [007fa04000 Xorg[394=
-]]
-    [  +0.000009] nouveau 0000:04:00.0: gr: SHADER a244020e, sph: 0x44020e,
-stage: 0x22
-    [  +1.273289] nouveau 0000:04:00.0: gr: TRAP ch 10 [007fa04000 Xorg[394=
-]]
-    [  +0.000015] nouveau 0000:04:00.0: gr: SHADER a244020e, sph: 0x44020e,
-stage: 0x22
-    [  +0.455464] nouveau 0000:04:00.0: gr: TRAP ch 10 [007fa04000 Xorg[394=
-]]
-    [  +0.000013] nouveau 0000:04:00.0: gr: SHADER a244020e, sph: 0x44020e,
-stage: 0x22
-    [  +0.518625] nouveau 0000:04:00.0: gr: TRAP ch 10 [007fa04000 Xorg[394=
-]]
-    [  +0.000014] nouveau 0000:04:00.0: gr: SHADER a244020e, sph: 0x44020e,
-stage: 0x22
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+If you're using anything but the latest software, you need to report this i=
+ssue
+to the people relesing the software.
 
-GPU: GM206
-Kernel: 4.13.12
-Xorg: 1.19.5
+This is the upstream bugtracker, which only deals in latest versions. 4.10 =
+was
+released 6+ months ago, and who knows what horrid things are in the Ubuntu
+tree. Similarly, you should ensure you have the very latest mesa.
+
+Lastly, you have provided no evidence of a page fault, just a WARN somewher=
+e in
+the code. (Which isn't great, but it's quite different.)
 
 --=20
 You are receiving this mail because:
-You are on the CC list for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are on the CC list for the bug.=
 
---15104876880.1fC66ab.4065
-Date: Sun, 12 Nov 2017 11:54:48 +0000
+--15104996241.E1e9.11606
+Date: Sun, 12 Nov 2017 15:13:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -103,73 +82,68 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - WARN on nouveau_bo_move_ntfy when allocating new bo"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103689">bug 10368=
+9</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Severity</td>
+           <td>critical
+           </td>
+           <td>minor
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Summary</td>
+           <td>there is an exploitable page fault that can be reliably trig=
+gered from the chromium sandbox can possibly lead to remote attackers causi=
+ng a denial of service condition or possibly running system code.
+           </td>
+           <td>WARN on nouveau_bo_move_ntfy when allocating new bo
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - there is an exploitable page fault that can be reliably t=
-riggered from the chromium sandbox can possibly lead to remote attackers ca=
-using a denial of service condition or possibly running system code."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103689#c1">Commen=
-t # 1</a>
+   title=3D"NEW - WARN on nouveau_bo_move_ntfy when allocating new bo"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103689#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - there is an exploitable page fault that can be reliably t=
-riggered from the chromium sandbox can possibly lead to remote attackers ca=
-using a denial of service condition or possibly running system code."
+   title=3D"NEW - WARN on nouveau_bo_move_ntfy when allocating new bo"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103689">bug 10368=
 9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
-e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Which kernel version does your Ubuntu installation have? And w=
-ith which GPU was
-it?
+        <pre>If you're using anything but the latest software, you need to =
+report this issue
+to the people relesing the software.
 
-I tried opening that page on my computer with Chromium, but it didn=E2=80=
-=99t trigger a
-page fault. This is what I got instead:
+This is the upstream bugtracker, which only deals in latest versions. 4.10 =
+was
+released 6+ months ago, and who knows what horrid things are in the Ubuntu
+tree. Similarly, you should ensure you have the very latest mesa.
 
-    [Nov12 12:40] nouveau 0000:04:00.0: Xorg[394]: fail ttm_validate
-    [  +0.000006] nouveau 0000:04:00.0: Xorg[394]: validating bo list
-    [  +0.000006] nouveau 0000:04:00.0: Xorg[394]: validate: -12
-    [  +1.124277] nouveau 0000:04:00.0: gr: TRAP ch 10 [007fa04000 Xorg[394=
-]]
-    [  +0.000014] nouveau 0000:04:00.0: gr: SHADER a244020e, sph: 0x44020e,
-stage: 0x22
-    [  +5.515843] nouveau 0000:04:00.0: gr: TRAP ch 10 [007fa04000 Xorg[394=
-]]
-    [  +0.000016] nouveau 0000:04:00.0: gr: SHADER a244020e, sph: 0x44020e,
-stage: 0x22
-    [Nov12 12:41] nouveau 0000:04:00.0: Xorg[394]: fail ttm_validate
-    [  +0.000005] nouveau 0000:04:00.0: Xorg[394]: validating bo list
-    [  +0.000005] nouveau 0000:04:00.0: Xorg[394]: validate: -12
-    [Nov12 12:42] nouveau 0000:04:00.0: gr: TRAP ch 10 [007fa04000 Xorg[394=
-]]
-    [  +0.000010] nouveau 0000:04:00.0: gr: SHADER a244020e, sph: 0x44020e,
-stage: 0x22
-    [Nov12 12:43] nouveau 0000:04:00.0: gr: TRAP ch 10 [007fa04000 Xorg[394=
-]]
-    [  +0.000009] nouveau 0000:04:00.0: gr: SHADER a244020e, sph: 0x44020e,
-stage: 0x22
-    [  +1.273289] nouveau 0000:04:00.0: gr: TRAP ch 10 [007fa04000 Xorg[394=
-]]
-    [  +0.000015] nouveau 0000:04:00.0: gr: SHADER a244020e, sph: 0x44020e,
-stage: 0x22
-    [  +0.455464] nouveau 0000:04:00.0: gr: TRAP ch 10 [007fa04000 Xorg[394=
-]]
-    [  +0.000013] nouveau 0000:04:00.0: gr: SHADER a244020e, sph: 0x44020e,
-stage: 0x22
-    [  +0.518625] nouveau 0000:04:00.0: gr: TRAP ch 10 [007fa04000 Xorg[394=
-]]
-    [  +0.000014] nouveau 0000:04:00.0: gr: SHADER a244020e, sph: 0x44020e,
-stage: 0x22
-
-GPU: GM206
-Kernel: 4.13.12
-Xorg: 1.19.5</pre>
+Lastly, you have provided no evidence of a page fault, just a WARN somewher=
+e in
+the code. (Which isn't great, but it's quite different.)</pre>
         </div>
       </p>
 
@@ -178,15 +152,15 @@ Xorg: 1.19.5</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are on the CC list for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are on the CC list for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15104876880.1fC66ab.4065--
+--15104996241.E1e9.11606--
 
---===============0783949800==
+--===============0322073959==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -196,4 +170,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0783949800==--
+--===============0322073959==--
