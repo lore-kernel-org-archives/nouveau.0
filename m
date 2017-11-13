@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103689] kernel panic via the chromium browser
-Date: Mon, 13 Nov 2017 05:31:01 +0000
-Message-ID: <bug-103689-8800-0OQo3O9Be0@http.bugs.freedesktop.org/>
-References: <bug-103689-8800@http.bugs.freedesktop.org/>
+From: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: Addressing the problem of noisy GPUs under Nouveau
+Date: Sun, 12 Nov 2017 23:15:45 -0800
+Message-ID: <7cad7e2b-e207-03be-b5a6-d036420b42e0@nvidia.com>
+References: <4597fd60-59f8-5e45-ec5a-f52c4c6c6260@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0836354132=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103689-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <4597fd60-59f8-5e45-ec5a-f52c4c6c6260-GANU6spQydw@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,139 +18,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0836354132==
-Content-Type: multipart/alternative; boundary="15105510611.C0Cbc3fB.30736";
- charset="UTF-8"
-
-
---15105510611.C0Cbc3fB.30736
-Date: Mon, 13 Nov 2017 05:31:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103689
-
---- Comment #6 from akayn <yena0xc5-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 135431
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135431&action=3Dedit
-better reprodction
-
-Nov 10 12:17:28 nitro kernel: [ 1612.249746] nouveau 0000:01:00.0:=20
-chromium-browse[2557]:=20
-fail ttm_validate
-Nov 10 12:17:28 nitro kernel: [ 1612.249752] nouveau 0000:01:00.0:=20
-chromium-browse[2557]: validating bo list
-Nov=20
-10 12:17:28 nitro kernel: [ 1612.249756] nouveau 0000:01:00.0:=20
-chromium-browse[2557]: validate: -12
-Nov 10 12:17:28 nitro kernel:=20
-[ 1612.263405] nouveau 0000:01:00.0: gr: TRAP ch 9=20
-[003f8f8000 chromium-browse[2557]]
-Nov 10 12:17:28 nitro kernel:=20
-[ 1612.263418] nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX:
- 80000049
-Nov 10 12:17:28 nitro kernel: [ 1612.263423]
- nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000049
-Nov 10 12:17:28 nitro kernel:
- [ 1612.263435] nouveau 0000:01:00.0: fifo: read fault at 004f4a4000 engine=
- 00
-[PGRAPH]=20
-client 04 [GPC0/] reason 02 [PAGE_NOT_PRESENT] on channel 9 [003f8f8000
-chromium-browse[2557]]
-
---=20
-You are receiving this mail because:
-You are on the CC list for the bug.
-You are the assignee for the bug.=
-
---15105510611.C0Cbc3fB.30736
-Date: Mon, 13 Nov 2017 05:31:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - kernel panic via the chromium browser"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103689#c6">Commen=
-t # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - kernel panic via the chromium browser"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103689">bug 10368=
-9</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-yena0xc5&#64;gmail.com" title=3D"akayn &lt;yena0xc5&#64;gmail.com&gt;"> <sp=
-an class=3D"fn">akayn</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135431=
-" name=3D"attach_135431" title=3D"better reprodction">attachment 135431</a>=
- <a href=3D"attachment.cgi?id=3D135431&amp;action=3Dedit" title=3D"better r=
-eprodction">[details]</a></span>
-better reprodction
-
-Nov 10 12:17:28 nitro kernel: [ 1612.249746] nouveau 0000:01:00.0:=20
-chromium-browse[2557]:=20
-fail ttm_validate
-Nov 10 12:17:28 nitro kernel: [ 1612.249752] nouveau 0000:01:00.0:=20
-chromium-browse[2557]: validating bo list
-Nov=20
-10 12:17:28 nitro kernel: [ 1612.249756] nouveau 0000:01:00.0:=20
-chromium-browse[2557]: validate: -12
-Nov 10 12:17:28 nitro kernel:=20
-[ 1612.263405] nouveau 0000:01:00.0: gr: TRAP ch 9=20
-[003f8f8000 chromium-browse[2557]]
-Nov 10 12:17:28 nitro kernel:=20
-[ 1612.263418] nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX:
- 80000049
-Nov 10 12:17:28 nitro kernel: [ 1612.263423]
- nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000049
-Nov 10 12:17:28 nitro kernel:
- [ 1612.263435] nouveau 0000:01:00.0: fifo: read fault at 004f4a4000 engine=
- 00
-[PGRAPH]=20
-client 04 [GPC0/] reason 02 [PAGE_NOT_PRESENT] on channel 9 [003f8f8000
-chromium-browse[2557]]</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are on the CC list for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15105510611.C0Cbc3fB.30736--
-
---===============0836354132==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0836354132==--
+T24gMTEvMTIvMjAxNyAwNjoyOSBQTSwgTWFydGluIFBlcmVzIHdyb3RlOgo+IEhlbGxvLAo+IAo+
+IFNvbWUgdXNlcnMgaGF2ZSBiZWVuIGNvbXBsYWluaW5nIGZvciB5ZWFycyBhYm91dCB0aGVpciBH
+UFUgc291bmRpbmcgbGlrZQo+IGEgamV0IGVuZ2luZSBhdCB0YWtlIG9mZi4gTGFzdCB5ZWFyLCBJ
+IGZpbmFsbHkgbGFpZCBteSBoYW5kIG9uIG9uZSBvZgo+IHRoZXNlIEdQVXMgYW5kIGhhdmUgYmVl
+biB0cnlpbmcgdG8gZml4IHRoaXMgaXNzdWUgb24gYW5kIG9mZiBzaW5jZSB0aGVuLgoKU29tZSBl
+YXJseSBmZWVkYmFjazogY2FuIHlvdSB0ZWxsIHVzIHRoZSBleGFjdCBTS1VzIHlvdSBoYXZlPyBB
+bmQgYXJlIHRoZXNlCnByb2R1Y3Rpb24gYm9hcmRzIHdpdGggcHJvZHVjdGlvbiBWQklPU2VzPyAg
+CgpOb3JtYWxseSwgaXQncyBqdXN0IG91ciBicmluZ3VwIGJvYXJkcyB0aGF0IHdlJ2QgZXhwZWN0
+IHRvIGJlIG5vaXN5IGxpa2UgCnRoaXMsIHNvIHdlJ3JlIGxvb2tpbmcgZm9yIGEgZmV3IG1vcmUg
+ZGV0YWlscy4KCnRoYW5rcywKSm9obiBIdWJiYXJkCk5WSURJQQoKPiAKPiBBZnRlciBmYWlsaW5n
+IHRvIGZpbmQgYW55dGhpbmcgaW4gdGhlIEhXLCBJIGZpZ3VyZWQgb3V0IHRoYXQgdGhlIGR1dHkK
+PiBjeWNsZSBzZXQgYnkgbnZpZGlhJ3MgcHJvcHJpZXRhcnkgZHJpdmVyIHdvdWxkIGJlIHdheSB1
+bmRlciB0aGUgZXhwZWN0ZWQKPiB2YWx1ZS4gQnkgcmFuZG9tbHkgY2hhbmdpbmcgdmFsdWVzIGlu
+IHRoZSB1bmtub3duIHRhYmxlcyBvZiB0aGUgdmJpb3MsIEkKPiBmb3VuZCBvdXQgdGhhdCB0aGVy
+ZSBpcyBhIGZhbiBjYWxpYnJhdGlvbiB0YWJsZSBhdCB0aGUgb2Zmc2V0IDB4MTggaW4KPiB0aGUg
+QklUIFAgdGFibGUgKHZlcnNpb24gMikuCj4gCj4gSW4gdGhpcyB0YWJsZSwgSSBpZGVudGlmaWVk
+IDIgbWFqb3IgMTYgYml0cyBwYXJhbWV0ZXJzIGF0IG9mZnNldCAweGEgYW5kCj4gMHhjWzJdLiBU
+aGUgZmlyc3Qgb25lLCBJIG5hbWVkIHB3bV9tYXgsIHdoaWxlIG5hbWluZyB0aGUgbGF0dGVyCj4g
+cHdtX29mZnNldC4gQXMgZXhwZWN0ZWQsIHRoZXNlIHBhcmFtZXRlcnMgbG9vayBsaWtlIGEgbWFw
+cGluZyBmdW5jdGlvbgo+IG9mIHRoZSBmb3JtIGFYICsgYi4gSG93ZXZlciwgYWZ0ZXIgZ2F0aGVy
+aW5nIG1vcmUgc2FtcGxlcywgSSBmb3VuZCBvdXQKPiB0aGF0IHRoZSBvdXRwdXQgd2FzIG5vdCBj
+b250aW51b3VzIHdoZW4gbGluZWFybHkgaW5jcmVhc2luZyBwd21fb2Zmc2V0Cj4gWzFdLiBFdmVu
+IG1vcmUgZnVubmlseSwgdGhlIHBlcmlvZCBvZiB0aGlzIHNxdWFyZSBmdW5jdGlvbiBpcyBsaW5l
+YXIKPiB3aXRoIHRoZSBmcmVxdWVuY3kgdXNlZCBmb3IgdGhlIGZhbidzIFBXTi4KPiAKPiBJIHRy
+aWVkIHJldmVyc2UgZW5naW5lZXJpbmcgdGhlIGZvcm11bGEgdG8gZGVzY3JpYmUgdGhpcyBmdW5j
+dGlvbiwgYnV0Cj4gZmFpbGVkIHRvIGZpbmQgYSB2ZXJzaW9uIHRoYXQgd291bGQgd29yayBwZXJm
+ZWN0bHkgZm9yIGFsbCBQV00KPiBmcmVxdWVuY3kuIFRoaXMgaXMgdGhlIGNsb3Nlc3QgSSBoYXZl
+IGdvdCB0b1szXSwgYW5kIEkgYmFzaWNhbGx5IHN0b3BwZWQKPiB0aGVyZSBhYm91dCBhIHllYXIg
+YWdvIGJlY2F1c2UgSSBjb3VsZCBub3QgZmlndXJlIGl0IG91dCBhbmQgZ290Cj4gZnJ1c3RyYXRl
+ZCA6cy4KPiAKPiBJIHN0YXJ0ZWQgYWdhaW4gb24gdGhpcyBwcm9qZWN0IDIgd2Vla3MgYWdvLCB3
+aXRoIHRoZSBpbnRlbnQgb2YgZmluZGluZwo+IGEgZ29vZC1lbm91Z2ggc29sdXRpb24gZm9yIG5v
+dXZlYXUsIGFuZCBtb2RlbGxpbmcgdGhlIHJlc3Qgb2YgdGhlCj4gZXF1YXRpb24gdGhhdCB0aGF0
+IHdvdWxkIGFsbG93IG1lIHRvIGNvbXB1dGUgd2hhdCBkdXR5IEkgc2hvdWxkIHNldCBmb3IKPiBl
+dmVyeSB3YW50ZWQgZmFuIHNwZWVkICglKS4gSSBhZ2FpbiBtb3N0bHkgc3VjY2VlZGVkLi4uIGJ1
+dCBpdCB3b3VsZAo+IHNlZW0gdGhhdCB0aGUgaW50ZXJwcmV0YXRpb24gb2YgdGhlIHRhYmxlIGRl
+cGVuZHMgb24gdGhlIGdlbmVyYXRpb24gb2YKPiBjaGlwc2V0IChUZXNsYSBiZWhhdmVzIG9uZSB3
+YXksIEZlcm1pKyBiZWhhdmVzIGFub3RoZXIgd2F5KS4gQWxzbywgdGhlCj4gcHJvcHJpZXRhcnkg
+aXMgbm90IGNvbnNpc3RlbnQgZm9yIHJ1bGVzIHN1Y2ggYXMgd2hhdCB0byBkbyB3aGVuIHRoZQo+
+IGNvbXB1dGVkIGR1dHkgdmFsdWUgaXMgZ29pbmcgdG8gYmUgbG93ZXIgdGhhbiAwIG9yIG5vdCAo
+c29tZXRpbWVzIHdlCj4gY2xhbXAgaXQgdG8gMCwgc29tZSB0aW1lcyB3ZSBzZXQgaXQgdG8gdGhl
+IHNhbWUgdmFsdWUgYXMgdGhlIGRpdmlkZXIsCj4gc29tZSB0aW1lcyB3ZSBzZXQgaXQgdG8gYSBz
+bGlnaHRseSBsb3dlciB2YWx1ZSB0aGFuIHRoZSBkaXZpZGVyKS4KPiAKPiBJIGhhdmUgYmVlbiB0
+cnlpbmcgdG8gY292ZXIgYWxsIGVkZ2UgY2FzZXMgYnkgZ2VuZXJhdGluZyBhIHJhbmRvbWl6ZWQK
+PiBzZXQgb2YgdmFsdWVzIGZvciB0aGUgUFdNIGZyZXF1ZW5jeSwgcHdtX21heCwgYW5kIHB3bV9v
+ZmZzZXQgdmFsdWVzLAo+IGZsYXNoZWQgdGhlIHZiaW9zLCBhbmQgaXRlcmF0ZSBmcm9tIDAlIHRv
+IDEwMCUgZmFuIHNwZWVkIHdoaWxlIGR1bXBpbmcKPiB0aGUgdmFsdWVzIHNldCBieSB5b3VyIGRy
+aXZlci4gVXNpbmcgaGFsZiBhIG1pbGxpb24gc2FtcGxlIHBvaW50cyAod2hpY2gKPiB0b29rIGEg
+d2VlayB0byBhY3F1aXJlKSwgbXkgbW9kZWwgY29tcHV0ZXMgOTclIG9mIHRoZSB2YWx1ZXMgY29y
+cmVjdGx5Cj4gKGlnbm9yaW5nIG9mZiBieSBvbmVzKSwgd2hpbGUgdGhlIHJlbWFpbmluZyAzJSBh
+cmUgd29ycnlpbmdseSBvZmYgKGJ5IHVwCj4gdG8gMTAwJSkuLi4gSXQgaXMgY2xlYXIgdGhhdCB0
+aGUgY29kZSBpcyBub3QgdHJpdmlhbCBhbmQgaXMgZnVsbCBvZgo+IGJyYW5jaGluZywgd2hpY2gg
+bWFrZXMgY2xlYW4tcm9vbSByZXZlcnNlIGVuZ2luZWVyaW5nIGEgY2hvcmUuCj4gCj4gQXMgYSBm
+aW5hbCBhdHRlbXB0IHRvIG1ha2UgYSBzb21ld2hhdCBjb21wbGV0ZSBzb2x1dGlvbiwgSSB0cmll
+ZCB0aGlzCj4gd2Vla2VuZCB0byBtYWtlIGEgInNhZmUiIG1vZGVsIHRoYXQgd291bGQgc3RpbGwg
+bWFrZSB0aGUgR1BVcyBxdWlldC4gSQo+IG1hbmFnZWQgdG8gaW1wcm92ZSB0aGUgcGFzcyByYXRl
+IGZyb20gOTcgdG8gOTkuNiUsIGJ1dCB0aGUgcmVtYWluaW5nCj4gZmFpbHVyZXMgY29uZmxpY3Qg
+d2l0aCBteSBwcmV2aW91cyBmaW5kaW5ncywgd2hpY2ggYXJlIGFsc28gd2F5IG1vcmUKPiBwcmV2
+YWxlbnQuIEluIHRoZSBlbmQsIHRoZSBvbmx5IGNvbXBsZXRlbHktc2FmZSB3YXkgb2YgZHJpdmlu
+ZyB0aGUgZmFuCj4gaXMgdGhlIGN1cnJlbnQgYmVoYXZpb3VyIG9mIG5vdXZlYXUuLi4KPiAKPiBB
+dCB0aGlzIHBvaW50LCBJIGFtIHJlYWR5IHRvIHRocm93IGluIHRoZSB0b3dlbCBhbmQgaGFyZGNv
+ZGUgcGFyYW1ldGVycwo+IGluIG5vdXZlYXUgdG8gYWRkcmVzcyB0aGUgcHJvYmxlbSBvZiB0aGUg
+bG91ZGVzdCBHUFVzLCBidXQgdGhpcyBpcyBvZgo+IGNvdXJzZSBzdWJvcHRpbWFsLiBUaGlzIGlz
+IHdoeSBJIGFtIGFza2luZyBmb3IgeW91ciBoZWxwLiBXb3VsZCB5b3UgaGF2ZQo+IHNvbWUgZG9j
+dW1lbnRhdGlvbiBhYm91dCB0aGlzIGZhbiBjYWxpYnJhdGlvbiB0YWJsZSB0aGF0IGNvdWxkIGhl
+bHAgbWUKPiBoZXJlPyBDb2RlIHdvdWxkIGJlIGV2ZW4gbW9yZSBhcHByZWNpYXRlZC4KPiAKPiBU
+aGFua3MgYSBsb3QgaW4gYWR2YW5jZSwKPiBNYXJ0aW4KPiAKPiBQUzogaGVyZSBpcyBtb3N0IG9m
+IHRoZSBjb2RlIHlvdSBtYXkgd2FudCB0byBzZWU6Cj4gaHR0cDovL2ZzLm11cHVmLm9yZy9udmlk
+aWEvZmFuX2NhbGliLwo+IAo+IFsxXSBodHRwOi8vZnMubXVwdWYub3JnL252aWRpYS9mYW5fY2Fs
+aWIvcHdtX29mZnNldC5wbmcKPiBbMl0gaHR0cHM6Ly9naXRodWIuY29tL2Vudnl0b29scy9lbnZ5
+dG9vbHMvYmxvYi9tYXN0ZXIvbnZiaW9zL3Bvd2VyLmMjTDMzMwo+IFszXSBodHRwczovL2dpdGh1
+Yi5jb20vZW52eXRvb2xzL2Vudnl0b29scy9ibG9iL21hc3Rlci9udmJpb3MvcG93ZXIuYyNMMjk4
+Cj4gCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
+YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
