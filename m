@@ -1,15 +1,11 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: Addressing the problem of noisy GPUs under Nouveau
-Date: Mon, 13 Nov 2017 11:25:37 +0200
-Message-ID: <e76a445e-1c71-3b9c-9322-891f13bcb672@free.fr>
-References: <4597fd60-59f8-5e45-ec5a-f52c4c6c6260@free.fr>
- <7cad7e2b-e207-03be-b5a6-d036420b42e0@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103721] New: Frequent freezes with nouveau on
+	Thinkpad P50
+Date: Mon, 13 Nov 2017 15:42:22 +0000
+Message-ID: <bug-103721-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1263060663=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <7cad7e2b-e207-03be-b5a6-d036420b42e0-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Content-Language: fr-xx-moderne
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,93 +15,305 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8sCgpPbiAxMy8xMS8xNyAwOToxNSwgSm9obiBIdWJiYXJkIHdyb3RlOgo+IE9uIDExLzEy
-LzIwMTcgMDY6MjkgUE0sIE1hcnRpbiBQZXJlcyB3cm90ZToKPj4gSGVsbG8sCj4+Cj4+IFNvbWUg
-dXNlcnMgaGF2ZSBiZWVuIGNvbXBsYWluaW5nIGZvciB5ZWFycyBhYm91dCB0aGVpciBHUFUgc291
-bmRpbmcgbGlrZQo+PiBhIGpldCBlbmdpbmUgYXQgdGFrZSBvZmYuIExhc3QgeWVhciwgSSBmaW5h
-bGx5IGxhaWQgbXkgaGFuZCBvbiBvbmUgb2YKPj4gdGhlc2UgR1BVcyBhbmQgaGF2ZSBiZWVuIHRy
-eWluZyB0byBmaXggdGhpcyBpc3N1ZSBvbiBhbmQgb2ZmIHNpbmNlIHRoZW4uCj4gCj4gU29tZSBl
-YXJseSBmZWVkYmFjazogY2FuIHlvdSB0ZWxsIHVzIHRoZSBleGFjdCBTS1VzIHlvdSBoYXZlPyBB
-bmQgYXJlIHRoZXNlCj4gcHJvZHVjdGlvbiBib2FyZHMgd2l0aCBwcm9kdWN0aW9uIFZCSU9TZXM/
-ICAKPiAKPiBOb3JtYWxseSwgaXQncyBqdXN0IG91ciBicmluZ3VwIGJvYXJkcyB0aGF0IHdlJ2Qg
-ZXhwZWN0IHRvIGJlIG5vaXN5IGxpa2UgCj4gdGhpcywgc28gd2UncmUgbG9va2luZyBmb3IgYSBm
-ZXcgbW9yZSBkZXRhaWxzLgoKVGhhbmtzIGZvciB0aGUgcXVpY2sgZmVlZGJhY2suCgpXZSBvbmx5
-IGhhdmUgYWNjZXNzIHRvIHByb2R1Y3Rpb24gaGFyZHdhcmUgd2l0aCBwcm9kdWN0aW9uIHZiaW9z
-ZXMsIGFzCmZhciBhcyBJIGtub3cuIEluIGFueSBjYXNlLCBJIG1hZGUgYWxsIG15IGV4cGVyaW1l
-bnRzIG9uIHRoZSBmb2xsb3dpbmcKR1BVICh3aXRoIGEgc3RvY2sgdmJpb3MsIGFsYmVpdCBtb2Rp
-ZmllZCB0byBwZXJmb3JtIHRoZSBleHBlcmltZW50KToKCk5WSURJQSBDb3Jwb3JhdGlvbiBHRjEw
-OCBbR2VGb3JjZSBHVCA2MjBdIChyZXYgYTEpIChwcm9nLWlmIDAwIFtWR0EKY29udHJvbGxlcl0p
-CiAgICAgICAgU3Vic3lzdGVtOiBlVmdhLmNvbS4gQ29ycC4gRGV2aWNlIDI2MjUKCkkgcHVzaGVk
-IG15IHZiaW9zIHRvIGh0dHA6Ly9mcy5tdXB1Zi5vcmcvbnZpZGlhL2Zhbl9jYWxpYi8gaWYgdGhp
-cyBpcwppbnRlcmVzdGluZyB0byB5b3UgKEkgZG91YnQgaXQsIGJ1dCBpZiB0aGF0IGNhbiBzYXZl
-IHVzIGEgcm91bmQgdHJpcCwKdGhlbiBsZXQncyBkbyB0aGlzIDopKS4KClRoYW5rcywKTWFydGlu
-Cgo+IAo+IHRoYW5rcywKPiBKb2huIEh1YmJhcmQKPiBOVklESUEKPiAKPj4KPj4gQWZ0ZXIgZmFp
-bGluZyB0byBmaW5kIGFueXRoaW5nIGluIHRoZSBIVywgSSBmaWd1cmVkIG91dCB0aGF0IHRoZSBk
-dXR5Cj4+IGN5Y2xlIHNldCBieSBudmlkaWEncyBwcm9wcmlldGFyeSBkcml2ZXIgd291bGQgYmUg
-d2F5IHVuZGVyIHRoZSBleHBlY3RlZAo+PiB2YWx1ZS4gQnkgcmFuZG9tbHkgY2hhbmdpbmcgdmFs
-dWVzIGluIHRoZSB1bmtub3duIHRhYmxlcyBvZiB0aGUgdmJpb3MsIEkKPj4gZm91bmQgb3V0IHRo
-YXQgdGhlcmUgaXMgYSBmYW4gY2FsaWJyYXRpb24gdGFibGUgYXQgdGhlIG9mZnNldCAweDE4IGlu
-Cj4+IHRoZSBCSVQgUCB0YWJsZSAodmVyc2lvbiAyKS4KPj4KPj4gSW4gdGhpcyB0YWJsZSwgSSBp
-ZGVudGlmaWVkIDIgbWFqb3IgMTYgYml0cyBwYXJhbWV0ZXJzIGF0IG9mZnNldCAweGEgYW5kCj4+
-IDB4Y1syXS4gVGhlIGZpcnN0IG9uZSwgSSBuYW1lZCBwd21fbWF4LCB3aGlsZSBuYW1pbmcgdGhl
-IGxhdHRlcgo+PiBwd21fb2Zmc2V0LiBBcyBleHBlY3RlZCwgdGhlc2UgcGFyYW1ldGVycyBsb29r
-IGxpa2UgYSBtYXBwaW5nIGZ1bmN0aW9uCj4+IG9mIHRoZSBmb3JtIGFYICsgYi4gSG93ZXZlciwg
-YWZ0ZXIgZ2F0aGVyaW5nIG1vcmUgc2FtcGxlcywgSSBmb3VuZCBvdXQKPj4gdGhhdCB0aGUgb3V0
-cHV0IHdhcyBub3QgY29udGludW91cyB3aGVuIGxpbmVhcmx5IGluY3JlYXNpbmcgcHdtX29mZnNl
-dAo+PiBbMV0uIEV2ZW4gbW9yZSBmdW5uaWx5LCB0aGUgcGVyaW9kIG9mIHRoaXMgc3F1YXJlIGZ1
-bmN0aW9uIGlzIGxpbmVhcgo+PiB3aXRoIHRoZSBmcmVxdWVuY3kgdXNlZCBmb3IgdGhlIGZhbidz
-IFBXTi4KPj4KPj4gSSB0cmllZCByZXZlcnNlIGVuZ2luZWVyaW5nIHRoZSBmb3JtdWxhIHRvIGRl
-c2NyaWJlIHRoaXMgZnVuY3Rpb24sIGJ1dAo+PiBmYWlsZWQgdG8gZmluZCBhIHZlcnNpb24gdGhh
-dCB3b3VsZCB3b3JrIHBlcmZlY3RseSBmb3IgYWxsIFBXTQo+PiBmcmVxdWVuY3kuIFRoaXMgaXMg
-dGhlIGNsb3Nlc3QgSSBoYXZlIGdvdCB0b1szXSwgYW5kIEkgYmFzaWNhbGx5IHN0b3BwZWQKPj4g
-dGhlcmUgYWJvdXQgYSB5ZWFyIGFnbyBiZWNhdXNlIEkgY291bGQgbm90IGZpZ3VyZSBpdCBvdXQg
-YW5kIGdvdAo+PiBmcnVzdHJhdGVkIDpzLgo+Pgo+PiBJIHN0YXJ0ZWQgYWdhaW4gb24gdGhpcyBw
-cm9qZWN0IDIgd2Vla3MgYWdvLCB3aXRoIHRoZSBpbnRlbnQgb2YgZmluZGluZwo+PiBhIGdvb2Qt
-ZW5vdWdoIHNvbHV0aW9uIGZvciBub3V2ZWF1LCBhbmQgbW9kZWxsaW5nIHRoZSByZXN0IG9mIHRo
-ZQo+PiBlcXVhdGlvbiB0aGF0IHRoYXQgd291bGQgYWxsb3cgbWUgdG8gY29tcHV0ZSB3aGF0IGR1
-dHkgSSBzaG91bGQgc2V0IGZvcgo+PiBldmVyeSB3YW50ZWQgZmFuIHNwZWVkICglKS4gSSBhZ2Fp
-biBtb3N0bHkgc3VjY2VlZGVkLi4uIGJ1dCBpdCB3b3VsZAo+PiBzZWVtIHRoYXQgdGhlIGludGVy
-cHJldGF0aW9uIG9mIHRoZSB0YWJsZSBkZXBlbmRzIG9uIHRoZSBnZW5lcmF0aW9uIG9mCj4+IGNo
-aXBzZXQgKFRlc2xhIGJlaGF2ZXMgb25lIHdheSwgRmVybWkrIGJlaGF2ZXMgYW5vdGhlciB3YXkp
-LiBBbHNvLCB0aGUKPj4gcHJvcHJpZXRhcnkgaXMgbm90IGNvbnNpc3RlbnQgZm9yIHJ1bGVzIHN1
-Y2ggYXMgd2hhdCB0byBkbyB3aGVuIHRoZQo+PiBjb21wdXRlZCBkdXR5IHZhbHVlIGlzIGdvaW5n
-IHRvIGJlIGxvd2VyIHRoYW4gMCBvciBub3QgKHNvbWV0aW1lcyB3ZQo+PiBjbGFtcCBpdCB0byAw
-LCBzb21lIHRpbWVzIHdlIHNldCBpdCB0byB0aGUgc2FtZSB2YWx1ZSBhcyB0aGUgZGl2aWRlciwK
-Pj4gc29tZSB0aW1lcyB3ZSBzZXQgaXQgdG8gYSBzbGlnaHRseSBsb3dlciB2YWx1ZSB0aGFuIHRo
-ZSBkaXZpZGVyKS4KPj4KPj4gSSBoYXZlIGJlZW4gdHJ5aW5nIHRvIGNvdmVyIGFsbCBlZGdlIGNh
-c2VzIGJ5IGdlbmVyYXRpbmcgYSByYW5kb21pemVkCj4+IHNldCBvZiB2YWx1ZXMgZm9yIHRoZSBQ
-V00gZnJlcXVlbmN5LCBwd21fbWF4LCBhbmQgcHdtX29mZnNldCB2YWx1ZXMsCj4+IGZsYXNoZWQg
-dGhlIHZiaW9zLCBhbmQgaXRlcmF0ZSBmcm9tIDAlIHRvIDEwMCUgZmFuIHNwZWVkIHdoaWxlIGR1
-bXBpbmcKPj4gdGhlIHZhbHVlcyBzZXQgYnkgeW91ciBkcml2ZXIuIFVzaW5nIGhhbGYgYSBtaWxs
-aW9uIHNhbXBsZSBwb2ludHMgKHdoaWNoCj4+IHRvb2sgYSB3ZWVrIHRvIGFjcXVpcmUpLCBteSBt
-b2RlbCBjb21wdXRlcyA5NyUgb2YgdGhlIHZhbHVlcyBjb3JyZWN0bHkKPj4gKGlnbm9yaW5nIG9m
-ZiBieSBvbmVzKSwgd2hpbGUgdGhlIHJlbWFpbmluZyAzJSBhcmUgd29ycnlpbmdseSBvZmYgKGJ5
-IHVwCj4+IHRvIDEwMCUpLi4uIEl0IGlzIGNsZWFyIHRoYXQgdGhlIGNvZGUgaXMgbm90IHRyaXZp
-YWwgYW5kIGlzIGZ1bGwgb2YKPj4gYnJhbmNoaW5nLCB3aGljaCBtYWtlcyBjbGVhbi1yb29tIHJl
-dmVyc2UgZW5naW5lZXJpbmcgYSBjaG9yZS4KPj4KPj4gQXMgYSBmaW5hbCBhdHRlbXB0IHRvIG1h
-a2UgYSBzb21ld2hhdCBjb21wbGV0ZSBzb2x1dGlvbiwgSSB0cmllZCB0aGlzCj4+IHdlZWtlbmQg
-dG8gbWFrZSBhICJzYWZlIiBtb2RlbCB0aGF0IHdvdWxkIHN0aWxsIG1ha2UgdGhlIEdQVXMgcXVp
-ZXQuIEkKPj4gbWFuYWdlZCB0byBpbXByb3ZlIHRoZSBwYXNzIHJhdGUgZnJvbSA5NyB0byA5OS42
-JSwgYnV0IHRoZSByZW1haW5pbmcKPj4gZmFpbHVyZXMgY29uZmxpY3Qgd2l0aCBteSBwcmV2aW91
-cyBmaW5kaW5ncywgd2hpY2ggYXJlIGFsc28gd2F5IG1vcmUKPj4gcHJldmFsZW50LiBJbiB0aGUg
-ZW5kLCB0aGUgb25seSBjb21wbGV0ZWx5LXNhZmUgd2F5IG9mIGRyaXZpbmcgdGhlIGZhbgo+PiBp
-cyB0aGUgY3VycmVudCBiZWhhdmlvdXIgb2Ygbm91dmVhdS4uLgo+Pgo+PiBBdCB0aGlzIHBvaW50
-LCBJIGFtIHJlYWR5IHRvIHRocm93IGluIHRoZSB0b3dlbCBhbmQgaGFyZGNvZGUgcGFyYW1ldGVy
-cwo+PiBpbiBub3V2ZWF1IHRvIGFkZHJlc3MgdGhlIHByb2JsZW0gb2YgdGhlIGxvdWRlc3QgR1BV
-cywgYnV0IHRoaXMgaXMgb2YKPj4gY291cnNlIHN1Ym9wdGltYWwuIFRoaXMgaXMgd2h5IEkgYW0g
-YXNraW5nIGZvciB5b3VyIGhlbHAuIFdvdWxkIHlvdSBoYXZlCj4+IHNvbWUgZG9jdW1lbnRhdGlv
-biBhYm91dCB0aGlzIGZhbiBjYWxpYnJhdGlvbiB0YWJsZSB0aGF0IGNvdWxkIGhlbHAgbWUKPj4g
-aGVyZT8gQ29kZSB3b3VsZCBiZSBldmVuIG1vcmUgYXBwcmVjaWF0ZWQuCj4+Cj4+IFRoYW5rcyBh
-IGxvdCBpbiBhZHZhbmNlLAo+PiBNYXJ0aW4KPj4KPj4gUFM6IGhlcmUgaXMgbW9zdCBvZiB0aGUg
-Y29kZSB5b3UgbWF5IHdhbnQgdG8gc2VlOgo+PiBodHRwOi8vZnMubXVwdWYub3JnL252aWRpYS9m
-YW5fY2FsaWIvCj4+Cj4+IFsxXSBodHRwOi8vZnMubXVwdWYub3JnL252aWRpYS9mYW5fY2FsaWIv
-cHdtX29mZnNldC5wbmcKPj4gWzJdIGh0dHBzOi8vZ2l0aHViLmNvbS9lbnZ5dG9vbHMvZW52eXRv
-b2xzL2Jsb2IvbWFzdGVyL252Ymlvcy9wb3dlci5jI0wzMzMKPj4gWzNdIGh0dHBzOi8vZ2l0aHVi
-LmNvbS9lbnZ5dG9vbHMvZW52eXRvb2xzL2Jsb2IvbWFzdGVyL252Ymlvcy9wb3dlci5jI0wyOTgK
-Pj4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1263060663==
+Content-Type: multipart/alternative; boundary="15105877421.C3A34C84A.6309";
+ charset="UTF-8"
+
+
+--15105877421.C3A34C84A.6309
+Date: Mon, 13 Nov 2017 15:42:22 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103721
+
+            Bug ID: 103721
+           Summary: Frequent freezes with nouveau on Thinkpad P50
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: will.newton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 135437
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135437&action=3Dedit
+Output of journalctl -k -b-1
+
+I have been experiencing frequent freezes of xorg/wayland with the nouveau
+driver on a Thinkpad P50 20EN.
+
+The freezes seem to be related to system load and occur several times per-d=
+ay.
+
+I'm running Fedora 26 with kernel 4.13.11-200.fc26.x86_64 and the crashes s=
+eem
+to happen with Xorg and Wayland. I'm running with discrete graphics enabled=
+ in
+the BIOS as enabling Hybrid prevents the system from booting (there is no
+option to run purely integrated graphics).
+
+I have attached the kernel logs to the ticket.
+
+I've also reported the issue in the Fedora bug tracker where there are some
+more logs but had no response there as yet:
+https://bugzilla.redhat.com/show_bug.cgi?id=3D1509294
+
+lspci:
+
+00:00.0 Host bridge: Intel Corporation Xeon E3-1200 v5/E3-1500 v5/6th Gen C=
+ore
+Processor Host Bridge/DRAM Registers (rev 07)
+00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v5/E3-1500 v5/6th Gen Co=
+re
+Processor PCIe Controller (x16) (rev 07)
+00:14.0 USB controller: Intel Corporation Sunrise Point-H USB 3.0 xHCI
+Controller (rev 31)
+00:14.2 Signal processing controller: Intel Corporation Sunrise Point-H The=
+rmal
+subsystem (rev 31)
+00:16.0 Communication controller: Intel Corporation Sunrise Point-H CSME HE=
+CI
+#1 (rev 31)
+00:16.3 Serial controller: Intel Corporation Sunrise Point-H KT Redirection
+(rev 31)
+00:17.0 SATA controller: Intel Corporation Sunrise Point-H SATA controller
+[AHCI mode] (rev 31)
+00:1c.0 PCI bridge: Intel Corporation Sunrise Point-H PCI Express Root Port=
+ #1
+(rev f1)
+00:1c.2 PCI bridge: Intel Corporation Sunrise Point-H PCI Express Root Port=
+ #3
+(rev f1)
+00:1c.4 PCI bridge: Intel Corporation Sunrise Point-H PCI Express Root Port=
+ #5
+(rev f1)
+00:1d.0 PCI bridge: Intel Corporation Sunrise Point-H PCI Express Root Port=
+ #13
+(rev f1)
+00:1f.0 ISA bridge: Intel Corporation Sunrise Point-H LPC Controller (rev 3=
+1)
+00:1f.2 Memory controller: Intel Corporation Sunrise Point-H PMC (rev 31)
+00:1f.3 Audio device: Intel Corporation Sunrise Point-H HD Audio (rev 31)
+00:1f.4 SMBus: Intel Corporation Sunrise Point-H SMBus (rev 31)
+00:1f.6 Ethernet controller: Intel Corporation Ethernet Connection (2) I219=
+-LM
+(rev 31)
+01:00.0 VGA compatible controller: NVIDIA Corporation GM107GLM [Quadro M200=
+0M]
+(rev a2)
+01:00.1 Audio device: NVIDIA Corporation Device 0fbc (rev a1)
+04:00.0 Network controller: Intel Corporation Wireless 8260 (rev 3a)
+3e:00.0 Unassigned class [ff00]: Realtek Semiconductor Co., Ltd. RTS525A PCI
+Express Card Reader (rev 01)
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15105877421.C3A34C84A.6309
+Date: Mon, 13 Nov 2017 15:42:22 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Frequent freezes with nouveau on Thinkpad P50"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721">103721</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Frequent freezes with nouveau on Thinkpad P50
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>will.newton&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135437=
+" name=3D"attach_135437" title=3D"Output of journalctl -k -b-1">attachment =
+135437</a> <a href=3D"attachment.cgi?id=3D135437&amp;action=3Dedit" title=
+=3D"Output of journalctl -k -b-1">[details]</a></span>
+Output of journalctl -k -b-1
+
+I have been experiencing frequent freezes of xorg/wayland with the nouveau
+driver on a Thinkpad P50 20EN.
+
+The freezes seem to be related to system load and occur several times per-d=
+ay.
+
+I'm running Fedora 26 with kernel 4.13.11-200.fc26.x86_64 and the crashes s=
+eem
+to happen with Xorg and Wayland. I'm running with discrete graphics enabled=
+ in
+the BIOS as enabling Hybrid prevents the system from booting (there is no
+option to run purely integrated graphics).
+
+I have attached the kernel logs to the ticket.
+
+I've also reported the issue in the Fedora bug tracker where there are some
+more logs but had no response there as yet:
+<a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1509294">https://b=
+ugzilla.redhat.com/show_bug.cgi?id=3D1509294</a>
+
+lspci:
+
+00:00.0 Host bridge: Intel Corporation Xeon E3-1200 v5/E3-1500 v5/6th Gen C=
+ore
+Processor Host Bridge/DRAM Registers (rev 07)
+00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v5/E3-1500 v5/6th Gen Co=
+re
+Processor PCIe Controller (x16) (rev 07)
+00:14.0 USB controller: Intel Corporation Sunrise Point-H USB 3.0 xHCI
+Controller (rev 31)
+00:14.2 Signal processing controller: Intel Corporation Sunrise Point-H The=
+rmal
+subsystem (rev 31)
+00:16.0 Communication controller: Intel Corporation Sunrise Point-H CSME HE=
+CI
+#1 (rev 31)
+00:16.3 Serial controller: Intel Corporation Sunrise Point-H KT Redirection
+(rev 31)
+00:17.0 SATA controller: Intel Corporation Sunrise Point-H SATA controller
+[AHCI mode] (rev 31)
+00:1c.0 PCI bridge: Intel Corporation Sunrise Point-H PCI Express Root Port=
+ #1
+(rev f1)
+00:1c.2 PCI bridge: Intel Corporation Sunrise Point-H PCI Express Root Port=
+ #3
+(rev f1)
+00:1c.4 PCI bridge: Intel Corporation Sunrise Point-H PCI Express Root Port=
+ #5
+(rev f1)
+00:1d.0 PCI bridge: Intel Corporation Sunrise Point-H PCI Express Root Port=
+ #13
+(rev f1)
+00:1f.0 ISA bridge: Intel Corporation Sunrise Point-H LPC Controller (rev 3=
+1)
+00:1f.2 Memory controller: Intel Corporation Sunrise Point-H PMC (rev 31)
+00:1f.3 Audio device: Intel Corporation Sunrise Point-H HD Audio (rev 31)
+00:1f.4 SMBus: Intel Corporation Sunrise Point-H SMBus (rev 31)
+00:1f.6 Ethernet controller: Intel Corporation Ethernet Connection (2) I219=
+-LM
+(rev 31)
+01:00.0 VGA compatible controller: NVIDIA Corporation GM107GLM [Quadro M200=
+0M]
+(rev a2)
+01:00.1 Audio device: NVIDIA Corporation Device 0fbc (rev a1)
+04:00.0 Network controller: Intel Corporation Wireless 8260 (rev 3a)
+3e:00.0 Unassigned class [ff00]: Realtek Semiconductor Co., Ltd. RTS525A PCI
+Express Card Reader (rev 01)</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15105877421.C3A34C84A.6309--
+
+--===============1263060663==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1263060663==--
