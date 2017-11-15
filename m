@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103764] 3D renering results in a distorted frame.
-Date: Wed, 15 Nov 2017 16:52:56 +0000
-Message-ID: <bug-103764-8800-37rsYOO8n7@http.bugs.freedesktop.org/>
+Date: Wed, 15 Nov 2017 16:54:46 +0000
+Message-ID: <bug-103764-8800-Eol5n1xH5I@http.bugs.freedesktop.org/>
 References: <bug-103764-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0464783274=="
+Content-Type: multipart/mixed; boundary="===============1560532048=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103764-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0464783274==
-Content-Type: multipart/alternative; boundary="15107647760.Efb1.13360";
+--===============1560532048==
+Content-Type: multipart/alternative; boundary="15107648850.eD0B.13763";
  charset="UTF-8"
 
 
---15107647760.Efb1.13360
-Date: Wed, 15 Nov 2017 16:52:56 +0000
+--15107648850.eD0B.13763
+Date: Wed, 15 Nov 2017 16:54:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,7 +35,7 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103764
 
---- Comment #7 from Ilya <dikiy_evrej-S0/GAf8tV78@public.gmane.org> ---
+--- Comment #8 from Ilya <dikiy_evrej-S0/GAf8tV78@public.gmane.org> ---
 (In reply to Ilia Mirkin from comment #6)
 > Can you check if MSI is enabled (lspci -nn -vv -d 10de: )? Also see if
 > interrupts are being properly delivered (cat /proc/interrupts)
@@ -43,6 +43,9 @@ https://bugs.freedesktop.org/show_bug.cgi?id=3D103764
 > NV46 had some issues with that, although they should have been fixed in 4=
 .4,
 > which you're running...
+
+Oh. O forgot to "suid" me :) Here is the right one:
+
 
 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation G72M [Quadro N=
 VS
@@ -59,22 +62,52 @@ Abort-
         Region 1: Memory at d0000000 (64-bit, prefetchable) [size=3D256M]
         Region 3: Memory at ca000000 (64-bit, non-prefetchable) [size=3D16M]
         Expansion ROM at <unassigned> [disabled]
-        Capabilities: <access denied>
+        Capabilities: [60] Power Management version 2
+                Flags: PMEClk- DSI- D1- D2- AuxCurrent=3D0mA
+PME(D0-,D1-,D2-,D3hot-,D3cold-)
+                Status: D0 NoSoftRst- PME-Enable- DSel=3D0 DScale=3D0 PME-
+        Capabilities: [68] MSI: Enable+ Count=3D1/1 Maskable- 64bit+
+                Address: 00000000fee0200c  Data: 41b2
+        Capabilities: [78] Express (v1) Endpoint, MSI 00
+                DevCap: MaxPayload 128 bytes, PhantFunc 0, Latency L0s <1us=
+, L1
+<4us
+                        ExtTag- AttnBtn- AttnInd- PwrInd- RBE- FLReset-
+                DevCtl: Report errors: Correctable- Non-Fatal- Fatal-
+Unsupported-
+                        RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop+
+                        MaxPayload 128 bytes, MaxReadReq 512 bytes
+                DevSta: CorrErr- UncorrErr+ FatalErr- UnsuppReq+ AuxPwr-
+TransPend-
+                LnkCap: Port #0, Speed 2.5GT/s, Width x16, ASPM L0s L1, Exit
+Latency L0s <1us, L1 <4us
+                        ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp-
+                LnkCtl: ASPM Disabled; RCB 128 bytes Disabled- CommClk-
+                        ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
+                LnkSta: Speed 2.5GT/s, Width x16, TrErr- Train- SlotClk-
+DLActive- BWMgmt- ABWMgmt-
+        Capabilities: [100 v1] Virtual Channel
+                Caps:   LPEVC=3D0 RefClk=3D100ns PATEntryBits=3D1
+                Arb:    Fixed- WRR32- WRR64- WRR128-
+                Ctrl:   ArbSelect=3DFixed
+                Status: InProgress-
+                VC0:    Caps:   PATOffset=3D00 MaxTimeSlots=3D1 RejSnoopTra=
+ns-
+                        Arb:    Fixed- WRR32- WRR64- WRR128- TWRR128- WRR25=
+6-
+                        Ctrl:   Enable+ ID=3D0 ArbSelect=3DFixed TC/VC=3D01
+                        Status: NegoPending- InProgress-
+        Capabilities: [128 v1] Power Budgeting <?>
         Kernel driver in use: nouveau
         Kernel modules: nvidiafb, nouveau
-
-The PCI-MSI counter (relative nvkm) is rapidly increasing, if glxgears are
-running. I tried to count, its about 120 interrupts per second, which seems=
- to
-be ok, till vsync on 60Hz is enabled.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15107647760.Efb1.13360
-Date: Wed, 15 Nov 2017 16:52:56 +0000
+--15107648850.eD0B.13763
+Date: Wed, 15 Nov 2017 16:54:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -91,8 +124,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - 3D renering results in a distorted frame."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103764#c7">Commen=
-t # 7</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103764#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - 3D renering results in a distorted frame."
@@ -112,6 +145,9 @@ d 10de: )? Also see if
 n 4.4,
 &gt; which you're running...</span >
 
+Oh. O forgot to &quot;suid&quot; me :) Here is the right one:
+
+
 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation G72M [Quadro N=
 VS
 110M/GeForce Go 7300] [10de:01d7] (rev a1) (prog-if 00 [VGA controller])
@@ -127,14 +163,44 @@ Stepping- SERR+ FastB2B- DisINTx+
         Region 1: Memory at d0000000 (64-bit, prefetchable) [size=3D256M]
         Region 3: Memory at ca000000 (64-bit, non-prefetchable) [size=3D16M]
         Expansion ROM at &lt;unassigned&gt; [disabled]
-        Capabilities: &lt;access denied&gt;
+        Capabilities: [60] Power Management version 2
+                Flags: PMEClk- DSI- D1- D2- AuxCurrent=3D0mA
+PME(D0-,D1-,D2-,D3hot-,D3cold-)
+                Status: D0 NoSoftRst- PME-Enable- DSel=3D0 DScale=3D0 PME-
+        Capabilities: [68] MSI: Enable+ Count=3D1/1 Maskable- 64bit+
+                Address: 00000000fee0200c  Data: 41b2
+        Capabilities: [78] Express (v1) Endpoint, MSI 00
+                DevCap: MaxPayload 128 bytes, PhantFunc 0, Latency L0s &lt;=
+1us, L1
+&lt;4us
+                        ExtTag- AttnBtn- AttnInd- PwrInd- RBE- FLReset-
+                DevCtl: Report errors: Correctable- Non-Fatal- Fatal-
+Unsupported-
+                        RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop+
+                        MaxPayload 128 bytes, MaxReadReq 512 bytes
+                DevSta: CorrErr- UncorrErr+ FatalErr- UnsuppReq+ AuxPwr-
+TransPend-
+                LnkCap: Port #0, Speed 2.5GT/s, Width x16, ASPM L0s L1, Exit
+Latency L0s &lt;1us, L1 &lt;4us
+                        ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp-
+                LnkCtl: ASPM Disabled; RCB 128 bytes Disabled- CommClk-
+                        ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
+                LnkSta: Speed 2.5GT/s, Width x16, TrErr- Train- SlotClk-
+DLActive- BWMgmt- ABWMgmt-
+        Capabilities: [100 v1] Virtual Channel
+                Caps:   LPEVC=3D0 RefClk=3D100ns PATEntryBits=3D1
+                Arb:    Fixed- WRR32- WRR64- WRR128-
+                Ctrl:   ArbSelect=3DFixed
+                Status: InProgress-
+                VC0:    Caps:   PATOffset=3D00 MaxTimeSlots=3D1 RejSnoopTra=
+ns-
+                        Arb:    Fixed- WRR32- WRR64- WRR128- TWRR128- WRR25=
+6-
+                        Ctrl:   Enable+ ID=3D0 ArbSelect=3DFixed TC/VC=3D01
+                        Status: NegoPending- InProgress-
+        Capabilities: [128 v1] Power Budgeting &lt;?&gt;
         Kernel driver in use: nouveau
-        Kernel modules: nvidiafb, nouveau
-
-The PCI-MSI counter (relative nvkm) is rapidly increasing, if glxgears are
-running. I tried to count, its about 120 interrupts per second, which seems=
- to
-be ok, till vsync on 60Hz is enabled.</pre>
+        Kernel modules: nvidiafb, nouveau</pre>
         </div>
       </p>
 
@@ -149,9 +215,9 @@ be ok, till vsync on 60Hz is enabled.</pre>
     </body>
 </html>=
 
---15107647760.Efb1.13360--
+--15107648850.eD0B.13763--
 
---===============0464783274==
+--===============1560532048==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -161,4 +227,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0464783274==--
+--===============1560532048==--
