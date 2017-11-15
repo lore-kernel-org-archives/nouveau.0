@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103764] 3D renering results in a distorted frame.
-Date: Wed, 15 Nov 2017 16:54:46 +0000
-Message-ID: <bug-103764-8800-Eol5n1xH5I@http.bugs.freedesktop.org/>
-References: <bug-103764-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: Re: [PATCH] nouveau/codegen: dump tgsi floats as hex
+	values
+Date: Wed, 15 Nov 2017 20:03:25 +0100
+Message-ID: <43708167-eff8-5ae4-f544-99d3fcacf654@mni.thm.de>
+References: <20171114141105.2656-1-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1560532048=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103764-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20171114141105.2656-1-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,212 +22,31 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1560532048==
-Content-Type: multipart/alternative; boundary="15107648850.eD0B.13763";
- charset="UTF-8"
-
-
---15107648850.eD0B.13763
-Date: Wed, 15 Nov 2017 16:54:45 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103764
-
---- Comment #8 from Ilya <dikiy_evrej-S0/GAf8tV78@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #6)
-> Can you check if MSI is enabled (lspci -nn -vv -d 10de: )? Also see if
-> interrupts are being properly delivered (cat /proc/interrupts)
->=20
-> NV46 had some issues with that, although they should have been fixed in 4=
-.4,
-> which you're running...
-
-Oh. O forgot to "suid" me :) Here is the right one:
-
-
-01:00.0 VGA compatible controller [0300]: NVIDIA Corporation G72M [Quadro N=
-VS
-110M/GeForce Go 7300] [10de:01d7] (rev a1) (prog-if 00 [VGA controller])
-        Subsystem: Lenovo G72M [Quadro NVS 110M/GeForce Go 7300] [17aa:3839]
-        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR+ FastB2B- DisINTx+
-        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=3Dfast >TAbort- <T=
-Abort-
-<MAbort- >SERR- <PERR- INTx-
-        Latency: 0, Cache Line Size: 64 bytes
-        Interrupt: pin A routed to IRQ 30
-        Region 0: Memory at c9000000 (32-bit, non-prefetchable) [size=3D16M]
-        Region 1: Memory at d0000000 (64-bit, prefetchable) [size=3D256M]
-        Region 3: Memory at ca000000 (64-bit, non-prefetchable) [size=3D16M]
-        Expansion ROM at <unassigned> [disabled]
-        Capabilities: [60] Power Management version 2
-                Flags: PMEClk- DSI- D1- D2- AuxCurrent=3D0mA
-PME(D0-,D1-,D2-,D3hot-,D3cold-)
-                Status: D0 NoSoftRst- PME-Enable- DSel=3D0 DScale=3D0 PME-
-        Capabilities: [68] MSI: Enable+ Count=3D1/1 Maskable- 64bit+
-                Address: 00000000fee0200c  Data: 41b2
-        Capabilities: [78] Express (v1) Endpoint, MSI 00
-                DevCap: MaxPayload 128 bytes, PhantFunc 0, Latency L0s <1us=
-, L1
-<4us
-                        ExtTag- AttnBtn- AttnInd- PwrInd- RBE- FLReset-
-                DevCtl: Report errors: Correctable- Non-Fatal- Fatal-
-Unsupported-
-                        RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop+
-                        MaxPayload 128 bytes, MaxReadReq 512 bytes
-                DevSta: CorrErr- UncorrErr+ FatalErr- UnsuppReq+ AuxPwr-
-TransPend-
-                LnkCap: Port #0, Speed 2.5GT/s, Width x16, ASPM L0s L1, Exit
-Latency L0s <1us, L1 <4us
-                        ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp-
-                LnkCtl: ASPM Disabled; RCB 128 bytes Disabled- CommClk-
-                        ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
-                LnkSta: Speed 2.5GT/s, Width x16, TrErr- Train- SlotClk-
-DLActive- BWMgmt- ABWMgmt-
-        Capabilities: [100 v1] Virtual Channel
-                Caps:   LPEVC=3D0 RefClk=3D100ns PATEntryBits=3D1
-                Arb:    Fixed- WRR32- WRR64- WRR128-
-                Ctrl:   ArbSelect=3DFixed
-                Status: InProgress-
-                VC0:    Caps:   PATOffset=3D00 MaxTimeSlots=3D1 RejSnoopTra=
-ns-
-                        Arb:    Fixed- WRR32- WRR64- WRR128- TWRR128- WRR25=
-6-
-                        Ctrl:   Enable+ ID=3D0 ArbSelect=3DFixed TC/VC=3D01
-                        Status: NegoPending- InProgress-
-        Capabilities: [128 v1] Power Budgeting <?>
-        Kernel driver in use: nouveau
-        Kernel modules: nvidiafb, nouveau
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15107648850.eD0B.13763
-Date: Wed, 15 Nov 2017 16:54:45 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - 3D renering results in a distorted frame."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103764#c8">Commen=
-t # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - 3D renering results in a distorted frame."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103764">bug 10376=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dikiy_evrej&#64;web.de" title=3D"Ilya &lt;dikiy_evrej&#64;web.de&gt;"> <spa=
-n class=3D"fn">Ilya</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D103=
-764#c6">comment #6</a>)
-<span class=3D"quote">&gt; Can you check if MSI is enabled (lspci -nn -vv -=
-d 10de: )? Also see if
-&gt; interrupts are being properly delivered (cat /proc/interrupts)
-&gt;=20
-&gt; NV46 had some issues with that, although they should have been fixed i=
-n 4.4,
-&gt; which you're running...</span >
-
-Oh. O forgot to &quot;suid&quot; me :) Here is the right one:
-
-
-01:00.0 VGA compatible controller [0300]: NVIDIA Corporation G72M [Quadro N=
-VS
-110M/GeForce Go 7300] [10de:01d7] (rev a1) (prog-if 00 [VGA controller])
-        Subsystem: Lenovo G72M [Quadro NVS 110M/GeForce Go 7300] [17aa:3839]
-        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
-Stepping- SERR+ FastB2B- DisINTx+
-        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=3Dfast &gt;TAbort-=
- &lt;TAbort-
-&lt;MAbort- &gt;SERR- &lt;PERR- INTx-
-        Latency: 0, Cache Line Size: 64 bytes
-        Interrupt: pin A routed to IRQ 30
-        Region 0: Memory at c9000000 (32-bit, non-prefetchable) [size=3D16M]
-        Region 1: Memory at d0000000 (64-bit, prefetchable) [size=3D256M]
-        Region 3: Memory at ca000000 (64-bit, non-prefetchable) [size=3D16M]
-        Expansion ROM at &lt;unassigned&gt; [disabled]
-        Capabilities: [60] Power Management version 2
-                Flags: PMEClk- DSI- D1- D2- AuxCurrent=3D0mA
-PME(D0-,D1-,D2-,D3hot-,D3cold-)
-                Status: D0 NoSoftRst- PME-Enable- DSel=3D0 DScale=3D0 PME-
-        Capabilities: [68] MSI: Enable+ Count=3D1/1 Maskable- 64bit+
-                Address: 00000000fee0200c  Data: 41b2
-        Capabilities: [78] Express (v1) Endpoint, MSI 00
-                DevCap: MaxPayload 128 bytes, PhantFunc 0, Latency L0s &lt;=
-1us, L1
-&lt;4us
-                        ExtTag- AttnBtn- AttnInd- PwrInd- RBE- FLReset-
-                DevCtl: Report errors: Correctable- Non-Fatal- Fatal-
-Unsupported-
-                        RlxdOrd+ ExtTag- PhantFunc- AuxPwr- NoSnoop+
-                        MaxPayload 128 bytes, MaxReadReq 512 bytes
-                DevSta: CorrErr- UncorrErr+ FatalErr- UnsuppReq+ AuxPwr-
-TransPend-
-                LnkCap: Port #0, Speed 2.5GT/s, Width x16, ASPM L0s L1, Exit
-Latency L0s &lt;1us, L1 &lt;4us
-                        ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp-
-                LnkCtl: ASPM Disabled; RCB 128 bytes Disabled- CommClk-
-                        ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
-                LnkSta: Speed 2.5GT/s, Width x16, TrErr- Train- SlotClk-
-DLActive- BWMgmt- ABWMgmt-
-        Capabilities: [100 v1] Virtual Channel
-                Caps:   LPEVC=3D0 RefClk=3D100ns PATEntryBits=3D1
-                Arb:    Fixed- WRR32- WRR64- WRR128-
-                Ctrl:   ArbSelect=3DFixed
-                Status: InProgress-
-                VC0:    Caps:   PATOffset=3D00 MaxTimeSlots=3D1 RejSnoopTra=
-ns-
-                        Arb:    Fixed- WRR32- WRR64- WRR128- TWRR128- WRR25=
-6-
-                        Ctrl:   Enable+ ID=3D0 ArbSelect=3DFixed TC/VC=3D01
-                        Status: NegoPending- InProgress-
-        Capabilities: [128 v1] Power Budgeting &lt;?&gt;
-        Kernel driver in use: nouveau
-        Kernel modules: nvidiafb, nouveau</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15107648850.eD0B.13763--
-
---===============1560532048==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1560532048==--
+cGluZyEKCk9uIDExLzE0LzE3IDM6MTEgUE0sIFRvYmlhcyBLbGF1c21hbm4gd3JvdGU6Cj4gUHJp
+bnRpbmcgd2l0aG91dCB0aGlzIGNvdWxkIGxlYWQgdG8gdGhlIGZvbGxvd2luZyBvdXRwdXQsIHdo
+aWxlIHRoZSB2YWx1ZXMgYXJlCj4gbm90IGV4YWN0bHkgemVybzoKPiBJTU1bNV0gRkxUMzIgeyAg
+ICAwLjAwMDAsICAgICAwLjAwMDAsICAgICAwLjAwMDAsICAgICAwLjAwMDB9Cj4gSU1NWzZdIEZM
+VDMyIHsgICAgMC4wMDAwLCAgICAgMC4wMDAwLCAgICAgMC4wMDAwLCAgICAgMC4wMDAwfQo+IElN
+TVs3XSBGTFQzMiB7ICAgIDAuMDAwMCwgICAgIDAuMDAwMCwgICAgIDAuMDAwMCwgICAgIDAuMDAw
+MH0KPgo+IHdoZW4gcHJpbnRpbmcgdGhlIHZhbHVlcyBhcyBoZXgsIHdlIGNhbiBub3cgc2VlIHRo
+ZSBkaWZmZXJlbmNlczoKPiBJTU1bNV0gRkxUMzIgezB4MDAwMDAwMTksIDB4MDAwMDAwMGYsIDB4
+MDAwMDAwMDUsIDB4MDAwMDAwMWV9Cj4gSU1NWzZdIEZMVDMyIHsweDAwMDAwMDFlLCAweDAwMDAw
+MDA1LCAweDAwMDAwMDBhLCAweDAwMDAwMDE0fQo+IElNTVs3XSBGTFQzMiB7MHgwMDAwMDAxNCwg
+MHgwMDAwMDAwYSwgMHgwMDAwMDAwZiwgMHgwMDAwMDAxOX0KPgo+IFNpZ25lZC1vZmYtYnk6IFRv
+YmlhcyBLbGF1c21hbm4gPHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5AbW5pLnRobS5kZT4KPiAt
+LS0KPiAgIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90
+Z3NpLmNwcCB8IDIgKy0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxl
+dGlvbigtKQo+Cj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2Rl
+Z2VuL252NTBfaXJfZnJvbV90Z3NpLmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9j
+b2RlZ2VuL252NTBfaXJfZnJvbV90Z3NpLmNwcAo+IGluZGV4IDM0MzUxZGFiNTEuLjg5ODAzMTgx
+MWQgMTAwNjQ0Cj4gLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1
+MF9pcl9mcm9tX3Rnc2kuY3BwCj4gKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2Nv
+ZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwCj4gQEAgLTEwOTUsNyArMTA5NSw3IEBAIFNvdXJj
+ZTo6U291cmNlKHN0cnVjdCBudjUwX2lyX3Byb2dfaW5mbyAqcHJvZykgOiBpbmZvKHByb2cpCj4g
+ICAgICB0b2tlbnMgPSAoY29uc3Qgc3RydWN0IHRnc2lfdG9rZW4gKilpbmZvLT5iaW4uc291cmNl
+Owo+ICAgCj4gICAgICBpZiAocHJvZy0+ZGJnRmxhZ3MgJiBOVjUwX0lSX0RFQlVHX0JBU0lDKQo+
+IC0gICAgICB0Z3NpX2R1bXAodG9rZW5zLCAwKTsKPiArICAgICAgdGdzaV9kdW1wKHRva2Vucywg
+VEdTSV9EVU1QX0ZMT0FUX0FTX0hFWCk7Cj4gICB9Cj4gICAKPiAgIFNvdXJjZTo6flNvdXJjZSgp
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
+bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
