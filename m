@@ -1,14 +1,10 @@
-From: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: Addressing the problem of noisy GPUs under Nouveau
-Date: Sun, 12 Nov 2017 19:12:43 -0800
-Message-ID: <6d4ddf3d-5e4e-58e2-8178-a76cad19c039@nvidia.com>
-References: <4597fd60-59f8-5e45-ec5a-f52c4c6c6260@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103753] New: Visual glitches on GTX 1060 6GB/4.13.x
+Date: Wed, 15 Nov 2017 10:04:01 +0000
+Message-ID: <bug-103753-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0352155216=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4597fd60-59f8-5e45-ec5a-f52c4c6c6260-GANU6spQydw@public.gmane.org>
-Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,87 +14,268 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgTWFydGluLAoKVGhpcyBpcyBqdXN0IGEgcXVpY2sgQUNLLiBJJ3ZlIHN0YXJ0ZWQgYW4gaW50
-ZXJuYWwgZW1haWwgdGhyZWFkIGFuZAp3ZSdsbCBzZWUgaWYgd2UgY2FuIGdldCBiYWNrIHRvIHlv
-dSBzb29uLgoKWWVzLCBvdXIgdGhlcm1hbCBhbmQgZmFuIGNvbnRyb2wgZGVmaW5pdGVseSBjaGFu
-Z2VzIGEgbG90IHdoaWNoCnRoZSB2YXJpb3VzIGNoaXAgYXJjaGl0ZWN0dXJlcy4gSSdtIGNvbnRp
-bnVhbGx5IGltcHJlc3NlZCBieSBob3cgbXVjaAp0aGUgU1crSFcgaGFzIGJlZW4gYWJsZSB0byBp
-bXByb3ZlIHBlcmZvcm1hbmNlIHBlciB3YXR0LCB5ZWFyIGFmdGVyCnllYXIsIGJ1dCBvZiBjb3Vy
-c2UgdGhlIHNpZGUgZWZmZWN0IGlzIGEgdmVyeSBjb21wbGV4IHN5c3RlbSwgYXMgCnlvdSBhcmUg
-c2VlaW5nLiBCdXQgZXZlbiBzbywgbGV0J3Mgc2VlIGlmIHRoZXJlIGlzIGFueSBzb3J0IG9mCnNp
-bXBsZXIgYXBwcm94aW1hdGlvbiB0aGF0IHdvdWxkIHdvcmsgZm9yIHlvdSBoZXJlLi4ubm8gcHJv
-bWlzZXMsCmJlY2F1c2UgSSdtIGFib3V0IHRvIGJlIGh1bWJsZWQgd2hlbiB0aGUgdGhlcm1hbCBl
-eHBlcnRzIHJlc3BvbmQuIDopCgoKdGhhbmtzLApKb2huIEh1YmJhcmQKTlZJRElBCgpPbiAxMS8x
-Mi8yMDE3IDA2OjI5IFBNLCBNYXJ0aW4gUGVyZXMgd3JvdGU6Cj4gSGVsbG8sCj4gCj4gU29tZSB1
-c2VycyBoYXZlIGJlZW4gY29tcGxhaW5pbmcgZm9yIHllYXJzIGFib3V0IHRoZWlyIEdQVSBzb3Vu
-ZGluZyBsaWtlCj4gYSBqZXQgZW5naW5lIGF0IHRha2Ugb2ZmLiBMYXN0IHllYXIsIEkgZmluYWxs
-eSBsYWlkIG15IGhhbmQgb24gb25lIG9mCj4gdGhlc2UgR1BVcyBhbmQgaGF2ZSBiZWVuIHRyeWlu
-ZyB0byBmaXggdGhpcyBpc3N1ZSBvbiBhbmQgb2ZmIHNpbmNlIHRoZW4uCj4gCj4gQWZ0ZXIgZmFp
-bGluZyB0byBmaW5kIGFueXRoaW5nIGluIHRoZSBIVywgSSBmaWd1cmVkIG91dCB0aGF0IHRoZSBk
-dXR5Cj4gY3ljbGUgc2V0IGJ5IG52aWRpYSdzIHByb3ByaWV0YXJ5IGRyaXZlciB3b3VsZCBiZSB3
-YXkgdW5kZXIgdGhlIGV4cGVjdGVkCj4gdmFsdWUuIEJ5IHJhbmRvbWx5IGNoYW5naW5nIHZhbHVl
-cyBpbiB0aGUgdW5rbm93biB0YWJsZXMgb2YgdGhlIHZiaW9zLCBJCj4gZm91bmQgb3V0IHRoYXQg
-dGhlcmUgaXMgYSBmYW4gY2FsaWJyYXRpb24gdGFibGUgYXQgdGhlIG9mZnNldCAweDE4IGluCj4g
-dGhlIEJJVCBQIHRhYmxlICh2ZXJzaW9uIDIpLgo+IAo+IEluIHRoaXMgdGFibGUsIEkgaWRlbnRp
-ZmllZCAyIG1ham9yIDE2IGJpdHMgcGFyYW1ldGVycyBhdCBvZmZzZXQgMHhhIGFuZAo+IDB4Y1sy
-XS4gVGhlIGZpcnN0IG9uZSwgSSBuYW1lZCBwd21fbWF4LCB3aGlsZSBuYW1pbmcgdGhlIGxhdHRl
-cgo+IHB3bV9vZmZzZXQuIEFzIGV4cGVjdGVkLCB0aGVzZSBwYXJhbWV0ZXJzIGxvb2sgbGlrZSBh
-IG1hcHBpbmcgZnVuY3Rpb24KPiBvZiB0aGUgZm9ybSBhWCArIGIuIEhvd2V2ZXIsIGFmdGVyIGdh
-dGhlcmluZyBtb3JlIHNhbXBsZXMsIEkgZm91bmQgb3V0Cj4gdGhhdCB0aGUgb3V0cHV0IHdhcyBu
-b3QgY29udGludW91cyB3aGVuIGxpbmVhcmx5IGluY3JlYXNpbmcgcHdtX29mZnNldAo+IFsxXS4g
-RXZlbiBtb3JlIGZ1bm5pbHksIHRoZSBwZXJpb2Qgb2YgdGhpcyBzcXVhcmUgZnVuY3Rpb24gaXMg
-bGluZWFyCj4gd2l0aCB0aGUgZnJlcXVlbmN5IHVzZWQgZm9yIHRoZSBmYW4ncyBQV04uCj4gCj4g
-SSB0cmllZCByZXZlcnNlIGVuZ2luZWVyaW5nIHRoZSBmb3JtdWxhIHRvIGRlc2NyaWJlIHRoaXMg
-ZnVuY3Rpb24sIGJ1dAo+IGZhaWxlZCB0byBmaW5kIGEgdmVyc2lvbiB0aGF0IHdvdWxkIHdvcmsg
-cGVyZmVjdGx5IGZvciBhbGwgUFdNCj4gZnJlcXVlbmN5LiBUaGlzIGlzIHRoZSBjbG9zZXN0IEkg
-aGF2ZSBnb3QgdG9bM10sIGFuZCBJIGJhc2ljYWxseSBzdG9wcGVkCj4gdGhlcmUgYWJvdXQgYSB5
-ZWFyIGFnbyBiZWNhdXNlIEkgY291bGQgbm90IGZpZ3VyZSBpdCBvdXQgYW5kIGdvdAo+IGZydXN0
-cmF0ZWQgOnMuCj4gCj4gSSBzdGFydGVkIGFnYWluIG9uIHRoaXMgcHJvamVjdCAyIHdlZWtzIGFn
-bywgd2l0aCB0aGUgaW50ZW50IG9mIGZpbmRpbmcKPiBhIGdvb2QtZW5vdWdoIHNvbHV0aW9uIGZv
-ciBub3V2ZWF1LCBhbmQgbW9kZWxsaW5nIHRoZSByZXN0IG9mIHRoZQo+IGVxdWF0aW9uIHRoYXQg
-dGhhdCB3b3VsZCBhbGxvdyBtZSB0byBjb21wdXRlIHdoYXQgZHV0eSBJIHNob3VsZCBzZXQgZm9y
-Cj4gZXZlcnkgd2FudGVkIGZhbiBzcGVlZCAoJSkuIEkgYWdhaW4gbW9zdGx5IHN1Y2NlZWRlZC4u
-LiBidXQgaXQgd291bGQKPiBzZWVtIHRoYXQgdGhlIGludGVycHJldGF0aW9uIG9mIHRoZSB0YWJs
-ZSBkZXBlbmRzIG9uIHRoZSBnZW5lcmF0aW9uIG9mCj4gY2hpcHNldCAoVGVzbGEgYmVoYXZlcyBv
-bmUgd2F5LCBGZXJtaSsgYmVoYXZlcyBhbm90aGVyIHdheSkuIEFsc28sIHRoZQo+IHByb3ByaWV0
-YXJ5IGlzIG5vdCBjb25zaXN0ZW50IGZvciBydWxlcyBzdWNoIGFzIHdoYXQgdG8gZG8gd2hlbiB0
-aGUKPiBjb21wdXRlZCBkdXR5IHZhbHVlIGlzIGdvaW5nIHRvIGJlIGxvd2VyIHRoYW4gMCBvciBu
-b3QgKHNvbWV0aW1lcyB3ZQo+IGNsYW1wIGl0IHRvIDAsIHNvbWUgdGltZXMgd2Ugc2V0IGl0IHRv
-IHRoZSBzYW1lIHZhbHVlIGFzIHRoZSBkaXZpZGVyLAo+IHNvbWUgdGltZXMgd2Ugc2V0IGl0IHRv
-IGEgc2xpZ2h0bHkgbG93ZXIgdmFsdWUgdGhhbiB0aGUgZGl2aWRlcikuCj4gCj4gSSBoYXZlIGJl
-ZW4gdHJ5aW5nIHRvIGNvdmVyIGFsbCBlZGdlIGNhc2VzIGJ5IGdlbmVyYXRpbmcgYSByYW5kb21p
-emVkCj4gc2V0IG9mIHZhbHVlcyBmb3IgdGhlIFBXTSBmcmVxdWVuY3ksIHB3bV9tYXgsIGFuZCBw
-d21fb2Zmc2V0IHZhbHVlcywKPiBmbGFzaGVkIHRoZSB2YmlvcywgYW5kIGl0ZXJhdGUgZnJvbSAw
-JSB0byAxMDAlIGZhbiBzcGVlZCB3aGlsZSBkdW1waW5nCj4gdGhlIHZhbHVlcyBzZXQgYnkgeW91
-ciBkcml2ZXIuIFVzaW5nIGhhbGYgYSBtaWxsaW9uIHNhbXBsZSBwb2ludHMgKHdoaWNoCj4gdG9v
-ayBhIHdlZWsgdG8gYWNxdWlyZSksIG15IG1vZGVsIGNvbXB1dGVzIDk3JSBvZiB0aGUgdmFsdWVz
-IGNvcnJlY3RseQo+IChpZ25vcmluZyBvZmYgYnkgb25lcyksIHdoaWxlIHRoZSByZW1haW5pbmcg
-MyUgYXJlIHdvcnJ5aW5nbHkgb2ZmIChieSB1cAo+IHRvIDEwMCUpLi4uIEl0IGlzIGNsZWFyIHRo
-YXQgdGhlIGNvZGUgaXMgbm90IHRyaXZpYWwgYW5kIGlzIGZ1bGwgb2YKPiBicmFuY2hpbmcsIHdo
-aWNoIG1ha2VzIGNsZWFuLXJvb20gcmV2ZXJzZSBlbmdpbmVlcmluZyBhIGNob3JlLgo+IAo+IEFz
-IGEgZmluYWwgYXR0ZW1wdCB0byBtYWtlIGEgc29tZXdoYXQgY29tcGxldGUgc29sdXRpb24sIEkg
-dHJpZWQgdGhpcwo+IHdlZWtlbmQgdG8gbWFrZSBhICJzYWZlIiBtb2RlbCB0aGF0IHdvdWxkIHN0
-aWxsIG1ha2UgdGhlIEdQVXMgcXVpZXQuIEkKPiBtYW5hZ2VkIHRvIGltcHJvdmUgdGhlIHBhc3Mg
-cmF0ZSBmcm9tIDk3IHRvIDk5LjYlLCBidXQgdGhlIHJlbWFpbmluZwo+IGZhaWx1cmVzIGNvbmZs
-aWN0IHdpdGggbXkgcHJldmlvdXMgZmluZGluZ3MsIHdoaWNoIGFyZSBhbHNvIHdheSBtb3JlCj4g
-cHJldmFsZW50LiBJbiB0aGUgZW5kLCB0aGUgb25seSBjb21wbGV0ZWx5LXNhZmUgd2F5IG9mIGRy
-aXZpbmcgdGhlIGZhbgo+IGlzIHRoZSBjdXJyZW50IGJlaGF2aW91ciBvZiBub3V2ZWF1Li4uCj4g
-Cj4gQXQgdGhpcyBwb2ludCwgSSBhbSByZWFkeSB0byB0aHJvdyBpbiB0aGUgdG93ZWwgYW5kIGhh
-cmRjb2RlIHBhcmFtZXRlcnMKPiBpbiBub3V2ZWF1IHRvIGFkZHJlc3MgdGhlIHByb2JsZW0gb2Yg
-dGhlIGxvdWRlc3QgR1BVcywgYnV0IHRoaXMgaXMgb2YKPiBjb3Vyc2Ugc3Vib3B0aW1hbC4gVGhp
-cyBpcyB3aHkgSSBhbSBhc2tpbmcgZm9yIHlvdXIgaGVscC4gV291bGQgeW91IGhhdmUKPiBzb21l
-IGRvY3VtZW50YXRpb24gYWJvdXQgdGhpcyBmYW4gY2FsaWJyYXRpb24gdGFibGUgdGhhdCBjb3Vs
-ZCBoZWxwIG1lCj4gaGVyZT8gQ29kZSB3b3VsZCBiZSBldmVuIG1vcmUgYXBwcmVjaWF0ZWQuCj4g
-Cj4gVGhhbmtzIGEgbG90IGluIGFkdmFuY2UsCj4gTWFydGluCj4gCj4gUFM6IGhlcmUgaXMgbW9z
-dCBvZiB0aGUgY29kZSB5b3UgbWF5IHdhbnQgdG8gc2VlOgo+IGh0dHA6Ly9mcy5tdXB1Zi5vcmcv
-bnZpZGlhL2Zhbl9jYWxpYi8KPiAKPiBbMV0gaHR0cDovL2ZzLm11cHVmLm9yZy9udmlkaWEvZmFu
-X2NhbGliL3B3bV9vZmZzZXQucG5nCj4gWzJdIGh0dHBzOi8vZ2l0aHViLmNvbS9lbnZ5dG9vbHMv
-ZW52eXRvb2xzL2Jsb2IvbWFzdGVyL252Ymlvcy9wb3dlci5jI0wzMzMKPiBbM10gaHR0cHM6Ly9n
-aXRodWIuY29tL2Vudnl0b29scy9lbnZ5dG9vbHMvYmxvYi9tYXN0ZXIvbnZiaW9zL3Bvd2VyLmMj
-TDI5OAo+IApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0352155216==
+Content-Type: multipart/alternative; boundary="15107402411.AB1E01A.5449";
+ charset="UTF-8"
+
+
+--15107402411.AB1E01A.5449
+Date: Wed, 15 Nov 2017 10:04:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103753
+
+            Bug ID: 103753
+           Summary: Visual glitches on GTX 1060 6GB/4.13.x
+           Product: xorg
+           Version: git
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 135483
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135483&action=3Dedit
+XFCE panel screenshot
+
+This is clearly a regression because kernel 4.12.x worked just fine here and
+all 4.13.x releases exhibit this problem.
+
+I'm running XFCE under Fedora 27 (recently updated from 26 which also exhib=
+ited
+this bug) without a compositing manager.
+
+Upon logon XFCE panel icons are always broken in one way or another. If you
+move any window above the panel then everything gets back to normal. Yet wh=
+en
+you run `xfce4-panel -r` glitches return.
+
+Also this bug manifests itself in Firefox when you're scrolling. Text often
+gets strange artifacts.
+
+Here are relevant kernel messages:
+
+nouveau 0000:01:00.0: NVIDIA GP106 (136000a1)
+nouveau 0000:01:00.0: bios: version 86.06.0e.00.28
+nouveau 0000:01:00.0: fb: 6144 MiB GDDR5
+nouveau 0000:01:00.0: DRM: VRAM: 6144 MiB
+nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
+nouveau 0000:01:00.0: DRM: BIT table 'A' not found
+nouveau 0000:01:00.0: DRM: BIT table 'L' not found
+nouveau 0000:01:00.0: DRM: TMDS table version 2.0
+nouveau 0000:01:00.0: DRM: DCB version 4.1
+nouveau 0000:01:00.0: DRM: DCB outp 00: 01000f42 04620030
+nouveau 0000:01:00.0: DRM: DCB outp 01: 04811f96 04600020
+nouveau 0000:01:00.0: DRM: DCB outp 02: 04011f92 04620020
+nouveau 0000:01:00.0: DRM: DCB outp 03: 04822f86 04600010
+nouveau 0000:01:00.0: DRM: DCB outp 04: 04022f82 04620010
+nouveau 0000:01:00.0: DRM: DCB outp 06: 02033f62 04620010
+nouveau 0000:01:00.0: DRM: DCB outp 07: 02844f76 04600020
+nouveau 0000:01:00.0: DRM: DCB outp 08: 02044f72 00020020
+nouveau 0000:01:00.0: DRM: DCB conn 00: 00001031
+nouveau 0000:01:00.0: DRM: DCB conn 01: 02000146
+nouveau 0000:01:00.0: DRM: DCB conn 02: 01000246
+nouveau 0000:01:00.0: DRM: DCB conn 03: 00010361
+nouveau 0000:01:00.0: DRM: DCB conn 04: 00020446
+nouveau 0000:01:00.0: DRM: Pointer to flat panel table invalid
+[drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[drm] Driver supports precise vblank timestamp query.
+nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
+nouveau 0000:01:00.0: DRM: allocated 1920x1080 fb: 0x60000, bo ffff908246f2=
+6800
+fbcon: nouveaufb (fb0) is primary device
+nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
+[drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on minor 0
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15107402411.AB1E01A.5449
+Date: Wed, 15 Nov 2017 10:04:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Visual glitches on GTX 1060 6GB/4.13.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753">103753</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Visual glitches on GTX 1060 6GB/4.13.x
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>t.artem&#64;mailcity.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135483=
+" name=3D"attach_135483" title=3D"XFCE panel screenshot">attachment 135483<=
+/a> <a href=3D"attachment.cgi?id=3D135483&amp;action=3Dedit" title=3D"XFCE =
+panel screenshot">[details]</a></span>
+XFCE panel screenshot
+
+This is clearly a regression because kernel 4.12.x worked just fine here and
+all 4.13.x releases exhibit this problem.
+
+I'm running XFCE under Fedora 27 (recently updated from 26 which also exhib=
+ited
+this bug) without a compositing manager.
+
+Upon logon XFCE panel icons are always broken in one way or another. If you
+move any window above the panel then everything gets back to normal. Yet wh=
+en
+you run `xfce4-panel -r` glitches return.
+
+Also this bug manifests itself in Firefox when you're scrolling. Text often
+gets strange artifacts.
+
+Here are relevant kernel messages:
+
+nouveau 0000:01:00.0: NVIDIA GP106 (136000a1)
+nouveau 0000:01:00.0: bios: version 86.06.0e.00.28
+nouveau 0000:01:00.0: fb: 6144 MiB GDDR5
+nouveau 0000:01:00.0: DRM: VRAM: 6144 MiB
+nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
+nouveau 0000:01:00.0: DRM: BIT table 'A' not found
+nouveau 0000:01:00.0: DRM: BIT table 'L' not found
+nouveau 0000:01:00.0: DRM: TMDS table version 2.0
+nouveau 0000:01:00.0: DRM: DCB version 4.1
+nouveau 0000:01:00.0: DRM: DCB outp 00: 01000f42 04620030
+nouveau 0000:01:00.0: DRM: DCB outp 01: 04811f96 04600020
+nouveau 0000:01:00.0: DRM: DCB outp 02: 04011f92 04620020
+nouveau 0000:01:00.0: DRM: DCB outp 03: 04822f86 04600010
+nouveau 0000:01:00.0: DRM: DCB outp 04: 04022f82 04620010
+nouveau 0000:01:00.0: DRM: DCB outp 06: 02033f62 04620010
+nouveau 0000:01:00.0: DRM: DCB outp 07: 02844f76 04600020
+nouveau 0000:01:00.0: DRM: DCB outp 08: 02044f72 00020020
+nouveau 0000:01:00.0: DRM: DCB conn 00: 00001031
+nouveau 0000:01:00.0: DRM: DCB conn 01: 02000146
+nouveau 0000:01:00.0: DRM: DCB conn 02: 01000246
+nouveau 0000:01:00.0: DRM: DCB conn 03: 00010361
+nouveau 0000:01:00.0: DRM: DCB conn 04: 00020446
+nouveau 0000:01:00.0: DRM: Pointer to flat panel table invalid
+[drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[drm] Driver supports precise vblank timestamp query.
+nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
+nouveau 0000:01:00.0: DRM: allocated 1920x1080 fb: 0x60000, bo ffff908246f2=
+6800
+fbcon: nouveaufb (fb0) is primary device
+nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
+[drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on minor 0</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15107402411.AB1E01A.5449--
+
+--===============0352155216==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0352155216==--
