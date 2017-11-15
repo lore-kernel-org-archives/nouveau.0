@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103764] 3D renering results in a distorted frame.
-Date: Wed, 15 Nov 2017 16:32:10 +0000
-Message-ID: <bug-103764-8800-2uij5M38CW@http.bugs.freedesktop.org/>
+Date: Wed, 15 Nov 2017 16:32:46 +0000
+Message-ID: <bug-103764-8800-1icEl0Fl5z@http.bugs.freedesktop.org/>
 References: <bug-103764-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0461163520=="
+Content-Type: multipart/mixed; boundary="===============1114241775=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103764-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0461163520==
-Content-Type: multipart/alternative; boundary="15107635300.f152.7918";
+--===============1114241775==
+Content-Type: multipart/alternative; boundary="15107635650.1E1bCB7.8250";
  charset="UTF-8"
 
 
---15107635300.f152.7918
-Date: Wed, 15 Nov 2017 16:32:10 +0000
+--15107635650.1E1bCB7.8250
+Date: Wed, 15 Nov 2017 16:32:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103764
 
---- Comment #3 from Ilya <dikiy_evrej-S0/GAf8tV78@public.gmane.org> ---
-Created attachment 135495
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135495&action=3Dedit
-dmesg
+--- Comment #4 from Ilya <dikiy_evrej-S0/GAf8tV78@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #1)
+> I know you said no errors, but I'd still like to see your xorg log and
+> dmesg, which should provide additional info about the system if nothing e=
+lse.
+
+Have added it
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15107635300.f152.7918
-Date: Wed, 15 Nov 2017 16:32:10 +0000
+--15107635650.1E1bCB7.8250
+Date: Wed, 15 Nov 2017 16:32:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +66,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - 3D renering results in a distorted frame."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103764#c3">Commen=
-t # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103764#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - 3D renering results in a distorted frame."
@@ -74,11 +77,14 @@ t # 3</a>
 dikiy_evrej&#64;web.de" title=3D"Ilya &lt;dikiy_evrej&#64;web.de&gt;"> <spa=
 n class=3D"fn">Ilya</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135495=
-" name=3D"attach_135495" title=3D"dmesg">attachment 135495</a> <a href=3D"a=
-ttachment.cgi?id=3D135495&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
-/span>
-dmesg</pre>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D103=
+764#c1">comment #1</a>)
+<span class=3D"quote">&gt; I know you said no errors, but I'd still like to=
+ see your xorg log and
+&gt; dmesg, which should provide additional info about the system if nothin=
+g else.</span >
+
+Have added it</pre>
         </div>
       </p>
 
@@ -87,15 +93,15 @@ dmesg</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15107635300.f152.7918--
+--15107635650.1E1bCB7.8250--
 
---===============0461163520==
+--===============1114241775==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0461163520==--
+--===============1114241775==--
