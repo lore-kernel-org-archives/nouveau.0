@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103764] 3D renering results in a distorted frame.
-Date: Wed, 15 Nov 2017 16:32:46 +0000
-Message-ID: <bug-103764-8800-1icEl0Fl5z@http.bugs.freedesktop.org/>
+Date: Wed, 15 Nov 2017 16:37:28 +0000
+Message-ID: <bug-103764-8800-ccqO8RWSCg@http.bugs.freedesktop.org/>
 References: <bug-103764-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1114241775=="
+Content-Type: multipart/mixed; boundary="===============1501969977=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103764-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1114241775==
-Content-Type: multipart/alternative; boundary="15107635650.1E1bCB7.8250";
+--===============1501969977==
+Content-Type: multipart/alternative; boundary="15107638480.fE428f.9340";
  charset="UTF-8"
 
 
---15107635650.1E1bCB7.8250
-Date: Wed, 15 Nov 2017 16:32:45 +0000
+--15107638480.fE428f.9340
+Date: Wed, 15 Nov 2017 16:37:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,21 +35,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103764
 
---- Comment #4 from Ilya <dikiy_evrej-S0/GAf8tV78@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #1)
-> I know you said no errors, but I'd still like to see your xorg log and
-> dmesg, which should provide additional info about the system if nothing e=
-lse.
-
-Have added it
+--- Comment #5 from Ilya <dikiy_evrej-S0/GAf8tV78@public.gmane.org> ---
+Created attachment 135496
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135496&action=3Dedit
+glxinfo
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15107635650.1E1bCB7.8250
-Date: Wed, 15 Nov 2017 16:32:45 +0000
+--15107638480.fE428f.9340
+Date: Wed, 15 Nov 2017 16:37:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - 3D renering results in a distorted frame."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103764#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103764#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - 3D renering results in a distorted frame."
@@ -77,14 +74,11 @@ t # 4</a>
 dikiy_evrej&#64;web.de" title=3D"Ilya &lt;dikiy_evrej&#64;web.de&gt;"> <spa=
 n class=3D"fn">Ilya</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D103=
-764#c1">comment #1</a>)
-<span class=3D"quote">&gt; I know you said no errors, but I'd still like to=
- see your xorg log and
-&gt; dmesg, which should provide additional info about the system if nothin=
-g else.</span >
-
-Have added it</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135496=
+" name=3D"attach_135496" title=3D"glxinfo">attachment 135496</a> <a href=3D=
+"attachment.cgi?id=3D135496&amp;action=3Dedit" title=3D"glxinfo">[details]<=
+/a></span>
+glxinfo</pre>
         </div>
       </p>
 
@@ -99,9 +93,9 @@ Have added it</pre>
     </body>
 </html>=
 
---15107635650.1E1bCB7.8250--
+--15107638480.fE428f.9340--
 
---===============1114241775==
+--===============1501969977==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1114241775==--
+--===============1501969977==--
