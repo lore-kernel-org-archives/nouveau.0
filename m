@@ -1,12 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103753] Visual glitches on GTX 1060 6GB/4.13.x
-Date: Thu, 16 Nov 2017 06:13:00 +0000
-Message-ID: <bug-103753-8800-c3TDLIwEdR@http.bugs.freedesktop.org/>
-References: <bug-103753-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH] nouveau/codegen: dump tgsi floats as hex
+	values
+Date: Thu, 16 Nov 2017 13:30:14 +0100
+Message-ID: <CACO55tsXtm8kbUak09Hh1-GEP23hLKwTXAntUi55BetjqbsAYw@mail.gmail.com>
+References: <20171114141105.2656-1-tobias.johannes.klausmann@mni.thm.de>
+ <20171115214449.eryt2oakudpmzc5l@pmoreau.org>
+ <d1c4cfd8-d1c8-a19a-881d-b3464847ef87@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1361923495=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103753-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <d1c4cfd8-d1c8-a19a-881d-b3464847ef87-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,88 +20,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1361923495==
-Content-Type: multipart/alternative; boundary="15108127790.0B80Dc99b.22565";
- charset="UTF-8"
-
-
---15108127790.0B80Dc99b.22565
-Date: Thu, 16 Nov 2017 06:12:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103753
-
---- Comment #5 from Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> ---
-I've file a bug report at Fedora's bugzilla:
-https://bugzilla.redhat.com/show_bug.cgi?id=3D1513848
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15108127790.0B80Dc99b.22565
-Date: Thu, 16 Nov 2017 06:12:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTABUG - Visual glitches on GTX 1060 6GB/4.13.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTABUG - Visual glitches on GTX 1060 6GB/4.13.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753">bug 10375=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-t.artem&#64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailc=
-ity.com&gt;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
-</span></b>
-        <pre>I've file a bug report at Fedora's bugzilla:
-<a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1513848">https://b=
-ugzilla.redhat.com/show_bug.cgi?id=3D1513848</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15108127790.0B80Dc99b.22565--
-
---===============1361923495==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1361923495==--
+dGhlIHByb2JsZW0gaXMsIHRoYXQgeW91IGFsc28gbmVlZCB0byBiZSBhYmxlIHRvIHNhdmUgdGhl
+IFRHU0kgaW50byBhCmZpbGUgYW5kIHJ1biBpdCByaG91Z2ggbm91dmVhdV9jb21waWxlci4gTm90
+IHJlYWxseSBzdXJlIGlmIGl0IGlzCndvcnRoIHRoZSBlZmZvcnQuIFByaW50aW5nIGhleCBpbnN0
+ZWFkIG9mIG51bWJlcnMgbWFrZSBtb3JlIHNlbnNlIGluCnRoaXMgcmVnYXJkIGFueWhvdywgYmVj
+YXVzZSB3ZSBhcmUgbW9yZSBwcmVjaXNlIGFuZCBiZWluZyBhYmxlIHRvCmRlYnVnIHNvbWUgaXNz
+dWVzIG11Y2ggYmV0dGVyIGluIHRoZSBlbmQuIEFzIGxvbmcgYXMgdGhlIG5ldyB2ZXJzaW9uCmlz
+IHN0aWxsIGNvcnJlY3RseSBwYXJzZWQgd2l0aCBub3V2ZWF1X2NvbXBpbGVyLCB0aGlzIGNoYW5n
+ZSBpcwphY2tlZC1ieSBtZS4KCk9uIFdlZCwgTm92IDE1LCAyMDE3IGF0IDEwOjUyIFBNLCBUb2Jp
+YXMgS2xhdXNtYW5uCjx0b2JpYXMuam9oYW5uZXMua2xhdXNtYW5uQG1uaS50aG0uZGU+IHdyb3Rl
+Ogo+IEhpLAo+Cj4geWVhaCBpbiB0aGUgbG9uZyBydW4gc2hvd2luZyBib3RoIGluIGFuIG9yZGVy
+ZWQgbWFubmVyIHdvdWxkIGJlIGEgbmljZSB0aGluZwo+IHRvIGhhdmUhIFRoYXQgd291bGQgaW5j
+bHVkZSBwYXRjaGluZyB0aGUgb3V0cHV0IGFuZCB0aGUgdGdzaSBwYXJzZXIgKHdobwo+IHdhbnRz
+IHRvIGRlbGV0ZSBoYWxmIHRoZSBvdXRwdXQgdG8gcGFyc2UgaXQgYWdhaW4gZS5nLiB3aXRoCj4g
+bm91dmVhdV9jb21waWxlcikuCj4KPiBJIGNhbiBpbWFnZSBhbiBvdXRwdXQgc2ltaWxhciB0byB0
+aGUgb25lIGJlbG93Ogo+Cj4gSU1NWzVdIEZMVDMyIHsgICAgMC4wMDAwLCAgICAgMC4wMDAwLCAg
+ICAgMC4wMDAwLCAgICAgMC4wMDAwfSBeIElNTVs1XSBGTFQzMgo+IHsweDAwMDAwMDE5LCAweDAw
+MDAwMDBmLCAweDAwMDAwMDA1LCAweDAwMDAwMDFlfQo+IElNTVs2XSBGTFQzMiB7ICAgIDAuMDAw
+MCwgICAgIDAuMDAwMCwgICAgIDAuMDAwMCwgICAgIDAuMDAwMH0gPSBJTU1bNl0gRkxUMzIKPiB7
+MHgwMDAwMDAxZSwgMHgwMDAwMDAwNSwgMHgwMDAwMDAwYSwgMHgwMDAwMDAxNH0KPiBJTU1bN10g
+RkxUMzIgeyAgICAwLjAwMDAsICAgICAwLjAwMDAsICAgICAwLjAwMDAsICAgICAwLjAwMDB9ICAg
+SU1NWzddIEZMVDMyCj4gezB4MDAwMDAwMTQsIDB4MDAwMDAwMGEsIDB4MDAwMDAwMGYsIDB4MDAw
+MDAwMTl9Cj4KPiBHcmVldGluZ3MsCj4KPiBUb2JpYXMKPgo+Cj4gUFM6IEkgaGF2ZSBubyBwdXNo
+IHJpZ2h0cyB0byBjb21taXQgdGhpcyEKPgo+Cj4KPiBPbiAxMS8xNS8xNyAxMDo0NCBQTSwgUGll
+cnJlIE1vcmVhdSB3cm90ZToKPj4KPj4gVGhpcyBsb29rcyBsaWtlIHRoZSBzYW5lciBhcHByb2Fj
+aCwgY29tcGFyZWQgdG8gY2hhbmdpbmcgdGdzaV9kdW1wLmMgdG8KPj4gZGlzcGxheQo+PiBtb3Jl
+IGZyYWN0aW9uYWwgZGlnaXRzLiBNYXliZSB0aGVyZSBjb3VsZCBiZSBhIHNlY29uZCBvcHRpb24g
+dG8gZGlzcGxheSBhcwo+PiBib3RoCj4+IGZsb2F0IGFuZCBoZXg/Cj4+Cj4+IFJldmlld2VkLWJ5
+OiBQaWVycmUgTW9yZWF1IDxwaWVycmUubW9ycm93QGZyZWUuZnI+Cj4+Cj4+IE9uIDIwMTctMTEt
+MTQg4oCUIDE1OjExLCBUb2JpYXMgS2xhdXNtYW5uIHdyb3RlOgo+Pj4KPj4+IFByaW50aW5nIHdp
+dGhvdXQgdGhpcyBjb3VsZCBsZWFkIHRvIHRoZSBmb2xsb3dpbmcgb3V0cHV0LCB3aGlsZSB0aGUK
+Pj4+IHZhbHVlcyBhcmUKPj4+IG5vdCBleGFjdGx5IHplcm86Cj4+PiBJTU1bNV0gRkxUMzIgeyAg
+ICAwLjAwMDAsICAgICAwLjAwMDAsICAgICAwLjAwMDAsICAgICAwLjAwMDB9Cj4+PiBJTU1bNl0g
+RkxUMzIgeyAgICAwLjAwMDAsICAgICAwLjAwMDAsICAgICAwLjAwMDAsICAgICAwLjAwMDB9Cj4+
+PiBJTU1bN10gRkxUMzIgeyAgICAwLjAwMDAsICAgICAwLjAwMDAsICAgICAwLjAwMDAsICAgICAw
+LjAwMDB9Cj4+Pgo+Pj4gd2hlbiBwcmludGluZyB0aGUgdmFsdWVzIGFzIGhleCwgd2UgY2FuIG5v
+dyBzZWUgdGhlIGRpZmZlcmVuY2VzOgo+Pj4gSU1NWzVdIEZMVDMyIHsweDAwMDAwMDE5LCAweDAw
+MDAwMDBmLCAweDAwMDAwMDA1LCAweDAwMDAwMDFlfQo+Pj4gSU1NWzZdIEZMVDMyIHsweDAwMDAw
+MDFlLCAweDAwMDAwMDA1LCAweDAwMDAwMDBhLCAweDAwMDAwMDE0fQo+Pj4gSU1NWzddIEZMVDMy
+IHsweDAwMDAwMDE0LCAweDAwMDAwMDBhLCAweDAwMDAwMDBmLCAweDAwMDAwMDE5fQo+Pj4KPj4+
+IFNpZ25lZC1vZmYtYnk6IFRvYmlhcyBLbGF1c21hbm4gPHRvYmlhcy5qb2hhbm5lcy5rbGF1c21h
+bm5AbW5pLnRobS5kZT4KPj4+IC0tLQo+Pj4gICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
+Y29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAgfCAyICstCj4+PiAgIDEgZmlsZSBjaGFuZ2Vk
+LCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+Pj4KPj4+IGRpZmYgLS1naXQgYS9zcmMv
+Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKPj4+
+IGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2ku
+Y3BwCj4+PiBpbmRleCAzNDM1MWRhYjUxLi44OTgwMzE4MTFkIDEwMDY0NAo+Pj4gLS0tIGEvc3Jj
+L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwCj4+
+PiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21f
+dGdzaS5jcHAKPj4+IEBAIC0xMDk1LDcgKzEwOTUsNyBAQCBTb3VyY2U6OlNvdXJjZShzdHJ1Y3Qg
+bnY1MF9pcl9wcm9nX2luZm8gKnByb2cpIDoKPj4+IGluZm8ocHJvZykKPj4+ICAgICAgdG9rZW5z
+ID0gKGNvbnN0IHN0cnVjdCB0Z3NpX3Rva2VuICopaW5mby0+YmluLnNvdXJjZTsKPj4+ICAgICAg
+ICBpZiAocHJvZy0+ZGJnRmxhZ3MgJiBOVjUwX0lSX0RFQlVHX0JBU0lDKQo+Pj4gLSAgICAgIHRn
+c2lfZHVtcCh0b2tlbnMsIDApOwo+Pj4gKyAgICAgIHRnc2lfZHVtcCh0b2tlbnMsIFRHU0lfRFVN
+UF9GTE9BVF9BU19IRVgpOwo+Pj4gICB9Cj4+PiAgICAgU291cmNlOjp+U291cmNlKCkKPj4+IC0t
+Cj4+PiAyLjE1LjAKPj4+Cj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwo+Pj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPj4+IE5vdXZlYXVAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCj4+PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUKPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
+b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
