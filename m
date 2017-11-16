@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103753] Visual glitches on GTX 1060 6GB/4.13.x
-Date: Thu, 16 Nov 2017 05:23:39 +0000
-Message-ID: <bug-103753-8800-4JIm6q1tAU@http.bugs.freedesktop.org/>
+Date: Thu, 16 Nov 2017 05:36:30 +0000
+Message-ID: <bug-103753-8800-UgRkV6haTJ@http.bugs.freedesktop.org/>
 References: <bug-103753-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1266468348=="
+Content-Type: multipart/mixed; boundary="===============1320411345=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103753-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1266468348==
-Content-Type: multipart/alternative; boundary="15108098180.cadE5E3.14164";
+--===============1320411345==
+Content-Type: multipart/alternative; boundary="15108105902.DdA65c8a7.16319";
  charset="UTF-8"
 
 
---15108098180.cadE5E3.14164
-Date: Thu, 16 Nov 2017 05:23:38 +0000
+--15108105902.DdA65c8a7.16319
+Date: Thu, 16 Nov 2017 05:36:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,40 +35,26 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103753
 
---- Comment #2 from Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> ---
-Created attachment 135509
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135509&action=3Dedit
-Xorg.0.log
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+[    42.818] (II) modeset(0): using drv /dev/dri/card0
 
-(In reply to Ilia Mirkin from comment #1)
-> Please confirm that you're using the nouveau ddx and not the modesetting
-> ddx? [Include your xorg log.]
+You're using xf86-video-modesetting. Please switch to xf86-video-nouveau. T=
+his
+would normally be the default, but I believe Fedora does something to break
+that (on purpose). You should reach out to their support forums if you need
+help unbreaking it. I believe an xorg.conf that forces nouveau to load will=
+ do
+the trick, but I'm not sure.
 
-I've no idea what I'm using. I have a default Fedora 27 installation without
-Xorg.conf file or any configuration for kernel modules.
-
->=20
-> Was acceleration working for you with the 4.12.x kernel? I don't really s=
-ee
-> what would have changed in the kernel to affect this one way or the other.
-
-I'm not sure what you're talking about. I don't use any applications which =
-use
-3D acceleration and I've no idea if 2D acceleration is in use.
-
->=20
-> We're now using the full BAR2 amount (bar/gf100: fix access to upper half=
- of
-> BAR2)... Could be somehow different on GP10x?
-
-Er, no clue ;-)
+BTW - 2d, 3d - it's all acceleration. And it either works or doesn't. If it
+doesn't, then you're fully cpu-rendered for everything.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15108098180.cadE5E3.14164
-Date: Thu, 16 Nov 2017 05:23:38 +0000
+--15108105902.DdA65c8a7.16319
+Date: Thu, 16 Nov 2017 05:36:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -85,48 +71,29 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Visual glitches on GTX 1060 6GB/4.13.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Visual glitches on GTX 1060 6GB/4.13.x"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753">bug 10375=
 3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-t.artem&#64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailc=
-ity.com&gt;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135509=
-" name=3D"attach_135509" title=3D"Xorg.0.log">attachment 135509</a> <a href=
-=3D"attachment.cgi?id=3D135509&amp;action=3Dedit" title=3D"Xorg.0.log">[det=
-ails]</a></span>
-Xorg.0.log
+        <pre>[    42.818] (II) modeset(0): using drv /dev/dri/card0
 
-(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D103753#c1">comme=
-nt #1</a>)
-<span class=3D"quote">&gt; Please confirm that you're using the nouveau ddx=
- and not the modesetting
-&gt; ddx? [Include your xorg log.]</span >
+You're using xf86-video-modesetting. Please switch to xf86-video-nouveau. T=
+his
+would normally be the default, but I believe Fedora does something to break
+that (on purpose). You should reach out to their support forums if you need
+help unbreaking it. I believe an xorg.conf that forces nouveau to load will=
+ do
+the trick, but I'm not sure.
 
-I've no idea what I'm using. I have a default Fedora 27 installation without
-Xorg.conf file or any configuration for kernel modules.
-
-<span class=3D"quote">&gt;=20
-&gt; Was acceleration working for you with the 4.12.x kernel? I don't reall=
-y see
-&gt; what would have changed in the kernel to affect this one way or the ot=
-her.</span >
-
-I'm not sure what you're talking about. I don't use any applications which =
-use
-3D acceleration and I've no idea if 2D acceleration is in use.
-
-<span class=3D"quote">&gt;=20
-&gt; We're now using the full BAR2 amount (bar/gf100: fix access to upper h=
-alf of
-&gt; BAR2)... Could be somehow different on GP10x?</span >
-
-Er, no clue ;-)</pre>
+BTW - 2d, 3d - it's all acceleration. And it either works or doesn't. If it
+doesn't, then you're fully cpu-rendered for everything.</pre>
         </div>
       </p>
 
@@ -140,9 +107,9 @@ Er, no clue ;-)</pre>
     </body>
 </html>=
 
---15108098180.cadE5E3.14164--
+--15108105902.DdA65c8a7.16319--
 
---===============1266468348==
+--===============1320411345==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -152,4 +119,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1266468348==--
+--===============1320411345==--
