@@ -1,18 +1,12 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: Re: [PATCH] nouveau/codegen: dump tgsi floats as hex
-	values
-Date: Thu, 16 Nov 2017 14:36:58 +0100
-Message-ID: <c1692a52-6d00-2a76-925f-1f96572e88a7@mni.thm.de>
-References: <20171114141105.2656-1-tobias.johannes.klausmann@mni.thm.de>
- <20171115214449.eryt2oakudpmzc5l@pmoreau.org>
- <d1c4cfd8-d1c8-a19a-881d-b3464847ef87@mni.thm.de>
- <CACO55tsXtm8kbUak09Hh1-GEP23hLKwTXAntUi55BetjqbsAYw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103780] New: Nouveau causes lockup - fifo: read
+ fault at 00005ac000 engine 00 [GR] client 02 [GPC1/PE_0] reason 02 [PTE] on
+ channel 24 [103b5b2000 Xwayland[1507]]
+Date: Thu, 16 Nov 2017 15:44:20 +0000
+Message-ID: <bug-103780-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1170315656=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACO55tsXtm8kbUak09Hh1-GEP23hLKwTXAntUi55BetjqbsAYw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,73 +16,192 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ck9uIDExLzE2LzE3IDE6MzAgUE0sIEthcm9sIEhlcmJzdCB3cm90ZToKPiB0aGUgcHJvYmxlbSBp
-cywgdGhhdCB5b3UgYWxzbyBuZWVkIHRvIGJlIGFibGUgdG8gc2F2ZSB0aGUgVEdTSSBpbnRvIGEK
-PiBmaWxlIGFuZCBydW4gaXQgcmhvdWdoIG5vdXZlYXVfY29tcGlsZXIuIE5vdCByZWFsbHkgc3Vy
-ZSBpZiBpdCBpcwo+IHdvcnRoIHRoZSBlZmZvcnQuIFByaW50aW5nIGhleCBpbnN0ZWFkIG9mIG51
-bWJlcnMgbWFrZSBtb3JlIHNlbnNlIGluCj4gdGhpcyByZWdhcmQgYW55aG93LCBiZWNhdXNlIHdl
-IGFyZSBtb3JlIHByZWNpc2UgYW5kIGJlaW5nIGFibGUgdG8KPiBkZWJ1ZyBzb21lIGlzc3VlcyBt
-dWNoIGJldHRlciBpbiB0aGUgZW5kLiBBcyBsb25nIGFzIHRoZSBuZXcgdmVyc2lvbgo+IGlzIHN0
-aWxsIGNvcnJlY3RseSBwYXJzZWQgd2l0aCBub3V2ZWF1X2NvbXBpbGVyLAoKClllcywgaXQgaXMg
-c3RpbGwgcGFyc2VkIGNvcnJlY3RseSEKCgo+ICAgdGhpcyBjaGFuZ2UgaXMKPiBhY2tlZC1ieSBt
-ZS4KPgo+IE9uIFdlZCwgTm92IDE1LCAyMDE3IGF0IDEwOjUyIFBNLCBUb2JpYXMgS2xhdXNtYW5u
-Cj4gPHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5AbW5pLnRobS5kZT4gd3JvdGU6Cj4+IEhpLAo+
-Pgo+PiB5ZWFoIGluIHRoZSBsb25nIHJ1biBzaG93aW5nIGJvdGggaW4gYW4gb3JkZXJlZCBtYW5u
-ZXIgd291bGQgYmUgYSBuaWNlIHRoaW5nCj4+IHRvIGhhdmUhIFRoYXQgd291bGQgaW5jbHVkZSBw
-YXRjaGluZyB0aGUgb3V0cHV0IGFuZCB0aGUgdGdzaSBwYXJzZXIgKHdobwo+PiB3YW50cyB0byBk
-ZWxldGUgaGFsZiB0aGUgb3V0cHV0IHRvIHBhcnNlIGl0IGFnYWluIGUuZy4gd2l0aAo+PiBub3V2
-ZWF1X2NvbXBpbGVyKS4KPj4KPj4gSSBjYW4gaW1hZ2UgYW4gb3V0cHV0IHNpbWlsYXIgdG8gdGhl
-IG9uZSBiZWxvdzoKPj4KPj4gSU1NWzVdIEZMVDMyIHsgICAgMC4wMDAwLCAgICAgMC4wMDAwLCAg
-ICAgMC4wMDAwLCAgICAgMC4wMDAwfSBeIElNTVs1XSBGTFQzMgo+PiB7MHgwMDAwMDAxOSwgMHgw
-MDAwMDAwZiwgMHgwMDAwMDAwNSwgMHgwMDAwMDAxZX0KPj4gSU1NWzZdIEZMVDMyIHsgICAgMC4w
-MDAwLCAgICAgMC4wMDAwLCAgICAgMC4wMDAwLCAgICAgMC4wMDAwfSA9IElNTVs2XSBGTFQzMgo+
-PiB7MHgwMDAwMDAxZSwgMHgwMDAwMDAwNSwgMHgwMDAwMDAwYSwgMHgwMDAwMDAxNH0KPj4gSU1N
-WzddIEZMVDMyIHsgICAgMC4wMDAwLCAgICAgMC4wMDAwLCAgICAgMC4wMDAwLCAgICAgMC4wMDAw
-fSAgIElNTVs3XSBGTFQzMgo+PiB7MHgwMDAwMDAxNCwgMHgwMDAwMDAwYSwgMHgwMDAwMDAwZiwg
-MHgwMDAwMDAxOX0KPj4KPj4gR3JlZXRpbmdzLAo+Pgo+PiBUb2JpYXMKPj4KPj4KPj4gUFM6IEkg
-aGF2ZSBubyBwdXNoIHJpZ2h0cyB0byBjb21taXQgdGhpcyEKPj4KPj4KPj4KPj4gT24gMTEvMTUv
-MTcgMTA6NDQgUE0sIFBpZXJyZSBNb3JlYXUgd3JvdGU6Cj4+PiBUaGlzIGxvb2tzIGxpa2UgdGhl
-IHNhbmVyIGFwcHJvYWNoLCBjb21wYXJlZCB0byBjaGFuZ2luZyB0Z3NpX2R1bXAuYyB0bwo+Pj4g
-ZGlzcGxheQo+Pj4gbW9yZSBmcmFjdGlvbmFsIGRpZ2l0cy4gTWF5YmUgdGhlcmUgY291bGQgYmUg
-YSBzZWNvbmQgb3B0aW9uIHRvIGRpc3BsYXkgYXMKPj4+IGJvdGgKPj4+IGZsb2F0IGFuZCBoZXg/
-Cj4+Pgo+Pj4gUmV2aWV3ZWQtYnk6IFBpZXJyZSBNb3JlYXUgPHBpZXJyZS5tb3Jyb3dAZnJlZS5m
-cj4KPj4+Cj4+PiBPbiAyMDE3LTExLTE0IOKAlCAxNToxMSwgVG9iaWFzIEtsYXVzbWFubiB3cm90
-ZToKPj4+PiBQcmludGluZyB3aXRob3V0IHRoaXMgY291bGQgbGVhZCB0byB0aGUgZm9sbG93aW5n
-IG91dHB1dCwgd2hpbGUgdGhlCj4+Pj4gdmFsdWVzIGFyZQo+Pj4+IG5vdCBleGFjdGx5IHplcm86
-Cj4+Pj4gSU1NWzVdIEZMVDMyIHsgICAgMC4wMDAwLCAgICAgMC4wMDAwLCAgICAgMC4wMDAwLCAg
-ICAgMC4wMDAwfQo+Pj4+IElNTVs2XSBGTFQzMiB7ICAgIDAuMDAwMCwgICAgIDAuMDAwMCwgICAg
-IDAuMDAwMCwgICAgIDAuMDAwMH0KPj4+PiBJTU1bN10gRkxUMzIgeyAgICAwLjAwMDAsICAgICAw
-LjAwMDAsICAgICAwLjAwMDAsICAgICAwLjAwMDB9Cj4+Pj4KPj4+PiB3aGVuIHByaW50aW5nIHRo
-ZSB2YWx1ZXMgYXMgaGV4LCB3ZSBjYW4gbm93IHNlZSB0aGUgZGlmZmVyZW5jZXM6Cj4+Pj4gSU1N
-WzVdIEZMVDMyIHsweDAwMDAwMDE5LCAweDAwMDAwMDBmLCAweDAwMDAwMDA1LCAweDAwMDAwMDFl
-fQo+Pj4+IElNTVs2XSBGTFQzMiB7MHgwMDAwMDAxZSwgMHgwMDAwMDAwNSwgMHgwMDAwMDAwYSwg
-MHgwMDAwMDAxNH0KPj4+PiBJTU1bN10gRkxUMzIgezB4MDAwMDAwMTQsIDB4MDAwMDAwMGEsIDB4
-MDAwMDAwMGYsIDB4MDAwMDAwMTl9Cj4+Pj4KPj4+PiBTaWduZWQtb2ZmLWJ5OiBUb2JpYXMgS2xh
-dXNtYW5uIDx0b2JpYXMuam9oYW5uZXMua2xhdXNtYW5uQG1uaS50aG0uZGU+Cj4+Pj4gLS0tCj4+
-Pj4gICAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rn
-c2kuY3BwIHwgMiArLQo+Pj4+ICAgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBk
-ZWxldGlvbigtKQo+Pj4+Cj4+Pj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
-dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3NpLmNwcAo+Pj4+IGIvc3JjL2dhbGxpdW0vZHJp
-dmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwCj4+Pj4gaW5kZXggMzQz
-NTFkYWI1MS4uODk4MDMxODExZCAxMDA2NDQKPj4+PiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJz
-L25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKPj4+PiArKysgYi9zcmMvZ2Fs
-bGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKPj4+PiBA
-QCAtMTA5NSw3ICsxMDk1LDcgQEAgU291cmNlOjpTb3VyY2Uoc3RydWN0IG52NTBfaXJfcHJvZ19p
-bmZvICpwcm9nKSA6Cj4+Pj4gaW5mbyhwcm9nKQo+Pj4+ICAgICAgIHRva2VucyA9IChjb25zdCBz
-dHJ1Y3QgdGdzaV90b2tlbiAqKWluZm8tPmJpbi5zb3VyY2U7Cj4+Pj4gICAgICAgICBpZiAocHJv
-Zy0+ZGJnRmxhZ3MgJiBOVjUwX0lSX0RFQlVHX0JBU0lDKQo+Pj4+IC0gICAgICB0Z3NpX2R1bXAo
-dG9rZW5zLCAwKTsKPj4+PiArICAgICAgdGdzaV9kdW1wKHRva2VucywgVEdTSV9EVU1QX0ZMT0FU
-X0FTX0hFWCk7Cj4+Pj4gICAgfQo+Pj4+ICAgICAgU291cmNlOjp+U291cmNlKCkKPj4+PiAtLQo+
-Pj4+IDIuMTUuMAo+Pj4+Cj4+Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KPj4+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+Pj4+IE5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCj4+Pj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCj4+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZlYXVAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCj4+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1170315656==
+Content-Type: multipart/alternative; boundary="15108470600.4c4a.16125";
+ charset="UTF-8"
+
+
+--15108470600.4c4a.16125
+Date: Thu, 16 Nov 2017 15:44:20 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103780
+
+            Bug ID: 103780
+           Summary: Nouveau causes lockup - fifo: read fault at 00005ac000
+                    engine 00 [GR] client 02 [GPC1/PE_0] reason 02 [PTE]
+                    on channel 24 [103b5b2000 Xwayland[1507]]
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: n.honnef-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 135521
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135521&action=3Dedit
+Journalctl log
+
+This is on a fresh Fedora 27 installation with Gnome 3.26 on Wayland. It se=
+ems
+to happen randomly about 5-30 min after login.
+
+CPU: Intel Core i5-3570K
+GPU: NVIDIA Corporation GM204 [GeForce GTX 970]
+Kernel: 4.13.12-300.fc27.x86_64
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15108470600.4c4a.16125
+Date: Thu, 16 Nov 2017 15:44:20 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau causes lockup - fifo: read fault at 00005ac000 en=
+gine 00 [GR] client 02 [GPC1/PE_0] reason 02 [PTE] on channel 24 [103b5b200=
+0 Xwayland[1507]]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103780">103780</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nouveau causes lockup - fifo: read fault at 00005ac000 engine=
+ 00 [GR] client 02 [GPC1/PE_0] reason 02 [PTE] on channel 24 [103b5b2000 Xw=
+ayland[1507]]
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>n.honnef&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135521=
+" name=3D"attach_135521" title=3D"Journalctl log">attachment 135521</a> <a =
+href=3D"attachment.cgi?id=3D135521&amp;action=3Dedit" title=3D"Journalctl l=
+og">[details]</a></span>
+Journalctl log
+
+This is on a fresh Fedora 27 installation with Gnome 3.26 on Wayland. It se=
+ems
+to happen randomly about 5-30 min after login.
+
+CPU: Intel Core i5-3570K
+GPU: NVIDIA Corporation GM204 [GeForce GTX 970]
+Kernel: 4.13.12-300.fc27.x86_64</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15108470600.4c4a.16125--
+
+--===============1170315656==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1170315656==--
