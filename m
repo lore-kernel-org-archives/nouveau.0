@@ -1,16 +1,12 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: Re: [PATCH] nouveau/codegen: dump tgsi floats as hex
-	values
-Date: Wed, 15 Nov 2017 22:52:28 +0100
-Message-ID: <d1c4cfd8-d1c8-a19a-881d-b3464847ef87@mni.thm.de>
-References: <20171114141105.2656-1-tobias.johannes.klausmann@mni.thm.de>
- <20171115214449.eryt2oakudpmzc5l@pmoreau.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103753] Visual glitches on GTX 1060 6GB/4.13.x
+Date: Thu, 16 Nov 2017 05:23:39 +0000
+Message-ID: <bug-103753-8800-4JIm6q1tAU@http.bugs.freedesktop.org/>
+References: <bug-103753-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1266468348=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20171115214449.eryt2oakudpmzc5l-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <bug-103753-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -23,53 +19,137 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgp5ZWFoIGluIHRoZSBsb25nIHJ1biBzaG93aW5nIGJvdGggaW4gYW4gb3JkZXJlZCBtYW5u
-ZXIgd291bGQgYmUgYSBuaWNlIAp0aGluZyB0byBoYXZlISBUaGF0IHdvdWxkIGluY2x1ZGUgcGF0
-Y2hpbmcgdGhlIG91dHB1dCBhbmQgdGhlIHRnc2kgCnBhcnNlciAod2hvIHdhbnRzIHRvIGRlbGV0
-ZSBoYWxmIHRoZSBvdXRwdXQgdG8gcGFyc2UgaXQgYWdhaW4gZS5nLiB3aXRoIApub3V2ZWF1X2Nv
-bXBpbGVyKS4KCkkgY2FuIGltYWdlIGFuIG91dHB1dCBzaW1pbGFyIHRvIHRoZSBvbmUgYmVsb3c6
-CgpJTU1bNV0gRkxUMzIgeyAgICAwLjAwMDAsICAgICAwLjAwMDAsICAgICAwLjAwMDAsICAgICAw
-LjAwMDB9IF4gSU1NWzVdIEZMVDMyIHsweDAwMDAwMDE5LCAweDAwMDAwMDBmLCAweDAwMDAwMDA1
-LCAweDAwMDAwMDFlfQpJTU1bNl0gRkxUMzIgeyAgICAwLjAwMDAsICAgICAwLjAwMDAsICAgICAw
-LjAwMDAsICAgICAwLjAwMDB9ID0gSU1NWzZdIEZMVDMyIHsweDAwMDAwMDFlLCAweDAwMDAwMDA1
-LCAweDAwMDAwMDBhLCAweDAwMDAwMDE0fQpJTU1bN10gRkxUMzIgeyAgICAwLjAwMDAsICAgICAw
-LjAwMDAsICAgICAwLjAwMDAsICAgICAwLjAwMDB9ICAgSU1NWzddIEZMVDMyIHsweDAwMDAwMDE0
-LCAweDAwMDAwMDBhLCAweDAwMDAwMDBmLCAweDAwMDAwMDE5fQoKR3JlZXRpbmdzLAoKVG9iaWFz
-CgoKUFM6IEkgaGF2ZSBubyBwdXNoIHJpZ2h0cyB0byBjb21taXQgdGhpcyEKCgpPbiAxMS8xNS8x
-NyAxMDo0NCBQTSwgUGllcnJlIE1vcmVhdSB3cm90ZToKPiBUaGlzIGxvb2tzIGxpa2UgdGhlIHNh
-bmVyIGFwcHJvYWNoLCBjb21wYXJlZCB0byBjaGFuZ2luZyB0Z3NpX2R1bXAuYyB0byBkaXNwbGF5
-Cj4gbW9yZSBmcmFjdGlvbmFsIGRpZ2l0cy4gTWF5YmUgdGhlcmUgY291bGQgYmUgYSBzZWNvbmQg
-b3B0aW9uIHRvIGRpc3BsYXkgYXMgYm90aAo+IGZsb2F0IGFuZCBoZXg/Cj4KPiBSZXZpZXdlZC1i
-eTogUGllcnJlIE1vcmVhdSA8cGllcnJlLm1vcnJvd0BmcmVlLmZyPgo+Cj4gT24gMjAxNy0xMS0x
-NCDigJQgMTU6MTEsIFRvYmlhcyBLbGF1c21hbm4gd3JvdGU6Cj4+IFByaW50aW5nIHdpdGhvdXQg
-dGhpcyBjb3VsZCBsZWFkIHRvIHRoZSBmb2xsb3dpbmcgb3V0cHV0LCB3aGlsZSB0aGUgdmFsdWVz
-IGFyZQo+PiBub3QgZXhhY3RseSB6ZXJvOgo+PiBJTU1bNV0gRkxUMzIgeyAgICAwLjAwMDAsICAg
-ICAwLjAwMDAsICAgICAwLjAwMDAsICAgICAwLjAwMDB9Cj4+IElNTVs2XSBGTFQzMiB7ICAgIDAu
-MDAwMCwgICAgIDAuMDAwMCwgICAgIDAuMDAwMCwgICAgIDAuMDAwMH0KPj4gSU1NWzddIEZMVDMy
-IHsgICAgMC4wMDAwLCAgICAgMC4wMDAwLCAgICAgMC4wMDAwLCAgICAgMC4wMDAwfQo+Pgo+PiB3
-aGVuIHByaW50aW5nIHRoZSB2YWx1ZXMgYXMgaGV4LCB3ZSBjYW4gbm93IHNlZSB0aGUgZGlmZmVy
-ZW5jZXM6Cj4+IElNTVs1XSBGTFQzMiB7MHgwMDAwMDAxOSwgMHgwMDAwMDAwZiwgMHgwMDAwMDAw
-NSwgMHgwMDAwMDAxZX0KPj4gSU1NWzZdIEZMVDMyIHsweDAwMDAwMDFlLCAweDAwMDAwMDA1LCAw
-eDAwMDAwMDBhLCAweDAwMDAwMDE0fQo+PiBJTU1bN10gRkxUMzIgezB4MDAwMDAwMTQsIDB4MDAw
-MDAwMGEsIDB4MDAwMDAwMGYsIDB4MDAwMDAwMTl9Cj4+Cj4+IFNpZ25lZC1vZmYtYnk6IFRvYmlh
-cyBLbGF1c21hbm4gPHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5AbW5pLnRobS5kZT4KPj4gLS0t
-Cj4+ICAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rn
-c2kuY3BwIHwgMiArLQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxl
-dGlvbigtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2Nv
-ZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
-L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwCj4+IGluZGV4IDM0MzUxZGFiNTEuLjg5ODAz
-MTgxMWQgMTAwNjQ0Cj4+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2Vu
-L252NTBfaXJfZnJvbV90Z3NpLmNwcAo+PiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
-YXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKPj4gQEAgLTEwOTUsNyArMTA5NSw3IEBA
-IFNvdXJjZTo6U291cmNlKHN0cnVjdCBudjUwX2lyX3Byb2dfaW5mbyAqcHJvZykgOiBpbmZvKHBy
-b2cpCj4+ICAgICAgdG9rZW5zID0gKGNvbnN0IHN0cnVjdCB0Z3NpX3Rva2VuICopaW5mby0+Ymlu
-LnNvdXJjZTsKPj4gICAKPj4gICAgICBpZiAocHJvZy0+ZGJnRmxhZ3MgJiBOVjUwX0lSX0RFQlVH
-X0JBU0lDKQo+PiAtICAgICAgdGdzaV9kdW1wKHRva2VucywgMCk7Cj4+ICsgICAgICB0Z3NpX2R1
-bXAodG9rZW5zLCBUR1NJX0RVTVBfRkxPQVRfQVNfSEVYKTsKPj4gICB9Cj4+ICAgCj4+ICAgU291
-cmNlOjp+U291cmNlKCkKPj4gLS0gCj4+IDIuMTUuMAo+Pgo+PiBfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+PiBO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9ub3V2ZWF1Cg==
+
+--===============1266468348==
+Content-Type: multipart/alternative; boundary="15108098180.cadE5E3.14164";
+ charset="UTF-8"
+
+
+--15108098180.cadE5E3.14164
+Date: Thu, 16 Nov 2017 05:23:38 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103753
+
+--- Comment #2 from Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> ---
+Created attachment 135509
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135509&action=3Dedit
+Xorg.0.log
+
+(In reply to Ilia Mirkin from comment #1)
+> Please confirm that you're using the nouveau ddx and not the modesetting
+> ddx? [Include your xorg log.]
+
+I've no idea what I'm using. I have a default Fedora 27 installation without
+Xorg.conf file or any configuration for kernel modules.
+
+>=20
+> Was acceleration working for you with the 4.12.x kernel? I don't really s=
+ee
+> what would have changed in the kernel to affect this one way or the other.
+
+I'm not sure what you're talking about. I don't use any applications which =
+use
+3D acceleration and I've no idea if 2D acceleration is in use.
+
+>=20
+> We're now using the full BAR2 amount (bar/gf100: fix access to upper half=
+ of
+> BAR2)... Could be somehow different on GP10x?
+
+Er, no clue ;-)
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15108098180.cadE5E3.14164
+Date: Thu, 16 Nov 2017 05:23:38 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Visual glitches on GTX 1060 6GB/4.13.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Visual glitches on GTX 1060 6GB/4.13.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753">bug 10375=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+t.artem&#64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailc=
+ity.com&gt;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135509=
+" name=3D"attach_135509" title=3D"Xorg.0.log">attachment 135509</a> <a href=
+=3D"attachment.cgi?id=3D135509&amp;action=3Dedit" title=3D"Xorg.0.log">[det=
+ails]</a></span>
+Xorg.0.log
+
+(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D103753#c1">comme=
+nt #1</a>)
+<span class=3D"quote">&gt; Please confirm that you're using the nouveau ddx=
+ and not the modesetting
+&gt; ddx? [Include your xorg log.]</span >
+
+I've no idea what I'm using. I have a default Fedora 27 installation without
+Xorg.conf file or any configuration for kernel modules.
+
+<span class=3D"quote">&gt;=20
+&gt; Was acceleration working for you with the 4.12.x kernel? I don't reall=
+y see
+&gt; what would have changed in the kernel to affect this one way or the ot=
+her.</span >
+
+I'm not sure what you're talking about. I don't use any applications which =
+use
+3D acceleration and I've no idea if 2D acceleration is in use.
+
+<span class=3D"quote">&gt;=20
+&gt; We're now using the full BAR2 amount (bar/gf100: fix access to upper h=
+alf of
+&gt; BAR2)... Could be somehow different on GP10x?</span >
+
+Er, no clue ;-)</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15108098180.cadE5E3.14164--
+
+--===============1266468348==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1266468348==--
