@@ -1,13 +1,12 @@
-From: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 30/32] secboot/acr352: Reset PMU after secboot
-Date: Fri, 17 Nov 2017 01:04:34 +0100
-Message-ID: <20171117000436.2432-31-karolherbst@gmail.com>
-References: <20171117000436.2432-1-karolherbst@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103753] Visual glitches on GTX 1060 6GB/4.13.x
+Date: Fri, 17 Nov 2017 09:30:29 +0000
+Message-ID: <bug-103753-8800-Fc16N1b96I@http.bugs.freedesktop.org/>
+References: <bug-103753-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0342541636=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20171117000436.2432-1-karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-103753-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +19,134 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBpcyBuZWVkZWQgZm9yIHVzaW5nIE5vdXZlYXVzIFBNVSBpbWFnZSBhZnRlciBwZXJmb3Jt
-aW5nIHNlY2Jvb3QuIFRoaXMgd2lsbApiZSBoZWxwZnVsIGZvciBNYXh3ZWxsMiByZWNsb2NraW5n
-IG9uIGJvYXJkcyB3aXRob3V0IGV4dGVybmFsbHkgY29udHJvbGxlZApmYW5zIGxpa2Ugb24gbW9z
-dCBsYXB0b3BzIG9yIGZhbmxlc3MgYm9hcmRzLgoKU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0
-IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Ci0tLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2Vj
-Ym9vdC9hY3JfcjM1Mi5jIHwgMTQgKysrKysrKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCAxNCBp
-bnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9v
-dC9hY3JfcjM1Mi5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9hY3JfcjM1Mi5j
-CmluZGV4IGE3MjEzNTQyLi5iYjhiNzIzMyAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvc2VjYm9vdC9hY3JfcjM1Mi5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3Nl
-Y2Jvb3QvYWNyX3IzNTIuYwpAQCAtOTI0LDYgKzkyNCwyMCBAQCBhY3JfcjM1Ml9ib290c3RyYXAo
-c3RydWN0IGFjcl9yMzUyICphY3IsIHN0cnVjdCBudmttX3NlY2Jvb3QgKnNiKQogCQl9CiAJfQog
-CisJLyogcmVzZXQgdGhlIFBNVSBpZiBuZWVkZWQgKi8KKwlpZiAoYWNyLT5iYXNlLmJvb3RfZmFs
-Y29uID09IE5WS01fU0VDQk9PVF9GQUxDT05fUE1VICYmCisJICAgICFudmttX3NlY2Jvb3RfaXNf
-bWFuYWdlZChzYiwgTlZLTV9TRUNCT09UX0ZBTENPTl9QTVUpKSB7CisJCXN0cnVjdCBudmttX3Bt
-dSAqcG11ID0gc3ViZGV2LT5kZXZpY2UtPnBtdTsKKworCQlpZiAocG11KSB7CisJCQlyZXQgPSBu
-dmttX3N1YmRldl9pbml0KCZwbXUtPnN1YmRldik7CisJCQlpZiAocmV0IDwgMCkgeworCQkJCW52
-a21fZXJyb3Ioc3ViZGV2LCAiRmFpbGVkIHRvIHJlc2V0IFBNVVxuIik7CisJCQkJcmV0dXJuIHJl
-dDsKKwkJCX0KKwkJfQorCX0KKwogCXJldHVybiAwOwogfQogCi0tIAoyLjE1LjAKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
-aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0342541636==
+Content-Type: multipart/alternative; boundary="15109110291.3f305aDe.3593";
+ charset="UTF-8"
+
+
+--15109110291.3f305aDe.3593
+Date: Fri, 17 Nov 2017 09:30:29 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103753
+
+Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |UNCONFIRMED
+     Ever confirmed|1                           |0
+         Resolution|NOTABUG                     |---
+
+--- Comment #6 from Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> ---
+Font artifacts while scrolling in Firefox are still present even with corre=
+ct
+settings.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15109110291.3f305aDe.3593
+Date: Fri, 17 Nov 2017 09:30:29 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:t.artem&#=
+64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailcity.com&g=
+t;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_UNCONFIRMED "
+   title=3D"UNCONFIRMED - Visual glitches on GTX 1060 6GB/4.13.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753">bug 10375=
+3</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>UNCONFIRMED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Ever confirmed</td>
+           <td>1
+           </td>
+           <td>
+               &nbsp;
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>NOTABUG
+           </td>
+           <td>---
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_UNCONFIRMED "
+   title=3D"UNCONFIRMED - Visual glitches on GTX 1060 6GB/4.13.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753#c6">Commen=
+t # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_UNCONFIRMED "
+   title=3D"UNCONFIRMED - Visual glitches on GTX 1060 6GB/4.13.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753">bug 10375=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+t.artem&#64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailc=
+ity.com&gt;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
+</span></b>
+        <pre>Font artifacts while scrolling in Firefox are still present ev=
+en with correct
+settings.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15109110291.3f305aDe.3593--
+
+--===============0342541636==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0342541636==--
