@@ -1,14 +1,12 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: [PATCH v2] nouveau/compiler: Allow to omit line numbers
-	when printing instructions
-Date: Fri, 17 Nov 2017 17:21:51 +0100
-Message-ID: <20171117162151.24941-1-tobias.johannes.klausmann@mni.thm.de>
-References: <CACO55tvX6ozw94n1E1orFaQOUEkL=gJQO4g5aT5fzcxxvOnpqg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103764] 3D renering results in a distorted frame.
+Date: Fri, 17 Nov 2017 16:29:29 +0000
+Message-ID: <bug-103764-8800-bXnPYqi1b5@http.bugs.freedesktop.org/>
+References: <bug-103764-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2078177835=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACO55tvX6ozw94n1E1orFaQOUEkL=gJQO4g5aT5fzcxxvOnpqg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-103764-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,123 +19,92 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBjb21lcyBpbiBoYW5keSB3aGVuIGNoZWNraW5nICJOVjUwX1BST0dfREVCVUc9MSIgb3V0
-cHV0cyB3aXRoIGRpZmYhCgpWMjoKIC0gVXNlIGVudmlyb25tZW50YWwgdmFyaWFibGUgKEthcm9s
-IEhlcmJzdCkKClNpZ25lZC1vZmYtYnk6IFRvYmlhcyBLbGF1c21hbm4gPHRvYmlhcy5qb2hhbm5l
-cy5rbGF1c21hbm5AbW5pLnRobS5kZT4KLS0tCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-Y29kZWdlbi9udjUwX2lyLmNwcCAgICAgICAgfCAgNiArKystLS0KIHNyYy9nYWxsaXVtL2RyaXZl
-cnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXIuaCAgICAgICAgICB8ICAyICstCiBzcmMvZ2FsbGl1
-bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2RyaXZlci5oICAgfCAgMSArCiBzcmMv
-Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3ByaW50LmNwcCAgfCAxNCAr
-KysrKysrKysrLS0tLQogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9p
-cl90YXJnZXQuY3BwIHwgIDIgKy0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1
-X2NvbXBpbGVyLmMgICAgICAgICB8ICAzICsrKwogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
-L252NTAvbnY1MF9wcm9ncmFtLmMgICAgICAgIHwgIDIgKysKIHNyYy9nYWxsaXVtL2RyaXZlcnMv
-bm91dmVhdS9udmMwL252YzBfcHJvZ3JhbS5jICAgICAgICB8ICAyICsrCiA4IGZpbGVzIGNoYW5n
-ZWQsIDIzIGluc2VydGlvbnMoKyksIDkgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvc3JjL2dh
-bGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pci5jcHAgYi9zcmMvZ2FsbGl1bS9k
-cml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyLmNwcAppbmRleCBlOTM2MzEwMWJmLi40YmY2
-YzczODM3IDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9u
-djUwX2lyLmNwcAorKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUw
-X2lyLmNwcApAQCAtMTI0OSw3ICsxMjQ5LDcgQEAgbnY1MF9pcl9nZW5lcmF0ZV9jb2RlKHN0cnVj
-dCBudjUwX2lyX3Byb2dfaW5mbyAqaW5mbykKICAgIGlmIChyZXQgPCAwKQogICAgICAgZ290byBv
-dXQ7CiAgICBpZiAocHJvZy0+ZGJnRmxhZ3MgJiBOVjUwX0lSX0RFQlVHX1ZFUkJPU0UpCi0gICAg
-ICBwcm9nLT5wcmludCgpOworICAgICAgcHJvZy0+cHJpbnQoaW5mby0+b21pdExpbmVOdW0pOwog
-CiAgICB0YXJnLT5wYXJzZURyaXZlckluZm8oaW5mbyk7CiAgICBwcm9nLT5nZXRUYXJnZXQoKS0+
-cnVuTGVnYWxpemVQYXNzKHByb2csIG52NTBfaXI6OkNHX1NUQUdFX1BSRV9TU0EpOwpAQCAtMTI1
-NywxMyArMTI1NywxMyBAQCBudjUwX2lyX2dlbmVyYXRlX2NvZGUoc3RydWN0IG52NTBfaXJfcHJv
-Z19pbmZvICppbmZvKQogICAgcHJvZy0+Y29udmVydFRvU1NBKCk7CiAKICAgIGlmIChwcm9nLT5k
-YmdGbGFncyAmIE5WNTBfSVJfREVCVUdfVkVSQk9TRSkKLSAgICAgIHByb2ctPnByaW50KCk7Cisg
-ICAgICBwcm9nLT5wcmludChpbmZvLT5vbWl0TGluZU51bSk7CiAKICAgIHByb2ctPm9wdGltaXpl
-U1NBKGluZm8tPm9wdExldmVsKTsKICAgIHByb2ctPmdldFRhcmdldCgpLT5ydW5MZWdhbGl6ZVBh
-c3MocHJvZywgbnY1MF9pcjo6Q0dfU1RBR0VfU1NBKTsKIAogICAgaWYgKHByb2ctPmRiZ0ZsYWdz
-ICYgTlY1MF9JUl9ERUJVR19CQVNJQykKLSAgICAgIHByb2ctPnByaW50KCk7CisgICAgICBwcm9n
-LT5wcmludChpbmZvLT5vbWl0TGluZU51bSk7CiAKICAgIGlmICghcHJvZy0+cmVnaXN0ZXJBbGxv
-Y2F0aW9uKCkpIHsKICAgICAgIHJldCA9IC00OwpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJp
-dmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pci5oIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
-ZWF1L2NvZGVnZW4vbnY1MF9pci5oCmluZGV4IGYyY2UxNmQ4ODIuLmEzYzdmZDJmOTQgMTAwNjQ0
-Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXIuaAorKysg
-Yi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyLmgKQEAgLTEyNDks
-NyArMTI0OSw3IEBAIHB1YmxpYzoKICAgIFByb2dyYW0oVHlwZSB0eXBlLCBUYXJnZXQgKnRhcmcp
-OwogICAgflByb2dyYW0oKTsKIAotICAgdm9pZCBwcmludCgpOworICAgdm9pZCBwcmludChib29s
-IG9taXRMaW5lTnVtKTsKIAogICAgVHlwZSBnZXRUeXBlKCkgY29uc3QgeyByZXR1cm4gcHJvZ1R5
-cGU7IH0KIApkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4v
-bnY1MF9pcl9kcml2ZXIuaCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252
-NTBfaXJfZHJpdmVyLmgKaW5kZXggZmZkNTNjOWNkMy4uNjA0YTIyYmE4OSAxMDA2NDQKLS0tIGEv
-c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9kcml2ZXIuaAorKysg
-Yi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2RyaXZlci5oCkBA
-IC04Miw2ICs4Miw3IEBAIHN0cnVjdCBudjUwX2lyX3Byb2dfaW5mbwogCiAgICB1aW50OF90IG9w
-dExldmVsOyAvKiBvcHRpbWl6YXRpb24gbGV2ZWwgKDAgdG8gMykgKi8KICAgIHVpbnQ4X3QgZGJn
-RmxhZ3M7CisgICBib29sIG9taXRMaW5lTnVtOwogCiAgICBzdHJ1Y3QgewogICAgICAgaW50MTZf
-dCBtYXhHUFI7ICAgICAvKiBtYXkgYmUgLTEgaWYgbm9uZSB1c2VkICovCmRpZmYgLS1naXQgYS9z
-cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3ByaW50LmNwcCBiL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcHJpbnQuY3BwCmluZGV4
-IDkxNDU4MDFiNjIuLmQ2ZmU5MjhhZjQgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMv
-bm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcHJpbnQuY3BwCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZl
-cnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcHJpbnQuY3BwCkBAIC02OTEsNyArNjkxLDcgQEAg
-dm9pZCBJbnN0cnVjdGlvbjo6cHJpbnQoKSBjb25zdAogY2xhc3MgUHJpbnRQYXNzIDogcHVibGlj
-IFBhc3MKIHsKIHB1YmxpYzoKLSAgIFByaW50UGFzcygpIDogc2VyaWFsKDApIHsgfQorICAgUHJp
-bnRQYXNzKGJvb2wgb21pdExpbmVOdW0gPSBmYWxzZSkgOiBzZXJpYWwoMCksIG9taXRfc2VyaWFs
-KG9taXRMaW5lTnVtKSB7IH0KIAogICAgdmlydHVhbCBib29sIHZpc2l0KEZ1bmN0aW9uICopOwog
-ICAgdmlydHVhbCBib29sIHZpc2l0KEJhc2ljQmxvY2sgKik7CkBAIC02OTksNiArNjk5LDcgQEAg
-cHVibGljOgogCiBwcml2YXRlOgogICAgaW50IHNlcmlhbDsKKyAgIGJvb2wgb21pdF9zZXJpYWw7
-CiB9OwogCiBib29sCkBAIC03NjIsNyArNzYzLDEyIEBAIFByaW50UGFzczo6dmlzaXQoQmFzaWNC
-bG9jayAqYmIpCiBib29sCiBQcmludFBhc3M6OnZpc2l0KEluc3RydWN0aW9uICppbnNuKQogewot
-ICAgSU5GTygiJTNpOiAiLCBzZXJpYWwrKyk7CisgICBpZiAob21pdF9zZXJpYWwpIHsKKyAgICAg
-IElORk8oIiAgICAgIik7CisgICAgICBzZXJpYWwrKzsKKyAgIH0KKyAgIGVsc2UKKyAgICAgIElO
-Rk8oIiUzaTogIiwgc2VyaWFsKyspOwogICAgaW5zbi0+cHJpbnQoKTsKICAgIHJldHVybiB0cnVl
-OwogfQpAQCAtNzc1LDkgKzc4MSw5IEBAIEZ1bmN0aW9uOjpwcmludCgpCiB9CiAKIHZvaWQKLVBy
-b2dyYW06OnByaW50KCkKK1Byb2dyYW06OnByaW50KGJvb2wgb21pdExpbmVOdW0pCiB7Ci0gICBQ
-cmludFBhc3MgcGFzczsKKyAgIFByaW50UGFzcyBwYXNzKG9taXRMaW5lTnVtKTsKICAgIGluaXRf
-Y29sb3VycygpOwogICAgcGFzcy5ydW4odGhpcywgdHJ1ZSwgZmFsc2UpOwogfQpkaWZmIC0tZ2l0
-IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl90YXJnZXQuY3Bw
-IGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl90YXJnZXQuY3Bw
-CmluZGV4IDI5OGU3YzZlZjkuLjk2YWQ3MGQyOGEgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2Ry
-aXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfdGFyZ2V0LmNwcAorKysgYi9zcmMvZ2FsbGl1
-bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3RhcmdldC5jcHAKQEAgLTM3MSw3ICsz
-NzEsNyBAQCBQcm9ncmFtOjplbWl0QmluYXJ5KHN0cnVjdCBudjUwX2lyX3Byb2dfaW5mbyAqaW5m
-bykKICAgIGVtaXQtPnByZXBhcmVFbWlzc2lvbih0aGlzKTsKIAogICAgaWYgKGRiZ0ZsYWdzICYg
-TlY1MF9JUl9ERUJVR19CQVNJQykKLSAgICAgIHRoaXMtPnByaW50KCk7CisgICAgICB0aGlzLT5w
-cmludChpbmZvLT5vbWl0TGluZU51bSk7CiAKICAgIGlmICghYmluU2l6ZSkgewogICAgICAgY29k
-ZSA9IE5VTEw7CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVh
-dV9jb21waWxlci5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfY29tcGls
-ZXIuYwppbmRleCAzMTUxYTZmNDIwLi4yMGE0OTY2NDMzIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1
-bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9jb21waWxlci5jCisrKyBiL3NyYy9nYWxsaXVtL2Ry
-aXZlcnMvbm91dmVhdS9ub3V2ZWF1X2NvbXBpbGVyLmMKQEAgLTEyMiw2ICsxMjIsOCBAQCBub3V2
-ZWF1X2NvZGVnZW4oaW50IGNoaXBzZXQsIGludCB0eXBlLCBzdHJ1Y3QgdGdzaV90b2tlbiB0b2tl
-bnNbXSwKIAogICAgaW5mby5vcHRMZXZlbCA9IGRlYnVnX2dldF9udW1fb3B0aW9uKCJOVjUwX1BS
-T0dfT1BUSU1JWkUiLCAzKTsKICAgIGluZm8uZGJnRmxhZ3MgPSBkZWJ1Z19nZXRfbnVtX29wdGlv
-bigiTlY1MF9QUk9HX0RFQlVHIiwgMCk7CisgICBpbmZvLm9taXRMaW5lTnVtID0KKyAgICAgICAg
-IGRlYnVnX2dldF9udW1fb3B0aW9uKCJOVjUwX1BST0dfREVCVUdfT01JVF9MSU5FTlVNIiwgMCkg
-PyB0cnVlIDogZmFsc2U7CiAKICAgIHJldCA9IG52NTBfaXJfZ2VuZXJhdGVfY29kZSgmaW5mbyk7
-CiAgICBpZiAocmV0KSB7CkBAIC0xNDMsNiArMTQ1LDcgQEAgbWFpbihpbnQgYXJnYywgY2hhciAq
-YXJndltdKQogICAgRklMRSAqZjsKICAgIGNoYXIgdGV4dFs2NTUzNl0gPSB7MH07CiAgICB1bnNp
-Z25lZCBzaXplID0gMCwgKmNvZGUgPSBOVUxMOworICAgYm9vbCBvbWl0TGluZU51bSA9IGZhbHNl
-OwogCiAgICBmb3IgKGkgPSAxOyBpIDwgYXJnYzsgaSsrKSB7CiAgICAgICBpZiAoIXN0cmNtcChh
-cmd2W2ldLCAiLWEiKSkKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9u
-djUwL252NTBfcHJvZ3JhbS5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1
-MF9wcm9ncmFtLmMKaW5kZXggNmU5NDNhM2Q5NC4uZmI1YzllZDc3NyAxMDA2NDQKLS0tIGEvc3Jj
-L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9wcm9ncmFtLmMKKysrIGIvc3JjL2dh
-bGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9wcm9ncmFtLmMKQEAgLTM2Nyw2ICszNjcs
-OCBAQCBudjUwX3Byb2dyYW1fdHJhbnNsYXRlKHN0cnVjdCBudjUwX3Byb2dyYW0gKnByb2csIHVp
-bnQxNl90IGNoaXBzZXQsCiAjaWZkZWYgREVCVUcKICAgIGluZm8tPm9wdExldmVsID0gZGVidWdf
-Z2V0X251bV9vcHRpb24oIk5WNTBfUFJPR19PUFRJTUlaRSIsIDMpOwogICAgaW5mby0+ZGJnRmxh
-Z3MgPSBkZWJ1Z19nZXRfbnVtX29wdGlvbigiTlY1MF9QUk9HX0RFQlVHIiwgMCk7CisgICBpbmZv
-LT5vbWl0TGluZU51bSA9CisgICAgICAgICBkZWJ1Z19nZXRfbnVtX29wdGlvbigiTlY1MF9QUk9H
-X0RFQlVHX09NSVRfTElORU5VTSIsIDApID8gdHJ1ZSA6IGZhbHNlOwogI2Vsc2UKICAgIGluZm8t
-Pm9wdExldmVsID0gMzsKICNlbmRpZgpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9u
-b3V2ZWF1L252YzAvbnZjMF9wcm9ncmFtLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-bnZjMC9udmMwX3Byb2dyYW0uYwppbmRleCBjOTVhOTZjNzE3Li44ZGNlZDY2NDM3IDEwMDY0NAot
-LS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Byb2dyYW0uYworKysg
-Yi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Byb2dyYW0uYwpAQCAtNTc1
-LDYgKzU3NSw4IEBAIG52YzBfcHJvZ3JhbV90cmFuc2xhdGUoc3RydWN0IG52YzBfcHJvZ3JhbSAq
-cHJvZywgdWludDE2X3QgY2hpcHNldCwKICAgIGluZm8tPnRhcmdldCA9IGRlYnVnX2dldF9udW1f
-b3B0aW9uKCJOVjUwX1BST0dfQ0hJUFNFVCIsIGNoaXBzZXQpOwogICAgaW5mby0+b3B0TGV2ZWwg
-PSBkZWJ1Z19nZXRfbnVtX29wdGlvbigiTlY1MF9QUk9HX09QVElNSVpFIiwgMyk7CiAgICBpbmZv
-LT5kYmdGbGFncyA9IGRlYnVnX2dldF9udW1fb3B0aW9uKCJOVjUwX1BST0dfREVCVUciLCAwKTsK
-KyAgIGluZm8tPm9taXRMaW5lTnVtID0KKyAgICAgICAgIGRlYnVnX2dldF9udW1fb3B0aW9uKCJO
-VjUwX1BST0dfREVCVUdfT01JVF9MSU5FTlVNIiwgMCkgPyB0cnVlIDogZmFsc2U7CiAjZWxzZQog
-ICAgaW5mby0+b3B0TGV2ZWwgPSAzOwogI2VuZGlmCi0tIAoyLjE1LjAKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============2078177835==
+Content-Type: multipart/alternative; boundary="15109361680.3E191.12068";
+ charset="UTF-8"
+
+
+--15109361680.3E191.12068
+Date: Fri, 17 Nov 2017 16:29:28 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103764
+
+--- Comment #9 from Ilya <dikiy_evrej-S0/GAf8tV78@public.gmane.org> ---
+I seems to be a tuxonice-specific bug. I tried now the standard kernel and =
+all
+seems to be ok (except the suspend and hibernation, which does not work sin=
+ce 5
+years :(
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15109361680.3E191.12068
+Date: Fri, 17 Nov 2017 16:29:28 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - 3D renering results in a distorted frame."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103764#c9">Commen=
+t # 9</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - 3D renering results in a distorted frame."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103764">bug 10376=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+dikiy_evrej&#64;web.de" title=3D"Ilya &lt;dikiy_evrej&#64;web.de&gt;"> <spa=
+n class=3D"fn">Ilya</span></a>
+</span></b>
+        <pre>I seems to be a tuxonice-specific bug. I tried now the standar=
+d kernel and all
+seems to be ok (except the suspend and hibernation, which does not work sin=
+ce 5
+years :(</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15109361680.3E191.12068--
+
+--===============2078177835==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2078177835==--
