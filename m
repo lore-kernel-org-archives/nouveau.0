@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103753] Visual glitches on GTX 1060 6GB/4.13.x
-Date: Fri, 17 Nov 2017 09:30:29 +0000
-Message-ID: <bug-103753-8800-Fc16N1b96I@http.bugs.freedesktop.org/>
+Date: Fri, 17 Nov 2017 09:38:18 +0000
+Message-ID: <bug-103753-8800-THZl4k2ic2@http.bugs.freedesktop.org/>
 References: <bug-103753-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0342541636=="
+Content-Type: multipart/mixed; boundary="===============1617978090=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103753-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0342541636==
-Content-Type: multipart/alternative; boundary="15109110291.3f305aDe.3593";
+--===============1617978090==
+Content-Type: multipart/alternative; boundary="15109114970.e13b.3131";
  charset="UTF-8"
 
 
---15109110291.3f305aDe.3593
-Date: Fri, 17 Nov 2017 09:30:29 +0000
+--15109114970.e13b.3131
+Date: Fri, 17 Nov 2017 09:38:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,25 +35,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103753
 
-Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> changed:
+--- Comment #7 from Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> ---
+Created attachment 135542
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135542&action=3Dedit
+Firefox
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |UNCONFIRMED
-     Ever confirmed|1                           |0
-         Resolution|NOTABUG                     |---
+I've noticed that it happens only with italic web fonts.
 
---- Comment #6 from Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> ---
-Font artifacts while scrolling in Firefox are still present even with corre=
-ct
-settings.
+If you open the same web page for the second time the problem disappears.
+
+If you cover the browser window and put it back into foreground the problem
+disappears.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15109110291.3f305aDe.3593
-Date: Fri, 17 Nov 2017 09:30:29 +0000
+--15109114970.e13b.3131
+Date: Fri, 17 Nov 2017 09:38:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,54 +63,14 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:t.artem&#=
-64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailcity.com&g=
-t;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_UNCONFIRMED "
-   title=3D"UNCONFIRMED - Visual glitches on GTX 1060 6GB/4.13.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753">bug 10375=
-3</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
-           <td>UNCONFIRMED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Ever confirmed</td>
-           <td>1
-           </td>
-           <td>
-               &nbsp;
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>NOTABUG
-           </td>
-           <td>---
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_UNCONFIRMED "
    title=3D"UNCONFIRMED - Visual glitches on GTX 1060 6GB/4.13.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753#c6">Commen=
-t # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_UNCONFIRMED "
    title=3D"UNCONFIRMED - Visual glitches on GTX 1060 6GB/4.13.x"
@@ -121,9 +80,18 @@ t # 6</a>
 t.artem&#64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailc=
 ity.com&gt;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
 </span></b>
-        <pre>Font artifacts while scrolling in Firefox are still present ev=
-en with correct
-settings.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135542=
+" name=3D"attach_135542" title=3D"Firefox">attachment 135542</a> <a href=3D=
+"attachment.cgi?id=3D135542&amp;action=3Dedit" title=3D"Firefox">[details]<=
+/a></span>
+Firefox
+
+I've noticed that it happens only with italic web fonts.
+
+If you open the same web page for the second time the problem disappears.
+
+If you cover the browser window and put it back into foreground the problem
+disappears.</pre>
         </div>
       </p>
 
@@ -137,9 +105,9 @@ settings.</pre>
     </body>
 </html>=
 
---15109110291.3f305aDe.3593--
+--15109114970.e13b.3131--
 
---===============0342541636==
+--===============1617978090==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -149,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0342541636==--
+--===============1617978090==--
