@@ -1,38 +1,47 @@
-From: Ondrej Zary <linux@rainbow-software.org>
-Subject: Blank console but X11 works on MCP79 - old regression since 3.8
-Date: Fri, 17 Nov 2017 15:26:00 +0100
-Message-ID: <201711171526.01053.linux@rainbow-software.org>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Blank console but X11 works on MCP79 - old regression
+	since 3.8
+Date: Fri, 17 Nov 2017 09:43:33 -0500
+Message-ID: <CAKb7UvgEyKTHK3JMrEdLrMXZP0SAPH9opDFGAWjeFCw4s+NEUA@mail.gmail.com>
+References: <201711171526.01053.linux@rainbow-software.org>
 Mime-Version: 1.0
-Content-Type: Text/Plain;
-  charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <201711171526.01053.linux-ZCIryABCsrmttCpgsWEBFmD2FQJk+8+b@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ondrej Zary <linux-ZCIryABCsrmttCpgsWEBFmD2FQJk+8+b@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hello,
-I've just been hit by this old bug which is still present in 4.14:
-https://bugs.freedesktop.org/show_bug.cgi?id=80675
-
-On MCP79 (ION), when stolen memory is set to 32MB in BIOS, console is blank 
-but X11 works. When the stolen memory is increased to 64MB, console works 
-fine.
-
-Bisected it to this:
-
-4f6029da58ba9204c98e33f4f3737fe085c87a6f is the first bad commit
-commit 4f6029da58ba9204c98e33f4f3737fe085c87a6f
-Author: Ben Skeggs <bskeggs@redhat.com>
-Date:   Fri Nov 16 11:54:31 2012 +1000
-
-    drm/nv50-nvc0: switch to common disp impl, removing previous version
-
-    Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
-
-It's a big change so I'm not able to do more debugging.
-
--- 
-Ondrej Zary
+V2l0aCBhIG5ldyBrZXJuZWwsIG1pbmQgZ3JhYmJpbmcgYSBkbWVzZyB3aXRoIGRybS5kZWJ1Zz0w
+eDFlCm5vdXZlYXUuZGVidWc9ZGVidWcgKG9yIG1heWJlIGV2ZW4gPXRyYWNlKT8gTWF5YmUgYWxz
+byBzZWUgaWYKZmJjb24vZmJkZXYgaGF2ZSBhbnkgZGVidWcgdGhpbmdzIHRoYXQgY2FuIGJlIHR1
+cm5lZCBvbj8KClNvdW5kcyBsaWtlIHRoaW5ncyBhcmUgZ2VuZXJhbGx5IHdvcmtpbmcsIGp1c3Qg
+dGhlIGZiY29uIC0+IG5vdXZlYXVmYgpwYXRoIHNlZW1zIHNvbWVob3cgYnVnZ2VyZWQuCgpBbm90
+aGVyIHRoaW5nIHRvIHRyeSB3b3VsZCBiZSBub3V2ZWF1LmF0b21pYz0xCgpPbiBGcmksIE5vdiAx
+NywgMjAxNyBhdCA5OjI2IEFNLCBPbmRyZWogWmFyeSA8bGludXhAcmFpbmJvdy1zb2Z0d2FyZS5v
+cmc+IHdyb3RlOgo+IEhlbGxvLAo+IEkndmUganVzdCBiZWVuIGhpdCBieSB0aGlzIG9sZCBidWcg
+d2hpY2ggaXMgc3RpbGwgcHJlc2VudCBpbiA0LjE0Ogo+IGh0dHBzOi8vYnVncy5mcmVlZGVza3Rv
+cC5vcmcvc2hvd19idWcuY2dpP2lkPTgwNjc1Cj4KPiBPbiBNQ1A3OSAoSU9OKSwgd2hlbiBzdG9s
+ZW4gbWVtb3J5IGlzIHNldCB0byAzMk1CIGluIEJJT1MsIGNvbnNvbGUgaXMgYmxhbmsKPiBidXQg
+WDExIHdvcmtzLiBXaGVuIHRoZSBzdG9sZW4gbWVtb3J5IGlzIGluY3JlYXNlZCB0byA2NE1CLCBj
+b25zb2xlIHdvcmtzCj4gZmluZS4KPgo+IEJpc2VjdGVkIGl0IHRvIHRoaXM6Cj4KPiA0ZjYwMjlk
+YTU4YmE5MjA0Yzk4ZTMzZjRmMzczN2ZlMDg1Yzg3YTZmIGlzIHRoZSBmaXJzdCBiYWQgY29tbWl0
+Cj4gY29tbWl0IDRmNjAyOWRhNThiYTkyMDRjOThlMzNmNGYzNzM3ZmUwODVjODdhNmYKPiBBdXRo
+b3I6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KPiBEYXRlOiAgIEZyaSBOb3YgMTYg
+MTE6NTQ6MzEgMjAxMiArMTAwMAo+Cj4gICAgIGRybS9udjUwLW52YzA6IHN3aXRjaCB0byBjb21t
+b24gZGlzcCBpbXBsLCByZW1vdmluZyBwcmV2aW91cyB2ZXJzaW9uCj4KPiAgICAgU2lnbmVkLW9m
+Zi1ieTogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgo+Cj4gSXQncyBhIGJpZyBjaGFu
+Z2Ugc28gSSdtIG5vdCBhYmxlIHRvIGRvIG1vcmUgZGVidWdnaW5nLgo+Cj4gLS0KPiBPbmRyZWog
+WmFyeQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
