@@ -1,18 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Blank console but X11 works on MCP79 - old regression
-	since 3.8
-Date: Sat, 18 Nov 2017 00:23:33 -0500
-Message-ID: <CAKb7UvhemHsv2=uTikry0u81hhsRwdT1YFuGicn9zNTWrsT61g@mail.gmail.com>
-References: <201711171526.01053.linux@rainbow-software.org>
- <201711171833.52855.linux@rainbow-software.org>
- <CAKb7Uvg9BQ6yAXXt+PbVf_c3Wzx3vkA0VdzkcO6qnRC2nJ7AOQ@mail.gmail.com>
- <201711172025.15121.linux@rainbow-software.org>
- <CAKb7Uvjv23Po+a5cJWgYSPRDOO7UEv7o2LzD_OGLuUGT3dZ_3A@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93629] [NVE6] complete system freeze,
+ PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
+Date: Sat, 18 Nov 2017 18:53:09 +0000
+Message-ID: <bug-93629-8800-tSAfh1xSZA@http.bugs.freedesktop.org/>
+References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0035770814=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvjv23Po+a5cJWgYSPRDOO7UEv7o2LzD_OGLuUGT3dZ_3A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,60 +17,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ondrej Zary <linux-ZCIryABCsrmttCpgsWEBFmD2FQJk+8+b@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBOb3YgMTcsIDIwMTcgYXQgMjozNyBQTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
-bS5taXQuZWR1PiB3cm90ZToKPiBPbiBGcmksIE5vdiAxNywgMjAxNyBhdCAyOjI1IFBNLCBPbmRy
-ZWogWmFyeSA8bGludXhAcmFpbmJvdy1zb2Z0d2FyZS5vcmc+IHdyb3RlOgo+PiBPbiBGcmlkYXkg
-MTcgTm92ZW1iZXIgMjAxNyAxODo0MToxNyBJbGlhIE1pcmtpbiB3cm90ZToKPj4+IE9uIEZyaSwg
-Tm92IDE3LCAyMDE3IGF0IDEyOjMzIFBNLCBPbmRyZWogWmFyeQo+Pj4KPj4+IDxsaW51eEByYWlu
-Ym93LXNvZnR3YXJlLm9yZz4gd3JvdGU6Cj4+PiA+IEBAIC00ODMsOCArNDgzLDggQEAKPj4+ID4g
-IG5vdXZlYXUgMDAwMDowMjowMC4wOiBkaXNwOiAgICAwODYwOiAwMDAwMDAwMCAtPiAwMDAwMDUw
-MAo+Pj4gPiAgbm91dmVhdSAwMDAwOjAyOjAwLjA6IGRpc3A6ICAgIDA4NjQ6IDAwMDAwMDAwCj4+
-PiA+ICBub3V2ZWF1IDAwMDA6MDI6MDAuMDogZGlzcDogICAgMDg2ODogMDAwMDAwMDAgLT4gMDQw
-MDA1MDAKPj4+ID4gLW5vdXZlYXUgMDAwMDowMjowMC4wOiBkaXNwOiAgICAwODZjOiAwMDAwMDAw
-MCAtPiAwMDEwMDUwMAo+Pj4gPiAtbm91dmVhdSAwMDAwOjAyOjAwLjA6IGRpc3A6ICAgIDA4NzA6
-IDAwMDBlOTAwIC0+IDAwMDAxZTAwCj4+PiA+ICtub3V2ZWF1IDAwMDA6MDI6MDAuMDogZGlzcDog
-ICAgMDg2YzogMDAwMDAwMDAgLT4gMDAxMDBhMDAKPj4+ID4gK25vdXZlYXUgMDAwMDowMjowMC4w
-OiBkaXNwOiAgICAwODcwOiAwMDAwZTkwMCAtPiAwMDAwZTgwMAo+Pj4gPiAgbm91dmVhdSAwMDAw
-OjAyOjAwLjA6IGRpc3A6ICAgIDA4NzQ6IDAwMDAwMDAwIC0+IGZmZmYwMDAwCj4+PiA+ICBub3V2
-ZWF1IDAwMDA6MDI6MDAuMDogZGlzcDogICAgMDg3ODogMDAwMDAwMDAKPj4+ID4gIG5vdXZlYXUg
-MDAwMDowMjowMC4wOiBkaXNwOiAgICAwODgwOiAwNTAwMDAwMAo+Pj4gPgo+Pj4gPiBMb29rcyBs
-aWtlIGl0J3MgdXNpbmcgOGJwcCAoMHgxZTAwKSBpbiAzMk1CIGNhc2UgYnV0IDE2YnBwICgweGU4
-MDApIGluCj4+PiA+IDY0TUIgY2FzZS4gV2h5Pwo+Pj4gPgo+Pj4gPiBJIGdldCBibGFuayBzY3Jl
-ZW4gZXZlbiB3aXRoIDY0TUIgd2l0aCB2aWRlbz0xMjgweDEwMjQtOCBrZXJuZWwKPj4+ID4gcGFy
-YW1ldGVyLiBDb25zb2xlIHdvcmtzIHdpdGggdmlkZW89MTI4MHgxMDI0LTE2IGV2ZW4gd2l0aCAz
-Mk1CIHN0b2xlbgo+Pj4gPiBtZW1vcnkuCj4+PiA+Cj4+PiA+IENvbmNsdXNpb25zOiA4LWJpdCBz
-dXBwb3J0IGlzIGJyb2tlbiBhbmQgYnBwIHJlZHVjdGlvbiBpcyB3ZWlyZC4KPj4+Cj4+PiBPSywg
-d2VsbCB0aGF0IG1ha2VzIGEgKnRvbiogb2Ygc2Vuc2UgKDhicHAgYmVpbmcgYnJva2VuKS4KPj4+
-Cj4+PiBJIHRoaW5rIHRoZSBpZGVhIG9mIGJwcCByZWR1Y3Rpb24gaXMgdGhhdCB3aGVuIHlvdSdy
-ZSBvbiB5b3VyIHNoaW55Cj4+PiBuZXcgUml2YSBUTlQgd2l0aCAxNk1CIG9mIFZSQU0sIHlvdSBk
-b24ndCB3YW50IHRvIGdvIGNyYXp5IGFsbG9jYXRpbmcKPj4+IGFsbCB0aGF0IHRvIGEgcGlubmVk
-IGZiY29uIC0gYWxtb3N0IGhhbGYgb2YgdGhhdCB3b3VsZCBnbyB0byBhIHNpbmdsZQo+Pj4gMzJi
-cHAgMTYwMHgxMjAwIGJ1ZmZlciwgbW9yZSBmb3IgMTkyMHgxMjAwLiBZb3Ugd2FudCB0byBiZSBh
-YmxlIHRvCj4+PiBoYXZlIGF0IGxlYXN0IGEgZmV3IGZiLXNpemVkIGJ1ZmZlcnMgZm9yIGJhY2ti
-dWZmZXIgcmVuZGVyaW5nLCBldGMuCj4+Pgo+Pj4gVGhlIHNwZWNpZmljIGxpbWl0cyBjb3VsZCBw
-cm9iYWJseSB1c2UgdHdlYWtpbmcgLSBJIHRoaW5rIHRoZXkgb25seQo+Pj4gY29uc2lkZXIgVlJB
-TSBzaXplLCBub3QgdGhlIGZiIHNpemUuCj4+Pgo+Pj4gSSBndWVzcyA4YnBwIHdvcmtlZCBwcmlv
-ciB0byB0aGUgY2hhbmdlIHlvdSBiaXNlY3RlZCB0aG91Z2gsIHNvIHdlCj4+PiBzaG91bGQgZmln
-dXJlIG91dCB3aGF0IHdlIGRpZCB3cm9uZyBpbiB0aGUgbmV3IGNvZGUuCj4+Cj4+IFllcywgYm9v
-dGVkIDMuNyAobGFzdCB3b3JraW5nIGtlcm5lbCkgYW5kIGl0J3MgcnVubmluZyBpbiA4YnBwLgo+
-Cj4gQnkgdGhlIHdheSwgaW5zdGVhZCBvZiBib290aW5nICRrZXJuZWwsIHlvdSBjYW4gdXNlIG1v
-ZGV0ZXN0IGZyb20KPiBsaWJkcm0vdGVzdHMuIE5vdCBzdXJlIGlmIGl0IHN1cHBvcnRzIEM4IHRo
-b3VnaCA9LwoKSXQgZGlkbid0LiBCdXQgaXQgZG9lcyBub3cgLSBJIG1haWxlZCBhIHBhdGNoIHRv
-IGRyaS1kZXZlbCwgYWxzbyAod2l0aApzbGlnaHQgZml4KSBhdmFpbGFibGUgYXQKCmh0dHBzOi8v
-cGVvcGxlLmZyZWVkZXNrdG9wLm9yZy9+aW1pcmtpbi9wYXRjaGVzLzAwMDEtbW9kZXRlc3QtYWRk
-LUM4LXN1cHBvcnQtdG8tZ2VuZXJhdGUtU01QVEUtcGF0dGVybi5wYXRjaAoKVGhpcyB3b3JrcyBv
-biBHSzIwOCBidXQgbm90IG9uIEc5MiAod2hvc2UgZGlzcGxheSB1bml0IGlzIG11Y2ggY2xvc2Vy
-CnRvIHlvdXIgTUNQNzkncykuIFlvdSBjYW4gcnVuIGFzCgouL21vZGV0ZXN0IC1zIERWSS1JLTE6
-MTkyMHgxMjAwQEM4CgpUaGlzIHNob3VsZCBkaXNwbGF5IGEgU01QVEUgcGF0dGVybiwgYW5kIGV4
-aXQgd2hlbiB5b3UgaGl0IGVudGVyLiBXaGVuCml0IGRvZXMgc28sIGl0IGRvZXNuJ3QgcmVzdG9y
-ZSBmYmNvbiwgYnV0IHlvdSBjYW4gc3d0aWNoIHRvIGFub3RoZXIKdnR5IHRvIGdldCBjb25zb2xl
-IGJhY2suCgpJIGdldCBhIHdoaXRlIHBpY3R1cmUgb24gRzkyLiBOb3cganVzdCBoYXZlIHRvIGZp
-Z3VyZSBvdXQgaG93IHRvIGZpeAppdC4gU29tZW9uZSBzaG91bGQgYWxzbyB0ZXN0IG9uIGEgRzgw
-IGlmIHBvc3NpYmxlLCBzaW5jZSB0aGF0IHRha2VzIGEKZGlmZmVyZW50IHBhdGggYXMgd2VsbC4K
-CiAgLWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0035770814==
+Content-Type: multipart/alternative; boundary="15110311897.BC10Bb16.4175";
+ charset="UTF-8"
+
+
+--15110311897.BC10Bb16.4175
+Date: Sat, 18 Nov 2017 18:53:09 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
+
+--- Comment #39 from Dustin Spicuzza <dustin-Jt2G5/S7rSkR8nHjUUpU8EEOCMrvLtNR@public.gmane.org> ---
+I'm on Fedora 27, and I get the freeze with the following messages in dmesg:
+
+[    0.000000] Linux version 4.13.12-300.fc27.x86_64
+(mockbuild-IQyTzKUysSGsoVxi7xNpEsNrQ1sYaAMk1rGf20DD4Tc@public.gmane.org) (gcc version 7.
+2.1 20170915 (Red Hat 7.2.1-2) (GCC)) #1 SMP Wed Nov 8 16:38:01 UTC 2017
+
+[ 3571.488551] nouveau 0000:01:00.0: gr: TRAP ch 14 [003f543000 Xwayland[30=
+20]]
+[ 3571.488560] nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000049
+[ 3571.488564] nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000049
+[ 3571.488568] nouveau 0000:01:00.0: gr: GPC0/TPC2/TEX: 80000049
+[ 3571.488572] nouveau 0000:01:00.0: gr: GPC0/TPC3/TEX: 80000049
+[ 3571.488581] nouveau 0000:01:00.0: fifo: read fault at 0004bbc000 engine =
+00
+[PGRAPH] client 0a [GPC0/] reason 02 [PAGE_NOT_PRESENT] on channel 14
+[003f543000 Xwayland[3020]]
+[ 3571.488583] nouveau 0000:01:00.0: fifo: gr engine fault on channel 14,
+recovering...
+[ 3571.488779] nouveau 0000:01:00.0: Xwayland[3020]: channel 14 killed!
+
+lspci:
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GF106 [GeForce GTS 45=
+0]
+(rev a1)
+
+packages:
+
+xorg-x11-drv-nouveau-1.0.15-3.fc27
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15110311897.BC10Bb16.4175
+Date: Sat, 18 Nov 2017 18:53:09 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c39">Commen=
+t # 39</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+dustin&#64;virtualroadside.com" title=3D"Dustin Spicuzza &lt;dustin&#64;vir=
+tualroadside.com&gt;"> <span class=3D"fn">Dustin Spicuzza</span></a>
+</span></b>
+        <pre>I'm on Fedora 27, and I get the freeze with the following mess=
+ages in dmesg:
+
+[    0.000000] Linux version 4.13.12-300.fc27.x86_64
+(<a href=3D"mailto:mockbuild&#64;bkernel01.phx2.fedoraproject.org">mockbuil=
+d&#64;bkernel01.phx2.fedoraproject.org</a>) (gcc version 7.
+2.1 20170915 (Red Hat 7.2.1-2) (GCC)) #1 SMP Wed Nov 8 16:38:01 UTC 2017
+
+[ 3571.488551] nouveau 0000:01:00.0: gr: TRAP ch 14 [003f543000 Xwayland[30=
+20]]
+[ 3571.488560] nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000049
+[ 3571.488564] nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000049
+[ 3571.488568] nouveau 0000:01:00.0: gr: GPC0/TPC2/TEX: 80000049
+[ 3571.488572] nouveau 0000:01:00.0: gr: GPC0/TPC3/TEX: 80000049
+[ 3571.488581] nouveau 0000:01:00.0: fifo: read fault at 0004bbc000 engine =
+00
+[PGRAPH] client 0a [GPC0/] reason 02 [PAGE_NOT_PRESENT] on channel 14
+[003f543000 Xwayland[3020]]
+[ 3571.488583] nouveau 0000:01:00.0: fifo: gr engine fault on channel 14,
+recovering...
+[ 3571.488779] nouveau 0000:01:00.0: Xwayland[3020]: channel 14 killed!
+
+lspci:
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GF106 [GeForce GTS 45=
+0]
+(rev a1)
+
+packages:
+
+xorg-x11-drv-nouveau-1.0.15-3.fc27</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15110311897.BC10Bb16.4175--
+
+--===============0035770814==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0035770814==--
