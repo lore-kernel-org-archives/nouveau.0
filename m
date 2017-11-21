@@ -1,122 +1,119 @@
-From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v2] drm: don't continue with anything after
- the GPU couldn't be woken up
-Date: Tue, 21 Nov 2017 18:46:09 +0100
-Message-ID: <20171121174609.GA28301@ulmo>
-References: <20171121150116.24956-1-kherbst@redhat.com>
+From: Mikko Perttunen <cyndis-/1wQRMveznE@public.gmane.org>
+Subject: Re: [Nouveau] GP10B regression
+Date: Tue, 21 Nov 2017 20:07:41 +0200
+Message-ID: <eef8d770-f948-12b3-0749-f1b9a25f231d@kapsi.fi>
+References: <343f2346-1a6b-682b-97f3-12d5dd71c856@kapsi.fi>
+ <582d1472-1287-0eb2-dcd7-3e48178489b3@kapsi.fi>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0959845823=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20171121150116.24956-1-kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <582d1472-1287-0eb2-dcd7-3e48178489b3-/1wQRMveznE@public.gmane.org>
+Content-Language: en-US
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Anthony Eden <aeden-EfZU8u+QLuPpgkiH4x7ZXw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Thanks to Thierry for finding this - applying
 
---===============0959845823==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="BOKacYhQ+x31HxR3"
-Content-Disposition: inline
+index e14643615698..00eeaaffeae5 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
+@@ -2369,7 +2369,7 @@ nv13b_chipset = {
+         .imem = gk20a_instmem_new,
+         .ltc = gp100_ltc_new,
+         .mc = gp10b_mc_new,
+-       .mmu = gf100_mmu_new,
++       .mmu = gp10b_mmu_new,
+         .secboot = gp10b_secboot_new,
+         .pmu = gm20b_pmu_new,
+         .timer = gk20a_timer_new,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.c 
+b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.c
+index 3dcc6bddb32f..470a4fadc165 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.c
+@@ -33,7 +33,7 @@ gp10b_vmm = {
+                 { 38, &gp100_vmm_desc_16[3], NVKM_VMM_PAGE_Sxxx },
+                 { 29, &gp100_vmm_desc_16[2], NVKM_VMM_PAGE_Sxxx },
+                 { 21, &gp100_vmm_desc_16[1], NVKM_VMM_PAGE_SxHC },
+-               { 16, &gp100_vmm_desc_16[0], NVKM_VMM_PAGE_SxHC },
++/*             { 16, &gp100_vmm_desc_16[0], NVKM_VMM_PAGE_SxHC },*/
+                 { 12, &gp100_vmm_desc_12[0], NVKM_VMM_PAGE_SxHx },
+                 {}
+         }
 
+on top of next-20171121 works at least for a simple test.
 
---BOKacYhQ+x31HxR3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Mikko
 
-On Tue, Nov 21, 2017 at 04:01:16PM +0100, Karol Herbst wrote:
-> This should make systems more stable where resuming the GPU fails. This
-> can happen due to bad firmware or due to a bug within the kernel. The
-> last thing which should happen in either case is an unusable system.
->=20
-> v2: do the same in nouveau_pmops_resume
->=20
-> Tested-by: Karl Hastings <kazen-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> Signed-off-by: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> ---
->  drm/nouveau/nouveau_drm.c | 31 +++++++++++++++++++++++--------
->  1 file changed, 23 insertions(+), 8 deletions(-)
->=20
-> diff --git a/drm/nouveau/nouveau_drm.c b/drm/nouveau/nouveau_drm.c
-> index 8d4a5be3..6e4cb4f7 100644
-> --- a/drm/nouveau/nouveau_drm.c
-> +++ b/drm/nouveau/nouveau_drm.c
-> @@ -792,6 +792,27 @@ nouveau_pmops_suspend(struct device *dev)
->  	return 0;
->  }
-> =20
-> +static int
-> +nouveau_set_power_state_D0(struct pci_dev *pdev)
-> +{
-> +	struct nouveau_drm *drm =3D nouveau_drm(pci_get_drvdata(pdev));
-> +	int ret;
-> +
-> +	pci_set_power_state(pdev, PCI_D0);
-> +	/* abort if anything went wrong */
-> +	if (pdev->current_state !=3D PCI_D0) {
-> +		NV_ERROR(drm, "couldn't wake up GPU!\n");
-> +		return -EBUSY;
-> +	}
-
-Looks to me like the more idiomatic way to do this is:
-
-	ret =3D pci_set_power_state(pdev, PCI_D0);
-	if (ret < 0 && ret !=3D -EIO)
-		return ret;
-
-> +	pci_restore_state(pdev);
-> +	ret =3D pci_enable_device(pdev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	pci_set_master(pdev);
-
-Looking closer it also seems like pci_enable_device() will already set
-the power state to D0 (via do_pci_enable_device()). Is the sequence
-above really necessary because the hardware is quirky, or was it
-cargo-culted?
-
-Thierry
-
---BOKacYhQ+x31HxR3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAloUZl0ACgkQ3SOs138+
-s6HVXRAAk8HlWcC6QC0TP3nnRj8+DjPkmlAg87DJ6Ntxdh4Lx+n8DpsWQiMVZNw1
-BxjE6Mj7zZjPS0LHVCfAsqbGODH9xvTYe+eEo71IY/ivajuh3dqcpiUSVRq8Jtb7
-yu4cbyNrjOQ9yTR5AH9xdx1IBd0UgAVjhlSj0V7+lvzzwXINBEG+DALlVKqmojtK
-RXS+w+fK+2Yf//kzVKOyL+2ge4+Kk9XouYXVySCkdq1L0I06FSxTI4ewoLF4sVcP
-0FeI/TQZ5sXELw9d7iFh7F/STFuLl9tYntTqc/bhOFLEYfRBejILpCdRlyRNi6Af
-qXs4aubrIckte0VreukWkoJPXd2d0g1hXC+IwGMZtuwL8He3Gk5d0ha0c6i/ovsi
-Tbt7M6XKbqdpDem1/8Nj4+AVLqNdKzv8bvzg1s3V8mCqKhhh2eEawlrZCCXrkhG2
-dEyL5TAPheoCgjcogjf3cpH6MpN706W/aNzLp1bfW2/2THMb6KeR6z7j9kFkYZzz
-LNrozmU6WV0vnUKZ9MOEx1nAi9xza0c5SoDJ4zf8goKqzOCSHI9IefWTTFlrbz+d
-WnuWcNPi3NacRCk4YVi3VeinW2sF+viGE1n812E95GgQZPS7JYWGjDbCtFHlb20S
-GsbDT/BVVbMRj6hTeNGTgzIjWUeqQ3dlwXGdDK6BkYK0MPii9cI=
-=ry+q
------END PGP SIGNATURE-----
-
---BOKacYhQ+x31HxR3--
-
---===============0959845823==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0959845823==--
+On 11/11/2017 03:02 PM, Mikko Perttunen wrote:
+> Bisection status report:
+> 
+> The latest commit I have gotten to work is
+> 
+> 10842ba074e9 drm/nouveau: remove unused nouveau_fence_work()
+> 
+> i.e. the first bad commit is
+> 
+> d7722134b825 drm/nouveau: switch over to new memory and vmm interfaces
+> 
+> Even with the first one some patches/hacks are needed:
+> 
+> - in mmu/gp10b.c, in the constructor we need to select the GM200 path - 
+> the GP100 path seems to not to work
+> 
+> - as mentioned in the first mail, we need to set .mmu = gp10b_mmu_new,
+> 
+> - and in nouveau_mem_memory_target we need to return 
+> NVKM_MEM_TARGET_NCOH instead of NVKM_MEM_TARGET_HOST.
+> 
+> Cheers,
+> Mikko
+> 
+> On 11/10/2017 11:27 PM, Mikko Perttunen wrote:
+>> Hello everyone,
+>>
+>> it seems that GP10B support has regressed recently. With linux-next, I 
+>> need to modify device/base.c to set
+>>
+>>      .mmu = gp10b_mmu_new
+>>
+>> for GP10B (makes sense - I guess this was left as gf100_mmu_new as a 
+>> typo) to probe. After that, running a trivial testcase (running a NOP 
+>> method in 3D class) fails with
+>>
+>> [  110.084649] nouveau 17000000.gpu: fifo: read fault at 0000011000 
+>> engine 06 [HOST0] client 06 [GPC0/L1_2] reas|
+>> on 02 [PTE] on channel 1 [00f206a000 nouveau_noop_te[2413]] 
+>>                                         |
+>> [  110.101423] nouveau 17000000.gpu: fifo: channel 1: killed 
+>>                                         |
+>> [  110.106827] nouveau 17000000.gpu: fifo: runlist 0: scheduled for 
+>> recovery                                    |
+>> Submitted pushbuffer.                                        |
+>> [  110.113867] nouveau 17000000.gpu: nouveau_noop_te[2413]: channel 1 
+>> killed!                                   |
+>> [  125.084858] nouveau 17000000.gpu: nouveau_noop_te[2413]: failed to 
+>> idle channel 1 [nouveau_noop_te[2413]]
+>>
+>> I haven't managed to track this down yet. However, I did find out that 
+>> checking out the drm/nouveau directory at commit 
+>> "drm/nouveau/kms/nv50: use the correct state for base channel notifier 
+>> setup" makes things work again.
+>>
+>> I'll continue to take look, though bisecting is a bit harder than 
+>> usual due to some other issues in Tegra186 recently, so any pointers 
+>> in the right direction would be useful :)
+>>
+>> Thanks,
+>> Mikko
+>> _______________________________________________
+>> Nouveau mailing list
+>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>> https://lists.freedesktop.org/mailman/listinfo/nouveau
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
