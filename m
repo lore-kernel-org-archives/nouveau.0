@@ -1,15 +1,13 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v2] drm: don't continue with anything after
- the GPU couldn't be woken up
-Date: Tue, 21 Nov 2017 20:03:20 +0100
-Message-ID: <CACO55tv6J+eY_KNvQxdKShaLi2Td7dDpQa-ety4tgFqvsij34Q@mail.gmail.com>
-References: <20171121150116.24956-1-kherbst@redhat.com>
- <20171121174609.GA28301@ulmo>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93629] [NVE6] complete system freeze,
+ PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
+Date: Tue, 21 Nov 2017 23:05:27 +0000
+Message-ID: <bug-93629-8800-fXzPj9durk@http.bugs.freedesktop.org/>
+References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0083594637=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20171121174609.GA28301@ulmo>
+In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,51 +17,247 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, David Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBOb3YgMjEsIDIwMTcgYXQgNjo0NiBQTSwgVGhpZXJyeSBSZWRpbmcKPHRoaWVycnku
-cmVkaW5nQGdtYWlsLmNvbT4gd3JvdGU6Cj4gT24gVHVlLCBOb3YgMjEsIDIwMTcgYXQgMDQ6MDE6
-MTZQTSArMDEwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+PiBUaGlzIHNob3VsZCBtYWtlIHN5c3Rl
-bXMgbW9yZSBzdGFibGUgd2hlcmUgcmVzdW1pbmcgdGhlIEdQVSBmYWlscy4gVGhpcwo+PiBjYW4g
-aGFwcGVuIGR1ZSB0byBiYWQgZmlybXdhcmUgb3IgZHVlIHRvIGEgYnVnIHdpdGhpbiB0aGUga2Vy
-bmVsLiBUaGUKPj4gbGFzdCB0aGluZyB3aGljaCBzaG91bGQgaGFwcGVuIGluIGVpdGhlciBjYXNl
-IGlzIGFuIHVudXNhYmxlIHN5c3RlbS4KPj4KPj4gdjI6IGRvIHRoZSBzYW1lIGluIG5vdXZlYXVf
-cG1vcHNfcmVzdW1lCj4+Cj4+IFRlc3RlZC1ieTogS2FybCBIYXN0aW5ncyA8a2F6ZW5AcmVkaGF0
-LmNvbT4KPj4gU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+
-Cj4+IC0tLQo+PiAgZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyB8IDMxICsrKysrKysrKysrKysr
-KysrKysrKysrLS0tLS0tLS0KPj4gIDEgZmlsZSBjaGFuZ2VkLCAyMyBpbnNlcnRpb25zKCspLCA4
-IGRlbGV0aW9ucygtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0u
-YyBiL2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPj4gaW5kZXggOGQ0YTViZTMuLjZlNGNiNGY3
-IDEwMDY0NAo+PiAtLS0gYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCj4+ICsrKyBiL2RybS9u
-b3V2ZWF1L25vdXZlYXVfZHJtLmMKPj4gQEAgLTc5Miw2ICs3OTIsMjcgQEAgbm91dmVhdV9wbW9w
-c19zdXNwZW5kKHN0cnVjdCBkZXZpY2UgKmRldikKPj4gICAgICAgcmV0dXJuIDA7Cj4+ICB9Cj4+
-Cj4+ICtzdGF0aWMgaW50Cj4+ICtub3V2ZWF1X3NldF9wb3dlcl9zdGF0ZV9EMChzdHJ1Y3QgcGNp
-X2RldiAqcGRldikKPj4gK3sKPj4gKyAgICAgc3RydWN0IG5vdXZlYXVfZHJtICpkcm0gPSBub3V2
-ZWF1X2RybShwY2lfZ2V0X2RydmRhdGEocGRldikpOwo+PiArICAgICBpbnQgcmV0Owo+PiArCj4+
-ICsgICAgIHBjaV9zZXRfcG93ZXJfc3RhdGUocGRldiwgUENJX0QwKTsKPj4gKyAgICAgLyogYWJv
-cnQgaWYgYW55dGhpbmcgd2VudCB3cm9uZyAqLwo+PiArICAgICBpZiAocGRldi0+Y3VycmVudF9z
-dGF0ZSAhPSBQQ0lfRDApIHsKPj4gKyAgICAgICAgICAgICBOVl9FUlJPUihkcm0sICJjb3VsZG4n
-dCB3YWtlIHVwIEdQVSFcbiIpOwo+PiArICAgICAgICAgICAgIHJldHVybiAtRUJVU1k7Cj4+ICsg
-ICAgIH0KPgo+IExvb2tzIHRvIG1lIGxpa2UgdGhlIG1vcmUgaWRpb21hdGljIHdheSB0byBkbyB0
-aGlzIGlzOgo+Cj4gICAgICAgICByZXQgPSBwY2lfc2V0X3Bvd2VyX3N0YXRlKHBkZXYsIFBDSV9E
-MCk7Cj4gICAgICAgICBpZiAocmV0IDwgMCAmJiByZXQgIT0gLUVJTykKPiAgICAgICAgICAgICAg
-ICAgcmV0dXJuIHJldDsKPgoKSSB0aG91Z2h0IHNvIHRvbywgYnV0IGl0IGVuZHMgdXAgcmV0dXJu
-aW5nIDAgZXZlbiBpZiBzZXR0aW5nIHRoZSBwb3dlcgpzdGF0ZSBmYWlscy4gT3IgbWF5YmUgSSBk
-aWQgc29tZXRoaW5nIHdyb25nIHdoZW4gaW5zdGFsbGluZyB0aGUKa2VybmVsLiBJIGNvdWxkIHRh
-a2UgYW5vdGhlciBzaG90IGF0IGl0LCBidXQgd2hhdCBJIGNhbWUgdXAgd2l0aCBzZWVtcwp0byB3
-b3JrLiBBZGRpbmcgYWlybGllZCBpbiBDQywgYmVjYXVzZSBoZSBzYXcgbXkgcGF0Y2ggYW5kIGRp
-ZG4ndApjb21wbGFpbiBhYm91dCBpdC4gSG9wZWZ1bGx5IGhlIGtub3dzIG1vcmUuCgo+PiArICAg
-ICBwY2lfcmVzdG9yZV9zdGF0ZShwZGV2KTsKPj4gKyAgICAgcmV0ID0gcGNpX2VuYWJsZV9kZXZp
-Y2UocGRldik7Cj4+ICsgICAgIGlmIChyZXQpCj4+ICsgICAgICAgICAgICAgcmV0dXJuIHJldDsK
-Pj4gKwo+PiArICAgICBwY2lfc2V0X21hc3RlcihwZGV2KTsKPgo+IExvb2tpbmcgY2xvc2VyIGl0
-IGFsc28gc2VlbXMgbGlrZSBwY2lfZW5hYmxlX2RldmljZSgpIHdpbGwgYWxyZWFkeSBzZXQKPiB0
-aGUgcG93ZXIgc3RhdGUgdG8gRDAgKHZpYSBkb19wY2lfZW5hYmxlX2RldmljZSgpKS4gSXMgdGhl
-IHNlcXVlbmNlCj4gYWJvdmUgcmVhbGx5IG5lY2Vzc2FyeSBiZWNhdXNlIHRoZSBoYXJkd2FyZSBp
-cyBxdWlya3ksIG9yIHdhcyBpdAo+IGNhcmdvLWN1bHRlZD8KPgo+IFRoaWVycnkKCk5vIGNsdWUu
-IEFuZCBiZWNhdXNlIGl0IHdhcyBhbHJlYWR5IHRoZXJlIGluIHRoZSBvcmlnaW5hbCBjb2RlIEkK
-ZGlkbid0IHJlYWxseSBmZWx0IGxpa2UgZG9pbmcgYW55dGhpbmcgd2l0aCBpdC4KX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
-c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0083594637==
+Content-Type: multipart/alternative; boundary="15113055283.EDb8CDF.23923";
+ charset="UTF-8"
+
+
+--15113055283.EDb8CDF.23923
+Date: Tue, 21 Nov 2017 23:05:28 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
+
+--- Comment #40 from t-IX <tixgnm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Linux 4.12.12-gentoo x86_64 Gentoo
+
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: gr: TRAP ch 5 [003fb72000
+X[12943]]
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: gr: GPC0/PROP trap: 00000400
+[RT_LINEAR_MISMATCH] x =3D 2048, y =3D 1024, format =3D 18, storage type =
+=3D 0
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: fifo: write fault at 00096120=
+00
+engine 00 [PGRAPH] client 0f [GPC0/PROP] reason 02 [PAGE_NOT_PRESENT] on ch=
+ann
+el 5 [003fb72000 X[12943]]
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: fifo: gr engine fault on chan=
+nel
+5, recovering...
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: X[12943]: channel 5 killed!
+Nov 22 00:52:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+10 [X[12943]]
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+10 [X[12943]]
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: fifo: read fault at 0000013000
+engine 07 [PFIFO] client 07 [BAR_READ] reason 02 [PAGE_NOT_PRESENT] on chan=
+nel=20
+10 [003f8ae000 X[12943]]
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: fifo: fifo engine fault on
+channel 10, recovering...
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: X[12943]: channel 10 killed!
+Nov 22 00:53:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+13 [X[12943]]
+Nov 22 00:53:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+13 [X[12943]]
+Nov 22 00:53:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+9 [X[12943]]
+Nov 22 00:54:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+9 [X[12943]]
+Nov 22 00:54:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+6 [X[12943]]
+Nov 22 00:54:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+6 [X[12943]]
+Nov 22 00:54:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+12 [X[12943]]
+Nov 22 00:55:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+12 [X[12943]]
+Nov 22 00:55:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+7 [X[12943]]
+Nov 22 00:55:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+7 [X[12943]]
+Nov 22 00:55:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+4 [X[12943]]
+Nov 22 00:56:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+4 [X[12943]]
+Nov 22 00:56:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+3 [X[12943]]
+Nov 22 00:56:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+3 [X[12943]]
+Nov 22 00:56:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+2 [X[12943]]
+Nov 22 00:57:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+2 [X[12943]]
+
+Chipset: "NVIDIA NVC1"
+NVIDIA Corporation GF108 [GeForce GT 430] (rev a1)
+Digital interface is DisplayPort
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15113055283.EDb8CDF.23923
+Date: Tue, 21 Nov 2017 23:05:28 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c40">Commen=
+t # 40</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tixgnm&#64;gmail.com" title=3D"t-IX &lt;tixgnm&#64;gmail.com&gt;"> <span cl=
+ass=3D"fn">t-IX</span></a>
+</span></b>
+        <pre>Linux 4.12.12-gentoo x86_64 Gentoo
+
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: gr: TRAP ch 5 [003fb72000
+X[12943]]
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: gr: GPC0/PROP trap: 00000400
+[RT_LINEAR_MISMATCH] x =3D 2048, y =3D 1024, format =3D 18, storage type =
+=3D 0
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: fifo: write fault at 00096120=
+00
+engine 00 [PGRAPH] client 0f [GPC0/PROP] reason 02 [PAGE_NOT_PRESENT] on ch=
+ann
+el 5 [003fb72000 X[12943]]
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: fifo: gr engine fault on chan=
+nel
+5, recovering...
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: X[12943]: channel 5 killed!
+Nov 22 00:52:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+10 [X[12943]]
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+10 [X[12943]]
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: fifo: read fault at 0000013000
+engine 07 [PFIFO] client 07 [BAR_READ] reason 02 [PAGE_NOT_PRESENT] on chan=
+nel=20
+10 [003f8ae000 X[12943]]
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: fifo: fifo engine fault on
+channel 10, recovering...
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: X[12943]: channel 10 killed!
+Nov 22 00:53:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+13 [X[12943]]
+Nov 22 00:53:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+13 [X[12943]]
+Nov 22 00:53:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+9 [X[12943]]
+Nov 22 00:54:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+9 [X[12943]]
+Nov 22 00:54:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+6 [X[12943]]
+Nov 22 00:54:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+6 [X[12943]]
+Nov 22 00:54:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+12 [X[12943]]
+Nov 22 00:55:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+12 [X[12943]]
+Nov 22 00:55:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+7 [X[12943]]
+Nov 22 00:55:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+7 [X[12943]]
+Nov 22 00:55:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+4 [X[12943]]
+Nov 22 00:56:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+4 [X[12943]]
+Nov 22 00:56:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+3 [X[12943]]
+Nov 22 00:56:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+3 [X[12943]]
+Nov 22 00:56:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+2 [X[12943]]
+Nov 22 00:57:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+2 [X[12943]]
+
+Chipset: &quot;NVIDIA NVC1&quot;
+NVIDIA Corporation GF108 [GeForce GT 430] (rev a1)
+Digital interface is DisplayPort</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15113055283.EDb8CDF.23923--
+
+--===============0083594637==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0083594637==--
