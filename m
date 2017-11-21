@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93629] [NVE6] complete system freeze,
- PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
-Date: Tue, 21 Nov 2017 23:05:27 +0000
-Message-ID: <bug-93629-8800-fXzPj9durk@http.bugs.freedesktop.org/>
-References: <bug-93629-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101665] lspci blocks forever with a GP107M
+Date: Tue, 21 Nov 2017 23:21:53 +0000
+Message-ID: <bug-101665-8800-elBsi9ZGip@http.bugs.freedesktop.org/>
+References: <bug-101665-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0083594637=="
+Content-Type: multipart/mixed; boundary="===============1466802839=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,110 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0083594637==
-Content-Type: multipart/alternative; boundary="15113055283.EDb8CDF.23923";
+--===============1466802839==
+Content-Type: multipart/alternative; boundary="15113065132.D605.27902";
  charset="UTF-8"
 
 
---15113055283.EDb8CDF.23923
-Date: Tue, 21 Nov 2017 23:05:28 +0000
+--15113065132.D605.27902
+Date: Tue, 21 Nov 2017 23:21:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101665
 
---- Comment #40 from t-IX <tixgnm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Linux 4.12.12-gentoo x86_64 Gentoo
-
-Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: gr: TRAP ch 5 [003fb72000
-X[12943]]
-Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: gr: GPC0/PROP trap: 00000400
-[RT_LINEAR_MISMATCH] x =3D 2048, y =3D 1024, format =3D 18, storage type =
-=3D 0
-Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: fifo: write fault at 00096120=
-00
-engine 00 [PGRAPH] client 0f [GPC0/PROP] reason 02 [PAGE_NOT_PRESENT] on ch=
-ann
-el 5 [003fb72000 X[12943]]
-Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: fifo: gr engine fault on chan=
-nel
-5, recovering...
-Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: X[12943]: channel 5 killed!
-Nov 22 00:52:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-10 [X[12943]]
-Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-10 [X[12943]]
-Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: fifo: read fault at 0000013000
-engine 07 [PFIFO] client 07 [BAR_READ] reason 02 [PAGE_NOT_PRESENT] on chan=
-nel=20
-10 [003f8ae000 X[12943]]
-Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: fifo: fifo engine fault on
-channel 10, recovering...
-Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: X[12943]: channel 10 killed!
-Nov 22 00:53:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-13 [X[12943]]
-Nov 22 00:53:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-13 [X[12943]]
-Nov 22 00:53:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-9 [X[12943]]
-Nov 22 00:54:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-9 [X[12943]]
-Nov 22 00:54:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-6 [X[12943]]
-Nov 22 00:54:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-6 [X[12943]]
-Nov 22 00:54:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-12 [X[12943]]
-Nov 22 00:55:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-12 [X[12943]]
-Nov 22 00:55:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-7 [X[12943]]
-Nov 22 00:55:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-7 [X[12943]]
-Nov 22 00:55:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-4 [X[12943]]
-Nov 22 00:56:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-4 [X[12943]]
-Nov 22 00:56:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-3 [X[12943]]
-Nov 22 00:56:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-3 [X[12943]]
-Nov 22 00:56:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-2 [X[12943]]
-Nov 22 00:57:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-2 [X[12943]]
-
-Chipset: "NVIDIA NVC1"
-NVIDIA Corporation GF108 [GeForce GT 430] (rev a1)
-Digital interface is DisplayPort
+--- Comment #5 from Etienne URBAH <eurbah-GANU6spQydw@public.gmane.org> ---
+With following Linux kernels, 'lspci' systematically fails to answer, and m=
+akes
+the whole machine immediately freeze :
+- 4.13.0-17 from Ubuntu 17.10 (Artful)
+- 4.14.1 from http://kernel.ubuntu.com/~kernel-ppa/mainline
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15113055283.EDb8CDF.23923
-Date: Tue, 21 Nov 2017 23:05:28 +0000
+--15113065132.D605.27902
+Date: Tue, 21 Nov 2017 23:21:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -140,101 +63,24 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
-nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c40">Commen=
-t # 40</a>
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
-nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
-/a>
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665">bug 10166=
+5</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tixgnm&#64;gmail.com" title=3D"t-IX &lt;tixgnm&#64;gmail.com&gt;"> <span cl=
-ass=3D"fn">t-IX</span></a>
+eurbah&#64;free.fr" title=3D"Etienne URBAH &lt;eurbah&#64;free.fr&gt;"> <sp=
+an class=3D"fn">Etienne URBAH</span></a>
 </span></b>
-        <pre>Linux 4.12.12-gentoo x86_64 Gentoo
-
-Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: gr: TRAP ch 5 [003fb72000
-X[12943]]
-Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: gr: GPC0/PROP trap: 00000400
-[RT_LINEAR_MISMATCH] x =3D 2048, y =3D 1024, format =3D 18, storage type =
-=3D 0
-Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: fifo: write fault at 00096120=
-00
-engine 00 [PGRAPH] client 0f [GPC0/PROP] reason 02 [PAGE_NOT_PRESENT] on ch=
-ann
-el 5 [003fb72000 X[12943]]
-Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: fifo: gr engine fault on chan=
-nel
-5, recovering...
-Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: X[12943]: channel 5 killed!
-Nov 22 00:52:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-10 [X[12943]]
-Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-10 [X[12943]]
-Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: fifo: read fault at 0000013000
-engine 07 [PFIFO] client 07 [BAR_READ] reason 02 [PAGE_NOT_PRESENT] on chan=
-nel=20
-10 [003f8ae000 X[12943]]
-Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: fifo: fifo engine fault on
-channel 10, recovering...
-Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: X[12943]: channel 10 killed!
-Nov 22 00:53:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-13 [X[12943]]
-Nov 22 00:53:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-13 [X[12943]]
-Nov 22 00:53:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-9 [X[12943]]
-Nov 22 00:54:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-9 [X[12943]]
-Nov 22 00:54:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-6 [X[12943]]
-Nov 22 00:54:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-6 [X[12943]]
-Nov 22 00:54:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-12 [X[12943]]
-Nov 22 00:55:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-12 [X[12943]]
-Nov 22 00:55:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-7 [X[12943]]
-Nov 22 00:55:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-7 [X[12943]]
-Nov 22 00:55:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-4 [X[12943]]
-Nov 22 00:56:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-4 [X[12943]]
-Nov 22 00:56:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-3 [X[12943]]
-Nov 22 00:56:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-3 [X[12943]]
-Nov 22 00:56:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-2 [X[12943]]
-Nov 22 00:57:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
-nel
-2 [X[12943]]
-
-Chipset: &quot;NVIDIA NVC1&quot;
-NVIDIA Corporation GF108 [GeForce GT 430] (rev a1)
-Digital interface is DisplayPort</pre>
+        <pre>With following Linux kernels, 'lspci' systematically fails to =
+answer, and makes
+the whole machine immediately freeze :
+- 4.13.0-17 from Ubuntu 17.10 (Artful)
+- 4.14.1 from <a href=3D"http://kernel.ubuntu.com/~kernel-ppa/mainline">htt=
+p://kernel.ubuntu.com/~kernel-ppa/mainline</a></pre>
         </div>
       </p>
 
@@ -248,9 +94,9 @@ Digital interface is DisplayPort</pre>
     </body>
 </html>=
 
---15113055283.EDb8CDF.23923--
+--15113065132.D605.27902--
 
---===============0083594637==
+--===============1466802839==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -260,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0083594637==--
+--===============1466802839==--
