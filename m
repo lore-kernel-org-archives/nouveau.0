@@ -1,85 +1,279 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [Nouveau] [PATCH v2] drm: don't continue with anything after the
- GPU couldn't be woken up
-Date: Wed, 22 Nov 2017 11:51:42 +0100
-Message-ID: <CACO55ttqBtLoz+9mE69n1+3sJw5bzaUQN0QL2g45XJQMq_OU9w@mail.gmail.com>
-References: <20171121150116.24956-1-kherbst@redhat.com> <20171121174609.GA28301@ulmo>
- <CACO55tv6J+eY_KNvQxdKShaLi2Td7dDpQa-ety4tgFqvsij34Q@mail.gmail.com> <20171122103146.GA30667@ulmo>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100146] nouveau system lockup -> fifo: read fault
+ engine 15 [PCE0] client 01 [PCOPY0] reason 02 [PAGE_NOT_PRESENT] on channel
+Date: Wed, 22 Nov 2017 14:33:41 +0000
+Message-ID: <bug-100146-8800-MxM3SqYmOf@http.bugs.freedesktop.org/>
+References: <bug-100146-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-pci-owner@vger.kernel.org>
-In-Reply-To: <20171122103146.GA30667@ulmo>
-Sender: linux-pci-owner@vger.kernel.org
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: nouveau <nouveau@lists.freedesktop.org>, David Airlie <airlied@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============0886229817=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100146-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Nov 22, 2017 at 11:31 AM, Thierry Reding
-<thierry.reding@gmail.com> wrote:
-> On Tue, Nov 21, 2017 at 08:03:20PM +0100, Karol Herbst wrote:
->> On Tue, Nov 21, 2017 at 6:46 PM, Thierry Reding
->> <thierry.reding@gmail.com> wrote:
->> > On Tue, Nov 21, 2017 at 04:01:16PM +0100, Karol Herbst wrote:
->> >> This should make systems more stable where resuming the GPU fails. This
->> >> can happen due to bad firmware or due to a bug within the kernel. The
->> >> last thing which should happen in either case is an unusable system.
->> >>
->> >> v2: do the same in nouveau_pmops_resume
->> >>
->> >> Tested-by: Karl Hastings <kazen@redhat.com>
->> >> Signed-off-by: Karol Herbst <kherbst@redhat.com>
->> >> ---
->> >>  drm/nouveau/nouveau_drm.c | 31 +++++++++++++++++++++++--------
->> >>  1 file changed, 23 insertions(+), 8 deletions(-)
->> >>
->> >> diff --git a/drm/nouveau/nouveau_drm.c b/drm/nouveau/nouveau_drm.c
->> >> index 8d4a5be3..6e4cb4f7 100644
->> >> --- a/drm/nouveau/nouveau_drm.c
->> >> +++ b/drm/nouveau/nouveau_drm.c
->> >> @@ -792,6 +792,27 @@ nouveau_pmops_suspend(struct device *dev)
->> >>       return 0;
->> >>  }
->> >>
->> >> +static int
->> >> +nouveau_set_power_state_D0(struct pci_dev *pdev)
->> >> +{
->> >> +     struct nouveau_drm *drm = nouveau_drm(pci_get_drvdata(pdev));
->> >> +     int ret;
->> >> +
->> >> +     pci_set_power_state(pdev, PCI_D0);
->> >> +     /* abort if anything went wrong */
->> >> +     if (pdev->current_state != PCI_D0) {
->> >> +             NV_ERROR(drm, "couldn't wake up GPU!\n");
->> >> +             return -EBUSY;
->> >> +     }
->> >
->> > Looks to me like the more idiomatic way to do this is:
->> >
->> >         ret = pci_set_power_state(pdev, PCI_D0);
->> >         if (ret < 0 && ret != -EIO)
->> >                 return ret;
->> >
->>
->> I thought so too, but it ends up returning 0 even if setting the power
->> state fails. Or maybe I did something wrong when installing the
->> kernel. I could take another shot at it, but what I came up with seems
->> to work. Adding airlied in CC, because he saw my patch and didn't
->> complain about it. Hopefully he knows more.
->
-> pci_raw_set_power_state(), called by pci_set_power_state(), contains
-> this, which looks to me like it would be the only case where the problem
-> you're describing could be coming from:
->
->         dev->current_state = (pmcsr & PCI_PM_CTRL_STATE_MASK);
->         if (dev->current_state != state && printk_ratelimit())
->                 dev_info(&dev->dev, "Refused to change power state, currently in D%d\n",
->                          dev->current_state);
->
-> Do you happen to see this in the kernel logs? Perhaps this should be
-> considered an error rather than just an KERN_INFO level message?
->
-> Adding Bjorn and linux-pci for visibility.
->
-> Thierry
 
-yeah, that is the error we have in dmesg.
+--===============0886229817==
+Content-Type: multipart/alternative; boundary="15113612200.Ffc5EBc2.16935";
+ charset="UTF-8"
+
+
+--15113612200.Ffc5EBc2.16935
+Date: Wed, 22 Nov 2017 14:33:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100146
+
+--- Comment #1 from t-IX <tixgnm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I think i have same problem.
+Can reproduce error by play 4k video in mpv.
+Or start Steam bigscreen mode.
+
+I'm trying to install nvidia firmware, but system feels very slow and
+unresponsive, and i can't test video or steam.
+
+
+Linux 4.12.12-gentoo x86_64 Gentoo
+
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: gr: TRAP ch 5 [003fb72000
+X[12943]]
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: gr: GPC0/PROP trap: 00000400
+[RT_LINEAR_MISMATCH] x =3D 2048, y =3D 1024, format =3D 18, storage type =
+=3D 0
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: fifo: write fault at 00096120=
+00
+engine 00 [PGRAPH] client 0f [GPC0/PROP] reason 02 [PAGE_NOT_PRESENT] on ch=
+ann
+el 5 [003fb72000 X[12943]]
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: fifo: gr engine fault on chan=
+nel
+5, recovering...
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: X[12943]: channel 5 killed!
+Nov 22 00:52:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+10 [X[12943]]
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+10 [X[12943]]
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: fifo: read fault at 0000013000
+engine 07 [PFIFO] client 07 [BAR_READ] reason 02 [PAGE_NOT_PRESENT] on chan=
+nel=20
+10 [003f8ae000 X[12943]]
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: fifo: fifo engine fault on
+channel 10, recovering...
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: X[12943]: channel 10 killed!
+Nov 22 00:53:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+13 [X[12943]]
+Nov 22 00:53:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+13 [X[12943]]
+Nov 22 00:53:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+9 [X[12943]]
+Nov 22 00:54:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+9 [X[12943]]
+Nov 22 00:54:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+6 [X[12943]]
+Nov 22 00:54:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+6 [X[12943]]
+Nov 22 00:54:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+12 [X[12943]]
+Nov 22 00:55:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+12 [X[12943]]
+Nov 22 00:55:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+7 [X[12943]]
+Nov 22 00:55:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+7 [X[12943]]
+Nov 22 00:55:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+4 [X[12943]]
+Nov 22 00:56:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+4 [X[12943]]
+Nov 22 00:56:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+3 [X[12943]]
+Nov 22 00:56:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+3 [X[12943]]
+Nov 22 00:56:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+2 [X[12943]]
+Nov 22 00:57:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+2 [X[12943]]
+
+Chipset: "NVIDIA NVC1"
+NVIDIA Corporation GF108 [GeForce GT 430] (rev a1)
+Digital interface is DisplayPort
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15113612200.Ffc5EBc2.16935
+Date: Wed, 22 Nov 2017 14:33:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau system lockup -&gt; fifo: read fault engine 15 [P=
+CE0] client 01 [PCOPY0] reason 02 [PAGE_NOT_PRESENT] on channel"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100146#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau system lockup -&gt; fifo: read fault engine 15 [P=
+CE0] client 01 [PCOPY0] reason 02 [PAGE_NOT_PRESENT] on channel"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100146">bug 10014=
+6</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tixgnm&#64;gmail.com" title=3D"t-IX &lt;tixgnm&#64;gmail.com&gt;"> <span cl=
+ass=3D"fn">t-IX</span></a>
+</span></b>
+        <pre>I think i have same problem.
+Can reproduce error by play 4k video in mpv.
+Or start Steam bigscreen mode.
+
+I'm trying to install nvidia firmware, but system feels very slow and
+unresponsive, and i can't test video or steam.
+
+
+Linux 4.12.12-gentoo x86_64 Gentoo
+
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: gr: TRAP ch 5 [003fb72000
+X[12943]]
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: gr: GPC0/PROP trap: 00000400
+[RT_LINEAR_MISMATCH] x =3D 2048, y =3D 1024, format =3D 18, storage type =
+=3D 0
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: fifo: write fault at 00096120=
+00
+engine 00 [PGRAPH] client 0f [GPC0/PROP] reason 02 [PAGE_NOT_PRESENT] on ch=
+ann
+el 5 [003fb72000 X[12943]]
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: fifo: gr engine fault on chan=
+nel
+5, recovering...
+Nov 22 00:51:36 kernel: nouveau 0000:01:00.0: X[12943]: channel 5 killed!
+Nov 22 00:52:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+10 [X[12943]]
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+10 [X[12943]]
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: fifo: read fault at 0000013000
+engine 07 [PFIFO] client 07 [BAR_READ] reason 02 [PAGE_NOT_PRESENT] on chan=
+nel=20
+10 [003f8ae000 X[12943]]
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: fifo: fifo engine fault on
+channel 10, recovering...
+Nov 22 00:53:04 kernel: nouveau 0000:01:00.0: X[12943]: channel 10 killed!
+Nov 22 00:53:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+13 [X[12943]]
+Nov 22 00:53:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+13 [X[12943]]
+Nov 22 00:53:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+9 [X[12943]]
+Nov 22 00:54:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+9 [X[12943]]
+Nov 22 00:54:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+6 [X[12943]]
+Nov 22 00:54:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+6 [X[12943]]
+Nov 22 00:54:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+12 [X[12943]]
+Nov 22 00:55:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+12 [X[12943]]
+Nov 22 00:55:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+7 [X[12943]]
+Nov 22 00:55:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+7 [X[12943]]
+Nov 22 00:55:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+4 [X[12943]]
+Nov 22 00:56:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+4 [X[12943]]
+Nov 22 00:56:19 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+3 [X[12943]]
+Nov 22 00:56:34 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+3 [X[12943]]
+Nov 22 00:56:49 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+2 [X[12943]]
+Nov 22 00:57:04 kernel: nouveau 0000:01:00.0: X[12943]: failed to idle chan=
+nel
+2 [X[12943]]
+
+Chipset: &quot;NVIDIA NVC1&quot;
+NVIDIA Corporation GF108 [GeForce GT 430] (rev a1)
+Digital interface is DisplayPort</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15113612200.Ffc5EBc2.16935--
+
+--===============0886229817==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0886229817==--
