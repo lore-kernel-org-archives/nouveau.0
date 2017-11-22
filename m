@@ -1,116 +1,121 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91523] [NVE7] driver cannot initialize gpu(failed to
- parse ramcfg data)
-Date: Wed, 22 Nov 2017 20:43:43 +0000
-Message-ID: <bug-91523-8800-dajm9bef6s@http.bugs.freedesktop.org/>
-References: <bug-91523-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0196734827=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91523-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Sinan Kaya <okaya@codeaurora.org>
+Subject: [PATCH V2 10/29] drm/nouveau: deprecate pci_get_bus_and_slot()
+Date: Wed, 22 Nov 2017 17:49:05 -0500
+Message-ID: <1511390964-9979-11-git-send-email-okaya@codeaurora.org>
+References: <1511390964-9979-1-git-send-email-okaya@codeaurora.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <1511390964-9979-1-git-send-email-okaya@codeaurora.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: linux-pci@vger.kernel.org, timur@codeaurora.org
+Cc: linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Sinan Kaya <okaya@codeaurora.org>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Ilia Mirkin <imirkin@alum.mit.edu>, "open list:DRM DRIVER FOR NVIDIA
+        GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, "open list:DRM DRIVER FOR NVIDIA
+        GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
+pci_get_bus_and_slot() is restrictive such that it assumes domain=0 as
+where a PCI device is present. This restricts the device drivers to be
+reused for other domain numbers.
 
---===============0196734827==
-Content-Type: multipart/alternative; boundary="15113834221.D71F1.15994";
- charset="UTF-8"
+Getting ready to remove pci_get_bus_and_slot() function in favor of
+pci_get_domain_bus_and_slot().
 
+Replace pci_get_bus_and_slot() with pci_get_domain_bus_and_slot()
+and extract the domain number from
+1. struct pci_dev
+2. struct pci_dev through drm_device->pdev
+3. struct pci_dev through fb->subdev->drm_device->pdev
 
---15113834221.D71F1.15994
-Date: Wed, 22 Nov 2017 20:43:42 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Signed-off-by: Sinan Kaya <okaya@codeaurora.org>
+---
+ drivers/gpu/drm/nouveau/dispnv04/arb.c           |  4 +++-
+ drivers/gpu/drm/nouveau/dispnv04/hw.c            | 10 +++++++---
+ drivers/gpu/drm/nouveau/nouveau_drm.c            |  3 ++-
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c | 10 +++++++++-
+ 4 files changed, 21 insertions(+), 6 deletions(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91523
-
---- Comment #5 from default_357-line-LWAfsSFWpa4@public.gmane.org ---
-I still get this error in 4.14.1. Same laptop, same vbios.rom. If I comment=
- out
-the "return ret" in
-https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/nouveau/nvkm/=
-subdev/fb/ramgk104.c#L1577,
-it boots and runs 3d acceleration with xrandr offload, but cannot reclock
-successfully.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15113834221.D71F1.15994
-Date: Wed, 22 Nov 2017 20:43:42 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE7] driver cannot initialize gpu(failed to parse ramcf=
-g data)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91523#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE7] driver cannot initialize gpu(failed to parse ramcf=
-g data)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91523">bug 91523<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-default_357-line&#64;yahoo.de" title=3D"default_357-line&#64;yahoo.de">defa=
-ult_357-line&#64;yahoo.de</a>
-</span></b>
-        <pre>I still get this error in 4.14.1. Same laptop, same vbios.rom.=
- If I comment out
-the &quot;return ret&quot; in
-<a href=3D"https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/no=
-uveau/nvkm/subdev/fb/ramgk104.c#L1577">https://github.com/torvalds/linux/bl=
-ob/master/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c#L1577</a>,
-it boots and runs 3d acceleration with xrandr offload, but cannot reclock
-successfully.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15113834221.D71F1.15994--
-
---===============0196734827==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0196734827==--
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/arb.c b/drivers/gpu/drm/nouveau/dispnv04/arb.c
+index 90075b6..e7455f7 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/arb.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/arb.c
+@@ -213,8 +213,10 @@ struct nv_sim_state {
+ 	if ((dev->pdev->device & 0xffff) == 0x01a0 /*CHIPSET_NFORCE*/ ||
+ 	    (dev->pdev->device & 0xffff) == 0x01f0 /*CHIPSET_NFORCE2*/) {
+ 		uint32_t type;
++		u32 domain = pci_domain_nr(dev->pdev->bus);
+ 
+-		pci_read_config_dword(pci_get_bus_and_slot(0, 1), 0x7c, &type);
++		pci_read_config_dword(pci_get_domain_bus_and_slot(domain, 0, 1),
++				      0x7c, &type);
+ 
+ 		sim_data.memory_type = (type >> 12) & 1;
+ 		sim_data.memory_width = 64;
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/hw.c b/drivers/gpu/drm/nouveau/dispnv04/hw.c
+index b985990..8806b1b 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/hw.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/hw.c
+@@ -216,12 +216,15 @@
+ {
+ 	struct nvkm_pll_vals pllvals;
+ 	int ret;
++	u32 domain;
++
++	domain = pci_domain_nr(dev->pdev->bus);
+ 
+ 	if (plltype == PLL_MEMORY &&
+ 	    (dev->pdev->device & 0x0ff0) == CHIPSET_NFORCE) {
+ 		uint32_t mpllP;
+-
+-		pci_read_config_dword(pci_get_bus_and_slot(0, 3), 0x6c, &mpllP);
++		pci_read_config_dword(pci_get_domain_bus_and_slot(domain, 0, 3),
++				      0x6c, &mpllP);
+ 		mpllP = (mpllP >> 8) & 0xf;
+ 		if (!mpllP)
+ 			mpllP = 4;
+@@ -232,7 +235,8 @@
+ 	    (dev->pdev->device & 0xff0) == CHIPSET_NFORCE2) {
+ 		uint32_t clock;
+ 
+-		pci_read_config_dword(pci_get_bus_and_slot(0, 5), 0x4c, &clock);
++		pci_read_config_dword(pci_get_domain_bus_and_slot(domain, 0, 5),
++				      0x4c, &clock);
+ 		return clock / 1000;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 595630d..0b6c639 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -406,7 +406,8 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+ 	}
+ 
+ 	/* subfunction one is a hdmi audio device? */
+-	drm->hdmi_device = pci_get_bus_and_slot((unsigned int)pdev->bus->number,
++	drm->hdmi_device = pci_get_domain_bus_and_slot(pci_domain_nr(pdev->bus),
++						(unsigned int)pdev->bus->number,
+ 						PCI_DEVFN(PCI_SLOT(pdev->devfn), 1));
+ 
+ 	if (!drm->hdmi_device) {
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c
+index 3c6a871..273a632 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c
+@@ -28,8 +28,16 @@
+ {
+ 	struct pci_dev *bridge;
+ 	u32 mem, mib;
++	u32 domain = 0;
++	struct pci_dev *pdev = NULL;
+ 
+-	bridge = pci_get_bus_and_slot(0, PCI_DEVFN(0, 1));
++	if (dev_is_pci(fb->subdev.device->dev))
++		pdev = to_pci_dev(fb->subdev.device->dev);
++
++	if (pdev)
++		domain = pci_domain_nr(pdev->bus);
++
++	bridge = pci_get_domain_bus_and_slot(domain, 0, PCI_DEVFN(0, 1));
+ 	if (!bridge) {
+ 		nvkm_error(&fb->subdev, "no bridge device\n");
+ 		return -ENODEV;
+-- 
+1.9.1
