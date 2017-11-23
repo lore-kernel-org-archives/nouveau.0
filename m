@@ -1,62 +1,100 @@
-From: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: Addressing the problem of noisy GPUs under Nouveau
-Date: Thu, 23 Nov 2017 00:06:43 -0800
-Message-ID: <985ec2c1-df88-622a-8ccb-1246c320e8c3@nvidia.com>
-References: <4597fd60-59f8-5e45-ec5a-f52c4c6c6260@free.fr>
- <7cad7e2b-e207-03be-b5a6-d036420b42e0@nvidia.com>
- <20171122012909.GA4002@prokofiev.nvidia.com>
- <CAKb7Uvjcbz0_F155xC5T1qXdTgo25Jp57mPAR8txPWTt_ZdYhw@mail.gmail.com>
- <8c630fe4-ee96-2c68-eafb-d243195af29f@free.fr>
+From: Ville Syrjala <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Subject: [PATCH 00/15] drm: More plane clipping polish
+Date: Thu, 23 Nov 2017 21:04:47 +0200
+Message-ID: <20171123190502.28449-1-ville.syrjala@linux.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <8c630fe4-ee96-2c68-eafb-d243195af29f-GANU6spQydw@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Archit Taneja <architt-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Brian Starkey <brian.starkey-5wv7dgnIgG8@public.gmane.org>, CK Hu <ck.hu-NuS5LvNUpcJWk0Htik3J/w@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Laurent Pinchart <laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org>, linux-amlogic-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Liviu Dudau <liviu.dudau-5wv7dgnIgG8@public.gmane.org>, Mali DP Maintainers <malidp-VeJGdqYn5oNWk0Htik3J/w@public.gmane.org>, Mark Yao <mark.yao-TNX95d0MmH7DzftRWevZcw@public.gmane.org>, Neil Armstrong <narmstrong-rdvid1DuHRBWk0Htik3J/w@public.gmane.org>, =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf-L59+Z2yzLopAfugRpC6u6w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Philipp Zabel <p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>, Rob Clark <robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Shawn Guo <shawnguo-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Sinclair Yeh <syeh@vmwa>
 List-Id: nouveau.vger.kernel.org
 
-T24gMTEvMjIvMjAxNyAwNTowNyBQTSwgTWFydGluIFBlcmVzIHdyb3RlOgo+IEhleSwKPiAKPiBU
-aGFua3MgZm9yIHlvdXIgYW5zd2VyLCBBbmR5IQo+IAo+IE9uIDIyLzExLzE3IDA0OjA2LCBJbGlh
-IE1pcmtpbiB3cm90ZToKPj4gT24gVHVlLCBOb3YgMjEsIDIwMTcgYXQgODoyOSBQTSwgQW5keSBS
-aXRnZXIgPGFyaXRnZXJAbnZpZGlhLmNvbT4gd3JvdGU6Cj4+IE1hcnRpbidzIHF1ZXN0aW9uIHdh
-cyB2ZXJ5IGxvbmcsIGJ1dCBpdCBib2lscyBkb3duIHRvIHRoaXM6Cj4+Cj4+IEhvdyBkbyB3ZSBj
-b21wdXRlIHRoZSBjb3JyZWN0IHZhbHVlcyB0byB3cml0ZSBpbnRvIHRoZSBlMTE0L2UxMTggcHdt
-Cj4+IHJlZ2lzdGVycyBiYXNlZCBvbiB0aGUgVkJJT1MgY29udGVudHMgYW5kIGN1cnJlbnQgc3Rh
-dGUgb2YgdGhlIGJvYXJkCj4+IChsaWtlIHRlbXBlcmF0dXJlKS4KPiAKPiBVbmZvcnR1bmF0ZWx5
-LCBpdCBjYW4gYWxzbyBiZSB0aGUgZTExYy9lMTIwIGNvdXBsZSwgb3IgMHgyMDBkOC9kYyBvbgo+
-IEdGMTE5Kywgb3IgMHgyMDBjZC9kMCBvbiBLZXBsZXIrLgo+IAo+IEF0IGxlYXN0LCBpdCBsb29r
-cyBsaWtlIHdlIGtub3cgd2hpY2ggUFdNIGNvbnRyb2xlciB3ZSBuZWVkIHRvIGRyaXZlLCBzbwo+
-IEkgZGlkIG5vdCB3YW50IHRvIG11ZGR5IHRoZSB3YXRlciBldmVuIG1vcmUgYnkgZ2l2aW5nIHJl
-Z2lzdGVyCj4gYWRkcmVzc2VzLCByYXRoZXIgY29uY2VudHJhdGluZyBvbiB0aGUgcHJvYmxlbSBh
-dCBoYW5kOiBIb3cgdG8gY29tcHV0ZQo+IHRoZSBkdXR5IHZhbHVlIGZvciB0aGUgUFdNIGNvbnRy
-b2xlci4KPiAKPj4KPj4gV2UgZ2VuZXJhbGx5IGRvIHRoaXMgcmlnaHQsIGJ1dCBhcHBlYXIgdG8g
-Z2V0IGl0IGV4dHJhLXdyb25nIGZvciBjZXJ0YWluIEdQVXMuCj4gCj4gWWVzLi4uIFNvIGZhciwg
-d2UgYXJlIGFsd2F5cyBzYWZlLCBidXQgdXNlcnMgdGVuZCB0byBtaW5kIHdoZW4gdGhlaXIKPiBj
-b21wdXRlciBzb3VuZCBsaWtlIGEganVtYm8gamV0IGF0IHRha2Ugb2ZmLi4uIFdobyB3b3VsZCBo
-YXZlIHRob3VnaHQ/IDpECj4gCj4gQW55d2F5LCBsb29raW5nIGZvcndhcmQgdG8geW91ciBhbnN3
-ZXIhCj4gCj4gQ2hlZXJzLAo+IE1hcnRpbgoKCkhpIE1hcnRpbiwKCk9uZSBvZiBvdXIgZmlybXdh
-cmUgZW5naW5lZXJzIHRoaW5rcyB0aGF0IHRoaXMgbG9va3MgYSBsb3QgbGlrZSBQV00gaW52ZXJz
-aW9uLgpGb3Igc29tZSBTS1VzLCB0aGUgaW50ZXJwcmV0YXRpb24gb2YgdGhlIFBXTSBkdXR5IGN5
-Y2xlIGlzIGludmVydGVkLiBUaGF0IAp3b3VsZCBwcm9iYWJseSBtYWtlIGl0ICp2ZXJ5KiBkaWZm
-aWN1bHQgdG8gZmluZCBhIHNlbnNpYmxlIGFsZ29yaXRobSB0aGF0IApjb3ZlcmVkIGFsbCB0aGUg
-U0tVcywgZ2l2ZW4gdGhhdCBzb21lIGFyZSBpbnZlcnRlZCBhbmQgb3RoZXJzIGFyZSBub3QuCgpG
-b3IgdGhlIG5vaXN5IEdQVXMsIGEgdmVyeSB1c2VmdWwgZXhwZXJpbWVudCB3b3VsZCBiZSB0byB0
-cnkgaW52ZXJ0aW5nIGl0LCAKbGlrZSB0aGlzOgoKCXB3bUR1dHlDeWNsZSA9IHB3bVBlcmlvZCAt
-IHB3bUR1dHlDeWNsZTsKCi4uLmFuZCB0aGVuIHNlZSBpZiBmYW4gY29udHJvbCBzdGFydHMgYmVo
-YXZpbmcgY2xvc2VyIHRvIGhvdyB5b3UndmUgYWN0dWFsbHkgCnByb2dyYW1tZWQgaXQuCgpXb3Vs
-ZCB0aGF0IGJlIGVhc3kgZW5vdWdoIHRvIHRyeSBvdXQ/IEl0IHNob3VsZCBoZWxwIG5hcnJvdyBk
-b3duIHRoZQpwcm9ibGVtIGF0IGxlYXN0LgoKdGhhbmtzLApKb2huIEh1YmJhcmQKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
-c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+From: Ville Syrjälä <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+
+This series first unifies all users of drm_atomic_helper_check_plane_state()
+to populate the clip rectangle with drm_mode_get_hv_timing(), and once
+everything is unified the clip rectangle handling is sucked into
+drm_atomic_helper_check_plane_state() away from driver code.
+
+Entire series available here:
+git://github.com/vsyrjala/linux.git atomic_plane_helper_clip
+
+Cc: Archit Taneja <architt-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Brian Starkey <brian.starkey-5wv7dgnIgG8@public.gmane.org>
+Cc: CK Hu <ck.hu-NuS5LvNUpcJWk0Htik3J/w@public.gmane.org>
+Cc: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Cc: freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Laurent Pinchart <laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org>
+Cc: linux-amlogic-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org
+Cc: linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: Liviu Dudau <liviu.dudau-5wv7dgnIgG8@public.gmane.org>
+Cc: Mali DP Maintainers <malidp-VeJGdqYn5oNWk0Htik3J/w@public.gmane.org>
+Cc: Mark Yao <mark.yao-TNX95d0MmH7DzftRWevZcw@public.gmane.org>
+Cc: Neil Armstrong <narmstrong-rdvid1DuHRBWk0Htik3J/w@public.gmane.org>
+Cc: Noralf Trønnes <noralf-L59+Z2yzLopAfugRpC6u6w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Philipp Zabel <p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
+Cc: Rob Clark <robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Shawn Guo <shawnguo-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Cc: Sinclair Yeh <syeh-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
+Cc: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
+Cc: VMware Graphics <linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
+
+Ville Syrjälä (15):
+  drm/i915: Reject odd pipe source width with double wide/dual link
+  drm/i915: Use drm_mode_get_hv_timing() to populate plane clip
+    rectangle
+  drm/arm/hdlcd: Use drm_mode_get_hv_timing() to populate plane clip
+    rectangle
+  drm/arm/mali-dp: Use drm_mode_get_hv_timing() to populate plane clip
+    rectangle
+  drm/simple_kms_helper: Use drm_mode_get_hv_timing() to populate plane
+    clip rectangle
+  drm/imx: Use drm_mode_get_hv_timing() to populate plane clip rectangle
+  drm/mediatek: Use drm_mode_get_hv_timing() to populate plane clip
+    rectangle
+  drm/meson: Use drm_mode_get_hv_timing() to populate plane clip
+    rectangle
+  drm/msm/mdp5: Use drm_mode_get_hv_timing() to populate plane clip
+    rectangle
+  drm/nouveau/kms/nv50: Use drm_mode_get_hv_timing() to populate plane
+    clip rectangle
+  drm/rockchip: Use drm_mode_get_hv_timing() to populate plane clip
+    rectangle
+  drm/tegra/dc: Use drm_mode_get_hv_timing() to populate plane clip
+    rectangle
+  drm/vmwgfx: Use drm_mode_get_hv_timing() to populate plane clip
+    rectangle
+  drm/zte: Use drm_mode_get_hv_timing() to populate plane clip rectangle
+  drm: Don't pass clip to drm_atomic_helper_check_plane_state()
+
+ drivers/gpu/drm/arm/hdlcd_crtc.c            |  6 +-----
+ drivers/gpu/drm/arm/malidp_planes.c         |  5 +----
+ drivers/gpu/drm/armada/armada_overlay.c     |  2 +-
+ drivers/gpu/drm/drm_atomic_helper.c         | 12 +++++++-----
+ drivers/gpu/drm/drm_plane_helper.c          | 11 +++--------
+ drivers/gpu/drm/drm_simple_kms_helper.c     |  5 -----
+ drivers/gpu/drm/i915/intel_atomic_plane.c   |  8 --------
+ drivers/gpu/drm/i915/intel_display.c        | 12 +++++++-----
+ drivers/gpu/drm/i915/intel_drv.h            |  1 -
+ drivers/gpu/drm/i915/intel_sprite.c         |  8 ++++++--
+ drivers/gpu/drm/imx/ipuv3-plane.c           |  7 +------
+ drivers/gpu/drm/mediatek/mtk_drm_plane.c    |  6 +-----
+ drivers/gpu/drm/meson/meson_plane.c         |  6 +-----
+ drivers/gpu/drm/msm/mdp/mdp5/mdp5_plane.c   | 14 ++------------
+ drivers/gpu/drm/nouveau/nv50_display.c      |  8 --------
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c |  8 +-------
+ drivers/gpu/drm/tegra/dc.c                  |  8 +-------
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c         |  8 +-------
+ drivers/gpu/drm/zte/zx_plane.c              | 15 +--------------
+ include/drm/drm_atomic_helper.h             |  1 -
+ include/drm/drm_plane_helper.h              |  1 -
+ 21 files changed, 35 insertions(+), 117 deletions(-)
+
+-- 
+2.13.6
