@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91523] [NVE7] driver cannot initialize gpu(failed to
- parse ramcfg data)
-Date: Wed, 22 Nov 2017 22:57:12 +0000
-Message-ID: <bug-91523-8800-h3dkFUqbqy@http.bugs.freedesktop.org/>
-References: <bug-91523-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: Addressing the problem of noisy GPUs under Nouveau
+Date: Thu, 23 Nov 2017 03:07:22 +0200
+Message-ID: <8c630fe4-ee96-2c68-eafb-d243195af29f@free.fr>
+References: <4597fd60-59f8-5e45-ec5a-f52c4c6c6260@free.fr>
+ <7cad7e2b-e207-03be-b5a6-d036420b42e0@nvidia.com>
+ <20171122012909.GA4002@prokofiev.nvidia.com>
+ <CAKb7Uvjcbz0_F155xC5T1qXdTgo25Jp57mPAR8txPWTt_ZdYhw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0567443236=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91523-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvjcbz0_F155xC5T1qXdTgo25Jp57mPAR8txPWTt_ZdYhw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Language: fr-xx-moderne
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,105 +21,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0567443236==
-Content-Type: multipart/alternative; boundary="15113914321.8026db7.21953";
- charset="UTF-8"
-
-
---15113914321.8026db7.21953
-Date: Wed, 22 Nov 2017 22:57:12 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91523
-
---- Comment #6 from FeepingCreature <default_357-line-LWAfsSFWpa4@public.gmane.org> ---
-Looking at envytools' nvbios decode, given ramcfg=3D1, the first entry of t=
-he
-timing mapping table (0x718f) has a value of 0xf at index 1, offset 0. This=
- is
-taken as index into the timing table (0x733c); however, the timing table on=
-ly
-defines 12 entries, and only six of them are nonzero.
-
-If I simply skip entry 0, reclocking works fine. Maybe that's what 0x0f
-indicates?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15113914321.8026db7.21953
-Date: Wed, 22 Nov 2017 22:57:12 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE7] driver cannot initialize gpu(failed to parse ramcf=
-g data)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91523#c6">Comment=
- # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE7] driver cannot initialize gpu(failed to parse ramcf=
-g data)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91523">bug 91523<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-default_357-line&#64;yahoo.de" title=3D"FeepingCreature &lt;default_357-lin=
-e&#64;yahoo.de&gt;"> <span class=3D"fn">FeepingCreature</span></a>
-</span></b>
-        <pre>Looking at envytools' nvbios decode, given ramcfg=3D1, the fir=
-st entry of the
-timing mapping table (0x718f) has a value of 0xf at index 1, offset 0. This=
- is
-taken as index into the timing table (0x733c); however, the timing table on=
-ly
-defines 12 entries, and only six of them are nonzero.
-
-If I simply skip entry 0, reclocking works fine. Maybe that's what 0x0f
-indicates?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15113914321.8026db7.21953--
-
---===============0567443236==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0567443236==--
+SGV5LAoKVGhhbmtzIGZvciB5b3VyIGFuc3dlciwgQW5keSEKCk9uIDIyLzExLzE3IDA0OjA2LCBJ
+bGlhIE1pcmtpbiB3cm90ZToKPiBPbiBUdWUsIE5vdiAyMSwgMjAxNyBhdCA4OjI5IFBNLCBBbmR5
+IFJpdGdlciA8YXJpdGdlckBudmlkaWEuY29tPiB3cm90ZToKPj4gSGkgTWFydGluLAo+IAo+IE1h
+cnRpbiBzaG91bGQgaGF2ZSBjb21wbGV0ZSBhbnN3ZXJzLAo+IAo+Pgo+PiBJIHdhcyBhc2tlZCB0
+byBjbGFyaWZ5IGEgZmV3IHRoaW5nczoKPj4KPj4gKDEpIEFyZSBhbGwgdGhlIHVzZXIgcmVwb3J0
+cyBvZiBsb3VkIGZhbnMgb24gRmVybWktZXJhIEdQVXM/Cj4gCj4gWWVzLiBBbHRob3VnaCBJIGJl
+bGlldmUgc29tZSBHSzIwOCB1c2VycyBhcmUgYWxzbyBoYXZpbmcgdHJvdWJsZSwKPiBpbmNsdWRp
+bmcgeW91cnMgdHJ1bHkuIChJdCdzIGJlZW4gcXVpdGUgYSB3aGlsZSBzaW5jZSBJJ3ZlIGNoZWNr
+ZWQKPiB0aG91Z2guLi4gbXkgbWVtb3J5IGlzIHdlYWsgaW4gdGhhdCByZWdhcmQuKQoKV2UgZGlk
+IG5vdCBoZWFyIGJhY2sgZnJvbSBhIGxvdCBvZiB1c2VycyBhYm91dCB0aGVzZSBpc3N1ZXMsIGJ1
+dCBJIGNhbgpzZWUgdGhhdCBtb3N0IEdGMTA4IHZiaW9zIGluIG91ciB2YmlvcyByZXBvIGFyZSBw
+cm9ibGVtYXRpYywgYW5kIHNvbWUKR0sxMDYvR1QyMTUvR1QyMTYvR1QyMTggbWlnaHQgYmUgdG9v
+LgoKPiAKPj4KPj4gKDIpIFdoZW4gdGhlIFZCSU9TIFBPU1RzIHRoZSBjYXJkLCBpdCBsb2FkcyBp
+bml0aWFsIHVjb2RlIG9udG8gdGhlIEZhbGNvbgo+PiBwcm9jZXNzb3IgKFBNVSksIHdoaWNoIHdp
+bGwgZG8gYmFzaWMgZmFuIG1hbmFnZW1lbnQgb24gaXRzIG93bi4gIFdlIGNhbGwgdGhpcwo+PiBp
+bml0IHVjb2RlICJJRlIiIChJbml0IEZyb20gUk9NKS4gIG52aWRpYS5rbyB3aWxsIHJlc3RvcmUg
+dGhlIElGUiB1Y29kZSB3aGVuCj4+IHVubG9hZGVkLiAgSSBhc3N1bWUgdGhlIGxvdWQgZmFuIHN5
+bXB0b20gb2NjdXJzIGFmdGVyIE5vdXZlYXUgaXMgbG9hZGVkIGFuZAo+PiBydW5uaW5nLCBjb3Jy
+ZWN0PyAgSS5lLiwgdGhpcyBpcyBhIHByb2JsZW0gaW4gTm91dmVhdSdzIGZhbiBjb250cm9sCj4+
+IHByb2dyYW1taW5nLCByYXRoZXIgdGhhbiBhIHByb2JsZW0gaW4gSUZSLgo+IAo+IENvcnJlY3Qu
+CgpJbmRlZWQuCgo+IAo+Pgo+PiAoMykgSUZSIHdpbGwgcnVuIHVudGlsIHNvbWV0aGluZyBlbHNl
+IGlzIGxvYWRlZCBvbiB0aGUgRmFsY29uIHByb2Nlc3NvciAoUE1VKS4KPj4gT24gRmVybWksIEkg
+YXNzdW1lIHRoZSBOb3V2ZWF1IGtlcm5lbCBkcml2ZXIgaXMgdXBsb2FkaW5nIHRoZSBOb3V2ZWF1
+LXdyaXR0ZW4KPj4gdWNvZGUgZnJvbSBoZXJlOgo+Pgo+PiAgICAgZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbnZrbS9zdWJkZXYvcG11L2Z1Ywo+Pgo+PiBjb3JyZWN0PyAgSSBvbmx5IGFzayB0byBy
+dWxlIG91dCB0aGUgcG9zc2liaWxpdHkgdGhhdCBJRlIgYW5kIE5vdXZlYXUgYXJlIGJvdGgKPj4g
+YXR0ZW1wdGluZyB0byBwcm9ncmFtIGZhbnMgc2ltdWx0YW5lb3VzbHkuICBUaGUgc3ltcHRvbXMg
+eW91IGRlc2NyaWJlIGRvbid0Cj4+IHNvdW5kIGxpa2UgdGhhdCwgYnV0IGp1c3QgZG91YmxlIGNo
+ZWNraW5nLi4uCj4gCj4gQ29ycmVjdC4KCkluZGVlZC4KCj4gCj4+Cj4+ICg0KSBHaXZlbiB0aGUg
+UE1VIHVjb2RlIGRlYmFjbGUsIEknbSBlbWJhcnJhc3NlZCB0byBhc2ssIGJ1dCBhdCBsZWFzdCBv
+biBGZXJtaSwKPj4gaG93IG11Y2ggZG9lcyBOb3V2ZWF1IHN0cmljdGx5IGRlcGVuZCBvbiBOb3V2
+ZWF1J3MgUE1VIHVjb2RlPyAgV291bGQgaXQgYmUgYW4KPj4gb3B0aW9uIHRvIGp1c3QgbGV0IElG
+UiBjb250aW51ZSB0byBtYW5hZ2UgZmFucz8KPiAKPiBSZWNsb2NraW5nIGlzIHN0aWxsIG9uIG91
+ciBob3Jpem9uLCB3aGljaCBjbGVhcmx5IHdvbid0IGhhcHBlbiB3aXRob3V0Cj4gbm91dmVhdSBQ
+TVUgY29kZSBsb2FkZWQuIE5vdCBzdXJlIHdoYXQgaXQncyB1c2VkIGZvciB1bnRpbCByZWNsb2Nr
+aW5nCj4gYmVjb21lcyBhIHRoaW5nIG9uIEZlcm1pLgoKWWVhaCwgdGhpcyB3b3VsZCBoaW5kZXIg
+b3VyIHJlY2xvY2tpbmcgZWZmb3J0cyA6cwoKVGhlIGJlc3QgaWRlYSBJIGNhbiBjb21lIHVwIHdp
+dGggaXMgdG8gZmFrZSB0aGUgdGVtcGVyYXR1cmUgKHJlZ2lzdGVyCjB4MjA0MDgpIHRvIDHCsEMg
+KG1pbmltdW0gdGhlIGhhcmR3YXJlIGFsbG93cyB1cykgYW5kIHJlYWQgdGhlIFBXTSBkdXR5LAp0
+aGVuIHdlIGNhbiBnZXQgdGhlIG1heGltdW0gZHV0eSBieSBzZXR0aW5nIHRoZSB0ZW1wZXJhdHVy
+ZSB0byB0aGUKZmFuX2Jvb3N0IHRocmVzaG9sZC4KCk5vdCBzdXJlIHdlIGhhdmUgYSBzdXJlLXdh
+eSBvZiBjb21wdXRpbmcgdGhlIGZhbl9ib29zdCB0aHJlc2hvbGQgdGhvdWdoLAptYXliZSB3ZSBj
+YW4ganVzdCB1c2Ugb2YgdGhlIHRoZXJtYWwgdGhyb3R0bGluZyB0aHJlc2hvbGQgZm9yIHRoaXMg
+KG1vcmUKb24gdGhpcyBsYXRlciBpbiB0aGUgZW1haWwpLgoKSW4gYW55IGNhc2UsIGFsbCBvZiB0
+aGVzZSBzb2x1dGlvbnMgYXJlIHdvcmthcm91bmRzLiBHaXZlbiB0aGF0IHRoZSBjb2RlCnRvIGNv
+bXB1dGUgdGhlc2UgdmFsdWVzIGlzIGFscmVhZHkgZm91bmQgaW4gdmJpb3Nlcywgd2h5IGlzIGl0
+IGEgcHJvYmxlbQp0byBzaGFyZSB0aGUgbWVhbmluZyBvZiBhbGwgdGhlIHZhbHVlcyBpbiB0aGUg
+ZmFuIGNhbGlicmF0aW9uIHRhYmxlLAphbmQvb3IgdGhlIGFsZ29yaXRobT8KCj4gCj4+Cj4+ICg1
+KSBMYXN0bHksIEkgd2FzIGFza2VkIGhvdyBOb3V2ZWF1IGRldGVybWluZXMgd2hhdCBmYW4gc3Bl
+ZWQgdG8gKGF0dGVtcHQKPj4gdG8pIHByb2dyYW0uCgpPaCwgdGhhbmtzIGZvciBnaXZpbmcgbWUg
+YW4gaWRlYSBhYm91dCB3aGF0IHRoZSBvdGhlciB2YWx1ZXMgaW4gdGhpcwp0YWJsZSBtYXkgYmUg
+YWJvdXQgOkQKCkFueXdheXMsIHRoZSBjdXJyZW50IGNvZGUgdXNlcyB0aGUgZW50cnkgaWQgMHg0
+NiBvZiB0aGUgdGhlcm1hbCB0YWJsZQooYml0IFAsIG9mZnNldCAweDEwKSB0byBmaW5kIG91dCB3
+aGF0IGFyZSB0aGUgdGhlcm1hbCBwb2ludHMgZm9yCiRmYW5fbWluIGFuZCAkZmFuX21heC4gVGhl
+ICRmYW5fbWluIGFuZCAkZmFuX21heCB2YWx1ZXMgYXJlIGZvdW5kIGluIHRoZQplbnRyeSBpZCAw
+eDIyIG9mIHRoZSBzYW1lIHRhYmxlLgoKSWYgdGhlIDB4NDYgZW50cnkgaXMgbm90IHByZXNlbnQg
+aW4gdGhlIHRoZXJtYWwgdGFibGUgKHdoaWNoIHNlZW1zIHRvIGJlCnRoZSBub3JtIGZvciBGZXJt
+aSksIHdlIHJldmVydCB0byBkZWZhdWx0IHZhbHVlczogNDAgLT4gODXCsEMuCgpXaXRoIHRoZXNl
+IDQgdmFsdWVzLCB3ZSBnZXQgMiB0cmlwIHBvaW50cyAodGVtcF9taW4sIGZhbl9taW4pCmFuZCh0
+ZW1wX21heCwgZmFuX21heCksIGFuZCB3ZSBtZXJlbHkgZG8gbGluZWFyIGludGVycG9sYXRpb24g
+YmV0d2VlbiB0aGVtLgoKPiAKPiBJJ2xsIGxldCBNYXJ0aW4gYW5zd2VyIHRoaXMsIGJ1dCBhcyB5
+b3UncmUgcHJvYmFibHkgYXdhcmUsIHRoZXJlJ3MgMgo+IGRpZmZlcmVudCB3YXlzIHRoaXMgY2Fu
+IGJlIGRvbmUgLSB0aGVyZSBtaWdodCBiZSBhIFBXTSwgd2UgbWlnaHQgaGF2ZQo+IHRvIHRvZ2ds
+ZSBpdCBtYW51YWxseS4gTWF5YmUgc29tZXRoaW5nIGVsc2Ugc3RpbGwuCgpUaGUgbWFudWFsIHRv
+Z2dsZSBmYW5zIGFyZSBvbmx5IHByZXNlbnQgb24gcHJlLXRlc2xhIEdQVXMsIGxldCdzIGlnbm9y
+ZQp0aGVtIGhlcmUsIGJlY2F1c2Ugd2Uga25vdyB3aGF0IHRvIGRvIHRoZXJlLgoKQWxsIHJlY2Vu
+dCAoMjAwNispIEdQVXMgdXNlIFBXTSwgYW5kIGFueXRoaW5nIGFmdGVyIHRoZSBHVDIxNSB1c2Ug
+dGhpcwpmYW4gY2FsaWJyYXRpb24gdGFibGUgd2hpY2ggdG9vayBtZSBhIHdoaWxlIHRvIGZpbmQs
+IGFuZCB0aGF0IGlzIHN0aWxsCm1vc3RseSBhIG15c3RlcnkgdG8gbWUgOnMKCj4gCj4gSGF2ZSBh
+IGxvb2sgYXQgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vZmFuLmMgYW5kIHRoZSB2YXJp
+b3VzCj4gYml0cyBpdCBlbmRzIHVwIGNhbGxpbmcgKHByZS1HRjExOSBmZXJtaSdzIGVuZCB1cCB3
+aXRoIHRoZSBudjUwCj4gZmFuX3NldCwgSSBiZWxpZXZlKS4KPiAKPiBUaGUgYmlvcyBzdHVmZiBp
+cyBwYXJzZWQgaW4gbnZrbS9zdWJkZXYvYmlvcy9mYW4uYyBhbmQgdGhlcm0uYywKPiBhbHRob3Vn
+aCBJIGJlbGlldmUgTWFydGluJ3MgbGF0ZXN0IGFuYWx5c2lzIGlzIG1vcmUgYWR2YW5jZWQgdGhh
+bgo+IHdoYXQncyBpbiB0aGF0IGNvZGUuCgpBYnNvbHV0ZWx5IDopIEkgaGF2ZSBub3QgdXBkYXRl
+ZCBOb3V2ZWF1IHlldCwgaW4gZmVhciBvZiBzZXR0aW5nIGEgdmFsdWUKbG93ZXIgdGhhbiB3aGF0
+IHRoZSBwcm9wcmlldGFyeSBkcml2ZXIgZG9lcy4uLgoKPiAKPiBNYXJ0aW4ncyBxdWVzdGlvbiB3
+YXMgdmVyeSBsb25nLCBidXQgaXQgYm9pbHMgZG93biB0byB0aGlzOgo+IAo+IEhvdyBkbyB3ZSBj
+b21wdXRlIHRoZSBjb3JyZWN0IHZhbHVlcyB0byB3cml0ZSBpbnRvIHRoZSBlMTE0L2UxMTggcHdt
+Cj4gcmVnaXN0ZXJzIGJhc2VkIG9uIHRoZSBWQklPUyBjb250ZW50cyBhbmQgY3VycmVudCBzdGF0
+ZSBvZiB0aGUgYm9hcmQKPiAobGlrZSB0ZW1wZXJhdHVyZSkuCgpVbmZvcnR1bmF0ZWx5LCBpdCBj
+YW4gYWxzbyBiZSB0aGUgZTExYy9lMTIwIGNvdXBsZSwgb3IgMHgyMDBkOC9kYyBvbgpHRjExOSss
+IG9yIDB4MjAwY2QvZDAgb24gS2VwbGVyKy4KCkF0IGxlYXN0LCBpdCBsb29rcyBsaWtlIHdlIGtu
+b3cgd2hpY2ggUFdNIGNvbnRyb2xlciB3ZSBuZWVkIHRvIGRyaXZlLCBzbwpJIGRpZCBub3Qgd2Fu
+dCB0byBtdWRkeSB0aGUgd2F0ZXIgZXZlbiBtb3JlIGJ5IGdpdmluZyByZWdpc3RlcgphZGRyZXNz
+ZXMsIHJhdGhlciBjb25jZW50cmF0aW5nIG9uIHRoZSBwcm9ibGVtIGF0IGhhbmQ6IEhvdyB0byBj
+b21wdXRlCnRoZSBkdXR5IHZhbHVlIGZvciB0aGUgUFdNIGNvbnRyb2xlci4KCj4gCj4gV2UgZ2Vu
+ZXJhbGx5IGRvIHRoaXMgcmlnaHQsIGJ1dCBhcHBlYXIgdG8gZ2V0IGl0IGV4dHJhLXdyb25nIGZv
+ciBjZXJ0YWluIEdQVXMuCgpZZXMuLi4gU28gZmFyLCB3ZSBhcmUgYWx3YXlzIHNhZmUsIGJ1dCB1
+c2VycyB0ZW5kIHRvIG1pbmQgd2hlbiB0aGVpcgpjb21wdXRlciBzb3VuZCBsaWtlIGEganVtYm8g
+amV0IGF0IHRha2Ugb2ZmLi4uIFdobyB3b3VsZCBoYXZlIHRob3VnaHQ/IDpECgpBbnl3YXksIGxv
+b2tpbmcgZm9yd2FyZCB0byB5b3VyIGFuc3dlciEKCkNoZWVycywKTWFydGluCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
