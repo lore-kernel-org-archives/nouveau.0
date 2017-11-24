@@ -1,14 +1,14 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH] pci: do a msi rearm on init
-Date: Fri, 24 Nov 2017 15:08:25 +0100
-Message-ID: <CACO55tt7xEkxfYHvw=gDRQgULvYr1dCLEUmOztKfXHyBOvUdAw@mail.gmail.com>
+Date: Fri, 24 Nov 2017 15:23:28 +0100
+Message-ID: <20171124142328.GA19273@ulmo>
 References: <20171124025626.14037-1-kherbst@redhat.com>
  <20171124140250.GD15999@ulmo>
+ <CACO55tt7xEkxfYHvw=gDRQgULvYr1dCLEUmOztKfXHyBOvUdAw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0533218040=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20171124140250.GD15999@ulmo>
+In-Reply-To: <CACO55tt7xEkxfYHvw=gDRQgULvYr1dCLEUmOztKfXHyBOvUdAw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,35 +18,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBOb3YgMjQsIDIwMTcgYXQgMzowMiBQTSwgVGhpZXJyeSBSZWRpbmcKPHRoaWVycnku
-cmVkaW5nQGdtYWlsLmNvbT4gd3JvdGU6Cj4gT24gRnJpLCBOb3YgMjQsIDIwMTcgYXQgMDM6NTY6
-MjZBTSArMDEwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+PiBPbiBteSBHUDEwNyB3aGVuIEkgbG9h
-ZCBub3V2ZWF1IGFmdGVyIHVubG9hZGluZyBpdCwgZm9yIHNvbWUgcmVhc29uIHRoZQo+PiBHUFUg
-c3RvcHBlZCBzZW5kaW5nIG9yIHRoZSBDUFUgc3RvcHBlZCByZWNlaXZpbmcgaW50ZXJydXB0cyBp
-ZiBNU0kgd2FzCj4+IGVuYWJsZWQuCj4KPiBJIHN1cHBvc2UgdGhpcyBjb3VsZCBoYXBwZW4gaWYg
-dGhlIEdQVSByYWlzZXMgYW4gaW50ZXJydXB0IGFmdGVyIHRoZQo+IGRyaXZlcidzIGFscmVhZHkg
-Y2FsbGVkIGZyZWVfaXJxKCkgb24gaXQsIGFuZCBoZW5jZSB0aGUgZHJpdmVyIGNhbid0Cj4gcmVh
-cm0gaXRzZWxmIGluIHRoZSBpbnRlcnJ1cHQgaGFuZGxlci4KPgo+IFRoaXMgcG9zc2libHkgcG9p
-bnRzIHRvIGEgYnVnIHNvbWV3aGVyZSAodGhlIEdQVSBzaG91bGQgYmUgY29tcGxldGVseQo+IGlk
-bGUgYnkgdGhlIHRpbWUgZnJlZV9pcnEoKSBpcyBjYWxsZWQpLCBidXQgdGhpcyBzZWVtcyBsaWtl
-IGEgdmFsaWQKPiB0aGluZyB0byBkbyBhdCBpbml0aWFsaXphdGlvbiBpbiBhbnkgY2FzZSB0byBh
-dm9pZCByZWx5aW5nIG9uIHRoZSBwcmlvcgo+IG93bmVyIG9mIHRoZSBkZXZpY2UgdG8gYWx3YXlz
-IGJlaGF2ZSBwcm9wZXJseS4KPgoKWWVhaCwgdGhpcyBtYWtlcyBzZW5zZS4gQnV0IHdoYXQgSSBh
-bSB3b25kZXJpbmcgYWJvdXQgaXMsIHdoeSB0aGlzCmlzbid0IGEgYmlnZ2VyIHByb2JsZW0gb3Ig
-bWF5YmUgdGhpcyBpcyBqdXN0IGR1ZSB0byB0aG9zZSBjaGFuZ2VzIGluCnRoZSBQYXNjYWwgaW50
-ZXJydXB0IGhhbmRsZXIgYW5kIHRoaXMgaXMgYSBQYXNjYWwgb25seSBwcm9ibGVtPwpBbnl3YXks
-IHRoZSBOdmlkaWEgZHJpdmVyIHNlZW1zIHRvIGRvIGl0IG9uY2Ugb24gbG9hZGluZyB0aW1lIGFz
-IHdlbGwsCnNvIEkgd2FzIHF1aXRlIHN1cmUgd2UgY291bGQgc2ltcGx5IGRvIGl0IHRoaXMgd2F5
-IGFuZCBiZSBzdXJlIHRoYXQgd2UKYXJlIGFibGUgdG8gdXNlIHRoZSBHUFUgZnJvbSBhbnkgc3Rh
-dGUuCgo+PiBEb2luZyBhIHJlYXJtIG9uY2UgYmVmb3JlIGdldHRpbmcgYW55IGludGVycnVwdHMg
-Zml4ZXMgdGhpcy4KPj4KPj4gU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJl
-ZGhhdC5jb20+Cj4+IC0tLQo+PiAgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYyB8
-IDQgKysrKwo+PiAgMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKQo+Cj4gUmV2aWV3ZWQt
-Ynk6IFRoaWVycnkgUmVkaW5nIDx0cmVkaW5nQG52aWRpYS5jb20+Cl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0533218040==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="FL5UXtIhxfXey3p5"
+Content-Disposition: inline
+
+
+--FL5UXtIhxfXey3p5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Nov 24, 2017 at 03:08:25PM +0100, Karol Herbst wrote:
+> On Fri, Nov 24, 2017 at 3:02 PM, Thierry Reding
+> <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> > On Fri, Nov 24, 2017 at 03:56:26AM +0100, Karol Herbst wrote:
+> >> On my GP107 when I load nouveau after unloading it, for some reason the
+> >> GPU stopped sending or the CPU stopped receiving interrupts if MSI was
+> >> enabled.
+> >
+> > I suppose this could happen if the GPU raises an interrupt after the
+> > driver's already called free_irq() on it, and hence the driver can't
+> > rearm itself in the interrupt handler.
+> >
+> > This possibly points to a bug somewhere (the GPU should be completely
+> > idle by the time free_irq() is called), but this seems like a valid
+> > thing to do at initialization in any case to avoid relying on the prior
+> > owner of the device to always behave properly.
+> >
+>=20
+> Yeah, this makes sense. But what I am wondering about is, why this
+> isn't a bigger problem or maybe this is just due to those changes in
+> the Pascal interrupt handler and this is a Pascal only problem?
+
+Yeah, this could be some kind of race that's only triggering on Pascal.
+
+Comparing with the nvgpu driver it seems like the MSI interrupt should
+be rearmed only after all interrupts have been processed, while Nouveau
+currently rearms before processing interrupts (though after masking the
+interrupts). I'm not very familiar with all of this, but perhaps Pascal
+has some interrupts that Nouveau doesn't mask and therefore might race.
+
+Perhaps something like this would help:
+
+--- >8 ---
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pci/base.c b/drivers/gpu/d=
+rm/nouveau/nvkm/subdev/pci/base.c
+index b1b1f3626b96..0b3b802c26df 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/pci/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pci/base.c
+@@ -72,10 +72,10 @@ nvkm_pci_intr(int irq, void *arg)
+        struct nvkm_device *device =3D pci->subdev.device;
+        bool handled =3D false;
+        nvkm_mc_intr_unarm(device);
+-       if (pci->msi)
+-               pci->func->msi_rearm(pci);
+        nvkm_mc_intr(device, &handled);
+        nvkm_mc_intr_rearm(device);
++       if (pci->msi)
++               pci->func->msi_rearm(pci);
+        return handled ? IRQ_HANDLED : IRQ_NONE;
+ }
+
+--- >8 ---
+
+> Anyway, the Nvidia driver seems to do it once on loading time as well,
+> so I was quite sure we could simply do it this way and be sure that we
+> are able to use the GPU from any state.
+
+I think it's totally fine to apply as-is and leave it to further
+investigation what Nouveau needs to do to properly uninitialize the
+device. Like you said it can always happen that somebody else leaves
+the GPU in some undefined state, in which case it's good to always
+do this at initialization.
+
+Thierry
+
+--FL5UXtIhxfXey3p5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAloYK14ACgkQ3SOs138+
+s6GyXQ//QtSHtrtkENSJGaTIIr8hYoiVIabuOc2ECsRHYp+DPsWmFPVsVYrsQsJV
+WgN/+UAgftbja2+m9U+5vmD+7kWa5zShpIdbdqvaoYpA7mOLvhz7CG9MdBo68dCm
+3SUconMM3yn6emjnrsyPUTwG35dsfK+brlv2/WcGptUku+NKEnFwAJnZ8YxjSiZO
+KmWqHMwrd/Ol8pOMr/nWvr6udx8JyOX07bOG7bg9jihCm505TFr1kXyQ43YC+n7V
+RuGh8mDqPmSn2+X9YYyUqABQOJx3vW2eKm2LmkfNatGmCnj8kCSuNk/G164PrX5T
+CVZjlrmthk3nY8/DytbsmKpQPCXxPE5Kv0/haEfJGhahapsfi0xq7ALXFQ0BXnEc
+McuKUr/MRaWPpEV4oVIgndumPwagksCra1gQKMOiqoNsLH9sUuQSkhnnedCu4dzy
+/pygPM+F/U8cfl3TI1kxhMa2ZWXBU6owu7aZCsbJ6AfX1p1JWYkSOFSb1vqfPbtm
+Gy8SJLLmesUDBp7KAqD+ZBei/Z4sd7cv8wU8EmevXOLCjsmO6Uut2pupiN//xnx6
+ovZZ9mfPhHNLpCaxA9tNXfgH0pkqX6GcUiqOhh80A+HeXr2d0Ml36Qj4i9rqiAi3
+96ahMbba22C20QL/hDfjvx7MBAnvM0BIyCjSKcteTZCnBVEuNkc=
+=VoTm
+-----END PGP SIGNATURE-----
+
+--FL5UXtIhxfXey3p5--
+
+--===============0533218040==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0533218040==--
