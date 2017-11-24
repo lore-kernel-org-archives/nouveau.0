@@ -1,9 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103896] New: [optimus, reverse PRIME] no HDMI audio
-Date: Fri, 24 Nov 2017 21:39:55 +0000
-Message-ID: <bug-103896-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 103897] New: Kernel 4.14 causes high cpu usage,
+	4.12 was OK
+Date: Fri, 24 Nov 2017 23:07:29 +0000
+Message-ID: <bug-103897-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0896709359=="
+Content-Type: multipart/mixed; boundary="===============1551827871=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,66 +19,72 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0896709359==
-Content-Type: multipart/alternative; boundary="15115595960.e1EFeb17.30783";
+--===============1551827871==
+Content-Type: multipart/alternative; boundary="15115648491.F3E7E60.9121";
  charset="UTF-8"
 
 
---15115595960.e1EFeb17.30783
-Date: Fri, 24 Nov 2017 21:39:56 +0000
+--15115648491.F3E7E60.9121
+Date: Fri, 24 Nov 2017 23:07:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103896
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103897
 
-            Bug ID: 103896
-           Summary: [optimus, reverse PRIME] no HDMI audio
+            Bug ID: 103897
+           Summary: Kernel 4.14 causes high cpu usage, 4.12 was OK
            Product: xorg
-           Version: 7.7 (2012.06)
-          Hardware: Other
-                OS: All
+           Version: git
+          Hardware: x86 (IA32)
+                OS: Linux (All)
             Status: NEW
           Severity: normal
           Priority: medium
          Component: Driver/nouveau
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: post+fdo-8yesU2pFZgY@public.gmane.org
+          Reporter: randrik-JGs/UdohzUI@public.gmane.org
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-I have a Lenovo P50 which contains an NVIDIA Quadro M2000M in reverse PRIME
-configuration: The HDMI port is connected to the NVidia card.  While gettin=
-g an
-image onto the HDMI port works just fine, there is no audio.
+Hello. After upgrading my kernel to 4.14 I noticed strange behavior: If I l=
+oad
+X (KDE 3.5.10 session with built-in compositor [kompmgr], self-compiled with
+many patches, X server 1.19.5, nouveau DDX git) and start to use seamonkey =
+2.49
+(again, self-compiled with gtk2 toolkit, not default gtk3) - after some hou=
+rs
+of use X started to eat a lot of CPU time, new windows appear after delay,
+glxgears slow down to 11 fps or so from default 60. If I restart X session -
+everything back to normal, for few hours. If I quit seamonkey - CPU usage
+drops. But if I start it up again - CPU load returns quickly, and not go do=
+wn
+until X restart.
 
-I asked about this on IRC, the logs are at
-<https://people.freedesktop.org/~cbrill/dri-log/index.php?channel=3Dnouveau=
-&highlight_names=3D&date=3D2017-11-24#t-2034>.
- The summary is that I tried running the following script (after stopping X=
-):
+Seamonkey use hw compositing (force-enabled) and multiprocess experimental
+option. Problem is, exactly same seamonkey with same set of tabs work fine =
+on
+4.12.0 kernel!
 
-rmmod nouveau
-setpci -s 01:00.0 0x488.l=3D0x2000000:0x2000000
-echo 1 > /sys/bus/pci/devices/0000:01:00.0/remove
-#echo 1 > /sys/bus/pci/devices/0000:00:01.0/rescan
-echo 1 > /sys/bus/pci/rescan
-modprobe nouveau
+I set architecture to ia32, even if kernel compiled for x86_64 , because al=
+l my
+userspace is 32-bit.
 
-But that did not help.  I then started X again, and lspci still shows only
+hw:
+01:00.0 0300: 10de:0606 (rev a2) (prog-if 00 [VGA controller])
+aka
+01:00.0 VGA compatible controller: NVIDIA Corporation G92 [GeForce 8800 GS]
+(rev a2) (prog-if 00 [VGA controller])
 
-$ sudo lspci -nn -d 10de:
-01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM107GLM [Quad=
-ro
-M2000M] [10de:13b0] (rev a2)
+X log, dmesg, opreport data will follow.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15115595960.e1EFeb17.30783
-Date: Fri, 24 Nov 2017 21:39:56 +0000
+--15115648491.F3E7E60.9121
+Date: Fri, 24 Nov 2017 23:07:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -93,14 +100,14 @@ Auto-Submitted: auto-generated
           <th>Bug ID</th>
           <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [optimus, reverse PRIME] no HDMI audio"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103896">103896</a>
+   title=3D"NEW - Kernel 4.14 causes high cpu usage, 4.12 was OK"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103897">103897</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>[optimus, reverse PRIME] no HDMI audio
+          <td>Kernel 4.14 causes high cpu usage, 4.12 was OK
           </td>
         </tr>
 
@@ -112,19 +119,19 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Version</th>
-          <td>7.7 (2012.06)
+          <td>git
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>Other
+          <td>x86 (IA32)
           </td>
         </tr>
 
         <tr>
           <th>OS</th>
-          <td>All
+          <td>Linux (All)
           </td>
         </tr>
 
@@ -160,7 +167,7 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Reporter</th>
-          <td>post+fdo&#64;ralfj.de
+          <td>randrik&#64;mail.ru
           </td>
         </tr>
 
@@ -171,33 +178,36 @@ Auto-Submitted: auto-generated
         </tr></table>
       <p>
         <div>
-        <pre>I have a Lenovo P50 which contains an NVIDIA Quadro M2000M in =
-reverse PRIME
-configuration: The HDMI port is connected to the NVidia card.  While gettin=
-g an
-image onto the HDMI port works just fine, there is no audio.
+        <pre>Hello. After upgrading my kernel to 4.14 I noticed strange beh=
+avior: If I load
+X (KDE 3.5.10 session with built-in compositor [kompmgr], self-compiled with
+many patches, X server 1.19.5, nouveau DDX git) and start to use seamonkey =
+2.49
+(again, self-compiled with gtk2 toolkit, not default gtk3) - after some hou=
+rs
+of use X started to eat a lot of CPU time, new windows appear after delay,
+glxgears slow down to 11 fps or so from default 60. If I restart X session -
+everything back to normal, for few hours. If I quit seamonkey - CPU usage
+drops. But if I start it up again - CPU load returns quickly, and not go do=
+wn
+until X restart.
 
-I asked about this on IRC, the logs are at
-&lt;<a href=3D"https://people.freedesktop.org/~cbrill/dri-log/index.php?cha=
-nnel=3Dnouveau&amp;highlight_names=3D&amp;date=3D2017-11-24#t-2034">https:/=
-/people.freedesktop.org/~cbrill/dri-log/index.php?channel=3Dnouveau&amp;hig=
-hlight_names=3D&amp;date=3D2017-11-24#t-2034</a>&gt;.
- The summary is that I tried running the following script (after stopping X=
-):
+Seamonkey use hw compositing (force-enabled) and multiprocess experimental
+option. Problem is, exactly same seamonkey with same set of tabs work fine =
+on
+4.12.0 kernel!
 
-rmmod nouveau
-setpci -s 01:00.0 0x488.l=3D0x2000000:0x2000000
-echo 1 &gt; /sys/bus/pci/devices/0000:01:00.0/remove
-#echo 1 &gt; /sys/bus/pci/devices/0000:00:01.0/rescan
-echo 1 &gt; /sys/bus/pci/rescan
-modprobe nouveau
+I set architecture to ia32, even if kernel compiled for x86_64 , because al=
+l my
+userspace is 32-bit.
 
-But that did not help.  I then started X again, and lspci still shows only
+hw:
+01:00.0 0300: 10de:0606 (rev a2) (prog-if 00 [VGA controller])
+aka
+01:00.0 VGA compatible controller: NVIDIA Corporation G92 [GeForce 8800 GS]
+(rev a2) (prog-if 00 [VGA controller])
 
-$ sudo lspci -nn -d 10de:
-01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM107GLM [Quad=
-ro
-M2000M] [10de:13b0] (rev a2)</pre>
+X log, dmesg, opreport data will follow.</pre>
         </div>
       </p>
 
@@ -211,9 +221,9 @@ M2000M] [10de:13b0] (rev a2)</pre>
     </body>
 </html>=
 
---15115595960.e1EFeb17.30783--
+--15115648491.F3E7E60.9121--
 
---===============0896709359==
+--===============1551827871==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -223,4 +233,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0896709359==--
+--===============1551827871==--
