@@ -1,14 +1,14 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: [PATCH v3] nouveau/compiler: Allow to omit line numbers
-	when printing instructions
-Date: Fri, 24 Nov 2017 16:55:29 +0100
-Message-ID: <20171124155529.8990-1-tobias.johannes.klausmann@mni.thm.de>
+From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH v3] nouveau/compiler: Allow to omit line
+ numbers when printing instructions
+Date: Fri, 24 Nov 2017 17:10:17 +0100
+Message-ID: <20171124161017.dwozoi4b7aqyyrbf@pmoreau.org>
 References: <20171120221501.pz3oprojv3switve@pmoreau.org>
+ <20171124155529.8990-1-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0341662949=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20171120221501.pz3oprojv3switve-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
+In-Reply-To: <20171124155529.8990-1-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,84 +18,194 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBjb21lcyBpbiBoYW5keSB3aGVuIGNoZWNraW5nICJOVjUwX1BST0dfREVCVUc9MSIgb3V0
-cHV0cyB3aXRoIGRpZmYhCgpWMjoKIC0gVXNlIGVudmlyb25tZW50YWwgdmFyaWFibGUgKEthcm9s
-IEhlcmJzdCkKVjM6CiAtIFVzZSB0aGUgYWxyZWFkeSBwb3B1bGF0ZWQgbnY1MF9pcl9wcm9nX2lu
-Zm8gdG8gZm9yd2FyZCBpbmZvcm1hdGlvbiB0byB0aGUKICAgcHJpbnQgcGFzcyAoUGllcnJlIE1v
-cmVhdSkKClNpZ25lZC1vZmYtYnk6IFRvYmlhcyBLbGF1c21hbm4gPHRvYmlhcy5qb2hhbm5lcy5r
-bGF1c21hbm5AbW5pLnRobS5kZT4KLS0tCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29k
-ZWdlbi9udjUwX2lyX2RyaXZlci5oICB8ICAxICsKIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
-dS9jb2RlZ2VuL252NTBfaXJfcHJpbnQuY3BwIHwgMTIgKysrKysrKysrLS0tCiBzcmMvZ2FsbGl1
-bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9jb21waWxlci5jICAgICAgICB8ICAyICsrCiBzcmMv
-Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3Byb2dyYW0uYyAgICAgICB8ICAyICsr
-CiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Byb2dyYW0uYyAgICAgICB8
-ICAyICsrCiA1IGZpbGVzIGNoYW5nZWQsIDE2IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0p
-CgpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9p
-cl9kcml2ZXIuaCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJf
-ZHJpdmVyLmgKaW5kZXggZmZkNTNjOWNkMy4uNjA0YTIyYmE4OSAxMDA2NDQKLS0tIGEvc3JjL2dh
-bGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9kcml2ZXIuaAorKysgYi9zcmMv
-Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2RyaXZlci5oCkBAIC04Miw2
-ICs4Miw3IEBAIHN0cnVjdCBudjUwX2lyX3Byb2dfaW5mbwogCiAgICB1aW50OF90IG9wdExldmVs
-OyAvKiBvcHRpbWl6YXRpb24gbGV2ZWwgKDAgdG8gMykgKi8KICAgIHVpbnQ4X3QgZGJnRmxhZ3M7
-CisgICBib29sIG9taXRMaW5lTnVtOwogCiAgICBzdHJ1Y3QgewogICAgICAgaW50MTZfdCBtYXhH
-UFI7ICAgICAvKiBtYXkgYmUgLTEgaWYgbm9uZSB1c2VkICovCmRpZmYgLS1naXQgYS9zcmMvZ2Fs
-bGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3ByaW50LmNwcCBiL3NyYy9nYWxs
-aXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcHJpbnQuY3BwCmluZGV4IDkxNDU4
-MDFiNjIuLmViN2U5MDU3YjUgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
-dS9jb2RlZ2VuL252NTBfaXJfcHJpbnQuY3BwCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
-dmVhdS9jb2RlZ2VuL252NTBfaXJfcHJpbnQuY3BwCkBAIC02OTEsNyArNjkxLDcgQEAgdm9pZCBJ
-bnN0cnVjdGlvbjo6cHJpbnQoKSBjb25zdAogY2xhc3MgUHJpbnRQYXNzIDogcHVibGljIFBhc3MK
-IHsKIHB1YmxpYzoKLSAgIFByaW50UGFzcygpIDogc2VyaWFsKDApIHsgfQorICAgUHJpbnRQYXNz
-KGJvb2wgb21pdExpbmVOdW0gPSBmYWxzZSkgOiBzZXJpYWwoMCksIG9taXRfc2VyaWFsKG9taXRM
-aW5lTnVtKSB7IH0KIAogICAgdmlydHVhbCBib29sIHZpc2l0KEZ1bmN0aW9uICopOwogICAgdmly
-dHVhbCBib29sIHZpc2l0KEJhc2ljQmxvY2sgKik7CkBAIC02OTksNiArNjk5LDcgQEAgcHVibGlj
-OgogCiBwcml2YXRlOgogICAgaW50IHNlcmlhbDsKKyAgIGJvb2wgb21pdF9zZXJpYWw7CiB9Owog
-CiBib29sCkBAIC03NjIsNyArNzYzLDEyIEBAIFByaW50UGFzczo6dmlzaXQoQmFzaWNCbG9jayAq
-YmIpCiBib29sCiBQcmludFBhc3M6OnZpc2l0KEluc3RydWN0aW9uICppbnNuKQogewotICAgSU5G
-TygiJTNpOiAiLCBzZXJpYWwrKyk7CisgICBpZiAob21pdF9zZXJpYWwpIHsKKyAgICAgIElORk8o
-IiAgICAgIik7CisgICAgICBzZXJpYWwrKzsKKyAgIH0KKyAgIGVsc2UKKyAgICAgIElORk8oIiUz
-aTogIiwgc2VyaWFsKyspOwogICAgaW5zbi0+cHJpbnQoKTsKICAgIHJldHVybiB0cnVlOwogfQpA
-QCAtNzc3LDcgKzc4Myw3IEBAIEZ1bmN0aW9uOjpwcmludCgpCiB2b2lkCiBQcm9ncmFtOjpwcmlu
-dCgpCiB7Ci0gICBQcmludFBhc3MgcGFzczsKKyAgIFByaW50UGFzcyBwYXNzKGRyaXZlci0+b21p
-dExpbmVOdW0pOwogICAgaW5pdF9jb2xvdXJzKCk7CiAgICBwYXNzLnJ1bih0aGlzLCB0cnVlLCBm
-YWxzZSk7CiB9CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVh
-dV9jb21waWxlci5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfY29tcGls
-ZXIuYwppbmRleCAzMTUxYTZmNDIwLi4xMjE0Y2YzNTY1IDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1
-bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9jb21waWxlci5jCisrKyBiL3NyYy9nYWxsaXVtL2Ry
-aXZlcnMvbm91dmVhdS9ub3V2ZWF1X2NvbXBpbGVyLmMKQEAgLTEyMiw2ICsxMjIsOCBAQCBub3V2
-ZWF1X2NvZGVnZW4oaW50IGNoaXBzZXQsIGludCB0eXBlLCBzdHJ1Y3QgdGdzaV90b2tlbiB0b2tl
-bnNbXSwKIAogICAgaW5mby5vcHRMZXZlbCA9IGRlYnVnX2dldF9udW1fb3B0aW9uKCJOVjUwX1BS
-T0dfT1BUSU1JWkUiLCAzKTsKICAgIGluZm8uZGJnRmxhZ3MgPSBkZWJ1Z19nZXRfbnVtX29wdGlv
-bigiTlY1MF9QUk9HX0RFQlVHIiwgMCk7CisgICBpbmZvLm9taXRMaW5lTnVtID0KKyAgICAgICAg
-IGRlYnVnX2dldF9udW1fb3B0aW9uKCJOVjUwX1BST0dfREVCVUdfT01JVF9MSU5FTlVNIiwgMCkg
-PyB0cnVlIDogZmFsc2U7CiAKICAgIHJldCA9IG52NTBfaXJfZ2VuZXJhdGVfY29kZSgmaW5mbyk7
-CiAgICBpZiAocmV0KSB7CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-bnY1MC9udjUwX3Byb2dyYW0uYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252
-NTBfcHJvZ3JhbS5jCmluZGV4IDZlOTQzYTNkOTQuLmZiNWM5ZWQ3NzcgMTAwNjQ0Ci0tLSBhL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfcHJvZ3JhbS5jCisrKyBiL3NyYy9n
-YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfcHJvZ3JhbS5jCkBAIC0zNjcsNiArMzY3
-LDggQEAgbnY1MF9wcm9ncmFtX3RyYW5zbGF0ZShzdHJ1Y3QgbnY1MF9wcm9ncmFtICpwcm9nLCB1
-aW50MTZfdCBjaGlwc2V0LAogI2lmZGVmIERFQlVHCiAgICBpbmZvLT5vcHRMZXZlbCA9IGRlYnVn
-X2dldF9udW1fb3B0aW9uKCJOVjUwX1BST0dfT1BUSU1JWkUiLCAzKTsKICAgIGluZm8tPmRiZ0Zs
-YWdzID0gZGVidWdfZ2V0X251bV9vcHRpb24oIk5WNTBfUFJPR19ERUJVRyIsIDApOworICAgaW5m
-by0+b21pdExpbmVOdW0gPQorICAgICAgICAgZGVidWdfZ2V0X251bV9vcHRpb24oIk5WNTBfUFJP
-R19ERUJVR19PTUlUX0xJTkVOVU0iLCAwKSA/IHRydWUgOiBmYWxzZTsKICNlbHNlCiAgICBpbmZv
-LT5vcHRMZXZlbCA9IDM7CiAjZW5kaWYKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMv
-bm91dmVhdS9udmMwL252YzBfcHJvZ3JhbS5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
-L252YzAvbnZjMF9wcm9ncmFtLmMKaW5kZXggYzk1YTk2YzcxNy4uOGRjZWQ2NjQzNyAxMDA2NDQK
-LS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9wcm9ncmFtLmMKKysr
-IGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9wcm9ncmFtLmMKQEAgLTU3
-NSw2ICs1NzUsOCBAQCBudmMwX3Byb2dyYW1fdHJhbnNsYXRlKHN0cnVjdCBudmMwX3Byb2dyYW0g
-KnByb2csIHVpbnQxNl90IGNoaXBzZXQsCiAgICBpbmZvLT50YXJnZXQgPSBkZWJ1Z19nZXRfbnVt
-X29wdGlvbigiTlY1MF9QUk9HX0NISVBTRVQiLCBjaGlwc2V0KTsKICAgIGluZm8tPm9wdExldmVs
-ID0gZGVidWdfZ2V0X251bV9vcHRpb24oIk5WNTBfUFJPR19PUFRJTUlaRSIsIDMpOwogICAgaW5m
-by0+ZGJnRmxhZ3MgPSBkZWJ1Z19nZXRfbnVtX29wdGlvbigiTlY1MF9QUk9HX0RFQlVHIiwgMCk7
-CisgICBpbmZvLT5vbWl0TGluZU51bSA9CisgICAgICAgICBkZWJ1Z19nZXRfbnVtX29wdGlvbigi
-TlY1MF9QUk9HX0RFQlVHX09NSVRfTElORU5VTSIsIDApID8gdHJ1ZSA6IGZhbHNlOwogI2Vsc2UK
-ICAgIGluZm8tPm9wdExldmVsID0gMzsKICNlbmRpZgotLSAKMi4xNS4wCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0341662949==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3jafvqqt4prjd4t4"
+Content-Disposition: inline
+
+
+--3jafvqqt4prjd4t4
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+(Comment is a bit further down)
+
+On 2017-11-24 =E2=80=94 16:55, Tobias Klausmann wrote:
+> This comes in handy when checking "NV50_PROG_DEBUG=3D1" outputs with diff!
+>=20
+> V2:
+>  - Use environmental variable (Karol Herbst)
+> V3:
+>  - Use the already populated nv50_ir_prog_info to forward information to =
+the
+>    print pass (Pierre Moreau)
+>=20
+> Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+> ---
+>  src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h  |  1 +
+>  src/gallium/drivers/nouveau/codegen/nv50_ir_print.cpp | 12 +++++++++---
+>  src/gallium/drivers/nouveau/nouveau_compiler.c        |  2 ++
+>  src/gallium/drivers/nouveau/nv50/nv50_program.c       |  2 ++
+>  src/gallium/drivers/nouveau/nvc0/nvc0_program.c       |  2 ++
+>  5 files changed, 16 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h b/src/g=
+allium/drivers/nouveau/codegen/nv50_ir_driver.h
+> index ffd53c9cd3..604a22ba89 100644
+> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
+> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
+> @@ -82,6 +82,7 @@ struct nv50_ir_prog_info
+> =20
+>     uint8_t optLevel; /* optimization level (0 to 3) */
+>     uint8_t dbgFlags;
+> +   bool omitLineNum;
+
+You could maybe add a comment that it only affects when printing the program
+(in debug mode), but the patch is nonetheless:
+
+Reviewed-by: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+
+> =20
+>     struct {
+>        int16_t maxGPR;     /* may be -1 if none used */
+> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_print.cpp b/src/=
+gallium/drivers/nouveau/codegen/nv50_ir_print.cpp
+> index 9145801b62..eb7e9057b5 100644
+> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_print.cpp
+> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_print.cpp
+> @@ -691,7 +691,7 @@ void Instruction::print() const
+>  class PrintPass : public Pass
+>  {
+>  public:
+> -   PrintPass() : serial(0) { }
+> +   PrintPass(bool omitLineNum =3D false) : serial(0), omit_serial(omitLi=
+neNum) { }
+> =20
+>     virtual bool visit(Function *);
+>     virtual bool visit(BasicBlock *);
+> @@ -699,6 +699,7 @@ public:
+> =20
+>  private:
+>     int serial;
+> +   bool omit_serial;
+>  };
+> =20
+>  bool
+> @@ -762,7 +763,12 @@ PrintPass::visit(BasicBlock *bb)
+>  bool
+>  PrintPass::visit(Instruction *insn)
+>  {
+> -   INFO("%3i: ", serial++);
+> +   if (omit_serial) {
+> +      INFO("     ");
+> +      serial++;
+> +   }
+> +   else
+> +      INFO("%3i: ", serial++);
+>     insn->print();
+>     return true;
+>  }
+> @@ -777,7 +783,7 @@ Function::print()
+>  void
+>  Program::print()
+>  {
+> -   PrintPass pass;
+> +   PrintPass pass(driver->omitLineNum);
+>     init_colours();
+>     pass.run(this, true, false);
+>  }
+> diff --git a/src/gallium/drivers/nouveau/nouveau_compiler.c b/src/gallium=
+/drivers/nouveau/nouveau_compiler.c
+> index 3151a6f420..1214cf3565 100644
+> --- a/src/gallium/drivers/nouveau/nouveau_compiler.c
+> +++ b/src/gallium/drivers/nouveau/nouveau_compiler.c
+> @@ -122,6 +122,8 @@ nouveau_codegen(int chipset, int type, struct tgsi_to=
+ken tokens[],
+> =20
+>     info.optLevel =3D debug_get_num_option("NV50_PROG_OPTIMIZE", 3);
+>     info.dbgFlags =3D debug_get_num_option("NV50_PROG_DEBUG", 0);
+> +   info.omitLineNum =3D
+> +         debug_get_num_option("NV50_PROG_DEBUG_OMIT_LINENUM", 0) ? true =
+: false;
+> =20
+>     ret =3D nv50_ir_generate_code(&info);
+>     if (ret) {
+> diff --git a/src/gallium/drivers/nouveau/nv50/nv50_program.c b/src/galliu=
+m/drivers/nouveau/nv50/nv50_program.c
+> index 6e943a3d94..fb5c9ed777 100644
+> --- a/src/gallium/drivers/nouveau/nv50/nv50_program.c
+> +++ b/src/gallium/drivers/nouveau/nv50/nv50_program.c
+> @@ -367,6 +367,8 @@ nv50_program_translate(struct nv50_program *prog, uin=
+t16_t chipset,
+>  #ifdef DEBUG
+>     info->optLevel =3D debug_get_num_option("NV50_PROG_OPTIMIZE", 3);
+>     info->dbgFlags =3D debug_get_num_option("NV50_PROG_DEBUG", 0);
+> +   info->omitLineNum =3D
+> +         debug_get_num_option("NV50_PROG_DEBUG_OMIT_LINENUM", 0) ? true =
+: false;
+>  #else
+>     info->optLevel =3D 3;
+>  #endif
+> diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_program.c b/src/galliu=
+m/drivers/nouveau/nvc0/nvc0_program.c
+> index c95a96c717..8dced66437 100644
+> --- a/src/gallium/drivers/nouveau/nvc0/nvc0_program.c
+> +++ b/src/gallium/drivers/nouveau/nvc0/nvc0_program.c
+> @@ -575,6 +575,8 @@ nvc0_program_translate(struct nvc0_program *prog, uin=
+t16_t chipset,
+>     info->target =3D debug_get_num_option("NV50_PROG_CHIPSET", chipset);
+>     info->optLevel =3D debug_get_num_option("NV50_PROG_OPTIMIZE", 3);
+>     info->dbgFlags =3D debug_get_num_option("NV50_PROG_DEBUG", 0);
+> +   info->omitLineNum =3D
+> +         debug_get_num_option("NV50_PROG_DEBUG_OMIT_LINENUM", 0) ? true =
+: false;
+>  #else
+>     info->optLevel =3D 3;
+>  #endif
+> --=20
+> 2.15.0
+>=20
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--3jafvqqt4prjd4t4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEYgBv5JnnDxeItcEHU3l4X80+KSQFAloYRGUACgkQU3l4X80+
+KSSyuQ//bPJvqdGArHyCOhgf6TWLys7reio55fh3S6+YseI0bmxYf7iHRfjxu0eH
+0Jtn+pgn1UCOPQ/O1SCe/9DYmc5QwftjbUzIuyZVywSRjjtxq8MUGo/OOgdE3h0W
+jMmjbgTZoGRJIYaIFpikY5HGsWHlIEKq1hlSnFeLygXRuDnBBagdqAlWtUMN0/pU
+K+aKPnv7estvrjn21IObSLN1TrOmCIxdotH3XG7bRx3nVlfebJOqdsnTwlA3KLpf
+ofa2lnUUba7mqeeAaFWtS0tgkjnEYptHh7pSyaXjUKT5tSB2U+4Gr/LuD3xSHtnt
+48RpYdhq+6Ckchh/3+fx4rYvvZqnnQorEN0ZAiVZ1cthjKpgvl7kIVIIiB0/8cy5
+gpNJXoDYCTchuYbP+28bfhYgs5THA7YAU7psFYGZJMJsBRMmx/5LF+xD+9YfJ4ww
+Gpvo1gDWQUyi53bwXmMq6qGXx6WjLP0tbg2PdQ+JCaNFDG/FkWPz1kiPqbOPqgQv
+4f3kcKlud7noc7BVrW7OVjhsU/aHfJvCEFk1Ed41nK5STIEfC513Bu8D8GjW7u8I
+EGS2kW8sPxg8skLdZjj+P+a0GBsCsO8QYIlsDvfxfAt7MPk0t0siKMZerBFznoim
+u3qM/0AhtryAWkuZpX9C7HL0sds9417hVZvIu2X1lLQkb/61GRg=
+=acxQ
+-----END PGP SIGNATURE-----
+
+--3jafvqqt4prjd4t4--
+
+--===============0341662949==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0341662949==--
