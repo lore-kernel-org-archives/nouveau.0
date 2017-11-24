@@ -1,134 +1,301 @@
-From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 00/15] drm: More plane clipping polish
-Date: Fri, 24 Nov 2017 14:41:28 +0100
-Message-ID: <20171124134128.GB15999@ulmo>
-References: <20171123190502.28449-1-ville.syrjala@linux.intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103889] New: [NV50/G86] disp: ERROR 1 [] 01 [] chid
+ 0 mthd 0000 data 00000000
+Date: Fri, 24 Nov 2017 13:47:32 +0000
+Message-ID: <bug-103889-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="RASg3xLB4tUQ4RcS"
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20171123190502.28449-1-ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Ville Syrjala <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Archit Taneja <architt-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Brian Starkey <brian.starkey-5wv7dgnIgG8@public.gmane.org>, CK Hu <ck.hu-NuS5LvNUpcJWk0Htik3J/w@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Laurent Pinchart <laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org>, linux-amlogic-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Liviu Dudau <liviu.dudau-5wv7dgnIgG8@public.gmane.org>, Mali DP Maintainers <malidp-VeJGdqYn5oNWk0Htik3J/w@public.gmane.org>, Mark Yao <mark.yao-TNX95d0MmH7DzftRWevZcw@public.gmane.org>, Neil Armstrong <narmstrong-rdvid1DuHRBWk0Htik3J/w@public.gmane.org>, Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf-L59+Z2yzLopAfugRpC6u6w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Philipp Zabel <p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>, Rob Clark <robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Shawn Guo <shawnguo-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1984055295=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---RASg3xLB4tUQ4RcS
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+--===============1984055295==
+Content-Type: multipart/alternative; boundary="15115312521.0BabEf.29709";
+ charset="UTF-8"
+
+
+--15115312521.0BabEf.29709
+Date: Fri, 24 Nov 2017 13:47:32 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-On Thu, Nov 23, 2017 at 09:04:47PM +0200, Ville Syrjala wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
->=20
-> This series first unifies all users of drm_atomic_helper_check_plane_stat=
-e()
-> to populate the clip rectangle with drm_mode_get_hv_timing(), and once
-> everything is unified the clip rectangle handling is sucked into
-> drm_atomic_helper_check_plane_state() away from driver code.
->=20
-> Entire series available here:
-> git://github.com/vsyrjala/linux.git atomic_plane_helper_clip
->=20
-> Cc: Archit Taneja <architt-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>
-> Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> Cc: Brian Starkey <brian.starkey-5wv7dgnIgG8@public.gmane.org>
-> Cc: CK Hu <ck.hu-NuS5LvNUpcJWk0Htik3J/w@public.gmane.org>
-> Cc: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-> Cc: freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> Cc: Laurent Pinchart <laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org>
-> Cc: linux-amlogic-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org
-> Cc: linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-> Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-> Cc: Liviu Dudau <liviu.dudau-5wv7dgnIgG8@public.gmane.org>
-> Cc: Mali DP Maintainers <malidp-VeJGdqYn5oNWk0Htik3J/w@public.gmane.org>
-> Cc: Mark Yao <mark.yao-TNX95d0MmH7DzftRWevZcw@public.gmane.org>
-> Cc: Neil Armstrong <narmstrong-rdvid1DuHRBWk0Htik3J/w@public.gmane.org>
-> Cc: Noralf Tr=C3=B8nnes <noralf-L59+Z2yzLopAfugRpC6u6w@public.gmane.org>
-> Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> Cc: Philipp Zabel <p.zabel-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
-> Cc: Rob Clark <robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Cc: Shawn Guo <shawnguo-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-> Cc: Sinclair Yeh <syeh-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
-> Cc: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Cc: Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
-> Cc: VMware Graphics <linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
->=20
-> Ville Syrj=C3=A4l=C3=A4 (15):
->   drm/i915: Reject odd pipe source width with double wide/dual link
->   drm/i915: Use drm_mode_get_hv_timing() to populate plane clip
->     rectangle
->   drm/arm/hdlcd: Use drm_mode_get_hv_timing() to populate plane clip
->     rectangle
->   drm/arm/mali-dp: Use drm_mode_get_hv_timing() to populate plane clip
->     rectangle
->   drm/simple_kms_helper: Use drm_mode_get_hv_timing() to populate plane
->     clip rectangle
->   drm/imx: Use drm_mode_get_hv_timing() to populate plane clip rectangle
->   drm/mediatek: Use drm_mode_get_hv_timing() to populate plane clip
->     rectangle
->   drm/meson: Use drm_mode_get_hv_timing() to populate plane clip
->     rectangle
->   drm/msm/mdp5: Use drm_mode_get_hv_timing() to populate plane clip
->     rectangle
->   drm/nouveau/kms/nv50: Use drm_mode_get_hv_timing() to populate plane
->     clip rectangle
->   drm/rockchip: Use drm_mode_get_hv_timing() to populate plane clip
->     rectangle
->   drm/tegra/dc: Use drm_mode_get_hv_timing() to populate plane clip
->     rectangle
->   drm/vmwgfx: Use drm_mode_get_hv_timing() to populate plane clip
->     rectangle
->   drm/zte: Use drm_mode_get_hv_timing() to populate plane clip rectangle
->   drm: Don't pass clip to drm_atomic_helper_check_plane_state()
->=20
->  drivers/gpu/drm/arm/hdlcd_crtc.c            |  6 +-----
->  drivers/gpu/drm/arm/malidp_planes.c         |  5 +----
->  drivers/gpu/drm/armada/armada_overlay.c     |  2 +-
->  drivers/gpu/drm/drm_atomic_helper.c         | 12 +++++++-----
->  drivers/gpu/drm/drm_plane_helper.c          | 11 +++--------
->  drivers/gpu/drm/drm_simple_kms_helper.c     |  5 -----
->  drivers/gpu/drm/i915/intel_atomic_plane.c   |  8 --------
->  drivers/gpu/drm/i915/intel_display.c        | 12 +++++++-----
->  drivers/gpu/drm/i915/intel_drv.h            |  1 -
->  drivers/gpu/drm/i915/intel_sprite.c         |  8 ++++++--
->  drivers/gpu/drm/imx/ipuv3-plane.c           |  7 +------
->  drivers/gpu/drm/mediatek/mtk_drm_plane.c    |  6 +-----
->  drivers/gpu/drm/meson/meson_plane.c         |  6 +-----
->  drivers/gpu/drm/msm/mdp/mdp5/mdp5_plane.c   | 14 ++------------
->  drivers/gpu/drm/nouveau/nv50_display.c      |  8 --------
->  drivers/gpu/drm/rockchip/rockchip_drm_vop.c |  8 +-------
->  drivers/gpu/drm/tegra/dc.c                  |  8 +-------
->  drivers/gpu/drm/vmwgfx/vmwgfx_kms.c         |  8 +-------
->  drivers/gpu/drm/zte/zx_plane.c              | 15 +--------------
->  include/drm/drm_atomic_helper.h             |  1 -
->  include/drm/drm_plane_helper.h              |  1 -
->  21 files changed, 35 insertions(+), 117 deletions(-)
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103889
 
-The series:
+            Bug ID: 103889
+           Summary: [NV50/G86] disp: ERROR 1 [] 01 [] chid 0 mthd 0000
+                    data 00000000
+           Product: xorg
+           Version: 7.7 (2012.06)
+          Hardware: PowerPC
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: erhard_f-cl+VPiYnx/1AfugRpC6u6w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Reviewed-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Created attachment 135696
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135696&action=3Dedit
+dmesg output
 
---RASg3xLB4tUQ4RcS
-Content-Type: application/pgp-signature; name="signature.asc"
+Tried a GeForce 8400 GS as 2nd card in my PowerMac G5 11,2 but I only get a
+blank screen although it seems to successfully open fb1:
 
------BEGIN PGP SIGNATURE-----
+[   14.407485] [drm] Initialized nouveau 1.3.1 20120801 for 0001:06:00.0 on
+minor 1
+[   14.477817] nouveau: DRM:fb000000:0000003d: init running...
+[   14.478206] nouveau: DRM:fb000000:0000003d: init children...
+[   14.478582] nouveau: DRM:fb000000:0000003d: init completed in 376us
+[   14.480128] nouveau 0001:06:00.0: disp: ERROR 1 [] 01 [] chid 1 mthd 0000
+data 00000000
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAloYIYUACgkQ3SOs138+
-s6GL3g//abDmnXSwrgZxHqktOrdeNkfCqAzAeF1edwDUPRk72cWhL9Gz2GyIoKxz
-rHBr5G3zQ4B4q4y8r8U5xuxeYcozxEww/HPYKkdaGSMAqA3nNwudAaZ5hbt9CGkP
-efMpUY0qfr8ntxnm+iiURIGpFn3QN1uCVQAn+/EWyM65/k0En8PsJdn5vDYl4kY8
-CEwnLcfCqQLHIuI55CvRJQsPHz7iEaMqCrMJmlKRiMX5l5RPVaI4WJufG3YM0agR
-84yknx5lGVXI+eqcVnarvpDEcjLGF1VqnaYKvWnzt4aOk/1CRSx6euwFGHqgPx8y
-I4ssRqaf4DsqYMpjJqxGEuOvRdU/XU8GCjubHUGMo1p1PzS+rhh2CgHg3UBwsNin
-7sMmQYUJThFYBbK7pghtKpCMOEH7EVtJvNEdCrZNuP7bRjbMnlyQUNnebXEqTfkb
-KhlogD28dkzgzP6bruAlONNQNqGjGICAoPer9FcFwh/MGdUC3XCJpzU3LhMyPPEE
-JAaU8RPz4YtDvzDIVVZ9ozAcTDnepyiOtFU8WKRHq8kYiR87BteQNYOf3/dW8FjX
-8Mupt7ImJexyugbiPdlju+Xtcn7MHZlph9CHkIqXhAVVzGXzQtOWWQqj3ylYv8ad
-RwICxCwQW/7th0rST3pgMMTbNIhfv1NtDgn3JDFwvK9g7gpQn8g=
-=J7ZF
------END PGP SIGNATURE-----
+# lspci -vv -s 0001:06:00.0
+0001:06:00.0 VGA compatible controller: NVIDIA Corporation G86 [GeForce 8400
+GS] (rev a1) (prog-if 00 [VGA controller])
+        Subsystem: Micro-Star International Co., Ltd. [MSI] G86 [GeForce 84=
+00
+GS]
+        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx-
+        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=3Dfast >TAbort- <T=
+Abort-
+<MAbort- >SERR- <PERR- INTx-
+        Latency: 0, Cache Line Size: 64 bytes
+        Interrupt: pin A routed to IRQ 65
+        Region 0: Memory at 81000000 (32-bit, non-prefetchable) [size=3D16M]
+        Region 1: Memory at 90000000 (64-bit, prefetchable) [size=3D256M]
+        Region 3: Memory at 82000000 (64-bit, non-prefetchable) [size=3D32M]
+        Region 5: I/O ports at 0000 [size=3D128]
+        Expansion ROM at 80100000 [disabled] [size=3D128K]
+        Capabilities: [60] Power Management version 2
+                Flags: PMEClk- DSI- D1- D2- AuxCurrent=3D0mA
+PME(D0-,D1-,D2-,D3hot-,D3cold-)
+                Status: D0 NoSoftRst- PME-Enable- DSel=3D0 DScale=3D0 PME-
+        Capabilities: [68] MSI: Enable- Count=3D1/1 Maskable- 64bit+
+                Address: 0000000000000000  Data: 0000
+        Capabilities: [78] Express (v1) Endpoint, MSI 00
+                DevCap: MaxPayload 128 bytes, PhantFunc 0, Latency L0s <512=
+ns,
+L1 <4us
+                        ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset-
+SlotPowerLimit 0.000W
+                DevCtl: Report errors: Correctable- Non-Fatal- Fatal-
+Unsupported-
+                        RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop+
+                        MaxPayload 128 bytes, MaxReadReq 512 bytes
+                DevSta: CorrErr- UncorrErr- FatalErr- UnsuppReq- AuxPwr-
+TransPend-
+                LnkCap: Port #0, Speed 2.5GT/s, Width x16, ASPM L0s L1, Exit
+Latency L0s <512ns, L1 <4us
+                        ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp-
+                LnkCtl: ASPM Disabled; RCB 128 bytes Disabled- CommClk-
+                        ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
+                LnkSta: Speed 2.5GT/s, Width x8, TrErr- Train- SlotClk+
+DLActive- BWMgmt- ABWMgmt-
+        Kernel driver in use: nouveau
+        Kernel modules: nouveau
 
---RASg3xLB4tUQ4RcS--
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15115312521.0BabEf.29709
+Date: Fri, 24 Nov 2017 13:47:32 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV50/G86] disp: ERROR 1 [] 01 [] chid 0 mthd 0000 data 0=
+0000000"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103889">103889</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NV50/G86] disp: ERROR 1 [] 01 [] chid 0 mthd 0000 data 00000=
+000
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>7.7 (2012.06)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>PowerPC
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>erhard_f&#64;mailbox.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135696=
+" name=3D"attach_135696" title=3D"dmesg output">attachment 135696</a> <a hr=
+ef=3D"attachment.cgi?id=3D135696&amp;action=3Dedit" title=3D"dmesg output">=
+[details]</a></span>
+dmesg output
+
+Tried a GeForce 8400 GS as 2nd card in my PowerMac G5 11,2 but I only get a
+blank screen although it seems to successfully open fb1:
+
+[   14.407485] [drm] Initialized nouveau 1.3.1 20120801 for 0001:06:00.0 on
+minor 1
+[   14.477817] nouveau: DRM:fb000000:0000003d: init running...
+[   14.478206] nouveau: DRM:fb000000:0000003d: init children...
+[   14.478582] nouveau: DRM:fb000000:0000003d: init completed in 376us
+[   14.480128] nouveau 0001:06:00.0: disp: ERROR 1 [] 01 [] chid 1 mthd 0000
+data 00000000
+
+# lspci -vv -s 0001:06:00.0
+0001:06:00.0 VGA compatible controller: NVIDIA Corporation G86 [GeForce 8400
+GS] (rev a1) (prog-if 00 [VGA controller])
+        Subsystem: Micro-Star International Co., Ltd. [MSI] G86 [GeForce 84=
+00
+GS]
+        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx-
+        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=3Dfast &gt;TAbort-=
+ &lt;TAbort-
+&lt;MAbort- &gt;SERR- &lt;PERR- INTx-
+        Latency: 0, Cache Line Size: 64 bytes
+        Interrupt: pin A routed to IRQ 65
+        Region 0: Memory at 81000000 (32-bit, non-prefetchable) [size=3D16M]
+        Region 1: Memory at 90000000 (64-bit, prefetchable) [size=3D256M]
+        Region 3: Memory at 82000000 (64-bit, non-prefetchable) [size=3D32M]
+        Region 5: I/O ports at 0000 [size=3D128]
+        Expansion ROM at 80100000 [disabled] [size=3D128K]
+        Capabilities: [60] Power Management version 2
+                Flags: PMEClk- DSI- D1- D2- AuxCurrent=3D0mA
+PME(D0-,D1-,D2-,D3hot-,D3cold-)
+                Status: D0 NoSoftRst- PME-Enable- DSel=3D0 DScale=3D0 PME-
+        Capabilities: [68] MSI: Enable- Count=3D1/1 Maskable- 64bit+
+                Address: 0000000000000000  Data: 0000
+        Capabilities: [78] Express (v1) Endpoint, MSI 00
+                DevCap: MaxPayload 128 bytes, PhantFunc 0, Latency L0s &lt;=
+512ns,
+L1 &lt;4us
+                        ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset-
+SlotPowerLimit 0.000W
+                DevCtl: Report errors: Correctable- Non-Fatal- Fatal-
+Unsupported-
+                        RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop+
+                        MaxPayload 128 bytes, MaxReadReq 512 bytes
+                DevSta: CorrErr- UncorrErr- FatalErr- UnsuppReq- AuxPwr-
+TransPend-
+                LnkCap: Port #0, Speed 2.5GT/s, Width x16, ASPM L0s L1, Exit
+Latency L0s &lt;512ns, L1 &lt;4us
+                        ClockPM- Surprise- LLActRep- BwNot- ASPMOptComp-
+                LnkCtl: ASPM Disabled; RCB 128 bytes Disabled- CommClk-
+                        ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
+                LnkSta: Speed 2.5GT/s, Width x8, TrErr- Train- SlotClk+
+DLActive- BWMgmt- ABWMgmt-
+        Kernel driver in use: nouveau
+        Kernel modules: nouveau</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15115312521.0BabEf.29709--
+
+--===============1984055295==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1984055295==--
