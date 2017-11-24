@@ -1,12 +1,14 @@
-From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Subject: Re: [PATCH] pci: do a msi rearm on init
-Date: Fri, 24 Nov 2017 15:02:50 +0100
-Message-ID: <20171124140250.GD15999@ulmo>
+Date: Fri, 24 Nov 2017 15:08:25 +0100
+Message-ID: <CACO55tt7xEkxfYHvw=gDRQgULvYr1dCLEUmOztKfXHyBOvUdAw@mail.gmail.com>
 References: <20171124025626.14037-1-kherbst@redhat.com>
+ <20171124140250.GD15999@ulmo>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1573239932=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20171124025626.14037-1-kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <20171124140250.GD15999@ulmo>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,75 +18,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1573239932==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="oj4kGyHlBMXGt3Le"
-Content-Disposition: inline
-
-
---oj4kGyHlBMXGt3Le
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Nov 24, 2017 at 03:56:26AM +0100, Karol Herbst wrote:
-> On my GP107 when I load nouveau after unloading it, for some reason the
-> GPU stopped sending or the CPU stopped receiving interrupts if MSI was
-> enabled.
-
-I suppose this could happen if the GPU raises an interrupt after the
-driver's already called free_irq() on it, and hence the driver can't
-rearm itself in the interrupt handler.
-
-This possibly points to a bug somewhere (the GPU should be completely
-idle by the time free_irq() is called), but this seems like a valid
-thing to do at initialization in any case to avoid relying on the prior
-owner of the device to always behave properly.
-
-> Doing a rearm once before getting any interrupts fixes this.
->=20
-> Signed-off-by: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> ---
->  drm/nouveau/nvkm/subdev/pci/base.c | 4 ++++
->  1 file changed, 4 insertions(+)
-
-Reviewed-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-
---oj4kGyHlBMXGt3Le
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAloYJogACgkQ3SOs138+
-s6EevA/+J8Eqm9wBeYUgqCIjf/UrBMTxFMY4ggThVPKLSIW2iPlKd9auuAJUjMXp
-ow0EerTvBuuzbC2K/Uu3dEZtpCKryr0HXVi0pRW0QlJKD3Yn3nuPBZkZdBaR0iiz
-Mxhk3cukfWV34KKRI4gkuDXZWzWj9id6d+zWIvizjU25S/CuJP5rdUIYJoNF0Pli
-4uhLf1DSBvs+3yaukyepuuz/FVi3+whJxz7DWYNPydwdEu+/TVwW7Bld/GZ5VtJN
-VgHjodL3kZdhNvnpZARQrpqNHbFzEyrOb+1qIRUqhhD2NP1vk2trkeqDy64jrWaM
-scDW4RNPifERlk2eWOsbGT42EoprZwyTjUQSp49NVCox816XHrgB4W3n04lTAKCf
-1E9TsOqflbHy8t17FwS3f1nrso1ILJ0MrRZSonzO4Bxj8g07hPpxm6IIgPM9RFC7
-jnxJlS6/YdJZcZv7HRzXw5XZlgU6mAIl11cDuJp0L7MjH7XdWXFkdm/6MUkFAVBU
-Q2tvhycyfTI4FT+CRYQMS62Lb8H6eWGhoFf0j4iDRdam19ST8D81zXM4VPNmOnph
-6jLMBWNjNBwvOC3j6vc5xmq/AyqyhCNytlv1ENV/FSxUnvJ86VxaN/qvME2GVzi8
-b/Q1AoUeHDdBJ8OPHz0IoWCJW7Oar4oePcitnMoCcnFXv8O3CuA=
-=SF0D
------END PGP SIGNATURE-----
-
---oj4kGyHlBMXGt3Le--
-
---===============1573239932==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1573239932==--
+T24gRnJpLCBOb3YgMjQsIDIwMTcgYXQgMzowMiBQTSwgVGhpZXJyeSBSZWRpbmcKPHRoaWVycnku
+cmVkaW5nQGdtYWlsLmNvbT4gd3JvdGU6Cj4gT24gRnJpLCBOb3YgMjQsIDIwMTcgYXQgMDM6NTY6
+MjZBTSArMDEwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+PiBPbiBteSBHUDEwNyB3aGVuIEkgbG9h
+ZCBub3V2ZWF1IGFmdGVyIHVubG9hZGluZyBpdCwgZm9yIHNvbWUgcmVhc29uIHRoZQo+PiBHUFUg
+c3RvcHBlZCBzZW5kaW5nIG9yIHRoZSBDUFUgc3RvcHBlZCByZWNlaXZpbmcgaW50ZXJydXB0cyBp
+ZiBNU0kgd2FzCj4+IGVuYWJsZWQuCj4KPiBJIHN1cHBvc2UgdGhpcyBjb3VsZCBoYXBwZW4gaWYg
+dGhlIEdQVSByYWlzZXMgYW4gaW50ZXJydXB0IGFmdGVyIHRoZQo+IGRyaXZlcidzIGFscmVhZHkg
+Y2FsbGVkIGZyZWVfaXJxKCkgb24gaXQsIGFuZCBoZW5jZSB0aGUgZHJpdmVyIGNhbid0Cj4gcmVh
+cm0gaXRzZWxmIGluIHRoZSBpbnRlcnJ1cHQgaGFuZGxlci4KPgo+IFRoaXMgcG9zc2libHkgcG9p
+bnRzIHRvIGEgYnVnIHNvbWV3aGVyZSAodGhlIEdQVSBzaG91bGQgYmUgY29tcGxldGVseQo+IGlk
+bGUgYnkgdGhlIHRpbWUgZnJlZV9pcnEoKSBpcyBjYWxsZWQpLCBidXQgdGhpcyBzZWVtcyBsaWtl
+IGEgdmFsaWQKPiB0aGluZyB0byBkbyBhdCBpbml0aWFsaXphdGlvbiBpbiBhbnkgY2FzZSB0byBh
+dm9pZCByZWx5aW5nIG9uIHRoZSBwcmlvcgo+IG93bmVyIG9mIHRoZSBkZXZpY2UgdG8gYWx3YXlz
+IGJlaGF2ZSBwcm9wZXJseS4KPgoKWWVhaCwgdGhpcyBtYWtlcyBzZW5zZS4gQnV0IHdoYXQgSSBh
+bSB3b25kZXJpbmcgYWJvdXQgaXMsIHdoeSB0aGlzCmlzbid0IGEgYmlnZ2VyIHByb2JsZW0gb3Ig
+bWF5YmUgdGhpcyBpcyBqdXN0IGR1ZSB0byB0aG9zZSBjaGFuZ2VzIGluCnRoZSBQYXNjYWwgaW50
+ZXJydXB0IGhhbmRsZXIgYW5kIHRoaXMgaXMgYSBQYXNjYWwgb25seSBwcm9ibGVtPwpBbnl3YXks
+IHRoZSBOdmlkaWEgZHJpdmVyIHNlZW1zIHRvIGRvIGl0IG9uY2Ugb24gbG9hZGluZyB0aW1lIGFz
+IHdlbGwsCnNvIEkgd2FzIHF1aXRlIHN1cmUgd2UgY291bGQgc2ltcGx5IGRvIGl0IHRoaXMgd2F5
+IGFuZCBiZSBzdXJlIHRoYXQgd2UKYXJlIGFibGUgdG8gdXNlIHRoZSBHUFUgZnJvbSBhbnkgc3Rh
+dGUuCgo+PiBEb2luZyBhIHJlYXJtIG9uY2UgYmVmb3JlIGdldHRpbmcgYW55IGludGVycnVwdHMg
+Zml4ZXMgdGhpcy4KPj4KPj4gU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJl
+ZGhhdC5jb20+Cj4+IC0tLQo+PiAgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYyB8
+IDQgKysrKwo+PiAgMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKQo+Cj4gUmV2aWV3ZWQt
+Ynk6IFRoaWVycnkgUmVkaW5nIDx0cmVkaW5nQG52aWRpYS5jb20+Cl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
