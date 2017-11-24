@@ -1,11 +1,12 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] pci: do a msi rearm on init
-Date: Fri, 24 Nov 2017 03:56:26 +0100
-Message-ID: <20171124025626.14037-1-kherbst@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101601] Nvidia GT 1030 (NV138/GP108) support
+Date: Fri, 24 Nov 2017 11:12:47 +0000
+Message-ID: <bug-101601-8800-nfxzgJZvb2@http.bugs.freedesktop.org/>
+References: <bug-101601-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0221370380=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-101601-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,20 +19,86 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gbXkgR1AxMDcgd2hlbiBJIGxvYWQgbm91dmVhdSBhZnRlciB1bmxvYWRpbmcgaXQsIGZvciBz
-b21lIHJlYXNvbiB0aGUKR1BVIHN0b3BwZWQgc2VuZGluZyBvciB0aGUgQ1BVIHN0b3BwZWQgcmVj
-ZWl2aW5nIGludGVycnVwdHMgaWYgTVNJIHdhcwplbmFibGVkLgoKRG9pbmcgYSByZWFybSBvbmNl
-IGJlZm9yZSBnZXR0aW5nIGFueSBpbnRlcnJ1cHRzIGZpeGVzIHRoaXMuCgpTaWduZWQtb2ZmLWJ5
-OiBLYXJvbCBIZXJic3QgPGtoZXJic3RAcmVkaGF0LmNvbT4KLS0tCiBkcm0vbm91dmVhdS9udmtt
-L3N1YmRldi9wY2kvYmFzZS5jIHwgNCArKysrCiAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25z
-KCspCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYyBiL2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9iYXNlLmMKaW5kZXggYjFiMWYzNjIuLjdlZTFmYmI0
-IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvYmFzZS5jCisrKyBiL2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9iYXNlLmMKQEAgLTEzNiw2ICsxMzYsMTAgQEAgbnZr
-bV9wY2lfaW5pdChzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldikKIAkJcmV0dXJuIHJldDsKIAog
-CXBjaS0+aXJxID0gcGRldi0+aXJxOworCS8qIHdvcmthcm91bmQ6IGRvIGEgcmVhcm0gb25jZSAq
-LworCWlmIChwY2ktPm1zaSkKKwkJcGNpLT5mdW5jLT5tc2lfcmVhcm0ocGNpKTsKKwogCXJldHVy
-biByZXQ7CiB9CiAKLS0gCjIuMTQuMwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+
+--===============0221370380==
+Content-Type: multipart/alternative; boundary="15115219672.2b9D74b.10205";
+ charset="UTF-8"
+
+
+--15115219672.2b9D74b.10205
+Date: Fri, 24 Nov 2017 11:12:47 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101601
+
+--- Comment #17 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
+"disp/gf119-: avoid creating non-existent heads" is still not in linus tree=
+, is
+there any news here?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15115219672.2b9D74b.10205
+Date: Fri, 24 Nov 2017 11:12:47 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c17">Comme=
+nt # 17</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601">bug 10160=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+dan&#64;reactivated.net" title=3D"Daniel Drake &lt;dan&#64;reactivated.net&=
+gt;"> <span class=3D"fn">Daniel Drake</span></a>
+</span></b>
+        <pre>&quot;disp/gf119-: avoid creating non-existent heads&quot; is =
+still not in linus tree, is
+there any news here?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15115219672.2b9D74b.10205--
+
+--===============0221370380==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0221370380==--
