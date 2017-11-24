@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103897] Kernel 4.14 causes high cpu usage,
 	4.12 was OK
-Date: Fri, 24 Nov 2017 23:07:59 +0000
-Message-ID: <bug-103897-8800-6ApeVe4D5M@http.bugs.freedesktop.org/>
+Date: Fri, 24 Nov 2017 23:08:36 +0000
+Message-ID: <bug-103897-8800-Oyjpc1053Q@http.bugs.freedesktop.org/>
 References: <bug-103897-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2141502846=="
+Content-Type: multipart/mixed; boundary="===============1284264384=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103897-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2141502846==
-Content-Type: multipart/alternative; boundary="15115648791.8ee337b4.9746";
+--===============1284264384==
+Content-Type: multipart/alternative; boundary="15115649161.3cB70.9437";
  charset="UTF-8"
 
 
---15115648791.8ee337b4.9746
-Date: Fri, 24 Nov 2017 23:07:59 +0000
+--15115649161.3cB70.9437
+Date: Fri, 24 Nov 2017 23:08:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103897
 
---- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-Created attachment 135703
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135703&action=3Dedit
-X log
+--- Comment #2 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Created attachment 135704
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135704&action=3Dedit
+dmesg
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15115648791.8ee337b4.9746
-Date: Fri, 24 Nov 2017 23:07:59 +0000
+--15115649161.3cB70.9437
+Date: Fri, 24 Nov 2017 23:08:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel 4.14 causes high cpu usage, 4.12 was OK"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103897#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103897#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel 4.14 causes high cpu usage, 4.12 was OK"
@@ -74,11 +74,11 @@ t # 1</a>
 randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
 gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135703=
-" name=3D"attach_135703" title=3D"X log">attachment 135703</a> <a href=3D"a=
-ttachment.cgi?id=3D135703&amp;action=3Dedit" title=3D"X log">[details]</a><=
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135704=
+" name=3D"attach_135704" title=3D"dmesg">attachment 135704</a> <a href=3D"a=
+ttachment.cgi?id=3D135704&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
 /span>
-X log</pre>
+dmesg</pre>
         </div>
       </p>
 
@@ -92,9 +92,9 @@ X log</pre>
     </body>
 </html>=
 
---15115648791.8ee337b4.9746--
+--15115649161.3cB70.9437--
 
---===============2141502846==
+--===============1284264384==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2141502846==--
+--===============1284264384==--
