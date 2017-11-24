@@ -1,14 +1,14 @@
-From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] pci: do a msi rearm on init
-Date: Fri, 24 Nov 2017 15:23:28 +0100
-Message-ID: <20171124142328.GA19273@ulmo>
-References: <20171124025626.14037-1-kherbst@redhat.com>
- <20171124140250.GD15999@ulmo>
- <CACO55tt7xEkxfYHvw=gDRQgULvYr1dCLEUmOztKfXHyBOvUdAw@mail.gmail.com>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: [PATCH v3] nouveau/compiler: Allow to omit line numbers
+	when printing instructions
+Date: Fri, 24 Nov 2017 16:55:29 +0100
+Message-ID: <20171124155529.8990-1-tobias.johannes.klausmann@mni.thm.de>
+References: <20171120221501.pz3oprojv3switve@pmoreau.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0533218040=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACO55tt7xEkxfYHvw=gDRQgULvYr1dCLEUmOztKfXHyBOvUdAw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <20171120221501.pz3oprojv3switve-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,117 +18,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0533218040==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="FL5UXtIhxfXey3p5"
-Content-Disposition: inline
-
-
---FL5UXtIhxfXey3p5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Nov 24, 2017 at 03:08:25PM +0100, Karol Herbst wrote:
-> On Fri, Nov 24, 2017 at 3:02 PM, Thierry Reding
-> <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> > On Fri, Nov 24, 2017 at 03:56:26AM +0100, Karol Herbst wrote:
-> >> On my GP107 when I load nouveau after unloading it, for some reason the
-> >> GPU stopped sending or the CPU stopped receiving interrupts if MSI was
-> >> enabled.
-> >
-> > I suppose this could happen if the GPU raises an interrupt after the
-> > driver's already called free_irq() on it, and hence the driver can't
-> > rearm itself in the interrupt handler.
-> >
-> > This possibly points to a bug somewhere (the GPU should be completely
-> > idle by the time free_irq() is called), but this seems like a valid
-> > thing to do at initialization in any case to avoid relying on the prior
-> > owner of the device to always behave properly.
-> >
->=20
-> Yeah, this makes sense. But what I am wondering about is, why this
-> isn't a bigger problem or maybe this is just due to those changes in
-> the Pascal interrupt handler and this is a Pascal only problem?
-
-Yeah, this could be some kind of race that's only triggering on Pascal.
-
-Comparing with the nvgpu driver it seems like the MSI interrupt should
-be rearmed only after all interrupts have been processed, while Nouveau
-currently rearms before processing interrupts (though after masking the
-interrupts). I'm not very familiar with all of this, but perhaps Pascal
-has some interrupts that Nouveau doesn't mask and therefore might race.
-
-Perhaps something like this would help:
-
---- >8 ---
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pci/base.c b/drivers/gpu/d=
-rm/nouveau/nvkm/subdev/pci/base.c
-index b1b1f3626b96..0b3b802c26df 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/pci/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pci/base.c
-@@ -72,10 +72,10 @@ nvkm_pci_intr(int irq, void *arg)
-        struct nvkm_device *device =3D pci->subdev.device;
-        bool handled =3D false;
-        nvkm_mc_intr_unarm(device);
--       if (pci->msi)
--               pci->func->msi_rearm(pci);
-        nvkm_mc_intr(device, &handled);
-        nvkm_mc_intr_rearm(device);
-+       if (pci->msi)
-+               pci->func->msi_rearm(pci);
-        return handled ? IRQ_HANDLED : IRQ_NONE;
- }
-
---- >8 ---
-
-> Anyway, the Nvidia driver seems to do it once on loading time as well,
-> so I was quite sure we could simply do it this way and be sure that we
-> are able to use the GPU from any state.
-
-I think it's totally fine to apply as-is and leave it to further
-investigation what Nouveau needs to do to properly uninitialize the
-device. Like you said it can always happen that somebody else leaves
-the GPU in some undefined state, in which case it's good to always
-do this at initialization.
-
-Thierry
-
---FL5UXtIhxfXey3p5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAloYK14ACgkQ3SOs138+
-s6GyXQ//QtSHtrtkENSJGaTIIr8hYoiVIabuOc2ECsRHYp+DPsWmFPVsVYrsQsJV
-WgN/+UAgftbja2+m9U+5vmD+7kWa5zShpIdbdqvaoYpA7mOLvhz7CG9MdBo68dCm
-3SUconMM3yn6emjnrsyPUTwG35dsfK+brlv2/WcGptUku+NKEnFwAJnZ8YxjSiZO
-KmWqHMwrd/Ol8pOMr/nWvr6udx8JyOX07bOG7bg9jihCm505TFr1kXyQ43YC+n7V
-RuGh8mDqPmSn2+X9YYyUqABQOJx3vW2eKm2LmkfNatGmCnj8kCSuNk/G164PrX5T
-CVZjlrmthk3nY8/DytbsmKpQPCXxPE5Kv0/haEfJGhahapsfi0xq7ALXFQ0BXnEc
-McuKUr/MRaWPpEV4oVIgndumPwagksCra1gQKMOiqoNsLH9sUuQSkhnnedCu4dzy
-/pygPM+F/U8cfl3TI1kxhMa2ZWXBU6owu7aZCsbJ6AfX1p1JWYkSOFSb1vqfPbtm
-Gy8SJLLmesUDBp7KAqD+ZBei/Z4sd7cv8wU8EmevXOLCjsmO6Uut2pupiN//xnx6
-ovZZ9mfPhHNLpCaxA9tNXfgH0pkqX6GcUiqOhh80A+HeXr2d0Ml36Qj4i9rqiAi3
-96ahMbba22C20QL/hDfjvx7MBAnvM0BIyCjSKcteTZCnBVEuNkc=
-=VoTm
------END PGP SIGNATURE-----
-
---FL5UXtIhxfXey3p5--
-
---===============0533218040==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0533218040==--
+VGhpcyBjb21lcyBpbiBoYW5keSB3aGVuIGNoZWNraW5nICJOVjUwX1BST0dfREVCVUc9MSIgb3V0
+cHV0cyB3aXRoIGRpZmYhCgpWMjoKIC0gVXNlIGVudmlyb25tZW50YWwgdmFyaWFibGUgKEthcm9s
+IEhlcmJzdCkKVjM6CiAtIFVzZSB0aGUgYWxyZWFkeSBwb3B1bGF0ZWQgbnY1MF9pcl9wcm9nX2lu
+Zm8gdG8gZm9yd2FyZCBpbmZvcm1hdGlvbiB0byB0aGUKICAgcHJpbnQgcGFzcyAoUGllcnJlIE1v
+cmVhdSkKClNpZ25lZC1vZmYtYnk6IFRvYmlhcyBLbGF1c21hbm4gPHRvYmlhcy5qb2hhbm5lcy5r
+bGF1c21hbm5AbW5pLnRobS5kZT4KLS0tCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29k
+ZWdlbi9udjUwX2lyX2RyaXZlci5oICB8ICAxICsKIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
+dS9jb2RlZ2VuL252NTBfaXJfcHJpbnQuY3BwIHwgMTIgKysrKysrKysrLS0tCiBzcmMvZ2FsbGl1
+bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9jb21waWxlci5jICAgICAgICB8ICAyICsrCiBzcmMv
+Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3Byb2dyYW0uYyAgICAgICB8ICAyICsr
+CiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Byb2dyYW0uYyAgICAgICB8
+ICAyICsrCiA1IGZpbGVzIGNoYW5nZWQsIDE2IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0p
+CgpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9p
+cl9kcml2ZXIuaCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJf
+ZHJpdmVyLmgKaW5kZXggZmZkNTNjOWNkMy4uNjA0YTIyYmE4OSAxMDA2NDQKLS0tIGEvc3JjL2dh
+bGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9kcml2ZXIuaAorKysgYi9zcmMv
+Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2RyaXZlci5oCkBAIC04Miw2
+ICs4Miw3IEBAIHN0cnVjdCBudjUwX2lyX3Byb2dfaW5mbwogCiAgICB1aW50OF90IG9wdExldmVs
+OyAvKiBvcHRpbWl6YXRpb24gbGV2ZWwgKDAgdG8gMykgKi8KICAgIHVpbnQ4X3QgZGJnRmxhZ3M7
+CisgICBib29sIG9taXRMaW5lTnVtOwogCiAgICBzdHJ1Y3QgewogICAgICAgaW50MTZfdCBtYXhH
+UFI7ICAgICAvKiBtYXkgYmUgLTEgaWYgbm9uZSB1c2VkICovCmRpZmYgLS1naXQgYS9zcmMvZ2Fs
+bGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3ByaW50LmNwcCBiL3NyYy9nYWxs
+aXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcHJpbnQuY3BwCmluZGV4IDkxNDU4
+MDFiNjIuLmViN2U5MDU3YjUgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
+dS9jb2RlZ2VuL252NTBfaXJfcHJpbnQuY3BwCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
+dmVhdS9jb2RlZ2VuL252NTBfaXJfcHJpbnQuY3BwCkBAIC02OTEsNyArNjkxLDcgQEAgdm9pZCBJ
+bnN0cnVjdGlvbjo6cHJpbnQoKSBjb25zdAogY2xhc3MgUHJpbnRQYXNzIDogcHVibGljIFBhc3MK
+IHsKIHB1YmxpYzoKLSAgIFByaW50UGFzcygpIDogc2VyaWFsKDApIHsgfQorICAgUHJpbnRQYXNz
+KGJvb2wgb21pdExpbmVOdW0gPSBmYWxzZSkgOiBzZXJpYWwoMCksIG9taXRfc2VyaWFsKG9taXRM
+aW5lTnVtKSB7IH0KIAogICAgdmlydHVhbCBib29sIHZpc2l0KEZ1bmN0aW9uICopOwogICAgdmly
+dHVhbCBib29sIHZpc2l0KEJhc2ljQmxvY2sgKik7CkBAIC02OTksNiArNjk5LDcgQEAgcHVibGlj
+OgogCiBwcml2YXRlOgogICAgaW50IHNlcmlhbDsKKyAgIGJvb2wgb21pdF9zZXJpYWw7CiB9Owog
+CiBib29sCkBAIC03NjIsNyArNzYzLDEyIEBAIFByaW50UGFzczo6dmlzaXQoQmFzaWNCbG9jayAq
+YmIpCiBib29sCiBQcmludFBhc3M6OnZpc2l0KEluc3RydWN0aW9uICppbnNuKQogewotICAgSU5G
+TygiJTNpOiAiLCBzZXJpYWwrKyk7CisgICBpZiAob21pdF9zZXJpYWwpIHsKKyAgICAgIElORk8o
+IiAgICAgIik7CisgICAgICBzZXJpYWwrKzsKKyAgIH0KKyAgIGVsc2UKKyAgICAgIElORk8oIiUz
+aTogIiwgc2VyaWFsKyspOwogICAgaW5zbi0+cHJpbnQoKTsKICAgIHJldHVybiB0cnVlOwogfQpA
+QCAtNzc3LDcgKzc4Myw3IEBAIEZ1bmN0aW9uOjpwcmludCgpCiB2b2lkCiBQcm9ncmFtOjpwcmlu
+dCgpCiB7Ci0gICBQcmludFBhc3MgcGFzczsKKyAgIFByaW50UGFzcyBwYXNzKGRyaXZlci0+b21p
+dExpbmVOdW0pOwogICAgaW5pdF9jb2xvdXJzKCk7CiAgICBwYXNzLnJ1bih0aGlzLCB0cnVlLCBm
+YWxzZSk7CiB9CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVh
+dV9jb21waWxlci5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfY29tcGls
+ZXIuYwppbmRleCAzMTUxYTZmNDIwLi4xMjE0Y2YzNTY1IDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1
+bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9jb21waWxlci5jCisrKyBiL3NyYy9nYWxsaXVtL2Ry
+aXZlcnMvbm91dmVhdS9ub3V2ZWF1X2NvbXBpbGVyLmMKQEAgLTEyMiw2ICsxMjIsOCBAQCBub3V2
+ZWF1X2NvZGVnZW4oaW50IGNoaXBzZXQsIGludCB0eXBlLCBzdHJ1Y3QgdGdzaV90b2tlbiB0b2tl
+bnNbXSwKIAogICAgaW5mby5vcHRMZXZlbCA9IGRlYnVnX2dldF9udW1fb3B0aW9uKCJOVjUwX1BS
+T0dfT1BUSU1JWkUiLCAzKTsKICAgIGluZm8uZGJnRmxhZ3MgPSBkZWJ1Z19nZXRfbnVtX29wdGlv
+bigiTlY1MF9QUk9HX0RFQlVHIiwgMCk7CisgICBpbmZvLm9taXRMaW5lTnVtID0KKyAgICAgICAg
+IGRlYnVnX2dldF9udW1fb3B0aW9uKCJOVjUwX1BST0dfREVCVUdfT01JVF9MSU5FTlVNIiwgMCkg
+PyB0cnVlIDogZmFsc2U7CiAKICAgIHJldCA9IG52NTBfaXJfZ2VuZXJhdGVfY29kZSgmaW5mbyk7
+CiAgICBpZiAocmV0KSB7CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
+bnY1MC9udjUwX3Byb2dyYW0uYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252
+NTBfcHJvZ3JhbS5jCmluZGV4IDZlOTQzYTNkOTQuLmZiNWM5ZWQ3NzcgMTAwNjQ0Ci0tLSBhL3Ny
+Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfcHJvZ3JhbS5jCisrKyBiL3NyYy9n
+YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfcHJvZ3JhbS5jCkBAIC0zNjcsNiArMzY3
+LDggQEAgbnY1MF9wcm9ncmFtX3RyYW5zbGF0ZShzdHJ1Y3QgbnY1MF9wcm9ncmFtICpwcm9nLCB1
+aW50MTZfdCBjaGlwc2V0LAogI2lmZGVmIERFQlVHCiAgICBpbmZvLT5vcHRMZXZlbCA9IGRlYnVn
+X2dldF9udW1fb3B0aW9uKCJOVjUwX1BST0dfT1BUSU1JWkUiLCAzKTsKICAgIGluZm8tPmRiZ0Zs
+YWdzID0gZGVidWdfZ2V0X251bV9vcHRpb24oIk5WNTBfUFJPR19ERUJVRyIsIDApOworICAgaW5m
+by0+b21pdExpbmVOdW0gPQorICAgICAgICAgZGVidWdfZ2V0X251bV9vcHRpb24oIk5WNTBfUFJP
+R19ERUJVR19PTUlUX0xJTkVOVU0iLCAwKSA/IHRydWUgOiBmYWxzZTsKICNlbHNlCiAgICBpbmZv
+LT5vcHRMZXZlbCA9IDM7CiAjZW5kaWYKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMv
+bm91dmVhdS9udmMwL252YzBfcHJvZ3JhbS5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
+L252YzAvbnZjMF9wcm9ncmFtLmMKaW5kZXggYzk1YTk2YzcxNy4uOGRjZWQ2NjQzNyAxMDA2NDQK
+LS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9wcm9ncmFtLmMKKysr
+IGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9wcm9ncmFtLmMKQEAgLTU3
+NSw2ICs1NzUsOCBAQCBudmMwX3Byb2dyYW1fdHJhbnNsYXRlKHN0cnVjdCBudmMwX3Byb2dyYW0g
+KnByb2csIHVpbnQxNl90IGNoaXBzZXQsCiAgICBpbmZvLT50YXJnZXQgPSBkZWJ1Z19nZXRfbnVt
+X29wdGlvbigiTlY1MF9QUk9HX0NISVBTRVQiLCBjaGlwc2V0KTsKICAgIGluZm8tPm9wdExldmVs
+ID0gZGVidWdfZ2V0X251bV9vcHRpb24oIk5WNTBfUFJPR19PUFRJTUlaRSIsIDMpOwogICAgaW5m
+by0+ZGJnRmxhZ3MgPSBkZWJ1Z19nZXRfbnVtX29wdGlvbigiTlY1MF9QUk9HX0RFQlVHIiwgMCk7
+CisgICBpbmZvLT5vbWl0TGluZU51bSA9CisgICAgICAgICBkZWJ1Z19nZXRfbnVtX29wdGlvbigi
+TlY1MF9QUk9HX0RFQlVHX09NSVRfTElORU5VTSIsIDApID8gdHJ1ZSA6IGZhbHNlOwogI2Vsc2UK
+ICAgIGluZm8tPm9wdExldmVsID0gMzsKICNlbmRpZgotLSAKMi4xNS4wCgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
+b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
