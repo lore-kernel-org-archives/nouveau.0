@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101601] Nvidia GT 1030 (NV138/GP108) support
-Date: Fri, 24 Nov 2017 11:12:47 +0000
-Message-ID: <bug-101601-8800-nfxzgJZvb2@http.bugs.freedesktop.org/>
+Date: Fri, 24 Nov 2017 11:59:51 +0000
+Message-ID: <bug-101601-8800-qAMXefKIrY@http.bugs.freedesktop.org/>
 References: <bug-101601-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0221370380=="
+Content-Type: multipart/mixed; boundary="===============1420739418=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101601-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0221370380==
-Content-Type: multipart/alternative; boundary="15115219672.2b9D74b.10205";
+--===============1420739418==
+Content-Type: multipart/alternative; boundary="15115247912.1957cbf7A.16258";
  charset="UTF-8"
 
 
---15115219672.2b9D74b.10205
-Date: Fri, 24 Nov 2017 11:12:47 +0000
+--15115247912.1957cbf7A.16258
+Date: Fri, 24 Nov 2017 11:59:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,25 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101601
 
---- Comment #17 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
-"disp/gf119-: avoid creating non-existent heads" is still not in linus tree=
-, is
-there any news here?
+--- Comment #18 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+(In reply to Daniel Drake from comment #17)
+> "disp/gf119-: avoid creating non-existent heads" is still not in linus tr=
+ee,
+> is there any news here?
+
+It is definitely in Linus=E2=80=99 tree:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
+h=3Dv4.14&id=3Deba5e56db65b7a44d57a98f5f382b2a2b9991321
+and looking at the source from 4.14, the patch seems to be there as well:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/dri=
+vers/gpu/drm/nouveau/nv50_display.c?h=3Dv4.14#n4457
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15115219672.2b9D74b.10205
-Date: Fri, 24 Nov 2017 11:12:47 +0000
+--15115247912.1957cbf7A.16258
+Date: Fri, 24 Nov 2017 11:59:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,20 +70,33 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c17">Comme=
-nt # 17</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601#c18">Comme=
+nt # 18</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia GT 1030 (NV138/GP108) support"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101601">bug 10160=
 1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dan&#64;reactivated.net" title=3D"Daniel Drake &lt;dan&#64;reactivated.net&=
-gt;"> <span class=3D"fn">Daniel Drake</span></a>
+pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
+e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>&quot;disp/gf119-: avoid creating non-existent heads&quot; is =
-still not in linus tree, is
-there any news here?</pre>
+        <pre>(In reply to Daniel Drake from <a href=3D"show_bug.cgi?id=3D10=
+1601#c17">comment #17</a>)
+<span class=3D"quote">&gt; &quot;disp/gf119-: avoid creating non-existent h=
+eads&quot; is still not in linus tree,
+&gt; is there any news here?</span >
+
+It is definitely in Linus=E2=80=99 tree:
+<a href=3D"https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.g=
+it/commit/?h=3Dv4.14&amp;id=3Deba5e56db65b7a44d57a98f5f382b2a2b9991321">htt=
+ps://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?h=
+=3Dv4.14&amp;id=3Deba5e56db65b7a44d57a98f5f382b2a2b9991321</a>
+and looking at the source from 4.14, the patch seems to be there as well:
+<a href=3D"https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.g=
+it/tree/drivers/gpu/drm/nouveau/nv50_display.c?h=3Dv4.14#n4457">https://git=
+.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/dr=
+m/nouveau/nv50_display.c?h=3Dv4.14#n4457</a></pre>
         </div>
       </p>
 
@@ -89,9 +110,9 @@ there any news here?</pre>
     </body>
 </html>=
 
---15115219672.2b9D74b.10205--
+--15115247912.1957cbf7A.16258--
 
---===============0221370380==
+--===============1420739418==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0221370380==--
+--===============1420739418==--
