@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103897] Kernel 4.14 causes high cpu usage,
 	4.12 was OK
-Date: Fri, 24 Nov 2017 23:09:50 +0000
-Message-ID: <bug-103897-8800-E1vYURdKKp@http.bugs.freedesktop.org/>
+Date: Sat, 25 Nov 2017 12:00:56 +0000
+Message-ID: <bug-103897-8800-PSludMotvo@http.bugs.freedesktop.org/>
 References: <bug-103897-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0648795058=="
+Content-Type: multipart/mixed; boundary="===============1189207094=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103897-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0648795058==
-Content-Type: multipart/alternative; boundary="15115649901.5c18eebC.10080";
+--===============1189207094==
+Content-Type: multipart/alternative; boundary="15116112550.6cc4c5.19427";
  charset="UTF-8"
 
 
---15115649901.5c18eebC.10080
-Date: Fri, 24 Nov 2017 23:09:50 +0000
+--15116112550.6cc4c5.19427
+Date: Sat, 25 Nov 2017 12:00:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,15 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103897
 
---- Comment #4 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-Created attachment 135706
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D135706&action=3Dedit
-kernel's config.gz
+--- Comment #5 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+It seems setting option DRI to "2" instead of "3" workarounds this problem.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15115649901.5c18eebC.10080
-Date: Fri, 24 Nov 2017 23:09:50 +0000
+--15116112550.6cc4c5.19427
+Date: Sat, 25 Nov 2017 12:00:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +61,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel 4.14 causes high cpu usage, 4.12 was OK"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103897#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103897#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Kernel 4.14 causes high cpu usage, 4.12 was OK"
@@ -74,11 +72,8 @@ t # 4</a>
 randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
 gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D135706=
-" name=3D"attach_135706" title=3D"kernel's config.gz">attachment 135706</a>=
- <a href=3D"attachment.cgi?id=3D135706&amp;action=3Dedit" title=3D"kernel's=
- config.gz">[details]</a></span>
-kernel's config.gz</pre>
+        <pre>It seems setting option DRI to &quot;2&quot; instead of &quot;=
+3&quot; workarounds this problem.</pre>
         </div>
       </p>
 
@@ -92,9 +87,9 @@ kernel's config.gz</pre>
     </body>
 </html>=
 
---15115649901.5c18eebC.10080--
+--15116112550.6cc4c5.19427--
 
---===============0648795058==
+--===============1189207094==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0648795058==--
+--===============1189207094==--
