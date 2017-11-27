@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82835] [NV92] GeForce 8800 GS VDPAU h264 decoding
-	hang
-Date: Sat, 25 Nov 2017 12:24:46 +0000
-Message-ID: <bug-82835-8800-bNXg7RRTvQ@http.bugs.freedesktop.org/>
-References: <bug-82835-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] x86/mm/kmmio: Fix mmiotrace for page unaligned
+	addresses
+Date: Mon, 27 Nov 2017 08:51:39 +0100
+Message-ID: <20171127075139.4928-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2019055876=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-82835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,100 +16,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: x86-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, Steven Rostedt <rostedt-nx8X9YLhiw1AfugRpC6u6w@public.gmane.org>, Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Thomas Gleixner <tglx-hfZtesqFncYOwBW4kG4KsQ@public.gmane.org>, Ingo Molnar <mingo-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2019055876==
-Content-Type: multipart/alternative; boundary="15116126861.2f7F2aA2.22335";
- charset="UTF-8"
-
-
---15116126861.2f7F2aA2.22335
-Date: Sat, 25 Nov 2017 12:24:46 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D82835
-
---- Comment #24 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-In kernel 4.14 workaround was added for disabling h264 decoding until root
-cause of this bug will be uncovered and fixed (may be never):
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
-h=3Dv4.14&id=3D194d68dd051c2dd5ac2b522ae16100e774e8d869
-
-drm/nouveau/bsp/g92: disable by default
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15116126861.2f7F2aA2.22335
-Date: Sat, 25 Nov 2017 12:24:46 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [NV92] GeForce 8800 GS VDPAU h264 decoding hang"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D82835#c24">Commen=
-t # 24</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [NV92] GeForce 8800 GS VDPAU h264 decoding hang"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D82835">bug 82835<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
-gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
-</span></b>
-        <pre>In kernel 4.14 workaround was added for disabling h264 decodin=
-g until root
-cause of this bug will be uncovered and fixed (may be never):
-
-<a href=3D"https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.g=
-it/commit/?h=3Dv4.14&amp;id=3D194d68dd051c2dd5ac2b522ae16100e774e8d869">htt=
-ps://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?h=
-=3Dv4.14&amp;id=3D194d68dd051c2dd5ac2b522ae16100e774e8d869</a>
-
-drm/nouveau/bsp/g92: disable by default</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15116126861.2f7F2aA2.22335--
-
---===============2019055876==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2019055876==--
+SWYgc29tZXRoaW5nIGNhbGxzIGlvcmVtYXAgd2l0aCBhbiBhZGRyZXNzIG5vdCBhbGlnbmVkIHRv
+IFBBR0VfU0laRSwgdGhlCnJldHVybmVkIGFkZHJlc3MgbWlnaHQgYmUgbm90IGFsaWduZWQgYXMg
+d2VsbC4gVGhpcyBsZWQgdG8gYSBwcm9iZQpyZWdpc3RlcmVkIG9uIGV4YWN0bHkgdGhlIHJldHVy
+bmVkIGFkZHJlc3MsIGJ1dCB0aGUgZW50aXJlIHBhZ2Ugd2FzIGFybWVkCmZvciBtbWlvdHJhY2lu
+Zy4KCk9uIGNhbGxpbmcgaW91bm1hcCB0aGUgYWRkcmVzcyBwYXNzZWQgdG8gdW5yZWdpc3Rlcl9r
+bW1pb19wcm9iZSB3YXMKUEFHRV9TSVpFIGFsaWduZWQgYnkgdGhlIGNhbGxlciBsZWFkaW5nIHRv
+IGEgY29tcGxldGUgZnJlZXplIG9mIHRoZQptYWNoaW5lLgoKV2Ugc2hvdWxkIGFsd2F5cyBwYWdl
+IGFsaWduIGFkZHJlc3NlcyB3aGlsZSAodW4pcmVnaXN0ZXJ1bmcgbWFwcGluZ3MsCmJlY2F1c2Ug
+dGhlIG1taW90cmFjZXIgd29ya3Mgb24gdG9wIG9mIHBhZ2VzLCBub3QgbWFwcGluZ3MuIFdlIHN0
+aWxsIGtlZXAKdHJhY2sgb2YgdGhlIHByb2JlcyBiYXNlZCBvbiB0aGVpciByZWFsIGFkZHJlc3Nl
+cyBhbmQgbGVuZ3RocyB0aG91Z2gsCmJlY2F1c2UgdGhlIG1taW90cmFjZSBzdGlsbCBuZWVkcyB0
+byBrbm93IHdoYXQgYXJlIG1hcHBlZCBtZW1vcnkgcmVnaW9ucy4KCkFsc28gbW92ZSB0aGUgY2Fs
+bCB0byBtbWlvdHJhY2VfaW91bm1hcCBwcmlvciBwYWdlIGFsaWduaW5nIHRoZSBhZGRyZXNzLApz
+byB0aGF0IGFsbCBwcm9iZXMgYXJlIHVucmVnaXN0ZXJlZCBwcm9wZXJseSwgb3RoZXJ3aXNlIHRo
+ZSBrZXJuZWwgZW5kcyB1cApmYWlsaW5nIG1lbW9yeSBhbGxvY2F0aW9ucyByYW5kb21seSBhZnRl
+ciBkaXNhYmxpbmcgdGhlIG1taW90cmFjZXIuCgpDYzogU3RldmVuIFJvc3RlZHQgPHJvc3RlZHRA
+Z29vZG1pcy5vcmc+CkNjOiBJbmdvIE1vbG5hciA8bWluZ29Aa2VybmVsLm9yZz4KQ2M6IFRob21h
+cyBHbGVpeG5lciA8dGdseEBsaW51dHJvbml4LmRlPgpDYzogUGVra2EgUGFhbGFuZW4gPHBwYWFs
+YW5lbkBnbWFpbC5jb20+CkNjOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpDYzogeDg2
+QGtlcm5lbC5vcmcKQWNrZWQtYnk6IFBla2thIFBhYWxhbmVuIDxwcGFhbGFuZW5AZ21haWwuY29t
+PgpUZXN0ZWQtYnk6IEx5dWRlIDxseXVkZUByZWRoYXQuY29tPgpTaWduZWQtb2ZmLWJ5OiBLYXJv
+bCBIZXJic3QgPGtoZXJic3RAcmVkaGF0LmNvbT4KLS0tCiBhcmNoL3g4Ni9tbS9pb3JlbWFwLmMg
+fCAgNCArKy0tCiBhcmNoL3g4Ni9tbS9rbW1pby5jICAgfCAxMiArKysrKysrLS0tLS0KIDIgZmls
+ZXMgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
+L2FyY2gveDg2L21tL2lvcmVtYXAuYyBiL2FyY2gveDg2L21tL2lvcmVtYXAuYwppbmRleCAzNGYw
+ZTE4NDdkZDYuLjVkNGMzNTg3NzhkZCAxMDA2NDQKLS0tIGEvYXJjaC94ODYvbW0vaW9yZW1hcC5j
+CisrKyBiL2FyY2gveDg2L21tL2lvcmVtYXAuYwpAQCAtMzQ5LDExICszNDksMTEgQEAgdm9pZCBp
+b3VubWFwKHZvbGF0aWxlIHZvaWQgX19pb21lbSAqYWRkcikKIAkJcmV0dXJuOwogCX0KIAorCW1t
+aW90cmFjZV9pb3VubWFwKGFkZHIpOworCiAJYWRkciA9ICh2b2xhdGlsZSB2b2lkIF9faW9tZW0g
+KikKIAkJKFBBR0VfTUFTSyAmICh1bnNpZ25lZCBsb25nIF9fZm9yY2UpYWRkcik7CiAKLQltbWlv
+dHJhY2VfaW91bm1hcChhZGRyKTsKLQogCS8qIFVzZSB0aGUgdm0gYXJlYSB1bmxvY2tlZCwgYXNz
+dW1pbmcgdGhlIGNhbGxlcgogCSAgIGVuc3VyZXMgdGhlcmUgaXNuJ3QgYW5vdGhlciBpb3VubWFw
+IGZvciB0aGUgc2FtZSBhZGRyZXNzCiAJICAgaW4gcGFyYWxsZWwuIFJldXNlIG9mIHRoZSB2aXJ0
+dWFsIGFkZHJlc3MgaXMgcHJldmVudGVkIGJ5CmRpZmYgLS1naXQgYS9hcmNoL3g4Ni9tbS9rbW1p
+by5jIGIvYXJjaC94ODYvbW0va21taW8uYwppbmRleCBjMjFjMmVkMDQ2MTIuLjU4NDc3ZWMzZDY2
+ZCAxMDA2NDQKLS0tIGEvYXJjaC94ODYvbW0va21taW8uYworKysgYi9hcmNoL3g4Ni9tbS9rbW1p
+by5jCkBAIC00MzUsMTcgKzQzNSwxOCBAQCBpbnQgcmVnaXN0ZXJfa21taW9fcHJvYmUoc3RydWN0
+IGttbWlvX3Byb2JlICpwKQogCXVuc2lnbmVkIGxvbmcgZmxhZ3M7CiAJaW50IHJldCA9IDA7CiAJ
+dW5zaWduZWQgbG9uZyBzaXplID0gMDsKKwl1bnNpZ25lZCBsb25nIGFkZHIgPSBwLT5hZGRyICYg
+UEFHRV9NQVNLOwogCWNvbnN0IHVuc2lnbmVkIGxvbmcgc2l6ZV9saW0gPSBwLT5sZW4gKyAocC0+
+YWRkciAmIH5QQUdFX01BU0spOwogCXVuc2lnbmVkIGludCBsOwogCXB0ZV90ICpwdGU7CiAKIAlz
+cGluX2xvY2tfaXJxc2F2ZSgma21taW9fbG9jaywgZmxhZ3MpOwotCWlmIChnZXRfa21taW9fcHJv
+YmUocC0+YWRkcikpIHsKKwlpZiAoZ2V0X2ttbWlvX3Byb2JlKGFkZHIpKSB7CiAJCXJldCA9IC1F
+RVhJU1Q7CiAJCWdvdG8gb3V0OwogCX0KIAotCXB0ZSA9IGxvb2t1cF9hZGRyZXNzKHAtPmFkZHIs
+ICZsKTsKKwlwdGUgPSBsb29rdXBfYWRkcmVzcyhhZGRyLCAmbCk7CiAJaWYgKCFwdGUpIHsKIAkJ
+cmV0ID0gLUVJTlZBTDsKIAkJZ290byBvdXQ7CkBAIC00NTQsNyArNDU1LDcgQEAgaW50IHJlZ2lz
+dGVyX2ttbWlvX3Byb2JlKHN0cnVjdCBrbW1pb19wcm9iZSAqcCkKIAlrbW1pb19jb3VudCsrOwog
+CWxpc3RfYWRkX3JjdSgmcC0+bGlzdCwgJmttbWlvX3Byb2Jlcyk7CiAJd2hpbGUgKHNpemUgPCBz
+aXplX2xpbSkgewotCQlpZiAoYWRkX2ttbWlvX2ZhdWx0X3BhZ2UocC0+YWRkciArIHNpemUpKQor
+CQlpZiAoYWRkX2ttbWlvX2ZhdWx0X3BhZ2UoYWRkciArIHNpemUpKQogCQkJcHJfZXJyKCJVbmFi
+bGUgdG8gc2V0IHBhZ2UgZmF1bHQuXG4iKTsKIAkJc2l6ZSArPSBwYWdlX2xldmVsX3NpemUobCk7
+CiAJfQpAQCAtNTI4LDE5ICs1MjksMjAgQEAgdm9pZCB1bnJlZ2lzdGVyX2ttbWlvX3Byb2JlKHN0
+cnVjdCBrbW1pb19wcm9iZSAqcCkKIHsKIAl1bnNpZ25lZCBsb25nIGZsYWdzOwogCXVuc2lnbmVk
+IGxvbmcgc2l6ZSA9IDA7CisJdW5zaWduZWQgbG9uZyBhZGRyID0gcC0+YWRkciAmIFBBR0VfTUFT
+SzsKIAljb25zdCB1bnNpZ25lZCBsb25nIHNpemVfbGltID0gcC0+bGVuICsgKHAtPmFkZHIgJiB+
+UEFHRV9NQVNLKTsKIAlzdHJ1Y3Qga21taW9fZmF1bHRfcGFnZSAqcmVsZWFzZV9saXN0ID0gTlVM
+TDsKIAlzdHJ1Y3Qga21taW9fZGVsYXllZF9yZWxlYXNlICpkcmVsZWFzZTsKIAl1bnNpZ25lZCBp
+bnQgbDsKIAlwdGVfdCAqcHRlOwogCi0JcHRlID0gbG9va3VwX2FkZHJlc3MocC0+YWRkciwgJmwp
+OworCXB0ZSA9IGxvb2t1cF9hZGRyZXNzKGFkZHIsICZsKTsKIAlpZiAoIXB0ZSkKIAkJcmV0dXJu
+OwogCiAJc3Bpbl9sb2NrX2lycXNhdmUoJmttbWlvX2xvY2ssIGZsYWdzKTsKIAl3aGlsZSAoc2l6
+ZSA8IHNpemVfbGltKSB7Ci0JCXJlbGVhc2Vfa21taW9fZmF1bHRfcGFnZShwLT5hZGRyICsgc2l6
+ZSwgJnJlbGVhc2VfbGlzdCk7CisJCXJlbGVhc2Vfa21taW9fZmF1bHRfcGFnZShhZGRyICsgc2l6
+ZSwgJnJlbGVhc2VfbGlzdCk7CiAJCXNpemUgKz0gcGFnZV9sZXZlbF9zaXplKGwpOwogCX0KIAls
+aXN0X2RlbF9yY3UoJnAtPmxpc3QpOwotLSAKMi4xNC4zCgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
