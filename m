@@ -1,16 +1,12 @@
-From: Sinan Kaya <okaya-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>
-Subject: Re: [PATCH V3 10/29] drm/nouveau: deprecate
-	pci_get_bus_and_slot()
-Date: Mon, 27 Nov 2017 13:52:23 -0500
-Message-ID: <665f33c6-fb2f-b505-fd19-5875eae8193a@codeaurora.org>
-References: <1511801886-6753-1-git-send-email-okaya@codeaurora.org>
- <1511801886-6753-11-git-send-email-okaya@codeaurora.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101665] lspci blocks forever with a GP107M
+Date: Mon, 27 Nov 2017 20:41:09 +0000
+Message-ID: <bug-101665-8800-tG2hJHfJEs@http.bugs.freedesktop.org/>
+References: <bug-101665-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1387452346=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1511801886-6753-11-git-send-email-okaya-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <bug-101665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,86 +16,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, timur-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org
-Cc: linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "open list:DRM DRIVERS" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-K25vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCgoKT24gMTEvMjcvMjAxNyAxMTo1NyBBTSwg
-U2luYW4gS2F5YSB3cm90ZToKPiBwY2lfZ2V0X2J1c19hbmRfc2xvdCgpIGlzIHJlc3RyaWN0aXZl
-IHN1Y2ggdGhhdCBpdCBhc3N1bWVzIGRvbWFpbj0wIGFzCj4gd2hlcmUgYSBQQ0kgZGV2aWNlIGlz
-IHByZXNlbnQuIFRoaXMgcmVzdHJpY3RzIHRoZSBkZXZpY2UgZHJpdmVycyB0byBiZQo+IHJldXNl
-ZCBmb3Igb3RoZXIgZG9tYWluIG51bWJlcnMuCj4gCj4gR2V0dGluZyByZWFkeSB0byByZW1vdmUg
-cGNpX2dldF9idXNfYW5kX3Nsb3QoKSBmdW5jdGlvbiBpbiBmYXZvciBvZgo+IHBjaV9nZXRfZG9t
-YWluX2J1c19hbmRfc2xvdCgpLgo+IAo+IFJlcGxhY2UgcGNpX2dldF9idXNfYW5kX3Nsb3QoKSB3
-aXRoIHBjaV9nZXRfZG9tYWluX2J1c19hbmRfc2xvdCgpCj4gYW5kIGV4dHJhY3QgdGhlIGRvbWFp
-biBudW1iZXIgZnJvbQo+IDEuIHN0cnVjdCBwY2lfZGV2Cj4gMi4gc3RydWN0IHBjaV9kZXYgdGhy
-b3VnaCBkcm1fZGV2aWNlLT5wZGV2Cj4gMy4gc3RydWN0IHBjaV9kZXYgdGhyb3VnaCBmYi0+c3Vi
-ZGV2LT5kcm1fZGV2aWNlLT5wZGV2Cj4gCj4gU2lnbmVkLW9mZi1ieTogU2luYW4gS2F5YSA8b2th
-eWFAY29kZWF1cm9yYS5vcmc+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3Bu
-djA0L2FyYi5jICAgICAgICAgICB8ICA0ICsrKy0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-ZGlzcG52MDQvaHcuYyAgICAgICAgICAgIHwgMTAgKysrKysrKy0tLQo+ICBkcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jICAgICAgICAgICAgfCAgMyArKy0KPiAgZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvcmFtbnYxYS5jIHwgMTAgKysrKysrKysrLQo+
-ICA0IGZpbGVzIGNoYW5nZWQsIDIxIGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCj4gCj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0L2FyYi5jIGIvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvYXJiLmMKPiBpbmRleCA5MDA3NWI2Li5jNzkx
-NjBjIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0L2FyYi5j
-Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvYXJiLmMKPiBAQCAtMjEz
-LDggKzIxMywxMCBAQCBzdHJ1Y3QgbnZfc2ltX3N0YXRlIHsKPiAgCWlmICgoZGV2LT5wZGV2LT5k
-ZXZpY2UgJiAweGZmZmYpID09IDB4MDFhMCAvKkNISVBTRVRfTkZPUkNFKi8gfHwKPiAgCSAgICAo
-ZGV2LT5wZGV2LT5kZXZpY2UgJiAweGZmZmYpID09IDB4MDFmMCAvKkNISVBTRVRfTkZPUkNFMiov
-KSB7Cj4gIAkJdWludDMyX3QgdHlwZTsKPiArCQlpbnQgZG9tYWluID0gcGNpX2RvbWFpbl9ucihk
-ZXYtPnBkZXYtPmJ1cyk7Cj4gIAo+IC0JCXBjaV9yZWFkX2NvbmZpZ19kd29yZChwY2lfZ2V0X2J1
-c19hbmRfc2xvdCgwLCAxKSwgMHg3YywgJnR5cGUpOwo+ICsJCXBjaV9yZWFkX2NvbmZpZ19kd29y
-ZChwY2lfZ2V0X2RvbWFpbl9idXNfYW5kX3Nsb3QoZG9tYWluLCAwLCAxKSwKPiArCQkJCSAgICAg
-IDB4N2MsICZ0eXBlKTsKPiAgCj4gIAkJc2ltX2RhdGEubWVtb3J5X3R5cGUgPSAodHlwZSA+PiAx
-MikgJiAxOwo+ICAJCXNpbV9kYXRhLm1lbW9yeV93aWR0aCA9IDY0Owo+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9ody5jIGIvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvZGlzcG52MDQvaHcuYwo+IGluZGV4IGI5ODU5OTAuLjBjOWJkZjAgMTAwNjQ0Cj4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvaHcuYwo+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0L2h3LmMKPiBAQCAtMjE2LDEyICsyMTYsMTUgQEAKPiAg
-ewo+ICAJc3RydWN0IG52a21fcGxsX3ZhbHMgcGxsdmFsczsKPiAgCWludCByZXQ7Cj4gKwlpbnQg
-ZG9tYWluOwo+ICsKPiArCWRvbWFpbiA9IHBjaV9kb21haW5fbnIoZGV2LT5wZGV2LT5idXMpOwo+
-ICAKPiAgCWlmIChwbGx0eXBlID09IFBMTF9NRU1PUlkgJiYKPiAgCSAgICAoZGV2LT5wZGV2LT5k
-ZXZpY2UgJiAweDBmZjApID09IENISVBTRVRfTkZPUkNFKSB7Cj4gIAkJdWludDMyX3QgbXBsbFA7
-Cj4gLQo+IC0JCXBjaV9yZWFkX2NvbmZpZ19kd29yZChwY2lfZ2V0X2J1c19hbmRfc2xvdCgwLCAz
-KSwgMHg2YywgJm1wbGxQKTsKPiArCQlwY2lfcmVhZF9jb25maWdfZHdvcmQocGNpX2dldF9kb21h
-aW5fYnVzX2FuZF9zbG90KGRvbWFpbiwgMCwgMyksCj4gKwkJCQkgICAgICAweDZjLCAmbXBsbFAp
-Owo+ICAJCW1wbGxQID0gKG1wbGxQID4+IDgpICYgMHhmOwo+ICAJCWlmICghbXBsbFApCj4gIAkJ
-CW1wbGxQID0gNDsKPiBAQCAtMjMyLDcgKzIzNSw4IEBACj4gIAkgICAgKGRldi0+cGRldi0+ZGV2
-aWNlICYgMHhmZjApID09IENISVBTRVRfTkZPUkNFMikgewo+ICAJCXVpbnQzMl90IGNsb2NrOwo+
-ICAKPiAtCQlwY2lfcmVhZF9jb25maWdfZHdvcmQocGNpX2dldF9idXNfYW5kX3Nsb3QoMCwgNSks
-IDB4NGMsICZjbG9jayk7Cj4gKwkJcGNpX3JlYWRfY29uZmlnX2R3b3JkKHBjaV9nZXRfZG9tYWlu
-X2J1c19hbmRfc2xvdChkb21haW4sIDAsIDUpLAo+ICsJCQkJICAgICAgMHg0YywgJmNsb2NrKTsK
-PiAgCQlyZXR1cm4gY2xvY2sgLyAxMDAwOwo+ICAJfQo+ICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L25vdXZlYXVfZHJtLmMKPiBpbmRleCA1OTU2MzBkLi4wYjZjNjM5IDEwMDY0NAo+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCj4gQEAgLTQwNiw3ICs0MDYsOCBAQCBzdGF0aWMgaW50
-IG5vdXZlYXVfZHJtX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LAo+ICAJfQo+ICAKPiAgCS8q
-IHN1YmZ1bmN0aW9uIG9uZSBpcyBhIGhkbWkgYXVkaW8gZGV2aWNlPyAqLwo+IC0JZHJtLT5oZG1p
-X2RldmljZSA9IHBjaV9nZXRfYnVzX2FuZF9zbG90KCh1bnNpZ25lZCBpbnQpcGRldi0+YnVzLT5u
-dW1iZXIsCj4gKwlkcm0tPmhkbWlfZGV2aWNlID0gcGNpX2dldF9kb21haW5fYnVzX2FuZF9zbG90
-KHBjaV9kb21haW5fbnIocGRldi0+YnVzKSwKPiArCQkJCQkJKHVuc2lnbmVkIGludClwZGV2LT5i
-dXMtPm51bWJlciwKPiAgCQkJCQkJUENJX0RFVkZOKFBDSV9TTE9UKHBkZXYtPmRldmZuKSwgMSkp
-Owo+ICAKPiAgCWlmICghZHJtLT5oZG1pX2RldmljZSkgewo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9yYW1udjFhLmMgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9yYW1udjFhLmMKPiBpbmRleCAzYzZhODcxLi44ODQ5
-YjcxIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Zi
-L3JhbW52MWEuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Zi
-L3JhbW52MWEuYwo+IEBAIC0yOCw4ICsyOCwxNiBAQAo+ICB7Cj4gIAlzdHJ1Y3QgcGNpX2RldiAq
-YnJpZGdlOwo+ICAJdTMyIG1lbSwgbWliOwo+ICsJaW50IGRvbWFpbiA9IDA7Cj4gKwlzdHJ1Y3Qg
-cGNpX2RldiAqcGRldiA9IE5VTEw7Cj4gIAo+IC0JYnJpZGdlID0gcGNpX2dldF9idXNfYW5kX3Ns
-b3QoMCwgUENJX0RFVkZOKDAsIDEpKTsKPiArCWlmIChkZXZfaXNfcGNpKGZiLT5zdWJkZXYuZGV2
-aWNlLT5kZXYpKQo+ICsJCXBkZXYgPSB0b19wY2lfZGV2KGZiLT5zdWJkZXYuZGV2aWNlLT5kZXYp
-Owo+ICsKPiArCWlmIChwZGV2KQo+ICsJCWRvbWFpbiA9IHBjaV9kb21haW5fbnIocGRldi0+YnVz
-KTsKPiArCj4gKwlicmlkZ2UgPSBwY2lfZ2V0X2RvbWFpbl9idXNfYW5kX3Nsb3QoZG9tYWluLCAw
-LCBQQ0lfREVWRk4oMCwgMSkpOwo+ICAJaWYgKCFicmlkZ2UpIHsKPiAgCQludmttX2Vycm9yKCZm
-Yi0+c3ViZGV2LCAibm8gYnJpZGdlIGRldmljZVxuIik7Cj4gIAkJcmV0dXJuIC1FTk9ERVY7Cj4g
-CgoKLS0gClNpbmFuIEtheWEKUXVhbGNvbW0gRGF0YWNlbnRlciBUZWNobm9sb2dpZXMsIEluYy4g
-YXMgYW4gYWZmaWxpYXRlIG9mIFF1YWxjb21tIFRlY2hub2xvZ2llcywgSW5jLgpRdWFsY29tbSBU
-ZWNobm9sb2dpZXMsIEluYy4gaXMgYSBtZW1iZXIgb2YgdGhlIENvZGUgQXVyb3JhIEZvcnVtLCBh
-IExpbnV4IEZvdW5kYXRpb24gQ29sbGFib3JhdGl2ZSBQcm9qZWN0LgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1387452346==
+Content-Type: multipart/alternative; boundary="15118152691.185b48b1b.7041";
+ charset="UTF-8"
+
+
+--15118152691.185b48b1b.7041
+Date: Mon, 27 Nov 2017 20:41:09 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101665
+
+--- Comment #6 from Etienne URBAH <eurbah-GANU6spQydw@public.gmane.org> ---
+With Linux kernel 4.15.0-041500rc1 from
+http://kernel.ubuntu.com/~kernel-ppa/mainline, 'lspci' systematically fails=
+ to
+answer, and makes the whole machine freeze after some time.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15118152691.185b48b1b.7041
+Date: Mon, 27 Nov 2017 20:41:09 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665#c6">Commen=
+t # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665">bug 10166=
+5</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+eurbah&#64;free.fr" title=3D"Etienne URBAH &lt;eurbah&#64;free.fr&gt;"> <sp=
+an class=3D"fn">Etienne URBAH</span></a>
+</span></b>
+        <pre>With Linux kernel 4.15.0-041500rc1 from
+<a href=3D"http://kernel.ubuntu.com/~kernel-ppa/mainline">http://kernel.ubu=
+ntu.com/~kernel-ppa/mainline</a>, 'lspci' systematically fails to
+answer, and makes the whole machine freeze after some time.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15118152691.185b48b1b.7041--
+
+--===============1387452346==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1387452346==--
