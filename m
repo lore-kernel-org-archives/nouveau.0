@@ -1,119 +1,57 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103946] [nouveau] Slowish and rough graphical
- interface with GTX 1060
-Date: Tue, 28 Nov 2017 12:29:50 +0000
-Message-ID: <bug-103946-8800-iMCXIXWwY1@http.bugs.freedesktop.org/>
-References: <bug-103946-8800@http.bugs.freedesktop.org/>
+From: Julia Lawall <julia.lawall@lip6.fr>
+Subject: [PATCH] drm/nouveau/mmu: fix odd_ptr_err.cocci warnings (fwd)
+Date: Tue, 28 Nov 2017 13:56:24 +0100 (CET)
+Message-ID: <alpine.DEB.2.20.1711281355140.29014@hadrien>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1143299283=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103946-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, kbuild-all@01.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1143299283==
-Content-Type: multipart/alternative; boundary="15118721901.c0Fb4E55.27269";
- charset="UTF-8"
-
-
---15118721901.c0Fb4E55.27269
-Date: Tue, 28 Nov 2017 12:29:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103946
-
---- Comment #3 from neules <nazgalist-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Do you need any further information? I can provide as long as I can underst=
-and
-what are you asking for...
-
-By your answer I'm guessing you are saying DRI it's involved, and it's not
-activated. If there's something else I can do just ask me, please. Should I
-post xorg.log?
-
-Tia
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15118721901.c0Fb4E55.27269
-Date: Tue, 28 Nov 2017 12:29:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] Slowish and rough graphical interface with GTX =
-1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103946#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] Slowish and rough graphical interface with GTX =
-1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103946">bug 10394=
-6</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-nazgalist&#64;gmail.com" title=3D"neules &lt;nazgalist&#64;gmail.com&gt;"> =
-<span class=3D"fn">neules</span></a>
-</span></b>
-        <pre>Do you need any further information? I can provide as long as =
-I can understand
-what are you asking for...
-
-By your answer I'm guessing you are saying DRI it's involved, and it's not
-activated. If there's something else I can do just ask me, please. Should I
-post xorg.log?
-
-Tia</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15118721901.c0Fb4E55.27269--
-
---===============1143299283==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1143299283==--
+VGhpcyBpcyBhIGZhbHNlIHBvc2l0aXZlLCBidXQgSSB3b25kZXIgaWYgaXQgaXMgcmVhbGx5IG5l
+Y2Vzc2FyeSB0byBwdXQKdGhlIGFzc2lnbm1lbnQgaW4gdGhlIGNvbmRpdGlvbmFsIHRlc3QgZXhw
+cmVzc2lvbi4KCmp1bGlhCgotLS0tLS0tLS0tIEZvcndhcmRlZCBtZXNzYWdlIC0tLS0tLS0tLS0K
+RGF0ZTogVHVlLCAyOCBOb3YgMjAxNyAxMzoyMzozNiArMDgwMApGcm9tOiBrYnVpbGQgdGVzdCBy
+b2JvdCA8ZmVuZ2d1YW5nLnd1QGludGVsLmNvbT4KVG86IGtidWlsZEAwMS5vcmcKQ2M6IEp1bGlh
+IExhd2FsbCA8anVsaWEubGF3YWxsQGxpcDYuZnI+ClN1YmplY3Q6IFtQQVRDSF0gZHJtL25vdXZl
+YXUvbW11OiBmaXggb2RkX3B0cl9lcnIuY29jY2kgd2FybmluZ3MKCkNDOiBrYnVpbGQtYWxsQDAx
+Lm9yZwpDQzogbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZwpUTzogQmVuIFNrZWdncyA8YnNr
+ZWdnc0ByZWRoYXQuY29tPgpDQzogRGF2aWQgQWlybGllIDxhaXJsaWVkQGxpbnV4LmllPgpDQzog
+ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpDQzogbm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKQ0M6IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcKCmRyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L252a20vc3ViZGV2L21tdS91dm1tLmM6MTA5OjUtMTE6IGluY29uc2lzdGVudCBJ
+U19FUlIgYW5kIFBUUl9FUlIgb24gbGluZSAxMTAuCmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
+a20vc3ViZGV2L21tdS91dm1tLmM6MTA5OjUtMTE6IGluY29uc2lzdGVudCBJU19FUlIgYW5kIFBU
+Ul9FUlIgb24gbGluZSAxMTEuCgogUFRSX0VSUiBzaG91bGQgYWNjZXNzIHRoZSB2YWx1ZSBqdXN0
+IHRlc3RlZCBieSBJU19FUlIKClNlbWFudGljIHBhdGNoIGluZm9ybWF0aW9uOgogVGhlcmUgY2Fu
+IGJlIGZhbHNlIHBvc2l0aXZlcyBpbiB0aGUgcGF0Y2ggY2FzZSwgd2hlcmUgaXQgaXMgdGhlIGNh
+bGwgdG8KIElTX0VSUiB0aGF0IGlzIHdyb25nLgoKR2VuZXJhdGVkIGJ5OiBzY3JpcHRzL2NvY2Np
+bmVsbGUvdGVzdHMvb2RkX3B0cl9lcnIuY29jY2kKCkZpeGVzOiA5MjBkMmI1ZWYyMTUgKCJkcm0v
+bm91dmVhdS9tbXU6IGRlZmluZSB1c2VyIGludGVyZmFjZXMgdG8gbW11IHZtbSBvcGVydGFpb25z
+IikKU2lnbmVkLW9mZi1ieTogRmVuZ2d1YW5nIFd1IDxmZW5nZ3Vhbmcud3VAaW50ZWwuY29tPgot
+LS0KClBsZWFzZSB0YWtlIHRoZSBwYXRjaCBvbmx5IGlmIGl0J3MgYSBwb3NpdGl2ZSB3YXJuaW5n
+LiBUaGFua3MhCgogdXZtbS5jIHwgICAgNSArKystLQogMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0
+aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
+a20vc3ViZGV2L21tdS91dm1tLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9z
+dWJkZXYvbW11L3V2bW0uYwpAQCAtMTA3LDggKzEwNyw5IEBAIG52a21fdXZtbV9tdGhkX21hcChz
+dHJ1Y3QgbnZrbV91dm1tICp1dm0KIAkJcmV0dXJuIHJldDsKCiAJaWYgKElTX0VSUigobWVtb3J5
+ID0gbnZrbV91bWVtX3NlYXJjaChjbGllbnQsIGhhbmRsZSkpKSkgewotCQlWTU1fREVCVUcodm1t
+LCAibWVtb3J5ICUwMTZsbHggJWxkXG4iLCBoYW5kbGUsIFBUUl9FUlIobWVtb3J5KSk7Ci0JCXJl
+dHVybiBQVFJfRVJSKG1lbW9yeSk7CisJCVZNTV9ERUJVRyh2bW0sICJtZW1vcnkgJTAxNmxseCAl
+bGRcbiIsIGhhbmRsZSwKKwkJCSAgUFRSX0VSUigobWVtb3J5ID0gbnZrbV91bWVtX3NlYXJjaChj
+bGllbnQsIGhhbmRsZSkpKSk7CisJCXJldHVybiBQVFJfRVJSKChtZW1vcnkgPSBudmttX3VtZW1f
+c2VhcmNoKGNsaWVudCwgaGFuZGxlKSkpOwogCX0KCiAJbXV0ZXhfbG9jaygmdm1tLT5tdXRleCk7
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZl
+bCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
