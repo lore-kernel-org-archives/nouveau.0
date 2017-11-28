@@ -1,20 +1,13 @@
-From: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: Addressing the problem of noisy GPUs under Nouveau
-Date: Mon, 27 Nov 2017 21:32:17 -0800
-Message-ID: <11b5cc0f-24b6-97ca-3942-28381766fdbc@nvidia.com>
-References: <4597fd60-59f8-5e45-ec5a-f52c4c6c6260@free.fr>
- <7cad7e2b-e207-03be-b5a6-d036420b42e0@nvidia.com>
- <20171122012909.GA4002@prokofiev.nvidia.com>
- <CAKb7Uvjcbz0_F155xC5T1qXdTgo25Jp57mPAR8txPWTt_ZdYhw@mail.gmail.com>
- <8c630fe4-ee96-2c68-eafb-d243195af29f@free.fr>
- <985ec2c1-df88-622a-8ccb-1246c320e8c3@nvidia.com>
- <f0f5c17c-2bcc-2bee-563a-0bc4b0858869@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103946] [nouveau] Slowish and rough graphical
+ interface with GTX 1060
+Date: Tue, 28 Nov 2017 12:29:50 +0000
+Message-ID: <bug-103946-8800-iMCXIXWwY1@http.bugs.freedesktop.org/>
+References: <bug-103946-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1143299283=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <f0f5c17c-2bcc-2bee-563a-0bc4b0858869-GANU6spQydw@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <bug-103946-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -24,64 +17,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTEvMjMvMjAxNyAwMjo0OCBQTSwgTWFydGluIFBlcmVzIHdyb3RlOgo+IE9uIDIzLzExLzE3
-IDEwOjA2LCBKb2huIEh1YmJhcmQgd3JvdGU6Cj4+IE9uIDExLzIyLzIwMTcgMDU6MDcgUE0sIE1h
-cnRpbiBQZXJlcyB3cm90ZToKPj4+IEhleSwKPj4+Cj4+PiBUaGFua3MgZm9yIHlvdXIgYW5zd2Vy
-LCBBbmR5IQo+Pj4KPj4+IE9uIDIyLzExLzE3IDA0OjA2LCBJbGlhIE1pcmtpbiB3cm90ZToKPj4+
-PiBPbiBUdWUsIE5vdiAyMSwgMjAxNyBhdCA4OjI5IFBNLCBBbmR5IFJpdGdlciA8YXJpdGdlckBu
-dmlkaWEuY29tPiB3cm90ZToKPj4+PiBNYXJ0aW4ncyBxdWVzdGlvbiB3YXMgdmVyeSBsb25nLCBi
-dXQgaXQgYm9pbHMgZG93biB0byB0aGlzOgo+Pj4+Cj4+Pj4gSG93IGRvIHdlIGNvbXB1dGUgdGhl
-IGNvcnJlY3QgdmFsdWVzIHRvIHdyaXRlIGludG8gdGhlIGUxMTQvZTExOCBwd20KPj4+PiByZWdp
-c3RlcnMgYmFzZWQgb24gdGhlIFZCSU9TIGNvbnRlbnRzIGFuZCBjdXJyZW50IHN0YXRlIG9mIHRo
-ZSBib2FyZAo+Pj4+IChsaWtlIHRlbXBlcmF0dXJlKS4KPj4+Cj4+PiBVbmZvcnR1bmF0ZWx5LCBp
-dCBjYW4gYWxzbyBiZSB0aGUgZTExYy9lMTIwIGNvdXBsZSwgb3IgMHgyMDBkOC9kYyBvbgo+Pj4g
-R0YxMTkrLCBvciAweDIwMGNkL2QwIG9uIEtlcGxlcisuCj4+Pgo+Pj4gQXQgbGVhc3QsIGl0IGxv
-b2tzIGxpa2Ugd2Uga25vdyB3aGljaCBQV00gY29udHJvbGVyIHdlIG5lZWQgdG8gZHJpdmUsIHNv
-Cj4+PiBJIGRpZCBub3Qgd2FudCB0byBtdWRkeSB0aGUgd2F0ZXIgZXZlbiBtb3JlIGJ5IGdpdmlu
-ZyByZWdpc3Rlcgo+Pj4gYWRkcmVzc2VzLCByYXRoZXIgY29uY2VudHJhdGluZyBvbiB0aGUgcHJv
-YmxlbSBhdCBoYW5kOiBIb3cgdG8gY29tcHV0ZQo+Pj4gdGhlIGR1dHkgdmFsdWUgZm9yIHRoZSBQ
-V00gY29udHJvbGVyLgo+Pj4KPj4+Pgo+Pj4+IFdlIGdlbmVyYWxseSBkbyB0aGlzIHJpZ2h0LCBi
-dXQgYXBwZWFyIHRvIGdldCBpdCBleHRyYS13cm9uZyBmb3IgY2VydGFpbiBHUFVzLgo+Pj4KPj4+
-IFllcy4uLiBTbyBmYXIsIHdlIGFyZSBhbHdheXMgc2FmZSwgYnV0IHVzZXJzIHRlbmQgdG8gbWlu
-ZCB3aGVuIHRoZWlyCj4+PiBjb21wdXRlciBzb3VuZCBsaWtlIGEganVtYm8gamV0IGF0IHRha2Ug
-b2ZmLi4uIFdobyB3b3VsZCBoYXZlIHRob3VnaHQ/IDpECj4+Pgo+Pj4gQW55d2F5LCBsb29raW5n
-IGZvcndhcmQgdG8geW91ciBhbnN3ZXIhCj4+Pgo+Pj4gQ2hlZXJzLAo+Pj4gTWFydGluCj4+Cj4+
-Cj4+IEhpIE1hcnRpbiwKPj4KPj4gT25lIG9mIG91ciBmaXJtd2FyZSBlbmdpbmVlcnMgdGhpbmtz
-IHRoYXQgdGhpcyBsb29rcyBhIGxvdCBsaWtlIFBXTSBpbnZlcnNpb24uCj4+IEZvciBzb21lIFNL
-VXMsIHRoZSBpbnRlcnByZXRhdGlvbiBvZiB0aGUgUFdNIGR1dHkgY3ljbGUgaXMgaW52ZXJ0ZWQu
-IFRoYXQgCj4+IHdvdWxkIHByb2JhYmx5IG1ha2UgaXQgKnZlcnkqIGRpZmZpY3VsdCB0byBmaW5k
-IGEgc2Vuc2libGUgYWxnb3JpdGhtIHRoYXQgCj4+IGNvdmVyZWQgYWxsIHRoZSBTS1VzLCBnaXZl
-biB0aGF0IHNvbWUgYXJlIGludmVydGVkIGFuZCBvdGhlcnMgYXJlIG5vdC4KPj4KPj4gRm9yIHRo
-ZSBub2lzeSBHUFVzLCBhIHZlcnkgdXNlZnVsIGV4cGVyaW1lbnQgd291bGQgYmUgdG8gdHJ5IGlu
-dmVydGluZyBpdCwgCj4+IGxpa2UgdGhpczoKPj4KPj4gCXB3bUR1dHlDeWNsZSA9IHB3bVBlcmlv
-ZCAtIHB3bUR1dHlDeWNsZTsKPj4KPj4gLi4uYW5kIHRoZW4gc2VlIGlmIGZhbiBjb250cm9sIHN0
-YXJ0cyBiZWhhdmluZyBjbG9zZXIgdG8gaG93IHlvdSd2ZSBhY3R1YWxseSAKPj4gcHJvZ3JhbW1l
-ZCBpdC4KPj4KPj4gV291bGQgdGhhdCBiZSBlYXN5IGVub3VnaCB0byB0cnkgb3V0PyBJdCBzaG91
-bGQgaGVscCBuYXJyb3cgZG93biB0aGUKPj4gcHJvYmxlbSBhdCBsZWFzdC4KPj4KPiAKPiBIZXkg
-Sm9obiwKPiAKPiBVbmZvcnR1bmF0ZWx5LCB3ZSBrbm93IGFib3V0IFBXTSBpbnZlcnNpb24sIGFu
-ZCBvbmUgY2FuIGtub3cgd2hpY2ggbW9kZQo+IHRvIHVzZSBiYXNlZCBvbiB0aGUgR1BJTyBlbnRy
-eSBhc3NvY2lhdGVkIHRvIHRoZSBmYW4gKGludmVydGVkKS4gV2UgaGF2ZQo+IGhhZCBzdXBwb3J0
-IGZvciB0aGlzIGluIE5vdXZlYXUgZm9yIGEgbG9uZyB0aW1lLiBBdCB0aGUgdmVyeSBsZWFzdCwg
-dGhpcwo+IGlzIG5vdCB0aGUgcHJvYmxlbSBvbiBteSBHRjEwOC4KPiAKPiBJIGFtIGNlcnRhaW4g
-dGhhdCB0aGUgcHJvYmxlbSBJIGFtIHNlZWluZyBpcyByZWxhdGVkIHRvIHRoaXMgdmJpb3MgdGFi
-bGUKPiBJIHdyb3RlIGFib3V0IChCSVQgUCwgb2Zmc2V0IDB4MTgpLiBJdCBpcyB1c2VkIHRvIGNv
-bXB1dGUgd2hhdCBQV00gZHV0eQo+IEkgc2hvdWxkIHVzZSBmb3IgYm90aCAwIGFuZCAxMDAlIG9m
-IHRoZSBmYW4gc3BlZWQuCj4gCj4gQ29tcHV0aW5nIHRoZSB2YWx1ZSBmb3IgMCUgZmFuIHNwZWVk
-IGlzIGRpZmZpY3VsdCBiZWNhdXNlIG9mCj4gbm9uLWNvbnRpbnVvdXMgbmF0dXJlIG9mIHNvbWUg
-b2YgdGhlIGZ1bmN0aW9uc1sxXSwgYnV0IEkgY2FuIGFsd2F5cwo+IG92ZXItYXBwcm94aW1hdGUu
-IEhvd2V2ZXIsIEkgZmFpbGVkIHRvIGFjY3VyYXRlbHkgY29tcHV0ZSB0aGUgZHV0eSBJCj4gbmVl
-ZCB0byB3cml0ZSB0byBnZXQgdGhlIDEwMCUgZmFuIHNwZWVkIChJIGhhdmUgY2FzZXMgd2hlcmUg
-SSBncmVhdGx5Cj4gb3Zlci1lc3RpbWF0ZSBpdC4uLikuCj4gCj4gQ291bGQgeW91IHBsZWFzZSBj
-aGVjayBvdXQgdGhlIHZiaW9zIHRhYmxlIEkgYW0gcG9pbnRpbmcgYXQ/IEkgYW0gcXVpdGUKPiBz
-dXJlIHRoYXQgeW91ciBkb2N1bWVudGF0aW9uIHdpbGwgYmUgY2xlYXJlciB0aGFuIG15IGJhYmJs
-aW5nIDpECgpZZXMuIFdlIHdpbGwgY2hlY2sgb24gdGhpcy4gVGhlcmUgaGFzIGJlZW4gc29tZSBw
-cm9kdWN0aXZlIGRpc2N1c3Npb24gCmludGVybmFsbHksIGJ1dCBpdCB3aWxsIHRha2Ugc29tZSBt
-b3JlIGludmVzdGlnYXRpb24uCgp0aGFua3MsCkpvaG4gSHViYmFyZAoKCj4gCj4gVGhhbmtzLAo+
-IE1hcnRpbgo+IAo+IFsxXSBodHRwOi8vZnMubXVwdWYub3JnL252aWRpYS9mYW5fY2FsaWIvcHdt
-X29mZnNldC5wbmcKPiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1143299283==
+Content-Type: multipart/alternative; boundary="15118721901.c0Fb4E55.27269";
+ charset="UTF-8"
+
+
+--15118721901.c0Fb4E55.27269
+Date: Tue, 28 Nov 2017 12:29:50 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103946
+
+--- Comment #3 from neules <nazgalist-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Do you need any further information? I can provide as long as I can underst=
+and
+what are you asking for...
+
+By your answer I'm guessing you are saying DRI it's involved, and it's not
+activated. If there's something else I can do just ask me, please. Should I
+post xorg.log?
+
+Tia
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15118721901.c0Fb4E55.27269
+Date: Tue, 28 Nov 2017 12:29:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] Slowish and rough graphical interface with GTX =
+1060"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103946#c3">Commen=
+t # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [nouveau] Slowish and rough graphical interface with GTX =
+1060"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103946">bug 10394=
+6</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+nazgalist&#64;gmail.com" title=3D"neules &lt;nazgalist&#64;gmail.com&gt;"> =
+<span class=3D"fn">neules</span></a>
+</span></b>
+        <pre>Do you need any further information? I can provide as long as =
+I can understand
+what are you asking for...
+
+By your answer I'm guessing you are saying DRI it's involved, and it's not
+activated. If there's something else I can do just ask me, please. Should I
+post xorg.log?
+
+Tia</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15118721901.c0Fb4E55.27269--
+
+--===============1143299283==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1143299283==--
