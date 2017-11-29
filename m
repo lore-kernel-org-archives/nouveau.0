@@ -1,15 +1,15 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [RFC PATCH] gr: did you try turning it off and on
-	again.
-Date: Wed, 29 Nov 2017 04:47:16 +0100
-Message-ID: <CACO55tvwy0Pj-zUi-X-APueewbV_qe1N71bmHDHNaGLbqg5jig@mail.gmail.com>
+ again.
+Date: Wed, 29 Nov 2017 13:59:15 +1000
+Message-ID: <3499dd5d-ae01-722e-f671-14740a33f6a9@gmail.com>
 References: <20171128131142.2913-1-kherbst@redhat.com>
  <6708daef-4e1b-4950-f4af-2df7aae9f876@mni.thm.de>
+ <CACO55tvwy0Pj-zUi-X-APueewbV_qe1N71bmHDHNaGLbqg5jig@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0837427573=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6708daef-4e1b-4950-f4af-2df7aae9f876-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+In-Reply-To: <CACO55tvwy0Pj-zUi-X-APueewbV_qe1N71bmHDHNaGLbqg5jig-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,49 +19,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBOb3YgMjgsIDIwMTcgYXQgNDozNiBQTSwgVG9iaWFzIEtsYXVzbWFubgo8dG9iaWFz
-LmpvaGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPiB3cm90ZToKPiBIaSwKPgo+IGNvbW1lbnRz
-IGlubGluZQo+Cj4gT24gMTEvMjgvMTcgMjoxMSBQTSwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+Pgo+
-PiBGaXhlcyBzZWN1cmUgYm9vdCBvbiBteSBncDEwNy4gTm8gaWRlYSB3aHkuIE90aGVyd2lzZSB0
-aGUgR1BVIGVudGVycwo+PiBjb21wbGV0ZSBsb2NrZG93biBhZnRlciBzdGFydGluZyB0aGUgZ3Bj
-Y3MgYW5kIGZlY3Mgd2l0aCB0aGUgTFMgaW1hZ2VzCj4+IGxvYWRlZC4KPj4KPj4gU2lnbmVkLW9m
-Zi1ieTogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+Cj4+IC0tLQo+PiAgIGRybS9u
-b3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMgfCA3ICsrKysrKysKPj4gICAxIGZpbGUgY2hh
-bmdlZCwgNyBpbnNlcnRpb25zKCspCj4+Cj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmtt
-L2VuZ2luZS9nci9nZjEwMC5jCj4+IGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAu
-Ywo+PiBpbmRleCAyZjhkYzEwNy4uMzIyZDlmYTYgMTAwNjQ0Cj4+IC0tLSBhL2RybS9ub3V2ZWF1
-L252a20vZW5naW5lL2dyL2dmMTAwLmMKPj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUv
-Z3IvZ2YxMDAuYwo+PiBAQCAtMTczMSw4ICsxNzMxLDE1IEBAIGdmMTAwX2dyX2luaXRfKHN0cnVj
-dCBudmttX2dyICpiYXNlKQo+PiAgIHsKPj4gICAgICAgICBzdHJ1Y3QgZ2YxMDBfZ3IgKmdyID0g
-Z2YxMDBfZ3IoYmFzZSk7Cj4+ICAgICAgICAgc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYgPSAm
-YmFzZS0+ZW5naW5lLnN1YmRldjsKPj4gKyAgICAgICBzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmlj
-ZSA9IHN1YmRldi0+ZGV2aWNlOwo+PiAgICAgICAgIHUzMiByZXQ7Cj4+ICAgKyAgICAgLyogZGlk
-IHlvdSB0cnkgdHVybmluZyBpdCBvZmYgYW5kIG9uIGFnYWluPyBBcHBhcmVudGx5IHdlIG5lZWQK
-Pj4gdGhpcwo+PiArICAgICAgICAqIG9uIHBhc2NhbCwgb3RoZXJ3aXNlIHNlY2Jvb3Qgd2lsbCBq
-dXN0IGZhaWwuCj4KPgo+Cj4gVGhlIGNvbW1lbnRzIGFib3V0IHRoZSBvZmYgYW5kIG9uIGxvb2tz
-IHNpbGx5LCBhdCBsZWFzdCBwdXQgaXQgaW4gcXVvdGF0aW9uCj4gbWFya3MsIG9yIHJld3JpdGUg
-aXQsIGUuZy4gIkFwcGFyZW50bHkgd2UgbmVlZCB0byB0dXJuIGl0IG9mZiBhbmQgb24gZm9yIHRo
-ZQo+IHBhc2NhbCBnZW5lcmF0aW9uLCBvdGhlcndpc2Ugc2VjYm9vdCB3aWxsIGp1c3QgZmFpbC4i
-Cj4KCnJpZ2h0Li4uIEkgd2Fzbid0IGVudGlyZWx5IHNlcmlvdXMgYWJvdXQgdGhpcyBvbmUgdGhv
-dWdoLiBKdXN0IGEKbGl0dGxlIGFubm95ZWQsIHRoYXQgdGhpcyB3YXMganVzdCBhIHBhaW5mdWwg
-aXNzdWUsIGJlY2F1c2UgaXQganVzdApkb2Vzbid0IG1ha2UgYW55IHNlbnNlIGF0IGFsbCBpbiB0
-aGUgZW5kLiBBbmQgYmVjYXVzZSB0aGlzIGlzCmludm9sdmluZyBzZWN1cmUgYm9vdCBoZXJlLCB3
-aG8ga25vd3MgaG93IG1hbnkgYnVncyBvZiB0aGlzIGtpbmQgYXJlCnN0aWxsIHRoZXJlPwoKPj4g
-KyAgICAgICAgKi8KPj4gKyAgICAgICBudmttX21hc2soZGV2aWNlLCAweDIwMCwgMHgxMDAwLCAw
-eDAwMDApOwo+PiArICAgICAgIG52a21fbWFzayhkZXZpY2UsIDB4MjAwLCAweDEwMDAsIDB4MTAw
-MCk7Cj4+ICsKPgo+Cj4KPiBJdCBpcyBuZWVkZWQgd2l0aCBwYXNjYWwsIGJ1dCBkb2VzIGl0IGhh
-cm0gb3RoZXIgZ2VuZXJhdGlvbnMgY2FsbGluZyB0aGlzCj4gaW5pdD8gTWF5YmUgZ3VhcmQgaXQg
-YWdhaW5zdCBleGVjdHV0aW9uIG9uIG1heHdlbGwKPgoKTWF5YmUsIG1heWJlIG5vdD8gSSB0aGlu
-ayBpdCBpcyBmYWlybHkgc2FmZSwgYnV0IEkga2luZCBvZiBob3BlZApzb21lYm9keSB3aXRoIG1v
-cmUga25vd2xlZGdlIGFib3V0IHRoZXNlIGtpbmQgb2YgdGhpbmdzIHdvdWxkIHJlc3BvbmQKYW5k
-IHRlbGxzIHVzIHRoaXMgaGFzIHRvIGJlIGRvbmUgb3IgbWF5YmUgbm90LgoKPgo+IEdyZWV0aW5n
-cywKPgo+IFRvYmlhcwo+Cj4KPgo+PiAgICAgICAgIG52a21fcG11X3Bnb2IoZ3ItPmJhc2UuZW5n
-aW5lLnN1YmRldi5kZXZpY2UtPnBtdSwgZmFsc2UpOwo+PiAgICAgICAgIHJldCA9IG52a21fZmFs
-Y29uX2dldChnci0+ZmVjcywgc3ViZGV2KTsKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9ub3V2ZWF1Cg==
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0837427573==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="TWuKIveUdkFlXv2mdVFw5mURFgQOufVw4"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--TWuKIveUdkFlXv2mdVFw5mURFgQOufVw4
+Content-Type: multipart/mixed; boundary="qtWJ8U9lHA8WpPwdtewFhBfIGUEcr3098";
+ protected-headers="v1"
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Message-ID: <3499dd5d-ae01-722e-f671-14740a33f6a9-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Nouveau] [RFC PATCH] gr: did you try turning it off and on
+ again.
+References: <20171128131142.2913-1-kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+ <6708daef-4e1b-4950-f4af-2df7aae9f876-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+ <CACO55tvwy0Pj-zUi-X-APueewbV_qe1N71bmHDHNaGLbqg5jig-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CACO55tvwy0Pj-zUi-X-APueewbV_qe1N71bmHDHNaGLbqg5jig-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+
+--qtWJ8U9lHA8WpPwdtewFhBfIGUEcr3098
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+On 11/29/2017 01:47 PM, Karol Herbst wrote:
+> On Tue, Nov 28, 2017 at 4:36 PM, Tobias Klausmann
+> <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> wrote:
+>> Hi,
+>>
+>> comments inline
+>>
+>> On 11/28/17 2:11 PM, Karol Herbst wrote:
+>>>
+>>> Fixes secure boot on my gp107. No idea why. Otherwise the GPU enters
+>>> complete lockdown after starting the gpccs and fecs with the LS image=
+s
+>>> loaded.
+>>>
+>>> Signed-off-by: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+>>> ---
+>>>   drm/nouveau/nvkm/engine/gr/gf100.c | 7 +++++++
+>>>   1 file changed, 7 insertions(+)
+>>>
+>>> diff --git a/drm/nouveau/nvkm/engine/gr/gf100.c
+>>> b/drm/nouveau/nvkm/engine/gr/gf100.c
+>>> index 2f8dc107..322d9fa6 100644
+>>> --- a/drm/nouveau/nvkm/engine/gr/gf100.c
+>>> +++ b/drm/nouveau/nvkm/engine/gr/gf100.c
+>>> @@ -1731,8 +1731,15 @@ gf100_gr_init_(struct nvkm_gr *base)
+>>>   {
+>>>         struct gf100_gr *gr =3D gf100_gr(base);
+>>>         struct nvkm_subdev *subdev =3D &base->engine.subdev;
+>>> +       struct nvkm_device *device =3D subdev->device;
+>>>         u32 ret;
+>>>   +     /* did you try turning it off and on again? Apparently we nee=
+d
+>>> this
+>>> +        * on pascal, otherwise secboot will just fail.
+>>
+>>
+>>
+>> The comments about the off and on looks silly, at least put it in quot=
+ation
+>> marks, or rewrite it, e.g. "Apparently we need to turn it off and on f=
+or the
+>> pascal generation, otherwise secboot will just fail."
+>>
+>=20
+> right... I wasn't entirely serious about this one though. Just a
+> little annoyed, that this was just a painful issue, because it just
+> doesn't make any sense at all in the end. And because this is
+> involving secure boot here, who knows how many bugs of this kind are
+> still there?
+>=20
+>>> +        */
+>>> +       nvkm_mask(device, 0x200, 0x1000, 0x0000);
+>>> +       nvkm_mask(device, 0x200, 0x1000, 0x1000);
+>>> +
+>>
+>>
+>>
+>> It is needed with pascal, but does it harm other generations calling t=
+his
+>> init? Maybe guard it against exectution on maxwell
+>>
+>=20
+> Maybe, maybe not? I think it is fairly safe, but I kind of hoped
+> somebody with more knowledge about these kind of things would respond
+> and tells us this has to be done or maybe not.
+This should already be happening actually, so it's definitely weird that
+adding it there explicitly does anything at all...
+
+Can you mmiotrace nouveau for me?
+
+Ben.
+
+>=20
+>>
+>> Greetings,
+>>
+>> Tobias
+>>
+>>
+>>
+>>>         nvkm_pmu_pgob(gr->base.engine.subdev.device->pmu, false);
+>>>         ret =3D nvkm_falcon_get(gr->fecs, subdev);
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
+>=20
+
+
+--qtWJ8U9lHA8WpPwdtewFhBfIGUEcr3098--
+
+--TWuKIveUdkFlXv2mdVFw5mURFgQOufVw4
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEETp/uv2nr9kIVth0/dgucYlCSkfsFAloeMJMACgkQdgucYlCS
+kftxjBAAvSp/9ncWfZD0+2Bhl/PgePKgR28h48ezfOvHSAQznsUfDWAO7LoU6tYh
+E0ydHcm4Rnl5dkEPVh8fZE/m0qK/7+B8knV5aNLZGr9aMv7nbjz+D/o8TLo2aFlV
+zRstqX/yMA/LBN8b+8P4cG9ti6JLziEeZ29rihwpr1E1GGTvcJFxcaDSZQOcrf6s
+/glSgNZumD5TvFTDYrxML4UkGip9/NJouoKdng6QEjPwAovMUzNSYR5rpWzeLYJf
+bjeRBI+nc4++MVC70zBPBB57LEwH47h8jI1URuaTFK21yi82R9Vss5fpdRCotZgN
+k6Gsu9jrn0mauB6b/z/zK7DwdjXANkcO38wq2OQYBbLDB4gCFavlpFSbYp/nmvvj
+beX6VsfIlUbmwAtsYFaVwfdR1EiC6TobJTZl8s5LbEPbza5EEEYj0An7pTgdDNr7
+I5cL9dc4OUBB9wWRUHFUFdVgYhZ1EKEpH+LXzfTYw4Odmk01HWsyu5PdMNs52QYh
+NciiODiAOb1K9Hm91kPU4jK+nHnFf0KhXDztGLwb3Bnr8rqYSFaOr4zXltb+O3ft
+k1oP63RG90ysevrFNNiY3KUTs7vHsoMeEDzuC4n95timxp1PBOUz54AO3zQbr3Yg
+aJwjSHkpfbWmzZerWf4kLkfGqjSiUtweGXTMdYN5nGgD+cEEsg4=
+=JzFQ
+-----END PGP SIGNATURE-----
+
+--TWuKIveUdkFlXv2mdVFw5mURFgQOufVw4--
+
+--===============0837427573==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0837427573==--
