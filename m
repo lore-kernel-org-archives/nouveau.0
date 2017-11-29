@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103946] [nouveau] Slowish and rough graphical
- interface with GTX 1060
-Date: Tue, 28 Nov 2017 16:08:20 +0000
-Message-ID: <bug-103946-8800-8C35hNeHIx@http.bugs.freedesktop.org/>
-References: <bug-103946-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [RFC PATCH] gr: did you try turning it off and on
+	again.
+Date: Wed, 29 Nov 2017 04:47:16 +0100
+Message-ID: <CACO55tvwy0Pj-zUi-X-APueewbV_qe1N71bmHDHNaGLbqg5jig@mail.gmail.com>
+References: <20171128131142.2913-1-kherbst@redhat.com>
+ <6708daef-4e1b-4950-f4af-2df7aae9f876@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0500088203=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103946-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <6708daef-4e1b-4950-f4af-2df7aae9f876-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,109 +19,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0500088203==
-Content-Type: multipart/alternative; boundary="15118853000.8FdFE56.14957";
- charset="UTF-8"
-
-
---15118853000.8FdFE56.14957
-Date: Tue, 28 Nov 2017 16:08:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103946
-
---- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Issue is far before anything called DRI comes to play. Some of the HW units
-dealing with acceleration fail to init, hence everything is rendered by the=
- CPU
-and slow.
-
-Karol has posted a workaround [1] which seems mildly related. You can try i=
-t by
-rebuilding the kernel with the patch applied.=20
-
-
-[1] https://patchwork.freedesktop.org/patch/190668/
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15118853000.8FdFE56.14957
-Date: Tue, 28 Nov 2017 16:08:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] Slowish and rough graphical interface with GTX =
-1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103946#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] Slowish and rough graphical interface with GTX =
-1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103946">bug 10394=
-6</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-emil.l.velikov&#64;gmail.com" title=3D"Emil Velikov &lt;emil.l.velikov&#64;=
-gmail.com&gt;"> <span class=3D"fn">Emil Velikov</span></a>
-</span></b>
-        <pre>Issue is far before anything called DRI comes to play. Some of=
- the HW units
-dealing with acceleration fail to init, hence everything is rendered by the=
- CPU
-and slow.
-
-Karol has posted a workaround [1] which seems mildly related. You can try i=
-t by
-rebuilding the kernel with the patch applied.=20
-
-
-[1] <a href=3D"https://patchwork.freedesktop.org/patch/190668/">https://pat=
-chwork.freedesktop.org/patch/190668/</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15118853000.8FdFE56.14957--
-
---===============0500088203==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0500088203==--
+T24gVHVlLCBOb3YgMjgsIDIwMTcgYXQgNDozNiBQTSwgVG9iaWFzIEtsYXVzbWFubgo8dG9iaWFz
+LmpvaGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPiB3cm90ZToKPiBIaSwKPgo+IGNvbW1lbnRz
+IGlubGluZQo+Cj4gT24gMTEvMjgvMTcgMjoxMSBQTSwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+Pgo+
+PiBGaXhlcyBzZWN1cmUgYm9vdCBvbiBteSBncDEwNy4gTm8gaWRlYSB3aHkuIE90aGVyd2lzZSB0
+aGUgR1BVIGVudGVycwo+PiBjb21wbGV0ZSBsb2NrZG93biBhZnRlciBzdGFydGluZyB0aGUgZ3Bj
+Y3MgYW5kIGZlY3Mgd2l0aCB0aGUgTFMgaW1hZ2VzCj4+IGxvYWRlZC4KPj4KPj4gU2lnbmVkLW9m
+Zi1ieTogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+Cj4+IC0tLQo+PiAgIGRybS9u
+b3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMgfCA3ICsrKysrKysKPj4gICAxIGZpbGUgY2hh
+bmdlZCwgNyBpbnNlcnRpb25zKCspCj4+Cj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmtt
+L2VuZ2luZS9nci9nZjEwMC5jCj4+IGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAu
+Ywo+PiBpbmRleCAyZjhkYzEwNy4uMzIyZDlmYTYgMTAwNjQ0Cj4+IC0tLSBhL2RybS9ub3V2ZWF1
+L252a20vZW5naW5lL2dyL2dmMTAwLmMKPj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUv
+Z3IvZ2YxMDAuYwo+PiBAQCAtMTczMSw4ICsxNzMxLDE1IEBAIGdmMTAwX2dyX2luaXRfKHN0cnVj
+dCBudmttX2dyICpiYXNlKQo+PiAgIHsKPj4gICAgICAgICBzdHJ1Y3QgZ2YxMDBfZ3IgKmdyID0g
+Z2YxMDBfZ3IoYmFzZSk7Cj4+ICAgICAgICAgc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYgPSAm
+YmFzZS0+ZW5naW5lLnN1YmRldjsKPj4gKyAgICAgICBzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmlj
+ZSA9IHN1YmRldi0+ZGV2aWNlOwo+PiAgICAgICAgIHUzMiByZXQ7Cj4+ICAgKyAgICAgLyogZGlk
+IHlvdSB0cnkgdHVybmluZyBpdCBvZmYgYW5kIG9uIGFnYWluPyBBcHBhcmVudGx5IHdlIG5lZWQK
+Pj4gdGhpcwo+PiArICAgICAgICAqIG9uIHBhc2NhbCwgb3RoZXJ3aXNlIHNlY2Jvb3Qgd2lsbCBq
+dXN0IGZhaWwuCj4KPgo+Cj4gVGhlIGNvbW1lbnRzIGFib3V0IHRoZSBvZmYgYW5kIG9uIGxvb2tz
+IHNpbGx5LCBhdCBsZWFzdCBwdXQgaXQgaW4gcXVvdGF0aW9uCj4gbWFya3MsIG9yIHJld3JpdGUg
+aXQsIGUuZy4gIkFwcGFyZW50bHkgd2UgbmVlZCB0byB0dXJuIGl0IG9mZiBhbmQgb24gZm9yIHRo
+ZQo+IHBhc2NhbCBnZW5lcmF0aW9uLCBvdGhlcndpc2Ugc2VjYm9vdCB3aWxsIGp1c3QgZmFpbC4i
+Cj4KCnJpZ2h0Li4uIEkgd2Fzbid0IGVudGlyZWx5IHNlcmlvdXMgYWJvdXQgdGhpcyBvbmUgdGhv
+dWdoLiBKdXN0IGEKbGl0dGxlIGFubm95ZWQsIHRoYXQgdGhpcyB3YXMganVzdCBhIHBhaW5mdWwg
+aXNzdWUsIGJlY2F1c2UgaXQganVzdApkb2Vzbid0IG1ha2UgYW55IHNlbnNlIGF0IGFsbCBpbiB0
+aGUgZW5kLiBBbmQgYmVjYXVzZSB0aGlzIGlzCmludm9sdmluZyBzZWN1cmUgYm9vdCBoZXJlLCB3
+aG8ga25vd3MgaG93IG1hbnkgYnVncyBvZiB0aGlzIGtpbmQgYXJlCnN0aWxsIHRoZXJlPwoKPj4g
+KyAgICAgICAgKi8KPj4gKyAgICAgICBudmttX21hc2soZGV2aWNlLCAweDIwMCwgMHgxMDAwLCAw
+eDAwMDApOwo+PiArICAgICAgIG52a21fbWFzayhkZXZpY2UsIDB4MjAwLCAweDEwMDAsIDB4MTAw
+MCk7Cj4+ICsKPgo+Cj4KPiBJdCBpcyBuZWVkZWQgd2l0aCBwYXNjYWwsIGJ1dCBkb2VzIGl0IGhh
+cm0gb3RoZXIgZ2VuZXJhdGlvbnMgY2FsbGluZyB0aGlzCj4gaW5pdD8gTWF5YmUgZ3VhcmQgaXQg
+YWdhaW5zdCBleGVjdHV0aW9uIG9uIG1heHdlbGwKPgoKTWF5YmUsIG1heWJlIG5vdD8gSSB0aGlu
+ayBpdCBpcyBmYWlybHkgc2FmZSwgYnV0IEkga2luZCBvZiBob3BlZApzb21lYm9keSB3aXRoIG1v
+cmUga25vd2xlZGdlIGFib3V0IHRoZXNlIGtpbmQgb2YgdGhpbmdzIHdvdWxkIHJlc3BvbmQKYW5k
+IHRlbGxzIHVzIHRoaXMgaGFzIHRvIGJlIGRvbmUgb3IgbWF5YmUgbm90LgoKPgo+IEdyZWV0aW5n
+cywKPgo+IFRvYmlhcwo+Cj4KPgo+PiAgICAgICAgIG52a21fcG11X3Bnb2IoZ3ItPmJhc2UuZW5n
+aW5lLnN1YmRldi5kZXZpY2UtPnBtdSwgZmFsc2UpOwo+PiAgICAgICAgIHJldCA9IG52a21fZmFs
+Y29uX2dldChnci0+ZmVjcywgc3ViZGV2KTsKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1Cg==
