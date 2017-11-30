@@ -1,11 +1,13 @@
-From: =?UTF-8?q?Christoph=20B=C3=B6hmwalder?= <christoph-KeW1gJXA36yNJhrcwGid2A@public.gmane.org>
-Subject: [PATCH] drm/nouveau/mmu: fix odd_ptr_err.cocci warnings
-Date: Thu, 30 Nov 2017 20:53:54 +0100
-Message-ID: <20171130195354.14135-1-christoph@boehmwalder.at>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
+ [CTXSW_TIMEOUT]
+Date: Thu, 30 Nov 2017 20:08:07 +0000
+Message-ID: <bug-100567-8800-zZ99VoY8W8@http.bugs.freedesktop.org/>
+References: <bug-100567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0144732886=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,29 +17,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIGtidWlsZCB0ZXN0IGJvdCBjb21wbGFpbmVkIGFib3V0IGEgbmV3IGNvY2NpbmVsbGUgd2Fy
-bmluZyBuZWFyYnksCndoaWNoIHNwYXJrZWQgYSBkaXNjdXNzaW9uIGFib3V0IHRoZSBhc3NpZ25t
-ZW50IHRvICdtZW1vcnknIGluc2lkZSBvZgp0aGUgY29uZGl0aW9uYWwgZXhwcmVzc2lvbi4gIFNl
-ZSBMaW5rIGJlbG93IGZvciB0aGUgb3JpZ2luYWwgcG9zdC4KCkZpeCB0aGUgYXNzaWdubWVudCB0
-byBzaWxlbmNlIHRoZSBjb2NjaW5lbGxlIHdhcm5pbmcgYW5kIGFsc28gbWFrZSB0aGUKY29kZSBs
-b29rIGEgbGl0dGxlIG5pY2VyLgoKTGluazogaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-YXJjaGl2ZXMvbm91dmVhdS8yMDE3LU5vdmVtYmVyLzAyOTI0Mi5odG1sClNpZ25lZC1vZmYtYnk6
-IENocmlzdG9waCBCw7ZobXdhbGRlciA8Y2hyaXN0b3BoQGJvZWhtd2FsZGVyLmF0PgotLS0KIGRy
-bS9ub3V2ZWF1L252a20vc3ViZGV2L21tdS91dm1tLmMgfCAzICsrLQogMSBmaWxlIGNoYW5nZWQs
-IDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1
-L252a20vc3ViZGV2L21tdS91dm1tLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9tbXUvdXZt
-bS5jCmluZGV4IGZhODFkMGMxLi4zN2IyMDFiOSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvbW11L3V2bW0uYworKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9tbXUvdXZt
-bS5jCkBAIC0xMDYsNyArMTA2LDggQEAgbnZrbV91dm1tX210aGRfbWFwKHN0cnVjdCBudmttX3V2
-bW0gKnV2bW0sIHZvaWQgKmFyZ3YsIHUzMiBhcmdjKQogCX0gZWxzZQogCQlyZXR1cm4gcmV0Owog
-Ci0JaWYgKElTX0VSUigobWVtb3J5ID0gbnZrbV91bWVtX3NlYXJjaChjbGllbnQsIGhhbmRsZSkp
-KSkgeworCW1lbW9yeSA9IG52a21fdW1lbV9zZWFyY2goY2xpZW50LCBoYW5kbGUpOworCWlmIChJ
-U19FUlIobWVtb3J5KSkgewogCQlWTU1fREVCVUcodm1tLCAibWVtb3J5ICUwMTZsbHggJWxkXG4i
-LCBoYW5kbGUsIFBUUl9FUlIobWVtb3J5KSk7CiAJCXJldHVybiBQVFJfRVJSKG1lbW9yeSk7CiAJ
-fQotLSAKMi4xMy42CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0144732886==
+Content-Type: multipart/alternative; boundary="15120724874.EAdfFe.15459";
+ charset="UTF-8"
+
+
+--15120724874.EAdfFe.15459
+Date: Thu, 30 Nov 2017 20:08:07 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
+
+--- Comment #11 from 988alex-JGs/UdohzUI@public.gmane.org ---
+Same problem on Linux Neon 4.10.0-40-generic
+xserver-xorg-video-nouveau-hwe-16.04 - 1:1.0.14-0ubuntu1~16.04.1
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15120724874.EAdfFe.15459
+Date: Thu, 30 Nov 2017 20:08:07 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c11">Comme=
+nt # 11</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+988alex&#64;mail.ru" title=3D"988alex&#64;mail.ru">988alex&#64;mail.ru</a>
+</span></b>
+        <pre>Same problem on Linux Neon 4.10.0-40-generic
+xserver-xorg-video-nouveau-hwe-16.04 - 1:1.0.14-0ubuntu1~16.04.1</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15120724874.EAdfFe.15459--
+
+--===============0144732886==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0144732886==--
