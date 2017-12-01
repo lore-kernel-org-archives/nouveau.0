@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
- [CTXSW_TIMEOUT]
-Date: Thu, 30 Nov 2017 20:08:07 +0000
-Message-ID: <bug-100567-8800-zZ99VoY8W8@http.bugs.freedesktop.org/>
-References: <bug-100567-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91319] Nouveau driver cannot extract FCODE ROM / DCB
+ Block from OpenFirmware Device tree
+Date: Fri, 01 Dec 2017 04:28:41 +0000
+Message-ID: <bug-91319-8800-0JUJtYE7N9@http.bugs.freedesktop.org/>
+References: <bug-91319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0144732886=="
+Content-Type: multipart/mixed; boundary="===============0902802760=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0144732886==
-Content-Type: multipart/alternative; boundary="15120724874.EAdfFe.15459";
+--===============0902802760==
+Content-Type: multipart/alternative; boundary="15121025200.dcBDC6A.3325";
  charset="UTF-8"
 
 
---15120724874.EAdfFe.15459
-Date: Thu, 30 Nov 2017 20:08:07 +0000
+--15121025200.dcBDC6A.3325
+Date: Fri, 1 Dec 2017 04:28:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91319
 
---- Comment #11 from 988alex-JGs/UdohzUI@public.gmane.org ---
-Same problem on Linux Neon 4.10.0-40-generic
-xserver-xorg-video-nouveau-hwe-16.04 - 1:1.0.14-0ubuntu1~16.04.1
+reeskm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |reeskm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+--- Comment #16 from reeskm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I'm having this exact same problem on kernel 4.9.49 on ppc 32-bit.
+I see that this was previously fixed. Should this be re-opened or should I =
+file
+a new bug report?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15120724874.EAdfFe.15459
-Date: Thu, 30 Nov 2017 20:08:07 +0000
+--15121025200.dcBDC6A.3325
+Date: Fri, 1 Dec 2017 04:28:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -56,26 +64,54 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:reeskm&#6=
+4;gmail.com" title=3D"reeskm&#64;gmail.com">reeskm&#64;gmail.com</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Nouveau driver cannot extract FCODE ROM / DCB =
+Block from OpenFirmware Device tree"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91319">bug 91319<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>reeskm&#64;gmail.com
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c11">Comme=
-nt # 11</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Nouveau driver cannot extract FCODE ROM / DCB =
+Block from OpenFirmware Device tree"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91319#c16">Commen=
+t # 16</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
-7</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Nouveau driver cannot extract FCODE ROM / DCB =
+Block from OpenFirmware Device tree"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91319">bug 91319<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-988alex&#64;mail.ru" title=3D"988alex&#64;mail.ru">988alex&#64;mail.ru</a>
+reeskm&#64;gmail.com" title=3D"reeskm&#64;gmail.com">reeskm&#64;gmail.com</=
+a>
 </span></b>
-        <pre>Same problem on Linux Neon 4.10.0-40-generic
-xserver-xorg-video-nouveau-hwe-16.04 - 1:1.0.14-0ubuntu1~16.04.1</pre>
+        <pre>I'm having this exact same problem on kernel 4.9.49 on ppc 32-=
+bit.
+I see that this was previously fixed. Should this be re-opened or should I =
+file
+a new bug report?</pre>
         </div>
       </p>
 
@@ -89,9 +125,9 @@ xserver-xorg-video-nouveau-hwe-16.04 - 1:1.0.14-0ubuntu1~16.04.1</pre>
     </body>
 </html>=
 
---15120724874.EAdfFe.15459--
+--15121025200.dcBDC6A.3325--
 
---===============0144732886==
+--===============0902802760==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +137,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0144732886==--
+--===============0902802760==--
