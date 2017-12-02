@@ -1,10 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104029] New: GTX 960 + KDE Plasma Wayland = crash
-Date: Sat, 02 Dec 2017 01:01:30 +0000
-Message-ID: <bug-104029-8800@http.bugs.freedesktop.org/>
+From: Adam Borowski <kilobyte-b9QjgO8OEXPVItvQsEIGlw@public.gmane.org>
+Subject: nouveau: refcount_t splat on 4.15-rc1 on nv50
+Date: Sat, 2 Dec 2017 19:03:16 +0100
+Message-ID: <20171202180316.g3nyoxxlrszrwypi@angband.pl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0220126765=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -14,197 +16,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0220126765==
-Content-Type: multipart/alternative; boundary="15121764900.a26849.32749";
- charset="UTF-8"
-
-
---15121764900.a26849.32749
-Date: Sat, 2 Dec 2017 01:01:30 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104029
-
-            Bug ID: 104029
-           Summary: GTX 960 + KDE Plasma Wayland =3D crash
-           Product: Mesa
-           Version: 17.2
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: critical
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: peter.eszlari-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-1. wget
-http://cdimage.ubuntu.com/kubuntu/daily-live/20171201/bionic-desktop-amd64.=
-iso
-
-2. boot
-
-3. apt install plasma-workspace-wayland
-
-4. login -> plasma wayland session
-
-5. crash
-
-Kernel: 4.13
-Mesa 17.2
-KDE Plasma: 5.11.4
-GFX: Geforce GTX 960 4GB
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15121764900.a26849.32749
-Date: Sat, 2 Dec 2017 01:01:30 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GTX 960 + KDE Plasma Wayland =3D crash"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104029">104029</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>GTX 960 + KDE Plasma Wayland =3D crash
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>17.2
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>critical
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>peter.eszlari&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>1. wget
-<a href=3D"http://cdimage.ubuntu.com/kubuntu/daily-live/20171201/bionic-des=
-ktop-amd64.iso">http://cdimage.ubuntu.com/kubuntu/daily-live/20171201/bioni=
-c-desktop-amd64.iso</a>
-
-2. boot
-
-3. apt install plasma-workspace-wayland
-
-4. login -&gt; plasma wayland session
-
-5. crash
-
-Kernel: 4.13
-Mesa 17.2
-KDE Plasma: 5.11.4
-GFX: Geforce GTX 960 4GB</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15121764900.a26849.32749--
-
---===============0220126765==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0220126765==--
+SGkgZ3V5cyEKSSdtIGdldHRpbmcgdGhlIGZvbGxvd2luZyB3YXJuIG9uIDQuMTUtcmMxLCBvbiBH
+VFggNTYwIFRpOgoKWyAgICA5LjQzMDQzM10gbm91dmVhdSAwMDAwOjAxOjAwLjA6IE5WSURJQSBH
+RjExNCAoMGNlMDAwYTEpCi4uLgpbICAgIDkuNTg1MTcyXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDog
+YmlvczogdmVyc2lvbiA3MC4yNC4yZS4wMC4wMgouLi4KWyAgICA5Ljc3MjIwNF0gbm91dmVhdSAw
+MDAwOjAxOjAwLjA6IGZiOiAxMDI0IE1pQiBHRERSNQpbICAgIDkuNzc3MzQyXSAtLS0tLS0tLS0t
+LS1bIGN1dCBoZXJlIF0tLS0tLS0tLS0tLS0KWyAgICA5Ljc4MjEwNl0gcmVmY291bnRfdDogaW5j
+cmVtZW50IG9uIDA7IHVzZS1hZnRlci1mcmVlLgpbICAgIDkuNzg3NTIyXSBXQVJOSU5HOiBDUFU6
+IDAgUElEOiAzIGF0IGxpYi9yZWZjb3VudC5jOjE1MyByZWZjb3VudF9pbmMrMHgzMC8weDUwClsg
+ICAgOS43OTUwNjBdIE1vZHVsZXMgbGlua2VkIGluOiBzaGEyNTZfZ2VuZXJpYyBjZmc4MDIxMSgr
+KSByZmtpbGwgc25kX3VzYl9hdWRpbyBzbmRfdXNibWlkaV9saWIgbm91dmVhdSgrKSB2aWRlbyB0
+dG0KWyAgICA5LjgwNTc1Nl0gQ1BVOiAwIFBJRDogMyBDb21tOiBrd29ya2VyLzA6MCBOb3QgdGFp
+bnRlZCA0LjE1LjAtcmMxLWRlYnVnLXVic2FuLTAwMDIwLWdmNDcwN2E5MTYxMDcgIzEKWyAgICA5
+LjgxNTIxNV0gSGFyZHdhcmUgbmFtZTogU3lzdGVtIG1hbnVmYWN0dXJlciBTeXN0ZW0gUHJvZHVj
+dCBOYW1lL000QTc3VCwgQklPUyAyNDAxICAgIDA1LzE4LzIwMTEKWyAgICA5LjgyNDQyMF0gV29y
+a3F1ZXVlOiBldmVudHMgd29ya19mb3JfY3B1X2ZuClsgICAgOS44Mjg5MTVdIHRhc2s6IGZmZmY4
+ODAyMjYxMTBjODAgdGFzay5zdGFjazogZmZmZmM5MDAwMGM4MDAwMApbICAgIDkuODMwNjQ3XSBj
+Zmc4MDIxMTogTG9hZGVkIFguNTA5IGNlcnQgJ3Nmb3JzaGVlOiAwMGIyOGRkZjQ3YWVmOWNlYTcn
+ClsgICAgOS44NDE2ODFdIFJJUDogMDAxMDpyZWZjb3VudF9pbmMrMHgzMC8weDUwClsgICAgOS44
+NDYwOTNdIFJTUDogMDAxODpmZmZmYzkwMDAwYzgzODA4IEVGTEFHUzogMDAwMTAyOTYKWyAgICA5
+Ljg1MTQ1OF0gUkFYOiAwMDAwMDAwMDAwMDAwMDJiIFJCWDogMDAwMDAwMDAwMDAwMDAwMCBSQ1g6
+IDAwMDAwMDAwMDAwMDAwMDAKWyAgICA5Ljg1ODc2M10gUkRYOiAwMDAwMDAwMDAwMDAwMDAxIFJT
+STogMDAwMDAwMDAwMDAwMDA4MiBSREk6IGZmZmZmZmZmODM3OGViOGMKWyAgICA5Ljg2NjA1MV0g
+UkJQOiBmZmZmODgwMjFmMTAzZmQwIFIwODogMDAwMDAwMDAwMDAwMDE5OSBSMDk6IGZmZmY4ODAw
+MDAwYmQ1MDAKWyAgICA5Ljg3MzMzMF0gUjEwOiAwMDAwMDAwMDAwMDAwMDAwIFIxMTogZmZmZmZm
+ZmY4MjI4OWE4MCBSMTI6IDAwMDAwMDAwMDAwMDAwMDAKWyAgICA5Ljg4MDYyMV0gUjEzOiBmZmZm
+ODgwMjEwM2E2OWUwIFIxNDogZmZmZjg4MDIxZjEwM2ZlMCBSMTU6IGZmZmY4ODAyMWYxMDNmZTAK
+WyAgICA5Ljg4NzkwOV0gRlM6ICAwMDAwMDAwMDAwMDAwMDAwKDAwMDApIEdTOmZmZmY4ODAyMmZj
+MDAwMDAoMDAwMCkga25sR1M6MDAwMDAwMDAwMDAwMDAwMApbICAgIDkuODk2MjMwXSBDUzogIDAw
+MTAgRFM6IDAwMDAgRVM6IDAwMDAgQ1IwOiAwMDAwMDAwMDgwMDUwMDMzClsgICAgOS45MDIxMTdd
+IENSMjogMDAwMDU2MDQ3NmJhMDAwMCBDUjM6IDAwMDAwMDAyMjUyMzIwMDAgQ1I0OiAwMDAwMDAw
+MDAwMDAwNmYwClsgICAgOS45MDk0MTddIENhbGwgVHJhY2U6ClsgICAgOS45MTIxMDZdICBudjUw
+X2luc3RvYmpfYWNxdWlyZSsweDEyMy8weDFjMCBbbm91dmVhdV0KWyAgICA5LjkxNzU2NV0gID8g
+bnZiaW9zX3JkMDgrMHgxYi8weDcwIFtub3V2ZWF1XQpbICAgIDkuOTIyMjM5XSAgbnZrbV9pbnN0
+b2JqX25ldysweDFlMy8weDUyMCBbbm91dmVhdV0KWyAgICA5LjkyNzM1M10gID8gbnZiaW9zX3Jk
+MDgrMHgxYi8weDcwIFtub3V2ZWF1XQpbICAgIDkuOTMyMDE3XSAgPyBudmJpb3NfcGxsX3BhcnNl
+KzB4OGQ3LzB4Y2YwIFtub3V2ZWF1XQpbICAgIDkuOTM3MjE4XSAgPyBrbWVtX2NhY2hlX2FsbG9j
+KzB4MWYwLzB4MmQwClsgICAgOS45NDE2MjRdICBudmttX21lbW9yeV9uZXcrMHg0Yi8weGMwIFtu
+b3V2ZWF1XQpbICAgIDkuOTQ2NDYxXSAgPyBudmttX2xvbmdvcHQrMHgxNy8weDYwIFtub3V2ZWF1
+XQpbICAgIDkuOTUxMjA4XSAgZ2YxMDBfZmJfb25laW5pdCsweDdiLzB4MWMwIFtub3V2ZWF1XQpb
+ICAgIDkuOTU2MjE4XSAgbnZrbV9mYl9vbmVpbml0KzB4ODkvMHgyZTAgW25vdXZlYXVdClsgICAg
+OS45NjExNDRdICBudmttX3N1YmRldl9pbml0KzB4OTIvMHg2MDAgW25vdXZlYXVdClsgICAgOS45
+NjYwODVdICA/IGt0aW1lX2dldCsweDY0LzB4MTEwClsgICAgOS45Njk4MTVdICBudmttX2Rldmlj
+ZV9pbml0KzB4MTY5LzB4MmEwIFtub3V2ZWF1XQpbICAgIDkuOTc0OTIyXSAgbnZrbV91ZGV2aWNl
+X2luaXQrMHg3ZS8weGYwIFtub3V2ZWF1XQpbICAgIDkuOTc5OTI0XSAgbnZrbV9vYmplY3RfaW5p
+dCsweDZhLzB4MmUwIFtub3V2ZWF1XQpbICAgIDkuOTg0OTMyXSAgbnZrbV9pb2N0bF9uZXcrMHgx
+OTgvMHg0MzAgW25vdXZlYXVdClsgICAgOS45ODk4NDZdICA/IG52aWZfdm1tX2luaXQrMHgzNDAv
+MHgzNDAgW25vdXZlYXVdClsgICAgOS45OTQ4NjRdICA/IG52a21fdWRldmljZV9yZDA4KzB4OTAv
+MHg5MCBbbm91dmVhdV0KWyAgIDEwLjAwMDA1Nl0gIG52a21faW9jdGwrMHgyMWUvMHg1YTAgW25v
+dXZlYXVdClsgICAxMC4wMDQ1NDhdICA/IHlpZWxkX3RvKzB4MmIyLzB4MzcwClsgICAxMC4wMDgy
+NTddICBudmlmX29iamVjdF9pbml0KzB4ZWYvMHgxYjAgW25vdXZlYXVdClsgICAxMC4wMTMyODFd
+ICBudmlmX2RldmljZV9pbml0KzB4OS8weDQwIFtub3V2ZWF1XQpbICAgMTAuMDE4MTM2XSAgbm91
+dmVhdV9jbGlfaW5pdCsweDIzNC8weDEyZjAgW25vdXZlYXVdClsgICAxMC4wMjMyNTNdICA/IGlk
+cl9hbGxvY19jeWNsaWMrMHg2Yy8weDExMApbICAgMTAuMDI3NDg3XSAgPyBfY29uZF9yZXNjaGVk
+KzB4MWQvMHg4MApbICAgMTAuMDMxMzY2XSAgPyBrbWVtX2NhY2hlX2FsbG9jKzB4MWYwLzB4MmQw
+ClsgICAxMC4wMzU3OTBdICBub3V2ZWF1X2RybV9sb2FkKzB4NzEvMHhlYzAgW25vdXZlYXVdClsg
+ICAxMC4wNDA3MzVdICBkcm1fZGV2X3JlZ2lzdGVyKzB4MWI0LzB4MzMwClsgICAxMC4wNDQ4NzJd
+ICA/IHBjaV9lbmFibGVfZGV2aWNlX2ZsYWdzKzB4MTU1LzB4MjAwClsgICAxMC4wNDk4MDZdICBk
+cm1fZ2V0X3BjaV9kZXYrMHhkZS8weDJjMApbICAgMTAuMDUzODc0XSAgbm91dmVhdV9kcm1fcHJv
+YmUrMHgxYjkvMHgyNDAgW25vdXZlYXVdClsgICAxMC4wNTg5ODZdICA/IF9fcG1fcnVudGltZV9y
+ZXN1bWUrMHg2OC8weGIwClsgICAxMC4wNjM0MDldICBsb2NhbF9wY2lfcHJvYmUrMHg1ZS8weGYw
+ClsgICAxMC4wNjczMDBdICB3b3JrX2Zvcl9jcHVfZm4rMHgxMC8weDMwClsgICAxMC4wNzExODNd
+ICBwcm9jZXNzX29uZV93b3JrKzB4MjFhLzB4NjcwClsgICAxMC4wNzUzMjVdICB3b3JrZXJfdGhy
+ZWFkKzB4MjU2LzB4NTAwClsgICAxMC4wNzkyMDhdICA/IG1hbmFnZV93b3JrZXJzKzB4MWUwLzB4
+MWUwClsgICAxMC4wODMzNjJdICBrdGhyZWFkKzB4MTY5LzB4MjIwClsgICAxMC4wODY3MzBdICA/
+IGt0aHJlYWRfY3JlYXRlX3dvcmtlcl9vbl9jcHUrMHg0MC8weDQwClsgICAxMC4wOTE5MzNdICBy
+ZXRfZnJvbV9mb3JrKzB4MWYvMHgzMApbICAgMTAuMDk1NjU1XSBDb2RlOiBmZiA4NCBjMCA3NCAw
+MiA1YiBjMyAwZiBiNiAxZCA1OSBiMiBhNiAwMSA4MCBmYiAwMSA3NyAxYyA4MyBlMyAwMSA3NSBl
+ZCA0OCBjNyBjNyBjOCBmMSAzZiA4MiBjNiAwNSA0MSBiMiBhNiAwMSAwMSBlOCA1MCAwMiA4ZCBm
+ZiA8MGY+IGZmIDViIGMzIDBmIGI2IGYzIDQ4IGM3IGM3IDAwIDE2IGM3IDgyIGU4IGRkIDgxIDBk
+IDAwIGViIGQzIApbICAgMTAuMTE0OTA5XSAtLS1bIGVuZCB0cmFjZSAwOGYyOTEzOGZmNDI1OWU2
+IF0tLS0KWyAgIDEwLjExOTcwM10gaHBldDE6IGxvc3QgMjEgcnRjIGludGVycnVwdHMKWyAgIDEw
+LjEyNTUzNF0gLS0tLS0tLS0tLS0tWyBjdXQgaGVyZSBdLS0tLS0tLS0tLS0tClsgICAxMC4xMzAz
+MjZdIHJlZmNvdW50X3Q6IHVuZGVyZmxvdzsgdXNlLWFmdGVyLWZyZWUuClsgICAxMC4xMzUyOTJd
+IFdBUk5JTkc6IENQVTogMCBQSUQ6IDMgYXQgbGliL3JlZmNvdW50LmM6MjgxIHJlZmNvdW50X2Rl
+Y19ub3Rfb25lKzB4NjgvMHg5MApbICAgMTAuMTQzNTQwXSBNb2R1bGVzIGxpbmtlZCBpbjogc2hh
+MjU2X2dlbmVyaWMgY2ZnODAyMTEgcmZraWxsIHNuZF91c2JfYXVkaW8gc25kX3VzYm1pZGlfbGli
+IG5vdXZlYXUoKykgdmlkZW8gdHRtClsgICAxMC4xNTM5NTZdIENQVTogMCBQSUQ6IDMgQ29tbTog
+a3dvcmtlci8wOjAgVGFpbnRlZDogRyAgICAgICAgVyAgICAgICAgNC4xNS4wLXJjMS1kZWJ1Zy11
+YnNhbi0wMDAyMC1nZjQ3MDdhOTE2MTA3ICMxClsgICAxMC4xNjQ3MTldIEhhcmR3YXJlIG5hbWU6
+IFN5c3RlbSBtYW51ZmFjdHVyZXIgU3lzdGVtIFByb2R1Y3QgTmFtZS9NNEE3N1QsIEJJT1MgMjQw
+MSAgICAwNS8xOC8yMDExClsgICAxMC4xNzM5MjldIFdvcmtxdWV1ZTogZXZlbnRzIHdvcmtfZm9y
+X2NwdV9mbgpbICAgMTAuMTc4NDIzXSB0YXNrOiBmZmZmODgwMjI2MTEwYzgwIHRhc2suc3RhY2s6
+IGZmZmZjOTAwMDBjODAwMDAKWyAgIDEwLjE4NDQ4OF0gUklQOiAwMDEwOnJlZmNvdW50X2RlY19u
+b3Rfb25lKzB4NjgvMHg5MApbICAgMTAuMTg5NTgwXSBSU1A6IDAwMTg6ZmZmZmM5MDAwMGM4Mzdm
+MCBFRkxBR1M6IDAwMDEwMjg2ClsgICAxMC4xOTQ5NDZdIFJBWDogMDAwMDAwMDAwMDAwMDAyNiBS
+Qlg6IDAwMDAwMDAwMDAwMDAwMDAgUkNYOiAwMDAwMDAwMDAwMDAwMDAwClsgICAxMC4yMDIyMzJd
+IFJEWDogMDAwMDAwMDAwMDAwMDAwMSBSU0k6IDAwMDAwMDAwMDAwMDAwOTIgUkRJOiBmZmZmZmZm
+ZjgzNzhlYjhjClsgICAxMC4yMDk1MTJdIFJCUDogZmZmZjg4MDIxMDNhNjllMCBSMDg6IDAwMDAw
+MDAwMDAwMDAxOTkgUjA5OiBmZmZmODgwMDAwMGI5MDQwClsgICAxMC4yMTY4MDFdIFIxMDogMDAw
+MDAwMDAwMDAwMDAwMCBSMTE6IGZmZmZmZmZmODIyODlhODAgUjEyOiBmZmZmODgwMjEwM2E2OWUw
+ClsgICAxMC4yMjQwOTBdIFIxMzogZmZmZmZmZmZhMDI1ZGMyMCBSMTQ6IGZmZmY4ODAyMWYxMDNm
+ODAgUjE1OiBmZmZmZmZmZmEwMzY4ZTYwClsgICAxMC4yMzEzNjJdIEZTOiAgMDAwMDAwMDAwMDAw
+MDAwMCgwMDAwKSBHUzpmZmZmODgwMjJmYzAwMDAwKDAwMDApIGtubEdTOjAwMDAwMDAwMDAwMDAw
+MDAKWyAgIDEwLjIzOTY3OV0gQ1M6ICAwMDEwIERTOiAwMDAwIEVTOiAwMDAwIENSMDogMDAwMDAw
+MDA4MDA1MDAzMwpbICAgMTAuMjQ1NTY5XSBDUjI6IDAwMDA1NjA0NzZiYTAwMDAgQ1IzOiAwMDAw
+MDAwMjI1MjMyMDAwIENSNDogMDAwMDAwMDAwMDAwMDZmMApbICAgMTAuMjUyODYyXSBDYWxsIFRy
+YWNlOgpbICAgMTAuMjU1NDMzXSAgcmVmY291bnRfZGVjX2FuZF9tdXRleF9sb2NrKzB4MTgvMHg3
+MApbICAgMTAuMjYwNDUwXSAgbnY1MF9pbnN0b2JqX3JlbGVhc2UrMHg2OS8weDFhMCBbbm91dmVh
+dV0KWyAgIDEwLjI2NTgzNF0gIG52a21faW5zdG9ial9uZXcrMHgyMTkvMHg1MjAgW25vdXZlYXVd
+ClsgICAxMC4yNzA5MzVdICA/IG52Ymlvc19yZDA4KzB4MWIvMHg3MCBbbm91dmVhdV0KWyAgIDEw
+LjI3NTU5OF0gID8gbnZiaW9zX3BsbF9wYXJzZSsweDhkNy8weGNmMCBbbm91dmVhdV0KWyAgIDEw
+LjI4MDgwN10gID8ga21lbV9jYWNoZV9hbGxvYysweDFmMC8weDJkMApbICAgMTAuMjg1MjA1XSAg
+bnZrbV9tZW1vcnlfbmV3KzB4NGIvMHhjMCBbbm91dmVhdV0KWyAgIDEwLjI5MDA0Ml0gID8gbnZr
+bV9sb25nb3B0KzB4MTcvMHg2MCBbbm91dmVhdV0KWyAgIDEwLjI5NDgwOF0gIGdmMTAwX2ZiX29u
+ZWluaXQrMHg3Yi8weDFjMCBbbm91dmVhdV0KWyAgIDEwLjI5OTgxOF0gIG52a21fZmJfb25laW5p
+dCsweDg5LzB4MmUwIFtub3V2ZWF1XQpbICAgMTAuMzA0NzMzXSAgbnZrbV9zdWJkZXZfaW5pdCsw
+eDkyLzB4NjAwIFtub3V2ZWF1XQpbICAgMTAuMzA5NjY3XSAgPyBrdGltZV9nZXQrMHg2NC8weDEx
+MApbICAgMTAuMzEzMzk0XSAgbnZrbV9kZXZpY2VfaW5pdCsweDE2OS8weDJhMCBbbm91dmVhdV0K
+WyAgIDEwLjMxODUxMl0gIG52a21fdWRldmljZV9pbml0KzB4N2UvMHhmMCBbbm91dmVhdV0KWyAg
+IDEwLjMyMzUyNF0gIG52a21fb2JqZWN0X2luaXQrMHg2YS8weDJlMCBbbm91dmVhdV0KWyAgIDEw
+LjMyODUzOV0gIG52a21faW9jdGxfbmV3KzB4MTk4LzB4NDMwIFtub3V2ZWF1XQpbICAgMTAuMzMz
+NDY0XSAgPyBudmlmX3ZtbV9pbml0KzB4MzQwLzB4MzQwIFtub3V2ZWF1XQpbICAgMTAuMzM4NTA2
+XSAgPyBudmttX3VkZXZpY2VfcmQwOCsweDkwLzB4OTAgW25vdXZlYXVdClsgICAxMC4zNDM2OTFd
+ICBudmttX2lvY3RsKzB4MjFlLzB4NWEwIFtub3V2ZWF1XQpbICAgMTAuMzQ4MTkwXSAgPyB5aWVs
+ZF90bysweDJiMi8weDM3MApbICAgMTAuMzUxODkxXSAgbnZpZl9vYmplY3RfaW5pdCsweGVmLzB4
+MWIwIFtub3V2ZWF1XQpbICAgMTAuMzU2OTE0XSAgbnZpZl9kZXZpY2VfaW5pdCsweDkvMHg0MCBb
+bm91dmVhdV0KWyAgIDEwLjM2MTc2MV0gIG5vdXZlYXVfY2xpX2luaXQrMHgyMzQvMHgxMmYwIFtu
+b3V2ZWF1XQpbICAgMTAuMzY2ODc2XSAgPyBpZHJfYWxsb2NfY3ljbGljKzB4NmMvMHgxMTAKWyAg
+IDEwLjM3MTEyMF0gID8gX2NvbmRfcmVzY2hlZCsweDFkLzB4ODAKWyAgIDEwLjM3NTAwMF0gID8g
+a21lbV9jYWNoZV9hbGxvYysweDFmMC8weDJkMApbICAgMTAuMzc5NDA1XSAgbm91dmVhdV9kcm1f
+bG9hZCsweDcxLzB4ZWMwIFtub3V2ZWF1XQpbICAgMTAuMzg0MzQwXSAgZHJtX2Rldl9yZWdpc3Rl
+cisweDFiNC8weDMzMApbICAgMTAuMzg4NDg4XSAgPyBwY2lfZW5hYmxlX2RldmljZV9mbGFncysw
+eDE1NS8weDIwMApbICAgMTAuMzkzNDExXSAgZHJtX2dldF9wY2lfZGV2KzB4ZGUvMHgyYzAKWyAg
+IDEwLjM5NzQ4Ml0gIG5vdXZlYXVfZHJtX3Byb2JlKzB4MWI5LzB4MjQwIFtub3V2ZWF1XQpbICAg
+MTAuNDAyNTgzXSAgPyBfX3BtX3J1bnRpbWVfcmVzdW1lKzB4NjgvMHhiMApbICAgMTAuNDA3MDAx
+XSAgbG9jYWxfcGNpX3Byb2JlKzB4NWUvMHhmMApbICAgMTAuNDEwODkwXSAgd29ya19mb3JfY3B1
+X2ZuKzB4MTAvMHgzMApbICAgMTAuNDE0NzgwXSAgcHJvY2Vzc19vbmVfd29yaysweDIxYS8weDY3
+MApbICAgMTAuNDE4OTI1XSAgd29ya2VyX3RocmVhZCsweDI1Ni8weDUwMApbICAgMTAuNDIyODE2
+XSAgPyBtYW5hZ2Vfd29ya2VycysweDFlMC8weDFlMApbICAgMTAuNDI2OTY3XSAga3RocmVhZCsw
+eDE2OS8weDIyMApbICAgMTAuNDMwMzI4XSAgPyBrdGhyZWFkX2NyZWF0ZV93b3JrZXJfb25fY3B1
+KzB4NDAvMHg0MApbICAgMTAuNDM1NTI0XSAgcmV0X2Zyb21fZm9yaysweDFmLzB4MzAKWyAgIDEw
+LjQzOTI0Nl0gQ29kZTogZGEgZWIgZWEgMzEgYzAgZWIgZWIgMGYgYjYgMWQgY2UgYjAgYTYgMDEg
+ODAgZmIgMDEgNzcgMmMgODMgZTMgMDEgNzUgZDUgNDggYzcgYzcgZjggZjEgM2YgODIgYzYgMDUg
+YjYgYjAgYTYgMDEgMDEgZTggYzggMDAgOGQgZmYgPDBmPiBmZiBlYiBiZSAzMSBmNiA0OCBjNyBj
+NyBhMCAxNCBjNyA4MiBlOCBhNiA3ZCAwZCAwMCBlYiA5MSAwZiAKWyAgIDEwLjQ1ODQ4MF0gLS0t
+WyBlbmQgdHJhY2UgMDhmMjkxMzhmZjQyNTllNyBdLS0tCgpBcHBlYXJzIHRvIGJlIGJlbmlnbjog
+bm8gb2J2aW91cyBicmVha2FnZSBhZnRlcndhcmRzLgoKSSBkaWQgbm90IHlldCBiaXNlY3QgLS0g
+d291bGQgeW91IHdhbnQgbWUgdG8/CgoKTWVvdyEKLS0gCjwgZGFya2xpbmc+IFdoZW4gYWxsIHlv
+dSBoYXZlIGlzIGEgaGFtbW9jaywgZXZlcnkgcHJvYmxlbSBsb29rcyBsaWtlIGEgbmFwLgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
+bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
