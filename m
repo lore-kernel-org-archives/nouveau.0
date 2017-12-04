@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101665] lspci blocks forever with a GP107M
-Date: Mon, 04 Dec 2017 21:22:18 +0000
-Message-ID: <bug-101665-8800-8THLgvS5GO@http.bugs.freedesktop.org/>
-References: <bug-101665-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 103721] [GM107] Frequent freezes with nouveau on
+	Thinkpad P50
+Date: Mon, 04 Dec 2017 21:33:24 +0000
+Message-ID: <bug-103721-8800-wyebktb05U@http.bugs.freedesktop.org/>
+References: <bug-103721-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0196508284=="
+Content-Type: multipart/mixed; boundary="===============1290248535=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-103721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0196508284==
-Content-Type: multipart/alternative; boundary="15124225370.40Dc582b.29212";
+--===============1290248535==
+Content-Type: multipart/alternative; boundary="15124232031.3b300Cf93.30875";
  charset="UTF-8"
 
 
---15124225370.40Dc582b.29212
-Date: Mon, 4 Dec 2017 21:22:17 +0000
+--15124232031.3b300Cf93.30875
+Date: Mon, 4 Dec 2017 21:33:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101665
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103721
 
---- Comment #7 from Etienne URBAH <eurbah-GANU6spQydw@public.gmane.org> ---
-With Linux kernel 4.15.0-041500rc2 from
-http://kernel.ubuntu.com/~kernel-ppa/mainline, 'lspci' systematically fails=
- to
-answer, and makes the whole machine freeze after some time.
+--- Comment #3 from B Kaye <bdk-kQW2Dzt44JA@public.gmane.org> ---
+I am having the same issue on a regular basis.
+
+Kernel: 4.13.16-200.fc26.x86_64
+Nouveau xorg-x11-drv-nouveau-1.0.15-1.fc26.x86_64
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15124225370.40Dc582b.29212
-Date: Mon, 4 Dec 2017 21:22:17 +0000
+--15124232031.3b300Cf93.30875
+Date: Mon, 4 Dec 2017 21:33:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,22 +63,22 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - lspci blocks forever with a GP107M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665#c7">Commen=
-t # 7</a>
+   title=3D"NEW - [GM107] Frequent freezes with nouveau on Thinkpad P50"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - lspci blocks forever with a GP107M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665">bug 10166=
-5</a>
+   title=3D"NEW - [GM107] Frequent freezes with nouveau on Thinkpad P50"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721">bug 10372=
+1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-eurbah&#64;free.fr" title=3D"Etienne URBAH &lt;eurbah&#64;free.fr&gt;"> <sp=
-an class=3D"fn">Etienne URBAH</span></a>
+bdk&#64;unb.ca" title=3D"B Kaye &lt;bdk&#64;unb.ca&gt;"> <span class=3D"fn"=
+>B Kaye</span></a>
 </span></b>
-        <pre>With Linux kernel 4.15.0-041500rc2 from
-<a href=3D"http://kernel.ubuntu.com/~kernel-ppa/mainline">http://kernel.ubu=
-ntu.com/~kernel-ppa/mainline</a>, 'lspci' systematically fails to
-answer, and makes the whole machine freeze after some time.</pre>
+        <pre>I am having the same issue on a regular basis.
+
+Kernel: 4.13.16-200.fc26.x86_64
+Nouveau xorg-x11-drv-nouveau-1.0.15-1.fc26.x86_64</pre>
         </div>
       </p>
 
@@ -91,9 +92,9 @@ answer, and makes the whole machine freeze after some time.</pre>
     </body>
 </html>=
 
---15124225370.40Dc582b.29212--
+--15124232031.3b300Cf93.30875--
 
---===============0196508284==
+--===============1290248535==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0196508284==--
+--===============1290248535==--
