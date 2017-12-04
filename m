@@ -1,54 +1,106 @@
-From: Arnd Bergmann <arnd@arndb.de>
-Subject: [PATCH] drm: nouveau: use correct string length
-Date: Mon,  4 Dec 2017 15:54:26 +0100
-Message-ID: <20171204145437.621446-1-arnd@arndb.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101665] lspci blocks forever with a GP107M
+Date: Mon, 04 Dec 2017 21:22:18 +0000
+Message-ID: <bug-101665-8800-8THLgvS5GO@http.bugs.freedesktop.org/>
+References: <bug-101665-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Arnd Bergmann <arnd@arndb.de>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0196508284=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-101665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Z2NjLTggcmVwb3J0cwoKZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvcG0vYmFz
-ZS5jOiBJbiBmdW5jdGlvbiAnbnZrbV9wZXJmbW9uX210aGQnOgppbmNsdWRlL2xpbnV4L3N0cmlu
-Zy5oOjI2NTo5OiBlcnJvcjogJ19fYnVpbHRpbl9zdHJuY3B5JyBzcGVjaWZpZWQgYm91bmQgNjQg
-ZXF1YWxzIGRlc3RpbmF0aW9uIHNpemUgWy1XZXJyb3I9c3RyaW5nb3AtdHJ1bmNhdGlvbl0KCldl
-IG5lZWQgb25lIGxlc3MgYnl0ZSBvciBjYWxsIHN0cmxjcHkoKSB0byBtYWtlIGl0IGEKbnVsLXRl
-cm1pbmF0ZWQgc3RyaW5nLgoKU2lnbmVkLW9mZi1ieTogQXJuZCBCZXJnbWFubiA8YXJuZEBhcm5k
-Yi5kZT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9wbS9iYXNlLmMg
-fCA2ICsrKy0tLQogMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMo
-LSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9wbS9i
-YXNlLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9wbS9iYXNlLmMKaW5k
-ZXggZGRlODlhNGEwZjViLi41Mzg1OWI2MjU0ZDYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L252a20vZW5naW5lL3BtL2Jhc2UuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9udmttL2VuZ2luZS9wbS9iYXNlLmMKQEAgLTQ2Miw3ICs0NjIsNyBAQCBudmttX3BlcmZt
-b25fbXRoZF9xdWVyeV9kb21haW4oc3RydWN0IG52a21fcGVyZm1vbiAqcGVyZm1vbiwKIAogCQlh
-cmdzLT52MC5pZCAgICAgICAgID0gZGk7CiAJCWFyZ3MtPnYwLnNpZ25hbF9uciAgPSBudmttX3Bl
-cmZkb21fY291bnRfcGVyZnNpZyhkb20pOwotCQlzdHJuY3B5KGFyZ3MtPnYwLm5hbWUsIGRvbS0+
-bmFtZSwgc2l6ZW9mKGFyZ3MtPnYwLm5hbWUpKTsKKwkJc3RybmNweShhcmdzLT52MC5uYW1lLCBk
-b20tPm5hbWUsIHNpemVvZihhcmdzLT52MC5uYW1lKSAtIDEpOwogCiAJCS8qIEN1cnJlbnRseSBv
-bmx5IGdsb2JhbCBjb3VudGVycyAoUENPVU5URVIpIGFyZSBpbXBsZW1lbnRlZAogCQkgKiBidXQg
-dGhpcyB3aWxsIGJlIGRpZmZlcmVudCBmb3IgbG9jYWwgY291bnRlcnMgKE1QKS4gKi8KQEAgLTUx
-NCw3ICs1MTQsNyBAQCBudmttX3BlcmZtb25fbXRoZF9xdWVyeV9zaWduYWwoc3RydWN0IG52a21f
-cGVyZm1vbiAqcGVyZm1vbiwKIAkJCQkgIi8lcy8lMDJ4IiwgZG9tLT5uYW1lLCBzaSk7CiAJCX0g
-ZWxzZSB7CiAJCQlzdHJuY3B5KGFyZ3MtPnYwLm5hbWUsIHNpZy0+bmFtZSwKLQkJCQlzaXplb2Yo
-YXJncy0+djAubmFtZSkpOworCQkJCXNpemVvZihhcmdzLT52MC5uYW1lKSAtIDEpOwogCQl9CiAK
-IAkJYXJncy0+djAuc2lnbmFsID0gc2k7CkBAIC01NzIsNyArNTcyLDcgQEAgbnZrbV9wZXJmbW9u
-X210aGRfcXVlcnlfc291cmNlKHN0cnVjdCBudmttX3BlcmZtb24gKnBlcmZtb24sCiAKIAkJYXJn
-cy0+djAuc291cmNlID0gc2lnLT5zb3VyY2Vbc2ldOwogCQlhcmdzLT52MC5tYXNrICAgPSBzcmMt
-Pm1hc2s7Ci0JCXN0cm5jcHkoYXJncy0+djAubmFtZSwgc3JjLT5uYW1lLCBzaXplb2YoYXJncy0+
-djAubmFtZSkpOworCQlzdHJuY3B5KGFyZ3MtPnYwLm5hbWUsIHNyYy0+bmFtZSwgc2l6ZW9mKGFy
-Z3MtPnYwLm5hbWUpIC0gMSk7CiAJfQogCiAJaWYgKCsrc2kgPCBzb3VyY2VfbnIpIHsKLS0gCjIu
-OS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmkt
-ZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============0196508284==
+Content-Type: multipart/alternative; boundary="15124225370.40Dc582b.29212";
+ charset="UTF-8"
+
+
+--15124225370.40Dc582b.29212
+Date: Mon, 4 Dec 2017 21:22:17 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101665
+
+--- Comment #7 from Etienne URBAH <eurbah-GANU6spQydw@public.gmane.org> ---
+With Linux kernel 4.15.0-041500rc2 from
+http://kernel.ubuntu.com/~kernel-ppa/mainline, 'lspci' systematically fails=
+ to
+answer, and makes the whole machine freeze after some time.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15124225370.40Dc582b.29212
+Date: Mon, 4 Dec 2017 21:22:17 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665#c7">Commen=
+t # 7</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665">bug 10166=
+5</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+eurbah&#64;free.fr" title=3D"Etienne URBAH &lt;eurbah&#64;free.fr&gt;"> <sp=
+an class=3D"fn">Etienne URBAH</span></a>
+</span></b>
+        <pre>With Linux kernel 4.15.0-041500rc2 from
+<a href=3D"http://kernel.ubuntu.com/~kernel-ppa/mainline">http://kernel.ubu=
+ntu.com/~kernel-ppa/mainline</a>, 'lspci' systematically fails to
+answer, and makes the whole machine freeze after some time.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15124225370.40Dc582b.29212--
+
+--===============0196508284==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0196508284==--
