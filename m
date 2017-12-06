@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103467] [NVC0/GF108] fifo: read fault at cd90f4d000
  engine 07 [PFIFO] client 07 [BAR_READ] reason 00 [PT_NOT_PRESENT] on
  channel 1 [003fe11000 DRM]
-Date: Wed, 06 Dec 2017 21:21:07 +0000
-Message-ID: <bug-103467-8800-kNqwfKNjNO@http.bugs.freedesktop.org/>
+Date: Wed, 06 Dec 2017 21:22:33 +0000
+Message-ID: <bug-103467-8800-9SnASqtfnY@http.bugs.freedesktop.org/>
 References: <bug-103467-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1824365037=="
+Content-Type: multipart/mixed; boundary="===============0244344675=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103467-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,13 +22,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1824365037==
-Content-Type: multipart/alternative; boundary="15125952670.7b20d.30957";
+--===============0244344675==
+Content-Type: multipart/alternative; boundary="15125953531.7F87.31093";
  charset="UTF-8"
 
 
---15125952670.7b20d.30957
-Date: Wed, 6 Dec 2017 21:21:07 +0000
+--15125953531.7F87.31093
+Date: Wed, 6 Dec 2017 21:22:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -37,19 +37,26 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103467
 
---- Comment #13 from erhard_f-cl+VPiYnx/1AfugRpC6u6w@public.gmane.org ---
-It seems kernel 4.15_rc2 did change things a bit. Looks like the card now g=
-ets
-initialized and I can seemingly successfully start X.
+erhard_f-cl+VPiYnx/1AfugRpC6u6w@public.gmane.org changed:
 
-But still I only get so see a black screen ('No signal' on the monitor).
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #135071|0                           |1
+        is obsolete|                            |
+ Attachment #135072|0                           |1
+        is obsolete|                            |
+
+--- Comment #14 from erhard_f-cl+VPiYnx/1AfugRpC6u6w@public.gmane.org ---
+Created attachment 136016
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136016&action=3Dedit
+journalctl -b output with nouveau.debug=3Dtrace (kernel 4.15-rc2)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15125952670.7b20d.30957
-Date: Wed, 6 Dec 2017 21:21:07 +0000
+--15125953531.7F87.31093
+Date: Wed, 6 Dec 2017 21:22:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,7 +67,44 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:erhard_f&=
+#64;mailbox.org" title=3D"erhard_f&#64;mailbox.org">erhard_f&#64;mailbox.or=
+g</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC0/GF108] fifo: read fault at cd90f4d000 engine 07 [PF=
+IFO] client 07 [BAR_READ] reason 00 [PT_NOT_PRESENT] on channel 1 [003fe110=
+00 DRM]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103467">bug 10346=
+7</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #135071 is obsolete</=
+td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #135072 is obsolete</=
+td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
@@ -68,8 +112,8 @@ Auto-Submitted: auto-generated
    title=3D"NEW - [NVC0/GF108] fifo: read fault at cd90f4d000 engine 07 [PF=
 IFO] client 07 [BAR_READ] reason 00 [PT_NOT_PRESENT] on channel 1 [003fe110=
 00 DRM]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103467#c13">Comme=
-nt # 13</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103467#c14">Comme=
+nt # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC0/GF108] fifo: read fault at cd90f4d000 engine 07 [PF=
@@ -81,12 +125,12 @@ IFO] client 07 [BAR_READ] reason 00 [PT_NOT_PRESENT] on channel 1 [003fe110=
 erhard_f&#64;mailbox.org" title=3D"erhard_f&#64;mailbox.org">erhard_f&#64;m=
 ailbox.org</a>
 </span></b>
-        <pre>It seems kernel 4.15_rc2 did change things a bit. Looks like t=
-he card now gets
-initialized and I can seemingly successfully start X.
-
-But still I only get so see a black screen ('No signal' on the monitor).</p=
-re>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136016=
+" name=3D"attach_136016" title=3D"journalctl -b output with nouveau.debug=
+=3Dtrace (kernel 4.15-rc2)">attachment 136016</a> <a href=3D"attachment.cgi=
+?id=3D136016&amp;action=3Dedit" title=3D"journalctl -b output with nouveau.=
+debug=3Dtrace (kernel 4.15-rc2)">[details]</a></span>
+journalctl -b output with nouveau.debug=3Dtrace (kernel 4.15-rc2)</pre>
         </div>
       </p>
 
@@ -100,9 +144,9 @@ re>
     </body>
 </html>=
 
---15125952670.7b20d.30957--
+--15125953531.7F87.31093--
 
---===============1824365037==
+--===============0244344675==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +156,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1824365037==--
+--===============0244344675==--
