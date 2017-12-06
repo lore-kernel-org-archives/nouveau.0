@@ -1,53 +1,105 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau/mmu: fix odd_ptr_err.cocci warnings
-Date: Wed, 6 Dec 2017 11:02:00 +0100
-Message-ID: <CACO55tvtihGO8PatjshOo7JBqo1WHFFFgO07TVu5261c1aeB_w@mail.gmail.com>
-References: <20171130195354.14135-1-christoph@boehmwalder.at>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103889] [NV50/G86] disp: ERROR 1 [] 01 [] chid 0
+ mthd 0000 data 00000000
+Date: Wed, 06 Dec 2017 18:58:44 +0000
+Message-ID: <bug-103889-8800-WbxqAbFDcP@http.bugs.freedesktop.org/>
+References: <bug-103889-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20171130195354.14135-1-christoph@boehmwalder.at>
-Sender: linux-kernel-owner@vger.kernel.org
-To: =?UTF-8?Q?Christoph_B=C3=B6hmwalder?= <christoph@boehmwalder.at>
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0592026263=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-103889-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Reviewed-by: Karol Herbst <kherbst@redhat.com>
 
-On Thu, Nov 30, 2017 at 8:53 PM, Christoph Böhmwalder
-<christoph@boehmwalder.at> wrote:
-> The kbuild test bot complained about a new coccinelle warning nearby,
-> which sparked a discussion about the assignment to 'memory' inside of
-> the conditional expression.  See Link below for the original post.
->
-> Fix the assignment to silence the coccinelle warning and also make the
-> code look a little nicer.
->
-> Link: https://lists.freedesktop.org/archives/nouveau/2017-November/029242.html
-> Signed-off-by: Christoph Böhmwalder <christoph@boehmwalder.at>
-> ---
->  drm/nouveau/nvkm/subdev/mmu/uvmm.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drm/nouveau/nvkm/subdev/mmu/uvmm.c b/drm/nouveau/nvkm/subdev/mmu/uvmm.c
-> index fa81d0c1..37b201b9 100644
-> --- a/drm/nouveau/nvkm/subdev/mmu/uvmm.c
-> +++ b/drm/nouveau/nvkm/subdev/mmu/uvmm.c
-> @@ -106,7 +106,8 @@ nvkm_uvmm_mthd_map(struct nvkm_uvmm *uvmm, void *argv, u32 argc)
->         } else
->                 return ret;
->
-> -       if (IS_ERR((memory = nvkm_umem_search(client, handle)))) {
-> +       memory = nvkm_umem_search(client, handle);
-> +       if (IS_ERR(memory)) {
->                 VMM_DEBUG(vmm, "memory %016llx %ld\n", handle, PTR_ERR(memory));
->                 return PTR_ERR(memory);
->         }
-> --
-> 2.13.6
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+--===============0592026263==
+Content-Type: multipart/alternative; boundary="15125867241.9FfbdF22.14778";
+ charset="UTF-8"
+
+
+--15125867241.9FfbdF22.14778
+Date: Wed, 6 Dec 2017 18:58:44 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103889
+
+--- Comment #2 from erhard_f-cl+VPiYnx/1AfugRpC6u6w@public.gmane.org ---
+Just tried 4.15-rc2. No change concerning the bug, but a bit more debug inf=
+o.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15125867241.9FfbdF22.14778
+Date: Wed, 6 Dec 2017 18:58:44 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV50/G86] disp: ERROR 1 [] 01 [] chid 0 mthd 0000 data 0=
+0000000"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103889#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV50/G86] disp: ERROR 1 [] 01 [] chid 0 mthd 0000 data 0=
+0000000"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103889">bug 10388=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+erhard_f&#64;mailbox.org" title=3D"erhard_f&#64;mailbox.org">erhard_f&#64;m=
+ailbox.org</a>
+</span></b>
+        <pre>Just tried 4.15-rc2. No change concerning the bug, but a bit m=
+ore debug info.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15125867241.9FfbdF22.14778--
+
+--===============0592026263==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0592026263==--
