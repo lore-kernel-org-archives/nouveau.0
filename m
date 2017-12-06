@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103889] [NV50/G86] disp: ERROR 1 [] 01 [] chid 0
  mthd 0000 data 00000000
-Date: Wed, 06 Dec 2017 21:46:34 +0000
-Message-ID: <bug-103889-8800-vjzhQGXpHE@http.bugs.freedesktop.org/>
+Date: Wed, 06 Dec 2017 21:46:58 +0000
+Message-ID: <bug-103889-8800-0TME1J9zFz@http.bugs.freedesktop.org/>
 References: <bug-103889-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2132684361=="
+Content-Type: multipart/mixed; boundary="===============1592638157=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103889-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2132684361==
-Content-Type: multipart/alternative; boundary="15125967950.410A4f.1113";
+--===============1592638157==
+Content-Type: multipart/alternative; boundary="15125968170.9a8f68cC5.684";
  charset="UTF-8"
 
 
---15125967950.410A4f.1113
-Date: Wed, 6 Dec 2017 21:46:35 +0000
+--15125968170.9a8f68cC5.684
+Date: Wed, 6 Dec 2017 21:46:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103889
 
---- Comment #5 from erhard_f-cl+VPiYnx/1AfugRpC6u6w@public.gmane.org ---
-Created attachment 136018
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136018&action=3Dedit
-journalctl -b output with nouveau.debug=3Dtrace (kernel 4.15-rc2)
+--- Comment #6 from erhard_f-cl+VPiYnx/1AfugRpC6u6w@public.gmane.org ---
+Created attachment 136019
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136019&action=3Dedit
+Xorg.log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15125967950.410A4f.1113
-Date: Wed, 6 Dec 2017 21:46:35 +0000
+--15125968170.9a8f68cC5.684
+Date: Wed, 6 Dec 2017 21:46:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NV50/G86] disp: ERROR 1 [] 01 [] chid 0 mthd 0000 data 0=
 0000000"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103889#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103889#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV50/G86] disp: ERROR 1 [] 01 [] chid 0 mthd 0000 data 0=
@@ -76,12 +76,11 @@ t # 5</a>
 erhard_f&#64;mailbox.org" title=3D"erhard_f&#64;mailbox.org">erhard_f&#64;m=
 ailbox.org</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136018=
-" name=3D"attach_136018" title=3D"journalctl -b output with nouveau.debug=
-=3Dtrace (kernel 4.15-rc2)">attachment 136018</a> <a href=3D"attachment.cgi=
-?id=3D136018&amp;action=3Dedit" title=3D"journalctl -b output with nouveau.=
-debug=3Dtrace (kernel 4.15-rc2)">[details]</a></span>
-journalctl -b output with nouveau.debug=3Dtrace (kernel 4.15-rc2)</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136019=
+" name=3D"attach_136019" title=3D"Xorg.log">attachment 136019</a> <a href=
+=3D"attachment.cgi?id=3D136019&amp;action=3Dedit" title=3D"Xorg.log">[detai=
+ls]</a></span>
+Xorg.log</pre>
         </div>
       </p>
 
@@ -95,9 +94,9 @@ journalctl -b output with nouveau.debug=3Dtrace (kernel 4.15-rc2)</pre>
     </body>
 </html>=
 
---15125967950.410A4f.1113--
+--15125968170.9a8f68cC5.684--
 
---===============2132684361==
+--===============1592638157==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2132684361==--
+--===============1592638157==--
