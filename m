@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103889] [NV50/G86] disp: ERROR 1 [] 01 [] chid 0
- mthd 0000 data 00000000
-Date: Wed, 06 Dec 2017 21:46:58 +0000
-Message-ID: <bug-103889-8800-0TME1J9zFz@http.bugs.freedesktop.org/>
-References: <bug-103889-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104156] New: NVIDIA Corporation G96 [GeForce 9500
+ GT] (rev a1) issue finding GPIO
+Date: Thu, 07 Dec 2017 08:28:42 +0000
+Message-ID: <bug-104156-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1592638157=="
+Content-Type: multipart/mixed; boundary="===============1561760195=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103889-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +19,62 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1592638157==
-Content-Type: multipart/alternative; boundary="15125968170.9a8f68cC5.684";
+--===============1561760195==
+Content-Type: multipart/alternative; boundary="15126353220.e988c6cb.15037";
  charset="UTF-8"
 
 
---15125968170.9a8f68cC5.684
-Date: Wed, 6 Dec 2017 21:46:57 +0000
+--15126353220.e988c6cb.15037
+Date: Thu, 7 Dec 2017 08:28:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103889
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104156
 
---- Comment #6 from erhard_f-cl+VPiYnx/1AfugRpC6u6w@public.gmane.org ---
-Created attachment 136019
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136019&action=3Dedit
-Xorg.log
+            Bug ID: 104156
+           Summary: NVIDIA Corporation G96 [GeForce 9500 GT] (rev a1)
+                    issue finding GPIO
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: agent.xp22-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+journalctl -b -p err
+disp: conn 01:0130: func 08 lookup failed, -2
+
+Sourced it to here:
+http://elixir.free-electrons.com/linux/latest/source/drivers/gpu/drm/nouvea=
+u/nvkm/engine/disp/conn.c#L124
+
+Related issues:
+https://unix.stackexchange.com/questions/219616/what-does-nouveaus-func-08-=
+lookup-failed-2-mean
+
+
+Kernel driver in use: nouveau
+
+Name            : xf86-video-nouveau
+Version         : 1.0.15-2
+
+booted with kernel params: systemd.log_level=3Ddebug log_buf_len=3D1M
+systemd.log_target=3Dkmsg printk.devkmsg=3Don
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15125968170.9a8f68cC5.684
-Date: Wed, 6 Dec 2017 21:46:57 +0000
+--15126353220.e988c6cb.15037
+Date: Thu, 7 Dec 2017 08:28:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -57,30 +85,113 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - NVIDIA Corporation G96 [GeForce 9500 GT] (rev a1) issue f=
+inding GPIO"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104156">104156</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>NVIDIA Corporation G96 [GeForce 9500 GT] (rev a1) issue findi=
+ng GPIO
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>agent.xp22&#64;googlemail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV50/G86] disp: ERROR 1 [] 01 [] chid 0 mthd 0000 data 0=
-0000000"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103889#c6">Commen=
-t # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV50/G86] disp: ERROR 1 [] 01 [] chid 0 mthd 0000 data 0=
-0000000"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103889">bug 10388=
-9</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-erhard_f&#64;mailbox.org" title=3D"erhard_f&#64;mailbox.org">erhard_f&#64;m=
-ailbox.org</a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136019=
-" name=3D"attach_136019" title=3D"Xorg.log">attachment 136019</a> <a href=
-=3D"attachment.cgi?id=3D136019&amp;action=3Dedit" title=3D"Xorg.log">[detai=
-ls]</a></span>
-Xorg.log</pre>
+        <pre>journalctl -b -p err
+disp: conn 01:0130: func 08 lookup failed, -2
+
+Sourced it to here:
+<a href=3D"http://elixir.free-electrons.com/linux/latest/source/drivers/gpu=
+/drm/nouveau/nvkm/engine/disp/conn.c#L124">http://elixir.free-electrons.com=
+/linux/latest/source/drivers/gpu/drm/nouveau/nvkm/engine/disp/conn.c#L124</=
+a>
+
+Related issues:
+<a href=3D"https://unix.stackexchange.com/questions/219616/what-does-nouvea=
+us-func-08-lookup-failed-2-mean">https://unix.stackexchange.com/questions/2=
+19616/what-does-nouveaus-func-08-lookup-failed-2-mean</a>
+
+
+Kernel driver in use: nouveau
+
+Name            : xf86-video-nouveau
+Version         : 1.0.15-2
+
+booted with kernel params: systemd.log_level=3Ddebug log_buf_len=3D1M
+systemd.log_target=3Dkmsg printk.devkmsg=3Don</pre>
         </div>
       </p>
 
@@ -94,9 +205,9 @@ Xorg.log</pre>
     </body>
 </html>=
 
---15125968170.9a8f68cC5.684--
+--15126353220.e988c6cb.15037--
 
---===============1592638157==
+--===============1561760195==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +217,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1592638157==--
+--===============1561760195==--
