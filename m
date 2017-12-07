@@ -1,11 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104161] New: refcount_t: increment on 0;
-	use-after-free.
-Date: Thu, 07 Dec 2017 11:03:59 +0000
-Message-ID: <bug-104161-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104161] refcount_t: increment on 0; use-after-free.
+Date: Thu, 07 Dec 2017 11:32:52 +0000
+Message-ID: <bug-104161-8800-E70BUPj9QZ@http.bugs.freedesktop.org/>
+References: <bug-104161-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0626097167=="
+Content-Type: multipart/mixed; boundary="===============1284412277=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-104161-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0626097167==
-Content-Type: multipart/alternative; boundary="15126446391.0719CB.13045";
+--===============1284412277==
+Content-Type: multipart/alternative; boundary="15126463720.faDe0.21771";
  charset="UTF-8"
 
 
---15126446391.0719CB.13045
-Date: Thu, 7 Dec 2017 11:03:59 +0000
+--15126463720.faDe0.21771
+Date: Thu, 7 Dec 2017 11:32:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,35 +35,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104161
 
-            Bug ID: 104161
-           Summary: refcount_t: increment on 0; use-after-free.
-           Product: xorg
-           Version: git
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 136033
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136033&action=3Dedit
-dmesg including trace(s)
-
-I'm using current (within 24 hours) versions of libdrm, mesa, and the mainl=
-ine
-kernel, with xf86-video-nouveau-1.0.15. This shows up early in dmesg. The
-driver appears usable afterwards.
+--- Comment #1 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+I believe this should be fixed by
+https://github.com/skeggsb/nouveau/commit/9068f1df2394f0e4ab2b2a28cac06b462=
+fe0a0aa.
+Could you please try applying it on your kernel (note this is an out-of-tree
+module, so you=E2=80=99ll need to prefix all the paths with =E2=80=9Cdriver=
+s/gpu/=E2=80=9D when
+applying to the mainline tree) and confirm that it resolves the issue for y=
+ou?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15126446391.0719CB.13045
-Date: Thu, 7 Dec 2017 11:03:59 +0000
+--15126463720.faDe0.21771
+Date: Thu, 7 Dec 2017 11:32:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,99 +61,32 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - refcount_t: increment on 0; use-after-free."
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104161">104161</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>refcount_t: increment on 0; use-after-free.
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>sgilles&#64;math.umd.edu
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136033=
-" name=3D"attach_136033" title=3D"dmesg including trace(s)">attachment 1360=
-33</a> <a href=3D"attachment.cgi?id=3D136033&amp;action=3Dedit" title=3D"dm=
-esg including trace(s)">[details]</a></span>
-dmesg including trace(s)
-
-I'm using current (within 24 hours) versions of libdrm, mesa, and the mainl=
-ine
-kernel, with xf86-video-nouveau-1.0.15. This shows up early in dmesg. The
-driver appears usable afterwards.</pre>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - refcount_t: increment on 0; use-after-free."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104161#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - refcount_t: increment on 0; use-after-free."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104161">bug 10416=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
+e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>I believe this should be fixed by
+<a href=3D"https://github.com/skeggsb/nouveau/commit/9068f1df2394f0e4ab2b2a=
+28cac06b462fe0a0aa">https://github.com/skeggsb/nouveau/commit/9068f1df2394f=
+0e4ab2b2a28cac06b462fe0a0aa</a>.
+Could you please try applying it on your kernel (note this is an out-of-tree
+module, so you=E2=80=99ll need to prefix all the paths with =E2=80=9Cdriver=
+s/gpu/=E2=80=9D when
+applying to the mainline tree) and confirm that it resolves the issue for y=
+ou?</pre>
         </div>
       </p>
 
@@ -179,9 +100,9 @@ driver appears usable afterwards.</pre>
     </body>
 </html>=
 
---15126446391.0719CB.13045--
+--15126463720.faDe0.21771--
 
---===============0626097167==
+--===============1284412277==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -191,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0626097167==--
+--===============1284412277==--
