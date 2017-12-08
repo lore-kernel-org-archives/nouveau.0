@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104156] NVIDIA Corporation G96 [GeForce 9500 GT]
- (rev a1) issue finding GPIO
-Date: Thu, 07 Dec 2017 19:30:26 +0000
-Message-ID: <bug-104156-8800-sVKy4nSpon@http.bugs.freedesktop.org/>
-References: <bug-104156-8800@http.bugs.freedesktop.org/>
+From: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+Subject: [PATCH] drm/nouveau/imem/nv50: fix incorrect use of
+	refcount API
+Date: Fri,  8 Dec 2017 18:30:34 +0000
+Message-ID: <20171208183034.9027-1-ard.biesheuvel@linaro.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1057719027=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104156-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,88 +16,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: daniel.thompson-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org, masami.hiramatsu-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org, Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1057719027==
-Content-Type: multipart/alternative; boundary="15126750262.af97.32092";
- charset="UTF-8"
-
-
---15126750262.af97.32092
-Date: Thu, 7 Dec 2017 19:30:26 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104156
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-IIRC I had the same issue with my G96. Should be in the vbios repo.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15126750262.af97.32092
-Date: Thu, 7 Dec 2017 19:30:26 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NVIDIA Corporation G96 [GeForce 9500 GT] (rev a1) issue f=
-inding GPIO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104156#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NVIDIA Corporation G96 [GeForce 9500 GT] (rev a1) issue f=
-inding GPIO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104156">bug 10415=
-6</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>IIRC I had the same issue with my G96. Should be in the vbios =
-repo.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15126750262.af97.32092--
-
---===============1057719027==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1057719027==--
+Q29tbWl0IGJlNTUyODdhYTViICgiZHJtL25vdXZlYXUvaW1lbS9udjUwOiBlbWJlZCBudmttX2lu
+c3RvYmogZGlyZWN0bHkKaW50byBudjA0X2luc3RvYmoiKSBpbnRyb2R1Y2VkIHNvbWUgbmV3IGNh
+bGxzIHRvIHRoZSByZWZjb3VudCBhcGkgdG8KdGhlIG52NTAgbWFwcGluZyBjb2RlLiBJbiBvbmUg
+cGFydGljdWxhciBpbnN0YW5jZSwgaXQgZG9lcyB0aGUKZm9sbG93aW5nOgoKICAgIGlmICghcmVm
+Y291bnRfaW5jX25vdF96ZXJvKCZpb2JqLT5tYXBzKSkgewogICAgICAgICAgICAuLi4KICAgICAg
+ICAgICAgcmVmY291bnRfaW5jKCZpb2JqLT5tYXBzKTsKICAgIH0KCmkuZS4sIGl0IGNhbGxzIHJl
+ZmNvdW50X2luYygpIHRvIGluY3JlbWVudCB0aGUgcmVmY291bnQgd2hlbiBpdCBpcyBrbm93bgp0
+byBiZSB6ZXJvLCB3aGljaCBpcyBleHBsaWNpdGx5IGZvcmJpZGRlbiBieSB0aGUgQVBJLiBJbnN0
+ZWFkLCB1c2UKcmVmY291bnRfc2V0KCkgdG8gc2V0IGl0IHRvIDEuCgpTaWduZWQtb2ZmLWJ5OiBB
+cmQgQmllc2hldXZlbCA8YXJkLmJpZXNoZXV2ZWxAbGluYXJvLm9yZz4KLS0tCgpBcG9sb2dpZXMg
+aWYgdGhpcyB3YXMgYWxyZWFkeSBmb3VuZCBhbmQgZml4ZWQuIEkgZG9uJ3QgdXN1YWxseSBmb2xs
+b3cKdGhlIERSTSBvciBub3V2ZWF1IG1haWxpbmcgbGlzdHMuCgogZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbnZrbS9zdWJkZXYvaW5zdG1lbS9udjUwLmMgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwg
+MSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi9pbnN0bWVtL252NTAuYyBiL2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252a20vc3ViZGV2L2luc3RtZW0vbnY1MC5jCmluZGV4IDFiYTcyODk2ODRhYS4uZGI0
+OGExZGFjYTBjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRl
+di9pbnN0bWVtL252NTAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRl
+di9pbnN0bWVtL252NTAuYwpAQCAtMjQ5LDcgKzI0OSw3IEBAIG52NTBfaW5zdG9ial9hY3F1aXJl
+KHN0cnVjdCBudmttX21lbW9yeSAqbWVtb3J5KQogCQkJaW9iai0+YmFzZS5tZW1vcnkucHRycyA9
+ICZudjUwX2luc3RvYmpfZmFzdDsKIAkJZWxzZQogCQkJaW9iai0+YmFzZS5tZW1vcnkucHRycyA9
+ICZudjUwX2luc3RvYmpfc2xvdzsKLQkJcmVmY291bnRfaW5jKCZpb2JqLT5tYXBzKTsKKwkJcmVm
+Y291bnRfc2V0KCZpb2JqLT5tYXBzLCAxKTsKIAl9CiAKIAltdXRleF91bmxvY2soJmltZW0tPnN1
+YmRldi5tdXRleCk7Ci0tIAoyLjExLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
