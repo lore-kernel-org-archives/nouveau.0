@@ -1,49 +1,37 @@
-From: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
-Subject: [PATCH] drm/nouveau/imem/nv50: fix incorrect use of
-	refcount API
-Date: Fri,  8 Dec 2017 18:30:34 +0000
-Message-ID: <20171208183034.9027-1-ard.biesheuvel@linaro.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: daniel.thompson-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org, masami.hiramatsu-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org, Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+From: Vasyl Gomonovych <gomonovych@gmail.com>
+Subject: [PATCH] x86/mm/kmmio: Fix returned errno code
+Date: Fri,  8 Dec 2017 22:39:34 +0100
+Message-ID: <1512769174-15792-1-git-send-email-gomonovych@gmail.com>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: rostedt@goodmis.org, mingo@kernel.org, karolherbst@gmail.com, ppaalanen@gmail.com, tglx@linutronix.de, hpa@zytor.com, gomonovych@gmail.com
+Cc: x86@kernel.org, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Q29tbWl0IGJlNTUyODdhYTViICgiZHJtL25vdXZlYXUvaW1lbS9udjUwOiBlbWJlZCBudmttX2lu
-c3RvYmogZGlyZWN0bHkKaW50byBudjA0X2luc3RvYmoiKSBpbnRyb2R1Y2VkIHNvbWUgbmV3IGNh
-bGxzIHRvIHRoZSByZWZjb3VudCBhcGkgdG8KdGhlIG52NTAgbWFwcGluZyBjb2RlLiBJbiBvbmUg
-cGFydGljdWxhciBpbnN0YW5jZSwgaXQgZG9lcyB0aGUKZm9sbG93aW5nOgoKICAgIGlmICghcmVm
-Y291bnRfaW5jX25vdF96ZXJvKCZpb2JqLT5tYXBzKSkgewogICAgICAgICAgICAuLi4KICAgICAg
-ICAgICAgcmVmY291bnRfaW5jKCZpb2JqLT5tYXBzKTsKICAgIH0KCmkuZS4sIGl0IGNhbGxzIHJl
-ZmNvdW50X2luYygpIHRvIGluY3JlbWVudCB0aGUgcmVmY291bnQgd2hlbiBpdCBpcyBrbm93bgp0
-byBiZSB6ZXJvLCB3aGljaCBpcyBleHBsaWNpdGx5IGZvcmJpZGRlbiBieSB0aGUgQVBJLiBJbnN0
-ZWFkLCB1c2UKcmVmY291bnRfc2V0KCkgdG8gc2V0IGl0IHRvIDEuCgpTaWduZWQtb2ZmLWJ5OiBB
-cmQgQmllc2hldXZlbCA8YXJkLmJpZXNoZXV2ZWxAbGluYXJvLm9yZz4KLS0tCgpBcG9sb2dpZXMg
-aWYgdGhpcyB3YXMgYWxyZWFkeSBmb3VuZCBhbmQgZml4ZWQuIEkgZG9uJ3QgdXN1YWxseSBmb2xs
-b3cKdGhlIERSTSBvciBub3V2ZWF1IG1haWxpbmcgbGlzdHMuCgogZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbnZrbS9zdWJkZXYvaW5zdG1lbS9udjUwLmMgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwg
-MSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9udmttL3N1YmRldi9pbnN0bWVtL252NTAuYyBiL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L2luc3RtZW0vbnY1MC5jCmluZGV4IDFiYTcyODk2ODRhYS4uZGI0
-OGExZGFjYTBjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di9pbnN0bWVtL252NTAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di9pbnN0bWVtL252NTAuYwpAQCAtMjQ5LDcgKzI0OSw3IEBAIG52NTBfaW5zdG9ial9hY3F1aXJl
-KHN0cnVjdCBudmttX21lbW9yeSAqbWVtb3J5KQogCQkJaW9iai0+YmFzZS5tZW1vcnkucHRycyA9
-ICZudjUwX2luc3RvYmpfZmFzdDsKIAkJZWxzZQogCQkJaW9iai0+YmFzZS5tZW1vcnkucHRycyA9
-ICZudjUwX2luc3RvYmpfc2xvdzsKLQkJcmVmY291bnRfaW5jKCZpb2JqLT5tYXBzKTsKKwkJcmVm
-Y291bnRfc2V0KCZpb2JqLT5tYXBzLCAxKTsKIAl9CiAKIAltdXRleF91bmxvY2soJmltZW0tPnN1
-YmRldi5tdXRleCk7Ci0tIAoyLjExLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQo=
+add_kmmio_fault_page using -1 instead of the -ENOMEM
+defined macro to specify kmmio_fault_page allocation failed.
+
+Smatch tool warning:
+arch/x86/mm/kmmio.c:389 add_kmmio_fault_page()
+warn: returning -1 instead of -ENOMEM is sloppy
+
+Signed-off-by: Vasyl Gomonovych <gomonovych@gmail.com>
+---
+ arch/x86/mm/kmmio.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/x86/mm/kmmio.c b/arch/x86/mm/kmmio.c
+index c21c2ed..9b92086b 100644
+--- a/arch/x86/mm/kmmio.c
++++ b/arch/x86/mm/kmmio.c
+@@ -386,7 +386,7 @@ static int add_kmmio_fault_page(unsigned long addr)
+ 
+ 	f = kzalloc(sizeof(*f), GFP_ATOMIC);
+ 	if (!f)
+-		return -1;
++		return -ENOMEM;
+ 
+ 	f->count = 1;
+ 	f->addr = addr;
+-- 
+1.9.1
