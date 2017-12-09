@@ -1,37 +1,66 @@
-From: Vasyl Gomonovych <gomonovych@gmail.com>
-Subject: [PATCH] x86/mm/kmmio: Fix returned errno code
-Date: Fri,  8 Dec 2017 22:39:34 +0100
-Message-ID: <1512769174-15792-1-git-send-email-gomonovych@gmail.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: rostedt@goodmis.org, mingo@kernel.org, karolherbst@gmail.com, ppaalanen@gmail.com, tglx@linutronix.de, hpa@zytor.com, gomonovych@gmail.com
-Cc: x86@kernel.org, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
+From: Adam Borowski <kilobyte-b9QjgO8OEXPVItvQsEIGlw@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/imem/nv50: fix incorrect use of
+	refcount API
+Date: Sat, 9 Dec 2017 01:01:57 +0100
+Message-ID: <20171209000157.vxqxzcx6gzy7cv2q@angband.pl>
+References: <20171208183034.9027-1-ard.biesheuvel@linaro.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20171208183034.9027-1-ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+Cc: daniel.thompson-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org, masami.hiramatsu-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-add_kmmio_fault_page using -1 instead of the -ENOMEM
-defined macro to specify kmmio_fault_page allocation failed.
-
-Smatch tool warning:
-arch/x86/mm/kmmio.c:389 add_kmmio_fault_page()
-warn: returning -1 instead of -ENOMEM is sloppy
-
-Signed-off-by: Vasyl Gomonovych <gomonovych@gmail.com>
----
- arch/x86/mm/kmmio.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/x86/mm/kmmio.c b/arch/x86/mm/kmmio.c
-index c21c2ed..9b92086b 100644
---- a/arch/x86/mm/kmmio.c
-+++ b/arch/x86/mm/kmmio.c
-@@ -386,7 +386,7 @@ static int add_kmmio_fault_page(unsigned long addr)
- 
- 	f = kzalloc(sizeof(*f), GFP_ATOMIC);
- 	if (!f)
--		return -1;
-+		return -ENOMEM;
- 
- 	f->count = 1;
- 	f->addr = addr;
--- 
-1.9.1
+T24gRnJpLCBEZWMgMDgsIDIwMTcgYXQgMDY6MzA6MzRQTSArMDAwMCwgQXJkIEJpZXNoZXV2ZWwg
+d3JvdGU6Cj4gQ29tbWl0IGJlNTUyODdhYTViICgiZHJtL25vdXZlYXUvaW1lbS9udjUwOiBlbWJl
+ZCBudmttX2luc3RvYmogZGlyZWN0bHkKPiBpbnRvIG52MDRfaW5zdG9iaiIpIGludHJvZHVjZWQg
+c29tZSBuZXcgY2FsbHMgdG8gdGhlIHJlZmNvdW50IGFwaSB0bwo+IHRoZSBudjUwIG1hcHBpbmcg
+Y29kZS4gSW4gb25lIHBhcnRpY3VsYXIgaW5zdGFuY2UsIGl0IGRvZXMgdGhlCj4gZm9sbG93aW5n
+Ogo+IAo+ICAgICBpZiAoIXJlZmNvdW50X2luY19ub3RfemVybygmaW9iai0+bWFwcykpIHsKPiAg
+ICAgICAgICAgICAuLi4KPiAgICAgICAgICAgICByZWZjb3VudF9pbmMoJmlvYmotPm1hcHMpOwo+
+ICAgICB9Cj4gCj4gaS5lLiwgaXQgY2FsbHMgcmVmY291bnRfaW5jKCkgdG8gaW5jcmVtZW50IHRo
+ZSByZWZjb3VudCB3aGVuIGl0IGlzIGtub3duCj4gdG8gYmUgemVybywgd2hpY2ggaXMgZXhwbGlj
+aXRseSBmb3JiaWRkZW4gYnkgdGhlIEFQSS4gSW5zdGVhZCwgdXNlCj4gcmVmY291bnRfc2V0KCkg
+dG8gc2V0IGl0IHRvIDEuCj4gCj4gU2lnbmVkLW9mZi1ieTogQXJkIEJpZXNoZXV2ZWwgPGFyZC5i
+aWVzaGV1dmVsQGxpbmFyby5vcmc+Cj4gLS0tCgpBd2Vzb21lISAgV29ya3MgZm9yIG1lLgoKPiBB
+cG9sb2dpZXMgaWYgdGhpcyB3YXMgYWxyZWFkeSBmb3VuZCBhbmQgZml4ZWQuIEkgZG9uJ3QgdXN1
+YWxseSBmb2xsb3cKPiB0aGUgRFJNIG9yIG5vdXZlYXUgbWFpbGluZyBsaXN0cy4KCkkgc2VlIG5v
+dGhpbmcgcmVsZXZhbnQgaW4gZHJpLWRldmVsIGFuZCBub3V2ZWF1IGFyY2hpdmVzLCBleGNlcHQg
+bXkKY29tcGxhaW50IChHVFggNTYwIFRpIChHRjExNCkpOgpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9hcmNoaXZlcy9ub3V2ZWF1LzIwMTctRGVjZW1iZXIvMDI5MjY0Lmh0bWwKYW5kIFJp
+Y2hhcmQgTmFycm9uIHNlY29uZGluZyBpdCAoTVNJIEdlRm9yY2UgMjEwKToKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvYXJjaGl2ZXMvbm91dmVhdS8yMDE3LURlY2VtYmVyLzAyOTI3Ni5o
+dG1sCgo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pbnN0bWVtL252NTAu
+YyB8IDIgKy0KPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0p
+Cj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2lu
+c3RtZW0vbnY1MC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaW5zdG1l
+bS9udjUwLmMKPiBpbmRleCAxYmE3Mjg5Njg0YWEuLmRiNDhhMWRhY2EwYyAxMDA2NDQKPiAtLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pbnN0bWVtL252NTAuYwo+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2luc3RtZW0vbnY1MC5jCj4g
+QEAgLTI0OSw3ICsyNDksNyBAQCBudjUwX2luc3RvYmpfYWNxdWlyZShzdHJ1Y3QgbnZrbV9tZW1v
+cnkgKm1lbW9yeSkKPiAgCQkJaW9iai0+YmFzZS5tZW1vcnkucHRycyA9ICZudjUwX2luc3RvYmpf
+ZmFzdDsKPiAgCQllbHNlCj4gIAkJCWlvYmotPmJhc2UubWVtb3J5LnB0cnMgPSAmbnY1MF9pbnN0
+b2JqX3Nsb3c7Cj4gLQkJcmVmY291bnRfaW5jKCZpb2JqLT5tYXBzKTsKPiArCQlyZWZjb3VudF9z
+ZXQoJmlvYmotPm1hcHMsIDEpOwo+ICAJfQo+ICAKPiAgCW11dGV4X3VubG9jaygmaW1lbS0+c3Vi
+ZGV2Lm11dGV4KTsKPiAtLSAKCkknbSBqdXN0IGEgZHVtYiB1c2VyIGhlcmUsIG15IHRhZ3MgZG9u
+J3QgY2FycnkgYSB3ZWlnaHQsIGJ1dCBUZXN0ZWQtYnk6LgoKCk1lb3chCi0tIAovLyBJZiB5b3Ug
+YmVsaWV2ZSBpbiBzby1jYWxsZWQgImludGVsbGVjdHVhbCBwcm9wZXJ0eSIsIHBsZWFzZSBpbW1l
+ZGlhdGVseQovLyBjZWFzZSB1c2luZyBjb3VudGVyZmVpdCBhbHBoYWJldHMuICBJbnN0ZWFkLCBj
+b250YWN0IHRoZSBuZWFyZXN0IHRlbXBsZQovLyBvZiBBbW9uLCB3aG9zZSBwcmllc3RzIHdpbGwg
+cHJvdmlkZSB5b3Ugd2l0aCBzY3JpYmFsIHNlcnZpY2VzIGZvciBhbGwKLy8geW91ciB3cml0aW5n
+IG5lZWRzLCBmb3IgUmVhc29uYWJsZSBBbmQgTm9uLURpc2NyaW1pbmF0b3J5IHByaWNlcy4KX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
+aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
