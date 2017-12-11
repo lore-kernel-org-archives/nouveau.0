@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104156] NVIDIA Corporation G96 [GeForce 9500 GT]
- (rev a1) issue finding GPIO
-Date: Mon, 11 Dec 2017 16:50:45 +0000
-Message-ID: <bug-104156-8800-rLufxI0Pb6@http.bugs.freedesktop.org/>
-References: <bug-104156-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101665] lspci blocks forever with a GP107M
+Date: Mon, 11 Dec 2017 23:45:25 +0000
+Message-ID: <bug-101665-8800-C5Kj2p8jQu@http.bugs.freedesktop.org/>
+References: <bug-101665-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1419998606=="
+Content-Type: multipart/mixed; boundary="===============1950430654=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104156-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1419998606==
-Content-Type: multipart/alternative; boundary="15130110451.d0Bd.19213";
+--===============1950430654==
+Content-Type: multipart/alternative; boundary="15130359250.84f0905e.27796";
  charset="UTF-8"
 
 
---15130110451.d0Bd.19213
-Date: Mon, 11 Dec 2017 16:50:45 +0000
+--15130359250.84f0905e.27796
+Date: Mon, 11 Dec 2017 23:45:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104156
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101665
 
---- Comment #5 from Jonathan <agent.xp22-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-Created attachment 136087
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136087&action=3Dedit
-/sys/kernel/debug/dri/0/vbios.rom
+--- Comment #8 from Etienne URBAH <eurbah-GANU6spQydw@public.gmane.org> ---
+With Linux kernel 4.15.0-041500rc3 from
+http://kernel.ubuntu.com/~kernel-ppa/mainline, 'lspci' systematically fails=
+ to
+answer, and makes the whole machine freeze after some time.
+
+Besides, inside 'kern.log', I have detected following messages :
+nouveau 0000:01:00.0: DRM: BIT table 'A' not found
+nouveau 0000:01:00.0: DRM: BIT table 'L' not found
+nouveau 0000:01:00.0: DRM: Pointer to TMDS table invalid
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15130110451.d0Bd.19213
-Date: Mon, 11 Dec 2017 16:50:45 +0000
+--15130359250.84f0905e.27796
+Date: Mon, 11 Dec 2017 23:45:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,25 +67,27 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - NVIDIA Corporation G96 [GeForce 9500 GT] (rev a1) issue f=
-inding GPIO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104156#c5">Commen=
-t # 5</a>
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - NVIDIA Corporation G96 [GeForce 9500 GT] (rev a1) issue f=
-inding GPIO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104156">bug 10415=
-6</a>
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665">bug 10166=
+5</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-agent.xp22&#64;googlemail.com" title=3D"Jonathan &lt;agent.xp22&#64;googlem=
-ail.com&gt;"> <span class=3D"fn">Jonathan</span></a>
+eurbah&#64;free.fr" title=3D"Etienne URBAH &lt;eurbah&#64;free.fr&gt;"> <sp=
+an class=3D"fn">Etienne URBAH</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136087=
-" name=3D"attach_136087" title=3D"/sys/kernel/debug/dri/0/vbios.rom">attach=
-ment 136087</a> <a href=3D"attachment.cgi?id=3D136087&amp;action=3Dedit" ti=
-tle=3D"/sys/kernel/debug/dri/0/vbios.rom">[details]</a></span>
-/sys/kernel/debug/dri/0/vbios.rom</pre>
+        <pre>With Linux kernel 4.15.0-041500rc3 from
+<a href=3D"http://kernel.ubuntu.com/~kernel-ppa/mainline">http://kernel.ubu=
+ntu.com/~kernel-ppa/mainline</a>, 'lspci' systematically fails to
+answer, and makes the whole machine freeze after some time.
+
+Besides, inside 'kern.log', I have detected following messages :
+nouveau 0000:01:00.0: DRM: BIT table 'A' not found
+nouveau 0000:01:00.0: DRM: BIT table 'L' not found
+nouveau 0000:01:00.0: DRM: Pointer to TMDS table invalid</pre>
         </div>
       </p>
 
@@ -94,9 +101,9 @@ tle=3D"/sys/kernel/debug/dri/0/vbios.rom">[details]</a></span>
     </body>
 </html>=
 
---15130110451.d0Bd.19213--
+--15130359250.84f0905e.27796--
 
---===============1419998606==
+--===============1950430654==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1419998606==--
+--===============1950430654==--
