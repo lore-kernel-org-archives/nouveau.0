@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104156] NVIDIA Corporation G96 [GeForce 9500 GT]
- (rev a1) issue finding GPIO
-Date: Tue, 12 Dec 2017 21:56:33 +0000
-Message-ID: <bug-104156-8800-ujAewjbUoW@http.bugs.freedesktop.org/>
-References: <bug-104156-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104237] New: nouveau-related kmail crash
+Date: Wed, 13 Dec 2017 08:33:44 +0000
+Message-ID: <bug-104237-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0227939956=="
+Content-Type: multipart/mixed; boundary="===============0572005820=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104156-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +18,74 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0227939956==
-Content-Type: multipart/alternative; boundary="15131157920.30B1.3849";
+--===============0572005820==
+Content-Type: multipart/alternative; boundary="15131540261.1D8ea7F83.1287";
  charset="UTF-8"
 
 
---15131157920.30B1.3849
-Date: Tue, 12 Dec 2017 21:56:32 +0000
+--15131540261.1D8ea7F83.1287
+Date: Wed, 13 Dec 2017 08:33:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104156
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104237
 
---- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Jonathan from comment #6)
-> (In reply to Ilia Mirkin from comment #3)
-> > IIRC I had the same issue with my G96. Should be in the vbios repo.
->=20
-> File has been attached. (twice by mistake)
+            Bug ID: 104237
+           Summary: nouveau-related kmail crash
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: ago-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Yeah, as far as I can tell from that, we're not doing anything wrong here.=
-=20
-Your VBIOS' connector table points to a GPIO table entry that doesn't exist.
+Created attachment 136131
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136131&action=3Dedit
+kmail-debug
+
+I have a stable gentoo system, so atm I run:
+mesa-17.1.10
+libdrm-2.4.82
+xf86-video-nouveau-1.0.15
+
+I tested also:
+mesa-17.3.0
+libdrm-2.4.88
+
+When I run kmail, it crashes and in dmesg I see:
+[ 3514.679879] nouveau 0000:03:00.0: gr: TRAP ch 5 [003fb74000 kmail[23649]]
+[ 3514.679889] nouveau 0000:03:00.0: gr: GPC0/TPC0/TEX: 80000041
+[ 3514.679893] nouveau 0000:03:00.0: gr: GPC0/TPC1/TEX: 80000041
+[ 3514.679904] nouveau 0000:03:00.0: fifo: read fault at 0002430000 engine =
+00
+[PGRAPH] client 04 [GPC0/] reason 02 [PAGE_NOT_PRESENT] on channel 5
+[003fb74000 kmail[23649]]
+[ 3514.679906] nouveau 0000:03:00.0: fifo: gr engine fault on channel 5,
+recovering...
+[ 3514.680191] nouveau 0000:03:00.0: kmail[23649]: channel 5 killed!
+
+
+If I compile kmail with the debug stuff I get what is in the kmail-debug
+attachment.
+
+If I compile also libdrm with the debug stuff I get a double-free which is =
+in
+the double-free attachment.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15131157920.30B1.3849
-Date: Tue, 12 Dec 2017 21:56:32 +0000
+--15131540261.1D8ea7F83.1287
+Date: Wed, 13 Dec 2017 08:33:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,38 +96,123 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau-related kmail crash"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104237">104237</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>nouveau-related kmail crash
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>ago&#64;gentoo.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NVIDIA Corporation G96 [GeForce 9500 GT] (rev a1) issue f=
-inding GPIO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104156#c7">Commen=
-t # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NVIDIA Corporation G96 [GeForce 9500 GT] (rev a1) issue f=
-inding GPIO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104156">bug 10415=
-6</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
-<span class=3D"fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>(In reply to Jonathan from <a href=3D"show_bug.cgi?id=3D104156=
-#c6">comment #6</a>)
-<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
-g.cgi?id=3D104156#c3">comment #3</a>)
-&gt; &gt; IIRC I had the same issue with my G96. Should be in the vbios rep=
-o.
-&gt;=20
-&gt; File has been attached. (twice by mistake)</span >
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136131=
+" name=3D"attach_136131" title=3D"kmail-debug">attachment 136131</a> <a hre=
+f=3D"attachment.cgi?id=3D136131&amp;action=3Dedit" title=3D"kmail-debug">[d=
+etails]</a></span>
+kmail-debug
 
-Yeah, as far as I can tell from that, we're not doing anything wrong here.=
-=20
-Your VBIOS' connector table points to a GPIO table entry that doesn't exist=
-.</pre>
+I have a stable gentoo system, so atm I run:
+mesa-17.1.10
+libdrm-2.4.82
+xf86-video-nouveau-1.0.15
+
+I tested also:
+mesa-17.3.0
+libdrm-2.4.88
+
+When I run kmail, it crashes and in dmesg I see:
+[ 3514.679879] nouveau 0000:03:00.0: gr: TRAP ch 5 [003fb74000 kmail[23649]]
+[ 3514.679889] nouveau 0000:03:00.0: gr: GPC0/TPC0/TEX: 80000041
+[ 3514.679893] nouveau 0000:03:00.0: gr: GPC0/TPC1/TEX: 80000041
+[ 3514.679904] nouveau 0000:03:00.0: fifo: read fault at 0002430000 engine =
+00
+[PGRAPH] client 04 [GPC0/] reason 02 [PAGE_NOT_PRESENT] on channel 5
+[003fb74000 kmail[23649]]
+[ 3514.679906] nouveau 0000:03:00.0: fifo: gr engine fault on channel 5,
+recovering...
+[ 3514.680191] nouveau 0000:03:00.0: kmail[23649]: channel 5 killed!
+
+
+If I compile kmail with the debug stuff I get what is in the kmail-debug
+attachment.
+
+If I compile also libdrm with the debug stuff I get a double-free which is =
+in
+the double-free attachment.</pre>
         </div>
       </p>
 
@@ -108,9 +226,9 @@ Your VBIOS' connector table points to a GPIO table entry that doesn't exist=
     </body>
 </html>=
 
---15131157920.30B1.3849--
+--15131540261.1D8ea7F83.1287--
 
---===============0227939956==
+--===============0572005820==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +238,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0227939956==--
+--===============0572005820==--
