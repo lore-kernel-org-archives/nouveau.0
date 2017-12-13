@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104237] New: nouveau-related kmail crash
-Date: Wed, 13 Dec 2017 08:33:44 +0000
-Message-ID: <bug-104237-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104237] nouveau-related kmail crash
+Date: Wed, 13 Dec 2017 08:34:07 +0000
+Message-ID: <bug-104237-8800-GDWkp5xxaJ@http.bugs.freedesktop.org/>
+References: <bug-104237-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0572005820=="
+Content-Type: multipart/mixed; boundary="===============1590923811=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-104237-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0572005820==
-Content-Type: multipart/alternative; boundary="15131540261.1D8ea7F83.1287";
+--===============1590923811==
+Content-Type: multipart/alternative; boundary="15131540461.59c28.1963";
  charset="UTF-8"
 
 
---15131540261.1D8ea7F83.1287
-Date: Wed, 13 Dec 2017 08:33:46 +0000
+--15131540461.59c28.1963
+Date: Wed, 13 Dec 2017 08:34:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -33,59 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104237
 
-            Bug ID: 104237
-           Summary: nouveau-related kmail crash
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: ago-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 136131
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136131&action=3Dedit
-kmail-debug
-
-I have a stable gentoo system, so atm I run:
-mesa-17.1.10
-libdrm-2.4.82
-xf86-video-nouveau-1.0.15
-
-I tested also:
-mesa-17.3.0
-libdrm-2.4.88
-
-When I run kmail, it crashes and in dmesg I see:
-[ 3514.679879] nouveau 0000:03:00.0: gr: TRAP ch 5 [003fb74000 kmail[23649]]
-[ 3514.679889] nouveau 0000:03:00.0: gr: GPC0/TPC0/TEX: 80000041
-[ 3514.679893] nouveau 0000:03:00.0: gr: GPC0/TPC1/TEX: 80000041
-[ 3514.679904] nouveau 0000:03:00.0: fifo: read fault at 0002430000 engine =
-00
-[PGRAPH] client 04 [GPC0/] reason 02 [PAGE_NOT_PRESENT] on channel 5
-[003fb74000 kmail[23649]]
-[ 3514.679906] nouveau 0000:03:00.0: fifo: gr engine fault on channel 5,
-recovering...
-[ 3514.680191] nouveau 0000:03:00.0: kmail[23649]: channel 5 killed!
-
-
-If I compile kmail with the debug stuff I get what is in the kmail-debug
-attachment.
-
-If I compile also libdrm with the debug stuff I get a double-free which is =
-in
-the double-free attachment.
+--- Comment #1 from Agostino Sarubbo <ago-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org> ---
+Created attachment 136132
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136132&action=3Dedit
+double-free
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15131540261.1D8ea7F83.1287
-Date: Wed, 13 Dec 2017 08:33:46 +0000
+--15131540461.59c28.1963
+Date: Wed, 13 Dec 2017 08:34:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -96,123 +56,28 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau-related kmail crash"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104237">104237</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>nouveau-related kmail crash
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>ago&#64;gentoo.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136131=
-" name=3D"attach_136131" title=3D"kmail-debug">attachment 136131</a> <a hre=
-f=3D"attachment.cgi?id=3D136131&amp;action=3Dedit" title=3D"kmail-debug">[d=
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau-related kmail crash"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104237#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau-related kmail crash"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104237">bug 10423=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+ago&#64;gentoo.org" title=3D"Agostino Sarubbo &lt;ago&#64;gentoo.org&gt;"> =
+<span class=3D"fn">Agostino Sarubbo</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136132=
+" name=3D"attach_136132" title=3D"double-free">attachment 136132</a> <a hre=
+f=3D"attachment.cgi?id=3D136132&amp;action=3Dedit" title=3D"double-free">[d=
 etails]</a></span>
-kmail-debug
-
-I have a stable gentoo system, so atm I run:
-mesa-17.1.10
-libdrm-2.4.82
-xf86-video-nouveau-1.0.15
-
-I tested also:
-mesa-17.3.0
-libdrm-2.4.88
-
-When I run kmail, it crashes and in dmesg I see:
-[ 3514.679879] nouveau 0000:03:00.0: gr: TRAP ch 5 [003fb74000 kmail[23649]]
-[ 3514.679889] nouveau 0000:03:00.0: gr: GPC0/TPC0/TEX: 80000041
-[ 3514.679893] nouveau 0000:03:00.0: gr: GPC0/TPC1/TEX: 80000041
-[ 3514.679904] nouveau 0000:03:00.0: fifo: read fault at 0002430000 engine =
-00
-[PGRAPH] client 04 [GPC0/] reason 02 [PAGE_NOT_PRESENT] on channel 5
-[003fb74000 kmail[23649]]
-[ 3514.679906] nouveau 0000:03:00.0: fifo: gr engine fault on channel 5,
-recovering...
-[ 3514.680191] nouveau 0000:03:00.0: kmail[23649]: channel 5 killed!
-
-
-If I compile kmail with the debug stuff I get what is in the kmail-debug
-attachment.
-
-If I compile also libdrm with the debug stuff I get a double-free which is =
-in
-the double-free attachment.</pre>
+double-free</pre>
         </div>
       </p>
 
@@ -226,9 +91,9 @@ the double-free attachment.</pre>
     </body>
 </html>=
 
---15131540261.1D8ea7F83.1287--
+--15131540461.59c28.1963--
 
---===============0572005820==
+--===============1590923811==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -238,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0572005820==--
+--===============1590923811==--
