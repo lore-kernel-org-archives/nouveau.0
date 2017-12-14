@@ -1,12 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104237] nouveau-related kmail crash
-Date: Thu, 14 Dec 2017 10:46:47 +0000
-Message-ID: <bug-104237-8800-7M529PrZLB@http.bugs.freedesktop.org/>
-References: <bug-104237-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: Re: [PATCH] Accept 3d controllers and not only VGA
+ controllers.
+Date: Thu, 14 Dec 2017 14:45:33 +0100
+Message-ID: <4dc8a92d-387c-84a0-17df-2cfcca12f1b3@mni.thm.de>
+References: <91cc0a88-96b5-9099-2add-37bee1127eda@gmail.com>
+ <833b7158-c15d-0f4f-b003-8b7b8810a74a@mni.thm.de>
+ <1db4b522-25bf-def4-cdea-d9059a56d19e@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1261429618=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104237-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1db4b522-25bf-def4-cdea-d9059a56d19e-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,103 +21,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Josef Larsson <josef.lar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1261429618==
-Content-Type: multipart/alternative; boundary="15132484070.bfe1F4b4.1698";
- charset="UTF-8"
-
-
---15132484070.bfe1F4b4.1698
-Date: Thu, 14 Dec 2017 10:46:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104237
-
-Agostino Sarubbo <ago-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 OS|All                         |Linux (All)
-           Hardware|Other                       |x86-64 (AMD64)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15132484070.bfe1F4b4.1698
-Date: Thu, 14 Dec 2017 10:46:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ago&#64;g=
-entoo.org" title=3D"Agostino Sarubbo &lt;ago&#64;gentoo.org&gt;"> <span cla=
-ss=3D"fn">Agostino Sarubbo</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau-related kmail crash"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104237">bug 10423=
-7</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">OS</td>
-           <td>All
-           </td>
-           <td>Linux (All)
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Hardware</td>
-           <td>Other
-           </td>
-           <td>x86-64 (AMD64)
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15132484070.bfe1F4b4.1698--
-
---===============1261429618==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1261429618==--
+Ck9uIDEyLzMvMTcgODo1NiBQTSwgSm9zZWYgTGFyc3NvbiB3cm90ZToKPiBTdXJlLCBJIGNhbiBl
+YXNpbHkgc3BsaXQgaXQgaW50byB0d28gY29tbWl0cywgYnV0IEkgd291bGQgbGlrZSB0byBoYXZl
+Cj4gYW4gT0sgb24gdGhlIGFjdHVhbCBjb2RlIGNoYW5nZXMgYmVmb3JlIHNwbGl0dGluZyB0aGUg
+cGF0Y2guCj4KPiBCZXN0IHJlZ2FyZHMsCj4KPiBKb3NlZiBMYXJzc29uCj4KPgo+IE9uIDIwMTct
+MTEtMTEgMDE6MDUsIFRvYmlhcyBLbGF1c21hbm4gd3JvdGU6Cj4+IE9uIDExLzEwLzE3IDc6NDkg
+UE0sIEpvc2VmIExhcnNzb24gd3JvdGU6Cj4+PiBBY2NlcHQgM2QgY29udHJvbGxlcnMgYW5kIG5v
+dCBvbmx5IFZHQSBjb250cm9sbGVycy4gQWNjb3JkaW5nIHRvIElsaWEKPj4+IE1pcmtpbiwKPj4+
+IHRoZSBWR0EgY29udHJvbGxlciBjaGVjayBzaG91bGQgYmUgcmVtb3ZlZC4gVGhpcyBtYWtlcyBp
+dCBwb3NzaWJsZQo+Pj4gdG8gdXNlIGV4dGVybmFsIGNvbm5lY3RvcnMgb24gYSBkb2NraW5nIHN0
+YXRpb24gKDQwQTUpIGZvciBhIFRoaW5rcGFkCj4+PiBQNTEuCj4+PiAoU2VlIEJ1ZyAxMDE3Nzgp
+Lgo+Pj4KPj4+IGxzcGNpIGV4YW1wbGU6Cj4+Pgo+Pj4gMDE6MDAuMCAzRCBjb250cm9sbGVyOiBO
+VklESUEgQ29ycG9yYXRpb24gR00xMDdHTE0gW1F1YWRybyBNMTIwMCBNb2JpbGVdCj4+PiAocmV2
+IGEyKQo+Pj4KPj4+IEFsc28gaW5jbHVkZSBzYWZlLWd1YXJkcyB0byBhdm9pZCBOVUxMIGRlcmVm
+ZXJlbmNpbmcgb2YgZmJjb24sIHdoaWNoIGlzCj4+PiBob3cgdGhpcyBidWcgd2FzIGZvdW5kLgo+
+Pj4gLS0tCj4+PiAgwqDCoGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYyB8
+wqAgMyArLS0KPj4+ICDCoMKgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmPC
+oCB8IDEzICsrKysrKysrKysrKysKPj4+ICDCoMKgMiBmaWxlcyBjaGFuZ2VkLCAxNCBpbnNlcnRp
+b25zKCspLCAyIGRlbGV0aW9ucygtKQo+Pj4KPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMKPj4+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9mYmNvbi5jCj4+PiBpbmRleCAyYjEyZDgyYWFjMTUuLjZiNGQzNzRhOWQ4MiAxMDA2
+NDQKPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYwo+Pj4g
+KysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jCj4+PiBAQCAtNDk4
+LDggKzQ5OCw3IEBAIG5vdXZlYXVfZmJjb25faW5pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+
+Pj4gIMKgwqDCoMKgwqAgaW50IHByZWZlcnJlZF9icHA7Cj4+PiAgwqDCoMKgwqDCoCBpbnQgcmV0
+Owo+Pj4gIMKgIC3CoMKgwqAgaWYgKCFkZXYtPm1vZGVfY29uZmlnLm51bV9jcnRjIHx8Cj4+PiAt
+wqDCoMKgIMKgwqDCoCAoZGV2LT5wZGV2LT5jbGFzcyA+PiA4KSAhPSBQQ0lfQ0xBU1NfRElTUExB
+WV9WR0EpCj4+PiArwqDCoMKgIGlmICghZGV2LT5tb2RlX2NvbmZpZy5udW1fY3J0YykKPj4+ICDC
+oMKgwqDCoMKgIMKgwqDCoCByZXR1cm4gMDsKPj4+ICDCoCDCoMKgwqDCoMKgIGZiY29uID0ga3ph
+bGxvYyhzaXplb2Yoc3RydWN0IG5vdXZlYXVfZmJkZXYpLCBHRlBfS0VSTkVMKTsKPj4+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwo+Pj4gYi9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwo+Pj4gaW5kZXggZmI0N2Q0NjA1MGVj
+Li4wNjFkYWYwMzY0MDcgMTAwNjQ0Cj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+djUwX2Rpc3BsYXkuYwo+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNw
+bGF5LmMKPj4+IEBAIC0zMjE0LDYgKzMyMTQsMTMgQEAgbnY1MF9tc3RtX2Rlc3Ryb3lfY29ubmVj
+dG9yKHN0cnVjdAo+Pj4gZHJtX2RwX21zdF90b3BvbG9neV9tZ3IgKm1nciwKPj4+ICDCoMKgwqDC
+oMKgIHN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oY29ubmVjdG9yLT5kZXYp
+Owo+Pj4gIMKgwqDCoMKgwqAgc3RydWN0IG52NTBfbXN0YyAqbXN0YyA9IG52NTBfbXN0Yyhjb25u
+ZWN0b3IpOwo+Pj4gIMKgICvCoMKgwqAgaWYgKCFkcm0tPmZiY29uKQo+Pj4gK8KgwqDCoCB7Cj4+
+PiArwqDCoMKgIMKgwqDCoCBOVl9XQVJOKGRybSwgImRybS0+ZmJjb24gb2YgJXMgcG9pbnQgdG8g
+TlVMTC4gV2lsbCBub3QgZGVzdHJveQo+Pj4gY29ubmVjdG9yXG4iLAo+Pj4gK8KgwqDCoCDCoMKg
+wqAgwqDCoMKgIGNvbm5lY3Rvci0+bmFtZSk7Cj4+PiArwqDCoMKgIMKgwqDCoCByZXR1cm47Cj4+
+PiArwqDCoMKgIH0KPj4+ICsKPj4+ICDCoMKgwqDCoMKgIGRybV9jb25uZWN0b3JfdW5yZWdpc3Rl
+cigmbXN0Yy0+Y29ubmVjdG9yKTsKPj4+ICDCoCDCoMKgwqDCoMKgIGRybV9tb2Rlc2V0X2xvY2tf
+YWxsKGRybS0+ZGV2KTsKPj4+IEBAIC0zMjI5LDYgKzMyMzYsMTIgQEAgbnY1MF9tc3RtX3JlZ2lz
+dGVyX2Nvbm5lY3RvcihzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcgo+Pj4gKmNvbm5lY3RvcikKPj4+ICDC
+oMKgewo+Pj4gIMKgwqDCoMKgwqAgc3RydWN0IG5vdXZlYXVfZHJtICpkcm0gPSBub3V2ZWF1X2Ry
+bShjb25uZWN0b3ItPmRldik7Cj4+PiAgwqAgK8KgwqDCoCBpZiAoIWRybS0+ZmJjb24pCj4+PiAr
+wqDCoMKgIHsKPj4+ICvCoMKgwqAgwqDCoMKgIE5WX1dBUk4oZHJtLCAiZHJtLT5mYmNvbiBvZiAl
+cyBwb2ludCB0byBOVUxMLiBXaWxsIG5vdCByZWdpc3Rlcgo+Pj4gY29ubmVjdG9yXG4iLAo+Pj4g
+K8KgwqDCoCDCoMKgwqAgwqDCoMKgIGNvbm5lY3Rvci0+bmFtZSk7Cj4+PiArwqDCoMKgIMKgwqDC
+oCByZXR1cm47Cj4+PiArwqDCoMKgIH0KPj4+ICDCoMKgwqDCoMKgIGRybV9tb2Rlc2V0X2xvY2tf
+YWxsKGRybS0+ZGV2KTsKPj4+ICDCoMKgwqDCoMKgIGRybV9mYl9oZWxwZXJfYWRkX29uZV9jb25u
+ZWN0b3IoJmRybS0+ZmJjb24tPmhlbHBlciwgY29ubmVjdG9yKTsKPj4+ICDCoMKgwqDCoMKgIGRy
+bV9tb2Rlc2V0X3VubG9ja19hbGwoZHJtLT5kZXYpOwo+Pj4KPj4+Cj4+IEhpLAo+Pgo+PiB0aGUg
+cGF0Y2ggbG9va3MgT0sgdG8gbWUsIHlldCBhcyBub3RlZCBpbiBJUkMsIGknZCBsaWtlIHRvIGhh
+dmUgdGhpcwo+PiBwYXRjaCBzcGxpdCBpbnRvIHR3byBhbmQgaGF2ZSB0aGUgLT5mYmNvbiBjaGVj
+ayBhcyBhIHByZWNvbmRpdGlvbiB0bwo+PiB0aGUgM0QgQ29udHJvbGxlciBwYXJ0LiBCdXQgbGV0
+cyBzZWUgd2hhdCB0aGUgb3RoZXIgYW5kIG1vcmUgY2xldmVyCj4+IHBlb3BsZSB0aGluayBhYm91
+dCBpdCEgOikKPj4KPj4gR3JlZXRpbmdzLAo+Pgo+PiBUb2JpYXMKPj4KPgoKUGluZywKCmFkZGlu
+ZyBCZW4gU2tlZ2dzIGFuZCBEYXZlIEFpcmxpZWQgdG8gQ0MsIG1heWJlIHRoaXMgd2lsbCBnZXQg
+dGhpcyAKbGl0dGxlIG9uZSBjb21taXRlZCEKCkdyZWV0aW5ncywKClRvYmlhcwoKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
+aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
