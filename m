@@ -1,11 +1,13 @@
-From: Paul Marks <paul-sPJETtJb7L6sTnJN9+BGXg@public.gmane.org>
-Subject: Nouveau and VESA Adptive Sync (FreeSync)?
-Date: Fri, 15 Dec 2017 20:19:31 -0800
-Message-ID: <CAHq9+ShSbPYUkYgjPGFpi8ht_FLdNcCye7a1So=NN_JRAaahgg@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Nouveau and VESA Adptive Sync (FreeSync)?
+Date: Fri, 15 Dec 2017 23:29:36 -0500
+Message-ID: <CAKb7UvhXEF9=qPbVDAtOGJ1r-eXEeTtBnT18aNVncGcmUApNDQ@mail.gmail.com>
+References: <CAHq9+ShSbPYUkYgjPGFpi8ht_FLdNcCye7a1So=NN_JRAaahgg@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAHq9+ShSbPYUkYgjPGFpi8ht_FLdNcCye7a1So=NN_JRAaahgg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,14 +17,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Paul Marks <paul-sPJETtJb7L6sTnJN9+BGXg@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SXMgdGhlcmUgYW55IGNoYW5jZSB0aGF0IG5vdXZlYXUgd2lsbCBiZSBhYmxlIHRvIHN1cHBvcnQg
-VkVTQSBBZGFwdGl2ZQpTeW5jIGJlZm9yZSBOdmlkaWEgYWRkcyBpdCB0byB0aGVpciBwcm9wcmll
-dGFyeSBkcml2ZXJzPyAgT3IgaXMgdGhpcwplZmZlY3RpdmVseSBpbXBvc3NpYmxlIHdpdGhvdXQg
-dGhlaXIgY29vcGVyYXRpb24/CgpJJ3ZlIGxvb2tlZCwgYnV0IGhhdmVuJ3QgbWFuYWdlZCB0byBm
-aW5kIGFueSBwcmV2aW91cyBkaXNjdXNzaW9uIG9uIHRoaXMgdG9waWMuCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+TlZJRElBIGhhcyBiZWVuIHJlbGVhc2luZyBzb21lIHZlcnkgcGFydGlhbCBkb2N1bWVudGF0aW9u
+IGFib3V0IHRoZWlyCmRpc3BsYXkgaHcuIFlvdSBjYW4gc2VlIHRoZSBsYXRlc3QgaXRlcmF0aW9u
+IG9mIHRob3NlIGVmZm9ydHMgYXQKaHR0cDovL2Rvd25sb2FkLm52aWRpYS5jb20vb3Blbi1ncHUt
+ZG9jL0Rpc3BsYXktQ2xhc3MtTWV0aG9kcy8yLyAuIEkKZG9uJ3Qga25vdyB3aGljaCwgaWYgYW55
+LCBOVklESUEgY2hpcHMgc3VwcG9ydCBGcmVlU3luYyAoYXMgb3Bwb3NlZCB0bwpHLVNZTkMpLiBQ
+ZXJoYXBzIHRoZSBWb2x0YSBvbmVzIGdldCBpdD8KCkVpdGhlciB3YXksIGl0J2xsIHJlcXVpcmUg
+c29tZW9uZSB3aXRoIHRoZSByZWxldmFudCBoYXJkd2FyZSB0byBkbyBhCmxvdCBvZiBleHBlcmlt
+YXRpb24sIGFuZCBhbHNvIGZpZ3VyZSBvdXQgd2hhdCB0aGUgcHJvcGVyIHdheSB0bwpzdXJmYWNl
+IHVwIHRoZXNlIGNhcGFiaWxpdGllcyB0byB1c2Vyc3BhY2UgaXMuIEl0J3Mgbm90IGEgc21hbGwg
+dGFzay4KCiAgLWlsaWEKCk9uIEZyaSwgRGVjIDE1LCAyMDE3IGF0IDExOjE5IFBNLCBQYXVsIE1h
+cmtzIDxwYXVsQHBtYXJrcy5uZXQ+IHdyb3RlOgo+IElzIHRoZXJlIGFueSBjaGFuY2UgdGhhdCBu
+b3V2ZWF1IHdpbGwgYmUgYWJsZSB0byBzdXBwb3J0IFZFU0EgQWRhcHRpdmUKPiBTeW5jIGJlZm9y
+ZSBOdmlkaWEgYWRkcyBpdCB0byB0aGVpciBwcm9wcmlldGFyeSBkcml2ZXJzPyAgT3IgaXMgdGhp
+cwo+IGVmZmVjdGl2ZWx5IGltcG9zc2libGUgd2l0aG91dCB0aGVpciBjb29wZXJhdGlvbj8KPgo+
+IEkndmUgbG9va2VkLCBidXQgaGF2ZW4ndCBtYW5hZ2VkIHRvIGZpbmQgYW55IHByZXZpb3VzIGRp
+c2N1c3Npb24gb24gdGhpcyB0b3BpYy4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
