@@ -1,12 +1,11 @@
-From: Robert Morell <rmorell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: NVIDIA display class method hardware documentation update
-Date: Fri, 15 Dec 2017 11:03:27 -0800
-Message-ID: <20171215190320.GA23824@morell>
+From: Paul Marks <paul-sPJETtJb7L6sTnJN9+BGXg@public.gmane.org>
+Subject: Nouveau and VESA Adptive Sync (FreeSync)?
+Date: Fri, 15 Dec 2017 20:19:31 -0800
+Message-ID: <CAHq9+ShSbPYUkYgjPGFpi8ht_FLdNcCye7a1So=NN_JRAaahgg@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,12 +18,11 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpJJ20gcGxlYXNlZCB0byBhbm5vdW5jZSB0aGF0IE5WSURJQSBoYXMgcmVsZWFzZWQgYSBu
-ZXcgcmV2aXNpb24gb2YgdGhlIGRpc3BsYXkKY2xhc3MgbWV0aG9kIGhhcmR3YXJlIGRvY3VtZW50
-YXRpb24uICBUaGlzIHJlbGVhc2UgaW5jbHVkZXMgZGVmaW5pdGlvbnMgZm9yIHRoZQpQYXNjYWwg
-YW5kIFZvbHRhIEdQVSBhcmNoaXRlY3R1cmVzLgoKQXMgYWx3YXlzLCB5b3UgY2FuIGZpbmQgdGhl
-IGZpbGVzIG9uIGRvd25sb2FkLm52aWRpYS5jb206Cmh0dHBzOi8vZG93bmxvYWQubnZpZGlhLmNv
-bS9vcGVuLWdwdS1kb2MvRGlzcGxheS1DbGFzcy1NZXRob2RzLzIvCgotIFJvYmVydApfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+SXMgdGhlcmUgYW55IGNoYW5jZSB0aGF0IG5vdXZlYXUgd2lsbCBiZSBhYmxlIHRvIHN1cHBvcnQg
+VkVTQSBBZGFwdGl2ZQpTeW5jIGJlZm9yZSBOdmlkaWEgYWRkcyBpdCB0byB0aGVpciBwcm9wcmll
+dGFyeSBkcml2ZXJzPyAgT3IgaXMgdGhpcwplZmZlY3RpdmVseSBpbXBvc3NpYmxlIHdpdGhvdXQg
+dGhlaXIgY29vcGVyYXRpb24/CgpJJ3ZlIGxvb2tlZCwgYnV0IGhhdmVuJ3QgbWFuYWdlZCB0byBm
+aW5kIGFueSBwcmV2aW91cyBkaXNjdXNzaW9uIG9uIHRoaXMgdG9waWMuCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
