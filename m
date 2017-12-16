@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104291] Virgl broken on current mesa (17.4+),
  with nouveau/nv50 as host
-Date: Sat, 16 Dec 2017 17:18:18 +0000
-Message-ID: <bug-104291-8800-2G8TUJGuAj@http.bugs.freedesktop.org/>
+Date: Sat, 16 Dec 2017 17:23:52 +0000
+Message-ID: <bug-104291-8800-Q2YoiaYAzw@http.bugs.freedesktop.org/>
 References: <bug-104291-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0906251730=="
+Content-Type: multipart/mixed; boundary="===============1673414024=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104291-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0906251730==
-Content-Type: multipart/alternative; boundary="15134446980.Df12D.5732";
+--===============1673414024==
+Content-Type: multipart/alternative; boundary="15134450310.d6e446.8703";
  charset="UTF-8"
 
 
---15134446980.Df12D.5732
-Date: Sat, 16 Dec 2017 17:18:18 +0000
+--15134450310.d6e446.8703
+Date: Sat, 16 Dec 2017 17:23:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,22 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104291
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-If you can capture an apitrace of qemu that replays incorrectly on nouveau =
-but
-correctly on other hardware, then this is a nouveau bug.
-
-If virgl / virglrenderer code crashes (or generates an incorrect GL operati=
-on
-sequence), then it's a virgl bug.
+--- Comment #3 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Created attachment 136219
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136219&action=3Dedit
+glxinfo -l from inside guest
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15134446980.Df12D.5732
-Date: Sat, 16 Dec 2017 17:18:18 +0000
+--15134450310.d6e446.8703
+Date: Sat, 16 Dec 2017 17:23:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,8 +65,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Virgl broken on current mesa (17.4+), with nouveau/nv50 a=
 s host"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104291#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104291#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Virgl broken on current mesa (17.4+), with nouveau/nv50 a=
@@ -78,16 +74,14 @@ s host"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104291">bug 10429=
 1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
+gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>If you can capture an apitrace of qemu that replays incorrectl=
-y on nouveau but
-correctly on other hardware, then this is a nouveau bug.
-
-If virgl / virglrenderer code crashes (or generates an incorrect GL operati=
-on
-sequence), then it's a virgl bug.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136219=
+" name=3D"attach_136219" title=3D"glxinfo -l from inside guest">attachment =
+136219</a> <a href=3D"attachment.cgi?id=3D136219&amp;action=3Dedit" title=
+=3D"glxinfo -l from inside guest">[details]</a></span>
+glxinfo -l from inside guest</pre>
         </div>
       </p>
 
@@ -102,9 +96,9 @@ sequence), then it's a virgl bug.</pre>
     </body>
 </html>=
 
---15134446980.Df12D.5732--
+--15134450310.d6e446.8703--
 
---===============0906251730==
+--===============1673414024==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0906251730==--
+--===============1673414024==--
