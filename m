@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104291] Virgl broken on current mesa (17.4+),
  with nouveau/nv50 as host
-Date: Sat, 16 Dec 2017 17:55:43 +0000
-Message-ID: <bug-104291-8800-kLxC0PEjoo@http.bugs.freedesktop.org/>
+Date: Sat, 16 Dec 2017 18:12:23 +0000
+Message-ID: <bug-104291-8800-B8Bz7PaVml@http.bugs.freedesktop.org/>
 References: <bug-104291-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1278877938=="
+Content-Type: multipart/mixed; boundary="===============1231851368=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104291-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1278877938==
-Content-Type: multipart/alternative; boundary="15134469430.8d9Bb2bA7.15147";
+--===============1231851368==
+Content-Type: multipart/alternative; boundary="15134479420.C66a.20195";
  charset="UTF-8"
 
 
---15134469430.8d9Bb2bA7.15147
-Date: Sat, 16 Dec 2017 17:55:43 +0000
+--15134479420.C66a.20195
+Date: Sat, 16 Dec 2017 18:12:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,25 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104291
 
-Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #136220|0                           |1
-        is obsolete|                            |
-
---- Comment #8 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-Created attachment 136221
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136221&action=3Dedit
-slightly better gdb log
+--- Comment #9 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Created attachment 136222
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136222&action=3Dedit
+X log (from guest, of course)
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15134469430.8d9Bb2bA7.15147
-Date: Sat, 16 Dec 2017 17:55:43 +0000
+--15134479420.C66a.20195
+Date: Sat, 16 Dec 2017 18:12:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,41 +58,15 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:randrik&#=
-64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <sp=
-an class=3D"fn">Andrew Randrianasulu</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Virgl broken on current mesa (17.4+), with nouveau/nv50 a=
-s host"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104291">bug 10429=
-1</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #136220 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Virgl broken on current mesa (17.4+), with nouveau/nv50 a=
 s host"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104291#c8">Commen=
-t # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104291#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Virgl broken on current mesa (17.4+), with nouveau/nv50 a=
@@ -110,11 +77,11 @@ s host"
 randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
 gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136221=
-" name=3D"attach_136221" title=3D"slightly better gdb log">attachment 13622=
-1</a> <a href=3D"attachment.cgi?id=3D136221&amp;action=3Dedit" title=3D"sli=
-ghtly better gdb log">[details]</a></span>
-slightly better gdb log</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136222=
+" name=3D"attach_136222" title=3D"X log (from guest, of course)">attachment=
+ 136222</a> <a href=3D"attachment.cgi?id=3D136222&amp;action=3Dedit" title=
+=3D"X log (from guest, of course)">[details]</a></span>
+X log (from guest, of course)</pre>
         </div>
       </p>
 
@@ -123,15 +90,15 @@ slightly better gdb log</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15134469430.8d9Bb2bA7.15147--
+--15134479420.C66a.20195--
 
---===============1278877938==
+--===============1231851368==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -141,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1278877938==--
+--===============1231851368==--
