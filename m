@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104291] Virgl broken on current mesa (17.4+),
  with nouveau/nv50 as host
-Date: Sat, 16 Dec 2017 17:31:09 +0000
-Message-ID: <bug-104291-8800-RTl8fHsGT3@http.bugs.freedesktop.org/>
+Date: Sat, 16 Dec 2017 17:35:12 +0000
+Message-ID: <bug-104291-8800-8uONCJgqTX@http.bugs.freedesktop.org/>
 References: <bug-104291-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1335100234=="
+Content-Type: multipart/mixed; boundary="===============0094768548=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104291-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1335100234==
-Content-Type: multipart/alternative; boundary="15134454690.eE8c6.10050";
+--===============0094768548==
+Content-Type: multipart/alternative; boundary="15134457120.fd31B.9911";
  charset="UTF-8"
 
 
---15134454690.eE8c6.10050
-Date: Sat, 16 Dec 2017 17:31:09 +0000
+--15134457120.fd31B.9911
+Date: Sat, 16 Dec 2017 17:35:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104291
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-If it crashes inside the guest, then it's nothing to do with nouveau. Most
-likely.
+--- Comment #6 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #5)
+> If it crashes inside the guest, then it's nothing to do with nouveau. Most
+> likely.
+
+ya, but I was unable to find virgl as specific component  in bugzilla, so I
+just  added bug to nouveau. Don't feel blamed. (and  after swithcing virtual
+desktops whole image inside qemu just become real black ..I killed this VM)
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15134454690.eE8c6.10050
-Date: Sat, 16 Dec 2017 17:31:09 +0000
+--15134457120.fd31B.9911
+Date: Sat, 16 Dec 2017 17:35:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +69,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Virgl broken on current mesa (17.4+), with nouveau/nv50 a=
 s host"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104291#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104291#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Virgl broken on current mesa (17.4+), with nouveau/nv50 a=
@@ -73,12 +78,19 @@ s host"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104291">bug 10429=
 1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
+gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>If it crashes inside the guest, then it's nothing to do with n=
-ouveau. Most
-likely.</pre>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D104=
+291#c5">comment #5</a>)
+<span class=3D"quote">&gt; If it crashes inside the guest, then it's nothin=
+g to do with nouveau. Most
+&gt; likely.</span >
+
+ya, but I was unable to find virgl as specific component  in bugzilla, so I
+just  added bug to nouveau. Don't feel blamed. (and  after swithcing virtual
+desktops whole image inside qemu just become real black ..I killed this VM)=
+</pre>
         </div>
       </p>
 
@@ -87,15 +99,15 @@ likely.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15134454690.eE8c6.10050--
+--15134457120.fd31B.9911--
 
---===============1335100234==
+--===============0094768548==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1335100234==--
+--===============0094768548==--
