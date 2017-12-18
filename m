@@ -1,133 +1,71 @@
-From: Pierre Moreau <pierre.morrow@free.fr>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau/imem/nv50: fix incorrect use of
+From: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/imem/nv50: fix incorrect use of
  refcount API
-Date: Mon, 18 Dec 2017 13:16:47 +0100
-Message-ID: <20171218121628.akfvzmlvqvkbtjno@pmoreau.org>
+Date: Mon, 18 Dec 2017 14:19:43 +0100
+Message-ID: <CAKv+Gu9uehQXO3nKKPt0-YKDwDmbt0vHR=OO6=f0jpYd_8=sdg@mail.gmail.com>
 References: <20171208183034.9027-1-ard.biesheuvel@linaro.org>
  <CAKv+Gu-2xLOZjvDM7-PtxsQJKPdO1H5DgBL7zA91HSMa23=zPg@mail.gmail.com>
+ <20171218121628.akfvzmlvqvkbtjno@pmoreau.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0890200611=="
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKv+Gu-2xLOZjvDM7-PtxsQJKPdO1H5DgBL7zA91HSMa23=zPg@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ard Biesheuvel <ard.biesheuvel@linaro.org>
-Cc: Daniel Thompson <daniel.thompson@linaro.org>, ollapse-all@freedesktop.org, Masami Hiramatsu <masami.hiramatsu@linaro.org>, David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, setcollapse_unread=no@pmoreau.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20171218121628.akfvzmlvqvkbtjno-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Daniel Thompson <daniel.thompson-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>, Masami Hiramatsu <masami.hiramatsu-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>, "ollapse-all>:" <setcollapse_unread=no-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0890200611==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="tzcfvzpcnn5s66vr"
-Content-Disposition: inline
-
-
---tzcfvzpcnn5s66vr
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hey Ard,
-
-It seems that Ben already committed a similar patch to his tree (see [0]). =
-I do
-not know whether he is planning to have it part of a pull request of fixes =
-for
-4.15.
-
-Best regards,
-Pierre
-
-[0]: https://github.com/skeggsb/nouveau/commit/9068f1df2394f0e4ab2b2a28cac0=
-6b462fe0a0aa
-
-On 2017-12-18 =E2=80=94 09:27, Ard Biesheuvel wrote:
-> On 8 December 2017 at 19:30, Ard Biesheuvel <ard.biesheuvel@linaro.org> w=
-rote:
-> > Commit be55287aa5b ("drm/nouveau/imem/nv50: embed nvkm_instobj directly
-> > into nv04_instobj") introduced some new calls to the refcount api to
-> > the nv50 mapping code. In one particular instance, it does the
-> > following:
-> >
-> >     if (!refcount_inc_not_zero(&iobj->maps)) {
-> >             ...
-> >             refcount_inc(&iobj->maps);
-> >     }
-> >
-> > i.e., it calls refcount_inc() to increment the refcount when it is known
-> > to be zero, which is explicitly forbidden by the API. Instead, use
-> > refcount_set() to set it to 1.
-> >
-> > Signed-off-by: Ard Biesheuvel <ard.biesheuvel@linaro.org>
-> > ---
-> >
-> > Apologies if this was already found and fixed. I don't usually follow
-> > the DRM or nouveau mailing lists.
-> >
-> >  drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c b/drive=
-rs/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c
-> > index 1ba7289684aa..db48a1daca0c 100644
-> > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c
-> > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/nv50.c
-> > @@ -249,7 +249,7 @@ nv50_instobj_acquire(struct nvkm_memory *memory)
-> >                         iobj->base.memory.ptrs =3D &nv50_instobj_fast;
-> >                 else
-> >                         iobj->base.memory.ptrs =3D &nv50_instobj_slow;
-> > -               refcount_inc(&iobj->maps);
-> > +               refcount_set(&iobj->maps, 1);
-> >         }
-> >
-> >         mutex_unlock(&imem->subdev.mutex);
-> > --
-> > 2.11.0
-> >
->=20
-> Ping?
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
-
---tzcfvzpcnn5s66vr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEYgBv5JnnDxeItcEHU3l4X80+KSQFAlo3sa4ACgkQU3l4X80+
-KST9qRAAtv5OLyThG0OZFow67/H+aJouH9Fxegsdaa0faAdvNZnRBoI5ll+aSNhn
-jYyXjUZCnbKP6OgsQ4rj6WYTiUED+O+0PxZRNPxOhxk5JPSxqz8IDfcstPiyuZvF
-SZ9/smCRZxXLqiXIxorGLUb+WZJBXS1V3e5nDeWfPWfOSiXC7Wzo/jrOglUA+ywo
-vQ7ngR7AlVgFwCPnNw7ugBxJQP/5AWVQT/mupVNF/3XKZCkLMRBKzNJimFR+3IEe
-O/4M8qmwXx3FY3gK/wQhVHxHQ3t+EuG1se+cazV2AZe0wKHPfGpyWPTs6OuyOgdy
-iX7V243xBy2f7fmi5vdESFQ8PaeNYrxGI2nlbyQSB1UFOdZAF0gkczC6XP43VkVG
-UxGxrDwNO646UUVeR61XCbBM7hI4Hkn6oNRbgqwpdy5D4FkynHRGTAqvGqnrdor/
-VKeFmsWanwezzWLZnVJ7j7C+293qRJ8RMN4eeE2X911H3bEDtciflf4zY8CxbQTS
-0lKC1CmuWtQZpjuP8PM+SEOb4ecd0TwcoVDsXvhe+qf0bVDPrb8S6gVdIA5xdvB0
-J0zYSjoH5jru9+20Fl11QjkxBZ3KIYtKrDEap6vsN7G8c6lKzqbhb+LGCOpOLSh/
-YYTxaWVOXrHoaHx4AOyvU34H9GyoeViXPNRyB0gbFRI+OmQH+do=
-=ba7l
------END PGP SIGNATURE-----
-
---tzcfvzpcnn5s66vr--
-
---===============0890200611==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
-IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
-
---===============0890200611==--
+T24gMTggRGVjZW1iZXIgMjAxNyBhdCAxMzoxNiwgUGllcnJlIE1vcmVhdSA8cGllcnJlLm1vcnJv
+d0BmcmVlLmZyPiB3cm90ZToKPiBIZXkgQXJkLAo+Cj4gSXQgc2VlbXMgdGhhdCBCZW4gYWxyZWFk
+eSBjb21taXR0ZWQgYSBzaW1pbGFyIHBhdGNoIHRvIGhpcyB0cmVlIChzZWUgWzBdKS4gSSBkbwo+
+IG5vdCBrbm93IHdoZXRoZXIgaGUgaXMgcGxhbm5pbmcgdG8gaGF2ZSBpdCBwYXJ0IG9mIGEgcHVs
+bCByZXF1ZXN0IG9mIGZpeGVzIGZvcgo+IDQuMTUuCj4KCkhpIFBpZXJyZSwKClRoYW5rcyBmb3Ig
+dGhlIHJlcGx5LiBJZiBhIGZpeCBoYXMgYmVlbiBxdWV1ZWQsIEkgZG9uJ3QgbWluZCBsZWF2aW5n
+Cml0IHVwIHRvIEJlbiB0byBkZWNpZGUgd2hlbiBpdCBnZXRzIHNlbnQgb253YXJkcy4KCi0tIApB
+cmQuCgo+IFswXTogaHR0cHM6Ly9naXRodWIuY29tL3NrZWdnc2Ivbm91dmVhdS9jb21taXQvOTA2
+OGYxZGYyMzk0ZjBlNGFiMmIyYTI4Y2FjMDZiNDYyZmUwYTBhYQo+Cj4gT24gMjAxNy0xMi0xOCDi
+gJQgMDk6MjcsIEFyZCBCaWVzaGV1dmVsIHdyb3RlOgo+PiBPbiA4IERlY2VtYmVyIDIwMTcgYXQg
+MTk6MzAsIEFyZCBCaWVzaGV1dmVsIDxhcmQuYmllc2hldXZlbEBsaW5hcm8ub3JnPiB3cm90ZToK
+Pj4gPiBDb21taXQgYmU1NTI4N2FhNWIgKCJkcm0vbm91dmVhdS9pbWVtL252NTA6IGVtYmVkIG52
+a21faW5zdG9iaiBkaXJlY3RseQo+PiA+IGludG8gbnYwNF9pbnN0b2JqIikgaW50cm9kdWNlZCBz
+b21lIG5ldyBjYWxscyB0byB0aGUgcmVmY291bnQgYXBpIHRvCj4+ID4gdGhlIG52NTAgbWFwcGlu
+ZyBjb2RlLiBJbiBvbmUgcGFydGljdWxhciBpbnN0YW5jZSwgaXQgZG9lcyB0aGUKPj4gPiBmb2xs
+b3dpbmc6Cj4+ID4KPj4gPiAgICAgaWYgKCFyZWZjb3VudF9pbmNfbm90X3plcm8oJmlvYmotPm1h
+cHMpKSB7Cj4+ID4gICAgICAgICAgICAgLi4uCj4+ID4gICAgICAgICAgICAgcmVmY291bnRfaW5j
+KCZpb2JqLT5tYXBzKTsKPj4gPiAgICAgfQo+PiA+Cj4+ID4gaS5lLiwgaXQgY2FsbHMgcmVmY291
+bnRfaW5jKCkgdG8gaW5jcmVtZW50IHRoZSByZWZjb3VudCB3aGVuIGl0IGlzIGtub3duCj4+ID4g
+dG8gYmUgemVybywgd2hpY2ggaXMgZXhwbGljaXRseSBmb3JiaWRkZW4gYnkgdGhlIEFQSS4gSW5z
+dGVhZCwgdXNlCj4+ID4gcmVmY291bnRfc2V0KCkgdG8gc2V0IGl0IHRvIDEuCj4+ID4KPj4gPiBT
+aWduZWQtb2ZmLWJ5OiBBcmQgQmllc2hldXZlbCA8YXJkLmJpZXNoZXV2ZWxAbGluYXJvLm9yZz4K
+Pj4gPiAtLS0KPj4gPgo+PiA+IEFwb2xvZ2llcyBpZiB0aGlzIHdhcyBhbHJlYWR5IGZvdW5kIGFu
+ZCBmaXhlZC4gSSBkb24ndCB1c3VhbGx5IGZvbGxvdwo+PiA+IHRoZSBEUk0gb3Igbm91dmVhdSBt
+YWlsaW5nIGxpc3RzLgo+PiA+Cj4+ID4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3Vi
+ZGV2L2luc3RtZW0vbnY1MC5jIHwgMiArLQo+PiA+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRp
+b24oKyksIDEgZGVsZXRpb24oLSkKPj4gPgo+PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi9pbnN0bWVtL252NTAuYyBiL2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252a20vc3ViZGV2L2luc3RtZW0vbnY1MC5jCj4+ID4gaW5kZXggMWJhNzI4OTY4NGFh
+Li5kYjQ4YTFkYWNhMGMgMTAwNjQ0Cj4+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvaW5zdG1lbS9udjUwLmMKPj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9udmttL3N1YmRldi9pbnN0bWVtL252NTAuYwo+PiA+IEBAIC0yNDksNyArMjQ5LDcgQEAg
+bnY1MF9pbnN0b2JqX2FjcXVpcmUoc3RydWN0IG52a21fbWVtb3J5ICptZW1vcnkpCj4+ID4gICAg
+ICAgICAgICAgICAgICAgICAgICAgaW9iai0+YmFzZS5tZW1vcnkucHRycyA9ICZudjUwX2luc3Rv
+YmpfZmFzdDsKPj4gPiAgICAgICAgICAgICAgICAgZWxzZQo+PiA+ICAgICAgICAgICAgICAgICAg
+ICAgICAgIGlvYmotPmJhc2UubWVtb3J5LnB0cnMgPSAmbnY1MF9pbnN0b2JqX3Nsb3c7Cj4+ID4g
+LSAgICAgICAgICAgICAgIHJlZmNvdW50X2luYygmaW9iai0+bWFwcyk7Cj4+ID4gKyAgICAgICAg
+ICAgICAgIHJlZmNvdW50X3NldCgmaW9iai0+bWFwcywgMSk7Cj4+ID4gICAgICAgICB9Cj4+ID4K
+Pj4gPiAgICAgICAgIG11dGV4X3VubG9jaygmaW1lbS0+c3ViZGV2Lm11dGV4KTsKPj4gPiAtLQo+
+PiA+IDIuMTEuMAo+PiA+Cj4+Cj4+IFBpbmc/Cj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCj4+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
+dXZlYXUK
