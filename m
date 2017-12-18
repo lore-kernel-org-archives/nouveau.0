@@ -1,16 +1,13 @@
-From: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/imem/nv50: fix incorrect use of
- refcount API
-Date: Mon, 18 Dec 2017 14:19:43 +0100
-Message-ID: <CAKv+Gu9uehQXO3nKKPt0-YKDwDmbt0vHR=OO6=f0jpYd_8=sdg@mail.gmail.com>
-References: <20171208183034.9027-1-ard.biesheuvel@linaro.org>
- <CAKv+Gu-2xLOZjvDM7-PtxsQJKPdO1H5DgBL7zA91HSMa23=zPg@mail.gmail.com>
- <20171218121628.akfvzmlvqvkbtjno@pmoreau.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+	rescan
+Date: Mon, 18 Dec 2017 16:06:55 +0000
+Message-ID: <bug-75985-8800-r5Ttzd7xFt@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0860105968=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20171218121628.akfvzmlvqvkbtjno-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,52 +17,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ard Biesheuvel <ard.biesheuvel-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Daniel Thompson <daniel.thompson-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>, Masami Hiramatsu <masami.hiramatsu-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>, "ollapse-all>:" <setcollapse_unread=no-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTggRGVjZW1iZXIgMjAxNyBhdCAxMzoxNiwgUGllcnJlIE1vcmVhdSA8cGllcnJlLm1vcnJv
-d0BmcmVlLmZyPiB3cm90ZToKPiBIZXkgQXJkLAo+Cj4gSXQgc2VlbXMgdGhhdCBCZW4gYWxyZWFk
-eSBjb21taXR0ZWQgYSBzaW1pbGFyIHBhdGNoIHRvIGhpcyB0cmVlIChzZWUgWzBdKS4gSSBkbwo+
-IG5vdCBrbm93IHdoZXRoZXIgaGUgaXMgcGxhbm5pbmcgdG8gaGF2ZSBpdCBwYXJ0IG9mIGEgcHVs
-bCByZXF1ZXN0IG9mIGZpeGVzIGZvcgo+IDQuMTUuCj4KCkhpIFBpZXJyZSwKClRoYW5rcyBmb3Ig
-dGhlIHJlcGx5LiBJZiBhIGZpeCBoYXMgYmVlbiBxdWV1ZWQsIEkgZG9uJ3QgbWluZCBsZWF2aW5n
-Cml0IHVwIHRvIEJlbiB0byBkZWNpZGUgd2hlbiBpdCBnZXRzIHNlbnQgb253YXJkcy4KCi0tIApB
-cmQuCgo+IFswXTogaHR0cHM6Ly9naXRodWIuY29tL3NrZWdnc2Ivbm91dmVhdS9jb21taXQvOTA2
-OGYxZGYyMzk0ZjBlNGFiMmIyYTI4Y2FjMDZiNDYyZmUwYTBhYQo+Cj4gT24gMjAxNy0xMi0xOCDi
-gJQgMDk6MjcsIEFyZCBCaWVzaGV1dmVsIHdyb3RlOgo+PiBPbiA4IERlY2VtYmVyIDIwMTcgYXQg
-MTk6MzAsIEFyZCBCaWVzaGV1dmVsIDxhcmQuYmllc2hldXZlbEBsaW5hcm8ub3JnPiB3cm90ZToK
-Pj4gPiBDb21taXQgYmU1NTI4N2FhNWIgKCJkcm0vbm91dmVhdS9pbWVtL252NTA6IGVtYmVkIG52
-a21faW5zdG9iaiBkaXJlY3RseQo+PiA+IGludG8gbnYwNF9pbnN0b2JqIikgaW50cm9kdWNlZCBz
-b21lIG5ldyBjYWxscyB0byB0aGUgcmVmY291bnQgYXBpIHRvCj4+ID4gdGhlIG52NTAgbWFwcGlu
-ZyBjb2RlLiBJbiBvbmUgcGFydGljdWxhciBpbnN0YW5jZSwgaXQgZG9lcyB0aGUKPj4gPiBmb2xs
-b3dpbmc6Cj4+ID4KPj4gPiAgICAgaWYgKCFyZWZjb3VudF9pbmNfbm90X3plcm8oJmlvYmotPm1h
-cHMpKSB7Cj4+ID4gICAgICAgICAgICAgLi4uCj4+ID4gICAgICAgICAgICAgcmVmY291bnRfaW5j
-KCZpb2JqLT5tYXBzKTsKPj4gPiAgICAgfQo+PiA+Cj4+ID4gaS5lLiwgaXQgY2FsbHMgcmVmY291
-bnRfaW5jKCkgdG8gaW5jcmVtZW50IHRoZSByZWZjb3VudCB3aGVuIGl0IGlzIGtub3duCj4+ID4g
-dG8gYmUgemVybywgd2hpY2ggaXMgZXhwbGljaXRseSBmb3JiaWRkZW4gYnkgdGhlIEFQSS4gSW5z
-dGVhZCwgdXNlCj4+ID4gcmVmY291bnRfc2V0KCkgdG8gc2V0IGl0IHRvIDEuCj4+ID4KPj4gPiBT
-aWduZWQtb2ZmLWJ5OiBBcmQgQmllc2hldXZlbCA8YXJkLmJpZXNoZXV2ZWxAbGluYXJvLm9yZz4K
-Pj4gPiAtLS0KPj4gPgo+PiA+IEFwb2xvZ2llcyBpZiB0aGlzIHdhcyBhbHJlYWR5IGZvdW5kIGFu
-ZCBmaXhlZC4gSSBkb24ndCB1c3VhbGx5IGZvbGxvdwo+PiA+IHRoZSBEUk0gb3Igbm91dmVhdSBt
-YWlsaW5nIGxpc3RzLgo+PiA+Cj4+ID4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L2luc3RtZW0vbnY1MC5jIHwgMiArLQo+PiA+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRp
-b24oKyksIDEgZGVsZXRpb24oLSkKPj4gPgo+PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9udmttL3N1YmRldi9pbnN0bWVtL252NTAuYyBiL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L2luc3RtZW0vbnY1MC5jCj4+ID4gaW5kZXggMWJhNzI4OTY4NGFh
-Li5kYjQ4YTFkYWNhMGMgMTAwNjQ0Cj4+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bnZrbS9zdWJkZXYvaW5zdG1lbS9udjUwLmMKPj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9udmttL3N1YmRldi9pbnN0bWVtL252NTAuYwo+PiA+IEBAIC0yNDksNyArMjQ5LDcgQEAg
-bnY1MF9pbnN0b2JqX2FjcXVpcmUoc3RydWN0IG52a21fbWVtb3J5ICptZW1vcnkpCj4+ID4gICAg
-ICAgICAgICAgICAgICAgICAgICAgaW9iai0+YmFzZS5tZW1vcnkucHRycyA9ICZudjUwX2luc3Rv
-YmpfZmFzdDsKPj4gPiAgICAgICAgICAgICAgICAgZWxzZQo+PiA+ICAgICAgICAgICAgICAgICAg
-ICAgICAgIGlvYmotPmJhc2UubWVtb3J5LnB0cnMgPSAmbnY1MF9pbnN0b2JqX3Nsb3c7Cj4+ID4g
-LSAgICAgICAgICAgICAgIHJlZmNvdW50X2luYygmaW9iai0+bWFwcyk7Cj4+ID4gKyAgICAgICAg
-ICAgICAgIHJlZmNvdW50X3NldCgmaW9iai0+bWFwcywgMSk7Cj4+ID4gICAgICAgICB9Cj4+ID4K
-Pj4gPiAgICAgICAgIG11dGV4X3VubG9jaygmaW1lbS0+c3ViZGV2Lm11dGV4KTsKPj4gPiAtLQo+
-PiA+IDIuMTEuMAo+PiA+Cj4+Cj4+IFBpbmc/Cj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCj4+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+
+--===============0860105968==
+Content-Type: multipart/alternative; boundary="15136132151.C2C3.14537";
+ charset="UTF-8"
+
+
+--15136132151.C2C3.14537
+Date: Mon, 18 Dec 2017 16:06:55 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+
+--- Comment #21 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
+I checked the behaviour under Windows and it appears that Windows is doing =
+the
+above-mentioned PCI config space write when a HDMI cable is plugged in. I'm
+fairly sure that this is done "natively" by the windows driver (not in ACPI
+stuff). More info:
+https://devtalk.nvidia.com/default/topic/1024022/linux/gtx-1060-no-audio-ov=
+er-hdmi-only-hda-intel-detected-azalia/post/5227504/#5227504
+
+What would be the best way to implement this in nouveau? I'm unsure about t=
+he
+conditions we would want to do this under. Maybe something like:
+ 1. nouveau is driving the HDMI output using its own display controller, and
+ 2. HDMI cable is connected? (or maybe we enable HDMI audio all the time li=
+ke
+other platforms?)
+ 3. Only on GTX1060/GTX1070 which are the only cards where the 0x448 regist=
+er
+write has been confirmed to work?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15136132151.C2C3.14537
+Date: Mon, 18 Dec 2017 16:06:55 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c21">Commen=
+t # 21</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+dan&#64;reactivated.net" title=3D"Daniel Drake &lt;dan&#64;reactivated.net&=
+gt;"> <span class=3D"fn">Daniel Drake</span></a>
+</span></b>
+        <pre>I checked the behaviour under Windows and it appears that Wind=
+ows is doing the
+above-mentioned PCI config space write when a HDMI cable is plugged in. I'm
+fairly sure that this is done &quot;natively&quot; by the windows driver (n=
+ot in ACPI
+stuff). More info:
+<a href=3D"https://devtalk.nvidia.com/default/topic/1024022/linux/gtx-1060-=
+no-audio-over-hdmi-only-hda-intel-detected-azalia/post/5227504/#5227504">ht=
+tps://devtalk.nvidia.com/default/topic/1024022/linux/gtx-1060-no-audio-over=
+-hdmi-only-hda-intel-detected-azalia/post/5227504/#5227504</a>
+
+What would be the best way to implement this in nouveau? I'm unsure about t=
+he
+conditions we would want to do this under. Maybe something like:
+ 1. nouveau is driving the HDMI output using its own display controller, and
+ 2. HDMI cable is connected? (or maybe we enable HDMI audio all the time li=
+ke
+other platforms?)
+ 3. Only on GTX1060/GTX1070 which are the only cards where the 0x448 regist=
+er
+write has been confirmed to work?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15136132151.C2C3.14537--
+
+--===============0860105968==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0860105968==--
