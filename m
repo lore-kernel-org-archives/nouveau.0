@@ -1,18 +1,20 @@
-From: Josef Larsson <josef.lar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Subject: Re: [PATCH] Accept 3d controllers and not only VGA
- controllers.
-Date: Mon, 18 Dec 2017 18:30:59 +0100
-Message-ID: <3e6c20d5-220f-50c7-443a-6a0fa9f5a920@gmail.com>
+	controllers.
+Date: Mon, 18 Dec 2017 18:36:18 +0100
+Message-ID: <CACO55ts3ySHV-uTq0=1_XwS7M_5enmSATx0MBeChDPLd5p5ZNg@mail.gmail.com>
 References: <91cc0a88-96b5-9099-2add-37bee1127eda@gmail.com>
  <833b7158-c15d-0f4f-b003-8b7b8810a74a@mni.thm.de>
  <1db4b522-25bf-def4-cdea-d9059a56d19e@gmail.com>
  <4dc8a92d-387c-84a0-17df-2cfcca12f1b3@mni.thm.de>
  <CACAvsv6Kp9f=FsQXVb5CKqn2T9VBPsZ9Jy6U_sfYQvYOdpjscQ@mail.gmail.com>
  <F91B2492-20E5-48AE-8CC7-97A0063E792C@gmail.com>
+ <3e6c20d5-220f-50c7-443a-6a0fa9f5a920@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1876731857=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <F91B2492-20E5-48AE-8CC7-97A0063E792C-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <3e6c20d5-220f-50c7-443a-6a0fa9f5a920-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,252 +24,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Josef Larsson <josef.lar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1876731857==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="ax1lLSmU2r6i8a6T1gv980WmV9ewAqhKS"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---ax1lLSmU2r6i8a6T1gv980WmV9ewAqhKS
-Content-Type: multipart/mixed; boundary="RT0grgHekTkCEeBiA71lU2D15GbmQaNMW";
- protected-headers="v1"
-From: Josef Larsson <josef.lar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-To: Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org,
- Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>,
- Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Message-ID: <3e6c20d5-220f-50c7-443a-6a0fa9f5a920-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH] Accept 3d controllers and not only VGA
- controllers.
-References: <91cc0a88-96b5-9099-2add-37bee1127eda-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
- <833b7158-c15d-0f4f-b003-8b7b8810a74a-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
- <1db4b522-25bf-def4-cdea-d9059a56d19e-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
- <4dc8a92d-387c-84a0-17df-2cfcca12f1b3-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
- <CACAvsv6Kp9f=FsQXVb5CKqn2T9VBPsZ9Jy6U_sfYQvYOdpjscQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
- <F91B2492-20E5-48AE-8CC7-97A0063E792C-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-In-Reply-To: <F91B2492-20E5-48AE-8CC7-97A0063E792C-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-
---RT0grgHekTkCEeBiA71lU2D15GbmQaNMW
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
-
-Without a NULL pointer safe-guard patch, I get a kernel oops when I plug
-in external displays in my docking station, (exactly the same issue as
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101778) and without
-removing or modifying the check (accepting PCI_CLASS_DISPLAY_3D in the
-if-condition), I cannot use external displays through my docking
-station. This is on an optimus system where I use reverse PRIME to be
-able to use the connectors at all. Having some kind of safe-guard makes
-sense to me, and that is available in the i915-driver of the
-corresponding functions.
-
-If there are better patches to fix my two problems, I am willing to try
-them out, because I really think this should be handled somehow.
-
-One note though: These patches do not make the docking station
-experience perfect. They only make it not quite as bad. For example,
-undocking when using external displays forces Xorg to restart, and when
-docking without a patch for xf86-video-nouveau DDX by Ilia Mirkin
-(https://people.freedesktop.org/~imirkin/patches/0001-drmmode-update-logi=
-c-for-dynamic-connectors-paths-an.patch),
-the external docking station displays are not detected.
-
-
-On 2017-12-14 23:59, Karol Herbst wrote:
->
-> On 14 December 2017 11:55:35 p.m. GMT+01:00, Ben Skeggs <skeggsb@gmail.=
-com> wrote:
->> On 14 December 2017 at 23:45, Tobias Klausmann
->> <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> wrote:
->>> On 12/3/17 8:56 PM, Josef Larsson wrote:
->>>> Sure, I can easily split it into two commits, but I would like to
->> have
->>>> an OK on the actual code changes before splitting the patch.
->> I'm not actually sure this is a good idea still.  As I recall, part of=
-
->> the purpose of that check is to prevent nouveau taking over as the
->> primary fbcon when it's the secondary display in the system.  ie.
->> Optimus system with Intel driving the display, NVIDIA GPU has no
->> displays attached.  If nouveau loads first, at some point in history,
->> you'd have ended up with a blank console.
->>
->> I'm not sure if this is still the case, but it warrants checking
->> before making this change.
->>
->> I'm more interested in what this actually solves, and why not having
->> fbcon prevents external displays from being used.
->>
->> Ben.
->>
-> I think the issue is we can't really put any trust in this. my kepler G=
-PU on my laptop is a VGA device, not a 3D accelerator, even though everyt=
-hing is wird to intel, it is a MXM card though, so in theory it is able t=
-o drive displays.
->
-> We need something else to detect if the GPU is the main one or not.
->
->>>> Best regards,
->>>>
->>>> Josef Larsson
->>>>
->>>>
->>>> On 2017-11-11 01:05, Tobias Klausmann wrote:
->>>>> On 11/10/17 7:49 PM, Josef Larsson wrote:
->>>>>> Accept 3d controllers and not only VGA controllers. According to
->> Ilia
->>>>>> Mirkin,
->>>>>> the VGA controller check should be removed. This makes it possible=
-
->>>>>> to use external connectors on a docking station (40A5) for a
->> Thinkpad
->>>>>> P51.
->>>>>> (See Bug 101778).
->>>>>>
->>>>>> lspci example:
->>>>>>
->>>>>> 01:00.0 3D controller: NVIDIA Corporation GM107GLM [Quadro M1200
->> Mobile]
->>>>>> (rev a2)
->>>>>>
->>>>>> Also include safe-guards to avoid NULL dereferencing of fbcon,
->> which is
->>>>>> how this bug was found.
->>>>>> ---
->>>>>>    drivers/gpu/drm/nouveau/nouveau_fbcon.c |  3 +--
->>>>>>    drivers/gpu/drm/nouveau/nv50_display.c  | 13 +++++++++++++
->>>>>>    2 files changed, 14 insertions(+), 2 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
->>>>>> b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
->>>>>> index 2b12d82aac15..6b4d374a9d82 100644
->>>>>> --- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
->>>>>> +++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
->>>>>> @@ -498,8 +498,7 @@ nouveau_fbcon_init(struct drm_device *dev)
->>>>>>        int preferred_bpp;
->>>>>>        int ret;
->>>>>>    -    if (!dev->mode_config.num_crtc ||
->>>>>> -        (dev->pdev->class >> 8) !=3D PCI_CLASS_DISPLAY_VGA)
->>>>>> +    if (!dev->mode_config.num_crtc)
->>>>>>            return 0;
->>>>>>          fbcon =3D kzalloc(sizeof(struct nouveau_fbdev),
->> GFP_KERNEL);
->>>>>> diff --git a/drivers/gpu/drm/nouveau/nv50_display.c
->>>>>> b/drivers/gpu/drm/nouveau/nv50_display.c
->>>>>> index fb47d46050ec..061daf036407 100644
->>>>>> --- a/drivers/gpu/drm/nouveau/nv50_display.c
->>>>>> +++ b/drivers/gpu/drm/nouveau/nv50_display.c
->>>>>> @@ -3214,6 +3214,13 @@ nv50_mstm_destroy_connector(struct
->>>>>> drm_dp_mst_topology_mgr *mgr,
->>>>>>        struct nouveau_drm *drm =3D nouveau_drm(connector->dev);
->>>>>>        struct nv50_mstc *mstc =3D nv50_mstc(connector);
->>>>>>    +    if (!drm->fbcon)
->>>>>> +    {
->>>>>> +        NV_WARN(drm, "drm->fbcon of %s point to NULL. Will not
->> destroy
->>>>>> connector\n",
->>>>>> +            connector->name);
->>>>>> +        return;
->>>>>> +    }
->>>>>> +
->>>>>>        drm_connector_unregister(&mstc->connector);
->>>>>>          drm_modeset_lock_all(drm->dev);
->>>>>> @@ -3229,6 +3236,12 @@ nv50_mstm_register_connector(struct
->> drm_connector
->>>>>> *connector)
->>>>>>    {
->>>>>>        struct nouveau_drm *drm =3D nouveau_drm(connector->dev);
->>>>>>    +    if (!drm->fbcon)
->>>>>> +    {
->>>>>> +        NV_WARN(drm, "drm->fbcon of %s point to NULL. Will not
->> register
->>>>>> connector\n",
->>>>>> +            connector->name);
->>>>>> +        return;
->>>>>> +    }
->>>>>>        drm_modeset_lock_all(drm->dev);
->>>>>>        drm_fb_helper_add_one_connector(&drm->fbcon->helper,
->> connector);
->>>>>>        drm_modeset_unlock_all(drm->dev);
->>>>>>
->>>>>>
->>>>> Hi,
->>>>>
->>>>> the patch looks OK to me, yet as noted in IRC, i'd like to have
->> this
->>>>> patch split into two and have the ->fbcon check as a precondition
->> to
->>>>> the 3D Controller part. But lets see what the other and more clever=
-
->>>>> people think about it! :)
->>>>>
->>>>> Greetings,
->>>>>
->>>>> Tobias
->>>>>
->>> Ping,
->>>
->>> adding Ben Skeggs and Dave Airlied to CC, maybe this will get this
->> little
->>> one commited!
->>>
->>>
->>> Greetings,
->>>
->>> Tobias
->>>
->>>
->>> _______________________________________________
->>> Nouveau mailing list
->>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->>> https://lists.freedesktop.org/mailman/listinfo/nouveau
->> _______________________________________________
->> Nouveau mailing list
->> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> https://lists.freedesktop.org/mailman/listinfo/nouveau
-
-
-
---RT0grgHekTkCEeBiA71lU2D15GbmQaNMW--
-
---ax1lLSmU2r6i8a6T1gv980WmV9ewAqhKS
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQJIBAEBCAAyFiEEXOZ5DdYY2uMl8/NHxUD9C+gJpGAFAlo3+1MUHGpvc2VmLmxh
-ckBnbWFpbC5jb20ACgkQxUD9C+gJpGDknA/+NTMY51ivqS/1pgFwWwhnmpHb2AiE
-SeViPELHyyFQAk/uey14+PjvmcUYOS+pLWPHJXr4H92Sg19t6eeaUNzOOUly1aVU
-NZWDiWDM+6I2TG2w5FxRjvwC7pyLKzUwWCHwIG1ebm92NbGa6CND7ChGLLHqUJ/F
-w+rDTg9n6jhthIlCcfUybapnO/pwyXURamElwc/2d5QEm3FKPn1HVrDFkdAMF67n
-ZWRebOy7pzlEAVSMjgr2wYWX+ramtC+8cfuBrlRmykw/PhgSIKvnht1+TYR3csy6
-C+fHJ1v+/iKa+zPbKsuqoo3YolUdJuOxEVFcZEK0rwZBwf6m0OjC+6wYcGoK+RHO
-iMGka1yGVQMIqNlcsby6EB+jiw4AZAu4qQxI9UX+DYMyxsvdIz4T0nphBIlXKOLu
-hW6lj4UoQJ0tF2QwewWelaEqeXlVXKxIN1mV8tpR5gxvdOFJ2xOyneOLu+TkjBQk
-PSblvUXcnk/n2EVJ0vEeYp6TAWp2KQ6sYP2pe/xjBSA0KOaKZ8GXRqI/G20fYEAn
-pc9UDMWH3+EwDzYb6g8Zt3GKKlRgNiK2wcioyEArbqgDqwbC+CQ6VjGNLbhvACPG
-WcY4YgEo/1D+x59Gm+Ns0w8+k5NB9e0ZcQtKy0lfrKLhf8ZpF2KgJyRa0doDicgI
-iwvR+KwTMJvGebI=
-=mTka
------END PGP SIGNATURE-----
-
---ax1lLSmU2r6i8a6T1gv980WmV9ewAqhKS--
-
---===============1876731857==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1876731857==--
+SSd2ZSBkaXNjdXNzZWQgaXQgd2l0aCBCZW4gYW5kIHdlIGFjdHVhbGx5IGZvdW5kIGEgYmV0dGVy
+IHNvbHV0aW9uLgpUaGVyZSBhcmUganVzdCBzb21lIGNhbGxzIGluc2lkZSB0aG9zZSBmdW5jdGlv
+bnMgd2hpY2ggc2hvdWxkIGdldCBOVUxMCmNoZWNrcywgbnY1MF9tc3RtX3JlZ2lzdGVyX2Nvbm5l
+Y3RvciBhbmQgbnY1MF9tc3RtX2Rlc3Ryb3lfY29ubmVjdG9yLgpPciBhdCBsZWFzdCBzb21ldGhp
+bmcgc2ltaWxpYXIgc28gdGhhdCB0aGUgY29kZSBkb2Vzbid0IGRlcGVudCBvbiB0aGUKZmJjb24g
+b2JqZWN0IGJlaW5nIHRoZXJlLgoKT24gTW9uLCBEZWMgMTgsIDIwMTcgYXQgNjozMCBQTSwgSm9z
+ZWYgTGFyc3NvbiA8am9zZWYubGFyQGdtYWlsLmNvbT4gd3JvdGU6Cj4gV2l0aG91dCBhIE5VTEwg
+cG9pbnRlciBzYWZlLWd1YXJkIHBhdGNoLCBJIGdldCBhIGtlcm5lbCBvb3BzIHdoZW4gSSBwbHVn
+Cj4gaW4gZXh0ZXJuYWwgZGlzcGxheXMgaW4gbXkgZG9ja2luZyBzdGF0aW9uLCAoZXhhY3RseSB0
+aGUgc2FtZSBpc3N1ZSBhcwo+IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcu
+Y2dpP2lkPTEwMTc3OCkgYW5kIHdpdGhvdXQKPiByZW1vdmluZyBvciBtb2RpZnlpbmcgdGhlIGNo
+ZWNrIChhY2NlcHRpbmcgUENJX0NMQVNTX0RJU1BMQVlfM0QgaW4gdGhlCj4gaWYtY29uZGl0aW9u
+KSwgSSBjYW5ub3QgdXNlIGV4dGVybmFsIGRpc3BsYXlzIHRocm91Z2ggbXkgZG9ja2luZwo+IHN0
+YXRpb24uIFRoaXMgaXMgb24gYW4gb3B0aW11cyBzeXN0ZW0gd2hlcmUgSSB1c2UgcmV2ZXJzZSBQ
+UklNRSB0byBiZQo+IGFibGUgdG8gdXNlIHRoZSBjb25uZWN0b3JzIGF0IGFsbC4gSGF2aW5nIHNv
+bWUga2luZCBvZiBzYWZlLWd1YXJkIG1ha2VzCj4gc2Vuc2UgdG8gbWUsIGFuZCB0aGF0IGlzIGF2
+YWlsYWJsZSBpbiB0aGUgaTkxNS1kcml2ZXIgb2YgdGhlCj4gY29ycmVzcG9uZGluZyBmdW5jdGlv
+bnMuCj4KPiBJZiB0aGVyZSBhcmUgYmV0dGVyIHBhdGNoZXMgdG8gZml4IG15IHR3byBwcm9ibGVt
+cywgSSBhbSB3aWxsaW5nIHRvIHRyeQo+IHRoZW0gb3V0LCBiZWNhdXNlIEkgcmVhbGx5IHRoaW5r
+IHRoaXMgc2hvdWxkIGJlIGhhbmRsZWQgc29tZWhvdy4KPgo+IE9uZSBub3RlIHRob3VnaDogVGhl
+c2UgcGF0Y2hlcyBkbyBub3QgbWFrZSB0aGUgZG9ja2luZyBzdGF0aW9uCj4gZXhwZXJpZW5jZSBw
+ZXJmZWN0LiBUaGV5IG9ubHkgbWFrZSBpdCBub3QgcXVpdGUgYXMgYmFkLiBGb3IgZXhhbXBsZSwK
+PiB1bmRvY2tpbmcgd2hlbiB1c2luZyBleHRlcm5hbCBkaXNwbGF5cyBmb3JjZXMgWG9yZyB0byBy
+ZXN0YXJ0LCBhbmQgd2hlbgo+IGRvY2tpbmcgd2l0aG91dCBhIHBhdGNoIGZvciB4Zjg2LXZpZGVv
+LW5vdXZlYXUgRERYIGJ5IElsaWEgTWlya2luCj4gKGh0dHBzOi8vcGVvcGxlLmZyZWVkZXNrdG9w
+Lm9yZy9+aW1pcmtpbi9wYXRjaGVzLzAwMDEtZHJtbW9kZS11cGRhdGUtbG9naWMtZm9yLWR5bmFt
+aWMtY29ubmVjdG9ycy1wYXRocy1hbi5wYXRjaCksCj4gdGhlIGV4dGVybmFsIGRvY2tpbmcgc3Rh
+dGlvbiBkaXNwbGF5cyBhcmUgbm90IGRldGVjdGVkLgo+Cj4KPiBPbiAyMDE3LTEyLTE0IDIzOjU5
+LCBLYXJvbCBIZXJic3Qgd3JvdGU6Cj4+Cj4+IE9uIDE0IERlY2VtYmVyIDIwMTcgMTE6NTU6MzUg
+cC5tLiBHTVQrMDE6MDAsIEJlbiBTa2VnZ3MgPHNrZWdnc2JAZ21haWwuY29tPiB3cm90ZToKPj4+
+IE9uIDE0IERlY2VtYmVyIDIwMTcgYXQgMjM6NDUsIFRvYmlhcyBLbGF1c21hbm4KPj4+IDx0b2Jp
+YXMuam9oYW5uZXMua2xhdXNtYW5uQG1uaS50aG0uZGU+IHdyb3RlOgo+Pj4+IE9uIDEyLzMvMTcg
+ODo1NiBQTSwgSm9zZWYgTGFyc3NvbiB3cm90ZToKPj4+Pj4gU3VyZSwgSSBjYW4gZWFzaWx5IHNw
+bGl0IGl0IGludG8gdHdvIGNvbW1pdHMsIGJ1dCBJIHdvdWxkIGxpa2UgdG8KPj4+IGhhdmUKPj4+
+Pj4gYW4gT0sgb24gdGhlIGFjdHVhbCBjb2RlIGNoYW5nZXMgYmVmb3JlIHNwbGl0dGluZyB0aGUg
+cGF0Y2guCj4+PiBJJ20gbm90IGFjdHVhbGx5IHN1cmUgdGhpcyBpcyBhIGdvb2QgaWRlYSBzdGls
+bC4gIEFzIEkgcmVjYWxsLCBwYXJ0IG9mCj4+PiB0aGUgcHVycG9zZSBvZiB0aGF0IGNoZWNrIGlz
+IHRvIHByZXZlbnQgbm91dmVhdSB0YWtpbmcgb3ZlciBhcyB0aGUKPj4+IHByaW1hcnkgZmJjb24g
+d2hlbiBpdCdzIHRoZSBzZWNvbmRhcnkgZGlzcGxheSBpbiB0aGUgc3lzdGVtLiAgaWUuCj4+PiBP
+cHRpbXVzIHN5c3RlbSB3aXRoIEludGVsIGRyaXZpbmcgdGhlIGRpc3BsYXksIE5WSURJQSBHUFUg
+aGFzIG5vCj4+PiBkaXNwbGF5cyBhdHRhY2hlZC4gIElmIG5vdXZlYXUgbG9hZHMgZmlyc3QsIGF0
+IHNvbWUgcG9pbnQgaW4gaGlzdG9yeSwKPj4+IHlvdSdkIGhhdmUgZW5kZWQgdXAgd2l0aCBhIGJs
+YW5rIGNvbnNvbGUuCj4+Pgo+Pj4gSSdtIG5vdCBzdXJlIGlmIHRoaXMgaXMgc3RpbGwgdGhlIGNh
+c2UsIGJ1dCBpdCB3YXJyYW50cyBjaGVja2luZwo+Pj4gYmVmb3JlIG1ha2luZyB0aGlzIGNoYW5n
+ZS4KPj4+Cj4+PiBJJ20gbW9yZSBpbnRlcmVzdGVkIGluIHdoYXQgdGhpcyBhY3R1YWxseSBzb2x2
+ZXMsIGFuZCB3aHkgbm90IGhhdmluZwo+Pj4gZmJjb24gcHJldmVudHMgZXh0ZXJuYWwgZGlzcGxh
+eXMgZnJvbSBiZWluZyB1c2VkLgo+Pj4KPj4+IEJlbi4KPj4+Cj4+IEkgdGhpbmsgdGhlIGlzc3Vl
+IGlzIHdlIGNhbid0IHJlYWxseSBwdXQgYW55IHRydXN0IGluIHRoaXMuIG15IGtlcGxlciBHUFUg
+b24gbXkgbGFwdG9wIGlzIGEgVkdBIGRldmljZSwgbm90IGEgM0QgYWNjZWxlcmF0b3IsIGV2ZW4g
+dGhvdWdoIGV2ZXJ5dGhpbmcgaXMgd2lyZCB0byBpbnRlbCwgaXQgaXMgYSBNWE0gY2FyZCB0aG91
+Z2gsIHNvIGluIHRoZW9yeSBpdCBpcyBhYmxlIHRvIGRyaXZlIGRpc3BsYXlzLgo+Pgo+PiBXZSBu
+ZWVkIHNvbWV0aGluZyBlbHNlIHRvIGRldGVjdCBpZiB0aGUgR1BVIGlzIHRoZSBtYWluIG9uZSBv
+ciBub3QuCj4+Cj4+Pj4+IEJlc3QgcmVnYXJkcywKPj4+Pj4KPj4+Pj4gSm9zZWYgTGFyc3Nvbgo+
+Pj4+Pgo+Pj4+Pgo+Pj4+PiBPbiAyMDE3LTExLTExIDAxOjA1LCBUb2JpYXMgS2xhdXNtYW5uIHdy
+b3RlOgo+Pj4+Pj4gT24gMTEvMTAvMTcgNzo0OSBQTSwgSm9zZWYgTGFyc3NvbiB3cm90ZToKPj4+
+Pj4+PiBBY2NlcHQgM2QgY29udHJvbGxlcnMgYW5kIG5vdCBvbmx5IFZHQSBjb250cm9sbGVycy4g
+QWNjb3JkaW5nIHRvCj4+PiBJbGlhCj4+Pj4+Pj4gTWlya2luLAo+Pj4+Pj4+IHRoZSBWR0EgY29u
+dHJvbGxlciBjaGVjayBzaG91bGQgYmUgcmVtb3ZlZC4gVGhpcyBtYWtlcyBpdCBwb3NzaWJsZQo+
+Pj4+Pj4+IHRvIHVzZSBleHRlcm5hbCBjb25uZWN0b3JzIG9uIGEgZG9ja2luZyBzdGF0aW9uICg0
+MEE1KSBmb3IgYQo+Pj4gVGhpbmtwYWQKPj4+Pj4+PiBQNTEuCj4+Pj4+Pj4gKFNlZSBCdWcgMTAx
+Nzc4KS4KPj4+Pj4+Pgo+Pj4+Pj4+IGxzcGNpIGV4YW1wbGU6Cj4+Pj4+Pj4KPj4+Pj4+PiAwMTow
+MC4wIDNEIGNvbnRyb2xsZXI6IE5WSURJQSBDb3Jwb3JhdGlvbiBHTTEwN0dMTSBbUXVhZHJvIE0x
+MjAwCj4+PiBNb2JpbGVdCj4+Pj4+Pj4gKHJldiBhMikKPj4+Pj4+Pgo+Pj4+Pj4+IEFsc28gaW5j
+bHVkZSBzYWZlLWd1YXJkcyB0byBhdm9pZCBOVUxMIGRlcmVmZXJlbmNpbmcgb2YgZmJjb24sCj4+
+PiB3aGljaCBpcwo+Pj4+Pj4+IGhvdyB0aGlzIGJ1ZyB3YXMgZm91bmQuCj4+Pj4+Pj4gLS0tCj4+
+Pj4+Pj4gICAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jIHwgIDMgKy0t
+Cj4+Pj4+Pj4gICAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMgIHwgMTMg
+KysrKysrKysrKysrKwo+Pj4+Pj4+ICAgIDIgZmlsZXMgY2hhbmdlZCwgMTQgaW5zZXJ0aW9ucygr
+KSwgMiBkZWxldGlvbnMoLSkKPj4+Pj4+Pgo+Pj4+Pj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMKPj4+Pj4+PiBiL2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L25vdXZlYXVfZmJjb24uYwo+Pj4+Pj4+IGluZGV4IDJiMTJkODJhYWMxNS4uNmI0ZDM3
+NGE5ZDgyIDEwMDY0NAo+Pj4+Pj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
+YXVfZmJjb24uYwo+Pj4+Pj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
+ZmJjb24uYwo+Pj4+Pj4+IEBAIC00OTgsOCArNDk4LDcgQEAgbm91dmVhdV9mYmNvbl9pbml0KHN0
+cnVjdCBkcm1fZGV2aWNlICpkZXYpCj4+Pj4+Pj4gICAgICAgIGludCBwcmVmZXJyZWRfYnBwOwo+
+Pj4+Pj4+ICAgICAgICBpbnQgcmV0Owo+Pj4+Pj4+ICAgIC0gICAgaWYgKCFkZXYtPm1vZGVfY29u
+ZmlnLm51bV9jcnRjIHx8Cj4+Pj4+Pj4gLSAgICAgICAgKGRldi0+cGRldi0+Y2xhc3MgPj4gOCkg
+IT0gUENJX0NMQVNTX0RJU1BMQVlfVkdBKQo+Pj4+Pj4+ICsgICAgaWYgKCFkZXYtPm1vZGVfY29u
+ZmlnLm51bV9jcnRjKQo+Pj4+Pj4+ICAgICAgICAgICAgcmV0dXJuIDA7Cj4+Pj4+Pj4gICAgICAg
+ICAgZmJjb24gPSBremFsbG9jKHNpemVvZihzdHJ1Y3Qgbm91dmVhdV9mYmRldiksCj4+PiBHRlBf
+S0VSTkVMKTsKPj4+Pj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1
+MF9kaXNwbGF5LmMKPj4+Pj4+PiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxh
+eS5jCj4+Pj4+Pj4gaW5kZXggZmI0N2Q0NjA1MGVjLi4wNjFkYWYwMzY0MDcgMTAwNjQ0Cj4+Pj4+
+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMKPj4+Pj4+PiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwo+Pj4+Pj4+IEBAIC0z
+MjE0LDYgKzMyMTQsMTMgQEAgbnY1MF9tc3RtX2Rlc3Ryb3lfY29ubmVjdG9yKHN0cnVjdAo+Pj4+
+Pj4+IGRybV9kcF9tc3RfdG9wb2xvZ3lfbWdyICptZ3IsCj4+Pj4+Pj4gICAgICAgIHN0cnVjdCBu
+b3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oY29ubmVjdG9yLT5kZXYpOwo+Pj4+Pj4+ICAg
+ICAgICBzdHJ1Y3QgbnY1MF9tc3RjICptc3RjID0gbnY1MF9tc3RjKGNvbm5lY3Rvcik7Cj4+Pj4+
+Pj4gICAgKyAgICBpZiAoIWRybS0+ZmJjb24pCj4+Pj4+Pj4gKyAgICB7Cj4+Pj4+Pj4gKyAgICAg
+ICAgTlZfV0FSTihkcm0sICJkcm0tPmZiY29uIG9mICVzIHBvaW50IHRvIE5VTEwuIFdpbGwgbm90
+Cj4+PiBkZXN0cm95Cj4+Pj4+Pj4gY29ubmVjdG9yXG4iLAo+Pj4+Pj4+ICsgICAgICAgICAgICBj
+b25uZWN0b3ItPm5hbWUpOwo+Pj4+Pj4+ICsgICAgICAgIHJldHVybjsKPj4+Pj4+PiArICAgIH0K
+Pj4+Pj4+PiArCj4+Pj4+Pj4gICAgICAgIGRybV9jb25uZWN0b3JfdW5yZWdpc3RlcigmbXN0Yy0+
+Y29ubmVjdG9yKTsKPj4+Pj4+PiAgICAgICAgICBkcm1fbW9kZXNldF9sb2NrX2FsbChkcm0tPmRl
+dik7Cj4+Pj4+Pj4gQEAgLTMyMjksNiArMzIzNiwxMiBAQCBudjUwX21zdG1fcmVnaXN0ZXJfY29u
+bmVjdG9yKHN0cnVjdAo+Pj4gZHJtX2Nvbm5lY3Rvcgo+Pj4+Pj4+ICpjb25uZWN0b3IpCj4+Pj4+
+Pj4gICAgewo+Pj4+Pj4+ICAgICAgICBzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVf
+ZHJtKGNvbm5lY3Rvci0+ZGV2KTsKPj4+Pj4+PiAgICArICAgIGlmICghZHJtLT5mYmNvbikKPj4+
+Pj4+PiArICAgIHsKPj4+Pj4+PiArICAgICAgICBOVl9XQVJOKGRybSwgImRybS0+ZmJjb24gb2Yg
+JXMgcG9pbnQgdG8gTlVMTC4gV2lsbCBub3QKPj4+IHJlZ2lzdGVyCj4+Pj4+Pj4gY29ubmVjdG9y
+XG4iLAo+Pj4+Pj4+ICsgICAgICAgICAgICBjb25uZWN0b3ItPm5hbWUpOwo+Pj4+Pj4+ICsgICAg
+ICAgIHJldHVybjsKPj4+Pj4+PiArICAgIH0KPj4+Pj4+PiAgICAgICAgZHJtX21vZGVzZXRfbG9j
+a19hbGwoZHJtLT5kZXYpOwo+Pj4+Pj4+ICAgICAgICBkcm1fZmJfaGVscGVyX2FkZF9vbmVfY29u
+bmVjdG9yKCZkcm0tPmZiY29uLT5oZWxwZXIsCj4+PiBjb25uZWN0b3IpOwo+Pj4+Pj4+ICAgICAg
+ICBkcm1fbW9kZXNldF91bmxvY2tfYWxsKGRybS0+ZGV2KTsKPj4+Pj4+Pgo+Pj4+Pj4+Cj4+Pj4+
+PiBIaSwKPj4+Pj4+Cj4+Pj4+PiB0aGUgcGF0Y2ggbG9va3MgT0sgdG8gbWUsIHlldCBhcyBub3Rl
+ZCBpbiBJUkMsIGknZCBsaWtlIHRvIGhhdmUKPj4+IHRoaXMKPj4+Pj4+IHBhdGNoIHNwbGl0IGlu
+dG8gdHdvIGFuZCBoYXZlIHRoZSAtPmZiY29uIGNoZWNrIGFzIGEgcHJlY29uZGl0aW9uCj4+PiB0
+bwo+Pj4+Pj4gdGhlIDNEIENvbnRyb2xsZXIgcGFydC4gQnV0IGxldHMgc2VlIHdoYXQgdGhlIG90
+aGVyIGFuZCBtb3JlIGNsZXZlcgo+Pj4+Pj4gcGVvcGxlIHRoaW5rIGFib3V0IGl0ISA6KQo+Pj4+
+Pj4KPj4+Pj4+IEdyZWV0aW5ncywKPj4+Pj4+Cj4+Pj4+PiBUb2JpYXMKPj4+Pj4+Cj4+Pj4gUGlu
+ZywKPj4+Pgo+Pj4+IGFkZGluZyBCZW4gU2tlZ2dzIGFuZCBEYXZlIEFpcmxpZWQgdG8gQ0MsIG1h
+eWJlIHRoaXMgd2lsbCBnZXQgdGhpcwo+Pj4gbGl0dGxlCj4+Pj4gb25lIGNvbW1pdGVkIQo+Pj4+
+Cj4+Pj4KPj4+PiBHcmVldGluZ3MsCj4+Pj4KPj4+PiBUb2JpYXMKPj4+Pgo+Pj4+Cj4+Pj4gX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+PiBOb3V2ZWF1
+IG1haWxpbmcgbGlzdAo+Pj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+Pj4gaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4+PiBf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4gTm91dmVh
+dSBtYWlsaW5nIGxpc3QKPj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+PiBodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPgo+Cj4K
+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZl
+YXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPgpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
+bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
