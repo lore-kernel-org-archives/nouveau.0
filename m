@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 88272] [NVAC] Flickering screen on 1920x1080 monitor
  with 9400M in MacbookPro 5, 5
-Date: Mon, 18 Dec 2017 18:28:23 +0000
-Message-ID: <bug-88272-8800-hvrhpbonRU@http.bugs.freedesktop.org/>
+Date: Mon, 18 Dec 2017 18:29:34 +0000
+Message-ID: <bug-88272-8800-zNqxv6ZLfq@http.bugs.freedesktop.org/>
 References: <bug-88272-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0969828816=="
+Content-Type: multipart/mixed; boundary="===============1314381312=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88272-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0969828816==
-Content-Type: multipart/alternative; boundary="15136217032.D7DC.15327";
+--===============1314381312==
+Content-Type: multipart/alternative; boundary="15136217731.033568.15635";
  charset="UTF-8"
 
 
---15136217032.D7DC.15327
-Date: Mon, 18 Dec 2017 18:28:23 +0000
+--15136217731.033568.15635
+Date: Mon, 18 Dec 2017 18:29:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D88272
 
---- Comment #6 from mbazzinotti-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 136254
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136254&action=3Dedit
-Bazz vbios
+--- Comment #7 from mbazzinotti-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 136255
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136255&action=3Dedit
+Bazz `xrandr` output
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15136217032.D7DC.15327
-Date: Mon, 18 Dec 2017 18:28:23 +0000
+--15136217731.033568.15635
+Date: Mon, 18 Dec 2017 18:29:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_ASSIGNED "
    title=3D"ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9=
 400M in MacbookPro 5,5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D88272#c6">Comment=
- # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D88272#c7">Comment=
+ # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_ASSIGNED "
    title=3D"ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9=
@@ -76,11 +76,11 @@ Auto-Submitted: auto-generated
 mbazzinotti&#64;gmail.com" title=3D"mbazzinotti&#64;gmail.com">mbazzinotti&=
 #64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136254=
-" name=3D"attach_136254" title=3D"Bazz vbios">attachment 136254</a> <a href=
-=3D"attachment.cgi?id=3D136254&amp;action=3Dedit" title=3D"Bazz vbios">[det=
-ails]</a></span>
-Bazz vbios</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136255=
+" name=3D"attach_136255" title=3D"Bazz `xrandr` output">attachment 136255</=
+a> <a href=3D"attachment.cgi?id=3D136255&amp;action=3Dedit" title=3D"Bazz `=
+xrandr` output">[details]</a></span>
+Bazz `xrandr` output</pre>
         </div>
       </p>
 
@@ -94,9 +94,9 @@ Bazz vbios</pre>
     </body>
 </html>=
 
---15136217032.D7DC.15327--
+--15136217731.033568.15635--
 
---===============0969828816==
+--===============1314381312==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0969828816==--
+--===============1314381312==--
