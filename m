@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88272] [NVAC] Flickering screen on 1920x1080 monitor
- with 9400M in MacbookPro 5, 5
-Date: Mon, 18 Dec 2017 18:29:34 +0000
-Message-ID: <bug-88272-8800-zNqxv6ZLfq@http.bugs.freedesktop.org/>
-References: <bug-88272-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: Re: nouveau. swiotlb: coherent allocation failed for
+ device 0000:01:00.0 size=2097152
+Date: Mon, 18 Dec 2017 20:01:23 +0100
+Message-ID: <a083d576-215f-eb76-278b-741fc65fb138@mni.thm.de>
+References: <1513620418.7113.51.camel@gmx.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1314381312=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88272-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1513620418.7113.51.camel-Mmb7MZpHnFY@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,93 +19,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1314381312==
-Content-Type: multipart/alternative; boundary="15136217731.033568.15635";
- charset="UTF-8"
-
-
---15136217731.033568.15635
-Date: Mon, 18 Dec 2017 18:29:33 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D88272
-
---- Comment #7 from mbazzinotti-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 136255
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136255&action=3Dedit
-Bazz `xrandr` output
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15136217731.033568.15635
-Date: Mon, 18 Dec 2017 18:29:33 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9=
-400M in MacbookPro 5,5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D88272#c7">Comment=
- # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9=
-400M in MacbookPro 5,5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D88272">bug 88272<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mbazzinotti&#64;gmail.com" title=3D"mbazzinotti&#64;gmail.com">mbazzinotti&=
-#64;gmail.com</a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136255=
-" name=3D"attach_136255" title=3D"Bazz `xrandr` output">attachment 136255</=
-a> <a href=3D"attachment.cgi?id=3D136255&amp;action=3Dedit" title=3D"Bazz `=
-xrandr` output">[details]</a></span>
-Bazz `xrandr` output</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15136217731.033568.15635--
-
---===============1314381312==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1314381312==--
+Ck9uIDEyLzE4LzE3IDc6MDYgUE0sIE1pa2UgR2FsYnJhaXRoIHdyb3RlOgo+IEdyZWV0aW5ncywK
+Pgo+IEtlcm5lbCBib3VuZCB3b3JrbG9hZHMgc2VlbSB0byB0cmlnZ2VyIHRoZSBiZWxvdyBmb3Ig
+d2hhdGV2ZXIgcmVhc29uLgo+ICDCoEkgb25seSBzZWUgdGhpcyB3aGVuIGJlYXRpbmcgdXAgTkZT
+LiDCoFRoZXJlIHdhcyBhIGt3b3JrZXIgd2FrZXVwCj4gbGF0ZW5jeSBpc3N1ZSwgYnV0IHdpdGgg
+YSBiYW5kYWlkIGFwcGxpZWQgdG8gZml4IHRoYXQgdXAsIEkgY2FuIHN0aWxsCj4gdHJpZ2dlciB0
+aGlzLgoKCkhpLAoKaSBoYXZlIHNlZW4gdGhpcyBvbmUgYXMgd2VsbCB3aXRoIG15IHN5c3RlbSwg
+YnV0IGkgY291bGQgbm90IGZpbmQgYW4gCmVhc3kgd2F5IHRvIHRyaWdnZXIgaXQgZm9yIGJpc2Vj
+dGluZyBwdXJwb3NlLiBJZiB5b3UgY2FuIHRyaWdnZXIgaXQgCmNvbnZlbmllbnRseSwgYSBiaXNl
+Y3Qgd291bGQgYmUgbmljZSEKCkdyZWV0aW5ncywKClRvYmlhcwoKCj4KPiBbIDEzMTMuODExMDMx
+XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogc3dpb3RsYiBidWZmZXIgaXMgZnVsbCAoc3o6IDIwOTcx
+NTIgYnl0ZXMpCj4gWyAxMzEzLjgxMTAzNV0gc3dpb3RsYjogY29oZXJlbnQgYWxsb2NhdGlvbiBm
+YWlsZWQgZm9yIGRldmljZSAwMDAwOjAxOjAwLjAgc2l6ZT0yMDk3MTUyCj4gWyAxMzEzLjgxMTAz
+OF0gQ1BVOiA2IFBJRDogMzAyNiBDb21tOiBYb3JnIFRhaW50ZWQ6IEcgICAgICAgICAgICBFICAg
+IDQuMTUuMC5nMTI5MWEwZDUtbWFzdGVyICMzNTUKPiBbIDEzMTMuODExMDQwXSBIYXJkd2FyZSBu
+YW1lOiBNRURJT04gTVMtNzg0OC9NUy03ODQ4LCBCSU9TIE03ODQ4VzA4LjIwQyAwOS8yMy8yMDEz
+Cj4gWyAxMzEzLjgxMTA0MV0gQ2FsbCBUcmFjZToKPiBbIDEzMTMuODExMDQ5XSAgZHVtcF9zdGFj
+aysweDdjLzB4YjYKPiBbIDEzMTMuODExMDUzXSAgc3dpb3RsYl9hbGxvY19jb2hlcmVudCsweDEz
+Zi8weDE1MAo+IFsgMTMxMy44MTEwNjBdICB0dG1fZG1hX3Bvb2xfYWxsb2NfbmV3X3BhZ2VzKzB4
+MTA2LzB4M2MwIFt0dG1dCj4gWyAxMzEzLjgxMTA2Nl0gIHR0bV9kbWFfcG9vbF9nZXRfcGFnZXMr
+MHgxMGEvMHgxZTAgW3R0bV0KPiBbIDEzMTMuODExMDcwXSAgdHRtX2RtYV9wb3B1bGF0ZSsweDIx
+Zi8weDJmMCBbdHRtXQo+IFsgMTMxMy44MTEwNzVdICB0dG1fdHRfYmluZCsweDJmLzB4NjAgW3R0
+bV0KPiBbIDEzMTMuODExMDc5XSAgdHRtX2JvX2hhbmRsZV9tb3ZlX21lbSsweDUxZi8weDU4MCBb
+dHRtXQo+IFsgMTMxMy44MTEwODRdICA/IHR0bV9ib19oYW5kbGVfbW92ZV9tZW0rMHg1LzB4NTgw
+IFt0dG1dCj4gWyAxMzEzLjgxMTA4OF0gIHR0bV9ib192YWxpZGF0ZSsweDEwYy8weDEyMCBbdHRt
+XQo+IFsgMTMxMy44MTEwOTJdICA/IHR0bV9ib192YWxpZGF0ZSsweDUvMHgxMjAgW3R0bV0KPiBb
+IDEzMTMuODExMTA2XSAgPyBkcm1fbW9kZV9zZXRjcnRjKzB4MjBlLzB4NTQwIFtkcm1dCj4gWyAx
+MzEzLjgxMTEwOV0gIHR0bV9ib19pbml0X3Jlc2VydmVkKzB4MjkwLzB4NDkwIFt0dG1dCj4gWyAx
+MzEzLjgxMTExNF0gIHR0bV9ib19pbml0KzB4NTIvMHhiMCBbdHRtXQo+IFsgMTMxMy44MTExNDFd
+ICA/IG52MTBfYm9fcHV0X3RpbGVfcmVnaW9uKzB4NjAvMHg2MCBbbm91dmVhdV0KPiBbIDEzMTMu
+ODExMTYzXSAgbm91dmVhdV9ib19uZXcrMHg0NjUvMHg1ZTAgW25vdXZlYXVdCj4gWyAxMzEzLjgx
+MTE4NF0gID8gbnYxMF9ib19wdXRfdGlsZV9yZWdpb24rMHg2MC8weDYwIFtub3V2ZWF1XQo+IFsg
+MTMxMy44MTEyMDNdICBub3V2ZWF1X2dlbV9uZXcrMHg2Ni8weDExMCBbbm91dmVhdV0KPiBbIDEz
+MTMuODExMjIzXSAgPyBub3V2ZWF1X2dlbV9uZXcrMHgxMTAvMHgxMTAgW25vdXZlYXVdCj4gWyAx
+MzEzLjgxMTI0MV0gIG5vdXZlYXVfZ2VtX2lvY3RsX25ldysweDQ4LzB4YzAgW25vdXZlYXVdCj4g
+WyAxMzEzLjgxMTI0OV0gIGRybV9pb2N0bF9rZXJuZWwrMHg2NC8weGIwIFtkcm1dCj4gWyAxMzEz
+LjgxMTI1N10gIGRybV9pb2N0bCsweDJhNC8weDM2MCBbZHJtXQo+IFsgMTMxMy44MTEyNzZdICA/
+IG5vdXZlYXVfZ2VtX25ldysweDExMC8weDExMCBbbm91dmVhdV0KPiBbIDEzMTMuODExMjg1XSAg
+PyBkcm1faW9jdGwrMHg1LzB4MzYwIFtkcm1dCj4gWyAxMzEzLjgxMTMwNF0gIG5vdXZlYXVfZHJt
+X2lvY3RsKzB4NTAvMHhiMCBbbm91dmVhdV0KPiBbIDEzMTMuODExMzA4XSAgZG9fdmZzX2lvY3Rs
+KzB4OTAvMHg2OTAKPiBbIDEzMTMuODExMzExXSAgPyBkb192ZnNfaW9jdGwrMHg1LzB4NjkwCj4g
+WyAxMzEzLjgxMTMxM10gIFN5U19pb2N0bCsweDNiLzB4NzAKPiBbIDEzMTMuODExMzE2XSAgZW50
+cnlfU1lTQ0FMTF82NF9mYXN0cGF0aCsweDFmLzB4OTEKPiBbIDEzMTMuODExMzIwXSBSSVA6IDAw
+MzM6MHg3ZjMyMzQ3NDYyMjcKPiBbIDEzMTMuODExMzIxXSBSU1A6IDAwMmI6MDAwMDdmZmMzYWNl
+MDQwOCBFRkxBR1M6IDAwMDAzMjQ2IE9SSUdfUkFYOiAwMDAwMDAwMDAwMDAwMDEwCj4gWyAxMzEz
+LjgxMTMyNF0gUkFYOiBmZmZmZmZmZmZmZmZmZmRhIFJCWDogMDAwMDAwMDAwMjU1MTVkMCBSQ1g6
+IDAwMDA3ZjMyMzQ3NDYyMjcKPiBbIDEzMTMuODExMzI1XSBSRFg6IDAwMDA3ZmZjM2FjZTA0NjAg
+UlNJOiAwMDAwMDAwMGMwMzA2NDgwIFJESTogMDAwMDAwMDAwMDAwMDAwYgo+IFsgMTMxMy44MTEz
+MjZdIFJCUDogMDAwMDAwMDAwMDgyNDEyMCBSMDg6IDAwMDAwMDAwMDI1NDhmODAgUjA5OiAwMDAw
+MDAwMDAyNTQ5MGQwCj4gWyAxMzEzLjgxMTMyOF0gUjEwOiAwMDAwMDAwMDAwMDAwMDAwIFIxMTog
+MDAwMDAwMDAwMDAwMzI0NiBSMTI6IDAwMDAwMDAwMDAwMDA5M2QKPiBbIDEzMTMuODExMzI5XSBS
+MTM6IDAwMDAwMDAwMDJhZmY3NGMgUjE0OiAwMDAwMDAwMDAwODI0MTUwIFIxNTogMDAwMDAwMDAw
+MDAwMDAwMApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
+b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
