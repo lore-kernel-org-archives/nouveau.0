@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104340] Memory leak with GEM objects
-Date: Tue, 19 Dec 2017 22:47:51 +0000
-Message-ID: <bug-104340-8800-RjcgwcWEVe@http.bugs.freedesktop.org/>
-References: <bug-104340-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
+	]
+Date: Tue, 19 Dec 2017 22:49:36 +0000
+Message-ID: <bug-100423-8800-rl9ln27zrM@http.bugs.freedesktop.org/>
+References: <bug-100423-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0442963928=="
+Content-Type: multipart/mixed; boundary="===============1078474921=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104340-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0442963928==
-Content-Type: multipart/alternative; boundary="15137236710.A0200bE.2204";
+--===============1078474921==
+Content-Type: multipart/alternative; boundary="15137237750.E03f.2693";
  charset="UTF-8"
 
 
---15137236710.A0200bE.2204
-Date: Tue, 19 Dec 2017 22:47:51 +0000
+--15137237750.E03f.2693
+Date: Tue, 19 Dec 2017 22:49:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104340
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
 
---- Comment #4 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I've pushed a fix for a rather stupid memory leak bug that's likely the cau=
-se
-of what you're seeing.
+--- Comment #7 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #6)
+> Looks like 22554 is no longer available on Maxwell. See where ltc reads it
+> from for the new location. Needs to be split out of ramgk104 somehow.
+
+I have WIP patches in my Fermi reclocking code (I'll try and push before I
+leave for xmas break) that begin to address this.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15137236710.A0200bE.2204
-Date: Tue, 19 Dec 2017 22:47:51 +0000
+--15137237750.E03f.2693
+Date: Tue, 19 Dec 2017 22:49:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,21 +65,27 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Memory leak with GEM objects"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104340#c4">Commen=
-t # 4</a>
+   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Memory leak with GEM objects"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104340">bug 10434=
-0</a>
+   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
+3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
 <span class=3D"fn">Ben Skeggs</span></a>
 </span></b>
-        <pre>I've pushed a fix for a rather stupid memory leak bug that's l=
-ikely the cause
-of what you're seeing.</pre>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D100=
+423#c6">comment #6</a>)
+<span class=3D"quote">&gt; Looks like 22554 is no longer available on Maxwe=
+ll. See where ltc reads it
+&gt; from for the new location. Needs to be split out of ramgk104 somehow.<=
+/span >
+
+I have WIP patches in my Fermi reclocking code (I'll try and push before I
+leave for xmas break) that begin to address this.</pre>
         </div>
       </p>
 
@@ -89,9 +99,9 @@ of what you're seeing.</pre>
     </body>
 </html>=
 
---15137236710.A0200bE.2204--
+--15137237750.E03f.2693--
 
---===============0442963928==
+--===============1078474921==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0442963928==--
+--===============1078474921==--
