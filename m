@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104291] Virgl broken on current mesa (17.4+),
- with nouveau/nv50 as host
-Date: Tue, 19 Dec 2017 22:37:43 +0000
-Message-ID: <bug-104291-8800-Edpiehwkpd@http.bugs.freedesktop.org/>
-References: <bug-104291-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104340] Memory leak with GEM objects
+Date: Tue, 19 Dec 2017 22:47:51 +0000
+Message-ID: <bug-104340-8800-RjcgwcWEVe@http.bugs.freedesktop.org/>
+References: <bug-104340-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0386066346=="
+Content-Type: multipart/mixed; boundary="===============0442963928=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104291-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-104340-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0386066346==
-Content-Type: multipart/alternative; boundary="15137230630.dcA8E2281.32377";
+--===============0442963928==
+Content-Type: multipart/alternative; boundary="15137236710.A0200bE.2204";
  charset="UTF-8"
 
 
---15137230630.dcA8E2281.32377
-Date: Tue, 19 Dec 2017 22:37:43 +0000
+--15137236710.A0200bE.2204
+Date: Tue, 19 Dec 2017 22:47:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104291
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104340
 
---- Comment #11 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-I tried few older mesa releases (17.1.10 - without llvm, 17.2.7 and 17.3.0 -
-with llvm 5.0.0), and they all segfaults :/
-
-This is kinda strange, because according to this bugreport it was working in
-17.1-dev era:
-
-https://bugzilla.redhat.com/show_bug.cgi?id=3D1426549
-
-I tried disabling PageFlipping (not sure if it makes any sense for VM), and
-switching dri mode to dri3. Nothing helped :/
+--- Comment #4 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I've pushed a fix for a rather stupid memory leak bug that's likely the cau=
+se
+of what you're seeing.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---15137230630.dcA8E2281.32377
-Date: Tue, 19 Dec 2017 22:37:43 +0000
+--15137236710.A0200bE.2204
+Date: Tue, 19 Dec 2017 22:47:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,32 +61,21 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Virgl broken on current mesa (17.4+), with nouveau/nv50 a=
-s host"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104291#c11">Comme=
-nt # 11</a>
+   title=3D"NEW - Memory leak with GEM objects"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104340#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Virgl broken on current mesa (17.4+), with nouveau/nv50 a=
-s host"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104291">bug 10429=
-1</a>
+   title=3D"NEW - Memory leak with GEM objects"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104340">bug 10434=
+0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
-gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
+skeggsb&#64;gmail.com" title=3D"Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> =
+<span class=3D"fn">Ben Skeggs</span></a>
 </span></b>
-        <pre>I tried few older mesa releases (17.1.10 - without llvm, 17.2.=
-7 and 17.3.0 -
-with llvm 5.0.0), and they all segfaults :/
-
-This is kinda strange, because according to this bugreport it was working in
-17.1-dev era:
-
-<a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1426549">https://b=
-ugzilla.redhat.com/show_bug.cgi?id=3D1426549</a>
-
-I tried disabling PageFlipping (not sure if it makes any sense for VM), and
-switching dri mode to dri3. Nothing helped :/</pre>
+        <pre>I've pushed a fix for a rather stupid memory leak bug that's l=
+ikely the cause
+of what you're seeing.</pre>
         </div>
       </p>
 
@@ -105,14 +85,13 @@ switching dri mode to dri3. Nothing helped :/</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15137230630.dcA8E2281.32377--
+--15137236710.A0200bE.2204--
 
---===============0386066346==
+--===============0442963928==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -122,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0386066346==--
+--===============0442963928==--
