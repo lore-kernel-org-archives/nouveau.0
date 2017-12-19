@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104340] Memory leak with GEM objects
-Date: Tue, 19 Dec 2017 18:55:18 +0000
-Message-ID: <bug-104340-8800-eOjAIzldbZ@http.bugs.freedesktop.org/>
+Date: Tue, 19 Dec 2017 18:55:46 +0000
+Message-ID: <bug-104340-8800-1A2YWb8OtN@http.bugs.freedesktop.org/>
 References: <bug-104340-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1825706338=="
+Content-Type: multipart/mixed; boundary="===============0968434753=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104340-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1825706338==
-Content-Type: multipart/alternative; boundary="15137097181.A718.9590";
+--===============0968434753==
+Content-Type: multipart/alternative; boundary="15137097460.5E78c7D.10971";
  charset="UTF-8"
 
 
---15137097181.A718.9590
-Date: Tue, 19 Dec 2017 18:55:18 +0000
+--15137097460.5E78c7D.10971
+Date: Tue, 19 Dec 2017 18:55:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104340
 
---- Comment #2 from S. Gilles <sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org> ---
-Created attachment 136294
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136294&action=3Dedit
-contents of /proc/meminfo after running X for a few weeks, then killing it
+--- Comment #3 from S. Gilles <sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org> ---
+Created attachment 136295
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136295&action=3Dedit
+output of slabtop after running X for a few weeks
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15137097181.A718.9590
-Date: Tue, 19 Dec 2017 18:55:18 +0000
+--15137097460.5E78c7D.10971
+Date: Tue, 19 Dec 2017 18:55:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Memory leak with GEM objects"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104340#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104340#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Memory leak with GEM objects"
@@ -73,13 +73,12 @@ t # 2</a>
 sgilles&#64;math.umd.edu" title=3D"S. Gilles &lt;sgilles&#64;math.umd.edu&g=
 t;"> <span class=3D"fn">S. Gilles</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136294=
-" name=3D"attach_136294" title=3D"contents of /proc/meminfo after running X=
- for a few weeks, then killing it">attachment 136294</a> <a href=3D"attachm=
-ent.cgi?id=3D136294&amp;action=3Dedit" title=3D"contents of /proc/meminfo a=
-fter running X for a few weeks, then killing it">[details]</a></span>
-contents of /proc/meminfo after running X for a few weeks, then killing it<=
-/pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136295=
+" name=3D"attach_136295" title=3D"output of slabtop after running X for a f=
+ew weeks">attachment 136295</a> <a href=3D"attachment.cgi?id=3D136295&amp;a=
+ction=3Dedit" title=3D"output of slabtop after running X for a few weeks">[=
+details]</a></span>
+output of slabtop after running X for a few weeks</pre>
         </div>
       </p>
 
@@ -93,9 +92,9 @@ contents of /proc/meminfo after running X for a few weeks, then killing it<=
     </body>
 </html>=
 
---15137097181.A718.9590--
+--15137097460.5E78c7D.10971--
 
---===============1825706338==
+--===============0968434753==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1825706338==--
+--===============0968434753==--
