@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104340] Memory leak with GEM objects
-Date: Tue, 19 Dec 2017 23:29:19 +0000
-Message-ID: <bug-104340-8800-AvfoQ6u6b7@http.bugs.freedesktop.org/>
-References: <bug-104340-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] gm107/ir: use lane 0 for manual textureGrad
+	handling
+Date: Tue, 19 Dec 2017 23:41:30 -0500
+Message-ID: <20171220044130.2919-1-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1644665078=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104340-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,127 +16,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1644665078==
-Content-Type: multipart/alternative; boundary="15137261590.26021.11490";
- charset="UTF-8"
-
-
---15137261590.26021.11490
-Date: Tue, 19 Dec 2017 23:29:19 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104340
-
-S. Gilles <sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #5 from S. Gilles <sgilles-8yXg+M/94Z32fBVCVOL8/A@public.gmane.org> ---
-This appears to fix it. I've been testing the fix for about 30 minutes, and
-kmemleak is no longer complaining about X.  Thanks for looking into this!
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15137261590.26021.11490
-Date: Tue, 19 Dec 2017 23:29:19 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:sgilles&#=
-64;math.umd.edu" title=3D"S. Gilles &lt;sgilles&#64;math.umd.edu&gt;"> <spa=
-n class=3D"fn">S. Gilles</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Memory leak with GEM objects"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104340">bug 10434=
-0</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Memory leak with GEM objects"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104340#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Memory leak with GEM objects"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104340">bug 10434=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sgilles&#64;math.umd.edu" title=3D"S. Gilles &lt;sgilles&#64;math.umd.edu&g=
-t;"> <span class=3D"fn">S. Gilles</span></a>
-</span></b>
-        <pre>This appears to fix it. I've been testing the fix for about 30=
- minutes, and
-kmemleak is no longer complaining about X.  Thanks for looking into this!</=
-pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15137261590.26021.11490--
-
---===============1644665078==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1644665078==--
+VGhpcyBpcyBwYXJhbGxlbCB0byB0aGUgcHJlLVNNNTAgY2hhbmdlIHdoaWNoIGRvZXMgdGhpcy4g
+QWRqdXN0cyB0aGUKc2h1ZmZsZXMgLyBxdWFkb3BzIHRvIG1ha2UgdGhlIHZhbHVlcyBjb3JyZWN0
+IHJlbGF0aXZlIHRvIGxhbmUgMCwgYW5kCnRoZW4gc3BsYXQgdGhlIHJlc3VsdHMgdG8gYWxsIGxh
+bmVzIGZvciB0aGUgZmluYWwgbW92ZSBpbnRvIHRoZSB0YXJnZXQKcmVnaXN0ZXIuCgpTaWduZWQt
+b2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Ci0tLQoKRW50aXJlbHkg
+dW50ZXN0ZWQgYmV5b25kIGNvbXBpbGF0aW9uLiBTaG91bGQgY2hlY2sKCmJpbi90ZXgtbWlwbGV2
+ZWwtc2VsZWN0aW9uIHRleHR1cmVHcmFkIEN1YmUKYmluL3RleC1taXBsZXZlbC1zZWxlY3Rpb24g
+dGV4dHVyZUdyYWQgQ3ViZVNoYWRvdwpiaW4vdGV4LW1pcGxldmVsLXNlbGVjdGlvbiB0ZXh0dXJl
+R3JhZCBDdWJlQXJyYXkKS0hSLUdMNDUudGV4dHVyZV9jdWJlX21hcF9hcnJheS5zYW1wbGluZwoK
+dG8gc2VlIGlmIHRoZXkgc3RhcnQgcGFzc2luZyB3aXRoIHRoaXMgY2hhbmdlLgoKIC4uLi9ub3V2
+ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19nbTEwNy5jcHAgICAgIHwgNTYgKysrKysrKysr
+KysrKystLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDM1IGluc2VydGlvbnMoKyksIDIxIGRlbGV0
+aW9ucygtKQoKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2Vu
+L252NTBfaXJfbG93ZXJpbmdfZ20xMDcuY3BwIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
+L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19nbTEwNy5jcHAKaW5kZXggNmI5ZWRkNDg2NDUuLmEy
+NDI3NTI2YTgxIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdl
+bi9udjUwX2lyX2xvd2VyaW5nX2dtMTA3LmNwcAorKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25v
+dXZlYXUvY29kZWdlbi9udjUwX2lyX2xvd2VyaW5nX2dtMTA3LmNwcApAQCAtOTUsMTggKzk1LDE1
+IEBAIEdNMTA3TGVnYWxpemVTU0E6OnZpc2l0KEluc3RydWN0aW9uICppKQogYm9vbAogR00xMDdM
+b3dlcmluZ1Bhc3M6OmhhbmRsZU1hbnVhbFRYRChUZXhJbnN0cnVjdGlvbiAqaSkKIHsKLSAgIHN0
+YXRpYyBjb25zdCB1aW50OF90IHFPcHNbNF1bMl0gPQotICAgewotICAgICAgeyBRVUFET1AoTU9W
+MiwgQURELCAgTU9WMiwgQUREKSwgIFFVQURPUChNT1YyLCBNT1YyLCBBREQsICBBREQpIH0sIC8v
+IGwwCi0gICAgICB7IFFVQURPUChTVUJSLCBNT1YyLCBTVUJSLCBNT1YyKSwgUVVBRE9QKE1PVjIs
+IE1PVjIsIEFERCwgIEFERCkgfSwgLy8gbDEKLSAgICAgIHsgUVVBRE9QKE1PVjIsIEFERCwgIE1P
+VjIsIEFERCksICBRVUFET1AoU1VCUiwgU1VCUiwgTU9WMiwgTU9WMikgfSwgLy8gbDIKLSAgICAg
+IHsgUVVBRE9QKFNVQlIsIE1PVjIsIFNVQlIsIE1PVjIpLCBRVUFET1AoU1VCUiwgU1VCUiwgTU9W
+MiwgTU9WMikgfSwgLy8gbDMKLSAgIH07CisgICAvLyBTZWUgTlZDMExvd2VyaW5nUGFzczo6aGFu
+ZGxlTWFudWFsVFhEIGZvciByYXRpb25hbGUuIFRoaXMgZnVuY3Rpb24KKyAgIC8vIGltcGxlbWVu
+dHMgdGhlIHNhbWUgbG9naWMsIGJ1dCB1c2luZyBTTTUwLWZyaWVuZGx5IHByaW1pdGl2ZXMuCisg
+ICBzdGF0aWMgY29uc3QgdWludDhfdCBxT3BzWzJdID0KKyAgICAgIHsgUVVBRE9QKE1PVjIsIEFE
+RCwgIE1PVjIsIEFERCksICBRVUFET1AoTU9WMiwgTU9WMiwgQURELCAgQUREKSB9OwogICAgVmFs
+dWUgKmRlZls0XVs0XTsKLSAgIFZhbHVlICpjcmRbM107CisgICBWYWx1ZSAqY3JkWzNdLCAqYXJy
+LCAqc2hhZG93OwogICAgVmFsdWUgKnRtcDsKICAgIEluc3RydWN0aW9uICp0ZXgsICphZGQ7Ci0g
+ICBWYWx1ZSAqemVybyA9IGJsZC5sb2FkSW1tKGJsZC5nZXRTU0EoKSwgMCk7CisgICBWYWx1ZSAq
+cXVhZCA9IGJsZC5ta0ltbShTSEZMX0JPVU5EX1FVQUQpOwogICAgaW50IGwsIGM7CiAgICBjb25z
+dCBpbnQgZGltID0gaS0+dGV4LnRhcmdldC5nZXREaW0oKSArIGktPnRleC50YXJnZXQuaXNDdWJl
+KCk7CiAgICBjb25zdCBpbnQgYXJyYXkgPSBpLT50ZXgudGFyZ2V0LmlzQXJyYXkoKTsKQEAgLTEx
+NSwzNSArMTEyLDQwIEBAIEdNMTA3TG93ZXJpbmdQYXNzOjpoYW5kbGVNYW51YWxUWEQoVGV4SW5z
+dHJ1Y3Rpb24gKmkpCiAKICAgIGZvciAoYyA9IDA7IGMgPCBkaW07ICsrYykKICAgICAgIGNyZFtj
+XSA9IGJsZC5nZXRTY3JhdGNoKCk7CisgICBhcnIgPSBibGQuZ2V0U2NyYXRjaCgpOworICAgc2hh
+ZG93ID0gYmxkLmdldFNjcmF0Y2goKTsKICAgIHRtcCA9IGJsZC5nZXRTY3JhdGNoKCk7CiAKICAg
+IGZvciAobCA9IDA7IGwgPCA0OyArK2wpIHsKICAgICAgIFZhbHVlICpzcmNbM10sICp2YWw7Ci0g
+ICAgICAvLyBtb3YgY29vcmRpbmF0ZXMgZnJvbSBsYW5lIGwgdG8gYWxsIGxhbmVzCisgICAgICBW
+YWx1ZSAqbGFuZSA9IGJsZC5ta0ltbShsKTsKICAgICAgIGJsZC5ta09wKE9QX1FVQURPTiwgVFlQ
+RV9OT05FLCBOVUxMKTsKKyAgICAgIC8vIE1ha2Ugc3VyZSBsYW5lIDAgaGFzIHRoZSBhcHByb3By
+aWF0ZSBhcnJheS9kZXB0aCBjb21wYXJlIHZhbHVlcworICAgICAgaWYgKGwgIT0gMCkgeworICAg
+ICAgICAgaWYgKGFycmF5KQorICAgICAgICAgICAgYmxkLm1rT3AzKE9QX1NIRkwsIFRZUEVfRjMy
+LCBhcnIsIGktPmdldFNyYygwKSwgbGFuZSwgcXVhZCk7CisgICAgICAgICBpZiAoaS0+dGV4LnRh
+cmdldC5pc1NoYWRvdygpKQorICAgICAgICAgICAgYmxkLm1rT3AzKE9QX1NIRkwsIFRZUEVfRjMy
+LCBzaGFkb3csIGktPmdldFNyYyhhcnJheSArIGRpbSksIGxhbmUsIHF1YWQpOworICAgICAgfQor
+CisgICAgICAvLyBtb3YgY29vcmRpbmF0ZXMgZnJvbSBsYW5lIGwgdG8gYWxsIGxhbmVzCiAgICAg
+ICBmb3IgKGMgPSAwOyBjIDwgZGltOyArK2MpIHsKLSAgICAgICAgIGJsZC5ta09wMyhPUF9TSEZM
+LCBUWVBFX0YzMiwgY3JkW2NdLCBpLT5nZXRTcmMoYyArIGFycmF5KSwKLSAgICAgICAgICAgICAg
+ICAgICBibGQubWtJbW0obCksIGJsZC5ta0ltbShTSEZMX0JPVU5EX1FVQUQpKTsKLSAgICAgICAg
+IGFkZCA9IGJsZC5ta09wMihPUF9RVUFET1AsIFRZUEVfRjMyLCBjcmRbY10sIGNyZFtjXSwgemVy
+byk7Ci0gICAgICAgICBhZGQtPnN1Yk9wID0gMHgwMDsKLSAgICAgICAgIGFkZC0+bGFuZXMgPSAx
+OyAvKiBhYnVzZWQgZm9yIC5uZHYgKi8KKyAgICAgICAgIGJsZC5ta09wMyhPUF9TSEZMLCBUWVBF
+X0YzMiwgY3JkW2NdLCBpLT5nZXRTcmMoYyArIGFycmF5KSwgbGFuZSwgcXVhZCk7CiAgICAgICB9
+CiAKICAgICAgIC8vIGFkZCBkUGR4IGZyb20gbGFuZSBsIHRvIGxhbmVzIGR4CiAgICAgICBmb3Ig
+KGMgPSAwOyBjIDwgZGltOyArK2MpIHsKLSAgICAgICAgIGJsZC5ta09wMyhPUF9TSEZMLCBUWVBF
+X0YzMiwgdG1wLCBpLT5kUGR4W2NdLmdldCgpLCBibGQubWtJbW0obCksCi0gICAgICAgICAgICAg
+ICAgICAgYmxkLm1rSW1tKFNIRkxfQk9VTkRfUVVBRCkpOworICAgICAgICAgYmxkLm1rT3AzKE9Q
+X1NIRkwsIFRZUEVfRjMyLCB0bXAsIGktPmRQZHhbY10uZ2V0KCksIGxhbmUsIHF1YWQpOwogICAg
+ICAgICAgYWRkID0gYmxkLm1rT3AyKE9QX1FVQURPUCwgVFlQRV9GMzIsIGNyZFtjXSwgdG1wLCBj
+cmRbY10pOwotICAgICAgICAgYWRkLT5zdWJPcCA9IHFPcHNbbF1bMF07CisgICAgICAgICBhZGQt
+PnN1Yk9wID0gcU9wc1swXTsKICAgICAgICAgIGFkZC0+bGFuZXMgPSAxOyAvKiBhYnVzZWQgZm9y
+IC5uZHYgKi8KICAgICAgIH0KIAogICAgICAgLy8gYWRkIGRQZHkgZnJvbSBsYW5lIGwgdG8gbGFu
+ZXMgZHkKICAgICAgIGZvciAoYyA9IDA7IGMgPCBkaW07ICsrYykgewotICAgICAgICAgYmxkLm1r
+T3AzKE9QX1NIRkwsIFRZUEVfRjMyLCB0bXAsIGktPmRQZHlbY10uZ2V0KCksIGJsZC5ta0ltbShs
+KSwKLSAgICAgICAgICAgICAgICAgICBibGQubWtJbW0oU0hGTF9CT1VORF9RVUFEKSk7CisgICAg
+ICAgICBibGQubWtPcDMoT1BfU0hGTCwgVFlQRV9GMzIsIHRtcCwgaS0+ZFBkeVtjXS5nZXQoKSwg
+bGFuZSwgcXVhZCk7CiAgICAgICAgICBhZGQgPSBibGQubWtPcDIoT1BfUVVBRE9QLCBUWVBFX0Yz
+MiwgY3JkW2NdLCB0bXAsIGNyZFtjXSk7Ci0gICAgICAgICBhZGQtPnN1Yk9wID0gcU9wc1tsXVsx
+XTsKKyAgICAgICAgIGFkZC0+c3ViT3AgPSBxT3BzWzFdOwogICAgICAgICAgYWRkLT5sYW5lcyA9
+IDE7IC8qIGFidXNlZCBmb3IgLm5kdiAqLwogICAgICAgfQogCkBAIC0xNjQsOCArMTY2LDIwIEBA
+IEdNMTA3TG93ZXJpbmdQYXNzOjpoYW5kbGVNYW51YWxUWEQoVGV4SW5zdHJ1Y3Rpb24gKmkpCiAK
+ICAgICAgIC8vIHRleHR1cmUKICAgICAgIGJsZC5pbnNlcnQodGV4ID0gY2xvbmVGb3J3YXJkKGZ1
+bmMsIGkpKTsKKyAgICAgIGlmIChsICE9IDApIHsKKyAgICAgICAgIGlmIChhcnJheSkKKyAgICAg
+ICAgICAgIHRleC0+c2V0U3JjKDAsIGFycik7CisgICAgICAgICBpZiAoaS0+dGV4LnRhcmdldC5p
+c1NoYWRvdygpKQorICAgICAgICAgICAgdGV4LT5zZXRTcmMoYXJyYXkgKyBkaW0sIHNoYWRvdyk7
+CisgICAgICB9CiAgICAgICBmb3IgKGMgPSAwOyBjIDwgZGltOyArK2MpCiAgICAgICAgICB0ZXgt
+PnNldFNyYyhjICsgYXJyYXksIHNyY1tjXSk7CisgICAgICAvLyBicm9hZGNhc3QgcmVzdWx0cyBm
+cm9tIGxhbmUgMCB0byBhbGwgbGFuZXMKKyAgICAgIGlmIChsICE9IDApIHsKKyAgICAgICAgIFZh
+bHVlICpsYW5lID0gYmxkLm1rSW1tKGwpOworICAgICAgICAgZm9yIChjID0gMDsgaS0+ZGVmRXhp
+c3RzKGMpOyArK2MpCisgICAgICAgICAgICBibGQubWtPcDMoT1BfU0hGTCwgVFlQRV9GMzIsIHRl
+eC0+Z2V0RGVmKGMpLCB0ZXgtPmdldERlZihjKSwgbGFuZSwgcXVhZCk7CisgICAgICB9CiAgICAg
+ICBibGQubWtPcChPUF9RVUFEUE9QLCBUWVBFX05PTkUsIE5VTEwpOwogCiAgICAgICAvLyBzYXZl
+IHJlc3VsdHMKLS0gCjIuMTMuNgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
+ZWF1Cg==
