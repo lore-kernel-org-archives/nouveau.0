@@ -1,11 +1,10 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] gm107/ir: use lane 0 for manual textureGrad
-	handling
-Date: Tue, 19 Dec 2017 23:41:30 -0500
-Message-ID: <20171220044130.2919-1-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 104344] New: Display Adapter Chain,
+ Cable Disconnect causes Nouveau crash
+Date: Wed, 20 Dec 2017 05:52:17 +0000
+Message-ID: <bug-104344-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1102823177=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -16,97 +15,308 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBpcyBwYXJhbGxlbCB0byB0aGUgcHJlLVNNNTAgY2hhbmdlIHdoaWNoIGRvZXMgdGhpcy4g
-QWRqdXN0cyB0aGUKc2h1ZmZsZXMgLyBxdWFkb3BzIHRvIG1ha2UgdGhlIHZhbHVlcyBjb3JyZWN0
-IHJlbGF0aXZlIHRvIGxhbmUgMCwgYW5kCnRoZW4gc3BsYXQgdGhlIHJlc3VsdHMgdG8gYWxsIGxh
-bmVzIGZvciB0aGUgZmluYWwgbW92ZSBpbnRvIHRoZSB0YXJnZXQKcmVnaXN0ZXIuCgpTaWduZWQt
-b2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Ci0tLQoKRW50aXJlbHkg
-dW50ZXN0ZWQgYmV5b25kIGNvbXBpbGF0aW9uLiBTaG91bGQgY2hlY2sKCmJpbi90ZXgtbWlwbGV2
-ZWwtc2VsZWN0aW9uIHRleHR1cmVHcmFkIEN1YmUKYmluL3RleC1taXBsZXZlbC1zZWxlY3Rpb24g
-dGV4dHVyZUdyYWQgQ3ViZVNoYWRvdwpiaW4vdGV4LW1pcGxldmVsLXNlbGVjdGlvbiB0ZXh0dXJl
-R3JhZCBDdWJlQXJyYXkKS0hSLUdMNDUudGV4dHVyZV9jdWJlX21hcF9hcnJheS5zYW1wbGluZwoK
-dG8gc2VlIGlmIHRoZXkgc3RhcnQgcGFzc2luZyB3aXRoIHRoaXMgY2hhbmdlLgoKIC4uLi9ub3V2
-ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19nbTEwNy5jcHAgICAgIHwgNTYgKysrKysrKysr
-KysrKystLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDM1IGluc2VydGlvbnMoKyksIDIxIGRlbGV0
-aW9ucygtKQoKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2Vu
-L252NTBfaXJfbG93ZXJpbmdfZ20xMDcuY3BwIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
-L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19nbTEwNy5jcHAKaW5kZXggNmI5ZWRkNDg2NDUuLmEy
-NDI3NTI2YTgxIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdl
-bi9udjUwX2lyX2xvd2VyaW5nX2dtMTA3LmNwcAorKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25v
-dXZlYXUvY29kZWdlbi9udjUwX2lyX2xvd2VyaW5nX2dtMTA3LmNwcApAQCAtOTUsMTggKzk1LDE1
-IEBAIEdNMTA3TGVnYWxpemVTU0E6OnZpc2l0KEluc3RydWN0aW9uICppKQogYm9vbAogR00xMDdM
-b3dlcmluZ1Bhc3M6OmhhbmRsZU1hbnVhbFRYRChUZXhJbnN0cnVjdGlvbiAqaSkKIHsKLSAgIHN0
-YXRpYyBjb25zdCB1aW50OF90IHFPcHNbNF1bMl0gPQotICAgewotICAgICAgeyBRVUFET1AoTU9W
-MiwgQURELCAgTU9WMiwgQUREKSwgIFFVQURPUChNT1YyLCBNT1YyLCBBREQsICBBREQpIH0sIC8v
-IGwwCi0gICAgICB7IFFVQURPUChTVUJSLCBNT1YyLCBTVUJSLCBNT1YyKSwgUVVBRE9QKE1PVjIs
-IE1PVjIsIEFERCwgIEFERCkgfSwgLy8gbDEKLSAgICAgIHsgUVVBRE9QKE1PVjIsIEFERCwgIE1P
-VjIsIEFERCksICBRVUFET1AoU1VCUiwgU1VCUiwgTU9WMiwgTU9WMikgfSwgLy8gbDIKLSAgICAg
-IHsgUVVBRE9QKFNVQlIsIE1PVjIsIFNVQlIsIE1PVjIpLCBRVUFET1AoU1VCUiwgU1VCUiwgTU9W
-MiwgTU9WMikgfSwgLy8gbDMKLSAgIH07CisgICAvLyBTZWUgTlZDMExvd2VyaW5nUGFzczo6aGFu
-ZGxlTWFudWFsVFhEIGZvciByYXRpb25hbGUuIFRoaXMgZnVuY3Rpb24KKyAgIC8vIGltcGxlbWVu
-dHMgdGhlIHNhbWUgbG9naWMsIGJ1dCB1c2luZyBTTTUwLWZyaWVuZGx5IHByaW1pdGl2ZXMuCisg
-ICBzdGF0aWMgY29uc3QgdWludDhfdCBxT3BzWzJdID0KKyAgICAgIHsgUVVBRE9QKE1PVjIsIEFE
-RCwgIE1PVjIsIEFERCksICBRVUFET1AoTU9WMiwgTU9WMiwgQURELCAgQUREKSB9OwogICAgVmFs
-dWUgKmRlZls0XVs0XTsKLSAgIFZhbHVlICpjcmRbM107CisgICBWYWx1ZSAqY3JkWzNdLCAqYXJy
-LCAqc2hhZG93OwogICAgVmFsdWUgKnRtcDsKICAgIEluc3RydWN0aW9uICp0ZXgsICphZGQ7Ci0g
-ICBWYWx1ZSAqemVybyA9IGJsZC5sb2FkSW1tKGJsZC5nZXRTU0EoKSwgMCk7CisgICBWYWx1ZSAq
-cXVhZCA9IGJsZC5ta0ltbShTSEZMX0JPVU5EX1FVQUQpOwogICAgaW50IGwsIGM7CiAgICBjb25z
-dCBpbnQgZGltID0gaS0+dGV4LnRhcmdldC5nZXREaW0oKSArIGktPnRleC50YXJnZXQuaXNDdWJl
-KCk7CiAgICBjb25zdCBpbnQgYXJyYXkgPSBpLT50ZXgudGFyZ2V0LmlzQXJyYXkoKTsKQEAgLTEx
-NSwzNSArMTEyLDQwIEBAIEdNMTA3TG93ZXJpbmdQYXNzOjpoYW5kbGVNYW51YWxUWEQoVGV4SW5z
-dHJ1Y3Rpb24gKmkpCiAKICAgIGZvciAoYyA9IDA7IGMgPCBkaW07ICsrYykKICAgICAgIGNyZFtj
-XSA9IGJsZC5nZXRTY3JhdGNoKCk7CisgICBhcnIgPSBibGQuZ2V0U2NyYXRjaCgpOworICAgc2hh
-ZG93ID0gYmxkLmdldFNjcmF0Y2goKTsKICAgIHRtcCA9IGJsZC5nZXRTY3JhdGNoKCk7CiAKICAg
-IGZvciAobCA9IDA7IGwgPCA0OyArK2wpIHsKICAgICAgIFZhbHVlICpzcmNbM10sICp2YWw7Ci0g
-ICAgICAvLyBtb3YgY29vcmRpbmF0ZXMgZnJvbSBsYW5lIGwgdG8gYWxsIGxhbmVzCisgICAgICBW
-YWx1ZSAqbGFuZSA9IGJsZC5ta0ltbShsKTsKICAgICAgIGJsZC5ta09wKE9QX1FVQURPTiwgVFlQ
-RV9OT05FLCBOVUxMKTsKKyAgICAgIC8vIE1ha2Ugc3VyZSBsYW5lIDAgaGFzIHRoZSBhcHByb3By
-aWF0ZSBhcnJheS9kZXB0aCBjb21wYXJlIHZhbHVlcworICAgICAgaWYgKGwgIT0gMCkgeworICAg
-ICAgICAgaWYgKGFycmF5KQorICAgICAgICAgICAgYmxkLm1rT3AzKE9QX1NIRkwsIFRZUEVfRjMy
-LCBhcnIsIGktPmdldFNyYygwKSwgbGFuZSwgcXVhZCk7CisgICAgICAgICBpZiAoaS0+dGV4LnRh
-cmdldC5pc1NoYWRvdygpKQorICAgICAgICAgICAgYmxkLm1rT3AzKE9QX1NIRkwsIFRZUEVfRjMy
-LCBzaGFkb3csIGktPmdldFNyYyhhcnJheSArIGRpbSksIGxhbmUsIHF1YWQpOworICAgICAgfQor
-CisgICAgICAvLyBtb3YgY29vcmRpbmF0ZXMgZnJvbSBsYW5lIGwgdG8gYWxsIGxhbmVzCiAgICAg
-ICBmb3IgKGMgPSAwOyBjIDwgZGltOyArK2MpIHsKLSAgICAgICAgIGJsZC5ta09wMyhPUF9TSEZM
-LCBUWVBFX0YzMiwgY3JkW2NdLCBpLT5nZXRTcmMoYyArIGFycmF5KSwKLSAgICAgICAgICAgICAg
-ICAgICBibGQubWtJbW0obCksIGJsZC5ta0ltbShTSEZMX0JPVU5EX1FVQUQpKTsKLSAgICAgICAg
-IGFkZCA9IGJsZC5ta09wMihPUF9RVUFET1AsIFRZUEVfRjMyLCBjcmRbY10sIGNyZFtjXSwgemVy
-byk7Ci0gICAgICAgICBhZGQtPnN1Yk9wID0gMHgwMDsKLSAgICAgICAgIGFkZC0+bGFuZXMgPSAx
-OyAvKiBhYnVzZWQgZm9yIC5uZHYgKi8KKyAgICAgICAgIGJsZC5ta09wMyhPUF9TSEZMLCBUWVBF
-X0YzMiwgY3JkW2NdLCBpLT5nZXRTcmMoYyArIGFycmF5KSwgbGFuZSwgcXVhZCk7CiAgICAgICB9
-CiAKICAgICAgIC8vIGFkZCBkUGR4IGZyb20gbGFuZSBsIHRvIGxhbmVzIGR4CiAgICAgICBmb3Ig
-KGMgPSAwOyBjIDwgZGltOyArK2MpIHsKLSAgICAgICAgIGJsZC5ta09wMyhPUF9TSEZMLCBUWVBF
-X0YzMiwgdG1wLCBpLT5kUGR4W2NdLmdldCgpLCBibGQubWtJbW0obCksCi0gICAgICAgICAgICAg
-ICAgICAgYmxkLm1rSW1tKFNIRkxfQk9VTkRfUVVBRCkpOworICAgICAgICAgYmxkLm1rT3AzKE9Q
-X1NIRkwsIFRZUEVfRjMyLCB0bXAsIGktPmRQZHhbY10uZ2V0KCksIGxhbmUsIHF1YWQpOwogICAg
-ICAgICAgYWRkID0gYmxkLm1rT3AyKE9QX1FVQURPUCwgVFlQRV9GMzIsIGNyZFtjXSwgdG1wLCBj
-cmRbY10pOwotICAgICAgICAgYWRkLT5zdWJPcCA9IHFPcHNbbF1bMF07CisgICAgICAgICBhZGQt
-PnN1Yk9wID0gcU9wc1swXTsKICAgICAgICAgIGFkZC0+bGFuZXMgPSAxOyAvKiBhYnVzZWQgZm9y
-IC5uZHYgKi8KICAgICAgIH0KIAogICAgICAgLy8gYWRkIGRQZHkgZnJvbSBsYW5lIGwgdG8gbGFu
-ZXMgZHkKICAgICAgIGZvciAoYyA9IDA7IGMgPCBkaW07ICsrYykgewotICAgICAgICAgYmxkLm1r
-T3AzKE9QX1NIRkwsIFRZUEVfRjMyLCB0bXAsIGktPmRQZHlbY10uZ2V0KCksIGJsZC5ta0ltbShs
-KSwKLSAgICAgICAgICAgICAgICAgICBibGQubWtJbW0oU0hGTF9CT1VORF9RVUFEKSk7CisgICAg
-ICAgICBibGQubWtPcDMoT1BfU0hGTCwgVFlQRV9GMzIsIHRtcCwgaS0+ZFBkeVtjXS5nZXQoKSwg
-bGFuZSwgcXVhZCk7CiAgICAgICAgICBhZGQgPSBibGQubWtPcDIoT1BfUVVBRE9QLCBUWVBFX0Yz
-MiwgY3JkW2NdLCB0bXAsIGNyZFtjXSk7Ci0gICAgICAgICBhZGQtPnN1Yk9wID0gcU9wc1tsXVsx
-XTsKKyAgICAgICAgIGFkZC0+c3ViT3AgPSBxT3BzWzFdOwogICAgICAgICAgYWRkLT5sYW5lcyA9
-IDE7IC8qIGFidXNlZCBmb3IgLm5kdiAqLwogICAgICAgfQogCkBAIC0xNjQsOCArMTY2LDIwIEBA
-IEdNMTA3TG93ZXJpbmdQYXNzOjpoYW5kbGVNYW51YWxUWEQoVGV4SW5zdHJ1Y3Rpb24gKmkpCiAK
-ICAgICAgIC8vIHRleHR1cmUKICAgICAgIGJsZC5pbnNlcnQodGV4ID0gY2xvbmVGb3J3YXJkKGZ1
-bmMsIGkpKTsKKyAgICAgIGlmIChsICE9IDApIHsKKyAgICAgICAgIGlmIChhcnJheSkKKyAgICAg
-ICAgICAgIHRleC0+c2V0U3JjKDAsIGFycik7CisgICAgICAgICBpZiAoaS0+dGV4LnRhcmdldC5p
-c1NoYWRvdygpKQorICAgICAgICAgICAgdGV4LT5zZXRTcmMoYXJyYXkgKyBkaW0sIHNoYWRvdyk7
-CisgICAgICB9CiAgICAgICBmb3IgKGMgPSAwOyBjIDwgZGltOyArK2MpCiAgICAgICAgICB0ZXgt
-PnNldFNyYyhjICsgYXJyYXksIHNyY1tjXSk7CisgICAgICAvLyBicm9hZGNhc3QgcmVzdWx0cyBm
-cm9tIGxhbmUgMCB0byBhbGwgbGFuZXMKKyAgICAgIGlmIChsICE9IDApIHsKKyAgICAgICAgIFZh
-bHVlICpsYW5lID0gYmxkLm1rSW1tKGwpOworICAgICAgICAgZm9yIChjID0gMDsgaS0+ZGVmRXhp
-c3RzKGMpOyArK2MpCisgICAgICAgICAgICBibGQubWtPcDMoT1BfU0hGTCwgVFlQRV9GMzIsIHRl
-eC0+Z2V0RGVmKGMpLCB0ZXgtPmdldERlZihjKSwgbGFuZSwgcXVhZCk7CisgICAgICB9CiAgICAg
-ICBibGQubWtPcChPUF9RVUFEUE9QLCBUWVBFX05PTkUsIE5VTEwpOwogCiAgICAgICAvLyBzYXZl
-IHJlc3VsdHMKLS0gCjIuMTMuNgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cg==
+
+--===============1102823177==
+Content-Type: multipart/alternative; boundary="15137491381.E122.7008";
+ charset="UTF-8"
+
+
+--15137491381.E122.7008
+Date: Wed, 20 Dec 2017 05:52:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104344
+
+            Bug ID: 104344
+           Summary: Display Adapter Chain, Cable Disconnect causes Nouveau
+                    crash
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: mbazzinotti-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 136308
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136308&action=3Dedit
+collation of syslog grep'd for "nouveau|drm"; includes trace. there was no
+pertinent log info right before the trace occurred.
+
+While experimenting with physical connections to avert Flicker Bug 88272
+(https://bugs.freedesktop.org/show_bug.cgi?id=3D88272)
+
+I found myself using a mini DisplayPort(mDP) adapter which has 3 outputs
+(HDMI, DVI, and DP), with its DP output connected to a second DP->DVI adapt=
+er.
+
+Let's call the first adapter A, and the 2nd adapter B. The connections are:
+
+
+-------  mDP  ---  DP  --- DVI ---------=20
+Laptop |-----| A |----| B |---| Monitor |
+-------       ---      ---     ---------
+
+
+While connected, display appeared "normal" as per Bug 88272 screen flicker.
+When
+I unplugged the DVI cable from adapter B, this trace appeared in the dmesg
+attachment. Dmesg Output before the trace was not relevant. This issue can =
+be
+reproduced again and again by reconnecting and disconnecting the cable.
+
+This does not crash X. The desktop appears to run just fine, even during the
+nouveau crash IIRC. If I was not watching dmesg, I may not have even notice=
+d.
+
+The problem does not happen if unplugging the root adapter from the laptop.=
+ I
+have not tried unplugging the 2nd adapter to see what happens in that case.
+
+Note: When adapter A is plugged via DVI to monitor directly, unplugging the=
+ DVI
+cable does not cause a crash; no call stack is outputted to dmesg in this c=
+ase.
+
+---------
+Hardware |
+---------
+Macbook Pro 5,4 15" mid-2009
+Nvidia GeForce 9400m
+mini DisplayPort -> "Gigaware" DVI/HDMI/Displayport adapter -> HP DP>DVI
+adapter
+Dell LCD Monitor model E2011Hc
+
+--------
+Software|
+--------
+Gentoo Linux 4.12.12.=20
+x11-base/xorg-server-1.19.5
+x11-drivers/xf86-video-nouveau-1.0.15
+i3wm
+No compositor
+
+kernel command line: ro root=3DPARTUUID=3Dxxxxxxxx net.ifnames=3D0
+
+-----
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15137491381.E122.7008
+Date: Wed, 20 Dec 2017 05:52:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Display Adapter Chain, Cable Disconnect causes Nouveau cr=
+ash"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104344">104344</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Display Adapter Chain, Cable Disconnect causes Nouveau crash
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mbazzinotti&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136308=
+" name=3D"attach_136308" title=3D"collation of syslog grep'd for &quot;nouv=
+eau|drm&quot;; includes trace. there was no pertinent log info right before=
+ the trace occurred.">attachment 136308</a> <a href=3D"attachment.cgi?id=3D=
+136308&amp;action=3Dedit" title=3D"collation of syslog grep'd for &quot;nou=
+veau|drm&quot;; includes trace. there was no pertinent log info right befor=
+e the trace occurred.">[details]</a></span>
+collation of syslog grep'd for &quot;nouveau|drm&quot;; includes trace. the=
+re was no
+pertinent log info right before the trace occurred.
+
+While experimenting with physical connections to avert Flicker <a class=3D"=
+bz_bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9=
+400M in MacbookPro 5,5"
+   href=3D"show_bug.cgi?id=3D88272">Bug 88272</a>
+(<a class=3D"bz_bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9=
+400M in MacbookPro 5,5"
+   href=3D"show_bug.cgi?id=3D88272">https://bugs.freedesktop.org/show_bug.c=
+gi?id=3D88272</a>)
+
+I found myself using a mini DisplayPort(mDP) adapter which has 3 outputs
+(HDMI, DVI, and DP), with its DP output connected to a second DP-&gt;DVI ad=
+apter.
+
+Let's call the first adapter A, and the 2nd adapter B. The connections are:
+
+
+-------  mDP  ---  DP  --- DVI ---------=20
+Laptop |-----| A |----| B |---| Monitor |
+-------       ---      ---     ---------
+
+
+While connected, display appeared &quot;normal&quot; as per <a class=3D"bz_=
+bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9=
+400M in MacbookPro 5,5"
+   href=3D"show_bug.cgi?id=3D88272">Bug 88272</a> screen flicker.
+When
+I unplugged the DVI cable from adapter B, this trace appeared in the dmesg
+attachment. Dmesg Output before the trace was not relevant. This issue can =
+be
+reproduced again and again by reconnecting and disconnecting the cable.
+
+This does not crash X. The desktop appears to run just fine, even during the
+nouveau crash IIRC. If I was not watching dmesg, I may not have even notice=
+d.
+
+The problem does not happen if unplugging the root adapter from the laptop.=
+ I
+have not tried unplugging the 2nd adapter to see what happens in that case.
+
+Note: When adapter A is plugged via DVI to monitor directly, unplugging the=
+ DVI
+cable does not cause a crash; no call stack is outputted to dmesg in this c=
+ase.
+
+---------
+Hardware |
+---------
+Macbook Pro 5,4 15&quot; mid-2009
+Nvidia GeForce 9400m
+mini DisplayPort -&gt; &quot;Gigaware&quot; DVI/HDMI/Displayport adapter -&=
+gt; HP DP&gt;DVI
+adapter
+Dell LCD Monitor model E2011Hc
+
+--------
+Software|
+--------
+Gentoo Linux 4.12.12.=20
+x11-base/xorg-server-1.19.5
+x11-drivers/xf86-video-nouveau-1.0.15
+i3wm
+No compositor
+
+kernel command line: ro root=3DPARTUUID=3Dxxxxxxxx net.ifnames=3D0
+
+-----</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15137491381.E122.7008--
+
+--===============1102823177==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1102823177==--
