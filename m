@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104344] Display Adapter Chain,
  Cable Disconnect causes Nouveau trace
-Date: Thu, 21 Dec 2017 20:46:57 +0000
-Message-ID: <bug-104344-8800-x8XR9nhrOV@http.bugs.freedesktop.org/>
+Date: Thu, 21 Dec 2017 21:04:26 +0000
+Message-ID: <bug-104344-8800-KpJZcpJn97@http.bugs.freedesktop.org/>
 References: <bug-104344-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0987717435=="
+Content-Type: multipart/mixed; boundary="===============1809851533=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104344-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0987717435==
-Content-Type: multipart/alternative; boundary="15138892170.CC81384.13500";
+--===============1809851533==
+Content-Type: multipart/alternative; boundary="15138902650.f1D1Ae.18451";
  charset="UTF-8"
 
 
---15138892170.CC81384.13500
-Date: Thu, 21 Dec 2017 20:46:57 +0000
+--15138902650.f1D1Ae.18451
+Date: Thu, 21 Dec 2017 21:04:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104344
 
-mbazzinotti-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+--- Comment #1 from mbazzinotti-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Ah, it was not a crash! it was the WARN_ON.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Display Adapter Chain,      |Display Adapter Chain,
-                   |Cable Disconnect causes     |Cable Disconnect causes
-                   |Nouveau crash               |Nouveau trace
+I got some more info on what produced the warning
+drivers/gpu/drm/nouveau/include/nvkm/subdev/i2c.h:169
+
+inside nvkm_rdaux()
+WARN_ON(!ret && size !=3D xfer);
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15138892170.CC81384.13500
-Date: Thu, 21 Dec 2017 20:46:57 +0000
+--15138902650.f1D1Ae.18451
+Date: Thu, 21 Dec 2017 21:04:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,32 +61,33 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:mbazzinot=
-ti&#64;gmail.com" title=3D"mbazzinotti&#64;gmail.com">mbazzinotti&#64;gmail=
-.com</a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Display Adapter Chain, Cable Disconnect causes Nouveau tr=
+ace"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104344#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Display Adapter Chain, Cable Disconnect causes Nouveau tr=
 ace"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104344">bug 10434=
 4</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+mbazzinotti&#64;gmail.com" title=3D"mbazzinotti&#64;gmail.com">mbazzinotti&=
+#64;gmail.com</a>
+</span></b>
+        <pre>Ah, it was not a crash! it was the WARN_ON.
 
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>Display Adapter Chain, Cable Disconnect causes Nouveau crash
-           </td>
-           <td>Display Adapter Chain, Cable Disconnect causes Nouveau trace
-           </td>
-         </tr></table>
-      <p>
+I got some more info on what produced the warning
+drivers/gpu/drm/nouveau/include/nvkm/subdev/i2c.h:169
+
+inside nvkm_rdaux()
+WARN_ON(!ret &amp;&amp; size !=3D xfer);</pre>
+        </div>
       </p>
 
 
@@ -98,9 +100,9 @@ ace"
     </body>
 </html>=
 
---15138892170.CC81384.13500--
+--15138902650.f1D1Ae.18451--
 
---===============0987717435==
+--===============1809851533==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0987717435==--
+--===============1809851533==--
