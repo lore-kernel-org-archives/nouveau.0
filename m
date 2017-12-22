@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88272] [NVAC] Flickering screen on 1920x1080 monitor
- with 9400M in MacbookPro 5, 5
-Date: Fri, 22 Dec 2017 16:42:36 +0000
-Message-ID: <bug-88272-8800-sarTqACqR8@http.bugs.freedesktop.org/>
-References: <bug-88272-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+	rescan
+Date: Fri, 22 Dec 2017 19:15:41 +0000
+Message-ID: <bug-75985-8800-UsizgL5Ord@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1769658297=="
+Content-Type: multipart/mixed; boundary="===============1205719160=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88272-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,80 +21,59 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1769658297==
-Content-Type: multipart/alternative; boundary="15139609560.d651bDe6.16460";
+--===============1205719160==
+Content-Type: multipart/alternative; boundary="15139701422.3ad2bBc5.18833";
  charset="UTF-8"
 
 
---15139609560.d651bDe6.16460
-Date: Fri, 22 Dec 2017 16:42:36 +0000
+--15139701422.3ad2bBc5.18833
+Date: Fri, 22 Dec 2017 19:15:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D88272
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #12 from mbazzinotti-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I've got great news! I believe certain members of #nouveau and I have found=
- a
-fix!
+--- Comment #22 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
+Created attachment 136369
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136369&action=3Dedit
+GP104: enable HDMI audio device function
 
-`config=3DNvForcePost=3D1`
+On Asus GL502VS I investigated why the gfx device must be removed before re=
+scan
+in the above workarounds.
 
-append appropriately to your modprobe statement or use
-`nouveau.config=3DNvForcePost=3D1` in your kernel cmdline!
+The reason is that when Linux first probes the device (before you attempt t=
+he
+workaround), pci_setup_device() notes that the device is not multifunction
+capable. This causes pci_scan_slot() to not bother scanning the non-zero
+functions (per the behaviour inside next_fn()).
 
-I will use this setting longer and report back on its effectiveness at a la=
-ter
-date.
+I checked and I found that when the 0x488 magic bit is not set, the gfx dev=
+ice
+advertises as non-multifunction. After the bit is set, the device advertise=
+s as
+multi-function. So, after setting the magic bit, removing the device will c=
+ause
+Linux to re-probe it during the next rescan, taking note at that point that=
+ it
+is a multi-function device, and proceeding to scan the functions, finding t=
+he
+audio device at function 1.
 
-=3D=3D Background Story =3D=3D
-
-I noticed that screen flicker problems disappeared after waking from a
-`pm-suspend`. After reporting this to #nouveau, some more light was shed. s=
-ee
-the following IRC snippet (more @
-https://people.freedesktop.org/~cbrill/dri-log/index.php?channel=3Dnouveau&=
-date=3D2017-12-22)
-
--- snip --
-(regarding why pm-suspend solves the flicker bug)
-15:58 imirkin: on resume we run the vbios scripts=20
-15:58 imirkin: on boot, we probably don't because the vbios already has
-
-16:02 imirkin: but it could be that the interpreter skimps on DP support an=
-d so
-some bits don't run=20
-16:02 imirkin: or it could be something else entirely=20
--- end --
-
-=3D=3D Tests =3D=3D
-
-I have tested this new config option under the following scenarios
-
-1) Boot with mDP adapter plugged in. OK
-2) Boot without mDP adapter plugged in. Then, plug in after X has started. =
-OK
-
-Because it works without the mDP adapter being plugged in on boot, it's saf=
-e to
-say that no "mDP hint" at bootup is required to get some "optional" vbios c=
-ode
-to run. force POSTing is solving the problem, but we don't know why yet. Wh=
-at
-is happening differently from normal bootup by this force post?
-
-Perhaps another 2 mmiotrace bootup logs would shed light on this, or someone
-more familiar with gpu.
+Based on that I have a first attempt at a fix. It's not working though, aud=
+io
+output is silent (but I did have it working with the previous workarounds).
+I'll look closer next week.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15139609560.d651bDe6.16460
-Date: Fri, 22 Dec 2017 16:42:36 +0000
+--15139701422.3ad2bBc5.18833
+Date: Fri, 22 Dec 2017 19:15:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -109,73 +88,53 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9=
-400M in MacbookPro 5,5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D88272#c12">Commen=
-t # 12</a>
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c22">Commen=
+t # 22</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9=
-400M in MacbookPro 5,5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D88272">bug 88272<=
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mbazzinotti&#64;gmail.com" title=3D"mbazzinotti&#64;gmail.com">mbazzinotti&=
-#64;gmail.com</a>
+dan&#64;reactivated.net" title=3D"Daniel Drake &lt;dan&#64;reactivated.net&=
+gt;"> <span class=3D"fn">Daniel Drake</span></a>
 </span></b>
-        <pre>I've got great news! I believe certain members of #nouveau and=
- I have found a
-fix!
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136369=
+" name=3D"attach_136369" title=3D"GP104: enable HDMI audio device function"=
+>attachment 136369</a> <a href=3D"attachment.cgi?id=3D136369&amp;action=3De=
+dit" title=3D"GP104: enable HDMI audio device function">[details]</a></span=
+> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D75985&amp;attachment=3D1=
+36369'>[review]</a>
+GP104: enable HDMI audio device function
 
-`config=3DNvForcePost=3D1`
+On Asus GL502VS I investigated why the gfx device must be removed before re=
+scan
+in the above workarounds.
 
-append appropriately to your modprobe statement or use
-`nouveau.config=3DNvForcePost=3D1` in your kernel cmdline!
+The reason is that when Linux first probes the device (before you attempt t=
+he
+workaround), pci_setup_device() notes that the device is not multifunction
+capable. This causes pci_scan_slot() to not bother scanning the non-zero
+functions (per the behaviour inside next_fn()).
 
-I will use this setting longer and report back on its effectiveness at a la=
-ter
-date.
+I checked and I found that when the 0x488 magic bit is not set, the gfx dev=
+ice
+advertises as non-multifunction. After the bit is set, the device advertise=
+s as
+multi-function. So, after setting the magic bit, removing the device will c=
+ause
+Linux to re-probe it during the next rescan, taking note at that point that=
+ it
+is a multi-function device, and proceeding to scan the functions, finding t=
+he
+audio device at function 1.
 
-=3D=3D Background Story =3D=3D
-
-I noticed that screen flicker problems disappeared after waking from a
-`pm-suspend`. After reporting this to #nouveau, some more light was shed. s=
-ee
-the following IRC snippet (more &#64;
-<a href=3D"https://people.freedesktop.org/~cbrill/dri-log/index.php?channel=
-=3Dnouveau&amp;date=3D2017-12-22">https://people.freedesktop.org/~cbrill/dr=
-i-log/index.php?channel=3Dnouveau&amp;date=3D2017-12-22</a>)
-
--- snip --
-(regarding why pm-suspend solves the flicker bug)
-15:58 imirkin: on resume we run the vbios scripts=20
-15:58 imirkin: on boot, we probably don't because the vbios already has
-
-16:02 imirkin: but it could be that the interpreter skimps on DP support an=
-d so
-some bits don't run=20
-16:02 imirkin: or it could be something else entirely=20
--- end --
-
-=3D=3D Tests =3D=3D
-
-I have tested this new config option under the following scenarios
-
-1) Boot with mDP adapter plugged in. OK
-2) Boot without mDP adapter plugged in. Then, plug in after X has started. =
-OK
-
-Because it works without the mDP adapter being plugged in on boot, it's saf=
-e to
-say that no &quot;mDP hint&quot; at bootup is required to get some &quot;op=
-tional&quot; vbios code
-to run. force POSTing is solving the problem, but we don't know why yet. Wh=
-at
-is happening differently from normal bootup by this force post?
-
-Perhaps another 2 mmiotrace bootup logs would shed light on this, or someone
-more familiar with gpu.</pre>
+Based on that I have a first attempt at a fix. It's not working though, aud=
+io
+output is silent (but I did have it working with the previous workarounds).
+I'll look closer next week.</pre>
         </div>
       </p>
 
@@ -189,9 +148,9 @@ more familiar with gpu.</pre>
     </body>
 </html>=
 
---15139609560.d651bDe6.16460--
+--15139701422.3ad2bBc5.18833--
 
---===============1769658297==
+--===============1205719160==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -201,4 +160,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1769658297==--
+--===============1205719160==--
