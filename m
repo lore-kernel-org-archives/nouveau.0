@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
 	rescan
-Date: Wed, 27 Dec 2017 17:35:20 +0000
-Message-ID: <bug-75985-8800-oEZ6widccu@http.bugs.freedesktop.org/>
+Date: Thu, 28 Dec 2017 02:24:02 +0000
+Message-ID: <bug-75985-8800-4EBIhp1xPY@http.bugs.freedesktop.org/>
 References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1039974294=="
+Content-Type: multipart/mixed; boundary="===============0819381299=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1039974294==
-Content-Type: multipart/alternative; boundary="15143961193.770C3Ead.6808";
+--===============0819381299==
+Content-Type: multipart/alternative; boundary="15144279052.BB4aaa.22120";
  charset="UTF-8"
 
 
---15143961193.770C3Ead.6808
-Date: Wed, 27 Dec 2017 17:35:19 +0000
+--15144279052.BB4aaa.22120
+Date: Thu, 28 Dec 2017 02:25:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,38 +36,30 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #25 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
-I found the difference. When I previously tested and found HDMI audio to be
-working after the setpci,unload,rescan approach, I was using the nvidia
-proprietary driver. HDMI audio PCI device was then detected, the ELD files =
-show
-the monitor detected, and HDMI audio works.
+--- Comment #26 from Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org> ---
+Created attachment 136416
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136416&action=3Dedit
+Kernel module to toggle audio function
 
-In the patch above, I am using nouveau. The HDMI audio PCI device is now
-detected automatically, the HDMI video output is working and active, but the
-ELD files show that no HDMI monitor was detected on the audio side.
-
-I checked with HDA verbs directly:
-# hda-verb /dev/snd/hwC1D0 6 GET_PIN_SENSE 0
-
-With the setpci+unload+rescan approach on nouveau, this always returns valu=
-e 0,
-even with HDMI video output active and working.
-
-With the setpci+unload+rescan approach on nvidia's proprietary drivers, this
-returns 0 after loading the modules. However upon starting X, it starts
-returning 0xc0000000 and HDMI audio output works fine.
-
-So in addition to the games with the magic register, the nvidia proprietary
-driver is doing something else as well which is needed to make HDMI audio w=
-ork.
+Thank you, Daniel. I was too blind to see the attachment.
+Attaching some c/p work using/abusing bbswitch as a framework and your enab=
+le
+code. So works like that. Creates a handle /proc/acpi/nvhda which takes ON =
+and
+OFF. Since my hardware doesn't have outputs I can't test it farther than
+turning on and off.
+Can be loaded and used while the proprietary driver is loaded to be used for
+further investigations.
+- Does the prop. driver react to this immediately, i.e. make audio work?
+- If not, does plugging out/in the hdmi cable make it work?
+- Are any pci config space changes noticeable?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15143961193.770C3Ead.6808
-Date: Wed, 27 Dec 2017 17:35:19 +0000
+--15144279052.BB4aaa.22120
+Date: Thu, 28 Dec 2017 02:25:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -84,42 +76,35 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c25">Commen=
-t # 25</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c26">Commen=
+t # 26</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dan&#64;reactivated.net" title=3D"Daniel Drake &lt;dan&#64;reactivated.net&=
-gt;"> <span class=3D"fn">Daniel Drake</span></a>
+hhfeuer&#64;gmx.de" title=3D"Maik Freudenberg &lt;hhfeuer&#64;gmx.de&gt;"> =
+<span class=3D"fn">Maik Freudenberg</span></a>
 </span></b>
-        <pre>I found the difference. When I previously tested and found HDM=
-I audio to be
-working after the setpci,unload,rescan approach, I was using the nvidia
-proprietary driver. HDMI audio PCI device was then detected, the ELD files =
-show
-the monitor detected, and HDMI audio works.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136416=
+" name=3D"attach_136416" title=3D"Kernel module to toggle audio function">a=
+ttachment 136416</a> <a href=3D"attachment.cgi?id=3D136416&amp;action=3Dedi=
+t" title=3D"Kernel module to toggle audio function">[details]</a></span>
+Kernel module to toggle audio function
 
-In the patch above, I am using nouveau. The HDMI audio PCI device is now
-detected automatically, the HDMI video output is working and active, but the
-ELD files show that no HDMI monitor was detected on the audio side.
-
-I checked with HDA verbs directly:
-# hda-verb /dev/snd/hwC1D0 6 GET_PIN_SENSE 0
-
-With the setpci+unload+rescan approach on nouveau, this always returns valu=
-e 0,
-even with HDMI video output active and working.
-
-With the setpci+unload+rescan approach on nvidia's proprietary drivers, this
-returns 0 after loading the modules. However upon starting X, it starts
-returning 0xc0000000 and HDMI audio output works fine.
-
-So in addition to the games with the magic register, the nvidia proprietary
-driver is doing something else as well which is needed to make HDMI audio w=
-ork.</pre>
+Thank you, Daniel. I was too blind to see the attachment.
+Attaching some c/p work using/abusing bbswitch as a framework and your enab=
+le
+code. So works like that. Creates a handle /proc/acpi/nvhda which takes ON =
+and
+OFF. Since my hardware doesn't have outputs I can't test it farther than
+turning on and off.
+Can be loaded and used while the proprietary driver is loaded to be used for
+further investigations.
+- Does the prop. driver react to this immediately, i.e. make audio work?
+- If not, does plugging out/in the hdmi cable make it work?
+- Are any pci config space changes noticeable?</pre>
         </div>
       </p>
 
@@ -133,9 +118,9 @@ ork.</pre>
     </body>
 </html>=
 
---15143961193.770C3Ead.6808--
+--15144279052.BB4aaa.22120--
 
---===============1039974294==
+--===============0819381299==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -145,4 +130,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1039974294==--
+--===============0819381299==--
