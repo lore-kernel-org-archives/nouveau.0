@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
-	rescan
-Date: Thu, 28 Dec 2017 03:00:03 +0000
-Message-ID: <bug-75985-8800-DXl482tEj5@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104222] GNOME/Wayland desktop freezes when resizing
+ Firefox window
+Date: Thu, 28 Dec 2017 19:29:39 +0000
+Message-ID: <bug-104222-8800-ZeTTsbLrap@http.bugs.freedesktop.org/>
+References: <bug-104222-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2119560941=="
+Content-Type: multipart/mixed; boundary="===============0809940780=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-104222-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,41 +21,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2119560941==
-Content-Type: multipart/alternative; boundary="15144300034.efD5924FE.26390";
+--===============0809940780==
+Content-Type: multipart/alternative; boundary="15144893792.ACa1.6712";
  charset="UTF-8"
 
 
---15144300034.efD5924FE.26390
-Date: Thu, 28 Dec 2017 03:00:03 +0000
+--15144893792.ACa1.6712
+Date: Thu, 28 Dec 2017 19:29:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104222
 
-Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org> changed:
+--- Comment #4 from Felix Na <felix.na70-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I can confirm that GNOME/Wayland/Nvidia crashes when resizing windows. Not =
+only
+in Firefox but also in other apps.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #136416|0                           |1
-        is obsolete|                            |
+It's happening with Nouveau and Nvidia proprietary driver (my hardware is an
+Nvidia GeForce GTX 750 Ti)
 
---- Comment #27 from Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org> ---
-Created attachment 136418
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136418&action=3Dedit
-Kernel module to toggle audio function
+As a workaround, I switched back to Gnome/X11 and the desktop freezes are g=
+one.
 
-Bug removed.
+Gnome/Wayland with Intel-CPU driver works fine.
+
+I guess Nvidia hardware and Wayland is not the best combination, hopefully =
+it
+will become more stable soon.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15144300034.efD5924FE.26390
-Date: Thu, 28 Dec 2017 03:00:03 +0000
+--15144893792.ACa1.6712
+Date: Thu, 28 Dec 2017 19:29:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,55 +69,40 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:hhfeuer&#=
-64;gmx.de" title=3D"Maik Freudenberg &lt;hhfeuer&#64;gmx.de&gt;"> <span cla=
-ss=3D"fn">Maik Freudenberg</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #136416 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c27">Commen=
-t # 27</a>
+   title=3D"NEW - GNOME/Wayland desktop freezes when resizing Firefox windo=
+w"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104222#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
+   title=3D"NEW - GNOME/Wayland desktop freezes when resizing Firefox windo=
+w"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104222">bug 10422=
+2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-hhfeuer&#64;gmx.de" title=3D"Maik Freudenberg &lt;hhfeuer&#64;gmx.de&gt;"> =
-<span class=3D"fn">Maik Freudenberg</span></a>
+felix.na70&#64;gmail.com" title=3D"Felix Na &lt;felix.na70&#64;gmail.com&gt=
+;"> <span class=3D"fn">Felix Na</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136418=
-" name=3D"attach_136418" title=3D"Kernel module to toggle audio function">a=
-ttachment 136418</a> <a href=3D"attachment.cgi?id=3D136418&amp;action=3Dedi=
-t" title=3D"Kernel module to toggle audio function">[details]</a></span>
-Kernel module to toggle audio function
+        <pre>I can confirm that GNOME/Wayland/Nvidia crashes when resizing =
+windows. Not only
+in Firefox but also in other apps.
 
-Bug removed.</pre>
+It's happening with Nouveau and Nvidia proprietary driver (my hardware is an
+Nvidia GeForce GTX 750 Ti)
+
+As a workaround, I switched back to Gnome/X11 and the desktop freezes are g=
+one.
+
+Gnome/Wayland with Intel-CPU driver works fine.
+
+I guess Nvidia hardware and Wayland is not the best combination, hopefully =
+it
+will become more stable soon.</pre>
         </div>
       </p>
 
@@ -128,9 +116,9 @@ Bug removed.</pre>
     </body>
 </html>=
 
---15144300034.efD5924FE.26390--
+--15144893792.ACa1.6712--
 
---===============2119560941==
+--===============0809940780==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -140,4 +128,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2119560941==--
+--===============0809940780==--
