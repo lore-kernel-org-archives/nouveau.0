@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103421] Kernel 4.13+ nouveau breaks screen output
-Date: Mon, 08 Jan 2018 12:44:40 +0000
-Message-ID: <bug-103421-8800-XXIxr9Y0Yf@http.bugs.freedesktop.org/>
-References: <bug-103421-8800@http.bugs.freedesktop.org/>
+From: Rosen Penev <rosenp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] ramgf100: Fix small typo.
+Date: Fri, 29 Dec 2017 13:39:11 -0800
+Message-ID: <CAKxU2N_Y7dEoGqYoJ1jrDmbt=kY5YNq+e-zUG_pnvRsJbtvsAQ@mail.gmail.com>
+References: <20170728012010.9376-1-rosenp@gmail.com>
+ <20171229213706.tseyuimojjfkxpcb@pmoreau.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0950813424=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20171229213706.tseyuimojjfkxpcb-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,90 +18,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Rosen Penev <rosenp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0950813424==
-Content-Type: multipart/alternative; boundary="15154154802.8AaEFa9.3592";
- charset="UTF-8"
-
-
---15154154802.8AaEFa9.3592
-Date: Mon, 8 Jan 2018 12:44:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103421
-
---- Comment #7 from kbaikov-IBi9RG/b67k@public.gmane.org ---
-I can confirm that this patch fixes the issue:
-
-https://patchwork.freedesktop.org/patch/196301/
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15154154802.8AaEFa9.3592
-Date: Mon, 8 Jan 2018 12:44:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Kernel 4.13+ nouveau breaks screen output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421#c7">Commen=
-t # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Kernel 4.13+ nouveau breaks screen output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421">bug 10342=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-kbaikov&#64;suse.com" title=3D"kbaikov&#64;suse.com">kbaikov&#64;suse.com</=
-a>
-</span></b>
-        <pre>I can confirm that this patch fixes the issue:
-
-<a href=3D"https://patchwork.freedesktop.org/patch/196301/">https://patchwo=
-rk.freedesktop.org/patch/196301/</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15154154802.8AaEFa9.3592--
-
---===============0950813424==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0950813424==--
+VGhpcyBpcyBmaXhlZCBpbiBhIGRpZmZlcmVudCBub3V2ZWF1IGJyYW5jaC4gZnJvbSBCZW4gU2tl
+Z2dzIGxhc3QgSSByZW1lbWJlci4KCk9uIEZyaSwgRGVjIDI5LCAyMDE3IGF0IDE6MzcgUE0sIFBp
+ZXJyZSBNb3JlYXUgPHBpZXJyZS5tb3Jyb3dAZnJlZS5mcj4gd3JvdGU6Cj4gVGhlIHR5cG8gaXMg
+c3RpbGwgcHJlc2VudCBpbiBtYXN0ZXIuCj4gTm90IHN1cmUgd2hldGhlciBpdCB3aWxsIGhlbHAg
+eW91IEJlbiwgcmVnYXJkaW5nIEZlcm1pIHJlY2xvY2tpbmcsIGJ1dCBpdAo+IHNob3VsZG7igJl0
+IGhhcm0gaW4gcmVkdWNpbmcgcG9zc2libGUgZXJyb3JzLiA6LSkKPgo+IFJlZ2FyZHMsCj4gUGll
+cnJlCj4KPiBPbiAyMDE3LTA3LTI3IOKAlCAxODoyMCwgUm9zZW4gUGVuZXYgd3JvdGU6Cj4+IFNp
+Z25lZC1vZmYgYnk6IFJvc2VuIFBlbmV2IDxyb3NlbnBAZ21haWwuY29tPgo+PiAtLS0KPj4gIGRy
+bS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3JhbWdmMTAwLmMgfCAyICstCj4+ICAxIGZpbGUgY2hh
+bmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPj4KPj4gZGlmZiAtLWdpdCBhL2Ry
+bS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3JhbWdmMTAwLmMgYi9kcm0vbm91dmVhdS9udmttL3N1
+YmRldi9mYi9yYW1nZjEwMC5jCj4+IGluZGV4IDRhOWJkNGYxLi5mZWI4ODIwYyAxMDA2NDQKPj4g
+LS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvcmFtZ2YxMDAuYwo+PiArKysgYi9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9mYi9yYW1nZjEwMC5jCj4+IEBAIC03MTcsNyArNzE3LDcgQEAg
+Z2YxMDBfcmFtX25ld18oY29uc3Qgc3RydWN0IG52a21fcmFtX2Z1bmMgKmZ1bmMsCj4+ICAgICAg
+IHJhbS0+ZnVjLnJfMHgxMGY5YjQgPSByYW1mdWNfcmVnKDB4MTBmOWI0KTsKPj4gICAgICAgcmFt
+LT5mdWMucl8weDEwZmIwNCA9IHJhbWZ1Y19yZWcoMHgxMGZiMDQpOwo+PiAgICAgICByYW0tPmZ1
+Yy5yXzB4MTBmYjA4ID0gcmFtZnVjX3JlZygweDEwZmIwOCk7Cj4+IC0gICAgIHJhbS0+ZnVjLnJf
+MHgxMzczMTAgPSByYW1mdWNfcmVnKDB4MTM3MzAwKTsKPj4gKyAgICAgcmFtLT5mdWMucl8weDEz
+NzMwMCA9IHJhbWZ1Y19yZWcoMHgxMzczMDApOwo+PiAgICAgICByYW0tPmZ1Yy5yXzB4MTM3MzEw
+ID0gcmFtZnVjX3JlZygweDEzNzMxMCk7Cj4+ICAgICAgIHJhbS0+ZnVjLnJfMHgxMzczNjAgPSBy
+YW1mdWNfcmVnKDB4MTM3MzYwKTsKPj4gICAgICAgcmFtLT5mdWMucl8weDEzNzNlYyA9IHJhbWZ1
+Y19yZWcoMHgxMzczZWMpOwo+PiAtLQo+PiAyLjEzLjMKPj4KPj4gX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPj4g
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
