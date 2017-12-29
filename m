@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103897] Kernel 4.14 causes high cpu usage,
-	4.12 was OK
-Date: Thu, 28 Dec 2017 22:44:31 +0000
-Message-ID: <bug-103897-8800-uS2dJdqgTi@http.bugs.freedesktop.org/>
-References: <bug-103897-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104413] New: [NV11] GPU Lockup on GeForce2 MX/MX 400
+Date: Fri, 29 Dec 2017 17:36:19 +0000
+Message-ID: <bug-104413-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0343693082=="
+Content-Type: multipart/mixed; boundary="===============0928001921=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103897-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +18,60 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0343693082==
-Content-Type: multipart/alternative; boundary="15145010711.98bDaF4.2299";
+--===============0928001921==
+Content-Type: multipart/alternative; boundary="15145689810.27fC9a9B.15862";
  charset="UTF-8"
 
 
---15145010711.98bDaF4.2299
-Date: Thu, 28 Dec 2017 22:44:31 +0000
+--15145689810.27fC9a9B.15862
+Date: Fri, 29 Dec 2017 17:36:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103897
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104413
 
---- Comment #6 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-Bug still here on 4.14.9-x64.
+            Bug ID: 104413
+           Summary: [NV11] GPU Lockup on GeForce2 MX/MX 400
+           Product: xorg
+           Version: unspecified
+          Hardware: x86 (IA32)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: rtentser-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-But it seems if I use "xset dpms force standby" X also doesn't eat CPU anym=
-ore.
-If X enters such state by default after some time of user inactivity - it a=
-lso
-don't eat CPU time. Unfortunately, I can't do anything useful wih seamonkey=
- if
-my screen is off.
+Created attachment 136447
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136447&action=3Dedit
+kern.log
+
+Boot freezes when X starts. The screen shows a garbage. Before it console s=
+how:
+[...] desktop kernel: [   14.060255] nouveau 0000:01:00.0: DRM: GPU lockup -
+switching to software fbcon
+
+Same thing happens with 4.9, 4.13 and 4.14 kernel.
+
+I used this card on motherboard with NForce2 chipset and it worked fine (wi=
+th
+4.9 kernel). Now i use P4i65GV with Intel 865GV chipset. I think there can =
+be
+some drivers conflicts.
+
+Boot with "nomodeset" option works.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15145010711.98bDaF4.2299
-Date: Thu, 28 Dec 2017 22:44:31 +0000
+--15145689810.27fC9a9B.15862
+Date: Fri, 29 Dec 2017 17:36:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,32 +82,109 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV11] GPU Lockup on GeForce2 MX/MX 400"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104413">104413</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NV11] GPU Lockup on GeForce2 MX/MX 400
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>rtentser&#64;yandex.ru
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Kernel 4.14 causes high cpu usage, 4.12 was OK"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103897#c6">Commen=
-t # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Kernel 4.14 causes high cpu usage, 4.12 was OK"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103897">bug 10389=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
-gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
-</span></b>
-        <pre>Bug still here on 4.14.9-x64.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136447=
+" name=3D"attach_136447" title=3D"kern.log">attachment 136447</a> <a href=
+=3D"attachment.cgi?id=3D136447&amp;action=3Dedit" title=3D"kern.log">[detai=
+ls]</a></span>
+kern.log
 
-But it seems if I use &quot;xset dpms force standby&quot; X also doesn't ea=
-t CPU anymore.
-If X enters such state by default after some time of user inactivity - it a=
-lso
-don't eat CPU time. Unfortunately, I can't do anything useful wih seamonkey=
- if
-my screen is off.</pre>
+Boot freezes when X starts. The screen shows a garbage. Before it console s=
+how:
+[...] desktop kernel: [   14.060255] nouveau 0000:01:00.0: DRM: GPU lockup -
+switching to software fbcon
+
+Same thing happens with 4.9, 4.13 and 4.14 kernel.
+
+I used this card on motherboard with NForce2 chipset and it worked fine (wi=
+th
+4.9 kernel). Now i use P4i65GV with Intel 865GV chipset. I think there can =
+be
+some drivers conflicts.
+
+Boot with &quot;nomodeset&quot; option works.</pre>
         </div>
       </p>
 
@@ -102,9 +198,9 @@ my screen is off.</pre>
     </body>
 </html>=
 
---15145010711.98bDaF4.2299--
+--15145689810.27fC9a9B.15862--
 
---===============0343693082==
+--===============0928001921==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +210,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0343693082==--
+--===============0928001921==--
