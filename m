@@ -1,15 +1,14 @@
 From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: drm/nouveau: Remove no longer needed local
- ACPI_VIDEO_NOTIFY_PROBE define
-Date: Fri, 29 Dec 2017 22:53:09 +0100
-Message-ID: <20171229215308.jgtuji5nn5ahk5nq@pmoreau.org>
-References: <20170526073508.4044-1-hdegoede@redhat.com>
- <7412d557-9b08-3d46-568b-bc1940ad4e40@redhat.com>
- <20170722115415.uthmdaqj3tdjmmn6@pmoreau.org>
+Subject: Re: [PATCH] drm/nouveau/hwmon: Uninitialized variables in
+ sysfs
+Date: Fri, 29 Dec 2017 22:56:32 +0100
+Message-ID: <20171229215631.zrcmfrni7k644wpz@pmoreau.org>
+References: <20170717081711.4mj76r6qf2de4em6@mwanda>
+ <20170722121322.7jig7u3i22bde4uf@pmoreau.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1521059423=="
+Content-Type: multipart/mixed; boundary="===============1800082222=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170722115415.uthmdaqj3tdjmmn6-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
+In-Reply-To: <20170722121322.7jig7u3i22bde4uf-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,79 +19,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 
---===============1521059423==
+--===============1800082222==
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zrqllgutffk5jerd"
+	protocol="application/pgp-signature"; boundary="xtlnfec2iqprdlpz"
 Content-Disposition: inline
 
 
---zrqllgutffk5jerd
+--xtlnfec2iqprdlpz
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Ping
+Ping: this can still be an issue today as kstrtol() & co haven=E2=80=99t ch=
+anged their
+possible return value since the patch was written.
 
-On 2017-07-22 =E2=80=94 13:54, Pierre Moreau wrote:
+On 2017-07-22 =E2=80=94 14:13, Pierre Moreau wrote:
 > Reviewed-by: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
 >=20
-> On 2017-06-21 =E2=80=94 15:19, Hans de Goede wrote:
-> > Hi,
+> On 2017-07-17 =E2=80=94 11:17, Dan Carpenter wrote:
+> > kstrtol() and friends can return -EINVAL or -ERANGE.  We have to test
+> > for both, otherwise the value is possibly uninitialized.  Also in some
+> > of these files we accidentally return "count" on error instead of a
+> > negative error code.
 > >=20
-> > On 26-05-17 09:35, Hans De Goede wrote:
-> > > The local #define of ACPI_VIDEO_NOTIFY_PROBE was only added temporari=
-ly
-> > > to avoid a dependency between the acpi and nouveau trees while mergin=
-g.
-> > >=20
-> > > This is now properly defined in acpi/video.h and the local #define can
-> > > be dropped.
-> > >=20
-> > > Signed-off-by: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> > Signed-off-by: Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
 > >=20
-> > ping, what is the status of this patch ?
-> >=20
-> > Regards,
-> >=20
-> > Hans
-> >=20
-> >=20
-> > > ---
-> > >   drivers/gpu/drm/nouveau/nouveau_display.c | 9 ---------
-> > >   1 file changed, 9 deletions(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/=
-drm/nouveau/nouveau_display.c
-> > > index 549763f5e17d..70de2079b2cc 100644
-> > > --- a/drivers/gpu/drm/nouveau/nouveau_display.c
-> > > +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-> > > @@ -369,15 +369,6 @@ nouveau_display_hpd_work(struct work_struct *wor=
-k)
-> > >   #ifdef CONFIG_ACPI
-> > > -/*
-> > > - * Hans de Goede: This define belongs in acpi/video.h, I've submitte=
-d a patch
-> > > - * to the acpi subsys to move it there from drivers/acpi/acpi_video.=
-c .
-> > > - * This should be dropped once that is merged.
-> > > - */
-> > > -#ifndef ACPI_VIDEO_NOTIFY_PROBE
-> > > -#define ACPI_VIDEO_NOTIFY_PROBE			0x81
-> > > -#endif
-> > > -
-> > >   static int
-> > >   nouveau_display_acpi_ntfy(struct notifier_block *nb, unsigned long =
-val,
-> > >   			  void *data)
-> > >=20
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/=
+nouveau/nouveau_hwmon.c
+> > index 7c965648df80..5e75af91c446 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> > @@ -68,9 +68,11 @@ nouveau_hwmon_set_temp1_auto_point1_temp(struct devi=
+ce *d,
+> >  	struct nouveau_drm *drm =3D nouveau_drm(dev);
+> >  	struct nvkm_therm *therm =3D nvxx_therm(&drm->client.device);
+> >  	long value;
+> > +	int ret;
+> > =20
+> > -	if (kstrtol(buf, 10, &value) =3D=3D -EINVAL)
+> > -		return count;
+> > +	ret =3D kstrtol(buf, 10, &value);
+> > +	if (ret)
+> > +		return ret;
+> > =20
+> >  	therm->attr_set(therm, NVKM_THERM_ATTR_THRS_FAN_BOOST,
+> >  			value / 1000);
+> > @@ -101,9 +103,11 @@ nouveau_hwmon_set_temp1_auto_point1_temp_hyst(stru=
+ct device *d,
+> >  	struct nouveau_drm *drm =3D nouveau_drm(dev);
+> >  	struct nvkm_therm *therm =3D nvxx_therm(&drm->client.device);
+> >  	long value;
+> > +	int ret;
+> > =20
+> > -	if (kstrtol(buf, 10, &value) =3D=3D -EINVAL)
+> > -		return count;
+> > +	ret =3D kstrtol(buf, 10, &value);
+> > +	if (ret)
+> > +		return ret;
+> > =20
+> >  	therm->attr_set(therm, NVKM_THERM_ATTR_THRS_FAN_BOOST_HYST,
+> >  			value / 1000);
+> > @@ -156,8 +160,9 @@ nouveau_hwmon_set_pwm1_min(struct device *d, struct=
+ device_attribute *a,
+> >  	long value;
+> >  	int ret;
+> > =20
+> > -	if (kstrtol(buf, 10, &value) =3D=3D -EINVAL)
+> > -		return -EINVAL;
+> > +	ret =3D kstrtol(buf, 10, &value);
+> > +	if (ret)
+> > +		return ret;
+> > =20
+> >  	ret =3D therm->attr_set(therm, NVKM_THERM_ATTR_FAN_MIN_DUTY, value);
+> >  	if (ret < 0)
+> > @@ -179,8 +184,9 @@ nouveau_hwmon_set_pwm1_max(struct device *d, struct=
+ device_attribute *a,
+> >  	long value;
+> >  	int ret;
+> > =20
+> > -	if (kstrtol(buf, 10, &value) =3D=3D -EINVAL)
+> > -		return -EINVAL;
+> > +	ret =3D kstrtol(buf, 10, &value);
+> > +	if (ret)
+> > +		return ret;
+> > =20
+> >  	ret =3D therm->attr_set(therm, NVKM_THERM_ATTR_FAN_MAX_DUTY, value);
+> >  	if (ret < 0)
 > > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> > Nouveau mailing list
+> > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> > https://lists.freedesktop.org/mailman/listinfo/nouveau
 
 
 
@@ -102,29 +123,29 @@ val,
 > https://lists.freedesktop.org/mailman/listinfo/nouveau
 
 
---zrqllgutffk5jerd
+--xtlnfec2iqprdlpz
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEYgBv5JnnDxeItcEHU3l4X80+KSQFAlpGuUQACgkQU3l4X80+
-KSQ79w//dKOlTLopnJORZ5UdrMornvcSZozdAFRJKp0xv7MykKdvyJjxaOuX8Ogg
-OYU0+J43/gp0uswxT07BP/Zg6BDLPBI8wMaJaY7pZFTQfKh9YdQlG23xyAFdQUak
-1sgO0kEEs/5p03tZ3fEwWLxkOFqqcfmM6YAzGOt0dAlUo8S7D/CQNRWZ4IKxBdfa
-F9sxeumoRbMZ6qxflxOx9hPVlCJF9IpU8h6HX6FhOe2qL6R1vWQpLUXTw8By8GCD
-JHga8pTH/UOkwPsnbjDKIpBTyAXHzX3ZEOCUSEkqXgH9+6hVoiBCHNmAfN45d0ne
-rTheLEZ/NumDyVsnUCLZX+H+1DIGnMK28C4qbLXAPBCIcaH7hdgdfhYSbKqbrCBy
-a0IL5EIMXGmUTBHKb/mqZP+fYKsA/l4hhBgHyzaCXmZ4M3SfCohiS1lIORgjVnnI
-7S+koqOZiKl6g+R/arU8Y6NBum9oUi3m9nh3K8Zx+txFLisC1Q/RSjT4GDPbVOsF
-oJqcrw4ITNKs0fLPiAMPjh1HQsv9vmgNA1YokHWW1889oiXSdPhCB45+5D+FhN8B
-UHD/z5DPffHKL3qJros7cnkibBIS/WlcEvSZGJDwLVvlVeXL7emPiDRA8dxxGN4b
-x3s5o4m3bv2pBhmd0hOcMIjtTqFQX6ZlaX6NaZuZcmZfgfkIxeY=
-=qCaW
+iQIzBAABCgAdFiEEYgBv5JnnDxeItcEHU3l4X80+KSQFAlpGug8ACgkQU3l4X80+
+KSSTtQ//Xl2itYd0bJDcq9POeG6cnvNDx+ACfJwk4ya21eJb0H8qraYgBc/2mCab
+NvxsXmEXVJt0eouCYgNkTMLTTYuKjuDFY1cmICNuVBCuu90Esi4g0k6TFlGXIWNL
++gKcXNPnjb8ywCG69omGUGVyxw8l06Dny1KJQAPYJNRfd8+EuUDB5qco6lQQq+H/
+ReeryvAN6KeC/8WTXv4Wj2uG0cbWtjafyc2zGrm30o+r96Lo/BoNfctbYQauX3Ce
+Ghkn3BHBzYmXTJuIV2ae4E2x7T0GetEXRIgm08Mnci4rZJVJiH9hBa9qTlsPUXtj
+HnE7BxxlUuGs9MICXPW4g7hUV0AzppPFqbnrpo90NbmdhAuw6jo5/r/FlvG1ahwG
+6wcRwl9tYBjzILxO9qeDUF94z6OEdWxZGCMDnTprMYVPYSxI5AZKcY+lC807Al4B
+Ux4LPAvKByBl2Z6QfXMHluV1gVNP0qDA7pVoZnpUfAzxBDROzsVdbM1y8BcZMcEt
+3a/n1W5UENUbWZhiknHsDEibqIAUnsISxzhJ4noVxkaqmV75Eht57ads4JzcflQ+
+IqVXfNC8Fimy5tyGhEiBCfr1RYVtVOXu20RjMRVvWxgMwpNSjjkNcDOY/kr+aCwH
+A3bIlU83reQWz5yZ/42ihBZUEp/WSUVF3E708M2v64Yzub06NaU=
+=ymkf
 -----END PGP SIGNATURE-----
 
---zrqllgutffk5jerd--
+--xtlnfec2iqprdlpz--
 
---===============1521059423==
+--===============1800082222==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -134,4 +155,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1521059423==--
+--===============1800082222==--
