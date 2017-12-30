@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104421] System freeze on wayland with nouveau on
 	NV137 (GP107)
-Date: Sat, 30 Dec 2017 22:45:28 +0000
-Message-ID: <bug-104421-8800-9TEXP5bNPl@http.bugs.freedesktop.org/>
+Date: Sat, 30 Dec 2017 22:51:43 +0000
+Message-ID: <bug-104421-8800-hw924HugUO@http.bugs.freedesktop.org/>
 References: <bug-104421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1057503177=="
+Content-Type: multipart/mixed; boundary="===============1547378747=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1057503177==
-Content-Type: multipart/alternative; boundary="15146739280.Bf096Ab.31210";
+--===============1547378747==
+Content-Type: multipart/alternative; boundary="15146743031.dFFD.32251";
  charset="UTF-8"
 
 
---15146739280.Bf096Ab.31210
-Date: Sat, 30 Dec 2017 22:45:28 +0000
+--15146743031.dFFD.32251
+Date: Sat, 30 Dec 2017 22:51:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
 
-Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> changed:
+--- Comment #1 from Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> ---
+After a while, I saw also this log statement multiple times:
+Dec 30 23:24:30 nyx kernel: nouveau 0000:23:00.0: Xwayland[5346]:
+nv50cal_space: -16
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |https://bugzilla.redhat.com
-                   |                            |/show_bug.cgi?id=3D1529854
+An attempt to restart the gnome-shell with:
+# killall -3 gnome-shell
+had no effect.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15146739280.Bf096Ab.31210
-Date: Sat, 30 Dec 2017 22:45:28 +0000
+--15146743031.dFFD.32251
+Date: Sat, 30 Dec 2017 22:51:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,32 +61,31 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jan.publi=
-c&#64;famvlug.nl" title=3D"Jan Vlug &lt;jan.public&#64;famvlug.nl&gt;"> <sp=
-an class=3D"fn">Jan Vlug</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
 1</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jan.public&#64;famvlug.nl" title=3D"Jan Vlug &lt;jan.public&#64;famvlug.nl&=
+gt;"> <span class=3D"fn">Jan Vlug</span></a>
+</span></b>
+        <pre>After a while, I saw also this log statement multiple times:
+Dec 30 23:24:30 nyx kernel: nouveau 0000:23:00.0: Xwayland[5346]:
+nv50cal_space: -16
 
-         <tr>
-           <td style=3D"text-align:right;">See Also</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>https://bugzilla.redhat.com/show_bug.cgi?id=3D1529854
-           </td>
-         </tr></table>
-      <p>
+An attempt to restart the gnome-shell with:
+# killall -3 gnome-shell
+had no effect.</pre>
+        </div>
       </p>
 
 
@@ -97,9 +98,9 @@ an class=3D"fn">Jan Vlug</span></a>
     </body>
 </html>=
 
---15146739280.Bf096Ab.31210--
+--15146743031.dFFD.32251--
 
---===============1057503177==
+--===============1547378747==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1057503177==--
+--===============1547378747==--
