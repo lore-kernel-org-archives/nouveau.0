@@ -1,14 +1,14 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/hwmon: Uninitialized variables in
- sysfs
-Date: Fri, 29 Dec 2017 22:56:32 +0100
-Message-ID: <20171229215631.zrcmfrni7k644wpz@pmoreau.org>
-References: <20170717081711.4mj76r6qf2de4em6@mwanda>
- <20170722121322.7jig7u3i22bde4uf@pmoreau.org>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: [PATCH v2] nv50/ir: Initialize all members of GCRA
+	(trivial)
+Date: Sat, 30 Dec 2017 15:21:56 +0100
+Message-ID: <20171230142156.4585-1-tobias.johannes.klausmann@mni.thm.de>
+References: <20171229212921.d76zrcj6p7vzc7yt@pmoreau.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1800082222=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20170722121322.7jig7u3i22bde4uf-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
+In-Reply-To: <20171229212921.d76zrcj6p7vzc7yt-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,141 +18,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, pierre.morrow-GANU6spQydw@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1800082222==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xtlnfec2iqprdlpz"
-Content-Disposition: inline
-
-
---xtlnfec2iqprdlpz
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Ping: this can still be an issue today as kstrtol() & co haven=E2=80=99t ch=
-anged their
-possible return value since the patch was written.
-
-On 2017-07-22 =E2=80=94 14:13, Pierre Moreau wrote:
-> Reviewed-by: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
->=20
-> On 2017-07-17 =E2=80=94 11:17, Dan Carpenter wrote:
-> > kstrtol() and friends can return -EINVAL or -ERANGE.  We have to test
-> > for both, otherwise the value is possibly uninitialized.  Also in some
-> > of these files we accidentally return "count" on error instead of a
-> > negative error code.
-> >=20
-> > Signed-off-by: Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
-> >=20
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/=
-nouveau/nouveau_hwmon.c
-> > index 7c965648df80..5e75af91c446 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-> > @@ -68,9 +68,11 @@ nouveau_hwmon_set_temp1_auto_point1_temp(struct devi=
-ce *d,
-> >  	struct nouveau_drm *drm =3D nouveau_drm(dev);
-> >  	struct nvkm_therm *therm =3D nvxx_therm(&drm->client.device);
-> >  	long value;
-> > +	int ret;
-> > =20
-> > -	if (kstrtol(buf, 10, &value) =3D=3D -EINVAL)
-> > -		return count;
-> > +	ret =3D kstrtol(buf, 10, &value);
-> > +	if (ret)
-> > +		return ret;
-> > =20
-> >  	therm->attr_set(therm, NVKM_THERM_ATTR_THRS_FAN_BOOST,
-> >  			value / 1000);
-> > @@ -101,9 +103,11 @@ nouveau_hwmon_set_temp1_auto_point1_temp_hyst(stru=
-ct device *d,
-> >  	struct nouveau_drm *drm =3D nouveau_drm(dev);
-> >  	struct nvkm_therm *therm =3D nvxx_therm(&drm->client.device);
-> >  	long value;
-> > +	int ret;
-> > =20
-> > -	if (kstrtol(buf, 10, &value) =3D=3D -EINVAL)
-> > -		return count;
-> > +	ret =3D kstrtol(buf, 10, &value);
-> > +	if (ret)
-> > +		return ret;
-> > =20
-> >  	therm->attr_set(therm, NVKM_THERM_ATTR_THRS_FAN_BOOST_HYST,
-> >  			value / 1000);
-> > @@ -156,8 +160,9 @@ nouveau_hwmon_set_pwm1_min(struct device *d, struct=
- device_attribute *a,
-> >  	long value;
-> >  	int ret;
-> > =20
-> > -	if (kstrtol(buf, 10, &value) =3D=3D -EINVAL)
-> > -		return -EINVAL;
-> > +	ret =3D kstrtol(buf, 10, &value);
-> > +	if (ret)
-> > +		return ret;
-> > =20
-> >  	ret =3D therm->attr_set(therm, NVKM_THERM_ATTR_FAN_MIN_DUTY, value);
-> >  	if (ret < 0)
-> > @@ -179,8 +184,9 @@ nouveau_hwmon_set_pwm1_max(struct device *d, struct=
- device_attribute *a,
-> >  	long value;
-> >  	int ret;
-> > =20
-> > -	if (kstrtol(buf, 10, &value) =3D=3D -EINVAL)
-> > -		return -EINVAL;
-> > +	ret =3D kstrtol(buf, 10, &value);
-> > +	if (ret)
-> > +		return ret;
-> > =20
-> >  	ret =3D therm->attr_set(therm, NVKM_THERM_ATTR_FAN_MAX_DUTY, value);
-> >  	if (ret < 0)
-> > _______________________________________________
-> > Nouveau mailing list
-> > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> > https://lists.freedesktop.org/mailman/listinfo/nouveau
-
-
-
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
-
-
---xtlnfec2iqprdlpz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEYgBv5JnnDxeItcEHU3l4X80+KSQFAlpGug8ACgkQU3l4X80+
-KSSTtQ//Xl2itYd0bJDcq9POeG6cnvNDx+ACfJwk4ya21eJb0H8qraYgBc/2mCab
-NvxsXmEXVJt0eouCYgNkTMLTTYuKjuDFY1cmICNuVBCuu90Esi4g0k6TFlGXIWNL
-+gKcXNPnjb8ywCG69omGUGVyxw8l06Dny1KJQAPYJNRfd8+EuUDB5qco6lQQq+H/
-ReeryvAN6KeC/8WTXv4Wj2uG0cbWtjafyc2zGrm30o+r96Lo/BoNfctbYQauX3Ce
-Ghkn3BHBzYmXTJuIV2ae4E2x7T0GetEXRIgm08Mnci4rZJVJiH9hBa9qTlsPUXtj
-HnE7BxxlUuGs9MICXPW4g7hUV0AzppPFqbnrpo90NbmdhAuw6jo5/r/FlvG1ahwG
-6wcRwl9tYBjzILxO9qeDUF94z6OEdWxZGCMDnTprMYVPYSxI5AZKcY+lC807Al4B
-Ux4LPAvKByBl2Z6QfXMHluV1gVNP0qDA7pVoZnpUfAzxBDROzsVdbM1y8BcZMcEt
-3a/n1W5UENUbWZhiknHsDEibqIAUnsISxzhJ4noVxkaqmV75Eht57ads4JzcflQ+
-IqVXfNC8Fimy5tyGhEiBCfr1RYVtVOXu20RjMRVvWxgMwpNSjjkNcDOY/kr+aCwH
-A3bIlU83reQWz5yZ/42ihBZUEp/WSUVF3E708M2v64Yzub06NaU=
-=ymkf
------END PGP SIGNATURE-----
-
---xtlnfec2iqprdlpz--
-
---===============1800082222==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1800082222==--
+djI6IHVzZSBpbml0aWFsaXphdGlvbiBsaXN0IChQaWVycmUpCgpTaWduZWQtb2ZmLWJ5OiBUb2Jp
+YXMgS2xhdXNtYW5uIDx0b2JpYXMuam9oYW5uZXMua2xhdXNtYW5uQG1uaS50aG0uZGU+ClJldmll
+d2VkLWJ5OiBQaWVycmUgTW9yZWF1IDxwaWVycmUubW9ycm93QGZyZWUuZnI+Ci0tLQogc3JjL2dh
+bGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9yYS5jcHAgfCA0ICsrKy0KIDEg
+ZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQg
+YS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3JhLmNwcCBiL3Ny
+Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcmEuY3BwCmluZGV4IDM2
+MTkxOGExNjEuLmE3MGE1NGY2YjggMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
+dmVhdS9jb2RlZ2VuL252NTBfaXJfcmEuY3BwCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
+dmVhdS9jb2RlZ2VuL252NTBfaXJfcmEuY3BwCkBAIC0xMTQ0LDcgKzExNDQsOSBAQCBHQ1JBOjpS
+SUdfTm9kZTo6YWRkUmVnUHJlZmVyZW5jZShSSUdfTm9kZSAqbm9kZSkKIEdDUkE6OkdDUkEoRnVu
+Y3Rpb24gKmZuLCBTcGlsbENvZGVJbnNlcnRlciYgc3BpbGwpIDoKICAgIGZ1bmMoZm4pLAogICAg
+cmVncyhmbi0+Z2V0UHJvZ3JhbSgpLT5nZXRUYXJnZXQoKSksCi0gICBzcGlsbChzcGlsbCkKKyAg
+IHNwaWxsKHNwaWxsKSwKKyAgIG5vZGVDb3VudCgwKSwKKyAgIG5vZGVzKE5VTEwpCiB7CiAgICBw
+cm9nID0gZnVuYy0+Z2V0UHJvZ3JhbSgpOwogCi0tIAoyLjE1LjEKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
