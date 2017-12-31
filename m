@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80675] [NVAA] Nouveau KMS framebuffer hand-over:
- no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848) with 32MB
- graphics RAM, X11 ok
-Date: Sun, 31 Dec 2017 03:44:59 +0000
-Message-ID: <bug-80675-8800-Ng6PT6RuJ5@http.bugs.freedesktop.org/>
-References: <bug-80675-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 1/2] kms/nv50-gf119: use "low res" lut for indexed
+	mode
+Date: Sat, 30 Dec 2017 23:35:28 -0500
+Message-ID: <20171231043529.17760-1-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1126451863=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80675-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,107 +16,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1126451863==
-Content-Type: multipart/alternative; boundary="15146918990.b063.7249";
- charset="UTF-8"
-
-
---15146918990.b063.7249
-Date: Sun, 31 Dec 2017 03:44:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D80675
-
---- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 136458
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136458&action=3Dedit
-use "low res" lut for c8
-
-This patch seems to help. There is a problem in that the first modeset does
-appear to miss that initialization entirely, but later ones seem to work af=
-ter
-the screen is initially turned off (by the modeset).
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15146918990.b063.7249
-Date: Sun, 31 Dec 2017 03:44:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVAA] Nouveau KMS framebuffer hand-over: no/black consol=
-e on Nvidia MCP78S/C77/GeForce 8300 (10de:0848) with 32MB graphics RAM, X11=
- ok"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D80675#c11">Commen=
-t # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVAA] Nouveau KMS framebuffer hand-over: no/black consol=
-e on Nvidia MCP78S/C77/GeForce 8300 (10de:0848) with 32MB graphics RAM, X11=
- ok"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D80675">bug 80675<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136458=
-" name=3D"attach_136458" title=3D"use &quot;low res&quot; lut for c8">attac=
-hment 136458</a> <a href=3D"attachment.cgi?id=3D136458&amp;action=3Dedit" t=
-itle=3D"use &quot;low res&quot; lut for c8">[details]</a></span> <a href=3D=
-'page.cgi?id=3Dsplinter.html&amp;bug=3D80675&amp;attachment=3D136458'>[revi=
-ew]</a>
-use &quot;low res&quot; lut for c8
-
-This patch seems to help. There is a problem in that the first modeset does
-appear to miss that initialization entirely, but later ones seem to work af=
-ter
-the screen is initially turned off (by the modeset).</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15146918990.b063.7249--
-
---===============1126451863==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1126451863==--
+VGhpcyBpcyB3aGF0IHdhcyBkb25lIHByaW9yIHRvIHRoZSBiaWcgcmVmYWN0b3IgaW4ga2VybmVs
+IDMuOCwgYW5kIHdoYXQKd2FzIGRvbmUgYnkgeGY4Ni12aWRlby1udi4gRXhwZXJpbWVudGFsbHks
+IGl0IHNlZW1zIGxpa2UgdGhlcmUncyBzb21lCnNvcnQgb2YgaXNzdWUgd2l0aCB0aGUgaGlnaC1y
+ZXMgbHV0IHRvIGJlIHVzZWQgdGhlcmUuIFRlc3RlZCBvbiBHOTIuCgpUaGlzIGVuZHMgdXAgbWF0
+dGVyaW5nIGJlY2F1c2UgZmJjb24vZmJkZXYgY2hvb3NlcyB0aGUgQzggZmIgZm9ybWF0IGZvcgps
+b3ctdnJhbSBzeXN0ZW1zLCB3aGljaCBjYW4gb2NjdXIgd2l0aCBzb21lIElHUC1iYXNlZCBjb25m
+aWd1cmF0aW9ucwp3aXRoIGxpdHRsZSAic3RvbGVuIiB2cmFtLgoKQnVnemlsbGE6IGh0dHBzOi8v
+YnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTgwNjc1ClNpZ25lZC1vZmYtYnk6
+IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KLS0tCgpUaGVyZSdzIG1vcmUgdG8g
+YmUgZG9uZSBoZXJlIEkgdGhpbmsgc2luY2UgdGhlIGZpcnN0IG1vZGVzZXQgZW5kcyB1cApza2lw
+cGluZyBhIGJ1bmNoIG9mIHN0dWZmIGZvciBzb21lIHJlYXNvbi4gQnV0IEkgY2FuJ3QgZmlndXJl
+IG91dCBob3cgdG8KZ2V0IGl0IHRvIG5vdCBkbyB0aGF0LgoKQnV0IHRoaXMgaXMgYSBzdGFydC4K
+CiBkcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYyB8IDYgKysrKy0tCiAxIGZpbGUgY2hhbmdlZCwg
+NCBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1
+L252NTBfZGlzcGxheS5jIGIvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMKaW5kZXggNTg0NDY2
+ZWYuLjBlOGY0Yjc2IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYworKysg
+Yi9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwpAQCAtMTgwMCwxMiArMTgwMCwxNCBAQCBudjUw
+X2hlYWRfbHV0X3NldChzdHJ1Y3QgbnY1MF9oZWFkICpoZWFkLCBzdHJ1Y3QgbnY1MF9oZWFkX2F0
+b20gKmFzeWgpCiAJaWYgKChwdXNoID0gZXZvX3dhaXQoY29yZSwgNykpKSB7CiAJCWlmIChjb3Jl
+LT5iYXNlLnVzZXIub2NsYXNzIDwgRzgyX0RJU1BfQ09SRV9DSEFOTkVMX0RNQSkgewogCQkJZXZv
+X210aGQocHVzaCwgMHgwODQwICsgKGhlYWQtPmJhc2UuaW5kZXggKiAweDQwMCksIDIpOwotCQkJ
+ZXZvX2RhdGEocHVzaCwgMHhjMDAwMDAwMCk7CisJCQlldm9fZGF0YShwdXNoLCBhc3loLT5iYXNl
+LmRlcHRoID09IDggPworCQkJCSAweDgwMDAwMDAwIDogMHhjMDAwMDAwMCk7CiAJCQlldm9fZGF0
+YShwdXNoLCBhc3loLT5sdXQub2Zmc2V0ID4+IDgpOwogCQl9IGVsc2UKIAkJaWYgKGNvcmUtPmJh
+c2UudXNlci5vY2xhc3MgPCBHRjExMF9ESVNQX0NPUkVfQ0hBTk5FTF9ETUEpIHsKIAkJCWV2b19t
+dGhkKHB1c2gsIDB4MDg0MCArIChoZWFkLT5iYXNlLmluZGV4ICogMHg0MDApLCAyKTsKLQkJCWV2
+b19kYXRhKHB1c2gsIDB4YzAwMDAwMDApOworCQkJZXZvX2RhdGEocHVzaCwgYXN5aC0+YmFzZS5k
+ZXB0aCA9PSA4ID8KKwkJCQkgMHg4MDAwMDAwMCA6IDB4YzAwMDAwMDApOwogCQkJZXZvX2RhdGEo
+cHVzaCwgYXN5aC0+bHV0Lm9mZnNldCA+PiA4KTsKIAkJCWV2b19tdGhkKHB1c2gsIDB4MDg1YyAr
+IChoZWFkLT5iYXNlLmluZGV4ICogMHg0MDApLCAxKTsKIAkJCWV2b19kYXRhKHB1c2gsIGFzeWgt
+Pmx1dC5oYW5kbGUpOwotLSAKMi4xMy42CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
