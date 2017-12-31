@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93629] [NVE6] complete system freeze,
  PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
-Date: Sun, 31 Dec 2017 11:41:08 +0000
-Message-ID: <bug-93629-8800-5q8IWNqN0Y@http.bugs.freedesktop.org/>
+Date: Sun, 31 Dec 2017 11:43:05 +0000
+Message-ID: <bug-93629-8800-YNKGkTsxKF@http.bugs.freedesktop.org/>
 References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0889497334=="
+Content-Type: multipart/mixed; boundary="===============1906845020=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0889497334==
-Content-Type: multipart/alternative; boundary="15147204688.F7c7bFE.25065";
+--===============1906845020==
+Content-Type: multipart/alternative; boundary="15147205843.F8E6354d7.25061";
  charset="UTF-8"
 
 
---15147204688.F7c7bFE.25065
-Date: Sun, 31 Dec 2017 11:41:08 +0000
+--15147205843.F8E6354d7.25061
+Date: Sun, 31 Dec 2017 11:43:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
 
-Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |https://bugzilla.redhat.com
-                   |                            |/show_bug.cgi?id=3D1529854
+--- Comment #42 from Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> ---
+See https://bugzilla.redhat.com/show_bug.cgi?id=3D1514831#c3 for how to
+reproducibly trigger a freeze on Fedora 27.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15147204688.F7c7bFE.25065
-Date: Sun, 31 Dec 2017 11:41:08 +0000
+--15147205843.F8E6354d7.25061
+Date: Sun, 31 Dec 2017 11:43:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,33 +56,30 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jan.publi=
-c&#64;famvlug.nl" title=3D"Jan Vlug &lt;jan.public&#64;famvlug.nl&gt;"> <sp=
-an class=3D"fn">Jan Vlug</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c42">Commen=
+t # 42</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
 nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
 /a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">See Also</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>https://bugzilla.redhat.com/show_bug.cgi?id=3D1529854
-           </td>
-         </tr></table>
-      <p>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jan.public&#64;famvlug.nl" title=3D"Jan Vlug &lt;jan.public&#64;famvlug.nl&=
+gt;"> <span class=3D"fn">Jan Vlug</span></a>
+</span></b>
+        <pre>See <a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1=
+514831#c3">https://bugzilla.redhat.com/show_bug.cgi?id=3D1514831#c3</a> for=
+ how to
+reproducibly trigger a freeze on Fedora 27.</pre>
+        </div>
       </p>
 
 
@@ -98,9 +92,9 @@ nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
     </body>
 </html>=
 
---15147204688.F7c7bFE.25065--
+--15147205843.F8E6354d7.25061--
 
---===============0889497334==
+--===============1906845020==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0889497334==--
+--===============1906845020==--
