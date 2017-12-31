@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104421] System freeze on wayland with nouveau on
-	NV137 (GP107)
-Date: Sun, 31 Dec 2017 11:34:01 +0000
-Message-ID: <bug-104421-8800-AzhdVmacpN@http.bugs.freedesktop.org/>
-References: <bug-104421-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93629] [NVE6] complete system freeze,
+ PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
+Date: Sun, 31 Dec 2017 11:38:14 +0000
+Message-ID: <bug-93629-8800-oDA3LIm0uq@http.bugs.freedesktop.org/>
+References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1054927059=="
+Content-Type: multipart/mixed; boundary="===============1739638321=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1054927059==
-Content-Type: multipart/alternative; boundary="15147200411.C2bA14EC.23927";
+--===============1739638321==
+Content-Type: multipart/alternative; boundary="15147202943.9b2d.24744";
  charset="UTF-8"
 
 
---15147200411.C2bA14EC.23927
-Date: Sun, 31 Dec 2017 11:34:01 +0000
+--15147202943.9b2d.24744
+Date: Sun, 31 Dec 2017 11:38:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
 
 Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Depends on|                            |93629
+           See Also|                            |https://bugs.freedesktop.or
+                   |                            |g/show_bug.cgi?id=3D104421
 
-
-Referenced Bugs:
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
-[Bug 93629] [NVE6] complete system freeze, PGRAPH engine fault on channel 2,
-SCHED_ERROR [ CTXSW_TIMEOUT ]
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15147200411.C2bA14EC.23927
-Date: Sun, 31 Dec 2017 11:34:01 +0000
+--15147202943.9b2d.24744
+Date: Sun, 31 Dec 2017 11:38:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,9 +65,10 @@ an class=3D"fn">Jan Vlug</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
-1</a>
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
+/a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -82,32 +78,16 @@ an class=3D"fn">Jan Vlug</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Depends on</td>
+           <td style=3D"text-align:right;">See Also</td>
            <td>
                &nbsp;
            </td>
-           <td>93629
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
            </td>
          </tr></table>
       <p>
       </p>
 
-        <div id=3D"referenced">
-          <hr style=3D"border: 1px dashed #969696">
-          <b>Referenced Bugs:</b>
-          <ul>
-              <li>
-                [<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
-nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">Bug 93629<=
-/a>] [NVE6] complete system freeze, PGRAPH engine fault on channel 2, SCHED=
-_ERROR [ CTXSW_TIMEOUT ]
-              </li>
-          </ul>
-        </div>
-        <br>
 
       <hr>
       <span>You are receiving this mail because:</span>
@@ -118,9 +98,9 @@ _ERROR [ CTXSW_TIMEOUT ]
     </body>
 </html>=
 
---15147200411.C2bA14EC.23927--
+--15147202943.9b2d.24744--
 
---===============1054927059==
+--===============1739638321==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -130,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1054927059==--
+--===============1739638321==--
