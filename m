@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104222] GNOME/Wayland desktop freezes when resizing
  Firefox window
-Date: Sun, 31 Dec 2017 12:26:45 +0000
-Message-ID: <bug-104222-8800-LRm8DXDs9j@http.bugs.freedesktop.org/>
+Date: Sun, 31 Dec 2017 12:27:14 +0000
+Message-ID: <bug-104222-8800-hUKNBqXtDW@http.bugs.freedesktop.org/>
 References: <bug-104222-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1007491429=="
+Content-Type: multipart/mixed; boundary="===============1433823557=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104222-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1007491429==
-Content-Type: multipart/alternative; boundary="15147232052.6cE0900E3.32393";
+--===============1433823557==
+Content-Type: multipart/alternative; boundary="15147232341.EEBdEdaE8.32585";
  charset="UTF-8"
 
 
---15147232052.6cE0900E3.32393
-Date: Sun, 31 Dec 2017 12:26:45 +0000
+--15147232341.EEBdEdaE8.32585
+Date: Sun, 31 Dec 2017 12:27:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,15 +40,15 @@ Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=3D104421
+           See Also|                            |https://bugzilla.redhat.com
+                   |                            |/show_bug.cgi?id=3D1514831
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15147232052.6cE0900E3.32393
-Date: Sun, 31 Dec 2017 12:26:45 +0000
+--15147232341.EEBdEdaE8.32585
+Date: Sun, 31 Dec 2017 12:27:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -82,7 +82,7 @@ w"
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
+           <td>https://bugzilla.redhat.com/show_bug.cgi?id=3D1514831
            </td>
          </tr></table>
       <p>
@@ -98,9 +98,9 @@ w"
     </body>
 </html>=
 
---15147232052.6cE0900E3.32393--
+--15147232341.EEBdEdaE8.32585--
 
---===============1007491429==
+--===============1433823557==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1007491429==--
+--===============1433823557==--
