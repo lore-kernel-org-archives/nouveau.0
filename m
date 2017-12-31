@@ -1,13 +1,18 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104222] GNOME/Wayland desktop freezes when resizing
- Firefox window
-Date: Sun, 31 Dec 2017 12:27:22 +0000
-Message-ID: <bug-104222-8800-UU6klvNBnY@http.bugs.freedesktop.org/>
-References: <bug-104222-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: nouveau. swiotlb: coherent allocation failed for
+ device 0000:01:00.0 size=2097152
+Date: Sun, 31 Dec 2017 13:27:04 -0500
+Message-ID: <CAKb7Uvgt+SOwf6i2kAzEz65VTGzP6vYb2nBD+78FnXLtMZfOvg@mail.gmail.com>
+References: <1513620418.7113.51.camel@gmx.de>
+ <a083d576-215f-eb76-278b-741fc65fb138@mni.thm.de>
+ <f447948f-cfad-f4ea-4c41-54e42a733c16@daenzer.net>
+ <a96f755f-a20b-a177-ead1-7b79acbb1250@daenzer.net>
+ <e1b8dd62-4423-2b51-9634-e8938801b5d9@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0023454580=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104222-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <e1b8dd62-4423-2b51-9634-e8938801b5d9-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,97 +22,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel-otUistvHUpPR7s880joybQ@public.gmane.org>, Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0023454580==
-Content-Type: multipart/alternative; boundary="15147232411.E1eBcB.792";
- charset="UTF-8"
-
-
---15147232411.E1eBcB.792
-Date: Sun, 31 Dec 2017 12:27:21 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104222
-
-Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |https://bugzilla.redhat.com
-                   |                            |/show_bug.cgi?id=3D1529854
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15147232411.E1eBcB.792
-Date: Sun, 31 Dec 2017 12:27:21 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jan.publi=
-c&#64;famvlug.nl" title=3D"Jan Vlug &lt;jan.public&#64;famvlug.nl&gt;"> <sp=
-an class=3D"fn">Jan Vlug</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GNOME/Wayland desktop freezes when resizing Firefox windo=
-w"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104222">bug 10422=
-2</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">See Also</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>https://bugzilla.redhat.com/show_bug.cgi?id=3D1529854
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15147232411.E1eBcB.792--
-
---===============0023454580==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0023454580==--
+T24gVHVlLCBEZWMgMTksIDIwMTcgYXQgODo0NSBBTSwgQ2hyaXN0aWFuIEvDtm5pZwo8Y2tvZW5p
+Zy5sZWljaHR6dW1lcmtlbkBnbWFpbC5jb20+IHdyb3RlOgo+IEFtIDE5LjEyLjIwMTcgdW0gMTE6
+Mzkgc2NocmllYiBNaWNoZWwgRMOkbnplcjoKPj4KPj4gT24gMjAxNy0xMi0xOSAxMTozNyBBTSwg
+TWljaGVsIETDpG56ZXIgd3JvdGU6Cj4+Pgo+Pj4gT24gMjAxNy0xMi0xOCAwODowMSBQTSwgVG9i
+aWFzIEtsYXVzbWFubiB3cm90ZToKPj4+Pgo+Pj4+IE9uIDEyLzE4LzE3IDc6MDYgUE0sIE1pa2Ug
+R2FsYnJhaXRoIHdyb3RlOgo+Pj4+Pgo+Pj4+PiBHcmVldGluZ3MsCj4+Pj4+Cj4+Pj4+IEtlcm5l
+bCBib3VuZCB3b3JrbG9hZHMgc2VlbSB0byB0cmlnZ2VyIHRoZSBiZWxvdyBmb3Igd2hhdGV2ZXIg
+cmVhc29uLgo+Pj4+PiAgICBJIG9ubHkgc2VlIHRoaXMgd2hlbiBiZWF0aW5nIHVwIE5GUy4gIFRo
+ZXJlIHdhcyBhIGt3b3JrZXIgd2FrZXVwCj4+Pj4+IGxhdGVuY3kgaXNzdWUsIGJ1dCB3aXRoIGEg
+YmFuZGFpZCBhcHBsaWVkIHRvIGZpeCB0aGF0IHVwLCBJIGNhbiBzdGlsbAo+Pj4+PiB0cmlnZ2Vy
+IHRoaXMuCj4+Pj4KPj4+Pgo+Pj4+IEhpLAo+Pj4+Cj4+Pj4gaSBoYXZlIHNlZW4gdGhpcyBvbmUg
+YXMgd2VsbCB3aXRoIG15IHN5c3RlbSwgYnV0IGkgY291bGQgbm90IGZpbmQgYW4KPj4+PiBlYXN5
+IHdheSB0byB0cmlnZ2VyIGl0IGZvciBiaXNlY3RpbmcgcHVycG9zZS4gSWYgeW91IGNhbiB0cmln
+Z2VyIGl0Cj4+Pj4gY29udmVuaWVudGx5LCBhIGJpc2VjdCB3b3VsZCBiZSBuaWNlIQo+Pj4KPj4+
+IEknbSBzZWVpbmcgdGhpcyAod2l0aCB0aGUgYW1kZ3B1IGFuZCByYWRlb24gZHJpdmVycykgd2hl
+biByZXN0aWMgdGFrZXMgYQo+Pj4gYmFja3VwLCBjcmVhdGluZyBtZW1vcnkgcHJlc3N1cmUuIEkg
+aGFwcGVuIHRvIGhhdmUganVzdCBmaW5pc2hlZAo+Pj4gYmlzZWN0aW5nLCB0aGUgcmVzdWx0IGlz
+Ogo+Pj4KPj4+IDY0OGJjMzU3NDcxNjQwMGFjYzA2Zjk5OTE1ODE1ZjgwZDk1NjM3ODMgaXMgdGhl
+IGZpcnN0IGJhZCBjb21taXQKPj4+IGNvbW1pdCA2NDhiYzM1NzQ3MTY0MDBhY2MwNmY5OTkxNTgx
+NWY4MGQ5NTYzNzgzCj4+PiBBdXRob3I6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2Vu
+aWdAYW1kLmNvbT4KPj4+IERhdGU6ICAgVGh1IEp1bCA2IDA5OjU5OjQzIDIwMTcgKzAyMDAKPj4+
+Cj4+PiAgICAgIGRybS90dG06IGFkZCB0cmFuc3BhcmVudCBodWdlIHBhZ2Ugc3VwcG9ydCBmb3Ig
+RE1BIGFsbG9jYXRpb25zIHYyCj4+Pgo+Pj4gICAgICBUcnkgdG8gYWxsb2NhdGUgaHVnZSBwYWdl
+cyB3aGVuIGl0IG1ha2VzIHNlbnNlLgo+Pj4KPj4+ICAgICAgdjI6IGZpeCBjb21tZW50IGFuZCB1
+c2UgaWZkZWYKPj4+Cj4+Pgo+PiBCVFcsIEkgaGF2ZW4ndCBub3RpY2VkIGFueSBiYWQgZWZmZWN0
+cyBvdGhlciB0aGFuIHRoZSBkbWVzZyBzcGxhdHMsIHNvCj4+IG1heWJlIGl0J3MganVzdCBub2lz
+ZSBhYm91dCB0cmFuc2llbnQgZmFpbHVyZXMgZm9yIHdoaWNoIHRoZXJlIGlzIGEKPj4gcHJvcGVy
+IGZhbGxiYWNrIGluIHBsYWNlLgo+Cj4KPiBZZWFoLCBJIHRoaW5rIHRoYXQgaXMgZXhhY3RseSB3
+aGF0IGhhcHBlbnMgaGVyZS4KPgo+IFdlIHRyeSB0byBhbGxvY2F0ZSBhIGh1Z2UgcGFnZSwgYnV0
+IGZhaWwgYW5kIHNvIGZhbGwgYmFjayB0byB1c2luZyBtdWx0aXBsZQo+IDRrIHBhZ2VzIGluc3Rl
+YWQuCj4KPiBHb2luZyB0byBzZW5kIG91dCBhIHBhdGNoIHRvIHN1cHByZXNzIHRoZSB3YXJuaW5n
+LgoKSGkgQ2hyaXN0aWFuLAoKRGlkIHlvdSBldmVyIHNlbmQgb3V0IHN1Y2ggYSBwYXRjaD8gSSBk
+aWRuJ3Qgc2VlIG9uZSBvbiB0aGUgbGlzdCwgYnV0CnBlcmhhcHMgSSBtaXNzZWQgaXQuIE9uZSBk
+ZWZpbml0ZWx5IGhhc24ndCBtYWRlIGl0IHVwc3RyZWFtIHlldC4gKEkKanVzdCBoaXQgdGhlIGlz
+c3VlIG15c2VsZiB3aXRoIExpbnVzJ3MgdHJlZSBmcm9tIGxhc3QgbmlnaHQuKQoKVGhhbmtzLAoK
+ICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
+b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
