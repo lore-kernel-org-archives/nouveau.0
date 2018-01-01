@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104441] drm/nouveau: drm_hwcomposer cannot get
- rotation property/does not work
-Date: Mon, 01 Jan 2018 23:51:50 +0000
-Message-ID: <bug-104441-8800-IAr94eASAS@http.bugs.freedesktop.org/>
-References: <bug-104441-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104442] Vive causes "modeset fail"
+Date: Mon, 01 Jan 2018 23:58:18 +0000
+Message-ID: <bug-104442-8800-7LBfCOErmX@http.bugs.freedesktop.org/>
+References: <bug-104442-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1432584496=="
+Content-Type: multipart/mixed; boundary="===============0689111282=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-104442-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1432584496==
-Content-Type: multipart/alternative; boundary="15148507091.BbF3.1949";
+--===============0689111282==
+Content-Type: multipart/alternative; boundary="15148510981.13aAB2.2084";
  charset="UTF-8"
 
 
---15148507091.BbF3.1949
-Date: Mon, 1 Jan 2018 23:51:49 +0000
+--15148510981.13aAB2.2084
+Date: Mon, 1 Jan 2018 23:58:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104441
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104442
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Those properties are not available for the very simple reason that they're =
-not
-implemented.
-
-What would the 'alpha' property do?
-
-I don't think there's any support for rotation in the hardware. (That's like
-you want to set a 1280x720 mode but use a 720x1280 fb?)
+--- Comment #1 from Peter <simber2-FhtRXb7CoQBt1OO0OYaSVA@public.gmane.org> ---
+Created attachment 136478
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136478&action=3Dedit
+First paste bin in txt form
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15148507091.BbF3.1949
-Date: Mon, 1 Jan 2018 23:51:49 +0000
+--15148510981.13aAB2.2084
+Date: Mon, 1 Jan 2018 23:58:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,28 +61,23 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - drm/nouveau: drm_hwcomposer cannot get rotation property/=
-does not work"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104441#c2">Commen=
-t # 2</a>
+   title=3D"NEW - Vive causes &quot;modeset fail&quot;"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104442#c1">Commen=
+t # 1</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - drm/nouveau: drm_hwcomposer cannot get rotation property/=
-does not work"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104441">bug 10444=
-1</a>
+   title=3D"NEW - Vive causes &quot;modeset fail&quot;"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104442">bug 10444=
+2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+simber2&#64;btinternet.com" title=3D"Peter &lt;simber2&#64;btinternet.com&g=
+t;"> <span class=3D"fn">Peter</span></a>
 </span></b>
-        <pre>Those properties are not available for the very simple reason =
-that they're not
-implemented.
-
-What would the 'alpha' property do?
-
-I don't think there's any support for rotation in the hardware. (That's like
-you want to set a 1280x720 mode but use a 720x1280 fb?)</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136478=
+" name=3D"attach_136478" title=3D"First paste bin in txt form">attachment 1=
+36478</a> <a href=3D"attachment.cgi?id=3D136478&amp;action=3Dedit" title=3D=
+"First paste bin in txt form">[details]</a></span>
+First paste bin in txt form</pre>
         </div>
       </p>
 
@@ -102,9 +91,9 @@ you want to set a 1280x720 mode but use a 720x1280 fb?)</pre>
     </body>
 </html>=
 
---15148507091.BbF3.1949--
+--15148510981.13aAB2.2084--
 
---===============1432584496==
+--===============0689111282==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1432584496==--
+--===============0689111282==--
