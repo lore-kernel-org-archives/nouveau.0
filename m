@@ -1,20 +1,11 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: nouveau. swiotlb: coherent allocation failed for
- device 0000:01:00.0 size=2097152
-Date: Mon, 1 Jan 2018 13:08:54 -0500
-Message-ID: <CAKb7Uvjw0rP4u-zw1rRfwH1BRWFj9nwDVv8dPJY=oYS1DgjTBw@mail.gmail.com>
-References: <1513620418.7113.51.camel@gmx.de>
- <a083d576-215f-eb76-278b-741fc65fb138@mni.thm.de>
- <f447948f-cfad-f4ea-4c41-54e42a733c16@daenzer.net>
- <a96f755f-a20b-a177-ead1-7b79acbb1250@daenzer.net>
- <e1b8dd62-4423-2b51-9634-e8938801b5d9@gmail.com>
- <CAKb7Uvgt+SOwf6i2kAzEz65VTGzP6vYb2nBD+78FnXLtMZfOvg@mail.gmail.com>
- <1514753618.20829.3.camel@gmx.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 104441] New: drm/nouveau: drm_hwcomposer cannot get
+ rotation property/does not work
+Date: Mon, 01 Jan 2018 23:45:51 +0000
+Message-ID: <bug-104441-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2139475882=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1514753618.20829.3.camel-Mmb7MZpHnFY@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -24,55 +15,253 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel-otUistvHUpPR7s880joybQ@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBEZWMgMzEsIDIwMTcgYXQgMzo1MyBQTSwgTWlrZSBHYWxicmFpdGggPGVmYXVsdEBn
-bXguZGU+IHdyb3RlOgo+IE9uIFN1biwgMjAxNy0xMi0zMSBhdCAxMzoyNyAtMDUwMCwgSWxpYSBN
-aXJraW4gd3JvdGU6Cj4+IE9uIFR1ZSwgRGVjIDE5LCAyMDE3IGF0IDg6NDUgQU0sIENocmlzdGlh
-biBLw7ZuaWcKPj4gPGNrb2VuaWcubGVpY2h0enVtZXJrZW5AZ21haWwuY29tPiB3cm90ZToKPj4g
-PiBBbSAxOS4xMi4yMDE3IHVtIDExOjM5IHNjaHJpZWIgTWljaGVsIETDpG56ZXI6Cj4+ID4+Cj4+
-ID4+IE9uIDIwMTctMTItMTkgMTE6MzcgQU0sIE1pY2hlbCBEw6RuemVyIHdyb3RlOgo+PiA+Pj4K
-Pj4gPj4+IE9uIDIwMTctMTItMTggMDg6MDEgUE0sIFRvYmlhcyBLbGF1c21hbm4gd3JvdGU6Cj4+
-ID4+Pj4KPj4gPj4+PiBPbiAxMi8xOC8xNyA3OjA2IFBNLCBNaWtlIEdhbGJyYWl0aCB3cm90ZToK
-Pj4gPj4+Pj4KPj4gPj4+Pj4gR3JlZXRpbmdzLAo+PiA+Pj4+Pgo+PiA+Pj4+PiBLZXJuZWwgYm91
-bmQgd29ya2xvYWRzIHNlZW0gdG8gdHJpZ2dlciB0aGUgYmVsb3cgZm9yIHdoYXRldmVyIHJlYXNv
-bi4KPj4gPj4+Pj4gICAgSSBvbmx5IHNlZSB0aGlzIHdoZW4gYmVhdGluZyB1cCBORlMuICBUaGVy
-ZSB3YXMgYSBrd29ya2VyIHdha2V1cAo+PiA+Pj4+PiBsYXRlbmN5IGlzc3VlLCBidXQgd2l0aCBh
-IGJhbmRhaWQgYXBwbGllZCB0byBmaXggdGhhdCB1cCwgSSBjYW4gc3RpbGwKPj4gPj4+Pj4gdHJp
-Z2dlciB0aGlzLgo+PiA+Pj4+Cj4+ID4+Pj4KPj4gPj4+PiBIaSwKPj4gPj4+Pgo+PiA+Pj4+IGkg
-aGF2ZSBzZWVuIHRoaXMgb25lIGFzIHdlbGwgd2l0aCBteSBzeXN0ZW0sIGJ1dCBpIGNvdWxkIG5v
-dCBmaW5kIGFuCj4+ID4+Pj4gZWFzeSB3YXkgdG8gdHJpZ2dlciBpdCBmb3IgYmlzZWN0aW5nIHB1
-cnBvc2UuIElmIHlvdSBjYW4gdHJpZ2dlciBpdAo+PiA+Pj4+IGNvbnZlbmllbnRseSwgYSBiaXNl
-Y3Qgd291bGQgYmUgbmljZSEKPj4gPj4+Cj4+ID4+PiBJJ20gc2VlaW5nIHRoaXMgKHdpdGggdGhl
-IGFtZGdwdSBhbmQgcmFkZW9uIGRyaXZlcnMpIHdoZW4gcmVzdGljIHRha2VzIGEKPj4gPj4+IGJh
-Y2t1cCwgY3JlYXRpbmcgbWVtb3J5IHByZXNzdXJlLiBJIGhhcHBlbiB0byBoYXZlIGp1c3QgZmlu
-aXNoZWQKPj4gPj4+IGJpc2VjdGluZywgdGhlIHJlc3VsdCBpczoKPj4gPj4+Cj4+ID4+PiA2NDhi
-YzM1NzQ3MTY0MDBhY2MwNmY5OTkxNTgxNWY4MGQ5NTYzNzgzIGlzIHRoZSBmaXJzdCBiYWQgY29t
-bWl0Cj4+ID4+PiBjb21taXQgNjQ4YmMzNTc0NzE2NDAwYWNjMDZmOTk5MTU4MTVmODBkOTU2Mzc4
-Mwo+PiA+Pj4gQXV0aG9yOiBDaHJpc3RpYW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5j
-b20+Cj4+ID4+PiBEYXRlOiAgIFRodSBKdWwgNiAwOTo1OTo0MyAyMDE3ICswMjAwCj4+ID4+Pgo+
-PiA+Pj4gICAgICBkcm0vdHRtOiBhZGQgdHJhbnNwYXJlbnQgaHVnZSBwYWdlIHN1cHBvcnQgZm9y
-IERNQSBhbGxvY2F0aW9ucyB2Mgo+PiA+Pj4KPj4gPj4+ICAgICAgVHJ5IHRvIGFsbG9jYXRlIGh1
-Z2UgcGFnZXMgd2hlbiBpdCBtYWtlcyBzZW5zZS4KPj4gPj4+Cj4+ID4+PiAgICAgIHYyOiBmaXgg
-Y29tbWVudCBhbmQgdXNlIGlmZGVmCj4+ID4+Pgo+PiA+Pj4KPj4gPj4gQlRXLCBJIGhhdmVuJ3Qg
-bm90aWNlZCBhbnkgYmFkIGVmZmVjdHMgb3RoZXIgdGhhbiB0aGUgZG1lc2cgc3BsYXRzLCBzbwo+
-PiA+PiBtYXliZSBpdCdzIGp1c3Qgbm9pc2UgYWJvdXQgdHJhbnNpZW50IGZhaWx1cmVzIGZvciB3
-aGljaCB0aGVyZSBpcyBhCj4+ID4+IHByb3BlciBmYWxsYmFjayBpbiBwbGFjZS4KPj4gPgo+PiA+
-Cj4+ID4gWWVhaCwgSSB0aGluayB0aGF0IGlzIGV4YWN0bHkgd2hhdCBoYXBwZW5zIGhlcmUuCj4+
-ID4KPj4gPiBXZSB0cnkgdG8gYWxsb2NhdGUgYSBodWdlIHBhZ2UsIGJ1dCBmYWlsIGFuZCBzbyBm
-YWxsIGJhY2sgdG8gdXNpbmcgbXVsdGlwbGUKPj4gPiA0ayBwYWdlcyBpbnN0ZWFkLgo+PiA+Cj4+
-ID4gR29pbmcgdG8gc2VuZCBvdXQgYSBwYXRjaCB0byBzdXBwcmVzcyB0aGUgd2FybmluZy4KPj4K
-Pj4gSGkgQ2hyaXN0aWFuLAo+Pgo+PiBEaWQgeW91IGV2ZXIgc2VuZCBvdXQgc3VjaCBhIHBhdGNo
-PyBJIGRpZG4ndCBzZWUgb25lIG9uIHRoZSBsaXN0LCBidXQKPj4gcGVyaGFwcyBJIG1pc3NlZCBp
-dC4gT25lIGRlZmluaXRlbHkgaGFzbid0IG1hZGUgaXQgdXBzdHJlYW0geWV0LiAoSQo+PiBqdXN0
-IGhpdCB0aGUgaXNzdWUgbXlzZWxmIHdpdGggTGludXMncyB0cmVlIGZyb20gbGFzdCBuaWdodC4p
-Cj4KPiBBY3R1YWxseSwgdGhhdCB3YW50cyBhIGJpdCBtb3JlIG1ldGhpbmtzLCBiZWNhdXNlIHdo
-aWxlIHRoZSBzdGFjayBkdW1wCj4gZ29lcyBhd2F5LCB5b3Ugc3RpbGwgZ2V0IHNwYW1tZWQsIGl0
-IGp1c3QgY29tZXMgaW4gc21hbGxlciBjaHVua3MuCgpPSywgd2VsbCB0aGlzIGhhcyB0byBlaXRo
-ZXIgYmUgZml4ZWQgb3IgcmV2ZXJ0ZWQuIFJpZ2h0IG5vdyBpdCdzCmNvbXBsYWluaW5nIGFsbCB0
-aGUgdGltZSBmb3IgbWUgYWZ0ZXIgbGlrZSBhIGRheSBvZiB1cHRpbWUuCgogIC1pbGlhCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============2139475882==
+Content-Type: multipart/alternative; boundary="15148503511.a3eb.1093";
+ charset="UTF-8"
+
+
+--15148503511.a3eb.1093
+Date: Mon, 1 Jan 2018 23:45:51 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104441
+
+            Bug ID: 104441
+           Summary: drm/nouveau: drm_hwcomposer cannot get rotation
+                    property/does not work
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 136475
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136475&action=3Dedit
+logcat showing hwc errors
+
+Hi,
+
+while testing drm_hwcomposer (hwc v1),
+
+having enabled atomic ioctl for drm/nouveau a series of properties can be
+enquired, but rotation property returns an error in drmplane.cpp:123
+
+01-02 00:05:42.626  2300  2300 E hwc-drm-plane: Could not get rotation prop=
+erty
+01-02 00:05:42.626  2300  2300 I hwc-drm-plane: Could not get alpha property
+
+Since ALOGE() is used, an error is signalled,
+could you please check why rotation property not available and why
+drm_hwcomposer is not working with drm/nouveau?
+
+01-02 00:05:42.628  2300  2300 E hwc-drm-resources: Could not find a suitab=
+le
+encoder/crtc for display 2
+01-02 00:05:42.628  2300  2300 E hwc-drm-resources: Failed CreateDisplayPip=
+e 49
+with -19
+01-02 00:05:42.628  2300  2300 E hwcomposer-drm: Can't initialize Drm object
+-19
+01-02 00:05:42.629  2300  2300 E SurfaceFlinger: composer device failed to
+initialize (No such device)
+01-02 00:05:42.629  2300  2300 E SurfaceFlinger: ERROR: failed to open
+framebuffer (Invalid argument), aborting
+--------- beginning of crash
+01-02 00:05:42.629  2300  2300 F libc    : Fatal signal 6 (SIGABRT), code -=
+6 in
+tid 2300 (surfaceflinger), pid 2300 (surfaceflinger)
+
+
+Another question is about alpha property,
+is it correct/safe to assume that being only logged as info, with ALOGI()
+it is not preventing drm_hwcomposer from working properly?
+
+Full logcat attached
+Mauro
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15148503511.a3eb.1093
+Date: Mon, 1 Jan 2018 23:45:51 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - drm/nouveau: drm_hwcomposer cannot get rotation property/=
+does not work"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104441">104441</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>drm/nouveau: drm_hwcomposer cannot get rotation property/does=
+ not work
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>issor.oruam&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136475=
+" name=3D"attach_136475" title=3D"logcat showing hwc errors">attachment 136=
+475</a> <a href=3D"attachment.cgi?id=3D136475&amp;action=3Dedit" title=3D"l=
+ogcat showing hwc errors">[details]</a></span>
+logcat showing hwc errors
+
+Hi,
+
+while testing drm_hwcomposer (hwc v1),
+
+having enabled atomic ioctl for drm/nouveau a series of properties can be
+enquired, but rotation property returns an error in drmplane.cpp:123
+
+01-02 00:05:42.626  2300  2300 E hwc-drm-plane: Could not get rotation prop=
+erty
+01-02 00:05:42.626  2300  2300 I hwc-drm-plane: Could not get alpha property
+
+Since ALOGE() is used, an error is signalled,
+could you please check why rotation property not available and why
+drm_hwcomposer is not working with drm/nouveau?
+
+01-02 00:05:42.628  2300  2300 E hwc-drm-resources: Could not find a suitab=
+le
+encoder/crtc for display 2
+01-02 00:05:42.628  2300  2300 E hwc-drm-resources: Failed CreateDisplayPip=
+e 49
+with -19
+01-02 00:05:42.628  2300  2300 E hwcomposer-drm: Can't initialize Drm object
+-19
+01-02 00:05:42.629  2300  2300 E SurfaceFlinger: composer device failed to
+initialize (No such device)
+01-02 00:05:42.629  2300  2300 E SurfaceFlinger: ERROR: failed to open
+framebuffer (Invalid argument), aborting
+--------- beginning of crash
+01-02 00:05:42.629  2300  2300 F libc    : Fatal signal 6 (SIGABRT), code -=
+6 in
+tid 2300 (surfaceflinger), pid 2300 (surfaceflinger)
+
+
+Another question is about alpha property,
+is it correct/safe to assume that being only logged as info, with ALOGI()
+it is not preventing drm_hwcomposer from working properly?
+
+Full logcat attached
+Mauro</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15148503511.a3eb.1093--
+
+--===============2139475882==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2139475882==--
