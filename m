@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104448] [NV106/GK208B] Multiple issues / hangs with
  nouveau driver
-Date: Tue, 02 Jan 2018 08:21:34 +0000
-Message-ID: <bug-104448-8800-YZeVwoNXnB@http.bugs.freedesktop.org/>
+Date: Tue, 02 Jan 2018 08:22:03 +0000
+Message-ID: <bug-104448-8800-0UnmDhBIz4@http.bugs.freedesktop.org/>
 References: <bug-104448-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0725115656=="
+Content-Type: multipart/mixed; boundary="===============0605758917=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104448-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0725115656==
-Content-Type: multipart/alternative; boundary="15148812941.36fC.7974";
+--===============0605758917==
+Content-Type: multipart/alternative; boundary="15148813231.56197A.8084";
  charset="UTF-8"
 
 
---15148812941.36fC.7974
-Date: Tue, 2 Jan 2018 08:21:34 +0000
+--15148813231.56197A.8084
+Date: Tue, 2 Jan 2018 08:22:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104448
 
---- Comment #1 from A. Wilcox <awilfox-EG4NeYC890/CfDggNXIi3w@public.gmane.org> ---
-Created attachment 136482
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136482&action=3Dedit
-dmesg from the affected computer directly from dmesg, not klogd
+--- Comment #2 from A. Wilcox <awilfox-EG4NeYC890/CfDggNXIi3w@public.gmane.org> ---
+Created attachment 136483
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136483&action=3Dedit
+Xorg log, display :0
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15148812941.36fC.7974
-Date: Tue, 2 Jan 2018 08:21:34 +0000
+--15148813231.56197A.8084
+Date: Tue, 2 Jan 2018 08:22:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NV106/GK208B] Multiple issues / hangs with nouveau drive=
 r"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104448#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104448#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV106/GK208B] Multiple issues / hangs with nouveau drive=
@@ -76,12 +76,11 @@ r"
 awilfox&#64;adelielinux.org" title=3D"A. Wilcox &lt;awilfox&#64;adelielinux=
 .org&gt;"> <span class=3D"fn">A. Wilcox</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136482=
-" name=3D"attach_136482" title=3D"dmesg from the affected computer directly=
- from dmesg, not klogd">attachment 136482</a> <a href=3D"attachment.cgi?id=
-=3D136482&amp;action=3Dedit" title=3D"dmesg from the affected computer dire=
-ctly from dmesg, not klogd">[details]</a></span>
-dmesg from the affected computer directly from dmesg, not klogd</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136483=
+" name=3D"attach_136483" title=3D"Xorg log, display :0">attachment 136483</=
+a> <a href=3D"attachment.cgi?id=3D136483&amp;action=3Dedit" title=3D"Xorg l=
+og, display :0">[details]</a></span>
+Xorg log, display :0</pre>
         </div>
       </p>
 
@@ -95,9 +94,9 @@ dmesg from the affected computer directly from dmesg, not klogd</pre>
     </body>
 </html>=
 
---15148812941.36fC.7974--
+--15148813231.56197A.8084--
 
---===============0725115656==
+--===============0605758917==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0725115656==--
+--===============0605758917==--
