@@ -1,85 +1,152 @@
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Subject: Re: nouveau. swiotlb: coherent allocation failed for device
- 0000:01:00.0 size=2097152
-Date: Tue, 2 Jan 2018 10:43:48 +0100
-Message-ID: <0d1f7796-adc3-70ab-c47c-a949ea0c14db@gmail.com>
-References: <1513620418.7113.51.camel@gmx.de>
- <a083d576-215f-eb76-278b-741fc65fb138@mni.thm.de>
- <f447948f-cfad-f4ea-4c41-54e42a733c16@daenzer.net>
- <a96f755f-a20b-a177-ead1-7b79acbb1250@daenzer.net>
- <e1b8dd62-4423-2b51-9634-e8938801b5d9@gmail.com>
- <CAKb7Uvgt+SOwf6i2kAzEz65VTGzP6vYb2nBD+78FnXLtMZfOvg@mail.gmail.com>
- <1514753618.20829.3.camel@gmx.de>
- <CAKb7Uvjw0rP4u-zw1rRfwH1BRWFj9nwDVv8dPJY=oYS1DgjTBw@mail.gmail.com>
-Reply-To: christian.koenig@amd.com
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 104441] drm/nouveau: drm_hwcomposer cannot get
+ rotation property/does not work
+Date: Tue, 02 Jan 2018 09:53:24 +0000
+Message-ID: <bug-104441-8800-hLJgTLgXWZ@http.bugs.freedesktop.org/>
+References: <bug-104441-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7Uvjw0rP4u-zw1rRfwH1BRWFj9nwDVv8dPJY=oYS1DgjTBw@mail.gmail.com>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ilia Mirkin <imirkin@alum.mit.edu>, Mike Galbraith <efault@gmx.de>
-Cc: nouveau <nouveau@lists.freedesktop.org>, =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>, =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Content-Type: multipart/mixed; boundary="===============0190304991=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-104441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QW0gMDEuMDEuMjAxOCB1bSAxOTowOCBzY2hyaWViIElsaWEgTWlya2luOgo+IE9uIFN1biwgRGVj
-IDMxLCAyMDE3IGF0IDM6NTMgUE0sIE1pa2UgR2FsYnJhaXRoIDxlZmF1bHRAZ214LmRlPiB3cm90
-ZToKPj4gT24gU3VuLCAyMDE3LTEyLTMxIGF0IDEzOjI3IC0wNTAwLCBJbGlhIE1pcmtpbiB3cm90
-ZToKPj4+IE9uIFR1ZSwgRGVjIDE5LCAyMDE3IGF0IDg6NDUgQU0sIENocmlzdGlhbiBLw7ZuaWcK
-Pj4+IDxja29lbmlnLmxlaWNodHp1bWVya2VuQGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pj4gQW0gMTku
-MTIuMjAxNyB1bSAxMTozOSBzY2hyaWViIE1pY2hlbCBEw6RuemVyOgo+Pj4+PiBPbiAyMDE3LTEy
-LTE5IDExOjM3IEFNLCBNaWNoZWwgRMOkbnplciB3cm90ZToKPj4+Pj4+IE9uIDIwMTctMTItMTgg
-MDg6MDEgUE0sIFRvYmlhcyBLbGF1c21hbm4gd3JvdGU6Cj4+Pj4+Pj4gT24gMTIvMTgvMTcgNzow
-NiBQTSwgTWlrZSBHYWxicmFpdGggd3JvdGU6Cj4+Pj4+Pj4+IEdyZWV0aW5ncywKPj4+Pj4+Pj4K
-Pj4+Pj4+Pj4gS2VybmVsIGJvdW5kIHdvcmtsb2FkcyBzZWVtIHRvIHRyaWdnZXIgdGhlIGJlbG93
-IGZvciB3aGF0ZXZlciByZWFzb24uCj4+Pj4+Pj4+ICAgICBJIG9ubHkgc2VlIHRoaXMgd2hlbiBi
-ZWF0aW5nIHVwIE5GUy4gIFRoZXJlIHdhcyBhIGt3b3JrZXIgd2FrZXVwCj4+Pj4+Pj4+IGxhdGVu
-Y3kgaXNzdWUsIGJ1dCB3aXRoIGEgYmFuZGFpZCBhcHBsaWVkIHRvIGZpeCB0aGF0IHVwLCBJIGNh
-biBzdGlsbAo+Pj4+Pj4+PiB0cmlnZ2VyIHRoaXMuCj4+Pj4+Pj4KPj4+Pj4+PiBIaSwKPj4+Pj4+
-Pgo+Pj4+Pj4+IGkgaGF2ZSBzZWVuIHRoaXMgb25lIGFzIHdlbGwgd2l0aCBteSBzeXN0ZW0sIGJ1
-dCBpIGNvdWxkIG5vdCBmaW5kIGFuCj4+Pj4+Pj4gZWFzeSB3YXkgdG8gdHJpZ2dlciBpdCBmb3Ig
-YmlzZWN0aW5nIHB1cnBvc2UuIElmIHlvdSBjYW4gdHJpZ2dlciBpdAo+Pj4+Pj4+IGNvbnZlbmll
-bnRseSwgYSBiaXNlY3Qgd291bGQgYmUgbmljZSEKPj4+Pj4+IEknbSBzZWVpbmcgdGhpcyAod2l0
-aCB0aGUgYW1kZ3B1IGFuZCByYWRlb24gZHJpdmVycykgd2hlbiByZXN0aWMgdGFrZXMgYQo+Pj4+
-Pj4gYmFja3VwLCBjcmVhdGluZyBtZW1vcnkgcHJlc3N1cmUuIEkgaGFwcGVuIHRvIGhhdmUganVz
-dCBmaW5pc2hlZAo+Pj4+Pj4gYmlzZWN0aW5nLCB0aGUgcmVzdWx0IGlzOgo+Pj4+Pj4KPj4+Pj4+
-IDY0OGJjMzU3NDcxNjQwMGFjYzA2Zjk5OTE1ODE1ZjgwZDk1NjM3ODMgaXMgdGhlIGZpcnN0IGJh
-ZCBjb21taXQKPj4+Pj4+IGNvbW1pdCA2NDhiYzM1NzQ3MTY0MDBhY2MwNmY5OTkxNTgxNWY4MGQ5
-NTYzNzgzCj4+Pj4+PiBBdXRob3I6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdA
-YW1kLmNvbT4KPj4+Pj4+IERhdGU6ICAgVGh1IEp1bCA2IDA5OjU5OjQzIDIwMTcgKzAyMDAKPj4+
-Pj4+Cj4+Pj4+PiAgICAgICBkcm0vdHRtOiBhZGQgdHJhbnNwYXJlbnQgaHVnZSBwYWdlIHN1cHBv
-cnQgZm9yIERNQSBhbGxvY2F0aW9ucyB2Mgo+Pj4+Pj4KPj4+Pj4+ICAgICAgIFRyeSB0byBhbGxv
-Y2F0ZSBodWdlIHBhZ2VzIHdoZW4gaXQgbWFrZXMgc2Vuc2UuCj4+Pj4+Pgo+Pj4+Pj4gICAgICAg
-djI6IGZpeCBjb21tZW50IGFuZCB1c2UgaWZkZWYKPj4+Pj4+Cj4+Pj4+Pgo+Pj4+PiBCVFcsIEkg
-aGF2ZW4ndCBub3RpY2VkIGFueSBiYWQgZWZmZWN0cyBvdGhlciB0aGFuIHRoZSBkbWVzZyBzcGxh
-dHMsIHNvCj4+Pj4+IG1heWJlIGl0J3MganVzdCBub2lzZSBhYm91dCB0cmFuc2llbnQgZmFpbHVy
-ZXMgZm9yIHdoaWNoIHRoZXJlIGlzIGEKPj4+Pj4gcHJvcGVyIGZhbGxiYWNrIGluIHBsYWNlLgo+
-Pj4+Cj4+Pj4gWWVhaCwgSSB0aGluayB0aGF0IGlzIGV4YWN0bHkgd2hhdCBoYXBwZW5zIGhlcmUu
-Cj4+Pj4KPj4+PiBXZSB0cnkgdG8gYWxsb2NhdGUgYSBodWdlIHBhZ2UsIGJ1dCBmYWlsIGFuZCBz
-byBmYWxsIGJhY2sgdG8gdXNpbmcgbXVsdGlwbGUKPj4+PiA0ayBwYWdlcyBpbnN0ZWFkLgo+Pj4+
-Cj4+Pj4gR29pbmcgdG8gc2VuZCBvdXQgYSBwYXRjaCB0byBzdXBwcmVzcyB0aGUgd2FybmluZy4K
-Pj4+IEhpIENocmlzdGlhbiwKPj4+Cj4+PiBEaWQgeW91IGV2ZXIgc2VuZCBvdXQgc3VjaCBhIHBh
-dGNoPyBJIGRpZG4ndCBzZWUgb25lIG9uIHRoZSBsaXN0LCBidXQKPj4+IHBlcmhhcHMgSSBtaXNz
-ZWQgaXQuIE9uZSBkZWZpbml0ZWx5IGhhc24ndCBtYWRlIGl0IHVwc3RyZWFtIHlldC4gKEkKPj4+
-IGp1c3QgaGl0IHRoZSBpc3N1ZSBteXNlbGYgd2l0aCBMaW51cydzIHRyZWUgZnJvbSBsYXN0IG5p
-Z2h0LikKPj4gQWN0dWFsbHksIHRoYXQgd2FudHMgYSBiaXQgbW9yZSBtZXRoaW5rcywgYmVjYXVz
-ZSB3aGlsZSB0aGUgc3RhY2sgZHVtcAo+PiBnb2VzIGF3YXksIHlvdSBzdGlsbCBnZXQgc3BhbW1l
-ZCwgaXQganVzdCBjb21lcyBpbiBzbWFsbGVyIGNodW5rcy4KPiBPSywgd2VsbCB0aGlzIGhhcyB0
-byBlaXRoZXIgYmUgZml4ZWQgb3IgcmV2ZXJ0ZWQuIFJpZ2h0IG5vdyBpdCdzCj4gY29tcGxhaW5p
-bmcgYWxsIHRoZSB0aW1lIGZvciBtZSBhZnRlciBsaWtlIGEgZGF5IG9mIHVwdGltZS4KCkkndmUg
-YWxyZWFkeSBzZW5kIG91dCBhIHBhdGNoIHRvIEtvbnJhZCBSemVzenV0ZWsgV2lsayBhbmQgaGUg
-d2FudGVkIHRvIApxdWV1ZSB0aGF0IHVwLgoKQnV0IHRoZXJlIGlzIGFub3RoZXIgd2FybmluZyBJ
-J20gY3VycmVudGx5IHdvcmtpbmcgb24sIGp1c3QgZGlkbid0IGhhZCAKdGltZSB0byBkdXJpbmcg
-dGhlIGhvbGlkYXlzLgoKUmVnYXJkcywKQ2hyaXN0aWFuLgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZl
-bEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============0190304991==
+Content-Type: multipart/alternative; boundary="15148868040.1BA3bF5A6.21213";
+ charset="UTF-8"
+
+
+--15148868040.1BA3bF5A6.21213
+Date: Tue, 2 Jan 2018 09:53:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104441
+
+--- Comment #4 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi Ilia,
+
+thanks for your responses.
+
+Also in my understanding, which is not professional but more of an hobbyist,
+the drm planes model considered in drm_hwcomposer may have considered rotat=
+ion
+property as available in its first implementations/test cases.
+
+IMHO since having no rotation is equivalent to having 0 rotation only,
+I don't see the reason for drm_hwcomposer to throw the error in
+drmplane.cpp:123, unless being born as an hwcomposer HAL and having a strong
+requirement for it (or to "fake it").
+
+Also I wanted to get your feedback, which is in line with KMS documentation,
+that rotation property can be optional.
+
+Thanks for your hint, drm_hwcomposer is now part of freedesktop.org
+
+https://cgit.freedesktop.org/drm_hwcomposer
+
+but I could not find how to submit a bug for drm_hwcomposer in bugzilla.
+I think it should not be in 'DRI' section and it should not be in 'Mesa'
+
+Mauro
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15148868040.1BA3bF5A6.21213
+Date: Tue, 2 Jan 2018 09:53:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - drm/nouveau: drm_hwcomposer cannot get rotation property/=
+does not work"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104441#c4">Commen=
+t # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - drm/nouveau: drm_hwcomposer cannot get rotation property/=
+does not work"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104441">bug 10444=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+issor.oruam&#64;gmail.com" title=3D"Mauro Rossi &lt;issor.oruam&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Mauro Rossi</span></a>
+</span></b>
+        <pre>Hi Ilia,
+
+thanks for your responses.
+
+Also in my understanding, which is not professional but more of an hobbyist,
+the drm planes model considered in drm_hwcomposer may have considered rotat=
+ion
+property as available in its first implementations/test cases.
+
+IMHO since having no rotation is equivalent to having 0 rotation only,
+I don't see the reason for drm_hwcomposer to throw the error in
+drmplane.cpp:123, unless being born as an hwcomposer HAL and having a strong
+requirement for it (or to &quot;fake it&quot;).
+
+Also I wanted to get your feedback, which is in line with KMS documentation,
+that rotation property can be optional.
+
+Thanks for your hint, drm_hwcomposer is now part of freedesktop.org
+
+<a href=3D"https://cgit.freedesktop.org/drm_hwcomposer">https://cgit.freede=
+sktop.org/drm_hwcomposer</a>
+
+but I could not find how to submit a bug for drm_hwcomposer in bugzilla.
+I think it should not be in 'DRI' section and it should not be in 'Mesa'
+
+Mauro</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15148868040.1BA3bF5A6.21213--
+
+--===============0190304991==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0190304991==--
