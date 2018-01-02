@@ -1,10 +1,11 @@
-From: Daniel Boyd <danieljboyd-mVuRI66OGLPQT0dZR+AlfA@public.gmane.org>
-Subject: Hard lock with 4.14.0-2
-Date: Tue, 02 Jan 2018 13:43:06 -0600
-Message-ID: <1514922186.2867.10.camel@icloud.com>
-Reply-To: danieljboyd-mVuRI66OGLPQT0dZR+AlfA@public.gmane.org
+From: Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>
+Subject: [nouveau] grumble/gripe ... fifo: read fault ... channel
+ 12 killed! (eternal freeze-frame)
+Date: Tue, 02 Jan 2018 21:56:05 +0100
+Message-ID: <1514926565.6612.24.camel@gmx.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0173837217=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,50 +16,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0173837217==
-Content-type: multipart/alternative; boundary="=-RU0VUIg5yQEhcJwK9y9H"
-
-
---=-RU0VUIg5yQEhcJwK9y9H
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-
-I am running Debian testing and updated my system this morning which
-included a new kernel: 4.14.0.2-amd64
-
-After this update, my system froze twice -- both times the exact same
-behavior.
-
-In both situations, the system froze while I was resizing a window. 
-The mouse cursor froze, clock stopped, num lock stopped working.  I
-didn't check if the system responded to pings from a remote machine,
-but I can check that if it would be helpful.  I reverted back to my
-previous kernel and everything appears to be fine.
-
-My system:
-Lenovo ThinkPad W530
-NVidia Quadro K1000M
-GNOME Shell 3.26.2 / wayland
---=-RU0VUIg5yQEhcJwK9y9H
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-
-<html><head></head><body><div>I am running Debian testing and updated my system this morning which included a new kernel: 4.14.0.2-amd64</div><div><br></div><div>After this update, my system froze twice -- both times the exact same behavior.</div><div><br></div><div>In both situations, the system froze while I was resizing a window.  The mouse cursor froze, clock stopped, num lock stopped working.  I didn't check if the system responded to pings from a remote machine, but I can check that if it would be helpful.  I reverted back to my previous kernel and everything appears to be fine.</div><div><br></div><div>My system:</div><div>Lenovo ThinkPad W530</div><div>NVidia Quadro K1000M</div><div>GNOME Shell 3.26.2 / wayland</div></body></html>
---=-RU0VUIg5yQEhcJwK9y9H--
-
-
---===============0173837217==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0173837217==--
+VHdpY2Ugbm93IHdpdGggdjQuMTUtcmM2LCBteSBkaXNwbGF5IGhhcyBnb25lIGJlbGx5IHVwLgoK
+Tm90ZTrCoHN3aW90bGI6IHN1cHByZXNzIHdhcm5pbmcgd2hlbiBfX0dGUF9OT1dBUk4gaXMgc2V0
+IHYyIGlzIGFwcGxpZWQsCmJ1dCBJIGRvbid0IF90aGlua18gaXQgd2FzIHRoZSBmaXJzdCB0aW1l
+IGl0IGhhcHBlbmVkLgoKWyAzNzI5LjU1ODI2MV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBU
+UkFQIGNoIDIgWzAwZmY4NDIwMDAgWG9yZ1szNDEzXV0KWyAzNzI5LjU1ODI2OV0gbm91dmVhdSAw
+MDAwOjAxOjAwLjA6IGdyOiBHUEMwL1RQQzAvVEVYOiA4MDAwMDA0MQpbIDM3MjkuNTU4MjczXSBu
+b3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IEdQQzAvVFBDMS9URVg6IDgwMDAwMDQxClsgMzcyOS41
+NTgyNzddIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjogR1BDMC9UUEMyL1RFWDogODAwMDAwNDEK
+WyAzNzI5LjU1ODI4MF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBHUEMwL1RQQzMvVEVYOiA4
+MDAwMDA0MQpbIDM3MjkuNTU4Mjg2XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IEdQQzEvVFBD
+MC9URVg6IDgwMDAwMDQxClsgMzcyOS41NTgyODldIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjog
+R1BDMS9UUEMxL1RFWDogODAwMDAwNDEKWyAzNzI5LjU1ODI5M10gbm91dmVhdSAwMDAwOjAxOjAw
+LjA6IGdyOiBHUEMxL1RQQzIvVEVYOiA4MDAwMDA0MQpbIDM3MjkuNTU4Mjk3XSBub3V2ZWF1IDAw
+MDA6MDE6MDAuMDogZ3I6IEdQQzEvVFBDMy9URVg6IDgwMDAwMDQxClsgMzcyOS41NTgzMDJdIG5v
+dXZlYXUgMDAwMDowMTowMC4wOiBncjogR1BDMi9UUEMwL1RFWDogODAwMDAwNDEKWyAzNzI5LjU1
+ODMwNV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBHUEMyL1RQQzEvVEVYOiA4MDAwMDA0MQpb
+IDM3MjkuNTU4MzA5XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IEdQQzIvVFBDMi9URVg6IDgw
+MDAwMDQxClsgMzcyOS41NTgzMTNdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjogR1BDMi9UUEMz
+L1RFWDogODAwMDAwNDEKWyAzNzI5LjU1ODMxOF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBH
+UEMzL1RQQzAvVEVYOiA4MDAwMDA0MQpbIDM3MjkuNTU4MzIyXSBub3V2ZWF1IDAwMDA6MDE6MDAu
+MDogZ3I6IEdQQzMvVFBDMS9URVg6IDgwMDAwMDQxClsgMzcyOS41NTgzMjVdIG5vdXZlYXUgMDAw
+MDowMTowMC4wOiBncjogR1BDMy9UUEMyL1RFWDogODAwMDAwNDEKWyAzNzI5LjU1ODMyOV0gbm91
+dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBHUEMzL1RQQzMvVEVYOiA4MDAwMDA0MQpbIDM3MjkuNTU4
+MzM2XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmlmbzogcmVhZCBmYXVsdCBhdCAwMDBhOWRkMDAw
+IGVuZ2luZSAwMCBbR1JdIGNsaWVudCAwYSBbR1BDMi9UMV8zXSByZWFzb24gMDIgW1BURV0gb24g
+Y2hhbm5lbCAyIFswMGZmODQyMDAwIFhvcmdbMzQxM11dClsgMzcyOS41NTgzNDFdIG5vdXZlYXUg
+MDAwMDowMTowMC4wOiBmaWZvOiBjaGFubmVsIDI6IGtpbGxlZApbIDM3MjkuNTU4MzQzXSBub3V2
+ZWF1IDAwMDA6MDE6MDAuMDogZmlmbzogcnVubGlzdCAwOiBzY2hlZHVsZWQgZm9yIHJlY292ZXJ5
+ClsgMzcyOS41NTgzNDZdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBmaWZvOiBlbmdpbmUgMDogc2No
+ZWR1bGVkIGZvciByZWNvdmVyeQpbIDM3MjkuNTU4MzUyXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDog
+ZmlmbzogZW5naW5lIDc6IHNjaGVkdWxlZCBmb3IgcmVjb3ZlcnkKWyAzNzI5LjU1ODM1NV0gbm91
+dmVhdSAwMDAwOjAxOjAwLjA6IFhvcmdbMzQxM106IGNoYW5uZWwgMiBraWxsZWQhClsgMzcyOS41
+NjI5OTRdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjogVFJBUCBjaCAxMiBbMDBmZDJkNjAwMCBw
+bGFzbWFzaGVsbFszODk4XV0KWyAzNzI5LjU2MzAxMV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdy
+OiBHUEMwL1RQQzAvVEVYOiA4MDAwMDA0MQpbIDM3MjkuNTYzMDE1XSBub3V2ZWF1IDAwMDA6MDE6
+MDAuMDogZ3I6IEdQQzAvVFBDMS9URVg6IDgwMDAwMDQxClsgMzcyOS41NjMwMThdIG5vdXZlYXUg
+MDAwMDowMTowMC4wOiBncjogR1BDMC9UUEMyL1RFWDogODAwMDAwNDEKWyAzNzI5LjU2MzAyMl0g
+bm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBHUEMwL1RQQzMvVEVYOiA4MDAwMDA0MQpbIDM3Mjku
+NTYzMDI3XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IEdQQzEvVFBDMC9URVg6IDgwMDAwMDQx
+ClsgMzcyOS41NjMwMzFdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjogR1BDMS9UUEMxL1RFWDog
+ODAwMDAwNDEKWyAzNzI5LjU2MzAzNF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBHUEMxL1RQ
+QzIvVEVYOiA4MDAwMDA0MQpbIDM3MjkuNTYzMDM4XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6
+IEdQQzEvVFBDMy9URVg6IDgwMDAwMDQxClsgMzcyOS41NjMwNDNdIG5vdXZlYXUgMDAwMDowMTow
+MC4wOiBncjogR1BDMi9UUEMwL1RFWDogODAwMDAwNDEKWyAzNzI5LjU2MzA0N10gbm91dmVhdSAw
+MDAwOjAxOjAwLjA6IGdyOiBHUEMyL1RQQzEvVEVYOiA4MDAwMDA0MQpbIDM3MjkuNTYzMDUwXSBu
+b3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IEdQQzIvVFBDMi9URVg6IDgwMDAwMDQxClsgMzcyOS41
+NjMwNTRdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjogR1BDMi9UUEMzL1RFWDogODAwMDAwNDEK
+WyAzNzI5LjU2MzA1OV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBHUEMzL1RQQzAvVEVYOiA4
+MDAwMDA0MQpbIDM3MjkuNTYzMDYzXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IEdQQzMvVFBD
+MS9URVg6IDgwMDAwMDQxClsgMzcyOS41NjMwNjZdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjog
+R1BDMy9UUEMyL1RFWDogODAwMDAwNDEKWyAzNzI5LjU2MzA3MF0gbm91dmVhdSAwMDAwOjAxOjAw
+LjA6IGdyOiBHUEMzL1RQQzMvVEVYOiA4MDAwMDA0MQpbIDM3MjkuNTYzMDc4XSBub3V2ZWF1IDAw
+MDA6MDE6MDAuMDogZmlmbzogcmVhZCBmYXVsdCBhdCAwMDA0YmU0MDAwIGVuZ2luZSAwMCBbR1Jd
+IGNsaWVudCAwMSBbR1BDMC9UMV8wXSByZWFzb24gMDIgW1BURV0gb24gY2hhbm5lbCAxMiBbMDBm
+ZDJkNjAwMCBwbGFzbWFzaGVsbFszODk4XV0KWyAzNzI5LjU2MzA4M10gbm91dmVhdSAwMDAwOjAx
+OjAwLjA6IGZpZm86IGNoYW5uZWwgMTI6IGtpbGxlZApbIDM3MjkuNTYzMDg1XSBub3V2ZWF1IDAw
+MDA6MDE6MDAuMDogZmlmbzogcnVubGlzdCAwOiBzY2hlZHVsZWQgZm9yIHJlY292ZXJ5ClsgMzcy
+OS41NjMwODldIG5vdXZlYXUgMDAwMDowMTowMC4wOiBmaWZvOiBlbmdpbmUgMDogc2NoZWR1bGVk
+IGZvciByZWNvdmVyeQpbIDM3MjkuNTYzMDkyXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogcGxhc21h
+c2hlbGxbMzg5OF06IGNoYW5uZWwgMTIga2lsbGVkIQpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUK
