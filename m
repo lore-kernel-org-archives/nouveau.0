@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104448] [NV106/GK208B] Multiple issues / hangs with
  nouveau driver
-Date: Tue, 02 Jan 2018 08:22:03 +0000
-Message-ID: <bug-104448-8800-0UnmDhBIz4@http.bugs.freedesktop.org/>
+Date: Tue, 02 Jan 2018 08:22:15 +0000
+Message-ID: <bug-104448-8800-ueQa35qdjU@http.bugs.freedesktop.org/>
 References: <bug-104448-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0605758917=="
+Content-Type: multipart/mixed; boundary="===============1544831405=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104448-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0605758917==
-Content-Type: multipart/alternative; boundary="15148813231.56197A.8084";
+--===============1544831405==
+Content-Type: multipart/alternative; boundary="15148813351.1E31E.8434";
  charset="UTF-8"
 
 
---15148813231.56197A.8084
-Date: Tue, 2 Jan 2018 08:22:03 +0000
+--15148813351.1E31E.8434
+Date: Tue, 2 Jan 2018 08:22:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104448
 
---- Comment #2 from A. Wilcox <awilfox-EG4NeYC890/CfDggNXIi3w@public.gmane.org> ---
-Created attachment 136483
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136483&action=3Dedit
-Xorg log, display :0
+--- Comment #3 from A. Wilcox <awilfox-EG4NeYC890/CfDggNXIi3w@public.gmane.org> ---
+Created attachment 136484
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136484&action=3Dedit
+Xorg log, display :1
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15148813231.56197A.8084
-Date: Tue, 2 Jan 2018 08:22:03 +0000
+--15148813351.1E31E.8434
+Date: Tue, 2 Jan 2018 08:22:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NV106/GK208B] Multiple issues / hangs with nouveau drive=
 r"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104448#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104448#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV106/GK208B] Multiple issues / hangs with nouveau drive=
@@ -76,11 +76,11 @@ r"
 awilfox&#64;adelielinux.org" title=3D"A. Wilcox &lt;awilfox&#64;adelielinux=
 .org&gt;"> <span class=3D"fn">A. Wilcox</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136483=
-" name=3D"attach_136483" title=3D"Xorg log, display :0">attachment 136483</=
-a> <a href=3D"attachment.cgi?id=3D136483&amp;action=3Dedit" title=3D"Xorg l=
-og, display :0">[details]</a></span>
-Xorg log, display :0</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136484=
+" name=3D"attach_136484" title=3D"Xorg log, display :1">attachment 136484</=
+a> <a href=3D"attachment.cgi?id=3D136484&amp;action=3Dedit" title=3D"Xorg l=
+og, display :1">[details]</a></span>
+Xorg log, display :1</pre>
         </div>
       </p>
 
@@ -94,9 +94,9 @@ Xorg log, display :0</pre>
     </body>
 </html>=
 
---15148813231.56197A.8084--
+--15148813351.1E31E.8434--
 
---===============0605758917==
+--===============1544831405==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0605758917==--
+--===============1544831405==--
