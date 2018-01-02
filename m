@@ -1,188 +1,85 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103780] Nouveau causes lockup - fifo: read fault at
- 00005ac000 engine 00 [GR] client 02 [GPC1/PE_0] reason 02 [PTE] on channel
- 24 [103b5b2000 Xwayland[1507]]
-Date: Tue, 02 Jan 2018 09:27:57 +0000
-Message-ID: <bug-103780-8800-gOEeQp9G8a@http.bugs.freedesktop.org/>
-References: <bug-103780-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Subject: Re: nouveau. swiotlb: coherent allocation failed for device
+ 0000:01:00.0 size=2097152
+Date: Tue, 2 Jan 2018 10:43:48 +0100
+Message-ID: <0d1f7796-adc3-70ab-c47c-a949ea0c14db@gmail.com>
+References: <1513620418.7113.51.camel@gmx.de>
+ <a083d576-215f-eb76-278b-741fc65fb138@mni.thm.de>
+ <f447948f-cfad-f4ea-4c41-54e42a733c16@daenzer.net>
+ <a96f755f-a20b-a177-ead1-7b79acbb1250@daenzer.net>
+ <e1b8dd62-4423-2b51-9634-e8938801b5d9@gmail.com>
+ <CAKb7Uvgt+SOwf6i2kAzEz65VTGzP6vYb2nBD+78FnXLtMZfOvg@mail.gmail.com>
+ <1514753618.20829.3.camel@gmx.de>
+ <CAKb7Uvjw0rP4u-zw1rRfwH1BRWFj9nwDVv8dPJY=oYS1DgjTBw@mail.gmail.com>
+Reply-To: christian.koenig@amd.com
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1777634010=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103780-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CAKb7Uvjw0rP4u-zw1rRfwH1BRWFj9nwDVv8dPJY=oYS1DgjTBw@mail.gmail.com>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>, Mike Galbraith <efault@gmx.de>
+Cc: nouveau <nouveau@lists.freedesktop.org>, =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>, =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1777634010==
-Content-Type: multipart/alternative; boundary="15148852773.d7f58d7e1.18766";
- charset="UTF-8"
-
-
---15148852773.d7f58d7e1.18766
-Date: Tue, 2 Jan 2018 09:27:57 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103780
-
---- Comment #1 from Arnaud Lacombe <lacombar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Happened randomly 2 days after updating to Fedora 27.
-
-Environment detail:
-
-CPU: i3
-GPU: GeForce GTX 750 + Intel Xeon E3-1200 v3/4th IGC
-
-
-/% rpm -qa xorg-x11-drv-nouveau
-xorg-x11-drv-nouveau-1.0.15-3.fc27.x86_64
-
-~/% uname -a
-Linux hanoli 4.14.8-300.fc27.x86_64 #1 SMP Wed Dec 20 19:00:18 UTC 2017 x86=
-_64
-x86_64 x86_64 GNU/Linux
-
-dmesg:
-
-[271587.979780] nouveau 0000:01:00.0: gr: TRAP ch 2 [007f955000 Xorg[1473]]
-[271587.979789] nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000041
-[271587.979794] nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000041
-[271587.979797] nouveau 0000:01:00.0: gr: GPC0/TPC2/TEX: 80000041
-[271587.979801] nouveau 0000:01:00.0: gr: GPC0/TPC3/TEX: 80000041
-[271587.979804] nouveau 0000:01:00.0: gr: GPC0/TPC4/TEX: 80000041
-[271587.979814] nouveau 0000:01:00.0: fifo: read fault at 0001af4000 engine=
- 00
-[GR] client 07 [GPC0/T1_2] reason 02 [PTE] on channel 2 [007f955000 Xorg[14=
-73]]
-[271587.979819] nouveau 0000:01:00.0: fifo: channel 2: killed
-[271587.979821] nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recove=
-ry
-[271587.979824] nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
-[271587.979830] nouveau 0000:01:00.0: fifo: engine 5: scheduled for recovery
-[271587.979859] nouveau 0000:01:00.0: Xorg[1473]: channel 2 killed!
-[271638.386491] asynchronous wait on fence nouveau:Xorg[1473]:284f8b timed =
-out
-[271688.050038] asynchronous wait on fence nouveau:Xorg[1473]:284f90 timed =
-out
-[271737.201617] asynchronous wait on fence nouveau:Xorg[1473]:284fa2 timed =
-out
-[271787.377169] asynchronous wait on fence nouveau:Xorg[1473]:284fa6 timed =
-out
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15148852773.d7f58d7e1.18766
-Date: Tue, 2 Jan 2018 09:27:57 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau causes lockup - fifo: read fault at 00005ac000 en=
-gine 00 [GR] client 02 [GPC1/PE_0] reason 02 [PTE] on channel 24 [103b5b200=
-0 Xwayland[1507]]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103780#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau causes lockup - fifo: read fault at 00005ac000 en=
-gine 00 [GR] client 02 [GPC1/PE_0] reason 02 [PTE] on channel 24 [103b5b200=
-0 Xwayland[1507]]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103780">bug 10378=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lacombar&#64;gmail.com" title=3D"Arnaud Lacombe &lt;lacombar&#64;gmail.com&=
-gt;"> <span class=3D"fn">Arnaud Lacombe</span></a>
-</span></b>
-        <pre>Happened randomly 2 days after updating to Fedora 27.
-
-Environment detail:
-
-CPU: i3
-GPU: GeForce GTX 750 + Intel Xeon E3-1200 v3/4th IGC
-
-
-/% rpm -qa xorg-x11-drv-nouveau
-xorg-x11-drv-nouveau-1.0.15-3.fc27.x86_64
-
-~/% uname -a
-Linux hanoli 4.14.8-300.fc27.x86_64 #1 SMP Wed Dec 20 19:00:18 UTC 2017 x86=
-_64
-x86_64 x86_64 GNU/Linux
-
-dmesg:
-
-[271587.979780] nouveau 0000:01:00.0: gr: TRAP ch 2 [007f955000 Xorg[1473]]
-[271587.979789] nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000041
-[271587.979794] nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000041
-[271587.979797] nouveau 0000:01:00.0: gr: GPC0/TPC2/TEX: 80000041
-[271587.979801] nouveau 0000:01:00.0: gr: GPC0/TPC3/TEX: 80000041
-[271587.979804] nouveau 0000:01:00.0: gr: GPC0/TPC4/TEX: 80000041
-[271587.979814] nouveau 0000:01:00.0: fifo: read fault at 0001af4000 engine=
- 00
-[GR] client 07 [GPC0/T1_2] reason 02 [PTE] on channel 2 [007f955000 Xorg[14=
-73]]
-[271587.979819] nouveau 0000:01:00.0: fifo: channel 2: killed
-[271587.979821] nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recove=
-ry
-[271587.979824] nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
-[271587.979830] nouveau 0000:01:00.0: fifo: engine 5: scheduled for recovery
-[271587.979859] nouveau 0000:01:00.0: Xorg[1473]: channel 2 killed!
-[271638.386491] asynchronous wait on fence nouveau:Xorg[1473]:284f8b timed =
-out
-[271688.050038] asynchronous wait on fence nouveau:Xorg[1473]:284f90 timed =
-out
-[271737.201617] asynchronous wait on fence nouveau:Xorg[1473]:284fa2 timed =
-out
-[271787.377169] asynchronous wait on fence nouveau:Xorg[1473]:284fa6 timed =
-out</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15148852773.d7f58d7e1.18766--
-
---===============1777634010==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1777634010==--
+QW0gMDEuMDEuMjAxOCB1bSAxOTowOCBzY2hyaWViIElsaWEgTWlya2luOgo+IE9uIFN1biwgRGVj
+IDMxLCAyMDE3IGF0IDM6NTMgUE0sIE1pa2UgR2FsYnJhaXRoIDxlZmF1bHRAZ214LmRlPiB3cm90
+ZToKPj4gT24gU3VuLCAyMDE3LTEyLTMxIGF0IDEzOjI3IC0wNTAwLCBJbGlhIE1pcmtpbiB3cm90
+ZToKPj4+IE9uIFR1ZSwgRGVjIDE5LCAyMDE3IGF0IDg6NDUgQU0sIENocmlzdGlhbiBLw7ZuaWcK
+Pj4+IDxja29lbmlnLmxlaWNodHp1bWVya2VuQGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pj4gQW0gMTku
+MTIuMjAxNyB1bSAxMTozOSBzY2hyaWViIE1pY2hlbCBEw6RuemVyOgo+Pj4+PiBPbiAyMDE3LTEy
+LTE5IDExOjM3IEFNLCBNaWNoZWwgRMOkbnplciB3cm90ZToKPj4+Pj4+IE9uIDIwMTctMTItMTgg
+MDg6MDEgUE0sIFRvYmlhcyBLbGF1c21hbm4gd3JvdGU6Cj4+Pj4+Pj4gT24gMTIvMTgvMTcgNzow
+NiBQTSwgTWlrZSBHYWxicmFpdGggd3JvdGU6Cj4+Pj4+Pj4+IEdyZWV0aW5ncywKPj4+Pj4+Pj4K
+Pj4+Pj4+Pj4gS2VybmVsIGJvdW5kIHdvcmtsb2FkcyBzZWVtIHRvIHRyaWdnZXIgdGhlIGJlbG93
+IGZvciB3aGF0ZXZlciByZWFzb24uCj4+Pj4+Pj4+ICAgICBJIG9ubHkgc2VlIHRoaXMgd2hlbiBi
+ZWF0aW5nIHVwIE5GUy4gIFRoZXJlIHdhcyBhIGt3b3JrZXIgd2FrZXVwCj4+Pj4+Pj4+IGxhdGVu
+Y3kgaXNzdWUsIGJ1dCB3aXRoIGEgYmFuZGFpZCBhcHBsaWVkIHRvIGZpeCB0aGF0IHVwLCBJIGNh
+biBzdGlsbAo+Pj4+Pj4+PiB0cmlnZ2VyIHRoaXMuCj4+Pj4+Pj4KPj4+Pj4+PiBIaSwKPj4+Pj4+
+Pgo+Pj4+Pj4+IGkgaGF2ZSBzZWVuIHRoaXMgb25lIGFzIHdlbGwgd2l0aCBteSBzeXN0ZW0sIGJ1
+dCBpIGNvdWxkIG5vdCBmaW5kIGFuCj4+Pj4+Pj4gZWFzeSB3YXkgdG8gdHJpZ2dlciBpdCBmb3Ig
+YmlzZWN0aW5nIHB1cnBvc2UuIElmIHlvdSBjYW4gdHJpZ2dlciBpdAo+Pj4+Pj4+IGNvbnZlbmll
+bnRseSwgYSBiaXNlY3Qgd291bGQgYmUgbmljZSEKPj4+Pj4+IEknbSBzZWVpbmcgdGhpcyAod2l0
+aCB0aGUgYW1kZ3B1IGFuZCByYWRlb24gZHJpdmVycykgd2hlbiByZXN0aWMgdGFrZXMgYQo+Pj4+
+Pj4gYmFja3VwLCBjcmVhdGluZyBtZW1vcnkgcHJlc3N1cmUuIEkgaGFwcGVuIHRvIGhhdmUganVz
+dCBmaW5pc2hlZAo+Pj4+Pj4gYmlzZWN0aW5nLCB0aGUgcmVzdWx0IGlzOgo+Pj4+Pj4KPj4+Pj4+
+IDY0OGJjMzU3NDcxNjQwMGFjYzA2Zjk5OTE1ODE1ZjgwZDk1NjM3ODMgaXMgdGhlIGZpcnN0IGJh
+ZCBjb21taXQKPj4+Pj4+IGNvbW1pdCA2NDhiYzM1NzQ3MTY0MDBhY2MwNmY5OTkxNTgxNWY4MGQ5
+NTYzNzgzCj4+Pj4+PiBBdXRob3I6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdA
+YW1kLmNvbT4KPj4+Pj4+IERhdGU6ICAgVGh1IEp1bCA2IDA5OjU5OjQzIDIwMTcgKzAyMDAKPj4+
+Pj4+Cj4+Pj4+PiAgICAgICBkcm0vdHRtOiBhZGQgdHJhbnNwYXJlbnQgaHVnZSBwYWdlIHN1cHBv
+cnQgZm9yIERNQSBhbGxvY2F0aW9ucyB2Mgo+Pj4+Pj4KPj4+Pj4+ICAgICAgIFRyeSB0byBhbGxv
+Y2F0ZSBodWdlIHBhZ2VzIHdoZW4gaXQgbWFrZXMgc2Vuc2UuCj4+Pj4+Pgo+Pj4+Pj4gICAgICAg
+djI6IGZpeCBjb21tZW50IGFuZCB1c2UgaWZkZWYKPj4+Pj4+Cj4+Pj4+Pgo+Pj4+PiBCVFcsIEkg
+aGF2ZW4ndCBub3RpY2VkIGFueSBiYWQgZWZmZWN0cyBvdGhlciB0aGFuIHRoZSBkbWVzZyBzcGxh
+dHMsIHNvCj4+Pj4+IG1heWJlIGl0J3MganVzdCBub2lzZSBhYm91dCB0cmFuc2llbnQgZmFpbHVy
+ZXMgZm9yIHdoaWNoIHRoZXJlIGlzIGEKPj4+Pj4gcHJvcGVyIGZhbGxiYWNrIGluIHBsYWNlLgo+
+Pj4+Cj4+Pj4gWWVhaCwgSSB0aGluayB0aGF0IGlzIGV4YWN0bHkgd2hhdCBoYXBwZW5zIGhlcmUu
+Cj4+Pj4KPj4+PiBXZSB0cnkgdG8gYWxsb2NhdGUgYSBodWdlIHBhZ2UsIGJ1dCBmYWlsIGFuZCBz
+byBmYWxsIGJhY2sgdG8gdXNpbmcgbXVsdGlwbGUKPj4+PiA0ayBwYWdlcyBpbnN0ZWFkLgo+Pj4+
+Cj4+Pj4gR29pbmcgdG8gc2VuZCBvdXQgYSBwYXRjaCB0byBzdXBwcmVzcyB0aGUgd2FybmluZy4K
+Pj4+IEhpIENocmlzdGlhbiwKPj4+Cj4+PiBEaWQgeW91IGV2ZXIgc2VuZCBvdXQgc3VjaCBhIHBh
+dGNoPyBJIGRpZG4ndCBzZWUgb25lIG9uIHRoZSBsaXN0LCBidXQKPj4+IHBlcmhhcHMgSSBtaXNz
+ZWQgaXQuIE9uZSBkZWZpbml0ZWx5IGhhc24ndCBtYWRlIGl0IHVwc3RyZWFtIHlldC4gKEkKPj4+
+IGp1c3QgaGl0IHRoZSBpc3N1ZSBteXNlbGYgd2l0aCBMaW51cydzIHRyZWUgZnJvbSBsYXN0IG5p
+Z2h0LikKPj4gQWN0dWFsbHksIHRoYXQgd2FudHMgYSBiaXQgbW9yZSBtZXRoaW5rcywgYmVjYXVz
+ZSB3aGlsZSB0aGUgc3RhY2sgZHVtcAo+PiBnb2VzIGF3YXksIHlvdSBzdGlsbCBnZXQgc3BhbW1l
+ZCwgaXQganVzdCBjb21lcyBpbiBzbWFsbGVyIGNodW5rcy4KPiBPSywgd2VsbCB0aGlzIGhhcyB0
+byBlaXRoZXIgYmUgZml4ZWQgb3IgcmV2ZXJ0ZWQuIFJpZ2h0IG5vdyBpdCdzCj4gY29tcGxhaW5p
+bmcgYWxsIHRoZSB0aW1lIGZvciBtZSBhZnRlciBsaWtlIGEgZGF5IG9mIHVwdGltZS4KCkkndmUg
+YWxyZWFkeSBzZW5kIG91dCBhIHBhdGNoIHRvIEtvbnJhZCBSemVzenV0ZWsgV2lsayBhbmQgaGUg
+d2FudGVkIHRvIApxdWV1ZSB0aGF0IHVwLgoKQnV0IHRoZXJlIGlzIGFub3RoZXIgd2FybmluZyBJ
+J20gY3VycmVudGx5IHdvcmtpbmcgb24sIGp1c3QgZGlkbid0IGhhZCAKdGltZSB0byBkdXJpbmcg
+dGhlIGhvbGlkYXlzLgoKUmVnYXJkcywKQ2hyaXN0aWFuLgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZl
+bEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
