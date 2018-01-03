@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104441] drm/nouveau: drm_hwcomposer cannot get
- rotation property/does not work
-Date: Wed, 03 Jan 2018 00:51:31 +0000
-Message-ID: <bug-104441-8800-GUug59jCvK@http.bugs.freedesktop.org/>
-References: <bug-104441-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+	rescan
+Date: Wed, 03 Jan 2018 19:34:04 +0000
+Message-ID: <bug-75985-8800-aqDbU5logx@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0033207749=="
+Content-Type: multipart/mixed; boundary="===============0799368116=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0033207749==
-Content-Type: multipart/alternative; boundary="15149406910.db0772eda.20171";
+--===============0799368116==
+Content-Type: multipart/alternative; boundary="15150080445.4def5bC0.11056";
  charset="UTF-8"
 
 
---15149406910.db0772eda.20171
-Date: Wed, 3 Jan 2018 00:51:31 +0000
+--15150080445.4def5bC0.11056
+Date: Wed, 3 Jan 2018 19:34:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104441
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |NOTOURBUG
-             Status|NEW                         |RESOLVED
-
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-FYI you can also change bug status yourself. Glad you got things going.
+--- Comment #28 from Rapha=C3=ABl Doursenaud <rdoursenaud-GANU6spQydw@public.gmane.org> ---
+Maik Freudenberg, I tried your module on my ThinkPad P51 and it successfully
+enabled the HDMI audio.
+HDMI audio playback is now fully functional on my laptop.
+I'm using it with the proprietary driver.
+Thanks!
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15149406910.db0772eda.20171
-Date: Wed, 3 Jan 2018 00:51:31 +0000
+--15150080445.4def5bC0.11056
+Date: Wed, 3 Jan 2018 19:34:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,59 +59,29 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - drm/nouveau: drm_hwcomposer cannot get rot=
-ation property/does not work"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104441">bug 10444=
-1</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>NOTOURBUG
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - drm/nouveau: drm_hwcomposer cannot get rot=
-ation property/does not work"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104441#c6">Commen=
-t # 6</a>
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c28">Commen=
+t # 28</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - drm/nouveau: drm_hwcomposer cannot get rot=
-ation property/does not work"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104441">bug 10444=
-1</a>
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+rdoursenaud&#64;free.fr" title=3D"Rapha=C3=ABl Doursenaud &lt;rdoursenaud&#=
+64;free.fr&gt;"> <span class=3D"fn">Rapha=C3=ABl Doursenaud</span></a>
 </span></b>
-        <pre>FYI you can also change bug status yourself. Glad you got thin=
-gs going.</pre>
+        <pre>Maik Freudenberg, I tried your module on my ThinkPad P51 and i=
+t successfully
+enabled the HDMI audio.
+HDMI audio playback is now fully functional on my laptop.
+I'm using it with the proprietary driver.
+Thanks!</pre>
         </div>
       </p>
 
@@ -128,9 +95,9 @@ gs going.</pre>
     </body>
 </html>=
 
---15149406910.db0772eda.20171--
+--15150080445.4def5bC0.11056--
 
---===============0033207749==
+--===============0799368116==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -140,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0033207749==--
+--===============0799368116==--
