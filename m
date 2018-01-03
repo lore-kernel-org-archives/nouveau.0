@@ -1,17 +1,13 @@
-From: Daniel Boyd <danieljboyd-mVuRI66OGLPQT0dZR+AlfA@public.gmane.org>
-Subject: Re: Hard lock with 4.14.0-2
-Date: Tue, 02 Jan 2018 16:47:59 -0600
-Message-ID: <1514933279.2867.52.camel@icloud.com>
-References: <1514922186.2867.10.camel@icloud.com>
- <CAKb7UvjT5r_HZZv=e6R8TDxHvXJDzHVfwS=qaWKsjDTTijWJZQ@mail.gmail.com>
- <1514928389.2867.37.camel@icloud.com>
- <CAKb7Uvh=sU81HKp1OCbXJtac0Rb7MW0RXzvzj5YU2FtSCFa3Cw@mail.gmail.com>
-Reply-To: danieljboyd-mVuRI66OGLPQT0dZR+AlfA@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 104441] drm/nouveau: drm_hwcomposer cannot get
+ rotation property/does not work
+Date: Wed, 03 Jan 2018 00:37:27 +0000
+Message-ID: <bug-104441-8800-FfYQFkSET7@http.bugs.freedesktop.org/>
+References: <bug-104441-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1084366271=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-reply-to: <CAKb7Uvh=sU81HKp1OCbXJtac0Rb7MW0RXzvzj5YU2FtSCFa3Cw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-104441-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +17,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCAyMDE4LTAxLTAyIGF0IDE3OjM4IC0wNTAwLCBJbGlhIE1pcmtpbiB3cm90ZToKPiBP
-biBUdWUsIEphbiAyLCAyMDE4IGF0IDQ6MjYgUE0sIERhbmllbCBCb3lkIDxkYW5pZWxqYm95ZEBp
-Y2xvdWQuY29tPgo+IHdyb3RlOgo+ID4gUHJldmlvdXMga2VybmVsIHdhcyA0LjEzLjAtMTAuMS1s
-aXF1b3JpeC1hbWQ2NAo+ID4gCj4gPiBUaGUgdXBkYXRlZCBrZXJuZWwgdGhhdCBJJ20gaGF2aW5n
-IHRyb3VibGUgd2FzIG5vdCBsaXF1b3JpeCAtLSB3YXMKPiA+IHN0cmFpZ2h0IGZyb20gRGViaWFu
-Lgo+ID4gCj4gPiBIZXJlJ3MgbXkgYXB0IGxvZzoKPiAKPiBZZWFoLCB1bmZvcnR1bmF0ZWx5IEkn
-bSBub3Qgc3VyZSBob3cgdG8gcmVhZCB0aGF0LiBCdXQgd2hlbiB5b3UncmUKPiBmbGlwcGluZyBi
-ZXR3ZWVuIHdvcmtpbmcgYW5kIG5vbi13b3JraW5nIGtlcm5lbHMsIGFyZSB5b3UgYWxzbwo+IGNo
-YW5naW5nIGEgYnVuY2ggb2Ygb3RoZXIgc29mdHdhcmU/Cj4gCj4gSWYgaXQncyBqdXN0IHRoZSBr
-ZXJuZWwsIGNhbiB5b3UgZG8gYSBnaXQgYmlzZWN0IHRvIGlkZW50aWZ5IHdoaWNoCj4gY2hhbmdl
-IGJyb2tlIHRoaW5ncz8KPiAKCk5vIC0tIG9ubHkgY2hhbmdpbmcgb3V0IHRoZSBrZXJuZWwuCgpJ
-J20ganVzdCBhbiBlbmQgdXNlci4gKGFsYmVpdCBvbmUgdGhhdCBpcyBhbHNvIGEgZGV2ZWxvcGVy
-KSAgSSd2ZSBuZXZlcgpkb25lIGEgZ2l0IGJpc2VjdCBiZWZvcmUsIGJ1dCBJJ2QgYmUgaGFwcHkg
-dG8gdHJ5IGlmIHlvdSBjb3VsZCB3YWxrIG1lCnRocm91Z2ggaXQuCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1084366271==
+Content-Type: multipart/alternative; boundary="15149398471.A1A8df69.18639";
+ charset="UTF-8"
+
+
+--15149398471.A1A8df69.18639
+Date: Wed, 3 Jan 2018 00:37:27 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104441
+
+--- Comment #5 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi Ilia,
+
+
+Thanks for your feedbacks, rotation property is unessential,
+so drm_hwcomposer error is "informative"
+
+I could boot oreo-x86 with GT610 with some changes in drm_hwcomposer,
+i.e. adding some drm mode connector types which were missing (DVID, DVII and
+VGA)
+and considering only connected ones
+
+I'll write an email to Robert Foss and Rob Herring in Cc:
+Please close as Not-Your-Bug
+
+Cheers
+
+Mauro
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15149398471.A1A8df69.18639
+Date: Wed, 3 Jan 2018 00:37:27 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - drm/nouveau: drm_hwcomposer cannot get rotation property/=
+does not work"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104441#c5">Commen=
+t # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - drm/nouveau: drm_hwcomposer cannot get rotation property/=
+does not work"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104441">bug 10444=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+issor.oruam&#64;gmail.com" title=3D"Mauro Rossi &lt;issor.oruam&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Mauro Rossi</span></a>
+</span></b>
+        <pre>Hi Ilia,
+
+
+Thanks for your feedbacks, rotation property is unessential,
+so drm_hwcomposer error is &quot;informative&quot;
+
+I could boot oreo-x86 with GT610 with some changes in drm_hwcomposer,
+i.e. adding some drm mode connector types which were missing (DVID, DVII and
+VGA)
+and considering only connected ones
+
+I'll write an email to Robert Foss and Rob Herring in Cc:
+Please close as Not-Your-Bug
+
+Cheers
+
+Mauro</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15149398471.A1A8df69.18639--
+
+--===============1084366271==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1084366271==--
