@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
-	rescan
-Date: Wed, 03 Jan 2018 21:27:00 +0000
-Message-ID: <bug-75985-8800-MnMqwTn1Tq@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 102430] nv4x - memory problems when starting
+ graphical application - logs included
+Date: Thu, 04 Jan 2018 02:14:18 +0000
+Message-ID: <bug-102430-8800-YO9oNdFeiB@http.bugs.freedesktop.org/>
+References: <bug-102430-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1284538078=="
+Content-Type: multipart/mixed; boundary="===============0561160778=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-102430-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,42 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1284538078==
-Content-Type: multipart/alternative; boundary="15150148192.faab.27833";
+--===============0561160778==
+Content-Type: multipart/alternative; boundary="15150320580.EFf3b.32528";
  charset="UTF-8"
 
 
---15150148192.faab.27833
-Date: Wed, 3 Jan 2018 21:26:59 +0000
+--15150320580.EFf3b.32528
+Date: Thu, 4 Jan 2018 02:14:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102430
 
---- Comment #31 from Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org> ---
-As a sidenote: another user reported 5 Watts additional power draw when
-enabling the audio function. Regardless of this being accurate it should be
-taken into account to not enable it unconditionally since these are mobile
-devices.
+--- Comment #4 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to caguduzexi from comment #3)
+> Any news on this problem?
 
-@Rapha=C3=ABl Doursenaud
-in which order did you do the following:
-boot
-plug in cable
-start X
-load module
-turn on audio
-?
+there was some memory allocation rework happening in the kernel side of
+nouveau, so it might be better already with the newest stack. I think things
+will finally land with 4.15 or 4.16 though.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15150148192.faab.27833
-Date: Wed, 3 Jan 2018 21:26:59 +0000
+--15150320580.EFf3b.32528
+Date: Thu, 4 Jan 2018 02:14:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,32 +65,27 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c31">Commen=
-t # 31</a>
+   title=3D"NEW - nv4x - memory problems when starting graphical applicatio=
+n - logs included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102430#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
+   title=3D"NEW - nv4x - memory problems when starting graphical applicatio=
+n - logs included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102430">bug 10243=
+0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-hhfeuer&#64;gmx.de" title=3D"Maik Freudenberg &lt;hhfeuer&#64;gmx.de&gt;"> =
-<span class=3D"fn">Maik Freudenberg</span></a>
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>As a sidenote: another user reported 5 Watts additional power =
-draw when
-enabling the audio function. Regardless of this being accurate it should be
-taken into account to not enable it unconditionally since these are mobile
-devices.
+        <pre>(In reply to caguduzexi from <a href=3D"show_bug.cgi?id=3D1024=
+30#c3">comment #3</a>)
+<span class=3D"quote">&gt; Any news on this problem?</span >
 
-&#64;Rapha=C3=ABl Doursenaud
-in which order did you do the following:
-boot
-plug in cable
-start X
-load module
-turn on audio
-?</pre>
+there was some memory allocation rework happening in the kernel side of
+nouveau, so it might be better already with the newest stack. I think things
+will finally land with 4.15 or 4.16 though.</pre>
         </div>
       </p>
 
@@ -111,9 +99,9 @@ turn on audio
     </body>
 </html>=
 
---15150148192.faab.27833--
+--15150320580.EFf3b.32528--
 
---===============1284538078==
+--===============0561160778==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1284538078==--
+--===============0561160778==--
