@@ -1,68 +1,131 @@
-From: Jon Hunter <jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] drm/nouveau/bar/gk20a: Avoid bar teardown during
-	init
-Date: Thu, 4 Jan 2018 11:29:09 +0000
-Message-ID: <1515065349-10187-1-git-send-email-jonathanh@nvidia.com>
+From: Sinan Kaya <okaya@codeaurora.org>
+Subject: Re: [PATCH V4 09/26] drm/nouveau: deprecate pci_get_bus_and_slot()
+Date: Thu, 4 Jan 2018 07:26:51 -0500
+Message-ID: <80a0f0ae-af61-f718-74f1-bc330edfff5c@codeaurora.org>
+References: <1513661883-28662-1-git-send-email-okaya@codeaurora.org>
+ <1513661883-28662-10-git-send-email-okaya@codeaurora.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Guillaume Tucker <guillaume.tucker-ZGY8ohtN/8qB+jHODAdFcQ@public.gmane.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-arm-msm-owner@vger.kernel.org>
+In-Reply-To: <1513661883-28662-10-git-send-email-okaya@codeaurora.org>
+Content-Language: en-US
+Sender: linux-arm-msm-owner@vger.kernel.org
+To: linux-pci@vger.kernel.org, timur@codeaurora.org
+Cc: linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Ilia Mirkin <imirkin@alum.mit.edu>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-Q29tbWl0IGJiYjE2M2UxODk2MCAoImRybS9ub3V2ZWF1L2JhcjogaW1wbGVtZW50IGJhcjEgdGVh
-cmRvd24iKQppbnRyb2R1Y2VkIGFkZCBhIHRlYXJkb3duIGhlbHBlciBmdW5jdGlvbiBmb3IgQkFS
-MS4gRHVyaW5nCmluaXRpYWxpc2F0aW9uIG9mIHRoZSBOb3V2ZWF1LCBpbml0aWFsbHkgYWxsIHRo
-ZSB0ZWFyZG93biBoZWxwZXJzIGFyZQpjYWxsZWQgb25jZSwgYmVmb3JlIGNhbGxpbmcgdGhlaXIg
-aW5pdCBjb3VudGVycGFydHMuIEZvciBnazIwYSwgYWZ0ZXIKdGhlIEJBUjEgdGVhcmRvd24gZnVu
-Y3Rpb24gaXMgY2FsbGVkLCB0aGUgZGV2aWNlIGlzIGhhbmdpbmcgZHVyaW5nIHRoZQppbml0aWFs
-aXNhdGlvbiBvZiB0aGUgRkIgc3ViLWRldmljZS4gQXQgdGhpcyBwb2ludCBpdCBpcyB1bmNsZWFy
-IHdoeQp0aGlzIGlzIGhhcHBlbmluZyBhbmQgdGhpcyBpcyBzdGlsbCB1bmRlciBpbnZlc3RpZ2F0
-aW9uLiBIb3dldmVyLCB0aGlzCmNoYW5nZSBpcyBwcmV2ZW50aW5nIFRlZ3JhMTI0IGRldmljZXMg
-ZnJvbSBib290aW5nIHdoZW4gTm91dmVhdSBpcwplbmFibGVkLiBUbyBhbGxvdyBUZWdyYTEyNCB0
-byBib290LCByZW1vdmUgdGhlIHRlYXJkb3duIGhlbHBlciBmb3IKZ2syMGEuCgpUaGlzIGlzIGJh
-c2VkIHVwb24gYSBwcmV2aW91cyBwYXRjaCBieSBHdWlsbGF1bWUgVHVja2VyIGJ1dCBsaW1pdHMK
-dGhlIHdvcmthcm91bmQgdG8gb25seSBnazIwYSBHUFVzLgoKRml4ZXM6IGJiYjE2M2UxODk2MCAo
-ImRybS9ub3V2ZWF1L2JhcjogaW1wbGVtZW50IGJhcjEgdGVhcmRvd24iKQpSZXBvcnRlZC1ieTog
-R3VpbGxhdW1lIFR1Y2tlciA8Z3VpbGxhdW1lLnR1Y2tlckBjb2xsYWJvcmEuY29tPgpTaWduZWQt
-b2ZmLWJ5OiBKb24gSHVudGVyIDxqb25hdGhhbmhAbnZpZGlhLmNvbT4KLS0tCkkgYW0gbm90IGhh
-cHB5IHRoYXQgd2UgZG8gbm90IHlldCBmdWxseSB1bmRlcnN0YW5kIHRoZSBjYXVzZSBvZgp0aGUg
-aGFuZywgYnV0IEkgYW0gdGFsa2luZyB3aXRoIGEgZmV3IHBlb3BsZSBhdCBOVklESUEgYWJvdXQg
-dGhpcwphbmQgaGF2ZSBhIGZldyB0aGluZ3MgdG8gbG9vayBpbnRvLiBIb3dldmVyLCBnaXZlbiB0
-aGF0IHdlIGFyZQpjbG9zZSB0byB2NC4xNSBiZWluZyByZWxlYXNlZCBhbmQgSSBhbSBub3Qgc3Vy
-ZSB3ZSB3aWxsIGhhdmUgYQpwcm9wZXIgZml4IGluIHBsYWNlIGJlZm9yZSwgSSB0aGluayBpdCBp
-cyBiZXN0IHRvIHdvcmthcm91bmQKdGhpcyBmb3Igbm93LgoKIGRyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L252a20vc3ViZGV2L2Jhci9iYXNlLmMgIHwgMyArKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L252a20vc3ViZGV2L2Jhci9nazIwYS5jIHwgMSAtCiAyIGZpbGVzIGNoYW5nZWQsIDIgaW5z
-ZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9udmttL3N1YmRldi9iYXIvYmFzZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bnZrbS9zdWJkZXYvYmFyL2Jhc2UuYwppbmRleCA5NjQ2YWRlYzU3Y2IuLjI0M2YwYTVjOGE2MiAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmFyL2Jhc2Uu
-YworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iYXIvYmFzZS5jCkBA
-IC03Myw3ICs3Myw4IEBAIHN0YXRpYyBpbnQKIG52a21fYmFyX2Zpbmkoc3RydWN0IG52a21fc3Vi
-ZGV2ICpzdWJkZXYsIGJvb2wgc3VzcGVuZCkKIHsKIAlzdHJ1Y3QgbnZrbV9iYXIgKmJhciA9IG52
-a21fYmFyKHN1YmRldik7Ci0JYmFyLT5mdW5jLT5iYXIxLmZpbmkoYmFyKTsKKwlpZiAoYmFyLT5m
-dW5jLT5iYXIxLmZpbmkpCisJCWJhci0+ZnVuYy0+YmFyMS5maW5pKGJhcik7CiAJcmV0dXJuIDA7
-CiB9CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jh
-ci9nazIwYS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmFyL2drMjBh
-LmMKaW5kZXggYjEwMDc3ZDM4ODM5Li4zNTg3OGZiNTM4ZjIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jhci9nazIwYS5jCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jhci9nazIwYS5jCkBAIC0yNiw3ICsyNiw2IEBAIGdr
-MjBhX2Jhcl9mdW5jID0gewogCS5kdG9yID0gZ2YxMDBfYmFyX2R0b3IsCiAJLm9uZWluaXQgPSBn
-ZjEwMF9iYXJfb25laW5pdCwKIAkuYmFyMS5pbml0ID0gZ2YxMDBfYmFyX2JhcjFfaW5pdCwKLQku
-YmFyMS5maW5pID0gZ2YxMDBfYmFyX2JhcjFfZmluaSwKIAkuYmFyMS53YWl0ID0gZ2YxMDBfYmFy
-X2JhcjFfd2FpdCwKIAkuYmFyMS52bW0gPSBnZjEwMF9iYXJfYmFyMV92bW0sCiAJLmZsdXNoID0g
-Zzg0X2Jhcl9mbHVzaCwKLS0gCjIuNy40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+On 12/19/2017 12:37 AM, Sinan Kaya wrote:
+> pci_get_bus_and_slot() is restrictive such that it assumes domain=0 as
+> where a PCI device is present. This restricts the device drivers to be
+> reused for other domain numbers.
+> 
+> Getting ready to remove pci_get_bus_and_slot() function in favor of
+> pci_get_domain_bus_and_slot().
+> 
+> Replace pci_get_bus_and_slot() with pci_get_domain_bus_and_slot()
+> and extract the domain number from
+> 1. struct pci_dev
+> 2. struct pci_dev through drm_device->pdev
+> 3. struct pci_dev through fb->subdev->drm_device->pdev
+> 
+> Signed-off-by: Sinan Kaya <okaya@codeaurora.org>
+> ---
+>  drivers/gpu/drm/nouveau/dispnv04/arb.c           |  4 +++-
+>  drivers/gpu/drm/nouveau/dispnv04/hw.c            | 10 +++++++---
+>  drivers/gpu/drm/nouveau/nouveau_drm.c            |  3 ++-
+>  drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c | 10 +++++++++-
+>  4 files changed, 21 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/dispnv04/arb.c b/drivers/gpu/drm/nouveau/dispnv04/arb.c
+> index 90075b6..c79160c 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv04/arb.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv04/arb.c
+> @@ -213,8 +213,10 @@ struct nv_sim_state {
+>  	if ((dev->pdev->device & 0xffff) == 0x01a0 /*CHIPSET_NFORCE*/ ||
+>  	    (dev->pdev->device & 0xffff) == 0x01f0 /*CHIPSET_NFORCE2*/) {
+>  		uint32_t type;
+> +		int domain = pci_domain_nr(dev->pdev->bus);
+>  
+> -		pci_read_config_dword(pci_get_bus_and_slot(0, 1), 0x7c, &type);
+> +		pci_read_config_dword(pci_get_domain_bus_and_slot(domain, 0, 1),
+> +				      0x7c, &type);
+>  
+>  		sim_data.memory_type = (type >> 12) & 1;
+>  		sim_data.memory_width = 64;
+> diff --git a/drivers/gpu/drm/nouveau/dispnv04/hw.c b/drivers/gpu/drm/nouveau/dispnv04/hw.c
+> index b985990..0c9bdf0 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv04/hw.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv04/hw.c
+> @@ -216,12 +216,15 @@
+>  {
+>  	struct nvkm_pll_vals pllvals;
+>  	int ret;
+> +	int domain;
+> +
+> +	domain = pci_domain_nr(dev->pdev->bus);
+>  
+>  	if (plltype == PLL_MEMORY &&
+>  	    (dev->pdev->device & 0x0ff0) == CHIPSET_NFORCE) {
+>  		uint32_t mpllP;
+> -
+> -		pci_read_config_dword(pci_get_bus_and_slot(0, 3), 0x6c, &mpllP);
+> +		pci_read_config_dword(pci_get_domain_bus_and_slot(domain, 0, 3),
+> +				      0x6c, &mpllP);
+>  		mpllP = (mpllP >> 8) & 0xf;
+>  		if (!mpllP)
+>  			mpllP = 4;
+> @@ -232,7 +235,8 @@
+>  	    (dev->pdev->device & 0xff0) == CHIPSET_NFORCE2) {
+>  		uint32_t clock;
+>  
+> -		pci_read_config_dword(pci_get_bus_and_slot(0, 5), 0x4c, &clock);
+> +		pci_read_config_dword(pci_get_domain_bus_and_slot(domain, 0, 5),
+> +				      0x4c, &clock);
+>  		return clock / 1000;
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> index 8d4a5be..33b6139 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> @@ -524,7 +524,8 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+>  	}
+>  
+>  	/* subfunction one is a hdmi audio device? */
+> -	drm->hdmi_device = pci_get_bus_and_slot((unsigned int)pdev->bus->number,
+> +	drm->hdmi_device = pci_get_domain_bus_and_slot(pci_domain_nr(pdev->bus),
+> +						(unsigned int)pdev->bus->number,
+>  						PCI_DEVFN(PCI_SLOT(pdev->devfn), 1));
+>  
+>  	if (!drm->hdmi_device) {
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c
+> index 4c07d10..18241c6 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c
+> @@ -28,8 +28,16 @@
+>  {
+>  	struct pci_dev *bridge;
+>  	u32 mem, mib;
+> +	int domain = 0;
+> +	struct pci_dev *pdev = NULL;
+>  
+> -	bridge = pci_get_bus_and_slot(0, PCI_DEVFN(0, 1));
+> +	if (dev_is_pci(fb->subdev.device->dev))
+> +		pdev = to_pci_dev(fb->subdev.device->dev);
+> +
+> +	if (pdev)
+> +		domain = pci_domain_nr(pdev->bus);
+> +
+> +	bridge = pci_get_domain_bus_and_slot(domain, 0, PCI_DEVFN(0, 1));
+>  	if (!bridge) {
+>  		nvkm_error(&fb->subdev, "no bridge device\n");
+>  		return -ENODEV;
+> 
+
+Any feedback here? I don't have any hardware to test the changes. I just did a compile test.
+
+-- 
+Sinan Kaya
+Qualcomm Datacenter Technologies, Inc. as an affiliate of Qualcomm Technologies, Inc.
+Qualcomm Technologies, Inc. is a member of the Code Aurora Forum, a Linux Foundation Collaborative Project.
