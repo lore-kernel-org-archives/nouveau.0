@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
-	rescan
-Date: Thu, 04 Jan 2018 11:18:15 +0000
-Message-ID: <bug-75985-8800-Ec633sC3yQ@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+From: Jon Hunter <jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] drm/nouveau/bar/gk20a: Avoid bar teardown during
+	init
+Date: Thu, 4 Jan 2018 11:29:09 +0000
+Message-ID: <1515065349-10187-1-git-send-email-jonathanh@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0417317987=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,134 +16,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Guillaume Tucker <guillaume.tucker-ZGY8ohtN/8qB+jHODAdFcQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0417317987==
-Content-Type: multipart/alternative; boundary="15150646950.2C2D.5088";
- charset="UTF-8"
-
-
---15150646950.2C2D.5088
-Date: Thu, 4 Jan 2018 11:18:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
-
---- Comment #33 from spamas-HPQIj1OAFZMvJsYlp49lxw@public.gmane.org ---
-My system specs:
-i7-7700HQ + GTX 1060 6GB
-Linux kernel version: 4.10.0-42-generic
-Nvidia driver Version: 384.90
-OS: Linux Mint 18.2
-
-I can confirm that kernel module, posted by Maik Freudenberg [Comment 27], =
-is
-working fine on my system. Thank you for the fix. The HDMI audio device now
-works as it should.
-
-The steps I did to enable HDMI audio device:
-1. Download and extract the file nvhda.tar.xz.
-2. Run commands in terminal:
-   make
-   sudo make install
-   echo nvhda | sudo tee -a /etc/initramfs-tools/modules
-   echo "options nvhda load_state=3D1" | sudo tee /etc/modprobe.d/nvhda.conf
-   sudo update-initramfs -u
-3. Reboot.
-
-With this fix, I did not notice any problems with power management or system
-stability. HDMI audio works at system startup, after resume from sleep, aft=
-er
-plugging/unplugging HDMI cable.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15150646950.2C2D.5088
-Date: Thu, 4 Jan 2018 11:18:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c33">Commen=
-t # 33</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-spamas&#64;rambler.ru" title=3D"spamas&#64;rambler.ru">spamas&#64;rambler.r=
-u</a>
-</span></b>
-        <pre>My system specs:
-i7-7700HQ + GTX 1060 6GB
-Linux kernel version: 4.10.0-42-generic
-Nvidia driver Version: 384.90
-OS: Linux Mint 18.2
-
-I can confirm that kernel module, posted by Maik Freudenberg [<a href=3D"sh=
-ow_bug.cgi?id=3D75985#c27">Comment 27</a>], is
-working fine on my system. Thank you for the fix. The HDMI audio device now
-works as it should.
-
-The steps I did to enable HDMI audio device:
-1. Download and extract the file nvhda.tar.xz.
-2. Run commands in terminal:
-   make
-   sudo make install
-   echo nvhda | sudo tee -a /etc/initramfs-tools/modules
-   echo &quot;options nvhda load_state=3D1&quot; | sudo tee /etc/modprobe.d=
-/nvhda.conf
-   sudo update-initramfs -u
-3. Reboot.
-
-With this fix, I did not notice any problems with power management or system
-stability. HDMI audio works at system startup, after resume from sleep, aft=
-er
-plugging/unplugging HDMI cable.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15150646950.2C2D.5088--
-
---===============0417317987==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0417317987==--
+Q29tbWl0IGJiYjE2M2UxODk2MCAoImRybS9ub3V2ZWF1L2JhcjogaW1wbGVtZW50IGJhcjEgdGVh
+cmRvd24iKQppbnRyb2R1Y2VkIGFkZCBhIHRlYXJkb3duIGhlbHBlciBmdW5jdGlvbiBmb3IgQkFS
+MS4gRHVyaW5nCmluaXRpYWxpc2F0aW9uIG9mIHRoZSBOb3V2ZWF1LCBpbml0aWFsbHkgYWxsIHRo
+ZSB0ZWFyZG93biBoZWxwZXJzIGFyZQpjYWxsZWQgb25jZSwgYmVmb3JlIGNhbGxpbmcgdGhlaXIg
+aW5pdCBjb3VudGVycGFydHMuIEZvciBnazIwYSwgYWZ0ZXIKdGhlIEJBUjEgdGVhcmRvd24gZnVu
+Y3Rpb24gaXMgY2FsbGVkLCB0aGUgZGV2aWNlIGlzIGhhbmdpbmcgZHVyaW5nIHRoZQppbml0aWFs
+aXNhdGlvbiBvZiB0aGUgRkIgc3ViLWRldmljZS4gQXQgdGhpcyBwb2ludCBpdCBpcyB1bmNsZWFy
+IHdoeQp0aGlzIGlzIGhhcHBlbmluZyBhbmQgdGhpcyBpcyBzdGlsbCB1bmRlciBpbnZlc3RpZ2F0
+aW9uLiBIb3dldmVyLCB0aGlzCmNoYW5nZSBpcyBwcmV2ZW50aW5nIFRlZ3JhMTI0IGRldmljZXMg
+ZnJvbSBib290aW5nIHdoZW4gTm91dmVhdSBpcwplbmFibGVkLiBUbyBhbGxvdyBUZWdyYTEyNCB0
+byBib290LCByZW1vdmUgdGhlIHRlYXJkb3duIGhlbHBlciBmb3IKZ2syMGEuCgpUaGlzIGlzIGJh
+c2VkIHVwb24gYSBwcmV2aW91cyBwYXRjaCBieSBHdWlsbGF1bWUgVHVja2VyIGJ1dCBsaW1pdHMK
+dGhlIHdvcmthcm91bmQgdG8gb25seSBnazIwYSBHUFVzLgoKRml4ZXM6IGJiYjE2M2UxODk2MCAo
+ImRybS9ub3V2ZWF1L2JhcjogaW1wbGVtZW50IGJhcjEgdGVhcmRvd24iKQpSZXBvcnRlZC1ieTog
+R3VpbGxhdW1lIFR1Y2tlciA8Z3VpbGxhdW1lLnR1Y2tlckBjb2xsYWJvcmEuY29tPgpTaWduZWQt
+b2ZmLWJ5OiBKb24gSHVudGVyIDxqb25hdGhhbmhAbnZpZGlhLmNvbT4KLS0tCkkgYW0gbm90IGhh
+cHB5IHRoYXQgd2UgZG8gbm90IHlldCBmdWxseSB1bmRlcnN0YW5kIHRoZSBjYXVzZSBvZgp0aGUg
+aGFuZywgYnV0IEkgYW0gdGFsa2luZyB3aXRoIGEgZmV3IHBlb3BsZSBhdCBOVklESUEgYWJvdXQg
+dGhpcwphbmQgaGF2ZSBhIGZldyB0aGluZ3MgdG8gbG9vayBpbnRvLiBIb3dldmVyLCBnaXZlbiB0
+aGF0IHdlIGFyZQpjbG9zZSB0byB2NC4xNSBiZWluZyByZWxlYXNlZCBhbmQgSSBhbSBub3Qgc3Vy
+ZSB3ZSB3aWxsIGhhdmUgYQpwcm9wZXIgZml4IGluIHBsYWNlIGJlZm9yZSwgSSB0aGluayBpdCBp
+cyBiZXN0IHRvIHdvcmthcm91bmQKdGhpcyBmb3Igbm93LgoKIGRyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252a20vc3ViZGV2L2Jhci9iYXNlLmMgIHwgMyArKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252a20vc3ViZGV2L2Jhci9nazIwYS5jIHwgMSAtCiAyIGZpbGVzIGNoYW5nZWQsIDIgaW5z
+ZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9iYXIvYmFzZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvYmFyL2Jhc2UuYwppbmRleCA5NjQ2YWRlYzU3Y2IuLjI0M2YwYTVjOGE2MiAx
+MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmFyL2Jhc2Uu
+YworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iYXIvYmFzZS5jCkBA
+IC03Myw3ICs3Myw4IEBAIHN0YXRpYyBpbnQKIG52a21fYmFyX2Zpbmkoc3RydWN0IG52a21fc3Vi
+ZGV2ICpzdWJkZXYsIGJvb2wgc3VzcGVuZCkKIHsKIAlzdHJ1Y3QgbnZrbV9iYXIgKmJhciA9IG52
+a21fYmFyKHN1YmRldik7Ci0JYmFyLT5mdW5jLT5iYXIxLmZpbmkoYmFyKTsKKwlpZiAoYmFyLT5m
+dW5jLT5iYXIxLmZpbmkpCisJCWJhci0+ZnVuYy0+YmFyMS5maW5pKGJhcik7CiAJcmV0dXJuIDA7
+CiB9CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jh
+ci9nazIwYS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmFyL2drMjBh
+LmMKaW5kZXggYjEwMDc3ZDM4ODM5Li4zNTg3OGZiNTM4ZjIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jhci9nazIwYS5jCisrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jhci9nazIwYS5jCkBAIC0yNiw3ICsyNiw2IEBAIGdr
+MjBhX2Jhcl9mdW5jID0gewogCS5kdG9yID0gZ2YxMDBfYmFyX2R0b3IsCiAJLm9uZWluaXQgPSBn
+ZjEwMF9iYXJfb25laW5pdCwKIAkuYmFyMS5pbml0ID0gZ2YxMDBfYmFyX2JhcjFfaW5pdCwKLQku
+YmFyMS5maW5pID0gZ2YxMDBfYmFyX2JhcjFfZmluaSwKIAkuYmFyMS53YWl0ID0gZ2YxMDBfYmFy
+X2JhcjFfd2FpdCwKIAkuYmFyMS52bW0gPSBnZjEwMF9iYXJfYmFyMV92bW0sCiAJLmZsdXNoID0g
+Zzg0X2Jhcl9mbHVzaCwKLS0gCjIuNy40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
