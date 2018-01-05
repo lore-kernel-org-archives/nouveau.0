@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104222] GNOME/Wayland desktop freezes when resizing
- Firefox window
-Date: Fri, 05 Jan 2018 06:02:16 +0000
-Message-ID: <bug-104222-8800-USMC9Tpeh3@http.bugs.freedesktop.org/>
-References: <bug-104222-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104509] New: Unable to set "Content Type" bit for
+ HDMI and DisplayPort
+Date: Fri, 05 Jan 2018 23:07:36 +0000
+Message-ID: <bug-104509-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0626475958=="
+Content-Type: multipart/mixed; boundary="===============0124447252=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104222-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,55 +19,80 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0626475958==
-Content-Type: multipart/alternative; boundary="15151321352.4db830aDC.26345";
+--===============0124447252==
+Content-Type: multipart/alternative; boundary="15151936561.2E58a.9356";
  charset="UTF-8"
 
 
---15151321352.4db830aDC.26345
-Date: Fri, 5 Jan 2018 06:02:15 +0000
+--15151936561.2E58a.9356
+Date: Fri, 5 Jan 2018 23:07:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104222
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104509
 
---- Comment #7 from Rylan <mail-UDJx58VhFVbMJ+Z5TDUkmQ@public.gmane.org> ---
-(In reply to Rylan from comment #6)
-> Hello, another me-too here. Arch Linux with Gnome+Wayland
+            Bug ID: 104509
+           Summary: Unable to set "Content Type" bit for HDMI and
+                    DisplayPort
+           Product: xorg
+           Version: unspecified
+          Hardware: All
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: nw9165-3201-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Some more information regarding this:=20
+Hi,
 
-1. The issue is reproducible fairly consistently on my system, but sometime=
-s I
-have to resize the firefox window upto 5 times (manually dragging window co=
-rner
-by about 20%) to reproduce the freeze. So far, I have only observed the fre=
-eze
-occurring when window is being expanded, it does not seem to occur when the
-windows is being decreased in size.
+apparently the Intel HD Graphics driver for Windows has a "IT Content" opti=
+on
+that can be either enabled or disabled, see following screenshot for exampl=
+e:
 
-2. The freeze happens with both Firefox Nightly and stable Firefox, so
-client-side decorations (or some other Nightly-only feature) do not seem to=
- be
-responsible.
+https://www.howtogeek.com/wp-content/uploads/2016/12/img_5855c293ac26d.jpg
 
-3. I cannot reproduce this issue in any other application except Firefox...=
-even
-Thunderbird (also by Mozilla) does not seem to be affected.
+According to a post on the AVS Forum, enabling "IT Content" does the follow=
+ing:
 
-4. It does not seem to matter what page is being rendered by Firefox. The
-freeze occurs even when firefox is showing a blank page with no internet
-connection.
+http://www.avsforum.com/forum/26-home-theater-computers/1477460-theory-abou=
+t-intel-s-hdmi-quantization-range-setting-full-0-255-a-7.html#post24629922
+
+> HDMI specs "IT Content" flag is set On in video stream.
+>=20
+> CEA-861:
+> "In IT applications (e.g. involving bit mapped text),
+> each pixel in the source=E2=80=99s frame buffer is most clearly
+> displayed if it is directly mapped to a light-emitting pixel
+> on the display device - such that adjacent pixels are
+> completely independent and do not interact.
+> The IT content bit indicates when picture content is
+> composed according to common IT practice (i.e. without
+> regard to Nyquist criterion) and is unsuitable for
+> analog reconstruction or filtering. When the IT content bit
+> is set to 1, downstream processors should pass
+> pixel data unfiltered and without analog reconstruction."
+
+Apparently there is no option for it on the nouveau Linux driver.
+
+Can you please add an option to the nouveau Linux driver which allows to en=
+able
+the "IT Content" bit?
+
+Regards
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15151321352.4db830aDC.26345
-Date: Fri, 5 Jan 2018 06:02:15 +0000
+--15151936561.2E58a.9356
+Date: Fri, 5 Jan 2018 23:07:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,53 +103,134 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Unable to set &quot;Content Type&quot; bit for HDMI and D=
+isplayPort"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104509">104509</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Unable to set &quot;Content Type&quot; bit for HDMI and Displ=
+ayPort
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>nw9165-3201&#64;yahoo.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GNOME/Wayland desktop freezes when resizing Firefox windo=
-w"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104222#c7">Commen=
-t # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GNOME/Wayland desktop freezes when resizing Firefox windo=
-w"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104222">bug 10422=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mail&#64;rylan.coffee" title=3D"Rylan &lt;mail&#64;rylan.coffee&gt;"> <span=
- class=3D"fn">Rylan</span></a>
-</span></b>
-        <pre>(In reply to Rylan from <a href=3D"show_bug.cgi?id=3D104222#c6=
-">comment #6</a>)
-<span class=3D"quote">&gt; Hello, another me-too here. Arch Linux with Gnom=
-e+Wayland</span >
+        <pre>Hi,
 
-Some more information regarding this:=20
+apparently the Intel HD Graphics driver for Windows has a &quot;IT Content&=
+quot; option
+that can be either enabled or disabled, see following screenshot for exampl=
+e:
 
-1. The issue is reproducible fairly consistently on my system, but sometime=
-s I
-have to resize the firefox window upto 5 times (manually dragging window co=
-rner
-by about 20%) to reproduce the freeze. So far, I have only observed the fre=
-eze
-occurring when window is being expanded, it does not seem to occur when the
-windows is being decreased in size.
+<a href=3D"https://www.howtogeek.com/wp-content/uploads/2016/12/img_5855c29=
+3ac26d.jpg">https://www.howtogeek.com/wp-content/uploads/2016/12/img_5855c2=
+93ac26d.jpg</a>
 
-2. The freeze happens with both Firefox Nightly and stable Firefox, so
-client-side decorations (or some other Nightly-only feature) do not seem to=
- be
-responsible.
+According to a post on the AVS Forum, enabling &quot;IT Content&quot; does =
+the following:
 
-3. I cannot reproduce this issue in any other application except Firefox...=
-even
-Thunderbird (also by Mozilla) does not seem to be affected.
+<a href=3D"http://www.avsforum.com/forum/26-home-theater-computers/1477460-=
+theory-about-intel-s-hdmi-quantization-range-setting-full-0-255-a-7.html#po=
+st24629922">http://www.avsforum.com/forum/26-home-theater-computers/1477460=
+-theory-about-intel-s-hdmi-quantization-range-setting-full-0-255-a-7.html#p=
+ost24629922</a>
 
-4. It does not seem to matter what page is being rendered by Firefox. The
-freeze occurs even when firefox is showing a blank page with no internet
-connection.</pre>
+<span class=3D"quote">&gt; HDMI specs &quot;IT Content&quot; flag is set On=
+ in video stream.
+&gt;=20
+&gt; CEA-861:
+&gt; &quot;In IT applications (e.g. involving bit mapped text),
+&gt; each pixel in the source=E2=80=99s frame buffer is most clearly
+&gt; displayed if it is directly mapped to a light-emitting pixel
+&gt; on the display device - such that adjacent pixels are
+&gt; completely independent and do not interact.
+&gt; The IT content bit indicates when picture content is
+&gt; composed according to common IT practice (i.e. without
+&gt; regard to Nyquist criterion) and is unsuitable for
+&gt; analog reconstruction or filtering. When the IT content bit
+&gt; is set to 1, downstream processors should pass
+&gt; pixel data unfiltered and without analog reconstruction.&quot;</span >
+
+Apparently there is no option for it on the nouveau Linux driver.
+
+Can you please add an option to the nouveau Linux driver which allows to en=
+able
+the &quot;IT Content&quot; bit?
+
+Regards</pre>
         </div>
       </p>
 
@@ -140,9 +244,9 @@ connection.</pre>
     </body>
 </html>=
 
---15151321352.4db830aDC.26345--
+--15151936561.2E58a.9356--
 
---===============0626475958==
+--===============0124447252==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -152,4 +256,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0626475958==--
+--===============0124447252==--
