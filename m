@@ -1,120 +1,47 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104222] GNOME/Wayland desktop freezes when resizing
- Firefox window
-Date: Sat, 06 Jan 2018 15:08:20 +0000
-Message-ID: <bug-104222-8800-5kk8gqZHiS@http.bugs.freedesktop.org/>
-References: <bug-104222-8800@http.bugs.freedesktop.org/>
+From: Rob Clark <robdclark@gmail.com>
+Subject: [PATCH] drm/nouveau/disp/gf119: add missing drive vfunc ptr
+Date: Sat,  6 Jan 2018 10:59:41 -0500
+Message-ID: <20180106155951.8416-1-robdclark@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0703492705=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104222-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: dri-devel@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0703492705==
-Content-Type: multipart/alternative; boundary="15152513000.343CeDe39.12992";
- charset="UTF-8"
-
-
---15152513000.343CeDe39.12992
-Date: Sat, 6 Jan 2018 15:08:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104222
-
-Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Priority|medium                      |high
-           Severity|normal                      |major
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15152513000.343CeDe39.12992
-Date: Sat, 6 Jan 2018 15:08:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jan.publi=
-c&#64;famvlug.nl" title=3D"Jan Vlug &lt;jan.public&#64;famvlug.nl&gt;"> <sp=
-an class=3D"fn">Jan Vlug</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GNOME/Wayland desktop freezes when resizing Firefox windo=
-w"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104222">bug 10422=
-2</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Priority</td>
-           <td>medium
-           </td>
-           <td>high
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Severity</td>
-           <td>normal
-           </td>
-           <td>major
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15152513000.343CeDe39.12992--
-
---===============0703492705==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0703492705==--
+Rml4ZXMgYnJva2VuIGRwIG9uIEdGMTE5OgoKICBDYWxsIFRyYWNlOgogICA/IG52a21fZHBfdHJh
+aW5fZHJpdmUrMHgxODMvMHgyYzAgW25vdXZlYXVdCiAgIG52a21fZHBfYWNxdWlyZSsweDRmMy8w
+eGNkMCBbbm91dmVhdV0KICAgbnY1MF9kaXNwX3N1cGVyXzJfMisweDVkLzB4NDcwIFtub3V2ZWF1
+XQogICA/IG52a21fZGV2aW5pdF9wbGxfc2V0KzB4Zi8weDIwIFtub3V2ZWF1XQogICBnZjExOV9k
+aXNwX3N1cGVyKzB4MTljLzB4MmYwIFtub3V2ZWF1XQogICBwcm9jZXNzX29uZV93b3JrKzB4MTkz
+LzB4M2MwCiAgIHdvcmtlcl90aHJlYWQrMHgzNS8weDNiMAogICBrdGhyZWFkKzB4MTI1LzB4MTQw
+CiAgID8gcHJvY2Vzc19vbmVfd29yaysweDNjMC8weDNjMAogICA/IGt0aHJlYWRfcGFyaysweDYw
+LzB4NjAKICAgcmV0X2Zyb21fZm9yaysweDI1LzB4MzAKICBDb2RlOiAgQmFkIFJJUCB2YWx1ZS4K
+ICBSSVA6ICAgICAgICAgICAobnVsbCkgUlNQOiBmZmZmYjFlMjQzZTRiYzM4CiAgQ1IyOiAwMDAw
+MDAwMDAwMDAwMDAwCgpGaXhlczogYWY4NTM4OWM2MTRhIGRybS9ub3V2ZWF1L2Rpc3A6IHNodWZm
+bGUgZnVuY3Rpb25zIGFyb3VuZApTaWduZWQtb2ZmLWJ5OiBSb2IgQ2xhcmsgPHJvYmRjbGFya0Bn
+bWFpbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9z
+b3JnZjExOS5jIHwgMSArCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykKCmRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL3NvcmdmMTE5LmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL3NvcmdmMTE5LmMKaW5k
+ZXggYTI5NzhhMzdiNGYzLi43MDBmYzc1NGYyOGEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3Avc29yZ2YxMTkuYworKysgYi9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL3NvcmdmMTE5LmMKQEAgLTE3NCw2ICsxNzQsNyBA
+QCBnZjExOV9zb3IgPSB7CiAJCS5saW5rcyA9IGdmMTE5X3Nvcl9kcF9saW5rcywKIAkJLnBvd2Vy
+ID0gZzk0X3Nvcl9kcF9wb3dlciwKIAkJLnBhdHRlcm4gPSBnZjExOV9zb3JfZHBfcGF0dGVybiwK
+KwkJLmRyaXZlID0gZ2YxMTlfc29yX2RwX2RyaXZlLAogCQkudmNwaSA9IGdmMTE5X3Nvcl9kcF92
+Y3BpLAogCQkuYXVkaW8gPSBnZjExOV9zb3JfZHBfYXVkaW8sCiAJCS5hdWRpb19zeW0gPSBnZjEx
+OV9zb3JfZHBfYXVkaW9fc3ltLAotLSAKMi4xNC4zCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9kcmktZGV2ZWwK
