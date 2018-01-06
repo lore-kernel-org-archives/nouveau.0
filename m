@@ -1,55 +1,105 @@
-From: Rob Clark <robdclark@gmail.com>
-Subject: Re: [PATCH] drm/nouveau/disp/gf119: add missing drive vfunc ptr
-Date: Sat, 6 Jan 2018 11:01:39 -0500
-Message-ID: <CAF6AEGu_F_QcvAu2WxC6soYGm16Oiw88UnjnSuzVx+cVU5hZDA@mail.gmail.com>
-References: <20180106155951.8416-1-robdclark@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103421] Kernel 4.13+ nouveau breaks screen output
+Date: Sat, 06 Jan 2018 16:02:38 +0000
+Message-ID: <bug-103421-8800-qrh4SI196m@http.bugs.freedesktop.org/>
+References: <bug-103421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20180106155951.8416-1-robdclark@gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: dri-devel <dri-devel@lists.freedesktop.org>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0583271477=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-103421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBKYW4gNiwgMjAxOCBhdCAxMDo1OSBBTSwgUm9iIENsYXJrIDxyb2JkY2xhcmtAZ21h
-aWwuY29tPiB3cm90ZToKPiBGaXhlcyBicm9rZW4gZHAgb24gR0YxMTk6Cj4KPiAgIENhbGwgVHJh
-Y2U6Cj4gICAgPyBudmttX2RwX3RyYWluX2RyaXZlKzB4MTgzLzB4MmMwIFtub3V2ZWF1XQo+ICAg
-IG52a21fZHBfYWNxdWlyZSsweDRmMy8weGNkMCBbbm91dmVhdV0KPiAgICBudjUwX2Rpc3Bfc3Vw
-ZXJfMl8yKzB4NWQvMHg0NzAgW25vdXZlYXVdCj4gICAgPyBudmttX2RldmluaXRfcGxsX3NldCsw
-eGYvMHgyMCBbbm91dmVhdV0KPiAgICBnZjExOV9kaXNwX3N1cGVyKzB4MTljLzB4MmYwIFtub3V2
-ZWF1XQo+ICAgIHByb2Nlc3Nfb25lX3dvcmsrMHgxOTMvMHgzYzAKPiAgICB3b3JrZXJfdGhyZWFk
-KzB4MzUvMHgzYjAKPiAgICBrdGhyZWFkKzB4MTI1LzB4MTQwCj4gICAgPyBwcm9jZXNzX29uZV93
-b3JrKzB4M2MwLzB4M2MwCj4gICAgPyBrdGhyZWFkX3BhcmsrMHg2MC8weDYwCj4gICAgcmV0X2Zy
-b21fZm9yaysweDI1LzB4MzAKPiAgIENvZGU6ICBCYWQgUklQIHZhbHVlLgo+ICAgUklQOiAgICAg
-ICAgICAgKG51bGwpIFJTUDogZmZmZmIxZTI0M2U0YmMzOAo+ICAgQ1IyOiAwMDAwMDAwMDAwMDAw
-MDAwCj4KPiBGaXhlczogYWY4NTM4OWM2MTRhIGRybS9ub3V2ZWF1L2Rpc3A6IHNodWZmbGUgZnVu
-Y3Rpb25zIGFyb3VuZAoKVGhpcyBzaG91bGQgcHJvYmFibHkgYWxzbyBoYXZlOgoKQnVnemlsbGE6
-IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEwMzQyMQoKPiBT
-aWduZWQtb2ZmLWJ5OiBSb2IgQ2xhcmsgPHJvYmRjbGFya0BnbWFpbC5jb20+Cj4gLS0tCj4gIGRy
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3Avc29yZ2YxMTkuYyB8IDEgKwo+
-ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL3NvcmdmMTE5LmMgYi9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL3NvcmdmMTE5LmMKPiBpbmRleCBhMjk3OGEz
-N2I0ZjMuLjcwMGZjNzU0ZjI4YSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9udmttL2VuZ2luZS9kaXNwL3NvcmdmMTE5LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9udmttL2VuZ2luZS9kaXNwL3NvcmdmMTE5LmMKPiBAQCAtMTc0LDYgKzE3NCw3IEBAIGdm
-MTE5X3NvciA9IHsKPiAgICAgICAgICAgICAgICAgLmxpbmtzID0gZ2YxMTlfc29yX2RwX2xpbmtz
-LAo+ICAgICAgICAgICAgICAgICAucG93ZXIgPSBnOTRfc29yX2RwX3Bvd2VyLAo+ICAgICAgICAg
-ICAgICAgICAucGF0dGVybiA9IGdmMTE5X3Nvcl9kcF9wYXR0ZXJuLAo+ICsgICAgICAgICAgICAg
-ICAuZHJpdmUgPSBnZjExOV9zb3JfZHBfZHJpdmUsCj4gICAgICAgICAgICAgICAgIC52Y3BpID0g
-Z2YxMTlfc29yX2RwX3ZjcGksCj4gICAgICAgICAgICAgICAgIC5hdWRpbyA9IGdmMTE5X3Nvcl9k
-cF9hdWRpbywKPiAgICAgICAgICAgICAgICAgLmF1ZGlvX3N5bSA9IGdmMTE5X3Nvcl9kcF9hdWRp
-b19zeW0sCj4gLS0KPiAyLjE0LjMKPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9kcmktZGV2ZWwK
+
+--===============0583271477==
+Content-Type: multipart/alternative; boundary="15152545582.A224BA500.29185";
+ charset="UTF-8"
+
+
+--15152545582.A224BA500.29185
+Date: Sat, 6 Jan 2018 16:02:38 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103421
+
+--- Comment #6 from Rob Clark <robclark-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> ---
+This patch should fix the issue:
+
+https://patchwork.freedesktop.org/patch/196301/
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15152545582.A224BA500.29185
+Date: Sat, 6 Jan 2018 16:02:38 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel 4.13+ nouveau breaks screen output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421#c6">Commen=
+t # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel 4.13+ nouveau breaks screen output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421">bug 10342=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+robclark&#64;freedesktop.org" title=3D"Rob Clark &lt;robclark&#64;freedeskt=
+op.org&gt;"> <span class=3D"fn">Rob Clark</span></a>
+</span></b>
+        <pre>This patch should fix the issue:
+
+<a href=3D"https://patchwork.freedesktop.org/patch/196301/">https://patchwo=
+rk.freedesktop.org/patch/196301/</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15152545582.A224BA500.29185--
+
+--===============0583271477==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0583271477==--
