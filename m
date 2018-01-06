@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104421] System freeze on wayland with nouveau on
-	NV137 (GP107)
-Date: Sat, 06 Jan 2018 14:55:32 +0000
-Message-ID: <bug-104421-8800-YsicezUrYk@http.bugs.freedesktop.org/>
-References: <bug-104421-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104222] GNOME/Wayland desktop freezes when resizing
+ Firefox window
+Date: Sat, 06 Jan 2018 14:58:17 +0000
+Message-ID: <bug-104222-8800-XOacMQJtWQ@http.bugs.freedesktop.org/>
+References: <bug-104222-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0817676678=="
+Content-Type: multipart/mixed; boundary="===============0935756079=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-104222-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0817676678==
-Content-Type: multipart/alternative; boundary="15152505321.f7cAC8Ee.10731";
+--===============0935756079==
+Content-Type: multipart/alternative; boundary="15152506962.d4fE07fBc.10731";
  charset="UTF-8"
 
 
---15152505321.f7cAC8Ee.10731
-Date: Sat, 6 Jan 2018 14:55:32 +0000
+--15152506962.d4fE07fBc.10731
+Date: Sat, 6 Jan 2018 14:58:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104222
 
---- Comment #4 from Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> ---
-Note that this crash/freeze for some reason is usually not detected by the =
-ABRT
-system.
+--- Comment #8 from Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> ---
+I experienced freezes by resizing gvim and riot as well.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15152505321.f7cAC8Ee.10731
-Date: Sat, 6 Jan 2018 14:55:32 +0000
+--15152506962.d4fE07fBc.10731
+Date: Sat, 6 Jan 2018 14:58:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,21 +60,21 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421#c4">Commen=
-t # 4</a>
+   title=3D"NEW - GNOME/Wayland desktop freezes when resizing Firefox windo=
+w"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104222#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
-1</a>
+   title=3D"NEW - GNOME/Wayland desktop freezes when resizing Firefox windo=
+w"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104222">bug 10422=
+2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 jan.public&#64;famvlug.nl" title=3D"Jan Vlug &lt;jan.public&#64;famvlug.nl&=
 gt;"> <span class=3D"fn">Jan Vlug</span></a>
 </span></b>
-        <pre>Note that this crash/freeze for some reason is usually not det=
-ected by the ABRT
-system.</pre>
+        <pre>I experienced freezes by resizing gvim and riot as well.</pre>
         </div>
       </p>
 
@@ -90,9 +88,9 @@ system.</pre>
     </body>
 </html>=
 
---15152505321.f7cAC8Ee.10731--
+--15152506962.d4fE07fBc.10731--
 
---===============0817676678==
+--===============0935756079==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0817676678==--
+--===============0935756079==--
