@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104530] Desktop freeze when closing apps composited
  by compton running on GTX 760
-Date: Sun, 07 Jan 2018 19:41:06 +0000
-Message-ID: <bug-104530-8800-tE6w5U4Bnx@http.bugs.freedesktop.org/>
+Date: Sun, 07 Jan 2018 19:47:28 +0000
+Message-ID: <bug-104530-8800-rKvYCr4mHg@http.bugs.freedesktop.org/>
 References: <bug-104530-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0018806631=="
+Content-Type: multipart/mixed; boundary="===============0269081046=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104530-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0018806631==
-Content-Type: multipart/alternative; boundary="15153540661.99a7BB60c.28740";
+--===============0269081046==
+Content-Type: multipart/alternative; boundary="15153544481.34baef2CF.412";
  charset="UTF-8"
 
 
---15153540661.99a7BB60c.28740
-Date: Sun, 7 Jan 2018 19:41:06 +0000
+--15153544481.34baef2CF.412
+Date: Sun, 7 Jan 2018 19:47:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104530
 
---- Comment #1 from sdelang <sdelang-Efhee0H7lKpGWvitb5QawA@public.gmane.org> ---
-Created attachment 136601
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136601&action=3Dedit
-xorg logs after crash
+--- Comment #2 from sdelang <sdelang-Efhee0H7lKpGWvitb5QawA@public.gmane.org> ---
+Sorry, the xorg logs are definitively the wrong ones..... Replacing them as=
+ap.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15153540661.99a7BB60c.28740
-Date: Sun, 7 Jan 2018 19:41:06 +0000
+--15153544481.34baef2CF.412
+Date: Sun, 7 Jan 2018 19:47:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +63,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Desktop freeze when closing apps composited by compton ru=
 nning on GTX 760"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104530#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104530#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Desktop freeze when closing apps composited by compton ru=
@@ -76,11 +75,8 @@ nning on GTX 760"
 sdelang&#64;sdelang.fr" title=3D"sdelang &lt;sdelang&#64;sdelang.fr&gt;"> <=
 span class=3D"fn">sdelang</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136601=
-" name=3D"attach_136601" title=3D"xorg logs after crash">attachment 136601<=
-/a> <a href=3D"attachment.cgi?id=3D136601&amp;action=3Dedit" title=3D"xorg =
-logs after crash">[details]</a></span>
-xorg logs after crash</pre>
+        <pre>Sorry, the xorg logs are definitively the wrong ones..... Repl=
+acing them asap.</pre>
         </div>
       </p>
 
@@ -94,9 +90,9 @@ xorg logs after crash</pre>
     </body>
 </html>=
 
---15153540661.99a7BB60c.28740--
+--15153544481.34baef2CF.412--
 
---===============0018806631==
+--===============0269081046==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0018806631==--
+--===============0269081046==--
