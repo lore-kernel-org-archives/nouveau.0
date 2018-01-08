@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104530] Desktop freeze when closing apps composited
- by compton running on GTX 760
-Date: Sun, 07 Jan 2018 19:47:28 +0000
-Message-ID: <bug-104530-8800-rKvYCr4mHg@http.bugs.freedesktop.org/>
-References: <bug-104530-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 103421] Kernel 4.13+ nouveau breaks screen output
+Date: Mon, 08 Jan 2018 12:44:40 +0000
+Message-ID: <bug-103421-8800-XXIxr9Y0Yf@http.bugs.freedesktop.org/>
+References: <bug-103421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0269081046=="
+Content-Type: multipart/mixed; boundary="===============0950813424=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104530-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-103421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0269081046==
-Content-Type: multipart/alternative; boundary="15153544481.34baef2CF.412";
+--===============0950813424==
+Content-Type: multipart/alternative; boundary="15154154802.8AaEFa9.3592";
  charset="UTF-8"
 
 
---15153544481.34baef2CF.412
-Date: Sun, 7 Jan 2018 19:47:28 +0000
+--15154154802.8AaEFa9.3592
+Date: Mon, 8 Jan 2018 12:44:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104530
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103421
 
---- Comment #2 from sdelang <sdelang-Efhee0H7lKpGWvitb5QawA@public.gmane.org> ---
-Sorry, the xorg logs are definitively the wrong ones..... Replacing them as=
-ap.
+--- Comment #7 from kbaikov-IBi9RG/b67k@public.gmane.org ---
+I can confirm that this patch fixes the issue:
+
+https://patchwork.freedesktop.org/patch/196301/
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15153544481.34baef2CF.412
-Date: Sun, 7 Jan 2018 19:47:28 +0000
+--15154154802.8AaEFa9.3592
+Date: Mon, 8 Jan 2018 12:44:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,22 +61,22 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Desktop freeze when closing apps composited by compton ru=
-nning on GTX 760"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104530#c2">Commen=
-t # 2</a>
+   title=3D"NEW - Kernel 4.13+ nouveau breaks screen output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Desktop freeze when closing apps composited by compton ru=
-nning on GTX 760"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104530">bug 10453=
-0</a>
+   title=3D"NEW - Kernel 4.13+ nouveau breaks screen output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421">bug 10342=
+1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sdelang&#64;sdelang.fr" title=3D"sdelang &lt;sdelang&#64;sdelang.fr&gt;"> <=
-span class=3D"fn">sdelang</span></a>
+kbaikov&#64;suse.com" title=3D"kbaikov&#64;suse.com">kbaikov&#64;suse.com</=
+a>
 </span></b>
-        <pre>Sorry, the xorg logs are definitively the wrong ones..... Repl=
-acing them asap.</pre>
+        <pre>I can confirm that this patch fixes the issue:
+
+<a href=3D"https://patchwork.freedesktop.org/patch/196301/">https://patchwo=
+rk.freedesktop.org/patch/196301/</a></pre>
         </div>
       </p>
 
@@ -90,9 +90,9 @@ acing them asap.</pre>
     </body>
 </html>=
 
---15153544481.34baef2CF.412--
+--15154154802.8AaEFa9.3592--
 
---===============0269081046==
+--===============0950813424==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0269081046==--
+--===============0950813424==--
