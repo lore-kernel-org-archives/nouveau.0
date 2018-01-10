@@ -1,124 +1,100 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103351] Nouveau fails when booting with a screen
- connected to displayport since 13a86519202c5d119d83640d6f781f3181205d2c
-Date: Tue, 09 Jan 2018 13:49:48 +0000
-Message-ID: <bug-103351-8800-tl2E8321S8@http.bugs.freedesktop.org/>
-References: <bug-103351-8800@http.bugs.freedesktop.org/>
+From: Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [Nouveau] [PATCH] drm/nouveau/bar/gk20a: Avoid bar teardown
+ during init
+Date: Wed, 10 Jan 2018 13:20:32 +0100
+Message-ID: <20180110122032.GA26614@ulmo>
+References: <1515065349-10187-1-git-send-email-jonathanh@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1636515728=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============2101720851=="
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <1515065349-10187-1-git-send-email-jonathanh@nvidia.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Guillaume Tucker <guillaume.tucker@collabora.com>
 List-Id: nouveau.vger.kernel.org
 
 
---===============1636515728==
-Content-Type: multipart/alternative; boundary="15155057881.c9AAE.31322";
- charset="UTF-8"
+--===============2101720851==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="LZvS9be/3tNcYl/X"
+Content-Disposition: inline
 
 
---15155057881.c9AAE.31322
-Date: Tue, 9 Jan 2018 13:49:48 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+--LZvS9be/3tNcYl/X
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103351
+On Thu, Jan 04, 2018 at 11:29:09AM +0000, Jon Hunter wrote:
+> Commit bbb163e18960 ("drm/nouveau/bar: implement bar1 teardown")
+> introduced add a teardown helper function for BAR1. During
+> initialisation of the Nouveau, initially all the teardown helpers are
+> called once, before calling their init counterparts. For gk20a, after
+> the BAR1 teardown function is called, the device is hanging during the
+> initialisation of the FB sub-device. At this point it is unclear why
+> this is happening and this is still under investigation. However, this
+> change is preventing Tegra124 devices from booting when Nouveau is
+> enabled. To allow Tegra124 to boot, remove the teardown helper for
+> gk20a.
+>=20
+> This is based upon a previous patch by Guillaume Tucker but limits
+> the workaround to only gk20a GPUs.
+>=20
+> Fixes: bbb163e18960 ("drm/nouveau/bar: implement bar1 teardown")
+> Reported-by: Guillaume Tucker <guillaume.tucker@collabora.com>
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+> I am not happy that we do not yet fully understand the cause of
+> the hang, but I am talking with a few people at NVIDIA about this
+> and have a few things to look into. However, given that we are
+> close to v4.15 being released and I am not sure we will have a
+> proper fix in place before, I think it is best to workaround
+> this for now.
+>=20
+>  drivers/gpu/drm/nouveau/nvkm/subdev/bar/base.c  | 3 ++-
+>  drivers/gpu/drm/nouveau/nvkm/subdev/bar/gk20a.c | 1 -
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 
---- Comment #5 from Rob Clark <robclark-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> ---
-(In reply to Nikita from comment #4)
-> I ran into the same issue on a Lenovo T420 with 01:00.0 VGA compatible
-> controller: NVIDIA Corporation GF119M [Quadro NVS 4200M] (rev a1).
+Acked-by: Thierry Reding <treding@nvidia.com>
 
-This is a different issue, what you are seeing with GF119 is:
+--LZvS9be/3tNcYl/X
+Content-Type: application/pgp-signature; name="signature.asc"
 
- https://bugs.freedesktop.org/show_bug.cgi?id=3D103421
+-----BEGIN PGP SIGNATURE-----
 
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlpWBRAACgkQ3SOs138+
+s6FdNQ//aOmckBoZHjhYFaC4zPHo6x5ld/FuFc4pYngjexsR3xIi8L7qXxtcxpwT
+mI4PUgn5rfPLtzfqrV4cWHjQfYfxPRLiSN9z8lNtZbb5CUCMLaTZS9dfNOIOr3eS
+Kr8Ihhlcz4a6aBjm4YxA2eWz6mHM/lsiDJQ/8DcS6UyyKw1QS8s+kjbn3JlelJdp
+t5z6DEQ4BtnijyjrVE3ht+IkIQExv6aLjyDu66z1N3JjsyNYree64WqJQDMEWoUH
+6bOlAEE1FZB3ns3R1llO092RB4VyIeo/rcGdpjTCAoU8zFqbQLd/nQKFaCEfKalk
+2v6QGu+a11gATGKUOaf+XqUOeX8QMnn/BRTt70JwugfAn2wxeBA6Ey94Sm6k10tn
+VvnWTetds7httN/jjulJUzjwNNwL7cJv6UQIToqaFD85ebHi1xzd7CZiP4V/SvJM
+uyx25M2kBaLkH+VrSBstVkZxdtm1F+GrVS1nkujWxtkyMn93ZQI/4fPrClrh3QTS
+AIW47YUxFgad1JUFWKUhfPJuKojqZfvrRZUN5s9rwSkrNJG5gjpFP9Ae6TtUTqcQ
+zBY4cRKJFgtmM6B2R4avU2f7Nt+7M0eCbT8KwIN4lTH30WeQ0nEypd0vkqXd6kxc
+Bxe5+7dbb8fvdzS0FTeAJZE6nz78xTeLDuXTb154OkLVtkZ5vro=
+=OTyl
+-----END PGP SIGNATURE-----
 
---15155057881.c9AAE.31322
-Date: Tue, 9 Jan 2018 13:49:48 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+--LZvS9be/3tNcYl/X--
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau fails when booting with a screen connected to dis=
-playport since 13a86519202c5d119d83640d6f781f3181205d2c"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103351#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau fails when booting with a screen connected to dis=
-playport since 13a86519202c5d119d83640d6f781f3181205d2c"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103351">bug 10335=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-robclark&#64;freedesktop.org" title=3D"Rob Clark &lt;robclark&#64;freedeskt=
-op.org&gt;"> <span class=3D"fn">Rob Clark</span></a>
-</span></b>
-        <pre>(In reply to Nikita from <a href=3D"show_bug.cgi?id=3D103351#c=
-4">comment #4</a>)
-<span class=3D"quote">&gt; I ran into the same issue on a Lenovo T420 with =
-01:00.0 VGA compatible
-&gt; controller: NVIDIA Corporation GF119M [Quadro NVS 4200M] (rev a1).</sp=
-an >
-
-This is a different issue, what you are seeing with GF119 is:
-
- <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Kernel 4.13+ nouveau breaks screen output"
-   href=3D"show_bug.cgi?id=3D103421">https://bugs.freedesktop.org/show_bug.=
-cgi?id=3D103421</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15155057881.c9AAE.31322--
-
---===============1636515728==
+--===============2101720851==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
 Content-Disposition: inline
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
 
---===============1636515728==--
+--===============2101720851==--
