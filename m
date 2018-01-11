@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103721] [GM107] Frequent freezes with nouveau on
-	Thinkpad P50
-Date: Wed, 10 Jan 2018 17:17:11 +0000
-Message-ID: <bug-103721-8800-If8AbQazgb@http.bugs.freedesktop.org/>
-References: <bug-103721-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104421] System freeze on wayland with nouveau on
+	NV137 (GP107)
+Date: Thu, 11 Jan 2018 13:02:55 +0000
+Message-ID: <bug-104421-8800-3WAMVBiUww@http.bugs.freedesktop.org/>
+References: <bug-104421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0585285984=="
+Content-Type: multipart/mixed; boundary="===============1285614502=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-104421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,48 +21,73 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0585285984==
-Content-Type: multipart/alternative; boundary="15156046312.85fd10823.6447";
+--===============1285614502==
+Content-Type: multipart/alternative; boundary="15156757750.ae39dAFa.16082";
  charset="UTF-8"
 
 
---15156046312.85fd10823.6447
-Date: Wed, 10 Jan 2018 17:17:11 +0000
+--15156757750.ae39dAFa.16082
+Date: Thu, 11 Jan 2018 13:02:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103721
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
 
---- Comment #4 from Will Newton <will.newton-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I haven't been seeing crashes as frequently any more - I switched back to
-wayland, not sure if there is anything else that changed besides installing
-Fedora updates - but I just had another crash:
+--- Comment #5 from Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> ---
+Today this happened again. I was still able to reach the machine via ssh.
+There are extra lines in the logging compared to the previous freezes:
 
-Jan 10 16:34:16 localhost.localdomain kernel: nouveau 0000:01:00.0: disp:
-0x00006671[0]: INIT_GENERIC_CONDITON: unknown 0x07
-Jan 10 17:09:15 localhost.localdomain kernel: nouveau 0000:01:00.0: fifo: w=
-rite
-fault at 001bc5b000 engine 00 [GR] client 0f [GPC0/PROP_0] reason 00 [PDE] =
-on
-channel 14 [00fdf1d000 Xwayland[1935]]
-Jan 10 17:09:15 localhost.localdomain kernel: nouveau 0000:01:00.0: fifo:
-channel 14: killed
-Jan 10 17:09:15 localhost.localdomain kernel: nouveau 0000:01:00.0: fifo:
-runlist 0: scheduled for recovery
-Jan 10 17:09:15 localhost.localdomain kernel: nouveau 0000:01:00.0: fifo:
-engine 0: scheduled for recovery
-Jan 10 17:09:15 localhost.localdomain kernel: nouveau 0000:01:00.0:
-Xwayland[1935]: channel 14 killed!
+Jan 11 11:32:57 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 11 11:42:04 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 11 11:42:31 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 11 11:47:18 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 11 13:08:12 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 11 13:10:14 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: TRAP ch 14 [00fdb51000
+Xwayland[2381]]
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC0/TEX: 800000=
+41
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC1/TEX: 800000=
+41
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC2/TEX: 800000=
+41
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC1/TPC2/TEX: 800000=
+41
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: read fault at
+000725c000 engine 00 [GR] client 0a [GPC0/T1_3] reason 02 [PTE] on channel =
+14
+[00fdb51000 Xwayland[2381]]
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: channel 14: killed
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: runlist 0: scheduled
+for recovery
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: engine 0: scheduled=
+ for
+recovery
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]: channel 14
+killed!
+Jan 11 13:50:50 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]:
+nv50cal_space: -16
+Jan 11 13:50:50 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]:
+nv50cal_space: -16
+Jan 11 13:50:50 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]:
+nv50cal_space: -16
+<this last line keeps repeating sometimes several times per second>
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15156046312.85fd10823.6447
-Date: Wed, 10 Jan 2018 17:17:11 +0000
+--15156757750.ae39dAFa.16082
+Date: Thu, 11 Jan 2018 13:02:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,38 +103,64 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [GM107] Frequent freezes with nouveau on Thinkpad P50"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721#c4">Commen=
-t # 4</a>
+   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [GM107] Frequent freezes with nouveau on Thinkpad P50"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721">bug 10372=
+   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
 1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-will.newton&#64;gmail.com" title=3D"Will Newton &lt;will.newton&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Will Newton</span></a>
+jan.public&#64;famvlug.nl" title=3D"Jan Vlug &lt;jan.public&#64;famvlug.nl&=
+gt;"> <span class=3D"fn">Jan Vlug</span></a>
 </span></b>
-        <pre>I haven't been seeing crashes as frequently any more - I switc=
-hed back to
-wayland, not sure if there is anything else that changed besides installing
-Fedora updates - but I just had another crash:
+        <pre>Today this happened again. I was still able to reach the machi=
+ne via ssh.
+There are extra lines in the logging compared to the previous freezes:
 
-Jan 10 16:34:16 localhost.localdomain kernel: nouveau 0000:01:00.0: disp:
-0x00006671[0]: INIT_GENERIC_CONDITON: unknown 0x07
-Jan 10 17:09:15 localhost.localdomain kernel: nouveau 0000:01:00.0: fifo: w=
-rite
-fault at 001bc5b000 engine 00 [GR] client 0f [GPC0/PROP_0] reason 00 [PDE] =
-on
-channel 14 [00fdf1d000 Xwayland[1935]]
-Jan 10 17:09:15 localhost.localdomain kernel: nouveau 0000:01:00.0: fifo:
-channel 14: killed
-Jan 10 17:09:15 localhost.localdomain kernel: nouveau 0000:01:00.0: fifo:
-runlist 0: scheduled for recovery
-Jan 10 17:09:15 localhost.localdomain kernel: nouveau 0000:01:00.0: fifo:
-engine 0: scheduled for recovery
-Jan 10 17:09:15 localhost.localdomain kernel: nouveau 0000:01:00.0:
-Xwayland[1935]: channel 14 killed!</pre>
+Jan 11 11:32:57 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 11 11:42:04 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 11 11:42:31 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 11 11:47:18 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 11 13:08:12 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 11 13:10:14 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: TRAP ch 14 [00fdb51000
+Xwayland[2381]]
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC0/TEX: 800000=
+41
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC1/TEX: 800000=
+41
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC2/TEX: 800000=
+41
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC1/TPC2/TEX: 800000=
+41
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: read fault at
+000725c000 engine 00 [GR] client 0a [GPC0/T1_3] reason 02 [PTE] on channel =
+14
+[00fdb51000 Xwayland[2381]]
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: channel 14: killed
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: runlist 0: scheduled
+for recovery
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: engine 0: scheduled=
+ for
+recovery
+Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]: channel 14
+killed!
+Jan 11 13:50:50 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]:
+nv50cal_space: -16
+Jan 11 13:50:50 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]:
+nv50cal_space: -16
+Jan 11 13:50:50 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]:
+nv50cal_space: -16
+&lt;this last line keeps repeating sometimes several times per second&gt;</=
+pre>
         </div>
       </p>
 
@@ -123,9 +174,9 @@ Xwayland[1935]: channel 14 killed!</pre>
     </body>
 </html>=
 
---15156046312.85fd10823.6447--
+--15156757750.ae39dAFa.16082--
 
---===============0585285984==
+--===============1285614502==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +186,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0585285984==--
+--===============1285614502==--
