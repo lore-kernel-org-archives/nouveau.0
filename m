@@ -1,189 +1,53 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104421] System freeze on wayland with nouveau on
-	NV137 (GP107)
-Date: Thu, 11 Jan 2018 13:02:55 +0000
-Message-ID: <bug-104421-8800-3WAMVBiUww@http.bugs.freedesktop.org/>
-References: <bug-104421-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1285614502=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 1/2] drm/nouveau: Remove redundant _get
+Date: Thu, 11 Jan 2018 22:42:20 +0100
+Message-ID: <20180111214221.25919-1-thierry.reding@gmail.com>
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+From: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 
---===============1285614502==
-Content-Type: multipart/alternative; boundary="15156757750.ae39dAFa.16082";
- charset="UTF-8"
+The nouveau_fence_get_get_driver_name() function has a redundant _get in
+its name. Remove it.
 
+Signed-off-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_fence.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
---15156757750.ae39dAFa.16082
-Date: Thu, 11 Jan 2018 13:02:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
-
---- Comment #5 from Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> ---
-Today this happened again. I was still able to reach the machine via ssh.
-There are extra lines in the logging compared to the previous freezes:
-
-Jan 11 11:32:57 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
-INIT_GENERIC_CONDITON: unknown 0x07
-Jan 11 11:42:04 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
-INIT_GENERIC_CONDITON: unknown 0x07
-Jan 11 11:42:31 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
-INIT_GENERIC_CONDITON: unknown 0x07
-Jan 11 11:47:18 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
-INIT_GENERIC_CONDITON: unknown 0x07
-Jan 11 13:08:12 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
-INIT_GENERIC_CONDITON: unknown 0x07
-Jan 11 13:10:14 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
-INIT_GENERIC_CONDITON: unknown 0x07
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: TRAP ch 14 [00fdb51000
-Xwayland[2381]]
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC0/TEX: 800000=
-41
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC1/TEX: 800000=
-41
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC2/TEX: 800000=
-41
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC1/TPC2/TEX: 800000=
-41
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: read fault at
-000725c000 engine 00 [GR] client 0a [GPC0/T1_3] reason 02 [PTE] on channel =
-14
-[00fdb51000 Xwayland[2381]]
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: channel 14: killed
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: runlist 0: scheduled
-for recovery
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: engine 0: scheduled=
- for
-recovery
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]: channel 14
-killed!
-Jan 11 13:50:50 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]:
-nv50cal_space: -16
-Jan 11 13:50:50 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]:
-nv50cal_space: -16
-Jan 11 13:50:50 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]:
-nv50cal_space: -16
-<this last line keeps repeating sometimes several times per second>
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15156757750.ae39dAFa.16082
-Date: Thu, 11 Jan 2018 13:02:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jan.public&#64;famvlug.nl" title=3D"Jan Vlug &lt;jan.public&#64;famvlug.nl&=
-gt;"> <span class=3D"fn">Jan Vlug</span></a>
-</span></b>
-        <pre>Today this happened again. I was still able to reach the machi=
-ne via ssh.
-There are extra lines in the logging compared to the previous freezes:
-
-Jan 11 11:32:57 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
-INIT_GENERIC_CONDITON: unknown 0x07
-Jan 11 11:42:04 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
-INIT_GENERIC_CONDITON: unknown 0x07
-Jan 11 11:42:31 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
-INIT_GENERIC_CONDITON: unknown 0x07
-Jan 11 11:47:18 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
-INIT_GENERIC_CONDITON: unknown 0x07
-Jan 11 13:08:12 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
-INIT_GENERIC_CONDITON: unknown 0x07
-Jan 11 13:10:14 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
-INIT_GENERIC_CONDITON: unknown 0x07
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: TRAP ch 14 [00fdb51000
-Xwayland[2381]]
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC0/TEX: 800000=
-41
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC1/TEX: 800000=
-41
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC2/TEX: 800000=
-41
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: gr: GPC1/TPC2/TEX: 800000=
-41
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: read fault at
-000725c000 engine 00 [GR] client 0a [GPC0/T1_3] reason 02 [PTE] on channel =
-14
-[00fdb51000 Xwayland[2381]]
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: channel 14: killed
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: runlist 0: scheduled
-for recovery
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: fifo: engine 0: scheduled=
- for
-recovery
-Jan 11 13:49:37 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]: channel 14
-killed!
-Jan 11 13:50:50 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]:
-nv50cal_space: -16
-Jan 11 13:50:50 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]:
-nv50cal_space: -16
-Jan 11 13:50:50 nyx kernel: nouveau 0000:23:00.0: Xwayland[2381]:
-nv50cal_space: -16
-&lt;this last line keeps repeating sometimes several times per second&gt;</=
-pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15156757750.ae39dAFa.16082--
-
---===============1285614502==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1285614502==--
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
+index 503fa94dc06d..9c8f3a154d55 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fence.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+@@ -426,7 +426,7 @@ nouveau_fence_new(struct nouveau_channel *chan, bool sysmem,
+ 	return ret;
+ }
+ 
+-static const char *nouveau_fence_get_get_driver_name(struct dma_fence *fence)
++static const char *nouveau_fence_get_driver_name(struct dma_fence *fence)
+ {
+ 	return "nouveau";
+ }
+@@ -496,7 +496,7 @@ static void nouveau_fence_release(struct dma_fence *f)
+ }
+ 
+ static const struct dma_fence_ops nouveau_fence_ops_legacy = {
+-	.get_driver_name = nouveau_fence_get_get_driver_name,
++	.get_driver_name = nouveau_fence_get_driver_name,
+ 	.get_timeline_name = nouveau_fence_get_timeline_name,
+ 	.enable_signaling = nouveau_fence_no_signaling,
+ 	.signaled = nouveau_fence_is_signaled,
+@@ -523,7 +523,7 @@ static bool nouveau_fence_enable_signaling(struct dma_fence *f)
+ }
+ 
+ static const struct dma_fence_ops nouveau_fence_ops_uevent = {
+-	.get_driver_name = nouveau_fence_get_get_driver_name,
++	.get_driver_name = nouveau_fence_get_driver_name,
+ 	.get_timeline_name = nouveau_fence_get_timeline_name,
+ 	.enable_signaling = nouveau_fence_enable_signaling,
+ 	.signaled = nouveau_fence_is_signaled,
+-- 
+2.15.1
