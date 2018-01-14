@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104421] System freeze on wayland with nouveau on
-	NV137 (GP107)
+Subject: [Bug 101665] lspci blocks forever with a GP107M
 Date: Sun, 14 Jan 2018 14:52:34 +0000
-Message-ID: <bug-104421-8800-FrZeqfybDT@http.bugs.freedesktop.org/>
-References: <bug-104421-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-101665-8800-XjfO7TATeh@http.bugs.freedesktop.org/>
+References: <bug-101665-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1076535208=="
+Content-Type: multipart/mixed; boundary="===============0437510236=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +20,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1076535208==
-Content-Type: multipart/alternative; boundary="15159415576.bAbEF0.16572"
+--===============0437510236==
+Content-Type: multipart/alternative; boundary="15159415569.5279bAF.16572"
 Content-Transfer-Encoding: 7bit
 
 
---15159415576.bAbEF0.16572
-Date: Sun, 14 Jan 2018 14:52:37 +0000
+--15159415569.5279bAF.16572
+Date: Sun, 14 Jan 2018 14:52:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101665
 
 Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
@@ -47,8 +46,8 @@ Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15159415576.bAbEF0.16572
-Date: Sun, 14 Jan 2018 14:52:37 +0000
+--15159415569.5279bAF.16572
+Date: Sun, 14 Jan 2018 14:52:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,9 +64,9 @@ ass=3D"fn">Rhys Kidd</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
-1</a>
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665">bug 10166=
+5</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -97,9 +96,9 @@ ass=3D"fn">Rhys Kidd</span></a>
     </body>
 </html>=
 
---15159415576.bAbEF0.16572--
+--15159415569.5279bAF.16572--
 
---===============1076535208==
+--===============0437510236==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1076535208==--
+--===============0437510236==--
