@@ -1,114 +1,121 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104621] Nouveau prevents booting on Pascal Gpu
-Date: Mon, 15 Jan 2018 16:37:39 +0000
-Message-ID: <bug-104621-8800-0ICr7QarmY@http.bugs.freedesktop.org/>
-References: <bug-104621-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [RFC 0/4] Implement full clockgating for Kepler1 and 2
+Date: Mon, 15 Jan 2018 17:06:50 -0500
+Message-ID: <20180115220755.16780-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1527779804=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104621-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: nouveau@lists.freedesktop.org
+Cc: Kate Stewart <kstewart@linuxfoundation.org>, David Airlie <airlied@linux.ie>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Karol Herbst <karolherbst@gmail.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Alexandre Courbot <acourbot@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>, Philippe Ombredanne <pombredanne@nexb.com>, Thomas Gleixner <tglx@linutronix.de>, Rhys Kidd <rhyskidd@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1527779804==
-Content-Type: multipart/alternative; boundary="15160342591.b402b.7633"
-Content-Transfer-Encoding: 7bit
-
-
---15160342591.b402b.7633
-Date: Mon, 15 Jan 2018 16:37:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104621
-
---- Comment #3 from Leopard <ramazanerol91-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 136736
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136736&action=3Dedit
-Error - Drm
-
-That is the error.
-
-I gave the sys , used kernel etc. infos already.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15160342591.b402b.7633
-Date: Mon, 15 Jan 2018 16:37:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau prevents booting on Pascal Gpu"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104621#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau prevents booting on Pascal Gpu"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104621">bug 10462=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ramazanerol91&#64;gmail.com" title=3D"Leopard &lt;ramazanerol91&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Leopard</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136736=
-" name=3D"attach_136736" title=3D"Error - Drm">attachment 136736</a> <a hre=
-f=3D"attachment.cgi?id=3D136736&amp;action=3Dedit" title=3D"Error - Drm">[d=
-etails]</a></span>
-Error - Drm
-
-That is the error.
-
-I gave the sys , used kernel etc. infos already.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15160342591.b402b.7633--
-
---===============1527779804==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1527779804==--
+SXQncyBoZXJlISBBZnRlciBhIGxvdCBvZiBpbnZlc3RpZ2F0aW9uLCByZXdyaXRlcywgYW5kIHRy
+YWNlcywgSSBwcmVzZW50CnRoZSBwYXRjaCBzZXJpZXMgdG8gaW1wbGVtZW50IGFsbCBrbm93biBs
+ZXZlbHMgb2YgY2xvY2tnYXRpbmcgZm9yCktlcGxlcjEgYW5kIEtlcGxlcjIgR1BVcy4KClN0YXJ0
+aW5nIHdpdGggRmVybWkgR1BVcyAodGhpcyBpcyBwcm9iYWJseSBwcmVzZW50IG9uIGVhcmxpZXIg
+R1BVcyBhcwp3ZWxsLCBidXQgd2l0aCBhIGZhciBsZXNzIGVhc3kgdG8gbWFuYWdlIGludGVyZmFj
+ZSksIG52aWRpYSBhZGRlZCB0d28KY2xvY2tnYXRpbmcgbGV2ZWxzIHRoYXQgYXJlIGhhbmRsZWQg
+bW9zdGx5IGluIGZpcm13YXJlICh3aXRoIHRoZQpleGNlcHRpb24gb2YgY291cnNlLCBvZiB0aGUg
+ZHJpdmVyIGluaXRpYWxseSBwcm9ncmFtbWluZyBhbGwgb2YgdGhlCnJlZ2lzdGVyIHZhbHVlcyBj
+b250YWluaW5nIGVuZ2luZSBkZWxheXMgYW5kIHRoYXQgc3R1ZmYpOgogIC0gQ0dfQ1RSTCAtIE1h
+aW4gcmVnaXN0ZXIgZm9yIGVuYWJsaW5nL2Rpc2FibGluZyBjbG9ja2dhdGluZyBmb3IKICAgIGVu
+Z2luZXMgYW5kIGh3IGJsb2NrcwogIC0gQkxDRyAtICJCbG9jay1sZXZlbCBjbG9ja2dhdGluZyIs
+IGEgZGVlcGVyIGxldmVsIG9mIGNsb2NrZ2F0aW5nClN0YXJ0aW5nIHdpdGgga2VwbGVyMiBhcyB3
+ZWxsLCBudmlkaWEgYWxzbyBpbnRyb2R1Y2VkOgogIC0gU0xDRyAtICI/Pz8gY2xvY2tnYXRpbmci
+IGV2ZW4gZGVlcGVyIGxldmVsIG9mIGNsb2NrZ2F0aW5nCgpPcmlnaW5hbGx5IHRoaXMgcGF0Y2hz
+ZXQgd2FzIGdvaW5nIHRvIGluY2x1ZGUgd29yayBmb3IgbWFraW5nIHRoaXMgd29yawpvbiBGZXJt
+aSwgaG93ZXZlciBvbiBjbG9zZXIgaW52ZXN0aWdhdGlvbiBpdCBzZWVtcyB0aGF0IEZlcm1pIGhh
+cyBvbmUKcHJldHR5IGJpZyBkaWZmZXJlbmNlIGluIGl0J3MgcmVxdWlyZW1lbnRzIHRoYXQgd2Ug
+ZG9uJ3QgZW50aXJlbHkKdW5kZXJzdGFuZCB5ZXQuIE9uIEZlcm1pIHRoZSBDR19DVFJMIHJlZ2lz
+dGVyIGZvciB0aGUgZ3IgbmVlZHMgdG8gYmUKYWRqdXN0ZWQgZHVyaW5nIHJlY2xvY2tpbmcsIHdo
+aWxlIGtlcGxlciBhbmQgbGF0ZXIgZ2VuZXJhdGlvbnMgbmVlZCBubwpzdWNoIGFkanVzdG1lbnRz
+LiBTaW5jZSB0aGlzIHJlcXVpcmVzIG1vcmUgcmVzZWFyY2g7IHRoZSBjdXJyZW50IHBsYW4gaXMK
+dG8gbGVhdmUgZmVybWkgb3V0IG9mIHRoaXMgcGF0Y2hzZXQsIGFuZCB0aGVuIGp1c3QgcmV3b3Jr
+IHRoZSBjb2RlIGF0IGEKbGF0ZXIgcG9pbnQgaW4gdGltZSB0byBzdXBwb3J0IEZlcm1pIG9uY2Ug
+d2UgdW5kZXJzdGFuZCBtb3JlLgoKRm9yIHRoZSB0aW1lIGJlaW5nIGhvd2V2ZXIsIHdlIHB1dCBh
+cyBtdWNoIGNvZGUgd2UncmUgc3VyZSBGZXJtaSB3aWxsIGJlCnNoYXJpbmcgaW50byBnZjEwMCBm
+aWxlcyBmb3IgdGhlIGZ1dHVyZS4KCkZvciB0aGUgdGltZSBiZWluZzsgdGhpcyBwYXRjaHNldCBz
+dXBwb3J0cyBldmVyeSBHUFUgaW4gdGhlIGtlcGxlcjEgYW5kCmtlcGxlcjIgZmFtaWx5LiBUaGUg
+bWFpbiBrZXJuZWwgY29uZmlnIG9wdGlvbiB0byBlbmFibGUgdGhpcyBpcwoJY29uZmlnPU52UG1F
+bmFibGVHYXRpbmc9PGxldmVsPgpXaGVyZSA8bGV2ZWw+IGlzIHRoZSBkZWVwZXN0IGxldmVsIG9m
+IHBvd2Vyc2F2aW5nIHRvIGVuYWJsZS4gVGhlIGxldmVscwpiZWluZzoKCTAuIE5PQ0cKCTEuIENH
+IChqdXN0IENHX0NUUkwpCgkyLiBCTENHCgkzLiBTTENHCgpBZGRpdGlvbmFsbHksIHdlIGxlYXZl
+IGEgY291cGxlIG9mIHNtYWxsIFRPRE8gY29tbWVudHMgdG8gbWFyayBzcG90cwp3ZSdsbCBldmVu
+dHVhbGx5IG5lZWQgdG8gYWRkIGNvZGUgZm9yIHRoZSBmaW5hbCBsZXZlbCBvZiBwb3dlciBzYXZp
+bmcgd2UKaGF2ZSB5ZXQgdG8gaW1wbGVtZW50IG9yIHVuZGVyc3RhbmQ6IEVMUEcgKGVuZ2luZS1s
+ZXZlbCBwb3dlcmdhdGluZykuCgpIZXJlJ3Mgc29tZSB2ZXJ5IGxhemlseSBkb25lIGJlbmNobWFy
+a3Mgb24gaG93IG11Y2ggcG93ZXIgdGhpcyBzYXZlcyBhcwp3ZWxsLiBJdCBzaG91bGQgYmUgbm90
+ZWQgdGhhdCBjaGFuY2VzIGFyZSwgdGhlc2UgcGF0Y2hlcyBzYXZlIGEgbG90IG1vcmUKcG93ZXIg
+dGhlbiB5b3Ugc2VlIGhlcmUgc2luY2UgY2xvY2tnYXRpbmcgd29ya3MgYmVzdCB3aGVuIHRoZSBH
+UFUgaXMKdW5kZXIgbG9hZC4gSSBoYXZlIGEgZmVlbGluZyB0aGlzIHdpbGwgYmUgZXNwZWNpYWxs
+eSB0cnVlIHdpdGggU0xDRy4KCkdLMTA0IHN0YXRzOgogIElkbGUgKDEgNGsgZGlzcGxheSBAIGZi
+Y29uKToKICAgIE5PQ0c6CiAgICAgIDA3OiAyMC41M1cKICAgICAgMGE6IDQ0LjEyVwogICAgICAw
+ZTogNjEuMjNXCiAgICAgIDBmOiA2Mi4yM1cKICAgIENHOgogICAgICAwNzogMTguOTVXLTE5LjAy
+VwogICAgICAwYTogMzQuOTVXLTM3LjQ4VwogICAgICAwZTogNTIuNzBXLTU0LjMyVwogICAgICAw
+ZjogNTMuNTNXLTU1LjY4VwogICAgQkxDRzoKICAgICAgMDc6IDE4LjY0Vy0xOS4wMlcKICAgICAg
+MGE6IDMyLjY4Vy0zNC43OFcKICAgICAgMGU6IDQ5LjE0Vy01MC41MVcKICAgICAgMGY6IDQ5Ljc1
+Vy01MS43M1cKR0sxMTAgc3RhdHM6CiAgSWRsZSAoMSA0ayBkaXNwbGF5IEAgZmJjb24pOgogICAg
+Tk9DRzoKICAgICAgMDc6IDI1LjY4VwogICAgICAwYTogMzYuMTZXCiAgICAgIDBkOiA2NC43MVcK
+ICAgICAgMGY6IDY0Ljk5VwogICAgQ0c6CiAgICAgIDA3OiAyNS42OFcKICAgICAgMGE6IDM1LjU4
+VwogICAgICAwZDogNjEuNTRXLTYxLjc0VwogICAgICAwZjogNjEuOTNXLTYyLjEyVwogICAgQkxD
+RzoKICAgICAgMDc6IDI1Vy0yNS4yVwogICAgICAwYTogMzMuODVXLTM0LjA0VwogICAgICAwZDog
+NTkuMjVXLTU5LjQ0VwogICAgICAwZjogNTkuMzVXLTU5LjU0VwogICAgU0xDRzoKICAgICAgMDc6
+IDI1Vy0yNS4yVwogICAgICAwYTogMzMuODVXLTMzLjk1VyAoc3Bpa2VzIHRvIDM0LjA0VyBicmll
+Zmx5IGV2ZXJ5IG5vdyBhbmQgdGhlbikKICAgICAgMGQ6IDU5LjE1Vy01OS4zNVcKICAgICAgMGY6
+IDU5LjM1Vy01OS41NFcKCkZvciB0aGUgdGltZSBiZWluZywgdGhpcyB3aWxsIGJlIGRpc2FibGVk
+IGJ5IGRlZmF1bHQgaW4gdGhlIGtlcm5lbCBhcyB3ZQp3YWl0IHRvIGdldCBtb3JlIHdpZGVzcHJl
+YWQgdGVzdGluZyB3aXRoIHRoaXMgcGF0Y2hzZXQuIElmIHlvdSdyZQp3aWxsaW5nIHRvIHB1dCB1
+cCB3aXRoIHRoZSBwb3RlbnRpYWwgb2YgaW5zdGFiaWxpdHksIHBsZWFzZSBmZWVsIGZyZWUgdG8K
+dHJ5IHRoaXMgcGF0Y2hzZXQgYW5kIGxldCB1cyBrbm93IGhvdyB3ZWxsIGl0IHdvcmtzIGZvciB5
+b3UhCgpMeXVkZSBQYXVsICg0KToKICBkcm0vbm91dmVhdTogQWRkIHN1cHBvcnQgZm9yIGJhc2lj
+IGNsb2NrZ2F0aW5nIG9uIEtlcGxlcjEKICBkcm0vbm91dmVhdTogQWRkIHN1cHBvcnQgZm9yIEJM
+Q0cgY2xvY2tnYXRpbmcgZm9yIEtlcGxlcjEKICBkcm0vbm91dmVhdTogQWRkIEJMQ0cgY2xvY2tn
+YXRpbmcgZm9yIEtlcGxlcjIKICBkcm0vbm91dmVhdTogQWRkIFNMQ0cgY2xvY2tnYXRpbmcgZm9y
+IEtlcGxlcjIKCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Zi
+LmggICB8ICAgMSArCiAuLi4vZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvdGhl
+cm0uaCAgICB8ICAyNSArKysKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rl
+dmljZS9iYXNlLmMgIHwgIDI1ICstLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdp
+bmUvZ3IvZ2YxMDAuaCAgICAgfCAgIDEgKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9l
+bmdpbmUvZ3IvZ2sxMDQuYyAgICAgfCAyMTUgKysrKysrKysrKysrKysrKysrKystCiBkcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nazEwNC5oICAgICB8ICA1NSArKysrKysK
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2drMTEwLmMgICAgIHwgMTc2
+ICsrKysrKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9m
+Yi9LYnVpbGQgICAgICB8ICAgMSArCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRl
+di9mYi9nZjEwMC5jICAgICB8ICAgNiArCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1
+YmRldi9mYi9nazEwNC5jICAgICB8ICA1MyArKysrKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvZmIvZ2sxMDQuaCAgICAgfCAgMzUgKysrKwogZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbnZrbS9zdWJkZXYvZmIvZ2sxMTAuYyAgICAgfCAgNzcgKysrKysrKysKIGRyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3ByaXYuaCAgICAgIHwgICAzICsKIGRyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3RoZXJtL0tidWlsZCAgIHwgICAyICsKIGRy
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3RoZXJtL2Jhc2UuYyAgIHwgIDg0ICsr
+KysrKystCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9nZjEwMC5j
+ICB8ICA3NyArKysrKysrKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhl
+cm0vZ2YxMDAuaCAgfCAgMzUgKysrKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJk
+ZXYvdGhlcm0vZ2YxMTkuYyAgfCAgIDggKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20v
+c3ViZGV2L3RoZXJtL2drMTA0LmMgIHwgMTM2ICsrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L252a20vc3ViZGV2L3RoZXJtL2drMTA0LmggIHwgIDU2ICsrKysrKwogZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vZ3QyMTUuYyAgfCAgIDIgKy0KIGRy
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3RoZXJtL3ByaXYuaCAgIHwgIDIzICsr
+LQogMjIgZmlsZXMgY2hhbmdlZCwgMTA2OSBpbnNlcnRpb25zKCspLCAyNyBkZWxldGlvbnMoLSkK
+IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9n
+ci9nazEwNC5oCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZr
+bS9zdWJkZXYvZmIvZ2sxMDQuaAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252a20vc3ViZGV2L2ZiL2drMTEwLmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9nZjEwMC5jCiBjcmVhdGUgbW9kZSAx
+MDA2NDQgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vZ2YxMDAuaAog
+Y3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3Ro
+ZXJtL2drMTA0LmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+dmttL3N1YmRldi90aGVybS9nazEwNC5oCgotLSAKMi4xNC4zCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1k
+ZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
