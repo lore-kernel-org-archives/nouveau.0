@@ -1,68 +1,105 @@
-From: Julia Lawall <julia.lawall-L2FTfq7BK8M@public.gmane.org>
-Subject: [PATCH] fix drm-get-put.cocci warnings
-Date: Mon, 15 Jan 2018 13:47:07 +0100 (CET)
-Message-ID: <alpine.DEB.2.20.1801151344170.3305@hadrien>
+From: Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [Nouveau] [PATCH] fix drm-get-put.cocci warnings
+Date: Mon, 15 Jan 2018 14:51:02 +0100
+Message-ID: <20180115135102.GA5519@ulmo>
+References: <alpine.DEB.2.20.1801151344170.3305@hadrien>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, kbuild-all-JC7UmRfGjtg@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0711309910=="
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <alpine.DEB.2.20.1801151344170.3305@hadrien>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Julia Lawall <julia.lawall@lip6.fr>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, kbuild-all@01.org, Thierry Reding <treding@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogRmVuZ2d1YW5nIFd1IDxmZW5nZ3Vhbmcud3VAaW50ZWwuY29tPgoKVXNlIGRybV8qX2dl
-dCgpIGFuZCBkcm1fKl9wdXQoKSBoZWxwZXJzIGluc3RlYWQgb2YgZHJtXypfcmVmZXJlbmNlKCkg
-YW5kCmRybV8qX3VucmVmZXJlbmNlKCkgaGVscGVycy4KCkdlbmVyYXRlZCBieTogc2NyaXB0cy9j
-b2NjaW5lbGxlL2FwaS9kcm0tZ2V0LXB1dC5jb2NjaQoKU2lnbmVkLW9mZi1ieTogRmVuZ2d1YW5n
-IFd1IDxmZW5nZ3Vhbmcud3VAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBKdWxpYSBMYXdhbGwg
-PGp1bGlhLmxhd2FsbEBsaXA2LmZyPgotLS0KCnRyZWU6ICAgaHR0cHM6Ly9naXRodWIuY29tL3Ro
-aWVycnlyZWRpbmcvbGludXggZm9yLTQuMTYvd29yawpoZWFkOiAgIDZjODY0OTRiYjJmNjcwMjkz
-ZjYxMzdiMGE0YjNjNTNjODg4NmViYTQKY29tbWl0OiAzNGYwMjJiMmQxMWY5MWEzMjNkM2U3ZDE1
-ODkzZDQ4MDY0NmYzZmFkIFsxNDkvMTYxXSBXSVAKCiBub3V2ZWF1X2dlbS5jIHwgICAxNiArKysr
-KysrKy0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCspLCA4IGRlbGV0aW9u
-cygtKQoKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9nZW0uYworKysgYi9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5jCkBAIC0yOTYsNyArMjk2LDcgQEAg
-bm91dmVhdV9nZW1faW9jdGxfbmV3KHN0cnVjdCBkcm1fZGV2aWNlCiAJfQoKIAkvKiBkcm9wIHJl
-ZmVyZW5jZSBmcm9tIGFsbG9jYXRlIC0gaGFuZGxlIGhvbGRzIGl0IG5vdyAqLwotCWRybV9nZW1f
-b2JqZWN0X3VucmVmZXJlbmNlX3VubG9ja2VkKCZudmJvLT5nZW0pOworCWRybV9nZW1fb2JqZWN0
-X3B1dF91bmxvY2tlZCgmbnZiby0+Z2VtKTsKIAlyZXR1cm4gcmV0OwogfQoKQEAgLTM2NSw3ICsz
-NjUsNyBAQCB2YWxpZGF0ZV9maW5pX25vX3RpY2tldChzdHJ1Y3QgdmFsaWRhdGVfCiAJCWxpc3Rf
-ZGVsKCZudmJvLT5lbnRyeSk7CiAJCW52Ym8tPnJlc2VydmVkX2J5ID0gTlVMTDsKIAkJdHRtX2Jv
-X3VucmVzZXJ2ZSgmbnZiby0+Ym8pOwotCQlkcm1fZ2VtX29iamVjdF91bnJlZmVyZW5jZV91bmxv
-Y2tlZCgmbnZiby0+Z2VtKTsKKwkJZHJtX2dlbV9vYmplY3RfcHV0X3VubG9ja2VkKCZudmJvLT5n
-ZW0pOwogCX0KIH0KCkBAIC00MTEsMTQgKzQxMSwxNCBAQCByZXRyeToKIAkJbnZibyA9IG5vdXZl
-YXVfZ2VtX29iamVjdChnZW0pOwogCQlpZiAobnZibyA9PSByZXNfYm8pIHsKIAkJCXJlc19ibyA9
-IE5VTEw7Ci0JCQlkcm1fZ2VtX29iamVjdF91bnJlZmVyZW5jZV91bmxvY2tlZChnZW0pOworCQkJ
-ZHJtX2dlbV9vYmplY3RfcHV0X3VubG9ja2VkKGdlbSk7CiAJCQljb250aW51ZTsKIAkJfQoKIAkJ
-aWYgKG52Ym8tPnJlc2VydmVkX2J5ICYmIG52Ym8tPnJlc2VydmVkX2J5ID09IGZpbGVfcHJpdikg
-ewogCQkJTlZfUFJJTlRLKGVyciwgY2xpLCAibXVsdGlwbGUgaW5zdGFuY2VzIG9mIGJ1ZmZlciAl
-ZCBvbiAiCiAJCQkJICAgICAgInZhbGlkYXRpb24gbGlzdFxuIiwgYi0+aGFuZGxlKTsKLQkJCWRy
-bV9nZW1fb2JqZWN0X3VucmVmZXJlbmNlX3VubG9ja2VkKGdlbSk7CisJCQlkcm1fZ2VtX29iamVj
-dF9wdXRfdW5sb2NrZWQoZ2VtKTsKIAkJCXJldCA9IC1FSU5WQUw7CiAJCQlicmVhazsKIAkJfQpA
-QCAtOTY5LDcgKzk2OSw3IEBAIG5vdXZlYXVfZ2VtX2lvY3RsX2NwdV9wcmVwKHN0cnVjdCBkcm1f
-ZGUKIAkJcmV0ID0gbHJldDsKCiAJbm91dmVhdV9ib19zeW5jX2Zvcl9jcHUobnZibyk7Ci0JZHJt
-X2dlbV9vYmplY3RfdW5yZWZlcmVuY2VfdW5sb2NrZWQoZ2VtKTsKKwlkcm1fZ2VtX29iamVjdF9w
-dXRfdW5sb2NrZWQoZ2VtKTsKCiAJcmV0dXJuIHJldDsKIH0KQEAgLTk4OCw3ICs5ODgsNyBAQCBu
-b3V2ZWF1X2dlbV9pb2N0bF9jcHVfZmluaShzdHJ1Y3QgZHJtX2RlCiAJbnZibyA9IG5vdXZlYXVf
-Z2VtX29iamVjdChnZW0pOwoKIAlub3V2ZWF1X2JvX3N5bmNfZm9yX2RldmljZShudmJvKTsKLQlk
-cm1fZ2VtX29iamVjdF91bnJlZmVyZW5jZV91bmxvY2tlZChnZW0pOworCWRybV9nZW1fb2JqZWN0
-X3B1dF91bmxvY2tlZChnZW0pOwogCXJldHVybiAwOwogfQoKQEAgLTEwMDUsNyArMTAwNSw3IEBA
-IG5vdXZlYXVfZ2VtX2lvY3RsX2luZm8oc3RydWN0IGRybV9kZXZpY2UKIAkJcmV0dXJuIC1FTk9F
-TlQ7CgogCXJldCA9IG5vdXZlYXVfZ2VtX2luZm8oZmlsZV9wcml2LCBnZW0sIHJlcSk7Ci0JZHJt
-X2dlbV9vYmplY3RfdW5yZWZlcmVuY2VfdW5sb2NrZWQoZ2VtKTsKKwlkcm1fZ2VtX29iamVjdF9w
-dXRfdW5sb2NrZWQoZ2VtKTsKIAlyZXR1cm4gcmV0OwogfQoKQEAgLTExNTMsNyArMTE1Myw3IEBA
-IG91dDoKIAlyZXR1cm4gZXJyOwoKIHVucmVmOgotCWRybV9nZW1fb2JqZWN0X3VucmVmZXJlbmNl
-KCZudmJvLT5nZW0pOworCWRybV9nZW1fb2JqZWN0X3B1dCgmbnZiby0+Z2VtKTsKIHVucmVmX2Jv
-OgogCW5vdXZlYXVfYm9fcmVmKE5VTEwsICZudmJvKTsKIGZyZWVfc2d0OgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0711309910==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="17pEHd4RhPHOinZp"
+Content-Disposition: inline
+
+
+--17pEHd4RhPHOinZp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Jan 15, 2018 at 01:47:07PM +0100, Julia Lawall wrote:
+> From: Fengguang Wu <fengguang.wu@intel.com>
+>=20
+> Use drm_*_get() and drm_*_put() helpers instead of drm_*_reference() and
+> drm_*_unreference() helpers.
+>=20
+> Generated by: scripts/coccinelle/api/drm-get-put.cocci
+>=20
+> Signed-off-by: Fengguang Wu <fengguang.wu@intel.com>
+> Signed-off-by: Julia Lawall <julia.lawall@lip6.fr>
+> ---
+>=20
+> tree:   https://github.com/thierryreding/linux for-4.16/work
+> head:   6c86494bb2f670293f6137b0a4b3c53c8886eba4
+> commit: 34f022b2d11f91a323d3e7d15893d480646f3fad [149/161] WIP
+>=20
+>  nouveau_gem.c |   16 ++++++++--------
+>  1 file changed, 8 insertions(+), 8 deletions(-)
+
+Hi Julia,
+
+thanks for the patch. However, the tree that you generated it against is
+a personal development tree and it happens to have a bunch of commits in
+it that are very experimental and some of which are very unlikely to go
+upstream. There's an IOCTL addition patch (touched by hunk 7 in this
+patch) that is used only for testing purposes. All of the other hunks do
+pply properly to linux-next, so I think those can be posted. Nouveau is
+maintained by Ben Skeggs, though, so they should be addressed to him.
+
+I don't personally mind getting these patches, and I don't mind people
+seeing the personal development tree (it's publicly available, after
+all) but I think patches against this tree will be confusing to anyone
+but me because they are likely not going to apply anywhere other than
+that tree.
+
+Thanks,
+Thierry
+
+--17pEHd4RhPHOinZp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlpcscMACgkQ3SOs138+
+s6GIhg//W/vHD5LA/xn7wz0BkmIyH3OaxRLJ3Kj2a/dhUR7DEPG8UN5bCsfA8xEE
+m9vTFpRBxKgia6jw7hn2kua4QOmNJW9qwktlQT2/fbKvxcrASRh4LrjunPzHaojx
+z0BXpfCtizQqHo7mhPtqK4fGrm27mxMQwsN+ySfcFqJfyiBJb1UEoUn0DE4pL+iE
+h/fMPr7Vk+Yas7PR1MnlX93qjBbCDwqDWCnuAAzBobz2c0EKbOlssuuV1e9my4yT
+ZY29eIFt09wW21F8ZAOP3s9aUX8orYm0cwgeC+PIrys1Dx5Vv9QnDsDyBgjBLU2v
+gRw0WxsEAu816gTdjDhlO24lM6ob6Dl6rSBQYDe+jKBN/rVJ6QpthatiVJaGp5OD
+vbtgekVj4tTbq9jPnRDh6ln4ZIWKa5AhZlcI7npbp0pPYbR+U6AHCI5RBBnMmS1f
+LgAqmGVEvgcbxo/IR3fdpvVqAgu76/qHuAWSfVyCJrjJ1nGhh7HS0ZCOacD9x/yS
+B/wVwgT5JWqxBxb1DWRykM+M+2tlJP1HAEs7zyfCt3eRYDp62c1mFiJIwViPOx28
+7xPYI322v9uR5iP895tDxLqUWLL6rEu4Dbi2TI5rudkVxaaXvlCJaOdtfpvQUnm/
+xUaJYf/y9T3sGiRweJGZcZAl6RxwHc9YJFKtFaOKHU+bFhPo5Kg=
+=V8es
+-----END PGP SIGNATURE-----
+
+--17pEHd4RhPHOinZp--
+
+--===============0711309910==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============0711309910==--
