@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104652] None of the video outputs are usable for GTX
  1060 - jerky video every few seconds
-Date: Tue, 16 Jan 2018 09:44:03 +0000
-Message-ID: <bug-104652-8800-JrmrrQBWGK@http.bugs.freedesktop.org/>
+Date: Tue, 16 Jan 2018 12:04:43 +0000
+Message-ID: <bug-104652-8800-1UnvoKozDo@http.bugs.freedesktop.org/>
 References: <bug-104652-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1423078368=="
+Content-Type: multipart/mixed; boundary="===============2038550038=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104652-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1423078368==
-Content-Type: multipart/alternative; boundary="15160958430.9edA3694.1564"
+--===============2038550038==
+Content-Type: multipart/alternative; boundary="15161042832.ddBdA.25671"
 Content-Transfer-Encoding: 7bit
 
 
---15160958430.9edA3694.1564
-Date: Tue, 16 Jan 2018 09:44:03 +0000
+--15161042832.ddBdA.25671
+Date: Tue, 16 Jan 2018 12:04:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,15 +36,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104652
 
---- Comment #1 from Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> ---
-Compositing doesn't help either.
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Are you using xf86-video-nouveau or modesetting? If the latter, please try =
+to
+use xf86-vidoe-nouveau.
+
+Frames showing out of order is a frequent issue when copying the contents of
+the frame takes too long (and so the "old" frame being displayed actually e=
+nds
+up with "new" contents written over it). I have a hard time imagining that =
+this
+would happen with -vo xv and xf86-video-nouveau, but who knows.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15160958430.9edA3694.1564
-Date: Tue, 16 Jan 2018 09:44:03 +0000
+--15161042832.ddBdA.25671
+Date: Tue, 16 Jan 2018 12:04:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +71,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - None of the video outputs are usable for GTX 1060 - jerky=
  video every few seconds"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104652#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104652#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - None of the video outputs are usable for GTX 1060 - jerky=
@@ -71,10 +80,19 @@ t # 1</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104652">bug 10465=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-t.artem&#64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailc=
-ity.com&gt;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Compositing doesn't help either.</pre>
+        <pre>Are you using xf86-video-nouveau or modesetting? If the latter=
+, please try to
+use xf86-vidoe-nouveau.
+
+Frames showing out of order is a frequent issue when copying the contents of
+the frame takes too long (and so the &quot;old&quot; frame being displayed =
+actually ends
+up with &quot;new&quot; contents written over it). I have a hard time imagi=
+ning that this
+would happen with -vo xv and xf86-video-nouveau, but who knows.</pre>
         </div>
       </p>
 
@@ -88,9 +106,9 @@ ity.com&gt;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
     </body>
 </html>=
 
---15160958430.9edA3694.1564--
+--15161042832.ddBdA.25671--
 
---===============1423078368==
+--===============2038550038==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1423078368==--
+--===============2038550038==--
