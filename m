@@ -1,11 +1,12 @@
-From: Samuel Sadok <samuel.sadok-goEDY2E6dbVyDzI6CaY1VQ@public.gmane.org>
-Subject: [BUG] Kernel oops when unbinding the graphics card
-Date: Tue, 16 Jan 2018 21:55:44 +0100
-Message-ID: <CAJ4e7SV2c-hq+joDP+kosC1WV12ChB8_Bc=SexEbAZM_BY2x3w@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103421] Kernel 4.13+ nouveau breaks screen output
+Date: Tue, 16 Jan 2018 21:09:50 +0000
+Message-ID: <bug-103421-8800-eYdpIVhIod@http.bugs.freedesktop.org/>
+References: <bug-103421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2027132464=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-103421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,23 +19,83 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8hCgpUaGlzIGlzIHRoZSBzdW1tYXJ5IG9mIGEgZGlzY3Vzc2lvbiBJIGhhZCBvbiBJUkMg
-d2l0aCBMeXVkZSBhbmQgaW1pcmtpbl8uCldoZW4gSSB0cnkgdG8gdHVybiBvZmYgbXkgZ3JhcGhp
-Y3MgY2FyZCwgYSBrZXJuZWwgb29wcyBvY2N1cnMuCgpTdGVwcyB0byByZXByb2R1Y2U6CjEuIEJv
-b3QgdGhlIHN5c3RlbSB3aXRoIG5vIGRpc3BsYXkgbWFuYWdlciBlbmFibGVkCjIuIFVzaW5nIFNT
-SCwgcnVuIHRoZSBmb2xsb3dpbmcgY29tbWFuZHM6CiQgZWNobyAwIHwgc3VkbyB0ZWUgL3N5cy9j
-bGFzcy92dGNvbnNvbGUvdnRjb24wL2JpbmQKJCBlY2hvIDAgfCBzdWRvIHRlZSAvc3lzL2NsYXNz
-L3Z0Y29uc29sZS92dGNvbjEvYmluZAokIGVjaG8gMSB8IHN1ZG8gdGVlIC9zeXMvY2xhc3MvZHJt
-L2NhcmQwL2RldmljZS9yZW1vdmUKClJlc3VsdDoKVGhlIGludGVncmF0ZWQgZGlzcGxheSB0dXJu
-cyBibGFjayAoYnV0IG5vdCBvZmYpLiBMb29raW5nIHRoZSBkbWVzZwpyZXZlYWxzIHRoYXQgdGhl
-IG5vdXZlYXUgZHJpdmVyIGhhcyBjb21lIGludG8gZGlzdHJlc3MuIEhlcmUncyB0aGUKa2VybmVs
-IGxvZzoKaHR0cHM6Ly9wYXN0ZWJpbi5jb20vbVpKdWVMSm4KCkdyYXBoaWNzIGNhcmQ6IFZHQSBj
-b21wYXRpYmxlIGNvbnRyb2xsZXI6IE5WSURJQSBDb3Jwb3JhdGlvbiBHSzEwN00KW0dlRm9yY2Ug
-R1QgNzUwTSBNYWMgRWRpdGlvbl0gKHJldiBhMSkKS2VybmVsIHZlcnNpb246IDQuMTQuMTMtMS1B
-UkNICgpOb3Qgc3VyZSBpZiB0aGlzIGlzIHJlbGV2YW50IGJ1dCBteSBsYXB0b3AgYWxzbyBjb21l
-cyB3aXRoIEludGVsCmludGVncmF0ZWQgZ3JhcGhpY3MsIHdoaWNoIEkgaG93ZXZlciBkaXNhYmxl
-ZCAoYXMgY2FuIGJlIHNlZW4gaW4gdGhlCmRtZXNnOiBtb2Rwcm9iZS5ibGFja2xpc3Q9aTkxNSku
-CgpCZXN0IFJlZ2FyZHMsClNhbXVlbApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+
+--===============2027132464==
+Content-Type: multipart/alternative; boundary="15161369905.C9C7C072.15897"
+Content-Transfer-Encoding: 7bit
+
+
+--15161369905.C9C7C072.15897
+Date: Tue, 16 Jan 2018 21:09:50 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103421
+
+--- Comment #8 from Nikita <nikita-hyBp88Z54NTk1uMJSBkQmQ@public.gmane.org> ---
+I tested this patch and I can confirm that it fixed the issue.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15161369905.C9C7C072.15897
+Date: Tue, 16 Jan 2018 21:09:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel 4.13+ nouveau breaks screen output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421#c8">Commen=
+t # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel 4.13+ nouveau breaks screen output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421">bug 10342=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+nikita&#64;leshenko.net" title=3D"Nikita &lt;nikita&#64;leshenko.net&gt;"> =
+<span class=3D"fn">Nikita</span></a>
+</span></b>
+        <pre>I tested this patch and I can confirm that it fixed the issue.=
+</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15161369905.C9C7C072.15897--
+
+--===============2027132464==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2027132464==--
