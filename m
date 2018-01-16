@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103421] Kernel 4.13+ nouveau breaks screen output
-Date: Tue, 16 Jan 2018 21:09:50 +0000
-Message-ID: <bug-103421-8800-eYdpIVhIod@http.bugs.freedesktop.org/>
-References: <bug-103421-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104509] Unable to set "Content Type" bit for HDMI
+ and DisplayPort
+Date: Tue, 16 Jan 2018 22:01:02 +0000
+Message-ID: <bug-104509-8800-w6fqTc41Wr@http.bugs.freedesktop.org/>
+References: <bug-104509-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2027132464=="
+Content-Type: multipart/mixed; boundary="===============1528719759=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-104509-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2027132464==
-Content-Type: multipart/alternative; boundary="15161369905.C9C7C072.15897"
+--===============1528719759==
+Content-Type: multipart/alternative; boundary="15161400620.9fE4563A.24326"
 Content-Transfer-Encoding: 7bit
 
 
---15161369905.C9C7C072.15897
-Date: Tue, 16 Jan 2018 21:09:50 +0000
+--15161400620.9fE4563A.24326
+Date: Tue, 16 Jan 2018 22:01:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103421
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104509
 
---- Comment #8 from Nikita <nikita-hyBp88Z54NTk1uMJSBkQmQ@public.gmane.org> ---
-I tested this patch and I can confirm that it fixed the issue.
+--- Comment #3 from N. W. <nw9165-3201-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> ---
+Any update on this one?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15161369905.C9C7C072.15897
-Date: Tue, 16 Jan 2018 21:09:50 +0000
+--15161400620.9fE4563A.24326
+Date: Tue, 16 Jan 2018 22:01:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,20 +60,21 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Kernel 4.13+ nouveau breaks screen output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421#c8">Commen=
-t # 8</a>
+   title=3D"NEW - Unable to set &quot;Content Type&quot; bit for HDMI and D=
+isplayPort"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104509#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Kernel 4.13+ nouveau breaks screen output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421">bug 10342=
-1</a>
+   title=3D"NEW - Unable to set &quot;Content Type&quot; bit for HDMI and D=
+isplayPort"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104509">bug 10450=
+9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-nikita&#64;leshenko.net" title=3D"Nikita &lt;nikita&#64;leshenko.net&gt;"> =
-<span class=3D"fn">Nikita</span></a>
+nw9165-3201&#64;yahoo.com" title=3D"N. W. &lt;nw9165-3201&#64;yahoo.com&gt;=
+"> <span class=3D"fn">N. W.</span></a>
 </span></b>
-        <pre>I tested this patch and I can confirm that it fixed the issue.=
-</pre>
+        <pre>Any update on this one?</pre>
         </div>
       </p>
 
@@ -86,9 +88,9 @@ nikita&#64;leshenko.net" title=3D"Nikita &lt;nikita&#64;leshenko.net&gt;"> =
     </body>
 </html>=
 
---15161369905.C9C7C072.15897--
+--15161400620.9fE4563A.24326--
 
---===============2027132464==
+--===============1528719759==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2027132464==--
+--===============1528719759==--
