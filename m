@@ -1,61 +1,107 @@
-From: Guillaume Tucker <guillaume.tucker@collabora.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau/bar/gk20a: Avoid bar teardown
- during init
-Date: Wed, 17 Jan 2018 09:27:31 +0000
-Message-ID: <d9e3c51b-880d-74e6-2789-935d78685622@collabora.com>
-References: <1515065349-10187-1-git-send-email-jonathanh@nvidia.com>
- <20180110122032.GA26614@ulmo>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 104652] None of the video outputs are usable for GTX
+ 1060 - jerky video every few seconds
+Date: Wed, 17 Jan 2018 09:28:40 +0000
+Message-ID: <bug-104652-8800-uRa3UGZcss@http.bugs.freedesktop.org/>
+References: <bug-104652-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180110122032.GA26614@ulmo>
-Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Thierry Reding <thierry.reding@gmail.com>, Jon Hunter <jonathanh@nvidia.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1407844174=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-104652-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 10/01/18 12:20, Thierry Reding wrote:
-> On Thu, Jan 04, 2018 at 11:29:09AM +0000, Jon Hunter wrote:
->> Commit bbb163e18960 ("drm/nouveau/bar: implement bar1 teardown")
->> introduced add a teardown helper function for BAR1. During
->> initialisation of the Nouveau, initially all the teardown helpers are
->> called once, before calling their init counterparts. For gk20a, after
->> the BAR1 teardown function is called, the device is hanging during the
->> initialisation of the FB sub-device. At this point it is unclear why
->> this is happening and this is still under investigation. However, this
->> change is preventing Tegra124 devices from booting when Nouveau is
->> enabled. To allow Tegra124 to boot, remove the teardown helper for
->> gk20a.
->>
->> This is based upon a previous patch by Guillaume Tucker but limits
->> the workaround to only gk20a GPUs.
->>
->> Fixes: bbb163e18960 ("drm/nouveau/bar: implement bar1 teardown")
->> Reported-by: Guillaume Tucker <guillaume.tucker@collabora.com>
->> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
->> ---
->> I am not happy that we do not yet fully understand the cause of
->> the hang, but I am talking with a few people at NVIDIA about this
->> and have a few things to look into. However, given that we are
->> close to v4.15 being released and I am not sure we will have a
->> proper fix in place before, I think it is best to workaround
->> this for now.
->>
->>   drivers/gpu/drm/nouveau/nvkm/subdev/bar/base.c  | 3 ++-
->>   drivers/gpu/drm/nouveau/nvkm/subdev/bar/gk20a.c | 1 -
->>   2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> Acked-by: Thierry Reding <treding@nvidia.com>
 
-Tested-by: Guillaume Tucker <guillaume.tucker@collabora.com>
+--===============1407844174==
+Content-Type: multipart/alternative; boundary="15161813191.6EeBF2.19690"
+Content-Transfer-Encoding: 7bit
 
-   https://lava.collabora.co.uk/scheduler/job/1047172
 
-Thanks for this workaround.  Looking forward to having this
-platform back on track in mainline.  I'm happy to run this boot
-test again with a proper fix in future patches, let me know if I
-can be of any help.
+--15161813191.6EeBF2.19690
+Date: Wed, 17 Jan 2018 09:28:39 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-Guillaume
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104652
+
+--- Comment #5 from Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> ---
+One more thing: I have no problems playing youtube FullHD videos (which are=
+ not
+accelerated at all) either in Google Chrome or in Mozilla Firefox.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15161813191.6EeBF2.19690
+Date: Wed, 17 Jan 2018 09:28:39 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - None of the video outputs are usable for GTX 1060 - jerky=
+ video every few seconds"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104652#c5">Commen=
+t # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - None of the video outputs are usable for GTX 1060 - jerky=
+ video every few seconds"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104652">bug 10465=
+2</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+t.artem&#64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailc=
+ity.com&gt;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
+</span></b>
+        <pre>One more thing: I have no problems playing youtube FullHD vide=
+os (which are not
+accelerated at all) either in Google Chrome or in Mozilla Firefox.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15161813191.6EeBF2.19690--
+
+--===============1407844174==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1407844174==--
