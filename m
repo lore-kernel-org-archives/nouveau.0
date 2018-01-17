@@ -1,142 +1,46 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103421] Kernel 4.13+ nouveau breaks screen output
-Date: Wed, 17 Jan 2018 16:25:27 +0000
-Message-ID: <bug-103421-8800-idk6NoUyk2@http.bugs.freedesktop.org/>
-References: <bug-103421-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0450701403=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Luis de Bethencourt <luisbg@kernel.org>
+Subject: [PATCH] drm/nouveau/mmu: Fix trailing semicolon
+Date: Wed, 17 Jan 2018 18:53:14 +0000
+Message-ID: <20180117185315.26808-1-luisbg@kernel.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: linux-kernel@vger.kernel.org
+Cc: Joe Perches <joe@perches.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, Luis de Bethencourt <luisbg@kernel.org>
 List-Id: nouveau.vger.kernel.org
 
+The trailing semicolon is an empty statement that does no operation.
+Removing it since it doesn't do anything.
 
---===============0450701403==
-Content-Type: multipart/alternative; boundary="15162063270.fbe6fa5.19285"
-Content-Transfer-Encoding: 7bit
+Signed-off-by: Luis de Bethencourt <luisbg@kernel.org>
+---
 
+Hi,
 
---15162063270.fbe6fa5.19285
-Date: Wed, 17 Jan 2018 16:25:27 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+After fixing the same thing in drivers/staging/rtl8723bs/, Joe Perches
+suggested I fix it treewide [0].
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103421
-
-Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #9 from Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org> ---
-The patch in Comment 6 has been in Linus' tree since 4.15-rc8, and I have j=
-ust
-requested that it should be applied to 4.14 as well.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15162063270.fbe6fa5.19285
-Date: Wed, 17 Jan 2018 16:25:27 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:svenjoac&=
-#64;gmx.de" title=3D"Sven Joachim &lt;svenjoac&#64;gmx.de&gt;"> <span class=
-=3D"fn">Sven Joachim</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Kernel 4.13+ nouveau breaks screen output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421">bug 10342=
-1</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Kernel 4.13+ nouveau breaks screen output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421#c9">Commen=
-t # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Kernel 4.13+ nouveau breaks screen output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421">bug 10342=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-svenjoac&#64;gmx.de" title=3D"Sven Joachim &lt;svenjoac&#64;gmx.de&gt;"> <s=
-pan class=3D"fn">Sven Joachim</span></a>
-</span></b>
-        <pre>The patch in <a href=3D"show_bug.cgi?id=3D103421#c6">Comment 6=
-</a> has been in Linus' tree since 4.15-rc8, and I have just
-requested that it should be applied to 4.14 as well.</pre>
-        </div>
-      </p>
+Best regards 
+Luis
 
 
-      <hr>
-      <span>You are receiving this mail because:</span>
+[0] http://driverdev.linuxdriverproject.org/pipermail/driverdev-devel/2018-January/115410.html
+[1] http://driverdev.linuxdriverproject.org/pipermail/driverdev-devel/2018-January/115390.html
 
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
+ drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---15162063270.fbe6fa5.19285--
-
---===============0450701403==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0450701403==--
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+index e35d3e17cd7c..93946dcee319 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+@@ -642,7 +642,7 @@ nvkm_vmm_ptes_sparse(struct nvkm_vmm *vmm, u64 addr, u64 size, bool ref)
+ 			else
+ 				block = (size >> page[i].shift) << page[i].shift;
+ 		} else {
+-			block = (size >> page[i].shift) << page[i].shift;;
++			block = (size >> page[i].shift) << page[i].shift;
+ 		}
+ 
+ 		/* Perform operation. */
+-- 
+2.15.1
