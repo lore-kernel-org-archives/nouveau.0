@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104523] System does not resume from suspend
-Date: Wed, 17 Jan 2018 09:09:37 +0000
-Message-ID: <bug-104523-8800-sLSPU3mqBF@http.bugs.freedesktop.org/>
-References: <bug-104523-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104672] [NVAC] Compiz segfaults on login on Ubuntu
+ 17.10 with Unity 7 (kernel DRM bug?)
+Date: Wed, 17 Jan 2018 09:19:41 +0000
+Message-ID: <bug-104672-8800-fBGR0DdMIu@http.bugs.freedesktop.org/>
+References: <bug-104672-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2011909432=="
+Content-Type: multipart/mixed; boundary="===============1159648341=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104523-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-104672-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2011909432==
-Content-Type: multipart/alternative; boundary="15161801770.A21F4A82.16598"
+--===============1159648341==
+Content-Type: multipart/alternative; boundary="15161807810.eaF19a.18160"
 Content-Transfer-Encoding: 7bit
 
 
---15161801770.A21F4A82.16598
-Date: Wed, 17 Jan 2018 09:09:37 +0000
+--15161807810.eaF19a.18160
+Date: Wed, 17 Jan 2018 09:19:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104523
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104672
 
-Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> changed:
+Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=3D104649
+             Status|NEW                         |NEEDINFO
+
+--- Comment #1 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Could you please provide the output of dmesg after the segfault, as well as=
+ the
+X logs (/var/log/Xorg.0.log, or wherever it is on your computer)?
+If you could bisect the kernel between 4.14.13 and 4.15-rc8, that would be
+awesome (for example, running `git bisect start --term-good=3Dv4.14
+--term-bad=3Dv4.15-rc8 -- drivers/gpu/drm/nouveau`, see ). I=E2=80=99ll try=
+ to give
+4.15-rc8 a spin on my laptop tonight.
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15161801770.A21F4A82.16598
-Date: Wed, 17 Jan 2018 09:09:37 +0000
+--15161807810.eaF19a.18160
+Date: Wed, 17 Jan 2018 09:19:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,15 +69,16 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jan.publi=
-c&#64;famvlug.nl" title=3D"Jan Vlug &lt;jan.public&#64;famvlug.nl&gt;"> <sp=
-an class=3D"fn">Jan Vlug</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pierre.mo=
+rrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"=
+> <span class=3D"fn">Pierre Moreau</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System does not resume from suspend"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104523">bug 10452=
-3</a>
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - [NVAC] Compiz segfaults on login on Ubuntu 17.10 wit=
+h Unity 7 (kernel DRM bug?)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104672">bug 10467=
+2</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -76,14 +88,39 @@ an class=3D"fn">Jan Vlug</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">See Also</td>
-           <td>
-               &nbsp;
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D104649
+           <td>NEEDINFO
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - [NVAC] Compiz segfaults on login on Ubuntu 17.10 wit=
+h Unity 7 (kernel DRM bug?)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104672#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - [NVAC] Compiz segfaults on login on Ubuntu 17.10 wit=
+h Unity 7 (kernel DRM bug?)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104672">bug 10467=
+2</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
+e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>Could you please provide the output of dmesg after the segfaul=
+t, as well as the
+X logs (/var/log/Xorg.0.log, or wherever it is on your computer)?
+If you could bisect the kernel between 4.14.13 and 4.15-rc8, that would be
+awesome (for example, running `git bisect start --term-good=3Dv4.14
+--term-bad=3Dv4.15-rc8 -- drivers/gpu/drm/nouveau`, see ). I=E2=80=99ll try=
+ to give
+4.15-rc8 a spin on my laptop tonight.</pre>
+        </div>
       </p>
 
 
@@ -91,14 +128,15 @@ an class=3D"fn">Jan Vlug</span></a>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15161801770.A21F4A82.16598--
+--15161807810.eaF19a.18160--
 
---===============2011909432==
+--===============1159648341==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +146,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2011909432==--
+--===============1159648341==--
