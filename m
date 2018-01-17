@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104672] [NVAC] Compiz segfaults on login on Ubuntu
- 17.10 with Unity 7 (kernel DRM bug?)
-Date: Wed, 17 Jan 2018 11:31:57 +0000
-Message-ID: <bug-104672-8800-r5QvpFGb5Z@http.bugs.freedesktop.org/>
-References: <bug-104672-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 103421] Kernel 4.13+ nouveau breaks screen output
+Date: Wed, 17 Jan 2018 16:25:27 +0000
+Message-ID: <bug-103421-8800-idk6NoUyk2@http.bugs.freedesktop.org/>
+References: <bug-103421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2123216072=="
+Content-Type: multipart/mixed; boundary="===============0450701403=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104672-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-103421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,42 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2123216072==
-Content-Type: multipart/alternative; boundary="15161887170.B82be339.5064"
+--===============0450701403==
+Content-Type: multipart/alternative; boundary="15162063270.fbe6fa5.19285"
 Content-Transfer-Encoding: 7bit
 
 
---15161887170.B82be339.5064
-Date: Wed, 17 Jan 2018 11:31:57 +0000
+--15162063270.fbe6fa5.19285
+Date: Wed, 17 Jan 2018 16:25:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104672
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103421
 
---- Comment #3 from Rui Salvaterra <rsalvaterra-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 136805
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136805&action=3Dedit
-Xorg log
+Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org> changed:
 
-So I managed to configure lightdm for logging in automatically. This is wha=
-t I
-got on the dmesg:
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
-[   40.419929] compiz[912]: segfault at 1a ip 00007f77455ef1e8 sp
-00007ffd41c1fba0 error 4 in nouveau_dri.so[7f77453a9000+a86000]
-
-Xorg log attached.
+--- Comment #9 from Sven Joachim <svenjoac-Mmb7MZpHnFY@public.gmane.org> ---
+The patch in Comment 6 has been in Linus' tree since 4.15-rc8, and I have j=
+ust
+requested that it should be applied to 4.14 as well.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15161887170.B82be339.5064
-Date: Wed, 17 Jan 2018 11:31:57 +0000
+--15162063270.fbe6fa5.19285
+Date: Wed, 17 Jan 2018 16:25:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,39 +63,57 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:svenjoac&=
+#64;gmx.de" title=3D"Sven Joachim &lt;svenjoac&#64;gmx.de&gt;"> <span class=
+=3D"fn">Sven Joachim</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Kernel 4.13+ nouveau breaks screen output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421">bug 10342=
+1</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [NVAC] Compiz segfaults on login on Ubuntu 17.10 wit=
-h Unity 7 (kernel DRM bug?)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104672#c3">Commen=
-t # 3</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Kernel 4.13+ nouveau breaks screen output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [NVAC] Compiz segfaults on login on Ubuntu 17.10 wit=
-h Unity 7 (kernel DRM bug?)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104672">bug 10467=
-2</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Kernel 4.13+ nouveau breaks screen output"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103421">bug 10342=
+1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rsalvaterra&#64;gmail.com" title=3D"Rui Salvaterra &lt;rsalvaterra&#64;gmai=
-l.com&gt;"> <span class=3D"fn">Rui Salvaterra</span></a>
+svenjoac&#64;gmx.de" title=3D"Sven Joachim &lt;svenjoac&#64;gmx.de&gt;"> <s=
+pan class=3D"fn">Sven Joachim</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136805=
-" name=3D"attach_136805" title=3D"Xorg log">attachment 136805</a> <a href=
-=3D"attachment.cgi?id=3D136805&amp;action=3Dedit" title=3D"Xorg log">[detai=
-ls]</a></span>
-Xorg log
-
-So I managed to configure lightdm for logging in automatically. This is wha=
-t I
-got on the dmesg:
-
-[   40.419929] compiz[912]: segfault at 1a ip 00007f77455ef1e8 sp
-00007ffd41c1fba0 error 4 in nouveau_dri.so[7f77453a9000+a86000]
-
-Xorg log attached.</pre>
+        <pre>The patch in <a href=3D"show_bug.cgi?id=3D103421#c6">Comment 6=
+</a> has been in Linus' tree since 4.15-rc8, and I have just
+requested that it should be applied to 4.14 as well.</pre>
         </div>
       </p>
 
@@ -108,15 +122,14 @@ Xorg log attached.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15161887170.B82be339.5064--
+--15162063270.fbe6fa5.19285--
 
---===============2123216072==
+--===============0450701403==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -126,4 +139,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2123216072==--
+--===============0450701403==--
