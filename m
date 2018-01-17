@@ -1,46 +1,36 @@
-From: Luis de Bethencourt <luisbg@kernel.org>
-Subject: [PATCH] drm/nouveau/mmu: Fix trailing semicolon
-Date: Wed, 17 Jan 2018 18:53:14 +0000
-Message-ID: <20180117185315.26808-1-luisbg@kernel.org>
+From: Mikko Perttunen <cyndis@kapsi.fi>
+Subject: Re: [Nouveau] [RFC 0/4] Implement full clockgating for Kepler1 and 2
+Date: Wed, 17 Jan 2018 23:11:13 +0200
+Message-ID: <703110bc-91c8-d872-7709-5dec7aa7c5b0@kapsi.fi>
+References: <20180115220755.16780-1-lyude@redhat.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20180115220755.16780-1-lyude@redhat.com>
+Content-Language: en-US
 Sender: linux-kernel-owner@vger.kernel.org
-To: linux-kernel@vger.kernel.org
-Cc: Joe Perches <joe@perches.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, Luis de Bethencourt <luisbg@kernel.org>
+To: Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org
+Cc: Kate Stewart <kstewart@linuxfoundation.org>, David Airlie <airlied@linux.ie>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Alexandre Courbot <acourbot@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>, Philippe Ombredanne <pombredanne@nexb.com>, Thomas Gleixner <tglx@linutronix.de>
 List-Id: nouveau.vger.kernel.org
 
-The trailing semicolon is an empty statement that does no operation.
-Removing it since it doesn't do anything.
+On 01/16/2018 12:06 AM, Lyude Paul wrote:
+> It's here! After a lot of investigation, rewrites, and traces, I present
+> the patch series to implement all known levels of clockgating for
+> Kepler1 and Kepler2 GPUs.
+> 
+> Starting with Fermi GPUs (this is probably present on earlier GPUs as
+> well, but with a far less easy to manage interface), nvidia added two
+> clockgating levels that are handled mostly in firmware (with the
+> exception of course, of the driver initially programming all of the
+> register values containing engine delays and that stuff):
+>    - CG_CTRL - Main register for enabling/disabling clockgating for
+>      engines and hw blocks
+>    - BLCG - "Block-level clockgating", a deeper level of clockgating
+> Starting with kepler2 as well, nvidia also introduced:
+>    - SLCG - "??? clockgating" even deeper level of clockgating
 
-Signed-off-by: Luis de Bethencourt <luisbg@kernel.org>
----
+FWIW, SLCG stands for "second level clock gating".
 
-Hi,
-
-After fixing the same thing in drivers/staging/rtl8723bs/, Joe Perches
-suggested I fix it treewide [0].
-
-Best regards 
-Luis
-
-
-[0] http://driverdev.linuxdriverproject.org/pipermail/driverdev-devel/2018-January/115410.html
-[1] http://driverdev.linuxdriverproject.org/pipermail/driverdev-devel/2018-January/115390.html
-
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-index e35d3e17cd7c..93946dcee319 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-@@ -642,7 +642,7 @@ nvkm_vmm_ptes_sparse(struct nvkm_vmm *vmm, u64 addr, u64 size, bool ref)
- 			else
- 				block = (size >> page[i].shift) << page[i].shift;
- 		} else {
--			block = (size >> page[i].shift) << page[i].shift;;
-+			block = (size >> page[i].shift) << page[i].shift;
- 		}
- 
- 		/* Perform operation. */
--- 
-2.15.1
+Cheers,
+Mikko
