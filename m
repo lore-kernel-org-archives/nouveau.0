@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104672] [NVAC] Compiz segfaults on login on Ubuntu
  17.10 with Unity 7 (kernel DRM bug?)
-Date: Wed, 17 Jan 2018 10:21:09 +0000
-Message-ID: <bug-104672-8800-6birIFQBRT@http.bugs.freedesktop.org/>
+Date: Wed, 17 Jan 2018 11:31:57 +0000
+Message-ID: <bug-104672-8800-r5QvpFGb5Z@http.bugs.freedesktop.org/>
 References: <bug-104672-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1826350349=="
+Content-Type: multipart/mixed; boundary="===============2123216072=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104672-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1826350349==
-Content-Type: multipart/alternative; boundary="15161844690.2FaD9C.27764"
+--===============2123216072==
+Content-Type: multipart/alternative; boundary="15161887170.B82be339.5064"
 Content-Transfer-Encoding: 7bit
 
 
---15161844690.2FaD9C.27764
-Date: Wed, 17 Jan 2018 10:21:09 +0000
+--15161887170.B82be339.5064
+Date: Wed, 17 Jan 2018 11:31:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,38 +36,27 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104672
 
---- Comment #2 from Rui Salvaterra <rsalvaterra-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Pierre Moreau from comment #1)
-> Could you please provide the output of dmesg after the segfault, as well =
-as
-> the X logs (/var/log/Xorg.0.log, or wherever it is on your computer)?
+--- Comment #3 from Rui Salvaterra <rsalvaterra-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 136805
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136805&action=3Dedit
+Xorg log
 
-Sure, later today (as of now I only have ssh access to the machine).=20
+So I managed to configure lightdm for logging in automatically. This is wha=
+t I
+got on the dmesg:
 
-> If you could bisect the kernel between 4.14.13 and 4.15-rc8, that would be
-> awesome (for example, running `git bisect start --term-good=3Dv4.14
-> --term-bad=3Dv4.15-rc8 -- drivers/gpu/drm/nouveau`, see ). I=E2=80=99ll t=
-ry to give
-> 4.15-rc8 a spin on my laptop tonight.
+[   40.419929] compiz[912]: segfault at 1a ip 00007f77455ef1e8 sp
+00007ffd41c1fba0 error 4 in nouveau_dri.so[7f77453a9000+a86000]
 
-I've never done a git bisection before (and I don't have the toolchain
-installed, this is - was, now that all hell broke loose with Meltdown and
-friends - a computer with very limited use), but I wager it's going to be
-painful to do kernel compiles on an Atom 330=E2=80=A6 I may try to do so on=
- the
-weekend, but no promises. :(
-Actually, I just reported this now because I was expecting this error to be
-found by someone else, being so obvious. :P It's happening since 4.15-rc1 (=
-the
-first release I tested after the merge window).
+Xorg log attached.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15161844690.2FaD9C.27764
-Date: Wed, 17 Jan 2018 10:21:09 +0000
+--15161887170.B82be339.5064
+Date: Wed, 17 Jan 2018 11:31:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -85,8 +74,8 @@ Auto-Submitted: auto-generated
           bz_status_NEEDINFO "
    title=3D"NEEDINFO - [NVAC] Compiz segfaults on login on Ubuntu 17.10 wit=
 h Unity 7 (kernel DRM bug?)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104672#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104672#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEEDINFO "
    title=3D"NEEDINFO - [NVAC] Compiz segfaults on login on Ubuntu 17.10 wit=
@@ -97,32 +86,20 @@ h Unity 7 (kernel DRM bug?)"
 rsalvaterra&#64;gmail.com" title=3D"Rui Salvaterra &lt;rsalvaterra&#64;gmai=
 l.com&gt;"> <span class=3D"fn">Rui Salvaterra</span></a>
 </span></b>
-        <pre>(In reply to Pierre Moreau from <a href=3D"show_bug.cgi?id=3D1=
-04672#c1">comment #1</a>)
-<span class=3D"quote">&gt; Could you please provide the output of dmesg aft=
-er the segfault, as well as
-&gt; the X logs (/var/log/Xorg.0.log, or wherever it is on your computer)?<=
-/span >
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136805=
+" name=3D"attach_136805" title=3D"Xorg log">attachment 136805</a> <a href=
+=3D"attachment.cgi?id=3D136805&amp;action=3Dedit" title=3D"Xorg log">[detai=
+ls]</a></span>
+Xorg log
 
-Sure, later today (as of now I only have ssh access to the machine).=20
+So I managed to configure lightdm for logging in automatically. This is wha=
+t I
+got on the dmesg:
 
-<span class=3D"quote">&gt; If you could bisect the kernel between 4.14.13 a=
-nd 4.15-rc8, that would be
-&gt; awesome (for example, running `git bisect start --term-good=3Dv4.14
-&gt; --term-bad=3Dv4.15-rc8 -- drivers/gpu/drm/nouveau`, see ). I=E2=80=99l=
-l try to give
-&gt; 4.15-rc8 a spin on my laptop tonight.</span >
+[   40.419929] compiz[912]: segfault at 1a ip 00007f77455ef1e8 sp
+00007ffd41c1fba0 error 4 in nouveau_dri.so[7f77453a9000+a86000]
 
-I've never done a git bisection before (and I don't have the toolchain
-installed, this is - was, now that all hell broke loose with Meltdown and
-friends - a computer with very limited use), but I wager it's going to be
-painful to do kernel compiles on an Atom 330=E2=80=A6 I may try to do so on=
- the
-weekend, but no promises. :(
-Actually, I just reported this now because I was expecting this error to be
-found by someone else, being so obvious. :P It's happening since 4.15-rc1 (=
-the
-first release I tested after the merge window).</pre>
+Xorg log attached.</pre>
         </div>
       </p>
 
@@ -131,15 +108,15 @@ first release I tested after the merge window).</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15161844690.2FaD9C.27764--
+--15161887170.B82be339.5064--
 
---===============1826350349==
+--===============2123216072==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -149,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1826350349==--
+--===============2123216072==--
