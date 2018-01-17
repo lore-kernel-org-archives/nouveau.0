@@ -1,36 +1,146 @@
-From: Mikko Perttunen <cyndis@kapsi.fi>
-Subject: Re: [Nouveau] [RFC 0/4] Implement full clockgating for Kepler1 and 2
-Date: Wed, 17 Jan 2018 23:11:13 +0200
-Message-ID: <703110bc-91c8-d872-7709-5dec7aa7c5b0@kapsi.fi>
-References: <20180115220755.16780-1-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 104222] GNOME/Wayland desktop freezes when resizing
+ Firefox window
+Date: Wed, 17 Jan 2018 18:54:23 +0000
+Message-ID: <bug-104222-8800-uTW6nebj54@http.bugs.freedesktop.org/>
+References: <bug-104222-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180115220755.16780-1-lyude@redhat.com>
-Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org
-Cc: Kate Stewart <kstewart@linuxfoundation.org>, David Airlie <airlied@linux.ie>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Alexandre Courbot <acourbot@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>, Philippe Ombredanne <pombredanne@nexb.com>, Thomas Gleixner <tglx@linutronix.de>
+Content-Type: multipart/mixed; boundary="===============0080734726=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-104222-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 01/16/2018 12:06 AM, Lyude Paul wrote:
-> It's here! After a lot of investigation, rewrites, and traces, I present
-> the patch series to implement all known levels of clockgating for
-> Kepler1 and Kepler2 GPUs.
-> 
-> Starting with Fermi GPUs (this is probably present on earlier GPUs as
-> well, but with a far less easy to manage interface), nvidia added two
-> clockgating levels that are handled mostly in firmware (with the
-> exception of course, of the driver initially programming all of the
-> register values containing engine delays and that stuff):
->    - CG_CTRL - Main register for enabling/disabling clockgating for
->      engines and hw blocks
->    - BLCG - "Block-level clockgating", a deeper level of clockgating
-> Starting with kepler2 as well, nvidia also introduced:
->    - SLCG - "??? clockgating" even deeper level of clockgating
 
-FWIW, SLCG stands for "second level clock gating".
+--===============0080734726==
+Content-Type: multipart/alternative; boundary="15162152635.6aB7AB.20756"
+Content-Transfer-Encoding: 7bit
 
-Cheers,
-Mikko
+
+--15162152635.6aB7AB.20756
+Date: Wed, 17 Jan 2018 18:54:23 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104222
+
+Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+                   |rg                          |
+             Status|NEW                         |ASSIGNED
+
+--- Comment #9 from Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
+Going to assign this to myself since I'm already looking at it (and can
+reproduce it reliably here).
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15162152635.6aB7AB.20756
+Date: Wed, 17 Jan 2018 18:54:23 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:lyude&#64=
+;redhat.com" title=3D"Lyude Paul &lt;lyude&#64;redhat.com&gt;"> <span class=
+=3D"fn">Lyude Paul</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - GNOME/Wayland desktop freezes when resizing Firefox =
+window"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104222">bug 10422=
+2</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+           <td>lyude&#64;redhat.com
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>ASSIGNED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - GNOME/Wayland desktop freezes when resizing Firefox =
+window"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104222#c9">Commen=
+t # 9</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - GNOME/Wayland desktop freezes when resizing Firefox =
+window"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104222">bug 10422=
+2</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+lyude&#64;redhat.com" title=3D"Lyude Paul &lt;lyude&#64;redhat.com&gt;"> <s=
+pan class=3D"fn">Lyude Paul</span></a>
+</span></b>
+        <pre>Going to assign this to myself since I'm already looking at it=
+ (and can
+reproduce it reliably here).</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15162152635.6aB7AB.20756--
+
+--===============0080734726==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0080734726==--
