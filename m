@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104698] crashes when monitor is turned off or turned
 	on
-Date: Fri, 19 Jan 2018 17:04:00 +0000
-Message-ID: <bug-104698-8800-nF0wYuP2Hw@http.bugs.freedesktop.org/>
+Date: Fri, 19 Jan 2018 18:27:12 +0000
+Message-ID: <bug-104698-8800-H7W9qOmiHm@http.bugs.freedesktop.org/>
 References: <bug-104698-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0063868131=="
+Content-Type: multipart/mixed; boundary="===============1093391975=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104698-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0063868131==
-Content-Type: multipart/alternative; boundary="15163814401.6d491F.18354"
+--===============1093391975==
+Content-Type: multipart/alternative; boundary="15163864311.5537C.5639"
 Content-Transfer-Encoding: 7bit
 
 
---15163814401.6d491F.18354
-Date: Fri, 19 Jan 2018 17:04:00 +0000
+--15163864311.5537C.5639
+Date: Fri, 19 Jan 2018 18:27:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104698
 
-Alan Coopersmith <alan.coopersmith-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Assignee|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
-          Component|* Other                     |Driver/nouveau
+--- Comment #4 from Valdas <zmogas-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
+ I reproduced xorg crash (as in description) again. I think key is that
+secondary monitor was turned off (power save mode like: cable connected but
+power button blinking) during boot up. Then I turned off primary display
+(crash), then logged in and turned on primary display (crash), then again
+logged in.
+ Attached kernel log and both xorg logs.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15163814401.6d491F.18354
-Date: Fri, 19 Jan 2018 17:04:00 +0000
+--15163864311.5537C.5639
+Date: Fri, 19 Jan 2018 18:27:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,39 +60,31 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:alan.coop=
-ersmith&#64;oracle.com" title=3D"Alan Coopersmith &lt;alan.coopersmith&#64;=
-oracle.com&gt;"> <span class=3D"fn">Alan Coopersmith</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - crashes when monitor is turned off or turned on"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104698#c4">Commen=
+t # 4</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - crashes when monitor is turned off or turned on"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104698">bug 10469=
 8</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>* Other
-           </td>
-           <td>Driver/nouveau
-           </td>
-         </tr></table>
-      <p>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+zmogas&#64;hotmail.com" title=3D"Valdas &lt;zmogas&#64;hotmail.com&gt;"> <s=
+pan class=3D"fn">Valdas</span></a>
+</span></b>
+        <pre> I reproduced xorg crash (as in description) again. I think ke=
+y is that
+secondary monitor was turned off (power save mode like: cable connected but
+power button blinking) during boot up. Then I turned off primary display
+(crash), then logged in and turned on primary display (crash), then again
+logged in.
+ Attached kernel log and both xorg logs.</pre>
+        </div>
       </p>
 
 
@@ -105,9 +97,9 @@ oracle.com&gt;"> <span class=3D"fn">Alan Coopersmith</span></a>
     </body>
 </html>=
 
---15163814401.6d491F.18354--
+--15163864311.5537C.5639--
 
---===============0063868131==
+--===============1093391975==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0063868131==--
+--===============1093391975==--
