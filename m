@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104698] crashes when monitor is turned off or turned
 	on
-Date: Fri, 19 Jan 2018 18:27:12 +0000
-Message-ID: <bug-104698-8800-H7W9qOmiHm@http.bugs.freedesktop.org/>
+Date: Fri, 19 Jan 2018 18:28:15 +0000
+Message-ID: <bug-104698-8800-BYIdgmzFld@http.bugs.freedesktop.org/>
 References: <bug-104698-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1093391975=="
+Content-Type: multipart/mixed; boundary="===============1863217700=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104698-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1093391975==
-Content-Type: multipart/alternative; boundary="15163864311.5537C.5639"
+--===============1863217700==
+Content-Type: multipart/alternative; boundary="15163864950.DecCd1f60.5755"
 Content-Transfer-Encoding: 7bit
 
 
---15163864311.5537C.5639
-Date: Fri, 19 Jan 2018 18:27:11 +0000
+--15163864950.DecCd1f60.5755
+Date: Fri, 19 Jan 2018 18:28:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104698
 
---- Comment #4 from Valdas <zmogas-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
- I reproduced xorg crash (as in description) again. I think key is that
-secondary monitor was turned off (power save mode like: cable connected but
-power button blinking) during boot up. Then I turned off primary display
-(crash), then logged in and turned on primary display (crash), then again
-logged in.
- Attached kernel log and both xorg logs.
+--- Comment #5 from Valdas <zmogas-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
+Created attachment 136854
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D136854&action=3Dedit
+kernel log for comment no. 4
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15163864311.5537C.5639
-Date: Fri, 19 Jan 2018 18:27:11 +0000
+--15163864950.DecCd1f60.5755
+Date: Fri, 19 Jan 2018 18:28:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - crashes when monitor is turned off or turned on"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104698#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104698#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - crashes when monitor is turned off or turned on"
@@ -77,13 +74,11 @@ t # 4</a>
 zmogas&#64;hotmail.com" title=3D"Valdas &lt;zmogas&#64;hotmail.com&gt;"> <s=
 pan class=3D"fn">Valdas</span></a>
 </span></b>
-        <pre> I reproduced xorg crash (as in description) again. I think ke=
-y is that
-secondary monitor was turned off (power save mode like: cable connected but
-power button blinking) during boot up. Then I turned off primary display
-(crash), then logged in and turned on primary display (crash), then again
-logged in.
- Attached kernel log and both xorg logs.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D136854=
+" name=3D"attach_136854" title=3D"kernel log for comment no. 4">attachment =
+136854</a> <a href=3D"attachment.cgi?id=3D136854&amp;action=3Dedit" title=
+=3D"kernel log for comment no. 4">[details]</a></span>
+kernel log for comment no. 4</pre>
         </div>
       </p>
 
@@ -97,9 +92,9 @@ logged in.
     </body>
 </html>=
 
---15163864311.5537C.5639--
+--15163864950.DecCd1f60.5755--
 
---===============1093391975==
+--===============1863217700==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1093391975==--
+--===============1863217700==--
