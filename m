@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104784] New: Unable to do reclocking manually
-Date: Thu, 25 Jan 2018 07:16:03 +0000
-Message-ID: <bug-104784-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104784] Unable to do reclocking manually
+Date: Thu, 25 Jan 2018 09:39:01 +0000
+Message-ID: <bug-104784-8800-CShXWEPUsy@http.bugs.freedesktop.org/>
+References: <bug-104784-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0244688276=="
+Content-Type: multipart/mixed; boundary="===============0583559868=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-104784-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0244688276==
-Content-Type: multipart/alternative; boundary="15168645631.4faaf.31231"
+--===============0583559868==
+Content-Type: multipart/alternative; boundary="15168731410.8Be47BB.17013"
 Content-Transfer-Encoding: 7bit
 
 
---15168645631.4faaf.31231
-Date: Thu, 25 Jan 2018 07:16:03 +0000
+--15168731410.8Be47BB.17013
+Date: Thu, 25 Jan 2018 09:39:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -33,47 +35,40 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104784
 
-            Bug ID: 104784
-           Summary: Unable to do reclocking manually
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: berillions-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #1 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Hello,
 
-Hi,
+> AC: core 0 MHz memory 0 MHz
 
-I have a laptop with Optimus technology, my Nvidia card is a GTX 640MX. I u=
-se
-Debian Unstable x86_64 with nouveau 1.0.15 and Mesa 17.3.3
+means your GPU is actually suspended: since you have an Optimus configurati=
+on,
+the NVIDIA GPU will suspend automatically if it hasn=E2=80=99t received any=
+ work to do
+in a short while. Try for example to run `DRI_PRIME=3D1 glxgears`, keep it
+running and reissue the cat command: you should not see actual clocks for on
+the AC line.
+Have a look at https://nouveau.freedesktop.org/wiki/Optimus/ to learn how to
+configure Prime.
 
-Unfortunatly, it's impossible to do reclocking with Nouveau and my GPU.
+As for the system hang when trying to reclock a suspended GPU, patches have
+been sent to the Nouveau mailing list, but haven=E2=80=99t been merged yet.=
+ You can
+find them here:
+https://github.com/karolherbst/nouveau/commits/clk_cleanup_for_real
 
-When i launch "cat /sys/kernel/debug/dri/1/pstate", i have these results :
-07: core 270-405 MHz memory 648 MHz
-0a: core 270-601 MHz memory 1600 MHz
-0f: core 270-614 MHz memory 2800 MHz
-AC: core 0 MHz memory 0 MHz
+> And when i launch a game (Tyranny), it does not work.
 
-------
-
-It's anormal to have these line "AC: core 0 MHz memory 0 MHz", right ?
-Because when i set "echo 0f > /sys/kernel/debug/dri/1/pstate", the console =
-(not
-the system) hangs. And when i launch a game (Tyranny), it does not work.
+What is not working? If you didn=E2=80=99t specify anything, the game shoul=
+d run on the
+=E2=80=9Cprimary=E2=80=9D GPU by default, which quite often tends to be the=
+ Intel GPU.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15168645631.4faaf.31231
-Date: Thu, 25 Jan 2018 07:16:03 +0000
+--15168731410.8Be47BB.17013
+Date: Thu, 25 Jan 2018 09:39:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -84,112 +79,52 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Unable to do reclocking manually"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104784">104784</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Unable to do reclocking manually
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>berillions&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Hi,
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Unable to do reclocking manually"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104784#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Unable to do reclocking manually"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104784">bug 10478=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
+e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>Hello,
 
-I have a laptop with Optimus technology, my Nvidia card is a GTX 640MX. I u=
-se
-Debian Unstable x86_64 with nouveau 1.0.15 and Mesa 17.3.3
+<span class=3D"quote">&gt; AC: core 0 MHz memory 0 MHz</span >
 
-Unfortunatly, it's impossible to do reclocking with Nouveau and my GPU.
+means your GPU is actually suspended: since you have an Optimus configurati=
+on,
+the NVIDIA GPU will suspend automatically if it hasn=E2=80=99t received any=
+ work to do
+in a short while. Try for example to run `DRI_PRIME=3D1 glxgears`, keep it
+running and reissue the cat command: you should not see actual clocks for on
+the AC line.
+Have a look at <a href=3D"https://nouveau.freedesktop.org/wiki/Optimus/">ht=
+tps://nouveau.freedesktop.org/wiki/Optimus/</a> to learn how to
+configure Prime.
 
-When i launch &quot;cat /sys/kernel/debug/dri/1/pstate&quot;, i have these =
-results :
-07: core 270-405 MHz memory 648 MHz
-0a: core 270-601 MHz memory 1600 MHz
-0f: core 270-614 MHz memory 2800 MHz
-AC: core 0 MHz memory 0 MHz
+As for the system hang when trying to reclock a suspended GPU, patches have
+been sent to the Nouveau mailing list, but haven=E2=80=99t been merged yet.=
+ You can
+find them here:
+<a href=3D"https://github.com/karolherbst/nouveau/commits/clk_cleanup_for_r=
+eal">https://github.com/karolherbst/nouveau/commits/clk_cleanup_for_real</a>
 
-------
+<span class=3D"quote">&gt; And when i launch a game (Tyranny), it does not =
+work.</span >
 
-It's anormal to have these line &quot;AC: core 0 MHz memory 0 MHz&quot;, ri=
-ght ?
-Because when i set &quot;echo 0f &gt; /sys/kernel/debug/dri/1/pstate&quot;,=
- the console (not
-the system) hangs. And when i launch a game (Tyranny), it does not work.</p=
-re>
+What is not working? If you didn=E2=80=99t specify anything, the game shoul=
+d run on the
+=E2=80=9Cprimary=E2=80=9D GPU by default, which quite often tends to be the=
+ Intel GPU.</pre>
         </div>
       </p>
 
@@ -203,9 +138,9 @@ re>
     </body>
 </html>=
 
---15168645631.4faaf.31231--
+--15168731410.8Be47BB.17013--
 
---===============0244688276==
+--===============0583559868==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -215,4 +150,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0244688276==--
+--===============0583559868==--
