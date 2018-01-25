@@ -1,180 +1,124 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH] drm/nouveau: Move irq setup/teardown to pci ctor/dtor
-Date: Thu, 25 Jan 2018 17:31:53 -0500
-Message-ID: <20180125223156.23874-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Karol Herbst <kherbst@redhat.com>, Thomas Gleixner <tglx@linutronix.de>, Mike Galbraith <efault@gmx.de>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Karol Herbst <karolherbst@gmail.com>, Philippe Ombredanne <pombredanne@nexb.com>, Kate Stewart <kstewart@linuxfoundation.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Thierry Reding <treding@nvidia.com>, Ilia Mirkin <imirkin@alum.mit.edu>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v2] drm/nouveau: Move irq setup/teardown to pci
+ ctor/dtor
+Date: Thu, 25 Jan 2018 17:33:59 -0500
+Message-ID: <20180125223402.24146-1-lyude@redhat.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Philippe Ombredanne <pombredanne-od1rfyK75/E@public.gmane.org>, Thomas Gleixner <tglx-hfZtesqFncYOwBW4kG4KsQ@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-For a while we've been having issues with seemingly random interrupts
-coming from nvidia cards when resuming them. Originally the fix for this
-was thought to be just re-arming the MSI interrupt registers right after
-re-allocating our IRQs, however it seems a lot of what we do is both
-wrong and not even nessecary.
-
-This was made apparent by what appeared to be a regression in the
-mainline kernel that started introducing suspend/resume issues for
-nouveau:
-
-        a0c9259dc4e1 (irq/matrix: Spread interrupts on allocation)
-
-After this commit was introduced, we started getting interrupts from the
-GPU before we actually re-allocated our own IRQ (see references below)
-and assigned the IRQ handler. Investigating this turned out that the
-problem was not with the commit, but the fact that nouveau even
-free/allocates it's irqs before and after suspend/resume.
-
-For starters: drivers in the linux kernel haven't had to handle
-freeing/re-allocating their IRQs during suspend/resume cycles for quite
-a while now. Nouveau seems to be one of the few drivers left that still
-does this, despite the fact there's no reason we actually need to since
-disabling interrupts from the device side should be enough, as the
-kernel is already smart enough to know to disable host-side interrupts
-for us before going into suspend. Since we were tearing down our IRQs by
-hand however, that means there was a short period during resume where
-interrupts could be received before we re-allocated our IRQ which would
-lead to us getting an unhandled IRQ. Since we never handle said IRQ and
-re-arm the interrupt registers, this would cause us to miss all of the
-interrupts from the GPU and cause our init process to start timing out
-on anything requiring interrupts.
-
-So, since this whole setup/teardown every suspend/resume cycle is
-useless anyway, move irq setup/teardown into the pci subdev's ctor/dtor
-functions instead so they're only called at driver load and driver
-unload. This should fix most of the issues with pending interrupts on
-resume, along with getting suspend/resume for nouveau to work again.
-
-As well, this probably means we can also just remove the msi rearm call
-inside nvkm_pci_init(). But since our main focus here is to fix
-suspend/resume before 4.16, we'll save that for a later patch.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>
-Cc: Mike Galbraith <efault@gmx.de>
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/nouveau/include/nvkm/subdev/pci.h |  1 +
- drivers/gpu/drm/nouveau/nvkm/subdev/pci/base.c    | 43 +++++++++++++++--------
- 2 files changed, 29 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/pci.h b/drivers/gpu/drm/nouveau/include/nvkm/subdev/pci.h
-index 23803cc859fd..378bfc8d5fa8 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/pci.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/pci.h
-@@ -31,6 +31,7 @@ struct nvkm_pci {
- 	} pcie;
- 
- 	bool msi;
-+	bool teardown;
- };
- 
- u32 nvkm_pci_rd32(struct nvkm_pci *, u16 addr);
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pci/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/pci/base.c
-index deb96de54b00..4e020f05c99f 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/pci/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pci/base.c
-@@ -71,6 +71,10 @@ nvkm_pci_intr(int irq, void *arg)
- 	struct nvkm_pci *pci = arg;
- 	struct nvkm_device *device = pci->subdev.device;
- 	bool handled = false;
-+
-+	if (pci->teardown)
-+		return IRQ_HANDLED;
-+
- 	nvkm_mc_intr_unarm(device);
- 	if (pci->msi)
- 		pci->func->msi_rearm(pci);
-@@ -84,11 +88,6 @@ nvkm_pci_fini(struct nvkm_subdev *subdev, bool suspend)
- {
- 	struct nvkm_pci *pci = nvkm_pci(subdev);
- 
--	if (pci->irq >= 0) {
--		free_irq(pci->irq, pci);
--		pci->irq = -1;
--	}
--
- 	if (pci->agp.bridge)
- 		nvkm_agp_fini(pci);
- 
-@@ -108,8 +107,20 @@ static int
- nvkm_pci_oneinit(struct nvkm_subdev *subdev)
- {
- 	struct nvkm_pci *pci = nvkm_pci(subdev);
--	if (pci_is_pcie(pci->pdev))
--		return nvkm_pcie_oneinit(pci);
-+	struct pci_dev *pdev = pci->pdev;
-+	int ret;
-+
-+	if (pci_is_pcie(pci->pdev)) {
-+		ret = nvkm_pcie_oneinit(pci);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = request_irq(pdev->irq, nvkm_pci_intr, IRQF_SHARED, "nvkm", pci);
-+	if (ret)
-+		return ret;
-+	pci->irq = pdev->irq;
-+
- 	return 0;
- }
- 
-@@ -117,7 +128,6 @@ static int
- nvkm_pci_init(struct nvkm_subdev *subdev)
- {
- 	struct nvkm_pci *pci = nvkm_pci(subdev);
--	struct pci_dev *pdev = pci->pdev;
- 	int ret;
- 
- 	if (pci->agp.bridge) {
-@@ -131,28 +141,30 @@ nvkm_pci_init(struct nvkm_subdev *subdev)
- 	if (pci->func->init)
- 		pci->func->init(pci);
- 
--	ret = request_irq(pdev->irq, nvkm_pci_intr, IRQF_SHARED, "nvkm", pci);
--	if (ret)
--		return ret;
--
--	pci->irq = pdev->irq;
--
- 	/* Ensure MSI interrupts are armed, for the case where there are
- 	 * already interrupts pending (for whatever reason) at load time.
- 	 */
- 	if (pci->msi)
- 		pci->func->msi_rearm(pci);
- 
--	return ret;
-+	return 0;
- }
- 
- static void *
- nvkm_pci_dtor(struct nvkm_subdev *subdev)
- {
- 	struct nvkm_pci *pci = nvkm_pci(subdev);
-+
- 	nvkm_agp_dtor(pci);
-+
-+	if (pci->irq >= 0) {
-+		pci->teardown = true;
-+		free_irq(pci->irq, pci);
-+	}
-+
- 	if (pci->msi)
- 		pci_disable_msi(pci->pdev);
-+
- 	return nvkm_pci(subdev);
- }
- 
-@@ -177,6 +189,7 @@ nvkm_pci_new_(const struct nvkm_pci_func *func, struct nvkm_device *device,
- 	pci->func = func;
- 	pci->pdev = device->func->pci(device)->pdev;
- 	pci->irq = -1;
-+	pci->teardown = false;
- 	pci->pcie.speed = -1;
- 	pci->pcie.width = -1;
- 
--- 
-2.14.3
+Rm9yIGEgd2hpbGUgd2UndmUgYmVlbiBoYXZpbmcgaXNzdWVzIHdpdGggc2VlbWluZ2x5IHJhbmRv
+bSBpbnRlcnJ1cHRzCmNvbWluZyBmcm9tIG52aWRpYSBjYXJkcyB3aGVuIHJlc3VtaW5nIHRoZW0u
+IE9yaWdpbmFsbHkgdGhlIGZpeCBmb3IgdGhpcwp3YXMgdGhvdWdodCB0byBiZSBqdXN0IHJlLWFy
+bWluZyB0aGUgTVNJIGludGVycnVwdCByZWdpc3RlcnMgcmlnaHQgYWZ0ZXIKcmUtYWxsb2NhdGlu
+ZyBvdXIgSVJRcywgaG93ZXZlciBpdCBzZWVtcyBhIGxvdCBvZiB3aGF0IHdlIGRvIGlzIGJvdGgK
+d3JvbmcgYW5kIG5vdCBldmVuIG5lc3NlY2FyeS4KClRoaXMgd2FzIG1hZGUgYXBwYXJlbnQgYnkg
+d2hhdCBhcHBlYXJlZCB0byBiZSBhIHJlZ3Jlc3Npb24gaW4gdGhlCm1haW5saW5lIGtlcm5lbCB0
+aGF0IHN0YXJ0ZWQgaW50cm9kdWNpbmcgc3VzcGVuZC9yZXN1bWUgaXNzdWVzIGZvcgpub3V2ZWF1
+OgoKICAgICAgICBhMGM5MjU5ZGM0ZTEgKGlycS9tYXRyaXg6IFNwcmVhZCBpbnRlcnJ1cHRzIG9u
+IGFsbG9jYXRpb24pCgpBZnRlciB0aGlzIGNvbW1pdCB3YXMgaW50cm9kdWNlZCwgd2Ugc3RhcnRl
+ZCBnZXR0aW5nIGludGVycnVwdHMgZnJvbSB0aGUKR1BVIGJlZm9yZSB3ZSBhY3R1YWxseSByZS1h
+bGxvY2F0ZWQgb3VyIG93biBJUlEgKHNlZSByZWZlcmVuY2VzIGJlbG93KQphbmQgYXNzaWduZWQg
+dGhlIElSUSBoYW5kbGVyLiBJbnZlc3RpZ2F0aW5nIHRoaXMgdHVybmVkIG91dCB0aGF0IHRoZQpw
+cm9ibGVtIHdhcyBub3Qgd2l0aCB0aGUgY29tbWl0LCBidXQgdGhlIGZhY3QgdGhhdCBub3V2ZWF1
+IGV2ZW4KZnJlZS9hbGxvY2F0ZXMgaXQncyBpcnFzIGJlZm9yZSBhbmQgYWZ0ZXIgc3VzcGVuZC9y
+ZXN1bWUuCgpGb3Igc3RhcnRlcnM6IGRyaXZlcnMgaW4gdGhlIGxpbnV4IGtlcm5lbCBoYXZlbid0
+IGhhZCB0byBoYW5kbGUKZnJlZWluZy9yZS1hbGxvY2F0aW5nIHRoZWlyIElSUXMgZHVyaW5nIHN1
+c3BlbmQvcmVzdW1lIGN5Y2xlcyBmb3IgcXVpdGUKYSB3aGlsZSBub3cuIE5vdXZlYXUgc2VlbXMg
+dG8gYmUgb25lIG9mIHRoZSBmZXcgZHJpdmVycyBsZWZ0IHRoYXQgc3RpbGwKZG9lcyB0aGlzLCBk
+ZXNwaXRlIHRoZSBmYWN0IHRoZXJlJ3Mgbm8gcmVhc29uIHdlIGFjdHVhbGx5IG5lZWQgdG8gc2lu
+Y2UKZGlzYWJsaW5nIGludGVycnVwdHMgZnJvbSB0aGUgZGV2aWNlIHNpZGUgc2hvdWxkIGJlIGVu
+b3VnaCwgYXMgdGhlCmtlcm5lbCBpcyBhbHJlYWR5IHNtYXJ0IGVub3VnaCB0byBrbm93IHRvIGRp
+c2FibGUgaG9zdC1zaWRlIGludGVycnVwdHMKZm9yIHVzIGJlZm9yZSBnb2luZyBpbnRvIHN1c3Bl
+bmQuIFNpbmNlIHdlIHdlcmUgdGVhcmluZyBkb3duIG91ciBJUlFzIGJ5CmhhbmQgaG93ZXZlciwg
+dGhhdCBtZWFucyB0aGVyZSB3YXMgYSBzaG9ydCBwZXJpb2QgZHVyaW5nIHJlc3VtZSB3aGVyZQpp
+bnRlcnJ1cHRzIGNvdWxkIGJlIHJlY2VpdmVkIGJlZm9yZSB3ZSByZS1hbGxvY2F0ZWQgb3VyIElS
+USB3aGljaCB3b3VsZApsZWFkIHRvIHVzIGdldHRpbmcgYW4gdW5oYW5kbGVkIElSUS4gU2luY2Ug
+d2UgbmV2ZXIgaGFuZGxlIHNhaWQgSVJRIGFuZApyZS1hcm0gdGhlIGludGVycnVwdCByZWdpc3Rl
+cnMsIHRoaXMgd291bGQgY2F1c2UgdXMgdG8gbWlzcyBhbGwgb2YgdGhlCmludGVycnVwdHMgZnJv
+bSB0aGUgR1BVIGFuZCBjYXVzZSBvdXIgaW5pdCBwcm9jZXNzIHRvIHN0YXJ0IHRpbWluZyBvdXQK
+b24gYW55dGhpbmcgcmVxdWlyaW5nIGludGVycnVwdHMuCgpTbywgc2luY2UgdGhpcyB3aG9sZSBz
+ZXR1cC90ZWFyZG93biBldmVyeSBzdXNwZW5kL3Jlc3VtZSBjeWNsZSBpcwp1c2VsZXNzIGFueXdh
+eSwgbW92ZSBpcnEgc2V0dXAvdGVhcmRvd24gaW50byB0aGUgcGNpIHN1YmRldidzIGN0b3IvZHRv
+cgpmdW5jdGlvbnMgaW5zdGVhZCBzbyB0aGV5J3JlIG9ubHkgY2FsbGVkIGF0IGRyaXZlciBsb2Fk
+IGFuZCBkcml2ZXIKdW5sb2FkLiBUaGlzIHNob3VsZCBmaXggbW9zdCBvZiB0aGUgaXNzdWVzIHdp
+dGggcGVuZGluZyBpbnRlcnJ1cHRzIG9uCnJlc3VtZSwgYWxvbmcgd2l0aCBnZXR0aW5nIHN1c3Bl
+bmQvcmVzdW1lIGZvciBub3V2ZWF1IHRvIHdvcmsgYWdhaW4uCgpBcyB3ZWxsLCB0aGlzIHByb2Jh
+Ymx5IG1lYW5zIHdlIGNhbiBhbHNvIGp1c3QgcmVtb3ZlIHRoZSBtc2kgcmVhcm0gY2FsbAppbnNp
+ZGUgbnZrbV9wY2lfaW5pdCgpLiBCdXQgc2luY2Ugb3VyIG1haW4gZm9jdXMgaGVyZSBpcyB0byBm
+aXgKc3VzcGVuZC9yZXN1bWUgYmVmb3JlIDQuMTUsIHdlJ2xsIHNhdmUgdGhhdCBmb3IgYSBsYXRl
+ciBwYXRjaC4KClNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkNj
+OiBLYXJvbCBIZXJic3QgPGtoZXJic3RAcmVkaGF0LmNvbT4KQ2M6IFRob21hcyBHbGVpeG5lciA8
+dGdseEBsaW51dHJvbml4LmRlPgpDYzogTWlrZSBHYWxicmFpdGggPGVmYXVsdEBnbXguZGU+CkNj
+OiBzdGFibGVAdmdlci5rZXJuZWwub3JnCi0tLQpDaGFuZ2VzIHNpbmNlIHYxOgogLSBGaXggc21h
+bGwgdHlwbyBpbiBjb21taXQgbWVzc2FnZQogICBObyBmdW5jdGlvbmFsIGNoYW5nZXMKCiBkcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3BjaS5oIHwgIDEgKwogZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYyAgICB8IDQzICsrKysr
+KysrKysrKysrKy0tLS0tLS0tCiAyIGZpbGVzIGNoYW5nZWQsIDI5IGluc2VydGlvbnMoKyksIDE1
+IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2luY2x1
+ZGUvbnZrbS9zdWJkZXYvcGNpLmggYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252
+a20vc3ViZGV2L3BjaS5oCmluZGV4IDIzODAzY2M4NTlmZC4uMzc4YmZjOGQ1ZmE4IDEwMDY0NAot
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3BjaS5oCisr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvcGNpLmgKQEAg
+LTMxLDYgKzMxLDcgQEAgc3RydWN0IG52a21fcGNpIHsKIAl9IHBjaWU7CiAKIAlib29sIG1zaTsK
+Kwlib29sIHRlYXJkb3duOwogfTsKIAogdTMyIG52a21fcGNpX3JkMzIoc3RydWN0IG52a21fcGNp
+ICosIHUxNiBhZGRyKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20v
+c3ViZGV2L3BjaS9iYXNlLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9w
+Y2kvYmFzZS5jCmluZGV4IGRlYjk2ZGU1NGIwMC4uNGUwMjBmMDVjOTlmIDEwMDY0NAotLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvYmFzZS5jCisrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9iYXNlLmMKQEAgLTcxLDYgKzcxLDEw
+IEBAIG52a21fcGNpX2ludHIoaW50IGlycSwgdm9pZCAqYXJnKQogCXN0cnVjdCBudmttX3BjaSAq
+cGNpID0gYXJnOwogCXN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlID0gcGNpLT5zdWJkZXYuZGV2
+aWNlOwogCWJvb2wgaGFuZGxlZCA9IGZhbHNlOworCisJaWYgKHBjaS0+dGVhcmRvd24pCisJCXJl
+dHVybiBJUlFfSEFORExFRDsKKwogCW52a21fbWNfaW50cl91bmFybShkZXZpY2UpOwogCWlmIChw
+Y2ktPm1zaSkKIAkJcGNpLT5mdW5jLT5tc2lfcmVhcm0ocGNpKTsKQEAgLTg0LDExICs4OCw2IEBA
+IG52a21fcGNpX2Zpbmkoc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYsIGJvb2wgc3VzcGVuZCkK
+IHsKIAlzdHJ1Y3QgbnZrbV9wY2kgKnBjaSA9IG52a21fcGNpKHN1YmRldik7CiAKLQlpZiAocGNp
+LT5pcnEgPj0gMCkgewotCQlmcmVlX2lycShwY2ktPmlycSwgcGNpKTsKLQkJcGNpLT5pcnEgPSAt
+MTsKLQl9Ci0KIAlpZiAocGNpLT5hZ3AuYnJpZGdlKQogCQludmttX2FncF9maW5pKHBjaSk7CiAK
+QEAgLTEwOCw4ICsxMDcsMjAgQEAgc3RhdGljIGludAogbnZrbV9wY2lfb25laW5pdChzdHJ1Y3Qg
+bnZrbV9zdWJkZXYgKnN1YmRldikKIHsKIAlzdHJ1Y3QgbnZrbV9wY2kgKnBjaSA9IG52a21fcGNp
+KHN1YmRldik7Ci0JaWYgKHBjaV9pc19wY2llKHBjaS0+cGRldikpCi0JCXJldHVybiBudmttX3Bj
+aWVfb25laW5pdChwY2kpOworCXN0cnVjdCBwY2lfZGV2ICpwZGV2ID0gcGNpLT5wZGV2OworCWlu
+dCByZXQ7CisKKwlpZiAocGNpX2lzX3BjaWUocGNpLT5wZGV2KSkgeworCQlyZXQgPSBudmttX3Bj
+aWVfb25laW5pdChwY2kpOworCQlpZiAocmV0KQorCQkJcmV0dXJuIHJldDsKKwl9CisKKwlyZXQg
+PSByZXF1ZXN0X2lycShwZGV2LT5pcnEsIG52a21fcGNpX2ludHIsIElSUUZfU0hBUkVELCAibnZr
+bSIsIHBjaSk7CisJaWYgKHJldCkKKwkJcmV0dXJuIHJldDsKKwlwY2ktPmlycSA9IHBkZXYtPmly
+cTsKKwogCXJldHVybiAwOwogfQogCkBAIC0xMTcsNyArMTI4LDYgQEAgc3RhdGljIGludAogbnZr
+bV9wY2lfaW5pdChzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldikKIHsKIAlzdHJ1Y3QgbnZrbV9w
+Y2kgKnBjaSA9IG52a21fcGNpKHN1YmRldik7Ci0Jc3RydWN0IHBjaV9kZXYgKnBkZXYgPSBwY2kt
+PnBkZXY7CiAJaW50IHJldDsKIAogCWlmIChwY2ktPmFncC5icmlkZ2UpIHsKQEAgLTEzMSwyOCAr
+MTQxLDMwIEBAIG52a21fcGNpX2luaXQoc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYpCiAJaWYg
+KHBjaS0+ZnVuYy0+aW5pdCkKIAkJcGNpLT5mdW5jLT5pbml0KHBjaSk7CiAKLQlyZXQgPSByZXF1
+ZXN0X2lycShwZGV2LT5pcnEsIG52a21fcGNpX2ludHIsIElSUUZfU0hBUkVELCAibnZrbSIsIHBj
+aSk7Ci0JaWYgKHJldCkKLQkJcmV0dXJuIHJldDsKLQotCXBjaS0+aXJxID0gcGRldi0+aXJxOwot
+CiAJLyogRW5zdXJlIE1TSSBpbnRlcnJ1cHRzIGFyZSBhcm1lZCwgZm9yIHRoZSBjYXNlIHdoZXJl
+IHRoZXJlIGFyZQogCSAqIGFscmVhZHkgaW50ZXJydXB0cyBwZW5kaW5nIChmb3Igd2hhdGV2ZXIg
+cmVhc29uKSBhdCBsb2FkIHRpbWUuCiAJICovCiAJaWYgKHBjaS0+bXNpKQogCQlwY2ktPmZ1bmMt
+Pm1zaV9yZWFybShwY2kpOwogCi0JcmV0dXJuIHJldDsKKwlyZXR1cm4gMDsKIH0KIAogc3RhdGlj
+IHZvaWQgKgogbnZrbV9wY2lfZHRvcihzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldikKIHsKIAlz
+dHJ1Y3QgbnZrbV9wY2kgKnBjaSA9IG52a21fcGNpKHN1YmRldik7CisKIAludmttX2FncF9kdG9y
+KHBjaSk7CisKKwlpZiAocGNpLT5pcnEgPj0gMCkgeworCQlwY2ktPnRlYXJkb3duID0gdHJ1ZTsK
+KwkJZnJlZV9pcnEocGNpLT5pcnEsIHBjaSk7CisJfQorCiAJaWYgKHBjaS0+bXNpKQogCQlwY2lf
+ZGlzYWJsZV9tc2kocGNpLT5wZGV2KTsKKwogCXJldHVybiBudmttX3BjaShzdWJkZXYpOwogfQog
+CkBAIC0xNzcsNiArMTg5LDcgQEAgbnZrbV9wY2lfbmV3Xyhjb25zdCBzdHJ1Y3QgbnZrbV9wY2lf
+ZnVuYyAqZnVuYywgc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UsCiAJcGNpLT5mdW5jID0gZnVu
+YzsKIAlwY2ktPnBkZXYgPSBkZXZpY2UtPmZ1bmMtPnBjaShkZXZpY2UpLT5wZGV2OwogCXBjaS0+
+aXJxID0gLTE7CisJcGNpLT50ZWFyZG93biA9IGZhbHNlOwogCXBjaS0+cGNpZS5zcGVlZCA9IC0x
+OwogCXBjaS0+cGNpZS53aWR0aCA9IC0xOwogCi0tIAoyLjE0LjMKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
