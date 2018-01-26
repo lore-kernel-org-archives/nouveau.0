@@ -1,254 +1,87 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [RFC v2 3/4] drm/nouveau: Add support for BLCG on Kepler2
-Date: Thu, 25 Jan 2018 22:35:05 -0500
-Message-ID: <20180126033607.7682-4-lyude@redhat.com>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [RFC v2 4/4] drm/nouveau: Add support for SLCG for Kepler2
+Date: Thu, 25 Jan 2018 22:35:06 -0500
+Message-ID: <20180126033607.7682-5-lyude@redhat.com>
 References: <20180126033607.7682-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180126033607.7682-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Thomas Gleixner <tglx@linutronix.de>, Kate Stewart <kstewart@linuxfoundation.org>, Alexandre Courbot <acourbot@nvidia.com>, Karol Herbst <karolherbst@gmail.com>, Ilia Mirkin <imirkin@alum.mit.edu>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20180126033607.7682-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Same as the previous patch, but for Kepler2 now
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/include/nvkm/subdev/fb.h  |  1 +
- drivers/gpu/drm/nouveau/nvkm/engine/device/base.c |  8 +--
- drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c    | 62 ++++++++++++++++++++
- drivers/gpu/drm/nouveau/nvkm/subdev/fb/Kbuild     |  1 +
- drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk110.c    | 71 +++++++++++++++++++++++
- 5 files changed, 139 insertions(+), 4 deletions(-)
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk110.c
-
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/fb.h b/drivers/gpu/drm/nouveau/include/nvkm/subdev/fb.h
-index adb78f7d083a..92be0e5269c6 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/fb.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/fb.h
-@@ -75,6 +75,7 @@ int mcp89_fb_new(struct nvkm_device *, int, struct nvkm_fb **);
- int gf100_fb_new(struct nvkm_device *, int, struct nvkm_fb **);
- int gf108_fb_new(struct nvkm_device *, int, struct nvkm_fb **);
- int gk104_fb_new(struct nvkm_device *, int, struct nvkm_fb **);
-+int gk110_fb_new(struct nvkm_device *, int, struct nvkm_fb **);
- int gk20a_fb_new(struct nvkm_device *, int, struct nvkm_fb **);
- int gm107_fb_new(struct nvkm_device *, int, struct nvkm_fb **);
- int gm200_fb_new(struct nvkm_device *, int, struct nvkm_fb **);
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-index 74bd09b1c893..7590a30b7ff0 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-@@ -1812,7 +1812,7 @@ nvf0_chipset = {
- 	.bus = gf100_bus_new,
- 	.clk = gk104_clk_new,
- 	.devinit = gf100_devinit_new,
--	.fb = gk104_fb_new,
-+	.fb = gk110_fb_new,
- 	.fuse = gf100_fuse_new,
- 	.gpio = gk104_gpio_new,
- 	.i2c = gk104_i2c_new,
-@@ -1850,7 +1850,7 @@ nvf1_chipset = {
- 	.bus = gf100_bus_new,
- 	.clk = gk104_clk_new,
- 	.devinit = gf100_devinit_new,
--	.fb = gk104_fb_new,
-+	.fb = gk110_fb_new,
- 	.fuse = gf100_fuse_new,
- 	.gpio = gk104_gpio_new,
- 	.i2c = gk104_i2c_new,
-@@ -1888,7 +1888,7 @@ nv106_chipset = {
- 	.bus = gf100_bus_new,
- 	.clk = gk104_clk_new,
- 	.devinit = gf100_devinit_new,
--	.fb = gk104_fb_new,
-+	.fb = gk110_fb_new,
- 	.fuse = gf100_fuse_new,
- 	.gpio = gk104_gpio_new,
- 	.i2c = gk104_i2c_new,
-@@ -1926,7 +1926,7 @@ nv108_chipset = {
- 	.bus = gf100_bus_new,
- 	.clk = gk104_clk_new,
- 	.devinit = gf100_devinit_new,
--	.fb = gk104_fb_new,
-+	.fb = gk110_fb_new,
- 	.fuse = gf100_fuse_new,
- 	.gpio = gk104_gpio_new,
- 	.i2c = gk104_i2c_new,
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c
-index a38e19b61c1d..38d3328e45f1 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c
-@@ -22,6 +22,7 @@
-  * Authors: Ben Skeggs <bskeggs@redhat.com>
-  */
- #include "gf100.h"
-+#include "gk104.h"
- #include "ctxgf100.h"
- 
- #include <subdev/timer.h>
-@@ -156,6 +157,66 @@ gk110_gr_pack_mmio[] = {
- 	{}
- };
- 
-+const struct nvkm_therm_clkgate_init
-+gk110_clkgate_blcg_init_sked_0[] = {
-+	{ 0x407000, 1, 0x00004041 },
-+	{}
-+};
-+
-+const struct nvkm_therm_clkgate_init
-+gk110_clkgate_blcg_init_gpc_gcc_0[] = {
-+	{ 0x419020, 1, 0x00000042 },
-+	{ 0x419038, 1, 0x00000042 },
-+	{}
-+};
-+
-+const struct nvkm_therm_clkgate_init
-+gk110_clkgate_blcg_init_gpc_l1c_0[] = {
-+	{ 0x419cd4, 2, 0x00004042 },
-+	{}
-+};
-+
-+const struct nvkm_therm_clkgate_init
-+gk110_clkgate_blcg_init_gpc_mp_0[] = {
-+	{ 0x419fd0, 1, 0x00004043 },
-+	{ 0x419fd8, 1, 0x00004049 },
-+	{ 0x419fe0, 2, 0x00004042 },
-+	{ 0x419ff0, 1, 0x00000046 },
-+	{ 0x419ff8, 1, 0x00004042 },
-+	{ 0x419f90, 1, 0x00004042 },
-+	{}
-+};
-+
-+const struct nvkm_therm_clkgate_pack
-+gk110_clkgate_pack[] = {
-+	{ gk104_clkgate_blcg_init_main_0 },
-+	{ gk104_clkgate_blcg_init_rstr2d_0 },
-+	{ gk104_clkgate_blcg_init_unk_0 },
-+	{ gk104_clkgate_blcg_init_gcc_0 },
-+	{ gk110_clkgate_blcg_init_sked_0 },
-+	{ gk104_clkgate_blcg_init_unk_1 },
-+	{ gk104_clkgate_blcg_init_gpc_ctxctl_0 },
-+	{ gk104_clkgate_blcg_init_gpc_unk_0 },
-+	{ gk104_clkgate_blcg_init_gpc_esetup_0 },
-+	{ gk104_clkgate_blcg_init_gpc_tpbus_0 },
-+	{ gk104_clkgate_blcg_init_gpc_zcull_0 },
-+	{ gk104_clkgate_blcg_init_gpc_tpconf_0 },
-+	{ gk104_clkgate_blcg_init_gpc_unk_1 },
-+	{ gk110_clkgate_blcg_init_gpc_gcc_0 },
-+	{ gk104_clkgate_blcg_init_gpc_ffb_0 },
-+	{ gk104_clkgate_blcg_init_gpc_tex_0 },
-+	{ gk104_clkgate_blcg_init_gpc_poly_0 },
-+	{ gk110_clkgate_blcg_init_gpc_l1c_0 },
-+	{ gk104_clkgate_blcg_init_gpc_unk_2 },
-+	{ gk110_clkgate_blcg_init_gpc_mp_0 },
-+	{ gk104_clkgate_blcg_init_gpc_ppc_0 },
-+	{ gk104_clkgate_blcg_init_rop_zrop_0 },
-+	{ gk104_clkgate_blcg_init_rop_0 },
-+	{ gk104_clkgate_blcg_init_rop_crop_0 },
-+	{ gk104_clkgate_blcg_init_pxbar_0 },
-+	{}
-+};
-+
- /*******************************************************************************
-  * PGRAPH engine/subdev functions
-  ******************************************************************************/
-@@ -192,6 +253,7 @@ gk110_gr = {
- 	.rops = gf100_gr_rops,
- 	.ppc_nr = 2,
- 	.grctx = &gk110_grctx,
-+	.clkgate_pack = gk110_clkgate_pack,
- 	.sclass = {
- 		{ -1, -1, FERMI_TWOD_A },
- 		{ -1, -1, KEPLER_INLINE_TO_MEMORY_B },
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/Kbuild b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/Kbuild
-index 2571530e82f1..b4f22cce5d43 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/Kbuild
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/Kbuild
-@@ -22,6 +22,7 @@ nvkm-y += nvkm/subdev/fb/mcp89.o
- nvkm-y += nvkm/subdev/fb/gf100.o
- nvkm-y += nvkm/subdev/fb/gf108.o
- nvkm-y += nvkm/subdev/fb/gk104.o
-+nvkm-y += nvkm/subdev/fb/gk110.o
- nvkm-y += nvkm/subdev/fb/gk20a.o
- nvkm-y += nvkm/subdev/fb/gm107.o
- nvkm-y += nvkm/subdev/fb/gm200.o
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk110.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk110.c
-new file mode 100644
-index 000000000000..5c8feef151a4
---- /dev/null
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/gk110.c
-@@ -0,0 +1,71 @@
-+/*
-+ * Copyright 2017 Red Hat Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ * Authors: Lyude Paul
-+ */
-+#include "gf100.h"
-+#include "gk104.h"
-+#include "ram.h"
-+#include <subdev/therm.h>
-+#include <subdev/fb.h>
-+
-+/*
-+ *******************************************************************************
-+ * PGRAPH registers for clockgating
-+ *******************************************************************************
-+ */
-+
-+const struct nvkm_therm_clkgate_init
-+gk110_fb_clkgate_blcg_init_unk_0[] = {
-+	{ 0x100d10, 1, 0x0000c242 },
-+	{ 0x100d30, 1, 0x0000c242 },
-+	{ 0x100d3c, 1, 0x00000242 },
-+	{ 0x100d48, 1, 0x0000c242 },
-+	{ 0x100d1c, 1, 0x00000042 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_pack
-+gk110_fb_clkgate_pack[] = {
-+	{ gk110_fb_clkgate_blcg_init_unk_0 },
-+	{ gk104_fb_clkgate_blcg_init_vm_0 },
-+	{ gk104_fb_clkgate_blcg_init_main_0 },
-+	{ gk104_fb_clkgate_blcg_init_bcast_0 },
-+	{}
-+};
-+
-+static const struct nvkm_fb_func
-+gk110_fb = {
-+	.dtor = gf100_fb_dtor,
-+	.oneinit = gf100_fb_oneinit,
-+	.init = gf100_fb_init,
-+	.init_page = gf100_fb_init_page,
-+	.intr = gf100_fb_intr,
-+	.ram_new = gk104_ram_new,
-+	.default_bigpage = 17,
-+	.clkgate_pack = gk110_fb_clkgate_pack,
-+};
-+
-+int
-+gk110_fb_new(struct nvkm_device *device, int index, struct nvkm_fb **pfb)
-+{
-+	return gf100_fb_new_(&gk110_fb, device, index, pfb);
-+}
--- 
-2.14.3
+VGhhdCdzIHJpZ2h0LCB0aGVyZSdzIHN0aWxsIG1vcmUgcG93ZXIgc2F2aW5nIHRvIGdvISBTdGFy
+dGluZyB3aXRoCmtlcGxlciAyLCBudmlkaWEgaGFyZHdhcmUgaGFzIGFuIGFkZGl0aW9uYWwgbGV2
+ZWwgb2YgY2xvY2tnYXRpbmcga25vd24KYXMgc2Vjb25kIGxldmVsIGNsb2NrZ2F0aW5nLiAgVGhl
+IGRldGFpbHMgb2YgdGhpcyBhcmUgbm90IGV4YWN0LCBidXQgaXQKc2VlbXMgdG8gd29yayBieSB3
+YWl0aW5nIGZvciBhIGNvbGxlY3Rpb24gb2YgZGVwZW5kZW50IGhhcmR3YXJlIGJsb2Nrcwp0byBi
+ZSBnYXRlZCBiZWZvcmUgdGFraW5nIGFmZmVjdC4gQXMgd2l0aCB0aGUgcHJldmlvdXMgc2VyaWVz
+LCB0aGlzCnJlc3VsdHMgaW4gYW5vdGhlciBub3RpY2VhYmxlIGRyb3AgaW4gcG93ZXIgY29uc3Vt
+cHRpb24gYW5kIGlzCnByb2dyYW1tZWQgaW4gdGhlIHNhbWUgbWFubmVyLgoKU2lnbmVkLW9mZi1i
+eTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9udmttL2VuZ2luZS9nci9nazExMC5jIHwgOTMgKysrKysrKysrKysrKysrKysrKysrKysr
+KysKIDEgZmlsZSBjaGFuZ2VkLCA5MyBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2sxMTAuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2drMTEwLmMKaW5kZXggMzhkMzMyOGU0NWYxLi41ZGVk
+MjljNzkwZGQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5l
+L2dyL2drMTEwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3Iv
+Z2sxMTAuYwpAQCAtMTg3LDYgKzE4Nyw4NyBAQCBnazExMF9jbGtnYXRlX2JsY2dfaW5pdF9ncGNf
+bXBfMFtdID0gewogCXt9CiB9OwogCitjb25zdCBzdHJ1Y3QgbnZrbV90aGVybV9jbGtnYXRlX2lu
+aXQKK2drMTEwX2Nsa2dhdGVfc2xjZ19pbml0X21haW5fMFtdID0geworCXsgMHg0MDQxZjQsIDEs
+IDB4MDAwMDAwMDAgfSwKKwl7IDB4NDA5ODk0LCAxLCAweDAwMDAwMDAwIH0sCisJe30KK307CisK
+K2NvbnN0IHN0cnVjdCBudmttX3RoZXJtX2Nsa2dhdGVfaW5pdAorZ2sxMTBfY2xrZ2F0ZV9zbGNn
+X2luaXRfdW5rXzBbXSA9IHsKKwl7IDB4NDA2MDA0LCAxLCAweDAwMDAwMDAwIH0sCisJe30KK307
+CisKK2NvbnN0IHN0cnVjdCBudmttX3RoZXJtX2Nsa2dhdGVfaW5pdAorZ2sxMTBfY2xrZ2F0ZV9z
+bGNnX2luaXRfc2tlZF8wW10gPSB7CisJeyAweDQwNzAwNCwgMSwgMHgwMDAwMDAwMCB9LAorCXt9
+Cit9OworCitjb25zdCBzdHJ1Y3QgbnZrbV90aGVybV9jbGtnYXRlX2luaXQKK2drMTEwX2Nsa2dh
+dGVfc2xjZ19pbml0X2dwY19jdHhjdGxfMFtdID0geworCXsgMHg0MWE4OTQsIDEsIDB4MDAwMDAw
+MDAgfSwKKwl7fQorfTsKKworY29uc3Qgc3RydWN0IG52a21fdGhlcm1fY2xrZ2F0ZV9pbml0Citn
+azExMF9jbGtnYXRlX3NsY2dfaW5pdF9ncGNfdW5rXzBbXSA9IHsKKwl7IDB4NDE4NTA0LCAxLCAw
+eDAwMDAwMDAwIH0sCisJeyAweDQxODYwYywgMSwgMHgwMDAwMDAwMCB9LAorCXsgMHg0MTg2OGMs
+IDEsIDB4MDAwMDAwMDAgfSwKKwl7fQorfTsKKworY29uc3Qgc3RydWN0IG52a21fdGhlcm1fY2xr
+Z2F0ZV9pbml0CitnazExMF9jbGtnYXRlX3NsY2dfaW5pdF9ncGNfZXNldHVwXzBbXSA9IHsKKwl7
+IDB4NDE4ODJjLCAxLCAweDAwMDAwMDAwIH0sCisJe30KK307CisKK2NvbnN0IHN0cnVjdCBudmtt
+X3RoZXJtX2Nsa2dhdGVfaW5pdAorZ2sxMTBfY2xrZ2F0ZV9zbGNnX2luaXRfZ3BjX3pjdWxsXzBb
+XSA9IHsKKwl7IDB4NDE4OTc0LCAxLCAweDAwMDAwMDAwIH0sCisJe30KK307CisKK2NvbnN0IHN0
+cnVjdCBudmttX3RoZXJtX2Nsa2dhdGVfaW5pdAorZ2sxMTBfY2xrZ2F0ZV9zbGNnX2luaXRfZ3Bj
+X2wxY18wW10gPSB7CisJeyAweDQxOWNkOCwgMiwgMHgwMDAwMDAwMCB9LAorCXt9Cit9OworCitj
+b25zdCBzdHJ1Y3QgbnZrbV90aGVybV9jbGtnYXRlX2luaXQKK2drMTEwX2Nsa2dhdGVfc2xjZ19p
+bml0X2dwY191bmtfMVtdID0geworCXsgMHg0MTljNzQsIDEsIDB4MDAwMDAwMDAgfSwKKwl7fQor
+fTsKKworY29uc3Qgc3RydWN0IG52a21fdGhlcm1fY2xrZ2F0ZV9pbml0CitnazExMF9jbGtnYXRl
+X3NsY2dfaW5pdF9ncGNfbXBfMFtdID0geworCXsgMHg0MTlmZDQsIDEsIDB4MDAwMDRhNGEgfSwK
+Kwl7IDB4NDE5ZmRjLCAxLCAweDAwMDAwMDE0IH0sCisJeyAweDQxOWZlNCwgMSwgMHgwMDAwMDAw
+MCB9LAorCXsgMHg0MTlmZjQsIDEsIDB4MDAwMDE3MjQgfSwKKwl7fQorfTsKKworY29uc3Qgc3Ry
+dWN0IG52a21fdGhlcm1fY2xrZ2F0ZV9pbml0CitnazExMF9jbGtnYXRlX3NsY2dfaW5pdF9ncGNf
+cHBjXzBbXSA9IHsKKwl7IDB4NDFiZTJjLCAxLCAweDAwMDAwMDAwIH0sCisJe30KK307CisKK2Nv
+bnN0IHN0cnVjdCBudmttX3RoZXJtX2Nsa2dhdGVfaW5pdAorZ2sxMTBfY2xrZ2F0ZV9zbGNnX2lu
+aXRfcGNvdW50ZXJfMFtdID0geworCXsgMHgxYmUwMTgsIDEsIDB4MDAwMDAxZmYgfSwKKwl7IDB4
+MWJjMDE4LCAxLCAweDAwMDAwMWZmIH0sCisJeyAweDFiODAxOCwgMSwgMHgwMDAwMDFmZiB9LAor
+CXsgMHgxYjQxMjQsIDEsIDB4MDAwMDAwMDAgfSwKKwl7fQorfTsKKwogY29uc3Qgc3RydWN0IG52
+a21fdGhlcm1fY2xrZ2F0ZV9wYWNrCiBnazExMF9jbGtnYXRlX3BhY2tbXSA9IHsKIAl7IGdrMTA0
+X2Nsa2dhdGVfYmxjZ19pbml0X21haW5fMCB9LApAQCAtMjE0LDYgKzI5NSwxOCBAQCBnazExMF9j
+bGtnYXRlX3BhY2tbXSA9IHsKIAl7IGdrMTA0X2Nsa2dhdGVfYmxjZ19pbml0X3JvcF8wIH0sCiAJ
+eyBnazEwNF9jbGtnYXRlX2JsY2dfaW5pdF9yb3BfY3JvcF8wIH0sCiAJeyBnazEwNF9jbGtnYXRl
+X2JsY2dfaW5pdF9weGJhcl8wIH0sCisJeyBnazExMF9jbGtnYXRlX3NsY2dfaW5pdF9tYWluXzAg
+fSwKKwl7IGdrMTEwX2Nsa2dhdGVfc2xjZ19pbml0X3Vua18wIH0sCisJeyBnazExMF9jbGtnYXRl
+X3NsY2dfaW5pdF9za2VkXzAgfSwKKwl7IGdrMTEwX2Nsa2dhdGVfc2xjZ19pbml0X2dwY19jdHhj
+dGxfMCB9LAorCXsgZ2sxMTBfY2xrZ2F0ZV9zbGNnX2luaXRfZ3BjX3Vua18wIH0sCisJeyBnazEx
+MF9jbGtnYXRlX3NsY2dfaW5pdF9ncGNfZXNldHVwXzAgfSwKKwl7IGdrMTEwX2Nsa2dhdGVfc2xj
+Z19pbml0X2dwY196Y3VsbF8wIH0sCisJeyBnazExMF9jbGtnYXRlX3NsY2dfaW5pdF9ncGNfbDFj
+XzAgfSwKKwl7IGdrMTEwX2Nsa2dhdGVfc2xjZ19pbml0X2dwY191bmtfMSB9LAorCXsgZ2sxMTBf
+Y2xrZ2F0ZV9zbGNnX2luaXRfZ3BjX21wXzAgfSwKKwl7IGdrMTEwX2Nsa2dhdGVfc2xjZ19pbml0
+X2dwY19wcGNfMCB9LAorCXsgZ2sxMTBfY2xrZ2F0ZV9zbGNnX2luaXRfcGNvdW50ZXJfMCB9LAog
+CXt9CiB9OwogCi0tIAoyLjE0LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
