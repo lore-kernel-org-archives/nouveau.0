@@ -1,43 +1,38 @@
-From: Adam Borowski <kilobyte@angband.pl>
-Subject: Re: [PATCH v3] drm/nouveau: Move irq setup/teardown to pci ctor/dtor
-Date: Fri, 26 Jan 2018 02:20:26 +0100
-Message-ID: <20180126012026.kx5ijte72ch67oyi@angband.pl>
+From: Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>
+Subject: Re: [PATCH v3] drm/nouveau: Move irq setup/teardown to
+ pci ctor/dtor
+Date: Fri, 26 Jan 2018 03:36:09 +0100
+Message-ID: <1516934169.6967.2.camel@gmx.de>
 References: <20180125232955.14574-1-lyude@redhat.com>
+ <20180126012026.kx5ijte72ch67oyi@angband.pl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Return-path: <stable-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20180125232955.14574-1-lyude@redhat.com>
-Sender: stable-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: nouveau@lists.freedesktop.org, Karol Herbst <kherbst@redhat.com>, Thomas Gleixner <tglx@linutronix.de>, Mike Galbraith <efault@gmx.de>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Thierry Reding <treding@nvidia.com>, Ilia Mirkin <imirkin@alum.mit.edu>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20180126012026.kx5ijte72ch67oyi-b9QjgO8OEXPVItvQsEIGlw@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Adam Borowski <kilobyte-b9QjgO8OEXPVItvQsEIGlw@public.gmane.org>, Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Thomas Gleixner <tglx-hfZtesqFncYOwBW4kG4KsQ@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jan 25, 2018 at 06:29:53PM -0500, Lyude Paul wrote:
-> This was made apparent by what appeared to be a regression in the
-> mainline kernel that started introducing suspend/resume issues for
-> nouveau:
-> 
->         a0c9259dc4e1 (irq/matrix: Spread interrupts on allocation)
-
-I'm just a dumb user here, but I confirm:
-CPU: AMD Phenom II X6 1055T, GPU: GTX 560 Ti
-100% fail to resume GPU on 4.15-rc*, 100% ok with your patch.
-
-And that spinning rust hates being repeatedly powered off and on... :/
-
-> ---
-> Changes since v2:
->  - Remove teardown, just reuse pci->irq to indicate when we're tearing
->    down the driver
-> 
->  drivers/gpu/drm/nouveau/nvkm/subdev/pci/base.c | 44 +++++++++++++++++---------
->  1 file changed, 29 insertions(+), 15 deletions(-)
-
-Meow!
--- 
-⢀⣴⠾⠻⢶⣦⠀ 
-⣾⠁⢰⠒⠀⣿⡁ Imagine there are bandits in your house, your kid is bleeding out,
-⢿⡄⠘⠷⠚⠋⠀ the house is on fire, and seven big-ass trumpets are playing in the
-⠈⠳⣄⠀⠀⠀⠀ sky.  Your cat demands food.  The priority should be obvious...
+T24gRnJpLCAyMDE4LTAxLTI2IGF0IDAyOjIwICswMTAwLCBBZGFtIEJvcm93c2tpIHdyb3RlOgo+
+IE9uIFRodSwgSmFuIDI1LCAyMDE4IGF0IDA2OjI5OjUzUE0gLTA1MDAsIEx5dWRlIFBhdWwgd3Jv
+dGU6Cj4gPiBUaGlzIHdhcyBtYWRlIGFwcGFyZW50IGJ5IHdoYXQgYXBwZWFyZWQgdG8gYmUgYSBy
+ZWdyZXNzaW9uIGluIHRoZQo+ID4gbWFpbmxpbmUga2VybmVsIHRoYXQgc3RhcnRlZCBpbnRyb2R1
+Y2luZyBzdXNwZW5kL3Jlc3VtZSBpc3N1ZXMgZm9yCj4gPiBub3V2ZWF1Ogo+ID4gCj4gPiAgICAg
+ICAgIGEwYzkyNTlkYzRlMSAoaXJxL21hdHJpeDogU3ByZWFkIGludGVycnVwdHMgb24gYWxsb2Nh
+dGlvbikKPiAKPiBJJ20ganVzdCBhIGR1bWIgdXNlciBoZXJlLCBidXQgSSBjb25maXJtOgo+IENQ
+VTogQU1EIFBoZW5vbSBJSSBYNiAxMDU1VCwgR1BVOiBHVFggNTYwIFRpCj4gMTAwJSBmYWlsIHRv
+IHJlc3VtZSBHUFUgb24gNC4xNS1yYyosIDEwMCUgb2sgd2l0aCB5b3VyIHBhdGNoLgoKRGl0dG8u
+LiBhbmQgbXkgR1RYIDk4MCB3b3JrcyBhZ2Fpbi4KCgktTWlrZQpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL25vdXZlYXUK
