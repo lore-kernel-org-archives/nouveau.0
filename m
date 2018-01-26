@@ -1,15 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [RFC v2 3/4] drm/nouveau: Add support for BLCG on
- Kepler2
-Date: Fri, 26 Jan 2018 02:53:26 -0500
-Message-ID: <CAKb7Uvg_Tf-uKej0hK5eigdpOtY-uY6dGK8KbX8+7b+dYfXOtA@mail.gmail.com>
-References: <20180126033607.7682-1-lyude@redhat.com>
- <20180126033607.7682-4-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 104421] System freeze on wayland with nouveau on
+ NV137 (GP107)
+Date: Fri, 26 Jan 2018 08:49:04 +0000
+Message-ID: <bug-104421-8800-ajxP3bF52x@http.bugs.freedesktop.org/>
+References: <bug-104421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0833275504=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180126033607.7682-4-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-104421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,179 +17,168 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: Kate Stewart <kstewart-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, Thomas Gleixner <tglx-hfZtesqFncYOwBW4kG4KsQ@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBKYW4gMjUsIDIwMTggYXQgMTA6MzUgUE0sIEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhh
-dC5jb20+IHdyb3RlOgo+IFNhbWUgYXMgdGhlIHByZXZpb3VzIHBhdGNoLCBidXQgZm9yIEtlcGxl
-cjIgbm93Cj4KPiBTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgo+
-IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2ZiLmgg
-IHwgIDEgKwo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvYmFz
-ZS5jIHwgIDggKy0tCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dr
-MTEwLmMgICAgfCA2MiArKysrKysrKysrKysrKysrKysrKwo+ICBkcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9udmttL3N1YmRldi9mYi9LYnVpbGQgICAgIHwgIDEgKwo+ICBkcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9udmttL3N1YmRldi9mYi9nazExMC5jICAgIHwgNzEgKysrKysrKysrKysrKysrKysr
-KysrKysKPiAgNSBmaWxlcyBjaGFuZ2VkLCAxMzkgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMo
-LSkKPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L2ZiL2drMTEwLmMKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9p
-bmNsdWRlL252a20vc3ViZGV2L2ZiLmggYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRl
-L252a20vc3ViZGV2L2ZiLmgKPiBpbmRleCBhZGI3OGY3ZDA4M2EuLjkyYmUwZTUyNjljNiAxMDA2
-NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Zi
-LmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Zi
-LmgKPiBAQCAtNzUsNiArNzUsNyBAQCBpbnQgbWNwODlfZmJfbmV3KHN0cnVjdCBudmttX2Rldmlj
-ZSAqLCBpbnQsIHN0cnVjdCBudmttX2ZiICoqKTsKPiAgaW50IGdmMTAwX2ZiX25ldyhzdHJ1Y3Qg
-bnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV9mYiAqKik7Cj4gIGludCBnZjEwOF9mYl9u
-ZXcoc3RydWN0IG52a21fZGV2aWNlICosIGludCwgc3RydWN0IG52a21fZmIgKiopOwo+ICBpbnQg
-Z2sxMDRfZmJfbmV3KHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQsIHN0cnVjdCBudmttX2ZiICoq
-KTsKPiAraW50IGdrMTEwX2ZiX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3Qg
-bnZrbV9mYiAqKik7Cj4gIGludCBnazIwYV9mYl9uZXcoc3RydWN0IG52a21fZGV2aWNlICosIGlu
-dCwgc3RydWN0IG52a21fZmIgKiopOwo+ICBpbnQgZ20xMDdfZmJfbmV3KHN0cnVjdCBudmttX2Rl
-dmljZSAqLCBpbnQsIHN0cnVjdCBudmttX2ZiICoqKTsKPiAgaW50IGdtMjAwX2ZiX25ldyhzdHJ1
-Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV9mYiAqKik7Cj4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgYi9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jCj4gaW5kZXggNzRi
-ZDA5YjFjODkzLi43NTkwYTMwYjdmZjAgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2UuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMKPiBAQCAtMTgxMiw3ICsxODEyLDcgQEAg
-bnZmMF9jaGlwc2V0ID0gewo+ICAgICAgICAgLmJ1cyA9IGdmMTAwX2J1c19uZXcsCj4gICAgICAg
-ICAuY2xrID0gZ2sxMDRfY2xrX25ldywKPiAgICAgICAgIC5kZXZpbml0ID0gZ2YxMDBfZGV2aW5p
-dF9uZXcsCj4gLSAgICAgICAuZmIgPSBnazEwNF9mYl9uZXcsCj4gKyAgICAgICAuZmIgPSBnazEx
-MF9mYl9uZXcsCj4gICAgICAgICAuZnVzZSA9IGdmMTAwX2Z1c2VfbmV3LAo+ICAgICAgICAgLmdw
-aW8gPSBnazEwNF9ncGlvX25ldywKPiAgICAgICAgIC5pMmMgPSBnazEwNF9pMmNfbmV3LAo+IEBA
-IC0xODUwLDcgKzE4NTAsNyBAQCBudmYxX2NoaXBzZXQgPSB7Cj4gICAgICAgICAuYnVzID0gZ2Yx
-MDBfYnVzX25ldywKPiAgICAgICAgIC5jbGsgPSBnazEwNF9jbGtfbmV3LAo+ICAgICAgICAgLmRl
-dmluaXQgPSBnZjEwMF9kZXZpbml0X25ldywKPiAtICAgICAgIC5mYiA9IGdrMTA0X2ZiX25ldywK
-PiArICAgICAgIC5mYiA9IGdrMTEwX2ZiX25ldywKPiAgICAgICAgIC5mdXNlID0gZ2YxMDBfZnVz
-ZV9uZXcsCj4gICAgICAgICAuZ3BpbyA9IGdrMTA0X2dwaW9fbmV3LAo+ICAgICAgICAgLmkyYyA9
-IGdrMTA0X2kyY19uZXcsCj4gQEAgLTE4ODgsNyArMTg4OCw3IEBAIG52MTA2X2NoaXBzZXQgPSB7
-Cj4gICAgICAgICAuYnVzID0gZ2YxMDBfYnVzX25ldywKPiAgICAgICAgIC5jbGsgPSBnazEwNF9j
-bGtfbmV3LAo+ICAgICAgICAgLmRldmluaXQgPSBnZjEwMF9kZXZpbml0X25ldywKPiAtICAgICAg
-IC5mYiA9IGdrMTA0X2ZiX25ldywKPiArICAgICAgIC5mYiA9IGdrMTEwX2ZiX25ldywKPiAgICAg
-ICAgIC5mdXNlID0gZ2YxMDBfZnVzZV9uZXcsCj4gICAgICAgICAuZ3BpbyA9IGdrMTA0X2dwaW9f
-bmV3LAo+ICAgICAgICAgLmkyYyA9IGdrMTA0X2kyY19uZXcsCj4gQEAgLTE5MjYsNyArMTkyNiw3
-IEBAIG52MTA4X2NoaXBzZXQgPSB7Cj4gICAgICAgICAuYnVzID0gZ2YxMDBfYnVzX25ldywKPiAg
-ICAgICAgIC5jbGsgPSBnazEwNF9jbGtfbmV3LAo+ICAgICAgICAgLmRldmluaXQgPSBnZjEwMF9k
-ZXZpbml0X25ldywKPiAtICAgICAgIC5mYiA9IGdrMTA0X2ZiX25ldywKPiArICAgICAgIC5mYiA9
-IGdrMTEwX2ZiX25ldywKPiAgICAgICAgIC5mdXNlID0gZ2YxMDBfZnVzZV9uZXcsCj4gICAgICAg
-ICAuZ3BpbyA9IGdrMTA0X2dwaW9fbmV3LAo+ICAgICAgICAgLmkyYyA9IGdrMTA0X2kyY19uZXcs
-Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dr
-MTEwLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nazExMC5jCj4g
-aW5kZXggYTM4ZTE5YjYxYzFkLi4zOGQzMzI4ZTQ1ZjEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2sxMTAuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2drMTEwLmMKPiBAQCAtMjIsNiArMjIsNyBAQAo+
-ICAgKiBBdXRob3JzOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+Cj4gICAqLwo+ICAj
-aW5jbHVkZSAiZ2YxMDAuaCIKPiArI2luY2x1ZGUgImdrMTA0LmgiCj4gICNpbmNsdWRlICJjdHhn
-ZjEwMC5oIgo+Cj4gICNpbmNsdWRlIDxzdWJkZXYvdGltZXIuaD4KPiBAQCAtMTU2LDYgKzE1Nyw2
-NiBAQCBnazExMF9ncl9wYWNrX21taW9bXSA9IHsKPiAgICAgICAgIHt9Cj4gIH07Cj4KPiArY29u
-c3Qgc3RydWN0IG52a21fdGhlcm1fY2xrZ2F0ZV9pbml0CgpUaGVzZSBzaG91bGQgYWxsIGJlIHN0
-YXRpYywgbm8/Cgo+ICtnazExMF9jbGtnYXRlX2JsY2dfaW5pdF9za2VkXzBbXSA9IHsKPiArICAg
-ICAgIHsgMHg0MDcwMDAsIDEsIDB4MDAwMDQwNDEgfSwKPiArICAgICAgIHt9Cj4gK307Cj4gKwo+
-ICtjb25zdCBzdHJ1Y3QgbnZrbV90aGVybV9jbGtnYXRlX2luaXQKPiArZ2sxMTBfY2xrZ2F0ZV9i
-bGNnX2luaXRfZ3BjX2djY18wW10gPSB7Cj4gKyAgICAgICB7IDB4NDE5MDIwLCAxLCAweDAwMDAw
-MDQyIH0sCj4gKyAgICAgICB7IDB4NDE5MDM4LCAxLCAweDAwMDAwMDQyIH0sCj4gKyAgICAgICB7
-fQo+ICt9Owo+ICsKPiArY29uc3Qgc3RydWN0IG52a21fdGhlcm1fY2xrZ2F0ZV9pbml0Cj4gK2dr
-MTEwX2Nsa2dhdGVfYmxjZ19pbml0X2dwY19sMWNfMFtdID0gewo+ICsgICAgICAgeyAweDQxOWNk
-NCwgMiwgMHgwMDAwNDA0MiB9LAo+ICsgICAgICAge30KPiArfTsKPiArCj4gK2NvbnN0IHN0cnVj
-dCBudmttX3RoZXJtX2Nsa2dhdGVfaW5pdAo+ICtnazExMF9jbGtnYXRlX2JsY2dfaW5pdF9ncGNf
-bXBfMFtdID0gewo+ICsgICAgICAgeyAweDQxOWZkMCwgMSwgMHgwMDAwNDA0MyB9LAo+ICsgICAg
-ICAgeyAweDQxOWZkOCwgMSwgMHgwMDAwNDA0OSB9LAo+ICsgICAgICAgeyAweDQxOWZlMCwgMiwg
-MHgwMDAwNDA0MiB9LAo+ICsgICAgICAgeyAweDQxOWZmMCwgMSwgMHgwMDAwMDA0NiB9LAo+ICsg
-ICAgICAgeyAweDQxOWZmOCwgMSwgMHgwMDAwNDA0MiB9LAo+ICsgICAgICAgeyAweDQxOWY5MCwg
-MSwgMHgwMDAwNDA0MiB9LAo+ICsgICAgICAge30KPiArfTsKPiArCj4gK2NvbnN0IHN0cnVjdCBu
-dmttX3RoZXJtX2Nsa2dhdGVfcGFjawo+ICtnazExMF9jbGtnYXRlX3BhY2tbXSA9IHsKPiArICAg
-ICAgIHsgZ2sxMDRfY2xrZ2F0ZV9ibGNnX2luaXRfbWFpbl8wIH0sCj4gKyAgICAgICB7IGdrMTA0
-X2Nsa2dhdGVfYmxjZ19pbml0X3JzdHIyZF8wIH0sCj4gKyAgICAgICB7IGdrMTA0X2Nsa2dhdGVf
-YmxjZ19pbml0X3Vua18wIH0sCj4gKyAgICAgICB7IGdrMTA0X2Nsa2dhdGVfYmxjZ19pbml0X2dj
-Y18wIH0sCj4gKyAgICAgICB7IGdrMTEwX2Nsa2dhdGVfYmxjZ19pbml0X3NrZWRfMCB9LAo+ICsg
-ICAgICAgeyBnazEwNF9jbGtnYXRlX2JsY2dfaW5pdF91bmtfMSB9LAo+ICsgICAgICAgeyBnazEw
-NF9jbGtnYXRlX2JsY2dfaW5pdF9ncGNfY3R4Y3RsXzAgfSwKPiArICAgICAgIHsgZ2sxMDRfY2xr
-Z2F0ZV9ibGNnX2luaXRfZ3BjX3Vua18wIH0sCj4gKyAgICAgICB7IGdrMTA0X2Nsa2dhdGVfYmxj
-Z19pbml0X2dwY19lc2V0dXBfMCB9LAo+ICsgICAgICAgeyBnazEwNF9jbGtnYXRlX2JsY2dfaW5p
-dF9ncGNfdHBidXNfMCB9LAo+ICsgICAgICAgeyBnazEwNF9jbGtnYXRlX2JsY2dfaW5pdF9ncGNf
-emN1bGxfMCB9LAo+ICsgICAgICAgeyBnazEwNF9jbGtnYXRlX2JsY2dfaW5pdF9ncGNfdHBjb25m
-XzAgfSwKPiArICAgICAgIHsgZ2sxMDRfY2xrZ2F0ZV9ibGNnX2luaXRfZ3BjX3Vua18xIH0sCj4g
-KyAgICAgICB7IGdrMTEwX2Nsa2dhdGVfYmxjZ19pbml0X2dwY19nY2NfMCB9LAo+ICsgICAgICAg
-eyBnazEwNF9jbGtnYXRlX2JsY2dfaW5pdF9ncGNfZmZiXzAgfSwKPiArICAgICAgIHsgZ2sxMDRf
-Y2xrZ2F0ZV9ibGNnX2luaXRfZ3BjX3RleF8wIH0sCj4gKyAgICAgICB7IGdrMTA0X2Nsa2dhdGVf
-YmxjZ19pbml0X2dwY19wb2x5XzAgfSwKPiArICAgICAgIHsgZ2sxMTBfY2xrZ2F0ZV9ibGNnX2lu
-aXRfZ3BjX2wxY18wIH0sCj4gKyAgICAgICB7IGdrMTA0X2Nsa2dhdGVfYmxjZ19pbml0X2dwY191
-bmtfMiB9LAo+ICsgICAgICAgeyBnazExMF9jbGtnYXRlX2JsY2dfaW5pdF9ncGNfbXBfMCB9LAo+
-ICsgICAgICAgeyBnazEwNF9jbGtnYXRlX2JsY2dfaW5pdF9ncGNfcHBjXzAgfSwKPiArICAgICAg
-IHsgZ2sxMDRfY2xrZ2F0ZV9ibGNnX2luaXRfcm9wX3pyb3BfMCB9LAo+ICsgICAgICAgeyBnazEw
-NF9jbGtnYXRlX2JsY2dfaW5pdF9yb3BfMCB9LAo+ICsgICAgICAgeyBnazEwNF9jbGtnYXRlX2Js
-Y2dfaW5pdF9yb3BfY3JvcF8wIH0sCj4gKyAgICAgICB7IGdrMTA0X2Nsa2dhdGVfYmxjZ19pbml0
-X3B4YmFyXzAgfSwKPiArICAgICAgIHt9Cj4gK307Cj4gKwo+ICAvKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKgo+ICAgKiBQR1JBUEggZW5naW5lL3N1YmRldiBmdW5jdGlvbnMKPiAgICoqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKi8KPiBAQCAtMTkyLDYgKzI1Myw3IEBAIGdrMTEwX2dyID0gewo+ICAgICAgICAg
-LnJvcHMgPSBnZjEwMF9ncl9yb3BzLAo+ICAgICAgICAgLnBwY19uciA9IDIsCj4gICAgICAgICAu
-Z3JjdHggPSAmZ2sxMTBfZ3JjdHgsCj4gKyAgICAgICAuY2xrZ2F0ZV9wYWNrID0gZ2sxMTBfY2xr
-Z2F0ZV9wYWNrLAo+ICAgICAgICAgLnNjbGFzcyA9IHsKPiAgICAgICAgICAgICAgICAgeyAtMSwg
-LTEsIEZFUk1JX1RXT0RfQSB9LAo+ICAgICAgICAgICAgICAgICB7IC0xLCAtMSwgS0VQTEVSX0lO
-TElORV9UT19NRU1PUllfQiB9LAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9udmttL3N1YmRldi9mYi9LYnVpbGQgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1
-YmRldi9mYi9LYnVpbGQKPiBpbmRleCAyNTcxNTMwZTgyZjEuLmI0ZjIyY2NlNWQ0MyAxMDA2NDQK
-PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9LYnVpbGQKPiAr
-KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9LYnVpbGQKPiBAQCAt
-MjIsNiArMjIsNyBAQCBudmttLXkgKz0gbnZrbS9zdWJkZXYvZmIvbWNwODkubwo+ICBudmttLXkg
-Kz0gbnZrbS9zdWJkZXYvZmIvZ2YxMDAubwo+ICBudmttLXkgKz0gbnZrbS9zdWJkZXYvZmIvZ2Yx
-MDgubwo+ICBudmttLXkgKz0gbnZrbS9zdWJkZXYvZmIvZ2sxMDQubwo+ICtudmttLXkgKz0gbnZr
-bS9zdWJkZXYvZmIvZ2sxMTAubwo+ICBudmttLXkgKz0gbnZrbS9zdWJkZXYvZmIvZ2syMGEubwo+
-ICBudmttLXkgKz0gbnZrbS9zdWJkZXYvZmIvZ20xMDcubwo+ICBudmttLXkgKz0gbnZrbS9zdWJk
-ZXYvZmIvZ20yMDAubwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmtt
-L3N1YmRldi9mYi9nazExMC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
-ZmIvZ2sxMTAuYwo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4gaW5kZXggMDAwMDAwMDAwMDAwLi41
-YzhmZWVmMTUxYTQKPiAtLS0gL2Rldi9udWxsCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvZmIvZ2sxMTAuYwo+IEBAIC0wLDAgKzEsNzEgQEAKPiArLyoKPiArICog
-Q29weXJpZ2h0IDIwMTcgUmVkIEhhdCBJbmMuCj4gKyAqCj4gKyAqIFBlcm1pc3Npb24gaXMgaGVy
-ZWJ5IGdyYW50ZWQsIGZyZWUgb2YgY2hhcmdlLCB0byBhbnkgcGVyc29uIG9idGFpbmluZyBhCj4g
-KyAqIGNvcHkgb2YgdGhpcyBzb2Z0d2FyZSBhbmQgYXNzb2NpYXRlZCBkb2N1bWVudGF0aW9uIGZp
-bGVzICh0aGUgIlNvZnR3YXJlIiksCj4gKyAqIHRvIGRlYWwgaW4gdGhlIFNvZnR3YXJlIHdpdGhv
-dXQgcmVzdHJpY3Rpb24sIGluY2x1ZGluZyB3aXRob3V0IGxpbWl0YXRpb24KPiArICogdGhlIHJp
-Z2h0cyB0byB1c2UsIGNvcHksIG1vZGlmeSwgbWVyZ2UsIHB1Ymxpc2gsIGRpc3RyaWJ1dGUsIHN1
-YmxpY2Vuc2UsCj4gKyAqIGFuZC9vciBzZWxsIGNvcGllcyBvZiB0aGUgU29mdHdhcmUsIGFuZCB0
-byBwZXJtaXQgcGVyc29ucyB0byB3aG9tIHRoZQo+ICsgKiBTb2Z0d2FyZSBpcyBmdXJuaXNoZWQg
-dG8gZG8gc28sIHN1YmplY3QgdG8gdGhlIGZvbGxvd2luZyBjb25kaXRpb25zOgo+ICsgKgo+ICsg
-KiBUaGUgYWJvdmUgY29weXJpZ2h0IG5vdGljZSBhbmQgdGhpcyBwZXJtaXNzaW9uIG5vdGljZSBz
-aGFsbCBiZSBpbmNsdWRlZCBpbgo+ICsgKiBhbGwgY29waWVzIG9yIHN1YnN0YW50aWFsIHBvcnRp
-b25zIG9mIHRoZSBTb2Z0d2FyZS4KPiArICoKPiArICogVEhFIFNPRlRXQVJFIElTIFBST1ZJREVE
-ICJBUyBJUyIsIFdJVEhPVVQgV0FSUkFOVFkgT0YgQU5ZIEtJTkQsIEVYUFJFU1MgT1IKPiArICog
-SU1QTElFRCwgSU5DTFVESU5HIEJVVCBOT1QgTElNSVRFRCBUTyBUSEUgV0FSUkFOVElFUyBPRiBN
-RVJDSEFOVEFCSUxJVFksCj4gKyAqIEZJVE5FU1MgRk9SIEEgUEFSVElDVUxBUiBQVVJQT1NFIEFO
-RCBOT05JTkZSSU5HRU1FTlQuICBJTiBOTyBFVkVOVCBTSEFMTAo+ICsgKiBUSEUgQ09QWVJJR0hU
-IEhPTERFUihTKSBPUiBBVVRIT1IoUykgQkUgTElBQkxFIEZPUiBBTlkgQ0xBSU0sIERBTUFHRVMg
-T1IKPiArICogT1RIRVIgTElBQklMSVRZLCBXSEVUSEVSIElOIEFOIEFDVElPTiBPRiBDT05UUkFD
-VCwgVE9SVCBPUiBPVEhFUldJU0UsCj4gKyAqIEFSSVNJTkcgRlJPTSwgT1VUIE9GIE9SIElOIENP
-Tk5FQ1RJT04gV0lUSCBUSEUgU09GVFdBUkUgT1IgVEhFIFVTRSBPUgo+ICsgKiBPVEhFUiBERUFM
-SU5HUyBJTiBUSEUgU09GVFdBUkUuCj4gKyAqCj4gKyAqIEF1dGhvcnM6IEx5dWRlIFBhdWwKPiAr
-ICovCj4gKyNpbmNsdWRlICJnZjEwMC5oIgo+ICsjaW5jbHVkZSAiZ2sxMDQuaCIKPiArI2luY2x1
-ZGUgInJhbS5oIgo+ICsjaW5jbHVkZSA8c3ViZGV2L3RoZXJtLmg+Cj4gKyNpbmNsdWRlIDxzdWJk
-ZXYvZmIuaD4KPiArCj4gKy8qCj4gKyAqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqCj4gKyAqIFBHUkFQ
-SCByZWdpc3RlcnMgZm9yIGNsb2NrZ2F0aW5nCj4gKyAqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqCj4g
-KyAqLwo+ICsKPiArY29uc3Qgc3RydWN0IG52a21fdGhlcm1fY2xrZ2F0ZV9pbml0Cj4gK2drMTEw
-X2ZiX2Nsa2dhdGVfYmxjZ19pbml0X3Vua18wW10gPSB7Cj4gKyAgICAgICB7IDB4MTAwZDEwLCAx
-LCAweDAwMDBjMjQyIH0sCj4gKyAgICAgICB7IDB4MTAwZDMwLCAxLCAweDAwMDBjMjQyIH0sCj4g
-KyAgICAgICB7IDB4MTAwZDNjLCAxLCAweDAwMDAwMjQyIH0sCj4gKyAgICAgICB7IDB4MTAwZDQ4
-LCAxLCAweDAwMDBjMjQyIH0sCj4gKyAgICAgICB7IDB4MTAwZDFjLCAxLCAweDAwMDAwMDQyIH0s
-Cj4gKyAgICAgICB7fQo+ICt9Owo+ICsKPiArc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX3RoZXJt
-X2Nsa2dhdGVfcGFjawo+ICtnazExMF9mYl9jbGtnYXRlX3BhY2tbXSA9IHsKPiArICAgICAgIHsg
-Z2sxMTBfZmJfY2xrZ2F0ZV9ibGNnX2luaXRfdW5rXzAgfSwKPiArICAgICAgIHsgZ2sxMDRfZmJf
-Y2xrZ2F0ZV9ibGNnX2luaXRfdm1fMCB9LAo+ICsgICAgICAgeyBnazEwNF9mYl9jbGtnYXRlX2Js
-Y2dfaW5pdF9tYWluXzAgfSwKPiArICAgICAgIHsgZ2sxMDRfZmJfY2xrZ2F0ZV9ibGNnX2luaXRf
-YmNhc3RfMCB9LAo+ICsgICAgICAge30KPiArfTsKPiArCj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3Qg
-bnZrbV9mYl9mdW5jCj4gK2drMTEwX2ZiID0gewo+ICsgICAgICAgLmR0b3IgPSBnZjEwMF9mYl9k
-dG9yLAo+ICsgICAgICAgLm9uZWluaXQgPSBnZjEwMF9mYl9vbmVpbml0LAo+ICsgICAgICAgLmlu
-aXQgPSBnZjEwMF9mYl9pbml0LAo+ICsgICAgICAgLmluaXRfcGFnZSA9IGdmMTAwX2ZiX2luaXRf
-cGFnZSwKPiArICAgICAgIC5pbnRyID0gZ2YxMDBfZmJfaW50ciwKPiArICAgICAgIC5yYW1fbmV3
-ID0gZ2sxMDRfcmFtX25ldywKPiArICAgICAgIC5kZWZhdWx0X2JpZ3BhZ2UgPSAxNywKPiArICAg
-ICAgIC5jbGtnYXRlX3BhY2sgPSBnazExMF9mYl9jbGtnYXRlX3BhY2ssCj4gK307Cj4gKwo+ICtp
-bnQKPiArZ2sxMTBfZmJfbmV3KHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlLCBpbnQgaW5kZXgs
-IHN0cnVjdCBudmttX2ZiICoqcGZiKQo+ICt7Cj4gKyAgICAgICByZXR1cm4gZ2YxMDBfZmJfbmV3
-XygmZ2sxMTBfZmIsIGRldmljZSwgaW5kZXgsIHBmYik7Cj4gK30KPiAtLQo+IDIuMTQuMwo+Cl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0833275504==
+Content-Type: multipart/alternative; boundary="15169565440.C6c9C.17391"
+Content-Transfer-Encoding: 7bit
+
+
+--15169565440.C6c9C.17391
+Date: Fri, 26 Jan 2018 08:49:04 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
+
+--- Comment #7 from Edwin Foss <mathg9-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org> ---
+Also happens with my machine, Antergos/Gnome/Wayland latest repo update (no
+AUR) with AMD FX8350 and NVIDIA GK104 [GeForce GTX 760] (rev a1)
+
+First crash I was watching YouTube, in journalctl I got this:
+
+kernel: nouveau 0000:01:00.0: Xwayland[1012]: channel 13 killed!
+kernel: nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
+kernel: nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recovery
+kernel: nouveau 0000:01:00.0: fifo: channel 13: killed
+kernel: nouveau 0000:01:00.0: fifo: read fault at 000a5e0000 engine 00 [GR]
+client 04 [GPC0/T1_1] reason 02 [PTE] on channel 13 [007ed50000 Xwayland[10=
+12]]
+kernel: nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000049
+kernel: nouveau 0000:01:00.0: gr: TRAP ch 13 [007ed50000 Xwayland[1012]]
+kernel: nouveau 0000:01:00.0: gr: GPC2/TPC1/TEX: 80000009
+kernel: nouveau 0000:01:00.0: gr: GPC2/TPC0/TEX: 80000009
+kernel: nouveau 0000:01:00.0: gr: GPC1/TPC1/TEX: 80000009
+kernel: nouveau 0000:01:00.0: gr: GPC1/TPC0/TEX: 80000009
+kernel: nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000009
+kernel: nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000009
+
+
+Second time I was doing random things and I got this
+
+kernel: nouveau 0000:01:00.0: Xwayland[1009]: channel 3 killed!
+kernel: nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
+kernel: nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recovery
+kernel: nouveau 0000:01:00.0: fifo: channel 3: killed
+kernel: nouveau 0000:01:00.0: fifo: read fault at 0002de2000 engine 00 [GR]
+client 0f [GPC1/PROP_0] reason 02 [PTE] on channel 3 [007f82e000
+Xwayland[1009]]
+kernel: nouveau 0000:01:00.0: gr: GPC2/TPC1/MP trap: global 00000004
+[MULTIPLE_WARP_ERRORS] warp 3000d [OOR_REG]
+kernel: nouveau 0000:01:00.0: gr: TRAP ch 3 [007f82e000 Xwayland[1009]]
+
+
+Third time I got this which flooded my log with 500.000+ lines of same thing
+
+kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 06 []
+
+
+I hope this help to find some fix, best regards
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15169565440.C6c9C.17391
+Date: Fri, 26 Jan 2018 08:49:04 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421#c7">Commen=
+t # 7</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+mathg9&#64;outlook.com" title=3D"Edwin Foss &lt;mathg9&#64;outlook.com&gt;"=
+> <span class=3D"fn">Edwin Foss</span></a>
+</span></b>
+        <pre>Also happens with my machine, Antergos/Gnome/Wayland latest re=
+po update (no
+AUR) with AMD FX8350 and NVIDIA GK104 [GeForce GTX 760] (rev a1)
+
+First crash I was watching YouTube, in journalctl I got this:
+
+kernel: nouveau 0000:01:00.0: Xwayland[1012]: channel 13 killed!
+kernel: nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
+kernel: nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recovery
+kernel: nouveau 0000:01:00.0: fifo: channel 13: killed
+kernel: nouveau 0000:01:00.0: fifo: read fault at 000a5e0000 engine 00 [GR]
+client 04 [GPC0/T1_1] reason 02 [PTE] on channel 13 [007ed50000 Xwayland[10=
+12]]
+kernel: nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000049
+kernel: nouveau 0000:01:00.0: gr: TRAP ch 13 [007ed50000 Xwayland[1012]]
+kernel: nouveau 0000:01:00.0: gr: GPC2/TPC1/TEX: 80000009
+kernel: nouveau 0000:01:00.0: gr: GPC2/TPC0/TEX: 80000009
+kernel: nouveau 0000:01:00.0: gr: GPC1/TPC1/TEX: 80000009
+kernel: nouveau 0000:01:00.0: gr: GPC1/TPC0/TEX: 80000009
+kernel: nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000009
+kernel: nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000009
+
+
+Second time I was doing random things and I got this
+
+kernel: nouveau 0000:01:00.0: Xwayland[1009]: channel 3 killed!
+kernel: nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
+kernel: nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recovery
+kernel: nouveau 0000:01:00.0: fifo: channel 3: killed
+kernel: nouveau 0000:01:00.0: fifo: read fault at 0002de2000 engine 00 [GR]
+client 0f [GPC1/PROP_0] reason 02 [PTE] on channel 3 [007f82e000
+Xwayland[1009]]
+kernel: nouveau 0000:01:00.0: gr: GPC2/TPC1/MP trap: global 00000004
+[MULTIPLE_WARP_ERRORS] warp 3000d [OOR_REG]
+kernel: nouveau 0000:01:00.0: gr: TRAP ch 3 [007f82e000 Xwayland[1009]]
+
+
+Third time I got this which flooded my log with 500.000+ lines of same thing
+
+kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 06 []
+
+
+I hope this help to find some fix, best regards</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15169565440.C6c9C.17391--
+
+--===============0833275504==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0833275504==--
