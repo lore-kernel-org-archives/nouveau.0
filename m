@@ -1,141 +1,122 @@
-From: Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/therm/gp100: Do not report
- temperature when subdev is shadowed
-Date: Thu, 25 Jan 2018 23:36:47 -0500
-Message-ID: <CA+iOQUFEcTL4o4GYkDE5jh=Nwdo2c7e0Ar1-owk6Ci+uqpwexg@mail.gmail.com>
-References: <20180125181626.3584-1-tobias.johannes.klausmann@mni.thm.de>
+From: Neil Armstrong <narmstrong-rdvid1DuHRBWk0Htik3J/w@public.gmane.org>
+Subject: Re: [PATCH 5/5] drm: Don't pass clip to
+ drm_atomic_helper_check_plane_state()
+Date: Fri, 26 Jan 2018 06:23:41 +0100
+Message-ID: <f9c154e9-afa9-ae58-11fd-c8b5489caccb@baylibre.com>
+References: <20180123170857.13818-1-ville.syrjala@linux.intel.com>
+ <20180123170857.13818-5-ville.syrjala@linux.intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0377260281=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180125181626.3584-1-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20180123170857.13818-5-ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/freedreno>,
+ <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/freedreno>
+List-Post: <mailto:freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/freedreno>,
+ <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Freedreno" <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ville Syrjala <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko-4mtYJXux2i+zQB+pC5nmwQ@public.gmane.org>, Gustavo Padovan <gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org>, Liviu Dudau <liviu.dudau-5wv7dgnIgG8@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Laurent Pinchart <laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, Sinclair Yeh <syeh-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, VMware Graphics <linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, CK Hu <ck.hu-NuS5LvNUpcJWk0Htik3J/w@public.gmane.org>, Mali DP Maintainers <malidp-VeJGdqYn5oNWk0Htik3J/w@public.gmane.org>, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Archit Taneja <architt-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>, Russell King <rmk+kernel-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-amlogic-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Sandy Huang <hjc-TNX95d0MmH7DzftRWevZcw@public.gmane.org>, linux-renesas-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Rob Clark <robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Philipp
 List-Id: nouveau.vger.kernel.org
 
---===============0377260281==
-Content-Type: multipart/alternative; boundary="94eb2c08ed98ca33fa0563a67166"
-
---94eb2c08ed98ca33fa0563a67166
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On 25 January 2018 at 13:16, Tobias Klausmann <
-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> wrote:
-
-> This fixes wrong temperature outputs e.g. 511=C2=B0C if the card is aslee=
-p.
->
-> Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
->
-
-LGTM,
-
-Reviewed-by: Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-
-
-> ---
->  drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c
-> b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c
-> index 9f0dea3f61dc..45d0ec632b5a 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/therm/gp100.c
-> @@ -32,8 +32,10 @@ gp100_temp_get(struct nvkm_therm *therm)
->         u32 inttemp =3D (tsensor & 0x0001fff8);
->
->         /* device SHADOWed */
-> -       if (tsensor & 0x40000000)
-> +       if (tsensor & 0x40000000) {
->                 nvkm_trace(subdev, "reading temperature from SHADOWed
-> sensor\n");
-> +               return -ENODEV;
-> +       }
->
->         /* device valid */
->         if (tsensor & 0x20000000)
-> --
-> 2.16.1
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
->
-
---94eb2c08ed98ca33fa0563a67166
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">On 25 January 2018 at 13:16, Tobias Klausmann <span dir=3D=
-"ltr">&lt;<a href=3D"mailto:tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org" target=3D=
-"_blank">tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org</a>&gt;</span> wrote:<br><div=
- class=3D"gmail_extra"><div class=3D"gmail_quote"><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
-4,204);padding-left:1ex">This fixes wrong temperature outputs e.g. 511=C2=
-=B0C if the card is asleep.<br>
-<br>
-Signed-off-by: Tobias Klausmann &lt;<a href=3D"mailto:tobias.johannes.klaus=
-mann-AqjdNwhu20eELgA04lAiVw@public.gmane.org">tobias.johannes.klausmann@<wbr>mni.thm.de</a>&gt;<br></blo=
-ckquote><div><br></div><div>LGTM,<br><br><span class=3D"gmail-il"><span cla=
-ss=3D"gmail-il">Reviewed</span>-<span class=3D"gmail-il">by</span>: Rhys</s=
-pan> Kidd &lt;<a href=3D"mailto:rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&=
-gt;<br>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
----<br>
-=C2=A0drivers/gpu/drm/nouveau/nvkm/<wbr>subdev/therm/gp100.c | 4 +++-<br>
-=C2=A01 file changed, 3 insertions(+), 1 deletion(-)<br>
-<br>
-diff --git a/drivers/gpu/drm/nouveau/<wbr>nvkm/subdev/therm/gp100.c b/drive=
-rs/gpu/drm/nouveau/<wbr>nvkm/subdev/therm/gp100.c<br>
-index 9f0dea3f61dc..45d0ec632b5a 100644<br>
---- a/drivers/gpu/drm/nouveau/<wbr>nvkm/subdev/therm/gp100.c<br>
-+++ b/drivers/gpu/drm/nouveau/<wbr>nvkm/subdev/therm/gp100.c<br>
-@@ -32,8 +32,10 @@ gp100_temp_get(struct nvkm_therm *therm)<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 u32 inttemp =3D (tsensor &amp; 0x0001fff8);<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /* device SHADOWed */<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0if (tsensor &amp; 0x40000000)<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0if (tsensor &amp; 0x40000000) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 nvkm_trace(subdev, =
-&quot;reading temperature from SHADOWed sensor\n&quot;);<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return -ENODEV;<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /* device valid */<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (tsensor &amp; 0x20000000)<br>
-<span class=3D"gmail-HOEnZb"><font color=3D"#888888">--<br>
-2.16.1<br>
-<br>
-______________________________<wbr>_________________<br>
-Nouveau mailing list<br>
-<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org=
-org</a><br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/nouveau" rel=3D"n=
-oreferrer" target=3D"_blank">https://lists.freedesktop.org/<wbr>mailman/lis=
-tinfo/nouveau</a><br>
-</font></span></blockquote></div><br></div></div>
-
---94eb2c08ed98ca33fa0563a67166--
-
---===============0377260281==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0377260281==--
+T24gMjMvMDEvMjAxOCAxODowOCwgVmlsbGUgU3lyamFsYSB3cm90ZToKPiBGcm9tOiBWaWxsZSBT
+eXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+IAo+IE1vdmUgdGhlIHBs
+YW5lIGNsaXAgcmVjdGFuZ2xlIGhhbmRsaW5nIGludG8KPiBkcm1fYXRvbWljX2hlbHBlcl9jaGVj
+a19wbGFuZV9zdGF0ZSgpLiBEcml2ZXJzIG5vIGxvbmdlcgo+IGhhdmUgdG8gd29ycnkgYWJvdXQg
+c3VjaCBtdW5kYW5lIGRldGFpbHMuCj4gCj4gdjI6IENvbnZlcnQgYXJtYWRhLCByY2FyLCBhbmQg
+c3VuNGkgYXMgd2VsbAo+IAo+IENjOiBMaXZpdSBEdWRhdSA8bGl2aXUuZHVkYXVAYXJtLmNvbT4K
+PiBDYzogQnJpYW4gU3RhcmtleSA8YnJpYW4uc3RhcmtleUBhcm0uY29tPgo+IENjOiBNYWxpIERQ
+IE1haW50YWluZXJzIDxtYWxpZHBAZm9zcy5hcm0uY29tPgo+IENjOiBEYW5pZWwgVmV0dGVyIDxk
+YW5pZWwudmV0dGVyQGludGVsLmNvbT4KPiBDYzogR3VzdGF2byBQYWRvdmFuIDxndXN0YXZvQHBh
+ZG92YW4ub3JnPgo+IENjOiBTZWFuIFBhdWwgPHNlYW5wYXVsQGNocm9taXVtLm9yZz4KPiBDYzog
+UGhpbGlwcCBaYWJlbCA8cC56YWJlbEBwZW5ndXRyb25peC5kZT4KPiBDYzogQ0sgSHUgPGNrLmh1
+QG1lZGlhdGVrLmNvbT4KPiBDYzogTmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5bGlicmUu
+Y29tPgo+IENjOiBSb2IgQ2xhcmsgPHJvYmRjbGFya0BnbWFpbC5jb20+Cj4gQ2M6IEJlbiBTa2Vn
+Z3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KPiBDYzogTGF1cmVudCBQaW5jaGFydCA8bGF1cmVudC5w
+aW5jaGFydEBpZGVhc29uYm9hcmQuY29tPgo+IENjOiBTYW5keSBIdWFuZyA8aGpjQHJvY2stY2hp
+cHMuY29tPgo+IENjOiAiSGVpa28gU3TDvGJuZXIiIDxoZWlrb0BzbnRlY2guZGU+Cj4gQ2M6IE1h
+eGltZSBSaXBhcmQgPG1heGltZS5yaXBhcmRAZnJlZS1lbGVjdHJvbnMuY29tPgo+IENjOiBUaGll
+cnJ5IFJlZGluZyA8dGhpZXJyeS5yZWRpbmdAZ21haWwuY29tPgo+IENjOiBWTXdhcmUgR3JhcGhp
+Y3MgPGxpbnV4LWdyYXBoaWNzLW1haW50YWluZXJAdm13YXJlLmNvbT4KPiBDYzogU2luY2xhaXIg
+WWVoIDxzeWVoQHZtd2FyZS5jb20+Cj4gQ2M6IFRob21hcyBIZWxsc3Ryb20gPHRoZWxsc3Ryb21A
+dm13YXJlLmNvbT4KPiBDYzogU2hhd24gR3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPgo+IENjOiBB
+cmNoaXQgVGFuZWphIDxhcmNoaXR0QGNvZGVhdXJvcmEub3JnPgo+IENjOiBsaW51eC1hbWxvZ2lj
+QGxpc3RzLmluZnJhZGVhZC5vcmcKPiBDYzogbGludXgtYXJtLW1zbUB2Z2VyLmtlcm5lbC5vcmcK
+PiBDYzogZnJlZWRyZW5vQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IENjOiBub3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwo+IENjOiBsaW51eC1yZW5lc2FzLXNvY0B2Z2VyLmtlcm5lbC5vcmcK
+PiBDYzogbGludXgtdGVncmFAdmdlci5rZXJuZWwub3JnCj4gQ2M6IFJ1c3NlbGwgS2luZyA8cm1r
+K2tlcm5lbEBhcm1saW51eC5vcmcudWs+Cj4gU3VnZ2VzdGVkLWJ5OiBEYW5pZWwgVmV0dGVyIDxk
+YW5pZWxAZmZ3bGwuY2g+Cj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5z
+eXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiBSZXZpZXdlZC1ieTogRGFuaWVsIFZldHRlciA8ZGFu
+aWVsLnZldHRlckBmZndsbC5jaD4KPiBSZXZpZXdlZC1ieTogVGhpZXJyeSBSZWRpbmcgPHRyZWRp
+bmdAbnZpZGlhLmNvbT4KPiBSZXZpZXdlZC1ieTogQXJjaGl0IFRhbmVqYSA8YXJjaGl0dEBjb2Rl
+YXVyb3JhLm9yZz4gI21zbQo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vYXJtL2hkbGNkX2NydGMu
+YyAgICAgICAgICAgIHwgIDcgKy0tLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vYXJtL21hbGlkcF9w
+bGFuZXMuYyAgICAgICAgIHwgIDcgKy0tLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vYXJtYWRhL2Fy
+bWFkYV9jcnRjLmMgICAgICAgIHwgIDggKystLS0tLS0KPiAgZHJpdmVycy9ncHUvZHJtL2FybWFk
+YS9hcm1hZGFfb3ZlcmxheS5jICAgICB8ICA4ICsrLS0tLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9k
+cm1fYXRvbWljX2hlbHBlci5jICAgICAgICAgfCAxMiArKysrKysrLS0tLS0KPiAgZHJpdmVycy9n
+cHUvZHJtL2RybV9wbGFuZV9oZWxwZXIuYyAgICAgICAgICB8IDExICsrKy0tLS0tLS0tCj4gIGRy
+aXZlcnMvZ3B1L2RybS9kcm1fc2ltcGxlX2ttc19oZWxwZXIuYyAgICAgfCAgNiAtLS0tLS0KPiAg
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGlzcGxheS5jICAgICAgICB8IDEyIC0tLS0tLS0t
+LS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaW14L2lwdXYzLXBsYW5lLmMgICAgICAgICAgIHwgIDcg
+Ky0tLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9wbGFuZS5jICAgIHwg
+IDcgKy0tLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fcGxhbmUuYyAgICAgICAg
+IHwgIDcgKy0tLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbXNtL21kcC9tZHA1L21kcDVfcGxhbmUu
+YyAgIHwgMTQgKystLS0tLS0tLS0tLS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9k
+aXNwbGF5LmMgICAgICB8IDEyIC0tLS0tLS0tLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vcmNhci1k
+dS9yY2FyX2R1X3BsYW5lLmMgICAgIHwgIDcgKy0tLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vcm9j
+a2NoaXAvcm9ja2NoaXBfZHJtX3ZvcC5jIHwgIDcgKy0tLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0v
+c3VuNGkvc3VuOGlfdWlfbGF5ZXIuYyAgICAgIHwgIDcgKy0tLS0tLQo+ICBkcml2ZXJzL2dwdS9k
+cm0vc3VuNGkvc3VuOGlfdmlfbGF5ZXIuYyAgICAgIHwgIDcgKy0tLS0tLQo+ICBkcml2ZXJzL2dw
+dS9kcm0vdGVncmEvcGxhbmUuYyAgICAgICAgICAgICAgIHwgIDcgKy0tLS0tLQo+ICBkcml2ZXJz
+L2dwdS9kcm0vdm13Z2Z4L3Ztd2dmeF9rbXMuYyAgICAgICAgIHwgIDcgKy0tLS0tLQo+ICBkcml2
+ZXJzL2dwdS9kcm0venRlL3p4X3BsYW5lLmMgICAgICAgICAgICAgIHwgMTMgKy0tLS0tLS0tLS0t
+LQo+ICBpbmNsdWRlL2RybS9kcm1fYXRvbWljX2hlbHBlci5oICAgICAgICAgICAgIHwgIDEgLQo+
+ICBpbmNsdWRlL2RybS9kcm1fcGxhbmVfaGVscGVyLmggICAgICAgICAgICAgIHwgIDEgLQo+ICAy
+MiBmaWxlcyBjaGFuZ2VkLCAyOCBpbnNlcnRpb25zKCspLCAxNDcgZGVsZXRpb25zKC0pCj4gClsu
+Li5dCgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fcGxhbmUuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9tZXNvbi9tZXNvbl9wbGFuZS5jCj4gaW5kZXggMzgwMWJlZTFmOWU2
+Li5jNzhhM2E1OWY1OGMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21lc29uL21lc29u
+X3BsYW5lLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVzb24vbWVzb25fcGxhbmUuYwo+IEBA
+IC00OSw3ICs0OSw2IEBAIHN0YXRpYyBpbnQgbWVzb25fcGxhbmVfYXRvbWljX2NoZWNrKHN0cnVj
+dCBkcm1fcGxhbmUgKnBsYW5lLAo+ICAJCQkJICAgIHN0cnVjdCBkcm1fcGxhbmVfc3RhdGUgKnN0
+YXRlKQo+ICB7Cj4gIAlzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKmNydGNfc3RhdGU7Cj4gLQlzdHJ1
+Y3QgZHJtX3JlY3QgY2xpcCA9IHsgMCwgfTsKPiAgCj4gIAlpZiAoIXN0YXRlLT5jcnRjKQo+ICAJ
+CXJldHVybiAwOwo+IEBAIC01OCwxMSArNTcsNyBAQCBzdGF0aWMgaW50IG1lc29uX3BsYW5lX2F0
+b21pY19jaGVjayhzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSwKPiAgCWlmIChJU19FUlIoY3J0Y19z
+dGF0ZSkpCj4gIAkJcmV0dXJuIFBUUl9FUlIoY3J0Y19zdGF0ZSk7Cj4gIAo+IC0JaWYgKGNydGNf
+c3RhdGUtPmVuYWJsZSkKPiAtCQlkcm1fbW9kZV9nZXRfaHZfdGltaW5nKCZjcnRjX3N0YXRlLT5t
+b2RlLAo+IC0JCQkJICAgICAgICZjbGlwLngyLCAmY2xpcC55Mik7Cj4gLQo+IC0JcmV0dXJuIGRy
+bV9hdG9taWNfaGVscGVyX2NoZWNrX3BsYW5lX3N0YXRlKHN0YXRlLCBjcnRjX3N0YXRlLCAmY2xp
+cCwKPiArCXJldHVybiBkcm1fYXRvbWljX2hlbHBlcl9jaGVja19wbGFuZV9zdGF0ZShzdGF0ZSwg
+Y3J0Y19zdGF0ZSwKPiAgCQkJCQkJICAgRFJNX1BMQU5FX0hFTFBFUl9OT19TQ0FMSU5HLAo+ICAJ
+CQkJCQkgICBEUk1fUExBTkVfSEVMUEVSX05PX1NDQUxJTkcsCj4gIAkJCQkJCSAgIHRydWUsIHRy
+dWUpOwoKWy4uLl0KCj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2RybV9hdG9taWNfaGVscGVy
+LmggYi9pbmNsdWRlL2RybS9kcm1fYXRvbWljX2hlbHBlci5oCj4gaW5kZXggNDg0MmVlOTQ4NWNl
+Li4yNmFhYmE1OGQ2Y2UgMTAwNjQ0Cj4gLS0tIGEvaW5jbHVkZS9kcm0vZHJtX2F0b21pY19oZWxw
+ZXIuaAo+ICsrKyBiL2luY2x1ZGUvZHJtL2RybV9hdG9taWNfaGVscGVyLmgKPiBAQCAtNDAsNyAr
+NDAsNiBAQCBpbnQgZHJtX2F0b21pY19oZWxwZXJfY2hlY2tfbW9kZXNldChzdHJ1Y3QgZHJtX2Rl
+dmljZSAqZGV2LAo+ICAJCQkJc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlKTsKPiAgaW50
+IGRybV9hdG9taWNfaGVscGVyX2NoZWNrX3BsYW5lX3N0YXRlKHN0cnVjdCBkcm1fcGxhbmVfc3Rh
+dGUgKnBsYW5lX3N0YXRlLAo+ICAJCQkJCWNvbnN0IHN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqY3J0
+Y19zdGF0ZSwKPiAtCQkJCQljb25zdCBzdHJ1Y3QgZHJtX3JlY3QgKmNsaXAsCj4gIAkJCQkJaW50
+IG1pbl9zY2FsZSwKPiAgCQkJCQlpbnQgbWF4X3NjYWxlLAo+ICAJCQkJCWJvb2wgY2FuX3Bvc2l0
+aW9uLAo+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9kcm1fcGxhbmVfaGVscGVyLmggYi9pbmNs
+dWRlL2RybS9kcm1fcGxhbmVfaGVscGVyLmgKPiBpbmRleCA4YWE0OWMwZWNkNGQuLjI4ZDdjZTYy
+MDcyOSAxMDA2NDQKPiAtLS0gYS9pbmNsdWRlL2RybS9kcm1fcGxhbmVfaGVscGVyLmgKPiArKysg
+Yi9pbmNsdWRlL2RybS9kcm1fcGxhbmVfaGVscGVyLmgKPiBAQCAtNDMsNyArNDMsNiBAQCBpbnQg
+ZHJtX3BsYW5lX2hlbHBlcl9jaGVja191cGRhdGUoc3RydWN0IGRybV9wbGFuZSAqcGxhbmUsCj4g
+IAkJCQkgIHN0cnVjdCBkcm1fZnJhbWVidWZmZXIgKmZiLAo+ICAJCQkJICBzdHJ1Y3QgZHJtX3Jl
+Y3QgKnNyYywKPiAgCQkJCSAgc3RydWN0IGRybV9yZWN0ICpkZXN0LAo+IC0JCQkJICBjb25zdCBz
+dHJ1Y3QgZHJtX3JlY3QgKmNsaXAsCj4gIAkJCQkgIHVuc2lnbmVkIGludCByb3RhdGlvbiwKPiAg
+CQkJCSAgaW50IG1pbl9zY2FsZSwKPiAgCQkJCSAgaW50IG1heF9zY2FsZSwKPiAKCkZvciBtZXNv
+biBkcml2ZXIsCgpBY2tlZC1ieTogTmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5bGlicmUu
+Y29tPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpGcmVl
+ZHJlbm8gbWFpbGluZyBsaXN0CkZyZWVkcmVub0BsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9mcmVlZHJlbm8K
