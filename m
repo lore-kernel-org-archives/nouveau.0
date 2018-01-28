@@ -1,14 +1,14 @@
 From: Sasha Levin <Alexander.Levin@microsoft.com>
-Subject: [PATCH AUTOSEL for 3.18 23/25] x86/mm/kmmio: Fix mmiotrace for page
+Subject: [PATCH AUTOSEL for 4.9 46/49] x86/mm/kmmio: Fix mmiotrace for page
  unaligned addresses
-Date: Sun, 28 Jan 2018 22:30:00 +0000
-Message-ID: <20180128222931.7781-23-alexander.levin@microsoft.com>
-References: <20180128222931.7781-1-alexander.levin@microsoft.com>
+Date: Sun, 28 Jan 2018 22:28:07 +0000
+Message-ID: <20180128222727.22404-46-alexander.levin@microsoft.com>
+References: <20180128222727.22404-1-alexander.levin@microsoft.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180128222931.7781-1-alexander.levin@microsoft.com>
+In-Reply-To: <20180128222727.22404-1-alexander.levin@microsoft.com>
 Content-Language: en-US
 Sender: linux-kernel-owner@vger.kernel.org
 To: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "stable@vger.kernel.org" <stable@vger.kernel.org>
@@ -54,10 +54,10 @@ Signed-off-by: Sasha Levin <alexander.levin@microsoft.com>
  2 files changed, 9 insertions(+), 7 deletions(-)
 
 diff --git a/arch/x86/mm/ioremap.c b/arch/x86/mm/ioremap.c
-index af78e50ca6ce..c76ea35fa19f 100644
+index 7aaa2635862d..ecae9ac216fa 100644
 --- a/arch/x86/mm/ioremap.c
 +++ b/arch/x86/mm/ioremap.c
-@@ -296,11 +296,11 @@ void iounmap(volatile void __iomem *addr)
+@@ -347,11 +347,11 @@ void iounmap(volatile void __iomem *addr)
  	    (void __force *)addr < phys_to_virt(ISA_END_ADDRESS))
  		return;
 =20
@@ -72,7 +72,7 @@ index af78e50ca6ce..c76ea35fa19f 100644
  	   ensures there isn't another iounmap for the same address
  	   in parallel. Reuse of the virtual address is prevented by
 diff --git a/arch/x86/mm/kmmio.c b/arch/x86/mm/kmmio.c
-index ddb2244b06a1..76604c8a2a48 100644
+index afc47f5c9531..cadb82be5f36 100644
 --- a/arch/x86/mm/kmmio.c
 +++ b/arch/x86/mm/kmmio.c
 @@ -434,17 +434,18 @@ int register_kmmio_probe(struct kmmio_probe *p)
