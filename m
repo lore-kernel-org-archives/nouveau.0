@@ -1,14 +1,14 @@
 From: Sasha Levin <Alexander.Levin@microsoft.com>
-Subject: [PATCH AUTOSEL for 4.14 095/100] x86/mm/kmmio: Fix mmiotrace for page
+Subject: [PATCH AUTOSEL for 4.4 34/36] x86/mm/kmmio: Fix mmiotrace for page
  unaligned addresses
-Date: Sun, 28 Jan 2018 22:27:02 +0000
-Message-ID: <20180128222547.7398-95-alexander.levin@microsoft.com>
-References: <20180128222547.7398-1-alexander.levin@microsoft.com>
+Date: Sun, 28 Jan 2018 22:28:49 +0000
+Message-ID: <20180128222815.29479-34-alexander.levin@microsoft.com>
+References: <20180128222815.29479-1-alexander.levin@microsoft.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20180128222547.7398-1-alexander.levin@microsoft.com>
+In-Reply-To: <20180128222815.29479-1-alexander.levin@microsoft.com>
 Content-Language: en-US
 Sender: stable-owner@vger.kernel.org
 To: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "stable@vger.kernel.org" <stable@vger.kernel.org>
@@ -54,12 +54,12 @@ Signed-off-by: Sasha Levin <alexander.levin@microsoft.com>
  2 files changed, 9 insertions(+), 7 deletions(-)
 
 diff --git a/arch/x86/mm/ioremap.c b/arch/x86/mm/ioremap.c
-index 34f0e1847dd6..5d4c358778dd 100644
+index b9c78f3bcd67..53ab3f367472 100644
 --- a/arch/x86/mm/ioremap.c
 +++ b/arch/x86/mm/ioremap.c
-@@ -349,11 +349,11 @@ void iounmap(volatile void __iomem *addr)
+@@ -348,11 +348,11 @@ void iounmap(volatile void __iomem *addr)
+ 	    (void __force *)addr < phys_to_virt(ISA_END_ADDRESS))
  		return;
- 	}
 =20
 +	mmiotrace_iounmap(addr);
 +
@@ -72,10 +72,10 @@ index 34f0e1847dd6..5d4c358778dd 100644
  	   ensures there isn't another iounmap for the same address
  	   in parallel. Reuse of the virtual address is prevented by
 diff --git a/arch/x86/mm/kmmio.c b/arch/x86/mm/kmmio.c
-index c21c2ed04612..58477ec3d66d 100644
+index ddb2244b06a1..76604c8a2a48 100644
 --- a/arch/x86/mm/kmmio.c
 +++ b/arch/x86/mm/kmmio.c
-@@ -435,17 +435,18 @@ int register_kmmio_probe(struct kmmio_probe *p)
+@@ -434,17 +434,18 @@ int register_kmmio_probe(struct kmmio_probe *p)
  	unsigned long flags;
  	int ret =3D 0;
  	unsigned long size =3D 0;
@@ -96,7 +96,7 @@ index c21c2ed04612..58477ec3d66d 100644
  	if (!pte) {
  		ret =3D -EINVAL;
  		goto out;
-@@ -454,7 +455,7 @@ int register_kmmio_probe(struct kmmio_probe *p)
+@@ -453,7 +454,7 @@ int register_kmmio_probe(struct kmmio_probe *p)
  	kmmio_count++;
  	list_add_rcu(&p->list, &kmmio_probes);
  	while (size < size_lim) {
@@ -105,7 +105,7 @@ index c21c2ed04612..58477ec3d66d 100644
  			pr_err("Unable to set page fault.\n");
  		size +=3D page_level_size(l);
  	}
-@@ -528,19 +529,20 @@ void unregister_kmmio_probe(struct kmmio_probe *p)
+@@ -527,19 +528,20 @@ void unregister_kmmio_probe(struct kmmio_probe *p)
  {
  	unsigned long flags;
  	unsigned long size =3D 0;
