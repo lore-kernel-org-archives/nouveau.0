@@ -1,16 +1,16 @@
 From: Sasha Levin <Alexander.Levin@microsoft.com>
-Subject: [PATCH AUTOSEL for 4.4 34/36] x86/mm/kmmio: Fix mmiotrace for page
+Subject: [PATCH AUTOSEL for 3.18 23/25] x86/mm/kmmio: Fix mmiotrace for page
  unaligned addresses
-Date: Sun, 28 Jan 2018 22:28:49 +0000
-Message-ID: <20180128222815.29479-34-alexander.levin@microsoft.com>
-References: <20180128222815.29479-1-alexander.levin@microsoft.com>
+Date: Sun, 28 Jan 2018 22:30:00 +0000
+Message-ID: <20180128222931.7781-23-alexander.levin@microsoft.com>
+References: <20180128222931.7781-1-alexander.levin@microsoft.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20180128222815.29479-1-alexander.levin@microsoft.com>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20180128222931.7781-1-alexander.levin@microsoft.com>
 Content-Language: en-US
-Sender: stable-owner@vger.kernel.org
+Sender: linux-kernel-owner@vger.kernel.org
 To: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "stable@vger.kernel.org" <stable@vger.kernel.org>
 Cc: Karol Herbst <kherbst@redhat.com>, Linus Torvalds <torvalds@linux-foundation.org>, Peter Zijlstra <peterz@infradead.org>, Steven Rostedt <rostedt@goodmis.org>, Thomas Gleixner <tglx@linutronix.de>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ingo Molnar <mingo@kernel.org>, Sasha Levin <Alexander.Levin@microsoft.com>
 List-Id: nouveau.vger.kernel.org
@@ -54,10 +54,10 @@ Signed-off-by: Sasha Levin <alexander.levin@microsoft.com>
  2 files changed, 9 insertions(+), 7 deletions(-)
 
 diff --git a/arch/x86/mm/ioremap.c b/arch/x86/mm/ioremap.c
-index b9c78f3bcd67..53ab3f367472 100644
+index af78e50ca6ce..c76ea35fa19f 100644
 --- a/arch/x86/mm/ioremap.c
 +++ b/arch/x86/mm/ioremap.c
-@@ -348,11 +348,11 @@ void iounmap(volatile void __iomem *addr)
+@@ -296,11 +296,11 @@ void iounmap(volatile void __iomem *addr)
  	    (void __force *)addr < phys_to_virt(ISA_END_ADDRESS))
  		return;
 =20
