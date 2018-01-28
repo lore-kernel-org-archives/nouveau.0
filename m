@@ -1,22 +1,13 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: Addressing the problem of noisy GPUs under Nouveau
-Date: Mon, 29 Jan 2018 02:05:03 +0200
-Message-ID: <43a75ab3-b358-9a0c-aa9c-053fa029d430@free.fr>
-References: <4597fd60-59f8-5e45-ec5a-f52c4c6c6260@free.fr>
- <7cad7e2b-e207-03be-b5a6-d036420b42e0@nvidia.com>
- <20171122012909.GA4002@prokofiev.nvidia.com>
- <CAKb7Uvjcbz0_F155xC5T1qXdTgo25Jp57mPAR8txPWTt_ZdYhw@mail.gmail.com>
- <8c630fe4-ee96-2c68-eafb-d243195af29f@free.fr>
- <985ec2c1-df88-622a-8ccb-1246c320e8c3@nvidia.com>
- <f0f5c17c-2bcc-2bee-563a-0bc4b0858869@free.fr>
- <11b5cc0f-24b6-97ca-3942-28381766fdbc@nvidia.com>
- <1b9f324f-0dcd-7eaf-91ae-fadece88a0dd@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
+ ]
+Date: Sun, 28 Jan 2018 21:34:05 +0000
+Message-ID: <bug-100423-8800-VJWnJoAxJW@http.bugs.freedesktop.org/>
+References: <bug-100423-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0103804073=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1b9f324f-0dcd-7eaf-91ae-fadece88a0dd-GANU6spQydw@public.gmane.org>
-Content-Language: fr-xx-moderne
+In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -26,80 +17,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMjkvMDEvMTggMDE6MjQsIE1hcnRpbiBQZXJlcyB3cm90ZToKPiBPbiAyOC8xMS8xNyAwNzoz
-MiwgSm9obiBIdWJiYXJkIHdyb3RlOgo+PiBPbiAxMS8yMy8yMDE3IDAyOjQ4IFBNLCBNYXJ0aW4g
-UGVyZXMgd3JvdGU6Cj4+PiBPbiAyMy8xMS8xNyAxMDowNiwgSm9obiBIdWJiYXJkIHdyb3RlOgo+
-Pj4+IE9uIDExLzIyLzIwMTcgMDU6MDcgUE0sIE1hcnRpbiBQZXJlcyB3cm90ZToKPj4+Pj4gSGV5
-LAo+Pj4+Pgo+Pj4+PiBUaGFua3MgZm9yIHlvdXIgYW5zd2VyLCBBbmR5IQo+Pj4+Pgo+Pj4+PiBP
-biAyMi8xMS8xNyAwNDowNiwgSWxpYSBNaXJraW4gd3JvdGU6Cj4+Pj4+PiBPbiBUdWUsIE5vdiAy
-MSwgMjAxNyBhdCA4OjI5IFBNLCBBbmR5IFJpdGdlciA8YXJpdGdlckBudmlkaWEuY29tPiB3cm90
-ZToKPj4+Pj4+IE1hcnRpbidzIHF1ZXN0aW9uIHdhcyB2ZXJ5IGxvbmcsIGJ1dCBpdCBib2lscyBk
-b3duIHRvIHRoaXM6Cj4+Pj4+Pgo+Pj4+Pj4gSG93IGRvIHdlIGNvbXB1dGUgdGhlIGNvcnJlY3Qg
-dmFsdWVzIHRvIHdyaXRlIGludG8gdGhlIGUxMTQvZTExOCBwd20KPj4+Pj4+IHJlZ2lzdGVycyBi
-YXNlZCBvbiB0aGUgVkJJT1MgY29udGVudHMgYW5kIGN1cnJlbnQgc3RhdGUgb2YgdGhlIGJvYXJk
-Cj4+Pj4+PiAobGlrZSB0ZW1wZXJhdHVyZSkuCj4+Pj4+Cj4+Pj4+IFVuZm9ydHVuYXRlbHksIGl0
-IGNhbiBhbHNvIGJlIHRoZSBlMTFjL2UxMjAgY291cGxlLCBvciAweDIwMGQ4L2RjIG9uCj4+Pj4+
-IEdGMTE5Kywgb3IgMHgyMDBjZC9kMCBvbiBLZXBsZXIrLgo+Pj4+Pgo+Pj4+PiBBdCBsZWFzdCwg
-aXQgbG9va3MgbGlrZSB3ZSBrbm93IHdoaWNoIFBXTSBjb250cm9sZXIgd2UgbmVlZCB0byBkcml2
-ZSwgc28KPj4+Pj4gSSBkaWQgbm90IHdhbnQgdG8gbXVkZHkgdGhlIHdhdGVyIGV2ZW4gbW9yZSBi
-eSBnaXZpbmcgcmVnaXN0ZXIKPj4+Pj4gYWRkcmVzc2VzLCByYXRoZXIgY29uY2VudHJhdGluZyBv
-biB0aGUgcHJvYmxlbSBhdCBoYW5kOiBIb3cgdG8gY29tcHV0ZQo+Pj4+PiB0aGUgZHV0eSB2YWx1
-ZSBmb3IgdGhlIFBXTSBjb250cm9sZXIuCj4+Pj4+Cj4+Pj4+Pgo+Pj4+Pj4gV2UgZ2VuZXJhbGx5
-IGRvIHRoaXMgcmlnaHQsIGJ1dCBhcHBlYXIgdG8gZ2V0IGl0IGV4dHJhLXdyb25nIGZvciBjZXJ0
-YWluIEdQVXMuCj4+Pj4+Cj4+Pj4+IFllcy4uLiBTbyBmYXIsIHdlIGFyZSBhbHdheXMgc2FmZSwg
-YnV0IHVzZXJzIHRlbmQgdG8gbWluZCB3aGVuIHRoZWlyCj4+Pj4+IGNvbXB1dGVyIHNvdW5kIGxp
-a2UgYSBqdW1ibyBqZXQgYXQgdGFrZSBvZmYuLi4gV2hvIHdvdWxkIGhhdmUgdGhvdWdodD8gOkQK
-Pj4+Pj4KPj4+Pj4gQW55d2F5LCBsb29raW5nIGZvcndhcmQgdG8geW91ciBhbnN3ZXIhCj4+Pj4+
-Cj4+Pj4+IENoZWVycywKPj4+Pj4gTWFydGluCj4+Pj4KPj4+Pgo+Pj4+IEhpIE1hcnRpbiwKPj4+
-Pgo+Pj4+IE9uZSBvZiBvdXIgZmlybXdhcmUgZW5naW5lZXJzIHRoaW5rcyB0aGF0IHRoaXMgbG9v
-a3MgYSBsb3QgbGlrZSBQV00gaW52ZXJzaW9uLgo+Pj4+IEZvciBzb21lIFNLVXMsIHRoZSBpbnRl
-cnByZXRhdGlvbiBvZiB0aGUgUFdNIGR1dHkgY3ljbGUgaXMgaW52ZXJ0ZWQuIFRoYXQgCj4+Pj4g
-d291bGQgcHJvYmFibHkgbWFrZSBpdCAqdmVyeSogZGlmZmljdWx0IHRvIGZpbmQgYSBzZW5zaWJs
-ZSBhbGdvcml0aG0gdGhhdCAKPj4+PiBjb3ZlcmVkIGFsbCB0aGUgU0tVcywgZ2l2ZW4gdGhhdCBz
-b21lIGFyZSBpbnZlcnRlZCBhbmQgb3RoZXJzIGFyZSBub3QuCj4+Pj4KPj4+PiBGb3IgdGhlIG5v
-aXN5IEdQVXMsIGEgdmVyeSB1c2VmdWwgZXhwZXJpbWVudCB3b3VsZCBiZSB0byB0cnkgaW52ZXJ0
-aW5nIGl0LCAKPj4+PiBsaWtlIHRoaXM6Cj4+Pj4KPj4+PiAJcHdtRHV0eUN5Y2xlID0gcHdtUGVy
-aW9kIC0gcHdtRHV0eUN5Y2xlOwo+Pj4+Cj4+Pj4gLi4uYW5kIHRoZW4gc2VlIGlmIGZhbiBjb250
-cm9sIHN0YXJ0cyBiZWhhdmluZyBjbG9zZXIgdG8gaG93IHlvdSd2ZSBhY3R1YWxseSAKPj4+PiBw
-cm9ncmFtbWVkIGl0Lgo+Pj4+Cj4+Pj4gV291bGQgdGhhdCBiZSBlYXN5IGVub3VnaCB0byB0cnkg
-b3V0PyBJdCBzaG91bGQgaGVscCBuYXJyb3cgZG93biB0aGUKPj4+PiBwcm9ibGVtIGF0IGxlYXN0
-Lgo+Pj4+Cj4+Pgo+Pj4gSGV5IEpvaG4sCj4+Pgo+Pj4gVW5mb3J0dW5hdGVseSwgd2Uga25vdyBh
-Ym91dCBQV00gaW52ZXJzaW9uLCBhbmQgb25lIGNhbiBrbm93IHdoaWNoIG1vZGUKPj4+IHRvIHVz
-ZSBiYXNlZCBvbiB0aGUgR1BJTyBlbnRyeSBhc3NvY2lhdGVkIHRvIHRoZSBmYW4gKGludmVydGVk
-KS4gV2UgaGF2ZQo+Pj4gaGFkIHN1cHBvcnQgZm9yIHRoaXMgaW4gTm91dmVhdSBmb3IgYSBsb25n
-IHRpbWUuIEF0IHRoZSB2ZXJ5IGxlYXN0LCB0aGlzCj4+PiBpcyBub3QgdGhlIHByb2JsZW0gb24g
-bXkgR0YxMDguCj4+Pgo+Pj4gSSBhbSBjZXJ0YWluIHRoYXQgdGhlIHByb2JsZW0gSSBhbSBzZWVp
-bmcgaXMgcmVsYXRlZCB0byB0aGlzIHZiaW9zIHRhYmxlCj4+PiBJIHdyb3RlIGFib3V0IChCSVQg
-UCwgb2Zmc2V0IDB4MTgpLiBJdCBpcyB1c2VkIHRvIGNvbXB1dGUgd2hhdCBQV00gZHV0eQo+Pj4g
-SSBzaG91bGQgdXNlIGZvciBib3RoIDAgYW5kIDEwMCUgb2YgdGhlIGZhbiBzcGVlZC4KPj4+Cj4+
-PiBDb21wdXRpbmcgdGhlIHZhbHVlIGZvciAwJSBmYW4gc3BlZWQgaXMgZGlmZmljdWx0IGJlY2F1
-c2Ugb2YKPj4+IG5vbi1jb250aW51b3VzIG5hdHVyZSBvZiBzb21lIG9mIHRoZSBmdW5jdGlvbnNb
-MV0sIGJ1dCBJIGNhbiBhbHdheXMKPj4+IG92ZXItYXBwcm94aW1hdGUuIEhvd2V2ZXIsIEkgZmFp
-bGVkIHRvIGFjY3VyYXRlbHkgY29tcHV0ZSB0aGUgZHV0eSBJCj4+PiBuZWVkIHRvIHdyaXRlIHRv
-IGdldCB0aGUgMTAwJSBmYW4gc3BlZWQgKEkgaGF2ZSBjYXNlcyB3aGVyZSBJIGdyZWF0bHkKPj4+
-IG92ZXItZXN0aW1hdGUgaXQuLi4pLgo+Pj4KPj4+IENvdWxkIHlvdSBwbGVhc2UgY2hlY2sgb3V0
-IHRoZSB2YmlvcyB0YWJsZSBJIGFtIHBvaW50aW5nIGF0PyBJIGFtIHF1aXRlCj4+PiBzdXJlIHRo
-YXQgeW91ciBkb2N1bWVudGF0aW9uIHdpbGwgYmUgY2xlYXJlciB0aGFuIG15IGJhYmJsaW5nIDpE
-Cj4+Cj4+IFllcy4gV2Ugd2lsbCBjaGVjayBvbiB0aGlzLiBUaGVyZSBoYXMgYmVlbiBzb21lIHBy
-b2R1Y3RpdmUgZGlzY3Vzc2lvbiAKPj4gaW50ZXJuYWxseSwgYnV0IGl0IHdpbGwgdGFrZSBzb21l
-IG1vcmUgaW52ZXN0aWdhdGlvbi4KPj4KPj4gdGhhbmtzLAo+PiBKb2huIEh1YmJhcmQKPiAKPiBI
-YXZlIHRoZSBwcm9kdWN0aXZlIGRpc2N1c3Npb25zIHBhbm5lZCBvdXQ/CgpPaCwgSSBzZWUgeW91
-IHB1c2hlZCBuZXcgdmJpb3MgZG9jdW1lbnRhdGlvbjoKIDEpCmh0dHA6Ly9kb3dubG9hZC5udmlk
-aWEuY29tL29wZW4tZ3B1LWRvYy9CSU9TLUluZm9ybWF0aW9uLVRhYmxlLzEvQklPUy1JbmZvcm1h
-dGlvbi1UYWJsZS5odG1sCiAyKQpodHRwOi8vZG93bmxvYWQubnZpZGlhLmNvbS9vcGVuLWdwdS1k
-b2MvTWVtb3J5Q2xvY2tUYWJsZS8xL01lbW9yeUNsb2NrVGFibGUuaHRtbAogMykKaHR0cDovL2Rv
-d25sb2FkLm52aWRpYS5jb20vb3Blbi1ncHUtZG9jL01lbW9yeVR3ZWFrVGFibGUvMS9NZW1vcnlU
-d2Vha1RhYmxlLmh0bWwKCklzIHRoZXJlIGFueSBjaGFuY2UgdG8gZ2V0IHRoZSBkb2N1bWVudGF0
-aW9uIG9mIHRoZSAiVGhlcm1hbCBDb29sZXJzClRhYmxlIiwgYW5kIHRoZSAiVGhlcm1hbCBEZXZp
-Y2UgVGFibGUiICh0aGUgbGF0dGVyIGRvZXMgbm90IHNlZW0gc3VwZXIKaW1wb3J0YW50IHRob3Vn
-aCkuCgpBbnl3YXksIHRoYW5rcyBmb3IgdGhlIG5ldyBkb2N1bWVudGF0aW9uLCByZXZlcnNlIGVu
-Z2luZWVyaW5nIG9mIHBvd2VyCm1hbmFnZW1lbnQgd2lsbCBiZSBncmVhdGx5IHNpbXBsaWZpZWQg
-YXMgd2UgaGF2ZSBhIGJldHRlciBpZGVhIHdoaWNoCmJpdHMgd2lsbCBjb250cm9sIHdoYXQuIFRv
-byBiYWQgaXQgd29uJ3QgaGVscCBmb3IgdGhlIGN1cnJlbnQgaXNzdWUKdGhvdWdoLi4uCgpUaGFu
-a3MsCk1hcnRpbgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0103804073==
+Content-Type: multipart/alternative; boundary="15171752450.5ffd1.12027"
+Content-Transfer-Encoding: 7bit
+
+
+--15171752450.5ffd1.12027
+Date: Sun, 28 Jan 2018 21:34:05 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
+
+--- Comment #8 from Bruno Pagani <bruno.n.pagani-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+There is a new one now (10ac08, in addition to 022554):
+```
+[   10.667586] nouveau 0000:01:00.0: enabling device (0006 -> 0007)
+[   10.667788] nouveau 0000:01:00.0: NVIDIA GM107 (117310a2)
+[   10.695951] nouveau 0000:01:00.0: bios: version 82.07.a9.00.0c
+[   10.849391] nouveau 0000:01:00.0: fb: 4096 MiB GDDR5
+[   10.849404] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 02=
+2554
+[ IBUS ]
+[   10.851426] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10=
+ac08
+[ IBUS ]
+[   11.937159] nouveau 0000:01:00.0: DRM: VRAM: 4096 MiB
+[   11.937160] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
+[   11.937163] nouveau 0000:01:00.0: DRM: TMDS table version 2.0
+[   11.937164] nouveau 0000:01:00.0: DRM: DCB version 4.0
+[   11.937165] nouveau 0000:01:00.0: DRM: DCB outp 01: 02811fa6 04420010
+[   11.937167] nouveau 0000:01:00.0: DRM: DCB outp 02: 02011f62 04420010
+[   11.937168] nouveau 0000:01:00.0: DRM: DCB outp 03: 08822fc6 04420010
+[   11.937169] nouveau 0000:01:00.0: DRM: DCB outp 04: 08022f82 04420010
+[   11.937170] nouveau 0000:01:00.0: DRM: DCB conn 01: 00010146
+[   11.937171] nouveau 0000:01:00.0: DRM: DCB conn 02: 01000246
+[   12.126552] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
+[   12.233419] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on
+minor 1
+
+```
+
+Should I open a new issue for this one?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15171752450.5ffd1.12027
+Date: Sun, 28 Jan 2018 21:34:05 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c8">Commen=
+t # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+bruno.n.pagani&#64;gmail.com" title=3D"Bruno Pagani &lt;bruno.n.pagani&#64;=
+gmail.com&gt;"> <span class=3D"fn">Bruno Pagani</span></a>
+</span></b>
+        <pre>There is a new one now (10ac08, in addition to 022554):
+```
+[   10.667586] nouveau 0000:01:00.0: enabling device (0006 -&gt; 0007)
+[   10.667788] nouveau 0000:01:00.0: NVIDIA GM107 (117310a2)
+[   10.695951] nouveau 0000:01:00.0: bios: version 82.07.a9.00.0c
+[   10.849391] nouveau 0000:01:00.0: fb: 4096 MiB GDDR5
+[   10.849404] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 02=
+2554
+[ IBUS ]
+[   10.851426] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10=
+ac08
+[ IBUS ]
+[   11.937159] nouveau 0000:01:00.0: DRM: VRAM: 4096 MiB
+[   11.937160] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
+[   11.937163] nouveau 0000:01:00.0: DRM: TMDS table version 2.0
+[   11.937164] nouveau 0000:01:00.0: DRM: DCB version 4.0
+[   11.937165] nouveau 0000:01:00.0: DRM: DCB outp 01: 02811fa6 04420010
+[   11.937167] nouveau 0000:01:00.0: DRM: DCB outp 02: 02011f62 04420010
+[   11.937168] nouveau 0000:01:00.0: DRM: DCB outp 03: 08822fc6 04420010
+[   11.937169] nouveau 0000:01:00.0: DRM: DCB outp 04: 08022f82 04420010
+[   11.937170] nouveau 0000:01:00.0: DRM: DCB conn 01: 00010146
+[   11.937171] nouveau 0000:01:00.0: DRM: DCB conn 02: 01000246
+[   12.126552] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
+[   12.233419] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on
+minor 1
+
+```
+
+Should I open a new issue for this one?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15171752450.5ffd1.12027--
+
+--===============0103804073==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0103804073==--
