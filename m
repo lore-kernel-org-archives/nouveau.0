@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100660] [NV136/GP106] No voltage/GPU and RAM
- frequency/fan speed reporting for GTX 1060 6GB
-Date: Mon, 29 Jan 2018 17:33:08 +0000
-Message-ID: <bug-100660-8800-BwFJNZiY2T@http.bugs.freedesktop.org/>
-References: <bug-100660-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 103753] Scrolling artifacts in Firefox on GTX 1060
+ 6GB
+Date: Mon, 29 Jan 2018 17:33:27 +0000
+Message-ID: <bug-103753-8800-pzKNN5FRbF@http.bugs.freedesktop.org/>
+References: <bug-103753-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0646557468=="
+Content-Type: multipart/mixed; boundary="===============0204388426=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-103753-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +21,23 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0646557468==
-Content-Type: multipart/alternative; boundary="15172471870.EC3532f.11508"
+--===============0204388426==
+Content-Type: multipart/alternative; boundary="15172472061.c0cB.11478"
 Content-Transfer-Encoding: 7bit
 
 
---15172471870.EC3532f.11508
-Date: Mon, 29 Jan 2018 17:33:07 +0000
+--15172472061.c0cB.11478
+Date: Mon, 29 Jan 2018 17:33:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100660
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103753
 
---- Comment #7 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
-(In reply to caguduzexi from comment #4)
+--- Comment #9 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+(In reply to caguduzexi from comment #8)
 > I wont recommend using/keeping the GP106 (GTX 1060). It cant ever run with
 > free software:
 > https://www.theregister.co.uk/2015/04/15/
@@ -57,14 +57,14 @@ are
 > Blocking the freedom of the users on such way should not be accepted by
 > anyone.
 
-User banned.
+User banned
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15172471870.EC3532f.11508
-Date: Mon, 29 Jan 2018 17:33:07 +0000
+--15172472061.c0cB.11478
+Date: Mon, 29 Jan 2018 17:33:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -79,23 +79,21 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV136/GP106] No voltage/GPU and RAM frequency/fan speed =
-reporting for GTX 1060 6GB"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660#c7">Commen=
-t # 7</a>
+          bz_status_UNCONFIRMED "
+   title=3D"UNCONFIRMED - Scrolling artifacts in Firefox on GTX 1060 6GB"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV136/GP106] No voltage/GPU and RAM frequency/fan speed =
-reporting for GTX 1060 6GB"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660">bug 10066=
-0</a>
+          bz_status_UNCONFIRMED "
+   title=3D"UNCONFIRMED - Scrolling artifacts in Firefox on GTX 1060 6GB"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753">bug 10375=
+3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
 r&gt;"> <span class=3D"fn">Martin Peres</span></a>
 </span></b>
-        <pre>(In reply to caguduzexi from <a href=3D"show_bug.cgi?id=3D1006=
-60#c4">comment #4</a>)
+        <pre>(In reply to caguduzexi from <a href=3D"show_bug.cgi?id=3D1037=
+53#c8">comment #8</a>)
 <span class=3D"quote">&gt; I wont recommend using/keeping the GP106 (GTX 10=
 60). It cant ever run with
 &gt; free software:
@@ -122,7 +120,7 @@ ully
 &gt; Blocking the freedom of the users on such way should not be accepted by
 &gt; anyone.</span >
 
-User banned.</pre>
+User banned</pre>
         </div>
       </p>
 
@@ -136,9 +134,9 @@ User banned.</pre>
     </body>
 </html>=
 
---15172471870.EC3532f.11508--
+--15172472061.c0cB.11478--
 
---===============0646557468==
+--===============0204388426==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -148,4 +146,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0646557468==--
+--===============0204388426==--
