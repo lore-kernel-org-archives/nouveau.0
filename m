@@ -1,13 +1,24 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100660] [NV136/GP106] No voltage/GPU and RAM
- frequency/fan speed reporting for GTX 1060 6GB
-Date: Mon, 29 Jan 2018 16:23:45 +0000
-Message-ID: <bug-100660-8800-xOSom9Qdmg@http.bugs.freedesktop.org/>
-References: <bug-100660-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: Addressing the problem of noisy GPUs under Nouveau
+Date: Mon, 29 Jan 2018 19:24:07 +0200
+Message-ID: <514ce607-888d-3b4b-0cb5-c028540dcf71@free.fr>
+References: <4597fd60-59f8-5e45-ec5a-f52c4c6c6260@free.fr>
+ <7cad7e2b-e207-03be-b5a6-d036420b42e0@nvidia.com>
+ <20171122012909.GA4002@prokofiev.nvidia.com>
+ <CAKb7Uvjcbz0_F155xC5T1qXdTgo25Jp57mPAR8txPWTt_ZdYhw@mail.gmail.com>
+ <8c630fe4-ee96-2c68-eafb-d243195af29f@free.fr>
+ <985ec2c1-df88-622a-8ccb-1246c320e8c3@nvidia.com>
+ <f0f5c17c-2bcc-2bee-563a-0bc4b0858869@free.fr>
+ <11b5cc0f-24b6-97ca-3942-28381766fdbc@nvidia.com>
+ <1b9f324f-0dcd-7eaf-91ae-fadece88a0dd@free.fr>
+ <43a75ab3-b358-9a0c-aa9c-053fa029d430@free.fr>
+ <989d5795-0be7-f1c9-6045-a73f9736830c@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0520438662=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <989d5795-0be7-f1c9-6045-a73f9736830c-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,100 +28,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0520438662==
-Content-Type: multipart/alternative; boundary="15172430251.41C64.3843"
-Content-Transfer-Encoding: 7bit
-
-
---15172430251.41C64.3843
-Date: Mon, 29 Jan 2018 16:23:45 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100660
-
-Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NV137/GP107] No            |[NV136/GP106] No
-                   |voltage/GPU and RAM         |voltage/GPU and RAM
-                   |frequency/fan speed         |frequency/fan speed
-                   |reporting for GTX 1060 6GB  |reporting for GTX 1060 6GB
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15172430251.41C64.3843
-Date: Mon, 29 Jan 2018 16:23:45 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:rhyskidd&=
-#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;"> <span cl=
-ass=3D"fn">Rhys Kidd</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV136/GP106] No voltage/GPU and RAM frequency/fan speed =
-reporting for GTX 1060 6GB"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660">bug 10066=
-0</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>[NV137/GP107] No voltage/GPU and RAM frequency/fan speed rep=
-orting for GTX 1060 6GB
-           </td>
-           <td>[NV136/GP106] No voltage/GPU and RAM frequency/fan speed rep=
-orting for GTX 1060 6GB
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15172430251.41C64.3843--
-
---===============0520438662==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0520438662==--
+T24gMjkvMDEvMTggMDk6NTEsIEpvaG4gSHViYmFyZCB3cm90ZToKPiBPbiAwMS8yOC8yMDE4IDA0
+OjA1IFBNLCBNYXJ0aW4gUGVyZXMgd3JvdGU6Cj4+IE9uIDI5LzAxLzE4IDAxOjI0LCBNYXJ0aW4g
+UGVyZXMgd3JvdGU6Cj4+PiBPbiAyOC8xMS8xNyAwNzozMiwgSm9obiBIdWJiYXJkIHdyb3RlOgo+
+Pj4+IE9uIDExLzIzLzIwMTcgMDI6NDggUE0sIE1hcnRpbiBQZXJlcyB3cm90ZToKPj4+Pj4gT24g
+MjMvMTEvMTcgMTA6MDYsIEpvaG4gSHViYmFyZCB3cm90ZToKPj4+Pj4+IE9uIDExLzIyLzIwMTcg
+MDU6MDcgUE0sIE1hcnRpbiBQZXJlcyB3cm90ZToKPj4+Pj4+PiBIZXksCj4+Pj4+Pj4KPj4+Pj4+
+PiBUaGFua3MgZm9yIHlvdXIgYW5zd2VyLCBBbmR5IQo+Pj4+Pj4+Cj4+Pj4+Pj4gT24gMjIvMTEv
+MTcgMDQ6MDYsIElsaWEgTWlya2luIHdyb3RlOgo+Pj4+Pj4+PiBPbiBUdWUsIE5vdiAyMSwgMjAx
+NyBhdCA4OjI5IFBNLCBBbmR5IFJpdGdlciA8YXJpdGdlckBudmlkaWEuY29tPiB3cm90ZToKPj4+
+Pj4+Pj4gTWFydGluJ3MgcXVlc3Rpb24gd2FzIHZlcnkgbG9uZywgYnV0IGl0IGJvaWxzIGRvd24g
+dG8gdGhpczoKPj4+Pj4+Pj4KPj4+Pj4+Pj4gSG93IGRvIHdlIGNvbXB1dGUgdGhlIGNvcnJlY3Qg
+dmFsdWVzIHRvIHdyaXRlIGludG8gdGhlIGUxMTQvZTExOCBwd20KPj4+Pj4+Pj4gcmVnaXN0ZXJz
+IGJhc2VkIG9uIHRoZSBWQklPUyBjb250ZW50cyBhbmQgY3VycmVudCBzdGF0ZSBvZiB0aGUgYm9h
+cmQKPj4+Pj4+Pj4gKGxpa2UgdGVtcGVyYXR1cmUpLgo+Pj4+Pj4+Cj4+Pj4+Pj4gVW5mb3J0dW5h
+dGVseSwgaXQgY2FuIGFsc28gYmUgdGhlIGUxMWMvZTEyMCBjb3VwbGUsIG9yIDB4MjAwZDgvZGMg
+b24KPj4+Pj4+PiBHRjExOSssIG9yIDB4MjAwY2QvZDAgb24gS2VwbGVyKy4KPj4+Pj4+Pgo+Pj4+
+Pj4+IEF0IGxlYXN0LCBpdCBsb29rcyBsaWtlIHdlIGtub3cgd2hpY2ggUFdNIGNvbnRyb2xlciB3
+ZSBuZWVkIHRvIGRyaXZlLCBzbwo+Pj4+Pj4+IEkgZGlkIG5vdCB3YW50IHRvIG11ZGR5IHRoZSB3
+YXRlciBldmVuIG1vcmUgYnkgZ2l2aW5nIHJlZ2lzdGVyCj4+Pj4+Pj4gYWRkcmVzc2VzLCByYXRo
+ZXIgY29uY2VudHJhdGluZyBvbiB0aGUgcHJvYmxlbSBhdCBoYW5kOiBIb3cgdG8gY29tcHV0ZQo+
+Pj4+Pj4+IHRoZSBkdXR5IHZhbHVlIGZvciB0aGUgUFdNIGNvbnRyb2xlci4KPj4+Pj4+Pgo+Pj4+
+Pj4+Pgo+Pj4+Pj4+PiBXZSBnZW5lcmFsbHkgZG8gdGhpcyByaWdodCwgYnV0IGFwcGVhciB0byBn
+ZXQgaXQgZXh0cmEtd3JvbmcgZm9yIGNlcnRhaW4gR1BVcy4KPj4+Pj4+Pgo+Pj4+Pj4+IFllcy4u
+LiBTbyBmYXIsIHdlIGFyZSBhbHdheXMgc2FmZSwgYnV0IHVzZXJzIHRlbmQgdG8gbWluZCB3aGVu
+IHRoZWlyCj4+Pj4+Pj4gY29tcHV0ZXIgc291bmQgbGlrZSBhIGp1bWJvIGpldCBhdCB0YWtlIG9m
+Zi4uLiBXaG8gd291bGQgaGF2ZSB0aG91Z2h0PyA6RAo+Pj4+Pj4+Cj4+Pj4+Pj4gQW55d2F5LCBs
+b29raW5nIGZvcndhcmQgdG8geW91ciBhbnN3ZXIhCj4+Pj4+Pj4KPj4+Pj4+PiBDaGVlcnMsCj4+
+Pj4+Pj4gTWFydGluCj4+Pj4+Pgo+Pj4+Pj4KPj4+Pj4+IEhpIE1hcnRpbiwKPj4+Pj4+Cj4+Pj4+
+PiBPbmUgb2Ygb3VyIGZpcm13YXJlIGVuZ2luZWVycyB0aGlua3MgdGhhdCB0aGlzIGxvb2tzIGEg
+bG90IGxpa2UgUFdNIGludmVyc2lvbi4KPj4+Pj4+IEZvciBzb21lIFNLVXMsIHRoZSBpbnRlcnBy
+ZXRhdGlvbiBvZiB0aGUgUFdNIGR1dHkgY3ljbGUgaXMgaW52ZXJ0ZWQuIFRoYXQgCj4+Pj4+PiB3
+b3VsZCBwcm9iYWJseSBtYWtlIGl0ICp2ZXJ5KiBkaWZmaWN1bHQgdG8gZmluZCBhIHNlbnNpYmxl
+IGFsZ29yaXRobSB0aGF0IAo+Pj4+Pj4gY292ZXJlZCBhbGwgdGhlIFNLVXMsIGdpdmVuIHRoYXQg
+c29tZSBhcmUgaW52ZXJ0ZWQgYW5kIG90aGVycyBhcmUgbm90Lgo+Pj4+Pj4KPj4+Pj4+IEZvciB0
+aGUgbm9pc3kgR1BVcywgYSB2ZXJ5IHVzZWZ1bCBleHBlcmltZW50IHdvdWxkIGJlIHRvIHRyeSBp
+bnZlcnRpbmcgaXQsIAo+Pj4+Pj4gbGlrZSB0aGlzOgo+Pj4+Pj4KPj4+Pj4+IAlwd21EdXR5Q3lj
+bGUgPSBwd21QZXJpb2QgLSBwd21EdXR5Q3ljbGU7Cj4+Pj4+Pgo+Pj4+Pj4gLi4uYW5kIHRoZW4g
+c2VlIGlmIGZhbiBjb250cm9sIHN0YXJ0cyBiZWhhdmluZyBjbG9zZXIgdG8gaG93IHlvdSd2ZSBh
+Y3R1YWxseSAKPj4+Pj4+IHByb2dyYW1tZWQgaXQuCj4+Pj4+Pgo+Pj4+Pj4gV291bGQgdGhhdCBi
+ZSBlYXN5IGVub3VnaCB0byB0cnkgb3V0PyBJdCBzaG91bGQgaGVscCBuYXJyb3cgZG93biB0aGUK
+Pj4+Pj4+IHByb2JsZW0gYXQgbGVhc3QuCj4+Pj4+Pgo+Pj4+Pgo+Pj4+PiBIZXkgSm9obiwKPj4+
+Pj4KPj4+Pj4gVW5mb3J0dW5hdGVseSwgd2Uga25vdyBhYm91dCBQV00gaW52ZXJzaW9uLCBhbmQg
+b25lIGNhbiBrbm93IHdoaWNoIG1vZGUKPj4+Pj4gdG8gdXNlIGJhc2VkIG9uIHRoZSBHUElPIGVu
+dHJ5IGFzc29jaWF0ZWQgdG8gdGhlIGZhbiAoaW52ZXJ0ZWQpLiBXZSBoYXZlCj4+Pj4+IGhhZCBz
+dXBwb3J0IGZvciB0aGlzIGluIE5vdXZlYXUgZm9yIGEgbG9uZyB0aW1lLiBBdCB0aGUgdmVyeSBs
+ZWFzdCwgdGhpcwo+Pj4+PiBpcyBub3QgdGhlIHByb2JsZW0gb24gbXkgR0YxMDguCj4+Pj4+Cj4+
+Pj4+IEkgYW0gY2VydGFpbiB0aGF0IHRoZSBwcm9ibGVtIEkgYW0gc2VlaW5nIGlzIHJlbGF0ZWQg
+dG8gdGhpcyB2YmlvcyB0YWJsZQo+Pj4+PiBJIHdyb3RlIGFib3V0IChCSVQgUCwgb2Zmc2V0IDB4
+MTgpLiBJdCBpcyB1c2VkIHRvIGNvbXB1dGUgd2hhdCBQV00gZHV0eQo+Pj4+PiBJIHNob3VsZCB1
+c2UgZm9yIGJvdGggMCBhbmQgMTAwJSBvZiB0aGUgZmFuIHNwZWVkLgo+Pj4+Pgo+Pj4+PiBDb21w
+dXRpbmcgdGhlIHZhbHVlIGZvciAwJSBmYW4gc3BlZWQgaXMgZGlmZmljdWx0IGJlY2F1c2Ugb2YK
+Pj4+Pj4gbm9uLWNvbnRpbnVvdXMgbmF0dXJlIG9mIHNvbWUgb2YgdGhlIGZ1bmN0aW9uc1sxXSwg
+YnV0IEkgY2FuIGFsd2F5cwo+Pj4+PiBvdmVyLWFwcHJveGltYXRlLiBIb3dldmVyLCBJIGZhaWxl
+ZCB0byBhY2N1cmF0ZWx5IGNvbXB1dGUgdGhlIGR1dHkgSQo+Pj4+PiBuZWVkIHRvIHdyaXRlIHRv
+IGdldCB0aGUgMTAwJSBmYW4gc3BlZWQgKEkgaGF2ZSBjYXNlcyB3aGVyZSBJIGdyZWF0bHkKPj4+
+Pj4gb3Zlci1lc3RpbWF0ZSBpdC4uLikuCj4+Pj4+Cj4+Pj4+IENvdWxkIHlvdSBwbGVhc2UgY2hl
+Y2sgb3V0IHRoZSB2YmlvcyB0YWJsZSBJIGFtIHBvaW50aW5nIGF0PyBJIGFtIHF1aXRlCj4+Pj4+
+IHN1cmUgdGhhdCB5b3VyIGRvY3VtZW50YXRpb24gd2lsbCBiZSBjbGVhcmVyIHRoYW4gbXkgYmFi
+YmxpbmcgOkQKPj4+Pgo+Pj4+IFllcy4gV2Ugd2lsbCBjaGVjayBvbiB0aGlzLiBUaGVyZSBoYXMg
+YmVlbiBzb21lIHByb2R1Y3RpdmUgZGlzY3Vzc2lvbiAKPj4+PiBpbnRlcm5hbGx5LCBidXQgaXQg
+d2lsbCB0YWtlIHNvbWUgbW9yZSBpbnZlc3RpZ2F0aW9uLgo+Pj4+Cj4+Pj4gdGhhbmtzLAo+Pj4+
+IEpvaG4gSHViYmFyZAo+Pj4KPj4+IEhhdmUgdGhlIHByb2R1Y3RpdmUgZGlzY3Vzc2lvbnMgcGFu
+bmVkIG91dD8KPiAKPiBZZXMsIHdlIGNvbmNsdWRlZCBvdXIgZGlzY3Vzc2lvbnMsIGFuZCBkZWNp
+ZGVkIHRoYXQgSSBzaG91bGQgc3R1ZHkgdGhlIHNpdHVhdGlvbiAKPiBhbmQgd3JpdGUgc29tZSBk
+b2N1bWVudGF0aW9uLiAgSSBqdXN0IGZpbmlzaGVkIG15IHJlc2VhcmNoIGFuZCB3cml0ZXVwIGxh
+dGUgbGFzdCBGcmlkYXksIAo+IHRob3VnaCwgc28gbXkgY29sbGVhZ3VlcyBoYXZlbid0IGhhZCBh
+IGNoYW5jZSB0byByZXZpZXcgaXQuIE5vdCB0byBwdXQgdW5kdWUKPiBwcmVzc3VyZSBvbiB0aGVt
+LCBidXQgSSdtIGhvcGluZyB0aGF0IHdpbGwgZ28gcXVpY2tseSBub3cuIFRoZSBsb25nIHBvbGUg
+aXMKPiBkb25lLiA6KQo+IAo+IEkgd2FzIGdvaW5nIHRvIHdhaXQgdW50aWwgdGhlIHJldmlldyB3
+YXMgZG9uZSwgdG8gcmVzcG9uZCwgYnV0IEkgd2FudGVkIHRvIEFDSyAKPiB0aGlzIGFuZCB0byBs
+ZXQgeW91IGtub3cgdGhhdCBJIGRvIHJlYWxpemUgdGhhdCB0aGUgdGFibGVzIGJlbG93IGFyZSBu
+b3QgZGlyZWN0bHkgCj4gYW5zd2VyaW5nIHlvdXIgcXVlc3Rpb24uCj4gCj4gKFdoYXQgaGFwcGVu
+ZWQgaGVyZSBpczogdGhlIG5ldyB0YWJsZXMgYmVsb3cgYXJlIG5vdCBhY3R1YWxseSB3aGF0IEkn
+dmUgCj4gcGVyc29uYWxseSBiZWVuIHdvcmtpbmcgb247IHRoZXkganVzdCBoYXBwZW4gdG8gYmUg
+YSB2ZXJ5IGdvb2Qgc2V0IG9mIHN1cHBvcnRpbmcgCj4gZG9jdW1lbnRhdGlvbiBpbiB0aGUgZXhh
+Y3Qgc2FtZSBhcmVhLiBPbmUgb2Ygb3VyIHRlYW1tYXRlcyB3YXMgYWxyZWFkeSB3b3JraW5nIAo+
+IG9uIHRoZXNlIGluZGVwZW5kZW50bHksIGFuZCBtYW5hZ2VkIHRvIGdldCB0aGVtIHJlbGVhc2Vk
+LikKClRoYW5rcyBmb3IgdGhlIGluZm9ybWF0aW9uIGFuZCB5b3VyIHdvcmssIGl0IGlzIGdyZWF0
+bHkgYXBwcmVjaWF0ZWQuCgpObyBuZWVkIHRvIGh1cnJ5LCBJIHdpbGwgYmUgYXdheSBmcm9tIGhv
+bWUgZm9yIDIgd2Vla3MuCgpUaGFua3MsCk1hcnRpbgo+IAo+IHRoYW5rcywKPiAKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
+aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
