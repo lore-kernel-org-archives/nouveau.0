@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
- ]
-Date: Mon, 29 Jan 2018 13:11:05 +0000
-Message-ID: <bug-100423-8800-ppCEYfFoTd@http.bugs.freedesktop.org/>
-References: <bug-100423-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 102349] nv4x crashing with plasmashell - gdb log
+ included
+Date: Mon, 29 Jan 2018 13:33:31 +0000
+Message-ID: <bug-102349-8800-oLmMmBq2J7@http.bugs.freedesktop.org/>
+References: <bug-102349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1779724614=="
+Content-Type: multipart/mixed; boundary="===============0007424166=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-102349-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1779724614==
-Content-Type: multipart/alternative; boundary="15172314652.E922fBffc.8970"
+--===============0007424166==
+Content-Type: multipart/alternative; boundary="15172328110.371dFb35.12237"
 Content-Transfer-Encoding: 7bit
 
 
---15172314652.E922fBffc.8970
-Date: Mon, 29 Jan 2018 13:11:05 +0000
+--15172328110.371dFb35.12237
+Date: Mon, 29 Jan 2018 13:33:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102349
 
---- Comment #10 from Bruno Pagani <bruno.n.pagani-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Done: https://bugs.freedesktop.org/show_bug.cgi?id=3D104835
+--- Comment #9 from caguduzexi-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
+Hello? Any help in near future? When would i be able to use the computer as
+expected?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15172314652.E922fBffc.8970
-Date: Mon, 29 Jan 2018 13:11:05 +0000
+--15172328110.371dFb35.12237
+Date: Mon, 29 Jan 2018 13:33:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,23 +61,21 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c10">Comme=
-nt # 10</a>
+   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
-3</a>
+   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349">bug 10234=
+9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bruno.n.pagani&#64;gmail.com" title=3D"Bruno Pagani &lt;bruno.n.pagani&#64;=
-gmail.com&gt;"> <span class=3D"fn">Bruno Pagani</span></a>
+caguduzexi&#64;sharklasers.com" title=3D"caguduzexi&#64;sharklasers.com">ca=
+guduzexi&#64;sharklasers.com</a>
 </span></b>
-        <pre>Done: <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]"
-   href=3D"show_bug.cgi?id=3D104835">https://bugs.freedesktop.org/show_bug.=
-cgi?id=3D104835</a></pre>
+        <pre>Hello? Any help in near future? When would i be able to use th=
+e computer as
+expected?</pre>
         </div>
       </p>
 
@@ -90,9 +89,9 @@ cgi?id=3D104835</a></pre>
     </body>
 </html>=
 
---15172314652.E922fBffc.8970--
+--15172328110.371dFb35.12237--
 
---===============1779724614==
+--===============0007424166==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1779724614==--
+--===============0007424166==--
