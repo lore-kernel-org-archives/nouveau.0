@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100660] [nouveau] No temperature/voltages/GPU and
- RAM frequency/fan speed reporting for GTX 1060 6GB
-Date: Mon, 29 Jan 2018 16:01:46 +0000
-Message-ID: <bug-100660-8800-aps2uoiHal@http.bugs.freedesktop.org/>
+Subject: [Bug 100660] [NV137/GP107] No voltage/GPU and RAM
+ frequency/fan speed reporting for GTX 1060 6GB
+Date: Mon, 29 Jan 2018 16:20:38 +0000
+Message-ID: <bug-100660-8800-SVkJLynB5g@http.bugs.freedesktop.org/>
 References: <bug-100660-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0660531547=="
+Content-Type: multipart/mixed; boundary="===============1761009279=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0660531547==
-Content-Type: multipart/alternative; boundary="15172417060.0c2ceEdfb.816"
+--===============1761009279==
+Content-Type: multipart/alternative; boundary="15172428382.dB25b9.3513"
 Content-Transfer-Encoding: 7bit
 
 
---15172417060.0c2ceEdfb.816
-Date: Mon, 29 Jan 2018 16:01:46 +0000
+--15172428382.dB25b9.3513
+Date: Mon, 29 Jan 2018 16:20:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100660
 
---- Comment #5 from Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> ---
-GPU temperature monitoring is now available in 4.15.
+Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Hopefully the other variables will be added in the future.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[nouveau] No                |[NV137/GP107] No
+                   |temperature/voltages/GPU    |voltage/GPU and RAM
+                   |and RAM frequency/fan speed |frequency/fan speed
+                   |reporting for GTX 1060 6GB  |reporting for GTX 1060 6GB
+
+--- Comment #6 from Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Updated bug report to note Pascal temperature sensor support landed in 4.15.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15172417060.0c2ceEdfb.816
-Date: Mon, 29 Jan 2018 16:01:46 +0000
+--15172428382.dB25b9.3513
+Date: Mon, 29 Jan 2018 16:20:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -57,28 +64,53 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:rhyskidd&=
+#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;"> <span cl=
+ass=3D"fn">Rhys Kidd</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV137/GP107] No voltage/GPU and RAM frequency/fan speed =
+reporting for GTX 1060 6GB"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660">bug 10066=
+0</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Summary</td>
+           <td>[nouveau] No temperature/voltages/GPU and RAM frequency/fan =
+speed reporting for GTX 1060 6GB
+           </td>
+           <td>[NV137/GP107] No voltage/GPU and RAM frequency/fan speed rep=
+orting for GTX 1060 6GB
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [nouveau] No temperature/voltages/GPU and RAM frequency/f=
-an speed reporting for GTX 1060 6GB"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660#c5">Commen=
-t # 5</a>
+   title=3D"NEW - [NV137/GP107] No voltage/GPU and RAM frequency/fan speed =
+reporting for GTX 1060 6GB"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [nouveau] No temperature/voltages/GPU and RAM frequency/f=
-an speed reporting for GTX 1060 6GB"
+   title=3D"NEW - [NV137/GP107] No voltage/GPU and RAM frequency/fan speed =
+reporting for GTX 1060 6GB"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660">bug 10066=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-t.artem&#64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailc=
-ity.com&gt;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
+rhyskidd&#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;">=
+ <span class=3D"fn">Rhys Kidd</span></a>
 </span></b>
-        <pre>GPU temperature monitoring is now available in 4.15.
-
-Hopefully the other variables will be added in the future.</pre>
+        <pre>Updated bug report to note Pascal temperature sensor support l=
+anded in 4.15.</pre>
         </div>
       </p>
 
@@ -92,9 +124,9 @@ Hopefully the other variables will be added in the future.</pre>
     </body>
 </html>=
 
---15172417060.0c2ceEdfb.816--
+--15172428382.dB25b9.3513--
 
---===============0660531547==
+--===============1761009279==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +136,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0660531547==--
+--===============1761009279==--
