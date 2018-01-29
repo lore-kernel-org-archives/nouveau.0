@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101448] [GP106] Kernel crashes while using nouveau
-Date: Mon, 29 Jan 2018 14:06:00 +0000
-Message-ID: <bug-101448-8800-304QYiljD9@http.bugs.freedesktop.org/>
-References: <bug-101448-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101447] Nouveau on GP106 can't work with another
+ framebuffer drivers (possibly uvesafb)
+Date: Mon, 29 Jan 2018 14:06:23 +0000
+Message-ID: <bug-101447-8800-S713lIKZJi@http.bugs.freedesktop.org/>
+References: <bug-101447-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1216344321=="
+Content-Type: multipart/mixed; boundary="===============0635655302=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101448-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101447-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,22 +21,22 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1216344321==
-Content-Type: multipart/alternative; boundary="15172347591.b07c5.17083"
+--===============0635655302==
+Content-Type: multipart/alternative; boundary="15172347831.73BDE8AcA.17083"
 Content-Transfer-Encoding: 7bit
 
 
---15172347591.b07c5.17083
-Date: Mon, 29 Jan 2018 14:05:59 +0000
+--15172347831.73BDE8AcA.17083
+Date: Mon, 29 Jan 2018 14:06:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101448
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101447
 
---- Comment #1 from caguduzexi-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
+--- Comment #2 from caguduzexi-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
 I wont recommend using/keeping the GP106 (GTX 1060). It cant ever run with =
 free
 software:
@@ -61,8 +62,8 @@ one.
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15172347591.b07c5.17083
-Date: Mon, 29 Jan 2018 14:05:59 +0000
+--15172347831.73BDE8AcA.17083
+Date: Mon, 29 Jan 2018 14:06:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,14 +79,16 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [GP106] Kernel crashes while using nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101448#c1">Commen=
-t # 1</a>
+   title=3D"NEW - Nouveau on GP106 can't work with another framebuffer driv=
+ers (possibly uvesafb)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101447#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [GP106] Kernel crashes while using nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101448">bug 10144=
-8</a>
+   title=3D"NEW - Nouveau on GP106 can't work with another framebuffer driv=
+ers (possibly uvesafb)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101447">bug 10144=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 caguduzexi&#64;sharklasers.com" title=3D"caguduzexi&#64;sharklasers.com">ca=
 guduzexi&#64;sharklasers.com</a>
@@ -127,9 +130,9 @@ one.</pre>
     </body>
 </html>=
 
---15172347591.b07c5.17083--
+--15172347831.73BDE8AcA.17083--
 
---===============1216344321==
+--===============0635655302==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -139,4 +142,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1216344321==--
+--===============0635655302==--
