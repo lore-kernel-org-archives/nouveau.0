@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102913] Nouveau on >4.12.12 not loading EDID
-Date: Mon, 29 Jan 2018 17:35:47 +0000
-Message-ID: <bug-102913-8800-JaUlzWaGJC@http.bugs.freedesktop.org/>
-References: <bug-102913-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 103721] [GM107] Frequent freezes with nouveau on
+ Thinkpad P50
+Date: Mon, 29 Jan 2018 21:04:41 +0000
+Message-ID: <bug-103721-8800-qlOlq8PiiV@http.bugs.freedesktop.org/>
+References: <bug-103721-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1805410350=="
+Content-Type: multipart/mixed; boundary="===============0500662884=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-102913-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-103721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,53 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1805410350==
-Content-Type: multipart/alternative; boundary="15172473470.98F9AFCf.11848"
+--===============0500662884==
+Content-Type: multipart/alternative; boundary="15172598816.ed116858E.8375"
 Content-Transfer-Encoding: 7bit
 
 
---15172473470.98F9AFCf.11848
-Date: Mon, 29 Jan 2018 17:35:47 +0000
+--15172598816.ed116858E.8375
+Date: Mon, 29 Jan 2018 21:04:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102913
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103721
 
---- Comment #3 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
-(In reply to caguduzexi from comment #2)
-> Problem still there with GK104 and latest kernel? Also on other linux OS?
-> You could try out for example some ubuntu daily testing iso.
->=20
-> I wont recommend using/keeping the GP102. It cant ever run with free
-> software:
-> https://www.theregister.co.uk/2015/04/15/
-> nvidia_gtx_900_linux_driver_roadbloack/
-> https://www.phoronix.com/scan.php?page=3Dnews_item&px=3DNouveau-XDC2017
-> https://www.phoronix.com/scan.php?page=3Dnews_item&px=3DNouveau-XDC2016-N=
-VIDIA
->=20
-> Sell this crappy GP102 card away and go away from nvidia. Nvidia died with
-> the 780ti card. Its the last end-user card that can be used normaly.
-> Everything else is in some countries even a legal problem. Because the
-> manufacturer (nvidia) blocks the users from beeing able to boot the softw=
-are
-> they want on THEIR hardware - happyly illegal in some countries. Hopefully
-> some layer would sue the heck out of nvidia so that they would have to
-> release the private signing key or close their doors.
-> Blocking the freedom of the users on such way should not be accepted by
-> anyone.
-
-User banned
+--- Comment #9 from Jim Scarborough <jimes-biH1agB2LTysTnJN9+BGXg@public.gmane.org> ---
+This looks very similar to bug 100567.  I don't know enough to flag a
+duplicate, but there appears to be more log data here.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15172473470.98F9AFCf.11848
-Date: Mon, 29 Jan 2018 17:35:47 +0000
+--15172598816.ed116858E.8375
+Date: Mon, 29 Jan 2018 21:04:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -82,50 +61,25 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau on &gt;4.12.12 not loading EDID"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102913#c3">Commen=
-t # 3</a>
+   title=3D"NEW - [GM107] Frequent freezes with nouveau on Thinkpad P50"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau on &gt;4.12.12 not loading EDID"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102913">bug 10291=
-3</a>
+   title=3D"NEW - [GM107] Frequent freezes with nouveau on Thinkpad P50"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721">bug 10372=
+1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
-r&gt;"> <span class=3D"fn">Martin Peres</span></a>
+jimes&#64;hiwaay.net" title=3D"Jim Scarborough &lt;jimes&#64;hiwaay.net&gt;=
+"> <span class=3D"fn">Jim Scarborough</span></a>
 </span></b>
-        <pre>(In reply to caguduzexi from <a href=3D"show_bug.cgi?id=3D1029=
-13#c2">comment #2</a>)
-<span class=3D"quote">&gt; Problem still there with GK104 and latest kernel=
-? Also on other linux OS?
-&gt; You could try out for example some ubuntu daily testing iso.
-&gt;=20
-&gt; I wont recommend using/keeping the GP102. It cant ever run with free
-&gt; software:
-&gt; <a href=3D"https://www.theregister.co.uk/2015/04/15/">https://www.ther=
-egister.co.uk/2015/04/15/</a>
-&gt; nvidia_gtx_900_linux_driver_roadbloack/
-&gt; <a href=3D"https://www.phoronix.com/scan.php?page=3Dnews_item&amp;px=
-=3DNouveau-XDC2017">https://www.phoronix.com/scan.php?page=3Dnews_item&amp;=
-px=3DNouveau-XDC2017</a>
-&gt; <a href=3D"https://www.phoronix.com/scan.php?page=3Dnews_item&amp;px=
-=3DNouveau-XDC2016-NVIDIA">https://www.phoronix.com/scan.php?page=3Dnews_it=
-em&amp;px=3DNouveau-XDC2016-NVIDIA</a>
-&gt;=20
-&gt; Sell this crappy GP102 card away and go away from nvidia. Nvidia died =
-with
-&gt; the 780ti card. Its the last end-user card that can be used normaly.
-&gt; Everything else is in some countries even a legal problem. Because the
-&gt; manufacturer (nvidia) blocks the users from beeing able to boot the so=
-ftware
-&gt; they want on THEIR hardware - happyly illegal in some countries. Hopef=
-ully
-&gt; some layer would sue the heck out of nvidia so that they would have to
-&gt; release the private signing key or close their doors.
-&gt; Blocking the freedom of the users on such way should not be accepted by
-&gt; anyone.</span >
-
-User banned</pre>
+        <pre>This looks very similar to <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"show_bug.cgi?id=3D100567">bug 100567</a>.  I don't know enough t=
+o flag a
+duplicate, but there appears to be more log data here.</pre>
         </div>
       </p>
 
@@ -139,9 +93,9 @@ User banned</pre>
     </body>
 </html>=
 
---15172473470.98F9AFCf.11848--
+--15172598816.ed116858E.8375--
 
---===============1805410350==
+--===============0500662884==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -151,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1805410350==--
+--===============0500662884==--
