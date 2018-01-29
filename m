@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103357] Nouveau - GTX 1060 - Screen doesn't go on
- again after power saving settings set blank screen
-Date: Mon, 29 Jan 2018 14:03:32 +0000
-Message-ID: <bug-103357-8800-4dnPGI3ugZ@http.bugs.freedesktop.org/>
-References: <bug-103357-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 103132] GTX 1060 6GB corrupts screen drawing in
+ Konsole and other apps
+Date: Mon, 29 Jan 2018 14:04:03 +0000
+Message-ID: <bug-103132-8800-lDXhqRKVkj@http.bugs.freedesktop.org/>
+References: <bug-103132-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2080752914=="
+Content-Type: multipart/mixed; boundary="===============1978138057=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103357-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-103132-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,22 +21,22 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2080752914==
-Content-Type: multipart/alternative; boundary="15172346120.fC2D8f.16857"
+--===============1978138057==
+Content-Type: multipart/alternative; boundary="15172346421.bc6E8d.16999"
 Content-Transfer-Encoding: 7bit
 
 
---15172346120.fC2D8f.16857
-Date: Mon, 29 Jan 2018 14:03:32 +0000
+--15172346421.bc6E8d.16999
+Date: Mon, 29 Jan 2018 14:04:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103357
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103132
 
---- Comment #1 from caguduzexi-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
+--- Comment #7 from caguduzexi-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
 I wont recommend using/keeping the GP106 (GTX 1060). It cant ever run with =
 free
 software:
@@ -60,11 +60,10 @@ one.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---15172346120.fC2D8f.16857
-Date: Mon, 29 Jan 2018 14:03:32 +0000
+--15172346421.bc6E8d.16999
+Date: Mon, 29 Jan 2018 14:04:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,16 +79,16 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau - GTX 1060 - Screen doesn't go on again after pow=
-er saving settings set blank screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103357#c1">Commen=
-t # 1</a>
+   title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
+ apps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau - GTX 1060 - Screen doesn't go on again after pow=
-er saving settings set blank screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103357">bug 10335=
-7</a>
+   title=3D"NEW - GTX 1060 6GB corrupts screen drawing in Konsole and other=
+ apps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103132">bug 10313=
+2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 caguduzexi&#64;sharklasers.com" title=3D"caguduzexi&#64;sharklasers.com">ca=
 guduzexi&#64;sharklasers.com</a>
@@ -127,14 +126,13 @@ one.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15172346120.fC2D8f.16857--
+--15172346421.bc6E8d.16999--
 
---===============2080752914==
+--===============1978138057==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -144,4 +142,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2080752914==--
+--===============1978138057==--
