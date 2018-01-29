@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
- G1 Gaming GTX970
-Date: Mon, 29 Jan 2018 14:10:00 +0000
-Message-ID: <bug-89664-8800-rbNDypYAIP@http.bugs.freedesktop.org/>
-References: <bug-89664-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100446] Backlight control not working on Pascal /
+ GP106 using nouveau drivers
+Date: Mon, 29 Jan 2018 14:10:54 +0000
+Message-ID: <bug-100446-8800-t8CztbRnG5@http.bugs.freedesktop.org/>
+References: <bug-100446-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0846790452=="
+Content-Type: multipart/mixed; boundary="===============1091787559=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100446-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +21,24 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0846790452==
-Content-Type: multipart/alternative; boundary="15172349992.6e1B.17959"
+--===============1091787559==
+Content-Type: multipart/alternative; boundary="15172350542.AcFd6.18055"
 Content-Transfer-Encoding: 7bit
 
 
---15172349992.6e1B.17959
-Date: Mon, 29 Jan 2018 14:09:59 +0000
+--15172350542.AcFd6.18055
+Date: Mon, 29 Jan 2018 14:10:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D89664
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100446
 
---- Comment #33 from caguduzexi-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
-I wont recommend using/keeping the GM204 (GTX 970). It cant ever run with f=
-ree
+--- Comment #5 from caguduzexi-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
+I wont recommend using/keeping the GP106 (GTX 1060). It cant ever run with =
+free
 software:
 https://www.theregister.co.uk/2015/04/15/nvidia_gtx_900_linux_driver_roadbl=
 oack/
@@ -46,15 +46,17 @@ https://www.phoronix.com/scan.php?page=3Dnews_item&px=3DNouveau-XDC2017
 https://www.phoronix.com/scan.php?page=3Dnews_item&px=3DNouveau-XDC2016-NVI=
 DIA
 
-Sell this crappy GP102 card away and go away from nvidia. Nvidia died with =
-the
-780ti card. Its the last end-user card that can be used normaly. Everything
-else is in some countries even a legal problem. Because the manufacturer
-(nvidia) blocks the users from beeing able to boot the software they want on
-THEIR hardware - happyly illegal in some countries. Hopefully some layer wo=
-uld
-sue the heck out of nvidia so that they would have to release the private
-signing key or close their doors.
+Sell this crappy GP102 card (in your case the notebook that contains this c=
+rap)
+away and go away from nvidia. Nvidia died with the 780ti card. Its the last
+end-user card that can be used normaly. Everything else is in some countries
+even a legal problem. Because the manufacturer (nvidia) blocks the users fr=
+om
+beeing able to boot the software they want on THEIR hardware - happyly ille=
+gal
+in some countries. Hopefully some layer would sue the heck out of nvidia so
+that they would have to release the private signing key or close their door=
+s.
 Blocking the freedom of the users on such way should not be accepted by any=
 one.
 
@@ -62,8 +64,8 @@ one.
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15172349992.6e1B.17959
-Date: Mon, 29 Jan 2018 14:09:59 +0000
+--15172350542.AcFd6.18055
+Date: Mon, 29 Jan 2018 14:10:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -79,22 +81,22 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
-X970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664#c33">Commen=
-t # 33</a>
+   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
+veau drivers"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GT=
-X970"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89664">bug 89664<=
-/a>
+   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
+veau drivers"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446">bug 10044=
+6</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 caguduzexi&#64;sharklasers.com" title=3D"caguduzexi&#64;sharklasers.com">ca=
 guduzexi&#64;sharklasers.com</a>
 </span></b>
-        <pre>I wont recommend using/keeping the GM204 (GTX 970). It cant ev=
-er run with free
+        <pre>I wont recommend using/keeping the GP106 (GTX 1060). It cant e=
+ver run with free
 software:
 <a href=3D"https://www.theregister.co.uk/2015/04/15/nvidia_gtx_900_linux_dr=
 iver_roadbloack/">https://www.theregister.co.uk/2015/04/15/nvidia_gtx_900_l=
@@ -106,15 +108,17 @@ uveau-XDC2017</a>
 eau-XDC2016-NVIDIA">https://www.phoronix.com/scan.php?page=3Dnews_item&amp;=
 px=3DNouveau-XDC2016-NVIDIA</a>
 
-Sell this crappy GP102 card away and go away from nvidia. Nvidia died with =
-the
-780ti card. Its the last end-user card that can be used normaly. Everything
-else is in some countries even a legal problem. Because the manufacturer
-(nvidia) blocks the users from beeing able to boot the software they want on
-THEIR hardware - happyly illegal in some countries. Hopefully some layer wo=
-uld
-sue the heck out of nvidia so that they would have to release the private
-signing key or close their doors.
+Sell this crappy GP102 card (in your case the notebook that contains this c=
+rap)
+away and go away from nvidia. Nvidia died with the 780ti card. Its the last
+end-user card that can be used normaly. Everything else is in some countries
+even a legal problem. Because the manufacturer (nvidia) blocks the users fr=
+om
+beeing able to boot the software they want on THEIR hardware - happyly ille=
+gal
+in some countries. Hopefully some layer would sue the heck out of nvidia so
+that they would have to release the private signing key or close their door=
+s.
 Blocking the freedom of the users on such way should not be accepted by any=
 one.</pre>
         </div>
@@ -130,9 +134,9 @@ one.</pre>
     </body>
 </html>=
 
---15172349992.6e1B.17959--
+--15172350542.AcFd6.18055--
 
---===============0846790452==
+--===============1091787559==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -142,4 +146,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0846790452==--
+--===============1091787559==--
