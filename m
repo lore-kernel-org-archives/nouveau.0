@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104421] System freeze on wayland with nouveau on
- NV137 (GP107)
-Date: Mon, 29 Jan 2018 11:06:17 +0000
-Message-ID: <bug-104421-8800-HYa6oQqDuB@http.bugs.freedesktop.org/>
-References: <bug-104421-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
+ ]
+Date: Mon, 29 Jan 2018 12:30:27 +0000
+Message-ID: <bug-100423-8800-VwxPkbpAHT@http.bugs.freedesktop.org/>
+References: <bug-100423-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1571975426=="
+Content-Type: multipart/mixed; boundary="===============0731588395=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1571975426==
-Content-Type: multipart/alternative; boundary="15172239771.5E8F.21956"
+--===============0731588395==
+Content-Type: multipart/alternative; boundary="15172290274.B4Ad680.2711"
 Content-Transfer-Encoding: 7bit
 
 
---15172239771.5E8F.21956
-Date: Mon, 29 Jan 2018 11:06:17 +0000
+--15172290274.B4Ad680.2711
+Date: Mon, 29 Jan 2018 12:30:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
 
---- Comment #9 from Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> ---
-After a while this message starts to appear in the log file:
-Jan 29 12:01:52 nyx kernel: nouveau 0000:23:00.0: Xwayland[2952]:
-nv50cal_space: -16
+--- Comment #9 from Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Bruno Pagani from comment #8)
+>=20
+> Should I open a new issue for this one?
+
+Yes please, where there appears a new register on differing hardware family.
+
+It's an easy operation to merge bugs later on should they be due to the same
+underlying cause, but almost impossible to separate them out.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15172239771.5E8F.21956
-Date: Mon, 29 Jan 2018 11:06:17 +0000
+--15172290274.B4Ad680.2711
+Date: Mon, 29 Jan 2018 12:30:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,21 +67,27 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421#c9">Commen=
+   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c9">Commen=
 t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
-1</a>
+   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
+3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jan.public&#64;famvlug.nl" title=3D"Jan Vlug &lt;jan.public&#64;famvlug.nl&=
-gt;"> <span class=3D"fn">Jan Vlug</span></a>
+rhyskidd&#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;">=
+ <span class=3D"fn">Rhys Kidd</span></a>
 </span></b>
-        <pre>After a while this message starts to appear in the log file:
-Jan 29 12:01:52 nyx kernel: nouveau 0000:23:00.0: Xwayland[2952]:
-nv50cal_space: -16</pre>
+        <pre>(In reply to Bruno Pagani from <a href=3D"show_bug.cgi?id=3D10=
+0423#c8">comment #8</a>)
+<span class=3D"quote">&gt;=20
+&gt; Should I open a new issue for this one?</span >
+
+Yes please, where there appears a new register on differing hardware family.
+
+It's an easy operation to merge bugs later on should they be due to the same
+underlying cause, but almost impossible to separate them out.</pre>
         </div>
       </p>
 
@@ -90,9 +101,9 @@ nv50cal_space: -16</pre>
     </body>
 </html>=
 
---15172239771.5E8F.21956--
+--15172290274.B4Ad680.2711--
 
---===============1571975426==
+--===============0731588395==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1571975426==--
+--===============0731588395==--
