@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
- ]
-Date: Mon, 29 Jan 2018 12:30:27 +0000
-Message-ID: <bug-100423-8800-VwxPkbpAHT@http.bugs.freedesktop.org/>
-References: <bug-100423-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98391] [GM107] priv: HUB0: 614900 00800000 (1d408200)
+Date: Mon, 29 Jan 2018 12:35:32 +0000
+Message-ID: <bug-98391-8800-z2h4UDyz6D@http.bugs.freedesktop.org/>
+References: <bug-98391-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0731588395=="
+Content-Type: multipart/mixed; boundary="===============1959310593=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98391-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0731588395==
-Content-Type: multipart/alternative; boundary="15172290274.B4Ad680.2711"
+--===============1959310593==
+Content-Type: multipart/alternative; boundary="15172293320.cF23.3379"
 Content-Transfer-Encoding: 7bit
 
 
---15172290274.B4Ad680.2711
-Date: Mon, 29 Jan 2018 12:30:27 +0000
+--15172293320.cF23.3379
+Date: Mon, 29 Jan 2018 12:35:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98391
 
---- Comment #9 from Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Bruno Pagani from comment #8)
->=20
-> Should I open a new issue for this one?
+Bruno Pagani <bruno.n.pagani-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Yes please, where there appears a new register on differing hardware family.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
-It's an easy operation to merge bugs later on should they be due to the same
-underlying cause, but almost impossible to separate them out.
+--- Comment #1 from Bruno Pagani <bruno.n.pagani-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This message seems gone. Closing as fixed.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15172290274.B4Ad680.2711
-Date: Mon, 29 Jan 2018 12:30:27 +0000
+--15172293320.cF23.3379
+Date: Mon, 29 Jan 2018 12:35:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,32 +61,55 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:bruno.n.p=
+agani&#64;gmail.com" title=3D"Bruno Pagani &lt;bruno.n.pagani&#64;gmail.com=
+&gt;"> <span class=3D"fn">Bruno Pagani</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [GM107] priv: HUB0: 614900 00800000 (1d408200)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98391">bug 98391<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c9">Commen=
-t # 9</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [GM107] priv: HUB0: 614900 00800000 (1d408200)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98391#c1">Comment=
+ # 1</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
-3</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [GM107] priv: HUB0: 614900 00800000 (1d408200)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98391">bug 98391<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rhyskidd&#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;">=
- <span class=3D"fn">Rhys Kidd</span></a>
+bruno.n.pagani&#64;gmail.com" title=3D"Bruno Pagani &lt;bruno.n.pagani&#64;=
+gmail.com&gt;"> <span class=3D"fn">Bruno Pagani</span></a>
 </span></b>
-        <pre>(In reply to Bruno Pagani from <a href=3D"show_bug.cgi?id=3D10=
-0423#c8">comment #8</a>)
-<span class=3D"quote">&gt;=20
-&gt; Should I open a new issue for this one?</span >
-
-Yes please, where there appears a new register on differing hardware family.
-
-It's an easy operation to merge bugs later on should they be due to the same
-underlying cause, but almost impossible to separate them out.</pre>
+        <pre>This message seems gone. Closing as fixed.</pre>
         </div>
       </p>
 
@@ -101,9 +123,9 @@ underlying cause, but almost impossible to separate them out.</pre>
     </body>
 </html>=
 
---15172290274.B4Ad680.2711--
+--15172293320.cF23.3379--
 
---===============0731588395==
+--===============1959310593==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +135,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0731588395==--
+--===============1959310593==--
