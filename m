@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104029] GTX 960 + KDE Plasma Wayland = crash
-Date: Mon, 29 Jan 2018 14:14:39 +0000
-Message-ID: <bug-104029-8800-LcKN6J6Rhg@http.bugs.freedesktop.org/>
-References: <bug-104029-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101887] gtx 970 black screen
+Date: Mon, 29 Jan 2018 14:15:37 +0000
+Message-ID: <bug-101887-8800-qDNGRyCFdx@http.bugs.freedesktop.org/>
+References: <bug-101887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0322923435=="
+Content-Type: multipart/mixed; boundary="===============1292009926=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104029-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,23 +20,23 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0322923435==
-Content-Type: multipart/alternative; boundary="15172352791.4FfC.18223"
+--===============1292009926==
+Content-Type: multipart/alternative; boundary="15172353372.dB274b9.18586"
 Content-Transfer-Encoding: 7bit
 
 
---15172352791.4FfC.18223
-Date: Mon, 29 Jan 2018 14:14:39 +0000
+--15172353372.dB274b9.18586
+Date: Mon, 29 Jan 2018 14:15:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104029
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101887
 
---- Comment #1 from caguduzexi-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
-I wont recommend using/keeping the GM206 (GTX 960). It cant ever run with f=
+--- Comment #17 from caguduzexi-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
+I wont recommend using/keeping the GM204 (GTX 970). It cant ever run with f=
 ree
 software:
 https://www.theregister.co.uk/2015/04/15/nvidia_gtx_900_linux_driver_roadbl=
@@ -45,7 +45,7 @@ https://www.phoronix.com/scan.php?page=3Dnews_item&px=3DNouveau-XDC2017
 https://www.phoronix.com/scan.php?page=3Dnews_item&px=3DNouveau-XDC2016-NVI=
 DIA
 
-Sell this crappy GM206 card away and go away from nvidia. Nvidia died with =
+Sell this crappy GM204 card away and go away from nvidia. Nvidia died with =
 the
 780ti card. Its the last end-user card that can be used normaly. Everything
 else is in some countries even a legal problem. Because the manufacturer
@@ -59,11 +59,10 @@ one.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15172352791.4FfC.18223
-Date: Mon, 29 Jan 2018 14:14:39 +0000
+--15172353372.dB274b9.18586
+Date: Mon, 29 Jan 2018 14:15:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -79,19 +78,19 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GTX 960 + KDE Plasma Wayland =3D crash"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104029#c1">Commen=
-t # 1</a>
+   title=3D"NEW - gtx 970 black screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887#c17">Comme=
+nt # 17</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GTX 960 + KDE Plasma Wayland =3D crash"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104029">bug 10402=
-9</a>
+   title=3D"NEW - gtx 970 black screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101887">bug 10188=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 caguduzexi&#64;sharklasers.com" title=3D"caguduzexi&#64;sharklasers.com">ca=
 guduzexi&#64;sharklasers.com</a>
 </span></b>
-        <pre>I wont recommend using/keeping the GM206 (GTX 960). It cant ev=
+        <pre>I wont recommend using/keeping the GM204 (GTX 970). It cant ev=
 er run with free
 software:
 <a href=3D"https://www.theregister.co.uk/2015/04/15/nvidia_gtx_900_linux_dr=
@@ -104,7 +103,7 @@ uveau-XDC2017</a>
 eau-XDC2016-NVIDIA">https://www.phoronix.com/scan.php?page=3Dnews_item&amp;=
 px=3DNouveau-XDC2016-NVIDIA</a>
 
-Sell this crappy GM206 card away and go away from nvidia. Nvidia died with =
+Sell this crappy GM204 card away and go away from nvidia. Nvidia died with =
 the
 780ti card. Its the last end-user card that can be used normaly. Everything
 else is in some countries even a legal problem. Because the manufacturer
@@ -123,15 +122,14 @@ one.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15172352791.4FfC.18223--
+--15172353372.dB274b9.18586--
 
---===============0322923435==
+--===============1292009926==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -141,4 +139,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0322923435==--
+--===============1292009926==--
