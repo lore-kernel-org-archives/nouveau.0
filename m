@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104652] None of the video outputs are usable for GTX
- 1060 - jerky video every few seconds
-Date: Mon, 29 Jan 2018 17:31:16 +0000
-Message-ID: <bug-104652-8800-79nkuFkOBj@http.bugs.freedesktop.org/>
-References: <bug-104652-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100660] [NV136/GP106] No voltage/GPU and RAM
+ frequency/fan speed reporting for GTX 1060 6GB
+Date: Mon, 29 Jan 2018 17:33:08 +0000
+Message-ID: <bug-100660-8800-BwFJNZiY2T@http.bugs.freedesktop.org/>
+References: <bug-100660-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0546361448=="
+Content-Type: multipart/mixed; boundary="===============0646557468=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104652-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,23 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0546361448==
-Content-Type: multipart/alternative; boundary="15172470762.8DbDed6aF.11287"
+--===============0646557468==
+Content-Type: multipart/alternative; boundary="15172471870.EC3532f.11508"
 Content-Transfer-Encoding: 7bit
 
 
---15172470762.8DbDed6aF.11287
-Date: Mon, 29 Jan 2018 17:31:16 +0000
+--15172471870.EC3532f.11508
+Date: Mon, 29 Jan 2018 17:33:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104652
-
-Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|INVALID                     |---
-             Status|RESOLVED                    |REOPENED
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100660
 
 --- Comment #7 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
-(In reply to caguduzexi from comment #6)
+(In reply to caguduzexi from comment #4)
 > I wont recommend using/keeping the GP106 (GTX 1060). It cant ever run with
 > free software:
 > https://www.theregister.co.uk/2015/04/15/
@@ -64,14 +57,14 @@ are
 > Blocking the freedom of the users on such way should not be accepted by
 > anyone.
 
-User banned and bug-reopened.
+User banned.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15172470762.8DbDed6aF.11287
-Date: Mon, 29 Jan 2018 17:31:16 +0000
+--15172471870.EC3532f.11508
+Date: Mon, 29 Jan 2018 17:33:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -82,59 +75,27 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:martin.pe=
-res&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.fr&gt;"> <=
-span class=3D"fn">Martin Peres</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - None of the video outputs are usable for GTX 1060 - =
-jerky video every few seconds"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104652">bug 10465=
-2</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>INVALID
-           </td>
-           <td>---
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
-           <td>REOPENED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - None of the video outputs are usable for GTX 1060 - =
-jerky video every few seconds"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104652#c7">Commen=
+          bz_status_NEW "
+   title=3D"NEW - [NV136/GP106] No voltage/GPU and RAM frequency/fan speed =
+reporting for GTX 1060 6GB"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660#c7">Commen=
 t # 7</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - None of the video outputs are usable for GTX 1060 - =
-jerky video every few seconds"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104652">bug 10465=
-2</a>
+          bz_status_NEW "
+   title=3D"NEW - [NV136/GP106] No voltage/GPU and RAM frequency/fan speed =
+reporting for GTX 1060 6GB"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100660">bug 10066=
+0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
 r&gt;"> <span class=3D"fn">Martin Peres</span></a>
 </span></b>
-        <pre>(In reply to caguduzexi from <a href=3D"show_bug.cgi?id=3D1046=
-52#c6">comment #6</a>)
+        <pre>(In reply to caguduzexi from <a href=3D"show_bug.cgi?id=3D1006=
+60#c4">comment #4</a>)
 <span class=3D"quote">&gt; I wont recommend using/keeping the GP106 (GTX 10=
 60). It cant ever run with
 &gt; free software:
@@ -161,7 +122,7 @@ ully
 &gt; Blocking the freedom of the users on such way should not be accepted by
 &gt; anyone.</span >
 
-User banned and bug-reopened.</pre>
+User banned.</pre>
         </div>
       </p>
 
@@ -175,9 +136,9 @@ User banned and bug-reopened.</pre>
     </body>
 </html>=
 
---15172470762.8DbDed6aF.11287--
+--15172471870.EC3532f.11508--
 
---===============0546361448==
+--===============0646557468==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -187,4 +148,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0546361448==--
+--===============0646557468==--
