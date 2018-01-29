@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100177] [GM206] Misrendering in XCOM Ennemy Within
-Date: Mon, 29 Jan 2018 14:20:32 +0000
-Message-ID: <bug-100177-8800-4gdN7riPiX@http.bugs.freedesktop.org/>
-References: <bug-100177-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104421] System freeze on wayland with nouveau on
+ NV137 (GP107)
+Date: Mon, 29 Jan 2018 14:57:20 +0000
+Message-ID: <bug-104421-8800-Nf4M2X3BQS@http.bugs.freedesktop.org/>
+References: <bug-104421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1355049640=="
+Content-Type: multipart/mixed; boundary="===============0067153679=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100177-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-104421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,50 +21,101 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1355049640==
-Content-Type: multipart/alternative; boundary="15172356310.4D9B.19369"
+--===============0067153679==
+Content-Type: multipart/alternative; boundary="15172378402.2Ee48eBA.24646"
 Content-Transfer-Encoding: 7bit
 
 
---15172356310.4D9B.19369
-Date: Mon, 29 Jan 2018 14:20:31 +0000
+--15172378402.2Ee48eBA.24646
+Date: Mon, 29 Jan 2018 14:57:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100177
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
 
---- Comment #5 from caguduzexi-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
-I wont recommend using/keeping the GM206 (GTX 960). It cant ever run with f=
-ree
-software:
-https://www.theregister.co.uk/2015/04/15/nvidia_gtx_900_linux_driver_roadbl=
-oack/
-https://www.phoronix.com/scan.php?page=3Dnews_item&px=3DNouveau-XDC2017
-https://www.phoronix.com/scan.php?page=3Dnews_item&px=3DNouveau-XDC2016-NVI=
-DIA
+--- Comment #10 from Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> ---
+And more logging:
 
-Sell this crappy GM206 card away and go away from nvidia. Nvidia died with =
-the
-780ti card. Its the last end-user card that can be used normaly. Everything
-else is in some countries even a legal problem. Because the manufacturer
-(nvidia) blocks the users from beeing able to boot the software they want on
-THEIR hardware - happyly illegal in some countries. Hopefully some layer wo=
-uld
-sue the heck out of nvidia so that they would have to release the private
-signing key or close their doors.
-Blocking the freedom of the users on such way should not be accepted by any=
-one.
+Jan 29 14:54:02 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:54:02 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: TRAP ch 16 [00fde04000
+Xwayland[10869]]
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC0/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC1/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC2/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC1/TPC2/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: read fault at
+0002df1000 engine 00 [GR] client 01 [GPC0/T1_0] reason 02 [PTE] on channel =
+16
+[00fde04000 Xwayland[10869]]
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: channel 16: killed
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: runlist 0: scheduled
+for recovery
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: engine 0: scheduled=
+ for
+recovery
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: Xwayland[10869]: channel =
+16
+killed!
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: TRAP ch 15 [00fde39000
+systemd-logind[2004]]
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC0/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC1/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC2/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC1/TPC2/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: read fault at
+002b9bd000 engine 00 [GR] client 07 [GPC0/T1_2] reason 02 [PTE] on channel =
+15
+[00fde39000 systemd-logind[2004]]
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: channel 15: killed
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: runlist 0: scheduled
+for recovery
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: engine 0: scheduled=
+ for
+recovery
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: engine 7: scheduled=
+ for
+recovery
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: systemd-logind[2004]: cha=
+nnel
+15 killed!
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: sec2: queue 0 rewinded
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:59:43 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:59:44 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:59:53 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:59:54 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 15:10:23 nyx kernel: nouveau 0000:23:00.0: Xwayland[10869]:
+nv50cal_space: -16
+Jan 29 15:10:23 nyx kernel: nouveau 0000:23:00.0: Xwayland[10869]:
+nv50cal_space: -16
+Jan 29 15:10:23 nyx kernel: nouveau 0000:23:00.0: Xwayland[10869]:
+nv50cal_space: -16
+Jan 29 15:10:23 nyx kernel: nouveau 0000:23:00.0: Xwayland[10869]:
+nv50cal_space: -16
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15172356310.4D9B.19369
-Date: Mon, 29 Jan 2018 14:20:31 +0000
+--15172378402.2Ee48eBA.24646
+Date: Mon, 29 Jan 2018 14:57:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -79,42 +131,90 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [GM206] Misrendering in XCOM Ennemy Within"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100177#c5">Commen=
-t # 5</a>
+   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421#c10">Comme=
+nt # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [GM206] Misrendering in XCOM Ennemy Within"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100177">bug 10017=
-7</a>
+   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
+1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-caguduzexi&#64;sharklasers.com" title=3D"caguduzexi&#64;sharklasers.com">ca=
-guduzexi&#64;sharklasers.com</a>
+jan.public&#64;famvlug.nl" title=3D"Jan Vlug &lt;jan.public&#64;famvlug.nl&=
+gt;"> <span class=3D"fn">Jan Vlug</span></a>
 </span></b>
-        <pre>I wont recommend using/keeping the GM206 (GTX 960). It cant ev=
-er run with free
-software:
-<a href=3D"https://www.theregister.co.uk/2015/04/15/nvidia_gtx_900_linux_dr=
-iver_roadbloack/">https://www.theregister.co.uk/2015/04/15/nvidia_gtx_900_l=
-inux_driver_roadbloack/</a>
-<a href=3D"https://www.phoronix.com/scan.php?page=3Dnews_item&amp;px=3DNouv=
-eau-XDC2017">https://www.phoronix.com/scan.php?page=3Dnews_item&amp;px=3DNo=
-uveau-XDC2017</a>
-<a href=3D"https://www.phoronix.com/scan.php?page=3Dnews_item&amp;px=3DNouv=
-eau-XDC2016-NVIDIA">https://www.phoronix.com/scan.php?page=3Dnews_item&amp;=
-px=3DNouveau-XDC2016-NVIDIA</a>
+        <pre>And more logging:
 
-Sell this crappy GM206 card away and go away from nvidia. Nvidia died with =
-the
-780ti card. Its the last end-user card that can be used normaly. Everything
-else is in some countries even a legal problem. Because the manufacturer
-(nvidia) blocks the users from beeing able to boot the software they want on
-THEIR hardware - happyly illegal in some countries. Hopefully some layer wo=
-uld
-sue the heck out of nvidia so that they would have to release the private
-signing key or close their doors.
-Blocking the freedom of the users on such way should not be accepted by any=
-one.</pre>
+Jan 29 14:54:02 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:54:02 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: TRAP ch 16 [00fde04000
+Xwayland[10869]]
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC0/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC1/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC2/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC1/TPC2/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: read fault at
+0002df1000 engine 00 [GR] client 01 [GPC0/T1_0] reason 02 [PTE] on channel =
+16
+[00fde04000 Xwayland[10869]]
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: channel 16: killed
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: runlist 0: scheduled
+for recovery
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: engine 0: scheduled=
+ for
+recovery
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: Xwayland[10869]: channel =
+16
+killed!
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: TRAP ch 15 [00fde39000
+systemd-logind[2004]]
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC0/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC1/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC2/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: gr: GPC1/TPC2/TEX: 800000=
+41
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: read fault at
+002b9bd000 engine 00 [GR] client 07 [GPC0/T1_2] reason 02 [PTE] on channel =
+15
+[00fde39000 systemd-logind[2004]]
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: channel 15: killed
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: runlist 0: scheduled
+for recovery
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: engine 0: scheduled=
+ for
+recovery
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: fifo: engine 7: scheduled=
+ for
+recovery
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: systemd-logind[2004]: cha=
+nnel
+15 killed!
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: sec2: queue 0 rewinded
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:54:17 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:59:43 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:59:44 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:59:53 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 14:59:54 nyx kernel: nouveau 0000:23:00.0: imem: PRAMIN exhausted
+Jan 29 15:10:23 nyx kernel: nouveau 0000:23:00.0: Xwayland[10869]:
+nv50cal_space: -16
+Jan 29 15:10:23 nyx kernel: nouveau 0000:23:00.0: Xwayland[10869]:
+nv50cal_space: -16
+Jan 29 15:10:23 nyx kernel: nouveau 0000:23:00.0: Xwayland[10869]:
+nv50cal_space: -16
+Jan 29 15:10:23 nyx kernel: nouveau 0000:23:00.0: Xwayland[10869]:
+nv50cal_space: -16</pre>
         </div>
       </p>
 
@@ -123,15 +223,14 @@ one.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15172356310.4D9B.19369--
+--15172378402.2Ee48eBA.24646--
 
---===============1355049640==
+--===============0067153679==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -141,4 +240,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1355049640==--
+--===============0067153679==--
