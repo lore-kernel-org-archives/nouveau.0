@@ -1,23 +1,13 @@
-From: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: Addressing the problem of noisy GPUs under Nouveau
-Date: Sun, 28 Jan 2018 23:51:39 -0800
-Message-ID: <989d5795-0be7-f1c9-6045-a73f9736830c@nvidia.com>
-References: <4597fd60-59f8-5e45-ec5a-f52c4c6c6260@free.fr>
- <7cad7e2b-e207-03be-b5a6-d036420b42e0@nvidia.com>
- <20171122012909.GA4002@prokofiev.nvidia.com>
- <CAKb7Uvjcbz0_F155xC5T1qXdTgo25Jp57mPAR8txPWTt_ZdYhw@mail.gmail.com>
- <8c630fe4-ee96-2c68-eafb-d243195af29f@free.fr>
- <985ec2c1-df88-622a-8ccb-1246c320e8c3@nvidia.com>
- <f0f5c17c-2bcc-2bee-563a-0bc4b0858869@free.fr>
- <11b5cc0f-24b6-97ca-3942-28381766fdbc@nvidia.com>
- <1b9f324f-0dcd-7eaf-91ae-fadece88a0dd@free.fr>
- <43a75ab3-b358-9a0c-aa9c-053fa029d430@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 104421] System freeze on wayland with nouveau on
+ NV137 (GP107)
+Date: Mon, 29 Jan 2018 10:47:22 +0000
+Message-ID: <bug-104421-8800-RksJVHyEpU@http.bugs.freedesktop.org/>
+References: <bug-104421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1825841447=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <43a75ab3-b358-9a0c-aa9c-053fa029d430-GANU6spQydw@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <bug-104421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -27,98 +17,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDEvMjgvMjAxOCAwNDowNSBQTSwgTWFydGluIFBlcmVzIHdyb3RlOgo+IE9uIDI5LzAxLzE4
-IDAxOjI0LCBNYXJ0aW4gUGVyZXMgd3JvdGU6Cj4+IE9uIDI4LzExLzE3IDA3OjMyLCBKb2huIEh1
-YmJhcmQgd3JvdGU6Cj4+PiBPbiAxMS8yMy8yMDE3IDAyOjQ4IFBNLCBNYXJ0aW4gUGVyZXMgd3Jv
-dGU6Cj4+Pj4gT24gMjMvMTEvMTcgMTA6MDYsIEpvaG4gSHViYmFyZCB3cm90ZToKPj4+Pj4gT24g
-MTEvMjIvMjAxNyAwNTowNyBQTSwgTWFydGluIFBlcmVzIHdyb3RlOgo+Pj4+Pj4gSGV5LAo+Pj4+
-Pj4KPj4+Pj4+IFRoYW5rcyBmb3IgeW91ciBhbnN3ZXIsIEFuZHkhCj4+Pj4+Pgo+Pj4+Pj4gT24g
-MjIvMTEvMTcgMDQ6MDYsIElsaWEgTWlya2luIHdyb3RlOgo+Pj4+Pj4+IE9uIFR1ZSwgTm92IDIx
-LCAyMDE3IGF0IDg6MjkgUE0sIEFuZHkgUml0Z2VyIDxhcml0Z2VyQG52aWRpYS5jb20+IHdyb3Rl
-Ogo+Pj4+Pj4+IE1hcnRpbidzIHF1ZXN0aW9uIHdhcyB2ZXJ5IGxvbmcsIGJ1dCBpdCBib2lscyBk
-b3duIHRvIHRoaXM6Cj4+Pj4+Pj4KPj4+Pj4+PiBIb3cgZG8gd2UgY29tcHV0ZSB0aGUgY29ycmVj
-dCB2YWx1ZXMgdG8gd3JpdGUgaW50byB0aGUgZTExNC9lMTE4IHB3bQo+Pj4+Pj4+IHJlZ2lzdGVy
-cyBiYXNlZCBvbiB0aGUgVkJJT1MgY29udGVudHMgYW5kIGN1cnJlbnQgc3RhdGUgb2YgdGhlIGJv
-YXJkCj4+Pj4+Pj4gKGxpa2UgdGVtcGVyYXR1cmUpLgo+Pj4+Pj4KPj4+Pj4+IFVuZm9ydHVuYXRl
-bHksIGl0IGNhbiBhbHNvIGJlIHRoZSBlMTFjL2UxMjAgY291cGxlLCBvciAweDIwMGQ4L2RjIG9u
-Cj4+Pj4+PiBHRjExOSssIG9yIDB4MjAwY2QvZDAgb24gS2VwbGVyKy4KPj4+Pj4+Cj4+Pj4+PiBB
-dCBsZWFzdCwgaXQgbG9va3MgbGlrZSB3ZSBrbm93IHdoaWNoIFBXTSBjb250cm9sZXIgd2UgbmVl
-ZCB0byBkcml2ZSwgc28KPj4+Pj4+IEkgZGlkIG5vdCB3YW50IHRvIG11ZGR5IHRoZSB3YXRlciBl
-dmVuIG1vcmUgYnkgZ2l2aW5nIHJlZ2lzdGVyCj4+Pj4+PiBhZGRyZXNzZXMsIHJhdGhlciBjb25j
-ZW50cmF0aW5nIG9uIHRoZSBwcm9ibGVtIGF0IGhhbmQ6IEhvdyB0byBjb21wdXRlCj4+Pj4+PiB0
-aGUgZHV0eSB2YWx1ZSBmb3IgdGhlIFBXTSBjb250cm9sZXIuCj4+Pj4+Pgo+Pj4+Pj4+Cj4+Pj4+
-Pj4gV2UgZ2VuZXJhbGx5IGRvIHRoaXMgcmlnaHQsIGJ1dCBhcHBlYXIgdG8gZ2V0IGl0IGV4dHJh
-LXdyb25nIGZvciBjZXJ0YWluIEdQVXMuCj4+Pj4+Pgo+Pj4+Pj4gWWVzLi4uIFNvIGZhciwgd2Ug
-YXJlIGFsd2F5cyBzYWZlLCBidXQgdXNlcnMgdGVuZCB0byBtaW5kIHdoZW4gdGhlaXIKPj4+Pj4+
-IGNvbXB1dGVyIHNvdW5kIGxpa2UgYSBqdW1ibyBqZXQgYXQgdGFrZSBvZmYuLi4gV2hvIHdvdWxk
-IGhhdmUgdGhvdWdodD8gOkQKPj4+Pj4+Cj4+Pj4+PiBBbnl3YXksIGxvb2tpbmcgZm9yd2FyZCB0
-byB5b3VyIGFuc3dlciEKPj4+Pj4+Cj4+Pj4+PiBDaGVlcnMsCj4+Pj4+PiBNYXJ0aW4KPj4+Pj4K
-Pj4+Pj4KPj4+Pj4gSGkgTWFydGluLAo+Pj4+Pgo+Pj4+PiBPbmUgb2Ygb3VyIGZpcm13YXJlIGVu
-Z2luZWVycyB0aGlua3MgdGhhdCB0aGlzIGxvb2tzIGEgbG90IGxpa2UgUFdNIGludmVyc2lvbi4K
-Pj4+Pj4gRm9yIHNvbWUgU0tVcywgdGhlIGludGVycHJldGF0aW9uIG9mIHRoZSBQV00gZHV0eSBj
-eWNsZSBpcyBpbnZlcnRlZC4gVGhhdCAKPj4+Pj4gd291bGQgcHJvYmFibHkgbWFrZSBpdCAqdmVy
-eSogZGlmZmljdWx0IHRvIGZpbmQgYSBzZW5zaWJsZSBhbGdvcml0aG0gdGhhdCAKPj4+Pj4gY292
-ZXJlZCBhbGwgdGhlIFNLVXMsIGdpdmVuIHRoYXQgc29tZSBhcmUgaW52ZXJ0ZWQgYW5kIG90aGVy
-cyBhcmUgbm90Lgo+Pj4+Pgo+Pj4+PiBGb3IgdGhlIG5vaXN5IEdQVXMsIGEgdmVyeSB1c2VmdWwg
-ZXhwZXJpbWVudCB3b3VsZCBiZSB0byB0cnkgaW52ZXJ0aW5nIGl0LCAKPj4+Pj4gbGlrZSB0aGlz
-Ogo+Pj4+Pgo+Pj4+PiAJcHdtRHV0eUN5Y2xlID0gcHdtUGVyaW9kIC0gcHdtRHV0eUN5Y2xlOwo+
-Pj4+Pgo+Pj4+PiAuLi5hbmQgdGhlbiBzZWUgaWYgZmFuIGNvbnRyb2wgc3RhcnRzIGJlaGF2aW5n
-IGNsb3NlciB0byBob3cgeW91J3ZlIGFjdHVhbGx5IAo+Pj4+PiBwcm9ncmFtbWVkIGl0Lgo+Pj4+
-Pgo+Pj4+PiBXb3VsZCB0aGF0IGJlIGVhc3kgZW5vdWdoIHRvIHRyeSBvdXQ/IEl0IHNob3VsZCBo
-ZWxwIG5hcnJvdyBkb3duIHRoZQo+Pj4+PiBwcm9ibGVtIGF0IGxlYXN0Lgo+Pj4+Pgo+Pj4+Cj4+
-Pj4gSGV5IEpvaG4sCj4+Pj4KPj4+PiBVbmZvcnR1bmF0ZWx5LCB3ZSBrbm93IGFib3V0IFBXTSBp
-bnZlcnNpb24sIGFuZCBvbmUgY2FuIGtub3cgd2hpY2ggbW9kZQo+Pj4+IHRvIHVzZSBiYXNlZCBv
-biB0aGUgR1BJTyBlbnRyeSBhc3NvY2lhdGVkIHRvIHRoZSBmYW4gKGludmVydGVkKS4gV2UgaGF2
-ZQo+Pj4+IGhhZCBzdXBwb3J0IGZvciB0aGlzIGluIE5vdXZlYXUgZm9yIGEgbG9uZyB0aW1lLiBB
-dCB0aGUgdmVyeSBsZWFzdCwgdGhpcwo+Pj4+IGlzIG5vdCB0aGUgcHJvYmxlbSBvbiBteSBHRjEw
-OC4KPj4+Pgo+Pj4+IEkgYW0gY2VydGFpbiB0aGF0IHRoZSBwcm9ibGVtIEkgYW0gc2VlaW5nIGlz
-IHJlbGF0ZWQgdG8gdGhpcyB2YmlvcyB0YWJsZQo+Pj4+IEkgd3JvdGUgYWJvdXQgKEJJVCBQLCBv
-ZmZzZXQgMHgxOCkuIEl0IGlzIHVzZWQgdG8gY29tcHV0ZSB3aGF0IFBXTSBkdXR5Cj4+Pj4gSSBz
-aG91bGQgdXNlIGZvciBib3RoIDAgYW5kIDEwMCUgb2YgdGhlIGZhbiBzcGVlZC4KPj4+Pgo+Pj4+
-IENvbXB1dGluZyB0aGUgdmFsdWUgZm9yIDAlIGZhbiBzcGVlZCBpcyBkaWZmaWN1bHQgYmVjYXVz
-ZSBvZgo+Pj4+IG5vbi1jb250aW51b3VzIG5hdHVyZSBvZiBzb21lIG9mIHRoZSBmdW5jdGlvbnNb
-MV0sIGJ1dCBJIGNhbiBhbHdheXMKPj4+PiBvdmVyLWFwcHJveGltYXRlLiBIb3dldmVyLCBJIGZh
-aWxlZCB0byBhY2N1cmF0ZWx5IGNvbXB1dGUgdGhlIGR1dHkgSQo+Pj4+IG5lZWQgdG8gd3JpdGUg
-dG8gZ2V0IHRoZSAxMDAlIGZhbiBzcGVlZCAoSSBoYXZlIGNhc2VzIHdoZXJlIEkgZ3JlYXRseQo+
-Pj4+IG92ZXItZXN0aW1hdGUgaXQuLi4pLgo+Pj4+Cj4+Pj4gQ291bGQgeW91IHBsZWFzZSBjaGVj
-ayBvdXQgdGhlIHZiaW9zIHRhYmxlIEkgYW0gcG9pbnRpbmcgYXQ/IEkgYW0gcXVpdGUKPj4+PiBz
-dXJlIHRoYXQgeW91ciBkb2N1bWVudGF0aW9uIHdpbGwgYmUgY2xlYXJlciB0aGFuIG15IGJhYmJs
-aW5nIDpECj4+Pgo+Pj4gWWVzLiBXZSB3aWxsIGNoZWNrIG9uIHRoaXMuIFRoZXJlIGhhcyBiZWVu
-IHNvbWUgcHJvZHVjdGl2ZSBkaXNjdXNzaW9uIAo+Pj4gaW50ZXJuYWxseSwgYnV0IGl0IHdpbGwg
-dGFrZSBzb21lIG1vcmUgaW52ZXN0aWdhdGlvbi4KPj4+Cj4+PiB0aGFua3MsCj4+PiBKb2huIEh1
-YmJhcmQKPj4KPj4gSGF2ZSB0aGUgcHJvZHVjdGl2ZSBkaXNjdXNzaW9ucyBwYW5uZWQgb3V0PwoK
-WWVzLCB3ZSBjb25jbHVkZWQgb3VyIGRpc2N1c3Npb25zLCBhbmQgZGVjaWRlZCB0aGF0IEkgc2hv
-dWxkIHN0dWR5IHRoZSBzaXR1YXRpb24gCmFuZCB3cml0ZSBzb21lIGRvY3VtZW50YXRpb24uICBJ
-IGp1c3QgZmluaXNoZWQgbXkgcmVzZWFyY2ggYW5kIHdyaXRldXAgbGF0ZSBsYXN0IEZyaWRheSwg
-CnRob3VnaCwgc28gbXkgY29sbGVhZ3VlcyBoYXZlbid0IGhhZCBhIGNoYW5jZSB0byByZXZpZXcg
-aXQuIE5vdCB0byBwdXQgdW5kdWUKcHJlc3N1cmUgb24gdGhlbSwgYnV0IEknbSBob3BpbmcgdGhh
-dCB3aWxsIGdvIHF1aWNrbHkgbm93LiBUaGUgbG9uZyBwb2xlIGlzCmRvbmUuIDopCgpJIHdhcyBn
-b2luZyB0byB3YWl0IHVudGlsIHRoZSByZXZpZXcgd2FzIGRvbmUsIHRvIHJlc3BvbmQsIGJ1dCBJ
-IHdhbnRlZCB0byBBQ0sgCnRoaXMgYW5kIHRvIGxldCB5b3Uga25vdyB0aGF0IEkgZG8gcmVhbGl6
-ZSB0aGF0IHRoZSB0YWJsZXMgYmVsb3cgYXJlIG5vdCBkaXJlY3RseSAKYW5zd2VyaW5nIHlvdXIg
-cXVlc3Rpb24uCgooV2hhdCBoYXBwZW5lZCBoZXJlIGlzOiB0aGUgbmV3IHRhYmxlcyBiZWxvdyBh
-cmUgbm90IGFjdHVhbGx5IHdoYXQgSSd2ZSAKcGVyc29uYWxseSBiZWVuIHdvcmtpbmcgb247IHRo
-ZXkganVzdCBoYXBwZW4gdG8gYmUgYSB2ZXJ5IGdvb2Qgc2V0IG9mIHN1cHBvcnRpbmcgCmRvY3Vt
-ZW50YXRpb24gaW4gdGhlIGV4YWN0IHNhbWUgYXJlYS4gT25lIG9mIG91ciB0ZWFtbWF0ZXMgd2Fz
-IGFscmVhZHkgd29ya2luZyAKb24gdGhlc2UgaW5kZXBlbmRlbnRseSwgYW5kIG1hbmFnZWQgdG8g
-Z2V0IHRoZW0gcmVsZWFzZWQuKQoKdGhhbmtzLAotLSAKSm9obiBIdWJiYXJkCgo+IAo+IE9oLCBJ
-IHNlZSB5b3UgcHVzaGVkIG5ldyB2YmlvcyBkb2N1bWVudGF0aW9uOgo+ICAxKQo+IGh0dHA6Ly9k
-b3dubG9hZC5udmlkaWEuY29tL29wZW4tZ3B1LWRvYy9CSU9TLUluZm9ybWF0aW9uLVRhYmxlLzEv
-QklPUy1JbmZvcm1hdGlvbi1UYWJsZS5odG1sCj4gIDIpCj4gaHR0cDovL2Rvd25sb2FkLm52aWRp
-YS5jb20vb3Blbi1ncHUtZG9jL01lbW9yeUNsb2NrVGFibGUvMS9NZW1vcnlDbG9ja1RhYmxlLmh0
-bWwKPiAgMykKPiBodHRwOi8vZG93bmxvYWQubnZpZGlhLmNvbS9vcGVuLWdwdS1kb2MvTWVtb3J5
-VHdlYWtUYWJsZS8xL01lbW9yeVR3ZWFrVGFibGUuaHRtbAo+IAo+IElzIHRoZXJlIGFueSBjaGFu
-Y2UgdG8gZ2V0IHRoZSBkb2N1bWVudGF0aW9uIG9mIHRoZSAiVGhlcm1hbCBDb29sZXJzCj4gVGFi
-bGUiLCBhbmQgdGhlICJUaGVybWFsIERldmljZSBUYWJsZSIgKHRoZSBsYXR0ZXIgZG9lcyBub3Qg
-c2VlbSBzdXBlcgo+IGltcG9ydGFudCB0aG91Z2gpLgo+IAo+IEFueXdheSwgdGhhbmtzIGZvciB0
-aGUgbmV3IGRvY3VtZW50YXRpb24sIHJldmVyc2UgZW5naW5lZXJpbmcgb2YgcG93ZXIKPiBtYW5h
-Z2VtZW50IHdpbGwgYmUgZ3JlYXRseSBzaW1wbGlmaWVkIGFzIHdlIGhhdmUgYSBiZXR0ZXIgaWRl
-YSB3aGljaAo+IGJpdHMgd2lsbCBjb250cm9sIHdoYXQuIFRvbyBiYWQgaXQgd29uJ3QgaGVscCBm
-b3IgdGhlIGN1cnJlbnQgaXNzdWUKPiB0aG91Z2guLi4KPiAKPiBUaGFua3MsCj4gTWFydGluCj4g
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
-bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1825841447==
+Content-Type: multipart/alternative; boundary="15172228420.CffC.17832"
+Content-Transfer-Encoding: 7bit
+
+
+--15172228420.CffC.17832
+Date: Mon, 29 Jan 2018 10:47:22 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
+
+--- Comment #8 from Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> ---
+Another crash:
+
+Jan 29 09:57:25 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 29 10:43:21 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 29 10:50:18 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 29 10:51:28 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 29 11:26:22 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 29 11:42:22 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: gr: TRAP ch 14 [00fdb11000
+Xwayland[2952]]
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC0/TEX: 800000=
+41
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC1/TEX: 800000=
+41
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC2/TEX: 800000=
+41
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: gr: GPC1/TPC2/TEX: 800000=
+41
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: fifo: read fault at
+0002c7d000 engine 00 [GR] client 18 [GPC1/PE_5] reason 02 [PTE] on channel =
+14
+[00fdb11000 Xwayland[2952]]
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: fifo: channel 14: killed
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: fifo: runlist 0: scheduled
+for recovery
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: fifo: engine 0: scheduled=
+ for
+recovery
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: Xwayland[2952]: channel 14
+killed!
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15172228420.CffC.17832
+Date: Mon, 29 Jan 2018 10:47:22 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421#c8">Commen=
+t # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jan.public&#64;famvlug.nl" title=3D"Jan Vlug &lt;jan.public&#64;famvlug.nl&=
+gt;"> <span class=3D"fn">Jan Vlug</span></a>
+</span></b>
+        <pre>Another crash:
+
+Jan 29 09:57:25 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 29 10:43:21 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 29 10:50:18 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 29 10:51:28 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 29 11:26:22 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 29 11:42:22 nyx kernel: nouveau 0000:23:00.0: disp: 0x000061ec[0]:
+INIT_GENERIC_CONDITON: unknown 0x07
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: gr: TRAP ch 14 [00fdb11000
+Xwayland[2952]]
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC0/TEX: 800000=
+41
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC1/TEX: 800000=
+41
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: gr: GPC0/TPC2/TEX: 800000=
+41
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: gr: GPC1/TPC2/TEX: 800000=
+41
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: fifo: read fault at
+0002c7d000 engine 00 [GR] client 18 [GPC1/PE_5] reason 02 [PTE] on channel =
+14
+[00fdb11000 Xwayland[2952]]
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: fifo: channel 14: killed
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: fifo: runlist 0: scheduled
+for recovery
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: fifo: engine 0: scheduled=
+ for
+recovery
+Jan 29 11:43:06 nyx kernel: nouveau 0000:23:00.0: Xwayland[2952]: channel 14
+killed!</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15172228420.CffC.17832--
+
+--===============1825841447==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1825841447==--
