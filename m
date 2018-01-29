@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103382] Flickering / Artifacts on TTY with GTX 1060
-Date: Mon, 29 Jan 2018 17:35:41 +0000
-Message-ID: <bug-103382-8800-3anfln5DJd@http.bugs.freedesktop.org/>
-References: <bug-103382-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 102913] Nouveau on >4.12.12 not loading EDID
+Date: Mon, 29 Jan 2018 17:35:47 +0000
+Message-ID: <bug-102913-8800-JaUlzWaGJC@http.bugs.freedesktop.org/>
+References: <bug-102913-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0037018145=="
+Content-Type: multipart/mixed; boundary="===============1805410350=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-102913-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0037018145==
-Content-Type: multipart/alternative; boundary="15172473402.3DA8.11918"
+--===============1805410350==
+Content-Type: multipart/alternative; boundary="15172473470.98F9AFCf.11848"
 Content-Transfer-Encoding: 7bit
 
 
---15172473402.3DA8.11918
-Date: Mon, 29 Jan 2018 17:35:40 +0000
+--15172473470.98F9AFCf.11848
+Date: Mon, 29 Jan 2018 17:35:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103382
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102913
 
---- Comment #10 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
-(In reply to caguduzexi from comment #9)
-> I wont recommend using/keeping the GP106 (GTX 1060). It cant ever run with
-> free software:
+--- Comment #3 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+(In reply to caguduzexi from comment #2)
+> Problem still there with GK104 and latest kernel? Also on other linux OS?
+> You could try out for example some ubuntu daily testing iso.
+>=20
+> I wont recommend using/keeping the GP102. It cant ever run with free
+> software:
 > https://www.theregister.co.uk/2015/04/15/
 > nvidia_gtx_900_linux_driver_roadbloack/
 > https://www.phoronix.com/scan.php?page=3Dnews_item&px=3DNouveau-XDC2017
@@ -62,8 +65,8 @@ User banned
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15172473402.3DA8.11918
-Date: Mon, 29 Jan 2018 17:35:40 +0000
+--15172473470.98F9AFCf.11848
+Date: Mon, 29 Jan 2018 17:35:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -79,23 +82,26 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Flickering / Artifacts on TTY with GTX 1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103382#c10">Comme=
-nt # 10</a>
+   title=3D"NEW - Nouveau on &gt;4.12.12 not loading EDID"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102913#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Flickering / Artifacts on TTY with GTX 1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103382">bug 10338=
-2</a>
+   title=3D"NEW - Nouveau on &gt;4.12.12 not loading EDID"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102913">bug 10291=
+3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 martin.peres&#64;free.fr" title=3D"Martin Peres &lt;martin.peres&#64;free.f=
 r&gt;"> <span class=3D"fn">Martin Peres</span></a>
 </span></b>
-        <pre>(In reply to caguduzexi from <a href=3D"show_bug.cgi?id=3D1033=
-82#c9">comment #9</a>)
-<span class=3D"quote">&gt; I wont recommend using/keeping the GP106 (GTX 10=
-60). It cant ever run with
-&gt; free software:
+        <pre>(In reply to caguduzexi from <a href=3D"show_bug.cgi?id=3D1029=
+13#c2">comment #2</a>)
+<span class=3D"quote">&gt; Problem still there with GK104 and latest kernel=
+? Also on other linux OS?
+&gt; You could try out for example some ubuntu daily testing iso.
+&gt;=20
+&gt; I wont recommend using/keeping the GP102. It cant ever run with free
+&gt; software:
 &gt; <a href=3D"https://www.theregister.co.uk/2015/04/15/">https://www.ther=
 egister.co.uk/2015/04/15/</a>
 &gt; nvidia_gtx_900_linux_driver_roadbloack/
@@ -133,9 +139,9 @@ User banned</pre>
     </body>
 </html>=
 
---15172473402.3DA8.11918--
+--15172473470.98F9AFCf.11848--
 
---===============0037018145==
+--===============1805410350==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -145,4 +151,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0037018145==--
+--===============1805410350==--
