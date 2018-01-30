@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103753] Scrolling artifacts in Firefox on GTX 1060
- 6GB
-Date: Tue, 30 Jan 2018 12:04:27 +0000
-Message-ID: <bug-103753-8800-xJNEtqd9qM@http.bugs.freedesktop.org/>
-References: <bug-103753-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104652] None of the video outputs are usable for GTX
+ 1060 - jerky video every few seconds
+Date: Tue, 30 Jan 2018 12:05:31 +0000
+Message-ID: <bug-104652-8800-9aa27Yt70i@http.bugs.freedesktop.org/>
+References: <bug-104652-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1687532285=="
+Content-Type: multipart/mixed; boundary="===============0785841683=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103753-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-104652-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,41 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1687532285==
-Content-Type: multipart/alternative; boundary="15173138661.2a5BBc54.7600"
+--===============0785841683==
+Content-Type: multipart/alternative; boundary="15173139310.9f5FA14B.8010"
 Content-Transfer-Encoding: 7bit
 
 
---15173138661.2a5BBc54.7600
-Date: Tue, 30 Jan 2018 12:04:26 +0000
+--15173139310.9f5FA14B.8010
+Date: Tue, 30 Jan 2018 12:05:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103753
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104652
 
 Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|UNCONFIRMED                 |RESOLVED
-         Resolution|---                         |DUPLICATE
+             Status|REOPENED                    |RESOLVED
+         Resolution|---                         |INVALID
 
---- Comment #10 from Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> ---
-This is reproducible under NVIDIA binary drivers as well.
-
-In fact it's an X.org server bug.
-
-*** This bug has been marked as a duplicate of bug 25497 ***
+--- Comment #8 from Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> ---
+The source video is broken (incorrectly encoded). I'm deeply sorry for the
+noise.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15173138661.2a5BBc54.7600
-Date: Tue, 30 Jan 2018 12:04:26 +0000
+--15173139310.9f5FA14B.8010
+Date: Tue, 30 Jan 2018 12:05:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,10 +69,10 @@ t;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Scrolling artifacts in Firefox on GTX 1060=
- 6GB"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753">bug 10375=
-3</a>
+   title=3D"RESOLVED INVALID - None of the video outputs are usable for GTX=
+ 1060 - jerky video every few seconds"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104652">bug 10465=
+2</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -86,7 +83,7 @@ t;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
 
          <tr>
            <td style=3D"text-align:right;">Status</td>
-           <td>UNCONFIRMED
+           <td>REOPENED
            </td>
            <td>RESOLVED
            </td>
@@ -96,35 +93,30 @@ t;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
            <td style=3D"text-align:right;">Resolution</td>
            <td>---
            </td>
-           <td>DUPLICATE
+           <td>INVALID
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Scrolling artifacts in Firefox on GTX 1060=
- 6GB"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753#c10">Comme=
-nt # 10</a>
+   title=3D"RESOLVED INVALID - None of the video outputs are usable for GTX=
+ 1060 - jerky video every few seconds"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104652#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Scrolling artifacts in Firefox on GTX 1060=
- 6GB"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103753">bug 10375=
-3</a>
+   title=3D"RESOLVED INVALID - None of the video outputs are usable for GTX=
+ 1060 - jerky video every few seconds"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104652">bug 10465=
+2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 t.artem&#64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailc=
 ity.com&gt;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
 </span></b>
-        <pre>This is reproducible under NVIDIA binary drivers as well.
-
-In fact it's an X.org server bug.
-
-*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Scrolling in various applications causes artifacts"
-   href=3D"show_bug.cgi?id=3D25497">bug 25497</a> ***</pre>
+        <pre>The source video is broken (incorrectly encoded). I'm deeply s=
+orry for the
+noise.</pre>
         </div>
       </p>
 
@@ -138,9 +130,9 @@ In fact it's an X.org server bug.
     </body>
 </html>=
 
---15173138661.2a5BBc54.7600--
+--15173139310.9f5FA14B.8010--
 
---===============1687532285==
+--===============0785841683==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -150,4 +142,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1687532285==--
+--===============0785841683==--
