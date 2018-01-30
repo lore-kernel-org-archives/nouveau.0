@@ -1,139 +1,144 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [RFC v5 4/5] drm/nouveau: Add support for SLCG for Kepler2
-Date: Tue, 30 Jan 2018 14:49:24 -0500
-Message-ID: <20180130195024.18172-5-lyude@redhat.com>
-References: <20180130195024.18172-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180130195024.18172-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Martin Peres <martin.peres@free.fr>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 102135] WARN_ON hit when loading G71 with v4.13-rc4
+Date: Tue, 30 Jan 2018 21:47:22 +0000
+Message-ID: <bug-102135-8800-f57q6OZ8bH@http.bugs.freedesktop.org/>
+References: <bug-102135-8800@http.bugs.freedesktop.org/>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============1916000428=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-102135-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-That's right, there's still more power saving to go! Starting with
-kepler 2, nvidia hardware has an additional level of clockgating known
-as second level clockgating.  The details of this are not exact, but it
-seems to work by waiting for a collection of dependent hardware blocks
-to be gated before taking affect. As with the previous series, this
-results in another noticeable drop in power consumption and is
-programmed in the same manner.
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Reviewed-by: Martin Peres <martin.peres@free.fr>
----
- drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c | 93 ++++++++++++++++++++++++++
- 1 file changed, 93 insertions(+)
+--===============1916000428==
+Content-Type: multipart/alternative; boundary="15173488421.2A6E9DDCe.29905"
+Content-Transfer-Encoding: 7bit
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c
-index a528894231d0..4da916a9fc73 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c
-@@ -187,6 +187,87 @@ gk110_clkgate_blcg_init_gpc_mp_0[] = {
- 	{}
- };
- 
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_main_0[] = {
-+	{ 0x4041f4, 1, 0x00000000 },
-+	{ 0x409894, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_unk_0[] = {
-+	{ 0x406004, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_sked_0[] = {
-+	{ 0x407004, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_ctxctl_0[] = {
-+	{ 0x41a894, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_unk_0[] = {
-+	{ 0x418504, 1, 0x00000000 },
-+	{ 0x41860c, 1, 0x00000000 },
-+	{ 0x41868c, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_esetup_0[] = {
-+	{ 0x41882c, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_zcull_0[] = {
-+	{ 0x418974, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_l1c_0[] = {
-+	{ 0x419cd8, 2, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_unk_1[] = {
-+	{ 0x419c74, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_mp_0[] = {
-+	{ 0x419fd4, 1, 0x00004a4a },
-+	{ 0x419fdc, 1, 0x00000014 },
-+	{ 0x419fe4, 1, 0x00000000 },
-+	{ 0x419ff4, 1, 0x00001724 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_ppc_0[] = {
-+	{ 0x41be2c, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_pcounter_0[] = {
-+	{ 0x1be018, 1, 0x000001ff },
-+	{ 0x1bc018, 1, 0x000001ff },
-+	{ 0x1b8018, 1, 0x000001ff },
-+	{ 0x1b4124, 1, 0x00000000 },
-+	{}
-+};
-+
- static const struct nvkm_therm_clkgate_pack
- gk110_clkgate_pack[] = {
- 	{ gk104_clkgate_blcg_init_main_0 },
-@@ -214,6 +295,18 @@ gk110_clkgate_pack[] = {
- 	{ gk104_clkgate_blcg_init_rop_0 },
- 	{ gk104_clkgate_blcg_init_rop_crop_0 },
- 	{ gk104_clkgate_blcg_init_pxbar_0 },
-+	{ gk110_clkgate_slcg_init_main_0 },
-+	{ gk110_clkgate_slcg_init_unk_0 },
-+	{ gk110_clkgate_slcg_init_sked_0 },
-+	{ gk110_clkgate_slcg_init_gpc_ctxctl_0 },
-+	{ gk110_clkgate_slcg_init_gpc_unk_0 },
-+	{ gk110_clkgate_slcg_init_gpc_esetup_0 },
-+	{ gk110_clkgate_slcg_init_gpc_zcull_0 },
-+	{ gk110_clkgate_slcg_init_gpc_l1c_0 },
-+	{ gk110_clkgate_slcg_init_gpc_unk_1 },
-+	{ gk110_clkgate_slcg_init_gpc_mp_0 },
-+	{ gk110_clkgate_slcg_init_gpc_ppc_0 },
-+	{ gk110_clkgate_slcg_init_pcounter_0 },
- 	{}
- };
- 
--- 
-2.14.3
+
+--15173488421.2A6E9DDCe.29905
+Date: Tue, 30 Jan 2018 21:47:22 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102135
+
+Ben Crocker <bcrocker-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
+
+--- Comment #4 from Ben Crocker <bcrocker-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
+I note that, according to the dmesg output, this is PPC64 big-endian.
+Can you provide other hardware specifics?
+
+I see that Ben Skeggs' commit is in the kernel repo as
+commit 372aa73e20197d463fc8b34524c20b089a98b1c3;
+is anyone equipped to test the fix?
+
+Can we close this as RESOLVED/FIXED?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15173488421.2A6E9DDCe.29905
+Date: Tue, 30 Jan 2018 21:47:22 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:bcrocker&=
+#64;redhat.com" title=3D"Ben Crocker &lt;bcrocker&#64;redhat.com&gt;"> <spa=
+n class=3D"fn">Ben Crocker</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - WARN_ON hit when loading G71 with v4.13-rc4"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102135">bug 10213=
+5</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - WARN_ON hit when loading G71 with v4.13-rc4"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102135#c4">Commen=
+t # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - WARN_ON hit when loading G71 with v4.13-rc4"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102135">bug 10213=
+5</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+bcrocker&#64;redhat.com" title=3D"Ben Crocker &lt;bcrocker&#64;redhat.com&g=
+t;"> <span class=3D"fn">Ben Crocker</span></a>
+</span></b>
+        <pre>I note that, according to the dmesg output, this is PPC64 big-=
+endian.
+Can you provide other hardware specifics?
+
+I see that Ben Skeggs' commit is in the kernel repo as
+commit 372aa73e20197d463fc8b34524c20b089a98b1c3;
+is anyone equipped to test the fix?
+
+Can we close this as RESOLVED/FIXED?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15173488421.2A6E9DDCe.29905--
+
+--===============1916000428==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1916000428==--
