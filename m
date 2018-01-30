@@ -1,49 +1,139 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [RFC v5 5/5] drm/nouveau: Introduce NvPmEnableGating
- option
-Date: Tue, 30 Jan 2018 14:49:25 -0500
-Message-ID: <20180130195024.18172-6-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [RFC v5 4/5] drm/nouveau: Add support for SLCG for Kepler2
+Date: Tue, 30 Jan 2018 14:49:24 -0500
+Message-ID: <20180130195024.18172-5-lyude@redhat.com>
 References: <20180130195024.18172-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180130195024.18172-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20180130195024.18172-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Martin Peres <martin.peres@free.fr>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBhZGRzIHRoZSBOdlBtRW5hYmxlR2F0aW5nIGNvbmZpZyBvcHRpb24gdG8gbm91dmVhdSwg
-d2hpY2ggY2FuIGJlCnVzZWQgdG8gZW5hYmxlIG9yIGRpc2FibGUgY2xvY2tnYXRpbmcgZm9yIHN1
-cHBvcnRlZCBjaGlwc2V0cy4gRW5hYmxpbmcKY2FuIGJlIGRvbmUgYnkgcGFzc2luZwoKCWNvbmZp
-Zz1OdlBtRW5hYmxlR2F0aW5nPTEKClRvIG5vdXZlYXUuIElmIHlvdXIgY2hpcHNldCBzdXBwb3J0
-cyBpdCwgeW91J2xsIHNlZSBhIG1lc3NhZ2UgaW4geW91cgprZXJuZWwgbG9nIGluZGljYXRpbmcg
-dGhhdCBjbG9ja2dhdGluZyBpcyBlbmFibGVkLiBTaW5jZSBjbG9ja2dhdGluZyBoYXMKb25seSBo
-YWQgbGltaXRlZCB0ZXN0aW5nIHRodXMgZmFyLCB3ZSBsZWF2ZSB0aGlzIG9wdGlvbiBkaXNhYmxl
-ZCBieQpkZWZhdWx0IGZvciBub3cuCgpTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUBy
-ZWRoYXQuY29tPgpSZXZpZXdlZC1ieTogTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5m
-cj4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9iYXNlLmMg
-fCA0ICsrKy0KIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkK
-CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9i
-YXNlLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9iYXNlLmMK
-aW5kZXggZGUwN2JjMDdhYmRiLi5iZjYyMzAzNTcxYjMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3RoZXJtL2Jhc2UuYworKysgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9iYXNlLmMKQEAgLTQzNCw3ICs0MzQsOSBAQCBu
-dmttX3RoZXJtX2N0b3Ioc3RydWN0IG52a21fdGhlcm0gKnRoZXJtLCBzdHJ1Y3QgbnZrbV9kZXZp
-Y2UgKmRldmljZSwKIAl0aGVybS0+YXR0cl9nZXQgPSBudmttX3RoZXJtX2F0dHJfZ2V0OwogCXRo
-ZXJtLT5hdHRyX3NldCA9IG52a21fdGhlcm1fYXR0cl9zZXQ7CiAJdGhlcm0tPm1vZGUgPSB0aGVy
-bS0+c3VzcGVuZCA9IC0xOyAvKiB1bmRlZmluZWQgKi8KLQl0aGVybS0+Y2xrZ2F0aW5nX2VuYWJs
-ZWQgPSBmYWxzZTsKKworCXRoZXJtLT5jbGtnYXRpbmdfZW5hYmxlZCA9IG52a21fYm9vbG9wdChk
-ZXZpY2UtPmNmZ29wdCwKKwkJCQkJCSJOdlBtRW5hYmxlR2F0aW5nIiwgZmFsc2UpOwogfQogCiBp
-bnQKLS0gCjIuMTQuMwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+That's right, there's still more power saving to go! Starting with
+kepler 2, nvidia hardware has an additional level of clockgating known
+as second level clockgating.  The details of this are not exact, but it
+seems to work by waiting for a collection of dependent hardware blocks
+to be gated before taking affect. As with the previous series, this
+results in another noticeable drop in power consumption and is
+programmed in the same manner.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Reviewed-by: Martin Peres <martin.peres@free.fr>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c | 93 ++++++++++++++++++++++++++
+ 1 file changed, 93 insertions(+)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c
+index a528894231d0..4da916a9fc73 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c
+@@ -187,6 +187,87 @@ gk110_clkgate_blcg_init_gpc_mp_0[] = {
+ 	{}
+ };
+ 
++static const struct nvkm_therm_clkgate_init
++gk110_clkgate_slcg_init_main_0[] = {
++	{ 0x4041f4, 1, 0x00000000 },
++	{ 0x409894, 1, 0x00000000 },
++	{}
++};
++
++static const struct nvkm_therm_clkgate_init
++gk110_clkgate_slcg_init_unk_0[] = {
++	{ 0x406004, 1, 0x00000000 },
++	{}
++};
++
++static const struct nvkm_therm_clkgate_init
++gk110_clkgate_slcg_init_sked_0[] = {
++	{ 0x407004, 1, 0x00000000 },
++	{}
++};
++
++static const struct nvkm_therm_clkgate_init
++gk110_clkgate_slcg_init_gpc_ctxctl_0[] = {
++	{ 0x41a894, 1, 0x00000000 },
++	{}
++};
++
++static const struct nvkm_therm_clkgate_init
++gk110_clkgate_slcg_init_gpc_unk_0[] = {
++	{ 0x418504, 1, 0x00000000 },
++	{ 0x41860c, 1, 0x00000000 },
++	{ 0x41868c, 1, 0x00000000 },
++	{}
++};
++
++static const struct nvkm_therm_clkgate_init
++gk110_clkgate_slcg_init_gpc_esetup_0[] = {
++	{ 0x41882c, 1, 0x00000000 },
++	{}
++};
++
++static const struct nvkm_therm_clkgate_init
++gk110_clkgate_slcg_init_gpc_zcull_0[] = {
++	{ 0x418974, 1, 0x00000000 },
++	{}
++};
++
++static const struct nvkm_therm_clkgate_init
++gk110_clkgate_slcg_init_gpc_l1c_0[] = {
++	{ 0x419cd8, 2, 0x00000000 },
++	{}
++};
++
++static const struct nvkm_therm_clkgate_init
++gk110_clkgate_slcg_init_gpc_unk_1[] = {
++	{ 0x419c74, 1, 0x00000000 },
++	{}
++};
++
++static const struct nvkm_therm_clkgate_init
++gk110_clkgate_slcg_init_gpc_mp_0[] = {
++	{ 0x419fd4, 1, 0x00004a4a },
++	{ 0x419fdc, 1, 0x00000014 },
++	{ 0x419fe4, 1, 0x00000000 },
++	{ 0x419ff4, 1, 0x00001724 },
++	{}
++};
++
++static const struct nvkm_therm_clkgate_init
++gk110_clkgate_slcg_init_gpc_ppc_0[] = {
++	{ 0x41be2c, 1, 0x00000000 },
++	{}
++};
++
++static const struct nvkm_therm_clkgate_init
++gk110_clkgate_slcg_init_pcounter_0[] = {
++	{ 0x1be018, 1, 0x000001ff },
++	{ 0x1bc018, 1, 0x000001ff },
++	{ 0x1b8018, 1, 0x000001ff },
++	{ 0x1b4124, 1, 0x00000000 },
++	{}
++};
++
+ static const struct nvkm_therm_clkgate_pack
+ gk110_clkgate_pack[] = {
+ 	{ gk104_clkgate_blcg_init_main_0 },
+@@ -214,6 +295,18 @@ gk110_clkgate_pack[] = {
+ 	{ gk104_clkgate_blcg_init_rop_0 },
+ 	{ gk104_clkgate_blcg_init_rop_crop_0 },
+ 	{ gk104_clkgate_blcg_init_pxbar_0 },
++	{ gk110_clkgate_slcg_init_main_0 },
++	{ gk110_clkgate_slcg_init_unk_0 },
++	{ gk110_clkgate_slcg_init_sked_0 },
++	{ gk110_clkgate_slcg_init_gpc_ctxctl_0 },
++	{ gk110_clkgate_slcg_init_gpc_unk_0 },
++	{ gk110_clkgate_slcg_init_gpc_esetup_0 },
++	{ gk110_clkgate_slcg_init_gpc_zcull_0 },
++	{ gk110_clkgate_slcg_init_gpc_l1c_0 },
++	{ gk110_clkgate_slcg_init_gpc_unk_1 },
++	{ gk110_clkgate_slcg_init_gpc_mp_0 },
++	{ gk110_clkgate_slcg_init_gpc_ppc_0 },
++	{ gk110_clkgate_slcg_init_pcounter_0 },
+ 	{}
+ };
+ 
+-- 
+2.14.3
