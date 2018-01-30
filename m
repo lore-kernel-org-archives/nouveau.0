@@ -1,138 +1,194 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [RFC v4 4/5] drm/nouveau: Add support for SLCG for Kepler2
-Date: Mon, 29 Jan 2018 17:45:03 -0500
-Message-ID: <20180129224603.3167-5-lyude@redhat.com>
-References: <20180129224603.3167-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180129224603.3167-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 104845] New: Nouveau NV98 : 0 A.D. game creates
+ memory mess after short time
+Date: Tue, 30 Jan 2018 00:01:37 +0000
+Message-ID: <bug-104845-8800@http.bugs.freedesktop.org/>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============0450806433=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-That's right, there's still more power saving to go! Starting with
-kepler 2, nvidia hardware has an additional level of clockgating known
-as second level clockgating.  The details of this are not exact, but it
-seems to work by waiting for a collection of dependent hardware blocks
-to be gated before taking affect. As with the previous series, this
-results in another noticeable drop in power consumption and is
-programmed in the same manner.
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c | 93 ++++++++++++++++++++++++++
- 1 file changed, 93 insertions(+)
+--===============0450806433==
+Content-Type: multipart/alternative; boundary="15172704960.B7efAb963.31417"
+Content-Transfer-Encoding: 7bit
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c
-index a528894231d0..4da916a9fc73 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gk110.c
-@@ -187,6 +187,87 @@ gk110_clkgate_blcg_init_gpc_mp_0[] = {
- 	{}
- };
- 
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_main_0[] = {
-+	{ 0x4041f4, 1, 0x00000000 },
-+	{ 0x409894, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_unk_0[] = {
-+	{ 0x406004, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_sked_0[] = {
-+	{ 0x407004, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_ctxctl_0[] = {
-+	{ 0x41a894, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_unk_0[] = {
-+	{ 0x418504, 1, 0x00000000 },
-+	{ 0x41860c, 1, 0x00000000 },
-+	{ 0x41868c, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_esetup_0[] = {
-+	{ 0x41882c, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_zcull_0[] = {
-+	{ 0x418974, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_l1c_0[] = {
-+	{ 0x419cd8, 2, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_unk_1[] = {
-+	{ 0x419c74, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_mp_0[] = {
-+	{ 0x419fd4, 1, 0x00004a4a },
-+	{ 0x419fdc, 1, 0x00000014 },
-+	{ 0x419fe4, 1, 0x00000000 },
-+	{ 0x419ff4, 1, 0x00001724 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_gpc_ppc_0[] = {
-+	{ 0x41be2c, 1, 0x00000000 },
-+	{}
-+};
-+
-+static const struct nvkm_therm_clkgate_init
-+gk110_clkgate_slcg_init_pcounter_0[] = {
-+	{ 0x1be018, 1, 0x000001ff },
-+	{ 0x1bc018, 1, 0x000001ff },
-+	{ 0x1b8018, 1, 0x000001ff },
-+	{ 0x1b4124, 1, 0x00000000 },
-+	{}
-+};
-+
- static const struct nvkm_therm_clkgate_pack
- gk110_clkgate_pack[] = {
- 	{ gk104_clkgate_blcg_init_main_0 },
-@@ -214,6 +295,18 @@ gk110_clkgate_pack[] = {
- 	{ gk104_clkgate_blcg_init_rop_0 },
- 	{ gk104_clkgate_blcg_init_rop_crop_0 },
- 	{ gk104_clkgate_blcg_init_pxbar_0 },
-+	{ gk110_clkgate_slcg_init_main_0 },
-+	{ gk110_clkgate_slcg_init_unk_0 },
-+	{ gk110_clkgate_slcg_init_sked_0 },
-+	{ gk110_clkgate_slcg_init_gpc_ctxctl_0 },
-+	{ gk110_clkgate_slcg_init_gpc_unk_0 },
-+	{ gk110_clkgate_slcg_init_gpc_esetup_0 },
-+	{ gk110_clkgate_slcg_init_gpc_zcull_0 },
-+	{ gk110_clkgate_slcg_init_gpc_l1c_0 },
-+	{ gk110_clkgate_slcg_init_gpc_unk_1 },
-+	{ gk110_clkgate_slcg_init_gpc_mp_0 },
-+	{ gk110_clkgate_slcg_init_gpc_ppc_0 },
-+	{ gk110_clkgate_slcg_init_pcounter_0 },
- 	{}
- };
- 
--- 
-2.14.3
+
+--15172704960.B7efAb963.31417
+Date: Tue, 30 Jan 2018 00:01:36 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104845
+
+            Bug ID: 104845
+           Summary: Nouveau NV98 : 0 A.D. game creates memory mess after
+                    short time
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: kicibo-Qk56d+rAzDH6gbPvEgmw2w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 137044
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D137044&action=3Dedit
+logfile
+
+I have a NV98 card running Linux Kernel 4.15.0. It creates after few seconds
+strange colors and afterwards the desktop is also not working properly.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15172704960.B7efAb963.31417
+Date: Tue, 30 Jan 2018 00:01:36 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau NV98 : 0 A.D. game creates memory mess after shor=
+t time"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104845">104845</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nouveau NV98 : 0 A.D. game creates memory mess after short ti=
+me
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>kicibo&#64;cryp.email
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D137044=
+" name=3D"attach_137044" title=3D"logfile">attachment 137044</a> <a href=3D=
+"attachment.cgi?id=3D137044&amp;action=3Dedit" title=3D"logfile">[details]<=
+/a></span>
+logfile
+
+I have a NV98 card running Linux Kernel 4.15.0. It creates after few seconds
+strange colors and afterwards the desktop is also not working properly.</pr=
+e>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15172704960.B7efAb963.31417--
+
+--===============0450806433==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0450806433==--
