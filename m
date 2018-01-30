@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104845] New: Nouveau NV98 : 0 A.D. game creates
- memory mess after short time
-Date: Tue, 30 Jan 2018 00:01:37 +0000
-Message-ID: <bug-104845-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104845] Nouveau NV98 on Linux 4.15.0 : 0 A.D. game
+ creates memory mess after short time
+Date: Tue, 30 Jan 2018 00:02:33 +0000
+Message-ID: <bug-104845-8800-dhcxADDCoQ@http.bugs.freedesktop.org/>
+References: <bug-104845-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0450806433=="
+Content-Type: multipart/mixed; boundary="===============0856552309=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-104845-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0450806433==
-Content-Type: multipart/alternative; boundary="15172704960.B7efAb963.31417"
+--===============0856552309==
+Content-Type: multipart/alternative; boundary="15172705521.2E32.30830"
 Content-Transfer-Encoding: 7bit
 
 
---15172704960.B7efAb963.31417
-Date: Tue, 30 Jan 2018 00:01:36 +0000
+--15172705521.2E32.30830
+Date: Tue, 30 Jan 2018 00:02:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,34 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104845
 
-            Bug ID: 104845
-           Summary: Nouveau NV98 : 0 A.D. game creates memory mess after
-                    short time
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: kicibo-Qk56d+rAzDH6gbPvEgmw2w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+kicibo-Qk56d+rAzDH6gbPvEgmw2w@public.gmane.org changed:
 
-Created attachment 137044
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D137044&action=3Dedit
-logfile
-
-I have a NV98 card running Linux Kernel 4.15.0. It creates after few seconds
-strange colors and afterwards the desktop is also not working properly.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Nouveau NV98 : 0 A.D. game  |Nouveau NV98 on Linux
+                   |creates memory mess after   |4.15.0 : 0 A.D. game
+                   |short time                  |creates memory mess after
+                   |                            |short time
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15172704960.B7efAb963.31417
-Date: Tue, 30 Jan 2018 00:01:36 +0000
+--15172705521.2E32.30830
+Date: Tue, 30 Jan 2018 00:02:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,101 +61,33 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:kicibo&#6=
+4;cryp.email" title=3D"kicibo&#64;cryp.email">kicibo&#64;cryp.email</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau NV98 : 0 A.D. game creates memory mess after shor=
-t time"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104845">104845</a>
-          </td>
-        </tr>
+   title=3D"NEW - Nouveau NV98 on Linux 4.15.0 : 0 A.D. game creates memory=
+ mess after short time"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104845">bug 10484=
+5</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>Nouveau NV98 : 0 A.D. game creates memory mess after short ti=
-me
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>kicibo&#64;cryp.email
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+         <tr>
+           <td style=3D"text-align:right;">Summary</td>
+           <td>Nouveau NV98 : 0 A.D. game creates memory mess after short t=
+ime
+           </td>
+           <td>Nouveau NV98 on Linux 4.15.0 : 0 A.D. game creates memory me=
+ss after short time
+           </td>
+         </tr></table>
       <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D137044=
-" name=3D"attach_137044" title=3D"logfile">attachment 137044</a> <a href=3D=
-"attachment.cgi?id=3D137044&amp;action=3Dedit" title=3D"logfile">[details]<=
-/a></span>
-logfile
-
-I have a NV98 card running Linux Kernel 4.15.0. It creates after few seconds
-strange colors and afterwards the desktop is also not working properly.</pr=
-e>
-        </div>
       </p>
 
 
@@ -179,9 +100,9 @@ e>
     </body>
 </html>=
 
---15172704960.B7efAb963.31417--
+--15172705521.2E32.30830--
 
---===============0450806433==
+--===============0856552309==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -191,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0450806433==--
+--===============0856552309==--
