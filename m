@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104421] System freeze on wayland with nouveau on
  NV137 (GP107) and NVE4 (GK104)
-Date: Thu, 01 Feb 2018 06:30:55 +0000
-Message-ID: <bug-104421-8800-2rmkBENniW@http.bugs.freedesktop.org/>
+Date: Thu, 01 Feb 2018 06:33:19 +0000
+Message-ID: <bug-104421-8800-0h7vJbmKHX@http.bugs.freedesktop.org/>
 References: <bug-104421-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1912789511=="
+Content-Type: multipart/mixed; boundary="===============1591796139=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1912789511==
-Content-Type: multipart/alternative; boundary="15174666583.41a24BBCD.1612"
+--===============1591796139==
+Content-Type: multipart/alternative; boundary="15174667993.4a52D48.2008"
 Content-Transfer-Encoding: 7bit
 
 
---15174666583.41a24BBCD.1612
-Date: Thu, 1 Feb 2018 06:30:58 +0000
+--15174667993.4a52D48.2008
+Date: Thu, 1 Feb 2018 06:33:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,8 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
 
-Edwin Foss <mathg9-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|System freeze on wayland    |System freeze on wayland
-                   |with nouveau on NV137       |with nouveau on NV137
-                   |(GP107)                     |(GP107) and NVE4 (GK104)
-                 CC|                            |mathg9-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org
-
---- Comment #11 from Edwin Foss <mathg9-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org> ---
-Another crash
+--- Comment #12 from Edwin Foss <mathg9-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org> ---
+And crashed again
 
 kernel: nouveau 0000:01:00.0: fifo: read fault at 0002c22000 engine 00 [GR]
 client 01 [GPC2/T1_0] reason 02 [PTE] on channel 3 [007f82e000 Xwayland[964=
@@ -77,8 +68,8 @@ kernel: nouveau 0000:01:00.0: gr: TRAP ch 13 [007ed4e000 Xwayland[964]]
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15174666583.41a24BBCD.1612
-Date: Thu, 1 Feb 2018 06:30:58 +0000
+--15174667993.4a52D48.2008
+Date: Thu, 1 Feb 2018 06:33:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -89,49 +80,15 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:mathg9&#6=
-4;outlook.com" title=3D"Edwin Foss &lt;mathg9&#64;outlook.com&gt;"> <span c=
-lass=3D"fn">Edwin Foss</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107) an=
-d NVE4 (GK104)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
-1</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>System freeze on wayland with nouveau on NV137 (GP107)
-           </td>
-           <td>System freeze on wayland with nouveau on NV137 (GP107) and N=
-VE4 (GK104)
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>mathg9&#64;outlook.com
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107) an=
 d NVE4 (GK104)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421#c11">Comme=
-nt # 11</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421#c12">Comme=
+nt # 12</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107) an=
@@ -142,7 +99,7 @@ d NVE4 (GK104)"
 mathg9&#64;outlook.com" title=3D"Edwin Foss &lt;mathg9&#64;outlook.com&gt;"=
 > <span class=3D"fn">Edwin Foss</span></a>
 </span></b>
-        <pre>Another crash
+        <pre>And crashed again
 
 kernel: nouveau 0000:01:00.0: fifo: read fault at 0002c22000 engine 00 [GR]
 client 01 [GPC2/T1_0] reason 02 [PTE] on channel 3 [007f82e000 Xwayland[964=
@@ -182,9 +139,9 @@ e>
     </body>
 </html>=
 
---15174666583.41a24BBCD.1612--
+--15174667993.4a52D48.2008--
 
---===============1912789511==
+--===============1591796139==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -194,4 +151,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1912789511==--
+--===============1591796139==--
