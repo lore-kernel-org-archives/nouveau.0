@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104421] System freeze on wayland with nouveau on
- NV137 (GP107) and NVE4 (GK104) and GK107
-Date: Thu, 01 Feb 2018 13:57:40 +0000
-Message-ID: <bug-104421-8800-vCeHTIKX3J@http.bugs.freedesktop.org/>
-References: <bug-104421-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [RFC v6 0/5] Implement full clockgating for Kepler1 and 2
+Date: Thu,  1 Feb 2018 13:13:54 -0500
+Message-ID: <20180201181458.25776-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1438692350=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,99 +16,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Kate Stewart <kstewart-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Philippe Ombredanne <pombredanne-od1rfyK75/E@public.gmane.org>, Thomas Gleixner <tglx-hfZtesqFncYOwBW4kG4KsQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1438692350==
-Content-Type: multipart/alternative; boundary="15174934600.2c5cDE.10961"
-Content-Transfer-Encoding: 7bit
-
-
---15174934600.2c5cDE.10961
-Date: Thu, 1 Feb 2018 13:57:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
-
-Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|System freeze on wayland    |System freeze on wayland
-                   |with nouveau on NV137       |with nouveau on NV137
-                   |(GP107) and NVE4 (GK104)    |(GP107) and NVE4 (GK104)
-                   |                            |and GK107
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15174934600.2c5cDE.10961
-Date: Thu, 1 Feb 2018 13:57:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jan.publi=
-c&#64;famvlug.nl" title=3D"Jan Vlug &lt;jan.public&#64;famvlug.nl&gt;"> <sp=
-an class=3D"fn">Jan Vlug</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107) an=
-d NVE4 (GK104) and GK107"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
-1</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>System freeze on wayland with nouveau on NV137 (GP107) and N=
-VE4 (GK104)
-           </td>
-           <td>System freeze on wayland with nouveau on NV137 (GP107) and N=
-VE4 (GK104) and GK107
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15174934600.2c5cDE.10961--
-
---===============1438692350==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1438692350==--
+TmV4dCB2ZXJzaW9uIG9mIG15IHBhdGNoc2VyaWVzIGZvciBhZGRpbmcgY2xvY2tnYXRpbmcgc3Vw
+cG9ydCBmb3IKa2VwbGVyMSBhbmQgMiBvbiBub3V2ZWF1LiBUaGUgZmlyc3QgdmVyc2lvbiBvZiB0
+aGlzIHNlcmllcyBjYW4gYmUgZm91bmQKaGVyZToKCmh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNr
+dG9wLm9yZy9zZXJpZXMvMzY1MDQvCgpTb21lIHNtYWxsIGNoYW5nZXMgKHNob3VsZG4ndCBjaGFu
+Z2UgYW55dGhpbmcgZnVuY3Rpb25hbGx5KToKIC0gTWFkZSBnZjEwMF90aGVybV9uZXcsIGdrMTA0
+X2Nsa2dhdGVfcGFjaywgYW5kCiAgIGdrMTEwX2ZiX2Nsa2dhdGVfYmxjZ19pbml0X3Vua18wIHN0
+YXRpYyAocmU6IGtidWlsZCB0ZXN0IGJvdCkKIC0gTWFraW5nIGFsbCB0aHJlZSBvZiB0aGVzZSB0
+aGluZ3Mgc3RhdGljIG1hZGUgaXQgYXBwYXJlbnQgdGhhdCB3ZQogICBjcmVhdGUgZ2YxMDBfdGhl
+cm1fbmV3KCkgYW5kIGdmMTAwX3RoZXJtX2Z1bmMgaW4KICAgbnZrbS9zdWJkZXYvdGhlcm0vZ2Yx
+MDAuYywgYnV0IG5ldmVyIGFjdHVhbGx5IHVzZSB0aGVtIGFueXdoZXJlLiBTbywKICAgZ2V0IHJp
+ZCBvZiB0aGVzZSB0d28gdGhpbmdzIGVudGlyZWx5IGFuZCBhbHNvIHNpbmNlIHdlIG5vIGxvbmdl
+ciBuZWVkCiAgIHRvLCBzdG9wIGV4cG9ydGluZyBndDIxNV90aGVybV9pbml0CgpTaWduZWQtb2Zm
+LWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgpSZXZpZXdlZC1ieTogTWFydGluIFBl
+cmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4KCkx5dWRlIFBhdWwgKDUpOgogIGRybS9ub3V2ZWF1
+OiBBZGQgc3VwcG9ydCBmb3IgYmFzaWMgY2xvY2tnYXRpbmcgb24gS2VwbGVyMQogIGRybS9ub3V2
+ZWF1OiBBZGQgc3VwcG9ydCBmb3IgQkxDRyBvbiBLZXBsZXIxCiAgZHJtL25vdXZlYXU6IEFkZCBz
+dXBwb3J0IGZvciBCTENHIG9uIEtlcGxlcjIKICBkcm0vbm91dmVhdTogQWRkIHN1cHBvcnQgZm9y
+IFNMQ0cgZm9yIEtlcGxlcjIKICBkcm0vbm91dmVhdTogSW50cm9kdWNlIE52UG1FbmFibGVHYXRp
+bmcgb3B0aW9uCgogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9m
+Yi5oICAgfCAgIDEgKwogLi4uL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3Ro
+ZXJtLmggICAgfCAgMTcgKysKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rl
+dmljZS9iYXNlLmMgIHwgIDI1ICstLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdp
+bmUvZ3IvZ2YxMDAuaCAgICAgfCAgIDEgKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9l
+bmdpbmUvZ3IvZ2sxMDQuYyAgICAgfCAyMDcgKysrKysrKysrKysrKysrKysrKysrCiBkcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nazEwNC5oICAgICB8ICA1NSArKysrKysK
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2drMTEwLmMgICAgIHwgMTU1
+ICsrKysrKysrKysrKysrKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIv
+S2J1aWxkICAgICAgfCAgIDEgKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
+ZmIvZ2YxMDAuYyAgICAgfCAgIDYgKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJk
+ZXYvZmIvZ2sxMDQuYyAgICAgfCAgNDcgKysrKysKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
+a20vc3ViZGV2L2ZiL2drMTA0LmggICAgIHwgIDM1ICsrKysKIGRyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252a20vc3ViZGV2L2ZiL2drMTEwLmMgICAgIHwgIDcxICsrKysrKysKIGRyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3ByaXYuaCAgICAgIHwgICAyICsKIGRyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3RoZXJtL0tidWlsZCAgIHwgICAyICsKIGRyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3RoZXJtL2Jhc2UuYyAgIHwgIDcwICsrKysr
+Ky0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3RoZXJtL2dmMTAwLmMgIHwg
+IDU4ICsrKysrKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vZ2Yx
+MDAuaCAgfCAgMzUgKysrKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhl
+cm0vZ2YxMTkuYyAgfCAgIDggKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2
+L3RoZXJtL2drMTA0LmMgIHwgMTM2ICsrKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9udmttL3N1YmRldi90aGVybS9nazEwNC5oICB8ICA0OCArKysrKwogZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vZ3QyMTUuYyAgfCAgIDIgKy0KIGRyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3RoZXJtL3ByaXYuaCAgIHwgIDIxICsrLQogMjIg
+ZmlsZXMgY2hhbmdlZCwgOTc3IGluc2VydGlvbnMoKyksIDI2IGRlbGV0aW9ucygtKQogY3JlYXRl
+IG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2drMTA0
+LmgKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRl
+di9mYi9nazEwNC5oCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvZmIvZ2sxMTAuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L252a20vc3ViZGV2L3RoZXJtL2dmMTAwLmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBk
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9nZjEwMC5oCiBjcmVhdGUg
+bW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vZ2sx
+MDQuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3Vi
+ZGV2L3RoZXJtL2drMTA0LmgKCi0tIAoyLjE0LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
