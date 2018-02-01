@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104421] System freeze on wayland with nouveau on
- NV137 (GP107) and NVE4 (GK104)
-Date: Thu, 01 Feb 2018 06:33:19 +0000
-Message-ID: <bug-104421-8800-0h7vJbmKHX@http.bugs.freedesktop.org/>
-References: <bug-104421-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 104897] New: nouveau memory allocation issue causes
+ screen distortions under KDE
+Date: Thu, 01 Feb 2018 08:36:09 +0000
+Message-ID: <bug-104897-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1591796139=="
+Content-Type: multipart/mixed; boundary="===============1192459935=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,55 +19,57 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1591796139==
-Content-Type: multipart/alternative; boundary="15174667993.4a52D48.2008"
+--===============1192459935==
+Content-Type: multipart/alternative; boundary="15174741690.572FdB.23469"
 Content-Transfer-Encoding: 7bit
 
 
---15174667993.4a52D48.2008
-Date: Thu, 1 Feb 2018 06:33:19 +0000
+--15174741690.572FdB.23469
+Date: Thu, 1 Feb 2018 08:36:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104897
 
---- Comment #12 from Edwin Foss <mathg9-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org> ---
-And crashed again
+            Bug ID: 104897
+           Summary: nouveau memory allocation issue causes screen
+                    distortions under KDE
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-kernel: nouveau 0000:01:00.0: fifo: read fault at 0002c22000 engine 00 [GR]
-client 01 [GPC2/T1_0] reason 02 [PTE] on channel 3 [007f82e000 Xwayland[964=
-]]
-kernel: nouveau 0000:01:00.0: gr: GPC2/TPC1/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC2/TPC0/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC1/TPC1/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC1/TPC0/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: TRAP ch 3 [007f82e000 Xwayland[964]]
-kernel: nouveau 0000:01:00.0: Xwayland[964]: channel 13 killed!
-kernel: nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
-kernel: nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recovery
-kernel: nouveau 0000:01:00.0: fifo: channel 13: killed
-kernel: nouveau 0000:01:00.0: fifo: read fault at 0007280000 engine 00 [GR]
-client 01 [GPC0/T1_0] reason 02 [PTE] on channel 13 [007ed4e000 Xwayland[96=
-4]]
-kernel: nouveau 0000:01:00.0: gr: GPC2/TPC1/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC2/TPC0/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC1/TPC1/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC1/TPC0/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: TRAP ch 13 [007ed4e000 Xwayland[964]]
+Created attachment 137106
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D137106&action=3Dedit
+screenshot
+
+Working under mesa-common-dev 13.0.6-1+b2, plasma-workspace 4:5.8.6-2.1, Xo=
+rg
+1.19.2 and kernel 4.15.0-rc9+ I do get weird screen distortions under KDE as
+soon as I enable my external 4K display. As KDE runs stable and fine with my
+integrated display in a much lower resolution I would guess this to be a me=
+mory
+allocation issue of nouveau. Other less memory intense desktop environments
+like Xfce still run fine under 4K. The issue is known since long (see also =
+the
+KDE bug: https://bugs.kde.org/show_bug.cgi?id=3D368275)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15174667993.4a52D48.2008
-Date: Thu, 1 Feb 2018 06:33:19 +0000
+--15174741690.572FdB.23469
+Date: Thu, 1 Feb 2018 08:36:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,52 +80,108 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau memory allocation issue causes screen distortions=
+ under KDE"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104897">104897</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>nouveau memory allocation issue causes screen distortions und=
+er KDE
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>estellnb&#64;elstel.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107) an=
-d NVE4 (GK104)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421#c12">Comme=
-nt # 12</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107) an=
-d NVE4 (GK104)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mathg9&#64;outlook.com" title=3D"Edwin Foss &lt;mathg9&#64;outlook.com&gt;"=
-> <span class=3D"fn">Edwin Foss</span></a>
-</span></b>
-        <pre>And crashed again
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D137106=
+" name=3D"attach_137106" title=3D"screenshot">attachment 137106</a> <a href=
+=3D"attachment.cgi?id=3D137106&amp;action=3Dedit" title=3D"screenshot">[det=
+ails]</a></span>
+screenshot
 
-kernel: nouveau 0000:01:00.0: fifo: read fault at 0002c22000 engine 00 [GR]
-client 01 [GPC2/T1_0] reason 02 [PTE] on channel 3 [007f82e000 Xwayland[964=
-]]
-kernel: nouveau 0000:01:00.0: gr: GPC2/TPC1/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC2/TPC0/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC1/TPC1/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC1/TPC0/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: TRAP ch 3 [007f82e000 Xwayland[964]]
-kernel: nouveau 0000:01:00.0: Xwayland[964]: channel 13 killed!
-kernel: nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
-kernel: nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recovery
-kernel: nouveau 0000:01:00.0: fifo: channel 13: killed
-kernel: nouveau 0000:01:00.0: fifo: read fault at 0007280000 engine 00 [GR]
-client 01 [GPC0/T1_0] reason 02 [PTE] on channel 13 [007ed4e000 Xwayland[96=
-4]]
-kernel: nouveau 0000:01:00.0: gr: GPC2/TPC1/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC2/TPC0/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC1/TPC1/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC1/TPC0/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000049
-kernel: nouveau 0000:01:00.0: gr: TRAP ch 13 [007ed4e000 Xwayland[964]]</pr=
-e>
+Working under mesa-common-dev 13.0.6-1+b2, plasma-workspace 4:5.8.6-2.1, Xo=
+rg
+1.19.2 and kernel 4.15.0-rc9+ I do get weird screen distortions under KDE as
+soon as I enable my external 4K display. As KDE runs stable and fine with my
+integrated display in a much lower resolution I would guess this to be a me=
+mory
+allocation issue of nouveau. Other less memory intense desktop environments
+like Xfce still run fine under 4K. The issue is known since long (see also =
+the
+KDE bug: <a href=3D"https://bugs.kde.org/show_bug.cgi?id=3D368275">https://=
+bugs.kde.org/show_bug.cgi?id=3D368275</a>)</pre>
         </div>
       </p>
 
@@ -139,9 +195,9 @@ e>
     </body>
 </html>=
 
---15174667993.4a52D48.2008--
+--15174741690.572FdB.23469--
 
---===============1591796139==
+--===============1192459935==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -151,4 +207,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1591796139==--
+--===============1192459935==--
