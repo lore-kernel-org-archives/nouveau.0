@@ -1,203 +1,92 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104898] New: backlight problem with the NVIDIA
- G96GLM [Quadro FX 770M]
-Date: Thu, 01 Feb 2018 08:43:46 +0000
-Message-ID: <bug-104898-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Subject: Re: [Nouveau] swiotlb buffer is full
+Date: Thu, 1 Feb 2018 10:20:34 +0100
+Message-ID: <726461ae-e1b3-92a0-9be5-265bfd4f100a@amd.com>
+References: <20180131140534.16ccec5c@darkbook>
+ <CAKb7UvjG3302K+YEEuoU91ait0BKxGuh+avqMgo7q2cC6GUF5w@mail.gmail.com>
+ <CADnq5_N7GraJHq2mugMkGSyav_qaO5=Rj+Acm+8brzdAT_oaGA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1645576059=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CADnq5_N7GraJHq2mugMkGSyav_qaO5=Rj+Acm+8brzdAT_oaGA@mail.gmail.com>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Konrad Rzeszutek Wilk <konrad@darnok.org>, Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
+Cc: nouveau <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ricardo Nabinger Sanchez <rnsanchez@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1645576059==
-Content-Type: multipart/alternative; boundary="15174746260.bC81Da1Df.24506"
-Content-Transfer-Encoding: 7bit
-
-
---15174746260.bC81Da1Df.24506
-Date: Thu, 1 Feb 2018 08:43:46 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104898
-
-            Bug ID: 104898
-           Summary: backlight problem with the NVIDIA G96GLM [Quadro FX
-                    770M]
-           Product: xorg
-           Version: unspecified
-          Hardware: All
-                OS: All
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-There is a problem with the backlight of my FTS Celsius H265 notebook and i=
-ts
-NVIDIA G96GLM [Quadro FX 770M] graphics card. When I leave my computer
-unattended for a while Xfce turns off the backlight of my computer as there=
- is
-no input. However as soon as it does so my screen stays permanently black. =
-When
-I move the mouse the backlight goes on again; however the screen content
-remains black. The same problem occurs with s2ram; after awaking from s2ram
-Num-Lock works well but the screen stays black. However to evoke this error=
- it
-isn`t necessary to s2ram; the desktop environment just needs to switch the
-backlight off. - using kernel 4.15.0-rc9+.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15174746260.bC81Da1Df.24506
-Date: Thu, 1 Feb 2018 08:43:46 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - backlight problem with the NVIDIA G96GLM [Quadro FX 770M]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104898">104898</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>backlight problem with the NVIDIA G96GLM [Quadro FX 770M]
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>estellnb&#64;elstel.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>There is a problem with the backlight of my FTS Celsius H265 n=
-otebook and its
-NVIDIA G96GLM [Quadro FX 770M] graphics card. When I leave my computer
-unattended for a while Xfce turns off the backlight of my computer as there=
- is
-no input. However as soon as it does so my screen stays permanently black. =
-When
-I move the mouse the backlight goes on again; however the screen content
-remains black. The same problem occurs with s2ram; after awaking from s2ram
-Num-Lock works well but the screen stays black. However to evoke this error=
- it
-isn`t necessary to s2ram; the desktop environment just needs to switch the
-backlight off. - using kernel 4.15.0-rc9+.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15174746260.bC81Da1Df.24506--
-
---===============1645576059==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1645576059==--
+SGkgS29ucmFkLAoKanVzdCBhIGdlbnRsZSBwaW5nLgoKSXQgbG9va3MgbGlrZSB0aGUgcGF0Y2gg
+InN3aW90bGI6IHN1cHByZXNzIHdhcm5pbmcgd2hlbiBfX0dGUF9OT1dBUk4gaXMgCnNldCIgZGlk
+bid0IG1hZGUgaXQgaW50byA0LjE1IGFuZCBub3cgcGVvcGxlIGFyZSBib21iYXJkaW5nIHVzIHdp
+dGggYnVnIApyZXBvcnRzIGFib3V0IHRoYXQuCgpEaWQgeW91IGFscmVhZHkgc2VuZCB0aGF0IG9u
+ZSBvdXQgZm9yIGluY2x1c2lvbiBpbiA0LjE2PyBJdCBhbHNvIGhhcyBhIApzdGFibGUgdGFnLCBz
+byBpdCBzaG91bGQgYmUgYmFja3BvcnRlZCB0byA0LjE1Lnggb25jZSBpdCBsYW5kcyBpbiBMaW51
+cyAKdHJlZS4KClRoYW5rcyBpbiBhZHZhbmNlLApDaHJpc3RpYW4uCgpBbSAwMS4wMi4yMDE4IHVt
+IDAzOjI1IHNjaHJpZWIgQWxleCBEZXVjaGVyOgo+IE9uIFdlZCwgSmFuIDMxLCAyMDE4IGF0IDk6
+MjAgUE0sIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4+IFllYWgs
+IGEgbG90IG9mIHBlb3BsZSB3ZXJlIGdldHRpbmcgdGhhdCwgYXMgYSByZXN1bHQgb2Ygc29tZSBk
+cm0vdHRtCj4+IGh1Z2VwYWdlIHVzYWdlLgo+Pgo+PiBDaHJpc3RpYW4sIGRpZCBhIGZpeCBldmVy
+IGVuZCB1cCBnb2luZyBvdXQ/IElmIHNvLCB3aGF0IGtlcm5lbCB3YXMgaXQKPj4gaW5jbHVkZWQg
+aW4/Cj4gaHR0cHM6Ly9sa21sLm9yZy9sa21sLzIwMTgvMS8xNi8xMDYKPgo+IEFsZXgKPgo+PiAg
+ICAtaWxpYQo+Pgo+PiBPbiBXZWQsIEphbiAzMSwgMjAxOCBhdCAxMTowNSBBTSwgUmljYXJkbyBO
+YWJpbmdlciBTYW5jaGV6Cj4+IDxybnNhbmNoZXpAZ21haWwuY29tPiB3cm90ZToKPj4+IEhlbGxv
+LAo+Pj4KPj4+IEkndmUgbm90aWNlZCBmaXJlZm94IGdvdCByYW5kb21seSBzdHVjaywgYW5kIGFz
+IHNvbWV0aW1lcyB0aGF0IGxlYWRzIHRvIGEKPj4+IGNvbXBsZXRlIHN5c3RlbSBsb2NrLXVwLCBJ
+J3ZlIGNoZWNrZWQgZG1lc2cgYW5kIGdvdCB0aGlzOgo+Pj4KPj4+IFtKYW4yOSAxMDo0OV0gbm91
+dmVhdSAwMDAwOjAxOjAwLjA6IHN3aW90bGIgYnVmZmVyIGlzIGZ1bGwgKHN6OiAyMDk3MTUyIGJ5
+dGVzKQo+Pj4gWyAgKzAuMDAwMDMzXSBzd2lvdGxiOiBjb2hlcmVudCBhbGxvY2F0aW9uIGZhaWxl
+ZCBmb3IgZGV2aWNlIDAwMDA6MDE6MDAuMCBzaXplPTIwOTcxNTIKPj4+IFsgICswLjAwMDAwNF0g
+Q1BVOiA2IFBJRDogMTAyMyBDb21tOiBYb3JnIE5vdCB0YWludGVkIDQuMTUuMC1yYzggIzEKPj4+
+IFsgICswLjAwMDAwM10gSGFyZHdhcmUgbmFtZTogTWljcm8tU3RhciBJbnRlcm5hdGlvbmFsIENv
+LiwgTHRkLiBHWDc4MC9HVDc4MC9NUy0xNzYxLCBCSU9TIEUxNzYxSU1TIFYzLjAxIDA1LzAyLzIw
+MTEKPj4+IFsgICswLjAwMDAwM10gQ2FsbCBUcmFjZToKPj4+IFsgICswLjAwMDAwOV0gIGR1bXBf
+c3RhY2srMHg5Zi8weGUxCj4+PiBbICArMC4wMDAwMDhdICBzd2lvdGxiX2FsbG9jX2NvaGVyZW50
+KzB4ZGYvMHgxNTAKPj4+IFsgICswLjAwMDAxMF0gIHR0bV9kbWFfcG9vbF9nZXRfcGFnZXMrMHgx
+ZWMvMHg0YjAKPj4+IFsgICswLjAwMDAxNV0gIHR0bV9kbWFfcG9wdWxhdGUrMHgyNGMvMHgzNDAK
+Pj4+IFsgICswLjAwMDAxMV0gIHR0bV90dF9iaW5kKzB4MjMvMHg1MAo+Pj4gWyAgKzAuMDAwMDA2
+XSAgdHRtX2JvX2hhbmRsZV9tb3ZlX21lbSsweDU4Yy8weDVjMAo+Pj4gWyAgKzAuMDAwMDE1XSAg
+dHRtX2JvX3ZhbGlkYXRlKzB4MTUyLzB4MTkwCj4+PiBbICArMC4wMDAwMDRdICA/IHR0bV9ib19p
+bml0X3Jlc2VydmVkKzB4M2Q4LzB4NDkwCj4+PiBbICArMC4wMDAwMTJdICA/IG11dGV4X3RyeWxv
+Y2srMHhjZC8weGUwCj4+PiBbICArMC4wMDAwMDRdICA/IHR0bV9ib19oYW5kbGVfbW92ZV9tZW0r
+MHg1OC8weDVjMAo+Pj4gWyAgKzAuMDAwMDA3XSAgdHRtX2JvX2luaXRfcmVzZXJ2ZWQrMHgzZjQv
+MHg0OTAKPj4+IFsgICswLjAwMDAxMF0gIHR0bV9ib19pbml0KzB4MmYvMHhhMAo+Pj4gWyAgKzAu
+MDAwMDA5XSAgPyBub3V2ZWF1X2JvX2ludmFsaWRhdGVfY2FjaGVzKzB4MTAvMHgxMAo+Pj4gWyAg
+KzAuMDAwMDA1XSAgbm91dmVhdV9ib19uZXcrMHg0MTYvMHg1OTAKPj4+IFsgICswLjAwMDAwN10g
+ID8gbm91dmVhdV9ib19pbnZhbGlkYXRlX2NhY2hlcysweDEwLzB4MTAKPj4+IFsgICswLjAwMDAw
+OV0gID8gbm91dmVhdV9nZW1fbmV3KzB4MTAwLzB4MTAwCj4+PiBbICArMC4wMDAwMDRdICBub3V2
+ZWF1X2dlbV9uZXcrMHg0OS8weDEwMAo+Pj4gWyAgKzAuMDAwMDA5XSAgbm91dmVhdV9nZW1faW9j
+dGxfbmV3KzB4NDEvMHhjMAo+Pj4gWyAgKzAuMDAwMDA5XSAgZHJtX2lvY3RsX2tlcm5lbCsweDU5
+LzB4YjAKPj4+IFsgICswLjAwMDAwOF0gIGRybV9pb2N0bCsweDJjMS8weDM1MAo+Pj4gWyAgKzAu
+MDAwMDA3XSAgPyBub3V2ZWF1X2dlbV9uZXcrMHgxMDAvMHgxMDAKPj4+IFsgICswLjAwMDAxMl0g
+ID8gX3Jhd19zcGluX3VubG9ja19pcnFyZXN0b3JlKzB4NGQvMHg5MAo+Pj4gWyAgKzAuMDAwMDA2
+XSAgPyBwcmVlbXB0X2NvdW50X3N1YisweDliLzB4ZDAKPj4+IFsgICswLjAwMDAwNV0gID8gX3Jh
+d19zcGluX3VubG9ja19pcnFyZXN0b3JlKzB4NmIvMHg5MAo+Pj4gWyAgKzAuMDAwMDA4XSAgbm91
+dmVhdV9kcm1faW9jdGwrMHg2NC8weGMwCj4+PiBbICArMC4wMDAwMDldICBkb192ZnNfaW9jdGwr
+MHg4ZS8weDY5MAo+Pj4gWyAgKzAuMDAwMDA3XSAgPyBfX2ZnZXQrMHgxMTYvMHgyMDAKPj4+IFsg
+ICswLjAwMDAxMF0gIFN5U19pb2N0bCsweDc0LzB4ODAKPj4+IFsgICswLjAwMDAwOV0gIGVudHJ5
+X1NZU0NBTExfNjRfZmFzdHBhdGgrMHgyMy8weDlhCj4+PiBbICArMC4wMDAwMDRdIFJJUDogMDAz
+MzoweDdmNzg2MGM3MDcyNwo+Pj4gWyAgKzAuMDAwMDAzXSBSU1A6IDAwMmI6MDAwMDdmZmNiMGQz
+YjA4OCBFRkxBR1M6IDAwMDAwMjQ2Cj4+Pgo+Pj4gVXB0aW1lIGlzIGFib3V0IDE0IGRheXMgbm93
+IGFuZCBJIGRvbid0IHRoaW5rIEkndmUgc2VlbiB0aGlzIHRyYWNlIGJlZm9yZS4KPj4+Cj4+PiBJ
+cyB0aGlzIHVzZWZ1bC93b3J0aCBjaGFzaW5nPwo+Pj4KPj4+IENoZWVycywKPj4+Cj4+PiAtLQo+
+Pj4gUmljYXJkbyBOYWJpbmdlciBTYW5jaGV6ICAgICAgICAgICBodHRwOi8vcm5zYW5jaGV6Lndh
+aXQ0Lm9yZy8KPj4+ICAgICAgICAgICJZb3UgbmV2ZXIgbGVhcm5lZCBhbnl0aGluZyBieSBkb2lu
+ZyBpdCByaWdodC4iCj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwo+Pj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCj4+PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUKPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KPj4gZHJpLWRldmVsIG1haWxpbmcgbGlzdAo+PiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCj4+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vZHJpLWRldmVsCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2
+ZWwK
