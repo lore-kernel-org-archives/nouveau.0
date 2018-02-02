@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104421] System freeze on wayland with nouveau on
- NV137 (GP107) and NVE4 (GK104) and GK107
-Date: Thu, 01 Feb 2018 19:50:02 +0000
-Message-ID: <bug-104421-8800-Ojr3QYa5ul@http.bugs.freedesktop.org/>
-References: <bug-104421-8800@http.bugs.freedesktop.org/>
+From: Arnd Bergmann <arnd-r2nGTMty4D4@public.gmane.org>
+Subject: [PATCH] drm: nouveau: use larger buffer in nvif_vmm_map
+Date: Fri,  2 Feb 2018 16:27:31 +0100
+Message-ID: <20180202152745.1036820-1-arnd@arndb.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0141912627=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104421-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,259 +15,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Arnd Bergmann <arnd-r2nGTMty4D4@public.gmane.org>, Martin Sebor <msebor-/MQLu3FmUzdAfugRpC6u6w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0141912627==
-Content-Type: multipart/alternative; boundary="15175146020.8E6dFc0.8827"
-Content-Transfer-Encoding: 7bit
-
-
---15175146020.8E6dFc0.8827
-Date: Thu, 1 Feb 2018 19:50:02 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104421
-
---- Comment #13 from Jan Vlug <jan.public-4zxwHqDmGJ7z+pZb47iToQ@public.gmane.org> ---
-Another crash, here some logging:
-
-Feb 01 18:32:23 nyx kernel: nouveau 0000:23:00.0: gr: TRAP ch 14 [00fdb11000
-Xwayland[3450]]
-Feb 01 18:32:23 nyx kernel: nouveau 0000:23:00.0: gr: GPC1/TPC2/TEX: 800000=
-41
-Feb 01 18:32:23 nyx kernel: nouveau 0000:23:00.0: fifo: read fault at
-00039de000 engine 00 [GR] client 18 [GPC1/PE_5] reason 02 [PTE] on channel =
-14
-[00fdb11000 Xwayland[3450]]
-Feb 01 18:32:23 nyx kernel: nouveau 0000:23:00.0: fifo: channel 14: killed
-Feb 01 18:32:23 nyx kernel: nouveau 0000:23:00.0: fifo: runlist 0: scheduled
-for recovery
-Feb 01 18:32:23 nyx kernel: nouveau 0000:23:00.0: fifo: engine 0: scheduled=
- for
-recovery
-Feb 01 18:32:23 nyx kernel: nouveau 0000:23:00.0: Xwayland[3450]: channel 14
-killed!
-<snip>
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau: kernel rejected
-pushbuf: Device or resource busy
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: krec 0 pu=
-shes
-1 bufs 4 relocs 0
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-000
-00000003 00000004 00000004 00000000
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-001
-00000006 00000004 00000000 00000004
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-002
-00000020 00000002 00000000 00000002
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-003
-0000002e 00000004 00000004 00000000
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: psh 00000=
-000
-0000013e24 0000013eb4
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x20056=
-080
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x00000=
-0e6
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x00000=
-000
-<snip>
-Feb 01 19:32:00 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x20046=
-234
-Feb 01 19:32:00 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x00000=
-000
-Feb 01 19:32:00 nyx kernel: nouveau 0000:23:00.0: Xwayland[3450]:
-nv50cal_space: -16
-Feb 01 19:32:00 nyx kernel: nouveau 0000:23:00.0: fifo: PBDMA0: 04000000
-[ACQUIRE] ch 13 [00ffb82000 systemd-logind[2544]] subc 0 mthd 001c data
-00001004
-Feb 01 19:32:00 nyx kernel: nouveau 0000:23:00.0: fifo: PBDMA0: 04000000
-[ACQUIRE] ch 13 [00ffb82000 systemd-logind[2544]] subc 0 mthd 001c data
-00001004
-Feb 01 19:32:00 nyx kernel: nouveau 0000:23:00.0: fifo: PBDMA0: 04000000
-[ACQUIRE] ch 13 [00ffb82000 systemd-logind[2544]] subc 0 mthd 001c data
-00001004
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau: kernel rejected
-pushbuf: Device or resource busy
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: krec 0 pu=
-shes
-1 bufs 4 relocs 0
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-000
-00000004 00000004 00000004 00000000
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-001
-00000006 00000004 00000000 00000004
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-002
-00000019 00000002 00000000 00000002
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-003
-0000000f 00000004 00000004 00000000
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: psh 00000=
-000
-0000001138 00000011c8
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x20056=
-080
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x00000=
-0e6
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x00000=
-000
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15175146020.8E6dFc0.8827
-Date: Thu, 1 Feb 2018 19:50:02 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107) an=
-d NVE4 (GK104) and GK107"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421#c13">Comme=
-nt # 13</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System freeze on wayland with nouveau on NV137 (GP107) an=
-d NVE4 (GK104) and GK107"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104421">bug 10442=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jan.public&#64;famvlug.nl" title=3D"Jan Vlug &lt;jan.public&#64;famvlug.nl&=
-gt;"> <span class=3D"fn">Jan Vlug</span></a>
-</span></b>
-        <pre>Another crash, here some logging:
-
-Feb 01 18:32:23 nyx kernel: nouveau 0000:23:00.0: gr: TRAP ch 14 [00fdb11000
-Xwayland[3450]]
-Feb 01 18:32:23 nyx kernel: nouveau 0000:23:00.0: gr: GPC1/TPC2/TEX: 800000=
-41
-Feb 01 18:32:23 nyx kernel: nouveau 0000:23:00.0: fifo: read fault at
-00039de000 engine 00 [GR] client 18 [GPC1/PE_5] reason 02 [PTE] on channel =
-14
-[00fdb11000 Xwayland[3450]]
-Feb 01 18:32:23 nyx kernel: nouveau 0000:23:00.0: fifo: channel 14: killed
-Feb 01 18:32:23 nyx kernel: nouveau 0000:23:00.0: fifo: runlist 0: scheduled
-for recovery
-Feb 01 18:32:23 nyx kernel: nouveau 0000:23:00.0: fifo: engine 0: scheduled=
- for
-recovery
-Feb 01 18:32:23 nyx kernel: nouveau 0000:23:00.0: Xwayland[3450]: channel 14
-killed!
-&lt;snip&gt;
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau: kernel rejected
-pushbuf: Device or resource busy
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: krec 0 pu=
-shes
-1 bufs 4 relocs 0
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-000
-00000003 00000004 00000004 00000000
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-001
-00000006 00000004 00000000 00000004
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-002
-00000020 00000002 00000000 00000002
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-003
-0000002e 00000004 00000004 00000000
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: psh 00000=
-000
-0000013e24 0000013eb4
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x20056=
-080
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x00000=
-0e6
-Feb 01 18:37:34 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x00000=
-000
-&lt;snip&gt;
-Feb 01 19:32:00 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x20046=
-234
-Feb 01 19:32:00 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x00000=
-000
-Feb 01 19:32:00 nyx kernel: nouveau 0000:23:00.0: Xwayland[3450]:
-nv50cal_space: -16
-Feb 01 19:32:00 nyx kernel: nouveau 0000:23:00.0: fifo: PBDMA0: 04000000
-[ACQUIRE] ch 13 [00ffb82000 systemd-logind[2544]] subc 0 mthd 001c data
-00001004
-Feb 01 19:32:00 nyx kernel: nouveau 0000:23:00.0: fifo: PBDMA0: 04000000
-[ACQUIRE] ch 13 [00ffb82000 systemd-logind[2544]] subc 0 mthd 001c data
-00001004
-Feb 01 19:32:00 nyx kernel: nouveau 0000:23:00.0: fifo: PBDMA0: 04000000
-[ACQUIRE] ch 13 [00ffb82000 systemd-logind[2544]] subc 0 mthd 001c data
-00001004
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau: kernel rejected
-pushbuf: Device or resource busy
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: krec 0 pu=
-shes
-1 bufs 4 relocs 0
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-000
-00000004 00000004 00000004 00000000
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-001
-00000006 00000004 00000000 00000004
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-002
-00000019 00000002 00000000 00000002
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: buf 00000=
-003
-0000000f 00000004 00000004 00000000
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau: ch14: psh 00000=
-000
-0000001138 00000011c8
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x20056=
-080
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x00000=
-0e6
-Feb 01 19:33:00 nyx org.gnome.Shell.desktop[3409]: nouveau:         0x00000=
-000</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15175146020.8E6dFc0.8827--
-
---===============0141912627==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0141912627==--
+Z2NjIHBvaW50cyBvdXQgYSBidWZmZXIgdGhhdCBpcyBjbGVhcmx5IHRvbyBzbWFsbCB0byBiZSB1
+c2VkCmluIGEgbWVhbmluZ2Z1bCB3YXksIGFzIHRoZSAnc2l6ZW9mKCphcmdzKSArIGFyZ2MgPiBz
+aXplb2Yoc3RhY2spJwp3aWxsIGFsd2F5cyBmYWlsOgoKSW4gZnVuY3Rpb24gJ21lbWNweScsCiAg
+ICBpbmxpbmVkIGZyb20gJ252aWZfdm1tX21hcCcgYXQgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bnZpZi92bW0uYzo1NToyOgppbmNsdWRlL2xpbnV4L3N0cmluZy5oOjM1Mzo5OiBlcnJvcjogJ19f
+YnVpbHRpbl9tZW1jcHknIG9mZnNldCA0MCBpcyBvdXQgb2YgdGhlIGJvdW5kcyBbMCwgMTZdIG9m
+IG9iamVjdCAnc3RhY2snIHdpdGggdHlwZSAndThbMTZdJyB7YWthICd1bnNpZ25lZCBjaGFyWzE2
+XSd9IFstV2Vycm9yPWFycmF5LWJvdW5kc10KICByZXR1cm4gX19idWlsdGluX21lbWNweShwLCBx
+LCBzaXplKTsKICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fgpkcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9udmlmL3ZtbS5jOiBJbiBmdW5jdGlvbiAnbnZpZl92bW1fbWFwJzoKZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbnZpZi92bW0uYzo0MDo1OiBub3RlOiAnc3RhY2snIGRlY2xh
+cmVkIGhlcmUKClRoaXMgbWFrZXMgdGhlIGJ1ZmZlciBsYXJnZSBlbm91Z2ggc28gaXQgc2hvdWxk
+IHNlcnZlIHRoZSBwdXJwb3NlCnRoYXQgdGhlIGF1dGhvciBwcmVzdW1hYmx5IGhhZCBpbiBtaW5k
+LiBBbHRlcm5hdGl2ZWx5IHdlIGNvdWxkCmp1c3QgZ2V0IHJpZCBvZiBpdCBjb21wbGV0ZWx5IGFu
+ZCBzaW1wbGlmeSB0aGUgY29kZSBhdCB0aGUgY29zdApvZiBhbHdheXMgZG9pbmcgdGhlIGttYWxs
+b2MgKGFzIHdlIGRvIGluIHRoZSBjdXJyZW50IHZlcnNpb24pLgoKRml4ZXM6IDkyMGQyYjVlZjIx
+NSAoImRybS9ub3V2ZWF1L21tdTogZGVmaW5lIHVzZXIgaW50ZXJmYWNlcyB0byBtbXUgdm1tIG9w
+ZXJ0YWlvbnMiKQpTaWduZWQtb2ZmLWJ5OiBBcm5kIEJlcmdtYW5uIDxhcm5kQGFybmRiLmRlPgot
+LS0KQ2M6IE1hcnRpbiBTZWJvciA8bXNlYm9yQGdjYy5nbnUub3JnPgoKTWFydGluOiB0aGlzIG9u
+ZSBpcyBpbnRlcmVzdGluZywgSSB0aGluayBpdCBxdWFsaWZpZXMgYXMgYQpmYWxzZS1wb3NpdGl2
+ZSB3YXJuaW5nIHRoYXQgZ2NjIHNob3VsZCBub3QgcHJpbnQgYmVjYXVzZSB0aGVyZQppcyBubyBv
+dmVyZmxvdywgYnV0IHRoZSBjb2RlIGlzIHN0aWxsIHdyb25nIGJlY2F1c2Ugd2UgbmV2ZXIKY29w
+eSBpbnRvIHRoZSBmaXhlZC1zaXplIGJ1ZmZlciB0aGF0IHdhcyBpbnRlbmRlZCBhcyBhCm1pY3Jv
+LW9wdGltaXphdGlvbgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252aWYvdm1tLmMgfCAy
+ICstCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmlmL3ZtbS5jIGIvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbnZpZi92bW0uYwppbmRleCAzMWNkYjJkMmUxZmYuLjE5MTgzMmJlNmM2NSAx
+MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZpZi92bW0uYworKysgYi9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9udmlmL3ZtbS5jCkBAIC0zNyw3ICszNyw3IEBAIG52aWZfdm1t
+X21hcChzdHJ1Y3QgbnZpZl92bW0gKnZtbSwgdTY0IGFkZHIsIHU2NCBzaXplLCB2b2lkICphcmd2
+LCB1MzIgYXJnYywKIAkgICAgIHN0cnVjdCBudmlmX21lbSAqbWVtLCB1NjQgb2Zmc2V0KQogewog
+CXN0cnVjdCBudmlmX3ZtbV9tYXBfdjAgKmFyZ3M7Ci0JdTggc3RhY2tbMTZdOworCXU4IHN0YWNr
+WzQ4XTsKIAlpbnQgcmV0OwogCiAJaWYgKHNpemVvZigqYXJncykgKyBhcmdjID4gc2l6ZW9mKHN0
+YWNrKSkgewotLSAKMi45LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
+dQo=
