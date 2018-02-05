@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
  ]
-Date: Mon, 05 Feb 2018 15:48:26 +0000
-Message-ID: <bug-100423-8800-bUn2kWq6Sn@http.bugs.freedesktop.org/>
+Date: Mon, 05 Feb 2018 16:32:45 +0000
+Message-ID: <bug-100423-8800-9jollcpoTn@http.bugs.freedesktop.org/>
 References: <bug-100423-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0223335528=="
+Content-Type: multipart/mixed; boundary="===============1730304304=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0223335528==
-Content-Type: multipart/alternative; boundary="15178457064.0E3AA8.10529"
+--===============1730304304==
+Content-Type: multipart/alternative; boundary="15178483640.Ebd99e5.17067"
 Content-Transfer-Encoding: 7bit
 
 
---15178457064.0E3AA8.10529
-Date: Mon, 5 Feb 2018 15:48:26 +0000
+--15178483640.Ebd99e5.17067
+Date: Mon, 5 Feb 2018 16:32:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,26 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
 
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Alex from comment #13)
-> @Bruno, thanks for the comment. I will check it out. Bumblebee: you see, =
-I'm
-> fine with intel, I do not need extreme speeds and I have 16GB in RAM ...
-> nvidia - I could manage to install it either globally or in bumblebee but=
- it
-> blocks the brightness control when used permanently - very weird, so only
-> bumblebee would go.
+--- Comment #15 from Bruno Pagani <bruno.n.pagani-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+> Something when wrong with nouveau globaly
 
-With nouveau loaded (assuming things go properly), your GPU should suspend =
-when
-not in use.
+If you have a quite recent system, maybe you are affected by
+https://bugzilla.kernel.org/show_bug.cgi?id=3D156341.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15178457064.0E3AA8.10529
-Date: Mon, 5 Feb 2018 15:48:26 +0000
+--15178483640.Ebd99e5.17067
+Date: Mon, 5 Feb 2018 16:32:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,32 +64,23 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c14">Comme=
-nt # 14</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c15">Comme=
+nt # 15</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
 3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+bruno.n.pagani&#64;gmail.com" title=3D"Bruno Pagani &lt;bruno.n.pagani&#64;=
+gmail.com&gt;"> <span class=3D"fn">Bruno Pagani</span></a>
 </span></b>
-        <pre>(In reply to Alex from <a href=3D"show_bug.cgi?id=3D100423#c13=
-">comment #13</a>)
-<span class=3D"quote">&gt; &#64;Bruno, thanks for the comment. I will check=
- it out. Bumblebee: you see, I'm
-&gt; fine with intel, I do not need extreme speeds and I have 16GB in RAM .=
-..
-&gt; nvidia - I could manage to install it either globally or in bumblebee =
-but it
-&gt; blocks the brightness control when used permanently - very weird, so o=
-nly
-&gt; bumblebee would go.</span >
+        <pre><span class=3D"quote">&gt; Something when wrong with nouveau g=
+lobaly</span >
 
-With nouveau loaded (assuming things go properly), your GPU should suspend =
-when
-not in use.</pre>
+If you have a quite recent system, maybe you are affected by
+<a href=3D"https://bugzilla.kernel.org/show_bug.cgi?id=3D156341">https://bu=
+gzilla.kernel.org/show_bug.cgi?id=3D156341</a>.</pre>
         </div>
       </p>
 
@@ -111,9 +94,9 @@ not in use.</pre>
     </body>
 </html>=
 
---15178457064.0E3AA8.10529--
+--15178483640.Ebd99e5.17067--
 
---===============0223335528==
+--===============1730304304==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0223335528==--
+--===============1730304304==--
