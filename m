@@ -1,109 +1,85 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
- ]
-Date: Mon, 05 Feb 2018 16:32:45 +0000
-Message-ID: <bug-100423-8800-9jollcpoTn@http.bugs.freedesktop.org/>
-References: <bug-100423-8800@http.bugs.freedesktop.org/>
+From: Danilo Krummrich <danilokrummrich@dk-develop.de>
+Subject: [PATCH 1/1] drm/nouveau/disp: prefer identity-mapped route of SOR <->
+ macro link
+Date: Tue,  6 Feb 2018 00:35:44 +0100
+Message-ID: <20180205233544.3720-2-danilokrummrich@dk-develop.de>
+References: <20180205233544.3720-1-danilokrummrich@dk-develop.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1730304304=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20180205233544.3720-1-danilokrummrich@dk-develop.de>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: bskeggs@redhat.com, airlied@linux.ie, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: Danilo Krummrich <danilokrummrich@dk-develop.de>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1730304304==
-Content-Type: multipart/alternative; boundary="15178483640.Ebd99e5.17067"
-Content-Transfer-Encoding: 7bit
-
-
---15178483640.Ebd99e5.17067
-Date: Mon, 5 Feb 2018 16:32:44 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
-
---- Comment #15 from Bruno Pagani <bruno.n.pagani-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-> Something when wrong with nouveau globaly
-
-If you have a quite recent system, maybe you are affected by
-https://bugzilla.kernel.org/show_bug.cgi?id=3D156341.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15178483640.Ebd99e5.17067
-Date: Mon, 5 Feb 2018 16:32:44 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c15">Comme=
-nt # 15</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bruno.n.pagani&#64;gmail.com" title=3D"Bruno Pagani &lt;bruno.n.pagani&#64;=
-gmail.com&gt;"> <span class=3D"fn">Bruno Pagani</span></a>
-</span></b>
-        <pre><span class=3D"quote">&gt; Something when wrong with nouveau g=
-lobaly</span >
-
-If you have a quite recent system, maybe you are affected by
-<a href=3D"https://bugzilla.kernel.org/show_bug.cgi?id=3D156341">https://bu=
-gzilla.kernel.org/show_bug.cgi?id=3D156341</a>.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15178483640.Ebd99e5.17067--
-
---===============1730304304==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1730304304==--
+V2l0aCBEQ0IgNC4xIGltcGxlbWVudGVkIGJ5IFZCSU9TIHNpbmNlIEdNMjB4IEdQVXMsIFNPUiBj
+cm9zc2Jhcgpyb3V0aW5nIHNob3VsZCBiZSBwb3NzaWJsZSwgc3VjaCB0aGF0IGFueSBTT1Igc3Vi
+bGluayBjYW4gZHJpdmUKYW55IG1hY3JvIGxpbmsuIFRoZXJlZm9yZSwgaWYgY3Jvc3NiYXIgcm91
+dGluZyBpcyBhdmFpbGFibGUsCnRoZSBmaXJzdCBzdWl0YWJsZSBTT1Igd2FzIHBpY2tlZC4KClVu
+Zm9ydHVuYXRlbHksIHRoZXJlJ3MgYXQgbGVhc3Qgb25lIGNhcmQgd2hlcmUgc29tZSBTT1JzIGJl
+aW5nCmJlaW5nIGNvbm5lY3RlZCB0byBhIHBhcnRpY3VsYXIgbWFjcm8gbGluayBub3QgbWF0Y2hp
+bmcgdGhlIGlkZW50aXR5Cm9mIGVhY2ggb3RoZXIgYXJlIGNhdXNpbmcgZmFpbHVyZXMuCgpUbyBm
+aXggdGhpcywgd2hlbiBzZWFyY2hpbmcgZm9yIGEgc3VpdGFibGUgU09SIHRvIGJlIG1hcHBlZCB0
+byBhCm1hY3JvIGxpbmsgcHJlZmVyIGEgU09SIHdoaWNoIG1hcHMgdGhlIGlkZW50aXR5IG9mIHRo
+ZSBtYWNybyBsaW5rLgoKU2lnbmVkLW9mZi1ieTogRGFuaWxvIEtydW1tcmljaCA8ZGFuaWxva3J1
+bW1yaWNoQGRrLWRldmVsb3AuZGU+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9l
+bmdpbmUvZGlzcC9vdXRwLmMgfCAzOCArKysrKysrKysrKysrKysrKy0tLS0tLS0tCiAxIGZpbGUg
+Y2hhbmdlZCwgMjYgaW5zZXJ0aW9ucygrKSwgMTIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9vdXRwLmMgYi9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL291dHAuYwppbmRleCBiZTllN2Y4YzNi
+MjMuLmI3YWY5MzQ5NTA0ZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZr
+bS9lbmdpbmUvZGlzcC9vdXRwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9l
+bmdpbmUvZGlzcC9vdXRwLmMKQEAgLTExMiw3ICsxMTIsNyBAQCBudmttX291dHBfYWNxdWlyZV9p
+b3Ioc3RydWN0IG52a21fb3V0cCAqb3V0cCwgdTggdXNlciwgc3RydWN0IG52a21faW9yICppb3Ip
+CiBpbnQKIG52a21fb3V0cF9hY3F1aXJlKHN0cnVjdCBudmttX291dHAgKm91dHAsIHU4IHVzZXIp
+CiB7Ci0Jc3RydWN0IG52a21faW9yICppb3IgPSBvdXRwLT5pb3I7CisJc3RydWN0IG52a21faW9y
+ICpfaW9yLCAqaW9yID0gb3V0cC0+aW9yOwogCWVudW0gbnZrbV9pb3JfcHJvdG8gcHJvdG87CiAJ
+ZW51bSBudmttX2lvcl90eXBlIHR5cGU7CiAKQEAgLTEzMCwyNiArMTMwLDQwIEBAIG52a21fb3V0
+cF9hY3F1aXJlKHN0cnVjdCBudmttX291dHAgKm91dHAsIHU4IHVzZXIpCiAJLyogRmlyc3QgcHJl
+ZmVyZW5jZSBpcyB0byByZXVzZSB0aGUgT1IgdGhhdCBpcyBjdXJyZW50bHkgYXJtZWQKIAkgKiBv
+biBIVywgaWYgYW55LCBpbiBvcmRlciB0byBwcmV2ZW50IHVubmVjZXNzYXJ5IHN3aXRjaGluZy4K
+IAkgKi8KLQlsaXN0X2Zvcl9lYWNoX2VudHJ5KGlvciwgJm91dHAtPmRpc3AtPmlvciwgaGVhZCkg
+ewotCQlpZiAoIWlvci0+YXN5Lm91dHAgJiYgaW9yLT5hcm0ub3V0cCA9PSBvdXRwKQotCQkJcmV0
+dXJuIG52a21fb3V0cF9hY3F1aXJlX2lvcihvdXRwLCB1c2VyLCBpb3IpOworCWxpc3RfZm9yX2Vh
+Y2hfZW50cnkoX2lvciwgJm91dHAtPmRpc3AtPmlvciwgaGVhZCkgeworCQlpZiAoIV9pb3ItPmFz
+eS5vdXRwICYmIF9pb3ItPmFybS5vdXRwID09IG91dHApCisJCQlyZXR1cm4gbnZrbV9vdXRwX2Fj
+cXVpcmVfaW9yKG91dHAsIHVzZXIsIF9pb3IpOwogCX0KIAogCS8qIEZhaWxpbmcgdGhhdCwgYSBj
+b21wbGV0ZWx5IHVudXNlZCBPUiBpcyB0aGUgbmV4dCBiZXN0IHRoaW5nLiAqLwotCWxpc3RfZm9y
+X2VhY2hfZW50cnkoaW9yLCAmb3V0cC0+ZGlzcC0+aW9yLCBoZWFkKSB7Ci0JCWlmICghaW9yLT5h
+c3kub3V0cCAmJiBpb3ItPnR5cGUgPT0gdHlwZSAmJiAhaW9yLT5hcm0ub3V0cCAmJgotCQkgICAg
+KGlvci0+ZnVuYy0+cm91dGUuc2V0IHx8IGlvci0+aWQgPT0gX19mZnMob3V0cC0+aW5mby5vcikp
+KQotCQkJcmV0dXJuIG52a21fb3V0cF9hY3F1aXJlX2lvcihvdXRwLCB1c2VyLCBpb3IpOworCWlv
+ciA9IE5VTEw7CisJbGlzdF9mb3JfZWFjaF9lbnRyeShfaW9yLCAmb3V0cC0+ZGlzcC0+aW9yLCBo
+ZWFkKSB7CisJCWlmICghX2lvci0+YXN5Lm91dHAgJiYgX2lvci0+dHlwZSA9PSB0eXBlICYmICFf
+aW9yLT5hcm0ub3V0cCkgeworCQkJLyogUHJlZmVyIGlkZW50aXR5LW1hcHBlZCByb3V0ZS4gKi8K
+KwkJCWlmIChfaW9yLT5pZCA9PSBfX2ZmcyhvdXRwLT5pbmZvLm9yKSkKKwkJCQlyZXR1cm4gbnZr
+bV9vdXRwX2FjcXVpcmVfaW9yKG91dHAsIHVzZXIsIF9pb3IpOworCQkJZWxzZSBpZiAoIWlvcikK
+KwkJCQlpb3IgPSBfaW9yOworCQl9CiAJfQorCWlmIChpb3IgJiYgaW9yLT5mdW5jLT5yb3V0ZS5z
+ZXQpCisJCXJldHVybiBudmttX291dHBfYWNxdWlyZV9pb3Iob3V0cCwgdXNlciwgaW9yKTsKIAog
+CS8qIExhc3QgcmVzb3J0IGlzIHRvIGFzc2lnbiBhbiBPUiB0aGF0J3MgYWxyZWFkeSBhY3RpdmUg
+b24gSFcsCiAJICogYnV0IHdpbGwgYmUgcmVsZWFzZWQgZHVyaW5nIHRoZSBuZXh0IG1vZGVzZXQu
+CiAJICovCi0JbGlzdF9mb3JfZWFjaF9lbnRyeShpb3IsICZvdXRwLT5kaXNwLT5pb3IsIGhlYWQp
+IHsKLQkJaWYgKCFpb3ItPmFzeS5vdXRwICYmIGlvci0+dHlwZSA9PSB0eXBlICYmCi0JCSAgICAo
+aW9yLT5mdW5jLT5yb3V0ZS5zZXQgfHwgaW9yLT5pZCA9PSBfX2ZmcyhvdXRwLT5pbmZvLm9yKSkp
+Ci0JCQlyZXR1cm4gbnZrbV9vdXRwX2FjcXVpcmVfaW9yKG91dHAsIHVzZXIsIGlvcik7CisJaW9y
+ID0gTlVMTDsKKwlsaXN0X2Zvcl9lYWNoX2VudHJ5KF9pb3IsICZvdXRwLT5kaXNwLT5pb3IsIGhl
+YWQpIHsKKwkJaWYgKCFfaW9yLT5hc3kub3V0cCAmJiBfaW9yLT50eXBlID09IHR5cGUpIHsKKwkJ
+CS8qIEFnYWluIHByZWZlciBpZGVudGl0eS1tYXBwZWQgcm91dGUuICovCisJCQlpZiAoX2lvci0+
+aWQgPT0gX19mZnMob3V0cC0+aW5mby5vcikpCisJCQkJcmV0dXJuIG52a21fb3V0cF9hY3F1aXJl
+X2lvcihvdXRwLCB1c2VyLCBfaW9yKTsKKwkJCWVsc2UgaWYgKCFpb3IpCisJCQkJaW9yID0gX2lv
+cjsKKwkJfQogCX0KKwlpZiAoaW9yICYmIGlvci0+ZnVuYy0+cm91dGUuc2V0KQorCQlyZXR1cm4g
+bnZrbV9vdXRwX2FjcXVpcmVfaW9yKG91dHAsIHVzZXIsIF9pb3IpOwogCiAJcmV0dXJuIC1FTk9T
+UEM7CiB9Ci0tIAoyLjE0LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2Ry
+aS1kZXZlbAo=
