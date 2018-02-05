@@ -1,63 +1,159 @@
-From: Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH 5/5] drm: Don't pass clip to
- drm_atomic_helper_check_plane_state()
-Date: Mon, 5 Feb 2018 14:50:23 +0800
-Message-ID: <20180205065022.GJ31354@dragon>
-References: <20180123170857.13818-1-ville.syrjala@linux.intel.com>
- <20180123170857.13818-5-ville.syrjala@linux.intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
+ ]
+Date: Mon, 05 Feb 2018 09:48:01 +0000
+Message-ID: <bug-100423-8800-FCCZEGMxuk@http.bugs.freedesktop.org/>
+References: <bug-100423-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20180123170857.13818-5-ville.syrjala@linux.intel.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, Liviu Dudau <liviu.dudau@arm.com>, dri-devel@lists.freedesktop.org, Thierry Reding <thierry.reding@gmail.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Daniel Vetter <daniel.vetter@intel.com>, Thomas Hellstrom <thellstrom@vmware.com>, VMware Graphics <linux-graphics-maintainer@vmware.com>, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, Mali DP Maintainers <malidp@foss.arm.com>, linux-arm-msm@vger.kernel.org, Russell King <rmk+kernel@armlinux.org.uk>, linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-renesas-soc@vger.kernel.org, Maxime Ripard <maxime.ripard@free-electrons.com>, freedreno@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2125136064=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKYW4gMjMsIDIwMTggYXQgMDc6MDg6NTdQTSArMDIwMCwgVmlsbGUgU3lyamFsYSB3
-cm90ZToKPiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwu
-Y29tPgo+IAo+IE1vdmUgdGhlIHBsYW5lIGNsaXAgcmVjdGFuZ2xlIGhhbmRsaW5nIGludG8KPiBk
-cm1fYXRvbWljX2hlbHBlcl9jaGVja19wbGFuZV9zdGF0ZSgpLiBEcml2ZXJzIG5vIGxvbmdlcgo+
-IGhhdmUgdG8gd29ycnkgYWJvdXQgc3VjaCBtdW5kYW5lIGRldGFpbHMuCj4gCj4gdjI6IENvbnZl
-cnQgYXJtYWRhLCByY2FyLCBhbmQgc3VuNGkgYXMgd2VsbAo+IAo+IENjOiBMaXZpdSBEdWRhdSA8
-bGl2aXUuZHVkYXVAYXJtLmNvbT4KPiBDYzogQnJpYW4gU3RhcmtleSA8YnJpYW4uc3RhcmtleUBh
-cm0uY29tPgo+IENjOiBNYWxpIERQIE1haW50YWluZXJzIDxtYWxpZHBAZm9zcy5hcm0uY29tPgo+
-IENjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KPiBDYzogR3VzdGF2
-byBQYWRvdmFuIDxndXN0YXZvQHBhZG92YW4ub3JnPgo+IENjOiBTZWFuIFBhdWwgPHNlYW5wYXVs
-QGNocm9taXVtLm9yZz4KPiBDYzogUGhpbGlwcCBaYWJlbCA8cC56YWJlbEBwZW5ndXRyb25peC5k
-ZT4KPiBDYzogQ0sgSHUgPGNrLmh1QG1lZGlhdGVrLmNvbT4KPiBDYzogTmVpbCBBcm1zdHJvbmcg
-PG5hcm1zdHJvbmdAYmF5bGlicmUuY29tPgo+IENjOiBSb2IgQ2xhcmsgPHJvYmRjbGFya0BnbWFp
-bC5jb20+Cj4gQ2M6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KPiBDYzogTGF1cmVu
-dCBQaW5jaGFydCA8bGF1cmVudC5waW5jaGFydEBpZGVhc29uYm9hcmQuY29tPgo+IENjOiBTYW5k
-eSBIdWFuZyA8aGpjQHJvY2stY2hpcHMuY29tPgo+IENjOiAiSGVpa28gU3TDvGJuZXIiIDxoZWlr
-b0BzbnRlY2guZGU+Cj4gQ2M6IE1heGltZSBSaXBhcmQgPG1heGltZS5yaXBhcmRAZnJlZS1lbGVj
-dHJvbnMuY29tPgo+IENjOiBUaGllcnJ5IFJlZGluZyA8dGhpZXJyeS5yZWRpbmdAZ21haWwuY29t
-Pgo+IENjOiBWTXdhcmUgR3JhcGhpY3MgPGxpbnV4LWdyYXBoaWNzLW1haW50YWluZXJAdm13YXJl
-LmNvbT4KPiBDYzogU2luY2xhaXIgWWVoIDxzeWVoQHZtd2FyZS5jb20+Cj4gQ2M6IFRob21hcyBI
-ZWxsc3Ryb20gPHRoZWxsc3Ryb21Adm13YXJlLmNvbT4KPiBDYzogU2hhd24gR3VvIDxzaGF3bmd1
-b0BrZXJuZWwub3JnPgo+IENjOiBBcmNoaXQgVGFuZWphIDxhcmNoaXR0QGNvZGVhdXJvcmEub3Jn
-Pgo+IENjOiBsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKPiBDYzogbGludXgtYXJt
-LW1zbUB2Z2VyLmtlcm5lbC5vcmcKPiBDYzogZnJlZWRyZW5vQGxpc3RzLmZyZWVkZXNrdG9wLm9y
-Zwo+IENjOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IENjOiBsaW51eC1yZW5lc2Fz
-LXNvY0B2Z2VyLmtlcm5lbC5vcmcKPiBDYzogbGludXgtdGVncmFAdmdlci5rZXJuZWwub3JnCj4g
-Q2M6IFJ1c3NlbGwgS2luZyA8cm1rK2tlcm5lbEBhcm1saW51eC5vcmcudWs+Cj4gU3VnZ2VzdGVk
-LWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3bGwuY2g+Cj4gU2lnbmVkLW9mZi1ieTogVmls
-bGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiBSZXZpZXdlZC1i
-eTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KPiBSZXZpZXdlZC1ieTog
-VGhpZXJyeSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4KPiBSZXZpZXdlZC1ieTogQXJjaGl0
-IFRhbmVqYSA8YXJjaGl0dEBjb2RlYXVyb3JhLm9yZz4gI21zbQo+IC0tLQouLi4KPiAgZHJpdmVy
-cy9ncHUvZHJtL3p0ZS96eF9wbGFuZS5jICAgICAgICAgICAgICB8IDEzICstLS0tLS0tLS0tLS0K
-CkFja2VkLWJ5OiBTaGF3biBHdW8gPHNoYXduZ3VvQGtlcm5lbC5vcmc+Cl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QK
-ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============2125136064==
+Content-Type: multipart/alternative; boundary="15178240811.F9daA3.13082"
+Content-Transfer-Encoding: 7bit
+
+
+--15178240811.F9daA3.13082
+Date: Mon, 5 Feb 2018 09:48:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
+
+--- Comment #11 from Alex <alex-kas-KPKq5HT772e2XYtdXyGjWypxlwaOVQ5f@public.gmane.org> ---
+Hi folks,
+I have the very similar issue about drm, bus read FAULT, etc. However, my
+problem is more severe than just red lines in dmesg.
+
+I have ideapad 700 with HD Graphics 530 as the integrated and GeForce GTX 9=
+50M
+as the discrete card. I sit on gentoo with Linux-4.15.1.
+The first point is that if I use nvidia drivers than my brightness buttons =
+do
+not work (not visible for anything). Summing this up with the total no need=
+ of
+a powerful graphics I decided to go to the bumblebee just in case I will in=
+deed
+need a better gpu in action. That is to fire up the discrete card on demand.
+
+My problem is that upon starting some glx-aware program at the moment when
+bumblebee is trying to start a separate hidden X server with nouveau as the
+driver my primary X server restarts.
+After this restart and in attempt to run some glx-aware program again I see=
+ X
+errors and nothing good. They boil down to the fact that drm cannot ecquire=
+ an
+access to card0 and card1 because of permission issues. Well, the primary X
+server now does not restart though.
+
+I tried all what bumblebee guys suggest - no way. Also, everything is smooth
+with the nvidia driver in this config.
+
+I think it is those red messages in dmesg are the primary indicator of my
+troubles.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15178240811.F9daA3.13082
+Date: Mon, 5 Feb 2018 09:48:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c11">Comme=
+nt # 11</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+alex-kas&#64;privatecyberspace.net" title=3D"Alex &lt;alex-kas&#64;privatec=
+yberspace.net&gt;"> <span class=3D"fn">Alex</span></a>
+</span></b>
+        <pre>Hi folks,
+I have the very similar issue about drm, bus read FAULT, etc. However, my
+problem is more severe than just red lines in dmesg.
+
+I have ideapad 700 with HD Graphics 530 as the integrated and GeForce GTX 9=
+50M
+as the discrete card. I sit on gentoo with Linux-4.15.1.
+The first point is that if I use nvidia drivers than my brightness buttons =
+do
+not work (not visible for anything). Summing this up with the total no need=
+ of
+a powerful graphics I decided to go to the bumblebee just in case I will in=
+deed
+need a better gpu in action. That is to fire up the discrete card on demand.
+
+My problem is that upon starting some glx-aware program at the moment when
+bumblebee is trying to start a separate hidden X server with nouveau as the
+driver my primary X server restarts.
+After this restart and in attempt to run some glx-aware program again I see=
+ X
+errors and nothing good. They boil down to the fact that drm cannot ecquire=
+ an
+access to card0 and card1 because of permission issues. Well, the primary X
+server now does not restart though.
+
+I tried all what bumblebee guys suggest - no way. Also, everything is smooth
+with the nvidia driver in this config.
+
+I think it is those red messages in dmesg are the primary indicator of my
+troubles.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15178240811.F9daA3.13082--
+
+--===============2125136064==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2125136064==--
