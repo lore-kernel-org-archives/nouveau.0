@@ -1,81 +1,120 @@
-From: Danilo Krummrich <danilokrummrich@dk-develop.de>
-Subject: [PATCH v2 2/3] drm/nouveau/disp: quirk for SOR crossbar routing
-Date: Mon,  5 Feb 2018 16:16:36 +0100
-Message-ID: <20180205151637.7854-2-danilokrummrich@dk-develop.de>
-References: <20180205151637.7854-1-danilokrummrich@dk-develop.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
+ ]
+Date: Mon, 05 Feb 2018 15:41:42 +0000
+Message-ID: <bug-100423-8800-HIazBMRc7M@http.bugs.freedesktop.org/>
+References: <bug-100423-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20180205151637.7854-1-danilokrummrich@dk-develop.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: bskeggs@redhat.com, airlied@linux.ie, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Danilo Krummrich <danilokrummrich@dk-develop.de>
+Content-Type: multipart/mixed; boundary="===============0783716714=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2l0aCBEQ0IgNC4xIGltcGxlbWVudGVkIGJ5IFZCSU9TIHNpbmNlIEdNMjB4IEdQVXMsIFNPUiBj
-cm9zc2Jhcgpyb3V0aW5nIHNob3VsZCBiZSBwb3NzaWJsZSwgc3VjaCB0aGF0IGFueSBTT1Igc3Vi
-bGluayBjYW4gZHJpdmUKYW55IG1hY3JvIGxpbmsuCgpVbmZvcnR1bmF0ZWx5LCB0aGVyZSdzIGF0
-IGxlYXN0IG9uZSBjYXJkIHdoZXJlIHNvbWUgU09SIHN1YmxpbmtzCmJlaW5nIGNvbm5lY3RlZCB0
-byBhIHBhcnRpY3VsYXIgbWFjcm8gbGluayBhcmUgY2F1c2luZyBmYWlsdXJlcy4KClRvIHdvcmsg
-YXJvdW5kIHRoaXMgaXNzdWUsIHN1cHBseSBhIHF1aXJrIGZvciBzdWNoIGNhcmRzIHdoaWNoCnBy
-ZXZlbnRzIGEgZHluYW1pYyBtYXBwaW5nIG9mIFNPUiBzdWJsaW5rIGFuZCBtYWNybyBsaW5rIGFu
-ZAppbnN0ZWFkIHJlbGllcyBvbiBpZGVudGl0eSBtYXBwaW5nLgoKU2lnbmVkLW9mZi1ieTogRGFu
-aWxvIEtydW1tcmljaCA8ZGFuaWxva3J1bW1yaWNoQGRrLWRldmVsb3AuZGU+Ci0tLQp2MjogY2hl
-Y2tpbmcgYWN0dWFsIHBhZCBtYWNybyBhbmQgbGluayBpbnN0ZWFkIG9mIG91dHAgaW5kZXgKLS0t
-CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vY29yZS9kZXZpY2UuaCB8ICAx
-ICsKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3Avb3V0cC5jICAgIHwg
-MTkgKysrKysrKysrKysrKysrKystLQogMiBmaWxlcyBjaGFuZ2VkLCAxOCBpbnNlcnRpb25zKCsp
-LCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2lu
-Y2x1ZGUvbnZrbS9jb3JlL2RldmljZS5oIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVk
-ZS9udmttL2NvcmUvZGV2aWNlLmgKaW5kZXggNTYwMjY1YjE1ZWMyLi5kMzg0Y2IwM2FkODUgMTAw
-NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL2Rldmlj
-ZS5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL2Rldmlj
-ZS5oCkBAIC0xODQsNiArMTg0LDcgQEAgc3RydWN0IG52a21fZGV2aWNlX2Z1bmMgewogc3RydWN0
-IG52a21fZGV2aWNlX3F1aXJrIHsKIAl1OCB0dl9waW5fbWFzazsKIAl1OCB0dl9ncGlvOworCXU4
-IG91dHBfbGlua3Nfc2tpcDsKIH07CiAKIHN0cnVjdCBudmttX2RldmljZV9jaGlwIHsKZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3Avb3V0cC5jIGIv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9vdXRwLmMKaW5kZXggYmU5
-ZTdmOGMzYjIzLi5hNTc0NzQ2ZGRkODIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L252a20vZW5naW5lL2Rpc3Avb3V0cC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L252a20vZW5naW5lL2Rpc3Avb3V0cC5jCkBAIC05OSw2ICs5OSwxOCBAQCBudmttX291dHBfcmVs
-ZWFzZShzdHJ1Y3QgbnZrbV9vdXRwICpvdXRwLCB1OCB1c2VyKQogCX0KIH0KIAorc3RhdGljIGlu
-bGluZSBib29sCitudmttX291dHBfaW9yX3JvdXRlX3F1aXJrKHN0cnVjdCBudmttX291dHAgKm91
-dHApCit7CisJc3RydWN0IG52a21fZGV2aWNlICpkZXYgPSBvdXRwLT5kaXNwLT5lbmdpbmUuc3Vi
-ZGV2LmRldmljZTsKKworCWludCBtYWNyb19saW5rID0gX19mZnMob3V0cC0+aW5mby5vcikgKiAy
-ICsgb3V0cC0+aW5mby5zb3Jjb25mLmxpbms7CisJaWYgKHVubGlrZWx5KGRldi0+cXVpcmspKQor
-CQlyZXR1cm4gIShkZXYtPnF1aXJrLT5vdXRwX2xpbmtzX3NraXAgJiBCSVQobWFjcm9fbGluaykp
-OworCisJcmV0dXJuIHRydWU7Cit9CisKIHN0YXRpYyBpbmxpbmUgaW50CiBudmttX291dHBfYWNx
-dWlyZV9pb3Ioc3RydWN0IG52a21fb3V0cCAqb3V0cCwgdTggdXNlciwgc3RydWN0IG52a21faW9y
-ICppb3IpCiB7CkBAIC0xMTUsNiArMTI3LDcgQEAgbnZrbV9vdXRwX2FjcXVpcmUoc3RydWN0IG52
-a21fb3V0cCAqb3V0cCwgdTggdXNlcikKIAlzdHJ1Y3QgbnZrbV9pb3IgKmlvciA9IG91dHAtPmlv
-cjsKIAllbnVtIG52a21faW9yX3Byb3RvIHByb3RvOwogCWVudW0gbnZrbV9pb3JfdHlwZSB0eXBl
-OworCWJvb2wgcm91dGVfY3Jvc3NiYXIgPSBudmttX291dHBfaW9yX3JvdXRlX3F1aXJrKG91dHAp
-OwogCiAJT1VUUF9UUkFDRShvdXRwLCAiYWNxdWlyZSAlMDJ4IHw9ICUwMnggJXAiLCBvdXRwLT5h
-Y3F1aXJlZCwgdXNlciwgaW9yKTsKIAlpZiAoaW9yKSB7CkBAIC0xMzgsNyArMTUxLDggQEAgbnZr
-bV9vdXRwX2FjcXVpcmUoc3RydWN0IG52a21fb3V0cCAqb3V0cCwgdTggdXNlcikKIAkvKiBGYWls
-aW5nIHRoYXQsIGEgY29tcGxldGVseSB1bnVzZWQgT1IgaXMgdGhlIG5leHQgYmVzdCB0aGluZy4g
-Ki8KIAlsaXN0X2Zvcl9lYWNoX2VudHJ5KGlvciwgJm91dHAtPmRpc3AtPmlvciwgaGVhZCkgewog
-CQlpZiAoIWlvci0+YXN5Lm91dHAgJiYgaW9yLT50eXBlID09IHR5cGUgJiYgIWlvci0+YXJtLm91
-dHAgJiYKLQkJICAgIChpb3ItPmZ1bmMtPnJvdXRlLnNldCB8fCBpb3ItPmlkID09IF9fZmZzKG91
-dHAtPmluZm8ub3IpKSkKKwkJICAgICgoaW9yLT5mdW5jLT5yb3V0ZS5zZXQgJiYgcm91dGVfY3Jv
-c3NiYXIpIHx8CisJCSAgICAgaW9yLT5pZCA9PSBfX2ZmcyhvdXRwLT5pbmZvLm9yKSkpCiAJCQly
-ZXR1cm4gbnZrbV9vdXRwX2FjcXVpcmVfaW9yKG91dHAsIHVzZXIsIGlvcik7CiAJfQogCkBAIC0x
-NDcsNyArMTYxLDggQEAgbnZrbV9vdXRwX2FjcXVpcmUoc3RydWN0IG52a21fb3V0cCAqb3V0cCwg
-dTggdXNlcikKIAkgKi8KIAlsaXN0X2Zvcl9lYWNoX2VudHJ5KGlvciwgJm91dHAtPmRpc3AtPmlv
-ciwgaGVhZCkgewogCQlpZiAoIWlvci0+YXN5Lm91dHAgJiYgaW9yLT50eXBlID09IHR5cGUgJiYK
-LQkJICAgIChpb3ItPmZ1bmMtPnJvdXRlLnNldCB8fCBpb3ItPmlkID09IF9fZmZzKG91dHAtPmlu
-Zm8ub3IpKSkKKwkJICAgICgoaW9yLT5mdW5jLT5yb3V0ZS5zZXQgJiYgcm91dGVfY3Jvc3NiYXIp
-IHx8CisJCSAgICAgaW9yLT5pZCA9PSBfX2ZmcyhvdXRwLT5pbmZvLm9yKSkpCiAJCQlyZXR1cm4g
-bnZrbV9vdXRwX2FjcXVpcmVfaW9yKG91dHAsIHVzZXIsIGlvcik7CiAJfQogCi0tIAoyLjE0LjEK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZl
-bCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============0783716714==
+Content-Type: multipart/alternative; boundary="15178453014.94E8b.9122"
+Content-Transfer-Encoding: 7bit
+
+
+--15178453014.94E8b.9122
+Date: Mon, 5 Feb 2018 15:41:41 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
+
+--- Comment #13 from Alex <alex-kas-KPKq5HT772e2XYtdXyGjWypxlwaOVQ5f@public.gmane.org> ---
+@Bruno, thanks for the comment. I will check it out. Bumblebee: you see, I'm
+fine with intel, I do not need extreme speeds and I have 16GB in RAM ...
+nvidia - I could manage to install it either globally or in bumblebee but it
+blocks the brightness control when used permanently - very weird, so only
+bumblebee would go.
+Something went wrong with setting nouveau globally and I have given up. Will
+retry. But it will not suit me if the brightness keys are blocked ...
+And yes, my system is nearly the tomorrow's version. It is up-to date. At l=
+east
+the kernel is the one released few days ago ...
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15178453014.94E8b.9122
+Date: Mon, 5 Feb 2018 15:41:41 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c13">Comme=
+nt # 13</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+alex-kas&#64;privatecyberspace.net" title=3D"Alex &lt;alex-kas&#64;privatec=
+yberspace.net&gt;"> <span class=3D"fn">Alex</span></a>
+</span></b>
+        <pre>&#64;Bruno, thanks for the comment. I will check it out. Bumbl=
+ebee: you see, I'm
+fine with intel, I do not need extreme speeds and I have 16GB in RAM ...
+nvidia - I could manage to install it either globally or in bumblebee but it
+blocks the brightness control when used permanently - very weird, so only
+bumblebee would go.
+Something went wrong with setting nouveau globally and I have given up. Will
+retry. But it will not suit me if the brightness keys are blocked ...
+And yes, my system is nearly the tomorrow's version. It is up-to date. At l=
+east
+the kernel is the one released few days ago ...</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15178453014.94E8b.9122--
+
+--===============0783716714==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0783716714==--
