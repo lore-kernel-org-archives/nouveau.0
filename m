@@ -1,13 +1,19 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
- ]
-Date: Mon, 05 Feb 2018 09:48:01 +0000
-Message-ID: <bug-100423-8800-FCCZEGMxuk@http.bugs.freedesktop.org/>
-References: <bug-100423-8800@http.bugs.freedesktop.org/>
+From: Danilo Krummrich <danilokrummrich-q2z19idT6fYRctDU1SCqIg@public.gmane.org>
+Subject: Re: [PATCH 3/3] drm/nouveau/pci: SOR crossbar quirk for
+ 10b0:1b81
+Date: Mon, 05 Feb 2018 12:14:47 +0100
+Message-ID: <3fe2d38a8923f2673ee4e0568a6b327d@dk-develop.de>
+References: <20180205012256.2198-1-danilokrummrich@dk-develop.de>
+ <20180205012256.2198-3-danilokrummrich@dk-develop.de>
+ <CACAvsv6svP0jGHsJ09m_fHLR8DddmPf7oWHoLbzMjQi87Sy0cA@mail.gmail.com>
+ <CACAvsv5uV8CpZ8FT-V80DHefLLXkLoLmcbT+6tjo_0zPTqiF0g@mail.gmail.com>
+ <468c88751cdc3dc918047f5042936097@dk-develop.de>
+ <CABDvA=kuMrzhQOhhuNAdQ25XNMhk+HVenFLMu3tZQnvGPien1A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2125136064=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CABDvA=kuMrzhQOhhuNAdQ25XNMhk+HVenFLMu3tZQnvGPien1A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,143 +23,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============2125136064==
-Content-Type: multipart/alternative; boundary="15178240811.F9daA3.13082"
-Content-Transfer-Encoding: 7bit
-
-
---15178240811.F9daA3.13082
-Date: Mon, 5 Feb 2018 09:48:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
-
---- Comment #11 from Alex <alex-kas-KPKq5HT772e2XYtdXyGjWypxlwaOVQ5f@public.gmane.org> ---
-Hi folks,
-I have the very similar issue about drm, bus read FAULT, etc. However, my
-problem is more severe than just red lines in dmesg.
-
-I have ideapad 700 with HD Graphics 530 as the integrated and GeForce GTX 9=
-50M
-as the discrete card. I sit on gentoo with Linux-4.15.1.
-The first point is that if I use nvidia drivers than my brightness buttons =
-do
-not work (not visible for anything). Summing this up with the total no need=
- of
-a powerful graphics I decided to go to the bumblebee just in case I will in=
-deed
-need a better gpu in action. That is to fire up the discrete card on demand.
-
-My problem is that upon starting some glx-aware program at the moment when
-bumblebee is trying to start a separate hidden X server with nouveau as the
-driver my primary X server restarts.
-After this restart and in attempt to run some glx-aware program again I see=
- X
-errors and nothing good. They boil down to the fact that drm cannot ecquire=
- an
-access to card0 and card1 because of permission issues. Well, the primary X
-server now does not restart though.
-
-I tried all what bumblebee guys suggest - no way. Also, everything is smooth
-with the nvidia driver in this config.
-
-I think it is those red messages in dmesg are the primary indicator of my
-troubles.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15178240811.F9daA3.13082
-Date: Mon, 5 Feb 2018 09:48:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c11">Comme=
-nt # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-alex-kas&#64;privatecyberspace.net" title=3D"Alex &lt;alex-kas&#64;privatec=
-yberspace.net&gt;"> <span class=3D"fn">Alex</span></a>
-</span></b>
-        <pre>Hi folks,
-I have the very similar issue about drm, bus read FAULT, etc. However, my
-problem is more severe than just red lines in dmesg.
-
-I have ideapad 700 with HD Graphics 530 as the integrated and GeForce GTX 9=
-50M
-as the discrete card. I sit on gentoo with Linux-4.15.1.
-The first point is that if I use nvidia drivers than my brightness buttons =
-do
-not work (not visible for anything). Summing this up with the total no need=
- of
-a powerful graphics I decided to go to the bumblebee just in case I will in=
-deed
-need a better gpu in action. That is to fire up the discrete card on demand.
-
-My problem is that upon starting some glx-aware program at the moment when
-bumblebee is trying to start a separate hidden X server with nouveau as the
-driver my primary X server restarts.
-After this restart and in attempt to run some glx-aware program again I see=
- X
-errors and nothing good. They boil down to the fact that drm cannot ecquire=
- an
-access to card0 and card1 because of permission issues. Well, the primary X
-server now does not restart though.
-
-I tried all what bumblebee guys suggest - no way. Also, everything is smooth
-with the nvidia driver in this config.
-
-I think it is those red messages in dmesg are the primary indicator of my
-troubles.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15178240811.F9daA3.13082--
-
---===============2125136064==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
+T24gMjAxOC0wMi0wNSAwMzo0NywgQmVuIFNrZWdncyB3cm90ZToKPiBPbiBNb24sIEZlYiA1LCAy
+MDE4IGF0IDEyOjE5IFBNLCBEYW5pbG8gS3J1bW1yaWNoCj4gPGRhbmlsb2tydW1tcmljaEBkay1k
+ZXZlbG9wLmRlPiB3cm90ZToKPj4gT24gMjAxOC0wMi0wNSAwMjozOSwgQmVuIFNrZWdncyB3cm90
+ZToKPj4+IAo+Pj4gT24gNSBGZWJydWFyeSAyMDE4IGF0IDExOjM3LCBCZW4gU2tlZ2dzIDxza2Vn
+Z3NiQGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pj4gCj4+Pj4gT24gNSBGZWJydWFyeSAyMDE4IGF0IDEx
+OjIyLCBEYW5pbG8gS3J1bW1yaWNoCj4+Pj4gPGRhbmlsb2tydW1tcmljaEBkay1kZXZlbG9wLmRl
+PiB3cm90ZToKPj4+Pj4gCj4+Pj4+IE9uIEdhaW53YXJkIEdUWCAxMDcwIHJvdXRpbmcgYW55IG90
+aGVyIFNPUiB0aGFuIFNPUi0xIHRvIG1hY3JvIGxpbmsKPj4+Pj4gJ0cnIChvdXRwIGluZGV4IDcp
+IGNhdXNlcyBmYWlsdXJlczoKPj4+Pj4gCj4+Pj4+IFsgICAgNi43MTIxMTFdIG5vdXZlYXUgMDAw
+MDowMTowMC4wOiBidXM6IE1NSU8gcmVhZCBvZiAwMDAwMDAwMCAKPj4+Pj4gRkFVTFQgYXQKPj4+
+Pj4gNjFjODgwIFsgSUJVUyBdCj4+Pj4+IFsgICAgNi43MjQ4ODhdIG5vdXZlYXUgMDAwMDowMTow
+MC4wOiBkaXNwOiBpbnRyMjQgODAwMDAwMDAKPj4+Pj4gWyAgICA4LjcxNjY2OF0gbm91dmVhdSAw
+MDAwOjAxOjAwLjA6IERSTTogYmFzZS0wOiB0aW1lb3V0Cj4+Pj4+IFsgICAxMC43MTY2NzldIG5v
+dXZlYXUgMDAwMDowMTowMC4wOiBEUk06IGJhc2UtMTogdGltZW91dAo+Pj4+PiBbICAgNjMuNTEx
+ODYyXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBFVk8gdGltZW91dAo+Pj4+PiAKPj4+Pj4g
+QXMgSSdtIG5vdCBhYmxlIHRvIHNwb3QgYW4gaXNzdWUgaW4gdGhlIGRyaXZlciwgSSBzdXBwb3Nl
+IGl0J3MKPj4+Pj4gZmlybXdhcmUgcmVsYXRlZC4KPj4+PiAKPj4+PiBBcmUgeW91IGFibGUgdG8g
+bWFpbCBtZSAvZGV2L2RyaS9jYXJkMC92Ymlvcy5yb20gZnJvbSB0aGF0LCBwbGVhc2U/Cj4+Pj4g
+SSdkIGxpa2UgdG8gbG9vayBpbnRvIHRoaXMgc29tZSBtb3JlIGFuZCBiZSAxMDAlIGNlcnRhaW4g
+dGhpcyBpcwo+Pj4+IGluZGVlZCBhIHF1aXJrLCBhbmQgbm90IHNvbWUgc3VidGxlIGRyaXZlciBi
+dWcuCj4+PiAKPj4+IEVyci4uIC9zeXMva2VybmVsL2RlYnVnL2RyaS8wL3ZiaW9zLnJvbSByYXRo
+ZXIgOykKPj4+IAo+PiBTdXJlLCB0aGF0IG1ha2VzIHNlbnNlIGRlZmluaXRlbHksIGFzIEkgaGF2
+ZSBjaGVja2VkIAo+PiBnbTIwMF9zb3Jfcm91dGVfc2V0IGFuZAo+PiBnbTIwMF9zb3Jfcm91dGVf
+Z2V0IG9ubHkgdG8gY29uZm9ybSB0byB0aGUgc3RhdGVtZW50cyBpbiB0aGlzIG1haWwgCj4+IHRo
+cmVhZDoKPj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvYXJjaGl2ZXMvbm91dmVhdS8y
+MDE0LURlY2VtYmVyLzAxOTQwOC5odG1sCj4+IAo+PiBCVFcsIEkgY2FuIHJlcHJvZHVjZSB0aGUg
+cHJvYmxlbSB3aXRoIGEgdHdvIG1vbml0b3Igc2V0dXAgb25seSwgYXMgKG9mCj4+IGNvdXJzZSkg
+aGF2aW5nIG9uZQo+PiBtb25pdG9yIG9ubHkgYXQgdGhlIHBoeXNpY2FsIHBvcnQgbWFjcm8gbGlu
+ayAnRycgaXMgYXR0YWNoZWQgdG8gbWFrZXMgCj4+IHRvCj4+IHZiaW9zIHBpY2sgdGhlCj4+IHdv
+cmtpbmcgU09SLiBUaGVyZWZvcmUgdGhlIHBoeXNpY2FsIHBvcnQgbWFjcm8gbGluayAnRycgaXMg
+YXR0YWNoZWQgdG8gCj4+IG11c3QKPj4gbm90IGJlIHBpY2tlZAo+PiBhcyBwcmltYXJ5IG1vbml0
+b3IuCj4gVGhhbmtzIGZvciB0aGF0LiAgSSd2ZSBvbmx5IGhhZCBhIHF1aWNrIGxvb2sgc28gZmFy
+LCBidXQgSSdtIGdvaW5nIHRvCj4gZ3Vlc3MgdGhlIGlzIGEgZHJpdmVyIGJ1ZyBhbHJlYWR5LiAg
+VGhlIERDQiBzcGVjaWZpZXMgdHdvIGRpZmZlcmVudAo+IG91dHB1dHMgb24gcGFkIG1hY3JvIDEg
+KHdoaWNoLCB3b3VsZCBiZSBTT1IxIGlmIGlkZW50aXR5LW1hcHBlZCkgdGhhdApGaXJzdCBvZiBh
+bGwsIHNvcnJ5IGZvciBjb25mdXNpbmcgd2l0aCB0aGUgbWFjcm8gbGluayBudW1lcmF0aW9uLgpP
+ZiBjb3Vyc2UsIEkgYW0gdGFsa2luZyBhYm91dCBwYWQgbWFjcm8gMSwgbGluayAyICh3aGljaCBp
+cyBhbHNvIGNhbGxlZAptYWNybyBsaW5rIEQpLiBJIHdhcyB3cm9uZ2x5IGxvb2tpbmcgYXQgb3V0
+cC0+aW5kZXguCkkgd2lsbCBzZW5kIGFuIHVwZGF0ZWQgcGF0Y2ggc2VyaWVzIGNvcnJlY3Rpbmcg
+dGhpcywganVzdCBpbiBjYXNlLgo+IGNhbiBhcHBhcmVudGx5IGJlIHVzZWQgdG9nZXRoZXIuICBJ
+ZiB1c2VkIGF0IHRoZSBzYW1lIHRpbWUgdGhvdWdoLAo+IHRoZXkgYm90aCBjYW4ndCBiZSBkcml2
+ZW4gYnkgdGhlIHNhbWUgU09SLCBhbmQgd291bGQgbmVlZCByb3V0aW5nLgpJIGFncmVlIHRoYXQg
+dGhlcmUncyBkZWZpbml0ZWx5IHRoZSBuZWVkIG9mIHJvdXRpbmcgaGVyZS4gQW55d2F5LCBpdApj
+YW4gc3RpbGwgYmUgaXQncyBqdXN0IGJ1Z2d5IGluIGEgd2F5IHRoYXQgb25seSBtYWNybyBsaW5r
+IEQgY2Fubm90IGJlCnJvdXRlZCB0byBhIGRpZmZlcmVudCBTT1IgdGhhbiBTT1ItMS4gUHJvYmFi
+bHkgeW91IGtub3cgYmV0dGVyLCBpZiBzdWNoCmEgY2FzZSBjYW4gYmUgcG9zc2libGUuCgo+IEkg
+Z3Vlc3MgaXQnZCBiZSBpbnRlcmVzdGluZyB0byBzZWUgaWYgTlZJRElBIGNhbiBtYW5hZ2UgdG8g
+ZHJpdmUgdGhvc2UKPiB0d28gb3V0cHV0cyB0b2dldGhlciwgd2hpY2ggd291bGQgYmUgYSBiaWcg
+aGludCBhcyB0byB3aGV0aGVyIHRoZQo+IGJvYXJkIGlzIGJ1Z2d5LCBvciB3ZSBhcmUuICBJJ20g
+Z29pbmcgdG8gZ3Vlc3MgdGhlIGxhdHRlciA7KQo+IApJIHRlc3RlZCB0aGF0IC0gZXZlbiBub3V2
+ZWF1IGlzIGFibGUgdG8gZHJpdmUgbWFjcm8gbGluayBDIGFuZCBEIAp0b2dldGhlci4KTWFjcm8g
+bGluayBDIGNvcnJlc3BvbmRzIHRvIGNvbm5lY3RvciAzICh3aGljaCBpcyBIRE1JKSBhbmQgbWFj
+cm8gbGluayBECmNvcnJlc3BvbmRzIHRvIGNvbm5lY3RvciA0ICh3aGljaCBpcyBEUCkuIEFuZCBp
+dCBhY3R1YWxseSB3b3JrcyBiZWNhdXNlIApWQklPUwpzZXJ2ZXMgbWFjcm8gbGluayBEIGFzIHBy
+aW1hcnkgT1IgYW5kIHJvdXRlcyBTT1ItMSB0byBpdCBhbHJlYWR5LgpOb3V2ZWF1IHBpY2tzIChv
+ZiBjb3Vyc2UpIFNPUi0wIGZvciBtYWNybyBsaW5rIEMgdGhlbi4KQlRXLCBhbnkgb3RoZXIgY29t
+YmluYXRpb24gd29ya3Mgd2VsbCwgYXMgbG9uZyBhcyBtYWNybyBsaW5rIEQgKGlmIHVzZWQpIApp
+cwpub3Qgcm91dGVkIHRvIGFub3RoZXIgU09SIHRoYW4gU09SLTEuIEUuZy4gbWFjcm8gbGluayBB
+IG9uIFNPUi0yIGFuZCAKbWFjcm8KbGluayBFIG9uIGVpdGhlciBTT1ItMCBvciBTT1ItMy4KPj4g
+Cj4+IEFsc28sIG1heSBJIGFzayB5b3UgYSByZWxhdGVkIHF1ZXN0aW9uOiBJIHdhcyBhIGJpdCBj
+b25mdXNlZCB3aHkgCj4+ICdsaW5rJyBpcwo+PiBjb21wbGV0ZWx5IHVudXNlZAo+PiBpbiBudmtt
+X291dHBfaW5pdF9yb3V0ZSgpIGFmdGVyIGdtMjAwX3Nvcl9yb3V0ZV9nZXQoKSByZXR1cm5zLiBJ
+cyB0aGlzIAo+PiBqdXN0Cj4+IG9ic29sZXRlIG9yCj4+IGludGVuZGVkIHRvIHVzZSBpbiB0aGUg
+ZnV0dXJlIHNvbWVob3c/Cj4gSSBzdXNwZWN0IGl0J3MgYSBsZWZ0LW92ZXIgZnJvbSBhbiBlYXJs
+aWVyIHJldmlzaW9uIG9mIHRoYXQgY29kZSwgb3IKPiBwZXJoYXBzIEkgaW50ZW5kZWQgdG8gdmFs
+aWRhdGUgaXQgYWdhaW5zdCB3aGF0IHdlIGRpc2NvdmVyZWQ/ICBOb3QKPiBzdXJlIG5vdyEKPiAK
+PiBUaGFua3MsCj4gQmVuLgo+IAo+PiAKPj4gVGhhbmtzLAo+PiBEYW5pbG8KPj4gCj4+Pj4gCj4+
+Pj4gVGhhbmtzLAo+Pj4+IEJlbi4KPj4+PiAKPj4+Pj4gCj4+Pj4+IFRoZXJlZm9yZSB0byB3b3Jr
+IGFyb3VuZCB0aGlzIGlzc3VlIHNraXAgY3Jvc3NiYXIgcm91dGluZyBmb3IgdGhpcwo+Pj4+PiBw
+YXJ0aWN1bGFyIG1hY3JvIGxpbmsgYW5kIGluc3RlYWQgdXNlIGlkZW50aXR5IG1hcHBpbmcuCj4+
+Pj4+IAo+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBEYW5pbG8gS3J1bW1yaWNoIDxkYW5pbG9rcnVtbXJp
+Y2hAZGstZGV2ZWxvcC5kZT4KPj4+Pj4gLS0tCj4+Pj4+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9udmttL2VuZ2luZS9kZXZpY2UvcGNpLmMgfCA5ICsrKysrKysrLQo+Pj4+PiAgMSBmaWxlIGNo
+YW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+Pj4+PiAKPj4+Pj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9wY2kuYwo+
+Pj4+PiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9wY2kuYwo+
+Pj4+PiBpbmRleCBkMmY5NjY0YWZjZjQuLjI5ZGUyNzBmMjIzMiAxMDA2NDQKPj4+Pj4gLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL3BjaS5jCj4+Pj4+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9wY2kuYwo+Pj4+
+PiBAQCAtNzk3LDYgKzc5NywxMyBAQCBudmttX2RldmljZV9wY2lfMTBkZV8xMzliW10gPSB7Cj4+
+Pj4+ICAgICAgICAge30KPj4+Pj4gIH07Cj4+Pj4+IAo+Pj4+PiArc3RhdGljIGNvbnN0IHN0cnVj
+dCBudmttX2RldmljZV9wY2lfdmVuZG9yCj4+Pj4+ICtudmttX2RldmljZV9wY2lfMTBkZV8xYjgx
+W10gPSB7Cj4+Pj4+ICsgICAgICAgLyogR2FpbndhcmQgR1RYIDEwNzAgODE5MiBNQiAqLwo+Pj4+
+PiArICAgICAgIHsgMHgxMGIwLCAweDFiODEsICJHZUZvcmNlIEdUWCAxMDcwIix7IC5vdXRwX2xp
+bmtzX3NraXAgPSAKPj4+Pj4gQklUKDcpCj4+Pj4+IH0gfSwKPj4+Pj4gKyAgICAgICB7fQo+Pj4+
+PiArfTsKPj4+Pj4gKwo+Pj4+PiAgc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX2RldmljZV9wY2lf
+ZGV2aWNlCj4+Pj4+ICBudmttX2RldmljZV9wY2lfMTBkZVtdID0gewo+Pj4+PiAgICAgICAgIHsg
+MHgwMDIwLCAiUklWQSBUTlQiIH0sCj4+Pj4+IEBAIC0xNTU2LDcgKzE1NjMsNyBAQCBudmttX2Rl
+dmljZV9wY2lfMTBkZVtdID0gewo+Pj4+PiAgICAgICAgIHsgMHgxYjA2LCAiR2VGb3JjZSBHVFgg
+MTA4MCBUSSIgfSwKPj4+Pj4gICAgICAgICB7IDB4MWJiNywgIlF1YWRybyBQNjAwMCIgfSwKPj4+
+Pj4gICAgICAgICB7IDB4MWI4MCwgIkdlRm9yY2UgR1RYIDEwODAiIH0sCj4+Pj4+IC0gICAgICAg
+eyAweDFiODEsICJHZUZvcmNlIEdUWCAxMDcwIiB9LAo+Pj4+PiArICAgICAgIHsgMHgxYjgxLCAi
+R2VGb3JjZSBHVFggMTA3MCIsIG52a21fZGV2aWNlX3BjaV8xMGRlXzFiODEgfSwKPj4+Pj4gICAg
+ICAgICB7IDB4MWI4MiwgIkdlRm9yY2UgR1RYIDEwNzAgVEkiIH0sCj4+Pj4+ICAgICAgICAgeyAw
+eDFiODQsICJHZUZvcmNlIEdUWCAxMDYwIDNHQiIgfSwKPj4+Pj4gICAgICAgICB7IDB4MWI4Nywg
+IlAxMDQtMTAwIiB9LAo+Pj4+PiAtLQo+Pj4+PiAyLjE0LjEKPj4+Pj4gCj4+Pj4+IF9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+Pj4+IE5vdXZlYXUgbWFp
+bGluZyBsaXN0Cj4+Pj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+Pj4+IGh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+Pj4gCj4+
+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4gZHJp
+LWRldmVsIG1haWxpbmcgbGlzdAo+Pj4gZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+
+Pj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2
+ZWwKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGRy
+aS1kZXZlbCBtYWlsaW5nIGxpc3QKPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4g
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2125136064==--
