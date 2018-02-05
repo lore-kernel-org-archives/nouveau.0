@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
- ]
-Date: Mon, 05 Feb 2018 15:13:08 +0000
-Message-ID: <bug-100423-8800-m8FW5l8ZuG@http.bugs.freedesktop.org/>
-References: <bug-100423-8800@http.bugs.freedesktop.org/>
+From: Danilo Krummrich <danilokrummrich-q2z19idT6fYRctDU1SCqIg@public.gmane.org>
+Subject: [PATCH v2 1/3] drm/nouveau/pci: PCI IDs for pascal
+ architecture
+Date: Mon,  5 Feb 2018 16:16:35 +0100
+Message-ID: <20180205151637.7854-1-danilokrummrich@dk-develop.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0130292494=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,105 +16,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0130292494==
-Content-Type: multipart/alternative; boundary="15178435871.84F8CbA.1992"
-Content-Transfer-Encoding: 7bit
-
-
---15178435871.84F8CbA.1992
-Date: Mon, 5 Feb 2018 15:13:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
-
---- Comment #12 from Bruno Pagani <bruno.n.pagani-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-@Alex You should not use Bumblebee with nouveau. Also your bug is similar t=
-o an
-old of mine: https://bugs.freedesktop.org/show_bug.cgi?id=3D98384. So part =
-of
-your issue is that your system is likely not up-to-date.
-
-But the correct solution is to not use nouveau with Bumblebee. And in any c=
-ase,
-it has likely nothing to do with this issue.=E2=80=AF;)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15178435871.84F8CbA.1992
-Date: Mon, 5 Feb 2018 15:13:07 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c12">Comme=
-nt # 12</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bruno.n.pagani&#64;gmail.com" title=3D"Bruno Pagani &lt;bruno.n.pagani&#64;=
-gmail.com&gt;"> <span class=3D"fn">Bruno Pagani</span></a>
-</span></b>
-        <pre>&#64;Alex You should not use Bumblebee with nouveau. Also your=
- bug is similar to an
-old of mine: <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - X.org core dump when modprobing nouveau on a d=
-ual GPU laptop"
-   href=3D"show_bug.cgi?id=3D98384">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D98384</a>. So part of
-your issue is that your system is likely not up-to-date.
-
-But the correct solution is to not use nouveau with Bumblebee. And in any c=
-ase,
-it has likely nothing to do with this issue.=E2=80=AF;)</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15178435871.84F8CbA.1992--
-
---===============0130292494==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0130292494==--
+VGFrZW4gZnJvbSBOVklESUEgYmluYXJ5IGRyaXZlciAoTGludXggNjQtYml0LCByZXZpc2lvbiAz
+OTAuMjUpCmZyb20gUkVBRE1FLnR4dC4KClNpZ25lZC1vZmYtYnk6IERhbmlsbyBLcnVtbXJpY2gg
+PGRhbmlsb2tydW1tcmljaEBkay1kZXZlbG9wLmRlPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252a20vZW5naW5lL2RldmljZS9wY2kuYyB8IDQxICsrKysrKysrKysrKysrKysrKysrKysr
+KwogMSBmaWxlIGNoYW5nZWQsIDQxIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvcGNpLmMgYi9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvcGNpLmMKaW5kZXggZjMwMmQyYjU3ODJhLi5k
+MmY5NjY0YWZjZjQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5n
+aW5lL2RldmljZS9wY2kuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2lu
+ZS9kZXZpY2UvcGNpLmMKQEAgLTE1NTEsNiArMTU1MSw0NyBAQCBudmttX2RldmljZV9wY2lfMTBk
+ZVtdID0gewogCXsgMHgxN2MyLCAiR2VGb3JjZSBHVFggVElUQU4gWCIgfSwKIAl7IDB4MTdjOCwg
+IkdlRm9yY2UgR1RYIDk4MCBUaSIgfSwKIAl7IDB4MTdmMCwgIlF1YWRybyBNNjAwMCIgfSwKKwl7
+IDB4MWIwMCwgIlRJVEFOIFggKFBhc2NhbCkiIH0sCisJeyAweDFiMDIsICJUSVRBTiBYcCIgfSwK
+Kwl7IDB4MWIwNiwgIkdlRm9yY2UgR1RYIDEwODAgVEkiIH0sCisJeyAweDFiYjcsICJRdWFkcm8g
+UDYwMDAiIH0sCisJeyAweDFiODAsICJHZUZvcmNlIEdUWCAxMDgwIiB9LAorCXsgMHgxYjgxLCAi
+R2VGb3JjZSBHVFggMTA3MCIgfSwKKwl7IDB4MWI4MiwgIkdlRm9yY2UgR1RYIDEwNzAgVEkiIH0s
+CisJeyAweDFiODQsICJHZUZvcmNlIEdUWCAxMDYwIDNHQiIgfSwKKwl7IDB4MWI4NywgIlAxMDQt
+MTAwIiB9LAorCXsgMHgxYmEwLCAiR2VGb3JjZSBHVFggMTA4ME0iIH0sCisJeyAweDFiYTEsICJH
+ZUZvcmNlIEdUWCAxMDcwTSIgfSwKKwl7IDB4MWJiMCwgIlF1YWRybyBQNTAwMCIgfSwKKwl7IDB4
+MWJiMSwgIlF1YWRybyBQNDAwMCIgfSwKKwl7IDB4MWJiNiwgIlF1YWRybyBQNTAwMCIgfSwKKwl7
+IDB4MWJiNywgIlF1YWRybyBQNDAwMCIgfSwKKwl7IDB4MWJiOCwgIlF1YWRybyBQMzAwMCIgfSwK
+Kwl7IDB4MWJlMCwgIkdlRm9yY2UgR1RYIDEwODBNIiB9LAorCXsgMHgxYmUxLCAiR2VGb3JjZSBH
+VFggMTA3ME0iIH0sCisJeyAweDFiYzcsICJQMTA0LTEwMSIgfSwKKwl7IDB4MWMwMiwgIkdlRm9y
+Y2UgR1RYIDEwNjAgM0dCIiB9LAorCXsgMHgxYzAzLCAiR2VGb3JjZSBHVFggMTA2MCA2R0IiIH0s
+CisJeyAweDFjMDQsICJHZUZvcmNlIEdUWCAxMDUwIDVHQiIgfSwKKwl7IDB4MWMwNiwgIkdlRm9y
+Y2UgR1RYIDEwNTAgNkdCIiB9LAorCXsgMHgxYzA3LCAiUDEwNi0xMDAiIH0sCisJeyAweDFjMDks
+ICJQMTA2LTA5MCIgfSwKKwl7IDB4MWMyMCwgIkdlRm9yY2UgR1RYIDEwNjBNIiB9LAorCXsgMHgx
+YzIxLCAiR2VGb3JjZSBHVFggMTA1ME0gVEkiIH0sCisJeyAweDFjMjIsICJHZUZvcmNlIEdUWCAx
+MDUwTSIgfSwKKwl7IDB4MWMzMCwgIlF1YWRybyBQMjAwMCIgfSwKKwl7IDB4MWM2MCwgIkdlRm9y
+Y2UgR1RYIDEwNjBNIDZHQiIgfSwKKwl7IDB4MWM2MSwgIkdlRm9yY2UgR1RYIDEwNTBNIFRJIiB9
+LAorCXsgMHgxYzgxLCAiR2VGb3JjZSBHVFggMTA1MCIgfSwKKwl7IDB4MWM4MiwgIkdlRm9yY2Ug
+R1RYIDEwNTAgVEkiIH0sCisJeyAweDFjOGMsICJHZUZvcmNlIEdUWCAxMDUwTSBUSSIgfSwKKwl7
+IDB4MWM4ZCwgIkdlRm9yY2UgR1RYIDEwNTBNIiB9LAorCXsgMHgxY2IxLCAiUXVhZHJvIFAyMDAw
+IiB9LAorCXsgMHgxY2IyLCAiUXVhZHJvIFA2MDAiIH0sCisJeyAweDFjYjMsICJRdWFkcm8gUDQw
+MCIgfSwKKwl7IDB4MWQwMSwgIkdlRm9yY2UgR1QgMTAzMCIgfSwKKwl7IDB4MWQxMCwgIkdlRm9y
+Y2UgTVggMTUwIiB9LAorCXsgMHgxZDEyLCAiR2VGb3JjZSBNWCAxNTAiIH0sCiAJe30KIH07CiAK
+LS0gCjIuMTQuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
