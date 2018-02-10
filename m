@@ -1,11 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] dri3: don't check permissions on render node
-Date: Fri,  9 Feb 2018 23:03:38 -0500
-Message-ID: <20180210040338.14080-1-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99889] nouveau preventing shutdown after
+ suspend-resume
+Date: Sat, 10 Feb 2018 14:32:04 +0000
+Message-ID: <bug-99889-8800-8dOdLDCozO@http.bugs.freedesktop.org/>
+References: <bug-99889-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2147042004=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-99889-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,42 +20,89 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIHBlcm1pc3Npb24gY2hlY2sgZmFpbHMgaWYgdWRldiBzZXRzIHRoZSByZW5kZXIgbm9kZSB0
-byAwNjY2IGJ1dApsZWF2ZXMgdGhlIGNhcmQgYXQgMDY2MCwgYXMgaXMgZG9uZSBpbiBhdCBsZWFz
-dCB1ZGV2LTIzNi4KClNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0
-LmVkdT4KLS0tCiBzcmMvbm91dmVhdV9kcmkyLmMgfCAyMiArKysrKysrKy0tLS0tLS0tLS0tLS0t
-CiAxIGZpbGUgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCspLCAxNCBkZWxldGlvbnMoLSkKCmRpZmYg
-LS1naXQgYS9zcmMvbm91dmVhdV9kcmkyLmMgYi9zcmMvbm91dmVhdV9kcmkyLmMKaW5kZXggYWMw
-Y2EwOS4uYTcyNmU4NiAxMDA2NDQKLS0tIGEvc3JjL25vdXZlYXVfZHJpMi5jCisrKyBiL3NyYy9u
-b3V2ZWF1X2RyaTIuYwpAQCAtMTAyNCwxNSArMTAyNCwxNiBAQCBub3V2ZWF1X2RyaTJfZmluaShT
-Y3JlZW5QdHIgcFNjcmVlbikKIH0KIAogI2lmZGVmIERSSTMKLXN0YXRpYyBpbnQgaXNfcmVuZGVy
-X25vZGUoaW50IGZkLCBzdHJ1Y3Qgc3RhdCAqc3QpCitzdGF0aWMgaW50IGlzX3JlbmRlcl9ub2Rl
-KGludCBmZCkKIHsKLQlpZiAoZnN0YXQoZmQsIHN0KSkKKwlzdHJ1Y3Qgc3RhdCBzdDsKKwlpZiAo
-ZnN0YXQoZmQsICZzdCkpCiAJCXJldHVybiAwOwogCi0JaWYgKCFTX0lTQ0hSKHN0LT5zdF9tb2Rl
-KSkKKwlpZiAoIVNfSVNDSFIoc3Quc3RfbW9kZSkpCiAJCXJldHVybiAwOwogCi0JcmV0dXJuIHN0
-LT5zdF9yZGV2ICYgMHg4MDsKKwlyZXR1cm4gc3Quc3RfcmRldiAmIDB4ODA7CiAgIH0KIAogc3Rh
-dGljIGludApAQCAtMTA0MSw3ICsxMDQyLDYgQEAgbm91dmVhdV9kcmkzX29wZW4oU2NyZWVuUHRy
-IHNjcmVlbiwgUlJQcm92aWRlclB0ciBwcm92aWRlciwgaW50ICpvdXQpCiAJU2NybkluZm9QdHIg
-cFNjcm4gPSB4Zjg2U2NyZWVuVG9TY3JuKHNjcmVlbik7CiAJTlZQdHIgcE52ID0gTlZQVFIocFNj
-cm4pOwogCWludCBmZCA9IC0xOwotCXN0cnVjdCBzdGF0IGJ1ZmY7CiAKICNpZmRlZiBPX0NMT0VY
-RUMKIAlmZCA9IG9wZW4ocE52LT5yZW5kZXJfbm9kZSwgT19SRFdSIHwgT19DTE9FWEVDKTsKQEAg
-LTEwNTEsMTEgKzEwNTEsNyBAQCBub3V2ZWF1X2RyaTNfb3BlbihTY3JlZW5QdHIgc2NyZWVuLCBS
-UlByb3ZpZGVyUHRyIHByb3ZpZGVyLCBpbnQgKm91dCkKIAlpZiAoZmQgPCAwKQogCQlyZXR1cm4g
-LUJhZEFsbG9jOwogCi0JaWYgKGZzdGF0KGZkLCAmYnVmZikpIHsKLQkJY2xvc2UoZmQpOwotCQly
-ZXR1cm4gLUJhZE1hdGNoOwotCX0KLQlpZiAoIWlzX3JlbmRlcl9ub2RlKGZkLCAmYnVmZikpIHsK
-KwlpZiAoIWlzX3JlbmRlcl9ub2RlKGZkKSkgewogCQlkcm1fbWFnaWNfdCBtYWdpYzsKIAogCQlp
-ZiAoZHJtR2V0TWFnaWMoZmQsICZtYWdpYykgfHwgZHJtQXV0aE1hZ2ljKHBOdi0+ZGV2LT5mZCwg
-bWFnaWMpKSB7CkBAIC0xMTMxLDE1ICsxMTI3LDEzIEBAIG5vdXZlYXVfZHJpM19zY3JlZW5faW5p
-dChTY3JlZW5QdHIgc2NyZWVuKQogI2lmZGVmIERSSTMKIAlTY3JuSW5mb1B0ciBwU2NybiA9IHhm
-ODZTY3JlZW5Ub1Njcm4oc2NyZWVuKTsKIAlOVlB0ciBwTnYgPSBOVlBUUihwU2Nybik7Ci0Jc3Ry
-dWN0IHN0YXQgbWFzdGVyLCByZW5kZXI7CiAJY2hhciAqYnVmOwogCi0JaWYgKGlzX3JlbmRlcl9u
-b2RlKHBOdi0+ZGV2LT5mZCwgJm1hc3RlcikpCisJaWYgKGlzX3JlbmRlcl9ub2RlKHBOdi0+ZGV2
-LT5mZCkpCiAJCXJldHVybiBUUlVFOwogCiAJYnVmID0gZHJtR2V0UmVuZGVyRGV2aWNlTmFtZUZy
-b21GZChwTnYtPmRldi0+ZmQpOwotCWlmIChidWYgJiYgc3RhdChidWYsICZyZW5kZXIpID09IDAg
-JiYKLQkgICAgbWFzdGVyLnN0X21vZGUgPT0gcmVuZGVyLnN0X21vZGUpIHsKKwlpZiAoYnVmKSB7
-CiAJCXBOdi0+cmVuZGVyX25vZGUgPSBidWY7CiAJCWlmIChkcmkzX3NjcmVlbl9pbml0KHNjcmVl
-biwgJm5vdXZlYXVfZHJpM19zY3JlZW5faW5mbykpIHsKIAkJCXhmODZEcnZNc2cocFNjcm4tPnNj
-cm5JbmRleCwgWF9JTkZPLAotLSAKMi4xMy42CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL25vdXZlYXUK
+
+--===============2147042004==
+Content-Type: multipart/alternative; boundary="15182731231.bbfb.2073"
+Content-Transfer-Encoding: 7bit
+
+
+--15182731231.bbfb.2073
+Date: Sat, 10 Feb 2018 14:32:03 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99889
+
+--- Comment #10 from Tajn <botajn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Also experiencing this with Linux 4.14.16 on Manjaro with geforce 930mx
+
+Everything else works, so I'll definitely take the ability to sleep over the
+ability to shutdown.  But hey, it's still annoying.  Thank you!
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15182731231.bbfb.2073
+Date: Sat, 10 Feb 2018 14:32:03 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889#c10">Commen=
+t # 10</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889">bug 99889<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+botajn&#64;gmail.com" title=3D"Tajn &lt;botajn&#64;gmail.com&gt;"> <span cl=
+ass=3D"fn">Tajn</span></a>
+</span></b>
+        <pre>Also experiencing this with Linux 4.14.16 on Manjaro with gefo=
+rce 930mx
+
+Everything else works, so I'll definitely take the ability to sleep over the
+ability to shutdown.  But hey, it's still annoying.  Thank you!</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15182731231.bbfb.2073--
+
+--===============2147042004==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2147042004==--
