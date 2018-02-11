@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 105045] System freeze with nouveau
-Date: Sun, 11 Feb 2018 17:24:44 +0000
-Message-ID: <bug-105045-8800-2cdFMdJZHA@http.bugs.freedesktop.org/>
+Date: Sun, 11 Feb 2018 17:25:59 +0000
+Message-ID: <bug-105045-8800-rL0GnrnS3e@http.bugs.freedesktop.org/>
 References: <bug-105045-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1125767601=="
+Content-Type: multipart/mixed; boundary="===============1132210020=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-105045-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1125767601==
-Content-Type: multipart/alternative; boundary="15183698840.60e89E8.16316"
+--===============1132210020==
+Content-Type: multipart/alternative; boundary="15183699590.704C83C8.16276"
 Content-Transfer-Encoding: 7bit
 
 
---15183698840.60e89E8.16316
-Date: Sun, 11 Feb 2018 17:24:44 +0000
+--15183699590.704C83C8.16276
+Date: Sun, 11 Feb 2018 17:25:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D105045
 
---- Comment #1 from Sergey Tereschenko <serg.partizan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 137276
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D137276&action=3Dedit
-gnome-shell core dump
+Sergey Tereschenko <serg.partizan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Priority|medium                      |high
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15183698840.60e89E8.16316
-Date: Sun, 11 Feb 2018 17:24:44 +0000
+--15183699590.704C83C8.16276
+Date: Sun, 11 Feb 2018 17:25:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -57,29 +58,31 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System freeze with nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:serg.part=
+izan&#64;gmail.com" title=3D"Sergey Tereschenko &lt;serg.partizan&#64;gmail=
+.com&gt;"> <span class=3D"fn">Sergey Tereschenko</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - System freeze with nouveau"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045">bug 10504=
 5</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-serg.partizan&#64;gmail.com" title=3D"Sergey Tereschenko &lt;serg.partizan&=
-#64;gmail.com&gt;"> <span class=3D"fn">Sergey Tereschenko</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D137276=
-" name=3D"attach_137276" title=3D"gnome-shell core dump">attachment 137276<=
-/a> <a href=3D"attachment.cgi?id=3D137276&amp;action=3Dedit" title=3D"gnome=
--shell core dump">[details]</a></span>
-gnome-shell core dump</pre>
-        </div>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Priority</td>
+           <td>medium
+           </td>
+           <td>high
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -93,9 +96,9 @@ gnome-shell core dump</pre>
     </body>
 </html>=
 
---15183698840.60e89E8.16316--
+--15183699590.704C83C8.16276--
 
---===============1125767601==
+--===============1132210020==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1125767601==--
+--===============1132210020==--
