@@ -1,141 +1,103 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105045] System freeze with nouveau
-Date: Sun, 11 Feb 2018 19:20:41 +0000
-Message-ID: <bug-105045-8800-yI5frw3AIs@http.bugs.freedesktop.org/>
-References: <bug-105045-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas@wunner.de>
+Subject: Re: [PATCH 0/5] Fix deadlock on runtime suspend in DRM drivers
+Date: Sun, 11 Feb 2018 20:23:14 +0100
+Message-ID: <20180211192314.GA22869@wunner.de>
+References: <cover.1518338788.git.lukas@wunner.de>
+ <CAHbf0-Fhi9j5H7VTxF84SENQph+UQE2zRbi2Q-u_DAMh6x+eSg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0332449609=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105045-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CAHbf0-Fhi9j5H7VTxF84SENQph+UQE2zRbi2Q-u_DAMh6x+eSg@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Mike Lothian <mike@fireburn.co.uk>
+Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>, Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Ismo Toijala <ismo.toijala@gmail.com>, nouveau@lists.freedesktop.org, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Liviu Dudau <Liviu.Dudau@arm.com>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, Hans de Goede <hdegoede@redhat.com>, Peter Wu <peter@lekensteyn.nl>
 List-Id: nouveau.vger.kernel.org
 
+On Sun, Feb 11, 2018 at 06:58:11PM +0000, Mike Lothian wrote:
+> On 11 February 2018 at 09:38, Lukas Wunner <lukas@wunner.de> wrote:
+> > The patches for radeon and amdgpu are compile-tested only, I only have a
+> > MacBook Pro with an Nvidia GK107 to test.  To test the patches, add an
+> > "msleep(12*1000);" at the top of the driver's ->runtime_suspend hook.
+> > This ensures that the poll worker runs after ->runtime_suspend has begun.
+> > Wait 12 sec after the GPU has begun runtime suspend, then check
+> > /sys/bus/pci/devices/0000:01:00.0/power/runtime_status.  Without this
+> > series, the status will be stuck at "suspending" and you'll get hung task
+> > errors in dmesg after a few minutes.
+> 
+> I wasn't quite sure where to add that msleep. I've tested the patches
+> as is on top of agd5f's wip branch without ill effects
+> 
+> I've had a radeon and now a amdgpu PRIME setup and don't believe I've
+> ever seen this issue
+> 
+> If you could pop a patch together for the msleep I'll give it a test on
+> amdgpu
 
---===============0332449609==
-Content-Type: multipart/alternative; boundary="15183768410.f6D3.19570"
-Content-Transfer-Encoding: 7bit
-
-
---15183768410.f6D3.19570
-Date: Sun, 11 Feb 2018 19:20:41 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105045
-
---- Comment #7 from Sergey Tereschenko <serg.partizan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #5)
-> (In reply to Sergey Tereschenko from comment #4)
-> > Can i just apply that patch to 17.3 or better build everything from git?
->=20
-> You can just apply it. There's other stuff that's gone in though... I was
-> just pointing out one thing I did. A bunch of people had issues with 17.3
-> and resizing stuff as I recall... other things too. I'd basically recomme=
-nd
-> running mesa master -- mesa is not very good at backporting fixes. And
-> master's very rarely in a broken state.
-
-I found there is also 18.0.0-rc4, and looks like it almost recently release=
-d.
-I just built it, it working but now i can't click anything with mouse nor g=
-dm
-nor after login into gnome-shell.
-
-But under weston it is working.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15183768410.f6D3.19570
-Date: Sun, 11 Feb 2018 19:20:41 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System freeze with nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045#c7">Commen=
-t # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System freeze with nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045">bug 10504=
-5</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-serg.partizan&#64;gmail.com" title=3D"Sergey Tereschenko &lt;serg.partizan&=
-#64;gmail.com&gt;"> <span class=3D"fn">Sergey Tereschenko</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D105=
-045#c5">comment #5</a>)
-<span class=3D"quote">&gt; (In reply to Sergey Tereschenko from <a href=3D"=
-show_bug.cgi?id=3D105045#c4">comment #4</a>)
-&gt; &gt; Can i just apply that patch to 17.3 or better build everything fr=
-om git?
-&gt;=20
-&gt; You can just apply it. There's other stuff that's gone in though... I =
-was
-&gt; just pointing out one thing I did. A bunch of people had issues with 1=
-7.3
-&gt; and resizing stuff as I recall... other things too. I'd basically reco=
-mmend
-&gt; running mesa master -- mesa is not very good at backporting fixes. And
-&gt; master's very rarely in a broken state.</span >
-
-I found there is also 18.0.0-rc4, and looks like it almost recently release=
-d.
-I just built it, it working but now i can't click anything with mouse nor g=
-dm
-nor after login into gnome-shell.
-
-But under weston it is working.</pre>
-        </div>
-      </p>
+Here you go, this is for all 3 drivers.
+Should deadlock without the series.
+Thanks!
 
 
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15183768410.f6D3.19570--
-
---===============0332449609==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0332449609==--
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 50afcf6..eefa0d4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -718,6 +718,9 @@ static int amdgpu_pmops_runtime_suspend(struct device *dev)
+ 		return -EBUSY;
+ 	}
+ 
++	printk("waiting 12 sec\n");
++	msleep(12*1000);
++	printk("done waiting 12 sec\n");
+ 	drm_dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
+ 	drm_kms_helper_poll_disable(drm_dev);
+ 	vga_switcheroo_set_dynamic_switch(pdev, VGA_SWITCHEROO_OFF);
+diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_probe_helper.c
+index 555fbe5..ee7cf0d 100644
+--- a/drivers/gpu/drm/drm_probe_helper.c
++++ b/drivers/gpu/drm/drm_probe_helper.c
+@@ -586,6 +586,7 @@ static void output_poll_execute(struct work_struct *work)
+ 		repoll = true;
+ 		goto out;
+ 	}
++	dev_info(&dev->pdev->dev, "begin poll\n");
+ 
+ 	drm_connector_list_iter_begin(dev, &conn_iter);
+ 	drm_for_each_connector_iter(connector, &conn_iter) {
+@@ -651,6 +652,7 @@ static void output_poll_execute(struct work_struct *work)
+ 
+ 	if (repoll)
+ 		schedule_delayed_work(delayed_work, DRM_OUTPUT_POLL_PERIOD);
++	dev_info(&dev->pdev->dev, "end poll\n");
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 3e29302..f9da5bc 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -855,6 +855,9 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+ 		return -EBUSY;
+ 	}
+ 
++	printk("waiting 12 sec\n");
++	msleep(12*1000);
++	printk("done waiting 12 sec\n");
+ 	drm_kms_helper_poll_disable(drm_dev);
+ 	vga_switcheroo_set_dynamic_switch(pdev, VGA_SWITCHEROO_OFF);
+ 	nouveau_switcheroo_optimus_dsm();
+diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
+index 31dd04f..707b8aa 100644
+--- a/drivers/gpu/drm/radeon/radeon_drv.c
++++ b/drivers/gpu/drm/radeon/radeon_drv.c
+@@ -413,6 +413,9 @@ static int radeon_pmops_runtime_suspend(struct device *dev)
+ 		return -EBUSY;
+ 	}
+ 
++	printk("waiting 12 sec\n");
++	msleep(12*1000);
++	printk("done waiting 12 sec\n");
+ 	drm_dev->switch_power_state = DRM_SWITCH_POWER_CHANGING;
+ 	drm_kms_helper_poll_disable(drm_dev);
+ 	vga_switcheroo_set_dynamic_switch(pdev, VGA_SWITCHEROO_OFF);
