@@ -1,100 +1,157 @@
-From: Lukas Wunner <lukas@wunner.de>
-Subject: Re: [PATCH 0/5] Fix deadlock on runtime suspend in DRM drivers
-Date: Sun, 11 Feb 2018 20:41:54 +0100
-Message-ID: <20180211194154.GB22869@wunner.de>
-References: <cover.1518338788.git.lukas@wunner.de>
- <CAHbf0-Fhi9j5H7VTxF84SENQph+UQE2zRbi2Q-u_DAMh6x+eSg@mail.gmail.com>
- <20180211192314.GA22869@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 105045] System freeze with nouveau
+Date: Sun, 11 Feb 2018 19:56:02 +0000
+Message-ID: <bug-105045-8800-LpXnzLMXIT@http.bugs.freedesktop.org/>
+References: <bug-105045-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20180211192314.GA22869@wunner.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Mike Lothian <mike@fireburn.co.uk>
-Cc: Ismo Toijala <ismo.toijala@gmail.com>, Hans de Goede <hdegoede@redhat.com>, nouveau@lists.freedesktop.org, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Lai Jiangshan <jiangshanlai@gmail.com>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, Alex Deucher <alexander.deucher@amd.com>, Ben Skeggs <bskeggs@redhat.com>, Tejun Heo <tj@kernel.org>, Dave Airlie <airlied@redhat.com>, Liviu Dudau <Liviu.Dudau@arm.com>, Peter Wu <peter@lekensteyn.nl>
+Content-Type: multipart/mixed; boundary="===============0813143257=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-105045-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBGZWIgMTEsIDIwMTggYXQgMDg6MjM6MTRQTSArMDEwMCwgTHVrYXMgV3VubmVyIHdy
-b3RlOgo+IE9uIFN1biwgRmViIDExLCAyMDE4IGF0IDA2OjU4OjExUE0gKzAwMDAsIE1pa2UgTG90
-aGlhbiB3cm90ZToKPiA+IE9uIDExIEZlYnJ1YXJ5IDIwMTggYXQgMDk6MzgsIEx1a2FzIFd1bm5l
-ciA8bHVrYXNAd3VubmVyLmRlPiB3cm90ZToKPiA+ID4gVGhlIHBhdGNoZXMgZm9yIHJhZGVvbiBh
-bmQgYW1kZ3B1IGFyZSBjb21waWxlLXRlc3RlZCBvbmx5LCBJIG9ubHkgaGF2ZSBhCj4gPiA+IE1h
-Y0Jvb2sgUHJvIHdpdGggYW4gTnZpZGlhIEdLMTA3IHRvIHRlc3QuICBUbyB0ZXN0IHRoZSBwYXRj
-aGVzLCBhZGQgYW4KPiA+ID4gIm1zbGVlcCgxMioxMDAwKTsiIGF0IHRoZSB0b3Agb2YgdGhlIGRy
-aXZlcidzIC0+cnVudGltZV9zdXNwZW5kIGhvb2suCj4gPiA+IFRoaXMgZW5zdXJlcyB0aGF0IHRo
-ZSBwb2xsIHdvcmtlciBydW5zIGFmdGVyIC0+cnVudGltZV9zdXNwZW5kIGhhcyBiZWd1bi4KPiA+
-ID4gV2FpdCAxMiBzZWMgYWZ0ZXIgdGhlIEdQVSBoYXMgYmVndW4gcnVudGltZSBzdXNwZW5kLCB0
-aGVuIGNoZWNrCj4gPiA+IC9zeXMvYnVzL3BjaS9kZXZpY2VzLzAwMDA6MDE6MDAuMC9wb3dlci9y
-dW50aW1lX3N0YXR1cy4gIFdpdGhvdXQgdGhpcwo+ID4gPiBzZXJpZXMsIHRoZSBzdGF0dXMgd2ls
-bCBiZSBzdHVjayBhdCAic3VzcGVuZGluZyIgYW5kIHlvdSdsbCBnZXQgaHVuZyB0YXNrCj4gPiA+
-IGVycm9ycyBpbiBkbWVzZyBhZnRlciBhIGZldyBtaW51dGVzLgo+ID4gCj4gPiBJIHdhc24ndCBx
-dWl0ZSBzdXJlIHdoZXJlIHRvIGFkZCB0aGF0IG1zbGVlcC4gSSd2ZSB0ZXN0ZWQgdGhlIHBhdGNo
-ZXMKPiA+IGFzIGlzIG9uIHRvcCBvZiBhZ2Q1ZidzIHdpcCBicmFuY2ggd2l0aG91dCBpbGwgZWZm
-ZWN0cwo+ID4gCj4gPiBJJ3ZlIGhhZCBhIHJhZGVvbiBhbmQgbm93IGEgYW1kZ3B1IFBSSU1FIHNl
-dHVwIGFuZCBkb24ndCBiZWxpZXZlIEkndmUKPiA+IGV2ZXIgc2VlbiB0aGlzIGlzc3VlCj4gPiAK
-PiA+IElmIHlvdSBjb3VsZCBwb3AgYSBwYXRjaCB0b2dldGhlciBmb3IgdGhlIG1zbGVlcCBJJ2xs
-IGdpdmUgaXQgYSB0ZXN0IG9uCj4gPiBhbWRncHUKPiAKPiBIZXJlIHlvdSBnbywgdGhpcyBpcyBm
-b3IgYWxsIDMgZHJpdmVycy4KPiBTaG91bGQgZGVhZGxvY2sgd2l0aG91dCB0aGUgc2VyaWVzLgo+
-IFRoYW5rcyEKClNvcnJ5LCBJIG1pc3NlZCB0aGF0IGFtZGdwdV9kcnYuYyBhbmQgcmFkZW9uX2Ry
-di5jIGRvbid0IGluY2x1ZGUgZGVsYXkuaCwKcmVjdGlmaWVkIHRlc3RpbmcgcGF0Y2ggYmVsb3c6
-CgoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kcnYuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kcnYuYwppbmRleCA1MGFmY2Y2Li5i
-ZWFhZjJjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfZHJ2
-LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2Rydi5jCkBAIC0zNiw2
-ICszNiw3IEBACiAKICNpbmNsdWRlIDxkcm0vZHJtX3BjaWlkcy5oPgogI2luY2x1ZGUgPGxpbnV4
-L2NvbnNvbGUuaD4KKyNpbmNsdWRlIDxsaW51eC9kZWxheS5oPgogI2luY2x1ZGUgPGxpbnV4L21v
-ZHVsZS5oPgogI2luY2x1ZGUgPGxpbnV4L3BtX3J1bnRpbWUuaD4KICNpbmNsdWRlIDxsaW51eC92
-Z2Ffc3dpdGNoZXJvby5oPgpAQCAtNzE4LDYgKzcxOSw5IEBAIHN0YXRpYyBpbnQgYW1kZ3B1X3Bt
-b3BzX3J1bnRpbWVfc3VzcGVuZChzdHJ1Y3QgZGV2aWNlICpkZXYpCiAJCXJldHVybiAtRUJVU1k7
-CiAJfQogCisJcHJpbnRrKCJ3YWl0aW5nIDEyIHNlY1xuIik7CisJbXNsZWVwKDEyKjEwMDApOwor
-CXByaW50aygiZG9uZSB3YWl0aW5nIDEyIHNlY1xuIik7CiAJZHJtX2Rldi0+c3dpdGNoX3Bvd2Vy
-X3N0YXRlID0gRFJNX1NXSVRDSF9QT1dFUl9DSEFOR0lORzsKIAlkcm1fa21zX2hlbHBlcl9wb2xs
-X2Rpc2FibGUoZHJtX2Rldik7CiAJdmdhX3N3aXRjaGVyb29fc2V0X2R5bmFtaWNfc3dpdGNoKHBk
-ZXYsIFZHQV9TV0lUQ0hFUk9PX09GRik7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJt
-X3Byb2JlX2hlbHBlci5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9wcm9iZV9oZWxwZXIuYwppbmRl
-eCA1NTVmYmU1Li5lZTdjZjBkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX3Byb2Jl
-X2hlbHBlci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fcHJvYmVfaGVscGVyLmMKQEAgLTU4
-Niw2ICs1ODYsNyBAQCBzdGF0aWMgdm9pZCBvdXRwdXRfcG9sbF9leGVjdXRlKHN0cnVjdCB3b3Jr
-X3N0cnVjdCAqd29yaykKIAkJcmVwb2xsID0gdHJ1ZTsKIAkJZ290byBvdXQ7CiAJfQorCWRldl9p
-bmZvKCZkZXYtPnBkZXYtPmRldiwgImJlZ2luIHBvbGxcbiIpOwogCiAJZHJtX2Nvbm5lY3Rvcl9s
-aXN0X2l0ZXJfYmVnaW4oZGV2LCAmY29ubl9pdGVyKTsKIAlkcm1fZm9yX2VhY2hfY29ubmVjdG9y
-X2l0ZXIoY29ubmVjdG9yLCAmY29ubl9pdGVyKSB7CkBAIC02NTEsNiArNjUyLDcgQEAgc3RhdGlj
-IHZvaWQgb3V0cHV0X3BvbGxfZXhlY3V0ZShzdHJ1Y3Qgd29ya19zdHJ1Y3QgKndvcmspCiAKIAlp
-ZiAocmVwb2xsKQogCQlzY2hlZHVsZV9kZWxheWVkX3dvcmsoZGVsYXllZF93b3JrLCBEUk1fT1VU
-UFVUX1BPTExfUEVSSU9EKTsKKwlkZXZfaW5mbygmZGV2LT5wZGV2LT5kZXYsICJlbmQgcG9sbFxu
-Iik7CiB9CiAKIC8qKgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9kcm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKaW5kZXggM2Uy
-OTMwMi4uZjlkYTViYyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9kcm0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCkBAIC04
-NTUsNiArODU1LDkgQEAgc3RhdGljIGludCBub3V2ZWF1X2RybV9wcm9iZShzdHJ1Y3QgcGNpX2Rl
-diAqcGRldiwKIAkJcmV0dXJuIC1FQlVTWTsKIAl9CiAKKwlwcmludGsoIndhaXRpbmcgMTIgc2Vj
-XG4iKTsKKwltc2xlZXAoMTIqMTAwMCk7CisJcHJpbnRrKCJkb25lIHdhaXRpbmcgMTIgc2VjXG4i
-KTsKIAlkcm1fa21zX2hlbHBlcl9wb2xsX2Rpc2FibGUoZHJtX2Rldik7CiAJdmdhX3N3aXRjaGVy
-b29fc2V0X2R5bmFtaWNfc3dpdGNoKHBkZXYsIFZHQV9TV0lUQ0hFUk9PX09GRik7CiAJbm91dmVh
-dV9zd2l0Y2hlcm9vX29wdGltdXNfZHNtKCk7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-cmFkZW9uL3JhZGVvbl9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2Rydi5j
-CmluZGV4IDMxZGQwNGYuLjJiNGU3ZTAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9yYWRl
-b24vcmFkZW9uX2Rydi5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2Rydi5j
-CkBAIC0zNSw2ICszNSw3IEBACiAKICNpbmNsdWRlIDxkcm0vZHJtX3BjaWlkcy5oPgogI2luY2x1
-ZGUgPGxpbnV4L2NvbnNvbGUuaD4KKyNpbmNsdWRlIDxsaW51eC9kZWxheS5oPgogI2luY2x1ZGUg
-PGxpbnV4L21vZHVsZS5oPgogI2luY2x1ZGUgPGxpbnV4L3BtX3J1bnRpbWUuaD4KICNpbmNsdWRl
-IDxsaW51eC92Z2Ffc3dpdGNoZXJvby5oPgpAQCAtNDEzLDYgKzQxNCw5IEBAIHN0YXRpYyBpbnQg
-cmFkZW9uX3Btb3BzX3J1bnRpbWVfc3VzcGVuZChzdHJ1Y3QgZGV2aWNlICpkZXYpCiAJCXJldHVy
-biAtRUJVU1k7CiAJfQogCisJcHJpbnRrKCJ3YWl0aW5nIDEyIHNlY1xuIik7CisJbXNsZWVwKDEy
-KjEwMDApOworCXByaW50aygiZG9uZSB3YWl0aW5nIDEyIHNlY1xuIik7CiAJZHJtX2Rldi0+c3dp
-dGNoX3Bvd2VyX3N0YXRlID0gRFJNX1NXSVRDSF9QT1dFUl9DSEFOR0lORzsKIAlkcm1fa21zX2hl
-bHBlcl9wb2xsX2Rpc2FibGUoZHJtX2Rldik7CiAJdmdhX3N3aXRjaGVyb29fc2V0X2R5bmFtaWNf
-c3dpdGNoKHBkZXYsIFZHQV9TV0lUQ0hFUk9PX09GRik7Cl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVs
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============0813143257==
+Content-Type: multipart/alternative; boundary="15183789620.fef0.29245"
+Content-Transfer-Encoding: 7bit
+
+
+--15183789620.fef0.29245
+Date: Sun, 11 Feb 2018 19:56:02 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105045
+
+--- Comment #8 from Sergey Tereschenko <serg.partizan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Sergey Tereschenko from comment #7)
+> (In reply to Ilia Mirkin from comment #5)
+> > (In reply to Sergey Tereschenko from comment #4)
+> > > Can i just apply that patch to 17.3 or better build everything from g=
+it?
+> >=20
+> > You can just apply it. There's other stuff that's gone in though... I w=
+as
+> > just pointing out one thing I did. A bunch of people had issues with 17=
+.3
+> > and resizing stuff as I recall... other things too. I'd basically recom=
+mend
+> > running mesa master -- mesa is not very good at backporting fixes. And
+> > master's very rarely in a broken state.
+>=20
+> I found there is also 18.0.0-rc4, and looks like it almost recently relea=
+sed.
+> I just built it, it working but now i can't click anything with mouse nor
+> gdm nor after login into gnome-shell.
+>=20
+> But under weston it is working.
+
+Switching from wayland to xorg fixed issue with mouse in gnome. But issues =
+with
+xorg it is what get me to use nouveau+wayland (under xorg there is broken
+keyboard switching using grp:shift_caps_switch).
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15183789620.fef0.29245
+Date: Sun, 11 Feb 2018 19:56:02 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - System freeze with nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045#c8">Commen=
+t # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - System freeze with nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045">bug 10504=
+5</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+serg.partizan&#64;gmail.com" title=3D"Sergey Tereschenko &lt;serg.partizan&=
+#64;gmail.com&gt;"> <span class=3D"fn">Sergey Tereschenko</span></a>
+</span></b>
+        <pre>(In reply to Sergey Tereschenko from <a href=3D"show_bug.cgi?i=
+d=3D105045#c7">comment #7</a>)
+<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
+g.cgi?id=3D105045#c5">comment #5</a>)
+&gt; &gt; (In reply to Sergey Tereschenko from <a href=3D"show_bug.cgi?id=
+=3D105045#c4">comment #4</a>)
+&gt; &gt; &gt; Can i just apply that patch to 17.3 or better build everythi=
+ng from git?
+&gt; &gt;=20
+&gt; &gt; You can just apply it. There's other stuff that's gone in though.=
+.. I was
+&gt; &gt; just pointing out one thing I did. A bunch of people had issues w=
+ith 17.3
+&gt; &gt; and resizing stuff as I recall... other things too. I'd basically=
+ recommend
+&gt; &gt; running mesa master -- mesa is not very good at backporting fixes=
+. And
+&gt; &gt; master's very rarely in a broken state.
+&gt;=20
+&gt; I found there is also 18.0.0-rc4, and looks like it almost recently re=
+leased.
+&gt; I just built it, it working but now i can't click anything with mouse =
+nor
+&gt; gdm nor after login into gnome-shell.
+&gt;=20
+&gt; But under weston it is working.</span >
+
+Switching from wayland to xorg fixed issue with mouse in gnome. But issues =
+with
+xorg it is what get me to use nouveau+wayland (under xorg there is broken
+keyboard switching using grp:shift_caps_switch).</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15183789620.fef0.29245--
+
+--===============0813143257==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0813143257==--
