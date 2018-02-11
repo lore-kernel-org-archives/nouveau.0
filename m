@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 105045] System freeze with nouveau
-Date: Sun, 11 Feb 2018 17:55:34 +0000
-Message-ID: <bug-105045-8800-Bx0bxJPPkp@http.bugs.freedesktop.org/>
+Date: Sun, 11 Feb 2018 18:19:12 +0000
+Message-ID: <bug-105045-8800-lUsH8vsX2J@http.bugs.freedesktop.org/>
 References: <bug-105045-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1135434199=="
+Content-Type: multipart/mixed; boundary="===============0905469685=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-105045-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1135434199==
-Content-Type: multipart/alternative; boundary="15183717340.4D0beeAa.25071"
+--===============0905469685==
+Content-Type: multipart/alternative; boundary="15183731520.6BE7bf2E.31707"
 Content-Transfer-Encoding: 7bit
 
 
---15183717340.4D0beeAa.25071
-Date: Sun, 11 Feb 2018 17:55:34 +0000
+--15183731520.6BE7bf2E.31707
+Date: Sun, 11 Feb 2018 18:19:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,34 +35,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D105045
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This happens because GPU fault recovery currently leaves the process in a
-totally broken state. (And all other processes that use the GPU, seemingly.)
-
-The general approach has been to try to avoid the GPU faults in the first p=
-lace
--- that will be printed before any of your other errors (i.e. before the
-nv50_cal stuff).
-
-Note that mesa 18.0 may have some relevant fixes, e.g.=20
-
-commit adcd241b563f44b2e3e92f5d840e2f617bc25836
-Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Date:   Mon Jan 1 14:54:17 2018 -0500
-
-    nvc0: ensure that pushbuf keeps ref to old text/tls bos
-
-Perhaps worth a shot. (This could hit if gnome-shell were generating tons a=
-nd
-tons of silly shaders. Which it might be.)
+--- Comment #4 from Sergey Tereschenko <serg.partizan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Can i just apply that patch to 17.3 or better build everything from git?
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15183717340.4D0beeAa.25071
-Date: Sun, 11 Feb 2018 17:55:34 +0000
+--15183731520.6BE7bf2E.31707
+Date: Sun, 11 Feb 2018 18:19:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -79,38 +61,19 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - System freeze with nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045#c3">Commen=
-t # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - System freeze with nouveau"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045">bug 10504=
 5</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+serg.partizan&#64;gmail.com" title=3D"Sergey Tereschenko &lt;serg.partizan&=
+#64;gmail.com&gt;"> <span class=3D"fn">Sergey Tereschenko</span></a>
 </span></b>
-        <pre>This happens because GPU fault recovery currently leaves the p=
-rocess in a
-totally broken state. (And all other processes that use the GPU, seemingly.)
-
-The general approach has been to try to avoid the GPU faults in the first p=
-lace
--- that will be printed before any of your other errors (i.e. before the
-nv50_cal stuff).
-
-Note that mesa 18.0 may have some relevant fixes, e.g.=20
-
-commit adcd241b563f44b2e3e92f5d840e2f617bc25836
-Author: Ilia Mirkin &lt;<a href=3D"mailto:imirkin&#64;alum.mit.edu">imirkin=
-&#64;alum.mit.edu</a>&gt;
-Date:   Mon Jan 1 14:54:17 2018 -0500
-
-    nvc0: ensure that pushbuf keeps ref to old text/tls bos
-
-Perhaps worth a shot. (This could hit if gnome-shell were generating tons a=
-nd
-tons of silly shaders. Which it might be.)</pre>
+        <pre>Can i just apply that patch to 17.3 or better build everything=
+ from git?</pre>
         </div>
       </p>
 
@@ -119,15 +82,15 @@ tons of silly shaders. Which it might be.)</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15183717340.4D0beeAa.25071--
+--15183731520.6BE7bf2E.31707--
 
---===============1135434199==
+--===============0905469685==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -137,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1135434199==--
+--===============0905469685==--
