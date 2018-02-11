@@ -1,153 +1,123 @@
-From: Lukas Wunner <lukas@wunner.de>
-Subject: [PATCH 5/5] drm/amdgpu: Fix deadlock on runtime suspend
-Date: Sun, 11 Feb 2018 10:38:28 +0100
-Message-ID: <4c9bf72aacae1eef062bd134cd112e0770a7f121.1518338789.git.lukas@wunner.de>
-References: <cover.1518338788.git.lukas@wunner.de>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <cover.1518338788.git.lukas@wunner.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>, Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: dri-devel@lists.freedesktop.org, Peter Wu <peter@lekensteyn.nl>, nouveau@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>, Hans de Goede <hdegoede@redhat.com>, Pierre Moreau <pierre.morrow@free.fr>, linux-kernel@vger.kernel.org, Ismo Toijala <ismo.toijala@gmail.com>, intel-gfx@lists.freedesktop.org, Liviu Dudau <Liviu.Dudau@arm.com>, Archit Taneja <architt@codeaurora.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 71659] [NVD9] Hangs under load with ![
+ PFIFO][0000:01:00.0] unhandled status 0x00800000
+Date: Sun, 11 Feb 2018 11:41:37 +0000
+Message-ID: <bug-71659-8800-oZdhD7MGFv@http.bugs.freedesktop.org/>
+References: <bug-71659-8800@http.bugs.freedesktop.org/>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============1859823286=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-71659-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-amdgpu's ->runtime_suspend hook calls drm_kms_helper_poll_disable(),
-which waits for the output poll worker to finish if it's running.
 
-The output poll worker meanwhile calls pm_runtime_get_sync() in
-amdgpu's ->detect hooks, which waits for the ongoing suspend to finish,
-causing a deadlock.
+--===============1859823286==
+Content-Type: multipart/alternative; boundary="15183492971.f547.27866"
+Content-Transfer-Encoding: 7bit
 
-Fix by not acquiring a runtime PM ref if the ->detect hooks are called
-in the output poll worker's context.  This is safe because the poll
-worker is only enabled while runtime active and we know that
-->runtime_suspend waits for it to finish.
 
-Fixes: d38ceaf99ed0 ("drm/amdgpu: add core driver (v4)")
-Cc: stable@vger.kernel.org # v4.2+: 1234567890ab: workqueue: Allow retrieval of current task's work struct
-Cc: stable@vger.kernel.org # v4.2+: 1234567890ab: drm: Allow determining if current task is output poll worker
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Signed-off-by: Lukas Wunner <lukas@wunner.de>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c | 58 +++++++++++++++++---------
- 1 file changed, 38 insertions(+), 20 deletions(-)
+--15183492971.f547.27866
+Date: Sun, 11 Feb 2018 11:41:37 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-index 8ca3783f2deb..74d2efaec52f 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
-@@ -736,9 +736,11 @@ amdgpu_connector_lvds_detect(struct drm_connector *connector, bool force)
- 	enum drm_connector_status ret = connector_status_disconnected;
- 	int r;
- 
--	r = pm_runtime_get_sync(connector->dev->dev);
--	if (r < 0)
--		return connector_status_disconnected;
-+	if (!drm_kms_helper_is_poll_worker()) {
-+		r = pm_runtime_get_sync(connector->dev->dev);
-+		if (r < 0)
-+			return connector_status_disconnected;
-+	}
- 
- 	if (encoder) {
- 		struct amdgpu_encoder *amdgpu_encoder = to_amdgpu_encoder(encoder);
-@@ -757,8 +759,12 @@ amdgpu_connector_lvds_detect(struct drm_connector *connector, bool force)
- 	/* check acpi lid status ??? */
- 
- 	amdgpu_connector_update_scratch_regs(connector, ret);
--	pm_runtime_mark_last_busy(connector->dev->dev);
--	pm_runtime_put_autosuspend(connector->dev->dev);
-+
-+	if (!drm_kms_helper_is_poll_worker()) {
-+		pm_runtime_mark_last_busy(connector->dev->dev);
-+		pm_runtime_put_autosuspend(connector->dev->dev);
-+	}
-+
- 	return ret;
- }
- 
-@@ -868,9 +874,11 @@ amdgpu_connector_vga_detect(struct drm_connector *connector, bool force)
- 	enum drm_connector_status ret = connector_status_disconnected;
- 	int r;
- 
--	r = pm_runtime_get_sync(connector->dev->dev);
--	if (r < 0)
--		return connector_status_disconnected;
-+	if (!drm_kms_helper_is_poll_worker()) {
-+		r = pm_runtime_get_sync(connector->dev->dev);
-+		if (r < 0)
-+			return connector_status_disconnected;
-+	}
- 
- 	encoder = amdgpu_connector_best_single_encoder(connector);
- 	if (!encoder)
-@@ -924,8 +932,10 @@ amdgpu_connector_vga_detect(struct drm_connector *connector, bool force)
- 	amdgpu_connector_update_scratch_regs(connector, ret);
- 
- out:
--	pm_runtime_mark_last_busy(connector->dev->dev);
--	pm_runtime_put_autosuspend(connector->dev->dev);
-+	if (!drm_kms_helper_is_poll_worker()) {
-+		pm_runtime_mark_last_busy(connector->dev->dev);
-+		pm_runtime_put_autosuspend(connector->dev->dev);
-+	}
- 
- 	return ret;
- }
-@@ -988,9 +998,11 @@ amdgpu_connector_dvi_detect(struct drm_connector *connector, bool force)
- 	enum drm_connector_status ret = connector_status_disconnected;
- 	bool dret = false, broken_edid = false;
- 
--	r = pm_runtime_get_sync(connector->dev->dev);
--	if (r < 0)
--		return connector_status_disconnected;
-+	if (!drm_kms_helper_is_poll_worker()) {
-+		r = pm_runtime_get_sync(connector->dev->dev);
-+		if (r < 0)
-+			return connector_status_disconnected;
-+	}
- 
- 	if (!force && amdgpu_connector_check_hpd_status_unchanged(connector)) {
- 		ret = connector->status;
-@@ -1115,8 +1127,10 @@ amdgpu_connector_dvi_detect(struct drm_connector *connector, bool force)
- 	amdgpu_connector_update_scratch_regs(connector, ret);
- 
- exit:
--	pm_runtime_mark_last_busy(connector->dev->dev);
--	pm_runtime_put_autosuspend(connector->dev->dev);
-+	if (!drm_kms_helper_is_poll_worker()) {
-+		pm_runtime_mark_last_busy(connector->dev->dev);
-+		pm_runtime_put_autosuspend(connector->dev->dev);
-+	}
- 
- 	return ret;
- }
-@@ -1359,9 +1373,11 @@ amdgpu_connector_dp_detect(struct drm_connector *connector, bool force)
- 	struct drm_encoder *encoder = amdgpu_connector_best_single_encoder(connector);
- 	int r;
- 
--	r = pm_runtime_get_sync(connector->dev->dev);
--	if (r < 0)
--		return connector_status_disconnected;
-+	if (!drm_kms_helper_is_poll_worker()) {
-+		r = pm_runtime_get_sync(connector->dev->dev);
-+		if (r < 0)
-+			return connector_status_disconnected;
-+	}
- 
- 	if (!force && amdgpu_connector_check_hpd_status_unchanged(connector)) {
- 		ret = connector->status;
-@@ -1429,8 +1445,10 @@ amdgpu_connector_dp_detect(struct drm_connector *connector, bool force)
- 
- 	amdgpu_connector_update_scratch_regs(connector, ret);
- out:
--	pm_runtime_mark_last_busy(connector->dev->dev);
--	pm_runtime_put_autosuspend(connector->dev->dev);
-+	if (!drm_kms_helper_is_poll_worker()) {
-+		pm_runtime_mark_last_busy(connector->dev->dev);
-+		pm_runtime_put_autosuspend(connector->dev->dev);
-+	}
- 
- 	return ret;
- }
--- 
-2.15.1
+https://bugs.freedesktop.org/show_bug.cgi?id=3D71659
+
+--- Comment #35 from dusan <pavlikd-SgvXgqTD8kc@public.gmane.org> ---
+I have Dell 6520 with NVS 4200M.
+
+Problem is still there. With Mag6 64bit latest update. I mean problem is wi=
+th
+graphic ram manegement because when I play video (with XVideo) desktop is
+freezing much sooner how when using programs.
+
+
+kernel-desktop-4.14.16
+lib64drm_nouveau2-2.4.89
+x11-driver-video-nouveau-1.0.15
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15183492971.f547.27866
+Date: Sun, 11 Feb 2018 11:41:37 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unha=
+ndled status 0x00800000"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71659#c35">Commen=
+t # 35</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unha=
+ndled status 0x00800000"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71659">bug 71659<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pavlikd&#64;post.cz" title=3D"dusan &lt;pavlikd&#64;post.cz&gt;"> <span cla=
+ss=3D"fn">dusan</span></a>
+</span></b>
+        <pre>I have Dell 6520 with NVS 4200M.
+
+Problem is still there. With Mag6 64bit latest update. I mean problem is wi=
+th
+graphic ram manegement because when I play video (with XVideo) desktop is
+freezing much sooner how when using programs.
+
+
+kernel-desktop-4.14.16
+lib64drm_nouveau2-2.4.89
+x11-driver-video-nouveau-1.0.15</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15183492971.f547.27866--
+
+--===============1859823286==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1859823286==--
