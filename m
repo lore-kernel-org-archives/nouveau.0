@@ -1,157 +1,35 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105045] System freeze with nouveau
-Date: Sun, 11 Feb 2018 19:56:02 +0000
-Message-ID: <bug-105045-8800-LpXnzLMXIT@http.bugs.freedesktop.org/>
-References: <bug-105045-8800@http.bugs.freedesktop.org/>
+From: Mike Lothian <mike@fireburn.co.uk>
+Subject: Re: [PATCH 0/5] Fix deadlock on runtime suspend in DRM drivers
+Date: Mon, 12 Feb 2018 00:35:51 +0000
+Message-ID: <CAHbf0-HSNJmXs_Nm+bbcfUifoLEpFsMSpM96a-pVfLFMNz3GFw@mail.gmail.com>
+References: <cover.1518338788.git.lukas@wunner.de>
+ <CAHbf0-Fhi9j5H7VTxF84SENQph+UQE2zRbi2Q-u_DAMh6x+eSg@mail.gmail.com>
+ <20180211192314.GA22869@wunner.de> <20180211194154.GB22869@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0813143257=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105045-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20180211194154.GB22869@wunner.de>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Lukas Wunner <lukas@wunner.de>
+Cc: Ismo Toijala <ismo.toijala@gmail.com>, Hans de Goede <hdegoede@redhat.com>, nouveau@lists.freedesktop.org, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Lai Jiangshan <jiangshanlai@gmail.com>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, Alex Deucher <alexander.deucher@amd.com>, Ben Skeggs <bskeggs@redhat.com>, Tejun Heo <tj@kernel.org>, Dave Airlie <airlied@redhat.com>, Liviu Dudau <Liviu.Dudau@arm.com>, Peter Wu <peter@lekensteyn.nl>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0813143257==
-Content-Type: multipart/alternative; boundary="15183789620.fef0.29245"
-Content-Transfer-Encoding: 7bit
-
-
---15183789620.fef0.29245
-Date: Sun, 11 Feb 2018 19:56:02 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105045
-
---- Comment #8 from Sergey Tereschenko <serg.partizan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Sergey Tereschenko from comment #7)
-> (In reply to Ilia Mirkin from comment #5)
-> > (In reply to Sergey Tereschenko from comment #4)
-> > > Can i just apply that patch to 17.3 or better build everything from g=
-it?
-> >=20
-> > You can just apply it. There's other stuff that's gone in though... I w=
-as
-> > just pointing out one thing I did. A bunch of people had issues with 17=
-.3
-> > and resizing stuff as I recall... other things too. I'd basically recom=
-mend
-> > running mesa master -- mesa is not very good at backporting fixes. And
-> > master's very rarely in a broken state.
->=20
-> I found there is also 18.0.0-rc4, and looks like it almost recently relea=
-sed.
-> I just built it, it working but now i can't click anything with mouse nor
-> gdm nor after login into gnome-shell.
->=20
-> But under weston it is working.
-
-Switching from wayland to xorg fixed issue with mouse in gnome. But issues =
-with
-xorg it is what get me to use nouveau+wayland (under xorg there is broken
-keyboard switching using grp:shift_caps_switch).
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15183789620.fef0.29245
-Date: Sun, 11 Feb 2018 19:56:02 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System freeze with nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045#c8">Commen=
-t # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System freeze with nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045">bug 10504=
-5</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-serg.partizan&#64;gmail.com" title=3D"Sergey Tereschenko &lt;serg.partizan&=
-#64;gmail.com&gt;"> <span class=3D"fn">Sergey Tereschenko</span></a>
-</span></b>
-        <pre>(In reply to Sergey Tereschenko from <a href=3D"show_bug.cgi?i=
-d=3D105045#c7">comment #7</a>)
-<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
-g.cgi?id=3D105045#c5">comment #5</a>)
-&gt; &gt; (In reply to Sergey Tereschenko from <a href=3D"show_bug.cgi?id=
-=3D105045#c4">comment #4</a>)
-&gt; &gt; &gt; Can i just apply that patch to 17.3 or better build everythi=
-ng from git?
-&gt; &gt;=20
-&gt; &gt; You can just apply it. There's other stuff that's gone in though.=
-.. I was
-&gt; &gt; just pointing out one thing I did. A bunch of people had issues w=
-ith 17.3
-&gt; &gt; and resizing stuff as I recall... other things too. I'd basically=
- recommend
-&gt; &gt; running mesa master -- mesa is not very good at backporting fixes=
-. And
-&gt; &gt; master's very rarely in a broken state.
-&gt;=20
-&gt; I found there is also 18.0.0-rc4, and looks like it almost recently re=
-leased.
-&gt; I just built it, it working but now i can't click anything with mouse =
-nor
-&gt; gdm nor after login into gnome-shell.
-&gt;=20
-&gt; But under weston it is working.</span >
-
-Switching from wayland to xorg fixed issue with mouse in gnome. But issues =
-with
-xorg it is what get me to use nouveau+wayland (under xorg there is broken
-keyboard switching using grp:shift_caps_switch).</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15183789620.fef0.29245--
-
---===============0813143257==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0813143257==--
+SGkKCkkndmUgbm90IGJlZW4gYWJsZSB0byByZXByb2R1Y2UgdGhlIG9yaWdpbmFsIHByb2JsZW0g
+eW91J3JlIHRyeWluZyB0bwpzb2x2ZSBvbiBhbWRncHUgdGhhdHMgd2l0aCBvciB3aXRob3V0IHlv
+dXIgcGF0Y2ggc2V0IGFuZCB0aGUgYWJvdmUKInRyaWdnZXIiIHRvbwoKSXMgYW55dGhpbmcgZWxz
+ZSByZXF1aXJlZCB0byB0cmlnZ2VyIGl0LCBJIHN0YXJ0ZWQgbXVsdGlwbGUgRFJJX1BSSU1FCmds
+eGdlYXJzLCBpbiBwYXJhbGxlbCwgc2VyaWFsIHdhaXRpbmcgdGhlIDEyIHNlY29uZHMgYW5kIHNl
+cmlhbCB3aXRoaW4KdGhlIDEyIHNlY29uZHMgYW5kIEkgY291bGRuJ3QgcmVwcm9kdWNlIGl0CgpS
+ZWdhcmRzCgpNaWtlCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZl
+bAo=
