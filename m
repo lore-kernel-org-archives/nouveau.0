@@ -1,75 +1,76 @@
-From: Lukas Wunner <lukas@wunner.de>
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm: Allow determining if current task
- is output poll worker
-Date: Mon, 12 Feb 2018 19:40:06 +0100
-Message-ID: <20180212184006.GA3862@wunner.de>
+From: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH 0/5] Fix deadlock on runtime suspend in DRM
+ drivers
+Date: Mon, 12 Feb 2018 13:58:32 -0500
+Message-ID: <CADnq5_OaLNDZ10wzaqKGKkkjGVNLSTBPP76tch0aJY_mJ-EV4Q@mail.gmail.com>
 References: <cover.1518338788.git.lukas@wunner.de>
- <7831d4f21dde8cd0b1659e393854598995dfb249.1518338788.git.lukas@wunner.de>
- <1518457571.5319.7.camel@redhat.com>
- <151845781278.18923.259952134307306444@mail.alporthouse.com>
+ <CAHbf0-Fhi9j5H7VTxF84SENQph+UQE2zRbi2Q-u_DAMh6x+eSg@mail.gmail.com>
+ <20180211192314.GA22869@wunner.de> <20180211194154.GB22869@wunner.de>
+ <CAHbf0-HSNJmXs_Nm+bbcfUifoLEpFsMSpM96a-pVfLFMNz3GFw@mail.gmail.com>
+ <20180212033947.GA19049@wunner.de>
+ <CAHbf0-GFdw9M8rv0+xHms9_HdcK_cgHak7G1ugtz0ch1_k6=vQ@mail.gmail.com>
+ <20180212094500.22nvzzzpy6vrbqgc@wunner.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <151845781278.18923.259952134307306444@mail.alporthouse.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Lyude Paul <lyude@redhat.com>, Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>, Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Pierre Moreau <pierre.morrow@free.fr>, Archit Taneja <architt@codeaurora.org>, Ismo Toijala <ismo.toijala@gmail.com>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>, Peter Wu <peter@lekensteyn.nl>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20180212094500.22nvzzzpy6vrbqgc@wunner.de>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Lukas Wunner <lukas@wunner.de>
+Cc: Ismo Toijala <ismo.toijala@gmail.com>, nouveau <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Lai Jiangshan <jiangshanlai@gmail.com>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>, Alex Deucher <alexander.deucher@amd.com>, Tejun Heo <tj@kernel.org>, Peter Wu <peter@lekensteyn.nl>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Feb 12, 2018 at 05:50:12PM +0000, Chris Wilson wrote:
-> Quoting Lyude Paul (2018-02-12 17:46:11)
-> > On Sun, 2018-02-11 at 10:38 +0100, Lukas Wunner wrote:
-> > > Introduce a helper to determine if the current task is an output poll
-> > > worker.
-> > > 
-> > > This allows us to fix a long-standing deadlock in several DRM drivers
-> > > wherein the ->runtime_suspend callback waits for the output poll worker
-> > > to finish and the worker in turn calls a ->detect callback which waits
-> > > for runtime suspend to finish.  The ->detect callback is invoked from
-> > > multiple call sites and waiting for runtime suspend to finish is the
-> > > correct thing to do except if it's executing in the context of the
-> > > worker.
-> > > 
-> > > Cc: Dave Airlie <airlied@redhat.com>
-> > > Cc: Ben Skeggs <bskeggs@redhat.com>
-> > > Cc: Alex Deucher <alexander.deucher@amd.com>
-> > > Signed-off-by: Lukas Wunner <lukas@wunner.de>
-> > > ---
-> > >  drivers/gpu/drm/drm_probe_helper.c | 14 ++++++++++++++
-> > >  include/drm/drm_crtc_helper.h      |  1 +
-> > >  2 files changed, 15 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/drm_probe_helper.c
-> > > b/drivers/gpu/drm/drm_probe_helper.c
-> > > index 555fbe54d6e2..019881d15ce1 100644
-> > > --- a/drivers/gpu/drm/drm_probe_helper.c
-> > > +++ b/drivers/gpu/drm/drm_probe_helper.c
-> > > @@ -653,6 +653,20 @@ static void output_poll_execute(struct work_struct
-> > > *work)
-> > >               schedule_delayed_work(delayed_work,
-> > > DRM_OUTPUT_POLL_PERIOD);
-> > >  }
-> > >  
-> > > +/**
-> > > + * drm_kms_helper_is_poll_worker - is %current task an output poll worker?
-> > > + *
-> > > + * Determine if %current task is an output poll worker.  This can be used
-> > > + * to select distinct code paths for output polling versus other contexts.
-> > > + */
-> > > +bool drm_kms_helper_is_poll_worker(void)
-> > > +{
-> > > +     struct work_struct *work = current_work();
-> > > +
-> > > +     return work && work->func == output_poll_execute;
-> 
-> What ensures that work is accessible? Does this need rcu_read_lock
-> protection or more?
-
-The work_struct exists as long this kthread is working on it.
-Since this is called by the kthread itself, it is guaranteed to exist.
-So there's no protection needed.
-
-Thanks,
-
-Lukas
+T24gTW9uLCBGZWIgMTIsIDIwMTggYXQgNDo0NSBBTSwgTHVrYXMgV3VubmVyIDxsdWthc0B3dW5u
+ZXIuZGU+IHdyb3RlOgo+IE9uIE1vbiwgRmViIDEyLCAyMDE4IGF0IDA5OjAzOjI2QU0gKzAwMDAs
+IE1pa2UgTG90aGlhbiB3cm90ZToKPj4gT24gMTIgRmVicnVhcnkgMjAxOCBhdCAwMzozOSwgTHVr
+YXMgV3VubmVyIDxsdWthc0B3dW5uZXIuZGU+IHdyb3RlOgo+PiA+IE9uIE1vbiwgRmViIDEyLCAy
+MDE4IGF0IDEyOjM1OjUxQU0gKzAwMDAsIE1pa2UgTG90aGlhbiB3cm90ZToKPj4gPiA+IEkndmUg
+bm90IGJlZW4gYWJsZSB0byByZXByb2R1Y2UgdGhlIG9yaWdpbmFsIHByb2JsZW0geW91J3JlIHRy
+eWluZyB0bwo+PiA+ID4gc29sdmUgb24gYW1kZ3B1IHRoYXRzIHdpdGggb3Igd2l0aG91dCB5b3Vy
+IHBhdGNoIHNldCBhbmQgdGhlIGFib3ZlCj4+ID4gPiAidHJpZ2dlciIgdG9vCj4+ID4gPgo+PiA+
+ID4gSXMgYW55dGhpbmcgZWxzZSByZXF1aXJlZCB0byB0cmlnZ2VyIGl0LCBJIHN0YXJ0ZWQgbXVs
+dGlwbGUgRFJJX1BSSU1FCj4+ID4gPiBnbHhnZWFycywgaW4gcGFyYWxsZWwsIHNlcmlhbCB3YWl0
+aW5nIHRoZSAxMiBzZWNvbmRzIGFuZCBzZXJpYWwgd2l0aGluCj4+ID4gPiB0aGUgMTIgc2Vjb25k
+cyBhbmQgSSBjb3VsZG4ndCByZXByb2R1Y2UgaXQKPj4gPgo+PiA+IFRoZSBkaXNjcmV0ZSBHUFUg
+bmVlZHMgdG8gcnVudGltZSBzdXNwZW5kLCB0aGF0J3MgdGhlIHRyaWdnZXIsCj4+ID4gc28gbm8g
+RFJJX1BSSU1FIGV4ZWN1dGFibGVzIHNob3VsZCBiZSBydW5uaW5nLiAgSnVzdCBsZXQgaXQKPj4g
+PiBhdXRvc3VzcGVuZCBhZnRlciBib290LiAgRG8geW91IHNlZSAid2FpdGluZyAxMiBzZWMiIG1l
+c3NhZ2VzCj4+ID4gaW4gZG1lc2c/ICBJZiBub3QgaXQncyBub3QgYXV0b3N1c3BlbmRpbmcuCj4+
+Cj4+IFllcyBJJ20gc2VlaW5nIHRob3NlIG1lc3NhZ2VzLCBJJ20ganVzdCBub3Qgc2VlaW5nIHRo
+ZSBoYW5ncwo+Pgo+PiBJJ3ZlIGF0dGFjaGVkIHRoZSBkbWVzZyBpbiBjYXNlIHlvdSdyZSBpbnRl
+cmVzdGVkCj4KPiBPa2F5IHRoZSByZWFzb24geW91J3JlIG5vdCBzZWVpbmcgZGVhZGxvY2tzIGlz
+IGJlY2F1c2UgdGhlIG91dHB1dCBwb2xsCj4gd29ya2VyIGlzIG5vdCBlbmFibGVkLiAgQW5kIHRo
+ZSBvdXRwdXQgcG9sbCB3b3JrZXIgaXMgbm90IGVuYWJsZWQKPiBiZWNhdXNlIHlvdXIgZGlzY3Jl
+dGUgR1BVIGRvZXNuJ3QgaGF2ZSBhbnkgb3V0cHV0czoKPgo+IFsgICAgMC4yNjU1NjhdIFtkcm06
+ZGNfY3JlYXRlXSAqRVJST1IqIERDOiBOdW1iZXIgb2YgY29ubmVjdG9ycyBpcyB6ZXJvIQo+Cj4g
+VGhlIG91dHB1dHMgYXJlIG9ubHkgcG9sbGVkIGlmIHRoZXJlIGFyZSBjb25uZWN0b3JzIHdoaWNo
+IGhhdmUgdGhlCj4gRFJNX0NPTk5FQ1RPUl9QT0xMX0NPTk5FQ1Qgb3IgRFJNX0NPTk5FQ1RPUl9Q
+T0xMX0RJU0NPTk5FQ1QgZmxhZyBzZXQuCj4gQW5kIHRoYXQgb25seSBldmVyIHNlZW1zIHRvIGJl
+IHRoZSBjYXNlIGZvciBWR0EgYW5kIERWSS4KPgo+IFdlIGtub3cgYmFzZWQgb24gYnVnemlsbGEg
+cmVwb3J0cyB0aGF0IGh5YnJpZCBncmFwaGljcyBsYXB0b3BzIGRvIGV4aXN0Cj4gd2hpY2ggcG9s
+bCBvdXRwdXRzIHdpdGggcmFkZW9uIGFuZCBub3V2ZWF1LiAgSWYgdGhlcmUgYXJlIG5vIGxhcHRv
+cHMKPiBzdXBwb3J0ZWQgYnkgYW1kZ3B1IHdob3NlIGRpc2NyZXRlIEdQVSBoYXMgcG9sbGVkIGNv
+bm5lY3RvcnMsIHRoZW4KPiBwYXRjaCBbNS81XSB3b3VsZCBiZSB1bm5lY2Vzc2FyeS4gIFRoYXQg
+aXMgZm9yIEFsZXggdG8gZGVjaWRlLgoKTW9zdCBoeWJyaWQgbGFwdG9wcyBkb24ndCBoYXZlIGRp
+c3BsYXkgY29ubmVjdG9ycyBvbiB0aGUgZEdQVSBhbmQgd2UKb25seSB1c2UgcG9sbGluZyBvbiBh
+bmFsb2cgY29ubmVjdG9ycywgc28geW91IGFyZSBub3QgbGlrZWx5IHRvIHJ1bgppbnRvIHRoaXMg
+b24gcmVjZW50IGxhcHRvcHMuICBUaGF0IHNhaWQsIEkgZG9uJ3Qga25vdyBpZiB0aGVyZSBpcyBz
+b21lCk9FTSBzeXN0ZW0gb3V0IHRoZXJlIHdpdGggYSBWR0EgcG9ydCBvbiB0aGUgZEdQVSBpbiBh
+IGh5YnJpZCBsYXB0b3AuCkkgZ3Vlc3MgYW5vdGhlciBvcHRpb24gaXMgdG8ganVzdCBkaXNhYmxl
+IHBvbGxpbmcgb24gaHlicmlkIGxhcHRvcHMuCgpBbGV4Cgo+Cj4gSG93ZXZlciB0aGF0IGlzIHZl
+cnkgZ29vZCB0byBrbm93LCBzbyB0aGFua3MgYSBsb3QgZm9yIHlvdXIgdGVzdGluZwo+IGVmZm9y
+dHMsIG11Y2ggYXBwcmVjaWF0ZWQhCj4KPiBLaW5kIHJlZ2FyZHMsCj4KPiBMdWthcwo+IF9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gZHJpLWRldmVsIG1h
+aWxpbmcgbGlzdAo+IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbApfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
+aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
