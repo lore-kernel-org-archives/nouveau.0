@@ -1,76 +1,124 @@
-From: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [PATCH 0/5] Fix deadlock on runtime suspend in DRM
- drivers
-Date: Mon, 12 Feb 2018 13:58:32 -0500
-Message-ID: <CADnq5_OaLNDZ10wzaqKGKkkjGVNLSTBPP76tch0aJY_mJ-EV4Q@mail.gmail.com>
-References: <cover.1518338788.git.lukas@wunner.de>
- <CAHbf0-Fhi9j5H7VTxF84SENQph+UQE2zRbi2Q-u_DAMh6x+eSg@mail.gmail.com>
- <20180211192314.GA22869@wunner.de> <20180211194154.GB22869@wunner.de>
- <CAHbf0-HSNJmXs_Nm+bbcfUifoLEpFsMSpM96a-pVfLFMNz3GFw@mail.gmail.com>
- <20180212033947.GA19049@wunner.de>
- <CAHbf0-GFdw9M8rv0+xHms9_HdcK_cgHak7G1ugtz0ch1_k6=vQ@mail.gmail.com>
- <20180212094500.22nvzzzpy6vrbqgc@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 105045] System freeze with nouveau
+Date: Mon, 12 Feb 2018 20:43:17 +0000
+Message-ID: <bug-105045-8800-OEkyU6z96G@http.bugs.freedesktop.org/>
+References: <bug-105045-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <20180212094500.22nvzzzpy6vrbqgc@wunner.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Lukas Wunner <lukas@wunner.de>
-Cc: Ismo Toijala <ismo.toijala@gmail.com>, nouveau <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Lai Jiangshan <jiangshanlai@gmail.com>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>, Alex Deucher <alexander.deucher@amd.com>, Tejun Heo <tj@kernel.org>, Peter Wu <peter@lekensteyn.nl>
+Content-Type: multipart/mixed; boundary="===============0750631255=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-105045-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBGZWIgMTIsIDIwMTggYXQgNDo0NSBBTSwgTHVrYXMgV3VubmVyIDxsdWthc0B3dW5u
-ZXIuZGU+IHdyb3RlOgo+IE9uIE1vbiwgRmViIDEyLCAyMDE4IGF0IDA5OjAzOjI2QU0gKzAwMDAs
-IE1pa2UgTG90aGlhbiB3cm90ZToKPj4gT24gMTIgRmVicnVhcnkgMjAxOCBhdCAwMzozOSwgTHVr
-YXMgV3VubmVyIDxsdWthc0B3dW5uZXIuZGU+IHdyb3RlOgo+PiA+IE9uIE1vbiwgRmViIDEyLCAy
-MDE4IGF0IDEyOjM1OjUxQU0gKzAwMDAsIE1pa2UgTG90aGlhbiB3cm90ZToKPj4gPiA+IEkndmUg
-bm90IGJlZW4gYWJsZSB0byByZXByb2R1Y2UgdGhlIG9yaWdpbmFsIHByb2JsZW0geW91J3JlIHRy
-eWluZyB0bwo+PiA+ID4gc29sdmUgb24gYW1kZ3B1IHRoYXRzIHdpdGggb3Igd2l0aG91dCB5b3Vy
-IHBhdGNoIHNldCBhbmQgdGhlIGFib3ZlCj4+ID4gPiAidHJpZ2dlciIgdG9vCj4+ID4gPgo+PiA+
-ID4gSXMgYW55dGhpbmcgZWxzZSByZXF1aXJlZCB0byB0cmlnZ2VyIGl0LCBJIHN0YXJ0ZWQgbXVs
-dGlwbGUgRFJJX1BSSU1FCj4+ID4gPiBnbHhnZWFycywgaW4gcGFyYWxsZWwsIHNlcmlhbCB3YWl0
-aW5nIHRoZSAxMiBzZWNvbmRzIGFuZCBzZXJpYWwgd2l0aGluCj4+ID4gPiB0aGUgMTIgc2Vjb25k
-cyBhbmQgSSBjb3VsZG4ndCByZXByb2R1Y2UgaXQKPj4gPgo+PiA+IFRoZSBkaXNjcmV0ZSBHUFUg
-bmVlZHMgdG8gcnVudGltZSBzdXNwZW5kLCB0aGF0J3MgdGhlIHRyaWdnZXIsCj4+ID4gc28gbm8g
-RFJJX1BSSU1FIGV4ZWN1dGFibGVzIHNob3VsZCBiZSBydW5uaW5nLiAgSnVzdCBsZXQgaXQKPj4g
-PiBhdXRvc3VzcGVuZCBhZnRlciBib290LiAgRG8geW91IHNlZSAid2FpdGluZyAxMiBzZWMiIG1l
-c3NhZ2VzCj4+ID4gaW4gZG1lc2c/ICBJZiBub3QgaXQncyBub3QgYXV0b3N1c3BlbmRpbmcuCj4+
-Cj4+IFllcyBJJ20gc2VlaW5nIHRob3NlIG1lc3NhZ2VzLCBJJ20ganVzdCBub3Qgc2VlaW5nIHRo
-ZSBoYW5ncwo+Pgo+PiBJJ3ZlIGF0dGFjaGVkIHRoZSBkbWVzZyBpbiBjYXNlIHlvdSdyZSBpbnRl
-cmVzdGVkCj4KPiBPa2F5IHRoZSByZWFzb24geW91J3JlIG5vdCBzZWVpbmcgZGVhZGxvY2tzIGlz
-IGJlY2F1c2UgdGhlIG91dHB1dCBwb2xsCj4gd29ya2VyIGlzIG5vdCBlbmFibGVkLiAgQW5kIHRo
-ZSBvdXRwdXQgcG9sbCB3b3JrZXIgaXMgbm90IGVuYWJsZWQKPiBiZWNhdXNlIHlvdXIgZGlzY3Jl
-dGUgR1BVIGRvZXNuJ3QgaGF2ZSBhbnkgb3V0cHV0czoKPgo+IFsgICAgMC4yNjU1NjhdIFtkcm06
-ZGNfY3JlYXRlXSAqRVJST1IqIERDOiBOdW1iZXIgb2YgY29ubmVjdG9ycyBpcyB6ZXJvIQo+Cj4g
-VGhlIG91dHB1dHMgYXJlIG9ubHkgcG9sbGVkIGlmIHRoZXJlIGFyZSBjb25uZWN0b3JzIHdoaWNo
-IGhhdmUgdGhlCj4gRFJNX0NPTk5FQ1RPUl9QT0xMX0NPTk5FQ1Qgb3IgRFJNX0NPTk5FQ1RPUl9Q
-T0xMX0RJU0NPTk5FQ1QgZmxhZyBzZXQuCj4gQW5kIHRoYXQgb25seSBldmVyIHNlZW1zIHRvIGJl
-IHRoZSBjYXNlIGZvciBWR0EgYW5kIERWSS4KPgo+IFdlIGtub3cgYmFzZWQgb24gYnVnemlsbGEg
-cmVwb3J0cyB0aGF0IGh5YnJpZCBncmFwaGljcyBsYXB0b3BzIGRvIGV4aXN0Cj4gd2hpY2ggcG9s
-bCBvdXRwdXRzIHdpdGggcmFkZW9uIGFuZCBub3V2ZWF1LiAgSWYgdGhlcmUgYXJlIG5vIGxhcHRv
-cHMKPiBzdXBwb3J0ZWQgYnkgYW1kZ3B1IHdob3NlIGRpc2NyZXRlIEdQVSBoYXMgcG9sbGVkIGNv
-bm5lY3RvcnMsIHRoZW4KPiBwYXRjaCBbNS81XSB3b3VsZCBiZSB1bm5lY2Vzc2FyeS4gIFRoYXQg
-aXMgZm9yIEFsZXggdG8gZGVjaWRlLgoKTW9zdCBoeWJyaWQgbGFwdG9wcyBkb24ndCBoYXZlIGRp
-c3BsYXkgY29ubmVjdG9ycyBvbiB0aGUgZEdQVSBhbmQgd2UKb25seSB1c2UgcG9sbGluZyBvbiBh
-bmFsb2cgY29ubmVjdG9ycywgc28geW91IGFyZSBub3QgbGlrZWx5IHRvIHJ1bgppbnRvIHRoaXMg
-b24gcmVjZW50IGxhcHRvcHMuICBUaGF0IHNhaWQsIEkgZG9uJ3Qga25vdyBpZiB0aGVyZSBpcyBz
-b21lCk9FTSBzeXN0ZW0gb3V0IHRoZXJlIHdpdGggYSBWR0EgcG9ydCBvbiB0aGUgZEdQVSBpbiBh
-IGh5YnJpZCBsYXB0b3AuCkkgZ3Vlc3MgYW5vdGhlciBvcHRpb24gaXMgdG8ganVzdCBkaXNhYmxl
-IHBvbGxpbmcgb24gaHlicmlkIGxhcHRvcHMuCgpBbGV4Cgo+Cj4gSG93ZXZlciB0aGF0IGlzIHZl
-cnkgZ29vZCB0byBrbm93LCBzbyB0aGFua3MgYSBsb3QgZm9yIHlvdXIgdGVzdGluZwo+IGVmZm9y
-dHMsIG11Y2ggYXBwcmVjaWF0ZWQhCj4KPiBLaW5kIHJlZ2FyZHMsCj4KPiBMdWthcwo+IF9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gZHJpLWRldmVsIG1h
-aWxpbmcgbGlzdAo+IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbApfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
-aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+
+--===============0750631255==
+Content-Type: multipart/alternative; boundary="15184681960.8Adadb1.10009"
+Content-Transfer-Encoding: 7bit
+
+
+--15184681960.8Adadb1.10009
+Date: Mon, 12 Feb 2018 20:43:16 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105045
+
+--- Comment #9 from Sergey Tereschenko <serg.partizan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I built mesa-git from source, and gdm starting only in xorg mode.
+
+When i try to run
+
+> XDG_SESSION_TYPE=3Dwayland exec dbus-run-session gnome-session
+
+It fails with message "Connection to the bus can't be made"
+
+weston is still running fine.
+
+reverted back to 17.3.3
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15184681960.8Adadb1.10009
+Date: Mon, 12 Feb 2018 20:43:16 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - System freeze with nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045#c9">Commen=
+t # 9</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - System freeze with nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045">bug 10504=
+5</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+serg.partizan&#64;gmail.com" title=3D"Sergey Tereschenko &lt;serg.partizan&=
+#64;gmail.com&gt;"> <span class=3D"fn">Sergey Tereschenko</span></a>
+</span></b>
+        <pre>I built mesa-git from source, and gdm starting only in xorg mo=
+de.
+
+When i try to run
+
+<span class=3D"quote">&gt; XDG_SESSION_TYPE=3Dwayland exec dbus-run-session=
+ gnome-session</span >
+
+It fails with message &quot;Connection to the bus can't be made&quot;
+
+weston is still running fine.
+
+reverted back to 17.3.3</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15184681960.8Adadb1.10009--
+
+--===============0750631255==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0750631255==--
