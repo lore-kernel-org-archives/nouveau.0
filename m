@@ -1,68 +1,75 @@
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm: Allow determining if current task is
- output poll worker
-Date: Mon, 12 Feb 2018 17:50:12 +0000
-Message-ID: <151845781278.18923.259952134307306444@mail.alporthouse.com>
+From: Lukas Wunner <lukas@wunner.de>
+Subject: Re: [Intel-gfx] [PATCH 2/5] drm: Allow determining if current task
+ is output poll worker
+Date: Mon, 12 Feb 2018 19:40:06 +0100
+Message-ID: <20180212184006.GA3862@wunner.de>
 References: <cover.1518338788.git.lukas@wunner.de>
  <7831d4f21dde8cd0b1659e393854598995dfb249.1518338788.git.lukas@wunner.de>
  <1518457571.5319.7.camel@redhat.com>
+ <151845781278.18923.259952134307306444@mail.alporthouse.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1518457571.5319.7.camel@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Lyude Paul <lyude@redhat.com>, Lukas Wunner <lukas@wunner.de>, Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>, Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: Ismo Toijala <ismo.toijala@gmail.com>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>, Peter Wu <peter@lekensteyn.nl>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <151845781278.18923.259952134307306444@mail.alporthouse.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Lyude Paul <lyude@redhat.com>, Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>, Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Pierre Moreau <pierre.morrow@free.fr>, Archit Taneja <architt@codeaurora.org>, Ismo Toijala <ismo.toijala@gmail.com>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>, Peter Wu <peter@lekensteyn.nl>
 List-Id: nouveau.vger.kernel.org
 
-UXVvdGluZyBMeXVkZSBQYXVsICgyMDE4LTAyLTEyIDE3OjQ2OjExKQo+IE9uIFN1biwgMjAxOC0w
-Mi0xMSBhdCAxMDozOCArMDEwMCwgTHVrYXMgV3VubmVyIHdyb3RlOgo+ID4gSW50cm9kdWNlIGEg
-aGVscGVyIHRvIGRldGVybWluZSBpZiB0aGUgY3VycmVudCB0YXNrIGlzIGFuIG91dHB1dCBwb2xs
-Cj4gPiB3b3JrZXIuCj4gPiAKPiA+IFRoaXMgYWxsb3dzIHVzIHRvIGZpeCBhIGxvbmctc3RhbmRp
-bmcgZGVhZGxvY2sgaW4gc2V2ZXJhbCBEUk0gZHJpdmVycwo+ID4gd2hlcmVpbiB0aGUgLT5ydW50
-aW1lX3N1c3BlbmQgY2FsbGJhY2sgd2FpdHMgZm9yIHRoZSBvdXRwdXQgcG9sbCB3b3JrZXIKPiA+
-IHRvIGZpbmlzaCBhbmQgdGhlIHdvcmtlciBpbiB0dXJuIGNhbGxzIGEgLT5kZXRlY3QgY2FsbGJh
-Y2sgd2hpY2ggd2FpdHMKPiA+IGZvciBydW50aW1lIHN1c3BlbmQgdG8gZmluaXNoLiAgVGhlIC0+
-ZGV0ZWN0IGNhbGxiYWNrIGlzIGludm9rZWQgZnJvbQo+ID4gbXVsdGlwbGUgY2FsbCBzaXRlcyBh
-bmQgd2FpdGluZyBmb3IgcnVudGltZSBzdXNwZW5kIHRvIGZpbmlzaCBpcyB0aGUKPiA+IGNvcnJl
-Y3QgdGhpbmcgdG8gZG8gZXhjZXB0IGlmIGl0J3MgZXhlY3V0aW5nIGluIHRoZSBjb250ZXh0IG9m
-IHRoZQo+ID4gd29ya2VyLgo+ID4gCj4gPiBDYzogRGF2ZSBBaXJsaWUgPGFpcmxpZWRAcmVkaGF0
-LmNvbT4KPiA+IENjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+Cj4gPiBDYzogQWxl
-eCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgo+ID4gU2lnbmVkLW9mZi1ieTog
-THVrYXMgV3VubmVyIDxsdWthc0B3dW5uZXIuZGU+Cj4gPiAtLS0KPiA+ICBkcml2ZXJzL2dwdS9k
-cm0vZHJtX3Byb2JlX2hlbHBlci5jIHwgMTQgKysrKysrKysrKysrKysKPiA+ICBpbmNsdWRlL2Ry
-bS9kcm1fY3J0Y19oZWxwZXIuaCAgICAgIHwgIDEgKwo+ID4gIDIgZmlsZXMgY2hhbmdlZCwgMTUg
-aW5zZXJ0aW9ucygrKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9w
-cm9iZV9oZWxwZXIuYwo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vZHJtX3Byb2JlX2hlbHBlci5jCj4g
-PiBpbmRleCA1NTVmYmU1NGQ2ZTIuLjAxOTg4MWQxNWNlMSAxMDA2NDQKPiA+IC0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9kcm1fcHJvYmVfaGVscGVyLmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9k
-cm1fcHJvYmVfaGVscGVyLmMKPiA+IEBAIC02NTMsNiArNjUzLDIwIEBAIHN0YXRpYyB2b2lkIG91
-dHB1dF9wb2xsX2V4ZWN1dGUoc3RydWN0IHdvcmtfc3RydWN0Cj4gPiAqd29yaykKPiA+ICAgICAg
-ICAgICAgICAgc2NoZWR1bGVfZGVsYXllZF93b3JrKGRlbGF5ZWRfd29yaywKPiA+IERSTV9PVVRQ
-VVRfUE9MTF9QRVJJT0QpOwo+ID4gIH0KPiA+ICAKPiA+ICsvKioKPiA+ICsgKiBkcm1fa21zX2hl
-bHBlcl9pc19wb2xsX3dvcmtlciAtIGlzICVjdXJyZW50IHRhc2sgYW4gb3V0cHV0IHBvbGwgd29y
-a2VyPwo+ID4gKyAqCj4gPiArICogRGV0ZXJtaW5lIGlmICVjdXJyZW50IHRhc2sgaXMgYW4gb3V0
-cHV0IHBvbGwgd29ya2VyLiAgVGhpcyBjYW4gYmUgdXNlZAo+ID4gKyAqIHRvIHNlbGVjdCBkaXN0
-aW5jdCBjb2RlIHBhdGhzIGZvciBvdXRwdXQgcG9sbGluZyB2ZXJzdXMgb3RoZXIgY29udGV4dHMu
-Cj4gPiArICovCj4gRm9yIHRoaXMsIGl0IHdvdWxkIGJlIHdvcnRoIGV4cGxpY2l0bHkgbm90aW5n
-IGluIHRoZSBjb21tZW50cyBoZXJldGhhdCB0aGlzCj4gc2hvdWxkIGJlIGNhbGxlZCBieSBEUk0g
-ZHJpdmVycyBpbiBvcmRlciB0byBwcmV2ZW50IHJhY2luZyB3aXRoIGhvdHBsdWcKPiBwb2xsaW5n
-IHdvcmtlcnMsIHNvIHRoYXQgbmV3IGRyaXZlcnMgaW4gdGhlIGZ1dHVyZSBjYW4gYXZvaWQgaW1w
-bGVtZW50aW5nIHRoaXMKPiByYWNlIGNvbmRpdGlvbiBpbiB0aGVpciBkcml2ZXIuCj4gCj4gPiAr
-Ym9vbCBkcm1fa21zX2hlbHBlcl9pc19wb2xsX3dvcmtlcih2b2lkKQo+ID4gK3sKPiA+ICsgICAg
-IHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yayA9IGN1cnJlbnRfd29yaygpOwo+ID4gKwo+ID4gKyAg
-ICAgcmV0dXJuIHdvcmsgJiYgd29yay0+ZnVuYyA9PSBvdXRwdXRfcG9sbF9leGVjdXRlOwoKV2hh
-dCBlbnN1cmVzIHRoYXQgd29yayBpcyBhY2Nlc3NpYmxlPyBEb2VzIHRoaXMgbmVlZCByY3VfcmVh
-ZF9sb2NrCnByb3RlY3Rpb24gb3IgbW9yZT8KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVs
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+On Mon, Feb 12, 2018 at 05:50:12PM +0000, Chris Wilson wrote:
+> Quoting Lyude Paul (2018-02-12 17:46:11)
+> > On Sun, 2018-02-11 at 10:38 +0100, Lukas Wunner wrote:
+> > > Introduce a helper to determine if the current task is an output poll
+> > > worker.
+> > > 
+> > > This allows us to fix a long-standing deadlock in several DRM drivers
+> > > wherein the ->runtime_suspend callback waits for the output poll worker
+> > > to finish and the worker in turn calls a ->detect callback which waits
+> > > for runtime suspend to finish.  The ->detect callback is invoked from
+> > > multiple call sites and waiting for runtime suspend to finish is the
+> > > correct thing to do except if it's executing in the context of the
+> > > worker.
+> > > 
+> > > Cc: Dave Airlie <airlied@redhat.com>
+> > > Cc: Ben Skeggs <bskeggs@redhat.com>
+> > > Cc: Alex Deucher <alexander.deucher@amd.com>
+> > > Signed-off-by: Lukas Wunner <lukas@wunner.de>
+> > > ---
+> > >  drivers/gpu/drm/drm_probe_helper.c | 14 ++++++++++++++
+> > >  include/drm/drm_crtc_helper.h      |  1 +
+> > >  2 files changed, 15 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/drm_probe_helper.c
+> > > b/drivers/gpu/drm/drm_probe_helper.c
+> > > index 555fbe54d6e2..019881d15ce1 100644
+> > > --- a/drivers/gpu/drm/drm_probe_helper.c
+> > > +++ b/drivers/gpu/drm/drm_probe_helper.c
+> > > @@ -653,6 +653,20 @@ static void output_poll_execute(struct work_struct
+> > > *work)
+> > >               schedule_delayed_work(delayed_work,
+> > > DRM_OUTPUT_POLL_PERIOD);
+> > >  }
+> > >  
+> > > +/**
+> > > + * drm_kms_helper_is_poll_worker - is %current task an output poll worker?
+> > > + *
+> > > + * Determine if %current task is an output poll worker.  This can be used
+> > > + * to select distinct code paths for output polling versus other contexts.
+> > > + */
+> > > +bool drm_kms_helper_is_poll_worker(void)
+> > > +{
+> > > +     struct work_struct *work = current_work();
+> > > +
+> > > +     return work && work->func == output_poll_execute;
+> 
+> What ensures that work is accessible? Does this need rcu_read_lock
+> protection or more?
+
+The work_struct exists as long this kthread is working on it.
+Since this is called by the kthread itself, it is guaranteed to exist.
+So there's no protection needed.
+
+Thanks,
+
+Lukas
