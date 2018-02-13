@@ -1,127 +1,77 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92961] Xorg freezes (only mouse and ssh are still
- working)
-Date: Tue, 13 Feb 2018 07:46:05 +0000
-Message-ID: <bug-92961-8800-22RZSZ6wte@http.bugs.freedesktop.org/>
-References: <bug-92961-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas@wunner.de>
+Subject: Re: [PATCH 0/5] Fix deadlock on runtime suspend in DRM drivers
+Date: Tue, 13 Feb 2018 09:17:13 +0100
+Message-ID: <20180213081713.GA8239@wunner.de>
+References: <cover.1518338788.git.lukas@wunner.de>
+ <CAHbf0-Fhi9j5H7VTxF84SENQph+UQE2zRbi2Q-u_DAMh6x+eSg@mail.gmail.com>
+ <20180211192314.GA22869@wunner.de>
+ <20180211194154.GB22869@wunner.de>
+ <CAHbf0-HSNJmXs_Nm+bbcfUifoLEpFsMSpM96a-pVfLFMNz3GFw@mail.gmail.com>
+ <20180212033947.GA19049@wunner.de>
+ <CAHbf0-GFdw9M8rv0+xHms9_HdcK_cgHak7G1ugtz0ch1_k6=vQ@mail.gmail.com>
+ <20180212094500.22nvzzzpy6vrbqgc@wunner.de>
+ <CADnq5_OaLNDZ10wzaqKGKkkjGVNLSTBPP76tch0aJY_mJ-EV4Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1443758473=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <CADnq5_OaLNDZ10wzaqKGKkkjGVNLSTBPP76tch0aJY_mJ-EV4Q@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: Ismo Toijala <ismo.toijala@gmail.com>, nouveau <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Lai Jiangshan <jiangshanlai@gmail.com>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>, Alex Deucher <alexander.deucher@amd.com>, Tejun Heo <tj@kernel.org>, Liviu Dudau <Liviu.Dudau@arm.com>, Peter Wu <peter@lekensteyn.nl>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1443758473==
-Content-Type: multipart/alternative; boundary="15185079653.da2be.9284"
-Content-Transfer-Encoding: 7bit
-
-
---15185079653.da2be.9284
-Date: Tue, 13 Feb 2018 07:46:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92961
-
---- Comment #16 from Tulli0 <deprisco.davide-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I have the same problem with Gnome 3 on Gentoo with nouveau driver.
-The freezes is randomly and with web browser, mail client and so on.
-When I shutdown the system for a reboot I can see the message that I attach=
-ed
-I search this file [gpfifogf100.c] on internet and I find this one patch:
-https://patchwork.kernel.org/patch/9502079/
-
-I restore the previous value of ret with:
-"ret =3D -EBUSY;"
-in the gpfifogf100.c and gpfifogk104.c
-And the problem seam solved
-
-This is the fourth day of test without a freeze.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15185079653.da2be.9284
-Date: Tue, 13 Feb 2018 07:46:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961#c16">Commen=
-t # 16</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961">bug 92961<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-deprisco.davide&#64;gmail.com" title=3D"Tulli0 &lt;deprisco.davide&#64;gmai=
-l.com&gt;"> <span class=3D"fn">Tulli0</span></a>
-</span></b>
-        <pre>I have the same problem with Gnome 3 on Gentoo with nouveau dr=
-iver.
-The freezes is randomly and with web browser, mail client and so on.
-When I shutdown the system for a reboot I can see the message that I attach=
-ed
-I search this file [gpfifogf100.c] on internet and I find this one patch:
-<a href=3D"https://patchwork.kernel.org/patch/9502079/">https://patchwork.k=
-ernel.org/patch/9502079/</a>
-
-I restore the previous value of ret with:
-&quot;ret =3D -EBUSY;&quot;
-in the gpfifogf100.c and gpfifogk104.c
-And the problem seam solved
-
-This is the fourth day of test without a freeze.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15185079653.da2be.9284--
-
---===============1443758473==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1443758473==--
+T24gTW9uLCBGZWIgMTIsIDIwMTggYXQgMDE6NTg6MzJQTSAtMDUwMCwgQWxleCBEZXVjaGVyIHdy
+b3RlOgo+IE9uIE1vbiwgRmViIDEyLCAyMDE4IGF0IDQ6NDUgQU0sIEx1a2FzIFd1bm5lciA8bHVr
+YXNAd3VubmVyLmRlPiB3cm90ZToKPiA+IE9uIE1vbiwgRmViIDEyLCAyMDE4IGF0IDA5OjAzOjI2
+QU0gKzAwMDAsIE1pa2UgTG90aGlhbiB3cm90ZToKPiA+PiBPbiAxMiBGZWJydWFyeSAyMDE4IGF0
+IDAzOjM5LCBMdWthcyBXdW5uZXIgPGx1a2FzQHd1bm5lci5kZT4gd3JvdGU6Cj4gPj4gPiBPbiBN
+b24sIEZlYiAxMiwgMjAxOCBhdCAxMjozNTo1MUFNICswMDAwLCBNaWtlIExvdGhpYW4gd3JvdGU6
+Cj4gPj4gPiA+IEkndmUgbm90IGJlZW4gYWJsZSB0byByZXByb2R1Y2UgdGhlIG9yaWdpbmFsIHBy
+b2JsZW0geW91J3JlIHRyeWluZyB0bwo+ID4+ID4gPiBzb2x2ZSBvbiBhbWRncHUgdGhhdHMgd2l0
+aCBvciB3aXRob3V0IHlvdXIgcGF0Y2ggc2V0IGFuZCB0aGUgYWJvdmUKPiA+PiA+ID4gInRyaWdn
+ZXIiIHRvbwo+ID4KPiA+IE9rYXkgdGhlIHJlYXNvbiB5b3UncmUgbm90IHNlZWluZyBkZWFkbG9j
+a3MgaXMgYmVjYXVzZSB0aGUgb3V0cHV0IHBvbGwKPiA+IHdvcmtlciBpcyBub3QgZW5hYmxlZC4g
+IEFuZCB0aGUgb3V0cHV0IHBvbGwgd29ya2VyIGlzIG5vdCBlbmFibGVkCj4gPiBiZWNhdXNlIHlv
+dXIgZGlzY3JldGUgR1BVIGRvZXNuJ3QgaGF2ZSBhbnkgb3V0cHV0czoKPiA+Cj4gPiBbICAgIDAu
+MjY1NTY4XSBbZHJtOmRjX2NyZWF0ZV0gKkVSUk9SKiBEQzogTnVtYmVyIG9mIGNvbm5lY3RvcnMg
+aXMgemVybyEKPiA+Cj4gPiBUaGUgb3V0cHV0cyBhcmUgb25seSBwb2xsZWQgaWYgdGhlcmUgYXJl
+IGNvbm5lY3RvcnMgd2hpY2ggaGF2ZSB0aGUKPiA+IERSTV9DT05ORUNUT1JfUE9MTF9DT05ORUNU
+IG9yIERSTV9DT05ORUNUT1JfUE9MTF9ESVNDT05ORUNUIGZsYWcgc2V0Lgo+ID4gQW5kIHRoYXQg
+b25seSBldmVyIHNlZW1zIHRvIGJlIHRoZSBjYXNlIGZvciBWR0EgYW5kIERWSS4KPiA+Cj4gPiBX
+ZSBrbm93IGJhc2VkIG9uIGJ1Z3ppbGxhIHJlcG9ydHMgdGhhdCBoeWJyaWQgZ3JhcGhpY3MgbGFw
+dG9wcyBkbyBleGlzdAo+ID4gd2hpY2ggcG9sbCBvdXRwdXRzIHdpdGggcmFkZW9uIGFuZCBub3V2
+ZWF1LiAgSWYgdGhlcmUgYXJlIG5vIGxhcHRvcHMKPiA+IHN1cHBvcnRlZCBieSBhbWRncHUgd2hv
+c2UgZGlzY3JldGUgR1BVIGhhcyBwb2xsZWQgY29ubmVjdG9ycywgdGhlbgo+ID4gcGF0Y2ggWzUv
+NV0gd291bGQgYmUgdW5uZWNlc3NhcnkuICBUaGF0IGlzIGZvciBBbGV4IHRvIGRlY2lkZS4KPiAK
+PiBNb3N0IGh5YnJpZCBsYXB0b3BzIGRvbid0IGhhdmUgZGlzcGxheSBjb25uZWN0b3JzIG9uIHRo
+ZSBkR1BVIGFuZCB3ZQo+IG9ubHkgdXNlIHBvbGxpbmcgb24gYW5hbG9nIGNvbm5lY3RvcnMsIHNv
+IHlvdSBhcmUgbm90IGxpa2VseSB0byBydW4KPiBpbnRvIHRoaXMgb24gcmVjZW50IGxhcHRvcHMu
+ICBUaGF0IHNhaWQsIEkgZG9uJ3Qga25vdyBpZiB0aGVyZSBpcyBzb21lCj4gT0VNIHN5c3RlbSBv
+dXQgdGhlcmUgd2l0aCBhIFZHQSBwb3J0IG9uIHRoZSBkR1BVIGluIGEgaHlicmlkIGxhcHRvcC4K
+PiBJIGd1ZXNzIGFub3RoZXIgb3B0aW9uIGlzIHRvIGp1c3QgZGlzYWJsZSBwb2xsaW5nIG9uIGh5
+YnJpZCBsYXB0b3BzLgoKSWYgd2UgZG9uJ3Qga25vdyBmb3Igc3VyZSwgYXBwbHlpbmcgcGF0Y2gg
+WzUvNV0gd291bGQgc2VlbSB0byBiZSB0aGUKc2FmZXN0IGFwcHJvYWNoLiAgKEFzc3VtaW5nIGl0
+IGRvZXNuJ3QgYnJlYWsgYW55dGhpbmcgZWxzZS4pCgpSaWdodCBub3cgcnVudGltZSBQTSBpcyBv
+bmx5IHVzZWQgb24gaHlicmlkIGdyYXBoaWNzIGRHUFVzIGJ5IG5vdXZlYXUsCnJhZGVvbiBhbmQg
+YW1kZ3B1LiAgV291bGQgaXQgYmUgY29uY2VpdmFibGUgdGhhdCBpdHMgdXNlIGlzIGV4cGFuZGVk
+CmJleW9uZCB0aGF0IGluIHRoZSBmdXR1cmU/ICBFLmcuIG9uIGEgZGVza3RvcCBtYWNoaW5lLCBp
+ZiBEUE1TIGlzIG9mZgpvbiBhbGwgc2NyZWVucywgd2h5IGtlZXAgdGhlIEdQVSBpbiBEMD8gIElm
+IHRoYXQgaXMgY29uY2VpdmFibGUsIGNoYW5jZXMKdGhhdCBhbmFsb2cgY29ubmVjdG9ycyBhcmUg
+cHJlc2VudCBhcmUgaGlnaGVyLCBhbmQgdGhlbiB0aGUgcGF0Y2ggd291bGQKYmUgbmVjZXNzYXJ5
+IGFnYWluLiAgKE9mIGNvdXJzZSB0aGlzIHdvdWxkIG1lYW4gdGhhdCBhbmFsb2cgc2NyZWVucwp3
+b3VsZG4ndCBsaWdodCB1cCBhdXRvbWF0aWNhbGx5IGlmIHRoZXkncmUgYXR0YWNoZWQgd2hpbGUg
+dGhlIEdQVSBpcwppbiBEM2hvdCwgYnV0IHRoZSB1c2VyIG1heSBmb3JiaWQgcnVudGltZSBQTSB2
+aWEgc3lzZnMgaWYgdGhhdCBpcwp1bndhbnRlZC4pCgpUaGFua3MsCgpMdWthcwpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBs
+aXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
