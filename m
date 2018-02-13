@@ -1,57 +1,94 @@
-From: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [PATCH 0/5] Fix deadlock on runtime suspend in DRM drivers
-Date: Tue, 13 Feb 2018 10:19:35 -0500
-Message-ID: <CADnq5_PSLqiZvYAc4DewM6cXEgsp_Qtkt27VWY_8Oro68GiozQ@mail.gmail.com>
-References: <cover.1518338788.git.lukas@wunner.de> <CAHbf0-Fhi9j5H7VTxF84SENQph+UQE2zRbi2Q-u_DAMh6x+eSg@mail.gmail.com>
- <20180211192314.GA22869@wunner.de> <20180211194154.GB22869@wunner.de>
- <CAHbf0-HSNJmXs_Nm+bbcfUifoLEpFsMSpM96a-pVfLFMNz3GFw@mail.gmail.com>
- <20180212033947.GA19049@wunner.de> <CAHbf0-GFdw9M8rv0+xHms9_HdcK_cgHak7G1ugtz0ch1_k6=vQ@mail.gmail.com>
- <20180212094500.22nvzzzpy6vrbqgc@wunner.de> <CADnq5_OaLNDZ10wzaqKGKkkjGVNLSTBPP76tch0aJY_mJ-EV4Q@mail.gmail.com>
- <20180213081713.GA8239@wunner.de>
+From: Liviu Dudau <Liviu.Dudau@arm.com>
+Subject: Re: [PATCH 0/5] Fix deadlock on runtime suspend in DRM
+ drivers
+Date: Tue, 13 Feb 2018 15:46:08 +0000
+Message-ID: <20180213154608.GI9111@e110455-lin.cambridge.arm.com>
+References: <cover.1518338788.git.lukas@wunner.de>
+ <20180213105506.GF9111@e110455-lin.cambridge.arm.com>
+ <20180213115206.GA16075@wunner.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180213081713.GA8239@wunner.de>
-Sender: linux-kernel-owner@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20180213115206.GA16075@wunner.de>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 To: Lukas Wunner <lukas@wunner.de>
-Cc: Mike Lothian <mike@fireburn.co.uk>, Ismo Toijala <ismo.toijala@gmail.com>, Hans de Goede <hdegoede@redhat.com>, nouveau <nouveau@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Lai Jiangshan <jiangshanlai@gmail.com>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, Alex Deucher <alexander.deucher@amd.com>, Ben Skeggs <bskeggs@redhat.com>, Tejun Heo <tj@kernel.org>, Dave Airlie <airlied@redhat.com>, Liviu Dudau <Liviu.Dudau@arm.com>, Peter Wu <peter@lekensteyn.nl>
+Cc: Pierre Moreau <pierre.morrow@free.fr>, Archit Taneja <architt@codeaurora.org>, Ismo Toijala <ismo.toijala@gmail.com>, Hans de Goede <hdegoede@redhat.com>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Lai Jiangshan <jiangshanlai@gmail.com>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, Ben Skeggs <bskeggs@redhat.com>, Tejun Heo <tj@kernel.org>, Dave Airlie <airlied@redhat.com>, Peter Wu <peter@lekensteyn.nl>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Feb 13, 2018 at 3:17 AM, Lukas Wunner <lukas@wunner.de> wrote:
-> On Mon, Feb 12, 2018 at 01:58:32PM -0500, Alex Deucher wrote:
->> On Mon, Feb 12, 2018 at 4:45 AM, Lukas Wunner <lukas@wunner.de> wrote:
->> > On Mon, Feb 12, 2018 at 09:03:26AM +0000, Mike Lothian wrote:
->> >> On 12 February 2018 at 03:39, Lukas Wunner <lukas@wunner.de> wrote:
->> >> > On Mon, Feb 12, 2018 at 12:35:51AM +0000, Mike Lothian wrote:
->> >> > > I've not been able to reproduce the original problem you're trying to
->> >> > > solve on amdgpu thats with or without your patch set and the above
->> >> > > "trigger" too
->> >
->> > Okay the reason you're not seeing deadlocks is because the output poll
->> > worker is not enabled.  And the output poll worker is not enabled
->> > because your discrete GPU doesn't have any outputs:
->> >
->> > [    0.265568] [drm:dc_create] *ERROR* DC: Number of connectors is zero!
->> >
->> > The outputs are only polled if there are connectors which have the
->> > DRM_CONNECTOR_POLL_CONNECT or DRM_CONNECTOR_POLL_DISCONNECT flag set.
->> > And that only ever seems to be the case for VGA and DVI.
->> >
->> > We know based on bugzilla reports that hybrid graphics laptops do exist
->> > which poll outputs with radeon and nouveau.  If there are no laptops
->> > supported by amdgpu whose discrete GPU has polled connectors, then
->> > patch [5/5] would be unnecessary.  That is for Alex to decide.
->>
->> Most hybrid laptops don't have display connectors on the dGPU and we
->> only use polling on analog connectors, so you are not likely to run
->> into this on recent laptops.  That said, I don't know if there is some
->> OEM system out there with a VGA port on the dGPU in a hybrid laptop.
->> I guess another option is to just disable polling on hybrid laptops.
->
-> If we don't know for sure, applying patch [5/5] would seem to be the
-> safest approach.  (Assuming it doesn't break anything else.)
-
-
-I don't have any objections.  I see no reason to leave out the amdgpu changes.
-
-Alex
+T24gVHVlLCBGZWIgMTMsIDIwMTggYXQgMTI6NTI6MDZQTSArMDEwMCwgTHVrYXMgV3VubmVyIHdy
+b3RlOgo+IE9uIFR1ZSwgRmViIDEzLCAyMDE4IGF0IDEwOjU1OjA2QU0gKzAwMDAsIExpdml1IER1
+ZGF1IHdyb3RlOgo+ID4gT24gU3VuLCBGZWIgMTEsIDIwMTggYXQgMTA6Mzg6MjhBTSArMDEwMCwg
+THVrYXMgV3VubmVyIHdyb3RlOgo+ID4gPiBEUk0gZHJpdmVycyBwb2xsIGNvbm5lY3RvcnMgaW4g
+MTAgc2VjIGludGVydmFscy4gIFRoZSBwb2xsIHdvcmtlciBpcwo+ID4gPiBzdG9wcGVkIG9uIC0+
+cnVudGltZV9zdXNwZW5kIHdpdGggY2FuY2VsX2RlbGF5ZWRfd29ya19zeW5jKCkuICBIb3dldmVy
+Cj4gPiA+IHRoZSBwb2xsIHdvcmtlciBpbnZva2VzIHRoZSBEUk0gZHJpdmVycycgLT5kZXRlY3Qg
+Y2FsbGJhY2tzLCB3aGljaCBjYWxsCj4gPiA+IHBtX3J1bnRpbWVfZ2V0X3N5bmMoKS4gIElmIHRo
+ZSBwb2xsIHdvcmtlciBzdGFydHMgYWZ0ZXIgcnVudGltZSBzdXNwZW5kCj4gPiA+IGhhcyBiZWd1
+biwgcG1fcnVudGltZV9nZXRfc3luYygpIHdpbGwgd2FpdCBmb3IgcnVudGltZSBzdXNwZW5kIHRv
+IGZpbmlzaAo+ID4gPiB3aXRoIHRoZSBpbnRlbnRpb24gb2YgcnVudGltZSByZXN1bWluZyB0aGUg
+ZGV2aWNlIGFmdGVyd2FyZHMuICBUaGUgcmVzdWx0Cj4gPiA+IGlzIGEgY2lyY3VsYXIgd2FpdCBi
+ZXR3ZWVuIHBvbGwgd29ya2VyIGFuZCBhdXRvc3VzcGVuZCB3b3JrZXIuCj4gPiAKPiA+IEkgdGhp
+bmsgSSB1bmRlcnN0YW5kIHRoZSBwcm9ibGVtIHlvdSBhcmUgdHJ5aW5nIHRvIHNvbHZlLCBidXQg
+SSdtCj4gPiBzdHJ1Z2dsaW5nIHRvIHVuZGVyc3RhbmQgd2hlcmUgbWFsaWRwIG1ha2VzIGFueSBz
+cGVjaWZpYyBtaXN0YWtlcy4gRmlyc3QKPiA+IG9mIGFsbCwgbWFsaWRwIGlzIG9ubHkgYSBkaXNw
+bGF5IGVuZ2luZSwgc28gdGhlcmUgaXMgbm8gR1BVIGF0dGFjaGVkIHRvCj4gPiBpdCwgYnV0IHRo
+YXQgaXMgb25seSBhIHNtYWxsIGNsYXJpZmljYXRpb24uIFNlY29uZCwgbWFsaWRwIGRvZXNuJ3Qg
+dXNlCj4gPiBkaXJlY3RseSBhbnkgb2YgdGhlIGNhbGxiYWNrcyB0aGF0IHlvdSBhcmUgcmVmZXJy
+aW5nIHRvLCBpdCB1c2VzIHRoZQo+ID4gZHJtX2NtYV94eHh4KCkgQVBJIHBsdXMgdGhlIGdlbmVy
+aWMgZHJtX3h4eHgoKSBjYWxsLiBTbyBpZiB0aGVyZSBhcmUgYW55Cj4gPiBpc3N1ZXMgdGhlcmUg
+KGFzIHRoZXkgbWlnaHQgd2VsbCBiZSkgSSB0aGluayB0aGV5IHdvdWxkIGFwcGx5IHRvIGEgbG90
+Cj4gPiBtb3JlIGRyaXZlcnMgYW5kIHRoZSBmaXggd2lsbCBpbnZvbHZlIG1vcmUgdGhhbiBqdXN0
+IG1hbGlkcCwgaTkxNSBhbmQKPiA+IG1zbS4KPiAKPiBJIGRvbid0IGtub3cgaWYgbWFsaWRwIG1h
+a2VzIGFueSBzcGVjaWZpYyBtaXN0YWtlcyBhbmQgZGlkbid0IG1lYW4gdG8KPiBjYXN0IGl0IGlu
+IGEgbmVnYXRpdmUgbGlnaHQsIHNvcnJ5LgoKSSBkaWQgbm90IHRha2Ugd2hhdCB5b3UndmUgc2Fp
+ZCBhcyBhIG5lZ2F0aXZlIHRoaW5nLCBvbmx5IHdhbnRlZCB0bwp1bmRlcnN0YW5kIGhvdyB5b3Ug
+Y2FtZSB0byB5b3VyIGNvbmNsdXNpb25zLgoKPiAKPiBTbyBhIGxvdCBvZiBEUk0gZHJpdmVycyBh
+Y3F1aXJlIGEgcnVudGltZSBQTSByZWYgaW4gdGhlIGNvbm5lY3RvciAtPmRldGVjdAo+IGhvb2sg
+YmVjYXVzZSB0aGV5IGNhbid0IHByb2JlIGNvbm5lY3RvcnMgd2hpbGUgcnVudGltZSBzdXNwZW5k
+ZWQuCj4gRS5nLiBmb3IgYSBQQ0kgZGV2aWNlLCBwcm9iaW5nIG1pZ2h0IHJlcXVpcmUgbW1pbyBh
+Y2Nlc3MsIHdoaWNoIGlzbid0Cj4gcG9zc2libGUgb3V0c2lkZSBvZiBwb3dlciBzdGF0ZSBEMC4g
+IFRoZXJlIGFyZSBubyAtPmRldGVjdCBob29rcyBkZWNsYXJlZAo+IGluIGRyaXZlcnMvZ3B1L2Ry
+bS9hcm0vLCBzbyBpdCdzIHVuY2xlYXIgdG8gbWUgd2hldGhlciB5b3UncmUgYWJsZSB0byBwcm9i
+ZQo+IGR1cmluZyBydW50aW1lIHN1c3BlbmQuCgpUaGF0J3MgYmVjYXVzZSB0aGUgZHJpdmVycyBp
+biBkcml2ZXJzL2dwdS9kcm0vYXJtIGRvIG5vdCBoYXZlCmNvbm5lY3RvcnMsIHRoZXkgYXJlIG9u
+bHkgdGhlIENSVEMgcGFydCBvZiB0aGUgZHJpdmVyLiBCb3RoIGhkbGNkIGFuZAptYWxpLWRwIHVz
+ZSB0aGUgY29tcG9uZW50IGZyYW1ld29yayB0byBsb2NhdGUgYW4gZW5jb2RlciBpbiBkZXZpY2Ug
+dHJlZQp0aGF0IHdpbGwgdGhlbiBwcm92aWRlIHRoZSBjb25uZWN0b3JzLgoKPiAKPiBoZGxjZF9k
+cnYuYyBhbmQgbWFsaWRwX2Rydi5jIGJvdGggZW5hYmxlIG91dHB1dCBwb2xsaW5nLiAgT3V0cHV0
+IHBvbGxpbmcKPiBpcyBvbmx5IG5lY2Vzc2FyeSBpZiB5b3UgZG9uJ3QgZ2V0IEhQRCBpbnRlcnJ1
+cHRzLgoKVGhhdCdzIHJpZ2h0LCBoZGxjZCBhbmQgbWFsaS1kcCBkb24ndCByZWNlaXZlIEhQRCBp
+bnRlcnJ1cHRzIGJlY2F1c2UKdGhleSBkb24ndCBoYXZlIGFueS4gQW5kIGJlY2F1c2Ugd2UgZG9u
+J3Qga25vdyBhaGVhZCBvZiB0aW1lIHdoaWNoCmVuY29kZXIvY29ubmVjdG9yIHdpbGwgYmUgcGFp
+cmVkIHdpdGggdGhlIGRyaXZlciwgd2UgZW5hYmxlIHBvbGxpbmcgYXMgYQpzYWZlIGZhbGxiYWNr
+LgoKPiAKPiBZb3UncmUgbm90IGRpc2FibGluZyBwb2xsaW5nIHVwb24gcnVudGltZSBzdXNwZW5k
+LiAgVGh1cywgaWYgYSBydW50aW1lIFBNCj4gcmVmIGlzIGFjcXVpcmVkIGR1cmluZyBwb2xsaW5n
+IChzdWNoIGFzIGluIGEgLT5kZXRlY3QgaG9vayksIHRoZSBHUFUgd2lsbAo+IGJlIHJ1bnRpbWUg
+cmVzdW1lZCBldmVyeSAxMCBzZWNzLiAgWW91IG1heSB3YW50IHRvIHZlcmlmeSB0aGF0J3Mgbm90
+IHRoZQo+IGNhc2UuICBJZiB5b3UgZGVjaWRlIHRoYXQgeW91IGRvIHdhbnQgdG8gc3RvcCBwb2xs
+aW5nIGR1cmluZyBydW50aW1lCj4gc3VzcGVuZCBiZWNhdXNlIGl0IHJ1bnRpbWUgcmVzdW1lcyB0
+aGUgR1BVIGNvbnRpbnVvdXNseSwgeW91J2xsIG5lZWQgdGhlCj4gaGVscGVyIGludHJvZHVjZWQg
+aW4gdGhpcyBzZXJpZXMuICBTbyBieSBjYydpbmcgeW91IEkganVzdCB3YW50ZWQgdG8ga2VlcAo+
+IHlvdSBpbiB0aGUgbG9vcCBhYm91dCBhbiBpc3N1ZSB0aGF0IG1heSBwb3RlbnRpYWxseSBhZmZl
+Y3QgeW91ciBkcml2ZXIuCgpBZ2Fpbiwgd2UgaGF2ZSBubyBHUFUgbGlua2VkIHRvIHVzIGFuZCB0
+aGUgcG9sbGluZyBkdXJpbmcgcnVudGltZQpzdXNwZW5kIHNob3VsZCBiZSBoYW5kbGVkIGJ5IHRo
+ZSBkcml2ZXIgZm9yIHRoZSBwYWlyZWQgZW5jb2Rlciwgbm90IGJ5CnVzLiBJIHVuZGVyc3RhbmQg
+dGhlIHBvdGVudGlhbCBpc3N1ZSBidXQgSSdtIHN0cnVnZ2xpbmcgdG8gdW5kZXJzdGFuZCBpZgpp
+dCByZWFsbHkgYXBwbGllcyB0byB0aGUgZHJpdmVycy9ncHUvZHJtL2FybSBkcml2ZXJzIG90aGVy
+IHRoYW4gaW4gYW4KYWJzdHJhY3Qgd2F5LgoKQmVzdCByZWdhcmRzLApMaXZpdQoKPiAKPiBMZXQg
+bWUga25vdyBpZiB0aGVyZSBhcmUgYW55IHF1ZXN0aW9ucy4KPiAKPiBUaGFua3MsCj4gCj4gTHVr
+YXMKCi0tIAo9PT09PT09PT09PT09PT09PT09PQp8IEkgd291bGQgbGlrZSB0byB8CnwgZml4IHRo
+ZSB3b3JsZCwgIHwKfCBidXQgdGhleSdyZSBub3QgfAp8IGdpdmluZyBtZSB0aGUgICB8CiBcIHNv
+dXJjZSBjb2RlISAgLwogIC0tLS0tLS0tLS0tLS0tLQogICAgwq9cXyjjg4QpXy/CrwpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
+ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
