@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105045] System freeze with nouveau
-Date: Mon, 12 Feb 2018 20:43:17 +0000
-Message-ID: <bug-105045-8800-OEkyU6z96G@http.bugs.freedesktop.org/>
-References: <bug-105045-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92961] Xorg freezes (only mouse and ssh are still
+ working)
+Date: Tue, 13 Feb 2018 07:44:05 +0000
+Message-ID: <bug-92961-8800-e2x06nUSfY@http.bugs.freedesktop.org/>
+References: <bug-92961-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0750631255=="
+Content-Type: multipart/mixed; boundary="===============1538087542=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105045-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,41 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0750631255==
-Content-Type: multipart/alternative; boundary="15184681960.8Adadb1.10009"
+--===============1538087542==
+Content-Type: multipart/alternative; boundary="15185078453.5faE6a94e.9152"
 Content-Transfer-Encoding: 7bit
 
 
---15184681960.8Adadb1.10009
-Date: Mon, 12 Feb 2018 20:43:16 +0000
+--15185078453.5faE6a94e.9152
+Date: Tue, 13 Feb 2018 07:44:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105045
+https://bugs.freedesktop.org/show_bug.cgi?id=3D92961
 
---- Comment #9 from Sergey Tereschenko <serg.partizan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I built mesa-git from source, and gdm starting only in xorg mode.
-
-When i try to run
-
-> XDG_SESSION_TYPE=3Dwayland exec dbus-run-session gnome-session
-
-It fails with message "Connection to the bus can't be made"
-
-weston is still running fine.
-
-reverted back to 17.3.3
+--- Comment #15 from Tulli0 <deprisco.davide-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 137309
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D137309&action=3Dedit
+shutdown log when the system was freezed
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---15184681960.8Adadb1.10009
-Date: Mon, 12 Feb 2018 20:43:16 +0000
+--15185078453.5faE6a94e.9152
+Date: Tue, 13 Feb 2018 07:44:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,31 +62,23 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - System freeze with nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045#c9">Commen=
-t # 9</a>
+   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961#c15">Commen=
+t # 15</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - System freeze with nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045">bug 10504=
-5</a>
+   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961">bug 92961<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-serg.partizan&#64;gmail.com" title=3D"Sergey Tereschenko &lt;serg.partizan&=
-#64;gmail.com&gt;"> <span class=3D"fn">Sergey Tereschenko</span></a>
+deprisco.davide&#64;gmail.com" title=3D"Tulli0 &lt;deprisco.davide&#64;gmai=
+l.com&gt;"> <span class=3D"fn">Tulli0</span></a>
 </span></b>
-        <pre>I built mesa-git from source, and gdm starting only in xorg mo=
-de.
-
-When i try to run
-
-<span class=3D"quote">&gt; XDG_SESSION_TYPE=3Dwayland exec dbus-run-session=
- gnome-session</span >
-
-It fails with message &quot;Connection to the bus can't be made&quot;
-
-weston is still running fine.
-
-reverted back to 17.3.3</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D137309=
+" name=3D"attach_137309" title=3D"shutdown log when the system was freezed"=
+>attachment 137309</a> <a href=3D"attachment.cgi?id=3D137309&amp;action=3De=
+dit" title=3D"shutdown log when the system was freezed">[details]</a></span>
+shutdown log when the system was freezed</pre>
         </div>
       </p>
 
@@ -104,14 +88,13 @@ reverted back to 17.3.3</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15184681960.8Adadb1.10009--
+--15185078453.5faE6a94e.9152--
 
---===============0750631255==
+--===============1538087542==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -121,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0750631255==--
+--===============1538087542==--
