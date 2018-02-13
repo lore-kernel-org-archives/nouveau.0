@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92961] Xorg freezes (only mouse and ssh are still
- working)
-Date: Tue, 13 Feb 2018 08:57:24 +0000
-Message-ID: <bug-92961-8800-H6IMIi0rPQ@http.bugs.freedesktop.org/>
-References: <bug-92961-8800@http.bugs.freedesktop.org/>
+From: Liviu Dudau <Liviu.Dudau-5wv7dgnIgG8@public.gmane.org>
+Subject: Re: [PATCH 0/5] Fix deadlock on runtime suspend in DRM
+ drivers
+Date: Tue, 13 Feb 2018 10:55:06 +0000
+Message-ID: <20180213105506.GF9111@e110455-lin.cambridge.arm.com>
+References: <cover.1518338788.git.lukas@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0773658314=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <cover.1518338788.git.lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,128 +19,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Cc: Archit Taneja <architt-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>, Ismo Toijala <ismo.toijala-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Lai Jiangshan <jiangshanlai-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Tejun Heo <tj-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0773658314==
-Content-Type: multipart/alternative; boundary="15185122443.dcc7A9Fa.27331"
-Content-Transfer-Encoding: 7bit
-
-
---15185122443.dcc7A9Fa.27331
-Date: Tue, 13 Feb 2018 08:57:24 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92961
-
-Tulli0 <deprisco.davide-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |deprisco.davide-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #17 from Tulli0 <deprisco.davide-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 137310
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D137310&action=3Dedit
-reset variable ret for return EBUSY in gpfifogf100.c and gpfifogk104.c
-
-Patch for testing stability after freeze nouveau driver
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15185122443.dcc7A9Fa.27331
-Date: Tue, 13 Feb 2018 08:57:24 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:deprisco.=
-davide&#64;gmail.com" title=3D"Tulli0 &lt;deprisco.davide&#64;gmail.com&gt;=
-"> <span class=3D"fn">Tulli0</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961">bug 92961<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>deprisco.davide&#64;gmail.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961#c17">Commen=
-t # 17</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961">bug 92961<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-deprisco.davide&#64;gmail.com" title=3D"Tulli0 &lt;deprisco.davide&#64;gmai=
-l.com&gt;"> <span class=3D"fn">Tulli0</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D137310=
-" name=3D"attach_137310" title=3D"reset variable ret for return EBUSY in gp=
-fifogf100.c and gpfifogk104.c">attachment 137310</a> <a href=3D"attachment.=
-cgi?id=3D137310&amp;action=3Dedit" title=3D"reset variable ret for return E=
-BUSY in gpfifogf100.c and gpfifogk104.c">[details]</a></span> <a href=3D'pa=
-ge.cgi?id=3Dsplinter.html&amp;bug=3D92961&amp;attachment=3D137310'>[review]=
-</a>
-reset variable ret for return EBUSY in gpfifogf100.c and gpfifogk104.c
-
-Patch for testing stability after freeze nouveau driver</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15185122443.dcc7A9Fa.27331--
-
---===============0773658314==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0773658314==--
+SGkgTHVrYXMsCgpPbiBTdW4sIEZlYiAxMSwgMjAxOCBhdCAxMDozODoyOEFNICswMTAwLCBMdWth
+cyBXdW5uZXIgd3JvdGU6Cj4gRml4IGEgZGVhZGxvY2sgb24gaHlicmlkIGdyYXBoaWNzIGxhcHRv
+cHMgdGhhdCdzIGJlZW4gcHJlc2VudCBzaW5jZSAyMDEzOgo+IAo+IERSTSBkcml2ZXJzIHBvbGwg
+Y29ubmVjdG9ycyBpbiAxMCBzZWMgaW50ZXJ2YWxzLiAgVGhlIHBvbGwgd29ya2VyIGlzCj4gc3Rv
+cHBlZCBvbiAtPnJ1bnRpbWVfc3VzcGVuZCB3aXRoIGNhbmNlbF9kZWxheWVkX3dvcmtfc3luYygp
+LiAgSG93ZXZlcgo+IHRoZSBwb2xsIHdvcmtlciBpbnZva2VzIHRoZSBEUk0gZHJpdmVycycgLT5k
+ZXRlY3QgY2FsbGJhY2tzLCB3aGljaCBjYWxsCj4gcG1fcnVudGltZV9nZXRfc3luYygpLiAgSWYg
+dGhlIHBvbGwgd29ya2VyIHN0YXJ0cyBhZnRlciBydW50aW1lIHN1c3BlbmQKPiBoYXMgYmVndW4s
+IHBtX3J1bnRpbWVfZ2V0X3N5bmMoKSB3aWxsIHdhaXQgZm9yIHJ1bnRpbWUgc3VzcGVuZCB0byBm
+aW5pc2gKPiB3aXRoIHRoZSBpbnRlbnRpb24gb2YgcnVudGltZSByZXN1bWluZyB0aGUgZGV2aWNl
+IGFmdGVyd2FyZHMuICBUaGUgcmVzdWx0Cj4gaXMgYSBjaXJjdWxhciB3YWl0IGJldHdlZW4gcG9s
+bCB3b3JrZXIgYW5kIGF1dG9zdXNwZW5kIHdvcmtlci4KPiAKPiBJJ20gc2VlaW5nIHRoaXMgZGVh
+ZGxvY2sgc28gb2Z0ZW4gaXQncyBub3QgZnVubnkgYW55bW9yZS4gSSd2ZSBhbHNvIGZvdW5kCj4g
+MyBub3V2ZWF1IGJ1Z3ppbGxhcyBhYm91dCBpdCBhbmQgMSByYWRlb24gYnVnemlsbGEuIChTZWUg
+cGF0Y2ggWzMvNV0gYW5kCj4gWzQvNV0uKQo+IAo+IE9uZSB0aGVvcmV0aWNhbCBzb2x1dGlvbiB3
+b3VsZCBiZSB0byBhZGQgYSBmbGFnIHRvIHRoZSAtPmRldGVjdCBjYWxsYmFjawo+IHRvIHRlbGwg
+aXQgdGhhdCBpdCdzIHJ1bm5pbmcgaW4gdGhlIHBvbGwgd29ya2VyJ3MgY29udGV4dC4gIEluIHRo
+YXQgY2FzZQo+IGl0IGRvZXNuJ3QgbmVlZCB0byBjYWxsIHBtX3J1bnRpbWVfZ2V0X3N5bmMoKSBi
+ZWNhdXNlIHRoZSBwb2xsIHdvcmtlciBpcwo+IG9ubHkgZW5hYmxlZCB3aGlsZSBydW50aW1lIGFj
+dGl2ZSBhbmQgd2Uga25vdyB0aGF0IC0+cnVudGltZV9zdXNwZW5kCj4gd2FpdHMgZm9yIGl0IHRv
+IGZpbmlzaC4gIEJ1dCB0aGlzIGFwcHJvYWNoIHdvdWxkIHJlcXVpcmUgdG91Y2hpbmcgZXZlcnkK
+PiBzaW5nbGUgRFJNIGRyaXZlcidzIC0+ZGV0ZWN0IGhvb2suICBNb3Jlb3ZlciB0aGUgLT5kZXRl
+Y3QgaG9vayBpcyBjYWxsZWQKPiBmcm9tIG51bWVyb3VzIG90aGVyIHBsYWNlcywgYm90aCBpbiB0
+aGUgRFJNIGxpYnJhcnkgYXMgd2VsbCBhcyBpbiBlYWNoCj4gZHJpdmVyLCBtYWtpbmcgaXQgbmVj
+ZXNzYXJ5IHRvIHRyYWNlIGV2ZXJ5IHBvc3NpYmxlIGNhbGwgY2hhaW4gYW5kIGNoZWNrCj4gaWYg
+aXQncyBjb21pbmcgZnJvbSB0aGUgcG9sbCB3b3JrZXIgb3Igbm90LiAgSSd2ZSB0cmllZCB0byBk
+byB0aGF0IGZvcgo+IG5vdXZlYXUgKHNlZSB0aGUgY2FsbCBzaXRlcyBsaXN0ZWQgaW4gdGhlIGNv
+bW1pdCBtZXNzYWdlIG9mIHBhdGNoIFszLzVdKQo+IGFuZCBjb25jbHVkZWQgdGhhdCB0aGlzIGFw
+cHJvYWNoIGlzIGEgbmlnaHRtYXJlIHRvIGltcGxlbWVudC4KPiAKPiBBbm90aGVyIHJlYXNvbiBm
+b3IgdGhlIGluZmVhc2liaWxpdHkgb2YgdGhpcyBhcHByb2FjaCBpcyB0aGF0IC0+ZGV0ZWN0Cj4g
+aXMgY2FsbGVkIGZyb20gd2l0aGluIHRoZSBEUk0gbGlicmFyeSB3aXRob3V0IGRyaXZlciBpbnZv
+bHZlbWVudCwgZS5nLgo+IHZpYSBEUk0ncyBzeXNmcyBpbnRlcmZhY2UuICBJbiB0aG9zZSBjYXNl
+cywgcG1fcnVudGltZV9nZXRfc3luYygpIHdvdWxkCj4gaGF2ZSB0byBiZSBjYWxsZWQgYnkgdGhl
+IERSTSBsaWJyYXJ5LCBidXQgdGhlIERSTSBsaWJyYXJ5IGlzIHN1cHBvc2VkIHRvCj4gc3RheSBn
+ZW5lcmljLCB3aGVyYXMgcnVudGltZSBQTSBpcyBkcml2ZXItc3BlY2lmaWMuCj4gCj4gU28gaW5z
+dGVhZCwgSSd2ZSBjb21lIHVwIHdpdGggdGhpcyBtdWNoIHNpbXBsZXIgc29sdXRpb24gd2hpY2gg
+Z2xlYW5zCj4gZnJvbSB0aGUgY3VycmVudCB0YXNrJ3MgZmxhZ3MgaWYgaXQncyBhIHdvcmtxdWV1
+ZSB3b3JrZXIsIHJldHJpZXZlcyB0aGUKPiB3b3JrX3N0cnVjdCBhbmQgY2hlY2tzIGlmIGl0J3Mg
+dGhlIHBvbGwgd29ya2VyLiAgQWxsIHRoYXQncyBuZWVkZWQgaXMKPiBvbmUgc21hbGwgaGVscGVy
+IGluIHRoZSB3b3JrcXVldWUgY29kZSBhbmQgYW5vdGhlciBzbWFsbCBoZWxwZXIgaW4gdGhlCj4g
+RFJNIGxpYnJhcnkuICBUaGlzIHNvbHV0aW9uIGxlbmRzIGl0c2VsZiBuaWNlbHkgdG8gc3RhYmxl
+LWJhY2twb3J0aW5nLgo+IAo+IFRoZSBwYXRjaGVzIGZvciByYWRlb24gYW5kIGFtZGdwdSBhcmUg
+Y29tcGlsZS10ZXN0ZWQgb25seSwgSSBvbmx5IGhhdmUgYQo+IE1hY0Jvb2sgUHJvIHdpdGggYW4g
+TnZpZGlhIEdLMTA3IHRvIHRlc3QuICBUbyB0ZXN0IHRoZSBwYXRjaGVzLCBhZGQgYW4KPiAibXNs
+ZWVwKDEyKjEwMDApOyIgYXQgdGhlIHRvcCBvZiB0aGUgZHJpdmVyJ3MgLT5ydW50aW1lX3N1c3Bl
+bmQgaG9vay4KPiBUaGlzIGVuc3VyZXMgdGhhdCB0aGUgcG9sbCB3b3JrZXIgcnVucyBhZnRlciAt
+PnJ1bnRpbWVfc3VzcGVuZCBoYXMgYmVndW4uCj4gV2FpdCAxMiBzZWMgYWZ0ZXIgdGhlIEdQVSBo
+YXMgYmVndW4gcnVudGltZSBzdXNwZW5kLCB0aGVuIGNoZWNrCj4gL3N5cy9idXMvcGNpL2Rldmlj
+ZXMvMDAwMDowMTowMC4wL3Bvd2VyL3J1bnRpbWVfc3RhdHVzLiAgV2l0aG91dCB0aGlzCj4gc2Vy
+aWVzLCB0aGUgc3RhdHVzIHdpbGwgYmUgc3R1Y2sgYXQgInN1c3BlbmRpbmciIGFuZCB5b3UnbGwg
+Z2V0IGh1bmcgdGFzawo+IGVycm9ycyBpbiBkbWVzZyBhZnRlciBhIGZldyBtaW51dGVzLgo+IAo+
+IGk5MTUsIG1hbGlkcCBhbmQgbXNtICJzb2x2ZWQiIHRoaXMgaXNzdWUgYnkgbm90IHN0b3BwaW5n
+IHRoZSBwb2xsIHdvcmtlcgo+IG9uIHJ1bnRpbWUgc3VzcGVuZC4gIEJ1dCB0aGlzIHJlc3VsdHMg
+aW4gdGhlIEdQVSBib3VuY2luZyBiYWNrIGFuZCBmb3J0aAo+IGJldHdlZW4gRDAgYW5kIEQzIGNv
+bnRpbnVvdXNseS4gIFRoYXQncyBhIHRvdGFsIG5vLWdvIGZvciBHUFVzIHdoaWNoCj4gcnVudGlt
+ZSBzdXNwZW5kIHRvIEQzY29sZCBzaW5jZSBldmVyeSBzdXNwZW5kL3Jlc3VtZSBjeWNsZSBjb3N0
+cyBhCj4gc2lnbmlmaWNhbnQgYW1vdW50IG9mIHRpbWUgYW5kIGVuZXJneS4gIChpOTE1IGFuZCBt
+YWxpZHAgZG8gbm90IHNlZW0KPiB0byBhY3F1aXJlIGEgcnVudGltZSBQTSByZWYgaW4gdGhlIC0+
+ZGV0ZWN0IGNhbGxiYWNrcywgd2hpY2ggc2VlbXMKPiBxdWVzdGlvbmFibGUuICBtc20gaG93ZXZl
+ciBkb2VzIGFuZCB3b3VsZCBhbHNvIGRlYWRsb2NrIGlmIGl0IGRpc2FibGVkCj4gdGhlIHBvbGwg
+d29ya2VyIG9uIHJ1bnRpbWUgc3VzcGVuZC4gIGNjICs9IEFyY2hpdCwgTGl2aXUsIGludGVsLWdm
+eCkKCkkgdGhpbmsgSSB1bmRlcnN0YW5kIHRoZSBwcm9ibGVtIHlvdSBhcmUgdHJ5aW5nIHRvIHNv
+bHZlLCBidXQgSSdtCnN0cnVnZ2xpbmcgdG8gdW5kZXJzdGFuZCB3aGVyZSBtYWxpZHAgbWFrZXMg
+YW55IHNwZWNpZmljIG1pc3Rha2VzLiBGaXJzdApvZiBhbGwsIG1hbGlkcCBpcyBvbmx5IGEgZGlz
+cGxheSBlbmdpbmUsIHNvIHRoZXJlIGlzIG5vIEdQVSBhdHRhY2hlZCB0bwppdCwgYnV0IHRoYXQg
+aXMgb25seSBhIHNtYWxsIGNsYXJpZmljYXRpb24uIFNlY29uZCwgbWFsaWRwIGRvZXNuJ3QgdXNl
+CmRpcmVjdGx5IGFueSBvZiB0aGUgY2FsbGJhY2tzIHRoYXQgeW91IGFyZSByZWZlcnJpbmcgdG8s
+IGl0IHVzZXMgdGhlCmRybV9jbWFfeHh4eCgpIEFQSSBwbHVzIHRoZSBnZW5lcmljIGRybV94eHh4
+KCkgY2FsbC4gU28gaWYgdGhlcmUgYXJlIGFueQppc3N1ZXMgdGhlcmUgKGFzIHRoZXkgbWlnaHQg
+d2VsbCBiZSkgSSB0aGluayB0aGV5IHdvdWxkIGFwcGx5IHRvIGEgbG90Cm1vcmUgZHJpdmVycyBh
+bmQgdGhlIGZpeCB3aWxsIGludm9sdmUgbW9yZSB0aGFuIGp1c3QgbWFsaWRwLCBpOTE1IGFuZApt
+c20uCgpXb3VsZCBsb3ZlIHRvIGdldCBhbnkgY2xhcmlmaWNhdGlvbnMgb24gd2hhdCBJIG1pZ2h0
+IGhhdmUgbWlzdW5kZXJzdG9vZC4KCkJlc3QgcmVnYXJkcywKTGl2aXUKCgo+IAo+IFBsZWFzZSBy
+ZXZpZXcuICBUaGFua3MsCj4gCj4gTHVrYXMKPiAKPiBMdWthcyBXdW5uZXIgKDUpOgo+ICAgd29y
+a3F1ZXVlOiBBbGxvdyByZXRyaWV2YWwgb2YgY3VycmVudCB0YXNrJ3Mgd29yayBzdHJ1Y3QKPiAg
+IGRybTogQWxsb3cgZGV0ZXJtaW5pbmcgaWYgY3VycmVudCB0YXNrIGlzIG91dHB1dCBwb2xsIHdv
+cmtlcgo+ICAgZHJtL25vdXZlYXU6IEZpeCBkZWFkbG9jayBvbiBydW50aW1lIHN1c3BlbmQKPiAg
+IGRybS9yYWRlb246IEZpeCBkZWFkbG9jayBvbiBydW50aW1lIHN1c3BlbmQKPiAgIGRybS9hbWRn
+cHU6IEZpeCBkZWFkbG9jayBvbiBydW50aW1lIHN1c3BlbmQKPiAKPiAgZHJpdmVycy9ncHUvZHJt
+L2FtZC9hbWRncHUvYW1kZ3B1X2Nvbm5lY3RvcnMuYyB8IDU4ICsrKysrKysrKysrKystLS0tLS0t
+Cj4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fcHJvYmVfaGVscGVyLmMgICAgICAgICAgICAgfCAxNCAr
+KysrKwo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jICAgIHwg
+MTggKysrKystLQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9jb25uZWN0b3JzLmMg
+ICAgIHwgNzQgKysrKysrKysrKysrKysrKystLS0tLS0tLS0KPiAgaW5jbHVkZS9kcm0vZHJtX2Ny
+dGNfaGVscGVyLmggICAgICAgICAgICAgICAgICB8ICAxICsKPiAgaW5jbHVkZS9saW51eC93b3Jr
+cXVldWUuaCAgICAgICAgICAgICAgICAgICAgICB8ICAxICsKPiAga2VybmVsL3dvcmtxdWV1ZS5j
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8IDE2ICsrKysrKwo+ICA3IGZpbGVzIGNoYW5n
+ZWQsIDEzMiBpbnNlcnRpb25zKCspLCA1MCBkZWxldGlvbnMoLSkKPiAKPiAtLSAKPiAyLjE1LjEK
+PiAKCi0tIAo9PT09PT09PT09PT09PT09PT09PQp8IEkgd291bGQgbGlrZSB0byB8CnwgZml4IHRo
+ZSB3b3JsZCwgIHwKfCBidXQgdGhleSdyZSBub3QgfAp8IGdpdmluZyBtZSB0aGUgICB8CiBcIHNv
+dXJjZSBjb2RlISAgLwogIC0tLS0tLS0tLS0tLS0tLQogICAgwq9cXyjjg4QpXy/CrwpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
+bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
