@@ -1,66 +1,82 @@
-From: Ben Skeggs <bskeggs@redhat.com>
+From: "Gustavo A. R. Silva" <garsilva@embeddedor.com>
 Subject: Re: [drm-nouveau-mmu] question about potential NULL pointer
  dereference
-Date: Wed, 14 Feb 2018 08:57:51 +1000
-Message-ID: <CABDvA=kds=GtcXXe4BY-NzuYa0mt-vc2MQPGmNS-HGmxSBNLxA@mail.gmail.com>
+Date: Tue, 13 Feb 2018 17:00:16 -0600
+Message-ID: <20180213170016.Horde.7qPx7JtmDQaEzF86fCs1nxe@gator4166.hostgator.com>
 References: <20180213094016.Horde.CGfpaa2rdOUHbXlCDH3u5ra@gator4166.hostgator.com>
+ <CABDvA=kds=GtcXXe4BY-NzuYa0mt-vc2MQPGmNS-HGmxSBNLxA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20180213094016.Horde.CGfpaa2rdOUHbXlCDH3u5ra@gator4166.hostgator.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: "Gustavo A. R. Silva" <garsilva@embeddedor.com>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CABDvA=kds=GtcXXe4BY-NzuYa0mt-vc2MQPGmNS-HGmxSBNLxA@mail.gmail.com>
+Content-Disposition: inline
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBGZWIgMTQsIDIwMTggYXQgMTo0MCBBTSwgR3VzdGF2byBBLiBSLiBTaWx2YQo8Z2Fy
-c2lsdmFAZW1iZWRkZWRvci5jb20+IHdyb3RlOgo+Cj4gSGkgYWxsLAo+Cj4gV2hpbGUgZG9pbmcg
-c29tZSBzdGF0aWMgYW5hbHlzaXMgSSByYW4gaW50byB0aGUgZm9sbG93aW5nIHBpZWNlIG9mIGNv
-ZGUgYXQKPiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9tbXUvdm1tLmM6OTU3
-Ogo+Cj4gIDk1NyNkZWZpbmUgbm9kZShyb290LCBkaXIpICgocm9vdCktPmhlYWQuZGlyID09ICZ2
-bW0tPmxpc3QpID8gTlVMTCA6Cj4gXAo+ICA5NTggICAgICAgIGxpc3RfZW50cnkoKHJvb3QpLT5o
-ZWFkLmRpciwgc3RydWN0IG52a21fdm1hLCBoZWFkKQo+ICA5NTkKPiAgOTYwdm9pZAo+ICA5NjFu
-dmttX3ZtbV91bm1hcF9yZWdpb24oc3RydWN0IG52a21fdm1tICp2bW0sIHN0cnVjdCBudmttX3Zt
-YSAqdm1hKQo+ICA5NjJ7Cj4gIDk2MyAgICAgICAgc3RydWN0IG52a21fdm1hICpuZXh0Owo+ICA5
-NjQKPiAgOTY1ICAgICAgICBudmttX21lbW9yeV90YWdzX3B1dCh2bWEtPm1lbW9yeSwgdm1tLT5t
-bXUtPnN1YmRldi5kZXZpY2UsCj4gJnZtYS0+dGFncyk7Cj4gIDk2NiAgICAgICAgbnZrbV9tZW1v
-cnlfdW5yZWYoJnZtYS0+bWVtb3J5KTsKPiAgOTY3Cj4gIDk2OCAgICAgICAgaWYgKHZtYS0+cGFy
-dCkgewo+ICA5NjkgICAgICAgICAgICAgICAgc3RydWN0IG52a21fdm1hICpwcmV2ID0gbm9kZSh2
-bWEsIHByZXYpOwo+ICA5NzAgICAgICAgICAgICAgICAgaWYgKCFwcmV2LT5tZW1vcnkpIHsKPiAg
-OTcxICAgICAgICAgICAgICAgICAgICAgICAgcHJldi0+c2l6ZSArPSB2bWEtPnNpemU7Cj4gIDk3
-MiAgICAgICAgICAgICAgICAgICAgICAgIHJiX2VyYXNlKCZ2bWEtPnRyZWUsICZ2bW0tPnJvb3Qp
-Owo+ICA5NzMgICAgICAgICAgICAgICAgICAgICAgICBsaXN0X2RlbCgmdm1hLT5oZWFkKTsKPiAg
-OTc0ICAgICAgICAgICAgICAgICAgICAgICAga2ZyZWUodm1hKTsKPiAgOTc1ICAgICAgICAgICAg
-ICAgICAgICAgICAgdm1hID0gcHJldjsKPiAgOTc2ICAgICAgICAgICAgICAgIH0KPiAgOTc3ICAg
-ICAgICB9Cj4gIDk3OAo+ICA5NzkgICAgICAgIG5leHQgPSBub2RlKHZtYSwgbmV4dCk7Cj4gIDk4
-MCAgICAgICAgaWYgKG5leHQgJiYgbmV4dC0+cGFydCkgewo+ICA5ODEgICAgICAgICAgICAgICAg
-aWYgKCFuZXh0LT5tZW1vcnkpIHsKPiAgOTgyICAgICAgICAgICAgICAgICAgICAgICAgdm1hLT5z
-aXplICs9IG5leHQtPnNpemU7Cj4gIDk4MyAgICAgICAgICAgICAgICAgICAgICAgIHJiX2VyYXNl
-KCZuZXh0LT50cmVlLCAmdm1tLT5yb290KTsKPiAgOTg0ICAgICAgICAgICAgICAgICAgICAgICAg
-bGlzdF9kZWwoJm5leHQtPmhlYWQpOwo+ICA5ODUgICAgICAgICAgICAgICAgICAgICAgICBrZnJl
-ZShuZXh0KTsKPiAgOTg2ICAgICAgICAgICAgICAgIH0KPiAgOTg3ICAgICAgICB9Cj4gIDk4OH0K
-Pgo+IFRoZSBpc3N1ZSBoZXJlIGlzIHRoYXQgaW4gY2FzZSBfbm9kZV8gcmV0dXJucyBOVUxMLCBf
-cHJldl8gaXMgbm90IGJlaW5nIG51bGwKPiBjaGVja2VkLCBoZW5jZSB0aGVyZSBpcyBhIHBvdGVu
-dGlhbCBudWxsIHBvaW50ZXIgZGVyZWZlcmVuY2UgYXQgbGluZSA5NzAuCj4KPiBOb3RpY2UgdGhh
-dCBfbmV4dF8gaXMgYmVpbmcgbnVsbCBjaGVja2VkIGF0IGxpbmUgOTgwLCBzbyBJIHdvbmRlciBp
-ZiBfcHJldl8KPiBzaG91bGQgYmUgY2hlY2tlZCB0aGUgc2FtZSBhcyBfbmV4dF8uCj4KPiBUaGUg
-ZmFjdCB0aGF0IGJvdGggX25leHRfIGFuZCBuZXh0LT5wYXJ0IGFyZSBudWxsIGNoZWNrZWQsIG1h
-a2VzIG1lIHdvbmRlcgo+IGlmIGluIGNhc2UgX3ByZXZfIGFjdHVhbGx5IG5lZWRzIHRvIGJlIGNo
-ZWNrZWQsIHRoZXJlIGlzIGFub3RoZXIgcG9pbnRlcgo+IGNvbnRhaW5lZCBpbnRvIF9wcmV2XyB0
-byBiZSB2YWxpZGF0ZWQgYXMgd2VsbD8gSSdtIHNvcnJ5LCB0aGlzIGlzIG5vdCBjbGVhcgo+IHRv
-IG1lIGF0IHRoaXMgbW9tZW50LgpJdCdzIG5vdCBjaGVja2VkIGJlY2F1c2UgaXQgY2FuJ3QgaGFw
-cGVuLiAgSWYgdm1hLT5wYXJ0IGlzIHNldCwgdGhlcmUKd2lsbCBiZSBhIHByZXZpb3VzIG5vZGUg
-dGhhdCBpdCB3YXMgc3BsaXQgZnJvbS4KCkJlbi4KCj4KPiBJIGFwcHJlY2lhdGUgeW91ciBmZWVk
-YmFjawo+IFRoYW5rIHlvdQo+IC0tCj4gR3VzdGF2bwo+Cj4KPgo+Cj4KPgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0
-CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+Quoting Ben Skeggs <bskeggs@redhat.com>:
+
+> On Wed, Feb 14, 2018 at 1:40 AM, Gustavo A. R. Silva
+> <garsilva@embeddedor.com> wrote:
+>>
+>> Hi all,
+>>
+>> While doing some static analysis I ran into the following piece of code at
+>> drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c:957:
+>>
+>>  957#define node(root, dir) ((root)->head.dir == &vmm->list) ? NULL :
+>> \
+>>  958        list_entry((root)->head.dir, struct nvkm_vma, head)
+>>  959
+>>  960void
+>>  961nvkm_vmm_unmap_region(struct nvkm_vmm *vmm, struct nvkm_vma *vma)
+>>  962{
+>>  963        struct nvkm_vma *next;
+>>  964
+>>  965        nvkm_memory_tags_put(vma->memory, vmm->mmu->subdev.device,
+>> &vma->tags);
+>>  966        nvkm_memory_unref(&vma->memory);
+>>  967
+>>  968        if (vma->part) {
+>>  969                struct nvkm_vma *prev = node(vma, prev);
+>>  970                if (!prev->memory) {
+>>  971                        prev->size += vma->size;
+>>  972                        rb_erase(&vma->tree, &vmm->root);
+>>  973                        list_del(&vma->head);
+>>  974                        kfree(vma);
+>>  975                        vma = prev;
+>>  976                }
+>>  977        }
+>>  978
+>>  979        next = node(vma, next);
+>>  980        if (next && next->part) {
+>>  981                if (!next->memory) {
+>>  982                        vma->size += next->size;
+>>  983                        rb_erase(&next->tree, &vmm->root);
+>>  984                        list_del(&next->head);
+>>  985                        kfree(next);
+>>  986                }
+>>  987        }
+>>  988}
+>>
+>> The issue here is that in case _node_ returns NULL, _prev_ is not being null
+>> checked, hence there is a potential null pointer dereference at line 970.
+>>
+>> Notice that _next_ is being null checked at line 980, so I wonder if _prev_
+>> should be checked the same as _next_.
+>>
+>> The fact that both _next_ and next->part are null checked, makes me wonder
+>> if in case _prev_ actually needs to be checked, there is another pointer
+>> contained into _prev_ to be validated as well? I'm sorry, this is not clear
+>> to me at this moment.
+> It's not checked because it can't happen.  If vma->part is set, there
+> will be a previous node that it was split from.
+>
+
+I got it.
+
+Thanks, Ben.
+--
+Gustavo
