@@ -1,82 +1,75 @@
-From: "Gustavo A. R. Silva" <garsilva@embeddedor.com>
-Subject: Re: [drm-nouveau-mmu] question about potential NULL pointer
- dereference
-Date: Tue, 13 Feb 2018 17:00:16 -0600
-Message-ID: <20180213170016.Horde.7qPx7JtmDQaEzF86fCs1nxe@gator4166.hostgator.com>
-References: <20180213094016.Horde.CGfpaa2rdOUHbXlCDH3u5ra@gator4166.hostgator.com>
- <CABDvA=kds=GtcXXe4BY-NzuYa0mt-vc2MQPGmNS-HGmxSBNLxA@mail.gmail.com>
+From: Lukas Wunner <lukas@wunner.de>
+Subject: [PATCH v2] drm: Allow determining if current task is output poll
+ worker
+Date: Wed, 14 Feb 2018 08:41:25 +0100
+Message-ID: <3549ce32e7f1467102e70d3e9cbf70c46bfe108e.1518593424.git.lukas@wunner.de>
+References: <cover.1518338788.git.lukas@wunner.de>
+ <7831d4f21dde8cd0b1659e393854598995dfb249.1518338788.git.lukas@wunner.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CABDvA=kds=GtcXXe4BY-NzuYa0mt-vc2MQPGmNS-HGmxSBNLxA@mail.gmail.com>
-Content-Disposition: inline
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <7831d4f21dde8cd0b1659e393854598995dfb249.1518338788.git.lukas@wunner.de>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Lyude Paul <lyude@redhat.com>
+Cc: Ismo Toijala <ismo.toijala@gmail.com>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Liviu Dudau <Liviu.Dudau@arm.com>, dri-devel@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>, Peter Wu <peter@lekensteyn.nl>
 List-Id: nouveau.vger.kernel.org
 
-
-Quoting Ben Skeggs <bskeggs@redhat.com>:
-
-> On Wed, Feb 14, 2018 at 1:40 AM, Gustavo A. R. Silva
-> <garsilva@embeddedor.com> wrote:
->>
->> Hi all,
->>
->> While doing some static analysis I ran into the following piece of code at
->> drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c:957:
->>
->>  957#define node(root, dir) ((root)->head.dir == &vmm->list) ? NULL :
->> \
->>  958        list_entry((root)->head.dir, struct nvkm_vma, head)
->>  959
->>  960void
->>  961nvkm_vmm_unmap_region(struct nvkm_vmm *vmm, struct nvkm_vma *vma)
->>  962{
->>  963        struct nvkm_vma *next;
->>  964
->>  965        nvkm_memory_tags_put(vma->memory, vmm->mmu->subdev.device,
->> &vma->tags);
->>  966        nvkm_memory_unref(&vma->memory);
->>  967
->>  968        if (vma->part) {
->>  969                struct nvkm_vma *prev = node(vma, prev);
->>  970                if (!prev->memory) {
->>  971                        prev->size += vma->size;
->>  972                        rb_erase(&vma->tree, &vmm->root);
->>  973                        list_del(&vma->head);
->>  974                        kfree(vma);
->>  975                        vma = prev;
->>  976                }
->>  977        }
->>  978
->>  979        next = node(vma, next);
->>  980        if (next && next->part) {
->>  981                if (!next->memory) {
->>  982                        vma->size += next->size;
->>  983                        rb_erase(&next->tree, &vmm->root);
->>  984                        list_del(&next->head);
->>  985                        kfree(next);
->>  986                }
->>  987        }
->>  988}
->>
->> The issue here is that in case _node_ returns NULL, _prev_ is not being null
->> checked, hence there is a potential null pointer dereference at line 970.
->>
->> Notice that _next_ is being null checked at line 980, so I wonder if _prev_
->> should be checked the same as _next_.
->>
->> The fact that both _next_ and next->part are null checked, makes me wonder
->> if in case _prev_ actually needs to be checked, there is another pointer
->> contained into _prev_ to be validated as well? I'm sorry, this is not clear
->> to me at this moment.
-> It's not checked because it can't happen.  If vma->part is set, there
-> will be a previous node that it was split from.
->
-
-I got it.
-
-Thanks, Ben.
---
-Gustavo
+SW50cm9kdWNlIGEgaGVscGVyIHRvIGRldGVybWluZSBpZiB0aGUgY3VycmVudCB0YXNrIGlzIGFu
+IG91dHB1dCBwb2xsCndvcmtlci4KClRoaXMgYWxsb3dzIHVzIHRvIGZpeCBhIGxvbmctc3RhbmRp
+bmcgZGVhZGxvY2sgaW4gc2V2ZXJhbCBEUk0gZHJpdmVycwp3aGVyZWluIHRoZSAtPnJ1bnRpbWVf
+c3VzcGVuZCBjYWxsYmFjayB3YWl0cyBmb3IgdGhlIG91dHB1dCBwb2xsIHdvcmtlcgp0byBmaW5p
+c2ggYW5kIHRoZSB3b3JrZXIgaW4gdHVybiBjYWxscyBhIC0+ZGV0ZWN0IGNhbGxiYWNrIHdoaWNo
+IHdhaXRzCmZvciBydW50aW1lIHN1c3BlbmQgdG8gZmluaXNoLiAgVGhlIC0+ZGV0ZWN0IGNhbGxi
+YWNrIGlzIGludm9rZWQgZnJvbQptdWx0aXBsZSBjYWxsIHNpdGVzIGFuZCB3YWl0aW5nIGZvciBy
+dW50aW1lIHN1c3BlbmQgdG8gZmluaXNoIGlzIHRoZQpjb3JyZWN0IHRoaW5nIHRvIGRvIGV4Y2Vw
+dCBpZiBpdCdzIGV4ZWN1dGluZyBpbiB0aGUgY29udGV4dCBvZiB0aGUKd29ya2VyLgoKdjI6IEV4
+cGFuZCBrZXJuZWxkb2MgdG8gc3BlY2lmaWNhbGx5IG1lbnRpb24gZGVhZGxvY2sgYmV0d2Vlbgog
+ICAgb3V0cHV0IHBvbGwgd29ya2VyIGFuZCBhdXRvc3VzcGVuZCB3b3JrZXIgYXMgdXNlIGNhc2Uu
+IChMeXVkZSkKCkNjOiBEYXZlIEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29tPgpDYzogQmVuIFNr
+ZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgpDYzogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1
+Y2hlckBhbWQuY29tPgpSZXZpZXdlZC1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4K
+U2lnbmVkLW9mZi1ieTogTHVrYXMgV3VubmVyIDxsdWthc0B3dW5uZXIuZGU+Ci0tLQogZHJpdmVy
+cy9ncHUvZHJtL2RybV9wcm9iZV9oZWxwZXIuYyB8IDIwICsrKysrKysrKysrKysrKysrKysrCiBp
+bmNsdWRlL2RybS9kcm1fY3J0Y19oZWxwZXIuaCAgICAgIHwgIDEgKwogMiBmaWxlcyBjaGFuZ2Vk
+LCAyMSBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9wcm9i
+ZV9oZWxwZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fcHJvYmVfaGVscGVyLmMKaW5kZXggNmRj
+MmRkZTViNjcyLi43YTZiMmRjMDg5MTMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1f
+cHJvYmVfaGVscGVyLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9wcm9iZV9oZWxwZXIuYwpA
+QCAtNjU0LDYgKzY1NCwyNiBAQCBzdGF0aWMgdm9pZCBvdXRwdXRfcG9sbF9leGVjdXRlKHN0cnVj
+dCB3b3JrX3N0cnVjdCAqd29yaykKIAkJc2NoZWR1bGVfZGVsYXllZF93b3JrKGRlbGF5ZWRfd29y
+aywgRFJNX09VVFBVVF9QT0xMX1BFUklPRCk7CiB9CiAKKy8qKgorICogZHJtX2ttc19oZWxwZXJf
+aXNfcG9sbF93b3JrZXIgLSBpcyAlY3VycmVudCB0YXNrIGFuIG91dHB1dCBwb2xsIHdvcmtlcj8K
+KyAqCisgKiBEZXRlcm1pbmUgaWYgJWN1cnJlbnQgdGFzayBpcyBhbiBvdXRwdXQgcG9sbCB3b3Jr
+ZXIuICBUaGlzIGNhbiBiZSB1c2VkCisgKiB0byBzZWxlY3QgZGlzdGluY3QgY29kZSBwYXRocyBm
+b3Igb3V0cHV0IHBvbGxpbmcgdmVyc3VzIG90aGVyIGNvbnRleHRzLgorICoKKyAqIE9uZSB1c2Ug
+Y2FzZSBpcyB0byBhdm9pZCBhIGRlYWRsb2NrIGJldHdlZW4gdGhlIG91dHB1dCBwb2xsIHdvcmtl
+ciBhbmQKKyAqIHRoZSBhdXRvc3VzcGVuZCB3b3JrZXIgd2hlcmVpbiB0aGUgbGF0dGVyIHdhaXRz
+IGZvciBwb2xsaW5nIHRvIGZpbmlzaAorICogdXBvbiBjYWxsaW5nIGRybV9rbXNfaGVscGVyX3Bv
+bGxfZGlzYWJsZSgpLCB3aGlsZSB0aGUgZm9ybWVyIHdhaXRzIGZvcgorICogcnVudGltZSBzdXNw
+ZW5kIHRvIGZpbmlzaCB1cG9uIGNhbGxpbmcgcG1fcnVudGltZV9nZXRfc3luYygpIGluIGEKKyAq
+IGNvbm5lY3RvciAtPmRldGVjdCBob29rLgorICovCitib29sIGRybV9rbXNfaGVscGVyX2lzX3Bv
+bGxfd29ya2VyKHZvaWQpCit7CisJc3RydWN0IHdvcmtfc3RydWN0ICp3b3JrID0gY3VycmVudF93
+b3JrKCk7CisKKwlyZXR1cm4gd29yayAmJiB3b3JrLT5mdW5jID09IG91dHB1dF9wb2xsX2V4ZWN1
+dGU7Cit9CitFWFBPUlRfU1lNQk9MKGRybV9rbXNfaGVscGVyX2lzX3BvbGxfd29ya2VyKTsKKwog
+LyoqCiAgKiBkcm1fa21zX2hlbHBlcl9wb2xsX2Rpc2FibGUgLSBkaXNhYmxlIG91dHB1dCBwb2xs
+aW5nCiAgKiBAZGV2OiBkcm1fZGV2aWNlCmRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9kcm1fY3J0
+Y19oZWxwZXIuaCBiL2luY2x1ZGUvZHJtL2RybV9jcnRjX2hlbHBlci5oCmluZGV4IDc2ZTIzN2Jk
+OTg5Yi4uNjkxNDYzMzAzN2E1IDEwMDY0NAotLS0gYS9pbmNsdWRlL2RybS9kcm1fY3J0Y19oZWxw
+ZXIuaAorKysgYi9pbmNsdWRlL2RybS9kcm1fY3J0Y19oZWxwZXIuaApAQCAtNzcsNSArNzcsNiBA
+QCB2b2lkIGRybV9rbXNfaGVscGVyX2hvdHBsdWdfZXZlbnQoc3RydWN0IGRybV9kZXZpY2UgKmRl
+dik7CiAKIHZvaWQgZHJtX2ttc19oZWxwZXJfcG9sbF9kaXNhYmxlKHN0cnVjdCBkcm1fZGV2aWNl
+ICpkZXYpOwogdm9pZCBkcm1fa21zX2hlbHBlcl9wb2xsX2VuYWJsZShzdHJ1Y3QgZHJtX2Rldmlj
+ZSAqZGV2KTsKK2Jvb2wgZHJtX2ttc19oZWxwZXJfaXNfcG9sbF93b3JrZXIodm9pZCk7CiAKICNl
+bmRpZgotLSAKMi4xNS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmkt
+ZGV2ZWwK
