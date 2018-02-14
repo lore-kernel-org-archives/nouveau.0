@@ -1,75 +1,83 @@
-From: Pierre Moreau <pmoreau@pmoreau.org>
-Subject: Re: [Nouveau] 4.16-rc1: UBSAN warning in
- nouveau/nvkm/subdev/therm/base.c + oops in nvkm_therm_clkgate_fini
-Date: Wed, 14 Feb 2018 18:41:26 +0100
-Message-ID: <20180214174125.b5bdowaadck3vf5n@pmoreau.org>
-References: <alpine.LRH.2.21.1802132200260.24929@math.ut.ee>
- <alpine.LRH.2.21.1802141628110.25362@math.ut.ee>
- <CAKb7Uvj3MKGzNNcrc=-JA5GN4jt9+TU7ZjWDZpccmYJLDo76WQ@mail.gmail.com>
- <CAKb7UvhRt=25J5aOUZusdE51hh1JVc45aQ8OhCVeOJwzYvLOJw@mail.gmail.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH v2] drm: Allow determining if current task
+ is output poll worker
+Date: Wed, 14 Feb 2018 14:07:52 -0500
+Message-ID: <1518635272.3674.0.camel@redhat.com>
+References: <cover.1518338788.git.lukas@wunner.de>
+ <7831d4f21dde8cd0b1659e393854598995dfb249.1518338788.git.lukas@wunner.de>
+ <3549ce32e7f1467102e70d3e9cbf70c46bfe108e.1518593424.git.lukas@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="dwdkp45xn3dm5qq2"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <CAKb7UvhRt=25J5aOUZusdE51hh1JVc45aQ8OhCVeOJwzYvLOJw@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: Lyude Paul <lyude@redhat.com>, Meelis Roos <mroos@linux.ee>, nouveau <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, dri-devel <dri-devel@lists.freedesktop.org>, Linux Kernel list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <3549ce32e7f1467102e70d3e9cbf70c46bfe108e.1518593424.git.lukas@wunner.de>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Lukas Wunner <lukas@wunner.de>
+Cc: Pierre Moreau <pierre.morrow@free.fr>, Archit Taneja <architt@codeaurora.org>, Ismo Toijala <ismo.toijala@gmail.com>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>, Peter Wu <peter@lekensteyn.nl>
 List-Id: nouveau.vger.kernel.org
 
-
---dwdkp45xn3dm5qq2
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On 2018-02-14 =E2=80=94 09:36, Ilia Mirkin wrote:
-> On Wed, Feb 14, 2018 at 9:35 AM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
-> > On Wed, Feb 14, 2018 at 9:29 AM, Meelis Roos <mroos@linux.ee> wrote:
-> >>> This is 4.16-rc1+todays git on a lowly P4 with NV5, worked fine in 4.=
-15:
-> >>
-> >> NV5 in another PC (secondary card in x86-64) made the systrem crash on
-> >> boot, in nvkm_therm_clkgate_fini.
-> >
-> > Mind booting with nouveau.debug=3Dtrace? That should hopefully tell us
-> > more exactly which thing is dying. If you have a cross-compile/distcc
-> > setup handy, a bisect may be even more useful.
->=20
-> Erm, sorry, nevermind. You even said it -- nvkm_therm_clkgate_fini is
-> somehow mis-hooked up for NV5 now. A bisect result would still make
-> the culprit a lot more obvious.
-
-CC=E2=80=99ing Lyude Paul as she hooked up the clockgating support.
-
-Looking at the code, only NV40+ do have a therm engine. Therefore, shouldn=
-=E2=80=99t
-nvkm_therm_clkgate_enable(), nvkm_therm_clkgate_fini() and
-nvkm_therm_clkgate_oneinit() all check for therm being not NULL, on top of
-their check for the clkgate_* hooks being there? Or instead, maybe have the
-check in nvkm_device_init() nvkm_device_init()?
-
-Pierre
-
---dwdkp45xn3dm5qq2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEuCp/qmebDh5BvKefO2dY27124hoFAlqEdMEACgkQO2dY2712
-4hqonA//XCWbLxa9FkJGpe5m0xPTHQTMjIhlr7G06cvIzCFj+QYjCiNPZAF1RM5L
-wZ5UlJktHSU9m8mCZTebRskJLe89B/1szrPmZjE2EugpnQQjJF0Ae65icZaTvx6p
-n6JCpQz3+Jrg8MY1d5n5dGvWodPhbiVu8Z12ScTqr2rSbOcL5fNubk7JSOY7xlI6
-yi1DKAL9aM88ojJRXX5mAV1pfrqw4cWv3xcQtdzQ8E1ePyHoMsPEafemCv0kMy2F
-cPaKAzA8ok5RULR5zLAXhIFlMiJxVjkjhOKVrdZoC0UdocRwcRpZkUljWOCbe7kn
-j1nik54MGuw6tBx3xpQBLB/FWAaMi50eNWZ96H7MMEhV8GFLppN8k0v1xKse2vmx
-TqHCQCkFHSqNvocT3aXPTfCrOmwog192B5V4kQS84j/Auf2xEO8UmKH9euxGzZgt
-RF4goFzudrbNH1oIyYRA0lLOraeBr+k3eoK2ZTaJprBgjCGu1VoRsguu8acz1qUU
-rFGqXNs46GmSZb3CkCV1i4j/yMc0ycqPQVcthWxVHeJ3SwkgscpdLzGFaNj+wdA9
-ISijMV873PZmFt0/BU1RxCkdW2QA3nNP92XhXjehezHJksGTKW6O7gYo5smKGauC
-BEo9DmqpTsmjTVCGK8lQQM4zGWj+G4jbXLSRDYolf7FKt3Tm0mg=
-=sYjh
------END PGP SIGNATURE-----
-
---dwdkp45xn3dm5qq2--
+SSB0aGluayB5b3VyIGlkZWEgb2YgaGF2aW5nIHRoZSBleHRyYSBrZXJuZWxkb2MgYXMgYSBzZXBl
+cmF0ZSBwYXRjaCB0byBtYWtlCnRoaXMgZWFzaWVyIHRvIGJhY2twb3J0IHNob3VsZCB3b3JrIGZp
+bmUgOikuIFRoYW5rcyBmb3IgdGhlIGdvb2Qgd29yayEKClJldmlld2VkLWJ5OiBMeXVkZSBQYXVs
+IDxseXVkZUByZWRoYXQuY29tPgoKT24gV2VkLCAyMDE4LTAyLTE0IGF0IDA4OjQxICswMTAwLCBM
+dWthcyBXdW5uZXIgd3JvdGU6Cj4gSW50cm9kdWNlIGEgaGVscGVyIHRvIGRldGVybWluZSBpZiB0
+aGUgY3VycmVudCB0YXNrIGlzIGFuIG91dHB1dCBwb2xsCj4gd29ya2VyLgo+IAo+IFRoaXMgYWxs
+b3dzIHVzIHRvIGZpeCBhIGxvbmctc3RhbmRpbmcgZGVhZGxvY2sgaW4gc2V2ZXJhbCBEUk0gZHJp
+dmVycwo+IHdoZXJlaW4gdGhlIC0+cnVudGltZV9zdXNwZW5kIGNhbGxiYWNrIHdhaXRzIGZvciB0
+aGUgb3V0cHV0IHBvbGwgd29ya2VyCj4gdG8gZmluaXNoIGFuZCB0aGUgd29ya2VyIGluIHR1cm4g
+Y2FsbHMgYSAtPmRldGVjdCBjYWxsYmFjayB3aGljaCB3YWl0cwo+IGZvciBydW50aW1lIHN1c3Bl
+bmQgdG8gZmluaXNoLiAgVGhlIC0+ZGV0ZWN0IGNhbGxiYWNrIGlzIGludm9rZWQgZnJvbQo+IG11
+bHRpcGxlIGNhbGwgc2l0ZXMgYW5kIHdhaXRpbmcgZm9yIHJ1bnRpbWUgc3VzcGVuZCB0byBmaW5p
+c2ggaXMgdGhlCj4gY29ycmVjdCB0aGluZyB0byBkbyBleGNlcHQgaWYgaXQncyBleGVjdXRpbmcg
+aW4gdGhlIGNvbnRleHQgb2YgdGhlCj4gd29ya2VyLgo+IAo+IHYyOiBFeHBhbmQga2VybmVsZG9j
+IHRvIHNwZWNpZmljYWxseSBtZW50aW9uIGRlYWRsb2NrIGJldHdlZW4KPiAgICAgb3V0cHV0IHBv
+bGwgd29ya2VyIGFuZCBhdXRvc3VzcGVuZCB3b3JrZXIgYXMgdXNlIGNhc2UuIChMeXVkZSkKPiAK
+PiBDYzogRGF2ZSBBaXJsaWUgPGFpcmxpZWRAcmVkaGF0LmNvbT4KPiBDYzogQmVuIFNrZWdncyA8
+YnNrZWdnc0ByZWRoYXQuY29tPgo+IENjOiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVy
+QGFtZC5jb20+Cj4gUmV2aWV3ZWQtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+Cj4g
+U2lnbmVkLW9mZi1ieTogTHVrYXMgV3VubmVyIDxsdWthc0B3dW5uZXIuZGU+Cj4gLS0tCj4gIGRy
+aXZlcnMvZ3B1L2RybS9kcm1fcHJvYmVfaGVscGVyLmMgfCAyMCArKysrKysrKysrKysrKysrKysr
+Kwo+ICBpbmNsdWRlL2RybS9kcm1fY3J0Y19oZWxwZXIuaCAgICAgIHwgIDEgKwo+ICAyIGZpbGVz
+IGNoYW5nZWQsIDIxIGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2RybV9wcm9iZV9oZWxwZXIuYwo+IGIvZHJpdmVycy9ncHUvZHJtL2RybV9wcm9iZV9oZWxw
+ZXIuYwo+IGluZGV4IDZkYzJkZGU1YjY3Mi4uN2E2YjJkYzA4OTEzIDEwMDY0NAo+IC0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9kcm1fcHJvYmVfaGVscGVyLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+ZHJtX3Byb2JlX2hlbHBlci5jCj4gQEAgLTY1NCw2ICs2NTQsMjYgQEAgc3RhdGljIHZvaWQgb3V0
+cHV0X3BvbGxfZXhlY3V0ZShzdHJ1Y3Qgd29ya19zdHJ1Y3QKPiAqd29yaykKPiAgCQlzY2hlZHVs
+ZV9kZWxheWVkX3dvcmsoZGVsYXllZF93b3JrLAo+IERSTV9PVVRQVVRfUE9MTF9QRVJJT0QpOwo+
+ICB9Cj4gIAo+ICsvKioKPiArICogZHJtX2ttc19oZWxwZXJfaXNfcG9sbF93b3JrZXIgLSBpcyAl
+Y3VycmVudCB0YXNrIGFuIG91dHB1dCBwb2xsIHdvcmtlcj8KPiArICoKPiArICogRGV0ZXJtaW5l
+IGlmICVjdXJyZW50IHRhc2sgaXMgYW4gb3V0cHV0IHBvbGwgd29ya2VyLiAgVGhpcyBjYW4gYmUg
+dXNlZAo+ICsgKiB0byBzZWxlY3QgZGlzdGluY3QgY29kZSBwYXRocyBmb3Igb3V0cHV0IHBvbGxp
+bmcgdmVyc3VzIG90aGVyIGNvbnRleHRzLgo+ICsgKgo+ICsgKiBPbmUgdXNlIGNhc2UgaXMgdG8g
+YXZvaWQgYSBkZWFkbG9jayBiZXR3ZWVuIHRoZSBvdXRwdXQgcG9sbCB3b3JrZXIgYW5kCj4gKyAq
+IHRoZSBhdXRvc3VzcGVuZCB3b3JrZXIgd2hlcmVpbiB0aGUgbGF0dGVyIHdhaXRzIGZvciBwb2xs
+aW5nIHRvIGZpbmlzaAo+ICsgKiB1cG9uIGNhbGxpbmcgZHJtX2ttc19oZWxwZXJfcG9sbF9kaXNh
+YmxlKCksIHdoaWxlIHRoZSBmb3JtZXIgd2FpdHMgZm9yCj4gKyAqIHJ1bnRpbWUgc3VzcGVuZCB0
+byBmaW5pc2ggdXBvbiBjYWxsaW5nIHBtX3J1bnRpbWVfZ2V0X3N5bmMoKSBpbiBhCj4gKyAqIGNv
+bm5lY3RvciAtPmRldGVjdCBob29rLgo+ICsgKi8KPiArYm9vbCBkcm1fa21zX2hlbHBlcl9pc19w
+b2xsX3dvcmtlcih2b2lkKQo+ICt7Cj4gKwlzdHJ1Y3Qgd29ya19zdHJ1Y3QgKndvcmsgPSBjdXJy
+ZW50X3dvcmsoKTsKPiArCj4gKwlyZXR1cm4gd29yayAmJiB3b3JrLT5mdW5jID09IG91dHB1dF9w
+b2xsX2V4ZWN1dGU7Cj4gK30KPiArRVhQT1JUX1NZTUJPTChkcm1fa21zX2hlbHBlcl9pc19wb2xs
+X3dvcmtlcik7Cj4gKwo+ICAvKioKPiAgICogZHJtX2ttc19oZWxwZXJfcG9sbF9kaXNhYmxlIC0g
+ZGlzYWJsZSBvdXRwdXQgcG9sbGluZwo+ICAgKiBAZGV2OiBkcm1fZGV2aWNlCj4gZGlmZiAtLWdp
+dCBhL2luY2x1ZGUvZHJtL2RybV9jcnRjX2hlbHBlci5oIGIvaW5jbHVkZS9kcm0vZHJtX2NydGNf
+aGVscGVyLmgKPiBpbmRleCA3NmUyMzdiZDk4OWIuLjY5MTQ2MzMwMzdhNSAxMDA2NDQKPiAtLS0g
+YS9pbmNsdWRlL2RybS9kcm1fY3J0Y19oZWxwZXIuaAo+ICsrKyBiL2luY2x1ZGUvZHJtL2RybV9j
+cnRjX2hlbHBlci5oCj4gQEAgLTc3LDUgKzc3LDYgQEAgdm9pZCBkcm1fa21zX2hlbHBlcl9ob3Rw
+bHVnX2V2ZW50KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpOwo+ICAKPiAgdm9pZCBkcm1fa21zX2hl
+bHBlcl9wb2xsX2Rpc2FibGUoc3RydWN0IGRybV9kZXZpY2UgKmRldik7Cj4gIHZvaWQgZHJtX2tt
+c19oZWxwZXJfcG9sbF9lbmFibGUoc3RydWN0IGRybV9kZXZpY2UgKmRldik7Cj4gK2Jvb2wgZHJt
+X2ttc19oZWxwZXJfaXNfcG9sbF93b3JrZXIodm9pZCk7Cj4gIAo+ICAjZW5kaWYKLS0gCkNoZWVy
+cywKCUx5dWRlIFBhdWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
