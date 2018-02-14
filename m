@@ -1,118 +1,54 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105097] Computer hangs only mouse moves
-Date: Wed, 14 Feb 2018 19:39:08 +0000
-Message-ID: <bug-105097-8800-MYU39phr9K@http.bugs.freedesktop.org/>
-References: <bug-105097-8800@http.bugs.freedesktop.org/>
+From: Meelis Roos <mroos@linux.ee>
+Subject: Re: [Nouveau] 4.16-rc1: UBSAN warning in nouveau/nvkm/subdev/therm/base.c
+ + oops in nvkm_therm_clkgate_fini
+Date: Wed, 14 Feb 2018 22:59:37 +0200 (EET)
+Message-ID: <alpine.LRH.2.21.1802142258370.25362@math.ut.ee>
+References: <alpine.LRH.2.21.1802132200260.24929@math.ut.ee>  <alpine.LRH.2.21.1802141628110.25362@math.ut.ee>  <CAKb7Uvj3MKGzNNcrc=-JA5GN4jt9+TU7ZjWDZpccmYJLDo76WQ@mail.gmail.com>  <CAKb7UvhRt=25J5aOUZusdE51hh1JVc45aQ8OhCVeOJwzYvLOJw@mail.gmail.com>
+ <20180214174125.b5bdowaadck3vf5n@pmoreau.org> <1518635464.3674.2.camel@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1150443637=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105097-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=US-ASCII
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <1518635464.3674.2.camel@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>
+Cc: Pierre Moreau <pmoreau@pmoreau.org>, Ilia Mirkin <imirkin@alum.mit.edu>, nouveau <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, dri-devel <dri-devel@lists.freedesktop.org>, Linux Kernel list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
+> Actually this was brought up to me already, there's a fix on the mailing list
+> for this I reviewed a little while ago from nvidia that we should pull in:
+> 
+> https://patchwork.freedesktop.org/patch/203205/
+> 
+> Would you guys mind confirming that this patch fixes your issues?
 
---===============1150443637==
-Content-Type: multipart/alternative; boundary="15186371480.47EBd.17924"
-Content-Transfer-Encoding: 7bit
+It works on my amd64, P4 is still compiling.
 
-
---15186371480.47EBd.17924
-Date: Wed, 14 Feb 2018 19:39:08 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105097
-
-Dmitry Yakimov <yarus23-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Hardware|Other                       |x86-64 (AMD64)
-                 OS|All                         |Linux (All)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15186371480.47EBd.17924
-Date: Wed, 14 Feb 2018 19:39:08 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:yarus23&#=
-64;gmail.com" title=3D"Dmitry Yakimov &lt;yarus23&#64;gmail.com&gt;"> <span=
- class=3D"fn">Dmitry Yakimov</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Computer hangs only mouse moves"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105097">bug 10509=
-7</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Hardware</td>
-           <td>Other
-           </td>
-           <td>x86-64 (AMD64)
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">OS</td>
-           <td>All
-           </td>
-           <td>Linux (All)
-           </td>
-         </tr></table>
-      <p>
-      </p>
+[    1.124987] nouveau 0000:04:05.0: NVIDIA NV05 (20154000)
+[    1.161464] nouveau 0000:04:05.0: bios: version 03.05.00.10.00
+[    1.161475] nouveau 0000:04:05.0: bios: DCB table not found
+[    1.161535] nouveau 0000:04:05.0: bios: DCB table not found
+[    1.161577] nouveau 0000:04:05.0: bios: DCB table not found
+[    1.161586] nouveau 0000:04:05.0: bios: DCB table not found
+[    1.344008] tsc: Refined TSC clocksource calibration: 2200.078 MHz
+[    1.344024] clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x1fb67c69f81, max_idle_ns: 440795210317 ns
+[    1.344037] clocksource: Switched to clocksource tsc
+[    1.408102] nouveau 0000:04:05.0: tmr: unknown input clock freq
+[    1.409471] nouveau 0000:04:05.0: fb: 32 MiB SDRAM
+[    1.414459] nouveau 0000:04:05.0: DRM: VRAM: 31 MiB
+[    1.414467] nouveau 0000:04:05.0: DRM: GART: 128 MiB
+[    1.414476] nouveau 0000:04:05.0: DRM: BMP version 5.17
+[    1.414484] nouveau 0000:04:05.0: DRM: No DCB data found in VBIOS
+[    1.415629] nouveau 0000:04:05.0: DRM: Adaptor not initialised, running VBIOS init tables.
+[    1.415829] nouveau 0000:04:05.0: bios: DCB table not found
+[    1.416125] nouveau 0000:04:05.0: DRM: Saving VGA fonts
+[    1.477526] nouveau 0000:04:05.0: DRM: No DCB data found in VBIOS
+[    1.478428] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    1.478438] [drm] Driver supports precise vblank timestamp query.
+[    1.479618] nouveau 0000:04:05.0: DRM: MM: using M2MF for buffer copies
+[    1.517930] nouveau 0000:04:05.0: DRM: allocated 1024x768 fb: 0x4000, bo 00000000a09f4d1f
+[    1.519294] nouveau 0000:04:05.0: fb1: nouveaufb frame buffer device
+[    1.519313] [drm] Initialized nouveau 1.3.1 20120801 for 0000:04:05.0 on minor 1
 
 
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15186371480.47EBd.17924--
-
---===============1150443637==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1150443637==--
+-- 
+Meelis Roos (mroos@linux.ee)
