@@ -1,54 +1,104 @@
-From: Meelis Roos <mroos@linux.ee>
-Subject: Re: [Nouveau] 4.16-rc1: UBSAN warning in nouveau/nvkm/subdev/therm/base.c
- + oops in nvkm_therm_clkgate_fini
-Date: Wed, 14 Feb 2018 22:59:37 +0200 (EET)
-Message-ID: <alpine.LRH.2.21.1802142258370.25362@math.ut.ee>
-References: <alpine.LRH.2.21.1802132200260.24929@math.ut.ee>  <alpine.LRH.2.21.1802141628110.25362@math.ut.ee>  <CAKb7Uvj3MKGzNNcrc=-JA5GN4jt9+TU7ZjWDZpccmYJLDo76WQ@mail.gmail.com>  <CAKb7UvhRt=25J5aOUZusdE51hh1JVc45aQ8OhCVeOJwzYvLOJw@mail.gmail.com>
- <20180214174125.b5bdowaadck3vf5n@pmoreau.org> <1518635464.3674.2.camel@redhat.com>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: Addressing the problem of noisy GPUs under Nouveau
+Date: Thu, 15 Feb 2018 01:44:34 +0200
+Message-ID: <7554ca36-9f71-73fb-9adf-7c5a1e86dd42@free.fr>
+References: <4597fd60-59f8-5e45-ec5a-f52c4c6c6260@free.fr>
+ <7cad7e2b-e207-03be-b5a6-d036420b42e0@nvidia.com>
+ <20171122012909.GA4002@prokofiev.nvidia.com>
+ <CAKb7Uvjcbz0_F155xC5T1qXdTgo25Jp57mPAR8txPWTt_ZdYhw@mail.gmail.com>
+ <8c630fe4-ee96-2c68-eafb-d243195af29f@free.fr>
+ <985ec2c1-df88-622a-8ccb-1246c320e8c3@nvidia.com>
+ <f0f5c17c-2bcc-2bee-563a-0bc4b0858869@free.fr>
+ <11b5cc0f-24b6-97ca-3942-28381766fdbc@nvidia.com>
+ <1b9f324f-0dcd-7eaf-91ae-fadece88a0dd@free.fr>
+ <43a75ab3-b358-9a0c-aa9c-053fa029d430@free.fr>
+ <fccca49e-71a6-094c-42ac-7e4ce37c0108@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1518635464.3674.2.camel@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: Pierre Moreau <pmoreau@pmoreau.org>, Ilia Mirkin <imirkin@alum.mit.edu>, nouveau <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, dri-devel <dri-devel@lists.freedesktop.org>, Linux Kernel list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <fccca49e-71a6-094c-42ac-7e4ce37c0108-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Content-Language: fr-xx-moderne
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-> Actually this was brought up to me already, there's a fix on the mailing list
-> for this I reviewed a little while ago from nvidia that we should pull in:
-> 
-> https://patchwork.freedesktop.org/patch/203205/
-> 
-> Would you guys mind confirming that this patch fixes your issues?
-
-It works on my amd64, P4 is still compiling.
-
-[    1.124987] nouveau 0000:04:05.0: NVIDIA NV05 (20154000)
-[    1.161464] nouveau 0000:04:05.0: bios: version 03.05.00.10.00
-[    1.161475] nouveau 0000:04:05.0: bios: DCB table not found
-[    1.161535] nouveau 0000:04:05.0: bios: DCB table not found
-[    1.161577] nouveau 0000:04:05.0: bios: DCB table not found
-[    1.161586] nouveau 0000:04:05.0: bios: DCB table not found
-[    1.344008] tsc: Refined TSC clocksource calibration: 2200.078 MHz
-[    1.344024] clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x1fb67c69f81, max_idle_ns: 440795210317 ns
-[    1.344037] clocksource: Switched to clocksource tsc
-[    1.408102] nouveau 0000:04:05.0: tmr: unknown input clock freq
-[    1.409471] nouveau 0000:04:05.0: fb: 32 MiB SDRAM
-[    1.414459] nouveau 0000:04:05.0: DRM: VRAM: 31 MiB
-[    1.414467] nouveau 0000:04:05.0: DRM: GART: 128 MiB
-[    1.414476] nouveau 0000:04:05.0: DRM: BMP version 5.17
-[    1.414484] nouveau 0000:04:05.0: DRM: No DCB data found in VBIOS
-[    1.415629] nouveau 0000:04:05.0: DRM: Adaptor not initialised, running VBIOS init tables.
-[    1.415829] nouveau 0000:04:05.0: bios: DCB table not found
-[    1.416125] nouveau 0000:04:05.0: DRM: Saving VGA fonts
-[    1.477526] nouveau 0000:04:05.0: DRM: No DCB data found in VBIOS
-[    1.478428] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
-[    1.478438] [drm] Driver supports precise vblank timestamp query.
-[    1.479618] nouveau 0000:04:05.0: DRM: MM: using M2MF for buffer copies
-[    1.517930] nouveau 0000:04:05.0: DRM: allocated 1024x768 fb: 0x4000, bo 00000000a09f4d1f
-[    1.519294] nouveau 0000:04:05.0: fb1: nouveaufb frame buffer device
-[    1.519313] [drm] Initialized nouveau 1.3.1 20120801 for 0000:04:05.0 on minor 1
-
-
--- 
-Meelis Roos (mroos@linux.ee)
+T24gMDcvMDIvMTggMDU6MzEsIEpvaG4gSHViYmFyZCB3cm90ZToKPiBPbiAwMS8yOC8yMDE4IDA0
+OjA1IFBNLCBNYXJ0aW4gUGVyZXMgd3JvdGU6Cj4+IE9uIDI5LzAxLzE4IDAxOjI0LCBNYXJ0aW4g
+UGVyZXMgd3JvdGU6Cj4+PiBPbiAyOC8xMS8xNyAwNzozMiwgSm9obiBIdWJiYXJkIHdyb3RlOgo+
+Pj4+IE9uIDExLzIzLzIwMTcgMDI6NDggUE0sIE1hcnRpbiBQZXJlcyB3cm90ZToKPj4+Pj4gT24g
+MjMvMTEvMTcgMTA6MDYsIEpvaG4gSHViYmFyZCB3cm90ZToKPj4+Pj4+IE9uIDExLzIyLzIwMTcg
+MDU6MDcgUE0sIE1hcnRpbiBQZXJlcyB3cm90ZToKPj4+Pj4+PiBIZXksCj4+Pj4+Pj4KPj4+Pj4+
+PiBUaGFua3MgZm9yIHlvdXIgYW5zd2VyLCBBbmR5IQo+Pj4+Pj4+Cj4+Pj4+Pj4gT24gMjIvMTEv
+MTcgMDQ6MDYsIElsaWEgTWlya2luIHdyb3RlOgo+Pj4+Pj4+PiBPbiBUdWUsIE5vdiAyMSwgMjAx
+NyBhdCA4OjI5IFBNLCBBbmR5IFJpdGdlciA8YXJpdGdlckBudmlkaWEuY29tPiB3cm90ZToKPj4+
+Pj4+Pj4gTWFydGluJ3MgcXVlc3Rpb24gd2FzIHZlcnkgbG9uZywgYnV0IGl0IGJvaWxzIGRvd24g
+dG8gdGhpczoKPj4+Pj4+Pj4KPj4+Pj4+Pj4gSG93IGRvIHdlIGNvbXB1dGUgdGhlIGNvcnJlY3Qg
+dmFsdWVzIHRvIHdyaXRlIGludG8gdGhlIGUxMTQvZTExOCBwd20KPj4+Pj4+Pj4gcmVnaXN0ZXJz
+IGJhc2VkIG9uIHRoZSBWQklPUyBjb250ZW50cyBhbmQgY3VycmVudCBzdGF0ZSBvZiB0aGUgYm9h
+cmQKPj4+Pj4+Pj4gKGxpa2UgdGVtcGVyYXR1cmUpLgo+Pj4+Pj4+Cj4+Pj4+Pj4gVW5mb3J0dW5h
+dGVseSwgaXQgY2FuIGFsc28gYmUgdGhlIGUxMWMvZTEyMCBjb3VwbGUsIG9yIDB4MjAwZDgvZGMg
+b24KPj4+Pj4+PiBHRjExOSssIG9yIDB4MjAwY2QvZDAgb24gS2VwbGVyKy4KPj4+Pj4+Pgo+Pj4+
+Pj4+IEF0IGxlYXN0LCBpdCBsb29rcyBsaWtlIHdlIGtub3cgd2hpY2ggUFdNIGNvbnRyb2xlciB3
+ZSBuZWVkIHRvIGRyaXZlLCBzbwo+Pj4+Pj4+IEkgZGlkIG5vdCB3YW50IHRvIG11ZGR5IHRoZSB3
+YXRlciBldmVuIG1vcmUgYnkgZ2l2aW5nIHJlZ2lzdGVyCj4+Pj4+Pj4gYWRkcmVzc2VzLCByYXRo
+ZXIgY29uY2VudHJhdGluZyBvbiB0aGUgcHJvYmxlbSBhdCBoYW5kOiBIb3cgdG8gY29tcHV0ZQo+
+Pj4+Pj4+IHRoZSBkdXR5IHZhbHVlIGZvciB0aGUgUFdNIGNvbnRyb2xlci4KPj4+Pj4+Pgo+Pj4+
+Pj4+Pgo+Pj4+Pj4+PiBXZSBnZW5lcmFsbHkgZG8gdGhpcyByaWdodCwgYnV0IGFwcGVhciB0byBn
+ZXQgaXQgZXh0cmEtd3JvbmcgZm9yIGNlcnRhaW4gR1BVcy4KPj4+Pj4+Pgo+Pj4+Pj4+IFllcy4u
+LiBTbyBmYXIsIHdlIGFyZSBhbHdheXMgc2FmZSwgYnV0IHVzZXJzIHRlbmQgdG8gbWluZCB3aGVu
+IHRoZWlyCj4+Pj4+Pj4gY29tcHV0ZXIgc291bmQgbGlrZSBhIGp1bWJvIGpldCBhdCB0YWtlIG9m
+Zi4uLiBXaG8gd291bGQgaGF2ZSB0aG91Z2h0PyA6RAo+Pj4+Pj4+Cj4+Pj4+Pj4gQW55d2F5LCBs
+b29raW5nIGZvcndhcmQgdG8geW91ciBhbnN3ZXIhCj4+Pj4+Pj4KPj4+Pj4+PiBDaGVlcnMsCj4+
+Pj4+Pj4gTWFydGluCj4+Pj4+Pgo+IFsuLi5dCj4gCj4gSGkgTWFydGluLAo+IAo+IEkgc3Ryb25n
+bHkgc3VzcGVjdCB5b3UgYXJlIHNlZWluZyBhIHNwZWNpYWwgYmVoYXZpb3IsIHdoaWNoIGlzOiBv
+bgo+IHNvbWUgR0YxMDggYm9hcmRzIHdlIHVzZSBvbmx5IGEgdmVyeSBsaW1pdGVkIHJhbmdlIG9m
+IFBXTSwKPiAwLjQgdG8gMi41JSwgZHVlIHRvIHRoZSBwYXJ0aWN1bGFyIHR5cGUgb2YgREMgcG93
+ZXIgY29udmVyc2lvbgo+IGNpcmN1aXQgb24gdGhvc2UgYm9hcmRzLiBIb3dldmVyLCBpdCBjb3Vs
+ZCBhbHNvIGp1c3QgYmUgZGlmZmljdWx0aWVzCj4gaW4gaW50ZXJwcmV0aW5nIHRoZSBmaXhlZC1w
+b2ludCB2YXJpYWJsZXMgaW4gdGhlIHRhYmxlcy4gSW4gZWl0aGVyCj4gY2FzZSwgdGhlIGFuc3dl
+ciBpcyB0byBleHBsYWluIHRob3NlIGZvcm1hdHMsIHNvIEknbGwgZG8gdGhhdCBub3cuCj4gCj4g
+SSBhbSBhdHRhY2hpbmcgdGhlIGZhbiBjb29sZXIgdGFibGUsIGluIEhUTUwgZm9ybWF0LiBXZSBo
+YXZlIGFsc28KPiBwdWJsaXNoZWQgdGhlIEJJVCAoQklPUyBJbmZvcm1hdGlvbiBUYWJsZSkgZm9y
+bWF0LCBzZXBhcmF0ZWx5Ogo+IAo+ICAgICBodHRwOi8vZG93bmxvYWQubnZpZGlhLmNvbS9vcGVu
+LWdwdS1kb2MvQklPUy1JbmZvcm1hdGlvbi1UYWJsZS8xL0JJT1MtSW5mb3JtYXRpb24tVGFibGUu
+aHRtbAo+IAo+ICwgYnV0IEkgZG9uJ3QgdGhpbmsgaXQgaGFzIGFueSBzdXJwcmlzZXMgZm9yIHlv
+dSwgaW4gdGhpcyByZWdhcmQuIFlvdQo+IGNhbiBjaGVjayBpdCwgdG8gYmUgc3VyZSB5b3UncmUg
+bG9va2luZyBhdCB0aGUgcmlnaHQgc3VidGFibGUsIHRob3VnaCwKPiBqdXN0IGluIGNhc2UuCj4g
+Cj4gVGhlIGludGVyZXN0aW5nIHBhcnRzIG9mIHRoYXQgdGFibGUgYXJlOgo+IAo+IFBXTSBTY2Fs
+ZSBTbG9wZSAoMTYgYml0cyk6Cj4gCj4gICBTbG9wZSB0byBzY2FsZSBlZmZlY3RpdmUgUFdNIHRv
+IGFjdHVhbCBQV00gKDEvNDA5NiwgRjQuMTIsIHNpZ25lZCkuCj4gICBGb3IgYmFja3dhcmRzIGNv
+bXBhdGliaWxpdHksIGEgdmFsdWUgb2YgMC4wICgweDAwMDApIGlzIGludGVycHJldGVkIGFzIDEu
+MCAoMHgxMDAwKS4KPiAgIFRoaXMgdmFsdWUgaXMgdXNlZCB0byBzY2FsZSB0aGUgZWZmZWN0aXZl
+IFBXTSBkdXR5IGN5Y2xlLCBhIGNvbmNlcHR1YWwgZnJhY3Rpb24KPiAgIG9mIGZ1bGwgc3BlZWQg
+KDAlIHRvIDEwMCUpLCB0byB0aGUgYWN0dWFsIGVsZWN0cmljYWwgUFdNIGR1dHkgY3ljbGUuCj4g
+ICBQV00oYWN0dWFsKSA9IFNsb3BlIMOXIFBXTShlZmZlY3RpdmUpICsgT2Zmc2V0Cj4gCj4gUFdN
+IFNjYWxlIE9mZnNldCAoMTYgYml0cyk6Cj4gCj4gICBPZmZzZXQgdG8gc2NhbGUgZWZmZWN0aXZl
+IFBXTSB0byBhY3R1YWwgUFdNICgxLzQwOTYsIEY0LjEyLCBzaWduZWQpLgo+ICAgVGhpcyB2YWx1
+ZSBpcyB1c2VkIHRvIHNjYWxlIHRoZSBlZmZlY3RpdmUgUFdNIGR1dHkgY3ljbGUsIGEgY29uY2Vw
+dHVhbCBmcmFjdGlvbgo+ICAgb2YgZnVsbCBzcGVlZCAoMCUgdG8gMTAwJSksIHRvIHRoZSBhY3R1
+YWwgZWxlY3RyaWNhbCBQV00gZHV0eSBjeWNsZS4KPiAgIFBXTShhY3R1YWwpID0gU2xvcGUgw5cg
+UFdNKGVmZmVjdGl2ZSkgKyBPZmZzZXQKPiAKPiAKPiBIb3dldmVyLCB0aGUgY2FsY3VsYXRpb25z
+IGFyZSBoYXJkIHRvIGdldCByaWdodCwgYW5kIHRoZSB0YWJsZSBzdG9yZXMKPiB2YWx1ZXMgaW4g
+Zml4ZWQtcG9pbnQgZm9ybWF0LCBzbyBJJ20gc2hvd2luZyBhIGZldyBzaW1wbGlmaWVkIGNvZGUg
+ZXhjZXJwdHMKPiB0aGF0IHVzZSB0aGVzZS4gVGhlIHZhcmlvdXMgZml4ZWQgcG9pbnQgbWFjcm8g
+ZGVmaW5pdGlvbnMgYXJlIGZvdW5kIGFzIHBhcnQgb2YKPiBvdXIgbm9ybWFsIGRyaXZlciBwYWNr
+YWdlLCBpbiBudm1pc2MuaCBhbmQgbnZ0eXBlcy5oLiBBbnkgb3RoZXIgZGVmaW5pdGlvbnMKPiB0
+aGF0IHlvdSBuZWVkIGFyZSBpbmNsdWRlZCByaWdodCBoZXJlIChJIHJhbiBhIHF1aWNrIGNvbXBp
+bGVyIGNoZWNrIHRvIGJlIHN1cmUuKQoKV293IEpvaG4sIHRoYW5rcyBhIGxvdCEgU29ycnkgZm9y
+IHRoZSBkZWxheSwgSSB3YXMgb24gdmFjYXRpb24gd2hlbiB5b3UKcG9zdGVkIHRoaXMsIGJ1dCB0
+aGlzIGRlZmluaXRlbHkgaXMgd2hhdCBJIHdhcyBsb29raW5nIGZvciEKClRoYW5rcyBhIGxvdCBm
+b3IgdGhlIGNvZGUgZXhhbXBsZSwgSSB3aWxsIHRyeSB0byBtYWtlIHVzZSBvZiBpdCBzb29uIGFu
+ZApjb21lIGJhY2sgdG8geW91IGlmIEkgc3RpbGwgaGF2ZSBpc3N1ZXMhCgpNYXJ0aW4KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
+IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
