@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105097] New: Computer hangs only mouse moves
-Date: Wed, 14 Feb 2018 19:38:04 +0000
-Message-ID: <bug-105097-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105097] Computer hangs only mouse moves
+Date: Wed, 14 Feb 2018 19:38:49 +0000
+Message-ID: <bug-105097-8800-KpiqTUiaKc@http.bugs.freedesktop.org/>
+References: <bug-105097-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0601926880=="
+Content-Type: multipart/mixed; boundary="===============1412065984=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-105097-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0601926880==
-Content-Type: multipart/alternative; boundary="15186370840.EC2d.17815"
+--===============1412065984==
+Content-Type: multipart/alternative; boundary="15186371280.4FB6A.17718"
 Content-Transfer-Encoding: 7bit
 
 
---15186370840.EC2d.17815
-Date: Wed, 14 Feb 2018 19:38:04 +0000
+--15186371280.4FB6A.17718
+Date: Wed, 14 Feb 2018 19:38:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -33,45 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D105097
 
-            Bug ID: 105097
-           Summary: Computer hangs only mouse moves
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: yarus23-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 137360
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D137360&action=3Dedit
-dmesg log
-
-I have attached dmesg output and foound some messageg in syslog before
-freezing:
-
-Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308412] nouveau
-0000:01:00.0: fifo: write fault at 0000240000 engine 00 [GR] client 0f
-[GPC0/PROP_0] reason 02 [PTE] on channel 2 [003fbf8000 Xorg[1036]]
-Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308436] nouveau
-0000:01:00.0: fifo: channel 2: killed
-Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308440] nouveau
-0000:01:00.0: fifo: runlist 0: scheduled for recovery
-Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308446] nouveau
-0000:01:00.0: fifo: engine 0: scheduled for recovery
-Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308539] nouveau
-0000:01:00.0: Xorg[1036]: channel 2 killed!
+--- Comment #1 from Dmitry Yakimov <yarus23-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 137361
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D137361&action=3Dedit
+XOrg log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15186370840.EC2d.17815
-Date: Wed, 14 Feb 2018 19:38:04 +0000
+--15186371280.4FB6A.17718
+Date: Wed, 14 Feb 2018 19:38:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -82,109 +56,28 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Computer hangs only mouse moves"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105097">105097</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Computer hangs only mouse moves
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>yarus23&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D137360=
-" name=3D"attach_137360" title=3D"dmesg log">attachment 137360</a> <a href=
-=3D"attachment.cgi?id=3D137360&amp;action=3Dedit" title=3D"dmesg log">[deta=
-ils]</a></span>
-dmesg log
-
-I have attached dmesg output and foound some messageg in syslog before
-freezing:
-
-Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308412] nouveau
-0000:01:00.0: fifo: write fault at 0000240000 engine 00 [GR] client 0f
-[GPC0/PROP_0] reason 02 [PTE] on channel 2 [003fbf8000 Xorg[1036]]
-Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308436] nouveau
-0000:01:00.0: fifo: channel 2: killed
-Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308440] nouveau
-0000:01:00.0: fifo: runlist 0: scheduled for recovery
-Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308446] nouveau
-0000:01:00.0: fifo: engine 0: scheduled for recovery
-Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308539] nouveau
-0000:01:00.0: Xorg[1036]: channel 2 killed!</pre>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Computer hangs only mouse moves"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105097#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Computer hangs only mouse moves"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105097">bug 10509=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+yarus23&#64;gmail.com" title=3D"Dmitry Yakimov &lt;yarus23&#64;gmail.com&gt=
+;"> <span class=3D"fn">Dmitry Yakimov</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D137361=
+" name=3D"attach_137361" title=3D"XOrg log">attachment 137361</a> <a href=
+=3D"attachment.cgi?id=3D137361&amp;action=3Dedit" title=3D"XOrg log">[detai=
+ls]</a></span>
+XOrg log</pre>
         </div>
       </p>
 
@@ -198,9 +91,9 @@ Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308539] nouveau
     </body>
 </html>=
 
---15186370840.EC2d.17815--
+--15186371280.4FB6A.17718--
 
---===============0601926880==
+--===============1412065984==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -210,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0601926880==--
+--===============1412065984==--
