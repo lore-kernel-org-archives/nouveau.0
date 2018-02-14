@@ -1,70 +1,75 @@
-From: Sean Paul <seanpaul@chromium.org>
-Subject: Re: [PATCH 0/5] Fix deadlock on runtime suspend in DRM drivers
-Date: Wed, 14 Feb 2018 09:58:43 -0500
-Message-ID: <20180214145843.hahok7fa6vfgcvov@art_vandelay>
-References: <cover.1518338788.git.lukas@wunner.de>
- <20180214084636.GA28107@wunner.de>
- <1ab1ea48-125c-a104-c11d-16d1e9d94b98@linux.intel.com>
- <20180214140844.hnqdujwgolbmx7j5@art_vandelay>
- <f5240db1-3b1c-c4d7-0106-3a3846659a4f@daenzer.net>
+From: Pierre Moreau <pmoreau@pmoreau.org>
+Subject: Re: [Nouveau] 4.16-rc1: UBSAN warning in
+ nouveau/nvkm/subdev/therm/base.c + oops in nvkm_therm_clkgate_fini
+Date: Wed, 14 Feb 2018 18:41:26 +0100
+Message-ID: <20180214174125.b5bdowaadck3vf5n@pmoreau.org>
+References: <alpine.LRH.2.21.1802132200260.24929@math.ut.ee>
+ <alpine.LRH.2.21.1802141628110.25362@math.ut.ee>
+ <CAKb7Uvj3MKGzNNcrc=-JA5GN4jt9+TU7ZjWDZpccmYJLDo76WQ@mail.gmail.com>
+ <CAKb7UvhRt=25J5aOUZusdE51hh1JVc45aQ8OhCVeOJwzYvLOJw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="dwdkp45xn3dm5qq2"
+Return-path: <linux-kernel-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <f5240db1-3b1c-c4d7-0106-3a3846659a4f@daenzer.net>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>
-Cc: Ismo Toijala <ismo.toijala@gmail.com>, Liviu Dudau <Liviu.Dudau@arm.com>, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>, Peter Wu <peter@lekensteyn.nl>
+In-Reply-To: <CAKb7UvhRt=25J5aOUZusdE51hh1JVc45aQ8OhCVeOJwzYvLOJw@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: Lyude Paul <lyude@redhat.com>, Meelis Roos <mroos@linux.ee>, nouveau <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, dri-devel <dri-devel@lists.freedesktop.org>, Linux Kernel list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBGZWIgMTQsIDIwMTggYXQgMDM6NDM6NTZQTSArMDEwMCwgTWljaGVsIETDpG56ZXIg
-d3JvdGU6Cj4gT24gMjAxOC0wMi0xNCAwMzowOCBQTSwgU2VhbiBQYXVsIHdyb3RlOgo+ID4gT24g
-V2VkLCBGZWIgMTQsIDIwMTggYXQgMTA6MjY6MzVBTSArMDEwMCwgTWFhcnRlbiBMYW5raG9yc3Qg
-d3JvdGU6Cj4gPj4gT3AgMTQtMDItMTggb20gMDk6NDYgc2NocmVlZiBMdWthcyBXdW5uZXI6Cj4g
-Pj4+IERlYXIgZHJtLW1pc2MgbWFpbnRhaW5lcnMsCj4gPj4+Cj4gPj4+IE9uIFN1biwgRmViIDEx
-LCAyMDE4IGF0IDEwOjM4OjI4QU0gKzAxMDAsIEx1a2FzIFd1bm5lciB3cm90ZToKPiA+Pj4+IEZp
-eCBhIGRlYWRsb2NrIG9uIGh5YnJpZCBncmFwaGljcyBsYXB0b3BzIHRoYXQncyBiZWVuIHByZXNl
-bnQgc2luY2UgMjAxMzoKPiA+Pj4gVGhpcyBzZXJpZXMgaGFzIGJlZW4gcmV2aWV3ZWQsIGNvbnNl
-bnQgaGFzIGJlZW4gZXhwcmVzc2VkIGJ5IHRoZSBtb3N0Cj4gPj4+IGludGVyZXN0ZWQgcGFydGll
-cywgcGF0Y2ggWzEvNV0gd2hpY2ggdG91Y2hlcyBmaWxlcyBvdXRzaWRlIGRyaXZlcnMvZ3B1Cj4g
-Pj4+IGhhcyBiZWVuIGFja2VkIGFuZCBJJ3ZlIGp1c3Qgb3V0IGEgdjIgYWRkcmVzc2luZyB0aGUg
-b25seSBvYmplY3Rpb24KPiA+Pj4gcmFpc2VkLiAgTXkgcGxhbiBpcyB0aHVzIHRvIHdhaXQgYW5v
-dGhlciB0d28gZGF5cyBmb3IgY29tbWVudHMgYW5kLAo+ID4+PiBiYXJyaW5nIGZ1cnRoZXIgb2Jq
-ZWN0aW9ucywgcHVzaCB0byBkcm0tbWlzYyB0aGlzIHdlZWtlbmQuCj4gPj4+Cj4gPj4+IEhvd2V2
-ZXIgSSdtIHN0cnVnZ2xpbmcgd2l0aCB0aGUgZGVjaXNpb24gd2hldGhlciB0byBwdXNoIHRvIG5l
-eHQgb3IKPiA+Pj4gZml4ZXMuICBUaGUgc2VyaWVzIGlzIG1hcmtlZCBmb3Igc3RhYmxlLCBob3dl
-dmVyIHRoZSBudW1iZXIgb2YKPiA+Pj4gYWZmZWN0ZWQgbWFjaGluZXMgaXMgbGltaXRlZCBhbmQg
-Zm9yIGFuIGlzc3VlIHRoYXQncyBiZWVuIHByZXNlbnQKPiA+Pj4gZm9yIDUgeWVhcnMgaXQgcHJv
-YmFibHkgZG9lc24ndCBtYXR0ZXIgaWYgaXQgc29ha3MgYW5vdGhlciB0d28gbW9udGhzCj4gPj4+
-IGluIGxpbnV4LW5leHQgYmVmb3IgaXQgZ2V0cyBiYWNrcG9ydGVkLiAgSGVuY2UgSSB0ZW5kIHRv
-IGVyciBvbiB0aGUKPiA+Pj4gc2lkZSBvZiBjYXV0aW9uIGFuZCBwdXNoIHRvIG5leHQsIGhvd2V2
-ZXIgYSBjYXNlIGNvdWxkIGJlIG1hZGUgdGhhdAo+ID4+PiBmaXhlcyBpcyBtb3JlIGFwcHJvcHJp
-YXRlLgo+ID4+Pgo+ID4+PiBJJ20gbGFja2luZyBleHBlcmllbmNlIG1ha2luZyBzdWNoIGRlY2lz
-aW9ucyBhbmQgd291bGQgYmUgaW50ZXJlc3RlZAo+ID4+PiB0byBsZWFybiBob3cgeW91J2QgaGFu
-ZGxlIHRoaXMuCj4gPj4+Cj4gPj4+IFRoYW5rcywKPiA+Pj4KPiA+Pj4gTHVrYXMKPiA+Pgo+ID4+
-IEkgd291bGQgc2F5IGZpeGVzLCBpdCBkb2Vzbid0IGxvb2sgcGFydGljdWxhcmx5IHNjYXJ5LiA6
-KQo+ID4gCj4gPiBBZ3JlZWQuIElmIGl0J3MgZ29vZCBlbm91Z2ggZm9yIHN0YWJsZSwgaXQncyBn
-b29kIGVub3VnaCBmb3IgLWZpeGVzIQo+IAo+IEl0J3Mgbm90IHRoYXQgc2ltcGxlLCBpcyBpdD8g
-RmFzdC10cmFja2luZyBwYXRjaGVzIChzb21lIG9mIHdoaWNoIGFwcGVhcgo+IHRvIGJlIHVudGVz
-dGVkKSB0byBzdGFibGUgd2l0aG91dCBhbiBpbW1lZGlhdGUgY2F1c2UgZm9yIHVyZ2VuY3kgc2Vl
-bXMKPiByaXNreSB0byBtZS4KPiAKCi9tZSBzaG91bGQgYmUgbW9yZSBjYXJlZnVsIHdoYXQgaGUg
-c2F5cwoKR2l2ZW4gd2hlcmUgd2UgYXJlIGluIHRoZSByZWxlYXNlIGN5Y2xlLCBpdCdzIGJhcmVs
-eSBhIGZhc3QgdHJhY2suIElmIHRoZXNlIGdvCmluIC1maXhlcywgdGhleSdsbCBnZXQgaW4gLXJj
-MiBhbmQgd2lsbCBoYXZlIHBsZW50eSBvZiB0aW1lIHRvIGJha2UuIElmIHdlIHdlcmUKYXQgcmM1
-LCBpdCBtaWdodCBiZSBhIGRpZmZlcmVudCBzdG9yeS4KClNlYW4KCj4gCj4gLS0gCj4gRWFydGhs
-aW5nIE1pY2hlbCBEw6RuemVyICAgICAgICAgICAgICAgfCAgICAgICAgICAgICAgIGh0dHA6Ly93
-d3cuYW1kLmNvbQo+IExpYnJlIHNvZnR3YXJlIGVudGh1c2lhc3QgICAgICAgICAgICAgfCAgICAg
-ICAgICAgICBNZXNhIGFuZCBYIGRldmVsb3BlcgoKLS0gClNlYW4gUGF1bCwgU29mdHdhcmUgRW5n
-aW5lZXIsIEdvb2dsZSAvIENocm9taXVtIE9TCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2RyaS1kZXZlbAo=
+
+--dwdkp45xn3dm5qq2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On 2018-02-14 =E2=80=94 09:36, Ilia Mirkin wrote:
+> On Wed, Feb 14, 2018 at 9:35 AM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
+> > On Wed, Feb 14, 2018 at 9:29 AM, Meelis Roos <mroos@linux.ee> wrote:
+> >>> This is 4.16-rc1+todays git on a lowly P4 with NV5, worked fine in 4.=
+15:
+> >>
+> >> NV5 in another PC (secondary card in x86-64) made the systrem crash on
+> >> boot, in nvkm_therm_clkgate_fini.
+> >
+> > Mind booting with nouveau.debug=3Dtrace? That should hopefully tell us
+> > more exactly which thing is dying. If you have a cross-compile/distcc
+> > setup handy, a bisect may be even more useful.
+>=20
+> Erm, sorry, nevermind. You even said it -- nvkm_therm_clkgate_fini is
+> somehow mis-hooked up for NV5 now. A bisect result would still make
+> the culprit a lot more obvious.
+
+CC=E2=80=99ing Lyude Paul as she hooked up the clockgating support.
+
+Looking at the code, only NV40+ do have a therm engine. Therefore, shouldn=
+=E2=80=99t
+nvkm_therm_clkgate_enable(), nvkm_therm_clkgate_fini() and
+nvkm_therm_clkgate_oneinit() all check for therm being not NULL, on top of
+their check for the clkgate_* hooks being there? Or instead, maybe have the
+check in nvkm_device_init() nvkm_device_init()?
+
+Pierre
+
+--dwdkp45xn3dm5qq2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEuCp/qmebDh5BvKefO2dY27124hoFAlqEdMEACgkQO2dY2712
+4hqonA//XCWbLxa9FkJGpe5m0xPTHQTMjIhlr7G06cvIzCFj+QYjCiNPZAF1RM5L
+wZ5UlJktHSU9m8mCZTebRskJLe89B/1szrPmZjE2EugpnQQjJF0Ae65icZaTvx6p
+n6JCpQz3+Jrg8MY1d5n5dGvWodPhbiVu8Z12ScTqr2rSbOcL5fNubk7JSOY7xlI6
+yi1DKAL9aM88ojJRXX5mAV1pfrqw4cWv3xcQtdzQ8E1ePyHoMsPEafemCv0kMy2F
+cPaKAzA8ok5RULR5zLAXhIFlMiJxVjkjhOKVrdZoC0UdocRwcRpZkUljWOCbe7kn
+j1nik54MGuw6tBx3xpQBLB/FWAaMi50eNWZ96H7MMEhV8GFLppN8k0v1xKse2vmx
+TqHCQCkFHSqNvocT3aXPTfCrOmwog192B5V4kQS84j/Auf2xEO8UmKH9euxGzZgt
+RF4goFzudrbNH1oIyYRA0lLOraeBr+k3eoK2ZTaJprBgjCGu1VoRsguu8acz1qUU
+rFGqXNs46GmSZb3CkCV1i4j/yMc0ycqPQVcthWxVHeJ3SwkgscpdLzGFaNj+wdA9
+ISijMV873PZmFt0/BU1RxCkdW2QA3nNP92XhXjehezHJksGTKW6O7gYo5smKGauC
+BEo9DmqpTsmjTVCGK8lQQM4zGWj+G4jbXLSRDYolf7FKt3Tm0mg=
+=sYjh
+-----END PGP SIGNATURE-----
+
+--dwdkp45xn3dm5qq2--
