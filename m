@@ -1,16 +1,17 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [Nouveau] 4.16-rc1: UBSAN warning in
- nouveau/nvkm/subdev/therm/base.c + oops in nvkm_therm_clkgate_fini
-Date: Wed, 14 Feb 2018 09:36:33 -0500
-Message-ID: <CAKb7UvhRt=25J5aOUZusdE51hh1JVc45aQ8OhCVeOJwzYvLOJw@mail.gmail.com>
-References: <alpine.LRH.2.21.1802132200260.24929@math.ut.ee>
- <alpine.LRH.2.21.1802141628110.25362@math.ut.ee>
- <CAKb7Uvj3MKGzNNcrc=-JA5GN4jt9+TU7ZjWDZpccmYJLDo76WQ@mail.gmail.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
+Subject: Re: [PATCH 0/5] Fix deadlock on runtime suspend in DRM drivers
+Date: Wed, 14 Feb 2018 15:43:56 +0100
+Message-ID: <f5240db1-3b1c-c4d7-0106-3a3846659a4f@daenzer.net>
+References: <cover.1518338788.git.lukas@wunner.de>
+ <20180214084636.GA28107@wunner.de>
+ <1ab1ea48-125c-a104-c11d-16d1e9d94b98@linux.intel.com>
+ <20180214140844.hnqdujwgolbmx7j5@art_vandelay>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7Uvj3MKGzNNcrc=-JA5GN4jt9+TU7ZjWDZpccmYJLDo76WQ@mail.gmail.com>
+In-Reply-To: <20180214140844.hnqdujwgolbmx7j5@art_vandelay>
+Content-Language: en-CA
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
@@ -20,23 +21,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: dri-devel-bounces@lists.freedesktop.org
 Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Meelis Roos <mroos@linux.ee>
-Cc: nouveau <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, dri-devel <dri-devel@lists.freedesktop.org>, Linux Kernel list <linux-kernel@vger.kernel.org>
+To: Sean Paul <seanpaul@chromium.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Ismo Toijala <ismo.toijala@gmail.com>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Liviu Dudau <Liviu.Dudau@arm.com>, dri-devel@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>, Peter Wu <peter@lekensteyn.nl>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBGZWIgMTQsIDIwMTggYXQgOTozNSBBTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
-bS5taXQuZWR1PiB3cm90ZToKPiBPbiBXZWQsIEZlYiAxNCwgMjAxOCBhdCA5OjI5IEFNLCBNZWVs
-aXMgUm9vcyA8bXJvb3NAbGludXguZWU+IHdyb3RlOgo+Pj4gVGhpcyBpcyA0LjE2LXJjMSt0b2Rh
-eXMgZ2l0IG9uIGEgbG93bHkgUDQgd2l0aCBOVjUsIHdvcmtlZCBmaW5lIGluIDQuMTU6Cj4+Cj4+
-IE5WNSBpbiBhbm90aGVyIFBDIChzZWNvbmRhcnkgY2FyZCBpbiB4ODYtNjQpIG1hZGUgdGhlIHN5
-c3RyZW0gY3Jhc2ggb24KPj4gYm9vdCwgaW4gbnZrbV90aGVybV9jbGtnYXRlX2ZpbmkuCj4KPiBN
-aW5kIGJvb3Rpbmcgd2l0aCBub3V2ZWF1LmRlYnVnPXRyYWNlPyBUaGF0IHNob3VsZCBob3BlZnVs
-bHkgdGVsbCB1cwo+IG1vcmUgZXhhY3RseSB3aGljaCB0aGluZyBpcyBkeWluZy4gSWYgeW91IGhh
-dmUgYSBjcm9zcy1jb21waWxlL2Rpc3RjYwo+IHNldHVwIGhhbmR5LCBhIGJpc2VjdCBtYXkgYmUg
-ZXZlbiBtb3JlIHVzZWZ1bC4KCkVybSwgc29ycnksIG5ldmVybWluZC4gWW91IGV2ZW4gc2FpZCBp
-dCAtLSBudmttX3RoZXJtX2Nsa2dhdGVfZmluaSBpcwpzb21laG93IG1pcy1ob29rZWQgdXAgZm9y
-IE5WNSBub3cuIEEgYmlzZWN0IHJlc3VsdCB3b3VsZCBzdGlsbCBtYWtlCnRoZSBjdWxwcml0IGEg
-bG90IG1vcmUgb2J2aW91cy4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJp
-LWRldmVsCg==
+T24gMjAxOC0wMi0xNCAwMzowOCBQTSwgU2VhbiBQYXVsIHdyb3RlOgo+IE9uIFdlZCwgRmViIDE0
+LCAyMDE4IGF0IDEwOjI2OjM1QU0gKzAxMDAsIE1hYXJ0ZW4gTGFua2hvcnN0IHdyb3RlOgo+PiBP
+cCAxNC0wMi0xOCBvbSAwOTo0NiBzY2hyZWVmIEx1a2FzIFd1bm5lcjoKPj4+IERlYXIgZHJtLW1p
+c2MgbWFpbnRhaW5lcnMsCj4+Pgo+Pj4gT24gU3VuLCBGZWIgMTEsIDIwMTggYXQgMTA6Mzg6MjhB
+TSArMDEwMCwgTHVrYXMgV3VubmVyIHdyb3RlOgo+Pj4+IEZpeCBhIGRlYWRsb2NrIG9uIGh5YnJp
+ZCBncmFwaGljcyBsYXB0b3BzIHRoYXQncyBiZWVuIHByZXNlbnQgc2luY2UgMjAxMzoKPj4+IFRo
+aXMgc2VyaWVzIGhhcyBiZWVuIHJldmlld2VkLCBjb25zZW50IGhhcyBiZWVuIGV4cHJlc3NlZCBi
+eSB0aGUgbW9zdAo+Pj4gaW50ZXJlc3RlZCBwYXJ0aWVzLCBwYXRjaCBbMS81XSB3aGljaCB0b3Vj
+aGVzIGZpbGVzIG91dHNpZGUgZHJpdmVycy9ncHUKPj4+IGhhcyBiZWVuIGFja2VkIGFuZCBJJ3Zl
+IGp1c3Qgb3V0IGEgdjIgYWRkcmVzc2luZyB0aGUgb25seSBvYmplY3Rpb24KPj4+IHJhaXNlZC4g
+IE15IHBsYW4gaXMgdGh1cyB0byB3YWl0IGFub3RoZXIgdHdvIGRheXMgZm9yIGNvbW1lbnRzIGFu
+ZCwKPj4+IGJhcnJpbmcgZnVydGhlciBvYmplY3Rpb25zLCBwdXNoIHRvIGRybS1taXNjIHRoaXMg
+d2Vla2VuZC4KPj4+Cj4+PiBIb3dldmVyIEknbSBzdHJ1Z2dsaW5nIHdpdGggdGhlIGRlY2lzaW9u
+IHdoZXRoZXIgdG8gcHVzaCB0byBuZXh0IG9yCj4+PiBmaXhlcy4gIFRoZSBzZXJpZXMgaXMgbWFy
+a2VkIGZvciBzdGFibGUsIGhvd2V2ZXIgdGhlIG51bWJlciBvZgo+Pj4gYWZmZWN0ZWQgbWFjaGlu
+ZXMgaXMgbGltaXRlZCBhbmQgZm9yIGFuIGlzc3VlIHRoYXQncyBiZWVuIHByZXNlbnQKPj4+IGZv
+ciA1IHllYXJzIGl0IHByb2JhYmx5IGRvZXNuJ3QgbWF0dGVyIGlmIGl0IHNvYWtzIGFub3RoZXIg
+dHdvIG1vbnRocwo+Pj4gaW4gbGludXgtbmV4dCBiZWZvciBpdCBnZXRzIGJhY2twb3J0ZWQuICBI
+ZW5jZSBJIHRlbmQgdG8gZXJyIG9uIHRoZQo+Pj4gc2lkZSBvZiBjYXV0aW9uIGFuZCBwdXNoIHRv
+IG5leHQsIGhvd2V2ZXIgYSBjYXNlIGNvdWxkIGJlIG1hZGUgdGhhdAo+Pj4gZml4ZXMgaXMgbW9y
+ZSBhcHByb3ByaWF0ZS4KPj4+Cj4+PiBJJ20gbGFja2luZyBleHBlcmllbmNlIG1ha2luZyBzdWNo
+IGRlY2lzaW9ucyBhbmQgd291bGQgYmUgaW50ZXJlc3RlZAo+Pj4gdG8gbGVhcm4gaG93IHlvdSdk
+IGhhbmRsZSB0aGlzLgo+Pj4KPj4+IFRoYW5rcywKPj4+Cj4+PiBMdWthcwo+Pgo+PiBJIHdvdWxk
+IHNheSBmaXhlcywgaXQgZG9lc24ndCBsb29rIHBhcnRpY3VsYXJseSBzY2FyeS4gOikKPiAKPiBB
+Z3JlZWQuIElmIGl0J3MgZ29vZCBlbm91Z2ggZm9yIHN0YWJsZSwgaXQncyBnb29kIGVub3VnaCBm
+b3IgLWZpeGVzIQoKSXQncyBub3QgdGhhdCBzaW1wbGUsIGlzIGl0PyBGYXN0LXRyYWNraW5nIHBh
+dGNoZXMgKHNvbWUgb2Ygd2hpY2ggYXBwZWFyCnRvIGJlIHVudGVzdGVkKSB0byBzdGFibGUgd2l0
+aG91dCBhbiBpbW1lZGlhdGUgY2F1c2UgZm9yIHVyZ2VuY3kgc2VlbXMKcmlza3kgdG8gbWUuCgoK
+LS0gCkVhcnRobGluZyBNaWNoZWwgRMOkbnplciAgICAgICAgICAgICAgIHwgICAgICAgICAgICAg
+ICBodHRwOi8vd3d3LmFtZC5jb20KTGlicmUgc29mdHdhcmUgZW50aHVzaWFzdCAgICAgICAgICAg
+ICB8ICAgICAgICAgICAgIE1lc2EgYW5kIFggZGV2ZWxvcGVyCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRl
+dmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
