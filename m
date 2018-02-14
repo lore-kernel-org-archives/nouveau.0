@@ -1,56 +1,30 @@
-From: Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>
-Subject: Re: [PATCH 0/5] Fix deadlock on runtime suspend in DRM
- drivers
-Date: Wed, 14 Feb 2018 09:08:44 -0500
-Message-ID: <20180214140844.hnqdujwgolbmx7j5@art_vandelay>
-References: <cover.1518338788.git.lukas@wunner.de>
- <20180214084636.GA28107@wunner.de>
- <1ab1ea48-125c-a104-c11d-16d1e9d94b98@linux.intel.com>
+From: Meelis Roos <mroos@linux.ee>
+Subject: Re: 4.16-rc1: UBSAN warning in nouveau/nvkm/subdev/therm/base.c +
+ oops in nvkm_therm_clkgate_fini
+Date: Wed, 14 Feb 2018 16:29:15 +0200 (EET)
+Message-ID: <alpine.LRH.2.21.1802141628110.25362@math.ut.ee>
+References: <alpine.LRH.2.21.1802132200260.24929@math.ut.ee>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1ab1ea48-125c-a104-c11d-16d1e9d94b98-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Cc: Archit Taneja <architt-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>, Ismo Toijala <ismo.toijala-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Gustavo Padovan <gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org>, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Liviu Dudau <Liviu.Dudau-5wv7dgnIgG8@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <alpine.LRH.2.21.1802132200260.24929@math.ut.ee>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Linux Kernel list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBGZWIgMTQsIDIwMTggYXQgMTA6MjY6MzVBTSArMDEwMCwgTWFhcnRlbiBMYW5raG9y
-c3Qgd3JvdGU6Cj4gT3AgMTQtMDItMTggb20gMDk6NDYgc2NocmVlZiBMdWthcyBXdW5uZXI6Cj4g
-PiBEZWFyIGRybS1taXNjIG1haW50YWluZXJzLAo+ID4KPiA+IE9uIFN1biwgRmViIDExLCAyMDE4
-IGF0IDEwOjM4OjI4QU0gKzAxMDAsIEx1a2FzIFd1bm5lciB3cm90ZToKPiA+PiBGaXggYSBkZWFk
-bG9jayBvbiBoeWJyaWQgZ3JhcGhpY3MgbGFwdG9wcyB0aGF0J3MgYmVlbiBwcmVzZW50IHNpbmNl
-IDIwMTM6Cj4gPiBUaGlzIHNlcmllcyBoYXMgYmVlbiByZXZpZXdlZCwgY29uc2VudCBoYXMgYmVl
-biBleHByZXNzZWQgYnkgdGhlIG1vc3QKPiA+IGludGVyZXN0ZWQgcGFydGllcywgcGF0Y2ggWzEv
-NV0gd2hpY2ggdG91Y2hlcyBmaWxlcyBvdXRzaWRlIGRyaXZlcnMvZ3B1Cj4gPiBoYXMgYmVlbiBh
-Y2tlZCBhbmQgSSd2ZSBqdXN0IG91dCBhIHYyIGFkZHJlc3NpbmcgdGhlIG9ubHkgb2JqZWN0aW9u
-Cj4gPiByYWlzZWQuICBNeSBwbGFuIGlzIHRodXMgdG8gd2FpdCBhbm90aGVyIHR3byBkYXlzIGZv
-ciBjb21tZW50cyBhbmQsCj4gPiBiYXJyaW5nIGZ1cnRoZXIgb2JqZWN0aW9ucywgcHVzaCB0byBk
-cm0tbWlzYyB0aGlzIHdlZWtlbmQuCj4gPgo+ID4gSG93ZXZlciBJJ20gc3RydWdnbGluZyB3aXRo
-IHRoZSBkZWNpc2lvbiB3aGV0aGVyIHRvIHB1c2ggdG8gbmV4dCBvcgo+ID4gZml4ZXMuICBUaGUg
-c2VyaWVzIGlzIG1hcmtlZCBmb3Igc3RhYmxlLCBob3dldmVyIHRoZSBudW1iZXIgb2YKPiA+IGFm
-ZmVjdGVkIG1hY2hpbmVzIGlzIGxpbWl0ZWQgYW5kIGZvciBhbiBpc3N1ZSB0aGF0J3MgYmVlbiBw
-cmVzZW50Cj4gPiBmb3IgNSB5ZWFycyBpdCBwcm9iYWJseSBkb2Vzbid0IG1hdHRlciBpZiBpdCBz
-b2FrcyBhbm90aGVyIHR3byBtb250aHMKPiA+IGluIGxpbnV4LW5leHQgYmVmb3IgaXQgZ2V0cyBi
-YWNrcG9ydGVkLiAgSGVuY2UgSSB0ZW5kIHRvIGVyciBvbiB0aGUKPiA+IHNpZGUgb2YgY2F1dGlv
-biBhbmQgcHVzaCB0byBuZXh0LCBob3dldmVyIGEgY2FzZSBjb3VsZCBiZSBtYWRlIHRoYXQKPiA+
-IGZpeGVzIGlzIG1vcmUgYXBwcm9wcmlhdGUuCj4gPgo+ID4gSSdtIGxhY2tpbmcgZXhwZXJpZW5j
-ZSBtYWtpbmcgc3VjaCBkZWNpc2lvbnMgYW5kIHdvdWxkIGJlIGludGVyZXN0ZWQKPiA+IHRvIGxl
-YXJuIGhvdyB5b3UnZCBoYW5kbGUgdGhpcy4KPiA+Cj4gPiBUaGFua3MsCj4gPgo+ID4gTHVrYXMK
-PiAKPiBJIHdvdWxkIHNheSBmaXhlcywgaXQgZG9lc24ndCBsb29rIHBhcnRpY3VsYXJseSBzY2Fy
-eS4gOikKCkFncmVlZC4gSWYgaXQncyBnb29kIGVub3VnaCBmb3Igc3RhYmxlLCBpdCdzIGdvb2Qg
-ZW5vdWdoIGZvciAtZml4ZXMhCgpTZWFuCgo+IAo+IH5NYWFydGVuCj4gCgotLSAKU2VhbiBQYXVs
-LCBTb2Z0d2FyZSBFbmdpbmVlciwgR29vZ2xlIC8gQ2hyb21pdW0gT1MKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+PiBUaGlzIGlzIDQuMTYtcmMxK3RvZGF5cyBnaXQgb24gYSBsb3dseSBQNCB3aXRoIE5WNSwgd29y
+a2VkIGZpbmUgaW4gNC4xNToKCk5WNSBpbiBhbm90aGVyIFBDIChzZWNvbmRhcnkgY2FyZCBpbiB4
+ODYtNjQpIG1hZGUgdGhlIHN5c3RyZW0gY3Jhc2ggb24gCmJvb3QsIGluIG52a21fdGhlcm1fY2xr
+Z2F0ZV9maW5pLgoKLS0gCk1lZWxpcyBSb29zIChtcm9vc0BsaW51eC5lZSkKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlz
+dApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
