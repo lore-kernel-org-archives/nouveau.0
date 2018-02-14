@@ -1,18 +1,10 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: 4.16-rc1: UBSAN warning in
- nouveau/nvkm/subdev/therm/base.c + oops in nvkm_therm_clkgate_fini
-Date: Wed, 14 Feb 2018 14:11:04 -0500
-Message-ID: <1518635464.3674.2.camel@redhat.com>
-References: <alpine.LRH.2.21.1802132200260.24929@math.ut.ee>
- <alpine.LRH.2.21.1802141628110.25362@math.ut.ee>
- <CAKb7Uvj3MKGzNNcrc=-JA5GN4jt9+TU7ZjWDZpccmYJLDo76WQ@mail.gmail.com>
- <CAKb7UvhRt=25J5aOUZusdE51hh1JVc45aQ8OhCVeOJwzYvLOJw@mail.gmail.com>
- <20180214174125.b5bdowaadck3vf5n@pmoreau.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 105097] New: Computer hangs only mouse moves
+Date: Wed, 14 Feb 2018 19:38:04 +0000
+Message-ID: <bug-105097-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0601926880=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180214174125.b5bdowaadck3vf5n-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,38 +14,200 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Pierre Moreau <pmoreau-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Meelis Roos <mroos-Y27EyoLml9s@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QWN0dWFsbHkgdGhpcyB3YXMgYnJvdWdodCB1cCB0byBtZSBhbHJlYWR5LCB0aGVyZSdzIGEgZml4
-IG9uIHRoZSBtYWlsaW5nIGxpc3QKZm9yIHRoaXMgSSByZXZpZXdlZCBhIGxpdHRsZSB3aGlsZSBh
-Z28gZnJvbSBudmlkaWEgdGhhdCB3ZSBzaG91bGQgcHVsbCBpbjoKCmh0dHBzOi8vcGF0Y2h3b3Jr
-LmZyZWVkZXNrdG9wLm9yZy9wYXRjaC8yMDMyMDUvCgpXb3VsZCB5b3UgZ3V5cyBtaW5kIGNvbmZp
-cm1pbmcgdGhhdCB0aGlzIHBhdGNoIGZpeGVzIHlvdXIgaXNzdWVzPwoKT24gV2VkLCAyMDE4LTAy
-LTE0IGF0IDE4OjQxICswMTAwLCBQaWVycmUgTW9yZWF1IHdyb3RlOgo+IE9uIDIwMTgtMDItMTQg
-4oCUIDA5OjM2LCBJbGlhIE1pcmtpbiB3cm90ZToKPiA+IE9uIFdlZCwgRmViIDE0LCAyMDE4IGF0
-IDk6MzUgQU0sIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4gPiA+
-IE9uIFdlZCwgRmViIDE0LCAyMDE4IGF0IDk6MjkgQU0sIE1lZWxpcyBSb29zIDxtcm9vc0BsaW51
-eC5lZT4gd3JvdGU6Cj4gPiA+ID4gPiBUaGlzIGlzIDQuMTYtcmMxK3RvZGF5cyBnaXQgb24gYSBs
-b3dseSBQNCB3aXRoIE5WNSwgd29ya2VkIGZpbmUgaW4KPiA+ID4gPiA+IDQuMTU6Cj4gPiA+ID4g
-Cj4gPiA+ID4gTlY1IGluIGFub3RoZXIgUEMgKHNlY29uZGFyeSBjYXJkIGluIHg4Ni02NCkgbWFk
-ZSB0aGUgc3lzdHJlbSBjcmFzaCBvbgo+ID4gPiA+IGJvb3QsIGluIG52a21fdGhlcm1fY2xrZ2F0
-ZV9maW5pLgo+ID4gPiAKPiA+ID4gTWluZCBib290aW5nIHdpdGggbm91dmVhdS5kZWJ1Zz10cmFj
-ZT8gVGhhdCBzaG91bGQgaG9wZWZ1bGx5IHRlbGwgdXMKPiA+ID4gbW9yZSBleGFjdGx5IHdoaWNo
-IHRoaW5nIGlzIGR5aW5nLiBJZiB5b3UgaGF2ZSBhIGNyb3NzLWNvbXBpbGUvZGlzdGNjCj4gPiA+
-IHNldHVwIGhhbmR5LCBhIGJpc2VjdCBtYXkgYmUgZXZlbiBtb3JlIHVzZWZ1bC4KPiA+IAo+ID4g
-RXJtLCBzb3JyeSwgbmV2ZXJtaW5kLiBZb3UgZXZlbiBzYWlkIGl0IC0tIG52a21fdGhlcm1fY2xr
-Z2F0ZV9maW5pIGlzCj4gPiBzb21laG93IG1pcy1ob29rZWQgdXAgZm9yIE5WNSBub3cuIEEgYmlz
-ZWN0IHJlc3VsdCB3b3VsZCBzdGlsbCBtYWtlCj4gPiB0aGUgY3VscHJpdCBhIGxvdCBtb3JlIG9i
-dmlvdXMuCj4gCj4gQ0PigJlpbmcgTHl1ZGUgUGF1bCBhcyBzaGUgaG9va2VkIHVwIHRoZSBjbG9j
-a2dhdGluZyBzdXBwb3J0Lgo+IAo+IExvb2tpbmcgYXQgdGhlIGNvZGUsIG9ubHkgTlY0MCsgZG8g
-aGF2ZSBhIHRoZXJtIGVuZ2luZS4gVGhlcmVmb3JlLCBzaG91bGRu4oCZdAo+IG52a21fdGhlcm1f
-Y2xrZ2F0ZV9lbmFibGUoKSwgbnZrbV90aGVybV9jbGtnYXRlX2ZpbmkoKSBhbmQKPiBudmttX3Ro
-ZXJtX2Nsa2dhdGVfb25laW5pdCgpIGFsbCBjaGVjayBmb3IgdGhlcm0gYmVpbmcgbm90IE5VTEws
-IG9uIHRvcCBvZgo+IHRoZWlyIGNoZWNrIGZvciB0aGUgY2xrZ2F0ZV8qIGhvb2tzIGJlaW5nIHRo
-ZXJlPyBPciBpbnN0ZWFkLCBtYXliZSBoYXZlIHRoZQo+IGNoZWNrIGluIG52a21fZGV2aWNlX2lu
-aXQoKSBudmttX2RldmljZV9pbml0KCk/Cj4gCj4gUGllcnJlCi0tIApDaGVlcnMsCglMeXVkZSBQ
-YXVsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0601926880==
+Content-Type: multipart/alternative; boundary="15186370840.EC2d.17815"
+Content-Transfer-Encoding: 7bit
+
+
+--15186370840.EC2d.17815
+Date: Wed, 14 Feb 2018 19:38:04 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105097
+
+            Bug ID: 105097
+           Summary: Computer hangs only mouse moves
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: yarus23-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 137360
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D137360&action=3Dedit
+dmesg log
+
+I have attached dmesg output and foound some messageg in syslog before
+freezing:
+
+Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308412] nouveau
+0000:01:00.0: fifo: write fault at 0000240000 engine 00 [GR] client 0f
+[GPC0/PROP_0] reason 02 [PTE] on channel 2 [003fbf8000 Xorg[1036]]
+Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308436] nouveau
+0000:01:00.0: fifo: channel 2: killed
+Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308440] nouveau
+0000:01:00.0: fifo: runlist 0: scheduled for recovery
+Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308446] nouveau
+0000:01:00.0: fifo: engine 0: scheduled for recovery
+Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308539] nouveau
+0000:01:00.0: Xorg[1036]: channel 2 killed!
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15186370840.EC2d.17815
+Date: Wed, 14 Feb 2018 19:38:04 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Computer hangs only mouse moves"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105097">105097</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Computer hangs only mouse moves
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>yarus23&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D137360=
+" name=3D"attach_137360" title=3D"dmesg log">attachment 137360</a> <a href=
+=3D"attachment.cgi?id=3D137360&amp;action=3Dedit" title=3D"dmesg log">[deta=
+ils]</a></span>
+dmesg log
+
+I have attached dmesg output and foound some messageg in syslog before
+freezing:
+
+Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308412] nouveau
+0000:01:00.0: fifo: write fault at 0000240000 engine 00 [GR] client 0f
+[GPC0/PROP_0] reason 02 [PTE] on channel 2 [003fbf8000 Xorg[1036]]
+Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308436] nouveau
+0000:01:00.0: fifo: channel 2: killed
+Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308440] nouveau
+0000:01:00.0: fifo: runlist 0: scheduled for recovery
+Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308446] nouveau
+0000:01:00.0: fifo: engine 0: scheduled for recovery
+Feb 14 22:24:28 dmitry-Aspire-X3470 kernel: [   73.308539] nouveau
+0000:01:00.0: Xorg[1036]: channel 2 killed!</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15186370840.EC2d.17815--
+
+--===============0601926880==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0601926880==--
