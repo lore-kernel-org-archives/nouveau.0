@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104898] backlight problem with the NVIDIA G96GLM
  [Quadro FX 770M]
-Date: Thu, 15 Feb 2018 14:38:42 +0000
-Message-ID: <bug-104898-8800-kJMVK2FgUE@http.bugs.freedesktop.org/>
+Date: Thu, 15 Feb 2018 14:43:44 +0000
+Message-ID: <bug-104898-8800-bRIbeDuC39@http.bugs.freedesktop.org/>
 References: <bug-104898-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0917034014=="
+Content-Type: multipart/mixed; boundary="===============1342857308=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104898-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0917034014==
-Content-Type: multipart/alternative; boundary="15187055220.c0874.2188"
+--===============1342857308==
+Content-Type: multipart/alternative; boundary="15187058240.309D4bcf.3430"
 Content-Transfer-Encoding: 7bit
 
 
---15187055220.c0874.2188
-Date: Thu, 15 Feb 2018 14:38:42 +0000
+--15187058240.309D4bcf.3430
+Date: Thu, 15 Feb 2018 14:43:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104898
 
---- Comment #4 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 137378
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D137378&action=3Dedit
-systool -c drm -v ... after suspend
+--- Comment #5 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Tried to record any changes of device parameters before and after suspend
+above. However the same values seem to change across reboots as well.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15187055220.c0874.2188
-Date: Thu, 15 Feb 2018 14:38:42 +0000
+--15187058240.309D4bcf.3430
+Date: Thu, 15 Feb 2018 14:43:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - backlight problem with the NVIDIA G96GLM [Quadro FX 770M]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104898#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104898#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - backlight problem with the NVIDIA G96GLM [Quadro FX 770M]"
@@ -74,11 +73,9 @@ t # 4</a>
 estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
 l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D137378=
-" name=3D"attach_137378" title=3D"systool -c drm -v ... after suspend">atta=
-chment 137378</a> <a href=3D"attachment.cgi?id=3D137378&amp;action=3Dedit" =
-title=3D"systool -c drm -v ... after suspend">[details]</a></span>
-systool -c drm -v ... after suspend</pre>
+        <pre>Tried to record any changes of device parameters before and af=
+ter suspend
+above. However the same values seem to change across reboots as well.</pre>
         </div>
       </p>
 
@@ -92,9 +89,9 @@ systool -c drm -v ... after suspend</pre>
     </body>
 </html>=
 
---15187055220.c0874.2188--
+--15187058240.309D4bcf.3430--
 
---===============0917034014==
+--===============1342857308==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0917034014==--
+--===============1342857308==--
