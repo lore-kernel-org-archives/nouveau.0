@@ -1,80 +1,101 @@
-From: Lukas Wunner <lukas@wunner.de>
-Subject: Re: [PATCH 0/5] Fix deadlock on runtime suspend in DRM drivers
-Date: Thu, 15 Feb 2018 06:38:44 +0100
-Message-ID: <20180215053844.GA26649@wunner.de>
-References: <cover.1518338788.git.lukas@wunner.de>
- <20180214084636.GA28107@wunner.de>
- <1ab1ea48-125c-a104-c11d-16d1e9d94b98@linux.intel.com>
- <20180214140844.hnqdujwgolbmx7j5@art_vandelay>
- <f5240db1-3b1c-c4d7-0106-3a3846659a4f@daenzer.net>
- <20180214145843.hahok7fa6vfgcvov@art_vandelay>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103897] Kernel 4.14 causes high cpu usage,
+ 4.12 was OK
+Date: Thu, 15 Feb 2018 07:27:38 +0000
+Message-ID: <bug-103897-8800-ZI2t2ttu6q@http.bugs.freedesktop.org/>
+References: <bug-103897-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20180214145843.hahok7fa6vfgcvov@art_vandelay>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Sean Paul <seanpaul@chromium.org>
-Cc: Ismo Toijala <ismo.toijala@gmail.com>, nouveau@lists.freedesktop.org, Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>, Liviu Dudau <Liviu.Dudau@arm.com>, dri-devel@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>, intel-gfx@lists.freedesktop.org, Peter Wu <peter@lekensteyn.nl>
+Content-Type: multipart/mixed; boundary="===============0960689831=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-103897-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBGZWIgMTQsIDIwMTggYXQgMDk6NTg6NDNBTSAtMDUwMCwgU2VhbiBQYXVsIHdyb3Rl
-Ogo+IE9uIFdlZCwgRmViIDE0LCAyMDE4IGF0IDAzOjQzOjU2UE0gKzAxMDAsIE1pY2hlbCBEw6Ru
-emVyIHdyb3RlOgo+ID4gT24gMjAxOC0wMi0xNCAwMzowOCBQTSwgU2VhbiBQYXVsIHdyb3RlOgo+
-ID4gPiBPbiBXZWQsIEZlYiAxNCwgMjAxOCBhdCAxMDoyNjozNUFNICswMTAwLCBNYWFydGVuIExh
-bmtob3JzdCB3cm90ZToKPiA+ID4+IE9wIDE0LTAyLTE4IG9tIDA5OjQ2IHNjaHJlZWYgTHVrYXMg
-V3VubmVyOgo+ID4gPj4+IE9uIFN1biwgRmViIDExLCAyMDE4IGF0IDEwOjM4OjI4QU0gKzAxMDAs
-IEx1a2FzIFd1bm5lciB3cm90ZToKPiA+ID4+Pj4gRml4IGEgZGVhZGxvY2sgb24gaHlicmlkIGdy
-YXBoaWNzIGxhcHRvcHMgdGhhdCdzIGJlZW4gcHJlc2VudCBzaW5jZSAyMDEzOgo+ID4gPj4+IFRo
-aXMgc2VyaWVzIGhhcyBiZWVuIHJldmlld2VkLCBjb25zZW50IGhhcyBiZWVuIGV4cHJlc3NlZCBi
-eSB0aGUgbW9zdAo+ID4gPj4+IGludGVyZXN0ZWQgcGFydGllcywgcGF0Y2ggWzEvNV0gd2hpY2gg
-dG91Y2hlcyBmaWxlcyBvdXRzaWRlIGRyaXZlcnMvZ3B1Cj4gPiA+Pj4gaGFzIGJlZW4gYWNrZWQg
-YW5kIEkndmUganVzdCBvdXQgYSB2MiBhZGRyZXNzaW5nIHRoZSBvbmx5IG9iamVjdGlvbgo+ID4g
-Pj4+IHJhaXNlZC4gIE15IHBsYW4gaXMgdGh1cyB0byB3YWl0IGFub3RoZXIgdHdvIGRheXMgZm9y
-IGNvbW1lbnRzIGFuZCwKPiA+ID4+PiBiYXJyaW5nIGZ1cnRoZXIgb2JqZWN0aW9ucywgcHVzaCB0
-byBkcm0tbWlzYyB0aGlzIHdlZWtlbmQuCj4gPiA+Pj4KPiA+ID4+PiBIb3dldmVyIEknbSBzdHJ1
-Z2dsaW5nIHdpdGggdGhlIGRlY2lzaW9uIHdoZXRoZXIgdG8gcHVzaCB0byBuZXh0IG9yCj4gPiA+
-Pj4gZml4ZXMuICBUaGUgc2VyaWVzIGlzIG1hcmtlZCBmb3Igc3RhYmxlLCBob3dldmVyIHRoZSBu
-dW1iZXIgb2YKPiA+ID4+PiBhZmZlY3RlZCBtYWNoaW5lcyBpcyBsaW1pdGVkIGFuZCBmb3IgYW4g
-aXNzdWUgdGhhdCdzIGJlZW4gcHJlc2VudAo+ID4gPj4+IGZvciA1IHllYXJzIGl0IHByb2JhYmx5
-IGRvZXNuJ3QgbWF0dGVyIGlmIGl0IHNvYWtzIGFub3RoZXIgdHdvIG1vbnRocwo+ID4gPj4+IGlu
-IGxpbnV4LW5leHQgYmVmb3IgaXQgZ2V0cyBiYWNrcG9ydGVkLiAgSGVuY2UgSSB0ZW5kIHRvIGVy
-ciBvbiB0aGUKPiA+ID4+PiBzaWRlIG9mIGNhdXRpb24gYW5kIHB1c2ggdG8gbmV4dCwgaG93ZXZl
-ciBhIGNhc2UgY291bGQgYmUgbWFkZSB0aGF0Cj4gPiA+Pj4gZml4ZXMgaXMgbW9yZSBhcHByb3By
-aWF0ZS4KPiA+ID4+Pgo+ID4gPj4+IEknbSBsYWNraW5nIGV4cGVyaWVuY2UgbWFraW5nIHN1Y2gg
-ZGVjaXNpb25zIGFuZCB3b3VsZCBiZSBpbnRlcmVzdGVkCj4gPiA+Pj4gdG8gbGVhcm4gaG93IHlv
-dSdkIGhhbmRsZSB0aGlzLgo+ID4gPj4KPiA+ID4+IEkgd291bGQgc2F5IGZpeGVzLCBpdCBkb2Vz
-bid0IGxvb2sgcGFydGljdWxhcmx5IHNjYXJ5LiA6KQo+ID4gPiAKPiA+ID4gQWdyZWVkLiBJZiBp
-dCdzIGdvb2QgZW5vdWdoIGZvciBzdGFibGUsIGl0J3MgZ29vZCBlbm91Z2ggZm9yIC1maXhlcyEK
-PiA+IAo+ID4gSXQncyBub3QgdGhhdCBzaW1wbGUsIGlzIGl0PyBGYXN0LXRyYWNraW5nIHBhdGNo
-ZXMgKHNvbWUgb2Ygd2hpY2ggYXBwZWFyCj4gPiB0byBiZSB1bnRlc3RlZCkgdG8gc3RhYmxlIHdp
-dGhvdXQgYW4gaW1tZWRpYXRlIGNhdXNlIGZvciB1cmdlbmN5IHNlZW1zCj4gPiByaXNreSB0byBt
-ZS4KPiAKPiAvbWUgc2hvdWxkIGJlIG1vcmUgY2FyZWZ1bCB3aGF0IGhlIHNheXMKPiAKPiBHaXZl
-biB3aGVyZSB3ZSBhcmUgaW4gdGhlIHJlbGVhc2UgY3ljbGUsIGl0J3MgYmFyZWx5IGEgZmFzdCB0
-cmFjay4KPiBJZiB0aGVzZSBnbyBpbiAtZml4ZXMsIHRoZXknbGwgZ2V0IGluIC1yYzIgYW5kIHdp
-bGwgaGF2ZSBwbGVudHkgb2YKPiB0aW1lIHRvIGJha2UuIElmIHdlIHdlcmUgYXQgcmM1LCBpdCBt
-aWdodCBiZSBhIGRpZmZlcmVudCBzdG9yeS4KClRoZSBwYXRjaGVzIGFyZSBtYXJrZWQgZm9yIHN0
-YWJsZSB0aG91Z2gsIHNvIGlmIHRoZXkgZ28gaW4gdGhyb3VnaApkcm0tbWlzYy1maXhlcywgdGhl
-eSBtYXkgYXBwZWFyIGluIHN0YWJsZSBrZXJuZWxzIGJlZm9yZSA0LjE2LWZpbmFsCmlzIG91dC4g
-IEdyZWcgcGlja3MgdXAgcGF0Y2hlcyBvbmNlIHRoZXkncmUgaW4gTGludXMnIHRyZWUsIHRob3Vn
-aApvZnRlbiB3aXRoIGEgZGVsYXkgb2YgYSBmZXcgZGF5cyBvciB3ZWVrcy4gIElmIHRoZXkgZ28g
-aW4gdGhyb3VnaApkcm0tbWlzYy1uZXh0LCB0aGV5J3JlIGd1YXJhbnRlZWQgbm90IHRvIGFwcGVh
-ciBpbiAqYW55KiByZWxlYXNlCmJlZm9yZSA0LjE2LWZpbmFsIGlzIG91dC4KClRoaXMgYWxsb3dz
-IGZvciBkaWZmZXJlbnRpYXRpb24gYmV0d2VlbiBuby1icmFpbmVyIHN0YWJsZSBmaXhlcyB0aGF0
-CmNhbiBiZSBzZW50IGltbWVkaWF0ZWx5IGFuZCBzY2FyaWVyLCBidXQgc2ltaWxhcmx5IGltcG9y
-dGFudCBzdGFibGUKZml4ZXMgdGhhdCBzaG91bGQgc29hayBmb3IgYSB3aGlsZS4gIEknbSBub3Qg
-c3VyZSB3aGljaCBjYXRlZ29yeQp0aGlzIHNlcmllcyBiZWxvbmdzIHRvLCB0aG91Z2ggaXQncyB0
-cnVlIHdoYXQgTWFhcnRlbiBzYXlzLCBpdCdzCm5vdCAqdGhhdCogZ3JhdmUgYSBjaGFuZ2UuCgpU
-aGFua3MsCgpMdWthcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2
-ZWwK
+
+--===============0960689831==
+Content-Type: multipart/alternative; boundary="15186796570.aa9F252B.27023"
+Content-Transfer-Encoding: 7bit
+
+
+--15186796570.aa9F252B.27023
+Date: Thu, 15 Feb 2018 07:27:37 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103897
+
+--- Comment #7 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+This bug still around for me with 4.15.0
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15186796570.aa9F252B.27023
+Date: Thu, 15 Feb 2018 07:27:37 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel 4.14 causes high cpu usage, 4.12 was OK"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103897#c7">Commen=
+t # 7</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel 4.14 causes high cpu usage, 4.12 was OK"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103897">bug 10389=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
+gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
+</span></b>
+        <pre>This bug still around for me with 4.15.0</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15186796570.aa9F252B.27023--
+
+--===============0960689831==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0960689831==--
