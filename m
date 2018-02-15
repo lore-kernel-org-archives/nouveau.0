@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104898] backlight problem with the NVIDIA G96GLM
  [Quadro FX 770M]
-Date: Thu, 15 Feb 2018 14:37:01 +0000
-Message-ID: <bug-104898-8800-lUKzO03bhd@http.bugs.freedesktop.org/>
+Date: Thu, 15 Feb 2018 14:37:24 +0000
+Message-ID: <bug-104898-8800-wFJxzfYHTH@http.bugs.freedesktop.org/>
 References: <bug-104898-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1641507228=="
+Content-Type: multipart/mixed; boundary="===============1657450910=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104898-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1641507228==
-Content-Type: multipart/alternative; boundary="15187054200.70fba07c4.2007"
+--===============1657450910==
+Content-Type: multipart/alternative; boundary="15187054440.DbF11BF.2032"
 Content-Transfer-Encoding: 7bit
 
 
---15187054200.70fba07c4.2007
-Date: Thu, 15 Feb 2018 14:37:00 +0000
+--15187054440.DbF11BF.2032
+Date: Thu, 15 Feb 2018 14:37:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104898
 
---- Comment #1 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 137375
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D137375&action=3Dedit
-systool -c backlight -v ... before suspend
+--- Comment #2 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 137376
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D137376&action=3Dedit
+systool -c backlight -v ... after suspend
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15187054200.70fba07c4.2007
-Date: Thu, 15 Feb 2018 14:37:00 +0000
+--15187054440.DbF11BF.2032
+Date: Thu, 15 Feb 2018 14:37:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - backlight problem with the NVIDIA G96GLM [Quadro FX 770M]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104898#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104898#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - backlight problem with the NVIDIA G96GLM [Quadro FX 770M]"
@@ -74,12 +74,12 @@ t # 1</a>
 estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
 l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D137375=
-" name=3D"attach_137375" title=3D"systool -c backlight -v ... before suspen=
-d">attachment 137375</a> <a href=3D"attachment.cgi?id=3D137375&amp;action=
-=3Dedit" title=3D"systool -c backlight -v ... before suspend">[details]</a>=
-</span>
-systool -c backlight -v ... before suspend</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D137376=
+" name=3D"attach_137376" title=3D"systool -c backlight -v ... after suspend=
+">attachment 137376</a> <a href=3D"attachment.cgi?id=3D137376&amp;action=3D=
+edit" title=3D"systool -c backlight -v ... after suspend">[details]</a></sp=
+an>
+systool -c backlight -v ... after suspend</pre>
         </div>
       </p>
 
@@ -93,9 +93,9 @@ systool -c backlight -v ... before suspend</pre>
     </body>
 </html>=
 
---15187054200.70fba07c4.2007--
+--15187054440.DbF11BF.2032--
 
---===============1641507228==
+--===============1657450910==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1641507228==--
+--===============1657450910==--
