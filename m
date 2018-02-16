@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92961] Xorg freezes (only mouse and ssh are still
- working)
-Date: Fri, 16 Feb 2018 09:47:33 +0000
-Message-ID: <bug-92961-8800-y0coUuwOwi@http.bugs.freedesktop.org/>
-References: <bug-92961-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] bl: fix backlight regression
+Date: Fri, 16 Feb 2018 11:21:15 +0100
+Message-ID: <20180216102115.11761-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0941710048=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,100 +18,54 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0941710048==
-Content-Type: multipart/alternative; boundary="15187744531.6dcfbA8F.3131"
-Content-Transfer-Encoding: 7bit
-
-
---15187744531.6dcfbA8F.3131
-Date: Fri, 16 Feb 2018 09:47:33 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92961
-
---- Comment #18 from Tulli0 <deprisco.davide-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It freezes again :-(
-I try to set the waiting timer from 2 to 3 seconds but the system freeze
-randomly=20
-file:
-drivers/gpu/drm/nouveau/nvkm/engine/fifo/gpfifogf100.c
-...
-        if (nvkm_msec(device, 3000,
-                if (nvkm_rd32(device, 0x002634) =3D=3D chan->base.chid)
-                        break;
-...
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15187744531.6dcfbA8F.3131
-Date: Fri, 16 Feb 2018 09:47:33 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961#c18">Commen=
-t # 18</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961">bug 92961<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-deprisco.davide&#64;gmail.com" title=3D"Tulli0 &lt;deprisco.davide&#64;gmai=
-l.com&gt;"> <span class=3D"fn">Tulli0</span></a>
-</span></b>
-        <pre>It freezes again :-(
-I try to set the waiting timer from 2 to 3 seconds but the system freeze
-randomly=20
-file:
-drivers/gpu/drm/nouveau/nvkm/engine/fifo/gpfifogf100.c
-...
-        if (nvkm_msec(device, 3000,
-                if (nvkm_rd32(device, 0x002634) =3D=3D chan-&gt;base.chid)
-                        break;
-...</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15187744531.6dcfbA8F.3131--
-
---===============0941710048==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0941710048==--
+Zml4ZXMgZDljMGFhZGM1YWEyNDFkZjI2Y2U4MzAxZDM0YTg0MTg5MTlmYjVhZQoKU2lnbmVkLW9m
+Zi1ieTogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+Ci0tLQogZHJtL25vdXZlYXUv
+bm91dmVhdV9iYWNrbGlnaHQuYyB8IDcgKysrKysrKwogZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5
+LmMgICAgICB8IDQgKystLQogZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmggICAgICB8IDQgKysr
+KwogMyBmaWxlcyBjaGFuZ2VkLCAxMyBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlm
+ZiAtLWdpdCBhL2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMgYi9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2JhY2tsaWdodC5jCmluZGV4IDM4MGYzNDAyLi4wNTc3MDhkYSAxMDA2NDQKLS0tIGEv
+ZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGlnaHQuYworKysgYi9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2JhY2tsaWdodC5jCkBAIC0zOCw2ICszOCw4IEBACiAjaW5jbHVkZSAibm91dmVhdV9yZWcuaCIK
+ICNpbmNsdWRlICJub3V2ZWF1X2VuY29kZXIuaCIKIAorI2luY2x1ZGUgIm52NTBfZGlzcGxheS5o
+IgorCiBzdGF0aWMgc3RydWN0IGlkYSBibF9pZGE7CiAjZGVmaW5lIEJMX05BTUVfU0laRSAxNSAv
+LyAxMiBmb3IgbmFtZSArIDIgZm9yIGRpZ2l0cyArIDEgZm9yICdcMCcKIApAQCAtMjIwLDYgKzIy
+Miw3IEBAIG52NTBfYmFja2xpZ2h0X2luaXQoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3Rv
+cikKIAljb25zdCBzdHJ1Y3QgYmFja2xpZ2h0X29wcyAqb3BzOwogCXN0cnVjdCBiYWNrbGlnaHRf
+Y29ubmVjdG9yIGJsX2Nvbm5lY3RvcjsKIAljaGFyIGJhY2tsaWdodF9uYW1lW0JMX05BTUVfU0la
+RV07CisJaW50IHJldDsKIAogCW52X2VuY29kZXIgPSBmaW5kX2VuY29kZXIoY29ubmVjdG9yLCBE
+Q0JfT1VUUFVUX0xWRFMpOwogCWlmICghbnZfZW5jb2RlcikgewpAQCAtMjI4LDggKzIzMSwxMiBA
+QCBudjUwX2JhY2tsaWdodF9pbml0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpCiAJ
+CQlyZXR1cm4gLUVOT0RFVjsKIAl9CiAKKwlyZXQgPSBudjUwX291dHBfYWNxdWlyZShudl9lbmNv
+ZGVyKTsKKwlpZiAocmV0KQorCQlyZXR1cm4gcmV0OwogCWlmICghbnZpZl9yZDMyKGRldmljZSwg
+TlY1MF9QRElTUF9TT1JfUFdNX0NUTChudl9lbmNvZGVyLT5vcikpKQogCQlyZXR1cm4gMDsKKwlu
+djUwX291dHBfcmVsZWFzZShudl9lbmNvZGVyKTsKIAogCWlmIChkcm0tPmNsaWVudC5kZXZpY2Uu
+aW5mby5jaGlwc2V0IDw9IDB4YTAgfHwKIAkgICAgZHJtLT5jbGllbnQuZGV2aWNlLmluZm8uY2hp
+cHNldCA9PSAweGFhIHx8CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYyBi
+L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCmluZGV4IDY2OTRmYTM3Li43MGMzMWI1ZSAxMDA2
+NDQKLS0tIGEvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMKKysrIGIvZHJtL25vdXZlYXUvbnY1
+MF9kaXNwbGF5LmMKQEAgLTI0NDQsNyArMjQ0NCw3IEBAIG91dDoKIC8qKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioKICAqIE91dHB1dCBwYXRoIGhlbHBlcnMKICAqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKi8KLXN0
+YXRpYyB2b2lkCit2b2lkCiBudjUwX291dHBfcmVsZWFzZShzdHJ1Y3Qgbm91dmVhdV9lbmNvZGVy
+ICpudl9lbmNvZGVyKQogewogCXN0cnVjdCBudjUwX2Rpc3AgKmRpc3AgPSBudjUwX2Rpc3AobnZf
+ZW5jb2Rlci0+YmFzZS5iYXNlLmRldik7CkBAIC0yNDYyLDcgKzI0NjIsNyBAQCBudjUwX291dHBf
+cmVsZWFzZShzdHJ1Y3Qgbm91dmVhdV9lbmNvZGVyICpudl9lbmNvZGVyKQogCW52X2VuY29kZXIt
+PmxpbmsgPSAwOwogfQogCi1zdGF0aWMgaW50CitpbnQKIG52NTBfb3V0cF9hY3F1aXJlKHN0cnVj
+dCBub3V2ZWF1X2VuY29kZXIgKm52X2VuY29kZXIpCiB7CiAJc3RydWN0IG5vdXZlYXVfZHJtICpk
+cm0gPSBub3V2ZWF1X2RybShudl9lbmNvZGVyLT5iYXNlLmJhc2UuZGV2KTsKZGlmZiAtLWdpdCBh
+L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5oIGIvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmgK
+aW5kZXggOTE4MTg3Y2UuLjExNTYzN2Y4IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udjUwX2Rp
+c3BsYXkuaAorKysgYi9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuaApAQCAtMzEsOCArMzEsMTIg
+QEAKICNpbmNsdWRlICJub3V2ZWF1X2NydGMuaCIKICNpbmNsdWRlICJub3V2ZWF1X3JlZy5oIgog
+CitzdHJ1Y3Qgbm91dmVhdV9lbmNvZGVyOworCiBpbnQgIG52NTBfZGlzcGxheV9jcmVhdGUoc3Ry
+dWN0IGRybV9kZXZpY2UgKik7CiB2b2lkIG52NTBfZGlzcGxheV9kZXN0cm95KHN0cnVjdCBkcm1f
+ZGV2aWNlICopOwogaW50ICBudjUwX2Rpc3BsYXlfaW5pdChzdHJ1Y3QgZHJtX2RldmljZSAqKTsK
+IHZvaWQgbnY1MF9kaXNwbGF5X2Zpbmkoc3RydWN0IGRybV9kZXZpY2UgKik7Cit2b2lkIG52NTBf
+b3V0cF9yZWxlYXNlKHN0cnVjdCBub3V2ZWF1X2VuY29kZXIgKik7CitpbnQgIG52NTBfb3V0cF9h
+Y3F1aXJlKHN0cnVjdCBub3V2ZWF1X2VuY29kZXIgKik7CiAjZW5kaWYgLyogX19OVjUwX0RJU1BM
+QVlfSF9fICovCi0tIAoyLjE0LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
