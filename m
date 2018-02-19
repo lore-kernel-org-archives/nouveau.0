@@ -1,11 +1,12 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v2] bl: fix backlight regression
-Date: Mon, 19 Feb 2018 17:09:45 +0100
-Message-ID: <20180219160945.10411-1-kherbst@redhat.com>
+From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH v2] bl: fix backlight regression
+Date: Mon, 19 Feb 2018 17:28:07 +0100
+Message-ID: <20180219162806.gtnvaawwm7n6njzr@pmoreau.org>
+References: <20180219160945.10411-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0586663504=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20180219160945.10411-1-kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,49 +16,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Zml4ZXMgZDljMGFhZGM1YWEyNDFkZjI2Y2U4MzAxZDM0YTg0MTg5MTlmYjVhZQoKU3VnZ2VzdGVk
-LWJ5OiBCZW4gU2tlZ2dzIDxza2VnZ3NiQHJlZGhhdC5jb20+ClNpZ25lZC1vZmYtYnk6IEthcm9s
-IEhlcmJzdCA8a2hlcmJzdEByZWRoYXQuY29tPgotLS0KIGRybS9ub3V2ZWF1L25vdXZlYXVfYmFj
-a2xpZ2h0LmMgfCAxMCArKysrKy0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCsp
-LCA1IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xp
-Z2h0LmMgYi9kcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jCmluZGV4IDM4MGYzNDAyLi41
-NTE3MjY1NSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGlnaHQuYworKysg
-Yi9kcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jCkBAIC0xMzQsNyArMTM0LDcgQEAgbnY1
-MF9nZXRfaW50ZW5zaXR5KHN0cnVjdCBiYWNrbGlnaHRfZGV2aWNlICpiZCkKIAlzdHJ1Y3Qgbm91
-dmVhdV9lbmNvZGVyICpudl9lbmNvZGVyID0gYmxfZ2V0X2RhdGEoYmQpOwogCXN0cnVjdCBub3V2
-ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0obnZfZW5jb2Rlci0+YmFzZS5iYXNlLmRldik7CiAJ
-c3RydWN0IG52aWZfb2JqZWN0ICpkZXZpY2UgPSAmZHJtLT5jbGllbnQuZGV2aWNlLm9iamVjdDsK
-LQlpbnQgb3IgPSBudl9lbmNvZGVyLT5vcjsKKwlpbnQgb3IgPSBmZnMobnZfZW5jb2Rlci0+ZGNi
-LT5vcikgLSAxOwogCXUzMiBkaXYgPSAxMDI1OwogCXUzMiB2YWw7CiAKQEAgLTE0OSw3ICsxNDks
-NyBAQCBudjUwX3NldF9pbnRlbnNpdHkoc3RydWN0IGJhY2tsaWdodF9kZXZpY2UgKmJkKQogCXN0
-cnVjdCBub3V2ZWF1X2VuY29kZXIgKm52X2VuY29kZXIgPSBibF9nZXRfZGF0YShiZCk7CiAJc3Ry
-dWN0IG5vdXZlYXVfZHJtICpkcm0gPSBub3V2ZWF1X2RybShudl9lbmNvZGVyLT5iYXNlLmJhc2Uu
-ZGV2KTsKIAlzdHJ1Y3QgbnZpZl9vYmplY3QgKmRldmljZSA9ICZkcm0tPmNsaWVudC5kZXZpY2Uu
-b2JqZWN0OwotCWludCBvciA9IG52X2VuY29kZXItPm9yOworCWludCBvciA9IGZmcyhudl9lbmNv
-ZGVyLT5kY2ItPm9yKSAtIDE7CiAJdTMyIGRpdiA9IDEwMjU7CiAJdTMyIHZhbCA9IChiZC0+cHJv
-cHMuYnJpZ2h0bmVzcyAqIGRpdikgLyAxMDA7CiAKQEAgLTE3MCw3ICsxNzAsNyBAQCBudmEzX2dl
-dF9pbnRlbnNpdHkoc3RydWN0IGJhY2tsaWdodF9kZXZpY2UgKmJkKQogCXN0cnVjdCBub3V2ZWF1
-X2VuY29kZXIgKm52X2VuY29kZXIgPSBibF9nZXRfZGF0YShiZCk7CiAJc3RydWN0IG5vdXZlYXVf
-ZHJtICpkcm0gPSBub3V2ZWF1X2RybShudl9lbmNvZGVyLT5iYXNlLmJhc2UuZGV2KTsKIAlzdHJ1
-Y3QgbnZpZl9vYmplY3QgKmRldmljZSA9ICZkcm0tPmNsaWVudC5kZXZpY2Uub2JqZWN0OwotCWlu
-dCBvciA9IG52X2VuY29kZXItPm9yOworCWludCBvciA9IGZmcyhudl9lbmNvZGVyLT5kY2ItPm9y
-KSAtIDE7CiAJdTMyIGRpdiwgdmFsOwogCiAJZGl2ICA9IG52aWZfcmQzMihkZXZpY2UsIE5WNTBf
-UERJU1BfU09SX1BXTV9ESVYob3IpKTsKQEAgLTE4OCw3ICsxODgsNyBAQCBudmEzX3NldF9pbnRl
-bnNpdHkoc3RydWN0IGJhY2tsaWdodF9kZXZpY2UgKmJkKQogCXN0cnVjdCBub3V2ZWF1X2VuY29k
-ZXIgKm52X2VuY29kZXIgPSBibF9nZXRfZGF0YShiZCk7CiAJc3RydWN0IG5vdXZlYXVfZHJtICpk
-cm0gPSBub3V2ZWF1X2RybShudl9lbmNvZGVyLT5iYXNlLmJhc2UuZGV2KTsKIAlzdHJ1Y3QgbnZp
-Zl9vYmplY3QgKmRldmljZSA9ICZkcm0tPmNsaWVudC5kZXZpY2Uub2JqZWN0OwotCWludCBvciA9
-IG52X2VuY29kZXItPm9yOworCWludCBvciA9IGZmcyhudl9lbmNvZGVyLT5kY2ItPm9yKSAtIDE7
-CiAJdTMyIGRpdiwgdmFsOwogCiAJZGl2ID0gbnZpZl9yZDMyKGRldmljZSwgTlY1MF9QRElTUF9T
-T1JfUFdNX0RJVihvcikpOwpAQCAtMjI4LDcgKzIyOCw3IEBAIG52NTBfYmFja2xpZ2h0X2luaXQo
-c3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikKIAkJCXJldHVybiAtRU5PREVWOwogCX0K
-IAotCWlmICghbnZpZl9yZDMyKGRldmljZSwgTlY1MF9QRElTUF9TT1JfUFdNX0NUTChudl9lbmNv
-ZGVyLT5vcikpKQorCWlmICghbnZpZl9yZDMyKGRldmljZSwgTlY1MF9QRElTUF9TT1JfUFdNX0NU
-TChmZnMobnZfZW5jb2Rlci0+ZGNiLT5vcikgLSAxKSkpCiAJCXJldHVybiAwOwogCiAJaWYgKGRy
-bS0+Y2xpZW50LmRldmljZS5pbmZvLmNoaXBzZXQgPD0gMHhhMCB8fAotLSAKMi4xNC4zCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
-bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0586663504==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="njdagqhjgapcbjk6"
+Content-Disposition: inline
+
+
+--njdagqhjgapcbjk6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+A few words about why this change is needed would be nice, as well as what
+changed since the v1 (well, looking back to your original patch, absolutely
+everything changed :-D).
+
+On 2018-02-19 =E2=80=94 17:09, Karol Herbst wrote:
+> fixes d9c0aadc5aa241df26ce8301d34a8418919fb5ae
+
+The formatting does not follow the kernel guidelines, see
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Doc=
+umentation/process/submitting-patches.rst?id=3D91ab883eb21325ad80f3473633f7=
+94c78ac87f51#n183
+Also, you might want to use the commit hash from Linus=E2=80=99 tree, rathe=
+r than from
+Ben=E2=80=99s out-of-tree module.
+
+>=20
+> Suggested-by: Ben Skeggs <skeggsb-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> Signed-off-by: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> ---
+>  drm/nouveau/nouveau_backlight.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/drm/nouveau/nouveau_backlight.c b/drm/nouveau/nouveau_backli=
+ght.c
+> index 380f3402..55172655 100644
+> --- a/drm/nouveau/nouveau_backlight.c
+> +++ b/drm/nouveau/nouveau_backlight.c
+> @@ -134,7 +134,7 @@ nv50_get_intensity(struct backlight_device *bd)
+>  	struct nouveau_encoder *nv_encoder =3D bl_get_data(bd);
+>  	struct nouveau_drm *drm =3D nouveau_drm(nv_encoder->base.base.dev);
+>  	struct nvif_object *device =3D &drm->client.device.object;
+> -	int or =3D nv_encoder->or;
+> +	int or =3D ffs(nv_encoder->dcb->or) - 1;
+
+Since you have that change in a few places, wouldn=E2=80=99t it make sense =
+to have it
+in an helper function, that given an nv_encoder object would give you back =
+the
+correct or value? The function wouldn=E2=80=99t be doing much, I agree, but=
+ it would be
+less error-prone to forgetting the -1 or using ffs in some cases.
+
+Pierre
+
+>  	u32 div =3D 1025;
+>  	u32 val;
+> =20
+> @@ -149,7 +149,7 @@ nv50_set_intensity(struct backlight_device *bd)
+>  	struct nouveau_encoder *nv_encoder =3D bl_get_data(bd);
+>  	struct nouveau_drm *drm =3D nouveau_drm(nv_encoder->base.base.dev);
+>  	struct nvif_object *device =3D &drm->client.device.object;
+> -	int or =3D nv_encoder->or;
+> +	int or =3D ffs(nv_encoder->dcb->or) - 1;
+>  	u32 div =3D 1025;
+>  	u32 val =3D (bd->props.brightness * div) / 100;
+> =20
+> @@ -170,7 +170,7 @@ nva3_get_intensity(struct backlight_device *bd)
+>  	struct nouveau_encoder *nv_encoder =3D bl_get_data(bd);
+>  	struct nouveau_drm *drm =3D nouveau_drm(nv_encoder->base.base.dev);
+>  	struct nvif_object *device =3D &drm->client.device.object;
+> -	int or =3D nv_encoder->or;
+> +	int or =3D ffs(nv_encoder->dcb->or) - 1;
+>  	u32 div, val;
+> =20
+>  	div  =3D nvif_rd32(device, NV50_PDISP_SOR_PWM_DIV(or));
+> @@ -188,7 +188,7 @@ nva3_set_intensity(struct backlight_device *bd)
+>  	struct nouveau_encoder *nv_encoder =3D bl_get_data(bd);
+>  	struct nouveau_drm *drm =3D nouveau_drm(nv_encoder->base.base.dev);
+>  	struct nvif_object *device =3D &drm->client.device.object;
+> -	int or =3D nv_encoder->or;
+> +	int or =3D ffs(nv_encoder->dcb->or) - 1;
+>  	u32 div, val;
+> =20
+>  	div =3D nvif_rd32(device, NV50_PDISP_SOR_PWM_DIV(or));
+> @@ -228,7 +228,7 @@ nv50_backlight_init(struct drm_connector *connector)
+>  			return -ENODEV;
+>  	}
+> =20
+> -	if (!nvif_rd32(device, NV50_PDISP_SOR_PWM_CTL(nv_encoder->or)))
+> +	if (!nvif_rd32(device, NV50_PDISP_SOR_PWM_CTL(ffs(nv_encoder->dcb->or) =
+- 1)))
+>  		return 0;
+> =20
+>  	if (drm->client.device.info.chipset <=3D 0xa0 ||
+> --=20
+> 2.14.3
+>=20
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--njdagqhjgapcbjk6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEuCp/qmebDh5BvKefO2dY27124hoFAlqK+xIACgkQO2dY2712
+4hoaPA//Yh+7iupnxmIgwOoZTRLrWD0ZZqFi2vszgzhLbEG6vD0uhBhnfjKpCz+t
+kt1XZGkvozlWDvrxa5ca/rdRhcDJaWP86COMBEWjlbyCaEmbZXq2ZPpblSxg86z4
+1TlTASoBABhX1jdWSNjjU9zC1/6aEdbbbTHE5dWuO+tyzwVjdKWOGPRbU4tEiSxZ
+wYq2y1AdoW1Pdxwkow9XHfNq15z2VojBFVUqDzgICUpilRPHO2MQfEG5WwfHg35D
+ti29ZeCsACH9GuG+cUQe1dzN+/PCAADmkY59vd8SfWm2lA3ZwFPeYCBCh5JtyseB
+w2J+us2f0hAEqWvT7o4jDVt47QZD31JLoTdMKdKa2gx0kuoEUfKYc/CeB9ZHYDkL
+ib8Eu4fj57a1BnMca8Xr/wKIU5k7YrG+dI9sNnVlks3IULxIOaozm6wzM+LOUe0p
+HSdsnXHQuBGKPBmEnHGDfvxoPA0Oxal0t7VzxjiXpyF3bIh5VZGdWMl4BdrTwcbA
++SBBm+7vnotRmdBtFalV2V/XC73Ro8l7H/+mnoybsug/X2DbFmPOiU93H2fIasXi
+1UPGYSIUM5tbMumzpiYLKiadl0hnq4zHPBgsv2N6e8FKabACXBsCG1M5OyYhgR4L
++rckmbPkJIZkU8Kr1arASWK11R/Xoyn/uV5IBDCZJFpEQlf/1qM=
+=1Agu
+-----END PGP SIGNATURE-----
+
+--njdagqhjgapcbjk6--
+
+--===============0586663504==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0586663504==--
