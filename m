@@ -1,12 +1,15 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/bl: Fix oops on driver unbind
-Date: Mon, 19 Feb 2018 10:38:04 +0100
-Message-ID: <20180219093803.3bbevbvd574r7epx@pmoreau.org>
-References: <5c682f35ac338efac66416b7670dc01f1ee02676.1518870434.git.lukas@wunner.de>
+From: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: Re: [PATCH 1/7] PCI: Restore BARs on runtime resume
+ despite being unbound
+Date: Mon, 19 Feb 2018 10:49:15 +0100
+Message-ID: <CAJZ5v0jr0dM7VAPUvjEh0HoVgORzvFov3vPvyaO2nynKyJhNjg@mail.gmail.com>
+References: <cover.1518941072.git.lukas@wunner.de>
+ <f7593132608eb9a83d7268cc5b3ef12b3dd9c52d.1518941073.git.lukas@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2046129442=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5c682f35ac338efac66416b7670dc01f1ee02676.1518870434.git.lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+In-Reply-To: <f7593132608eb9a83d7268cc5b3ef12b3dd9c52d.1518941073.git.lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,126 +20,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." <alsa-devel-K7yf7f+aM1XWsZ/bQMPhNw@public.gmane.org>, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "Rafael J. Wysocki" <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Takashi Iwai <tiwai-IBi9RG/b67k@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Jaroslav Kysela <perex-/Fr2/VpizcU@public.gmane.org>, Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Bastien Nocera <hadess-0MeiytkfxGOsTnJN9+BGXg@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2046129442==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sewcbhx4mjncs66m"
-Content-Disposition: inline
-
-
---sewcbhx4mjncs66m
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-My bad; I did test suspend/resume, but not unbinding. Shouldn=E2=80=99t that
-happen on shutdown as well, as the driver gets unloaded? I don=E2=80=99t re=
-member
-seeing that issue there though.
-
-On 2018-02-17 =E2=80=94 13:40, Lukas Wunner wrote:
-> Unbinding nouveau on a dual GPU MacBook Pro oopses because we iterate
-> over the bl_connectors list in nouveau_backlight_exit() but skipped
-> initializing it in nouveau_backlight_init().  Stacktrace for posterity:
->=20
->     BUG: unable to handle kernel NULL pointer dereference at 000000000000=
-0010
->     IP: nouveau_backlight_exit+0x2b/0x70 [nouveau]
->     nouveau_display_destroy+0x29/0x80 [nouveau]
->     nouveau_drm_unload+0x65/0xe0 [nouveau]
->     drm_dev_unregister+0x3c/0xe0 [drm]
->     drm_put_dev+0x2e/0x60 [drm]
->     nouveau_drm_device_remove+0x47/0x70 [nouveau]
->     pci_device_remove+0x36/0xb0
->     device_release_driver_internal+0x157/0x220
->     driver_detach+0x39/0x70
->     bus_remove_driver+0x51/0xd0
->     pci_unregister_driver+0x2a/0xa0
->     nouveau_drm_exit+0x15/0xfb0 [nouveau]
->     SyS_delete_module+0x18c/0x290
->     system_call_fast_compare_end+0xc/0x6f
->=20
-> Fixes: b53ac1ee12a3 ("drm/nouveau/bl: Do not register interface if Apple =
-GMUX detected")
-> Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org # v4.10+
-> Cc: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-> Signed-off-by: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-> ---
-> I reviewed the patch causing the oops but unfortunately missed this, sorr=
-y!
->=20
->  drivers/gpu/drm/nouveau/nouveau_backlight.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c b/drivers/gpu/dr=
-m/nouveau/nouveau_backlight.c
-> index 380f340204e8..f56f60f695e1 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-> @@ -268,13 +268,13 @@ nouveau_backlight_init(struct drm_device *dev)
->  	struct nvif_device *device =3D &drm->client.device;
->  	struct drm_connector *connector;
-> =20
-> +	INIT_LIST_HEAD(&drm->bl_connectors);
-> +
-
-We could instead have an early return in the exit function if
-`apple_gmux_present()` or `drm->bl_connectors` is null, but your current fix
-seems better.
-
-Reviewed-by: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-
-Thank you for the fix!
-Pierre
-
->  	if (apple_gmux_present()) {
->  		NV_INFO(drm, "Apple GMUX detected: not registering Nouveau backlight i=
-nterface\n");
->  		return 0;
->  	}
-> =20
-> -	INIT_LIST_HEAD(&drm->bl_connectors);
-> -
->  	list_for_each_entry(connector, &dev->mode_config.connector_list, head) {
->  		if (connector->connector_type !=3D DRM_MODE_CONNECTOR_LVDS &&
->  		    connector->connector_type !=3D DRM_MODE_CONNECTOR_eDP)
-> --=20
-> 2.15.1
->=20
-
---sewcbhx4mjncs66m
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEuCp/qmebDh5BvKefO2dY27124hoFAlqKmvQACgkQO2dY2712
-4hpcCBAAksrSUS8oAe8sIJyWZ20rDIObM0t0Mz34j63Z6l/lOtIXiEwkPRUkKPJh
-KGDs/lMkjtoaWM62gS8BD6vxZouwYMBr2cLWtwh6ALNmOdauwxOYJRhIv656k/WV
-lad/9eX5H14Nv+K/1ng9ge9aKjWosRDRRTB1MqD0sj6UT2qiFvlTroW9/dlpPM9c
-12mtqm5gWNGxwvkBAMzCJwXp1HzPu6jU+RhXQavqDcRbC6S0zunRHWZWBhd0RJdI
-Ky+s53g9NacmDFRaooO1ToaQVyZcHd8xuCut/BMnQTO+58rjxhWsGTY+pgUHwHeN
-AvJHZUjk3z54f7NZUOp0i3rMTX4PvTeT6W1xhRmXua8rsNIMSMwtsPCpHfFGyzWp
-t89pBQ6vPjIKpTDpnJENYdmegQEG5DXKurxXIonPLyk47mr3mWg/slMXX1rckmzT
-sbEcLJ2ptdNwrBfQTd0xoVeyhydo+VtsJKbzEXXhk+7C/+Gr5Yz5S3SUtF5ZykZ4
-gjTdqPgx/Hmh4ONgWYk9yHXpUabhEfUb/e0pmyw9g3oXQlFkaXdz9qjDJUHo589e
-HRrh57Cjs3kyY3dV7CL/x8cXaqodrU2o8pUBYbWWLHL0uYdKnZG5gwFX7iWm97Xf
-IOoB8+7MXigbh1nM0G+aX9KO/rr2ND6LN5K9qeN5ANytUHGqwFM=
-=FYva
------END PGP SIGNATURE-----
-
---sewcbhx4mjncs66m--
-
---===============2046129442==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2046129442==--
+T24gU3VuLCBGZWIgMTgsIDIwMTggYXQgOTozOCBBTSwgTHVrYXMgV3VubmVyIDxsdWthc0B3dW5u
+ZXIuZGU+IHdyb3RlOgo+IFBDSSBkZXZpY2VzIG5vdCBib3VuZCB0byBhIGRyaXZlciBhcmUgc3Vw
+cG9zZWQgdG8gc3RheSBpbiBEMCBkdXJpbmcKPiBydW50aW1lIHN1c3BlbmQuICBCdXQgdGhleSBt
+YXkgaGF2ZSBhIHBhcmVudCB3aGljaCBpcyBib3VuZCBhbmQgY2FuIGJlCj4gdHJhbnNpdGlvbmVk
+IHRvIEQzY29sZCBhdCBydW50aW1lLiAgT25jZSB0aGUgcGFyZW50IGdvZXMgdG8gRDNjb2xkLCB0
+aGUKPiB1bmJvdW5kIGNoaWxkIG1heSBnbyB0byBEM2NvbGQgYXMgd2VsbC4gIFdoZW4gdGhlIGNo
+aWxkIGNvbWVzIG91dCBvZgo+IEQzY29sZCwgaXRzIEJBUnMgYXJlIHVuaW5pdGlhbGl6ZWQgYW5k
+IHRodXMgaW5hY2Nlc3NpYmxlIHdoZW4gYSBkcml2ZXIKPiB0cmllcyB0byBwcm9iZS4KPgo+IE9u
+ZSBleGFtcGxlIGFyZSByZWNlbnQgaHlicmlkIGdyYXBoaWNzIGxhcHRvcHMgd2hpY2ggY3V0IHBv
+d2VyIHRvIHRoZQo+IGRpc2NyZXRlIEdQVSB3aGVuIHRoZSByb290IHBvcnQgYWJvdmUgaXQgZ29l
+cyB0byBBQ1BJIHBvd2VyIHN0YXRlIEQzLgo+IFVzZXJzIG1heSBwcm92b2tlIHRoaXMgYnkgdW5i
+aW5kaW5nIHRoZSBHUFUgZHJpdmVyIGFuZCBhbGxvd2luZyBydW50aW1lCj4gUE0gb24gdGhlIEdQ
+VSB2aWEgc3lzZnM6ICBUaGUgUE0gY29yZSB3aWxsIHRoZW4gdHJlYXQgdGhlIEdQVSBhcwo+ICJz
+dXNwZW5kZWQiLCB3aGljaCBpbiB0dXJuIGFsbG93cyB0aGUgcm9vdCBwb3J0IHRvIHJ1bnRpbWUg
+c3VzcGVuZCwKPiBjYXVzaW5nIHRoZSBwb3dlciByZXNvdXJjZXMgbGlzdGVkIGluIGl0cyBfUFIz
+IG9iamVjdCB0byBiZSBwb3dlcmVkIG9mZi4KPiBUaGUgR1BVJ3MgQkFScyB3aWxsIGJlIHVuaW5p
+dGlhbGl6ZWQgd2hlbiBhIGRyaXZlciBsYXRlciBwcm9iZXMgaXQuCj4KPiBBbm90aGVyIGV4YW1w
+bGUgYXJlIGh5YnJpZCBncmFwaGljcyBsYXB0b3BzIHdoZXJlIHRoZSBHUFUgaXRzZWxmIChyYXRo
+ZXIKPiB0aGFuIHRoZSByb290IHBvcnQpIGlzIGNhcGFibGUgb2YgcnVudGltZSBzdXNwZW5kaW5n
+IHRvIEQzY29sZC4gIElmIHRoZQo+IEdQVSdzIGludGVncmF0ZWQgSERBIGNvbnRyb2xsZXIgaXMg
+bm90IGJvdW5kIGFuZCB0aGUgR1BVJ3MgZHJpdmVyCj4gZGVjaWRlcyB0byBydW50aW1lIHN1c3Bl
+bmQgdG8gRDNjb2xkLCB0aGUgSERBIGNvbnRyb2xsZXIncyBCQVJzIHdpbGwgYmUKPiB1bmluaXRp
+YWxpemVkIHdoZW4gYSBkcml2ZXIgbGF0ZXIgcHJvYmVzIGl0Lgo+Cj4gRml4IGJ5IHJlc3Rvcmlu
+ZyB0aGUgQkFScyBvbiBydW50aW1lIHJlc3VtZSBpZiB0aGUgZGV2aWNlIGlzIG5vdCBib3VuZC4K
+PiBUaGlzIGlzIHN1ZmZpY2llbnQgdG8gZml4IHRoZSBhYm92ZS1tZW50aW9uZWQgdXNlIGNhc2Vz
+LiAgT3RoZXIgdXNlCj4gY2FzZXMgbWlnaHQgcmVxdWlyZSBhIGZ1bGwtYmxvd24gcGNpX3NhdmVf
+c3RhdGUoKSAvIHBjaV9yZXN0b3JlX3N0YXRlKCkKPiBvciBleGVjdXRpb24gb2YgZml4dXBzLiAg
+V2UgY2FuIGFkZCB0aGF0IG9uY2UgdXNlIGNhc2VzIG1hdGVyaWFsaXplLAo+IGxldCdzIG5vdCBp
+bmZsYXRlIHRoZSBjb2RlIHVubmVjZXNzYXJpbHkuCj4KPiBDYzogQmpvcm4gSGVsZ2FhcyA8Ymhl
+bGdhYXNAZ29vZ2xlLmNvbT4KPiBDYzogUmFmYWVsIEouIFd5c29ja2kgPHJhZmFlbC5qLnd5c29j
+a2lAaW50ZWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6IEx1a2FzIFd1bm5lciA8bHVrYXNAd3VubmVy
+LmRlPgoKUmV2aWV3ZWQtYnk6IFJhZmFlbCBKLiBXeXNvY2tpIDxyYWZhZWwuai53eXNvY2tpQGlu
+dGVsLmNvbT4KCj4gLS0tCj4gIGRyaXZlcnMvcGNpL3BjaS1kcml2ZXIuYyB8IDggKysrKysrLS0K
+PiAgZHJpdmVycy9wY2kvcGNpLmMgICAgICAgIHwgMiArLQo+ICBkcml2ZXJzL3BjaS9wY2kuaCAg
+ICAgICAgfCAxICsKPiAgMyBmaWxlcyBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDMgZGVsZXRp
+b25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9wY2kvcGNpLWRyaXZlci5jIGIvZHJpdmVy
+cy9wY2kvcGNpLWRyaXZlci5jCj4gaW5kZXggM2JlZDZiZWRhMDUxLi41MWIxMWNiZDQ4ZjYgMTAw
+NjQ0Cj4gLS0tIGEvZHJpdmVycy9wY2kvcGNpLWRyaXZlci5jCj4gKysrIGIvZHJpdmVycy9wY2kv
+cGNpLWRyaXZlci5jCj4gQEAgLTEyNzcsMTAgKzEyNzcsMTQgQEAgc3RhdGljIGludCBwY2lfcG1f
+cnVudGltZV9yZXN1bWUoc3RydWN0IGRldmljZSAqZGV2KQo+Cj4gICAgICAgICAvKgo+ICAgICAg
+ICAgICogSWYgcGNpX2Rldi0+ZHJpdmVyIGlzIG5vdCBzZXQgKHVuYm91bmQpLCB0aGUgZGV2aWNl
+IHNob3VsZAo+IC0gICAgICAgICogYWx3YXlzIHJlbWFpbiBpbiBEMCByZWdhcmRsZXNzIG9mIHRo
+ZSBydW50aW1lIFBNIHN0YXR1cwo+ICsgICAgICAgICogYWx3YXlzIHJlbWFpbiBpbiBEMCByZWdh
+cmRsZXNzIG9mIHRoZSBydW50aW1lIFBNIHN0YXR1cy4KPiArICAgICAgICAqIEJ1dCBpZiBpdHMg
+cGFyZW50IGNhbiBnbyB0byBEM2NvbGQsIHRoaXMgZGV2aWNlIG1heSBoYXZlCj4gKyAgICAgICAg
+KiBiZWVuIGluIEQzY29sZCBhcyB3ZWxsIGFuZCByZXF1aXJlIHJlc3RvcmF0aW9uIG9mIGl0cyBC
+QVJzLgo+ICAgICAgICAgICovCj4gLSAgICAgICBpZiAoIXBjaV9kZXYtPmRyaXZlcikKPiArICAg
+ICAgIGlmICghcGNpX2Rldi0+ZHJpdmVyKSB7Cj4gKyAgICAgICAgICAgICAgIHBjaV9yZXN0b3Jl
+X2JhcnMocGNpX2Rldik7Cj4gICAgICAgICAgICAgICAgIHJldHVybiAwOwo+ICsgICAgICAgfQo+
+Cj4gICAgICAgICBpZiAoIXBtIHx8ICFwbS0+cnVudGltZV9yZXN1bWUpCj4gICAgICAgICAgICAg
+ICAgIHJldHVybiAtRU5PU1lTOwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9wY2kuYyBiL2Ry
+aXZlcnMvcGNpL3BjaS5jCj4gaW5kZXggZjZhNGRkMTBkOWIwLi5mNjk0NjUwMjM1ZjIgMTAwNjQ0
+Cj4gLS0tIGEvZHJpdmVycy9wY2kvcGNpLmMKPiArKysgYi9kcml2ZXJzL3BjaS9wY2kuYwo+IEBA
+IC01NjMsNyArNTYzLDcgQEAgaW50IHBjaV93YWl0X2Zvcl9wZW5kaW5nKHN0cnVjdCBwY2lfZGV2
+ICpkZXYsIGludCBwb3MsIHUxNiBtYXNrKQo+ICAgKiBSZXN0b3JlIHRoZSBCQVIgdmFsdWVzIGZv
+ciBhIGdpdmVuIGRldmljZSwgc28gYXMgdG8gbWFrZSBpdAo+ICAgKiBhY2Nlc3NpYmxlIGJ5IGl0
+cyBkcml2ZXIuCj4gICAqLwo+IC1zdGF0aWMgdm9pZCBwY2lfcmVzdG9yZV9iYXJzKHN0cnVjdCBw
+Y2lfZGV2ICpkZXYpCj4gK3ZvaWQgcGNpX3Jlc3RvcmVfYmFycyhzdHJ1Y3QgcGNpX2RldiAqZGV2
+KQo+ICB7Cj4gICAgICAgICBpbnQgaTsKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9wY2ku
+aCBiL2RyaXZlcnMvcGNpL3BjaS5oCj4gaW5kZXggZmNkODE5MTFiMTI3Li4yOWRjMTViYmUzYmYg
+MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9wY2kvcGNpLmgKPiArKysgYi9kcml2ZXJzL3BjaS9wY2ku
+aAo+IEBAIC04Myw2ICs4Myw3IEBAIHZvaWQgcGNpX2FsbG9jYXRlX2NhcF9zYXZlX2J1ZmZlcnMo
+c3RydWN0IHBjaV9kZXYgKmRldik7Cj4gIHZvaWQgcGNpX2ZyZWVfY2FwX3NhdmVfYnVmZmVycyhz
+dHJ1Y3QgcGNpX2RldiAqZGV2KTsKPiAgYm9vbCBwY2lfYnJpZGdlX2QzX3Bvc3NpYmxlKHN0cnVj
+dCBwY2lfZGV2ICpkZXYpOwo+ICB2b2lkIHBjaV9icmlkZ2VfZDNfdXBkYXRlKHN0cnVjdCBwY2lf
+ZGV2ICpkZXYpOwo+ICt2b2lkIHBjaV9yZXN0b3JlX2JhcnMoc3RydWN0IHBjaV9kZXYgKmRldik7
+Cj4KPiAgc3RhdGljIGlubGluZSB2b2lkIHBjaV93YWtldXBfZXZlbnQoc3RydWN0IHBjaV9kZXYg
+KmRldikKPiAgewo+IC0tCj4gMi4xNS4xCj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1Cg==
