@@ -1,90 +1,142 @@
-From: Lukas Wunner <lukas@wunner.de>
-Subject: [PATCH 7/7] drm/nouveau: Runtime suspend despite HDA being unbound
-Date: Sun, 18 Feb 2018 09:38:32 +0100
-Message-ID: <7f8b25446be941000f2b01da9b227d435c5d879f.1518941073.git.lukas@wunner.de>
-References: <cover.1518941072.git.lukas@wunner.de>
+From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/bl: Fix oops on driver unbind
+Date: Mon, 19 Feb 2018 10:38:04 +0100
+Message-ID: <20180219093803.3bbevbvd574r7epx@pmoreau.org>
+References: <5c682f35ac338efac66416b7670dc01f1ee02676.1518870434.git.lukas@wunner.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <cover.1518941072.git.lukas@wunner.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: dri-devel@lists.freedesktop.org
-Cc: alsa-devel@alsa-project.org, linux-pm@vger.kernel.org, nouveau@lists.freedesktop.org, "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, Takashi Iwai <tiwai@suse.com>, Jaroslav Kysela <perex@perex.cz>, Hans de Goede <hdegoede@redhat.com>, Peter Wu <peter@lekensteyn.nl>, Bastien Nocera <hadess@hadess.net>, Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============2046129442=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <5c682f35ac338efac66416b7670dc01f1ee02676.1518870434.git.lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Q29tbWl0IDVhZGRjZjBhNWYwZiAoIm5vdXZlYXU6IGFkZCBydW50aW1lIFBNIHN1cHBvcnQgKHYw
-LjkpIikgcHJldmVudHMKcnVudGltZSBzdXNwZW5kIG9mIHRoZSBHUFUgaWYgaXRzIGludGVncmF0
-ZWQgSERBIGNvbnRyb2xsZXIgaXMgbm90IGJvdW5kCnRvIGEgZHJpdmVyLiAgVGhlIHJhdGlvbmFs
-ZSBhcHBlYXJzIHRvIGJlIHRoYXQgcHJvYmluZyB0aGUgSERBIGZhaWxzIGlmCnRoZSBHUFUgaXMg
-aW4gRDNjb2xkLgoKSG93ZXZlciB3ZSBub3cgdXNlIGEgZGV2aWNlIGxpbmsgdG8gZW5zdXJlIHRo
-YXQgdGhlIEdQVSBpcyBydW50aW1lCnJlc3VtZWQgd2hpbGUgdGhlIEhEQSBjb250cm9sbGVyIGlz
-IHByb2JlZCwgcmVuZGVyaW5nIHRoaXMgc2FmZXR5Cm1lYXN1cmUgb2Jzb2xldGUuICBSZW1vdmUg
-aXQuCgpDYzogRGF2ZSBBaXJsaWUgPGFpcmxpZWRAcmVkaGF0LmNvbT4KQ2M6IEJlbiBTa2VnZ3Mg
-PGJza2VnZ3NAcmVkaGF0LmNvbT4KQ2M6IFRha2FzaGkgSXdhaSA8dGl3YWlAc3VzZS5kZT4KQ2M6
-IFBldGVyIFd1IDxwZXRlckBsZWtlbnN0ZXluLm5sPgpDYzogQWxleCBEZXVjaGVyIDxhbGV4YW5k
-ZXIuZGV1Y2hlckBhbWQuY29tPgpDYzogUmFmYWVsIEouIFd5c29ja2kgPHJhZmFlbC5qLnd5c29j
-a2lAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBMdWthcyBXdW5uZXIgPGx1a2FzQHd1bm5lci5k
-ZT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIHwgNDQgLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
-dXZlYXVfZHJ2LmggfCAgMSAtCiAyIGZpbGVzIGNoYW5nZWQsIDQ1IGRlbGV0aW9ucygtKQoKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgYi9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCmluZGV4IDY5NTk5NTFkNDVkNi4uYmJiZjM1
-MzY4MmUxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5j
-CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKQEAgLTUxMCwzNyAr
-NTEwLDYgQEAgc3RhdGljIGludCBub3V2ZWF1X2RybV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRl
-diwKIAlyZXR1cm4gMDsKIH0KIAotI2RlZmluZSBQQ0lfQ0xBU1NfTVVMVElNRURJQV9IRF9BVURJ
-TyAweDA0MDMKLQotc3RhdGljIHZvaWQKLW5vdXZlYXVfZ2V0X2hkbWlfZGV2KHN0cnVjdCBub3V2
-ZWF1X2RybSAqZHJtKQotewotCXN0cnVjdCBwY2lfZGV2ICpwZGV2ID0gZHJtLT5kZXYtPnBkZXY7
-Ci0KLQlpZiAoIXBkZXYpIHsKLQkJTlZfREVCVUcoZHJtLCAibm90IGEgUENJIGRldmljZTsgbm8g
-SERNSVxuIik7Ci0JCWRybS0+aGRtaV9kZXZpY2UgPSBOVUxMOwotCQlyZXR1cm47Ci0JfQotCi0J
-Lyogc3ViZnVuY3Rpb24gb25lIGlzIGEgaGRtaSBhdWRpbyBkZXZpY2U/ICovCi0JZHJtLT5oZG1p
-X2RldmljZSA9IHBjaV9nZXRfZG9tYWluX2J1c19hbmRfc2xvdChwY2lfZG9tYWluX25yKHBkZXYt
-PmJ1cyksCi0JCQkJCQkodW5zaWduZWQgaW50KXBkZXYtPmJ1cy0+bnVtYmVyLAotCQkJCQkJUENJ
-X0RFVkZOKFBDSV9TTE9UKHBkZXYtPmRldmZuKSwgMSkpOwotCi0JaWYgKCFkcm0tPmhkbWlfZGV2
-aWNlKSB7Ci0JCU5WX0RFQlVHKGRybSwgImhkbWkgZGV2aWNlIG5vdCBmb3VuZCAlZCAlZCAlZFxu
-IiwgcGRldi0+YnVzLT5udW1iZXIsIFBDSV9TTE9UKHBkZXYtPmRldmZuKSwgMSk7Ci0JCXJldHVy
-bjsKLQl9Ci0KLQlpZiAoKGRybS0+aGRtaV9kZXZpY2UtPmNsYXNzID4+IDgpICE9IFBDSV9DTEFT
-U19NVUxUSU1FRElBX0hEX0FVRElPKSB7Ci0JCU5WX0RFQlVHKGRybSwgInBvc3NpYmxlIGhkbWkg
-ZGV2aWNlIG5vdCBhdWRpbyAlZFxuIiwgZHJtLT5oZG1pX2RldmljZS0+Y2xhc3MpOwotCQlwY2lf
-ZGV2X3B1dChkcm0tPmhkbWlfZGV2aWNlKTsKLQkJZHJtLT5oZG1pX2RldmljZSA9IE5VTEw7Ci0J
-CXJldHVybjsKLQl9Ci19Ci0KIHN0YXRpYyBpbnQKIG5vdXZlYXVfZHJtX2xvYWQoc3RydWN0IGRy
-bV9kZXZpY2UgKmRldiwgdW5zaWduZWQgbG9uZyBmbGFncykKIHsKQEAgLTU2OCw4ICs1MzcsNiBA
-QCBub3V2ZWF1X2RybV9sb2FkKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHVuc2lnbmVkIGxvbmcg
-ZmxhZ3MpCiAJSU5JVF9MSVNUX0hFQUQoJmRybS0+Y2xpZW50cyk7CiAJc3Bpbl9sb2NrX2luaXQo
-JmRybS0+dGlsZS5sb2NrKTsKIAotCW5vdXZlYXVfZ2V0X2hkbWlfZGV2KGRybSk7Ci0KIAkvKiB3
-b3JrYXJvdW5kIGFuIG9kZCBpc3N1ZSBvbiBudmMxIGJ5IGRpc2FibGluZyB0aGUgZGV2aWNlJ3MK
-IAkgKiBub3Nub29wIGNhcGFiaWxpdHkuICBob3BlZnVsbHkgd29uJ3QgY2F1c2UgaXNzdWVzIHVu
-dGlsIGEKIAkgKiBiZXR0ZXIgZml4IGlzIGZvdW5kIC0gYXNzdW1pbmcgdGhlcmUgaXMgb25lLi4u
-CkBAIC02NTUsOCArNjIyLDYgQEAgbm91dmVhdV9kcm1fdW5sb2FkKHN0cnVjdCBkcm1fZGV2aWNl
-ICpkZXYpCiAJbm91dmVhdV90dG1fZmluaShkcm0pOwogCW5vdXZlYXVfdmdhX2ZpbmkoZHJtKTsK
-IAotCWlmIChkcm0tPmhkbWlfZGV2aWNlKQotCQlwY2lfZGV2X3B1dChkcm0tPmhkbWlfZGV2aWNl
-KTsKIAlub3V2ZWF1X2NsaV9maW5pKCZkcm0tPmNsaWVudCk7CiAJbm91dmVhdV9jbGlfZmluaSgm
-ZHJtLT5tYXN0ZXIpOwogCWtmcmVlKGRybSk7CkBAIC05MTEsMTUgKzg3Niw2IEBAIG5vdXZlYXVf
-cG1vcHNfcnVudGltZV9pZGxlKHN0cnVjdCBkZXZpY2UgKmRldikKIAkJcmV0dXJuIC1FQlVTWTsK
-IAl9CiAKLQkvKiBpZiB3ZSBoYXZlIGEgaGRtaSBhdWRpbyBkZXZpY2UgLSBtYWtlIHN1cmUgaXQg
-aGFzIGEgZHJpdmVyIGxvYWRlZCAqLwotCWlmIChkcm0tPmhkbWlfZGV2aWNlKSB7Ci0JCWlmICgh
-ZHJtLT5oZG1pX2RldmljZS0+ZHJpdmVyKSB7Ci0JCQlEUk1fREVCVUdfRFJJVkVSKCJmYWlsaW5n
-IHRvIHBvd2VyIG9mZiAtIG5vIEhETUkgYXVkaW8gZHJpdmVyIGxvYWRlZFxuIik7Ci0JCQlwbV9y
-dW50aW1lX21hcmtfbGFzdF9idXN5KGRldik7Ci0JCQlyZXR1cm4gLUVCVVNZOwotCQl9Ci0JfQot
-CiAJbGlzdF9mb3JfZWFjaF9lbnRyeShjcnRjLCAmZHJtLT5kZXYtPm1vZGVfY29uZmlnLmNydGNf
-bGlzdCwgaGVhZCkgewogCQlpZiAoY3J0Yy0+ZW5hYmxlZCkgewogCQkJRFJNX0RFQlVHX0RSSVZF
-UigiZmFpbGluZyB0byBwb3dlciBvZmYgLSBjcnRjIGFjdGl2ZVxuIik7CmRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oIGIvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9kcnYuaAppbmRleCA5NmY2YmQ4YWVlNWQuLjg4MWI0NGI4OWEwMSAxMDA2
-NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuaAorKysgYi9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oCkBAIC0yMDgsNyArMjA4LDYgQEAgc3Ry
-dWN0IG5vdXZlYXVfZHJtIHsKIAlib29sIGhhdmVfZGlzcF9wb3dlcl9yZWY7CiAKIAlzdHJ1Y3Qg
-ZGV2X3BtX2RvbWFpbiB2Z2FfcG1fZG9tYWluOwotCXN0cnVjdCBwY2lfZGV2ICpoZG1pX2Rldmlj
-ZTsKIH07CiAKIHN0YXRpYyBpbmxpbmUgc3RydWN0IG5vdXZlYXVfZHJtICoKLS0gCjIuMTUuMQoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
-IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============2046129442==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sewcbhx4mjncs66m"
+Content-Disposition: inline
+
+
+--sewcbhx4mjncs66m
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+My bad; I did test suspend/resume, but not unbinding. Shouldn=E2=80=99t that
+happen on shutdown as well, as the driver gets unloaded? I don=E2=80=99t re=
+member
+seeing that issue there though.
+
+On 2018-02-17 =E2=80=94 13:40, Lukas Wunner wrote:
+> Unbinding nouveau on a dual GPU MacBook Pro oopses because we iterate
+> over the bl_connectors list in nouveau_backlight_exit() but skipped
+> initializing it in nouveau_backlight_init().  Stacktrace for posterity:
+>=20
+>     BUG: unable to handle kernel NULL pointer dereference at 000000000000=
+0010
+>     IP: nouveau_backlight_exit+0x2b/0x70 [nouveau]
+>     nouveau_display_destroy+0x29/0x80 [nouveau]
+>     nouveau_drm_unload+0x65/0xe0 [nouveau]
+>     drm_dev_unregister+0x3c/0xe0 [drm]
+>     drm_put_dev+0x2e/0x60 [drm]
+>     nouveau_drm_device_remove+0x47/0x70 [nouveau]
+>     pci_device_remove+0x36/0xb0
+>     device_release_driver_internal+0x157/0x220
+>     driver_detach+0x39/0x70
+>     bus_remove_driver+0x51/0xd0
+>     pci_unregister_driver+0x2a/0xa0
+>     nouveau_drm_exit+0x15/0xfb0 [nouveau]
+>     SyS_delete_module+0x18c/0x290
+>     system_call_fast_compare_end+0xc/0x6f
+>=20
+> Fixes: b53ac1ee12a3 ("drm/nouveau/bl: Do not register interface if Apple =
+GMUX detected")
+> Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org # v4.10+
+> Cc: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+> Signed-off-by: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+> ---
+> I reviewed the patch causing the oops but unfortunately missed this, sorr=
+y!
+>=20
+>  drivers/gpu/drm/nouveau/nouveau_backlight.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c b/drivers/gpu/dr=
+m/nouveau/nouveau_backlight.c
+> index 380f340204e8..f56f60f695e1 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
+> @@ -268,13 +268,13 @@ nouveau_backlight_init(struct drm_device *dev)
+>  	struct nvif_device *device =3D &drm->client.device;
+>  	struct drm_connector *connector;
+> =20
+> +	INIT_LIST_HEAD(&drm->bl_connectors);
+> +
+
+We could instead have an early return in the exit function if
+`apple_gmux_present()` or `drm->bl_connectors` is null, but your current fix
+seems better.
+
+Reviewed-by: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+
+Thank you for the fix!
+Pierre
+
+>  	if (apple_gmux_present()) {
+>  		NV_INFO(drm, "Apple GMUX detected: not registering Nouveau backlight i=
+nterface\n");
+>  		return 0;
+>  	}
+> =20
+> -	INIT_LIST_HEAD(&drm->bl_connectors);
+> -
+>  	list_for_each_entry(connector, &dev->mode_config.connector_list, head) {
+>  		if (connector->connector_type !=3D DRM_MODE_CONNECTOR_LVDS &&
+>  		    connector->connector_type !=3D DRM_MODE_CONNECTOR_eDP)
+> --=20
+> 2.15.1
+>=20
+
+--sewcbhx4mjncs66m
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEuCp/qmebDh5BvKefO2dY27124hoFAlqKmvQACgkQO2dY2712
+4hpcCBAAksrSUS8oAe8sIJyWZ20rDIObM0t0Mz34j63Z6l/lOtIXiEwkPRUkKPJh
+KGDs/lMkjtoaWM62gS8BD6vxZouwYMBr2cLWtwh6ALNmOdauwxOYJRhIv656k/WV
+lad/9eX5H14Nv+K/1ng9ge9aKjWosRDRRTB1MqD0sj6UT2qiFvlTroW9/dlpPM9c
+12mtqm5gWNGxwvkBAMzCJwXp1HzPu6jU+RhXQavqDcRbC6S0zunRHWZWBhd0RJdI
+Ky+s53g9NacmDFRaooO1ToaQVyZcHd8xuCut/BMnQTO+58rjxhWsGTY+pgUHwHeN
+AvJHZUjk3z54f7NZUOp0i3rMTX4PvTeT6W1xhRmXua8rsNIMSMwtsPCpHfFGyzWp
+t89pBQ6vPjIKpTDpnJENYdmegQEG5DXKurxXIonPLyk47mr3mWg/slMXX1rckmzT
+sbEcLJ2ptdNwrBfQTd0xoVeyhydo+VtsJKbzEXXhk+7C/+Gr5Yz5S3SUtF5ZykZ4
+gjTdqPgx/Hmh4ONgWYk9yHXpUabhEfUb/e0pmyw9g3oXQlFkaXdz9qjDJUHo589e
+HRrh57Cjs3kyY3dV7CL/x8cXaqodrU2o8pUBYbWWLHL0uYdKnZG5gwFX7iWm97Xf
+IOoB8+7MXigbh1nM0G+aX9KO/rr2ND6LN5K9qeN5ANytUHGqwFM=
+=FYva
+-----END PGP SIGNATURE-----
+
+--sewcbhx4mjncs66m--
+
+--===============2046129442==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2046129442==--
