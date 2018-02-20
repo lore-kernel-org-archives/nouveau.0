@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104835] MMIO read of 00000000 FAULT at 10ac08 [ IBUS
- ]
-Date: Tue, 20 Feb 2018 13:36:43 +0000
-Message-ID: <bug-104835-8800-tNr02STLqa@http.bugs.freedesktop.org/>
-References: <bug-104835-8800@http.bugs.freedesktop.org/>
+From: Ville Syrjala <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Replace the iturbt_709 prop with the
+ standarad COLOR_ENCODNIG prop
+Date: Tue, 20 Feb 2018 15:48:16 +0200
+Message-ID: <20180220134816.15229-1-ville.syrjala@linux.intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1174130752=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,149 +16,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1174130752==
-Content-Type: multipart/alternative; boundary="15191338030.B78F.27241"
-Content-Transfer-Encoding: 7bit
-
-
---15191338030.B78F.27241
-Date: Tue, 20 Feb 2018 13:36:43 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104835
-
---- Comment #2 from Tom D <codsmack-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hardware: Lenovo P50
-Symptoms:
-This problem did not happen until I dist-upgraded from Fedora 26 to 27.
-
-If the laptop is connected to the dock during boot, I get the logs below and
-nothing further. I cannot shift desktops, log in, etc. Due to the
-configuration, I cannot remotely SSH in without changing the FW after loggi=
-ng
-in so I'm unsure about that behavior.
-
-If I boot the system off of the doc and then place it into the doc before
-logging in as a user, all seems to work well. I can then remove and re-seat=
- the
-laptop without issue.
-
-If I boot the system, log in and then place it on the doc, sometimes (I do =
-not
-understand the pattern), the second screen attached to the dock is not seen=
- at
-all (does not show under displays).=20
-
-Same symptoms on numerous docs.=20
-
-I am concerned that the nouveau errors seen are unrelated to the actual
-problems encountered.
-
-Log snip
-[    2.425868] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 02=
-2554
-[ IBUS ]
-[    2.427462] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10=
-ac08
-[ IBUS ]
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15191338030.B78F.27241
-Date: Tue, 20 Feb 2018 13:36:43 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104835#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104835">bug 10483=
-5</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-codsmack&#64;gmail.com" title=3D"Tom D &lt;codsmack&#64;gmail.com&gt;"> <sp=
-an class=3D"fn">Tom D</span></a>
-</span></b>
-        <pre>Hardware: Lenovo P50
-Symptoms:
-This problem did not happen until I dist-upgraded from Fedora 26 to 27.
-
-If the laptop is connected to the dock during boot, I get the logs below and
-nothing further. I cannot shift desktops, log in, etc. Due to the
-configuration, I cannot remotely SSH in without changing the FW after loggi=
-ng
-in so I'm unsure about that behavior.
-
-If I boot the system off of the doc and then place it into the doc before
-logging in as a user, all seems to work well. I can then remove and re-seat=
- the
-laptop without issue.
-
-If I boot the system, log in and then place it on the doc, sometimes (I do =
-not
-understand the pattern), the second screen attached to the dock is not seen=
- at
-all (does not show under displays).=20
-
-Same symptoms on numerous docs.=20
-
-I am concerned that the nouveau errors seen are unrelated to the actual
-problems encountered.
-
-Log snip
-[    2.425868] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 02=
-2554
-[ IBUS ]
-[    2.427462] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10=
-ac08
-[ IBUS ]</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15191338030.B78F.27241--
-
---===============1174130752==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1174130752==--
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClJl
+cGxhY2UgdGhlIGFkLWhvYyBpdHVyYnRfNzA5IHByb3BlcnR5IHdpdGggdGhlIG5ldyBzdGFuZGFy
+ZApDT0xPUl9FTkNPRElORyBwcm9wZXJ0eS4gQ29tcGlsZXMsIGJ1dCBub3QgdGVzdGVkLgoKQ2M6
+IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCkNjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+CkNjOiBJbGlhIE1p
+cmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+ClNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzD
+pCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvZGlzcG52MDQvb3ZlcmxheS5jIHwgMjYgKysrKysrKysrKysrKy0tLS0tLS0tLS0tLS0K
+IDEgZmlsZSBjaGFuZ2VkLCAxMyBpbnNlcnRpb25zKCspLCAxMyBkZWxldGlvbnMoLSkKCmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9vdmVybGF5LmMgYi9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9vdmVybGF5LmMKaW5kZXggYzhjMjMzM2YyNGVl
+Li5kZjQzNThlMzEwNzUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3Bu
+djA0L292ZXJsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9vdmVy
+bGF5LmMKQEAgLTQ2LDcgKzQ2LDYgQEAgc3RydWN0IG5vdXZlYXVfcGxhbmUgewogCQlzdHJ1Y3Qg
+ZHJtX3Byb3BlcnR5ICpicmlnaHRuZXNzOwogCQlzdHJ1Y3QgZHJtX3Byb3BlcnR5ICpodWU7CiAJ
+CXN0cnVjdCBkcm1fcHJvcGVydHkgKnNhdHVyYXRpb247Ci0JCXN0cnVjdCBkcm1fcHJvcGVydHkg
+Kml0dXJidF83MDk7CiAJfSBwcm9wczsKIAogCWludCBjb2xvcmtleTsKQEAgLTU0LDcgKzUzLDcg
+QEAgc3RydWN0IG5vdXZlYXVfcGxhbmUgewogCWludCBicmlnaHRuZXNzOwogCWludCBodWU7CiAJ
+aW50IHNhdHVyYXRpb247Ci0JaW50IGl0dXJidF83MDk7CisJZW51bSBkcm1fY29sb3JfZW5jb2Rp
+bmcgY29sb3JfZW5jb2Rpbmc7CiAKIAl2b2lkICgqc2V0X3BhcmFtcykoc3RydWN0IG5vdXZlYXVf
+cGxhbmUgKik7CiB9OwpAQCAtMTY2LDcgKzE2NSw3IEBAIG52MTBfdXBkYXRlX3BsYW5lKHN0cnVj
+dCBkcm1fcGxhbmUgKnBsYW5lLCBzdHJ1Y3QgZHJtX2NydGMgKmNydGMsCiAJaWYgKGZiLT5mb3Jt
+YXQtPmZvcm1hdCA9PSBEUk1fRk9STUFUX05WMTIgfHwKIAkgICAgZmItPmZvcm1hdC0+Zm9ybWF0
+ID09IERSTV9GT1JNQVRfTlYyMSkKIAkJZm9ybWF0IHw9IE5WX1BWSURFT19GT1JNQVRfUExBTkFS
+OwotCWlmIChudl9wbGFuZS0+aXR1cmJ0XzcwOSkKKwlpZiAobnZfcGxhbmUtPmNvbG9yX2VuY29k
+aW5nID09IERSTV9DT0xPUl9ZQ0JDUl9CVDcwOSkKIAkJZm9ybWF0IHw9IE5WX1BWSURFT19GT1JN
+QVRfTUFUUklYX0lUVVJCVDcwOTsKIAlpZiAobnZfcGxhbmUtPmNvbG9ya2V5ICYgKDEgPDwgMjQp
+KQogCQlmb3JtYXQgfD0gTlZfUFZJREVPX0ZPUk1BVF9ESVNQTEFZX0NPTE9SX0tFWTsKQEAgLTIy
+OSw3ICsyMjgsNyBAQCBudjEwX3NldF9wYXJhbXMoc3RydWN0IG5vdXZlYXVfcGxhbmUgKnBsYW5l
+KQogCW52aWZfd3IzMihkZXYsIE5WX1BWSURFT19DT0xPUl9LRVksIHBsYW5lLT5jb2xvcmtleSAm
+IDB4ZmZmZmZmKTsKIAogCWlmIChwbGFuZS0+Y3VyKSB7Ci0JCWlmIChwbGFuZS0+aXR1cmJ0Xzcw
+OSkKKwkJaWYgKHBsYW5lLT5jb2xvcl9lbmNvZGluZyA9PSBEUk1fQ09MT1JfWUNCQ1JfQlQ3MDkp
+CiAJCQlmb3JtYXQgfD0gTlZfUFZJREVPX0ZPUk1BVF9NQVRSSVhfSVRVUkJUNzA5OwogCQlpZiAo
+cGxhbmUtPmNvbG9ya2V5ICYgKDEgPDwgMjQpKQogCQkJZm9ybWF0IHw9IE5WX1BWSURFT19GT1JN
+QVRfRElTUExBWV9DT0xPUl9LRVk7CkBAIC0yNTgsOCArMjU3LDggQEAgbnZfc2V0X3Byb3BlcnR5
+KHN0cnVjdCBkcm1fcGxhbmUgKnBsYW5lLAogCQludl9wbGFuZS0+aHVlID0gdmFsdWU7CiAJZWxz
+ZSBpZiAocHJvcGVydHkgPT0gbnZfcGxhbmUtPnByb3BzLnNhdHVyYXRpb24pCiAJCW52X3BsYW5l
+LT5zYXR1cmF0aW9uID0gdmFsdWU7Ci0JZWxzZSBpZiAocHJvcGVydHkgPT0gbnZfcGxhbmUtPnBy
+b3BzLml0dXJidF83MDkpCi0JCW52X3BsYW5lLT5pdHVyYnRfNzA5ID0gdmFsdWU7CisJZWxzZSBp
+ZiAocHJvcGVydHkgPT0gbnZfcGxhbmUtPmJhc2UuY29sb3JfZW5jb2RpbmdfcHJvcGVydHkpCisJ
+CW52X3BsYW5lLT5jb2xvcl9lbmNvZGluZyA9IHZhbHVlOwogCWVsc2UKIAkJcmV0dXJuIC1FSU5W
+QUw7CiAKQEAgLTMxMywxNCArMzEyLDExIEBAIG52MTBfb3ZlcmxheV9pbml0KHN0cnVjdCBkcm1f
+ZGV2aWNlICpkZXZpY2UpCiAJCQlkZXZpY2UsIDAsICJodWUiLCAwLCAzNTkpOwogCXBsYW5lLT5w
+cm9wcy5zYXR1cmF0aW9uID0gZHJtX3Byb3BlcnR5X2NyZWF0ZV9yYW5nZSgKIAkJCWRldmljZSwg
+MCwgInNhdHVyYXRpb24iLCAwLCA4MTkyIC0gMSk7Ci0JcGxhbmUtPnByb3BzLml0dXJidF83MDkg
+PSBkcm1fcHJvcGVydHlfY3JlYXRlX3JhbmdlKAotCQkJZGV2aWNlLCAwLCAiaXR1cmJ0XzcwOSIs
+IDAsIDEpOwogCWlmICghcGxhbmUtPnByb3BzLmNvbG9ya2V5IHx8CiAJICAgICFwbGFuZS0+cHJv
+cHMuY29udHJhc3QgfHwKIAkgICAgIXBsYW5lLT5wcm9wcy5icmlnaHRuZXNzIHx8CiAJICAgICFw
+bGFuZS0+cHJvcHMuaHVlIHx8Ci0JICAgICFwbGFuZS0+cHJvcHMuc2F0dXJhdGlvbiB8fAotCSAg
+ICAhcGxhbmUtPnByb3BzLml0dXJidF83MDkpCisJICAgICFwbGFuZS0+cHJvcHMuc2F0dXJhdGlv
+bikKIAkJZ290byBjbGVhbnVwOwogCiAJcGxhbmUtPmNvbG9ya2V5ID0gMDsKQEAgLTM0Myw5ICsz
+MzksMTMgQEAgbnYxMF9vdmVybGF5X2luaXQoc3RydWN0IGRybV9kZXZpY2UgKmRldmljZSkKIAlk
+cm1fb2JqZWN0X2F0dGFjaF9wcm9wZXJ0eSgmcGxhbmUtPmJhc2UuYmFzZSwKIAkJCQkgICBwbGFu
+ZS0+cHJvcHMuc2F0dXJhdGlvbiwgcGxhbmUtPnNhdHVyYXRpb24pOwogCi0JcGxhbmUtPml0dXJi
+dF83MDkgPSAwOwotCWRybV9vYmplY3RfYXR0YWNoX3Byb3BlcnR5KCZwbGFuZS0+YmFzZS5iYXNl
+LAotCQkJCSAgIHBsYW5lLT5wcm9wcy5pdHVyYnRfNzA5LCBwbGFuZS0+aXR1cmJ0XzcwOSk7CisJ
+cGxhbmUtPmNvbG9yX2VuY29kaW5nID0gRFJNX0NPTE9SX1lDQkNSX0JUNjAxOworCWRybV9wbGFu
+ZV9jcmVhdGVfY29sb3JfcHJvcGVydGllcygmcGxhbmUtPmJhc2UsCisJCQkJCSAgQklUKERSTV9D
+T0xPUl9ZQ0JDUl9CVDYwMSkgfAorCQkJCQkgIEJJVChEUk1fQ09MT1JfWUNCQ1JfQlQ3MDkpLAor
+CQkJCQkgIEJJVChEUk1fQ09MT1JfWUNCQ1JfTElNSVRFRF9SQU5HRSksCisJCQkJCSAgRFJNX0NP
+TE9SX1lDQkNSX0JUNjAxLAorCQkJCQkgIERSTV9DT0xPUl9ZQ0JDUl9MSU1JVEVEX1JBTkdFKTsK
+IAogCXBsYW5lLT5zZXRfcGFyYW1zID0gbnYxMF9zZXRfcGFyYW1zOwogCW52MTBfc2V0X3BhcmFt
+cyhwbGFuZSk7Ci0tIAoyLjEzLjYKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
