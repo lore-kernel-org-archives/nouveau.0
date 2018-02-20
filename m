@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105174] [GF108][Regression] Unable to handle NULL
- pointer dereference in nouveau_mem_host since kernel 4.15.3
-Date: Tue, 20 Feb 2018 11:20:04 +0000
-Message-ID: <bug-105174-8800-O79k6Vm3vZ@http.bugs.freedesktop.org/>
-References: <bug-105174-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105173] [MCP79][Regression] Unhandled NULL pointer
+ dereference in nvkm_object_unmap since kernel 4.15
+Date: Tue, 20 Feb 2018 11:20:48 +0000
+Message-ID: <bug-105173-8800-fkpSPMj6Gs@http.bugs.freedesktop.org/>
+References: <bug-105173-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0370215766=="
+Content-Type: multipart/mixed; boundary="===============1420893462=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105174-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-105173-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,44 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0370215766==
-Content-Type: multipart/alternative; boundary="15191256041.6A3eC6B1.2127"
+--===============1420893462==
+Content-Type: multipart/alternative; boundary="15191256472.f5C9A.2133"
 Content-Transfer-Encoding: 7bit
 
 
---15191256041.6A3eC6B1.2127
-Date: Tue, 20 Feb 2018 11:20:04 +0000
+--15191256472.f5C9A.2133
+Date: Tue, 20 Feb 2018 11:20:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105174
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105173
 
 Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|[regression] BUG unable to  |[GF108][Regression] Unable
-                   |handle kernel NULL pointer  |to handle NULL pointer
-                   |dereference in kernel       |dereference in
-                   |4.15.3                      |nouveau_mem_host since
-                   |                            |kernel 4.15.3
-             Status|NEW                         |NEEDINFO
-
---- Comment #3 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Thank you for the bug report.
-Is this easily reproducible (and if yes, how)? Otherwise, what were you doi=
-ng
-when this happened?
+            Summary|[MCP79][Regression]         |[MCP79][Regression]
+                   |Unhandled NULL pointer      |Unhandled NULL pointer
+                   |dereference since kernel    |dereference in
+                   |4.15                        |nvkm_object_unmap since
+                   |                            |kernel 4.15
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15191256041.6A3eC6B1.2127
-Date: Tue, 20 Feb 2018 11:20:04 +0000
+--15191256472.f5C9A.2133
+Date: Tue, 20 Feb 2018 11:20:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -74,11 +67,11 @@ rrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"=
 > <span class=3D"fn">Pierre Moreau</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [GF108][Regression] Unable to handle NULL pointer de=
-reference in nouveau_mem_host since kernel 4.15.3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174">bug 10517=
-4</a>
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - [MCP79][Regression] Unhandled NULL pointer dereferen=
+ce in nvkm_object_unmap since kernel 4.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105173">bug 10517=
+3</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -89,44 +82,14 @@ reference in nouveau_mem_host since kernel 4.15.3"
 
          <tr>
            <td style=3D"text-align:right;">Summary</td>
-           <td>[regression] BUG unable to handle kernel NULL pointer derefe=
-rence in kernel 4.15.3
+           <td>[MCP79][Regression] Unhandled NULL pointer dereference since=
+ kernel 4.15
            </td>
-           <td>[GF108][Regression] Unable to handle NULL pointer dereferenc=
-e in nouveau_mem_host since kernel 4.15.3
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
+           <td>[MCP79][Regression] Unhandled NULL pointer dereference in nv=
+km_object_unmap since kernel 4.15
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [GF108][Regression] Unable to handle NULL pointer de=
-reference in nouveau_mem_host since kernel 4.15.3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [GF108][Regression] Unable to handle NULL pointer de=
-reference in nouveau_mem_host since kernel 4.15.3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174">bug 10517=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
-e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>Thank you for the bug report.
-Is this easily reproducible (and if yes, how)? Otherwise, what were you doi=
-ng
-when this happened?</pre>
-        </div>
       </p>
 
 
@@ -139,9 +102,9 @@ when this happened?</pre>
     </body>
 </html>=
 
---15191256041.6A3eC6B1.2127--
+--15191256472.f5C9A.2133--
 
---===============0370215766==
+--===============1420893462==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -151,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0370215766==--
+--===============1420893462==--
