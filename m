@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 105174] [GF108][Regression] Unable to handle NULL
  pointer dereference in nouveau_mem_host since kernel 4.15.3
-Date: Thu, 22 Feb 2018 15:19:29 +0000
-Message-ID: <bug-105174-8800-QXd7VXZulB@http.bugs.freedesktop.org/>
+Date: Thu, 22 Feb 2018 15:21:57 +0000
+Message-ID: <bug-105174-8800-0rwUk0R5L9@http.bugs.freedesktop.org/>
 References: <bug-105174-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1939129780=="
+Content-Type: multipart/mixed; boundary="===============1181155093=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-105174-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1939129780==
-Content-Type: multipart/alternative; boundary="15193127680.3E7354A.1281"
+--===============1181155093==
+Content-Type: multipart/alternative; boundary="15193129170.E1A0F.1437"
 Content-Transfer-Encoding: 7bit
 
 
---15193127680.3E7354A.1281
-Date: Thu, 22 Feb 2018 15:19:28 +0000
+--15193129170.E1A0F.1437
+Date: Thu, 22 Feb 2018 15:21:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,30 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D105174
 
---- Comment #6 from Philip Raets <philip.raets-CNXmb7IdZIWZIoH1IeqzKA@public.gmane.org> ---
-I have the same error in the kernel with the nouveau driver on openSUSE
-Tumbleweed (kernel 4.15.3 and 4.15.4). This is on a desktop (Dell Optiplex =
-790
-with an NVIDIA GT218 (NVS300) dual display)
+Philip Raets <philip.raets-CNXmb7IdZIWZIoH1IeqzKA@public.gmane.org> changed:
 
-They seem to happen at random in my system. I can't pinpoint an action when
-this occurs.=20
-
-Attached the logs from journalctl
-
-My bugreport on openSUSE:
-https://bugzilla.opensuse.org/show_bug.cgi?id=3D1082308
-
-Greetings,
-
-Philip
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           See Also|                            |https://bugzilla.opensuse.o
+                   |                            |rg/show_bug.cgi?id=3D10823=
+08
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15193127680.3E7354A.1281
-Date: Thu, 22 Feb 2018 15:19:28 +0000
+--15193129170.E1A0F.1437
+Date: Thu, 22 Feb 2018 15:21:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,44 +60,33 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [GF108][Regression] Unable to handle NULL pointer de=
-reference in nouveau_mem_host since kernel 4.15.3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174#c6">Commen=
-t # 6</a>
-              on <a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:philip.ra=
+ets&#64;telenet.be" title=3D"Philip Raets &lt;philip.raets&#64;telenet.be&g=
+t;"> <span class=3D"fn">Philip Raets</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEEDINFO "
    title=3D"NEEDINFO - [GF108][Regression] Unable to handle NULL pointer de=
 reference in nouveau_mem_host since kernel 4.15.3"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174">bug 10517=
 4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-philip.raets&#64;telenet.be" title=3D"Philip Raets &lt;philip.raets&#64;tel=
-enet.be&gt;"> <span class=3D"fn">Philip Raets</span></a>
-</span></b>
-        <pre>I have the same error in the kernel with the nouveau driver on=
- openSUSE
-Tumbleweed (kernel 4.15.3 and 4.15.4). This is on a desktop (Dell Optiplex =
-790
-with an NVIDIA GT218 (NVS300) dual display)
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-They seem to happen at random in my system. I can't pinpoint an action when
-this occurs.=20
-
-Attached the logs from journalctl
-
-My bugreport on openSUSE:
-<a href=3D"https://bugzilla.opensuse.org/show_bug.cgi?id=3D1082308">https:/=
-/bugzilla.opensuse.org/show_bug.cgi?id=3D1082308</a>
-
-Greetings,
-
-Philip</pre>
-        </div>
+         <tr>
+           <td style=3D"text-align:right;">See Also</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://bugzilla.opensuse.org/show_bug.cgi?id=3D1082308
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -120,9 +99,9 @@ Philip</pre>
     </body>
 </html>=
 
---15193127680.3E7354A.1281--
+--15193129170.E1A0F.1437--
 
---===============1939129780==
+--===============1181155093==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -132,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1939129780==--
+--===============1181155093==--
