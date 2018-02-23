@@ -1,14 +1,14 @@
 From: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
-Subject: [PATCH 4.4 059/193] x86/mm/kmmio: Fix mmiotrace for page
+Subject: [PATCH 4.9 083/145] x86/mm/kmmio: Fix mmiotrace for page
  unaligned addresses
-Date: Fri, 23 Feb 2018 19:24:52 +0100
-Message-ID: <20180223170335.220215513@linuxfoundation.org>
-References: <20180223170325.997716448@linuxfoundation.org>
+Date: Fri, 23 Feb 2018 19:26:29 +0100
+Message-ID: <20180223170735.466154379@linuxfoundation.org>
+References: <20180223170724.669759283@linuxfoundation.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180223170325.997716448-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
+In-Reply-To: <20180223170724.669759283-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,7 +22,7 @@ To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 Cc: Peter Zijlstra <peterz-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>, Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Sasha Levin <alexander.levin-0li6OtcxBFHby3iVrkZq2A@public.gmane.org>, Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Steven Rostedt <rostedt-nx8X9YLhiw1AfugRpC6u6w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Thomas Gleixner <tglx-hfZtesqFncYOwBW4kG4KsQ@public.gmane.org>, Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Ingo Molnar <mingo-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-NC40LXN0YWJsZSByZXZpZXcgcGF0Y2guICBJZiBhbnlvbmUgaGFzIGFueSBvYmplY3Rpb25zLCBw
+NC45LXN0YWJsZSByZXZpZXcgcGF0Y2guICBJZiBhbnlvbmUgaGFzIGFueSBvYmplY3Rpb25zLCBw
 bGVhc2UgbGV0IG1lIGtub3cuCgotLS0tLS0tLS0tLS0tLS0tLS0KCkZyb206IEthcm9sIEhlcmJz
 dCA8a2hlcmJzdEByZWRoYXQuY29tPgoKClsgVXBzdHJlYW0gY29tbWl0IDZkNjBjZTM4NGQxZDVj
 YTMyYjU5NTI0NGRiNDA3N2E0MTlhY2M2ODcgXQoKSWYgc29tZXRoaW5nIGNhbGxzIGlvcmVtYXAo
@@ -54,7 +54,7 @@ bWljcm9zb2Z0LmNvbT4KU2lnbmVkLW9mZi1ieTogR3JlZyBLcm9haC1IYXJ0bWFuIDxncmVna2hA
 bGludXhmb3VuZGF0aW9uLm9yZz4KLS0tCiBhcmNoL3g4Ni9tbS9pb3JlbWFwLmMgfCAgICA0ICsr
 LS0KIGFyY2gveDg2L21tL2ttbWlvLmMgICB8ICAgMTIgKysrKysrKy0tLS0tCiAyIGZpbGVzIGNo
 YW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkKCi0tLSBhL2FyY2gveDg2L21t
-L2lvcmVtYXAuYworKysgYi9hcmNoL3g4Ni9tbS9pb3JlbWFwLmMKQEAgLTM0OCwxMSArMzQ4LDEx
+L2lvcmVtYXAuYworKysgYi9hcmNoL3g4Ni9tbS9pb3JlbWFwLmMKQEAgLTM0NywxMSArMzQ3LDEx
 IEBAIHZvaWQgaW91bm1hcCh2b2xhdGlsZSB2b2lkIF9faW9tZW0gKmFkZHIKIAkgICAgKHZvaWQg
 X19mb3JjZSAqKWFkZHIgPCBwaHlzX3RvX3ZpcnQoSVNBX0VORF9BRERSRVNTKSkKIAkJcmV0dXJu
 OwogCisJbW1pb3RyYWNlX2lvdW5tYXAoYWRkcik7CisKIAlhZGRyID0gKHZvbGF0aWxlIHZvaWQg
