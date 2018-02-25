@@ -1,95 +1,99 @@
-From: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
-Subject: [PATCH 4.14 148/159] x86/mm/kmmio: Fix mmiotrace for page
- unaligned addresses
-Date: Fri, 23 Feb 2018 19:27:36 +0100
-Message-ID: <20180223170800.883691621@linuxfoundation.org>
-References: <20180223170743.086611315@linuxfoundation.org>
+From: Lukas Wunner <lukas@wunner.de>
+Subject: Re: [PATCH 1/7] PCI: Restore BARs on runtime resume
+ despite being unbound
+Date: Sun, 25 Feb 2018 09:59:00 +0100
+Message-ID: <20180225085900.GA923@wunner.de>
+References: <cover.1518941072.git.lukas@wunner.de>
+ <20180220212922.GC32228@bhelgaas-glaptop.roam.corp.google.com>
+ <CAJZ5v0h+qipaKKDxxFFpkwUKgMjnoaUB8_p+FRDb+fSM_v+wBw@mail.gmail.com>
+ <6131920.sr0PL0JerP@aspire.rjw.lan>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180223170743.086611315-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Peter Zijlstra <peterz-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>, Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Sasha Levin <alexander.levin-H+0wwilmMs1BDgjK7y7TUQ@public.gmane.org>, Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Steven Rostedt <rostedt-nx8X9YLhiw1AfugRpC6u6w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Thomas Gleixner <tglx-hfZtesqFncYOwBW4kG4KsQ@public.gmane.org>, Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Ingo Molnar <mingo-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <alsa-devel-bounces@alsa-project.org>
+Content-Disposition: inline
+In-Reply-To: <6131920.sr0PL0JerP@aspire.rjw.lan>
+List-Unsubscribe: <http://mailman.alsa-project.org/mailman/options/alsa-devel>,
+ <mailto:alsa-devel-request@alsa-project.org?subject=unsubscribe>
+List-Archive: <http://mailman.alsa-project.org/pipermail/alsa-devel/>
+List-Post: <mailto:alsa-devel@alsa-project.org>
+List-Help: <mailto:alsa-devel-request@alsa-project.org?subject=help>
+List-Subscribe: <http://mailman.alsa-project.org/mailman/listinfo/alsa-devel>,
+ <mailto:alsa-devel-request@alsa-project.org?subject=subscribe>
+Errors-To: alsa-devel-bounces@alsa-project.org
+Sender: alsa-devel-bounces@alsa-project.org
+To: "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Cc: Pierre Moreau <pierre.morrow@free.fr>, "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." <alsa-devel@alsa-project.org>, Lyude Paul <lyude@redhat.com>, Linux PM <linux-pm@vger.kernel.org>, nouveau@lists.freedesktop.org, "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, Takashi Iwai <tiwai@suse.com>, dri-devel <dri-devel@lists.freedesktop.org>, Hans de Goede <hdegoede@redhat.com>, Bjorn Helgaas <helgaas@kernel.org>, Peter Wu <peter@lekensteyn.nl>, Bastien Nocera <hadess@hadess.net>, Linux PCI <linux-pci@vger.kernel.org>, Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-NC4xNC1zdGFibGUgcmV2aWV3IHBhdGNoLiAgSWYgYW55b25lIGhhcyBhbnkgb2JqZWN0aW9ucywg
-cGxlYXNlIGxldCBtZSBrbm93LgoKLS0tLS0tLS0tLS0tLS0tLS0tCgpGcm9tOiBLYXJvbCBIZXJi
-c3QgPGtoZXJic3RAcmVkaGF0LmNvbT4KCgpbIFVwc3RyZWFtIGNvbW1pdCA2ZDYwY2UzODRkMWQ1
-Y2EzMmI1OTUyNDRkYjQwNzdhNDE5YWNjNjg3IF0KCklmIHNvbWV0aGluZyBjYWxscyBpb3JlbWFw
-KCkgd2l0aCBhbiBhZGRyZXNzIG5vdCBhbGlnbmVkIHRvIFBBR0VfU0laRSwgdGhlCnJldHVybmVk
-IGFkZHJlc3MgbWlnaHQgYmUgbm90IGFsaWduZWQgYXMgd2VsbC4gVGhpcyBsZWQgdG8gYSBwcm9i
-ZQpyZWdpc3RlcmVkIG9uIGV4YWN0bHkgdGhlIHJldHVybmVkIGFkZHJlc3MsIGJ1dCB0aGUgZW50
-aXJlIHBhZ2Ugd2FzIGFybWVkCmZvciBtbWlvdHJhY2luZy4KCk9uIGNhbGxpbmcgaW91bm1hcCgp
-IHRoZSBhZGRyZXNzIHBhc3NlZCB0byB1bnJlZ2lzdGVyX2ttbWlvX3Byb2JlKCkgd2FzClBBR0Vf
-U0laRSBhbGlnbmVkIGJ5IHRoZSBjYWxsZXIgbGVhZGluZyB0byBhIGNvbXBsZXRlIGZyZWV6ZSBv
-ZiB0aGUKbWFjaGluZS4KCldlIHNob3VsZCBhbHdheXMgcGFnZSBhbGlnbiBhZGRyZXNzZXMgd2hp
-bGUgKHVuKXJlZ2lzdGVydW5nIG1hcHBpbmdzLApiZWNhdXNlIHRoZSBtbWlvdHJhY2VyIHdvcmtz
-IG9uIHRvcCBvZiBwYWdlcywgbm90IG1hcHBpbmdzLiBXZSBzdGlsbCBrZWVwCnRyYWNrIG9mIHRo
-ZSBwcm9iZXMgYmFzZWQgb24gdGhlaXIgcmVhbCBhZGRyZXNzZXMgYW5kIGxlbmd0aHMgdGhvdWdo
-LApiZWNhdXNlIHRoZSBtbWlvdHJhY2Ugc3RpbGwgbmVlZHMgdG8ga25vdyB3aGF0IGFyZSBtYXBw
-ZWQgbWVtb3J5IHJlZ2lvbnMuCgpBbHNvIG1vdmUgdGhlIGNhbGwgdG8gbW1pb3RyYWNlX2lvdW5t
-YXAoKSBwcmlvciBwYWdlIGFsaWduaW5nIHRoZSBhZGRyZXNzLApzbyB0aGF0IGFsbCBwcm9iZXMg
-YXJlIHVucmVnaXN0ZXJlZCBwcm9wZXJseSwgb3RoZXJ3aXNlIHRoZSBrZXJuZWwgZW5kcyB1cApm
-YWlsaW5nIG1lbW9yeSBhbGxvY2F0aW9ucyByYW5kb21seSBhZnRlciBkaXNhYmxpbmcgdGhlIG1t
-aW90cmFjZXIuCgpUZXN0ZWQtYnk6IEx5dWRlIDxseXVkZUByZWRoYXQuY29tPgpTaWduZWQtb2Zm
-LWJ5OiBLYXJvbCBIZXJic3QgPGtoZXJic3RAcmVkaGF0LmNvbT4KQWNrZWQtYnk6IFBla2thIFBh
-YWxhbmVuIDxwcGFhbGFuZW5AZ21haWwuY29tPgpDYzogTGludXMgVG9ydmFsZHMgPHRvcnZhbGRz
-QGxpbnV4LWZvdW5kYXRpb24ub3JnPgpDYzogUGV0ZXIgWmlqbHN0cmEgPHBldGVyekBpbmZyYWRl
-YWQub3JnPgpDYzogU3RldmVuIFJvc3RlZHQgPHJvc3RlZHRAZ29vZG1pcy5vcmc+CkNjOiBUaG9t
-YXMgR2xlaXhuZXIgPHRnbHhAbGludXRyb25peC5kZT4KQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCkxpbms6IGh0dHA6Ly9sa21sLmtlcm5lbC5vcmcvci8yMDE3MTEyNzA3NTEzOS40
-OTI4LTEta2hlcmJzdEByZWRoYXQuY29tClNpZ25lZC1vZmYtYnk6IEluZ28gTW9sbmFyIDxtaW5n
-b0BrZXJuZWwub3JnPgpTaWduZWQtb2ZmLWJ5OiBTYXNoYSBMZXZpbiA8YWxleGFuZGVyLmxldmlu
-QHZlcml6b24uY29tPgpTaWduZWQtb2ZmLWJ5OiBHcmVnIEtyb2FoLUhhcnRtYW4gPGdyZWdraEBs
-aW51eGZvdW5kYXRpb24ub3JnPgotLS0KIGFyY2gveDg2L21tL2lvcmVtYXAuYyB8ICAgIDQgKyst
-LQogYXJjaC94ODYvbW0va21taW8uYyAgIHwgICAxMiArKysrKysrLS0tLS0KIDIgZmlsZXMgY2hh
-bmdlZCwgOSBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQoKLS0tIGEvYXJjaC94ODYvbW0v
-aW9yZW1hcC5jCisrKyBiL2FyY2gveDg2L21tL2lvcmVtYXAuYwpAQCAtMzQ5LDExICszNDksMTEg
-QEAgdm9pZCBpb3VubWFwKHZvbGF0aWxlIHZvaWQgX19pb21lbSAqYWRkcgogCQlyZXR1cm47CiAJ
-fQogCisJbW1pb3RyYWNlX2lvdW5tYXAoYWRkcik7CisKIAlhZGRyID0gKHZvbGF0aWxlIHZvaWQg
-X19pb21lbSAqKQogCQkoUEFHRV9NQVNLICYgKHVuc2lnbmVkIGxvbmcgX19mb3JjZSlhZGRyKTsK
-IAotCW1taW90cmFjZV9pb3VubWFwKGFkZHIpOwotCiAJLyogVXNlIHRoZSB2bSBhcmVhIHVubG9j
-a2VkLCBhc3N1bWluZyB0aGUgY2FsbGVyCiAJICAgZW5zdXJlcyB0aGVyZSBpc24ndCBhbm90aGVy
-IGlvdW5tYXAgZm9yIHRoZSBzYW1lIGFkZHJlc3MKIAkgICBpbiBwYXJhbGxlbC4gUmV1c2Ugb2Yg
-dGhlIHZpcnR1YWwgYWRkcmVzcyBpcyBwcmV2ZW50ZWQgYnkKLS0tIGEvYXJjaC94ODYvbW0va21t
-aW8uYworKysgYi9hcmNoL3g4Ni9tbS9rbW1pby5jCkBAIC00MzUsMTcgKzQzNSwxOCBAQCBpbnQg
-cmVnaXN0ZXJfa21taW9fcHJvYmUoc3RydWN0IGttbWlvX3ByCiAJdW5zaWduZWQgbG9uZyBmbGFn
-czsKIAlpbnQgcmV0ID0gMDsKIAl1bnNpZ25lZCBsb25nIHNpemUgPSAwOworCXVuc2lnbmVkIGxv
-bmcgYWRkciA9IHAtPmFkZHIgJiBQQUdFX01BU0s7CiAJY29uc3QgdW5zaWduZWQgbG9uZyBzaXpl
-X2xpbSA9IHAtPmxlbiArIChwLT5hZGRyICYgflBBR0VfTUFTSyk7CiAJdW5zaWduZWQgaW50IGw7
-CiAJcHRlX3QgKnB0ZTsKIAogCXNwaW5fbG9ja19pcnFzYXZlKCZrbW1pb19sb2NrLCBmbGFncyk7
-Ci0JaWYgKGdldF9rbW1pb19wcm9iZShwLT5hZGRyKSkgeworCWlmIChnZXRfa21taW9fcHJvYmUo
-YWRkcikpIHsKIAkJcmV0ID0gLUVFWElTVDsKIAkJZ290byBvdXQ7CiAJfQogCi0JcHRlID0gbG9v
-a3VwX2FkZHJlc3MocC0+YWRkciwgJmwpOworCXB0ZSA9IGxvb2t1cF9hZGRyZXNzKGFkZHIsICZs
-KTsKIAlpZiAoIXB0ZSkgewogCQlyZXQgPSAtRUlOVkFMOwogCQlnb3RvIG91dDsKQEAgLTQ1NCw3
-ICs0NTUsNyBAQCBpbnQgcmVnaXN0ZXJfa21taW9fcHJvYmUoc3RydWN0IGttbWlvX3ByCiAJa21t
-aW9fY291bnQrKzsKIAlsaXN0X2FkZF9yY3UoJnAtPmxpc3QsICZrbW1pb19wcm9iZXMpOwogCXdo
-aWxlIChzaXplIDwgc2l6ZV9saW0pIHsKLQkJaWYgKGFkZF9rbW1pb19mYXVsdF9wYWdlKHAtPmFk
-ZHIgKyBzaXplKSkKKwkJaWYgKGFkZF9rbW1pb19mYXVsdF9wYWdlKGFkZHIgKyBzaXplKSkKIAkJ
-CXByX2VycigiVW5hYmxlIHRvIHNldCBwYWdlIGZhdWx0LlxuIik7CiAJCXNpemUgKz0gcGFnZV9s
-ZXZlbF9zaXplKGwpOwogCX0KQEAgLTUyOCwxOSArNTI5LDIwIEBAIHZvaWQgdW5yZWdpc3Rlcl9r
-bW1pb19wcm9iZShzdHJ1Y3Qga21taW8KIHsKIAl1bnNpZ25lZCBsb25nIGZsYWdzOwogCXVuc2ln
-bmVkIGxvbmcgc2l6ZSA9IDA7CisJdW5zaWduZWQgbG9uZyBhZGRyID0gcC0+YWRkciAmIFBBR0Vf
-TUFTSzsKIAljb25zdCB1bnNpZ25lZCBsb25nIHNpemVfbGltID0gcC0+bGVuICsgKHAtPmFkZHIg
-JiB+UEFHRV9NQVNLKTsKIAlzdHJ1Y3Qga21taW9fZmF1bHRfcGFnZSAqcmVsZWFzZV9saXN0ID0g
-TlVMTDsKIAlzdHJ1Y3Qga21taW9fZGVsYXllZF9yZWxlYXNlICpkcmVsZWFzZTsKIAl1bnNpZ25l
-ZCBpbnQgbDsKIAlwdGVfdCAqcHRlOwogCi0JcHRlID0gbG9va3VwX2FkZHJlc3MocC0+YWRkciwg
-JmwpOworCXB0ZSA9IGxvb2t1cF9hZGRyZXNzKGFkZHIsICZsKTsKIAlpZiAoIXB0ZSkKIAkJcmV0
-dXJuOwogCiAJc3Bpbl9sb2NrX2lycXNhdmUoJmttbWlvX2xvY2ssIGZsYWdzKTsKIAl3aGlsZSAo
-c2l6ZSA8IHNpemVfbGltKSB7Ci0JCXJlbGVhc2Vfa21taW9fZmF1bHRfcGFnZShwLT5hZGRyICsg
-c2l6ZSwgJnJlbGVhc2VfbGlzdCk7CisJCXJlbGVhc2Vfa21taW9fZmF1bHRfcGFnZShhZGRyICsg
-c2l6ZSwgJnJlbGVhc2VfbGlzdCk7CiAJCXNpemUgKz0gcGFnZV9sZXZlbF9zaXplKGwpOwogCX0K
-IAlsaXN0X2RlbF9yY3UoJnAtPmxpc3QpOwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbm91dmVhdQo=
+On Wed, Feb 21, 2018 at 01:39:34PM +0100, Rafael J. Wysocki wrote:
+> On Wednesday, February 21, 2018 10:57:14 AM CET Rafael J. Wysocki wrote:
+> > So if pci_pm_runtime_suspend() is modified to call pci_save_state()
+> > before returning 0 in the !dev->driver case, we can just move the
+> > pci_restore_standard_config() invocation in pci_pm_runtime_resume() up
+> > to the very top and check dev->driver later.
+> 
+> I mean something like the patch below, overall (untested).
+> 
+> Tentatively-signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+
+Okay I've tested this successfully now.  I'll have to respin the series
+at least one more time to address the unnecessary initialization Bjorn
+spotted in patch [5/7] and will then replace patch [1/7] with this one.
+
+I'll wait a few more days before respinning to allow for further
+comments, in particular I'm hoping for feedback from Takashi and
+someone testing this on Optimus/ATPX.
+
+Thanks!
+
+Lukas
+
+> ---
+>  drivers/pci/pci-driver.c |   16 ++++++++++------
+>  1 file changed, 10 insertions(+), 6 deletions(-)
+> 
+> Index: linux-pm/drivers/pci/pci-driver.c
+> ===================================================================
+> --- linux-pm.orig/drivers/pci/pci-driver.c
+> +++ linux-pm/drivers/pci/pci-driver.c
+> @@ -1224,11 +1224,14 @@ static int pci_pm_runtime_suspend(struct
+>  	int error;
+>  
+>  	/*
+> -	 * If pci_dev->driver is not set (unbound), the device should
+> -	 * always remain in D0 regardless of the runtime PM status
+> +	 * If pci_dev->driver is not set (unbound), the device may go to D3cold,
+> +	 * but only if the bridge above it is suspended.  In case that happens,
+> +	 * save its config space.
+>  	 */
+> -	if (!pci_dev->driver)
+> +	if (!pci_dev->driver) {
+> +		pci_save_state(pci_dev);
+>  		return 0;
+> +	}
+>  
+>  	if (!pm || !pm->runtime_suspend)
+>  		return -ENOSYS;
+> @@ -1276,16 +1279,17 @@ static int pci_pm_runtime_resume(struct
+>  	const struct dev_pm_ops *pm = dev->driver ? dev->driver->pm : NULL;
+>  
+>  	/*
+> -	 * If pci_dev->driver is not set (unbound), the device should
+> -	 * always remain in D0 regardless of the runtime PM status
+> +	 * Regardless of whether or not the driver is there, the device might
+> +	 * have been put into D3cold as a result of suspending the bridge above
+> +	 * it, so restore the config spaces of all devices here.
+>  	 */
+> +	pci_restore_standard_config(pci_dev);
+>  	if (!pci_dev->driver)
+>  		return 0;
+>  
+>  	if (!pm || !pm->runtime_resume)
+>  		return -ENOSYS;
+>  
+> -	pci_restore_standard_config(pci_dev);
+>  	pci_fixup_device(pci_fixup_resume_early, pci_dev);
+>  	pci_enable_wake(pci_dev, PCI_D0, false);
+>  	pci_fixup_device(pci_fixup_resume, pci_dev);
+> 
