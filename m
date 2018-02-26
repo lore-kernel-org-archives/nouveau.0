@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70388] [NV34] failed to idle channel 0xcccc0000
- (also NV44A)
-Date: Mon, 26 Feb 2018 11:53:35 +0000
-Message-ID: <bug-70388-8800-86pTdRZ87D@http.bugs.freedesktop.org/>
-References: <bug-70388-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105260] New: Nouveau frequently crashes when
+ hovering over taskbar in KDE Plasma 5
+Date: Mon, 26 Feb 2018 20:24:59 +0000
+Message-ID: <bug-105260-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0084678564=="
+Content-Type: multipart/mixed; boundary="===============0233046772=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70388-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,55 +19,83 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0084678564==
-Content-Type: multipart/alternative; boundary="15196460153.DC25.12875"
+--===============0233046772==
+Content-Type: multipart/alternative; boundary="15196766990.96bd.10693"
 Content-Transfer-Encoding: 7bit
 
 
---15196460153.DC25.12875
-Date: Mon, 26 Feb 2018 11:53:35 +0000
+--15196766990.96bd.10693
+Date: Mon, 26 Feb 2018 20:24:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D70388
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105260
 
-Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> changed:
+            Bug ID: 105260
+           Summary: Nouveau frequently crashes when hovering over taskbar
+                    in KDE Plasma 5
+           Product: Mesa
+           Version: 13.0
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: zeratul976-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org
+I am experiencing a frequent freeze of my entire graphics session, from whi=
+ch I
+can only recover by restarting by display manager.
 
---- Comment #37 from Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> ---
-(In reply to Linas Vepstas from comment #33)
-> After this, starting X a second time does not generate any video-out, so
-> monitors stay blanked. Nothing at all printed in /var/log/syslog. However
-> kern.log shows:
->=20
-> Oct 31 15:41:47 fanny kernel: [ 2761.045902] INFO: task kworker/10:1:135
-> blocked for more than 120 seconds.
-> Oct 31 15:41:47 fanny kernel: [ 2761.045912]       Not tainted
-> 3.18.0-rc2-linas #5
-> Oct 31 15:41:47 fanny kernel: [ 2761.045915] "echo 0 >
-> /proc/sys/kernel/hung_task_timeout_secs" disables this message.
-> Oct 31 15:41:47 fanny kernel: [ 2761.045920] kworker/10:1    D
-> ffff88085dd53040     0   135      2 0x00000000
-> Oct 31 15:41:47 fanny kernel: [ 2761.045959] Workqueue: events
-> output_poll_execute [drm_kms_helper]
+The freeze always occurs when hovering over a taskbar entry and a thumbnail
+image of the corresponding window is shown, although I can't reliably repro=
+duce
+the freeze every time I perform such a hover.
 
-This hung task issue has been fixed in v4.16-rc3 with
-https://git.kernel.org/linus/d61a5c106351
+The following output appears in dmesg whenever this happens:
 
-It is unrelated however to the "failed to idle channel" issue AFAICS.
+[425014.691684] nouveau 0000:01:00.0: gr: TRAP ch 2 [003fc60000 Xorg[16428]]
+[425014.691694] nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000049
+[425014.691697] nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000049
+[425014.691715] nouveau 0000:01:00.0: fifo: read fault at 0002b70000 engine=
+ 00
+[PGRAPH] client 01 [GPC0/TEX] reason 02 [PAGE_NOT_PRESENT] on channel 2
+[003fc60000 Xorg[16428]]
+[425014.691716] nouveau 0000:01:00.0: fifo: gr engine fault on channel 2,
+recovering...
+[425014.691911] nouveau 0000:01:00.0: Xorg[16428]: channel 2 killed!
+[425014.692071] nouveau 0000:01:00.0: gr: TRAP ch 9 [003f93c000
+plasmashell[16602]]
+[425014.692080] nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000049
+[425014.692083] nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000049
+[425014.692092] nouveau 0000:01:00.0: fifo: read fault at 0001500000 engine=
+ 00
+[PGRAPH] client 01 [GPC0/TEX] reason 02 [PAGE_NOT_PRESENT] on channel 9
+[003f93c000 plasmashell[16602]]
+[425014.692094] nouveau 0000:01:00.0: fifo: gr engine fault on channel 9,
+recovering...
+[425014.692301] nouveau 0000:01:00.0: plasmashell[16602]: channel 9 killed!
+
+I am running Debian 9, with the KDE desktop environment (Plasma 5.8). My ke=
+rnel
+version is 4.14.
+
+Please let me know if there is any other information I can provide to help
+diagnose the issue.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15196460153.DC25.12875
-Date: Mon, 26 Feb 2018 11:53:35 +0000
+--15196766990.96bd.10693
+Date: Mon, 26 Feb 2018 20:24:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,73 +106,130 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:lukas&#64=
-;wunner.de" title=3D"Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <span class=
-=3D"fn">Lukas Wunner</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV34] failed to idle channel 0xcccc0000 (also NV44A)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70388">bug 70388<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+   title=3D"NEW - Nouveau frequently crashes when hovering over taskbar in =
+KDE Plasma 5"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105260">105260</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>lukas&#64;wunner.de
-           </td>
-         </tr></table>
+        <tr>
+          <th>Summary</th>
+          <td>Nouveau frequently crashes when hovering over taskbar in KDE =
+Plasma 5
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>13.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>zeratul976&#64;hotmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV34] failed to idle channel 0xcccc0000 (also NV44A)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70388#c37">Commen=
-t # 37</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV34] failed to idle channel 0xcccc0000 (also NV44A)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70388">bug 70388<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lukas&#64;wunner.de" title=3D"Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <s=
-pan class=3D"fn">Lukas Wunner</span></a>
-</span></b>
-        <pre>(In reply to Linas Vepstas from <a href=3D"show_bug.cgi?id=3D7=
-0388#c33">comment #33</a>)
-<span class=3D"quote">&gt; After this, starting X a second time does not ge=
-nerate any video-out, so
-&gt; monitors stay blanked. Nothing at all printed in /var/log/syslog. Howe=
-ver
-&gt; kern.log shows:
-&gt;=20
-&gt; Oct 31 15:41:47 fanny kernel: [ 2761.045902] INFO: task kworker/10:1:1=
-35
-&gt; blocked for more than 120 seconds.
-&gt; Oct 31 15:41:47 fanny kernel: [ 2761.045912]       Not tainted
-&gt; 3.18.0-rc2-linas #5
-&gt; Oct 31 15:41:47 fanny kernel: [ 2761.045915] &quot;echo 0 &gt;
-&gt; /proc/sys/kernel/hung_task_timeout_secs&quot; disables this message.
-&gt; Oct 31 15:41:47 fanny kernel: [ 2761.045920] kworker/10:1    D
-&gt; ffff88085dd53040     0   135      2 0x00000000
-&gt; Oct 31 15:41:47 fanny kernel: [ 2761.045959] Workqueue: events
-&gt; output_poll_execute [drm_kms_helper]</span >
+        <pre>I am experiencing a frequent freeze of my entire graphics sess=
+ion, from which I
+can only recover by restarting by display manager.
 
-This hung task issue has been fixed in v4.16-rc3 with
-<a href=3D"https://git.kernel.org/linus/d61a5c106351">https://git.kernel.or=
-g/linus/d61a5c106351</a>
+The freeze always occurs when hovering over a taskbar entry and a thumbnail
+image of the corresponding window is shown, although I can't reliably repro=
+duce
+the freeze every time I perform such a hover.
 
-It is unrelated however to the &quot;failed to idle channel&quot; issue AFA=
-ICS.</pre>
+The following output appears in dmesg whenever this happens:
+
+[425014.691684] nouveau 0000:01:00.0: gr: TRAP ch 2 [003fc60000 Xorg[16428]]
+[425014.691694] nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000049
+[425014.691697] nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000049
+[425014.691715] nouveau 0000:01:00.0: fifo: read fault at 0002b70000 engine=
+ 00
+[PGRAPH] client 01 [GPC0/TEX] reason 02 [PAGE_NOT_PRESENT] on channel 2
+[003fc60000 Xorg[16428]]
+[425014.691716] nouveau 0000:01:00.0: fifo: gr engine fault on channel 2,
+recovering...
+[425014.691911] nouveau 0000:01:00.0: Xorg[16428]: channel 2 killed!
+[425014.692071] nouveau 0000:01:00.0: gr: TRAP ch 9 [003f93c000
+plasmashell[16602]]
+[425014.692080] nouveau 0000:01:00.0: gr: GPC0/TPC0/TEX: 80000049
+[425014.692083] nouveau 0000:01:00.0: gr: GPC0/TPC1/TEX: 80000049
+[425014.692092] nouveau 0000:01:00.0: fifo: read fault at 0001500000 engine=
+ 00
+[PGRAPH] client 01 [GPC0/TEX] reason 02 [PAGE_NOT_PRESENT] on channel 9
+[003f93c000 plasmashell[16602]]
+[425014.692094] nouveau 0000:01:00.0: fifo: gr engine fault on channel 9,
+recovering...
+[425014.692301] nouveau 0000:01:00.0: plasmashell[16602]: channel 9 killed!
+
+I am running Debian 9, with the KDE desktop environment (Plasma 5.8). My ke=
+rnel
+version is 4.14.
+
+Please let me know if there is any other information I can provide to help
+diagnose the issue.</pre>
         </div>
       </p>
 
@@ -156,13 +239,14 @@ ICS.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15196460153.DC25.12875--
+--15196766990.96bd.10693--
 
---===============0084678564==
+--===============0233046772==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -172,4 +256,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0084678564==--
+--===============0233046772==--
