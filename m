@@ -1,109 +1,142 @@
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 4/5] drm/ttm: add ttm_sg_tt_init
-Date: Tue, 27 Feb 2018 13:07:06 +0100
-Message-ID: <b5cb1980-7865-f45a-bc9d-9569f860fb50@gmail.com>
-References: <20180227115000.4105-1-christian.koenig@amd.com>
- <20180227115000.4105-4-christian.koenig@amd.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+ rescan
+Date: Tue, 27 Feb 2018 12:57:41 +0000
+Message-ID: <bug-75985-8800-cV29QfSjIc@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180227115000.4105-4-christian.koenig-5C7GfCeVMHo@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1822869075=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgZ3V5cywKCmF0IGxlYXN0IG9uIGFtZGdwdSBhbmQgcmFkZW9uIHRoZSBwYWdlIGFycmF5IGFs
-bG9jYXRlZCBieSAKdHRtX2RtYV90dF9pbml0IGlzIGNvbXBsZXRlbHkgdW51c2VkIGluIHRoZSBj
-YXNlIG9mIERNQS1idWYgc2hhcmluZy4gU28gCkknbSB0cnlpbmcgdG8gZ2V0IHJpZCBvZiB0aGF0
-IGJ5IG9ubHkgYWxsb2NhdGluZyB0aGUgRE1BIGFkZHJlc3MgYXJyYXkuCgpOb3cgdGhlIG9ubHkg
-b3RoZXIgdXNlciBvZiBETUEtYnVmIHRvZ2V0aGVyIHdpdGggdHRtX2RtYV90dF9pbml0IGlzIApO
-b3V2ZWF1LiBTbyBteSBxdWVzdGlvbiBpcyBhcmUgeW91IGd1eXMgdXNpbmcgdGhlIHBhZ2UgYXJy
-YXkgYW55d2hlcmUgaW4gCnlvdXIga2VybmVsIGRyaXZlciBpbiBjYXNlIG9mIGEgRE1BLWJ1ZiBz
-aGFyaW5nPwoKSWYgbm8gdGhlbiBJIGNvdWxkIGp1c3QgbWFrZSB0aGlzIHRoZSBkZWZhdWx0IGJl
-aGF2aW9yIGZvciBhbGwgZHJpdmVycyAKYW5kIHNhdmUgcXVpdGUgYSBiaXQgb2YgbWVtb3J5IGZv
-ciBldmVyeWJvZHkuCgpUaGFua3MsCkNocmlzdGlhbi4KCkFtIDI3LjAyLjIwMTggdW0gMTI6NDkg
-c2NocmllYiBDaHJpc3RpYW4gS8O2bmlnOgo+IFRoaXMgYWxsb3dzIGRyaXZlcnMgdG8gb25seSBh
-bGxvY2F0ZSBkbWEgYWRkcmVzc2VzLCBidXQgbm90IGEgcGFnZQo+IGFycmF5Lgo+Cj4gU2lnbmVk
-LW9mZi1ieTogQ2hyaXN0aWFuIEvDtm5pZyA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPgo+IC0t
-LQo+ICAgZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fdHQuYyB8IDU0ICsrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKy0tLS0tLS0tCj4gICBpbmNsdWRlL2RybS90dG0vdHRtX3R0Lmgg
-ICAgIHwgIDIgKysKPiAgIDIgZmlsZXMgY2hhbmdlZCwgNDcgaW5zZXJ0aW9ucygrKSwgOSBkZWxl
-dGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV90dC5jIGIv
-ZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fdHQuYwo+IGluZGV4IDhlMGI1MjVjZGEwMC4uOTcxMTMz
-MTA2ZWMyIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX3R0LmMKPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV90dC5jCj4gQEAgLTEwOCw2ICsxMDgsMTYgQEAgc3Rh
-dGljIGludCB0dG1fZG1hX3R0X2FsbG9jX3BhZ2VfZGlyZWN0b3J5KHN0cnVjdCB0dG1fZG1hX3R0
-ICp0dG0pCj4gICAJcmV0dXJuIDA7Cj4gICB9Cj4gICAKPiArc3RhdGljIGludCB0dG1fc2dfdHRf
-YWxsb2NfcGFnZV9kaXJlY3Rvcnkoc3RydWN0IHR0bV9kbWFfdHQgKnR0bSkKPiArewo+ICsJdHRt
-LT5kbWFfYWRkcmVzcyA9IGt2bWFsbG9jX2FycmF5KHR0bS0+dHRtLm51bV9wYWdlcywKPiArCQkJ
-CQkgIHNpemVvZigqdHRtLT5kbWFfYWRkcmVzcyksCj4gKwkJCQkJICBHRlBfS0VSTkVMIHwgX19H
-RlBfWkVSTyk7Cj4gKwlpZiAoIXR0bS0+ZG1hX2FkZHJlc3MpCj4gKwkJcmV0dXJuIC1FTk9NRU07
-Cj4gKwlyZXR1cm4gMDsKPiArfQo+ICsKPiAgICNpZmRlZiBDT05GSUdfWDg2Cj4gICBzdGF0aWMg
-aW5saW5lIGludCB0dG1fdHRfc2V0X3BhZ2VfY2FjaGluZyhzdHJ1Y3QgcGFnZSAqcCwKPiAgIAkJ
-CQkJICBlbnVtIHR0bV9jYWNoaW5nX3N0YXRlIGNfb2xkLAo+IEBAIC0yMjcsOCArMjM3LDggQEAg
-dm9pZCB0dG1fdHRfZGVzdHJveShzdHJ1Y3QgdHRtX3R0ICp0dG0pCj4gICAJdHRtLT5mdW5jLT5k
-ZXN0cm95KHR0bSk7Cj4gICB9Cj4gICAKPiAtaW50IHR0bV90dF9pbml0KHN0cnVjdCB0dG1fdHQg
-KnR0bSwgc3RydWN0IHR0bV9ib19kZXZpY2UgKmJkZXYsCj4gLQkJdW5zaWduZWQgbG9uZyBzaXpl
-LCB1aW50MzJfdCBwYWdlX2ZsYWdzKQo+ICt2b2lkIHR0bV90dF9pbml0X2ZpZWxkcyhzdHJ1Y3Qg
-dHRtX3R0ICp0dG0sIHN0cnVjdCB0dG1fYm9fZGV2aWNlICpiZGV2LAo+ICsJCQl1bnNpZ25lZCBs
-b25nIHNpemUsIHVpbnQzMl90IHBhZ2VfZmxhZ3MpCj4gICB7Cj4gICAJdHRtLT5iZGV2ID0gYmRl
-djsKPiAgIAl0dG0tPm51bV9wYWdlcyA9IChzaXplICsgUEFHRV9TSVpFIC0gMSkgPj4gUEFHRV9T
-SElGVDsKPiBAQCAtMjM2LDYgKzI0NiwxMiBAQCBpbnQgdHRtX3R0X2luaXQoc3RydWN0IHR0bV90
-dCAqdHRtLCBzdHJ1Y3QgdHRtX2JvX2RldmljZSAqYmRldiwKPiAgIAl0dG0tPnBhZ2VfZmxhZ3Mg
-PSBwYWdlX2ZsYWdzOwo+ICAgCXR0bS0+c3RhdGUgPSB0dF91bnBvcHVsYXRlZDsKPiAgIAl0dG0t
-PnN3YXBfc3RvcmFnZSA9IE5VTEw7Cj4gK30KPiArCj4gK2ludCB0dG1fdHRfaW5pdChzdHJ1Y3Qg
-dHRtX3R0ICp0dG0sIHN0cnVjdCB0dG1fYm9fZGV2aWNlICpiZGV2LAo+ICsJCXVuc2lnbmVkIGxv
-bmcgc2l6ZSwgdWludDMyX3QgcGFnZV9mbGFncykKPiArewo+ICsJdHRtX3R0X2luaXRfZmllbGRz
-KHR0bSwgYmRldiwgc2l6ZSwgcGFnZV9mbGFncyk7Cj4gICAKPiAgIAlpZiAodHRtX3R0X2FsbG9j
-X3BhZ2VfZGlyZWN0b3J5KHR0bSkpIHsKPiAgIAkJdHRtX3R0X2Rlc3Ryb3kodHRtKTsKPiBAQCAt
-MjU4LDEyICsyNzQsNyBAQCBpbnQgdHRtX2RtYV90dF9pbml0KHN0cnVjdCB0dG1fZG1hX3R0ICp0
-dG1fZG1hLCBzdHJ1Y3QgdHRtX2JvX2RldmljZSAqYmRldiwKPiAgIHsKPiAgIAlzdHJ1Y3QgdHRt
-X3R0ICp0dG0gPSAmdHRtX2RtYS0+dHRtOwo+ICAgCj4gLQl0dG0tPmJkZXYgPSBiZGV2Owo+IC0J
-dHRtLT5udW1fcGFnZXMgPSAoc2l6ZSArIFBBR0VfU0laRSAtIDEpID4+IFBBR0VfU0hJRlQ7Cj4g
-LQl0dG0tPmNhY2hpbmdfc3RhdGUgPSB0dF9jYWNoZWQ7Cj4gLQl0dG0tPnBhZ2VfZmxhZ3MgPSBw
-YWdlX2ZsYWdzOwo+IC0JdHRtLT5zdGF0ZSA9IHR0X3VucG9wdWxhdGVkOwo+IC0JdHRtLT5zd2Fw
-X3N0b3JhZ2UgPSBOVUxMOwo+ICsJdHRtX3R0X2luaXRfZmllbGRzKHR0bSwgYmRldiwgc2l6ZSwg
-cGFnZV9mbGFncyk7Cj4gICAKPiAgIAlJTklUX0xJU1RfSEVBRCgmdHRtX2RtYS0+cGFnZXNfbGlz
-dCk7Cj4gICAJaWYgKHR0bV9kbWFfdHRfYWxsb2NfcGFnZV9kaXJlY3RvcnkodHRtX2RtYSkpIHsK
-PiBAQCAtMjc1LDExICsyODYsMzYgQEAgaW50IHR0bV9kbWFfdHRfaW5pdChzdHJ1Y3QgdHRtX2Rt
-YV90dCAqdHRtX2RtYSwgc3RydWN0IHR0bV9ib19kZXZpY2UgKmJkZXYsCj4gICB9Cj4gICBFWFBP
-UlRfU1lNQk9MKHR0bV9kbWFfdHRfaW5pdCk7Cj4gICAKPiAraW50IHR0bV9zZ190dF9pbml0KHN0
-cnVjdCB0dG1fZG1hX3R0ICp0dG1fZG1hLCBzdHJ1Y3QgdHRtX2JvX2RldmljZSAqYmRldiwKPiAr
-CQkgICB1bnNpZ25lZCBsb25nIHNpemUsIHVpbnQzMl90IHBhZ2VfZmxhZ3MpCj4gK3sKPiArCXN0
-cnVjdCB0dG1fdHQgKnR0bSA9ICZ0dG1fZG1hLT50dG07Cj4gKwlpbnQgcmV0Owo+ICsKPiArCXR0
-bV90dF9pbml0X2ZpZWxkcyh0dG0sIGJkZXYsIHNpemUsIHBhZ2VfZmxhZ3MpOwo+ICsKPiArCUlO
-SVRfTElTVF9IRUFEKCZ0dG1fZG1hLT5wYWdlc19saXN0KTsKPiArCWlmIChwYWdlX2ZsYWdzICYg
-VFRNX1BBR0VfRkxBR19TRykKPiArCQlyZXQgPSB0dG1fc2dfdHRfYWxsb2NfcGFnZV9kaXJlY3Rv
-cnkodHRtX2RtYSk7Cj4gKwllbHNlCj4gKwkJcmV0ID0gdHRtX2RtYV90dF9hbGxvY19wYWdlX2Rp
-cmVjdG9yeSh0dG1fZG1hKTsKPiArCWlmIChyZXQpIHsKPiArCQl0dG1fdHRfZGVzdHJveSh0dG0p
-Owo+ICsJCXByX2VycigiRmFpbGVkIGFsbG9jYXRpbmcgcGFnZSB0YWJsZVxuIik7Cj4gKwkJcmV0
-dXJuIC1FTk9NRU07Cj4gKwl9Cj4gKwlyZXR1cm4gMDsKPiArfQo+ICtFWFBPUlRfU1lNQk9MKHR0
-bV9zZ190dF9pbml0KTsKPiArCj4gICB2b2lkIHR0bV9kbWFfdHRfZmluaShzdHJ1Y3QgdHRtX2Rt
-YV90dCAqdHRtX2RtYSkKPiAgIHsKPiAgIAlzdHJ1Y3QgdHRtX3R0ICp0dG0gPSAmdHRtX2RtYS0+
-dHRtOwo+ICAgCj4gLQlrdmZyZWUodHRtLT5wYWdlcyk7Cj4gKwlpZiAodHRtLT5wYWdlcykKPiAr
-CQlrdmZyZWUodHRtLT5wYWdlcyk7Cj4gKwllbHNlCj4gKwkJa3ZmcmVlKHR0bV9kbWEtPmRtYV9h
-ZGRyZXNzKTsKPiAgIAl0dG0tPnBhZ2VzID0gTlVMTDsKPiAgIAl0dG1fZG1hLT5kbWFfYWRkcmVz
-cyA9IE5VTEw7Cj4gICB9Cj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL3R0bS90dG1fdHQuaCBi
-L2luY2x1ZGUvZHJtL3R0bS90dG1fdHQuaAo+IGluZGV4IDljNzg1NTZiNDg4ZS4uMWNmMzE2YTQy
-NTdjIDEwMDY0NAo+IC0tLSBhL2luY2x1ZGUvZHJtL3R0bS90dG1fdHQuaAo+ICsrKyBiL2luY2x1
-ZGUvZHJtL3R0bS90dG1fdHQuaAo+IEBAIC0xNjMsNiArMTYzLDggQEAgaW50IHR0bV90dF9pbml0
-KHN0cnVjdCB0dG1fdHQgKnR0bSwgc3RydWN0IHR0bV9ib19kZXZpY2UgKmJkZXYsCj4gICAJCXVu
-c2lnbmVkIGxvbmcgc2l6ZSwgdWludDMyX3QgcGFnZV9mbGFncyk7Cj4gICBpbnQgdHRtX2RtYV90
-dF9pbml0KHN0cnVjdCB0dG1fZG1hX3R0ICp0dG1fZG1hLCBzdHJ1Y3QgdHRtX2JvX2RldmljZSAq
-YmRldiwKPiAgIAkJICAgIHVuc2lnbmVkIGxvbmcgc2l6ZSwgdWludDMyX3QgcGFnZV9mbGFncyk7
-Cj4gK2ludCB0dG1fc2dfdHRfaW5pdChzdHJ1Y3QgdHRtX2RtYV90dCAqdHRtX2RtYSwgc3RydWN0
-IHR0bV9ib19kZXZpY2UgKmJkZXYsCj4gKwkJICAgdW5zaWduZWQgbG9uZyBzaXplLCB1aW50MzJf
-dCBwYWdlX2ZsYWdzKTsKPiAgIAo+ICAgLyoqCj4gICAgKiB0dG1fdHRfZmluaQoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxp
-c3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+
+--===============1822869075==
+Content-Type: multipart/alternative; boundary="15197362610.3c7fa2d.4025"
+Content-Transfer-Encoding: 7bit
+
+
+--15197362610.3c7fa2d.4025
+Date: Tue, 27 Feb 2018 12:57:41 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+
+Rapha=C3=ABl Doursenaud <rdoursenaud-GANU6spQydw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |rdoursenaud-GANU6spQydw@public.gmane.org
+
+--- Comment #35 from Rapha=C3=ABl Doursenaud <rdoursenaud-GANU6spQydw@public.gmane.org> ---
+(In reply to Maik Freudenberg from comment #31)
+
+I usually load the module at boot in the initrd.
+I also loaded it manually with X already started.
+Plugging in the cable before or after starting X seem to work regardless.
+Also works with both nouveau and the proprietary driver.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15197362610.3c7fa2d.4025
+Date: Tue, 27 Feb 2018 12:57:41 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:rdoursena=
+ud&#64;free.fr" title=3D"Rapha=C3=ABl Doursenaud &lt;rdoursenaud&#64;free.f=
+r&gt;"> <span class=3D"fn">Rapha=C3=ABl Doursenaud</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>rdoursenaud&#64;free.fr
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c35">Commen=
+t # 35</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+rdoursenaud&#64;free.fr" title=3D"Rapha=C3=ABl Doursenaud &lt;rdoursenaud&#=
+64;free.fr&gt;"> <span class=3D"fn">Rapha=C3=ABl Doursenaud</span></a>
+</span></b>
+        <pre>(In reply to Maik Freudenberg from <a href=3D"show_bug.cgi?id=
+=3D75985#c31">comment #31</a>)
+
+I usually load the module at boot in the initrd.
+I also loaded it manually with X already started.
+Plugging in the cable before or after starting X seem to work regardless.
+Also works with both nouveau and the proprietary driver.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15197362610.3c7fa2d.4025--
+
+--===============1822869075==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1822869075==--
