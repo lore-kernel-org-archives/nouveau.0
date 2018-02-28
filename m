@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105173] [MCP79][Regression] Unhandled NULL pointer
- dereference in nvkm_object_unmap since kernel 4.15
-Date: Wed, 28 Feb 2018 00:04:03 +0000
-Message-ID: <bug-105173-8800-BInBYMXD62@http.bugs.freedesktop.org/>
-References: <bug-105173-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105045] System freeze with nouveau
+Date: Wed, 28 Feb 2018 09:27:07 +0000
+Message-ID: <bug-105045-8800-ObotsMT6lH@http.bugs.freedesktop.org/>
+References: <bug-105045-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0526530242=="
+Content-Type: multipart/mixed; boundary="===============1017087587=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105173-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-105045-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,45 +20,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0526530242==
-Content-Type: multipart/alternative; boundary="15197762432.1cb9DAA8f.27212"
+--===============1017087587==
+Content-Type: multipart/alternative; boundary="15198100270.0fFE.19777"
 Content-Transfer-Encoding: 7bit
 
 
---15197762432.1cb9DAA8f.27212
-Date: Wed, 28 Feb 2018 00:04:03 +0000
+--15198100270.0fFE.19777
+Date: Wed, 28 Feb 2018 09:27:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105173
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105045
 
-S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> changed:
+Sergey Tereschenko <serg.partizan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
 
---- Comment #9 from S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> ---
-Complete unresponsive my nvidia , with nouveau or nvidia drive when boot wi=
-th
-kernel 4.15.x last kernel tested :  4.15.4=20
+--- Comment #10 from Sergey Tereschenko <serg.partizan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+After updating to mesa 17.3.5-1 i haven't seen this bug for few days.
 
-
-01:00.0 VGA compatible controller: NVIDIA Corporation G98M [GeForce 9300M G=
-S]
-(rev a1)
-
-[   29.876760] nouveau 0000:01:00.0: DRM: EVO timeout
+Looks like it was fixed.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15197762432.1cb9DAA8f.27212
-Date: Wed, 28 Feb 2018 00:04:03 +0000
+--15198100270.0fFE.19777
+Date: Wed, 28 Feb 2018 09:27:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,16 +64,15 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:sergio&#6=
-4;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.com&gt;">=
- <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:serg.part=
+izan&#64;gmail.com" title=3D"Sergey Tereschenko &lt;serg.partizan&#64;gmail=
+.com&gt;"> <span class=3D"fn">Sergey Tereschenko</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - [MCP79][Regression] Unhandled NULL pointer dereferen=
-ce in nvkm_object_unmap since kernel 4.15"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105173">bug 10517=
-3</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - System freeze with nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045">bug 10504=
+5</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -89,41 +82,40 @@ ce in nvkm_object_unmap since kernel 4.15"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
            </td>
-           <td>sergio&#64;serjux.com
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - [MCP79][Regression] Unhandled NULL pointer dereferen=
-ce in nvkm_object_unmap since kernel 4.15"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105173#c9">Commen=
-t # 9</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - System freeze with nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045#c10">Comme=
+nt # 10</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - [MCP79][Regression] Unhandled NULL pointer dereferen=
-ce in nvkm_object_unmap since kernel 4.15"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105173">bug 10517=
-3</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - System freeze with nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105045">bug 10504=
+5</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sergio&#64;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.=
-com&gt;"> <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
+serg.partizan&#64;gmail.com" title=3D"Sergey Tereschenko &lt;serg.partizan&=
+#64;gmail.com&gt;"> <span class=3D"fn">Sergey Tereschenko</span></a>
 </span></b>
-        <pre>Complete unresponsive my nvidia , with nouveau or nvidia drive=
- when boot with
-kernel 4.15.x last kernel tested :  4.15.4=20
+        <pre>After updating to mesa 17.3.5-1 i haven't seen this bug for fe=
+w days.
 
-
-01:00.0 VGA compatible controller: NVIDIA Corporation G98M [GeForce 9300M G=
-S]
-(rev a1)
-
-[   29.876760] nouveau 0000:01:00.0: DRM: EVO timeout</pre>
+Looks like it was fixed.</pre>
         </div>
       </p>
 
@@ -133,13 +125,14 @@ S]
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15197762432.1cb9DAA8f.27212--
+--15198100270.0fFE.19777--
 
---===============0526530242==
+--===============1017087587==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -149,4 +142,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0526530242==--
+--===============1017087587==--
