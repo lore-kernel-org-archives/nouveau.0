@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
- rescan
-Date: Tue, 27 Feb 2018 12:57:41 +0000
-Message-ID: <bug-75985-8800-cV29QfSjIc@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105173] [MCP79][Regression] Unhandled NULL pointer
+ dereference in nvkm_object_unmap since kernel 4.15
+Date: Wed, 28 Feb 2018 00:04:03 +0000
+Message-ID: <bug-105173-8800-BInBYMXD62@http.bugs.freedesktop.org/>
+References: <bug-105173-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1822869075=="
+Content-Type: multipart/mixed; boundary="===============0526530242=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-105173-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,41 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1822869075==
-Content-Type: multipart/alternative; boundary="15197362610.3c7fa2d.4025"
+--===============0526530242==
+Content-Type: multipart/alternative; boundary="15197762432.1cb9DAA8f.27212"
 Content-Transfer-Encoding: 7bit
 
 
---15197362610.3c7fa2d.4025
-Date: Tue, 27 Feb 2018 12:57:41 +0000
+--15197762432.1cb9DAA8f.27212
+Date: Wed, 28 Feb 2018 00:04:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105173
 
-Rapha=C3=ABl Doursenaud <rdoursenaud-GANU6spQydw@public.gmane.org> changed:
+S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |rdoursenaud-GANU6spQydw@public.gmane.org
+                 CC|                            |sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org
 
---- Comment #35 from Rapha=C3=ABl Doursenaud <rdoursenaud-GANU6spQydw@public.gmane.org> ---
-(In reply to Maik Freudenberg from comment #31)
+--- Comment #9 from S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> ---
+Complete unresponsive my nvidia , with nouveau or nvidia drive when boot wi=
+th
+kernel 4.15.x last kernel tested :  4.15.4=20
 
-I usually load the module at boot in the initrd.
-I also loaded it manually with X already started.
-Plugging in the cable before or after starting X seem to work regardless.
-Also works with both nouveau and the proprietary driver.
+
+01:00.0 VGA compatible controller: NVIDIA Corporation G98M [GeForce 9300M G=
+S]
+(rev a1)
+
+[   29.876760] nouveau 0000:01:00.0: DRM: EVO timeout
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15197362610.3c7fa2d.4025
-Date: Tue, 27 Feb 2018 12:57:41 +0000
+--15197762432.1cb9DAA8f.27212
+Date: Wed, 28 Feb 2018 00:04:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,15 +70,16 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:rdoursena=
-ud&#64;free.fr" title=3D"Rapha=C3=ABl Doursenaud &lt;rdoursenaud&#64;free.f=
-r&gt;"> <span class=3D"fn">Rapha=C3=ABl Doursenaud</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:sergio&#6=
+4;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.com&gt;">=
+ <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - [MCP79][Regression] Unhandled NULL pointer dereferen=
+ce in nvkm_object_unmap since kernel 4.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105173">bug 10517=
+3</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -88,32 +93,37 @@ r&gt;"> <span class=3D"fn">Rapha=C3=ABl Doursenaud</span></a>
            <td>
                &nbsp;
            </td>
-           <td>rdoursenaud&#64;free.fr
+           <td>sergio&#64;serjux.com
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c35">Commen=
-t # 35</a>
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - [MCP79][Regression] Unhandled NULL pointer dereferen=
+ce in nvkm_object_unmap since kernel 4.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105173#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - [MCP79][Regression] Unhandled NULL pointer dereferen=
+ce in nvkm_object_unmap since kernel 4.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105173">bug 10517=
+3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rdoursenaud&#64;free.fr" title=3D"Rapha=C3=ABl Doursenaud &lt;rdoursenaud&#=
-64;free.fr&gt;"> <span class=3D"fn">Rapha=C3=ABl Doursenaud</span></a>
+sergio&#64;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.=
+com&gt;"> <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
 </span></b>
-        <pre>(In reply to Maik Freudenberg from <a href=3D"show_bug.cgi?id=
-=3D75985#c31">comment #31</a>)
+        <pre>Complete unresponsive my nvidia , with nouveau or nvidia drive=
+ when boot with
+kernel 4.15.x last kernel tested :  4.15.4=20
 
-I usually load the module at boot in the initrd.
-I also loaded it manually with X already started.
-Plugging in the cable before or after starting X seem to work regardless.
-Also works with both nouveau and the proprietary driver.</pre>
+
+01:00.0 VGA compatible controller: NVIDIA Corporation G98M [GeForce 9300M G=
+S]
+(rev a1)
+
+[   29.876760] nouveau 0000:01:00.0: DRM: EVO timeout</pre>
         </div>
       </p>
 
@@ -127,9 +137,9 @@ Also works with both nouveau and the proprietary driver.</pre>
     </body>
 </html>=
 
---15197362610.3c7fa2d.4025--
+--15197762432.1cb9DAA8f.27212--
 
---===============1822869075==
+--===============0526530242==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -139,4 +149,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1822869075==--
+--===============0526530242==--
