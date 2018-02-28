@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104898] backlight problem with the NVIDIA G96GLM
  [Quadro FX 770M]
-Date: Wed, 28 Feb 2018 12:46:13 +0000
-Message-ID: <bug-104898-8800-cVcPADrG2k@http.bugs.freedesktop.org/>
+Date: Wed, 28 Feb 2018 15:01:11 +0000
+Message-ID: <bug-104898-8800-3IKlmDUj4l@http.bugs.freedesktop.org/>
 References: <bug-104898-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0558175941=="
+Content-Type: multipart/mixed; boundary="===============1230561661=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104898-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0558175941==
-Content-Type: multipart/alternative; boundary="15198219730.60168Eb.6208"
+--===============1230561661==
+Content-Type: multipart/alternative; boundary="15198300711.EedE158.9903"
 Content-Transfer-Encoding: 7bit
 
 
---15198219730.60168Eb.6208
-Date: Wed, 28 Feb 2018 12:46:13 +0000
+--15198300711.EedE158.9903
+Date: Wed, 28 Feb 2018 15:01:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104898
 
---- Comment #6 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-can you check if this patch fixes it for you?
-
-https://lists.freedesktop.org/archives/nouveau/2018-February/029869.html
+--- Comment #7 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+  No, unfortunately the given patch did not resolve the backlight issue for=
+ me.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15198219730.60168Eb.6208
-Date: Wed, 28 Feb 2018 12:46:13 +0000
+--15198300711.EedE158.9903
+Date: Wed, 28 Feb 2018 15:01:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,22 +62,19 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - backlight problem with the NVIDIA G96GLM [Quadro FX 770M]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104898#c6">Commen=
-t # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104898#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - backlight problem with the NVIDIA G96GLM [Quadro FX 770M]"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104898">bug 10489=
 8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
+l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>can you check if this patch fixes it for you?
-
-<a href=3D"https://lists.freedesktop.org/archives/nouveau/2018-February/029=
-869.html">https://lists.freedesktop.org/archives/nouveau/2018-February/0298=
-69.html</a></pre>
+        <pre>  No, unfortunately the given patch did not resolve the backli=
+ght issue for me.</pre>
         </div>
       </p>
 
@@ -92,9 +88,9 @@ com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
     </body>
 </html>=
 
---15198219730.60168Eb.6208--
+--15198300711.EedE158.9903--
 
---===============0558175941==
+--===============1230561661==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0558175941==--
+--===============1230561661==--
