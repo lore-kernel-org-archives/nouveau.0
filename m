@@ -1,196 +1,107 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105173] [MCP79][Regression] Unhandled NULL pointer
- dereference in nvkm_object_unmap since kernel 4.15
-Date: Thu, 01 Mar 2018 08:20:02 +0000
-Message-ID: <bug-105173-8800-jDVjcKesNi@http.bugs.freedesktop.org/>
-References: <bug-105173-8800@http.bugs.freedesktop.org/>
+From: Meelis Roos <mroos@linux.ee>
+Subject: UBSAN warning in nouveau_bios.c:1528:8
+Date: Thu, 1 Mar 2018 11:40:08 +0200 (EET)
+Message-ID: <alpine.LRH.2.21.1803011136510.6139@math.ut.ee>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2092058489=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105173-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Linux Kernel list <linux-kernel@vger.kernel.org>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============2092058489==
-Content-Type: multipart/alternative; boundary="15198924020.552ad5fF1.15768"
-Content-Transfer-Encoding: 7bit
-
-
---15198924020.552ad5fF1.15768
-Date: Thu, 1 Mar 2018 08:20:02 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105173
-
---- Comment #11 from Nick Lee <nvlbox-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Pierre Moreau from comment #10)
-
-> What exactly is reproducible? The artefacts I would assume, but which err=
-or
-> exactly? The NULL pointer dereference, or the =E2=80=9Ctrapped read at 00=
-80000000 on
-> channel 1 [0fbb0000 DRM] engine 00 [PGRAPH] client 03 [DISPATCH] subclient
-> 04 [M2M_IN] reason 00000006 [NULL_DMAOBJ]=E2=80=9D one?
-> I did manage to reproduce the second one with Wayland, but still no luck
-> with the first one.
-
-This error:
-[  372.954548] nouveau 0000:03:00.0: imem: OOM: 00100000 00001000 -28
-[  372.954702] nouveau 0000:03:00.0: gr: TRAP_M2MF 00000002 [IN]
-[  372.954712] nouveau 0000:03:00.0: gr: TRAP_M2MF 00320951 c0001fc0 000000=
-00
-04000430
-[  372.954722] nouveau 0000:03:00.0: gr: 00200000 [] ch 1 [000fbb0000 DRM] =
-subc
-4 class 5039 mthd 0100 data 00000000
-[  372.954752] nouveau 0000:03:00.0: fb: trapped read at 00c0000000 on chan=
-nel
-1 [0fbb0000 DRM] engine 00 [PGRAPH] client 03 [DISPATCH] subclient 04 [M2M_=
-IN]
-reason 00000000 [PT_NOT_PRESENT]
-
-kernel-4.15.6-300.vanilla.knurd.1.fc27.x86_64
-mesa-17.3.6
-
-Screenshot:
-https://s9.postimg.org/hajle1skf/Screenshot_from_2018-03-01_10-12-28.png
-
-> (In reply to Nick Lee from comment #8)
-> > Fedora-Workstation-Live-x86_64-Rawhide-20180220.n.0.iso
-> > wayland session
-> >=20
-> > [ 1035.437016] nouveau 0000:03:00.0: swiotlb buffer is full (sz: 2097152
->=20
-> I=E2=80=99ll try the iso. Did you get this error with supertuxkart as wel=
-l, or
-> simply by launching the session?
->=20
-
-by launching the session
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15198924020.552ad5fF1.15768
-Date: Thu, 1 Mar 2018 08:20:02 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - [MCP79][Regression] Unhandled NULL pointer dereferen=
-ce in nvkm_object_unmap since kernel 4.15"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105173#c11">Comme=
-nt # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - [MCP79][Regression] Unhandled NULL pointer dereferen=
-ce in nvkm_object_unmap since kernel 4.15"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105173">bug 10517=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-nvlbox&#64;gmail.com" title=3D"Nick Lee &lt;nvlbox&#64;gmail.com&gt;"> <spa=
-n class=3D"fn">Nick Lee</span></a>
-</span></b>
-        <pre>(In reply to Pierre Moreau from <a href=3D"show_bug.cgi?id=3D1=
-05173#c10">comment #10</a>)
-
-<span class=3D"quote">&gt; What exactly is reproducible? The artefacts I wo=
-uld assume, but which error
-&gt; exactly? The NULL pointer dereference, or the =E2=80=9Ctrapped read at=
- 0080000000 on
-&gt; channel 1 [0fbb0000 DRM] engine 00 [PGRAPH] client 03 [DISPATCH] subcl=
-ient
-&gt; 04 [M2M_IN] reason 00000006 [NULL_DMAOBJ]=E2=80=9D one?
-&gt; I did manage to reproduce the second one with Wayland, but still no lu=
-ck
-&gt; with the first one.</span >
-
-This error:
-[  372.954548] nouveau 0000:03:00.0: imem: OOM: 00100000 00001000 -28
-[  372.954702] nouveau 0000:03:00.0: gr: TRAP_M2MF 00000002 [IN]
-[  372.954712] nouveau 0000:03:00.0: gr: TRAP_M2MF 00320951 c0001fc0 000000=
-00
-04000430
-[  372.954722] nouveau 0000:03:00.0: gr: 00200000 [] ch 1 [000fbb0000 DRM] =
-subc
-4 class 5039 mthd 0100 data 00000000
-[  372.954752] nouveau 0000:03:00.0: fb: trapped read at 00c0000000 on chan=
-nel
-1 [0fbb0000 DRM] engine 00 [PGRAPH] client 03 [DISPATCH] subclient 04 [M2M_=
-IN]
-reason 00000000 [PT_NOT_PRESENT]
-
-kernel-4.15.6-300.vanilla.knurd.1.fc27.x86_64
-mesa-17.3.6
-
-Screenshot:
-<a href=3D"https://s9.postimg.org/hajle1skf/Screenshot_from_2018-03-01_10-1=
-2-28.png">https://s9.postimg.org/hajle1skf/Screenshot_from_2018-03-01_10-12=
--28.png</a>
-
-<span class=3D"quote">&gt; (In reply to Nick Lee from <a href=3D"show_bug.c=
-gi?id=3D105173#c8">comment #8</a>)
-&gt; &gt; Fedora-Workstation-Live-x86_64-Rawhide-20180220.n.0.iso
-&gt; &gt; wayland session
-&gt; &gt;=20
-&gt; &gt; [ 1035.437016] nouveau 0000:03:00.0: swiotlb buffer is full (sz: =
-2097152
-&gt;=20
-&gt; I=E2=80=99ll try the iso. Did you get this error with supertuxkart as =
-well, or
-&gt; simply by launching the session?
-&gt; </span >
-
-by launching the session</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15198924020.552ad5fF1.15768--
-
---===============2092058489==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2092058489==--
+VGhpcyBpcyB0aGUgZmlyc3QgdGltZSBJIGhhdmUgdHJpZWQgVUJTQU4gb24gdGhpcyBzcGVjaWZp
+YyBtYWNoaW5lIAoob25ib2FyZCBuZm9yY2UgNDIwIHdpdGggSFAgQklPUyBvbiBOYW5jZSBtYWlu
+Ym9hcmQpLiBub3V2ZWF1IHNlZW1zIHRvIApiZSB3b3JraW5nIGZpbmUgYnV0IGdpdmVzIHRoaXMg
+VUJTQU4gd2FybmluZzoKClsgICAgNy45NTM5NTddIG5vdXZlYXUgMDAwMDowMDowZC4wOiBOVklE
+SUEgQzYxICgwNGMwMDBhMikKWyAgICA3Ljk2NTEwMV0gbm91dmVhdSAwMDAwOjAwOjBkLjA6IGJp
+b3M6IHZlcnNpb24gMDUuNjEuMzIuMjUuMDIKWyAgICA3Ljk2NjE0MV0gbm91dmVhdSAwMDAwOjAw
+OjBkLjA6IGZiOiAxMjggTWlCIG9mIHVua25vd24gbWVtb3J5IHR5cGUKWyAgICA4LjAxNTMzNl0g
+W1RUTV0gWm9uZSAga2VybmVsOiBBdmFpbGFibGUgZ3JhcGhpY3MgbWVtb3J5OiA5NTI1NjQga2lC
+ClsgICAgOC4wMTUzMzldIFtUVE1dIEluaXRpYWxpemluZyBwb29sIGFsbG9jYXRvcgpbICAgIDgu
+MDE1MzQ0XSBbVFRNXSBJbml0aWFsaXppbmcgRE1BIHBvb2wgYWxsb2NhdG9yClsgICAgOC4wMTUz
+NzBdIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IFZSQU06IDEyNSBNaUIKWyAgICA4LjAxNTM3
+Ml0gbm91dmVhdSAwMDAwOjAwOjBkLjA6IERSTTogR0FSVDogNTEyIE1pQgpbICAgIDguMDE1Mzc3
+XSBub3V2ZWF1IDAwMDA6MDA6MGQuMDogRFJNOiBUTURTIHRhYmxlIHZlcnNpb24gMS4xClsgICAg
+OC4wMTUzNzldIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IERDQiB2ZXJzaW9uIDMuMApbICAg
+IDguMDE1MzgyXSBub3V2ZWF1IDAwMDA6MDA6MGQuMDogRFJNOiBEQ0Igb3V0cCAwMDogMDEwMDAz
+MTAgMDAwMDAwMjMKWyAgICA4LjAxNTM4NV0gbm91dmVhdSAwMDAwOjAwOjBkLjA6IERSTTogRENC
+IG91dHAgMDE6IDAwMTEwMjA0IDk4ODMwMDAzClsgICAgOC4wMTUzODZdID09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09ClsgICAgOC4wMTU0MjNdIFVCU0FOOiBVbmRlZmluZWQgYmVoYXZpb3VyIGluIGRy
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmlvcy5jOjE1Mjg6OApbICAgIDguMDE1NDU1
+XSBzaGlmdCBleHBvbmVudCAtMSBpcyBuZWdhdGl2ZQpbICAgIDguMDE1NDgyXSBDUFU6IDEgUElE
+OiAxNDggQ29tbTogc3lzdGVtZC11ZGV2ZCBOb3QgdGFpbnRlZCA0LjE2LjAtcmMzLTAwMTY3LWc5
+N2FjZTUxNWYwMTQgIzEKWyAgICA4LjAxNTQ4M10gSGFyZHdhcmUgbmFtZTogSFAtUGF2aWxpb24g
+UlQ1ODlBQS1BQlUgdDM3MDkudWsvTmFuY2UsIEJJT1MgNS4wMiAxMS8yNi8yMDA2ClsgICAgOC4w
+MTU0ODVdIENhbGwgVHJhY2U6ClsgICAgOC4wMTU0OTZdICBkdW1wX3N0YWNrKzB4NWEvMHg5OQpb
+ICAgIDguMDE1NTAwXSAgdWJzYW5fZXBpbG9ndWUrMHg5LzB4NDAKWyAgICA4LjAxNTUwM10gIF9f
+dWJzYW5faGFuZGxlX3NoaWZ0X291dF9vZl9ib3VuZHMrMHgxMjQvMHgxNjAKWyAgICA4LjAxNTUw
+Nl0gID8gX2Rldl9pbmZvKzB4NjcvMHg5MApbICAgIDguMDE1NTA5XSAgPyBkZXZfcHJpbnRrX2Vt
+aXQrMHg0OS8weDcwClsgICAgOC4wMTU2MzJdICBwYXJzZV9kY2JfZW50cnkrMHg5MWUvMHhkOTAg
+W25vdXZlYXVdClsgICAgOC4wMTU3MTJdICA/IHBhcnNlX2JpdF9NX3RibF9lbnRyeSsweDE1MC8w
+eDE1MCBbbm91dmVhdV0KWyAgICA4LjAxNTc5MV0gIG9sZGRjYl9vdXRwX2ZvcmVhY2grMHg2Ni8w
+eGEwIFtub3V2ZWF1XQpbICAgIDguMDE1ODcwXSAgbm91dmVhdV9iaW9zX2luaXQrMHgyM2EvMHgy
+MjUwIFtub3V2ZWF1XQpbICAgIDguMDE1OTUwXSAgPyBub3V2ZWF1X3R0bV9pbml0KzB4M2E0LzB4
+NzEwIFtub3V2ZWF1XQpbICAgIDguMDE2MDI5XSAgbm91dmVhdV9kcm1fbG9hZCsweDIyOS8weGYx
+MCBbbm91dmVhdV0KWyAgICA4LjAxNjAzM10gID8gc3lzZnNfZG9fY3JlYXRlX2xpbmtfc2QrMHhh
+Ni8weDE3MApbICAgIDguMDE2MDY3XSAgZHJtX2Rldl9yZWdpc3RlcisweDFiNy8weDMzMCBbZHJt
+XQpbICAgIDguMDE2MDcwXSAgPyBwY2lfZW5hYmxlX2RldmljZV9mbGFncysweDE2MC8weDFmMApb
+ICAgIDguMDE2MDkxXSAgZHJtX2dldF9wY2lfZGV2KzB4ZWUvMHgyZTAgW2RybV0KWyAgICA4LjAx
+NjE3Ml0gIG5vdXZlYXVfZHJtX3Byb2JlKzB4MWRkLzB4MjcwIFtub3V2ZWF1XQpbICAgIDguMDE2
+MTc1XSAgcGNpX2RldmljZV9wcm9iZSsweDExMy8weDFkMApbICAgIDguMDE2MTc4XSAgZHJpdmVy
+X3Byb2JlX2RldmljZSsweDM3NS8weDcyMApbICAgIDguMDE2MTgwXSAgX19kcml2ZXJfYXR0YWNo
+KzB4ZWIvMHgxNTAKWyAgICA4LjAxNjE4MV0gID8gZHJpdmVyX3Byb2JlX2RldmljZSsweDcyMC8w
+eDcyMApbICAgIDguMDE2MTgzXSAgYnVzX2Zvcl9lYWNoX2RldisweDg0LzB4ZTAKWyAgICA4LjAx
+NjE4Nl0gIGJ1c19hZGRfZHJpdmVyKzB4MTlmLzB4MzQwClsgICAgOC4wMTYxODhdICBkcml2ZXJf
+cmVnaXN0ZXIrMHg2Ny8weDExMApbICAgIDguMDE2MTkwXSAgPyAweGZmZmZmZmZmYzBjZmIwMDAK
+WyAgICA4LjAxNjE5M10gIGRvX29uZV9pbml0Y2FsbCsweDY2LzB4MjEwClsgICAgOC4wMTYxOTdd
+ICBkb19pbml0X21vZHVsZSsweGE3LzB4MmE5ClsgICAgOC4wMTYxOTldICBsb2FkX21vZHVsZSsw
+eDI1NDgvMHgzZDMwClsgICAgOC4wMTYyMDJdICA/IF9fc3ltYm9sX3B1dCsweDYwLzB4NjAKWyAg
+ICA4LjAxNjIwNV0gID8ga2VybmVsX3JlYWRfZmlsZSsweDIxYi8weDM5MApbICAgIDguMDE2MjA4
+XSAgPyBrZXJuZWxfcmVhZF9maWxlX2Zyb21fZmQrMHg1Mi8weDkwClsgICAgOC4wMTYyMTBdICBT
+WVNDX2Zpbml0X21vZHVsZSsweDEyNC8weDE1MApbICAgIDguMDE2MjEyXSAgZG9fc3lzY2FsbF82
+NCsweDdhLzB4MWYwClsgICAgOC4wMTYyMTRdICA/IHBhZ2VfZmF1bHQrMHgyZi8weDUwClsgICAg
+OC4wMTYyMTddICBlbnRyeV9TWVNDQUxMXzY0X2FmdGVyX2h3ZnJhbWUrMHgzZC8weGEyClsgICAg
+OC4wMTYyMTldIFJJUDogMDAzMzoweDdmMmU0N2I4MmUxOQpbICAgIDguMDE2MjIwXSBSU1A6IDAw
+MmI6MDAwMDdmZmRjZGMxNTdiOCBFRkxBR1M6IDAwMDAwMjQ2IE9SSUdfUkFYOiAwMDAwMDAwMDAw
+MDAwMTM5ClsgICAgOC4wMTYyMjNdIFJBWDogZmZmZmZmZmZmZmZmZmZkYSBSQlg6IDAwMDA1NjM4
+YjIzYzcyNTAgUkNYOiAwMDAwN2YyZTQ3YjgyZTE5ClsgICAgOC4wMTYyMjRdIFJEWDogMDAwMDAw
+MDAwMDAwMDAwMCBSU0k6IDAwMDA3ZjJlNDc4OGQwZWQgUkRJOiAwMDAwMDAwMDAwMDAwMDE5Clsg
+ICAgOC4wMTYyMjVdIFJCUDogMDAwMDdmMmU0Nzg4ZDBlZCBSMDg6IDAwMDAwMDAwMDAwMDAwMDAg
+UjA5OiAwMDAwMDAwMDAwMDAwMDAwClsgICAgOC4wMTYyMjZdIFIxMDogMDAwMDAwMDAwMDAwMDAx
+OSBSMTE6IDAwMDAwMDAwMDAwMDAyNDYgUjEyOiAwMDAwMDAwMDAwMDAwMDAwClsgICAgOC4wMTYy
+MjddIFIxMzogMDAwMDU2MzhiMjNjMmNlMCBSMTQ6IDAwMDAwMDAwMDAwMjAwMDAgUjE1OiAwMDAw
+NTYzOGIyM2M3MjUwClsgICAgOC4wMTYyMjhdID09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ClsgICAg
+OC4wMTYyOTldIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IERDQiBjb25uIDAwOiAwMDAwClsg
+ICAgOC4wMTYzMDFdIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IERDQiBjb25uIDAxOiAxMTMx
+ClsgICAgOC4wMTYzMDJdIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IERDQiBjb25uIDAyOiAw
+MTEwClsgICAgOC4wMTYzMDRdIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IERDQiBjb25uIDAz
+OiAwMTExClsgICAgOC4wMTYzMDVdIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IERDQiBjb25u
+IDA0OiAwMTEzClsgICAgOC4wMTY2MjZdIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IFNhdmlu
+ZyBWR0EgZm9udHMKWyAgICA4LjA1Mjc4MV0gbm91dmVhdSAwMDAwOjAwOjBkLjA6IERSTTogRENC
+IHR5cGUgNCBub3Qga25vd24KWyAgICA4LjA1Mjc4NF0gbm91dmVhdSAwMDAwOjAwOjBkLjA6IERS
+TTogVW5rbm93bi0xIGhhcyBubyBlbmNvZGVycywgcmVtb3ZpbmcKWyAgICA4LjA1MzcyOF0gW2Ry
+bV0gU3VwcG9ydHMgdmJsYW5rIHRpbWVzdGFtcCBjYWNoaW5nIFJldiAyICgyMS4xMC4yMDEzKS4K
+WyAgICA4LjA1MzcyOV0gW2RybV0gRHJpdmVyIHN1cHBvcnRzIHByZWNpc2UgdmJsYW5rIHRpbWVz
+dGFtcCBxdWVyeS4KWyAgICA4LjA1NTgzNl0gbm91dmVhdSAwMDAwOjAwOjBkLjA6IERSTTogTU06
+IHVzaW5nIE0yTUYgZm9yIGJ1ZmZlciBjb3BpZXMKWyAgICA4LjA4NDQ4OF0gbm91dmVhdSAwMDAw
+OjAwOjBkLjA6IERSTTogYWxsb2NhdGVkIDEyODB4MTAyNCBmYjogMHg5MDAwLCBibyAwMDAwMDAw
+MDUwZjRiNWQwClsgICAgOC4wODQ2NzhdIGZiY29uOiBub3V2ZWF1ZmIgKGZiMCkgaXMgcHJpbWFy
+eSBkZXZpY2UKWyAgICA4LjE5Mzk1OV0gQ29uc29sZTogc3dpdGNoaW5nIHRvIGNvbG91ciBmcmFt
+ZSBidWZmZXIgZGV2aWNlIDE2MHg2NApbICAgIDguMTk1Mzc4XSBub3V2ZWF1IDAwMDA6MDA6MGQu
+MDogZmIwOiBub3V2ZWF1ZmIgZnJhbWUgYnVmZmVyIGRldmljZQpbICAgIDguMjEyMDgzXSBbZHJt
+XSBJbml0aWFsaXplZCBub3V2ZWF1IDEuMy4xIDIwMTIwODAxIGZvciAwMDAwOjAwOjBkLjAgb24g
+bWlub3IgMAoKLS0gCk1lZWxpcyBSb29zIChtcm9vc0BsaW51eC5lZSkKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApk
+cmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
