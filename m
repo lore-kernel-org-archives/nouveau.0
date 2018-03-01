@@ -1,107 +1,170 @@
-From: Meelis Roos <mroos@linux.ee>
-Subject: UBSAN warning in nouveau_bios.c:1528:8
-Date: Thu, 1 Mar 2018 11:40:08 +0200 (EET)
-Message-ID: <alpine.LRH.2.21.1803011136510.6139@math.ut.ee>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+ rescan
+Date: Thu, 01 Mar 2018 10:42:30 +0000
+Message-ID: <bug-75985-8800-YxvcQbeMA0@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Linux Kernel list <linux-kernel@vger.kernel.org>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0768704644=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBpcyB0aGUgZmlyc3QgdGltZSBJIGhhdmUgdHJpZWQgVUJTQU4gb24gdGhpcyBzcGVjaWZp
-YyBtYWNoaW5lIAoob25ib2FyZCBuZm9yY2UgNDIwIHdpdGggSFAgQklPUyBvbiBOYW5jZSBtYWlu
-Ym9hcmQpLiBub3V2ZWF1IHNlZW1zIHRvIApiZSB3b3JraW5nIGZpbmUgYnV0IGdpdmVzIHRoaXMg
-VUJTQU4gd2FybmluZzoKClsgICAgNy45NTM5NTddIG5vdXZlYXUgMDAwMDowMDowZC4wOiBOVklE
-SUEgQzYxICgwNGMwMDBhMikKWyAgICA3Ljk2NTEwMV0gbm91dmVhdSAwMDAwOjAwOjBkLjA6IGJp
-b3M6IHZlcnNpb24gMDUuNjEuMzIuMjUuMDIKWyAgICA3Ljk2NjE0MV0gbm91dmVhdSAwMDAwOjAw
-OjBkLjA6IGZiOiAxMjggTWlCIG9mIHVua25vd24gbWVtb3J5IHR5cGUKWyAgICA4LjAxNTMzNl0g
-W1RUTV0gWm9uZSAga2VybmVsOiBBdmFpbGFibGUgZ3JhcGhpY3MgbWVtb3J5OiA5NTI1NjQga2lC
-ClsgICAgOC4wMTUzMzldIFtUVE1dIEluaXRpYWxpemluZyBwb29sIGFsbG9jYXRvcgpbICAgIDgu
-MDE1MzQ0XSBbVFRNXSBJbml0aWFsaXppbmcgRE1BIHBvb2wgYWxsb2NhdG9yClsgICAgOC4wMTUz
-NzBdIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IFZSQU06IDEyNSBNaUIKWyAgICA4LjAxNTM3
-Ml0gbm91dmVhdSAwMDAwOjAwOjBkLjA6IERSTTogR0FSVDogNTEyIE1pQgpbICAgIDguMDE1Mzc3
-XSBub3V2ZWF1IDAwMDA6MDA6MGQuMDogRFJNOiBUTURTIHRhYmxlIHZlcnNpb24gMS4xClsgICAg
-OC4wMTUzNzldIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IERDQiB2ZXJzaW9uIDMuMApbICAg
-IDguMDE1MzgyXSBub3V2ZWF1IDAwMDA6MDA6MGQuMDogRFJNOiBEQ0Igb3V0cCAwMDogMDEwMDAz
-MTAgMDAwMDAwMjMKWyAgICA4LjAxNTM4NV0gbm91dmVhdSAwMDAwOjAwOjBkLjA6IERSTTogRENC
-IG91dHAgMDE6IDAwMTEwMjA0IDk4ODMwMDAzClsgICAgOC4wMTUzODZdID09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09ClsgICAgOC4wMTU0MjNdIFVCU0FOOiBVbmRlZmluZWQgYmVoYXZpb3VyIGluIGRy
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmlvcy5jOjE1Mjg6OApbICAgIDguMDE1NDU1
-XSBzaGlmdCBleHBvbmVudCAtMSBpcyBuZWdhdGl2ZQpbICAgIDguMDE1NDgyXSBDUFU6IDEgUElE
-OiAxNDggQ29tbTogc3lzdGVtZC11ZGV2ZCBOb3QgdGFpbnRlZCA0LjE2LjAtcmMzLTAwMTY3LWc5
-N2FjZTUxNWYwMTQgIzEKWyAgICA4LjAxNTQ4M10gSGFyZHdhcmUgbmFtZTogSFAtUGF2aWxpb24g
-UlQ1ODlBQS1BQlUgdDM3MDkudWsvTmFuY2UsIEJJT1MgNS4wMiAxMS8yNi8yMDA2ClsgICAgOC4w
-MTU0ODVdIENhbGwgVHJhY2U6ClsgICAgOC4wMTU0OTZdICBkdW1wX3N0YWNrKzB4NWEvMHg5OQpb
-ICAgIDguMDE1NTAwXSAgdWJzYW5fZXBpbG9ndWUrMHg5LzB4NDAKWyAgICA4LjAxNTUwM10gIF9f
-dWJzYW5faGFuZGxlX3NoaWZ0X291dF9vZl9ib3VuZHMrMHgxMjQvMHgxNjAKWyAgICA4LjAxNTUw
-Nl0gID8gX2Rldl9pbmZvKzB4NjcvMHg5MApbICAgIDguMDE1NTA5XSAgPyBkZXZfcHJpbnRrX2Vt
-aXQrMHg0OS8weDcwClsgICAgOC4wMTU2MzJdICBwYXJzZV9kY2JfZW50cnkrMHg5MWUvMHhkOTAg
-W25vdXZlYXVdClsgICAgOC4wMTU3MTJdICA/IHBhcnNlX2JpdF9NX3RibF9lbnRyeSsweDE1MC8w
-eDE1MCBbbm91dmVhdV0KWyAgICA4LjAxNTc5MV0gIG9sZGRjYl9vdXRwX2ZvcmVhY2grMHg2Ni8w
-eGEwIFtub3V2ZWF1XQpbICAgIDguMDE1ODcwXSAgbm91dmVhdV9iaW9zX2luaXQrMHgyM2EvMHgy
-MjUwIFtub3V2ZWF1XQpbICAgIDguMDE1OTUwXSAgPyBub3V2ZWF1X3R0bV9pbml0KzB4M2E0LzB4
-NzEwIFtub3V2ZWF1XQpbICAgIDguMDE2MDI5XSAgbm91dmVhdV9kcm1fbG9hZCsweDIyOS8weGYx
-MCBbbm91dmVhdV0KWyAgICA4LjAxNjAzM10gID8gc3lzZnNfZG9fY3JlYXRlX2xpbmtfc2QrMHhh
-Ni8weDE3MApbICAgIDguMDE2MDY3XSAgZHJtX2Rldl9yZWdpc3RlcisweDFiNy8weDMzMCBbZHJt
-XQpbICAgIDguMDE2MDcwXSAgPyBwY2lfZW5hYmxlX2RldmljZV9mbGFncysweDE2MC8weDFmMApb
-ICAgIDguMDE2MDkxXSAgZHJtX2dldF9wY2lfZGV2KzB4ZWUvMHgyZTAgW2RybV0KWyAgICA4LjAx
-NjE3Ml0gIG5vdXZlYXVfZHJtX3Byb2JlKzB4MWRkLzB4MjcwIFtub3V2ZWF1XQpbICAgIDguMDE2
-MTc1XSAgcGNpX2RldmljZV9wcm9iZSsweDExMy8weDFkMApbICAgIDguMDE2MTc4XSAgZHJpdmVy
-X3Byb2JlX2RldmljZSsweDM3NS8weDcyMApbICAgIDguMDE2MTgwXSAgX19kcml2ZXJfYXR0YWNo
-KzB4ZWIvMHgxNTAKWyAgICA4LjAxNjE4MV0gID8gZHJpdmVyX3Byb2JlX2RldmljZSsweDcyMC8w
-eDcyMApbICAgIDguMDE2MTgzXSAgYnVzX2Zvcl9lYWNoX2RldisweDg0LzB4ZTAKWyAgICA4LjAx
-NjE4Nl0gIGJ1c19hZGRfZHJpdmVyKzB4MTlmLzB4MzQwClsgICAgOC4wMTYxODhdICBkcml2ZXJf
-cmVnaXN0ZXIrMHg2Ny8weDExMApbICAgIDguMDE2MTkwXSAgPyAweGZmZmZmZmZmYzBjZmIwMDAK
-WyAgICA4LjAxNjE5M10gIGRvX29uZV9pbml0Y2FsbCsweDY2LzB4MjEwClsgICAgOC4wMTYxOTdd
-ICBkb19pbml0X21vZHVsZSsweGE3LzB4MmE5ClsgICAgOC4wMTYxOTldICBsb2FkX21vZHVsZSsw
-eDI1NDgvMHgzZDMwClsgICAgOC4wMTYyMDJdICA/IF9fc3ltYm9sX3B1dCsweDYwLzB4NjAKWyAg
-ICA4LjAxNjIwNV0gID8ga2VybmVsX3JlYWRfZmlsZSsweDIxYi8weDM5MApbICAgIDguMDE2MjA4
-XSAgPyBrZXJuZWxfcmVhZF9maWxlX2Zyb21fZmQrMHg1Mi8weDkwClsgICAgOC4wMTYyMTBdICBT
-WVNDX2Zpbml0X21vZHVsZSsweDEyNC8weDE1MApbICAgIDguMDE2MjEyXSAgZG9fc3lzY2FsbF82
-NCsweDdhLzB4MWYwClsgICAgOC4wMTYyMTRdICA/IHBhZ2VfZmF1bHQrMHgyZi8weDUwClsgICAg
-OC4wMTYyMTddICBlbnRyeV9TWVNDQUxMXzY0X2FmdGVyX2h3ZnJhbWUrMHgzZC8weGEyClsgICAg
-OC4wMTYyMTldIFJJUDogMDAzMzoweDdmMmU0N2I4MmUxOQpbICAgIDguMDE2MjIwXSBSU1A6IDAw
-MmI6MDAwMDdmZmRjZGMxNTdiOCBFRkxBR1M6IDAwMDAwMjQ2IE9SSUdfUkFYOiAwMDAwMDAwMDAw
-MDAwMTM5ClsgICAgOC4wMTYyMjNdIFJBWDogZmZmZmZmZmZmZmZmZmZkYSBSQlg6IDAwMDA1NjM4
-YjIzYzcyNTAgUkNYOiAwMDAwN2YyZTQ3YjgyZTE5ClsgICAgOC4wMTYyMjRdIFJEWDogMDAwMDAw
-MDAwMDAwMDAwMCBSU0k6IDAwMDA3ZjJlNDc4OGQwZWQgUkRJOiAwMDAwMDAwMDAwMDAwMDE5Clsg
-ICAgOC4wMTYyMjVdIFJCUDogMDAwMDdmMmU0Nzg4ZDBlZCBSMDg6IDAwMDAwMDAwMDAwMDAwMDAg
-UjA5OiAwMDAwMDAwMDAwMDAwMDAwClsgICAgOC4wMTYyMjZdIFIxMDogMDAwMDAwMDAwMDAwMDAx
-OSBSMTE6IDAwMDAwMDAwMDAwMDAyNDYgUjEyOiAwMDAwMDAwMDAwMDAwMDAwClsgICAgOC4wMTYy
-MjddIFIxMzogMDAwMDU2MzhiMjNjMmNlMCBSMTQ6IDAwMDAwMDAwMDAwMjAwMDAgUjE1OiAwMDAw
-NTYzOGIyM2M3MjUwClsgICAgOC4wMTYyMjhdID09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09ClsgICAg
-OC4wMTYyOTldIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IERDQiBjb25uIDAwOiAwMDAwClsg
-ICAgOC4wMTYzMDFdIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IERDQiBjb25uIDAxOiAxMTMx
-ClsgICAgOC4wMTYzMDJdIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IERDQiBjb25uIDAyOiAw
-MTEwClsgICAgOC4wMTYzMDRdIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IERDQiBjb25uIDAz
-OiAwMTExClsgICAgOC4wMTYzMDVdIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IERDQiBjb25u
-IDA0OiAwMTEzClsgICAgOC4wMTY2MjZdIG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IFNhdmlu
-ZyBWR0EgZm9udHMKWyAgICA4LjA1Mjc4MV0gbm91dmVhdSAwMDAwOjAwOjBkLjA6IERSTTogRENC
-IHR5cGUgNCBub3Qga25vd24KWyAgICA4LjA1Mjc4NF0gbm91dmVhdSAwMDAwOjAwOjBkLjA6IERS
-TTogVW5rbm93bi0xIGhhcyBubyBlbmNvZGVycywgcmVtb3ZpbmcKWyAgICA4LjA1MzcyOF0gW2Ry
-bV0gU3VwcG9ydHMgdmJsYW5rIHRpbWVzdGFtcCBjYWNoaW5nIFJldiAyICgyMS4xMC4yMDEzKS4K
-WyAgICA4LjA1MzcyOV0gW2RybV0gRHJpdmVyIHN1cHBvcnRzIHByZWNpc2UgdmJsYW5rIHRpbWVz
-dGFtcCBxdWVyeS4KWyAgICA4LjA1NTgzNl0gbm91dmVhdSAwMDAwOjAwOjBkLjA6IERSTTogTU06
-IHVzaW5nIE0yTUYgZm9yIGJ1ZmZlciBjb3BpZXMKWyAgICA4LjA4NDQ4OF0gbm91dmVhdSAwMDAw
-OjAwOjBkLjA6IERSTTogYWxsb2NhdGVkIDEyODB4MTAyNCBmYjogMHg5MDAwLCBibyAwMDAwMDAw
-MDUwZjRiNWQwClsgICAgOC4wODQ2NzhdIGZiY29uOiBub3V2ZWF1ZmIgKGZiMCkgaXMgcHJpbWFy
-eSBkZXZpY2UKWyAgICA4LjE5Mzk1OV0gQ29uc29sZTogc3dpdGNoaW5nIHRvIGNvbG91ciBmcmFt
-ZSBidWZmZXIgZGV2aWNlIDE2MHg2NApbICAgIDguMTk1Mzc4XSBub3V2ZWF1IDAwMDA6MDA6MGQu
-MDogZmIwOiBub3V2ZWF1ZmIgZnJhbWUgYnVmZmVyIGRldmljZQpbICAgIDguMjEyMDgzXSBbZHJt
-XSBJbml0aWFsaXplZCBub3V2ZWF1IDEuMy4xIDIwMTIwODAxIGZvciAwMDAwOjAwOjBkLjAgb24g
-bWlub3IgMAoKLS0gCk1lZWxpcyBSb29zIChtcm9vc0BsaW51eC5lZSkKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApk
-cmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============0768704644==
+Content-Type: multipart/alternative; boundary="15199009501.687CF4c.21819"
+Content-Transfer-Encoding: 7bit
+
+
+--15199009501.687CF4c.21819
+Date: Thu, 1 Mar 2018 10:42:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+
+--- Comment #36 from Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org> ---
+I don't know about the current state of this, I would put some effort into =
+it
+if nobody else is working on it. Daniel Drake's patch is a good starting po=
+int
+for that.
+Currently, it looks like the problem lies in that the audio dev is only ever
+looked after on nouveau drm module load. Instead, the state of it should be
+checked/toggled on
+- connector connected/disconected
+- poweron/off the corresponding gpu
+e.g remove the audio dev on suspend if it has been previously enabled, on
+resume check if any connector is connected that needs it and enabled it aga=
+in
+in that case.
+This would also work around the quirks of some laptop's acpi toggling the b=
+it
+either on boot [1] or on suspend [2].
+Desktop cards should not be affected by that because they start with audio =
+dev
+enabled, so it will not be touched.
+Quirks will have to be added for nForce chipsets with IGP since those have a
+separate audio dev.
+
+BTW, the kernel module has moved to:
+https://github.com/hhfeuer/nvhda
+
+
+[1]
+https://devtalk.nvidia.com/default/topic/1024022/linux/gtx-1060-no-audio-ov=
+er-hdmi-only-hda-intel-detected-azalia/post/5228002/#5228002
+[2]
+https://devtalk.nvidia.com/default/topic/1024022/linux/gtx-1060-no-audio-ov=
+er-hdmi-only-hda-intel-detected-azalia/post/5234127/#5234127
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15199009501.687CF4c.21819
+Date: Thu, 1 Mar 2018 10:42:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c36">Commen=
+t # 36</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+hhfeuer&#64;gmx.de" title=3D"Maik Freudenberg &lt;hhfeuer&#64;gmx.de&gt;"> =
+<span class=3D"fn">Maik Freudenberg</span></a>
+</span></b>
+        <pre>I don't know about the current state of this, I would put some=
+ effort into it
+if nobody else is working on it. Daniel Drake's patch is a good starting po=
+int
+for that.
+Currently, it looks like the problem lies in that the audio dev is only ever
+looked after on nouveau drm module load. Instead, the state of it should be
+checked/toggled on
+- connector connected/disconected
+- poweron/off the corresponding gpu
+e.g remove the audio dev on suspend if it has been previously enabled, on
+resume check if any connector is connected that needs it and enabled it aga=
+in
+in that case.
+This would also work around the quirks of some laptop's acpi toggling the b=
+it
+either on boot [1] or on suspend [2].
+Desktop cards should not be affected by that because they start with audio =
+dev
+enabled, so it will not be touched.
+Quirks will have to be added for nForce chipsets with IGP since those have a
+separate audio dev.
+
+BTW, the kernel module has moved to:
+<a href=3D"https://github.com/hhfeuer/nvhda">https://github.com/hhfeuer/nvh=
+da</a>
+
+
+[1]
+<a href=3D"https://devtalk.nvidia.com/default/topic/1024022/linux/gtx-1060-=
+no-audio-over-hdmi-only-hda-intel-detected-azalia/post/5228002/#5228002">ht=
+tps://devtalk.nvidia.com/default/topic/1024022/linux/gtx-1060-no-audio-over=
+-hdmi-only-hda-intel-detected-azalia/post/5228002/#5228002</a>
+[2]
+<a href=3D"https://devtalk.nvidia.com/default/topic/1024022/linux/gtx-1060-=
+no-audio-over-hdmi-only-hda-intel-detected-azalia/post/5234127/#5234127">ht=
+tps://devtalk.nvidia.com/default/topic/1024022/linux/gtx-1060-no-audio-over=
+-hdmi-only-hda-intel-detected-azalia/post/5234127/#5234127</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15199009501.687CF4c.21819--
+
+--===============0768704644==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0768704644==--
