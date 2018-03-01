@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105319] New: DRM: EVO timeout with kernel 4.15.x
-Date: Thu, 01 Mar 2018 23:05:16 +0000
-Message-ID: <bug-105319-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
+Date: Thu, 01 Mar 2018 23:05:46 +0000
+Message-ID: <bug-105319-8800-tDSs20VeeE@http.bugs.freedesktop.org/>
+References: <bug-105319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1366279204=="
+Content-Type: multipart/mixed; boundary="===============0285271016=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1366279204==
-Content-Type: multipart/alternative; boundary="15199455161.4D73393B.25889"
+--===============0285271016==
+Content-Type: multipart/alternative; boundary="15199455451.3a49D5.26500"
 Content-Transfer-Encoding: 7bit
 
 
---15199455161.4D73393B.25889
-Date: Thu, 1 Mar 2018 23:05:16 +0000
+--15199455451.3a49D5.26500
+Date: Thu, 1 Mar 2018 23:05:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -33,82 +35,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
 
-            Bug ID: 105319
-           Summary: DRM: EVO timeout with kernel 4.15.x
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> changed:
 
-booting with kernel 4.15.6 , Linux Fedora 27=20
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org
 
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: NVIDIA G98 (298480a=
-2)
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: bios: version
-62.98.2e.00.08
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: bios: M0203T not fo=
-und
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: bios: M0203E not
-matched!
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: fb: 256 MiB DDR2
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: VRAM: 256 MiB
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: GART: 1048576 =
-MiB
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: TMDS table ver=
-sion
-2.0
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: DCB version 4.0
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: DCB outp 00:
-01000323 00010034
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: DCB outp 01:
-02011300 00000028
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: DCB outp 02:
-04032312 00020010
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: DCB conn 00:
-00000040
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: DCB conn 01:
-00000100
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: DCB conn 02:
-00001261
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: MM: using M2MF=
- for
-buffer copies
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: allocated 1280=
-x800
-fb: 0x50000, bo 000000008139a319
-mar 01 21:05:06 darkstart kernel: fbcon: nouveaufb (fb0) is primary device
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: EVO timeout
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: base-0: timeou=
-tmar
-01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: EVO timeout
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: base-0: timeout
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: base-0: timeout
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: base-0: timeout
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: base-0: timeout
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: GPU lockup -
-switching to software fbcon
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: base-0: timeout
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: fb0: nouveaufb frame
-buffer device
-mar 01 21:05:19 darkstart kernel: [drm] Initialized nouveau 1.3.1 20120801 =
-for
-0000:01:00.0 on minor 0
-mar 01 21:05:21 darkstart kernel: nouveau 0000:01:00.0: DRM: base-0: timeout
-mar 01 21:05:30 darkstart kernel: nouveau 0000:01:00.0: DRM: EVO timeout
+--- Comment #1 from S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> ---
+boots fine with kernel 4.14.x
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15199455161.4D73393B.25889
-Date: Thu, 1 Mar 2018 23:05:16 +0000
+--15199455451.3a49D5.26500
+Date: Thu, 1 Mar 2018 23:05:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -119,145 +60,48 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:sergio&#6=
+4;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.com&gt;">=
+ <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">105319</a>
-          </td>
-        </tr>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
+9</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>DRM: EVO timeout with kernel 4.15.x
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>sergio&#64;serjux.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>sergio&#64;serjux.com
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>booting with kernel 4.15.6 , Linux Fedora 27=20
-
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: NVIDIA G98 (298480a=
-2)
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: bios: version
-62.98.2e.00.08
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: bios: M0203T not fo=
-und
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: bios: M0203E not
-matched!
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: fb: 256 MiB DDR2
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: VRAM: 256 MiB
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: GART: 1048576 =
-MiB
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: TMDS table ver=
-sion
-2.0
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: DCB version 4.0
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: DCB outp 00:
-01000323 00010034
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: DCB outp 01:
-02011300 00000028
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: DCB outp 02:
-04032312 00020010
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: DCB conn 00:
-00000040
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: DCB conn 01:
-00000100
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: DCB conn 02:
-00001261
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: MM: using M2MF=
- for
-buffer copies
-mar 01 21:05:06 darkstart kernel: nouveau 0000:01:00.0: DRM: allocated 1280=
-x800
-fb: 0x50000, bo 000000008139a319
-mar 01 21:05:06 darkstart kernel: fbcon: nouveaufb (fb0) is primary device
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: EVO timeout
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: base-0: timeou=
-tmar
-01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: EVO timeout
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: base-0: timeout
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: base-0: timeout
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: base-0: timeout
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: base-0: timeout
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: GPU lockup -
-switching to software fbcon
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: DRM: base-0: timeout
-mar 01 21:05:19 darkstart kernel: nouveau 0000:01:00.0: fb0: nouveaufb frame
-buffer device
-mar 01 21:05:19 darkstart kernel: [drm] Initialized nouveau 1.3.1 20120801 =
-for
-0000:01:00.0 on minor 0
-mar 01 21:05:21 darkstart kernel: nouveau 0000:01:00.0: DRM: base-0: timeout
-mar 01 21:05:30 darkstart kernel: nouveau 0000:01:00.0: DRM: EVO timeout</p=
-re>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+sergio&#64;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.=
+com&gt;"> <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
+</span></b>
+        <pre>boots fine with kernel 4.14.x</pre>
         </div>
       </p>
 
@@ -271,9 +115,9 @@ re>
     </body>
 </html>=
 
---15199455161.4D73393B.25889--
+--15199455451.3a49D5.26500--
 
---===============1366279204==
+--===============0285271016==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -283,4 +127,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1366279204==--
+--===============0285271016==--
