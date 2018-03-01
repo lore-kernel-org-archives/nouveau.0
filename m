@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
-Date: Thu, 01 Mar 2018 23:05:46 +0000
-Message-ID: <bug-105319-8800-tDSs20VeeE@http.bugs.freedesktop.org/>
+Date: Thu, 01 Mar 2018 23:23:28 +0000
+Message-ID: <bug-105319-8800-fhu1XgbgQY@http.bugs.freedesktop.org/>
 References: <bug-105319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0285271016=="
+Content-Type: multipart/mixed; boundary="===============0330106263=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0285271016==
-Content-Type: multipart/alternative; boundary="15199455451.3a49D5.26500"
+--===============0330106263==
+Content-Type: multipart/alternative; boundary="15199466071.d7873.27995"
 Content-Transfer-Encoding: 7bit
 
 
---15199455451.3a49D5.26500
-Date: Thu, 1 Mar 2018 23:05:45 +0000
+--15199466071.d7873.27995
+Date: Thu, 1 Mar 2018 23:23:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,21 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
 
-S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> changed:
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you say a few words about what's connected?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org
-
---- Comment #1 from S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> ---
-boots fine with kernel 4.14.x
+Also, any chance you could bisect to the specific commit?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15199455451.3a49D5.26500
-Date: Thu, 1 Mar 2018 23:05:45 +0000
+--15199466071.d7873.27995
+Date: Thu, 1 Mar 2018 23:23:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,48 +56,26 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:sergio&#6=
-4;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.com&gt;">=
- <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
-9</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>sergio&#64;serjux.com
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
 9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sergio&#64;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.=
-com&gt;"> <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>boots fine with kernel 4.14.x</pre>
+        <pre>Can you say a few words about what's connected?
+
+Also, any chance you could bisect to the specific commit?</pre>
         </div>
       </p>
 
@@ -115,9 +89,9 @@ com&gt;"> <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
     </body>
 </html>=
 
---15199455451.3a49D5.26500--
+--15199466071.d7873.27995--
 
---===============0285271016==
+--===============0330106263==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -127,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0285271016==--
+--===============0330106263==--
