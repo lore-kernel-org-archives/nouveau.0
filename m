@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
-Date: Thu, 01 Mar 2018 23:23:28 +0000
-Message-ID: <bug-105319-8800-fhu1XgbgQY@http.bugs.freedesktop.org/>
+Date: Thu, 01 Mar 2018 23:37:15 +0000
+Message-ID: <bug-105319-8800-knsP41nOd1@http.bugs.freedesktop.org/>
 References: <bug-105319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0330106263=="
+Content-Type: multipart/mixed; boundary="===============1963867337=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0330106263==
-Content-Type: multipart/alternative; boundary="15199466071.d7873.27995"
+--===============1963867337==
+Content-Type: multipart/alternative; boundary="15199474341.aCFBD1eF.30360"
 Content-Transfer-Encoding: 7bit
 
 
---15199466071.d7873.27995
-Date: Thu, 1 Mar 2018 23:23:27 +0000
+--15199474341.aCFBD1eF.30360
+Date: Thu, 1 Mar 2018 23:37:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you say a few words about what's connected?
-
-Also, any chance you could bisect to the specific commit?
+--- Comment #3 from S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> ---
+01:00.0 VGA compatible controller: NVIDIA Corporation G98M [GeForce 9300M G=
+S]
+(rev a1)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15199466071.d7873.27995
-Date: Thu, 1 Mar 2018 23:23:27 +0000
+--15199474341.aCFBD1eF.30360
+Date: Thu, 1 Mar 2018 23:37:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,20 +62,20 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
 9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+sergio&#64;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.=
+com&gt;"> <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
 </span></b>
-        <pre>Can you say a few words about what's connected?
-
-Also, any chance you could bisect to the specific commit?</pre>
+        <pre>01:00.0 VGA compatible controller: NVIDIA Corporation G98M [Ge=
+Force 9300M GS]
+(rev a1)</pre>
         </div>
       </p>
 
@@ -89,9 +89,9 @@ Also, any chance you could bisect to the specific commit?</pre>
     </body>
 </html>=
 
---15199466071.d7873.27995--
+--15199474341.aCFBD1eF.30360--
 
---===============0330106263==
+--===============1963867337==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0330106263==--
+--===============1963867337==--
