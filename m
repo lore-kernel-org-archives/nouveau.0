@@ -1,11 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: TLD instruction usage in non-linked sampler mode
-Date: Thu, 1 Mar 2018 23:47:18 -0500
-Message-ID: <CAKb7UvhP2PuiXyLAQKjWv0XSUhabwGzaorczHc_0tYsVvCB1Bw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 105173] [MCP79][Regression] Unhandled NULL pointer
+ dereference in nvkm_object_unmap since kernel 4.15
+Date: Fri, 02 Mar 2018 07:42:24 +0000
+Message-ID: <bug-105173-8800-lJxSPyNJ8m@http.bugs.freedesktop.org/>
+References: <bug-105173-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0033400385=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-105173-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,30 +17,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8sCgpUaGlzIHF1ZXN0aW9uIGlzIGluIHRoZSBjb250ZXh0IG9mIFRlc2xhIC8gRmVybWkg
-Z2VuZXJhdGlvbnMsIHdoaWNoCmhhdmUgZXhwbGljaXQgYmluZGluZ3MgZm9yIHRleHR1cmVzIC8g
-c2FtcGxlcnMuIEl0IG1pZ2h0IGFsc28gYXBwbHkgdG8KS2VwbGVyKywgbm90IHF1aXRlIGFzIHN1
-cmUgZHVlIHRvIHRoZSBiaW5kbGVzcyBuYXR1cmUuCgpJJ3ZlIGJlZW4gdHJ5aW5nIHRvIHVuZGVy
-c3RhbmQgaG93IHRoZSBUTEQgb3BlcmF0aW9uIHdvcmtzICh3aGljaCBpcwp1c2VkIHRvIGltcGxl
-bWVudCB0ZXhlbEZldGNoIGluIEdMU0wpLiBJdCBkb2VzIG5vdCBhcHBlYXIgdG8gdGhlIG9wCnRh
-a2VzIGFuIGV4cGxpY2l0IHNhbXBsZXIgaWQgYXQgYWxsICh1bmxpa2UgYWxsIHRoZSBvdGhlciB0
-ZXh0dXJpbmcKb3BlcmF0aW9ucykuIEluIHVubGlua2VkIFRTQyBtb2RlIChpLmUuIG1ldGhvZCAw
-eDEyMzQgPT0gMCksIG15Cm9ic2VydmF0aW9uIGlzIHRoYXQgaXQgZGVzcGVyYXRlbHkgd2FudHMg
-Zm9yIGEgdmFsaWQgc2FtcGxlciB0byBiZQpib3VuZCB0byBzYW1wbGVyIHNsb3QgMC4gT2YgY291
-cnNlIEkgZG9uJ3QgdGhpbmsgVExEIGFjdHVhbGx5IG5lZWRzCmFueXRoaW5nIGZyb20gdGhlIHNh
-bXBsZXIsIHdoaWNoIG1ha2VzIHRoaXMgYWxsIHRoZSBtb3JlIG9kZC4KCklzIHRoYXQgYSBjb3Jy
-ZWN0IGFzc2Vzc21lbnQgb2YgdGhlIG9wZXJhdGlvbiBvZiB0aGUgVExEIGluc3RydWN0aW9uPwpJ
-cyB0aGVyZSBhbnkgd2F5IHRvIG1ha2UgaXQganVzdCBub3QgY2FyZSBhYm91dCB0aGUgc2FtcGxl
-ciBiaW5kaW5nPwpEb2VzIHRoZSBEaXJlY3RYIGRyaXZlciBqdXN0IGFsd2F5cyBrZWVwIHNvbWV0
-aGluZyBib3VuZCB0byBzYW1wbGVyCnNsb3QgMD8gKEFuZCB3aGF0IGhhcHBlbnMgb24gS2VwbGVy
-Kz8gRG9lcyBpdCBhbHdheXMgbG9vayBhdCBUU0MgSUQgPT0KMD8pCgooSSBraW5kIG9mIGFzc3Vt
-ZSB0aGF0IGFsbCB0aGVzZSBwcm9ibGVtcyBnbyBhd2F5IGluIGxpbmtlZCBUU0MgbW9kZSwKc2lu
-Y2UgaXQnZCBuYXR1cmFsbHkganVzdCBsb29rIHVwIHRoZSBUU0MgZW50cnkgYXNzb2NpYXRlZCB3
-aXRoIHRoZQpib3VuZCBUSUMuKQoKVGhhbmtzLAoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0033400385==
+Content-Type: multipart/alternative; boundary="15199765440.f1275f9d9.8282"
+Content-Transfer-Encoding: 7bit
+
+
+--15199765440.f1275f9d9.8282
+Date: Fri, 2 Mar 2018 07:42:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105173
+
+--- Comment #15 from Nick Lee <nvlbox-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+today I got that (without OOM Error):
+
+[ 1868.631494] nouveau 0000:03:00.0: gr: magic set 0:
+[ 1868.631502] nouveau 0000:03:00.0: gr:        00408604: 98084805
+[ 1868.631507] nouveau 0000:03:00.0: gr:        00408608: 00383d66
+[ 1868.631511] nouveau 0000:03:00.0: gr:        0040860c: 40000430
+[ 1868.631515] nouveau 0000:03:00.0: gr:        00408610: 3bd00002
+[ 1868.631520] nouveau 0000:03:00.0: gr: TRAP_TEXTURE - TP0: 00000009 [
+LINEAR_MISMATCH]
+[ 1868.631527] nouveau 0000:03:00.0: gr: 00200000 [] ch 24 [000db13000
+Xwayland[2070]] subc 3 class 8397 mthd 0f04 data 00000000
+
+I don't know when moment it happened and how to reproduce. Graphics system
+works without issues (without artefacts etc) The same I got earlier on kern=
+els
+< 4.15.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15199765440.f1275f9d9.8282
+Date: Fri, 2 Mar 2018 07:42:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - [MCP79][Regression] Unhandled NULL pointer dereferen=
+ce in nvkm_object_unmap since kernel 4.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105173#c15">Comme=
+nt # 15</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - [MCP79][Regression] Unhandled NULL pointer dereferen=
+ce in nvkm_object_unmap since kernel 4.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105173">bug 10517=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+nvlbox&#64;gmail.com" title=3D"Nick Lee &lt;nvlbox&#64;gmail.com&gt;"> <spa=
+n class=3D"fn">Nick Lee</span></a>
+</span></b>
+        <pre>today I got that (without OOM Error):
+
+[ 1868.631494] nouveau 0000:03:00.0: gr: magic set 0:
+[ 1868.631502] nouveau 0000:03:00.0: gr:        00408604: 98084805
+[ 1868.631507] nouveau 0000:03:00.0: gr:        00408608: 00383d66
+[ 1868.631511] nouveau 0000:03:00.0: gr:        0040860c: 40000430
+[ 1868.631515] nouveau 0000:03:00.0: gr:        00408610: 3bd00002
+[ 1868.631520] nouveau 0000:03:00.0: gr: TRAP_TEXTURE - TP0: 00000009 [
+LINEAR_MISMATCH]
+[ 1868.631527] nouveau 0000:03:00.0: gr: 00200000 [] ch 24 [000db13000
+Xwayland[2070]] subc 3 class 8397 mthd 0f04 data 00000000
+
+I don't know when moment it happened and how to reproduce. Graphics system
+works without issues (without artefacts etc) The same I got earlier on kern=
+els
+&lt; 4.15.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15199765440.f1275f9d9.8282--
+
+--===============0033400385==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0033400385==--
