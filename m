@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
-Date: Fri, 02 Mar 2018 17:15:11 +0000
-Message-ID: <bug-105319-8800-CLoIG5h9DA@http.bugs.freedesktop.org/>
-References: <bug-105319-8800@http.bugs.freedesktop.org/>
+From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Nouveau Digest, Vol 131, Issue 3
+Date: Fri, 2 Mar 2018 23:16:45 +0100
+Message-ID: <e6067c25-549f-668d-bc66-bcb761e0dc26@gmail.com>
+References: <mailman.510.1519928481.2262.nouveau@lists.freedesktop.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0572448095=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <mailman.510.1519928481.2262.nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,113 +18,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0572448095==
-Content-Type: multipart/alternative; boundary="15200109111.DDFAF5eB.5725"
-Content-Transfer-Encoding: 7bit
-
-
---15200109111.DDFAF5eB.5725
-Date: Fri, 2 Mar 2018 17:15:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
-
---- Comment #8 from S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> ---
-The screen is only one , eDP-1 connected primary
-
-
-I receive this comment [1]. This patch [2]  fixed my problem
-
-I will test it , this patch makes sense to you ?=20
-
-Thanks=20
-
-[1]
-https://bugzilla.redhat.com/show_bug.cgi?id=3D1546439#c7
-
-[2]
-https://github.com/skeggsb/nouveau/pull/1/files
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15200109111.DDFAF5eB.5725
-Date: Fri, 2 Mar 2018 17:15:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c8">Commen=
-t # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
-9</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sergio&#64;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.=
-com&gt;"> <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
-</span></b>
-        <pre>The screen is only one , eDP-1 connected primary
-
-
-I receive this comment [1]. This patch [2]  fixed my problem
-
-I will test it , this patch makes sense to you ?=20
-
-Thanks=20
-
-[1]
-<a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1546439#c7">https:=
-//bugzilla.redhat.com/show_bug.cgi?id=3D1546439#c7</a>
-
-[2]
-<a href=3D"https://github.com/skeggsb/nouveau/pull/1/files">https://github.=
-com/skeggsb/nouveau/pull/1/files</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15200109111.DDFAF5eB.5725--
-
---===============0572448095==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0572448095==--
+T24gMDMvMDEvMjAxOCAwNzoyMSBQTSwgbm91dmVhdS1yZXF1ZXN0QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZyB3cm90ZToKPiAKPiBNZXNzYWdlOiAxCj4gRGF0ZTogVGh1LCAxIE1hciAyMDE4IDA4OjE1
+OjU1IC0wNTAwCj4gRnJvbTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1Pgo+IFRv
+OiBNYXJpbyBLbGVpbmVyIDxtYXJpby5rbGVpbmVyLmRlQGdtYWlsLmNvbT4KPiBDYzogbm91dmVh
+dSA8bm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmc+Cj4gU3ViamVjdDogUmU6IFtOb3V2ZWF1
+XSBbUEFUQ0hdIEZpeCBjb2xvcm1hcCBoYW5kbGluZyBhdCBzY3JlZW4gZGVwdGgKPiAJMzAuCj4g
+TWVzc2FnZS1JRDoKPiAJPENBS2I3VXZoblVGNlc0MXZYSHBDK1EralZTUk9nbkh1eGQ4Q3p2Zk9H
+SG1ZU3FfeFRIUUBtYWlsLmdtYWlsLmNvbT4KPiBDb250ZW50LVR5cGU6IHRleHQvcGxhaW47IGNo
+YXJzZXQ9IlVURi04Igo+IAo+IE5WTG9hZFBhbGV0dGUgaXMgcHJldHR5IGhhcmQtY29kZWQgdG8g
+MjU2LiBJIGhhdmVuJ3QgbG9va2VkIGF0IHdoYXQKPiBhbGwgeGY4NkhhbmRsZUNvbG9ybWFwcyBk
+b2VzLCBidXQgaXQgc2VlbXMgcHJldHR5IHN1c3BpY2lvdXMuIEFsc28KCkl0J3MgYWxzbyBwcmV0
+dHkgZGVhZCA6KS4gTlZMb2FkUGFsZXR0ZSBpcyBub3QgZXZlciB1c2VkLCBiZWNhdXNlIApub3V2
+ZWF1IGhvb2tzIHVwIHRoZSAuZ2FtbWFfc2V0IGZ1bmN0aW9uIGluIHhmODZDcnRjRnVuY3NSZWMs
+IHNvIAp4Zjg2SGFuZGxlQ29sb3JtYXBzIGlnbm9yZXMgdGhlIE5WTG9hZFBhbGV0dGUgcG9pbnRl
+ci4gSW93LiBkZWFkIGNvZGUgCnRoYXQgY2FuIGJlIHJlbW92ZWQuIEknbGwgc2VuZCBzb21lIGZv
+bGxvdyB1cCBwYXRjaCwgb25jZSB0aGlzIG9uZSBpcyAKaW4uIFdlIGhhdmUgc2ltaWxhciBkZWFk
+IGNvZGUgaW4gaW50ZWwtZGR4IGFuZCBtb2Rlc2V0dGluZy1kZHggd2hpY2ggCm9ubHkgc2VydmVz
+IHRvIGNvbmZ1c2UgdGhlIHJlYWRlci4KCj4gbm90ZSB0aGF0IHRoZSBrZXJuZWwgY3VycmVudGx5
+IG9ubHkgZXhwb3NlcyBhIDI1Ni1zaXplZCBMVVQgdG8KPiB1c2Vyc3BhY2UsIGV2ZW4gZm9yIDEw
+YnBjIG1vZGVzLgo+IAoKWWVzLCBidXQgdGhhdCBkb2Vzbid0IG1hdHRlci4gSW4geGJncjIxMDEw
+MTAgbW9kZSwgdGhlIGdwdSBzZWVtcyB0byAKcHJvcGVybHkgaW50ZXJwb2xhdGUgYmV0d2VlbiB0
+aGUgMjU2IChvciAyNTcpIGh3IGx1dCBzbG90cywgYXMgZmFyIGFzIG15IAptZWFzdXJtZW50cyBn
+by4gVGhlIFgtU2VydmVyIG1haW50YWlucyBzZXBhcmF0ZSBjb2xvciBwYWxldHRlcywgCnBlci14
+LXNjcmVlbiB4Zjg2dmlkbW9kZSBnYW1tYSBsdXQncyBhbmQgcGVyLWNydGMgUmFuZFIgZ2FtbWEg
+bHV0J3MgYW5kIAptdW5jaGVzIHRoZW0gdG9nZXRoZXIgdG8gcHJvZHVjZSB0aGUgZmluYWwgMjU2
+IHNsb3QgaHcgbHV0IGZvciB0aGUgCmtlcm5lbCwgdXAvZG93bnNhbXBsaW5nIGlmIG5lZWRlZC4g
+U28gYWRhcHRpbmcgdGhlIHZhbHVlcyBmb3IgCnhmODZIYW5kbGVDb2xvck1hcHMoKSBpcyBhYm91
+dCBwcm9wZXJseSBzaXppbmcgdGhvc2UgaW50ZXJuYWwgcGFsZXR0ZSdzIAphbmQgbHV0J3MgdG8g
+YXZvaWQgb3V0LW9mLWJvdW5kcyBzZWdmYXVsdHMgb3IgbG9zcyBvZiBwcmVjaXNpb24gCnNvbWV3
+aGVyZSBpbiB0aGUgd2hvbGUgbXVsdGktc3RlcCByZW1hcHBpbmcgcHJvY2VkdXJlLCBiZWNhdXNl
+IG9uZSBvZiAKdGhlIHNlcnZlciBpbnRlcm5hbCB0YWJsZXMgaXMgYSBib3R0bGVuZWNrIHdpdGgg
+dG9vIGxpdHRsZSBzbG90cy4KClRoaXMgdmFyaWFudCBpcyB0aGUgb25lIHRoYXQgYXZvaWRzIGNy
+YXNoZXMgYW5kIGFsc28gdmlzdWFsIGFydGlmYWN0cyAKdGhhdCBpIGF0IGxlYXN0IG9ic2VydmVk
+IG9uIHRlc2xhIGdwdSdzIGF0IGRlcHRoIDMwLgoKT25lIHdlaXJkIHRoaW5nIGkgc3RpbGwgb2Jz
+ZXJ2ZWQgdGhvdWdoIGlzIHRoYXQgaW4gZGVwdGggMzAgeGJncjIxMDEwMTAgCnNjYW5vdXQgbW9k
+ZSBub3V2ZWF1IHVzZWQgZGl0aGVyaW5nIHdoZW4gaSB0cmllZCB0byBvdXRwdXQgYSBsaW5lYXIg
+CmludGVuc2l0eSByYW1wLCBkZXNwaXRlIG1lIGRpc2FibGluZyBkaXRoZXJpbmcgdmlhIHRoZSB4
+cmFuZHIgcHJvcGVydHkuIApCdXQgdGhhdCBpcyBhbiB1bnJlbGF0ZWQgcHJvYmxlbS4KCi1tYXJp
+bwoKPiBPbiBUaHUsIE1hciAxLCAyMDE4IGF0IDE6MzEgQU0sIE1hcmlvIEtsZWluZXIKPiA8bWFy
+aW8ua2xlaW5lci5kZUBnbWFpbC5jb20+IHdyb3RlOgo+PiBUaGUgdmFyaW91cyBjbHV0IGhhbmRs
+aW5nIGZ1bmN0aW9ucyBsaWtlIGEgc2V0dXAKPj4gY29uc2lzdGVudCB3aXRoIHRoZSB4LXNjcmVl
+biBjb2xvciBkZXB0aC4gT3RoZXJ3aXNlCj4+IHdlIG9ic2VydmUgaW1wcm9wZXIgc2FtcGxpbmcg
+aW4gdGhlIGdhbW1hIHRhYmxlcwo+PiBhdCBkZXB0aCAzMC4KPj4KPj4gVGVzdGVkIGF0IGRlcHRo
+cyAxNiwgMjQgYW5kIDMwIGFuZCB0ZXN0ZWQgYXQgZGVwdGhzCj4+IDI0IGFuZCAzMCB0aGF0IHhn
+YW1tYSBhbmQgZ2FtbWEgdGFibGUgYW5pbWF0aW9ucyB3b3JrLAo+PiBhbmQgd2l0aCBtZWFzdXJl
+bWVudCBlcXVpcG1lbnQgdG8gbWFrZSBzdXJlIGlkZW50aXR5Cj4+IGdhbW1hIHJhbXBzIGFjdHVh
+bGx5IGFyZSBpZGVudGl0eSBtYXBwaW5ncyBhdCB0aGUgb3V0cHV0Lgo+Pgo+PiBTaWduZWQtb2Zm
+LWJ5OiBNYXJpbyBLbGVpbmVyIDxtYXJpby5rbGVpbmVyLmRlQGdtYWlsLmNvbT4KPj4gLS0tCj4+
+ICAgc3JjL252X2RyaXZlci5jIHwgNCArKy0tCj4+ICAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0
+aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPj4KPj4gZGlmZiAtLWdpdCBhL3NyYy9udl9kcml2ZXIu
+YyBiL3NyYy9udl9kcml2ZXIuYwo+PiBpbmRleCAzMjA2MmViLi40ZmNkNGMxIDEwMDY0NAo+PiAt
+LS0gYS9zcmMvbnZfZHJpdmVyLmMKPj4gKysrIGIvc3JjL252X2RyaXZlci5jCj4+IEBAIC0xNTY4
+LDggKzE1NjgsOCBAQCBOVlNjcmVlbkluaXQoU0NSRUVOX0lOSVRfQVJHU19ERUNMKQo+PiAgICAg
+ICAgICAgKiBNdXN0IGZvbGxvdyBpbml0aWFsaXphdGlvbiBvZiB0aGUgZGVmYXVsdCBjb2xvcm1h
+cAo+PiAgICAgICAgICAgKi8KPj4gICAgICAgICAgaWYgKHhmODZfY29uZmlnLT5udW1fY3J0YyAm
+Jgo+PiAtICAgICAgICAgICAheGY4NkhhbmRsZUNvbG9ybWFwcyhwU2NyZWVuLCAyNTYsIDgsIE5W
+TG9hZFBhbGV0dGUsCj4+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE5VTEwsIENN
+QVBfUEFMRVRURURfVFJVRUNPTE9SKSkKPj4gKyAgICAgICAgICAgIXhmODZIYW5kbGVDb2xvcm1h
+cHMocFNjcmVlbiwgMSA8PCBwU2Nybi0+cmdiQml0cywgcFNjcm4tPnJnYkJpdHMsCj4+ICsgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIE5WTG9hZFBhbGV0dGUsIE5VTEwsIENNQVBfUEFM
+RVRURURfVFJVRUNPTE9SKSkKPj4gICAgICAgICAgICAgICAgICByZXR1cm4gRkFMU0U7Cj4+Cj4+
+ICAgICAgICAgIC8qIFJlcG9ydCBhbnkgdW51c2VkIG9wdGlvbnMgKG9ubHkgZm9yIHRoZSBmaXJz
+dCBnZW5lcmF0aW9uKSAqLwo+PiAtLQo+PiAyLjcuNApfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUK
