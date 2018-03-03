@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
  rescan
-Date: Sat, 03 Mar 2018 14:55:42 +0000
-Message-ID: <bug-75985-8800-5777vnGsGz@http.bugs.freedesktop.org/>
+Date: Sat, 03 Mar 2018 15:28:53 +0000
+Message-ID: <bug-75985-8800-smrDdfbpSS@http.bugs.freedesktop.org/>
 References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2034978868=="
+Content-Type: multipart/mixed; boundary="===============0678483776=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2034978868==
-Content-Type: multipart/alternative; boundary="15200889441.C80dae.15732"
+--===============0678483776==
+Content-Type: multipart/alternative; boundary="15200909335.8CaCac9.20373"
 Content-Transfer-Encoding: 7bit
 
 
---15200889441.C80dae.15732
-Date: Sat, 3 Mar 2018 14:55:44 +0000
+--15200909335.8CaCac9.20373
+Date: Sat, 3 Mar 2018 15:28:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,29 +36,36 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #41 from Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> ---
-(In reply to Maik Freudenberg from comment #39)
-> Lukas, unconditionally enabling the nvidia hda shouldn't be done. In my
-> case, having a "3D controller" meaning a dGPU without outputs this would
-> lead to having a broken HDA device visible.
+--- Comment #42 from Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org> ---
+The hda devices on 3D controller are existing but not completely configured=
+ by
+vendors leading to errors like
+[ 4790.121207] pci 0000:07:00.1: [10de:0e0f] type 00 class 0x040300
+[ 4790.121253] pci 0000:07:00.1: reg 0x10: [mem 0x00000000-0x00003fff]
+[ 4790.121610] pci 0000:07:00.1: BAR 0: no space for [mem size 0x00004000]
+[ 4790.121613] pci 0000:07:00.1: BAR 0: failed to assign [mem size 0x000040=
+00]
+[ 4790.121900] snd_hda_intel 0000:07:00.1: Disabling MSI
+[ 4790.122493] snd_hda_intel 0000:07:00.1: can't ioremap BAR 0: [??? 0x0000=
+0000
+flags 0x0]
+[ 5661.858112] snd_hda_intel 0000:07:00.1: ioremap error
 
-Hm, broken in what way? My expectation would be that it just reports all
-connectors as disconnected. That might be irritating to some users, but oth=
-er
-than that I don't see a real downside. If the HDA controller is runtime
-suspended to D3cold, power consumption is identical to the status quo ante.
-
-But yes, just matching for PCI_CLASS_DISPLAY_VGA << 8 instead of
-PCI_BASE_CLASS_DISPLAY << 16 would also work, assuming that vendors always =
-got
-this right and never used PCI_CLASS_DISPLAY_3D for a GPU with connectors.
+AFAIK, 3D class is used by nvidia to specifically mark the adapters without
+display engines, like Teslas or some Optimus dGPUs. So excluding them shoul=
+d be
+safe.
+One thing that I don't know about but always had in the back of my mind are
+Tegras, how those are handled or react.
+Looking at the vgaswitcheroo patches, these look like a really fine way to
+handle pm on these hda devices.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15200889441.C80dae.15732
-Date: Sat, 3 Mar 2018 14:55:44 +0000
+--15200909335.8CaCac9.20373
+Date: Sat, 3 Mar 2018 15:28:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,36 +82,39 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c41">Commen=
-t # 41</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c42">Commen=
+t # 42</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lukas&#64;wunner.de" title=3D"Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <s=
-pan class=3D"fn">Lukas Wunner</span></a>
+hhfeuer&#64;gmx.de" title=3D"Maik Freudenberg &lt;hhfeuer&#64;gmx.de&gt;"> =
+<span class=3D"fn">Maik Freudenberg</span></a>
 </span></b>
-        <pre>(In reply to Maik Freudenberg from <a href=3D"show_bug.cgi?id=
-=3D75985#c39">comment #39</a>)
-<span class=3D"quote">&gt; Lukas, unconditionally enabling the nvidia hda s=
-houldn't be done. In my
-&gt; case, having a &quot;3D controller&quot; meaning a dGPU without output=
-s this would
-&gt; lead to having a broken HDA device visible.</span >
+        <pre>The hda devices on 3D controller are existing but not complete=
+ly configured by
+vendors leading to errors like
+[ 4790.121207] pci 0000:07:00.1: [10de:0e0f] type 00 class 0x040300
+[ 4790.121253] pci 0000:07:00.1: reg 0x10: [mem 0x00000000-0x00003fff]
+[ 4790.121610] pci 0000:07:00.1: BAR 0: no space for [mem size 0x00004000]
+[ 4790.121613] pci 0000:07:00.1: BAR 0: failed to assign [mem size 0x000040=
+00]
+[ 4790.121900] snd_hda_intel 0000:07:00.1: Disabling MSI
+[ 4790.122493] snd_hda_intel 0000:07:00.1: can't ioremap BAR 0: [??? 0x0000=
+0000
+flags 0x0]
+[ 5661.858112] snd_hda_intel 0000:07:00.1: ioremap error
 
-Hm, broken in what way? My expectation would be that it just reports all
-connectors as disconnected. That might be irritating to some users, but oth=
-er
-than that I don't see a real downside. If the HDA controller is runtime
-suspended to D3cold, power consumption is identical to the status quo ante.
-
-But yes, just matching for PCI_CLASS_DISPLAY_VGA &lt;&lt; 8 instead of
-PCI_BASE_CLASS_DISPLAY &lt;&lt; 16 would also work, assuming that vendors a=
-lways got
-this right and never used PCI_CLASS_DISPLAY_3D for a GPU with connectors.</=
-pre>
+AFAIK, 3D class is used by nvidia to specifically mark the adapters without
+display engines, like Teslas or some Optimus dGPUs. So excluding them shoul=
+d be
+safe.
+One thing that I don't know about but always had in the back of my mind are
+Tegras, how those are handled or react.
+Looking at the vgaswitcheroo patches, these look like a really fine way to
+handle pm on these hda devices.</pre>
         </div>
       </p>
 
@@ -118,9 +128,9 @@ pre>
     </body>
 </html>=
 
---15200889441.C80dae.15732--
+--15200909335.8CaCac9.20373--
 
---===============2034978868==
+--===============0678483776==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -130,4 +140,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2034978868==--
+--===============0678483776==--
