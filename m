@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
  rescan
-Date: Sat, 03 Mar 2018 13:35:43 +0000
-Message-ID: <bug-75985-8800-sfBFBLpL1T@http.bugs.freedesktop.org/>
+Date: Sat, 03 Mar 2018 13:45:43 +0000
+Message-ID: <bug-75985-8800-34C86mdvLS@http.bugs.freedesktop.org/>
 References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1424046459=="
+Content-Type: multipart/mixed; boundary="===============1610073895=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1424046459==
-Content-Type: multipart/alternative; boundary="15200841437.cDcdB9C.3594"
+--===============1610073895==
+Content-Type: multipart/alternative; boundary="15200847435.1d2C4.5027"
 Content-Transfer-Encoding: 7bit
 
 
---15200841437.cDcdB9C.3594
-Date: Sat, 3 Mar 2018 13:35:43 +0000
+--15200847435.1d2C4.5027
+Date: Sat, 3 Mar 2018 13:45:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #39 from Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org> ---
-Lukas, unconditionally enabling the nvidia hda shouldn't be done. In my cas=
-e,
-having a "3D controlller" meaning a dGPU without outputs this would lead to
-having a broken HDA device visible.
+--- Comment #40 from Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org> ---
+Should be easily avoidable by not enabling it when adapter class is
+PCI_CLASS_DISPLAY_3D
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15200841437.cDcdB9C.3594
-Date: Sat, 3 Mar 2018 13:35:43 +0000
+--15200847435.1d2C4.5027
+Date: Sat, 3 Mar 2018 13:45:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c39">Commen=
-t # 39</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c40">Commen=
+t # 40</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
@@ -75,11 +73,9 @@ t # 39</a>
 hhfeuer&#64;gmx.de" title=3D"Maik Freudenberg &lt;hhfeuer&#64;gmx.de&gt;"> =
 <span class=3D"fn">Maik Freudenberg</span></a>
 </span></b>
-        <pre>Lukas, unconditionally enabling the nvidia hda shouldn't be do=
-ne. In my case,
-having a &quot;3D controlller&quot; meaning a dGPU without outputs this wou=
-ld lead to
-having a broken HDA device visible.</pre>
+        <pre>Should be easily avoidable by not enabling it when adapter cla=
+ss is
+PCI_CLASS_DISPLAY_3D</pre>
         </div>
       </p>
 
@@ -93,9 +89,9 @@ having a broken HDA device visible.</pre>
     </body>
 </html>=
 
---15200841437.cDcdB9C.3594--
+--15200847435.1d2C4.5027--
 
---===============1424046459==
+--===============1610073895==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1424046459==--
+--===============1610073895==--
