@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
- rescan
-Date: Sat, 03 Mar 2018 17:54:23 +0000
-Message-ID: <bug-75985-8800-Xe9pLYeIyt@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75464] [nv4e] [vdpau] causes hangs
+Date: Sat, 03 Mar 2018 20:56:17 +0000
+Message-ID: <bug-75464-8800-UdMOY9j1aj@http.bugs.freedesktop.org/>
+References: <bug-75464-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0216696826=="
+Content-Type: multipart/mixed; boundary="===============0443975634=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75464-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,57 +20,55 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0216696826==
-Content-Type: multipart/alternative; boundary="15200996621.EfFA0.9405"
+--===============0443975634==
+Content-Type: multipart/alternative; boundary="15201105773.25CE370CF.10392"
 Content-Transfer-Encoding: 7bit
 
 
---15200996621.EfFA0.9405
-Date: Sat, 3 Mar 2018 17:54:22 +0000
+--15201105773.25CE370CF.10392
+Date: Sat, 3 Mar 2018 20:56:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75464
 
---- Comment #44 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Maik Freudenberg from comment #42)
-> The hda devices on 3D controller are existing but not completely configur=
-ed
-> by vendors leading to errors like
-> [ 4790.121207] pci 0000:07:00.1: [10de:0e0f] type 00 class 0x040300
-> [ 4790.121253] pci 0000:07:00.1: reg 0x10: [mem 0x00000000-0x00003fff]
-> [ 4790.121610] pci 0000:07:00.1: BAR 0: no space for [mem size 0x00004000]
-> [ 4790.121613] pci 0000:07:00.1: BAR 0: failed to assign [mem size
-> 0x00004000]
-> [ 4790.121900] snd_hda_intel 0000:07:00.1: Disabling MSI
-> [ 4790.122493] snd_hda_intel 0000:07:00.1: can't ioremap BAR 0: [???
-> 0x00000000 flags 0x0]
-> [ 5661.858112] snd_hda_intel 0000:07:00.1: ioremap error
->=20
-> AFAIK, 3D class is used by nvidia to specifically mark the adapters witho=
-ut
-> display engines, like Teslas or some Optimus dGPUs. So excluding them sho=
-uld
-> be safe.
+--- Comment #3 from Nick Lee <nvlbox-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Causes hangs when I seeking (pressing key left/right in mpv) with this erro=
+r:
 
-Sadly no. This was true for a time, but is unfortunately not accurate across
-all devices. One can check if the DCB table has any outputs, and only do st=
-uff
-if there are none.This tends to be representative of whether there are actu=
-al
-outputs on a laptop connected to the GPU. (The DISPLAY block can also be fu=
-sed
-off, which can also be checked.)
+13:16:53.084345 zotac kernel: nouveau 0000:03:00.0: Xwayland[2069]: failed =
+to
+idle channel 25 [Xwayland[2069]]
+13:17:08.078712 zotac kernel: nouveau 0000:03:00.0: Xwayland[2069]: failed =
+to
+idle channel 25 [Xwayland[2069]]
+13:17:08.085015 zotac kernel: nouveau 0000:03:00.0: mspdec: intr 00000040
+13:17:08.085548 zotac kernel: nouveau 0000:03:00.0: fb: trapped read at
+0000000000 on channel 25 [0daa8000 Xwayland[2069]] engine 01 [PVP] client 0c
+[PVP] subclient 07 [] reason 0000000f [DMAOBJ_LIMIT]
+
+mpv 0.27.2:
+Using hardware decoding (vdpau).
+VO: [vdpau] 1280x720 vdpau[yuv420p]
+[vo/vdpau] Compositing window manager detected. Assuming timing info is
+inaccurate.
+
+NVIDIA Corporation C79 [GeForce 9300 / nForce 730i] (rev b1)
+
+kernel-4.16.0-0.rc3.git2.1.vanilla.knurd.1.fc27.x86_64
+mesa-17.3.6
+
+this happens a long time ago.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15200996621.EfFA0.9405
-Date: Sat, 3 Mar 2018 17:54:22 +0000
+--15201105773.25CE370CF.10392
+Date: Sat, 3 Mar 2018 20:56:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -87,48 +84,44 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c44">Commen=
-t # 44</a>
+   title=3D"NEW - [nv4e] [vdpau] causes hangs"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75464#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+   title=3D"NEW - [nv4e] [vdpau] causes hangs"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75464">bug 75464<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+nvlbox&#64;gmail.com" title=3D"Nick Lee &lt;nvlbox&#64;gmail.com&gt;"> <spa=
+n class=3D"fn">Nick Lee</span></a>
 </span></b>
-        <pre>(In reply to Maik Freudenberg from <a href=3D"show_bug.cgi?id=
-=3D75985#c42">comment #42</a>)
-<span class=3D"quote">&gt; The hda devices on 3D controller are existing bu=
-t not completely configured
-&gt; by vendors leading to errors like
-&gt; [ 4790.121207] pci 0000:07:00.1: [10de:0e0f] type 00 class 0x040300
-&gt; [ 4790.121253] pci 0000:07:00.1: reg 0x10: [mem 0x00000000-0x00003fff]
-&gt; [ 4790.121610] pci 0000:07:00.1: BAR 0: no space for [mem size 0x00004=
-000]
-&gt; [ 4790.121613] pci 0000:07:00.1: BAR 0: failed to assign [mem size
-&gt; 0x00004000]
-&gt; [ 4790.121900] snd_hda_intel 0000:07:00.1: Disabling MSI
-&gt; [ 4790.122493] snd_hda_intel 0000:07:00.1: can't ioremap BAR 0: [???
-&gt; 0x00000000 flags 0x0]
-&gt; [ 5661.858112] snd_hda_intel 0000:07:00.1: ioremap error
-&gt;=20
-&gt; AFAIK, 3D class is used by nvidia to specifically mark the adapters wi=
-thout
-&gt; display engines, like Teslas or some Optimus dGPUs. So excluding them =
-should
-&gt; be safe.</span >
+        <pre>Causes hangs when I seeking (pressing key left/right in mpv) w=
+ith this error:
 
-Sadly no. This was true for a time, but is unfortunately not accurate across
-all devices. One can check if the DCB table has any outputs, and only do st=
-uff
-if there are none.This tends to be representative of whether there are actu=
-al
-outputs on a laptop connected to the GPU. (The DISPLAY block can also be fu=
-sed
-off, which can also be checked.)</pre>
+13:16:53.084345 zotac kernel: nouveau 0000:03:00.0: Xwayland[2069]: failed =
+to
+idle channel 25 [Xwayland[2069]]
+13:17:08.078712 zotac kernel: nouveau 0000:03:00.0: Xwayland[2069]: failed =
+to
+idle channel 25 [Xwayland[2069]]
+13:17:08.085015 zotac kernel: nouveau 0000:03:00.0: mspdec: intr 00000040
+13:17:08.085548 zotac kernel: nouveau 0000:03:00.0: fb: trapped read at
+0000000000 on channel 25 [0daa8000 Xwayland[2069]] engine 01 [PVP] client 0c
+[PVP] subclient 07 [] reason 0000000f [DMAOBJ_LIMIT]
+
+mpv 0.27.2:
+Using hardware decoding (vdpau).
+VO: [vdpau] 1280x720 vdpau[yuv420p]
+[vo/vdpau] Compositing window manager detected. Assuming timing info is
+inaccurate.
+
+NVIDIA Corporation C79 [GeForce 9300 / nForce 730i] (rev b1)
+
+kernel-4.16.0-0.rc3.git2.1.vanilla.knurd.1.fc27.x86_64
+mesa-17.3.6
+
+this happens a long time ago.</pre>
         </div>
       </p>
 
@@ -142,9 +135,9 @@ off, which can also be checked.)</pre>
     </body>
 </html>=
 
---15200996621.EfFA0.9405--
+--15201105773.25CE370CF.10392--
 
---===============0216696826==
+--===============0443975634==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -154,4 +147,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0216696826==--
+--===============0443975634==--
