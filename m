@@ -1,11 +1,13 @@
-From: =?UTF-8?B?TcSBcmlzIE5hcnRpxaFz?= <maris.nartiss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] mmu: ALIGN_DOWN correct variable
-Date: Sat, 3 Mar 2018 12:40:47 +0200
-Message-ID: <CAJHE3DrD6aLi9w9srtrtu4FZB=XjbTD0C7iQ00eSMAfwFGx1Xg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+ rescan
+Date: Sat, 03 Mar 2018 10:41:53 +0000
+Message-ID: <bug-75985-8800-lNqDsMaaKR@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1567174320=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,40 +20,139 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Q29tbWl0IDcxMTBjODliYjg4NTJmZjhiMGY4OGNlMDViMzMyYjNmZTIyYmQxMWUgKCJtbXU6IHN3
-YXAgb3V0IHJvdW5kCmZvciBBTElHTiIpIHJlcGxhY2VkIHR3byBjYWxscyB0byByb3VuZC9yb3Vu
-ZGRvd24gd2l0aCBBTElHTi9BTElHTl9ET1dOLApidXQgZXJyb25lb3VzbHkgYXBwbGllZCBBTElH
-Tl9ET1dOIHRvIGEgZGlmZmVyZW50IHZhcmlhYmxlIChhZGRyKSBhbmQgbGVmdAppbnRlbmRlZCB2
-YXJpYWJsZSAodGFpbCkgbm90IHJvdW5kZWQvQUxJR05lZC4KCkFzIGEgcmVzdWx0IHNjcmVlbiBj
-b3JydXB0aW9uLCBYIGxvY2t1cHMgYXJlIG9ic2VydmFibGUuIEFuIGV4YW1wbGUgb2Yga2VybmVs
-CmxvZyBvZiBhZmZlY3RlZCBzeXN0ZW0gd2l0aCBOVjk4IGNhcmQgd2hlcmUgaXQgd2FzIGJpc2Vj
-dGVkOgoKbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBUUkFQX00yTUYgMDAwMDAwMDIgW0lOXQpu
-b3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IFRSQVBfTTJNRiAwMDMyMDk1MSA0MDAwMDdjMCAwMDAw
-MDAwMCAwNDAwMDAwMApub3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IDAwMjAwMDAwIFtdIGNoIDEg
-WzAwMGZiYmUwMDAgRFJNXSBzdWJjIDQgY2xhc3MgNTAzOQptdGhkIDAxMDAgZGF0YSAwMDAwMDAw
-MApub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmI6IHRyYXBwZWQgcmVhZCBhdCAwMDQwMDAwMDAwIG9u
-IGNoYW5uZWwgMQpbMGZiYmUwMDAgRFJNXQplbmdpbmUgMDAgW1BHUkFQSF0gY2xpZW50IDAzIFtE
-SVNQQVRDSF0gc3ViY2xpZW50IDA0IFtNMk1fSU5dIHJlYXNvbiAwMDAwMDAwNgpbTlVMTF9ETUFP
-QkpdCgpGaXhlcyBidWcgMTA1MTczICgiW01DUDc5XVtSZWdyZXNzaW9uXSBVbmhhbmRsZWQgTlVM
-TCBwb2ludGVyIGRlcmVmZXJlbmNlIGluCm52a21fb2JqZWN0X3VubWFwIHNpbmNlIGtlcm5lbCA0
-LjE1IikKaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA1MTcz
-CgpGaXhlczogNzExMGM4OWJiODg1ICgibW11OiBzd2FwIG91dCByb3VuZCBmb3IgQUxJR04gIikK
-VGVzdGVkLWJ5OiBQaWVycmUgTW9yZWF1IDxwaWVycmUubW9ycm93QGZyZWUuZnI+ClJldmlld2Vk
-LWJ5OiBQaWVycmUgTW9yZWF1IDxwaWVycmUubW9ycm93QGZyZWUuZnI+ClNpZ25lZC1vZmYtYnk6
-IE1hcmlzIE5hcnRpc3MgPG1hcmlzLm5hcnRpc3NAZ21haWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L21tdS92bW0uYyB8IDIgKy0KIDEgZmlsZSBjaGFuZ2Vk
-LCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L21tdS92bW0uYwpiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L252a20vc3ViZGV2L21tdS92bW0uYwppbmRleCA5Mzk0NmRjZWUzMTkuLjFjMTJlNThmNDRj
-MiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbW11L3Zt
-bS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L21tdS92bW0uYwpA
-QCAtMTM1NCw3ICsxMzU0LDcgQEAgbnZrbV92bW1fZ2V0X2xvY2tlZChzdHJ1Y3QgbnZrbV92bW0g
-KnZtbSwgYm9vbCBnZXRyZWYsCmJvb2wgbWFwcmVmLCBib29sIHNwYXJzZSwKCiAJCXRhaWwgPSB0
-aGlzLT5hZGRyICsgdGhpcy0+c2l6ZTsKIAkJaWYgKHZtbS0+ZnVuYy0+cGFnZV9ibG9jayAmJiBu
-ZXh0ICYmIG5leHQtPnBhZ2UgIT0gcCkKLQkJCXRhaWwgPSBBTElHTl9ET1dOKGFkZHIsIHZtbS0+
-ZnVuYy0+cGFnZV9ibG9jayk7CisJCQl0YWlsID0gQUxJR05fRE9XTih0YWlsLCB2bW0tPmZ1bmMt
-PnBhZ2VfYmxvY2spOwoKIAkJaWYgKGFkZHIgPD0gdGFpbCAmJiB0YWlsIC0gYWRkciA+PSBzaXpl
-KSB7CiAJCQlyYl9lcmFzZSgmdGhpcy0+dHJlZSwgJnZtbS0+ZnJlZSk7Ci0tIAoyLjE2LjIKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1567174320==
+Content-Type: multipart/alternative; boundary="15200737140.aa7635DD8.8222"
+Content-Transfer-Encoding: 7bit
+
+
+--15200737140.aa7635DD8.8222
+Date: Sat, 3 Mar 2018 10:41:54 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+
+--- Comment #37 from Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> ---
+Related to this issue, I've just posted v2 of my patch set to use a device =
+link
+for power management of GPU-integrated HDA controllers:
+https://lists.freedesktop.org/archives/dri-devel/2018-March/168012.html
+
+It would be great if more people could test it. There's a 4.15-based branch
+available at:
+https://github.com/l1k/linux/commits/switcheroo_devlink_v2
+
+Crucially, this patch lets the HDA controller autosuspend at its own
+descretion, rather than forcing it on whenever the GPU is on. It looks like
+writing to bit 25 of config space dword 0x488 powergates the HDA controller=
+. We
+could leverage that to runtime suspend the HDA controller to D3cold. I'll s=
+ee
+to it that I cook up a patch.
+
+As to the bit being cleared on boot, I think this should be done in a "head=
+er"
+PCI quirk rather than in nouveau. If you look at pci_scan_slot() and next_f=
+n()
+in drivers/pci/probe.c, you'll notice that device functions are scanned fro=
+m 0
+upwards. So the GPU is always scanned first. Just add a PCI quirk which gets
+executed for the GPU, sets the bit and then reinitializes the multifunction
+flag in the GPU's struct pci_dev, that may already be sufficient. The PCI c=
+ore
+should do all the rest. See quirk_jmicron_ata() for an example.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15200737140.aa7635DD8.8222
+Date: Sat, 3 Mar 2018 10:41:54 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c37">Commen=
+t # 37</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+lukas&#64;wunner.de" title=3D"Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <s=
+pan class=3D"fn">Lukas Wunner</span></a>
+</span></b>
+        <pre>Related to this issue, I've just posted v2 of my patch set to =
+use a device link
+for power management of GPU-integrated HDA controllers:
+<a href=3D"https://lists.freedesktop.org/archives/dri-devel/2018-March/1680=
+12.html">https://lists.freedesktop.org/archives/dri-devel/2018-March/168012=
+.html</a>
+
+It would be great if more people could test it. There's a 4.15-based branch
+available at:
+<a href=3D"https://github.com/l1k/linux/commits/switcheroo_devlink_v2">http=
+s://github.com/l1k/linux/commits/switcheroo_devlink_v2</a>
+
+Crucially, this patch lets the HDA controller autosuspend at its own
+descretion, rather than forcing it on whenever the GPU is on. It looks like
+writing to bit 25 of config space dword 0x488 powergates the HDA controller=
+. We
+could leverage that to runtime suspend the HDA controller to D3cold. I'll s=
+ee
+to it that I cook up a patch.
+
+As to the bit being cleared on boot, I think this should be done in a &quot=
+;header&quot;
+PCI quirk rather than in nouveau. If you look at pci_scan_slot() and next_f=
+n()
+in drivers/pci/probe.c, you'll notice that device functions are scanned fro=
+m 0
+upwards. So the GPU is always scanned first. Just add a PCI quirk which gets
+executed for the GPU, sets the bit and then reinitializes the multifunction
+flag in the GPU's struct pci_dev, that may already be sufficient. The PCI c=
+ore
+should do all the rest. See quirk_jmicron_ata() for an example.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15200737140.aa7635DD8.8222--
+
+--===============1567174320==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1567174320==--
