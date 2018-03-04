@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
  rescan
-Date: Sun, 04 Mar 2018 01:23:58 +0000
-Message-ID: <bug-75985-8800-EOWsJfUVaM@http.bugs.freedesktop.org/>
+Date: Sun, 04 Mar 2018 02:38:12 +0000
+Message-ID: <bug-75985-8800-AKMkBugswc@http.bugs.freedesktop.org/>
 References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1941205713=="
+Content-Type: multipart/mixed; boundary="===============2084361160=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1941205713==
-Content-Type: multipart/alternative; boundary="15201266383.03fE826E.16334"
+--===============2084361160==
+Content-Type: multipart/alternative; boundary="15201310920.C2dfA.26203"
 Content-Transfer-Encoding: 7bit
 
 
---15201266383.03fE826E.16334
-Date: Sun, 4 Mar 2018 01:23:58 +0000
+--15201310920.C2dfA.26203
+Date: Sun, 4 Mar 2018 02:38:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,22 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #48 from Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org> ---
-(In reply to Denis Lisov from comment #45)
-> For this hardware, even a plugged in HDMI TV on boot does not cause the
-> audio device to appear, so the test was done with a PCI early quirk like
-> suggested in this bug.
-Yes, Lukas' main patches just(!) take care of power management of the hda
-device so it isn't powered on when it isn't needed which is pretty great.
-The pci quirk is taking care of boot time, now it needs a second quirk for
-resume to have a perfect solution.
+--- Comment #49 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Maik Freudenberg from comment #47)
+> There's of course the possibility that some braindead vendor would ship a=
+ 3D
+> class tagged device actually having outputs.
+
+This happens. A lot. See comment #44 for the proper procedure.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15201266383.03fE826E.16334
-Date: Sun, 4 Mar 2018 01:23:58 +0000
+--15201310920.C2dfA.26203
+Date: Sun, 4 Mar 2018 02:38:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,28 +66,25 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c48">Commen=
-t # 48</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c49">Commen=
+t # 49</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-hhfeuer&#64;gmx.de" title=3D"Maik Freudenberg &lt;hhfeuer&#64;gmx.de&gt;"> =
-<span class=3D"fn">Maik Freudenberg</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Denis Lisov from <a href=3D"show_bug.cgi?id=3D759=
-85#c45">comment #45</a>)
-<span class=3D"quote">&gt; For this hardware, even a plugged in HDMI TV on =
-boot does not cause the
-&gt; audio device to appear, so the test was done with a PCI early quirk li=
-ke
-&gt; suggested in this bug.</span >
-Yes, Lukas' main patches just(!) take care of power management of the hda
-device so it isn't powered on when it isn't needed which is pretty great.
-The pci quirk is taking care of boot time, now it needs a second quirk for
-resume to have a perfect solution.</pre>
+        <pre>(In reply to Maik Freudenberg from <a href=3D"show_bug.cgi?id=
+=3D75985#c47">comment #47</a>)
+<span class=3D"quote">&gt; There's of course the possibility that some brai=
+ndead vendor would ship a 3D
+&gt; class tagged device actually having outputs.</span >
+
+This happens. A lot. See <a href=3D"show_bug.cgi?id=3D75985#c44">comment #4=
+4</a> for the proper procedure.</pre>
         </div>
       </p>
 
@@ -103,9 +98,9 @@ resume to have a perfect solution.</pre>
     </body>
 </html>=
 
---15201266383.03fE826E.16334--
+--15201310920.C2dfA.26203--
 
---===============1941205713==
+--===============2084361160==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1941205713==--
+--===============2084361160==--
