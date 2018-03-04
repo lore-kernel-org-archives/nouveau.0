@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
  rescan
-Date: Sun, 04 Mar 2018 02:38:12 +0000
-Message-ID: <bug-75985-8800-AKMkBugswc@http.bugs.freedesktop.org/>
+Date: Sun, 04 Mar 2018 10:23:38 +0000
+Message-ID: <bug-75985-8800-zMjmOqPLjt@http.bugs.freedesktop.org/>
 References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2084361160=="
+Content-Type: multipart/mixed; boundary="===============0928086914=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2084361160==
-Content-Type: multipart/alternative; boundary="15201310920.C2dfA.26203"
+--===============0928086914==
+Content-Type: multipart/alternative; boundary="15201590184.5E0B.32221"
 Content-Transfer-Encoding: 7bit
 
 
---15201310920.C2dfA.26203
-Date: Sun, 4 Mar 2018 02:38:12 +0000
+--15201590184.5E0B.32221
+Date: Sun, 4 Mar 2018 10:23:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,34 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #49 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Maik Freudenberg from comment #47)
-> There's of course the possibility that some braindead vendor would ship a=
- 3D
-> class tagged device actually having outputs.
+--- Comment #50 from Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> ---
+(In reply to Denis Lisov from comment #45)
+> (In reply to Lukas Wunner from comment #37)
+> > Related to this issue, I've just posted v2 of my patch set to use a dev=
+ice
+> > link for power management of GPU-integrated HDA controllers:
+> > https://lists.freedesktop.org/archives/dri-devel/2018-March/168012.html
+> >=20
+> > It would be great if more people could test it. There's a 4.15-based br=
+anch
+> > available at:
+> > https://github.com/l1k/linux/commits/switcheroo_devlink_v2
+>=20
+> Tested these patches on Lenovo Thinkpad P50. Audio works, the HDA and GPU
+> suspend when unused with no errors in logs and resume when needed.
+> HDA unbind/bind worked with no errors, some "Too big adjustment {128,384}"
+> messages in dmesg.
 
-This happens. A lot. See comment #44 for the proper procedure.
+Thank you, this helps greatly. I'll add your Tested-by to the commits so th=
+at
+you get credit for your testing efforts.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15201310920.C2dfA.26203
-Date: Sun, 4 Mar 2018 02:38:12 +0000
+--15201590184.5E0B.32221
+Date: Sun, 4 Mar 2018 10:23:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,25 +80,44 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c49">Commen=
-t # 49</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c50">Commen=
+t # 50</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+lukas&#64;wunner.de" title=3D"Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <s=
+pan class=3D"fn">Lukas Wunner</span></a>
 </span></b>
-        <pre>(In reply to Maik Freudenberg from <a href=3D"show_bug.cgi?id=
-=3D75985#c47">comment #47</a>)
-<span class=3D"quote">&gt; There's of course the possibility that some brai=
-ndead vendor would ship a 3D
-&gt; class tagged device actually having outputs.</span >
+        <pre>(In reply to Denis Lisov from <a href=3D"show_bug.cgi?id=3D759=
+85#c45">comment #45</a>)
+<span class=3D"quote">&gt; (In reply to Lukas Wunner from <a href=3D"show_b=
+ug.cgi?id=3D75985#c37">comment #37</a>)
+&gt; &gt; Related to this issue, I've just posted v2 of my patch set to use=
+ a device
+&gt; &gt; link for power management of GPU-integrated HDA controllers:
+&gt; &gt; <a href=3D"https://lists.freedesktop.org/archives/dri-devel/2018-=
+March/168012.html">https://lists.freedesktop.org/archives/dri-devel/2018-Ma=
+rch/168012.html</a>
+&gt; &gt;=20
+&gt; &gt; It would be great if more people could test it. There's a 4.15-ba=
+sed branch
+&gt; &gt; available at:
+&gt; &gt; <a href=3D"https://github.com/l1k/linux/commits/switcheroo_devlin=
+k_v2">https://github.com/l1k/linux/commits/switcheroo_devlink_v2</a>
+&gt;=20
+&gt; Tested these patches on Lenovo Thinkpad P50. Audio works, the HDA and =
+GPU
+&gt; suspend when unused with no errors in logs and resume when needed.
+&gt; HDA unbind/bind worked with no errors, some &quot;Too big adjustment {=
+128,384}&quot;
+&gt; messages in dmesg.</span >
 
-This happens. A lot. See <a href=3D"show_bug.cgi?id=3D75985#c44">comment #4=
-4</a> for the proper procedure.</pre>
+Thank you, this helps greatly. I'll add your Tested-by to the commits so th=
+at
+you get credit for your testing efforts.</pre>
         </div>
       </p>
 
@@ -98,9 +131,9 @@ This happens. A lot. See <a href=3D"show_bug.cgi?id=3D75985#c44">comment #4=
     </body>
 </html>=
 
---15201310920.C2dfA.26203--
+--15201590184.5E0B.32221--
 
---===============2084361160==
+--===============0928086914==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +143,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2084361160==--
+--===============0928086914==--
