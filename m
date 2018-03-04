@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
  rescan
-Date: Sun, 04 Mar 2018 10:39:05 +0000
-Message-ID: <bug-75985-8800-6K2DvjDrkd@http.bugs.freedesktop.org/>
+Date: Sun, 04 Mar 2018 12:47:50 +0000
+Message-ID: <bug-75985-8800-lnvyi2jMTM@http.bugs.freedesktop.org/>
 References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2082286120=="
+Content-Type: multipart/mixed; boundary="===============1846922786=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2082286120==
-Content-Type: multipart/alternative; boundary="15201599463.681eC7E3b.2571"
+--===============1846922786==
+Content-Type: multipart/alternative; boundary="15201676712.CA3dD.22057"
 Content-Transfer-Encoding: 7bit
 
 
---15201599463.681eC7E3b.2571
-Date: Sun, 4 Mar 2018 10:39:06 +0000
+--15201676712.CA3dD.22057
+Date: Sun, 4 Mar 2018 12:47:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,58 +36,33 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #51 from Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> ---
-(In reply to Maik Freudenberg from comment #31)
-> As a sidenote: another user reported 5 Watts additional power draw when
-> enabling the audio function. Regardless of this being accurate it should =
-be
-> taken into account to not enable it unconditionally since these are mobile
-> devices.
+--- Comment #52 from Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #49)
+> (In reply to Maik Freudenberg from comment #47)
+> > There's of course the possibility that some braindead vendor would ship=
+ a 3D
+> > class tagged device actually having outputs.
+>=20
+> This happens. A lot.
 
-On my GK107 I do not see any change in power consumption regardless whether=
- bit
-25 at config space offset 0x488 is set or cleared, which is somewhat
-disappointing. I also do not see a change in power consumption between PCI
-power state D0 and D3hot.
+Ilia, do you have definitive knowledge of GPUs which
+a) have a different class than PCI_CLASS_DISPLAY_VGA and
+b) have working DP/HDMI outputs and
+c) have an integrated HDA controller?
 
-So if it's true that enabling the HDA increases power consumption, that wou=
-ld
-seem to only apply to newer cards.
-
-Could somebody verify this: Do you see a consistent drop or increase in pow=
-er
-consumption when enabling/disabling the HDA?
-
-setpci -s 01:00.0 0x488.l=3D0x0000000:0x2000000    # disable
-setpci -s 01:00.0 0x488.l=3D0x2000000:0x2000000    # enable
-
-Try this a couple of times and see if powertop shows a consistent differenc=
-e in
-power consumption. (The laptop needs to run on battery for this to work, so
-disconnect the charger.)
-
-If you *do* see a difference, double-check whether runtime suspending the H=
-DA
-to D3hot (using my above-linked switcheroo_devlink_v2 patch set) also shows=
- a
-difference. You can force the HDA into D0 or let it autosuspend to D3hot li=
-ke
-this:
-
-echo on   > /sys/bus/pci/devices/0000:01:00.1/power/control    # disable
-echo auto > /sys/bus/pci/devices/0000:01:00.1/power/control    # enable
-
-If the reduction in power consumption turns out to be the same in D3hot ver=
-sus
-disabling via bit 25, there's no point in adding D3cold support to hda_inte=
-l.c.
+I'm asking because get_bound_vga() in sound/pci/hda/hda_intel.c specifically
+matches against PCI_CLASS_DISPLAY_VGA only. In other words, if a GPU with t=
+he
+three above-listed properties exists and is built into a hybrid graphics
+laptop, it is currently not registered with vga_switcheroo, which would be
+wrong.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15201599463.681eC7E3b.2571
-Date: Sun, 4 Mar 2018 10:39:06 +0000
+--15201676712.CA3dD.22057
+Date: Sun, 4 Mar 2018 12:47:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -104,8 +79,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c51">Commen=
-t # 51</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c52">Commen=
+t # 52</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
@@ -115,53 +90,27 @@ t # 51</a>
 lukas&#64;wunner.de" title=3D"Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <s=
 pan class=3D"fn">Lukas Wunner</span></a>
 </span></b>
-        <pre>(In reply to Maik Freudenberg from <a href=3D"show_bug.cgi?id=
-=3D75985#c31">comment #31</a>)
-<span class=3D"quote">&gt; As a sidenote: another user reported 5 Watts add=
-itional power draw when
-&gt; enabling the audio function. Regardless of this being accurate it shou=
-ld be
-&gt; taken into account to not enable it unconditionally since these are mo=
-bile
-&gt; devices.</span >
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D759=
+85#c49">comment #49</a>)
+<span class=3D"quote">&gt; (In reply to Maik Freudenberg from <a href=3D"sh=
+ow_bug.cgi?id=3D75985#c47">comment #47</a>)
+&gt; &gt; There's of course the possibility that some braindead vendor woul=
+d ship a 3D
+&gt; &gt; class tagged device actually having outputs.
+&gt;=20
+&gt; This happens. A lot.</span >
 
-On my GK107 I do not see any change in power consumption regardless whether=
- bit
-25 at config space offset 0x488 is set or cleared, which is somewhat
-disappointing. I also do not see a change in power consumption between PCI
-power state D0 and D3hot.
+Ilia, do you have definitive knowledge of GPUs which
+a) have a different class than PCI_CLASS_DISPLAY_VGA and
+b) have working DP/HDMI outputs and
+c) have an integrated HDA controller?
 
-So if it's true that enabling the HDA increases power consumption, that wou=
-ld
-seem to only apply to newer cards.
-
-Could somebody verify this: Do you see a consistent drop or increase in pow=
-er
-consumption when enabling/disabling the HDA?
-
-setpci -s 01:00.0 0x488.l=3D0x0000000:0x2000000    # disable
-setpci -s 01:00.0 0x488.l=3D0x2000000:0x2000000    # enable
-
-Try this a couple of times and see if powertop shows a consistent differenc=
-e in
-power consumption. (The laptop needs to run on battery for this to work, so
-disconnect the charger.)
-
-If you *do* see a difference, double-check whether runtime suspending the H=
-DA
-to D3hot (using my above-linked switcheroo_devlink_v2 patch set) also shows=
- a
-difference. You can force the HDA into D0 or let it autosuspend to D3hot li=
-ke
-this:
-
-echo on   &gt; /sys/bus/pci/devices/0000:01:00.1/power/control    # disable
-echo auto &gt; /sys/bus/pci/devices/0000:01:00.1/power/control    # enable
-
-If the reduction in power consumption turns out to be the same in D3hot ver=
-sus
-disabling via bit 25, there's no point in adding D3cold support to hda_inte=
-l.c.</pre>
+I'm asking because get_bound_vga() in sound/pci/hda/hda_intel.c specifically
+matches against PCI_CLASS_DISPLAY_VGA only. In other words, if a GPU with t=
+he
+three above-listed properties exists and is built into a hybrid graphics
+laptop, it is currently not registered with vga_switcheroo, which would be
+wrong.</pre>
         </div>
       </p>
 
@@ -175,9 +124,9 @@ l.c.</pre>
     </body>
 </html>=
 
---15201599463.681eC7E3b.2571--
+--15201676712.CA3dD.22057--
 
---===============2082286120==
+--===============1846922786==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -187,4 +136,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2082286120==--
+--===============1846922786==--
