@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75464] [nv4e] [vdpau] causes hangs
-Date: Sat, 03 Mar 2018 20:56:17 +0000
-Message-ID: <bug-75464-8800-UdMOY9j1aj@http.bugs.freedesktop.org/>
-References: <bug-75464-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+ rescan
+Date: Sun, 04 Mar 2018 00:08:52 +0000
+Message-ID: <bug-75985-8800-26pExVcmpv@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0443975634=="
+Content-Type: multipart/mixed; boundary="===============1422812839=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75464-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,55 +21,49 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0443975634==
-Content-Type: multipart/alternative; boundary="15201105773.25CE370CF.10392"
+--===============1422812839==
+Content-Type: multipart/alternative; boundary="15201221321.b5E7B3.7281"
 Content-Transfer-Encoding: 7bit
 
 
---15201105773.25CE370CF.10392
-Date: Sat, 3 Mar 2018 20:56:17 +0000
+--15201221321.b5E7B3.7281
+Date: Sun, 4 Mar 2018 00:08:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75464
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #3 from Nick Lee <nvlbox-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Causes hangs when I seeking (pressing key left/right in mpv) with this erro=
-r:
+--- Comment #45 from Denis Lisov <dennis.lissov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Lukas Wunner from comment #37)
+> Related to this issue, I've just posted v2 of my patch set to use a device
+> link for power management of GPU-integrated HDA controllers:
+> https://lists.freedesktop.org/archives/dri-devel/2018-March/168012.html
+>=20
+> It would be great if more people could test it. There's a 4.15-based bran=
+ch
+> available at:
+> https://github.com/l1k/linux/commits/switcheroo_devlink_v2
 
-13:16:53.084345 zotac kernel: nouveau 0000:03:00.0: Xwayland[2069]: failed =
-to
-idle channel 25 [Xwayland[2069]]
-13:17:08.078712 zotac kernel: nouveau 0000:03:00.0: Xwayland[2069]: failed =
-to
-idle channel 25 [Xwayland[2069]]
-13:17:08.085015 zotac kernel: nouveau 0000:03:00.0: mspdec: intr 00000040
-13:17:08.085548 zotac kernel: nouveau 0000:03:00.0: fb: trapped read at
-0000000000 on channel 25 [0daa8000 Xwayland[2069]] engine 01 [PVP] client 0c
-[PVP] subclient 07 [] reason 0000000f [DMAOBJ_LIMIT]
+Tested these patches on Lenovo Thinkpad P50. Audio works, the HDA and GPU
+suspend when unused with no errors in logs and resume when needed.
+HDA unbind/bind worked with no errors, some "Too big adjustment {128,384}"
+messages in dmesg.
 
-mpv 0.27.2:
-Using hardware decoding (vdpau).
-VO: [vdpau] 1280x720 vdpau[yuv420p]
-[vo/vdpau] Compositing window manager detected. Assuming timing info is
-inaccurate.
-
-NVIDIA Corporation C79 [GeForce 9300 / nForce 730i] (rev b1)
-
-kernel-4.16.0-0.rc3.git2.1.vanilla.knurd.1.fc27.x86_64
-mesa-17.3.6
-
-this happens a long time ago.
+For this hardware, even a plugged in HDMI TV on boot does not cause the aud=
+io
+device to appear, so the test was done with a PCI early quirk like suggeste=
+d in
+this bug.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15201105773.25CE370CF.10392
-Date: Sat, 3 Mar 2018 20:56:17 +0000
+--15201221321.b5E7B3.7281
+Date: Sun, 4 Mar 2018 00:08:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -84,44 +79,44 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [nv4e] [vdpau] causes hangs"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75464#c3">Comment=
- # 3</a>
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c45">Commen=
+t # 45</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [nv4e] [vdpau] causes hangs"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75464">bug 75464<=
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-nvlbox&#64;gmail.com" title=3D"Nick Lee &lt;nvlbox&#64;gmail.com&gt;"> <spa=
-n class=3D"fn">Nick Lee</span></a>
+dennis.lissov&#64;gmail.com" title=3D"Denis Lisov &lt;dennis.lissov&#64;gma=
+il.com&gt;"> <span class=3D"fn">Denis Lisov</span></a>
 </span></b>
-        <pre>Causes hangs when I seeking (pressing key left/right in mpv) w=
-ith this error:
+        <pre>(In reply to Lukas Wunner from <a href=3D"show_bug.cgi?id=3D75=
+985#c37">comment #37</a>)
+<span class=3D"quote">&gt; Related to this issue, I've just posted v2 of my=
+ patch set to use a device
+&gt; link for power management of GPU-integrated HDA controllers:
+&gt; <a href=3D"https://lists.freedesktop.org/archives/dri-devel/2018-March=
+/168012.html">https://lists.freedesktop.org/archives/dri-devel/2018-March/1=
+68012.html</a>
+&gt;=20
+&gt; It would be great if more people could test it. There's a 4.15-based b=
+ranch
+&gt; available at:
+&gt; <a href=3D"https://github.com/l1k/linux/commits/switcheroo_devlink_v2"=
+>https://github.com/l1k/linux/commits/switcheroo_devlink_v2</a></span >
 
-13:16:53.084345 zotac kernel: nouveau 0000:03:00.0: Xwayland[2069]: failed =
-to
-idle channel 25 [Xwayland[2069]]
-13:17:08.078712 zotac kernel: nouveau 0000:03:00.0: Xwayland[2069]: failed =
-to
-idle channel 25 [Xwayland[2069]]
-13:17:08.085015 zotac kernel: nouveau 0000:03:00.0: mspdec: intr 00000040
-13:17:08.085548 zotac kernel: nouveau 0000:03:00.0: fb: trapped read at
-0000000000 on channel 25 [0daa8000 Xwayland[2069]] engine 01 [PVP] client 0c
-[PVP] subclient 07 [] reason 0000000f [DMAOBJ_LIMIT]
+Tested these patches on Lenovo Thinkpad P50. Audio works, the HDA and GPU
+suspend when unused with no errors in logs and resume when needed.
+HDA unbind/bind worked with no errors, some &quot;Too big adjustment {128,3=
+84}&quot;
+messages in dmesg.
 
-mpv 0.27.2:
-Using hardware decoding (vdpau).
-VO: [vdpau] 1280x720 vdpau[yuv420p]
-[vo/vdpau] Compositing window manager detected. Assuming timing info is
-inaccurate.
-
-NVIDIA Corporation C79 [GeForce 9300 / nForce 730i] (rev b1)
-
-kernel-4.16.0-0.rc3.git2.1.vanilla.knurd.1.fc27.x86_64
-mesa-17.3.6
-
-this happens a long time ago.</pre>
+For this hardware, even a plugged in HDMI TV on boot does not cause the aud=
+io
+device to appear, so the test was done with a PCI early quirk like suggeste=
+d in
+this bug.</pre>
         </div>
       </p>
 
@@ -135,9 +130,9 @@ this happens a long time ago.</pre>
     </body>
 </html>=
 
---15201105773.25CE370CF.10392--
+--15201221321.b5E7B3.7281--
 
---===============0443975634==
+--===============1422812839==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -147,4 +142,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0443975634==--
+--===============1422812839==--
