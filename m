@@ -1,114 +1,127 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105260] Nouveau frequently crashes when hovering
- over taskbar in KDE Plasma 5
-Date: Mon, 05 Mar 2018 18:02:11 +0000
-Message-ID: <bug-105260-8800-gYT9I1Dizl@http.bugs.freedesktop.org/>
-References: <bug-105260-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <bskeggs@redhat.com>
+Subject: Re: [PATCH 4/5] drm/ttm: add ttm_sg_tt_init
+Date: Tue, 6 Mar 2018 06:55:25 +1000
+Message-ID: <CABDvA=m1V=yVp7Sggfz26UJMciOqju5DNvZPmz7OfqvnZeTJEg@mail.gmail.com>
+References: <20180227115000.4105-1-christian.koenig@amd.com>
+ <20180227115000.4105-4-christian.koenig@amd.com>
+ <b5cb1980-7865-f45a-bc9d-9569f860fb50@gmail.com>
+ <1592dc9f-d76e-7174-1785-624cbd69d744@amd.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0407583269=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105260-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <1592dc9f-d76e-7174-1785-624cbd69d744@amd.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: nouveau <nouveau@lists.freedesktop.org>, amd-gfx@lists.freedesktop.org, dri-devel <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0407583269==
-Content-Type: multipart/alternative; boundary="15202729310.B738c621.24246"
-Content-Transfer-Encoding: 7bit
-
-
---15202729310.B738c621.24246
-Date: Mon, 5 Mar 2018 18:02:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105260
-
---- Comment #1 from Nathan Ridge <zeratul976-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
-I should add that this started happening after upgrading my kernel from 4.9=
- to
-4.14.
-
-After downgrading the kernel back to 4.9, the problem no longer occurs.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15202729310.B738c621.24246
-Date: Mon, 5 Mar 2018 18:02:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau frequently crashes when hovering over taskbar in =
-KDE Plasma 5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105260#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau frequently crashes when hovering over taskbar in =
-KDE Plasma 5"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105260">bug 10526=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-zeratul976&#64;hotmail.com" title=3D"Nathan Ridge &lt;zeratul976&#64;hotmai=
-l.com&gt;"> <span class=3D"fn">Nathan Ridge</span></a>
-</span></b>
-        <pre>I should add that this started happening after upgrading my ke=
-rnel from 4.9 to
-4.14.
-
-After downgrading the kernel back to 4.9, the problem no longer occurs.</pr=
-e>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15202729310.B738c621.24246--
-
---===============0407583269==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0407583269==--
+T24gTW9uLCBNYXIgNSwgMjAxOCBhdCAxMDowNiBQTSwgQ2hyaXN0aWFuIEvDtm5pZwo8Y2hyaXN0
+aWFuLmtvZW5pZ0BhbWQuY29tPiB3cm90ZToKPiBQaW5nPwpPbiBhIHF1aWNrIGxvb2ssIGl0IGxv
+b2tzIGxpa2UgYm90aCBhcmUgdXNlZCBzb21ldGltZXMuICBJIGJlbGlldmUKdGhpcyBoYWQgc29t
+ZXRoaW5nIHRvIGRvIHdpdGggdGhlIGFkZGl0aW9uIG9mIFRlZ3JhIHN1cHBvcnQsIGJ1dCBJJ2xs
+Cm5lZWQgc29tZSB0aW1lIHRvIGxvb2sgaW50byB0aGUgZGV0YWlscyBvZiB3aHkvaG93IHRoZXNl
+IHRoaW5ncyBhcmUKdXNlZCBhZ2Fpbi4KCkJlbi4KCj4KPgo+IEFtIDI3LjAyLjIwMTggdW0gMTM6
+MDcgc2NocmllYiBDaHJpc3RpYW4gS8O2bmlnOgo+Pgo+PiBIaSBndXlzLAo+Pgo+PiBhdCBsZWFz
+dCBvbiBhbWRncHUgYW5kIHJhZGVvbiB0aGUgcGFnZSBhcnJheSBhbGxvY2F0ZWQgYnkgdHRtX2Rt
+YV90dF9pbml0Cj4+IGlzIGNvbXBsZXRlbHkgdW51c2VkIGluIHRoZSBjYXNlIG9mIERNQS1idWYg
+c2hhcmluZy4gU28gSSdtIHRyeWluZyB0byBnZXQKPj4gcmlkIG9mIHRoYXQgYnkgb25seSBhbGxv
+Y2F0aW5nIHRoZSBETUEgYWRkcmVzcyBhcnJheS4KPj4KPj4gTm93IHRoZSBvbmx5IG90aGVyIHVz
+ZXIgb2YgRE1BLWJ1ZiB0b2dldGhlciB3aXRoIHR0bV9kbWFfdHRfaW5pdCBpcwo+PiBOb3V2ZWF1
+LiBTbyBteSBxdWVzdGlvbiBpcyBhcmUgeW91IGd1eXMgdXNpbmcgdGhlIHBhZ2UgYXJyYXkgYW55
+d2hlcmUgaW4KPj4geW91ciBrZXJuZWwgZHJpdmVyIGluIGNhc2Ugb2YgYSBETUEtYnVmIHNoYXJp
+bmc/Cj4+Cj4+IElmIG5vIHRoZW4gSSBjb3VsZCBqdXN0IG1ha2UgdGhpcyB0aGUgZGVmYXVsdCBi
+ZWhhdmlvciBmb3IgYWxsIGRyaXZlcnMgYW5kCj4+IHNhdmUgcXVpdGUgYSBiaXQgb2YgbWVtb3J5
+IGZvciBldmVyeWJvZHkuCj4+Cj4+IFRoYW5rcywKPj4gQ2hyaXN0aWFuLgo+Pgo+PiBBbSAyNy4w
+Mi4yMDE4IHVtIDEyOjQ5IHNjaHJpZWIgQ2hyaXN0aWFuIEvDtm5pZzoKPj4+Cj4+PiBUaGlzIGFs
+bG93cyBkcml2ZXJzIHRvIG9ubHkgYWxsb2NhdGUgZG1hIGFkZHJlc3NlcywgYnV0IG5vdCBhIHBh
+Z2UKPj4+IGFycmF5Lgo+Pj4KPj4+IFNpZ25lZC1vZmYtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNo
+cmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KPj4+IC0tLQo+Pj4gICBkcml2ZXJzL2dwdS9kcm0vdHRt
+L3R0bV90dC5jIHwgNTQKPj4+ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0t
+LS0tLS0tCj4+PiAgIGluY2x1ZGUvZHJtL3R0bS90dG1fdHQuaCAgICAgfCAgMiArKwo+Pj4gICAy
+IGZpbGVzIGNoYW5nZWQsIDQ3IGluc2VydGlvbnMoKyksIDkgZGVsZXRpb25zKC0pCj4+Pgo+Pj4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX3R0LmMgYi9kcml2ZXJzL2dwdS9k
+cm0vdHRtL3R0bV90dC5jCj4+PiBpbmRleCA4ZTBiNTI1Y2RhMDAuLjk3MTEzMzEwNmVjMiAxMDA2
+NDQKPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX3R0LmMKPj4+ICsrKyBiL2RyaXZl
+cnMvZ3B1L2RybS90dG0vdHRtX3R0LmMKPj4+IEBAIC0xMDgsNiArMTA4LDE2IEBAIHN0YXRpYyBp
+bnQgdHRtX2RtYV90dF9hbGxvY19wYWdlX2RpcmVjdG9yeShzdHJ1Y3QKPj4+IHR0bV9kbWFfdHQg
+KnR0bSkKPj4+ICAgICAgIHJldHVybiAwOwo+Pj4gICB9Cj4+PiAgICtzdGF0aWMgaW50IHR0bV9z
+Z190dF9hbGxvY19wYWdlX2RpcmVjdG9yeShzdHJ1Y3QgdHRtX2RtYV90dCAqdHRtKQo+Pj4gK3sK
+Pj4+ICsgICAgdHRtLT5kbWFfYWRkcmVzcyA9IGt2bWFsbG9jX2FycmF5KHR0bS0+dHRtLm51bV9w
+YWdlcywKPj4+ICsgICAgICAgICAgICAgICAgICAgICAgc2l6ZW9mKCp0dG0tPmRtYV9hZGRyZXNz
+KSwKPj4+ICsgICAgICAgICAgICAgICAgICAgICAgR0ZQX0tFUk5FTCB8IF9fR0ZQX1pFUk8pOwo+
+Pj4gKyAgICBpZiAoIXR0bS0+ZG1hX2FkZHJlc3MpCj4+PiArICAgICAgICByZXR1cm4gLUVOT01F
+TTsKPj4+ICsgICAgcmV0dXJuIDA7Cj4+PiArfQo+Pj4gKwo+Pj4gICAjaWZkZWYgQ09ORklHX1g4
+Ngo+Pj4gICBzdGF0aWMgaW5saW5lIGludCB0dG1fdHRfc2V0X3BhZ2VfY2FjaGluZyhzdHJ1Y3Qg
+cGFnZSAqcCwKPj4+ICAgICAgICAgICAgICAgICAgICAgICAgIGVudW0gdHRtX2NhY2hpbmdfc3Rh
+dGUgY19vbGQsCj4+PiBAQCAtMjI3LDggKzIzNyw4IEBAIHZvaWQgdHRtX3R0X2Rlc3Ryb3koc3Ry
+dWN0IHR0bV90dCAqdHRtKQo+Pj4gICAgICAgdHRtLT5mdW5jLT5kZXN0cm95KHR0bSk7Cj4+PiAg
+IH0KPj4+ICAgLWludCB0dG1fdHRfaW5pdChzdHJ1Y3QgdHRtX3R0ICp0dG0sIHN0cnVjdCB0dG1f
+Ym9fZGV2aWNlICpiZGV2LAo+Pj4gLSAgICAgICAgdW5zaWduZWQgbG9uZyBzaXplLCB1aW50MzJf
+dCBwYWdlX2ZsYWdzKQo+Pj4gK3ZvaWQgdHRtX3R0X2luaXRfZmllbGRzKHN0cnVjdCB0dG1fdHQg
+KnR0bSwgc3RydWN0IHR0bV9ib19kZXZpY2UgKmJkZXYsCj4+PiArICAgICAgICAgICAgdW5zaWdu
+ZWQgbG9uZyBzaXplLCB1aW50MzJfdCBwYWdlX2ZsYWdzKQo+Pj4gICB7Cj4+PiAgICAgICB0dG0t
+PmJkZXYgPSBiZGV2Owo+Pj4gICAgICAgdHRtLT5udW1fcGFnZXMgPSAoc2l6ZSArIFBBR0VfU0la
+RSAtIDEpID4+IFBBR0VfU0hJRlQ7Cj4+PiBAQCAtMjM2LDYgKzI0NiwxMiBAQCBpbnQgdHRtX3R0
+X2luaXQoc3RydWN0IHR0bV90dCAqdHRtLCBzdHJ1Y3QKPj4+IHR0bV9ib19kZXZpY2UgKmJkZXYs
+Cj4+PiAgICAgICB0dG0tPnBhZ2VfZmxhZ3MgPSBwYWdlX2ZsYWdzOwo+Pj4gICAgICAgdHRtLT5z
+dGF0ZSA9IHR0X3VucG9wdWxhdGVkOwo+Pj4gICAgICAgdHRtLT5zd2FwX3N0b3JhZ2UgPSBOVUxM
+Owo+Pj4gK30KPj4+ICsKPj4+ICtpbnQgdHRtX3R0X2luaXQoc3RydWN0IHR0bV90dCAqdHRtLCBz
+dHJ1Y3QgdHRtX2JvX2RldmljZSAqYmRldiwKPj4+ICsgICAgICAgIHVuc2lnbmVkIGxvbmcgc2l6
+ZSwgdWludDMyX3QgcGFnZV9mbGFncykKPj4+ICt7Cj4+PiArICAgIHR0bV90dF9pbml0X2ZpZWxk
+cyh0dG0sIGJkZXYsIHNpemUsIHBhZ2VfZmxhZ3MpOwo+Pj4gICAgICAgICBpZiAodHRtX3R0X2Fs
+bG9jX3BhZ2VfZGlyZWN0b3J5KHR0bSkpIHsKPj4+ICAgICAgICAgICB0dG1fdHRfZGVzdHJveSh0
+dG0pOwo+Pj4gQEAgLTI1OCwxMiArMjc0LDcgQEAgaW50IHR0bV9kbWFfdHRfaW5pdChzdHJ1Y3Qg
+dHRtX2RtYV90dCAqdHRtX2RtYSwKPj4+IHN0cnVjdCB0dG1fYm9fZGV2aWNlICpiZGV2LAo+Pj4g
+ICB7Cj4+PiAgICAgICBzdHJ1Y3QgdHRtX3R0ICp0dG0gPSAmdHRtX2RtYS0+dHRtOwo+Pj4gICAt
+ICAgIHR0bS0+YmRldiA9IGJkZXY7Cj4+PiAtICAgIHR0bS0+bnVtX3BhZ2VzID0gKHNpemUgKyBQ
+QUdFX1NJWkUgLSAxKSA+PiBQQUdFX1NISUZUOwo+Pj4gLSAgICB0dG0tPmNhY2hpbmdfc3RhdGUg
+PSB0dF9jYWNoZWQ7Cj4+PiAtICAgIHR0bS0+cGFnZV9mbGFncyA9IHBhZ2VfZmxhZ3M7Cj4+PiAt
+ICAgIHR0bS0+c3RhdGUgPSB0dF91bnBvcHVsYXRlZDsKPj4+IC0gICAgdHRtLT5zd2FwX3N0b3Jh
+Z2UgPSBOVUxMOwo+Pj4gKyAgICB0dG1fdHRfaW5pdF9maWVsZHModHRtLCBiZGV2LCBzaXplLCBw
+YWdlX2ZsYWdzKTsKPj4+ICAgICAgICAgSU5JVF9MSVNUX0hFQUQoJnR0bV9kbWEtPnBhZ2VzX2xp
+c3QpOwo+Pj4gICAgICAgaWYgKHR0bV9kbWFfdHRfYWxsb2NfcGFnZV9kaXJlY3RvcnkodHRtX2Rt
+YSkpIHsKPj4+IEBAIC0yNzUsMTEgKzI4NiwzNiBAQCBpbnQgdHRtX2RtYV90dF9pbml0KHN0cnVj
+dCB0dG1fZG1hX3R0ICp0dG1fZG1hLAo+Pj4gc3RydWN0IHR0bV9ib19kZXZpY2UgKmJkZXYsCj4+
+PiAgIH0KPj4+ICAgRVhQT1JUX1NZTUJPTCh0dG1fZG1hX3R0X2luaXQpOwo+Pj4gICAraW50IHR0
+bV9zZ190dF9pbml0KHN0cnVjdCB0dG1fZG1hX3R0ICp0dG1fZG1hLCBzdHJ1Y3QgdHRtX2JvX2Rl
+dmljZQo+Pj4gKmJkZXYsCj4+PiArICAgICAgICAgICB1bnNpZ25lZCBsb25nIHNpemUsIHVpbnQz
+Ml90IHBhZ2VfZmxhZ3MpCj4+PiArewo+Pj4gKyAgICBzdHJ1Y3QgdHRtX3R0ICp0dG0gPSAmdHRt
+X2RtYS0+dHRtOwo+Pj4gKyAgICBpbnQgcmV0Owo+Pj4gKwo+Pj4gKyAgICB0dG1fdHRfaW5pdF9m
+aWVsZHModHRtLCBiZGV2LCBzaXplLCBwYWdlX2ZsYWdzKTsKPj4+ICsKPj4+ICsgICAgSU5JVF9M
+SVNUX0hFQUQoJnR0bV9kbWEtPnBhZ2VzX2xpc3QpOwo+Pj4gKyAgICBpZiAocGFnZV9mbGFncyAm
+IFRUTV9QQUdFX0ZMQUdfU0cpCj4+PiArICAgICAgICByZXQgPSB0dG1fc2dfdHRfYWxsb2NfcGFn
+ZV9kaXJlY3RvcnkodHRtX2RtYSk7Cj4+PiArICAgIGVsc2UKPj4+ICsgICAgICAgIHJldCA9IHR0
+bV9kbWFfdHRfYWxsb2NfcGFnZV9kaXJlY3RvcnkodHRtX2RtYSk7Cj4+PiArICAgIGlmIChyZXQp
+IHsKPj4+ICsgICAgICAgIHR0bV90dF9kZXN0cm95KHR0bSk7Cj4+PiArICAgICAgICBwcl9lcnIo
+IkZhaWxlZCBhbGxvY2F0aW5nIHBhZ2UgdGFibGVcbiIpOwo+Pj4gKyAgICAgICAgcmV0dXJuIC1F
+Tk9NRU07Cj4+PiArICAgIH0KPj4+ICsgICAgcmV0dXJuIDA7Cj4+PiArfQo+Pj4gK0VYUE9SVF9T
+WU1CT0wodHRtX3NnX3R0X2luaXQpOwo+Pj4gKwo+Pj4gICB2b2lkIHR0bV9kbWFfdHRfZmluaShz
+dHJ1Y3QgdHRtX2RtYV90dCAqdHRtX2RtYSkKPj4+ICAgewo+Pj4gICAgICAgc3RydWN0IHR0bV90
+dCAqdHRtID0gJnR0bV9kbWEtPnR0bTsKPj4+ICAgLSAgICBrdmZyZWUodHRtLT5wYWdlcyk7Cj4+
+PiArICAgIGlmICh0dG0tPnBhZ2VzKQo+Pj4gKyAgICAgICAga3ZmcmVlKHR0bS0+cGFnZXMpOwo+
+Pj4gKyAgICBlbHNlCj4+PiArICAgICAgICBrdmZyZWUodHRtX2RtYS0+ZG1hX2FkZHJlc3MpOwo+
+Pj4gICAgICAgdHRtLT5wYWdlcyA9IE5VTEw7Cj4+PiAgICAgICB0dG1fZG1hLT5kbWFfYWRkcmVz
+cyA9IE5VTEw7Cj4+PiAgIH0KPj4+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS90dG0vdHRtX3R0
+LmggYi9pbmNsdWRlL2RybS90dG0vdHRtX3R0LmgKPj4+IGluZGV4IDljNzg1NTZiNDg4ZS4uMWNm
+MzE2YTQyNTdjIDEwMDY0NAo+Pj4gLS0tIGEvaW5jbHVkZS9kcm0vdHRtL3R0bV90dC5oCj4+PiAr
+KysgYi9pbmNsdWRlL2RybS90dG0vdHRtX3R0LmgKPj4+IEBAIC0xNjMsNiArMTYzLDggQEAgaW50
+IHR0bV90dF9pbml0KHN0cnVjdCB0dG1fdHQgKnR0bSwgc3RydWN0Cj4+PiB0dG1fYm9fZGV2aWNl
+ICpiZGV2LAo+Pj4gICAgICAgICAgIHVuc2lnbmVkIGxvbmcgc2l6ZSwgdWludDMyX3QgcGFnZV9m
+bGFncyk7Cj4+PiAgIGludCB0dG1fZG1hX3R0X2luaXQoc3RydWN0IHR0bV9kbWFfdHQgKnR0bV9k
+bWEsIHN0cnVjdCB0dG1fYm9fZGV2aWNlCj4+PiAqYmRldiwKPj4+ICAgICAgICAgICAgICAgdW5z
+aWduZWQgbG9uZyBzaXplLCB1aW50MzJfdCBwYWdlX2ZsYWdzKTsKPj4+ICtpbnQgdHRtX3NnX3R0
+X2luaXQoc3RydWN0IHR0bV9kbWFfdHQgKnR0bV9kbWEsIHN0cnVjdCB0dG1fYm9fZGV2aWNlCj4+
+PiAqYmRldiwKPj4+ICsgICAgICAgICAgIHVuc2lnbmVkIGxvbmcgc2l6ZSwgdWludDMyX3QgcGFn
+ZV9mbGFncyk7Cj4+PiAgICAgLyoqCj4+PiAgICAqIHR0bV90dF9maW5pCj4+Cj4+Cj4KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxp
+bmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
