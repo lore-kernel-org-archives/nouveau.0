@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105174] [GF108][Regression] Unable to handle NULL
- pointer dereference in nouveau_mem_host since kernel 4.15.3
-Date: Mon, 05 Mar 2018 12:34:44 +0000
-Message-ID: <bug-105174-8800-x2wX99Cg2m@http.bugs.freedesktop.org/>
-References: <bug-105174-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: nouveau 30bpp / deep color status
+Date: Mon, 5 Mar 2018 07:40:08 -0500
+Message-ID: <CAKb7UvipOtS48kQocRU6kpzxN5MSb7zUDBQYkc4Oo4E-oqmcTw@mail.gmail.com>
+References: <CAKb7UvhGSo5Y6h6gKyVnJ8EVFp4oAr4KKA3XDcmAsJd0iaUnjg@mail.gmail.com>
+ <af14dbae-fe25-6d5d-fe25-e955ddc825fa@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1428975931=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105174-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <af14dbae-fe25-6d5d-fe25-e955ddc825fa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,112 +18,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1428975931==
-Content-Type: multipart/alternative; boundary="15202532840.8e13c.1525"
-Content-Transfer-Encoding: 7bit
-
-
---15202532840.8e13c.1525
-Date: Mon, 5 Mar 2018 12:34:44 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105174
-
---- Comment #10 from Philip Raets <philip.raets-CNXmb7IdZIWZIoH1IeqzKA@public.gmane.org> ---
-Created attachment 137793
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D137793&action=3Dedit
-Bootlog patched kernel 4.15.7
-
-Hi,
-
-I've tried a patched kernel provided by Takashi Iwai on openSUSE (see
-http://bugzilla.opensuse.org/show_bug.cgi?id=3D1082308 )
-
-But then my system would crash at startup
-
-Included my bootlog with that kernel.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15202532840.8e13c.1525
-Date: Mon, 5 Mar 2018 12:34:44 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GF108][Regression] Unable to handle NULL pointer derefer=
-ence in nouveau_mem_host since kernel 4.15.3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174#c10">Comme=
-nt # 10</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GF108][Regression] Unable to handle NULL pointer derefer=
-ence in nouveau_mem_host since kernel 4.15.3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174">bug 10517=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-philip.raets&#64;telenet.be" title=3D"Philip Raets &lt;philip.raets&#64;tel=
-enet.be&gt;"> <span class=3D"fn">Philip Raets</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D137793=
-" name=3D"attach_137793" title=3D"Bootlog patched kernel 4.15.7">attachment=
- 137793</a> <a href=3D"attachment.cgi?id=3D137793&amp;action=3Dedit" title=
-=3D"Bootlog patched kernel 4.15.7">[details]</a></span>
-Bootlog patched kernel 4.15.7
-
-Hi,
-
-I've tried a patched kernel provided by Takashi Iwai on openSUSE (see
-<a href=3D"http://bugzilla.opensuse.org/show_bug.cgi?id=3D1082308">http://b=
-ugzilla.opensuse.org/show_bug.cgi?id=3D1082308</a> )
-
-But then my system would crash at startup
-
-Included my bootlog with that kernel.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15202532840.8e13c.1525--
-
---===============1428975931==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1428975931==--
+T24gTW9uLCBNYXIgNSwgMjAxOCBhdCAyOjI1IEFNLCBNYXJpbyBLbGVpbmVyCjxtYXJpby5rbGVp
+bmVyLmRlQGdtYWlsLmNvbT4gd3JvdGU6Cj4gT24gMDIvMDUvMjAxOCAxMjo1MCBBTSwgSWxpYSBN
+aXJraW4gd3JvdGU6Cj4+Cj4+IEluIGNhc2UgYW55b25lJ3MgY3VyaW91cyBhYm91dCAzMGJwcCBm
+cmFtZWJ1ZmZlciBzdXBwb3J0LCBoZXJlJ3MgdGhlCj4+IGN1cnJlbnQgc3RhdHVzOgo+Pgo+PiBL
+ZXJuZWw6Cj4+Cj4+IEJlbiBhbmQgSSBoYXZlIHN3aXRjaGVkIHRoZSBjb2RlIHRvIHVzaW5nIGEg
+MjU2LWJhc2VkIExVVCBmb3IgS2VwbGVyKywKPj4gYW5kIEkndmUgYWxzbyB3cml0dGVuIGEgcGF0
+Y2ggdG8gY2F1c2UgdGhlIGFkZGZiIGlvY3RsIHRvIHVzZSB0aGUKPj4gcHJvcGVyIGZvcm1hdC4g
+WW91IGNhbiBwaWNrIHRoaXMgdXAgYXQ6Cj4+Cj4+IGh0dHBzOi8vZ2l0aHViLmNvbS9za2VnZ3Ni
+L2xpbnV4L2NvbW1pdHMvbGludXgtNC4xNiAobm90ZSB0aGUgYnJhbmNoISkKPj4gaHR0cHM6Ly9w
+YXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3BhdGNoLzIwMjMyMi8KPj4KPj4gV2l0aCB0aGVzZSB0
+d28sIHlvdSBzaG91bGQgYmUgYWJsZSB0byB1c2UgIlggLWRlcHRoIDMwIiBhZ2FpbiBvbiBhbnkK
+Pj4gRzgwKyBHUFUgdG8gYnJpbmcgdXAgYSBzY3JlZW4gKGFzIHlvdSBjb3VsZCBpbiBrZXJuZWwg
+NC45IGFuZAo+PiBlYXJsaWVyKS4gSG93ZXZlciB0aGlzIHN0aWxsIGhhcyBzb21lIGRlZmljaWVu
+Y2llcywgc29tZSBvZiB3aGljaCBJJ3ZlCj4+IGFkZHJlc3NlZDoKPj4KPj4geGY4Ni12aWRlby1u
+b3V2ZWF1Ogo+Pgo+PiBEUkkzIHdhcyBicm9rZW4sIGFuZCBYdiB3YXMgYnJva2VuLiBQYXRjaGVz
+IGF2YWlsYWJsZSBhdDoKPj4KPj4gaHR0cHM6Ly9naXRodWIuY29tL2ltaXJraW4veGY4Ni12aWRl
+by1ub3V2ZWF1L2NvbW1pdHMvbWFzdGVyCj4+Cj4+IG1lc2E6Cj4+Cj4+IFRoZSBOVklESUEgaGFy
+ZHdhcmUgKHByZS1LZXBsZXIpIGNhbiBvbmx5IGRvIFhCR1Igc2Nhbm91dC4gRnVydGhlciB0aGUK
+Pj4gbm91dmVhdSBLTVMgZG9lc24ndCBhZGQgWFJHQiBzY2Fub3V0IGZvciBLZXBsZXIrIChhbHRo
+b3VnaCBpdCBjb3VsZCkuCj4+IE1lc2Egd2FzIG9ubHkgZW5hYmxlZCBmb3IgWFJHQiwgc28gSSd2
+ZSBwaXBlZCBYQkdSIHRocm91Z2ggYWxsIHRoZQo+PiBzYW1lIHBsYWNlczoKPj4KPj4gaHR0cHM6
+Ly9naXRodWIuY29tL2ltaXJraW4vbWVzYS9jb21taXRzLzMwYnBwCj4+Cj4KPiBXcnQuIG1lc2Es
+IHRob3NlIHBhdGNoZXMgYXJlIG5vdyBpbiBtYXN0ZXIgYW5kIGkgdGhpbmsgd2UgaGF2ZSBhIGJp
+dCBvZiBhCj4gcHJvYmxlbSB1bmRlciBYMTErR0xYOgo+Cj4gaHR0cHM6Ly9jZ2l0LmZyZWVkZXNr
+dG9wLm9yZy9tZXNhL21lc2EvdHJlZS9zcmMvZ2FsbGl1bS9zdGF0ZV90cmFja2Vycy9kcmkvZHJp
+X3NjcmVlbi5jI24xMDgKPgo+IGRyaV9maWxsX2luX21vZGVzKCkgZGVmaW5lcyBNRVNBX0ZPUk1B
+VF9SMTBHMTBCMTBBMl9VTk9STSwKPiBNRVNBX0ZPUk1BVF9SMTBHMTBCMTBYMl9VTk9STSBhdCB0
+aGUgdG9wIGluYmV0d2VlbiB0aGUgQkdSWC9BIGZvcm1hdHMKPiBpZ25vcmluZyB0aGUgaW5zdHJ1
+Y3Rpb25zIHRoYXQKPiAiLyogVGhlIDMyLWJpdCBSR0JBIGZvcm1hdCBtdXN0IG5vdCBwcmVjZWRl
+IHRoZSAzMi1iaXQgQkdSQSBmb3JtYXQuCj4gICAqIExpa2V3aXNlIGZvciBSR0JYIGFuZCBCR1JY
+LiAgT3RoZXJ3aXNlLCB0aGUgR0xYIGNsaWVudCBhbmQgdGhlIEdMWAo+ICAgKiBzZXJ2ZXIgbWF5
+IGRpc2FncmVlIG9uIHdoaWNoIGZvcm1hdCB0aGUgR0xYRkJDb25maWcgcmVwcmVzZW50cywKPiAg
+ICogcmVzdWx0aW5nIGluIHN3YXBwZWQgY29sb3IgY2hhbm5lbHMuIgo+Cj4gUkdCQS9YIGZvcm1h
+dHMgc2hvdWxkIG9ubHkgYmUgZXhwb3NlZAo+IGlmIChkcmlfbG9hZGVyX2dldF9jYXAoc2NyZWVu
+LCBEUklfTE9BREVSX0NBUF9SR0JBX09SREVSSU5HKSkKPgo+IGFuZCB0aGF0IGlzIG9ubHkgdGhl
+IGNhc2UgZm9yIHRoZSBBbmRyb2lkIGxvYWRlci4KPgo+IFRoZSBHTFggY29kZSBkb2Vzbid0IHVz
+ZSB0aGUgcmVkL2dyZWVuL2JsdWVDaGFubmVsTWFza3MgZm9yIHByb3BlciBtYXRjaGluZwo+IG9m
+IGZvcm1hdHMsIGFuZCB0aGUgc2VydmVyIGRvZXNuJ3QgZXZlbiB0cmFuc21pdCB0aG9zZSBtYXNr
+cyB0byB0aGUgY2xpZW50Cj4gaW4gdGhlIGNhc2Ugb2YgR0xYLiBTbyB3aGF0ZXZlciAxMCBiaXQg
+Zm9ybWF0IGNvbWVzIGZpcnN0IHdpbGwgd2luIHdoZW4KPiBidWlsZGluZyB0aGUgYXNzaWdubWVu
+dCB0byBHTFhGQkNvbmZpZ3MuCj4KPiBJIGxvb2tlZCBhdCB0aGUgY29kZSBhbmQgaG93IGl0IGJl
+aGF2ZXMuIEluIHByYWN0aWNlIEludGVsIGdmeCB3b3JrcyBiZWNhdXNlCj4gaXQncyBhIGNsYXNz
+aWMgRFJJIGRyaXZlciB3aXRoIGl0cyBvd24gbWV0aG9kIG9mIGJ1aWxkaW5nIHRoZSBEUkljb25m
+aWcncywKPiBhbmQgaXQgb25seSBleHBvc2VzIHRoZSBCR1IxMDEwMTAgZm9ybWF0cywgc28gbm8g
+ZGFuZ2VyIG9mIG1peHVwcy4gQU1EJ3MKPiBnYWxsaXVtIGRyaXZlcnMgZXhwb3NlIGJvdGggQkdS
+IGFuZCBSR0Igb3JkZXJlZCAxMCBiaXQgZm9ybWF0cywgYnV0IGR1ZSB0bwo+IHRoZSBvcmRlcmlu
+ZywgdGhlIG1hdGNoaW5nIGVuZHMgdXAgb25seSBhc3NpZ25pbmcgdGhlIGRlc2lyZWQgQkdSIGZv
+cm1hdHMKPiB0aGF0IGFyZSBnb29kIGZvciBBTUQgaHcsIGRpc2NhcmRpbmcgdGhlIFJHQiBmb3Jt
+YXRzLiBub3V2ZWF1IHdvcmtzIGJlY2F1c2UKPiBpdCBvbmx5IGV4cG9zZXMgdGhlIGRlc2lyZWQg
+UkdCIGZvcm1hdCBmb3IgdGhlIGh3LiBCdXQgd2l0aCBvdGhlciBnYWxsaXVtCj4gZHJpdmVycyBm
+b3Igc29tZSBTb0MncyBvciBmdXR1cmUgZ2FsbGl1bSBkcml2ZXJzIGl0IGlzIG5vdCBzbyBjbGVh
+ciBpZiB0aGUKPiByaWdodCB0aGluZyB3aWxsIGhhcHBlbi4gRS5nLiwgZnJlZWRyZW5vIHNlZW1z
+IHRvIHN1cHBvcnQgYm90aCBCR1IgYW5kIFJHQgo+IDEwIGJpdCBmb3JtYXRzIGFzIFBJUEVfQklO
+RF9ESVNQTEFZX1RBUkdFVCBhZmFpY3MsIHNvIGkgZG9uJ3Qga25vdyBpZiBieQo+IGx1Y2sgdGhl
+IHJpZ2h0IHRoaW5nIHdvdWxkIGhhcHBlbj8KCkZXSVcgZnJlZWRyZW5vIGRvZXMgbm90IHByZXNl
+bnRseSBzdXBwb3J0IDEwYnBjIHNjYW5vdXQuCgo+Cj4gQWZhaWNzIEVHTCBkb2VzIHRoZSByaWdo
+dCB0aGluZyB3cnQuIGNoYW5uZWxtYXNrIG1hdGNoaW5nIG9mIEVHTENvbmZpZ3MgdG8KPiBEUklj
+b25maWdzLCBzbyB3ZSBjb3VsZCBwcm9iYWJseSBpbXBsZW1lbnQgZHJpX2xvYWRlcl9nZXRfY2Fw
+KHNjcmVlbiwKPiBEUklfTE9BREVSX0NBUF9SR0JBX09SREVSSU5HKSA9PSBUUlVFIGZvciB0aGUg
+RUdMIGxvYWRlcnMuCj4KPiBCdXQgZm9yIEdMWCBpdCBpcyBub3Qgc28gZWFzeSBvciBxdWljay4g
+SSBsb29rZWQgaWYgaSBjb3VsZCBtYWtlIHRoZSBzZXJ2ZXJzCj4gR0xYIHNlbmQgcHJvcGVyIGNo
+YW5uZWxtYXNrIGF0dHJpYnV0ZXMgYW5kIE1lc2EgcGFyc2luZyB0aGVtLCBidXQgdGhlcmUKPiBh
+cmVuJ3QgYW55IEdMWCB0YWdzIGRlZmluZWQgZm9yIGNoYW5uZWwgbWFza3MsIGFuZCBhbGwgb3Ro
+ZXIgdGFncyBjb21lIGZyb20KPiBvZmZpY2lhbCBHTFggZXh0ZW5zaW9uIGhlYWRlcnMuIEknbSBu
+b3Qgc3VyZSB3aGF0IHRoZSBwcm9wZXIgcHJvY2VkdXJlIGZvcgo+IGRlZmluaW5nIG5ldyB0YWdz
+IGlzPyBEbyB3ZSBoYXZlIHRvIGRlZmluZSBhIG5ldyBHTFggZXh0ZW5zaW9uIGZvciB0aGF0IGFu
+ZAo+IGdldCBpdCBpbiB0aGUgS2hyb25vcyByZWdpc3RyeSBhbmQgdGhlbiBiYWNrIGludG8gdGhl
+IHNlcnZlci9tZXNhIGNvZGUtYmFzZT8KCkNhbiBhbGwgb2YgdGhpcyBiZSBzb2x2ZWQgYnkgYSBo
+ZWFsdGh5IGRvc2Ugb2YgImRvbid0IGRvIHRoYXQiPyBpLmUuCm1ha2Ugc3VyZSB0aGF0IHRoZSBE
+RFggb25seSBldmVyIGV4cG9zZXMgb25lIG9mIHRoZXNlIGF0IGEgdGltZT8gQW5kCmFsc28gbWFr
+ZSB0aGUgbWVzYSBkcml2ZXIgb25seSBleHBvc2Ugb25lIGFzIGEgRElTUExBWV9UQVJHRVQ/Cgo+
+Cj4gVGhlIGN1cnJlbnQgcGF0Y2hlcyBpbiBtZXNhIGZvciBYQkdSIGFsc28gbGFjayBlbmFibGVt
+ZW50IHBpZWNlcyBmb3IgRUdMLAo+IFdheWxhbmQgYW5kIFgxMSBjb21wb3NpdGluZywgYnV0IHRo
+YXQncyBhIGRpZmZlcmVudCBwcm9ibGVtLgoKRUdML2RybSBhbmQgRUdML3dheWxhbmQgc2hvdWxk
+IGJlIGVuYWJsZWQgKGxvb2sgYXQgRGFuaWVsIFN0b25lJ3MKcGF0Y2hlcyBmcm9tIGEgc2hvcnQg
+d2hpbGUgYmFjaywgYWxzbyB1cHN0cmVhbSBub3cpLiBrbXNjdWJlICh3aXRoCnNvbWUgcGF0Y2hl
+cyB0aGF0IGFyZSB1cHN0cmVhbSBub3cpIGFuZCB3ZXN0b24gYm90aCBydW4gT0sgZm9yIG1lLiBJ
+CnRoaW5rIEVHTC94MTEgaXMgaWZmeSB0aG91Z2ggLSBoYXZlbid0IHBsYXllZCB3aXRoIGl0LgoK
+ICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
+b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
