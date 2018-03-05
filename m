@@ -1,13 +1,18 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
- rescan
-Date: Sun, 04 Mar 2018 17:28:09 +0000
-Message-ID: <bug-75985-8800-F4l1Lao1bd@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Nouveau Digest, Vol 131, Issue 3
+Date: Mon, 5 Mar 2018 07:17:12 +0100
+Message-ID: <af9c80bf-12ea-bbad-e4fe-17000157ac40@gmail.com>
+References: <mailman.510.1519928481.2262.nouveau@lists.freedesktop.org>
+ <e6067c25-549f-668d-bc66-bcb761e0dc26@gmail.com>
+ <CAKb7UvgoM0EjTu00y4CvxBZD9DOxLTmy+SFoRASF16ONqgA8ew@mail.gmail.com>
+ <bbc4654d-ead2-bb15-d369-e7d0b853f220@gmail.com>
+ <CAKb7UvhZ=72Bt_UNtk-t5+bCgOb7-jDRZ8XHXR9aiEVZYfkayA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0575158534=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvhZ=72Bt_UNtk-t5+bCgOb7-jDRZ8XHXR9aiEVZYfkayA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,158 +22,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0575158534==
-Content-Type: multipart/alternative; boundary="15201844895.1Ddac.3250"
-Content-Transfer-Encoding: 7bit
-
-
---15201844895.1Ddac.3250
-Date: Sun, 4 Mar 2018 17:28:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
-
---- Comment #53 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Lukas Wunner from comment #52)
-> (In reply to Ilia Mirkin from comment #49)
-> > (In reply to Maik Freudenberg from comment #47)
-> > > There's of course the possibility that some braindead vendor would sh=
-ip a 3D
-> > > class tagged device actually having outputs.
-> >=20
-> > This happens. A lot.
->=20
-> Ilia, do you have definitive knowledge of GPUs which
-> a) have a different class than PCI_CLASS_DISPLAY_VGA and
-> b) have working DP/HDMI outputs and
-> c) have an integrated HDA controller?
->=20
-> I'm asking because get_bound_vga() in sound/pci/hda/hda_intel.c specifica=
-lly
-> matches against PCI_CLASS_DISPLAY_VGA only. In other words, if a GPU with
-> the three above-listed properties exists and is built into a hybrid graph=
-ics
-> laptop, it is currently not registered with vga_switcheroo, which would be
-> wrong.
-
-I can say with some certainty that there are laptops running around, esp
-GM107's, whose pci class is 3D, and that have attached DP/HDMI outputs.
-
-I don't think the users in question ever asked about audio, so I don't know
-about the last bit. However I can't imagine that it wouldn't be there (esp =
-once
-all the proper enablement is done).
-
-Is hda_intel only for intel? If so, I'm pretty sure that all intel vga devi=
-ces
-are PCI_CLASS_DISPLAY_VGA. However if it's used for everything, then it nee=
-ds
-to deal with DISPLAY_3D as well.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15201844895.1Ddac.3250
-Date: Sun, 4 Mar 2018 17:28:09 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c53">Commen=
-t # 53</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Lukas Wunner from <a href=3D"show_bug.cgi?id=3D75=
-985#c52">comment #52</a>)
-<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
-g.cgi?id=3D75985#c49">comment #49</a>)
-&gt; &gt; (In reply to Maik Freudenberg from <a href=3D"show_bug.cgi?id=3D7=
-5985#c47">comment #47</a>)
-&gt; &gt; &gt; There's of course the possibility that some braindead vendor=
- would ship a 3D
-&gt; &gt; &gt; class tagged device actually having outputs.
-&gt; &gt;=20
-&gt; &gt; This happens. A lot.
-&gt;=20
-&gt; Ilia, do you have definitive knowledge of GPUs which
-&gt; a) have a different class than PCI_CLASS_DISPLAY_VGA and
-&gt; b) have working DP/HDMI outputs and
-&gt; c) have an integrated HDA controller?
-&gt;=20
-&gt; I'm asking because get_bound_vga() in sound/pci/hda/hda_intel.c specif=
-ically
-&gt; matches against PCI_CLASS_DISPLAY_VGA only. In other words, if a GPU w=
-ith
-&gt; the three above-listed properties exists and is built into a hybrid gr=
-aphics
-&gt; laptop, it is currently not registered with vga_switcheroo, which woul=
-d be
-&gt; wrong.</span >
-
-I can say with some certainty that there are laptops running around, esp
-GM107's, whose pci class is 3D, and that have attached DP/HDMI outputs.
-
-I don't think the users in question ever asked about audio, so I don't know
-about the last bit. However I can't imagine that it wouldn't be there (esp =
-once
-all the proper enablement is done).
-
-Is hda_intel only for intel? If so, I'm pretty sure that all intel vga devi=
-ces
-are PCI_CLASS_DISPLAY_VGA. However if it's used for everything, then it nee=
-ds
-to deal with DISPLAY_3D as well.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15201844895.1Ddac.3250--
-
---===============0575158534==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0575158534==--
+T24gMDMvMDMvMjAxOCAxMjo1OSBBTSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gRnJpLCBNYXIg
+MiwgMjAxOCBhdCA2OjQ2IFBNLCBNYXJpbyBLbGVpbmVyCj4gPG1hcmlvLmtsZWluZXIuZGVAZ21h
+aWwuY29tPiB3cm90ZToKPj4gT24gMDMvMDIvMjAxOCAxMToyOSBQTSwgSWxpYSBNaXJraW4gd3Jv
+dGU6Cj4+PiBPSywgc28gZXZlbiBpZiB5b3UncmUgcGFzc2luZyAxMDI0IHRvIHhmODZIYW5kbGVD
+b2xvcm1hcHMsIGdhbW1hX3NldAo+Pj4gc3RpbGwgb25seSBnZXRzIGNhbGxlZCB3aXRoIGEgMjU2
+LWVudHJ5IExVVD8gSWYgc28sIHRoYXQgd29ya3MgbmljZWx5Cj4+PiBoZXJlLCBidXQgaXMgbm90
+IGludHVpdGl2ZSA6KQo+Pgo+PiBZZXMuIExvdHMgb2YgcmVtYXBwaW5nIGluIHRoZSBzZXJ2ZXIs
+IGkgZ2V0IGRpenp5IGV2ZXJ5dGltZSBpIGxvb2sgYXQgaXQsCj4+IGFuZCBmb3JnZXQgYWxtb3N0
+IGltbWVkaWF0ZWx5IGhvdyBzdHVmZiBmaXRzIHRvZ2V0aGVyIHdoZW4gaSBkb24ndCBsb29rIGF0
+Cj4+IGl0LiBBbnl3YXksIHRoZSBmaW5hbCBkb3duc2FtcGxpbmcgZnJvbSAxMDI0IC0+IDI1NiBo
+dyBsdXQgaGFwcGVucyBpbgo+PiB4Zjg2UmFuZFIxMkNydGNDb21wdXRlR2FtbWEoKSwgc2VlCj4+
+Cj4+IGh0dHBzOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcveG9yZy94c2VydmVyL2NvbW1pdC8/aWQ9
+YjVmOWZjZDUwYTk5OWEwMDEyOGMwY2MzZjZlN2QxZjY2MTgyYzlkNQo+Pgo+PiBmb3IgdGhlIGxh
+dGVzdC4gSSdsbCBwcm9wb3NlIHRoYXQgb25lIHRvIGdldCBjaGVycnktcGlja2VkIGludG8gdGhl
+Cj4+IHNlcnZlci0xLjE5IGJyYW5jaCBhcyB3ZWxsLgo+IAo+IEhybXBoLiBUaGF0IG1lYW5zIHdl
+IHNob3VsZCB0cnkgdG8gYWRqdXN0IHRoZSBnYW1tYV9zZXQgaGVscGVyIHRvIGRvCj4gdGhlIHNh
+bXBsaW5nIHdoZW4gcmVjZWl2aW5nIGEgMTAyNC1zaXplZCBMVVQsIGlmIHBlb3BsZSB3aWxsIHVz
+ZSBvbGRlcgo+IFggc2VydmVycyAoc2VlbXMgbGlrZWx5KS4gU2hvdWxkIGhvcGVmdWxseSBiZSBz
+dHJhaWdodGZvcndhcmQsIHRvCj4gaGFuZGxlIGp1c3QgdGhhdCBvbmUgY2FzZS4KCkkgdGhpbmsg
+d2UgbmV2ZXIgcmVjZWl2ZSBhbnl0aGluZyBidXQgYSAyNTYgc2xvdCBMVVQgdmlhIGdhbW1hX3Nl
+dCAKYWZhaWNzPyBUaGUgc2VydmVyIGluaXRpYWxpemVzIHhmODZDcnRjJ3MgZ2FtbWFfc2l6ZSB0
+byAyNTYgYXQgc3RhcnR1cCwgCmFuZCBub25lIG9mIHRoZSBkZHgnZXMgZXZlciBvdmVycmlkZXMg
+dGhhdCB3aXRoIGFjdHVhbCBpbmZvIGZyb20gdGhlIGtlcm5lbC4KCldoYXQgaGFwcGVucyBvbiBv
+bGRlciBzZXJ2ZXJzIHdpdGhvdXQgdGhhdCBwYXRjaCBpZmYgY29sb3IgZGVwdGggMzAgaXMgCnNl
+bGVjdGVkIGlzIHNpbXBseSB0aGF0IHRoZSBnYW1tYSB0YWJsZSB1cGRhdGVzIG5vLW9wLCBzbyB0
+aGUgc2VydmVyIApydW5zIHdpdGggYW4gaWRlbnRpdHkgZ2FtbWEgdGFibGUgc2V0dXAgYXQgc3Rh
+cnR1cC4gTm90IHBlcmZlY3QsIGJ1dCAKYWxzbyBub3QgdGhhdCBiYWQsIGdpdmVuIHRoYXQgcHJv
+YmFibHkgbW9zdCBwZW9wbGUgcnVuIHRoZWlyIHNldHVwcyB3aXRoIAphIGdhbW1hIG9mIDEuMCBh
+bnl3YXkuIEF0IGRlZmF1bHQgZGVwdGggMjQgc3R1ZmYgd29ya3MgYXMgdXN1YWwuCgo+IAo+Pj4g
+SXQncyBzZW5kaW5nIDhicGMgZGF0YSBvdXQgdG8gdGhlIHNjcmVlbiwgdW5sZXNzIHlvdSdyZSB1
+c2luZyBhIERQCj4+PiBtb25pdG9yIChhbmQgcHJvYmFibHkgd291bGQgbmVlZCBhIEtlcGxlciBH
+UFUgZm9yIHRoYXQgYW55d2F5cykuCj4+Cj4+Cj4+IEkgdGhpbmsgYSBsb25nIHRpbWUgYWdvIGkg
+dGVzdGVkIDEwIGJwYyBvdXRwdXQgb3ZlciBWR0Egd2l0aCB0aGUgcHJvcHJpZXRhcnkKPj4gZHJp
+dmVyIG9uIEdlRm9yY2UgODgwMCwgYW5kIHRoZSBjdXJyZW50IHJlYWRtZSBmb3IgdGhlIE5WaWRp
+YSBibG9iIHNheXMgaXQKPj4gY2FuIGRvIDEwIGJwYyBvdmVyIFZHQSBhbmQgRGlzcGxheVBvcnQs
+IGJ1dCBvbmx5IGRpdGhlcmluZyBvdmVyIERWSSBhbmQKPj4gSERNSS4KPiAKPiBJIHRoaW5rIHRo
+YXQgMTBicGMgSERNSSBzdXBwb3J0IGNhbWUgd2l0aCBIRE1JIDEuMy4gT2xkZXIgZGV2aWNlcyAo
+ZXNwCj4gVGVzbGEgZXJhKSB3b24ndCBzdXBwb3J0IHRoYXQuIEludHVpdGl2ZWx5IHNlZW1zIGxp
+a2UgaXQgc2hvdWxkIEp1c3QKPiBXb3JrICh0bSkgb3ZlciBWR0EuIE5vdCBzdXJlIHdoaWNoIERQ
+IHZlcnNpb24gc3VwcG9ydGVkIDEwYnBjKy4KPiAKPj4gSSB0aGluayBpIHJlYWQgc29tZXdoZXJl
+IHRoYXQgYXQgbGVhc3QgUGFzY2FsIGNvdWxkIGRvIHNvbWUgZGVlcCBjb2xvcgo+PiBvdXRwdXQg
+b3ZlciBIRE1JIGFzIHdlbGwsIHdoaWNoIG1ha2VzIHNlbnNlIGZvciBIRE1JLWJhc2VkIEhEUi0x
+MCBzdXBwb3J0Lgo+IAo+IEkgYmVsaWV2ZSBLZXBsZXIrIGRldmljZXMgKGFuZCBwZXJoYXBzIEdG
+MTE5IGFzIHdlbGwpIHNob3VsZCBzdXBwb3J0Cj4gaGlnaGVyIGJwYyBvdmVyIEhETUkuIEhvd2V2
+ZXIgdGhlcmUncyBubyBzdXBwb3J0IGZvciB0aGF0IGluIG5vdXZlYXUKPiByaWdodCBub3cuIEkg
+aGFwcGVuIHRvIGhhdmUgYSBtb25pdG9yIChUVikgdGhhdCBhZHZlcnRpc2VzIDEyYnBjCj4gc3Vw
+cG9ydCwgc28gSSBtYXkgcGxheSB3aXRoIGl0Lgo+IAo+IEhlcmUncyBob3cgZGl0aGVyaW5nIGlz
+IGNvbnRyb2xsZWQ6Cj4gCj4gaHR0cHM6Ly9naXRodWIuY29tL2Vudnl0b29scy9lbnZ5dG9vbHMv
+YmxvYi9tYXN0ZXIvcm5uZGIvZGlzcGxheS9udl9ldm8ueG1sI0w0MzUKPiAKPiAoYW5kIGFsc28g
+ZXhwb3NlZCBpbiB0aGUgcHVibGljIGRpc3BsYXkgY2xhc3MgZG9jcyBhdAo+IGh0dHA6Ly9kb3du
+bG9hZC5udmlkaWEuY29tL29wZW4tZ3B1LWRvYy9EaXNwbGF5LUNsYXNzLU1ldGhvZHMvMi8gKQo+
+IAo+IEluIHRoZW9yeSB0dXJuaW5nIG9mZiBkaXRoZXJpbmcgc2hvdWxkIGFsc28gZmxpcCBvZmYg
+dGhhdCBFTkFCTEUgYml0LAo+IGJ1dCBwZXJoYXBzIHdlIG1lc3NlZCBzb21ldGhpbmcgdXAuIE9y
+IEhETUkgaXMgZXh0cmEtc3BlY2lhbCBhbmQKPiBkb2Vzbid0IHJlc3BlY3QgdGhhdCBiaXQgYW5k
+IGFsd2F5cyBoYXMgaXQgZW5hYmxlZC4KPiAKPiAgICAtaWxpYQo+IApfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
+ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
