@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
- rescan
-Date: Tue, 06 Mar 2018 19:30:45 +0000
-Message-ID: <bug-75985-8800-VNygNDTDZn@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99464] openmw - Segfault with the nouveau ddx + DRI3
+Date: Tue, 06 Mar 2018 19:45:20 +0000
+Message-ID: <bug-99464-8800-JG0OATWeSP@http.bugs.freedesktop.org/>
+References: <bug-99464-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0063413886=="
+Content-Type: multipart/mixed; boundary="===============0792159382=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99464-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,42 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0063413886==
-Content-Type: multipart/alternative; boundary="15203646460.16bBd87.3463"
+--===============0792159382==
+Content-Type: multipart/alternative; boundary="15203655200.dfaFA.6254"
 Content-Transfer-Encoding: 7bit
 
 
---15203646460.16bBd87.3463
-Date: Tue, 6 Mar 2018 19:30:46 +0000
+--15203655200.dfaFA.6254
+Date: Tue, 6 Mar 2018 19:45:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99464
 
---- Comment #55 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Maik Freudenberg from comment #54)
-> (In reply to Ilia Mirkin from comment #44)
-> > One can check if the DCB table has any outputs, and only do
-> > stuff if there are none.
-> I don't see how that's feasible since this would require to load the ROM =
-and
-> parse it and this is about an early pci quirk or am I wrong there?
+--- Comment #3 from Greg V <greg-h9od4bJ/6ZMRmC9m2n0wefGwBlcYIbsQ@public.gmane.org> ---
+(In reply to Greg V from comment #2)
 
-Correct.
+UPDATE! The issue was in our DRM port, specifically with ioctl
+authentication/permissions.
 
-What's the downside for doing this always btw (except for a fixed list of p=
-ci
-ids/ranges, for the "older" chips, i.e. pre-fermi)?
+If nouveau still has this problem, try looking into that=E2=80=A6
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15203646460.16bBd87.3463
-Date: Tue, 6 Mar 2018 19:30:46 +0000
+--15203655200.dfaFA.6254
+Date: Tue, 6 Mar 2018 19:45:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,34 +65,25 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c55">Commen=
-t # 55</a>
+   title=3D"NEW - openmw - Segfault with the nouveau ddx + DRI3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99464#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+   title=3D"NEW - openmw - Segfault with the nouveau ddx + DRI3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99464">bug 99464<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+greg&#64;unrelenting.technology" title=3D"Greg V &lt;greg&#64;unrelenting.t=
+echnology&gt;"> <span class=3D"fn">Greg V</span></a>
 </span></b>
-        <pre>(In reply to Maik Freudenberg from <a href=3D"show_bug.cgi?id=
-=3D75985#c54">comment #54</a>)
-<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
-g.cgi?id=3D75985#c44">comment #44</a>)
-&gt; &gt; One can check if the DCB table has any outputs, and only do
-&gt; &gt; stuff if there are none.
-&gt; I don't see how that's feasible since this would require to load the R=
-OM and
-&gt; parse it and this is about an early pci quirk or am I wrong there?</sp=
-an >
+        <pre>(In reply to Greg V from <a href=3D"show_bug.cgi?id=3D99464#c2=
+">comment #2</a>)
 
-Correct.
+UPDATE! The issue was in our DRM port, specifically with ioctl
+authentication/permissions.
 
-What's the downside for doing this always btw (except for a fixed list of p=
-ci
-ids/ranges, for the &quot;older&quot; chips, i.e. pre-fermi)?</pre>
+If nouveau still has this problem, try looking into that=E2=80=A6</pre>
         </div>
       </p>
 
@@ -109,13 +93,14 @@ ids/ranges, for the &quot;older&quot; chips, i.e. pre-fermi)?</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15203646460.16bBd87.3463--
+--15203655200.dfaFA.6254--
 
---===============0063413886==
+--===============0792159382==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -125,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0063413886==--
+--===============0792159382==--
