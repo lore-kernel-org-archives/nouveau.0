@@ -1,99 +1,254 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v2 0/7] Modernize vga_switcheroo by using device link for
- HDA
-Date: Tue, 6 Mar 2018 11:29:40 +0100
-Message-ID: <20180306102940.GG22212@phenom.ffwll.local>
-References: <cover.1520068884.git.lukas@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 105344] Installation bug by video card modules
+ conflict (nvidia GTX 950 M)
+Date: Tue, 06 Mar 2018 13:02:13 +0000
+Message-ID: <bug-105344-8800-zDOp0wmsEJ@http.bugs.freedesktop.org/>
+References: <bug-105344-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <cover.1520068884.git.lukas@wunner.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Lukas Wunner <lukas@wunner.de>
-Cc: Martin Lopatar <lopin@dataplex.cz>, nouveau@lists.freedesktop.org, Maik Freudenberg <hhfeuer@gmx.de>, "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, Daniel Drake <dan@reactivated.net>, dri-devel@lists.freedesktop.org, zigarrre@gmail.com, Denis Lisov <dennis.lissov@gmail.com>, Alex Deucher <alexander.deucher@amd.com>, Peter Wu <peter@lekensteyn.nl>, linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, Raphael Doursenaud <rdoursenaud@free.fr>
+Content-Type: multipart/mixed; boundary="===============0870810624=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-105344-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBNYXIgMDMsIDIwMTggYXQgMTA6NTM6MjRBTSArMDEwMCwgTHVrYXMgV3VubmVyIHdy
-b3RlOgo+IE1vZGVybml6ZSB2Z2Ffc3dpdGNoZXJvbyBieSB1c2luZyBhIGRldmljZSBsaW5rIHRv
-IGVuZm9yY2UgYSBydW50aW1lIFBNCj4gZGVwZW5kZW5jeSBmcm9tIGFuIEhEQSBjb250cm9sbGVy
-IHRvIHRoZSBHUFUgaXQncyBpbnRlZ3JhdGVkIGludG8sIHYyLgo+IAo+IENoYW5nZXMgc2luY2Ug
-djE6Cj4gCj4gLSBSZXBsYWNlIHBhdGNoIFsxLzddIHRvIHVzZSBwY2lfc2F2ZV9zdGF0ZSgpIC8g
-cGNpX3Jlc3RvcmVfc3RhdGUoKQo+ICAgZm9yIGNvbnNpc3RlbmN5IGJldHdlZW4gcnVudGltZSBQ
-TSBjb2RlIHBhdGggb2YgYm91bmQgYW5kIHVuYm91bmQKPiAgIGRldmljZXMuIChSYWZhZWwsIEJq
-b3JuKQo+IAo+IC0gUGF0Y2ggWzUvN106IERyb3AgYW4gdW5uZWNlc3NhcnkgaW5pdGlhbGl6YXRp
-b24uIChCam9ybikKPiAgIFJlcGhyYXNlIGVycm9yIG1lc3NhZ2Ugb24gZmFpbGVkIGxpbmsgYWRk
-aXRpb24gZm9yIGNsYXJpdHkuCj4gCj4gTGluayB0byB2MToKPiBodHRwczovL3d3dy5zcGluaWNz
-Lm5ldC9saXN0cy9kcmktZGV2ZWwvbXNnMTY1ODg5Lmh0bWwKPiAKPiBUZXN0aW5nIG9uIG1vcmUg
-bWFjaGluZXMgd291bGQgYmUgZ3JlYXRseSBhcHByZWNpYXRlZCwgcGFydGljdWxhcmx5Cj4gTnZp
-ZGlhIE9wdGltdXMgb3IgQU1EIFBvd2VyWHByZXNzLgo+IAo+IFRoZSBzZXJpZXMgaXMgYmFzZWQg
-b24gNC4xNi1yYzMuICBUbyB0ZXN0IGl0IG9uIDQuMTUsIHlvdSBuZWVkIHRvCj4gY2hlcnJ5LXBp
-Y2sgNzUwNmRjNzk4OTkzIGFuZCAyZmE2ZDZjZGFmMjguICBGb3IgeW91ciBjb252ZW5pZW5jZQo+
-IEkndmUgcHVzaGVkIGEgNC4xNS1iYXNlZCBicmFuY2ggdG86Cj4gaHR0cHM6Ly9naXRodWIuY29t
-L2wxay9saW51eC9jb21taXRzL3N3aXRjaGVyb29fZGV2bGlua192Mgo+IAo+IE1pbmltYWwgdGVz
-dCBwcm9jZWR1cmU6Cj4gCj4gLSBOb3RlIHdlbGw6IFJlY2VudCBPcHRpbXVzIHJlcXVpcmUgdGhh
-dCBhIE1pbmktRFAgb3IgSERNSSBjYWJsZSBpcwo+ICAgcGx1Z2dlZCBpbiBvbiBib290IGZvciB0
-aGUgSERBIGRldmljZSB0byBiZSBwcmVzZW50Lgo+IAo+IC0gQ2hlY2sgdGhhdCBIREEsIEdQVSBh
-bmQgcm9vdCBwb3J0IGF1dG9zdXNwZW5kIHdoZW4gbm90IGluIHVzZToKPiAgIGNhdCAvc3lzL2J1
-cy9wY2kvZGV2aWNlcy8wMDAwOjAxOjAwLjEvcG93ZXIvcnVudGltZV9zdGF0dXMgICMgSERBCj4g
-ICBjYXQgL3N5cy9idXMvcGNpL2RldmljZXMvMDAwMDowMTowMC4wL3Bvd2VyL3J1bnRpbWVfc3Rh
-dHVzICAjIEdQVQo+ICAgY2F0IC9zeXMvYnVzL3BjaS9kZXZpY2VzLzAwMDA6MDA6MDEuMC9wb3dl
-ci9ydW50aW1lX3N0YXR1cyAgIyBSb290IFBvcnQKPiAKPiAtIENoZWNrIHRoYXQgYWxsIHRocmVl
-IGF1dG9yZXN1bWUgd2hlbiBhY2Nlc3NpbmcgdGhlIEhEQToKPiAgIGhkYWphY2tzZW5zZXRlc3Qg
-LWMgMQo+IAo+IC0gVW5iaW5kIHRoZSBIREEgY29udHJvbGxlcjoKPiAgIGVjaG8gMDAwMDowMTow
-MC4xID4gL3N5cy9idXMvcGNpL2RyaXZlcnMvc25kX2hkYV9pbnRlbC91bmJpbmQKPiAgIFdhaXQg
-Zm9yIEdQVSB0byBwb3dlciBvZmYsIHRoZW4gcmViaW5kIHRoZSBIREEgY29udHJvbGxlcjoKPiAg
-IGVjaG8gMDAwMDowMTowMC4xID4gL3N5cy9idXMvcGNpL2RyaXZlcnMvc25kX2hkYV9pbnRlbC9i
-aW5kCj4gICBDaGVjayBkbWVzZyBmb3IgZXJyb3JzLCB0cnkgYWNjZXNzaW5nIEhEQSB3aXRoIGhk
-YWphY2tzZW5zZXRlc3QuCj4gCj4gLSBJZiB5b3VyIGxhcHRvcCB1c2VzIHRoZSByb290IHBvcnQn
-cyBfUFIzIHRvIGN1dCBwb3dlciB0byB0aGUgR1BVOgo+ICAgVW5iaW5kIHRoZSBHUFU6Cj4gICBl
-Y2hvIDAwMDA6MDE6MDAuMCA+IC9zeXMvYnVzL3BjaS9kcml2ZXJzL3tub3V2ZWF1LGFtZGdwdSxy
-YWRlb259L3VuYmluZAo+ICAgQWxsb3cgcnVudGltZSBQTSBvbiB0aGUgR1BVOgo+ICAgZWNobyBh
-dXRvID4gL3N5cy9idXMvcGNpL2RldmljZXMvMDAwMDowMTowMC4wL3Bvd2VyL2NvbnRyb2wKPiAg
-IFdhaXQgZm9yIEdQVSB0byBwb3dlciBvZmYsIHRoZW4gcmViaW5kIGl0Ogo+ICAgZWNobyAwMDAw
-OjAxOjAwLjAgPiAvc3lzL2J1cy9wY2kvZHJpdmVycy97bm91dmVhdSxhbWRncHUscmFkZW9ufS9i
-aW5kCj4gICBDaGVjayBkbWVzZyBmb3IgZXJyb3JzLiAgSWYgeW91IHNlZSBhbnkgdGhlbiB3ZSBt
-YXkgbmVlZCB0byBwZXJmb3JtCj4gICBmdXJ0aGVyIGFjdGlvbnMgaW4gcGNpX3BtX3J1bnRpbWVf
-cmVzdW1lKCksIHNlZSBwYXRjaCBbMS83XS4KClRoaXMgYWxsIGxvb2tzIHJlYWxseSByZWFzb25h
-YmxlIGFuZCBsaWtlIGEgZ29vZCBjbGVhbnVwLCBidXQgaXQncyBhIGJpdAp0b28gbXVjaCBkZXRh
-aWwgc28gSSdsbCBwdW50IHJldmlldyB0byBzb21lb25lIGVsc2Ugd2l0aCBtb3JlIGNsdWUuCi1E
-YW5pZWwKCj4gCj4gVGhhbmtzLAo+IAo+IEx1a2FzCj4gCj4gCj4gTHVrYXMgV3VubmVyICg2KToK
-PiAgIFBDSTogTWFrZSBwY2lfd2FrZXVwX2J1cygpICYgcGNpX2J1c19zZXRfY3VycmVudF9zdGF0
-ZSgpIHB1YmxpYwo+ICAgdmdhX3N3aXRjaGVyb286IFVwZGF0ZSBQQ0kgY3VycmVudF9zdGF0ZSBv
-biBwb3dlciBjaGFuZ2UKPiAgIHZnYV9zd2l0Y2hlcm9vOiBEZWR1cGxpY2F0ZSBwb3dlciBzdGF0
-ZSB0cmFja2luZwo+ICAgdmdhX3N3aXRjaGVyb286IFVzZSBkZXZpY2UgbGluayBmb3IgSERBIGNv
-bnRyb2xsZXIKPiAgIHZnYV9zd2l0Y2hlcm9vOiBMZXQgSERBIGF1dG9zdXNwZW5kIG9uIG11eCBj
-aGFuZ2UKPiAgIGRybS9ub3V2ZWF1OiBSdW50aW1lIHN1c3BlbmQgZGVzcGl0ZSBIREEgYmVpbmcg
-dW5ib3VuZAo+IAo+IFJhZmFlbCBKLiBXeXNvY2tpICgxKToKPiAgIFBDSTogUmVzdG9yZSBjb25m
-aWcgc3BhY2Ugb24gcnVudGltZSByZXN1bWUgZGVzcGl0ZSBiZWluZyB1bmJvdW5kCj4gCj4gIGRy
-aXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9kcnYuYyB8ICAgMiAtCj4gIGRyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgICB8ICA0NiAtLS0tLS0tLS0tCj4gIGRyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmggICB8ICAgMSAtCj4gIGRyaXZlcnMvZ3B1
-L2RybS9yYWRlb24vcmFkZW9uX2Rydi5jICAgICB8ICAgMiAtCj4gIGRyaXZlcnMvZ3B1L3ZnYS92
-Z2Ffc3dpdGNoZXJvby5jICAgICAgICB8IDE1MiArKysrKysrKy0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLQo+ICBkcml2ZXJzL3BjaS9wY2ktZHJpdmVyLmMgICAgICAgICAgICAgICAgfCAgMTcgKyst
-LQo+ICBkcml2ZXJzL3BjaS9wY2kuYyAgICAgICAgICAgICAgICAgICAgICAgfCAgIDggKy0KPiAg
-ZHJpdmVycy9wY2kvcXVpcmtzLmMgICAgICAgICAgICAgICAgICAgIHwgIDM5ICsrKysrKysrCj4g
-IGluY2x1ZGUvbGludXgvcGNpLmggICAgICAgICAgICAgICAgICAgICB8ICAgMiArCj4gIGluY2x1
-ZGUvbGludXgvcGNpX2lkcy5oICAgICAgICAgICAgICAgICB8ICAgMSArCj4gIGluY2x1ZGUvbGlu
-dXgvdmdhX3N3aXRjaGVyb28uaCAgICAgICAgICB8ICAgNiAtLQo+ICBpbmNsdWRlL3NvdW5kL2hk
-YXVkaW8uaCAgICAgICAgICAgICAgICAgfCAgIDMgLQo+ICBzb3VuZC9wY2kvaGRhL2hkYV9pbnRl
-bC5jICAgICAgICAgICAgICAgfCAgMzYgKysrKystLS0KPiAgc291bmQvcGNpL2hkYS9oZGFfaW50
-ZWwuaCAgICAgICAgICAgICAgIHwgICAzIC0KPiAgMTQgZmlsZXMgY2hhbmdlZCwgMTE3IGluc2Vy
-dGlvbnMoKyksIDIwMSBkZWxldGlvbnMoLSkKPiAKPiAtLSAKPiAyLjE1LjEKPiAKPiBfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGRyaS1kZXZlbCBtYWls
-aW5nIGxpc3QKPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwKCi0tIApEYW5pZWwg
-VmV0dGVyClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgpodHRwOi8vYmxvZy5m
-ZndsbC5jaApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpk
-cmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============0870810624==
+Content-Type: multipart/alternative; boundary="15203413330.50b38DFc6.22683"
+Content-Transfer-Encoding: 7bit
+
+
+--15203413330.50b38DFc6.22683
+Date: Tue, 6 Mar 2018 13:02:13 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105344
+
+--- Comment #6 from Yuri Gelsleichter <yuriplanta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Dear all,
+
+thanks for the points.
+
+(In reply to Emil Velikov from comment #4)
+> Considering that nouveau.modeset=3D0 helps, I'm flipping this to component
+> nouveau. Feel free to revert.
+>=20
+Flipping fits good.
+
+> > kernel is: 4.13.0-36-generic
+> > mesa: OpenGL version string: 3.0 Mesa 17.2.8
+> FWIW these two are EOL. You might want to try something newer.
+>
+I tried the very fresh through ArchLinux and Manjaro.
+
+> > libdrm: could not find
+> > xf86-video-nouveau: could not find.
+> >=20
+> Exact names might differ across distros - please search carefully.
+>=20
+> > ---------------------
+> >=20
+> > Follow the "kernel_log.txt" output:
+> >=20
+> Please make sure you _attach_ logs.
+>=20
+> > [    1.333868] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
+> > 612004 [ IBUS ]
+> > [    1.335248] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
+> > 10ac08 [ IBUS ]
+>=20
+> These two look mildly interesting. Not sure how much it matters sunce the
+> nvidia device is a 3D controller - there should be no outputs wired/plugg=
+ed.
+>
+
+It is a laptop, so always plugged.
+The point here is that Nvidia has no drivers in use. With nouveau, system
+breaks (impossible to boot), with proprietary system get slow and freeze of=
+ten
+(I am aware that you do not deal with proprietary drivers).
+
+If I boot with "quite splash", the system breaks before boot.
+If I boot without any "modeset", the system only get to the terminal.
+
+The only way to get "normal" use is booting with any "nomodeset" (without
+proprietary driver for videocard).
+
+I was wondering to understand why the distros (all of them) do not work out=
+ of
+the box in this machine. As they work great in general in any machine.
+
+I would be glad if one day Linux working smooth out of the box on this
+machines.
+
+> Potential next steps include:
+>  - using xserver or wayland - try the former
+>  - [it using xserver] - flip between the modesetting and nouveau DDX
+>  - attach the respective logs - xserver -> Xorg.*.log, wayland -> no idea
+> where kwin puts it
+>=20
+> If the above are cryptic, do read through the wikis/googleit ;-)
+>=20
+> https://nouveau.freedesktop.org/wiki/
+> https://nouveau.freedesktop.org/wiki/Optimus/
+> https://wiki.archlinux.org/index.php/nouveau
+
+Thanks for the path, I will go for it.
+Thanks for all.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15203413330.50b38DFc6.22683
+Date: Tue, 6 Mar 2018 13:02:13 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Installation bug by video card modules conflict (nvidia G=
+TX 950 M)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105344#c6">Commen=
+t # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Installation bug by video card modules conflict (nvidia G=
+TX 950 M)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105344">bug 10534=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+yuriplanta&#64;gmail.com" title=3D"Yuri Gelsleichter &lt;yuriplanta&#64;gma=
+il.com&gt;"> <span class=3D"fn">Yuri Gelsleichter</span></a>
+</span></b>
+        <pre>Dear all,
+
+thanks for the points.
+
+(In reply to Emil Velikov from <a href=3D"show_bug.cgi?id=3D105344#c4">comm=
+ent #4</a>)
+<span class=3D"quote">&gt; Considering that nouveau.modeset=3D0 helps, I'm =
+flipping this to component
+&gt; nouveau. Feel free to revert.
+&gt; </span >
+Flipping fits good.
+
+<span class=3D"quote">&gt; &gt; kernel is: 4.13.0-36-generic
+&gt; &gt; mesa: OpenGL version string: 3.0 Mesa 17.2.8
+&gt; FWIW these two are EOL. You might want to try something newer.</span >
+&gt;
+I tried the very fresh through ArchLinux and Manjaro.
+
+<span class=3D"quote">&gt; &gt; libdrm: could not find
+&gt; &gt; xf86-video-nouveau: could not find.
+&gt; &gt;=20
+&gt; Exact names might differ across distros - please search carefully.
+&gt;=20
+&gt; &gt; ---------------------
+&gt; &gt;=20
+&gt; &gt; Follow the &quot;kernel_log.txt&quot; output:
+&gt; &gt;=20
+&gt; Please make sure you _attach_ logs.
+&gt;=20
+&gt; &gt; [    1.333868] nouveau 0000:01:00.0: bus: MMIO read of 00000000 F=
+AULT at
+&gt; &gt; 612004 [ IBUS ]
+&gt; &gt; [    1.335248] nouveau 0000:01:00.0: bus: MMIO read of 00000000 F=
+AULT at
+&gt; &gt; 10ac08 [ IBUS ]
+&gt;=20
+&gt; These two look mildly interesting. Not sure how much it matters sunce =
+the
+&gt; nvidia device is a 3D controller - there should be no outputs wired/pl=
+ugged.</span >
+&gt;
+
+It is a laptop, so always plugged.
+The point here is that Nvidia has no drivers in use. With nouveau, system
+breaks (impossible to boot), with proprietary system get slow and freeze of=
+ten
+(I am aware that you do not deal with proprietary drivers).
+
+If I boot with &quot;quite splash&quot;, the system breaks before boot.
+If I boot without any &quot;modeset&quot;, the system only get to the termi=
+nal.
+
+The only way to get &quot;normal&quot; use is booting with any &quot;nomode=
+set&quot; (without
+proprietary driver for videocard).
+
+I was wondering to understand why the distros (all of them) do not work out=
+ of
+the box in this machine. As they work great in general in any machine.
+
+I would be glad if one day Linux working smooth out of the box on this
+machines.
+
+<span class=3D"quote">&gt; Potential next steps include:
+&gt;  - using xserver or wayland - try the former
+&gt;  - [it using xserver] - flip between the modesetting and nouveau DDX
+&gt;  - attach the respective logs - xserver -&gt; Xorg.*.log, wayland -&gt=
+; no idea
+&gt; where kwin puts it
+&gt;=20
+&gt; If the above are cryptic, do read through the wikis/googleit ;-)
+&gt;=20
+&gt; <a href=3D"https://nouveau.freedesktop.org/wiki/">https://nouveau.free=
+desktop.org/wiki/</a>
+&gt; <a href=3D"https://nouveau.freedesktop.org/wiki/Optimus/">https://nouv=
+eau.freedesktop.org/wiki/Optimus/</a>
+&gt; <a href=3D"https://wiki.archlinux.org/index.php/nouveau">https://wiki.=
+archlinux.org/index.php/nouveau</a></span >
+
+Thanks for the path, I will go for it.
+Thanks for all.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15203413330.50b38DFc6.22683--
+
+--===============0870810624==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0870810624==--
