@@ -1,103 +1,58 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105382] segfault in nouveau_scratch_data
-Date: Wed, 07 Mar 2018 15:39:20 +0000
-Message-ID: <bug-105382-8800-v0dvRz5sTK@http.bugs.freedesktop.org/>
-References: <bug-105382-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <kherbst@redhat.com>
+Subject: Re: [Nouveau] Aspirant for GSOC 2018 for Nouveau Vulkan driver
+Date: Wed, 7 Mar 2018 18:17:59 +0100
+Message-ID: <CACO55tsNh8FnJqgzQppKrpgP+G6cu-2O811X6Mpck=7Lig1Pyg@mail.gmail.com>
+References: <CAE6aMW=xTrZEJap9tB1=8wMBzUQvZ3V__B5U2iiLEneO7WNLRA@mail.gmail.com>
+ <CAE6aMWndERHtiPobhYVRQYYouPghhDn6FAUj-EZirWkMagynOw@mail.gmail.com>
+ <CAE6aMWmbs09EUb56WJvS4nmmWQSZdKebp4Kvs-cofE-Kyd20bA@mail.gmail.com>
+ <aff00116-8eed-8888-5e05-3cccec8aa5c1@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1303481365=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <aff00116-8eed-8888-5e05-3cccec8aa5c1@free.fr>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Martin Peres <martin.peres@free.fr>
+Cc: Anusha Srivastava <sidd.sinha89@gmail.com>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1303481365==
-Content-Type: multipart/alternative; boundary="15204371590.7A8b9.20453"
-Content-Transfer-Encoding: 7bit
-
-
---15204371590.7A8b9.20453
-Date: Wed, 7 Mar 2018 15:39:19 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105382
-
---- Comment #1 from Vasilis LIaskovitis <vliaskovitis-IBi9RG/b67k@public.gmane.org> ---
-Same stacktrace happens with only 1 card + 2 outputs. Changed title.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15204371590.7A8b9.20453
-Date: Wed, 7 Mar 2018 15:39:19 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - segfault in nouveau_scratch_data"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105382#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - segfault in nouveau_scratch_data"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105382">bug 10538=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-vliaskovitis&#64;suse.com" title=3D"Vasilis LIaskovitis &lt;vliaskovitis&#6=
-4;suse.com&gt;"> <span class=3D"fn">Vasilis LIaskovitis</span></a>
-</span></b>
-        <pre>Same stacktrace happens with only 1 card + 2 outputs. Changed =
-title.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15204371590.7A8b9.20453--
-
---===============1303481365==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1303481365==--
+SSB3b3VsZCBiZSB3aWxsaW5nIHRvIGJlIGEgbWVudG9yIGZvciB0aGlzIHByb2plY3QuCgpPbiBX
+ZWQsIE1hciA3LCAyMDE4IGF0IDE6NDUgUE0sIE1hcnRpbiBQZXJlcyA8bWFydGluLnBlcmVzQGZy
+ZWUuZnI+IHdyb3RlOgo+IEhpIEFudXNoYSwKPgo+IFNvcnJ5LCBJIHdhcyB1bmRlciB0aGUgZXhw
+ZWN0YXRpb24gdGhhdCB1c2Vyc3BhY2UgZGV2ZWxvcGVycyB3b3VsZAo+IGFuc3dlciB5b3UgYWZ0
+ZXIgeW91ciBmaXJzdCBtZXNzYWdlLCBhbmQgSSBtaXNzZWQgeW91ciBzZWNvbmQgb25lISBNeQo+
+IHNpbmNlcmUgYXBvbG9naWVzLgo+Cj4gR2VuZXJhbGx5LCB0aGUgcHJvY2VzcyBpcyB0aGF0IHRo
+ZSBzdHVkZW50IHNob3VsZCByZXNlYXJjaCB0aGUgdG9waWMgYnkKPiBmaXJzdCBhc2tpbmcgcXVl
+c3Rpb25zIHRvIGRldmVsb3BlcnMgYWJvdXQgdGhlIGVmZm9ydCwgdGhlbiB0aGV5IHdvdWxkCj4g
+bWFrZSB0aGVpciBvd24gcGxhbi4gVGhlbiB5b3Ugd291bGQgcHJlc2VudCB0aGlzIHBsYW4gd2hp
+bGUgbG9va2luZyBmb3IKPiBhIG1lbnRvci4KPgo+IE9mIGNvdXJzZSwgeW91IGNhbiBleHBlY3Qg
+aGVscCBmcm9tIHRoZSBjb21tdW5pdHkgaW4gb3JkZXIgdG8gYmV0dGVyCj4gdW5kZXJzdGFuZCB3
+aGF0IG5lZWRzIHRvIGJlIGRvbmUsIGJ1dCBkb24ndCBleHBlY3QgdG8gYmUgZ2l2ZW4gYQo+IGRl
+dGFpbGVkIHBsYW4sIGp1c3QgcG9pbnRlcnMuCj4KPiBTb3JyeSBhZ2FpbiBmb3IgbXkgbGFjayBv
+ZiBmZWVkYmFjaywKPiBNYXJ0aW4KPgo+IE9uIDA3LzAzLzE4IDA1OjUzLCBBbnVzaGEgU3JpdmFz
+dGF2YSB3cm90ZToKPj4gSGksCj4+Cj4+IEkgYW0gbm90IGJlZW4gYWJsZSB0byBjb250YWN0IHdp
+dGggbWVudG9yIG9mIHRoaXMgcHJvamVjdC4KPj4gQ2FuIHNvbWVvbmUgZWxzZSBmcm9tIHRoZSBj
+b21tdW5pdHkgaGVscCBtZSB3aXRoIHRoaXMgPwo+Pgo+Pgo+PiBSZWdhcmRzLAo+PiBBbnVzaGEg
+U3JpdmFzdGF2YQo+Pgo+Pgo+PiBPbiAzIE1hcmNoIDIwMTggYXQgMTE6MTYsIEFudXNoYSBTcml2
+YXN0YXZhIDxzaWRkLnNpbmhhODlAZ21haWwuY29tPiB3cm90ZToKPj4+IEhpIE1hcnRpbiwKPj4+
+Cj4+PiBBbnkgdXBkYXRlIG9uIHRoaXMgPwo+Pj4gUmVnYXJkcywKPj4+IEFudXNoYSBTcml2YXN0
+YXZhCj4+Pgo+Pj4KPj4+IE9uIDI4IEZlYnJ1YXJ5IDIwMTggYXQgMjM6MzcsIEFudXNoYSBTcml2
+YXN0YXZhIDxzaWRkLnNpbmhhODlAZ21haWwuY29tPiB3cm90ZToKPj4+PiBIaSwKPj4+Pgo+Pj4+
+IEkgd291bGQgbGlrZSB0byBwYXJ0aWNpcGF0ZSBpbiAgR1NPQyAyMDE4IHdpdGggWG9yZyB0byBj
+b250cmlidXRlIHRvCj4+Pj4gcHJvamVjdCAiSW5pdGlhbCBOb3V2ZWF1IFZ1bGthbiBkcml2ZXIn
+Cj4+Pj4gSSB3b3VsZCBuZWVkIHNvbWUgaGVscCBpbiBob3cgdG8gZ2V0IHN0YXJ0ZWQgd2l0aCB0
+aGUgc2FtZS4KPj4+Pgo+Pj4+IFJlZ2FyZHMsCj4+Pj4gQW51c2hhIFNyaXZhc3RhdmEKPgo+IF9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBt
+YWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0
+CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
