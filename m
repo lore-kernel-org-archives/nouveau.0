@@ -1,19 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Nouveau Digest, Vol 131, Issue 3
-Date: Thu, 8 Mar 2018 23:29:03 -0500
-Message-ID: <CAKb7UvjpA8F=CckyX92v6bBYAQ8s2xtJKCmq5pBO106C0rB6nw@mail.gmail.com>
-References: <mailman.510.1519928481.2262.nouveau@lists.freedesktop.org>
- <e6067c25-549f-668d-bc66-bcb761e0dc26@gmail.com>
- <CAKb7UvgoM0EjTu00y4CvxBZD9DOxLTmy+SFoRASF16ONqgA8ew@mail.gmail.com>
- <bbc4654d-ead2-bb15-d369-e7d0b853f220@gmail.com>
- <CAKb7UvhZ=72Bt_UNtk-t5+bCgOb7-jDRZ8XHXR9aiEVZYfkayA@mail.gmail.com>
- <af9c80bf-12ea-bbad-e4fe-17000157ac40@gmail.com>
- <CAKb7Uvhj4cmW_4V=w1UDJVRem233hTOdPzS6c6LKgGsLzGNzTw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+ rescan
+Date: Fri, 09 Mar 2018 15:39:52 +0000
+Message-ID: <bug-75985-8800-AFqfSrpEba@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0355989692=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvhj4cmW_4V=w1UDJVRem233hTOdPzS6c6LKgGsLzGNzTw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -23,51 +17,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBNYXIgNSwgMjAxOCBhdCA3OjMzIEFNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVt
-Lm1pdC5lZHU+IHdyb3RlOgo+IE9uIE1vbiwgTWFyIDUsIDIwMTggYXQgMToxNyBBTSwgTWFyaW8g
-S2xlaW5lcgo+IDxtYXJpby5rbGVpbmVyLmRlQGdtYWlsLmNvbT4gd3JvdGU6Cj4+IE9uIDAzLzAz
-LzIwMTggMTI6NTkgQU0sIElsaWEgTWlya2luIHdyb3RlOgo+Pj4KPj4+IE9uIEZyaSwgTWFyIDIs
-IDIwMTggYXQgNjo0NiBQTSwgTWFyaW8gS2xlaW5lcgo+Pj4gPG1hcmlvLmtsZWluZXIuZGVAZ21h
-aWwuY29tPiB3cm90ZToKPj4+Pgo+Pj4+IE9uIDAzLzAyLzIwMTggMTE6MjkgUE0sIElsaWEgTWly
-a2luIHdyb3RlOgo+Pj4+Pgo+Pj4+PiBPSywgc28gZXZlbiBpZiB5b3UncmUgcGFzc2luZyAxMDI0
-IHRvIHhmODZIYW5kbGVDb2xvcm1hcHMsIGdhbW1hX3NldAo+Pj4+PiBzdGlsbCBvbmx5IGdldHMg
-Y2FsbGVkIHdpdGggYSAyNTYtZW50cnkgTFVUPyBJZiBzbywgdGhhdCB3b3JrcyBuaWNlbHkKPj4+
-Pj4gaGVyZSwgYnV0IGlzIG5vdCBpbnR1aXRpdmUgOikKPj4+Pgo+Pj4+Cj4+Pj4gWWVzLiBMb3Rz
-IG9mIHJlbWFwcGluZyBpbiB0aGUgc2VydmVyLCBpIGdldCBkaXp6eSBldmVyeXRpbWUgaSBsb29r
-IGF0IGl0LAo+Pj4+IGFuZCBmb3JnZXQgYWxtb3N0IGltbWVkaWF0ZWx5IGhvdyBzdHVmZiBmaXRz
-IHRvZ2V0aGVyIHdoZW4gaSBkb24ndCBsb29rCj4+Pj4gYXQKPj4+PiBpdC4gQW55d2F5LCB0aGUg
-ZmluYWwgZG93bnNhbXBsaW5nIGZyb20gMTAyNCAtPiAyNTYgaHcgbHV0IGhhcHBlbnMgaW4KPj4+
-PiB4Zjg2UmFuZFIxMkNydGNDb21wdXRlR2FtbWEoKSwgc2VlCj4+Pj4KPj4+Pgo+Pj4+IGh0dHBz
-Oi8vY2dpdC5mcmVlZGVza3RvcC5vcmcveG9yZy94c2VydmVyL2NvbW1pdC8/aWQ9YjVmOWZjZDUw
-YTk5OWEwMDEyOGMwY2MzZjZlN2QxZjY2MTgyYzlkNQo+Pj4+Cj4+Pj4gZm9yIHRoZSBsYXRlc3Qu
-IEknbGwgcHJvcG9zZSB0aGF0IG9uZSB0byBnZXQgY2hlcnJ5LXBpY2tlZCBpbnRvIHRoZQo+Pj4+
-IHNlcnZlci0xLjE5IGJyYW5jaCBhcyB3ZWxsLgo+Pj4KPj4+Cj4+PiBIcm1waC4gVGhhdCBtZWFu
-cyB3ZSBzaG91bGQgdHJ5IHRvIGFkanVzdCB0aGUgZ2FtbWFfc2V0IGhlbHBlciB0byBkbwo+Pj4g
-dGhlIHNhbXBsaW5nIHdoZW4gcmVjZWl2aW5nIGEgMTAyNC1zaXplZCBMVVQsIGlmIHBlb3BsZSB3
-aWxsIHVzZSBvbGRlcgo+Pj4gWCBzZXJ2ZXJzIChzZWVtcyBsaWtlbHkpLiBTaG91bGQgaG9wZWZ1
-bGx5IGJlIHN0cmFpZ2h0Zm9yd2FyZCwgdG8KPj4+IGhhbmRsZSBqdXN0IHRoYXQgb25lIGNhc2Uu
-Cj4+Cj4+Cj4+IEkgdGhpbmsgd2UgbmV2ZXIgcmVjZWl2ZSBhbnl0aGluZyBidXQgYSAyNTYgc2xv
-dCBMVVQgdmlhIGdhbW1hX3NldCBhZmFpY3M/Cj4+IFRoZSBzZXJ2ZXIgaW5pdGlhbGl6ZXMgeGY4
-NkNydGMncyBnYW1tYV9zaXplIHRvIDI1NiBhdCBzdGFydHVwLCBhbmQgbm9uZSBvZgo+PiB0aGUg
-ZGR4J2VzIGV2ZXIgb3ZlcnJpZGVzIHRoYXQgd2l0aCBhY3R1YWwgaW5mbyBmcm9tIHRoZSBrZXJu
-ZWwuCj4+Cj4+IFdoYXQgaGFwcGVucyBvbiBvbGRlciBzZXJ2ZXJzIHdpdGhvdXQgdGhhdCBwYXRj
-aCBpZmYgY29sb3IgZGVwdGggMzAgaXMKPj4gc2VsZWN0ZWQgaXMgc2ltcGx5IHRoYXQgdGhlIGdh
-bW1hIHRhYmxlIHVwZGF0ZXMgbm8tb3AsIHNvIHRoZSBzZXJ2ZXIgcnVucwo+PiB3aXRoIGFuIGlk
-ZW50aXR5IGdhbW1hIHRhYmxlIHNldHVwIGF0IHN0YXJ0dXAuIE5vdCBwZXJmZWN0LCBidXQgYWxz
-byBub3QKPj4gdGhhdCBiYWQsIGdpdmVuIHRoYXQgcHJvYmFibHkgbW9zdCBwZW9wbGUgcnVuIHRo
-ZWlyIHNldHVwcyB3aXRoIGEgZ2FtbWEgb2YKPj4gMS4wIGFueXdheS4gQXQgZGVmYXVsdCBkZXB0
-aCAyNCBzdHVmZiB3b3JrcyBhcyB1c3VhbC4KPgo+IEFoIE9LLiBUaGF0J3Mgbm90IHNvIGJhZC4g
-SSdsbCB0cnkgdG8gcGxheSBhcm91bmQgd2l0aCBpdCB0aGlzIHdlZWsuCj4gVGhhbmtzIGZvciB0
-aGUgZXhwbGFuYXRpb24hCgpJIGp1c3QgdGVzdGVkIHRoaXMgb3V0IGFnYWluc3QgeG9yZyAxLjE5
-LjUuIFdpdGggeW91ciBwYXRjaCwgSSBnZXQgYW4KZXh0cmVtZWx5IGRhcmsgc2NyZWVuLiBJIHRo
-aW5rIGl0J3MganVzdCBnZXR0aW5nIHRoZSBmaXJzdCAyNTYgb2YgdGhlCjEwMjQgdmFsdWVzIChJ
-IGNoZWNrZWQgLS0gZ2FtbWFfc2V0IGlzIHN0aWxsIG9ubHkgZ2V0dGluZyAyNTYgdmFsdWVzKS4K
-U28gd2UgaGF2ZSB0byBkbyBzb21ldGhpbmcgYSBiaXQgY2xldmVyZXIgdG8gZml4IHRoaXMgc2Nl
-bmFyaW8uLi4KaWRlYXM/CgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQo=
+
+--===============0355989692==
+Content-Type: multipart/alternative; boundary="15206099931.f0e965471.26259"
+Content-Transfer-Encoding: 7bit
+
+
+--15206099931.f0e965471.26259
+Date: Fri, 9 Mar 2018 15:39:53 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+
+Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #137764|0                           |1
+        is obsolete|                            |
+
+--- Comment #60 from Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> ---
+Created attachment 137939
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D137939&action=3Dedit
+[PATCH 1/3] PCI: Expose Nvidia HDA controllers
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15206099931.f0e965471.26259
+Date: Fri, 9 Mar 2018 15:39:53 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:lukas&#64=
+;wunner.de" title=3D"Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <span class=
+=3D"fn">Lukas Wunner</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #137764 is obsolete</=
+td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c60">Commen=
+t # 60</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+lukas&#64;wunner.de" title=3D"Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <s=
+pan class=3D"fn">Lukas Wunner</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D137939=
+" name=3D"attach_137939" title=3D"[PATCH 1/3] PCI: Expose Nvidia HDA contro=
+llers">attachment 137939</a> <a href=3D"attachment.cgi?id=3D137939&amp;acti=
+on=3Dedit" title=3D"[PATCH 1/3] PCI: Expose Nvidia HDA controllers">[detail=
+s]</a></span> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D75985&amp;at=
+tachment=3D137939'>[review]</a>
+[PATCH 1/3] PCI: Expose Nvidia HDA controllers</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15206099931.f0e965471.26259--
+
+--===============0355989692==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0355989692==--
