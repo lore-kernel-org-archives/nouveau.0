@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98386] [NVE7] bus: MMIO write of FAULT at [ IBUS ],
- Pointer to {TDMS, flat panel} table invalid
-Date: Fri, 09 Mar 2018 18:51:31 +0000
-Message-ID: <bug-98386-8800-jIK90tXOYw@http.bugs.freedesktop.org/>
-References: <bug-98386-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105174] [GF108][Regression] Unable to handle NULL
+ pointer dereference in nouveau_mem_host since kernel 4.15.3
+Date: Fri, 09 Mar 2018 19:51:01 +0000
+Message-ID: <bug-105174-8800-R9Qvms2Nsj@http.bugs.freedesktop.org/>
+References: <bug-105174-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1050687761=="
+Content-Type: multipart/mixed; boundary="===============1878959681=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-105174-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,54 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1050687761==
-Content-Type: multipart/alternative; boundary="15206214912.abd56f26.353"
+--===============1878959681==
+Content-Type: multipart/alternative; boundary="15206250602.2AdDF0ca.13371"
 Content-Transfer-Encoding: 7bit
 
 
---15206214912.abd56f26.353
-Date: Fri, 9 Mar 2018 18:51:31 +0000
+--15206250602.2AdDF0ca.13371
+Date: Fri, 9 Mar 2018 19:51:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98386
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105174
 
---- Comment #19 from baybay <lujofu-tJ6BQdzZN76ZuzBka8ofvg@public.gmane.org> ---
-I own an HP Envy 17 with a Geforce 750M and i'm still getting this bug as of
-latest stable version.
+--- Comment #11 from Dominik 'Rathann' Mierzejewski <dominik-IZ6Av6enwRKJQ7yn63+t2w@public.gmane.org=
+> ---
+(In reply to Pierre Moreau from comment #9)
+> Created attachment 137731 [details] [review]
+> Proposed patch
+>=20
+> Could anyone please try the attached patch (from
+> https://github.com/skeggsb/nouveau/pull/1)?
 
-[    8.645369] nouveau: detected PR support, will not use DSM
-[    8.645393] nouveau 0000:01:00.0: enabling device (0006 -> 0007)
-[    8.645549] nouveau 0000:01:00.0: NVIDIA GK107 (0e7240a2)
-[    8.692092] nouveau 0000:01:00.0: bios: version 80.07.b6.00.0e
-[    8.779211] nouveau 0000:01:00.0: fb: 2048 MiB DDR3
-[    8.779496] nouveau 0000:01:00.0: bus: MMIO write of 00000002 FAULT at
-4188ac [ IBUS ]
-[    8.866980] nouveau 0000:01:00.0: DRM: VRAM: 2048 MiB
-[    8.866981] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
-[    8.866985] nouveau 0000:01:00.0: DRM: Pointer to TMDS table invalid
-[    8.866986] nouveau 0000:01:00.0: DRM: DCB version 4.0
-[    8.869447] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
-[    8.869457] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on
-minor 1
-
-I can use nouveau fine with DRI_PRIME=3D1 (it's very slow however). However=
-, any
-attempt at reclocking the card, even at the lowest speed possible (07), res=
-ults
-in a freeze.
-However, i am unsure if this is caused by this bug or another one.
-The proprietary driver works fine with this card.
+I can confirm that the patch fixes the bug for me when applied to Fedora ke=
+rnel
+(4.15.7-300.fc27 tested this time). Thanks!
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15206214912.abd56f26.353
-Date: Fri, 9 Mar 2018 18:51:31 +0000
+--15206250602.2AdDF0ca.13371
+Date: Fri, 9 Mar 2018 19:51:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -84,46 +70,37 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
-TDMS,flat panel} table invalid"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c19">Commen=
-t # 19</a>
+   title=3D"NEW - [GF108][Regression] Unable to handle NULL pointer derefer=
+ence in nouveau_mem_host since kernel 4.15.3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174#c11">Comme=
+nt # 11</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer to {=
-TDMS,flat panel} table invalid"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">bug 98386<=
-/a>
+   title=3D"NEW - [GF108][Regression] Unable to handle NULL pointer derefer=
+ence in nouveau_mem_host since kernel 4.15.3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174">bug 10517=
+4</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lujofu&#64;eth2btc.info" title=3D"baybay &lt;lujofu&#64;eth2btc.info&gt;"> =
-<span class=3D"fn">baybay</span></a>
+dominik&#64;greysector.net" title=3D"Dominik 'Rathann' Mierzejewski &lt;dom=
+inik&#64;greysector.net&gt;"> <span class=3D"fn">Dominik 'Rathann' Mierzeje=
+wski</span></a>
 </span></b>
-        <pre>I own an HP Envy 17 with a Geforce 750M and i'm still getting =
-this bug as of
-latest stable version.
+        <pre>(In reply to Pierre Moreau from <a href=3D"show_bug.cgi?id=3D1=
+05174#c9">comment #9</a>)
+<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
+gi?id=3D137731" name=3D"attach_137731" title=3D"Proposed patch">attachment =
+137731</a> <a href=3D"attachment.cgi?id=3D137731&amp;action=3Dedit" title=
+=3D"Proposed patch">[details]</a></span> <a href=3D'page.cgi?id=3Dsplinter.=
+html&amp;bug=3D105174&amp;attachment=3D137731'>[review]</a> [review]
+&gt; Proposed patch
+&gt;=20
+&gt; Could anyone please try the attached patch (from
+&gt; <a href=3D"https://github.com/skeggsb/nouveau/pull/1">https://github.c=
+om/skeggsb/nouveau/pull/1</a>)?</span >
 
-[    8.645369] nouveau: detected PR support, will not use DSM
-[    8.645393] nouveau 0000:01:00.0: enabling device (0006 -&gt; 0007)
-[    8.645549] nouveau 0000:01:00.0: NVIDIA GK107 (0e7240a2)
-[    8.692092] nouveau 0000:01:00.0: bios: version 80.07.b6.00.0e
-[    8.779211] nouveau 0000:01:00.0: fb: 2048 MiB DDR3
-[    8.779496] nouveau 0000:01:00.0: bus: MMIO write of 00000002 FAULT at
-4188ac [ IBUS ]
-[    8.866980] nouveau 0000:01:00.0: DRM: VRAM: 2048 MiB
-[    8.866981] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
-[    8.866985] nouveau 0000:01:00.0: DRM: Pointer to TMDS table invalid
-[    8.866986] nouveau 0000:01:00.0: DRM: DCB version 4.0
-[    8.869447] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
-[    8.869457] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on
-minor 1
-
-I can use nouveau fine with DRI_PRIME=3D1 (it's very slow however). However=
-, any
-attempt at reclocking the card, even at the lowest speed possible (07), res=
-ults
-in a freeze.
-However, i am unsure if this is caused by this bug or another one.
-The proprietary driver works fine with this card.</pre>
+I can confirm that the patch fixes the bug for me when applied to Fedora ke=
+rnel
+(4.15.7-300.fc27 tested this time). Thanks!</pre>
         </div>
       </p>
 
@@ -137,9 +114,9 @@ The proprietary driver works fine with this card.</pre>
     </body>
 </html>=
 
---15206214912.abd56f26.353--
+--15206250602.2AdDF0ca.13371--
 
---===============1050687761==
+--===============1878959681==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -149,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1050687761==--
+--===============1878959681==--
