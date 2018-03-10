@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
  rescan
-Date: Sat, 10 Mar 2018 19:42:15 +0000
-Message-ID: <bug-75985-8800-pBrcwXNb4z@http.bugs.freedesktop.org/>
+Date: Sat, 10 Mar 2018 20:55:59 +0000
+Message-ID: <bug-75985-8800-J9ukmqZXDf@http.bugs.freedesktop.org/>
 References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0921728768=="
+Content-Type: multipart/mixed; boundary="===============1205669678=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0921728768==
-Content-Type: multipart/alternative; boundary="15207109352.5aa12e2E.5490"
+--===============1205669678==
+Content-Type: multipart/alternative; boundary="15207153593.c7adaf53.23233"
 Content-Transfer-Encoding: 7bit
 
 
---15207109352.5aa12e2E.5490
-Date: Sat, 10 Mar 2018 19:42:15 +0000
+--15207153593.c7adaf53.23233
+Date: Sat, 10 Mar 2018 20:55:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,35 +36,29 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #66 from Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> ---
-(In reply to Maik Freudenberg from comment #65)
-> Now with the acpi bug fixed, I applied both of your v2 patchsets with some
-> nip/tuck to a 4.16rc4+ kernel and ran into the next oddity: while the pci
-> quirk in general works, re-reading the header type will always return 0x00
-> so the hda device is not added.
-> lspci confirms that the quirk is otherwise working:
-> 00: de 10 92 12 07 00 10 00 a1 00 02 03 00 00 80 00
-> 480: 00 00 00 00 17 00 00 00 00 00 00 02 00 00 00 00
-
-Hm, the multifunction bit is set. Try adding an msleep(100) after setting t=
-he
-bit at offset 0x488 and before re-reading the header type register. 100 ms =
-is
-likely way too much, this is just to ensure it's not too short.
-
-Also, try changing DECLARE_PCI_FIXUP_CLASS_HEADER to
-DECLARE_PCI_FIXUP_CLASS_EARLY. Shouldn't make a difference but maybe I miss=
-ed
-something.
-
-Does it work if you just set gpu->multifunction =3D 1?
+--- Comment #67 from Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org> ---
+(In reply to Lukas Wunner from comment #66)
+> Hm, the multifunction bit is set. Try adding an msleep(100) after setting
+> the bit at offset 0x488 and before re-reading the header type register. 1=
+00
+> ms is likely way too much, this is just to ensure it's not too short.
+No success.=20
+> Also, try changing DECLARE_PCI_FIXUP_CLASS_HEADER to
+> DECLARE_PCI_FIXUP_CLASS_EARLY. Shouldn't make a difference but maybe I
+> missed something.
+No success.
+> Does it work if you just set gpu->multifunction =3D 1?
+Nope.
+Completely absurd. Looks a bit like the mentioned bug in 4.9 though it vani=
+shes
+after pci init.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15207109352.5aa12e2E.5490
-Date: Sat, 10 Mar 2018 19:42:15 +0000
+--15207153593.c7adaf53.23233
+Date: Sat, 10 Mar 2018 20:55:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -81,42 +75,37 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c66">Commen=
-t # 66</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c67">Commen=
+t # 67</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lukas&#64;wunner.de" title=3D"Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <s=
-pan class=3D"fn">Lukas Wunner</span></a>
+hhfeuer&#64;gmx.de" title=3D"Maik Freudenberg &lt;hhfeuer&#64;gmx.de&gt;"> =
+<span class=3D"fn">Maik Freudenberg</span></a>
 </span></b>
-        <pre>(In reply to Maik Freudenberg from <a href=3D"show_bug.cgi?id=
-=3D75985#c65">comment #65</a>)
-<span class=3D"quote">&gt; Now with the acpi bug fixed, I applied both of y=
-our v2 patchsets with some
-&gt; nip/tuck to a 4.16rc4+ kernel and ran into the next oddity: while the =
-pci
-&gt; quirk in general works, re-reading the header type will always return =
-0x00
-&gt; so the hda device is not added.
-&gt; lspci confirms that the quirk is otherwise working:
-&gt; 00: de 10 92 12 07 00 10 00 a1 00 02 03 00 00 80 00
-&gt; 480: 00 00 00 00 17 00 00 00 00 00 00 02 00 00 00 00</span >
-
-Hm, the multifunction bit is set. Try adding an msleep(100) after setting t=
-he
-bit at offset 0x488 and before re-reading the header type register. 100 ms =
-is
-likely way too much, this is just to ensure it's not too short.
-
-Also, try changing DECLARE_PCI_FIXUP_CLASS_HEADER to
-DECLARE_PCI_FIXUP_CLASS_EARLY. Shouldn't make a difference but maybe I miss=
-ed
-something.
-
-Does it work if you just set gpu-&gt;multifunction =3D 1?</pre>
+        <pre>(In reply to Lukas Wunner from <a href=3D"show_bug.cgi?id=3D75=
+985#c66">comment #66</a>)
+<span class=3D"quote">&gt; Hm, the multifunction bit is set. Try adding an =
+msleep(100) after setting
+&gt; the bit at offset 0x488 and before re-reading the header type register=
+. 100
+&gt; ms is likely way too much, this is just to ensure it's not too short.<=
+/span >
+No success.=20
+<span class=3D"quote">&gt; Also, try changing DECLARE_PCI_FIXUP_CLASS_HEADE=
+R to
+&gt; DECLARE_PCI_FIXUP_CLASS_EARLY. Shouldn't make a difference but maybe I
+&gt; missed something.</span >
+No success.
+<span class=3D"quote">&gt; Does it work if you just set gpu-&gt;multifuncti=
+on =3D 1?</span >
+Nope.
+Completely absurd. Looks a bit like the mentioned bug in 4.9 though it vani=
+shes
+after pci init.</pre>
         </div>
       </p>
 
@@ -130,9 +119,9 @@ Does it work if you just set gpu-&gt;multifunction =3D 1?</pre>
     </body>
 </html>=
 
---15207109352.5aa12e2E.5490--
+--15207153593.c7adaf53.23233--
 
---===============0921728768==
+--===============1205669678==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -142,4 +131,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0921728768==--
+--===============1205669678==--
