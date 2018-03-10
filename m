@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
- rescan
-Date: Sat, 10 Mar 2018 20:55:59 +0000
-Message-ID: <bug-75985-8800-J9ukmqZXDf@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105432] New: [NVE0] Display Freezes but SSH Works
+ When Using OpenGL Applications
+Date: Sat, 10 Mar 2018 22:03:43 +0000
+Message-ID: <bug-105432-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1205669678=="
+Content-Type: multipart/mixed; boundary="===============1384151245=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,44 +19,68 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1205669678==
-Content-Type: multipart/alternative; boundary="15207153593.c7adaf53.23233"
+--===============1384151245==
+Content-Type: multipart/alternative; boundary="15207194230.aD4B86b99.4923"
 Content-Transfer-Encoding: 7bit
 
 
---15207153593.c7adaf53.23233
-Date: Sat, 10 Mar 2018 20:55:59 +0000
+--15207194230.aD4B86b99.4923
+Date: Sat, 10 Mar 2018 22:03:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105432
 
---- Comment #67 from Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org> ---
-(In reply to Lukas Wunner from comment #66)
-> Hm, the multifunction bit is set. Try adding an msleep(100) after setting
-> the bit at offset 0x488 and before re-reading the header type register. 1=
-00
-> ms is likely way too much, this is just to ensure it's not too short.
-No success.=20
-> Also, try changing DECLARE_PCI_FIXUP_CLASS_HEADER to
-> DECLARE_PCI_FIXUP_CLASS_EARLY. Shouldn't make a difference but maybe I
-> missed something.
-No success.
-> Does it work if you just set gpu->multifunction =3D 1?
-Nope.
-Completely absurd. Looks a bit like the mentioned bug in 4.9 though it vani=
-shes
-after pci init.
+            Bug ID: 105432
+           Summary: [NVE0] Display Freezes but SSH Works When Using OpenGL
+                    Applications
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: gyroninja-C5B2xTl6qTs@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+System:
+Gentoo - Last Updated 2018-03-09
+libdrm: 2.4.91
+mesa: 18.0.0
+xf86-video-nouveau-1.0.15
+Graphics Card: NVIDIA GeForce GTX 650 Ti Boost
+
+Description:
+When I am using opengl application, after a random amount of time of contin=
+uous
+use my system will freeze. On the Diagnosing a Hang wiki page my machine
+reaches level 3 where my display is frozen, but my mouse doesn't move nor d=
+oes
+my num lock key turn on my num lock light on my keyboard. My ssh connection
+still works though. Attached is a log of me loading quake3-cpma (a mod to
+ioquake3) and it immediately freezing on the main menu. Often times I can p=
+lay
+several matches before it freezes. I have also experienced this hang when u=
+sing
+mpv (a movie player).
+
+Work Around:
+Using the kernel parameter nouveau.noaccel=3D1 prevents lockups, but switch=
+es you
+into using software rendering for opengl.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15207153593.c7adaf53.23233
-Date: Sat, 10 Mar 2018 20:55:59 +0000
+--15207194230.aD4B86b99.4923
+Date: Sat, 10 Mar 2018 22:03:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,43 +91,116 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE0] Display Freezes but SSH Works When Using OpenGL Ap=
+plications"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105432">105432</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NVE0] Display Freezes but SSH Works When Using OpenGL Applic=
+ations
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>gyroninja&#64;tfwno.gf
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c67">Commen=
-t # 67</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-hhfeuer&#64;gmx.de" title=3D"Maik Freudenberg &lt;hhfeuer&#64;gmx.de&gt;"> =
-<span class=3D"fn">Maik Freudenberg</span></a>
-</span></b>
-        <pre>(In reply to Lukas Wunner from <a href=3D"show_bug.cgi?id=3D75=
-985#c66">comment #66</a>)
-<span class=3D"quote">&gt; Hm, the multifunction bit is set. Try adding an =
-msleep(100) after setting
-&gt; the bit at offset 0x488 and before re-reading the header type register=
-. 100
-&gt; ms is likely way too much, this is just to ensure it's not too short.<=
-/span >
-No success.=20
-<span class=3D"quote">&gt; Also, try changing DECLARE_PCI_FIXUP_CLASS_HEADE=
-R to
-&gt; DECLARE_PCI_FIXUP_CLASS_EARLY. Shouldn't make a difference but maybe I
-&gt; missed something.</span >
-No success.
-<span class=3D"quote">&gt; Does it work if you just set gpu-&gt;multifuncti=
-on =3D 1?</span >
-Nope.
-Completely absurd. Looks a bit like the mentioned bug in 4.9 though it vani=
-shes
-after pci init.</pre>
+        <pre>System:
+Gentoo - Last Updated 2018-03-09
+libdrm: 2.4.91
+mesa: 18.0.0
+xf86-video-nouveau-1.0.15
+Graphics Card: NVIDIA GeForce GTX 650 Ti Boost
+
+Description:
+When I am using opengl application, after a random amount of time of contin=
+uous
+use my system will freeze. On the Diagnosing a Hang wiki page my machine
+reaches level 3 where my display is frozen, but my mouse doesn't move nor d=
+oes
+my num lock key turn on my num lock light on my keyboard. My ssh connection
+still works though. Attached is a log of me loading quake3-cpma (a mod to
+ioquake3) and it immediately freezing on the main menu. Often times I can p=
+lay
+several matches before it freezes. I have also experienced this hang when u=
+sing
+mpv (a movie player).
+
+Work Around:
+Using the kernel parameter nouveau.noaccel=3D1 prevents lockups, but switch=
+es you
+into using software rendering for opengl.</pre>
         </div>
       </p>
 
@@ -119,9 +214,9 @@ after pci init.</pre>
     </body>
 </html>=
 
---15207153593.c7adaf53.23233--
+--15207194230.aD4B86b99.4923--
 
---===============1205669678==
+--===============1384151245==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -131,4 +226,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1205669678==--
+--===============1384151245==--
