@@ -1,15 +1,13 @@
-From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Subject: Re: [PATCH v2 0/7] Modernize vga_switcheroo by using
- device link for HDA
-Date: Sat, 10 Mar 2018 07:09:51 +0100
-Message-ID: <20180310060951.GA25550@wunner.de>
-References: <cover.1520068884.git.lukas@wunner.de> <20180305205831.GA1397@al>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+ rescan
+Date: Sat, 10 Mar 2018 06:36:40 +0000
+Message-ID: <bug-75985-8800-2k7eQM0Cme@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1410697481=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20180305205831.GA1397@al>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,115 +17,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Cc: zigarrre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Imre Deak <imre.deak-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, "Rafael J. Wysocki" <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Denis Lisov <dennis.lissov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, Martin Lopatar <lopin-vkOr6uFwhzftwjQa/ONI9g@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org>, Raphael Doursenaud <rdoursenaud-GANU6spQydw@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgUGV0ZXIsCgp0aGFua3MgYSBtaWxsaW9uIGZvciB0aGUgZXh0ZW5zaXZlIHRlc3RpbmcgYW5k
-IHJldmlld2luZy4KCkknbGwgZ28gdGhyb3VnaCB0aGUgaXNzdWVzIHlvdSd2ZSBmb3VuZCBiZWxv
-dywgYnV0IGl0IGFwcGVhcnMgdG8gbWUKdGhhdCB0aGV5J3JlIGFsbCBlaXRoZXIgaW4gdGhlICJ3
-b3JrcyBhcyBpbnRlbmRlZCIgY2F0ZWdvcnkgb3IgYXJlCmNhdXNlZCBieSBzb21ldGhpbmcgdW5y
-ZWxhdGVkIHRvIHRoaXMgc2VyaWVzOgoKCk9uIE1vbiwgTWFyIDA1LCAyMDE4IGF0IDA5OjU4OjMx
-UE0gKzAxMDAsIFBldGVyIFd1IHdyb3RlOgo+IElzc3VlIDEgLSBHUFUgZG9lcyBub3Qgc3VzcGVu
-ZCBvbiB0ZXh0IGNvbnNvbGUuCj4gV2hlbiBwcmVzZW50IGF0IHRoZSB0ZXh0IGNvbnNvbGUgYW5k
-IGFuIGV4dGVybmFsIG1vbml0b3IgaXMgY29ubmVjdGVkCj4gdGhyb3VnaCBIRE1JIG9yIERQLCB0
-aGUgUlBNIGNvdW50ZXIgaXMgMS4gT25seSB3aGVuIHRoZSBjYWJsZSBpcyByZW1vdmVkCj4gKG9y
-IHdoZW4gImVjaG8gb2ZmID4gL3N5cy9jbGFzcy9kcm0vY2FyZDEtSERNSS1BLTEvc3RhdHVzIiks
-IHRoZSBSUE0KPiBjb3VudCBkcm9wcyB0byAwIGFuZCB0aGUgR1BVIGRldmljZSBzdXNwZW5kcy4g
-V2hlbiBYb3JnIGlzIHN0YXJ0ZWQKPiAoc3RhcnR4KSwgdGhlIFJQTSBjb3VudGVyIGFsc28gZHJv
-cHMgdG8gMCB0aG91Z2guCgpZZXMsIHRoYXQgYmVoYXZpb3IgaXMgaW50ZW5kZWQ6ICBUaGUgR1BV
-IGRldmljZSBpcyBrZXB0IHJlc3VtZWQgYXMKbG9uZyBhcyBpdCBoYXMgYW4gYWN0aXZlIGNydGMs
-IGFuZCBpdCBoYXMgYW4gYWN0aXZlIGNydGMgaWYgaXQncwp1c2VkIGFzIHRleHQgY29uc29sZS4K
-Cgo+IElzc3VlIDIgLSBSUE0gY291bnRlciBmb3IgYXVkaW8gZnVuY3Rpb24gZHJvcHMgYmVsb3cg
-MCBvbiBzeXN0ZW0gc2xlZXAuCj4gV2hlbiBib3RoIG5vdXZlYXUgYW5kIHNuZC1oZGEtaW50ZWwg
-YXJlIGxvYWRlZCBhbmQgYSBIRE1JIChvciBEUD8pIGNhYmxlCj4gaXMgY29ubmVjdGVkLCB0aGUg
-UlBNIGNvdW50ZXIgYmVjb21lcyBvbmUgYWZ0ZXIgc3VzcGVuZC9yZXN1bWUuIFRoaXMKPiBoYXBw
-ZW5zIGJvdGggd2l0aCB0ZXh0IGNvbnNvbGUgYW5kIFhvcmcuCgpXaGljaCBSUE0gY291bnRlciBi
-ZWNvbWVzIG9uZT8gIFRoYXQgb2YgdGhlIEdQVT8gIElmIHNvLCBpdCB3b3VsZCBiZQpjYXVzZWQg
-YnkgdGhlIEdQVSBhY3RpdmF0aW5nIGEgY3J0YyBvbiBob3RwbHVnIHRvIGxpZ2h0IHVwIHRoZSBk
-aXNwbGF5LApoZW5jZSBzdGF5aW5nIHJlc3VtZWQuCgpJIGRvbid0IHF1aXRlIHVuZGVyc3RhbmQg
-d2hhdCB5b3UgbWVhbiBieSAiUlBNIGNvdW50ZXIgZm9yIGF1ZGlvCmZ1bmN0aW9uIGRyb3BzIGJl
-bG93IDAgb24gc3lzdGVtIHNsZWVwIi4gIEkndmUgZ29uZSB0aHJvdWdoIHRoZSBIREEKY29kZSBh
-bmQgZG9uJ3Qgc2VlIGFuIHVuYmFsYW5jZWQgcG1fcnVudGltZV9nZXQgLyBfcHV0LiAgSG93ZXZl
-ciB0aGUKUE0gY29yZSBjaGFuZ2VzIHRoZSB1c2FnZSBjb3VudCBhIGNvdXBsZSBvZiB0aW1lcyBv
-dmVyIGEgc3lzdGVtIHNsZWVwCmN5Y2xlIGJ5IGFjcXVpcmluZy9yZWxlYXNpbmcgYSBydW50aW1l
-IFBNIHJlZiBvciBlbmFibGluZy9kaXNhYmxpbmcKcnVudGltZSBQTSAoc2VlIGRyaXZlcnMvYmFz
-ZS9wb3dlci9tYWluLmMpLCBtYXliZSB0aGF0J3Mgd2hhdCB5b3UKb2JzZXJ2ZWQuCgoKPiBJc3N1
-ZSAzIC0gaW52YWxpZCBQQ0kgY29uZmlnIHJlYWRzIHRvIGF1ZGlvIGRldmljZSBpZiBkaXNjb25u
-ZWN0ZWQuCj4gV2hlbiBubyBIRE1JL0RQIGNhYmxlIGlzIGNvbm5lY3RlZCwgdGhlIEhETUkgYXVk
-aW8gZnVuY3Rpb24gd2lsbCBiZQo+IGluYWNjZXNzaWJsZSBhZnRlciBydW50aW1lL3N5c3RlbSBy
-ZXN1bWUuIEFzc3VtZSBub3V2ZWF1IGxvYWRlZCBiZWZvcmUKPiBzL3IsIHRoZW4gbG9hZGluZyBz
-bmQtaGRhLWludGVsIHdpbGwgZmFpbCB3aXRoOgo+IAo+ICAgICBoZGF1ZGlvIGhkYXVkaW9DMUQw
-OiBubyBBRkcgb3IgTUZHIG5vZGUgZm91bmQKPiAgICAgaGRhdWRpbyBoZGF1ZGlvQzFEMTogbm8g
-QUZHIG9yIE1GRyBub2RlIGZvdW5kCj4gICAgIGhkYXVkaW8gaGRhdWRpb0MxRDI6IG5vIEFGRyBv
-ciBNRkcgbm9kZSBmb3VuZAo+ICAgICBoZGF1ZGlvIGhkYXVkaW9DMUQzOiBubyBBRkcgb3IgTUZH
-IG5vZGUgZm91bmQKPiAgICAgaGRhdWRpbyBoZGF1ZGlvQzFENDogbm8gQUZHIG9yIE1GRyBub2Rl
-IGZvdW5kCj4gICAgIGhkYXVkaW8gaGRhdWRpb0MxRDU6IG5vIEFGRyBvciBNRkcgbm9kZSBmb3Vu
-ZAo+ICAgICBoZGF1ZGlvIGhkYXVkaW9DMUQ2OiBubyBBRkcgb3IgTUZHIG5vZGUgZm91bmQKPiAg
-ICAgaGRhdWRpbyBoZGF1ZGlvQzFENzogbm8gQUZHIG9yIE1GRyBub2RlIGZvdW5kCj4gICAgIHNu
-ZF9oZGFfaW50ZWwgMDAwMDowMTowMC4xOiBubyBjb2RlY3MgaW5pdGlhbGl6ZWQKCk9rYXksIHRo
-YXQncyByZWFsbHkgYmFkLCBidXQgaXQgYXBwZWFycyB0byBiZSBjYXVzZWQgYnkgdGhlIEJJT1MK
-aGlkaW5nIHRoZSBhdWRpbyBmdW5jdGlvbiBvbiByZXN1bWUgaWYgbm8gY2FibGUgaXMgY29ubmVj
-dGVkLgpJJ3ZlIGF0dGFjaGVkIDMgcGF0Y2hlcyB0byB0aGlzIGJ1Z3ppbGxhIHRvIGZpeCB0aGlz
-IGlzc3VlOgpodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD03NTk4
-NQoKSSd2ZSBleHRlbnNpdmVseSB0ZXN0ZWQgc3lzdGVtIHNsZWVwIGluIGNvbmp1bmN0aW9uIHdp
-dGggdGhlCnN3aXRjaGVyb29fZGV2bGluayBwYXRjaGVzIGFuZCB0aGUgYWJvdmUgbmV2ZXIgb2Nj
-dXJyZWQgb24gbXkKbWFjaGluZSBiZWNhdXNlIHRoZSBhdWRpbyBmdW5jdGlvbiBpcyBuZXZlciBo
-aWRkZW4uCgpJIGRvbid0IGNvbnNpZGVyIHRoaXMgaXNzdWUgYSBibG9ja2VyIGZvciB0aGUgc3dp
-dGNoZXJvb19kZXZsaW5rCnBhdGNoZXMgYmVjYXVzZSBJIHdvdWxkIGV4cGVjdCBpdCB0byBvY2N1
-ciByZWdhcmRsZXNzLiAgUXVpdGUgdG8KdGhlIGNvbnRyYXJ5LCB0aGUgc3dpdGNoZXJvb19kZXZs
-aW5rIHBhdGNoZXMgYXJlIGEgcmVxdWlyZW1lbnQgdG8KZml4IHRoZSBpc3N1ZSBiZWNhdXNlIHRo
-ZSBhdWRpbyBmdW5jdGlvbiBuZWVkcyB0byBiZSBleHBvc2VkCmVpdGhlciBmcm9tIHRoZSBHUFUg
-ZHJpdmVyIG9yIGEgUENJIHF1aXJrIGFwcGxpZWQgdG8gdGhlIEdQVSwKYW5kIHRoZSBhdWRpbyBm
-dW5jdGlvbiBuZWVkcyB0byBkZWxheSByZXN1bWUgdW50aWwgdGhhdCBoYXMKaGFwcGVuZWQsIHdo
-aWNoIGlzIGFjaGlldmVkIGJ5IHRoZSBkZXZpY2UgbGluay4KCgo+IElzc3VlIDQgLSBydW50aW1l
-X2FjdGl2ZV9raWRzIGxlYWsgd2l0aCBhdWRpbyBmdW5jdGlvbi4KPiBBZnRlciB0aGUgYWJvdmUg
-aXNzdWUsIHRoZSBhdWRpbyBkZXZpY2UgbmV2ZXIgZW50ZXJlZCB0aGUgc3VzcGVuZGVkCj4gc3Rh
-dGUgZXZlbiB0aG91Z2ggdGhlIHJ1bnRpbWVfdXNhZ2UgY291bnRlciByZWFjaGVkIDAuIEl0IHR1
-cm5lZCBvdXQKPiB0aGF0IHJ1bnRpbWVfYWN0aXZlX2tpZHMgd2FzIDQuIEV2ZXJ5IHRpbWUgc25k
-LWhkYS1pbnRlbCBpcyBsb2FkZWQgKGFuZAo+IGZhaWxzIHRvIGluaXRpYWxpemUgZHVlIHRvIHRo
-ZSBhYm92ZSBpc3N1ZSksIHRoaXMgY291bnRlciBpcyBpbmNyZWFzZWQuCgpZZXMsIHRoZSBjb2Rl
-YyBkZXZpY2VzIGFyZSBjcmVhdGVkIGFzIGNoaWxkcmVuIG9mIHRoZSBIREEgZGV2aWNlCmFuZCBr
-ZWVwIGl0IGF3YWtlIGJlY2F1c2UgaW5pdGlhbGl6YXRpb24gZmFpbGVkLiAgVGhpcyB3b24ndCBv
-Y2N1cgpvbmNlIGlzc3VlIDMgaXMgZml4ZWQuCgoKPiBJc3N1ZSA1IC0gYXVkaW8gYnJlYWtzIGFm
-dGVyIHN5c3RlbSBzbGVlcCBvciBzdG9wcGluZyBYb3JnLgo+IFdoZW4gWG9yZyBpcyBzdG9wcGVk
-IG9yIHRoZSBzeXN0ZW0gc2xlZXAvcmVzdW1lcyB3aGlsZSBzcGVha2VyLXRlc3QgaXMKPiBhY3Rp
-dmUgKGUuZy4gaW4gR05VIHNjcmVlbiksIGF1ZGlvIHN0b3BzIHBsYXlpbmcgYW5kIHNwZWFrZXIt
-dGVzdCBleGl0cy4KClRoYXQgaXMgb2RkLCBJIGRvbid0IGhhdmUgYW4gZXhwbGFuYXRpb24gZm9y
-IHRoaXMgYnV0IHN1c3BlY3QgYSBidWcKaW4gdGhlIHNvdW5kIGNvZGUuCgoKPiBJc3N1ZSA2IC0g
-d3JvbmcgcGluIHN0YXR1cyByZXBvcnRlZCAvIG5vIGF1ZGlvCj4gKFBvc3NpYmx5ICJ3b3JraW5n
-IGFzIGV4cGVjdGVkIiBzaW5jZSBhdWRpbyBpcyB0aWVkIHRvIEdQVSBmdW5jdGlvbi4pCj4gU2Nl
-bmFyaW86IEhETUkgY2FibGUgaXMgY29ubmVjdGVkIGJ1dCBHUFUgaXMgdW51c2VkCj4gKCJlY2hv
-IG9mZiA+IC9zeXMvY2xhc3MvZHJtL2NhcmQxLUhETUktMS0xL3N0YXR1cyIgZnJvbSBjb25zb2xl
-IG9yCj4gd2l0aCAieHJhbmRyIC0tb3V0cHV0IEhETUktQS0xIC0tb2ZmIikuIGhkYWphY2tzZW5z
-ZXRlc3QgcmVwb3J0cyBubwo+IEhETUkgcGluIHByZXNlbmNlIGV2ZW4gaWYgY29ubmVjdGVkLCBk
-bWVzZyByZXBvcnRzOgo+IAo+ICAgICBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEREMgcmVz
-cG9uZGVkLCBidXQgbm8gRURJRCBmb3IgSERNSS1BLTEKCkludGVyZXN0aW5nLCBhbmQgeWVzLCB0
-aGF0IHdvdWxkIHNlZW0gdG8gYmUgd29ya2luZyBhcyBleHBlY3RlZC4KCgo+IElzc3VlIDcgLSBu
-b3V2ZWF1OiB3YXJuaW5nIGFmdGVyIHVubG9hZGluZyBhZnRlciBzdG9wcGluZyBYb3JnCj4gKElz
-c3VlIGluIG5vdXZlYXUsIGxpa2VseSBub3QgcmVsYXRlZCB0byB0aGlzIHBhdGNoIHNldC4pCj4g
-QWZ0ZXIgInhyYW5kciAtLW91dHB1dCBIRE1JLTEtMSAtLW1vZGUgMjU2MHgxNDQwIiBpbiBYb3Jn
-LCBzdG9wcGluZyBYb3JnCj4gKGFuZCBwb3NzaWJseSAiZWNobyBvZmYgPiAvc3lzL2NsYXNzL2Ry
-bS9jYXJkMS1IRE1JLUEtMS9zdGF0dXMiKSwKPiByZW1vdmluZyBub3V2ZWF1IHRyaWdnZXJlZDoK
-PiAKPiAgICAgV0FSTklORzogQ1BVOiA3IFBJRDogNTQ3NSBhdCBkcml2ZXJzL2dwdS9kcm0vZHJt
-X21vZGVfY29uZmlnLmM6NDM5IGRybV9tb2RlX2NvbmZpZ19jbGVhbnVwKzB4MWZhLzB4MjYwCgpP
-a2F5LCB0aGUgZHJpdmVyIHdhcyB1bmxvYWRlZCB3aGlsZSB0aGUgY29ubmVjdG9yIHdhcyBzdGls
-bCBhY3RpdmUuCllvdSBzaG91bGQgYWxzbyBzZWUgYSAiY29ubmVjdG9yIEhETUktMS0xIGxlYWtl
-ZCEiIG1lc3NhZ2UgaW4gZG1lc2cuCkkgdGhvdWdodCBJIGhhZCBmaXhlZCB0aGlzIHR3byB5ZWFy
-cyBhZ28gd2l0aCBjb21taXQgNTIzODcyZjZiMDcyCigiZHJtL25vdXZlYXU6IFR1cm4gb2ZmIENS
-VENzIG9uIGRyaXZlciB1bmxvYWQiKS4gIEVpdGhlciB0aGF0IGNvbW1pdApkaWRuJ3Qgd29yayBh
-cyBpdCBzaG91bGQgb3IgdGhlIGlzc3VlIHJlYXBwZWFyZWQuICA6LSgKClNvIHllcywgaXQncyBh
-IGJ1ZywgYnV0IHVucmVsYXRlZCB0byB0aGUgc3dpdGNoZXJvb19kZXZsaW5rIHBhdGNoZXMuCgoK
-PiBJc3N1ZSA4IC0gYWNwaTogc2xlZXBpbmcgZnVuY3Rpb24gaW4gYXRvbWljIGNvbnRleHQuCj4g
-KElzc3VlIGlzIGxpa2VseSBub3QgcmVsYXRlZCB0byB0aGlzIHBhdGNoIHNldC4pCj4gQXQgc29t
-ZSBwb2ludCBJIGFsc28gZ290IGEgQlVHLCBub3V2ZWF1IHdhcyBhbHJlYWR5IHVubG9hZGVkIGFu
-ZCBJIHJhbjoKPiAiZWNobyAxIHwgdGVlIC9zeXMvYnVzL3BjaS9kZXZpY2VzLzAwMDA6MDE6MDAu
-ezAsMX0vcmVtb3ZlIgo+IAo+ICAgICBCVUc6IHNsZWVwaW5nIGZ1bmN0aW9uIGNhbGxlZCBmcm9t
-IGludmFsaWQgY29udGV4dCBhdCAvaG9tZS9wZXRlci9saW51eC9tbS9zbGFiLmg6NDE5CgpXb3cs
-IHRoYXQgd291bGQgc2VlbSB0byBiZSBhIGJ1ZyBpbiBBQ1BJIGNvZGUsIHNvcnJ5LCBJJ20gY2x1
-ZWxlc3MKYWJvdXQgdGhhdCBvbmUuIDotKQoKT25jZSBhZ2FpbiB0aGFua3MgYW5kIGxldCBtZSBr
-bm93IGlmIHVuaGlkaW5nIHRoZSBhdWRpbyBmdW5jdGlvbgphcyBwZXIgdGhlIHBhdGNoZXMgSSBh
-dHRhY2hlZCB0byB0aGUgYWJvdmUtbGlua2VkIGJ1Z3ppbGxhIGZpeGVzCmlzc3VlIDMuCgpMdWth
-cwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
-IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1410697481==
+Content-Type: multipart/alternative; boundary="15206638064.Cd86dbB5b.10419"
+Content-Transfer-Encoding: 7bit
+
+
+--15206638064.Cd86dbB5b.10419
+Date: Sat, 10 Mar 2018 06:36:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+
+--- Comment #64 from Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> ---
+(In reply to Maik Freudenberg from comment #57)
+> (In reply to Ilia Mirkin from comment #55)
+> > What's the downside for doing this always btw=20
+> By 'this', you mean, always turning it on?
+> This generates the errors from comment #42 since those devices are not
+> configured resource-wise, all zeros.
+
+I would assume the BAR is all zeroes because there was insufficient space to
+accommodate the additional 4K for it. AFAIUI, the kernel assigns only the
+minimal amount of space to the bridge window that is necessary to accomodate
+the devices below. Hence, if a device is added after the fact below the bri=
+dge,
+there may not be sufficient space available for it. I'd expect the situatio=
+n to
+be different if the device is already present on enumeration, as is done by=
+ the
+"header" PCI quirk. Then the bridge window can be sized appropriately. Could
+you verify that on the machine in question?
+
+It occurred to me that we could at least check presence of the Optimus _DSM=
+ in
+the PCI quirk. That would be sufficiently small for a quirk. That way it wo=
+uld
+be constrained to Optimus laptops, but sadly we'd still expose an audio
+function if the GPU has no outputs at all. However I notice that
+drivers/gpu/drm/nouveau/nouveau_acpi.c defines a OPTIMUS_HDA_CODEC_MASK mac=
+ro
+("hda bios codec supported"). Would that be of any use? Or can we query via=
+ the
+_DSM whether the GPU has any outputs?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15206638064.Cd86dbB5b.10419
+Date: Sat, 10 Mar 2018 06:36:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c64">Commen=
+t # 64</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+lukas&#64;wunner.de" title=3D"Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <s=
+pan class=3D"fn">Lukas Wunner</span></a>
+</span></b>
+        <pre>(In reply to Maik Freudenberg from <a href=3D"show_bug.cgi?id=
+=3D75985#c57">comment #57</a>)
+<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
+g.cgi?id=3D75985#c55">comment #55</a>)
+&gt; &gt; What's the downside for doing this always btw=20
+&gt; By 'this', you mean, always turning it on?
+&gt; This generates the errors from <a href=3D"show_bug.cgi?id=3D75985#c42"=
+>comment #42</a> since those devices are not
+&gt; configured resource-wise, all zeros.</span >
+
+I would assume the BAR is all zeroes because there was insufficient space to
+accommodate the additional 4K for it. AFAIUI, the kernel assigns only the
+minimal amount of space to the bridge window that is necessary to accomodate
+the devices below. Hence, if a device is added after the fact below the bri=
+dge,
+there may not be sufficient space available for it. I'd expect the situatio=
+n to
+be different if the device is already present on enumeration, as is done by=
+ the
+&quot;header&quot; PCI quirk. Then the bridge window can be sized appropria=
+tely. Could
+you verify that on the machine in question?
+
+It occurred to me that we could at least check presence of the Optimus _DSM=
+ in
+the PCI quirk. That would be sufficiently small for a quirk. That way it wo=
+uld
+be constrained to Optimus laptops, but sadly we'd still expose an audio
+function if the GPU has no outputs at all. However I notice that
+drivers/gpu/drm/nouveau/nouveau_acpi.c defines a OPTIMUS_HDA_CODEC_MASK mac=
+ro
+(&quot;hda bios codec supported&quot;). Would that be of any use? Or can we=
+ query via the
+_DSM whether the GPU has any outputs?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15206638064.Cd86dbB5b.10419--
+
+--===============1410697481==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1410697481==--
