@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105432] [NVE0] Display Freezes but SSH Works When
+Subject: [Bug 105432] [NVE0] Display Freezes but Mouse Works When
  Using OpenGL Applications
-Date: Sat, 10 Mar 2018 22:27:54 +0000
-Message-ID: <bug-105432-8800-uvGuKithBe@http.bugs.freedesktop.org/>
+Date: Sat, 10 Mar 2018 22:28:07 +0000
+Message-ID: <bug-105432-8800-A5lLrlt7Rd@http.bugs.freedesktop.org/>
 References: <bug-105432-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0014897123=="
+Content-Type: multipart/mixed; boundary="===============0925767438=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-105432-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0014897123==
-Content-Type: multipart/alternative; boundary="15207208741.7AAe1f9.9910"
+--===============0925767438==
+Content-Type: multipart/alternative; boundary="15207208860.Dc931e.9942"
 Content-Transfer-Encoding: 7bit
 
 
---15207208741.7AAe1f9.9910
-Date: Sat, 10 Mar 2018 22:27:54 +0000
+--15207208860.Dc931e.9942
+Date: Sat, 10 Mar 2018 22:28:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D105432
 
---- Comment #3 from gyroninja-C5B2xTl6qTs@public.gmane.org ---
-Looks like I am able to move my mouse cursor. I just wasn't able to notice =
-it
-with quake as it captures / hides my cursor.
-It might also be worth to note that when the freeze happens there is some
-visual corruption going on. Additionally the audio still plays. IIRC in the
-case of quake it seems to just loop a sound effect, but with mpv it keeps
-playing the video's audio.
+gyroninja-C5B2xTl6qTs@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NVE0] Display Freezes but  |[NVE0] Display Freezes but
+                   |SSH Works When Using OpenGL |Mouse Works When Using
+                   |Applications                |OpenGL Applications
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15207208741.7AAe1f9.9910
-Date: Sat, 10 Mar 2018 22:27:54 +0000
+--15207208860.Dc931e.9942
+Date: Sat, 10 Mar 2018 22:28:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,33 +60,33 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:gyroninja=
+&#64;tfwno.gf" title=3D"gyroninja&#64;tfwno.gf">gyroninja&#64;tfwno.gf</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE0] Display Freezes but SSH Works When Using OpenGL Ap=
-plications"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105432#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE0] Display Freezes but SSH Works When Using OpenGL Ap=
-plications"
+   title=3D"NEW - [NVE0] Display Freezes but Mouse Works When Using OpenGL =
+Applications"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105432">bug 10543=
 2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gyroninja&#64;tfwno.gf" title=3D"gyroninja&#64;tfwno.gf">gyroninja&#64;tfwn=
-o.gf</a>
-</span></b>
-        <pre>Looks like I am able to move my mouse cursor. I just wasn't ab=
-le to notice it
-with quake as it captures / hides my cursor.
-It might also be worth to note that when the freeze happens there is some
-visual corruption going on. Additionally the audio still plays. IIRC in the
-case of quake it seems to just loop a sound effect, but with mpv it keeps
-playing the video's audio.</pre>
-        </div>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Summary</td>
+           <td>[NVE0] Display Freezes but SSH Works When Using OpenGL Appli=
+cations
+           </td>
+           <td>[NVE0] Display Freezes but Mouse Works When Using OpenGL App=
+lications
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -100,9 +99,9 @@ playing the video's audio.</pre>
     </body>
 </html>=
 
---15207208741.7AAe1f9.9910--
+--15207208860.Dc931e.9942--
 
---===============0014897123==
+--===============0925767438==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0014897123==--
+--===============0925767438==--
