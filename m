@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105174] [GF108][Regression] Unable to handle NULL
- pointer dereference in nouveau_mem_host since kernel 4.15.3
-Date: Fri, 09 Mar 2018 19:51:01 +0000
-Message-ID: <bug-105174-8800-R9Qvms2Nsj@http.bugs.freedesktop.org/>
-References: <bug-105174-8800@http.bugs.freedesktop.org/>
+From: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: TLD instruction usage in non-linked sampler mode
+Date: Fri, 9 Mar 2018 16:41:35 -0800
+Message-ID: <20180310004134.GO20664@prokofiev.nvidia.com>
+References: <CAKb7UvhP2PuiXyLAQKjWv0XSUhabwGzaorczHc_0tYsVvCB1Bw@mail.gmail.com>
+ <20180307202120.GF32499@prokofiev.nvidia.com>
+ <CAKb7UvgvZX+Vm2JUxP2J6NzNKhBWwRRpm0Npx5B=+2kqS=w7Xw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1878959681=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105174-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CAKb7UvgvZX+Vm2JUxP2J6NzNKhBWwRRpm0Npx5B=+2kqS=w7Xw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,113 +20,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1878959681==
-Content-Type: multipart/alternative; boundary="15206250602.2AdDF0ca.13371"
-Content-Transfer-Encoding: 7bit
-
-
---15206250602.2AdDF0ca.13371
-Date: Fri, 9 Mar 2018 19:51:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105174
-
---- Comment #11 from Dominik 'Rathann' Mierzejewski <dominik-IZ6Av6enwRKJQ7yn63+t2w@public.gmane.org=
-> ---
-(In reply to Pierre Moreau from comment #9)
-> Created attachment 137731 [details] [review]
-> Proposed patch
->=20
-> Could anyone please try the attached patch (from
-> https://github.com/skeggsb/nouveau/pull/1)?
-
-I can confirm that the patch fixes the bug for me when applied to Fedora ke=
-rnel
-(4.15.7-300.fc27 tested this time). Thanks!
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15206250602.2AdDF0ca.13371
-Date: Fri, 9 Mar 2018 19:51:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GF108][Regression] Unable to handle NULL pointer derefer=
-ence in nouveau_mem_host since kernel 4.15.3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174#c11">Comme=
-nt # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GF108][Regression] Unable to handle NULL pointer derefer=
-ence in nouveau_mem_host since kernel 4.15.3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174">bug 10517=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dominik&#64;greysector.net" title=3D"Dominik 'Rathann' Mierzejewski &lt;dom=
-inik&#64;greysector.net&gt;"> <span class=3D"fn">Dominik 'Rathann' Mierzeje=
-wski</span></a>
-</span></b>
-        <pre>(In reply to Pierre Moreau from <a href=3D"show_bug.cgi?id=3D1=
-05174#c9">comment #9</a>)
-<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
-gi?id=3D137731" name=3D"attach_137731" title=3D"Proposed patch">attachment =
-137731</a> <a href=3D"attachment.cgi?id=3D137731&amp;action=3Dedit" title=
-=3D"Proposed patch">[details]</a></span> <a href=3D'page.cgi?id=3Dsplinter.=
-html&amp;bug=3D105174&amp;attachment=3D137731'>[review]</a> [review]
-&gt; Proposed patch
-&gt;=20
-&gt; Could anyone please try the attached patch (from
-&gt; <a href=3D"https://github.com/skeggsb/nouveau/pull/1">https://github.c=
-om/skeggsb/nouveau/pull/1</a>)?</span >
-
-I can confirm that the patch fixes the bug for me when applied to Fedora ke=
-rnel
-(4.15.7-300.fc27 tested this time). Thanks!</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15206250602.2AdDF0ca.13371--
-
---===============1878959681==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1878959681==--
+T24gV2VkLCBNYXIgMDcsIDIwMTggYXQgMDQ6MjA6MDhQTSAtMDUwMCwgSWxpYSBNaXJraW4gd3Jv
+dGU6Cj4gSGkgQW5keSwKPiAKPiBUaGFua3MgZm9yIGNoZWNraW5nISBJIGRvIHNlZSBhbiBpc3N1
+ZSBvbiBUZXNsYSBhcyB3ZWxsIChhdCBsZWFzdCBHOTIsCj4gYW5kIEkgYmVsaWV2ZSBzb21lb25l
+IGVsc2UgcmVwb3J0ZWQgb24gYSBHVDIxNSBvciBHVDIxOCkuIEhvd2V2ZXIgSQo+IGhhdmVuJ3Qg
+Y29uZmlybWVkIHRoYXQgaXQncyB0aGUgaWRlbnRpY2FsIGlzc3VlIHRvIHdoYXQgSSBzZWUgb24g
+RmVybWkKPiB3aXRoIHF1aXRlIGFzIG11Y2ggY2VydGFpbnR5IGFzIHdoYXQgSSd2ZSBjaGVja2Vk
+IG9uIGEgR0YxMDguIChGb3IgdGhlCj4gRzkyLCB0aGUgdGV4dHVyZSBidWZmZXIgb2JqZWN0IHRl
+c3QgZmFpbHMgaW4gdGhlIHNhbWUgd2F5IGl0IGRvZXMgb24KPiBGZXJtaSwgYnV0IHRoZXJlIGNv
+dWxkIGJlIG90aGVyIHJlYXNvbnMgZm9yIHRoYXQuKQo+IAo+IFRvIGJlIGNsZWFyLCB3aGVuIEkg
+c2F5ICJ1bmJvdW5kIiBmb3IgRmVybWkgLyBUZXNsYSwgSSBtZWFuCj4gQklORF9UU0MoQUNUSVZF
+PTApIChtZXRob2QgMHgyNDAwLCBiaXQgMCA9PSAwKS4gS2VwbGVyIGRvZXNuJ3QgaGF2ZQo+IHRo
+YXQsIHNvIHByZXN1bWFibHkgeW91IG1lYW4gVExEIHdpbGwgbG9vayBhdCBUU0MgSUQgPT0gMCwK
+PiBpcnJlc3BlY3RpdmUgb2YgdGhlIFRTQyBJRCBlbmNvZGVkIGludG8gdGhlIHRleHR1cmUgaGFu
+ZGxlLgoKQWN0dWFsbHksIEkgbWF5IGhhdmUgYmVlbiB3cm9uZyBhYm91dCBLZXBsZXIuICBNb3Jl
+IGJlbG93LgoKPiBUaGUgc1JHQiB0aGluZyBpcyAuLi4gcmF0aGVyIGFubm95aW5nLiBFc3BlY2lh
+bGx5IHNpbmNlIHRleGVsRmV0Y2ggaGFzCj4gc29tZSBraW5kIG9mIGV4dHJhLXNwZWNpYWxseS1v
+ZGQgcnVsZSBhcm91bmQgc1JHQiBjb252ZXJzaW9uLiBJIGRvbid0Cj4gcmVtZW1iZXIgd2hhdCBp
+dCBpcywgYnV0IGl0IGZlZWxzIGxpa2UgdGhpcyB3b3VsZCBwb3RlbnRpYWxseSBtYWtlIGl0Cj4g
+aW1wb3NzaWJsZSB0byBmb2xsb3cuIEJ1dCBJIGd1ZXNzIGdvaW5nIGJhY2sgaW4gdGltZSBhbmQg
+Zml4aW5nIHRoZSBodwo+IGlzIGFsc28gZGlmZmljdWx0LgoKSXQgcHJvYmFibHkgZG9lc24ndCBo
+ZWxwIHRoaXMgY2FzZSwgYnV0IEZZSSBzUkdCIGNvbnZlcnNpb24gc2hvdWxkCm9ubHkgaGFwcGVu
+IGlmIHNSR0JDb252ZXJzaW9uIGlzIHNldCBpbiBib3RoIHRleHR1cmUgaGVhZGVyIChiaXQgMTAp
+CmFuZCB0ZXh0dXJlIHNhbXBsZXIgKGJpdCAxMykuCgo+IENhbiB5b3UgY29uZmlybSB3aGV0aGVy
+IGl0IHdpbGwgYWx3YXlzIGxvb2sgYXQgc2xvdCAwLCBldmVuIGluCj4gTElOS0VEX1RTQyBtb2Rl
+IChpLmUuIG1ldGhvZCAweDEyMzQgPT0gMSk/IFdlIGRvbid0IGN1cnJlbnRseSBtYWtlIHVzZQo+
+IG9mIHRoYXQgbW9kZSBpbiBub3V2ZWF1LCBidXQgSSdtIHRoaW5raW5nIGFib3V0IGRvaW5nIGl0
+IG9uIFRlc2xhIC8KPiBGZXJtaSBzbyB0aGF0IHdlIGNhbiBnZXQgbW9yZSB0aGFuIDE2IHRleHR1
+cmVzIHBlciBzdGFnZSBvbiB0aGVyZS4KCkkgd2Fzbid0IGFibGUgdG8gZmluZCBhbnl0aGluZyBk
+ZWZpbml0aXZlLiAgQSBmZXcgb2YgdXMgYXR0ZW1wdGVkIHRvCmluZmVyIHRoZSBiZWhhdmlvciBm
+cm9tIHdoYXQgZGlmZmVyZW50IE5WSURJQSBwcm9wcmlldGFyeSBkcml2ZXJzIGRvLgpUaGUgYmVz
+dCB3ZSBjYW4gZ3Vlc3MgaXM6CgogICAgRmVybWkgbWV0aG9kIDB4MTIzNCA9PSAwICAgIDogc2Ft
+cGxlciAjMAogICAgRmVybWkgbWV0aG9kIDB4MTIzNCA9PSAxICAgIDogbm90IHN1cmUgaWYgc2Ft
+cGxlciAjMCBvciB0ZXh0dXJlIElEPwogICAgS2VwbGVyIG1ldGhvZCAweDEyMzQgPT0gMCAgIDog
+VXNlIHRoZSBNU0JzIG9mIHRoZSBoYW5kbGUKICAgIEtlcGxlciBtZXRob2QgMHgxMjM0ID09IDEg
+ICA6IFVzZSB0aGUgTFNCcyAodGV4dHVyZSBJRCkgb2YgdGhlIGhhbmRsZQoKVGhlIEZlcm1pIExJ
+TktFRF9UU0MgY2FzZSB3YXMgdGhlIG9uZSB3ZSB3ZXJlIGxlYXN0IHN1cmUgb2YgZnJvbSBjb2Rl
+Cmluc3BlY3Rpb24uICBIb3BlZnVsbHkgeW91IGNhbiBkZXRlcm1pbmUgdGhhdCBjYXNlIGVtcGly
+aWNhbGx5PwoKU29ycnkgSSdtIG5vdCBtb3JlIGhlbHAgaGVyZS4KCi0gQW5keQoKPiBUaGFua3Mg
+YWdhaW4gZm9yIHRoZSBpbmZvIQo+IAo+ICAgLWlsaWEKPiAKPiBPbiBXZWQsIE1hciA3LCAyMDE4
+IGF0IDM6MjEgUE0sIEFuZHkgUml0Z2VyIDxhcml0Z2VyQG52aWRpYS5jb20+IHdyb3RlOgo+ID4g
+SGkgSWxpYS4KPiA+Cj4gPiBJdCBsb29rcyBsaWtlIHRoZXJlIGlzIGEgaGFyZHdhcmUgYnVnIG9u
+IEZlcm1pIGFuZCBLZXBsZXIgd2hlcmUgVExECj4gPiB1bmNvbmRpdGlvbmFsbHkgdXNlcyB0aGUg
+c2FtcGxlciBmcm9tIHNsb3QgMC4gIFRoaXMgaXMgc3VwcG9zZWRseSBmaXhlZAo+ID4gaW4gTWF4
+d2VsbC4gIFdoYXQgSSBjb3VsZCBmaW5kIGludGVybmFsbHkgc3VnZ2VzdHMgdGhlIGJ1ZyB3YXNu
+J3QgcHJlc2VudAo+ID4gb24gVGVzbGEsIGJ1dCBsZXQgbWUga25vdyBpZiB5b3VyIG9ic2VydmF0
+aW9ucyBjb250cmFkaWN0IHRoYXQuCj4gPgo+ID4gVGhlIG9ubHkgd29yayBhcm91bmQgaXMgdG8g
+aGF2ZSBhIHNhbXBsZXIgZGVmaW5lZCBhbmQgYm91bmQuICBGdXJ0aGVyLAo+ID4gYmUgY2FyZWZ1
+bCB0byBoYXZlIHJlYXNvbmFibGUgc3RhdGUgaW4gdGhlIGVudHJ5IGluIHNsb3QgIzA6IGFzIEkK
+PiA+IHVuZGVyc3RhbmQgaXQsIHRoZSBvbmUgcGllY2Ugb2Ygc2FtcGxlciBzdGF0ZSB0aGF0IHdp
+bGwgaW5mbHVlbmNlIFRMRAo+ID4gaXMgc1JHQkNvbnZlcnNpb24gKGJpdCAxMykuCj4gPgo+ID4g
+SSBob3BlIHRoYXQgaGVscHMsCj4gPiAtIEFuZHkKPiA+Cj4gPgo+ID4gT24gVGh1LCBNYXIgMDEs
+IDIwMTggYXQgMTE6NDc6MThQTSAtMDUwMCwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gPj4gSGVsbG8s
+Cj4gPj4KPiA+PiBUaGlzIHF1ZXN0aW9uIGlzIGluIHRoZSBjb250ZXh0IG9mIFRlc2xhIC8gRmVy
+bWkgZ2VuZXJhdGlvbnMsIHdoaWNoCj4gPj4gaGF2ZSBleHBsaWNpdCBiaW5kaW5ncyBmb3IgdGV4
+dHVyZXMgLyBzYW1wbGVycy4gSXQgbWlnaHQgYWxzbyBhcHBseSB0bwo+ID4+IEtlcGxlcissIG5v
+dCBxdWl0ZSBhcyBzdXJlIGR1ZSB0byB0aGUgYmluZGxlc3MgbmF0dXJlLgo+ID4+Cj4gPj4gSSd2
+ZSBiZWVuIHRyeWluZyB0byB1bmRlcnN0YW5kIGhvdyB0aGUgVExEIG9wZXJhdGlvbiB3b3JrcyAo
+d2hpY2ggaXMKPiA+PiB1c2VkIHRvIGltcGxlbWVudCB0ZXhlbEZldGNoIGluIEdMU0wpLiBJdCBk
+b2VzIG5vdCBhcHBlYXIgdG8gdGhlIG9wCj4gPj4gdGFrZXMgYW4gZXhwbGljaXQgc2FtcGxlciBp
+ZCBhdCBhbGwgKHVubGlrZSBhbGwgdGhlIG90aGVyIHRleHR1cmluZwo+ID4+IG9wZXJhdGlvbnMp
+LiBJbiB1bmxpbmtlZCBUU0MgbW9kZSAoaS5lLiBtZXRob2QgMHgxMjM0ID09IDApLCBteQo+ID4+
+IG9ic2VydmF0aW9uIGlzIHRoYXQgaXQgZGVzcGVyYXRlbHkgd2FudHMgZm9yIGEgdmFsaWQgc2Ft
+cGxlciB0byBiZQo+ID4+IGJvdW5kIHRvIHNhbXBsZXIgc2xvdCAwLiBPZiBjb3Vyc2UgSSBkb24n
+dCB0aGluayBUTEQgYWN0dWFsbHkgbmVlZHMKPiA+PiBhbnl0aGluZyBmcm9tIHRoZSBzYW1wbGVy
+LCB3aGljaCBtYWtlcyB0aGlzIGFsbCB0aGUgbW9yZSBvZGQuCj4gPj4KPiA+PiBJcyB0aGF0IGEg
+Y29ycmVjdCBhc3Nlc3NtZW50IG9mIHRoZSBvcGVyYXRpb24gb2YgdGhlIFRMRCBpbnN0cnVjdGlv
+bj8KPiA+PiBJcyB0aGVyZSBhbnkgd2F5IHRvIG1ha2UgaXQganVzdCBub3QgY2FyZSBhYm91dCB0
+aGUgc2FtcGxlciBiaW5kaW5nPwo+ID4+IERvZXMgdGhlIERpcmVjdFggZHJpdmVyIGp1c3QgYWx3
+YXlzIGtlZXAgc29tZXRoaW5nIGJvdW5kIHRvIHNhbXBsZXIKPiA+PiBzbG90IDA/IChBbmQgd2hh
+dCBoYXBwZW5zIG9uIEtlcGxlcis/IERvZXMgaXQgYWx3YXlzIGxvb2sgYXQgVFNDIElEID09Cj4g
+Pj4gMD8pCj4gPj4KPiA+PiAoSSBraW5kIG9mIGFzc3VtZSB0aGF0IGFsbCB0aGVzZSBwcm9ibGVt
+cyBnbyBhd2F5IGluIGxpbmtlZCBUU0MgbW9kZSwKPiA+PiBzaW5jZSBpdCdkIG5hdHVyYWxseSBq
+dXN0IGxvb2sgdXAgdGhlIFRTQyBlbnRyeSBhc3NvY2lhdGVkIHdpdGggdGhlCj4gPj4gYm91bmQg
+VElDLikKPiA+Pgo+ID4+IFRoYW5rcywKPiA+Pgo+ID4+ICAgLWlsaWEKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
