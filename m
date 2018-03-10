@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 105432] [NVE0] Display Freezes but SSH Works When
  Using OpenGL Applications
-Date: Sat, 10 Mar 2018 22:06:37 +0000
-Message-ID: <bug-105432-8800-jPsyh3t1fp@http.bugs.freedesktop.org/>
+Date: Sat, 10 Mar 2018 22:27:54 +0000
+Message-ID: <bug-105432-8800-uvGuKithBe@http.bugs.freedesktop.org/>
 References: <bug-105432-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2014964218=="
+Content-Type: multipart/mixed; boundary="===============0014897123=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-105432-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2014964218==
-Content-Type: multipart/alternative; boundary="15207195960.aFdF8E.5984"
+--===============0014897123==
+Content-Type: multipart/alternative; boundary="15207208741.7AAe1f9.9910"
 Content-Transfer-Encoding: 7bit
 
 
---15207195960.aFdF8E.5984
-Date: Sat, 10 Mar 2018 22:06:36 +0000
+--15207208741.7AAe1f9.9910
+Date: Sat, 10 Mar 2018 22:27:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,22 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D105432
 
---- Comment #2 from gyroninja-C5B2xTl6qTs@public.gmane.org ---
-Created attachment 137978
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D137978&action=3Dedit
-Xorg log
-
-Note that this is of a separate session from the crash seen in dmesg.log. E=
-ven
-with verbose logging, I didn't see any messages in the log when the crash
-happened.
+--- Comment #3 from gyroninja-C5B2xTl6qTs@public.gmane.org ---
+Looks like I am able to move my mouse cursor. I just wasn't able to notice =
+it
+with quake as it captures / hides my cursor.
+It might also be worth to note that when the freeze happens there is some
+visual corruption going on. Additionally the audio still plays. IIRC in the
+case of quake it seems to just loop a sound effect, but with mpv it keeps
+playing the video's audio.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15207195960.aFdF8E.5984
-Date: Sat, 10 Mar 2018 22:06:36 +0000
+--15207208741.7AAe1f9.9910
+Date: Sat, 10 Mar 2018 22:27:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,8 +68,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NVE0] Display Freezes but SSH Works When Using OpenGL Ap=
 plications"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105432#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105432#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE0] Display Freezes but SSH Works When Using OpenGL Ap=
@@ -81,16 +80,13 @@ plications"
 gyroninja&#64;tfwno.gf" title=3D"gyroninja&#64;tfwno.gf">gyroninja&#64;tfwn=
 o.gf</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D137978=
-" name=3D"attach_137978" title=3D"Xorg log">attachment 137978</a> <a href=
-=3D"attachment.cgi?id=3D137978&amp;action=3Dedit" title=3D"Xorg log">[detai=
-ls]</a></span>
-Xorg log
-
-Note that this is of a separate session from the crash seen in dmesg.log. E=
-ven
-with verbose logging, I didn't see any messages in the log when the crash
-happened.</pre>
+        <pre>Looks like I am able to move my mouse cursor. I just wasn't ab=
+le to notice it
+with quake as it captures / hides my cursor.
+It might also be worth to note that when the freeze happens there is some
+visual corruption going on. Additionally the audio still plays. IIRC in the
+case of quake it seems to just loop a sound effect, but with mpv it keeps
+playing the video's audio.</pre>
         </div>
       </p>
 
@@ -104,9 +100,9 @@ happened.</pre>
     </body>
 </html>=
 
---15207195960.aFdF8E.5984--
+--15207208741.7AAe1f9.9910--
 
---===============2014964218==
+--===============0014897123==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -116,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2014964218==--
+--===============0014897123==--
