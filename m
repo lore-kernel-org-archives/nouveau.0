@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
- rescan
-Date: Sat, 10 Mar 2018 06:36:40 +0000
-Message-ID: <bug-75985-8800-2k7eQM0Cme@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [RFC PATCH 00/13] SVM (share virtual memory) with HMM
+ in nouveau
+Date: Sat, 10 Mar 2018 16:01:58 +0100
+Message-ID: <cae53b72-f99c-7641-8cb9-5cbe0a29b585@gmail.com>
+References: <20180310032141.6096-1-jglisse@redhat.com>
+Reply-To: christian.koenig-5C7GfCeVMHo@public.gmane.org
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1410697481=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20180310032141.6096-1-jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,147 +20,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "Bridgman,
+ John" <John.Bridgman-5C7GfCeVMHo@public.gmane.org>, Evgeny Baskakov <ebaskakov-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Felix Kuehling <felix.kuehling-5C7GfCeVMHo@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1410697481==
-Content-Type: multipart/alternative; boundary="15206638064.Cd86dbB5b.10419"
-Content-Transfer-Encoding: 7bit
-
-
---15206638064.Cd86dbB5b.10419
-Date: Sat, 10 Mar 2018 06:36:46 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
-
---- Comment #64 from Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> ---
-(In reply to Maik Freudenberg from comment #57)
-> (In reply to Ilia Mirkin from comment #55)
-> > What's the downside for doing this always btw=20
-> By 'this', you mean, always turning it on?
-> This generates the errors from comment #42 since those devices are not
-> configured resource-wise, all zeros.
-
-I would assume the BAR is all zeroes because there was insufficient space to
-accommodate the additional 4K for it. AFAIUI, the kernel assigns only the
-minimal amount of space to the bridge window that is necessary to accomodate
-the devices below. Hence, if a device is added after the fact below the bri=
-dge,
-there may not be sufficient space available for it. I'd expect the situatio=
-n to
-be different if the device is already present on enumeration, as is done by=
- the
-"header" PCI quirk. Then the bridge window can be sized appropriately. Could
-you verify that on the machine in question?
-
-It occurred to me that we could at least check presence of the Optimus _DSM=
- in
-the PCI quirk. That would be sufficiently small for a quirk. That way it wo=
-uld
-be constrained to Optimus laptops, but sadly we'd still expose an audio
-function if the GPU has no outputs at all. However I notice that
-drivers/gpu/drm/nouveau/nouveau_acpi.c defines a OPTIMUS_HDA_CODEC_MASK mac=
-ro
-("hda bios codec supported"). Would that be of any use? Or can we query via=
- the
-_DSM whether the GPU has any outputs?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15206638064.Cd86dbB5b.10419
-Date: Sat, 10 Mar 2018 06:36:46 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c64">Commen=
-t # 64</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lukas&#64;wunner.de" title=3D"Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <s=
-pan class=3D"fn">Lukas Wunner</span></a>
-</span></b>
-        <pre>(In reply to Maik Freudenberg from <a href=3D"show_bug.cgi?id=
-=3D75985#c57">comment #57</a>)
-<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
-g.cgi?id=3D75985#c55">comment #55</a>)
-&gt; &gt; What's the downside for doing this always btw=20
-&gt; By 'this', you mean, always turning it on?
-&gt; This generates the errors from <a href=3D"show_bug.cgi?id=3D75985#c42"=
->comment #42</a> since those devices are not
-&gt; configured resource-wise, all zeros.</span >
-
-I would assume the BAR is all zeroes because there was insufficient space to
-accommodate the additional 4K for it. AFAIUI, the kernel assigns only the
-minimal amount of space to the bridge window that is necessary to accomodate
-the devices below. Hence, if a device is added after the fact below the bri=
-dge,
-there may not be sufficient space available for it. I'd expect the situatio=
-n to
-be different if the device is already present on enumeration, as is done by=
- the
-&quot;header&quot; PCI quirk. Then the bridge window can be sized appropria=
-tely. Could
-you verify that on the machine in question?
-
-It occurred to me that we could at least check presence of the Optimus _DSM=
- in
-the PCI quirk. That would be sufficiently small for a quirk. That way it wo=
-uld
-be constrained to Optimus laptops, but sadly we'd still expose an audio
-function if the GPU has no outputs at all. However I notice that
-drivers/gpu/drm/nouveau/nouveau_acpi.c defines a OPTIMUS_HDA_CODEC_MASK mac=
-ro
-(&quot;hda bios codec supported&quot;). Would that be of any use? Or can we=
- query via the
-_DSM whether the GPU has any outputs?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15206638064.Cd86dbB5b.10419--
-
---===============1410697481==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1410697481==--
+R29vZCB0byBoYXZlIGFuIGV4YW1wbGUgaG93IHRvIHVzZSBITU0gd2l0aCBhbiB1cHN0cmVhbSBk
+cml2ZXIuCgpBbSAxMC4wMy4yMDE4IHVtIDA0OjIxIHNjaHJpZWIgamdsaXNzZUByZWRoYXQuY29t
+Ogo+IFRoaXMgcGF0Y2hzZXQgYWRkcyBTVk0gKFNoYXJlIFZpcnR1YWwgTWVtb3J5KSB1c2luZyBI
+TU0gKEhldGVyb2dlbmVvdXMKPiBNZW1vcnkgTWFuYWdlbWVudCkgdG8gdGhlIG5vdXZlYXUgZHJp
+dmVyLiBTVk0gbWVhbnMgdGhhdCBHUFUgdGhyZWFkcwo+IHNwYXduIGJ5IEdQVSBkcml2ZXIgZm9y
+IGEgc3BlY2lmaWMgdXNlciBwcm9jZXNzIGNhbiBhY2Nlc3MgYW55IHZhbGlkCj4gQ1BVIGFkZHJl
+c3MgaW4gdGhhdCBwcm9jZXNzLiBBIHZhbGlkIHBvaW50ZXIgaXMgYSBwb2ludGVyIGluc2lkZSBh
+bgo+IGFyZWEgY29taW5nIGZyb20gbW1hcCBvZiBwcml2YXRlLCBzaGFyZSBvciByZWd1bGFyIGZp
+bGUuIFBvaW50ZXIgdG8KPiBhIG1tYXAgb2YgYSBkZXZpY2UgZmlsZSBvciBzcGVjaWFsIGZpbGUg
+YXJlIG5vdCBzdXBwb3J0ZWQuCgpCVFc6IFRoZSByZWNlbnQgSU9NTVUgcGF0Y2hlcyB3aGljaCBn
+ZW5lcmFsaXplZCB0aGUgUEFTSUQgaGFuZGxpbmcgY2FsbHMgCnRoaXMgU1ZBIGZvciBzaGFyZWQg
+dmlydHVhbCBhZGRyZXNzIHNwYWNlLgoKV2Ugc2hvdWxkIHByb2JhYmx5IHN5bmMgdXAgd2l0aCB0
+aG9zZSBndXlzIGF0IHNvbWUgcG9pbnQgd2hhdCBuYW1pbmcgdG8gdXNlLgoKPiBUaGlzIGlzIGFu
+IFJGQyBmb3IgZmV3IHJlYXNvbnMgdGVjaG5pY2FsIHJlYXNvbnMgbGlzdGVkIGJlbG93IGFuZCBh
+bHNvCj4gYmVjYXVzZSB3ZSBhcmUgc3RpbGwgd29ya2luZyBvbiBhIHByb3BlciBvcGVuIHNvdXJj
+ZSB1c2Vyc3BhY2UgKG5hbWVseQo+IGEgT3BlbkNMIDIuMCBmb3Igbm91dmVhdSBpbnNpZGUgbWVz
+YSkuIE9wZW4gc291cmNlIHVzZXJzcGFjZSBiZWluZyBhCj4gcmVxdWlyZW1lbnQgZm9yIHRoZSBE
+Uk0gc3Vic3lzdGVtLiBJIHB1c2hlZCBpbiBbMV0gYSBzaW1wbGUgc3RhbmRhbG9uZQo+IHByb2dy
+YW0gdGhhdCBjYW4gYmUgdXNlIHRvIHRlc3QgU1ZNIHRocm91Z2ggSE1NIHdpdGggbm91dmVhdS4g
+SSBleHBlY3QKPiB3ZSB3aWxsIGhhdmUgYSBzb21ld2hhdCB3b3JraW5nIHVzZXJzcGFjZSBpbiB0
+aGUgY29taW5nIHdlZWtzLCB3b3JrCj4gYmVpbmcgd2VsbCB1bmRlcndheSBhbmQgc29tZSBwYXRj
+aGVzIGhhdmUgYWxyZWFkeSBiZWVuIHBvc3RlZCBvbiBtZXNhCj4gbWFpbGluZyBsaXN0LgoKWW91
+IGNvdWxkIHVzZSB0aGUgT3BlbkdMIGV4dGVuc2lvbnMgdG8gaW1wb3J0IGFyYml0cmFyeSB1c2Vy
+IHBvaW50ZXJzIGFzIApicmluZ3VwIHVzZSBjYXNlIGZvciB0aGlzLgoKSSB3YXMgaG9waW5nIHRv
+IGRvIHRoZSBzYW1lIGZvciBteSBBVEMvSE1NIHdvcmsgb24gcmFkZW9uc2kgYW5kIGFzIGZhciAK
+YXMgSSBrbm93IHRoZXJlIGFyZSBldmVuIHBpZ2xpdCB0ZXN0cyBmb3IgdGhhdC4KCj4gVGhleSBh
+cmUgd29yayB1bmRlcndheSB0byByZXZhbXAgbm91dmVhdSBjaGFubmVsIGNyZWF0aW9uIHdpdGgg
+YSBuZXcKPiB1c2Vyc3BhY2UgQVBJLiBTbyB3ZSBtaWdodCB3YW50IHRvIGRlbGF5IHVwc3RyZWFt
+aW5nIHVudGlsIHRoaXMgbGFuZHMuCj4gV2UgY2FuIHN0aWwgZGlzY3VzcyBvbmUgYXNwZWN0IHNw
+ZWNpZmljIHRvIEhNTSBoZXJlIG5hbWVseSB0aGUgaXNzdWUKPiBhcm91bmQgR0VNIG9iamVjdHMg
+dXNlZCBmb3Igc29tZSBzcGVjaWZpYyBwYXJ0IG9mIHRoZSBHUFUuIFNvbWUgZW5naW5lCj4gaW5z
+aWRlIHRoZSBHUFUgKGVuZ2luZSBhcmUgYSBHUFUgYmxvY2sgbGlrZSB0aGUgZGlzcGxheSBibG9j
+ayB3aGljaAo+IGlzIHJlc3BvbnNpYmxlIG9mIHNjYW5pbmcgbWVtb3J5IHRvIHNlbmQgb3V0IGEg
+cGljdHVyZSB0aHJvdWdoIHNvbWUKPiBjb25uZWN0b3IgZm9yIGluc3RhbmNlIEhETUkgb3IgRGlz
+cGxheVBvcnQpIGNhbiBvbmx5IGFjY2VzcyBtZW1vcnkKPiB3aXRoIHZpcnR1YWwgYWRkcmVzcyBi
+ZWxvdyAoMSA8PCA0MCkuIFRvIGFjY29tb2RhdGUgdGhvc2Ugd2UgbmVlZCB0bwo+IGNyZWF0ZSBh
+ICJob2xlIiBpbnNpZGUgdGhlIHByb2Nlc3MgYWRkcmVzcyBzcGFjZS4gVGhpcyBwYXRjaHNldCBo
+YXZlCj4gYSBoYWNrIGZvciB0aGF0IChwYXRjaCAxMyBIQUNLIEZPUiBITU0gQVJFQSksIGl0IHJl
+c2VydmVzIGEgcmFuZ2Ugb2YKPiBkZXZpY2UgZmlsZSBvZmZzZXQgc28gdGhhdCBwcm9jZXNzIGNh
+biBtbWFwIHRoaXMgcmFuZ2Ugd2l0aCBQUk9UX05PTkUKPiB0byBjcmVhdGUgYSBob2xlIChwcm9j
+ZXNzIG11c3QgbWFrZSBzdXJlIHRoZSBob2xlIGlzIGJlbG93IDEgPDwgNDApLgo+IEkgZmVlbCB1
+bi1lYXN5IG9mIGRvaW5nIGl0IHRoaXMgd2F5IGJ1dCBtYXliZSBpdCBpcyBvayB3aXRoIG90aGVy
+Cj4gZm9sa3MuCgpXZWxsIHdlIGhhdmUgZXNzZW50aWFsbHkgdGhlIHNhbWUgcHJvYmxlbSB3aXRo
+IHByZSBnZng5IEFNRCBoYXJkd2FyZS4gCkZlbGl4IG1pZ2h0IGhhdmUgc29tZSBhZHZpc2UgaG93
+IGl0IHdhcyBzb2x2ZWQgZm9yIEhTQS4KClJlZ2FyZHMsCkNocmlzdGlhbi4KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
