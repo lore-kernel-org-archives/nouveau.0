@@ -1,73 +1,88 @@
 From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v2 0/7] Modernize vga_switcheroo by using
- device link for HDA
-Date: Mon, 12 Mar 2018 17:54:47 +0100
-Message-ID: <20180312165447.GJ8589@phenom.ffwll.local>
-References: <cover.1520068884.git.lukas@wunner.de>
- <20180306102940.GG22212@phenom.ffwll.local>
- <20180311155549.GA11806@wunner.de>
+Subject: Re: [RFC PATCH 00/13] SVM (share virtual memory) with HMM in nouveau
+Date: Mon, 12 Mar 2018 18:30:09 +0100
+Message-ID: <20180312173009.GN8589@phenom.ffwll.local>
+References: <20180310032141.6096-1-jglisse@redhat.com>
+ <cae53b72-f99c-7641-8cb9-5cbe0a29b585@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <alsa-devel-bounces@alsa-project.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
 Content-Disposition: inline
-In-Reply-To: <20180311155549.GA11806@wunner.de>
-List-Unsubscribe: <http://mailman.alsa-project.org/mailman/options/alsa-devel>,
- <mailto:alsa-devel-request@alsa-project.org?subject=unsubscribe>
-List-Archive: <http://mailman.alsa-project.org/pipermail/alsa-devel/>
-List-Post: <mailto:alsa-devel@alsa-project.org>
-List-Help: <mailto:alsa-devel-request@alsa-project.org?subject=help>
-List-Subscribe: <http://mailman.alsa-project.org/mailman/listinfo/alsa-devel>,
- <mailto:alsa-devel-request@alsa-project.org?subject=subscribe>
-Errors-To: alsa-devel-bounces@alsa-project.org
-Sender: alsa-devel-bounces@alsa-project.org
-To: Lukas Wunner <lukas@wunner.de>
-Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>, alsa-devel@alsa-project.org, Martin Lopatar <lopin@dataplex.cz>, Hans de Goede <hdegoede@redhat.com>, linux-pci@vger.kernel.org, Gustavo Padovan <gustavo@padovan.org>, Maik Freudenberg <hhfeuer@gmx.de>, "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Daniel Drake <dan@reactivated.net>, dri-devel@lists.freedesktop.org, Denis Lisov <dennis.lissov@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>, Mike Lothian <mike@fireburn.co.uk>, Sean Paul <seanpaul@chromium.org>, Peter Wu <peter@lekensteyn.nl>, Daniel Vetter <daniel@ffwll.ch>, nouveau@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, Lyude Paul <lyude@redhat.com>, Takashi Iwai <tiwai@suse.com>
+In-Reply-To: <cae53b72-f99c-7641-8cb9-5cbe0a29b585@gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: christian.koenig@amd.com
+Cc: Ralph Campbell <rcampbell@nvidia.com>, John Hubbard <jhubbard@nvidia.com>, nouveau@lists.freedesktop.org, Felix Kuehling <felix.kuehling@amd.com>, dri-devel@lists.freedesktop.org, linux-mm@kvack.org, jglisse@redhat.com, Evgeny Baskakov <ebaskakov@nvidia.com>
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Mar 11, 2018 at 04:55:49PM +0100, Lukas Wunner wrote:
-> On Tue, Mar 06, 2018 at 11:29:40AM +0100, Daniel Vetter wrote:
-> > On Sat, Mar 03, 2018 at 10:53:24AM +0100, Lukas Wunner wrote:
-> > > Modernize vga_switcheroo by using a device link to enforce a runtime PM
-> > > dependency from an HDA controller to the GPU it's integrated into, v2.
-> > > 
-> > > https://github.com/l1k/linux/commits/switcheroo_devlink_v2
-> > 
-> > This all looks really reasonable and like a good cleanup, but it's a bit
-> > too much detail so I'll punt review to someone else with more clue.
-> 
-> Patches [3/7] to [7/7] were reviewed by Peter Wu, the HDA bits in
-> patch [5/7] additionally by Takashi.
-> 
-> Patch [2/7] was acked by Bjorn.  There was no ack for patch [1/7]
-> (authored by Rafael), but it adressed the objection Bjorn raised
-> against my original patch, so I'm assuming Bjorn is okay with it.
-> (Bjorn, please let me know if that isn't the case.)
-
-Since it's written by someone else your s-o-b counts as full review (wrt
-drm-misc rules at least as implemented by dim). So sounds like you have
-review for all the bits.
-
-> The series has been tested on 5 systems, which raises the confidence:
-> 2x AMD PowerXpress (Mike Lothian, Kai Heng Feng)
-> 2x Nvidia Optimus (Denis Lisov, Peter Wu)
-> 1x MacBook Pro
-> 
-> The issues found during Peter Wu's thorough testing appear to all
-> be unrelated to this series, as per my e-mail yesterday.
-> 
-> If there are no objections, I plan to push the series to
-> drm-misc-next by the middle of the coming week so that it
-> would still catch the last train to 4.17.
-
-Please make sure all maintainers of other bits are ok with that and have
-given their formal ack for merging through drm-misc. With that you have
-until end of this week (but don't cut it too short) to sneak it into 4.17.
-Otherwise just push and it'll land in 4.18.
-
-I think you've got all the other pieces.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+T24gU2F0LCBNYXIgMTAsIDIwMTggYXQgMDQ6MDE6NThQTSArMDEwMCwgQ2hyaXN0aWFuIEs/P25p
+ZyB3cm90ZToKPiBHb29kIHRvIGhhdmUgYW4gZXhhbXBsZSBob3cgdG8gdXNlIEhNTSB3aXRoIGFu
+IHVwc3RyZWFtIGRyaXZlci4KPiAKPiBBbSAxMC4wMy4yMDE4IHVtIDA0OjIxIHNjaHJpZWIgamds
+aXNzZUByZWRoYXQuY29tOgo+ID4gVGhpcyBwYXRjaHNldCBhZGRzIFNWTSAoU2hhcmUgVmlydHVh
+bCBNZW1vcnkpIHVzaW5nIEhNTSAoSGV0ZXJvZ2VuZW91cwo+ID4gTWVtb3J5IE1hbmFnZW1lbnQp
+IHRvIHRoZSBub3V2ZWF1IGRyaXZlci4gU1ZNIG1lYW5zIHRoYXQgR1BVIHRocmVhZHMKPiA+IHNw
+YXduIGJ5IEdQVSBkcml2ZXIgZm9yIGEgc3BlY2lmaWMgdXNlciBwcm9jZXNzIGNhbiBhY2Nlc3Mg
+YW55IHZhbGlkCj4gPiBDUFUgYWRkcmVzcyBpbiB0aGF0IHByb2Nlc3MuIEEgdmFsaWQgcG9pbnRl
+ciBpcyBhIHBvaW50ZXIgaW5zaWRlIGFuCj4gPiBhcmVhIGNvbWluZyBmcm9tIG1tYXAgb2YgcHJp
+dmF0ZSwgc2hhcmUgb3IgcmVndWxhciBmaWxlLiBQb2ludGVyIHRvCj4gPiBhIG1tYXAgb2YgYSBk
+ZXZpY2UgZmlsZSBvciBzcGVjaWFsIGZpbGUgYXJlIG5vdCBzdXBwb3J0ZWQuCj4gCj4gQlRXOiBU
+aGUgcmVjZW50IElPTU1VIHBhdGNoZXMgd2hpY2ggZ2VuZXJhbGl6ZWQgdGhlIFBBU0lEIGhhbmRs
+aW5nIGNhbGxzCj4gdGhpcyBTVkEgZm9yIHNoYXJlZCB2aXJ0dWFsIGFkZHJlc3Mgc3BhY2UuCj4g
+Cj4gV2Ugc2hvdWxkIHByb2JhYmx5IHN5bmMgdXAgd2l0aCB0aG9zZSBndXlzIGF0IHNvbWUgcG9p
+bnQgd2hhdCBuYW1pbmcgdG8gdXNlLgo+IAo+ID4gVGhpcyBpcyBhbiBSRkMgZm9yIGZldyByZWFz
+b25zIHRlY2huaWNhbCByZWFzb25zIGxpc3RlZCBiZWxvdyBhbmQgYWxzbwo+ID4gYmVjYXVzZSB3
+ZSBhcmUgc3RpbGwgd29ya2luZyBvbiBhIHByb3BlciBvcGVuIHNvdXJjZSB1c2Vyc3BhY2UgKG5h
+bWVseQo+ID4gYSBPcGVuQ0wgMi4wIGZvciBub3V2ZWF1IGluc2lkZSBtZXNhKS4gT3BlbiBzb3Vy
+Y2UgdXNlcnNwYWNlIGJlaW5nIGEKPiA+IHJlcXVpcmVtZW50IGZvciB0aGUgRFJNIHN1YnN5c3Rl
+bS4gSSBwdXNoZWQgaW4gWzFdIGEgc2ltcGxlIHN0YW5kYWxvbmUKPiA+IHByb2dyYW0gdGhhdCBj
+YW4gYmUgdXNlIHRvIHRlc3QgU1ZNIHRocm91Z2ggSE1NIHdpdGggbm91dmVhdS4gSSBleHBlY3QK
+PiA+IHdlIHdpbGwgaGF2ZSBhIHNvbWV3aGF0IHdvcmtpbmcgdXNlcnNwYWNlIGluIHRoZSBjb21p
+bmcgd2Vla3MsIHdvcmsKPiA+IGJlaW5nIHdlbGwgdW5kZXJ3YXkgYW5kIHNvbWUgcGF0Y2hlcyBo
+YXZlIGFscmVhZHkgYmVlbiBwb3N0ZWQgb24gbWVzYQo+ID4gbWFpbGluZyBsaXN0Lgo+IAo+IFlv
+dSBjb3VsZCB1c2UgdGhlIE9wZW5HTCBleHRlbnNpb25zIHRvIGltcG9ydCBhcmJpdHJhcnkgdXNl
+ciBwb2ludGVycyBhcwo+IGJyaW5ndXAgdXNlIGNhc2UgZm9yIHRoaXMuCj4gCj4gSSB3YXMgaG9w
+aW5nIHRvIGRvIHRoZSBzYW1lIGZvciBteSBBVEMvSE1NIHdvcmsgb24gcmFkZW9uc2kgYW5kIGFz
+IGZhciBhcyBJCj4ga25vdyB0aGVyZSBhcmUgZXZlbiBwaWdsaXQgdGVzdHMgZm9yIHRoYXQuCgpZ
+ZWFoIHVzZXJwdHIgc2VlbXMgbGlrZSBhIHJlYXNvbmFibGUgYnJpbmctdXAgdXNlLWNhc2UgZm9y
+IHN0dWZmIGxpa2UKdGhpcywgbWFrZXMgaXQgYWxsIGEgYml0IG1vcmUgbWFuYWdlYWJsZS4gSSBz
+dWdnZXN0ZWQgdGhlIHNhbWUgZm9yIHRoZQppOTE1IGVmZm9ydHMuIERlZmluaXRlbHkgaGFzIG15
+IGFjayBmb3IgdXBzdHJlYW0gSE1NL1NWTSB1YXBpIGV4dGVuc2lvbnMuCgo+ID4gVGhleSBhcmUg
+d29yayB1bmRlcndheSB0byByZXZhbXAgbm91dmVhdSBjaGFubmVsIGNyZWF0aW9uIHdpdGggYSBu
+ZXcKPiA+IHVzZXJzcGFjZSBBUEkuIFNvIHdlIG1pZ2h0IHdhbnQgdG8gZGVsYXkgdXBzdHJlYW1p
+bmcgdW50aWwgdGhpcyBsYW5kcy4KPiA+IFdlIGNhbiBzdGlsIGRpc2N1c3Mgb25lIGFzcGVjdCBz
+cGVjaWZpYyB0byBITU0gaGVyZSBuYW1lbHkgdGhlIGlzc3VlCj4gPiBhcm91bmQgR0VNIG9iamVj
+dHMgdXNlZCBmb3Igc29tZSBzcGVjaWZpYyBwYXJ0IG9mIHRoZSBHUFUuIFNvbWUgZW5naW5lCj4g
+PiBpbnNpZGUgdGhlIEdQVSAoZW5naW5lIGFyZSBhIEdQVSBibG9jayBsaWtlIHRoZSBkaXNwbGF5
+IGJsb2NrIHdoaWNoCj4gPiBpcyByZXNwb25zaWJsZSBvZiBzY2FuaW5nIG1lbW9yeSB0byBzZW5k
+IG91dCBhIHBpY3R1cmUgdGhyb3VnaCBzb21lCj4gPiBjb25uZWN0b3IgZm9yIGluc3RhbmNlIEhE
+TUkgb3IgRGlzcGxheVBvcnQpIGNhbiBvbmx5IGFjY2VzcyBtZW1vcnkKPiA+IHdpdGggdmlydHVh
+bCBhZGRyZXNzIGJlbG93ICgxIDw8IDQwKS4gVG8gYWNjb21vZGF0ZSB0aG9zZSB3ZSBuZWVkIHRv
+Cj4gPiBjcmVhdGUgYSAiaG9sZSIgaW5zaWRlIHRoZSBwcm9jZXNzIGFkZHJlc3Mgc3BhY2UuIFRo
+aXMgcGF0Y2hzZXQgaGF2ZQo+ID4gYSBoYWNrIGZvciB0aGF0IChwYXRjaCAxMyBIQUNLIEZPUiBI
+TU0gQVJFQSksIGl0IHJlc2VydmVzIGEgcmFuZ2Ugb2YKPiA+IGRldmljZSBmaWxlIG9mZnNldCBz
+byB0aGF0IHByb2Nlc3MgY2FuIG1tYXAgdGhpcyByYW5nZSB3aXRoIFBST1RfTk9ORQo+ID4gdG8g
+Y3JlYXRlIGEgaG9sZSAocHJvY2VzcyBtdXN0IG1ha2Ugc3VyZSB0aGUgaG9sZSBpcyBiZWxvdyAx
+IDw8IDQwKS4KPiA+IEkgZmVlbCB1bi1lYXN5IG9mIGRvaW5nIGl0IHRoaXMgd2F5IGJ1dCBtYXli
+ZSBpdCBpcyBvayB3aXRoIG90aGVyCj4gPiBmb2xrcy4KPiAKPiBXZWxsIHdlIGhhdmUgZXNzZW50
+aWFsbHkgdGhlIHNhbWUgcHJvYmxlbSB3aXRoIHByZSBnZng5IEFNRCBoYXJkd2FyZS4gRmVsaXgK
+PiBtaWdodCBoYXZlIHNvbWUgYWR2aXNlIGhvdyBpdCB3YXMgc29sdmVkIGZvciBIU0EuCgpDb3Vs
+ZG4ndCB3ZSBkbyBhbiBpbi1rZXJuZWwgYWRkcmVzcyBzcGFjZSBmb3IgdGhvc2Ugc3BlY2lhbCBn
+cHUgYmxvY2tzPyBBcwpsb25nIGFzIGl0J3MgZGlzcGxheSB0aGUga2VybmVsIG5lZWRzIHRvIG1h
+bmFnZSBpdCBhbnl3YXksIGFuZCBhZGRpbmcgYQoybmQgbWFwcGluZyB3aGVuIHlvdSBwaW4vdW5w
+aW4gZm9yIHNjYW5vdXQgdXNhZ2Ugc2hvdWxkbid0IHJlYWxseSBtYXR0ZXIKKGFzIGxvbmcgYXMg
+eW91IGNhY2hlIHRoZSBtYXBwaW5nIHVudGlsIHRoZSBidWZmZXIgZ2V0cyB0aHJvd24gb3V0IG9m
+CnZyYW0pLiBNb3JlLW9yLWxlc3Mgd2hhdCB3ZSBkbyBmb3IgaTkxNSAod2hlcmUgd2UgaGF2ZSBh
+biBlbnRpcmVseQpzZXBhcmF0ZSBhZGRyZXNzIHNwYWNlIGZvciB0aGVzZSB0aGluZ3Mgd2hpY2gg
+aXMgNEcgb24gdGhlIGxhdGVzdCBjaGlwcykuCi1EYW5pZWwKLS0gCkRhbmllbCBWZXR0ZXIKU29m
+dHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCmh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBt
+YWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
