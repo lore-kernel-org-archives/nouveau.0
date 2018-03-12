@@ -1,53 +1,147 @@
-From: Lukas Wunner <lukas@wunner.de>
-Subject: Re: [PATCH v2 0/7] Modernize vga_switcheroo by using device link for
- HDA
-Date: Sun, 11 Mar 2018 16:55:49 +0100
-Message-ID: <20180311155549.GA11806@wunner.de>
-References: <cover.1520068884.git.lukas@wunner.de>
- <20180306102940.GG22212@phenom.ffwll.local>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103721] [GM107] Frequent freezes with nouveau on
+ Thinkpad P50
+Date: Mon, 12 Mar 2018 13:45:58 +0000
+Message-ID: <bug-103721-8800-pK3pU73Isd@http.bugs.freedesktop.org/>
+References: <bug-103721-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20180306102940.GG22212@phenom.ffwll.local>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, Sean Paul <seanpaul@chromium.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Gustavo Padovan <gustavo@padovan.org>, Bjorn Helgaas <bhelgaas@google.com>
-Cc: alsa-devel@alsa-project.org, Martin Lopatar <lopin@dataplex.cz>, nouveau@lists.freedesktop.org, Maik Freudenberg <hhfeuer@gmx.de>, "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, Denis Lisov <dennis.lissov@gmail.com>, dri-devel@lists.freedesktop.org, Daniel Drake <dan@reactivated.net>, Hans de Goede <hdegoede@redhat.com>, Kai-Heng Feng <kai.heng.feng@canonical.com>, Peter Wu <peter@lekensteyn.nl>, linux-pci@vger.kernel.org, Takashi Iwai <tiwai@suse.com>
+Content-Type: multipart/mixed; boundary="===============0259182609=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-103721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBNYXIgMDYsIDIwMTggYXQgMTE6Mjk6NDBBTSArMDEwMCwgRGFuaWVsIFZldHRlciB3
-cm90ZToKPiBPbiBTYXQsIE1hciAwMywgMjAxOCBhdCAxMDo1MzoyNEFNICswMTAwLCBMdWthcyBX
-dW5uZXIgd3JvdGU6Cj4gPiBNb2Rlcm5pemUgdmdhX3N3aXRjaGVyb28gYnkgdXNpbmcgYSBkZXZp
-Y2UgbGluayB0byBlbmZvcmNlIGEgcnVudGltZSBQTQo+ID4gZGVwZW5kZW5jeSBmcm9tIGFuIEhE
-QSBjb250cm9sbGVyIHRvIHRoZSBHUFUgaXQncyBpbnRlZ3JhdGVkIGludG8sIHYyLgo+ID4gCj4g
-PiBodHRwczovL2dpdGh1Yi5jb20vbDFrL2xpbnV4L2NvbW1pdHMvc3dpdGNoZXJvb19kZXZsaW5r
-X3YyCj4gCj4gVGhpcyBhbGwgbG9va3MgcmVhbGx5IHJlYXNvbmFibGUgYW5kIGxpa2UgYSBnb29k
-IGNsZWFudXAsIGJ1dCBpdCdzIGEgYml0Cj4gdG9vIG11Y2ggZGV0YWlsIHNvIEknbGwgcHVudCBy
-ZXZpZXcgdG8gc29tZW9uZSBlbHNlIHdpdGggbW9yZSBjbHVlLgoKUGF0Y2hlcyBbMy83XSB0byBb
-Ny83XSB3ZXJlIHJldmlld2VkIGJ5IFBldGVyIFd1LCB0aGUgSERBIGJpdHMgaW4KcGF0Y2ggWzUv
-N10gYWRkaXRpb25hbGx5IGJ5IFRha2FzaGkuCgpQYXRjaCBbMi83XSB3YXMgYWNrZWQgYnkgQmpv
-cm4uICBUaGVyZSB3YXMgbm8gYWNrIGZvciBwYXRjaCBbMS83XQooYXV0aG9yZWQgYnkgUmFmYWVs
-KSwgYnV0IGl0IGFkcmVzc2VkIHRoZSBvYmplY3Rpb24gQmpvcm4gcmFpc2VkCmFnYWluc3QgbXkg
-b3JpZ2luYWwgcGF0Y2gsIHNvIEknbSBhc3N1bWluZyBCam9ybiBpcyBva2F5IHdpdGggaXQuCihC
-am9ybiwgcGxlYXNlIGxldCBtZSBrbm93IGlmIHRoYXQgaXNuJ3QgdGhlIGNhc2UuKQoKVGhlIHNl
-cmllcyBoYXMgYmVlbiB0ZXN0ZWQgb24gNSBzeXN0ZW1zLCB3aGljaCByYWlzZXMgdGhlIGNvbmZp
-ZGVuY2U6CjJ4IEFNRCBQb3dlclhwcmVzcyAoTWlrZSBMb3RoaWFuLCBLYWkgSGVuZyBGZW5nKQoy
-eCBOdmlkaWEgT3B0aW11cyAoRGVuaXMgTGlzb3YsIFBldGVyIFd1KQoxeCBNYWNCb29rIFBybwoK
-VGhlIGlzc3VlcyBmb3VuZCBkdXJpbmcgUGV0ZXIgV3UncyB0aG9yb3VnaCB0ZXN0aW5nIGFwcGVh
-ciB0byBhbGwKYmUgdW5yZWxhdGVkIHRvIHRoaXMgc2VyaWVzLCBhcyBwZXIgbXkgZS1tYWlsIHll
-c3RlcmRheS4KCklmIHRoZXJlIGFyZSBubyBvYmplY3Rpb25zLCBJIHBsYW4gdG8gcHVzaCB0aGUg
-c2VyaWVzIHRvCmRybS1taXNjLW5leHQgYnkgdGhlIG1pZGRsZSBvZiB0aGUgY29taW5nIHdlZWsg
-c28gdGhhdCBpdAp3b3VsZCBzdGlsbCBjYXRjaCB0aGUgbGFzdCB0cmFpbiB0byA0LjE3LgoKVGhh
-bmtzLAoKTHVrYXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
-Cg==
+
+--===============0259182609==
+Content-Type: multipart/alternative; boundary="15208623584.BeCCCd.667"
+Content-Transfer-Encoding: 7bit
+
+
+--15208623584.BeCCCd.667
+Date: Mon, 12 Mar 2018 13:45:58 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103721
+
+--- Comment #10 from James Hewitt <james.hewitt-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I haven't seen a freeze for a while, I'm guessing that a recent kernel upda=
+te
+has resolved the freeze.
+
+Instead, I occasionally get a chrome tab going screwy with a segfault in
+nouveau:
+Mar 12 13:40:23 ibm007470 kernel: nouveau 0000:01:00.0: Xorg[2838]: Unknown
+handle 0x01c69fda
+Mar 12 13:40:23 ibm007470 kernel: nouveau 0000:01:00.0: Xorg[2838]:
+validate_init
+Mar 12 13:40:23 ibm007470 kernel: nouveau 0000:01:00.0: Xorg[2838]: validat=
+e:
+-2
+Mar 12 13:40:23 ibm007470 kernel: show_signal_msg: 6 callbacks suppressed
+Mar 12 13:40:23 ibm007470 kernel: chrome[6053]: segfault at fffff5c81b30075=
+a ip
+00007f10c41be05c sp 00007ffd499625b0 error 5 in
+libdrm_nouveau.so.2.0.0[7f10c41bb000+7000]
+
+Going to raise that with the chromium team to see if they can get more debug
+info that could address a potential underlying cause.
+
+Current kernel: Linux ibm007470 4.15.6-300.fc27.x86_64 #1 SMP Mon Feb 26
+18:43:03 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15208623584.BeCCCd.667
+Date: Mon, 12 Mar 2018 13:45:58 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM107] Frequent freezes with nouveau on Thinkpad P50"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721#c10">Comme=
+nt # 10</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM107] Frequent freezes with nouveau on Thinkpad P50"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721">bug 10372=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+james.hewitt&#64;gmail.com" title=3D"James Hewitt &lt;james.hewitt&#64;gmai=
+l.com&gt;"> <span class=3D"fn">James Hewitt</span></a>
+</span></b>
+        <pre>I haven't seen a freeze for a while, I'm guessing that a recen=
+t kernel update
+has resolved the freeze.
+
+Instead, I occasionally get a chrome tab going screwy with a segfault in
+nouveau:
+Mar 12 13:40:23 ibm007470 kernel: nouveau 0000:01:00.0: Xorg[2838]: Unknown
+handle 0x01c69fda
+Mar 12 13:40:23 ibm007470 kernel: nouveau 0000:01:00.0: Xorg[2838]:
+validate_init
+Mar 12 13:40:23 ibm007470 kernel: nouveau 0000:01:00.0: Xorg[2838]: validat=
+e:
+-2
+Mar 12 13:40:23 ibm007470 kernel: show_signal_msg: 6 callbacks suppressed
+Mar 12 13:40:23 ibm007470 kernel: chrome[6053]: segfault at fffff5c81b30075=
+a ip
+00007f10c41be05c sp 00007ffd499625b0 error 5 in
+libdrm_nouveau.so.2.0.0[7f10c41bb000+7000]
+
+Going to raise that with the chromium team to see if they can get more debug
+info that could address a potential underlying cause.
+
+Current kernel: Linux ibm007470 4.15.6-300.fc27.x86_64 #1 SMP Mon Feb 26
+18:43:03 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15208623584.BeCCCd.667--
+
+--===============0259182609==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0259182609==--
