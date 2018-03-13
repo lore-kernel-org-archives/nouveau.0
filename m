@@ -1,55 +1,74 @@
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-Subject: [PATCH] drm/nouveau/secboot: remove VLA usage
-Date: Tue, 13 Mar 2018 09:48:12 -0500
-Message-ID: <20180313144812.GA30043@embeddedgus>
+From: Felix Kuehling <felix.kuehling@amd.com>
+Subject: Re: [RFC PATCH 00/13] SVM (share virtual memory) with HMM in nouveau
+Date: Tue, 13 Mar 2018 11:32:24 -0400
+Message-ID: <689b24d0-e428-3a69-3e59-9f65bfd9b374@amd.com>
+References: <20180310032141.6096-1-jglisse@redhat.com>
+ <cae53b72-f99c-7641-8cb9-5cbe0a29b585@gmail.com>
+ <ef3d82cd-6c39-a50a-c4cb-d9d9ba13e31b@amd.com>
+ <20180313142759.GB3828@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20180313142759.GB3828@redhat.com>
+Content-Language: en-CA
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Jerome Glisse <jglisse@redhat.com>
+Cc: Ralph Campbell <rcampbell@nvidia.com>, John Hubbard <jhubbard@nvidia.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-mm@kvack.org, Evgeny Baskakov <ebaskakov@nvidia.com>, christian.koenig@amd.com
 List-Id: nouveau.vger.kernel.org
 
-In preparation to enabling -Wvla, remove VLA. In this particular
-case directly use macro NVKM_MSGQUEUE_CMDLINE_SIZE instead of local
-variable cmdline_size. Also, remove cmdline_size as it is not
-actually useful anymore.
-
-The use of stack Variable Length Arrays needs to be avoided, as they
-can be a vector for stack exhaustion, which can be both a runtime bug
-or a security flaw. Also, in general, as code evolves it is easy to
-lose track of how big a VLA can get. Thus, we can end up having runtime
-failures that are hard to debug.
-
-Also, fixed as part of the directive to remove all VLAs from
-the kernel: https://lkml.org/lkml/2018/3/7/621
-
-Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c
-index 6f10b09..2da147b 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c
-@@ -80,12 +80,12 @@ acr_ls_msgqueue_post_run(struct nvkm_msgqueue *queue,
- 			 struct nvkm_falcon *falcon, u32 addr_args)
- {
- 	struct nvkm_device *device = falcon->owner->device;
--	u32 cmdline_size = NVKM_MSGQUEUE_CMDLINE_SIZE;
--	u8 buf[cmdline_size];
-+	u8 buf[NVKM_MSGQUEUE_CMDLINE_SIZE];
- 
--	memset(buf, 0, cmdline_size);
-+	memset(buf, 0, NVKM_MSGQUEUE_CMDLINE_SIZE);
- 	nvkm_msgqueue_write_cmdline(queue, buf);
--	nvkm_falcon_load_dmem(falcon, buf, addr_args, cmdline_size, 0);
-+	nvkm_falcon_load_dmem(falcon, buf, addr_args,
-+			      NVKM_MSGQUEUE_CMDLINE_SIZE, 0);
- 	/* rearm the queue so it will wait for the init message */
- 	nvkm_msgqueue_reinit(queue);
- 
--- 
-2.7.4
+T24gMjAxOC0wMy0xMyAxMDoyOCBBTSwgSmVyb21lIEdsaXNzZSB3cm90ZToKPiBPbiBNb24sIE1h
+ciAxMiwgMjAxOCBhdCAwMjoyODo0MlBNIC0wNDAwLCBGZWxpeCBLdWVobGluZyB3cm90ZToKPj4g
+T24gMjAxOC0wMy0xMCAxMDowMSBBTSwgQ2hyaXN0aWFuIEvDtm5pZyB3cm90ZToKPj4+PiBUbyBh
+Y2NvbW9kYXRlIHRob3NlIHdlIG5lZWQgdG8KPj4+PiBjcmVhdGUgYSAiaG9sZSIgaW5zaWRlIHRo
+ZSBwcm9jZXNzIGFkZHJlc3Mgc3BhY2UuIFRoaXMgcGF0Y2hzZXQgaGF2ZQo+Pj4+IGEgaGFjayBm
+b3IgdGhhdCAocGF0Y2ggMTMgSEFDSyBGT1IgSE1NIEFSRUEpLCBpdCByZXNlcnZlcyBhIHJhbmdl
+IG9mCj4+Pj4gZGV2aWNlIGZpbGUgb2Zmc2V0IHNvIHRoYXQgcHJvY2VzcyBjYW4gbW1hcCB0aGlz
+IHJhbmdlIHdpdGggUFJPVF9OT05FCj4+Pj4gdG8gY3JlYXRlIGEgaG9sZSAocHJvY2VzcyBtdXN0
+IG1ha2Ugc3VyZSB0aGUgaG9sZSBpcyBiZWxvdyAxIDw8IDQwKS4KPj4+PiBJIGZlZWwgdW4tZWFz
+eSBvZiBkb2luZyBpdCB0aGlzIHdheSBidXQgbWF5YmUgaXQgaXMgb2sgd2l0aCBvdGhlcgo+Pj4+
+IGZvbGtzLgo+Pj4gV2VsbCB3ZSBoYXZlIGVzc2VudGlhbGx5IHRoZSBzYW1lIHByb2JsZW0gd2l0
+aCBwcmUgZ2Z4OSBBTUQgaGFyZHdhcmUuCj4+PiBGZWxpeCBtaWdodCBoYXZlIHNvbWUgYWR2aXNl
+IGhvdyBpdCB3YXMgc29sdmVkIGZvciBIU0EuIAo+PiBGb3IgcHJlLWdmeDkgaGFyZHdhcmUgd2Ug
+cmVzZXJ2ZSBhZGRyZXNzIHNwYWNlIGluIHVzZXIgbW9kZSB1c2luZyBhIGJpZwo+PiBtbWFwIFBS
+T1RfTk9ORSBjYWxsIGF0IGFwcGxpY2F0aW9uIHN0YXJ0LiBUaGVuIHdlIG1hbmFnZSB0aGUgYWRk
+cmVzcwo+PiBzcGFjZSBpbiB1c2VyIG1vZGUgYW5kIHVzZSBNQVBfRklYRUQgdG8gbWFwIGJ1ZmZl
+cnMgYXQgc3BlY2lmaWMKPj4gYWRkcmVzc2VzIHdpdGhpbiB0aGUgcmVzZXJ2ZWQgcmFuZ2UuCj4+
+Cj4+IFRoZSBiaWcgYWRkcmVzcyBzcGFjZSByZXNlcnZhdGlvbiBjYXVzZXMgaXNzdWVzIGZvciBz
+b21lIGRlYnVnZ2luZyB0b29scwo+PiAoY2xhbmctc2FuaXRpemVyIHdhcyBtZW50aW9uZWQgdG8g
+bWUpLCBzbyB3aXRoIGdmeDkgd2UncmUgZ29pbmcgdG8gZ2V0Cj4+IHJpZCBvZiB0aGlzIGFkZHJl
+c3Mgc3BhY2UgcmVzZXJ2YXRpb24uCj4gV2hhdCBkbyB5b3UgbmVlZCB0aG9zZSBtYXBwaW5nIGZv
+ciA/IFdoYXQga2luZCBvZiBvYmplY3QgKHBtNCBwYWNrZXQKPiBjb21tYW5kIGJ1ZmZlciwgR1BV
+IHNlbWFwaG9yZSB8IGZlbmNlLCAuLi4pID8gS2VybmVsIHByaXZhdGUgb2JqZWN0ID8KPiBPbiBu
+diB3ZSBuZWVkIGl0IGZvciB0aGUgbWFpbiBjb21tYW5kIGJ1ZmZlciByaW5nIHdoaWNoIHdlIGRv
+IG5vdCB3YW50Cj4gdG8gZXhwb3NlIHRvIGFwcGxpY2F0aW9uLgoKT24gcHJlLWdmeDkgaGFyZHdh
+cmUgdGhlIEdQVSB2aXJ0dWFsIGFkZHJlc3Mgc3BhY2UgaXMgbGltdGVkIHRvIDQwIGJpdHMKZm9y
+IGFsbCBoYXJkd2FyZSBibG9ja3MuIFNvIGFsbCBHUFUtYWNjZXNzaWJsZSBtZW1vcnkgbXVzdCBi
+ZSBiZWxvdyA0MC1iaXRzLgoKPiBUaHVzIGZvciBudiBncHUgd2UgbmVlZCBrZXJuZWwgdG8gbW9u
+aXRvciB0aGlzIFBST1RfTk9ORSByZWdpb24gdG8gbWFrZQo+IHN1cmUgdGhhdCBpIG5ldmVyIGdv
+dCB1bm1hcHBlZCwgcmVzaXplLCBtb3ZlIC4uLiB0aGlzIGlzIG1lIGZlYXJpbmcgYQo+IHJvZ3Vl
+IHVzZXJzcGFjZSB0aGF0IG11bm1hcCBhbmQgdHJ5IHRvIGFidXNlIHNvbWUgYnVnIGluIFNWTS9H
+UFUgZHJpdmVyCj4gdG8gYWJ1c2Ugb2JqZWN0IG1hcCBiZWhpbmQgdGhvc2UgZml4IG1hcHBpbmcu
+CgpXZSBtbWFwIFBST1RfTk9ORSBhbm9ueW1vdXMgbWVtb3J5IGFuZCB3ZSBkb24ndCBoYXZlIGFu
+eSBzYWZlZ3VhcmRzCmFnYWluc3Qgcm9ndWUgY29kZSB1bm1hcHBpbmcgaXQgb3IgbW9kaWZ5aW5n
+IHRoZSBtYXBwaW5ncy4gVGhlIHNhbWUKYXJndW1lbnQgbWFkZSBieSBKb2huIEh1YmJhcmQgYXBw
+bGllcy4gSWYgYXBwbGljYXRpb25zIG1lc3Mgd2l0aApleGlzdGluZyBtZW1vcnkgbWFwcGluZ3Ms
+IHRoZXkgYXJlIGJyb2tlbiBhbnl3YXkuIFdoeSBkbyBvdXIgbWFwcGluZ3MKbmVlZCBzcGVjaWFs
+IHByb3RlY3Rpb25zLCBidXQgYSBtYXBwaW5nIG9mIGUuZy4gbGliYyBkb2Vzbid0PwoKSW4gb3Vy
+IGNhc2UsIHdlIGRvbid0IGhhdmUgSE1NICh5ZXQpLCBzbyBpbiBtb3N0IGNhc2VzIGNoYW5naW5n
+IHRoZQptZW1vcnkgbWFwcGluZyBvbiB0aGUgQ1BVIHNpZGUgd29uJ3QgYWZmZWN0IHRoZSBHUFUg
+bWFwcGluZ3MuIFRoZQpleGNlcHRpb24gdG8gdGhhdCB3b3VsZCBiZSB1c2VycHRyIG1hcHBpbmdz
+IHdoZXJlIGEgcm9ndWUgdW5tYXAgd291bGQKdHJpZ2dlciBhbiBNTVUgbm90aWZpZXIgYW5kIHJl
+c3VsdCBpbiB1cGRhdGluZyB0aGUgR1BVIG1hcHBpbmcsIHdoaWNoCmNvdWxkIGxlYWQgdG8gYSBH
+UFUgVk0gZmF1bHQgbGF0ZXIgb24uCgpSZWdhcmRzLArCoCBGZWxpeAoKPgo+IENoZWVycywKPiBK
+w6lyw7RtZQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+ZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
