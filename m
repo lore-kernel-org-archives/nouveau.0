@@ -1,17 +1,18 @@
-From: Lukas Wunner <lukas@wunner.de>
-Subject: Re: [PATCH v2 0/7] Modernize vga_switcheroo by using device link for
- HDA
-Date: Wed, 14 Mar 2018 07:07:20 +0100
-Message-ID: <20180314060720.GA24283@wunner.de>
-References: <cover.1520068884.git.lukas@wunner.de>
- <20180306102940.GG22212@phenom.ffwll.local>
- <20180311155549.GA11806@wunner.de>
+From: Matthew Wilcox <willy@infradead.org>
+Subject: Re: [RFC PATCH 00/13] SVM (share virtual memory) with HMM in nouveau
+Date: Tue, 13 Mar 2018 06:29:40 -0700
+Message-ID: <20180313132940.GB3304@bombadil.infradead.org>
+References: <20180310032141.6096-1-jglisse@redhat.com>
+ <cae53b72-f99c-7641-8cb9-5cbe0a29b585@gmail.com>
+ <20180312173009.GN8589@phenom.ffwll.local>
+ <20180312175057.GC4214@redhat.com>
+ <39139ff7-76ad-960c-53f6-46b57525b733@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
 Content-Disposition: inline
-In-Reply-To: <20180311155549.GA11806@wunner.de>
+In-Reply-To: <39139ff7-76ad-960c-53f6-46b57525b733@nvidia.com>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
@@ -21,22 +22,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: dri-devel-bounces@lists.freedesktop.org
 Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, Sean Paul <seanpaul@chromium.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Gustavo Padovan <gustavo@padovan.org>, Bjorn Helgaas <bhelgaas@google.com>
-Cc: alsa-devel@alsa-project.org, Martin Lopatar <lopin@dataplex.cz>, nouveau@lists.freedesktop.org, Maik Freudenberg <hhfeuer@gmx.de>, "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, Denis Lisov <dennis.lissov@gmail.com>, dri-devel@lists.freedesktop.org, Daniel Drake <dan@reactivated.net>, Hans de Goede <hdegoede@redhat.com>, Kai-Heng Feng <kai.heng.feng@canonical.com>, Peter Wu <peter@lekensteyn.nl>, linux-pci@vger.kernel.org, Takashi Iwai <tiwai@suse.com>
+To: John Hubbard <jhubbard@nvidia.com>
+Cc: Ralph Campbell <rcampbell@nvidia.com>, nouveau@lists.freedesktop.org, Felix Kuehling <felix.kuehling@amd.com>, dri-devel@lists.freedesktop.org, linux-mm@kvack.org, Jerome Glisse <jglisse@redhat.com>, Evgeny Baskakov <ebaskakov@nvidia.com>, christian.koenig@amd.com
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBNYXIgMTEsIDIwMTggYXQgMDQ6NTU6NDlQTSArMDEwMCwgTHVrYXMgV3VubmVyIHdy
-b3RlOgo+ID4gT24gU2F0LCBNYXIgMDMsIDIwMTggYXQgMTA6NTM6MjRBTSArMDEwMCwgTHVrYXMg
-V3VubmVyIHdyb3RlOgo+ID4gPiBNb2Rlcm5pemUgdmdhX3N3aXRjaGVyb28gYnkgdXNpbmcgYSBk
-ZXZpY2UgbGluayB0byBlbmZvcmNlIGEgcnVudGltZSBQTQo+ID4gPiBkZXBlbmRlbmN5IGZyb20g
-YW4gSERBIGNvbnRyb2xsZXIgdG8gdGhlIEdQVSBpdCdzIGludGVncmF0ZWQgaW50bywgdjIuCj4g
-PiA+IAo+ID4gPiBodHRwczovL2dpdGh1Yi5jb20vbDFrL2xpbnV4L2NvbW1pdHMvc3dpdGNoZXJv
-b19kZXZsaW5rX3YyCj4gCj4gSWYgdGhlcmUgYXJlIG5vIG9iamVjdGlvbnMsIEkgcGxhbiB0byBw
-dXNoIHRoZSBzZXJpZXMgdG8KPiBkcm0tbWlzYy1uZXh0IGJ5IHRoZSBtaWRkbGUgb2YgdGhlIGNv
-bWluZyB3ZWVrIHNvIHRoYXQgaXQKPiB3b3VsZCBzdGlsbCBjYXRjaCB0aGUgbGFzdCB0cmFpbiB0
-byA0LjE3LgoKUHVzaGVkIHRvIGRybS1taXNjLW5leHQgbm93IHdpdGggQmpvcm4ncyBjaGFuZ2Vs
-b2cgdHdlYWsgYW5kIGFjayBmb3IKcGF0Y2ggWzEvMV0uCgpUaGFua3MgYSBsb3QgZXZlcnlvbmUg
-Zm9yIHRoZSByZXZpZXdzLCBhY2tzLCB0ZXN0aW5nICYgY29tbWVudHMuCgpMdWthcwpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGlu
-ZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+T24gTW9uLCBNYXIgMTIsIDIwMTggYXQgMTE6MTQ6NDdQTSAtMDcwMCwgSm9obiBIdWJiYXJkIHdy
+b3RlOgo+IFllcywgb24gTlZJRElBIEdQVXMsIHRoZSBIb3N0L0ZJRk8gdW5pdCBpcyBsaW1pdGVk
+IHRvIDQwLWJpdCBhZGRyZXNzZXMsIHNvCj4gdGhpbmdzIHN1Y2ggYXMgdGhlIGZvbGxvd2luZyBu
+ZWVkIHRvIGJlIGJlbG93ICgxIDw8IDQwKSwgYW5kIGFsc28gYWNjZXNzaWJsZSAKPiB0byBib3Ro
+IENQVSAodXNlciBzcGFjZSkgYW5kIEdQVSBoYXJkd2FyZS4gCj4gICAgIC0tIGNvbW1hbmQgYnVm
+ZmVycyAoQ1BVIHVzZXIgc3BhY2UgZHJpdmVyIGZpbGxzIHRoZW0sIEdQVSBjb25zdW1lcyB0aGVt
+KSwgCj4gICAgIC0tIHNlbWFwaG9yZXMgKGhlcmUsIGEgR1BVLWNlbnRyaWMgdGVybSwgcmF0aGVy
+IHRoYW4gT1MtdHlwZTogdGhlc2UgYXJlCj4gICAgICAgIG1lbW9yeSBsb2NhdGlvbnMgdGhhdCwg
+Zm9yIGV4YW1wbGUsIHRoZSBHUFUgaGFyZHdhcmUgbWlnaHQgd3JpdGUgdG8sIGluCj4gICAgICAg
+IG9yZGVyIHRvIGluZGljYXRlIHdvcmsgY29tcGxldGlvbjsgdGhlcmUgYXJlIG90aGVyIHVzZXMg
+YXMgd2VsbCksIAo+ICAgICAtLSBhIGZldyBvdGhlciB0aGluZ3MgbW9zdCBsaWtlbHkgKHRoaXMg
+aXMgbm90IGEgY29tcGxldGUgbGlzdCkuCgpJcyB0aGF0IGEgNDAtYml0IHZpcnR1YWwgYWRkcmVz
+cyBsaW1pdCBvciBwaHlzaWNhbCBhZGRyZXNzIGxpbWl0PyAgSSdtCm5vIGxvbmdlciBzdXJlIHdo
+byBpcyBhZGRyZXNzaW5nIHdoYXQgbWVtb3J5IHRocm91Z2ggd2hhdCBtZWNoYW5pc20gOy0pCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwg
+bWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
