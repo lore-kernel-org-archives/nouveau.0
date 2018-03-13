@@ -1,75 +1,46 @@
-From: Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [RFC PATCH 00/13] SVM (share virtual memory) with HMM
- in nouveau
-Date: Tue, 13 Mar 2018 11:56:46 -0400
-Message-ID: <20180313155645.GD3828@redhat.com>
-References: <20180310032141.6096-1-jglisse@redhat.com>
- <cae53b72-f99c-7641-8cb9-5cbe0a29b585@gmail.com>
- <20180312173009.GN8589@phenom.ffwll.local>
- <20180312175057.GC4214@redhat.com>
- <39139ff7-76ad-960c-53f6-46b57525b733@nvidia.com>
+From: David Laight <David.Laight@ACULAB.COM>
+Subject: RE: [PATCH] drm/nouveau/secboot: remove VLA usage
+Date: Tue, 13 Mar 2018 16:10:03 +0000
+Message-ID: <6977788dfbac4b70b54fd56310cc27fe@AcuMS.aculab.com>
+References: <20180313144812.GA30043@embeddedgus>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <39139ff7-76ad-960c-53f6-46b57525b733-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "Bridgman,
- John" <John.Bridgman-5C7GfCeVMHo@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Felix Kuehling <felix.kuehling-5C7GfCeVMHo@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Evgeny Baskakov <ebaskakov-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, christian.koenig-5C7GfCeVMHo@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20180313144812.GA30043@embeddedgus>
+Content-Language: en-US
+Sender: linux-kernel-owner@vger.kernel.org
+To: "'Gustavo A. R. Silva'" <gustavo@embeddedor.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBNYXIgMTIsIDIwMTggYXQgMTE6MTQ6NDdQTSAtMDcwMCwgSm9obiBIdWJiYXJkIHdy
-b3RlOgo+IE9uIDAzLzEyLzIwMTggMTA6NTAgQU0sIEplcm9tZSBHbGlzc2Ugd3JvdGU6CgpbLi4u
-XQoKPiBZZXMsIG9uIE5WSURJQSBHUFVzLCB0aGUgSG9zdC9GSUZPIHVuaXQgaXMgbGltaXRlZCB0
-byA0MC1iaXQgYWRkcmVzc2VzLCBzbwo+IHRoaW5ncyBzdWNoIGFzIHRoZSBmb2xsb3dpbmcgbmVl
-ZCB0byBiZSBiZWxvdyAoMSA8PCA0MCksIGFuZCBhbHNvIGFjY2Vzc2libGUgCj4gdG8gYm90aCBD
-UFUgKHVzZXIgc3BhY2UpIGFuZCBHUFUgaGFyZHdhcmUuIAo+ICAgICAtLSBjb21tYW5kIGJ1ZmZl
-cnMgKENQVSB1c2VyIHNwYWNlIGRyaXZlciBmaWxscyB0aGVtLCBHUFUgY29uc3VtZXMgdGhlbSks
-IAo+ICAgICAtLSBzZW1hcGhvcmVzIChoZXJlLCBhIEdQVS1jZW50cmljIHRlcm0sIHJhdGhlciB0
-aGFuIE9TLXR5cGU6IHRoZXNlIGFyZQo+ICAgICAgICBtZW1vcnkgbG9jYXRpb25zIHRoYXQsIGZv
-ciBleGFtcGxlLCB0aGUgR1BVIGhhcmR3YXJlIG1pZ2h0IHdyaXRlIHRvLCBpbgo+ICAgICAgICBv
-cmRlciB0byBpbmRpY2F0ZSB3b3JrIGNvbXBsZXRpb247IHRoZXJlIGFyZSBvdGhlciB1c2VzIGFz
-IHdlbGwpLCAKPiAgICAgLS0gYSBmZXcgb3RoZXIgdGhpbmdzIG1vc3QgbGlrZWx5ICh0aGlzIGlz
-IG5vdCBhIGNvbXBsZXRlIGxpc3QpLgo+IAo+IFNvIHdoYXQgSSdkIHRlbnRhdGl2ZWx5IGV4cGVj
-dCB0aGF0IHRvIHRyYW5zbGF0ZSBpbnRvIGluIHRoZSBkcml2ZXIgc3RhY2sgaXMsIAo+IGFwcHJv
-eGltYXRlbHk6Cj4gCj4gICAgIC0tIFVzZXIgc3BhY2UgZHJpdmVyIGNvZGUgbW1hcCdzIGFuIGFy
-ZWEgYmVsb3cgKDEgPDwgNDApLiBJdCdzIGhhcmQgdG8gYXZvaWQgdGhpcywKPiAgICAgICAgZ2l2
-ZW4gdGhhdCB1c2VyIHNwYWNlIG5lZWRzIGFjY2VzcyB0byB0aGUgYXJlYSAoZm9yIGZpbGxpbmcg
-b3V0IGNvbW1hbmQKPiAgICAgICAgYnVmZmVycyBhbmQgbW9uaXRvcmluZyBzZW1hcGhvcmVzLCB0
-aGF0IHNvcnQgb2YgdGhpbmcpLiBUaGVuIHN1YmFsbG9jYXRlCj4gICAgICAgIGZyb20gdGhlcmUg
-dXNpbmcgbW1hcCdzIE1BUF9GSVhFRCBvciAoZnV0dXJlLWlzaCkgTUFQX0ZJWEVEX1NBRkUgZmxh
-Z3MuCj4gCj4gICAgICAgIC4uLmdsYW5jaW5nIGF0IHRoZSBvdGhlciBmb3JrIG9mIHRoaXMgdGhy
-ZWFkLCBJIHRoaW5rIHRoYXQgaXMgZXhhY3RseSB3aGF0Cj4gICAgICAgIEZlbGl4IGlzIHNheWlu
-ZywgdG9vLiBTbyB0aGF0J3MgZ29vZC4KPiAKPiAgICAgLS0gVGhlIHVzZXIgc3BhY2UgcHJvZ3Jh
-bSBzaXRzIGFib3ZlIHRoZSB1c2VyIHNwYWNlIGRyaXZlciwgYW5kIGFsdGhvdWdoIHRoZQo+ICAg
-ICAgICBwcm9ncmFtIGNvdWxkLCBpbiB0aGVvcnksIGludGVyZmVyZSB3aXRoIHRoaXMgbW1hcCdk
-IGFyZWEsIHRoYXQgd291bGQgYmUKPiAgICAgICAgd3JvbmcgaW4gdGhlIHNhbWUgd2F5IHRoYXQg
-bXVja2luZyBhcm91bmQgd2l0aCBtYWxsb2MnZCBhcmVhcyAob3V0c2lkZSBvZgo+ICAgICAgICBt
-YWxsb2MoKSBpdHNlbGYpIGlzIHdyb25nLiBTbyBJIGRvbid0IHNlZSBhbnkgcGFydGljdWxhciBu
-ZWVkIHRvIGRvIG11Y2gKPiAgICAgICAgbW9yZSB0aGFuIHRoZSBhYm92ZS4KCkkgYW0gd29ycmll
-ZCB0aGF0IHJvZ3VlIHByb2dyYW0gKGkgYW0gbm90IHdvcnJpZWQgYWJvdXQgYnVnZ3kgcHJvZ3Jh
-bQppZiBwZW9wbGUgc2hvb3QgdGhlbXNlbGYgaW4gdGhlIGZvb3QgdGhleSBzaG91bGQgZmVlbCB0
-aGUgcGFpbikgY291bGQKdXNlIHRoYXQgdG8gYWJ1c2UgY2hhbm5lbCB0byBkbyBzb21ldGhpbmcg
-aGFybWZ1bC4gSSBhbSBub3QgZmFtaWxpYXIKZW5vdWdoIHdpdGggdGhlIGhhcmR3YXJlIHRvIGNv
-bXBsZXRlbHkgcnVsZSBvdXQgc3VjaCBzY2VuYXJpby4KCkkgZG8gYmVsaWV2ZSBoYXJkd2FyZSB3
-aXRoIHVzZXJzcGFjZSBxdWV1ZSBzdXBwb3J0IGhhdmUgdGhlIG5lY2Vzc2FyeQpib3VuZGFyeSB0
-byBrZWVwIHRoaW5nIHNlY3VyZSBhcyBpIHdvdWxkIGFzc3VtZSBmb3IgdGhvc2UgdGhlIGhhcmR3
-YXJlCmVuZ2luZWVycyBoYWQgdG8gdGFrZSBzZWN1cml0eSBpbnRvIGNvbnNpZGVyYXRpb24uCgpO
-b3RlIHRoYXQgaW4gbXkgcGF0Y2hzZXQgdGhlIGNvZGUgdGhhdCBtb25pdG9yIHRoZSBzcGVjaWFs
-IHZtYSBpcyBzbWFsbApzb21ldGhpbmcgbGlrZSAyMGxpbmVzIG9mIGNvZGUgdGhhdCBvbmx5IGdl
-dCBjYWxsIGlmIHNvbWV0aGluZyBoYXBwZW4KdG8gdGhlIHJlc2VydmVkIGFyZWEuIFNvIGkgYmVs
-aWV2ZSBpdCBpcyB3b3J0aCBoYXZpbmcgc3VjaCB0aGluZywgY29zdAppcyBsb3cgZm9yIGxpdHRs
-ZSBleHRyYSBwZWFjZSBvZiBtaW5kIDopCgpDaGVlcnMsCkrDqXLDtG1lCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+From: Gustavo A. R. Silva
+> Sent: 13 March 2018 14:48
+> In preparation to enabling -Wvla, remove VLA. In this particular
+> case directly use macro NVKM_MSGQUEUE_CMDLINE_SIZE instead of local
+> variable cmdline_size. Also, remove cmdline_size as it is not
+> actually useful anymore.
+...
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c
+> index 6f10b09..2da147b 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c
+> @@ -80,12 +80,12 @@ acr_ls_msgqueue_post_run(struct nvkm_msgqueue *queue,
+>  			 struct nvkm_falcon *falcon, u32 addr_args)
+>  {
+>  	struct nvkm_device *device = falcon->owner->device;
+> -	u32 cmdline_size = NVKM_MSGQUEUE_CMDLINE_SIZE;
+> -	u8 buf[cmdline_size];
+> +	u8 buf[NVKM_MSGQUEUE_CMDLINE_SIZE];
+> 
+> -	memset(buf, 0, cmdline_size);
+> +	memset(buf, 0, NVKM_MSGQUEUE_CMDLINE_SIZE);
+>  	nvkm_msgqueue_write_cmdline(queue, buf);
+> -	nvkm_falcon_load_dmem(falcon, buf, addr_args, cmdline_size, 0);
+> +	nvkm_falcon_load_dmem(falcon, buf, addr_args,
+> +			      NVKM_MSGQUEUE_CMDLINE_SIZE, 0);
+
+I think I'd use 'sizeof (buf)' in both those lines.
+
+	David
