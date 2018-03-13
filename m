@@ -1,58 +1,102 @@
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-Subject: [PATCH v2] drm/nouveau/secboot: remove VLA usage
-Date: Tue, 13 Mar 2018 11:24:11 -0500
-Message-ID: <20180313162411.GA1983@embeddedgus>
+From: Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: Re: [PATCH v2 1/7] PCI: Restore config space on runtime
+ resume despite being unbound
+Date: Tue, 13 Mar 2018 12:34:49 -0500
+Message-ID: <20180313173449.GA202215@bhelgaas-glaptop.roam.corp.google.com>
+References: <cover.1520068884.git.lukas@wunner.de>
+ <92fb6e6ae2730915eb733c08e2f76c6a313e3860.1520068884.git.lukas@wunner.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-Sender: linux-kernel-owner@vger.kernel.org
-To: David Laight <David.Laight@ACULAB.COM>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+In-Reply-To: <92fb6e6ae2730915eb733c08e2f76c6a313e3860.1520068884.git.lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Cc: zigarrre-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Imre Deak <imre.deak-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, "Rafael J. Wysocki" <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Denis Lisov <dennis.lissov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, Martin Lopatar <lopin-vkOr6uFwhzftwjQa/ONI9g@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org>, Raphael Doursenaud <rdoursenaud-GANU6spQydw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-In preparation to enabling -Wvla, remove VLA. In this particular
-case directly use macro NVKM_MSGQUEUE_CMDLINE_SIZE instead of local
-variable cmdline_size. Also, remove cmdline_size as it is not
-actually useful anymore.
-
-The use of stack Variable Length Arrays needs to be avoided, as they
-can be a vector for stack exhaustion, which can be both a runtime bug
-or a security flaw. Also, in general, as code evolves it is easy to
-lose track of how big a VLA can get. Thus, we can end up having runtime
-failures that are hard to debug.
-
-Also, fixed as part of the directive to remove all VLAs from
-the kernel: https://lkml.org/lkml/2018/3/7/621
-
-Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
----
-Changes in v2:
- - Use sizeof(buf) instead of NVKM_MSGQUEUE_CMDLINE_SIZE. This change
-   is based on the feedback provided by David Laight. Thanks David.
-
- drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c
-index 6f10b09..1e1f1c6 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c
-@@ -80,12 +80,11 @@ acr_ls_msgqueue_post_run(struct nvkm_msgqueue *queue,
- 			 struct nvkm_falcon *falcon, u32 addr_args)
- {
- 	struct nvkm_device *device = falcon->owner->device;
--	u32 cmdline_size = NVKM_MSGQUEUE_CMDLINE_SIZE;
--	u8 buf[cmdline_size];
-+	u8 buf[NVKM_MSGQUEUE_CMDLINE_SIZE];
- 
--	memset(buf, 0, cmdline_size);
-+	memset(buf, 0, sizeof(buf));
- 	nvkm_msgqueue_write_cmdline(queue, buf);
--	nvkm_falcon_load_dmem(falcon, buf, addr_args, cmdline_size, 0);
-+	nvkm_falcon_load_dmem(falcon, buf, addr_args, sizeof(buf), 0);
- 	/* rearm the queue so it will wait for the init message */
- 	nvkm_msgqueue_reinit(queue);
- 
--- 
-2.7.4
+T24gU2F0LCBNYXIgMDMsIDIwMTggYXQgMTA6NTM6MjRBTSArMDEwMCwgTHVrYXMgV3VubmVyIHdy
+b3RlOgo+IEZyb206IFJhZmFlbCBKLiBXeXNvY2tpIDxyandAcmp3eXNvY2tpLm5ldD4KPiAKPiBX
+ZSBsZWF2ZSBQQ0kgZGV2aWNlcyBub3QgYm91bmQgdG8gYSBkcml2ZXIgaW4gRDAgZHVyaW5nIHJ1
+bnRpbWUgc3VzcGVuZC4KPiBCdXQgdGhleSBtYXkgaGF2ZSBhIHBhcmVudCB3aGljaCBpcyBib3Vu
+ZCBhbmQgY2FuIGJlIHRyYW5zaXRpb25lZCB0bwo+IEQzY29sZCBhdCBydW50aW1lLiAgT25jZSB0
+aGUgcGFyZW50IGdvZXMgdG8gRDNjb2xkLCB0aGUgdW5ib3VuZCBjaGlsZAo+IG1heSBnbyB0byBE
+M2NvbGQgYXMgd2VsbC4gIFdoZW4gdGhlIGNoaWxkIGNvbWVzIG91dCBvZiBEM2NvbGQsIGl0cyBC
+QVJzCj4gYXJlIHVuaW5pdGlhbGl6ZWQgYW5kIHRodXMgaW5hY2Nlc3NpYmxlIHdoZW4gYSBkcml2
+ZXIgdHJpZXMgdG8gcHJvYmUuCgpUaGVyZSdzIG5vIGNsZWFyIHdheSB0byB0ZWxsIHdoZXRoZXIg
+YSBCQVIgaXMgdW5pbml0aWFsaXplZC4gIEF0CnBvd2VyLXVwLCB0aGUgd3JpdGFibGUgYml0cyB3
+aWxsIGJlIHplcm8sIHdoaWNoIGlzIGEgdmFsaWQgQkFSIHZhbHVlLgpJZiBlbmFibGVkIGluIFBD
+SV9DT01NQU5ELCB0aGUgQkFSIGlzIGFjY2Vzc2libGUgYW5kIG1heSBjb25mbGljdCB3aXRoCm90
+aGVyIGRldmljZXMuCgpQb3NzaWJsZSBhbHRlcm5hdGUgd29yZGluZzoKCiAgV2hlbiB0aGUgY2hp
+bGQgZ29lcyB0byBEM2NvbGQsIGl0cyBpbnRlcm5hbCBzdGF0ZSwgaW5jbHVkaW5nCiAgY29uZmln
+dXJhdGlvbiBvZiBCQVJzLCBNU0ksIEFTUE0sIE1QUywgZXRjLiwgaXMgbG9zdC4KCj4gTW9yZW92
+ZXIgY29uZmlndXJhdGlvbiBkb25lIGR1cmluZyBlbnVtZXJhdGlvbiwgZS5nLiBBU1BNIGFuZCBN
+UFMsIHdpbGwKPiBiZSBsb3N0Lgo+IAo+IE9uZSBleGFtcGxlIGFyZSByZWNlbnQgaHlicmlkIGdy
+YXBoaWNzIGxhcHRvcHMgd2hpY2ggY3V0IHBvd2VyIHRvIHRoZQo+IGRpc2NyZXRlIEdQVSB3aGVu
+IHRoZSByb290IHBvcnQgYWJvdmUgaXQgZ29lcyB0byBBQ1BJIHBvd2VyIHN0YXRlIEQzLgo+IFVz
+ZXJzIG1heSBwcm92b2tlIHRoaXMgYnkgdW5iaW5kaW5nIHRoZSBHUFUgZHJpdmVyIGFuZCBhbGxv
+d2luZyBydW50aW1lCj4gUE0gb24gdGhlIEdQVSB2aWEgc3lzZnM6ICBUaGUgUE0gY29yZSB3aWxs
+IHRoZW4gdHJlYXQgdGhlIEdQVSBhcwo+ICJzdXNwZW5kZWQiLCB3aGljaCBpbiB0dXJuIGFsbG93
+cyB0aGUgcm9vdCBwb3J0IHRvIHJ1bnRpbWUgc3VzcGVuZCwKPiBjYXVzaW5nIHRoZSBwb3dlciBy
+ZXNvdXJjZXMgbGlzdGVkIGluIGl0cyBfUFIzIG9iamVjdCB0byBiZSBwb3dlcmVkIG9mZi4KPiBU
+aGUgR1BVJ3MgQkFScyB3aWxsIGJlIHVuaW5pdGlhbGl6ZWQgd2hlbiBhIGRyaXZlciBsYXRlciBw
+cm9iZXMgaXQuCj4gCj4gQW5vdGhlciBleGFtcGxlIGFyZSBoeWJyaWQgZ3JhcGhpY3MgbGFwdG9w
+cyB3aGVyZSB0aGUgR1BVIGl0c2VsZiAocmF0aGVyCj4gdGhhbiB0aGUgcm9vdCBwb3J0KSBpcyBj
+YXBhYmxlIG9mIHJ1bnRpbWUgc3VzcGVuZGluZyB0byBEM2NvbGQuICBJZiB0aGUKPiBHUFUncyBp
+bnRlZ3JhdGVkIEhEQSBjb250cm9sbGVyIGlzIG5vdCBib3VuZCBhbmQgdGhlIEdQVSdzIGRyaXZl
+cgo+IGRlY2lkZXMgdG8gcnVudGltZSBzdXNwZW5kIHRvIEQzY29sZCwgdGhlIEhEQSBjb250cm9s
+bGVyJ3MgQkFScyB3aWxsIGJlCj4gdW5pbml0aWFsaXplZCB3aGVuIGEgZHJpdmVyIGxhdGVyIHBy
+b2JlcyBpdC4KPiAKPiBGaXggYnkgc2F2aW5nIGFuZCByZXN0b3JpbmcgY29uZmlnIHNwYWNlIG92
+ZXIgYSBydW50aW1lIHN1c3BlbmQgY3ljbGUKPiBldmVuIGlmIHRoZSBkZXZpY2UgaXMgbm90IGJv
+dW5kLgo+IAo+IENjOiBCam9ybiBIZWxnYWFzIDxiaGVsZ2Fhc0Bnb29nbGUuY29tPgo+IFNpZ25l
+ZC1vZmYtYnk6IFJhZmFlbCBKLiBXeXNvY2tpIDxyYWZhZWwuai53eXNvY2tpQGludGVsLmNvbT4K
+PiBbbHVrYXM6IGFkZCBjb21taXQgbWVzc2FnZSwgYmlrZXNoZWQgY29kZSBjb21tZW50cyBmb3Ig
+Y2xhcml0eV0KPiBTaWduZWQtb2ZmLWJ5OiBMdWthcyBXdW5uZXIgPGx1a2FzQHd1bm5lci5kZT4K
+CkFja2VkLWJ5OiBCam9ybiBIZWxnYWFzIDxiaGVsZ2Fhc0Bnb29nbGUuY29tPgoKPiAtLS0KPiBD
+aGFuZ2VzIHNpbmNlIHYxOgo+IC0gUmVwbGFjZSBwYXRjaCB0byB1c2UgcGNpX3NhdmVfc3RhdGUo
+KSAvIHBjaV9yZXN0b3JlX3N0YXRlKCkKPiAgIGZvciBjb25zaXN0ZW5jeSBiZXR3ZWVuIHJ1bnRp
+bWUgUE0gY29kZSBwYXRoIG9mIGJvdW5kIGFuZCB1bmJvdW5kCj4gICBkZXZpY2VzLiAoUmFmYWVs
+LCBCam9ybikKPiAKPiAgZHJpdmVycy9wY2kvcGNpLWRyaXZlci5jIHwgMTcgKysrKysrKysrKyst
+LS0tLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDExIGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0p
+Cj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL3BjaS1kcml2ZXIuYyBiL2RyaXZlcnMvcGNp
+L3BjaS1kcml2ZXIuYwo+IGluZGV4IDNiZWQ2YmVkYTA1MS4uNmE2N2NkYmQwZTZhIDEwMDY0NAo+
+IC0tLSBhL2RyaXZlcnMvcGNpL3BjaS1kcml2ZXIuYwo+ICsrKyBiL2RyaXZlcnMvcGNpL3BjaS1k
+cml2ZXIuYwo+IEBAIC0xMjI0LDExICsxMjI0LDE0IEBAIHN0YXRpYyBpbnQgcGNpX3BtX3J1bnRp
+bWVfc3VzcGVuZChzdHJ1Y3QgZGV2aWNlICpkZXYpCj4gIAlpbnQgZXJyb3I7Cj4gIAo+ICAJLyoK
+PiAtCSAqIElmIHBjaV9kZXYtPmRyaXZlciBpcyBub3Qgc2V0ICh1bmJvdW5kKSwgdGhlIGRldmlj
+ZSBzaG91bGQKPiAtCSAqIGFsd2F5cyByZW1haW4gaW4gRDAgcmVnYXJkbGVzcyBvZiB0aGUgcnVu
+dGltZSBQTSBzdGF0dXMKPiArCSAqIElmIHBjaV9kZXYtPmRyaXZlciBpcyBub3Qgc2V0ICh1bmJv
+dW5kKSwgd2UgbGVhdmUgdGhlIGRldmljZSBpbiBEMCwKPiArCSAqIGJ1dCBpdCBtYXkgZ28gdG8g
+RDNjb2xkIHdoZW4gdGhlIGJyaWRnZSBhYm92ZSBpdCBydW50aW1lIHN1c3BlbmRzLgo+ICsJICog
+U2F2ZSBpdHMgY29uZmlnIHNwYWNlIGluIGNhc2UgdGhhdCBoYXBwZW5zLgoKVGhhbmtzIGZvciB0
+aGlzIGNsYXJpZmljYXRpb24uCgo+ICAJICovCj4gLQlpZiAoIXBjaV9kZXYtPmRyaXZlcikKPiAr
+CWlmICghcGNpX2Rldi0+ZHJpdmVyKSB7Cj4gKwkJcGNpX3NhdmVfc3RhdGUocGNpX2Rldik7Cj4g
+IAkJcmV0dXJuIDA7Cj4gKwl9Cj4gIAo+ICAJaWYgKCFwbSB8fCAhcG0tPnJ1bnRpbWVfc3VzcGVu
+ZCkKPiAgCQlyZXR1cm4gLUVOT1NZUzsKPiBAQCAtMTI3NiwxNiArMTI3OSwxOCBAQCBzdGF0aWMg
+aW50IHBjaV9wbV9ydW50aW1lX3Jlc3VtZShzdHJ1Y3QgZGV2aWNlICpkZXYpCj4gIAljb25zdCBz
+dHJ1Y3QgZGV2X3BtX29wcyAqcG0gPSBkZXYtPmRyaXZlciA/IGRldi0+ZHJpdmVyLT5wbSA6IE5V
+TEw7Cj4gIAo+ICAJLyoKPiAtCSAqIElmIHBjaV9kZXYtPmRyaXZlciBpcyBub3Qgc2V0ICh1bmJv
+dW5kKSwgdGhlIGRldmljZSBzaG91bGQKPiAtCSAqIGFsd2F5cyByZW1haW4gaW4gRDAgcmVnYXJk
+bGVzcyBvZiB0aGUgcnVudGltZSBQTSBzdGF0dXMKPiArCSAqIFJlc3RvcmluZyBjb25maWcgc3Bh
+Y2UgaXMgbmVjZXNzYXJ5IGV2ZW4gaWYgdGhlIGRldmljZSBpcyBub3QgYm91bmQKPiArCSAqIHRv
+IGEgZHJpdmVyIGJlY2F1c2UgYWx0aG91Z2ggd2UgbGVmdCBpdCBpbiBEMCwgaXQgbWF5IGhhdmUg
+Z29uZSB0bwo+ICsJICogRDNjb2xkIHdoZW4gdGhlIGJyaWRnZSBhYm92ZSBpdCBydW50aW1lIHN1
+c3BlbmRlZC4KPiAgCSAqLwo+ICsJcGNpX3Jlc3RvcmVfc3RhbmRhcmRfY29uZmlnKHBjaV9kZXYp
+Owo+ICsKPiAgCWlmICghcGNpX2Rldi0+ZHJpdmVyKQo+ICAJCXJldHVybiAwOwo+ICAKPiAgCWlm
+ICghcG0gfHwgIXBtLT5ydW50aW1lX3Jlc3VtZSkKPiAgCQlyZXR1cm4gLUVOT1NZUzsKPiAgCj4g
+LQlwY2lfcmVzdG9yZV9zdGFuZGFyZF9jb25maWcocGNpX2Rldik7Cj4gIAlwY2lfZml4dXBfZGV2
+aWNlKHBjaV9maXh1cF9yZXN1bWVfZWFybHksIHBjaV9kZXYpOwo+ICAJcGNpX2VuYWJsZV93YWtl
+KHBjaV9kZXYsIFBDSV9EMCwgZmFsc2UpOwo+ICAJcGNpX2ZpeHVwX2RldmljZShwY2lfZml4dXBf
+cmVzdW1lLCBwY2lfZGV2KTsKPiAtLSAKPiAyLjE1LjEKPiAKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
