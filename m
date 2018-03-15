@@ -1,15 +1,13 @@
-From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/bl: Fix oops on driver unbind
-Date: Wed, 14 Mar 2018 12:54:52 +0100
-Message-ID: <20180314115452.GA10761@wunner.de>
-References: <5c682f35ac338efac66416b7670dc01f1ee02676.1518870434.git.lukas@wunner.de>
- <20180219093803.3bbevbvd574r7epx@pmoreau.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 105174] [GF108][Regression] Unable to handle NULL
+ pointer dereference in nouveau_mem_host since kernel 4.15.3
+Date: Thu, 15 Mar 2018 10:02:27 +0000
+Message-ID: <bug-105174-8800-ZPEyp3IJAV@http.bugs.freedesktop.org/>
+References: <bug-105174-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1194523870=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20180219093803.3bbevbvd574r7epx-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
+In-Reply-To: <bug-105174-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,34 +17,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBGZWIgMTksIDIwMTggYXQgMTA6Mzg6MDRBTSArMDEwMCwgUGllcnJlIE1vcmVhdSB3
-cm90ZToKPiBPbiAyMDE4LTAyLTE3IDEzOjQwLCBMdWthcyBXdW5uZXIgd3JvdGU6Cj4gPiBVbmJp
-bmRpbmcgbm91dmVhdSBvbiBhIGR1YWwgR1BVIE1hY0Jvb2sgUHJvIG9vcHNlcyBiZWNhdXNlIHdl
-IGl0ZXJhdGUKPiA+IG92ZXIgdGhlIGJsX2Nvbm5lY3RvcnMgbGlzdCBpbiBub3V2ZWF1X2JhY2ts
-aWdodF9leGl0KCkgYnV0IHNraXBwZWQKPiA+IGluaXRpYWxpemluZyBpdCBpbiBub3V2ZWF1X2Jh
-Y2tsaWdodF9pbml0KCkuCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
-X2JhY2tsaWdodC5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Jh
-Y2tsaWdodC5jCj4gPiBAQCAtMjY4LDEzICsyNjgsMTMgQEAgbm91dmVhdV9iYWNrbGlnaHRfaW5p
-dChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+ID4gIAlzdHJ1Y3QgbnZpZl9kZXZpY2UgKmRldmlj
-ZSA9ICZkcm0tPmNsaWVudC5kZXZpY2U7Cj4gPiAgCXN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25u
-ZWN0b3I7Cj4gPiAgCj4gPiArCUlOSVRfTElTVF9IRUFEKCZkcm0tPmJsX2Nvbm5lY3RvcnMpOwo+
-ID4gKwo+ID4gIAlpZiAoYXBwbGVfZ211eF9wcmVzZW50KCkpIHsKPiA+ICAJCU5WX0lORk8oZHJt
-LCAiQXBwbGUgR01VWCBkZXRlY3RlZDogbm90IHJlZ2lzdGVyaW5nIE5vdXZlYXUgYmFja2xpZ2h0
-IGludGVyZmFjZVxuIik7Cj4gPiAgCQlyZXR1cm4gMDsKPiA+ICAJfQo+ID4gIAo+ID4gLQlJTklU
-X0xJU1RfSEVBRCgmZHJtLT5ibF9jb25uZWN0b3JzKTsKPiA+IC0KPiAKPiBXZSBjb3VsZCBpbnN0
-ZWFkIGhhdmUgYW4gZWFybHkgcmV0dXJuIGluIHRoZSBleGl0IGZ1bmN0aW9uIGlmCj4gYGFwcGxl
-X2dtdXhfcHJlc2VudCgpYCBvciBgZHJtLT5ibF9jb25uZWN0b3JzYCBpcyBudWxsLCBidXQgeW91
-cgo+IGN1cnJlbnQgZml4IHNlZW1zIGJldHRlci4KPiAKPiBSZXZpZXdlZC1ieTogUGllcnJlIE1v
-cmVhdSA8cGllcnJlLm1vcnJvd0BmcmVlLmZyPgoKSGkgQmVuLCBqdXN0IGEgZ2VudGxlIHBpbmc6
-ICBJJ20gbm90IHNlZWluZyB0aGlzIGZpeCBvbiBvbmUgb2YgRGF2ZSdzCmJyYW5jaGVzIGFuZCBu
-ZWl0aGVyIGluIHlvdXIgR2l0SHViIHJlcG8uICBJIGNvdWxkIG1lcmdlIGl0IHRocm91Z2gKZHJt
-LW1pc2MtZml4ZXMgYnV0IEknZCBuZWVkIGFuIGFjayBmcm9tIHlvdSBmb3IgdGhhdC4gIEFsc28s
-IHBsZWFzZQpsZXQgbWUga25vdyBpZiB5b3UnZCBwcmVmZXIgdGhlIGFsdGVybmF0aXZlIHNvbHV0
-aW9uIFBpZXJyZSBvdXRsaW5lZAphYm92ZS4gIFRoYW5rcyEKCkx1a2FzCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1194523870==
+Content-Type: multipart/alternative; boundary="15211081475.c9ad4B2c.6016"
+Content-Transfer-Encoding: 7bit
+
+
+--15211081475.c9ad4B2c.6016
+Date: Thu, 15 Mar 2018 10:02:27 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105174
+
+--- Comment #13 from Philip Raets <philip.raets-CNXmb7IdZIWZIoH1IeqzKA@public.gmane.org> ---
+Created attachment 138127
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138127&action=3Dedit
+Log from patched opensuse
+
+I've installed a patched kernel for opensuse (details:
+https://bugzilla.opensuse.org/show_bug.cgi?id=3D1082308)
+
+But the problem still occurs when opening JPG's like
+https://www.dropbox.com/s/gex21o67q31aytx/PRP_5808.jpg?dl=3D0
+
+This are JPG's that I exported from Darktable
+
+attached is the error from journalctl
+
+I have to login through ssh with my phone and then I can force a reboot. (t=
+he
+graphics freeze, only the cursor is working)
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15211081475.c9ad4B2c.6016
+Date: Thu, 15 Mar 2018 10:02:27 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GF108][Regression] Unable to handle NULL pointer derefer=
+ence in nouveau_mem_host since kernel 4.15.3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174#c13">Comme=
+nt # 13</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GF108][Regression] Unable to handle NULL pointer derefer=
+ence in nouveau_mem_host since kernel 4.15.3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174">bug 10517=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+philip.raets&#64;telenet.be" title=3D"Philip Raets &lt;philip.raets&#64;tel=
+enet.be&gt;"> <span class=3D"fn">Philip Raets</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138127=
+" name=3D"attach_138127" title=3D"Log from patched opensuse">attachment 138=
+127</a> <a href=3D"attachment.cgi?id=3D138127&amp;action=3Dedit" title=3D"L=
+og from patched opensuse">[details]</a></span>
+Log from patched opensuse
+
+I've installed a patched kernel for opensuse (details:
+<a href=3D"https://bugzilla.opensuse.org/show_bug.cgi?id=3D1082308">https:/=
+/bugzilla.opensuse.org/show_bug.cgi?id=3D1082308</a>)
+
+But the problem still occurs when opening JPG's like
+<a href=3D"https://www.dropbox.com/s/gex21o67q31aytx/PRP_5808.jpg?dl=3D0">h=
+ttps://www.dropbox.com/s/gex21o67q31aytx/PRP_5808.jpg?dl=3D0</a>
+
+This are JPG's that I exported from Darktable
+
+attached is the error from journalctl
+
+I have to login through ssh with my phone and then I can force a reboot. (t=
+he
+graphics freeze, only the cursor is working)</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15211081475.c9ad4B2c.6016--
+
+--===============1194523870==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1194523870==--
