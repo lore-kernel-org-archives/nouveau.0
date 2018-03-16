@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105525] Freeze when playing videos in WebKit
-Date: Thu, 15 Mar 2018 16:44:31 +0000
-Message-ID: <bug-105525-8800-b4BK6PxBdz@http.bugs.freedesktop.org/>
-References: <bug-105525-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/bl: Fix oops on driver unbind
+Date: Fri, 16 Mar 2018 11:57:32 +1000
+Message-ID: <CACAvsv6aqOzNHSCqm2T2bm0daKcdz=aT_kG_3C82N9C7BbDgBw@mail.gmail.com>
+References: <5c682f35ac338efac66416b7670dc01f1ee02676.1518870434.git.lukas@wunner.de>
+ <20180219093803.3bbevbvd574r7epx@pmoreau.org>
+ <20180314115452.GA10761@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0968478324=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105525-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20180314115452.GA10761-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,93 +19,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0968478324==
-Content-Type: multipart/alternative; boundary="15211322710.5Ada4739.27009"
-Content-Transfer-Encoding: 7bit
-
-
---15211322710.5Ada4739.27009
-Date: Thu, 15 Mar 2018 16:44:31 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105525
-
---- Comment #1 from Link Dupont <link.dupont-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 138135
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138135&action=3Dedit
-kernel logs
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15211322710.5Ada4739.27009
-Date: Thu, 15 Mar 2018 16:44:31 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Freeze when playing videos in WebKit"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105525#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Freeze when playing videos in WebKit"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105525">bug 10552=
-5</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-link.dupont&#64;gmail.com" title=3D"Link Dupont &lt;link.dupont&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Link Dupont</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138135=
-" name=3D"attach_138135" title=3D"kernel logs">attachment 138135</a> <a hre=
-f=3D"attachment.cgi?id=3D138135&amp;action=3Dedit" title=3D"kernel logs">[d=
-etails]</a></span>
-kernel logs</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15211322710.5Ada4739.27009--
-
---===============0968478324==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0968478324==--
+T24gMTQgTWFyY2ggMjAxOCBhdCAyMTo1NCwgTHVrYXMgV3VubmVyIDxsdWthc0B3dW5uZXIuZGU+
+IHdyb3RlOgo+IE9uIE1vbiwgRmViIDE5LCAyMDE4IGF0IDEwOjM4OjA0QU0gKzAxMDAsIFBpZXJy
+ZSBNb3JlYXUgd3JvdGU6Cj4+IE9uIDIwMTgtMDItMTcgMTM6NDAsIEx1a2FzIFd1bm5lciB3cm90
+ZToKPj4gPiBVbmJpbmRpbmcgbm91dmVhdSBvbiBhIGR1YWwgR1BVIE1hY0Jvb2sgUHJvIG9vcHNl
+cyBiZWNhdXNlIHdlIGl0ZXJhdGUKPj4gPiBvdmVyIHRoZSBibF9jb25uZWN0b3JzIGxpc3QgaW4g
+bm91dmVhdV9iYWNrbGlnaHRfZXhpdCgpIGJ1dCBza2lwcGVkCj4+ID4gaW5pdGlhbGl6aW5nIGl0
+IGluIG5vdXZlYXVfYmFja2xpZ2h0X2luaXQoKS4KPj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jCj4+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9iYWNrbGlnaHQuYwo+PiA+IEBAIC0yNjgsMTMgKzI2OCwxMyBAQCBub3V2
+ZWF1X2JhY2tsaWdodF9pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCj4+ID4gICAgIHN0cnVj
+dCBudmlmX2RldmljZSAqZGV2aWNlID0gJmRybS0+Y2xpZW50LmRldmljZTsKPj4gPiAgICAgc3Ry
+dWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcjsKPj4gPgo+PiA+ICsgICBJTklUX0xJU1RfSEVB
+RCgmZHJtLT5ibF9jb25uZWN0b3JzKTsKPj4gPiArCj4+ID4gICAgIGlmIChhcHBsZV9nbXV4X3By
+ZXNlbnQoKSkgewo+PiA+ICAgICAgICAgICAgIE5WX0lORk8oZHJtLCAiQXBwbGUgR01VWCBkZXRl
+Y3RlZDogbm90IHJlZ2lzdGVyaW5nIE5vdXZlYXUgYmFja2xpZ2h0IGludGVyZmFjZVxuIik7Cj4+
+ID4gICAgICAgICAgICAgcmV0dXJuIDA7Cj4+ID4gICAgIH0KPj4gPgo+PiA+IC0gICBJTklUX0xJ
+U1RfSEVBRCgmZHJtLT5ibF9jb25uZWN0b3JzKTsKPj4gPiAtCj4+Cj4+IFdlIGNvdWxkIGluc3Rl
+YWQgaGF2ZSBhbiBlYXJseSByZXR1cm4gaW4gdGhlIGV4aXQgZnVuY3Rpb24gaWYKPj4gYGFwcGxl
+X2dtdXhfcHJlc2VudCgpYCBvciBgZHJtLT5ibF9jb25uZWN0b3JzYCBpcyBudWxsLCBidXQgeW91
+cgo+PiBjdXJyZW50IGZpeCBzZWVtcyBiZXR0ZXIuCj4+Cj4+IFJldmlld2VkLWJ5OiBQaWVycmUg
+TW9yZWF1IDxwaWVycmUubW9ycm93QGZyZWUuZnI+Cj4KPiBIaSBCZW4sIGp1c3QgYSBnZW50bGUg
+cGluZzogIEknbSBub3Qgc2VlaW5nIHRoaXMgZml4IG9uIG9uZSBvZiBEYXZlJ3MKPiBicmFuY2hl
+cyBhbmQgbmVpdGhlciBpbiB5b3VyIEdpdEh1YiByZXBvLiAgSSBjb3VsZCBtZXJnZSBpdCB0aHJv
+dWdoCj4gZHJtLW1pc2MtZml4ZXMgYnV0IEknZCBuZWVkIGFuIGFjayBmcm9tIHlvdSBmb3IgdGhh
+dC4gIEFsc28sIHBsZWFzZQo+IGxldCBtZSBrbm93IGlmIHlvdSdkIHByZWZlciB0aGUgYWx0ZXJu
+YXRpdmUgc29sdXRpb24gUGllcnJlIG91dGxpbmVkCj4gYWJvdmUuICBUaGFua3MhClRoYW5rcyBm
+b3IgdGhlIHBpbmchICBJJ3ZlIHBpY2tlZCB1cCB0aGUgcGF0Y2ggaW4gbXkgdHJlZSwgYW5kCmZv
+cndhcmRlZCBhIC1maXhlcyBvbnRvIERhdmUuCgpCZW4uCgo+Cj4gTHVrYXMKPiBfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBs
+aXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
