@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105173] [MCP79][Regression] Unhandled NULL pointer
- dereference in nvkm_object_unmap since kernel 4.15
+Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
 Date: Sat, 17 Mar 2018 15:15:57 +0000
-Message-ID: <bug-105173-8800-ZIXGJwMyHX@http.bugs.freedesktop.org/>
-References: <bug-105173-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-105319-8800-a5QitfKVCU@http.bugs.freedesktop.org/>
+References: <bug-105319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1575725718=="
+Content-Type: multipart/mixed; boundary="===============1869761570=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105173-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1575725718==
-Content-Type: multipart/alternative; boundary="15212997572.8CbEe.31594"
+--===============1869761570==
+Content-Type: multipart/alternative; boundary="15212997574.4f2B8a992.31594"
 Content-Transfer-Encoding: 7bit
 
 
---15212997572.8CbEe.31594
+--15212997574.4f2B8a992.31594
 Date: Sat, 17 Mar 2018 15:15:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
@@ -34,20 +33,20 @@ Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105173
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
 
 S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
            See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=3D105319
+                   |                            |g/show_bug.cgi?id=3D105173
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15212997572.8CbEe.31594
+--15212997574.4f2B8a992.31594
 Date: Sat, 17 Mar 2018 15:15:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -64,11 +63,10 @@ Auto-Submitted: auto-generated
  <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [MCP79][Regression] Unhandled NULL pointer der=
-eference in nvkm_object_unmap since kernel 4.15"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105173">bug 10517=
-3</a>
+          bz_status_NEW "
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
+9</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -82,7 +80,7 @@ eference in nvkm_object_unmap since kernel 4.15"
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D105173
            </td>
          </tr></table>
       <p>
@@ -98,9 +96,9 @@ eference in nvkm_object_unmap since kernel 4.15"
     </body>
 </html>=
 
---15212997572.8CbEe.31594--
+--15212997574.4f2B8a992.31594--
 
---===============1575725718==
+--===============1869761570==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1575725718==--
+--===============1869761570==--
