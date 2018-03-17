@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101665] lspci blocks forever with a GP107M
-Date: Sat, 17 Mar 2018 02:39:40 +0000
-Message-ID: <bug-101665-8800-W8VnPGIdO8@http.bugs.freedesktop.org/>
-References: <bug-101665-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/bl: Fix oops on driver unbind
+Date: Sat, 17 Mar 2018 12:07:40 +0100
+Message-ID: <20180317110740.GA3109@wunner.de>
+References: <5c682f35ac338efac66416b7670dc01f1ee02676.1518870434.git.lukas@wunner.de>
+ <20180219093803.3bbevbvd574r7epx@pmoreau.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1047839826=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20180219093803.3bbevbvd574r7epx-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,91 +19,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1047839826==
-Content-Type: multipart/alternative; boundary="15212543811.B7eeF707.24248"
-Content-Transfer-Encoding: 7bit
-
-
---15212543811.B7eeF707.24248
-Date: Sat, 17 Mar 2018 02:39:41 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101665
-
---- Comment #11 from Etienne URBAH <eurbah-GANU6spQydw@public.gmane.org> ---
-With Linux kernel 4.16.0-041600rc5 from
-http://kernel.ubuntu.com/~kernel-ppa/mainline, 'lspci' systematically fails=
- to
-answer, and makes the whole machine freeze after some time.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15212543811.B7eeF707.24248
-Date: Sat, 17 Mar 2018 02:39:41 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - lspci blocks forever with a GP107M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665#c11">Comme=
-nt # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - lspci blocks forever with a GP107M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665">bug 10166=
-5</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-eurbah&#64;free.fr" title=3D"Etienne URBAH &lt;eurbah&#64;free.fr&gt;"> <sp=
-an class=3D"fn">Etienne URBAH</span></a>
-</span></b>
-        <pre>With Linux kernel 4.16.0-041600rc5 from
-<a href=3D"http://kernel.ubuntu.com/~kernel-ppa/mainline">http://kernel.ubu=
-ntu.com/~kernel-ppa/mainline</a>, 'lspci' systematically fails to
-answer, and makes the whole machine freeze after some time.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15212543811.B7eeF707.24248--
-
---===============1047839826==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1047839826==--
+T24gTW9uLCBGZWIgMTksIDIwMTggYXQgMTA6Mzg6MDRBTSArMDEwMCwgUGllcnJlIE1vcmVhdSB3
+cm90ZToKPiBNeSBiYWQ7IEkgZGlkIHRlc3Qgc3VzcGVuZC9yZXN1bWUsIGJ1dCBub3QgdW5iaW5k
+aW5nLiBTaG91bGRuPz8/dCB0aGF0Cj4gaGFwcGVuIG9uIHNodXRkb3duIGFzIHdlbGwsIGFzIHRo
+ZSBkcml2ZXIgZ2V0cyB1bmxvYWRlZD8gSSBkb24/Pz90IHJlbWVtYmVyCj4gc2VlaW5nIHRoYXQg
+aXNzdWUgdGhlcmUgdGhvdWdoLgoKU29ycnkgUGllcnJlLCBJIG1pc3NlZCB0aGlzIHF1ZXN0aW9u
+IGFuZCBhbSBzZWVpbmcgaXQgb25seSBub3cgb24Kc2F2aW5nIHRoZSBtZXNzYWdlIGF3YXk6CgpP
+biBzaHV0ZG93biB0aGUgZHJpdmVyIGlzbid0IHVubG9hZGVkLCByYXRoZXIgdGhlIGRyaXZlciBj
+b3JlIHdhbGtzCnRoZSBkZXZpY2UgaGllcmFyY2h5IGJvdHRvbS11cCBpbiBkZXZpY2Vfc2h1dGRv
+d24oKSBhbmQsIGZvciBQQ0ktCmVudW1lcmF0ZWQgR1BVcywgaW52b2tlcyB0aGUgYnVzIHNodXRk
+b3duIGhvb2sgcGNpX2RldmljZV9zaHV0ZG93bigpLgpUaGlzIGluIHR1cm4gd291bGQgbm9ybWFs
+bHkgaW52b2tlIC0+c2h1dGRvd24gaW4gbm91dmVhdV9kcm1fcGNpX2RyaXZlciwKYnV0IHdlIGhh
+dmVuJ3QgZGVmaW5lZCBpdC4gIFNvIHRoZSBvbmx5IHRoaW5nIHRoYXQgaGFwcGVucyBpcyB0aGF0
+CnBjaV9kZXZpY2Vfc2h1dGRvd24oKSBydW50aW1lIHJlc3VtZXMgdGhlIGRldmljZSBhbmQgb3B0
+aW9uYWxseSB0dXJucwpvZmYgYnVzbWFzdGVyaW5nIGlmIGEga2V4ZWMga2VybmVsIGlzIGdvaW5n
+IHRvIGJlIGxvYWRlZC4KClNvIHRoYXQncyBtb3N0bHkgZmluZSwgdGhlIG9ubHkgc2lsbHkgdGhp
+bmcgaXMgdGhhdCB3ZSBzaG91bGRuJ3QKcnVudGltZSByZXN1bWUgdGhlIEdQVSBpZiBpdCdzIHJ1
+bnRpbWUgc3VzcGVuZGVkLCBvbmx5IHRvIHR1cm4gb2ZmCnBvd2VyIGltbWVkaWF0ZWx5IGFmdGVy
+d2FyZHMuICBJIHN1Ym1pdHRlZCBhIHBhdGNoIHRvIHRoZSBQQ0kKc3Vic3lzdGVtIGEgd2hpbGUg
+YWdvIGJ1dCBpdCB3YXMgcmVjZWl2ZWQgd2l0aCBzb21lIHNrZXB0aWNpc20sCkknbGwgaGF2ZSB0
+byByZXNwaW4gaXQgb25lIG9mIHRoZXNlIGRheXMgb3IgY29tZSB1cCB3aXRoIGEgYmV0dGVyCnNv
+bHV0aW9uOgpodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3BhdGNoLzkzMzc1NTMvCgpUaGFu
+a3MsCgpMdWthcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
