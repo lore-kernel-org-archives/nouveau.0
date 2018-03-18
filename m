@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70390] [NV84] Repeated system crashes under graphics
- load, E[PFIFO] DMA_PUSHER 0x00406040 and lots of E[PGRAPH]
-Date: Sun, 18 Mar 2018 20:25:10 +0000
-Message-ID: <bug-70390-8800-IALxGZP4BU@http.bugs.freedesktop.org/>
-References: <bug-70390-8800@http.bugs.freedesktop.org/>
+From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/bl: Fix oops on driver unbind
+Date: Sun, 18 Mar 2018 21:48:02 +0100
+Message-ID: <20180318204802.iagtt2d5gpsfpojo@pmoreau.org>
+References: <5c682f35ac338efac66416b7670dc01f1ee02676.1518870434.git.lukas@wunner.de>
+ <20180219093803.3bbevbvd574r7epx@pmoreau.org>
+ <20180317110740.GA3109@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0646245192=="
+Content-Type: multipart/mixed; boundary="===============0412928434=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70390-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20180317110740.GA3109-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,152 +18,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 
---===============0646245192==
-Content-Type: multipart/alternative; boundary="15214047100.4A6FF17.23320"
-Content-Transfer-Encoding: 7bit
+--===============0412928434==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="vr6sspoymkgthcrl"
+Content-Disposition: inline
 
 
---15214047100.4A6FF17.23320
-Date: Sun, 18 Mar 2018 20:25:10 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+--vr6sspoymkgthcrl
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D70390
+Hey Lukas,
 
---- Comment #24 from Carsten Pfeiffer <pfeiffer-RoXCvvDuEio@public.gmane.org> ---
-Not sure if this is the same issue, since my system stays alive (only the j=
-ava
-process terminates) and the command is 00400040 in my case:
+> Sorry Pierre, I missed this question and am seeing it only now on
+> saving the message away:
 
-nouveau 0000:01:00.0: gr: DATA_ERROR 0000000d [BEGIN_END_ACTIVE]
-nouveau 0000:01:00.0: gr: 00100000 [] ch 7 [003f7c3000 java[27397]] subc 3
-class 8597 mthd 12e4 data 00000000
-[...]
-nouveau 0000:01:00.0: gr: DATA_ERROR 0000000d [BEGIN_END_ACTIVE]
-nouveau 0000:01:00.0: gr: 00100000 [] ch 7 [003f7c3000 java[27397]] subc 3
-class 8597 mthd 1510 data 00000000
-nouveau 0000:01:00.0: fifo: DMA_PUSHER - ch 7 [java[27397]] get 0020198ff8 =
-put
-0020213390 ib_get 000002ae ib_put 000002b5 state 80007641 (err: INVALID_CMD)
-push 00400040
-nouveau 0000:01:00.0: fifo: DMA_PUSHER - ch 7 [java[27397]] get 002001aff4 =
-put
-0020094fd4 ib_get 000002b1 ib_put 000002b5 state 80007641 (err: INVALID_CMD)
-push 00400040
-nouveau 0000:01:00.0: fifo: DMA_PUSHER - ch 7 [java[27397]] get 002001aff4 =
-put
-0020094fd4 ib_get 000002b4 ib_put 000002b5 state 80007641 (err: INVALID_CMD)
-push 00400040
-nouveau 0000:01:00.0: fifo: DMA_PUSHER - ch 7 [java[27397]] get 0020115b4c =
-put
-0020193068 ib_get 000002b7 ib_put 000002b8 state 80007ac8 (err: INVALID_CMD)
-push 00400040
-nouveau 0000:01:00.0: gr: DATA_ERROR 00000005 [INVALID_ENUM]
-nouveau 0000:01:00.0: gr: 00100000 [] ch 7 [003f7c3000 java[27397]] subc 3
-class 8597 mthd 1ac4 data 06360150
-nouveau 0000:01:00.0: fifo: DMA_PUSHER - ch 7 [java[27397]] get 00201c0fa8 =
-put
-0020214e24 ib_get 000002b9 ib_put 000002ba state 80007641 (err: INVALID_CMD)
-push 00400040
-nouveau 0000:01:00.0: java[27397]: failed to idle channel 7 [java[27397]]
+No worries, and thank you for the great explanation! I=E2=80=99ll definitel=
+y make a
+mental note to try unloading Nouveau, whenever writing/testing similar patc=
+hes.
 
-Very easily reproduceable with sweethome3d.
+Thanks,
+Pierre
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+--vr6sspoymkgthcrl
+Content-Type: application/pgp-signature; name="signature.asc"
 
---15214047100.4A6FF17.23320
-Date: Sun, 18 Mar 2018 20:25:10 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+-----BEGIN PGP SIGNATURE-----
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV84] Repeated system crashes under graphics load, E[PFI=
-FO] DMA_PUSHER 0x00406040 and lots of E[PGRAPH]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70390#c24">Commen=
-t # 24</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV84] Repeated system crashes under graphics load, E[PFI=
-FO] DMA_PUSHER 0x00406040 and lots of E[PGRAPH]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70390">bug 70390<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pfeiffer&#64;kde.org" title=3D"Carsten Pfeiffer &lt;pfeiffer&#64;kde.org&gt=
-;"> <span class=3D"fn">Carsten Pfeiffer</span></a>
-</span></b>
-        <pre>Not sure if this is the same issue, since my system stays aliv=
-e (only the java
-process terminates) and the command is 00400040 in my case:
+iQIzBAABCgAdFiEEuCp/qmebDh5BvKefO2dY27124hoFAlqu0IIACgkQO2dY2712
+4hrPIRAAjgwrIbgUm3KeM8TABpXKwKctcaULyXXpIvJ8IHpA+YGV/Csl291p8f0P
+k0Ljj4u9T+CSYHUNnrjRwcbpcJugO6Ha6/ZCxprEQ26sFAt8m3+yKGbsaKbctTGs
+1PPLNcnmMcNyZJMEh55dRYOseLssIoPmnkfSOi0Orgkw6+6lGPu9tcoX+52QY7nc
+s1mq6b4KqE9PXrQzQjQvmXvYpp8m/tLoL1RNptwHcFIzlQHovXzsgfwA7GiNLRbm
+dgBddEEnZmoHoNg1an4wEZiZxOQvQPJPb6HhNpcB2sG9ldZGv5BMd06Idgqm4rim
+l5ahRbDGJ+QcR897z/lsKuw2nH57DTnnd/EsdOBCRCMADNz6d4/zyry6Cb5eww2P
+SYMu5p6gZddivvD4XNVZlrmf8WwuibvCvv6FrQ3lLzvv1tUEwaGbMcOKvz7uHn4w
+pAptU6T48hBbrhL0qs1fNavZ/4dRf0zbsDMRJNC8+TRM9MAagC44cScHM9y5x+Lg
+KOY+6YrbzsHDPQqI2Li/1xuxdGHw1ERlcsDTzqGPTHeYi6k1LmLtKP5IxyjRfWfG
+RCnjeSxVkGpuoHvLRDfMMVfmaxgZCRV694F+I5LIkTapMWspEr96YNewTGtLQmSo
+78rFgoLVWHQ4uaC26qe9QH1A6Gl4XZ7R8FsgZ3skCeYOEYunF5M=
+=KWdl
+-----END PGP SIGNATURE-----
 
-nouveau 0000:01:00.0: gr: DATA_ERROR 0000000d [BEGIN_END_ACTIVE]
-nouveau 0000:01:00.0: gr: 00100000 [] ch 7 [003f7c3000 java[27397]] subc 3
-class 8597 mthd 12e4 data 00000000
-[...]
-nouveau 0000:01:00.0: gr: DATA_ERROR 0000000d [BEGIN_END_ACTIVE]
-nouveau 0000:01:00.0: gr: 00100000 [] ch 7 [003f7c3000 java[27397]] subc 3
-class 8597 mthd 1510 data 00000000
-nouveau 0000:01:00.0: fifo: DMA_PUSHER - ch 7 [java[27397]] get 0020198ff8 =
-put
-0020213390 ib_get 000002ae ib_put 000002b5 state 80007641 (err: INVALID_CMD)
-push 00400040
-nouveau 0000:01:00.0: fifo: DMA_PUSHER - ch 7 [java[27397]] get 002001aff4 =
-put
-0020094fd4 ib_get 000002b1 ib_put 000002b5 state 80007641 (err: INVALID_CMD)
-push 00400040
-nouveau 0000:01:00.0: fifo: DMA_PUSHER - ch 7 [java[27397]] get 002001aff4 =
-put
-0020094fd4 ib_get 000002b4 ib_put 000002b5 state 80007641 (err: INVALID_CMD)
-push 00400040
-nouveau 0000:01:00.0: fifo: DMA_PUSHER - ch 7 [java[27397]] get 0020115b4c =
-put
-0020193068 ib_get 000002b7 ib_put 000002b8 state 80007ac8 (err: INVALID_CMD)
-push 00400040
-nouveau 0000:01:00.0: gr: DATA_ERROR 00000005 [INVALID_ENUM]
-nouveau 0000:01:00.0: gr: 00100000 [] ch 7 [003f7c3000 java[27397]] subc 3
-class 8597 mthd 1ac4 data 06360150
-nouveau 0000:01:00.0: fifo: DMA_PUSHER - ch 7 [java[27397]] get 00201c0fa8 =
-put
-0020214e24 ib_get 000002b9 ib_put 000002ba state 80007641 (err: INVALID_CMD)
-push 00400040
-nouveau 0000:01:00.0: java[27397]: failed to idle channel 7 [java[27397]]
+--vr6sspoymkgthcrl--
 
-Very easily reproduceable with sweethome3d.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15214047100.4A6FF17.23320--
-
---===============0646245192==
+--===============0412928434==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -172,4 +79,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0646245192==--
+--===============0412928434==--
