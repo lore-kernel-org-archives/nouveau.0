@@ -1,110 +1,76 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105173] [MCP79][Regression] Unhandled NULL pointer
- dereference in nvkm_object_unmap since kernel 4.15
-Date: Sun, 18 Mar 2018 19:19:27 +0000
-Message-ID: <bug-105173-8800-D0OMykGxXp@http.bugs.freedesktop.org/>
-References: <bug-105173-8800@http.bugs.freedesktop.org/>
+From: "Luis R. Rodriguez" <mcgrof@kernel.org>
+Subject: WARNING: CPU: 5 PID: 74 at
+ ../drivers/gpu/drm/nouveau/include/nvkm/subdev/i2c.h:170
+ nvkm_dp_enable+0xbe/0x140 [nouveau]
+Date: Sun, 18 Mar 2018 20:16:08 +0000
+Message-ID: <20180318201608.GC4449@wotan.suse.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1964214156=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105173-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: bskeggs@redhat.com, airlied@linux.ie
+Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1964214156==
-Content-Type: multipart/alternative; boundary="15214007670.efcd.31837"
-Content-Transfer-Encoding: 7bit
-
-
---15214007670.efcd.31837
-Date: Sun, 18 Mar 2018 19:19:27 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105173
-
---- Comment #20 from Nick Lee <nvlbox-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Pierre Moreau from comment #16)
-
-
-Pierre, Maris thank you!
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15214007670.efcd.31837
-Date: Sun, 18 Mar 2018 19:19:27 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [MCP79][Regression] Unhandled NULL pointer der=
-eference in nvkm_object_unmap since kernel 4.15"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105173#c20">Comme=
-nt # 20</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [MCP79][Regression] Unhandled NULL pointer der=
-eference in nvkm_object_unmap since kernel 4.15"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105173">bug 10517=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-nvlbox&#64;gmail.com" title=3D"Nick Lee &lt;nvlbox&#64;gmail.com&gt;"> <spa=
-n class=3D"fn">Nick Lee</span></a>
-</span></b>
-        <pre>(In reply to Pierre Moreau from <a href=3D"show_bug.cgi?id=3D1=
-05173#c16">comment #16</a>)
-
-
-Pierre, Maris thank you!</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15214007670.efcd.31837--
-
---===============1964214156==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1964214156==--
+CkkgaGF2ZSBiZWVuIGdldHRpbmcgdGhlIGZvbGxvd2luZyBzcGxhdCBmb3IgIHdoaWxlIG5vdywg
+Z3Vlc3MgaXRzIHRpbWUgdG8KcmVwb3J0LCB0aGlzIGlzIG9uIDQuMTUuOC0xLWRlZmF1bHQgKE9w
+ZW5TVVNFIFR1bWJsZXdlZWQpLiBJIGNvdWxkIHRyeQphIG1vcmUgdXAgdG8gZGF0ZSBrZXJuZWwg
+aWYgd2UgdGhpbmsgdGhpcyBjYW4gYmUgZml4ZWQuCgpNYXIgMTYgMTY6NDg6MTggb2xnYSBrZXJu
+ZWw6IGt2bTogU01QIHZtIGNyZWF0ZWQgb24gaG9zdCB3aXRoIHVuc3RhYmxlIFRTQzsgZ3Vlc3Qg
+VFNDIHdpbGwgbm90IGJlIHJlbGlhYmxlCk1hciAxNiAxODoyODo1OSBvbGdhIGtlcm5lbDogV0FS
+TklORzogQ1BVOiA1IFBJRDogNzQgYXQgLi4vZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVk
+ZS9udmttL3N1YmRldi9pMmMuaDoxNzAgbnZrbV9kcF9lbmFibGUrMHhiZS8weDE0MCBbbm91dmVh
+dV0KTWFyIDE2IDE4OjI4OjU5IG9sZ2Ega2VybmVsOiBNb2R1bGVzIGxpbmtlZCBpbjogaXB0X01B
+U1FVRVJBREUgbmZfbmF0X21hc3F1ZXJhZGVfaXB2NCBpcHRhYmxlX25hdCBuZl9jb25udHJhY2tf
+aXB2NCBuZl9kZWZyYWdfaXB2NCBuZl9uYXRfaXB2NCBuZl9uYXQgbmZfY29ubnRyYWNrIGxpYmNy
+YzMyYyBpcHRhYmxlX2ZpbHRlciBpcApNYXIgMTYgMTg6Mjg6NTkgb2xnYSBrZXJuZWw6ICBpMmNf
+YWxnb19iaXQgZHJtX2ttc19oZWxwZXIgc3lzY29weWFyZWEgc3lzZmlsbHJlY3Qgc3lzaW1nYmx0
+IGZiX3N5c19mb3BzIHhoY2lfaGNkIGVoY2lfaGNkIHNyX21vZCB0dG0gY2Ryb20gdXNiY29yZSBh
+dGFfZ2VuZXJpYyBkcm0gd21pIGJ1dHRvbiBzZyBkbV9tdWx0aXBhdGggCk1hciAxNiAxODoyODo1
+OSBvbGdhIGtlcm5lbDogQ1BVOiA1IFBJRDogNzQgQ29tbToga3dvcmtlci81OjEgTm90IHRhaW50
+ZWQgNC4xNS44LTEtZGVmYXVsdCAjMQpNYXIgMTYgMTg6Mjg6NTkgb2xnYSBrZXJuZWw6IEhhcmR3
+YXJlIG5hbWU6IERlbGwgSW5jLiBQcmVjaXNpb24gVDM2MTAvMDlNOFk4LCBCSU9TIEEwMyAwOS8w
+NS8yMDEzCk1hciAxNiAxODoyODo1OSBvbGdhIGtlcm5lbDogV29ya3F1ZXVlOiBldmVudHMgbnZr
+bV9ub3RpZnlfd29yayBbbm91dmVhdV0KTWFyIDE2IDE4OjI4OjU5IG9sZ2Ega2VybmVsOiBSSVA6
+IDAwMTA6bnZrbV9kcF9lbmFibGUrMHhiZS8weDE0MCBbbm91dmVhdV0KTWFyIDE2IDE4OjI4OjU5
+IG9sZ2Ega2VybmVsOiBSU1A6IDAwMTg6ZmZmZmJhZDRjMWMyN2UzMCBFRkxBR1M6IDAwMDEwMjg3
+Ck1hciAxNiAxODoyODo1OSBvbGdhIGtlcm5lbDogUkFYOiAwMDAwMDAwMDAwMDAwMDAwIFJCWDog
+ZmZmZjkyZGFmODVmYmMwMCBSQ1g6IGZmZmZiYWQ0YzFjMjdlMzcKTWFyIDE2IDE4OjI4OjU5IG9s
+Z2Ega2VybmVsOiBSRFg6IGZmZmZiYWQ0YzMwMGU0ZTQgUlNJOiBmZmZmYmFkNGMzMDBlNGU0IFJE
+STogMDAwMDAwMDAwMTAwOTAwZgpNYXIgMTYgMTg6Mjg6NTkgb2xnYSBrZXJuZWw6IFJCUDogZmZm
+ZjkyZGFmODVhZTAwMCBSMDg6IGZmZmY5MmRhZjg1ZmJkMTEgUjA5OiBmZmZmYmFkNGMxYzI3ZTM3
+Ck1hciAxNiAxODoyODo1OSBvbGdhIGtlcm5lbDogUjEwOiAwMDAwMDAwMDAwMDAwMDAwIFIxMTog
+MDAwMDAwMDAwMDAwMDAwMCBSMTI6IGZmZmY5MmRjMWE1OTQ2MjAKTWFyIDE2IDE4OjI4OjU5IG9s
+Z2Ega2VybmVsOiBSMTM6IGZmZmY5MmRhZjg4MzFiNDAgUjE0OiAwZmZmZjkyZGMyZmQ2ODYwIFIx
+NTogZmZmZjkyZDk0NTgxY2MwMApNYXIgMTYgMTg6Mjg6NTkgb2xnYSBrZXJuZWw6IEZTOiAgMDAw
+MDAwMDAwMDAwMDAwMCgwMDAwKSBHUzpmZmZmOTJkYzJmZDQwMDAwKDAwMDApIGtubEdTOjAwMDAw
+MDAwMDAwMDAwMDAKTWFyIDE2IDE4OjI4OjU5IG9sZ2Ega2VybmVsOiBDUzogIDAwMTAgRFM6IDAw
+MDAgRVM6IDAwMDAgQ1IwOiAwMDAwMDAwMDgwMDUwMDMzCk1hciAxNiAxODoyODo1OSBvbGdhIGtl
+cm5lbDogQ1IyOiAwMDAwMDAwMDAxODk1MDAwIENSMzogMDAwMDAwMDMzODAwYTAwNCBDUjQ6IDAw
+MDAwMDAwMDAxNjI2ZTAKTWFyIDE2IDE4OjI4OjU5IG9sZ2Ega2VybmVsOiBDYWxsIFRyYWNlOgpN
+YXIgMTYgMTg6Mjg6NTkgb2xnYSBrZXJuZWw6ICBudmttX2RwX2hwZCsweDExMy8weDEyMCBbbm91
+dmVhdV0KTWFyIDE2IDE4OjI4OjU5IG9sZ2Ega2VybmVsOiAgbnZrbV9ub3RpZnlfd29yaysweDFl
+LzB4NzAgW25vdXZlYXVdCk1hciAxNiAxODoyODo1OSBvbGdhIGtlcm5lbDogIHByb2Nlc3Nfb25l
+X3dvcmsrMHgxZDEvMHg0MDAKTWFyIDE2IDE4OjI4OjU5IG9sZ2Ega2VybmVsOiAgd29ya2VyX3Ro
+cmVhZCsweDJiLzB4M2QwCk1hciAxNiAxODoyODo1OSBvbGdhIGtlcm5lbDogID8gcHJvY2Vzc19v
+bmVfd29yaysweDQwMC8weDQwMApNYXIgMTYgMTg6Mjg6NTkgb2xnYSBrZXJuZWw6ICBrdGhyZWFk
+KzB4MTEzLzB4MTMwCk1hciAxNiAxODoyODo1OSBvbGdhIGtlcm5lbDogID8ga3RocmVhZF9jcmVh
+dGVfd29ya2VyX29uX2NwdSsweDUwLzB4NTAKTWFyIDE2IDE4OjI4OjU5IG9sZ2Ega2VybmVsOiAg
+cmV0X2Zyb21fZm9yaysweDNhLzB4NTAKTWFyIDE2IDE4OjI4OjU5IG9sZ2Ega2VybmVsOiBDb2Rl
+OiA0YyA4ZCA0YyAyNCAwNyA0YyA4ZCA4MyAxMSAwMSAwMCAwMCAzMSBjOSBiYSAwOSAwMCAwMCAw
+MCBiZSAwMSAwMCAwMCAwMCA0OCA4OSBlZiBlOCBjZCAzMSBmZCBmZiA4NSBjMCA3NSA3NSA4MCA3
+YyAyNCAwNyAxMCA3NCAwMiA8MGY+IDBiIDQ4IDg5IGVmIGU4IGM4IDJmIApNYXIgMTYgMTg6Mjg6
+NTkgb2xnYSBrZXJuZWw6IC0tLVsgZW5kIHRyYWNlIDg2MDMyZjBlZWVlY2JkMTUgXS0tLQoKICBM
+dWlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1k
+ZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
