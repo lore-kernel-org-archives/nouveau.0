@@ -1,93 +1,113 @@
-From: Julia Lawall <julia.lawall@lip6.fr>
-Subject: Re: [Outreachy kernel] [PATCH] gpu: drm: Use list_{next/prev}_entry
- instead of list_entry
-Date: Mon, 19 Mar 2018 08:14:53 +0100 (CET)
-Message-ID: <alpine.DEB.2.20.1803190805260.2864@hadrien>
-References: <20180319050530.GA25589@seema-Inspiron-15-3567>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 105174] [GF108][Regression] Unable to handle NULL
+ pointer dereference in nouveau_mem_host since kernel 4.15.3
+Date: Mon, 19 Mar 2018 09:35:48 +0000
+Message-ID: <bug-105174-8800-GUzEXfV39V@http.bugs.freedesktop.org/>
+References: <bug-105174-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20180319050530.GA25589@seema-Inspiron-15-3567>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Arushi Singhal <arushisinghal19971997@gmail.com>
-Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, outreachy-kernel@googlegroups.com, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, daniel.vetter@intel.com
+Content-Type: multipart/mixed; boundary="===============1487882835=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-105174-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiBNb24sIDE5IE1hciAyMDE4LCBBcnVzaGkgU2luZ2hhbCB3cm90ZToKCj4gVGhpcyBwYXRj
-aCByZXBsYWNlIGxpc3RfZW50cnkgd2l0aCBsaXN0X3tuZXh0L3ByZXZ9X2VudHJ5IGFzIGl0IG1h
-a2VzCj4gdGhlIGNvZGUgbW9yZSBjbGVhciB0byByZWFkLgo+IERvbmUgdXNpbmcgY29jY2luZWxs
-ZToKPgo+IEBACj4gZXhwcmVzc2lvbiBlMTsKPiBpZGVudGlmaWVyIGUzOwo+IHR5cGUgdDsKPiBA
-QAo+ICgKPiAtIGxpc3RfZW50cnkoZTEtPmUzLm5leHQsdCxlMykKPiArIGxpc3RfbmV4dF9lbnRy
-eShlMSxlMykKPiB8Cj4gLSBsaXN0X2VudHJ5KGUxLT5lMy5wcmV2LHQsZTMpCj4gKyBsaXN0X3By
-ZXZfZW50cnkoZTEsZTMpCj4gKQoKVGhpcyBsb29rcyBsaWtlIGEgcnVsZSB0aGF0IGNvdWxkIGJl
-IG5pY2UgZm9yIHRoZSBMaW51eCBrZXJuZWwgaW4gZ2VuZXJhbCwKYmVjYXVzZSB0aGUgY29kZSBy
-ZWFsbHkgaXMgbXVjaCBzaW1wbGVyLgoKSSB3b3VsZCBzdWdnZXN0IHRvIHdyaXRlIHRoZSBydWxl
-IGluIGEgbW9yZSByb2J1c3Qgd2F5LCBhcyBmb2xsb3dzOgoKQEAKaWRlbnRpZmllciBlMzsKdHlw
-ZSB0Owp0ICplMTsKQEAKCigKLSBsaXN0X2VudHJ5KGUxLT5lMy5uZXh0LHQsZTMpCisgbGlzdF9u
-ZXh0X2VudHJ5KGUxLGUzKQp8Ci0gbGlzdF9lbnRyeShlMS0+ZTMucHJldix0LGUzKQorIGxpc3Rf
-cHJldl9lbnRyeShlMSxlMykKKQoKQEAKZXhwcmVzc2lvbiBlMTsKaWRlbnRpZmllciBlMzsKQEAK
-CigKLSBsaXN0X2VudHJ5KGUxLT5lMy5uZXh0LHR5cGVvZigqZTEpLGUzKQorIGxpc3RfbmV4dF9l
-bnRyeShlMSxlMykKfAotIGxpc3RfZW50cnkoZTEtPmUzLnByZXYsdHlwZW9mKCplMSksZTMpCisg
-bGlzdF9wcmV2X2VudHJ5KGUxLGUzKQoKVGhpcyBjaGVja3MgdGhhdCB0aGUgdHlwZSB0aGF0IGlz
-IHNwZWNpZmllZCBjb3JyZXNwb25kcyB0byB0aGUgb25lIG9uIGUxLgpJdCBjb3VsZCBhY3R1YWxs
-eSBiZSB0aGF0IHRoZSBjYWxsIGlzIGdldHRpbmcgdGhlIGZpcnN0IGVsZW1lbnQgb2YgYSBsaXN0
-LApmcm9tIHNvbWUgZGlmZmVyZW50IHR5cGUsIGFuZCBjb2luY2lkZW50YWxseSB0aGUgdHdvIHR5
-cGVzIGhhdmUgdGhlIHNhbWUKZmllbGQgbmFtZSBmb3IgdGhlIGxpc3QgZWxlbWVudC4KClVuZm9y
-dHVuYXRlbHksIHRoZSBzZWNvbmQgcnVsZSwgd2l0aCB0aGUgdHlwZW9mIGNhbGwsIGRvZXNuJ3Qg
-Y3VycmVudGx5CndvcmsgaW4gQ29jY2luZWxsZSwgYmVjYXVzZSB0aGUgc2VtYW50aWMgcGF0Y2gg
-bGFuZ3VhZ2UgZG9lc24ndCBhY3R1YWxseQpzdXBwb3J0IHR5cGVvZiwgYW5kIHRoaW5rcyB0aGF0
-IGl0IGlzIGEgZnVuY3Rpb24gY2FsbC4gIEkgd2lsbCBmaXggdGhpcy4KClRvIG1ha2UgYSBzZW1h
-bnRpYyBwYXRjaCBmb3IgdGhlIGtlcm5lbCwgeW91IGNhbiB0cnkgcnVubmluZyBzcGdlbiBvbiB0
-aGUKYWJvdmUgZmlsZSBhbmQgYW5zd2VyIHRoZSBxdWVzdGlvbnMgdGhhdCBpdCBhc2tzLiAgWW91
-IGNhbiBmaW5kIGV4YW1wbGVzCmluIHRoZSBjb2NjaW5lbGxlL3NjcmlwdHMgZGlyZWN0b3J5LiAg
-SnVzdCBydW4KCnNwZ2VuIGZvby5jb2NjaQoKVGhlbiBhbnN3ZXIgdGhlIHF1ZXN0aW9ucy4gIFRo
-ZW4gcnVuCgpzcGdlbiBmb28uY29jY2kgPiBmb29fZm9yX2tlcm5lbC5jb2NjaQoKVGhlIHNlY29u
-ZCBydW4gd2lsbCB1c2UgdGhlIHJlc3VsdHMgb2YgdGhlIGZpcnN0IHJ1biB0byBwcmludCB0aGUg
-c2VtYW50aWMKcGF0Y2guICBMZXQgbWUga25vdyBpZiB5b3UgaGF2ZSBhbnkgcXVlc3Rpb25zLiAg
-WW91IGNhbiBhbHdheXMgYWRqdXN0IHRoZQpzZW1hbnRpYyBwYXRjaCB0aGF0IGlzIGdlbmVyYXRl
-ZCBieSBoYW5kIGFmdGVyd2FyZHMgaWYgbmVlZGVkLgoKanVsaWEKCgo+Cj4gU2lnbmVkLW9mZi1i
-eTogQXJ1c2hpIFNpbmdoYWwgPGFydXNoaXNpbmdoYWwxOTk3MTk5N0BnbWFpbC5jb20+Cj4gLS0t
-Cj4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fbGVhc2UuYyAgICAgICAgICAgICAgICAgICAgfCAyICst
-Cj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgfCAyICst
-Cj4gIDIgZmlsZXMgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+Cj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fbGVhc2UuYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9kcm1fbGVhc2UuYwo+IGluZGV4IDE0MDJjMGUuLjRkY2ZiNWYgMTAwNjQ0Cj4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2RybV9sZWFzZS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9sZWFz
-ZS5jCj4gQEAgLTM0MCw3ICszNDAsNyBAQCBzdGF0aWMgdm9pZCBfZHJtX2xlYXNlX3Jldm9rZShz
-dHJ1Y3QgZHJtX21hc3RlciAqdG9wKQo+ICAJCQkJYnJlYWs7Cj4KPiAgCQkJLyogT3ZlciAqLwo+
-IC0JCQltYXN0ZXIgPSBsaXN0X2VudHJ5KG1hc3Rlci0+bGVzc2VlX2xpc3QubmV4dCwgc3RydWN0
-IGRybV9tYXN0ZXIsIGxlc3NlZV9saXN0KTsKPiArCQkJbWFzdGVyID0gbGlzdF9uZXh0X2VudHJ5
-KG1hc3RlciwgbGVzc2VlX2xpc3QpOwo+ICAJCX0KPiAgCX0KPiAgfQo+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jIGIvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYwo+IGluZGV4IGU0YzhkMzEuLjgx
-YzM1NjcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
-Y2xrL2Jhc2UuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Ns
-ay9iYXNlLmMKPiBAQCAtMTM0LDcgKzEzNCw3IEBAIG52a21fY3N0YXRlX2ZpbmRfYmVzdChzdHJ1
-Y3QgbnZrbV9jbGsgKmNsaywgc3RydWN0IG52a21fcHN0YXRlICpwc3RhdGUsCj4gIAkJCSAgICAg
-ICBudmttX3ZvbHRfbWFwKHZvbHQsIHZvbHQtPm1heDJfaWQsIGNsay0+dGVtcCkpOwo+Cj4gIAlm
-b3IgKGNzdGF0ZSA9IHN0YXJ0OyAmY3N0YXRlLT5oZWFkICE9ICZwc3RhdGUtPmxpc3Q7Cj4gLQkg
-ICAgIGNzdGF0ZSA9IGxpc3RfZW50cnkoY3N0YXRlLT5oZWFkLnByZXYsIHR5cGVvZigqY3N0YXRl
-KSwgaGVhZCkpIHsKPiArCSAgICAgY3N0YXRlID0gbGlzdF9wcmV2X2VudHJ5KGNzdGF0ZSwgaGVh
-ZCkpIHsKPiAgCQlpZiAobnZrbV9jc3RhdGVfdmFsaWQoY2xrLCBjc3RhdGUsIG1heF92b2x0LCBj
-bGstPnRlbXApKQo+ICAJCQlicmVhazsKPiAgCX0KPiAtLQo+IDIuNy40Cj4KPiAtLQo+IFlvdSBy
-ZWNlaXZlZCB0aGlzIG1lc3NhZ2UgYmVjYXVzZSB5b3UgYXJlIHN1YnNjcmliZWQgdG8gdGhlIEdv
-b2dsZSBHcm91cHMgIm91dHJlYWNoeS1rZXJuZWwiIGdyb3VwLgo+IFRvIHVuc3Vic2NyaWJlIGZy
-b20gdGhpcyBncm91cCBhbmQgc3RvcCByZWNlaXZpbmcgZW1haWxzIGZyb20gaXQsIHNlbmQgYW4g
-ZW1haWwgdG8gb3V0cmVhY2h5LWtlcm5lbCt1bnN1YnNjcmliZUBnb29nbGVncm91cHMuY29tLgo+
-IFRvIHBvc3QgdG8gdGhpcyBncm91cCwgc2VuZCBlbWFpbCB0byBvdXRyZWFjaHkta2VybmVsQGdv
-b2dsZWdyb3Vwcy5jb20uCj4gVG8gdmlldyB0aGlzIGRpc2N1c3Npb24gb24gdGhlIHdlYiB2aXNp
-dCBodHRwczovL2dyb3Vwcy5nb29nbGUuY29tL2QvbXNnaWQvb3V0cmVhY2h5LWtlcm5lbC8yMDE4
-MDMxOTA1MDUzMC5HQTI1NTg5JTQwc2VlbWEtSW5zcGlyb24tMTUtMzU2Ny4KPiBGb3IgbW9yZSBv
-cHRpb25zLCB2aXNpdCBodHRwczovL2dyb3Vwcy5nb29nbGUuY29tL2Qvb3B0b3V0Lgo+Cl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWls
-aW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============1487882835==
+Content-Type: multipart/alternative; boundary="15214521480.C2eAe.19875"
+Content-Transfer-Encoding: 7bit
+
+
+--15214521480.C2eAe.19875
+Date: Mon, 19 Mar 2018 09:35:48 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105174
+
+--- Comment #16 from Dominik 'Rathann' Mierzejewski <dominik-IZ6Av6enwRKJQ7yn63+t2w@public.gmane.org=
+> ---
+(In reply to Pierre Moreau from comment #15)
+> And thank you all for your replies and trying out the patch :-)
+
+Thank you for the quick fix!
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15214521480.C2eAe.19875
+Date: Mon, 19 Mar 2018 09:35:48 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [GF108][Regression] Unable to handle NULL poin=
+ter dereference in nouveau_mem_host since kernel 4.15.3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174#c16">Comme=
+nt # 16</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [GF108][Regression] Unable to handle NULL poin=
+ter dereference in nouveau_mem_host since kernel 4.15.3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174">bug 10517=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+dominik&#64;greysector.net" title=3D"Dominik 'Rathann' Mierzejewski &lt;dom=
+inik&#64;greysector.net&gt;"> <span class=3D"fn">Dominik 'Rathann' Mierzeje=
+wski</span></a>
+</span></b>
+        <pre>(In reply to Pierre Moreau from <a href=3D"show_bug.cgi?id=3D1=
+05174#c15">comment #15</a>)
+<span class=3D"quote">&gt; And thank you all for your replies and trying ou=
+t the patch :-)</span >
+
+Thank you for the quick fix!</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15214521480.C2eAe.19875--
+
+--===============1487882835==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1487882835==--
