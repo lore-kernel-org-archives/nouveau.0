@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 105629] WebGL shader regular update crashes nouveau
  driver 17.3.3
-Date: Tue, 20 Mar 2018 17:32:26 +0000
-Message-ID: <bug-105629-8800-LJZqQcUCfh@http.bugs.freedesktop.org/>
+Date: Tue, 20 Mar 2018 17:42:36 +0000
+Message-ID: <bug-105629-8800-hiVvmS3ltj@http.bugs.freedesktop.org/>
 References: <bug-105629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2045163423=="
+Content-Type: multipart/mixed; boundary="===============0859574472=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-105629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2045163423==
-Content-Type: multipart/alternative; boundary="15215671460.38F5C.29937"
+--===============0859574472==
+Content-Type: multipart/alternative; boundary="15215677561.5B1CeCBa7.379"
 Content-Transfer-Encoding: 7bit
 
 
---15215671460.38F5C.29937
-Date: Tue, 20 Mar 2018 17:32:26 +0000
+--15215677561.5B1CeCBa7.379
+Date: Tue, 20 Mar 2018 17:42:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D105629
 
---- Comment #1 from Hugues Evrard <hugues.evrard-/thXhF8rKSFInJN2fRTu8g@public.gmane.org> ---
-Created attachment 138228
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138228&action=3Dedit
-Trace of nouveau crash from Chromium output
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+What's in dmesg when this happens?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15215671460.38F5C.29937
-Date: Tue, 20 Mar 2018 17:32:26 +0000
+--15215677561.5B1CeCBa7.379
+Date: Tue, 20 Mar 2018 17:42:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,23 +62,18 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - WebGL shader regular update crashes nouveau driver 17.3.3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105629#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105629#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - WebGL shader regular update crashes nouveau driver 17.3.3"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105629">bug 10562=
 9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-hugues.evrard&#64;graphicsfuzz.com" title=3D"Hugues Evrard &lt;hugues.evrar=
-d&#64;graphicsfuzz.com&gt;"> <span class=3D"fn">Hugues Evrard</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138228=
-" name=3D"attach_138228" title=3D"Trace of nouveau crash from Chromium outp=
-ut">attachment 138228</a> <a href=3D"attachment.cgi?id=3D138228&amp;action=
-=3Dedit" title=3D"Trace of nouveau crash from Chromium output">[details]</a=
-></span>
-Trace of nouveau crash from Chromium output</pre>
+        <pre>What's in dmesg when this happens?</pre>
         </div>
       </p>
 
@@ -95,9 +88,9 @@ Trace of nouveau crash from Chromium output</pre>
     </body>
 </html>=
 
---15215671460.38F5C.29937--
+--15215677561.5B1CeCBa7.379--
 
---===============2045163423==
+--===============0859574472==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2045163423==--
+--===============0859574472==--
