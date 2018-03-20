@@ -1,15 +1,11 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [Outreachy kernel] [PATCH] gpu: drm: Use
- list_{next/prev}_entry instead of list_entry
-Date: Mon, 19 Mar 2018 15:13:04 +0100
-Message-ID: <20180319141304.GP14155@phenom.ffwll.local>
-References: <20180319050530.GA25589@seema-Inspiron-15-3567>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 105626] New: BUG: unable to handle kernel NULL
+ pointer dereference at 0000000000000040
+Date: Tue, 20 Mar 2018 14:28:53 +0000
+Message-ID: <bug-105626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0137591668=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20180319050530.GA25589@seema-Inspiron-15-3567>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,58 +15,211 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Arushi Singhal <arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Gustavo Padovan <gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, outreachy-kernel-/JYPxA39Uh5TLH3MbocFFw@public.gmane.org, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBNYXIgMTksIDIwMTggYXQgMTA6MzU6MzBBTSArMDUzMCwgQXJ1c2hpIFNpbmdoYWwg
-d3JvdGU6Cj4gVGhpcyBwYXRjaCByZXBsYWNlIGxpc3RfZW50cnkgd2l0aCBsaXN0X3tuZXh0L3By
-ZXZ9X2VudHJ5IGFzIGl0IG1ha2VzCj4gdGhlIGNvZGUgbW9yZSBjbGVhciB0byByZWFkLgo+IERv
-bmUgdXNpbmcgY29jY2luZWxsZToKPiAKPiBAQAo+IGV4cHJlc3Npb24gZTE7Cj4gaWRlbnRpZmll
-ciBlMzsKPiB0eXBlIHQ7Cj4gQEAKPiAoCj4gLSBsaXN0X2VudHJ5KGUxLT5lMy5uZXh0LHQsZTMp
-Cj4gKyBsaXN0X25leHRfZW50cnkoZTEsZTMpCj4gfAo+IC0gbGlzdF9lbnRyeShlMS0+ZTMucHJl
-dix0LGUzKQo+ICsgbGlzdF9wcmV2X2VudHJ5KGUxLGUzKQo+ICkKPiAKPiBTaWduZWQtb2ZmLWJ5
-OiBBcnVzaGkgU2luZ2hhbCA8YXJ1c2hpc2luZ2hhbDE5OTcxOTk3QGdtYWlsLmNvbT4KClRoYW5r
-cyBmb3IgeW91ciBwYXRjaC4gTG9va3MgY29ycmVjdCwgYnV0IGZvciBtZXJnZSB0ZWNobmljYWwg
-cmVhc29ucyBjYW4KeW91IHBsZWFzZSBzcGxpdCBpdCBpbnRvIDIgcGF0Y2hlcz8gT25lIGZvciBk
-cm1fbGVhc2UuYywgd2l0aCBhIGRybS9sZWFzZToKcHJlZml4LCBhbmQgb25lIGZvciB0aGUgbm91
-dmVhdSBkcml2ZXIgY2hhbmdlLCB3aXRoIGEgbm91dmVhdTogcHJlZml4LgpCb3RoIHBhdGNoZXMg
-bmVlZCB0byBiZSBzdWJtaXR0ZWQgdG8gc2xpZ2h0bHkgZGlmZmVyZW50IHNldHMgb2YKbWFpbnRh
-aW5lcnMgdG9vLCBwbHMgY29uc3VsdCBzY3JpcHRzL2dldF9tYWludGFpbmVycy5wbAoKVGhhbmtz
-LCBEYW5pZWwKCj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fbGVhc2UuYyAgICAgICAgICAg
-ICAgICAgICAgfCAyICstCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Ns
-ay9iYXNlLmMgfCAyICstCj4gIDIgZmlsZXMgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRl
-bGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2xlYXNlLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vZHJtX2xlYXNlLmMKPiBpbmRleCAxNDAyYzBlLi40ZGNmYjVmIDEw
-MDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fbGVhc2UuYwo+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9kcm1fbGVhc2UuYwo+IEBAIC0zNDAsNyArMzQwLDcgQEAgc3RhdGljIHZvaWQgX2Ry
-bV9sZWFzZV9yZXZva2Uoc3RydWN0IGRybV9tYXN0ZXIgKnRvcCkKPiAgCQkJCWJyZWFrOwo+ICAK
-PiAgCQkJLyogT3ZlciAqLwo+IC0JCQltYXN0ZXIgPSBsaXN0X2VudHJ5KG1hc3Rlci0+bGVzc2Vl
-X2xpc3QubmV4dCwgc3RydWN0IGRybV9tYXN0ZXIsIGxlc3NlZV9saXN0KTsKPiArCQkJbWFzdGVy
-ID0gbGlzdF9uZXh0X2VudHJ5KG1hc3RlciwgbGVzc2VlX2xpc3QpOwo+ICAJCX0KPiAgCX0KPiAg
-fQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsv
-YmFzZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYwo+
-IGluZGV4IGU0YzhkMzEuLjgxYzM1NjcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMKPiBAQCAtMTM0LDcgKzEzNCw3IEBAIG52a21fY3N0
-YXRlX2ZpbmRfYmVzdChzdHJ1Y3QgbnZrbV9jbGsgKmNsaywgc3RydWN0IG52a21fcHN0YXRlICpw
-c3RhdGUsCj4gIAkJCSAgICAgICBudmttX3ZvbHRfbWFwKHZvbHQsIHZvbHQtPm1heDJfaWQsIGNs
-ay0+dGVtcCkpOwo+ICAKPiAgCWZvciAoY3N0YXRlID0gc3RhcnQ7ICZjc3RhdGUtPmhlYWQgIT0g
-JnBzdGF0ZS0+bGlzdDsKPiAtCSAgICAgY3N0YXRlID0gbGlzdF9lbnRyeShjc3RhdGUtPmhlYWQu
-cHJldiwgdHlwZW9mKCpjc3RhdGUpLCBoZWFkKSkgewo+ICsJICAgICBjc3RhdGUgPSBsaXN0X3By
-ZXZfZW50cnkoY3N0YXRlLCBoZWFkKSkgewo+ICAJCWlmIChudmttX2NzdGF0ZV92YWxpZChjbGss
-IGNzdGF0ZSwgbWF4X3ZvbHQsIGNsay0+dGVtcCkpCj4gIAkJCWJyZWFrOwo+ICAJfQo+IC0tIAo+
-IDIuNy40Cj4gCj4gLS0gCj4gWW91IHJlY2VpdmVkIHRoaXMgbWVzc2FnZSBiZWNhdXNlIHlvdSBh
-cmUgc3Vic2NyaWJlZCB0byB0aGUgR29vZ2xlIEdyb3VwcyAib3V0cmVhY2h5LWtlcm5lbCIgZ3Jv
-dXAuCj4gVG8gdW5zdWJzY3JpYmUgZnJvbSB0aGlzIGdyb3VwIGFuZCBzdG9wIHJlY2VpdmluZyBl
-bWFpbHMgZnJvbSBpdCwgc2VuZCBhbiBlbWFpbCB0byBvdXRyZWFjaHkta2VybmVsK3Vuc3Vic2Ny
-aWJlQGdvb2dsZWdyb3Vwcy5jb20uCj4gVG8gcG9zdCB0byB0aGlzIGdyb3VwLCBzZW5kIGVtYWls
-IHRvIG91dHJlYWNoeS1rZXJuZWxAZ29vZ2xlZ3JvdXBzLmNvbS4KPiBUbyB2aWV3IHRoaXMgZGlz
-Y3Vzc2lvbiBvbiB0aGUgd2ViIHZpc2l0IGh0dHBzOi8vZ3JvdXBzLmdvb2dsZS5jb20vZC9tc2dp
-ZC9vdXRyZWFjaHkta2VybmVsLzIwMTgwMzE5MDUwNTMwLkdBMjU1ODklNDBzZWVtYS1JbnNwaXJv
-bi0xNS0zNTY3Lgo+IEZvciBtb3JlIG9wdGlvbnMsIHZpc2l0IGh0dHBzOi8vZ3JvdXBzLmdvb2ds
-ZS5jb20vZC9vcHRvdXQuCgotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50
-ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0137591668==
+Content-Type: multipart/alternative; boundary="15215561340.27c4c8.16308"
+Content-Transfer-Encoding: 7bit
+
+
+--15215561340.27c4c8.16308
+Date: Tue, 20 Mar 2018 14:28:54 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105626
+
+            Bug ID: 105626
+           Summary: BUG: unable to handle kernel NULL pointer dereference
+                    at 0000000000000040
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: philip.raets-CNXmb7IdZIWZIoH1IeqzKA@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 138225
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138225&action=3Dedit
+journalctl
+
+Nouveau crashes from time to time, it happens when I open some jpg-files,
+tiff-files, when I maximize windows, when I am developing in Android Studio,
+... It happens randomly, but a few times a day. I can login with ssh throug=
+h my
+phone (because my desktop is not responding to anything, I can only move the
+mouse cursor around), and then force a reboot (which I don't like, because =
+of
+running virtual machines and unsaved work)
+
+I've tried the patched kernel from openSUSE, but it still crashes.
+
+My system is an up to date openSUSE Tumbleweed x86_64
+
+Attached is my last boot log from "journalctl -k -b -1"
+
+Thanks,
+
+Philip
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15215561340.27c4c8.16308
+Date: Tue, 20 Mar 2018 14:28:54 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - BUG: unable to handle kernel NULL pointer dereference at =
+0000000000000040"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105626">105626</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>BUG: unable to handle kernel NULL pointer dereference at 0000=
+000000000040
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>philip.raets&#64;telenet.be
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138225=
+" name=3D"attach_138225" title=3D"journalctl">attachment 138225</a> <a href=
+=3D"attachment.cgi?id=3D138225&amp;action=3Dedit" title=3D"journalctl">[det=
+ails]</a></span>
+journalctl
+
+Nouveau crashes from time to time, it happens when I open some jpg-files,
+tiff-files, when I maximize windows, when I am developing in Android Studio,
+... It happens randomly, but a few times a day. I can login with ssh throug=
+h my
+phone (because my desktop is not responding to anything, I can only move the
+mouse cursor around), and then force a reboot (which I don't like, because =
+of
+running virtual machines and unsaved work)
+
+I've tried the patched kernel from openSUSE, but it still crashes.
+
+My system is an up to date openSUSE Tumbleweed x86_64
+
+Attached is my last boot log from &quot;journalctl -k -b -1&quot;
+
+Thanks,
+
+Philip</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15215561340.27c4c8.16308--
+
+--===============0137591668==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0137591668==--
