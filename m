@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 105669] can not support GP104M
-Date: Thu, 22 Mar 2018 00:02:41 +0000
-Message-ID: <bug-105669-8800-Nl09tq09c0@http.bugs.freedesktop.org/>
+Date: Thu, 22 Mar 2018 04:57:30 +0000
+Message-ID: <bug-105669-8800-wVxSBOvWmF@http.bugs.freedesktop.org/>
 References: <bug-105669-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1137971355=="
+Content-Type: multipart/mixed; boundary="===============0010262051=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-105669-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1137971355==
-Content-Type: multipart/alternative; boundary="15216769610.cCFB0.2536"
+--===============0010262051==
+Content-Type: multipart/alternative; boundary="15216946491.b5b9e8.4854"
 Content-Transfer-Encoding: 7bit
 
 
---15216769610.cCFB0.2536
-Date: Thu, 22 Mar 2018 00:02:41 +0000
+--15216946491.b5b9e8.4854
+Date: Thu, 22 Mar 2018 04:57:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,28 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D105669
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please provide kernel logs.
+--- Comment #2 from aiolia <aiolia_tdy3-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
+I must use this kernel in my project,And It is not the gp104,my card is GP1=
+04M.
 
-If nouveau doesn't recognize the GPU at all, update your kernel to one that
-supports GP104.
+after the lspci, it shows
+
+.....
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GP104M [GeForce GTX 1=
+070
+Mobile] (rev a1)
+
+
+
+So I think Nouveau must add the support to the GP104M card,thanks!
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15216769610.cCFB0.2536
-Date: Thu, 22 Mar 2018 00:02:41 +0000
+--15216946491.b5b9e8.4854
+Date: Thu, 22 Mar 2018 04:57:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,21 +73,31 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - can not support GP104M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105669#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105669#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - can not support GP104M"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105669">bug 10566=
 9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+aiolia_tdy3&#64;hotmail.com" title=3D"aiolia &lt;aiolia_tdy3&#64;hotmail.co=
+m&gt;"> <span class=3D"fn">aiolia</span></a>
 </span></b>
-        <pre>Please provide kernel logs.
+        <pre>I must use this kernel in my project,And It is not the gp104,m=
+y card is GP104M.
 
-If nouveau doesn't recognize the GPU at all, update your kernel to one that
-supports GP104.</pre>
+after the lspci, it shows
+
+.....
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GP104M [GeForce GTX 1=
+070
+Mobile] (rev a1)
+
+
+
+So I think Nouveau must add the support to the GP104M card,thanks!</pre>
         </div>
       </p>
 
@@ -91,9 +111,9 @@ supports GP104.</pre>
     </body>
 </html>=
 
---15216769610.cCFB0.2536--
+--15216946491.b5b9e8.4854--
 
---===============1137971355==
+--===============0010262051==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1137971355==--
+--===============0010262051==--
