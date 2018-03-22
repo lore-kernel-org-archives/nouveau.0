@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100446] Backlight control not working on Pascal /
- GP106 using nouveau drivers
-Date: Thu, 22 Mar 2018 14:26:52 +0000
-Message-ID: <bug-100446-8800-oiBqDRG0rj@http.bugs.freedesktop.org/>
-References: <bug-100446-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105626] BUG: unable to handle kernel NULL pointer
+ dereference at 0000000000000040
+Date: Thu, 22 Mar 2018 14:49:30 +0000
+Message-ID: <bug-105626-8800-PBCRTz8M5l@http.bugs.freedesktop.org/>
+References: <bug-105626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0591658588=="
+Content-Type: multipart/mixed; boundary="===============2106146639=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100446-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-105626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,53 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0591658588==
-Content-Type: multipart/alternative; boundary="15217288122.C7585a.22490"
+--===============2106146639==
+Content-Type: multipart/alternative; boundary="15217301692.ba4BCde.29526"
 Content-Transfer-Encoding: 7bit
 
 
---15217288122.C7585a.22490
-Date: Thu, 22 Mar 2018 14:26:52 +0000
+--15217301692.ba4BCde.29526
+Date: Thu, 22 Mar 2018 14:49:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100446
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105626
 
---- Comment #7 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Carlo Caione from comment #4)
-> For the sake of completeness some more info on this.
->=20
-> The two settings differ only for couple of accesses:
->=20
-> < MMIO32 W 0x00d980 0x000000ff PGPIO+0x980 <=3D 0xff
-> ---
-> > MMIO32 W 0x00d980 0x0000007f PGPIO+0x980 <=3D 0x7f
->=20
-> < MMIO32 W 0x619484 0x0000ff00 PDISPLAY.VGA.CR+0x84 <=3D 0xff00
-> ---
-> > MMIO32 W 0x619484 0x00007000 PDISPLAY.VGA.CR+0x84 <=3D 0x7000
->=20
-> The problem is that poking at those registers using nvapeek / nvapoke
-> doesn't change the brightness.
->=20
-> Also trying to use nvammiotracereplay to reply step-by-step the mmio trace
-> has no effect on the brightness.
+--- Comment #4 from Philip Raets <philip.raets-CNXmb7IdZIWZIoH1IeqzKA@public.gmane.org> ---
+Created attachment 138286
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138286&action=3Dedit
+dmesg
 
-Can you check that this is fixed in 4.16-rc6? A fix landed to address backl=
-ight
-problems and it might be the same you had:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
-h=3Dv4.16-rc6&id=3D9e75dc61eaa9acd1bff83c3b814ac2af6dc1f64c
+Today I installed kernel 4.16rc6 from opensuse Kernel Head, but my desktop
+already froze 5 times today.
+
+Attached is dmesg log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15217288122.C7585a.22490
-Date: Thu, 22 Mar 2018 14:26:52 +0000
+--15217301692.ba4BCde.29526
+Date: Thu, 22 Mar 2018 14:49:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -83,49 +67,30 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
-veau drivers"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446#c7">Commen=
-t # 7</a>
+   title=3D"NEW - BUG: unable to handle kernel NULL pointer dereference at =
+0000000000000040"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105626#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
-veau drivers"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446">bug 10044=
+   title=3D"NEW - BUG: unable to handle kernel NULL pointer dereference at =
+0000000000000040"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105626">bug 10562=
 6</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+philip.raets&#64;telenet.be" title=3D"Philip Raets &lt;philip.raets&#64;tel=
+enet.be&gt;"> <span class=3D"fn">Philip Raets</span></a>
 </span></b>
-        <pre>(In reply to Carlo Caione from <a href=3D"show_bug.cgi?id=3D10=
-0446#c4">comment #4</a>)
-<span class=3D"quote">&gt; For the sake of completeness some more info on t=
-his.
-&gt;=20
-&gt; The two settings differ only for couple of accesses:
-&gt;=20
-&gt; &lt; MMIO32 W 0x00d980 0x000000ff PGPIO+0x980 &lt;=3D 0xff
-&gt; ---
-&gt; &gt; MMIO32 W 0x00d980 0x0000007f PGPIO+0x980 &lt;=3D 0x7f
-&gt;=20
-&gt; &lt; MMIO32 W 0x619484 0x0000ff00 PDISPLAY.VGA.CR+0x84 &lt;=3D 0xff00
-&gt; ---
-&gt; &gt; MMIO32 W 0x619484 0x00007000 PDISPLAY.VGA.CR+0x84 &lt;=3D 0x7000
-&gt;=20
-&gt; The problem is that poking at those registers using nvapeek / nvapoke
-&gt; doesn't change the brightness.
-&gt;=20
-&gt; Also trying to use nvammiotracereplay to reply step-by-step the mmio t=
-race
-&gt; has no effect on the brightness.</span >
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138286=
+" name=3D"attach_138286" title=3D"dmesg">attachment 138286</a> <a href=3D"a=
+ttachment.cgi?id=3D138286&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
+/span>
+dmesg
 
-Can you check that this is fixed in 4.16-rc6? A fix landed to address backl=
-ight
-problems and it might be the same you had:
-<a href=3D"https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.g=
-it/commit/?h=3Dv4.16-rc6&amp;id=3D9e75dc61eaa9acd1bff83c3b814ac2af6dc1f64c"=
->https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/=
-?h=3Dv4.16-rc6&amp;id=3D9e75dc61eaa9acd1bff83c3b814ac2af6dc1f64c</a></pre>
+Today I installed kernel 4.16rc6 from opensuse Kernel Head, but my desktop
+already froze 5 times today.
+
+Attached is dmesg log</pre>
         </div>
       </p>
 
@@ -139,9 +104,9 @@ it/commit/?h=3Dv4.16-rc6&amp;id=3D9e75dc61eaa9acd1bff83c3b814ac2af6dc1f64c"=
     </body>
 </html>=
 
---15217288122.C7585a.22490--
+--15217301692.ba4BCde.29526--
 
---===============0591658588==
+--===============2106146639==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -151,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0591658588==--
+--===============2106146639==--
