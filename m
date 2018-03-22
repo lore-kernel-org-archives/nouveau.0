@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105174] [GF108][Regression] Unable to handle NULL
- pointer dereference in nouveau_mem_host since kernel 4.15.3
-Date: Thu, 22 Mar 2018 17:43:47 +0000
-Message-ID: <bug-105174-8800-qzYbDMAUza@http.bugs.freedesktop.org/>
-References: <bug-105174-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
+Date: Thu, 22 Mar 2018 17:45:00 +0000
+Message-ID: <bug-105319-8800-JTYE19BpcT@http.bugs.freedesktop.org/>
+References: <bug-105319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1153900443=="
+Content-Type: multipart/mixed; boundary="===============1847214810=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105174-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1153900443==
-Content-Type: multipart/alternative; boundary="15217406276.BD2C.4562"
+--===============1847214810==
+Content-Type: multipart/alternative; boundary="15217407001.d033.4510"
 Content-Transfer-Encoding: 7bit
 
 
---15217406276.BD2C.4562
-Date: Thu, 22 Mar 2018 17:43:47 +0000
+--15217407001.d033.4510
+Date: Thu, 22 Mar 2018 17:45:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105174
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
 
 S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=3D105319
+           See Also|                            |https://bugzilla.redhat.com
+                   |                            |/show_bug.cgi?id=3D1551401
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15217406276.BD2C.4562
-Date: Thu, 22 Mar 2018 17:43:47 +0000
+--15217407001.d033.4510
+Date: Thu, 22 Mar 2018 17:45:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,11 +63,10 @@ Auto-Submitted: auto-generated
  <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [GF108][Regression] Unable to handle NULL poin=
-ter dereference in nouveau_mem_host since kernel 4.15.3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174">bug 10517=
-4</a>
+          bz_status_NEW "
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
+9</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -82,7 +80,7 @@ ter dereference in nouveau_mem_host since kernel 4.15.3"
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
+           <td>https://bugzilla.redhat.com/show_bug.cgi?id=3D1551401
            </td>
          </tr></table>
       <p>
@@ -98,9 +96,9 @@ ter dereference in nouveau_mem_host since kernel 4.15.3"
     </body>
 </html>=
 
---15217406276.BD2C.4562--
+--15217407001.d033.4510--
 
---===============1153900443==
+--===============1847214810==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1153900443==--
+--===============1847214810==--
