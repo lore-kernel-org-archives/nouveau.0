@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
- ]
-Date: Fri, 23 Mar 2018 08:47:16 +0000
-Message-ID: <bug-100423-8800-p3oTgePOUo@http.bugs.freedesktop.org/>
-References: <bug-100423-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105174] [GF108][Regression] Unable to handle NULL
+ pointer dereference in nouveau_mem_host since kernel 4.15.3
+Date: Fri, 23 Mar 2018 09:30:18 +0000
+Message-ID: <bug-105174-8800-A8edS7Duzq@http.bugs.freedesktop.org/>
+References: <bug-105174-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1644379435=="
+Content-Type: multipart/mixed; boundary="===============1298833468=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-105174-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,43 +21,48 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1644379435==
-Content-Type: multipart/alternative; boundary="15217948360.B06EdaAb.5053"
+--===============1298833468==
+Content-Type: multipart/alternative; boundary="15217974180.E39c9B6.17597"
 Content-Transfer-Encoding: 7bit
 
 
---15217948360.B06EdaAb.5053
-Date: Fri, 23 Mar 2018 08:47:16 +0000
+--15217974180.E39c9B6.17597
+Date: Fri, 23 Mar 2018 09:30:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105174
 
---- Comment #17 from Mikael T <mika8560-mVuRI66OGLPQT0dZR+AlfA@public.gmane.org> ---
-still there with 4.13.0-37 ubuntu on HP Spectre, Core i7 7500U, intel HD
-Graphics 620, GM108M (GeForce 940MX) :
+--- Comment #17 from Stefano Biagiotti <stefano.biagiotti-h53T4Qt7PfY@public.gmane.org> ---
+Created attachment 138305
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138305&action=3Dedit
+dmesg with kernel-4.15.11-300.fc27
 
-nouveau 0000:01:00.0: NVIDIA GM108 (1180d0a2)=20=20=20=20=20=20=20=20
-nouveau 0000:01:00.0: bios: version 82.08.62.00.15=20=20=20
-nouveau 0000:01:00.0: fb: 2048 MiB GDDR5=20=20=20=20=20=20=20=20=20=20=20=
-=20=20
-nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 612004 [ IBUS ]=
-=20=20=20=20=20=20=20
-nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]=
-=20=20=20=20=20=20=20
- nvme0n1: p1 p2 p3=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-[drm] Memory usable by graphics device =3D 4096M
+I am on Fedora 27 x86_64 with MATE Desktop Environment.
+The fix posted here has been included in the new package
+kernel-4.15.11-300.fc27.x86_64.rpm. (Font:
+https://bugzilla.redhat.com/show_bug.cgi?id=3D1547037 )
+
+I installed kernel-4.15.11-300.fc27 from updates-testing repository but it
+doesn't resolve.
+ $ LANG=3Den dnf list kernel-4.15.11-300.fc27
+ Failed to set locale, defaulting to C
+ Last metadata expiration check: 0:00:15 ago on Thu Mar 22 15:50:44 2018.
+ Installed Packages
+ kernel.x86_64           4.15.11-300.fc27                @updates-testing
+
+Same freeze after login via lightdm.
+Dmesg attached.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15217948360.B06EdaAb.5053
-Date: Fri, 23 Mar 2018 08:47:16 +0000
+--15217974180.E39c9B6.17597
+Date: Fri, 23 Mar 2018 09:30:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,34 +77,44 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c17">Comme=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [GF108][Regression] Unable to handle NULL poin=
+ter dereference in nouveau_mem_host since kernel 4.15.3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174#c17">Comme=
 nt # 17</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
-3</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [GF108][Regression] Unable to handle NULL poin=
+ter dereference in nouveau_mem_host since kernel 4.15.3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174">bug 10517=
+4</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mika8560&#64;icloud.com" title=3D"Mikael T &lt;mika8560&#64;icloud.com&gt;"=
-> <span class=3D"fn">Mikael T</span></a>
+stefano.biagiotti&#64;gtn.it" title=3D"Stefano Biagiotti &lt;stefano.biagio=
+tti&#64;gtn.it&gt;"> <span class=3D"fn">Stefano Biagiotti</span></a>
 </span></b>
-        <pre>still there with 4.13.0-37 ubuntu on HP Spectre, Core i7 7500U=
-, intel HD
-Graphics 620, GM108M (GeForce 940MX) :
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138305=
+" name=3D"attach_138305" title=3D"dmesg with kernel-4.15.11-300.fc27">attac=
+hment 138305</a> <a href=3D"attachment.cgi?id=3D138305&amp;action=3Dedit" t=
+itle=3D"dmesg with kernel-4.15.11-300.fc27">[details]</a></span>
+dmesg with kernel-4.15.11-300.fc27
 
-nouveau 0000:01:00.0: NVIDIA GM108 (1180d0a2)=20=20=20=20=20=20=20=20
-nouveau 0000:01:00.0: bios: version 82.08.62.00.15=20=20=20
-nouveau 0000:01:00.0: fb: 2048 MiB GDDR5=20=20=20=20=20=20=20=20=20=20=20=
-=20=20
-nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 612004 [ IBUS ]=
-=20=20=20=20=20=20=20
-nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]=
-=20=20=20=20=20=20=20
- nvme0n1: p1 p2 p3=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-[drm] Memory usable by graphics device =3D 4096M</pre>
+I am on Fedora 27 x86_64 with MATE Desktop Environment.
+The fix posted here has been included in the new package
+kernel-4.15.11-300.fc27.x86_64.rpm. (Font:
+<a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1547037">https://b=
+ugzilla.redhat.com/show_bug.cgi?id=3D1547037</a> )
+
+I installed kernel-4.15.11-300.fc27 from updates-testing repository but it
+doesn't resolve.
+ $ LANG=3Den dnf list kernel-4.15.11-300.fc27
+ Failed to set locale, defaulting to C
+ Last metadata expiration check: 0:00:15 ago on Thu Mar 22 15:50:44 2018.
+ Installed Packages
+ kernel.x86_64           4.15.11-300.fc27                &#64;updates-testi=
+ng
+
+Same freeze after login via lightdm.
+Dmesg attached.</pre>
         </div>
       </p>
 
@@ -113,9 +128,9 @@ nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]=
     </body>
 </html>=
 
---15217948360.B06EdaAb.5053--
+--15217974180.E39c9B6.17597--
 
---===============1644379435==
+--===============1298833468==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -125,4 +140,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1644379435==--
+--===============1298833468==--
