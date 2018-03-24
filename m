@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
-Date: Sat, 24 Mar 2018 01:09:32 +0000
-Message-ID: <bug-105319-8800-sxDfM4vLqp@http.bugs.freedesktop.org/>
+Date: Sat, 24 Mar 2018 01:10:28 +0000
+Message-ID: <bug-105319-8800-FnM83unb6P@http.bugs.freedesktop.org/>
 References: <bug-105319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1964506602=="
+Content-Type: multipart/mixed; boundary="===============0436277827=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1964506602==
-Content-Type: multipart/alternative; boundary="15218537721.E401c6b.6590"
+--===============0436277827==
+Content-Type: multipart/alternative; boundary="15218538280.DEE7bD3C9.6674"
 Content-Transfer-Encoding: 7bit
 
 
---15218537721.E401c6b.6590
-Date: Sat, 24 Mar 2018 01:09:32 +0000
+--15218538280.DEE7bD3C9.6674
+Date: Sat, 24 Mar 2018 01:10:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,26 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
 
---- Comment #10 from S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> ---
-Created attachment 138329
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138329&action=3Dedit
-./dmesg.txt
-
-(In reply to Pierre Moreau from comment #9)
-> Could you please try 4.16-rc6, which includes the patch you mentioned, and
-> see if that helps?
-
-no luck , but I found that laptop does not freeze , I could connect to him =
-via
-ssh=20
-I send in attach full dmesg.txt and Xorg.0.log
+--- Comment #11 from S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> ---
+Created attachment 138330
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138330&action=3Dedit
+Xorg.0.log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15218537721.E401c6b.6590
-Date: Sat, 24 Mar 2018 01:09:32 +0000
+--15218538280.DEE7bD3C9.6674
+Date: Sat, 24 Mar 2018 01:10:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c10">Comme=
-nt # 10</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c11">Comme=
+nt # 11</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
@@ -82,22 +73,11 @@ nt # 10</a>
 sergio&#64;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.=
 com&gt;"> <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138329=
-" name=3D"attach_138329" title=3D"./dmesg.txt">attachment 138329</a> <a hre=
-f=3D"attachment.cgi?id=3D138329&amp;action=3Dedit" title=3D"./dmesg.txt">[d=
-etails]</a></span>
-./dmesg.txt
-
-(In reply to Pierre Moreau from <a href=3D"show_bug.cgi?id=3D105319#c9">com=
-ment #9</a>)
-<span class=3D"quote">&gt; Could you please try 4.16-rc6, which includes th=
-e patch you mentioned, and
-&gt; see if that helps?</span >
-
-no luck , but I found that laptop does not freeze , I could connect to him =
-via
-ssh=20
-I send in attach full dmesg.txt and Xorg.0.log</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138330=
+" name=3D"attach_138330" title=3D"Xorg.0.log">attachment 138330</a> <a href=
+=3D"attachment.cgi?id=3D138330&amp;action=3Dedit" title=3D"Xorg.0.log">[det=
+ails]</a></span>
+Xorg.0.log</pre>
         </div>
       </p>
 
@@ -111,9 +91,9 @@ I send in attach full dmesg.txt and Xorg.0.log</pre>
     </body>
 </html>=
 
---15218537721.E401c6b.6590--
+--15218538280.DEE7bD3C9.6674--
 
---===============1964506602==
+--===============0436277827==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1964506602==--
+--===============0436277827==--
