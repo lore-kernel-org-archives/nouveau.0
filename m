@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105722] Nouveau driver hangs when closing video
- playback
-Date: Fri, 23 Mar 2018 19:32:41 +0000
-Message-ID: <bug-105722-8800-yGBewELLWB@http.bugs.freedesktop.org/>
-References: <bug-105722-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
+Date: Sat, 24 Mar 2018 01:09:32 +0000
+Message-ID: <bug-105319-8800-sxDfM4vLqp@http.bugs.freedesktop.org/>
+References: <bug-105319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1113822686=="
+Content-Type: multipart/mixed; boundary="===============1964506602=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +20,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1113822686==
-Content-Type: multipart/alternative; boundary="15218335610.DbC54c.19240"
+--===============1964506602==
+Content-Type: multipart/alternative; boundary="15218537721.E401c6b.6590"
 Content-Transfer-Encoding: 7bit
 
 
---15218335610.DbC54c.19240
-Date: Fri, 23 Mar 2018 19:32:41 +0000
+--15218537721.E401c6b.6590
+Date: Sat, 24 Mar 2018 01:09:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105722
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
 
---- Comment #1 from Christopher <freedesktopbugs0000-H9HWdc0fwY8sA/PxXw9srA@public.gmane.org> ---
-Created attachment 138323
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138323&action=3Dedit
-The X server log, retrieved after the crash but before restarting X
+--- Comment #10 from S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> ---
+Created attachment 138329
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138329&action=3Dedit
+./dmesg.txt
 
-The xorg server log from the session that locked up.  The file was copied a=
-way
-before restarting the X server after the reboot.
+(In reply to Pierre Moreau from comment #9)
+> Could you please try 4.16-rc6, which includes the patch you mentioned, and
+> see if that helps?
+
+no luck , but I found that laptop does not freeze , I could connect to him =
+via
+ssh=20
+I send in attach full dmesg.txt and Xorg.0.log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15218335610.DbC54c.19240
-Date: Fri, 23 Mar 2018 19:32:41 +0000
+--15218537721.E401c6b.6590
+Date: Sat, 24 Mar 2018 01:09:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,28 +70,34 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau driver hangs when closing video playback"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105722#c1">Commen=
-t # 1</a>
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c10">Comme=
+nt # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau driver hangs when closing video playback"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105722">bug 10572=
-2</a>
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
+9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-freedesktopbugs0000&#64;cneufeld.ca" title=3D"Christopher &lt;freedesktopbu=
-gs0000&#64;cneufeld.ca&gt;"> <span class=3D"fn">Christopher</span></a>
+sergio&#64;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.=
+com&gt;"> <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138323=
-" name=3D"attach_138323" title=3D"The X server log, retrieved after the cra=
-sh but before restarting X">attachment 138323</a> <a href=3D"attachment.cgi=
-?id=3D138323&amp;action=3Dedit" title=3D"The X server log, retrieved after =
-the crash but before restarting X">[details]</a></span>
-The X server log, retrieved after the crash but before restarting X
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138329=
+" name=3D"attach_138329" title=3D"./dmesg.txt">attachment 138329</a> <a hre=
+f=3D"attachment.cgi?id=3D138329&amp;action=3Dedit" title=3D"./dmesg.txt">[d=
+etails]</a></span>
+./dmesg.txt
 
-The xorg server log from the session that locked up.  The file was copied a=
-way
-before restarting the X server after the reboot.</pre>
+(In reply to Pierre Moreau from <a href=3D"show_bug.cgi?id=3D105319#c9">com=
+ment #9</a>)
+<span class=3D"quote">&gt; Could you please try 4.16-rc6, which includes th=
+e patch you mentioned, and
+&gt; see if that helps?</span >
+
+no luck , but I found that laptop does not freeze , I could connect to him =
+via
+ssh=20
+I send in attach full dmesg.txt and Xorg.0.log</pre>
         </div>
       </p>
 
@@ -101,9 +111,9 @@ before restarting the X server after the reboot.</pre>
     </body>
 </html>=
 
---15218335610.DbC54c.19240--
+--15218537721.E401c6b.6590--
 
---===============1113822686==
+--===============1964506602==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1113822686==--
+--===============1964506602==--
