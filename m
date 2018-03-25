@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
-Date: Sat, 24 Mar 2018 01:10:28 +0000
-Message-ID: <bug-105319-8800-FnM83unb6P@http.bugs.freedesktop.org/>
-References: <bug-105319-8800@http.bugs.freedesktop.org/>
+From: Arushi Singhal <arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Outreachy kernel] [PATCH] gpu: drm: Use
+ list_{next/prev}_entry instead of list_entry
+Date: Sun, 25 Mar 2018 16:52:13 +0530
+Message-ID: <CA+XqjF8-33LS=5obrhxtBUB97WSCSLNTxCTFH_oNN6EqUZE52g@mail.gmail.com>
+References: <20180319050530.GA25589@seema-Inspiron-15-3567>
+ <alpine.DEB.2.20.1803190805260.2864@hadrien>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0436277827=="
+Content-Type: multipart/mixed; boundary="===============1430357138=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <alpine.DEB.2.20.1803190805260.2864@hadrien>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,84 +18,333 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Julia Lawall <julia.lawall-L2FTfq7BK8M@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Gustavo Padovan <gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, outreachy-kernel <outreachy-kernel-/JYPxA39Uh5TLH3MbocFFw@public.gmane.org>, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============1430357138==
+Content-Type: multipart/alternative; boundary="001a114af28a845f5805683adec8"
 
---===============0436277827==
-Content-Type: multipart/alternative; boundary="15218538280.DEE7bD3C9.6674"
-Content-Transfer-Encoding: 7bit
-
-
---15218538280.DEE7bD3C9.6674
-Date: Sat, 24 Mar 2018 01:10:28 +0000
-MIME-Version: 1.0
+--001a114af28a845f5805683adec8
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
+On Mon, Mar 19, 2018 at 12:44 PM, Julia Lawall <julia.lawall-L2FTfq7BK8M@public.gmane.org> wrote:
 
---- Comment #11 from S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> ---
-Created attachment 138330
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138330&action=3Dedit
-Xorg.0.log
+>
+>
+> On Mon, 19 Mar 2018, Arushi Singhal wrote:
+>
+> > This patch replace list_entry with list_{next/prev}_entry as it makes
+> > the code more clear to read.
+> > Done using coccinelle:
+> >
+> > @@
+> > expression e1;
+> > identifier e3;
+> > type t;
+> > @@
+> > (
+> > - list_entry(e1->e3.next,t,e3)
+> > + list_next_entry(e1,e3)
+> > |
+> > - list_entry(e1->e3.prev,t,e3)
+> > + list_prev_entry(e1,e3)
+> > )
+>
+> This looks like a rule that could be nice for the Linux kernel in general,
+> because the code really is much simpler.
+>
+> I would suggest to write the rule in a more robust way, as follows:
+>
+> @@
+> identifier e3;
+> type t;
+> t *e1;
+> @@
+>
+> (
+> - list_entry(e1->e3.next,t,e3)
+> + list_next_entry(e1,e3)
+> |
+> - list_entry(e1->e3.prev,t,e3)
+> + list_prev_entry(e1,e3)
+> )
+>
+> @@
+> expression e1;
+> identifier e3;
+> @@
+>
+> (
+> - list_entry(e1->e3.next,typeof(*e1),e3)
+> + list_next_entry(e1,e3)
+> |
+> - list_entry(e1->e3.prev,typeof(*e1),e3)
+> + list_prev_entry(e1,e3)
+>
+> This checks that the type that is specified corresponds to the one on e1.
+> It could actually be that the call is getting the first element of a list,
+> from some different type, and coincidentally the two types have the same
+> field name for the list element.
+>
+> Unfortunately, the second rule, with the typeof call, doesn't currently
+> work in Coccinelle, because the semantic patch language doesn't actually
+> support typeof, and thinks that it is a function call.  I will fix this.
+>
+> To make a semantic patch for the kernel, you can try running spgen on the
+> above file and answer the questions that it asks.  You can find examples
+> in the coccinelle/scripts directory.  Just run
+>
+> spgen foo.cocci
+>
+> Then answer the questions.  Then run
+>
+> spgen foo.cocci > foo_for_kernel.cocci
+>
+> The second run will use the results of the first run to print the semantic
+> patch.  Let me know if you have any questions.  You can always adjust the
+> semantic patch that is generated by hand afterwards if needed.
+>
+>
+Thanks Julia for explanation and it helped me to learn about Spgen tool.
+I'll make the changes and resend.
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+Arushi
 
---15218538280.DEE7bD3C9.6674
-Date: Sat, 24 Mar 2018 01:10:28 +0000
-MIME-Version: 1.0
+> julia
+>
+>
+> >
+> > Signed-off-by: Arushi Singhal <arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > ---
+> >  drivers/gpu/drm/drm_lease.c                    | 2 +-
+> >  drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c | 2 +-
+> >  2 files changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/drm_lease.c b/drivers/gpu/drm/drm_lease.c
+> > index 1402c0e..4dcfb5f 100644
+> > --- a/drivers/gpu/drm/drm_lease.c
+> > +++ b/drivers/gpu/drm/drm_lease.c
+> > @@ -340,7 +340,7 @@ static void _drm_lease_revoke(struct drm_master *top)
+> >                               break;
+> >
+> >                       /* Over */
+> > -                     master = list_entry(master->lessee_list.next,
+> struct drm_master, lessee_list);
+> > +                     master = list_next_entry(master, lessee_list);
+> >               }
+> >       }
+> >  }
+> > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+> > index e4c8d31..81c3567 100644
+> > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+> > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+> > @@ -134,7 +134,7 @@ nvkm_cstate_find_best(struct nvkm_clk *clk, struct
+> nvkm_pstate *pstate,
+> >                              nvkm_volt_map(volt, volt->max2_id,
+> clk->temp));
+> >
+> >       for (cstate = start; &cstate->head != &pstate->list;
+> > -          cstate = list_entry(cstate->head.prev, typeof(*cstate),
+> head)) {
+> > +          cstate = list_prev_entry(cstate, head)) {
+> >               if (nvkm_cstate_valid(clk, cstate, max_volt, clk->temp))
+> >                       break;
+> >       }
+> > --
+> > 2.7.4
+> >
+> > --
+> > You received this message because you are subscribed to the Google
+> Groups "outreachy-kernel" group.
+> > To unsubscribe from this group and stop receiving emails from it, send
+> an email to outreachy-kernel+unsubscribe-/JYPxA39Uh5TLH3MbocFF+G/Ez6ZCGd0@public.gmane.org
+> > To post to this group, send email to outreachy-kernel-/JYPxA39Uh5TLH3MbocFF+G/Ez6ZCGd0@public.gmane.org
+> > To view this discussion on the web visit https://groups.google.com/d/
+> msgid/outreachy-kernel/20180319050530.GA25589%40seema-Inspiron-15-3567.
+> > For more options, visit https://groups.google.com/d/optout.
+> >
+>
+
+--001a114af28a845f5805683adec8
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c11">Comme=
-nt # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
-9</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sergio&#64;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.=
-com&gt;"> <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138330=
-" name=3D"attach_138330" title=3D"Xorg.0.log">attachment 138330</a> <a href=
-=3D"attachment.cgi?id=3D138330&amp;action=3Dedit" title=3D"Xorg.0.log">[det=
-ails]</a></span>
-Xorg.0.log</pre>
-        </div>
-      </p>
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
+te">On Mon, Mar 19, 2018 at 12:44 PM, Julia Lawall <span dir=3D"ltr">&lt;<a=
+ href=3D"mailto:julia.lawall-L2FTfq7BK8M@public.gmane.org" target=3D"_blank">julia.lawall@lip6.f=
+r</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">=
+<br>
+<br>
+On Mon, 19 Mar 2018, Arushi Singhal wrote:<br>
+<br>
+&gt; This patch replace list_entry with list_{next/prev}_entry as it makes<=
+br>
+&gt; the code more clear to read.<br>
+&gt; Done using coccinelle:<br>
+&gt;<br>
+&gt; @@<br>
+&gt; expression e1;<br>
+&gt; identifier e3;<br>
+&gt; type t;<br>
+&gt; @@<br>
+&gt; (<br>
+&gt; - list_entry(e1-&gt;e3.next,t,e3)<br>
+&gt; + list_next_entry(e1,e3)<br>
+&gt; |<br>
+&gt; - list_entry(e1-&gt;e3.prev,t,e3)<br>
+&gt; + list_prev_entry(e1,e3)<br>
+&gt; )<br>
+<br>
+</span>This looks like a rule that could be nice for the Linux kernel in ge=
+neral,<br>
+because the code really is much simpler.<br>
+<br>
+I would suggest to write the rule in a more robust way, as follows:<br>
+<br>
+@@<br>
+identifier e3;<br>
+type t;<br>
+t *e1;<br>
+<span class=3D"">@@<br>
+<br>
+(<br>
+- list_entry(e1-&gt;e3.next,t,e3)<br>
++ list_next_entry(e1,e3)<br>
+|<br>
+- list_entry(e1-&gt;e3.prev,t,e3)<br>
++ list_prev_entry(e1,e3)<br>
+)<br>
+<br>
+</span><span class=3D"">@@<br>
+expression e1;<br>
+identifier e3;<br>
+</span>@@<br>
+<br>
+(<br>
+- list_entry(e1-&gt;e3.next,typeof(<wbr>*e1),e3)<br>
++ list_next_entry(e1,e3)<br>
+|<br>
+- list_entry(e1-&gt;e3.prev,typeof(<wbr>*e1),e3)<br>
++ list_prev_entry(e1,e3)<br>
+<br>
+This checks that the type that is specified corresponds to the one on e1.<b=
+r>
+It could actually be that the call is getting the first element of a list,<=
+br>
+from some different type, and coincidentally the two types have the same<br=
+>
+field name for the list element.<br>
+<br>
+Unfortunately, the second rule, with the typeof call, doesn&#39;t currently=
+<br>
+work in Coccinelle, because the semantic patch language doesn&#39;t actuall=
+y<br>
+support typeof, and thinks that it is a function call.=C2=A0 I will fix thi=
+s.<br>
+<br>
+To make a semantic patch for the kernel, you can try running spgen on the<b=
+r>
+above file and answer the questions that it asks.=C2=A0 You can find exampl=
+es<br>
+in the coccinelle/scripts directory.=C2=A0 Just run<br>
+<br>
+spgen foo.cocci<br>
+<br>
+Then answer the questions.=C2=A0 Then run<br>
+<br>
+spgen foo.cocci &gt; foo_for_kernel.cocci<br>
+<br>
+The second run will use the results of the first run to print the semantic<=
+br>
+patch.=C2=A0 Let me know if you have any questions.=C2=A0 You can always ad=
+just the<br>
+semantic patch that is generated by hand afterwards if needed.<br>
+<br></blockquote><div><br></div><div>Thanks Julia for explanation and it he=
+lped me to learn about Spgen tool.<br></div><div>I&#39;ll make the changes =
+and resend.<br><br>Arushi<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+julia<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+<br>
+&gt;<br>
+&gt; Signed-off-by: Arushi Singhal &lt;<a href=3D"mailto:arushisinghal19971=
+997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">arushisinghal19971997@gmail.<wbr>com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 drivers/gpu/drm/drm_lease.c=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | 2 +-<br>
+&gt;=C2=A0 drivers/gpu/drm/nouveau/nvkm/<wbr>subdev/clk/base.c | 2 +-<br>
+&gt;=C2=A0 2 files changed, 2 insertions(+), 2 deletions(-)<br>
+&gt;<br>
+&gt; diff --git a/drivers/gpu/drm/drm_lease.c b/drivers/gpu/drm/drm_lease.c=
+<br>
+&gt; index 1402c0e..4dcfb5f 100644<br>
+&gt; --- a/drivers/gpu/drm/drm_lease.c<br>
+&gt; +++ b/drivers/gpu/drm/drm_lease.c<br>
+&gt; @@ -340,7 +340,7 @@ static void _drm_lease_revoke(struct drm_master *t=
+op)<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0/* Over */<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0master =3D list_entry(master-&gt;lessee_<wbr>list.next, struct drm_m=
+aster, lessee_list);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0master =3D list_next_entry(master, lessee_list);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;=C2=A0 }<br>
+&gt; diff --git a/drivers/gpu/drm/nouveau/<wbr>nvkm/subdev/clk/base.c b/dri=
+vers/gpu/drm/nouveau/<wbr>nvkm/subdev/clk/base.c<br>
+&gt; index e4c8d31..81c3567 100644<br>
+&gt; --- a/drivers/gpu/drm/nouveau/<wbr>nvkm/subdev/clk/base.c<br>
+&gt; +++ b/drivers/gpu/drm/nouveau/<wbr>nvkm/subdev/clk/base.c<br>
+&gt; @@ -134,7 +134,7 @@ nvkm_cstate_find_best(struct nvkm_clk *clk, struct=
+ nvkm_pstate *pstate,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 nvkm_volt_map(volt, volt-&gt;max2_id, cl=
+k-&gt;temp));<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0for (cstate =3D start; &amp;cstate-&gt;head =
+!=3D &amp;pstate-&gt;list;<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cstate =3D list_entry(cstate-&gt;h=
+ead.prev, typeof(*cstate), head)) {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cstate =3D list_prev_entry(cstate,=
+ head)) {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (nvkm_cstate_=
+valid(clk, cstate, max_volt, clk-&gt;temp))<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0break;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt; --<br>
+&gt; 2.7.4<br>
+&gt;<br>
+</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
+&gt; You received this message because you are subscribed to the Google Gro=
+ups &quot;outreachy-kernel&quot; group.<br>
+&gt; To unsubscribe from this group and stop receiving emails from it, send=
+ an email to <a href=3D"mailto:outreachy-kernel%2Bunsubscribe@googlegroups.=
+com">outreachy-kernel+unsubscribe@<wbr>googlegroups.com</a>.<br>
+&gt; To post to this group, send email to <a href=3D"mailto:outreachy-kerne=
+l@googlegroups.com">outreachy-kernel@googlegroups.<wbr>com</a>.<br>
+&gt; To view this discussion on the web visit <a href=3D"https://groups.goo=
+gle.com/d/msgid/outreachy-kernel/20180319050530.GA25589%40seema-Inspiron-15=
+-3567" rel=3D"noreferrer" target=3D"_blank">https://groups.google.com/d/<wb=
+r>msgid/outreachy-kernel/<wbr>20180319050530.GA25589%<wbr>40seema-Inspiron-=
+15-3567</a>.<br>
+&gt; For more options, visit <a href=3D"https://groups.google.com/d/optout"=
+ rel=3D"noreferrer" target=3D"_blank">https://groups.google.com/d/<wbr>opto=
+ut</a>.<br>
+&gt;<br>
+</font></span></blockquote></div><br></div></div>
 
+--001a114af28a845f5805683adec8--
 
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15218538280.DEE7bD3C9.6674--
-
---===============0436277827==
+--===============1430357138==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +354,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0436277827==--
+--===============1430357138==--
