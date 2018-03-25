@@ -1,14 +1,15 @@
-From: Arushi Singhal <arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v2 2/2] gpu: drm: nouveau: Use
+From: Julia Lawall <julia.lawall-L2FTfq7BK8M@public.gmane.org>
+Subject: Re: [Outreachy kernel] [PATCH] gpu: drm: Use
  list_{next/prev}_entry instead of list_entry
-Date: Sun, 25 Mar 2018 23:31:33 +0530
-Message-ID: <1522000893-5331-3-git-send-email-arushisinghal19971997@gmail.com>
-References: <1522000893-5331-1-git-send-email-arushisinghal19971997@gmail.com>
+Date: Mon, 26 Mar 2018 00:45:14 +0200 (CEST)
+Message-ID: <alpine.DEB.2.20.1803260044440.2488@hadrien>
+References: <20180319050530.GA25589@seema-Inspiron-15-3567>
+ <alpine.DEB.2.20.1803190805260.2864@hadrien>
+ <CA+XqjF9jHrOFL4LosK5GdbAgpmQRd9=08eNzvfzYxFaeXk972g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; BOUNDARY="8323329-1052078271-1522017915=:2488"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1522000893-5331-1-git-send-email-arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <CA+XqjF9jHrOFL4LosK5GdbAgpmQRd9=08eNzvfzYxFaeXk972g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,28 +19,199 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Arushi Singhal <arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, airlied-cv59FeDIM0c@public.gmane.org, gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org
+To: Arushi Singhal <arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Gustavo Padovan <gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, outreachy-kernel <outreachy-kernel-/JYPxA39Uh5TLH3MbocFFw@public.gmane.org>, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SXQncyBiZXR0ZXIgdG8gdXNlIGxpc3RfZW50cnkgaW5zdGVhZCBvZiBsaXN0X3tuZXh0L3ByZXZ9
-X2VudHJ5CmFzIGl0IG1ha2VzIHRoZSBjb2RlIG1vcmUgY2xlYXIgdG8gcmVhZC4KVGhpcyBwYXRj
-aCByZXBsYWNlIGxpc3RfZW50cnkgd2l0aCBsaXN0X3tuZXh0L3ByZXZ9X2VudHJ5LgoKU2lnbmVk
-LW9mZi1ieTogQXJ1c2hpIFNpbmdoYWwgPGFydXNoaXNpbmdoYWwxOTk3MTk5N0BnbWFpbC5jb20+
-Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYyB8IDIg
-Ky0KIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgYi9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCmluZGV4IGU0Yzhk
-MzEuLjgxYzM1NjcgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L2Nsay9iYXNlLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
-Y2xrL2Jhc2UuYwpAQCAtMTM0LDcgKzEzNCw3IEBAIG52a21fY3N0YXRlX2ZpbmRfYmVzdChzdHJ1
-Y3QgbnZrbV9jbGsgKmNsaywgc3RydWN0IG52a21fcHN0YXRlICpwc3RhdGUsCiAJCQkgICAgICAg
-bnZrbV92b2x0X21hcCh2b2x0LCB2b2x0LT5tYXgyX2lkLCBjbGstPnRlbXApKTsKIAogCWZvciAo
-Y3N0YXRlID0gc3RhcnQ7ICZjc3RhdGUtPmhlYWQgIT0gJnBzdGF0ZS0+bGlzdDsKLQkgICAgIGNz
-dGF0ZSA9IGxpc3RfZW50cnkoY3N0YXRlLT5oZWFkLnByZXYsIHR5cGVvZigqY3N0YXRlKSwgaGVh
-ZCkpIHsKKwkgICAgIGNzdGF0ZSA9IGxpc3RfcHJldl9lbnRyeShjc3RhdGUsIGhlYWQpKSB7CiAJ
-CWlmIChudmttX2NzdGF0ZV92YWxpZChjbGssIGNzdGF0ZSwgbWF4X3ZvbHQsIGNsay0+dGVtcCkp
-CiAJCQlicmVhazsKIAl9Ci0tIAoyLjcuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9ub3V2ZWF1Cg==
+--8323329-1052078271-1522017915=:2488
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+
+
+
+On Sun, 25 Mar 2018, Arushi Singhal wrote:
+
+>
+>
+> On Mon, Mar 19, 2018 at 12:44 PM, Julia Lawall <julia.lawall-L2FTfq7BK8M@public.gmane.org> wrote:
+>
+>
+>       On Mon, 19 Mar 2018, Arushi Singhal wrote:
+>
+>       > This patch replace list_entry with list_{next/prev}_entry as
+>       it makes
+>       > the code more clear to read.
+>       > Done using coccinelle:
+>       >
+>       > @@
+>       > expression e1;
+>       > identifier e3;
+>       > type t;
+>       > @@
+>       > (
+>       > - list_entry(e1->e3.next,t,e3)
+>       > + list_next_entry(e1,e3)
+>       > |
+>       > - list_entry(e1->e3.prev,t,e3)
+>       > + list_prev_entry(e1,e3)
+>       > )
+>
+>       This looks like a rule that could be nice for the Linux kernel
+>       in general,
+>       because the code really is much simpler.
+>
+>       I would suggest to write the rule in a more robust way, as
+>       follows:
+>
+>       @@
+>       identifier e3;
+>       type t;
+>       t *e1;
+>       @@
+>
+>       (
+>       - list_entry(e1->e3.next,t,e3)
+>       + list_next_entry(e1,e3)
+>       |
+>       - list_entry(e1->e3.prev,t,e3)
+>       + list_prev_entry(e1,e3)
+>       )
+>
+>       @@
+>       expression e1;
+>       identifier e3;
+>       @@
+>
+>       (
+>       - list_entry(e1->e3.next,typeof(*e1),e3)
+>       + list_next_entry(e1,e3)
+>       |
+>       - list_entry(e1->e3.prev,typeof(*e1),e3)
+>       + list_prev_entry(e1,e3)
+>
+>       This checks that the type that is specified corresponds to the
+>       one on e1.
+>       It could actually be that the call is getting the first element
+>       of a list,
+>       from some different type, and coincidentally the two types have
+>       the same
+>       field name for the list element.
+>
+>       Unfortunately, the second rule, with the typeof call, doesn't
+>       currently
+>       work in Coccinelle, because the semantic patch language doesn't
+>       actually
+>       support typeof, and thinks that it is a function call.  I will
+>       fix this.
+>
+>       To make a semantic patch for the kernel, you can try running
+>       spgen on the
+>       above file and answer the questions that it asks.  You can find
+>       examples
+>       in the coccinelle/scripts directory.  Just run
+>
+>       spgen foo.cocci
+>
+>       Then answer the questions.  Then run
+>
+>       spgen foo.cocci > foo_for_kernel.cocci
+>
+>       The second run will use the results of the first run to print
+>       the semantic
+>       patch.  Let me know if you have any questions.  You can always
+>       adjust the
+>       semantic patch that is generated by hand afterwards if needed.
+>
+>
+> Hi Julia,
+>
+> I tried spgen and found that second rule is still not working. It's not able
+> to detect the second rule.
+> Is it working for you?
+
+If you get the latest version of Coccinelle from github, it shoudl be
+working now.
+
+julia
+
+>
+> Thanks,
+> Arushi
+>
+>
+>       julia
+>
+>
+>       >
+>       > Signed-off-by: Arushi Singhal
+>       <arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+>       > ---
+>       >  drivers/gpu/drm/drm_lease.c                    | 2 +-
+>       >  drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c | 2 +-
+>       >  2 files changed, 2 insertions(+), 2 deletions(-)
+>       >
+>       > diff --git a/drivers/gpu/drm/drm_lease.c
+>       b/drivers/gpu/drm/drm_lease.c
+>       > index 1402c0e..4dcfb5f 100644
+>       > --- a/drivers/gpu/drm/drm_lease.c
+>       > +++ b/drivers/gpu/drm/drm_lease.c
+>       > @@ -340,7 +340,7 @@ static void _drm_lease_revoke(struct
+>       drm_master *top)
+>       >                               break;
+>       >
+>       >                       /* Over */
+>       > -                     master =
+>       list_entry(master->lessee_list.next, struct drm_master,
+>       lessee_list);
+>       > +                     master = list_next_entry(master,
+>       lessee_list);
+>       >               }
+>       >       }
+>       >  }
+>       > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+>       b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+>       > index e4c8d31..81c3567 100644
+>       > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+>       > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+>       > @@ -134,7 +134,7 @@ nvkm_cstate_find_best(struct nvkm_clk
+>       *clk, struct nvkm_pstate *pstate,
+>       >                              nvkm_volt_map(volt,
+>       volt->max2_id, clk->temp));
+>       >
+>       >       for (cstate = start; &cstate->head != &pstate->list;
+>       > -          cstate = list_entry(cstate->head.prev,
+>       typeof(*cstate), head)) {
+>       > +          cstate = list_prev_entry(cstate, head)) {
+>       >               if (nvkm_cstate_valid(clk, cstate, max_volt,
+>       clk->temp))
+>       >                       break;
+>       >       }
+>       > --
+>       > 2.7.4
+>       >
+> > --
+> > You received this message because you are subscribed to the Google
+> Groups "outreachy-kernel" group.
+> > To unsubscribe from this group and stop receiving emails from it,
+> send an email to outreachy-kernel+unsubscribe-/JYPxA39Uh5TLH3MbocFF+G/Ez6ZCGd0@public.gmane.org
+> > To post to this group, send email to
+> outreachy-kernel-/JYPxA39Uh5TLH3MbocFF+G/Ez6ZCGd0@public.gmane.org
+> > To view this discussion on the web visithttps://groups.google.com/d/msgid/outreachy-kernel/20180319050530.GA25589%4
+> 0seema-Inspiron-15-3567.
+> > For more options, visit https://groups.google.com/d/optout.
+> >
+>
+>
+>
+>
+--8323329-1052078271-1522017915=:2488
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--8323329-1052078271-1522017915=:2488--
