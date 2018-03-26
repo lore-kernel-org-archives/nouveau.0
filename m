@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
-Date: Mon, 26 Mar 2018 11:41:40 +0000
-Message-ID: <bug-105319-8800-EVXIOZuGsL@http.bugs.freedesktop.org/>
-References: <bug-105319-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH v2 2/2] gpu: drm: nouveau: Use
+ list_{next/prev}_entry instead of list_entry
+Date: Mon, 26 Mar 2018 22:34:54 +1000
+Message-ID: <CABDvA=nFq6nPMyhB3C87XxVkxXwy23NQVES2Na_TVB6VreKrrQ@mail.gmail.com>
+References: <1522000893-5331-1-git-send-email-arushisinghal19971997@gmail.com>
+ <1522000893-5331-3-git-send-email-arushisinghal19971997@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0907143434=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1522000893-5331-3-git-send-email-arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,111 +19,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Arushi Singhal <arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0907143434==
-Content-Type: multipart/alternative; boundary="15220644992.EC4A20ac8.12581"
-Content-Transfer-Encoding: 7bit
-
-
---15220644992.EC4A20ac8.12581
-Date: Mon, 26 Mar 2018 11:41:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
-
---- Comment #12 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-(In reply to S=C3=A9rgio M. Basto from comment #10)
-> I send in attach full dmesg.txt and Xorg.0.log
-
-Thank you for the logs.
-
-I tried 4.15.12 on a G98 (9300 GS) but could not reproduce that issue (I had
-two screens: one connected over VGA and the other over HDMI). 4.15.12 should
-not have any new patches over 4.16-rc6, so you don=E2=80=99t need to try 4.=
-15.12.
-I=E2=80=99ll see if I can find some errors in the patches that went in 4.15=
-. If you are
-able to bisect the faulty commit that went in 4.15, that would be really
-helpful.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15220644992.EC4A20ac8.12581
-Date: Mon, 26 Mar 2018 11:41:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c12">Comme=
-nt # 12</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
-9</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pierre.morrow&#64;free.fr" title=3D"Pierre Moreau &lt;pierre.morrow&#64;fre=
-e.fr&gt;"> <span class=3D"fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>(In reply to S=C3=A9rgio M. Basto from <a href=3D"show_bug.cgi=
-?id=3D105319#c10">comment #10</a>)
-<span class=3D"quote">&gt; I send in attach full dmesg.txt and Xorg.0.log</=
-span >
-
-Thank you for the logs.
-
-I tried 4.15.12 on a G98 (9300 GS) but could not reproduce that issue (I had
-two screens: one connected over VGA and the other over HDMI). 4.15.12 should
-not have any new patches over 4.16-rc6, so you don=E2=80=99t need to try 4.=
-15.12.
-I=E2=80=99ll see if I can find some errors in the patches that went in 4.15=
-. If you are
-able to bisect the faulty commit that went in 4.15, that would be really
-helpful.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15220644992.EC4A20ac8.12581--
-
---===============0907143434==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0907143434==--
+T24gTW9uLCBNYXIgMjYsIDIwMTggYXQgNDowMSBBTSwgQXJ1c2hpIFNpbmdoYWwKPGFydXNoaXNp
+bmdoYWwxOTk3MTk5N0BnbWFpbC5jb20+IHdyb3RlOgo+IEl0J3MgYmV0dGVyIHRvIHVzZSBsaXN0
+X2VudHJ5IGluc3RlYWQgb2YgbGlzdF97bmV4dC9wcmV2fV9lbnRyeQo+IGFzIGl0IG1ha2VzIHRo
+ZSBjb2RlIG1vcmUgY2xlYXIgdG8gcmVhZC4KPiBUaGlzIHBhdGNoIHJlcGxhY2UgbGlzdF9lbnRy
+eSB3aXRoIGxpc3Rfe25leHQvcHJldn1fZW50cnkuCj4KPiBTaWduZWQtb2ZmLWJ5OiBBcnVzaGkg
+U2luZ2hhbCA8YXJ1c2hpc2luZ2hhbDE5OTcxOTk3QGdtYWlsLmNvbT4KQWNrZWQtYnk6IEJlbiBT
+a2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KCj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgfCAyICstCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGlu
+c2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9udmttL3N1YmRldi9jbGsvYmFzZS5jCj4gaW5kZXggZTRjOGQzMS4uODFjMzU2NyAxMDA2NDQK
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCj4g
+KysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYwo+IEBA
+IC0xMzQsNyArMTM0LDcgQEAgbnZrbV9jc3RhdGVfZmluZF9iZXN0KHN0cnVjdCBudmttX2NsayAq
+Y2xrLCBzdHJ1Y3QgbnZrbV9wc3RhdGUgKnBzdGF0ZSwKPiAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgbnZrbV92b2x0X21hcCh2b2x0LCB2b2x0LT5tYXgyX2lkLCBjbGstPnRlbXApKTsK
+Pgo+ICAgICAgICAgZm9yIChjc3RhdGUgPSBzdGFydDsgJmNzdGF0ZS0+aGVhZCAhPSAmcHN0YXRl
+LT5saXN0Owo+IC0gICAgICAgICAgICBjc3RhdGUgPSBsaXN0X2VudHJ5KGNzdGF0ZS0+aGVhZC5w
+cmV2LCB0eXBlb2YoKmNzdGF0ZSksIGhlYWQpKSB7Cj4gKyAgICAgICAgICAgIGNzdGF0ZSA9IGxp
+c3RfcHJldl9lbnRyeShjc3RhdGUsIGhlYWQpKSB7Cj4gICAgICAgICAgICAgICAgIGlmIChudmtt
+X2NzdGF0ZV92YWxpZChjbGssIGNzdGF0ZSwgbWF4X3ZvbHQsIGNsay0+dGVtcCkpCj4gICAgICAg
+ICAgICAgICAgICAgICAgICAgYnJlYWs7Cj4gICAgICAgICB9Cj4gLS0KPiAyLjcuNAo+Cl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
+ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
