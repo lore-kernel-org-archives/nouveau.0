@@ -1,16 +1,13 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [PATCH v2 1/2] gpu: drm/lease:: Use
- list_{next/prev}_entry instead of list_entry
-Date: Mon, 26 Mar 2018 10:37:55 +0200
-Message-ID: <20180326083755.GT14155@phenom.ffwll.local>
-References: <1522000893-5331-1-git-send-email-arushisinghal19971997@gmail.com>
- <1522000893-5331-2-git-send-email-arushisinghal19971997@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 105174] [GF108][Regression] Unable to handle NULL
+ pointer dereference in nouveau_mem_host since kernel 4.15.3
+Date: Mon, 26 Mar 2018 09:47:26 +0000
+Message-ID: <bug-105174-8800-TDQ1LNbhrx@http.bugs.freedesktop.org/>
+References: <bug-105174-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1602171288=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1522000893-5331-2-git-send-email-arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-105174-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +17,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Arushi Singhal <arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: airlied-cv59FeDIM0c@public.gmane.org, gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBNYXIgMjUsIDIwMTggYXQgMTE6MzE6MzJQTSArMDUzMCwgQXJ1c2hpIFNpbmdoYWwg
-d3JvdGU6Cj4gSXQncyBiZXR0ZXIgdG8gdXNlIGxpc3RfZW50cnkgaW5zdGVhZCBvZiBsaXN0X3tu
-ZXh0L3ByZXZ9X2VudHJ5Cj4gYXMgaXQgbWFrZXMgdGhlIGNvZGUgbW9yZSBjbGVhciB0byByZWFk
-Lgo+IFRoaXMgcGF0Y2ggcmVwbGFjZSBsaXN0X2VudHJ5IHdpdGggbGlzdF97bmV4dC9wcmV2fV9l
-bnRyeS4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBBcnVzaGkgU2luZ2hhbCA8YXJ1c2hpc2luZ2hhbDE5
-OTcxOTk3QGdtYWlsLmNvbT4KCkFwcGxpZWQgdG8gZHJtLW1pc2MtbmV4dCwgdGhhbmtzIGZvciB5
-b3VyIHBhdGNoLiBJJ2xsIGxlYXZlIHRoZSBvdGhlciBvbmUKdG8gbm91dmVhdSBmb2xrcy4KLURh
-bmllbAoKPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2RybV9sZWFzZS5jIHwgMiArLQo+ICAxIGZp
-bGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPiAKPiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2RybV9sZWFzZS5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9sZWFz
-ZS5jCj4gaW5kZXggMTQwMmMwZS4uNGRjZmI1ZiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vZHJtX2xlYXNlLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2xlYXNlLmMKPiBAQCAt
-MzQwLDcgKzM0MCw3IEBAIHN0YXRpYyB2b2lkIF9kcm1fbGVhc2VfcmV2b2tlKHN0cnVjdCBkcm1f
-bWFzdGVyICp0b3ApCj4gIAkJCQlicmVhazsKPiAgCj4gIAkJCS8qIE92ZXIgKi8KPiAtCQkJbWFz
-dGVyID0gbGlzdF9lbnRyeShtYXN0ZXItPmxlc3NlZV9saXN0Lm5leHQsIHN0cnVjdCBkcm1fbWFz
-dGVyLCBsZXNzZWVfbGlzdCk7Cj4gKwkJCW1hc3RlciA9IGxpc3RfbmV4dF9lbnRyeShtYXN0ZXIs
-IGxlc3NlZV9saXN0KTsKPiAgCQl9Cj4gIAl9Cj4gIH0KPiAtLSAKPiAyLjcuNAo+IAo+IF9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWls
-aW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQoKLS0gCkRhbmllbCBWZXR0
-ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCmh0dHA6Ly9ibG9nLmZmd2xs
-LmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1602171288==
+Content-Type: multipart/alternative; boundary="15220576460.c0fDCDC86.1801"
+Content-Transfer-Encoding: 7bit
+
+
+--15220576460.c0fDCDC86.1801
+Date: Mon, 26 Mar 2018 09:47:25 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105174
+
+--- Comment #18 from Stefano Biagiotti <stefano.biagiotti-h53T4Qt7PfY@public.gmane.org> ---
+Created attachment 138354
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138354&action=3Dedit
+journalctl (kernel-4.15.12-301.fc27.x86_64
+
+Fedora kernel-4.15.12-301.fc27.x86_64 from updates-testing repository still
+doesn't resolve.
+
+Display adapter (from lspci) is:
+01:00.0 VGA compatible controller: NVIDIA Corporation G98 [GeForce 8400 GS =
+Rev.
+2] (rev a1)
+
+Attach is an excerpt from "journalctl -k -b -1 --no-pager --no-hostname".
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15220576460.c0fDCDC86.1801
+Date: Mon, 26 Mar 2018 09:47:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [GF108][Regression] Unable to handle NULL poin=
+ter dereference in nouveau_mem_host since kernel 4.15.3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174#c18">Comme=
+nt # 18</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [GF108][Regression] Unable to handle NULL poin=
+ter dereference in nouveau_mem_host since kernel 4.15.3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105174">bug 10517=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+stefano.biagiotti&#64;gtn.it" title=3D"Stefano Biagiotti &lt;stefano.biagio=
+tti&#64;gtn.it&gt;"> <span class=3D"fn">Stefano Biagiotti</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138354=
+" name=3D"attach_138354" title=3D"journalctl (kernel-4.15.12-301.fc27.x86_6=
+4">attachment 138354</a> <a href=3D"attachment.cgi?id=3D138354&amp;action=
+=3Dedit" title=3D"journalctl (kernel-4.15.12-301.fc27.x86_64">[details]</a>=
+</span>
+journalctl (kernel-4.15.12-301.fc27.x86_64
+
+Fedora kernel-4.15.12-301.fc27.x86_64 from updates-testing repository still
+doesn't resolve.
+
+Display adapter (from lspci) is:
+01:00.0 VGA compatible controller: NVIDIA Corporation G98 [GeForce 8400 GS =
+Rev.
+2] (rev a1)
+
+Attach is an excerpt from &quot;journalctl -k -b -1 --no-pager --no-hostnam=
+e&quot;.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15220576460.c0fDCDC86.1801--
+
+--===============1602171288==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1602171288==--
