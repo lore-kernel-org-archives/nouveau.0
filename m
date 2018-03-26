@@ -1,56 +1,71 @@
-From: Chris Wilson <chris@chris-wilson.co.uk>
+From: Daniel Vetter <daniel@ffwll.ch>
 Subject: Re: [PATCH v2 2/2] gpu: drm: nouveau: Use list_{next/prev}_entry
  instead of list_entry
-Date: Mon, 26 Mar 2018 13:43:30 +0100
-Message-ID: <152206821005.4115.12768359647232399397@mail.alporthouse.com>
+Date: Mon, 26 Mar 2018 16:11:50 +0200
+Message-ID: <20180326141150.GU14155@phenom.ffwll.local>
 References: <1522000893-5331-1-git-send-email-arushisinghal19971997@gmail.com>
  <1522000893-5331-3-git-send-email-arushisinghal19971997@gmail.com>
  <CABDvA=nFq6nPMyhB3C87XxVkxXwy23NQVES2Na_TVB6VreKrrQ@mail.gmail.com>
+ <152206821005.4115.12768359647232399397@mail.alporthouse.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CABDvA=nFq6nPMyhB3C87XxVkxXwy23NQVES2Na_TVB6VreKrrQ@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ben Skeggs <bskeggs@redhat.com>, Arushi Singhal <arushisinghal19971997@gmail.com>
-Cc: David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>, linux-kernel@vger.kernel.org, dri-devel <dri-devel@lists.freedesktop.org>, daniel.vetter@intel.com
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <152206821005.4115.12768359647232399397@mail.alporthouse.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Ben Skeggs <bskeggs@redhat.com>, Arushi Singhal <arushisinghal19971997@gmail.com>, David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>, linux-kernel@vger.kernel.org, dri-devel <dri-devel@lists.freedesktop.org>, daniel.vetter@intel.com
 List-Id: nouveau.vger.kernel.org
 
-UXVvdGluZyBCZW4gU2tlZ2dzICgyMDE4LTAzLTI2IDEzOjM0OjU0KQo+IE9uIE1vbiwgTWFyIDI2
-LCAyMDE4IGF0IDQ6MDEgQU0sIEFydXNoaSBTaW5naGFsCj4gPGFydXNoaXNpbmdoYWwxOTk3MTk5
-N0BnbWFpbC5jb20+IHdyb3RlOgo+ID4gSXQncyBiZXR0ZXIgdG8gdXNlIGxpc3RfZW50cnkgaW5z
-dGVhZCBvZiBsaXN0X3tuZXh0L3ByZXZ9X2VudHJ5Cj4gPiBhcyBpdCBtYWtlcyB0aGUgY29kZSBt
-b3JlIGNsZWFyIHRvIHJlYWQuCj4gPiBUaGlzIHBhdGNoIHJlcGxhY2UgbGlzdF9lbnRyeSB3aXRo
-IGxpc3Rfe25leHQvcHJldn1fZW50cnkuCj4gPgo+ID4gU2lnbmVkLW9mZi1ieTogQXJ1c2hpIFNp
-bmdoYWwgPGFydXNoaXNpbmdoYWwxOTk3MTk5N0BnbWFpbC5jb20+Cj4gQWNrZWQtYnk6IEJlbiBT
-a2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KPiAKPiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgfCAyICstCj4gPiAgMSBmaWxlIGNoYW5n
-ZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCj4gPgo+ID4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCj4gPiBpbmRleCBlNGM4ZDMxLi44
-MWMzNTY3IDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJk
-ZXYvY2xrL2Jhc2UuYwo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJk
-ZXYvY2xrL2Jhc2UuYwo+ID4gQEAgLTEzNCw3ICsxMzQsNyBAQCBudmttX2NzdGF0ZV9maW5kX2Jl
-c3Qoc3RydWN0IG52a21fY2xrICpjbGssIHN0cnVjdCBudmttX3BzdGF0ZSAqcHN0YXRlLAo+ID4g
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG52a21fdm9sdF9tYXAodm9sdCwgdm9sdC0+
-bWF4Ml9pZCwgY2xrLT50ZW1wKSk7Cj4gPgo+ID4gICAgICAgICBmb3IgKGNzdGF0ZSA9IHN0YXJ0
-OyAmY3N0YXRlLT5oZWFkICE9ICZwc3RhdGUtPmxpc3Q7Cj4gPiAtICAgICAgICAgICAgY3N0YXRl
-ID0gbGlzdF9lbnRyeShjc3RhdGUtPmhlYWQucHJldiwgdHlwZW9mKCpjc3RhdGUpLCBoZWFkKSkg
-ewo+ID4gKyAgICAgICAgICAgIGNzdGF0ZSA9IGxpc3RfcHJldl9lbnRyeShjc3RhdGUsIGhlYWQp
-KSB7CgpUaGlzIGxvb3AgY291bGQgYmUgd3JpdHRlbiBhczoKCgljc3RhdGUgPSBzdGFydDsgLyog
-Y3N0YXRlIGxvb2tzIHJlZHVuZGFudCBoZXJlLCBqdXN0IHVzZSBzdGFydD8gKi8KCWxpc3RfZm9y
-X2VhY2hfZW50cnlfZnJvbV9yZXZlcnNlKGNzdGF0ZSwgJnBzdGF0ZS0+bGlzdCwgaGVhZCkKCj4g
-PiAgICAgICAgICAgICAgICAgaWYgKG52a21fY3N0YXRlX3ZhbGlkKGNsaywgY3N0YXRlLCBtYXhf
-dm9sdCwgY2xrLT50ZW1wKSkKPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIGJyZWFrOwo+ID4g
-ICAgICAgICB9Cj4gPiAtLQo+ID4gMi43LjQKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vZHJpLWRldmVsCg==
+On Mon, Mar 26, 2018 at 01:43:30PM +0100, Chris Wilson wrote:
+> Quoting Ben Skeggs (2018-03-26 13:34:54)
+> > On Mon, Mar 26, 2018 at 4:01 AM, Arushi Singhal
+> > <arushisinghal19971997@gmail.com> wrote:
+> > > It's better to use list_entry instead of list_{next/prev}_entry
+> > > as it makes the code more clear to read.
+> > > This patch replace list_entry with list_{next/prev}_entry.
+> > >
+> > > Signed-off-by: Arushi Singhal <arushisinghal19971997@gmail.com>
+> > Acked-by: Ben Skeggs <bskeggs@redhat.com>
+
+Applied, thanks for ack&patch.
+
+> > 
+> > > ---
+> > >  drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+> > > index e4c8d31..81c3567 100644
+> > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+> > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+> > > @@ -134,7 +134,7 @@ nvkm_cstate_find_best(struct nvkm_clk *clk, struct nvkm_pstate *pstate,
+> > >                                nvkm_volt_map(volt, volt->max2_id, clk->temp));
+> > >
+> > >         for (cstate = start; &cstate->head != &pstate->list;
+> > > -            cstate = list_entry(cstate->head.prev, typeof(*cstate), head)) {
+> > > +            cstate = list_prev_entry(cstate, head)) {
+> 
+> This loop could be written as:
+> 
+> 	cstate = start; /* cstate looks redundant here, just use start? */
+> 	list_for_each_entry_from_reverse(cstate, &pstate->list, head)
+
+Yeah, sounds like a good follow-up patch.
+-Daniel
+
+> 
+> > >                 if (nvkm_cstate_valid(clk, cstate, max_volt, clk->temp))
+> > >                         break;
+> > >         }
+> > > --
+> > > 2.7.4
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
