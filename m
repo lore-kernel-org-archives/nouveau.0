@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105626] [GT218][Regression] BUG: unable to handle
- kernel NULL pointer dereference at 0000000000000040
-Date: Tue, 27 Mar 2018 08:48:08 +0000
-Message-ID: <bug-105626-8800-t89CVi35IA@http.bugs.freedesktop.org/>
-References: <bug-105626-8800@http.bugs.freedesktop.org/>
+From: Arushi Singhal <arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] gpu: drm: nouveau: Use
+ list_for_each_entry_from_reverse
+Date: Tue, 27 Mar 2018 14:41:56 +0530
+Message-ID: <20180327091156.GA23787@seema-Inspiron-15-3567>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0403808911=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,115 +17,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, outreachy-kernel <outreachy-kernel-/JYPxA39Uh5TLH3MbocFFw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0403808911==
-Content-Type: multipart/alternative; boundary="15221404881.5dD9.20688"
-Content-Transfer-Encoding: 7bit
-
-
---15221404881.5dD9.20688
-Date: Tue, 27 Mar 2018 08:48:08 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105626
-
---- Comment #8 from Philip Raets <philip.raets-CNXmb7IdZIWZIoH1IeqzKA@public.gmane.org> ---
-I updated tumbleweed to snapshot 20180324
-(https://lists.opensuse.org/opensuse-factory/2018-03/msg00615.html) which
-contains updates for Mesa and I've updated the kernel to the latest build on
-openSUSE:
-
-praets@PRAETS:~> uname -a
-Linux PRAETS.boma.local 4.16.0-rc6-3.g2539ea5-default #1 SMP PREEMPT Sun Ma=
-r 25
-11:36:35 UTC 2018 (2539ea5) x86_64 x86_64 x86_64 GNU/Linux
-
-So far I haven't had any crashes anymore, tried opening a lot of photo's,
-switching windows, maximizing windows, ...=20
-
-So far so good
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15221404881.5dD9.20688
-Date: Tue, 27 Mar 2018 08:48:08 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GT218][Regression] BUG: unable to handle kernel NULL poi=
-nter dereference at 0000000000000040"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105626#c8">Commen=
-t # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GT218][Regression] BUG: unable to handle kernel NULL poi=
-nter dereference at 0000000000000040"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105626">bug 10562=
-6</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-philip.raets&#64;telenet.be" title=3D"Philip Raets &lt;philip.raets&#64;tel=
-enet.be&gt;"> <span class=3D"fn">Philip Raets</span></a>
-</span></b>
-        <pre>I updated tumbleweed to snapshot 20180324
-(<a href=3D"https://lists.opensuse.org/opensuse-factory/2018-03/msg00615.ht=
-ml">https://lists.opensuse.org/opensuse-factory/2018-03/msg00615.html</a>) =
-which
-contains updates for Mesa and I've updated the kernel to the latest build on
-openSUSE:
-
-praets&#64;PRAETS:~&gt; uname -a
-Linux PRAETS.boma.local 4.16.0-rc6-3.g2539ea5-default #1 SMP PREEMPT Sun Ma=
-r 25
-11:36:35 UTC 2018 (2539ea5) x86_64 x86_64 x86_64 GNU/Linux
-
-So far I haven't had any crashes anymore, tried opening a lot of photo's,
-switching windows, maximizing windows, ...=20
-
-So far so good</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15221404881.5dD9.20688--
-
---===============0403808911==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0403808911==--
+SXQncyBiZXR0ZXIgdG8gdXNlICJsaXN0X2Zvcl9lYWNoX2VudHJ5X2Zyb21fcmV2ZXJzZSIgZm9y
+IGl0ZXJhdGluZyBsaXN0CnRoYW4gImZvciBsb29wIiBhcyBpdCBtYWtlcyB0aGUgY29kZSBtb3Jl
+IGNsZWFyIHRvIHJlYWQuClRoaXMgcGF0Y2ggcmVwbGFjZSAiZm9yIGxvb3AiIHdpdGggImxpc3Rf
+Zm9yX2VhY2hfZW50cnlfZnJvbV9yZXZlcnNlIgphbmQgcmVtb3ZlICJjc3RhdGUiIHZhcmlhYmxl
+IGFzIGl0IGlzIHJlZHVuZGFudCBpbiB0aGUgY29kZS4KClNpZ25lZC1vZmYtYnk6IEFydXNoaSBT
+aW5naGFsIDxhcnVzaGlzaW5naGFsMTk5NzE5OTdAZ21haWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgfCA4ICsrKy0tLS0tCiAxIGZpbGUg
+Y2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgYi9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCmluZGV4IDgxYzM1NjcuLjVlNTZm
+NzQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9i
+YXNlLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2Uu
+YwpAQCAtMTEzLDcgKzExMyw2IEBAIG52a21fY3N0YXRlX2ZpbmRfYmVzdChzdHJ1Y3QgbnZrbV9j
+bGsgKmNsaywgc3RydWN0IG52a21fcHN0YXRlICpwc3RhdGUsCiB7CiAJc3RydWN0IG52a21fZGV2
+aWNlICpkZXZpY2UgPSBjbGstPnN1YmRldi5kZXZpY2U7CiAJc3RydWN0IG52a21fdm9sdCAqdm9s
+dCA9IGRldmljZS0+dm9sdDsKLQlzdHJ1Y3QgbnZrbV9jc3RhdGUgKmNzdGF0ZTsKIAlpbnQgbWF4
+X3ZvbHQ7CiAKIAlpZiAoIXBzdGF0ZSB8fCAhc3RhcnQpCkBAIC0xMzMsMTMgKzEzMiwxMiBAQCBu
+dmttX2NzdGF0ZV9maW5kX2Jlc3Qoc3RydWN0IG52a21fY2xrICpjbGssIHN0cnVjdCBudmttX3Bz
+dGF0ZSAqcHN0YXRlLAogCQltYXhfdm9sdCA9IG1pbihtYXhfdm9sdCwKIAkJCSAgICAgICBudmtt
+X3ZvbHRfbWFwKHZvbHQsIHZvbHQtPm1heDJfaWQsIGNsay0+dGVtcCkpOwogCi0JZm9yIChjc3Rh
+dGUgPSBzdGFydDsgJmNzdGF0ZS0+aGVhZCAhPSAmcHN0YXRlLT5saXN0OwotCSAgICAgY3N0YXRl
+ID0gbGlzdF9wcmV2X2VudHJ5KGNzdGF0ZSwgaGVhZCkpIHsKLQkJaWYgKG52a21fY3N0YXRlX3Zh
+bGlkKGNsaywgY3N0YXRlLCBtYXhfdm9sdCwgY2xrLT50ZW1wKSkKKwlsaXN0X2Zvcl9lYWNoX2Vu
+dHJ5X2Zyb21fcmV2ZXJzZShzdGFydCwgJnBzdGF0ZS0+bGlzdCwgaGVhZCkgeworCQlpZiAobnZr
+bV9jc3RhdGVfdmFsaWQoY2xrLCBzdGFydCwgbWF4X3ZvbHQsIGNsay0+dGVtcCkpCiAJCQlicmVh
+azsKIAl9CiAKLQlyZXR1cm4gY3N0YXRlOworCXJldHVybiBzdGFydDsKIH0KIAogc3RhdGljIHN0
+cnVjdCBudmttX2NzdGF0ZSAqCi0tIAoyLjcuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1Cg==
