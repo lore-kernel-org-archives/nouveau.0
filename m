@@ -1,14 +1,14 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Arushi Singhal <arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH] gpu: drm: nouveau: Use
  list_for_each_entry_from_reverse
-Date: Tue, 27 Mar 2018 19:14:05 +1000
-Message-ID: <CACAvsv5Wzd6yFsweNXRNA93i5UeTX5qrb_xwPOeobqSjhLEMjg@mail.gmail.com>
+Date: Tue, 27 Mar 2018 16:59:26 +0530
+Message-ID: <CA+XqjF_iDq1KXcKp2j_HYz3JBg+GgKvkVXQ8Y62r8jNiGhE8=w@mail.gmail.com>
 References: <20180327091156.GA23787@seema-Inspiron-15-3567>
+ <CACAvsv5Wzd6yFsweNXRNA93i5UeTX5qrb_xwPOeobqSjhLEMjg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0866980353=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180327091156.GA23787@seema-Inspiron-15-3567>
+In-Reply-To: <CACAvsv5Wzd6yFsweNXRNA93i5UeTX5qrb_xwPOeobqSjhLEMjg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,46 +18,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Arushi Singhal <arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, outreachy-kernel <outreachy-kernel-/JYPxA39Uh5TLH3MbocFFw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, outreachy-kernel <outreachy-kernel-/JYPxA39Uh5TLH3MbocFFw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gMjcgTWFyY2ggMjAxOCBhdCAxOToxMSwgQXJ1c2hpIFNpbmdoYWwKPGFydXNoaXNpbmdoYWwx
-OTk3MTk5N0BnbWFpbC5jb20+IHdyb3RlOgo+IEl0J3MgYmV0dGVyIHRvIHVzZSAibGlzdF9mb3Jf
-ZWFjaF9lbnRyeV9mcm9tX3JldmVyc2UiIGZvciBpdGVyYXRpbmcgbGlzdAo+IHRoYW4gImZvciBs
-b29wIiBhcyBpdCBtYWtlcyB0aGUgY29kZSBtb3JlIGNsZWFyIHRvIHJlYWQuCj4gVGhpcyBwYXRj
-aCByZXBsYWNlICJmb3IgbG9vcCIgd2l0aCAibGlzdF9mb3JfZWFjaF9lbnRyeV9mcm9tX3JldmVy
-c2UiCj4gYW5kIHJlbW92ZSAiY3N0YXRlIiB2YXJpYWJsZSBhcyBpdCBpcyByZWR1bmRhbnQgaW4g
-dGhlIGNvZGUuCkkgd291bGQgcHJlZmVyIHRvIGFsc28gc2VlICJzdGFydCIgcmVuYW1lZCB0byAi
-Y3N0YXRlIiB3aXRoIHRoaXMgY2hhbmdlLgoKQmVuLgoKPgo+IFNpZ25lZC1vZmYtYnk6IEFydXNo
-aSBTaW5naGFsIDxhcnVzaGlzaW5naGFsMTk5NzE5OTdAZ21haWwuY29tPgo+IC0tLQo+ICBkcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jIHwgOCArKystLS0tLQo+
-ICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQo+Cj4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCj4gaW5kZXgg
-ODFjMzU2Ny4uNWU1NmY3NCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9jbGsvYmFzZS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvY2xrL2Jhc2UuYwo+IEBAIC0xMTMsNyArMTEzLDYgQEAgbnZrbV9jc3RhdGVfZmlu
-ZF9iZXN0KHN0cnVjdCBudmttX2NsayAqY2xrLCBzdHJ1Y3QgbnZrbV9wc3RhdGUgKnBzdGF0ZSwK
-PiAgewo+ICAgICAgICAgc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBjbGstPnN1YmRldi5k
-ZXZpY2U7Cj4gICAgICAgICBzdHJ1Y3QgbnZrbV92b2x0ICp2b2x0ID0gZGV2aWNlLT52b2x0Owo+
-IC0gICAgICAgc3RydWN0IG52a21fY3N0YXRlICpjc3RhdGU7Cj4gICAgICAgICBpbnQgbWF4X3Zv
-bHQ7Cj4KPiAgICAgICAgIGlmICghcHN0YXRlIHx8ICFzdGFydCkKPiBAQCAtMTMzLDEzICsxMzIs
-MTIgQEAgbnZrbV9jc3RhdGVfZmluZF9iZXN0KHN0cnVjdCBudmttX2NsayAqY2xrLCBzdHJ1Y3Qg
-bnZrbV9wc3RhdGUgKnBzdGF0ZSwKPiAgICAgICAgICAgICAgICAgbWF4X3ZvbHQgPSBtaW4obWF4
-X3ZvbHQsCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG52a21fdm9sdF9tYXAodm9s
-dCwgdm9sdC0+bWF4Ml9pZCwgY2xrLT50ZW1wKSk7Cj4KPiAtICAgICAgIGZvciAoY3N0YXRlID0g
-c3RhcnQ7ICZjc3RhdGUtPmhlYWQgIT0gJnBzdGF0ZS0+bGlzdDsKPiAtICAgICAgICAgICAgY3N0
-YXRlID0gbGlzdF9wcmV2X2VudHJ5KGNzdGF0ZSwgaGVhZCkpIHsKPiAtICAgICAgICAgICAgICAg
-aWYgKG52a21fY3N0YXRlX3ZhbGlkKGNsaywgY3N0YXRlLCBtYXhfdm9sdCwgY2xrLT50ZW1wKSkK
-PiArICAgICAgIGxpc3RfZm9yX2VhY2hfZW50cnlfZnJvbV9yZXZlcnNlKHN0YXJ0LCAmcHN0YXRl
-LT5saXN0LCBoZWFkKSB7Cj4gKyAgICAgICAgICAgICAgIGlmIChudmttX2NzdGF0ZV92YWxpZChj
-bGssIHN0YXJ0LCBtYXhfdm9sdCwgY2xrLT50ZW1wKSkKPiAgICAgICAgICAgICAgICAgICAgICAg
-ICBicmVhazsKPiAgICAgICAgIH0KPgo+IC0gICAgICAgcmV0dXJuIGNzdGF0ZTsKPiArICAgICAg
-IHJldHVybiBzdGFydDsKPiAgfQo+Cj4gIHN0YXRpYyBzdHJ1Y3QgbnZrbV9jc3RhdGUgKgo+IC0t
-Cj4gMi43LjQKPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCj4gZHJpLWRldmVsIG1haWxpbmcgbGlzdAo+IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2Ry
-aS1kZXZlbApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+--===============0866980353==
+Content-Type: multipart/alternative; boundary="00000000000002e425056863345d"
+
+--00000000000002e425056863345d
+Content-Type: text/plain; charset="UTF-8"
+
+On Tue, Mar 27, 2018 at 2:44 PM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+
+> On 27 March 2018 at 19:11, Arushi Singhal
+> <arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> > It's better to use "list_for_each_entry_from_reverse" for iterating list
+> > than "for loop" as it makes the code more clear to read.
+> > This patch replace "for loop" with "list_for_each_entry_from_reverse"
+> > and remove "cstate" variable as it is redundant in the code.
+> I would prefer to also see "start" renamed to "cstate" with this change.
+>
+Hello Ben
+
+Yes, using cstate is more accurate, as most of the functions are using
+"cstate" variable.
+
+Best
+Arushi
+
+>
+> Ben.
+>
+> >
+> > Signed-off-by: Arushi Singhal <arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> > ---
+> >  drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c | 8 +++-----
+> >  1 file changed, 3 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+> > index 81c3567..5e56f74 100644
+> > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+> > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
+> > @@ -113,7 +113,6 @@ nvkm_cstate_find_best(struct nvkm_clk *clk, struct
+> nvkm_pstate *pstate,
+> >  {
+> >         struct nvkm_device *device = clk->subdev.device;
+> >         struct nvkm_volt *volt = device->volt;
+> > -       struct nvkm_cstate *cstate;
+> >         int max_volt;
+> >
+> >         if (!pstate || !start)
+> > @@ -133,13 +132,12 @@ nvkm_cstate_find_best(struct nvkm_clk *clk, struct
+> nvkm_pstate *pstate,
+> >                 max_volt = min(max_volt,
+> >                                nvkm_volt_map(volt, volt->max2_id,
+> clk->temp));
+> >
+> > -       for (cstate = start; &cstate->head != &pstate->list;
+> > -            cstate = list_prev_entry(cstate, head)) {
+> > -               if (nvkm_cstate_valid(clk, cstate, max_volt, clk->temp))
+> > +       list_for_each_entry_from_reverse(start, &pstate->list, head) {
+> > +               if (nvkm_cstate_valid(clk, start, max_volt, clk->temp))
+> >                         break;
+> >         }
+> >
+> > -       return cstate;
+> > +       return start;
+> >  }
+> >
+> >  static struct nvkm_cstate *
+> > --
+> > 2.7.4
+> >
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+>
+
+--00000000000002e425056863345d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
+te">On Tue, Mar 27, 2018 at 2:44 PM, Ben Skeggs <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blank">skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt;=
+</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
+8ex;border-left:1px #ccc solid;padding-left:1ex">On 27 March 2018 at 19:11,=
+ Arushi Singhal<br>
+<span class=3D"">&lt;<a href=3D"mailto:arushisinghal19971997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">aru=
+shisinghal19971997@gmail.<wbr>com</a>&gt; wrote:<br>
+&gt; It&#39;s better to use &quot;list_for_each_entry_from_<wbr>reverse&quo=
+t; for iterating list<br>
+&gt; than &quot;for loop&quot; as it makes the code more clear to read.<br>
+&gt; This patch replace &quot;for loop&quot; with &quot;list_for_each_entry=
+_from_<wbr>reverse&quot;<br>
+&gt; and remove &quot;cstate&quot; variable as it is redundant in the code.=
+<br>
+</span>I would prefer to also see &quot;start&quot; renamed to &quot;cstate=
+&quot; with this change.<br></blockquote><div>Hello Ben<br><br>Yes, using c=
+state is more accurate, as most of the functions are using &quot;cstate&quo=
+t; variable.<br><br></div><div>Best<br></div><div>Arushi<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc so=
+lid;padding-left:1ex">
+<br>
+Ben.<br>
+<div><div class=3D"h5"><br>
+&gt;<br>
+&gt; Signed-off-by: Arushi Singhal &lt;<a href=3D"mailto:arushisinghal19971=
+997-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">arushisinghal19971997@gmail.<wbr>com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 drivers/gpu/drm/nouveau/nvkm/<wbr>subdev/clk/base.c | 8 +++-----=
+<br>
+&gt;=C2=A0 1 file changed, 3 insertions(+), 5 deletions(-)<br>
+&gt;<br>
+&gt; diff --git a/drivers/gpu/drm/nouveau/<wbr>nvkm/subdev/clk/base.c b/dri=
+vers/gpu/drm/nouveau/<wbr>nvkm/subdev/clk/base.c<br>
+&gt; index 81c3567..5e56f74 100644<br>
+&gt; --- a/drivers/gpu/drm/nouveau/<wbr>nvkm/subdev/clk/base.c<br>
+&gt; +++ b/drivers/gpu/drm/nouveau/<wbr>nvkm/subdev/clk/base.c<br>
+&gt; @@ -113,7 +113,6 @@ nvkm_cstate_find_best(struct nvkm_clk *clk, struct=
+ nvkm_pstate *pstate,<br>
+&gt;=C2=A0 {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct nvkm_device *device =3D clk-&g=
+t;subdev.device;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct nvkm_volt *volt =3D device-&gt=
+;volt;<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0struct nvkm_cstate *cstate;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0int max_volt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (!pstate || !start)<br>
+&gt; @@ -133,13 +132,12 @@ nvkm_cstate_find_best(struct nvkm_clk *clk, stru=
+ct nvkm_pstate *pstate,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0max_volt =
+=3D min(max_volt,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 nvkm_volt_map(volt, volt-&gt;max2=
+_id, clk-&gt;temp));<br>
+&gt;<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0for (cstate =3D start; &amp;cstate-&gt;hea=
+d !=3D &amp;pstate-&gt;list;<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cstate =3D list_prev_entry(=
+cstate, head)) {<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (nvkm_cstat=
+e_valid(clk, cstate, max_volt, clk-&gt;temp))<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0list_for_each_entry_from_<wbr>reverse(star=
+t, &amp;pstate-&gt;list, head) {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (nvkm_cstat=
+e_valid(clk, start, max_volt, clk-&gt;temp))<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0break;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt;<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0return cstate;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0return start;<br>
+&gt;=C2=A0 }<br>
+&gt;<br>
+&gt;=C2=A0 static struct nvkm_cstate *<br>
+&gt; --<br>
+&gt; 2.7.4<br>
+&gt;<br>
+</div></div>&gt; ______________________________<wbr>_________________<br>
+&gt; dri-devel mailing list<br>
+&gt; <a href=3D"mailto:dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">dri-devel-PD4FTy7X32mzQB+pC5nmwQ@public.gmane.org=
+edesktop.<wbr>org</a><br>
+&gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/dri-devel" r=
+el=3D"noreferrer" target=3D"_blank">https://lists.freedesktop.org/<wbr>mail=
+man/listinfo/dri-devel</a><br>
+</blockquote></div><br></div></div>
+
+--00000000000002e425056863345d--
+
+--===============0866980353==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0866980353==--
