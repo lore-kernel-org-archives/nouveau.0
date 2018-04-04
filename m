@@ -1,11 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105884] New: Firefox causes a crash in the nouveau
- driver on GTX 1060
-Date: Wed, 04 Apr 2018 12:02:34 +0000
-Message-ID: <bug-105884-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?B?TcSBcmlzIE5hcnRpxaFz?= <maris.nartiss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: nouveau TRAP_M2MF still there on G98
+Date: Wed, 4 Apr 2018 15:48:39 +0300
+Message-ID: <CAJHE3DppCEiZc3oOxRrbVr5ZxCTC7mBwtQxtzaUVpVW04UTfKw@mail.gmail.com>
+References: <20180403200053.iwk62zspnjatw46j@angband.pl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2062212662=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20180403200053.iwk62zspnjatw46j-b9QjgO8OEXPVItvQsEIGlw@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,189 +17,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Adam Borowski <kilobyte-b9QjgO8OEXPVItvQsEIGlw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2062212662==
-Content-Type: multipart/alternative; boundary="15228433541.b446B.20278"
-Content-Transfer-Encoding: 7bit
-
-
---15228433541.b446B.20278
-Date: Wed, 4 Apr 2018 12:02:34 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105884
-
-            Bug ID: 105884
-           Summary: Firefox causes a crash in the nouveau driver on GTX
-                    1060
-           Product: xorg
-           Version: git
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 138576
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138576&action=3Dedit
-dmesg
-
-I don't remember what exactly I was doing (something in Firefox apparently)=
- but
-my entire X session hang and I could only move the mouse pointer - everythi=
-ng
-else was static and didn't react to key/mouse presses.
-
-4.15.13-300.fc27.x86_64 #1 SMP Mon Mar 26 19:06:57 UTC 2018 x86_64 x86_64
-x86_64 GNU/Linux
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15228433541.b446B.20278
-Date: Wed, 4 Apr 2018 12:02:34 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Firefox causes a crash in the nouveau driver on GTX 1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105884">105884</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Firefox causes a crash in the nouveau driver on GTX 1060
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>t.artem&#64;mailcity.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138576=
-" name=3D"attach_138576" title=3D"dmesg">attachment 138576</a> <a href=3D"a=
-ttachment.cgi?id=3D138576&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
-/span>
-dmesg
-
-I don't remember what exactly I was doing (something in Firefox apparently)=
- but
-my entire X session hang and I could only move the mouse pointer - everythi=
-ng
-else was static and didn't react to key/mouse presses.
-
-4.15.13-300.fc27.x86_64 #1 SMP Mon Mar 26 19:06:57 UTC 2018 x86_64 x86_64
-x86_64 GNU/Linux</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15228433541.b446B.20278--
-
---===============2062212662==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2062212662==--
+SGksIEFkYW0uCjIwMTgtMDQtMDMgMjM6MDAgR01UKzAzOjAwLCBBZGFtIEJvcm93c2tpIDxraWxv
+Ynl0ZUBhbmdiYW5kLnBsPjoKPiBIaSEKPiBJbiBjb21taXQgZGE1ZTQ1ZTYxOWIzZjEwMTQyMGMz
+OGIzMDA2YTlhZTRmM2FkMTliMAo+Cj4geWV0IGl0IGlzIHN0aWxsIHJlcHJvZHVjaWJsZSBmb3Ig
+bWUgb24gNC4xNi1yYzcgYW5kIDQuMTYuMCwgd2hpY2ggYWxyZWFkeQo+IGhhdmUgeW91ciBmaXgu
+ICBJIGRvbid0IGtub3cgYWJvdXQgZWFybGllciB2ZXJzaW9ucyAtLSBteSBuZXdlciBjYXJkIHdl
+bnQKPiBpbnRvIGZsYW1lcyBqdXN0IGEgZmV3IGRheXMgYWdvLCBhbmQgSSByZXBsYWNlZCBpdCBh
+IGJyYW5kIG5ldyA4NDAwR1MgKEc5OCkKPiBJIGhhcHBlbmVkIHRvIGhhdmUgaW4gYSBkdXN0eSBj
+bG9zZXQuICBPYnZpb3VzbHksIEkgY2FuIGJpc2VjdCBpZiB0aGF0Cj4gd291bGQKPiBiZSBoZWxw
+ZnVsLCBidXQgdGhlIGVycm9yIGxvb2tzIHRoZSBzYW1lIHRodXMgSSdtIHJlcG9ydGluZyBmaXJz
+dC4KClVuZm9ydHVuYXRlbHkgSSB3aWxsIG5vdCBiZSBhYmxlIHRvIGhlbHAgeW91LCBhcyBwYXRj
+aCBmaXhlZCBpc3N1ZSBvbgpteSBzeXN0ZW0gYW5kIHRodXMgSSBoYXZlIG5vIG1lYW5zIHRvIHRl
+c3QgYW55dGhpbmcgbW9yZS4gTXkgY2FyZCBpcwpHOThNIFtRdWFkcm8gTlZTIDE2ME1dLiBCZXNp
+ZGVzIOKAkyBJJ20gYSBnZW9ncmFwaGVyIG5vdCBhIHByb2dyYW1tZXIKOy0pCgpTdGlsbCB5b3Vy
+IHJlcG9ydCBtYWtlcyB0byBxdWVzdGlvbiB0aGUgb3JpZ2luYWwgY29tbWl0IEkgd2FzIGZpeGlu
+ZwoobW11OiBzd2FwIG91dCByb3VuZCBmb3IgQUxJR04pLiBDb3VsZCB5b3UgdGVzdCBpZiBnb2lu
+ZyBiYWNrIHRvCnJvdW5kZG93biBmaXhlcyBwcm9ibGVtIG9uIHlvdXIgc2lkZT8KCi0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L21tdS92bW0uYworKysgYi9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9tbXUvdm1tLmMKQEAgLTEzNTQsNyArMTM1NCw3
+IEBAIG52a21fdm1tX2dldF9sb2NrZWQoc3RydWN0IG52a21fdm1tICp2bW0sIGJvb2wKZ2V0cmVm
+LCBib29sIG1hcHJlZiwgYm9vbCBzcGFyc2UsCgogICAgICAgICAgICAgICAgdGFpbCA9IHRoaXMt
+PmFkZHIgKyB0aGlzLT5zaXplOwogICAgICAgICAgICAgICAgaWYgKHZtbS0+ZnVuYy0+cGFnZV9i
+bG9jayAmJiBuZXh0ICYmIG5leHQtPnBhZ2UgIT0gcCkKLSAgICAgICAgICAgICAgICAgICAgICAg
+dGFpbCA9IEFMSUdOX0RPV04odGFpbCwgdm1tLT5mdW5jLT5wYWdlX2Jsb2NrKTsKKyAgICAgICAg
+ICAgICAgICAgICAgICAgdGFpbCA9IHJvdW5kZG93bih0YWlsLCB2bW0tPmZ1bmMtPnBhZ2VfYmxv
+Y2spOwoKICAgICAgICAgICAgICAgIGlmIChhZGRyIDw9IHRhaWwgJiYgdGFpbCAtIGFkZHIgPj0g
+c2l6ZSkgewogICAgICAgICAgICAgICAgICAgICAgICByYl9lcmFzZSgmdGhpcy0+dHJlZSwgJnZt
+bS0+ZnJlZSk7CgpBbGwgYmVzdCwKTcSBcmlzLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
