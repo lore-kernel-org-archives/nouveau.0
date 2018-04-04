@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105687] BUG: unable to handle kernel NULL pointer
- dereference at 0000000000000ca0
-Date: Wed, 04 Apr 2018 15:24:30 +0000
-Message-ID: <bug-105687-8800-rmcYcLEG4j@http.bugs.freedesktop.org/>
-References: <bug-105687-8800@http.bugs.freedesktop.org/>
+From: Adam Borowski <kilobyte-b9QjgO8OEXPVItvQsEIGlw@public.gmane.org>
+Subject: Re: nouveau TRAP_M2MF still there on G98
+Date: Thu, 5 Apr 2018 00:58:22 +0200
+Message-ID: <20180404225822.i67jpymqk63uuss3@angband.pl>
+References: <20180403200053.iwk62zspnjatw46j@angband.pl>
+ <CAJHE3DppCEiZc3oOxRrbVr5ZxCTC7mBwtQxtzaUVpVW04UTfKw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1858234054=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105687-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CAJHE3DppCEiZc3oOxRrbVr5ZxCTC7mBwtQxtzaUVpVW04UTfKw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,164 +19,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?utf-8?B?TcSBcmlzIE5hcnRpxaFz?= <maris.nartiss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1858234054==
-Content-Type: multipart/alternative; boundary="15228554700.8cA98.3006"
-Content-Transfer-Encoding: 7bit
-
-
---15228554700.8cA98.3006
-Date: Wed, 4 Apr 2018 15:24:30 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105687
-
-Stefano Biagiotti <stefano.biagiotti-h53T4Qt7PfY@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |stefano.biagiotti-h53T4Qt7PfY@public.gmane.org
-
---- Comment #3 from Stefano Biagiotti <stefano.biagiotti-h53T4Qt7PfY@public.gmane.org> ---
-Created attachment 138587
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138587&action=3Dedit
-journalctl -k
-
-Same bug here, though on a different chipset, with kernel-4.15.13-300.fc27 =
-and
-xorg-x11-drv-nouveau-1.0.15-3.fc27 on Fedora 27.
-
-Kernel-4.14.16-300.fc27.x86_64 works fine.
-
-I have two monitors connected to (from lspci)
-01:00.0 VGA compatible controller: NVIDIA Corporation G98 [GeForce 8400 GS =
-Rev.
-2] (rev a1)
-
-The freeze happens in a non-predictable way, but often right after login fr=
-om
-lightdm while drawing the Mate Desktop Environment.
-
-When the freeze happens the mouse pointer is still alive (I can move it aro=
-und,
-everything else is frozen), and I can use ssh to log into the system and
-reboot.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15228554700.8cA98.3006
-Date: Wed, 4 Apr 2018 15:24:30 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:stefano.b=
-iagiotti&#64;gtn.it" title=3D"Stefano Biagiotti &lt;stefano.biagiotti&#64;g=
-tn.it&gt;"> <span class=3D"fn">Stefano Biagiotti</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - BUG: unable to handle kernel NULL pointer dereference at =
-0000000000000ca0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105687">bug 10568=
-7</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>stefano.biagiotti&#64;gtn.it
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - BUG: unable to handle kernel NULL pointer dereference at =
-0000000000000ca0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105687#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - BUG: unable to handle kernel NULL pointer dereference at =
-0000000000000ca0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105687">bug 10568=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-stefano.biagiotti&#64;gtn.it" title=3D"Stefano Biagiotti &lt;stefano.biagio=
-tti&#64;gtn.it&gt;"> <span class=3D"fn">Stefano Biagiotti</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138587=
-" name=3D"attach_138587" title=3D"journalctl -k">attachment 138587</a> <a h=
-ref=3D"attachment.cgi?id=3D138587&amp;action=3Dedit" title=3D"journalctl -k=
-">[details]</a></span>
-journalctl -k
-
-Same bug here, though on a different chipset, with kernel-4.15.13-300.fc27 =
-and
-xorg-x11-drv-nouveau-1.0.15-3.fc27 on Fedora 27.
-
-Kernel-4.14.16-300.fc27.x86_64 works fine.
-
-I have two monitors connected to (from lspci)
-01:00.0 VGA compatible controller: NVIDIA Corporation G98 [GeForce 8400 GS =
-Rev.
-2] (rev a1)
-
-The freeze happens in a non-predictable way, but often right after login fr=
-om
-lightdm while drawing the Mate Desktop Environment.
-
-When the freeze happens the mouse pointer is still alive (I can move it aro=
-und,
-everything else is frozen), and I can use ssh to log into the system and
-reboot.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15228554700.8cA98.3006--
-
---===============1858234054==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1858234054==--
+T24gV2VkLCBBcHIgMDQsIDIwMTggYXQgMDM6NDg6MzlQTSArMDMwMCwgTcSBcmlzIE5hcnRpxaFz
+IHdyb3RlOgo+IDIwMTgtMDQtMDMgMjM6MDAgR01UKzAzOjAwLCBBZGFtIEJvcm93c2tpIDxraWxv
+Ynl0ZUBhbmdiYW5kLnBsPjoKPiA+IEluIGNvbW1pdCBkYTVlNDVlNjE5YjNmMTAxNDIwYzM4YjMw
+MDZhOWFlNGYzYWQxOWIwCj4gPgo+ID4geWV0IGl0IGlzIHN0aWxsIHJlcHJvZHVjaWJsZSBmb3Ig
+bWUgb24gNC4xNi1yYzcgYW5kIDQuMTYuMCwgd2hpY2ggYWxyZWFkeQo+ID4gaGF2ZSB5b3VyIGZp
+eC4gIEkgZG9uJ3Qga25vdyBhYm91dCBlYXJsaWVyIHZlcnNpb25zIC0tIG15IG5ld2VyIGNhcmQg
+d2VudAo+ID4gaW50byBmbGFtZXMganVzdCBhIGZldyBkYXlzIGFnbywgYW5kIEkgcmVwbGFjZWQg
+aXQgYSBicmFuZCBuZXcgODQwMEdTIChHOTgpCj4gPiBJIGhhcHBlbmVkIHRvIGhhdmUgaW4gYSBk
+dXN0eSBjbG9zZXQuICBPYnZpb3VzbHksIEkgY2FuIGJpc2VjdCBpZiB0aGF0Cj4gPiB3b3VsZCBi
+ZSBoZWxwZnVsLCBidXQgdGhlIGVycm9yIGxvb2tzIHRoZSBzYW1lIHRodXMgSSdtIHJlcG9ydGlu
+ZyBmaXJzdC4KPiAKPiBVbmZvcnR1bmF0ZWx5IEkgd2lsbCBub3QgYmUgYWJsZSB0byBoZWxwIHlv
+dSwgYXMgcGF0Y2ggZml4ZWQgaXNzdWUgb24KPiBteSBzeXN0ZW0gYW5kIHRodXMgSSBoYXZlIG5v
+IG1lYW5zIHRvIHRlc3QgYW55dGhpbmcgbW9yZS4gTXkgY2FyZCBpcwo+IEc5OE0gW1F1YWRybyBO
+VlMgMTYwTV0uIEJlc2lkZXMg4oCTIEknbSBhIGdlb2dyYXBoZXIgbm90IGEgcHJvZ3JhbW1lcgo+
+IDstKQoKQW5kIEknbSwgaXQgc2VlbXMsIHNlcnZhbnQgb2YgYSBwYXJ0aWN1bGFyIGNhdCwgYWxs
+IGVsc2UgYmVpbmcgc2Vjb25kYXJ5LiA6cAoKPiBTdGlsbCB5b3VyIHJlcG9ydCBtYWtlcyB0byBx
+dWVzdGlvbiB0aGUgb3JpZ2luYWwgY29tbWl0IEkgd2FzIGZpeGluZwo+IChtbXU6IHN3YXAgb3V0
+IHJvdW5kIGZvciBBTElHTikuIENvdWxkIHlvdSB0ZXN0IGlmIGdvaW5nIGJhY2sgdG8KPiByb3Vu
+ZGRvd24gZml4ZXMgcHJvYmxlbSBvbiB5b3VyIHNpZGU/Cj4gCj4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbW11L3ZtbS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvbW11L3ZtbS5jCj4gQEAgLTEzNTQsNyArMTM1NCw3IEBAIG52
+a21fdm1tX2dldF9sb2NrZWQoc3RydWN0IG52a21fdm1tICp2bW0sIGJvb2wKPiBnZXRyZWYsIGJv
+b2wgbWFwcmVmLCBib29sIHNwYXJzZSwKPiAKPiAgICAgICAgICAgICAgICAgdGFpbCA9IHRoaXMt
+PmFkZHIgKyB0aGlzLT5zaXplOwo+ICAgICAgICAgICAgICAgICBpZiAodm1tLT5mdW5jLT5wYWdl
+X2Jsb2NrICYmIG5leHQgJiYgbmV4dC0+cGFnZSAhPSBwKQo+IC0gICAgICAgICAgICAgICAgICAg
+ICAgIHRhaWwgPSBBTElHTl9ET1dOKHRhaWwsIHZtbS0+ZnVuYy0+cGFnZV9ibG9jayk7Cj4gKyAg
+ICAgICAgICAgICAgICAgICAgICAgdGFpbCA9IHJvdW5kZG93bih0YWlsLCB2bW0tPmZ1bmMtPnBh
+Z2VfYmxvY2spOwo+IAo+ICAgICAgICAgICAgICAgICBpZiAoYWRkciA8PSB0YWlsICYmIHRhaWwg
+LSBhZGRyID49IHNpemUpIHsKPiAgICAgICAgICAgICAgICAgICAgICAgICByYl9lcmFzZSgmdGhp
+cy0+dHJlZSwgJnZtbS0+ZnJlZSk7Cj4gCgpBbGFzLCBpdCBkaWQgd29yayBmb3IgYSBmZXcgaG91
+cnMsIHRoZW4gYSB0b3RhbCBkaXNwbGF5IGZyZWV6ZToKClsyOTk4Mi4wMTE3OTVdIG5vdXZlYXUg
+MDAwMDowMTowMC4wOiBmaWZvOiBETUFfUFVTSEVSIC0gY2ggMiBbWG9yZ1syNjY3XV0gZ2V0CjAw
+MDAwMzdkOTAgcHV0IDAwMDAwM2EyY2MgaWJfZ2V0IDAwMDAwMWRjIGliX3B1dCAwMDAwMDFkZCBz
+dGF0ZSA4MDAwNDg2MSAoZXJyOgpJTlZBTElEX0NNRCkgcHVzaCAwMDcwNDAzMQpbMjk5ODIuMDI3
+OTU5XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmlmbzogRE1BX1BVU0hFUiAtIGNoIDIgW1hvcmdb
+MjY2N11dIGdldAowMDAwMDNhMmNjIHB1dCAwMDAwMDNhMmNjIGliX2dldCAwMDAwMDFkYyBpYl9w
+dXQgMDAwMDAxZjkgc3RhdGUgODAwMDAwMDAgKGVycjoKSU5WQUxJRF9DTUQpIHB1c2ggMDA0MDYw
+NDAKWzI5OTgyLjA0NDEzNl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBEQVRBX0VSUk9SIDAw
+MDAwMDA0IFtJTlZBTElEX1ZBTFVFXQpbMjk5ODIuMDUwOTM0XSBub3V2ZWF1IDAwMDA6MDE6MDAu
+MDogZ3I6IDAwMTAwMDAwIFtdIGNoIDIgWzAwMWZhMzEwMDAKWG9yZ1syNjY3XV0gc3ViYyAyIGNs
+YXNzIDUwMmQgbXRoZCAwMjE4IGRhdGEgZmYwMDAwMDAKWzI5OTgyLjA2MTg2Nl0gbm91dmVhdSAw
+MDAwOjAxOjAwLjA6IGdyOiBEQVRBX0VSUk9SIDAwMDAwMDA0IFtJTlZBTElEX1ZBTFVFXQpbMjk5
+ODIuMDY4NjU4XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IDAwMTAwMDAwIFtdIGNoIDIgWzAw
+MWZhMzEwMDAKWG9yZ1syNjY3XV0gc3ViYyAyIGNsYXNzIDUwMmQgbXRoZCAwMjFjIGRhdGEgZmYw
+MDAwMDAKWzI5OTgyLjA3OTU4NF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBEQVRBX0VSUk9S
+IDAwMDAwMDBjIFtJTlZBTElEX0JJVEZJRUxEXQpbMjk5ODIuMDg2NjUxXSBub3V2ZWF1IDAwMDA6
+MDE6MDAuMDogZ3I6IDAwMTAwMDAwIFtdIGNoIDIgWzAwMWZhMzEwMDAKWG9yZ1syNjY3XV0gc3Vi
+YyAyIGNsYXNzIDUwMmQgbXRoZCAwMjIwIGRhdGEgZmYwMDAwMDAKWzI5OTgyLjA5NzUxN10gbm91
+dmVhdSAwMDAwOjAxOjAwLjA6IGZiOiB0cmFwcGVkIHdyaXRlIGF0IDAwZmYwMDAwMDAgb24KY2hh
+bm5lbCAyIFsxZmEzMTAwMCBYb3JnWzI2NjddXSBlbmdpbmUgMDAgW1BHUkFQSF0gY2xpZW50IDBi
+IFtQUk9QXQpzdWJjbGllbnQgMGMgW0RTVDJEXSByZWFzb24gMDAwMDAwMDAgW1BUX05PVF9QUkVT
+RU5UXQpbMjk5ODIuMTE0NDkxXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IFRSQVBfUFJPUCAt
+IFRQIDAgLSAwMDAwMDAxMApbRFNUMkRfRkFVTFRdIC0gQWRkcmVzcyAwMGZmMDAwMDAwClsyOTk4
+Mi4xMjM2MjBdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjogVFJBUF9QUk9QIC0gVFAgMCAtIGUw
+YzogMDAwMDAwMDAsCmUxODogMDAwMDAwMDAsIGUxYzogMDAwMDAwMDAsIGUyMDogMDAwMDAwMTEs
+IGUyNDogMGMwMzAwMDAKWzI5OTgyLjEzNTM2NV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiAw
+MDIwMDAwMCBbXSBjaCAyIFswMDFmYTMxMDAwClhvcmdbMjY2N11dIHN1YmMgMiBjbGFzcyA1MDJk
+IG10aGQgMDg2MCBkYXRhIGZmMmUyZTJlCgpJIGRpZCBub3Qgb2JzZXJ2ZSBhIFRSQVBfTTJNRiwg
+YnV0IHRoZSBhYm92ZSB3ZXJlIHByZXNlbnQgaW4gcHJldmlvdXMKZXJyb3JzLCB0aHVzIGl0J3Mg
+cHJvYmFibHkgcmFuZG9tIHdoYXQgaGFwcGVucyBmaXJzdC4KCgpNZW93IQotLSAK4qKA4qO04qC+
+4qC74qK24qOm4qCAIArio77ioIHiorDioJLioIDio7/ioYEgCuKiv+KhhOKgmOKgt+KgmuKgi+Kg
+gCAuLi4gd2hhdCdzIHRoZSBmcmVxdWVuY3kgb2YgdGhhdCA1ViBEQz8K4qCI4qCz4qOE4qCA4qCA
+4qCA4qCACl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
+dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
