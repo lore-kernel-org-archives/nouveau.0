@@ -1,13 +1,13 @@
-From: =?UTF-8?B?TcSBcmlzIE5hcnRpxaFz?= <maris.nartiss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: nouveau TRAP_M2MF still there on G98
-Date: Wed, 4 Apr 2018 15:48:39 +0300
-Message-ID: <CAJHE3DppCEiZc3oOxRrbVr5ZxCTC7mBwtQxtzaUVpVW04UTfKw@mail.gmail.com>
-References: <20180403200053.iwk62zspnjatw46j@angband.pl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 105687] BUG: unable to handle kernel NULL pointer
+ dereference at 0000000000000ca0
+Date: Wed, 04 Apr 2018 15:24:30 +0000
+Message-ID: <bug-105687-8800-rmcYcLEG4j@http.bugs.freedesktop.org/>
+References: <bug-105687-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1858234054=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180403200053.iwk62zspnjatw46j-b9QjgO8OEXPVItvQsEIGlw@public.gmane.org>
+In-Reply-To: <bug-105687-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,37 +17,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Adam Borowski <kilobyte-b9QjgO8OEXPVItvQsEIGlw@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksIEFkYW0uCjIwMTgtMDQtMDMgMjM6MDAgR01UKzAzOjAwLCBBZGFtIEJvcm93c2tpIDxraWxv
-Ynl0ZUBhbmdiYW5kLnBsPjoKPiBIaSEKPiBJbiBjb21taXQgZGE1ZTQ1ZTYxOWIzZjEwMTQyMGMz
-OGIzMDA2YTlhZTRmM2FkMTliMAo+Cj4geWV0IGl0IGlzIHN0aWxsIHJlcHJvZHVjaWJsZSBmb3Ig
-bWUgb24gNC4xNi1yYzcgYW5kIDQuMTYuMCwgd2hpY2ggYWxyZWFkeQo+IGhhdmUgeW91ciBmaXgu
-ICBJIGRvbid0IGtub3cgYWJvdXQgZWFybGllciB2ZXJzaW9ucyAtLSBteSBuZXdlciBjYXJkIHdl
-bnQKPiBpbnRvIGZsYW1lcyBqdXN0IGEgZmV3IGRheXMgYWdvLCBhbmQgSSByZXBsYWNlZCBpdCBh
-IGJyYW5kIG5ldyA4NDAwR1MgKEc5OCkKPiBJIGhhcHBlbmVkIHRvIGhhdmUgaW4gYSBkdXN0eSBj
-bG9zZXQuICBPYnZpb3VzbHksIEkgY2FuIGJpc2VjdCBpZiB0aGF0Cj4gd291bGQKPiBiZSBoZWxw
-ZnVsLCBidXQgdGhlIGVycm9yIGxvb2tzIHRoZSBzYW1lIHRodXMgSSdtIHJlcG9ydGluZyBmaXJz
-dC4KClVuZm9ydHVuYXRlbHkgSSB3aWxsIG5vdCBiZSBhYmxlIHRvIGhlbHAgeW91LCBhcyBwYXRj
-aCBmaXhlZCBpc3N1ZSBvbgpteSBzeXN0ZW0gYW5kIHRodXMgSSBoYXZlIG5vIG1lYW5zIHRvIHRl
-c3QgYW55dGhpbmcgbW9yZS4gTXkgY2FyZCBpcwpHOThNIFtRdWFkcm8gTlZTIDE2ME1dLiBCZXNp
-ZGVzIOKAkyBJJ20gYSBnZW9ncmFwaGVyIG5vdCBhIHByb2dyYW1tZXIKOy0pCgpTdGlsbCB5b3Vy
-IHJlcG9ydCBtYWtlcyB0byBxdWVzdGlvbiB0aGUgb3JpZ2luYWwgY29tbWl0IEkgd2FzIGZpeGlu
-ZwoobW11OiBzd2FwIG91dCByb3VuZCBmb3IgQUxJR04pLiBDb3VsZCB5b3UgdGVzdCBpZiBnb2lu
-ZyBiYWNrIHRvCnJvdW5kZG93biBmaXhlcyBwcm9ibGVtIG9uIHlvdXIgc2lkZT8KCi0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L21tdS92bW0uYworKysgYi9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9tbXUvdm1tLmMKQEAgLTEzNTQsNyArMTM1NCw3
-IEBAIG52a21fdm1tX2dldF9sb2NrZWQoc3RydWN0IG52a21fdm1tICp2bW0sIGJvb2wKZ2V0cmVm
-LCBib29sIG1hcHJlZiwgYm9vbCBzcGFyc2UsCgogICAgICAgICAgICAgICAgdGFpbCA9IHRoaXMt
-PmFkZHIgKyB0aGlzLT5zaXplOwogICAgICAgICAgICAgICAgaWYgKHZtbS0+ZnVuYy0+cGFnZV9i
-bG9jayAmJiBuZXh0ICYmIG5leHQtPnBhZ2UgIT0gcCkKLSAgICAgICAgICAgICAgICAgICAgICAg
-dGFpbCA9IEFMSUdOX0RPV04odGFpbCwgdm1tLT5mdW5jLT5wYWdlX2Jsb2NrKTsKKyAgICAgICAg
-ICAgICAgICAgICAgICAgdGFpbCA9IHJvdW5kZG93bih0YWlsLCB2bW0tPmZ1bmMtPnBhZ2VfYmxv
-Y2spOwoKICAgICAgICAgICAgICAgIGlmIChhZGRyIDw9IHRhaWwgJiYgdGFpbCAtIGFkZHIgPj0g
-c2l6ZSkgewogICAgICAgICAgICAgICAgICAgICAgICByYl9lcmFzZSgmdGhpcy0+dHJlZSwgJnZt
-bS0+ZnJlZSk7CgpBbGwgYmVzdCwKTcSBcmlzLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL25vdXZlYXUK
+
+--===============1858234054==
+Content-Type: multipart/alternative; boundary="15228554700.8cA98.3006"
+Content-Transfer-Encoding: 7bit
+
+
+--15228554700.8cA98.3006
+Date: Wed, 4 Apr 2018 15:24:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105687
+
+Stefano Biagiotti <stefano.biagiotti-h53T4Qt7PfY@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |stefano.biagiotti-h53T4Qt7PfY@public.gmane.org
+
+--- Comment #3 from Stefano Biagiotti <stefano.biagiotti-h53T4Qt7PfY@public.gmane.org> ---
+Created attachment 138587
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138587&action=3Dedit
+journalctl -k
+
+Same bug here, though on a different chipset, with kernel-4.15.13-300.fc27 =
+and
+xorg-x11-drv-nouveau-1.0.15-3.fc27 on Fedora 27.
+
+Kernel-4.14.16-300.fc27.x86_64 works fine.
+
+I have two monitors connected to (from lspci)
+01:00.0 VGA compatible controller: NVIDIA Corporation G98 [GeForce 8400 GS =
+Rev.
+2] (rev a1)
+
+The freeze happens in a non-predictable way, but often right after login fr=
+om
+lightdm while drawing the Mate Desktop Environment.
+
+When the freeze happens the mouse pointer is still alive (I can move it aro=
+und,
+everything else is frozen), and I can use ssh to log into the system and
+reboot.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15228554700.8cA98.3006
+Date: Wed, 4 Apr 2018 15:24:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:stefano.b=
+iagiotti&#64;gtn.it" title=3D"Stefano Biagiotti &lt;stefano.biagiotti&#64;g=
+tn.it&gt;"> <span class=3D"fn">Stefano Biagiotti</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - BUG: unable to handle kernel NULL pointer dereference at =
+0000000000000ca0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105687">bug 10568=
+7</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>stefano.biagiotti&#64;gtn.it
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - BUG: unable to handle kernel NULL pointer dereference at =
+0000000000000ca0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105687#c3">Commen=
+t # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - BUG: unable to handle kernel NULL pointer dereference at =
+0000000000000ca0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105687">bug 10568=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+stefano.biagiotti&#64;gtn.it" title=3D"Stefano Biagiotti &lt;stefano.biagio=
+tti&#64;gtn.it&gt;"> <span class=3D"fn">Stefano Biagiotti</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138587=
+" name=3D"attach_138587" title=3D"journalctl -k">attachment 138587</a> <a h=
+ref=3D"attachment.cgi?id=3D138587&amp;action=3Dedit" title=3D"journalctl -k=
+">[details]</a></span>
+journalctl -k
+
+Same bug here, though on a different chipset, with kernel-4.15.13-300.fc27 =
+and
+xorg-x11-drv-nouveau-1.0.15-3.fc27 on Fedora 27.
+
+Kernel-4.14.16-300.fc27.x86_64 works fine.
+
+I have two monitors connected to (from lspci)
+01:00.0 VGA compatible controller: NVIDIA Corporation G98 [GeForce 8400 GS =
+Rev.
+2] (rev a1)
+
+The freeze happens in a non-predictable way, but often right after login fr=
+om
+lightdm while drawing the Mate Desktop Environment.
+
+When the freeze happens the mouse pointer is still alive (I can move it aro=
+und,
+everything else is frozen), and I can use ssh to log into the system and
+reboot.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15228554700.8cA98.3006--
+
+--===============1858234054==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1858234054==--
