@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101404] GTX 970M (GM204-A) not powered off when not
  in use (DynPwr in stead of DynOff)
-Date: Fri, 06 Apr 2018 14:24:19 +0000
-Message-ID: <bug-101404-8800-GcQIBoFP5v@http.bugs.freedesktop.org/>
+Date: Fri, 06 Apr 2018 14:24:30 +0000
+Message-ID: <bug-101404-8800-z8EWZIWdEb@http.bugs.freedesktop.org/>
 References: <bug-101404-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1519106731=="
+Content-Type: multipart/mixed; boundary="===============0862464462=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101404-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1519106731==
-Content-Type: multipart/alternative; boundary="15230246590.61Cd6e1e.10412"
+--===============0862464462==
+Content-Type: multipart/alternative; boundary="15230246691.8cc5.10622"
 Content-Transfer-Encoding: 7bit
 
 
---15230246590.61Cd6e1e.10412
-Date: Fri, 6 Apr 2018 14:24:19 +0000
+--15230246691.8cc5.10622
+Date: Fri, 6 Apr 2018 14:24:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,19 +40,14 @@ Benny Ammitzb=C3=B8ll <benny-t2dRYjLbInkVZ4pArIi0Q3XJ5CkEIoRN@public.gmane.org> 
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |NOTABUG
-             Status|NEW                         |RESOLVED
-
---- Comment #11 from Benny Ammitzb=C3=B8ll <benny-t2dRYjLbInkVZ4pArIi0Q3XJ5CkEIoRN@public.gmane.org> -=
---
-Have to use pcie_port_pm=3Doff, but I can live with that.
+             Status|RESOLVED                    |CLOSED
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15230246590.61Cd6e1e.10412
-Date: Fri, 6 Apr 2018 14:24:19 +0000
+--15230246691.8cc5.10622
+Date: Fri, 6 Apr 2018 14:24:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,9 +63,9 @@ Auto-Submitted: auto-generated
 zboell-consult.dk&gt;"> <span class=3D"fn">Benny Ammitzb=C3=B8ll</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTABUG - GTX 970M (GM204-A) not powered off when not =
-in use (DynPwr in stead of DynOff)"
+          bz_status_CLOSED  bz_closed"
+   title=3D"CLOSED NOTABUG - GTX 970M (GM204-A) not powered off when not in=
+ use (DynPwr in stead of DynOff)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101404">bug 10140=
 4</a>
           <br>
@@ -82,41 +77,13 @@ in use (DynPwr in stead of DynOff)"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>NOTABUG
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
            <td>RESOLVED
+           </td>
+           <td>CLOSED
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTABUG - GTX 970M (GM204-A) not powered off when not =
-in use (DynPwr in stead of DynOff)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101404#c11">Comme=
-nt # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTABUG - GTX 970M (GM204-A) not powered off when not =
-in use (DynPwr in stead of DynOff)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101404">bug 10140=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-benny&#64;ammitzboell-consult.dk" title=3D"Benny Ammitzb=C3=B8ll &lt;benny&=
-#64;ammitzboell-consult.dk&gt;"> <span class=3D"fn">Benny Ammitzb=C3=B8ll</=
-span></a>
-</span></b>
-        <pre>Have to use pcie_port_pm=3Doff, but I can live with that.</pre>
-        </div>
       </p>
 
 
@@ -129,9 +96,9 @@ span></a>
     </body>
 </html>=
 
---15230246590.61Cd6e1e.10412--
+--15230246691.8cc5.10622--
 
---===============1519106731==
+--===============0862464462==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -141,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1519106731==--
+--===============0862464462==--
