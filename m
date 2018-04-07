@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105940] Display freeze caused by nouveau
-Date: Sat, 07 Apr 2018 13:20:50 +0000
-Message-ID: <bug-105940-8800-PfXyS7XC8f@http.bugs.freedesktop.org/>
-References: <bug-105940-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98457] [NVD9] GPU lockup after resume from
+ hibernation with Nouveau driver and firmware-nonfree
+Date: Sat, 07 Apr 2018 13:36:52 +0000
+Message-ID: <bug-98457-8800-ArXsAxO9sB@http.bugs.freedesktop.org/>
+References: <bug-98457-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1284576952=="
+Content-Type: multipart/mixed; boundary="===============0279402855=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105940-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98457-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1284576952==
-Content-Type: multipart/alternative; boundary="15231072501.E6C5.19506"
+--===============0279402855==
+Content-Type: multipart/alternative; boundary="15231082111.5627dEe.23543"
 Content-Transfer-Encoding: 7bit
 
 
---15231072501.E6C5.19506
-Date: Sat, 7 Apr 2018 13:20:50 +0000
+--15231082111.5627dEe.23543
+Date: Sat, 7 Apr 2018 13:36:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105940
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98457
 
-Stefano Biagiotti <stefano.biagiotti-h53T4Qt7PfY@public.gmane.org> changed:
+mirh <mirh-g/b1ySJe57IkP3XJZ0H8fw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |stefano.biagiotti-h53T4Qt7PfY@public.gmane.org
-           See Also|                            |https://bugzilla.redhat.com
-                   |                            |/show_bug.cgi?id=3D1564759
+                 CC|                            |mirh-g/b1ySJe57IkP3XJZ0H8fw@public.gmane.org
+             Status|NEW                         |NEEDINFO
+
+--- Comment #6 from mirh <mirh-g/b1ySJe57IkP3XJZ0H8fw@public.gmane.org> ---
+(In reply to wadev from comment #5)
+> Thanks, I'm trying that now, and will report back.
+
+So.. news then?
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15231072501.E6C5.19506
-Date: Sat, 7 Apr 2018 13:20:50 +0000
+--15231082111.5627dEe.23543
+Date: Sat, 7 Apr 2018 13:36:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,15 +66,16 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:stefano.b=
-iagiotti&#64;gtn.it" title=3D"Stefano Biagiotti &lt;stefano.biagiotti&#64;g=
-tn.it&gt;"> <span class=3D"fn">Stefano Biagiotti</span></a>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:mirh&#64;=
+protonmail.ch" title=3D"mirh &lt;mirh&#64;protonmail.ch&gt;"> <span class=
+=3D"fn">mirh</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Display freeze caused by nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105940">bug 10594=
-0</a>
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - [NVD9] GPU lockup after resume from hibernation with=
+ Nouveau driver and firmware-nonfree"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457">bug 98457<=
+/a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -81,19 +89,42 @@ tn.it&gt;"> <span class=3D"fn">Stefano Biagiotti</span></a>
            <td>
                &nbsp;
            </td>
-           <td>stefano.biagiotti&#64;gtn.it
+           <td>mirh&#64;protonmail.ch
            </td>
          </tr>
 
          <tr>
-           <td style=3D"text-align:right;">See Also</td>
-           <td>
-               &nbsp;
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>https://bugzilla.redhat.com/show_bug.cgi?id=3D1564759
+           <td>NEEDINFO
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - [NVD9] GPU lockup after resume from hibernation with=
+ Nouveau driver and firmware-nonfree"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457#c6">Comment=
+ # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - [NVD9] GPU lockup after resume from hibernation with=
+ Nouveau driver and firmware-nonfree"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457">bug 98457<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+mirh&#64;protonmail.ch" title=3D"mirh &lt;mirh&#64;protonmail.ch&gt;"> <spa=
+n class=3D"fn">mirh</span></a>
+</span></b>
+        <pre>(In reply to wadev from <a href=3D"show_bug.cgi?id=3D98457#c5"=
+>comment #5</a>)
+<span class=3D"quote">&gt; Thanks, I'm trying that now, and will report bac=
+k.</span >
+
+So.. news then?</pre>
+        </div>
       </p>
 
 
@@ -101,14 +132,15 @@ tn.it&gt;"> <span class=3D"fn">Stefano Biagiotti</span></a>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15231072501.E6C5.19506--
+--15231082111.5627dEe.23543--
 
---===============1284576952==
+--===============0279402855==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -118,4 +150,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1284576952==--
+--===============0279402855==--
