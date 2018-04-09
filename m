@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98457] [NVD9] GPU lockup after resume from
- hibernation with Nouveau driver and firmware-nonfree
-Date: Sat, 07 Apr 2018 13:36:52 +0000
-Message-ID: <bug-98457-8800-ArXsAxO9sB@http.bugs.freedesktop.org/>
-References: <bug-98457-8800@http.bugs.freedesktop.org/>
+From: Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>
+Subject: nouveau: swiotlb buffer is full (sz: 2097152
+ bytes)/swiotlb: coherent allocation failed, size=2097152 spam
+Date: Mon, 09 Apr 2018 08:43:37 +0200
+Message-ID: <1523256217.13367.4.camel@gmx.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0279402855=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98457-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,137 +16,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0279402855==
-Content-Type: multipart/alternative; boundary="15231082111.5627dEe.23543"
-Content-Transfer-Encoding: 7bit
-
-
---15231082111.5627dEe.23543
-Date: Sat, 7 Apr 2018 13:36:51 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98457
-
-mirh <mirh-g/b1ySJe57IkP3XJZ0H8fw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |mirh-g/b1ySJe57IkP3XJZ0H8fw@public.gmane.org
-             Status|NEW                         |NEEDINFO
-
---- Comment #6 from mirh <mirh-g/b1ySJe57IkP3XJZ0H8fw@public.gmane.org> ---
-(In reply to wadev from comment #5)
-> Thanks, I'm trying that now, and will report back.
-
-So.. news then?
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15231082111.5627dEe.23543
-Date: Sat, 7 Apr 2018 13:36:51 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:mirh&#64;=
-protonmail.ch" title=3D"mirh &lt;mirh&#64;protonmail.ch&gt;"> <span class=
-=3D"fn">mirh</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [NVD9] GPU lockup after resume from hibernation with=
- Nouveau driver and firmware-nonfree"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457">bug 98457<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>mirh&#64;protonmail.ch
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [NVD9] GPU lockup after resume from hibernation with=
- Nouveau driver and firmware-nonfree"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457#c6">Comment=
- # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - [NVD9] GPU lockup after resume from hibernation with=
- Nouveau driver and firmware-nonfree"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457">bug 98457<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mirh&#64;protonmail.ch" title=3D"mirh &lt;mirh&#64;protonmail.ch&gt;"> <spa=
-n class=3D"fn">mirh</span></a>
-</span></b>
-        <pre>(In reply to wadev from <a href=3D"show_bug.cgi?id=3D98457#c5"=
->comment #5</a>)
-<span class=3D"quote">&gt; Thanks, I'm trying that now, and will report bac=
-k.</span >
-
-So.. news then?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15231082111.5627dEe.23543--
-
---===============0279402855==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0279402855==--
+R3JlZXRpbmdzLAoKQm94IGlzIGk0NzkwIHcuIEdUWCA5ODAgcnVubmluZyB2aXJnaW4gbWFzdGVy
+ICgudG9kYXkpLgoKQWxsIEkgaGF2ZSB0byBkbyB0byB0cmlnZ2VyIGEgc2xldyBvZiB0aGVzZSB3
+YXJuaW5ncyBpcyB0byBmaXJlIHVwCmZpcmVmb3gsIHBvaW50IGl0IGF0IGEgeW91dHViZSBjbGlw
+LCBhbmQgbGV0IGl0IGF1dG9wbGF5IHdoaWxlIEkgZG8Kcm91dGluZSBrZXJuZWwgbWVyZ2UvYnVp
+bGQgbWFpbnRlbmFuY2UuICBub3V2ZWF1IGRvZXNuJ3Qgc2VlbSB0byBjYXJlCmRlZXBseSwgYnV0
+IG1vYW5zIGFnYWluIGFuZCBhZ2FpbiBhbmQgYWdhaW4uLi4KCiA3MjYgWyAgICAyLjc0MzgyM10g
+ZmI6IHN3aXRjaGluZyB0byBub3V2ZWF1ZmIgZnJvbSBFRkkgVkdBCiA3MjcgWyAgICAyLjc0Mzg1
+MF0gQ29uc29sZTogc3dpdGNoaW5nIHRvIGNvbG91ciBkdW1teSBkZXZpY2UgODB4MjUKIDcyOCBb
+ICAgIDIuNzQzOTczXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogTlZJRElBIEdNMjA0ICgxMjQwMDBh
+MSkKLi4uCiA3NTggWyAgICAyLjgyNjYwNF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGJpb3M6IHZl
+cnNpb24gODQuMDQuMWYuMDAuMDIKIDc1OSBbICAgIDIuODI3NDc5XSBub3V2ZWF1IDAwMDA6MDE6
+MDAuMDogZmI6IDQwOTYgTWlCIEdERFI1CiA3NjAgWyAgICAyLjgyNzUwNl0gbm91dmVhdSAwMDAw
+OjAxOjAwLjA6IGJ1czogTU1JTyB3cml0ZSBvZiA4MDAwMDE5NSBGQVVMVCBhdCAxMGViMTQgWyBJ
+QlVTIF0KIDc2MSBbICAgIDIuODkxODc2XSBbVFRNXSBab25lICBrZXJuZWw6IEF2YWlsYWJsZSBn
+cmFwaGljcyBtZW1vcnk6IDc5Mjc3NjQga2lCCiA3NjIgWyAgICAyLjg5MTg4MF0gW1RUTV0gWm9u
+ZSAgIGRtYTMyOiBBdmFpbGFibGUgZ3JhcGhpY3MgbWVtb3J5OiAyMDk3MTUyIGtpQgogNzYzIFsg
+ICAgMi44OTE4ODFdIFtUVE1dIEluaXRpYWxpemluZyBwb29sIGFsbG9jYXRvcgogNzY0IFsgICAg
+Mi44OTE4ODVdIFtUVE1dIEluaXRpYWxpemluZyBETUEgcG9vbCBhbGxvY2F0b3IKIDc2NSBbICAg
+IDIuODkxODk1XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBWUkFNOiA0MDk2IE1pQgogNzY2
+IFsgICAgMi44OTE4OTddIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEdBUlQ6IDEwNDg1NzYg
+TWlCCiA3NjcgWyAgICAyLjg5MTkwMF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogVE1EUyB0
+YWJsZSB2ZXJzaW9uIDIuMAogNzY4IFsgICAgMi44OTE5MDJdIG5vdXZlYXUgMDAwMDowMTowMC4w
+OiBEUk06IERDQiB2ZXJzaW9uIDQuMQogNzY5IFsgICAgMi44OTE5MDRdIG5vdXZlYXUgMDAwMDow
+MTowMC4wOiBEUk06IERDQiBvdXRwIDAwOiAwMTAwMGYwMiAwMDAyMDAzMAogNzcwIFsgICAgMi44
+OTE5MDZdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAxOiAwMjAwMGYwMCAw
+MDAwMDAwMAogNzcxIFsgICAgMi44OTE5MDhdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERD
+QiBvdXRwIDAyOiAwMjgxMWY3NiAwNDQwMDAyMAogNzcyIFsgICAgMi44OTE5MTBdIG5vdXZlYXUg
+MDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAzOiAwMjAxMWY3MiAwMDAyMDAyMAogNzczIFsg
+ICAgMi44OTE5MTJdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDA0OiAwNDgy
+MmY4NiAwNDQwMDAxMAogNzc0IFsgICAgMi44OTE5MTRdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBE
+Uk06IERDQiBvdXRwIDA1OiAwNDAyMmY4MiAwMDAyMDAxMAogNzc1IFsgICAgMi44OTE5MTZdIG5v
+dXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDA2OiAwNDgzM2Y5NiAwNDQwMDAyMAog
+Nzc2IFsgICAgMi44OTE5MThdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDA3
+OiAwNDAzM2Y5MiAwMDAyMDAyMAogNzc3IFsgICAgMi44OTE5MjBdIG5vdXZlYXUgMDAwMDowMTow
+MC4wOiBEUk06IERDQiBvdXRwIDA4OiAwMjA0NGY2MiAwMDAyMDAxMAogNzc4IFsgICAgMi44OTE5
+MjJdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDE1OiAwMWRmNWZmOCAwMDAw
+MDAwMAogNzc5IFsgICAgMi44OTE5MjRdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBj
+b25uIDAwOiAwMDAwMTAzMAogNzgwIFsgICAgMi44OTE5MjZdIG5vdXZlYXUgMDAwMDowMTowMC4w
+OiBEUk06IERDQiBjb25uIDAxOiAwMDAyMDE0NgogNzgxIFsgICAgMi44OTE5MjhdIG5vdXZlYXUg
+MDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDAyOiAwMTAwMDI0NgogNzgyIFsgICAgMi44OTE5
+MjldIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDAzOiAwMjAwMDM0NgogNzgz
+IFsgICAgMi44OTE5MzFdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDA0OiAw
+MDAxMDQ2MQogNzg0IFsgICAgMi44OTE5MzNdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERD
+QiBjb25uIDA1OiAwMDAwMDU3MAogNzg1IFsgICAgMi45NTM4OThdIG5vdXZlYXUgMDAwMDowMTow
+MC4wOiBEUk06IGZhaWxlZCB0byBjcmVhdGUgZW5jb2RlciAxLzgvMDogLTE5CiA3ODYgWyAgICAy
+Ljk1MzkwMl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogVmlydHVhbC0xIGhhcyBubyBlbmNv
+ZGVycywgcmVtb3ZpbmcKIDc4NyBbICAgIDIuOTUzOTI4XSBbZHJtXSBTdXBwb3J0cyB2Ymxhbmsg
+dGltZXN0YW1wIGNhY2hpbmcgUmV2IDIgKDIxLjEwLjIwMTMpLgogNzg4IFsgICAgMi45NTM5MzBd
+IFtkcm1dIERyaXZlciBzdXBwb3J0cyBwcmVjaXNlIHZibGFuayB0aW1lc3RhbXAgcXVlcnkuCiA3
+ODkgWyAgICAzLjAwNjU1N10gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogTU06IHVzaW5nIENP
+UFkgZm9yIGJ1ZmZlciBjb3BpZXMKLi4uCiA4MTEgWyAgICAzLjMyOTk4MV0gbm91dmVhdSAwMDAw
+OjAxOjAwLjA6IERSTTogYWxsb2NhdGVkIDE5MjB4MTA4MCBmYjogMHg4MDAwMCwgYm8gMDAwMDAw
+MDBmZWQxYTA1ZAogODEyIFsgICAgMy4zMzEwMDJdIGZiY29uOiBub3V2ZWF1ZmIgKGZiMCkgaXMg
+cHJpbWFyeSBkZXZpY2UKIDgxMyBbICAgIDMuMzc2MDE0XSB1c2IgMy0xMDogbmV3IGZ1bGwtc3Bl
+ZWQgVVNCIGRldmljZSBudW1iZXIgMyB1c2luZyB4aGNpX2hjZAogODE0IFsgICAgMy4zNzYxNzRd
+IGhpZC1nZW5lcmljIDAwMDM6MEU4RjowMDIwLjAwMDI6IGlucHV0LGhpZHJhdzE6IFVTQiBISUQg
+djEuMTAgTW91c2UgW0dBU0lBIFBTMnRvVVNCIEFkYXB0ZXJdIG9uIHVzYi0wMDAwOjAwOjE0LjAt
+MS9pbnB1dDEKIDgxNSBbICAgIDMuNTI2MjM0XSB1c2IgMy0xMDogTmV3IFVTQiBkZXZpY2UgZm91
+bmQsIGlkVmVuZG9yPTA0NmQsIGlkUHJvZHVjdD1jNTJiLCBiY2REZXZpY2U9MTIuMDEKIDgxNiBb
+ICAgIDMuNTI2MjM1XSB1c2IgMy0xMDogTmV3IFVTQiBkZXZpY2Ugc3RyaW5nczogTWZyPTEsIFBy
+b2R1Y3Q9MiwgU2VyaWFsTnVtYmVyPTAKIDgxNyBbICAgIDMuNTI2MjM3XSB1c2IgMy0xMDogUHJv
+ZHVjdDogVVNCIFJlY2VpdmVyCiA4MTggWyAgICAzLjUyNjIzN10gdXNiIDMtMTA6IE1hbnVmYWN0
+dXJlcjogTG9naXRlY2gKIDgxOSBbICAgIDMuNjIyMjIzXSBDb25zb2xlOiBzd2l0Y2hpbmcgdG8g
+Y29sb3VyIGZyYW1lIGJ1ZmZlciBkZXZpY2UgMjQweDY3CiA4MjAgWyAgICAzLjg3MjcxMF0gbm91
+dmVhdSAwMDAwOjAxOjAwLjA6IGZiMDogbm91dmVhdWZiIGZyYW1lIGJ1ZmZlciBkZXZpY2UKIDgy
+MSBbICAgIDMuODkyMDgwXSBbZHJtXSBJbml0aWFsaXplZCBub3V2ZWF1IDEuMy4xIDIwMTIwODAx
+IGZvciAwMDAwOjAxOjAwLjAgb24gbWlub3IgMAouLi4KWyA2MjUzLjM0MTUzMF0gbm91dmVhdSAw
+MDAwOjAxOjAwLjA6IHN3aW90bGIgYnVmZmVyIGlzIGZ1bGwgKHN6OiAyMDk3MTUyIGJ5dGVzKQpb
+IDYyNTMuMzQxNTM1XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogc3dpb3RsYjogY29oZXJlbnQgYWxs
+b2NhdGlvbiBmYWlsZWQsIHNpemU9MjA5NzE1MgpbIDYyNTMuMzQxNTM5XSBDUFU6IDIgUElEOiAz
+NzQwIENvbW06IFhvcmcgS2R1bXA6IGxvYWRlZCBUYWludGVkOiBHICAgICAgICAgICAgRSAgICA0
+LjE2LjAuZ2Y4Y2YyZjEtZGVmYXVsdCAjNjg3ClsgNjI1My4zNDE1NDFdIEhhcmR3YXJlIG5hbWU6
+IE1FRElPTiBNUy03ODQ4L01TLTc4NDgsIEJJT1MgTTc4NDhXMDguMjBDIDA5LzIzLzIwMTMKWyA2
+MjUzLjM0MTU0M10gQ2FsbCBUcmFjZToKWyA2MjUzLjM0MTU1M10gIGR1bXBfc3RhY2srMHg3OC8w
+eGIzClsgNjI1My4zNDE1NTldICBzd2lvdGxiX2FsbG9jKzB4MTM0LzB4MTcwClsgNjI1My4zNDE1
+NjddICB0dG1fZG1hX3Bvb2xfYWxsb2NfbmV3X3BhZ2VzKzB4MTYxLzB4M2MwIFt0dG1dClsgNjI1
+My4zNDE1NzRdICB0dG1fZG1hX3Bvb2xfZ2V0X3BhZ2VzKzB4ZTAvMHgxYzAgW3R0bV0KWyA2MjUz
+LjM0MTU4MF0gIHR0bV9kbWFfcG9wdWxhdGUrMHgyNTAvMHgzMTAgW3R0bV0KWyA2MjUzLjM0MTU4
+Nl0gIHR0bV90dF9wb3B1bGF0ZSsweDI4LzB4NzAgW3R0bV0KWyA2MjUzLjM0MTU5MV0gIHR0bV90
+dF9iaW5kKzB4MjYvMHg2MCBbdHRtXQpbIDYyNTMuMzQxNTk2XSAgdHRtX2JvX2hhbmRsZV9tb3Zl
+X21lbSsweDUxYS8weDU4MCBbdHRtXQpbIDYyNTMuMzQxNjEyXSAgPyBkcm1fbW1faW5zZXJ0X25v
+ZGVfaW5fcmFuZ2UrMHg0MmIvMHg0ODAgW2RybV0KWyA2MjUzLjM0MTYxN10gIHR0bV9ib192YWxp
+ZGF0ZSsweGZhLzB4MTEwIFt0dG1dClsgNjI1My4zNDE2MjJdICA/IF9yYXdfd3JpdGVfdW5sb2Nr
+KzB4MTIvMHgzMApbIDYyNTMuMzQxNjM0XSAgPyBkcm1fdm1hX29mZnNldF9hZGQrMHg1Yy8weDcw
+IFtkcm1dClsgNjI1My4zNDE2MzhdICB0dG1fYm9faW5pdF9yZXNlcnZlZCsweDI5Ni8weDQ1MCBb
+dHRtXQpbIDYyNTMuMzQxNjQzXSAgdHRtX2JvX2luaXQrMHg3My8weGQwIFt0dG1dClsgNjI1My4z
+NDE2NzVdICA/IG52MTBfYm9fcHV0X3RpbGVfcmVnaW9uKzB4NTAvMHg1MCBbbm91dmVhdV0KWyA2
+MjUzLjM0MTcwNF0gIG5vdXZlYXVfYm9fbmV3KzB4M2ViLzB4NWMwIFtub3V2ZWF1XQpbIDYyNTMu
+MzQxNzMxXSAgPyBudjEwX2JvX3B1dF90aWxlX3JlZ2lvbisweDUwLzB4NTAgW25vdXZlYXVdClsg
+NjI1My4zNDE3NTZdICBub3V2ZWF1X2dlbV9uZXcrMHg2Ni8weDExMCBbbm91dmVhdV0KWyA2MjUz
+LjM0MTc3OV0gID8gbm91dmVhdV9nZW1fbmV3KzB4MTEwLzB4MTEwIFtub3V2ZWF1XQpbIDYyNTMu
+MzQxODAxXSAgbm91dmVhdV9nZW1faW9jdGxfbmV3KzB4NDgvMHhjMCBbbm91dmVhdV0KWyA2MjUz
+LjM0MTgxMl0gIGRybV9pb2N0bF9rZXJuZWwrMHg2Ni8weGIwIFtkcm1dClsgNjI1My4zNDE4MjJd
+ICBkcm1faW9jdGwrMHgyYjcvMHgzNzAgW2RybV0KWyA2MjUzLjM0MTg0NF0gID8gbm91dmVhdV9n
+ZW1fbmV3KzB4MTEwLzB4MTEwIFtub3V2ZWF1XQpbIDYyNTMuMzQxODQ5XSAgPyBwcmVlbXB0X2Nv
+dW50X3N1YisweDZhLzB4ZTAKWyA2MjUzLjM0MTg3Ml0gIG5vdXZlYXVfZHJtX2lvY3RsKzB4NTAv
+MHhiMCBbbm91dmVhdV0KWyA2MjUzLjM0MTg3Nl0gIGRvX3Zmc19pb2N0bCsweDkzLzB4NmEwClsg
+NjI1My4zNDE4ODBdICA/IF9fc3lzX3JlY3Ztc2crMHg0NS8weDgwClsgNjI1My4zNDE4ODJdICBr
+c3lzX2lvY3RsKzB4NjAvMHg5MApbIDYyNTMuMzQxODg2XSAgPyB0cmFjZV9oYXJkaXJxc19vZmZf
+dGh1bmsrMHgxYS8weDFjClsgNjI1My4zNDE4ODhdICBTeVNfaW9jdGwrMHhhLzB4MTAKWyA2MjUz
+LjM0MTg5MV0gIGRvX3N5c2NhbGxfNjQrMHg3Ni8weDEzMApbIDYyNTMuMzQxODk1XSAgZW50cnlf
+U1lTQ0FMTF82NF9hZnRlcl9od2ZyYW1lKzB4NDIvMHhiNwpbIDYyNTMuMzQxODk4XSBSSVA6IDAw
+MzM6MHg3ZjdkY2UwNDYzMjcKWyA2MjUzLjM0MTkwMF0gUlNQOiAwMDJiOjAwMDA3ZmZkNTk4MjZh
+YTggRUZMQUdTOiAwMDAwMzI0NiBPUklHX1JBWDogMDAwMDAwMDAwMDAwMDAxMApbIDYyNTMuMzQx
+OTAzXSBSQVg6IGZmZmZmZmZmZmZmZmZmZGEgUkJYOiAwMDAwMDAwMDAxYjJmMjIwIFJDWDogMDAw
+MDdmN2RjZTA0NjMyNwpbIDYyNTMuMzQxOTA0XSBSRFg6IDAwMDA3ZmZkNTk4MjZiMDAgUlNJOiAw
+MDAwMDAwMGMwMzA2NDgwIFJESTogMDAwMDAwMDAwMDAwMDAwYgpbIDYyNTMuMzQxOTA2XSBSQlA6
+IDAwMDA3ZmZkNTk4MjZiMDAgUjA4OiAwMDAwMDAwMDAxM2UyZjgwIFIwOTogMDAwMDAwMDAwMTNl
+MzBkMApbIDYyNTMuMzQxOTA4XSBSMTA6IDAwMDA3ZjdkYmU1NWYwMDAgUjExOiAwMDAwMDAwMDAw
+MDAzMjQ2IFIxMjogMDAwMDAwMDBjMDMwNjQ4MApbIDYyNTMuMzQxOTA5XSBSMTM6IDAwMDAwMDAw
+MDAwMDAwMGIgUjE0OiAwMDAwN2ZmZDU5ODI2YmE4IFIxNTogMDAwMDAwMDAwMDQwMDAwMApbIDYy
+NTQuODczMTc5XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogc3dpb3RsYiBidWZmZXIgaXMgZnVsbCAo
+c3o6IDIwOTcxNTIgYnl0ZXMpCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
+dQo=
