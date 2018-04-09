@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 105935] DRI3 suddenly stopped turning on at some
  point in the past 5 months
-Date: Mon, 09 Apr 2018 21:20:15 +0000
-Message-ID: <bug-105935-8800-pmrPKHZjNe@http.bugs.freedesktop.org/>
+Date: Mon, 09 Apr 2018 21:20:36 +0000
+Message-ID: <bug-105935-8800-VRrrDRJyWk@http.bugs.freedesktop.org/>
 References: <bug-105935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1133880743=="
+Content-Type: multipart/mixed; boundary="===============1375192694=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-105935-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1133880743==
-Content-Type: multipart/alternative; boundary="15233088150.Da6ACAf.17624"
+--===============1375192694==
+Content-Type: multipart/alternative; boundary="15233088361.E9Fb.17430"
 Content-Transfer-Encoding: 7bit
 
 
---15233088150.Da6ACAf.17624
-Date: Mon, 9 Apr 2018 21:20:15 +0000
+--15233088361.E9Fb.17430
+Date: Mon, 9 Apr 2018 21:20:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D105935
 
---- Comment #6 from jimijames.bove-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I'm not sure, because upgrading nouveau up to that commit resulted in a lig=
-htdm
-segfault. Here are the logs from that:
+--- Comment #7 from jimijames.bove-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 138713
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138713&action=3Dedit
+kernel_log.txt
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15233088150.Da6ACAf.17624
-Date: Mon, 9 Apr 2018 21:20:15 +0000
+--15233088361.E9Fb.17430
+Date: Mon, 9 Apr 2018 21:20:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +65,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - DRI3 suddenly stopped turning on at some point in the pas=
 t 5 months"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105935#c6">Commen=
-t # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105935#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - DRI3 suddenly stopped turning on at some point in the pas=
@@ -77,9 +77,11 @@ t 5 months"
 jimijames.bove&#64;gmail.com" title=3D"jimijames.bove&#64;gmail.com">jimija=
 mes.bove&#64;gmail.com</a>
 </span></b>
-        <pre>I'm not sure, because upgrading nouveau up to that commit resu=
-lted in a lightdm
-segfault. Here are the logs from that:</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138713=
+" name=3D"attach_138713" title=3D"kernel_log.txt">attachment 138713</a> <a =
+href=3D"attachment.cgi?id=3D138713&amp;action=3Dedit" title=3D"kernel_log.t=
+xt">[details]</a></span>
+kernel_log.txt</pre>
         </div>
       </p>
 
@@ -94,9 +96,9 @@ segfault. Here are the logs from that:</pre>
     </body>
 </html>=
 
---15233088150.Da6ACAf.17624--
+--15233088361.E9Fb.17430--
 
---===============1133880743==
+--===============1375192694==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1133880743==--
+--===============1375192694==--
