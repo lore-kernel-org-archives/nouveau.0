@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105935] DRI3 suddenly stopped turning on at some
- point in the past 5 months
-Date: Mon, 09 Apr 2018 21:21:16 +0000
-Message-ID: <bug-105935-8800-yyVtCdCF4S@http.bugs.freedesktop.org/>
-References: <bug-105935-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105903] Only mouse cursor visible on DP-1 connected
+ monitor, no graphics (was working earlier - reverse PRIME)
+Date: Wed, 11 Apr 2018 13:24:07 +0000
+Message-ID: <bug-105903-8800-GYJMFnpMNV@http.bugs.freedesktop.org/>
+References: <bug-105903-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1351998435=="
+Content-Type: multipart/mixed; boundary="===============0809163232=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105935-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-105903-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1351998435==
-Content-Type: multipart/alternative; boundary="15233088760.ab69.18011"
+--===============0809163232==
+Content-Type: multipart/alternative; boundary="15234530461.35B477F6.16385"
 Content-Transfer-Encoding: 7bit
 
 
---15233088760.ab69.18011
-Date: Mon, 9 Apr 2018 21:21:16 +0000
+--15234530461.35B477F6.16385
+Date: Wed, 11 Apr 2018 13:24:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105935
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105903
 
---- Comment #8 from jimijames.bove-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 138714
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138714&action=3Dedit
-Xorg.0.log.txt
+Benny Ammitzb=C3=B8ll <benny-t2dRYjLbInkVZ4pArIi0Q3XJ5CkEIoRN@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #2 from Benny Ammitzb=C3=B8ll <benny-t2dRYjLbInkVZ4pArIi0Q3XJ5CkEIoRN@public.gmane.org> ---
+My Gentoo system turned out to be corrupted, so I had to do a complete
+reinstall. After the reinstall my DP-1 output works again as it did before.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---15233088760.ab69.18011
-Date: Mon, 9 Apr 2018 21:21:16 +0000
+--15234530461.35B477F6.16385
+Date: Wed, 11 Apr 2018 13:24:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,30 +63,62 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:benny&#64=
+;ammitzboell-consult.dk" title=3D"Benny Ammitzb=C3=B8ll &lt;benny&#64;ammit=
+zboell-consult.dk&gt;"> <span class=3D"fn">Benny Ammitzb=C3=B8ll</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - Only mouse cursor visible on DP-1 connected =
+monitor, no graphics (was working earlier - reverse PRIME)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105903">bug 10590=
+3</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - DRI3 suddenly stopped turning on at some point in the pas=
-t 5 months"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105935#c8">Commen=
-t # 8</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - Only mouse cursor visible on DP-1 connected =
+monitor, no graphics (was working earlier - reverse PRIME)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105903#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - DRI3 suddenly stopped turning on at some point in the pas=
-t 5 months"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105935">bug 10593=
-5</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - Only mouse cursor visible on DP-1 connected =
+monitor, no graphics (was working earlier - reverse PRIME)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105903">bug 10590=
+3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jimijames.bove&#64;gmail.com" title=3D"jimijames.bove&#64;gmail.com">jimija=
-mes.bove&#64;gmail.com</a>
+benny&#64;ammitzboell-consult.dk" title=3D"Benny Ammitzb=C3=B8ll &lt;benny&=
+#64;ammitzboell-consult.dk&gt;"> <span class=3D"fn">Benny Ammitzb=C3=B8ll</=
+span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138714=
-" name=3D"attach_138714" title=3D"Xorg.0.log.txt">attachment 138714</a> <a =
-href=3D"attachment.cgi?id=3D138714&amp;action=3Dedit" title=3D"Xorg.0.log.t=
-xt">[details]</a></span>
-Xorg.0.log.txt</pre>
+        <pre>My Gentoo system turned out to be corrupted, so I had to do a =
+complete
+reinstall. After the reinstall my DP-1 output works again as it did before.=
+</pre>
         </div>
       </p>
 
@@ -91,14 +128,13 @@ Xorg.0.log.txt</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15233088760.ab69.18011--
+--15234530461.35B477F6.16385--
 
---===============1351998435==
+--===============0809163232==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +144,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1351998435==--
+--===============0809163232==--
