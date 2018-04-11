@@ -1,119 +1,54 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105977] Samsung screen replacement in a Dell laptop
- brings corrupted display
-Date: Wed, 11 Apr 2018 13:33:33 +0000
-Message-ID: <bug-105977-8800-eaiBWwo9wU@http.bugs.freedesktop.org/>
-References: <bug-105977-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v6 00/10] drm/i915: Implement proper fallback training for MST
+Date: Wed, 11 Apr 2018 15:29:27 -0400
+Message-ID: <20180411192951.21997-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0004747315=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105977-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Joonas Lahtinen <joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Roman Li <roman.li-5C7GfCeVMHo@public.gmane.org>, "David (ChunMing) Zhou" <david1.zhou-5C7GfCeVMHo@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "Jerry (Fangzhi) Zuo" <jerry.zuo-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Gustavo Padovan <gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org>, Harry Wentland <harry.wentland-5C7GfCeVMHo@public.gmane.org>, Andrey Grodzovsky <andrey.grodzovsky-5C7GfCeVMHo@public.gmane.org>, "Leo (Sunpeng) Li" <sunpeng.li-5C7GfCeVMHo@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Jani Nikula <jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Rodrigo Vivi <rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Tony Cheng <tony.cheng-5C7GfCeVMHo@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Shirish S <shirish.s-5C7GfCeVMHo@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0004747315==
-Content-Type: multipart/alternative; boundary="15234536120.eE99Dda5.17491"
-Content-Transfer-Encoding: 7bit
-
-
---15234536120.eE99Dda5.17491
-Date: Wed, 11 Apr 2018 13:33:32 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105977
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-If "vertical" is OK, that means the screen is OK and nouveau's modesetting =
-is
-OK. (The rotation is purely software, it's still a 1920x1200 framebuffer.)
-
-Could something else have gotten updated? Can you grab a copy of dmesg and =
-xorg
-logs? What version of mesa is being used?
-
-I presume all your woes go away when booting with nouveau.noaccel=3D1.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15234536120.eE99Dda5.17491
-Date: Wed, 11 Apr 2018 13:33:32 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Samsung screen replacement in a Dell laptop brings corrup=
-ted display"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105977#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Samsung screen replacement in a Dell laptop brings corrup=
-ted display"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105977">bug 10597=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>If &quot;vertical&quot; is OK, that means the screen is OK and=
- nouveau's modesetting is
-OK. (The rotation is purely software, it's still a 1920x1200 framebuffer.)
-
-Could something else have gotten updated? Can you grab a copy of dmesg and =
-xorg
-logs? What version of mesa is being used?
-
-I presume all your woes go away when booting with nouveau.noaccel=3D1.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15234536120.eE99Dda5.17491--
-
---===============0004747315==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0004747315==--
+TGF0ZXN0IHZlcnNpb24gb2YgUFcgc2VyaWVzIDM5NjQyLCBob3BlZnVsbHkgdGhpcyBzaG91bGQg
+YWxzbyBhY3R1YWxseQpjb21lIHVwIG9uIGludGVsLWdmeCBhbmQgZ28gdGhyb3VnaCBDSS4KCk5v
+IGNoYW5nZXMgb3RoZXIgdGhhbiByZWJhc2luZyB0byB0aGUgY3VycmVudCBkcm0taW50ZWwtbmV4
+dC1xdWV1ZWQKCkx5dWRlIFBhdWwgKDEwKToKICBkcm0vYXRvbWljOiBQcmludCBkZWJ1ZyBtZXNz
+YWdlIG9uIGF0b21pYyBjaGVjayBmYWlsdXJlCiAgZHJtL2k5MTU6IE1vdmUgRFAgbW9kZXNldCBy
+ZXRyeSB3b3JrIGludG8gaW50ZWxfZHAKICBkcm0vZHBfbXN0OiBGaXggbmFtaW5nIG9uIGRybV9h
+dG9taWNfZ2V0X21zdF90b3BvbG9neV9zdGF0ZSgpCiAgZHJtL2RwX21zdDogUmVtb3ZlIGFsbCBl
+dmlsIGR1cGxpY2F0ZSBzdGF0ZSBwb2ludGVycwogIGRybS9kcF9tc3Q6IE1ha2UgZHJtX2RwX21z
+dF90b3BvbG9neV9zdGF0ZSBzdWJjbGFzc2FibGUKICBkcm0vZHBfbXN0OiBBZGQgcmVzZXRfc3Rh
+dGUgY2FsbGJhY2sgdG8gdG9wb2xvZ3kgbWdyCiAgZHJtL2k5MTU6IE9ubHkgdXNlIG9uZSBsaW5r
+IGJ3IGNvbmZpZyBmb3IgTVNUIHRvcG9sb2dpZXMKICBkcm0vaTkxNTogTWFrZSBpbnRlbF9kcF9t
+c3RfYXRvbWljX2NoZWNrKCkgaWRlbXBvdGVudAogIGRybS9kcF9tc3Q6IEFkZCBNU1QgZmFsbGJh
+Y2sgcmV0cmFpbmluZyBoZWxwZXJzCiAgZHJtL2k5MTU6IEltcGxlbWVudCBwcm9wZXIgZmFsbGJh
+Y2sgdHJhaW5pbmcgZm9yIE1TVAoKIGRyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVf
+ZG0vYW1kZ3B1X2RtLmMgIHwgIDE0ICstCiAuLi4vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdw
+dV9kbV9tc3RfdHlwZXMuYyAgICB8ICAzNSArLQogLi4uL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9h
+bWRncHVfZG1fbXN0X3R5cGVzLmggICAgfCAgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9kcm1fYXRv
+bWljLmMgICAgICAgICAgICAgICAgICAgICAgIHwgICA1ICstCiBkcml2ZXJzL2dwdS9kcm0vZHJt
+X2RwX21zdF90b3BvbG9neS5jICAgICAgICAgICAgICB8IDU0OCArKysrKysrKysrKysrKysrKysr
+Ky0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RkaS5jICAgICAgICAgICAgICAgICAgIHwg
+IDEwICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kaXNwbGF5LmMgICAgICAgICAgICAg
+ICB8ICAxNCArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHAuYyAgICAgICAgICAgICAg
+ICAgICAgfCAzNjEgKysrKysrKysrKy0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rw
+X2xpbmtfdHJhaW5pbmcuYyAgICAgIHwgICA2ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRl
+bF9kcF9tc3QuYyAgICAgICAgICAgICAgICB8IDE3NyArKysrKy0tCiBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pbnRlbF9kcnYuaCAgICAgICAgICAgICAgICAgICB8ICAyMCArLQogZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMgICAgICAgICAgICAgfCAgMTUgKy0KIGRyaXZlcnMv
+Z3B1L2RybS9yYWRlb24vcmFkZW9uX2RwX21zdC5jICAgICAgICAgICAgIHwgIDEzICstCiBpbmNs
+dWRlL2RybS9kcm1fZHBfbXN0X2hlbHBlci5oICAgICAgICAgICAgICAgICAgICB8ICA0MiArLQog
+MTQgZmlsZXMgY2hhbmdlZCwgMTA4NiBpbnNlcnRpb25zKCspLCAxNzggZGVsZXRpb25zKC0pCgot
+LSAKMi4xNC4zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
