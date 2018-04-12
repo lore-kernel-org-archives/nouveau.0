@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 105884] Firefox causes a crash / X lockup in the
  nouveau driver on GTX 1060
-Date: Thu, 12 Apr 2018 13:25:22 +0000
-Message-ID: <bug-105884-8800-Ac8teIrOg7@http.bugs.freedesktop.org/>
+Date: Thu, 12 Apr 2018 13:27:51 +0000
+Message-ID: <bug-105884-8800-yLGEJc8sAq@http.bugs.freedesktop.org/>
 References: <bug-105884-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0716268441=="
+Content-Type: multipart/mixed; boundary="===============1717977486=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-105884-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0716268441==
-Content-Type: multipart/alternative; boundary="15235395221.DB8DF98C2.12687"
+--===============1717977486==
+Content-Type: multipart/alternative; boundary="15235396700.4A0ee6E8b.13723"
 Content-Transfer-Encoding: 7bit
 
 
---15235395221.DB8DF98C2.12687
-Date: Thu, 12 Apr 2018 13:25:22 +0000
+--15235396700.4A0ee6E8b.13723
+Date: Thu, 12 Apr 2018 13:27:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,16 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D105884
 
---- Comment #2 from Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> ---
-It is possible that kernel 4.15.9 didn't have this issue, so a regression
-window is quite small.
+Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Severity|major                       |critical
+           Priority|medium                      |high
+           Keywords|                            |regression
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15235395221.DB8DF98C2.12687
-Date: Thu, 12 Apr 2018 13:25:22 +0000
+--15235396700.4A0ee6E8b.13723
+Date: Thu, 12 Apr 2018 13:27:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -56,29 +60,49 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Firefox causes a crash / X lockup in the nouveau driver o=
-n GTX 1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105884#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:t.artem&#=
+64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailcity.com&g=
+t;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Firefox causes a crash / X lockup in the nouveau driver o=
 n GTX 1060"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105884">bug 10588=
 4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-t.artem&#64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailc=
-ity.com&gt;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
-</span></b>
-        <pre>It is possible that kernel 4.15.9 didn't have this issue, so a=
- regression
-window is quite small.</pre>
-        </div>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Severity</td>
+           <td>major
+           </td>
+           <td>critical
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Priority</td>
+           <td>medium
+           </td>
+           <td>high
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Keywords</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>regression
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -91,9 +115,9 @@ window is quite small.</pre>
     </body>
 </html>=
 
---15235395221.DB8DF98C2.12687--
+--15235396700.4A0ee6E8b.13723--
 
---===============0716268441==
+--===============1717977486==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +127,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0716268441==--
+--===============1717977486==--
