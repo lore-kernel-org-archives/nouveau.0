@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105687] BUG: unable to handle kernel NULL pointer
- dereference at 0000000000000ca0
-Date: Fri, 13 Apr 2018 10:05:15 +0000
-Message-ID: <bug-105687-8800-yiDwoPGgbE@http.bugs.freedesktop.org/>
-References: <bug-105687-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Add missing fb SLCG registers for
+ kepler2
+Date: Fri, 13 Apr 2018 17:31:28 -0400
+Message-ID: <20180413213131.9430-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1952603238=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105687-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,96 +17,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1952603238==
-Content-Type: multipart/alternative; boundary="15236139151.deDb8808C.5124"
-Content-Transfer-Encoding: 7bit
-
-
---15236139151.deDb8808C.5124
-Date: Fri, 13 Apr 2018 10:05:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105687
-
---- Comment #4 from Stefano Biagiotti <stefano.biagiotti-h53T4Qt7PfY@public.gmane.org> ---
-Created attachment 138821
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138821&action=3Dedit
-journalctl -k
-
-Bug still present with kernel-4.15.15-300.fc27.x86_64.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15236139151.deDb8808C.5124
-Date: Fri, 13 Apr 2018 10:05:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - BUG: unable to handle kernel NULL pointer dereference at =
-0000000000000ca0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105687#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - BUG: unable to handle kernel NULL pointer dereference at =
-0000000000000ca0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105687">bug 10568=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-stefano.biagiotti&#64;gtn.it" title=3D"Stefano Biagiotti &lt;stefano.biagio=
-tti&#64;gtn.it&gt;"> <span class=3D"fn">Stefano Biagiotti</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138821=
-" name=3D"attach_138821" title=3D"journalctl -k">attachment 138821</a> <a h=
-ref=3D"attachment.cgi?id=3D138821&amp;action=3Dedit" title=3D"journalctl -k=
-">[details]</a></span>
-journalctl -k
-
-Bug still present with kernel-4.15.15-300.fc27.x86_64.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15236139151.deDb8808C.5124--
-
---===============1952603238==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1952603238==--
+U29tZWhvdyBJIGRpZG4ndCBtYW5hZ2UgdG8gbm90aWNlIHRoaXMgdGhlIGxhc3QgdGltZSBJIGxv
+b2tlZCBhdCBteQptbWlvdHJhY2VzLCB0aGVzZSBzZWVtIHRvIGJlIGFsbCB2YWxpZCByZWdpc3Rl
+cnMuCgpGb3J3YXJkaW5nIHRoaXMgdG8gc3RhYmxlLCBhcyB0aGVyZSdzIGEgc21hbGwgY2hhbmNl
+IHRoYXQgbm90IGhhdmluZwp0aGVzZSBjb3VsZCBjYXVzZSBjbG9ja2dhdGluZyB0byBiZSB1bnN0
+YWJsZS4KClNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkZpeGVz
+OiBhMGY3OTA4MmJkMTc0ICgiZHJtL25vdXZlYXU6IEFkZCBzdXBwb3J0IGZvciBTTENHIGZvciBL
+ZXBsZXIyIikKQ2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcKLS0tCiBkcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9mYi9nazExMC5jIHwgMTQgKysrKysrKysrKysrKysKIDEgZmls
+ZSBjaGFuZ2VkLCAxNCBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvZ2sxMTAuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L252a20vc3ViZGV2L2ZiL2drMTEwLmMKaW5kZXggMDY5NWU1ZGQzNjBlLi4wZDlhZDlmYTc3NzQg
+MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL2drMTEw
+LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvZ2sxMTAuYwpA
+QCAtMzIsNiArMzIsMTggQEAKICAqIFBHUkFQSCByZWdpc3RlcnMgZm9yIGNsb2NrZ2F0aW5nCiAg
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKgogICovCitzdGF0aWMgY29uc3Qgc3RydWN0IG52a21fdGhl
+cm1fY2xrZ2F0ZV9pbml0CitnazExMF9mYl9jbGtnYXRlX3NsY2dfaW5pdF9iY2FzdF8wW10gPSB7
+CisJeyAweDEwZjI4MCwgMSwgMHgwMDAwMDAwMCB9LAorCXt9Cit9OworCitzdGF0aWMgY29uc3Qg
+c3RydWN0IG52a21fdGhlcm1fY2xrZ2F0ZV9pbml0CitnazExMF9mYl9jbGtnYXRlX3NsY2dfaW5p
+dF9weGJhcl8wW10gPSB7CisJeyAweDEzY2FmYywgMSwgMHgwMDAwMDA3ZSB9LAorCXsgMHgxM2Ni
+ZTQsIDEsIDB4MWZmZmZmZmUgfSwKKwl7fQorfTsKIAogc3RhdGljIGNvbnN0IHN0cnVjdCBudmtt
+X3RoZXJtX2Nsa2dhdGVfaW5pdAogZ2sxMTBfZmJfY2xrZ2F0ZV9ibGNnX2luaXRfdW5rXzBbXSA9
+IHsKQEAgLTQ1LDYgKzU3LDggQEAgZ2sxMTBfZmJfY2xrZ2F0ZV9ibGNnX2luaXRfdW5rXzBbXSA9
+IHsKIAogc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX3RoZXJtX2Nsa2dhdGVfcGFjawogZ2sxMTBf
+ZmJfY2xrZ2F0ZV9wYWNrW10gPSB7CisJeyBnazExMF9mYl9jbGtnYXRlX3NsY2dfaW5pdF9iY2Fz
+dF8wIH0sCisJeyBnazExMF9mYl9jbGtnYXRlX3NsY2dfaW5pdF9weGJhcl8wIH0sCiAJeyBnazEx
+MF9mYl9jbGtnYXRlX2JsY2dfaW5pdF91bmtfMCB9LAogCXsgZ2sxMDRfZmJfY2xrZ2F0ZV9ibGNn
+X2luaXRfdm1fMCB9LAogCXsgZ2sxMDRfZmJfY2xrZ2F0ZV9ibGNnX2luaXRfbWFpbl8wIH0sCi0t
+IAoyLjE0LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
