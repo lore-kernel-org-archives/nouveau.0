@@ -1,11 +1,10 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] drm/nouveau: Add missing fb SLCG registers for
- kepler2
-Date: Fri, 13 Apr 2018 17:31:28 -0400
-Message-ID: <20180413213131.9430-1-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 106041] New: Nvidia GeForce GTX 970M blank screen
+ after resume
+Date: Sat, 14 Apr 2018 02:11:33 +0000
+Message-ID: <bug-106041-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1512098226=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -17,37 +16,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U29tZWhvdyBJIGRpZG4ndCBtYW5hZ2UgdG8gbm90aWNlIHRoaXMgdGhlIGxhc3QgdGltZSBJIGxv
-b2tlZCBhdCBteQptbWlvdHJhY2VzLCB0aGVzZSBzZWVtIHRvIGJlIGFsbCB2YWxpZCByZWdpc3Rl
-cnMuCgpGb3J3YXJkaW5nIHRoaXMgdG8gc3RhYmxlLCBhcyB0aGVyZSdzIGEgc21hbGwgY2hhbmNl
-IHRoYXQgbm90IGhhdmluZwp0aGVzZSBjb3VsZCBjYXVzZSBjbG9ja2dhdGluZyB0byBiZSB1bnN0
-YWJsZS4KClNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkZpeGVz
-OiBhMGY3OTA4MmJkMTc0ICgiZHJtL25vdXZlYXU6IEFkZCBzdXBwb3J0IGZvciBTTENHIGZvciBL
-ZXBsZXIyIikKQ2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcKLS0tCiBkcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9udmttL3N1YmRldi9mYi9nazExMC5jIHwgMTQgKysrKysrKysrKysrKysKIDEgZmls
-ZSBjaGFuZ2VkLCAxNCBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvZ2sxMTAuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L252a20vc3ViZGV2L2ZiL2drMTEwLmMKaW5kZXggMDY5NWU1ZGQzNjBlLi4wZDlhZDlmYTc3NzQg
-MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL2drMTEw
-LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvZ2sxMTAuYwpA
-QCAtMzIsNiArMzIsMTggQEAKICAqIFBHUkFQSCByZWdpc3RlcnMgZm9yIGNsb2NrZ2F0aW5nCiAg
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKgogICovCitzdGF0aWMgY29uc3Qgc3RydWN0IG52a21fdGhl
-cm1fY2xrZ2F0ZV9pbml0CitnazExMF9mYl9jbGtnYXRlX3NsY2dfaW5pdF9iY2FzdF8wW10gPSB7
-CisJeyAweDEwZjI4MCwgMSwgMHgwMDAwMDAwMCB9LAorCXt9Cit9OworCitzdGF0aWMgY29uc3Qg
-c3RydWN0IG52a21fdGhlcm1fY2xrZ2F0ZV9pbml0CitnazExMF9mYl9jbGtnYXRlX3NsY2dfaW5p
-dF9weGJhcl8wW10gPSB7CisJeyAweDEzY2FmYywgMSwgMHgwMDAwMDA3ZSB9LAorCXsgMHgxM2Ni
-ZTQsIDEsIDB4MWZmZmZmZmUgfSwKKwl7fQorfTsKIAogc3RhdGljIGNvbnN0IHN0cnVjdCBudmtt
-X3RoZXJtX2Nsa2dhdGVfaW5pdAogZ2sxMTBfZmJfY2xrZ2F0ZV9ibGNnX2luaXRfdW5rXzBbXSA9
-IHsKQEAgLTQ1LDYgKzU3LDggQEAgZ2sxMTBfZmJfY2xrZ2F0ZV9ibGNnX2luaXRfdW5rXzBbXSA9
-IHsKIAogc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX3RoZXJtX2Nsa2dhdGVfcGFjawogZ2sxMTBf
-ZmJfY2xrZ2F0ZV9wYWNrW10gPSB7CisJeyBnazExMF9mYl9jbGtnYXRlX3NsY2dfaW5pdF9iY2Fz
-dF8wIH0sCisJeyBnazExMF9mYl9jbGtnYXRlX3NsY2dfaW5pdF9weGJhcl8wIH0sCiAJeyBnazEx
-MF9mYl9jbGtnYXRlX2JsY2dfaW5pdF91bmtfMCB9LAogCXsgZ2sxMDRfZmJfY2xrZ2F0ZV9ibGNn
-X2luaXRfdm1fMCB9LAogCXsgZ2sxMDRfZmJfY2xrZ2F0ZV9ibGNnX2luaXRfbWFpbl8wIH0sCi0t
-IAoyLjE0LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1512098226==
+Content-Type: multipart/alternative; boundary="15236718930.347b.22925"
+Content-Transfer-Encoding: 7bit
+
+
+--15236718930.347b.22925
+Date: Sat, 14 Apr 2018 02:11:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106041
+
+            Bug ID: 106041
+           Summary: Nvidia GeForce GTX 970M blank screen after resume
+           Product: Mesa
+           Version: 18.0
+          Hardware: Other
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: jvoss-Cpl0xJrrQRvQT0dZR+AlfA@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+I get a black screen after I resume from suspend. This is a System76 laptop
+(Oryx Pro). I'm willing to provide any information, please ask.
+
+About the card from dmesg:
+nouveau 0000:01:00.0: NVIDIA GM204 (124180a1)
+nouveau 0000:01:00.0: bios: version 84.04.85.00.37
+
+Custom kernel downloaded from kernel.org version 4.16.
+Gentoo
+Mesa 18.0.0
+
+Backlight has started to work since the last patch, so thank you for that
+improvement.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15236718930.347b.22925
+Date: Sat, 14 Apr 2018 02:11:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nvidia GeForce GTX 970M blank screen after resume"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106041">106041</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nvidia GeForce GTX 970M blank screen after resume
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>18.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jvoss&#64;altsci.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>I get a black screen after I resume from suspend. This is a Sy=
+stem76 laptop
+(Oryx Pro). I'm willing to provide any information, please ask.
+
+About the card from dmesg:
+nouveau 0000:01:00.0: NVIDIA GM204 (124180a1)
+nouveau 0000:01:00.0: bios: version 84.04.85.00.37
+
+Custom kernel downloaded from kernel.org version 4.16.
+Gentoo
+Mesa 18.0.0
+
+Backlight has started to work since the last patch, so thank you for that
+improvement.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15236718930.347b.22925--
+
+--===============1512098226==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1512098226==--
