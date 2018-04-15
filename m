@@ -1,12 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105940] Display freeze caused by nouveau
-Date: Sun, 15 Apr 2018 12:26:55 +0000
-Message-ID: <bug-105940-8800-hJFiLF4Yjr@http.bugs.freedesktop.org/>
-References: <bug-105940-8800@http.bugs.freedesktop.org/>
+From: simbiotiqu <simbi0tiqu-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
+Subject: Hadrware Donation GTS450
+Date: Sun, 15 Apr 2018 08:41:05 +0200
+Message-ID: <1523774465.1102.0@smtp.mail.yahoo.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1030209063=="
+Content-Type: multipart/mixed; boundary="===============0541045723=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105940-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,86 +17,26 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============0541045723==
+Content-Type: multipart/alternative; boundary="=-s2wtZ6vfmhn2MaeyrHJ2"
 
---===============1030209063==
-Content-Type: multipart/alternative; boundary="15237952150.C5FF3.21366"
-Content-Transfer-Encoding: 7bit
+--=-s2wtZ6vfmhn2MaeyrHJ2
+Content-Type: text/plain; charset=us-ascii; format=flowed
 
+Hello
 
---15237952150.C5FF3.21366
-Date: Sun, 15 Apr 2018 12:26:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+If needed I could donate a Gainward GTS450.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105940
+Regards, Simon
 
---- Comment #1 from Stefano Biagiotti <stefano.biagiotti-h53T4Qt7PfY@public.gmane.org> ---
-Created attachment 138846
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138846&action=3Dedit
-Output of journalctl -k -b -1 --no-pager --no-hostname
+--=-s2wtZ6vfmhn2MaeyrHJ2
+Content-Type: text/html; charset=us-ascii
 
-Bug still present with kernel-4.15.15-300.fc27.x86_64.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15237952150.C5FF3.21366
-Date: Sun, 15 Apr 2018 12:26:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Display freeze caused by nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105940#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Display freeze caused by nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105940">bug 10594=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-stefano.biagiotti&#64;gtn.it" title=3D"Stefano Biagiotti &lt;stefano.biagio=
-tti&#64;gtn.it&gt;"> <span class=3D"fn">Stefano Biagiotti</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138846=
-" name=3D"attach_138846" title=3D"Output of journalctl -k -b -1 --no-pager =
---no-hostname">attachment 138846</a> <a href=3D"attachment.cgi?id=3D138846&=
-amp;action=3Dedit" title=3D"Output of journalctl -k -b -1 --no-pager --no-h=
-ostname">[details]</a></span>
-Output of journalctl -k -b -1 --no-pager --no-hostname
-
-Bug still present with kernel-4.15.15-300.fc27.x86_64.</pre>
-        </div>
-      </p>
+<div id="geary-body" dir="auto"><div>Hello</div><div><br></div><div>If needed I could donate a Gainward GTS450.</div><div><br></div><div>Regards, Simon</div></div>
+--=-s2wtZ6vfmhn2MaeyrHJ2--
 
 
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15237952150.C5FF3.21366--
-
---===============1030209063==
+--===============0541045723==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +46,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1030209063==--
+--===============0541045723==--
