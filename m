@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106080] Time-out in `nvkm_fifo_chan_child_fini()`
-Date: Mon, 16 Apr 2018 16:03:28 +0000
-Message-ID: <bug-106080-8800-AB0AFFYF2F@http.bugs.freedesktop.org/>
-References: <bug-106080-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105977] Samsung screen replacement in a Dell laptop
+ brings corrupted display
+Date: Tue, 17 Apr 2018 09:14:55 +0000
+Message-ID: <bug-105977-8800-nENnIenoL2@http.bugs.freedesktop.org/>
+References: <bug-105977-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1302885820=="
+Content-Type: multipart/mixed; boundary="===============1995817310=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106080-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-105977-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1302885820==
-Content-Type: multipart/alternative; boundary="15238946080.eCBcD7.975"
+--===============1995817310==
+Content-Type: multipart/alternative; boundary="15239564950.34EE21EcD.10800"
 Content-Transfer-Encoding: 7bit
 
 
---15238946080.eCBcD7.975
-Date: Mon, 16 Apr 2018 16:03:28 +0000
+--15239564950.34EE21EcD.10800
+Date: Tue, 17 Apr 2018 09:14:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106080
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105977
 
---- Comment #1 from Paul Menzel <pmenzel+bugs.freedesktop-KUpvgZVWgV9o1qOY/usvUg@public.gmane.org> ---
-Created attachment 138870
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138870&action=3Dedit
-X.Org X Server log
+--- Comment #2 from Robert K. <robertk-tW6aCCJLZ7lBDgjK7y7TUQ@public.gmane.org> ---
+Created attachment 138876
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138876&action=3Dedit
+matte.Xorg.0.log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15238946080.eCBcD7.975
-Date: Mon, 16 Apr 2018 16:03:28 +0000
+--15239564950.34EE21EcD.10800
+Date: Tue, 17 Apr 2018 09:14:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,24 +62,25 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Time-out in `nvkm_fifo_chan_child_fini()`"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106080#c1">Commen=
-t # 1</a>
+   title=3D"NEW - Samsung screen replacement in a Dell laptop brings corrup=
+ted display"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105977#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Time-out in `nvkm_fifo_chan_child_fini()`"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106080">bug 10608=
-0</a>
+   title=3D"NEW - Samsung screen replacement in a Dell laptop brings corrup=
+ted display"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105977">bug 10597=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pmenzel+bugs.freedesktop&#64;molgen.mpg.de" title=3D"Paul Menzel &lt;pmenze=
-l+bugs.freedesktop&#64;molgen.mpg.de&gt;"> <span class=3D"fn">Paul Menzel</=
-span></a>
+robertk&#64;mailsac.com" title=3D"Robert K. &lt;robertk&#64;mailsac.com&gt;=
+"> <span class=3D"fn">Robert K.</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138870=
-" name=3D"attach_138870" title=3D"X.Org X Server log">attachment 138870</a>=
- <a href=3D"attachment.cgi?id=3D138870&amp;action=3Dedit" title=3D"X.Org X =
-Server log">[details]</a></span>
-X.Org X Server log</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138876=
+" name=3D"attach_138876" title=3D"matte.Xorg.0.log">attachment 138876</a> <=
+a href=3D"attachment.cgi?id=3D138876&amp;action=3Dedit" title=3D"matte.Xorg=
+.0.log">[details]</a></span>
+matte.Xorg.0.log</pre>
         </div>
       </p>
 
@@ -92,9 +94,9 @@ X.Org X Server log</pre>
     </body>
 </html>=
 
---15238946080.eCBcD7.975--
+--15239564950.34EE21EcD.10800--
 
---===============1302885820==
+--===============1995817310==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1302885820==--
+--===============1995817310==--
