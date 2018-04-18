@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101665] lspci blocks forever with a GP107M
-Date: Wed, 18 Apr 2018 18:08:09 +0000
-Message-ID: <bug-101665-8800-G3Mw0NhZkC@http.bugs.freedesktop.org/>
+Date: Wed, 18 Apr 2018 18:41:09 +0000
+Message-ID: <bug-101665-8800-l1eoMSWUaC@http.bugs.freedesktop.org/>
 References: <bug-101665-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0261190871=="
+Content-Type: multipart/mixed; boundary="===============1122283656=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0261190871==
-Content-Type: multipart/alternative; boundary="15240748894.6c6188Ce.8709"
+--===============1122283656==
+Content-Type: multipart/alternative; boundary="15240768691.8A1FaA0D5.22136"
 Content-Transfer-Encoding: 7bit
 
 
---15240748894.6c6188Ce.8709
-Date: Wed, 18 Apr 2018 18:08:09 +0000
+--15240768691.8A1FaA0D5.22136
+Date: Wed, 18 Apr 2018 18:41:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,23 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101665
 
---- Comment #12 from Etienne URBAH <eurbah-GANU6spQydw@public.gmane.org> ---
+--- Comment #13 from Etienne URBAH <eurbah-GANU6spQydw@public.gmane.org> ---
 With Linux kernel 4.17.0-041700rc1 from
-http://kernel.ubuntu.com/~kernel-ppa/mainline, graphical login fails, and t=
-he
-machine is frozen.
+http://kernel.ubuntu.com/~kernel-ppa/mainline, I confirm that systematicall=
+y :
+
+-  Inside a Linux console, 'lspci' fails to answer, and makes the whole mac=
+hine
+immediately freeze.
+
+-  Graphical login fails, and makes the whole machine immediately freeze.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15240748894.6c6188Ce.8709
-Date: Wed, 18 Apr 2018 18:08:09 +0000
+--15240768691.8A1FaA0D5.22136
+Date: Wed, 18 Apr 2018 18:41:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +68,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - lspci blocks forever with a GP107M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665#c12">Comme=
-nt # 12</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665#c13">Comme=
+nt # 13</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - lspci blocks forever with a GP107M"
@@ -76,8 +81,14 @@ an class=3D"fn">Etienne URBAH</span></a>
 </span></b>
         <pre>With Linux kernel 4.17.0-041700rc1 from
 <a href=3D"http://kernel.ubuntu.com/~kernel-ppa/mainline">http://kernel.ubu=
-ntu.com/~kernel-ppa/mainline</a>, graphical login fails, and the
-machine is frozen.</pre>
+ntu.com/~kernel-ppa/mainline</a>, I confirm that systematically :
+
+-  Inside a Linux console, 'lspci' fails to answer, and makes the whole mac=
+hine
+immediately freeze.
+
+-  Graphical login fails, and makes the whole machine immediately freeze.</=
+pre>
         </div>
       </p>
 
@@ -91,9 +102,9 @@ machine is frozen.</pre>
     </body>
 </html>=
 
---15240748894.6c6188Ce.8709--
+--15240768691.8A1FaA0D5.22136--
 
---===============0261190871==
+--===============1122283656==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0261190871==--
+--===============1122283656==--
