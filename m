@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 106132] bar.sync encoding incorrect for GM107
-Date: Thu, 19 Apr 2018 06:40:39 +0000
-Message-ID: <bug-106132-8800-CGwcCVHL8J@http.bugs.freedesktop.org/>
+Date: Thu, 19 Apr 2018 06:50:39 +0000
+Message-ID: <bug-106132-8800-JGqkbT1kAi@http.bugs.freedesktop.org/>
 References: <bug-106132-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1626438554=="
+Content-Type: multipart/mixed; boundary="===============1459307853=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-106132-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1626438554==
-Content-Type: multipart/alternative; boundary="15241200380.cEAE.31547"
+--===============1459307853==
+Content-Type: multipart/alternative; boundary="15241206390.d533C3A6E.3543"
 Content-Transfer-Encoding: 7bit
 
 
---15241200380.cEAE.31547
-Date: Thu, 19 Apr 2018 06:40:38 +0000
+--15241206390.d533C3A6E.3543
+Date: Thu, 19 Apr 2018 06:50:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D106132
 
---- Comment #1 from Tom de Vries <vriestj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Previously reported at
-https://lists.freedesktop.org/archives/mesa-dev/2018-April/192621.html .
+--- Comment #2 from Tom de Vries <vriestj-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 138920
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138920&action=3Dedit
+Tentative patch
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15241200380.cEAE.31547
-Date: Thu, 19 Apr 2018 06:40:38 +0000
+--15241206390.d533C3A6E.3543
+Date: Thu, 19 Apr 2018 06:50:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - bar.sync encoding incorrect for GM107"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106132#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106132#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - bar.sync encoding incorrect for GM107"
@@ -73,10 +74,12 @@ t # 1</a>
 vriestj&#64;gmail.com" title=3D"Tom de Vries &lt;vriestj&#64;gmail.com&gt;"=
 > <span class=3D"fn">Tom de Vries</span></a>
 </span></b>
-        <pre>Previously reported at
-<a href=3D"https://lists.freedesktop.org/archives/mesa-dev/2018-April/19262=
-1.html">https://lists.freedesktop.org/archives/mesa-dev/2018-April/192621.h=
-tml</a> .</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138920=
+" name=3D"attach_138920" title=3D"Tentative patch">attachment 138920</a> <a=
+ href=3D"attachment.cgi?id=3D138920&amp;action=3Dedit" title=3D"Tentative p=
+atch">[details]</a></span> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=
+=3D106132&amp;attachment=3D138920'>[review]</a>
+Tentative patch</pre>
         </div>
       </p>
 
@@ -91,9 +94,9 @@ tml</a> .</pre>
     </body>
 </html>=
 
---15241200380.cEAE.31547--
+--15241206390.d533C3A6E.3543--
 
---===============1626438554==
+--===============1459307853==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1626438554==--
+--===============1459307853==--
