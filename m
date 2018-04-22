@@ -1,111 +1,67 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105940] Display freeze caused by nouveau
-Date: Sat, 21 Apr 2018 07:51:23 +0000
-Message-ID: <bug-105940-8800-zzktxoNCTq@http.bugs.freedesktop.org/>
-References: <bug-105940-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] drm/nouveau: fix temp/pwm visibility,
+ skip hwmon when no sensors exist
+Date: Sun, 22 Apr 2018 17:47:12 -0400
+Message-ID: <20180422214712.4220-1-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0677624724=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105940-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0677624724==
-Content-Type: multipart/alternative; boundary="15242970830.5E46D03c.27556"
-Content-Transfer-Encoding: 7bit
-
-
---15242970830.5E46D03c.27556
-Date: Sat, 21 Apr 2018 07:51:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105940
-
---- Comment #2 from Stefano Biagiotti <stefano.biagiotti-h53T4Qt7PfY@public.gmane.org> ---
-Created attachment 138975
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D138975&action=3Dedit
-Output of journalctl -k -b -1 --no-pager --no-hostname
-
-Bug still present with kernel-4.15.17-300.fc27.x86_64.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15242970830.5E46D03c.27556
-Date: Sat, 21 Apr 2018 07:51:23 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Display freeze caused by nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105940#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Display freeze caused by nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105940">bug 10594=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-stefano.biagiotti&#64;gtn.it" title=3D"Stefano Biagiotti &lt;stefano.biagio=
-tti&#64;gtn.it&gt;"> <span class=3D"fn">Stefano Biagiotti</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D138975=
-" name=3D"attach_138975" title=3D"Output of journalctl -k -b -1 --no-pager =
---no-hostname">attachment 138975</a> <a href=3D"attachment.cgi?id=3D138975&=
-amp;action=3Dedit" title=3D"Output of journalctl -k -b -1 --no-pager --no-h=
-ostname">[details]</a></span>
-Output of journalctl -k -b -1 --no-pager --no-hostname
-
-Bug still present with kernel-4.15.17-300.fc27.x86_64.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15242970830.5E46D03c.27556--
-
---===============0677624724==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0677624724==--
+QSBOVjM0IEdQVSB3YXMgc2VlaW5nIHRlbXAgYW5kIHB3bSBlbnRyaWVzIGluIGh3bW9uLCB3aGlj
+aCB3b3VsZCBlcnJvcgpvdXQgd2hlbiByZWFkLiBUaGVzZSBzaG91bGQgbm90IGhhdmUgYmVlbiB2
+aXNpYmxlLCBidXQgYWxzbyB0aGUgd2hvbGUKaHdtb24gb2JqZWN0IHNob3VsZCBqdXN0IG5vdCBo
+YXZlIGJlZW4gcmVnaXN0ZXJlZCBpbiB0aGUgZmlyc3QgcGxhY2UuCgpTaWduZWQtb2ZmLWJ5OiBJ
+bGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9od21vbi5jIHwgMTYgKysrKysrKysrKysrKy0tLQogMSBmaWxlIGNoYW5n
+ZWQsIDEzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbm91dmVhdV9od21vbi5jCmluZGV4IDdjOTY1NjQ4ZGY4MC4uNDQxNzhiNGMzNTk5IDEwMDY0
+NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMKKysrIGIvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jCkBAIC0zMjcsNyArMzI3LDcgQEAg
+bm91dmVhdV90ZW1wX2lzX3Zpc2libGUoY29uc3Qgdm9pZCAqZGF0YSwgdTMyIGF0dHIsIGludCBj
+aGFubmVsKQogCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oKHN0cnVjdCBk
+cm1fZGV2aWNlICopZGF0YSk7CiAJc3RydWN0IG52a21fdGhlcm0gKnRoZXJtID0gbnZ4eF90aGVy
+bSgmZHJtLT5jbGllbnQuZGV2aWNlKTsKIAotCWlmICh0aGVybSAmJiB0aGVybS0+YXR0cl9nZXQg
+JiYgbnZrbV90aGVybV90ZW1wX2dldCh0aGVybSkgPCAwKQorCWlmICghdGhlcm0gfHwgIXRoZXJt
+LT5hdHRyX2dldCB8fCBudmttX3RoZXJtX3RlbXBfZ2V0KHRoZXJtKSA8IDApCiAJCXJldHVybiAw
+OwogCiAJc3dpdGNoIChhdHRyKSB7CkBAIC0zNTEsOCArMzUxLDggQEAgbm91dmVhdV9wd21faXNf
+dmlzaWJsZShjb25zdCB2b2lkICpkYXRhLCB1MzIgYXR0ciwgaW50IGNoYW5uZWwpCiAJc3RydWN0
+IG5vdXZlYXVfZHJtICpkcm0gPSBub3V2ZWF1X2RybSgoc3RydWN0IGRybV9kZXZpY2UgKilkYXRh
+KTsKIAlzdHJ1Y3QgbnZrbV90aGVybSAqdGhlcm0gPSBudnh4X3RoZXJtKCZkcm0tPmNsaWVudC5k
+ZXZpY2UpOwogCi0JaWYgKHRoZXJtICYmIHRoZXJtLT5hdHRyX2dldCAmJiB0aGVybS0+ZmFuX2dl
+dCAmJgotCQkJCXRoZXJtLT5mYW5fZ2V0KHRoZXJtKSA8IDApCisJaWYgKCF0aGVybSB8fCAhdGhl
+cm0tPmF0dHJfZ2V0IHx8ICF0aGVybS0+ZmFuX2dldCB8fAorCSAgICB0aGVybS0+ZmFuX2dldCh0
+aGVybSkgPCAwKQogCQlyZXR1cm4gMDsKIAogCXN3aXRjaCAoYXR0cikgewpAQCAtNzA3LDEzICs3
+MDcsMjAgQEAgbm91dmVhdV9od21vbl9pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiB7CiAj
+aWYgZGVmaW5lZChDT05GSUdfSFdNT04pIHx8IChkZWZpbmVkKE1PRFVMRSkgJiYgZGVmaW5lZChD
+T05GSUdfSFdNT05fTU9EVUxFKSkKIAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVf
+ZHJtKGRldik7CisJc3RydWN0IG52a21faWNjc2Vuc2UgKmljY3NlbnNlID0gbnZ4eF9pY2NzZW5z
+ZSgmZHJtLT5jbGllbnQuZGV2aWNlKTsKIAlzdHJ1Y3QgbnZrbV90aGVybSAqdGhlcm0gPSBudnh4
+X3RoZXJtKCZkcm0tPmNsaWVudC5kZXZpY2UpOworCXN0cnVjdCBudmttX3ZvbHQgKnZvbHQgPSBu
+dnh4X3ZvbHQoJmRybS0+Y2xpZW50LmRldmljZSk7CiAJY29uc3Qgc3RydWN0IGF0dHJpYnV0ZV9n
+cm91cCAqc3BlY2lhbF9ncm91cHNbTl9BVFRSX0dST1VQU107CiAJc3RydWN0IG5vdXZlYXVfaHdt
+b24gKmh3bW9uOwogCXN0cnVjdCBkZXZpY2UgKmh3bW9uX2RldjsKIAlpbnQgcmV0ID0gMDsKIAlp
+bnQgaSA9IDA7CiAKKwlpZiAoIWljY3NlbnNlICYmICF0aGVybSAmJiAhdm9sdCkgeworCQlOVl9E
+RUJVRyhkcm0sICJTa2lwcGluZyBod21vbiByZWdpc3RyYXRpb25cbiIpOworCQlyZXR1cm4gMDsK
+Kwl9CisKIAlod21vbiA9IGRybS0+aHdtb24gPSBremFsbG9jKHNpemVvZigqaHdtb24pLCBHRlBf
+S0VSTkVMKTsKIAlpZiAoIWh3bW9uKQogCQlyZXR1cm4gLUVOT01FTTsKQEAgLTc0OSw2ICs3NTYs
+OSBAQCBub3V2ZWF1X2h3bW9uX2Zpbmkoc3RydWN0IGRybV9kZXZpY2UgKmRldikKICNpZiBkZWZp
+bmVkKENPTkZJR19IV01PTikgfHwgKGRlZmluZWQoTU9EVUxFKSAmJiBkZWZpbmVkKENPTkZJR19I
+V01PTl9NT0RVTEUpKQogCXN0cnVjdCBub3V2ZWF1X2h3bW9uICpod21vbiA9IG5vdXZlYXVfaHdt
+b24oZGV2KTsKIAorCWlmICghaHdtb24pCisJCXJldHVybjsKKwogCWlmIChod21vbi0+aHdtb24p
+CiAJCWh3bW9uX2RldmljZV91bnJlZ2lzdGVyKGh3bW9uLT5od21vbik7CiAKLS0gCjIuMTYuMQoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
