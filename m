@@ -1,14 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: tegra: Detach from ARM DMA/IOMMU
- mapping
-Date: Wed, 25 Apr 2018 01:30:53 +1000
-Message-ID: <CACAvsv5YK_STL+anSxT_fmyYKpUUJCEVbVcEYj+wGFj4g8XUBg@mail.gmail.com>
-References: <20180423082447.1516-1-thierry.reding@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+ rescan
+Date: Tue, 24 Apr 2018 20:27:10 +0000
+Message-ID: <bug-75985-8800-MbPyu6MOQ5@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1815468783=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180423082447.1516-1-thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,63 +17,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMjMgQXByaWwgMjAxOCBhdCAxODoyNCwgVGhpZXJyeSBSZWRpbmcgPHRoaWVycnkucmVkaW5n
-QGdtYWlsLmNvbT4gd3JvdGU6Cj4gRnJvbTogVGhpZXJyeSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlh
-LmNvbT4KPgo+IERlcGVuZGluZyBvbiB0aGUga2VybmVsIGNvbmZpZ3VyYXRpb24sIGVhcmx5IEFS
-TSBhcmNoaXRlY3R1cmUgc2V0dXAgY29kZQo+IG1heSBoYXZlIGF0dGFjaGVkIHRoZSBHUFUgdG8g
-YSBETUEvSU9NTVUgbWFwcGluZyB0aGF0IHRyYW5zcGFyZW50bHkgdXNlcwo+IHRoZSBJT01NVSB0
-byBiYWNrIHRoZSBETUEgQVBJLiBUZWdyYSByZXF1aXJlcyBzcGVjaWFsIGhhbmRsaW5nIGZvciBJ
-T01NVQo+IGJhY2tlZCBidWZmZXJzIChhIHNwZWNpYWwgYml0IGluIHRoZSBHUFUncyBNTVUgcGFn
-ZSB0YWJsZXMgaW5kaWNhdGVzIHRoZQo+IG1lbW9yeSBwYXRoIHRvIHRha2U6IHZpYSB0aGUgU01N
-VSBvciBkaXJlY3RseSB0byB0aGUgbWVtb3J5IGNvbnRyb2xsZXIpLgo+IFRyYW5zcGFyZW50bHkg
-YmFja2luZyBETUEgbWVtb3J5IHdpdGggYW4gSU9NTVUgcHJldmVudHMgTm91dmVhdSBmcm9tCj4g
-cHJvcGVybHkgaGFuZGxpbmcgc3VjaCBtZW1vcnkgYWNjZXNzZXMgYW5kIGNhdXNlcyBtZW1vcnkg
-YWNjZXNzIGZhdWx0cy4KPgo+IEFzIGEgc2lkZS1ub3RlOiBidWZmZXJzIG90aGVyIHRoYW4gdGhv
-c2UgYWxsb2NhdGVkIGluIGluc3RhbmNlIG1lbW9yeQo+IGRvbid0IG5lZWQgdG8gYmUgcGh5c2lj
-YWxseSBjb250aWd1b3VzIGZyb20gdGhlIEdQVSdzIHBlcnNwZWN0aXZlIHNpbmNlCj4gdGhlIEdQ
-VSBjYW4gbWFwIHRoZW0gaW50byBjb250aWd1b3VzIGJ1ZmZlcnMgdXNpbmcgaXRzIG93biBNTVUu
-IE1hcHBpbmcKPiB0aGVzZSBidWZmZXJzIHRocm91Z2ggdGhlIElPTU1VIGlzIHVubmVjZXNzYXJ5
-IGFuZCB3aWxsIGV2ZW4gbGVhZCB0bwo+IHBlcmZvcm1hbmNlIGRlZ3JhZGF0aW9uIGJlY2F1c2Ug
-b2YgdGhlIGFkZGl0aW9uYWwgdHJhbnNsYXRpb24uClRoaXMgaXMgbm90IHN0cmljdGx5IHRydWUu
-ICBJZiB5b3Ugd2FudCB0byBiZSBhYmxlIHRvIHVzZSBjb21wcmVzc2lvbgpldGMsIG9uIFRlZ3Jh
-IEdQVXMsIHlvdSdsbCBuZWVkIHRvIGJlIGFibGUgdG8gbWFwIG11bHRpcGxlCihwb3RlbnRpYWxs
-eSBzbWFsbGVyLCBpZS4gNEspIHN5c3RlbSBtZW1vcnkgcGFnZXMgaW50byBhIGNvbnRpZ3VvdXMK
-YmxvY2sgYmlnIGVub3VnaCB0byBzYXRpc2Z5IHRoZSBHUFUgYmlnIHBhZ2Ugc2l6ZS4gIE5vb25l
-J3MKaW1wbGVtZW50ZWQgdGhpcyBmb3IgVGVncmEgaW4gTm91dmVhdSB5ZXQsIGJ1dCB0aGUgcmVz
-dCBvZiB0aGUgc3VwcG9ydApzaG91bGQgYmUgdGhlcmUgYWxyZWFkeSBub3cuCgpCZW4uCgo+Cj4g
-U2lnbmVkLW9mZi1ieTogVGhpZXJyeSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4KPiAtLS0K
-PiAgLi4uL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS90ZWdyYS5jICAgIHwgMTkgKysr
-KysrKysrKysrKysrKysrKwo+ICAxIGZpbGUgY2hhbmdlZCwgMTkgaW5zZXJ0aW9ucygrKQo+Cj4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS90
-ZWdyYS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL3RlZ3Jh
-LmMKPiBpbmRleCAxZjA3OTk5YWVhMWQuLmFjNzcwNmY1NmY2ZiAxMDA2NDQKPiAtLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvdGVncmEuYwo+ICsrKyBiL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS90ZWdyYS5jCj4gQEAgLTE5
-LDYgKzE5LDExIEBACj4gICAqIEZST00sIE9VVCBPRiBPUiBJTiBDT05ORUNUSU9OIFdJVEggVEhF
-IFNPRlRXQVJFIE9SIFRIRSBVU0UgT1IgT1RIRVIKPiAgICogREVBTElOR1MgSU4gVEhFIFNPRlRX
-QVJFLgo+ICAgKi8KPiArCj4gKyNpZiBJU19FTkFCTEVEKENPTkZJR19BUk1fRE1BX1VTRV9JT01N
-VSkKPiArI2luY2x1ZGUgPGFzbS9kbWEtaW9tbXUuaD4KPiArI2VuZGlmCj4gKwo+ICAjaW5jbHVk
-ZSA8Y29yZS90ZWdyYS5oPgo+ICAjaWZkZWYgQ09ORklHX05PVVZFQVVfUExBVEZPUk1fRFJJVkVS
-Cj4gICNpbmNsdWRlICJwcml2LmgiCj4gQEAgLTEwNSw2ICsxMTAsMjAgQEAgbnZrbV9kZXZpY2Vf
-dGVncmFfcHJvYmVfaW9tbXUoc3RydWN0IG52a21fZGV2aWNlX3RlZ3JhICp0ZGV2KQo+ICAgICAg
-ICAgdW5zaWduZWQgbG9uZyBwZ3NpemVfYml0bWFwOwo+ICAgICAgICAgaW50IHJldDsKPgo+ICsj
-aWYgSVNfRU5BQkxFRChDT05GSUdfQVJNX0RNQV9VU0VfSU9NTVUpCj4gKyAgICAgICBpZiAoZGV2
-LT5hcmNoZGF0YS5tYXBwaW5nKSB7Cj4gKyAgICAgICAgICAgICAgIHN0cnVjdCBkbWFfaW9tbXVf
-bWFwcGluZyAqbWFwcGluZyA9IHRvX2RtYV9pb21tdV9tYXBwaW5nKGRldik7Cj4gKwo+ICsgICAg
-ICAgICAgICAgICBhcm1faW9tbXVfcmVsZWFzZV9tYXBwaW5nKG1hcHBpbmcpOwo+ICsgICAgICAg
-ICAgICAgICBhcm1faW9tbXVfZGV0YWNoX2RldmljZShkZXYpOwo+ICsKPiArICAgICAgICAgICAg
-ICAgaWYgKGRldi0+YXJjaGRhdGEuZG1hX2NvaGVyZW50KQo+ICsgICAgICAgICAgICAgICAgICAg
-ICAgIHNldF9kbWFfb3BzKGRldiwgJmFybV9jb2hlcmVudF9kbWFfb3BzKTsKPiArICAgICAgICAg
-ICAgICAgZWxzZQo+ICsgICAgICAgICAgICAgICAgICAgICAgIHNldF9kbWFfb3BzKGRldiwgJmFy
-bV9kbWFfb3BzKTsKPiArICAgICAgIH0KPiArI2VuZGlmCj4gKwo+ICAgICAgICAgaWYgKCF0ZGV2
-LT5mdW5jLT5pb21tdV9iaXQpCj4gICAgICAgICAgICAgICAgIHJldHVybjsKPgo+IC0tCj4gMi4x
-Ny4wCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+
-IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1815468783==
+Content-Type: multipart/alternative; boundary="15246016304.Ed3AF.3392"
+Content-Transfer-Encoding: 7bit
+
+
+--15246016304.Ed3AF.3392
+Date: Tue, 24 Apr 2018 20:27:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+
+--- Comment #70 from Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> ---
+How the audio and video drivers interact is described a bit in [1]: The aud=
+io
+function and the graphics function work hand-in-hand to provide audio suppo=
+rt.
+At modeset time, the graphics driver extracts information from the display's
+EDID and the mode timings and sticks it into registers in the graphics
+function. These get processed by the hardware and spit out the other side v=
+ia
+the "EDID-Like Data" fields in the audio function, described in [2].
+
+I'm not completely sure how this works on Windows, but my understanding is =
+that
+the display driver enables or disables the audio function at modeset time, =
+and
+Windows handles that as a PCI hot-plug or -unplug, loading or unloading the
+audio driver as necessary. On Linux, I think the nouveau and nvidia-modeset
+drivers would need to call into some hypothetical new audio power module to
+coordinate that, so the kernel can know when to rescan or remove the audio
+device.
+
+[1]
+https://download.nvidia.com/XFree86/gpu-hdmi-audio-document/#_driver_archit=
+ecture
+[2]
+https://www.intel.com/content/www/us/en/standards/high-definition-audio-spe=
+cification.html
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15246016304.Ed3AF.3392
+Date: Tue, 24 Apr 2018 20:27:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c70">Commen=
+t # 70</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+aplattner&#64;nvidia.com" title=3D"Aaron Plattner &lt;aplattner&#64;nvidia.=
+com&gt;"> <span class=3D"fn">Aaron Plattner</span></a>
+</span></b>
+        <pre>How the audio and video drivers interact is described a bit in=
+ [1]: The audio
+function and the graphics function work hand-in-hand to provide audio suppo=
+rt.
+At modeset time, the graphics driver extracts information from the display's
+EDID and the mode timings and sticks it into registers in the graphics
+function. These get processed by the hardware and spit out the other side v=
+ia
+the &quot;EDID-Like Data&quot; fields in the audio function, described in [=
+2].
+
+I'm not completely sure how this works on Windows, but my understanding is =
+that
+the display driver enables or disables the audio function at modeset time, =
+and
+Windows handles that as a PCI hot-plug or -unplug, loading or unloading the
+audio driver as necessary. On Linux, I think the nouveau and nvidia-modeset
+drivers would need to call into some hypothetical new audio power module to
+coordinate that, so the kernel can know when to rescan or remove the audio
+device.
+
+[1]
+<a href=3D"https://download.nvidia.com/XFree86/gpu-hdmi-audio-document/#_dr=
+iver_architecture">https://download.nvidia.com/XFree86/gpu-hdmi-audio-docum=
+ent/#_driver_architecture</a>
+[2]
+<a href=3D"https://www.intel.com/content/www/us/en/standards/high-definitio=
+n-audio-specification.html">https://www.intel.com/content/www/us/en/standar=
+ds/high-definition-audio-specification.html</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15246016304.Ed3AF.3392--
+
+--===============1815468783==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1815468783==--
