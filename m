@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
- rescan
-Date: Tue, 24 Apr 2018 20:27:10 +0000
-Message-ID: <bug-75985-8800-MbPyu6MOQ5@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 106227] New: GP107 hangs on boot
+Date: Wed, 25 Apr 2018 03:25:50 +0000
+Message-ID: <bug-106227-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1815468783=="
+Content-Type: multipart/mixed; boundary="===============0069613346=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,55 +18,60 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1815468783==
-Content-Type: multipart/alternative; boundary="15246016304.Ed3AF.3392"
+--===============0069613346==
+Content-Type: multipart/alternative; boundary="15246267501.1d0Da.6814"
 Content-Transfer-Encoding: 7bit
 
 
---15246016304.Ed3AF.3392
-Date: Tue, 24 Apr 2018 20:27:10 +0000
+--15246267501.1d0Da.6814
+Date: Wed, 25 Apr 2018 03:25:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106227
 
---- Comment #70 from Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> ---
-How the audio and video drivers interact is described a bit in [1]: The aud=
-io
-function and the graphics function work hand-in-hand to provide audio suppo=
-rt.
-At modeset time, the graphics driver extracts information from the display's
-EDID and the mode timings and sticks it into registers in the graphics
-function. These get processed by the hardware and spit out the other side v=
-ia
-the "EDID-Like Data" fields in the audio function, described in [2].
+            Bug ID: 106227
+           Summary: GP107 hangs on boot
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: gquigs+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-I'm not completely sure how this works on Windows, but my understanding is =
-that
-the display driver enables or disables the audio function at modeset time, =
-and
-Windows handles that as a PCI hot-plug or -unplug, loading or unloading the
-audio driver as necessary. On Linux, I think the nouveau and nvidia-modeset
-drivers would need to call into some hypothetical new audio power module to
-coordinate that, so the kernel can know when to rescan or remove the audio
-device.
+Created attachment 139089
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139089&action=3Dedit
+full journal of previous boot
 
-[1]
-https://download.nvidia.com/XFree86/gpu-hdmi-audio-document/#_driver_archit=
-ecture
-[2]
-https://www.intel.com/content/www/us/en/standards/high-definition-audio-spe=
-cification.html
+Hangs on boot with small cursor in top left of screen.  No power changes se=
+em
+to help - only nomodeset and nouveau.nofbaccel (which seems to just turn off
+nouveau).  Journal indicates it is just a graphics hang. Trying VTs has no
+effect.
+
+Hardware: 1c:00.0 VGA compatible controller: NVIDIA Corporation GP107 [GeFo=
+rce
+GTX 1050] (rev a1)
+Software:
+OS: Ubuntu 18.04 - also similar results with stock 18.04 and Fedora 28 beta
+Mesa: 18.2.0 git from oibaf PPA
+Kernel: 4.17.0-041700rc2-generic from Ubuntu Mainline PPA
+xserver-xorg-video-nouveau: 1.0.15-2
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15246016304.Ed3AF.3392
-Date: Tue, 24 Apr 2018 20:27:10 +0000
+--15246267501.1d0Da.6814
+Date: Wed, 25 Apr 2018 03:25:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,52 +82,109 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GP107 hangs on boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106227">106227</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>GP107 hangs on boot
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>gquigs+bugs&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c70">Commen=
-t # 70</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-aplattner&#64;nvidia.com" title=3D"Aaron Plattner &lt;aplattner&#64;nvidia.=
-com&gt;"> <span class=3D"fn">Aaron Plattner</span></a>
-</span></b>
-        <pre>How the audio and video drivers interact is described a bit in=
- [1]: The audio
-function and the graphics function work hand-in-hand to provide audio suppo=
-rt.
-At modeset time, the graphics driver extracts information from the display's
-EDID and the mode timings and sticks it into registers in the graphics
-function. These get processed by the hardware and spit out the other side v=
-ia
-the &quot;EDID-Like Data&quot; fields in the audio function, described in [=
-2].
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139089=
+" name=3D"attach_139089" title=3D"full journal of previous boot">attachment=
+ 139089</a> <a href=3D"attachment.cgi?id=3D139089&amp;action=3Dedit" title=
+=3D"full journal of previous boot">[details]</a></span>
+full journal of previous boot
 
-I'm not completely sure how this works on Windows, but my understanding is =
-that
-the display driver enables or disables the audio function at modeset time, =
-and
-Windows handles that as a PCI hot-plug or -unplug, loading or unloading the
-audio driver as necessary. On Linux, I think the nouveau and nvidia-modeset
-drivers would need to call into some hypothetical new audio power module to
-coordinate that, so the kernel can know when to rescan or remove the audio
-device.
+Hangs on boot with small cursor in top left of screen.  No power changes se=
+em
+to help - only nomodeset and nouveau.nofbaccel (which seems to just turn off
+nouveau).  Journal indicates it is just a graphics hang. Trying VTs has no
+effect.
 
-[1]
-<a href=3D"https://download.nvidia.com/XFree86/gpu-hdmi-audio-document/#_dr=
-iver_architecture">https://download.nvidia.com/XFree86/gpu-hdmi-audio-docum=
-ent/#_driver_architecture</a>
-[2]
-<a href=3D"https://www.intel.com/content/www/us/en/standards/high-definitio=
-n-audio-specification.html">https://www.intel.com/content/www/us/en/standar=
-ds/high-definition-audio-specification.html</a></pre>
+Hardware: 1c:00.0 VGA compatible controller: NVIDIA Corporation GP107 [GeFo=
+rce
+GTX 1050] (rev a1)
+Software:
+OS: Ubuntu 18.04 - also similar results with stock 18.04 and Fedora 28 beta
+Mesa: 18.2.0 git from oibaf PPA
+Kernel: 4.17.0-041700rc2-generic from Ubuntu Mainline PPA
+xserver-xorg-video-nouveau: 1.0.15-2</pre>
         </div>
       </p>
 
@@ -139,9 +198,9 @@ ds/high-definition-audio-specification.html</a></pre>
     </body>
 </html>=
 
---15246016304.Ed3AF.3392--
+--15246267501.1d0Da.6814--
 
---===============1815468783==
+--===============0069613346==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -151,4 +210,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1815468783==--
+--===============0069613346==--
