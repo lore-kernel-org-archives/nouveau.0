@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 106305] Can't change screen brightness on MSI GT73VR
  with nouveau driver
-Date: Sat, 28 Apr 2018 21:43:34 +0000
-Message-ID: <bug-106305-8800-PYjxBekNUg@http.bugs.freedesktop.org/>
+Date: Sat, 28 Apr 2018 21:44:13 +0000
+Message-ID: <bug-106305-8800-EKtQS0uq3t@http.bugs.freedesktop.org/>
 References: <bug-106305-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1818118023=="
+Content-Type: multipart/mixed; boundary="===============1370342922=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-106305-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1818118023==
-Content-Type: multipart/alternative; boundary="15249518130.3fa10EdE7.16896"
+--===============1370342922==
+Content-Type: multipart/alternative; boundary="15249518520.9EfDC333.17195"
 Content-Transfer-Encoding: 7bit
 
 
---15249518130.3fa10EdE7.16896
-Date: Sat, 28 Apr 2018 21:43:33 +0000
+--15249518520.9EfDC333.17195
+Date: Sat, 28 Apr 2018 21:44:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D106305
 
---- Comment #1 from Geroge T <reportbug-gQOQsHldK/Xzs492ZWNkEA@public.gmane.org> ---
-modinfo nouveau
-filename:=20=20=20=20=20=20
-/lib/modules/4.15.0-20-generic/kernel/drivers/gpu/drm/nouveau/nouveau.ko
+--- Comment #2 from Geroge T <reportbug-gQOQsHldK/Xzs492ZWNkEA@public.gmane.org> ---
+srcversion:     035DF1535F8D81478394CE8
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15249518130.3fa10EdE7.16896
-Date: Sat, 28 Apr 2018 21:43:33 +0000
+--15249518520.9EfDC333.17195
+Date: Sat, 28 Apr 2018 21:44:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +63,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Can't change screen brightness on MSI GT73VR with nouveau=
  driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106305#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106305#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Can't change screen brightness on MSI GT73VR with nouveau=
@@ -77,10 +75,7 @@ t # 1</a>
 reportbug&#64;mailna.biz" title=3D"Geroge T &lt;reportbug&#64;mailna.biz&gt=
 ;"> <span class=3D"fn">Geroge T</span></a>
 </span></b>
-        <pre>modinfo nouveau
-filename:=20=20=20=20=20=20
-/lib/modules/4.15.0-20-generic/kernel/drivers/gpu/drm/nouveau/nouveau.ko</p=
-re>
+        <pre>srcversion:     035DF1535F8D81478394CE8</pre>
         </div>
       </p>
 
@@ -95,9 +90,9 @@ re>
     </body>
 </html>=
 
---15249518130.3fa10EdE7.16896--
+--15249518520.9EfDC333.17195--
 
---===============1818118023==
+--===============1370342922==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1818118023==--
+--===============1370342922==--
