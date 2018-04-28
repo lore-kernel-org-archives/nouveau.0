@@ -1,11 +1,20 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106294] New: GM204/modesetting DDX: Odd corruption
- (red backgrounds) introduced by Mesa
-Date: Sat, 28 Apr 2018 11:07:44 +0000
-Message-ID: <bug-106294-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Nouveau Digest, Vol 131, Issue 3
+Date: Sat, 28 Apr 2018 13:22:55 -0400
+Message-ID: <CAKb7UvjeLK=YwengeXV_GYJbUCSXAHD41N+3YYEBZ+QT40SaYQ@mail.gmail.com>
+References: <mailman.510.1519928481.2262.nouveau@lists.freedesktop.org>
+ <e6067c25-549f-668d-bc66-bcb761e0dc26@gmail.com>
+ <CAKb7UvgoM0EjTu00y4CvxBZD9DOxLTmy+SFoRASF16ONqgA8ew@mail.gmail.com>
+ <bbc4654d-ead2-bb15-d369-e7d0b853f220@gmail.com>
+ <CAKb7UvhZ=72Bt_UNtk-t5+bCgOb7-jDRZ8XHXR9aiEVZYfkayA@mail.gmail.com>
+ <af9c80bf-12ea-bbad-e4fe-17000157ac40@gmail.com>
+ <CAKb7Uvhj4cmW_4V=w1UDJVRem233hTOdPzS6c6LKgGsLzGNzTw@mail.gmail.com>
+ <CAKb7UvjpA8F=CckyX92v6bBYAQ8s2xtJKCmq5pBO106C0rB6nw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1807113218=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7UvjpA8F=CckyX92v6bBYAQ8s2xtJKCmq5pBO106C0rB6nw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,301 +24,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1807113218==
-Content-Type: multipart/alternative; boundary="15249136640.F0D9FeD8D.26615"
-Content-Transfer-Encoding: 7bit
-
-
---15249136640.F0D9FeD8D.26615
-Date: Sat, 28 Apr 2018 11:07:44 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106294
-
-            Bug ID: 106294
-           Summary: GM204/modesetting DDX: Odd corruption (red
-                    backgrounds) introduced by Mesa
-           Product: Mesa
-           Version: git
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: freedesktop-bugs-dADiZSo7rdJAfugRpC6u6w@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-I apologise if I have selected the wrong product for this bug, as I think I
-probably have. If I need to open a new bug, please let me know.
-
-I use an NVidia GeForce GTX 970, with kernel version 4.15.4-gentoo and the
-modesetting driver in Xorg. (More detailed descriptions of packages install=
-ed
-at the bottom of this description.)
-
-My distribution (Gentoo) has packages for Mesa 17.2.8, 17.3.8, and a few ot=
-her
-higher versions (currently marked as unstable). When I use Mesa 17.3.8 or
-higher, I see odd types of corruption involving red backgrounds on menus and
-widgets, and some checkboxes appear unticked when they should be ticked. I
-recorded this behaviour using OBS:
-
-* Incorrect behaviour on 17.3.8 and higher:
-    https://www.youtube.com/watch?v=3DpuSC7a_osw0
-
-* Expected behaviour on 17.2.8:
-    https://www.youtube.com/watch?v=3DLbjCoIX4DKE
-
-I dug out git and have confirmed that the bug still exists as of commit
-https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D8b7358fe4376aecee0c29ea=
-622f88f9ef07e6b11
-(the latest commit on master as of an hour ago or so).
-
-After bisection, I discovered that the bug was introduced by
-https://cgit.freedesktop.org/mesa/mesa/commit/?id=3Dfcbb93e860246375d03f280=
-f927f79d3645a8988
-, which is actually *before* the 17.2.x branchpoint. It turns out that this
-commit was reverted in the 17.2.x branch in commit
-https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D17a3e4891bf4fa09785fe9d=
-22db5c79a949004db
-to fix bug #101983. This was not committed to the 'master' branch, as the f=
-ixes
-in master apparently would have been rather invasive. This explains why my
-tests of 17.2.8 worked fine.
-
-This issue only appears when using the "modesetting" DDX drivers. When using
-the "nouveau" DDX drivers, the issue does not appear. (The "nouveau" DDX
-drivers also fix other issues for me so I'll probably switch to using that =
-from
-now on for normal use, but I'm willing to switch back to help debug this is=
-sue
-if needed.)
-
-System summary:
-
-I have the following graphics card, as shown by lspci -nn:
-> 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM204 [GeFor=
-ce GTX 970] [10de:13c2] (rev a1)
-
-I am running Gentoo Linux with the sys-kernel/gentoo-sources-4.15.4 kernel,
-with the following (relevant) packages installed:
-
-* x11-base/xorg-server-1.19.5-r1
-* x11-base/xorg-drivers-1.19 (with VIDEO_CARDS=3D"nouveau")
-
-In my kernel configuration, CONFIG_DRM_NOUVEAU is set to "m".
-
-Please let me know if you need any more information.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15249136640.F0D9FeD8D.26615
-Date: Sat, 28 Apr 2018 11:07:44 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM204/modesetting DDX: Odd corruption (red backgrounds) i=
-ntroduced by Mesa"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106294">106294</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>GM204/modesetting DDX: Odd corruption (red backgrounds) intro=
-duced by Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>freedesktop-bugs&#64;theblob.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>I apologise if I have selected the wrong product for this bug,=
- as I think I
-probably have. If I need to open a new bug, please let me know.
-
-I use an NVidia GeForce GTX 970, with kernel version 4.15.4-gentoo and the
-modesetting driver in Xorg. (More detailed descriptions of packages install=
-ed
-at the bottom of this description.)
-
-My distribution (Gentoo) has packages for Mesa 17.2.8, 17.3.8, and a few ot=
-her
-higher versions (currently marked as unstable). When I use Mesa 17.3.8 or
-higher, I see odd types of corruption involving red backgrounds on menus and
-widgets, and some checkboxes appear unticked when they should be ticked. I
-recorded this behaviour using OBS:
-
-* Incorrect behaviour on 17.3.8 and higher:
-    <a href=3D"https://www.youtube.com/watch?v=3DpuSC7a_osw0">https://www.y=
-outube.com/watch?v=3DpuSC7a_osw0</a>
-
-* Expected behaviour on 17.2.8:
-    <a href=3D"https://www.youtube.com/watch?v=3DLbjCoIX4DKE">https://www.y=
-outube.com/watch?v=3DLbjCoIX4DKE</a>
-
-I dug out git and have confirmed that the bug still exists as of commit
-<a href=3D"https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D8b7358fe4376=
-aecee0c29ea622f88f9ef07e6b11">https://cgit.freedesktop.org/mesa/mesa/commit=
-/?id=3D8b7358fe4376aecee0c29ea622f88f9ef07e6b11</a>
-(the latest commit on master as of an hour ago or so).
-
-After bisection, I discovered that the bug was introduced by
-<a href=3D"https://cgit.freedesktop.org/mesa/mesa/commit/?id=3Dfcbb93e86024=
-6375d03f280f927f79d3645a8988">https://cgit.freedesktop.org/mesa/mesa/commit=
-/?id=3Dfcbb93e860246375d03f280f927f79d3645a8988</a>
-, which is actually *before* the 17.2.x branchpoint. It turns out that this
-commit was reverted in the 17.2.x branch in commit
-<a href=3D"https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D17a3e4891bf4=
-fa09785fe9d22db5c79a949004db">https://cgit.freedesktop.org/mesa/mesa/commit=
-/?id=3D17a3e4891bf4fa09785fe9d22db5c79a949004db</a>
-to fix <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [G33] ES2-CTS.functional.shaders.struct.unifor=
-m.sampler_nested* regression"
-   href=3D"show_bug.cgi?id=3D101983">bug #101983</a>. This was not committe=
-d to the 'master' branch, as the fixes
-in master apparently would have been rather invasive. This explains why my
-tests of 17.2.8 worked fine.
-
-This issue only appears when using the &quot;modesetting&quot; DDX drivers.=
- When using
-the &quot;nouveau&quot; DDX drivers, the issue does not appear. (The &quot;=
-nouveau&quot; DDX
-drivers also fix other issues for me so I'll probably switch to using that =
-from
-now on for normal use, but I'm willing to switch back to help debug this is=
-sue
-if needed.)
-
-System summary:
-
-I have the following graphics card, as shown by lspci -nn:
-<span class=3D"quote">&gt; 01:00.0 VGA compatible controller [0300]: NVIDIA=
- Corporation GM204 [GeForce GTX 970] [10de:13c2] (rev a1)</span >
-
-I am running Gentoo Linux with the sys-kernel/gentoo-sources-4.15.4 kernel,
-with the following (relevant) packages installed:
-
-* x11-base/xorg-server-1.19.5-r1
-* x11-base/xorg-drivers-1.19 (with VIDEO_CARDS=3D&quot;nouveau&quot;)
-
-In my kernel configuration, CONFIG_DRM_NOUVEAU is set to &quot;m&quot;.
-
-Please let me know if you need any more information.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15249136640.F0D9FeD8D.26615--
-
---===============1807113218==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1807113218==--
+T24gVGh1LCBNYXIgOCwgMjAxOCBhdCAxMToyOSBQTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
+bS5taXQuZWR1PiB3cm90ZToKPiBPbiBNb24sIE1hciA1LCAyMDE4IGF0IDc6MzMgQU0sIElsaWEg
+TWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4+IE9uIE1vbiwgTWFyIDUsIDIw
+MTggYXQgMToxNyBBTSwgTWFyaW8gS2xlaW5lcgo+PiA8bWFyaW8ua2xlaW5lci5kZUBnbWFpbC5j
+b20+IHdyb3RlOgo+Pj4gT24gMDMvMDMvMjAxOCAxMjo1OSBBTSwgSWxpYSBNaXJraW4gd3JvdGU6
+Cj4+Pj4KPj4+PiBPbiBGcmksIE1hciAyLCAyMDE4IGF0IDY6NDYgUE0sIE1hcmlvIEtsZWluZXIK
+Pj4+PiA8bWFyaW8ua2xlaW5lci5kZUBnbWFpbC5jb20+IHdyb3RlOgo+Pj4+Pgo+Pj4+PiBPbiAw
+My8wMi8yMDE4IDExOjI5IFBNLCBJbGlhIE1pcmtpbiB3cm90ZToKPj4+Pj4+Cj4+Pj4+PiBPSywg
+c28gZXZlbiBpZiB5b3UncmUgcGFzc2luZyAxMDI0IHRvIHhmODZIYW5kbGVDb2xvcm1hcHMsIGdh
+bW1hX3NldAo+Pj4+Pj4gc3RpbGwgb25seSBnZXRzIGNhbGxlZCB3aXRoIGEgMjU2LWVudHJ5IExV
+VD8gSWYgc28sIHRoYXQgd29ya3MgbmljZWx5Cj4+Pj4+PiBoZXJlLCBidXQgaXMgbm90IGludHVp
+dGl2ZSA6KQo+Pj4+Pgo+Pj4+Pgo+Pj4+PiBZZXMuIExvdHMgb2YgcmVtYXBwaW5nIGluIHRoZSBz
+ZXJ2ZXIsIGkgZ2V0IGRpenp5IGV2ZXJ5dGltZSBpIGxvb2sgYXQgaXQsCj4+Pj4+IGFuZCBmb3Jn
+ZXQgYWxtb3N0IGltbWVkaWF0ZWx5IGhvdyBzdHVmZiBmaXRzIHRvZ2V0aGVyIHdoZW4gaSBkb24n
+dCBsb29rCj4+Pj4+IGF0Cj4+Pj4+IGl0LiBBbnl3YXksIHRoZSBmaW5hbCBkb3duc2FtcGxpbmcg
+ZnJvbSAxMDI0IC0+IDI1NiBodyBsdXQgaGFwcGVucyBpbgo+Pj4+PiB4Zjg2UmFuZFIxMkNydGND
+b21wdXRlR2FtbWEoKSwgc2VlCj4+Pj4+Cj4+Pj4+Cj4+Pj4+IGh0dHBzOi8vY2dpdC5mcmVlZGVz
+a3RvcC5vcmcveG9yZy94c2VydmVyL2NvbW1pdC8/aWQ9YjVmOWZjZDUwYTk5OWEwMDEyOGMwY2Mz
+ZjZlN2QxZjY2MTgyYzlkNQo+Pj4+Pgo+Pj4+PiBmb3IgdGhlIGxhdGVzdC4gSSdsbCBwcm9wb3Nl
+IHRoYXQgb25lIHRvIGdldCBjaGVycnktcGlja2VkIGludG8gdGhlCj4+Pj4+IHNlcnZlci0xLjE5
+IGJyYW5jaCBhcyB3ZWxsLgo+Pj4+Cj4+Pj4KPj4+PiBIcm1waC4gVGhhdCBtZWFucyB3ZSBzaG91
+bGQgdHJ5IHRvIGFkanVzdCB0aGUgZ2FtbWFfc2V0IGhlbHBlciB0byBkbwo+Pj4+IHRoZSBzYW1w
+bGluZyB3aGVuIHJlY2VpdmluZyBhIDEwMjQtc2l6ZWQgTFVULCBpZiBwZW9wbGUgd2lsbCB1c2Ug
+b2xkZXIKPj4+PiBYIHNlcnZlcnMgKHNlZW1zIGxpa2VseSkuIFNob3VsZCBob3BlZnVsbHkgYmUg
+c3RyYWlnaHRmb3J3YXJkLCB0bwo+Pj4+IGhhbmRsZSBqdXN0IHRoYXQgb25lIGNhc2UuCj4+Pgo+
+Pj4KPj4+IEkgdGhpbmsgd2UgbmV2ZXIgcmVjZWl2ZSBhbnl0aGluZyBidXQgYSAyNTYgc2xvdCBM
+VVQgdmlhIGdhbW1hX3NldCBhZmFpY3M/Cj4+PiBUaGUgc2VydmVyIGluaXRpYWxpemVzIHhmODZD
+cnRjJ3MgZ2FtbWFfc2l6ZSB0byAyNTYgYXQgc3RhcnR1cCwgYW5kIG5vbmUgb2YKPj4+IHRoZSBk
+ZHgnZXMgZXZlciBvdmVycmlkZXMgdGhhdCB3aXRoIGFjdHVhbCBpbmZvIGZyb20gdGhlIGtlcm5l
+bC4KPj4+Cj4+PiBXaGF0IGhhcHBlbnMgb24gb2xkZXIgc2VydmVycyB3aXRob3V0IHRoYXQgcGF0
+Y2ggaWZmIGNvbG9yIGRlcHRoIDMwIGlzCj4+PiBzZWxlY3RlZCBpcyBzaW1wbHkgdGhhdCB0aGUg
+Z2FtbWEgdGFibGUgdXBkYXRlcyBuby1vcCwgc28gdGhlIHNlcnZlciBydW5zCj4+PiB3aXRoIGFu
+IGlkZW50aXR5IGdhbW1hIHRhYmxlIHNldHVwIGF0IHN0YXJ0dXAuIE5vdCBwZXJmZWN0LCBidXQg
+YWxzbyBub3QKPj4+IHRoYXQgYmFkLCBnaXZlbiB0aGF0IHByb2JhYmx5IG1vc3QgcGVvcGxlIHJ1
+biB0aGVpciBzZXR1cHMgd2l0aCBhIGdhbW1hIG9mCj4+PiAxLjAgYW55d2F5LiBBdCBkZWZhdWx0
+IGRlcHRoIDI0IHN0dWZmIHdvcmtzIGFzIHVzdWFsLgo+Pgo+PiBBaCBPSy4gVGhhdCdzIG5vdCBz
+byBiYWQuIEknbGwgdHJ5IHRvIHBsYXkgYXJvdW5kIHdpdGggaXQgdGhpcyB3ZWVrLgo+PiBUaGFu
+a3MgZm9yIHRoZSBleHBsYW5hdGlvbiEKPgo+IEkganVzdCB0ZXN0ZWQgdGhpcyBvdXQgYWdhaW5z
+dCB4b3JnIDEuMTkuNS4gV2l0aCB5b3VyIHBhdGNoLCBJIGdldCBhbgo+IGV4dHJlbWVseSBkYXJr
+IHNjcmVlbi4gSSB0aGluayBpdCdzIGp1c3QgZ2V0dGluZyB0aGUgZmlyc3QgMjU2IG9mIHRoZQo+
+IDEwMjQgdmFsdWVzIChJIGNoZWNrZWQgLS0gZ2FtbWFfc2V0IGlzIHN0aWxsIG9ubHkgZ2V0dGlu
+ZyAyNTYgdmFsdWVzKS4KPiBTbyB3ZSBoYXZlIHRvIGRvIHNvbWV0aGluZyBhIGJpdCBjbGV2ZXJl
+ciB0byBmaXggdGhpcyBzY2VuYXJpby4uLgo+IGlkZWFzPwoKTWFyaW8sCgpIYXZlIHlvdSBnaXZl
+biB0aGlzIGFueSB0aG91Z2h0PyBJcyB0aGVyZSBhIHdheSB0byBkZXRlY3Qgb25lIG9yIHRoZQpv
+dGhlciBzY2VuYXJpbz8gSSdkIHJhdGhlciBub3QgcHV0IHNvbWV0aGluZyBpbiB3aGVyZSB3ZSBj
+aGVjayB0aGUgWAp2ZXJzaW9uIGF0IGNvbXBpbGUgdGltZS4gRGlkIHRoZSBBQkkgZ2V0IGJ1bXBl
+ZCBpbiAxLjIwIHBlcmhhcHM/CgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbm91dmVhdQo=
