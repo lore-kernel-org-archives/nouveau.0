@@ -1,17 +1,11 @@
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Subject: Re: [PATCH] drm: Don't pass the index to
- drm_property_add_enum()
-Date: Fri, 27 Apr 2018 17:11:49 +0300
-Message-ID: <20180427141149.GZ23723@intel.com>
-References: <20180316190420.26734-1-ville.syrjala@linux.intel.com>
- <A98B49F3E938DC4A837FD9A548D117E612880037@IRSMSX106.ger.corp.intel.com>
- <A98B49F3E938DC4A837FD9A548D117E6128815E8@IRSMSX106.ger.corp.intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 106294] New: GM204/modesetting DDX: Odd corruption
+ (red backgrounds) introduced by Mesa
+Date: Sat, 28 Apr 2018 11:07:44 +0000
+Message-ID: <bug-106294-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1807113218=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <A98B49F3E938DC4A837FD9A548D117E6128815E8-kPTMFJFq+rFT4JjzTwqWc7fspsVTdybXVpNB7YpNyf8@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,226 +15,301 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBBcHIgMjYsIDIwMTggYXQgMTI6NDU6MTNQTSArMDAwMCwgTGlzb3Zza2l5LCBTdGFu
-aXNsYXYgd3JvdGU6Cj4gUmV2aWV3ZWQtYnk6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5pc2xh
-di5saXNvdnNraXlAaW50ZWwuY29tPgoKVGhhbmtzLiBQdXNoZWQgdG8gZHJtLW1pc2MtbmV4dC4K
-Cj4gCj4gQmVzdCBSZWdhcmRzLAo+IAo+IExpc292c2tpeSBTdGFuaXNsYXYKPiAKPiBPcmdhbml6
-YXRpb246IEludGVsIEZpbmxhbmQgT3kgLSBCSUMgMDM1NzYwNi00IC0gV2VzdGVuZGlua2F0dSA3
-LCAwMjE2MCBFc3Bvbwo+IAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KPiBGcm9tOiBJbnRlbC1nZnggW2ludGVsLWdmeC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZ10gb24gYmVoYWxmIG9mIExpc292c2tpeSwgU3RhbmlzbGF2IFtzdGFuaXNsYXYubGlzb3Zz
-a2l5QGludGVsLmNvbV0KPiBTZW50OiBNb25kYXksIEFwcmlsIDIzLCAyMDE4IDQ6NTkgUE0KPiBU
-bzogVmlsbGUgU3lyamFsYTsgZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IENjOiBu
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZzsgQmVuIFNrZWdncwo+IFN1YmplY3Q6IFJlOiBbSW50ZWwtZ2Z4XSBbUEFUQ0hdIGRybTog
-RG9uJ3QgcGFzcyB0aGUgaW5kZXggdG8gZHJtX3Byb3BlcnR5X2FkZF9lbnVtKCkKPiAKPiBBY2tl
-ZC1ieTogU3RhbmlzbGF2IExpc292c2tpeSA8c3RhbmlzbGF2Lmxpc292c2tpeUBpbnRlbC5jb20+
-Cj4gCj4gQmVzdCBSZWdhcmRzLAo+IAo+IExpc292c2tpeSBTdGFuaXNsYXYKPiAKPiBPcmdhbml6
-YXRpb246IEludGVsIEZpbmxhbmQgT3kgLSBCSUMgMDM1NzYwNi00IC0gV2VzdGVuZGlua2F0dSA3
-LCAwMjE2MCBFc3Bvbz4KPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCj4gRnJvbTogVmlsbGUgU3lyamFsYSBbdmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb21d
-Cj4gU2VudDogRnJpZGF5LCBNYXJjaCAxNiwgMjAxOCA5OjA0IFBNCj4gVG86IGRyaS1kZXZlbEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKPiBDYzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZzsgUGF0cmlrIEpha29ic3NvbjsgQmVuIFNrZWdnczsgbm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKPiBTdWJqZWN0OiBbUEFUQ0hdIGRybTogRG9uJ3QgcGFzcyB0aGUgaW5kZXggdG8gZHJt
-X3Byb3BlcnR5X2FkZF9lbnVtKCkKPiAKPiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5
-cmphbGFAbGludXguaW50ZWwuY29tPgo+IAo+IGRybV9wcm9wZXJ0eV9hZGRfZW51bSgpIGNhbiBj
-YWxjdWxhdGUgdGhlIGluZGV4IGl0c2VsZiBqdXN0IGZpbmUsCj4gc28gbm8gcG9pbnQgaW4gaGF2
-aW5nIHRoZSBjYWxsZXIgcGFzcyBpdCBpbi4KPiAKPiBDYzogUGF0cmlrIEpha29ic3NvbiA8cGF0
-cmlrLnIuamFrb2Jzc29uQGdtYWlsLmNvbT4KPiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRo
-YXQuY29tPgo+IENjOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IFNpZ25lZC1vZmYt
-Ynk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gLS0t
-Cj4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fY29ubmVjdG9yLmMgICAgICAgICAgIHwgIDYgKysrLS0t
-Cj4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fcHJvcGVydHkuYyAgICAgICAgICAgIHwgMjcgKysrKysr
-KysrKysrKy0tLS0tLS0tLS0tLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9nbWE1MDAvY2R2X2Rldmlj
-ZS5jICAgICAgIHwgIDQgKystLQo+ICBkcml2ZXJzL2dwdS9kcm0vZ21hNTAwL3BzYl9pbnRlbF9z
-ZHZvLmMgICB8ICAyICstCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Nkdm8uYyAgICAg
-ICAgIHwgIDUgKystLS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5
-LmMgfCAgNCArLS0tCj4gIGluY2x1ZGUvZHJtL2RybV9wcm9wZXJ0eS5oICAgICAgICAgICAgICAg
-IHwgIDIgKy0KPiAgNyBmaWxlcyBjaGFuZ2VkLCAyMyBpbnNlcnRpb25zKCspLCAyNyBkZWxldGlv
-bnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9jb25uZWN0b3IuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9kcm1fY29ubmVjdG9yLmMKPiBpbmRleCBiM2NkZTg5N2NkODAuLmRm
-YzhjYTFlOTQxMyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2Nvbm5lY3Rvci5j
-Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9jb25uZWN0b3IuYwo+IEBAIC0xMDY5LDcgKzEw
-NjksNyBAQCBpbnQgZHJtX21vZGVfY3JlYXRlX3R2X3Byb3BlcnRpZXMoc3RydWN0IGRybV9kZXZp
-Y2UgKmRldiwKPiAgICAgICAgICAgICAgICAgZ290byBub21lbTsKPiAKPiAgICAgICAgIGZvciAo
-aSA9IDA7IGkgPCBudW1fbW9kZXM7IGkrKykKPiAtICAgICAgICAgICAgICAgZHJtX3Byb3BlcnR5
-X2FkZF9lbnVtKGRldi0+bW9kZV9jb25maWcudHZfbW9kZV9wcm9wZXJ0eSwgaSwKPiArICAgICAg
-ICAgICAgICAgZHJtX3Byb3BlcnR5X2FkZF9lbnVtKGRldi0+bW9kZV9jb25maWcudHZfbW9kZV9w
-cm9wZXJ0eSwKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGksIG1vZGVz
-W2ldKTsKPiAKPiAgICAgICAgIGRldi0+bW9kZV9jb25maWcudHZfYnJpZ2h0bmVzc19wcm9wZXJ0
-eSA9Cj4gQEAgLTExNTYsNyArMTE1Niw3IEBAIGludCBkcm1fY29ubmVjdG9yX2F0dGFjaF9zY2Fs
-aW5nX21vZGVfcHJvcGVydHkoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciwKPiAgewo+
-ICAgICAgICAgc3RydWN0IGRybV9kZXZpY2UgKmRldiA9IGNvbm5lY3Rvci0+ZGV2Owo+ICAgICAg
-ICAgc3RydWN0IGRybV9wcm9wZXJ0eSAqc2NhbGluZ19tb2RlX3Byb3BlcnR5Owo+IC0gICAgICAg
-aW50IGksIGogPSAwOwo+ICsgICAgICAgaW50IGk7Cj4gICAgICAgICBjb25zdCB1bnNpZ25lZCB2
-YWxpZF9zY2FsaW5nX21vZGVfbWFzayA9Cj4gICAgICAgICAgICAgICAgICgxVSA8PCBBUlJBWV9T
-SVpFKGRybV9zY2FsaW5nX21vZGVfZW51bV9saXN0KSkgLSAxOwo+IAo+IEBAIC0xMTc3LDcgKzEx
-NzcsNyBAQCBpbnQgZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfc2NhbGluZ19tb2RlX3Byb3BlcnR5KHN0
-cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsCj4gICAgICAgICAgICAgICAgIGlmICghKEJJ
-VChpKSAmIHNjYWxpbmdfbW9kZV9tYXNrKSkKPiAgICAgICAgICAgICAgICAgICAgICAgICBjb250
-aW51ZTsKPiAKPiAtICAgICAgICAgICAgICAgcmV0ID0gZHJtX3Byb3BlcnR5X2FkZF9lbnVtKHNj
-YWxpbmdfbW9kZV9wcm9wZXJ0eSwgaisrLAo+ICsgICAgICAgICAgICAgICByZXQgPSBkcm1fcHJv
-cGVydHlfYWRkX2VudW0oc2NhbGluZ19tb2RlX3Byb3BlcnR5LAo+ICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgZHJtX3NjYWxpbmdfbW9kZV9lbnVtX2xpc3RbaV0u
-dHlwZSwKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRybV9z
-Y2FsaW5nX21vZGVfZW51bV9saXN0W2ldLm5hbWUpOwo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vZHJtX3Byb3BlcnR5LmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX3Byb3BlcnR5LmMK
-PiBpbmRleCA4ZjQ2NzJkYWFjN2YuLjFmODAzMWUzMGY1MyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vZHJtX3Byb3BlcnR5LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX3Byb3Bl
-cnR5LmMKPiBAQCAtMTY5LDkgKzE2OSw5IEBAIHN0cnVjdCBkcm1fcHJvcGVydHkgKmRybV9wcm9w
-ZXJ0eV9jcmVhdGVfZW51bShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+ICAgICAgICAgICAgICAg
-ICByZXR1cm4gTlVMTDsKPiAKPiAgICAgICAgIGZvciAoaSA9IDA7IGkgPCBudW1fdmFsdWVzOyBp
-KyspIHsKPiAtICAgICAgICAgICAgICAgcmV0ID0gZHJtX3Byb3BlcnR5X2FkZF9lbnVtKHByb3Bl
-cnR5LCBpLAo+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcHJvcHNbaV0u
-dHlwZSwKPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHByb3BzW2ldLm5h
-bWUpOwo+ICsgICAgICAgICAgICAgICByZXQgPSBkcm1fcHJvcGVydHlfYWRkX2VudW0ocHJvcGVy
-dHksCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwcm9wc1tp
-XS50eXBlLAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcHJv
-cHNbaV0ubmFtZSk7Cj4gICAgICAgICAgICAgICAgIGlmIChyZXQpIHsKPiAgICAgICAgICAgICAg
-ICAgICAgICAgICBkcm1fcHJvcGVydHlfZGVzdHJveShkZXYsIHByb3BlcnR5KTsKPiAgICAgICAg
-ICAgICAgICAgICAgICAgICByZXR1cm4gTlVMTDsKPiBAQCAtMjA5LDcgKzIwOSw3IEBAIHN0cnVj
-dCBkcm1fcHJvcGVydHkgKmRybV9wcm9wZXJ0eV9jcmVhdGVfYml0bWFzayhzdHJ1Y3QgZHJtX2Rl
-dmljZSAqZGV2LAo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICB1aW50NjRfdCBzdXBwb3J0ZWRfYml0cykKPiAgewo+ICAgICAgICAgc3RydWN0IGRybV9w
-cm9wZXJ0eSAqcHJvcGVydHk7Cj4gLSAgICAgICBpbnQgaSwgcmV0LCBpbmRleCA9IDA7Cj4gKyAg
-ICAgICBpbnQgaSwgcmV0Owo+ICAgICAgICAgaW50IG51bV92YWx1ZXMgPSBod2VpZ2h0NjQoc3Vw
-cG9ydGVkX2JpdHMpOwo+IAo+ICAgICAgICAgZmxhZ3MgfD0gRFJNX01PREVfUFJPUF9CSVRNQVNL
-Owo+IEBAIC0yMjEsMTQgKzIyMSw5IEBAIHN0cnVjdCBkcm1fcHJvcGVydHkgKmRybV9wcm9wZXJ0
-eV9jcmVhdGVfYml0bWFzayhzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+ICAgICAgICAgICAgICAg
-ICBpZiAoIShzdXBwb3J0ZWRfYml0cyAmICgxVUxMIDw8IHByb3BzW2ldLnR5cGUpKSkKPiAgICAg
-ICAgICAgICAgICAgICAgICAgICBjb250aW51ZTsKPiAKPiAtICAgICAgICAgICAgICAgaWYgKFdB
-Uk5fT04oaW5kZXggPj0gbnVtX3ZhbHVlcykpIHsKPiAtICAgICAgICAgICAgICAgICAgICAgICBk
-cm1fcHJvcGVydHlfZGVzdHJveShkZXYsIHByb3BlcnR5KTsKPiAtICAgICAgICAgICAgICAgICAg
-ICAgICByZXR1cm4gTlVMTDsKPiAtICAgICAgICAgICAgICAgfQo+IC0KPiAtICAgICAgICAgICAg
-ICAgcmV0ID0gZHJtX3Byb3BlcnR5X2FkZF9lbnVtKHByb3BlcnR5LCBpbmRleCsrLAo+IC0gICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcHJvcHNbaV0udHlwZSwKPiAtICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHByb3BzW2ldLm5hbWUpOwo+ICsgICAgICAg
-ICAgICAgICByZXQgPSBkcm1fcHJvcGVydHlfYWRkX2VudW0ocHJvcGVydHksCj4gKyAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwcm9wc1tpXS50eXBlLAo+ICsgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcHJvcHNbaV0ubmFtZSk7Cj4g
-ICAgICAgICAgICAgICAgIGlmIChyZXQpIHsKPiAgICAgICAgICAgICAgICAgICAgICAgICBkcm1f
-cHJvcGVydHlfZGVzdHJveShkZXYsIHByb3BlcnR5KTsKPiAgICAgICAgICAgICAgICAgICAgICAg
-ICByZXR1cm4gTlVMTDsKPiBAQCAtMzc2LDcgKzM3MSw2IEBAIEVYUE9SVF9TWU1CT0woZHJtX3By
-b3BlcnR5X2NyZWF0ZV9ib29sKTsKPiAgLyoqCj4gICAqIGRybV9wcm9wZXJ0eV9hZGRfZW51bSAt
-IGFkZCBhIHBvc3NpYmxlIHZhbHVlIHRvIGFuIGVudW1lcmF0aW9uIHByb3BlcnR5Cj4gICAqIEBw
-cm9wZXJ0eTogZW51bWVyYXRpb24gcHJvcGVydHkgdG8gY2hhbmdlCj4gLSAqIEBpbmRleDogaW5k
-ZXggb2YgdGhlIG5ldyBlbnVtZXJhdGlvbgo+ICAgKiBAdmFsdWU6IHZhbHVlIG9mIHRoZSBuZXcg
-ZW51bWVyYXRpb24KPiAgICogQG5hbWU6IHN5bWJvbGljIG5hbWUgb2YgdGhlIG5ldyBlbnVtZXJh
-dGlvbgo+ICAgKgo+IEBAIC0zODgsMTAgKzM4MiwxMSBAQCBFWFBPUlRfU1lNQk9MKGRybV9wcm9w
-ZXJ0eV9jcmVhdGVfYm9vbCk7Cj4gICAqIFJldHVybnM6Cj4gICAqIFplcm8gb24gc3VjY2Vzcywg
-ZXJyb3IgY29kZSBvbiBmYWlsdXJlLgo+ICAgKi8KPiAtaW50IGRybV9wcm9wZXJ0eV9hZGRfZW51
-bShzdHJ1Y3QgZHJtX3Byb3BlcnR5ICpwcm9wZXJ0eSwgaW50IGluZGV4LAo+ICtpbnQgZHJtX3By
-b3BlcnR5X2FkZF9lbnVtKHN0cnVjdCBkcm1fcHJvcGVydHkgKnByb3BlcnR5LAo+ICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgdWludDY0X3QgdmFsdWUsIGNvbnN0IGNoYXIgKm5hbWUpCj4gIHsK
-PiAgICAgICAgIHN0cnVjdCBkcm1fcHJvcGVydHlfZW51bSAqcHJvcF9lbnVtOwo+ICsgICAgICAg
-aW50IGluZGV4ID0gMDsKPiAKPiAgICAgICAgIGlmIChXQVJOX09OKHN0cmxlbihuYW1lKSA+PSBE
-Uk1fUFJPUF9OQU1FX0xFTikpCj4gICAgICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOwo+IEBA
-IC00MTEsOCArNDA2LDEyIEBAIGludCBkcm1fcHJvcGVydHlfYWRkX2VudW0oc3RydWN0IGRybV9w
-cm9wZXJ0eSAqcHJvcGVydHksIGludCBpbmRleCwKPiAgICAgICAgIGxpc3RfZm9yX2VhY2hfZW50
-cnkocHJvcF9lbnVtLCAmcHJvcGVydHktPmVudW1fbGlzdCwgaGVhZCkgewo+ICAgICAgICAgICAg
-ICAgICBpZiAoV0FSTl9PTihwcm9wX2VudW0tPnZhbHVlID09IHZhbHVlKSkKPiAgICAgICAgICAg
-ICAgICAgICAgICAgICByZXR1cm4gLUVJTlZBTDsKPiArICAgICAgICAgICAgICAgaW5kZXgrKzsK
-PiAgICAgICAgIH0KPiAKPiArICAgICAgIGlmIChXQVJOX09OKGluZGV4ID49IHByb3BlcnR5LT5u
-dW1fdmFsdWVzKSkKPiArICAgICAgICAgICAgICAgcmV0dXJuIC1FSU5WQUw7Cj4gKwo+ICAgICAg
-ICAgcHJvcF9lbnVtID0ga3phbGxvYyhzaXplb2Yoc3RydWN0IGRybV9wcm9wZXJ0eV9lbnVtKSwg
-R0ZQX0tFUk5FTCk7Cj4gICAgICAgICBpZiAoIXByb3BfZW51bSkKPiAgICAgICAgICAgICAgICAg
-cmV0dXJuIC1FTk9NRU07Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9nbWE1MDAvY2R2
-X2RldmljZS5jIGIvZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9jZHZfZGV2aWNlLmMKPiBpbmRleCAz
-YTNiZjc1MmUwM2EuLjM0Yjg1NzY3ZTRkYSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-Z21hNTAwL2Nkdl9kZXZpY2UuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9nbWE1MDAvY2R2X2Rl
-dmljZS5jCj4gQEAgLTQ4NSw3ICs0ODUsNyBAQCB2b2lkIGNkdl9pbnRlbF9hdHRhY2hfZm9yY2Vf
-YXVkaW9fcHJvcGVydHkoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikKPiAgICAgICAg
-ICAgICAgICAgICAgICAgICByZXR1cm47Cj4gCj4gICAgICAgICAgICAgICAgIGZvciAoaSA9IDA7
-IGkgPCBBUlJBWV9TSVpFKGZvcmNlX2F1ZGlvX25hbWVzKTsgaSsrKQo+IC0gICAgICAgICAgICAg
-ICAgICAgICAgIGRybV9wcm9wZXJ0eV9hZGRfZW51bShwcm9wLCBpLCBpLTEsIGZvcmNlX2F1ZGlv
-X25hbWVzW2ldKTsKPiArICAgICAgICAgICAgICAgICAgICAgICBkcm1fcHJvcGVydHlfYWRkX2Vu
-dW0ocHJvcCwgaS0xLCBmb3JjZV9hdWRpb19uYW1lc1tpXSk7Cj4gCj4gICAgICAgICAgICAgICAg
-IGRldl9wcml2LT5mb3JjZV9hdWRpb19wcm9wZXJ0eSA9IHByb3A7Cj4gICAgICAgICB9Cj4gQEAg
-LTUxNCw3ICs1MTQsNyBAQCB2b2lkIGNkdl9pbnRlbF9hdHRhY2hfYnJvYWRjYXN0X3JnYl9wcm9w
-ZXJ0eShzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yKQo+ICAgICAgICAgICAgICAgICAg
-ICAgICAgIHJldHVybjsKPiAKPiAgICAgICAgICAgICAgICAgZm9yIChpID0gMDsgaSA8IEFSUkFZ
-X1NJWkUoYnJvYWRjYXN0X3JnYl9uYW1lcyk7IGkrKykKPiAtICAgICAgICAgICAgICAgICAgICAg
-ICBkcm1fcHJvcGVydHlfYWRkX2VudW0ocHJvcCwgaSwgaSwgYnJvYWRjYXN0X3JnYl9uYW1lc1tp
-XSk7Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgZHJtX3Byb3BlcnR5X2FkZF9lbnVtKHByb3As
-IGksIGJyb2FkY2FzdF9yZ2JfbmFtZXNbaV0pOwo+IAo+ICAgICAgICAgICAgICAgICBkZXZfcHJp
-di0+YnJvYWRjYXN0X3JnYl9wcm9wZXJ0eSA9IHByb3A7Cj4gICAgICAgICB9Cj4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9nbWE1MDAvcHNiX2ludGVsX3Nkdm8uYyBiL2RyaXZlcnMvZ3B1
-L2RybS9nbWE1MDAvcHNiX2ludGVsX3Nkdm8uYwo+IGluZGV4IDg0NTA3OTEyYmU4NC4uNjc0MTgy
-ODA1Njk3IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9nbWE1MDAvcHNiX2ludGVsX3Nk
-dm8uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9nbWE1MDAvcHNiX2ludGVsX3Nkdm8uYwo+IEBA
-IC0yMjgxLDcgKzIyODEsNyBAQCBzdGF0aWMgYm9vbCBwc2JfaW50ZWxfc2R2b190dl9jcmVhdGVf
-cHJvcGVydHkoc3RydWN0IHBzYl9pbnRlbF9zZHZvICpwc2JfaW50ZWxfcwo+IAo+ICAgICAgICAg
-Zm9yIChpID0gMDsgaSA8IHBzYl9pbnRlbF9zZHZvX2Nvbm5lY3Rvci0+Zm9ybWF0X3N1cHBvcnRl
-ZF9udW07IGkrKykKPiAgICAgICAgICAgICAgICAgZHJtX3Byb3BlcnR5X2FkZF9lbnVtKAo+IC0g
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcHNiX2ludGVsX3Nkdm9fY29ubmVjdG9yLT50
-dl9mb3JtYXQsIGksCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwc2JfaW50ZWxf
-c2R2b19jb25uZWN0b3ItPnR2X2Zvcm1hdCwKPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIGksIHR2X2Zvcm1hdF9uYW1lc1twc2JfaW50ZWxfc2R2b19jb25uZWN0b3ItPnR2X2Zvcm1h
-dF9zdXBwb3J0ZWRbaV1dKTsKPiAKPiAgICAgICAgIHBzYl9pbnRlbF9zZHZvLT50dl9mb3JtYXRf
-aW5kZXggPSBwc2JfaW50ZWxfc2R2b19jb25uZWN0b3ItPnR2X2Zvcm1hdF9zdXBwb3J0ZWRbMF07
-Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Nkdm8uYyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2ludGVsX3Nkdm8uYwo+IGluZGV4IDk2ZTIxM2VjMjAyZC4uMjUwMDUw
-MjNjMjQzIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Nkdm8uYwo+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Nkdm8uYwo+IEBAIC0yNzc5LDkgKzI3
-NzksOCBAQCBzdGF0aWMgYm9vbCBpbnRlbF9zZHZvX3R2X2NyZWF0ZV9wcm9wZXJ0eShzdHJ1Y3Qg
-aW50ZWxfc2R2byAqaW50ZWxfc2R2bywKPiAgICAgICAgICAgICAgICAgcmV0dXJuIGZhbHNlOwo+
-IAo+ICAgICAgICAgZm9yIChpID0gMDsgaSA8IGludGVsX3Nkdm9fY29ubmVjdG9yLT5mb3JtYXRf
-c3VwcG9ydGVkX251bTsgaSsrKQo+IC0gICAgICAgICAgICAgICBkcm1fcHJvcGVydHlfYWRkX2Vu
-dW0oCj4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpbnRlbF9zZHZvX2Nvbm5lY3Rv
-ci0+dHZfZm9ybWF0LCBpLAo+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaSwgdHZf
-Zm9ybWF0X25hbWVzW2ludGVsX3Nkdm9fY29ubmVjdG9yLT50dl9mb3JtYXRfc3VwcG9ydGVkW2ld
-XSk7Cj4gKyAgICAgICAgICAgICAgIGRybV9wcm9wZXJ0eV9hZGRfZW51bShpbnRlbF9zZHZvX2Nv
-bm5lY3Rvci0+dHZfZm9ybWF0LCBpLAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgdHZfZm9ybWF0X25hbWVzW2ludGVsX3Nkdm9fY29ubmVjdG9yLT50dl9mb3JtYXRfc3Vw
-cG9ydGVkW2ldXSk7Cj4gCj4gICAgICAgICBpbnRlbF9zZHZvX2Nvbm5lY3Rvci0+YmFzZS5iYXNl
-LnN0YXRlLT50di5tb2RlID0gaW50ZWxfc2R2b19jb25uZWN0b3ItPnR2X2Zvcm1hdF9zdXBwb3J0
-ZWRbMF07Cj4gICAgICAgICBkcm1fb2JqZWN0X2F0dGFjaF9wcm9wZXJ0eSgmaW50ZWxfc2R2b19j
-b25uZWN0b3ItPmJhc2UuYmFzZS5iYXNlLAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfZGlzcGxheS5jCj4gaW5kZXggMDA5NzEzNDA0Y2M0Li43ZDBiZWM4ZGQwM2QgMTAwNjQ0Cj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMKPiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYwo+IEBAIC0zMzgsMTEgKzMz
-OCw5IEBAIHN0YXRpYyBzdHJ1Y3Qgbm91dmVhdV9kcm1fcHJvcF9lbnVtX2xpc3QgZGl0aGVyX2Rl
-cHRoW10gPSB7Cj4gICAgICAgICBpZiAoYykgeyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKPiAgICAgICAgICAgICAgICAgcCA9
-IGRybV9wcm9wZXJ0eV9jcmVhdGUoZGV2LCBEUk1fTU9ERV9QUk9QX0VOVU0sIG4sIGMpOyAgICAg
-ICAgXAo+ICAgICAgICAgICAgICAgICBsID0gKGxpc3QpOyAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcCj4gLSAgICAgICAgICAgICAgIGMgPSAwOyAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwK
-PiAgICAgICAgICAgICAgICAgd2hpbGUgKHAgJiYgbC0+Z2VuX21hc2spIHsgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgXAo+ICAgICAgICAgICAgICAgICAgICAgICAgIGlmIChs
-LT5nZW5fbWFzayAmICgxIDw8IChnZW4pKSkgeyAgICAgICAgICAgICAgICAgICAgICBcCj4gLSAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkcm1fcHJvcGVydHlfYWRkX2VudW0ocCwgYywg
-bC0+dHlwZSwgbC0+bmFtZSk7IFwKPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGMr
-KzsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXAo+ICsgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgZHJtX3Byb3BlcnR5X2FkZF9lbnVtKHAsIGwtPnR5cGUs
-IGwtPm5hbWUpOyAgICBcCj4gICAgICAgICAgICAgICAgICAgICAgICAgfSAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKPiAgICAgICAgICAgICAg
-ICAgICAgICAgICBsKys7ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgXAo+ICAgICAgICAgICAgICAgICB9ICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcCj4gZGlmZiAtLWdpdCBhL2luY2x1
-ZGUvZHJtL2RybV9wcm9wZXJ0eS5oIGIvaW5jbHVkZS9kcm0vZHJtX3Byb3BlcnR5LmgKPiBpbmRl
-eCBkMTQyM2M3ZjNjNzMuLjllMmNlYTUxODU3MiAxMDA2NDQKPiAtLS0gYS9pbmNsdWRlL2RybS9k
-cm1fcHJvcGVydHkuaAo+ICsrKyBiL2luY2x1ZGUvZHJtL2RybV9wcm9wZXJ0eS5oCj4gQEAgLTI2
-MCw3ICsyNjAsNyBAQCBzdHJ1Y3QgZHJtX3Byb3BlcnR5ICpkcm1fcHJvcGVydHlfY3JlYXRlX29i
-amVjdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+ICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIHVpbnQzMl90IHR5cGUpOwo+ICBzdHJ1Y3QgZHJtX3Byb3Bl
-cnR5ICpkcm1fcHJvcGVydHlfY3JlYXRlX2Jvb2woc3RydWN0IGRybV9kZXZpY2UgKmRldiwKPiAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdTMyIGZsYWdzLCBj
-b25zdCBjaGFyICpuYW1lKTsKPiAtaW50IGRybV9wcm9wZXJ0eV9hZGRfZW51bShzdHJ1Y3QgZHJt
-X3Byb3BlcnR5ICpwcm9wZXJ0eSwgaW50IGluZGV4LAo+ICtpbnQgZHJtX3Byb3BlcnR5X2FkZF9l
-bnVtKHN0cnVjdCBkcm1fcHJvcGVydHkgKnByb3BlcnR5LAo+ICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgdWludDY0X3QgdmFsdWUsIGNvbnN0IGNoYXIgKm5hbWUpOwo+ICB2b2lkIGRybV9wcm9w
-ZXJ0eV9kZXN0cm95KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBkcm1fcHJvcGVydHkg
-KnByb3BlcnR5KTsKPiAKPiAtLQo+IDIuMTYuMQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+IEludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAoKLS0gClZpbGxlIFN5cmrDpGzDpApJbnRlbApfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
-bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1807113218==
+Content-Type: multipart/alternative; boundary="15249136640.F0D9FeD8D.26615"
+Content-Transfer-Encoding: 7bit
+
+
+--15249136640.F0D9FeD8D.26615
+Date: Sat, 28 Apr 2018 11:07:44 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106294
+
+            Bug ID: 106294
+           Summary: GM204/modesetting DDX: Odd corruption (red
+                    backgrounds) introduced by Mesa
+           Product: Mesa
+           Version: git
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: freedesktop-bugs-dADiZSo7rdJAfugRpC6u6w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+I apologise if I have selected the wrong product for this bug, as I think I
+probably have. If I need to open a new bug, please let me know.
+
+I use an NVidia GeForce GTX 970, with kernel version 4.15.4-gentoo and the
+modesetting driver in Xorg. (More detailed descriptions of packages install=
+ed
+at the bottom of this description.)
+
+My distribution (Gentoo) has packages for Mesa 17.2.8, 17.3.8, and a few ot=
+her
+higher versions (currently marked as unstable). When I use Mesa 17.3.8 or
+higher, I see odd types of corruption involving red backgrounds on menus and
+widgets, and some checkboxes appear unticked when they should be ticked. I
+recorded this behaviour using OBS:
+
+* Incorrect behaviour on 17.3.8 and higher:
+    https://www.youtube.com/watch?v=3DpuSC7a_osw0
+
+* Expected behaviour on 17.2.8:
+    https://www.youtube.com/watch?v=3DLbjCoIX4DKE
+
+I dug out git and have confirmed that the bug still exists as of commit
+https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D8b7358fe4376aecee0c29ea=
+622f88f9ef07e6b11
+(the latest commit on master as of an hour ago or so).
+
+After bisection, I discovered that the bug was introduced by
+https://cgit.freedesktop.org/mesa/mesa/commit/?id=3Dfcbb93e860246375d03f280=
+f927f79d3645a8988
+, which is actually *before* the 17.2.x branchpoint. It turns out that this
+commit was reverted in the 17.2.x branch in commit
+https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D17a3e4891bf4fa09785fe9d=
+22db5c79a949004db
+to fix bug #101983. This was not committed to the 'master' branch, as the f=
+ixes
+in master apparently would have been rather invasive. This explains why my
+tests of 17.2.8 worked fine.
+
+This issue only appears when using the "modesetting" DDX drivers. When using
+the "nouveau" DDX drivers, the issue does not appear. (The "nouveau" DDX
+drivers also fix other issues for me so I'll probably switch to using that =
+from
+now on for normal use, but I'm willing to switch back to help debug this is=
+sue
+if needed.)
+
+System summary:
+
+I have the following graphics card, as shown by lspci -nn:
+> 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM204 [GeFor=
+ce GTX 970] [10de:13c2] (rev a1)
+
+I am running Gentoo Linux with the sys-kernel/gentoo-sources-4.15.4 kernel,
+with the following (relevant) packages installed:
+
+* x11-base/xorg-server-1.19.5-r1
+* x11-base/xorg-drivers-1.19 (with VIDEO_CARDS=3D"nouveau")
+
+In my kernel configuration, CONFIG_DRM_NOUVEAU is set to "m".
+
+Please let me know if you need any more information.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15249136640.F0D9FeD8D.26615
+Date: Sat, 28 Apr 2018 11:07:44 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GM204/modesetting DDX: Odd corruption (red backgrounds) i=
+ntroduced by Mesa"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106294">106294</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>GM204/modesetting DDX: Odd corruption (red backgrounds) intro=
+duced by Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>freedesktop-bugs&#64;theblob.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>I apologise if I have selected the wrong product for this bug,=
+ as I think I
+probably have. If I need to open a new bug, please let me know.
+
+I use an NVidia GeForce GTX 970, with kernel version 4.15.4-gentoo and the
+modesetting driver in Xorg. (More detailed descriptions of packages install=
+ed
+at the bottom of this description.)
+
+My distribution (Gentoo) has packages for Mesa 17.2.8, 17.3.8, and a few ot=
+her
+higher versions (currently marked as unstable). When I use Mesa 17.3.8 or
+higher, I see odd types of corruption involving red backgrounds on menus and
+widgets, and some checkboxes appear unticked when they should be ticked. I
+recorded this behaviour using OBS:
+
+* Incorrect behaviour on 17.3.8 and higher:
+    <a href=3D"https://www.youtube.com/watch?v=3DpuSC7a_osw0">https://www.y=
+outube.com/watch?v=3DpuSC7a_osw0</a>
+
+* Expected behaviour on 17.2.8:
+    <a href=3D"https://www.youtube.com/watch?v=3DLbjCoIX4DKE">https://www.y=
+outube.com/watch?v=3DLbjCoIX4DKE</a>
+
+I dug out git and have confirmed that the bug still exists as of commit
+<a href=3D"https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D8b7358fe4376=
+aecee0c29ea622f88f9ef07e6b11">https://cgit.freedesktop.org/mesa/mesa/commit=
+/?id=3D8b7358fe4376aecee0c29ea622f88f9ef07e6b11</a>
+(the latest commit on master as of an hour ago or so).
+
+After bisection, I discovered that the bug was introduced by
+<a href=3D"https://cgit.freedesktop.org/mesa/mesa/commit/?id=3Dfcbb93e86024=
+6375d03f280f927f79d3645a8988">https://cgit.freedesktop.org/mesa/mesa/commit=
+/?id=3Dfcbb93e860246375d03f280f927f79d3645a8988</a>
+, which is actually *before* the 17.2.x branchpoint. It turns out that this
+commit was reverted in the 17.2.x branch in commit
+<a href=3D"https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D17a3e4891bf4=
+fa09785fe9d22db5c79a949004db">https://cgit.freedesktop.org/mesa/mesa/commit=
+/?id=3D17a3e4891bf4fa09785fe9d22db5c79a949004db</a>
+to fix <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [G33] ES2-CTS.functional.shaders.struct.unifor=
+m.sampler_nested* regression"
+   href=3D"show_bug.cgi?id=3D101983">bug #101983</a>. This was not committe=
+d to the 'master' branch, as the fixes
+in master apparently would have been rather invasive. This explains why my
+tests of 17.2.8 worked fine.
+
+This issue only appears when using the &quot;modesetting&quot; DDX drivers.=
+ When using
+the &quot;nouveau&quot; DDX drivers, the issue does not appear. (The &quot;=
+nouveau&quot; DDX
+drivers also fix other issues for me so I'll probably switch to using that =
+from
+now on for normal use, but I'm willing to switch back to help debug this is=
+sue
+if needed.)
+
+System summary:
+
+I have the following graphics card, as shown by lspci -nn:
+<span class=3D"quote">&gt; 01:00.0 VGA compatible controller [0300]: NVIDIA=
+ Corporation GM204 [GeForce GTX 970] [10de:13c2] (rev a1)</span >
+
+I am running Gentoo Linux with the sys-kernel/gentoo-sources-4.15.4 kernel,
+with the following (relevant) packages installed:
+
+* x11-base/xorg-server-1.19.5-r1
+* x11-base/xorg-drivers-1.19 (with VIDEO_CARDS=3D&quot;nouveau&quot;)
+
+In my kernel configuration, CONFIG_DRM_NOUVEAU is set to &quot;m&quot;.
+
+Please let me know if you need any more information.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15249136640.F0D9FeD8D.26615--
+
+--===============1807113218==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1807113218==--
