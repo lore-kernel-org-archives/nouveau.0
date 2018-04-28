@@ -1,20 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Nouveau Digest, Vol 131, Issue 3
-Date: Sat, 28 Apr 2018 13:22:55 -0400
-Message-ID: <CAKb7UvjeLK=YwengeXV_GYJbUCSXAHD41N+3YYEBZ+QT40SaYQ@mail.gmail.com>
-References: <mailman.510.1519928481.2262.nouveau@lists.freedesktop.org>
- <e6067c25-549f-668d-bc66-bcb761e0dc26@gmail.com>
- <CAKb7UvgoM0EjTu00y4CvxBZD9DOxLTmy+SFoRASF16ONqgA8ew@mail.gmail.com>
- <bbc4654d-ead2-bb15-d369-e7d0b853f220@gmail.com>
- <CAKb7UvhZ=72Bt_UNtk-t5+bCgOb7-jDRZ8XHXR9aiEVZYfkayA@mail.gmail.com>
- <af9c80bf-12ea-bbad-e4fe-17000157ac40@gmail.com>
- <CAKb7Uvhj4cmW_4V=w1UDJVRem233hTOdPzS6c6LKgGsLzGNzTw@mail.gmail.com>
- <CAKb7UvjpA8F=CckyX92v6bBYAQ8s2xtJKCmq5pBO106C0rB6nw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 106305] Can't change screen brightness on MSI GT73VR
+ with nouveau driver
+Date: Sat, 28 Apr 2018 21:41:19 +0000
+Message-ID: <bug-106305-8800-KvVzyzZN35@http.bugs.freedesktop.org/>
+References: <bug-106305-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1106420263=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvjpA8F=CckyX92v6bBYAQ8s2xtJKCmq5pBO106C0rB6nw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-106305-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -24,57 +17,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBNYXIgOCwgMjAxOCBhdCAxMToyOSBQTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
-bS5taXQuZWR1PiB3cm90ZToKPiBPbiBNb24sIE1hciA1LCAyMDE4IGF0IDc6MzMgQU0sIElsaWEg
-TWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4+IE9uIE1vbiwgTWFyIDUsIDIw
-MTggYXQgMToxNyBBTSwgTWFyaW8gS2xlaW5lcgo+PiA8bWFyaW8ua2xlaW5lci5kZUBnbWFpbC5j
-b20+IHdyb3RlOgo+Pj4gT24gMDMvMDMvMjAxOCAxMjo1OSBBTSwgSWxpYSBNaXJraW4gd3JvdGU6
-Cj4+Pj4KPj4+PiBPbiBGcmksIE1hciAyLCAyMDE4IGF0IDY6NDYgUE0sIE1hcmlvIEtsZWluZXIK
-Pj4+PiA8bWFyaW8ua2xlaW5lci5kZUBnbWFpbC5jb20+IHdyb3RlOgo+Pj4+Pgo+Pj4+PiBPbiAw
-My8wMi8yMDE4IDExOjI5IFBNLCBJbGlhIE1pcmtpbiB3cm90ZToKPj4+Pj4+Cj4+Pj4+PiBPSywg
-c28gZXZlbiBpZiB5b3UncmUgcGFzc2luZyAxMDI0IHRvIHhmODZIYW5kbGVDb2xvcm1hcHMsIGdh
-bW1hX3NldAo+Pj4+Pj4gc3RpbGwgb25seSBnZXRzIGNhbGxlZCB3aXRoIGEgMjU2LWVudHJ5IExV
-VD8gSWYgc28sIHRoYXQgd29ya3MgbmljZWx5Cj4+Pj4+PiBoZXJlLCBidXQgaXMgbm90IGludHVp
-dGl2ZSA6KQo+Pj4+Pgo+Pj4+Pgo+Pj4+PiBZZXMuIExvdHMgb2YgcmVtYXBwaW5nIGluIHRoZSBz
-ZXJ2ZXIsIGkgZ2V0IGRpenp5IGV2ZXJ5dGltZSBpIGxvb2sgYXQgaXQsCj4+Pj4+IGFuZCBmb3Jn
-ZXQgYWxtb3N0IGltbWVkaWF0ZWx5IGhvdyBzdHVmZiBmaXRzIHRvZ2V0aGVyIHdoZW4gaSBkb24n
-dCBsb29rCj4+Pj4+IGF0Cj4+Pj4+IGl0LiBBbnl3YXksIHRoZSBmaW5hbCBkb3duc2FtcGxpbmcg
-ZnJvbSAxMDI0IC0+IDI1NiBodyBsdXQgaGFwcGVucyBpbgo+Pj4+PiB4Zjg2UmFuZFIxMkNydGND
-b21wdXRlR2FtbWEoKSwgc2VlCj4+Pj4+Cj4+Pj4+Cj4+Pj4+IGh0dHBzOi8vY2dpdC5mcmVlZGVz
-a3RvcC5vcmcveG9yZy94c2VydmVyL2NvbW1pdC8/aWQ9YjVmOWZjZDUwYTk5OWEwMDEyOGMwY2Mz
-ZjZlN2QxZjY2MTgyYzlkNQo+Pj4+Pgo+Pj4+PiBmb3IgdGhlIGxhdGVzdC4gSSdsbCBwcm9wb3Nl
-IHRoYXQgb25lIHRvIGdldCBjaGVycnktcGlja2VkIGludG8gdGhlCj4+Pj4+IHNlcnZlci0xLjE5
-IGJyYW5jaCBhcyB3ZWxsLgo+Pj4+Cj4+Pj4KPj4+PiBIcm1waC4gVGhhdCBtZWFucyB3ZSBzaG91
-bGQgdHJ5IHRvIGFkanVzdCB0aGUgZ2FtbWFfc2V0IGhlbHBlciB0byBkbwo+Pj4+IHRoZSBzYW1w
-bGluZyB3aGVuIHJlY2VpdmluZyBhIDEwMjQtc2l6ZWQgTFVULCBpZiBwZW9wbGUgd2lsbCB1c2Ug
-b2xkZXIKPj4+PiBYIHNlcnZlcnMgKHNlZW1zIGxpa2VseSkuIFNob3VsZCBob3BlZnVsbHkgYmUg
-c3RyYWlnaHRmb3J3YXJkLCB0bwo+Pj4+IGhhbmRsZSBqdXN0IHRoYXQgb25lIGNhc2UuCj4+Pgo+
-Pj4KPj4+IEkgdGhpbmsgd2UgbmV2ZXIgcmVjZWl2ZSBhbnl0aGluZyBidXQgYSAyNTYgc2xvdCBM
-VVQgdmlhIGdhbW1hX3NldCBhZmFpY3M/Cj4+PiBUaGUgc2VydmVyIGluaXRpYWxpemVzIHhmODZD
-cnRjJ3MgZ2FtbWFfc2l6ZSB0byAyNTYgYXQgc3RhcnR1cCwgYW5kIG5vbmUgb2YKPj4+IHRoZSBk
-ZHgnZXMgZXZlciBvdmVycmlkZXMgdGhhdCB3aXRoIGFjdHVhbCBpbmZvIGZyb20gdGhlIGtlcm5l
-bC4KPj4+Cj4+PiBXaGF0IGhhcHBlbnMgb24gb2xkZXIgc2VydmVycyB3aXRob3V0IHRoYXQgcGF0
-Y2ggaWZmIGNvbG9yIGRlcHRoIDMwIGlzCj4+PiBzZWxlY3RlZCBpcyBzaW1wbHkgdGhhdCB0aGUg
-Z2FtbWEgdGFibGUgdXBkYXRlcyBuby1vcCwgc28gdGhlIHNlcnZlciBydW5zCj4+PiB3aXRoIGFu
-IGlkZW50aXR5IGdhbW1hIHRhYmxlIHNldHVwIGF0IHN0YXJ0dXAuIE5vdCBwZXJmZWN0LCBidXQg
-YWxzbyBub3QKPj4+IHRoYXQgYmFkLCBnaXZlbiB0aGF0IHByb2JhYmx5IG1vc3QgcGVvcGxlIHJ1
-biB0aGVpciBzZXR1cHMgd2l0aCBhIGdhbW1hIG9mCj4+PiAxLjAgYW55d2F5LiBBdCBkZWZhdWx0
-IGRlcHRoIDI0IHN0dWZmIHdvcmtzIGFzIHVzdWFsLgo+Pgo+PiBBaCBPSy4gVGhhdCdzIG5vdCBz
-byBiYWQuIEknbGwgdHJ5IHRvIHBsYXkgYXJvdW5kIHdpdGggaXQgdGhpcyB3ZWVrLgo+PiBUaGFu
-a3MgZm9yIHRoZSBleHBsYW5hdGlvbiEKPgo+IEkganVzdCB0ZXN0ZWQgdGhpcyBvdXQgYWdhaW5z
-dCB4b3JnIDEuMTkuNS4gV2l0aCB5b3VyIHBhdGNoLCBJIGdldCBhbgo+IGV4dHJlbWVseSBkYXJr
-IHNjcmVlbi4gSSB0aGluayBpdCdzIGp1c3QgZ2V0dGluZyB0aGUgZmlyc3QgMjU2IG9mIHRoZQo+
-IDEwMjQgdmFsdWVzIChJIGNoZWNrZWQgLS0gZ2FtbWFfc2V0IGlzIHN0aWxsIG9ubHkgZ2V0dGlu
-ZyAyNTYgdmFsdWVzKS4KPiBTbyB3ZSBoYXZlIHRvIGRvIHNvbWV0aGluZyBhIGJpdCBjbGV2ZXJl
-ciB0byBmaXggdGhpcyBzY2VuYXJpby4uLgo+IGlkZWFzPwoKTWFyaW8sCgpIYXZlIHlvdSBnaXZl
-biB0aGlzIGFueSB0aG91Z2h0PyBJcyB0aGVyZSBhIHdheSB0byBkZXRlY3Qgb25lIG9yIHRoZQpv
-dGhlciBzY2VuYXJpbz8gSSdkIHJhdGhlciBub3QgcHV0IHNvbWV0aGluZyBpbiB3aGVyZSB3ZSBj
-aGVjayB0aGUgWAp2ZXJzaW9uIGF0IGNvbXBpbGUgdGltZS4gRGlkIHRoZSBBQkkgZ2V0IGJ1bXBl
-ZCBpbiAxLjIwIHBlcmhhcHM/CgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbm91dmVhdQo=
+
+--===============1106420263==
+Content-Type: multipart/alternative; boundary="15249516791.9e5e31.16705"
+Content-Transfer-Encoding: 7bit
+
+
+--15249516791.9e5e31.16705
+Date: Sat, 28 Apr 2018 21:41:19 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106305
+
+Geroge T <reportbug-gQOQsHldK/Xzs492ZWNkEA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+          Component|general                     |Drivers/DRI/nouveau
+         QA Contact|                            |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
+            Product|libbacklight                |Mesa
+           Assignee|mjg59-1xO5oi07KQx4cg9Nei1l7Q@public.gmane.org         |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15249516791.9e5e31.16705
+Date: Sat, 28 Apr 2018 21:41:19 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:reportbug=
+&#64;mailna.biz" title=3D"Geroge T &lt;reportbug&#64;mailna.biz&gt;"> <span=
+ class=3D"fn">Geroge T</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Can't change screen brightness on MSI GT73VR with nouveau=
+ driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106305">bug 10630=
+5</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Component</td>
+           <td>general
+           </td>
+           <td>Drivers/DRI/nouveau
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">QA Contact</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Product</td>
+           <td>libbacklight
+           </td>
+           <td>Mesa
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>mjg59&#64;srcf.ucam.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr></table>
+      <p>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15249516791.9e5e31.16705--
+
+--===============1106420263==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1106420263==--
