@@ -1,13 +1,21 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99889] nouveau preventing shutdown after
- suspend-resume
-Date: Mon, 30 Apr 2018 01:18:13 +0000
-Message-ID: <bug-99889-8800-mnbv9ommbd@http.bugs.freedesktop.org/>
-References: <bug-99889-8800@http.bugs.freedesktop.org/>
+From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Nouveau Digest, Vol 131, Issue 3
+Date: Mon, 30 Apr 2018 09:33:49 +0200
+Message-ID: <CAEsyxygc0J3oMvW3MOSkghLHABqPkixtX_p_TEgEOecFTV-DwA@mail.gmail.com>
+References: <mailman.510.1519928481.2262.nouveau@lists.freedesktop.org>
+ <e6067c25-549f-668d-bc66-bcb761e0dc26@gmail.com>
+ <CAKb7UvgoM0EjTu00y4CvxBZD9DOxLTmy+SFoRASF16ONqgA8ew@mail.gmail.com>
+ <bbc4654d-ead2-bb15-d369-e7d0b853f220@gmail.com>
+ <CAKb7UvhZ=72Bt_UNtk-t5+bCgOb7-jDRZ8XHXR9aiEVZYfkayA@mail.gmail.com>
+ <af9c80bf-12ea-bbad-e4fe-17000157ac40@gmail.com>
+ <CAKb7Uvhj4cmW_4V=w1UDJVRem233hTOdPzS6c6LKgGsLzGNzTw@mail.gmail.com>
+ <CAKb7UvjpA8F=CckyX92v6bBYAQ8s2xtJKCmq5pBO106C0rB6nw@mail.gmail.com>
+ <CAKb7UvjeLK=YwengeXV_GYJbUCSXAHD41N+3YYEBZ+QT40SaYQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1029524734=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99889-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvjeLK=YwengeXV_GYJbUCSXAHD41N+3YYEBZ+QT40SaYQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,85 +25,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1029524734==
-Content-Type: multipart/alternative; boundary="15250510930.F8b5C78.378"
-Content-Transfer-Encoding: 7bit
-
-
---15250510930.F8b5C78.378
-Date: Mon, 30 Apr 2018 01:18:13 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99889
-
---- Comment #11 from Ali <sunmooon15-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-yep , 4.16 and the issue is still there .
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15250510930.F8b5C78.378
-Date: Mon, 30 Apr 2018 01:18:13 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889#c11">Commen=
-t # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889">bug 99889<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sunmooon15&#64;gmail.com" title=3D"Ali &lt;sunmooon15&#64;gmail.com&gt;"> <=
-span class=3D"fn">Ali</span></a>
-</span></b>
-        <pre>yep , 4.16 and the issue is still there .</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15250510930.F8b5C78.378--
-
---===============1029524734==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1029524734==--
+T24gU2F0LCBBcHIgMjgsIDIwMTggYXQgNzoyMiBQTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
+bS5taXQuZWR1PiB3cm90ZToKPiBPbiBUaHUsIE1hciA4LCAyMDE4IGF0IDExOjI5IFBNLCBJbGlh
+IE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3RlOgo+PiBPbiBNb24sIE1hciA1LCAy
+MDE4IGF0IDc6MzMgQU0sIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6
+Cj4+PiBPbiBNb24sIE1hciA1LCAyMDE4IGF0IDE6MTcgQU0sIE1hcmlvIEtsZWluZXIKPj4+IDxt
+YXJpby5rbGVpbmVyLmRlQGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pj4gT24gMDMvMDMvMjAxOCAxMjo1
+OSBBTSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4+Pj4+Cj4+Pj4+IE9uIEZyaSwgTWFyIDIsIDIwMTgg
+YXQgNjo0NiBQTSwgTWFyaW8gS2xlaW5lcgo+Pj4+PiA8bWFyaW8ua2xlaW5lci5kZUBnbWFpbC5j
+b20+IHdyb3RlOgo+Pj4+Pj4KPj4+Pj4+IE9uIDAzLzAyLzIwMTggMTE6MjkgUE0sIElsaWEgTWly
+a2luIHdyb3RlOgo+Pj4+Pj4+Cj4+Pj4+Pj4gT0ssIHNvIGV2ZW4gaWYgeW91J3JlIHBhc3Npbmcg
+MTAyNCB0byB4Zjg2SGFuZGxlQ29sb3JtYXBzLCBnYW1tYV9zZXQKPj4+Pj4+PiBzdGlsbCBvbmx5
+IGdldHMgY2FsbGVkIHdpdGggYSAyNTYtZW50cnkgTFVUPyBJZiBzbywgdGhhdCB3b3JrcyBuaWNl
+bHkKPj4+Pj4+PiBoZXJlLCBidXQgaXMgbm90IGludHVpdGl2ZSA6KQo+Pj4+Pj4KPj4+Pj4+Cj4+
+Pj4+PiBZZXMuIExvdHMgb2YgcmVtYXBwaW5nIGluIHRoZSBzZXJ2ZXIsIGkgZ2V0IGRpenp5IGV2
+ZXJ5dGltZSBpIGxvb2sgYXQgaXQsCj4+Pj4+PiBhbmQgZm9yZ2V0IGFsbW9zdCBpbW1lZGlhdGVs
+eSBob3cgc3R1ZmYgZml0cyB0b2dldGhlciB3aGVuIGkgZG9uJ3QgbG9vawo+Pj4+Pj4gYXQKPj4+
+Pj4+IGl0LiBBbnl3YXksIHRoZSBmaW5hbCBkb3duc2FtcGxpbmcgZnJvbSAxMDI0IC0+IDI1NiBo
+dyBsdXQgaGFwcGVucyBpbgo+Pj4+Pj4geGY4NlJhbmRSMTJDcnRjQ29tcHV0ZUdhbW1hKCksIHNl
+ZQo+Pj4+Pj4KPj4+Pj4+Cj4+Pj4+PiBodHRwczovL2NnaXQuZnJlZWRlc2t0b3Aub3JnL3hvcmcv
+eHNlcnZlci9jb21taXQvP2lkPWI1ZjlmY2Q1MGE5OTlhMDAxMjhjMGNjM2Y2ZTdkMWY2NjE4MmM5
+ZDUKPj4+Pj4+Cj4+Pj4+PiBmb3IgdGhlIGxhdGVzdC4gSSdsbCBwcm9wb3NlIHRoYXQgb25lIHRv
+IGdldCBjaGVycnktcGlja2VkIGludG8gdGhlCj4+Pj4+PiBzZXJ2ZXItMS4xOSBicmFuY2ggYXMg
+d2VsbC4KPj4+Pj4KPj4+Pj4KPj4+Pj4gSHJtcGguIFRoYXQgbWVhbnMgd2Ugc2hvdWxkIHRyeSB0
+byBhZGp1c3QgdGhlIGdhbW1hX3NldCBoZWxwZXIgdG8gZG8KPj4+Pj4gdGhlIHNhbXBsaW5nIHdo
+ZW4gcmVjZWl2aW5nIGEgMTAyNC1zaXplZCBMVVQsIGlmIHBlb3BsZSB3aWxsIHVzZSBvbGRlcgo+
+Pj4+PiBYIHNlcnZlcnMgKHNlZW1zIGxpa2VseSkuIFNob3VsZCBob3BlZnVsbHkgYmUgc3RyYWln
+aHRmb3J3YXJkLCB0bwo+Pj4+PiBoYW5kbGUganVzdCB0aGF0IG9uZSBjYXNlLgo+Pj4+Cj4+Pj4K
+Pj4+PiBJIHRoaW5rIHdlIG5ldmVyIHJlY2VpdmUgYW55dGhpbmcgYnV0IGEgMjU2IHNsb3QgTFVU
+IHZpYSBnYW1tYV9zZXQgYWZhaWNzPwo+Pj4+IFRoZSBzZXJ2ZXIgaW5pdGlhbGl6ZXMgeGY4NkNy
+dGMncyBnYW1tYV9zaXplIHRvIDI1NiBhdCBzdGFydHVwLCBhbmQgbm9uZSBvZgo+Pj4+IHRoZSBk
+ZHgnZXMgZXZlciBvdmVycmlkZXMgdGhhdCB3aXRoIGFjdHVhbCBpbmZvIGZyb20gdGhlIGtlcm5l
+bC4KPj4+Pgo+Pj4+IFdoYXQgaGFwcGVucyBvbiBvbGRlciBzZXJ2ZXJzIHdpdGhvdXQgdGhhdCBw
+YXRjaCBpZmYgY29sb3IgZGVwdGggMzAgaXMKPj4+PiBzZWxlY3RlZCBpcyBzaW1wbHkgdGhhdCB0
+aGUgZ2FtbWEgdGFibGUgdXBkYXRlcyBuby1vcCwgc28gdGhlIHNlcnZlciBydW5zCj4+Pj4gd2l0
+aCBhbiBpZGVudGl0eSBnYW1tYSB0YWJsZSBzZXR1cCBhdCBzdGFydHVwLiBOb3QgcGVyZmVjdCwg
+YnV0IGFsc28gbm90Cj4+Pj4gdGhhdCBiYWQsIGdpdmVuIHRoYXQgcHJvYmFibHkgbW9zdCBwZW9w
+bGUgcnVuIHRoZWlyIHNldHVwcyB3aXRoIGEgZ2FtbWEgb2YKPj4+PiAxLjAgYW55d2F5LiBBdCBk
+ZWZhdWx0IGRlcHRoIDI0IHN0dWZmIHdvcmtzIGFzIHVzdWFsLgo+Pj4KPj4+IEFoIE9LLiBUaGF0
+J3Mgbm90IHNvIGJhZC4gSSdsbCB0cnkgdG8gcGxheSBhcm91bmQgd2l0aCBpdCB0aGlzIHdlZWsu
+Cj4+PiBUaGFua3MgZm9yIHRoZSBleHBsYW5hdGlvbiEKPj4KPj4gSSBqdXN0IHRlc3RlZCB0aGlz
+IG91dCBhZ2FpbnN0IHhvcmcgMS4xOS41LiBXaXRoIHlvdXIgcGF0Y2gsIEkgZ2V0IGFuCj4+IGV4
+dHJlbWVseSBkYXJrIHNjcmVlbi4gSSB0aGluayBpdCdzIGp1c3QgZ2V0dGluZyB0aGUgZmlyc3Qg
+MjU2IG9mIHRoZQo+PiAxMDI0IHZhbHVlcyAoSSBjaGVja2VkIC0tIGdhbW1hX3NldCBpcyBzdGls
+bCBvbmx5IGdldHRpbmcgMjU2IHZhbHVlcykuCj4+IFNvIHdlIGhhdmUgdG8gZG8gc29tZXRoaW5n
+IGEgYml0IGNsZXZlcmVyIHRvIGZpeCB0aGlzIHNjZW5hcmlvLi4uCj4+IGlkZWFzPwo+Cj4gTWFy
+aW8sCj4KPiBIYXZlIHlvdSBnaXZlbiB0aGlzIGFueSB0aG91Z2h0PyBJcyB0aGVyZSBhIHdheSB0
+byBkZXRlY3Qgb25lIG9yIHRoZQo+IG90aGVyIHNjZW5hcmlvPyBJJ2QgcmF0aGVyIG5vdCBwdXQg
+c29tZXRoaW5nIGluIHdoZXJlIHdlIGNoZWNrIHRoZSBYCj4gdmVyc2lvbiBhdCBjb21waWxlIHRp
+bWUuIERpZCB0aGUgQUJJIGdldCBidW1wZWQgaW4gMS4yMCBwZXJoYXBzPwo+Cj4gICAtaWxpYQoK
+Tm9wZSwgaGF2ZW4ndCBoYWQgdGltZSB0byByZXRlc3Qgb24gMS4xOSwgdG9vIG11Y2ggImZ1biIg
+dHJ5aW5nIHRvCnRhbWUgYWxsIHRob3NlIG5ldyBzZXJ2ZXIgMS4yMCBidWdzIHdoaWNoIGdvdCBp
+biB0aGUgd2F5IG9mIGRlcHRoIDMwCnN0dWZmLgpJIHRoaW5rIHRoZSB2aWRlbyBBQkkgZ290IGJ1
+bXBlZCBpbiAxLjIwLgoKLW1hcmlvCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
