@@ -1,78 +1,133 @@
-From: Robin Murphy <robin.murphy-5wv7dgnIgG8@public.gmane.org>
-Subject: Re: [PATCH v2 2/5] dma-mapping: Introduce dma_iommu_detach_device()
-	API
-Date: Mon, 30 Apr 2018 13:49:48 +0100
-Message-ID: <7372c5f4-d19c-bfbf-a39c-acfcd25e03a1@arm.com>
-References: <20180425101051.15349-1-thierry.reding@gmail.com>
-	<20180425101051.15349-2-thierry.reding@gmail.com>
-	<20180425151934.GC16075@infradead.org> <20180426121136.GD11985@ulmo>
-	<20180430110231.GF2476@ulmo>
-	<e549979d-9f53-a329-da1a-ed5139958762@arm.com>
-	<20180430121226.GA6487@ulmo>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 106324] Sporadic freezes under load with Chromium
+Date: Mon, 30 Apr 2018 17:45:11 +0000
+Message-ID: <bug-106324-8800-Q2nqM1I5om@http.bugs.freedesktop.org/>
+References: <bug-106324-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
-Return-path: <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
-In-Reply-To: <20180430121226.GA6487@ulmo>
-Content-Language: en-GB
-List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/iommu>,
-	<mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.linuxfoundation.org/pipermail/iommu/>
-List-Post: <mailto:iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
-List-Help: <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/iommu>,
-	<mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=subscribe>
-Sender: iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
-Errors-To: iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
-To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Russell King <linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============1926778983=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-106324-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 30/04/18 13:12, Thierry Reding wrote:
-> On Mon, Apr 30, 2018 at 12:41:52PM +0100, Robin Murphy wrote:
->> On 30/04/18 12:02, Thierry Reding wrote:
->>> On Thu, Apr 26, 2018 at 02:11:36PM +0200, Thierry Reding wrote:
->>>> On Wed, Apr 25, 2018 at 08:19:34AM -0700, Christoph Hellwig wrote:
->>>>> On Wed, Apr 25, 2018 at 12:10:48PM +0200, Thierry Reding wrote:
->>>>>> From: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
->>>>>>
->>>>>> The dma_iommu_detach_device() API can be used by drivers to forcibly
->>>>>> detach a device from an IOMMU that architecture code might have attached
->>>>>> to. This is useful for drivers that need explicit control over the IOMMU
->>>>>> using the IOMMU API directly.
->>>>>
->>>>> Given that no one else implements it making it a generic API seems
->>>>> rather confusing.  For now I'd rename it to
->>>>> arm_dma_iommu_detach_device() and only implement it in arm.
->>>>
->>>> That'd be suboptimal because this code is used on both 32-bit and 64-bit
->>>> ARM. If we make the function 32-bit ARM specific then the driver code
->>>> would need to use an #ifdef to make sure compilation doesn't break on
->>>> 64-bit ARM.
->>>
->>> Do you still want me to make this ARM specific? While I haven't
->>> encountered this issue on 64-bit ARM yet, I think it would happen there
->>> as well, under the right circumstances. I could take a shot at
->>> implementing the equivalent there (which means essentially implementing
->>> it for drivers/iommu/dma-iommu.c and calling that from 64-bit ARM code).
->>
->> It sounds like things are getting a bit backwards here: iommu-dma should
->> have nothing to do with this, since if you've explicitly attached the device
->> to your own IOMMU domain then you're already bypassing everything it knows
->> about and has control over. Arch code calling into iommu-dma to do something
->> which makes arch code not use iommu-dma makes very little sense.
-> 
-> My understanding is that iommu-dma will set up an IOMMU domain at device
-> probe time anyway. So even if attaching to an own IOMMU domain will end
-> up bypassing iommu-dma, we'd still want to clear up the IOMMU domain and
-> any associated resources, right?
 
-The lifetime of a "proper" IOMMU API default domain is that of the 
-iommu_group, so more or less between device_add() and device_del() from 
-the perspective of a device in that group. IOW at least one level below 
-what that device's driver should be messing with. The domain itself is 
-just a little bit of memory and shouldn't have to occupy any hardware 
-resources while it's not active (and yes, I know the ARM SMMU driver is 
-currently a bit crap in that regard).
+--===============1926778983==
+Content-Type: multipart/alternative; boundary="15251103112.725eb4f5B.19323"
+Content-Transfer-Encoding: 7bit
 
-Robin.
+
+--15251103112.725eb4f5B.19323
+Date: Mon, 30 Apr 2018 17:45:11 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106324
+
+--- Comment #1 from Darek <dz1125.bug.tracker-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This [1] patch prevents random xserver freezes
+tested:
+GPU GTX 550Ti
+mesa 18.1.0rc2
+xorg-server 1.19.99.905
+xf86-video-nouveau-git 1.0.15.r5.gac8f7b9
+DRI3 enabled
+
+I noted the same behavior with:
+mesa 18.0.1-1
+xorg-server 1.19.6+13+gd0d1a694f-2
+xf86-video-nouveau-git 1.0.15.r5.gac8f7b9
+DRI3 enabled
+
+[1] https://patchwork.freedesktop.org/series/41258/ (rev 4)
+
+I'm not sure if it is related, but it's worth mentioning
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15251103112.725eb4f5B.19323
+Date: Mon, 30 Apr 2018 17:45:11 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Sporadic freezes under load with Chromium"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106324#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Sporadic freezes under load with Chromium"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106324">bug 10632=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+dz1125.bug.tracker&#64;gmail.com" title=3D"Darek &lt;dz1125.bug.tracker&#64=
+;gmail.com&gt;"> <span class=3D"fn">Darek</span></a>
+</span></b>
+        <pre>This [1] patch prevents random xserver freezes
+tested:
+GPU GTX 550Ti
+mesa 18.1.0rc2
+xorg-server 1.19.99.905
+xf86-video-nouveau-git 1.0.15.r5.gac8f7b9
+DRI3 enabled
+
+I noted the same behavior with:
+mesa 18.0.1-1
+xorg-server 1.19.6+13+gd0d1a694f-2
+xf86-video-nouveau-git 1.0.15.r5.gac8f7b9
+DRI3 enabled
+
+[1] <a href=3D"https://patchwork.freedesktop.org/series/41258/">https://pat=
+chwork.freedesktop.org/series/41258/</a> (rev 4)
+
+I'm not sure if it is related, but it's worth mentioning</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15251103112.725eb4f5B.19323--
+
+--===============1926778983==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1926778983==--
