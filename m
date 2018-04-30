@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 106305] Can't change screen brightness on MSI GT73VR
  with nouveau driver
-Date: Mon, 30 Apr 2018 23:39:22 +0000
-Message-ID: <bug-106305-8800-Dl4alI5WAa@http.bugs.freedesktop.org/>
+Date: Mon, 30 Apr 2018 23:41:23 +0000
+Message-ID: <bug-106305-8800-MevH2s3lja@http.bugs.freedesktop.org/>
 References: <bug-106305-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1322165647=="
+Content-Type: multipart/mixed; boundary="===============1661903389=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-106305-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1322165647==
-Content-Type: multipart/alternative; boundary="15251315620.565cFcb.8711"
+--===============1661903389==
+Content-Type: multipart/alternative; boundary="15251316820.BA3AaC5.9277"
 Content-Transfer-Encoding: 7bit
 
 
---15251315620.565cFcb.8711
-Date: Mon, 30 Apr 2018 23:39:22 +0000
+--15251316820.BA3AaC5.9277
+Date: Mon, 30 Apr 2018 23:41:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,30 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D106305
 
---- Comment #5 from Geroge T <reportbug-gQOQsHldK/Xzs492ZWNkEA@public.gmane.org> ---
-Just recompiled the kernel from linux-source-4.15.tar.xz, version
-linux-4.15.17. Patched to add "case NV_DEVICE_INFO_V0_PASCAL:"(In reply to =
-Ilia
-Mirkin from comment #3)
-> I believe that the backlight is just not hooked up for Pascal.
->=20
-> There's a patch in bug #100446
-> (https://bugs.freedesktop.org/attachment.cgi?id=3D138646) which may addre=
-ss
-> this.
-
-Ok finally tested the patch and recompiled kernel linux-4.15.17 on debian, =
-but
-still same result, no backlight control, it's always at 100%. The folder
-"/sys/class/backlight/" is totally empty.
+--- Comment #6 from Geroge T <reportbug-gQOQsHldK/Xzs492ZWNkEA@public.gmane.org> ---
+On KDE Plasma, at least I can use the operating system as normal, but with
+gnome 3 it's a nightmare, the mouse and user interface is so sluggish that =
+it's
+impractical to use.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15251315620.565cFcb.8711
-Date: Mon, 30 Apr 2018 23:39:22 +0000
+--15251316820.BA3AaC5.9277
+Date: Mon, 30 Apr 2018 23:41:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,8 +66,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Can't change screen brightness on MSI GT73VR with nouveau=
  driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106305#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106305#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Can't change screen brightness on MSI GT73VR with nouveau=
@@ -89,28 +78,11 @@ t # 5</a>
 reportbug&#64;mailna.biz" title=3D"Geroge T &lt;reportbug&#64;mailna.biz&gt=
 ;"> <span class=3D"fn">Geroge T</span></a>
 </span></b>
-        <pre>Just recompiled the kernel from linux-source-4.15.tar.xz, vers=
-ion
-linux-4.15.17. Patched to add &quot;case NV_DEVICE_INFO_V0_PASCAL:&quot;(In=
- reply to Ilia
-Mirkin from <a href=3D"show_bug.cgi?id=3D106305#c3">comment #3</a>)
-<span class=3D"quote">&gt; I believe that the backlight is just not hooked =
-up for Pascal.
-&gt;=20
-&gt; There's a patch in <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
-veau drivers"
-   href=3D"show_bug.cgi?id=3D100446">bug #100446</a>
-&gt; (<a href=3D"https://bugs.freedesktop.org/attachment.cgi?id=3D138646">h=
-ttps://bugs.freedesktop.org/attachment.cgi?id=3D138646</a>) which may addre=
-ss
-&gt; this.</span >
-
-Ok finally tested the patch and recompiled kernel linux-4.15.17 on debian, =
-but
-still same result, no backlight control, it's always at 100%. The folder
-&quot;/sys/class/backlight/&quot; is totally empty.</pre>
+        <pre>On KDE Plasma, at least I can use the operating system as norm=
+al, but with
+gnome 3 it's a nightmare, the mouse and user interface is so sluggish that =
+it's
+impractical to use.</pre>
         </div>
       </p>
 
@@ -125,9 +97,9 @@ still same result, no backlight control, it's always at 100%. The folder
     </body>
 </html>=
 
---15251315620.565cFcb.8711--
+--15251316820.BA3AaC5.9277--
 
---===============1322165647==
+--===============1661903389==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -137,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1322165647==--
+--===============1661903389==--
