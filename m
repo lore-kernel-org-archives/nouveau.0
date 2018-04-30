@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106324] Sporadic freezes under load with Chromium
-Date: Mon, 30 Apr 2018 17:45:11 +0000
-Message-ID: <bug-106324-8800-Q2nqM1I5om@http.bugs.freedesktop.org/>
-References: <bug-106324-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 106305] Can't change screen brightness on MSI GT73VR
+ with nouveau driver
+Date: Mon, 30 Apr 2018 23:39:22 +0000
+Message-ID: <bug-106305-8800-Dl4alI5WAa@http.bugs.freedesktop.org/>
+References: <bug-106305-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1926778983=="
+Content-Type: multipart/mixed; boundary="===============1322165647=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106324-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-106305-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,46 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1926778983==
-Content-Type: multipart/alternative; boundary="15251103112.725eb4f5B.19323"
+--===============1322165647==
+Content-Type: multipart/alternative; boundary="15251315620.565cFcb.8711"
 Content-Transfer-Encoding: 7bit
 
 
---15251103112.725eb4f5B.19323
-Date: Mon, 30 Apr 2018 17:45:11 +0000
+--15251315620.565cFcb.8711
+Date: Mon, 30 Apr 2018 23:39:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106324
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106305
 
---- Comment #1 from Darek <dz1125.bug.tracker-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This [1] patch prevents random xserver freezes
-tested:
-GPU GTX 550Ti
-mesa 18.1.0rc2
-xorg-server 1.19.99.905
-xf86-video-nouveau-git 1.0.15.r5.gac8f7b9
-DRI3 enabled
+--- Comment #5 from Geroge T <reportbug-gQOQsHldK/Xzs492ZWNkEA@public.gmane.org> ---
+Just recompiled the kernel from linux-source-4.15.tar.xz, version
+linux-4.15.17. Patched to add "case NV_DEVICE_INFO_V0_PASCAL:"(In reply to =
+Ilia
+Mirkin from comment #3)
+> I believe that the backlight is just not hooked up for Pascal.
+>=20
+> There's a patch in bug #100446
+> (https://bugs.freedesktop.org/attachment.cgi?id=3D138646) which may addre=
+ss
+> this.
 
-I noted the same behavior with:
-mesa 18.0.1-1
-xorg-server 1.19.6+13+gd0d1a694f-2
-xf86-video-nouveau-git 1.0.15.r5.gac8f7b9
-DRI3 enabled
-
-[1] https://patchwork.freedesktop.org/series/41258/ (rev 4)
-
-I'm not sure if it is related, but it's worth mentioning
+Ok finally tested the patch and recompiled kernel linux-4.15.17 on debian, =
+but
+still same result, no backlight control, it's always at 100%. The folder
+"/sys/class/backlight/" is totally empty.
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15251103112.725eb4f5B.19323
-Date: Mon, 30 Apr 2018 17:45:11 +0000
+--15251315620.565cFcb.8711
+Date: Mon, 30 Apr 2018 23:39:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,36 +75,42 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Sporadic freezes under load with Chromium"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106324#c1">Commen=
-t # 1</a>
+   title=3D"NEW - Can't change screen brightness on MSI GT73VR with nouveau=
+ driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106305#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Sporadic freezes under load with Chromium"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106324">bug 10632=
-4</a>
+   title=3D"NEW - Can't change screen brightness on MSI GT73VR with nouveau=
+ driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106305">bug 10630=
+5</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dz1125.bug.tracker&#64;gmail.com" title=3D"Darek &lt;dz1125.bug.tracker&#64=
-;gmail.com&gt;"> <span class=3D"fn">Darek</span></a>
+reportbug&#64;mailna.biz" title=3D"Geroge T &lt;reportbug&#64;mailna.biz&gt=
+;"> <span class=3D"fn">Geroge T</span></a>
 </span></b>
-        <pre>This [1] patch prevents random xserver freezes
-tested:
-GPU GTX 550Ti
-mesa 18.1.0rc2
-xorg-server 1.19.99.905
-xf86-video-nouveau-git 1.0.15.r5.gac8f7b9
-DRI3 enabled
+        <pre>Just recompiled the kernel from linux-source-4.15.tar.xz, vers=
+ion
+linux-4.15.17. Patched to add &quot;case NV_DEVICE_INFO_V0_PASCAL:&quot;(In=
+ reply to Ilia
+Mirkin from <a href=3D"show_bug.cgi?id=3D106305#c3">comment #3</a>)
+<span class=3D"quote">&gt; I believe that the backlight is just not hooked =
+up for Pascal.
+&gt;=20
+&gt; There's a patch in <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
+veau drivers"
+   href=3D"show_bug.cgi?id=3D100446">bug #100446</a>
+&gt; (<a href=3D"https://bugs.freedesktop.org/attachment.cgi?id=3D138646">h=
+ttps://bugs.freedesktop.org/attachment.cgi?id=3D138646</a>) which may addre=
+ss
+&gt; this.</span >
 
-I noted the same behavior with:
-mesa 18.0.1-1
-xorg-server 1.19.6+13+gd0d1a694f-2
-xf86-video-nouveau-git 1.0.15.r5.gac8f7b9
-DRI3 enabled
-
-[1] <a href=3D"https://patchwork.freedesktop.org/series/41258/">https://pat=
-chwork.freedesktop.org/series/41258/</a> (rev 4)
-
-I'm not sure if it is related, but it's worth mentioning</pre>
+Ok finally tested the patch and recompiled kernel linux-4.15.17 on debian, =
+but
+still same result, no backlight control, it's always at 100%. The folder
+&quot;/sys/class/backlight/&quot; is totally empty.</pre>
         </div>
       </p>
 
@@ -113,14 +119,15 @@ I'm not sure if it is related, but it's worth mentioning</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15251103112.725eb4f5B.19323--
+--15251315620.565cFcb.8711--
 
---===============1926778983==
+--===============1322165647==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -130,4 +137,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1926778983==--
+--===============1322165647==--
