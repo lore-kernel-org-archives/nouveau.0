@@ -1,70 +1,151 @@
-From: Robin Murphy <robin.murphy@arm.com>
-Subject: Re: [PATCH v2 2/5] dma-mapping: Introduce dma_iommu_detach_device()
- API
-Date: Mon, 30 Apr 2018 12:41:52 +0100
-Message-ID: <e549979d-9f53-a329-da1a-ed5139958762@arm.com>
-References: <20180425101051.15349-1-thierry.reding@gmail.com>
- <20180425101051.15349-2-thierry.reding@gmail.com>
- <20180425151934.GC16075@infradead.org> <20180426121136.GD11985@ulmo>
- <20180430110231.GF2476@ulmo>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 104291] Virgl broken on current mesa (17.4+),
+ with nouveau/nv50 as host
+Date: Mon, 30 Apr 2018 11:59:38 +0000
+Message-ID: <bug-104291-8800-akn2tyUwRK@http.bugs.freedesktop.org/>
+References: <bug-104291-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20180430110231.GF2476@ulmo>
-Content-Language: en-GB
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Thierry Reding <thierry.reding@gmail.com>, Christoph Hellwig <hch@infradead.org>
-Cc: nouveau@lists.freedesktop.org, Russell King <linux@armlinux.org.uk>, dri-devel@lists.freedesktop.org, iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: multipart/mixed; boundary="===============1218243279=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-104291-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMzAvMDQvMTggMTI6MDIsIFRoaWVycnkgUmVkaW5nIHdyb3RlOgo+IE9uIFRodSwgQXByIDI2
-LCAyMDE4IGF0IDAyOjExOjM2UE0gKzAyMDAsIFRoaWVycnkgUmVkaW5nIHdyb3RlOgo+PiBPbiBX
-ZWQsIEFwciAyNSwgMjAxOCBhdCAwODoxOTozNEFNIC0wNzAwLCBDaHJpc3RvcGggSGVsbHdpZyB3
-cm90ZToKPj4+IE9uIFdlZCwgQXByIDI1LCAyMDE4IGF0IDEyOjEwOjQ4UE0gKzAyMDAsIFRoaWVy
-cnkgUmVkaW5nIHdyb3RlOgo+Pj4+IEZyb206IFRoaWVycnkgUmVkaW5nIDx0cmVkaW5nQG52aWRp
-YS5jb20+Cj4+Pj4KPj4+PiBUaGUgZG1hX2lvbW11X2RldGFjaF9kZXZpY2UoKSBBUEkgY2FuIGJl
-IHVzZWQgYnkgZHJpdmVycyB0byBmb3JjaWJseQo+Pj4+IGRldGFjaCBhIGRldmljZSBmcm9tIGFu
-IElPTU1VIHRoYXQgYXJjaGl0ZWN0dXJlIGNvZGUgbWlnaHQgaGF2ZSBhdHRhY2hlZAo+Pj4+IHRv
-LiBUaGlzIGlzIHVzZWZ1bCBmb3IgZHJpdmVycyB0aGF0IG5lZWQgZXhwbGljaXQgY29udHJvbCBv
-dmVyIHRoZSBJT01NVQo+Pj4+IHVzaW5nIHRoZSBJT01NVSBBUEkgZGlyZWN0bHkuCj4+Pgo+Pj4g
-R2l2ZW4gdGhhdCBubyBvbmUgZWxzZSBpbXBsZW1lbnRzIGl0IG1ha2luZyBpdCBhIGdlbmVyaWMg
-QVBJIHNlZW1zCj4+PiByYXRoZXIgY29uZnVzaW5nLiAgRm9yIG5vdyBJJ2QgcmVuYW1lIGl0IHRv
-Cj4+PiBhcm1fZG1hX2lvbW11X2RldGFjaF9kZXZpY2UoKSBhbmQgb25seSBpbXBsZW1lbnQgaXQg
-aW4gYXJtLgo+Pgo+PiBUaGF0J2QgYmUgc3Vib3B0aW1hbCBiZWNhdXNlIHRoaXMgY29kZSBpcyB1
-c2VkIG9uIGJvdGggMzItYml0IGFuZCA2NC1iaXQKPj4gQVJNLiBJZiB3ZSBtYWtlIHRoZSBmdW5j
-dGlvbiAzMi1iaXQgQVJNIHNwZWNpZmljIHRoZW4gdGhlIGRyaXZlciBjb2RlCj4+IHdvdWxkIG5l
-ZWQgdG8gdXNlIGFuICNpZmRlZiB0byBtYWtlIHN1cmUgY29tcGlsYXRpb24gZG9lc24ndCBicmVh
-ayBvbgo+PiA2NC1iaXQgQVJNLgo+IAo+IERvIHlvdSBzdGlsbCB3YW50IG1lIHRvIG1ha2UgdGhp
-cyBBUk0gc3BlY2lmaWM/IFdoaWxlIEkgaGF2ZW4ndAo+IGVuY291bnRlcmVkIHRoaXMgaXNzdWUg
-b24gNjQtYml0IEFSTSB5ZXQsIEkgdGhpbmsgaXQgd291bGQgaGFwcGVuIHRoZXJlCj4gYXMgd2Vs
-bCwgdW5kZXIgdGhlIHJpZ2h0IGNpcmN1bXN0YW5jZXMuIEkgY291bGQgdGFrZSBhIHNob3QgYXQK
-PiBpbXBsZW1lbnRpbmcgdGhlIGVxdWl2YWxlbnQgdGhlcmUgKHdoaWNoIG1lYW5zIGVzc2VudGlh
-bGx5IGltcGxlbWVudGluZwo+IGl0IGZvciBkcml2ZXJzL2lvbW11L2RtYS1pb21tdS5jIGFuZCBj
-YWxsaW5nIHRoYXQgZnJvbSA2NC1iaXQgQVJNIGNvZGUpLgoKSXQgc291bmRzIGxpa2UgdGhpbmdz
-IGFyZSBnZXR0aW5nIGEgYml0IGJhY2t3YXJkcyBoZXJlOiBpb21tdS1kbWEgc2hvdWxkIApoYXZl
-IG5vdGhpbmcgdG8gZG8gd2l0aCB0aGlzLCBzaW5jZSBpZiB5b3UndmUgZXhwbGljaXRseSBhdHRh
-Y2hlZCB0aGUgCmRldmljZSB0byB5b3VyIG93biBJT01NVSBkb21haW4gdGhlbiB5b3UncmUgYWxy
-ZWFkeSBieXBhc3NpbmcgZXZlcnl0aGluZyAKaXQga25vd3MgYWJvdXQgYW5kIGhhcyBjb250cm9s
-IG92ZXIuIEFyY2ggY29kZSBjYWxsaW5nIGludG8gaW9tbXUtZG1hIHRvIApkbyBzb21ldGhpbmcg
-d2hpY2ggbWFrZXMgYXJjaCBjb2RlIG5vdCB1c2UgaW9tbXUtZG1hIG1ha2VzIHZlcnkgbGl0dGxl
-IApzZW5zZS4KCkFGQUlDUyB0aGUgb25seSBhc3BlY3Qgb2YgYXJtX2lvbW11X2RldGFjaF9kZXZp
-Y2UoKSB3aGljaCBhY3R1YWxseSAKbWF0dGVycyBpbiB0aGlzIGNhc2UgaXMgdGhlIHNldF9kbWFf
-b3BzKCkgYml0LCBzbyB3aGF0IHdlJ3JlIHJlYWxseSAKYWZ0ZXIgaXMgYSBnZW5lcmljIHdheSBm
-b3IgZHJpdmVycyB0byBzYXkgIkhleSwgSSBhY3R1YWxseSBoYXZlIG15IG93biAKTU1VIChvciB3
-YW50IHRvIGNvbnRyb2wgdGhlIG9uZSB5b3UgYWxyZWFkeSBrbm93IGFib3V0KSBzbyBwbGVhc2Ug
-Z2l2ZSAKbWUgZGlyZWN0IERNQSBvcHMiLCB3aGljaCB0aGUgYXJjaCBjb2RlIGhhbmRsZXMgYXMg
-YXBwcm9wcmlhdGUgKG1heWJlIAppdCdzIGFsc28gYWxsb3dlZCB0byBmYWlsIGluIGNhc2VzIGxp
-a2Ugc3dpb3RsYj1mb3JjZSBvciB3aGVuIHRoZXJlIGlzIApSQU0gYmV5b25kIHRoZSBkZXZpY2Un
-cyBETUEgbWFzaykuCgpSb2Jpbi4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-ZHJpLWRldmVsCg==
+
+--===============1218243279==
+Content-Type: multipart/alternative; boundary="15250895780.6B60.23070"
+Content-Transfer-Encoding: 7bit
+
+
+--15250895780.6B60.23070
+Date: Mon, 30 Apr 2018 11:59:38 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104291
+
+Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
+
+--- Comment #12 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Sorry, it works now (Mesa 18.2.0-devel (git-96ed3714fc) for both guest and
+host). Apparently, I just forgot to mount /dev/shm in initscripts in guest,=
+ and
+dri3  failed.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15250895780.6B60.23070
+Date: Mon, 30 Apr 2018 11:59:38 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:randrik&#=
+64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <sp=
+an class=3D"fn">Andrew Randrianasulu</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Virgl broken on current mesa (17.4+), with nou=
+veau/nv50 as host"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104291">bug 10429=
+1</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Virgl broken on current mesa (17.4+), with nou=
+veau/nv50 as host"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104291#c12">Comme=
+nt # 12</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Virgl broken on current mesa (17.4+), with nou=
+veau/nv50 as host"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104291">bug 10429=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
+gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
+</span></b>
+        <pre>Sorry, it works now (Mesa 18.2.0-devel (git-96ed3714fc) for bo=
+th guest and
+host). Apparently, I just forgot to mount /dev/shm in initscripts in guest,=
+ and
+dri3  failed.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15250895780.6B60.23070--
+
+--===============1218243279==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1218243279==--
