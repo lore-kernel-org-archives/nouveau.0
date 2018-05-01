@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106305] Can't change screen brightness on MSI GT73VR
- with nouveau driver
-Date: Tue, 01 May 2018 02:05:52 +0000
-Message-ID: <bug-106305-8800-o1GYMvva9B@http.bugs.freedesktop.org/>
-References: <bug-106305-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100446] Backlight control not working on Pascal /
+ GP106 using nouveau drivers
+Date: Tue, 01 May 2018 02:06:41 +0000
+Message-ID: <bug-100446-8800-m9BYi4E2iv@http.bugs.freedesktop.org/>
+References: <bug-100446-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0489732104=="
+Content-Type: multipart/mixed; boundary="===============0590847687=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106305-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100446-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0489732104==
-Content-Type: multipart/alternative; boundary="15251403520.dE252BB.10081"
+--===============0590847687==
+Content-Type: multipart/alternative; boundary="15251404010.bECB8F.10081"
 Content-Transfer-Encoding: 7bit
 
 
---15251403520.dE252BB.10081
-Date: Tue, 1 May 2018 02:05:52 +0000
+--15251404010.bECB8F.10081
+Date: Tue, 1 May 2018 02:06:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106305
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100446
 
---- Comment #8 from Geroge T <reportbug-gQOQsHldK/Xzs492ZWNkEA@public.gmane.org> ---
-Ok tested again with the 4 patches from the kernel git I confirm that it wo=
-rks.
-Definitely the "case NV_DEVICE_INFO_V0_PASCAL:" line has to be added.
+Geroge T <reportbug-gQOQsHldK/Xzs492ZWNkEA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |reportbug-gQOQsHldK/Xzs492ZWNkEA@public.gmane.org
+
+--- Comment #11 from Geroge T <reportbug-gQOQsHldK/Xzs492ZWNkEA@public.gmane.org> ---
+*** Bug 106305 has been marked as a duplicate of this bug. ***
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15251403520.dE252BB.10081
-Date: Tue, 1 May 2018 02:05:52 +0000
+--15251404010.bECB8F.10081
+Date: Tue, 1 May 2018 02:06:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,29 +61,56 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:reportbug=
+&#64;mailna.biz" title=3D"Geroge T &lt;reportbug&#64;mailna.biz&gt;"> <span=
+ class=3D"fn">Geroge T</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
+veau drivers"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446">bug 10044=
+6</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>reportbug&#64;mailna.biz
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Can't change screen brightness on MSI GT73VR with nouveau=
- driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106305#c8">Commen=
-t # 8</a>
+   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
+veau drivers"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446#c11">Comme=
+nt # 11</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Can't change screen brightness on MSI GT73VR with nouveau=
- driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106305">bug 10630=
-5</a>
+   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
+veau drivers"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446">bug 10044=
+6</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 reportbug&#64;mailna.biz" title=3D"Geroge T &lt;reportbug&#64;mailna.biz&gt=
 ;"> <span class=3D"fn">Geroge T</span></a>
 </span></b>
-        <pre>Ok tested again with the 4 patches from the kernel git I confi=
-rm that it works.
-Definitely the &quot;case NV_DEVICE_INFO_V0_PASCAL:&quot; line has to be ad=
-ded.</pre>
+        <pre>*** <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Can't change screen brightness on MSI GT73=
+VR with nouveau driver"
+   href=3D"show_bug.cgi?id=3D106305">Bug 106305</a> has been marked as a du=
+plicate of this bug. ***</pre>
         </div>
       </p>
 
@@ -89,15 +119,14 @@ ded.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15251403520.dE252BB.10081--
+--15251404010.bECB8F.10081--
 
---===============0489732104==
+--===============0590847687==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +136,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0489732104==--
+--===============0590847687==--
