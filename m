@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106305] Can't change screen brightness on MSI GT73VR
- with nouveau driver
-Date: Tue, 01 May 2018 02:06:41 +0000
-Message-ID: <bug-106305-8800-mgbFUJ8jrl@http.bugs.freedesktop.org/>
-References: <bug-106305-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100446] Backlight control not working on Pascal /
+ GP106 using nouveau drivers
+Date: Tue, 01 May 2018 02:10:26 +0000
+Message-ID: <bug-100446-8800-rOHYSAaFEI@http.bugs.freedesktop.org/>
+References: <bug-100446-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1894871627=="
+Content-Type: multipart/mixed; boundary="===============1604615418=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106305-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100446-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1894871627==
-Content-Type: multipart/alternative; boundary="15251404000.0E29BCb.10081"
+--===============1604615418==
+Content-Type: multipart/alternative; boundary="15251406260.dFA9.11276"
 Content-Transfer-Encoding: 7bit
 
 
---15251404000.0E29BCb.10081
-Date: Tue, 1 May 2018 02:06:40 +0000
+--15251406260.dFA9.11276
+Date: Tue, 1 May 2018 02:10:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106305
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100446
 
-Geroge T <reportbug-gQOQsHldK/Xzs492ZWNkEA@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |DUPLICATE
-             Status|NEW                         |RESOLVED
-
---- Comment #9 from Geroge T <reportbug-gQOQsHldK/Xzs492ZWNkEA@public.gmane.org> ---
-Closing since it's a dupe
-
-*** This bug has been marked as a duplicate of bug 100446 ***
+--- Comment #12 from Geroge T <reportbug-gQOQsHldK/Xzs492ZWNkEA@public.gmane.org> ---
+I confirm that adding the line "case NV_DEVICE_INFO_V0_PASCAL:" over latest
+kernel git makes it work on my MSI GT73VR 6RF Titan Pro. Will attach the fi=
+le
+for testing purposes.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15251404000.0E29BCb.10081
-Date: Tue, 1 May 2018 02:06:40 +0000
+--15251406260.dFA9.11276
+Date: Tue, 1 May 2018 02:10:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,64 +58,30 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:reportbug=
-&#64;mailna.biz" title=3D"Geroge T &lt;reportbug&#64;mailna.biz&gt;"> <span=
- class=3D"fn">Geroge T</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Can't change screen brightness on MSI GT73=
-VR with nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106305">bug 10630=
-5</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Can't change screen brightness on MSI GT73=
-VR with nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106305#c9">Commen=
-t # 9</a>
+          bz_status_NEW "
+   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
+veau drivers"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446#c12">Comme=
+nt # 12</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Can't change screen brightness on MSI GT73=
-VR with nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106305">bug 10630=
-5</a>
+          bz_status_NEW "
+   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
+veau drivers"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446">bug 10044=
+6</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 reportbug&#64;mailna.biz" title=3D"Geroge T &lt;reportbug&#64;mailna.biz&gt=
 ;"> <span class=3D"fn">Geroge T</span></a>
 </span></b>
-        <pre>Closing since it's a dupe
-
-*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
-veau drivers"
-   href=3D"show_bug.cgi?id=3D100446">bug 100446</a> ***</pre>
+        <pre>I confirm that adding the line &quot;case NV_DEVICE_INFO_V0_PA=
+SCAL:&quot; over latest
+kernel git makes it work on my MSI GT73VR 6RF Titan Pro. Will attach the fi=
+le
+for testing purposes.</pre>
         </div>
       </p>
 
@@ -131,15 +90,14 @@ veau drivers"
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15251404000.0E29BCb.10081--
+--15251406260.dFA9.11276--
 
---===============1894871627==
+--===============1604615418==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -149,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1894871627==--
+--===============1604615418==--
