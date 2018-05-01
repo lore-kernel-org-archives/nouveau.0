@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98386] [NVE7] bus: MMIO write of FAULT at [ IBUS ],
  Pointer to {TDMS, flat panel} table invalid
-Date: Tue, 01 May 2018 19:51:53 +0000
-Message-ID: <bug-98386-8800-7RzNXLotO1@http.bugs.freedesktop.org/>
+Date: Tue, 01 May 2018 20:16:51 +0000
+Message-ID: <bug-98386-8800-XLcqBx4KZk@http.bugs.freedesktop.org/>
 References: <bug-98386-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1520231060=="
+Content-Type: multipart/mixed; boundary="===============1192192672=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1520231060==
-Content-Type: multipart/alternative; boundary="15252043134.1b12.3221"
+--===============1192192672==
+Content-Type: multipart/alternative; boundary="15252058101.e9878f1fE.14375"
 Content-Transfer-Encoding: 7bit
 
 
---15252043134.1b12.3221
-Date: Tue, 1 May 2018 19:51:53 +0000
+--15252058101.e9878f1fE.14375
+Date: Tue, 1 May 2018 20:16:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,27 +40,29 @@ baybay <lujofu-tJ6BQdzZN76ZuzBka8ofvg@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-             Status|NEW                         |RESOLVED
+             Status|RESOLVED                    |REOPENED
+         Resolution|FIXED                       |---
 
---- Comment #20 from baybay <lujofu-tJ6BQdzZN76ZuzBka8ofvg@public.gmane.org> ---
-Just tested it again on the same laptop with Linux 4.16.6 and Mesa 18.0.1 w=
-ith
-latest Xorg stable version.
-My Nvidia card is now working properly, even after i reclock it to 0f.
-After looking at my kernel logs with dmesg, i've noticed i don't get the er=
-ror
-anymore.
-I'm so happy it finally got fixed...
+--- Comment #21 from baybay <lujofu-tJ6BQdzZN76ZuzBka8ofvg@public.gmane.org> ---
+Nevermind, i spoke a bit too fast...
+I had nouveau.runpm=3D0 set and that indeed fixed this MMIO write FAULT iss=
+ue.
+Also, i had it set before (on older kernels) and it used to do nothing.
+But that's now working.
 
-I think the issue can be closed.
+Without nouveau.runpm=3D0, i still get this issue.
+
+The lockups i had were not related to that issue and it was due to the fact
+that i enabled NvBoost.
+When NvBoost is enabled, i get the lockups. (either it set to 1 or 2 will
+freeze the Xorg)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15252043134.1b12.3221
-Date: Tue, 1 May 2018 19:51:53 +0000
+--15252058101.e9878f1fE.14375
+Date: Tue, 1 May 2018 20:16:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +78,9 @@ Auto-Submitted: auto-generated
 ss=3D"fn">baybay</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], P=
-ointer to {TDMS,flat panel} table invalid"
+          bz_status_REOPENED "
+   title=3D"REOPENED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer=
+ to {TDMS,flat panel} table invalid"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">bug 98386<=
 /a>
           <br>
@@ -90,48 +92,50 @@ ointer to {TDMS,flat panel} table invalid"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
+           <td style=3D"text-align:right;">Status</td>
+           <td>RESOLVED
            </td>
-           <td>FIXED
+           <td>REOPENED
            </td>
          </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>FIXED
            </td>
-           <td>RESOLVED
+           <td>---
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], P=
-ointer to {TDMS,flat panel} table invalid"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c20">Commen=
-t # 20</a>
+          bz_status_REOPENED "
+   title=3D"REOPENED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer=
+ to {TDMS,flat panel} table invalid"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c21">Commen=
+t # 21</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], P=
-ointer to {TDMS,flat panel} table invalid"
+          bz_status_REOPENED "
+   title=3D"REOPENED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer=
+ to {TDMS,flat panel} table invalid"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">bug 98386<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 lujofu&#64;eth2btc.info" title=3D"baybay &lt;lujofu&#64;eth2btc.info&gt;"> =
 <span class=3D"fn">baybay</span></a>
 </span></b>
-        <pre>Just tested it again on the same laptop with Linux 4.16.6 and =
-Mesa 18.0.1 with
-latest Xorg stable version.
-My Nvidia card is now working properly, even after i reclock it to 0f.
-After looking at my kernel logs with dmesg, i've noticed i don't get the er=
-ror
-anymore.
-I'm so happy it finally got fixed...
+        <pre>Nevermind, i spoke a bit too fast...
+I had nouveau.runpm=3D0 set and that indeed fixed this MMIO write FAULT iss=
+ue.
+Also, i had it set before (on older kernels) and it used to do nothing.
+But that's now working.
 
-I think the issue can be closed.</pre>
+Without nouveau.runpm=3D0, i still get this issue.
+
+The lockups i had were not related to that issue and it was due to the fact
+that i enabled NvBoost.
+When NvBoost is enabled, i get the lockups. (either it set to 1 or 2 will
+freeze the Xorg)</pre>
         </div>
       </p>
 
@@ -145,9 +149,9 @@ I think the issue can be closed.</pre>
     </body>
 </html>=
 
---15252043134.1b12.3221--
+--15252058101.e9878f1fE.14375--
 
---===============1520231060==
+--===============1192192672==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +161,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1520231060==--
+--===============1192192672==--
