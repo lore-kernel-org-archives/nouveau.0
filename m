@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106334] Freeze of system at random moments (using
- Wayland)
-Date: Tue, 01 May 2018 12:49:36 +0000
-Message-ID: <bug-106334-8800-eLtcOHHM5C@http.bugs.freedesktop.org/>
-References: <bug-106334-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99995] Dirt showdown very low fps (~3fps) after
+ update mesa
+Date: Tue, 01 May 2018 14:50:51 +0000
+Message-ID: <bug-99995-8800-cYJ05jF937@http.bugs.freedesktop.org/>
+References: <bug-99995-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1150465601=="
+Content-Type: multipart/mixed; boundary="===============1217870240=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106334-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99995-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1150465601==
-Content-Type: multipart/alternative; boundary="15251789760.bF1eca86.3637"
+--===============1217870240==
+Content-Type: multipart/alternative; boundary="15251862511.C481.27605"
 Content-Transfer-Encoding: 7bit
 
 
---15251789760.bF1eca86.3637
-Date: Tue, 1 May 2018 12:49:36 +0000
+--15251862511.C481.27605
+Date: Tue, 1 May 2018 14:50:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106334
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99995
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-BUG in nouveau_mem_host. I think we've seen that before. Not sure at what p=
-oint
-(and whether) it was fully fixed.
+--- Comment #6 from Gregor M=C3=BCnch <gr.muench-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Just want to add, using:
+
+MESA_EXTENSION_OVERRIDE=3D'-GL_ARB_shader_image_load_store
+-GL_ARB_compute_shader'
+
+Makes the advanced lightning options disappear in the options.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15251789760.bF1eca86.3637
-Date: Tue, 1 May 2018 12:49:36 +0000
+--15251862511.C481.27605
+Date: Tue, 1 May 2018 14:50:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,21 +66,24 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Freeze of system at random moments (using Wayland)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106334#c1">Commen=
-t # 1</a>
+   title=3D"NEW - Dirt showdown very low fps (~3fps) after update mesa"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99995#c6">Comment=
+ # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Freeze of system at random moments (using Wayland)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106334">bug 10633=
-4</a>
+   title=3D"NEW - Dirt showdown very low fps (~3fps) after update mesa"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99995">bug 99995<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+gr.muench&#64;gmail.com" title=3D"Gregor M=C3=BCnch &lt;gr.muench&#64;gmail=
+.com&gt;"> <span class=3D"fn">Gregor M=C3=BCnch</span></a>
 </span></b>
-        <pre>BUG in nouveau_mem_host. I think we've seen that before. Not s=
-ure at what point
-(and whether) it was fully fixed.</pre>
+        <pre>Just want to add, using:
+
+MESA_EXTENSION_OVERRIDE=3D'-GL_ARB_shader_image_load_store
+-GL_ARB_compute_shader'
+
+Makes the advanced lightning options disappear in the options.</pre>
         </div>
       </p>
 
@@ -86,13 +93,14 @@ ure at what point
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15251789760.bF1eca86.3637--
+--15251862511.C481.27605--
 
---===============1150465601==
+--===============1217870240==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1150465601==--
+--===============1217870240==--
