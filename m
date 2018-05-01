@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99995] Dirt showdown very low fps (~3fps) after
- update mesa
-Date: Tue, 01 May 2018 14:50:51 +0000
-Message-ID: <bug-99995-8800-cYJ05jF937@http.bugs.freedesktop.org/>
-References: <bug-99995-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98386] [NVE7] bus: MMIO write of FAULT at [ IBUS ],
+ Pointer to {TDMS, flat panel} table invalid
+Date: Tue, 01 May 2018 19:51:53 +0000
+Message-ID: <bug-98386-8800-7RzNXLotO1@http.bugs.freedesktop.org/>
+References: <bug-98386-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1217870240=="
+Content-Type: multipart/mixed; boundary="===============1520231060=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99995-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +21,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1217870240==
-Content-Type: multipart/alternative; boundary="15251862511.C481.27605"
+--===============1520231060==
+Content-Type: multipart/alternative; boundary="15252043134.1b12.3221"
 Content-Transfer-Encoding: 7bit
 
 
---15251862511.C481.27605
-Date: Tue, 1 May 2018 14:50:51 +0000
+--15252043134.1b12.3221
+Date: Tue, 1 May 2018 19:51:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99995
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98386
 
---- Comment #6 from Gregor M=C3=BCnch <gr.muench-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Just want to add, using:
+baybay <lujofu-tJ6BQdzZN76ZuzBka8ofvg@public.gmane.org> changed:
 
-MESA_EXTENSION_OVERRIDE=3D'-GL_ARB_shader_image_load_store
--GL_ARB_compute_shader'
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
 
-Makes the advanced lightning options disappear in the options.
+--- Comment #20 from baybay <lujofu-tJ6BQdzZN76ZuzBka8ofvg@public.gmane.org> ---
+Just tested it again on the same laptop with Linux 4.16.6 and Mesa 18.0.1 w=
+ith
+latest Xorg stable version.
+My Nvidia card is now working properly, even after i reclock it to 0f.
+After looking at my kernel logs with dmesg, i've noticed i don't get the er=
+ror
+anymore.
+I'm so happy it finally got fixed...
+
+I think the issue can be closed.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---15251862511.C481.27605
-Date: Tue, 1 May 2018 14:50:51 +0000
+--15252043134.1b12.3221
+Date: Tue, 1 May 2018 19:51:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,29 +71,67 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:lujofu&#6=
+4;eth2btc.info" title=3D"baybay &lt;lujofu&#64;eth2btc.info&gt;"> <span cla=
+ss=3D"fn">baybay</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], P=
+ointer to {TDMS,flat panel} table invalid"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">bug 98386<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Dirt showdown very low fps (~3fps) after update mesa"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99995#c6">Comment=
- # 6</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], P=
+ointer to {TDMS,flat panel} table invalid"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c20">Commen=
+t # 20</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Dirt showdown very low fps (~3fps) after update mesa"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99995">bug 99995<=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], P=
+ointer to {TDMS,flat panel} table invalid"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">bug 98386<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gr.muench&#64;gmail.com" title=3D"Gregor M=C3=BCnch &lt;gr.muench&#64;gmail=
-.com&gt;"> <span class=3D"fn">Gregor M=C3=BCnch</span></a>
+lujofu&#64;eth2btc.info" title=3D"baybay &lt;lujofu&#64;eth2btc.info&gt;"> =
+<span class=3D"fn">baybay</span></a>
 </span></b>
-        <pre>Just want to add, using:
+        <pre>Just tested it again on the same laptop with Linux 4.16.6 and =
+Mesa 18.0.1 with
+latest Xorg stable version.
+My Nvidia card is now working properly, even after i reclock it to 0f.
+After looking at my kernel logs with dmesg, i've noticed i don't get the er=
+ror
+anymore.
+I'm so happy it finally got fixed...
 
-MESA_EXTENSION_OVERRIDE=3D'-GL_ARB_shader_image_load_store
--GL_ARB_compute_shader'
-
-Makes the advanced lightning options disappear in the options.</pre>
+I think the issue can be closed.</pre>
         </div>
       </p>
 
@@ -93,14 +141,13 @@ Makes the advanced lightning options disappear in the options.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15251862511.C481.27605--
+--15252043134.1b12.3221--
 
---===============1217870240==
+--===============1520231060==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +157,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1217870240==--
+--===============1520231060==--
