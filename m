@@ -1,15 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: libva problem?
-Date: Tue, 1 May 2018 18:19:50 -0400
-Message-ID: <CAKb7UvhvXe+zCZU-QKs0KaE6X72GnVdsGGrR-RDS15xpBz_2iA@mail.gmail.com>
-References: <pcanhe$oif$1@blaine.gmane.org>
- <CAKb7Uvj2_k3KGaHn+VQ5BD=N6xS8GF_N-OfzaCTj4=K50bH6ug@mail.gmail.com>
- <pcaosc$c5r$1@blaine.gmane.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 99889] nouveau preventing shutdown after
+ suspend-resume
+Date: Wed, 02 May 2018 13:12:06 +0000
+Message-ID: <bug-99889-8800-vypSYIf87A@http.bugs.freedesktop.org/>
+References: <bug-99889-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0935827059=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <pcaosc$c5r$1@blaine.gmane.org>
+In-Reply-To: <bug-99889-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,38 +17,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: James <bjlockie-ozXLQgHQwDP3fQ9qLvQP4Q@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBNYXkgMSwgMjAxOCBhdCA2OjE2IFBNLCBKYW1lcyA8Ympsb2NraWVAbG9ja2llLmNh
-PiB3cm90ZToKPiBPbiAyMDE4LTA1LTAxIDA2OjAwIFBNLCBJbGlhIE1pcmtpbiB3cm90ZToKPj4g
-T24gVHVlLCBNYXkgMSwgMjAxOCBhdCA1OjUzIFBNLCBKYW1lcyA8Ympsb2NraWVAbG9ja2llLmNh
-PiB3cm90ZToKPj4+IEkgYW0gcGxheWluZyB2aWRlb3MgZnJvbSBteSBsdWJ1bnR1IGNvbXB1dGVy
-IHRvIG15IHR2IHRocm91Z2ggdGhlIGhkbWkKPj4+IGludGVyZmFjZSBvbiBteSB2aWRlbyBjYXJk
-Lgo+Pj4gSXQgbW9zdGx5IHdvcmtzLgo+Pj4gU29tZSBzb3VuZCBkb2Vzbid0IGFuZCBJIHRoaW5r
-IGl0IGlzIHJlbGF0ZWQgdG8gdGhlIGF1ZGlvIGNvZGUuCj4+PiBBNTIgQXVkaW8gKGFrYSBBQzMp
-IChhNTIpIHdvcmtzLgo+Pj4gSXQgc2VlbXMgTVBFRyBBQUMgQXVkaW8gKG1wNGEpIGRvZXNuJ3Qg
-d29yay4KPj4+IEkgY2hlY2tlZCBhIHZpZGVvIHRoYXQgdXNlZCB0byB3b3JrIGFuZCBpdCBkb2Vz
-bid0IHdvcmsgbm93Lgo+Pj4gSXQgaGFzIHRoZSBtcDRhIGNvZGVjIGFsc28uCj4+Pgo+Pj4gVGhl
-IG9uZSB0aGF0IHVzZWQgdG8gd29yayBzaG93cyB0aGlzIGluIFRvb2xzL01lc3NhZ2VzOgo+Pj4g
-dmRwYXVfYXZjb2RlYyBlcnJvcjogZGVjb2RlciBwcm9maWxlIG5vdCBzdXBwb3J0ZWQ6IDcKPj4+
-Cj4+PiBUaGUgbmV3IG9uZSB0aGF0IGRvZXNuJ3Qgd29yayBzaG93cyB0aGlzIGluIFRvb2xzL01l
-c3NhZ2VzOgo+Pj4gdmRwYXVfYXZjb2RlYyBlcnJvcjogZGVjb2RlciBwcm9maWxlIG5vdCBzdXBw
-b3J0ZWQ6IDgKPj4+Cj4+PiBJIHRoaW5rIGl0IG1pZ2h0IGJlIHJlbGF0ZWQgdG8gdGhlIG5vdmVh
-dSB2aWRlbyBkcml2ZXI6Cj4+PiAkIHZhaW5mbwo+Pj4gbGlidmEgaW5mbzogVkEtQVBJIHZlcnNp
-b24gMC40MC4wCj4+PiBsaWJ2YSBpbmZvOiB2YV9nZXREcml2ZXJOYW1lKCkgcmV0dXJucyAwCj4+
-PiBsaWJ2YSBpbmZvOiBUcnlpbmcgdG8gb3Blbgo+Pj4gL3Vzci9saWIveDg2XzY0LWxpbnV4LWdu
-dS9kcmkvbm91dmVhdV9kcnZfdmlkZW8uc28KPj4+IGxpYnZhIGluZm86IHZhX29wZW5Ecml2ZXIo
-KSByZXR1cm5zIC0xCj4+PiB2YUluaXRpYWxpemUgZmFpbGVkIHdpdGggZXJyb3IgY29kZSAtMSAo
-dW5rbm93biBsaWJ2YSBlcnJvciksZXhpdAo+Pgo+PiBXaGF0IEdQVSBkbyB5b3UgaGF2ZT8gRm9y
-IHZpZGVvIGFjY2VsZXJhdGlvbiAoaS5lLiB2YS1hcGkgYW5kIHZkcGF1KSwKPj4gZGlkIHlvdSBp
-bnN0YWxsIHRoZSBuZWNlc3NhcnkgZmlybXdhcmU/Cj4+Cj4KPiBJIGRpZG4ndCBuZWVkIGZpcm13
-YXJlIGJlZm9yZSBidXQgaXQgbG9va3MgbGlrZSBJIGRvIG5vdy4KPiBJIHdpbGwgbG9vayBpbnRv
-IHRoYXQuCgpXZWxsLCB5b3UgZG9uJ3QgbmVlZCBpdCB0byBwbGF5IGJhY2sgdmlkZW8uIFlvdSBv
-bmx5IG5lZWQgaXQgZm9yCkdQVS1hY2NlbGVyYXRlZCB2aWRlbyBkZWNvZGluZyAod2hpY2ggaXMg
-d2hhdCB5b3UgZ2V0IHdoZW4gdXNpbmcKdmEtYXBpIG9yIHZkcGF1KS4gU2VlCmh0dHBzOi8vbm91
-dmVhdS5mcmVlZGVza3RvcC5vcmcvd2lraS9WaWRlb0FjY2VsZXJhdGlvbi8gZm9yIHRoZQpkZXRh
-aWxzLgoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0935827059==
+Content-Type: multipart/alternative; boundary="15252667260.a1cDf9C.1318"
+Content-Transfer-Encoding: 7bit
+
+
+--15252667260.a1cDf9C.1318
+Date: Wed, 2 May 2018 13:12:06 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99889
+
+--- Comment #12 from pokorny.jan.94-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Had same issues. Probably sloved by http://fedoraproject.org/wiki/Bumblebee.
+
+Tried at Linux john-gem 4.16.3-200.fc27.x86_64
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15252667260.a1cDf9C.1318
+Date: Wed, 2 May 2018 13:12:06 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889#c12">Commen=
+t # 12</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau preventing shutdown after suspend-resume"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99889">bug 99889<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pokorny.jan.94&#64;gmail.com" title=3D"pokorny.jan.94&#64;gmail.com">pokorn=
+y.jan.94&#64;gmail.com</a>
+</span></b>
+        <pre>Had same issues. Probably sloved by <a href=3D"http://fedorapr=
+oject.org/wiki/Bumblebee">http://fedoraproject.org/wiki/Bumblebee</a>.
+
+Tried at Linux john-gem 4.16.3-200.fc27.x86_64</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15252667260.a1cDf9C.1318--
+
+--===============0935827059==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0935827059==--
