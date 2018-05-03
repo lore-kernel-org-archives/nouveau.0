@@ -1,218 +1,207 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH] drm/nouveau: Fix deadlock in nv50_mstm_register_connector()
-Date: Wed,  2 May 2018 19:38:48 -0400
-Message-ID: <20180502233848.14886-1-lyude@redhat.com>
-Return-path: <stable-owner@vger.kernel.org>
-Sender: stable-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Karol Herbst <kherbst@redhat.com>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 106368] New: nouveau timeouts on boot
+Date: Thu, 03 May 2018 01:10:34 +0000
+Message-ID: <bug-106368-8800@http.bugs.freedesktop.org/>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============0528165162=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Currently; we're grabbing all of the modesetting locks before adding MST
-connectors to fbdev. This isn't actually necessary, and causes a
-deadlock as well:
 
-======================================================
-WARNING: possible circular locking dependency detected
-4.17.0-rc3Lyude-Test+ #1 Tainted: G           O
-------------------------------------------------------
-kworker/1:0/18 is trying to acquire lock:
-00000000c832f62d (&helper->lock){+.+.}, at: drm_fb_helper_add_one_connector+0x2a/0x60 [drm_kms_helper]
+--===============0528165162==
+Content-Type: multipart/alternative; boundary="15253098340.6faCF2BaA.16969"
+Content-Transfer-Encoding: 7bit
 
-but task is already holding lock:
-00000000942e28e2 (crtc_ww_class_mutex){+.+.}, at: drm_modeset_backoff+0x8e/0x1c0 [drm]
 
-which lock already depends on the new lock.
+--15253098340.6faCF2BaA.16969
+Date: Thu, 3 May 2018 01:10:34 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-the existing dependency chain (in reverse order) is:
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106368
 
--> #3 (crtc_ww_class_mutex){+.+.}:
-       ww_mutex_lock+0x43/0x80
-       drm_modeset_lock+0x71/0x130 [drm]
-       drm_helper_probe_single_connector_modes+0x7d/0x6b0 [drm_kms_helper]
-       drm_setup_crtcs+0x15e/0xc90 [drm_kms_helper]
-       __drm_fb_helper_initial_config_and_unlock+0x29/0x480 [drm_kms_helper]
-       nouveau_fbcon_init+0x138/0x1a0 [nouveau]
-       nouveau_drm_load+0x173/0x7e0 [nouveau]
-       drm_dev_register+0x134/0x1c0 [drm]
-       drm_get_pci_dev+0x8e/0x160 [drm]
-       nouveau_drm_probe+0x1a9/0x230 [nouveau]
-       pci_device_probe+0xcd/0x150
-       driver_probe_device+0x30b/0x480
-       __driver_attach+0xbc/0xe0
-       bus_for_each_dev+0x67/0x90
-       bus_add_driver+0x164/0x260
-       driver_register+0x57/0xc0
-       do_one_initcall+0x4d/0x323
-       do_init_module+0x5b/0x1f8
-       load_module+0x20e5/0x2ac0
-       __do_sys_finit_module+0xb7/0xd0
-       do_syscall_64+0x60/0x1b0
-       entry_SYSCALL_64_after_hwframe+0x49/0xbe
+            Bug ID: 106368
+           Summary: nouveau timeouts on boot
+           Product: xorg
+           Version: 7.7 (2012.06)
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: starcraftmazter-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
--> #2 (crtc_ww_class_acquire){+.+.}:
-       drm_helper_probe_single_connector_modes+0x58/0x6b0 [drm_kms_helper]
-       drm_setup_crtcs+0x15e/0xc90 [drm_kms_helper]
-       __drm_fb_helper_initial_config_and_unlock+0x29/0x480 [drm_kms_helper]
-       nouveau_fbcon_init+0x138/0x1a0 [nouveau]
-       nouveau_drm_load+0x173/0x7e0 [nouveau]
-       drm_dev_register+0x134/0x1c0 [drm]
-       drm_get_pci_dev+0x8e/0x160 [drm]
-       nouveau_drm_probe+0x1a9/0x230 [nouveau]
-       pci_device_probe+0xcd/0x150
-       driver_probe_device+0x30b/0x480
-       __driver_attach+0xbc/0xe0
-       bus_for_each_dev+0x67/0x90
-       bus_add_driver+0x164/0x260
-       driver_register+0x57/0xc0
-       do_one_initcall+0x4d/0x323
-       do_init_module+0x5b/0x1f8
-       load_module+0x20e5/0x2ac0
-       __do_sys_finit_module+0xb7/0xd0
-       do_syscall_64+0x60/0x1b0
-       entry_SYSCALL_64_after_hwframe+0x49/0xbe
+Created attachment 139289
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139289&action=3Dedit
+dmesg
 
--> #1 (&dev->mode_config.mutex){+.+.}:
-       drm_setup_crtcs+0x10c/0xc90 [drm_kms_helper]
-       __drm_fb_helper_initial_config_and_unlock+0x29/0x480 [drm_kms_helper]
-       nouveau_fbcon_init+0x138/0x1a0 [nouveau]
-       nouveau_drm_load+0x173/0x7e0 [nouveau]
-       drm_dev_register+0x134/0x1c0 [drm]
-       drm_get_pci_dev+0x8e/0x160 [drm]
-       nouveau_drm_probe+0x1a9/0x230 [nouveau]
-       pci_device_probe+0xcd/0x150
-       driver_probe_device+0x30b/0x480
-       __driver_attach+0xbc/0xe0
-       bus_for_each_dev+0x67/0x90
-       bus_add_driver+0x164/0x260
-       driver_register+0x57/0xc0
-       do_one_initcall+0x4d/0x323
-       do_init_module+0x5b/0x1f8
-       load_module+0x20e5/0x2ac0
-       __do_sys_finit_module+0xb7/0xd0
-       do_syscall_64+0x60/0x1b0
-       entry_SYSCALL_64_after_hwframe+0x49/0xbe
+I have just started using a new laptop (dell xps, 9560), and there seem to =
+be
+some issues with nouveau.
 
--> #0 (&helper->lock){+.+.}:
-       __mutex_lock+0x70/0x9d0
-       drm_fb_helper_add_one_connector+0x2a/0x60 [drm_kms_helper]
-       nv50_mstm_register_connector+0x2c/0x50 [nouveau]
-       drm_dp_add_port+0x2f5/0x420 [drm_kms_helper]
-       drm_dp_send_link_address+0x155/0x1e0 [drm_kms_helper]
-       drm_dp_add_port+0x33f/0x420 [drm_kms_helper]
-       drm_dp_send_link_address+0x155/0x1e0 [drm_kms_helper]
-       drm_dp_check_and_send_link_address+0x87/0xd0 [drm_kms_helper]
-       drm_dp_mst_link_probe_work+0x4d/0x80 [drm_kms_helper]
-       process_one_work+0x20d/0x650
-       worker_thread+0x3a/0x390
-       kthread+0x11e/0x140
-       ret_from_fork+0x3a/0x50
+I have attached some preliminary data with dmesg and xorg logs on boot.
 
-other info that might help us debug this:
-Chain exists of:
-  &helper->lock --> crtc_ww_class_acquire --> crtc_ww_class_mutex
- Possible unsafe locking scenario:
-       CPU0                    CPU1
-       ----                    ----
-  lock(crtc_ww_class_mutex);
-                               lock(crtc_ww_class_acquire);
-                               lock(crtc_ww_class_mutex);
-  lock(&helper->lock);
+The driver also crashes sometimes, but unfortunately I can't see to get any
+debugging info because my kernel is tainted (and I don't know why, afaik no
+prop drivers are present). I am working on getting that resolved.
 
- *** DEADLOCK ***
-5 locks held by kworker/1:0/18:
- #0: 000000004a05cd50 ((wq_completion)"events_long"){+.+.}, at: process_one_work+0x187/0x650
- #1: 00000000601c11d1 ((work_completion)(&mgr->work)){+.+.}, at: process_one_work+0x187/0x650
- #2: 00000000586ca0df (&dev->mode_config.mutex){+.+.}, at: drm_modeset_lock_all+0x3a/0x1b0 [drm]
- #3: 00000000d3ca0ffa (crtc_ww_class_acquire){+.+.}, at: drm_modeset_lock_all+0x44/0x1b0 [drm]
- #4: 00000000942e28e2 (crtc_ww_class_mutex){+.+.}, at: drm_modeset_backoff+0x8e/0x1c0 [drm]
+Thanks
 
-stack backtrace:
-CPU: 1 PID: 18 Comm: kworker/1:0 Tainted: G           O      4.17.0-rc3Lyude-Test+ #1
-Hardware name: Gateway FX6840/FX6840, BIOS P01-A3         05/17/2010
-Workqueue: events_long drm_dp_mst_link_probe_work [drm_kms_helper]
-Call Trace:
- dump_stack+0x85/0xcb
- print_circular_bug.isra.38+0x1ce/0x1db
- __lock_acquire+0x128f/0x1350
- ? lock_acquire+0x9f/0x200
- ? lock_acquire+0x9f/0x200
- ? __ww_mutex_lock.constprop.13+0x8f/0x1000
- lock_acquire+0x9f/0x200
- ? drm_fb_helper_add_one_connector+0x2a/0x60 [drm_kms_helper]
- ? drm_fb_helper_add_one_connector+0x2a/0x60 [drm_kms_helper]
- __mutex_lock+0x70/0x9d0
- ? drm_fb_helper_add_one_connector+0x2a/0x60 [drm_kms_helper]
- ? ww_mutex_lock+0x43/0x80
- ? _cond_resched+0x15/0x30
- ? ww_mutex_lock+0x43/0x80
- ? drm_modeset_lock+0xb2/0x130 [drm]
- ? drm_fb_helper_add_one_connector+0x2a/0x60 [drm_kms_helper]
- drm_fb_helper_add_one_connector+0x2a/0x60 [drm_kms_helper]
- nv50_mstm_register_connector+0x2c/0x50 [nouveau]
- drm_dp_add_port+0x2f5/0x420 [drm_kms_helper]
- ? mark_held_locks+0x50/0x80
- ? kfree+0xcf/0x2a0
- ? drm_dp_check_mstb_guid+0xd6/0x120 [drm_kms_helper]
- ? trace_hardirqs_on_caller+0xed/0x180
- ? drm_dp_check_mstb_guid+0xd6/0x120 [drm_kms_helper]
- drm_dp_send_link_address+0x155/0x1e0 [drm_kms_helper]
- drm_dp_add_port+0x33f/0x420 [drm_kms_helper]
- ? nouveau_connector_aux_xfer+0x7c/0xb0 [nouveau]
- ? find_held_lock+0x2d/0x90
- ? drm_dp_dpcd_access+0xd9/0xf0 [drm_kms_helper]
- ? __mutex_unlock_slowpath+0x3b/0x280
- ? drm_dp_dpcd_access+0xd9/0xf0 [drm_kms_helper]
- drm_dp_send_link_address+0x155/0x1e0 [drm_kms_helper]
- drm_dp_check_and_send_link_address+0x87/0xd0 [drm_kms_helper]
- drm_dp_mst_link_probe_work+0x4d/0x80 [drm_kms_helper]
- process_one_work+0x20d/0x650
- worker_thread+0x3a/0x390
- ? process_one_work+0x650/0x650
- kthread+0x11e/0x140
- ? kthread_create_worker_on_cpu+0x50/0x50
- ret_from_fork+0x3a/0x50
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
 
-Taking example from i915, the only time we need to hold any modesetting
-locks is when changing the port on the mstc, and in that case we only
-need to hold the connection mutex.
+--15253098340.6faCF2BaA.16969
+Date: Thu, 3 May 2018 01:10:34 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: stable@vger.kernel.org
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau timeouts on boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106368">106368</a>
+          </td>
+        </tr>
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/nv50_display.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+        <tr>
+          <th>Summary</th>
+          <td>nouveau timeouts on boot
+          </td>
+        </tr>
 
-diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
-index 8bd739cfd00d..2b3ccd850750 100644
---- a/drivers/gpu/drm/nouveau/nv50_display.c
-+++ b/drivers/gpu/drm/nouveau/nv50_display.c
-@@ -3264,10 +3264,11 @@ nv50_mstm_destroy_connector(struct drm_dp_mst_topology_mgr *mgr,
- 
- 	drm_connector_unregister(&mstc->connector);
- 
--	drm_modeset_lock_all(drm->dev);
- 	drm_fb_helper_remove_one_connector(&drm->fbcon->helper, &mstc->connector);
-+
-+	drm_modeset_lock(&drm->dev->mode_config.connection_mutex, NULL);
- 	mstc->port = NULL;
--	drm_modeset_unlock_all(drm->dev);
-+	drm_modeset_unlock(&drm->dev->mode_config.connection_mutex);
- 
- 	drm_connector_unreference(&mstc->connector);
- }
-@@ -3277,9 +3278,7 @@ nv50_mstm_register_connector(struct drm_connector *connector)
- {
- 	struct nouveau_drm *drm = nouveau_drm(connector->dev);
- 
--	drm_modeset_lock_all(drm->dev);
- 	drm_fb_helper_add_one_connector(&drm->fbcon->helper, connector);
--	drm_modeset_unlock_all(drm->dev);
- 
- 	drm_connector_register(connector);
- }
--- 
-2.14.3
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>7.7 (2012.06)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>starcraftmazter&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139289=
+" name=3D"attach_139289" title=3D"dmesg">attachment 139289</a> <a href=3D"a=
+ttachment.cgi?id=3D139289&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
+/span>
+dmesg
+
+I have just started using a new laptop (dell xps, 9560), and there seem to =
+be
+some issues with nouveau.
+
+I have attached some preliminary data with dmesg and xorg logs on boot.
+
+The driver also crashes sometimes, but unfortunately I can't see to get any
+debugging info because my kernel is tainted (and I don't know why, afaik no
+prop drivers are present). I am working on getting that resolved.
+
+Thanks</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15253098340.6faCF2BaA.16969--
+
+--===============0528165162==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0528165162==--
