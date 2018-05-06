@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 106410] Xorg server 1.19.6 crashes with nouveau or
  modsetting driver with Mesa 18.0.x while works fine with proprietary nvidia
  driver 390.42
-Date: Sun, 06 May 2018 00:13:46 +0000
-Message-ID: <bug-106410-8800-pmhXzath9g@http.bugs.freedesktop.org/>
+Date: Sun, 06 May 2018 05:56:36 +0000
+Message-ID: <bug-106410-8800-glmSVpOp2a@http.bugs.freedesktop.org/>
 References: <bug-106410-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0557239951=="
+Content-Type: multipart/mixed; boundary="===============1667674935=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-106410-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,13 +22,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0557239951==
-Content-Type: multipart/alternative; boundary="15255656260.Deea9.6409"
+--===============1667674935==
+Content-Type: multipart/alternative; boundary="15255861960.Cf4A.18083"
 Content-Transfer-Encoding: 7bit
 
 
---15255656260.Deea9.6409
-Date: Sun, 6 May 2018 00:13:46 +0000
+--15255861960.Cf4A.18083
+Date: Sun, 6 May 2018 05:56:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -37,19 +37,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D106410
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Right. So even with xf86-video-nouveau you still get it to die in
-nouveau_drm_screen_create -- something's wrong in nouveau_dri.so. There are
-oodles of tricks used in mesa for loading stuff -- could you try not using =
-the
-experimental gold linker?
+--- Comment #8 from Qurban Ullah <qurbanullah-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thanks sir, the problem was with the mesa as you figured out.
+
+When I compile the mesa with meson build system it contributed to xorg-serv=
+er
+crash; could not figure out why. When compile with configure the problem
+resolved.
+
+So where to file the Mesa meson build bug.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15255656260.Deea9.6409
-Date: Sun, 6 May 2018 00:13:46 +0000
+--15255861960.Cf4A.18083
+Date: Sun, 6 May 2018 05:56:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,8 +70,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Xorg server 1.19.6 crashes with nouveau or modsetting dri=
 ver with Mesa 18.0.x while works fine with proprietary nvidia driver 390.42"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106410#c7">Commen=
-t # 7</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106410#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg server 1.19.6 crashes with nouveau or modsetting dri=
@@ -76,15 +79,17 @@ ver with Mesa 18.0.x while works fine with proprietary nvidia driver 390.42"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106410">bug 10641=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+qurbanullah&#64;gmail.com" title=3D"Qurban Ullah &lt;qurbanullah&#64;gmail.=
+com&gt;"> <span class=3D"fn">Qurban Ullah</span></a>
 </span></b>
-        <pre>Right. So even with xf86-video-nouveau you still get it to die=
- in
-nouveau_drm_screen_create -- something's wrong in nouveau_dri.so. There are
-oodles of tricks used in mesa for loading stuff -- could you try not using =
-the
-experimental gold linker?</pre>
+        <pre>Thanks sir, the problem was with the mesa as you figured out.
+
+When I compile the mesa with meson build system it contributed to xorg-serv=
+er
+crash; could not figure out why. When compile with configure the problem
+resolved.
+
+So where to file the Mesa meson build bug.</pre>
         </div>
       </p>
 
@@ -98,9 +103,9 @@ experimental gold linker?</pre>
     </body>
 </html>=
 
---15255656260.Deea9.6409--
+--15255861960.Cf4A.18083--
 
---===============0557239951==
+--===============1667674935==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0557239951==--
+--===============1667674935==--
