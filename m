@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106410] Xorg server 1.19.6 crashes with nouveau or
- modsetting driver with Mesa 18.0.x while works fine with proprietary nvidia
- driver 390.42
-Date: Sun, 06 May 2018 13:43:00 +0000
-Message-ID: <bug-106410-8800-voJ1iIeFnv@http.bugs.freedesktop.org/>
-References: <bug-106410-8800@http.bugs.freedesktop.org/>
+From: Boris Brezillon <boris.brezillon-LDxbnhwyfcJBDgjK7y7TUQ@public.gmane.org>
+Subject: [PATCH 0/3] drm/connector: Provide generic support for
+ underscan
+Date: Mon,  7 May 2018 16:44:31 +0200
+Message-ID: <20180507144434.20466-1-boris.brezillon@bootlin.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1594221575=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106410-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,91 +16,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Eric Anholt <eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org>
+Cc: "David (ChunMing) Zhou" <David1.Zhou-5C7GfCeVMHo@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Boris Brezillon <boris.brezillon-LDxbnhwyfcJBDgjK7y7TUQ@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1594221575==
-Content-Type: multipart/alternative; boundary="15256141791.A42d7229.6641"
-Content-Transfer-Encoding: 7bit
-
-
---15256141791.A42d7229.6641
-Date: Sun, 6 May 2018 13:42:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106410
-
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Probably Mesa -> Core.
-
-Note that the meson build system is experimental.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15256141791.A42d7229.6641
-Date: Sun, 6 May 2018 13:42:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg server 1.19.6 crashes with nouveau or modsetting dri=
-ver with Mesa 18.0.x while works fine with proprietary nvidia driver 390.42"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106410#c9">Commen=
-t # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg server 1.19.6 crashes with nouveau or modsetting dri=
-ver with Mesa 18.0.x while works fine with proprietary nvidia driver 390.42"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106410">bug 10641=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Probably Mesa -&gt; Core.
-
-Note that the meson build system is experimental.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15256141791.A42d7229.6641--
-
---===============1594221575==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1594221575==--
+SGVsbG8sCgpUaGlzIGlzIGFuIGF0dGVtcHQgYXQgcHJvdmlkaW5nIGdlbmVyaWMgc3VwcG9ydCBm
+b3IgdW5kZXJzY2FuIGNvbm5lY3Rvcgpwcm9wcy4gV2UgYWxyZWFkeSBoYXZlIDMgZHJpdmVycyBk
+ZWZpbmluZyB0aGUgc2FtZSB1bmRlcnNjYW4sIHVuZGVyc2Nhbgp2Ym9yZGVyIGFuZCB1bmRlcnNj
+YW4gaGJvcmRlciBwcm9wZXJ0aWVzIChhbWQsIHJhZGVvbiBhbmQgbm91dmVhdSkgYW5kCkkgYW0g
+YWJvdXQgdG8gYWRkIGEgbmV3IG9uZSwgaGVuY2UgbXkgcHJvcG9zYWwgdG8gcHV0IHRoZSBwcm9w
+IHBhcnNpbmcKY29kZSBpbiB0aGUgY29yZSBhbmQgYWRkIC0+dW5kZXJzY2FuIGZpZWxkcyB0byBk
+cm1fY29ubmVjdG9yX3N0YXRlLgoKTm90ZSB0aGF0IEkgdXNlIHRoaXMgbmV3IGluZnJhc3RydWN0
+dXJlIHRvIHN1cHBvcnQgdW5kZXJzY2FuIGluIFZDNAoocGF0aCAyIGFuZCAzKSBidXQgZGlkIG5v
+dCBwYXRjaCBleGlzdGluZyBkcml2ZXJzIHlldCwgbWFpbmx5IGJlY2F1c2UgSQpkb24ndCB3YW50
+IHRvIGRvIHRoaXMgd29yayBiZWZvcmUgbWFraW5nIHN1cmUgSSBnb3QgdGhlIGdlbmVyaWMgYml0
+cwpyaWdodC4KClJlZ2FyZHMsCgpCb3JpcyAKCkJvcmlzIEJyZXppbGxvbiAoMyk6CiAgZHJtL2Nv
+bm5lY3RvcjogQWRkIGdlbmVyaWMgdW5kZXJzY2FuIHByb3BlcnRpZXMKICBkcm0vdmM0OiBUYWtl
+IHVuZGVyc2NhbiBzZXR1cCBpbnRvIGFjY291bnQgd2hlbiB1cGRhdGluZyBwbGFuZXMKICBkcm0v
+dmM0OiBBdHRhY2ggdW5kZXJzY2FuIHByb3BzIHRvIHRoZSBIRE1JIGNvbm5lY3RvcgoKIGRyaXZl
+cnMvZ3B1L2RybS9kcm1fYXRvbWljLmMgICAgfCAgMTIgKysrKwogZHJpdmVycy9ncHUvZHJtL2Ry
+bV9jb25uZWN0b3IuYyB8IDEyMCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
+KysrCiBkcml2ZXJzL2dwdS9kcm0vdmM0L3ZjNF9oZG1pLmMgIHwgIDI1ICsrKysrKysrKwogZHJp
+dmVycy9ncHUvZHJtL3ZjNC92YzRfcGxhbmUuYyB8ICA0OSArKysrKysrKysrKysrKystCiBpbmNs
+dWRlL2RybS9kcm1fY29ubmVjdG9yLmggICAgIHwgIDc4ICsrKysrKysrKysrKysrKysrKysrKysr
+KysrCiA1IGZpbGVzIGNoYW5nZWQsIDI4MyBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgot
+LSAKMi4xNC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
