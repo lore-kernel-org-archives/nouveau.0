@@ -1,138 +1,47 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103351] Nouveau fails when booting with a screen
- connected to displayport since 13a86519202c5d119d83640d6f781f3181205d2c
-Date: Tue, 08 May 2018 18:23:29 +0000
-Message-ID: <bug-103351-8800-S72obDPytU@http.bugs.freedesktop.org/>
-References: <bug-103351-8800@http.bugs.freedesktop.org/>
+From: Boris Brezillon <boris.brezillon@bootlin.com>
+Subject: Re: [PATCH 0/3] drm/connector: Provide generic support for underscan
+Date: Wed, 9 May 2018 09:28:27 +0200
+Message-ID: <20180509092827.0a62c620@bbrezillon>
+References: <20180507144434.20466-1-boris.brezillon@bootlin.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0161409689=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20180507144434.20466-1-boris.brezillon@bootlin.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Eric Anholt <eric@anholt.net>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0161409689==
-Content-Type: multipart/alternative; boundary="15258038090.31b6bfc.18754"
-Content-Transfer-Encoding: 7bit
-
-
---15258038090.31b6bfc.18754
-Date: Tue, 8 May 2018 18:23:29 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103351
-
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Just something I noticed... does this help? (Obviously without a revert
-applied.)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gm200.c
-b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gm200.c
-index a23c5f315221..ff94c6cb9a29 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gm200.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gm200.c
-@@ -26,7 +26,7 @@
-
- static const struct nvkm_i2c_func
- gm200_i2c =3D {
--       .pad_x_new =3D gf119_i2c_pad_x_new,
-+       .pad_x_new =3D gm200_i2c_pad_x_new,
-        .pad_s_new =3D gm200_i2c_pad_s_new,
-        .aux =3D 8,
-        .aux_stat =3D gk104_aux_stat,
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15258038090.31b6bfc.18754
-Date: Tue, 8 May 2018 18:23:29 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau fails when booting with a screen connected to dis=
-playport since 13a86519202c5d119d83640d6f781f3181205d2c"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103351#c7">Commen=
-t # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau fails when booting with a screen connected to dis=
-playport since 13a86519202c5d119d83640d6f781f3181205d2c"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103351">bug 10335=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Just something I noticed... does this help? (Obviously without=
- a revert
-applied.)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gm200.c
-b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gm200.c
-index a23c5f315221..ff94c6cb9a29 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gm200.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/gm200.c
-&#64;&#64; -26,7 +26,7 &#64;&#64;
-
- static const struct nvkm_i2c_func
- gm200_i2c =3D {
--       .pad_x_new =3D gf119_i2c_pad_x_new,
-+       .pad_x_new =3D gm200_i2c_pad_x_new,
-        .pad_s_new =3D gm200_i2c_pad_s_new,
-        .aux =3D 8,
-        .aux_stat =3D gk104_aux_stat,</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15258038090.31b6bfc.18754--
-
---===============0161409689==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0161409689==--
+SGksCgpPbiBNb24sICA3IE1heSAyMDE4IDE2OjQ0OjMxICswMjAwCkJvcmlzIEJyZXppbGxvbiA8
+Ym9yaXMuYnJlemlsbG9uQGJvb3RsaW4uY29tPiB3cm90ZToKCj4gSGVsbG8sCj4gCj4gVGhpcyBp
+cyBhbiBhdHRlbXB0IGF0IHByb3ZpZGluZyBnZW5lcmljIHN1cHBvcnQgZm9yIHVuZGVyc2NhbiBj
+b25uZWN0b3IKPiBwcm9wcy4gV2UgYWxyZWFkeSBoYXZlIDMgZHJpdmVycyBkZWZpbmluZyB0aGUg
+c2FtZSB1bmRlcnNjYW4sIHVuZGVyc2Nhbgo+IHZib3JkZXIgYW5kIHVuZGVyc2NhbiBoYm9yZGVy
+IHByb3BlcnRpZXMgKGFtZCwgcmFkZW9uIGFuZCBub3V2ZWF1KSBhbmQKPiBJIGFtIGFib3V0IHRv
+IGFkZCBhIG5ldyBvbmUsIGhlbmNlIG15IHByb3Bvc2FsIHRvIHB1dCB0aGUgcHJvcCBwYXJzaW5n
+Cj4gY29kZSBpbiB0aGUgY29yZSBhbmQgYWRkIC0+dW5kZXJzY2FuIGZpZWxkcyB0byBkcm1fY29u
+bmVjdG9yX3N0YXRlLgo+IAo+IE5vdGUgdGhhdCBJIHVzZSB0aGlzIG5ldyBpbmZyYXN0cnVjdHVy
+ZSB0byBzdXBwb3J0IHVuZGVyc2NhbiBpbiBWQzQKPiAocGF0aCAyIGFuZCAzKSBidXQgZGlkIG5v
+dCBwYXRjaCBleGlzdGluZyBkcml2ZXJzIHlldCwgbWFpbmx5IGJlY2F1c2UgSQo+IGRvbid0IHdh
+bnQgdG8gZG8gdGhpcyB3b3JrIGJlZm9yZSBtYWtpbmcgc3VyZSBJIGdvdCB0aGUgZ2VuZXJpYyBi
+aXRzCj4gcmlnaHQuCgpUaGFua3MgZXZlcnlvbmUgZm9yIHlvdXIgcmV2aWV3cy4gQWZ0ZXIgdGhl
+IGRpc2N1c3Npb24gd2UgaGFkIG9uIElSQwphbmQgdGhlIGZlZWRiYWNrIEkgaGFkIG9uIHRoaXMg
+cGF0Y2hzZXQgaXQncyBhIGJpdCB1bmNsZWFyIHRvIG1lIHdoYXQKdGhlIG5leHQgaXRlcmF0aW9u
+IHNob3VsZCBsb29rIGxpa2UuIFNob3VsZCBJIGNvbnRpbnVlIHdpdGggdGhlCnVuZGVyc2NhbiBw
+cm9wcywgc2hvdWxkIEkgdXNlIFRWIG1hcmdpbnMgZXhwb3NlZCBieSB0aGUgVFYgY29ubmVjdG9y
+CnN0YXRlLCBzaG91bGQgSSBjcmVhdGUgbmV3IHByb3BzPwoKUmVtZW1iZXIgdGhhdCBhbGwgSSBu
+ZWVkIGlzIGEgd2F5IHRvIGRlZmluZSBtYXJnaW5zIGluIG9yZGVyIHRvIGxldAp0aGUgVkM0IEhX
+IHNjYWxlciBzaHJpbmsgdGhlIHBsYW5lcyBhbmQgYWRqdXN0IHRoZWlyIHBvc2l0aW9ucyBvbiB0
+aGUKc2NyZWVuLgoKVGhhbmtzLAoKQm9yaXMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2RyaS1kZXZlbAo=
