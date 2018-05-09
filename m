@@ -1,59 +1,101 @@
-From: Boris Brezillon <boris.brezillon-LDxbnhwyfcJBDgjK7y7TUQ@public.gmane.org>
-Subject: Re: [PATCH 3/3] drm/vc4: Attach underscan props to the HDMI connector
-Date: Wed, 9 May 2018 16:52:38 +0200
-Message-ID: <20180509165238.2224f56b@bbrezillon>
-References: <20180507144434.20466-1-boris.brezillon@bootlin.com>
- <20180507144434.20466-4-boris.brezillon@bootlin.com>
- <20180507152408.GE28661@phenom.ffwll.local>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 106227] GP107 hangs on boot
+Date: Wed, 09 May 2018 20:40:09 +0000
+Message-ID: <bug-106227-8800-XfTSZ9iaxV@http.bugs.freedesktop.org/>
+References: <bug-106227-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180507152408.GE28661-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Cc: "David
- (ChunMing) Zhou" <David1.Zhou-5C7GfCeVMHo@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Eric Anholt <eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Christian =?UTF-8?B?S8O2bmln?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1527816290=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-106227-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCA3IE1heSAyMDE4IDE3OjI0OjA4ICswMjAwCkRhbmllbCBWZXR0ZXIgPGRhbmllbEBm
-ZndsbC5jaD4gd3JvdGU6Cgo+IE9uIE1vbiwgTWF5IDA3LCAyMDE4IGF0IDA0OjQ0OjM0UE0gKzAy
-MDAsIEJvcmlzIEJyZXppbGxvbiB3cm90ZToKPiA+IE5vdyB0aGF0IHRoZSBwbGFuZSBjb2RlIHRh
-a2VzIHRoZSB1bmRlcnNjYW4gc2V0dXAgaW50byBhY2NvdW50LCB3ZSBjYW4KPiA+IHNhZmVseSBh
-dHRhY2ggdGhlIHVuZGVyc2NhbiBwcm9wcyB0byB0aGUgSERNSSBjb25uZWN0b3IuCj4gPiAKPiA+
-IFdlIGFsc28gdGFrZSBjYXJlIG9mIGZpbGxpbmcgQVZJIGluZm9mcmFtZXMgY29ycmVjdGx5IHRv
-IGV4cG9zZSB0aGUKPiA+IHRvcC9ib3R0b24vbGVmdC9yaWdodCBiYXIuCj4gPiAKPiA+IE5vdGUg
-dGhhdCB0aGVzZSB1bmRlcnNjYW4gcHJvcHMgbWF0Y2ggcHJldHR5IHdlbGwgdGhlCj4gPiBvdmVy
-c2Nhbl97bGVmdCxyaWdodCx0b3AsYm90dG9tfSBwcm9wZXJ0aWVzIGRlZmluZWQgaW4gY29uZmln
-LnR4dCBhbmQKPiA+IHBhcnNlZCBieSB0aGUgVkM0IGZpcm13YXJlLgo+ID4gCj4gPiBTaWduZWQt
-b2ZmLWJ5OiBCb3JpcyBCcmV6aWxsb24gPGJvcmlzLmJyZXppbGxvbkBib290bGluLmNvbT4KPiA+
-IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS92YzQvdmM0X2hkbWkuYyB8IDI1ICsrKysrKysrKysr
-KysrKysrKysrKysrKysKPiA+ICAxIGZpbGUgY2hhbmdlZCwgMjUgaW5zZXJ0aW9ucygrKQo+ID4g
-Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3ZjNC92YzRfaGRtaS5jIGIvZHJpdmVy
-cy9ncHUvZHJtL3ZjNC92YzRfaGRtaS5jCj4gPiBpbmRleCAxYTZkYjI5MWQ0OGIuLjE3NDY0YjU5
-ODFmOSAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS92YzQvdmM0X2hkbWkuYwo+ID4g
-KysrIGIvZHJpdmVycy9ncHUvZHJtL3ZjNC92YzRfaGRtaS5jCj4gPiBAQCAtMzIzLDYgKzMyMywx
-NiBAQCBzdGF0aWMgc3RydWN0IGRybV9jb25uZWN0b3IgKnZjNF9oZG1pX2Nvbm5lY3Rvcl9pbml0
-KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4gPiAgCQkJICAgRFJNX01PREVfQ09OTkVDVE9SX0hE
-TUlBKTsKPiA+ICAJZHJtX2Nvbm5lY3Rvcl9oZWxwZXJfYWRkKGNvbm5lY3RvciwgJnZjNF9oZG1p
-X2Nvbm5lY3Rvcl9oZWxwZXJfZnVuY3MpOwo+ID4gIAo+ID4gKwkvKiBUaGUgaGJvcmRlciBhbmQg
-dmJvcmRlciBsaW1pdCBpcyBhcmJpdHJhcmlseSBzZXQgdG8gMTAyNCB3aGljaAo+ID4gKwkgKiBz
-aG91bGQgYmUgbW9yZSB0aGFuIGVub3VnaCBmb3IgcmVhbCB1c2UgY2FzZXMuIE5vdGUgdGhhdCB0
-aGUgYWN0dWFsCj4gPiArCSAqIGxpbWl0YXRpb24gY29tZXMgZnJvbSB0aGUgZGlzcGxheSBtb2Rl
-Ogo+ID4gKwkgKgloYm9yZGVyIDwgaGRpc3BsYXkgJiYgdmJvcmRlciA8IHZkaXNwbGF5Cj4gPiAr
-CSAqLwo+ID4gKwlkcm1fY29ubmVjdG9yX2F0dGFjaF91bmRlcnNjYW5fcHJvcGVydGllcyhjb25u
-ZWN0b3IsICAKPiAKPiBXZSBzaG91bGQgcHJvYmFibHkgc3ByaW5rbGUgX19tdXN0X2NoZWNrIG92
-ZXIgYWxsIHRoZXNlIDotKQoKSSdtIHBlcmZlY3RseSBmaW5lIGFkZGluZyBfX211c3RfY2hlY2sg
-dG8KZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfdW5kZXJzY2FuX3Byb3BlcnRpZXMoKSwgYnV0IEknbSBk
-ZWZpbml0ZWx5IG5vdAp2b2x1bnRlZXJpbmcgZm9yIGEgbWFzc2l2ZSBfX211c3RfY2hlY2sgc2Fu
-aXRpemF0aW9uIDpQLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZngK
+
+--===============1527816290==
+Content-Type: multipart/alternative; boundary="15258984090.7288.29232"
+Content-Transfer-Encoding: 7bit
+
+
+--15258984090.7288.29232
+Date: Wed, 9 May 2018 20:40:09 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106227
+
+--- Comment #2 from Bryan Quigley <gquigs+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thanks for the suggestions, they didn't appear to have an impact.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15258984090.7288.29232
+Date: Wed, 9 May 2018 20:40:09 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GP107 hangs on boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106227#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GP107 hangs on boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106227">bug 10622=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+gquigs+bugs&#64;gmail.com" title=3D"Bryan Quigley &lt;gquigs+bugs&#64;gmail=
+.com&gt;"> <span class=3D"fn">Bryan Quigley</span></a>
+</span></b>
+        <pre>Thanks for the suggestions, they didn't appear to have an impa=
+ct.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15258984090.7288.29232--
+
+--===============1527816290==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1527816290==--
