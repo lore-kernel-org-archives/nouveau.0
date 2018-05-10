@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106227] GP107 hangs on boot
-Date: Wed, 09 May 2018 20:40:09 +0000
-Message-ID: <bug-106227-8800-XfTSZ9iaxV@http.bugs.freedesktop.org/>
-References: <bug-106227-8800@http.bugs.freedesktop.org/>
+From: Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>
+Subject: kernel spew from nouveau/ swiotlb
+Date: Thu, 10 May 2018 11:10:27 +0200
+Message-ID: <1525943427.8013.11.camel@gmx.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1527816290=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106227-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,86 +15,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1527816290==
-Content-Type: multipart/alternative; boundary="15258984090.7288.29232"
-Content-Transfer-Encoding: 7bit
-
-
---15258984090.7288.29232
-Date: Wed, 9 May 2018 20:40:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106227
-
---- Comment #2 from Bryan Quigley <gquigs+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thanks for the suggestions, they didn't appear to have an impact.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15258984090.7288.29232
-Date: Wed, 9 May 2018 20:40:09 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GP107 hangs on boot"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106227#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GP107 hangs on boot"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106227">bug 10622=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gquigs+bugs&#64;gmail.com" title=3D"Bryan Quigley &lt;gquigs+bugs&#64;gmail=
-.com&gt;"> <span class=3D"fn">Bryan Quigley</span></a>
-</span></b>
-        <pre>Thanks for the suggestions, they didn't appear to have an impa=
-ct.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15258984090.7288.29232--
-
---===============1527816290==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1527816290==--
+R3JlZXRpbmdzLAoKV2hlbiBib3ggaXMgZWFybmluZyBpdHMga2VlcCwgbm91dmVhdS9zd2lvdGxi
+IGdydW1ibGUuLiBhIExPVC4gIFRoZQpiZWxvdyBpcyBmcm9tIG1hc3Rlci50b2RheS4KClsxMjU5
+NC42NDA5NTldIG5vdXZlYXUgMDAwMDowMTowMC4wOiBzd2lvdGxiIGJ1ZmZlciBpcyBmdWxsIChz
+ejogMjA5NzE1MiBieXRlcykKWzEyNTk0LjY5MzAwMF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IHN3
+aW90bGIgYnVmZmVyIGlzIGZ1bGwgKHN6OiAyMDk3MTUyIGJ5dGVzKQpbMTI1OTQuNzEzNzg3XSBu
+b3V2ZWF1IDAwMDA6MDE6MDAuMDogc3dpb3RsYiBidWZmZXIgaXMgZnVsbCAoc3o6IDIwOTcxNTIg
+Ynl0ZXMpClsxMjU5NC43NDM0MTNdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBzd2lvdGxiIGJ1ZmZl
+ciBpcyBmdWxsIChzejogMjA5NzE1MiBieXRlcykKWzEyNTk0Ljc5Njc0MF0gbm91dmVhdSAwMDAw
+OjAxOjAwLjA6IHN3aW90bGIgYnVmZmVyIGlzIGZ1bGwgKHN6OiAyMDk3MTUyIGJ5dGVzKQpbMTI2
+MDcuMDAwNzc0XSBzd2lvdGxiX3RibF9tYXBfc2luZ2xlOiA1NCBjYWxsYmFja3Mgc3VwcHJlc3Nl
+ZApbMTI2MDcuMDAwNzc2XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogc3dpb3RsYiBidWZmZXIgaXMg
+ZnVsbCAoc3o6IDIwOTcxNTIgYnl0ZXMpClsxMjYwNy4zNDc5NDFdIG5vdXZlYXUgMDAwMDowMTow
+MC4wOiBzd2lvdGxiIGJ1ZmZlciBpcyBmdWxsIChzejogMjA5NzE1MiBieXRlcykKWzEyNjA4LjY3
+NzAzOF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IHN3aW90bGIgYnVmZmVyIGlzIGZ1bGwgKHN6OiAy
+MDk3MTUyIGJ5dGVzKQpob21lcjovbm92ZWxsL3NzaCAjIGRtZXNnfGdyZXAgJ3N3aW90bGIgYnVm
+ZmVyIGlzIGZ1bGwnfHdjIC1sCjIwNTIKaG9tZXI6L25vdmVsbC9zc2ggIyBkbWVzZ3xncmVwICdj
+YWxsYmFja3Mgc3VwcHJlc3NlZCd8d2MgLWwKMTcxCgpsaWIvc3dpb3RsYi5jOgogNTczIG5vdF9m
+b3VuZDoKIDU3NCDCoMKgwqDCoMKgwqDCoMKgc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmaW9fdGxi
+X2xvY2ssIGZsYWdzKTsKIDU3NSDCoMKgwqDCoMKgwqDCoMKgaWYgKCEoYXR0cnMgJiBETUFfQVRU
+Ul9OT19XQVJOKSAmJiBwcmludGtfcmF0ZWxpbWl0KCkpCiA1NzYgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqBkZXZfd2Fybihod2RldiwgInN3aW90bGIgYnVmZmVyIGlzIGZ1bGwgKHN6
+OiAlemQgYnl0ZXMpXG4iLCBzaXplKTsKCkRvZXMgbm91dmVhdSBwZXJoYXBzIHdhbnQgb25lIG9m
+IHRob3NlIERNQV9BVFRSX05PX1dBUk4gdGhpbmdpZXM/CgoJLU1pa2UKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
