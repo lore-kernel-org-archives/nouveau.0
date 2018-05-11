@@ -1,17 +1,22 @@
-From: Eric Anholt <eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org>
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
 Subject: Re: [PATCH v2 2/4] drm/vc4: Take underscan setup into account when
  updating planes
-Date: Fri, 11 May 2018 13:11:24 -0700
-Message-ID: <87mux6q7f7.fsf@anholt.net>
+Date: Fri, 11 May 2018 23:46:43 +0300
+Message-ID: <20180511204643.GW23723@intel.com>
 References: <20180511145919.22447-1-boris.brezillon@bootlin.com>
  <20180511145919.22447-3-boris.brezillon@bootlin.com>
- <20180511153450.GS23723@intel.com> <20180511175256.53a3966a@bbrezillon>
- <20180511165402.GU23723@intel.com> <20180511191221.185f9e94@bbrezillon>
+ <20180511153450.GS23723@intel.com>
+ <20180511175256.53a3966a@bbrezillon>
+ <20180511165402.GU23723@intel.com>
+ <20180511191221.185f9e94@bbrezillon>
  <20180511172948.GV23723@intel.com>
+ <20180511214749.47f6682e@bbrezillon>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1213300805=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180511172948.GV23723-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20180511214749.47f6682e@bbrezillon>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
  <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
@@ -21,189 +26,188 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
  <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Boris Brezillon <boris.brezillon-LDxbnhwyfcJBDgjK7y7TUQ@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Boris Brezillon <boris.brezillon-LDxbnhwyfcJBDgjK7y7TUQ@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1213300805==
-Content-Type: multipart/signed; boundary="=-=-=";
-	micalg=pgp-sha512; protocol="application/pgp-signature"
-
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-Ville Syrj=C3=A4l=C3=A4 <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org> writes:
-
-> On Fri, May 11, 2018 at 07:12:21PM +0200, Boris Brezillon wrote:
->> On Fri, 11 May 2018 19:54:02 +0300
->> Ville Syrj=C3=A4l=C3=A4 <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org> wrote:
->>=20
->> > On Fri, May 11, 2018 at 05:52:56PM +0200, Boris Brezillon wrote:
->> > > On Fri, 11 May 2018 18:34:50 +0300
->> > > Ville Syrj=C3=A4l=C3=A4 <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org> wrote:
->> > >=20=20=20
->> > > > On Fri, May 11, 2018 at 04:59:17PM +0200, Boris Brezillon wrote:=
-=20=20
->> > > > > Applying an underscan setup is just a matter of scaling all plan=
-es
->> > > > > appropriately and adjusting the CRTC X/Y offset to account for t=
-he
->> > > > > horizontal and vertical border.
->> > > > >=20
->> > > > > Create an vc4_plane_underscan_adj() function doing that and call=
- it from
->> > > > > vc4_plane_setup_clipping_and_scaling() so that we are ready to a=
-ttach
->> > > > > underscan properties to the HDMI connector.
->> > > > >=20
->> > > > > Signed-off-by: Boris Brezillon <boris.brezillon-LDxbnhwyfcJBDgjK7y7TUQ@public.gmane.org>
->> > > > > ---
->> > > > > Changes in v2:
->> > > > > - Take changes on hborder/vborder meaning into account
->> > > > > ---
->> > > > >  drivers/gpu/drm/vc4/vc4_plane.c | 49 ++++++++++++++++++++++++++=
-++++++++++++++-
->> > > > >  1 file changed, 48 insertions(+), 1 deletion(-)
->> > > > >=20
->> > > > > diff --git a/drivers/gpu/drm/vc4/vc4_plane.c b/drivers/gpu/drm/v=
-c4/vc4_plane.c
->> > > > > index 71d44c357d35..61ed60841cd6 100644
->> > > > > --- a/drivers/gpu/drm/vc4/vc4_plane.c
->> > > > > +++ b/drivers/gpu/drm/vc4/vc4_plane.c
->> > > > > @@ -258,6 +258,49 @@ static u32 vc4_get_scl_field(struct drm_pla=
-ne_state *state, int plane)
->> > > > >  	}
->> > > > >  }
->> > > > >=20=20
->> > > > > +static int vc4_plane_underscan_adj(struct drm_plane_state *psta=
-te)
->> > > > > +{
->> > > > > +	struct vc4_plane_state *vc4_pstate =3D to_vc4_plane_state(psta=
-te);
->> > > > > +	struct drm_connector_state *conn_state =3D NULL;
->> > > > > +	struct drm_connector *conn;
->> > > > > +	struct drm_crtc_state *crtc_state;
->> > > > > +	int i;
->> > > > > +
->> > > > > +	for_each_new_connector_in_state(pstate->state, conn, conn_stat=
-e, i) {
->> > > > > +		if (conn_state->crtc =3D=3D pstate->crtc)
->> > > > > +			break;
->> > > > > +	}
->> > > > > +
->> > > > > +	if (i =3D=3D pstate->state->num_connector)
->> > > > > +		return 0;
->> > > > > +
->> > > > > +	if (conn_state->underscan.mode !=3D DRM_UNDERSCAN_ON)
->> > > > > +		return 0;
->> > > > > +
->> > > > > +	crtc_state =3D drm_atomic_get_new_crtc_state(pstate->state,
->> > > > > +						   pstate->crtc);
->> > > > > +
->> > > > > +	if (conn_state->underscan.hborder >=3D crtc_state->mode.hdispl=
-ay ||
->> > > > > +	    conn_state->underscan.vborder >=3D crtc_state->mode.vdispl=
-ay)
->> > > > > +		return -EINVAL;=20=20=20=20
->> > > >=20
->> > > > border * 2 ?=20=20
->> > >=20
->> > > Oops, indeed. I'll fix that.
->> > >=20=20=20
->> > > >=20=20=20
->> > > > > +
->> > > > > +	vc4_pstate->crtc_x +=3D conn_state->underscan.hborder;
->> > > > > +	vc4_pstate->crtc_y +=3D conn_state->underscan.vborder;
->> > > > > +	vc4_pstate->crtc_w =3D (vc4_pstate->crtc_w *
->> > > > > +			      (crtc_state->mode.hdisplay -
->> > > > > +			       (conn_state->underscan.hborder * 2))) /
->> > > > > +			     crtc_state->mode.hdisplay;
->> > > > > +	vc4_pstate->crtc_h =3D (vc4_pstate->crtc_h *
->> > > > > +			      (crtc_state->mode.vdisplay -
->> > > > > +			       (conn_state->underscan.vborder * 2))) /
->> > > > > +			     crtc_state->mode.vdisplay;=20=20=20=20
->> > > >=20
->> > > > So you're now scaling all planes? The code seems to reject scaling=
- for
->> > > > the cursor plane, how are you dealing with that? Or just no cursor
->> > > > allowed when underscanning?=20=20
->> > >=20
->> > > No, I just didn't test with a cursor plane. We should probably avoid
->> > > scaling the cursor plane and just adjust its position. Eric any opin=
-ion
->> > > on that?=20=20
->> >=20
->> > I don't think you can just not scale it. The user asked for the cursor
->> > to be at a specific place with a specific size. Can't just ignore
->> > that and do something else. Also eg. i915 would definitely scale the
->> > cursor since we'd just scale the entire crtc instead of scaling
->> > individual planes. Different drivers doing different things wouldn't
->> > be good.
->>=20
->> Except in our case the scaling takes place before the composition, so
->> we don't have a choice.
->
-> The choice is to either do what userspace asked, or return an error.
->
->>=20
->> >=20
->> > >=20=20=20
->> > > >=20
->> > > > I'm also wondering if there's any way we can reconcile these border
->> > > > props with the scaling mode prop, should we ever wish to expose
->> > > > these props on connectors that already have the scaling mode prop.=
-=20=20
->> > >=20
->> > > Nouveau seems to expose both, and I don't see why we couldn't.=20=20
->> >=20
->> > First of all the interaction of these borders with panels that have
->> > a fixed mode would need to be properly specified. Do we apply the
->> > borders against the user mode or the panel's native mode?
->>=20
->> Hm, I'm a bit lost. Isn't crtc_state->mode supposed to contain the mode
->> that is about to be applied, no matter if it's a usermode or one of the
->> mode returned by the display?=20
->
-> No. With fixed mode panels the user mode is a lie. Only
-> hdisplay/vdisplay mean anything. The actual timings are known only to
-> the kernel. Well, userspace can perhaps make an educated guess based on
-> the connector's mode list and the presence of the scaling mode property.
-
-Let's just not expose the property on devices with fixed mode panels.
-Problem solved because all this property is is a way to work around HDMI
-monitors doing something awful, and trying to build something more
-general isn't serving anyone.
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEE/JuuFDWp9/ZkuCBXtdYpNtH8nugFAlr1+OwACgkQtdYpNtH8
-nujSpRAAhQY2vNMYcYLAk/0eanMKRx+Lx3nAoU+79JVaqQpuCTJhnVcMF3XrYt6Z
-ZMuzf5uBB5ky4+og8VLuj2XAjBU4jKSA63+RDpwMxX6ek5DTHUgc0ghtTg9MXlVH
-YFN3bv163644HusUuE0wSIPhN2GSo/0r8siJjVsBfiur3sqZhxq/4iC5ZqgvgX9x
-iJQzawHzpVfodyxGg6irl7f0XVtvL5qa0zTd4tzur1o3GX3doJ66bLbfuShBgtWO
-6gYg14Id4RdqsPMD7zp68iXZV04YJnUv/HTFXVVIBh40TGZLbPzpip0y1WWl5mLT
-0KwusRkcOO23UehpURPZTBOskr0lK3YTNx0XICkTeiZ2v/Dh03ozVer/Ed4VeFTg
-lQbovF5EKX5UEt9SYlW+5us62dt3rlDgRrVY8dBrXsTMtAYz8TeI4oZKudhJUXxu
-eDM3AR0SY6/WI/rYjA6fr2zGuSJhV++BYiV+H7/x6k1lBjdQepOnbNrW2vDiaauZ
-fAw5IyNNgGtYLoR50ArUcRSgxdF+ConDbPOrcSP4xvYXRzSzd12AvaLylgMrcTy7
-ZtMYGAA1UmrfBmPLa7c1o3S468Nlwt9t5dTo0ri5rndMUqo7zVJ71qE4iQwMQgTU
-deEfvlQcT/Yi9vMDF4yB7cl8wKUdxVUCn/6K/TomHEh/aLKfvQI=
-=X171
------END PGP SIGNATURE-----
---=-=-=--
-
---===============1213300805==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
-
---===============1213300805==--
+T24gRnJpLCBNYXkgMTEsIDIwMTggYXQgMDk6NDc6NDlQTSArMDIwMCwgQm9yaXMgQnJlemlsbG9u
+IHdyb3RlOgo+IE9uIEZyaSwgMTEgTWF5IDIwMTggMjA6Mjk6NDggKzAzMDAKPiBWaWxsZSBTeXJq
+w6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPiB3cm90ZToKPiAKPiA+IE9uIEZy
+aSwgTWF5IDExLCAyMDE4IGF0IDA3OjEyOjIxUE0gKzAyMDAsIEJvcmlzIEJyZXppbGxvbiB3cm90
+ZToKPiA+ID4gT24gRnJpLCAxMSBNYXkgMjAxOCAxOTo1NDowMiArMDMwMAo+ID4gPiBWaWxsZSBT
+eXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPiB3cm90ZToKPiA+ID4gICAK
+PiA+ID4gPiBPbiBGcmksIE1heSAxMSwgMjAxOCBhdCAwNTo1Mjo1NlBNICswMjAwLCBCb3JpcyBC
+cmV6aWxsb24gd3JvdGU6ICAKPiA+ID4gPiA+IE9uIEZyaSwgMTEgTWF5IDIwMTggMTg6MzQ6NTAg
+KzAzMDAKPiA+ID4gPiA+IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
+bC5jb20+IHdyb3RlOgo+ID4gPiA+ID4gICAgIAo+ID4gPiA+ID4gPiBPbiBGcmksIE1heSAxMSwg
+MjAxOCBhdCAwNDo1OToxN1BNICswMjAwLCBCb3JpcyBCcmV6aWxsb24gd3JvdGU6ICAgIAo+ID4g
+PiA+ID4gPiA+IEFwcGx5aW5nIGFuIHVuZGVyc2NhbiBzZXR1cCBpcyBqdXN0IGEgbWF0dGVyIG9m
+IHNjYWxpbmcgYWxsIHBsYW5lcwo+ID4gPiA+ID4gPiA+IGFwcHJvcHJpYXRlbHkgYW5kIGFkanVz
+dGluZyB0aGUgQ1JUQyBYL1kgb2Zmc2V0IHRvIGFjY291bnQgZm9yIHRoZQo+ID4gPiA+ID4gPiA+
+IGhvcml6b250YWwgYW5kIHZlcnRpY2FsIGJvcmRlci4KPiA+ID4gPiA+ID4gPiAKPiA+ID4gPiA+
+ID4gPiBDcmVhdGUgYW4gdmM0X3BsYW5lX3VuZGVyc2Nhbl9hZGooKSBmdW5jdGlvbiBkb2luZyB0
+aGF0IGFuZCBjYWxsIGl0IGZyb20KPiA+ID4gPiA+ID4gPiB2YzRfcGxhbmVfc2V0dXBfY2xpcHBp
+bmdfYW5kX3NjYWxpbmcoKSBzbyB0aGF0IHdlIGFyZSByZWFkeSB0byBhdHRhY2gKPiA+ID4gPiA+
+ID4gPiB1bmRlcnNjYW4gcHJvcGVydGllcyB0byB0aGUgSERNSSBjb25uZWN0b3IuCj4gPiA+ID4g
+PiA+ID4gCj4gPiA+ID4gPiA+ID4gU2lnbmVkLW9mZi1ieTogQm9yaXMgQnJlemlsbG9uIDxib3Jp
+cy5icmV6aWxsb25AYm9vdGxpbi5jb20+Cj4gPiA+ID4gPiA+ID4gLS0tCj4gPiA+ID4gPiA+ID4g
+Q2hhbmdlcyBpbiB2MjoKPiA+ID4gPiA+ID4gPiAtIFRha2UgY2hhbmdlcyBvbiBoYm9yZGVyL3Zi
+b3JkZXIgbWVhbmluZyBpbnRvIGFjY291bnQKPiA+ID4gPiA+ID4gPiAtLS0KPiA+ID4gPiA+ID4g
+PiAgZHJpdmVycy9ncHUvZHJtL3ZjNC92YzRfcGxhbmUuYyB8IDQ5ICsrKysrKysrKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKystCj4gPiA+ID4gPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCA0
+OCBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4gPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+
+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS92YzQvdmM0X3BsYW5lLmMgYi9kcml2ZXJz
+L2dwdS9kcm0vdmM0L3ZjNF9wbGFuZS5jCj4gPiA+ID4gPiA+ID4gaW5kZXggNzFkNDRjMzU3ZDM1
+Li42MWVkNjA4NDFjZDYgMTAwNjQ0Cj4gPiA+ID4gPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L3ZjNC92YzRfcGxhbmUuYwo+ID4gPiA+ID4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS92YzQv
+dmM0X3BsYW5lLmMKPiA+ID4gPiA+ID4gPiBAQCAtMjU4LDYgKzI1OCw0OSBAQCBzdGF0aWMgdTMy
+IHZjNF9nZXRfc2NsX2ZpZWxkKHN0cnVjdCBkcm1fcGxhbmVfc3RhdGUgKnN0YXRlLCBpbnQgcGxh
+bmUpCj4gPiA+ID4gPiA+ID4gIAl9Cj4gPiA+ID4gPiA+ID4gIH0KPiA+ID4gPiA+ID4gPiAgCj4g
+PiA+ID4gPiA+ID4gK3N0YXRpYyBpbnQgdmM0X3BsYW5lX3VuZGVyc2Nhbl9hZGooc3RydWN0IGRy
+bV9wbGFuZV9zdGF0ZSAqcHN0YXRlKQo+ID4gPiA+ID4gPiA+ICt7Cj4gPiA+ID4gPiA+ID4gKwlz
+dHJ1Y3QgdmM0X3BsYW5lX3N0YXRlICp2YzRfcHN0YXRlID0gdG9fdmM0X3BsYW5lX3N0YXRlKHBz
+dGF0ZSk7Cj4gPiA+ID4gPiA+ID4gKwlzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqY29ubl9z
+dGF0ZSA9IE5VTEw7Cj4gPiA+ID4gPiA+ID4gKwlzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubjsK
+PiA+ID4gPiA+ID4gPiArCXN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZTsKPiA+ID4g
+PiA+ID4gPiArCWludCBpOwo+ID4gPiA+ID4gPiA+ICsKPiA+ID4gPiA+ID4gPiArCWZvcl9lYWNo
+X25ld19jb25uZWN0b3JfaW5fc3RhdGUocHN0YXRlLT5zdGF0ZSwgY29ubiwgY29ubl9zdGF0ZSwg
+aSkgewo+ID4gPiA+ID4gPiA+ICsJCWlmIChjb25uX3N0YXRlLT5jcnRjID09IHBzdGF0ZS0+Y3J0
+YykKPiA+ID4gPiA+ID4gPiArCQkJYnJlYWs7Cj4gPiA+ID4gPiA+ID4gKwl9Cj4gPiA+ID4gPiA+
+ID4gKwo+ID4gPiA+ID4gPiA+ICsJaWYgKGkgPT0gcHN0YXRlLT5zdGF0ZS0+bnVtX2Nvbm5lY3Rv
+cikKPiA+ID4gPiA+ID4gPiArCQlyZXR1cm4gMDsKPiA+ID4gPiA+ID4gPiArCj4gPiA+ID4gPiA+
+ID4gKwlpZiAoY29ubl9zdGF0ZS0+dW5kZXJzY2FuLm1vZGUgIT0gRFJNX1VOREVSU0NBTl9PTikK
+PiA+ID4gPiA+ID4gPiArCQlyZXR1cm4gMDsKPiA+ID4gPiA+ID4gPiArCj4gPiA+ID4gPiA+ID4g
+KwljcnRjX3N0YXRlID0gZHJtX2F0b21pY19nZXRfbmV3X2NydGNfc3RhdGUocHN0YXRlLT5zdGF0
+ZSwKPiA+ID4gPiA+ID4gPiArCQkJCQkJICAgcHN0YXRlLT5jcnRjKTsKPiA+ID4gPiA+ID4gPiAr
+Cj4gPiA+ID4gPiA+ID4gKwlpZiAoY29ubl9zdGF0ZS0+dW5kZXJzY2FuLmhib3JkZXIgPj0gY3J0
+Y19zdGF0ZS0+bW9kZS5oZGlzcGxheSB8fAo+ID4gPiA+ID4gPiA+ICsJICAgIGNvbm5fc3RhdGUt
+PnVuZGVyc2Nhbi52Ym9yZGVyID49IGNydGNfc3RhdGUtPm1vZGUudmRpc3BsYXkpCj4gPiA+ID4g
+PiA+ID4gKwkJcmV0dXJuIC1FSU5WQUw7ICAgICAgCj4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiBi
+b3JkZXIgKiAyID8gICAgCj4gPiA+ID4gPiAKPiA+ID4gPiA+IE9vcHMsIGluZGVlZC4gSSdsbCBm
+aXggdGhhdC4KPiA+ID4gPiA+ICAgICAKPiA+ID4gPiA+ID4gICAgIAo+ID4gPiA+ID4gPiA+ICsK
+PiA+ID4gPiA+ID4gPiArCXZjNF9wc3RhdGUtPmNydGNfeCArPSBjb25uX3N0YXRlLT51bmRlcnNj
+YW4uaGJvcmRlcjsKPiA+ID4gPiA+ID4gPiArCXZjNF9wc3RhdGUtPmNydGNfeSArPSBjb25uX3N0
+YXRlLT51bmRlcnNjYW4udmJvcmRlcjsKPiA+ID4gPiA+ID4gPiArCXZjNF9wc3RhdGUtPmNydGNf
+dyA9ICh2YzRfcHN0YXRlLT5jcnRjX3cgKgo+ID4gPiA+ID4gPiA+ICsJCQkgICAgICAoY3J0Y19z
+dGF0ZS0+bW9kZS5oZGlzcGxheSAtCj4gPiA+ID4gPiA+ID4gKwkJCSAgICAgICAoY29ubl9zdGF0
+ZS0+dW5kZXJzY2FuLmhib3JkZXIgKiAyKSkpIC8KPiA+ID4gPiA+ID4gPiArCQkJICAgICBjcnRj
+X3N0YXRlLT5tb2RlLmhkaXNwbGF5Owo+ID4gPiA+ID4gPiA+ICsJdmM0X3BzdGF0ZS0+Y3J0Y19o
+ID0gKHZjNF9wc3RhdGUtPmNydGNfaCAqCj4gPiA+ID4gPiA+ID4gKwkJCSAgICAgIChjcnRjX3N0
+YXRlLT5tb2RlLnZkaXNwbGF5IC0KPiA+ID4gPiA+ID4gPiArCQkJICAgICAgIChjb25uX3N0YXRl
+LT51bmRlcnNjYW4udmJvcmRlciAqIDIpKSkgLwo+ID4gPiA+ID4gPiA+ICsJCQkgICAgIGNydGNf
+c3RhdGUtPm1vZGUudmRpc3BsYXk7ICAgICAgCj4gPiA+ID4gPiA+IAo+ID4gPiA+ID4gPiBTbyB5
+b3UncmUgbm93IHNjYWxpbmcgYWxsIHBsYW5lcz8gVGhlIGNvZGUgc2VlbXMgdG8gcmVqZWN0IHNj
+YWxpbmcgZm9yCj4gPiA+ID4gPiA+IHRoZSBjdXJzb3IgcGxhbmUsIGhvdyBhcmUgeW91IGRlYWxp
+bmcgd2l0aCB0aGF0PyBPciBqdXN0IG5vIGN1cnNvcgo+ID4gPiA+ID4gPiBhbGxvd2VkIHdoZW4g
+dW5kZXJzY2FubmluZz8gICAgCj4gPiA+ID4gPiAKPiA+ID4gPiA+IE5vLCBJIGp1c3QgZGlkbid0
+IHRlc3Qgd2l0aCBhIGN1cnNvciBwbGFuZS4gV2Ugc2hvdWxkIHByb2JhYmx5IGF2b2lkCj4gPiA+
+ID4gPiBzY2FsaW5nIHRoZSBjdXJzb3IgcGxhbmUgYW5kIGp1c3QgYWRqdXN0IGl0cyBwb3NpdGlv
+bi4gRXJpYyBhbnkgb3Bpbmlvbgo+ID4gPiA+ID4gb24gdGhhdD8gICAgCj4gPiA+ID4gCj4gPiA+
+ID4gSSBkb24ndCB0aGluayB5b3UgY2FuIGp1c3Qgbm90IHNjYWxlIGl0LiBUaGUgdXNlciBhc2tl
+ZCBmb3IgdGhlIGN1cnNvcgo+ID4gPiA+IHRvIGJlIGF0IGEgc3BlY2lmaWMgcGxhY2Ugd2l0aCBh
+IHNwZWNpZmljIHNpemUuIENhbid0IGp1c3QgaWdub3JlCj4gPiA+ID4gdGhhdCBhbmQgZG8gc29t
+ZXRoaW5nIGVsc2UuIEFsc28gZWcuIGk5MTUgd291bGQgZGVmaW5pdGVseSBzY2FsZSB0aGUKPiA+
+ID4gPiBjdXJzb3Igc2luY2Ugd2UnZCBqdXN0IHNjYWxlIHRoZSBlbnRpcmUgY3J0YyBpbnN0ZWFk
+IG9mIHNjYWxpbmcKPiA+ID4gPiBpbmRpdmlkdWFsIHBsYW5lcy4gRGlmZmVyZW50IGRyaXZlcnMg
+ZG9pbmcgZGlmZmVyZW50IHRoaW5ncyB3b3VsZG4ndAo+ID4gPiA+IGJlIGdvb2QuICAKPiA+ID4g
+Cj4gPiA+IEV4Y2VwdCBpbiBvdXIgY2FzZSB0aGUgc2NhbGluZyB0YWtlcyBwbGFjZSBiZWZvcmUg
+dGhlIGNvbXBvc2l0aW9uLCBzbwo+ID4gPiB3ZSBkb24ndCBoYXZlIGEgY2hvaWNlLiAgCj4gPiAK
+PiA+IFRoZSBjaG9pY2UgaXMgdG8gZWl0aGVyIGRvIHdoYXQgdXNlcnNwYWNlIGFza2VkLCBvciBy
+ZXR1cm4gYW4gZXJyb3IuCj4gCj4gQ29tZSBvbiEgSWYgd2UgY2FuJ3QgdXNlIHVuZGVyc2NhbiB3
+aGVuIHRoZXJlJ3MgYSBjdXJzb3IgcGxhbmUgZW5hYmxlZAo+IHRoaXMgZmVhdHVyZSBpcyBwcmV0
+dHkgbXVjaCB1c2VsZXNzLiBCdXQgbGV0J3MgdGFrZSBhIHJlYWwgdXNlIGNhc2UgdG8KPiBzaG93
+IHlvdSBob3cgbmVnbGlnaWJsZSB0aGUgbGFjayBvZiBzY2FsaW5nIG9uIHRoZSBjdXJzb3IgcGxh
+bmUgd2lsbAo+IGJlLiBTYXkgeW91IGhhdmUgYm9yZGVycyB0YWtpbmcgMTAlIG9mIHlvdSBzY3Jl
+ZW4gKHdoaWNoIGlzIGFscmVhZHkgYQo+IGxvdCksIGFuZCB5b3VyIGN1cnNvciBpcyBhIHBsYW5l
+IG9mIDY0eDY0IHBpeGVscywgeW91J2xsIGVuZCB1cCB3aXRoIGEKPiA2NHg2NCBjdXJzb3IgaW5z
+dGVhZCBvZiA1OHg1OC4gUXVpdGUgZnJhbmtseSwgSSBkb3VidCB5b3UnbGwgbm90aWNlCj4gdGhl
+IGRpZmZlcmVuY2UuCgpOb3cgeW91J3JlIGFzc3VtaW5nIHRoZSBjdXJzb3IgaXMgb25seSBldmVy
+IHVzZWQgYXMgYSBjdXJzb3IuIEl0IGNhbgpiZSB1c2VkIGZvciBvdGhlciB0aGluZ3MgYW5kIHRo
+b3NlIG1heSBuZWVkIHRvIGJlIHBvc2l0aW9uZWQgcGl4ZWwKcGVyZmVjdCBpbiByZWxhdGlvbiB0
+byBvdGhlciBwbGFuZXMvZmIgY29udGVudHMuCgpXZSB1c2VkIHRvIHBsYXkgaXMgZmFzdCBhbmQg
+bG9vc2UgaW4gaTkxNSB3aGVuIGl0IGNhbWUgdG8gdGhlIHNwcml0ZQpwbGFuZSBjb29yZGluYXRl
+cy4gUGVvcGxlIGdlbmVyYWxseSBoYXRlZCB0aGF0LCBhdCBsZWFzdCB3aGVuIGl0IGNhbWUKdG8g
+dGhlIGF0b21pYyBpb2N0bC4gQmFzaWNhbGx5IHdlIGp1c3QgYWRqdXN0ZWQgdGhlIHNyYy9kc3QK
+Y29vcmRpbmF0ZXMgdW50aWwgdGhlIGh3IHdhcyBoYXBweSB3aXRoIHRoZW0sIHBhcnRpYWxseSBp
+Z25vcmluZwp3aGF0IHRoZSB1c2VyIGhhZCBhc2tlZC4gTWFhcnRlbiByZWNlbnRseSBudWtlZCB0
+aGF0IGNvZGUsIGFuZCBzbwpub3cgd2UgZWl0aGVyIHJlc3BlY3QgdGhlIHVzZXIncyBjaG9pY2Ug
+b3Igd2UgcmV0dXJuIGFuIGVycm9yLgoKSSBndWVzcyBvbmUgd2F5IG91dCBvZiB0aGlzIGNvbnVu
+ZHJ1bSB3b3VsZCBiZSB0byBhbGxvdyB0aGUgY3Vyc29yCnRvIHZpb2xhdGUgdGhlIHVzZXIncyBy
+ZXF1ZXN0ZWQgcGFyYW1ldGVycyB3aGVuIGNvbnRyb2xsZWQgdmlhIHRoZQpsZWdhY3kgY3Vyc29y
+IGlvY3Rscy4gVGhlcmUgYXJlIG5vIGF0b21pY2l0eSBndWFyYW50ZWVzIHRoZXJlLCBzbwpJIGd1
+ZXNzIHdlIGNvdWxkIGFsc28gc2F5IHRoZXJlIGFyZSBubyBvdGhlciBjb3JyZWN0bmVzcyBndWFy
+YW50ZWVzCmVpdGhlci4gTm90IHN1cmUgaWYgdGhlIGFjY3VyYWN5IG9mIHRoZSBob3RzcG90IG1p
+Z2h0IGJlY29tZSBhbiBpc3N1ZQp0aG91Z2guCgpBbm90aGVyIG9wdGlvbiBtaWdodCBiZSB0byBq
+dXN0IHNjYWxlIHRoZSBjdXJzb3IgYXMgd2VsbC4gSWYgSQp1bmRlcnN0YW5kIGNvcnJlY3RseSB0
+aGUgImN1cnNvciBjYW4ndCBiZSBzY2FsZWQiIGxpbWl0YXRpb24ganVzdApjb21lcyBmcm9tIHRo
+ZSBmYWN0IHRoYXQgc29tZSB2Ymxhbmsgc3luY2VkIHJlc291cmNlIG5lZWRzIHRvIGJlCnJlY29u
+ZmlndXJlZCB3aGVuZXZlciB0aGUgc2NhbGluZyBjaGFuZ2VzLiBTbyBkb2luZyB0aGF0IGZvcgp1
+bnRocm90dGxlZCBjdXJzb3IgdXBkYXRlcyBpcyBub3QgZWFzeS4gQnV0IGluIHRoaXMgY2FzZSB0
+aGUKdW5kZXJzY2FuIHByb3BlcnRpZXMgYXJlIHdoYXQgZGV0ZXJtaW5lcyB0aGUgc2NhbGluZyBz
+byBtYXliZSB0aGF0CnJlc291cmNlIGNvdWxkIGJlIHJlY29uZmlndXJlZCB3aGVuZXZlciB0aGUg
+dGhvc2UgcHJvcHMgY2hhbmdlCnRvIG1ha2Ugc3VyZSB0aGUgY3Vyc29yIGNhbiBhbHdheXMgYmUg
+c2NhbGVkIGFwcHJvcHJpYXRlbHk/Cgo+IAo+IEFueXdheSwgSSdkIGxpa2UgdG8gaGVhciBiYWNr
+IGZyb20gRXJpYyBvbiB0aGF0LCBzaW5jZSBoZSBpcyB0aGUgb25lCj4gd2hvIGFza2VkIG1lIHRv
+IHdvcmsgb24gdGhpcyBmZWF0dXJlLgo+IAo+ID4gCj4gPiA+ICAgCj4gPiA+ID4gICAKPiA+ID4g
+PiA+ICAgICAKPiA+ID4gPiA+ID4gCj4gPiA+ID4gPiA+IEknbSBhbHNvIHdvbmRlcmluZyBpZiB0
+aGVyZSdzIGFueSB3YXkgd2UgY2FuIHJlY29uY2lsZSB0aGVzZSBib3JkZXIKPiA+ID4gPiA+ID4g
+cHJvcHMgd2l0aCB0aGUgc2NhbGluZyBtb2RlIHByb3AsIHNob3VsZCB3ZSBldmVyIHdpc2ggdG8g
+ZXhwb3NlCj4gPiA+ID4gPiA+IHRoZXNlIHByb3BzIG9uIGNvbm5lY3RvcnMgdGhhdCBhbHJlYWR5
+IGhhdmUgdGhlIHNjYWxpbmcgbW9kZSBwcm9wLiAgICAKPiA+ID4gPiA+IAo+ID4gPiA+ID4gTm91
+dmVhdSBzZWVtcyB0byBleHBvc2UgYm90aCwgYW5kIEkgZG9uJ3Qgc2VlIHdoeSB3ZSBjb3VsZG4n
+dC4gICAgCj4gPiA+ID4gCj4gPiA+ID4gRmlyc3Qgb2YgYWxsIHRoZSBpbnRlcmFjdGlvbiBvZiB0
+aGVzZSBib3JkZXJzIHdpdGggcGFuZWxzIHRoYXQgaGF2ZQo+ID4gPiA+IGEgZml4ZWQgbW9kZSB3
+b3VsZCBuZWVkIHRvIGJlIHByb3Blcmx5IHNwZWNpZmllZC4gRG8gd2UgYXBwbHkgdGhlCj4gPiA+
+ID4gYm9yZGVycyBhZ2FpbnN0IHRoZSB1c2VyIG1vZGUgb3IgdGhlIHBhbmVsJ3MgbmF0aXZlIG1v
+ZGU/ICAKPiA+ID4gCj4gPiA+IEhtLCBJJ20gYSBiaXQgbG9zdC4gSXNuJ3QgY3J0Y19zdGF0ZS0+
+bW9kZSBzdXBwb3NlZCB0byBjb250YWluIHRoZSBtb2RlCj4gPiA+IHRoYXQgaXMgYWJvdXQgdG8g
+YmUgYXBwbGllZCwgbm8gbWF0dGVyIGlmIGl0J3MgYSB1c2VybW9kZSBvciBvbmUgb2YgdGhlCj4g
+PiA+IG1vZGUgcmV0dXJuZWQgYnkgdGhlIGRpc3BsYXk/ICAgCj4gPiAKPiA+IE5vLiBXaXRoIGZp
+eGVkIG1vZGUgcGFuZWxzIHRoZSB1c2VyIG1vZGUgaXMgYSBsaWUuIE9ubHkKPiA+IGhkaXNwbGF5
+L3ZkaXNwbGF5IG1lYW4gYW55dGhpbmcuIFRoZSBhY3R1YWwgdGltaW5ncyBhcmUga25vd24gb25s
+eSB0bwo+ID4gdGhlIGtlcm5lbC4KPiAKPiBTbyBub3cgeW91IHNheSB0aGF0IHRoZSBkcml2ZXIg
+Y2FuIHNpbGVudGx5IGlnbm9yZSB3aGF0IHRoZSB1c2Vyc3BhY2UKPiBhc2tlZCBmb3IgYW5kIHNl
+dCB3aGF0IGhlIHRoaW5rcyBpcyBhcHByb3ByaWF0ZSBiYXNlZCBvbiB3aGF0IHRoZSBIVwo+IHN1
+cHBvcnRzLiBUaGlzIGNsZWFybHkgY29udHJhZGljdHMgdGhlIHN0YXRlbWVudCB5b3UgbWFrZSBh
+IGZldyBsaW5lcwo+IGFib3ZlOiBkcml2ZXIgc2hvdWxkIGFwcGx5IHdoYXQgdXNlcnNwYWNlIGFz
+a2VkIGZvciBvciByZXR1cm4gYW4gZXJyb3IKPiB3aGVuIGl0J3Mgbm90IHBvc3NpYmxlLgoKSXQn
+cyBhbiB1bmZvcnR1bmF0ZSBsZWdhY3kgdWFwaSBkZXNpZ24gd2UgaGF2ZSB0byBsaXZlIHdpdGgu
+IEkgYWdyZWUKdGhhdCBpdCB3b3VsZCBiZSBtdWNoIGJldHRlciBpZiB1c2Vyc3BhY2UgaGFkIG1v
+cmUgZXhwbGljaXQgY29udHJvbApvdmVyIHRoZSBjcnRjIHNjYWxpbmcvYm9yZGVycy9ldGMuCgo+
+IAo+ID4gV2VsbCwgdXNlcnNwYWNlIGNhbiBwZXJoYXBzIG1ha2UgYW4gZWR1Y2F0ZWQgZ3Vlc3Mg
+YmFzZWQgb24KPiA+IHRoZSBjb25uZWN0b3IncyBtb2RlIGxpc3QgYW5kIHRoZSBwcmVzZW5jZSBv
+ZiB0aGUgc2NhbGluZyBtb2RlIHByb3BlcnR5Lgo+IAo+IEJ1dCBndWVzcyB3aGF0PyBXaGVyZSBp
+cyB0aGUgYWN0dWFsICdIVycgbW9kZSBzdG9yZWQgaWYgaXQncyBub3QgaW4KPiBjcnRjX3N0YXRl
+LT5tb2RlPyBJIG1lYW4sIHRoZSBkcml2ZXJzIG5lZWRzIHRvIGtub3cgd2hhdCB0byBhcHBseSwg
+YW5kCj4gYWxtb3N0IGFsbCBkcml2ZXJzIGFyZSB1c2luZyBhdG9taWMgc3RhdGVzIHRvIGV4dHJh
+Y3QgdGhpcyBpbmZvcm1hdGlvbi4KCmFkanVzdGVkX21vZGUgaXMgdGhlcmUgZm9yIHRoZSBkcml2
+ZXIgdG8gZG8gYXMgdGhleSB3aXNoLiBFZy4gaW4gaTkxNQpMVkRTL2VEUC9EU0kvZXRjLiBlbmNv
+ZGVycyB3aWxsIG92ZXJ3cml0ZSB0aGUgYWRqdXN0ZWRfbW9kZSB3aXRoIHRoZQpwYW5lbCdzIG5h
+dGl2ZSBtb2RlIGF0IHRoZSBhcHByb3ByaWF0ZSB0aW1lIChmb3Igb3RoZXIgZW5jb2RlciB0eXBl
+cwp3ZSBqdXN0IHBvcHVsYXRlIGFkanVzdGVkX21vZGUgd2l0aCB0aGUgdXNlciBtb2RlKS4KCkZv
+ciB0aGUgdXNlciBpdCB3aWxsIHN0aWxsICpsb29rKiBsaWtlIHRoZSBtb2RlIHRoZXkgYXNrZWQg
+Zm9yIChpZS4KaGRpc3BsYXkvdmRpc3BsYXkgZGV0ZXJtaW5lIGhvdyBtYW55IHZpc2libGUgcGl4
+ZWxzIHRoZXJlIGFyZSksIGJ1dAppbnRlcm5hbGx5IHdlJ3ZlIHJlcGxhY2VkIHRoZSB0aW1pbmdz
+IHdpdGggc29tZXRoaW5nIGRpZmZlcmVudCBhbmQKdGhlcmUgbWF5IG9yIG1heSBub3Qgc2NhbGlu
+ZyBpbnZvbHZlZCAoZGVwZW5kIG9uIHRoZSBzY2FsaW5nIG1vZGUKcHJvcGVydHkpLgoKPiAKPiBP
+biBhIHNpZGUgbm90ZSwgSSdkIGxpa2UgdG8gcmVwZWF0IHdoYXQgSSBhbHJlYWR5IHNhaWQgYmVm
+b3JlOiBJIGRvbid0Cj4gY2FyZSBob3cgdGhpcyAiZGVmaW5lIGJvcmRlcnMiIGZlYXR1cmUgaXMg
+ZXhwb3NlZCB0byB1c2Vyc3BhY2UsIGFzIGxvbmcKPiBhcyB3ZSBoYXZlIGEgd2F5IHRvIGV4cHJl
+c3MgdGhhdCB0aGUgZGlzcGxheSB3ZSdyZSB1c2luZyBoYXMgYm9yZGVycwo+IGFuZCB0aGUgb3V0
+cHV0IGltYWdlIHNob3VsZCBiZSBzY2FsZWQrbW92ZWQgYWNjb3JkaW5nbHkuCj4gCj4gU28gbm93
+IGl0J3MgdGltZSB0byByZWFjaCBhIGNvbnNlbnN1cywgYmVjYXVzZSBJJ20gbm90IGdvaW5nIHRv
+IHRyeSBhbmQKPiBndWVzcyB3aGF0IHlvdSBleHBlY3QuIFdoZW4gSSBhc2tlZCBEYW5pZWwgZWFy
+bGllciB0aGlzIHdlZWsgd2hldGhlciBoZQo+IHdhbnRlZCBtZSB0byBkbyB0aGluZ3MgZGlmZmVy
+ZW50bHkgdGhhbiBJIGRpZCBpbiBteSB2MSBvciB0cnkgdG8gbWF0Y2gKPiB3aGF0IG90aGVyIGRy
+aXZlcnMgd2VyZSBhbHJlYWR5IGRvaW5nIHdpdGggdGhlIHVuZGVyc2NhbiBwcm9wLCBoZSB0b2xk
+Cj4gbWUgd2Ugc2hvdWxkIHRyeSB0byBjb252ZXJnZSB0byBhIGdlbmVyaWMgdW5kZXJzY2FuIHNv
+bHV0aW9uIHRoYXQga2VlcHMKPiB0aGUgZXhpc3RpbmcgdXNlcnNwYWNlIGludGVyZmFjZSB1bmNo
+YW5nZWQgKGJhc2ljYWxseSB3aGF0IHJhZGVvbiwKPiBhbWRncHUgYW5kIG5vdXZlYXUgZHJpdmVy
+cyBleHBvc2UgdG9kYXkpLiBZb3UgZG9uJ3Qgc2VlbSB0byBhZ3JlZSB3aXRoCj4gdGhhdC4gU28g
+bm93IEknZCBsaWtlIGEgY2xlYXIgYW5zd2VyLCB3aGF0IHNob3VsZCBJIGRvPwoKV2hhdCBkbyB0
+aG9zZSBkcml2ZXJzIGRvIHdoZW4gaXQgY29tZXMgdG8gcGxhbmVzPyBJIHdvdWxkIGV4cGVjdCB0
+aGF0CnRoZXkganVzdCBzY2FsZSB0aGUgZW50aXJlIGNydGMgaW5zdGVhZCBvZiBpbmRpdmlkdWFs
+IHBsYW5lcy4KCi0tIApWaWxsZSBTeXJqw6Rsw6QKSW50ZWwKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9hbWQtZ2Z4Cg==
