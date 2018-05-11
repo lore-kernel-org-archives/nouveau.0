@@ -1,40 +1,68 @@
-From: Mike Galbraith <efault@gmx.de>
-Subject: Re: [Nouveau] kernel spew from nouveau/ swiotlb
-Date: Thu, 10 May 2018 18:30:46 +0200
-Message-ID: <1525969846.5308.2.camel@gmx.de>
-References: <1525943427.8013.11.camel@gmx.de>
-         <474293973.18773550.1525962696189.JavaMail.zimbra@redhat.com>
-         <1525966280.5207.1.camel@gmx.de>
+From: Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>
+Subject: Re: kernel spew from nouveau/ swiotlb
+Date: Fri, 11 May 2018 09:13:50 +0200
+Message-ID: <1526022830.6288.3.camel@gmx.de>
+References: <1525943427.8013.11.camel@gmx.de> <1525948096.29445.4.camel@gmx.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-15"
-Content-Transfer-Encoding: 8BIT
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1525966280.5207.1.camel@gmx.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Jerome Glisse <jglisse@redhat.com>
-Cc: nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1525948096.29445.4.camel-Mmb7MZpHnFY@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Christian Koenig <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Roger He <Hongbo.He-5C7GfCeVMHo@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 2018-05-10 at 17:31 +0200, Mike Galbraith wrote:
-> On Thu, 2018-05-10 at 10:31 -0400, Jerome Glisse wrote:
-> > 
-> > Could you bisect ? I would love to point finger upstream to the DMA
-> > folk who made changes to that API without testing with GPU.
-> 
-> Rummaging a bit, it might be...
-> 
-
-(unsend, whack duplicate line, munge, send;)
-
-> nouveau_bo_new()
-> ...
-> ttm_dma_pool_alloc_new_pages()
->   dma_alloc_attrs()
->     ops->alloc() == x86_swiotlb_alloc_coherent()
->     x86_swiotlb_alloc_coherent() flags |= __GFP_NOWARN;
->       swiotlb_alloc_coherent(..flags)
->         swiotlb_alloc_coherent(..flags) attrs = (flags & __GFP_NOWARN) ? DMA_ATTR_NO_WARN : 0;
->           swiotlb_alloc_buffer(..attrs)
-*              swiotlb_tbl_map_single(..0) passed 0 vs attrs, gripeage follows
-
-Or something like that.
+T24gVGh1LCAyMDE4LTA1LTEwIGF0IDEyOjI4ICswMjAwLCBNaWtlIEdhbGJyYWl0aCB3cm90ZToK
+PiBPbiBUaHUsIDIwMTgtMDUtMTAgYXQgMTE6MTAgKzAyMDAsIE1pa2UgR2FsYnJhaXRoIHdyb3Rl
+Ogo+ID4gR3JlZXRpbmdzLAo+ID4gCj4gPiBXaGVuIGJveCBpcyBlYXJuaW5nIGl0cyBrZWVwLCBu
+b3V2ZWF1L3N3aW90bGIgZ3J1bWJsZS4uIGEgTE9ULiAgVGhlCj4gPiBiZWxvdyBpcyBmcm9tIG1h
+c3Rlci50b2RheS4KPiA+IAo+ID4gWzEyNTk0LjY0MDk1OV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6
+IHN3aW90bGIgYnVmZmVyIGlzIGZ1bGwgKHN6OiAyMDk3MTUyIGJ5dGVzKQo+ID4gWzEyNTk0LjY5
+MzAwMF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IHN3aW90bGIgYnVmZmVyIGlzIGZ1bGwgKHN6OiAy
+MDk3MTUyIGJ5dGVzKQo+ID4gWzEyNTk0LjcxMzc4N10gbm91dmVhdSAwMDAwOjAxOjAwLjA6IHN3
+aW90bGIgYnVmZmVyIGlzIGZ1bGwgKHN6OiAyMDk3MTUyIGJ5dGVzKQo+ID4gWzEyNTk0Ljc0MzQx
+M10gbm91dmVhdSAwMDAwOjAxOjAwLjA6IHN3aW90bGIgYnVmZmVyIGlzIGZ1bGwgKHN6OiAyMDk3
+MTUyIGJ5dGVzKQo+ID4gWzEyNTk0Ljc5Njc0MF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IHN3aW90
+bGIgYnVmZmVyIGlzIGZ1bGwgKHN6OiAyMDk3MTUyIGJ5dGVzKQo+ID4gWzEyNjA3LjAwMDc3NF0g
+c3dpb3RsYl90YmxfbWFwX3NpbmdsZTogNTQgY2FsbGJhY2tzIHN1cHByZXNzZWQKPiA+IFsxMjYw
+Ny4wMDA3NzZdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBzd2lvdGxiIGJ1ZmZlciBpcyBmdWxsIChz
+ejogMjA5NzE1MiBieXRlcykKPiA+IFsxMjYwNy4zNDc5NDFdIG5vdXZlYXUgMDAwMDowMTowMC4w
+OiBzd2lvdGxiIGJ1ZmZlciBpcyBmdWxsIChzejogMjA5NzE1MiBieXRlcykKPiA+IFsxMjYwOC42
+NzcwMzhdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBzd2lvdGxiIGJ1ZmZlciBpcyBmdWxsIChzejog
+MjA5NzE1MiBieXRlcykKPiA+IGhvbWVyOi9ub3ZlbGwvc3NoICMgZG1lc2d8Z3JlcCAnc3dpb3Rs
+YiBidWZmZXIgaXMgZnVsbCd8d2MgLWwKPiA+IDIwNTIKPiA+IGhvbWVyOi9ub3ZlbGwvc3NoICMg
+ZG1lc2d8Z3JlcCAnY2FsbGJhY2tzIHN1cHByZXNzZWQnfHdjIC1sCj4gPiAxNzEKPiA+IAo+ID4g
+bGliL3N3aW90bGIuYzoKPiA+ICA1NzMgbm90X2ZvdW5kOgo+ID4gIDU3NCDCoMKgwqDCoMKgwqDC
+oMKgc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmaW9fdGxiX2xvY2ssIGZsYWdzKTsKPiA+ICA1NzUg
+wqDCoMKgwqDCoMKgwqDCoGlmICghKGF0dHJzICYgRE1BX0FUVFJfTk9fV0FSTikgJiYgcHJpbnRr
+X3JhdGVsaW1pdCgpKQo+ID4gIDU3NiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGRl
+dl93YXJuKGh3ZGV2LCAic3dpb3RsYiBidWZmZXIgaXMgZnVsbCAoc3o6ICV6ZCBieXRlcylcbiIs
+IHNpemUpOwo+ID4gCj4gPiBEb2VzIG5vdXZlYXUgcGVyaGFwcyB3YW50IG9uZSBvZiB0aG9zZSBE
+TUFfQVRUUl9OT19XQVJOIHRoaW5naWVzPwo+IAo+IE9yIHNob3VsZCB0dG0gcGVyaGFwcyBhbHdh
+eXMgdXNlIHRoZSBvbmUgb24gaGFuZD8gIChzZWVtcyB0byB3b3JrKQoKTm8gaXQgZGlkbid0LCBJ
+IGp1c3QgZGlkbid0IHdhaXQgbG9uZyBlbm91Z2ggZm9yIHNwZXcgdG8gc3RhcnQuLi4KCj4gLS0t
+Cj4gIGRyaXZlcnMvZ3B1L2RybS90dG0vdHRtX3BhZ2VfYWxsb2NfZG1hLmMgfCAgICAyICstCj4g
+IDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+IAo+IC0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX3BhZ2VfYWxsb2NfZG1hLmMKPiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vdHRtL3R0bV9wYWdlX2FsbG9jX2RtYS5jCj4gQEAgLTM0Miw3ICszNDIsNyBAQCBz
+dGF0aWMgc3RydWN0IGRtYV9wYWdlICpfX3R0bV9kbWFfYWxsb2NfCj4gIAlpZiAoIWRfcGFnZSkK
+PiAgCQlyZXR1cm4gTlVMTDsKPiAgCj4gLQlpZiAocG9vbC0+dHlwZSAmIElTX0hVR0UpCj4gKwlp
+ZiAoMSB8fCBwb29sLT50eXBlICYgSVNfSFVHRSkKPiAgCQlhdHRycyA9IERNQV9BVFRSX05PX1dB
+Uk47Cj4gIAo+ICAJdmFkZHIgPSBkbWFfYWxsb2NfYXR0cnMocG9vbC0+ZGV2LCBwb29sLT5zaXpl
+LCAmZF9wYWdlLT5kbWEsCgpXaGlsZSBJU19IVUdFIGlzIGluZGVlZCBmYWxzZSBvbiBteSBib3gs
+IGl0IGp1c3QgZG9lc24ndCBtYXR0ZXIsCmJlY2F1c2Ugd2hlbiB3ZSBnZXQgdG8gZWl0aGVyIHRo
+ZSBvbGQgb3IgdGhlIG5ldyBhbGxvYygpLCBpdCBjYWxscwpzd2lvdGxiX2FsbG9jX2J1ZmZlcigp
+LCB3aGljaCBkcm9wcyBhdHRycyBwYXNzZWQgdG8gaXQgb24gdGhlIGZsb29yLAptYWtpbmcgaXQg
+dW5saWtlbHkgdGhhdCBhbGxvYygpIGNhbGxlciB3aXNoZXMgYXJlIGdyYW50ZWQuCgoJLU1pa2UK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
