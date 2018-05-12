@@ -1,15 +1,13 @@
-From: Mike Galbraith <efault-Mmb7MZpHnFY@public.gmane.org>
-Subject: Re: [patch] swiotlb: fix ignored DMA_ATTR_NO_WARN request
-Date: Sat, 12 May 2018 09:11:00 +0200
-Message-ID: <1526109060.20556.1.camel@gmx.de>
-References: <1525943427.8013.11.camel@gmx.de>
- <1525948096.29445.4.camel@gmx.de> <1526022830.6288.3.camel@gmx.de>
- <1526051730.23162.3.camel@gmx.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 103351] Nouveau fails when booting with a screen
+ connected to displayport since 13a86519202c5d119d83640d6f781f3181205d2c
+Date: Sat, 12 May 2018 17:32:45 +0000
+Message-ID: <bug-103351-8800-RdclHWBjnL@http.bugs.freedesktop.org/>
+References: <bug-103351-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0794572487=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1526051730.23162.3.camel-Mmb7MZpHnFY@public.gmane.org>
+In-Reply-To: <bug-103351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,38 +17,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: Christian Koenig <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Roger He <Hongbo.He-5C7GfCeVMHo@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VG8gY29uY2x1ZGUgdG8gdGhpcyBzbmFpbCBsaWtlIHRocmVhZCAoL21lPXdhbGtpbmcgd291bmRl
-ZCksIHdpdGggdGhlCnY0LjE2LjggaHVuayBiZWxvdywgdHJhY2VzIHNob3dpbmcgdGhhdCBzd2lv
-dGxiX2FsbG9jX2NvaGVyZW50KCkgd2FzCmJlaW5nIGFza2VkIHRvIG5vdCBib3RoZXIgd2Fybmlu
-ZyBzdGFydGVkIHNob3dpbmcgdXAgYWZ0ZXIgdGhlIGJveCBoYWQKYmVlbiBmbG9nZ2VkIGZvciBh
-IHdoaWxlLgoKV2hhdGV2ZXIgZmluYWxseSBoYXBwZW5zIHdpdGggc3dpb3RsYiAoc2VlbXMgdG8g
-YmUgaW4gZmx1eCksIG90aGVyCmZvbGtzIG1lZXRpbmcgYW5ub3lpbmcgZ3JpcGVhZ2UgY2FuIGZp
-bmQgYmFuZGFpZHMgaW4gdGhlIGludGVyaW0uCgpUaGUgRW5kCgp2NC4xNi44ICFETUFfRElSRUNU
-X09QUwpYb3JnLTMxMDUgIFswMDFdIC4uLi4gIDIxNTYuNzExNDcxOiBzd2lvdGxiX2FsbG9jX2Nv
-aGVyZW50KzB4YTcvMHgxZTA6IHl1cApYb3JnLTMxMDUgIFswMDFdIC4uLi4gIDIxNTYuNzExNDk3
-OiA8c3RhY2sgdHJhY2U+CiA9PiB0dG1fZG1hX3BvcHVsYXRlKzB4MjNjLzB4MzEwIFt0dG1dCiA9
-PiB0dG1fdHRfYmluZCsweDMxLzB4NjAgW3R0bV0KID0+IHR0bV9ib19oYW5kbGVfbW92ZV9tZW0r
-MHg1MjcvMHg1ODAgW3R0bV0KID0+IHR0bV9ib192YWxpZGF0ZSsweGZiLzB4MTEwIFt0dG1dCiA9
-PiB0dG1fYm9faW5pdF9yZXNlcnZlZCsweDI4OS8weDQ1MCBbdHRtXQogPT4gdHRtX2JvX2luaXQr
-MHg3Ny8weGQwIFt0dG1dCiA9PiBub3V2ZWF1X2JvX25ldysweDNmYy8weDVlMCBbbm91dmVhdV0K
-ID0+IG5vdXZlYXVfZ2VtX25ldysweDY2LzB4MTEwIFtub3V2ZWF1XQogPT4gbm91dmVhdV9nZW1f
-aW9jdGxfbmV3KzB4NDgvMHhjMCBbbm91dmVhdV0KID0+IGRybV9pb2N0bF9rZXJuZWwrMHg2Ni8w
-eGIwIFtkcm1dCiA9PiBkcm1faW9jdGwrMHgyYTQvMHgzNjAgW2RybV0KID0+IG5vdXZlYXVfZHJt
-X2lvY3RsKzB4NTAvMHhiMCBbbm91dmVhdV0KID0+IGRvX3Zmc19pb2N0bCsweDkyLzB4NWUwCiA9
-PiBTeVNfaW9jdGwrMHgzYi8weDcwCiA9PiBkb19zeXNjYWxsXzY0KzB4NzQvMHgxYTAKID0+IGVu
-dHJ5X1NZU0NBTExfNjRfYWZ0ZXJfaHdmcmFtZSsweDNkLzB4YTIKCi0tLSBhL2FyY2gveDg2L2tl
-cm5lbC9wY2ktc3dpb3RsYi5jCisrKyBiL2FyY2gveDg2L2tlcm5lbC9wY2ktc3dpb3RsYi5jCkBA
-IC0yOCwxMCArMjgsOCBAQCB2b2lkICp4ODZfc3dpb3RsYl9hbGxvY19jb2hlcmVudChzdHJ1Y3QK
-IAkgKiBzd2lvdGxiX2FsbG9jX2NvaGVyZW50KCkgd2lsbCBwcmludCBhIHdhcm5pbmcgd2hlbiB0
-aGUgRE1BCiAJICogbWVtb3J5IGFsbG9jYXRpb24gdWx0aW1hdGVseSBmYWlsZWQuCiAJICovCi0J
-ZmxhZ3MgfD0gX19HRlBfTk9XQVJOOwotCi0JdmFkZHIgPSBkbWFfZ2VuZXJpY19hbGxvY19jb2hl
-cmVudChod2Rldiwgc2l6ZSwgZG1hX2hhbmRsZSwgZmxhZ3MsCi0JCQkJCSAgIGF0dHJzKTsKKwl2
-YWRkciA9IGRtYV9nZW5lcmljX2FsbG9jX2NvaGVyZW50KGh3ZGV2LCBzaXplLCBkbWFfaGFuZGxl
-LAorCQkJCQkgICBmbGFncyB8IF9fR0ZQX05PV0FSTiwgYXR0cnMpOwogCWlmICh2YWRkcikKIAkJ
-cmV0dXJuIHZhZGRyOwogCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0794572487==
+Content-Type: multipart/alternative; boundary="15261463650.B31a8bc6.11188"
+Content-Transfer-Encoding: 7bit
+
+
+--15261463650.B31a8bc6.11188
+Date: Sat, 12 May 2018 17:32:45 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103351
+
+--- Comment #8 from Allen Wild <allenwild93-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #7)
+
+Hi Ilia,
+I tried that change on a clean 4.17-rc4 kernel but it had no effect for me;
+identical nouveau prints in dmesg as before.
+
+Thanks,
+Allen
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15261463650.B31a8bc6.11188
+Date: Sat, 12 May 2018 17:32:45 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau fails when booting with a screen connected to dis=
+playport since 13a86519202c5d119d83640d6f781f3181205d2c"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103351#c8">Commen=
+t # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau fails when booting with a screen connected to dis=
+playport since 13a86519202c5d119d83640d6f781f3181205d2c"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103351">bug 10335=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+allenwild93&#64;gmail.com" title=3D"Allen Wild &lt;allenwild93&#64;gmail.co=
+m&gt;"> <span class=3D"fn">Allen Wild</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D103=
+351#c7">comment #7</a>)
+
+Hi Ilia,
+I tried that change on a clean 4.17-rc4 kernel but it had no effect for me;
+identical nouveau prints in dmesg as before.
+
+Thanks,
+Allen</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15261463650.B31a8bc6.11188--
+
+--===============0794572487==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0794572487==--
