@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 106512] Fatal: NVIDIA GEFORCE 320M MCP89: Can't
  start X on kernel 4.15
-Date: Mon, 14 May 2018 13:40:43 +0000
-Message-ID: <bug-106512-8800-irAgMHiKxn@http.bugs.freedesktop.org/>
+Date: Mon, 14 May 2018 13:51:43 +0000
+Message-ID: <bug-106512-8800-NlfBXAfkQH@http.bugs.freedesktop.org/>
 References: <bug-106512-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1376926937=="
+Content-Type: multipart/mixed; boundary="===============1944232931=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-106512-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1376926937==
-Content-Type: multipart/alternative; boundary="15263052430.CdBdfd68.12281"
+--===============1944232931==
+Content-Type: multipart/alternative; boundary="15263059022.cD75.17450"
 Content-Transfer-Encoding: 7bit
 
 
---15263052430.CdBdfd68.12281
-Date: Mon, 14 May 2018 13:40:43 +0000
+--15263059022.cD75.17450
+Date: Mon, 14 May 2018 13:51:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,24 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D106512
 
-h1746780-/rRZZL3wBagAvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #139554|0                           |1
-        is obsolete|                            |
-
---- Comment #2 from h1746780-/rRZZL3wBagAvxtiuMwx3w@public.gmane.org ---
-Created attachment 139555
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139555&action=3Dedit
-miwujivelu.kernel.log
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+A brief check reveals that mcp89's mmu is hooked up to g84_mmu and not
+mcp77_mmu. No clue if that's on purpose or not.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15263052430.CdBdfd68.12281
-Date: Mon, 14 May 2018 13:40:43 +0000
+--15263059022.cD75.17450
+Date: Mon, 14 May 2018 13:51:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,40 +56,15 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:h1746780&=
-#64;nwytg.com" title=3D"h1746780&#64;nwytg.com">h1746780&#64;nwytg.com</a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Fatal: NVIDIA GEFORCE 320M MCP89: Can't start X on kernel=
- 4.15"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106512">bug 10651=
-2</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #139554 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Fatal: NVIDIA GEFORCE 320M MCP89: Can't start X on kernel=
  4.15"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106512#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106512#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Fatal: NVIDIA GEFORCE 320M MCP89: Can't start X on kernel=
@@ -105,14 +72,12 @@ t # 2</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106512">bug 10651=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-h1746780&#64;nwytg.com" title=3D"h1746780&#64;nwytg.com">h1746780&#64;nwytg=
-.com</a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139555=
-" name=3D"attach_139555" title=3D"miwujivelu.kernel.log">attachment 139555<=
-/a> <a href=3D"attachment.cgi?id=3D139555&amp;action=3Dedit" title=3D"miwuj=
-ivelu.kernel.log">[details]</a></span>
-miwujivelu.kernel.log</pre>
+        <pre>A brief check reveals that mcp89's mmu is hooked up to g84_mmu=
+ and not
+mcp77_mmu. No clue if that's on purpose or not.</pre>
         </div>
       </p>
 
@@ -126,9 +91,9 @@ miwujivelu.kernel.log</pre>
     </body>
 </html>=
 
---15263052430.CdBdfd68.12281--
+--15263059022.cD75.17450--
 
---===============1376926937==
+--===============1944232931==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -138,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1376926937==--
+--===============1944232931==--
