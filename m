@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 106577] broken rendering with nine and nouveau
  (GM107)
-Date: Sat, 19 May 2018 15:04:19 +0000
-Message-ID: <bug-106577-8800-pdwvISV8sZ@http.bugs.freedesktop.org/>
+Date: Sat, 19 May 2018 18:14:31 +0000
+Message-ID: <bug-106577-8800-xMDfOGb0SZ@http.bugs.freedesktop.org/>
 References: <bug-106577-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0721972553=="
+Content-Type: multipart/mixed; boundary="===============0988540360=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-106577-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0721972553==
-Content-Type: multipart/alternative; boundary="15267422590.F958.20662"
+--===============0988540360==
+Content-Type: multipart/alternative; boundary="15267536710.4820ac1.27744"
 Content-Transfer-Encoding: 7bit
 
 
---15267422590.F958.20662
-Date: Sat, 19 May 2018 15:04:19 +0000
+--15267536710.4820ac1.27744
+Date: Sat, 19 May 2018 18:14:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,23 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D106577
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Yes, it's a known issue.
-
-The gallium API usage was updated in the CSO to be incompatible with how
-nouveau processes texture/sampler binding. Haven't gotten around to fixing =
-it
-yet though.
-
-There's no "no regressions" policy, so you end up with a broken driver.
+--- Comment #2 from Roman Elshin <roman.elshin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thanks for clarifying, it is sad, i was always thinking that such changes a=
+re
+comunity decision.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15267422590.F958.20662
-Date: Sat, 19 May 2018 15:04:19 +0000
+--15267536710.4820ac1.27744
+Date: Sat, 19 May 2018 18:14:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,26 +64,20 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - broken rendering with nine and nouveau (GM107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - broken rendering with nine and nouveau (GM107)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577">bug 10657=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+roman.elshin&#64;gmail.com" title=3D"Roman Elshin &lt;roman.elshin&#64;gmai=
+l.com&gt;"> <span class=3D"fn">Roman Elshin</span></a>
 </span></b>
-        <pre>Yes, it's a known issue.
-
-The gallium API usage was updated in the CSO to be incompatible with how
-nouveau processes texture/sampler binding. Haven't gotten around to fixing =
-it
-yet though.
-
-There's no &quot;no regressions&quot; policy, so you end up with a broken d=
-river.</pre>
+        <pre>Thanks for clarifying, it is sad, i was always thinking that s=
+uch changes are
+comunity decision.</pre>
         </div>
       </p>
 
@@ -97,15 +86,15 @@ river.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15267422590.F958.20662--
+--15267536710.4820ac1.27744--
 
---===============0721972553==
+--===============0988540360==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0721972553==--
+--===============0988540360==--
