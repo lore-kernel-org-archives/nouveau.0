@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106577] broken rendering with nine and nouveau
- (GM107)
-Date: Sat, 19 May 2018 18:14:31 +0000
-Message-ID: <bug-106577-8800-xMDfOGb0SZ@http.bugs.freedesktop.org/>
-References: <bug-106577-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+ rescan
+Date: Sun, 20 May 2018 01:13:35 +0000
+Message-ID: <bug-75985-8800-SdfYoKOF55@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0988540360=="
+Content-Type: multipart/mixed; boundary="===============1009158771=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106577-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0988540360==
-Content-Type: multipart/alternative; boundary="15267536710.4820ac1.27744"
+--===============1009158771==
+Content-Type: multipart/alternative; boundary="15267788153.AbfadD3EF.21774"
 Content-Transfer-Encoding: 7bit
 
 
---15267536710.4820ac1.27744
-Date: Sat, 19 May 2018 18:14:31 +0000
+--15267788153.AbfadD3EF.21774
+Date: Sun, 20 May 2018 01:13:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106577
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #2 from Roman Elshin <roman.elshin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thanks for clarifying, it is sad, i was always thinking that such changes a=
-re
-comunity decision.
+--- Comment #71 from Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org> ---
+So you're talking about the driver toggling the bit and emitting a general
+hotplug event to trigger a rescan of the pci bus? Having one of those would
+sure be handy.
+(You can imagine in windows a daemon triggering this every second to detect=
+ new
+hardware)
+OTOH though, doing a rescan on its own subdevice isn't complicated, take as
+proof comment #26.
+For any out-of-driver solution, fixing this:
+https://devtalk.nvidia.com/default/topic/1016046/?comment=3D5250957
+would be helpful.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---15267536710.4820ac1.27744
-Date: Sat, 19 May 2018 18:14:31 +0000
+--15267788153.AbfadD3EF.21774
+Date: Sun, 20 May 2018 01:13:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,21 +70,31 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - broken rendering with nine and nouveau (GM107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577#c2">Commen=
-t # 2</a>
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c71">Commen=
+t # 71</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - broken rendering with nine and nouveau (GM107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577">bug 10657=
-7</a>
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-roman.elshin&#64;gmail.com" title=3D"Roman Elshin &lt;roman.elshin&#64;gmai=
-l.com&gt;"> <span class=3D"fn">Roman Elshin</span></a>
+hhfeuer&#64;gmx.de" title=3D"Maik Freudenberg &lt;hhfeuer&#64;gmx.de&gt;"> =
+<span class=3D"fn">Maik Freudenberg</span></a>
 </span></b>
-        <pre>Thanks for clarifying, it is sad, i was always thinking that s=
-uch changes are
-comunity decision.</pre>
+        <pre>So you're talking about the driver toggling the bit and emitti=
+ng a general
+hotplug event to trigger a rescan of the pci bus? Having one of those would
+sure be handy.
+(You can imagine in windows a daemon triggering this every second to detect=
+ new
+hardware)
+OTOH though, doing a rescan on its own subdevice isn't complicated, take as
+proof <a href=3D"show_bug.cgi?id=3D75985#c26">comment #26</a>.
+For any out-of-driver solution, fixing this:
+<a href=3D"https://devtalk.nvidia.com/default/topic/1016046/?comment=3D5250=
+957">https://devtalk.nvidia.com/default/topic/1016046/?comment=3D5250957</a>
+would be helpful.</pre>
         </div>
       </p>
 
@@ -87,14 +104,13 @@ comunity decision.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15267536710.4820ac1.27744--
+--15267788153.AbfadD3EF.21774--
 
---===============0988540360==
+--===============1009158771==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0988540360==--
+--===============1009158771==--
