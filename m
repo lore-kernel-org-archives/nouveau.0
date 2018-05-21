@@ -1,52 +1,41 @@
-From: Yisheng Xie <xieyisheng1@huawei.com>
-Subject: [PATCH 21/33] drm/nouveau: use match_string() helper
-Date: Mon, 21 May 2018 19:57:58 +0800
-Message-ID: <1526903890-35761-22-git-send-email-xieyisheng1@huawei.com>
+From: Andy Shevchenko <andy.shevchenko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 21/33] drm/nouveau: use match_string() helper
+Date: Tue, 22 May 2018 01:03:59 +0300
+Message-ID: <CAHp75VctuGKvdG3=mHp7nA3MkYSP+Cxob1gtjYVq03KBcEJ7UQ@mail.gmail.com>
 References: <1526903890-35761-1-git-send-email-xieyisheng1@huawei.com>
+ <1526903890-35761-22-git-send-email-xieyisheng1@huawei.com>
 Mime-Version: 1.0
-Content-Type: text/plain
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1526903890-35761-1-git-send-email-xieyisheng1@huawei.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: linux-kernel@vger.kernel.org
-Cc: Yisheng Xie <xieyisheng1@huawei.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1526903890-35761-22-git-send-email-xieyisheng1-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Yisheng Xie <xieyisheng1-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-match_string() returns the index of an array for a matching string,
-which can be used intead of open coded variant.
-
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: David Airlie <airlied@linux.ie>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Signed-off-by: Yisheng Xie <xieyisheng1@huawei.com>
----
- drivers/gpu/drm/nouveau/dispnv04/tvnv17.c | 13 +++++--------
- 1 file changed, 5 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
-index 6d99f11..a6b4c4a 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
-@@ -644,14 +644,11 @@ static int nv17_tv_create_resources(struct drm_encoder *encoder,
- 	int i;
- 
- 	if (nouveau_tv_norm) {
--		for (i = 0; i < num_tv_norms; i++) {
--			if (!strcmp(nv17_tv_norm_names[i], nouveau_tv_norm)) {
--				tv_enc->tv_norm = i;
--				break;
--			}
--		}
--
--		if (i == num_tv_norms)
-+		i = match_string(nv17_tv_norm_names,
-+				 num_tv_norms, nouveau_tv_norm);
-+		if (i >= 0)
-+			tv_enc->tv_norm = i;
-+		else
- 			NV_WARN(drm, "Invalid TV norm setting \"%s\"\n",
- 				nouveau_tv_norm);
- 	}
--- 
-1.7.12.4
+T24gTW9uLCBNYXkgMjEsIDIwMTggYXQgMjo1NyBQTSwgWWlzaGVuZyBYaWUgPHhpZXlpc2hlbmcx
+QGh1YXdlaS5jb20+IHdyb3RlOgo+IG1hdGNoX3N0cmluZygpIHJldHVybnMgdGhlIGluZGV4IG9m
+IGFuIGFycmF5IGZvciBhIG1hdGNoaW5nIHN0cmluZywKPiB3aGljaCBjYW4gYmUgdXNlZCBpbnRl
+YWQgb2Ygb3BlbiBjb2RlZCB2YXJpYW50LgoKPiAgICAgICAgIGlmIChub3V2ZWF1X3R2X25vcm0p
+IHsKCj4gKyAgICAgICAgICAgICAgIGkgPSBtYXRjaF9zdHJpbmcobnYxN190dl9ub3JtX25hbWVz
+LAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG51bV90dl9ub3Jtcywgbm91dmVh
+dV90dl9ub3JtKTsKClNhbWUgY29tbWVudCBmb3IgbG9naWNhbCBzcGxpdCwgMm5kIHBhcmFtZXRl
+ciBsb29rcyBiZXR0ZXIgb24gdGhlIHByZXZpb3VzIGxpbmUuCgo+ICsgICAgICAgICAgICAgICBp
+ZiAoaSA+PSAwKQo+ICsgICAgICAgICAgICAgICAgICAgICAgIHR2X2VuYy0+dHZfbm9ybSA9IGk7
+Cj4gKyAgICAgICAgICAgICAgIGVsc2UKPiAgICAgICAgICAgICAgICAgICAgICAgICBOVl9XQVJO
+KGRybSwgIkludmFsaWQgVFYgbm9ybSBzZXR0aW5nIFwiJXNcIlxuIiwKPiAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIG5vdXZlYXVfdHZfbm9ybSk7CgpJIHdvdWxkIHJhdGhlciBnbyB3
+aXRoCgppZiAoaSA8IDApCiBOVl9XQVJOCmVsc2UKIC4uLgoKPiAgICAgICAgIH0KCgotLSAKV2l0
+aCBCZXN0IFJlZ2FyZHMsCkFuZHkgU2hldmNoZW5rbwpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUK
