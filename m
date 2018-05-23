@@ -1,102 +1,58 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106592] 2nd GPU / screen not detected after driver /
- xorg update
-Date: Wed, 23 May 2018 12:07:00 +0000
-Message-ID: <bug-106592-8800-GqxWACN7JV@http.bugs.freedesktop.org/>
-References: <bug-106592-8800@http.bugs.freedesktop.org/>
+From: Kees Cook <keescook@chromium.org>
+Subject: Re: [PATCH v2] drm/nouveau/secboot: remove VLA usage
+Date: Wed, 23 May 2018 15:48:12 -0700
+Message-ID: <CAGXu5jKAVxzftPJkY3YJ2P-M4bfk1+8UHZZYRG32qBxauTf43g@mail.gmail.com>
+References: <20180313162411.GA1983@embeddedgus> <20180314110834.GB8564@ulmo>
+ <CACAvsv6NhUrskZGMJGyO42LtuNTWygsutddo_-fuhHRPCs2KWA@mail.gmail.com> <CAGXu5j+OyUWm8N0s-6NnREFakpR6xFJTt7+KK99JRm4i+ZAmyQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0775462087=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106592-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CAGXu5j+OyUWm8N0s-6NnREFakpR6xFJTt7+KK99JRm4i+ZAmyQ@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <skeggsb@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Thierry Reding <thierry.reding@gmail.com>, "Gustavo A. R. Silva" <gustavo@embeddedor.com>, David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, David Laight <David.Laight@aculab.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
+On Thu, Apr 26, 2018 at 4:25 PM, Kees Cook <keescook@chromium.org> wrote:
+> On Thu, Mar 15, 2018 at 7:05 PM, Ben Skeggs <skeggsb@gmail.com> wrote:
+>> On 14 March 2018 at 21:08, Thierry Reding <thierry.reding@gmail.com> wrote:
+>>> On Tue, Mar 13, 2018 at 11:24:11AM -0500, Gustavo A. R. Silva wrote:
+>>>> In preparation to enabling -Wvla, remove VLA. In this particular
+>>>> case directly use macro NVKM_MSGQUEUE_CMDLINE_SIZE instead of local
+>>>> variable cmdline_size. Also, remove cmdline_size as it is not
+>>>> actually useful anymore.
+>>>>
+>>>> The use of stack Variable Length Arrays needs to be avoided, as they
+>>>> can be a vector for stack exhaustion, which can be both a runtime bug
+>>>> or a security flaw. Also, in general, as code evolves it is easy to
+>>>> lose track of how big a VLA can get. Thus, we can end up having runtime
+>>>> failures that are hard to debug.
+>>>>
+>>>> Also, fixed as part of the directive to remove all VLAs from
+>>>> the kernel: https://lkml.org/lkml/2018/3/7/621
+>>>>
+>>>> Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
+>>>> ---
+>>>> Changes in v2:
+>>>>  - Use sizeof(buf) instead of NVKM_MSGQUEUE_CMDLINE_SIZE. This change
+>>>>    is based on the feedback provided by David Laight. Thanks David.
+>>>>
+>>>>  drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c | 7 +++----
+>>>>  1 file changed, 3 insertions(+), 4 deletions(-)
+>>>
+>>> Reviewed-by: Thierry Reding <treding@nvidia.com>
+>> Thanks everyone.  I've taken the patch in my tree.
+>
+> Hi!
+>
+> Just checking in on this -- I don't see this patch in linux-next. Is
+> this queued somewhere else?
 
---===============0775462087==
-Content-Type: multipart/alternative; boundary="15270772191.Fed42F5.26625"
-Content-Transfer-Encoding: 7bit
+Hi, it's been another month; I still don't see this in linux-next.
+Daniel, can this go via drm-misc?
 
+-Kees
 
---15270772191.Fed42F5.26625
-Date: Wed, 23 May 2018 12:06:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106592
-
---- Comment #2 from Atila Neves <atila.neves-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It might be the same problem, yes. It definitely looks similar.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15270772191.Fed42F5.26625
-Date: Wed, 23 May 2018 12:06:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - 2nd GPU / screen not detected after driver / xorg update"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106592#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - 2nd GPU / screen not detected after driver / xorg update"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106592">bug 10659=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-atila.neves&#64;gmail.com" title=3D"Atila Neves &lt;atila.neves&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Atila Neves</span></a>
-</span></b>
-        <pre>It might be the same problem, yes. It definitely looks similar=
-.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15270772191.Fed42F5.26625--
-
---===============0775462087==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0775462087==--
+-- 
+Kees Cook
+Pixel Security
