@@ -1,58 +1,63 @@
-From: Kees Cook <keescook@chromium.org>
+From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Subject: Re: [PATCH v2] drm/nouveau/secboot: remove VLA usage
-Date: Wed, 23 May 2018 15:48:12 -0700
-Message-ID: <CAGXu5jKAVxzftPJkY3YJ2P-M4bfk1+8UHZZYRG32qBxauTf43g@mail.gmail.com>
+Date: Thu, 24 May 2018 10:36:58 +1000
+Message-ID: <CABDvA=mfOyx9X5JFvQaAYSQhvfaCZdqvVj7pD6=M0TX0AqQjcA@mail.gmail.com>
 References: <20180313162411.GA1983@embeddedgus> <20180314110834.GB8564@ulmo>
- <CACAvsv6NhUrskZGMJGyO42LtuNTWygsutddo_-fuhHRPCs2KWA@mail.gmail.com> <CAGXu5j+OyUWm8N0s-6NnREFakpR6xFJTt7+KK99JRm4i+ZAmyQ@mail.gmail.com>
+ <CACAvsv6NhUrskZGMJGyO42LtuNTWygsutddo_-fuhHRPCs2KWA@mail.gmail.com>
+ <CAGXu5j+OyUWm8N0s-6NnREFakpR6xFJTt7+KK99JRm4i+ZAmyQ@mail.gmail.com>
+ <CAGXu5jKAVxzftPJkY3YJ2P-M4bfk1+8UHZZYRG32qBxauTf43g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAGXu5j+OyUWm8N0s-6NnREFakpR6xFJTt7+KK99JRm4i+ZAmyQ@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <skeggsb@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Thierry Reding <thierry.reding@gmail.com>, "Gustavo A. R. Silva" <gustavo@embeddedor.com>, David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, David Laight <David.Laight@aculab.com>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAGXu5jKAVxzftPJkY3YJ2P-M4bfk1+8UHZZYRG32qBxauTf43g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Kees Cook <keescook-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>
+Cc: "Gustavo A. R. Silva" <gustavo-L1vi/lXTdts+Va1GwOuvDg@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, David Laight <David.Laight-JxhZ9S5GRejQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Apr 26, 2018 at 4:25 PM, Kees Cook <keescook@chromium.org> wrote:
-> On Thu, Mar 15, 2018 at 7:05 PM, Ben Skeggs <skeggsb@gmail.com> wrote:
->> On 14 March 2018 at 21:08, Thierry Reding <thierry.reding@gmail.com> wrote:
->>> On Tue, Mar 13, 2018 at 11:24:11AM -0500, Gustavo A. R. Silva wrote:
->>>> In preparation to enabling -Wvla, remove VLA. In this particular
->>>> case directly use macro NVKM_MSGQUEUE_CMDLINE_SIZE instead of local
->>>> variable cmdline_size. Also, remove cmdline_size as it is not
->>>> actually useful anymore.
->>>>
->>>> The use of stack Variable Length Arrays needs to be avoided, as they
->>>> can be a vector for stack exhaustion, which can be both a runtime bug
->>>> or a security flaw. Also, in general, as code evolves it is easy to
->>>> lose track of how big a VLA can get. Thus, we can end up having runtime
->>>> failures that are hard to debug.
->>>>
->>>> Also, fixed as part of the directive to remove all VLAs from
->>>> the kernel: https://lkml.org/lkml/2018/3/7/621
->>>>
->>>> Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
->>>> ---
->>>> Changes in v2:
->>>>  - Use sizeof(buf) instead of NVKM_MSGQUEUE_CMDLINE_SIZE. This change
->>>>    is based on the feedback provided by David Laight. Thanks David.
->>>>
->>>>  drivers/gpu/drm/nouveau/nvkm/subdev/secboot/ls_ucode_msgqueue.c | 7 +++----
->>>>  1 file changed, 3 insertions(+), 4 deletions(-)
->>>
->>> Reviewed-by: Thierry Reding <treding@nvidia.com>
->> Thanks everyone.  I've taken the patch in my tree.
->
-> Hi!
->
-> Just checking in on this -- I don't see this patch in linux-next. Is
-> this queued somewhere else?
-
-Hi, it's been another month; I still don't see this in linux-next.
-Daniel, can this go via drm-misc?
-
--Kees
-
--- 
-Kees Cook
-Pixel Security
+T24gVGh1LCBNYXkgMjQsIDIwMTggYXQgODo0OCBBTSwgS2VlcyBDb29rIDxrZWVzY29va0BjaHJv
+bWl1bS5vcmc+IHdyb3RlOgo+IE9uIFRodSwgQXByIDI2LCAyMDE4IGF0IDQ6MjUgUE0sIEtlZXMg
+Q29vayA8a2Vlc2Nvb2tAY2hyb21pdW0ub3JnPiB3cm90ZToKPj4gT24gVGh1LCBNYXIgMTUsIDIw
+MTggYXQgNzowNSBQTSwgQmVuIFNrZWdncyA8c2tlZ2dzYkBnbWFpbC5jb20+IHdyb3RlOgo+Pj4g
+T24gMTQgTWFyY2ggMjAxOCBhdCAyMTowOCwgVGhpZXJyeSBSZWRpbmcgPHRoaWVycnkucmVkaW5n
+QGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pj4gT24gVHVlLCBNYXIgMTMsIDIwMTggYXQgMTE6MjQ6MTFB
+TSAtMDUwMCwgR3VzdGF2byBBLiBSLiBTaWx2YSB3cm90ZToKPj4+Pj4gSW4gcHJlcGFyYXRpb24g
+dG8gZW5hYmxpbmcgLVd2bGEsIHJlbW92ZSBWTEEuIEluIHRoaXMgcGFydGljdWxhcgo+Pj4+PiBj
+YXNlIGRpcmVjdGx5IHVzZSBtYWNybyBOVktNX01TR1FVRVVFX0NNRExJTkVfU0laRSBpbnN0ZWFk
+IG9mIGxvY2FsCj4+Pj4+IHZhcmlhYmxlIGNtZGxpbmVfc2l6ZS4gQWxzbywgcmVtb3ZlIGNtZGxp
+bmVfc2l6ZSBhcyBpdCBpcyBub3QKPj4+Pj4gYWN0dWFsbHkgdXNlZnVsIGFueW1vcmUuCj4+Pj4+
+Cj4+Pj4+IFRoZSB1c2Ugb2Ygc3RhY2sgVmFyaWFibGUgTGVuZ3RoIEFycmF5cyBuZWVkcyB0byBi
+ZSBhdm9pZGVkLCBhcyB0aGV5Cj4+Pj4+IGNhbiBiZSBhIHZlY3RvciBmb3Igc3RhY2sgZXhoYXVz
+dGlvbiwgd2hpY2ggY2FuIGJlIGJvdGggYSBydW50aW1lIGJ1Zwo+Pj4+PiBvciBhIHNlY3VyaXR5
+IGZsYXcuIEFsc28sIGluIGdlbmVyYWwsIGFzIGNvZGUgZXZvbHZlcyBpdCBpcyBlYXN5IHRvCj4+
+Pj4+IGxvc2UgdHJhY2sgb2YgaG93IGJpZyBhIFZMQSBjYW4gZ2V0LiBUaHVzLCB3ZSBjYW4gZW5k
+IHVwIGhhdmluZyBydW50aW1lCj4+Pj4+IGZhaWx1cmVzIHRoYXQgYXJlIGhhcmQgdG8gZGVidWcu
+Cj4+Pj4+Cj4+Pj4+IEFsc28sIGZpeGVkIGFzIHBhcnQgb2YgdGhlIGRpcmVjdGl2ZSB0byByZW1v
+dmUgYWxsIFZMQXMgZnJvbQo+Pj4+PiB0aGUga2VybmVsOiBodHRwczovL2xrbWwub3JnL2xrbWwv
+MjAxOC8zLzcvNjIxCj4+Pj4+Cj4+Pj4+IFNpZ25lZC1vZmYtYnk6IEd1c3Rhdm8gQS4gUi4gU2ls
+dmEgPGd1c3Rhdm9AZW1iZWRkZWRvci5jb20+Cj4+Pj4+IC0tLQo+Pj4+PiBDaGFuZ2VzIGluIHYy
+Ogo+Pj4+PiAgLSBVc2Ugc2l6ZW9mKGJ1ZikgaW5zdGVhZCBvZiBOVktNX01TR1FVRVVFX0NNRExJ
+TkVfU0laRS4gVGhpcyBjaGFuZ2UKPj4+Pj4gICAgaXMgYmFzZWQgb24gdGhlIGZlZWRiYWNrIHBy
+b3ZpZGVkIGJ5IERhdmlkIExhaWdodC4gVGhhbmtzIERhdmlkLgo+Pj4+Pgo+Pj4+PiAgZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9sc191Y29kZV9tc2dxdWV1ZS5j
+IHwgNyArKystLS0tCj4+Pj4+ICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCA0IGRl
+bGV0aW9ucygtKQo+Pj4+Cj4+Pj4gUmV2aWV3ZWQtYnk6IFRoaWVycnkgUmVkaW5nIDx0cmVkaW5n
+QG52aWRpYS5jb20+Cj4+PiBUaGFua3MgZXZlcnlvbmUuICBJJ3ZlIHRha2VuIHRoZSBwYXRjaCBp
+biBteSB0cmVlLgo+Pgo+PiBIaSEKPj4KPj4gSnVzdCBjaGVja2luZyBpbiBvbiB0aGlzIC0tIEkg
+ZG9uJ3Qgc2VlIHRoaXMgcGF0Y2ggaW4gbGludXgtbmV4dC4gSXMKPj4gdGhpcyBxdWV1ZWQgc29t
+ZXdoZXJlIGVsc2U/Cj4KPiBIaSwgaXQncyBiZWVuIGFub3RoZXIgbW9udGg7IEkgc3RpbGwgZG9u
+J3Qgc2VlIHRoaXMgaW4gbGludXgtbmV4dC4KPiBEYW5pZWwsIGNhbiB0aGlzIGdvIHZpYSBkcm0t
+bWlzYz8KSXQncyBhbHJlYWR5IHF1ZXVlZCBpbiBkcm0tbmV4dC4KCj4KPiAtS2Vlcwo+Cj4gLS0K
+PiBLZWVzIENvb2sKPiBQaXhlbCBTZWN1cml0eQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
