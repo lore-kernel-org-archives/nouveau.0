@@ -1,75 +1,187 @@
-From: Jani Nikula <jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Subject: Re: [PATCH] gpu: Consistently use octal not symbolic
- permissions
-Date: Fri, 25 May 2018 10:04:40 +0300
-Message-ID: <8736yg43nb.fsf@intel.com>
-References: <9b0f5f5cf6bccc003beef82f0972be655613075d.1527193246.git.joe@perches.com>
- <87a7so44q5.fsf@intel.com>
- <2108eb98b35ab682d44ca7bf40276e93d9566bbf.camel@perches.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 106657] New: nouveau driver causes graphic issues on
+ gnome apps
+Date: Fri, 25 May 2018 19:36:15 +0000
+Message-ID: <bug-106657-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <2108eb98b35ab682d44ca7bf40276e93d9566bbf.camel-6d6DIl74uiNBDgjK7y7TUQ@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/freedreno>,
- <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/freedreno>
-List-Post: <mailto:freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/freedreno>,
- <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Freedreno" <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Joe Perches <joe-6d6DIl74uiNBDgjK7y7TUQ@public.gmane.org>, Russell King <linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>, Gustavo Padovan <gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Zhenyu Wang <zhenyuw-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Zhi Wang <zhi.a.wang-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Joonas Lahtinen <joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Rodrigo Vivi <rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Rob Clark <robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, "David (ChunMing) Zhou" <David1.Zhou-5C7GfCeVMHo@public.gmane.org>, Benjamin Gaignard <benjamin.gaignard-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>, Vincent Abriou <vincent.abriou-qxv4g6HH51o@public.gmane.org>, Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf-L59+Z2yzLopAfugRpC6u6w@public.gmane.org>, Roger He <Hongbo.He-5C7GfCeVMHo@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Tomi Valkeinen <tomi.valkeinen-l0cyMroinI0@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, intel-gvt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============0613693817=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCAyNCBNYXkgMjAxOCwgSm9lIFBlcmNoZXMgPGpvZUBwZXJjaGVzLmNvbT4gd3JvdGU6
-Cj4gT24gRnJpLCAyMDE4LTA1LTI1IGF0IDA5OjQxICswMzAwLCBKYW5pIE5pa3VsYSB3cm90ZToK
-Pj4gT24gVGh1LCAyNCBNYXkgMjAxOCwgSm9lIFBlcmNoZXMgPGpvZUBwZXJjaGVzLmNvbT4gd3Jv
-dGU6Cj4+ID4gVGhlcmUgaXMgY3VycmVudGx5IGEgbWl4dHVyZSBvZiBvY3RhbCBhbmQgc3ltYm9s
-aWMgcGVybWlzc2lvbnMgdXNlcwo+PiA+IGluIGZpbGVzIGluIGRyaXZlcnMvZ3B1L2RybSBhbmQg
-b25lIGZpbGUgaW4gZHJpdmVycy9ncHUuCj4+ID4gCj4+ID4gVGhlcmUgYXJlIH4yNzAgZXhpc3Rp
-bmcgb2N0YWwgdXNlcyBhbmQgfjExNSBTXzxGT08+IHVzZXMuCj4+ID4gCj4+ID4gQ29udmVydCBh
-bGwgdGhlIFNfPEZPTz4gc3ltYm9saWMgcGVybWlzc2lvbnMgdG8gdGhlaXIgb2N0YWwgZXF1aXZh
-bGVudHMKPj4gPiBhcyB1c2luZyBvY3RhbCBhbmQgbm90IHN5bWJvbGljIHBlcm1pc3Npb25zIGlz
-IHByZWZlcnJlZCBieSBtYW55IGFzIG1vcmUKPj4gPiByZWFkYWJsZS4KPj4gPiAKPj4gPiBzZWU6
-IGh0dHBzOi8vbGttbC5vcmcvbGttbC8yMDE2LzgvMi8xOTQ1Cj4+ID4gCj4+ID4gRG9uZSB3aXRo
-IGF1dG9tYXRlZCBjb252ZXJzaW9uIHZpYToKPj4gPiAkIC4vc2NyaXB0cy9jaGVja3BhdGNoLnBs
-IC1mIC0tdHlwZXM9U1lNQk9MSUNfUEVSTVMgLS1maXgtaW5wbGFjZSA8ZmlsZXMuLi4+Cj4+ID4g
-Cj4+ID4gTWlzY2VsbGFuZWE6Cj4+ID4gCj4+ID4gbyBXcmFwcGVkIG1vZGlmaWVkIG11bHRpLWxp
-bmUgY2FsbHMgdG8gYSBzaW5nbGUgbGluZSB3aGVyZSBhcHByb3ByaWF0ZQo+PiA+IG8gUmVhbGln
-biBtb2RpZmllZCBtdWx0aS1saW5lIGNhbGxzIHRvIG9wZW4gcGFyZW50aGVzaXMKPj4gPiBvIGRy
-aXZlcnMvZ3B1L2RybS9tc20vYWRyZW5vL2E1eHhfZGVidWdmcy5jIGhhcyBhIHdvcmxkLXdyaXRl
-YWJsZQo+PiA+ICAgZGVidWcgcGVybWlzc2lvbiBmb3IgInJlc2V0IiAtIHBlcmhhcHMgdGhhdCBz
-aG91bGQgYmUgbW9kaWZpZWQKPj4gPiBTaWduZWQtb2ZmLWJ5OiBKb2UgUGVyY2hlcyA8am9lQHBl
-cmNoZXMuY29tPgo+PiA+IC0tLQo+PiA+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRn
-cHVfZGVidWdmcy5jICAgICAgICB8ICAyICstCj4+ID4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1k
-Z3B1L2FtZGdwdV9wbS5jICAgICAgICAgICAgIHwgOTggKysrKysrKysrKystLS0tLS0tLS0tLQo+
-PiA+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfcmluZy5jICAgICAgICAgICB8
-ICAzICstCj4+ID4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYyAgICAg
-ICAgICAgIHwgIDkgKy0KPj4gPiAgZHJpdmVycy9ncHUvZHJtL2FybWFkYS9hcm1hZGFfZGVidWdm
-cy5jICAgICAgICAgICAgfCAgNCArLQo+PiA+ICBkcml2ZXJzL2dwdS9kcm0vZHJtX2RlYnVnZnMu
-YyAgICAgICAgICAgICAgICAgICAgICB8ICA2ICstCj4+ID4gIGRyaXZlcnMvZ3B1L2RybS9kcm1f
-ZGVidWdmc19jcmMuYyAgICAgICAgICAgICAgICAgIHwgIDQgKy0KPj4gPiAgZHJpdmVycy9ncHUv
-ZHJtL2RybV9zeXNmcy5jICAgICAgICAgICAgICAgICAgICAgICAgfCAgMiArLQo+PiA+ICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9ndnQvZmlybXdhcmUuYyAgICAgICAgICAgICAgICB8ICAyICstCj4+
-ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZGVidWdmcy5jICAgICAgICAgICAgICAgIHwg
-IDggKy0KPj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wZXJmLmMgICAgICAgICAgICAg
-ICAgICAgfCAgMiArLQo+PiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3N5c2ZzLmMgICAg
-ICAgICAgICAgICAgICB8IDIyICsrLS0tCj4+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
-X3BpcGVfY3JjLmMgICAgICAgICAgICAgIHwgIDIgKy0KPj4gCj4+IFBsZWFzZSBzZW5kIGF0IGxl
-YXN0IGk5MTUgY2hhbmdlcyBzZXBhcmF0ZWx5LiBUaGVyZSdzIHplcm8gcmVhc29uIHRvCj4+IG1h
-a2Ugb3VyIGxpdmVzIGhhcmRlciBmb3IgdGhpcyBjaGFuZ2UuCj4KPiBUaGUgaWRlYSBpcyB0byBh
-dm9pZCB1bm5lY2Vzc2FyeSBtdWx0aXBsZSBwYXRjaGVzIGZvcgo+IGluZGl2aWR1YWwgdHJlZXMu
-CgpZb3UncmUgY2hhbmdpbmcgbGlrZSBhIGRvemVuIHRyZWVzLiBBbmQgYXBwYXJlbnRseSBtYWlu
-dGFpbmVycyBvZgpkaWZmZXJlbnQgdHJlZXMgYWxzbyBoYXZlIGRpZmZlcmVudCBvcGluaW9ucyBv
-biB3aGV0aGVyIHRoaXMgaXMgYSBnb29kCmlkZWEgb3Igbm90LiBNYXNzIGNoYW5nZXMgbGlrZSB0
-aGlzIGdvIG5vd2hlcmUsIGFuZCBpZiB0aGV5IGRvLCB3aWxsCmNhdXNlIHVubmVjZXNzYXJ5IGNv
-bmZsaWN0cyB0aGF0IGNvdWxkIGhhdmUgYmVlbiB0cml2aWFsbHkgYXZvaWRlZC4KCkJSLApKYW5p
-LgoKPiBCdXQgeW91IGNvdWxkIGRvIHRoYXQgdmlhIHNvbWV0aGluZyBsaWtlOgo+Cj4gJCBnaXQg
-YW0gLS1pbmNsdWRlPSdkcml2ZXJzL2dwdS9kcm0vaTkxNS8qJyA8cGF0Y2g+Cj4KPiBjaGVlcnMs
-IEpvZQo+CgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRl
-cgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpGcmVlZHJl
-bm8gbWFpbGluZyBsaXN0CkZyZWVkcmVub0BsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9mcmVlZHJlbm8K
+
+--===============0613693817==
+Content-Type: multipart/alternative; boundary="15272769750.5BEaEf.8541"
+Content-Transfer-Encoding: 7bit
+
+
+--15272769750.5BEaEf.8541
+Date: Fri, 25 May 2018 19:36:15 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106657
+
+            Bug ID: 106657
+           Summary: nouveau driver causes graphic issues on gnome apps
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: reportbug-gQOQsHldK/Xzs492ZWNkEA@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+With nvidia proprietary driver no problem, but with nouveau, some gnome apps
+display black color items. See attachments. It happen on tested kernels
+"linux-image-4.15.0-22-generic" and "linux-image-4.15.0-23-generic" on ubun=
+tu
+bionic-proposed.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15272769750.5BEaEf.8541
+Date: Fri, 25 May 2018 19:36:15 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau driver causes graphic issues on gnome apps"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106657">106657</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>nouveau driver causes graphic issues on gnome apps
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>reportbug&#64;mailna.biz
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>With nvidia proprietary driver no problem, but with nouveau, s=
+ome gnome apps
+display black color items. See attachments. It happen on tested kernels
+&quot;linux-image-4.15.0-22-generic&quot; and &quot;linux-image-4.15.0-23-g=
+eneric&quot; on ubuntu
+bionic-proposed.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15272769750.5BEaEf.8541--
+
+--===============0613693817==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0613693817==--
