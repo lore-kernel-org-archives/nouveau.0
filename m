@@ -1,240 +1,95 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106662] New: nouveau DPMS poblem with DRI3 (GM107)
-Date: Sat, 26 May 2018 06:27:24 +0000
-Message-ID: <bug-106662-8800@http.bugs.freedesktop.org/>
+From: Mark Brown <broonie@kernel.org>
+Subject: Boot failures in -next on Jetson TK1
+Date: Sat, 26 May 2018 11:36:29 +0100
+Message-ID: <20180526103629.GB1564@sirena.org.uk>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0998074040=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============6979172755071992187=="
+Return-path: <linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org>
+List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-arm-kernel>,
+ <mailto:linux-arm-kernel-request@lists.infradead.org?subject=unsubscribe>
+List-Archive: <http://lists.infradead.org/pipermail/linux-arm-kernel/>
+List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
+List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
+List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
+ <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
+Errors-To: linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>
+Cc: Stephen Warren <swarren@nvidia.com>, kernel-build-reports@lists.linaro.org, khilman@baylibre.com, dri-devel@lists.freedesktop.org, Jonathan Hunter <jonathanh@nvidia.com>, Thierry Reding <thierry.reding@gmail.com>, nouveau@lists.freedesktop.org, linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0998074040==
-Content-Type: multipart/alternative; boundary="15273160440.8fdF.4837"
-Content-Transfer-Encoding: 7bit
-
-
---15273160440.8fdF.4837
-Date: Sat, 26 May 2018 06:27:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106662
-
-            Bug ID: 106662
-           Summary: nouveau DPMS poblem with DRI3 (GM107)
-           Product: Mesa
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: roman.elshin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-Created attachment 139785
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139785&action=3Dedit
-Xorg.log
-
-There are ubuntu mate-16.04 with mainline 4.16.7 kernel and oibaf ppa, opti=
-on
-"power off monitor when system idle" in DE settings enabled and GLMatrix
-screensaver are used.
-By default dpms works, but adding
-/usr/share/X11/xorg.conf.d/20-nouveau.conf with content :
-
-Section "Module"
-    Load "dri3"
-EndSection
-
-Section "Device"
-    Identifier "Device0"
-    Driver "nouveau"
-
-    Option "DRI" "3"
-EndSection
-
-cause a issue: after monitor wake up there are only one frame from screensa=
-ver
-and mouse cursor over it (mouse work). System does not hang - is possible to
-switch to virtual console, DE seems to think that all rigth (after some mou=
-se
-click there new folders appeares on a desktop) and X can be restarted witho=
-ut
-problem.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15273160440.8fdF.4837
-Date: Sat, 26 May 2018 06:27:24 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau DPMS poblem with DRI3 (GM107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106662">106662</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>nouveau DPMS poblem with DRI3 (GM107)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>roman.elshin&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139785=
-" name=3D"attach_139785" title=3D"Xorg.log">attachment 139785</a> <a href=
-=3D"attachment.cgi?id=3D139785&amp;action=3Dedit" title=3D"Xorg.log">[detai=
-ls]</a></span>
-Xorg.log
-
-There are ubuntu mate-16.04 with mainline 4.16.7 kernel and oibaf ppa, opti=
-on
-&quot;power off monitor when system idle&quot; in DE settings enabled and G=
-LMatrix
-screensaver are used.
-By default dpms works, but adding
-/usr/share/X11/xorg.conf.d/20-nouveau.conf with content :
-
-Section &quot;Module&quot;
-    Load &quot;dri3&quot;
-EndSection
-
-Section &quot;Device&quot;
-    Identifier &quot;Device0&quot;
-    Driver &quot;nouveau&quot;
-
-    Option &quot;DRI&quot; &quot;3&quot;
-EndSection
-
-cause a issue: after monitor wake up there are only one frame from screensa=
-ver
-and mouse cursor over it (mouse work). System does not hang - is possible to
-switch to virtual console, DE seems to think that all rigth (after some mou=
-se
-click there new folders appeares on a desktop) and X can be restarted witho=
-ut
-problem.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15273160440.8fdF.4837--
-
---===============0998074040==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
+--===============6979172755071992187==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="IrhDeMKUP4DT/M7F"
 Content-Disposition: inline
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0998074040==--
+--IrhDeMKUP4DT/M7F
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Currently -next is failing to boot on Jetson TK1.  The problem looks to
+be the Nouveau driver, during initialization it reports an address
+decode error then starts printing error messages saying "nouveau
+57000000.gpu: fifo: SCHED_ERROR 20 []" over and over again.
+
+I've pasted the start of the errors below, you can see a full log and
+more details at:
+
+   https://kernelci.org/boot/id/5b0882a259b514339779a881/
+
+The warnings about Spectre are a separate issue and don't seem to affect
+the boot.
+
+[ 15.194484] nouveau 57000000.gpu: NVIDIA GK20A (0ea000a1)
+[   15.200109] udevd[109]: could not rename interface '3' from 'eth0' to 'enp1s0': Device or resource busy
+[   15.206399] nouveau 57000000.gpu: imem: using IOMMU
+[   15.315122] CPU2: Spectre v2: firmware did not set auxiliary control register IBE bit, system vulnerable
+[   15.320021] nouveau 57000000.gpu: Direct firmware load for nvidia/gk20a/fecs_inst.bin failed with error -2
+[   15.384841] nouveau 57000000.gpu: Direct firmware load for nouveau/nvea_fuc409c failed with error -2
+[   15.393972] nouveau 57000000.gpu: Direct firmware load for nouveau/fuc409c failed with error -2
+[   15.402679] nouveau 57000000.gpu: gr: failed to load fuc409c
+[   15.409434] CPU1: Spectre v2: firmware did not set auxiliary control register IBE bit, system vulnerable
+[   15.419398] CPU1: Spectre v2: firmware did not set auxiliary control register IBE bit, system vulnerable
+[   15.482568] tegra-mc 70019000.memory-controller: gpusrd: read @0x00041200: EMEM address decode error (EMEM decode error)
+[   15.491232] [TTM] Zone  kernel: Available graphics memory: 375202 kiB
+[   15.502768] [TTM] Zone highmem: Available graphics memory: 1030050 kiB
+[   15.509290] [TTM] Initializing pool allocator
+[   15.513658] nouveau 57000000.gpu: DRM: VRAM: 0 MiB
+[   15.518451] nouveau 57000000.gpu: DRM: GART: 1048576 MiB
+[   15.526546] CPU1: Spectre v2: firmware did not set auxiliary control register IBE bit, system vulnerable
+[   15.527290] tegra-mc 70019000.memory-controller: gpusrd: read @0x00072000: EMEM address decode error (EMEM decode error)
+[   15.537050] CPU1: Spectre v2: firmware did not set auxiliary control register IBE bit, system vulnerable
+[   15.546928] nouveau 57000000.gpu: fifo: SCHED_ERROR 20 []
+
+--IrhDeMKUP4DT/M7F
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlsJOK0ACgkQJNaLcl1U
+h9COzQf/dyCtDrq/S2RQZ9kMWqG3X6lurKydRHt+zj9KcPuxLYKWYYzrXWrWw49n
+HPZDIx6bkRs/5cpMQzZ/PKCxtJUq2sd1IVAh64a6FMtmWveCzObqlf4pFx01fATt
+nDT2qR5hdR+6LN1WVbfS+b5w8ALfPb218j+oXJBQ1NcJGH5fZNKJbCzeNbbGWHw8
+T2KXk7hvFL8PxzO6IlxUsGQ1lYEYlNRODf5ZZAtPcnuyPi6p/jH2h1OQrsRGum//
+hlTazyb6ekbqKP9hedLpSMecauQ0Ts0eDo7gTeA93eE4FE0PTe/7SzahfeUE8csu
+3eGG7K3HIWYniAQ/M25pZoLXnqbAnA==
+=g1T9
+-----END PGP SIGNATURE-----
+
+--IrhDeMKUP4DT/M7F--
+
+
+--===============6979172755071992187==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-arm-kernel mailing list
+linux-arm-kernel@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+
+--===============6979172755071992187==--
