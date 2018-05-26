@@ -1,11 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106660] New: nv92 hang with MSI Kombustor 2.5 (via
- wine)
-Date: Sat, 26 May 2018 02:01:30 +0000
-Message-ID: <bug-106660-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 106660] nv92 hang with MSI Kombustor 2.5 (via wine)
+Date: Sat, 26 May 2018 02:05:03 +0000
+Message-ID: <bug-106660-8800-ig0mMInGak@http.bugs.freedesktop.org/>
+References: <bug-106660-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0360827162=="
+Content-Type: multipart/mixed; boundary="===============2042826139=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-106660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0360827162==
-Content-Type: multipart/alternative; boundary="15273000900.EDf0c8.27755"
+--===============2042826139==
+Content-Type: multipart/alternative; boundary="15273003040.6CD7A47E4.30469"
 Content-Transfer-Encoding: 7bit
 
 
---15273000900.EDf0c8.27755
-Date: Sat, 26 May 2018 02:01:30 +0000
+--15273003040.6CD7A47E4.30469
+Date: Sat, 26 May 2018 02:05:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,47 +35,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D106660
 
-            Bug ID: 106660
-           Summary: nv92 hang with MSI Kombustor 2.5 (via wine)
-           Product: Mesa
-           Version: git
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: randrik-JGs/UdohzUI@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-Created attachment 139782
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139782&action=3Dedit
-xzipped trace file
-
-Hello.
-
-I was trying to see if various tests/demos still work with more recent wine
-(3.9), and run MSIKombustorDX11.exe. Just clicking on "Run preset 720" with
-default test "Wavy Plane (GL2)" resulted in GPU hang.
-
-I was able to capture apitrace with llvmpipe, and replaying this trace also
-hang GPU.
-
-Mesa at Mesa 18.2.0-devel (git-936cd3c87a), X server at "X.Org X Server
-1.19.5", ddx at "commit ac8f7b949e50d96f281b09f7fe96c92ea4d178ec -  dri3: d=
-on't
-check permissions on render node", libdrm - "commit
-cb592ac8166e348bf61afa3f7b7f626ccaf55a0f",  kernel  was 4.16.9-x64 but
-currently 4.15.
+--- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Created attachment 139783
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139783&action=3Dedit
+old X.org log file (from hanged session)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15273000900.EDf0c8.27755
-Date: Sat, 26 May 2018 02:01:30 +0000
+--15273003040.6CD7A47E4.30469
+Date: Sat, 26 May 2018 02:05:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -85,111 +57,28 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nv92 hang with MSI Kombustor 2.5 (via wine)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106660">106660</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>nv92 hang with MSI Kombustor 2.5 (via wine)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>randrik&#64;mail.ru
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139782=
-" name=3D"attach_139782" title=3D"xzipped trace file">attachment 139782</a>=
- <a href=3D"attachment.cgi?id=3D139782&amp;action=3Dedit" title=3D"xzipped =
-trace file">[details]</a></span>
-xzipped trace file
-
-Hello.
-
-I was trying to see if various tests/demos still work with more recent wine
-(3.9), and run MSIKombustorDX11.exe. Just clicking on &quot;Run preset 720&=
-quot; with
-default test &quot;Wavy Plane (GL2)&quot; resulted in GPU hang.
-
-I was able to capture apitrace with llvmpipe, and replaying this trace also
-hang GPU.
-
-Mesa at Mesa 18.2.0-devel (git-936cd3c87a), X server at &quot;X.Org X Server
-1.19.5&quot;, ddx at &quot;commit ac8f7b949e50d96f281b09f7fe96c92ea4d178ec =
--  dri3: don't
-check permissions on render node&quot;, libdrm - &quot;commit
-cb592ac8166e348bf61afa3f7b7f626ccaf55a0f&quot;,  kernel  was 4.16.9-x64 but
-currently 4.15.</pre>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nv92 hang with MSI Kombustor 2.5 (via wine)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106660#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nv92 hang with MSI Kombustor 2.5 (via wine)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106660">bug 10666=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
+gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139783=
+" name=3D"attach_139783" title=3D"old X.org log file (from hanged session)"=
+>attachment 139783</a> <a href=3D"attachment.cgi?id=3D139783&amp;action=3De=
+dit" title=3D"old X.org log file (from hanged session)">[details]</a></span>
+old X.org log file (from hanged session)</pre>
         </div>
       </p>
 
@@ -204,9 +93,9 @@ currently 4.15.</pre>
     </body>
 </html>=
 
---15273000900.EDf0c8.27755--
+--15273003040.6CD7A47E4.30469--
 
---===============0360827162==
+--===============2042826139==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -216,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0360827162==--
+--===============2042826139==--
