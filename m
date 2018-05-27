@@ -1,101 +1,58 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106657] nouveau driver causes black graphic issues
- on gnome apps
-Date: Sun, 27 May 2018 12:10:42 +0000
-Message-ID: <bug-106657-8800-L8CD0oENND@http.bugs.freedesktop.org/>
-References: <bug-106657-8800@http.bugs.freedesktop.org/>
+From: Colin King <colin.king@canonical.com>
+Subject: [PATCH][next] drm/nouveau/disp: avoid potential overflow on shift of
+ int value
+Date: Sun, 27 May 2018 22:54:11 +0100
+Message-ID: <20180527215411.24701-1-colin.king@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1678396850=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106657-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1678396850==
-Content-Type: multipart/alternative; boundary="15274230420.fe579B.23101"
-Content-Transfer-Encoding: 7bit
-
-
---15274230420.fe579B.23101
-Date: Sun, 27 May 2018 12:10:42 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106657
-
---- Comment #11 from Geroge T <reportbug-gQOQsHldK/Xzs492ZWNkEA@public.gmane.org> ---
-Fixed installing xserver-xorg-video-nouveau on ubuntu
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15274230420.fe579B.23101
-Date: Sun, 27 May 2018 12:10:42 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau driver causes black graphic issues on gnome apps"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106657#c11">Comme=
-nt # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau driver causes black graphic issues on gnome apps"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106657">bug 10665=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-reportbug&#64;mailna.biz" title=3D"Geroge T &lt;reportbug&#64;mailna.biz&gt=
-;"> <span class=3D"fn">Geroge T</span></a>
-</span></b>
-        <pre>Fixed installing xserver-xorg-video-nouveau on ubuntu</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15274230420.fe579B.23101--
-
---===============1678396850==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1678396850==--
+RnJvbTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KClRoZSBjb25z
+dGFudCB2YWx1ZXMgYmVpbmcgc2hpZnRlZCBhcmUgMzIgYml0IGludGVnZXJzIGFuZCBtYXkgcG90
+ZW50aWFsbHkKb3ZlcmZsb3cgb24gdGhlIHNoaWZ0LiAgQXZvaWQgdGhpcyBwb3RlbnRpYWwgb3Zl
+cmZsb3cgYnkgbWFraW5nIHRoZW0KdW5zaWduZWQgbG9uZyBsb25nIHZhbHVlcyBiZWZvcmUgdGhl
+IHNoaWZ0LgoKRGV0ZWN0ZWQgYnkgQ292ZXJpdHlTY2FuLCBDSUQjMTQ2OTM4MywgMTQ2OTQwMCAo
+IlVuaW50ZW50aW9uYWwKaW50ZWdlciBvdmVyZmxvdyIpCgpTaWduZWQtb2ZmLWJ5OiBDb2xpbiBJ
+YW4gS2luZyA8Y29saW4ua2luZ0BjYW5vbmljYWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252a20vZW5naW5lL2Rpc3AvY2hhbmdmMTE5LmMgfCAyICstCiBkcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL2NoYW5udjUwLmMgIHwgMiArLQogMiBmaWxlcyBj
+aGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9jaGFuZ2YxMTkuYyBiL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvY2hhbmdmMTE5LmMKaW5kZXggMjll
+NmRkNThhYzQ4Li45OWI5NDgwMmVkNjMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252a20vZW5naW5lL2Rpc3AvY2hhbmdmMTE5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9jaGFuZ2YxMTkuYwpAQCAtNTIsNyArNTIsNyBAQCB2b2lk
+CiBnZjExOV9kaXNwX2NoYW5faW50cihzdHJ1Y3QgbnY1MF9kaXNwX2NoYW4gKmNoYW4sIGJvb2wg
+ZW4pCiB7CiAJc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBjaGFuLT5kaXNwLT5iYXNlLmVu
+Z2luZS5zdWJkZXYuZGV2aWNlOwotCWNvbnN0IHU2NCBtYXNrID0gMHgwMDAwMDAwMSA8PCBjaGFu
+LT5jaGlkLnVzZXI7CisJY29uc3QgdTY0IG1hc2sgPSAweDAwMDAwMDAxVUxMIDw8IGNoYW4tPmNo
+aWQudXNlcjsKIAlpZiAoIWVuKSB7CiAJCW52a21fbWFzayhkZXZpY2UsIDB4NjEwMDkwLCBtYXNr
+LCAweDAwMDAwMDAwKTsKIAkJbnZrbV9tYXNrKGRldmljZSwgMHg2MTAwYTAsIG1hc2ssIDB4MDAw
+MDAwMDApOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUv
+ZGlzcC9jaGFubnY1MC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlz
+cC9jaGFubnY1MC5jCmluZGV4IDU3NzE5ZjY3NWVlYy4uNDNhZTNiMDkyZTQzIDEwMDY0NAotLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL2NoYW5udjUwLmMKKysr
+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9jaGFubnY1MC5jCkBA
+IC0xNjYsNyArMTY2LDcgQEAgdm9pZAogbnY1MF9kaXNwX2NoYW5faW50cihzdHJ1Y3QgbnY1MF9k
+aXNwX2NoYW4gKmNoYW4sIGJvb2wgZW4pCiB7CiAJc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2Ug
+PSBjaGFuLT5kaXNwLT5iYXNlLmVuZ2luZS5zdWJkZXYuZGV2aWNlOwotCWNvbnN0IHU2NCBtYXNr
+ID0gMHgwMDAxMDAwMSA8PCBjaGFuLT5jaGlkLnVzZXI7CisJY29uc3QgdTY0IG1hc2sgPSAweDAw
+MDEwMDAxVUxMIDw8IGNoYW4tPmNoaWQudXNlcjsKIAljb25zdCB1NjQgZGF0YSA9IGVuID8gMHgw
+MDAxMDAwMCA6IDB4MDAwMDAwMDA7CiAJbnZrbV9tYXNrKGRldmljZSwgMHg2MTAwMjgsIG1hc2ss
+IGRhdGEpOwogfQotLSAKMi4xNy4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9kcmktZGV2ZWwK
