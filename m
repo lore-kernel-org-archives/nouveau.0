@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106657] nouveau driver causes black graphic issues
- on gnome apps
-Date: Sat, 26 May 2018 23:00:02 +0000
-Message-ID: <bug-106657-8800-hJnBCi9IJO@http.bugs.freedesktop.org/>
-References: <bug-106657-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93629] [NVE6] complete system freeze,
+ PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
+Date: Sun, 27 May 2018 09:30:20 +0000
+Message-ID: <bug-93629-8800-H0zJzI5jKd@http.bugs.freedesktop.org/>
+References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0710161337=="
+Content-Type: multipart/mixed; boundary="===============1232849214=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106657-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +21,63 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0710161337==
-Content-Type: multipart/alternative; boundary="15273756020.dacf3c.5179"
+--===============1232849214==
+Content-Type: multipart/alternative; boundary="15274134202.f52AaD.22147"
 Content-Transfer-Encoding: 7bit
 
 
---15273756020.dacf3c.5179
-Date: Sat, 26 May 2018 23:00:02 +0000
+--15274134202.f52AaD.22147
+Date: Sun, 27 May 2018 09:30:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106657
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
 
---- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-[    18.750] (II) LoadModule: "nouveau"
-[    18.750] (WW) Warning, couldn't open module nouveau
-[    18.750] (II) UnloadModule: "nouveau"
-[    18.750] (II) Unloading nouveau
-[    18.750] (EE) Failed to load module "nouveau" (module does not exist, 0)
+--- Comment #44 from Z=C3=A9fling <zefling-6V45rIXBuxjR7s880joybQ@public.gmane.org> ---
+Same problem for me, with Kubuntu 18.04 with nouveau and GF770:
 
-You need to install xf86-video-nouveau. If you're unsure of how to do this =
-on
-your distro, you need to find distro-specific support to help with that.
+~$ journalctl --no-pager -b -2 -p err
+-- Logs begin at Thu 2018-05-10 18:08:45 CEST, end at Sun 2018-05-27 11:27:=
+52
+CEST. --
+mai 27 08:36:29 zefling-1 kernel: [Firmware Bug]: TSC_DEADLINE disabled due=
+ to
+Errata; please update microcode to version: 0x22 (or later)
+mai 27 08:36:29 zefling-1 kernel: ACPI Error: [DSSP] Namespace lookup failu=
+re,
+AE_NOT_FOUND (20170831/psargs-364)
+mai 27 08:36:29 zefling-1 kernel: ACPI Error: Method parse/execution failed
+\_SB.PCI0.SAT0.SPT4._GTF, AE_NOT_FOUND (20170831/psparse-550)
+mai 27 08:36:29 zefling-1 kernel: ACPI Error: [DSSP] Namespace lookup failu=
+re,
+AE_NOT_FOUND (20170831/psargs-364)
+mai 27 08:36:29 zefling-1 kernel: ACPI Error: Method parse/execution failed
+\_SB.PCI0.SAT0.SPT4._GTF, AE_NOT_FOUND (20170831/psparse-550)
+mai 27 08:36:35 zefling-1 spice-vdagent[1617]: Cannot access vdagent virtio
+channel /dev/virtio-ports/com.redhat.spice.0
+mai 27 08:36:35 zefling-1 pulseaudio[1708]: [pulseaudio] pid.c: Daemon alre=
+ady
+running.
+mai 27 08:36:35 zefling-1 pulseaudio[1710]: [pulseaudio] pid.c: Daemon alre=
+ady
+running.
+mai 27 08:37:00 zefling-1 pulseaudio[1474]: [pulseaudio] bluez5-util.c:
+GetManagedObjects() failed: org.freedesktop.DBus.Error.TimedOut: Failed to
+activate service 'org.bluez': timed out (service_start_timeout=3D25000ms)
+mai 27 08:57:30 zefling-1 kernel: nouveau 0000:01:00.0: fifo: write fault at
+00002e0000 engine 00 [GR] client 0f [GPC0/PROP_0] reason 02 [PTE] on channe=
+l 2
+[007f9a2000 Xorg[931]]
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15273756020.dacf3c.5179
-Date: Sat, 26 May 2018 23:00:02 +0000
+--15274134202.f52AaD.22147
+Date: Sun, 27 May 2018 09:30:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,29 +93,54 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau driver causes black graphic issues on gnome apps"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106657#c10">Comme=
-nt # 10</a>
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c44">Commen=
+t # 44</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau driver causes black graphic issues on gnome apps"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106657">bug 10665=
-7</a>
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+zefling&#64;ikilote.net" title=3D"Z=C3=A9fling &lt;zefling&#64;ikilote.net&=
+gt;"> <span class=3D"fn">Z=C3=A9fling</span></a>
 </span></b>
-        <pre>[    18.750] (II) LoadModule: &quot;nouveau&quot;
-[    18.750] (WW) Warning, couldn't open module nouveau
-[    18.750] (II) UnloadModule: &quot;nouveau&quot;
-[    18.750] (II) Unloading nouveau
-[    18.750] (EE) Failed to load module &quot;nouveau&quot; (module does no=
-t exist, 0)
+        <pre>Same problem for me, with Kubuntu 18.04 with nouveau and GF770:
 
-You need to install xf86-video-nouveau. If you're unsure of how to do this =
-on
-your distro, you need to find distro-specific support to help with that.</p=
-re>
+~$ journalctl --no-pager -b -2 -p err
+-- Logs begin at Thu 2018-05-10 18:08:45 CEST, end at Sun 2018-05-27 11:27:=
+52
+CEST. --
+mai 27 08:36:29 zefling-1 kernel: [Firmware Bug]: TSC_DEADLINE disabled due=
+ to
+Errata; please update microcode to version: 0x22 (or later)
+mai 27 08:36:29 zefling-1 kernel: ACPI Error: [DSSP] Namespace lookup failu=
+re,
+AE_NOT_FOUND (20170831/psargs-364)
+mai 27 08:36:29 zefling-1 kernel: ACPI Error: Method parse/execution failed
+\_SB.PCI0.SAT0.SPT4._GTF, AE_NOT_FOUND (20170831/psparse-550)
+mai 27 08:36:29 zefling-1 kernel: ACPI Error: [DSSP] Namespace lookup failu=
+re,
+AE_NOT_FOUND (20170831/psargs-364)
+mai 27 08:36:29 zefling-1 kernel: ACPI Error: Method parse/execution failed
+\_SB.PCI0.SAT0.SPT4._GTF, AE_NOT_FOUND (20170831/psparse-550)
+mai 27 08:36:35 zefling-1 spice-vdagent[1617]: Cannot access vdagent virtio
+channel /dev/virtio-ports/com.redhat.spice.0
+mai 27 08:36:35 zefling-1 pulseaudio[1708]: [pulseaudio] pid.c: Daemon alre=
+ady
+running.
+mai 27 08:36:35 zefling-1 pulseaudio[1710]: [pulseaudio] pid.c: Daemon alre=
+ady
+running.
+mai 27 08:37:00 zefling-1 pulseaudio[1474]: [pulseaudio] bluez5-util.c:
+GetManagedObjects() failed: org.freedesktop.DBus.Error.TimedOut: Failed to
+activate service 'org.bluez': timed out (service_start_timeout=3D25000ms)
+mai 27 08:57:30 zefling-1 kernel: nouveau 0000:01:00.0: fifo: write fault at
+00002e0000 engine 00 [GR] client 0f [GPC0/PROP_0] reason 02 [PTE] on channe=
+l 2
+[007f9a2000 Xorg[931]]</pre>
         </div>
       </p>
 
@@ -104,9 +154,9 @@ re>
     </body>
 </html>=
 
---15273756020.dacf3c.5179--
+--15274134202.f52AaD.22147--
 
---===============0710161337==
+--===============1232849214==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -116,4 +166,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0710161337==--
+--===============1232849214==--
