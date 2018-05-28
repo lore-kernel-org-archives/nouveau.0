@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 106577] broken rendering with nine and nouveau
  (GM107)
-Date: Mon, 28 May 2018 14:44:05 +0000
-Message-ID: <bug-106577-8800-EZj9Q46ff2@http.bugs.freedesktop.org/>
+Date: Mon, 28 May 2018 15:01:36 +0000
+Message-ID: <bug-106577-8800-Z45COnjtsA@http.bugs.freedesktop.org/>
 References: <bug-106577-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2104963027=="
+Content-Type: multipart/mixed; boundary="===============1070194425=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-106577-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2104963027==
-Content-Type: multipart/alternative; boundary="15275186450.d49B.23790"
+--===============1070194425==
+Content-Type: multipart/alternative; boundary="15275196951.C67BF.2450"
 Content-Transfer-Encoding: 7bit
 
 
---15275186450.d49B.23790
-Date: Mon, 28 May 2018 14:44:05 +0000
+--15275196951.C67BF.2450
+Date: Mon, 28 May 2018 15:01:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,41 +36,29 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D106577
 
-iive-/E1597aS9LQAvxtiuMwx3w@public.gmane.org changed:
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to iive from comment #3)
+> I must also say I am very disappointed by Nouveau developers
+[...]
+> Nouveau is the only buggy driver, at this moment.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Priority|medium                      |highest
+Patches welcome.
 
---- Comment #3 from iive-/E1597aS9LQAvxtiuMwx3w@public.gmane.org ---
-Here is a link to the Ixit Nine issue tracker of this bug:
-https://github.com/iXit/Mesa-3D/issues/308
+Apparently thus far no one has the time/concentration necessary to rewrite =
+all
+the texture/sampler handling in the driver, and, more importantly, ensure t=
+hat
+everything still works.
 
-It also contains a workaround that you could use if you compile your own
-Mesa3D.
-
-I must also say I am very disappointed by Nouveau developers who have not f=
-ixed
-this issue for over 3 months after the exact cause has been known and they =
-have
-been informed.
-
-You might be angry that the API has been changed without telling you, but i=
-t is
-your users that suffer from visual glitches because you can't find the time=
- to
-adapt your code, or discuss and push another fix.
-
-The software render has already been fixed.
-Nouveau is the only buggy driver, at this moment.
+As always, my standard recommendation applies -- DON'T BUY NVIDIA!
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15275186450.d49B.23790
-Date: Mon, 28 May 2018 14:44:05 +0000
+--15275196951.C67BF.2450
+Date: Mon, 28 May 2018 15:01:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -81,65 +69,40 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:iive&#64;=
-yahoo.com" title=3D"iive&#64;yahoo.com">iive&#64;yahoo.com</a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - broken rendering with nine and nouveau (GM107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577">bug 10657=
-7</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Priority</td>
-           <td>medium
-           </td>
-           <td>highest
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - broken rendering with nine and nouveau (GM107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577#c3">Commen=
-t # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - broken rendering with nine and nouveau (GM107)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577">bug 10657=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-iive&#64;yahoo.com" title=3D"iive&#64;yahoo.com">iive&#64;yahoo.com</a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Here is a link to the Ixit Nine issue tracker of this bug:
-<a href=3D"https://github.com/iXit/Mesa-3D/issues/308">https://github.com/i=
-Xit/Mesa-3D/issues/308</a>
+        <pre>(In reply to iive from <a href=3D"show_bug.cgi?id=3D106577#c3"=
+>comment #3</a>)
+<span class=3D"quote">&gt; I must also say I am very disappointed by Nouvea=
+u developers</span >
+[...]
+<span class=3D"quote">&gt; Nouveau is the only buggy driver, at this moment=
+.</span >
 
-It also contains a workaround that you could use if you compile your own
-Mesa3D.
+Patches welcome.
 
-I must also say I am very disappointed by Nouveau developers who have not f=
-ixed
-this issue for over 3 months after the exact cause has been known and they =
-have
-been informed.
+Apparently thus far no one has the time/concentration necessary to rewrite =
+all
+the texture/sampler handling in the driver, and, more importantly, ensure t=
+hat
+everything still works.
 
-You might be angry that the API has been changed without telling you, but i=
-t is
-your users that suffer from visual glitches because you can't find the time=
- to
-adapt your code, or discuss and push another fix.
-
-The software render has already been fixed.
-Nouveau is the only buggy driver, at this moment.</pre>
+As always, my standard recommendation applies -- DON'T BUY NVIDIA!</pre>
         </div>
       </p>
 
@@ -148,15 +111,15 @@ Nouveau is the only buggy driver, at this moment.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15275186450.d49B.23790--
+--15275196951.C67BF.2450--
 
---===============2104963027==
+--===============1070194425==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -166,4 +129,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2104963027==--
+--===============1070194425==--
