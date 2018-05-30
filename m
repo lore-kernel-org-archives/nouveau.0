@@ -1,73 +1,111 @@
-From: Thierry Reding <thierry.reding@gmail.com>
-Subject: [PATCH v3 2/2] drm/nouveau: tegra: Detach from ARM DMA/IOMMU mapping
-Date: Wed, 30 May 2018 10:03:45 +0200
-Message-ID: <20180530080345.2353-3-thierry.reding@gmail.com>
+From: Robin Murphy <robin.murphy-5wv7dgnIgG8@public.gmane.org>
+Subject: Re: [PATCH v3 1/2] ARM: dma-mapping: Implement
+	arm_dma_iommu_detach_device()
+Date: Wed, 30 May 2018 10:59:30 +0100
+Message-ID: <eee02391-aa25-da84-f98a-b5fed6c69599@arm.com>
 References: <20180530080345.2353-1-thierry.reding@gmail.com>
+	<20180530080345.2353-2-thierry.reding@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org>
-In-Reply-To: <20180530080345.2353-1-thierry.reding@gmail.com>
-List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-arm-kernel>,
- <mailto:linux-arm-kernel-request@lists.infradead.org?subject=unsubscribe>
-List-Archive: <http://lists.infradead.org/pipermail/linux-arm-kernel/>
-List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
-List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
-List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
- <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-Errors-To: linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org
-To: Ben Skeggs <bskeggs@redhat.com>, Christoph Hellwig <hch@infradead.org>, Russell King <linux@armlinux.org.uk>
-Cc: nouveau@lists.freedesktop.org, Joerg Roedel <joro@8bytes.org>, iommu@lists.linux-foundation.org, dri-devel@lists.freedesktop.org, Jordan Crouse <jcrouse@codeaurora.org>, Daniel Vetter <daniel@ffwll.ch>, linux-tegra@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>, linux-arm-kernel@lists.infradead.org
+Return-path: <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
+In-Reply-To: <20180530080345.2353-2-thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/iommu>,
+	<mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.linuxfoundation.org/pipermail/iommu/>
+List-Post: <mailto:iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
+List-Help: <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/iommu>,
+	<mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=subscribe>
+Sender: iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
+Errors-To: iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
+To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>, Russell King <linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+On 30/05/18 09:03, Thierry Reding wrote:
+> From: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> 
+> Implement this function to enable drivers from detaching from any IOMMU
+> domains that architecture code might have attached them to so that they
+> can take exclusive control of the IOMMU via the IOMMU API.
+> 
+> Signed-off-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> ---
+> Changes in v3:
+> - make API 32-bit ARM specific
+> - avoid extra local variable
+> 
+> Changes in v2:
+> - fix compilation
+> 
+>   arch/arm/include/asm/dma-mapping.h |  3 +++
+>   arch/arm/mm/dma-mapping-nommu.c    |  4 ++++
+>   arch/arm/mm/dma-mapping.c          | 16 ++++++++++++++++
+>   3 files changed, 23 insertions(+)
+> 
+> diff --git a/arch/arm/include/asm/dma-mapping.h b/arch/arm/include/asm/dma-mapping.h
+> index 8436f6ade57d..5960e9f3a9d0 100644
+> --- a/arch/arm/include/asm/dma-mapping.h
+> +++ b/arch/arm/include/asm/dma-mapping.h
+> @@ -103,6 +103,9 @@ extern void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+>   #define arch_teardown_dma_ops arch_teardown_dma_ops
+>   extern void arch_teardown_dma_ops(struct device *dev);
+>   
+> +#define arm_dma_iommu_detach_device arm_dma_iommu_detach_device
+> +extern void arm_dma_iommu_detach_device(struct device *dev);
+> +
+>   /* do not use this function in a driver */
+>   static inline bool is_device_dma_coherent(struct device *dev)
+>   {
+> diff --git a/arch/arm/mm/dma-mapping-nommu.c b/arch/arm/mm/dma-mapping-nommu.c
+> index f448a0663b10..eb781369377b 100644
+> --- a/arch/arm/mm/dma-mapping-nommu.c
+> +++ b/arch/arm/mm/dma-mapping-nommu.c
+> @@ -241,3 +241,7 @@ void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+>   void arch_teardown_dma_ops(struct device *dev)
+>   {
+>   }
+> +
+> +void arm_dma_iommu_detach_device(struct device *dev)
+> +{
+> +}
+> diff --git a/arch/arm/mm/dma-mapping.c b/arch/arm/mm/dma-mapping.c
+> index af27f1c22d93..6d8af08b3e7d 100644
+> --- a/arch/arm/mm/dma-mapping.c
+> +++ b/arch/arm/mm/dma-mapping.c
+> @@ -2400,3 +2400,19 @@ void arch_teardown_dma_ops(struct device *dev)
+>   
+>   	arm_teardown_iommu_dma_ops(dev);
+>   }
+> +
+> +void arm_dma_iommu_detach_device(struct device *dev)
+> +{
+> +#ifdef CONFIG_ARM_DMA_USE_IOMMU
+> +	struct dma_iommu_mapping *mapping = to_dma_iommu_mapping(dev);
+> +
+> +	if (!mapping)
+> +		return;
+> +
+> +	arm_iommu_release_mapping(mapping);
 
-Depending on the kernel configuration, early ARM architecture setup code
-may have attached the GPU to a DMA/IOMMU mapping that transparently uses
-the IOMMU to back the DMA API. Tegra requires special handling for IOMMU
-backed buffers (a special bit in the GPU's MMU page tables indicates the
-memory path to take: via the SMMU or directly to the memory controller).
-Transparently backing DMA memory with an IOMMU prevents Nouveau from
-properly handling such memory accesses and causes memory access faults.
+Potentially freeing the mapping before you try to operate on it is never 
+the best idea. Plus arm_iommu_detach_device() already releases a 
+reference appropriately anyway, so it's a double-free.
 
-As a side-note: buffers other than those allocated in instance memory
-don't need to be physically contiguous from the GPU's perspective since
-the GPU can map them into contiguous buffers using its own MMU. Mapping
-these buffers through the IOMMU is unnecessary and will even lead to
-performance degradation because of the additional translation. One
-exception to this are compressible buffers which need large pages. In
-order to enable these large pages, multiple small pages will have to be
-combined into one large (I/O virtually contiguous) mapping via the
-IOMMU. However, that is a topic outside the scope of this fix and isn't
-currently supported. An implementation will want to explicitly create
-these large pages in the Nouveau driver, so detaching from a DMA/IOMMU
-mapping would still be required.
+> +	arm_iommu_detach_device(dev);
+> +
+> +	set_dma_ops(dev, arm_get_dma_map_ops(dev->archdata.dma_coherent));
+> +#endif
+> +}
+> +EXPORT_SYMBOL(arm_dma_iommu_detach_device);
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
-Changes in v3:
-- clarify the use of IOMMU mapping for compressible buffers
-- squash multiple patches into this
+I really don't see why we need an extra function that essentially just 
+duplicates arm_iommu_detach_device(). The only real difference here is 
+that here you reset the DMA ops more appropriately, but I think the 
+existing function should be fixed to do that anyway, since 
+set_dma_ops(dev, NULL) now just behaves as an unconditional fallback to 
+the noncoherent arm_dma_ops, which clearly isn't always right.
 
- drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-index 78597da6313a..d0538af1b967 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-@@ -105,6 +105,11 @@ nvkm_device_tegra_probe_iommu(struct nvkm_device_tegra *tdev)
- 	unsigned long pgsize_bitmap;
- 	int ret;
- 
-+#if IS_ENABLED(CONFIG_ARM)
-+	/* make sure we can use the IOMMU exclusively */
-+	arm_dma_iommu_detach_device(dev);
-+#endif
-+
- 	if (!tdev->func->iommu_bit)
- 		return;
- 
--- 
-2.17.0
+Robin.
