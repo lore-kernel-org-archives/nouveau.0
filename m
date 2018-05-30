@@ -1,136 +1,64 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106577] broken rendering with nine and nouveau
- (GM107)
-Date: Tue, 29 May 2018 16:24:36 +0000
-Message-ID: <bug-106577-8800-GwcIFPzDAk@http.bugs.freedesktop.org/>
-References: <bug-106577-8800@http.bugs.freedesktop.org/>
+From: Thierry Reding <thierry.reding@gmail.com>
+Subject: [PATCH v3 0/2] drm/nouveau: tegra: Detach from ARM DMA/IOMMU mapping
+Date: Wed, 30 May 2018 10:03:43 +0200
+Message-ID: <20180530080345.2353-1-thierry.reding@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1148137784=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106577-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org>
+List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-arm-kernel>,
+ <mailto:linux-arm-kernel-request@lists.infradead.org?subject=unsubscribe>
+List-Archive: <http://lists.infradead.org/pipermail/linux-arm-kernel/>
+List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
+List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
+List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
+ <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
+Errors-To: linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org
+To: Ben Skeggs <bskeggs@redhat.com>, Christoph Hellwig <hch@infradead.org>, Russell King <linux@armlinux.org.uk>
+Cc: nouveau@lists.freedesktop.org, Joerg Roedel <joro@8bytes.org>, iommu@lists.linux-foundation.org, dri-devel@lists.freedesktop.org, Jordan Crouse <jcrouse@codeaurora.org>, Daniel Vetter <daniel@ffwll.ch>, linux-tegra@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>, linux-arm-kernel@lists.infradead.org
 List-Id: nouveau.vger.kernel.org
 
+From: Thierry Reding <treding@nvidia.com>
 
---===============1148137784==
-Content-Type: multipart/alternative; boundary="15276110760.fC61f.13171"
-Content-Transfer-Encoding: 7bit
+An unfortunate interaction between the 32-bit ARM DMA/IOMMU mapping code
+and Tegra SMMU driver changes to support IOMMU groups introduced a boot-
+time regression on Tegra124. This was caught very late because none of
+the standard configurations that are tested on Tegra enable the ARM DMA/
+IOMMU mapping code since it is not needed.
 
+The reason for the failure is that the GPU found on Tegra uses a special
+bit in physical addresses to determine whether or not a buffer is mapped
+through the SMMU. In order to achieve this, the Nouveau driver needs to
+explicitly understand which buffers are mapped through the SMMU and
+which aren't. Hiding usage of the SMMU behind the DMA API is bound to
+fail because the knowledge doesn't exist. Furthermore, the GPU has its
+own IOMMU and in most cases doesn't need buffers to be physically or
+virtually contiguous. One notable exception is for compressible buffers
+which need to be mapped with large pages, which in turn require all the
+small pages in a large page to be contiguous. This can be achieved with
+an SMMU mapping, though it isn't currently supported in Nouveau. Since
+Translating through the SMMU is unnecessary and can have a negative
+impact on performance for the common case, so we want to avoid it when
+possible.
 
---15276110760.fC61f.13171
-Date: Tue, 29 May 2018 16:24:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+This series of patches adds a 32-bit ARM specific API that allows a
+driver to detach the device from the DMA/IOMMU mapping so that it can
+provide its own implementation for dealing with the SMMU. The second
+patch makes use of that new API in the Nouveau driver to fix the
+regression.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106577
+Thierry
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to iive from comment #5)
-> What is even worse, the tone you are using here, kind of implies that you=
- do
-> not intend to work on a fix.
+Thierry Reding (2):
+  ARM: dma-mapping: Implement arm_dma_iommu_detach_device()
+  drm/nouveau: tegra: Detach from ARM DMA/IOMMU mapping
 
-I do intend to work on one, but my time is limited, and this sort of thing
-requires a lot of concentration not to muck up completely. I've been intend=
-ing
-since I heard about the issue, so you can see that my intent doesn't mean m=
-uch.
+ arch/arm/include/asm/dma-mapping.h               |  3 +++
+ arch/arm/mm/dma-mapping-nommu.c                  |  4 ++++
+ arch/arm/mm/dma-mapping.c                        | 16 ++++++++++++++++
+ .../gpu/drm/nouveau/nvkm/engine/device/tegra.c   |  5 +++++
+ 4 files changed, 28 insertions(+)
 
-Sounds like my free-time open-source contributions don't live up to your hi=
-gh
-standards. Feel free to hire someone to work on this if you're desperate to=
- see
-it fixed but can't do it yourself, or recruit people to contribute in their
-free time. In case it's not clear, manpower is lacking.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15276110760.fC61f.13171
-Date: Tue, 29 May 2018 16:24:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - broken rendering with nine and nouveau (GM107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577#c6">Commen=
-t # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - broken rendering with nine and nouveau (GM107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577">bug 10657=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to iive from <a href=3D"show_bug.cgi?id=3D106577#c5"=
->comment #5</a>)
-<span class=3D"quote">&gt; What is even worse, the tone you are using here,=
- kind of implies that you do
-&gt; not intend to work on a fix.</span >
-
-I do intend to work on one, but my time is limited, and this sort of thing
-requires a lot of concentration not to muck up completely. I've been intend=
-ing
-since I heard about the issue, so you can see that my intent doesn't mean m=
-uch.
-
-Sounds like my free-time open-source contributions don't live up to your hi=
-gh
-standards. Feel free to hire someone to work on this if you're desperate to=
- see
-it fixed but can't do it yourself, or recruit people to contribute in their
-free time. In case it's not clear, manpower is lacking.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15276110760.fC61f.13171--
-
---===============1148137784==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1148137784==--
+-- 
+2.17.0
