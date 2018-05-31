@@ -1,49 +1,41 @@
-From: Yisheng Xie <xieyisheng1-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v2 11/21] drm/nouveau: use match_string() helper
-Date: Thu, 31 May 2018 19:11:16 +0800
-Message-ID: <1527765086-19873-12-git-send-email-xieyisheng1@huawei.com>
-References: <1527765086-19873-1-git-send-email-xieyisheng1@huawei.com>
+From: Christoph Hellwig <hch@infradead.org>
+Subject: Re: [PATCH v4 2/2] drm/nouveau: tegra: Detach from ARM DMA/IOMMU
+ mapping
+Date: Thu, 31 May 2018 09:12:47 -0700
+Message-ID: <20180531161247.GA10203@infradead.org>
+References: <20180530140625.21247-1-thierry.reding@gmail.com>
+ <20180530140625.21247-3-thierry.reding@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1527765086-19873-1-git-send-email-xieyisheng1-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Yisheng Xie <xieyisheng1-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, andy.shevchenko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org>
+Content-Disposition: inline
+In-Reply-To: <20180530140625.21247-3-thierry.reding@gmail.com>
+List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-arm-kernel>,
+ <mailto:linux-arm-kernel-request@lists.infradead.org?subject=unsubscribe>
+List-Archive: <http://lists.infradead.org/pipermail/linux-arm-kernel/>
+List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
+List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
+List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
+ <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
+Errors-To: linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: nouveau@lists.freedesktop.org, Joerg Roedel <joro@8bytes.org>, Russell King <linux@armlinux.org.uk>, dri-devel@lists.freedesktop.org, Christoph Hellwig <hch@infradead.org>, Jordan Crouse <jcrouse@codeaurora.org>, iommu@lists.linux-foundation.org, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>, linux-tegra@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>, linux-arm-kernel@lists.infradead.org
 List-Id: nouveau.vger.kernel.org
 
-bWF0Y2hfc3RyaW5nKCkgcmV0dXJucyB0aGUgaW5kZXggb2YgYW4gYXJyYXkgZm9yIGEgbWF0Y2hp
-bmcgc3RyaW5nLAp3aGljaCBjYW4gYmUgdXNlZCBpbnN0ZWFkIG9mIG9wZW4gY29kZWQgdmFyaWFu
-dC4KCkNjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+CkNjOiBEYXZpZCBBaXJsaWUg
-PGFpcmxpZWRAbGludXguaWU+CkNjOiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCkNj
-OiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpTaWduZWQtb2ZmLWJ5OiBZaXNoZW5nIFhp
-ZSA8eGlleWlzaGVuZzFAaHVhd2VpLmNvbT4KLS0tCnYyOgogLSBoYW5kbGUgZXJyIGNhc2UgYmVm
-b3JlIG5vcm1hbCBjYXNlIC0gcGVyIEFuZHkKCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNw
-bnYwNC90dm52MTcuYyB8IDEzICsrKysrLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2Vy
-dGlvbnMoKyksIDggZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvZGlzcG52MDQvdHZudjE3LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYw
-NC90dm52MTcuYwppbmRleCA2ZDk5ZjExLi42N2JhMmFjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9kaXNwbnYwNC90dm52MTcuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9kaXNwbnYwNC90dm52MTcuYwpAQCAtNjQ0LDE2ICs2NDQsMTMgQEAgc3RhdGljIGludCBu
-djE3X3R2X2NyZWF0ZV9yZXNvdXJjZXMoc3RydWN0IGRybV9lbmNvZGVyICplbmNvZGVyLAogCWlu
-dCBpOwogCiAJaWYgKG5vdXZlYXVfdHZfbm9ybSkgewotCQlmb3IgKGkgPSAwOyBpIDwgbnVtX3R2
-X25vcm1zOyBpKyspIHsKLQkJCWlmICghc3RyY21wKG52MTdfdHZfbm9ybV9uYW1lc1tpXSwgbm91
-dmVhdV90dl9ub3JtKSkgewotCQkJCXR2X2VuYy0+dHZfbm9ybSA9IGk7Ci0JCQkJYnJlYWs7Ci0J
-CQl9Ci0JCX0KLQotCQlpZiAoaSA9PSBudW1fdHZfbm9ybXMpCisJCWkgPSBtYXRjaF9zdHJpbmco
-bnYxN190dl9ub3JtX25hbWVzLAorCQkJCSBudW1fdHZfbm9ybXMsIG5vdXZlYXVfdHZfbm9ybSk7
-CisJCWlmIChpIDwgMCkKIAkJCU5WX1dBUk4oZHJtLCAiSW52YWxpZCBUViBub3JtIHNldHRpbmcg
-XCIlc1wiXG4iLAogCQkJCW5vdXZlYXVfdHZfbm9ybSk7CisJCWVsc2UKKwkJCXR2X2VuYy0+dHZf
-bm9ybSA9IGk7CiAJfQogCiAJZHJtX21vZGVfY3JlYXRlX3R2X3Byb3BlcnRpZXMoZGV2LCBudW1f
-dHZfbm9ybXMsIG52MTdfdHZfbm9ybV9uYW1lcyk7Ci0tIAoxLjcuMTIuNAoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+> +#if IS_ENABLED(CONFIG_ARM_DMA_USE_IOMMU)
+> +	if (dev->archdata.mapping) {
+> +		struct dma_iommu_mapping *mapping = to_dma_iommu_mapping(dev);
+> +
+> +		arm_iommu_detach_device(dev);
+> +		arm_iommu_release_mapping(mapping);
+> +	}
+> +#endif
+
+Having this hidden in a helper would be nicer, but anything that
+doesn't directly expose the dma_map_ops to a driver is fine with me.
+
+So from the dma-mapping POV:
+
+Acked-by: Christoph Hellwig <hch@lst.de>
