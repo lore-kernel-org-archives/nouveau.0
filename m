@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105884] [GP106] Firefox causes a crash / X lockup in
- the nouveau driver on GTX 1060
-Date: Wed, 30 May 2018 12:48:11 +0000
-Message-ID: <bug-105884-8800-B9BoYEIGNp@http.bugs.freedesktop.org/>
-References: <bug-105884-8800@http.bugs.freedesktop.org/>
+From: Yisheng Xie <xieyisheng1-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v2 11/21] drm/nouveau: use match_string() helper
+Date: Thu, 31 May 2018 19:11:16 +0800
+Message-ID: <1527765086-19873-12-git-send-email-xieyisheng1@huawei.com>
+References: <1527765086-19873-1-git-send-email-xieyisheng1@huawei.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0117248851=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105884-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1527765086-19873-1-git-send-email-xieyisheng1-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,92 +17,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: Yisheng Xie <xieyisheng1-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, andy.shevchenko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0117248851==
-Content-Type: multipart/alternative; boundary="15276844901.Bda3b284.16321"
-Content-Transfer-Encoding: 7bit
-
-
---15276844901.Bda3b284.16321
-Date: Wed, 30 May 2018 12:48:10 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105884
-
---- Comment #10 from Artem S. Tashkinov <t.artem-VInPYn6yXxRWk0Htik3J/w@public.gmane.org> ---
-Probably related bug 99202
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15276844901.Bda3b284.16321
-Date: Wed, 30 May 2018 12:48:10 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GP106] Firefox causes a crash / X lockup in the nouveau =
-driver on GTX 1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105884#c10">Comme=
-nt # 10</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GP106] Firefox causes a crash / X lockup in the nouveau =
-driver on GTX 1060"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105884">bug 10588=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-t.artem&#64;mailcity.com" title=3D"Artem S. Tashkinov &lt;t.artem&#64;mailc=
-ity.com&gt;"> <span class=3D"fn">Artem S. Tashkinov</span></a>
-</span></b>
-        <pre>Probably related <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - system freeze - fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT] - MU=
-LTIPLE_WARP_ERRORS - DATA_ERROR 00000004 [INVALID_VALUE] - ILLEGAL_CLASS ch=
- 11 - RT_STORAGE_TYPE_MISMATCH - CLASS_SUBCH_MISMATCH"
-   href=3D"show_bug.cgi?id=3D99202">bug 99202</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15276844901.Bda3b284.16321--
-
---===============0117248851==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0117248851==--
+bWF0Y2hfc3RyaW5nKCkgcmV0dXJucyB0aGUgaW5kZXggb2YgYW4gYXJyYXkgZm9yIGEgbWF0Y2hp
+bmcgc3RyaW5nLAp3aGljaCBjYW4gYmUgdXNlZCBpbnN0ZWFkIG9mIG9wZW4gY29kZWQgdmFyaWFu
+dC4KCkNjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+CkNjOiBEYXZpZCBBaXJsaWUg
+PGFpcmxpZWRAbGludXguaWU+CkNjOiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCkNj
+OiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpTaWduZWQtb2ZmLWJ5OiBZaXNoZW5nIFhp
+ZSA8eGlleWlzaGVuZzFAaHVhd2VpLmNvbT4KLS0tCnYyOgogLSBoYW5kbGUgZXJyIGNhc2UgYmVm
+b3JlIG5vcm1hbCBjYXNlIC0gcGVyIEFuZHkKCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNw
+bnYwNC90dm52MTcuYyB8IDEzICsrKysrLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2Vy
+dGlvbnMoKyksIDggZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvZGlzcG52MDQvdHZudjE3LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYw
+NC90dm52MTcuYwppbmRleCA2ZDk5ZjExLi42N2JhMmFjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9kaXNwbnYwNC90dm52MTcuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9kaXNwbnYwNC90dm52MTcuYwpAQCAtNjQ0LDE2ICs2NDQsMTMgQEAgc3RhdGljIGludCBu
+djE3X3R2X2NyZWF0ZV9yZXNvdXJjZXMoc3RydWN0IGRybV9lbmNvZGVyICplbmNvZGVyLAogCWlu
+dCBpOwogCiAJaWYgKG5vdXZlYXVfdHZfbm9ybSkgewotCQlmb3IgKGkgPSAwOyBpIDwgbnVtX3R2
+X25vcm1zOyBpKyspIHsKLQkJCWlmICghc3RyY21wKG52MTdfdHZfbm9ybV9uYW1lc1tpXSwgbm91
+dmVhdV90dl9ub3JtKSkgewotCQkJCXR2X2VuYy0+dHZfbm9ybSA9IGk7Ci0JCQkJYnJlYWs7Ci0J
+CQl9Ci0JCX0KLQotCQlpZiAoaSA9PSBudW1fdHZfbm9ybXMpCisJCWkgPSBtYXRjaF9zdHJpbmco
+bnYxN190dl9ub3JtX25hbWVzLAorCQkJCSBudW1fdHZfbm9ybXMsIG5vdXZlYXVfdHZfbm9ybSk7
+CisJCWlmIChpIDwgMCkKIAkJCU5WX1dBUk4oZHJtLCAiSW52YWxpZCBUViBub3JtIHNldHRpbmcg
+XCIlc1wiXG4iLAogCQkJCW5vdXZlYXVfdHZfbm9ybSk7CisJCWVsc2UKKwkJCXR2X2VuYy0+dHZf
+bm9ybSA9IGk7CiAJfQogCiAJZHJtX21vZGVfY3JlYXRlX3R2X3Byb3BlcnRpZXMoZGV2LCBudW1f
+dHZfbm9ybXMsIG52MTdfdHZfbm9ybV9uYW1lcyk7Ci0tIAoxLjcuMTIuNAoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
