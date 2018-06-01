@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 106772] Xorg crashes with nouveau and dual screen
  setup
-Date: Fri, 01 Jun 2018 19:03:24 +0000
-Message-ID: <bug-106772-8800-n4CRIk785E@http.bugs.freedesktop.org/>
+Date: Fri, 01 Jun 2018 19:04:11 +0000
+Message-ID: <bug-106772-8800-jT5qkkCGrg@http.bugs.freedesktop.org/>
 References: <bug-106772-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0060487751=="
+Content-Type: multipart/mixed; boundary="===============0089137363=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-106772-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0060487751==
-Content-Type: multipart/alternative; boundary="15278798040.2b53.5802"
+--===============0089137363==
+Content-Type: multipart/alternative; boundary="15278798511.Fc1b.7321"
 Content-Transfer-Encoding: 7bit
 
 
---15278798040.2b53.5802
-Date: Fri, 1 Jun 2018 19:03:24 +0000
+--15278798511.Fc1b.7321
+Date: Fri, 1 Jun 2018 19:04:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,22 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D106772
 
---- Comment #2 from Andrew Savchenko <bircoph-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 139918
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139918&action=3Dedit
-xorg.conf
+--- Comment #3 from Andrew Savchenko <bircoph-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 139922
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139922&action=3Dedit
+lspci
 
-xorg.conf for dual head setup with screens, I tried to remove Option
-ZaphodHeads and to add Option DRI 3, all attempts results in the same failu=
-re
-as above.
+lspci -v output for the VGA device
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15278798040.2b53.5802
-Date: Fri, 1 Jun 2018 19:03:24 +0000
+--15278798511.Fc1b.7321
+Date: Fri, 1 Jun 2018 19:04:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +65,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg crashes with nouveau and dual screen setup"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106772#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106772#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg crashes with nouveau and dual screen setup"
@@ -79,16 +76,13 @@ t # 2</a>
 bircoph&#64;gmail.com" title=3D"Andrew Savchenko &lt;bircoph&#64;gmail.com&=
 gt;"> <span class=3D"fn">Andrew Savchenko</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139918=
-" name=3D"attach_139918" title=3D"xorg.conf">attachment 139918</a> <a href=
-=3D"attachment.cgi?id=3D139918&amp;action=3Dedit" title=3D"xorg.conf">[deta=
-ils]</a></span>
-xorg.conf
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139922=
+" name=3D"attach_139922" title=3D"lspci">attachment 139922</a> <a href=3D"a=
+ttachment.cgi?id=3D139922&amp;action=3Dedit" title=3D"lspci">[details]</a><=
+/span>
+lspci
 
-xorg.conf for dual head setup with screens, I tried to remove Option
-ZaphodHeads and to add Option DRI 3, all attempts results in the same failu=
-re
-as above.</pre>
+lspci -v output for the VGA device</pre>
         </div>
       </p>
 
@@ -102,9 +96,9 @@ as above.</pre>
     </body>
 </html>=
 
---15278798040.2b53.5802--
+--15278798511.Fc1b.7321--
 
---===============0060487751==
+--===============0089137363==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0060487751==--
+--===============0089137363==--
