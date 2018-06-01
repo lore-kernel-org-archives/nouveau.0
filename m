@@ -1,102 +1,212 @@
-From: Robin Murphy <robin.murphy-5wv7dgnIgG8@public.gmane.org>
-Subject: Re: [PATCH v4 2/2] drm/nouveau: tegra: Detach from ARM DMA/IOMMU
-	mapping
-Date: Thu, 31 May 2018 18:56:53 +0100
-Message-ID: <412f15b5-6beb-3980-1ea4-7a9719786006@arm.com>
-References: <20180530140625.21247-1-thierry.reding@gmail.com>
-	<20180530140625.21247-3-thierry.reding@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 106772] New: Xorg crashes with nouveau and dual
+ screen setup
+Date: Fri, 01 Jun 2018 19:01:21 +0000
+Message-ID: <bug-106772-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
-Return-path: <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
-In-Reply-To: <20180530140625.21247-3-thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Content-Language: en-GB
-List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/iommu>,
-	<mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.linuxfoundation.org/pipermail/iommu/>
-List-Post: <mailto:iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
-List-Help: <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/iommu>,
-	<mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=subscribe>
-Sender: iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
-Errors-To: iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
-To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>, Russell King <linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============0371996764=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 30/05/18 15:06, Thierry Reding wrote:
-> From: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> 
-> Depending on the kernel configuration, early ARM architecture setup code
-> may have attached the GPU to a DMA/IOMMU mapping that transparently uses
-> the IOMMU to back the DMA API. Tegra requires special handling for IOMMU
-> backed buffers (a special bit in the GPU's MMU page tables indicates the
-> memory path to take: via the SMMU or directly to the memory controller).
-> Transparently backing DMA memory with an IOMMU prevents Nouveau from
-> properly handling such memory accesses and causes memory access faults.
-> 
-> As a side-note: buffers other than those allocated in instance memory
-> don't need to be physically contiguous from the GPU's perspective since
-> the GPU can map them into contiguous buffers using its own MMU. Mapping
-> these buffers through the IOMMU is unnecessary and will even lead to
-> performance degradation because of the additional translation. One
-> exception to this are compressible buffers which need large pages. In
-> order to enable these large pages, multiple small pages will have to be
-> combined into one large (I/O virtually contiguous) mapping via the
-> IOMMU. However, that is a topic outside the scope of this fix and isn't
-> currently supported. An implementation will want to explicitly create
-> these large pages in the Nouveau driver, so detaching from a DMA/IOMMU
-> mapping would still be required.
-> 
-> Signed-off-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> ---
-> Changes in v4:
-> - use existing APIs to detach from a DMA/IOMMU mapping
-> 
-> Changes in v3:
-> - clarify the use of IOMMU mapping for compressible buffers
-> - squash multiple patches into this
-> 
->   drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c | 13 +++++++++++++
->   1 file changed, 13 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-> index 78597da6313a..0e372a190d3f 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c
-> @@ -23,6 +23,10 @@
->   #ifdef CONFIG_NOUVEAU_PLATFORM_DRIVER
->   #include "priv.h"
->   
-> +#if IS_ENABLED(CONFIG_ARM_DMA_USE_IOMMU)
-> +#include <asm/dma-iommu.h>
-> +#endif
-> +
->   static int
->   nvkm_device_tegra_power_up(struct nvkm_device_tegra *tdev)
->   {
-> @@ -105,6 +109,15 @@ nvkm_device_tegra_probe_iommu(struct nvkm_device_tegra *tdev)
->   	unsigned long pgsize_bitmap;
->   	int ret;
->   
-> +#if IS_ENABLED(CONFIG_ARM_DMA_USE_IOMMU)
-> +	if (dev->archdata.mapping) {
-> +		struct dma_iommu_mapping *mapping = to_dma_iommu_mapping(dev);
 
-Nit: there's arguably little point using the helper here after you've 
-already shattered the illusion by poking dev->archdata.mapping directly, 
-but I guess this disappears again anyway once the refcounting gets 
-sorted out and the mapping releases itself properly, so:
+--===============0371996764==
+Content-Type: multipart/alternative; boundary="15278796820.b5EeEf69D.5305"
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Robin Murphy <robin.murphy-5wv7dgnIgG8@public.gmane.org>
 
-> +
-> +		arm_iommu_detach_device(dev);
-> +		arm_iommu_release_mapping(mapping);
-> +	}
-> +#endif
-> +
->   	if (!tdev->func->iommu_bit)
->   		return;
->   
-> 
+--15278796820.b5EeEf69D.5305
+Date: Fri, 1 Jun 2018 19:01:22 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106772
+
+            Bug ID: 106772
+           Summary: Xorg crashes with nouveau and dual screen setup
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: bircoph-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 139910
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139910&action=3Dedit
+gdb.log
+
+Hi!
+
+I tried Nouveau (xorg-dri-nouveau-18.1.0 from mesa 18.1.0 and
+xorg-drv-nouveau-1.0.15) with the latest xorg-1.20 and dual monitors. With
+single screen and xinerama it works fine, with dual screens (w/o xinerama) =
+it
+segfaults, see log below.
+
+I want to use separate X screens, since monitors have sufficiently different
+DPI and color temp and Xinerama doesn't allow different DPI on different
+monitors.
+
+Kernel in use is 4.6.13 with nouveau built as module.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15278796820.b5EeEf69D.5305
+Date: Fri, 1 Jun 2018 19:01:22 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg crashes with nouveau and dual screen setup"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106772">106772</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Xorg crashes with nouveau and dual screen setup
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>bircoph&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139910=
+" name=3D"attach_139910" title=3D"gdb.log">attachment 139910</a> <a href=3D=
+"attachment.cgi?id=3D139910&amp;action=3Dedit" title=3D"gdb.log">[details]<=
+/a></span>
+gdb.log
+
+Hi!
+
+I tried Nouveau (xorg-dri-nouveau-18.1.0 from mesa 18.1.0 and
+xorg-drv-nouveau-1.0.15) with the latest xorg-1.20 and dual monitors. With
+single screen and xinerama it works fine, with dual screens (w/o xinerama) =
+it
+segfaults, see log below.
+
+I want to use separate X screens, since monitors have sufficiently different
+DPI and color temp and Xinerama doesn't allow different DPI on different
+monitors.
+
+Kernel in use is 4.6.13 with nouveau built as module.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15278796820.b5EeEf69D.5305--
+
+--===============0371996764==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0371996764==--
