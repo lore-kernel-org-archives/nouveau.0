@@ -3,11 +3,11 @@ Subject: [Bug 106787] Thinkpad P52s NVIDIA Quadro P500 gp108
  WARNING: CPU: 3 PID: 395 at
  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.c:86
  nvkm_pmu_reset+0x14c/0x160 [nouveau]
-Date: Sat, 02 Jun 2018 21:55:44 +0000
-Message-ID: <bug-106787-8800-fGaErNT53l@http.bugs.freedesktop.org/>
+Date: Sat, 02 Jun 2018 21:56:42 +0000
+Message-ID: <bug-106787-8800-iGe4riG4av@http.bugs.freedesktop.org/>
 References: <bug-106787-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1983396503=="
+Content-Type: multipart/mixed; boundary="===============0237456791=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-106787-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -23,13 +23,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1983396503==
-Content-Type: multipart/alternative; boundary="15279765440.2b38f1Cf.22261"
+--===============0237456791==
+Content-Type: multipart/alternative; boundary="15279766021.81744.26134"
 Content-Transfer-Encoding: 7bit
 
 
---15279765440.2b38f1Cf.22261
-Date: Sat, 2 Jun 2018 21:55:44 +0000
+--15279766021.81744.26134
+Date: Sat, 2 Jun 2018 21:56:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -38,17 +38,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D106787
 
---- Comment #2 from John L Magee <jlmagee-HdwXkjjr9CHk1uMJSBkQmQ@public.gmane.org> ---
-Created attachment 139975
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139975&action=3Dedit
-lspci
+--- Comment #3 from John L Magee <jlmagee-HdwXkjjr9CHk1uMJSBkQmQ@public.gmane.org> ---
+Created attachment 139976
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139976&action=3Dedit
+xorg log nouveau doesn't show up
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15279765440.2b38f1Cf.22261
-Date: Sat, 2 Jun 2018 21:55:44 +0000
+--15279766021.81744.26134
+Date: Sat, 2 Jun 2018 21:56:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,8 +67,8 @@ Auto-Submitted: auto-generated
    title=3D"NEW - Thinkpad P52s NVIDIA Quadro P500 gp108 WARNING: CPU: 3 PI=
 D: 395 at drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.c:86 nvkm_pmu_reset+=
 0x14c/0x160 [nouveau]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106787#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106787#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Thinkpad P52s NVIDIA Quadro P500 gp108 WARNING: CPU: 3 PI=
@@ -80,11 +80,11 @@ D: 395 at drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.c:86 nvkm_pmu_reset+=
 jlmagee&#64;mageenet.net" title=3D"John L Magee &lt;jlmagee&#64;mageenet.ne=
 t&gt;"> <span class=3D"fn">John L Magee</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139975=
-" name=3D"attach_139975" title=3D"lspci">attachment 139975</a> <a href=3D"a=
-ttachment.cgi?id=3D139975&amp;action=3Dedit" title=3D"lspci">[details]</a><=
-/span>
-lspci</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139976=
+" name=3D"attach_139976" title=3D"xorg log nouveau doesn't show up">attachm=
+ent 139976</a> <a href=3D"attachment.cgi?id=3D139976&amp;action=3Dedit" tit=
+le=3D"xorg log nouveau doesn't show up">[details]</a></span>
+xorg log nouveau doesn't show up</pre>
         </div>
       </p>
 
@@ -98,9 +98,9 @@ lspci</pre>
     </body>
 </html>=
 
---15279765440.2b38f1Cf.22261--
+--15279766021.81744.26134--
 
---===============1983396503==
+--===============0237456791==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1983396503==--
+--===============0237456791==--
