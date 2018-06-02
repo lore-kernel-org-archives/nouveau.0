@@ -3,11 +3,11 @@ Subject: [Bug 106787] Thinkpad P52s NVIDIA Quadro P500 gp108
  WARNING: CPU: 3 PID: 395 at
  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.c:86
  nvkm_pmu_reset+0x14c/0x160 [nouveau]
-Date: Sat, 02 Jun 2018 22:04:39 +0000
-Message-ID: <bug-106787-8800-xsyQ2IEgxM@http.bugs.freedesktop.org/>
+Date: Sat, 02 Jun 2018 22:36:25 +0000
+Message-ID: <bug-106787-8800-hvLtPkt5lS@http.bugs.freedesktop.org/>
 References: <bug-106787-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1698043412=="
+Content-Type: multipart/mixed; boundary="===============0241505856=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-106787-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -23,13 +23,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1698043412==
-Content-Type: multipart/alternative; boundary="15279770782.091fC8.29884"
+--===============0241505856==
+Content-Type: multipart/alternative; boundary="15279789850.B2EBbf.12450"
 Content-Transfer-Encoding: 7bit
 
 
---15279770782.091fC8.29884
-Date: Sat, 2 Jun 2018 22:04:38 +0000
+--15279789850.B2EBbf.12450
+Date: Sat, 2 Jun 2018 22:36:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -38,20 +38,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D106787
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Warns aren't crashes... the GPU isn't coming up. We're seeing this a lot in
-late-model laptops with GP10x's.
+--- Comment #5 from John L Magee <jlmagee-HdwXkjjr9CHk1uMJSBkQmQ@public.gmane.org> ---
+Right, not crashes.=20=20
 
-You can avoid loading nouveau or boot with nouveau.modeset=3D0 which will h=
-ave an
-identical effect.
+Any chance this will ever be supported? I could test fixes if that would he=
+lp.=20=20
+
+I am running a system with modeset.nouveau successfully for the time being.
+
+Thanks.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15279770782.091fC8.29884
-Date: Sat, 2 Jun 2018 22:04:38 +0000
+--15279789850.B2EBbf.12450
+Date: Sat, 2 Jun 2018 22:36:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,8 +72,8 @@ Auto-Submitted: auto-generated
    title=3D"NEW - Thinkpad P52s NVIDIA Quadro P500 gp108 WARNING: CPU: 3 PI=
 D: 395 at drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.c:86 nvkm_pmu_reset+=
 0x14c/0x160 [nouveau]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106787#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106787#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Thinkpad P52s NVIDIA Quadro P500 gp108 WARNING: CPU: 3 PI=
@@ -80,16 +82,17 @@ D: 395 at drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.c:86 nvkm_pmu_reset+=
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106787">bug 10678=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+jlmagee&#64;mageenet.net" title=3D"John L Magee &lt;jlmagee&#64;mageenet.ne=
+t&gt;"> <span class=3D"fn">John L Magee</span></a>
 </span></b>
-        <pre>Warns aren't crashes... the GPU isn't coming up. We're seeing =
-this a lot in
-late-model laptops with GP10x's.
+        <pre>Right, not crashes.=20=20
 
-You can avoid loading nouveau or boot with nouveau.modeset=3D0 which will h=
-ave an
-identical effect.</pre>
+Any chance this will ever be supported? I could test fixes if that would he=
+lp.=20=20
+
+I am running a system with modeset.nouveau successfully for the time being.
+
+Thanks.</pre>
         </div>
       </p>
 
@@ -103,9 +106,9 @@ identical effect.</pre>
     </body>
 </html>=
 
---15279770782.091fC8.29884--
+--15279789850.B2EBbf.12450--
 
---===============1698043412==
+--===============0241505856==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1698043412==--
+--===============0241505856==--
