@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106772] Xorg crashes with nouveau and dual screen
- setup
-Date: Fri, 01 Jun 2018 20:56:35 +0000
-Message-ID: <bug-106772-8800-AYtFyyg5Ks@http.bugs.freedesktop.org/>
-References: <bug-106772-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 106787] New: Thinkpad P52s NVIDIA Quadro P500 gp108
+ WARNING: CPU: 3 PID: 395 at
+ drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.c:86
+ nvkm_pmu_reset+0x14c/0x160 [nouveau]
+Date: Sat, 02 Jun 2018 21:51:59 +0000
+Message-ID: <bug-106787-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0449706491=="
+Content-Type: multipart/mixed; boundary="===============1215448736=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106772-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,50 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0449706491==
-Content-Type: multipart/alternative; boundary="15278865942.A5c2228B4.28717"
+--===============1215448736==
+Content-Type: multipart/alternative; boundary="15279763190.FbeAFE2.21072"
 Content-Transfer-Encoding: 7bit
 
 
---15278865942.A5c2228B4.28717
-Date: Fri, 1 Jun 2018 20:56:34 +0000
+--15279763190.FbeAFE2.21072
+Date: Sat, 2 Jun 2018 21:51:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106772
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106787
 
---- Comment #6 from Keith Packard <keithp-aN4HjG94KOLQT0dZR+AlfA@public.gmane.org> ---
-Created attachment 139958
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139958&action=3Dedit
-xfree86: Wrap RRCrtcIsLeased and RROutputIsLeased to check for DIX structur=
-es
+            Bug ID: 106787
+           Summary: Thinkpad P52s NVIDIA Quadro P500 gp108 WARNING: CPU: 3
+                    PID: 395 at
+                    drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.c:86
+                    nvkm_pmu_reset+0x14c/0x160 [nouveau]
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: jlmagee-HdwXkjjr9CHk1uMJSBkQmQ@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 139973
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139973&action=3Dedit
+dmesg from boot
+
+multiple nouveau crashes during boot
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15278865942.A5c2228B4.28717
-Date: Fri, 1 Jun 2018 20:56:34 +0000
+--15279763190.FbeAFE2.21072
+Date: Sat, 2 Jun 2018 21:51:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,32 +75,100 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Thinkpad P52s NVIDIA Quadro P500 gp108 WARNING: CPU: 3 PI=
+D: 395 at drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.c:86 nvkm_pmu_reset+=
+0x14c/0x160 [nouveau]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106787">106787</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Thinkpad P52s NVIDIA Quadro P500 gp108 WARNING: CPU: 3 PID: 3=
+95 at drivers/gpu/drm/nouveau/nvkm/subdev/pmu/base.c:86 nvkm_pmu_reset+0x14=
+c/0x160 [nouveau]
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jlmagee&#64;mageenet.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg crashes with nouveau and dual screen setup"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106772#c6">Commen=
-t # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg crashes with nouveau and dual screen setup"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106772">bug 10677=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-keithp&#64;keithp.com" title=3D"Keith Packard &lt;keithp&#64;keithp.com&gt;=
-"> <span class=3D"fn">Keith Packard</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139958=
-" name=3D"attach_139958" title=3D"xfree86: Wrap RRCrtcIsLeased and RROutput=
-IsLeased to check for DIX structures">attachment 139958</a> <a href=3D"atta=
-chment.cgi?id=3D139958&amp;action=3Dedit" title=3D"xfree86: Wrap RRCrtcIsLe=
-ased and RROutputIsLeased to check for DIX structures">[details]</a></span>=
- <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D106772&amp;attachment=3D1=
-39958'>[review]</a>
-xfree86: Wrap RRCrtcIsLeased and RROutputIsLeased to check for DIX structur=
-es</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139973=
+" name=3D"attach_139973" title=3D"dmesg from boot">attachment 139973</a> <a=
+ href=3D"attachment.cgi?id=3D139973&amp;action=3Dedit" title=3D"dmesg from =
+boot">[details]</a></span>
+dmesg from boot
+
+multiple nouveau crashes during boot</pre>
         </div>
       </p>
 
@@ -97,9 +182,9 @@ es</pre>
     </body>
 </html>=
 
---15278865942.A5c2228B4.28717--
+--15279763190.FbeAFE2.21072--
 
---===============0449706491==
+--===============1215448736==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +194,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0449706491==--
+--===============1215448736==--
