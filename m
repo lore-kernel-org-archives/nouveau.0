@@ -1,10 +1,9 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106793] New: [NV138] bus: MMIO read of 00000000
- FAULT at 409800 [ TIMEOUT ]
-Date: Sun, 03 Jun 2018 09:07:59 +0000
-Message-ID: <bug-106793-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 106794] New: Driver crash while browsing with chrome
+Date: Sun, 03 Jun 2018 12:15:45 +0000
+Message-ID: <bug-106794-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0396239180=="
+Content-Type: multipart/mixed; boundary="===============1142573840=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,24 +18,23 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0396239180==
-Content-Type: multipart/alternative; boundary="15280168790.3C5A.18070"
+--===============1142573840==
+Content-Type: multipart/alternative; boundary="15280281451.cdfaaE47.14670"
 Content-Transfer-Encoding: 7bit
 
 
---15280168790.3C5A.18070
-Date: Sun, 3 Jun 2018 09:07:59 +0000
+--15280281451.cdfaaE47.14670
+Date: Sun, 3 Jun 2018 12:15:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106793
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106794
 
-            Bug ID: 106793
-           Summary: [NV138] bus: MMIO read of 00000000 FAULT at 409800 [
-                    TIMEOUT ]
+            Bug ID: 106794
+           Summary: Driver crash while browsing with chrome
            Product: xorg
            Version: unspecified
           Hardware: x86-64 (AMD64)
@@ -46,43 +44,52 @@ https://bugs.freedesktop.org/show_bug.cgi?id=3D106793
           Priority: medium
          Component: Driver/nouveau
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: andrew-q4ulJ2CcmHAdnm+yROfE0A@public.gmane.org
+          Reporter: freedesktop-fkvRmXC7U9Y@public.gmane.org
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Created attachment 139983
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139983&action=3Dedit
-dmesg output
+Created attachment 139986
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139986&action=3Dedit
+Kernel Log
 
-Hi,
+I executed chromium on the secondary gpu (`DRI_PRIME=3D1 chromium`). After =
+a bit
+of idle time on https://medium.com the system hanged for a bit. `dmesg` sho=
+wed
+a nouveau driver crash.=20
 
-I have a desktop with an nVidia GeForce GT 1030 (NV138) with Fedora 28
-installed.
+---- Chromium Log ----
+[2245:2245:0603/131810.945660:ERROR:buffer_manager.cc(461)]
+[.DisplayCompositor-0x11f68c3ee800]GL ERROR :GL_INVALID_OPERATION :
+glBufferData: <- error from previous GL command
+[2245:2245:0603/131828.527625:ERROR:buffer_manager.cc(461)]
+[.DisplayCompositor-0x11f68c3ee000]GL ERROR :GL_INVALID_OPERATION :
+glBufferData: <- error from previous GL command
 
-I am seeing errors on boot and I can't use the card.
+Exact url was:
+https://medium.com/@MaartenSikkema/using-react-redux-and-webpack-with-dotne=
+t-core-to-build-a-modern-web-frontend-7e2d091b3ba=20
 
-nouveau 0000:02:00.0: bus: MMIO read of 00000000 FAULT at 409800 [ TIMEOUT ]
-...
-nouveau 0000:02:00.0: timeout
-...
-nouveau 0000:02:00.0: gr: init failed, -16
+---- Versions ----
+Linux 4.14.47-1-lts #1 SMP Wed May 30 21:09:23 UTC 2018 x86_64 GNU/Linux
+
+extra/libdrm 2.4.92-1 [installed]
+extra/mesa 18.0.4-1 [installed]
+extra/xf86-video-nouveau 1.0.15-3 (xorg-drivers) [installed]
+
+Chromium: Version 67.0.3396.62 (Official Build) Arch Linux (64-bit)
 
 
-xorg-x11-drv-nouveau-1.0.15-4.fc28.x86_64
-mesa-dri-drivers-18.0.2-1.fc28.x86_64
-
-uname -a
-Linux roffey10 4.17.0-0.rc7.git2.1.vanilla.knurd.1.fc28.x86_64 #1 SMP Sat J=
-un 2
-05:03:40 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
-
-I have attached the dmesg output.
+---- GPU ----
+01:00.0 VGA compatible controller: NVIDIA Corporation GM107GLM [Quadro M200=
+0M]
+(rev a2)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15280168790.3C5A.18070
-Date: Sun, 3 Jun 2018 09:07:59 +0000
+--15280281451.cdfaaE47.14670
+Date: Sun, 3 Jun 2018 12:15:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -98,15 +105,14 @@ Auto-Submitted: auto-generated
           <th>Bug ID</th>
           <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV138] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106793">106793</a>
+   title=3D"NEW - Driver crash while browsing with chrome"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106794">106794</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>[NV138] bus: MMIO read of 00000000 FAULT at 409800 [ TIMEOUT ]
+          <td>Driver crash while browsing with chrome
           </td>
         </tr>
 
@@ -166,7 +172,7 @@ OUT ]"
 
         <tr>
           <th>Reporter</th>
-          <td>andrew&#64;roffey.org
+          <td>freedesktop&#64;254.ch
           </td>
         </tr>
 
@@ -177,35 +183,46 @@ OUT ]"
         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139983=
-" name=3D"attach_139983" title=3D"dmesg output">attachment 139983</a> <a hr=
-ef=3D"attachment.cgi?id=3D139983&amp;action=3Dedit" title=3D"dmesg output">=
-[details]</a></span>
-dmesg output
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139986=
+" name=3D"attach_139986" title=3D"Kernel Log">attachment 139986</a> <a href=
+=3D"attachment.cgi?id=3D139986&amp;action=3Dedit" title=3D"Kernel Log">[det=
+ails]</a></span>
+Kernel Log
 
-Hi,
+I executed chromium on the secondary gpu (`DRI_PRIME=3D1 chromium`). After =
+a bit
+of idle time on <a href=3D"https://medium.com">https://medium.com</a> the s=
+ystem hanged for a bit. `dmesg` showed
+a nouveau driver crash.=20
 
-I have a desktop with an nVidia GeForce GT 1030 (NV138) with Fedora 28
-installed.
+---- Chromium Log ----
+[2245:2245:0603/131810.945660:ERROR:buffer_manager.cc(461)]
+[.DisplayCompositor-0x11f68c3ee800]GL ERROR :GL_INVALID_OPERATION :
+glBufferData: &lt;- error from previous GL command
+[2245:2245:0603/131828.527625:ERROR:buffer_manager.cc(461)]
+[.DisplayCompositor-0x11f68c3ee000]GL ERROR :GL_INVALID_OPERATION :
+glBufferData: &lt;- error from previous GL command
 
-I am seeing errors on boot and I can't use the card.
+Exact url was:
+<a href=3D"https://medium.com/&#64;MaartenSikkema/using-react-redux-and-web=
+pack-with-dotnet-core-to-build-a-modern-web-frontend-7e2d091b3ba">https://m=
+edium.com/&#64;MaartenSikkema/using-react-redux-and-webpack-with-dotnet-cor=
+e-to-build-a-modern-web-frontend-7e2d091b3ba</a>=20
 
-nouveau 0000:02:00.0: bus: MMIO read of 00000000 FAULT at 409800 [ TIMEOUT ]
-...
-nouveau 0000:02:00.0: timeout
-...
-nouveau 0000:02:00.0: gr: init failed, -16
+---- Versions ----
+Linux 4.14.47-1-lts #1 SMP Wed May 30 21:09:23 UTC 2018 x86_64 GNU/Linux
+
+extra/libdrm 2.4.92-1 [installed]
+extra/mesa 18.0.4-1 [installed]
+extra/xf86-video-nouveau 1.0.15-3 (xorg-drivers) [installed]
+
+Chromium: Version 67.0.3396.62 (Official Build) Arch Linux (64-bit)
 
 
-xorg-x11-drv-nouveau-1.0.15-4.fc28.x86_64
-mesa-dri-drivers-18.0.2-1.fc28.x86_64
-
-uname -a
-Linux roffey10 4.17.0-0.rc7.git2.1.vanilla.knurd.1.fc28.x86_64 #1 SMP Sat J=
-un 2
-05:03:40 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
-
-I have attached the dmesg output.</pre>
+---- GPU ----
+01:00.0 VGA compatible controller: NVIDIA Corporation GM107GLM [Quadro M200=
+0M]
+(rev a2)</pre>
         </div>
       </p>
 
@@ -219,9 +236,9 @@ I have attached the dmesg output.</pre>
     </body>
 </html>=
 
---15280168790.3C5A.18070--
+--15280281451.cdfaaE47.14670--
 
---===============0396239180==
+--===============1142573840==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -231,4 +248,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0396239180==--
+--===============1142573840==--
