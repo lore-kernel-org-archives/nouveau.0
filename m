@@ -1,10 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106794] New: Driver crash while browsing with chrome
-Date: Sun, 03 Jun 2018 12:15:45 +0000
-Message-ID: <bug-106794-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 106793] [NV138] bus: MMIO read of 00000000 FAULT at
+ 409800 [ TIMEOUT ]
+Date: Sun, 03 Jun 2018 13:46:39 +0000
+Message-ID: <bug-106793-8800-88lFGFVfeU@http.bugs.freedesktop.org/>
+References: <bug-106793-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1142573840=="
+Content-Type: multipart/mixed; boundary="===============0957354440=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-106793-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,78 +21,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1142573840==
-Content-Type: multipart/alternative; boundary="15280281451.cdfaaE47.14670"
+--===============0957354440==
+Content-Type: multipart/alternative; boundary="15280335990.D8273.27778"
 Content-Transfer-Encoding: 7bit
 
 
---15280281451.cdfaaE47.14670
-Date: Sun, 3 Jun 2018 12:15:45 +0000
+--15280335990.D8273.27778
+Date: Sun, 3 Jun 2018 13:46:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106794
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106793
 
-            Bug ID: 106794
-           Summary: Driver crash while browsing with chrome
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: freedesktop-fkvRmXC7U9Y@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Created attachment 139986
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D139986&action=3Dedit
-Kernel Log
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |DUPLICATE
+             Status|NEW                         |RESOLVED
 
-I executed chromium on the secondary gpu (`DRI_PRIME=3D1 chromium`). After =
-a bit
-of idle time on https://medium.com the system hanged for a bit. `dmesg` sho=
-wed
-a nouveau driver crash.=20
+--- Comment #1 from Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thanks for the bug report.
 
----- Chromium Log ----
-[2245:2245:0603/131810.945660:ERROR:buffer_manager.cc(461)]
-[.DisplayCompositor-0x11f68c3ee800]GL ERROR :GL_INVALID_OPERATION :
-glBufferData: <- error from previous GL command
-[2245:2245:0603/131828.527625:ERROR:buffer_manager.cc(461)]
-[.DisplayCompositor-0x11f68c3ee000]GL ERROR :GL_INVALID_OPERATION :
-glBufferData: <- error from previous GL command
+This is a known issue with the late GP10x series, I've closed this as a
+duplicate and linked you to the main tracking bug #100228.
 
-Exact url was:
-https://medium.com/@MaartenSikkema/using-react-redux-and-webpack-with-dotne=
-t-core-to-build-a-modern-web-frontend-7e2d091b3ba=20
+As an interim fix, you might find that adding nouveau.runpm=3D0 to your ker=
+nel
+command line works (couple of ways to do this, via your GRUB2 is one).
 
----- Versions ----
-Linux 4.14.47-1-lts #1 SMP Wed May 30 21:09:23 UTC 2018 x86_64 GNU/Linux
-
-extra/libdrm 2.4.92-1 [installed]
-extra/mesa 18.0.4-1 [installed]
-extra/xf86-video-nouveau 1.0.15-3 (xorg-drivers) [installed]
-
-Chromium: Version 67.0.3396.62 (Official Build) Arch Linux (64-bit)
-
-
----- GPU ----
-01:00.0 VGA compatible controller: NVIDIA Corporation GM107GLM [Quadro M200=
-0M]
-(rev a2)
+*** This bug has been marked as a duplicate of bug 100228 ***
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15280281451.cdfaaE47.14670
-Date: Sun, 3 Jun 2018 12:15:45 +0000
+--15280335990.D8273.27778
+Date: Sun, 3 Jun 2018 13:46:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -100,129 +71,75 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Driver crash while browsing with chrome"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106794">106794</a>
-          </td>
-        </tr>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:rhyskidd&=
+#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;"> <span cl=
+ass=3D"fn">Rhys Kidd</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - [NV138] bus: MMIO read of 00000000 FAULT a=
+t 409800 [ TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106793">bug 10679=
+3</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>Driver crash while browsing with chrome
-          </td>
-        </tr>
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
+           </td>
+         </tr>
 
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>freedesktop&#64;254.ch
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D139986=
-" name=3D"attach_139986" title=3D"Kernel Log">attachment 139986</a> <a href=
-=3D"attachment.cgi?id=3D139986&amp;action=3Dedit" title=3D"Kernel Log">[det=
-ails]</a></span>
-Kernel Log
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - [NV138] bus: MMIO read of 00000000 FAULT a=
+t 409800 [ TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106793#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - [NV138] bus: MMIO read of 00000000 FAULT a=
+t 409800 [ TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106793">bug 10679=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+rhyskidd&#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;">=
+ <span class=3D"fn">Rhys Kidd</span></a>
+</span></b>
+        <pre>Thanks for the bug report.
 
-I executed chromium on the secondary gpu (`DRI_PRIME=3D1 chromium`). After =
-a bit
-of idle time on <a href=3D"https://medium.com">https://medium.com</a> the s=
-ystem hanged for a bit. `dmesg` showed
-a nouveau driver crash.=20
+This is a known issue with the late GP10x series, I've closed this as a
+duplicate and linked you to the main tracking <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
+OUT ]"
+   href=3D"show_bug.cgi?id=3D100228">bug #100228</a>.
 
----- Chromium Log ----
-[2245:2245:0603/131810.945660:ERROR:buffer_manager.cc(461)]
-[.DisplayCompositor-0x11f68c3ee800]GL ERROR :GL_INVALID_OPERATION :
-glBufferData: &lt;- error from previous GL command
-[2245:2245:0603/131828.527625:ERROR:buffer_manager.cc(461)]
-[.DisplayCompositor-0x11f68c3ee000]GL ERROR :GL_INVALID_OPERATION :
-glBufferData: &lt;- error from previous GL command
+As an interim fix, you might find that adding nouveau.runpm=3D0 to your ker=
+nel
+command line works (couple of ways to do this, via your GRUB2 is one).
 
-Exact url was:
-<a href=3D"https://medium.com/&#64;MaartenSikkema/using-react-redux-and-web=
-pack-with-dotnet-core-to-build-a-modern-web-frontend-7e2d091b3ba">https://m=
-edium.com/&#64;MaartenSikkema/using-react-redux-and-webpack-with-dotnet-cor=
-e-to-build-a-modern-web-frontend-7e2d091b3ba</a>=20
-
----- Versions ----
-Linux 4.14.47-1-lts #1 SMP Wed May 30 21:09:23 UTC 2018 x86_64 GNU/Linux
-
-extra/libdrm 2.4.92-1 [installed]
-extra/mesa 18.0.4-1 [installed]
-extra/xf86-video-nouveau 1.0.15-3 (xorg-drivers) [installed]
-
-Chromium: Version 67.0.3396.62 (Official Build) Arch Linux (64-bit)
-
-
----- GPU ----
-01:00.0 VGA compatible controller: NVIDIA Corporation GM107GLM [Quadro M200=
-0M]
-(rev a2)</pre>
+*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
+OUT ]"
+   href=3D"show_bug.cgi?id=3D100228">bug 100228</a> ***</pre>
         </div>
       </p>
 
@@ -236,9 +153,9 @@ Chromium: Version 67.0.3396.62 (Official Build) Arch Linux (64-bit)
     </body>
 </html>=
 
---15280281451.cdfaaE47.14670--
+--15280335990.D8273.27778--
 
---===============1142573840==
+--===============0957354440==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -248,4 +165,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1142573840==--
+--===============0957354440==--
