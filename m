@@ -1,123 +1,60 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
- 409800 [ TIMEOUT ]
-Date: Mon, 04 Jun 2018 05:17:11 +0000
-Message-ID: <bug-100228-8800-AiYByGoMAw@http.bugs.freedesktop.org/>
-References: <bug-100228-8800@http.bugs.freedesktop.org/>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: Re: [PATCH v2 11/21] drm/nouveau: use match_string() helper
+Date: Tue, 5 Jun 2018 16:20:25 +0300
+Message-ID: <CAHp75Vd+addPE+PT-hOVwqWgW8mAN6AxTrip3_oaKCPkt=gkRA@mail.gmail.com>
+References: <1527765086-19873-1-git-send-email-xieyisheng1@huawei.com>
+ <1527765086-19873-12-git-send-email-xieyisheng1@huawei.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0387143984=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <1527765086-19873-12-git-send-email-xieyisheng1@huawei.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Yisheng Xie <xieyisheng1@huawei.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0387143984==
-Content-Type: multipart/alternative; boundary="15280894314.87c0A.19188"
-Content-Transfer-Encoding: 7bit
-
-
---15280894314.87c0A.19188
-Date: Mon, 4 Jun 2018 05:17:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
-
---- Comment #20 from Andrew <andrew-q4ulJ2CcmHAdnm+yROfE0A@public.gmane.org> ---
-Thanks Rhys.
-
-FWIW I've tried the nouveau.runpm=3D0 kernel parameter on my NV138 (GT 1030)
-system but nouveau still failing.
-
-Jun  4 15:03:49 roffey10 dracut-cmdline[252]: Using kernel command line
-parameters:
-BOOT_IMAGE=3D/boot/vmlinuz-4.17.0-0.rc7.git2.1.vanilla.knurd.1.fc28.x86_64
-root=3D/dev/mapper/OSVG-root ro rd.lvm.lv=3DOSVG/root rd.lvm.lv=3DOSVG/swap
-rd.lvm.lv=3DOSVG/usr rd.driver.pre=3Dvfio-pci rhgb quiet intel_iommu=3Don
-nouveau.runpm=3D0
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15280894314.87c0A.19188
-Date: Mon, 4 Jun 2018 05:17:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c20">Comme=
-nt # 20</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-andrew&#64;roffey.org" title=3D"Andrew &lt;andrew&#64;roffey.org&gt;"> <spa=
-n class=3D"fn">Andrew</span></a>
-</span></b>
-        <pre>Thanks Rhys.
-
-FWIW I've tried the nouveau.runpm=3D0 kernel parameter on my NV138 (GT 1030)
-system but nouveau still failing.
-
-Jun  4 15:03:49 roffey10 dracut-cmdline[252]: Using kernel command line
-parameters:
-BOOT_IMAGE=3D/boot/vmlinuz-4.17.0-0.rc7.git2.1.vanilla.knurd.1.fc28.x86_64
-root=3D/dev/mapper/OSVG-root ro rd.lvm.lv=3DOSVG/root rd.lvm.lv=3DOSVG/swap
-rd.lvm.lv=3DOSVG/usr rd.driver.pre=3Dvfio-pci rhgb quiet intel_iommu=3Don
-nouveau.runpm=3D0</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15280894314.87c0A.19188--
-
---===============0387143984==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0387143984==--
+T24gVGh1LCBNYXkgMzEsIDIwMTggYXQgMjoxMSBQTSwgWWlzaGVuZyBYaWUgPHhpZXlpc2hlbmcx
+QGh1YXdlaS5jb20+IHdyb3RlOgo+IG1hdGNoX3N0cmluZygpIHJldHVybnMgdGhlIGluZGV4IG9m
+IGFuIGFycmF5IGZvciBhIG1hdGNoaW5nIHN0cmluZywKPiB3aGljaCBjYW4gYmUgdXNlZCBpbnN0
+ZWFkIG9mIG9wZW4gY29kZWQgdmFyaWFudC4KPgoKUmV2aWV3ZWQtYnk6IEFuZHkgU2hldmNoZW5r
+byA8YW5keS5zaGV2Y2hlbmtvQGdtYWlsLmNvbT4KCj4gQ2M6IEJlbiBTa2VnZ3MgPGJza2VnZ3NA
+cmVkaGF0LmNvbT4KPiBDYzogRGF2aWQgQWlybGllIDxhaXJsaWVkQGxpbnV4LmllPgo+IENjOiBk
+cmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCj4gU2lnbmVkLW9mZi1ieTogWWlzaGVuZyBYaWUgPHhpZXlpc2hlbmcxQGh1YXdl
+aS5jb20+Cj4gLS0tCj4gdjI6Cj4gIC0gaGFuZGxlIGVyciBjYXNlIGJlZm9yZSBub3JtYWwgY2Fz
+ZSAtIHBlciBBbmR5Cj4KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvdHZudjE3
+LmMgfCAxMyArKysrKy0tLS0tLS0tCj4gIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyks
+IDggZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+ZGlzcG52MDQvdHZudjE3LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC90dm52
+MTcuYwo+IGluZGV4IDZkOTlmMTEuLjY3YmEyYWMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvZGlzcG52MDQvdHZudjE3LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9kaXNwbnYwNC90dm52MTcuYwo+IEBAIC02NDQsMTYgKzY0NCwxMyBAQCBzdGF0aWMgaW50
+IG52MTdfdHZfY3JlYXRlX3Jlc291cmNlcyhzdHJ1Y3QgZHJtX2VuY29kZXIgKmVuY29kZXIsCj4g
+ICAgICAgICBpbnQgaTsKPgo+ICAgICAgICAgaWYgKG5vdXZlYXVfdHZfbm9ybSkgewo+IC0gICAg
+ICAgICAgICAgICBmb3IgKGkgPSAwOyBpIDwgbnVtX3R2X25vcm1zOyBpKyspIHsKPiAtICAgICAg
+ICAgICAgICAgICAgICAgICBpZiAoIXN0cmNtcChudjE3X3R2X25vcm1fbmFtZXNbaV0sIG5vdXZl
+YXVfdHZfbm9ybSkpIHsKPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHR2X2VuYy0+
+dHZfbm9ybSA9IGk7Cj4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBicmVhazsKPiAt
+ICAgICAgICAgICAgICAgICAgICAgICB9Cj4gLSAgICAgICAgICAgICAgIH0KPiAtCj4gLSAgICAg
+ICAgICAgICAgIGlmIChpID09IG51bV90dl9ub3JtcykKPiArICAgICAgICAgICAgICAgaSA9IG1h
+dGNoX3N0cmluZyhudjE3X3R2X25vcm1fbmFtZXMsCj4gKyAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgbnVtX3R2X25vcm1zLCBub3V2ZWF1X3R2X25vcm0pOwo+ICsgICAgICAgICAgICAg
+ICBpZiAoaSA8IDApCj4gICAgICAgICAgICAgICAgICAgICAgICAgTlZfV0FSTihkcm0sICJJbnZh
+bGlkIFRWIG5vcm0gc2V0dGluZyBcIiVzXCJcbiIsCj4gICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICBub3V2ZWF1X3R2X25vcm0pOwo+ICsgICAgICAgICAgICAgICBlbHNlCj4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgdHZfZW5jLT50dl9ub3JtID0gaTsKPiAgICAgICAgIH0KPgo+ICAg
+ICAgICAgZHJtX21vZGVfY3JlYXRlX3R2X3Byb3BlcnRpZXMoZGV2LCBudW1fdHZfbm9ybXMsIG52
+MTdfdHZfbm9ybV9uYW1lcyk7Cj4gLS0KPiAxLjcuMTIuNAo+CgoKCi0tIApXaXRoIEJlc3QgUmVn
+YXJkcywKQW5keSBTaGV2Y2hlbmtvCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2RyaS1kZXZlbAo=
