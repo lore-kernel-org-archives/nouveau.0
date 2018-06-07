@@ -1,40 +1,33 @@
-From: Nitin Yewale <nyewale@redhat.com>
-Subject: [PATCH] Changing comment for the list_empty() routine which returns
- boolean
-Date: Tue, 5 Jun 2018 23:41:39 +0530
-Message-ID: <CACgRdra1CDikg5zq0U+C8=_A1ywvdJ-gCjEufA54bGVcyDLjkg@mail.gmail.com>
+From: jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Subject: [PATCH] drm/nouveau: remove ghost file
+Date: Thu,  7 Jun 2018 14:18:24 -0400
+Message-ID: <20180607181824.1144-1-jglisse@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: airlied@linux.ie, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Laurence Oberman <loberman@redhat.com>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QXV0aG9yOiBOaXRpbiBVLiBZZXdhbGUgPG55ZXdhbGVAcmVkaGF0LmNvbT4KRGF0ZTogICBNb24g
-SnVuIDQgMjM6Mjg6NDEgMjAxOCArMDUzMAoKICAgIENoYW5naW5nIGNvbW1lbnQgZm9yIHRoZSBs
-aXN0X2VtcHR5IHJvdXRpbmUuCi0tLQpTaWduZWQtb2ZmLWJ5OiBOaXRpbiBVLiBZZXdhbGUgPG55
-ZXdhbGVAcmVkaGF0LmNvbT4KCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9p
-bmNsdWRlL252aWYvbGlzdC5oCmIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmlm
-L2xpc3QuaAppbmRleCA4YWY1ZDE0NGVjYjAuLjEyYmY3ZTMzMzNlNCAxMDA2NDQKLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmlmL2xpc3QuaAorKysgYi9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9pbmNsdWRlL252aWYvbGlzdC5oCkBAIC0yMjYsMTAgKzIyNiw3IEBAIHN0
-YXRpYyBpbmxpbmUgdm9pZCBsaXN0X21vdmVfdGFpbChzdHJ1Y3QgbGlzdF9oZWFkICpsaXN0LAog
-LyoqCiAgKiBDaGVjayBpZiB0aGUgbGlzdCBpcyBlbXB0eS4KICAqCi0gKiBFeGFtcGxlOgotICog
-bGlzdF9lbXB0eSgmYmFyLT5saXN0X29mX2Zvb3MpOwotICoKLSAqIEByZXR1cm4gVHJ1ZSBpZiB0
-aGUgbGlzdCBjb250YWlucyBvbmUgb3IgbW9yZSBlbGVtZW50cyBvciBGYWxzZSBvdGhlcndpc2Uu
-CisgKiBAcmV0dXJuIFRydWUgaWYgdGhlIGxpc3QgaXMgZW1wdHkgKGhlYWQtPm5leHQgPT0gaGVh
-ZCkgb3IgRmFsc2Ugb3RoZXJ3aXNlLgogICovCiBzdGF0aWMgaW5saW5lIGJvb2wKIGxpc3RfZW1w
-dHkoc3RydWN0IGxpc3RfaGVhZCAqaGVhZCkKCi0tIApUaGFuayB5b3UsCk5pdGluIFlld2FsZQpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwg
-bWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+RnJvbTogSsOpcsO0bWUgR2xpc3NlIDxqZ2xpc3NlQHJlZGhhdC5jb20+CgpUaGlzIGdob3N0IGZp
+bGUgaGF2ZSBiZWVuIGhhdW50aW5nIHVzLgoKU2lnbmVkLW9mZi1ieTogSsOpcsO0bWUgR2xpc3Nl
+IDxqZ2xpc3NlQHJlZGhhdC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9z
+dWJkZXYvbW11L2dwMTBiLiB8IDAKIDEgZmlsZSBjaGFuZ2VkLCAwIGluc2VydGlvbnMoKyksIDAg
+ZGVsZXRpb25zKC0pCiBkZWxldGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvbW11L2dwMTBiLgoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252a20vc3ViZGV2L21tdS9ncDEwYi4gYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmtt
+L3N1YmRldi9tbXUvZ3AxMGIuCmRlbGV0ZWQgZmlsZSBtb2RlIDEwMDY0NAppbmRleCBlNjlkZTI5
+YmIyZDEuLjAwMDAwMDAwMDAwMAotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUK
