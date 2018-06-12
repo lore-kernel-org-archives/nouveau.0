@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: can't join the list via email
-Date: Mon, 11 Jun 2018 13:37:16 -0400
-Message-ID: <CAKb7Uvjo32OBxuDcfbBEcYHiwLPHVwRcoSTPx4Lr7AN7=N6BBg@mail.gmail.com>
-References: <878t7ldzdn.fsf@jidanni.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89120] gdm hung by xsane(Bug 1190016
+ bugzilla.redhat.com)
+Date: Tue, 12 Jun 2018 15:32:45 +0000
+Message-ID: <bug-89120-8800-so2zhUY39t@http.bugs.freedesktop.org/>
+References: <bug-89120-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1527638313=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <878t7ldzdn.fsf-8D0D3YcSAvhAfugRpC6u6w@public.gmane.org>
+In-Reply-To: <bug-89120-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,23 +17,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dan Jacobson <jidanni-8D0D3YcSAvhAfugRpC6u6w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2hlcmUgZGlkIHlvdSBzZWUgaW5zdHJ1Y3Rpb25zIGZvciBkb2luZyB0aGlzPyBBcHBhcmVudGx5
-IHRoaXMgaXMKZGlzYWJsZWQgb24gcHVycG9zZSBkdWUgdG8gc3BhbS4gT3IgZGlkIHlvdSBqdXN0
-IGFzc3VtZSBpdCB3b3VsZCB3b3JrCmJhc2VkIG9uIG90aGVyIG1haWxtYW4gbGlzdHM/CgpPbiBN
-b24sIEp1biAxMSwgMjAxOCBhdCAxOjA4IFBNLCBEYW4gSmFjb2Jzb24gPGppZGFubmlAamlkYW5u
-aS5vcmc+IHdyb3RlOgo+IENhbid0IGpvaW4gdGhlIGxpc3QgY29uZmlybWluZyB2aWEgZW1haWwu
-Cj4gV2lsbCBnZXQ6Cj4KPiAgICAgZ2FiZS5mcmVlZGVza3RvcC5vcmdbMTMxLjI1Mi4yMTAuMTc3
-XSBzYWlkOiA1NTAgNS4xLjEKPiAgICAgPG5vdXZlYXUtcmVxdWVzdEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmc+OiBSZWNpcGllbnQgYWRkcmVzcyByZWplY3RlZDogVXNlcgo+ICAgICB1bmtub3duIGlu
-IGxvY2FsIHJlY2lwaWVudCB0YWJsZSAoaW4gcmVwbHkgdG8gUkNQVCBUTyBjb21tYW5kKQo+Cj4g
-Q2FuIG9ubHkgam9pbiB2aWEgdGhlIGh0dHAgY29uZmlybWF0aW9uIGxpbmsuCj4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcg
-bGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1527638313==
+Content-Type: multipart/alternative; boundary="15288175652.b6DECB.18042"
+Content-Transfer-Encoding: 7bit
+
+
+--15288175652.b6DECB.18042
+Date: Tue, 12 Jun 2018 15:32:45 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89120
+
+Adam Jackson <ajax-TAsg7VrFCGc@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Assignee|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
+          Component|Server/Input/Core           |Driver/nouveau
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15288175652.b6DECB.18042
+Date: Tue, 12 Jun 2018 15:32:45 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ajax&#64;=
+nwnk.net" title=3D"Adam Jackson &lt;ajax&#64;nwnk.net&gt;"> <span class=3D"=
+fn">Adam Jackson</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - gdm hung by xsane(Bug 1190016 bugzilla.redhat.com)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89120">bug 89120<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>xorg-team&#64;lists.x.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Component</td>
+           <td>Server/Input/Core
+           </td>
+           <td>Driver/nouveau
+           </td>
+         </tr></table>
+      <p>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15288175652.b6DECB.18042--
+
+--===============1527638313==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1527638313==--
