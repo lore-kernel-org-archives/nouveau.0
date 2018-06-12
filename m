@@ -1,11 +1,13 @@
-From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] Fix colormap handling at screen depth 30. (v2)
-Date: Tue, 12 Jun 2018 17:58:06 +0200
-Message-ID: <1528819086-2340-1-git-send-email-mario.kleiner.de@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 13750] Repetitively Taking Screenshots Causes the X
+ Server to Hang
+Date: Tue, 12 Jun 2018 18:42:54 +0000
+Message-ID: <bug-13750-8800-9YT86mQrWb@http.bugs.freedesktop.org/>
+References: <bug-13750-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1304273492=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-13750-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,42 +18,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIHZhcmlvdXMgY2x1dCBoYW5kbGluZyBmdW5jdGlvbnMgbGlrZSBhIHNldHVwCmNvbnNpc3Rl
-bnQgd2l0aCB0aGUgeC1zY3JlZW4gY29sb3IgZGVwdGguIE90aGVyd2lzZQp3ZSBvYnNlcnZlIGlt
-cHJvcGVyIHNhbXBsaW5nIGluIHRoZSBnYW1tYSB0YWJsZXMKYXQgZGVwdGggMzAuCgpUZXN0ZWQg
-YXQgZGVwdGhzIDE2LCAyNCBhbmQgMzAgYW5kIHRlc3RlZCBhdCBkZXB0aHMKMjQgYW5kIDMwIHRo
-YXQgeGdhbW1hIGFuZCBnYW1tYSB0YWJsZSBhbmltYXRpb25zIHdvcmssCmFuZCB3aXRoIG1lYXN1
-cmVtZW50IGVxdWlwbWVudCB0byBtYWtlIHN1cmUgaWRlbnRpdHkKZ2FtbWEgcmFtcHMgYWN0dWFs
-bHkgYXJlIGlkZW50aXR5IG1hcHBpbmdzIGF0IHRoZSBvdXRwdXQuCgp2MjogQWxzbyBkZWFsIHdp
-dGggWC1TZXJ2ZXIgMS4xOSBhbmQgZWFybGllciwgd2hpY2ggYXMgb2YKICAgIHYxLjE5LjYgbGFj
-ayBhIGZpeCB0byBjb2xvciBwYWxldHRlIGhhbmRsaW5nIGFuZCBjYW4KICAgIG5vdCBkZWFsIHdp
-dGggZGVwdGhzL2JwYyA+IDI0LzggYnBjLiBPbiA8IDEuMjAgd2Ugc2tpcAogICAgeGY4NkhhbmRs
-ZUNvbG9ybWFwcygpIHNldHVwIGF0ID4gOCBicGMuIFRoaXMgZGlzYWJsZXMKICAgIGNvbG9yIHBh
-bGV0dGUgaGFuZGxpbmcgb24gc3VjaCBzZXJ2ZXJzIGF0ID4gOCBicGMsIGJ1dAogICAgc3RpbGwg
-a2VlcHMgUmFuZFIgZ2FtbWEgdGFibGUgaGFuZGxpbmcgaW50YWN0LgoKICAgIFRlc3RlZCBvbiAx
-LjE5LjYgYW5kIDEuMjAuMCB0byBkbyB0aGUgcmlnaHQgdGhpbmcuCgpTaWduZWQtb2ZmLWJ5OiBN
-YXJpbyBLbGVpbmVyIDxtYXJpby5rbGVpbmVyLmRlQGdtYWlsLmNvbT4KLS0tCiBzcmMvbnZfZHJp
-dmVyLmMgfCAxMSArKysrKysrLS0tLQogMSBmaWxlIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygrKSwg
-NCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvbnZfZHJpdmVyLmMgYi9zcmMvbnZfZHJp
-dmVyLmMKaW5kZXggMzIwNjJlYi4uYTVkNTBjMSAxMDA2NDQKLS0tIGEvc3JjL252X2RyaXZlci5j
-CisrKyBiL3NyYy9udl9kcml2ZXIuYwpAQCAtMTU2NSwxMSArMTU2NSwxNCBAQCBOVlNjcmVlbklu
-aXQoU0NSRUVOX0lOSVRfQVJHU19ERUNMKQogCiAJLyoKIAkgKiBJbml0aWFsaXplIGNvbG9ybWFw
-IGxheWVyLgotCSAqIE11c3QgZm9sbG93IGluaXRpYWxpemF0aW9uIG9mIHRoZSBkZWZhdWx0IGNv
-bG9ybWFwIAorCSAqIE11c3QgZm9sbG93IGluaXRpYWxpemF0aW9uIG9mIHRoZSBkZWZhdWx0IGNv
-bG9ybWFwLgorCSAqIFgtU2VydmVyIDwgMS4yMCBtaXNoYW5kbGVzID4gMjU2IHNsb3RzIC8gPiA4
-IGJwYyBjb2xvciBtYXBzLCBzbyBza2lwCisJICogY29sb3IgbWFwIHNldHVwIG9uIG9sZCBzZXJ2
-ZXJzIGF0ID4gOCBicGMuIEdhbW1hIGx1dHMgc3RpbGwgd29yay4KIAkgKi8KLQlpZiAoeGY4Nl9j
-b25maWctPm51bV9jcnRjICYmCi0JICAgICF4Zjg2SGFuZGxlQ29sb3JtYXBzKHBTY3JlZW4sIDI1
-NiwgOCwgTlZMb2FkUGFsZXR0ZSwKLQkJCQkgTlVMTCwgQ01BUF9QQUxFVFRFRF9UUlVFQ09MT1Ip
-KQorCWlmICh4Zjg2X2NvbmZpZy0+bnVtX2NydGMgJiYgKHBTY3JuLT5yZ2JCaXRzIDw9IDggfHwK
-KwkgICAgWE9SR19WRVJTSU9OX0NVUlJFTlQgPj0gWE9SR19WRVJTSU9OX05VTUVSSUMoMSwyMCww
-LDAsMCkpICYmCisJICAgICF4Zjg2SGFuZGxlQ29sb3JtYXBzKHBTY3JlZW4sIDEgPDwgcFNjcm4t
-PnJnYkJpdHMsIHBTY3JuLT5yZ2JCaXRzLAorCQkJCSBOVkxvYWRQYWxldHRlLCBOVUxMLCBDTUFQ
-X1BBTEVUVEVEX1RSVUVDT0xPUikpCiAJCXJldHVybiBGQUxTRTsKIAogCS8qIFJlcG9ydCBhbnkg
-dW51c2VkIG9wdGlvbnMgKG9ubHkgZm9yIHRoZSBmaXJzdCBnZW5lcmF0aW9uKSAqLwotLSAKMi4x
-Ny4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
-ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1304273492==
+Content-Type: multipart/alternative; boundary="15288289744.40805bF6.25753"
+Content-Transfer-Encoding: 7bit
+
+
+--15288289744.40805bF6.25753
+Date: Tue, 12 Jun 2018 18:42:54 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D13750
+
+Adam Jackson <ajax-TAsg7VrFCGc@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |INVALID
+             Status|NEW                         |RESOLVED
+
+--- Comment #5 from Adam Jackson <ajax-TAsg7VrFCGc@public.gmane.org> ---
+Mass closure: This bug has been untouched for more than six years, and is n=
+ot
+obviously still valid. Please file a new report if you continue to experien=
+ce
+issues with a current server.
+
+--=20
+You are receiving this mail because:
+You are on the CC list for the bug.=
+
+--15288289744.40805bF6.25753
+Date: Tue, 12 Jun 2018 18:42:54 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ajax&#64;=
+nwnk.net" title=3D"Adam Jackson &lt;ajax&#64;nwnk.net&gt;"> <span class=3D"=
+fn">Adam Jackson</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - Repetitively Taking Screenshots Causes the X=
+ Server to Hang"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D13750">bug 13750<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - Repetitively Taking Screenshots Causes the X=
+ Server to Hang"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D13750#c5">Comment=
+ # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - Repetitively Taking Screenshots Causes the X=
+ Server to Hang"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D13750">bug 13750<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+ajax&#64;nwnk.net" title=3D"Adam Jackson &lt;ajax&#64;nwnk.net&gt;"> <span =
+class=3D"fn">Adam Jackson</span></a>
+</span></b>
+        <pre>Mass closure: This bug has been untouched for more than six ye=
+ars, and is not
+obviously still valid. Please file a new report if you continue to experien=
+ce
+issues with a current server.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are on the CC list for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15288289744.40805bF6.25753--
+
+--===============1304273492==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1304273492==--
