@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89120] gdm hung by xsane(Bug 1190016
- bugzilla.redhat.com)
-Date: Tue, 12 Jun 2018 15:32:45 +0000
-Message-ID: <bug-89120-8800-so2zhUY39t@http.bugs.freedesktop.org/>
-References: <bug-89120-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93083] random complete freezes with EQ overflowing
+ [GeForce GTX 660]
+Date: Tue, 12 Jun 2018 15:52:42 +0000
+Message-ID: <bug-93083-8800-45pVd5LVIn@http.bugs.freedesktop.org/>
+References: <bug-93083-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1527638313=="
+Content-Type: multipart/mixed; boundary="===============1558310140=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89120-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93083-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1527638313==
-Content-Type: multipart/alternative; boundary="15288175652.b6DECB.18042"
+--===============1558310140==
+Content-Type: multipart/alternative; boundary="15288187622.B5cE37Ced.22574"
 Content-Transfer-Encoding: 7bit
 
 
---15288175652.b6DECB.18042
-Date: Tue, 12 Jun 2018 15:32:45 +0000
+--15288187622.B5cE37Ced.22574
+Date: Tue, 12 Jun 2018 15:52:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D89120
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93083
 
 Adam Jackson <ajax-TAsg7VrFCGc@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
+          Component|Server/General              |Driver/nouveau
            Assignee|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
                    |                            |rg
-          Component|Server/Input/Core           |Driver/nouveau
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15288175652.b6DECB.18042
-Date: Tue, 12 Jun 2018 15:32:45 +0000
+--15288187622.B5cE37Ced.22574
+Date: Tue, 12 Jun 2018 15:52:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,8 +66,9 @@ fn">Adam Jackson</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - gdm hung by xsane(Bug 1190016 bugzilla.redhat.com)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89120">bug 89120<=
+   title=3D"NEW - random complete freezes with EQ overflowing [GeForce GTX =
+660]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93083">bug 93083<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -78,18 +79,18 @@ fn">Adam Jackson</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>xorg-team&#64;lists.x.org
+           <td style=3D"text-align:right;">Component</td>
+           <td>Server/General
            </td>
-           <td>nouveau&#64;lists.freedesktop.org
+           <td>Driver/nouveau
            </td>
          </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>Server/Input/Core
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>xorg-team&#64;lists.x.org
            </td>
-           <td>Driver/nouveau
+           <td>nouveau&#64;lists.freedesktop.org
            </td>
          </tr></table>
       <p>
@@ -105,9 +106,9 @@ fn">Adam Jackson</span></a>
     </body>
 </html>=
 
---15288175652.b6DECB.18042--
+--15288187622.B5cE37Ced.22574--
 
---===============1527638313==
+--===============1558310140==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1527638313==--
+--===============1558310140==--
