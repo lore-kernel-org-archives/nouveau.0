@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 13750] Repetitively Taking Screenshots Causes the X
- Server to Hang
-Date: Tue, 12 Jun 2018 18:42:54 +0000
-Message-ID: <bug-13750-8800-9YT86mQrWb@http.bugs.freedesktop.org/>
-References: <bug-13750-8800@http.bugs.freedesktop.org/>
+From: =?utf-8?B?56mN5Li55bC8?= Dan Jacobson <jidanni-8D0D3YcSAvhAfugRpC6u6w@public.gmane.org>
+Subject: Re: can't join the list via email
+Date: Wed, 13 Jun 2018 07:08:26 +0800
+Message-ID: <87lgbj61sl.fsf@jidanni.org>
+References: <878t7ldzdn.fsf@jidanni.org>
+ <CAKb7Uvjo32OBxuDcfbBEcYHiwLPHVwRcoSTPx4Lr7AN7=N6BBg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1304273492=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-13750-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,134 +17,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1304273492==
-Content-Type: multipart/alternative; boundary="15288289744.40805bF6.25753"
-Content-Transfer-Encoding: 7bit
-
-
---15288289744.40805bF6.25753
-Date: Tue, 12 Jun 2018 18:42:54 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D13750
-
-Adam Jackson <ajax-TAsg7VrFCGc@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |INVALID
-             Status|NEW                         |RESOLVED
-
---- Comment #5 from Adam Jackson <ajax-TAsg7VrFCGc@public.gmane.org> ---
-Mass closure: This bug has been untouched for more than six years, and is n=
-ot
-obviously still valid. Please file a new report if you continue to experien=
-ce
-issues with a current server.
-
---=20
-You are receiving this mail because:
-You are on the CC list for the bug.=
-
---15288289744.40805bF6.25753
-Date: Tue, 12 Jun 2018 18:42:54 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ajax&#64;=
-nwnk.net" title=3D"Adam Jackson &lt;ajax&#64;nwnk.net&gt;"> <span class=3D"=
-fn">Adam Jackson</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - Repetitively Taking Screenshots Causes the X=
- Server to Hang"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D13750">bug 13750<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - Repetitively Taking Screenshots Causes the X=
- Server to Hang"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D13750#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - Repetitively Taking Screenshots Causes the X=
- Server to Hang"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D13750">bug 13750<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ajax&#64;nwnk.net" title=3D"Adam Jackson &lt;ajax&#64;nwnk.net&gt;"> <span =
-class=3D"fn">Adam Jackson</span></a>
-</span></b>
-        <pre>Mass closure: This bug has been untouched for more than six ye=
-ars, and is not
-obviously still valid. Please file a new report if you continue to experien=
-ce
-issues with a current server.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are on the CC list for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15288289744.40805bF6.25753--
-
---===============1304273492==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1304273492==--
+PiAgICAgZ2FiZS5mcmVlZGVza3RvcC5vcmdbMTMxLjI1Mi4yMTAuMTc3XSBzYWlkOiA1NTAgNS4x
+LjEKPiAgICAgPG5vdXZlYXUtcmVxdWVzdEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+OiBSZWNpcGll
+bnQgYWRkcmVzcyByZWplY3RlZDogVXNlcgo+ICAgICB1bmtub3duIGluIGxvY2FsIHJlY2lwaWVu
+dCB0YWJsZSAoaW4gcmVwbHkgdG8gUkNQVCBUTyBjb21tYW5kKQoKPj4+Pj4gIklNIiA9PSBJbGlh
+IE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyaXRlczoKSU0+IFdoZXJlIGRpZCB5b3Ug
+c2VlIGluc3RydWN0aW9ucyBmb3IgZG9pbmcgdGhpcz8gQXBwYXJlbnRseSB0aGlzIGlzCklNPiBk
+aXNhYmxlZCBvbiBwdXJwb3NlIGR1ZSB0byBzcGFtLiBPciBkaWQgeW91IGp1c3QgYXNzdW1lIGl0
+IHdvdWxkIHdvcmsKSU0+IGJhc2VkIG9uIG90aGVyIG1haWxtYW4gbGlzdHM/CgpGcm9tOiBub3V2
+ZWF1LXJlcXVlc3RAbGlzdHMuZnJlZWRlc2t0b3Aub3JnClN1YmplY3Q6IGNvbmZpcm0gLi4uClRv
+OiBqaWRhbm5pQGppZGFubmkub3JnCkRhdGU6IFR1ZSwgMTIgSnVuIDIwMTggMDA6NTI6MzEgKzA4
+MDAKUmVwbHktVG86IG5vdXZlYXUtcmVxdWVzdEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKCk1haWxp
+bmcgbGlzdCBzdWJzY3JpcHRpb24gY29uZmlybWF0aW9uIG5vdGljZSBmb3IgbWFpbGluZyBsaXN0
+IE5vdXZlYXUKCldlIGhhdmUgcmVjZWl2ZWQgYSByZXF1ZXN0IGZyb20gMjIwLjE0MC4xMy40NSBm
+b3Igc3Vic2NyaXB0aW9uIG9mIHlvdXIKZW1haWwgYWRkcmVzcywgImppZGFubmlAamlkYW5uaS5v
+cmciLCB0byB0aGUKbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcgbWFpbGluZyBsaXN0LiAg
+VG8gY29uZmlybSB0aGF0IHlvdSB3YW50CnRvIGJlIGFkZGVkIHRvIHRoaXMgbWFpbGluZyBsaXN0
+LCBzaW1wbHkgcmVwbHkgdG8gdGhpcyBtZXNzYWdlLAprZWVwaW5nIHRoZSBTdWJqZWN0OiBoZWFk
+ZXIgaW50YWN0LiAgT3IgdmlzaXQgdGhpcyB3ZWIgcGFnZToKCiAgICBodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2NvbmZpcm0vbm91dmVhdS8uLi4KCk9yIGluY2x1ZGUgdGhl
+IGZvbGxvd2luZyBsaW5lIC0tIGFuZCBvbmx5IHRoZSBmb2xsb3dpbmcgbGluZSAtLSBpbiBhCm1l
+c3NhZ2UgdG8gbm91dmVhdS1yZXF1ZXN0QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzoKCiAgICBjb25m
+aXJtIC4uLgoKTm90ZSB0aGF0IHNpbXBseSBzZW5kaW5nIGEgYHJlcGx5JyB0byB0aGlzIG1lc3Nh
+Z2Ugc2hvdWxkIHdvcmsgZnJvbQptb3N0IG1haWwgcmVhZGVycywgc2luY2UgdGhhdCB1c3VhbGx5
+IGxlYXZlcyB0aGUgU3ViamVjdDogbGluZSBpbiB0aGUKcmlnaHQgZm9ybSAoYWRkaXRpb25hbCAi
+UmU6IiB0ZXh0IGluIHRoZSBTdWJqZWN0OiBpcyBva2F5KS4KCklmIHlvdSBkbyBub3Qgd2lzaCB0
+byBiZSBzdWJzY3JpYmVkIHRvIHRoaXMgbGlzdCwgcGxlYXNlIHNpbXBseQpkaXNyZWdhcmQgdGhp
+cyBtZXNzYWdlLiAgSWYgeW91IHRoaW5rIHlvdSBhcmUgYmVpbmcgbWFsaWNpb3VzbHkKc3Vic2Ny
+aWJlZCB0byB0aGUgbGlzdCwgb3IgaGF2ZSBhbnkgb3RoZXIgcXVlc3Rpb25zLCBzZW5kIHRoZW0g
+dG8Kbm91dmVhdS1vd25lckBsaXN0cy5mcmVlZGVza3RvcC5vcmcuCgoKCgoKCgoKCgoKCgoKCklN
+PiBPbiBNb24sIEp1biAxMSwgMjAxOCBhdCAxOjA4IFBNLCBEYW4gSmFjb2Jzb24gPGppZGFubmlA
+amlkYW5uaS5vcmc+IHdyb3RlOgo+PiBDYW4ndCBqb2luIHRoZSBsaXN0IGNvbmZpcm1pbmcgdmlh
+IGVtYWlsLgo+PiBXaWxsIGdldDoKPj4gCj4+IGdhYmUuZnJlZWRlc2t0b3Aub3JnWzEzMS4yNTIu
+MjEwLjE3N10gc2FpZDogNTUwIDUuMS4xCj4+IDxub3V2ZWF1LXJlcXVlc3RAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnPjogUmVjaXBpZW50IGFkZHJlc3MgcmVqZWN0ZWQ6IFVzZXIKPj4gdW5rbm93biBp
+biBsb2NhbCByZWNpcGllbnQgdGFibGUgKGluIHJlcGx5IHRvIFJDUFQgVE8gY29tbWFuZCkKPj4g
+Cj4+IENhbiBvbmx5IGpvaW4gdmlhIHRoZSBodHRwIGNvbmZpcm1hdGlvbiBsaW5rLgo+PiBfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1IG1h
+aWxpbmcgbGlzdAo+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
