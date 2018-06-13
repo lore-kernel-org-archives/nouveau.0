@@ -1,9 +1,11 @@
 From: =?utf-8?B?56mN5Li55bC8?= Dan Jacobson <jidanni-8D0D3YcSAvhAfugRpC6u6w@public.gmane.org>
-Subject: Re: can't join the list via email
-Date: Wed, 13 Jun 2018 07:10:29 +0800
-Message-ID: <87d0wv61p6.fsf@jidanni.org>
-References: <878t7ldzdn.fsf@jidanni.org>
- <CAKb7Uvjo32OBxuDcfbBEcYHiwLPHVwRcoSTPx4Lr7AN7=N6BBg@mail.gmail.com>
+Subject: Re: libGL error messages
+Date: Wed, 13 Jun 2018 09:09:48 +0800
+Message-ID: <87d0wvcx0j.fsf@jidanni.org>
+References: <87in6pdzp2.fsf@jidanni.org>
+ <CAKb7Uvhry9Fh4jz0rDEo+qiswr_-dsWLH=RxNcsJf_JOcYCZyQ@mail.gmail.com>
+ <87zi01cjpz.fsf@jidanni.org>
+ <CAKb7UvhkdsGoHaxdXE_k78UnYB7KHKHzYJ-zy4jvSD_GV8yoBQ@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
@@ -21,14 +23,14 @@ To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-QWxzbzoKCkZyb206IG5vdXZlYXUtcmVxdWVzdEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKU3ViamVj
-dDogV2VsY29tZSB0byB0aGUgIk5vdXZlYXUiIG1haWxpbmcgbGlzdApUbzogamlkYW5uaUBqaWRh
-bm5pLm9yZwpEYXRlOiBUdWUsIDEyIEp1biAyMDE4IDAwOjU1OjMzICswODAwCgpXZWxjb21lIHRv
-IHRoZSBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZyBtYWlsaW5nIGxpc3QhCgouLi4KCllv
-dSBjYW4gYWxzbyBtYWtlIHN1Y2ggYWRqdXN0bWVudHMgdmlhIGVtYWlsIGJ5IHNlbmRpbmcgYSBt
-ZXNzYWdlIHRvOgoKICBOb3V2ZWF1LXJlcXVlc3RAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCgp3aXRo
-IHRoZSB3b3JkIGBoZWxwJyBpbiB0aGUgc3ViamVjdCBvciBib2R5IChkb24ndCBpbmNsdWRlIHRo
-ZQpxdW90ZXMpLCBhbmQgeW91IHdpbGwgZ2V0IGJhY2sgYSBtZXNzYWdlIHdpdGggaW5zdHJ1Y3Rp
-b25zLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
-ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+Pj4+Pj4gIklNIiA9PSBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyaXRlczoK
+CklNPiBPSywgd2VsbCAxOC4xLjAgaXMgY29tcGxldGVseSBidXN0ZWQgZm9yIHRob3NlIEdQVSdz
+LiBFaXRoZXIgdXBncmFkZQpJTT4gb3IgZG93bmdyYWRlLiBCdXQgZG9uJ3QgdXNlIHRoYXQgcmVs
+ZWFzZS4KCkkgZGlkCltET1dOR1JBREVdIGxpYmdsYXBpLW1lc2E6YW1kNjQgMTguMS4wLTEgLT4g
+MTguMC41LTEKW0RPV05HUkFERV0gbGliZ2x4LW1lc2EwOmFtZDY0IDE4LjEuMC0xIC0+IDE4LjAu
+NS0xCmFuZCByZWJvb3RlZC4gUHJvYmxlbSByZW1haW5zOgokIGdseGluZm8gPiAvZGV2L251bGwK
+bGliR0wgZXJyb3I6IGZhaWxlZCB0byBjcmVhdGUgZHJpIHNjcmVlbgpsaWJHTCBlcnJvcjogZmFp
+bGVkIHRvIGxvYWQgZHJpdmVyOiBub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbm91dmVhdQo=
