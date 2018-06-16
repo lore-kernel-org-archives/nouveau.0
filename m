@@ -1,40 +1,36 @@
-From: Nick Desaulniers <ndesaulniers@google.com>
-Subject: [PATCH v2] drm/nouveau/nvif: remove const attribute from nvif_mclass
-Date: Fri, 15 Jun 2018 16:00:42 -0700
-Message-ID: <20180615230044.189899-1-ndesaulniers@google.com>
+From: Matthias Kaehlcke <mka@chromium.org>
+Subject: Re: [PATCH v2] drm/nouveau/nvif: remove const attribute from
+ nvif_mclass
+Date: Fri, 15 Jun 2018 17:47:05 -0700
+Message-ID: <20180616004705.GQ88063@google.com>
 References: <CAKwvOd=ntzV5x+rDSH6VEoS2ONZacnqeemewNgv3Aotm3Hd-hA@mail.gmail.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAKwvOd=ntzV5x+rDSH6VEoS2ONZacnqeemewNgv3Aotm3Hd-hA@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: bskeggs@redhat.com, airlied@linux.ie
-Cc: mka@chromium.org, jeyu@kernel.org, Nick Desaulniers <ndesaulniers@google.com>, Thomas Gleixner <tglx@linutronix.de>, Philippe Ombredanne <pombredanne@nexb.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Kate Stewart <kstewart@linuxfoundation.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+ <20180615230044.189899-1-ndesaulniers@google.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20180615230044.189899-1-ndesaulniers@google.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Nick Desaulniers <ndesaulniers@google.com>
+Cc: Kate Stewart <kstewart@linuxfoundation.org>, airlied@linux.ie, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, jeyu@kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, bskeggs@redhat.com, Philippe Ombredanne <pombredanne@nexb.com>, nouveau@lists.freedesktop.org, Thomas Gleixner <tglx@linutronix.de>
 List-Id: nouveau.vger.kernel.org
 
-Similar to commit 0bf8bf50eddc ("module: Remove
-const attribute from alias for MODULE_DEVICE_TABLE")
-
-Fixes many -Wduplicate-decl-specifier warnings due to the combination of
-const typeof() of already const variables.
-
-Signed-off-by: Nick Desaulniers <ndesaulniers@google.com>
----
-Changes since v1: added additional space after statements.
-
- drivers/gpu/drm/nouveau/include/nvif/object.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/include/nvif/object.h b/drivers/gpu/drm/nouveau/include/nvif/object.h
-index a2d5244ff2b7..3d7e485a9043 100644
---- a/drivers/gpu/drm/nouveau/include/nvif/object.h
-+++ b/drivers/gpu/drm/nouveau/include/nvif/object.h
-@@ -78,7 +78,7 @@ struct nvif_mclass {
- #define nvif_mclass(o,m) ({                                                    \
- 	struct nvif_object *object = (o);                                      \
- 	struct nvif_sclass *sclass;                                            \
--	const typeof(m[0]) *mclass = (m);                                      \
-+	typeof(m[0]) *mclass = (m);                                            \
- 	int ret = -ENODEV;                                                     \
- 	int cnt, i, j;                                                         \
-                                                                                \
--- 
-2.18.0.rc1.244.gcf134e6275-goog
+T24gRnJpLCBKdW4gMTUsIDIwMTggYXQgMDQ6MDA6NDJQTSAtMDcwMCwgTmljayBEZXNhdWxuaWVy
+cyB3cm90ZToKPiBTaW1pbGFyIHRvIGNvbW1pdCAwYmY4YmY1MGVkZGMgKCJtb2R1bGU6IFJlbW92
+ZQo+IGNvbnN0IGF0dHJpYnV0ZSBmcm9tIGFsaWFzIGZvciBNT0RVTEVfREVWSUNFX1RBQkxFIikK
+PiAKPiBGaXhlcyBtYW55IC1XZHVwbGljYXRlLWRlY2wtc3BlY2lmaWVyIHdhcm5pbmdzIGR1ZSB0
+byB0aGUgY29tYmluYXRpb24gb2YKPiBjb25zdCB0eXBlb2YoKSBvZiBhbHJlYWR5IGNvbnN0IHZh
+cmlhYmxlcy4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBOaWNrIERlc2F1bG5pZXJzIDxuZGVzYXVsbmll
+cnNAZ29vZ2xlLmNvbT4KClJldmlld2VkLWJ5OiBNYXR0aGlhcyBLYWVobGNrZSA8bWthQGNocm9t
+aXVtLm9yZz4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+ZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
