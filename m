@@ -1,15 +1,12 @@
-From: Adam Borowski <kilobyte-b9QjgO8OEXPVItvQsEIGlw@public.gmane.org>
-Subject: Re: no mouse cursor on nv50
-Date: Mon, 18 Jun 2018 21:19:02 +0200
-Message-ID: <20180618191902.3if46xod3ptgaxw4@angband.pl>
-References: <20180617214614.ztwwbkojc2rxqylo@angband.pl>
- <CABDvA=nve28qJj7+s4nSUA6Z_Q7tuStzykf4ZzXO97NfAk_r0w@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101665] lspci blocks forever with a GP107M
+Date: Tue, 19 Jun 2018 12:30:46 +0000
+Message-ID: <bug-101665-8800-s0O1SSOkp1@http.bugs.freedesktop.org/>
+References: <bug-101665-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0714830950=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CABDvA=nve28qJj7+s4nSUA6Z_Q7tuStzykf4ZzXO97NfAk_r0w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-101665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,36 +16,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBKdW4gMTgsIDIwMTggYXQgMDY6MTg6MzRQTSArMTAwMCwgQmVuIFNrZWdncyB3cm90
-ZToKPiBPbiBNb24sIEp1biAxOCwgMjAxOCBhdCA3OjQ2IEFNLCBBZGFtIEJvcm93c2tpIDxraWxv
-Ynl0ZUBhbmdiYW5kLnBsPiB3cm90ZToKPiA+IE9uIHY0LjE4LXJjMSwgdGhlIG1vdXNlIGN1cnNv
-ciBpcyBtaXNzaW5nIG9uIG15IHJpZ2h0IG1vbml0b3IuCj4gPiBDYXJkIGlzIEc5OCBbR2VGb3Jj
-ZSA4NDAwIEdTIFJldi4gMl0uCj4gPgo+ID4gSSBoYXZlIHR3byBtb25pdG9yczogb25lIHNtYWxs
-IGxhbmRzY2FwZSAxMjgweDEwMjQgb24gRFZJLUktMSBsZWZ0LCBhbmQgb25lCj4gPiBiaWcgMTYw
-MHgxMjAwICgxMjAweDE2MDAgcG9ydHJhaXQpIG9uIEhETUktMSByaWdodC4gIEN1cmlvdXNseSwg
-dGhlIGN1cnNvcgo+ID4gaXMgbWlzc2luZyBub3Qgb25seSB3aXRoIHByb3BlciB4cmFuZHIgc2V0
-dXAgYWZ0ZXIgbG9nZ2luZyBpbiBidXQgZXZlbiBpbgo+ID4gbWlycm9yZWQgbW9kZSBhdCB0aGUg
-bGlnaHRkbSBncmVldGVyWzFdLiAgSG93IGlzIHRoaXMgZXZlbiBwb3NzaWJsZSBpZiBib3RoCj4g
-PiBzY3JlZW5zIGFyZSBzdXBwb3NlZCB0byBiZSBpZGVudGljYWw/Cj4gPgo+ID4gIyBmaXJzdCBi
-YWQgY29tbWl0OiBbNWJjYTE2MjFjMDdjM2FkMzdiNWE0OTQzNDUwYTg5MmUxODk4NGRmMF0gZHJt
-L25vdXZlYXUva21zL252NTAtOiBtb3ZlIGZiIGN0eGRtYSB0cmFja2luZyBpbnRvIHdpbmRvd3MK
-PiA+Cj4gPiBBbGFzLCB0aGUgYmFkIGNvbW1pdCBjYW4ndCBiZSBlYXNpbHkgcmV2ZXJ0ZWQgYXMg
-dGhlcmUncyBhIGxvdCBvZiBmdXJ0aGVyCj4gPiB3b3JrIG9uIHRoZSBmaWxlIG9uIHF1ZXN0aW9u
-Lgo+IAo+IFRoYW5rcyBmb3IgdGhlIHJlcG9ydCEgIENhbiB5b3UgZ2l2ZQo+IGh0dHBzOi8vZ2l0
-aHViLmNvbS9za2VnZ3NiL2xpbnV4L2NvbW1pdC9mZmZkYzUyMWYzMTMwMzFiMTc0NWEyNjRlYzBk
-NWM4NDhjMjQ3NWQxCj4gYSB0cnkgYW5kIHNlZSBpZiBpdCBoZWxwcyB0aGUgaXNzdWUgeW91J3Jl
-IHNlZWluZz8KCllheSwgaXQgd29ya3MhICBCb3RoIGZvciBtaXJyb3JlZCBhbmQgZXh0ZW5kZWQg
-dy8gZGlmZmVyZW50IG9yaWVudGF0aW9uLgoKCk1lb3cuCi0tIAriooDio7TioL7ioLviorbio6bi
-oIAgVGhlcmUncyBhbiBlYXN5IHdheSB0byB0ZWxsIHRveSBvcGVyYXRpbmcgc3lzdGVtcyBmcm9t
-IHJlYWwgb25lcy4K4qO+4qCB4qKw4qCS4qCA4qO/4qGBIEp1c3QgbG9vayBhdCBob3cgdGhlaXIg
-c2hpcHBlZCBmb250cyBkaXNwbGF5IFUrMUY1MkIsIHRoaXMgbWFrZXMK4qK/4qGE4qCY4qC34qCa
-4qCL4qCAIHRoZSBpbnRlbmRlZCBhdWRpZW5jZSBvYnZpb3VzLiAgSXQncyBhbHNvIGludGVyZXN0
-aW5nIHRvIHNlZSBPU2VzCuKgiOKgs+KjhOKggOKggOKggOKggCBnbyBiYWNrIGFuZCBmb3J0aCB3
-cnQgdGhlaXIgaW50ZW5kZWQgdGFyZ2V0LgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+
+--===============0714830950==
+Content-Type: multipart/alternative; boundary="15294114460.AeABB69.12849"
+Content-Transfer-Encoding: 7bit
+
+
+--15294114460.AeABB69.12849
+Date: Tue, 19 Jun 2018 12:30:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101665
+
+--- Comment #15 from Etienne URBAH <eurbah-GANU6spQydw@public.gmane.org> ---
+With Linux kernel 4.18.0-041800rc1 from
+http://kernel.ubuntu.com/~kernel-ppa/mainline :
+
+I tried to open a Linux console with Ctrl Alt F2, but did NOT succeed.
+
+Systematically, graphical login fails, and makes the whole machine immediat=
+ely
+freeze.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15294114460.AeABB69.12849
+Date: Tue, 19 Jun 2018 12:30:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665#c15">Comme=
+nt # 15</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665">bug 10166=
+5</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+eurbah&#64;free.fr" title=3D"Etienne URBAH &lt;eurbah&#64;free.fr&gt;"> <sp=
+an class=3D"fn">Etienne URBAH</span></a>
+</span></b>
+        <pre>With Linux kernel 4.18.0-041800rc1 from
+<a href=3D"http://kernel.ubuntu.com/~kernel-ppa/mainline">http://kernel.ubu=
+ntu.com/~kernel-ppa/mainline</a> :
+
+I tried to open a Linux console with Ctrl Alt F2, but did NOT succeed.
+
+Systematically, graphical login fails, and makes the whole machine immediat=
+ely
+freeze.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15294114460.AeABB69.12849--
+
+--===============0714830950==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0714830950==--
