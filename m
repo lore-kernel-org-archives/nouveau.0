@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 107016] Gpio error only from kernel higher as 4.x
  (k2000m; 0x0e73b0a2; version 80.07.40.00.02)
-Date: Sun, 24 Jun 2018 20:28:05 +0000
-Message-ID: <bug-107016-8800-WVxFzXXA60@http.bugs.freedesktop.org/>
+Date: Sun, 24 Jun 2018 20:28:32 +0000
+Message-ID: <bug-107016-8800-vkAOlH82OD@http.bugs.freedesktop.org/>
 References: <bug-107016-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1475095720=="
+Content-Type: multipart/mixed; boundary="===============1524732426=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-107016-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1475095720==
-Content-Type: multipart/alternative; boundary="15298720851.9c09.5517"
+--===============1524732426==
+Content-Type: multipart/alternative; boundary="15298721121.fef45E.5960"
 Content-Transfer-Encoding: 7bit
 
 
---15298720851.9c09.5517
-Date: Sun, 24 Jun 2018 20:28:05 +0000
+--15298721121.fef45E.5960
+Date: Sun, 24 Jun 2018 20:28:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,19 +40,14 @@ Roy <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Product|Mesa                        |xorg
-         QA Contact|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-                   |rg                          |
-           Severity|critical                    |normal
-          Component|Drivers/DRI/nouveau         |Driver/nouveau
+             Status|NEW                         |NEEDINFO
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15298720851.9c09.5517
-Date: Sun, 24 Jun 2018 20:28:05 +0000
+--15298721121.fef45E.5960
+Date: Sun, 24 Jun 2018 20:28:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,9 +63,9 @@ Auto-Submitted: auto-generated
 "fn">Roy</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Gpio error only from kernel higher as 4.x (k2000m; 0x0e73=
-b0a2; version 80.07.40.00.02)"
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - Gpio error only from kernel higher as 4.x (k2000m; 0=
+x0e73b0a2; version 80.07.40.00.02)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016">bug 10701=
 6</a>
           <br>
@@ -82,34 +77,10 @@ b0a2; version 80.07.40.00.02)"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Product</td>
-           <td>Mesa
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>xorg
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">QA Contact</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Severity</td>
-           <td>critical
-           </td>
-           <td>normal
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>Drivers/DRI/nouveau
-           </td>
-           <td>Driver/nouveau
+           <td>NEEDINFO
            </td>
          </tr></table>
       <p>
@@ -120,15 +91,14 @@ b0a2; version 80.07.40.00.02)"
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15298720851.9c09.5517--
+--15298721121.fef45E.5960--
 
---===============1475095720==
+--===============1524732426==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -138,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1475095720==--
+--===============1524732426==--
