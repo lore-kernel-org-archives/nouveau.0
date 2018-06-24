@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 107016] Gpio error only from kernel higher as 4.x
  (k2000m; 0x0e73b0a2; version 80.07.40.00.02)
-Date: Sun, 24 Jun 2018 19:18:46 +0000
-Message-ID: <bug-107016-8800-N9xoQR5bXL@http.bugs.freedesktop.org/>
+Date: Sun, 24 Jun 2018 20:25:36 +0000
+Message-ID: <bug-107016-8800-ML50ZU5sVe@http.bugs.freedesktop.org/>
 References: <bug-107016-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1815753558=="
+Content-Type: multipart/mixed; boundary="===============0911099393=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-107016-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1815753558==
-Content-Type: multipart/alternative; boundary="15298679260.C53ce4.17038"
+--===============0911099393==
+Content-Type: multipart/alternative; boundary="15298719360.EcAaa892.5230"
 Content-Transfer-Encoding: 7bit
 
 
---15298679260.C53ce4.17038
-Date: Sun, 24 Jun 2018 19:18:46 +0000
+--15298719360.EcAaa892.5230
+Date: Sun, 24 Jun 2018 20:25:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,33 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D107016
 
-atirage21 <tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #1 from Roy <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org> ---
+To debug this, I'd like you to attach to this bug report:
+- A better description of what you're trying to do. I suspect you're trying=
+ to
+set a pstate, but please be clear about the steps that you follow to get the
+result you claim to get.
+- A copy of your video BIOS (/sys/kernel/debug/dri/<number>/vbios.rom
+- A peek of the strap register (nvapeek 0x101000)
+- A full unfiltered dmesg from kernel 4.17 after failure like you did for t=
+he
+3.19 kernel, preferably booted with the nouveau.debug=3D"PMU=3Ddebug" param=
+eter.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Severity|normal                      |critical
-                 OS|All                         |Linux (All)
-           Hardware|Other                       |x86-64 (AMD64)
+(In reply to atirage21 from comment #0)
+> Maybe it is connected on your changes from 2016:
+> https://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/
+> ?id=3Da24ded627e42d453546c553d609edc073f59cd57
+
+This patch... no, this whole repository is unrelated to your problems.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15298679260.C53ce4.17038
-Date: Sun, 24 Jun 2018 19:18:46 +0000
+--15298719360.EcAaa892.5230
+Date: Sun, 24 Jun 2018 20:25:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,48 +73,46 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:tothsoft&=
-#64;gmail.com" title=3D"atirage21 &lt;tothsoft&#64;gmail.com&gt;"> <span cl=
-ass=3D"fn">atirage21</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Gpio error only from kernel higher as 4.x (k2000m; 0x0e73=
+b0a2; version 80.07.40.00.02)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Gpio error only from kernel higher as 4.x (k2000m; 0x0e73=
 b0a2; version 80.07.40.00.02)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016">bug 10701=
 6</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+nouveau&#64;spliet.org" title=3D"Roy &lt;nouveau&#64;spliet.org&gt;"> <span=
+ class=3D"fn">Roy</span></a>
+</span></b>
+        <pre>To debug this, I'd like you to attach to this bug report:
+- A better description of what you're trying to do. I suspect you're trying=
+ to
+set a pstate, but please be clear about the steps that you follow to get the
+result you claim to get.
+- A copy of your video BIOS (/sys/kernel/debug/dri/&lt;number&gt;/vbios.rom
+- A peek of the strap register (nvapeek 0x101000)
+- A full unfiltered dmesg from kernel 4.17 after failure like you did for t=
+he
+3.19 kernel, preferably booted with the nouveau.debug=3D&quot;PMU=3Ddebug&q=
+uot; parameter.
 
-         <tr>
-           <td style=3D"text-align:right;">Severity</td>
-           <td>normal
-           </td>
-           <td>critical
-           </td>
-         </tr>
+(In reply to atirage21 from <a href=3D"show_bug.cgi?id=3D107016#c0">comment=
+ #0</a>)
+<span class=3D"quote">&gt; Maybe it is connected on your changes from 2016:
+&gt; <a href=3D"https://cgit.freedesktop.org/nouveau/xf86-video-nouveau/com=
+mit/">https://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/</a>
+&gt; ?id=3Da24ded627e42d453546c553d609edc073f59cd57</span >
 
-         <tr>
-           <td style=3D"text-align:right;">OS</td>
-           <td>All
-           </td>
-           <td>Linux (All)
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Hardware</td>
-           <td>Other
-           </td>
-           <td>x86-64 (AMD64)
-           </td>
-         </tr></table>
-      <p>
+This patch... no, this whole repository is unrelated to your problems.</pre>
+        </div>
       </p>
 
 
@@ -116,9 +126,9 @@ b0a2; version 80.07.40.00.02)"
     </body>
 </html>=
 
---15298679260.C53ce4.17038--
+--15298719360.EcAaa892.5230--
 
---===============1815753558==
+--===============0911099393==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -128,4 +138,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1815753558==--
+--===============0911099393==--
