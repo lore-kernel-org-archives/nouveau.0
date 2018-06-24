@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 107016] Gpio error only from kernel higher as 4.x
  (k2000m; 0x0e73b0a2; version 80.07.40.00.02)
-Date: Sun, 24 Jun 2018 20:28:32 +0000
-Message-ID: <bug-107016-8800-vkAOlH82OD@http.bugs.freedesktop.org/>
+Date: Sun, 24 Jun 2018 20:31:39 +0000
+Message-ID: <bug-107016-8800-hCOlDHmwiB@http.bugs.freedesktop.org/>
 References: <bug-107016-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1524732426=="
+Content-Type: multipart/mixed; boundary="===============0308215468=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-107016-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1524732426==
-Content-Type: multipart/alternative; boundary="15298721121.fef45E.5960"
+--===============0308215468==
+Content-Type: multipart/alternative; boundary="15298722990.FF8b7.7536"
 Content-Transfer-Encoding: 7bit
 
 
---15298721121.fef45E.5960
-Date: Sun, 24 Jun 2018 20:28:32 +0000
+--15298722990.FF8b7.7536
+Date: Sun, 24 Jun 2018 20:31:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D107016
 
-Roy <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
+--- Comment #2 from atirage21 <tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 140305
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D140305&action=3Dedit
+vBIOS.rom
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15298721121.fef45E.5960
-Date: Sun, 24 Jun 2018 20:28:32 +0000
+--15298722990.FF8b7.7536
+Date: Sun, 24 Jun 2018 20:31:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,32 +57,31 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:nouveau&#=
-64;spliet.org" title=3D"Roy &lt;nouveau&#64;spliet.org&gt;"> <span class=3D=
-"fn">Roy</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - Gpio error only from kernel higher as 4.x (k2000m; 0=
+x0e73b0a2; version 80.07.40.00.02)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEEDINFO "
    title=3D"NEEDINFO - Gpio error only from kernel higher as 4.x (k2000m; 0=
 x0e73b0a2; version 80.07.40.00.02)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016">bug 10701=
 6</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
-      <p>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tothsoft&#64;gmail.com" title=3D"atirage21 &lt;tothsoft&#64;gmail.com&gt;">=
+ <span class=3D"fn">atirage21</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D140305=
+" name=3D"attach_140305" title=3D"vBIOS.rom">attachment 140305</a> <a href=
+=3D"attachment.cgi?id=3D140305&amp;action=3Dedit" title=3D"vBIOS.rom">[deta=
+ils]</a></span>
+vBIOS.rom</pre>
+        </div>
       </p>
 
 
@@ -96,9 +94,9 @@ x0e73b0a2; version 80.07.40.00.02)"
     </body>
 </html>=
 
---15298721121.fef45E.5960--
+--15298722990.FF8b7.7536--
 
---===============1524732426==
+--===============0308215468==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1524732426==--
+--===============0308215468==--
