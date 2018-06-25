@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 107016] Gpio error only from kernel higher as 4.x
  (k2000m; 0x0e73b0a2; version 80.07.40.00.02)
-Date: Mon, 25 Jun 2018 12:41:44 +0000
-Message-ID: <bug-107016-8800-IarFY3wi7B@http.bugs.freedesktop.org/>
+Date: Mon, 25 Jun 2018 14:23:06 +0000
+Message-ID: <bug-107016-8800-3u5LJ2M5VY@http.bugs.freedesktop.org/>
 References: <bug-107016-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0073496469=="
+Content-Type: multipart/mixed; boundary="===============0544838337=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-107016-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0073496469==
-Content-Type: multipart/alternative; boundary="15299305031.D7e7.26224"
+--===============0544838337==
+Content-Type: multipart/alternative; boundary="15299365870.082BD.20771"
 Content-Transfer-Encoding: 7bit
 
 
---15299305031.D7e7.26224
-Date: Mon, 25 Jun 2018 12:41:43 +0000
+--15299365870.082BD.20771
+Date: Mon, 25 Jun 2018 14:23:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,8 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D107016
 
---- Comment #11 from atirage21 <tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I was not successfull in reclock the gpu. OK
+--- Comment #12 from atirage21 <tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+But also is question: Why i had only 405 Mhz of core under kernel 4.x,
+if under kernel 3.19 was more options to see (and same more options is
+with propretiary driver):
+
+[    4.311074] nouveau  [     CLK][0000:01:00.0] 07: core 270-405 MHz
+memory 810 MHz
+[    4.311090] nouveau  [     CLK][0000:01:00.0] 0f: core 270-745 MHz
+memory 1800 MHz
+[    4.311233] nouveau  [     CLK][0000:01:00.0] --: core 405 MHz memory 648
+MHz
+
+
 
 2018-06-25 14:03 GMT+02:00 <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>:
 
@@ -73,8 +84,8 @@ ell.
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15299305031.D7e7.26224
-Date: Mon, 25 Jun 2018 12:41:43 +0000
+--15299365870.082BD.20771
+Date: Mon, 25 Jun 2018 14:23:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -92,8 +103,8 @@ Auto-Submitted: auto-generated
           bz_status_NEEDINFO "
    title=3D"NEEDINFO - Gpio error only from kernel higher as 4.x (k2000m; 0=
 x0e73b0a2; version 80.07.40.00.02)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016#c11">Comme=
-nt # 11</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016#c12">Comme=
+nt # 12</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEEDINFO "
    title=3D"NEEDINFO - Gpio error only from kernel higher as 4.x (k2000m; 0=
@@ -104,7 +115,19 @@ x0e73b0a2; version 80.07.40.00.02)"
 tothsoft&#64;gmail.com" title=3D"atirage21 &lt;tothsoft&#64;gmail.com&gt;">=
  <span class=3D"fn">atirage21</span></a>
 </span></b>
-        <pre>I was not successfull in reclock the gpu. OK
+        <pre>But also is question: Why i had only 405 Mhz of core under ker=
+nel 4.x,
+if under kernel 3.19 was more options to see (and same more options is
+with propretiary driver):
+
+[    4.311074] nouveau  [     CLK][0000:01:00.0] 07: core 270-405 MHz
+memory 810 MHz
+[    4.311090] nouveau  [     CLK][0000:01:00.0] 0f: core 270-745 MHz
+memory 1800 MHz
+[    4.311233] nouveau  [     CLK][0000:01:00.0] --: core 405 MHz memory 648
+MHz
+
+
 
 2018-06-25 14:03 GMT+02:00 &lt;<a href=3D"mailto:bugzilla-daemon&#64;freede=
 sktop.org">bugzilla-daemon&#64;freedesktop.org</a>&gt;:
@@ -164,9 +187,9 @@ s well.</span >
     </body>
 </html>=
 
---15299305031.D7e7.26224--
+--15299365870.082BD.20771--
 
---===============0073496469==
+--===============0544838337==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -176,4 +199,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0073496469==--
+--===============0544838337==--
