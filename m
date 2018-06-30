@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92192] nouveau does not detect monitor native
- resolution (Geforce GT240 / GT215)
-Date: Sat, 30 Jun 2018 09:14:54 +0000
-Message-ID: <bug-92192-8800-zdMMz7su4Y@http.bugs.freedesktop.org/>
-References: <bug-92192-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 84741] [NV46] nouveau can't find VBIOS
+Date: Sat, 30 Jun 2018 09:15:15 +0000
+Message-ID: <bug-84741-8800-GGC5U3dumG@http.bugs.freedesktop.org/>
+References: <bug-84741-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2053698311=="
+Content-Type: multipart/mixed; boundary="===============1279128195=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-84741-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2053698311==
-Content-Type: multipart/alternative; boundary="15303500940.93EaC5B5a.25051"
+--===============1279128195==
+Content-Type: multipart/alternative; boundary="15303501141.df8f4.24967"
 Content-Transfer-Encoding: 7bit
 
 
---15303500940.93EaC5B5a.25051
-Date: Sat, 30 Jun 2018 09:14:54 +0000
+--15303501141.df8f4.24967
+Date: Sat, 30 Jun 2018 09:15:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92192
+https://bugs.freedesktop.org/show_bug.cgi?id=3D84741
 
 Germano Massullo <germano.massullo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |WONTFIX
              Status|NEW                         |RESOLVED
+         Resolution|---                         |WONTFIX
 
 --- Comment #6 from Germano Massullo <germano.massullo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 I have no longer access to the affected machine, nor I had any feedback from
@@ -52,8 +51,8 @@ I close the bugreport as wontfix
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15303500940.93EaC5B5a.25051
-Date: Sat, 30 Jun 2018 09:14:54 +0000
+--15303501141.df8f4.24967
+Date: Sat, 30 Jun 2018 09:15:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,9 +69,8 @@ mail.com&gt;"> <span class=3D"fn">Germano Massullo</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED WONTFIX - nouveau does not detect monitor native resol=
-ution (Geforce GT240 / GT215)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92192">bug 92192<=
+   title=3D"RESOLVED WONTFIX - [NV46] nouveau can't find VBIOS"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D84741">bug 84741<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -83,33 +81,31 @@ ution (Geforce GT240 / GT215)"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>WONTFIX
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Status</td>
            <td>NEW
            </td>
            <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>WONTFIX
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED WONTFIX - nouveau does not detect monitor native resol=
-ution (Geforce GT240 / GT215)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92192#c6">Comment=
+   title=3D"RESOLVED WONTFIX - [NV46] nouveau can't find VBIOS"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D84741#c6">Comment=
  # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED WONTFIX - nouveau does not detect monitor native resol=
-ution (Geforce GT240 / GT215)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92192">bug 92192<=
+   title=3D"RESOLVED WONTFIX - [NV46] nouveau can't find VBIOS"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D84741">bug 84741<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 germano.massullo&#64;gmail.com" title=3D"Germano Massullo &lt;germano.massu=
@@ -132,9 +128,9 @@ I close the bugreport as wontfix</pre>
     </body>
 </html>=
 
---15303500940.93EaC5B5a.25051--
+--15303501141.df8f4.24967--
 
---===============2053698311==
+--===============1279128195==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -144,4 +140,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2053698311==--
+--===============1279128195==--
