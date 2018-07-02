@@ -1,72 +1,29 @@
-From: Ville Syrjala <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Subject: [PATCH v3 5/9] drm/nouveau: Use
- drm_connector_for_each_possible_encoder()
-Date: Mon,  2 Jul 2018 18:29:27 +0300
-Message-ID: <20180702152927.13351-1-ville.syrjala@linux.intel.com>
-References: <20180628131315.14156-6-ville.syrjala@linux.intel.com>
+From: Christoph Hellwig <hch@infradead.org>
+Subject: Re: [PATCH v4 1/2] ARM: dma-mapping: Set proper DMA ops in
+ arm_iommu_detach_device()
+Date: Mon, 2 Jul 2018 08:34:16 -0700
+Message-ID: <20180702153416.GA8079@infradead.org>
+References: <20180530140625.21247-1-thierry.reding@gmail.com>
+ <20180530140625.21247-2-thierry.reding@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180628131315.14156-6-ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org>
+Content-Disposition: inline
+In-Reply-To: <20180530140625.21247-2-thierry.reding@gmail.com>
+List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-arm-kernel>,
+ <mailto:linux-arm-kernel-request@lists.infradead.org?subject=unsubscribe>
+List-Archive: <http://lists.infradead.org/pipermail/linux-arm-kernel/>
+List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
+List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
+List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
+ <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
+Errors-To: linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: nouveau@lists.freedesktop.org, Joerg Roedel <joro@8bytes.org>, Russell King <linux@armlinux.org.uk>, dri-devel@lists.freedesktop.org, Christoph Hellwig <hch@infradead.org>, Jordan Crouse <jcrouse@codeaurora.org>, iommu@lists.linux-foundation.org, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>, linux-tegra@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>, linux-arm-kernel@lists.infradead.org
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClVz
-ZSBkcm1fY29ubmVjdG9yX2Zvcl9lYWNoX3Bvc3NpYmxlX2VuY29kZXIoKSBmb3IgaXRlcmF0aW5n
-CmNvbm5lY3Rvci0+ZW5jb2Rlcl9pZHNbXS4gQSBiaXQgbW9yZSBjb252ZW5pZW50IG5vdCBoYXZp
-bmcKdG8gZGVhbCB3aXRoIHRoZSBpbXBsZW1lbnRhdGlvbiBkZXRhaWxzLgoKdjI6IFJlcGxhY2Ug
-ZHJtX2Zvcl9lYWNoX2Nvbm5lY3Rvcl9lbmNvZGVyX2lkcygpIHdpdGgKICAgIGRybV9jb25uZWN0
-b3JfZm9yX2VhY2hfcG9zc2libGVfZW5jb2RlcigpIChEYW5pZWwpCnYzOiBJbml0aWFsaXplIG52
-X2VuY29kZXIgdG8gTlVMTCB0byBzaHV0IHVwIGdjYy9zbWF0Y2gKCkNjOiBEYW4gQ2FycGVudGVy
-IDxkYW4uY2FycGVudGVyQG9yYWNsZS5jb20+CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0
-dGVyQGZmd2xsLmNoPgpDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgpDYzogbm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOk
-IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IEFsZXggRGV1Y2hl
-ciA8YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT4gI3YxCi0tLQogZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYyB8IDIzICsrKystLS0tLS0tLS0tLS0tLS0tLS0tCiAx
-IGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAxOSBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jIGIvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwppbmRleCA3YjU1N2MzNTQzMDcu
-LmJiNDZjMWQ0ODljZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9jb25uZWN0b3IuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5l
-Y3Rvci5jCkBAIC0zNjMsMTkgKzM2MywxMSBAQCBtb2R1bGVfcGFyYW1fbmFtZWQoaGRtaW1oeiwg
-bm91dmVhdV9oZG1pbWh6LCBpbnQsIDA0MDApOwogc3RydWN0IG5vdXZlYXVfZW5jb2RlciAqCiBm
-aW5kX2VuY29kZXIoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciwgaW50IHR5cGUpCiB7
-Ci0Jc3RydWN0IGRybV9kZXZpY2UgKmRldiA9IGNvbm5lY3Rvci0+ZGV2OwogCXN0cnVjdCBub3V2
-ZWF1X2VuY29kZXIgKm52X2VuY29kZXI7CiAJc3RydWN0IGRybV9lbmNvZGVyICplbmM7Ci0JaW50
-IGksIGlkOwotCi0JZm9yIChpID0gMDsgaSA8IERSTV9DT05ORUNUT1JfTUFYX0VOQ09ERVI7IGkr
-KykgewotCQlpZCA9IGNvbm5lY3Rvci0+ZW5jb2Rlcl9pZHNbaV07Ci0JCWlmICghaWQpCi0JCQli
-cmVhazsKKwlpbnQgaTsKIAotCQllbmMgPSBkcm1fZW5jb2Rlcl9maW5kKGRldiwgTlVMTCwgaWQp
-OwotCQlpZiAoIWVuYykKLQkJCWNvbnRpbnVlOworCWRybV9jb25uZWN0b3JfZm9yX2VhY2hfcG9z
-c2libGVfZW5jb2Rlcihjb25uZWN0b3IsIGVuYywgaSkgewogCQludl9lbmNvZGVyID0gbm91dmVh
-dV9lbmNvZGVyKGVuYyk7CiAKIAkJaWYgKHR5cGUgPT0gRENCX09VVFBVVF9BTlkgfHwKQEAgLTQy
-MCw3ICs0MTIsNyBAQCBub3V2ZWF1X2Nvbm5lY3Rvcl9kZGNfZGV0ZWN0KHN0cnVjdCBkcm1fY29u
-bmVjdG9yICpjb25uZWN0b3IpCiAJc3RydWN0IG5vdXZlYXVfY29ubmVjdG9yICpudl9jb25uZWN0
-b3IgPSBub3V2ZWF1X2Nvbm5lY3Rvcihjb25uZWN0b3IpOwogCXN0cnVjdCBub3V2ZWF1X2RybSAq
-ZHJtID0gbm91dmVhdV9kcm0oZGV2KTsKIAlzdHJ1Y3QgbnZrbV9ncGlvICpncGlvID0gbnZ4eF9n
-cGlvKCZkcm0tPmNsaWVudC5kZXZpY2UpOwotCXN0cnVjdCBub3V2ZWF1X2VuY29kZXIgKm52X2Vu
-Y29kZXI7CisJc3RydWN0IG5vdXZlYXVfZW5jb2RlciAqbnZfZW5jb2RlciA9IE5VTEw7CiAJc3Ry
-dWN0IGRybV9lbmNvZGVyICplbmNvZGVyOwogCWludCBpLCBwYW5lbCA9IC1FTk9ERVY7CiAKQEAg
-LTQzNiwxNCArNDI4LDcgQEAgbm91dmVhdV9jb25uZWN0b3JfZGRjX2RldGVjdChzdHJ1Y3QgZHJt
-X2Nvbm5lY3RvciAqY29ubmVjdG9yKQogCQl9CiAJfQogCi0JZm9yIChpID0gMDsgbnZfZW5jb2Rl
-ciA9IE5VTEwsIGkgPCBEUk1fQ09OTkVDVE9SX01BWF9FTkNPREVSOyBpKyspIHsKLQkJaW50IGlk
-ID0gY29ubmVjdG9yLT5lbmNvZGVyX2lkc1tpXTsKLQkJaWYgKGlkID09IDApCi0JCQlicmVhazsK
-LQotCQllbmNvZGVyID0gZHJtX2VuY29kZXJfZmluZChkZXYsIE5VTEwsIGlkKTsKLQkJaWYgKCFl
-bmNvZGVyKQotCQkJY29udGludWU7CisJZHJtX2Nvbm5lY3Rvcl9mb3JfZWFjaF9wb3NzaWJsZV9l
-bmNvZGVyKGNvbm5lY3RvciwgZW5jb2RlciwgaSkgewogCQludl9lbmNvZGVyID0gbm91dmVhdV9l
-bmNvZGVyKGVuY29kZXIpOwogCiAJCWlmIChudl9lbmNvZGVyLT5kY2ItPnR5cGUgPT0gRENCX09V
-VFBVVF9EUCkgewotLSAKMi4xNi40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+Looks good:
+
+Acked-by: Christoph Hellwig <hch@lst.de>
