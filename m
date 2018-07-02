@@ -1,158 +1,104 @@
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v2 5/9] drm/nouveau: Use
- drm_connector_for_each_possible_encoder()
-Date: Mon, 2 Jul 2018 17:05:30 +0300
-Message-ID: <20180702140530.GJ5565@intel.com>
-References: <20180628131315.14156-6-ville.syrjala@linux.intel.com>
- <20180630191221.a6o6gr7wdbjckkwm@mwanda>
- <20180702130445.GI5565@intel.com>
+From: Russell King - ARM Linux <linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>
+Subject: Re: [PATCH v4 1/2] ARM: dma-mapping: Set proper DMA ops in
+	arm_iommu_detach_device()
+Date: Mon, 2 Jul 2018 16:23:55 +0100
+Message-ID: <20180702152355.GM17271@n2100.armlinux.org.uk>
+References: <20180530140625.21247-1-thierry.reding@gmail.com>
+	<20180530140625.21247-2-thierry.reding@gmail.com>
+	<20180702115317.GB5280@ulmo>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20180702130445.GI5565@intel.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Dan Carpenter <dan.carpenter@oracle.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, kbuild@01.org, kbuild-all@01.org, nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
+In-Reply-To: <20180702115317.GB5280@ulmo>
+List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/iommu>,
+	<mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.linuxfoundation.org/pipermail/iommu/>
+List-Post: <mailto:iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
+List-Help: <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/iommu>,
+	<mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=subscribe>
+Sender: iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
+Errors-To: iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
+To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBKdWwgMDIsIDIwMTggYXQgMDQ6MDQ6NDVQTSArMDMwMCwgVmlsbGUgU3lyasOkbMOk
-IHdyb3RlOgo+IE9uIFNhdCwgSnVuIDMwLCAyMDE4IGF0IDEwOjEyOjIxUE0gKzAzMDAsIERhbiBD
-YXJwZW50ZXIgd3JvdGU6Cj4gPiBIaSBWaWxsZSwKPiA+IAo+ID4gVGhhbmsgeW91IGZvciB0aGUg
-cGF0Y2ghIFBlcmhhcHMgc29tZXRoaW5nIHRvIGltcHJvdmU6Cj4gPiAKPiA+IHVybDogICAgaHR0
-cHM6Ly9naXRodWIuY29tLzBkYXktY2kvbGludXgvY29tbWl0cy9WaWxsZS1TeXJqYWxhL2RybS1U
-aGlyZC1hdHRlbXB0LWF0LWZpeGluZy10aGUtZmItaGVscGVyLWJlc3RfZW5jb2Rlci1tZXNzLzIw
-MTgwNjI5LTAxNDIwMgo+ID4gYmFzZTogICBnaXQ6Ly9wZW9wbGUuZnJlZWRlc2t0b3Aub3JnL35h
-aXJsaWVkL2xpbnV4LmdpdCBkcm0tbmV4dAo+ID4gCj4gPiBzbWF0Y2ggd2FybmluZ3M6Cj4gPiBk
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jOjQ2MSBub3V2ZWF1X2Nv
-bm5lY3Rvcl9kZGNfZGV0ZWN0KCkgZXJyb3I6IHVuaW5pdGlhbGl6ZWQgc3ltYm9sICdudl9lbmNv
-ZGVyJy4KPiA+IAo+ID4gIyBodHRwczovL2dpdGh1Yi5jb20vMGRheS1jaS9saW51eC9jb21taXQv
-N2VjOGJiNjUzODZlZGZiMGIyYmRjOGU4MzkxZWI1ZTZlYWM0NGMwNgo+ID4gZ2l0IHJlbW90ZSBh
-ZGQgbGludXgtcmV2aWV3IGh0dHBzOi8vZ2l0aHViLmNvbS8wZGF5LWNpL2xpbnV4Cj4gPiBnaXQg
-cmVtb3RlIHVwZGF0ZSBsaW51eC1yZXZpZXcKPiA+IGdpdCBjaGVja291dCA3ZWM4YmI2NTM4NmVk
-ZmIwYjJiZGM4ZTgzOTFlYjVlNmVhYzQ0YzA2Cj4gPiB2aW0gKy9udl9lbmNvZGVyICs0NjEgZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwo+ID4gCj4gPiA2ZWU3Mzg2
-MTAgQmVuIFNrZWdncyAgICAgIDIwMDktMTItMTEgIDQwNyAgCj4gPiA4Nzc3YzVjMTEgQmVuIFNr
-ZWdncyAgICAgIDIwMTQtMDYtMDYgIDQwOCAgc3RhdGljIHN0cnVjdCBub3V2ZWF1X2VuY29kZXIg
-Kgo+ID4gODc3N2M1YzExIEJlbiBTa2VnZ3MgICAgICAyMDE0LTA2LTA2ICA0MDkgIG5vdXZlYXVf
-Y29ubmVjdG9yX2RkY19kZXRlY3Qoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikKPiA+
-IDZlZTczODYxMCBCZW4gU2tlZ2dzICAgICAgMjAwOS0xMi0xMSAgNDEwICB7Cj4gPiA2ZWU3Mzg2
-MTAgQmVuIFNrZWdncyAgICAgIDIwMDktMTItMTEgIDQxMSAgCXN0cnVjdCBkcm1fZGV2aWNlICpk
-ZXYgPSBjb25uZWN0b3ItPmRldjsKPiA+IDFhMTg0MWQzMCBCZW4gU2tlZ2dzICAgICAgMjAxMi0x
-Mi0xMCAgNDEyICAJc3RydWN0IG5vdXZlYXVfY29ubmVjdG9yICpudl9jb25uZWN0b3IgPSBub3V2
-ZWF1X2Nvbm5lY3Rvcihjb25uZWN0b3IpOwo+ID4gNzcxNDVmMWNiIEJlbiBTa2VnZ3MgICAgICAy
-MDEyLTA3LTMxICA0MTMgIAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKGRl
-dik7Cj4gPiAxMTY3YzZiYzUgQmVuIFNrZWdncyAgICAgIDIwMTYtMDUtMTggIDQxNCAgCXN0cnVj
-dCBudmttX2dwaW8gKmdwaW8gPSBudnh4X2dwaW8oJmRybS0+Y2xpZW50LmRldmljZSk7Cj4gPiA4
-Nzc3YzVjMTEgQmVuIFNrZWdncyAgICAgIDIwMTQtMDYtMDYgIDQxNSAgCXN0cnVjdCBub3V2ZWF1
-X2VuY29kZXIgKm52X2VuY29kZXI7Cj4gPiA2ZDM4NWMwYWEgUm9iIENsYXJrICAgICAgIDIwMTQt
-MDctMTcgIDQxNiAgCXN0cnVjdCBkcm1fZW5jb2RlciAqZW5jb2RlcjsKPiA+IDFhMTg0MWQzMCBC
-ZW4gU2tlZ2dzICAgICAgMjAxMi0xMi0xMCAgNDE3ICAJaW50IGksIHBhbmVsID0gLUVOT0RFVjsK
-PiA+IDFhMTg0MWQzMCBCZW4gU2tlZ2dzICAgICAgMjAxMi0xMi0xMCAgNDE4ICAKPiA+IDFhMTg0
-MWQzMCBCZW4gU2tlZ2dzICAgICAgMjAxMi0xMi0xMCAgNDE5ICAJLyogZURQIHBhbmVscyBuZWVk
-IHBvd2VyaW5nIG9uIGJ5IHVzIChpZiB0aGUgVkJJT1MgZG9lc24ndCBkZWZhdWx0IGl0Cj4gPiAx
-YTE4NDFkMzAgQmVuIFNrZWdncyAgICAgIDIwMTItMTItMTAgIDQyMCAgCSAqIHRvIG9uKSBiZWZv
-cmUgZG9pbmcgYW55IEFVWCBjaGFubmVsIHRyYW5zYWN0aW9ucy4gIExWRFMgcGFuZWwgcG93ZXIK
-PiA+IDFhMTg0MWQzMCBCZW4gU2tlZ2dzICAgICAgMjAxMi0xMi0xMCAgNDIxICAJICogaXMgaGFu
-ZGxlZCBieSB0aGUgU09SIGl0c2VsZiwgYW5kIG5vdCByZXF1aXJlZCBmb3IgTFZEUyBEREMuCj4g
-PiAxYTE4NDFkMzAgQmVuIFNrZWdncyAgICAgIDIwMTItMTItMTAgIDQyMiAgCSAqLwo+ID4gMWEx
-ODQxZDMwIEJlbiBTa2VnZ3MgICAgICAyMDEyLTEyLTEwICA0MjMgIAlpZiAobnZfY29ubmVjdG9y
-LT50eXBlID09IERDQl9DT05ORUNUT1JfZURQKSB7Cj4gPiAyZWE3MjQ5ZmUgQmVuIFNrZWdncyAg
-ICAgIDIwMTUtMDgtMjAgIDQyNCAgCQlwYW5lbCA9IG52a21fZ3Bpb19nZXQoZ3BpbywgMCwgRENC
-X0dQSU9fUEFORUxfUE9XRVIsIDB4ZmYpOwo+ID4gMWExODQxZDMwIEJlbiBTa2VnZ3MgICAgICAy
-MDEyLTEyLTEwICA0MjUgIAkJaWYgKHBhbmVsID09IDApIHsKPiA+IDJlYTcyNDlmZSBCZW4gU2tl
-Z2dzICAgICAgMjAxNS0wOC0yMCAgNDI2ICAJCQludmttX2dwaW9fc2V0KGdwaW8sIDAsIERDQl9H
-UElPX1BBTkVMX1BPV0VSLCAweGZmLCAxKTsKPiA+IDFhMTg0MWQzMCBCZW4gU2tlZ2dzICAgICAg
-MjAxMi0xMi0xMCAgNDI3ICAJCQltc2xlZXAoMzAwKTsKPiA+IDFhMTg0MWQzMCBCZW4gU2tlZ2dz
-ICAgICAgMjAxMi0xMi0xMCAgNDI4ICAJCX0KPiA+IDFhMTg0MWQzMCBCZW4gU2tlZ2dzICAgICAg
-MjAxMi0xMi0xMCAgNDI5ICAJfQo+ID4gNmVlNzM4NjEwIEJlbiBTa2VnZ3MgICAgICAyMDA5LTEy
-LTExICA0MzAgIAo+ID4gN2VjOGJiNjUzIFZpbGxlIFN5cmrDpGzDpCAgIDIwMTgtMDYtMjggIDQz
-MSAgCWRybV9jb25uZWN0b3JfZm9yX2VhY2hfcG9zc2libGVfZW5jb2Rlcihjb25uZWN0b3IsIGVu
-Y29kZXIsIGkpIHsKPiA+IDZkMzg1YzBhYSBSb2IgQ2xhcmsgICAgICAgMjAxNC0wNy0xNyAgNDMy
-ICAJCW52X2VuY29kZXIgPSBub3V2ZWF1X2VuY29kZXIoZW5jb2Rlcik7Cj4gPiAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF5eXl5eXl5eXl5e
-Xl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl4KPiA+IElmIHdlIGVudGVyIHRoZSBsb29wIHRoYXQg
-bWVhbnMgbnZfZW5jb2RlciBpcyBub24tTlVMTC4gIFNtYXRjaCBjYW4ndAo+ID4gcHJvdmUgdGhh
-dCB3ZSBhbHdheXMgZW50ZXIgdGhlIGxvb3AgaW4gdGhpcyBjYXNlIGZvciB3aGF0ZXZlciByZWFz
-b24gYnV0Cj4gPiBteSBndWVzcyBpcyB0aGF0IHdlIGFsd2F5cyBkby4KPiA+IAo+ID4gNGNhMmI3
-MTIwIEZyYW5jaXNjbyBKZXJleiAyMDEwLTA4LTA4ICA0MzMgIAo+ID4gODc3N2M1YzExIEJlbiBT
-a2VnZ3MgICAgICAyMDE0LTA2LTA2ICA0MzQgIAkJaWYgKG52X2VuY29kZXItPmRjYi0+dHlwZSA9
-PSBEQ0JfT1VUUFVUX0RQKSB7Cj4gPiA4Nzc3YzVjMTEgQmVuIFNrZWdncyAgICAgIDIwMTQtMDYt
-MDYgIDQzNSAgCQkJaW50IHJldCA9IG5vdXZlYXVfZHBfZGV0ZWN0KG52X2VuY29kZXIpOwo+ID4g
-NTJhYTMwZjI1IEJlbiBTa2VnZ3MgICAgICAyMDE2LTExLTA0ICA0MzYgIAkJCWlmIChyZXQgPT0g
-Tk9VVkVBVV9EUF9NU1QpCj4gPiA1MmFhMzBmMjUgQmVuIFNrZWdncyAgICAgIDIwMTYtMTEtMDQg
-IDQzNyAgCQkJCXJldHVybiBOVUxMOwo+ID4gNTJhYTMwZjI1IEJlbiBTa2VnZ3MgICAgICAyMDE2
-LTExLTA0ICA0MzggIAkJCWlmIChyZXQgPT0gTk9VVkVBVV9EUF9TU1QpCj4gPiA4Nzc3YzVjMTEg
-QmVuIFNrZWdncyAgICAgIDIwMTQtMDYtMDYgIDQzOSAgCQkJCWJyZWFrOwo+ID4gODc3N2M1YzEx
-IEJlbiBTa2VnZ3MgICAgICAyMDE0LTA2LTA2ICA0NDAgIAkJfSBlbHNlCj4gPiAzOWMxYzkwMTEg
-THVrYXMgV3VubmVyICAgIDIwMTYtMDEtMTEgIDQ0MSAgCQlpZiAoKHZnYV9zd2l0Y2hlcm9vX2hh
-bmRsZXJfZmxhZ3MoKSAmCj4gPiAzOWMxYzkwMTEgTHVrYXMgV3VubmVyICAgIDIwMTYtMDEtMTEg
-IDQ0MiAgCQkgICAgIFZHQV9TV0lUQ0hFUk9PX0NBTl9TV0lUQ0hfRERDKSAmJgo+ID4gMzljMWM5
-MDExIEx1a2FzIFd1bm5lciAgICAyMDE2LTAxLTExICA0NDMgIAkJICAgIG52X2VuY29kZXItPmRj
-Yi0+dHlwZSA9PSBEQ0JfT1VUUFVUX0xWRFMgJiYKPiA+IDM5YzFjOTAxMSBMdWthcyBXdW5uZXIg
-ICAgMjAxNi0wMS0xMSAgNDQ0ICAJCSAgICBudl9lbmNvZGVyLT5pMmMpIHsKPiA+IDM5YzFjOTAx
-MSBMdWthcyBXdW5uZXIgICAgMjAxNi0wMS0xMSAgNDQ1ICAJCQlpbnQgcmV0Owo+ID4gMzljMWM5
-MDExIEx1a2FzIFd1bm5lciAgICAyMDE2LTAxLTExICA0NDYgIAkJCXZnYV9zd2l0Y2hlcm9vX2xv
-Y2tfZGRjKGRldi0+cGRldik7Cj4gPiAzOWMxYzkwMTEgTHVrYXMgV3VubmVyICAgIDIwMTYtMDEt
-MTEgIDQ0NyAgCQkJcmV0ID0gbnZrbV9wcm9iZV9pMmMobnZfZW5jb2Rlci0+aTJjLCAweDUwKTsK
-PiA+IDM5YzFjOTAxMSBMdWthcyBXdW5uZXIgICAgMjAxNi0wMS0xMSAgNDQ4ICAJCQl2Z2Ffc3dp
-dGNoZXJvb191bmxvY2tfZGRjKGRldi0+cGRldik7Cj4gPiAzOWMxYzkwMTEgTHVrYXMgV3VubmVy
-ICAgIDIwMTYtMDEtMTEgIDQ0OSAgCQkJaWYgKHJldCkKPiA+IDM5YzFjOTAxMSBMdWthcyBXdW5u
-ZXIgICAgMjAxNi0wMS0xMSAgNDUwICAJCQkJYnJlYWs7Cj4gPiAzOWMxYzkwMTEgTHVrYXMgV3Vu
-bmVyICAgIDIwMTYtMDEtMTEgIDQ1MSAgCQl9IGVsc2UKPiA+IDg3NzdjNWMxMSBCZW4gU2tlZ2dz
-ICAgICAgMjAxNC0wNi0wNiAgNDUyICAJCWlmIChudl9lbmNvZGVyLT5pMmMpIHsKPiA+IDJhYTVl
-YWM1MSBCZW4gU2tlZ2dzICAgICAgMjAxNS0wOC0yMCAgNDUzICAJCQlpZiAobnZrbV9wcm9iZV9p
-MmMobnZfZW5jb2Rlci0+aTJjLCAweDUwKSkKPiA+IDFhMTg0MWQzMCBCZW4gU2tlZ2dzICAgICAg
-MjAxMi0xMi0xMCAgNDU0ICAJCQkJYnJlYWs7Cj4gPiA2ZWU3Mzg2MTAgQmVuIFNrZWdncyAgICAg
-IDIwMDktMTItMTEgIDQ1NSAgCQl9Cj4gPiA2ZWU3Mzg2MTAgQmVuIFNrZWdncyAgICAgIDIwMDkt
-MTItMTEgIDQ1NiAgCX0KPiA+IDZlZTczODYxMCBCZW4gU2tlZ2dzICAgICAgMjAwOS0xMi0xMSAg
-NDU3ICAKPiA+IDFhMTg0MWQzMCBCZW4gU2tlZ2dzICAgICAgMjAxMi0xMi0xMCAgNDU4ICAJLyog
-ZURQIHBhbmVsIG5vdCBkZXRlY3RlZCwgcmVzdG9yZSBwYW5lbCBwb3dlciBHUElPIHRvIHByZXZp
-b3VzCj4gPiAxYTE4NDFkMzAgQmVuIFNrZWdncyAgICAgIDIwMTItMTItMTAgIDQ1OSAgCSAqIHN0
-YXRlIHRvIGF2b2lkIGNvbmZ1c2luZyB0aGUgU09SIGZvciBvdGhlciBvdXRwdXQgdHlwZXMuCj4g
-PiAxYTE4NDFkMzAgQmVuIFNrZWdncyAgICAgIDIwMTItMTItMTAgIDQ2MCAgCSAqLwo+ID4gODc3
-N2M1YzExIEJlbiBTa2VnZ3MgICAgICAyMDE0LTA2LTA2IEA0NjEgIAlpZiAoIW52X2VuY29kZXIg
-JiYgcGFuZWwgPT0gMCkKPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICBeXl5eXl5eXl5eXgo+ID4gU28gdGVzdGluZyBmb3IgTlVMTCBkb2Vzbid0
-IG1ha2Ugc2Vuc2UuICBJdCdzIGVpdGhlciBub24tTlVMTCBpZiB3ZQo+ID4gZW50ZXJlZCB0aGUg
-bG9vcCBhdCBsZWFzdCBvbmNlIG9yIGl0J3MgdW5pbml0aWFsaXplZCBpZiB3ZSBkaWRuJ3QgZW50
-ZXIKPiA+IHRoZSBsb29wLgo+IAo+IFllYWgsIHNlZW1zIGxpa2UgYSBib2d1cyBjaGVjay4gSSBz
-dXBwb3NlIGluIHRoZW9yeSB5b3UgY291bGQgaGF2ZSBhCj4gY29ubmVjdG9yIHdpdGggbm8gZW5j
-b2RlcnMsIGFsdGhvdWdoIEkgY2FuJ3QgdGhpbmsgb2YgYW55IGdvb2QgcmVhc29uCj4gd2h5IGFu
-eW9uZSB3b3VsZCBkbyB0aGF0LgoKSW4gZmFjdCB0aGlzIHRoaW5nIHNlZW1zIHRvIHVwc2V0IGdj
-YyBhcyB3ZWxsLiBJdCdzIG5vdCBwYXJ0aWN1bGFybHkKaGVscGZ1bCBpbiBpdHMgd2FybmluZyBt
-ZXNzYWdlIHRob3VnaDoKCi4uL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVj
-dG9yLmM6IEluIGZ1bmN0aW9uIOKAmG5vdXZlYXVfY29ubmVjdG9yX2RldGVjdOKAmToKLi4vZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYzo1OTc6MzM6IHdhcm5pbmc6
-IOKAmG52X2VuY29kZXLigJkgbWF5IGJlIHVzZWQgdW5pbml0aWFsaXplZCBpbiB0aGlzIGZ1bmN0
-aW9uClstV21heWJlLXVuaW5pdGlhbGl6ZWRdCiAgIGlmIChudl9wYXJ0bmVyICYmICgobnZfZW5j
-b2Rlci0+ZGNiLT50eXBlID09IERDQl9PVVRQVVRfQU5BTE9HICYmCiAgICAgICAgICAgICAgICAg
-ICAgICAgICAgfn5+fn5+fn5+fl5+fn5+CgpObyBpbmRpY2F0aW9uIHRoYXQgaXQncyBub3V2ZWF1
-X2Nvbm5lY3Rvcl9kZGNfZGV0ZWN0KCkgdGhhdCBzdXBwb3NlZGx5CnN1cHBsaWVzIHRoZSB1bmlu
-aXRpYWxpemVkIHBvaW50ZXIuIEkgdGhpbmsgSSdsbCBqdXN0IHRvc3MgaW4gYSA9TlVMTCBpbgp0
-aGVyZSB0byBzaWxlbmNlIHRoaXMgbm9pc2UuCgo+IAo+ID4gCj4gPiAyZWE3MjQ5ZmUgQmVuIFNr
-ZWdncyAgICAgIDIwMTUtMDgtMjAgIDQ2MiAgCQludmttX2dwaW9fc2V0KGdwaW8sIDAsIERDQl9H
-UElPX1BBTkVMX1BPV0VSLCAweGZmLCBwYW5lbCk7Cj4gPiAxYTE4NDFkMzAgQmVuIFNrZWdncyAg
-ICAgIDIwMTItMTItMTAgIDQ2MyAgCj4gPiA4Nzc3YzVjMTEgQmVuIFNrZWdncyAgICAgIDIwMTQt
-MDYtMDYgIDQ2NCAgCXJldHVybiBudl9lbmNvZGVyOwo+ID4gNmVlNzM4NjEwIEJlbiBTa2VnZ3Mg
-ICAgICAyMDA5LTEyLTExICA0NjUgIH0KPiA+IDZlZTczODYxMCBCZW4gU2tlZ2dzICAgICAgMjAw
-OS0xMi0xMSAgNDY2ICAKPiA+IAo+ID4gCj4gPiAtLS0KPiA+IDAtREFZIGtlcm5lbCB0ZXN0IGlu
-ZnJhc3RydWN0dXJlICAgICAgICAgICAgICAgIE9wZW4gU291cmNlIFRlY2hub2xvZ3kgQ2VudGVy
-Cj4gPiBodHRwczovL2xpc3RzLjAxLm9yZy9waXBlcm1haWwva2J1aWxkLWFsbCAgICAgICAgICAg
-ICAgICAgICBJbnRlbCBDb3Jwb3JhdGlvbgo+IAo+IC0tIAo+IFZpbGxlIFN5cmrDpGzDpAo+IElu
-dGVsCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBk
-cmktZGV2ZWwgbWFpbGluZyBsaXN0Cj4gZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+
-IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
-CgotLSAKVmlsbGUgU3lyasOkbMOkCkludGVsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2RyaS1kZXZlbAo=
+On Mon, Jul 02, 2018 at 01:53:17PM +0200, Thierry Reding wrote:
+> On Wed, May 30, 2018 at 04:06:24PM +0200, Thierry Reding wrote:
+> > From: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> > 
+> > Instead of setting the DMA ops pointer to NULL, set the correct,
+> > non-IOMMU ops depending on the device's coherency setting.
+> > 
+> > Signed-off-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> > ---
+> > Changes in v4:
+> > - new patch to fix existing arm_iommu_detach_device() to do what we need
+> > 
+> >  arch/arm/mm/dma-mapping.c | 12 ++++++------
+> >  1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> Christoph, Russell,
+> 
+> could either of you provide an Acked-by for this? I think it makes the
+> most sense for Ben to pick this up into the Nouveau tree along with
+> patch 2/2.
+
+Looks fine to me.
+
+Acked-by: Russell King <rmk+kernel-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>
+
+Thanks.
+
+> 
+> Thierry
+> 
+> > diff --git a/arch/arm/mm/dma-mapping.c b/arch/arm/mm/dma-mapping.c
+> > index af27f1c22d93..87a0037574e4 100644
+> > --- a/arch/arm/mm/dma-mapping.c
+> > +++ b/arch/arm/mm/dma-mapping.c
+> > @@ -1151,6 +1151,11 @@ int arm_dma_supported(struct device *dev, u64 mask)
+> >  	return __dma_supported(dev, mask, false);
+> >  }
+> >  
+> > +static const struct dma_map_ops *arm_get_dma_map_ops(bool coherent)
+> > +{
+> > +	return coherent ? &arm_coherent_dma_ops : &arm_dma_ops;
+> > +}
+> > +
+> >  #ifdef CONFIG_ARM_DMA_USE_IOMMU
+> >  
+> >  static int __dma_info_to_prot(enum dma_data_direction dir, unsigned long attrs)
+> > @@ -2296,7 +2301,7 @@ void arm_iommu_detach_device(struct device *dev)
+> >  	iommu_detach_device(mapping->domain, dev);
+> >  	kref_put(&mapping->kref, release_iommu_mapping);
+> >  	to_dma_iommu_mapping(dev) = NULL;
+> > -	set_dma_ops(dev, NULL);
+> > +	set_dma_ops(dev, arm_get_dma_map_ops(dev->archdata.dma_coherent));
+> >  
+> >  	pr_debug("Detached IOMMU controller from %s device.\n", dev_name(dev));
+> >  }
+> > @@ -2357,11 +2362,6 @@ static void arm_teardown_iommu_dma_ops(struct device *dev) { }
+> >  
+> >  #endif	/* CONFIG_ARM_DMA_USE_IOMMU */
+> >  
+> > -static const struct dma_map_ops *arm_get_dma_map_ops(bool coherent)
+> > -{
+> > -	return coherent ? &arm_coherent_dma_ops : &arm_dma_ops;
+> > -}
+> > -
+> >  void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+> >  			const struct iommu_ops *iommu, bool coherent)
+> >  {
+> > -- 
+> > 2.17.0
+> > 
+
+
+
+-- 
+RMK's Patch system: http://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 8.8Mbps down 630kbps up
+According to speedtest.net: 8.21Mbps down 510kbps up
