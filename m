@@ -1,13 +1,11 @@
 From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 1/2] drm/nouveau: Fix runtime PM leak in drm_open()
-Date: Tue,  3 Jul 2018 18:05:59 -0400
-Message-ID: <20180703220602.16664-2-lyude@redhat.com>
-References: <20180703220602.16664-1-lyude@redhat.com>
+Subject: [PATCH 0/2] drm/nouveau: Fix runtime PM leaks
+Date: Tue,  3 Jul 2018 18:05:58 -0400
+Message-ID: <20180703220602.16664-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180703220602.16664-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,28 +16,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: Archit Taneja <architt-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Tm90aWNlZCB0aGlzIGFzIEkgd2FzIHNraW1taW5nIHRocm91Z2gsIGlmIHdlIGZhaWwgdG8gYWxs
-b2NhdGUgbWVtb3J5CmZvciBjbGkgd2UnbGwgZW5kIHVwIHJldHVybmluZyB3aXRob3V0IGRyb3Bw
-aW5nIHRoZSBydW50aW1lIFBNIHJlZiB3ZQpnb3QuIEFkZGl0aW9uYWxseSwgd2UnbGwgZXZlbiBy
-ZXR1cm4gdGhlIHdyb25nIHJldHVybiBjb2RlISAocmV0IG1vc3QKbGlrZWx5IHdpbGwgPT0gMCBo
-ZXJlLCB3ZSB3YW50IC1FTk9NRU0pLgoKU2lnbmVkLW9mZi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVA
-cmVkaGF0LmNvbT4KQ2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcKLS0tCiBkcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIHwgNiArKysrLS0KIDEgZmlsZSBjaGFuZ2VkLCA0IGlu
-c2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9kcm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-ZHJtLmMKaW5kZXggMDQ1MmIxOGQzNmI5Li4wZjY2OGUyNzVlZTEgMTAwNjQ0Ci0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9kcm0uYwpAQCAtOTE5LDggKzkxOSwxMCBAQCBub3V2ZWF1X2RybV9vcGVu
-KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBkcm1fZmlsZSAqZnByaXYpCiAJZ2V0X3Rh
-c2tfY29tbSh0bXBuYW1lLCBjdXJyZW50KTsKIAlzbnByaW50ZihuYW1lLCBzaXplb2YobmFtZSks
-ICIlc1slZF0iLCB0bXBuYW1lLCBwaWRfbnIoZnByaXYtPnBpZCkpOwogCi0JaWYgKCEoY2xpID0g
-a3phbGxvYyhzaXplb2YoKmNsaSksIEdGUF9LRVJORUwpKSkKLQkJcmV0dXJuIHJldDsKKwlpZiAo
-IShjbGkgPSBremFsbG9jKHNpemVvZigqY2xpKSwgR0ZQX0tFUk5FTCkpKSB7CisJCXJldCA9IC1F
-Tk9NRU07CisJCWdvdG8gZG9uZTsKKwl9CiAKIAlyZXQgPSBub3V2ZWF1X2NsaV9pbml0KGRybSwg
-bmFtZSwgY2xpKTsKIAlpZiAocmV0KQotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUK
+T25lIHZlcnkgZWFzeSB0byB0cmlnZ2VyIHJ1bnRpbWUgUE0gbGVhaywgYWxvbmcgd2l0aCBhIHJh
+cmUgbmV2ZXIgYmVmb3JlCnNlZW4gcnVudGltZSBQTSBsZWFrIQoKTHl1ZGUgUGF1bCAoMik6CiAg
+ZHJtL25vdXZlYXU6IEZpeCBydW50aW1lIFBNIGxlYWsgaW4gZHJtX29wZW4oKQogIGRybS9ub3V2
+ZWF1OiBGaXggcnVudGltZSBQTSBsZWFrIGluIG52NTBfZGlzcF9hdG9taWNfY29tbWl0KCkKCiBk
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMgfCAyICstCiBkcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jICAgfCA2ICsrKystLQogMiBmaWxlcyBjaGFuZ2Vk
+LCA1IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgotLSAKMi4xNy4xCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
+dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
