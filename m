@@ -1,29 +1,44 @@
-From: Christoph Hellwig <hch@infradead.org>
-Subject: Re: [PATCH v4 1/2] ARM: dma-mapping: Set proper DMA ops in
- arm_iommu_detach_device()
-Date: Mon, 2 Jul 2018 08:34:16 -0700
-Message-ID: <20180702153416.GA8079@infradead.org>
-References: <20180530140625.21247-1-thierry.reding@gmail.com>
- <20180530140625.21247-2-thierry.reding@gmail.com>
+From: Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
+Subject: [bug report] drm/nouveau/disp/nv50-: add channel
+ interfaces to control error interrupts
+Date: Tue, 3 Jul 2018 14:51:13 +0300
+Message-ID: <20180703115048.mz2hnqc6js2gwup6@kili.mountain>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20180530140625.21247-2-thierry.reding@gmail.com>
-List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-arm-kernel>,
- <mailto:linux-arm-kernel-request@lists.infradead.org?subject=unsubscribe>
-List-Archive: <http://lists.infradead.org/pipermail/linux-arm-kernel/>
-List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
-List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
-List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
- <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-Errors-To: linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: nouveau@lists.freedesktop.org, Joerg Roedel <joro@8bytes.org>, Russell King <linux@armlinux.org.uk>, dri-devel@lists.freedesktop.org, Christoph Hellwig <hch@infradead.org>, Jordan Crouse <jcrouse@codeaurora.org>, iommu@lists.linux-foundation.org, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>, linux-tegra@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>, linux-arm-kernel@lists.infradead.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Looks good:
-
-Acked-by: Christoph Hellwig <hch@lst.de>
+SGVsbG8gQmVuIFNrZWdncywKClRoZSBwYXRjaCBhOWM0NGE4OGNhMmY6ICJkcm0vbm91dmVhdS9k
+aXNwL252NTAtOiBhZGQgY2hhbm5lbAppbnRlcmZhY2VzIHRvIGNvbnRyb2wgZXJyb3IgaW50ZXJy
+dXB0cyIgZnJvbSBNYXkgOCwgMjAxOCwgbGVhZHMgdG8KdGhlIGZvbGxvd2luZyBzdGF0aWMgY2hl
+Y2tlciB3YXJuaW5nOgoKCWRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3Av
+Y2hhbmdmMTE5LmM6NTUgZ2YxMTlfZGlzcF9jaGFuX2ludHIoKQoJd2Fybjogc2hvdWxkICcxIDw8
+IGNoYW4tPmNoaWQudXNlcicgYmUgYSA2NCBiaXQgdHlwZT8KCmRyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252a20vZW5naW5lL2Rpc3AvY2hhbmdmMTE5LmMKICAgIDUxICB2b2lkCiAgICA1MiAgZ2Yx
+MTlfZGlzcF9jaGFuX2ludHIoc3RydWN0IG52NTBfZGlzcF9jaGFuICpjaGFuLCBib29sIGVuKQog
+ICAgNTMgIHsKICAgIDU0ICAgICAgICAgIHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlID0gY2hh
+bi0+ZGlzcC0+YmFzZS5lbmdpbmUuc3ViZGV2LmRldmljZTsKICAgIDU1ICAgICAgICAgIGNvbnN0
+IHU2NCBtYXNrID0gMHgwMDAwMDAwMSA8PCBjaGFuLT5jaGlkLnVzZXI7CiAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIF5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXgogICAgNTYg
+ICAgICAgICAgaWYgKCFlbikgewogICAgNTcgICAgICAgICAgICAgICAgICBudmttX21hc2soZGV2
+aWNlLCAweDYxMDA5MCwgbWFzaywgMHgwMDAwMDAwMCk7CiAgICA1OCAgICAgICAgICAgICAgICAg
+IG52a21fbWFzayhkZXZpY2UsIDB4NjEwMGEwLCBtYXNrLCAweDAwMDAwMDAwKTsKICAgIDU5ICAg
+ICAgICAgIH0gZWxzZSB7CiAgICA2MCAgICAgICAgICAgICAgICAgIG52a21fbWFzayhkZXZpY2Us
+IDB4NjEwMGEwLCBtYXNrLCBtYXNrKTsKICAgIDYxICAgICAgICAgIH0KICAgIDYyICB9CgoKcmVn
+YXJkcywKZGFuIGNhcnBlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
+YXUK
