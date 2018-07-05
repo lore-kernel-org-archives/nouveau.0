@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106512] Fatal: NVIDIA GEFORCE 320M MCP89: Can't
- start X on kernel 4.15
-Date: Thu, 05 Jul 2018 17:29:13 +0000
-Message-ID: <bug-106512-8800-PT7bQhCK7C@http.bugs.freedesktop.org/>
-References: <bug-106512-8800@http.bugs.freedesktop.org/>
+From: Jeffery Miller <jmiller-QeEie8R3kYhl57MIdRCFDg@public.gmane.org>
+Subject: [PATCH 0/2] drm/nouveau: Fix panic on nouveau unload.
+Date: Thu,  5 Jul 2018 14:09:58 -0500
+Message-ID: <20180705191000.98872-1-jmiller@neverware.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0952217064=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106512-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,94 +18,37 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0952217064==
-Content-Type: multipart/alternative; boundary="15308117532.fc5Ee2aF.10039"
-Content-Transfer-Encoding: 7bit
-
-
---15308117532.fc5Ee2aF.10039
-Date: Thu, 5 Jul 2018 17:29:13 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106512
-
---- Comment #4 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 140478
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D140478&action=3Dedit
-possible fix
-
-mind trying that patch and see if that's better?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15308117532.fc5Ee2aF.10039
-Date: Thu, 5 Jul 2018 17:29:13 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Fatal: NVIDIA GEFORCE 320M MCP89: Can't start X on kernel=
- 4.15"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106512#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Fatal: NVIDIA GEFORCE 320M MCP89: Can't start X on kernel=
- 4.15"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106512">bug 10651=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D140478=
-" name=3D"attach_140478" title=3D"possible fix">attachment 140478</a> <a hr=
-ef=3D"attachment.cgi?id=3D140478&amp;action=3Dedit" title=3D"possible fix">=
-[details]</a></span>
-possible fix
-
-mind trying that patch and see if that's better?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15308117532.fc5Ee2aF.10039--
-
---===============0952217064==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0952217064==--
+SWYgaGF2ZSBhIGNvdXBsZSBwYXRjaGVzIEkgZm91bmQgd2hpbGUgbG9va2luZyBhdCBhIHBhbmlj
+Ckkgd2FzIHNlZWluZyB3aGlsZSB1bmxvYWRpbmcgdGhlIG5vdXZlYXUgbW9kdWxlLgoKVW5sb2Fk
+aW5nIHRoZSBub3V2ZWF1IG1vZHVsZSBvbiBteSBvcHRpbXVzIG5vdGVib29rIG1hY2hpbmUgY2F1
+c2VzCnRoZSBzeXN0ZW0gdG8gcGFuaWMuIFRoaXMgc3RhcnRlZCBvY2N1cmluZyB3aGVuIG1vdmlu
+ZyBmcm9tIDQuNAp0byA0LjE0LgoKVGhlc2UgcGF0Y2hlcyBtYWtlIGl0IHN1Y2ggdGhhdCB0aGUg
+c3lzdGVtIGRvZXMgbm90IHBhbmljCndoZW4gdW5sb2FkaW5nIHRoZSBtb2R1bGUuCgo0LjE0IGFs
+c28gcmVxdWlyZXMgY29tbWl0IDM0MTEyYmY0OTM1ZCAoImRybS9ub3V2ZWF1L2ZiY29uOiBmaXgg
+TlVMTApwb2ludGVyIGFjY2VzcyBpbiBub3V2ZWF1X2ZiY29uX2Rlc3Ryb3kiKSB3aGljaCB3YXMg
+YWxyZWFkeSBpbmNsdWRlZCBpbgp0aGUgNC4xOCB0cmVlLgoKVGhlc2UgcGF0Y2hlcyBtYWtlIGl0
+IHNvIEkgY2FuIHVubG9hZCB0aGUgbW9kdWxlIHdpdGhvdXQgYSBwYW5pYyBidXQKdGhlcmUgaXMg
+YSB3YXJuaW5nIHdoZW4gdW5sb2FkaW5nIHRoZSBtb2R1bGU6CiBzeXNmcyBncm91cCAncG93ZXIn
+IG5vdCBmb3VuZCBmb3Iga29iamVjdCAnbnZfYmFja2xpZ2h0JwogV0FSTklORzogQ1BVOiAyIFBJ
+RDogMTQzNCBhdCBmcy9zeXNmcy9ncm91cC5jOjIzNSBzeXNmc19yZW1vdmVfZ3JvdXArMHg3Ni8w
+eDgwCiBSSVA6IDAwMTA6c3lzZnNfcmVtb3ZlX2dyb3VwKzB4NzYvMHg4MAogQ2FsbCBUcmFjZToK
+ICBkZXZpY2VfZGVsKzB4NTYvMHgzNTAKICA/IGRvd25fd3JpdGUrMHhlLzB4NDAKICBkZXZpY2Vf
+dW5yZWdpc3RlcisweDE2LzB4NjAKICBub3V2ZWF1X2JhY2tsaWdodF9leGl0KzB4NGEvMHg2MCBb
+bm91dmVhdV0KICBub3V2ZWF1X2Rpc3BsYXlfZGVzdHJveSsweDI5LzB4ODAgW25vdXZlYXVdCiAg
+bm91dmVhdV9kcm1fdW5sb2FkKzB4NjEvMHhkMCBbbm91dmVhdV0KICBkcm1fZGV2X3VucmVnaXN0
+ZXIrMHgzZi8weGUwIFtkcm1dCiAgZHJtX3B1dF9kZXYrMHgyNy8weDUwIFtkcm1dCiAgbm91dmVh
+dV9kcm1fZGV2aWNlX3JlbW92ZSsweDQ3LzB4NzAgW25vdXZlYXVdCiAgcGNpX2RldmljZV9yZW1v
+dmUrMHgzYi8weGIwCiAgZGV2aWNlX3JlbGVhc2VfZHJpdmVyX2ludGVybmFsKzB4MTgwLzB4MjUw
+CiAgZHJpdmVyX2RldGFjaCsweDMyLzB4NWYKICBidXNfcmVtb3ZlX2RyaXZlcisweDc0LzB4YzYK
+ICBwY2lfdW5yZWdpc3Rlcl9kcml2ZXIrMHgyMi8weGEwCiAgbm91dmVhdV9kcm1fZXhpdCsweDE1
+LzB4MTZiIFtub3V2ZWF1XQoKSSBkb24ndCBiZWxlaXZlIHRoZW0gdG8gYmUgcmVsYXRlZC4gUGVy
+aGFwcyB0aGVyZSBpcyBhbm90aGVyIGlzc3VlIGhlcmU/CgpKZWZmZXJ5IE1pbGxlciAoMik6CiAg
+ZHJtL25vdXZlYXUvZmJjb246IEZpeCBOVUxMIHBvaW50ZXIgYWNjZXNzIGluIG5vdXZlYXVfZmJj
+b25fZGVzdHJveS4KICBkcm0vbm91dmVhdS9ibDogQWxsb2NhdGUgYmFja2xpZ2h0IGNvbm5lY3Rv
+ciBub2Rlcy4KCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jIHwg
+NzAgKysrKysrKysrKysrKystLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2ZiY29uLmMgICAgIHwgIDUgKy0KIDIgZmlsZXMgY2hhbmdlZCwgNTEgaW5zZXJ0aW9ucygrKSwg
+MjQgZGVsZXRpb25zKC0pCgotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
