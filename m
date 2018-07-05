@@ -1,14 +1,13 @@
-From: Yoann LE BARS <yoann-xeAshzqg6pjR7s880joybQ@public.gmane.org>
-Subject: Re: Giving a hand to Nouveau
-Date: Wed, 4 Jul 2018 17:55:15 +0200
-Message-ID: <371810a2-5afc-e61c-81dc-2d9dbfbcb9aa@le-bars.net>
-References: <4d9ccf8e-17a4-de25-5684-18d2a9bd7fd4@le-bars.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 106512] Fatal: NVIDIA GEFORCE 320M MCP89: Can't
+ start X on kernel 4.15
+Date: Thu, 05 Jul 2018 17:29:13 +0000
+Message-ID: <bug-106512-8800-PT7bQhCK7C@http.bugs.freedesktop.org/>
+References: <bug-106512-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0952217064=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <4d9ccf8e-17a4-de25-5684-18d2a9bd7fd4-xeAshzqg6pjR7s880joybQ@public.gmane.org>
-Content-Language: en-GB
+In-Reply-To: <bug-106512-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,23 +20,94 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CkhlbGxvIGV2ZXJ5Ym9keSBvdXQgdGhlcmUhCgoJSSBndWVzcyBJIHNob3VsZCBnaXZlIHNvbWUg
-bmV3cy4KCglJIGFtIHN0aWxsIHVzaW5nIFJUIGtlcm5lbCBvbiBEZWJpYW4gc3RhYmxlICsgYmFj
-a3BvcnRzIGFuZCBoYXZlIG5vdApmb3VuZCBhbnkgd2F5IHRvIGluc3RhbGwgYSB3b3JraW5nIE5W
-aWRpYSBwcm9wcmlldGFyeSBkcml2ZXIgb24gdGhpcwpzeXN0ZW0uIFRoZXJlZm9yZSwgSSBhbSBz
-byBmYXIgbm90IGFibGUgdG8gZ2l2ZSBhbnkgaGVscCB0byBOb3V2ZWF1CmRldmVsb3BtZW50LgoK
-CU5vdywgSSBhbSBjb25zaWRlcmluZyB0aHJlZSBzdHJhdGVnaWVzOgoKCQnigKIgU3dpdGNoaW5n
-IHRvIEFyY2hsaW51eCwgd2hpY2ggaGFzIGFuIGluc3RhbGxhYmxlIE52aWRpYSBwcm9wcmlldGFy
-eQpkcml2ZXIgb24gUlQga2VybmVsIChodHRwczovL2F1ci5hcmNobGludXgub3JnL3BhY2thZ2Vz
-L252aWRpYS1ydC8pLgoKCQnigKIgV2FpdGluZyBmb3IgUlQga2VybmVsIHRvIGJlIG1haW5saW5l
-ZCwgd2hpY2ggc2hvdWxkIGhhcHBlbiBzb29uCihodHRwczovL3dpa2kubGludXhmb3VuZGF0aW9u
-Lm9yZy9yZWFsdGltZS9zdGFydCkuIEl0IG1heSBiZSB0aGUgY2FzZQpiZWZvcmUgbmV4dCBEZWJp
-YW4gcmVsZWFzZS4KCgkJ4oCiIEkgbWF5IGJ1aWxkIGEgbmV3IGNvbXB1dGVyIHNvb24sIHdoaWNo
-IHdvdWxkIHByb2JhYmx5IHVzZSBhIFJhZGVvbgpHUFUgKHRoZW4gSSB3aWxsIG5vdCB1c2UgTm91
-dmVhdSkuCgoJQW55d2F5LCBJIGd1ZXNzIEkgc2hvdWxkIGZpcnN0IGFzayBzb21lIHF1ZXN0aW9u
-cyB0byB0aGUgUlQKbWFpbGluZy1saXN0LCBhcyBJIGhhdmUgc3Vic2NyaWJlZCB0byBpdC4KCglC
-ZXN0IHJlZ2FyZHMuCgotLSAKWW9hbm4gTEUgQkFSUwpodHRwOi8vbGUtYmFycy5uZXQveW9hbm4v
-CkRpYXNwb3JhKsKgOiB5bGViYXJzQGZyYW1hc3BoZXJlLm9yZwpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0952217064==
+Content-Type: multipart/alternative; boundary="15308117532.fc5Ee2aF.10039"
+Content-Transfer-Encoding: 7bit
+
+
+--15308117532.fc5Ee2aF.10039
+Date: Thu, 5 Jul 2018 17:29:13 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106512
+
+--- Comment #4 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 140478
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D140478&action=3Dedit
+possible fix
+
+mind trying that patch and see if that's better?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15308117532.fc5Ee2aF.10039
+Date: Thu, 5 Jul 2018 17:29:13 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Fatal: NVIDIA GEFORCE 320M MCP89: Can't start X on kernel=
+ 4.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106512#c4">Commen=
+t # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Fatal: NVIDIA GEFORCE 320M MCP89: Can't start X on kernel=
+ 4.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106512">bug 10651=
+2</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D140478=
+" name=3D"attach_140478" title=3D"possible fix">attachment 140478</a> <a hr=
+ef=3D"attachment.cgi?id=3D140478&amp;action=3Dedit" title=3D"possible fix">=
+[details]</a></span>
+possible fix
+
+mind trying that patch and see if that's better?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15308117532.fc5Ee2aF.10039--
+
+--===============0952217064==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0952217064==--
