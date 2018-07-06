@@ -1,15 +1,13 @@
-From: Nicolas Chauvet <kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v4 2/2] drm/nouveau: tegra: Detach from ARM
- DMA/IOMMU mapping
-Date: Fri, 6 Jul 2018 17:36:58 +0200
-Message-ID: <CABr+WTmTFDtX=0+0uk-j1rCc1croO48MA8xHAAeYh=KBaBekvQ@mail.gmail.com>
-References: <20180530140625.21247-1-thierry.reding@gmail.com>
- <20180530140625.21247-3-thierry.reding@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 106512] Fatal: NVIDIA GEFORCE 320M MCP89: Can't
+ start X on kernel 4.15
+Date: Fri, 06 Jul 2018 20:11:07 +0000
+Message-ID: <bug-106512-8800-I7FYd6tDVH@http.bugs.freedesktop.org/>
+References: <bug-106512-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0774816072=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180530140625.21247-3-thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-106512-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,67 +17,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Joerg Roedel <joro-zLv9SwRftAIdnm+yROfE0A@public.gmane.org>, Russell King <linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Christoph Hellwig <hch-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>, Jordan Crouse <jcrouse-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org>, iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Robin Murphy <robin.murphy-5wv7dgnIgG8@public.gmane.org>, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-MjAxOC0wNS0zMCAxNjowNiBHTVQrMDI6MDAgVGhpZXJyeSBSZWRpbmcgPHRoaWVycnkucmVkaW5n
-QGdtYWlsLmNvbT46Cj4gRnJvbTogVGhpZXJyeSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4K
-Pgo+IERlcGVuZGluZyBvbiB0aGUga2VybmVsIGNvbmZpZ3VyYXRpb24sIGVhcmx5IEFSTSBhcmNo
-aXRlY3R1cmUgc2V0dXAgY29kZQo+IG1heSBoYXZlIGF0dGFjaGVkIHRoZSBHUFUgdG8gYSBETUEv
-SU9NTVUgbWFwcGluZyB0aGF0IHRyYW5zcGFyZW50bHkgdXNlcwo+IHRoZSBJT01NVSB0byBiYWNr
-IHRoZSBETUEgQVBJLiBUZWdyYSByZXF1aXJlcyBzcGVjaWFsIGhhbmRsaW5nIGZvciBJT01NVQo+
-IGJhY2tlZCBidWZmZXJzIChhIHNwZWNpYWwgYml0IGluIHRoZSBHUFUncyBNTVUgcGFnZSB0YWJs
-ZXMgaW5kaWNhdGVzIHRoZQo+IG1lbW9yeSBwYXRoIHRvIHRha2U6IHZpYSB0aGUgU01NVSBvciBk
-aXJlY3RseSB0byB0aGUgbWVtb3J5IGNvbnRyb2xsZXIpLgo+IFRyYW5zcGFyZW50bHkgYmFja2lu
-ZyBETUEgbWVtb3J5IHdpdGggYW4gSU9NTVUgcHJldmVudHMgTm91dmVhdSBmcm9tCj4gcHJvcGVy
-bHkgaGFuZGxpbmcgc3VjaCBtZW1vcnkgYWNjZXNzZXMgYW5kIGNhdXNlcyBtZW1vcnkgYWNjZXNz
-IGZhdWx0cy4KPgo+IEFzIGEgc2lkZS1ub3RlOiBidWZmZXJzIG90aGVyIHRoYW4gdGhvc2UgYWxs
-b2NhdGVkIGluIGluc3RhbmNlIG1lbW9yeQo+IGRvbid0IG5lZWQgdG8gYmUgcGh5c2ljYWxseSBj
-b250aWd1b3VzIGZyb20gdGhlIEdQVSdzIHBlcnNwZWN0aXZlIHNpbmNlCj4gdGhlIEdQVSBjYW4g
-bWFwIHRoZW0gaW50byBjb250aWd1b3VzIGJ1ZmZlcnMgdXNpbmcgaXRzIG93biBNTVUuIE1hcHBp
-bmcKPiB0aGVzZSBidWZmZXJzIHRocm91Z2ggdGhlIElPTU1VIGlzIHVubmVjZXNzYXJ5IGFuZCB3
-aWxsIGV2ZW4gbGVhZCB0bwo+IHBlcmZvcm1hbmNlIGRlZ3JhZGF0aW9uIGJlY2F1c2Ugb2YgdGhl
-IGFkZGl0aW9uYWwgdHJhbnNsYXRpb24uIE9uZQo+IGV4Y2VwdGlvbiB0byB0aGlzIGFyZSBjb21w
-cmVzc2libGUgYnVmZmVycyB3aGljaCBuZWVkIGxhcmdlIHBhZ2VzLiBJbgo+IG9yZGVyIHRvIGVu
-YWJsZSB0aGVzZSBsYXJnZSBwYWdlcywgbXVsdGlwbGUgc21hbGwgcGFnZXMgd2lsbCBoYXZlIHRv
-IGJlCj4gY29tYmluZWQgaW50byBvbmUgbGFyZ2UgKEkvTyB2aXJ0dWFsbHkgY29udGlndW91cykg
-bWFwcGluZyB2aWEgdGhlCj4gSU9NTVUuIEhvd2V2ZXIsIHRoYXQgaXMgYSB0b3BpYyBvdXRzaWRl
-IHRoZSBzY29wZSBvZiB0aGlzIGZpeCBhbmQgaXNuJ3QKPiBjdXJyZW50bHkgc3VwcG9ydGVkLiBB
-biBpbXBsZW1lbnRhdGlvbiB3aWxsIHdhbnQgdG8gZXhwbGljaXRseSBjcmVhdGUKPiB0aGVzZSBs
-YXJnZSBwYWdlcyBpbiB0aGUgTm91dmVhdSBkcml2ZXIsIHNvIGRldGFjaGluZyBmcm9tIGEgRE1B
-L0lPTU1VCj4gbWFwcGluZyB3b3VsZCBzdGlsbCBiZSByZXF1aXJlZC4KPgo+IFNpZ25lZC1vZmYt
-Ynk6IFRoaWVycnkgUmVkaW5nIDx0cmVkaW5nQG52aWRpYS5jb20+Cj4gLS0tCj4gQ2hhbmdlcyBp
-biB2NDoKPiAtIHVzZSBleGlzdGluZyBBUElzIHRvIGRldGFjaCBmcm9tIGEgRE1BL0lPTU1VIG1h
-cHBpbmcKPgo+IENoYW5nZXMgaW4gdjM6Cj4gLSBjbGFyaWZ5IHRoZSB1c2Ugb2YgSU9NTVUgbWFw
-cGluZyBmb3IgY29tcHJlc3NpYmxlIGJ1ZmZlcnMKPiAtIHNxdWFzaCBtdWx0aXBsZSBwYXRjaGVz
-IGludG8gdGhpcwo+Cj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rldmlj
-ZS90ZWdyYS5jIHwgMTMgKysrKysrKysrKysrKwo+ICAxIGZpbGUgY2hhbmdlZCwgMTMgaW5zZXJ0
-aW9ucygrKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5n
-aW5lL2RldmljZS90ZWdyYS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUv
-ZGV2aWNlL3RlZ3JhLmMKPiBpbmRleCA3ODU5N2RhNjMxM2EuLjBlMzcyYTE5MGQzZiAxMDA2NDQK
-PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvdGVncmEu
-Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS90ZWdy
-YS5jCj4gQEAgLTIzLDYgKzIzLDEwIEBACj4gICNpZmRlZiBDT05GSUdfTk9VVkVBVV9QTEFURk9S
-TV9EUklWRVIKPiAgI2luY2x1ZGUgInByaXYuaCIKPgo+ICsjaWYgSVNfRU5BQkxFRChDT05GSUdf
-QVJNX0RNQV9VU0VfSU9NTVUpCj4gKyNpbmNsdWRlIDxhc20vZG1hLWlvbW11Lmg+Cj4gKyNlbmRp
-Zgo+ICsKPiAgc3RhdGljIGludAo+ICBudmttX2RldmljZV90ZWdyYV9wb3dlcl91cChzdHJ1Y3Qg
-bnZrbV9kZXZpY2VfdGVncmEgKnRkZXYpCj4gIHsKPiBAQCAtMTA1LDYgKzEwOSwxNSBAQCBudmtt
-X2RldmljZV90ZWdyYV9wcm9iZV9pb21tdShzdHJ1Y3QgbnZrbV9kZXZpY2VfdGVncmEgKnRkZXYp
-Cj4gICAgICAgICB1bnNpZ25lZCBsb25nIHBnc2l6ZV9iaXRtYXA7Cj4gICAgICAgICBpbnQgcmV0
-Owo+Cj4gKyNpZiBJU19FTkFCTEVEKENPTkZJR19BUk1fRE1BX1VTRV9JT01NVSkKPiArICAgICAg
-IGlmIChkZXYtPmFyY2hkYXRhLm1hcHBpbmcpIHsKPiArICAgICAgICAgICAgICAgc3RydWN0IGRt
-YV9pb21tdV9tYXBwaW5nICptYXBwaW5nID0gdG9fZG1hX2lvbW11X21hcHBpbmcoZGV2KTsKPiAr
-Cj4gKyAgICAgICAgICAgICAgIGFybV9pb21tdV9kZXRhY2hfZGV2aWNlKGRldik7Cj4gKyAgICAg
-ICAgICAgICAgIGFybV9pb21tdV9yZWxlYXNlX21hcHBpbmcobWFwcGluZyk7Cj4gKyAgICAgICB9
-Cj4gKyNlbmRpZgo+ICsKPiAgICAgICAgIGlmICghdGRldi0+ZnVuYy0+aW9tbXVfYml0KQo+ICAg
-ICAgICAgICAgICAgICByZXR1cm47Cj4KPiAtLQo+IDIuMTcuMAo+Cj4gLS0KPiBUbyB1bnN1YnNj
-cmliZSBmcm9tIHRoaXMgbGlzdDogc2VuZCB0aGUgbGluZSAidW5zdWJzY3JpYmUgbGludXgtdGVn
-cmEiIGluCj4gdGhlIGJvZHkgb2YgYSBtZXNzYWdlIHRvIG1ham9yZG9tb0B2Z2VyLmtlcm5lbC5v
-cmcKPiBNb3JlIG1ham9yZG9tbyBpbmZvIGF0ICBodHRwOi8vdmdlci5rZXJuZWwub3JnL21ham9y
-ZG9tby1pbmZvLmh0bWwKClRoaXMgc2VyaWUgKHY0KQpUZXN0ZWQtYnk6IE5pY29sYXMgQ2hhdXZl
-dCA8a3dpemFydEBnbWFpbC5jb20+CgpUZXN0ZWQgb24gamV0c29uLXRrMSBvbiBhIEZlZG9yYSA0
-LjE4LXJjMyBrZXJuZWwuCgotLSAKLQoKTmljb2xhcyAoa3dpemFydCkKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0774816072==
+Content-Type: multipart/alternative; boundary="15309078660.0Cd7E9Dc8.22504"
+Content-Transfer-Encoding: 7bit
+
+
+--15309078660.0Cd7E9Dc8.22504
+Date: Fri, 6 Jul 2018 20:11:06 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106512
+
+crmlt <augustin.berisa-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #5 from crmlt <augustin.berisa-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org> ---
+Provided patch fixed the regression.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15309078660.0Cd7E9Dc8.22504
+Date: Fri, 6 Jul 2018 20:11:06 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:augustin.=
+berisa&#64;protonmail.com" title=3D"crmlt &lt;augustin.berisa&#64;protonmai=
+l.com&gt;"> <span class=3D"fn">crmlt</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Fatal: NVIDIA GEFORCE 320M MCP89: Can't start =
+X on kernel 4.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106512">bug 10651=
+2</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Fatal: NVIDIA GEFORCE 320M MCP89: Can't start =
+X on kernel 4.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106512#c5">Commen=
+t # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - Fatal: NVIDIA GEFORCE 320M MCP89: Can't start =
+X on kernel 4.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106512">bug 10651=
+2</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+augustin.berisa&#64;protonmail.com" title=3D"crmlt &lt;augustin.berisa&#64;=
+protonmail.com&gt;"> <span class=3D"fn">crmlt</span></a>
+</span></b>
+        <pre>Provided patch fixed the regression.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15309078660.0Cd7E9Dc8.22504--
+
+--===============0774816072==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0774816072==--
