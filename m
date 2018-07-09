@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 107167] constantly firing events while screen
  attached to NVIDIA card is disabled
-Date: Mon, 09 Jul 2018 14:47:47 +0000
-Message-ID: <bug-107167-8800-rKyt2xo8Tw@http.bugs.freedesktop.org/>
+Date: Mon, 09 Jul 2018 16:01:08 +0000
+Message-ID: <bug-107167-8800-jBUhK77JEP@http.bugs.freedesktop.org/>
 References: <bug-107167-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0481579867=="
+Content-Type: multipart/mixed; boundary="===============0642085888=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-107167-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0481579867==
-Content-Type: multipart/alternative; boundary="15311476660.B89Cca.26899"
+--===============0642085888==
+Content-Type: multipart/alternative; boundary="15311520680.bCd7CA.10359"
 Content-Transfer-Encoding: 7bit
 
 
---15311476660.B89Cca.26899
-Date: Mon, 9 Jul 2018 14:47:46 +0000
+--15311520680.bCd7CA.10359
+Date: Mon, 9 Jul 2018 16:01:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,34 +36,27 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D107167
 
-Roy <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org> changed:
+--- Comment #3 from Sam Morris <sam-qkiumcfQ8OTe9xe1eoZjHA@public.gmane.org> ---
+Created attachment 140524
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D140524&action=3Dedit
+vbios.com
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
+I'm not sure if the card currently counts as 'powered on' given:
 
---- Comment #2 from Roy <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org> ---
-I suspect that more information could be useful. A good starting point woul=
-d be
-to attach:
-- Your VBIOS (obtained from /sys/kernel/debug/dri/<number>/vbios.rom while =
-the
-GPU is powered on), and
-- A full dmesg of a booting system.
+# cat /sys/kernel/debug/vgaswitcheroo/switch
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :DynPwr:0000:01:00.0
 
-Also: is this problem a regression from earlier kernels? If so, have you tr=
-ied
-to pinpoint which kernel change (version, but ideally commit) led to this
-undesirable behaviour?
-
-Thanks!
+But here's my current vbios.rom file anyway. If you need me to somehow power
+the card up and try again then let me know (I'm not sure how to do that -
+writing "ON" to the file doesn't change the output).
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15311476660.B89Cca.26899
-Date: Mon, 9 Jul 2018 14:47:46 +0000
+--15311520680.bCd7CA.10359
+Date: Mon, 9 Jul 2018 16:01:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -74,39 +67,15 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:nouveau&#=
-64;spliet.org" title=3D"Roy &lt;nouveau&#64;spliet.org&gt;"> <span class=3D=
-"fn">Roy</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - constantly firing events while screen attached to NV=
-IDIA card is disabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107167">bug 10716=
-7</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEEDINFO "
    title=3D"NEEDINFO - constantly firing events while screen attached to NV=
 IDIA card is disabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107167#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107167#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEEDINFO "
    title=3D"NEEDINFO - constantly firing events while screen attached to NV=
@@ -114,23 +83,24 @@ IDIA card is disabled"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107167">bug 10716=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-nouveau&#64;spliet.org" title=3D"Roy &lt;nouveau&#64;spliet.org&gt;"> <span=
- class=3D"fn">Roy</span></a>
+sam&#64;robots.org.uk" title=3D"Sam Morris &lt;sam&#64;robots.org.uk&gt;"> =
+<span class=3D"fn">Sam Morris</span></a>
 </span></b>
-        <pre>I suspect that more information could be useful. A good starti=
-ng point would be
-to attach:
-- Your VBIOS (obtained from /sys/kernel/debug/dri/&lt;number&gt;/vbios.rom =
-while the
-GPU is powered on), and
-- A full dmesg of a booting system.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D140524=
+" name=3D"attach_140524" title=3D"vbios.com">attachment 140524</a> <a href=
+=3D"attachment.cgi?id=3D140524&amp;action=3Dedit" title=3D"vbios.com">[deta=
+ils]</a></span>
+vbios.com
 
-Also: is this problem a regression from earlier kernels? If so, have you tr=
-ied
-to pinpoint which kernel change (version, but ideally commit) led to this
-undesirable behaviour?
+I'm not sure if the card currently counts as 'powered on' given:
 
-Thanks!</pre>
+# cat /sys/kernel/debug/vgaswitcheroo/switch
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :DynPwr:0000:01:00.0
+
+But here's my current vbios.rom file anyway. If you need me to somehow power
+the card up and try again then let me know (I'm not sure how to do that -
+writing &quot;ON&quot; to the file doesn't change the output).</pre>
         </div>
       </p>
 
@@ -144,9 +114,9 @@ Thanks!</pre>
     </body>
 </html>=
 
---15311476660.B89Cca.26899--
+--15311520680.bCd7CA.10359--
 
---===============0481579867==
+--===============0642085888==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -156,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0481579867==--
+--===============0642085888==--
