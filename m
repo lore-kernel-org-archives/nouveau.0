@@ -1,54 +1,42 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v2 3/3] drm/nouveau: Remove bogus crtc check in pmops_runtime_idle
-Date: Thu, 12 Jul 2018 13:02:54 -0400
-Message-ID: <20180712170256.13018-4-lyude@redhat.com>
+Subject: [PATCH v2 2/3] drm/nouveau: Fix runtime PM leak in
+ nv50_disp_atomic_commit()
+Date: Thu, 12 Jul 2018 13:02:53 -0400
+Message-ID: <20180712170256.13018-3-lyude@redhat.com>
 References: <20180712170256.13018-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
 In-Reply-To: <20180712170256.13018-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
 To: nouveau@lists.freedesktop.org
-Cc: Karol Herbst <kherbst@redhat.com>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-This both uses the legacy modesetting structures in a racy manner, and
-additionally also doesn't even check the right variable (enabled != the
-CRTC is actually turned on for atomic).
-
-This fixes issues on my P50 regarding the dedicated GPU not entering
-runtime suspend.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/nouveau/nouveau_drm.c | 11 -----------
- 1 file changed, 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 0f668e275ee1..c7ec86d6c3c9 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -881,22 +881,11 @@ nouveau_pmops_runtime_resume(struct device *dev)
- static int
- nouveau_pmops_runtime_idle(struct device *dev)
- {
--	struct pci_dev *pdev = to_pci_dev(dev);
--	struct drm_device *drm_dev = pci_get_drvdata(pdev);
--	struct nouveau_drm *drm = nouveau_drm(drm_dev);
--	struct drm_crtc *crtc;
--
- 	if (!nouveau_pmops_runtime()) {
- 		pm_runtime_forbid(dev);
- 		return -EBUSY;
- 	}
- 
--	list_for_each_entry(crtc, &drm->dev->mode_config.crtc_list, head) {
--		if (crtc->enabled) {
--			DRM_DEBUG_DRIVER("failing to power off - crtc active\n");
--			return -EBUSY;
--		}
--	}
- 	pm_runtime_mark_last_busy(dev);
- 	pm_runtime_autosuspend(dev);
- 	/* we don't want the main rpm_idle to call suspend - we want to autosuspend */
--- 
-2.17.1
+QSBDUlRDIGJlaW5nIGVuYWJsZWQgZG9lc24ndCBtZWFuIGl0J3Mgb24hIEl0IGRvZXNuJ3QgZXZl
+biBuZWNlc3NhcmlseQptZWFuIGl0J3MgYmVpbmcgdXNlZC4gVGhpcyBmaXhlcyBydW50aW1lIFBN
+IGxlYWtzIG9uIHRoZSBQNTAgSSd2ZSBnb3QKbmV4dCB0byBtZS4KClNpZ25lZC1vZmYtYnk6IEx5
+dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkNjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnCi0t
+LQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jIHwgMiArLQogMSBmaWxl
+IGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jIGIvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvZGlzcG52NTAvZGlzcC5jCmluZGV4IGQ5ZGE2OWM4M2FlNy4uOWJhZTRkYjg0Y2ZiIDEw
+MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMKKysrIGIv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCkBAIC0xODc4LDcgKzE4Nzgs
+NyBAQCBudjUwX2Rpc3BfYXRvbWljX2NvbW1pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAogCQlu
+djUwX2Rpc3BfYXRvbWljX2NvbW1pdF90YWlsKHN0YXRlKTsKIAogCWRybV9mb3JfZWFjaF9jcnRj
+KGNydGMsIGRldikgewotCQlpZiAoY3J0Yy0+c3RhdGUtPmVuYWJsZSkgeworCQlpZiAoY3J0Yy0+
+c3RhdGUtPmFjdGl2ZSkgewogCQkJaWYgKCFkcm0tPmhhdmVfZGlzcF9wb3dlcl9yZWYpIHsKIAkJ
+CQlkcm0tPmhhdmVfZGlzcF9wb3dlcl9yZWYgPSB0cnVlOwogCQkJCXJldHVybiAwOwotLSAKMi4x
+Ny4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmkt
+ZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
