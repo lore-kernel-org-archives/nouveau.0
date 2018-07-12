@@ -1,46 +1,31 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v2 1/3] drm/nouveau: Fix runtime PM leak in
- drm_open()
-Date: Thu, 12 Jul 2018 13:02:52 -0400
-Message-ID: <20180712170256.13018-2-lyude@redhat.com>
-References: <20180712170256.13018-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180712170256.13018-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v2 0/3] drm/nouveau: Fix runtime PM leaks
+Date: Thu, 12 Jul 2018 13:02:51 -0400
+Message-ID: <20180712170256.13018-1-lyude@redhat.com>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Archit Taneja <architt@codeaurora.org>, Lyude Paul <lyude@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-Tm90aWNlZCB0aGlzIGFzIEkgd2FzIHNraW1taW5nIHRocm91Z2gsIGlmIHdlIGZhaWwgdG8gYWxs
-b2NhdGUgbWVtb3J5CmZvciBjbGkgd2UnbGwgZW5kIHVwIHJldHVybmluZyB3aXRob3V0IGRyb3Bw
-aW5nIHRoZSBydW50aW1lIFBNIHJlZiB3ZQpnb3QuIEFkZGl0aW9uYWxseSwgd2UnbGwgZXZlbiBy
-ZXR1cm4gdGhlIHdyb25nIHJldHVybiBjb2RlISAocmV0IG1vc3QKbGlrZWx5IHdpbGwgPT0gMCBo
-ZXJlLCB3ZSB3YW50IC1FTk9NRU0pLgoKU2lnbmVkLW9mZi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVA
-cmVkaGF0LmNvbT4KUmV2aWV3ZWQtYnk6IEx1a2FzIFd1bm5lciA8bHVrYXNAd3VubmVyLmRlPgot
-LS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgfCA2ICsrKystLQogMSBm
-aWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIGIvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9kcm0uYwppbmRleCAwNDUyYjE4ZDM2YjkuLjBmNjY4ZTI3NWVlMSAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYworKysgYi9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCkBAIC05MTksOCArOTE5LDEwIEBA
-IG5vdXZlYXVfZHJtX29wZW4oc3RydWN0IGRybV9kZXZpY2UgKmRldiwgc3RydWN0IGRybV9maWxl
-ICpmcHJpdikKIAlnZXRfdGFza19jb21tKHRtcG5hbWUsIGN1cnJlbnQpOwogCXNucHJpbnRmKG5h
-bWUsIHNpemVvZihuYW1lKSwgIiVzWyVkXSIsIHRtcG5hbWUsIHBpZF9ucihmcHJpdi0+cGlkKSk7
-CiAKLQlpZiAoIShjbGkgPSBremFsbG9jKHNpemVvZigqY2xpKSwgR0ZQX0tFUk5FTCkpKQotCQly
-ZXR1cm4gcmV0OworCWlmICghKGNsaSA9IGt6YWxsb2Moc2l6ZW9mKCpjbGkpLCBHRlBfS0VSTkVM
-KSkpIHsKKwkJcmV0ID0gLUVOT01FTTsKKwkJZ290byBkb25lOworCX0KIAogCXJldCA9IG5vdXZl
-YXVfY2xpX2luaXQoZHJtLCBuYW1lLCBjbGkpOwogCWlmIChyZXQpCi0tIAoyLjE3LjEKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+This is the latest version of
+https://patchwork.freedesktop.org/series/45862/ . One new patch has been
+added that also addresses some additional issues I found with
+pmops_runtime_idle that would stop nouveau from suspending the GPU when
+running under X.
+
+Additionally,
+"drm/nouveau: Fix runtime PM leak in nv50_disp_atomic_commit()" has had
+it's CC to stable removed.
+
+Lyude Paul (3):
+  drm/nouveau: Fix runtime PM leak in drm_open()
+  drm/nouveau: Fix runtime PM leak in nv50_disp_atomic_commit()
+  drm/nouveau: Remove bogus crtc check in pmops_runtime_idle
+
+ drivers/gpu/drm/nouveau/dispnv50/disp.c |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c   | 17 ++++-------------
+ 2 files changed, 5 insertions(+), 14 deletions(-)
+
+-- 
+2.17.1
