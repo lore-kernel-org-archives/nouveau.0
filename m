@@ -1,71 +1,121 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 2/2] drm/nouveau: Hook up dp_mst_info in debugfs
-Date: Thu, 12 Jul 2018 13:10:47 -0400
-Message-ID: <20180712171056.26359-3-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH 1/2] drm/nouveau: Expose nv50 MST structures in disp.h
+Date: Thu, 12 Jul 2018 13:10:46 -0400
+Message-ID: <20180712171056.26359-2-lyude@redhat.com>
 References: <20180712171056.26359-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180712171056.26359-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20180712171056.26359-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Archit Taneja <architt@codeaurora.org>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBpcyB2ZXJ5IHVzZWZ1bCBmb3IgY2hlY2tpbmcgd2hhdCBub3V2ZWF1IHRoaW5rcyB0aGUg
-Y3VycmVudCBzdGF0ZQpvZiBlYWNoIE1TVCB0b3BvbG9neSBsb29rcyBsaWtlLgoKU2lnbmVkLW9m
-Zi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9ub3V2ZWF1X2RlYnVnZnMuYyB8IDQ3ICsrKysrKysrKysrKysrKysrKysrKystCiAx
-IGZpbGUgY2hhbmdlZCwgNDUgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RlYnVnZnMuYyBiL2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGVidWdmcy5jCmluZGV4IDk2M2E0ZGJhODIxMy4uODJm
-MTBiZWVkMGRmIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rl
-YnVnZnMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RlYnVnZnMuYwpA
-QCAtMzIsMTMgKzMyLDE5IEBACiAjaW5jbHVkZSA8bnZpZi9jbGFzcy5oPgogI2luY2x1ZGUgPG52
-aWYvaWYwMDAxLmg+CiAjaW5jbHVkZSAibm91dmVhdV9kZWJ1Z2ZzLmgiCisjaW5jbHVkZSAibm91
-dmVhdV9lbmNvZGVyLmgiCiAjaW5jbHVkZSAibm91dmVhdV9kcnYuaCIKKyNpbmNsdWRlICJkaXNw
-bnY1MC9kaXNwLmgiCisKK3N0YXRpYyBpbmxpbmUgc3RydWN0IG5vdXZlYXVfZHJtICpub2RlX3Rv
-X25vdXZlYXUoc3RydWN0IGRybV9pbmZvX25vZGUgKm5vZGUpCit7CisJcmV0dXJuIG5vdXZlYXVf
-ZHJtKG5vZGUtPm1pbm9yLT5kZXYpOworfQogCiBzdGF0aWMgaW50CiBub3V2ZWF1X2RlYnVnZnNf
-dmJpb3NfaW1hZ2Uoc3RydWN0IHNlcV9maWxlICptLCB2b2lkICpkYXRhKQogewotCXN0cnVjdCBk
-cm1faW5mb19ub2RlICpub2RlID0gKHN0cnVjdCBkcm1faW5mb19ub2RlICopIG0tPnByaXZhdGU7
-Ci0Jc3RydWN0IG5vdXZlYXVfZHJtICpkcm0gPSBub3V2ZWF1X2RybShub2RlLT5taW5vci0+ZGV2
-KTsKKwlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vZGVfdG9fbm91dmVhdShtLT5wcml2YXRl
-KTsKIAlpbnQgaTsKIAogCWZvciAoaSA9IDA7IGkgPCBkcm0tPnZiaW9zLmxlbmd0aDsgaSsrKQpA
-QCAtNDYsNiArNTIsNDIgQEAgbm91dmVhdV9kZWJ1Z2ZzX3ZiaW9zX2ltYWdlKHN0cnVjdCBzZXFf
-ZmlsZSAqbSwgdm9pZCAqZGF0YSkKIAlyZXR1cm4gMDsKIH0KIAorc3RhdGljIGludAorbm91dmVh
-dV9kZWJ1Z2ZzX2RwX21zdF9pbmZvKHN0cnVjdCBzZXFfZmlsZSAqbSwgdm9pZCAqdW51c2VkKQor
-eworCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm9kZV90b19ub3V2ZWF1KG0tPnByaXZhdGUp
-OworCXN0cnVjdCBkcm1fZGV2aWNlICpkZXYgPSBkcm0tPmRldjsKKwlzdHJ1Y3QgZHJtX2VuY29k
-ZXIgKmVuY29kZXI7CisJc3RydWN0IG52NTBfbXN0bSAqbXN0bTsKKwlpbnQgcmV0OworCisJcmV0
-ID0gcG1fcnVudGltZV9nZXRfc3luYyhkZXYtPmRldik7CisJaWYgKHJldCA8IDAgJiYgcmV0ICE9
-IC1FQUNDRVMpCisJCXJldHVybiByZXQ7CisKKwlyZXQgPSBkcm1fbW9kZXNldF9sb2NrX3Npbmds
-ZV9pbnRlcnJ1cHRpYmxlKCZkZXYtPm1vZGVfY29uZmlnLmNvbm5lY3Rpb25fbXV0ZXgpOworCWlm
-IChyZXQpCisJCWdvdG8gb3V0OworCisJZHJtX2Zvcl9lYWNoX2VuY29kZXIoZW5jb2RlciwgZGV2
-KSB7CisJCWlmIChlbmNvZGVyLT5lbmNvZGVyX3R5cGUgIT0gRFJNX01PREVfRU5DT0RFUl9UTURT
-KQorCQkJY29udGludWU7CisKKwkJbXN0bSA9IG5vdXZlYXVfZW5jb2RlcihlbmNvZGVyKS0+ZHAu
-bXN0bTsKKwkJaWYgKCFtc3RtKQorCQkJY29udGludWU7CisKKwkJc2VxX3ByaW50ZihtLCAiTVNU
-IGVuY29kZXIgc291cmNlICVzXG4iLCBlbmNvZGVyLT5uYW1lKTsKKwkJZHJtX2RwX21zdF9kdW1w
-X3RvcG9sb2d5KG0sICZtc3RtLT5tZ3IpOworCX0KKworCWRybV9tb2Rlc2V0X3VubG9jaygmZGV2
-LT5tb2RlX2NvbmZpZy5jb25uZWN0aW9uX211dGV4KTsKK291dDoKKwlwbV9ydW50aW1lX21hcmtf
-bGFzdF9idXN5KGRldi0+ZGV2KTsKKwlwbV9ydW50aW1lX3B1dF9hdXRvc3VzcGVuZChkZXYtPmRl
-dik7CisJcmV0dXJuIHJldDsKK30KKwogc3RhdGljIGludAogbm91dmVhdV9kZWJ1Z2ZzX3BzdGF0
-ZV9nZXQoc3RydWN0IHNlcV9maWxlICptLCB2b2lkICpkYXRhKQogewpAQCAtMTgyLDYgKzIyNCw3
-IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZmlsZV9vcGVyYXRpb25zIG5vdXZlYXVfcHN0YXRlX2Zv
-cHMgPSB7CiAKIHN0YXRpYyBzdHJ1Y3QgZHJtX2luZm9fbGlzdCBub3V2ZWF1X2RlYnVnZnNfbGlz
-dFtdID0gewogCXsgInZiaW9zLnJvbSIsIG5vdXZlYXVfZGVidWdmc192Ymlvc19pbWFnZSwgMCwg
-TlVMTCB9LAorCXsgImRwX21zdF9pbmZvIiwgbm91dmVhdV9kZWJ1Z2ZzX2RwX21zdF9pbmZvLCAw
-LCBOVUxMIH0sCiB9OwogI2RlZmluZSBOT1VWRUFVX0RFQlVHRlNfRU5UUklFUyBBUlJBWV9TSVpF
-KG5vdXZlYXVfZGVidWdmc19saXN0KQogCi0tIAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQo=
+We're about to need this so that we can hook up dp_mst_info into debugfs
+so we can walk the encoder list and find each mst mgr.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+---
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 34 ------------------------
+ drivers/gpu/drm/nouveau/dispnv50/disp.h | 35 +++++++++++++++++++++++++
+ 2 files changed, 35 insertions(+), 34 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index d9da69c83ae7..f76fe5f260a4 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -568,40 +568,6 @@ nv50_hdmi_enable(struct drm_encoder *encoder, struct drm_display_mode *mode)
+ /******************************************************************************
+  * MST
+  *****************************************************************************/
+-#define nv50_mstm(p) container_of((p), struct nv50_mstm, mgr)
+-#define nv50_mstc(p) container_of((p), struct nv50_mstc, connector)
+-#define nv50_msto(p) container_of((p), struct nv50_msto, encoder)
+-
+-struct nv50_mstm {
+-	struct nouveau_encoder *outp;
+-
+-	struct drm_dp_mst_topology_mgr mgr;
+-	struct nv50_msto *msto[4];
+-
+-	bool modified;
+-	bool disabled;
+-	int links;
+-};
+-
+-struct nv50_mstc {
+-	struct nv50_mstm *mstm;
+-	struct drm_dp_mst_port *port;
+-	struct drm_connector connector;
+-
+-	struct drm_display_mode *native;
+-	struct edid *edid;
+-
+-	int pbn;
+-};
+-
+-struct nv50_msto {
+-	struct drm_encoder encoder;
+-
+-	struct nv50_head *head;
+-	struct nv50_mstc *mstc;
+-	bool disabled;
+-};
+-
+ static struct drm_dp_payload *
+ nv50_msto_payload(struct nv50_msto *msto)
+ {
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.h b/drivers/gpu/drm/nouveau/dispnv50/disp.h
+index e48c5eb35b49..5ba7093f3c74 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.h
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.h
+@@ -3,6 +3,7 @@
+ #include <nvif/mem.h>
+ 
+ #include "nouveau_display.h"
++#include "nouveau_encoder.h"
+ 
+ struct nv50_disp {
+ 	struct nvif_disp *disp;
+@@ -65,6 +66,40 @@ struct nv50_dmac {
+ 	struct mutex lock;
+ };
+ 
++#define nv50_mstm(p) container_of((p), struct nv50_mstm, mgr)
++#define nv50_mstc(p) container_of((p), struct nv50_mstc, connector)
++#define nv50_msto(p) container_of((p), struct nv50_msto, encoder)
++
++struct nv50_mstm {
++	struct nouveau_encoder *outp;
++
++	struct drm_dp_mst_topology_mgr mgr;
++	struct nv50_msto *msto[4];
++
++	bool modified;
++	bool disabled;
++	int links;
++};
++
++struct nv50_mstc {
++	struct nv50_mstm *mstm;
++	struct drm_dp_mst_port *port;
++	struct drm_connector connector;
++
++	struct drm_display_mode *native;
++	struct edid *edid;
++
++	int pbn;
++};
++
++struct nv50_msto {
++	struct drm_encoder encoder;
++
++	struct nv50_head *head;
++	struct nv50_mstc *mstc;
++	bool disabled;
++};
++
+ int nv50_dmac_create(struct nvif_device *device, struct nvif_object *disp,
+ 		     const s32 *oclass, u8 head, void *data, u32 size,
+ 		     u64 syncbuf, struct nv50_dmac *dmac);
+-- 
+2.17.1
