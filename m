@@ -1,114 +1,73 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH] drm/nouveau: Don't forget to label dp_aux devices
-Date: Thu, 12 Jul 2018 13:13:52 -0400
-Message-ID: <20180712171356.10227-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Archit Taneja <architt@codeaurora.org>, Ilia Mirkin <imirkin@alum.mit.edu>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH v2 3/3] drm/nouveau: Remove bogus crtc check
+ in pmops_runtime_idle
+Date: Thu, 12 Jul 2018 19:17:24 +0200
+Message-ID: <20180712171724.GR3008@phenom.ffwll.local>
+References: <20180712170256.13018-1-lyude@redhat.com>
+ <20180712170256.13018-4-lyude@redhat.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20180712170256.13018-4-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This makes debugging with DP tracing a lot harder to interpret, so name
-each i2c based off the name of the encoder that it's for
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/dispnv04/disp.c     |  2 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.c     |  2 +-
- drivers/gpu/drm/nouveau/nouveau_connector.c | 12 ++++++++++--
- drivers/gpu/drm/nouveau/nouveau_connector.h |  3 ++-
- 4 files changed, 14 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/disp.c b/drivers/gpu/drm/nouveau/dispnv04/disp.c
-index 501d2d290e9c..45ff1872d894 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/disp.c
-@@ -64,7 +64,7 @@ nv04_display_create(struct drm_device *dev)
- 	for (i = 0; i < dcb->entries; i++) {
- 		struct dcb_output *dcbent = &dcb->entry[i];
- 
--		connector = nouveau_connector_create(dev, dcbent->connector);
-+		connector = nouveau_connector_create(dev, dcbent);
- 		if (IS_ERR(connector))
- 			continue;
- 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 9382e99a0bc7..4f8d51590bbb 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -2198,7 +2198,7 @@ nv50_display_create(struct drm_device *dev)
- 
- 	/* create encoder/connector objects based on VBIOS DCB table */
- 	for (i = 0, dcbe = &dcb->entry[0]; i < dcb->entries; i++, dcbe++) {
--		connector = nouveau_connector_create(dev, dcbe->connector);
-+		connector = nouveau_connector_create(dev, dcbe);
- 		if (IS_ERR(connector))
- 			continue;
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 7b557c354307..0c5cc600c973 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -408,8 +408,10 @@ nouveau_connector_destroy(struct drm_connector *connector)
- 	kfree(nv_connector->edid);
- 	drm_connector_unregister(connector);
- 	drm_connector_cleanup(connector);
--	if (nv_connector->aux.transfer)
-+	if (nv_connector->aux.transfer) {
- 		drm_dp_aux_unregister(&nv_connector->aux);
-+		kfree(nv_connector->aux.name);
-+	}
- 	kfree(connector);
- }
- 
-@@ -1201,13 +1203,16 @@ drm_conntype_from_dcb(enum dcb_connector_type dcb)
- }
- 
- struct drm_connector *
--nouveau_connector_create(struct drm_device *dev, int index)
-+nouveau_connector_create(struct drm_device *dev,
-+			 const struct dcb_output *dcbe)
- {
- 	const struct drm_connector_funcs *funcs = &nouveau_connector_funcs;
- 	struct nouveau_drm *drm = nouveau_drm(dev);
- 	struct nouveau_display *disp = nouveau_display(dev);
- 	struct nouveau_connector *nv_connector = NULL;
- 	struct drm_connector *connector;
-+	char aux_name[48] = {0};
-+	int index = dcbe->connector;
- 	int type, ret = 0;
- 	bool dummy;
- 
-@@ -1306,6 +1311,9 @@ nouveau_connector_create(struct drm_device *dev, int index)
- 	case DRM_MODE_CONNECTOR_eDP:
- 		nv_connector->aux.dev = dev->dev;
- 		nv_connector->aux.transfer = nouveau_connector_aux_xfer;
-+		snprintf(aux_name, sizeof(aux_name), "sor-%04x-%04x",
-+			 dcbe->hasht, dcbe->hashm);
-+		nv_connector->aux.name = kstrdup(aux_name, GFP_KERNEL);
- 		ret = drm_dp_aux_register(&nv_connector->aux);
- 		if (ret) {
- 			NV_ERROR(drm, "failed to register aux channel\n");
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.h b/drivers/gpu/drm/nouveau/nouveau_connector.h
-index a4d1a059bd3d..2c5cb51c7c33 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.h
-@@ -35,6 +35,7 @@
- #include "nouveau_crtc.h"
- 
- struct nvkm_i2c_port;
-+struct dcb_output;
- 
- struct nouveau_connector {
- 	struct drm_connector base;
-@@ -76,7 +77,7 @@ nouveau_crtc_connector_get(struct nouveau_crtc *nv_crtc)
- }
- 
- struct drm_connector *
--nouveau_connector_create(struct drm_device *, int index);
-+nouveau_connector_create(struct drm_device *, const struct dcb_output *);
- 
- extern int nouveau_tv_disable;
- extern int nouveau_ignorelid;
--- 
-2.17.1
+T24gVGh1LCBKdWwgMTIsIDIwMTggYXQgMDE6MDI6NTRQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
+ZToKPiBUaGlzIGJvdGggdXNlcyB0aGUgbGVnYWN5IG1vZGVzZXR0aW5nIHN0cnVjdHVyZXMgaW4g
+YSByYWN5IG1hbm5lciwgYW5kCj4gYWRkaXRpb25hbGx5IGFsc28gZG9lc24ndCBldmVuIGNoZWNr
+IHRoZSByaWdodCB2YXJpYWJsZSAoZW5hYmxlZCAhPSB0aGUKPiBDUlRDIGlzIGFjdHVhbGx5IHR1
+cm5lZCBvbiBmb3IgYXRvbWljKS4KPiAKPiBUaGlzIGZpeGVzIGlzc3VlcyBvbiBteSBQNTAgcmVn
+YXJkaW5nIHRoZSBkZWRpY2F0ZWQgR1BVIG5vdCBlbnRlcmluZwo+IHJ1bnRpbWUgc3VzcGVuZC4K
+PiAKPiBTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgo+IENjOiBz
+dGFibGVAdmdlci5rZXJuZWwub3JnCgpPbiBib3RoIHBhdGNoIDImMzoKClJldmlld2VkLWJ5OiBE
+YW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgoKLT5lbmFibGUgdnMuIC0+YWN0
+aXZlIGlzIHByb2JhYmx5IHRoZSBiaWdnZXN0IHNvdXJjZSBvZiBwYWluIGluIGF0b21pYywKYW5k
+IGJleW9uZCB0eXBpbmcgZXZlbiBtb3JlIGtlcm5lbGRvYyB0aGF0IHdpbGwgYmUgaWdub3JlZCAo
+dGhlcmUncwphbm90aGVyIHNlcmllcyBkb2luZyBleGFjdGx5IHRoYXQgb24gdGhlIGxpc3QpIEkg
+aGF2ZSBubyBpZGVhIHdoYXQgdG8gZG8uCjkwJSBydWxlIGlzIHRvIGxvb2sgYXQgLT5lbmFibGUg
+aW4gYXRvbWljX2NoZWNrIGNvZGUgKHNpbmNlIERQTVMgY2hhbmdlcwpzaG91bGQgYWx3YXlzIHdv
+cmspIGFuZCAtPmFjdGl2ZSBpbiBhdG9taWNfY29tbWl0IGNvZGUuCgpXcnQgdGhlIGxlZ2FjeSBz
+dGF0ZTogRm9yIHRoZSBsZWdhY3kgcG9pbnRlcnMgd2UgY2FuIHNldCB0aGVtIHRvIE5VTEwgZm9y
+CmF0b21pYywgYW5kIFZpbGxlIGhhcyBkb25lIHRoYXQuIFRoYXQncyByZWFsIGVmZmVjdGl2ZSBh
+dCBzdG9wcGluZyBkcml2ZXJzCmZyb20gbG9va2luZyBhdCB0aGUgd3JvbmcgdGhpbmcuIEJ1dCBm
+b3IgdGhlIG90aGVycyBsaWtlIHRoaXMgb25lIGhlcmUgSQpkdW5ubyB3aGF0IHRvIGRvIHRvIGVm
+ZmVjdGl2ZWx5IGhpZGUgdGhlbSBmcm9tIGF0b21pYyBkcml2ZXJzLgoKPC9yYW50PgoKQ2hlZXJz
+LCBEYW5pZWwKCj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMg
+fCAxMSAtLS0tLS0tLS0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgMTEgZGVsZXRpb25zKC0pCj4gCj4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgYi9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCj4gaW5kZXggMGY2NjhlMjc1ZWUxLi5j
+N2VjODZkNmMzYzkgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9kcm0uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPiBA
+QCAtODgxLDIyICs4ODEsMTEgQEAgbm91dmVhdV9wbW9wc19ydW50aW1lX3Jlc3VtZShzdHJ1Y3Qg
+ZGV2aWNlICpkZXYpCj4gIHN0YXRpYyBpbnQKPiAgbm91dmVhdV9wbW9wc19ydW50aW1lX2lkbGUo
+c3RydWN0IGRldmljZSAqZGV2KQo+ICB7Cj4gLQlzdHJ1Y3QgcGNpX2RldiAqcGRldiA9IHRvX3Bj
+aV9kZXYoZGV2KTsKPiAtCXN0cnVjdCBkcm1fZGV2aWNlICpkcm1fZGV2ID0gcGNpX2dldF9kcnZk
+YXRhKHBkZXYpOwo+IC0Jc3RydWN0IG5vdXZlYXVfZHJtICpkcm0gPSBub3V2ZWF1X2RybShkcm1f
+ZGV2KTsKPiAtCXN0cnVjdCBkcm1fY3J0YyAqY3J0YzsKPiAtCj4gIAlpZiAoIW5vdXZlYXVfcG1v
+cHNfcnVudGltZSgpKSB7Cj4gIAkJcG1fcnVudGltZV9mb3JiaWQoZGV2KTsKPiAgCQlyZXR1cm4g
+LUVCVVNZOwo+ICAJfQo+ICAKPiAtCWxpc3RfZm9yX2VhY2hfZW50cnkoY3J0YywgJmRybS0+ZGV2
+LT5tb2RlX2NvbmZpZy5jcnRjX2xpc3QsIGhlYWQpIHsKPiAtCQlpZiAoY3J0Yy0+ZW5hYmxlZCkg
+ewo+IC0JCQlEUk1fREVCVUdfRFJJVkVSKCJmYWlsaW5nIHRvIHBvd2VyIG9mZiAtIGNydGMgYWN0
+aXZlXG4iKTsKPiAtCQkJcmV0dXJuIC1FQlVTWTsKPiAtCQl9Cj4gLQl9Cj4gIAlwbV9ydW50aW1l
+X21hcmtfbGFzdF9idXN5KGRldik7Cj4gIAlwbV9ydW50aW1lX2F1dG9zdXNwZW5kKGRldik7Cj4g
+IAkvKiB3ZSBkb24ndCB3YW50IHRoZSBtYWluIHJwbV9pZGxlIHRvIGNhbGwgc3VzcGVuZCAtIHdl
+IHdhbnQgdG8gYXV0b3N1c3BlbmQgKi8KPiAtLSAKPiAyLjE3LjEKPiAKPiBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGRyaS1kZXZlbCBtYWlsaW5nIGxp
+c3QKPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwKCi0tIApEYW5pZWwgVmV0dGVy
+ClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgpodHRwOi8vYmxvZy5mZndsbC5j
+aApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
+IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
