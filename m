@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107003] secboot: HS load failed
-Date: Fri, 13 Jul 2018 19:01:48 +0000
-Message-ID: <bug-107003-8800-PjTh0CuDNa@http.bugs.freedesktop.org/>
-References: <bug-107003-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 107210] Segment Fault while opening thunderbitf
+ windows
+Date: Fri, 13 Jul 2018 22:49:07 +0000
+Message-ID: <bug-107210-8800-KO1UR6zDq8@http.bugs.freedesktop.org/>
+References: <bug-107210-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0530983436=="
+Content-Type: multipart/mixed; boundary="===============1665349108=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107003-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-107210-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,48 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0530983436==
-Content-Type: multipart/alternative; boundary="15315085080.183adF42.5629"
+--===============1665349108==
+Content-Type: multipart/alternative; boundary="15315221471.EeF57d66.19956"
 Content-Transfer-Encoding: 7bit
 
 
---15315085080.183adF42.5629
-Date: Fri, 13 Jul 2018 19:01:48 +0000
+--15315221471.EeF57d66.19956
+Date: Fri, 13 Jul 2018 22:49:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107003
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107210
 
---- Comment #2 from Emil Andersen Lauridsen <mine809-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-So, digging further into the log, and looking at some mmiotraces, it appears
-the timeout was merely a symptom, not the root problem. The secboot HS
-bootloader gets loaded to the card without much issue, but returns an error
-code instead of executing succefully.
-
-On a maybe related note: The HS bootloader blob the nvidia driver sends is
-quite different from the one nouveau sends, so I assume it could be a probl=
-em
-with the released firmware blob simply not supporting the card.
-
-Given that the card is a 1070 Ti, released in november 2017, and the firmwa=
-re
-blob being from february 2017, it wouldn't seem too far fetched.
-
-I'd be interested to hear if any other 1070 Ti users are able to run with
-nouveau.
-
-Also, does any of the nouveau developers have the ability to contact nvidia
-about such an issue? It would be much appreciated.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I believe kwin with a G71 (supported by the nv30 driver) works fairly poorly
+and crashes, as you've discovered. Someone else reported crashes a while ba=
+ck -
+I looked into them a bit, but ultimately didn't have time to properly resol=
+ve.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15315085080.183adF42.5629
-Date: Fri, 13 Jul 2018 19:01:48 +0000
+--15315221471.EeF57d66.19956
+Date: Fri, 13 Jul 2018 22:49:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,38 +64,24 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - secboot: HS load failed"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107003#c2">Commen=
-t # 2</a>
+   title=3D"NEW - Segment Fault while opening thunderbitf windows"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107210#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - secboot: HS load failed"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107003">bug 10700=
-3</a>
+   title=3D"NEW - Segment Fault while opening thunderbitf windows"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107210">bug 10721=
+0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mine809&#64;gmail.com" title=3D"Emil Andersen Lauridsen &lt;mine809&#64;gma=
-il.com&gt;"> <span class=3D"fn">Emil Andersen Lauridsen</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>So, digging further into the log, and looking at some mmiotrac=
-es, it appears
-the timeout was merely a symptom, not the root problem. The secboot HS
-bootloader gets loaded to the card without much issue, but returns an error
-code instead of executing succefully.
-
-On a maybe related note: The HS bootloader blob the nvidia driver sends is
-quite different from the one nouveau sends, so I assume it could be a probl=
-em
-with the released firmware blob simply not supporting the card.
-
-Given that the card is a 1070 Ti, released in november 2017, and the firmwa=
-re
-blob being from february 2017, it wouldn't seem too far fetched.
-
-I'd be interested to hear if any other 1070 Ti users are able to run with
-nouveau.
-
-Also, does any of the nouveau developers have the ability to contact nvidia
-about such an issue? It would be much appreciated.</pre>
+        <pre>I believe kwin with a G71 (supported by the nv30 driver) works=
+ fairly poorly
+and crashes, as you've discovered. Someone else reported crashes a while ba=
+ck -
+I looked into them a bit, but ultimately didn't have time to properly resol=
+ve.</pre>
         </div>
       </p>
 
@@ -122,9 +95,9 @@ about such an issue? It would be much appreciated.</pre>
     </body>
 </html>=
 
---15315085080.183adF42.5629--
+--15315221471.EeF57d66.19956--
 
---===============0530983436==
+--===============1665349108==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -134,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0530983436==--
+--===============1665349108==--
