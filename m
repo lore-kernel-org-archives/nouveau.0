@@ -1,210 +1,130 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v2 2/2] drm/nouveau: Avoid looping through fake MST connectors
-Date: Fri, 13 Jul 2018 13:06:33 -0400
-Message-ID: <20180713170633.24235-3-lyude@redhat.com>
+Subject: [PATCH v2 1/2] drm/nouveau: Use drm_connector_list_iter_* for
+ iterating connectors
+Date: Fri, 13 Jul 2018 13:06:32 -0400
+Message-ID: <20180713170633.24235-2-lyude@redhat.com>
 References: <20180713170633.24235-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
 In-Reply-To: <20180713170633.24235-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
 To: nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Karol Herbst <karolherbst@gmail.com>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-When MST and atomic were introduced to nouveau, another structure that
-could contain a drm_connector embedded within it was introduced; struct
-nv50_mstc. This meant that we no longer would be able to simply loop
-through our connector list and assume that nouveau_connector() would
-return a proper pointer for each connector, since the assertion that
-all connectors coming from nouveau have a full nouveau_connector struct
-became invalid.
-
-Unfortunately, none of the actual code that looped through connectors
-ever got updated, which means that we've been causing invalid memory
-accesses for quite a while now.
-
-An example that was caught by KASAN:
-
-[  201.038698] ==================================================================
-[  201.038792] BUG: KASAN: slab-out-of-bounds in nvif_notify_get+0x190/0x1a0 [nouveau]
-[  201.038797] Read of size 4 at addr ffff88076738c650 by task kworker/0:3/718
-[  201.038800]
-[  201.038822] CPU: 0 PID: 718 Comm: kworker/0:3 Tainted: G           O      4.18.0-rc4Lyude-Test+ #1
-[  201.038825] Hardware name: LENOVO 20EQS64N0B/20EQS64N0B, BIOS N1EET78W (1.51 ) 05/18/2018
-[  201.038882] Workqueue: events nouveau_display_hpd_work [nouveau]
-[  201.038887] Call Trace:
-[  201.038894]  dump_stack+0xa4/0xfd
-[  201.038900]  print_address_description+0x71/0x239
-[  201.038929]  ? nvif_notify_get+0x190/0x1a0 [nouveau]
-[  201.038935]  kasan_report.cold.6+0x242/0x2fe
-[  201.038942]  __asan_report_load4_noabort+0x19/0x20
-[  201.038970]  nvif_notify_get+0x190/0x1a0 [nouveau]
-[  201.038998]  ? nvif_notify_put+0x1f0/0x1f0 [nouveau]
-[  201.039003]  ? kmsg_dump_rewind_nolock+0xe4/0xe4
-[  201.039049]  nouveau_display_init.cold.12+0x34/0x39 [nouveau]
-[  201.039089]  ? nouveau_user_framebuffer_create+0x120/0x120 [nouveau]
-[  201.039133]  nouveau_display_resume+0x5c0/0x810 [nouveau]
-[  201.039173]  ? nvkm_client_ioctl+0x20/0x20 [nouveau]
-[  201.039215]  nouveau_do_resume+0x19f/0x570 [nouveau]
-[  201.039256]  nouveau_pmops_runtime_resume+0xd8/0x2a0 [nouveau]
-[  201.039264]  pci_pm_runtime_resume+0x130/0x250
-[  201.039269]  ? pci_restore_standard_config+0x70/0x70
-[  201.039275]  __rpm_callback+0x1f2/0x5d0
-[  201.039279]  ? rpm_resume+0x560/0x18a0
-[  201.039283]  ? pci_restore_standard_config+0x70/0x70
-[  201.039287]  ? pci_restore_standard_config+0x70/0x70
-[  201.039291]  ? pci_restore_standard_config+0x70/0x70
-[  201.039296]  rpm_callback+0x175/0x210
-[  201.039300]  ? pci_restore_standard_config+0x70/0x70
-[  201.039305]  rpm_resume+0xcc3/0x18a0
-[  201.039312]  ? rpm_callback+0x210/0x210
-[  201.039317]  ? __pm_runtime_resume+0x9e/0x100
-[  201.039322]  ? kasan_check_write+0x14/0x20
-[  201.039326]  ? do_raw_spin_lock+0xc2/0x1c0
-[  201.039333]  __pm_runtime_resume+0xac/0x100
-[  201.039374]  nouveau_display_hpd_work+0x67/0x1f0 [nouveau]
-[  201.039380]  process_one_work+0x7a0/0x14d0
-[  201.039388]  ? cancel_delayed_work_sync+0x20/0x20
-[  201.039392]  ? lock_acquire+0x113/0x310
-[  201.039398]  ? kasan_check_write+0x14/0x20
-[  201.039402]  ? do_raw_spin_lock+0xc2/0x1c0
-[  201.039409]  worker_thread+0x86/0xb50
-[  201.039418]  kthread+0x2e9/0x3a0
-[  201.039422]  ? process_one_work+0x14d0/0x14d0
-[  201.039426]  ? kthread_create_worker_on_cpu+0xc0/0xc0
-[  201.039431]  ret_from_fork+0x3a/0x50
-[  201.039441]
-[  201.039444] Allocated by task 79:
-[  201.039449]  save_stack+0x43/0xd0
-[  201.039452]  kasan_kmalloc+0xc4/0xe0
-[  201.039456]  kmem_cache_alloc_trace+0x10a/0x260
-[  201.039494]  nv50_mstm_add_connector+0x9a/0x340 [nouveau]
-[  201.039504]  drm_dp_add_port+0xff5/0x1fc0 [drm_kms_helper]
-[  201.039511]  drm_dp_send_link_address+0x4a7/0x740 [drm_kms_helper]
-[  201.039518]  drm_dp_check_and_send_link_address+0x1a7/0x210 [drm_kms_helper]
-[  201.039525]  drm_dp_mst_link_probe_work+0x71/0xb0 [drm_kms_helper]
-[  201.039529]  process_one_work+0x7a0/0x14d0
-[  201.039533]  worker_thread+0x86/0xb50
-[  201.039537]  kthread+0x2e9/0x3a0
-[  201.039541]  ret_from_fork+0x3a/0x50
-[  201.039543]
-[  201.039546] Freed by task 0:
-[  201.039549] (stack is not available)
-[  201.039551]
-[  201.039555] The buggy address belongs to the object at ffff88076738c1a8
-                                 which belongs to the cache kmalloc-2048 of size 2048
-[  201.039559] The buggy address is located 1192 bytes inside of
-                                 2048-byte region [ffff88076738c1a8, ffff88076738c9a8)
-[  201.039563] The buggy address belongs to the page:
-[  201.039567] page:ffffea001d9ce200 count:1 mapcount:0 mapping:ffff88084000d0c0 index:0x0 compound_mapcount: 0
-[  201.039573] flags: 0x8000000000008100(slab|head)
-[  201.039578] raw: 8000000000008100 ffffea001da3be08 ffffea001da25a08 ffff88084000d0c0
-[  201.039582] raw: 0000000000000000 00000000000d000d 00000001ffffffff 0000000000000000
-[  201.039585] page dumped because: kasan: bad access detected
-[  201.039588]
-[  201.039591] Memory state around the buggy address:
-[  201.039594]  ffff88076738c500: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-[  201.039598]  ffff88076738c580: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-[  201.039601] >ffff88076738c600: 00 00 00 00 00 00 00 00 00 00 fc fc fc fc fc fc
-[  201.039604]                                                  ^
-[  201.039607]  ffff88076738c680: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
-[  201.039611]  ffff88076738c700: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
-[  201.039613] ==================================================================
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: stable@vger.kernel.org
-Cc: Karol Herbst <karolherbst@gmail.com>
----
-Changes since v2:
- - Use for_each_if (re: Daniel Vetter)
-
- drivers/gpu/drm/nouveau/nouveau_connector.c |  2 +-
- drivers/gpu/drm/nouveau/nouveau_connector.h | 24 ++++++++++++++++++++-
- drivers/gpu/drm/nouveau/nouveau_display.c   |  4 ++--
- 3 files changed, 26 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 7dc380449232..af68eae4c626 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -1213,7 +1213,7 @@ nouveau_connector_create(struct drm_device *dev, int index)
- 	bool dummy;
- 
- 	drm_connector_list_iter_begin(dev, &conn_iter);
--	drm_for_each_connector_iter(connector, &conn_iter) {
-+	nouveau_for_each_non_mst_connector_iter(connector, &conn_iter) {
- 		nv_connector = nouveau_connector(connector);
- 		if (nv_connector->index == index) {
- 			drm_connector_list_iter_end(&conn_iter);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.h b/drivers/gpu/drm/nouveau/nouveau_connector.h
-index a8cbb4b56fc7..dc7454e7f19a 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.h
-@@ -33,6 +33,7 @@
- #include <drm/drm_encoder.h>
- #include <drm/drm_dp_helper.h>
- #include "nouveau_crtc.h"
-+#include "nouveau_encoder.h"
- 
- struct nvkm_i2c_port;
- 
-@@ -60,6 +61,27 @@ static inline struct nouveau_connector *nouveau_connector(
- 	return container_of(con, struct nouveau_connector, base);
- }
- 
-+static inline bool
-+nouveau_connector_is_mst(struct drm_connector *connector)
-+{
-+	const struct nouveau_encoder *nv_encoder;
-+	const struct drm_encoder *encoder;
-+
-+	if (connector->connector_type != DRM_MODE_CONNECTOR_DisplayPort)
-+		return false;
-+
-+	nv_encoder = find_encoder(connector, DCB_OUTPUT_ANY);
-+	if (!nv_encoder)
-+		return false;
-+
-+	encoder = &nv_encoder->base.base;
-+	return encoder->encoder_type == DRM_MODE_ENCODER_DPMST;
-+}
-+
-+#define nouveau_for_each_non_mst_connector_iter(connector, iter) \
-+	drm_for_each_connector_iter(connector, iter) \
-+		for_each_if(!nouveau_connector_is_mst(connector))
-+
- static inline struct nouveau_connector *
- nouveau_crtc_connector_get(struct nouveau_crtc *nv_crtc)
- {
-@@ -70,7 +92,7 @@ nouveau_crtc_connector_get(struct nouveau_crtc *nv_crtc)
- 	struct drm_crtc *crtc = to_drm_crtc(nv_crtc);
- 
- 	drm_connector_list_iter_begin(dev, &conn_iter);
--	drm_for_each_connector_iter(connector, &conn_iter) {
-+	nouveau_for_each_non_mst_connector_iter(connector, &conn_iter) {
- 		if (connector->encoder && connector->encoder->crtc == crtc) {
- 			nv_connector = nouveau_connector(connector);
- 			break;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index 46b8430ef4aa..ec7861457b84 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -413,7 +413,7 @@ nouveau_display_init(struct drm_device *dev)
- 
- 	/* enable hotplug interrupts */
- 	drm_connector_list_iter_begin(dev, &conn_iter);
--	drm_for_each_connector_iter(connector, &conn_iter) {
-+	nouveau_for_each_non_mst_connector_iter(connector, &conn_iter) {
- 		struct nouveau_connector *conn = nouveau_connector(connector);
- 		nvif_notify_get(&conn->hpd);
- 	}
-@@ -444,7 +444,7 @@ nouveau_display_fini(struct drm_device *dev, bool suspend)
- 
- 	/* disable hotplug interrupts */
- 	drm_connector_list_iter_begin(dev, &conn_iter);
--	drm_for_each_connector_iter(connector, &conn_iter) {
-+	nouveau_for_each_non_mst_connector_iter(connector, &conn_iter) {
- 		struct nouveau_connector *conn = nouveau_connector(connector);
- 		nvif_notify_put(&conn->hpd);
- 	}
--- 
-2.17.1
+RXZlcnkgY29kZXBhdGggaW4gbm91dmVhdSB0aGF0IGxvb3BzIHRocm91Z2ggdGhlIGNvbm5lY3Rv
+ciBsaXN0CmN1cnJlbnRseSBkb2VzIHNvIHVzaW5nIHRoZSBvbGQgbWV0aG9kLCB3aGljaCBpcyBw
+cm9uZSB0byByYWNlCmNvbmRpdGlvbnMgZnJvbSBNU1QgY29ubmVjdG9ycyBiZWluZyBjcmVhdGVk
+IGFuZCBkZXN0cm95ZWQuIFRoaXMgaGFzCmJlZW4gY2F1c2luZyBhIG11bHRpdHVkZSBvZiBwcm9i
+bGVtcywgaW5jbHVkaW5nIG1lbW9yeSBjb3JydXB0aW9uIGZyb20KdHJ5aW5nIHRvIGFjY2VzcyBj
+b25uZWN0b3JzIHRoYXQgaGF2ZSBhbHJlYWR5IGJlZW4gZnJlZWQhCgpTaWduZWQtb2ZmLWJ5OiBM
+eXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgpDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZwpD
+YzogS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Ci0tLQogZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGlnaHQuYyB8ICA2ICsrKystLQogZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYyB8ICA5ICsrKysrKystLQogZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuaCB8IDE0ICsrKysrKysrKystLS0tCiBk
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyAgIHwgMTAgKysrKysrKyst
+LQogNCBmaWxlcyBjaGFuZ2VkLCAyOSBpbnNlcnRpb25zKCspLCAxMCBkZWxldGlvbnMoLSkKCmRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jIGIv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGlnaHQuYwppbmRleCBkZWJiYmYw
+ZmQ0YmQuLjQwOGI5NTVlNWMzOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9iYWNrbGlnaHQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2JhY2tsaWdodC5jCkBAIC0yNjcsNiArMjY3LDcgQEAgbm91dmVhdV9iYWNrbGlnaHRfaW5pdChz
+dHJ1Y3QgZHJtX2RldmljZSAqZGV2KQogCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVh
+dV9kcm0oZGV2KTsKIAlzdHJ1Y3QgbnZpZl9kZXZpY2UgKmRldmljZSA9ICZkcm0tPmNsaWVudC5k
+ZXZpY2U7CiAJc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcjsKKwlzdHJ1Y3QgZHJtX2Nv
+bm5lY3Rvcl9saXN0X2l0ZXIgY29ubl9pdGVyOwogCiAJSU5JVF9MSVNUX0hFQUQoJmRybS0+Ymxf
+Y29ubmVjdG9ycyk7CiAKQEAgLTI3NSw3ICsyNzYsOCBAQCBub3V2ZWF1X2JhY2tsaWdodF9pbml0
+KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAJCXJldHVybiAwOwogCX0KIAotCWxpc3RfZm9yX2Vh
+Y2hfZW50cnkoY29ubmVjdG9yLCAmZGV2LT5tb2RlX2NvbmZpZy5jb25uZWN0b3JfbGlzdCwgaGVh
+ZCkgeworCWRybV9jb25uZWN0b3JfbGlzdF9pdGVyX2JlZ2luKGRldiwgJmNvbm5faXRlcik7CisJ
+ZHJtX2Zvcl9lYWNoX2Nvbm5lY3Rvcl9pdGVyKGNvbm5lY3RvciwgJmNvbm5faXRlcikgewogCQlp
+ZiAoY29ubmVjdG9yLT5jb25uZWN0b3JfdHlwZSAhPSBEUk1fTU9ERV9DT05ORUNUT1JfTFZEUyAm
+JgogCQkgICAgY29ubmVjdG9yLT5jb25uZWN0b3JfdHlwZSAhPSBEUk1fTU9ERV9DT05ORUNUT1Jf
+ZURQKQogCQkJY29udGludWU7CkBAIC0yOTIsNyArMjk0LDcgQEAgbm91dmVhdV9iYWNrbGlnaHRf
+aW5pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQogCQkJYnJlYWs7CiAJCX0KIAl9Ci0KKwlkcm1f
+Y29ubmVjdG9yX2xpc3RfaXRlcl9lbmQoJmNvbm5faXRlcik7CiAKIAlyZXR1cm4gMDsKIH0KZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMgYi9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jCmluZGV4IDdiNTU3YzM1
+NDMwNy4uN2RjMzgwNDQ5MjMyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2Nvbm5lY3Rvci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
+Y29ubmVjdG9yLmMKQEAgLTEyMDgsMTQgKzEyMDgsMTkgQEAgbm91dmVhdV9jb25uZWN0b3JfY3Jl
+YXRlKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIGludCBpbmRleCkKIAlzdHJ1Y3Qgbm91dmVhdV9k
+aXNwbGF5ICpkaXNwID0gbm91dmVhdV9kaXNwbGF5KGRldik7CiAJc3RydWN0IG5vdXZlYXVfY29u
+bmVjdG9yICpudl9jb25uZWN0b3IgPSBOVUxMOwogCXN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25u
+ZWN0b3I7CisJc3RydWN0IGRybV9jb25uZWN0b3JfbGlzdF9pdGVyIGNvbm5faXRlcjsKIAlpbnQg
+dHlwZSwgcmV0ID0gMDsKIAlib29sIGR1bW15OwogCi0JbGlzdF9mb3JfZWFjaF9lbnRyeShjb25u
+ZWN0b3IsICZkZXYtPm1vZGVfY29uZmlnLmNvbm5lY3Rvcl9saXN0LCBoZWFkKSB7CisJZHJtX2Nv
+bm5lY3Rvcl9saXN0X2l0ZXJfYmVnaW4oZGV2LCAmY29ubl9pdGVyKTsKKwlkcm1fZm9yX2VhY2hf
+Y29ubmVjdG9yX2l0ZXIoY29ubmVjdG9yLCAmY29ubl9pdGVyKSB7CiAJCW52X2Nvbm5lY3RvciA9
+IG5vdXZlYXVfY29ubmVjdG9yKGNvbm5lY3Rvcik7Ci0JCWlmIChudl9jb25uZWN0b3ItPmluZGV4
+ID09IGluZGV4KQorCQlpZiAobnZfY29ubmVjdG9yLT5pbmRleCA9PSBpbmRleCkgeworCQkJZHJt
+X2Nvbm5lY3Rvcl9saXN0X2l0ZXJfZW5kKCZjb25uX2l0ZXIpOwogCQkJcmV0dXJuIGNvbm5lY3Rv
+cjsKKwkJfQogCX0KKwlkcm1fY29ubmVjdG9yX2xpc3RfaXRlcl9lbmQoJmNvbm5faXRlcik7CiAK
+IAludl9jb25uZWN0b3IgPSBremFsbG9jKHNpemVvZigqbnZfY29ubmVjdG9yKSwgR0ZQX0tFUk5F
+TCk7CiAJaWYgKCFudl9jb25uZWN0b3IpCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5oIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9jb25uZWN0b3IuaAppbmRleCBhNGQxYTA1OWJkM2QuLmE4Y2JiNGI1NmZjNyAxMDA2NDQKLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuaAorKysgYi9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5oCkBAIC02NSwxNCArNjUsMjAg
+QEAgbm91dmVhdV9jcnRjX2Nvbm5lY3Rvcl9nZXQoc3RydWN0IG5vdXZlYXVfY3J0YyAqbnZfY3J0
+YykKIHsKIAlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2ID0gbnZfY3J0Yy0+YmFzZS5kZXY7CiAJc3Ry
+dWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcjsKKwlzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9saXN0
+X2l0ZXIgY29ubl9pdGVyOworCXN0cnVjdCBub3V2ZWF1X2Nvbm5lY3RvciAqbnZfY29ubmVjdG9y
+ID0gTlVMTDsKIAlzdHJ1Y3QgZHJtX2NydGMgKmNydGMgPSB0b19kcm1fY3J0Yyhudl9jcnRjKTsK
+IAotCWxpc3RfZm9yX2VhY2hfZW50cnkoY29ubmVjdG9yLCAmZGV2LT5tb2RlX2NvbmZpZy5jb25u
+ZWN0b3JfbGlzdCwgaGVhZCkgewotCQlpZiAoY29ubmVjdG9yLT5lbmNvZGVyICYmIGNvbm5lY3Rv
+ci0+ZW5jb2Rlci0+Y3J0YyA9PSBjcnRjKQotCQkJcmV0dXJuIG5vdXZlYXVfY29ubmVjdG9yKGNv
+bm5lY3Rvcik7CisJZHJtX2Nvbm5lY3Rvcl9saXN0X2l0ZXJfYmVnaW4oZGV2LCAmY29ubl9pdGVy
+KTsKKwlkcm1fZm9yX2VhY2hfY29ubmVjdG9yX2l0ZXIoY29ubmVjdG9yLCAmY29ubl9pdGVyKSB7
+CisJCWlmIChjb25uZWN0b3ItPmVuY29kZXIgJiYgY29ubmVjdG9yLT5lbmNvZGVyLT5jcnRjID09
+IGNydGMpIHsKKwkJCW52X2Nvbm5lY3RvciA9IG5vdXZlYXVfY29ubmVjdG9yKGNvbm5lY3Rvcik7
+CisJCQlicmVhazsKKwkJfQogCX0KKwlkcm1fY29ubmVjdG9yX2xpc3RfaXRlcl9lbmQoJmNvbm5f
+aXRlcik7CiAKLQlyZXR1cm4gTlVMTDsKKwlyZXR1cm4gbnZfY29ubmVjdG9yOwogfQogCiBzdHJ1
+Y3QgZHJtX2Nvbm5lY3RvciAqCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxh
+eS5jCmluZGV4IDc3NGI0MjkxNDJiYy4uNDZiODQzMGVmNGFhIDEwMDY0NAotLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYwpAQCAtNDA0LDYgKzQwNCw3IEBAIG5vdXZlYXVfZGlz
+cGxheV9pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAJc3RydWN0IG5vdXZlYXVfZGlzcGxh
+eSAqZGlzcCA9IG5vdXZlYXVfZGlzcGxheShkZXYpOwogCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJt
+ID0gbm91dmVhdV9kcm0oZGV2KTsKIAlzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yOwor
+CXN0cnVjdCBkcm1fY29ubmVjdG9yX2xpc3RfaXRlciBjb25uX2l0ZXI7CiAJaW50IHJldDsKIAog
+CXJldCA9IGRpc3AtPmluaXQoZGV2KTsKQEAgLTQxMSwxMCArNDEyLDEyIEBAIG5vdXZlYXVfZGlz
+cGxheV9pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAJCXJldHVybiByZXQ7CiAKIAkvKiBl
+bmFibGUgaG90cGx1ZyBpbnRlcnJ1cHRzICovCi0JbGlzdF9mb3JfZWFjaF9lbnRyeShjb25uZWN0
+b3IsICZkZXYtPm1vZGVfY29uZmlnLmNvbm5lY3Rvcl9saXN0LCBoZWFkKSB7CisJZHJtX2Nvbm5l
+Y3Rvcl9saXN0X2l0ZXJfYmVnaW4oZGV2LCAmY29ubl9pdGVyKTsKKwlkcm1fZm9yX2VhY2hfY29u
+bmVjdG9yX2l0ZXIoY29ubmVjdG9yLCAmY29ubl9pdGVyKSB7CiAJCXN0cnVjdCBub3V2ZWF1X2Nv
+bm5lY3RvciAqY29ubiA9IG5vdXZlYXVfY29ubmVjdG9yKGNvbm5lY3Rvcik7CiAJCW52aWZfbm90
+aWZ5X2dldCgmY29ubi0+aHBkKTsKIAl9CisJZHJtX2Nvbm5lY3Rvcl9saXN0X2l0ZXJfZW5kKCZj
+b25uX2l0ZXIpOwogCiAJLyogZW5hYmxlIGZsaXAgY29tcGxldGlvbiBldmVudHMgKi8KIAludmlm
+X25vdGlmeV9nZXQoJmRybS0+ZmxpcCk7CkBAIC00MjcsNiArNDMwLDcgQEAgbm91dmVhdV9kaXNw
+bGF5X2Zpbmkoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgYm9vbCBzdXNwZW5kKQogCXN0cnVjdCBu
+b3V2ZWF1X2Rpc3BsYXkgKmRpc3AgPSBub3V2ZWF1X2Rpc3BsYXkoZGV2KTsKIAlzdHJ1Y3Qgbm91
+dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKGRldik7CiAJc3RydWN0IGRybV9jb25uZWN0b3Ig
+KmNvbm5lY3RvcjsKKwlzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9saXN0X2l0ZXIgY29ubl9pdGVyOwog
+CiAJaWYgKCFzdXNwZW5kKSB7CiAJCWlmIChkcm1fZHJ2X3VzZXNfYXRvbWljX21vZGVzZXQoZGV2
+KSkKQEAgLTQzOSwxMCArNDQzLDEyIEBAIG5vdXZlYXVfZGlzcGxheV9maW5pKHN0cnVjdCBkcm1f
+ZGV2aWNlICpkZXYsIGJvb2wgc3VzcGVuZCkKIAludmlmX25vdGlmeV9wdXQoJmRybS0+ZmxpcCk7
+CiAKIAkvKiBkaXNhYmxlIGhvdHBsdWcgaW50ZXJydXB0cyAqLwotCWxpc3RfZm9yX2VhY2hfZW50
+cnkoY29ubmVjdG9yLCAmZGV2LT5tb2RlX2NvbmZpZy5jb25uZWN0b3JfbGlzdCwgaGVhZCkgewor
+CWRybV9jb25uZWN0b3JfbGlzdF9pdGVyX2JlZ2luKGRldiwgJmNvbm5faXRlcik7CisJZHJtX2Zv
+cl9lYWNoX2Nvbm5lY3Rvcl9pdGVyKGNvbm5lY3RvciwgJmNvbm5faXRlcikgewogCQlzdHJ1Y3Qg
+bm91dmVhdV9jb25uZWN0b3IgKmNvbm4gPSBub3V2ZWF1X2Nvbm5lY3Rvcihjb25uZWN0b3IpOwog
+CQludmlmX25vdGlmeV9wdXQoJmNvbm4tPmhwZCk7CiAJfQorCWRybV9jb25uZWN0b3JfbGlzdF9p
+dGVyX2VuZCgmY29ubl9pdGVyKTsKIAogCWRybV9rbXNfaGVscGVyX3BvbGxfZGlzYWJsZShkZXYp
+OwogCWRpc3AtPmZpbmkoZGV2KTsKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vZHJpLWRldmVsCg==
