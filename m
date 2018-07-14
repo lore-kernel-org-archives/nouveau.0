@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107210] Segment Fault while opening thunderbitf
- windows
-Date: Fri, 13 Jul 2018 22:49:07 +0000
-Message-ID: <bug-107210-8800-KO1UR6zDq8@http.bugs.freedesktop.org/>
-References: <bug-107210-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 0/2] Some minor reclocking fixes
+Date: Sat, 14 Jul 2018 12:52:07 +0200
+Message-ID: <20180714105209.2528-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1665349108=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107210-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,93 +16,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1665349108==
-Content-Type: multipart/alternative; boundary="15315221471.EeF57d66.19956"
-Content-Transfer-Encoding: 7bit
-
-
---15315221471.EeF57d66.19956
-Date: Fri, 13 Jul 2018 22:49:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107210
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I believe kwin with a G71 (supported by the nv30 driver) works fairly poorly
-and crashes, as you've discovered. Someone else reported crashes a while ba=
-ck -
-I looked into them a bit, but ultimately didn't have time to properly resol=
-ve.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15315221471.EeF57d66.19956
-Date: Fri, 13 Jul 2018 22:49:07 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Segment Fault while opening thunderbitf windows"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107210#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Segment Fault while opening thunderbitf windows"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107210">bug 10721=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>I believe kwin with a G71 (supported by the nv30 driver) works=
- fairly poorly
-and crashes, as you've discovered. Someone else reported crashes a while ba=
-ck -
-I looked into them a bit, but ultimately didn't have time to properly resol=
-ve.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15315221471.EeF57d66.19956--
-
---===============1665349108==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1665349108==--
+Rmlyc3QgcGF0Y2ggZml4ZXMgYSBwb3RlbnRpYWwgdmJpb3MgcGFyc2luZyBidWcgb24gRmVybWkg
+R1BVcywgYnV0IGl0IG1heQphbHNvIGFmZmVjdCBLZXBsZXIgb25lcy4KClNlY29uZCBwYXRjaCB3
+YWtlcyB0aGUgR1BVIHVwIHdoZW5ldmVyIHRoZSB1c2VyIHRyaWVzIHRvIHJlY2xvY2sgdG8KcHJl
+dmVudCB0aGUgd3JpdGUgdG8gdGhlIHBzdGF0ZSBmaWxlIGZyb20gZnJlZXppbmcuCgpLYXJvbCBI
+ZXJic3QgKDIpOgogIGJpb3MvdnBzdGF0ZTogVGhlcmUgYXJlIHNvbWUgZmVybWkgdmJpb3Mgd2l0
+aCBubyBib29zdCBvciB0ZHAgZW50cnkKICBkZWJ1Z2ZzOiBXYWtlIHVwIEdQVSBiZWZvcmUgZG9p
+bmcgYW55IHJlY2xvY2tpbmcKCiBkcm0vbm91dmVhdS9ub3V2ZWF1X2RlYnVnZnMuYyAgICAgICAg
+ICB8ICA0ICsrKysKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvdnBzdGF0ZS5jIHwgMTAg
+KysrKysrKystLQogMiBmaWxlcyBjaGFuZ2VkLCAxMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9u
+cygtKQoKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+Cg==
