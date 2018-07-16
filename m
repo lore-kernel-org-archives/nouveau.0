@@ -1,51 +1,59 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 4/5] drm/nouveau: Grab RPM ref when i2c bus is in
- use
-Date: Mon, 16 Jul 2018 19:59:28 -0400
-Message-ID: <20180716235936.11268-5-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH 5/5] drm/nouveau: Grab RPM ref when aux bus is in use
+Date: Mon, 16 Jul 2018 19:59:29 -0400
+Message-ID: <20180716235936.11268-6-lyude@redhat.com>
 References: <20180716235936.11268-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180716235936.11268-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20180716235936.11268-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: Karol Herbst <karolherbst@gmail.com>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIGkyYyBidXMgY2FuIGJlIGJvdGggYWNjZXNzZWQgYnkgRFJNIGl0c2VsZiwgYWxvbmcgd2l0
-aCBhbnkgb2YgaXQncwpkZXZub2RlcyAoL3N5cy9jbGFzcy9pMmMpLiBTbywgd2UgbmVlZCB0byBt
-YWtlIHN1cmUgdGhhdCBhbGwgY29kZXBhdGhzCnVzaW5nIHRoZSBpMmMgYnVzIGtlZXAgdGhlIEdQ
-VSByZXN1bWVkLgoKU2lnbmVkLW9mZi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4K
-Q2M6IEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgpDYzogc3RhYmxlQHZnZXIu
-a2VybmVsLm9yZwotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2kyYy9i
-dXMuYyB8IDEyICsrKysrKysrKysrLQogMSBmaWxlIGNoYW5nZWQsIDExIGluc2VydGlvbnMoKyks
-IDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmtt
-L3N1YmRldi9pMmMvYnVzLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9p
-MmMvYnVzLmMKaW5kZXggODA3YTJiNjdiZDY0Li4xZGU0OGM5OTBiODAgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2kyYy9idXMuYworKysgYi9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pMmMvYnVzLmMKQEAgLTExOSwxOCArMTE5LDI4
-IEBAIG52a21faTJjX2J1c19yZWxlYXNlKHN0cnVjdCBudmttX2kyY19idXMgKmJ1cykKIAlCVVNf
-VFJBQ0UoYnVzLCAicmVsZWFzZSIpOwogCW52a21faTJjX3BhZF9yZWxlYXNlKHBhZCk7CiAJbXV0
-ZXhfdW5sb2NrKCZidXMtPm11dGV4KTsKKwlwbV9ydW50aW1lX3B1dF9hdXRvc3VzcGVuZChwYWQt
-PmkyYy0+c3ViZGV2LmRldmljZS0+ZGV2KTsKIH0KIAogaW50CiBudmttX2kyY19idXNfYWNxdWly
-ZShzdHJ1Y3QgbnZrbV9pMmNfYnVzICpidXMpCiB7CiAJc3RydWN0IG52a21faTJjX3BhZCAqcGFk
-ID0gYnVzLT5wYWQ7CisJc3RydWN0IGRldmljZSAqZGV2ID0gcGFkLT5pMmMtPnN1YmRldi5kZXZp
-Y2UtPmRldjsKIAlpbnQgcmV0OworCiAJQlVTX1RSQUNFKGJ1cywgImFjcXVpcmUiKTsKKworCXJl
-dCA9IHBtX3J1bnRpbWVfZ2V0X3N5bmMoZGV2KTsKKwlpZiAocmV0IDwgMCAmJiByZXQgIT0gLUVB
-Q0NFUykKKwkJcmV0dXJuIHJldDsKKwogCW11dGV4X2xvY2soJmJ1cy0+bXV0ZXgpOwogCXJldCA9
-IG52a21faTJjX3BhZF9hY3F1aXJlKHBhZCwgTlZLTV9JMkNfUEFEX0kyQyk7Ci0JaWYgKHJldCkK
-KwlpZiAocmV0KSB7CiAJCW11dGV4X3VubG9jaygmYnVzLT5tdXRleCk7CisJCXBtX3J1bnRpbWVf
-cHV0X2F1dG9zdXNwZW5kKGRldik7CisJfQogCXJldHVybiByZXQ7CiB9CiAKLS0gCjIuMTcuMQoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+DP AUX busses can both be accessed by DRM, and through any of the
+userspace dev nodes in /dev/drm_dp_auxN. We need to make sure the GPU
+stays on in all of these codepaths.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: Karol Herbst <karolherbst@gmail.com>
+Cc: stable@vger.kernel.org
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
+index 4c1f547da463..6276b113065c 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
+@@ -98,18 +98,28 @@ nvkm_i2c_aux_release(struct nvkm_i2c_aux *aux)
+ 	AUX_TRACE(aux, "release");
+ 	nvkm_i2c_pad_release(pad);
+ 	mutex_unlock(&aux->mutex);
++	pm_runtime_put_autosuspend(pad->i2c->subdev.device->dev);
+ }
+ 
+ int
+ nvkm_i2c_aux_acquire(struct nvkm_i2c_aux *aux)
+ {
+ 	struct nvkm_i2c_pad *pad = aux->pad;
++	struct device *dev = pad->i2c->subdev.device->dev;
+ 	int ret;
++
+ 	AUX_TRACE(aux, "acquire");
++
++	ret = pm_runtime_get_sync(dev);
++	if (ret < 0 && ret != -EACCES)
++		return ret;
++
+ 	mutex_lock(&aux->mutex);
+ 	ret = nvkm_i2c_pad_acquire(pad, NVKM_I2C_PAD_AUX);
+-	if (ret)
++	if (ret) {
+ 		mutex_unlock(&aux->mutex);
++		pm_runtime_put_autosuspend(dev);
++	}
+ 	return ret;
+ }
+ 
+-- 
+2.17.1
