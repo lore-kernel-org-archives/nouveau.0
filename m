@@ -1,86 +1,69 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [Nouveau] [PATCH 4/5] drm/nouveau: Grab RPM ref when i2c bus is
- in use
-Date: Tue, 17 Jul 2018 14:10:17 +0200
-Message-ID: <CACO55tvMRd8jpmq8-J4eyqzqHeoVgnbRLYEqvYBhrVJ9O9+gXA@mail.gmail.com>
-References: <20180716235936.11268-1-lyude@redhat.com> <20180716235936.11268-5-lyude@redhat.com>
- <CACO55tv9B+GNM=nhpH1UfeWd9F1x5nTp+vHSuJ-TsuzRFK_AEA@mail.gmail.com> <CACAvsv4Rg32Fhq-4yOBWhUooWE+WzG5fQzvN+jYn4Uruc5kDLw@mail.gmail.com>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH 0/2] drm/nouveau: Fix panic on nouveau unload.
+Date: Tue, 17 Jul 2018 15:05:26 +0200
+Message-ID: <CACO55tuK-PLJrx+499TfB0H=fg0kbC0wj49wjc=PZYPEA4AFkA@mail.gmail.com>
+References: <20180705191000.98872-1-jmiller@neverware.com>
+ <CACO55ttE3gSqepk_1MtZss-o53KrtfiuBYVjZp+pM4JDFf7cWw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CACAvsv4Rg32Fhq-4yOBWhUooWE+WzG5fQzvN+jYn4Uruc5kDLw@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <skeggsb@gmail.com>
-Cc: Lyude Paul <lyude@redhat.com>, Dave Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, stable@vger.kernel.org, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CACO55ttE3gSqepk_1MtZss-o53KrtfiuBYVjZp+pM4JDFf7cWw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Jeffery Miller <jmiller-QeEie8R3kYhl57MIdRCFDg@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jul 17, 2018 at 1:54 PM, Ben Skeggs <skeggsb@gmail.com> wrote:
-> On Tue, 17 Jul 2018 at 20:18, Karol Herbst <kherbst@redhat.com> wrote:
->>
->> mhh, we shouldn't call to Linux APIs from within of nvkm. Rather gaurd
->> the Linux glue code to the i2c stuff instead, but this is all done
->> from inside of nvkm. I think we should move it out into
->> drm/nouveau/nouveau_i2c.c and do the handling there.
-> Huh?  No, this is completely fine.
->
-
-okay, then the the two patches adding that guard code is reviewed-by me
-
->>
->> On Tue, Jul 17, 2018 at 1:59 AM, Lyude Paul <lyude@redhat.com> wrote:
->> > The i2c bus can be both accessed by DRM itself, along with any of it's
->> > devnodes (/sys/class/i2c). So, we need to make sure that all codepaths
->> > using the i2c bus keep the GPU resumed.
->> >
->> > Signed-off-by: Lyude Paul <lyude@redhat.com>
->> > Cc: Karol Herbst <karolherbst@gmail.com>
->> > Cc: stable@vger.kernel.org
->> > ---
->> >  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c | 12 +++++++++++-
->> >  1 file changed, 11 insertions(+), 1 deletion(-)
->> >
->> > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c
->> > index 807a2b67bd64..1de48c990b80 100644
->> > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c
->> > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c
->> > @@ -119,18 +119,28 @@ nvkm_i2c_bus_release(struct nvkm_i2c_bus *bus)
->> >         BUS_TRACE(bus, "release");
->> >         nvkm_i2c_pad_release(pad);
->> >         mutex_unlock(&bus->mutex);
->> > +       pm_runtime_put_autosuspend(pad->i2c->subdev.device->dev);
->> >  }
->> >
->> >  int
->> >  nvkm_i2c_bus_acquire(struct nvkm_i2c_bus *bus)
->> >  {
->> >         struct nvkm_i2c_pad *pad = bus->pad;
->> > +       struct device *dev = pad->i2c->subdev.device->dev;
->> >         int ret;
->> > +
->> >         BUS_TRACE(bus, "acquire");
->> > +
->> > +       ret = pm_runtime_get_sync(dev);
->> > +       if (ret < 0 && ret != -EACCES)
->> > +               return ret;
->> > +
->> >         mutex_lock(&bus->mutex);
->> >         ret = nvkm_i2c_pad_acquire(pad, NVKM_I2C_PAD_I2C);
->> > -       if (ret)
->> > +       if (ret) {
->> >                 mutex_unlock(&bus->mutex);
->> > +               pm_runtime_put_autosuspend(dev);
->> > +       }
->> >         return ret;
->> >  }
->> >
->> > --
->> > 2.17.1
->> >
->> > _______________________________________________
->> > Nouveau mailing list
->> > Nouveau@lists.freedesktop.org
->> > https://lists.freedesktop.org/mailman/listinfo/nouveau
->> _______________________________________________
->> Nouveau mailing list
->> Nouveau@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/nouveau
+bmV2ZXJtaW5kLCBJIGp1c3QgaGl0IGl0IHRvZGF5LiBXaWxsIHRlc3QgeW91ciBwYXRjaGVzCgpP
+biBUdWUsIEp1bCAxNywgMjAxOCBhdCAxMjo0NiBQTSwgS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJl
+ZGhhdC5jb20+IHdyb3RlOgo+IGRvZXMgdGhpcyBhbHNvIGhhcHBlbiB3aXRoIHRoZSBuZXdlc3Qg
+a2VybmVsPyBJIHdhcyBraW5kIG9mIHVuZGVyIHRoZQo+IGltcHJlc3Npb24gd2UgYWxyZWFkeSBm
+aXhlZCBzdWNoIGlzc3Vlcy4KPgo+IE9uIFRodSwgSnVsIDUsIDIwMTggYXQgOTowOSBQTSwgSmVm
+ZmVyeSBNaWxsZXIgPGptaWxsZXJAbmV2ZXJ3YXJlLmNvbT4gd3JvdGU6Cj4+IElmIGhhdmUgYSBj
+b3VwbGUgcGF0Y2hlcyBJIGZvdW5kIHdoaWxlIGxvb2tpbmcgYXQgYSBwYW5pYwo+PiBJIHdhcyBz
+ZWVpbmcgd2hpbGUgdW5sb2FkaW5nIHRoZSBub3V2ZWF1IG1vZHVsZS4KPj4KPj4gVW5sb2FkaW5n
+IHRoZSBub3V2ZWF1IG1vZHVsZSBvbiBteSBvcHRpbXVzIG5vdGVib29rIG1hY2hpbmUgY2F1c2Vz
+Cj4+IHRoZSBzeXN0ZW0gdG8gcGFuaWMuIFRoaXMgc3RhcnRlZCBvY2N1cmluZyB3aGVuIG1vdmlu
+ZyBmcm9tIDQuNAo+PiB0byA0LjE0Lgo+Pgo+PiBUaGVzZSBwYXRjaGVzIG1ha2UgaXQgc3VjaCB0
+aGF0IHRoZSBzeXN0ZW0gZG9lcyBub3QgcGFuaWMKPj4gd2hlbiB1bmxvYWRpbmcgdGhlIG1vZHVs
+ZS4KPj4KPj4gNC4xNCBhbHNvIHJlcXVpcmVzIGNvbW1pdCAzNDExMmJmNDkzNWQgKCJkcm0vbm91
+dmVhdS9mYmNvbjogZml4IE5VTEwKPj4gcG9pbnRlciBhY2Nlc3MgaW4gbm91dmVhdV9mYmNvbl9k
+ZXN0cm95Iikgd2hpY2ggd2FzIGFscmVhZHkgaW5jbHVkZWQgaW4KPj4gdGhlIDQuMTggdHJlZS4K
+Pj4KPj4gVGhlc2UgcGF0Y2hlcyBtYWtlIGl0IHNvIEkgY2FuIHVubG9hZCB0aGUgbW9kdWxlIHdp
+dGhvdXQgYSBwYW5pYyBidXQKPj4gdGhlcmUgaXMgYSB3YXJuaW5nIHdoZW4gdW5sb2FkaW5nIHRo
+ZSBtb2R1bGU6Cj4+ICBzeXNmcyBncm91cCAncG93ZXInIG5vdCBmb3VuZCBmb3Iga29iamVjdCAn
+bnZfYmFja2xpZ2h0Jwo+PiAgV0FSTklORzogQ1BVOiAyIFBJRDogMTQzNCBhdCBmcy9zeXNmcy9n
+cm91cC5jOjIzNSBzeXNmc19yZW1vdmVfZ3JvdXArMHg3Ni8weDgwCj4+ICBSSVA6IDAwMTA6c3lz
+ZnNfcmVtb3ZlX2dyb3VwKzB4NzYvMHg4MAo+PiAgQ2FsbCBUcmFjZToKPj4gICBkZXZpY2VfZGVs
+KzB4NTYvMHgzNTAKPj4gICA/IGRvd25fd3JpdGUrMHhlLzB4NDAKPj4gICBkZXZpY2VfdW5yZWdp
+c3RlcisweDE2LzB4NjAKPj4gICBub3V2ZWF1X2JhY2tsaWdodF9leGl0KzB4NGEvMHg2MCBbbm91
+dmVhdV0KPj4gICBub3V2ZWF1X2Rpc3BsYXlfZGVzdHJveSsweDI5LzB4ODAgW25vdXZlYXVdCj4+
+ICAgbm91dmVhdV9kcm1fdW5sb2FkKzB4NjEvMHhkMCBbbm91dmVhdV0KPj4gICBkcm1fZGV2X3Vu
+cmVnaXN0ZXIrMHgzZi8weGUwIFtkcm1dCj4+ICAgZHJtX3B1dF9kZXYrMHgyNy8weDUwIFtkcm1d
+Cj4+ICAgbm91dmVhdV9kcm1fZGV2aWNlX3JlbW92ZSsweDQ3LzB4NzAgW25vdXZlYXVdCj4+ICAg
+cGNpX2RldmljZV9yZW1vdmUrMHgzYi8weGIwCj4+ICAgZGV2aWNlX3JlbGVhc2VfZHJpdmVyX2lu
+dGVybmFsKzB4MTgwLzB4MjUwCj4+ICAgZHJpdmVyX2RldGFjaCsweDMyLzB4NWYKPj4gICBidXNf
+cmVtb3ZlX2RyaXZlcisweDc0LzB4YzYKPj4gICBwY2lfdW5yZWdpc3Rlcl9kcml2ZXIrMHgyMi8w
+eGEwCj4+ICAgbm91dmVhdV9kcm1fZXhpdCsweDE1LzB4MTZiIFtub3V2ZWF1XQo+Pgo+PiBJIGRv
+bid0IGJlbGVpdmUgdGhlbSB0byBiZSByZWxhdGVkLiBQZXJoYXBzIHRoZXJlIGlzIGFub3RoZXIg
+aXNzdWUgaGVyZT8KPj4KPj4gSmVmZmVyeSBNaWxsZXIgKDIpOgo+PiAgIGRybS9ub3V2ZWF1L2Zi
+Y29uOiBGaXggTlVMTCBwb2ludGVyIGFjY2VzcyBpbiBub3V2ZWF1X2ZiY29uX2Rlc3Ryb3kuCj4+
+ICAgZHJtL25vdXZlYXUvYmw6IEFsbG9jYXRlIGJhY2tsaWdodCBjb25uZWN0b3Igbm9kZXMuCj4+
+Cj4+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jIHwgNzAgKysr
+KysrKysrKysrKystLS0tLS0tCj4+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Zi
+Y29uLmMgICAgIHwgIDUgKy0KPj4gIDIgZmlsZXMgY2hhbmdlZCwgNTEgaW5zZXJ0aW9ucygrKSwg
+MjQgZGVsZXRpb25zKC0pCj4+Cj4+IC0tCj4+IDIuMTcuMQo+Pgo+PiBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+
+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9ub3V2ZWF1Cg==
