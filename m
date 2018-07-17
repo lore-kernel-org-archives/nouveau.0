@@ -1,177 +1,98 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [Nouveau] [PATCH 1/5] drm/nouveau: Prevent RPM callback
+From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Subject: Re: [PATCH 1/5] drm/nouveau: Prevent RPM callback
  recursion in suspend/resume paths
-Date: Tue, 17 Jul 2018 12:53:11 -0400
-Message-ID: <d7c25a7f41df70685c0c4726315592d1d9b561ff.camel@redhat.com>
+Date: Tue, 17 Jul 2018 20:20:41 +0200
+Message-ID: <20180717182041.GA18363@wunner.de>
 References: <20180716235936.11268-1-lyude@redhat.com>
-         <20180716235936.11268-2-lyude@redhat.com> <20180717071641.GA5411@wunner.de>
-Reply-To: lyude@redhat.com
+ <20180716235936.11268-2-lyude@redhat.com>
+ <20180717071641.GA5411@wunner.de>
+ <d7c25a7f41df70685c0c4726315592d1d9b561ff.camel@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180717071641.GA5411@wunner.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Lukas Wunner <lukas@wunner.de>
-Cc: nouveau@lists.freedesktop.org, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <d7c25a7f41df70685c0c4726315592d1d9b561ff.camel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 2018-07-17 at 09:16 +0200, Lukas Wunner wrote:
-> [cc += linux-pm]
-> 
-> Hi Lyude,
-> 
-> First of all, thanks a lot for looking into this. 
-> 
-> On Mon, Jul 16, 2018 at 07:59:25PM -0400, Lyude Paul wrote:
-> > In order to fix all of the spots that need to have runtime PM get/puts()
-> > added, we need to ensure that it's possible for us to call
-> > pm_runtime_get/put() in any context, regardless of how deep, since
-> > almost all of the spots that are currently missing refs can potentially
-> > get called in the runtime suspend/resume path. Otherwise, we'll try to
-> > resume the GPU as we're trying to resume the GPU (and vice-versa) and
-> > cause the kernel to deadlock.
-> > 
-> > With this, it should be safe to call the pm runtime functions in any
-> > context in nouveau with one condition: any point in the driver that
-> > calls pm_runtime_get*() cannot hold any locks owned by nouveau that
-> > would be acquired anywhere inside nouveau_pmops_runtime_resume().
-> > This includes modesetting locks, i2c bus locks, etc.
-> 
-> [snip]
-> > --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> > @@ -835,6 +835,8 @@ nouveau_pmops_runtime_suspend(struct device *dev)
-> >  		return -EBUSY;
-> >  	}
-> >  
-> > +	dev->power.disable_depth++;
-> > +
-> 
-> I'm not sure if that variable is actually private to the PM core.
-> Grepping through the tree I only find a single occurrence where it's
-> accessed outside the PM core and that's in amdgpu.  So this looks
-> a little fishy TBH.  It may make sense to cc such patches to linux-pm
-> to get Rafael & other folks involved with the PM core to comment.
-> 
-> Also, the disable_depth variable only exists if the kernel was
-> compiled with CONFIG_PM enabled, but I can't find a "depends on PM"
-> or something like that in nouveau's Kconfig.  Actually, if PM is
-> not selected, all the nouveau_pmops_*() functions should be #ifdef'ed
-> away, but oddly there's no #ifdef CONFIG_PM anywhere in nouveau_drm.c.
-> 
-> Anywayn, if I understand the commit message correctly, you're hitting a
-> pm_runtime_get_sync() in a code path that itself is called during a
-> pm_runtime_get_sync().  Could you include stack traces in the commit
-> message?  My gut feeling is that this patch masks a deeper issue,
-> e.g. if the runtime_resume code path does in fact directly poll outputs,
-> that would seem wrong.  Runtime resume should merely make the card
-> accessible, i.e. reinstate power if necessary, put into PCI_D0,
-> restore registers, etc.  Output polling should be scheduled
-> asynchronously.
-
-Since it is apparently internal to the RPM core (I should go fix the references
-to that which I added in amdgpu as well then, whoops...) I will have to figure
-out another way to do this.
-
-So: the reason that patch was added was mainly for the patches later in the
-series that add guards around the i2c bus and aux bus, since both of those
-require that the device be awake for it to work. Currently, the spot where it
-would recurse is:
-
-[   72.126859] nouveau 0000:01:00.0: DRM: suspending console...
-[   72.127161] nouveau 0000:01:00.0: DRM: suspending display...
-[  246.718589] INFO: task kworker/0:1:60 blocked for more than 120 seconds.
-[  246.719254]       Tainted: G           O      4.18.0-rc5Lyude-Test+ #3
-[  246.719411] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this
-message.
-[  246.719527] kworker/0:1     D    0    60      2 0x80000000
-[  246.719636] Workqueue: pm pm_runtime_work
-[  246.719772] Call Trace:
-[  246.719874]  __schedule+0x322/0xaf0
-[  246.722800]  schedule+0x33/0x90
-[  246.724269]  rpm_resume+0x19c/0x850
-[  246.725128]  ? finish_wait+0x90/0x90
-[  246.725990]  __pm_runtime_resume+0x4e/0x90
-[  246.726876]  nvkm_i2c_aux_acquire+0x39/0xc0 [nouveau]
-[  246.727713]  nouveau_connector_aux_xfer+0x5c/0xd0 [nouveau]
-[  246.728546]  drm_dp_dpcd_access+0x77/0x110 [drm_kms_helper]
-[  246.729349]  drm_dp_dpcd_write+0x2b/0xb0 [drm_kms_helper]
-[  246.730085]  drm_dp_mst_topology_mgr_suspend+0x4e/0x90 [drm_kms_helper]
-[  246.730828]  nv50_display_fini+0xa5/0xc0 [nouveau]
-[  246.731606]  nouveau_display_fini+0xc8/0x100 [nouveau]
-[  246.732375]  nouveau_display_suspend+0x62/0x110 [nouveau]
-[  246.733106]  nouveau_do_suspend+0x5e/0x2d0 [nouveau]
-[  246.733839]  nouveau_pmops_runtime_suspend+0x4f/0xb0 [nouveau]
-[  246.734585]  pci_pm_runtime_suspend+0x6b/0x190
-[  246.735297]  ? pci_has_legacy_pm_support+0x70/0x70
-[  246.736044]  __rpm_callback+0x7a/0x1d0
-[  246.736742]  ? pci_has_legacy_pm_support+0x70/0x70
-[  246.737467]  rpm_callback+0x24/0x80
-[  246.738165]  ? pci_has_legacy_pm_support+0x70/0x70
-[  246.738864]  rpm_suspend+0x142/0x6b0
-[  246.739593]  pm_runtime_work+0x97/0xc0
-[  246.740312]  process_one_work+0x231/0x620
-[  246.741028]  worker_thread+0x44/0x3a0
-[  246.741731]  kthread+0x12b/0x150
-[  246.742439]  ? wq_pool_ids_show+0x140/0x140
-[  246.743149]  ? kthread_create_worker_on_cpu+0x70/0x70
-[  246.743846]  ret_from_fork+0x3a/0x50
-[  246.744601] 
-               Showing all locks held in the system:
-[  246.746010] 4 locks held by kworker/0:1/60:
-[  246.746757]  #0: 000000003bb334a6 ((wq_completion)"pm"){+.+.}, at:
-process_one_work+0x1b3/0x620
-[  246.747541]  #1: 000000002c55902b ((work_completion)(&dev-
->power.work)){+.+.}, at: process_one_work+0x1b3/0x620
-[  246.748338]  #2: 000000002a39c817 (&mgr->lock){+.+.}, at:
-drm_dp_mst_topology_mgr_suspend+0x33/0x90 [drm_kms_helper]
-[  246.749120]  #3: 00000000b7d2f3c0 (&aux->hw_mutex){+.+.}, at:
-drm_dp_dpcd_access+0x64/0x110 [drm_kms_helper]
-[  246.749928] 1 lock held by khungtaskd/65:
-[  246.750715]  #0: 00000000407da5ec (rcu_read_lock){....}, at:
-debug_show_all_locks+0x23/0x185
-[  246.751535] 1 lock held by dmesg/1122:
-[  246.752328] 2 locks held by zsh/1149:
-[  246.753100]  #0: 000000000a27c37b (&tty->ldisc_sem){++++}, at:
-ldsem_down_read+0x37/0x40
-[  246.753901]  #1: 000000006cb043f7 (&ldata->atomic_read_lock){+.+.}, at:
-n_tty_read+0xc1/0x870
-
-[  246.755503] =============================================
-
-[  246.757068] NMI backtrace for cpu 1
-[  246.757858] CPU: 1 PID: 65 Comm: khungtaskd Tainted:
-G           O      4.18.0-rc5Lyude-Test+ #3
-[  246.758653] Hardware name: LENOVO 20EQS64N0B/20EQS64N0B, BIOS N1EET78W (1.51
-) 05/18/2018
-[  246.759427] Call Trace:
-[  246.760203]  dump_stack+0x8e/0xd3
-[  246.760977]  nmi_cpu_backtrace.cold.3+0x14/0x5a
-[  246.761729]  ? lapic_can_unplug_cpu.cold.27+0x42/0x42
-[  246.762462]  nmi_trigger_cpumask_backtrace+0xa1/0xae
-[  246.763183]  arch_trigger_cpumask_backtrace+0x19/0x20
-[  246.763908]  watchdog+0x316/0x580
-[  246.764644]  kthread+0x12b/0x150
-[  246.765350]  ? reset_hung_task_detector+0x20/0x20
-[  246.766052]  ? kthread_create_worker_on_cpu+0x70/0x70
-[  246.766777]  ret_from_fork+0x3a/0x50
-[  246.767488] Sending NMI from CPU 1 to CPUs 0,2-7:
-[  246.768624] NMI backtrace for cpu 5 skipped: idling at intel_idle+0x7f/0x120
-[  246.768648] NMI backtrace for cpu 4 skipped: idling at intel_idle+0x7f/0x120
-[  246.768671] NMI backtrace for cpu 0 skipped: idling at intel_idle+0x7f/0x120
-[  246.768676] NMI backtrace for cpu 7 skipped: idling at intel_idle+0x7f/0x120
-[  246.768678] NMI backtrace for cpu 3 skipped: idling at intel_idle+0x7f/0x120
-[  246.768681] NMI backtrace for cpu 6 skipped: idling at intel_idle+0x7f/0x120
-[  246.768684] NMI backtrace for cpu 2 skipped: idling at intel_idle+0x7f/0x120
-[  246.769623] Kernel panic - not syncing: hung_task: blocked tasks
-
-Suspending the MST topology at that point should be the right thing to do though
-(and afaict, I don't -think- we reprobe connectors on resume by default), so I
-definitely think we need some sort of way to have a RPM barrier here that
-doesn't take effect in the suspend/resume path
-
-> 
-> Thanks,
-> 
-> Lukas
+T24gVHVlLCBKdWwgMTcsIDIwMTggYXQgMTI6NTM6MTFQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
+ZToKPiBPbiBUdWUsIDIwMTgtMDctMTcgYXQgMDk6MTYgKzAyMDAsIEx1a2FzIFd1bm5lciB3cm90
+ZToKPiA+IE9uIE1vbiwgSnVsIDE2LCAyMDE4IGF0IDA3OjU5OjI1UE0gLTA0MDAsIEx5dWRlIFBh
+dWwgd3JvdGU6Cj4gPiA+IEluIG9yZGVyIHRvIGZpeCBhbGwgb2YgdGhlIHNwb3RzIHRoYXQgbmVl
+ZCB0byBoYXZlIHJ1bnRpbWUgUE0gZ2V0L3B1dHMoKQo+ID4gPiBhZGRlZCwgd2UgbmVlZCB0byBl
+bnN1cmUgdGhhdCBpdCdzIHBvc3NpYmxlIGZvciB1cyB0byBjYWxsCj4gPiA+IHBtX3J1bnRpbWVf
+Z2V0L3B1dCgpIGluIGFueSBjb250ZXh0LCByZWdhcmRsZXNzIG9mIGhvdyBkZWVwLCBzaW5jZQo+
+ID4gPiBhbG1vc3QgYWxsIG9mIHRoZSBzcG90cyB0aGF0IGFyZSBjdXJyZW50bHkgbWlzc2luZyBy
+ZWZzIGNhbiBwb3RlbnRpYWxseQo+ID4gPiBnZXQgY2FsbGVkIGluIHRoZSBydW50aW1lIHN1c3Bl
+bmQvcmVzdW1lIHBhdGguIE90aGVyd2lzZSwgd2UnbGwgdHJ5IHRvCj4gPiA+IHJlc3VtZSB0aGUg
+R1BVIGFzIHdlJ3JlIHRyeWluZyB0byByZXN1bWUgdGhlIEdQVSAoYW5kIHZpY2UtdmVyc2EpIGFu
+ZAo+ID4gPiBjYXVzZSB0aGUga2VybmVsIHRvIGRlYWRsb2NrLgo+ID4gPiAKPiA+ID4gV2l0aCB0
+aGlzLCBpdCBzaG91bGQgYmUgc2FmZSB0byBjYWxsIHRoZSBwbSBydW50aW1lIGZ1bmN0aW9ucyBp
+biBhbnkKPiA+ID4gY29udGV4dCBpbiBub3V2ZWF1IHdpdGggb25lIGNvbmRpdGlvbjogYW55IHBv
+aW50IGluIHRoZSBkcml2ZXIgdGhhdAo+ID4gPiBjYWxscyBwbV9ydW50aW1lX2dldCooKSBjYW5u
+b3QgaG9sZCBhbnkgbG9ja3Mgb3duZWQgYnkgbm91dmVhdSB0aGF0Cj4gPiA+IHdvdWxkIGJlIGFj
+cXVpcmVkIGFueXdoZXJlIGluc2lkZSBub3V2ZWF1X3Btb3BzX3J1bnRpbWVfcmVzdW1lKCkuCj4g
+PiA+IFRoaXMgaW5jbHVkZXMgbW9kZXNldHRpbmcgbG9ja3MsIGkyYyBidXMgbG9ja3MsIGV0Yy4K
+PiA+IAo+ID4gW3NuaXBdCj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
+YXVfZHJtLmMKPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0u
+Ywo+ID4gPiBAQCAtODM1LDYgKzgzNSw4IEBAIG5vdXZlYXVfcG1vcHNfcnVudGltZV9zdXNwZW5k
+KHN0cnVjdCBkZXZpY2UgKmRldikKPiA+ID4gIAkJcmV0dXJuIC1FQlVTWTsKPiA+ID4gIAl9Cj4g
+PiA+ICAKPiA+ID4gKwlkZXYtPnBvd2VyLmRpc2FibGVfZGVwdGgrKzsKPiA+ID4gKwo+ID4gCj4g
+PiBBbnl3YXksIGlmIEkgdW5kZXJzdGFuZCB0aGUgY29tbWl0IG1lc3NhZ2UgY29ycmVjdGx5LCB5
+b3UncmUgaGl0dGluZyBhCj4gPiBwbV9ydW50aW1lX2dldF9zeW5jKCkgaW4gYSBjb2RlIHBhdGgg
+dGhhdCBpdHNlbGYgaXMgY2FsbGVkIGR1cmluZyBhCj4gPiBwbV9ydW50aW1lX2dldF9zeW5jKCku
+ICBDb3VsZCB5b3UgaW5jbHVkZSBzdGFjayB0cmFjZXMgaW4gdGhlIGNvbW1pdAo+ID4gbWVzc2Fn
+ZT8gIE15IGd1dCBmZWVsaW5nIGlzIHRoYXQgdGhpcyBwYXRjaCBtYXNrcyBhIGRlZXBlciBpc3N1
+ZSwKPiA+IGUuZy4gaWYgdGhlIHJ1bnRpbWVfcmVzdW1lIGNvZGUgcGF0aCBkb2VzIGluIGZhY3Qg
+ZGlyZWN0bHkgcG9sbCBvdXRwdXRzLAo+ID4gdGhhdCB3b3VsZCBzZWVtIHdyb25nLiAgUnVudGlt
+ZSByZXN1bWUgc2hvdWxkIG1lcmVseSBtYWtlIHRoZSBjYXJkCj4gPiBhY2Nlc3NpYmxlLCBpLmUu
+IHJlaW5zdGF0ZSBwb3dlciBpZiBuZWNlc3NhcnksIHB1dCBpbnRvIFBDSV9EMCwKPiA+IHJlc3Rv
+cmUgcmVnaXN0ZXJzLCBldGMuICBPdXRwdXQgcG9sbGluZyBzaG91bGQgYmUgc2NoZWR1bGVkCj4g
+PiBhc3luY2hyb25vdXNseS4KPiAKPiBTbzogdGhlIHJlYXNvbiB0aGF0IHBhdGNoIHdhcyBhZGRl
+ZCB3YXMgbWFpbmx5IGZvciB0aGUgcGF0Y2hlcyBsYXRlciBpbiB0aGUKPiBzZXJpZXMgdGhhdCBh
+ZGQgZ3VhcmRzIGFyb3VuZCB0aGUgaTJjIGJ1cyBhbmQgYXV4IGJ1cywgc2luY2UgYm90aCBvZiB0
+aG9zZQo+IHJlcXVpcmUgdGhhdCB0aGUgZGV2aWNlIGJlIGF3YWtlIGZvciBpdCB0byB3b3JrLiBD
+dXJyZW50bHksIHRoZSBzcG90IHdoZXJlIGl0Cj4gd291bGQgcmVjdXJzZSBpczoKCk9rYXksIHRo
+ZSBQQ0kgZGV2aWNlIGlzIHN1c3BlbmRpbmcgYW5kIHRoZSBudmttX2kyY19hdXhfYWNxdWlyZSgp
+CndhbnRzIGl0IGluIHJlc3VtZWQgc3RhdGUsIHNvIGlzIHdhaXRpbmcgZm9yZXZlciBmb3IgdGhl
+IGRldmljZSB0bwpydW50aW1lIHN1c3BlbmQgaW4gb3JkZXIgdG8gcmVzdW1lIGl0IGFnYWluIGlt
+bWVkaWF0ZWx5IGFmdGVyd2FyZHMuCgpUaGUgZGVhZGxvY2sgaW4gdGhlIHN0YWNrIHRyYWNlIHlv
+dSd2ZSBwb3N0ZWQgY291bGQgYmUgcmVzb2x2ZWQgdXNpbmcKdGhlIHRlY2huaXF1ZSBJIHVzZWQg
+aW4gZDYxYTVjMTA2MzUxIGJ5IGFkZGluZyB0aGUgZm9sbG93aW5nIHRvCmluY2x1ZGUvbGludXgv
+cG1fcnVudGltZS5oOgoKc3RhdGljIGlubGluZSBib29sIHBtX3J1bnRpbWVfc3RhdHVzX3N1c3Bl
+bmRpbmcoc3RydWN0IGRldmljZSAqZGV2KQp7CglyZXR1cm4gZGV2LT5wb3dlci5ydW50aW1lX3N0
+YXR1cyA9PSBSUE1fU1VTUEVORElORzsKfQoKc3RhdGljIGlubGluZSBib29sIGlzX3BtX3dvcmso
+c3RydWN0IGRldmljZSAqZGV2KQp7CglzdHJ1Y3Qgd29ya19zdHJ1Y3QgKndvcmsgPSBjdXJyZW50
+X3dvcmsoKTsKCglyZXR1cm4gd29yayAmJiB3b3JrLT5mdW5jID09IGRldi0+cG93ZXIud29yazsK
+fQoKVGhlbiBhZGRpbmcgdGhpcyB0byBudmttX2kyY19hdXhfYWNxdWlyZSgpOgoKCXN0cnVjdCBk
+ZXZpY2UgKmRldiA9IHBhZC0+aTJjLT5zdWJkZXYuZGV2aWNlLT5kZXY7CgoJaWYgKCEoaXNfcG1f
+d29yayhkZXYpICYmIHBtX3J1bnRpbWVfc3RhdHVzX3N1c3BlbmRpbmcoZGV2KSkpIHsKCQlyZXQg
+PSBwbV9ydW50aW1lX2dldF9zeW5jKGRldik7CgkJaWYgKHJldCA8IDAgJiYgcmV0ICE9IC1FQUND
+RVMpCgkJCXJldHVybiByZXQ7Cgl9CgpCdXQgaGVyZSdzIHRoZSBjYXRjaDogIFRoaXMgb25seSB3
+b3JrcyBmb3IgYW4gKmFzeW5jKiBydW50aW1lIHN1c3BlbmQuCkl0IGRvZXNuJ3Qgd29yayBmb3Ig
+cG1fcnVudGltZV9wdXRfc3luYygpLCBwbV9ydW50aW1lX3N1c3BlbmQoKSBldGMsCmJlY2F1c2Ug
+dGhlbiB0aGUgcnVudGltZSBzdXNwZW5kIGlzIGV4ZWN1dGVkIGluIHRoZSBjb250ZXh0IG9mIHRo
+ZSBjYWxsZXIsCm5vdCBpbiB0aGUgY29udGV4dCBvZiBkZXYtPnBvd2VyLndvcmsuCgpTbyBpdCdz
+IG5vdCBhIGZ1bGwgc29sdXRpb24sIGJ1dCBob3BlZnVsbHkgc29tZXRoaW5nIHRoYXQgZ2V0cyB5
+b3UKZ29pbmcuICBJJ20gbm90IHJlYWxseSBmYW1pbGlhciB3aXRoIHRoZSBjb2RlIHBhdGhzIGxl
+YWRpbmcgdG8KbnZrbV9pMmNfYXV4X2FjcXVpcmUoKSB0byBjb21lIHVwIHdpdGggYSBmdWxsIHNv
+bHV0aW9uIG9mZiB0aGUgdG9wCm9mIG15IGhlYWQgSSdtIGFmcmFpZC4KCk5vdGUsIGl0J3Mgbm90
+IHN1ZmZpY2llbnQgdG8ganVzdCBjaGVjayBwbV9ydW50aW1lX3N0YXR1c19zdXNwZW5kaW5nKGRl
+dikKYmVjYXVzZSBpZiB0aGUgcnVudGltZV9zdXNwZW5kIGlzIGNhcnJpZWQgb3V0IGNvbmN1cnJl
+bnRseSBieSBzb21ldGhpbmcKZWxzZSwgdGhpcyB3aWxsIHJldHVybiB0cnVlIGJ1dCBpdCdzIG5v
+dCBndWFyYW50ZWVkIHRoYXQgdGhlIGRldmljZSBpcwphY3R1YWxseSBrZXB0IGF3YWtlIHVudGls
+IHRoZSBpMmMgY29tbXVuaWNhdGlvbiBoYXMgYmVlbiBmdWxseSBwZXJmb3JtZWQuCgpIVEgsCgpM
+dWthcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
