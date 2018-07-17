@@ -1,72 +1,44 @@
 From: Lukas Wunner <lukas@wunner.de>
-Subject: Re: [Nouveau] [PATCH 1/5] drm/nouveau: Prevent RPM callback
- recursion in suspend/resume paths
-Date: Tue, 17 Jul 2018 09:16:41 +0200
-Message-ID: <20180717071641.GA5411@wunner.de>
+Subject: Re: [Nouveau] [PATCH 2/5] drm/nouveau: Grab RPM ref while probing
+ outputs
+Date: Tue, 17 Jul 2018 09:21:52 +0200
+Message-ID: <20180717072152.GA16115@wunner.de>
 References: <20180716235936.11268-1-lyude@redhat.com>
- <20180716235936.11268-2-lyude@redhat.com>
+ <20180716235936.11268-3-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
 Content-Disposition: inline
-In-Reply-To: <20180716235936.11268-2-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
+In-Reply-To: <20180716235936.11268-3-lyude@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
 To: Lyude Paul <lyude@redhat.com>
-Cc: nouveau@lists.freedesktop.org, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, linux-pm@vger.kernel.org
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-[cc += linux-pm]
-
-Hi Lyude,
-
-First of all, thanks a lot for looking into this. 
-
-On Mon, Jul 16, 2018 at 07:59:25PM -0400, Lyude Paul wrote:
-> In order to fix all of the spots that need to have runtime PM get/puts()
-> added, we need to ensure that it's possible for us to call
-> pm_runtime_get/put() in any context, regardless of how deep, since
-> almost all of the spots that are currently missing refs can potentially
-> get called in the runtime suspend/resume path. Otherwise, we'll try to
-> resume the GPU as we're trying to resume the GPU (and vice-versa) and
-> cause the kernel to deadlock.
-> 
-> With this, it should be safe to call the pm runtime functions in any
-> context in nouveau with one condition: any point in the driver that
-> calls pm_runtime_get*() cannot hold any locks owned by nouveau that
-> would be acquired anywhere inside nouveau_pmops_runtime_resume().
-> This includes modesetting locks, i2c bus locks, etc.
-[snip]
-> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> @@ -835,6 +835,8 @@ nouveau_pmops_runtime_suspend(struct device *dev)
->  		return -EBUSY;
->  	}
->  
-> +	dev->power.disable_depth++;
-> +
-
-I'm not sure if that variable is actually private to the PM core.
-Grepping through the tree I only find a single occurrence where it's
-accessed outside the PM core and that's in amdgpu.  So this looks
-a little fishy TBH.  It may make sense to cc such patches to linux-pm
-to get Rafael & other folks involved with the PM core to comment.
-
-Also, the disable_depth variable only exists if the kernel was
-compiled with CONFIG_PM enabled, but I can't find a "depends on PM"
-or something like that in nouveau's Kconfig.  Actually, if PM is
-not selected, all the nouveau_pmops_*() functions should be #ifdef'ed
-away, but oddly there's no #ifdef CONFIG_PM anywhere in nouveau_drm.c.
-
-Anywayn, if I understand the commit message correctly, you're hitting a
-pm_runtime_get_sync() in a code path that itself is called during a
-pm_runtime_get_sync().  Could you include stack traces in the commit
-message?  My gut feeling is that this patch masks a deeper issue,
-e.g. if the runtime_resume code path does in fact directly poll outputs,
-that would seem wrong.  Runtime resume should merely make the card
-accessible, i.e. reinstate power if necessary, put into PCI_D0,
-restore registers, etc.  Output polling should be scheduled
-asynchronously.
-
-Thanks,
-
-Lukas
+T24gTW9uLCBKdWwgMTYsIDIwMTggYXQgMDc6NTk6MjZQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
+ZToKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMKPiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMKPiBAQCAtMjAxMiwxMCAr
+MjAxMiwxOCBAQCBudjUwX2Rpc3BfYXRvbWljX3N0YXRlX2FsbG9jKHN0cnVjdCBkcm1fZGV2aWNl
+ICpkZXYpCj4gIAlyZXR1cm4gJmF0b20tPnN0YXRlOwo+ICB9Cj4gIAo+ICtzdGF0aWMgdm9pZAo+
+ICtub3V2ZWF1X291dHB1dF9wb2xsX2NoYW5nZWQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKPiAr
+ewo+ICsJcG1fcnVudGltZV9nZXRfc3luYyhkZXYtPmRldik7Cj4gKwlkcm1fZmJfaGVscGVyX2hv
+dHBsdWdfZXZlbnQoZGV2LT5mYl9oZWxwZXIpOwo+ICsJcG1fcnVudGltZV9wdXRfYXV0b3N1c3Bl
+bmQoZGV2LT5kZXYpOwo+ICt9Cj4gKwo+ICBzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9tb2RlX2Nv
+bmZpZ19mdW5jcwo+ICBudjUwX2Rpc3BfZnVuYyA9IHsKPiAgCS5mYl9jcmVhdGUgPSBub3V2ZWF1
+X3VzZXJfZnJhbWVidWZmZXJfY3JlYXRlLAo+IC0JLm91dHB1dF9wb2xsX2NoYW5nZWQgPSBkcm1f
+ZmJfaGVscGVyX291dHB1dF9wb2xsX2NoYW5nZWQsCj4gKwkub3V0cHV0X3BvbGxfY2hhbmdlZCA9
+IG5vdXZlYXVfb3V0cHV0X3BvbGxfY2hhbmdlZCwKCkl0IG1pZ2h0IG1ha2Ugc2Vuc2UgdG8gcHJv
+dmlkZSBhIGdlbmVyaWMgRFJNIGhlbHBlciBmb3IgdGhpcy4KU2FtZSBmb3IgcGF0Y2ggMyBpbiB0
+aGlzIHNlcmllcy4KClRoYW5rcywKCkx1a2FzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2RyaS1kZXZlbAo=
