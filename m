@@ -1,41 +1,72 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH] drm/nouveau: Fix bogus indenting in nouveau_hwmon.c
-Date: Mon, 16 Jul 2018 20:07:58 -0400
-Message-ID: <20180717000758.8770-1-lyude@redhat.com>
+From: Lukas Wunner <lukas@wunner.de>
+Subject: Re: [Nouveau] [PATCH 1/5] drm/nouveau: Prevent RPM callback
+ recursion in suspend/resume paths
+Date: Tue, 17 Jul 2018 09:16:41 +0200
+Message-ID: <20180717071641.GA5411@wunner.de>
+References: <20180716235936.11268-1-lyude@redhat.com>
+ <20180716235936.11268-2-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: nouveau@lists.freedesktop.org
-Cc: David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20180716235936.11268-2-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>
+Cc: nouveau@lists.freedesktop.org, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, linux-pm@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KLS0tCiBkcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMgfCA0ICsrLS0KIDEgZmlsZSBjaGFuZ2Vk
-LCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bm91dmVhdV9od21vbi5jCmluZGV4IDQ0MTc4YjRjMzU5OS4uZDU1NmYyNGM2YzQ4IDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMKKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jCkBAIC02NTUsNyArNjU1LDcgQEAgbm91
-dmVhdV9yZWFkX3N0cmluZyhzdHJ1Y3QgZGV2aWNlICpkZXYsIGVudW0gaHdtb25fc2Vuc29yX3R5
-cGVzIHR5cGUsIHUzMiBhdHRyLAogCiBzdGF0aWMgaW50CiBub3V2ZWF1X3JlYWQoc3RydWN0IGRl
-dmljZSAqZGV2LCBlbnVtIGh3bW9uX3NlbnNvcl90eXBlcyB0eXBlLCB1MzIgYXR0ciwKLQkJCQkJ
-CQlpbnQgY2hhbm5lbCwgbG9uZyAqdmFsKQorCSAgICAgaW50IGNoYW5uZWwsIGxvbmcgKnZhbCkK
-IHsKIAlzd2l0Y2ggKHR5cGUpIHsKIAljYXNlIGh3bW9uX2NoaXA6CkBAIC02NzcsNyArNjc3LDcg
-QEAgbm91dmVhdV9yZWFkKHN0cnVjdCBkZXZpY2UgKmRldiwgZW51bSBod21vbl9zZW5zb3JfdHlw
-ZXMgdHlwZSwgdTMyIGF0dHIsCiAKIHN0YXRpYyBpbnQKIG5vdXZlYXVfd3JpdGUoc3RydWN0IGRl
-dmljZSAqZGV2LCBlbnVtIGh3bW9uX3NlbnNvcl90eXBlcyB0eXBlLCB1MzIgYXR0ciwKLQkJCQkJ
-CQlpbnQgY2hhbm5lbCwgbG9uZyB2YWwpCisJICAgICAgaW50IGNoYW5uZWwsIGxvbmcgdmFsKQog
-ewogCXN3aXRjaCAodHlwZSkgewogCWNhc2UgaHdtb25fdGVtcDoKLS0gCjIuMTcuMQoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxp
-bmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+[cc += linux-pm]
+
+Hi Lyude,
+
+First of all, thanks a lot for looking into this. 
+
+On Mon, Jul 16, 2018 at 07:59:25PM -0400, Lyude Paul wrote:
+> In order to fix all of the spots that need to have runtime PM get/puts()
+> added, we need to ensure that it's possible for us to call
+> pm_runtime_get/put() in any context, regardless of how deep, since
+> almost all of the spots that are currently missing refs can potentially
+> get called in the runtime suspend/resume path. Otherwise, we'll try to
+> resume the GPU as we're trying to resume the GPU (and vice-versa) and
+> cause the kernel to deadlock.
+> 
+> With this, it should be safe to call the pm runtime functions in any
+> context in nouveau with one condition: any point in the driver that
+> calls pm_runtime_get*() cannot hold any locks owned by nouveau that
+> would be acquired anywhere inside nouveau_pmops_runtime_resume().
+> This includes modesetting locks, i2c bus locks, etc.
+[snip]
+> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> @@ -835,6 +835,8 @@ nouveau_pmops_runtime_suspend(struct device *dev)
+>  		return -EBUSY;
+>  	}
+>  
+> +	dev->power.disable_depth++;
+> +
+
+I'm not sure if that variable is actually private to the PM core.
+Grepping through the tree I only find a single occurrence where it's
+accessed outside the PM core and that's in amdgpu.  So this looks
+a little fishy TBH.  It may make sense to cc such patches to linux-pm
+to get Rafael & other folks involved with the PM core to comment.
+
+Also, the disable_depth variable only exists if the kernel was
+compiled with CONFIG_PM enabled, but I can't find a "depends on PM"
+or something like that in nouveau's Kconfig.  Actually, if PM is
+not selected, all the nouveau_pmops_*() functions should be #ifdef'ed
+away, but oddly there's no #ifdef CONFIG_PM anywhere in nouveau_drm.c.
+
+Anywayn, if I understand the commit message correctly, you're hitting a
+pm_runtime_get_sync() in a code path that itself is called during a
+pm_runtime_get_sync().  Could you include stack traces in the commit
+message?  My gut feeling is that this patch masks a deeper issue,
+e.g. if the runtime_resume code path does in fact directly poll outputs,
+that would seem wrong.  Runtime resume should merely make the card
+accessible, i.e. reinstate power if necessary, put into PCI_D0,
+restore registers, etc.  Output polling should be scheduled
+asynchronously.
+
+Thanks,
+
+Lukas
