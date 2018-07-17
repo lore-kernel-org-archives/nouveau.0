@@ -1,59 +1,41 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 5/5] drm/nouveau: Grab RPM ref when aux bus is in use
-Date: Mon, 16 Jul 2018 19:59:29 -0400
-Message-ID: <20180716235936.11268-6-lyude@redhat.com>
-References: <20180716235936.11268-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180716235936.11268-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
+Subject: [PATCH] drm/nouveau: Fix bogus indenting in nouveau_hwmon.c
+Date: Mon, 16 Jul 2018 20:07:58 -0400
+Message-ID: <20180717000758.8770-1-lyude@redhat.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
 To: nouveau@lists.freedesktop.org
-Cc: Karol Herbst <karolherbst@gmail.com>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-DP AUX busses can both be accessed by DRM, and through any of the
-userspace dev nodes in /dev/drm_dp_auxN. We need to make sure the GPU
-stays on in all of these codepaths.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: Karol Herbst <karolherbst@gmail.com>
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
-index 4c1f547da463..6276b113065c 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
-@@ -98,18 +98,28 @@ nvkm_i2c_aux_release(struct nvkm_i2c_aux *aux)
- 	AUX_TRACE(aux, "release");
- 	nvkm_i2c_pad_release(pad);
- 	mutex_unlock(&aux->mutex);
-+	pm_runtime_put_autosuspend(pad->i2c->subdev.device->dev);
- }
- 
- int
- nvkm_i2c_aux_acquire(struct nvkm_i2c_aux *aux)
- {
- 	struct nvkm_i2c_pad *pad = aux->pad;
-+	struct device *dev = pad->i2c->subdev.device->dev;
- 	int ret;
-+
- 	AUX_TRACE(aux, "acquire");
-+
-+	ret = pm_runtime_get_sync(dev);
-+	if (ret < 0 && ret != -EACCES)
-+		return ret;
-+
- 	mutex_lock(&aux->mutex);
- 	ret = nvkm_i2c_pad_acquire(pad, NVKM_I2C_PAD_AUX);
--	if (ret)
-+	if (ret) {
- 		mutex_unlock(&aux->mutex);
-+		pm_runtime_put_autosuspend(dev);
-+	}
- 	return ret;
- }
- 
--- 
-2.17.1
+U2lnbmVkLW9mZi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KLS0tCiBkcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMgfCA0ICsrLS0KIDEgZmlsZSBjaGFuZ2Vk
+LCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9od21vbi5jCmluZGV4IDQ0MTc4YjRjMzU5OS4uZDU1NmYyNGM2YzQ4IDEwMDY0NAot
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2h3bW9uLmMKKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9od21vbi5jCkBAIC02NTUsNyArNjU1LDcgQEAgbm91
+dmVhdV9yZWFkX3N0cmluZyhzdHJ1Y3QgZGV2aWNlICpkZXYsIGVudW0gaHdtb25fc2Vuc29yX3R5
+cGVzIHR5cGUsIHUzMiBhdHRyLAogCiBzdGF0aWMgaW50CiBub3V2ZWF1X3JlYWQoc3RydWN0IGRl
+dmljZSAqZGV2LCBlbnVtIGh3bW9uX3NlbnNvcl90eXBlcyB0eXBlLCB1MzIgYXR0ciwKLQkJCQkJ
+CQlpbnQgY2hhbm5lbCwgbG9uZyAqdmFsKQorCSAgICAgaW50IGNoYW5uZWwsIGxvbmcgKnZhbCkK
+IHsKIAlzd2l0Y2ggKHR5cGUpIHsKIAljYXNlIGh3bW9uX2NoaXA6CkBAIC02NzcsNyArNjc3LDcg
+QEAgbm91dmVhdV9yZWFkKHN0cnVjdCBkZXZpY2UgKmRldiwgZW51bSBod21vbl9zZW5zb3JfdHlw
+ZXMgdHlwZSwgdTMyIGF0dHIsCiAKIHN0YXRpYyBpbnQKIG5vdXZlYXVfd3JpdGUoc3RydWN0IGRl
+dmljZSAqZGV2LCBlbnVtIGh3bW9uX3NlbnNvcl90eXBlcyB0eXBlLCB1MzIgYXR0ciwKLQkJCQkJ
+CQlpbnQgY2hhbm5lbCwgbG9uZyB2YWwpCisJICAgICAgaW50IGNoYW5uZWwsIGxvbmcgdmFsKQog
+ewogCXN3aXRjaCAodHlwZSkgewogCWNhc2UgaHdtb25fdGVtcDoKLS0gCjIuMTcuMQoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxp
+bmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
