@@ -1,13 +1,12 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 0/2] drm/nouveau: Fix panic on nouveau unload.
-Date: Tue, 17 Jul 2018 12:46:02 +0200
-Message-ID: <CACO55ttE3gSqepk_1MtZss-o53KrtfiuBYVjZp+pM4JDFf7cWw@mail.gmail.com>
-References: <20180705191000.98872-1-jmiller@neverware.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
+Date: Tue, 17 Jul 2018 10:48:10 +0000
+Message-ID: <bug-105319-8800-hFejvkoyfy@http.bugs.freedesktop.org/>
+References: <bug-105319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1584032358=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180705191000.98872-1-jmiller-QeEie8R3kYhl57MIdRCFDg@public.gmane.org>
+In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,48 +16,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Jeffery Miller <jmiller-QeEie8R3kYhl57MIdRCFDg@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-ZG9lcyB0aGlzIGFsc28gaGFwcGVuIHdpdGggdGhlIG5ld2VzdCBrZXJuZWw/IEkgd2FzIGtpbmQg
-b2YgdW5kZXIgdGhlCmltcHJlc3Npb24gd2UgYWxyZWFkeSBmaXhlZCBzdWNoIGlzc3Vlcy4KCk9u
-IFRodSwgSnVsIDUsIDIwMTggYXQgOTowOSBQTSwgSmVmZmVyeSBNaWxsZXIgPGptaWxsZXJAbmV2
-ZXJ3YXJlLmNvbT4gd3JvdGU6Cj4gSWYgaGF2ZSBhIGNvdXBsZSBwYXRjaGVzIEkgZm91bmQgd2hp
-bGUgbG9va2luZyBhdCBhIHBhbmljCj4gSSB3YXMgc2VlaW5nIHdoaWxlIHVubG9hZGluZyB0aGUg
-bm91dmVhdSBtb2R1bGUuCj4KPiBVbmxvYWRpbmcgdGhlIG5vdXZlYXUgbW9kdWxlIG9uIG15IG9w
-dGltdXMgbm90ZWJvb2sgbWFjaGluZSBjYXVzZXMKPiB0aGUgc3lzdGVtIHRvIHBhbmljLiBUaGlz
-IHN0YXJ0ZWQgb2NjdXJpbmcgd2hlbiBtb3ZpbmcgZnJvbSA0LjQKPiB0byA0LjE0Lgo+Cj4gVGhl
-c2UgcGF0Y2hlcyBtYWtlIGl0IHN1Y2ggdGhhdCB0aGUgc3lzdGVtIGRvZXMgbm90IHBhbmljCj4g
-d2hlbiB1bmxvYWRpbmcgdGhlIG1vZHVsZS4KPgo+IDQuMTQgYWxzbyByZXF1aXJlcyBjb21taXQg
-MzQxMTJiZjQ5MzVkICgiZHJtL25vdXZlYXUvZmJjb246IGZpeCBOVUxMCj4gcG9pbnRlciBhY2Nl
-c3MgaW4gbm91dmVhdV9mYmNvbl9kZXN0cm95Iikgd2hpY2ggd2FzIGFscmVhZHkgaW5jbHVkZWQg
-aW4KPiB0aGUgNC4xOCB0cmVlLgo+Cj4gVGhlc2UgcGF0Y2hlcyBtYWtlIGl0IHNvIEkgY2FuIHVu
-bG9hZCB0aGUgbW9kdWxlIHdpdGhvdXQgYSBwYW5pYyBidXQKPiB0aGVyZSBpcyBhIHdhcm5pbmcg
-d2hlbiB1bmxvYWRpbmcgdGhlIG1vZHVsZToKPiAgc3lzZnMgZ3JvdXAgJ3Bvd2VyJyBub3QgZm91
-bmQgZm9yIGtvYmplY3QgJ252X2JhY2tsaWdodCcKPiAgV0FSTklORzogQ1BVOiAyIFBJRDogMTQz
-NCBhdCBmcy9zeXNmcy9ncm91cC5jOjIzNSBzeXNmc19yZW1vdmVfZ3JvdXArMHg3Ni8weDgwCj4g
-IFJJUDogMDAxMDpzeXNmc19yZW1vdmVfZ3JvdXArMHg3Ni8weDgwCj4gIENhbGwgVHJhY2U6Cj4g
-ICBkZXZpY2VfZGVsKzB4NTYvMHgzNTAKPiAgID8gZG93bl93cml0ZSsweGUvMHg0MAo+ICAgZGV2
-aWNlX3VucmVnaXN0ZXIrMHgxNi8weDYwCj4gICBub3V2ZWF1X2JhY2tsaWdodF9leGl0KzB4NGEv
-MHg2MCBbbm91dmVhdV0KPiAgIG5vdXZlYXVfZGlzcGxheV9kZXN0cm95KzB4MjkvMHg4MCBbbm91
-dmVhdV0KPiAgIG5vdXZlYXVfZHJtX3VubG9hZCsweDYxLzB4ZDAgW25vdXZlYXVdCj4gICBkcm1f
-ZGV2X3VucmVnaXN0ZXIrMHgzZi8weGUwIFtkcm1dCj4gICBkcm1fcHV0X2RldisweDI3LzB4NTAg
-W2RybV0KPiAgIG5vdXZlYXVfZHJtX2RldmljZV9yZW1vdmUrMHg0Ny8weDcwIFtub3V2ZWF1XQo+
-ICAgcGNpX2RldmljZV9yZW1vdmUrMHgzYi8weGIwCj4gICBkZXZpY2VfcmVsZWFzZV9kcml2ZXJf
-aW50ZXJuYWwrMHgxODAvMHgyNTAKPiAgIGRyaXZlcl9kZXRhY2grMHgzMi8weDVmCj4gICBidXNf
-cmVtb3ZlX2RyaXZlcisweDc0LzB4YzYKPiAgIHBjaV91bnJlZ2lzdGVyX2RyaXZlcisweDIyLzB4
-YTAKPiAgIG5vdXZlYXVfZHJtX2V4aXQrMHgxNS8weDE2YiBbbm91dmVhdV0KPgo+IEkgZG9uJ3Qg
-YmVsZWl2ZSB0aGVtIHRvIGJlIHJlbGF0ZWQuIFBlcmhhcHMgdGhlcmUgaXMgYW5vdGhlciBpc3N1
-ZSBoZXJlPwo+Cj4gSmVmZmVyeSBNaWxsZXIgKDIpOgo+ICAgZHJtL25vdXZlYXUvZmJjb246IEZp
-eCBOVUxMIHBvaW50ZXIgYWNjZXNzIGluIG5vdXZlYXVfZmJjb25fZGVzdHJveS4KPiAgIGRybS9u
-b3V2ZWF1L2JsOiBBbGxvY2F0ZSBiYWNrbGlnaHQgY29ubmVjdG9yIG5vZGVzLgo+Cj4gIGRyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMgfCA3MCArKysrKysrKysrKysr
-Ky0tLS0tLS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jICAgICB8
-ICA1ICstCj4gIDIgZmlsZXMgY2hhbmdlZCwgNTEgaW5zZXJ0aW9ucygrKSwgMjQgZGVsZXRpb25z
-KC0pCj4KPiAtLQo+IDIuMTcuMQo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1584032358==
+Content-Type: multipart/alternative; boundary="15318244902.bC900.21840"
+Content-Transfer-Encoding: 7bit
+
+
+--15318244902.bC900.21840
+Date: Tue, 17 Jul 2018 10:48:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
+
+--- Comment #18 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I hit an EVO timeout on one of my machines. If this is a regression I can
+bisect the kernel and see what it points me to.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15318244902.bC900.21840
+Date: Tue, 17 Jul 2018 10:48:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c18">Comme=
+nt # 18</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+</span></b>
+        <pre>I hit an EVO timeout on one of my machines. If this is a regre=
+ssion I can
+bisect the kernel and see what it points me to.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15318244902.bC900.21840--
+
+--===============1584032358==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1584032358==--
