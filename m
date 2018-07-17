@@ -1,79 +1,113 @@
-From: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH 1/5] drm/nouveau: Prevent RPM callback
- recursion in suspend/resume paths
-Date: Tue, 17 Jul 2018 09:39:34 +0200
-Message-ID: <CAJZ5v0gq3mt=CcYQLkNLzqZub26QxSM8cajAgUzNWsO-z3PW9g@mail.gmail.com>
-References: <20180716235936.11268-1-lyude@redhat.com>
- <20180716235936.11268-2-lyude@redhat.com>
- <20180717071641.GA5411@wunner.de>
+From: Karol Herbst <kherbst@redhat.com>
+Subject: Re: [Nouveau] [PATCH 3/5] drm/nouveau: Add missing RPM get/put() when
+ probing connectors
+Date: Tue, 17 Jul 2018 12:11:24 +0200
+Message-ID: <CACO55ts0OiOQqzu617kL2XfcMxJ2PnjTvmkb2K_bFFFznh9O5Q@mail.gmail.com>
+References: <20180716235936.11268-1-lyude@redhat.com> <20180716235936.11268-4-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180717071641.GA5411-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>, Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20180716235936.11268-4-lyude@redhat.com>
+Sender: stable-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>
+Cc: nouveau <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, dri-devel <dri-devel@lists.freedesktop.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, stable@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, Ben Skeggs <bskeggs@redhat.com>, =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKdWwgMTcsIDIwMTggYXQgOToxNiBBTSwgTHVrYXMgV3VubmVyIDxsdWthc0B3dW5u
-ZXIuZGU+IHdyb3RlOgo+IFtjYyArPSBsaW51eC1wbV0KPgo+IEhpIEx5dWRlLAo+Cj4gRmlyc3Qg
-b2YgYWxsLCB0aGFua3MgYSBsb3QgZm9yIGxvb2tpbmcgaW50byB0aGlzLgo+Cj4gT24gTW9uLCBK
-dWwgMTYsIDIwMTggYXQgMDc6NTk6MjVQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90ZToKPj4gSW4g
-b3JkZXIgdG8gZml4IGFsbCBvZiB0aGUgc3BvdHMgdGhhdCBuZWVkIHRvIGhhdmUgcnVudGltZSBQ
-TSBnZXQvcHV0cygpCj4+IGFkZGVkLCB3ZSBuZWVkIHRvIGVuc3VyZSB0aGF0IGl0J3MgcG9zc2li
-bGUgZm9yIHVzIHRvIGNhbGwKPj4gcG1fcnVudGltZV9nZXQvcHV0KCkgaW4gYW55IGNvbnRleHQs
-IHJlZ2FyZGxlc3Mgb2YgaG93IGRlZXAsIHNpbmNlCj4+IGFsbW9zdCBhbGwgb2YgdGhlIHNwb3Rz
-IHRoYXQgYXJlIGN1cnJlbnRseSBtaXNzaW5nIHJlZnMgY2FuIHBvdGVudGlhbGx5Cj4+IGdldCBj
-YWxsZWQgaW4gdGhlIHJ1bnRpbWUgc3VzcGVuZC9yZXN1bWUgcGF0aC4gT3RoZXJ3aXNlLCB3ZSds
-bCB0cnkgdG8KPj4gcmVzdW1lIHRoZSBHUFUgYXMgd2UncmUgdHJ5aW5nIHRvIHJlc3VtZSB0aGUg
-R1BVIChhbmQgdmljZS12ZXJzYSkgYW5kCj4+IGNhdXNlIHRoZSBrZXJuZWwgdG8gZGVhZGxvY2su
-Cj4+Cj4+IFdpdGggdGhpcywgaXQgc2hvdWxkIGJlIHNhZmUgdG8gY2FsbCB0aGUgcG0gcnVudGlt
-ZSBmdW5jdGlvbnMgaW4gYW55Cj4+IGNvbnRleHQgaW4gbm91dmVhdSB3aXRoIG9uZSBjb25kaXRp
-b246IGFueSBwb2ludCBpbiB0aGUgZHJpdmVyIHRoYXQKPj4gY2FsbHMgcG1fcnVudGltZV9nZXQq
-KCkgY2Fubm90IGhvbGQgYW55IGxvY2tzIG93bmVkIGJ5IG5vdXZlYXUgdGhhdAo+PiB3b3VsZCBi
-ZSBhY3F1aXJlZCBhbnl3aGVyZSBpbnNpZGUgbm91dmVhdV9wbW9wc19ydW50aW1lX3Jlc3VtZSgp
-Lgo+PiBUaGlzIGluY2x1ZGVzIG1vZGVzZXR0aW5nIGxvY2tzLCBpMmMgYnVzIGxvY2tzLCBldGMu
-Cj4gW3NuaXBdCj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMK
-Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+PiBAQCAtODM1
-LDYgKzgzNSw4IEBAIG5vdXZlYXVfcG1vcHNfcnVudGltZV9zdXNwZW5kKHN0cnVjdCBkZXZpY2Ug
-KmRldikKPj4gICAgICAgICAgICAgICByZXR1cm4gLUVCVVNZOwo+PiAgICAgICB9Cj4+Cj4+ICsg
-ICAgIGRldi0+cG93ZXIuZGlzYWJsZV9kZXB0aCsrOwoKVGhpcyBpcyBlZmZlY3RpdmVseSBlcXVp
-dmFsZW50IHRvIF9fcG1fcnVudGltZV9kaXNhYmxlKGRldiwgZmFsc2UpCmV4Y2VwdCBmb3IgdGhl
-IGxvY2tpbmcgKHdoaWNoIGlzIG5lY2Vzc2FyeSkuCgo+PiArCj4KPiBJJ20gbm90IHN1cmUgaWYg
-dGhhdCB2YXJpYWJsZSBpcyBhY3R1YWxseSBwcml2YXRlIHRvIHRoZSBQTSBjb3JlLgo+IEdyZXBw
-aW5nIHRocm91Z2ggdGhlIHRyZWUgSSBvbmx5IGZpbmQgYSBzaW5nbGUgb2NjdXJyZW5jZSB3aGVy
-ZSBpdCdzCj4gYWNjZXNzZWQgb3V0c2lkZSB0aGUgUE0gY29yZSBhbmQgdGhhdCdzIGluIGFtZGdw
-dS4gIFNvIHRoaXMgbG9va3MKPiBhIGxpdHRsZSBmaXNoeSBUQkguICBJdCBtYXkgbWFrZSBzZW5z
-ZSB0byBjYyBzdWNoIHBhdGNoZXMgdG8gbGludXgtcG0KPiB0byBnZXQgUmFmYWVsICYgb3RoZXIg
-Zm9sa3MgaW52b2x2ZWQgd2l0aCB0aGUgUE0gY29yZSB0byBjb21tZW50LgoKWW91IGFyZSByaWdo
-dCwgcG93ZXIuZGlzYWJsZV9kZXB0aCBpcyBpbnRlcm5hbCB0byB0aGUgUE0gY29yZS4KQWNjZXNz
-aW5nIGl0IChhbmQgdXBkYXRpbmcgaXQgaW4gcGFydGljdWxhcikgZGlyZWN0bHkgZnJvbSBkcml2
-ZXJzIGlzCm5vdCBhIGdvb2QgaWRlYS4KCj4gQWxzbywgdGhlIGRpc2FibGVfZGVwdGggdmFyaWFi
-bGUgb25seSBleGlzdHMgaWYgdGhlIGtlcm5lbCB3YXMKPiBjb21waWxlZCB3aXRoIENPTkZJR19Q
-TSBlbmFibGVkLCBidXQgSSBjYW4ndCBmaW5kIGEgImRlcGVuZHMgb24gUE0iCj4gb3Igc29tZXRo
-aW5nIGxpa2UgdGhhdCBpbiBub3V2ZWF1J3MgS2NvbmZpZy4gIEFjdHVhbGx5LCBpZiBQTSBpcwo+
-IG5vdCBzZWxlY3RlZCwgYWxsIHRoZSBub3V2ZWF1X3Btb3BzXyooKSBmdW5jdGlvbnMgc2hvdWxk
-IGJlICNpZmRlZidlZAo+IGF3YXksIGJ1dCBvZGRseSB0aGVyZSdzIG5vICNpZmRlZiBDT05GSUdf
-UE0gYW55d2hlcmUgaW4gbm91dmVhdV9kcm0uYy4KPgo+IEFueXdheW4sIGlmIEkgdW5kZXJzdGFu
-ZCB0aGUgY29tbWl0IG1lc3NhZ2UgY29ycmVjdGx5LCB5b3UncmUgaGl0dGluZyBhCj4gcG1fcnVu
-dGltZV9nZXRfc3luYygpIGluIGEgY29kZSBwYXRoIHRoYXQgaXRzZWxmIGlzIGNhbGxlZCBkdXJp
-bmcgYQo+IHBtX3J1bnRpbWVfZ2V0X3N5bmMoKS4gIENvdWxkIHlvdSBpbmNsdWRlIHN0YWNrIHRy
-YWNlcyBpbiB0aGUgY29tbWl0Cj4gbWVzc2FnZT8gIE15IGd1dCBmZWVsaW5nIGlzIHRoYXQgdGhp
-cyBwYXRjaCBtYXNrcyBhIGRlZXBlciBpc3N1ZSwKPiBlLmcuIGlmIHRoZSBydW50aW1lX3Jlc3Vt
-ZSBjb2RlIHBhdGggZG9lcyBpbiBmYWN0IGRpcmVjdGx5IHBvbGwgb3V0cHV0cywKPiB0aGF0IHdv
-dWxkIHNlZW0gd3JvbmcuICBSdW50aW1lIHJlc3VtZSBzaG91bGQgbWVyZWx5IG1ha2UgdGhlIGNh
-cmQKPiBhY2Nlc3NpYmxlLCBpLmUuIHJlaW5zdGF0ZSBwb3dlciBpZiBuZWNlc3NhcnksIHB1dCBp
-bnRvIFBDSV9EMCwKPiByZXN0b3JlIHJlZ2lzdGVycywgZXRjLiAgT3V0cHV0IHBvbGxpbmcgc2hv
-dWxkIGJlIHNjaGVkdWxlZAo+IGFzeW5jaHJvbm91c2x5LgoKUmlnaHQuCgpUaGFua3MsClJhZmFl
-bApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
-IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+Reviewed-by: Karol Herbst <karolherbst@gmail.com>
+
+On Tue, Jul 17, 2018 at 1:59 AM, Lyude Paul <lyude@redhat.com> wrote:
+> While the GPU is guaranteed to be on when a hotplug has been received,
+> the same assertion does not hold true if a connector probe has been
+> started by userspace without having had received a sysfs event. So
+> ensure that any connector probing keeps the GPU alive for the duration
+> of the probe.
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Cc: Karol Herbst <karolherbst@gmail.com>
+> Cc: stable@vger.kernel.org
+> ---
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c     |  2 +-
+>  drivers/gpu/drm/nouveau/nouveau_connector.c | 21 +++++++++++++++++++--
+>  drivers/gpu/drm/nouveau/nouveau_connector.h |  3 +++
+>  3 files changed, 23 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> index ea2a886854fe..0f283ca75189 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> @@ -858,7 +858,7 @@ static const struct drm_connector_funcs
+>  nv50_mstc = {
+>         .reset = nouveau_conn_reset,
+>         .detect = nv50_mstc_detect,
+> -       .fill_modes = drm_helper_probe_single_connector_modes,
+> +       .fill_modes = nouveau_connector_probe_single_connector_modes,
+>         .destroy = nv50_mstc_destroy,
+>         .atomic_duplicate_state = nouveau_conn_atomic_duplicate_state,
+>         .atomic_destroy_state = nouveau_conn_atomic_destroy_state,
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+> index 2a45b4c2ceb0..feb142fb7a8a 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+> @@ -770,6 +770,23 @@ nouveau_connector_force(struct drm_connector *connector)
+>         nouveau_connector_set_encoder(connector, nv_encoder);
+>  }
+>
+> +int
+> +nouveau_connector_probe_single_connector_modes(struct drm_connector *connector,
+> +                                              uint32_t maxX, uint32_t maxY)
+> +{
+> +       struct device *dev = connector->dev->dev;
+> +       int ret;
+> +
+> +       ret = pm_runtime_get_sync(dev);
+> +       if (WARN_ON(ret < 0 && ret != -EACCES))
+> +               return 0;
+> +
+> +       ret = drm_helper_probe_single_connector_modes(connector, maxX, maxY);
+> +
+> +       pm_runtime_put_autosuspend(dev);
+> +       return ret;
+> +}
+> +
+>  static int
+>  nouveau_connector_set_property(struct drm_connector *connector,
+>                                struct drm_property *property, uint64_t value)
+> @@ -1088,7 +1105,7 @@ nouveau_connector_funcs = {
+>         .reset = nouveau_conn_reset,
+>         .detect = nouveau_connector_detect,
+>         .force = nouveau_connector_force,
+> -       .fill_modes = drm_helper_probe_single_connector_modes,
+> +       .fill_modes = nouveau_connector_probe_single_connector_modes,
+>         .set_property = nouveau_connector_set_property,
+>         .destroy = nouveau_connector_destroy,
+>         .atomic_duplicate_state = nouveau_conn_atomic_duplicate_state,
+> @@ -1103,7 +1120,7 @@ nouveau_connector_funcs_lvds = {
+>         .reset = nouveau_conn_reset,
+>         .detect = nouveau_connector_detect_lvds,
+>         .force = nouveau_connector_force,
+> -       .fill_modes = drm_helper_probe_single_connector_modes,
+> +       .fill_modes = nouveau_connector_probe_single_connector_modes,
+>         .set_property = nouveau_connector_set_property,
+>         .destroy = nouveau_connector_destroy,
+>         .atomic_duplicate_state = nouveau_conn_atomic_duplicate_state,
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.h b/drivers/gpu/drm/nouveau/nouveau_connector.h
+> index 2d9d35a146a4..e9ffc6eebda2 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_connector.h
+> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.h
+> @@ -106,6 +106,9 @@ nouveau_crtc_connector_get(struct nouveau_crtc *nv_crtc)
+>
+>  struct drm_connector *
+>  nouveau_connector_create(struct drm_device *, const struct dcb_output *);
+> +int
+> +nouveau_connector_probe_single_connector_modes(struct drm_connector *,
+> +                                              uint32_t, uint32_t);
+>
+>  extern int nouveau_tv_disable;
+>  extern int nouveau_ignorelid;
+> --
+> 2.17.1
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
