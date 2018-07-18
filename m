@@ -1,119 +1,70 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 2/2] drm/probe_helper: Add
- drm_helper_probe_single_connector_modes_with_rpm()
-Date: Wed, 18 Jul 2018 16:56:40 -0400
-Message-ID: <20180718205645.25924-3-lyude@redhat.com>
-References: <20180718205645.25924-1-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [Nouveau] [PATCH] drm/nouveau: Fix bogus indenting in
+ nouveau_hwmon.c
+Date: Wed, 18 Jul 2018 17:37:20 -0400
+Message-ID: <da9a928ea3bd4ff2134bfc28447ef757232eabaa.camel@redhat.com>
+References: <20180717000758.8770-1-lyude@redhat.com>
+         <CACO55tt5e6PrvbfZUzQNb0T1o8twRfaFewt6tnjUW0DQYYXK-Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180718205645.25924-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Gustavo Padovan <gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CACO55tt5e6PrvbfZUzQNb0T1o8twRfaFewt6tnjUW0DQYYXK-Q@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Karol Herbst <kherbst@redhat.com>
+Cc: nouveau <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, dri-devel <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-Rm9yIG5vdXZlYXUsIHdoaWxlIHRoZSBHUFUgaXMgZ3VhcmFudGVlZCB0byBiZSBvbiB3aGVuIGEg
-aG90cGx1ZyBoYXMKYmVlbiByZWNlaXZlZCwgdGhlIHNhbWUgYXNzZXJ0aW9uIGRvZXMgbm90IGhv
-bGQgdHJ1ZSBpZiBhIGNvbm5lY3Rvcgpwcm9iZSBoYXMgYmVlbiBzdGFydGVkIGJ5IHVzZXJzcGFj
-ZSB3aXRob3V0IGhhdmluZyBoYWQgcmVjZWl2ZWQgYSBzeXNmcwpldmVudC4KClNvIGVuc3VyZSB0
-aGF0IGFueSBjb25uZWN0b3IgcHJvYmluZyBrZWVwcyB0aGUgR1BVIGFsaXZlIGZvciB0aGUKZHVy
-YXRpb24gb2YgdGhlIHByb2JlIGJ5IGludHJvZHVjaW5nCmRybV9oZWxwZXJfcHJvYmVfc2luZ2xl
-X2Nvbm5lY3Rvcl9tb2Rlc193aXRoX3JwbSgpLiBJdCdzIHRoZSBzYW1lIGFzCmRybV9oZWxwZXJf
-cHJvYmVfc2luZ2xlX2Nvbm5lY3Rvcl9tb2RlcywgYnV0IGl0IGhhbmRsZXMgaG9sZGluZyBhIHBv
-d2VyCnJlZmVyZW5jZSB0byB0aGUgZGV2aWNlIGZvciB0aGUgZHVyYXRpb24gb2YgdGhlIGNvbm5l
-Y3RvciBwcm9iZS4KClNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+
-ClJldmlld2VkLWJ5OiBLYXJvbCBIZXJic3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4KQ2M6IEx1
-a2FzIFd1bm5lciA8bHVrYXNAd3VubmVyLmRlPgpDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZwot
-LS0KQ2hhbmdlcyBzaW5jZSB2MToKIC0gQWRkIGEgZ2VuZXJpYyBoZWxwZXIgdG8gRFJNIHRvIGhh
-bmRsZSB0aGlzCgogZHJpdmVycy9ncHUvZHJtL2RybV9wcm9iZV9oZWxwZXIuYyAgICAgICAgICB8
-IDMxICsrKysrKysrKysrKysrKysrKysrKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52
-NTAvZGlzcC5jICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nv
-bm5lY3Rvci5jIHwgIDQgKy0tCiBpbmNsdWRlL2RybS9kcm1fY3J0Y19oZWxwZXIuaCAgICAgICAg
-ICAgICAgIHwgIDcgKysrLS0KIDQgZmlsZXMgY2hhbmdlZCwgMzggaW5zZXJ0aW9ucygrKSwgNiBk
-ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX3Byb2JlX2hlbHBl
-ci5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9wcm9iZV9oZWxwZXIuYwppbmRleCA1Mjc3NDMzOTQx
-NTAuLjBhOWQ2NzQ4Yjg1NCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9wcm9iZV9o
-ZWxwZXIuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX3Byb2JlX2hlbHBlci5jCkBAIC0zMSw2
-ICszMSw3IEBACiAKICNpbmNsdWRlIDxsaW51eC9leHBvcnQuaD4KICNpbmNsdWRlIDxsaW51eC9t
-b2R1bGVwYXJhbS5oPgorI2luY2x1ZGUgPGxpbnV4L3BtX3J1bnRpbWUuaD4KIAogI2luY2x1ZGUg
-PGRybS9kcm1QLmg+CiAjaW5jbHVkZSA8ZHJtL2RybV9jcnRjLmg+CkBAIC01NDEsNiArNTQyLDM2
-IEBAIGludCBkcm1faGVscGVyX3Byb2JlX3NpbmdsZV9jb25uZWN0b3JfbW9kZXMoc3RydWN0IGRy
-bV9jb25uZWN0b3IgKmNvbm5lY3RvciwKIH0KIEVYUE9SVF9TWU1CT0woZHJtX2hlbHBlcl9wcm9i
-ZV9zaW5nbGVfY29ubmVjdG9yX21vZGVzKTsKIAorLyoqCisgKiBkcm1faGVscGVyX3Byb2JlX3Np
-bmdsZV9jb25uZWN0b3JfbW9kZXNfd2l0aF9ycG0gLSBnZXQgY29tcGxldGUgc2V0IG9mCisgKiAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkaXNwbGF5
-IG1vZGVzCisgKiBAY29ubmVjdG9yOiBjb25uZWN0b3IgdG8gcHJvYmUKKyAqIEBtYXhYOiBtYXgg
-d2lkdGggZm9yIG1vZGVzCisgKiBAbWF4WTogbWF4IGhlaWdodCBmb3IgbW9kZXMKKyAqCisgKiBT
-YW1lIGFzIGRybV9oZWxwZXJfcHJvYmVfc2luZ2xlX2Nvbm5lY3Rvcl9tb2RlcywgZXhjZXB0IHRo
-YXQgaXQgbWFrZXMgc3VyZQorICogdGhhdCB0aGUgZGV2aWNlIGlzIGFjdGl2ZSBieSBzeW5jaHJv
-bm91c2x5IGdyYWJiaW5nIGEgcnVudGltZSBwb3dlcgorICogcmVmZXJlbmNlIHdoaWxlIHByb2Jp
-bmcuCisgKgorICogUmV0dXJuczoKKyAqIFRoZSBudW1iZXIgb2YgbW9kZXMgZm91bmQgb24gQGNv
-bm5lY3Rvci4KKyAqLworaW50IGRybV9oZWxwZXJfcHJvYmVfc2luZ2xlX2Nvbm5lY3Rvcl9tb2Rl
-c193aXRoX3JwbShzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAorCQkJCQkJICAgICB1
-aW50MzJfdCBtYXhYLCB1aW50MzJfdCBtYXhZKQoreworCWludCByZXQ7CisKKwlyZXQgPSBwbV9y
-dW50aW1lX2dldF9zeW5jKGNvbm5lY3Rvci0+ZGV2LT5kZXYpOworCWlmIChyZXQgPCAwICYmIHJl
-dCAhPSAtRUFDQ0VTKQorCQlyZXR1cm4gcmV0OworCisJcmV0ID0gZHJtX2hlbHBlcl9wcm9iZV9z
-aW5nbGVfY29ubmVjdG9yX21vZGVzKGNvbm5lY3RvciwgbWF4WCwgbWF4WSk7CisKKwlwbV9ydW50
-aW1lX3B1dChjb25uZWN0b3ItPmRldi0+ZGV2KTsKKwlyZXR1cm4gcmV0OworfQorRVhQT1JUX1NZ
-TUJPTChkcm1faGVscGVyX3Byb2JlX3NpbmdsZV9jb25uZWN0b3JfbW9kZXNfd2l0aF9ycG0pOwor
-CiAvKioKICAqIGRybV9rbXNfaGVscGVyX2hvdHBsdWdfZXZlbnQgLSBmaXJlIG9mZiBLTVMgaG90
-cGx1ZyBldmVudHMKICAqIEBkZXY6IGRybV9kZXZpY2Ugd2hvc2UgY29ubmVjdG9yIHN0YXRlIGNo
-YW5nZWQKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3Au
-YyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYwppbmRleCBmYTNhYjYx
-OGEwZjkuLmM1NDc2N2I1MGZkOCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-ZGlzcG52NTAvZGlzcC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rp
-c3AuYwpAQCAtODU4LDcgKzg1OCw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2Nvbm5lY3Rv
-cl9mdW5jcwogbnY1MF9tc3RjID0gewogCS5yZXNldCA9IG5vdXZlYXVfY29ubl9yZXNldCwKIAku
-ZGV0ZWN0ID0gbnY1MF9tc3RjX2RldGVjdCwKLQkuZmlsbF9tb2RlcyA9IGRybV9oZWxwZXJfcHJv
-YmVfc2luZ2xlX2Nvbm5lY3Rvcl9tb2RlcywKKwkuZmlsbF9tb2RlcyA9IGRybV9oZWxwZXJfcHJv
-YmVfc2luZ2xlX2Nvbm5lY3Rvcl9tb2Rlc193aXRoX3JwbSwKIAkuZGVzdHJveSA9IG52NTBfbXN0
-Y19kZXN0cm95LAogCS5hdG9taWNfZHVwbGljYXRlX3N0YXRlID0gbm91dmVhdV9jb25uX2F0b21p
-Y19kdXBsaWNhdGVfc3RhdGUsCiAJLmF0b21pY19kZXN0cm95X3N0YXRlID0gbm91dmVhdV9jb25u
-X2F0b21pY19kZXN0cm95X3N0YXRlLApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9jb25uZWN0b3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-Y29ubmVjdG9yLmMKaW5kZXggMmE0NWI0YzJjZWIwLi44ZDkwNzA3NzkyNjEgMTAwNjQ0Ci0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMKKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwpAQCAtMTA4OCw3ICsxMDg4LDcg
-QEAgbm91dmVhdV9jb25uZWN0b3JfZnVuY3MgPSB7CiAJLnJlc2V0ID0gbm91dmVhdV9jb25uX3Jl
-c2V0LAogCS5kZXRlY3QgPSBub3V2ZWF1X2Nvbm5lY3Rvcl9kZXRlY3QsCiAJLmZvcmNlID0gbm91
-dmVhdV9jb25uZWN0b3JfZm9yY2UsCi0JLmZpbGxfbW9kZXMgPSBkcm1faGVscGVyX3Byb2JlX3Np
-bmdsZV9jb25uZWN0b3JfbW9kZXMsCisJLmZpbGxfbW9kZXMgPSBkcm1faGVscGVyX3Byb2JlX3Np
-bmdsZV9jb25uZWN0b3JfbW9kZXNfd2l0aF9ycG0sCiAJLnNldF9wcm9wZXJ0eSA9IG5vdXZlYXVf
-Y29ubmVjdG9yX3NldF9wcm9wZXJ0eSwKIAkuZGVzdHJveSA9IG5vdXZlYXVfY29ubmVjdG9yX2Rl
-c3Ryb3ksCiAJLmF0b21pY19kdXBsaWNhdGVfc3RhdGUgPSBub3V2ZWF1X2Nvbm5fYXRvbWljX2R1
-cGxpY2F0ZV9zdGF0ZSwKQEAgLTExMDMsNyArMTEwMyw3IEBAIG5vdXZlYXVfY29ubmVjdG9yX2Z1
-bmNzX2x2ZHMgPSB7CiAJLnJlc2V0ID0gbm91dmVhdV9jb25uX3Jlc2V0LAogCS5kZXRlY3QgPSBu
-b3V2ZWF1X2Nvbm5lY3Rvcl9kZXRlY3RfbHZkcywKIAkuZm9yY2UgPSBub3V2ZWF1X2Nvbm5lY3Rv
-cl9mb3JjZSwKLQkuZmlsbF9tb2RlcyA9IGRybV9oZWxwZXJfcHJvYmVfc2luZ2xlX2Nvbm5lY3Rv
-cl9tb2RlcywKKwkuZmlsbF9tb2RlcyA9IGRybV9oZWxwZXJfcHJvYmVfc2luZ2xlX2Nvbm5lY3Rv
-cl9tb2Rlc193aXRoX3JwbSwKIAkuc2V0X3Byb3BlcnR5ID0gbm91dmVhdV9jb25uZWN0b3Jfc2V0
-X3Byb3BlcnR5LAogCS5kZXN0cm95ID0gbm91dmVhdV9jb25uZWN0b3JfZGVzdHJveSwKIAkuYXRv
-bWljX2R1cGxpY2F0ZV9zdGF0ZSA9IG5vdXZlYXVfY29ubl9hdG9taWNfZHVwbGljYXRlX3N0YXRl
-LApkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vZHJtX2NydGNfaGVscGVyLmggYi9pbmNsdWRlL2Ry
-bS9kcm1fY3J0Y19oZWxwZXIuaAppbmRleCA2OTE0NjMzMDM3YTUuLjhmM2Y2ZDZmY2M4YyAxMDA2
-NDQKLS0tIGEvaW5jbHVkZS9kcm0vZHJtX2NydGNfaGVscGVyLmgKKysrIGIvaW5jbHVkZS9kcm0v
-ZHJtX2NydGNfaGVscGVyLmgKQEAgLTY0LDkgKzY0LDEwIEBAIGludCBkcm1faGVscGVyX2NydGNf
-bW9kZV9zZXRfYmFzZShzdHJ1Y3QgZHJtX2NydGMgKmNydGMsIGludCB4LCBpbnQgeSwKIAkJCQkg
-IHN0cnVjdCBkcm1fZnJhbWVidWZmZXIgKm9sZF9mYik7CiAKIC8qIGRybV9wcm9iZV9oZWxwZXIu
-YyAqLwotaW50IGRybV9oZWxwZXJfcHJvYmVfc2luZ2xlX2Nvbm5lY3Rvcl9tb2RlcyhzdHJ1Y3Qg
-ZHJtX2Nvbm5lY3RvcgotCQkJCQkgICAgKmNvbm5lY3RvciwgdWludDMyX3QgbWF4WCwKLQkJCQkJ
-ICAgIHVpbnQzMl90IG1heFkpOworaW50IGRybV9oZWxwZXJfcHJvYmVfc2luZ2xlX2Nvbm5lY3Rv
-cl9tb2RlcyhzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAorCQkJCQkgICAgdWludDMy
-X3QgbWF4WCwgdWludDMyX3QgbWF4WSk7CitpbnQgZHJtX2hlbHBlcl9wcm9iZV9zaW5nbGVfY29u
-bmVjdG9yX21vZGVzX3dpdGhfcnBtKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsCisJ
-CQkJCQkgICAgIHVpbnQzMl90IG1heFgsIHVpbnQzMl90IG1heFkpOwogaW50IGRybV9oZWxwZXJf
-cHJvYmVfZGV0ZWN0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsCiAJCQkgICAgc3Ry
-dWN0IGRybV9tb2Rlc2V0X2FjcXVpcmVfY3R4ICpjdHgsCiAJCQkgICAgYm9vbCBmb3JjZSk7Ci0t
-IAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+I think that is an issue with your client? It seems to come up fine if I apply
+it locally and look at it with gvim
+
+On Tue, 2018-07-17 at 12:25 +0200, Karol Herbst wrote:
+> isn't there like 1 space missing for each change? Or maybe my client
+> is messed up, but please align it with the first letter of the
+> parameters not the "(".
+> 
+> With that fixed: Reviewed-by: Karol Herbst <karolherbst@gmail.com>
+> 
+> On Tue, Jul 17, 2018 at 2:07 AM, Lyude Paul <lyude@redhat.com> wrote:
+> > Signed-off-by: Lyude Paul <lyude@redhat.com>
+> > ---
+> >  drivers/gpu/drm/nouveau/nouveau_hwmon.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> > b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> > index 44178b4c3599..d556f24c6c48 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+> > @@ -655,7 +655,7 @@ nouveau_read_string(struct device *dev, enum
+> > hwmon_sensor_types type, u32 attr,
+> > 
+> >  static int
+> >  nouveau_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+> > -                                                       int channel, long
+> > *val)
+> > +            int channel, long *val)
+> >  {
+> >         switch (type) {
+> >         case hwmon_chip:
+> > @@ -677,7 +677,7 @@ nouveau_read(struct device *dev, enum
+> > hwmon_sensor_types type, u32 attr,
+> > 
+> >  static int
+> >  nouveau_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+> > -                                                       int channel, long
+> > val)
+> > +             int channel, long val)
+> >  {
+> >         switch (type) {
+> >         case hwmon_temp:
+> > --
+> > 2.17.1
+> > 
+> > _______________________________________________
+> > Nouveau mailing list
+> > Nouveau@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/nouveau
+-- 
+Cheers,
+	Lyude Paul
