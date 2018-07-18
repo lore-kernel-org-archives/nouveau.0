@@ -1,70 +1,91 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau: Fix bogus indenting in
- nouveau_hwmon.c
-Date: Wed, 18 Jul 2018 17:37:20 -0400
-Message-ID: <da9a928ea3bd4ff2134bfc28447ef757232eabaa.camel@redhat.com>
-References: <20180717000758.8770-1-lyude@redhat.com>
-         <CACO55tt5e6PrvbfZUzQNb0T1o8twRfaFewt6tnjUW0DQYYXK-Q@mail.gmail.com>
+From: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: Re: [PATCH 1/5] drm/nouveau: Prevent RPM callback
+ recursion in suspend/resume paths
+Date: Wed, 18 Jul 2018 23:49:07 +0200
+Message-ID: <CAJZ5v0jXNVMy04VuVV8JxseQ3NYyJkUBAAxUyyPiLq-W8DDr9w@mail.gmail.com>
+References: <20180716235936.11268-1-lyude@redhat.com>
+ <20180716235936.11268-2-lyude@redhat.com>
+ <20180717071641.GA5411@wunner.de>
+ <d7c25a7f41df70685c0c4726315592d1d9b561ff.camel@redhat.com>
+ <20180717182041.GA18363@wunner.de>
+ <CAJZ5v0g8O8J0U8V-gLMe+NnTd3xgZ5_pjr9p2oci7yAfW54B-A@mail.gmail.com>
+ <20180718082505.GB16072@wunner.de> <20180718083601.GC16072@wunner.de>
+ <2724dd5eee8a1e4e523e43915fa184ad5afe1c59.camel@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CACO55tt5e6PrvbfZUzQNb0T1o8twRfaFewt6tnjUW0DQYYXK-Q@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Karol Herbst <kherbst@redhat.com>
-Cc: nouveau <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, dri-devel <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <2724dd5eee8a1e4e523e43915fa184ad5afe1c59.camel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-I think that is an issue with your client? It seems to come up fine if I apply
-it locally and look at it with gvim
-
-On Tue, 2018-07-17 at 12:25 +0200, Karol Herbst wrote:
-> isn't there like 1 space missing for each change? Or maybe my client
-> is messed up, but please align it with the first letter of the
-> parameters not the "(".
-> 
-> With that fixed: Reviewed-by: Karol Herbst <karolherbst@gmail.com>
-> 
-> On Tue, Jul 17, 2018 at 2:07 AM, Lyude Paul <lyude@redhat.com> wrote:
-> > Signed-off-by: Lyude Paul <lyude@redhat.com>
-> > ---
-> >  drivers/gpu/drm/nouveau/nouveau_hwmon.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-> > b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-> > index 44178b4c3599..d556f24c6c48 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
-> > @@ -655,7 +655,7 @@ nouveau_read_string(struct device *dev, enum
-> > hwmon_sensor_types type, u32 attr,
-> > 
-> >  static int
-> >  nouveau_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
-> > -                                                       int channel, long
-> > *val)
-> > +            int channel, long *val)
-> >  {
-> >         switch (type) {
-> >         case hwmon_chip:
-> > @@ -677,7 +677,7 @@ nouveau_read(struct device *dev, enum
-> > hwmon_sensor_types type, u32 attr,
-> > 
-> >  static int
-> >  nouveau_write(struct device *dev, enum hwmon_sensor_types type, u32 attr,
-> > -                                                       int channel, long
-> > val)
-> > +             int channel, long val)
-> >  {
-> >         switch (type) {
-> >         case hwmon_temp:
-> > --
-> > 2.17.1
-> > 
-> > _______________________________________________
-> > Nouveau mailing list
-> > Nouveau@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/nouveau
--- 
-Cheers,
-	Lyude Paul
+T24gV2VkLCBKdWwgMTgsIDIwMTggYXQgMTA6MTEgUE0sIEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhh
+dC5jb20+IHdyb3RlOgo+IE9uIFdlZCwgMjAxOC0wNy0xOCBhdCAxMDozNiArMDIwMCwgTHVrYXMg
+V3VubmVyIHdyb3RlOgo+PiBPbiBXZWQsIEp1bCAxOCwgMjAxOCBhdCAxMDoyNTowNUFNICswMjAw
+LCBMdWthcyBXdW5uZXIgd3JvdGU6Cj4+ID4gVGhlIEdQVSBjb250YWlucyBhbiBpMmMgc3ViZGV2
+aWNlIGZvciBlYWNoIGNvbm5lY3RvciB3aXRoIEREQyBsaW5lcy4KPj4gPiBJIGJlbGlldmUgdGhv
+c2UgYXJlIG1vZGVsbGVkIGFzIGNoaWxkcmVuIG9mIHRoZSBHUFUncyBQQ0kgZGV2aWNlIGFzCj4+
+ID4gdGhleSdyZSBhY2Nlc3NlZCB2aWEgbW1pbyBvZiB0aGUgUENJIGRldmljZS4KPj4gPgo+PiA+
+IFRoZSBwcm9ibGVtIGhlcmUgaXMgdGhhdCB3aGVuIHRoZSBHUFUncyBQQ0kgZGV2aWNlIHJ1bnRp
+bWUgc3VzcGVuZHMsCj4+ID4gaXRzIGkyYyBjaGlsZCBkZXZpY2UgbmVlZHMgdG8gYmUgcnVudGlt
+ZSBhY3RpdmUgdG8gc3VzcGVuZCB0aGUgTVNUCj4+ID4gdG9wb2xvZ3kuICBDYXRjaC0yMi4KPj4g
+Pgo+PiA+IEkgZG9uJ3Qga25vdyB3aGV0aGVyIG9yIG5vdCBpdCdzIG5lY2Vzc2FyeSB0byBzdXNw
+ZW5kIHRoZSBNU1QgdG9wb2xvZ3kuCj4+ID4gSSdtIG5vdCBhbiBleHBlcnQgb24gRGlzcGxheVBv
+cnQgTXVsdGlTdHJlYW0gdHJhbnNwb3J0Lgo+PiA+Cj4+ID4gQlRXIEx5dWRlLCBpbiBwYXRjaCA0
+IGFuZCA1IG9mIHRoaXMgc2VyaWVzLCB5b3UncmUgcnVudGltZSByZXN1bWluZwo+PiA+IHBhZC0+
+aTJjLT5zdWJkZXYuZGV2aWNlLT5kZXYuICBJcyB0aGlzIHRoZSBQQ0kgZGV2aWNlIG9yIGlzIGl0
+IHRoZSBpMmMKPj4gPiBkZXZpY2U/ICBJJ20gYWx3YXlzIGNvbmZ1c2VkIGJ5IG5vdXZlYXUncyBz
+dHJ1Y3RzLiAgSW4gbnZrbV9pMmNfYnVzX2N0b3IoKQo+PiA+IEkgY2FuIHNlZSB0aGF0IHRoZSBk
+ZXZpY2UgeW91J3JlIHJ1bnRpbWUgcmVzdW1pbmcgaXMgdGhlIHBhcmVudCBvZiB0aGUKPj4gPiBp
+MmNfYWRhcHRlcjoKPj4gPgo+PiA+ICAgICBzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSA9IHBh
+ZC0+aTJjLT5zdWJkZXYuZGV2aWNlOwo+PiA+ICAgICBbLi4uXQo+PiA+ICAgICBidXMtPmkyYy5k
+ZXYucGFyZW50ID0gZGV2aWNlLT5kZXY7Cj4+ID4KPj4gPiBJZiB0aGUgaTJjX2FkYXB0ZXIgaXMg
+YSBjaGlsZCBvZiB0aGUgUENJIGRldmljZSwgaXQncyBzdWZmaWNpZW50Cj4+ID4gdG8gcnVudGlt
+ZSByZXN1bWUgdGhlIGkyY19hZGFwdGVyLCBpLmUuIGJ1cy0+aTJjLmRldiwgYW5kIHRoaXMgd2ls
+bAo+PiA+IGltcGxpY2l0bHkgcnVudGltZSByZXN1bWUgaXRzIHBhcmVudC4KPj4KPj4gQWN0dWFs
+bHksIGhhdmluZyB3cml0dGVuIGFsbCB0aGlzIEkganVzdCByZW1lbWJlcmVkIHRoYXQgd2UgaGF2
+ZSB0aGlzCj4+IGluIHRoZSBkb2N1bWVudGF0aW9uOgo+Pgo+PiAgICAgOC4gIk5vLUNhbGxiYWNr
+IiBEZXZpY2VzCj4+Cj4+ICAgICBTb21lICJkZXZpY2VzIiBhcmUgb25seSBsb2dpY2FsIHN1Yi1k
+ZXZpY2VzIG9mIHRoZWlyIHBhcmVudCBhbmQgY2Fubm90Cj4+IGJlCj4+ICAgICBwb3dlci1tYW5h
+Z2VkIG9uIHRoZWlyIG93bi4gWy4uLl0KPj4KPj4gICAgIFN1YnN5c3RlbXMgY2FuIHRlbGwgdGhl
+IFBNIGNvcmUgYWJvdXQgdGhlc2UgZGV2aWNlcyBieSBjYWxsaW5nCj4+ICAgICBwbV9ydW50aW1l
+X25vX2NhbGxiYWNrcygpLgo+Pgo+PiBTbyBpdCBtaWdodCBhY3R1YWxseSBiZSBzdWZmaWNpZW50
+IHRvIGp1c3QgY2FsbCBwbV9ydW50aW1lX25vX2NhbGxiYWNrcygpCj4KPiBJIHdvdWxkIGhhdmUg
+aG9wZWQgc28sIGJ1dCB1bmZvcnR1bmF0ZWx5IGl0IHNlZW1zIHRoYXQKPiBwbV9ydW50aW1lX25v
+X2NhbGxiYWNrcygpIGlzIGFscmVhZHkgY2FsbGVkIGJ5IGRlZmF1bHQgZm9yIGkyYyBhZGFwdGVy
+cyBpbgo+IGkyY19yZWdpc3Rlcl9hZGFwdGVyKCkuIFVuZm9ydHVuYXRlbHkgdGhpcyByZWFsbHkg
+Y2FuJ3QgZml4IHRoZSBwcm9ibGVtCj4gdGhvdWdoLCBiZWNhdXNlIGl0IHdpbGwgc3RpbGwgdHJ5
+IHRvIHJ1bnRpbWUgcmVzdW1lIHRoZSBwYXJlbnQgZGV2aWNlIG9mIHRoZQo+IGkyYyBhZGFwdGVy
+LCB3aGljaCBzdGlsbCBsZWFkcyB0byBkZWFkbG9ja2luZyBpbiB0aGUgcnVudGltZSBzdXNwZW5k
+L3Jlc3VtZQo+IHBhdGguCgpXZWxsLCB0aGVyZSBoYXMgdG8gYmUgYSB3YXkgdG8gc3VzcGVuZCBh
+bGwgdGhhdCB0aGluZyB3aXRob3V0CnJlY3Vyc2lvbiBvciBzaW1pbGFyLgoKSWYgdGhlIGFkYXB0
+ZXIgaGFzIG5vIGNhbGxiYWNrcywgdGhlbiBob3cgaXMgaXQgcG9zc2libGUgZm9yIHRob3NlCmNh
+bGxiYWNrcyB0byBpbnZva2UgYW55IHJ1bnRpbWUgUE0gaGVscGVycyBmb3IgYW55IG90aGVyIGRl
+dmljZXM/Cgo+IEFkZGl0aW9uYWxseTsgSSBkaWQgcGxheSBhcm91bmQgd2l0aCBpZ25vcmVfY2hp
+bGRyZW4sIGJ1dCB1bmZvcnR1bmF0ZWx5IHRoaXMKPiBpc24ndCBnb29kIGVub3VnaCBlaXRoZXIg
+YXMgaXQganVzdCBtZWFucyB0aGF0IG91ciBpMmMgZGV2aWNlcyB3b24ndCB3YWtlIHRoZQo+IEdQ
+VSB1cCBvbiBhY2Nlc3MuCgpTbyBvbiB0aGUgb25lIGhhbmQgeW91IHdhbnQgdGhlbSB0byBzdGF5
+IGFjdGl2ZSBvdmVyIGEgc3VzcGVuZCBvZiB0aGUKcGFyZW50IGFuZCBvbiB0aGUgb3RoZXIgaGFu
+ZCB5b3Ugd2FudCAgdGhlIHBhcmVudCB0byByZXN1bWUgYmVmb3JlCnRoZW0uICBBcmUgdGhlc2Ug
+cmVxdWlyZW1lbnRzIHJlYWxseSBjb25zaXN0ZW50IHdpdGggZWFjaCBvdGhlcj8KCj4gSSdtIHBy
+ZXR0eSBzdHVtcGVkIGhlcmUgb24gdHJ5aW5nIHRvIGZpZ3VyZSBvdXQgYW55IGNsZWFuIHdheSB0
+byBoYW5kbGUgdGhpcwo+IGluIHRoZSBQTSBjb3JlIGlmIHJlY3Vyc2l2ZSByZXN1bWUgY2FsbHMg
+YXJlIG9mZiB0aGUgdGFibGUuIFRoZSBvbmx5IHBvc3NpYmxlCj4gc29sdXRpb24gSSBjb3VsZCBz
+ZWUgdG8gdGhpcyBpcyBpZiB3ZSBjb3VsZCBkaXNhYmxlIGV4ZWN1dGlvbiBvZiBydW50aW1lCj4g
+Y2FsbGJhY2tzIGluIHRoZSBjb250ZXh0IG9mIGEgY2VydGFpbiB0YXNrICh3aGlsZSBhbGwgb3Ro
+ZXIgdGFza3MgaGF2ZSB0bwo+IGhvbm9yIHRoZSBydW50aW1lIFBNIGNhbGxiYWNrcyksIGRvIHdo
+YXQgd2UgbmVlZCB0byBkbyBpbiBzdXNwZW5kLCB0aGVuIHJlLQo+IGVuYWJsZSB0aGVtCj4+IGZv
+ciB0aGUgaTJjIGRldmljZXMuLi4KClRoaXMgc291bmRzIGNvbXBsZXRlbHkgYnJva2VuIHRvIG1l
+LCBzb3JyeS4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
