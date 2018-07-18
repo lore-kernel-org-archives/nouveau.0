@@ -1,85 +1,59 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [Nouveau] [PATCH 1/5] drm/nouveau: Prevent RPM callback
- recursion in suspend/resume paths
-Date: Wed, 18 Jul 2018 16:11:00 -0400
-Message-ID: <2724dd5eee8a1e4e523e43915fa184ad5afe1c59.camel@redhat.com>
-References: <20180716235936.11268-1-lyude@redhat.com>
-         <20180716235936.11268-2-lyude@redhat.com> <20180717071641.GA5411@wunner.de>
-         <d7c25a7f41df70685c0c4726315592d1d9b561ff.camel@redhat.com>
-         <20180717182041.GA18363@wunner.de>
-         <CAJZ5v0g8O8J0U8V-gLMe+NnTd3xgZ5_pjr9p2oci7yAfW54B-A@mail.gmail.com>
-         <20180718082505.GB16072@wunner.de> <20180718083601.GC16072@wunner.de>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 0/2] Fix connector probing deadlocks from RPM bugs
+Date: Wed, 18 Jul 2018 16:56:38 -0400
+Message-ID: <20180718205645.25924-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180718083601.GC16072@wunner.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Lukas Wunner <lukas@wunner.de>, "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: nouveau@lists.freedesktop.org, David Airlie <airlied@linux.ie>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Linux PM <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Gustavo Padovan <gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 2018-07-18 at 10:36 +0200, Lukas Wunner wrote:
-> On Wed, Jul 18, 2018 at 10:25:05AM +0200, Lukas Wunner wrote:
-> > The GPU contains an i2c subdevice for each connector with DDC lines.
-> > I believe those are modelled as children of the GPU's PCI device as
-> > they're accessed via mmio of the PCI device.
-> > 
-> > The problem here is that when the GPU's PCI device runtime suspends,
-> > its i2c child device needs to be runtime active to suspend the MST
-> > topology.  Catch-22.
-> > 
-> > I don't know whether or not it's necessary to suspend the MST topology.
-> > I'm not an expert on DisplayPort MultiStream transport.
-> > 
-> > BTW Lyude, in patch 4 and 5 of this series, you're runtime resuming
-> > pad->i2c->subdev.device->dev.  Is this the PCI device or is it the i2c
-> > device?  I'm always confused by nouveau's structs.  In nvkm_i2c_bus_ctor()
-> > I can see that the device you're runtime resuming is the parent of the
-> > i2c_adapter:
-> > 
-> > 	struct nvkm_device *device = pad->i2c->subdev.device;
-> > 	[...]
-> > 	bus->i2c.dev.parent = device->dev;
-> > 
-> > If the i2c_adapter is a child of the PCI device, it's sufficient
-> > to runtime resume the i2c_adapter, i.e. bus->i2c.dev, and this will
-> > implicitly runtime resume its parent.
-> 
-> Actually, having written all this I just remembered that we have this
-> in the documentation:
-> 
->     8. "No-Callback" Devices
-> 
->     Some "devices" are only logical sub-devices of their parent and cannot
-> be
->     power-managed on their own. [...]
-> 
->     Subsystems can tell the PM core about these devices by calling
->     pm_runtime_no_callbacks().
-> 
-> So it might actually be sufficient to just call pm_runtime_no_callbacks()
-
-I would have hoped so, but unfortunately it seems that
-pm_runtime_no_callbacks() is already called by default for i2c adapters in
-i2c_register_adapter(). Unfortunately this really can't fix the problem
-though, because it will still try to runtime resume the parent device of the
-i2c adapter, which still leads to deadlocking in the runtime suspend/resume
-path.
-
-Additionally; I did play around with ignore_children, but unfortunately this
-isn't good enough either as it just means that our i2c devices won't wake the
-GPU up on access.
-
-I'm pretty stumped here on trying to figure out any clean way to handle this
-in the PM core if recursive resume calls are off the table. The only possible
-solution I could see to this is if we could disable execution of runtime
-callbacks in the context of a certain task (while all other tasks have to
-honor the runtime PM callbacks), do what we need to do in suspend, then re-
-enable them
-> for the i2c devices...
-> 
-> Lukas
--- 
-Cheers,
-	Lyude Paul
+VGhpcyBpcyBhIHRyaW1tZWQgZG93biB2ZXJzaW9uIG9mCgpodHRwczovL3BhdGNod29yay5mcmVl
+ZGVza3RvcC5vcmcvc2VyaWVzLzQ2NjM3LwoKd2l0aCBhbGwgb2YgdGhlIHJldmlldyBjb21tZW50
+cyBhZGRyZXNzZWQuCgpUaGUgbGFzdCB2ZXJzaW9uIG9mIHRoaXMgc2VyaWVzIGhhZCBmaXhlcyBm
+b3IgdGhlIGkyYyBhbmQgRFAgYXV4IGJ1c3Nlcwp0byBlbnN1cmUgdGhhdCB0aGUgR1BVIHdvdWxk
+IGJlIHR1cm5lZCBvbiB3aGVuZXZlciBhbnl0aGluZyB0cmllZCB0bwphY2Nlc3MgdGhlIGkyYy9h
+dXggYnVzc2VzLiBVbmZvcnR1bmF0ZWx5OiBvbmUgb2YgdGhlIGZpeGVzIGFwcGFyZW50bHkKY29u
+dGFpbmVkIHNvbWUgdmVyeSBpbmNvcnJlY3QgdXNhZ2Ugb2YgTGludXgncyBydW50aW1lIFBNIGlu
+dGVyZmFjZSBpbgpvcmRlciB0byBwcmV2ZW50IHJ1bnRpbWUgc3VzcGVuZC9yZXN1bWUgcmVxdWVz
+dHMgY29taW5nIGZyb20gd2l0aGluCm5vdXZlYXUncyBzdXNwZW5kL3Jlc3VtZSBjYWxsYmFja3Mg
+ZnJvbSBkZWFkbG9ja2luZyB0aGUgc3lzdGVtLgoKVHVybnMgb3V0OiBmaXhpbmcgdGhlIGkyYy9k
+cCBhdXggcHJvYmxlbSBpcyBhIGxvdCBoYXJkZXIgdGhlbiBJCm9yaWdpbmFsbHkgYW50aWNpcGF0
+ZWQuIFdlIGVpdGhlciBuZWVkIHRvIGNvbWUgdXAgd2l0aCBoZWxwZXJzIGZvciBEUk0KdGhhdCB3
+b3JrIGFyb3VuZCB0aGUgUE0gY29yZSwgd2hpY2ggaXMgcmVhbGx5IG5vdCBpZGVhbCwgb3IgY29t
+ZSB1cCB3aXRoCmEgbmV3IGZlYXR1cmUgZm9yIHRoZSBSUE0gY29yZSB0aGF0IGFsbG93cyB1cyB0
+byBpbmhpYml0IHN1c3BlbmQvcmVzdW1lCmNhbGxiYWNrcy4gVGhlIGZvcm1lciBzZWVtcyB0byBi
+ZSBzb21ld2hhdCB0cml2aWFsIHRvIGltcGxlbWVudCwgYnV0CmNvbWluZyB1cCB3aXRoIGEgZGVj
+ZW50IGludGVyZmFjZSBmb3IgdGhhdCBpcyBnb2luZyB0byB0YWtlIGEgYml0IG1vcmUKdGltZSBh
+bmQgSSdkIG11Y2ggcmF0aGVyIGhhdmUgaXNzdWVzIGNhdXNpbmcgZGVhZGxvY2tzIGdldCBmaXhl
+ZCBmaXJzdC4KVGhpcyBtZWFucyB0aGF0IGRybV9kcF9hdXhfZGV2IGlzIGdvaW5nIHRvIGJlIGJy
+b2tlbiBvbiBub3V2ZWF1IGZvcgpsYXB0b3BzIHdpdGggaHlicmlkIEdQVXMgdXNpbmcgUlBNLCBi
+dXQgaXQgd2FzIGFscmVhZHkgYnJva2VuIGJlZm9yZQphbnlob3cuCgpTbzogdGhpcyBqdXN0IGNv
+bnRhaW5zIHRoZSBzZXJpb3VzbHkgaW1wb3J0YW50IGZpeGVzIHRoYXQgd2lsbCBzdG9wCnBlb3Bs
+ZSdzIG1hY2hpbmVzIGZyb20gY3Jhc2hpbmcgdmVyeSBoYXJkLiBIb3BlZnVsbHkgSSBjYW4gY29t
+ZSB1cCB3aXRoCmEgc29sdXRpb24gdG8gdGhlIGkyYy9hdXggcHJvYmxlbSBzb29uIGFmdGVyIGZp
+eGluZyBzb21lIG90aGVyIGdsYXJpbmcKTVNUIGJ1Z3Mgbm91dmVhdSBjdXJyZW50bHkgaGFzLgoK
+THl1ZGUgUGF1bCAoMik6CiAgZHJtL2ZiX2hlbHBlcjogQWRkIGRybV9mYl9oZWxwZXJfb3V0cHV0
+X3BvbGxfY2hhbmdlZF93aXRoX3JwbSgpCiAgZHJtL3Byb2JlX2hlbHBlcjogQWRkCiAgICBkcm1f
+aGVscGVyX3Byb2JlX3NpbmdsZV9jb25uZWN0b3JfbW9kZXNfd2l0aF9ycG0oKQoKIGRyaXZlcnMv
+Z3B1L2RybS9kcm1fZmJfaGVscGVyLmMgICAgICAgICAgICAgfCAyMyArKysrKysrKysrKysrKysK
+IGRyaXZlcnMvZ3B1L2RybS9kcm1fcHJvYmVfaGVscGVyLmMgICAgICAgICAgfCAzMSArKysrKysr
+KysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyAg
+ICAgfCAgNCArLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMg
+fCAgNCArLS0KIGluY2x1ZGUvZHJtL2RybV9jcnRjX2hlbHBlci5oICAgICAgICAgICAgICAgfCAg
+NyArKystLQogaW5jbHVkZS9kcm0vZHJtX2ZiX2hlbHBlci5oICAgICAgICAgICAgICAgICB8ICA1
+ICsrKysKIDYgZmlsZXMgY2hhbmdlZCwgNjcgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkK
+Ci0tIAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
