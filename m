@@ -1,15 +1,12 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 5/6] kms/nv50: detect HDMI max MHz correctly
-Date: Fri, 20 Jul 2018 18:10:15 +0200
-Message-ID: <CACO55tvcRe5jAPry2P8=Yui7uicPPoSa7B_oFrvJmz2JzqY-bw@mail.gmail.com>
-References: <20180720151729.30291-1-kherbst@redhat.com>
- <20180720151729.30291-6-kherbst@redhat.com>
- <CAKb7UvhpDF65UBxEXMYHmqEssQL6j0wF4urd+wiFG_3tpQe6CA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
+Date: Fri, 20 Jul 2018 17:50:37 +0000
+Message-ID: <bug-105319-8800-ftA6cuG6oX@http.bugs.freedesktop.org/>
+References: <bug-105319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1239785899=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvhpDF65UBxEXMYHmqEssQL6j0wF4urd+wiFG_3tpQe6CA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,69 +16,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBKdWwgMjAsIDIwMTggYXQgNTo1OCBQTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
-bS5taXQuZWR1PiB3cm90ZToKPiBUaGlzIHJlbW92ZXMgdXNlciBjb250cm9sIHRvIGZvcmNlIGEg
-aGRtaW1oei4gR2l2ZW4gdGhlIHZhc3QgdmFyaWV0eQo+IG9mIGhhcmR3YXJlIGFuZCBkaXNwbGF5
-IGNvbmZpZ3VyYXRpb25zIG91dCB0aGVyZSwgSSBkb24ndCBzZWUgaG93IGEKPiBwYXRjaCBsaWtl
-IHRoaXMgd29uJ3QgYmxvdyB1cCBpbiBvdXIgZmFjZXMuCj4KPiBJJ20gbm90IHNheWluZyB3ZSBz
-aG91bGRuJ3QgZG8gaXQgLS0gd2Ugc2hvdWxkIGF0dGVtcHQgdG8gcmVzcGVjdCB0aGUKPiB2YXJp
-b3VzIG1heGltdW1zIGluIHRoZSB2YmlvcywgYnV0IHVudGlsIHdlIGdldCBhIHNvbGlkIGhhbmRs
-ZSBvbgo+IHRoaW5ncywgd2Ugc2hvdWxkIGFsbG93IG1vcmUgdXNlci1jb25maWd1cmFiaWxpdHks
-IG5vdCBsZXNzLCBmb3IgdGhlCj4gY2FzZSB3aGVyZSB3ZSBnZXQgaXQgd3JvbmcuCj4KCnllYWgs
-IHByb2JhYmx5IGEgZ29vZCBpZGVhLiBJIGFsc28gcmVtb3ZlZCB0aGUgY2FwIHRvIDI5NyB3aXRo
-b3V0CnJlbW92aW5nIHRoZSBjb21tZW50LiBTaGFtZSBvbiBtZS4KCj4gMjAxOC0wNy0yMCAxMTox
-NyBHTVQtMDQ6MDAgS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+Ogo+PiBTaWduZWQt
-b2ZmLWJ5OiBLYXJvbCBIZXJic3QgPGtoZXJic3RAcmVkaGF0LmNvbT4KPj4gLS0tCj4+ICBkcm0v
-bm91dmVhdS9kaXNwbnY1MC9kaXNwLmMgICAgIHwgNSArKysrKwo+PiAgZHJtL25vdXZlYXUvbm91
-dmVhdV9jb25uZWN0b3IuYyB8IDUgKysrKysKPj4gIGRybS9ub3V2ZWF1L25vdXZlYXVfZW5jb2Rl
-ci5oICAgfCA0ICsrKysKPj4gIDMgZmlsZXMgY2hhbmdlZCwgMTQgaW5zZXJ0aW9ucygrKQo+Pgo+
-PiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jIGIvZHJtL25vdXZlYXUv
-ZGlzcG52NTAvZGlzcC5jCj4+IGluZGV4IDZmNDFhNmEwLi4zYTk2MDY2NCAxMDA2NDQKPj4gLS0t
-IGEvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCj4+ICsrKyBiL2RybS9ub3V2ZWF1L2Rpc3Bu
-djUwL2Rpc3AuYwo+PiBAQCAtMTQzMyw3ICsxNDMzLDEyIEBAIG52NTBfc29yX2NyZWF0ZShzdHJ1
-Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLCBzdHJ1Y3QgZGNiX291dHB1dCAqZGNiZSwKPj4g
-ICAgICAgICBjYXNlIERDQl9PVVRQVVRfTFZEUzogdHlwZSA9IERSTV9NT0RFX0VOQ09ERVJfTFZE
-UzsgYnJlYWs7Cj4+ICAgICAgICAgY2FzZSBEQ0JfT1VUUFVUX0RQOgo+PiAgICAgICAgICAgICAg
-ICAgbnZfZW5jb2Rlci0+ZHAubm9faW50ZXJsYWNlID0gY2Fwcy0+ZHBbb3JdLm5vX2ludGVybGFj
-ZTsKPj4gKyAgICAgICAgICAgICAgIHR5cGUgPSBEUk1fTU9ERV9FTkNPREVSX1RNRFM7Cj4+ICsg
-ICAgICAgICAgICAgICBicmVhazsKPj4gICAgICAgICBjYXNlIERDQl9PVVRQVVRfVE1EUzoKPj4g
-KyAgICAgICAgICAgICAgIG52X2VuY29kZXItPnRtZHMubWF4X21oeiA9IGNhcHMtPnRtZHNbb3Jd
-Lm1heF9taHo7Cj4+ICsgICAgICAgICAgICAgICB0eXBlID0gRFJNX01PREVfRU5DT0RFUl9UTURT
-Owo+PiArICAgICAgICAgICAgICAgYnJlYWs7Cj4+ICAgICAgICAgZGVmYXVsdDoKPj4gICAgICAg
-ICAgICAgICAgIHR5cGUgPSBEUk1fTU9ERV9FTkNPREVSX1RNRFM7Cj4+ICAgICAgICAgICAgICAg
-ICBicmVhazsKPj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMg
-Yi9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jCj4+IGluZGV4IDA3NGU2ZDUyLi5hOTU1
-ZjIyNSAxMDA2NDQKPj4gLS0tIGEvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwo+PiAr
-KysgYi9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jCj4+IEBAIC05ODAsOSArOTgwLDE0
-IEBAIHN0YXRpYyB1bnNpZ25lZAo+PiAgZ2V0X3RtZHNfbGlua19iYW5kd2lkdGgoc3RydWN0IGRy
-bV9jb25uZWN0b3IgKmNvbm5lY3RvciwgYm9vbCBoZG1pKQo+PiAgewo+PiAgICAgICAgIHN0cnVj
-dCBub3V2ZWF1X2Nvbm5lY3RvciAqbnZfY29ubmVjdG9yID0gbm91dmVhdV9jb25uZWN0b3IoY29u
-bmVjdG9yKTsKPj4gKyAgICAgICBzdHJ1Y3Qgbm91dmVhdV9lbmNvZGVyICpudl9lbmNvZGVyID0g
-bnZfY29ubmVjdG9yLT5kZXRlY3RlZF9lbmNvZGVyOwo+PiAgICAgICAgIHN0cnVjdCBub3V2ZWF1
-X2RybSAqZHJtID0gbm91dmVhdV9kcm0oY29ubmVjdG9yLT5kZXYpOwo+PiAgICAgICAgIHN0cnVj
-dCBkY2Jfb3V0cHV0ICpkY2IgPSBudl9jb25uZWN0b3ItPmRldGVjdGVkX2VuY29kZXItPmRjYjsK
-Pj4KPj4gKyAgICAgICAvKiBjYXAgdG8gMjk3TUh6IHVudGlsIHdlIGZpZ3VyZSBvdXQgSERNSSAy
-LjAgKi8KPj4gKyAgICAgICBpZiAobnZfZW5jb2Rlci0+dG1kcy5tYXhfbWh6KQo+PiArICAgICAg
-ICAgICAgICAgcmV0dXJuIG52X2VuY29kZXItPnRtZHMubWF4X21oeiAqIDEwMDA7Cj4+ICsKPj4g
-ICAgICAgICBpZiAoaGRtaSkgewo+PiAgICAgICAgICAgICAgICAgaWYgKG5vdXZlYXVfaGRtaW1o
-eiA+IDApCj4+ICAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBub3V2ZWF1X2hkbWltaHog
-KiAxMDAwOwo+PiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbm91dmVhdV9lbmNvZGVyLmggYi9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2VuY29kZXIuaAo+PiBpbmRleCBmNzRhZjVjZS4uZmJlZjlkYzAg
-MTAwNjQ0Cj4+IC0tLSBhL2RybS9ub3V2ZWF1L25vdXZlYXVfZW5jb2Rlci5oCj4+ICsrKyBiL2Ry
-bS9ub3V2ZWF1L25vdXZlYXVfZW5jb2Rlci5oCj4+IEBAIC02NSw2ICs2NSwxMCBAQCBzdHJ1Y3Qg
-bm91dmVhdV9lbmNvZGVyIHsKPj4gICAgICAgICAgICAgICAgICAgICAgICAgaW50IGxpbmtfYnc7
-Cj4+ICAgICAgICAgICAgICAgICAgICAgICAgIGJvb2wgbm9faW50ZXJsYWNlOwo+PiAgICAgICAg
-ICAgICAgICAgfSBkcDsKPj4gKwo+PiArICAgICAgICAgICAgICAgc3RydWN0IHsKPj4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgdWludDE2X3QgbWF4X21oejsKPj4gKyAgICAgICAgICAgICAgIH0g
-dG1kczsKPj4gICAgICAgICB9Owo+Pgo+PiAgICAgICAgIHZvaWQgKCplbmNfc2F2ZSkoc3RydWN0
-IGRybV9lbmNvZGVyICplbmNvZGVyKTsKPj4gLS0KPj4gMi4xNy4xCj4+Cj4+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+IE5vdXZlYXUgbWFpbGluZyBs
-aXN0Cj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1239785899==
+Content-Type: multipart/alternative; boundary="15321090361.3f2eA0d.2906"
+Content-Transfer-Encoding: 7bit
+
+
+--15321090361.3f2eA0d.2906
+Date: Fri, 20 Jul 2018 17:50:36 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
+
+--- Comment #21 from S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> ---
+(In reply to Karol Herbst from comment #20)
+> (In reply to S=C3=A9rgio M. Basto from comment #15)
+> > (In reply to S=C3=A9rgio M. Basto from comment #14)
+> > > (*) I'm convinced my issue started before kernel-4.15-rc1
+> >=20
+> > I try bitsect kernel the patch-4.14-git2.xz is the first bad commit, I =
+tried
+> > the same commit [1] but with git1 and boots fine , so I assume is
+> > exclusively a kernel code issue.=20
+> >=20
+> > I don't how numeration works so here is the resume,  kernel 4.15.0-git1
+> > boots and kernel 4.15.0-git2 don't boot=20
+> >=20
+> > xzdiff -up patch-4.14-git1.xz patch-4.14-git2.xz , have 100 thousand li=
+nes ,
+> > where I find a git tree with these commits ?=20
+> >=20
+> >=20
+> > [1]
+> > https://src.fedoraproject.org/rpms/kernel/c/
+> > 2ef4e8028f509354fb5a339bd2f8d0d1df8f2e8d?branch=3Dmaster
+>=20
+> that diff doesn't really help and because this is an upstream bug tracker
+> you should rather git bisect the kernel itself, not some packages you
+> installed on your system.
+>=20
+> If you can pinpoint to a specific git commit inside the kernel, that might
+> be very helpful.
+
+
+where I find a git tree with these commits (patch-4.14-git1.xz to
+patch-4.14-git2.xz) ?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15321090361.3f2eA0d.2906
+Date: Fri, 20 Jul 2018 17:50:36 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c21">Comme=
+nt # 21</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+sergio&#64;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.=
+com&gt;"> <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
+</span></b>
+        <pre>(In reply to Karol Herbst from <a href=3D"show_bug.cgi?id=3D10=
+5319#c20">comment #20</a>)
+<span class=3D"quote">&gt; (In reply to S=C3=A9rgio M. Basto from <a href=
+=3D"show_bug.cgi?id=3D105319#c15">comment #15</a>)
+&gt; &gt; (In reply to S=C3=A9rgio M. Basto from <a href=3D"show_bug.cgi?id=
+=3D105319#c14">comment #14</a>)
+&gt; &gt; &gt; (*) I'm convinced my issue started before kernel-4.15-rc1
+&gt; &gt;=20
+&gt; &gt; I try bitsect kernel the patch-4.14-git2.xz is the first bad comm=
+it, I tried
+&gt; &gt; the same commit [1] but with git1 and boots fine , so I assume is
+&gt; &gt; exclusively a kernel code issue.=20
+&gt; &gt;=20
+&gt; &gt; I don't how numeration works so here is the resume,  kernel 4.15.=
+0-git1
+&gt; &gt; boots and kernel 4.15.0-git2 don't boot=20
+&gt; &gt;=20
+&gt; &gt; xzdiff -up patch-4.14-git1.xz patch-4.14-git2.xz , have 100 thous=
+and lines ,
+&gt; &gt; where I find a git tree with these commits ?=20
+&gt; &gt;=20
+&gt; &gt;=20
+&gt; &gt; [1]
+&gt; &gt; <a href=3D"https://src.fedoraproject.org/rpms/kernel/c/">https://=
+src.fedoraproject.org/rpms/kernel/c/</a>
+&gt; &gt; 2ef4e8028f509354fb5a339bd2f8d0d1df8f2e8d?branch=3Dmaster
+&gt;=20
+&gt; that diff doesn't really help and because this is an upstream bug trac=
+ker
+&gt; you should rather git bisect the kernel itself, not some packages you
+&gt; installed on your system.
+&gt;=20
+&gt; If you can pinpoint to a specific git commit inside the kernel, that m=
+ight
+&gt; be very helpful.</span >
+
+
+where I find a git tree with these commits (patch-4.14-git1.xz to
+patch-4.14-git2.xz) ?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15321090361.3f2eA0d.2906--
+
+--===============1239785899==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1239785899==--
