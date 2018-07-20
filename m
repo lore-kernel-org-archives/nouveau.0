@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
-Date: Fri, 20 Jul 2018 12:03:59 +0000
-Message-ID: <bug-105319-8800-wQlLLaqQiE@http.bugs.freedesktop.org/>
-References: <bug-105319-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 0/6] improve feature detection
+Date: Fri, 20 Jul 2018 17:17:23 +0200
+Message-ID: <20180720151729.30291-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0327134998=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,143 +18,34 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0327134998==
-Content-Type: multipart/alternative; boundary="15320882393.EB3Bd.31291"
-Content-Transfer-Encoding: 7bit
-
-
---15320882393.EB3Bd.31291
-Date: Fri, 20 Jul 2018 12:03:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
-
---- Comment #20 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to S=C3=A9rgio M. Basto from comment #15)
-> (In reply to S=C3=A9rgio M. Basto from comment #14)
-> > (*) I'm convinced my issue started before kernel-4.15-rc1
->=20
-> I try bitsect kernel the patch-4.14-git2.xz is the first bad commit, I tr=
-ied
-> the same commit [1] but with git1 and boots fine , so I assume is
-> exclusively a kernel code issue.=20
->=20
-> I don't how numeration works so here is the resume,  kernel 4.15.0-git1
-> boots and kernel 4.15.0-git2 don't boot=20
->=20
-> xzdiff -up patch-4.14-git1.xz patch-4.14-git2.xz , have 100 thousand line=
-s ,
-> where I find a git tree with these commits ?=20
->=20
->=20
-> [1]
-> https://src.fedoraproject.org/rpms/kernel/c/
-> 2ef4e8028f509354fb5a339bd2f8d0d1df8f2e8d?branch=3Dmaster
-
-that diff doesn't really help and because this is an upstream bug tracker y=
-ou
-should rather git bisect the kernel itself, not some packages you installed=
- on
-your system.
-
-If you can pinpoint to a specific git commit inside the kernel, that might =
-be
-very helpful.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15320882393.EB3Bd.31291
-Date: Fri, 20 Jul 2018 12:03:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c20">Comme=
-nt # 20</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
-9</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
-</span></b>
-        <pre>(In reply to S=C3=A9rgio M. Basto from <a href=3D"show_bug.cgi=
-?id=3D105319#c15">comment #15</a>)
-<span class=3D"quote">&gt; (In reply to S=C3=A9rgio M. Basto from <a href=
-=3D"show_bug.cgi?id=3D105319#c14">comment #14</a>)
-&gt; &gt; (*) I'm convinced my issue started before kernel-4.15-rc1
-&gt;=20
-&gt; I try bitsect kernel the patch-4.14-git2.xz is the first bad commit, I=
- tried
-&gt; the same commit [1] but with git1 and boots fine , so I assume is
-&gt; exclusively a kernel code issue.=20
-&gt;=20
-&gt; I don't how numeration works so here is the resume,  kernel 4.15.0-git1
-&gt; boots and kernel 4.15.0-git2 don't boot=20
-&gt;=20
-&gt; xzdiff -up patch-4.14-git1.xz patch-4.14-git2.xz , have 100 thousand l=
-ines ,
-&gt; where I find a git tree with these commits ?=20
-&gt;=20
-&gt;=20
-&gt; [1]
-&gt; <a href=3D"https://src.fedoraproject.org/rpms/kernel/c/">https://src.f=
-edoraproject.org/rpms/kernel/c/</a>
-&gt; 2ef4e8028f509354fb5a339bd2f8d0d1df8f2e8d?branch=3Dmaster</span >
-
-that diff doesn't really help and because this is an upstream bug tracker y=
-ou
-should rather git bisect the kernel itself, not some packages you installed=
- on
-your system.
-
-If you can pinpoint to a specific git commit inside the kernel, that might =
-be
-very helpful.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15320882393.EB3Bd.31291--
-
---===============0327134998==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0327134998==--
+VGhpcyBpcyBtYWlubHkgZm9yIGRyb3BwaW5nIGludGVybGFjZWQgbW9kZXMgb24gRFAgY29ubmVj
+dG9ycyBpZiB0aGUgR1BVCndvdWxkIG90aGVyd2lzZSBkaXNwbGF5IGdhcmJhZ2Ugb3IgRVZPIHRp
+bWVzb3V0LgoKSXQgYWxzbyBhZGRzIGV4cGVyaW1lbnRhbCBkZXRlY3Rpb24gb2YgdGhlIEhETUkg
+Y2xvY2sgbGltaXQgd2UgY3VycmVudGx5CmhhcmQgbGltaXQgZGVwZW5kaW5nIG9uIHRoZSBHUFUg
+Z2VuZXJhdGlvbi4KClN0YXJ0aW5nIHdpdGggR0YxMTAgR1BVcywgd2UgY2FuIHJldHJpZXZlIHRo
+ZSBsaW1pdCBkaXJlY3RseSBmcm9tIHRoZSBHUFUKYW5kIG1heSBtYWtlIHRoZSBoZG1pbWh6IHBh
+cmFtZXRlciBvYnNvbGV0ZS4KClRlc3RpbmcgdGhpcyBzZXJpZXMgd2l0aCAyNTYweDE0NDAgb3Ig
+aGlnaGVyIGNhcGFibGUgZGlzcGxheXMgdmlhIEhETUkKd291bGQgYmUgbXVjaCBhcHByZWNpYXRl
+ZCwgZXNwZWNpYWxseSBpbiBjYXNlcyB3aGVyZSB0aGUgaGRtaW1oeiBvcHRpb24gaXMKcmVxdWly
+ZWQgdG8gZHJpdmUgY2VydGFpbiByZXNvbHV0aW9ucyBhbmQgaXMgbWFkZSBvYnNvbGV0ZSB3aXRo
+IHRoaXMuCgpLYXJvbCBIZXJic3QgKDYpOgogIGttcy9udjUwOiBtb3ZlIG52NTBfbXN0bSBvdXQg
+b2YgdGhlIGRwIHVuaW9uIGluIG5vdXZlYXVfZW5jb2RlcgogIGttcy9udjUwOiByZWplY3QgaW50
+ZXJsYWNlZCBtb2RlcyBpZiB0aGUgaGFyZHdhcmUgZG9lc24ndCBzdXBwb3J0IGl0CiAga21zL252
+NTA6IGFkZCBjb3JlOTU3ZCBjbGFzcwogIGttcy9udjUwOiByZWFkIG91dCBkaXNwbGF5IG1heCBj
+bG9ja3MKICBrbXMvbnY1MDogZGV0ZWN0IEhETUkgbWF4IE1IeiBjb3JyZWN0bHkKICBrbXMvbnY1
+MDogZGV0ZWN0IExWRFMgbWF4IE1IeiBjb3JyZWN0bHkKCiBkcm0vbm91dmVhdS9kaXNwbnY1MC9L
+YnVpbGQgICAgIHwgIDEgKwogZHJtL25vdXZlYXUvZGlzcG52NTAvY29yZS5jICAgICB8ICA2ICsr
+LS0KIGRybS9ub3V2ZWF1L2Rpc3BudjUwL2NvcmUuaCAgICAgfCAyMSArKysrKysrKysrKysKIGRy
+bS9ub3V2ZWF1L2Rpc3BudjUwL2NvcmU1MDdkLmMgfCAyNSArKysrKysrKysrKysrKwogZHJtL25v
+dXZlYXUvZGlzcG52NTAvY29yZTkwN2QuYyB8IDI3ICsrKysrKysrKysrKysrKwogZHJtL25vdXZl
+YXUvZGlzcG52NTAvY29yZTkxN2QuYyB8ICAyICsrCiBkcm0vbm91dmVhdS9kaXNwbnY1MC9jb3Jl
+OTU3ZC5jIHwgNjAgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrCiBkcm0vbm91dmVh
+dS9kaXNwbnY1MC9kaXNwLmMgICAgIHwgNTMgKysrKysrKysrKysrKysrKysrKystLS0tLS0tLS0K
+IGRybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMgfCAxNiArKysrKysrLS0KIGRybS9ub3V2
+ZWF1L25vdXZlYXVfZHAuYyAgICAgICAgfCAgMiArLQogZHJtL25vdXZlYXUvbm91dmVhdV9lbmNv
+ZGVyLmggICB8IDExICsrKysrLQogMTEgZmlsZXMgY2hhbmdlZCwgMjAxIGluc2VydGlvbnMoKyks
+IDIzIGRlbGV0aW9ucygtKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L2Rpc3BudjUw
+L2NvcmU5NTdkLmMKCi0tIAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
