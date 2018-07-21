@@ -1,169 +1,135 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
-Date: Fri, 20 Jul 2018 17:50:37 +0000
-Message-ID: <bug-105319-8800-ftA6cuG6oX@http.bugs.freedesktop.org/>
-References: <bug-105319-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas@wunner.de>
+Subject: Re: [PATCH 1/2] drm/fb_helper: Add
+ drm_fb_helper_output_poll_changed_with_rpm()
+Date: Sat, 21 Jul 2018 11:39:55 +0200
+Message-ID: <20180721093955.GA32572@wunner.de>
+References: <20180718205645.25924-1-lyude@redhat.com>
+ <20180718205645.25924-2-lyude@redhat.com>
+ <20180719074926.GA14303@wunner.de>
+ <be93e682cd5a583e9b4cb6c4fcd7a476d597bb6b.camel@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1239785899=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <be93e682cd5a583e9b4cb6c4fcd7a476d597bb6b.camel@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Lyude Paul <lyude@redhat.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1239785899==
-Content-Type: multipart/alternative; boundary="15321090361.3f2eA0d.2906"
-Content-Transfer-Encoding: 7bit
-
-
---15321090361.3f2eA0d.2906
-Date: Fri, 20 Jul 2018 17:50:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
-
---- Comment #21 from S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> ---
-(In reply to Karol Herbst from comment #20)
-> (In reply to S=C3=A9rgio M. Basto from comment #15)
-> > (In reply to S=C3=A9rgio M. Basto from comment #14)
-> > > (*) I'm convinced my issue started before kernel-4.15-rc1
-> >=20
-> > I try bitsect kernel the patch-4.14-git2.xz is the first bad commit, I =
-tried
-> > the same commit [1] but with git1 and boots fine , so I assume is
-> > exclusively a kernel code issue.=20
-> >=20
-> > I don't how numeration works so here is the resume,  kernel 4.15.0-git1
-> > boots and kernel 4.15.0-git2 don't boot=20
-> >=20
-> > xzdiff -up patch-4.14-git1.xz patch-4.14-git2.xz , have 100 thousand li=
-nes ,
-> > where I find a git tree with these commits ?=20
-> >=20
-> >=20
-> > [1]
-> > https://src.fedoraproject.org/rpms/kernel/c/
-> > 2ef4e8028f509354fb5a339bd2f8d0d1df8f2e8d?branch=3Dmaster
->=20
-> that diff doesn't really help and because this is an upstream bug tracker
-> you should rather git bisect the kernel itself, not some packages you
-> installed on your system.
->=20
-> If you can pinpoint to a specific git commit inside the kernel, that might
-> be very helpful.
-
-
-where I find a git tree with these commits (patch-4.14-git1.xz to
-patch-4.14-git2.xz) ?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15321090361.3f2eA0d.2906
-Date: Fri, 20 Jul 2018 17:50:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c21">Comme=
-nt # 21</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
-9</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sergio&#64;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.=
-com&gt;"> <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
-</span></b>
-        <pre>(In reply to Karol Herbst from <a href=3D"show_bug.cgi?id=3D10=
-5319#c20">comment #20</a>)
-<span class=3D"quote">&gt; (In reply to S=C3=A9rgio M. Basto from <a href=
-=3D"show_bug.cgi?id=3D105319#c15">comment #15</a>)
-&gt; &gt; (In reply to S=C3=A9rgio M. Basto from <a href=3D"show_bug.cgi?id=
-=3D105319#c14">comment #14</a>)
-&gt; &gt; &gt; (*) I'm convinced my issue started before kernel-4.15-rc1
-&gt; &gt;=20
-&gt; &gt; I try bitsect kernel the patch-4.14-git2.xz is the first bad comm=
-it, I tried
-&gt; &gt; the same commit [1] but with git1 and boots fine , so I assume is
-&gt; &gt; exclusively a kernel code issue.=20
-&gt; &gt;=20
-&gt; &gt; I don't how numeration works so here is the resume,  kernel 4.15.=
-0-git1
-&gt; &gt; boots and kernel 4.15.0-git2 don't boot=20
-&gt; &gt;=20
-&gt; &gt; xzdiff -up patch-4.14-git1.xz patch-4.14-git2.xz , have 100 thous=
-and lines ,
-&gt; &gt; where I find a git tree with these commits ?=20
-&gt; &gt;=20
-&gt; &gt;=20
-&gt; &gt; [1]
-&gt; &gt; <a href=3D"https://src.fedoraproject.org/rpms/kernel/c/">https://=
-src.fedoraproject.org/rpms/kernel/c/</a>
-&gt; &gt; 2ef4e8028f509354fb5a339bd2f8d0d1df8f2e8d?branch=3Dmaster
-&gt;=20
-&gt; that diff doesn't really help and because this is an upstream bug trac=
-ker
-&gt; you should rather git bisect the kernel itself, not some packages you
-&gt; installed on your system.
-&gt;=20
-&gt; If you can pinpoint to a specific git commit inside the kernel, that m=
-ight
-&gt; be very helpful.</span >
-
-
-where I find a git tree with these commits (patch-4.14-git1.xz to
-patch-4.14-git2.xz) ?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15321090361.3f2eA0d.2906--
-
---===============1239785899==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1239785899==--
+T24gVGh1LCBKdWwgMTksIDIwMTggYXQgMDg6MDg6MTVQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
+ZToKPiBPbiBUaHUsIDIwMTgtMDctMTkgYXQgMDk6NDkgKzAyMDAsIEx1a2FzIFd1bm5lciB3cm90
+ZToKPiA+IE9uIFdlZCwgSnVsIDE4LCAyMDE4IGF0IDA0OjU2OjM5UE0gLTA0MDAsIEx5dWRlIFBh
+dWwgd3JvdGU6Cj4gPiA+IFdoZW4gRFAgTVNUIGh1YnMgZ2V0IGNvbmZ1c2VkLCB0aGV5IGNhbiBv
+Y2Nhc2lvbmFsbHkgc3RvcCByZXNwb25kaW5nIGZvcgo+ID4gPiBhIGdvb2QgYml0IG9mIHRpbWUg
+dXAgdW50aWwgdGhlIHBvaW50IHdoZXJlIHRoZSBEUk0gZHJpdmVyIG1hbmFnZXMgdG8KPiA+ID4g
+ZG8gdGhlIHJpZ2h0IERQQ0QgYWNjZXNzZXMgdG8gZ2V0IGl0IHRvIHN0YXJ0IHJlc3BvbmRpbmcg
+YWdhaW4uIEluIGEKPiA+ID4gd29yc3QgY2FzZSBzY2VuYXJpbyBob3dldmVyLCB0aGlzIHByb2Nl
+c3MgY2FuIHRha2UgdXB3YXJkcyBvZiAxMCsKPiA+ID4gc2Vjb25kcy4KPiA+ID4gCj4gPiA+IEN1
+cnJlbnRseSB3ZSB1c2UgdGhlIGRlZmF1bHQgb3V0cHV0X3BvbGxfY2hhbmdlZCBoYW5kbGVyCj4g
+PiA+IGRybV9mYl9oZWxwZXJfb3V0cHV0X3BvbGxfY2hhbmdlZCgpIHRvIGhhbmRsZSBvdXRwdXQg
+cG9sbGluZywgd2hpY2gKPiA+ID4gZG9lc24ndCBoYXBwZW4gdG8gZ3JhYiBhbnkgcG93ZXIgcmVm
+ZXJlbmNlcyBvbiB0aGUgZGV2aWNlIHdoZW4gcG9sbGluZy4KPiA+ID4gSWYgd2UncmUgdW5sdWNr
+eSBlbm91Z2ggdG8gaGF2ZSBhIGh1YiAoc3VjaCBhcyBMZW5vdm8ncyBpbmZhbW91cyBsYXB0b3AK
+PiA+ID4gZG9ja3MgZm9yIHRoZSBQNXgvUDd4IHNlcmllcykgdGhhdCdzIGVhc2lseSBzdGFydGxl
+ZCBhbmQgY29uZnVzZWQsIHRoaXMKPiA+ID4gY2FuIGxlYWQgdG8gYSBwcmV0dHkgbmFzdHkgZGVh
+ZGxvY2sgc2l0dWF0aW9uIHRoYXQgbG9va3MgbGlrZSB0aGlzOgo+ID4gPiAKPiA+ID4gLSBIb3Rw
+bHVnIGV2ZW50IGZyb20gaHViIGhhcHBlbnMsIHdlIGVudGVyCj4gPiA+ICAgZHJtX2ZiX2hlbHBl
+cl9vdXRwdXRfcG9sbF9jaGFuZ2VkKCkgYW5kIHN0YXJ0IGNvbW11bmljYXRpbmcgd2l0aCB0aGUK
+PiA+ID4gICBodWIKPiA+ID4gLSBXaGlsZSB3ZSdyZSBpbiBkcm1fZmJfaGVscGVyX291dHB1dF9w
+b2xsX2NoYW5nZWQoKSBhbmQgYXR0ZW1wdGluZyB0bwo+ID4gPiAgIGNvbW11bmljYXRlIHdpdGgg
+dGhlIGh1Yiwgd2UgZW5kIHVwIGNvbmZ1c2luZyBpdCBhbmQgY2F1c2UgaXQgdG8gc3RvcAo+ID4g
+PiAgIHJlc3BvbmRpbmcgZm9yIGF0IGxlYXN0IDEwIHNlY29uZHMKPiA+ID4gLSBBZnRlciA1IHNl
+Y29uZHMgb2YgYmVpbmcgaW4gZHJtX2ZiX2hlbHBlcl9vdXRwdXRfcG9sbF9jaGFuZ2VkKCksIHRo
+ZQo+ID4gPiAgIHBtIGNvcmUgYXR0ZW1wdHMgdG8gcHV0IHRoZSBHUFUgaW50byBhdXRvc3VzcGVu
+ZCwgd2hpY2ggZW5kcyB1cAo+ID4gPiAgIGNhbGxpbmcgZHJtX2ttc19oZWxwZXJfcG9sbF9kaXNh
+YmxlKCkKPiA+ID4gLSBXaGlsZSB0aGUgcnVudGltZSBQTSBjb3JlIGlzIHdhaXRpbmcgaW4gZHJt
+X2ttc19oZWxwZXJfcG9sbF9kaXNhYmxlKCkKPiA+ID4gICBmb3IgdGhlIG91dHB1dCBwb2xsIHRv
+IGZpbmlzaCwgd2UgZW5kIHVwIGZpbmFsbHkgZGV0ZWN0aW5nIGFuIE1TVAo+ID4gPiAgIGRpc3Bs
+YXkKPiA+ID4gLSBXZSBub3RpY2UgdGhlIG5ldyBkaXNwbGF5IGFuZCB0cmllcyB0byBlbmFibGUg
+aXQsIHdoaWNoIHRyaWdnZXJzCj4gPiA+ICAgYW4gYXRvbWljIGNvbW1pdCB3aGljaCB0cmlnZ2Vy
+cyBhIGNhbGwgdG8gcG1fcnVudGltZV9nZXRfc3luYygpCj4gPiA+IC0gdGhlIG91dHB1dCBwb2xs
+IHRocmVhZCBkZWFkbG9ja3MgdGhlIHBtIGNvcmUgd2FpdGluZyBmb3IgdGhlIHBtIGNvcmUKPiA+
+ID4gICB0byBmaW5pc2ggdGhlIGF1dG9zdXNwZW5kIHJlcXVlc3Qgd2hpbGUgdGhlIHBtIGNvcmUg
+d2FpdHMgZm9yIHRoZQo+ID4gPiAgIG91dHB1dCBwb2xsIHRocmVhZCB0byBmaW5pc2gKPiA+IAo+
+ID4gVGhlIGNvcnJlY3QgZml4IGlzIHRvIGNhbGwgcG1fcnVudGltZV9nZXRfc3luYygpICpjb25k
+aXRpb25hbGx5KiBpbgo+ID4gdGhlIGF0b21pYyBjb21taXQgd2hpY2ggZW5hYmxlcyB0aGUgZGlz
+cGxheSwgdXNpbmcgdGhlIHNhbWUgY29uZGl0aW9uYWwKPiA+IGFzIGQ2MWE1YzEwNjM1MSwgaS5l
+LiBpZiAoIWRybV9rbXNfaGVscGVyX2lzX3BvbGxfd29ya2VyKCkpLgoKRmlyc3Qgb2YgYWxsLCBJ
+IHdhcyBtaXN0YWtlbiB3aGVuIEkgd3JvdGUgYWJvdmUgdGhhdCBhIGNoZWNrIGZvcgohZHJtX2tt
+c19oZWxwZXJfaXNfcG9sbF93b3JrZXIoKSB3b3VsZCBzb2x2ZSB0aGUgcHJvYmxlbS4gIFNvcnJ5
+IQpJdCBkb2Vzbid0IGJlY2F1c2UgdGhlIGNhbGwgdG8gcG1fcnVudGltZV9nZXRfc3luYygpIGlz
+IG5vdCBoYXBwZW5pbmcKaW4gb3V0cHV0X3BvbGxfZXhlY3V0ZSgpIGJ1dCBpbiBkcm1fZHBfbXN0
+X2xpbmtfcHJvYmVfd29yaygpLgoKTG9va2luZyBvbmNlIG1vcmUgYXQgdGhlIHRocmVlIHN0YWNr
+IHRyYWNlcyB5b3UndmUgcHJvdmlkZWQsIHdlJ3ZlIGdvdDoKLSBvdXRwdXRfcG9sbF9leGVjdXRl
+KCkgc3R1Y2sgd2FpdGluZyBmb3IgZmJfaGVscGVyLT5sb2NrCiAgd2hpY2ggaXMgaGVsZCBieSBk
+cm1fZHBfbXN0X2xpbmtfcHJvYmVfd29yaygpCi0gcnBtX3N1c3BlbmQoKSBzdHVjayB3YWl0aW5n
+IGZvciBvdXRwdXRfcG9sbF9leGVjdXRlKCkgdG8gZmluaXNoCi0gZHJtX2RwX21zdF9saW5rX3By
+b2JlX3dvcmsoKSBzdHVjayB3YWl0aW5nIGluIHJwbV9yZXN1bWUoKQoKRm9yIHRoZSBtb21lbnQg
+d2UgY2FuIGlnbm9yZSB0aGUgZmlyc3QgdGFzaywgaS5lLiBvdXRwdXRfcG9sbF9leGVjdXRlKCks
+CmFuZCBmb2N1cyBvbiB0aGUgbGF0dGVyIHR3by4KCkFzIHNhaWQgSSdtIHVuZmFtaWxpYXIgd2l0
+aCBNU1QgYnV0IGJyb3dzaW5nIHRocm91Z2ggZHJtX2RwX21zdF90b3BvbG9neS5jCkkgbm90aWNl
+IHRoYXQgZHJtX2RwX21zdF9saW5rX3Byb2JlX3dvcmsoKSBpcyB0aGUgLT53b3JrIGVsZW1lbnQg
+aW4KZHJtX2RwX21zdF90b3BvbG9neV9tZ3IoKSBhbmQgaXMgcXVldWVkIG9uIEhQRC4gIEkgZnVy
+dGhlciBub3RpY2UgdGhhdAp0aGUgd29yayBpdGVtIGlzIGZsdXNoZWQgb24gLT5ydW50aW1lX3N1
+c3BlbmQ6Cgpub3V2ZWF1X3Btb3BzX3J1bnRpbWVfc3VzcGVuZCgpCiAgbm91dmVhdV9kb19zdXNw
+ZW5kKCkKICAgIG5vdXZlYXVfZGlzcGxheV9zdXNwZW5kKCkKICAgICAgbm91dmVhdV9kaXNwbGF5
+X2ZpbmkoKQogICAgICAgIGRpc3AtPmZpbmkoKSA9PSBudjUwX2Rpc3BsYXlfZmluaSgpCgkgIG52
+NTBfbXN0bV9maW5pKCkKCSAgICBkcm1fZHBfbXN0X3RvcG9sb2d5X21ncl9zdXNwZW5kKCkKCSAg
+ICAgIGZsdXNoX3dvcmsoJm1nci0+d29yayk7CgpBbmQgYmVmb3JlIHRoZSB3b3JrIGl0ZW0gaXMg
+Zmx1c2hlZCwgdGhlIEhQRCBzb3VyY2UgaXMgcXVpZXNjZWQuCgpTbyBpdCBsb29rcyBsaWtlIGRy
+bV9kcF9tc3RfbGlua19wcm9iZV93b3JrKCkgY2FuIG9ubHkgZXZlciBydW4Kd2hpbGUgdGhlIEdQ
+VSBpcyBydW50aW1lIHJlc3VtZWQsIGl0IG5ldmVyIHJ1bnMgd2hpbGUgdGhlIEdQVSBpcwpydW50
+aW1lIHN1c3BlbmRlZC4gIFRoaXMgbWVhbnMgdGhhdCB5b3UgZG9uJ3QgaGF2ZSB0byBhY3F1aXJl
+IGFueQpydW50aW1lIFBNIHJlZmVyZW5jZXMgaW4gb3IgYmVsb3cgZHJtX2RwX21zdF9saW5rX3By
+b2JlX3dvcmsoKS4KQXUgY29udHJhaXJlLCB5b3UgbXVzdCBub3QgYWNxdWlyZSBhbnkgYmVjYXVz
+ZSBpdCB3aWxsIGRlYWRsb2NrIHdoaWxlCnRoZSBHUFUgaXMgcnVudGltZSBzdXNwZW5kaW5nLiAg
+SWYgdGhlcmUgYXJlIGZ1bmN0aW9ucyB3aGljaCBhcmUKY2FsbGVkIGZyb20gZHJtX2RwX21zdF9s
+aW5rX3Byb2JlX3dvcmsoKSBhcyB3ZWxsIGFzIGZyb20gb3RoZXIgY29udGV4dHMsCmFuZCB0aG9z
+ZSBvdGhlciBjb250ZXh0cyBuZWVkIGEgcnVudGltZSBQTSByZWYgdG8gYmUgYWNxdWlyZWQsCnlv
+dSBuZWVkIHRvIGFjcXVpcmUgdGhlIHJ1bnRpbWUgUE0gcmVmIGNvbmRpdGlvbmFsbHkgb24gbm90
+IGJlaW5nCmRybV9kcF9tc3RfbGlua19wcm9iZV93b3JrKCkgKHVzaW5nIHRoZSBjdXJyZW50X3dv
+cmsoKSB0ZWNobmlxdWUpLgoKQWx0ZXJuYXRpdmVseSwgbW92ZSBhY3F1aXNpdGlvbiBvZiB0aGUg
+cnVudGltZSBQTSByZWYgZnVydGhlciB1cCBpbgp0aGUgY2FsbCBjaGFpbiB0byB0aG9zZSBvdGhl
+ciBjb250ZXh0cy4KCgo+IEFueXdheS10aGF0J3Mgd2h5IHlvdXIgZXhwbGFuYXRpb24gZG9lc24n
+dCBtYWtlIHNlbnNlOiB0aGUgZGVhZGxvY2sgaXMKPiBoYXBwZW5pbmcgYmVjYXVzZSB3ZSdyZSBj
+YWxsaW5nIHBtX3J1bnRpbWVfZ2V0X3N5bmMoKS4gSWYgd2Ugd2VyZSB0bwo+IG1ha2UgdGhhdCBj
+YWxsIGNvbmRpdGlvbmFsIChlLmcuIGRybV9rbXNfaGVscGVyX2lzX3BvbGxfd29ya2VyKCkpLAo+
+IGFsbCB0aGF0IHdvdWxkIG1lYW4gaXMgdGhhdCB3ZSB3b3VsZG4ndCBncmFiIGFueSBydW50aW1l
+IHBvd2VyIHJlZmVyZW5jZQo+IGFuZCB0aGUgR1BVIHdvdWxkIGltbWVkaWF0ZWx5IHN1c3BlbmQg
+b25jZSB0aGUgYXRvbWljIGNvbW1pdCBmaW5pc2hlZCwKPiBhcyB0aGUgc3VzcGVuZCByZXF1ZXN0
+IGluIFRocmVhZCA1IHdvdWxkIGZpbmFsbHkgZ2V0IHVuYmxvY2tlZCBhbmQgdGh1cwo+IC0tLS1z
+dXNwZW5kLgoKUmlnaHQsIHRoYXQgc2VlbXMgdG8gYmUgYSBidWcgbm91dmVhdV9wbW9wc19ydW50
+aW1lX3N1c3BlbmQoKToKCklmIGEgZGlzcGxheSBpcyBwbHVnZ2VkIGluIHdoaWxlIHRoZSBHUFUg
+aXMgYWJvdXQgdG8gcnVudGltZSBzdXNwZW5kLAp0aGUgZGlzcGxheSBtYXkgYmUgbGl0IHVwIGJ5
+IG91dHB1dF9wb2xsX2V4ZWN1dGUoKSBidXQgdGhlIEdQVSB3aWxsCnRoZW4gbmV2ZXJ0aGVsZXNz
+IGJlIHBvd2VyZWQgb2ZmLgoKSSBndWVzcyBhZnRlciBjYWxsaW5nIGRybV9rbXNfaGVscGVyX3Bv
+bGxfZGlzYWJsZSgpIHdlIHNob3VsZCByZS1jaGVjawppZiBhIGNydGMgaGFzIGJlZW4gYWN0aXZh
+dGVkLiAgVGhpcyBzaG91bGQgaGF2ZSBidW1wZWQgdGhlIHJ1bnRpbWUgUE0KcmVmY291bnQgYW5k
+IGhhdmVfZGlzcF9wb3dlcl9yZWYgc2hvdWxkIGJlIHRydWUuICBJbiB0aGF0IGNhc2UsIHRoZQpu
+b3V2ZWF1X3Btb3BzX3J1bnRpbWVfc3VzcGVuZCgpIHNob3VsZCByZXR1cm4gLUVCVVNZIHRvIGFi
+b3J0IHRoZQpydW50aW1lX3N1c3BlbmQuCgpUaGUgc2FtZSBjaGVjayBzZWVtcyBuZWNlc3Nhcnkg
+YWZ0ZXIgZmx1c2hpbmcgZHJtX2RwX21zdF9saW5rX3Byb2JlX3dvcmsoKToKSWYgdGhlIHdvcmsg
+aXRlbSBsaXQgdXAgYSBuZXcgZGlzcGxheSwgYWxsIHByZXZpb3VzIHN1c3BlbmQgc3RlcHMgbmVl
+ZAp0byBiZSB1bndvdW5kIGFuZCAtRUJVU1kgbmVlZHMgdG8gYmUgcmV0dXJuZWQgdG8gdGhlIFBN
+IGNvcmUuCgpDb21tdW5pY2F0aW9uIHdpdGggYW4gTVNUIGh1YiBleGNlZWRpbmcgdGhlIGF1dG9z
+dXNwZW5kIHRpbWVvdXQgaXMKanVzdCBvbmUgc2NlbmFyaW8gd2hlcmUgdGhpcyBidWcgbWFuaWZl
+c3RzIGl0c2VsZi4KCkJUVywgZHJtX2ttc19oZWxwZXJfcG9sbF9kaXNhYmxlKCkgc2VlbXMgdG8g
+YmUgY2FsbGVkIHR3aWNlIGluIHRoZQpydW50aW1lX3N1c3BlbmQgY29kZSBwYXRoLCBvbmNlIGlu
+IG5vdXZlYXVfcG1vcHNfcnVudGltZV9zdXNwZW5kKCkKYW5kIGEgc2Vjb25kIHRpbWUgaW4gbm91
+dmVhdV9kaXNwbGF5X2ZpbmkoKS4KCkEgc3R1cGlkIHF1ZXN0aW9uLCBJIG5vdGljZSB0aGF0IG52
+NTBfZGlzcGxheV9maW5pKCkgY2FsbHMgbnY1MF9tc3RtX2ZpbmkoKQpvbmx5IGlmIGVuY29kZXJf
+dHlwZSAhPSBEUk1fTU9ERV9FTkNPREVSX0RQTVNULiAgV2h5IGlzbid0IHRoYXQgPT0gPwoKVGhh
+bmtzLAoKTHVrYXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
+Cg==
