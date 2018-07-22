@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 107325] Reported temperature of nvidia card with
  nouveau driver is wrong
-Date: Sun, 22 Jul 2018 15:08:10 +0000
-Message-ID: <bug-107325-8800-kNBFuOuGiM@http.bugs.freedesktop.org/>
+Date: Sun, 22 Jul 2018 15:46:19 +0000
+Message-ID: <bug-107325-8800-4UJY89758k@http.bugs.freedesktop.org/>
 References: <bug-107325-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1315025147=="
+Content-Type: multipart/mixed; boundary="===============0588916847=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-107325-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1315025147==
-Content-Type: multipart/alternative; boundary="15322720900.612D8.30731"
+--===============0588916847==
+Content-Type: multipart/alternative; boundary="15322743790.95e6DfeaD.12682"
 Content-Transfer-Encoding: 7bit
 
 
---15322720900.612D8.30731
-Date: Sun, 22 Jul 2018 15:08:10 +0000
+--15322743790.95e6DfeaD.12682
+Date: Sun, 22 Jul 2018 15:46:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,38 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D107325
 
-Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Perhaps when it's runtime-suspended, the readings return all 1's, and we re=
+port
+511 (0x1ff). Or some variation thereof.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #1 from Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thanks for the bug report Jirka,
-
-It would be helpful if you could download and build a nouveau-related debug
-toolkit, envytools [0], and run the following commands (inside the nva/
-subfolder):
-
-$ ./nvapeek 0x020460
-
-$ ./nvapeek 0x020400
-
-It would also be helpful to see a copy of your GPU's VBIOS attached here. T=
-his
-can be produced by running the below command:
-
-$ cat /sys/kernel/debug/dri/0/vbios.rom > vbios.rom
-
-
-[0] https://github.com/envytools/envytools
+Jirka - if you boot with nouveau.runpm=3D0, I suspect the temperature will =
+be
+fine -- good to check though.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15322720900.612D8.30731
-Date: Sun, 22 Jul 2018 15:08:10 +0000
+--15322743790.95e6DfeaD.12682
+Date: Sun, 22 Jul 2018 15:46:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,40 +61,15 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:rhyskidd&=
-#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;"> <span cl=
-ass=3D"fn">Rhys Kidd</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Reported temperature of nvidia card with nouveau driver i=
-s wrong"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107325">bug 10732=
-5</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>rhyskidd&#64;gmail.com
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Reported temperature of nvidia card with nouveau driver i=
 s wrong"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107325#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107325#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Reported temperature of nvidia card with nouveau driver i=
@@ -119,28 +77,16 @@ s wrong"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107325">bug 10732=
 5</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rhyskidd&#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;">=
- <span class=3D"fn">Rhys Kidd</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Thanks for the bug report Jirka,
+        <pre>Perhaps when it's runtime-suspended, the readings return all 1=
+'s, and we report
+511 (0x1ff). Or some variation thereof.
 
-It would be helpful if you could download and build a nouveau-related debug
-toolkit, envytools [0], and run the following commands (inside the nva/
-subfolder):
-
-$ ./nvapeek 0x020460
-
-$ ./nvapeek 0x020400
-
-It would also be helpful to see a copy of your GPU's VBIOS attached here. T=
-his
-can be produced by running the below command:
-
-$ cat /sys/kernel/debug/dri/0/vbios.rom &gt; vbios.rom
-
-
-[0] <a href=3D"https://github.com/envytools/envytools">https://github.com/e=
-nvytools/envytools</a></pre>
+Jirka - if you boot with nouveau.runpm=3D0, I suspect the temperature will =
+be
+fine -- good to check though.</pre>
         </div>
       </p>
 
@@ -154,9 +100,9 @@ nvytools/envytools</a></pre>
     </body>
 </html>=
 
---15322720900.612D8.30731--
+--15322743790.95e6DfeaD.12682--
 
---===============1315025147==
+--===============0588916847==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -166,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1315025147==--
+--===============0588916847==--
