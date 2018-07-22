@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 107325] Reported temperature of nvidia card with
  nouveau driver is wrong
-Date: Sun, 22 Jul 2018 19:12:19 +0000
-Message-ID: <bug-107325-8800-ZjWxUUp5hp@http.bugs.freedesktop.org/>
+Date: Sun, 22 Jul 2018 19:14:07 +0000
+Message-ID: <bug-107325-8800-2Q0leFQMZb@http.bugs.freedesktop.org/>
 References: <bug-107325-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1661486609=="
+Content-Type: multipart/mixed; boundary="===============0032966466=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-107325-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1661486609==
-Content-Type: multipart/alternative; boundary="15322867392.DAde.18617"
+--===============0032966466==
+Content-Type: multipart/alternative; boundary="15322868472.8b2a27E2.19072"
 Content-Transfer-Encoding: 7bit
 
 
---15322867392.DAde.18617
-Date: Sun, 22 Jul 2018 19:12:19 +0000
+--15322868472.8b2a27E2.19072
+Date: Sun, 22 Jul 2018 19:14:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,53 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D107325
 
---- Comment #3 from Jirka Novak <j.novak-yL21p0u6sjaEIYLD/85Ykw@public.gmane.org> ---
+--- Comment #4 from Jirka Novak <j.novak-yL21p0u6sjaEIYLD/85Ykw@public.gmane.org> ---
 Hi,
 
-> It would be helpful if you could download and build a nouveau-related deb=
-ug
-> toolkit, envytools [0], and run the following commands (inside the nva/
-> subfolder):
+> Perhaps when it's runtime-suspended, the readings return all 1's, and we =
+report
+> 511 (0x1ff). Or some variation thereof.
 >=20
-> $ ./nvapeek 0x020460
->=20
-> $ ./nvapeek 0x020400
+> Jirka - if you boot with nouveau.runpm=3D0, I suspect the temperature wil=
+l be
+> fine -- good to check though.
 
-Output is there, but I see different output for subsequent calls:
+yes, you are correct. It then returns 49-50 degrees.
 
-# nvapeek 0x020460
-00020460: 20003170
-# nvapeek 0x020460
-00020460: 20003180
-# nvapeek 0x020460
-00020460: 200031a8
-# nvapeek 0x020460
-00020460: 200031a0
-# nvapeek 0x020460
-00020460: 200031e8
-
-# nvapeek 0x020400
-00020400: 00000030
-# nvapeek 0x020400
-00020400: 00000031
-# nvapeek 0x020400
-00020400: 00000031
-# nvapeek 0x020400
-00020400: 00000031
-# nvapeek 0x020400
-00020400: 00000031
-# nvapeek 0x020400
-00020400: 00000032
-
-> It would also be helpful to see a copy of your GPU's VBIOS attached here.=
- This
-> can be produced by running the below command:
->=20
-> $ cat /sys/kernel/debug/dri/0/vbios.rom > vbios.rom
-
-File is attached.
-
-                                        Best regards,
+                                                Best regards,
 
                                                         Jirka Novak
 
@@ -90,8 +57,8 @@ File is attached.
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15322867392.DAde.18617
-Date: Sun, 22 Jul 2018 19:12:19 +0000
+--15322868472.8b2a27E2.19072
+Date: Sun, 22 Jul 2018 19:14:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -109,8 +76,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Reported temperature of nvidia card with nouveau driver i=
 s wrong"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107325#c3">Commen=
-t # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107325#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Reported temperature of nvidia card with nouveau driver i=
@@ -123,50 +90,17 @@ j.novak&#64;netsystem.cz" title=3D"Jirka Novak &lt;j.novak&#64;netsystem.cz=
 </span></b>
         <pre>Hi,
 
-<span class=3D"quote">&gt; It would be helpful if you could download and bu=
-ild a nouveau-related debug
-&gt; toolkit, envytools [0], and run the following commands (inside the nva/
-&gt; subfolder):
+<span class=3D"quote">&gt; Perhaps when it's runtime-suspended, the reading=
+s return all 1's, and we report
+&gt; 511 (0x1ff). Or some variation thereof.
 &gt;=20
-&gt; $ ./nvapeek 0x020460
-&gt;=20
-&gt; $ ./nvapeek 0x020400</span >
+&gt; Jirka - if you boot with nouveau.runpm=3D0, I suspect the temperature =
+will be
+&gt; fine -- good to check though.</span >
 
-Output is there, but I see different output for subsequent calls:
+yes, you are correct. It then returns 49-50 degrees.
 
-# nvapeek 0x020460
-00020460: 20003170
-# nvapeek 0x020460
-00020460: 20003180
-# nvapeek 0x020460
-00020460: 200031a8
-# nvapeek 0x020460
-00020460: 200031a0
-# nvapeek 0x020460
-00020460: 200031e8
-
-# nvapeek 0x020400
-00020400: 00000030
-# nvapeek 0x020400
-00020400: 00000031
-# nvapeek 0x020400
-00020400: 00000031
-# nvapeek 0x020400
-00020400: 00000031
-# nvapeek 0x020400
-00020400: 00000031
-# nvapeek 0x020400
-00020400: 00000032
-
-<span class=3D"quote">&gt; It would also be helpful to see a copy of your G=
-PU's VBIOS attached here. This
-&gt; can be produced by running the below command:
-&gt;=20
-&gt; $ cat /sys/kernel/debug/dri/0/vbios.rom &gt; vbios.rom</span >
-
-File is attached.
-
-                                        Best regards,
+                                                Best regards,
 
                                                         Jirka Novak</pre>
         </div>
@@ -182,9 +116,9 @@ File is attached.
     </body>
 </html>=
 
---15322867392.DAde.18617--
+--15322868472.8b2a27E2.19072--
 
---===============1661486609==
+--===============0032966466==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -194,4 +128,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1661486609==--
+--===============0032966466==--
