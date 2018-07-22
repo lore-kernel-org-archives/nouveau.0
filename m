@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107325] New: Reported temperature of nvidia card
- with nouveau driver is wrong
-Date: Sat, 21 Jul 2018 20:36:19 +0000
-Message-ID: <bug-107325-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 107325] Reported temperature of nvidia card with
+ nouveau driver is wrong
+Date: Sun, 22 Jul 2018 15:08:10 +0000
+Message-ID: <bug-107325-8800-kNBFuOuGiM@http.bugs.freedesktop.org/>
+References: <bug-107325-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2036906273=="
+Content-Type: multipart/mixed; boundary="===============1315025147=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-107325-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2036906273==
-Content-Type: multipart/alternative; boundary="15322053790.6E6C7Ff1.10640"
+--===============1315025147==
+Content-Type: multipart/alternative; boundary="15322720900.612D8.30731"
 Content-Transfer-Encoding: 7bit
 
 
---15322053790.6E6C7Ff1.10640
-Date: Sat, 21 Jul 2018 20:36:19 +0000
+--15322720900.612D8.30731
+Date: Sun, 22 Jul 2018 15:08:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,69 +36,38 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D107325
 
-            Bug ID: 107325
-           Summary: Reported temperature of nvidia card with nouveau
-                    driver is wrong
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: j.novak-yL21p0u6sjaEIYLD/85Ykw@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Hello,
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-  I use Dell Precision 3530 with NVIDIA Corporation GP107GLM [Quadro P600
-Mobile] (rev a1). I use Fedora Core 28 with 4.17.6 x86_64 kernel.
-  I found that sensors tool shows wrong temperature:
+--- Comment #1 from Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thanks for the bug report Jirka,
 
-$ sensors
-nouveau-pci-0100
-Adapter: PCI adapter
-temp1:       +511.0=C2=B0C  (high =3D +95.0=C2=B0C, hyst =3D  +3.0=C2=B0C)
-                       (crit =3D +105.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
-                       (emerg =3D +135.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
+It would be helpful if you could download and build a nouveau-related debug
+toolkit, envytools [0], and run the following commands (inside the nva/
+subfolder):
 
-  Temperature is obviously wrong.
-  I tried to troubleshoot it on sensors side and it looks that sensors tool
-receives this wrong value from driver.
-  I made one more observation - right after suspend/wakeup the value is
-completely different:
+$ ./nvapeek 0x020460
 
-$ sensors
-nouveau-pci-0100
-Adapter: PCI adapter
-temp1:       +511.0=C2=B0C  (high =3D +95.0=C2=B0C, hyst =3D  +3.0=C2=B0C)
-                       (crit =3D +105.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
-                       (emerg =3D +135.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
+$ ./nvapeek 0x020400
 
-$ sensors
-nouveau-pci-0100
-Adapter: PCI adapter
-temp1:        +43.0=C2=B0C  (high =3D +95.0=C2=B0C, hyst =3D  +3.0=C2=B0C)
-                       (crit =3D +105.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
-                       (emerg =3D +135.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
+It would also be helpful to see a copy of your GPU's VBIOS attached here. T=
+his
+can be produced by running the below command:
 
-$ sensors
-nouveau-pci-0100
-Adapter: PCI adapter
-temp1:       +511.0=C2=B0C  (high =3D +95.0=C2=B0C, hyst =3D  +3.0=C2=B0C)
-                       (crit =3D +105.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
-                       (emerg =3D +135.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
+$ cat /sys/kernel/debug/dri/0/vbios.rom > vbios.rom
 
-  I can provide more information when required.
+
+[0] https://github.com/envytools/envytools
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15322053790.6E6C7Ff1.10640
-Date: Sat, 21 Jul 2018 20:36:19 +0000
+--15322720900.612D8.30731
+Date: Sun, 22 Jul 2018 15:08:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -107,132 +78,69 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:rhyskidd&=
+#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;"> <span cl=
+ass=3D"fn">Rhys Kidd</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Reported temperature of nvidia card with nouveau driver i=
 s wrong"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107325">107325</a>
-          </td>
-        </tr>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107325">bug 10732=
+5</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>Reported temperature of nvidia card with nouveau driver is wr=
-ong
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>j.novak&#64;netsystem.cz
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>rhyskidd&#64;gmail.com
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Hello,
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Reported temperature of nvidia card with nouveau driver i=
+s wrong"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107325#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Reported temperature of nvidia card with nouveau driver i=
+s wrong"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107325">bug 10732=
+5</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+rhyskidd&#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;">=
+ <span class=3D"fn">Rhys Kidd</span></a>
+</span></b>
+        <pre>Thanks for the bug report Jirka,
 
-  I use Dell Precision 3530 with NVIDIA Corporation GP107GLM [Quadro P600
-Mobile] (rev a1). I use Fedora Core 28 with 4.17.6 x86_64 kernel.
-  I found that sensors tool shows wrong temperature:
+It would be helpful if you could download and build a nouveau-related debug
+toolkit, envytools [0], and run the following commands (inside the nva/
+subfolder):
 
-$ sensors
-nouveau-pci-0100
-Adapter: PCI adapter
-temp1:       +511.0=C2=B0C  (high =3D +95.0=C2=B0C, hyst =3D  +3.0=C2=B0C)
-                       (crit =3D +105.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
-                       (emerg =3D +135.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
+$ ./nvapeek 0x020460
 
-  Temperature is obviously wrong.
-  I tried to troubleshoot it on sensors side and it looks that sensors tool
-receives this wrong value from driver.
-  I made one more observation - right after suspend/wakeup the value is
-completely different:
+$ ./nvapeek 0x020400
 
-$ sensors
-nouveau-pci-0100
-Adapter: PCI adapter
-temp1:       +511.0=C2=B0C  (high =3D +95.0=C2=B0C, hyst =3D  +3.0=C2=B0C)
-                       (crit =3D +105.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
-                       (emerg =3D +135.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
+It would also be helpful to see a copy of your GPU's VBIOS attached here. T=
+his
+can be produced by running the below command:
 
-$ sensors
-nouveau-pci-0100
-Adapter: PCI adapter
-temp1:        +43.0=C2=B0C  (high =3D +95.0=C2=B0C, hyst =3D  +3.0=C2=B0C)
-                       (crit =3D +105.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
-                       (emerg =3D +135.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
+$ cat /sys/kernel/debug/dri/0/vbios.rom &gt; vbios.rom
 
-$ sensors
-nouveau-pci-0100
-Adapter: PCI adapter
-temp1:       +511.0=C2=B0C  (high =3D +95.0=C2=B0C, hyst =3D  +3.0=C2=B0C)
-                       (crit =3D +105.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
-                       (emerg =3D +135.0=C2=B0C, hyst =3D  +5.0=C2=B0C)
 
-  I can provide more information when required.</pre>
+[0] <a href=3D"https://github.com/envytools/envytools">https://github.com/e=
+nvytools/envytools</a></pre>
         </div>
       </p>
 
@@ -246,9 +154,9 @@ temp1:       +511.0=C2=B0C  (high =3D +95.0=C2=B0C, hyst =3D  +3.0=C2=B0C)
     </body>
 </html>=
 
---15322053790.6E6C7Ff1.10640--
+--15322720900.612D8.30731--
 
---===============2036906273==
+--===============1315025147==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -258,4 +166,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2036906273==--
+--===============1315025147==--
