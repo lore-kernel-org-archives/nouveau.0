@@ -1,40 +1,108 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH] drm/nouveau/drm/nouveau: Fix runtime PM leak in nv50_disp_atomic_commit()
-Date: Mon, 23 Jul 2018 13:06:04 -0400
-Message-ID: <20180723170604.7223-1-lyude@redhat.com>
-References: <153227750090101@kroah.com>
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <153227750090101@kroah.com>
-Sender: stable-owner@vger.kernel.org
+Subject: [PATCH] drm/nouveau: Set DRIVER_ATOMIC cap earlier to fix debugfs
+Date: Mon, 23 Jul 2018 13:13:20 -0400
+Message-ID: <20180723171322.9677-1-lyude@redhat.com>
+References: <153227752119282@kroah.com>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <153227752119282@kroah.com>
+Sender: linux-kernel-owner@vger.kernel.org
 To: gregkh@linuxfoundation.org
-Cc: stable@vger.kernel.org, bskeggs@redhat.com, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: bskeggs@redhat.com, stable@vger.kernel.org, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-commit e5d54f1935722f83df7619f3978f774c2b802cd8 upstream
+commit eb493fbc150f4a28151ae1ee84f24395989f3600 upstream
 
-A CRTC being enabled doesn't mean it's on! It doesn't even necessarily
-mean it's being used. This fixes runtime PM leaks on the P50 I've got
-next to me.
+Currently nouveau doesn't actually expose the state debugfs file that's
+usually provided for any modesetting driver that supports atomic, even
+if nouveau is loaded with atomic=1. This is due to the fact that the
+standard debugfs files that DRM creates for atomic drivers is called
+when drm_get_pci_dev() is called from nouveau_drm.c. This happens well
+before we've initialized the display core, which is currently
+responsible for setting the DRIVER_ATOMIC cap.
+
+So, move the atomic option into nouveau_drm.c and just add the
+DRIVER_ATOMIC cap whenever it's enabled on the kernel commandline. This
+shouldn't cause any actual issues, as the atomic ioctl will still fail
+as expected even if the display core doesn't disable it until later in
+the init sequence. This also provides the added benefit of being able to
+use the state debugfs file to check the current display state even if
+clients aren't allowed to modify it through anything other than the
+legacy ioctls.
+
+Additionally, disable the DRIVER_ATOMIC cap in nv04's display core, as
+this was already disabled there previously.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 Cc: stable@vger.kernel.org
 Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
 ---
- drivers/gpu/drm/nouveau/nv50_display.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/dispnv04/disp.c | 3 +++
+ drivers/gpu/drm/nouveau/nouveau_drm.c   | 7 +++++++
+ drivers/gpu/drm/nouveau/nv50_display.c  | 6 ------
+ 3 files changed, 10 insertions(+), 6 deletions(-)
 
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/disp.c b/drivers/gpu/drm/nouveau/dispnv04/disp.c
+index 501d2d290e9c..70dce544984e 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/disp.c
+@@ -55,6 +55,9 @@ nv04_display_create(struct drm_device *dev)
+ 	nouveau_display(dev)->init = nv04_display_init;
+ 	nouveau_display(dev)->fini = nv04_display_fini;
+ 
++	/* Pre-nv50 doesn't support atomic, so don't expose the ioctls */
++	dev->driver->driver_features &= ~DRIVER_ATOMIC;
++
+ 	nouveau_hw_save_vga_fonts(dev, 1);
+ 
+ 	nv04_crtc_create(dev, 0);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index bbbf353682e1..21d28e812963 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -79,6 +79,10 @@ MODULE_PARM_DESC(modeset, "enable driver (default: auto, "
+ int nouveau_modeset = -1;
+ module_param_named(modeset, nouveau_modeset, int, 0400);
+ 
++MODULE_PARM_DESC(atomic, "Expose atomic ioctl (default: disabled)");
++static int nouveau_atomic = 0;
++module_param_named(atomic, nouveau_atomic, int, 0400);
++
+ MODULE_PARM_DESC(runpm, "disable (0), force enable (1), optimus only default (-1)");
+ static int nouveau_runtime_pm = -1;
+ module_param_named(runpm, nouveau_runtime_pm, int, 0400);
+@@ -501,6 +505,9 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+ 
+ 	pci_set_master(pdev);
+ 
++	if (nouveau_atomic)
++		driver_pci.driver_features |= DRIVER_ATOMIC;
++
+ 	ret = drm_get_pci_dev(pdev, pent, &driver_pci);
+ 	if (ret) {
+ 		nvkm_device_del(&device);
 diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
-index 2b3ccd850750..bc5c4f2402b4 100644
+index bc5c4f2402b4..abe297fda046 100644
 --- a/drivers/gpu/drm/nouveau/nv50_display.c
 +++ b/drivers/gpu/drm/nouveau/nv50_display.c
-@@ -4198,7 +4198,7 @@ nv50_disp_atomic_commit(struct drm_device *dev,
- 		nv50_disp_atomic_commit_tail(state);
+@@ -4441,10 +4441,6 @@ nv50_display_destroy(struct drm_device *dev)
+ 	kfree(disp);
+ }
  
- 	drm_for_each_crtc(crtc, dev) {
--		if (crtc->state->enable) {
-+		if (crtc->state->active) {
- 			if (!drm->have_disp_power_ref) {
- 				drm->have_disp_power_ref = true;
- 				return 0;
+-MODULE_PARM_DESC(atomic, "Expose atomic ioctl (default: disabled)");
+-static int nouveau_atomic = 0;
+-module_param_named(atomic, nouveau_atomic, int, 0400);
+-
+ int
+ nv50_display_create(struct drm_device *dev)
+ {
+@@ -4469,8 +4465,6 @@ nv50_display_create(struct drm_device *dev)
+ 	disp->disp = &nouveau_display(dev)->disp;
+ 	dev->mode_config.funcs = &nv50_disp_func;
+ 	dev->driver->driver_features |= DRIVER_PREFER_XBGR_30BPP;
+-	if (nouveau_atomic)
+-		dev->driver->driver_features |= DRIVER_ATOMIC;
+ 
+ 	/* small shared memory area we use for notifiers and semaphores */
+ 	ret = nouveau_bo_new(&drm->client, 4096, 0x1000, TTM_PL_FLAG_VRAM,
 -- 
 2.17.1
