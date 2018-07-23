@@ -1,108 +1,152 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH] drm/nouveau: Set DRIVER_ATOMIC cap earlier to fix debugfs
-Date: Mon, 23 Jul 2018 13:13:20 -0400
-Message-ID: <20180723171322.9677-1-lyude@redhat.com>
-References: <153227752119282@kroah.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <153227752119282@kroah.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: gregkh@linuxfoundation.org
-Cc: bskeggs@redhat.com, stable@vger.kernel.org, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] drm/fb_helper: Add
+ drm_fb_helper_output_poll_changed_with_rpm()
+Date: Mon, 23 Jul 2018 13:50:28 -0400
+Message-ID: <1a6531e25f5252553523a3127265876d056a3f4d.camel@redhat.com>
+References: <20180718205645.25924-1-lyude@redhat.com>
+ <20180718205645.25924-2-lyude@redhat.com>
+ <20180719074926.GA14303@wunner.de>
+ <be93e682cd5a583e9b4cb6c4fcd7a476d597bb6b.camel@redhat.com>
+ <20180721093955.GA32572@wunner.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20180721093955.GA32572@wunner.de>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Lukas Wunner <lukas@wunner.de>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-commit eb493fbc150f4a28151ae1ee84f24395989f3600 upstream
-
-Currently nouveau doesn't actually expose the state debugfs file that's
-usually provided for any modesetting driver that supports atomic, even
-if nouveau is loaded with atomic=1. This is due to the fact that the
-standard debugfs files that DRM creates for atomic drivers is called
-when drm_get_pci_dev() is called from nouveau_drm.c. This happens well
-before we've initialized the display core, which is currently
-responsible for setting the DRIVER_ATOMIC cap.
-
-So, move the atomic option into nouveau_drm.c and just add the
-DRIVER_ATOMIC cap whenever it's enabled on the kernel commandline. This
-shouldn't cause any actual issues, as the atomic ioctl will still fail
-as expected even if the display core doesn't disable it until later in
-the init sequence. This also provides the added benefit of being able to
-use the state debugfs file to check the current display state even if
-clients aren't allowed to modify it through anything other than the
-legacy ioctls.
-
-Additionally, disable the DRIVER_ATOMIC cap in nv04's display core, as
-this was already disabled there previously.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: stable@vger.kernel.org
-Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
----
- drivers/gpu/drm/nouveau/dispnv04/disp.c | 3 +++
- drivers/gpu/drm/nouveau/nouveau_drm.c   | 7 +++++++
- drivers/gpu/drm/nouveau/nv50_display.c  | 6 ------
- 3 files changed, 10 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/disp.c b/drivers/gpu/drm/nouveau/dispnv04/disp.c
-index 501d2d290e9c..70dce544984e 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/disp.c
-@@ -55,6 +55,9 @@ nv04_display_create(struct drm_device *dev)
- 	nouveau_display(dev)->init = nv04_display_init;
- 	nouveau_display(dev)->fini = nv04_display_fini;
- 
-+	/* Pre-nv50 doesn't support atomic, so don't expose the ioctls */
-+	dev->driver->driver_features &= ~DRIVER_ATOMIC;
-+
- 	nouveau_hw_save_vga_fonts(dev, 1);
- 
- 	nv04_crtc_create(dev, 0);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index bbbf353682e1..21d28e812963 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -79,6 +79,10 @@ MODULE_PARM_DESC(modeset, "enable driver (default: auto, "
- int nouveau_modeset = -1;
- module_param_named(modeset, nouveau_modeset, int, 0400);
- 
-+MODULE_PARM_DESC(atomic, "Expose atomic ioctl (default: disabled)");
-+static int nouveau_atomic = 0;
-+module_param_named(atomic, nouveau_atomic, int, 0400);
-+
- MODULE_PARM_DESC(runpm, "disable (0), force enable (1), optimus only default (-1)");
- static int nouveau_runtime_pm = -1;
- module_param_named(runpm, nouveau_runtime_pm, int, 0400);
-@@ -501,6 +505,9 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
- 
- 	pci_set_master(pdev);
- 
-+	if (nouveau_atomic)
-+		driver_pci.driver_features |= DRIVER_ATOMIC;
-+
- 	ret = drm_get_pci_dev(pdev, pent, &driver_pci);
- 	if (ret) {
- 		nvkm_device_del(&device);
-diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
-index bc5c4f2402b4..abe297fda046 100644
---- a/drivers/gpu/drm/nouveau/nv50_display.c
-+++ b/drivers/gpu/drm/nouveau/nv50_display.c
-@@ -4441,10 +4441,6 @@ nv50_display_destroy(struct drm_device *dev)
- 	kfree(disp);
- }
- 
--MODULE_PARM_DESC(atomic, "Expose atomic ioctl (default: disabled)");
--static int nouveau_atomic = 0;
--module_param_named(atomic, nouveau_atomic, int, 0400);
--
- int
- nv50_display_create(struct drm_device *dev)
- {
-@@ -4469,8 +4465,6 @@ nv50_display_create(struct drm_device *dev)
- 	disp->disp = &nouveau_display(dev)->disp;
- 	dev->mode_config.funcs = &nv50_disp_func;
- 	dev->driver->driver_features |= DRIVER_PREFER_XBGR_30BPP;
--	if (nouveau_atomic)
--		dev->driver->driver_features |= DRIVER_ATOMIC;
- 
- 	/* small shared memory area we use for notifiers and semaphores */
- 	ret = nouveau_bo_new(&drm->client, 4096, 0x1000, TTM_PL_FLAG_VRAM,
--- 
-2.17.1
+T24gU2F0LCAyMDE4LTA3LTIxIGF0IDExOjM5ICswMjAwLCBMdWthcyBXdW5uZXIgd3JvdGU6Cj4g
+T24gVGh1LCBKdWwgMTksIDIwMTggYXQgMDg6MDg6MTVQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
+ZToKPiA+IE9uIFRodSwgMjAxOC0wNy0xOSBhdCAwOTo0OSArMDIwMCwgTHVrYXMgV3VubmVyIHdy
+b3RlOgo+ID4gPiBPbiBXZWQsIEp1bCAxOCwgMjAxOCBhdCAwNDo1NjozOVBNIC0wNDAwLCBMeXVk
+ZSBQYXVsIHdyb3RlOgo+ID4gPiA+IFdoZW4gRFAgTVNUIGh1YnMgZ2V0IGNvbmZ1c2VkLCB0aGV5
+IGNhbiBvY2Nhc2lvbmFsbHkgc3RvcCByZXNwb25kaW5nCj4gPiA+ID4gZm9yCj4gPiA+ID4gYSBn
+b29kIGJpdCBvZiB0aW1lIHVwIHVudGlsIHRoZSBwb2ludCB3aGVyZSB0aGUgRFJNIGRyaXZlciBt
+YW5hZ2VzIHRvCj4gPiA+ID4gZG8gdGhlIHJpZ2h0IERQQ0QgYWNjZXNzZXMgdG8gZ2V0IGl0IHRv
+IHN0YXJ0IHJlc3BvbmRpbmcgYWdhaW4uIEluIGEKPiA+ID4gPiB3b3JzdCBjYXNlIHNjZW5hcmlv
+IGhvd2V2ZXIsIHRoaXMgcHJvY2VzcyBjYW4gdGFrZSB1cHdhcmRzIG9mIDEwKwo+ID4gPiA+IHNl
+Y29uZHMuCj4gPiA+ID4gCj4gPiA+ID4gQ3VycmVudGx5IHdlIHVzZSB0aGUgZGVmYXVsdCBvdXRw
+dXRfcG9sbF9jaGFuZ2VkIGhhbmRsZXIKPiA+ID4gPiBkcm1fZmJfaGVscGVyX291dHB1dF9wb2xs
+X2NoYW5nZWQoKSB0byBoYW5kbGUgb3V0cHV0IHBvbGxpbmcsIHdoaWNoCj4gPiA+ID4gZG9lc24n
+dCBoYXBwZW4gdG8gZ3JhYiBhbnkgcG93ZXIgcmVmZXJlbmNlcyBvbiB0aGUgZGV2aWNlIHdoZW4K
+PiA+ID4gPiBwb2xsaW5nLgo+ID4gPiA+IElmIHdlJ3JlIHVubHVja3kgZW5vdWdoIHRvIGhhdmUg
+YSBodWIgKHN1Y2ggYXMgTGVub3ZvJ3MgaW5mYW1vdXMKPiA+ID4gPiBsYXB0b3AKPiA+ID4gPiBk
+b2NrcyBmb3IgdGhlIFA1eC9QN3ggc2VyaWVzKSB0aGF0J3MgZWFzaWx5IHN0YXJ0bGVkIGFuZCBj
+b25mdXNlZCwKPiA+ID4gPiB0aGlzCj4gPiA+ID4gY2FuIGxlYWQgdG8gYSBwcmV0dHkgbmFzdHkg
+ZGVhZGxvY2sgc2l0dWF0aW9uIHRoYXQgbG9va3MgbGlrZSB0aGlzOgo+ID4gPiA+IAo+ID4gPiA+
+IC0gSG90cGx1ZyBldmVudCBmcm9tIGh1YiBoYXBwZW5zLCB3ZSBlbnRlcgo+ID4gPiA+ICAgZHJt
+X2ZiX2hlbHBlcl9vdXRwdXRfcG9sbF9jaGFuZ2VkKCkgYW5kIHN0YXJ0IGNvbW11bmljYXRpbmcg
+d2l0aCB0aGUKPiA+ID4gPiAgIGh1Ygo+ID4gPiA+IC0gV2hpbGUgd2UncmUgaW4gZHJtX2ZiX2hl
+bHBlcl9vdXRwdXRfcG9sbF9jaGFuZ2VkKCkgYW5kIGF0dGVtcHRpbmcgdG8KPiA+ID4gPiAgIGNv
+bW11bmljYXRlIHdpdGggdGhlIGh1Yiwgd2UgZW5kIHVwIGNvbmZ1c2luZyBpdCBhbmQgY2F1c2Ug
+aXQgdG8KPiA+ID4gPiBzdG9wCj4gPiA+ID4gICByZXNwb25kaW5nIGZvciBhdCBsZWFzdCAxMCBz
+ZWNvbmRzCj4gPiA+ID4gLSBBZnRlciA1IHNlY29uZHMgb2YgYmVpbmcgaW4gZHJtX2ZiX2hlbHBl
+cl9vdXRwdXRfcG9sbF9jaGFuZ2VkKCksIHRoZQo+ID4gPiA+ICAgcG0gY29yZSBhdHRlbXB0cyB0
+byBwdXQgdGhlIEdQVSBpbnRvIGF1dG9zdXNwZW5kLCB3aGljaCBlbmRzIHVwCj4gPiA+ID4gICBj
+YWxsaW5nIGRybV9rbXNfaGVscGVyX3BvbGxfZGlzYWJsZSgpCj4gPiA+ID4gLSBXaGlsZSB0aGUg
+cnVudGltZSBQTSBjb3JlIGlzIHdhaXRpbmcgaW4KPiA+ID4gPiBkcm1fa21zX2hlbHBlcl9wb2xs
+X2Rpc2FibGUoKQo+ID4gPiA+ICAgZm9yIHRoZSBvdXRwdXQgcG9sbCB0byBmaW5pc2gsIHdlIGVu
+ZCB1cCBmaW5hbGx5IGRldGVjdGluZyBhbiBNU1QKPiA+ID4gPiAgIGRpc3BsYXkKPiA+ID4gPiAt
+IFdlIG5vdGljZSB0aGUgbmV3IGRpc3BsYXkgYW5kIHRyaWVzIHRvIGVuYWJsZSBpdCwgd2hpY2gg
+dHJpZ2dlcnMKPiA+ID4gPiAgIGFuIGF0b21pYyBjb21taXQgd2hpY2ggdHJpZ2dlcnMgYSBjYWxs
+IHRvIHBtX3J1bnRpbWVfZ2V0X3N5bmMoKQo+ID4gPiA+IC0gdGhlIG91dHB1dCBwb2xsIHRocmVh
+ZCBkZWFkbG9ja3MgdGhlIHBtIGNvcmUgd2FpdGluZyBmb3IgdGhlIHBtIGNvcmUKPiA+ID4gPiAg
+IHRvIGZpbmlzaCB0aGUgYXV0b3N1c3BlbmQgcmVxdWVzdCB3aGlsZSB0aGUgcG0gY29yZSB3YWl0
+cyBmb3IgdGhlCj4gPiA+ID4gICBvdXRwdXQgcG9sbCB0aHJlYWQgdG8gZmluaXNoCj4gPiA+IAo+
+ID4gPiBUaGUgY29ycmVjdCBmaXggaXMgdG8gY2FsbCBwbV9ydW50aW1lX2dldF9zeW5jKCkgKmNv
+bmRpdGlvbmFsbHkqIGluCj4gPiA+IHRoZSBhdG9taWMgY29tbWl0IHdoaWNoIGVuYWJsZXMgdGhl
+IGRpc3BsYXksIHVzaW5nIHRoZSBzYW1lIGNvbmRpdGlvbmFsCj4gPiA+IGFzIGQ2MWE1YzEwNjM1
+MSwgaS5lLiBpZiAoIWRybV9rbXNfaGVscGVyX2lzX3BvbGxfd29ya2VyKCkpLgo+IAo+IEZpcnN0
+IG9mIGFsbCwgSSB3YXMgbWlzdGFrZW4gd2hlbiBJIHdyb3RlIGFib3ZlIHRoYXQgYSBjaGVjayBm
+b3IKPiAhZHJtX2ttc19oZWxwZXJfaXNfcG9sbF93b3JrZXIoKSB3b3VsZCBzb2x2ZSB0aGUgcHJv
+YmxlbS4gIFNvcnJ5IQo+IEl0IGRvZXNuJ3QgYmVjYXVzZSB0aGUgY2FsbCB0byBwbV9ydW50aW1l
+X2dldF9zeW5jKCkgaXMgbm90IGhhcHBlbmluZwo+IGluIG91dHB1dF9wb2xsX2V4ZWN1dGUoKSBi
+dXQgaW4gZHJtX2RwX21zdF9saW5rX3Byb2JlX3dvcmsoKS4KPiAKPiBMb29raW5nIG9uY2UgbW9y
+ZSBhdCB0aGUgdGhyZWUgc3RhY2sgdHJhY2VzIHlvdSd2ZSBwcm92aWRlZCwgd2UndmUgZ290Ogo+
+IC0gb3V0cHV0X3BvbGxfZXhlY3V0ZSgpIHN0dWNrIHdhaXRpbmcgZm9yIGZiX2hlbHBlci0+bG9j
+awo+ICAgd2hpY2ggaXMgaGVsZCBieSBkcm1fZHBfbXN0X2xpbmtfcHJvYmVfd29yaygpCj4gLSBy
+cG1fc3VzcGVuZCgpIHN0dWNrIHdhaXRpbmcgZm9yIG91dHB1dF9wb2xsX2V4ZWN1dGUoKSB0byBm
+aW5pc2gKPiAtIGRybV9kcF9tc3RfbGlua19wcm9iZV93b3JrKCkgc3R1Y2sgd2FpdGluZyBpbiBy
+cG1fcmVzdW1lKCkKPiAKPiBGb3IgdGhlIG1vbWVudCB3ZSBjYW4gaWdub3JlIHRoZSBmaXJzdCB0
+YXNrLCBpLmUuIG91dHB1dF9wb2xsX2V4ZWN1dGUoKSwKPiBhbmQgZm9jdXMgb24gdGhlIGxhdHRl
+ciB0d28uCj4gCj4gQXMgc2FpZCBJJ20gdW5mYW1pbGlhciB3aXRoIE1TVCBidXQgYnJvd3Npbmcg
+dGhyb3VnaCBkcm1fZHBfbXN0X3RvcG9sb2d5LmMKPiBJIG5vdGljZSB0aGF0IGRybV9kcF9tc3Rf
+bGlua19wcm9iZV93b3JrKCkgaXMgdGhlIC0+d29yayBlbGVtZW50IGluCj4gZHJtX2RwX21zdF90
+b3BvbG9neV9tZ3IoKSBhbmQgaXMgcXVldWVkIG9uIEhQRC4gIEkgZnVydGhlciBub3RpY2UgdGhh
+dAo+IHRoZSB3b3JrIGl0ZW0gaXMgZmx1c2hlZCBvbiAtPnJ1bnRpbWVfc3VzcGVuZDoKPiAKPiBu
+b3V2ZWF1X3Btb3BzX3J1bnRpbWVfc3VzcGVuZCgpCj4gICBub3V2ZWF1X2RvX3N1c3BlbmQoKQo+
+ICAgICBub3V2ZWF1X2Rpc3BsYXlfc3VzcGVuZCgpCj4gICAgICAgbm91dmVhdV9kaXNwbGF5X2Zp
+bmkoKQo+ICAgICAgICAgZGlzcC0+ZmluaSgpID09IG52NTBfZGlzcGxheV9maW5pKCkKPiAJICBu
+djUwX21zdG1fZmluaSgpCj4gCSAgICBkcm1fZHBfbXN0X3RvcG9sb2d5X21ncl9zdXNwZW5kKCkK
+PiAJICAgICAgZmx1c2hfd29yaygmbWdyLT53b3JrKTsKPiAKPiBBbmQgYmVmb3JlIHRoZSB3b3Jr
+IGl0ZW0gaXMgZmx1c2hlZCwgdGhlIEhQRCBzb3VyY2UgaXMgcXVpZXNjZWQuCj4gCj4gU28gaXQg
+bG9va3MgbGlrZSBkcm1fZHBfbXN0X2xpbmtfcHJvYmVfd29yaygpIGNhbiBvbmx5IGV2ZXIgcnVu
+Cj4gd2hpbGUgdGhlIEdQVSBpcyBydW50aW1lIHJlc3VtZWQsIGl0IG5ldmVyIHJ1bnMgd2hpbGUg
+dGhlIEdQVSBpcwo+IHJ1bnRpbWUgc3VzcGVuZGVkLiAgVGhpcyBtZWFucyB0aGF0IHlvdSBkb24n
+dCBoYXZlIHRvIGFjcXVpcmUgYW55Cj4gcnVudGltZSBQTSByZWZlcmVuY2VzIGluIG9yIGJlbG93
+IGRybV9kcF9tc3RfbGlua19wcm9iZV93b3JrKCkuCj4gQXUgY29udHJhaXJlLCB5b3UgbXVzdCBu
+b3QgYWNxdWlyZSBhbnkgYmVjYXVzZSBpdCB3aWxsIGRlYWRsb2NrIHdoaWxlCj4gdGhlIEdQVSBp
+cyBydW50aW1lIHN1c3BlbmRpbmcuICBJZiB0aGVyZSBhcmUgZnVuY3Rpb25zIHdoaWNoIGFyZQo+
+IGNhbGxlZCBmcm9tIGRybV9kcF9tc3RfbGlua19wcm9iZV93b3JrKCkgYXMgd2VsbCBhcyBmcm9t
+IG90aGVyIGNvbnRleHRzLAo+IGFuZCB0aG9zZSBvdGhlciBjb250ZXh0cyBuZWVkIGEgcnVudGlt
+ZSBQTSByZWYgdG8gYmUgYWNxdWlyZWQsCj4geW91IG5lZWQgdG8gYWNxdWlyZSB0aGUgcnVudGlt
+ZSBQTSByZWYgY29uZGl0aW9uYWxseSBvbiBub3QgYmVpbmcKPiBkcm1fZHBfbXN0X2xpbmtfcHJv
+YmVfd29yaygpICh1c2luZyB0aGUgY3VycmVudF93b3JrKCkgdGVjaG5pcXVlKS4KPiAKPiBBbHRl
+cm5hdGl2ZWx5LCBtb3ZlIGFjcXVpc2l0aW9uIG9mIHRoZSBydW50aW1lIFBNIHJlZiBmdXJ0aGVy
+IHVwIGluCj4gdGhlIGNhbGwgY2hhaW4gdG8gdGhvc2Ugb3RoZXIgY29udGV4dHMuCj4gCj4gCj4g
+PiBBbnl3YXktdGhhdCdzIHdoeSB5b3VyIGV4cGxhbmF0aW9uIGRvZXNuJ3QgbWFrZSBzZW5zZTog
+dGhlIGRlYWRsb2NrIGlzCj4gPiBoYXBwZW5pbmcgYmVjYXVzZSB3ZSdyZSBjYWxsaW5nIHBtX3J1
+bnRpbWVfZ2V0X3N5bmMoKS4gSWYgd2Ugd2VyZSB0bwo+ID4gbWFrZSB0aGF0IGNhbGwgY29uZGl0
+aW9uYWwgKGUuZy4gZHJtX2ttc19oZWxwZXJfaXNfcG9sbF93b3JrZXIoKSksCj4gPiBhbGwgdGhh
+dCB3b3VsZCBtZWFuIGlzIHRoYXQgd2Ugd291bGRuJ3QgZ3JhYiBhbnkgcnVudGltZSBwb3dlciBy
+ZWZlcmVuY2UKPiA+IGFuZCB0aGUgR1BVIHdvdWxkIGltbWVkaWF0ZWx5IHN1c3BlbmQgb25jZSB0
+aGUgYXRvbWljIGNvbW1pdCBmaW5pc2hlZCwKPiA+IGFzIHRoZSBzdXNwZW5kIHJlcXVlc3QgaW4g
+VGhyZWFkIDUgd291bGQgZmluYWxseSBnZXQgdW5ibG9ja2VkIGFuZCB0aHVzCj4gPiAtLS0tc3Vz
+cGVuZC4KPiAKPiBSaWdodCwgdGhhdCBzZWVtcyB0byBiZSBhIGJ1ZyBub3V2ZWF1X3Btb3BzX3J1
+bnRpbWVfc3VzcGVuZCgpOgo+IAo+IElmIGEgZGlzcGxheSBpcyBwbHVnZ2VkIGluIHdoaWxlIHRo
+ZSBHUFUgaXMgYWJvdXQgdG8gcnVudGltZSBzdXNwZW5kLAo+IHRoZSBkaXNwbGF5IG1heSBiZSBs
+aXQgdXAgYnkgb3V0cHV0X3BvbGxfZXhlY3V0ZSgpIGJ1dCB0aGUgR1BVIHdpbGwKPiB0aGVuIG5l
+dmVydGhlbGVzcyBiZSBwb3dlcmVkIG9mZi4KPiAKPiBJIGd1ZXNzIGFmdGVyIGNhbGxpbmcgZHJt
+X2ttc19oZWxwZXJfcG9sbF9kaXNhYmxlKCkgd2Ugc2hvdWxkIHJlLWNoZWNrCj4gaWYgYSBjcnRj
+IGhhcyBiZWVuIGFjdGl2YXRlZC4gIFRoaXMgc2hvdWxkIGhhdmUgYnVtcGVkIHRoZSBydW50aW1l
+IFBNCj4gcmVmY291bnQgYW5kIGhhdmVfZGlzcF9wb3dlcl9yZWYgc2hvdWxkIGJlIHRydWUuICBJ
+biB0aGF0IGNhc2UsIHRoZQo+IG5vdXZlYXVfcG1vcHNfcnVudGltZV9zdXNwZW5kKCkgc2hvdWxk
+IHJldHVybiAtRUJVU1kgdG8gYWJvcnQgdGhlCj4gcnVudGltZV9zdXNwZW5kLgo+IAo+IFRoZSBz
+YW1lIGNoZWNrIHNlZW1zIG5lY2Vzc2FyeSBhZnRlciBmbHVzaGluZyBkcm1fZHBfbXN0X2xpbmtf
+cHJvYmVfd29yaygpOgo+IElmIHRoZSB3b3JrIGl0ZW0gbGl0IHVwIGEgbmV3IGRpc3BsYXksIGFs
+bCBwcmV2aW91cyBzdXNwZW5kIHN0ZXBzIG5lZWQKPiB0byBiZSB1bndvdW5kIGFuZCAtRUJVU1kg
+bmVlZHMgdG8gYmUgcmV0dXJuZWQgdG8gdGhlIFBNIGNvcmUuCj4gCj4gQ29tbXVuaWNhdGlvbiB3
+aXRoIGFuIE1TVCBodWIgZXhjZWVkaW5nIHRoZSBhdXRvc3VzcGVuZCB0aW1lb3V0IGlzCj4ganVz
+dCBvbmUgc2NlbmFyaW8gd2hlcmUgdGhpcyBidWcgbWFuaWZlc3RzIGl0c2VsZi4KPiAKPiBCVFcs
+IGRybV9rbXNfaGVscGVyX3BvbGxfZGlzYWJsZSgpIHNlZW1zIHRvIGJlIGNhbGxlZCB0d2ljZSBp
+biB0aGUKPiBydW50aW1lX3N1c3BlbmQgY29kZSBwYXRoLCBvbmNlIGluIG5vdXZlYXVfcG1vcHNf
+cnVudGltZV9zdXNwZW5kKCkKPiBhbmQgYSBzZWNvbmQgdGltZSBpbiBub3V2ZWF1X2Rpc3BsYXlf
+ZmluaSgpLgo+IAo+IEEgc3R1cGlkIHF1ZXN0aW9uLCBJIG5vdGljZSB0aGF0IG52NTBfZGlzcGxh
+eV9maW5pKCkgY2FsbHMgbnY1MF9tc3RtX2ZpbmkoKQo+IG9ubHkgaWYgZW5jb2Rlcl90eXBlICE9
+IERSTV9NT0RFX0VOQ09ERVJfRFBNU1QuICBXaHkgaXNuJ3QgdGhhdCA9PSA/CkJlY2F1c2UgdGhl
+cmUncyBhIGRpZmZlcmVuY2UgYmV0d2VlbiBEUE1TVCBjb25uZWN0b3JzIGFuZCBlbmNvZGVycyB2
+cy4gdGhlCnJlc3Qgb2YgdGhlIGRldmljZSdzIGVuY29kZXJzLiBFdmVyeSBEUCBNU1QgdG9wb2xv
+Z3kgd2lsbCB0YWtlIHVwIGEgc2luZ2xlCiJwaHlzaWNhbCIgRFAgY29ubmVjdG9yIG9uIHRoZSBk
+ZXZpY2UgdGhhdCB3aWxsIGJlIG1hcmtlZCBhcyBkaXNjb25uZWN0ZWQuClRoaXMgY29ubmVjdG9y
+IGFsc28gb3ducyB0aGUgIm1zdG0iIChNU1QgbWFuYWdlciwgcmVmZXJyZWQgdG8gYXMgdGhlCmRy
+bV9kcF9tc3RfdG9wb2xvZ3lfbWdyIGluIERSTSksIHdoaWNoIHRocm91Z2ggdGhlIGNhbGxiYWNr
+cyBub3V2ZWF1IHByb3ZpZGVzCmlzIHJlc3BvbnNpYmxlIGZvciBjcmVhdGluZyB0aGUgZmFrZSBE
+UCBNU1QgcG9ydHMgYW5kIGVuY29kZXJzLiBBbGwgb2YgdGhlc2UKZmFrZSBwb3J0cyB3aWxsIGhh
+dmUgRFBNU1QgZW5jb2RlcnMgYXMgb3Bwb3NlZCB0byB0aGUgcGh5c2ljYWwgRFAgcG9ydHMsIHdo
+aWNoCndpbGwgaGF2ZSBUTURTIGVuY29kZXJzLiBIZW5jZS1tc3RtcyBhcmUgb25seSBvbiBwaHlz
+aWNhbCBjb25uZWN0b3JzIHdpdGgKVE1EUywgbm90IGZha2UgY29ubmVjdG9ycyB3aXRoIERQTVNU
+LgoKCj4gCj4gVGhhbmtzLAo+IAo+IEx1a2FzCi0tIApDaGVlcnMsCglMeXVkZSBQYXVsCgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFp
+bGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
