@@ -1,59 +1,58 @@
-From: Greg KH <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH] drm/nouveau: Set DRIVER_ATOMIC cap earlier to fix debugfs
-Date: Thu, 26 Jul 2018 17:12:02 +0200
-Message-ID: <20180726151202.GE27305@kroah.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH] drm/nouveau: Set DRIVER_ATOMIC cap earlier to fix
+ debugfs
+Date: Thu, 26 Jul 2018 11:48:26 -0400
+Message-ID: <a0e04475abd7f0128b6180805490b7decb4f9c02.camel@redhat.com>
 References: <153227752119282@kroah.com>
- <20180723171322.9677-1-lyude@redhat.com>
+         <20180723171322.9677-1-lyude@redhat.com> <20180726151202.GE27305@kroah.com>
+Reply-To: lyude@redhat.com
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20180723171322.9677-1-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Lyude Paul <lyude@redhat.com>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, bskeggs@redhat.com, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20180726151202.GE27305@kroah.com>
+Sender: stable-owner@vger.kernel.org
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: bskeggs@redhat.com, stable@vger.kernel.org, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBKdWwgMjMsIDIwMTggYXQgMDE6MTM6MjBQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
-ZToKPiBjb21taXQgZWI0OTNmYmMxNTBmNGEyODE1MWFlMWVlODRmMjQzOTU5ODlmMzYwMCB1cHN0
-cmVhbQo+IAo+IEN1cnJlbnRseSBub3V2ZWF1IGRvZXNuJ3QgYWN0dWFsbHkgZXhwb3NlIHRoZSBz
-dGF0ZSBkZWJ1Z2ZzIGZpbGUgdGhhdCdzCj4gdXN1YWxseSBwcm92aWRlZCBmb3IgYW55IG1vZGVz
-ZXR0aW5nIGRyaXZlciB0aGF0IHN1cHBvcnRzIGF0b21pYywgZXZlbgo+IGlmIG5vdXZlYXUgaXMg
-bG9hZGVkIHdpdGggYXRvbWljPTEuIFRoaXMgaXMgZHVlIHRvIHRoZSBmYWN0IHRoYXQgdGhlCj4g
-c3RhbmRhcmQgZGVidWdmcyBmaWxlcyB0aGF0IERSTSBjcmVhdGVzIGZvciBhdG9taWMgZHJpdmVy
-cyBpcyBjYWxsZWQKPiB3aGVuIGRybV9nZXRfcGNpX2RldigpIGlzIGNhbGxlZCBmcm9tIG5vdXZl
-YXVfZHJtLmMuIFRoaXMgaGFwcGVucyB3ZWxsCj4gYmVmb3JlIHdlJ3ZlIGluaXRpYWxpemVkIHRo
-ZSBkaXNwbGF5IGNvcmUsIHdoaWNoIGlzIGN1cnJlbnRseQo+IHJlc3BvbnNpYmxlIGZvciBzZXR0
-aW5nIHRoZSBEUklWRVJfQVRPTUlDIGNhcC4KPiAKPiBTbywgbW92ZSB0aGUgYXRvbWljIG9wdGlv
-biBpbnRvIG5vdXZlYXVfZHJtLmMgYW5kIGp1c3QgYWRkIHRoZQo+IERSSVZFUl9BVE9NSUMgY2Fw
-IHdoZW5ldmVyIGl0J3MgZW5hYmxlZCBvbiB0aGUga2VybmVsIGNvbW1hbmRsaW5lLiBUaGlzCj4g
-c2hvdWxkbid0IGNhdXNlIGFueSBhY3R1YWwgaXNzdWVzLCBhcyB0aGUgYXRvbWljIGlvY3RsIHdp
-bGwgc3RpbGwgZmFpbAo+IGFzIGV4cGVjdGVkIGV2ZW4gaWYgdGhlIGRpc3BsYXkgY29yZSBkb2Vz
-bid0IGRpc2FibGUgaXQgdW50aWwgbGF0ZXIgaW4KPiB0aGUgaW5pdCBzZXF1ZW5jZS4gVGhpcyBh
-bHNvIHByb3ZpZGVzIHRoZSBhZGRlZCBiZW5lZml0IG9mIGJlaW5nIGFibGUgdG8KPiB1c2UgdGhl
-IHN0YXRlIGRlYnVnZnMgZmlsZSB0byBjaGVjayB0aGUgY3VycmVudCBkaXNwbGF5IHN0YXRlIGV2
-ZW4gaWYKPiBjbGllbnRzIGFyZW4ndCBhbGxvd2VkIHRvIG1vZGlmeSBpdCB0aHJvdWdoIGFueXRo
-aW5nIG90aGVyIHRoYW4gdGhlCj4gbGVnYWN5IGlvY3Rscy4KPiAKPiBBZGRpdGlvbmFsbHksIGRp
-c2FibGUgdGhlIERSSVZFUl9BVE9NSUMgY2FwIGluIG52MDQncyBkaXNwbGF5IGNvcmUsIGFzCj4g
-dGhpcyB3YXMgYWxyZWFkeSBkaXNhYmxlZCB0aGVyZSBwcmV2aW91c2x5Lgo+IAo+IFNpZ25lZC1v
-ZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+Cj4gQ2M6IHN0YWJsZUB2Z2VyLmtl
-cm5lbC5vcmcKPiBTaWduZWQtb2ZmLWJ5OiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+
-Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0L2Rpc3AuYyB8IDMgKysr
-Cj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgICB8IDcgKysrKysrKwo+
-ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYyAgfCA2IC0tLS0tLQo+ICAz
-IGZpbGVzIGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCgpQbGVhc2Ug
-Z2l2ZSBtZSBhIGhpbnQgYXMgdG8gd2hhdCBrZXJuZWwgdmVyc2lvbnMgeW91IHdhbnQgdGhlIHBh
-dGNoZXMgdG8KYmUgYXBwbGllZCB0bywgb3RoZXJ3aXNlIEkganVzdCBoYXZlIHRvIGd1ZXNzIDop
-Cgp0aGFua3MsCgpncmVnIGstaApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9k
-cmktZGV2ZWwK
+On Thu, 2018-07-26 at 17:12 +0200, Greg KH wrote:
+> On Mon, Jul 23, 2018 at 01:13:20PM -0400, Lyude Paul wrote:
+> > commit eb493fbc150f4a28151ae1ee84f24395989f3600 upstream
+> > 
+> > Currently nouveau doesn't actually expose the state debugfs file that's
+> > usually provided for any modesetting driver that supports atomic, even
+> > if nouveau is loaded with atomic=1. This is due to the fact that the
+> > standard debugfs files that DRM creates for atomic drivers is called
+> > when drm_get_pci_dev() is called from nouveau_drm.c. This happens well
+> > before we've initialized the display core, which is currently
+> > responsible for setting the DRIVER_ATOMIC cap.
+> > 
+> > So, move the atomic option into nouveau_drm.c and just add the
+> > DRIVER_ATOMIC cap whenever it's enabled on the kernel commandline. This
+> > shouldn't cause any actual issues, as the atomic ioctl will still fail
+> > as expected even if the display core doesn't disable it until later in
+> > the init sequence. This also provides the added benefit of being able to
+> > use the state debugfs file to check the current display state even if
+> > clients aren't allowed to modify it through anything other than the
+> > legacy ioctls.
+> > 
+> > Additionally, disable the DRIVER_ATOMIC cap in nv04's display core, as
+> > this was already disabled there previously.
+> > 
+> > Signed-off-by: Lyude Paul <lyude@redhat.com>
+> > Cc: stable@vger.kernel.org
+> > Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
+> > ---
+> >  drivers/gpu/drm/nouveau/dispnv04/disp.c | 3 +++
+> >  drivers/gpu/drm/nouveau/nouveau_drm.c   | 7 +++++++
+> >  drivers/gpu/drm/nouveau/nv50_display.c  | 6 ------
+> >  3 files changed, 10 insertions(+), 6 deletions(-)
+> 
+> Please give me a hint as to what kernel versions you want the patches to
+> be applied to, otherwise I just have to guess :)
+will note for the future, sorry about that!
+> 
+> thanks,
+> 
+> greg k-h
