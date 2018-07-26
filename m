@@ -1,58 +1,59 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH] drm/nouveau: Set DRIVER_ATOMIC cap earlier to fix
- debugfs
-Date: Thu, 26 Jul 2018 11:48:26 -0400
-Message-ID: <a0e04475abd7f0128b6180805490b7decb4f9c02.camel@redhat.com>
-References: <153227752119282@kroah.com>
-         <20180723171322.9677-1-lyude@redhat.com> <20180726151202.GE27305@kroah.com>
-Reply-To: lyude@redhat.com
+From: Dmitry Osipenko <digetx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [RFC PATCH v1 0/6] Resolve unwanted DMA backing with IOMMU
+Date: Fri, 27 Jul 2018 02:16:18 +0300
+Message-ID: <20180726231624.21084-1-digetx@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20180726151202.GE27305@kroah.com>
-Sender: stable-owner@vger.kernel.org
-To: Greg KH <gregkh@linuxfoundation.org>
-Cc: bskeggs@redhat.com, stable@vger.kernel.org, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Return-path: <iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
+List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/iommu>,
+	<mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.linuxfoundation.org/pipermail/iommu/>
+List-Post: <mailto:iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>
+List-Help: <mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/iommu>,
+	<mailto:iommu-request-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org?subject=subscribe>
+Sender: iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
+Errors-To: iommu-bounces-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org
+To: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Jonathan Hunter <jonathanh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Mikko Perttunen <cyndis-/1wQRMveznE@public.gmane.org>, Rob Herring <robh+dt-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Frank Rowand <frowand.list-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Russell King <linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>, Catalin Marinas <catalin.marinas-5wv7dgnIgG8@public.gmane.org>, Will Deacon <will.deacon-5wv7dgnIgG8@public.gmane.org>, Joerg Roedel <joro-zLv9SwRftAIdnm+yROfE0A@public.gmane.org>, Nicolas Chauvet <kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: devicetree-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 2018-07-26 at 17:12 +0200, Greg KH wrote:
-> On Mon, Jul 23, 2018 at 01:13:20PM -0400, Lyude Paul wrote:
-> > commit eb493fbc150f4a28151ae1ee84f24395989f3600 upstream
-> > 
-> > Currently nouveau doesn't actually expose the state debugfs file that's
-> > usually provided for any modesetting driver that supports atomic, even
-> > if nouveau is loaded with atomic=1. This is due to the fact that the
-> > standard debugfs files that DRM creates for atomic drivers is called
-> > when drm_get_pci_dev() is called from nouveau_drm.c. This happens well
-> > before we've initialized the display core, which is currently
-> > responsible for setting the DRIVER_ATOMIC cap.
-> > 
-> > So, move the atomic option into nouveau_drm.c and just add the
-> > DRIVER_ATOMIC cap whenever it's enabled on the kernel commandline. This
-> > shouldn't cause any actual issues, as the atomic ioctl will still fail
-> > as expected even if the display core doesn't disable it until later in
-> > the init sequence. This also provides the added benefit of being able to
-> > use the state debugfs file to check the current display state even if
-> > clients aren't allowed to modify it through anything other than the
-> > legacy ioctls.
-> > 
-> > Additionally, disable the DRIVER_ATOMIC cap in nv04's display core, as
-> > this was already disabled there previously.
-> > 
-> > Signed-off-by: Lyude Paul <lyude@redhat.com>
-> > Cc: stable@vger.kernel.org
-> > Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
-> > ---
-> >  drivers/gpu/drm/nouveau/dispnv04/disp.c | 3 +++
-> >  drivers/gpu/drm/nouveau/nouveau_drm.c   | 7 +++++++
-> >  drivers/gpu/drm/nouveau/nv50_display.c  | 6 ------
-> >  3 files changed, 10 insertions(+), 6 deletions(-)
-> 
-> Please give me a hint as to what kernel versions you want the patches to
-> be applied to, otherwise I just have to guess :)
-will note for the future, sorry about that!
-> 
-> thanks,
-> 
-> greg k-h
+Hello,
+
+There is a trouble on ARM with DMA allocations made by device drivers,
+the trouble is that DMA allocations are getting implicitly backed with
+IOMMU mapping by the driver core if IOMMU presents in a system and IOMMU
+could handle device. This is an undesired behaviour for drivers that
+manage IOMMU by themselves, like NVIDIA Tegra GPU driver. On arm32 the
+implicit backing happens if CONFIG_ARM_DMA_USE_IOMMU=y (multiplatform
+kernel configuration), on arm64 it happens if IOMMU domain type for a
+device is equal to IOMMU_DOMAIN_DMA.
+
+The proposed solution adds a new option to the base device driver
+structure that allows device drivers to explicitly convey to the drivers
+core that the implicit IOMMU backing for devices must not happen.
+
+Dmitry Osipenko (6):
+  driver core: Add option for disabling of backing devices DMA with
+    IOMMU
+  of/device: Don't back devices DMA with IOMMU if that's undesired by
+    driver
+  drm/tegra: Avoid implicit DMA backing with IOMMU
+  gpu: host1x: Avoid implicit DMA backing with IOMMU
+  drm/nouveau: tegra: Universally avoid implicit DMA backing with IOMMU
+  Revert "drm/nouveau: tegra: Detach from ARM DMA/IOMMU mapping"
+
+ drivers/gpu/drm/nouveau/nouveau_platform.c         |  1 +
+ drivers/gpu/drm/nouveau/nvkm/engine/device/tegra.c | 13 -------------
+ drivers/gpu/drm/tegra/dc.c                         |  1 +
+ drivers/gpu/drm/tegra/gr2d.c                       |  1 +
+ drivers/gpu/drm/tegra/gr3d.c                       |  1 +
+ drivers/gpu/drm/tegra/vic.c                        |  1 +
+ drivers/gpu/host1x/dev.c                           |  1 +
+ drivers/of/device.c                                |  7 +++++++
+ include/linux/device.h                             |  2 ++
+ 9 files changed, 15 insertions(+), 13 deletions(-)
+
+-- 
+2.18.0
