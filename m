@@ -1,103 +1,59 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98736] Resume after hibernate results in a black
- screen. Emergency keys does not work
-Date: Thu, 26 Jul 2018 11:05:47 +0000
-Message-ID: <bug-98736-8800-FWMG8X7qSg@http.bugs.freedesktop.org/>
-References: <bug-98736-8800@http.bugs.freedesktop.org/>
+From: Greg KH <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH] drm/nouveau: Set DRIVER_ATOMIC cap earlier to fix debugfs
+Date: Thu, 26 Jul 2018 17:12:02 +0200
+Message-ID: <20180726151202.GE27305@kroah.com>
+References: <153227752119282@kroah.com>
+ <20180723171322.9677-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0399986553=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98736-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20180723171322.9677-1-lyude@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Lyude Paul <lyude@redhat.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, bskeggs@redhat.com, stable@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0399986553==
-Content-Type: multipart/alternative; boundary="15326031470.B73c5fAbE.8349"
-Content-Transfer-Encoding: 7bit
-
-
---15326031470.B73c5fAbE.8349
-Date: Thu, 26 Jul 2018 11:05:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98736
-
---- Comment #4 from Ilya <dikiy_evrej-S0/GAf8tV78@public.gmane.org> ---
-All of new kernels dont work. The same problem.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15326031470.B73c5fAbE.8349
-Date: Thu, 26 Jul 2018 11:05:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Resume after hibernate results in a black screen. Emergen=
-cy keys does not work"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98736#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Resume after hibernate results in a black screen. Emergen=
-cy keys does not work"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98736">bug 98736<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dikiy_evrej&#64;web.de" title=3D"Ilya &lt;dikiy_evrej&#64;web.de&gt;"> <spa=
-n class=3D"fn">Ilya</span></a>
-</span></b>
-        <pre>All of new kernels dont work. The same problem.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15326031470.B73c5fAbE.8349--
-
---===============0399986553==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0399986553==--
+T24gTW9uLCBKdWwgMjMsIDIwMTggYXQgMDE6MTM6MjBQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
+ZToKPiBjb21taXQgZWI0OTNmYmMxNTBmNGEyODE1MWFlMWVlODRmMjQzOTU5ODlmMzYwMCB1cHN0
+cmVhbQo+IAo+IEN1cnJlbnRseSBub3V2ZWF1IGRvZXNuJ3QgYWN0dWFsbHkgZXhwb3NlIHRoZSBz
+dGF0ZSBkZWJ1Z2ZzIGZpbGUgdGhhdCdzCj4gdXN1YWxseSBwcm92aWRlZCBmb3IgYW55IG1vZGVz
+ZXR0aW5nIGRyaXZlciB0aGF0IHN1cHBvcnRzIGF0b21pYywgZXZlbgo+IGlmIG5vdXZlYXUgaXMg
+bG9hZGVkIHdpdGggYXRvbWljPTEuIFRoaXMgaXMgZHVlIHRvIHRoZSBmYWN0IHRoYXQgdGhlCj4g
+c3RhbmRhcmQgZGVidWdmcyBmaWxlcyB0aGF0IERSTSBjcmVhdGVzIGZvciBhdG9taWMgZHJpdmVy
+cyBpcyBjYWxsZWQKPiB3aGVuIGRybV9nZXRfcGNpX2RldigpIGlzIGNhbGxlZCBmcm9tIG5vdXZl
+YXVfZHJtLmMuIFRoaXMgaGFwcGVucyB3ZWxsCj4gYmVmb3JlIHdlJ3ZlIGluaXRpYWxpemVkIHRo
+ZSBkaXNwbGF5IGNvcmUsIHdoaWNoIGlzIGN1cnJlbnRseQo+IHJlc3BvbnNpYmxlIGZvciBzZXR0
+aW5nIHRoZSBEUklWRVJfQVRPTUlDIGNhcC4KPiAKPiBTbywgbW92ZSB0aGUgYXRvbWljIG9wdGlv
+biBpbnRvIG5vdXZlYXVfZHJtLmMgYW5kIGp1c3QgYWRkIHRoZQo+IERSSVZFUl9BVE9NSUMgY2Fw
+IHdoZW5ldmVyIGl0J3MgZW5hYmxlZCBvbiB0aGUga2VybmVsIGNvbW1hbmRsaW5lLiBUaGlzCj4g
+c2hvdWxkbid0IGNhdXNlIGFueSBhY3R1YWwgaXNzdWVzLCBhcyB0aGUgYXRvbWljIGlvY3RsIHdp
+bGwgc3RpbGwgZmFpbAo+IGFzIGV4cGVjdGVkIGV2ZW4gaWYgdGhlIGRpc3BsYXkgY29yZSBkb2Vz
+bid0IGRpc2FibGUgaXQgdW50aWwgbGF0ZXIgaW4KPiB0aGUgaW5pdCBzZXF1ZW5jZS4gVGhpcyBh
+bHNvIHByb3ZpZGVzIHRoZSBhZGRlZCBiZW5lZml0IG9mIGJlaW5nIGFibGUgdG8KPiB1c2UgdGhl
+IHN0YXRlIGRlYnVnZnMgZmlsZSB0byBjaGVjayB0aGUgY3VycmVudCBkaXNwbGF5IHN0YXRlIGV2
+ZW4gaWYKPiBjbGllbnRzIGFyZW4ndCBhbGxvd2VkIHRvIG1vZGlmeSBpdCB0aHJvdWdoIGFueXRo
+aW5nIG90aGVyIHRoYW4gdGhlCj4gbGVnYWN5IGlvY3Rscy4KPiAKPiBBZGRpdGlvbmFsbHksIGRp
+c2FibGUgdGhlIERSSVZFUl9BVE9NSUMgY2FwIGluIG52MDQncyBkaXNwbGF5IGNvcmUsIGFzCj4g
+dGhpcyB3YXMgYWxyZWFkeSBkaXNhYmxlZCB0aGVyZSBwcmV2aW91c2x5Lgo+IAo+IFNpZ25lZC1v
+ZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+Cj4gQ2M6IHN0YWJsZUB2Z2VyLmtl
+cm5lbC5vcmcKPiBTaWduZWQtb2ZmLWJ5OiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+
+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0L2Rpc3AuYyB8IDMgKysr
+Cj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgICB8IDcgKysrKysrKwo+
+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYyAgfCA2IC0tLS0tLQo+ICAz
+IGZpbGVzIGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCgpQbGVhc2Ug
+Z2l2ZSBtZSBhIGhpbnQgYXMgdG8gd2hhdCBrZXJuZWwgdmVyc2lvbnMgeW91IHdhbnQgdGhlIHBh
+dGNoZXMgdG8KYmUgYXBwbGllZCB0bywgb3RoZXJ3aXNlIEkganVzdCBoYXZlIHRvIGd1ZXNzIDop
+Cgp0aGFua3MsCgpncmVnIGstaApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9k
+cmktZGV2ZWwK
