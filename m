@@ -1,16 +1,13 @@
-From: Dmitry Osipenko <digetx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [RFC PATCH v1 0/6] Resolve unwanted DMA backing with
- IOMMU
-Date: Fri, 27 Jul 2018 23:02:01 +0300
-Message-ID: <4850389.K9ByBxYttl@dimapc>
-References: <20180726231624.21084-1-digetx@gmail.com>
- <CAL_JsqJCE+8hZ-xCajUaW4ScY8VmaZ3nN4U-_AKJL+063sLBpw@mail.gmail.com>
- <20180727183134.GD6738@8bytes.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 102349] nv4x crashing with plasmashell - gdb log
+ included
+Date: Fri, 27 Jul 2018 21:37:26 +0000
+Message-ID: <bug-102349-8800-tIgxK3umPd@http.bugs.freedesktop.org/>
+References: <bug-102349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1599152625=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180727183134.GD6738-zLv9SwRftAIdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <bug-102349-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +17,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Joerg Roedel <joro-zLv9SwRftAIdnm+yROfE0A@public.gmane.org>, Rob Herring <robh+dt-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Cc: devicetree-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, Will Deacon <will.deacon-5wv7dgnIgG8@public.gmane.org>, Russell King <linux-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Linux IOMMU <iommu-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, Catalin Marinas <catalin.marinas-5wv7dgnIgG8@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Frank Rowand <frowand.list-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpZGF5LCAyNyBKdWx5IDIwMTggMjE6MzE6MzQgTVNLIEpvZXJnIFJvZWRlbCB3cm90ZToK
-PiBPbiBGcmksIEp1bCAyNywgMjAxOCBhdCAxMToxMzozMUFNIC0wNjAwLCBSb2IgSGVycmluZyB3
-cm90ZToKPiA+IEkgZG9uJ3QgZm9sbG93IHdoeSB3ZSBuZWVkIGEgcHJvcGVydHkgcmF0aGVyIHRo
-YW4gYmVpbmcgaW1wbGllZCBieSB0aGUKPiA+IGRldmljZSdzICh0aGUgR1BVKSBjb21wYXRpYmxl
-IHN0cmluZy4KPiAKPiBUaGVyZSBtaWdodCBiZSBkZXZpY2VzIHdoZXJlIGVpdGhlciBzZXR1cCB3
-b3Jrcywgd2l0aCBvciB3aXRob3V0IElPTU1VCj4gdHJhbnNsYXRpb24sIGFuZCB0aGUgZmlybXdh
-cmUgY2FuIHNldCB0aGUgcHJvcGVydHkgZGVwZW5kaW5nIG9uIHdoZXRoZXIKPiB0aGUgdXNlciB3
-YW50cyBtb3JlIHBlcmZvcm1hbmNlIG9yIG1vcmUgc2VjdXJpdHkuCj4gCj4gSWYgd2UgaGF2ZSBh
-IHdoaXRlbGlzdCBpbiB0aGUga2VybmVsIHRoaXMgZ2V0cyBtb3JlIGNvbXBsaWNhdGVkLCB3ZQo+
-IHByb2JhYmx5IG5lZWQgYWRkaXRpb25hbCBrZXJuZWwtcGFyYW1ldGVycyB0byBvdmVyd3JpdGUg
-dGhvc2Ugd2hpdGVsaXN0Cj4gZW50cmllcy4gSGF2aW5nIGEgcHJvcGVydHkgaW4gdGhlIGRldmlj
-ZS10cmVlIHNlZW1zIHRvIGJlIGEgYmV0dGVyIHdheQo+IGhlcmUsIGltaG8uCgpJSVVDLCBkZXZp
-Y2UtdHJlZSBzaG91bGQgYmUgY29uc2lkZXJlZCB0byBiZSAid3JpdHRlbiBpbiBzdG9uZSIgZm9y
-IGEgY29uc3VtZXIgCmRldmljZSBhbmQgaGVuY2UgZmlybXdhcmUgcHJvcGVydHkgaXNuJ3Qgc29t
-ZXRoaW5nIHRoYXQgY291bGQgYmUgZWFzaWx5IApjaGFuZ2VkLiBUaGUga2VybmVsLXBhcmFtZXRl
-ciB3aWxsIGJlIG11Y2ggbW9yZSB1bml2ZXJzYWwuIEFueXdheSB0aGUgZ2xvYmFsIAp3aGl0ZWxp
-c3Rpbmcgc2hvdWxkIGJlIGEgZGlmZmVyZW50IHRvcGljIGZvciBkaXNjdXNzaW9uLCByaWdodCBu
-b3cgd2UgbmVlZCBhIApraW5kIG9mIHByaXZhdGUgd2hpdGVsaXN0aW5nIHRoYXQgaXMgaW50ZXJu
-YWwgdG8ga2VybmVsLgoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1599152625==
+Content-Type: multipart/alternative; boundary="15327274451.Eda5a.790"
+Content-Transfer-Encoding: 7bit
+
+
+--15327274451.Eda5a.790
+Date: Fri, 27 Jul 2018 21:37:25 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102349
+
+mirh <mirh-g/b1ySJe57IkP3XJZ0H8fw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |mirh-g/b1ySJe57IkP3XJZ0H8fw@public.gmane.org
+
+--- Comment #10 from mirh <mirh-g/b1ySJe57IkP3XJZ0H8fw@public.gmane.org> ---
+Ping (and I wonder if this couldn't be any related to Steam segfaults)
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15327274451.Eda5a.790
+Date: Fri, 27 Jul 2018 21:37:25 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:mirh&#64;=
+protonmail.ch" title=3D"mirh &lt;mirh&#64;protonmail.ch&gt;"> <span class=
+=3D"fn">mirh</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349">bug 10234=
+9</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>mirh&#64;protonmail.ch
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349#c10">Comme=
+nt # 10</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349">bug 10234=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+mirh&#64;protonmail.ch" title=3D"mirh &lt;mirh&#64;protonmail.ch&gt;"> <spa=
+n class=3D"fn">mirh</span></a>
+</span></b>
+        <pre>Ping (and I wonder if this couldn't be any related to Steam se=
+gfaults)</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15327274451.Eda5a.790--
+
+--===============1599152625==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1599152625==--
