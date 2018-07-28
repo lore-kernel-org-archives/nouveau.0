@@ -1,123 +1,41 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93557] Kernel Panic on Linux Kernel 4.4 when loading
- KDE/KDM on Nvidia GeForce 7025 / nForce 630a
-Date: Fri, 27 Jul 2018 22:02:53 +0000
-Message-ID: <bug-93557-8800-6q4jyYcYTD@http.bugs.freedesktop.org/>
-References: <bug-93557-8800@http.bugs.freedesktop.org/>
+From: Julia Lawall <julia.lawall@lip6.fr>
+Subject: [PATCH] drm/nouveau/debugfs: fix pm_runtime.cocci warnings (fwd)
+Date: Sat, 28 Jul 2018 08:19:38 +0200 (CEST)
+Message-ID: <alpine.DEB.2.20.1807280815360.2466@hadrien>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0391176113=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Karol Herbst <karolherbst@gmail.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, kbuild-all@01.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0391176113==
-Content-Type: multipart/alternative; boundary="15327289732.6a62AdFC.14003"
-Content-Transfer-Encoding: 7bit
-
-
---15327289732.6a62AdFC.14003
-Date: Fri, 27 Jul 2018 22:02:53 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93557
-
---- Comment #10 from mirh <mirh-g/b1ySJe57IkP3XJZ0H8fw@public.gmane.org> ---
-Created attachment 140859
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D140859&action=3Dedit
-One taken with steps on the ubuntu page, the other with those from kernel d=
-ocs
-
-My traces, from manjaro with kernel 4.14 and nvidia 304.137
-
-Mesa 18.1 isn't indeed causing kernel panics, but that MMIO fault error is
-everywhere
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15327289732.6a62AdFC.14003
-Date: Fri, 27 Jul 2018 22:02:53 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on =
-Nvidia GeForce 7025 / nForce 630a"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93557#c10">Commen=
-t # 10</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on =
-Nvidia GeForce 7025 / nForce 630a"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93557">bug 93557<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mirh&#64;protonmail.ch" title=3D"mirh &lt;mirh&#64;protonmail.ch&gt;"> <spa=
-n class=3D"fn">mirh</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D140859=
-" name=3D"attach_140859" title=3D"One taken with steps on the ubuntu page, =
-the other with those from kernel docs">attachment 140859</a> <a href=3D"att=
-achment.cgi?id=3D140859&amp;action=3Dedit" title=3D"One taken with steps on=
- the ubuntu page, the other with those from kernel docs">[details]</a></spa=
-n>
-One taken with steps on the ubuntu page, the other with those from kernel d=
-ocs
-
-My traces, from manjaro with kernel 4.14 and nvidia 304.137
-
-Mesa 18.1 isn't indeed causing kernel panics, but that MMIO fault error is
-everywhere</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15327289732.6a62AdFC.14003--
-
---===============0391176113==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0391176113==--
+RnJvbToga2J1aWxkIHRlc3Qgcm9ib3QgPGZlbmdndWFuZy53dUBpbnRlbC5jb20+CgpwbV9ydW50
+aW1lX2dldF9zeW5jIHJldHVybnMgPCAwIGFzIGVycm9yLiBVbmVjZXNzYXJ5IElTX0VSUl9WQUxV
+RSBhdCBsaW5lIDE2NAoKR2VuZXJhdGVkIGJ5OiBzY3JpcHRzL2NvY2NpbmVsbGUvYXBpL3BtX3J1
+bnRpbWUuY29jY2kKCkZpeGVzOiBlYWViOTAxMGJiNGIgKCJkcm0vbm91dmVhdS9kZWJ1Z2ZzOiBX
+YWtlIHVwIEdQVSBiZWZvcmUgZG9pbmcgYW55IHJlY2xvY2tpbmciKQpDQzogS2Fyb2wgSGVyYnN0
+IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+ClNpZ25lZC1vZmYtYnk6IGtidWlsZCB0ZXN0IHJvYm90
+IDxmZW5nZ3Vhbmcud3VAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBKdWxpYSBMYXdhbGwgPGp1
+bGlhLmxhd2FsbEBsaXA2LmZyPgotLS0KClBsZWFzZSB0YWtlIHRoZSBwYXRjaCBvbmx5IGlmIGl0
+J3MgYSBwb3NpdGl2ZSB3YXJuaW5nLiBUaGFua3MhCgogbm91dmVhdV9kZWJ1Z2ZzLmMgfCAgICAy
+ICstCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCi0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGVidWdmcy5jCisrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGVidWdmcy5jCkBAIC0xNjEsNyArMTYxLDcgQEAgbm91
+dmVhdV9kZWJ1Z2ZzX3BzdGF0ZV9zZXQoc3RydWN0IGZpbGUgKgogCX0KCiAJcmV0ID0gcG1fcnVu
+dGltZV9nZXRfc3luYyhkcm0tPmRldik7Ci0JaWYgKElTX0VSUl9WQUxVRShyZXQpICYmIHJldCAh
+PSAtRUFDQ0VTKQorCWlmIChyZXQgPCAwICYmIHJldCAhPSAtRUFDQ0VTKQogCQlyZXR1cm4gcmV0
+OwogCXJldCA9IG52aWZfbXRoZChjdHJsLCBOVklGX0NPTlRST0xfUFNUQVRFX1VTRVIsICZhcmdz
+LCBzaXplb2YoYXJncykpOwogCXBtX3J1bnRpbWVfcHV0X2F1dG9zdXNwZW5kKGRybS0+ZGV2KTsK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
