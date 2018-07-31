@@ -1,111 +1,46 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107431] Crash system
-Date: Mon, 30 Jul 2018 22:17:17 +0000
-Message-ID: <bug-107431-8800-9EMjNUVILB@http.bugs.freedesktop.org/>
-References: <bug-107431-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v3 0/8] Fix connector probing deadlocks from RPM bugs
+Date: Mon, 30 Jul 2018 20:39:45 -0400
+Message-ID: <20180731003954.19962-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2067380308=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107431-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: nouveau@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2067380308==
-Content-Type: multipart/alternative; boundary="15329890370.B13A73ABC.7303"
-Content-Transfer-Encoding: 7bit
-
-
---15329890370.B13A73ABC.7303
-Date: Mon, 30 Jul 2018 22:17:17 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107431
-
-John <17150066-Whzb9qvJsN4AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Priority|medium                      |highest
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15329890370.B13A73ABC.7303
-Date: Mon, 30 Jul 2018 22:17:17 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:17150066&=
-#64;opayq.com" title=3D"John &lt;17150066&#64;opayq.com&gt;"> <span class=
-=3D"fn">John</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Crash system"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107431">bug 10743=
-1</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Priority</td>
-           <td>medium
-           </td>
-           <td>highest
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15329890370.B13A73ABC.7303--
-
---===============2067380308==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2067380308==--
+VGhpcyBpcyB0aGUgbmV4dCB2ZXJzaW9uIG9mCmh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9w
+Lm9yZy9zZXJpZXMvNDY4MTUvCgpXaXRoIGEgbG90IG1vcmUgdGhvdWdodCBwdXQgaW50byBpdCBz
+byBhcyB0byBhdm9pZCB0aGUgcG90ZW50aWFsCmRlYWRsb2NrIHNjZW5hcmlvcyBJIG1pc3NlZC4g
+VGhpcyBhbHNvIHJlcXVpcmVkIGZpeGluZyBzb21lIGJvZ3VzIERSTQpoZWxwZXIgdXNhZ2UuCgpU
+cnkgYW5kIGRlYWRsb2NrIG1lIG5vdywgbm91dmVhdS4gSSBkYXJlIHlvdSEhIQoKTHl1ZGUgUGF1
+bCAoOCk6CiAgZHJtL25vdXZlYXU6IEZpeCBib2d1cyBkcm1fa21zX2hlbHBlcl9wb2xsX2VuYWJs
+ZSgpIHBsYWNlbWVudAogIGRybS9ub3V2ZWF1OiBFbmFibGUgcG9sbGluZyBldmVuIGlmIHdlIGhh
+dmUgcnVudGltZSBQTQogIGRybS9mYl9oZWxwZXI6IEludHJvZHVjZSBob3RwbHVnX3N1c3BlbmQv
+cmVzdW1lKCkKICBkcm0vbm91dmVhdTogRml4IGRlYWRsb2NrIHdpdGggZmJfaGVscGVyIHVzaW5n
+IG5ldyBoZWxwZXJzCiAgZHJtL25vdXZlYXU6IFVzZSBwbV9ydW50aW1lX2dldF9ub3Jlc3VtZSgp
+IGluIGNvbm5lY3Rvcl9kZXRlY3QoKQogIGRybS9ub3V2ZWF1OiBSZXNwb25kIHRvIEhQRHMgYnkg
+cHJvYmluZyBvbmUgY29ubiBhdCBhIHRpbWUKICBkcm0vbm91dmVhdTogRml4IGRlYWRsb2NrcyBp
+biBub3V2ZWF1X2Nvbm5lY3Rvcl9kZXRlY3QoKQogIGRybS9ub3V2ZWF1OiBDYWxsIHBtX3J1bnRp
+bWVfZ2V0X25vcmVzdW1lKCkgZnJvbSBocGQgaGFuZGxlcnMKCiBkcml2ZXJzL2dwdS9kcm0vZHJt
+X2ZiX2hlbHBlci5jICAgICAgICAgICAgIHwgNjUgKysrKysrKysrKysrKysrKysrKysrCiBkcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jIHwgNjAgKysrKysrKysrKysr
+KysrLS0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuaCB8ICAx
+ICsKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jICAgfCAgNyArKy0K
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgICAgICAgfCAxNiArKystLQog
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jICAgICB8ICAxICsKIGluY2x1
+ZGUvZHJtL2RybV9mYl9oZWxwZXIuaCAgICAgICAgICAgICAgICAgfCAyMCArKysrKysrCiA3IGZp
+bGVzIGNoYW5nZWQsIDE1NCBpbnNlcnRpb25zKCspLCAxNiBkZWxldGlvbnMoLSkKCi0tIAoyLjE3
+LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1k
+ZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
