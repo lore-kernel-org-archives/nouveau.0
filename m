@@ -1,43 +1,47 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH] drm/nouveau: Fix potential memory access error in nouveau_debugfs_pstate_get()
-Date: Mon, 30 Jul 2018 21:03:47 -0400
-Message-ID: <20180731010347.21921-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v2] drm/nouveau: Fix potential memory access error
+ in nouveau_debugfs_pstate_get()
+Date: Mon, 30 Jul 2018 21:05:23 -0400
+Message-ID: <20180731010523.22388-1-lyude@redhat.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-nouveau_debugfs(drm) will never be NULL, because we're taking the value
-of the potentially null device pointer and adding to it so it isn't 0x0.
-So, check if drm is NULL instead.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: Karol Herbst <karolherbst@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_debugfs.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-index 963a4dba8213..d83313c02913 100644
---- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-@@ -50,13 +50,14 @@ static int
- nouveau_debugfs_pstate_get(struct seq_file *m, void *data)
- {
- 	struct drm_device *drm = m->private;
--	struct nouveau_debugfs *debugfs = nouveau_debugfs(drm);
-+	struct nouveau_debugfs *debugfs;
- 	struct nvif_object *ctrl = &debugfs->ctrl;
- 	struct nvif_control_pstate_info_v0 info = {};
- 	int ret, i;
- 
--	if (!debugfs)
-+	if (!drm)
- 		return -ENODEV;
-+	debugfs = nouveau_debugfs(drm);
- 
- 	ret = nvif_mthd(ctrl, NVIF_CONTROL_PSTATE_INFO, &info, sizeof(info));
- 	if (ret)
--- 
-2.17.1
+bm91dmVhdV9kZWJ1Z2ZzKGRybSkgd2lsbCBuZXZlciBiZSBOVUxMLCBiZWNhdXNlIHdlJ3JlIHRh
+a2luZyB0aGUgdmFsdWUKb2YgdGhlIHBvdGVudGlhbGx5IG51bGwgZGV2aWNlIHBvaW50ZXIgYW5k
+IGFkZGluZyB0byBpdCBzbyBpdCBpc24ndCAweDAuClNvLCBjaGVjayBpZiBkcm0gaXMgTlVMTCBp
+bnN0ZWFkLgoKU2lnbmVkLW9mZi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KQ2M6
+IEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgotLS0KRm9yZ290IHRvIGhpdCA6
+dyBiZWZvcmUgY29tbWl0dGluZywgd2hvb3BzIQoKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
+dXZlYXVfZGVidWdmcy5jIHwgOCArKysrKy0tLQogMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9u
+cygrKSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9ub3V2ZWF1X2RlYnVnZnMuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGVi
+dWdmcy5jCmluZGV4IDk2M2E0ZGJhODIxMy4uOGU3NThjNGNiNGZkIDEwMDY0NAotLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RlYnVnZnMuYworKysgYi9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9ub3V2ZWF1X2RlYnVnZnMuYwpAQCAtNTAsMTMgKzUwLDE1IEBAIHN0YXRpYyBp
+bnQKIG5vdXZlYXVfZGVidWdmc19wc3RhdGVfZ2V0KHN0cnVjdCBzZXFfZmlsZSAqbSwgdm9pZCAq
+ZGF0YSkKIHsKIAlzdHJ1Y3QgZHJtX2RldmljZSAqZHJtID0gbS0+cHJpdmF0ZTsKLQlzdHJ1Y3Qg
+bm91dmVhdV9kZWJ1Z2ZzICpkZWJ1Z2ZzID0gbm91dmVhdV9kZWJ1Z2ZzKGRybSk7Ci0Jc3RydWN0
+IG52aWZfb2JqZWN0ICpjdHJsID0gJmRlYnVnZnMtPmN0cmw7CisJc3RydWN0IG5vdXZlYXVfZGVi
+dWdmcyAqZGVidWdmczsKKwlzdHJ1Y3QgbnZpZl9vYmplY3QgKmN0cmw7CiAJc3RydWN0IG52aWZf
+Y29udHJvbF9wc3RhdGVfaW5mb192MCBpbmZvID0ge307CiAJaW50IHJldCwgaTsKIAotCWlmICgh
+ZGVidWdmcykKKwlpZiAoIWRybSkKIAkJcmV0dXJuIC1FTk9ERVY7CisJZGVidWdmcyA9IG5vdXZl
+YXVfZGVidWdmcyhkcm0pOworCWN0cmwgPSAmZGVidWdmcy0+Y3RybDsKIAogCXJldCA9IG52aWZf
+bXRoZChjdHJsLCBOVklGX0NPTlRST0xfUFNUQVRFX0lORk8sICZpbmZvLCBzaXplb2YoaW5mbykp
+OwogCWlmIChyZXQpCi0tIAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
