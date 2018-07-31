@@ -1,54 +1,64 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v3 8/8] drm/nouveau: Call pm_runtime_get_noresume() from hpd handlers
-Date: Mon, 30 Jul 2018 20:39:53 -0400
-Message-ID: <20180731003954.19962-9-lyude@redhat.com>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v3 5/8] drm/nouveau: Use pm_runtime_get_noresume()
+ in connector_detect()
+Date: Mon, 30 Jul 2018 20:39:50 -0400
+Message-ID: <20180731003954.19962-6-lyude@redhat.com>
 References: <20180731003954.19962-1-lyude@redhat.com>
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20180731003954.19962-1-lyude@redhat.com>
-Sender: stable-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Lukas Wunner <lukas@wunner.de>, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20180731003954.19962-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-We can't and don't need to try resuming the device from our hotplug
-handlers, but hotplug events are generally something we'd like to keep
-the device awake for whenever possible. So, grab a PM ref safely in our
-hotplug handlers using pm_runtime_get_noresume() and mark the device as
-busy once we're finished.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: stable@vger.kernel.org
-Cc: Lukas Wunner <lukas@wunner.de>
-Cc: Karol Herbst <karolherbst@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_connector.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 8409c3f2c3a1..5a8e8c1ad647 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -1152,6 +1152,11 @@ nouveau_connector_hotplug(struct nvif_notify *notify)
- 	const char *name = connector->name;
- 	struct nouveau_encoder *nv_encoder;
- 
-+	/* Resuming the device here isn't possible; but the suspend PM ops
-+	 * will wait for us to finish our work before disabling us so this
-+	 * should be enough
-+	 */
-+	pm_runtime_get_noresume(drm->dev->dev);
- 	nv_connector->hpd_task = current;
- 
- 	if (rep->mask & NVIF_NOTIFY_CONN_V0_IRQ) {
-@@ -1171,6 +1176,9 @@ nouveau_connector_hotplug(struct nvif_notify *notify)
- 	}
- 
- 	nv_connector->hpd_task = NULL;
-+
-+	pm_runtime_mark_last_busy(drm->dev->dev);
-+	pm_runtime_put_autosuspend(drm->dev->dev);
- 	return NVIF_NOTIFY_KEEP;
- }
- 
--- 
-2.17.1
+SXQncyB0cnVlIHdlIGNhbid0IHJlc3VtZSB0aGUgZGV2aWNlIGZyb20gcG9sbCB3b3JrZXJzIGlu
+Cm5vdXZlYXVfY29ubmVjdG9yX2RldGVjdCgpLiBXZSBjYW4gaG93ZXZlciwgcHJldmVudCB0aGUg
+YXV0b3N1c3BlbmQKdGltZXIgZnJvbSBlbGFwc2luZyBpbW1lZGlhdGVseSBpZiBpdCBoYXNuJ3Qg
+YWxyZWFkeSB3aXRob3V0IHJpc2tpbmcgYW55CnNvcnQgb2YgZGVhZGxvY2sgd2l0aCB0aGUgcnVu
+dGltZSBzdXNwZW5kL3Jlc3VtZSBvcGVyYXRpb25zLiBTbyBkbyB0aGF0Cmluc3RlYWQgb2YgZW50
+aXJlbHkgYXZvaWRpbmcgZ3JhYmJpbmcgYSBwb3dlciByZWZlcmVuY2UuCgpTaWduZWQtb2ZmLWJ5
+OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgpDYzogc3RhYmxlQHZnZXIua2VybmVsLm9y
+ZwpDYzogTHVrYXMgV3VubmVyIDxsdWthc0B3dW5uZXIuZGU+CkNjOiBLYXJvbCBIZXJic3QgPGth
+cm9saGVyYnN0QGdtYWlsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2Nvbm5lY3Rvci5jIHwgMjAgKysrKysrKysrKystLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAx
+MSBpbnNlcnRpb25zKCspLCA5IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9ub3V2ZWF1X2Nvbm5lY3Rvci5jCmluZGV4IDJhNDViNGMyY2ViMC4uMDEwZDZkYjE0Y2JhIDEw
+MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jCisr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMKQEAgLTU3Miwx
+MiArNTcyLDE2IEBAIG5vdXZlYXVfY29ubmVjdG9yX2RldGVjdChzdHJ1Y3QgZHJtX2Nvbm5lY3Rv
+ciAqY29ubmVjdG9yLCBib29sIGZvcmNlKQogCQludl9jb25uZWN0b3ItPmVkaWQgPSBOVUxMOwog
+CX0KIAotCS8qIE91dHB1dHMgYXJlIG9ubHkgcG9sbGVkIHdoaWxlIHJ1bnRpbWUgYWN0aXZlLCBz
+byBhY3F1aXJpbmcgYQotCSAqIHJ1bnRpbWUgUE0gcmVmIGhlcmUgaXMgdW5uZWNlc3NhcnkgKGFu
+ZCB3b3VsZCBkZWFkbG9jayB1cG9uCi0JICogcnVudGltZSBzdXNwZW5kIGJlY2F1c2UgaXQgd2Fp
+dHMgZm9yIHBvbGxpbmcgdG8gZmluaXNoKS4KKwkvKiBPdXRwdXRzIGFyZSBvbmx5IHBvbGxlZCB3
+aGlsZSBydW50aW1lIGFjdGl2ZSwgc28gcmVzdW1pbmcgdGhlCisJICogZGV2aWNlIGhlcmUgaXMg
+dW5uZWNlc3NhcnkgKGFuZCB3b3VsZCBkZWFkbG9jayB1cG9uIHJ1bnRpbWUgc3VzcGVuZAorCSAq
+IGJlY2F1c2UgaXQgd2FpdHMgZm9yIHBvbGxpbmcgdG8gZmluaXNoKS4gV2UgZG8gaG93ZXZlciwg
+d2FudCB0bworCSAqIHByZXZlbnQgdGhlIGF1dG9zdXNwZW5kIHRpbWVyIGZyb20gZWxhcHNpbmcg
+ZHVyaW5nIHRoaXMgb3BlcmF0aW9uCisJICogaWYgcG9zc2libGUuCiAJICovCi0JaWYgKCFkcm1f
+a21zX2hlbHBlcl9pc19wb2xsX3dvcmtlcigpKSB7Ci0JCXJldCA9IHBtX3J1bnRpbWVfZ2V0X3N5
+bmMoY29ubmVjdG9yLT5kZXYtPmRldik7CisJaWYgKGRybV9rbXNfaGVscGVyX2lzX3BvbGxfd29y
+a2VyKCkpIHsKKwkJcG1fcnVudGltZV9nZXRfbm9yZXN1bWUoZGV2LT5kZXYpOworCX0gZWxzZSB7
+CisJCXJldCA9IHBtX3J1bnRpbWVfZ2V0X3N5bmMoZGV2LT5kZXYpOwogCQlpZiAocmV0IDwgMCAm
+JiByZXQgIT0gLUVBQ0NFUykKIAkJCXJldHVybiBjb25uX3N0YXR1czsKIAl9CkBAIC02NTUsMTAg
+KzY1OSw4IEBAIG5vdXZlYXVfY29ubmVjdG9yX2RldGVjdChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAq
+Y29ubmVjdG9yLCBib29sIGZvcmNlKQogCiAgb3V0OgogCi0JaWYgKCFkcm1fa21zX2hlbHBlcl9p
+c19wb2xsX3dvcmtlcigpKSB7Ci0JCXBtX3J1bnRpbWVfbWFya19sYXN0X2J1c3koY29ubmVjdG9y
+LT5kZXYtPmRldik7Ci0JCXBtX3J1bnRpbWVfcHV0X2F1dG9zdXNwZW5kKGNvbm5lY3Rvci0+ZGV2
+LT5kZXYpOwotCX0KKwlwbV9ydW50aW1lX21hcmtfbGFzdF9idXN5KGRldi0+ZGV2KTsKKwlwbV9y
+dW50aW1lX3B1dF9hdXRvc3VzcGVuZChkZXYtPmRldik7CiAKIAlyZXR1cm4gY29ubl9zdGF0dXM7
+CiB9Ci0tIAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
