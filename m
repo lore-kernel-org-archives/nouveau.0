@@ -1,64 +1,220 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v3 4/8] drm/nouveau: Fix deadlock with fb_helper
- using new helpers
-Date: Mon, 30 Jul 2018 20:39:49 -0400
-Message-ID: <20180731003954.19962-5-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v3 7/8] drm/nouveau: Fix deadlocks in nouveau_connector_detect()
+Date: Mon, 30 Jul 2018 20:39:52 -0400
+Message-ID: <20180731003954.19962-8-lyude@redhat.com>
 References: <20180731003954.19962-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180731003954.19962-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20180731003954.19962-1-lyude@redhat.com>
+Sender: stable-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: stable@vger.kernel.org, Lukas Wunner <lukas@wunner.de>, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyByZW1vdmVzIHRoZSBwb3RlbnRpYWwgb2YgZGVhZGxvY2tpbmcgd2l0aCBmYl9oZWxwZXIg
-ZW50aXJlbHkgYnkKcHJldmVudGluZyBpdCBmcm9tIGhhbmRsaW5nIGhvdHBsdWdzIGR1cmluZyB0
-aGUgcnVudGltZSBzdXNwZW5kIHByb2Nlc3MKYXMgZWFybHkgYXMgcG9zc2libGUgaW4gdGhlIHN1
-c3BlbmQgcHJvY2Vzcy4gSWYgaXQgdHVybnMgb3V0IHRoaXMgaXMgbm90CnBvc3NpYmxlLCBkdWUg
-dG8gc29tZSBmYl9oZWxwZXIgYWN0aW9uIGhhdmluZyBiZWVuIHF1ZXVlZCB1cCBiZWZvcmUgd2UK
-Z290IGEgdGltZSB0byBkaXNhYmxlIGhvdHBsdWdnaW5nLCB3ZSBzaW1wbHkgcmV0dXJuIC1FQlVT
-WSBzbyB0aGF0IHRoZQpydW50aW1lIFBNIGNvcmUgYXR0ZW1wdHMgYXV0b3N1c3BlbmRpbmcgdGhl
-IGRldmljZSBhZ2FpbiBvbmNlIGZiX2hlbHBlcgppc24ndCBkb2luZyBhbnl0aGluZy4KClRoaXMg
-Zml4ZXMgb25lIG9mIHRoZSBpc3N1ZXMgY2F1c2luZyBkZWFkbG9ja3Mgb24gcnVudGltZSBzdXNw
-ZW5kL3Jlc3VtZQp3aXRoIG5vdXZlYXUgb24gbXkgUDUwLgoKU2lnbmVkLW9mZi1ieTogTHl1ZGUg
-UGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KQ2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcKQ2M6IEx1
-a2FzIFd1bm5lciA8bHVrYXNAd3VubmVyLmRlPgpDYzogS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJz
-dEBnbWFpbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyAg
-IHwgOCArKysrKysrKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jIHwg
-MSArCiAyIGZpbGVzIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X2RybS5jCmluZGV4IGVlMjU0NmRiMDljOS4uZDQ3Y2I1YjJhZjk4IDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKQEAgLTgzNiw2ICs4MzYsMTQgQEAgbm91dmVh
-dV9wbW9wc19ydW50aW1lX3N1c3BlbmQoc3RydWN0IGRldmljZSAqZGV2KQogCQlyZXR1cm4gLUVC
-VVNZOwogCX0KIAorCS8qIFRoZXJlJ3Mgbm8gd2F5IGZvciB1cyB0byBzdG9wIGZiX2hlbHBlciB3
-b3JrIGluIHJlYWN0aW9uIHRvCisJICogaG90cGx1Z3MgbGF0ZXIgaW4gdGhlIFJQTSBwcm9jZXNz
-LiBGaXJzdCBvZmY6IHdlIGRvbid0IHdhbnQgdG8sCisJICogZmJfaGVscGVyIHNob3VsZCBiZSBh
-YmxlIHRvIGtlZXAgdGhlIEdQVSBhd2FrZS4gU2Vjb25kIG9mZjogaXQgaXMKKwkgKiBjYXBhYmxl
-IG9mIGdyYWJiaW5nIGJhc2ljYWxseSBhbnkgbG9jayBpbiBleGlzdGVuY2UuCisJICovCisJaWYg
-KCFkcm1fZmJfaGVscGVyX3N1c3BlbmRfaG90cGx1Zyhkcm1fZGV2LT5mYl9oZWxwZXIpKQorCQly
-ZXR1cm4gLUVCVVNZOworCiAJbm91dmVhdV9zd2l0Y2hlcm9vX29wdGltdXNfZHNtKCk7CiAJcmV0
-ID0gbm91dmVhdV9kb19zdXNwZW5kKGRybV9kZXYsIHRydWUpOwogCXBjaV9zYXZlX3N0YXRlKHBk
-ZXYpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5j
-IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jCmluZGV4IDg1YzFmMTBi
-YzJiNi4uOTYzYmE2MzBmZDA0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2ZiY29uLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNv
-bi5jCkBAIC00NjYsNiArNDY2LDcgQEAgbm91dmVhdV9mYmNvbl9zZXRfc3VzcGVuZF93b3JrKHN0
-cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKIAljb25zb2xlX3VubG9jaygpOwogCiAJaWYgKHN0YXRl
-ID09IEZCSU5GT19TVEFURV9SVU5OSU5HKSB7CisJCWRybV9mYl9oZWxwZXJfcmVzdW1lX2hvdHBs
-dWcoZHJtLT5kZXYtPmZiX2hlbHBlcik7CiAJCXBtX3J1bnRpbWVfbWFya19sYXN0X2J1c3koZHJt
-LT5kZXYtPmRldik7CiAJCXBtX3J1bnRpbWVfcHV0X3N5bmMoZHJtLT5kZXYtPmRldik7CiAJfQot
-LSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+When we disable hotplugging on the GPU, we need to be able to
+synchronize with each connector's hotplug interrupt handler before the
+interrupt is finally disabled. This can be a problem however, since
+nouveau_connector_detect() currently grabs a runtime power reference
+when handling connector probing. This will deadlock the runtime suspend
+handler like so:
+
+[  861.480896] INFO: task kworker/0:2:61 blocked for more than 120 seconds.
+[  861.483290]       Tainted: G           O      4.18.0-rc6Lyude-Test+ #1
+[  861.485158] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+[  861.486332] kworker/0:2     D    0    61      2 0x80000000
+[  861.487044] Workqueue: events nouveau_display_hpd_work [nouveau]
+[  861.487737] Call Trace:
+[  861.488394]  __schedule+0x322/0xaf0
+[  861.489070]  schedule+0x33/0x90
+[  861.489744]  rpm_resume+0x19c/0x850
+[  861.490392]  ? finish_wait+0x90/0x90
+[  861.491068]  __pm_runtime_resume+0x4e/0x90
+[  861.491753]  nouveau_display_hpd_work+0x22/0x60 [nouveau]
+[  861.492416]  process_one_work+0x231/0x620
+[  861.493068]  worker_thread+0x44/0x3a0
+[  861.493722]  kthread+0x12b/0x150
+[  861.494342]  ? wq_pool_ids_show+0x140/0x140
+[  861.494991]  ? kthread_create_worker_on_cpu+0x70/0x70
+[  861.495648]  ret_from_fork+0x3a/0x50
+[  861.496304] INFO: task kworker/6:2:320 blocked for more than 120 seconds.
+[  861.496968]       Tainted: G           O      4.18.0-rc6Lyude-Test+ #1
+[  861.497654] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+[  861.498341] kworker/6:2     D    0   320      2 0x80000080
+[  861.499045] Workqueue: pm pm_runtime_work
+[  861.499739] Call Trace:
+[  861.500428]  __schedule+0x322/0xaf0
+[  861.501134]  ? wait_for_completion+0x104/0x190
+[  861.501851]  schedule+0x33/0x90
+[  861.502564]  schedule_timeout+0x3a5/0x590
+[  861.503284]  ? mark_held_locks+0x58/0x80
+[  861.503988]  ? _raw_spin_unlock_irq+0x2c/0x40
+[  861.504710]  ? wait_for_completion+0x104/0x190
+[  861.505417]  ? trace_hardirqs_on_caller+0xf4/0x190
+[  861.506136]  ? wait_for_completion+0x104/0x190
+[  861.506845]  wait_for_completion+0x12c/0x190
+[  861.507555]  ? wake_up_q+0x80/0x80
+[  861.508268]  flush_work+0x1c9/0x280
+[  861.508990]  ? flush_workqueue_prep_pwqs+0x1b0/0x1b0
+[  861.509735]  nvif_notify_put+0xb1/0xc0 [nouveau]
+[  861.510482]  nouveau_display_fini+0xbd/0x170 [nouveau]
+[  861.511241]  nouveau_display_suspend+0x67/0x120 [nouveau]
+[  861.511969]  nouveau_do_suspend+0x5e/0x2d0 [nouveau]
+[  861.512715]  nouveau_pmops_runtime_suspend+0x47/0xb0 [nouveau]
+[  861.513435]  pci_pm_runtime_suspend+0x6b/0x180
+[  861.514165]  ? pci_has_legacy_pm_support+0x70/0x70
+[  861.514897]  __rpm_callback+0x7a/0x1d0
+[  861.515618]  ? pci_has_legacy_pm_support+0x70/0x70
+[  861.516313]  rpm_callback+0x24/0x80
+[  861.517027]  ? pci_has_legacy_pm_support+0x70/0x70
+[  861.517741]  rpm_suspend+0x142/0x6b0
+[  861.518449]  pm_runtime_work+0x97/0xc0
+[  861.519144]  process_one_work+0x231/0x620
+[  861.519831]  worker_thread+0x44/0x3a0
+[  861.520522]  kthread+0x12b/0x150
+[  861.521220]  ? wq_pool_ids_show+0x140/0x140
+[  861.521925]  ? kthread_create_worker_on_cpu+0x70/0x70
+[  861.522622]  ret_from_fork+0x3a/0x50
+[  861.523299] INFO: task kworker/6:0:1329 blocked for more than 120 seconds.
+[  861.523977]       Tainted: G           O      4.18.0-rc6Lyude-Test+ #1
+[  861.524644] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+[  861.525349] kworker/6:0     D    0  1329      2 0x80000000
+[  861.526073] Workqueue: events nvif_notify_work [nouveau]
+[  861.526751] Call Trace:
+[  861.527411]  __schedule+0x322/0xaf0
+[  861.528089]  schedule+0x33/0x90
+[  861.528758]  rpm_resume+0x19c/0x850
+[  861.529399]  ? finish_wait+0x90/0x90
+[  861.530073]  __pm_runtime_resume+0x4e/0x90
+[  861.530798]  nouveau_connector_detect+0x7e/0x510 [nouveau]
+[  861.531459]  ? ww_mutex_lock+0x47/0x80
+[  861.532097]  ? ww_mutex_lock+0x47/0x80
+[  861.532819]  ? drm_modeset_lock+0x88/0x130 [drm]
+[  861.533481]  drm_helper_probe_detect_ctx+0xa0/0x100 [drm_kms_helper]
+[  861.534127]  drm_helper_hpd_irq_event+0xa4/0x120 [drm_kms_helper]
+[  861.534940]  nouveau_connector_hotplug+0x98/0x120 [nouveau]
+[  861.535556]  nvif_notify_work+0x2d/0xb0 [nouveau]
+[  861.536221]  process_one_work+0x231/0x620
+[  861.536994]  worker_thread+0x44/0x3a0
+[  861.537757]  kthread+0x12b/0x150
+[  861.538463]  ? wq_pool_ids_show+0x140/0x140
+[  861.539102]  ? kthread_create_worker_on_cpu+0x70/0x70
+[  861.539815]  ret_from_fork+0x3a/0x50
+[  861.540521]
+               Showing all locks held in the system:
+[  861.541696] 2 locks held by kworker/0:2/61:
+[  861.542406]  #0: 000000002dbf8af5 ((wq_completion)"events"){+.+.}, at: process_one_work+0x1b3/0x620
+[  861.543071]  #1: 0000000076868126 ((work_completion)(&drm->hpd_work)){+.+.}, at: process_one_work+0x1b3/0x620
+[  861.543814] 1 lock held by khungtaskd/64:
+[  861.544535]  #0: 0000000059db4b53 (rcu_read_lock){....}, at: debug_show_all_locks+0x23/0x185
+[  861.545160] 3 locks held by kworker/6:2/320:
+[  861.545896]  #0: 00000000d9e1bc59 ((wq_completion)"pm"){+.+.}, at: process_one_work+0x1b3/0x620
+[  861.546702]  #1: 00000000c9f92d84 ((work_completion)(&dev->power.work)){+.+.}, at: process_one_work+0x1b3/0x620
+[  861.547443]  #2: 000000004afc5de1 (drm_connector_list_iter){.+.+}, at: nouveau_display_fini+0x96/0x170 [nouveau]
+[  861.548146] 1 lock held by dmesg/983:
+[  861.548889] 2 locks held by zsh/1250:
+[  861.549605]  #0: 00000000348e3cf6 (&tty->ldisc_sem){++++}, at: ldsem_down_read+0x37/0x40
+[  861.550393]  #1: 000000007009a7a8 (&ldata->atomic_read_lock){+.+.}, at: n_tty_read+0xc1/0x870
+[  861.551122] 6 locks held by kworker/6:0/1329:
+[  861.551957]  #0: 000000002dbf8af5 ((wq_completion)"events"){+.+.}, at: process_one_work+0x1b3/0x620
+[  861.552765]  #1: 00000000ddb499ad ((work_completion)(&notify->work)#2){+.+.}, at: process_one_work+0x1b3/0x620
+[  861.553582]  #2: 000000006e013cbe (&dev->mode_config.mutex){+.+.}, at: drm_helper_hpd_irq_event+0x6c/0x120 [drm_kms_helper]
+[  861.554357]  #3: 000000004afc5de1 (drm_connector_list_iter){.+.+}, at: drm_helper_hpd_irq_event+0x78/0x120 [drm_kms_helper]
+[  861.555227]  #4: 0000000044f294d9 (crtc_ww_class_acquire){+.+.}, at: drm_helper_probe_detect_ctx+0x3d/0x100 [drm_kms_helper]
+[  861.556133]  #5: 00000000db193642 (crtc_ww_class_mutex){+.+.}, at: drm_modeset_lock+0x4b/0x130 [drm]
+
+[  861.557864] =============================================
+
+[  861.559507] NMI backtrace for cpu 2
+[  861.560363] CPU: 2 PID: 64 Comm: khungtaskd Tainted: G           O      4.18.0-rc6Lyude-Test+ #1
+[  861.561197] Hardware name: LENOVO 20EQS64N0B/20EQS64N0B, BIOS N1EET78W (1.51 ) 05/18/2018
+[  861.561948] Call Trace:
+[  861.562757]  dump_stack+0x8e/0xd3
+[  861.563516]  nmi_cpu_backtrace.cold.3+0x14/0x5a
+[  861.564269]  ? lapic_can_unplug_cpu.cold.27+0x42/0x42
+[  861.565029]  nmi_trigger_cpumask_backtrace+0xa1/0xae
+[  861.565789]  arch_trigger_cpumask_backtrace+0x19/0x20
+[  861.566558]  watchdog+0x316/0x580
+[  861.567355]  kthread+0x12b/0x150
+[  861.568114]  ? reset_hung_task_detector+0x20/0x20
+[  861.568863]  ? kthread_create_worker_on_cpu+0x70/0x70
+[  861.569598]  ret_from_fork+0x3a/0x50
+[  861.570370] Sending NMI from CPU 2 to CPUs 0-1,3-7:
+[  861.571426] NMI backtrace for cpu 6 skipped: idling at intel_idle+0x7f/0x120
+[  861.571429] NMI backtrace for cpu 7 skipped: idling at intel_idle+0x7f/0x120
+[  861.571432] NMI backtrace for cpu 3 skipped: idling at intel_idle+0x7f/0x120
+[  861.571464] NMI backtrace for cpu 5 skipped: idling at intel_idle+0x7f/0x120
+[  861.571467] NMI backtrace for cpu 0 skipped: idling at intel_idle+0x7f/0x120
+[  861.571469] NMI backtrace for cpu 4 skipped: idling at intel_idle+0x7f/0x120
+[  861.571472] NMI backtrace for cpu 1 skipped: idling at intel_idle+0x7f/0x120
+[  861.572428] Kernel panic - not syncing: hung_task: blocked tasks
+
+So: fix this with a new trick; store the current task_struct that's
+executing in the nouveau_connector structure, then avoid attempting to
+runtime resume the device when we know that we're just running from the
+context of our hotplug interrupt handler. Since hpd interrupts are only
+enabled while the device is runtime active, this should be totally safe.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: stable@vger.kernel.org
+Cc: Lukas Wunner <lukas@wunner.de>
+Cc: Karol Herbst <karolherbst@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 16 ++++++++++------
+ drivers/gpu/drm/nouveau/nouveau_connector.h |  1 +
+ 2 files changed, 11 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 9714e09f17db..8409c3f2c3a1 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -572,13 +572,14 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
+ 		nv_connector->edid = NULL;
+ 	}
+ 
+-	/* Outputs are only polled while runtime active, so resuming the
+-	 * device here is unnecessary (and would deadlock upon runtime suspend
+-	 * because it waits for polling to finish). We do however, want to
+-	 * prevent the autosuspend timer from elapsing during this operation
+-	 * if possible.
++	/* Output polling and HPD only happens while we're runtime active, so
++	 * resuming the device here is unnecessary (and would deadlock upon
++	 * runtime suspend because it waits for polling to finish). We do
++	 * however, want to prevent the autosuspend timer from elapsing during
++	 * this operation if possible.
+ 	 */
+-	if (drm_kms_helper_is_poll_worker()) {
++	if (drm_kms_helper_is_poll_worker() ||
++	    nv_connector->hpd_task == current) {
+ 		pm_runtime_get_noresume(dev->dev);
+ 	} else {
+ 		ret = pm_runtime_get_sync(dev->dev);
+@@ -1151,6 +1152,8 @@ nouveau_connector_hotplug(struct nvif_notify *notify)
+ 	const char *name = connector->name;
+ 	struct nouveau_encoder *nv_encoder;
+ 
++	nv_connector->hpd_task = current;
++
+ 	if (rep->mask & NVIF_NOTIFY_CONN_V0_IRQ) {
+ 		NV_DEBUG(drm, "service %s\n", name);
+ 		if ((nv_encoder = find_encoder(connector, DCB_OUTPUT_DP)))
+@@ -1167,6 +1170,7 @@ nouveau_connector_hotplug(struct nvif_notify *notify)
+ 		nouveau_connector_hotplug_probe(nv_connector);
+ 	}
+ 
++	nv_connector->hpd_task = NULL;
+ 	return NVIF_NOTIFY_KEEP;
+ }
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.h b/drivers/gpu/drm/nouveau/nouveau_connector.h
+index 2d9d35a146a4..1964e682ba13 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.h
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.h
+@@ -45,6 +45,7 @@ struct nouveau_connector {
+ 	u8 *dcb;
+ 
+ 	struct nvif_notify hpd;
++	struct task_struct *hpd_task;
+ 
+ 	struct drm_dp_aux aux;
+ 
+-- 
+2.17.1
