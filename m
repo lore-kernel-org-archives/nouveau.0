@@ -1,47 +1,77 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v3 2/8] drm/nouveau: Enable polling even if we
- have runtime PM
-Date: Mon, 30 Jul 2018 20:39:47 -0400
-Message-ID: <20180731003954.19962-3-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v3 6/8] drm/nouveau: Respond to HPDs by probing one conn at a time
+Date: Mon, 30 Jul 2018 20:39:51 -0400
+Message-ID: <20180731003954.19962-7-lyude@redhat.com>
 References: <20180731003954.19962-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180731003954.19962-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Peter Ujfalusi <peter.ujfalusi-l0cyMroinI0@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20180731003954.19962-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: stable@vger.kernel.org, Lukas Wunner <lukas@wunner.de>, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-SGF2aW5nIHJ1bnRpbWUgUE0gbWFrZXMgbm8gZGlmZmVyZW5jZSBvbiB3aGV0aGVyIG9yIG5vdCB3
-ZSB3YW50IHBvbGxpbmcsCmFuZCBpdCdzIG5vdyBzYWZlIHRvIGp1c3QgZW5hYmxlIHBvbGxpbmcg
-dW5jb25kaXRpb25hbGx5IGluIGRybV9sb2FkKCkKdGhhbmtzIHRvIGQ2MWE1YzEwNjM1MSAoImRy
-bS9ub3V2ZWF1OiBGaXggZGVhZGxvY2sgb24gcnVudGltZSBzdXNwZW5kIikKClNpZ25lZC1vZmYt
-Ynk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkNjOiBMdWthcyBXdW5uZXIgPGx1a2Fz
-QHd1bm5lci5kZT4KQ2M6IFBldGVyIFVqZmFsdXNpIDxwZXRlci51amZhbHVzaUB0aS5jb20+CkNj
-OiBzdGFibGVAdmdlci5rZXJuZWwub3JnCi0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9kcm0uYyB8IDcgKysrKy0tLQogMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwg
-MyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
-ZWF1X2RybS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwppbmRleCA1
-ZmRjMWZiZTJlZTUuLmVlMjU0NmRiMDljOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9kcm0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
-X2RybS5jCkBAIC01OTIsMTAgKzU5MiwxMSBAQCBub3V2ZWF1X2RybV9sb2FkKHN0cnVjdCBkcm1f
-ZGV2aWNlICpkZXYsIHVuc2lnbmVkIGxvbmcgZmxhZ3MpCiAJCXBtX3J1bnRpbWVfYWxsb3coZGV2
-LT5kZXYpOwogCQlwbV9ydW50aW1lX21hcmtfbGFzdF9idXN5KGRldi0+ZGV2KTsKIAkJcG1fcnVu
-dGltZV9wdXQoZGV2LT5kZXYpOwotCX0gZWxzZSB7Ci0JCS8qIGVuYWJsZSBwb2xsaW5nIGZvciBl
-eHRlcm5hbCBkaXNwbGF5cyAqLwotCQlkcm1fa21zX2hlbHBlcl9wb2xsX2VuYWJsZShkZXYpOwog
-CX0KKworCS8qIGVuYWJsZSBwb2xsaW5nIGZvciBjb25uZWN0b3JzIHdpdGhvdXQgaHBkICovCisJ
-ZHJtX2ttc19oZWxwZXJfcG9sbF9lbmFibGUoZGV2KTsKKwogCXJldHVybiAwOwogCiBmYWlsX2Rp
-c3Bpbml0OgotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+There isn't actually any reason we need to call drm_hpd_irq_event() from
+our hotplug handler, as we already know which connector the hotplug
+event was fired for. We're also going to need to avoid probing all
+connectors needlessly from hotplug handlers anyway so that we can track
+when nouveau_connector_detect() is being called from the context of it's
+connector's hotplug handler in order to fix the next deadlocking issue.
+
+This is (slightly) faster anyway!
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: stable@vger.kernel.org
+Cc: Lukas Wunner <lukas@wunner.de>
+Cc: Karol Herbst <karolherbst@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 28 ++++++++++++++++++++-
+ 1 file changed, 27 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 010d6db14cba..9714e09f17db 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -1114,6 +1114,32 @@ nouveau_connector_funcs_lvds = {
+ 	.atomic_get_property = nouveau_conn_atomic_get_property,
+ };
+ 
++static void
++nouveau_connector_hotplug_probe(struct nouveau_connector *nv_conn)
++{
++	struct drm_modeset_acquire_ctx ctx;
++	struct drm_connector *conn = &nv_conn->base;
++	enum drm_connector_status old_status;
++	struct drm_device *dev = conn->dev;
++	bool changed;
++
++	mutex_lock(&dev->mode_config.mutex);
++
++	drm_modeset_acquire_init(&ctx, 0);
++	drm_modeset_lock(&dev->mode_config.connection_mutex, &ctx);
++
++	old_status = conn->status;
++	conn->status = drm_helper_probe_detect(conn, &ctx, true);
++	changed = old_status != conn->status;
++
++	drm_modeset_drop_locks(&ctx);
++	drm_modeset_acquire_fini(&ctx);
++	mutex_unlock(&dev->mode_config.mutex);
++
++	if (changed)
++		drm_kms_helper_hotplug_event(dev);
++}
++
+ static int
+ nouveau_connector_hotplug(struct nvif_notify *notify)
+ {
+@@ -1138,7 +1164,7 @@ nouveau_connector_hotplug(struct nvif_notify *notify)
+ 				nv50_mstm_remove(nv_encoder->dp.mstm);
+ 		}
+ 
+-		drm_helper_hpd_irq_event(connector->dev);
++		nouveau_connector_hotplug_probe(nv_connector);
+ 	}
+ 
+ 	return NVIF_NOTIFY_KEEP;
+-- 
+2.17.1
