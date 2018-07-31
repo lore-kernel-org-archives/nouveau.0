@@ -1,88 +1,54 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v3 1/8] drm/nouveau: Fix bogus drm_kms_helper_poll_enable() placement
-Date: Mon, 30 Jul 2018 20:39:46 -0400
-Message-ID: <20180731003954.19962-2-lyude@redhat.com>
+Subject: [PATCH v3 8/8] drm/nouveau: Call pm_runtime_get_noresume() from hpd handlers
+Date: Mon, 30 Jul 2018 20:39:53 -0400
+Message-ID: <20180731003954.19962-9-lyude@redhat.com>
 References: <20180731003954.19962-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Return-path: <stable-owner@vger.kernel.org>
 In-Reply-To: <20180731003954.19962-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
+Sender: stable-owner@vger.kernel.org
 To: nouveau@lists.freedesktop.org
-Cc: Lukas Wunner <lukas@wunner.de>, Peter Ujfalusi <peter.ujfalusi@ti.com>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: stable@vger.kernel.org, Lukas Wunner <lukas@wunner.de>, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Turns out this part is my fault for not noticing when reviewing
-9a2eba337cace ("drm/nouveau: Fix drm poll_helper handling"). Currently
-we call drm_kms_helper_poll_enable() from nouveau_display_hpd_work().
-This makes basically no sense however, because that means we're calling
-drm_kms_helper_poll_enable() every time we schedule the hotplug
-detection work. This is also against the advice mentioned in
-drm_kms_helper_poll_enable()'s documentation:
+We can't and don't need to try resuming the device from our hotplug
+handlers, but hotplug events are generally something we'd like to keep
+the device awake for whenever possible. So, grab a PM ref safely in our
+hotplug handlers using pm_runtime_get_noresume() and mark the device as
+busy once we're finished.
 
- Note that calls to enable and disable polling must be strictly ordered,
- which is automatically the case when they're only call from
- suspend/resume callbacks.
-
-Of course, hotplugs can't really be ordered. They could even happen
-immediately after we called drm_kms_helper_poll_disable() in
-nouveau_display_fini(), which can lead to all sorts of issues.
-
-Additionally; enabling polling /after/ we call
-drm_helper_hpd_irq_event() could also mean that we'd miss a hotplug
-event anyway, since drm_helper_hpd_irq_event() wouldn't bother trying to
-probe connectors so long as polling is disabled.
-
-So; simply move this back into nouveau_display_init() again. The race
-condition that both of these patches attempted to work around has
-already been fixed properly in
-
-  d61a5c106351 ("drm/nouveau: Fix deadlock on runtime suspend")
-
-Fixes: 9a2eba337cace ("drm/nouveau: Fix drm poll_helper handling")
 Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: Lukas Wunner <lukas@wunner.de>
-Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
 Cc: stable@vger.kernel.org
+Cc: Lukas Wunner <lukas@wunner.de>
+Cc: Karol Herbst <karolherbst@gmail.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_display.c | 7 +++++--
- drivers/gpu/drm/nouveau/nouveau_drm.c     | 1 -
- 2 files changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index ec7861457b84..1d36ab5d4796 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -355,8 +355,6 @@ nouveau_display_hpd_work(struct work_struct *work)
- 	pm_runtime_get_sync(drm->dev->dev);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 8409c3f2c3a1..5a8e8c1ad647 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -1152,6 +1152,11 @@ nouveau_connector_hotplug(struct nvif_notify *notify)
+ 	const char *name = connector->name;
+ 	struct nouveau_encoder *nv_encoder;
  
- 	drm_helper_hpd_irq_event(drm->dev);
--	/* enable polling for external displays */
--	drm_kms_helper_poll_enable(drm->dev);
- 
- 	pm_runtime_mark_last_busy(drm->dev->dev);
- 	pm_runtime_put_sync(drm->dev->dev);
-@@ -411,6 +409,11 @@ nouveau_display_init(struct drm_device *dev)
- 	if (ret)
- 		return ret;
- 
-+	/* enable connector detection and polling for connectors without HPD
-+	 * support
++	/* Resuming the device here isn't possible; but the suspend PM ops
++	 * will wait for us to finish our work before disabling us so this
++	 * should be enough
 +	 */
-+	drm_kms_helper_poll_enable(dev);
-+
- 	/* enable hotplug interrupts */
- 	drm_connector_list_iter_begin(dev, &conn_iter);
- 	nouveau_for_each_non_mst_connector_iter(connector, &conn_iter) {
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index c7ec86d6c3c9..5fdc1fbe2ee5 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -835,7 +835,6 @@ nouveau_pmops_runtime_suspend(struct device *dev)
- 		return -EBUSY;
++	pm_runtime_get_noresume(drm->dev->dev);
+ 	nv_connector->hpd_task = current;
+ 
+ 	if (rep->mask & NVIF_NOTIFY_CONN_V0_IRQ) {
+@@ -1171,6 +1176,9 @@ nouveau_connector_hotplug(struct nvif_notify *notify)
  	}
  
--	drm_kms_helper_poll_disable(drm_dev);
- 	nouveau_switcheroo_optimus_dsm();
- 	ret = nouveau_do_suspend(drm_dev, true);
- 	pci_save_state(pdev);
+ 	nv_connector->hpd_task = NULL;
++
++	pm_runtime_mark_last_busy(drm->dev->dev);
++	pm_runtime_put_autosuspend(drm->dev->dev);
+ 	return NVIF_NOTIFY_KEEP;
+ }
+ 
 -- 
 2.17.1
