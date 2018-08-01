@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107447] regression in thermal management of Quadro
- FX 1500
-Date: Wed, 01 Aug 2018 15:51:51 +0000
-Message-ID: <bug-107447-8800-Pc8TNunP4a@http.bugs.freedesktop.org/>
-References: <bug-107447-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v4 0/8] Fix connector probing deadlocks from RPM
+ bugs
+Date: Wed,  1 Aug 2018 17:14:50 -0400
+Message-ID: <20180801211459.7731-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1024173599=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107447-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,92 +17,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Gustavo Padovan <gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1024173599==
-Content-Type: multipart/alternative; boundary="15331387110.2Ce9.27437"
-Content-Transfer-Encoding: 7bit
-
-
---15331387110.2Ce9.27437
-Date: Wed, 1 Aug 2018 15:51:51 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107447
-
---- Comment #1 from Thomas Blume <Thomas.Blume-IBi9RG/b67k@public.gmane.org> ---
-Created attachment 140927
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D140927&action=3Dedit
-dmesg kernel 4.12
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15331387110.2Ce9.27437
-Date: Wed, 1 Aug 2018 15:51:51 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - regression in thermal management of Quadro FX 1500"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107447#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - regression in thermal management of Quadro FX 1500"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107447">bug 10744=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-Thomas.Blume&#64;suse.com" title=3D"Thomas Blume &lt;Thomas.Blume&#64;suse.=
-com&gt;"> <span class=3D"fn">Thomas Blume</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D140927=
-" name=3D"attach_140927" title=3D"dmesg kernel 4.12">attachment 140927</a> =
-<a href=3D"attachment.cgi?id=3D140927&amp;action=3Dedit" title=3D"dmesg ker=
-nel 4.12">[details]</a></span>
-dmesg kernel 4.12</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15331387110.2Ce9.27437--
-
---===============1024173599==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1024173599==--
+VGhpcyBpcyB0aGUgbGF0ZXN0IHZlcnNpb24gb2YKaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0
+b3Aub3JnL3Nlcmllcy80NjgxNS8KCldpdGggYSBidW5jaCBvZiBmaXhlcyB0byB0aGUgbmV3IGZi
+X2hlbHBlciB0byBwcmV2ZW50IGl0IGZyb20gYnJlYWtpbmcKbW9kdWxlIGxvYWRpbmcvdW5sb2Fk
+aW5nIHdpdGggbm91dmVhdS4gQWxzbzsgbG90cyBvZiBkb2N1bWVudGF0aW9uCmZpeGVzIGFuZCBv
+bmUgZml4IGluIHJlc3BvbnNlIHRvIGEga2J1aWxkIGJvdC4KCkx5dWRlIFBhdWwgKDgpOgogIGRy
+bS9ub3V2ZWF1OiBGaXggYm9ndXMgZHJtX2ttc19oZWxwZXJfcG9sbF9lbmFibGUoKSBwbGFjZW1l
+bnQKICBkcm0vbm91dmVhdTogRW5hYmxlIHBvbGxpbmcgZXZlbiBpZiB3ZSBoYXZlIHJ1bnRpbWUg
+UE0KICBkcm0vZmJfaGVscGVyOiBJbnRyb2R1Y2Ugc3VzcGVuZC9yZXN1bWVfaG90cGx1ZygpCiAg
+ZHJtL25vdXZlYXU6IEZpeCBkZWFkbG9jayB3aXRoIGZiX2hlbHBlciB1c2luZyBuZXcgaGVscGVy
+cwogIGRybS9ub3V2ZWF1OiBVc2UgcG1fcnVudGltZV9nZXRfbm9yZXN1bWUoKSBpbiBjb25uZWN0
+b3JfZGV0ZWN0KCkKICBkcm0vbm91dmVhdTogUmVzcG9uZCB0byBIUERzIGJ5IHByb2Jpbmcgb25l
+IGNvbm4gYXQgYSB0aW1lCiAgZHJtL25vdXZlYXU6IEZpeCBkZWFkbG9ja3MgaW4gbm91dmVhdV9j
+b25uZWN0b3JfZGV0ZWN0KCkKICBkcm0vbm91dmVhdTogQ2FsbCBwbV9ydW50aW1lX2dldF9ub3Jl
+c3VtZSgpIGZyb20gaHBkIGhhbmRsZXJzCgogZHJpdmVycy9ncHUvZHJtL2RybV9mYl9oZWxwZXIu
+YyAgICAgICAgICAgICB8IDEyMyArKysrKysrKysrKysrKysrKysrLQogZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYyB8ICA2MCArKysrKysrKy0tCiBkcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5oIHwgICAxICsKIGRyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jICAgfCAgIDcgKy0KIGRyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L25vdXZlYXVfZHJtLmMgICAgICAgfCAgMTYgKystCiBkcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9ub3V2ZWF1X2ZiY29uLmMgICAgIHwgICAxICsKIGluY2x1ZGUvZHJtL2RybV9mYl9oZWxw
+ZXIuaCAgICAgICAgICAgICAgICAgfCAgMjIgKysrKwogNyBmaWxlcyBjaGFuZ2VkLCAyMTMgaW5z
+ZXJ0aW9ucygrKSwgMTcgZGVsZXRpb25zKC0pCgotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
+ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
