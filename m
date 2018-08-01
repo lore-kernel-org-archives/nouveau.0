@@ -1,81 +1,45 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v4 1/8] drm/nouveau: Fix bogus
- drm_kms_helper_poll_enable() placement
-Date: Wed,  1 Aug 2018 17:14:51 -0400
-Message-ID: <20180801211459.7731-2-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v4 2/8] drm/nouveau: Enable polling even if we have runtime PM
+Date: Wed,  1 Aug 2018 17:14:52 -0400
+Message-ID: <20180801211459.7731-3-lyude@redhat.com>
 References: <20180801211459.7731-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180801211459.7731-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Peter Ujfalusi <peter.ujfalusi-l0cyMroinI0@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20180801211459.7731-1-lyude@redhat.com>
+Sender: stable-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: Lukas Wunner <lukas@wunner.de>, Peter Ujfalusi <peter.ujfalusi@ti.com>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-VHVybnMgb3V0IHRoaXMgcGFydCBpcyBteSBmYXVsdCBmb3Igbm90IG5vdGljaW5nIHdoZW4gcmV2
-aWV3aW5nCjlhMmViYTMzN2NhY2UgKCJkcm0vbm91dmVhdTogRml4IGRybSBwb2xsX2hlbHBlciBo
-YW5kbGluZyIpLiBDdXJyZW50bHkKd2UgY2FsbCBkcm1fa21zX2hlbHBlcl9wb2xsX2VuYWJsZSgp
-IGZyb20gbm91dmVhdV9kaXNwbGF5X2hwZF93b3JrKCkuClRoaXMgbWFrZXMgYmFzaWNhbGx5IG5v
-IHNlbnNlIGhvd2V2ZXIsIGJlY2F1c2UgdGhhdCBtZWFucyB3ZSdyZSBjYWxsaW5nCmRybV9rbXNf
-aGVscGVyX3BvbGxfZW5hYmxlKCkgZXZlcnkgdGltZSB3ZSBzY2hlZHVsZSB0aGUgaG90cGx1Zwpk
-ZXRlY3Rpb24gd29yay4gVGhpcyBpcyBhbHNvIGFnYWluc3QgdGhlIGFkdmljZSBtZW50aW9uZWQg
-aW4KZHJtX2ttc19oZWxwZXJfcG9sbF9lbmFibGUoKSdzIGRvY3VtZW50YXRpb246CgogTm90ZSB0
-aGF0IGNhbGxzIHRvIGVuYWJsZSBhbmQgZGlzYWJsZSBwb2xsaW5nIG11c3QgYmUgc3RyaWN0bHkg
-b3JkZXJlZCwKIHdoaWNoIGlzIGF1dG9tYXRpY2FsbHkgdGhlIGNhc2Ugd2hlbiB0aGV5J3JlIG9u
-bHkgY2FsbCBmcm9tCiBzdXNwZW5kL3Jlc3VtZSBjYWxsYmFja3MuCgpPZiBjb3Vyc2UsIGhvdHBs
-dWdzIGNhbid0IHJlYWxseSBiZSBvcmRlcmVkLiBUaGV5IGNvdWxkIGV2ZW4gaGFwcGVuCmltbWVk
-aWF0ZWx5IGFmdGVyIHdlIGNhbGxlZCBkcm1fa21zX2hlbHBlcl9wb2xsX2Rpc2FibGUoKSBpbgpu
-b3V2ZWF1X2Rpc3BsYXlfZmluaSgpLCB3aGljaCBjYW4gbGVhZCB0byBhbGwgc29ydHMgb2YgaXNz
-dWVzLgoKQWRkaXRpb25hbGx5OyBlbmFibGluZyBwb2xsaW5nIC9hZnRlci8gd2UgY2FsbApkcm1f
-aGVscGVyX2hwZF9pcnFfZXZlbnQoKSBjb3VsZCBhbHNvIG1lYW4gdGhhdCB3ZSdkIG1pc3MgYSBo
-b3RwbHVnCmV2ZW50IGFueXdheSwgc2luY2UgZHJtX2hlbHBlcl9ocGRfaXJxX2V2ZW50KCkgd291
-bGRuJ3QgYm90aGVyIHRyeWluZyB0bwpwcm9iZSBjb25uZWN0b3JzIHNvIGxvbmcgYXMgcG9sbGlu
-ZyBpcyBkaXNhYmxlZC4KClNvOyBzaW1wbHkgbW92ZSB0aGlzIGJhY2sgaW50byBub3V2ZWF1X2Rp
-c3BsYXlfaW5pdCgpIGFnYWluLiBUaGUgcmFjZQpjb25kaXRpb24gdGhhdCBib3RoIG9mIHRoZXNl
-IHBhdGNoZXMgYXR0ZW1wdGVkIHRvIHdvcmsgYXJvdW5kIGhhcwphbHJlYWR5IGJlZW4gZml4ZWQg
-cHJvcGVybHkgaW4KCiAgZDYxYTVjMTA2MzUxICgiZHJtL25vdXZlYXU6IEZpeCBkZWFkbG9jayBv
-biBydW50aW1lIHN1c3BlbmQiKQoKRml4ZXM6IDlhMmViYTMzN2NhY2UgKCJkcm0vbm91dmVhdTog
-Rml4IGRybSBwb2xsX2hlbHBlciBoYW5kbGluZyIpClNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwg
-PGx5dWRlQHJlZGhhdC5jb20+CkNjOiBMdWthcyBXdW5uZXIgPGx1a2FzQHd1bm5lci5kZT4KQ2M6
-IFBldGVyIFVqZmFsdXNpIDxwZXRlci51amZhbHVzaUB0aS5jb20+CkNjOiBzdGFibGVAdmdlci5r
-ZXJuZWwub3JnCi0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMg
-fCA3ICsrKysrLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgICAgIHwg
-MSAtCiAyIGZpbGVzIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKCmRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCmluZGV4IGVjNzg2MTQ1N2I4
-NC4uMWQzNmFiNWQ0Nzk2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
-ZWF1X2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3Bs
-YXkuYwpAQCAtMzU1LDggKzM1NSw2IEBAIG5vdXZlYXVfZGlzcGxheV9ocGRfd29yayhzdHJ1Y3Qg
-d29ya19zdHJ1Y3QgKndvcmspCiAJcG1fcnVudGltZV9nZXRfc3luYyhkcm0tPmRldi0+ZGV2KTsK
-IAogCWRybV9oZWxwZXJfaHBkX2lycV9ldmVudChkcm0tPmRldik7Ci0JLyogZW5hYmxlIHBvbGxp
-bmcgZm9yIGV4dGVybmFsIGRpc3BsYXlzICovCi0JZHJtX2ttc19oZWxwZXJfcG9sbF9lbmFibGUo
-ZHJtLT5kZXYpOwogCiAJcG1fcnVudGltZV9tYXJrX2xhc3RfYnVzeShkcm0tPmRldi0+ZGV2KTsK
-IAlwbV9ydW50aW1lX3B1dF9zeW5jKGRybS0+ZGV2LT5kZXYpOwpAQCAtNDExLDYgKzQwOSwxMSBA
-QCBub3V2ZWF1X2Rpc3BsYXlfaW5pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQogCWlmIChyZXQp
-CiAJCXJldHVybiByZXQ7CiAKKwkvKiBlbmFibGUgY29ubmVjdG9yIGRldGVjdGlvbiBhbmQgcG9s
-bGluZyBmb3IgY29ubmVjdG9ycyB3aXRob3V0IEhQRAorCSAqIHN1cHBvcnQKKwkgKi8KKwlkcm1f
-a21zX2hlbHBlcl9wb2xsX2VuYWJsZShkZXYpOworCiAJLyogZW5hYmxlIGhvdHBsdWcgaW50ZXJy
-dXB0cyAqLwogCWRybV9jb25uZWN0b3JfbGlzdF9pdGVyX2JlZ2luKGRldiwgJmNvbm5faXRlcik7
-CiAJbm91dmVhdV9mb3JfZWFjaF9ub25fbXN0X2Nvbm5lY3Rvcl9pdGVyKGNvbm5lY3RvciwgJmNv
-bm5faXRlcikgewpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9k
-cm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKaW5kZXggYzdlYzg2
-ZDZjM2M5Li41ZmRjMWZiZTJlZTUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L25vdXZlYXVfZHJtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0u
-YwpAQCAtODM1LDcgKzgzNSw2IEBAIG5vdXZlYXVfcG1vcHNfcnVudGltZV9zdXNwZW5kKHN0cnVj
-dCBkZXZpY2UgKmRldikKIAkJcmV0dXJuIC1FQlVTWTsKIAl9CiAKLQlkcm1fa21zX2hlbHBlcl9w
-b2xsX2Rpc2FibGUoZHJtX2Rldik7CiAJbm91dmVhdV9zd2l0Y2hlcm9vX29wdGltdXNfZHNtKCk7
-CiAJcmV0ID0gbm91dmVhdV9kb19zdXNwZW5kKGRybV9kZXYsIHRydWUpOwogCXBjaV9zYXZlX3N0
-YXRlKHBkZXYpOwotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+Having runtime PM makes no difference on whether or not we want polling,
+and it's now safe to just enable polling unconditionally in drm_load()
+thanks to d61a5c106351 ("drm/nouveau: Fix deadlock on runtime suspend")
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: Lukas Wunner <lukas@wunner.de>
+Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc: stable@vger.kernel.org
+---
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 5fdc1fbe2ee5..ee2546db09c9 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -592,10 +592,11 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
+ 		pm_runtime_allow(dev->dev);
+ 		pm_runtime_mark_last_busy(dev->dev);
+ 		pm_runtime_put(dev->dev);
+-	} else {
+-		/* enable polling for external displays */
+-		drm_kms_helper_poll_enable(dev);
+ 	}
++
++	/* enable polling for connectors without hpd */
++	drm_kms_helper_poll_enable(dev);
++
+ 	return 0;
+ 
+ fail_dispinit:
+-- 
+2.17.1
