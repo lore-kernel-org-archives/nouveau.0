@@ -1,81 +1,48 @@
-From: Lukas Wunner <lukas@wunner.de>
-Subject: Re: [PATCH v4 8/8] drm/nouveau: Call pm_runtime_get_noresume() from
- hpd handlers
-Date: Thu, 2 Aug 2018 21:40:41 +0200
-Message-ID: <20180802194041.GC6180@wunner.de>
-References: <20180801211459.7731-1-lyude@redhat.com>
- <20180801211459.7731-9-lyude@redhat.com>
+From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+Subject: Re: [PATCH] drm/nouveau/secboot/acr: fix memory leak
+Date: Thu, 2 Aug 2018 14:51:32 -0500
+Message-ID: <d9e87a82-f70f-3eca-5f63-2450863e7099@embeddedor.com>
+References: <20180724132719.GA32237@embeddedor.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20180801211459.7731-9-lyude@redhat.com>
+In-Reply-To: <20180724132719.GA32237@embeddedor.com>
+Content-Language: en-US
 Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: nouveau@lists.freedesktop.org, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+To: Kees Cook <keescook@chromium.org>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Aug 01, 2018 at 05:14:58PM -0400, Lyude Paul wrote:
-> We can't and don't need to try resuming the device from our hotplug
-> handlers, but hotplug events are generally something we'd like to keep
-> the device awake for whenever possible. So, grab a PM ref safely in our
-> hotplug handlers using pm_runtime_get_noresume() and mark the device as
-> busy once we're finished.
+Hi all,
 
-Patch looks fine in principle, but doesn't seem to be sufficient to fix
-the following race:
+Friendly ping! Who can take this?
 
-1. runtime_suspend commences
-2. user plugs in a display before the runtime_suspend worker disables
-   hotplug interrupts in nouveau_display_fini()
-3. hotplug is handled, display is lit up
-4. runtime_suspend worker waits for hotplug handler to finish
-5. GPU is runtime suspended and the newly plugged in display goes black
+Thanks
+--
+Gustavo
 
-The call to pm_runtime_mark_last_busy() has no effect in this situation
-because rpm_suspend() doesn't look at the last_busy variable after the
-call to rpm_callback().  What's necessary here is that runtime_suspend is
-aborted and -EBUSY returned.
-
-Thanks,
-
-Lukas
-
+On 07/24/2018 08:27 AM, Gustavo A. R. Silva wrote:
+> In case memory resources for *bl_desc* were allocated, release
+> them before return.
 > 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Cc: stable@vger.kernel.org
-> Cc: Lukas Wunner <lukas@wunner.de>
-> Cc: Karol Herbst <karolherbst@gmail.com>
+> Addresses-Coverity-ID: 1472021 ("Resource leak")
+> Fixes: 0d466901552a ("drm/nouveau/secboot/acr: Remove VLA usage")
+> Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
 > ---
->  drivers/gpu/drm/nouveau/nouveau_connector.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  drivers/gpu/drm/nouveau/nvkm/subdev/secboot/acr_r352.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> index 8409c3f2c3a1..5a8e8c1ad647 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> @@ -1152,6 +1152,11 @@ nouveau_connector_hotplug(struct nvif_notify *notify)
->  	const char *name = connector->name;
->  	struct nouveau_encoder *nv_encoder;
->  
-> +	/* Resuming the device here isn't possible; but the suspend PM ops
-> +	 * will wait for us to finish our work before disabling us so this
-> +	 * should be enough
-> +	 */
-> +	pm_runtime_get_noresume(drm->dev->dev);
->  	nv_connector->hpd_task = current;
->  
->  	if (rep->mask & NVIF_NOTIFY_CONN_V0_IRQ) {
-> @@ -1171,6 +1176,9 @@ nouveau_connector_hotplug(struct nvif_notify *notify)
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/acr_r352.c b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/acr_r352.c
+> index d02e183..5c14d6a 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/acr_r352.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/acr_r352.c
+> @@ -801,6 +801,7 @@ acr_r352_load(struct nvkm_acr *_acr, struct nvkm_falcon *falcon,
+>  		bl = acr->hsbl_unload_blob;
+>  	} else {
+>  		nvkm_error(_acr->subdev, "invalid secure boot blob!\n");
+> +		kfree(bl_desc);
+>  		return -EINVAL;
 >  	}
 >  
->  	nv_connector->hpd_task = NULL;
-> +
-> +	pm_runtime_mark_last_busy(drm->dev->dev);
-> +	pm_runtime_put_autosuspend(drm->dev->dev);
->  	return NVIF_NOTIFY_KEEP;
->  }
->  
-> -- 
-> 2.17.1
 > 
