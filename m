@@ -1,64 +1,35 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v4 4/8] drm/nouveau: Fix deadlock with fb_helper
- using new helpers
-Date: Wed,  1 Aug 2018 17:14:54 -0400
-Message-ID: <20180801211459.7731-5-lyude@redhat.com>
-References: <20180801211459.7731-1-lyude@redhat.com>
+From: Sergey Senozhatsky <sergey.senozhatsky.work@gmail.com>
+Subject: [linux-next] DDC responded, but no EDID for %s errors
+Date: Thu, 2 Aug 2018 11:46:48 +0900
+Message-ID: <20180802024648.GA499@jagdpanzerIV>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180801211459.7731-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyByZW1vdmVzIHRoZSBwb3RlbnRpYWwgb2YgZGVhZGxvY2tpbmcgd2l0aCBmYl9oZWxwZXIg
-ZW50aXJlbHkgYnkKcHJldmVudGluZyBpdCBmcm9tIGhhbmRsaW5nIGhvdHBsdWdzIGR1cmluZyB0
-aGUgcnVudGltZSBzdXNwZW5kIHByb2Nlc3MKYXMgZWFybHkgYXMgcG9zc2libGUgaW4gdGhlIHN1
-c3BlbmQgcHJvY2Vzcy4gSWYgaXQgdHVybnMgb3V0IHRoaXMgaXMgbm90CnBvc3NpYmxlLCBkdWUg
-dG8gc29tZSBmYl9oZWxwZXIgYWN0aW9uIGhhdmluZyBiZWVuIHF1ZXVlZCB1cCBiZWZvcmUgd2UK
-Z290IGEgdGltZSB0byBkaXNhYmxlIGhvdHBsdWdnaW5nLCB3ZSBzaW1wbHkgcmV0dXJuIC1FQlVT
-WSBzbyB0aGF0IHRoZQpydW50aW1lIFBNIGNvcmUgYXR0ZW1wdHMgYXV0b3N1c3BlbmRpbmcgdGhl
-IGRldmljZSBhZ2FpbiBvbmNlIGZiX2hlbHBlcgppc24ndCBkb2luZyBhbnl0aGluZy4KClRoaXMg
-Zml4ZXMgb25lIG9mIHRoZSBpc3N1ZXMgY2F1c2luZyBkZWFkbG9ja3Mgb24gcnVudGltZSBzdXNw
-ZW5kL3Jlc3VtZQp3aXRoIG5vdXZlYXUgb24gbXkgUDUwLgoKU2lnbmVkLW9mZi1ieTogTHl1ZGUg
-UGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KQ2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcKQ2M6IEx1
-a2FzIFd1bm5lciA8bHVrYXNAd3VubmVyLmRlPgpDYzogS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJz
-dEBnbWFpbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyAg
-IHwgOCArKysrKysrKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jIHwg
-MSArCiAyIGZpbGVzIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X2RybS5jCmluZGV4IGVlMjU0NmRiMDljOS4uZDQ3Y2I1YjJhZjk4IDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKQEAgLTgzNiw2ICs4MzYsMTQgQEAgbm91dmVh
-dV9wbW9wc19ydW50aW1lX3N1c3BlbmQoc3RydWN0IGRldmljZSAqZGV2KQogCQlyZXR1cm4gLUVC
-VVNZOwogCX0KIAorCS8qIFRoZXJlJ3Mgbm8gd2F5IGZvciB1cyB0byBzdG9wIGZiX2hlbHBlciB3
-b3JrIGluIHJlYWN0aW9uIHRvCisJICogaG90cGx1Z3MgbGF0ZXIgaW4gdGhlIFJQTSBwcm9jZXNz
-LiBGaXJzdCBvZmY6IHdlIGRvbid0IHdhbnQgdG8sCisJICogZmJfaGVscGVyIHNob3VsZCBiZSBh
-YmxlIHRvIGtlZXAgdGhlIEdQVSBhd2FrZS4gU2Vjb25kIG9mZjogaXQgaXMKKwkgKiBjYXBhYmxl
-IG9mIGdyYWJiaW5nIGJhc2ljYWxseSBhbnkgbG9jayBpbiBleGlzdGVuY2UuCisJICovCisJaWYg
-KCFkcm1fZmJfaGVscGVyX3N1c3BlbmRfaG90cGx1Zyhkcm1fZGV2LT5mYl9oZWxwZXIpKQorCQly
-ZXR1cm4gLUVCVVNZOworCiAJbm91dmVhdV9zd2l0Y2hlcm9vX29wdGltdXNfZHNtKCk7CiAJcmV0
-ID0gbm91dmVhdV9kb19zdXNwZW5kKGRybV9kZXYsIHRydWUpOwogCXBjaV9zYXZlX3N0YXRlKHBk
-ZXYpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5j
-IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jCmluZGV4IDg1YzFmMTBi
-YzJiNi4uOTYzYmE2MzBmZDA0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2ZiY29uLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNv
-bi5jCkBAIC00NjYsNiArNDY2LDcgQEAgbm91dmVhdV9mYmNvbl9zZXRfc3VzcGVuZF93b3JrKHN0
-cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKIAljb25zb2xlX3VubG9jaygpOwogCiAJaWYgKHN0YXRl
-ID09IEZCSU5GT19TVEFURV9SVU5OSU5HKSB7CisJCWRybV9mYl9oZWxwZXJfcmVzdW1lX2hvdHBs
-dWcoZHJtLT5kZXYtPmZiX2hlbHBlcik7CiAJCXBtX3J1bnRpbWVfbWFya19sYXN0X2J1c3koZHJt
-LT5kZXYtPmRldik7CiAJCXBtX3J1bnRpbWVfcHV0X3N5bmMoZHJtLT5kZXYtPmRldik7CiAJfQot
-LSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+Hi,
+
+My dmesg is filled up with these errors
+
+ nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for HDMI-A-1
+ nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+ nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for HDMI-A-1
+ nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+ nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+[..]
+ nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+ nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+ nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+ nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+ nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+ nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+[..]
+
+Basically, a message every 10s or so. Any chance we can make them
+go away?
+
+	-ss
