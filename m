@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107447] regression in thermal management of Quadro
- FX 1500
-Date: Fri, 03 Aug 2018 10:18:11 +0000
-Message-ID: <bug-107447-8800-EiazZ9dUjB@http.bugs.freedesktop.org/>
-References: <bug-107447-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v3 1/6] kms/nv50: move nv50_mstm out of the dp
+ union in nouveau_encoder
+Date: Fri,  3 Aug 2018 14:19:34 +0200
+Message-ID: <20180803121939.582-2-kherbst@redhat.com>
+References: <20180803121939.582-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1805920440=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107447-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20180803121939.582-1-kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,96 +21,81 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1805920440==
-Content-Type: multipart/alternative; boundary="15332914911.51d53AA7.25903"
-Content-Transfer-Encoding: 7bit
-
-
---15332914911.51d53AA7.25903
-Date: Fri, 3 Aug 2018 10:18:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107447
-
---- Comment #2 from Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org> ---
-We confirmed that the commit below brought the regression:
-commit 800efb4c2857ec543fdc33585bbcb1fd5ef28337
-    drm/nouveau/drm/therm/fan: add a fallback if no fan control is specifie=
-d in
-the vbios
-
-Reverting the commit fixes the problem on Thomas' machine.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15332914911.51d53AA7.25903
-Date: Fri, 3 Aug 2018 10:18:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - regression in thermal management of Quadro FX 1500"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107447#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - regression in thermal management of Quadro FX 1500"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107447">bug 10744=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tiwai&#64;suse.de" title=3D"Takashi Iwai &lt;tiwai&#64;suse.de&gt;"> <span =
-class=3D"fn">Takashi Iwai</span></a>
-</span></b>
-        <pre>We confirmed that the commit below brought the regression:
-commit 800efb4c2857ec543fdc33585bbcb1fd5ef28337
-    drm/nouveau/drm/therm/fan: add a fallback if no fan control is specifie=
-d in
-the vbios
-
-Reverting the commit fixes the problem on Thomas' machine.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15332914911.51d53AA7.25903--
-
---===============1805920440==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1805920440==--
+VGhpcyBmaWVsZCBpc24ndCBvbmx5IHVzZWQgZm9yIERQIG9uZXMsIGJ1dCBmb3IgYWxsLiBQcmV2
+ZW50cyBtZW1vcnkKY29ycnVwdGlvbiB3aGVuIGFkZGluZyBtb3JlIHN0cnVjdHMgdG8gdGhlIHVu
+aW9uLgoKU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+Ci0t
+LQogZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jICAgICB8IDEyICsrKysrKy0tLS0tLQogZHJt
+L25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYyB8ICA0ICsrLS0KIGRybS9ub3V2ZWF1L25vdXZl
+YXVfZHAuYyAgICAgICAgfCAgMiArLQogZHJtL25vdXZlYXUvbm91dmVhdV9lbmNvZGVyLmggICB8
+ICAyICstCiA0IGZpbGVzIGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKyksIDEwIGRlbGV0aW9ucygt
+KQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyBiL2RybS9ub3V2ZWF1
+L2Rpc3BudjUwL2Rpc3AuYwppbmRleCA0MmY0N2FjOS4uZjA0YWIyMTkgMTAwNjQ0Ci0tLSBhL2Ry
+bS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYworKysgYi9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNw
+LmMKQEAgLTEzOTgsNyArMTM5OCw3IEBAIHN0YXRpYyB2b2lkCiBudjUwX3Nvcl9kZXN0cm95KHN0
+cnVjdCBkcm1fZW5jb2RlciAqZW5jb2RlcikKIHsKIAlzdHJ1Y3Qgbm91dmVhdV9lbmNvZGVyICpu
+dl9lbmNvZGVyID0gbm91dmVhdV9lbmNvZGVyKGVuY29kZXIpOwotCW52NTBfbXN0bV9kZWwoJm52
+X2VuY29kZXItPmRwLm1zdG0pOworCW52NTBfbXN0bV9kZWwoJm52X2VuY29kZXItPm1zdG0pOwog
+CWRybV9lbmNvZGVyX2NsZWFudXAoZW5jb2Rlcik7CiAJa2ZyZWUoZW5jb2Rlcik7CiB9CkBAIC0x
+NDY2LDcgKzE0NjYsNyBAQCBudjUwX3Nvcl9jcmVhdGUoc3RydWN0IGRybV9jb25uZWN0b3IgKmNv
+bm5lY3Rvciwgc3RydWN0IGRjYl9vdXRwdXQgKmRjYmUpCiAJCSAgICB2ZXIgPj0gMHg0MCAmJiAo
+bnZiaW9zX3JkMDgoYmlvcywgZGF0YSArIDB4MDgpICYgMHgwNCkpIHsKIAkJCXJldCA9IG52NTBf
+bXN0bV9uZXcobnZfZW5jb2RlciwgJm52X2Nvbm5lY3Rvci0+YXV4LCAxNiwKIAkJCQkJICAgIG52
+X2Nvbm5lY3Rvci0+YmFzZS5iYXNlLmlkLAotCQkJCQkgICAgJm52X2VuY29kZXItPmRwLm1zdG0p
+OworCQkJCQkgICAgJm52X2VuY29kZXItPm1zdG0pOwogCQkJaWYgKHJldCkKIAkJCQlyZXR1cm4g
+cmV0OwogCQl9CkBAIC0xNjIyLDcgKzE2MjIsNyBAQCBudjUwX2Rpc3BfYXRvbWljX2NvbW1pdF9j
+b3JlKHN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSwgdTMyICppbnRlcmxvY2spCiAKIAlk
+cm1fZm9yX2VhY2hfZW5jb2RlcihlbmNvZGVyLCBkcm0tPmRldikgewogCQlpZiAoZW5jb2Rlci0+
+ZW5jb2Rlcl90eXBlICE9IERSTV9NT0RFX0VOQ09ERVJfRFBNU1QpIHsKLQkJCW1zdG0gPSBub3V2
+ZWF1X2VuY29kZXIoZW5jb2RlciktPmRwLm1zdG07CisJCQltc3RtID0gbm91dmVhdV9lbmNvZGVy
+KGVuY29kZXIpLT5tc3RtOwogCQkJaWYgKG1zdG0gJiYgbXN0bS0+bW9kaWZpZWQpCiAJCQkJbnY1
+MF9tc3RtX3ByZXBhcmUobXN0bSk7CiAJCX0KQEAgLTE2MzYsNyArMTYzNiw3IEBAIG52NTBfZGlz
+cF9hdG9taWNfY29tbWl0X2NvcmUoc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlLCB1MzIg
+KmludGVybG9jaykKIAogCWRybV9mb3JfZWFjaF9lbmNvZGVyKGVuY29kZXIsIGRybS0+ZGV2KSB7
+CiAJCWlmIChlbmNvZGVyLT5lbmNvZGVyX3R5cGUgIT0gRFJNX01PREVfRU5DT0RFUl9EUE1TVCkg
+ewotCQkJbXN0bSA9IG5vdXZlYXVfZW5jb2RlcihlbmNvZGVyKS0+ZHAubXN0bTsKKwkJCW1zdG0g
+PSBub3V2ZWF1X2VuY29kZXIoZW5jb2RlciktPm1zdG07CiAJCQlpZiAobXN0bSAmJiBtc3RtLT5t
+b2RpZmllZCkKIAkJCQludjUwX21zdG1fY2xlYW51cChtc3RtKTsKIAkJfQpAQCAtMjEwMyw3ICsy
+MTAzLDcgQEAgbnY1MF9kaXNwbGF5X2Zpbmkoc3RydWN0IGRybV9kZXZpY2UgKmRldikKIAlsaXN0
+X2Zvcl9lYWNoX2VudHJ5KGVuY29kZXIsICZkZXYtPm1vZGVfY29uZmlnLmVuY29kZXJfbGlzdCwg
+aGVhZCkgewogCQlpZiAoZW5jb2Rlci0+ZW5jb2Rlcl90eXBlICE9IERSTV9NT0RFX0VOQ09ERVJf
+RFBNU1QpIHsKIAkJCW52X2VuY29kZXIgPSBub3V2ZWF1X2VuY29kZXIoZW5jb2Rlcik7Ci0JCQlu
+djUwX21zdG1fZmluaShudl9lbmNvZGVyLT5kcC5tc3RtKTsKKwkJCW52NTBfbXN0bV9maW5pKG52
+X2VuY29kZXItPm1zdG0pOwogCQl9CiAJfQogfQpAQCAtMjEyMSw3ICsyMTIxLDcgQEAgbnY1MF9k
+aXNwbGF5X2luaXQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKIAkJaWYgKGVuY29kZXItPmVuY29k
+ZXJfdHlwZSAhPSBEUk1fTU9ERV9FTkNPREVSX0RQTVNUKSB7CiAJCQlzdHJ1Y3Qgbm91dmVhdV9l
+bmNvZGVyICpudl9lbmNvZGVyID0KIAkJCQlub3V2ZWF1X2VuY29kZXIoZW5jb2Rlcik7Ci0JCQlu
+djUwX21zdG1faW5pdChudl9lbmNvZGVyLT5kcC5tc3RtKTsKKwkJCW52NTBfbXN0bV9pbml0KG52
+X2VuY29kZXItPm1zdG0pOwogCQl9CiAJfQogCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9ub3V2
+ZWF1X2Nvbm5lY3Rvci5jIGIvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwppbmRleCBh
+ZjY4ZWFlNC4uNWNjOTQ5NDQgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVj
+dG9yLmMKKysrIGIvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwpAQCAtMTEyNCwxNCAr
+MTEyNCwxNCBAQCBub3V2ZWF1X2Nvbm5lY3Rvcl9ob3RwbHVnKHN0cnVjdCBudmlmX25vdGlmeSAq
+bm90aWZ5KQogCWlmIChyZXAtPm1hc2sgJiBOVklGX05PVElGWV9DT05OX1YwX0lSUSkgewogCQlO
+Vl9ERUJVRyhkcm0sICJzZXJ2aWNlICVzXG4iLCBuYW1lKTsKIAkJaWYgKChudl9lbmNvZGVyID0g
+ZmluZF9lbmNvZGVyKGNvbm5lY3RvciwgRENCX09VVFBVVF9EUCkpKQotCQkJbnY1MF9tc3RtX3Nl
+cnZpY2UobnZfZW5jb2Rlci0+ZHAubXN0bSk7CisJCQludjUwX21zdG1fc2VydmljZShudl9lbmNv
+ZGVyLT5tc3RtKTsKIAl9IGVsc2UgewogCQlib29sIHBsdWdnZWQgPSAocmVwLT5tYXNrICE9IE5W
+SUZfTk9USUZZX0NPTk5fVjBfVU5QTFVHKTsKIAogCQlOVl9ERUJVRyhkcm0sICIlc3BsdWdnZWQg
+JXNcbiIsIHBsdWdnZWQgPyAiIiA6ICJ1biIsIG5hbWUpOwogCQlpZiAoKG52X2VuY29kZXIgPSBm
+aW5kX2VuY29kZXIoY29ubmVjdG9yLCBEQ0JfT1VUUFVUX0RQKSkpIHsKIAkJCWlmICghcGx1Z2dl
+ZCkKLQkJCQludjUwX21zdG1fcmVtb3ZlKG52X2VuY29kZXItPmRwLm1zdG0pOworCQkJCW52NTBf
+bXN0bV9yZW1vdmUobnZfZW5jb2Rlci0+bXN0bSk7CiAJCX0KIAogCQlkcm1faGVscGVyX2hwZF9p
+cnFfZXZlbnQoY29ubmVjdG9yLT5kZXYpOwpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbm91dmVh
+dV9kcC5jIGIvZHJtL25vdXZlYXUvbm91dmVhdV9kcC5jCmluZGV4IDBkMDUyZTE2Li43ZjcxZGZm
+MCAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbm91dmVhdV9kcC5jCisrKyBiL2RybS9ub3V2ZWF1
+L25vdXZlYXVfZHAuYwpAQCAtOTIsNyArOTIsNyBAQCBub3V2ZWF1X2RwX2RldGVjdChzdHJ1Y3Qg
+bm91dmVhdV9lbmNvZGVyICpudl9lbmNvZGVyKQogCiAJbm91dmVhdV9kcF9wcm9iZV9vdWkoZGV2
+LCBhdXgsIGRwY2QpOwogCi0JcmV0ID0gbnY1MF9tc3RtX2RldGVjdChudl9lbmNvZGVyLT5kcC5t
+c3RtLCBkcGNkLCBub3V2ZWF1X21zdCk7CisJcmV0ID0gbnY1MF9tc3RtX2RldGVjdChudl9lbmNv
+ZGVyLT5tc3RtLCBkcGNkLCBub3V2ZWF1X21zdCk7CiAJaWYgKHJldCA9PSAxKQogCQlyZXR1cm4g
+Tk9VVkVBVV9EUF9NU1Q7CiAJaWYgKHJldCA9PSAwKQpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUv
+bm91dmVhdV9lbmNvZGVyLmggYi9kcm0vbm91dmVhdS9ub3V2ZWF1X2VuY29kZXIuaAppbmRleCAz
+NTE3ZjkyMC4uZGZlMDk1YWQgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L25vdXZlYXVfZW5jb2Rl
+ci5oCisrKyBiL2RybS9ub3V2ZWF1L25vdXZlYXVfZW5jb2Rlci5oCkBAIC01OCw5ICs1OCw5IEBA
+IHN0cnVjdCBub3V2ZWF1X2VuY29kZXIgewogCiAJc3RydWN0IG52MDRfb3V0cHV0X3JlZyByZXN0
+b3JlOwogCisJc3RydWN0IG52NTBfbXN0bSAqbXN0bTsKIAl1bmlvbiB7CiAJCXN0cnVjdCB7Ci0J
+CQlzdHJ1Y3QgbnY1MF9tc3RtICptc3RtOwogCQkJaW50IGxpbmtfbnI7CiAJCQlpbnQgbGlua19i
+dzsKIAkJfSBkcDsKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
+b3V2ZWF1Cg==
