@@ -1,35 +1,47 @@
-From: zhong jiang <zhongjiang@huawei.com>
-Subject: [PATCH] gpu:nouveau: Do not use unnecessary IS_ERR_VALUE when pm_runtime_* calls
-Date: Sat, 4 Aug 2018 20:00:23 +0800
-Message-ID: <1533384023-18787-1-git-send-email-zhongjiang@huawei.com>
+From: don fisher <hdf3-Wuw85uim5zDR7s880joybQ@public.gmane.org>
+Subject: newbe guidance for Alienware 13
+Date: Sat, 4 Aug 2018 16:37:34 -0700
+Message-ID: <f713cd5b-5649-ab64-1dba-43b5c69fc90e@comcast.net>
 Mime-Version: 1.0
-Content-Type: text/plain
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: airlied@linux.ie, bskeggs@redhat.com
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Make sure Pm_runtime_* calls does not use unnecessary IS_ERR_VALUE.
-when I run pm_runtime.cocci, I find the issue. So just replace it.
-
-Signed-off-by: zhong jiang <zhongjiang@huawei.com>
----
- drivers/gpu/drm/nouveau/nouveau_debugfs.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-index 9109b69..9635704 100644
---- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-@@ -161,7 +161,7 @@
- 	}
- 
- 	ret = pm_runtime_get_sync(drm->dev);
--	if (IS_ERR_VALUE(ret) && ret != -EACCES)
-+	if (ret < 0 && ret != -EACCES)
- 		return ret;
- 	ret = nvif_mthd(ctrl, NVIF_CONTROL_PSTATE_USER, &args, sizeof(args));
- 	pm_runtime_put_autosuspend(drm->dev);
--- 
-1.7.12.4
+SSBoYWQgZGVzaXJlIGZvciBhIGxpZ2h0IGxhcHRvcCwgc28gcHVyY2hhc2VkIGFuIEFsaWVud2Fy
+ZSAxMy4gSSBhbSAKY3VycmVudGx5IHVuYWJsZSB0byBkaXNwbGF5IG9uIHRoZSBleHRlcm5hbCBt
+b25pdG9yLCBsZWF2aW5nIG1lIHdpdGggdGhlIApzbWFsbCAxMyIgZGlzcGxheS4gSSBhbSBpZ25v
+cmFudCBvZiBob3cgdG8gcHJvY2VlZC4gSSBhc3N1bWUgdGhlIE5vdXZlYXUgCiAgZHJpdmVyIGlz
+IGJlaW5nIHVzZWQsIGJ1dCBhbSBub3Qgc3VyZS4gSSBpdCBJbnRlbCBvciBOb3V2ZWF1PyAgV2hl
+biBJIApib290IHRoZSBmb2xsb3dpbmcgYXBwZWFycyBpbiBkbWVzZzoKICAgbm91dmVhdTogZGV0
+ZWN0ZWQgUFIgc3VwcG9ydCwgd2lsbCBub3QgdXNlIERTTQogICBub3V2ZWF1IDAwMDA6MDE6MDAu
+MDogZW5hYmxpbmcgZGV2aWNlICgwMDA2IC0+IDAwMDcpCiAgIG5vdXZlYXUgMDAwMDowMTowMC4w
+OiB1bmtub3duIGNoaXBzZXQgKDEzNjAwMGExKQogICBub3V2ZWF1OiBwcm9iZSBvZiAwMDAwOjAx
+OjAwLjAgZmFpbGVkIHdpdGggZXJyb3IgLTEyCgpJZiBJIGRvIGFuIGxzbW9kIHwgbm91dmVhdSBp
+IGdldDoKMTAxOm5vdXZlYXUgICAgICAgICAgICAgIDE2OTE2NDggIDAKMTAzOm14bV93bWkgICAg
+ICAgICAgICAgICAgMTYzODQgIDEgbm91dmVhdQoxMDQ6aTJjX2FsZ29fYml0ICAgICAgICAgICAx
+NjM4NCAgMiBpOTE1LG5vdXZlYXUKMTA3OmRybV9rbXNfaGVscGVyICAgICAgICAxNjc5MzYgIDIg
+aTkxNSxub3V2ZWF1CjExMTp0dG0gICAgICAgICAgICAgICAgICAgMTEwNTkyICAxIG5vdXZlYXUK
+MTE3OmRybSAgICAgICAgICAgICAgICAgICAzOTczMTIgIDYgdHRtLGk5MTUsZHJtX2ttc19oZWxw
+ZXIsbm91dmVhdQoxMTg6d21pICAgICAgICAgICAgICAgICAgICAxNjM4NCAgMyBkZWxsX3dtaSxt
+eG1fd21pLG5vdXZlYXUKMTE5OnZpZGVvICAgICAgICAgICAgICAgICAgNDUwNTYgIDMgaTkxNSxk
+ZWxsX3dtaSxub3V2ZWF1CjEyMDpidXR0b24gICAgICAgICAgICAgICAgIDE2Mzg0ICAyIGk5MTUs
+bm91dmVhdQoKVGhpcyBzaG93cyB0aGUgbm91dmVhdSBkcml2ZXIgYW5kIHRoZSBJbnRlbCBpOTE1
+IGRyaXZlci4gV2hpY2ggaXMgCnJ1bm5pbmcgdGhlIGRpc3BsYXksIGFuZCBob3cgY2FuIEkgIGNv
+bnRyb2wgaXQ/CgpUaGUgZGV2aWNlIGZyb20gbHNwY2kgaXM6CjAxOjAwLjAgVkdBIGNvbXBhdGli
+bGUgY29udHJvbGxlcjogTlZJRElBIENvcnBvcmF0aW9uIEdQMTA2TSBbR2VGb3JjZSAKR1RYIDEw
+NjAgTW9iaWxlXSAocmV2IGExKQoKUGxlYXNlIGFkdmlzZSBpZiB0aGVyZSBpcyBhIHBhdGggYXZh
+aWxhYmxlLgoKRG9uCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
