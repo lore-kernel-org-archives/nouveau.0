@@ -1,67 +1,46 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v5 10/13] drm/nouveau: Use pm_runtime_get_noresume() in connector_detect()
-Date: Tue,  7 Aug 2018 16:39:07 -0400
-Message-ID: <20180807203914.2192-11-lyude@redhat.com>
+Subject: [PATCH v5 04/13] drm/nouveau: Remove useless poll_disable() call in
+ switcheroo_set_state()
+Date: Tue,  7 Aug 2018 16:39:01 -0400
+Message-ID: <20180807203914.2192-5-lyude@redhat.com>
 References: <20180807203914.2192-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
 In-Reply-To: <20180807203914.2192-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
 To: nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Lukas Wunner <lukas@wunner.de>, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-It's true we can't resume the device from poll workers in
-nouveau_connector_detect(). We can however, prevent the autosuspend
-timer from elapsing immediately if it hasn't already without risking any
-sort of deadlock with the runtime suspend/resume operations. So do that
-instead of entirely avoiding grabbing a power reference.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: stable@vger.kernel.org
-Cc: Lukas Wunner <lukas@wunner.de>
-Cc: Karol Herbst <karolherbst@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_connector.c | 20 +++++++++++---------
- 1 file changed, 11 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 2a45b4c2ceb0..010d6db14cba 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -572,12 +572,16 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
- 		nv_connector->edid = NULL;
- 	}
- 
--	/* Outputs are only polled while runtime active, so acquiring a
--	 * runtime PM ref here is unnecessary (and would deadlock upon
--	 * runtime suspend because it waits for polling to finish).
-+	/* Outputs are only polled while runtime active, so resuming the
-+	 * device here is unnecessary (and would deadlock upon runtime suspend
-+	 * because it waits for polling to finish). We do however, want to
-+	 * prevent the autosuspend timer from elapsing during this operation
-+	 * if possible.
- 	 */
--	if (!drm_kms_helper_is_poll_worker()) {
--		ret = pm_runtime_get_sync(connector->dev->dev);
-+	if (drm_kms_helper_is_poll_worker()) {
-+		pm_runtime_get_noresume(dev->dev);
-+	} else {
-+		ret = pm_runtime_get_sync(dev->dev);
- 		if (ret < 0 && ret != -EACCES)
- 			return conn_status;
- 	}
-@@ -655,10 +659,8 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
- 
-  out:
- 
--	if (!drm_kms_helper_is_poll_worker()) {
--		pm_runtime_mark_last_busy(connector->dev->dev);
--		pm_runtime_put_autosuspend(connector->dev->dev);
--	}
-+	pm_runtime_mark_last_busy(dev->dev);
-+	pm_runtime_put_autosuspend(dev->dev);
- 
- 	return conn_status;
- }
--- 
-2.17.1
+VGhpcyB3b24ndCBkbyBhbnl0aGluZyBidXQgcG90ZW50aWFsbHkgbWFrZSB1cyBtaXNzIGhvdHBs
+dWdzLiBXZSBhbHJlYWR5CmNhbGwgZHJtX2ttc19oZWxwZXJfcG9sbF9kaXNhYmxlKCkgaW4Kbm91
+dmVhdV9wbW9wc19zdXNwZW5kKCktPm5vdXZlYXVfZGlzcGxheV9zdXNwZW5kKCktPm5vdXZlYXVf
+ZGlzcGxheV9maW5pKCkKClNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5j
+b20+CkNjOiBMdWthcyBXdW5uZXIgPGx1a2FzQHd1bm5lci5kZT4KQ2M6IEthcm9sIEhlcmJzdCA8
+a2Fyb2xoZXJic3RAZ21haWwuY29tPgpbb21pdHRpbmcgc3RhYmxlIENjLCB0aGlzIGxpa2VseSBk
+b2Vzbid0IGZpeCBhbnl0aGluZyBpbXBvcnRhbnQgZW5vdWdoCmZvciB0aGF0XQotLS0KIGRyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfdmdhLmMgfCAxIC0KIDEgZmlsZSBjaGFuZ2VkLCAx
+IGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV92Z2EuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfdmdhLmMKaW5kZXggMDli
+MWQ4MTUxODgxLi44ZjFjZTQ4MzMyMzAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L25vdXZlYXVfdmdhLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV92
+Z2EuYwpAQCAtNTAsNyArNTAsNiBAQCBub3V2ZWF1X3N3aXRjaGVyb29fc2V0X3N0YXRlKHN0cnVj
+dCBwY2lfZGV2ICpwZGV2LAogCX0gZWxzZSB7CiAJCXByX2VycigiVkdBIHN3aXRjaGVyb286IHN3
+aXRjaGVkIG5vdXZlYXUgb2ZmXG4iKTsKIAkJZGV2LT5zd2l0Y2hfcG93ZXJfc3RhdGUgPSBEUk1f
+U1dJVENIX1BPV0VSX0NIQU5HSU5HOwotCQlkcm1fa21zX2hlbHBlcl9wb2xsX2Rpc2FibGUoZGV2
+KTsKIAkJbm91dmVhdV9zd2l0Y2hlcm9vX29wdGltdXNfZHNtKCk7CiAJCW5vdXZlYXVfcG1vcHNf
+c3VzcGVuZCgmcGRldi0+ZGV2KTsKIAkJZGV2LT5zd2l0Y2hfcG93ZXJfc3RhdGUgPSBEUk1fU1dJ
+VENIX1BPV0VSX09GRjsKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vZHJpLWRldmVsCg==
