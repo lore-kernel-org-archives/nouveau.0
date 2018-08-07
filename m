@@ -1,44 +1,41 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v5 02/13] drm/nouveau: Remove duplicate
- poll_enable() in pmops_runtime_suspend()
-Date: Tue,  7 Aug 2018 16:38:59 -0400
-Message-ID: <20180807203914.2192-3-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v5 05/13] drm/nouveau: Remove useless poll_enable() call in drm_load()
+Date: Tue,  7 Aug 2018 16:39:02 -0400
+Message-ID: <20180807203914.2192-6-lyude@redhat.com>
 References: <20180807203914.2192-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180807203914.2192-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20180807203914.2192-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: Lukas Wunner <lukas@wunner.de>, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-U2luY2UgYWN0dWFsIGhvdHBsdWcgbm90aWZpY2F0aW9ucyBkb24ndCBnZXQgZGlzYWJsZWQgdW50
-aWwKbm91dmVhdV9kaXNwbGF5X2ZpbmkoKSBpcyBjYWxsZWQsIGFsbCB0aGlzIHdpbGwgZG8gaXMg
-Y2F1c2UgYW55IGhvdHBsdWdzCnRoYXQgaGFwcGVuIGJldHdlZW4gdGhpcyBkcm1fa21zX2hlbHBl
-cl9wb2xsX2Rpc2FibGUoKSBjYWxsIGFuZCB0aGUKYWN0dWFsIGhvdHBsdWcgZGlzYWJsZW1lbnQg
-dG8gcG90ZW50aWFsbHkgYmUgZHJvcHBlZCBpZiBBQ1BJIGlzbid0CmFyb3VuZCB0byBoZWxwIHVz
-LgoKU2lnbmVkLW9mZi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KQ2M6IHN0YWJs
-ZUB2Z2VyLmtlcm5lbC5vcmcKQ2M6IEx1a2FzIFd1bm5lciA8bHVrYXNAd3VubmVyLmRlPgpDYzog
-S2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9kcm0uYyB8IDEgLQogMSBmaWxlIGNoYW5nZWQsIDEgZGVsZXRpb24o
-LSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIGIv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwppbmRleCBjN2VjODZkNmMzYzku
-LjVmZGMxZmJlMmVlNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9kcm0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCkBAIC04
-MzUsNyArODM1LDYgQEAgbm91dmVhdV9wbW9wc19ydW50aW1lX3N1c3BlbmQoc3RydWN0IGRldmlj
-ZSAqZGV2KQogCQlyZXR1cm4gLUVCVVNZOwogCX0KIAotCWRybV9rbXNfaGVscGVyX3BvbGxfZGlz
-YWJsZShkcm1fZGV2KTsKIAlub3V2ZWF1X3N3aXRjaGVyb29fb3B0aW11c19kc20oKTsKIAlyZXQg
-PSBub3V2ZWF1X2RvX3N1c3BlbmQoZHJtX2RldiwgdHJ1ZSk7CiAJcGNpX3NhdmVfc3RhdGUocGRl
-dik7Ci0tIAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+Again, this doesn't do anything. drm_kms_helper_poll_enable() will have
+already been called in nouveau_display_init()
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: Lukas Wunner <lukas@wunner.de>
+Cc: Karol Herbst <karolherbst@gmail.com>
+[omitting stable Cc, this probably doesn't fix any real bugs]
+---
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 5fdc1fbe2ee5..04f704b77a3c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -592,10 +592,8 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
+ 		pm_runtime_allow(dev->dev);
+ 		pm_runtime_mark_last_busy(dev->dev);
+ 		pm_runtime_put(dev->dev);
+-	} else {
+-		/* enable polling for external displays */
+-		drm_kms_helper_poll_enable(dev);
+ 	}
++
+ 	return 0;
+ 
+ fail_dispinit:
+-- 
+2.17.1
