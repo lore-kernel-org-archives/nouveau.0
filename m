@@ -1,10 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107504] New: Xorg segmentation fault at
- RRProviderAutoConfigGpuScreen
-Date: Tue, 07 Aug 2018 06:23:26 +0000
-Message-ID: <bug-107504-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v5 00/13] Fix connector probing deadlocks from RPM
+ bugs
+Date: Tue,  7 Aug 2018 16:38:57 -0400
+Message-ID: <20180807203914.2192-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1807399596=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -16,208 +17,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1807399596==
-Content-Type: multipart/alternative; boundary="15336230060.2DABc7Cc8.29237"
-Content-Transfer-Encoding: 7bit
-
-
---15336230060.2DABc7Cc8.29237
-Date: Tue, 7 Aug 2018 06:23:26 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107504
-
-            Bug ID: 107504
-           Summary: Xorg segmentation fault at
-                    RRProviderAutoConfigGpuScreen
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: 961123325-9uewiaClKEY@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Description of problem:
-starting installation with gui mode failed
-and Xorg segmentation fault
-
-Steps to Reproduce:
-1.install CentOS7.4 on the machine with the nvidia GPU
-
-Actual results:
-starting installation with gui mode failed
-
-Expected results:
-start installation with gui mode successfully
-
-Additional info:
-the following versions are OK
-CnetOS 7.3 7.2
-
-the following versions have this problem
-CentOS 7.4 rhel 7.5
-
-adding  "modprobe.blacklist=3Dnouveau" to the grub commandline will avoid t=
-his
-failure
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15336230060.2DABc7Cc8.29237
-Date: Tue, 7 Aug 2018 06:23:26 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg segmentation fault at RRProviderAutoConfigGpuScreen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107504">107504</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Xorg segmentation fault at RRProviderAutoConfigGpuScreen
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>961123325&#64;qq.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Description of problem:
-starting installation with gui mode failed
-and Xorg segmentation fault
-
-Steps to Reproduce:
-1.install CentOS7.4 on the machine with the nvidia GPU
-
-Actual results:
-starting installation with gui mode failed
-
-Expected results:
-start installation with gui mode successfully
-
-Additional info:
-the following versions are OK
-CnetOS 7.3 7.2
-
-the following versions have this problem
-CentOS 7.4 rhel 7.5
-
-adding  &quot;modprobe.blacklist=3Dnouveau&quot; to the grub commandline wi=
-ll avoid this
-failure</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15336230060.2DABc7Cc8.29237--
-
---===============1807399596==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1807399596==--
+VGhpcyBpcyB0aGUgbGF0ZXN0IHZlcnNpb24gb2YgaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0
+b3Aub3JnL3Nlcmllcy80NjgxNS8KCkkgbW92ZWQgZXZlcnl0aGluZyBvdXQgb2YgZmJfaGVscGVy
+IGFuZCBiYWNrIGludG8gbm91dmVhdSwgYmVjYXVzZSBpdApzZWVtcyB0aGF0IG90aGVyIGRyaXZl
+cnMgYWN0dWFsbHkgZG8gaGF2ZSB0aGlzIGhhbmRsZWQgYWxyZWFkeSBhcyBmYXIgYXMKSSBjYW4g
+dGVsbC4KCkx5dWRlIFBhdWwgKDEzKToKICBkcm0vbm91dmVhdTogRml4IGJvZ3VzIGRybV9rbXNf
+aGVscGVyX3BvbGxfZW5hYmxlKCkgcGxhY2VtZW50CiAgZHJtL25vdXZlYXU6IFJlbW92ZSBkdXBs
+aWNhdGUgcG9sbF9lbmFibGUoKSBpbiBwbW9wc19ydW50aW1lX3N1c3BlbmQoKQogIGRybS9ub3V2
+ZWF1OiBSZW1vdmUgdXNlbGVzcyBwb2xsX2VuYWJsZSgpIGNhbGwgaW4KICAgIHN3aXRjaGVyb29f
+c2V0X3N0YXRlKCkKICBkcm0vbm91dmVhdTogUmVtb3ZlIHVzZWxlc3MgcG9sbF9kaXNhYmxlKCkg
+Y2FsbCBpbgogICAgc3dpdGNoZXJvb19zZXRfc3RhdGUoKQogIGRybS9ub3V2ZWF1OiBSZW1vdmUg
+dXNlbGVzcyBwb2xsX2VuYWJsZSgpIGNhbGwgaW4gZHJtX2xvYWQoKQogIGRybS9ub3V2ZWF1OiBD
+YWxsIG9wdGltdXNfZHNtIGZ1bmN0aW9ucyBhZnRlciBub3V2ZWF1X2RvX3N1c3BlbmQoKQogIGRy
+bS9ub3V2ZWF1OiBBZGQgbWlzc2luZyB1bnJvbGwgZnVuY3Rpb25zIGluIG5vdXZlYXVfZG9fc3Vz
+cGVuZCgpCiAgZHJtL25vdXZlYXU6IERvbid0IGlnbm9yZSBub3V2ZWF1X2RvX3N1c3BlbmQoKSBy
+ZXQgdmFsdWUKICBkcm0vbm91dmVhdTogRml4IGRlYWRsb2NrIHdpdGggZmJfaGVscGVyIGJ5IGlu
+aGliaXRpbmcgaXQncyBIUEQKICBkcm0vbm91dmVhdTogVXNlIHBtX3J1bnRpbWVfZ2V0X25vcmVz
+dW1lKCkgaW4gY29ubmVjdG9yX2RldGVjdCgpCiAgZHJtL25vdXZlYXU6IFJlc3BvbmQgdG8gSFBE
+cyBieSBwcm9iaW5nIG9uZSBjb25uIGF0IGEgdGltZQogIGRybS9ub3V2ZWF1OiBGaXggZGVhZGxv
+Y2tzIGluIG5vdXZlYXVfY29ubmVjdG9yX2RldGVjdCgpCiAgZHJtL25vdXZlYXU6IENhbGwgcG1f
+cnVudGltZV9nZXRfbm9yZXN1bWUoKSBmcm9tIGhwZCBoYW5kbGVycwoKIGRyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYyB8IDYwICsrKysrKysrKysrLS0tCiBkcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5oIHwgIDEgKwogZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMgICB8IDU1ICsrKysrKysrKy0tLS0KIGRyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgICAgICAgfCAyMyArKysrLS0KIGRyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYyAgICAgfCA5MCArKysrKysrKysrKysrKysr
+KysrKysKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uaCAgICAgfCAgOSAr
+KysKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfdmdhLmMgICAgICAgfCAgMiAtCiA4
+IGZpbGVzIGNoYW5nZWQsIDIwOSBpbnNlcnRpb25zKCspLCAzMyBkZWxldGlvbnMoLSkKCi0tIAoy
+LjE3LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
+dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
