@@ -1,54 +1,53 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v5 13/13] drm/nouveau: Call pm_runtime_get_noresume() from hpd handlers
-Date: Tue,  7 Aug 2018 16:39:10 -0400
-Message-ID: <20180807203914.2192-14-lyude@redhat.com>
+Subject: [PATCH v5 07/13] drm/nouveau: Add missing unroll functions in
+ nouveau_do_suspend()
+Date: Tue,  7 Aug 2018 16:39:04 -0400
+Message-ID: <20180807203914.2192-8-lyude@redhat.com>
 References: <20180807203914.2192-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
 In-Reply-To: <20180807203914.2192-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
 To: nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Lukas Wunner <lukas@wunner.de>, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: David Airlie <airlied@linux.ie>, Karol Herbst <karolherbst@gmail.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-We can't and don't need to try resuming the device from our hotplug
-handlers, but hotplug events are generally something we'd like to keep
-the device awake for whenever possible. So, grab a PM ref safely in our
-hotplug handlers using pm_runtime_get_noresume() and mark the device as
-busy once we're finished.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: stable@vger.kernel.org
-Cc: Lukas Wunner <lukas@wunner.de>
-Cc: Karol Herbst <karolherbst@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_connector.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 8409c3f2c3a1..5a8e8c1ad647 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -1152,6 +1152,11 @@ nouveau_connector_hotplug(struct nvif_notify *notify)
- 	const char *name = connector->name;
- 	struct nouveau_encoder *nv_encoder;
- 
-+	/* Resuming the device here isn't possible; but the suspend PM ops
-+	 * will wait for us to finish our work before disabling us so this
-+	 * should be enough
-+	 */
-+	pm_runtime_get_noresume(drm->dev->dev);
- 	nv_connector->hpd_task = current;
- 
- 	if (rep->mask & NVIF_NOTIFY_CONN_V0_IRQ) {
-@@ -1171,6 +1176,9 @@ nouveau_connector_hotplug(struct nvif_notify *notify)
- 	}
- 
- 	nv_connector->hpd_task = NULL;
-+
-+	pm_runtime_mark_last_busy(drm->dev->dev);
-+	pm_runtime_put_autosuspend(drm->dev->dev);
- 	return NVIF_NOTIFY_KEEP;
- }
- 
--- 
-2.17.1
+Q3VycmVudGx5LCBpdCBhcHBlYXJzIHRoYXQgbm91dmVhdV9kb19zdXNwZW5kKCkgZm9yZ2V0cyB0
+byByb2xsIGJhY2sKc3VzcGVuZGluZyBmYmNvbiBhbmQgc3VzcGVuZGluZyB0aGUgZGV2aWNlIExF
+RHMuIFdlIGFsc28gY3VycmVudGx5IHNraXAKdGhlIGVudGlyZSByb2xsYmFjayBwcm9jZXNzIGlm
+IG5vdXZlYXVfZGlzcGxheV9zdXNwZW5kKCkgZmFpbHMuIFNvLCBmaXgKdGhhdC4KClNpZ25lZC1v
+ZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkNjOiBzdGFibGVAdmdlci5rZXJu
+ZWwub3JnCkNjOiBMdWthcyBXdW5uZXIgPGx1a2FzQHd1bm5lci5kZT4KQ2M6IEthcm9sIEhlcmJz
+dCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
+dXZlYXVfZHJtLmMgfCAxMCArKysrKysrKystCiAxIGZpbGUgY2hhbmdlZCwgOSBpbnNlcnRpb25z
+KCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9kcm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKaW5k
+ZXggNWVhOGZlOTkyNDg0Li5kYjU2ZTliNmI2YWYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9kcm0uYwpAQCAtNjc0LDEwICs2NzQsMTEgQEAgbm91dmVhdV9kb19zdXNwZW5kKHN0cnVj
+dCBkcm1fZGV2aWNlICpkZXYsIGJvb2wgcnVudGltZSkKIAlpZiAoZGV2LT5tb2RlX2NvbmZpZy5u
+dW1fY3J0YykgewogCQlOVl9ERUJVRyhkcm0sICJzdXNwZW5kaW5nIGNvbnNvbGUuLi5cbiIpOwog
+CQlub3V2ZWF1X2ZiY29uX3NldF9zdXNwZW5kKGRldiwgMSk7CisKIAkJTlZfREVCVUcoZHJtLCAi
+c3VzcGVuZGluZyBkaXNwbGF5Li4uXG4iKTsKIAkJcmV0ID0gbm91dmVhdV9kaXNwbGF5X3N1c3Bl
+bmQoZGV2LCBydW50aW1lKTsKIAkJaWYgKHJldCkKLQkJCXJldHVybiByZXQ7CisJCQlnb3RvIGZh
+aWxfZmJjb247CiAJfQogCiAJTlZfREVCVUcoZHJtLCAiZXZpY3RpbmcgYnVmZmVycy4uLlxuIik7
+CkBAIC03MTksNyArNzIwLDE0IEBAIG5vdXZlYXVfZG9fc3VzcGVuZChzdHJ1Y3QgZHJtX2Rldmlj
+ZSAqZGV2LCBib29sIHJ1bnRpbWUpCiAJaWYgKGRldi0+bW9kZV9jb25maWcubnVtX2NydGMpIHsK
+IAkJTlZfREVCVUcoZHJtLCAicmVzdW1pbmcgZGlzcGxheS4uLlxuIik7CiAJCW5vdXZlYXVfZGlz
+cGxheV9yZXN1bWUoZGV2LCBydW50aW1lKTsKKworZmFpbF9mYmNvbjoKKwkJTlZfREVCVUcoZHJt
+LCAicmVzdW1pbmcgY29uc29sZS4uLlxuIik7CisJCW5vdXZlYXVfZmJjb25fc2V0X3N1c3BlbmQo
+ZGV2LCAwKTsKIAl9CisKKwlub3V2ZWF1X2xlZF9yZXN1bWUoZGV2KTsKKwogCXJldHVybiByZXQ7
+CiB9CiAKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJp
+LWRldmVsCg==
