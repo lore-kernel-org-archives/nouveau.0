@@ -1,53 +1,77 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v5 07/13] drm/nouveau: Add missing unroll functions in
- nouveau_do_suspend()
-Date: Tue,  7 Aug 2018 16:39:04 -0400
-Message-ID: <20180807203914.2192-8-lyude@redhat.com>
+Subject: [PATCH v5 11/13] drm/nouveau: Respond to HPDs by probing one conn at a time
+Date: Tue,  7 Aug 2018 16:39:08 -0400
+Message-ID: <20180807203914.2192-12-lyude@redhat.com>
 References: <20180807203914.2192-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
 In-Reply-To: <20180807203914.2192-1-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+Sender: linux-kernel-owner@vger.kernel.org
 To: nouveau@lists.freedesktop.org
-Cc: David Airlie <airlied@linux.ie>, Karol Herbst <karolherbst@gmail.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>
+Cc: stable@vger.kernel.org, Lukas Wunner <lukas@wunner.de>, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Q3VycmVudGx5LCBpdCBhcHBlYXJzIHRoYXQgbm91dmVhdV9kb19zdXNwZW5kKCkgZm9yZ2V0cyB0
-byByb2xsIGJhY2sKc3VzcGVuZGluZyBmYmNvbiBhbmQgc3VzcGVuZGluZyB0aGUgZGV2aWNlIExF
-RHMuIFdlIGFsc28gY3VycmVudGx5IHNraXAKdGhlIGVudGlyZSByb2xsYmFjayBwcm9jZXNzIGlm
-IG5vdXZlYXVfZGlzcGxheV9zdXNwZW5kKCkgZmFpbHMuIFNvLCBmaXgKdGhhdC4KClNpZ25lZC1v
-ZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkNjOiBzdGFibGVAdmdlci5rZXJu
-ZWwub3JnCkNjOiBMdWthcyBXdW5uZXIgPGx1a2FzQHd1bm5lci5kZT4KQ2M6IEthcm9sIEhlcmJz
-dCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
-dXZlYXVfZHJtLmMgfCAxMCArKysrKysrKystCiAxIGZpbGUgY2hhbmdlZCwgOSBpbnNlcnRpb25z
-KCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bm91dmVhdV9kcm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKaW5k
-ZXggNWVhOGZlOTkyNDg0Li5kYjU2ZTliNmI2YWYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9kcm0uYwpAQCAtNjc0LDEwICs2NzQsMTEgQEAgbm91dmVhdV9kb19zdXNwZW5kKHN0cnVj
-dCBkcm1fZGV2aWNlICpkZXYsIGJvb2wgcnVudGltZSkKIAlpZiAoZGV2LT5tb2RlX2NvbmZpZy5u
-dW1fY3J0YykgewogCQlOVl9ERUJVRyhkcm0sICJzdXNwZW5kaW5nIGNvbnNvbGUuLi5cbiIpOwog
-CQlub3V2ZWF1X2ZiY29uX3NldF9zdXNwZW5kKGRldiwgMSk7CisKIAkJTlZfREVCVUcoZHJtLCAi
-c3VzcGVuZGluZyBkaXNwbGF5Li4uXG4iKTsKIAkJcmV0ID0gbm91dmVhdV9kaXNwbGF5X3N1c3Bl
-bmQoZGV2LCBydW50aW1lKTsKIAkJaWYgKHJldCkKLQkJCXJldHVybiByZXQ7CisJCQlnb3RvIGZh
-aWxfZmJjb247CiAJfQogCiAJTlZfREVCVUcoZHJtLCAiZXZpY3RpbmcgYnVmZmVycy4uLlxuIik7
-CkBAIC03MTksNyArNzIwLDE0IEBAIG5vdXZlYXVfZG9fc3VzcGVuZChzdHJ1Y3QgZHJtX2Rldmlj
-ZSAqZGV2LCBib29sIHJ1bnRpbWUpCiAJaWYgKGRldi0+bW9kZV9jb25maWcubnVtX2NydGMpIHsK
-IAkJTlZfREVCVUcoZHJtLCAicmVzdW1pbmcgZGlzcGxheS4uLlxuIik7CiAJCW5vdXZlYXVfZGlz
-cGxheV9yZXN1bWUoZGV2LCBydW50aW1lKTsKKworZmFpbF9mYmNvbjoKKwkJTlZfREVCVUcoZHJt
-LCAicmVzdW1pbmcgY29uc29sZS4uLlxuIik7CisJCW5vdXZlYXVfZmJjb25fc2V0X3N1c3BlbmQo
-ZGV2LCAwKTsKIAl9CisKKwlub3V2ZWF1X2xlZF9yZXN1bWUoZGV2KTsKKwogCXJldHVybiByZXQ7
-CiB9CiAKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJp
-LWRldmVsCg==
+There isn't actually any reason we need to call drm_hpd_irq_event() from
+our hotplug handler, as we already know which connector the hotplug
+event was fired for. We're also going to need to avoid probing all
+connectors needlessly from hotplug handlers anyway so that we can track
+when nouveau_connector_detect() is being called from the context of it's
+connector's hotplug handler in order to fix the next deadlocking issue.
+
+This is (slightly) faster anyway!
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: stable@vger.kernel.org
+Cc: Lukas Wunner <lukas@wunner.de>
+Cc: Karol Herbst <karolherbst@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 28 ++++++++++++++++++++-
+ 1 file changed, 27 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 010d6db14cba..9714e09f17db 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -1114,6 +1114,32 @@ nouveau_connector_funcs_lvds = {
+ 	.atomic_get_property = nouveau_conn_atomic_get_property,
+ };
+ 
++static void
++nouveau_connector_hotplug_probe(struct nouveau_connector *nv_conn)
++{
++	struct drm_modeset_acquire_ctx ctx;
++	struct drm_connector *conn = &nv_conn->base;
++	enum drm_connector_status old_status;
++	struct drm_device *dev = conn->dev;
++	bool changed;
++
++	mutex_lock(&dev->mode_config.mutex);
++
++	drm_modeset_acquire_init(&ctx, 0);
++	drm_modeset_lock(&dev->mode_config.connection_mutex, &ctx);
++
++	old_status = conn->status;
++	conn->status = drm_helper_probe_detect(conn, &ctx, true);
++	changed = old_status != conn->status;
++
++	drm_modeset_drop_locks(&ctx);
++	drm_modeset_acquire_fini(&ctx);
++	mutex_unlock(&dev->mode_config.mutex);
++
++	if (changed)
++		drm_kms_helper_hotplug_event(dev);
++}
++
+ static int
+ nouveau_connector_hotplug(struct nvif_notify *notify)
+ {
+@@ -1138,7 +1164,7 @@ nouveau_connector_hotplug(struct nvif_notify *notify)
+ 				nv50_mstm_remove(nv_encoder->dp.mstm);
+ 		}
+ 
+-		drm_helper_hpd_irq_event(connector->dev);
++		nouveau_connector_hotplug_probe(nv_connector);
+ 	}
+ 
+ 	return NVIF_NOTIFY_KEEP;
+-- 
+2.17.1
