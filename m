@@ -1,206 +1,25 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107537] New: 4.14+ - Full screen OpenGL applications
- results in black screen
-Date: Thu, 09 Aug 2018 22:07:17 +0000
-Message-ID: <bug-107537-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1491589640=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH 0/2] Fix display detection issues with P50-P52 docks
+Date: Thu,  9 Aug 2018 18:22:04 -0400
+Message-ID: <20180809222209.26226-1-lyude@redhat.com>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Ilia Mirkin <imirkin@alum.mit.edu>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Lyude Paul <lyude@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
+This fixes some annoying issues on the P50-P52 with displays not being
+detected if they aren't plugged in at boot, and sometimes even when they
+are plugged in at boot.
 
---===============1491589640==
-Content-Type: multipart/alternative; boundary="15338524370.a7CeD63.15608"
-Content-Transfer-Encoding: 7bit
+See: https://bugzilla.redhat.com/show_bug.cgi?id=1477182
 
+Lyude Paul (2):
+  drm/nouveau: Only write DP_MSTM_CTRL when needed
+  drm/nouveau: Reset MST branching unit before enabling
 
---15338524370.a7CeD63.15608
-Date: Thu, 9 Aug 2018 22:07:17 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 65 ++++++++++++++++++-------
+ 1 file changed, 48 insertions(+), 17 deletions(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107537
-
-            Bug ID: 107537
-           Summary: 4.14+ - Full screen OpenGL applications results in
-                    black screen
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: pilo-dZJkCKxksfnYtjvyW6yDsg@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-When starting full screen OpenGL applications, only a black screen is shown.
-Windowed applications are fine.
-
-My graphics adapter:
-01:00.0 VGA compatible controller: NVIDIA Corporation G96GLM [Quadro FX 770=
-M]
-(rev a1)
-
-I've bisected the issue to this commit:
-144a7999d6334be5237d5926ab19c56bc24d0204
-
-Also of note: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D905780
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15338524370.a7CeD63.15608
-Date: Thu, 9 Aug 2018 22:07:17 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - 4.14+ - Full screen OpenGL applications results in black =
-screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107537">107537</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>4.14+ - Full screen OpenGL applications results in black scre=
-en
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>pilo&#64;ayeon.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>When starting full screen OpenGL applications, only a black sc=
-reen is shown.
-Windowed applications are fine.
-
-My graphics adapter:
-01:00.0 VGA compatible controller: NVIDIA Corporation G96GLM [Quadro FX 770=
-M]
-(rev a1)
-
-I've bisected the issue to this commit:
-144a7999d6334be5237d5926ab19c56bc24d0204
-
-Also of note: <a href=3D"https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=
-=3D905780">https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D905780</a></=
-pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15338524370.a7CeD63.15608--
-
---===============1491589640==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1491589640==--
+-- 
+2.17.1
