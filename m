@@ -1,93 +1,73 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 1/2] drm/nouveau: Only write DP_MSTM_CTRL when needed
-Date: Thu,  9 Aug 2018 18:22:05 -0400
-Message-ID: <20180809222209.26226-2-lyude@redhat.com>
+Subject: [PATCH 2/2] drm/nouveau: Reset MST branching unit before enabling
+Date: Thu,  9 Aug 2018 18:22:06 -0400
+Message-ID: <20180809222209.26226-3-lyude@redhat.com>
 References: <20180809222209.26226-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
 In-Reply-To: <20180809222209.26226-1-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+Sender: linux-kernel-owner@vger.kernel.org
 To: nouveau@lists.freedesktop.org
-Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org, Karol Herbst <karolherbst@gmail.com>, stable@vger.kernel.org, linux-kernel@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>
+Cc: stable@vger.kernel.org, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Ilia Mirkin <imirkin@alum.mit.edu>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Q3VycmVudGx5LCBub3V2ZWF1IHdpbGwgcmUtd3JpdGUgdGhlIERQX01TVE1fQ1RSTCByZWdpc3Rl
-ciBmb3IgYW4gTVNUCmh1YiBldmVyeSB0aW1lIGl0IHJlY2VpdmVzIGEgbG9uZyBIUEQgcHVsc2Ug
-b24gRFAuIFRoaXMgaXNuJ3QgYWN0dWFsbHkKbmVjZXNzYXJ5IGFuZCBhZGRpdGlvbmFsbHksIGhh
-cyBzb21lIHVuaW50ZW5kZWQgc2lkZSBlZmZlY3RzLgoKV2l0aCB0aGUgUDUwIEkndmUgZ290IGhl
-cmUsIHJld3JpdGluZyBEUF9NU1RNX0NUUkwgY29uc3RhbnRseSBzZWVtcyB0bwptYWtlIGl0IHJh
-dGhlciBsaWtlbHkgKDEgb3V0IG9mIDUgdGltZXMgdXN1YWxseSkgdGhhdCBicmluZ2luZyB1cCBN
-U1QKd2l0aCBpdCdzIFRoaW5rUGFkIGRvY2sgd2lsbCBmYWlsIGFuZCByZXN1bHQgaW4gc2lkZWJh
-bmQgbWVzc2FnZXMgdGltaW5nCm91dCBpbiB0aGUgbWlkZGxlLiBBZnRlcndhcmRzLCBzdWNjZXNz
-aXZlIHByb2JlcyBkb24ndCBtYW5hZ2UgdG8gZ2V0IHRoZQpkb2NrIHRvIGNvbW11bmljYXRlIHBy
-b3Blcmx5IG92ZXIgTVNUIHNpZGViYW5kIHByb3Blcmx5LgoKTWFueSB0aW1lcyBzaWRlYmFuZCBt
-ZXNzYWdlIHRpbWVvdXRzIGZyb20gTVNUIGh1YnMgYXJlIGluZGljYXRpdmUgb2YKZWl0aGVyIHRo
-ZSBzb3VyY2Ugb3IgdGhlIHNpbmsgZHJvcHBpbmcgYW4gRVNJIGV2ZW50LCB3aGljaCBjYW4gY2F1
-c2UKRFJNJ3MgcGVyc3BlY3RpdmUgb2YgdGhlIHRvcG9sb2d5J3MgY3VycmVudCBzdGF0ZSB0byBn
-byBvdXQgb2Ygc3luYyB3aXRoCnJlYWxpdHkuIFdoaWxlIGl0J3MgdG91Z2ggdG8gcmVhbGx5IGtu
-b3cgZm9yIHN1cmUgd2hhdCdzIGhhcHBlbmluZyB0bwp0aGUgZG9jaywgdXNpbmcgdXNlcnNwYWNl
-IHRvb2xzIHRvIHdyaXRlIHRvIERQX01TVE1fQ1RSTCBpbiB0aGUgbWlkZGxlCm9mIHRoZSBNU1Qg
-bGluayBwcm9iaW5nIHByb2Nlc3MgZG9lcyBhcHBlYXIgdG8gbWFrZSB0aGluZ3MgZmxha3kuIEl0
-J3MKcG9zc2libGUgdGhhdCB3aGVuIHdlIHdyaXRlIHRvIERQX01TVE1fQ1RSTCwgdGhlIGZ1bmN0
-aW9uIHRoYXQgZ2V0cwp0cmlnZ2VyZWQgdG8gcmVzcG9uZCBpbiB0aGUgZG9jaydzIGZpcm13YXJl
-IHRlbXBvcmFyaWx5IHB1dHMgaXQgaW4gYQpzdGF0ZSB3aGVyZSBpdCBtaWdodCBlbmQgdXAgbm90
-IHJlcG9ydGluZyBhbiBFU0kgdG8gdGhlIHNvdXJjZSwgb3IgZW5kcwp1cCBkcm9wcGluZyBhIHNp
-ZGViYW5kIG1lc3NhZ2Ugd2Ugc2VudCBpdC4KClNvLCB0byBmaXggdGhpcyB3ZSBtYWtlIGl0IHNv
-IHRoYXQgd2hlbiBwcm9iaW5nIGFuIE1TVCB0b3BvbG9neSwgd2UKcmVzcGVjdCBpdCdzIGN1cnJl
-bnQgc3RhdGUuIElmIHRoZSBkb2NrJ3MgYWxyZWFkeSBlbmFibGVkLCB3ZSBzaW1wbHkKcmVhZCBE
-UF9NU1RNX0NUUkwgYW5kIGRpc2FibGUgdGhlIHRvcG9sb2d5IGlmIGl0J3MgdmFsdWUgaXMgbm90
-IHdoYXQgd2UKZXhwZWN0ZWQuIE90aGVyd2lzZSwgd2UgcGVyZm9ybSB0aGUgbm9ybWFsIE1TVCBw
-cm9iaW5nIGRhbmNlLiBXZSBhdm9pZAp0YWtpbmcgYW55IGFjdGlvbiBleGNlcHQgaWYgdGhlIHN0
-YXRlIG9mIHRoZSBNU1QgdG9wb2xvZ3kgYWN0dWFsbHkKY2hhbmdlcy4KClRoaXMgZml4ZXMgTVNU
-IHNpZGViYW5kIG1lc3NhZ2UgdGltZW91dHMgYW5kIGRldGVjdGlvbiBmYWlsdXJlcyBvbiBteQpQ
-NTAgd2l0aCBpdHMgVGhpbmtQYWQgZG9jay4KClNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5
-dWRlQHJlZGhhdC5jb20+CkNjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnCkNjOiBLYXJvbCBIZXJi
-c3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9k
-aXNwbnY1MC9kaXNwLmMgfCA0NSArKysrKysrKysrKysrKysrKysrKy0tLS0tCiAxIGZpbGUgY2hh
-bmdlZCwgMzYgaW5zZXJ0aW9ucygrKSwgOSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9kaXNwbnY1MC9kaXNwLmMKaW5kZXggZjZjMGIyYWE5ODU3Li5jZGIzZWY3YzVkODYgMTAw
-NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYworKysgYi9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMKQEAgLTExMTcsMzEgKzExMTcs
-NTggQEAgbnY1MF9tc3RtX2VuYWJsZShzdHJ1Y3QgbnY1MF9tc3RtICptc3RtLCB1OCBkcGNkLCBp
-bnQgc3RhdGUpCiBpbnQKIG52NTBfbXN0bV9kZXRlY3Qoc3RydWN0IG52NTBfbXN0bSAqbXN0bSwg
-dTggZHBjZFs4XSwgaW50IGFsbG93KQogewotCWludCByZXQsIHN0YXRlID0gMDsKKwlzdHJ1Y3Qg
-ZHJtX2RwX2F1eCAqYXV4OworCWludCByZXQ7CisJYm9vbCBvbGRfc3RhdGUsIG5ld19zdGF0ZTsK
-Kwl1OCBtc3RtX2N0cmw7CiAKIAlpZiAoIW1zdG0pCiAJCXJldHVybiAwOwogCi0JaWYgKGRwY2Rb
-MF0gPj0gMHgxMikgewotCQlyZXQgPSBkcm1fZHBfZHBjZF9yZWFkYihtc3RtLT5tZ3IuYXV4LCBE
-UF9NU1RNX0NBUCwgJmRwY2RbMV0pOworCW11dGV4X2xvY2soJm1zdG0tPm1nci5sb2NrKTsKKwor
-CW9sZF9zdGF0ZSA9IG1zdG0tPm1nci5tc3Rfc3RhdGU7CisJbmV3X3N0YXRlID0gb2xkX3N0YXRl
-OworCWF1eCA9IG1zdG0tPm1nci5hdXg7CisKKwlpZiAob2xkX3N0YXRlKSB7CisJCS8qIEp1c3Qg
-Y2hlY2sgdGhhdCB0aGUgTVNUIGh1YiBpcyBzdGlsbCBhcyB3ZSBleHBlY3QgaXQgKi8KKwkJcmV0
-ID0gZHJtX2RwX2RwY2RfcmVhZGIoYXV4LCBEUF9NU1RNX0NUUkwsICZtc3RtX2N0cmwpOworCQlp
-ZiAocmV0IDwgMCB8fCAhKG1zdG1fY3RybCAmIERQX01TVF9FTikpIHsKKwkJCURSTV9ERUJVR19L
-TVMoIkh1YiBnb25lLCBkaXNhYmxpbmcgTVNUIHRvcG9sb2d5XG4iKTsKKwkJCW5ld19zdGF0ZSA9
-IGZhbHNlOworCQl9CisJfSBlbHNlIGlmIChkcGNkWzBdID49IDB4MTIpIHsKKwkJcmV0ID0gZHJt
-X2RwX2RwY2RfcmVhZGIoYXV4LCBEUF9NU1RNX0NBUCwgJmRwY2RbMV0pOwogCQlpZiAocmV0IDwg
-MCkKLQkJCXJldHVybiByZXQ7CisJCQlnb3RvIHByb2JlX2Vycm9yOwogCiAJCWlmICghKGRwY2Rb
-MV0gJiBEUF9NU1RfQ0FQKSkKIAkJCWRwY2RbMF0gPSAweDExOwogCQllbHNlCi0JCQlzdGF0ZSA9
-IGFsbG93OworCQkJbmV3X3N0YXRlID0gYWxsb3c7CiAJfQogCi0JcmV0ID0gbnY1MF9tc3RtX2Vu
-YWJsZShtc3RtLCBkcGNkWzBdLCBzdGF0ZSk7CisJaWYgKG5ld19zdGF0ZSA9PSBvbGRfc3RhdGUp
-IHsKKwkJbXV0ZXhfdW5sb2NrKCZtc3RtLT5tZ3IubG9jayk7CisJCXJldHVybiBuZXdfc3RhdGU7
-CisJfQorCisJcmV0ID0gbnY1MF9tc3RtX2VuYWJsZShtc3RtLCBkcGNkWzBdLCBuZXdfc3RhdGUp
-OwogCWlmIChyZXQpCi0JCXJldHVybiByZXQ7CisJCWdvdG8gcHJvYmVfZXJyb3I7CisKKwltdXRl
-eF91bmxvY2soJm1zdG0tPm1nci5sb2NrKTsKIAotCXJldCA9IGRybV9kcF9tc3RfdG9wb2xvZ3lf
-bWdyX3NldF9tc3QoJm1zdG0tPm1nciwgc3RhdGUpOworCXJldCA9IGRybV9kcF9tc3RfdG9wb2xv
-Z3lfbWdyX3NldF9tc3QoJm1zdG0tPm1nciwgbmV3X3N0YXRlKTsKIAlpZiAocmV0KQogCQlyZXR1
-cm4gbnY1MF9tc3RtX2VuYWJsZShtc3RtLCBkcGNkWzBdLCAwKTsKIAotCXJldHVybiBtc3RtLT5t
-Z3IubXN0X3N0YXRlOworCXJldHVybiBuZXdfc3RhdGU7CisKK3Byb2JlX2Vycm9yOgorCW11dGV4
-X3VubG9jaygmbXN0bS0+bWdyLmxvY2spOworCXJldHVybiByZXQ7CiB9CiAKIHN0YXRpYyB2b2lk
-Ci0tIAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZl
-bAo=
+When probing a new MST device, it's not safe to make any assumptions
+about it's current state. While most well mannered MST hubs will just
+disable the branching unit on hotplug disconnects, this isn't enough to
+save us from various other scenarios that might have resulted in
+something writing to the MST branching unit before we got control of it.
+This could happen if a previous probe we tried failed, if we're booting
+in kexec context and the hub is still in the state the last kernel put
+it in, etc.
+
+Luckily; there is no reason we can't just reset the branching unit
+every time we enable a new topology. So, fix this by resetting it on
+enabling new topologies to ensure that we always start off with a clean,
+unmodified topology state on MST sinks.
+
+This fixes occasional hard-lockups on my P50's laptop dock (e.g. AUX
+times out all DPCD trasactions) observed after multiple docks, undocks,
+and module reloads.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: stable@vger.kernel.org
+Cc: Karol Herbst <karolherbst@gmail.com>
+---
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index cdb3ef7c5d86..61bc36e9c915 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -1098,17 +1098,21 @@ nv50_mstm_enable(struct nv50_mstm *mstm, u8 dpcd, int state)
+ 	int ret;
+ 
+ 	if (dpcd >= 0x12) {
+-		ret = drm_dp_dpcd_readb(mstm->mgr.aux, DP_MSTM_CTRL, &dpcd);
++		/* Even if we're enabling MST, start with disabling the
++		 * branching unit to clear any sink-side MST topology state
++		 * that wasn't set by us
++		 */
++		ret = drm_dp_dpcd_writeb(mstm->mgr.aux, DP_MSTM_CTRL, 0);
+ 		if (ret < 0)
+ 			return ret;
+ 
+-		dpcd &= ~DP_MST_EN;
+-		if (state)
+-			dpcd |= DP_MST_EN;
+-
+-		ret = drm_dp_dpcd_writeb(mstm->mgr.aux, DP_MSTM_CTRL, dpcd);
+-		if (ret < 0)
+-			return ret;
++		if (state) {
++			/* Now, start initializing */
++			ret = drm_dp_dpcd_writeb(mstm->mgr.aux, DP_MSTM_CTRL,
++						 DP_MST_EN);
++			if (ret < 0)
++				return ret;
++		}
+ 	}
+ 
+ 	return nvif_mthd(disp, 0, &args, sizeof(args));
+-- 
+2.17.1
