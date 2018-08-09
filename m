@@ -1,11 +1,10 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] drm/nouveau: Don't forget to cancel hpd_work on
- suspend/unload
-Date: Tue,  7 Aug 2018 17:32:48 -0400
-Message-ID: <20180807213249.1118-1-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 107537] New: 4.14+ - Full screen OpenGL applications
+ results in black screen
+Date: Thu, 09 Aug 2018 22:07:17 +0000
+Message-ID: <bug-107537-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1491589640=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -17,62 +16,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Q3VycmVudGx5LCB0aGVyZSdzIG5vdGhpbmcgaW4gbm91dmVhdSB0aGF0IGFjdHVhbGx5IGNhbmNl
-bHMgdGhpcyB3b3JrCnN0cnVjdC4gU28sIGNhbmNlbCBpdCBvbiBzdXNwZW5kL3VubG9hZC4gT3Ro
-ZXJ3aXNlLCBpZiB3ZSdyZSB1bmx1Y2t5CmVub3VnaCBocGRfd29yayBtaWdodCB0cnkgdG8ga2Vl
-cCBydW5uaW5nIHVwIHVudGlsIHRoZSBzeXN0ZW0gaXMKc3VzcGVuZGVkLgoKU2lnbmVkLW9mZi1i
-eTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KQ2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5v
-cmcKLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyB8IDkgKysr
-KysrLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuaCB8IDIgKy0K
-IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgICAgIHwgMiArLQogMyBmaWxl
-cyBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYwppbmRleCBlYzc4NjE0NTdiODQuLjFiYTNmMTUy
-Y2ZjYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5
-LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMKQEAgLTQy
-NSw3ICs0MjUsNyBAQCBub3V2ZWF1X2Rpc3BsYXlfaW5pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2
-KQogfQogCiB2b2lkCi1ub3V2ZWF1X2Rpc3BsYXlfZmluaShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2
-LCBib29sIHN1c3BlbmQpCitub3V2ZWF1X2Rpc3BsYXlfZmluaShzdHJ1Y3QgZHJtX2RldmljZSAq
-ZGV2LCBib29sIHN1c3BlbmQsIGJvb2wgcnVudGltZSkKIHsKIAlzdHJ1Y3Qgbm91dmVhdV9kaXNw
-bGF5ICpkaXNwID0gbm91dmVhdV9kaXNwbGF5KGRldik7CiAJc3RydWN0IG5vdXZlYXVfZHJtICpk
-cm0gPSBub3V2ZWF1X2RybShkZXYpOwpAQCAtNDUwLDYgKzQ1MCw5IEBAIG5vdXZlYXVfZGlzcGxh
-eV9maW5pKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIGJvb2wgc3VzcGVuZCkKIAl9CiAJZHJtX2Nv
-bm5lY3Rvcl9saXN0X2l0ZXJfZW5kKCZjb25uX2l0ZXIpOwogCisJaWYgKCFydW50aW1lKQorCQlj
-YW5jZWxfd29ya19zeW5jKCZkcm0tPmhwZF93b3JrKTsKKwogCWRybV9rbXNfaGVscGVyX3BvbGxf
-ZGlzYWJsZShkZXYpOwogCWRpc3AtPmZpbmkoZGV2KTsKIH0KQEAgLTYxOCwxMSArNjIxLDExIEBA
-IG5vdXZlYXVfZGlzcGxheV9zdXNwZW5kKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIGJvb2wgcnVu
-dGltZSkKIAkJCX0KIAkJfQogCi0JCW5vdXZlYXVfZGlzcGxheV9maW5pKGRldiwgdHJ1ZSk7CisJ
-CW5vdXZlYXVfZGlzcGxheV9maW5pKGRldiwgdHJ1ZSwgcnVudGltZSk7CiAJCXJldHVybiAwOwog
-CX0KIAotCW5vdXZlYXVfZGlzcGxheV9maW5pKGRldiwgdHJ1ZSk7CisJbm91dmVhdV9kaXNwbGF5
-X2ZpbmkoZGV2LCB0cnVlLCBydW50aW1lKTsKIAogCWxpc3RfZm9yX2VhY2hfZW50cnkoY3J0Yywg
-JmRldi0+bW9kZV9jb25maWcuY3J0Y19saXN0LCBoZWFkKSB7CiAJCXN0cnVjdCBub3V2ZWF1X2Zy
-YW1lYnVmZmVyICpub3V2ZWF1X2ZiOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9kaXNwbGF5LmggYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rp
-c3BsYXkuaAppbmRleCA1NGFhN2MzZmE0MmQuLmZmOTJiNTRjZTQ0OCAxMDA2NDQKLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmgKKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmgKQEAgLTYyLDcgKzYyLDcgQEAgbm91dmVhdV9k
-aXNwbGF5KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiBpbnQgIG5vdXZlYXVfZGlzcGxheV9jcmVh
-dGUoc3RydWN0IGRybV9kZXZpY2UgKmRldik7CiB2b2lkIG5vdXZlYXVfZGlzcGxheV9kZXN0cm95
-KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpOwogaW50ICBub3V2ZWF1X2Rpc3BsYXlfaW5pdChzdHJ1
-Y3QgZHJtX2RldmljZSAqZGV2KTsKLXZvaWQgbm91dmVhdV9kaXNwbGF5X2Zpbmkoc3RydWN0IGRy
-bV9kZXZpY2UgKmRldiwgYm9vbCBzdXNwZW5kKTsKK3ZvaWQgbm91dmVhdV9kaXNwbGF5X2Zpbmko
-c3RydWN0IGRybV9kZXZpY2UgKmRldiwgYm9vbCBzdXNwZW5kLCBib29sIHJ1bnRpbWUpOwogaW50
-ICBub3V2ZWF1X2Rpc3BsYXlfc3VzcGVuZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBib29sIHJ1
-bnRpbWUpOwogdm9pZCBub3V2ZWF1X2Rpc3BsYXlfcmVzdW1lKHN0cnVjdCBkcm1fZGV2aWNlICpk
-ZXYsIGJvb2wgcnVudGltZSk7CiBpbnQgIG5vdXZlYXVfZGlzcGxheV92YmxhbmtfZW5hYmxlKHN0
-cnVjdCBkcm1fZGV2aWNlICosIHVuc2lnbmVkIGludCk7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9kcm0uYwppbmRleCBmNWQzMTU4ZjAzNzguLjIwZDRhYjY0N2NmNyAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYworKysgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCkBAIC02MjksNyArNjI5LDcgQEAgbm91dmVhdV9kcm1f
-dW5sb2FkKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAJbm91dmVhdV9kZWJ1Z2ZzX2ZpbmkoZHJt
-KTsKIAogCWlmIChkZXYtPm1vZGVfY29uZmlnLm51bV9jcnRjKQotCQlub3V2ZWF1X2Rpc3BsYXlf
-ZmluaShkZXYsIGZhbHNlKTsKKwkJbm91dmVhdV9kaXNwbGF5X2ZpbmkoZGV2LCBmYWxzZSwgZmFs
-c2UpOwogCW5vdXZlYXVfZGlzcGxheV9kZXN0cm95KGRldik7CiAKIAlub3V2ZWF1X2Jpb3NfdGFr
-ZWRvd24oZGV2KTsKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+
+--===============1491589640==
+Content-Type: multipart/alternative; boundary="15338524370.a7CeD63.15608"
+Content-Transfer-Encoding: 7bit
+
+
+--15338524370.a7CeD63.15608
+Date: Thu, 9 Aug 2018 22:07:17 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107537
+
+            Bug ID: 107537
+           Summary: 4.14+ - Full screen OpenGL applications results in
+                    black screen
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: pilo-dZJkCKxksfnYtjvyW6yDsg@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+When starting full screen OpenGL applications, only a black screen is shown.
+Windowed applications are fine.
+
+My graphics adapter:
+01:00.0 VGA compatible controller: NVIDIA Corporation G96GLM [Quadro FX 770=
+M]
+(rev a1)
+
+I've bisected the issue to this commit:
+144a7999d6334be5237d5926ab19c56bc24d0204
+
+Also of note: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D905780
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15338524370.a7CeD63.15608
+Date: Thu, 9 Aug 2018 22:07:17 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - 4.14+ - Full screen OpenGL applications results in black =
+screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107537">107537</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>4.14+ - Full screen OpenGL applications results in black scre=
+en
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>pilo&#64;ayeon.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>When starting full screen OpenGL applications, only a black sc=
+reen is shown.
+Windowed applications are fine.
+
+My graphics adapter:
+01:00.0 VGA compatible controller: NVIDIA Corporation G96GLM [Quadro FX 770=
+M]
+(rev a1)
+
+I've bisected the issue to this commit:
+144a7999d6334be5237d5926ab19c56bc24d0204
+
+Also of note: <a href=3D"https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=
+=3D905780">https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D905780</a></=
+pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15338524370.a7CeD63.15608--
+
+--===============1491589640==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1491589640==--
