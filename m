@@ -1,64 +1,49 @@
 From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [Nouveau] [PATCH v5 07/13] drm/nouveau: Add missing unroll
- functions in nouveau_do_suspend()
-Date: Fri, 10 Aug 2018 23:36:52 +0200
-Message-ID: <CACO55tshwNd0t5+om_MMU70EiuSw3HbLZMttJHGXCPs3Pc6==w@mail.gmail.com>
-References: <20180807203914.2192-1-lyude@redhat.com>
- <20180807203914.2192-8-lyude@redhat.com>
+Subject: Re: [Nouveau] [PATCH v5 08/13] drm/nouveau: Don't ignore
+ nouveau_do_suspend() ret value
+Date: Fri, 10 Aug 2018 23:37:12 +0200
+Message-ID: <CACO55tv+QLcNRj7UDK=7NnoxTxpKHWd2GqU=Eftc-suhUn4J6A@mail.gmail.com>
+References: <20180807203914.2192-1-lyude@redhat.com> <20180807203914.2192-9-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20180807203914.2192-8-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20180807203914.2192-9-lyude@redhat.com>
+Sender: stable-owner@vger.kernel.org
 To: Lyude Paul <lyude@redhat.com>
-Cc: David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, stable@vger.kernel.org, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, dri-devel <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-UmV2aWV3ZWQtYnk6IEthcm9sIEhlcmJzdCA8a2hlcmJzdEByZWRoYXQuY29tPgoKT24gVHVlLCBB
-dWcgNywgMjAxOCBhdCAxMDozOSBQTSwgTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4gd3Jv
-dGU6Cj4gQ3VycmVudGx5LCBpdCBhcHBlYXJzIHRoYXQgbm91dmVhdV9kb19zdXNwZW5kKCkgZm9y
-Z2V0cyB0byByb2xsIGJhY2sKPiBzdXNwZW5kaW5nIGZiY29uIGFuZCBzdXNwZW5kaW5nIHRoZSBk
-ZXZpY2UgTEVEcy4gV2UgYWxzbyBjdXJyZW50bHkgc2tpcAo+IHRoZSBlbnRpcmUgcm9sbGJhY2sg
-cHJvY2VzcyBpZiBub3V2ZWF1X2Rpc3BsYXlfc3VzcGVuZCgpIGZhaWxzLiBTbywgZml4Cj4gdGhh
-dC4KPgo+IFNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+Cj4gQ2M6
-IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcKPiBDYzogTHVrYXMgV3VubmVyIDxsdWthc0B3dW5uZXIu
-ZGU+Cj4gQ2M6IEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgo+IC0tLQo+ICBk
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIHwgMTAgKysrKysrKysrLQo+ICAx
-IGZpbGUgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4KPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyBiL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPiBpbmRleCA1ZWE4ZmU5OTI0ODQuLmRiNTZlOWI2
-YjZhZiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5j
-Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+IEBAIC02NzQs
-MTAgKzY3NCwxMSBAQCBub3V2ZWF1X2RvX3N1c3BlbmQoc3RydWN0IGRybV9kZXZpY2UgKmRldiwg
-Ym9vbCBydW50aW1lKQo+ICAgICAgICAgaWYgKGRldi0+bW9kZV9jb25maWcubnVtX2NydGMpIHsK
-PiAgICAgICAgICAgICAgICAgTlZfREVCVUcoZHJtLCAic3VzcGVuZGluZyBjb25zb2xlLi4uXG4i
-KTsKPiAgICAgICAgICAgICAgICAgbm91dmVhdV9mYmNvbl9zZXRfc3VzcGVuZChkZXYsIDEpOwo+
-ICsKPiAgICAgICAgICAgICAgICAgTlZfREVCVUcoZHJtLCAic3VzcGVuZGluZyBkaXNwbGF5Li4u
-XG4iKTsKPiAgICAgICAgICAgICAgICAgcmV0ID0gbm91dmVhdV9kaXNwbGF5X3N1c3BlbmQoZGV2
-LCBydW50aW1lKTsKPiAgICAgICAgICAgICAgICAgaWYgKHJldCkKPiAtICAgICAgICAgICAgICAg
-ICAgICAgICByZXR1cm4gcmV0Owo+ICsgICAgICAgICAgICAgICAgICAgICAgIGdvdG8gZmFpbF9m
-YmNvbjsKPiAgICAgICAgIH0KPgo+ICAgICAgICAgTlZfREVCVUcoZHJtLCAiZXZpY3RpbmcgYnVm
-ZmVycy4uLlxuIik7Cj4gQEAgLTcxOSw3ICs3MjAsMTQgQEAgbm91dmVhdV9kb19zdXNwZW5kKHN0
-cnVjdCBkcm1fZGV2aWNlICpkZXYsIGJvb2wgcnVudGltZSkKPiAgICAgICAgIGlmIChkZXYtPm1v
-ZGVfY29uZmlnLm51bV9jcnRjKSB7Cj4gICAgICAgICAgICAgICAgIE5WX0RFQlVHKGRybSwgInJl
-c3VtaW5nIGRpc3BsYXkuLi5cbiIpOwo+ICAgICAgICAgICAgICAgICBub3V2ZWF1X2Rpc3BsYXlf
-cmVzdW1lKGRldiwgcnVudGltZSk7Cj4gKwo+ICtmYWlsX2ZiY29uOgo+ICsgICAgICAgICAgICAg
-ICBOVl9ERUJVRyhkcm0sICJyZXN1bWluZyBjb25zb2xlLi4uXG4iKTsKPiArICAgICAgICAgICAg
-ICAgbm91dmVhdV9mYmNvbl9zZXRfc3VzcGVuZChkZXYsIDApOwo+ICAgICAgICAgfQo+ICsKPiAr
-ICAgICAgIG5vdXZlYXVfbGVkX3Jlc3VtZShkZXYpOwo+ICsKPiAgICAgICAgIHJldHVybiByZXQ7
-Cj4gIH0KPgo+IC0tCj4gMi4xNy4xCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRl
-dmVsCg==
+Reviewed-by: Karol Herbst <kherbst@redhat.com>
+
+On Tue, Aug 7, 2018 at 10:39 PM, Lyude Paul <lyude@redhat.com> wrote:
+> Otherwise, how will we roll everything back?
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Cc: stable@vger.kernel.org
+> Cc: Lukas Wunner <lukas@wunner.de>
+> Cc: Karol Herbst <karolherbst@gmail.com>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_drm.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> index db56e9b6b6af..f79b435368ec 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> @@ -842,6 +842,9 @@ nouveau_pmops_runtime_suspend(struct device *dev)
+>         }
+>
+>         ret = nouveau_do_suspend(drm_dev, true);
+> +       if (ret)
+> +               return ret;
+> +
+>         nouveau_switcheroo_optimus_dsm();
+>         pci_save_state(pdev);
+>         pci_disable_device(pdev);
+> --
+> 2.17.1
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
