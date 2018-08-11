@@ -1,78 +1,64 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [Nouveau] [PATCH v5 10/13] drm/nouveau: Use pm_runtime_get_noresume()
- in connector_detect()
-Date: Fri, 10 Aug 2018 23:39:15 +0200
-Message-ID: <CACO55tubLooNbmNvRUcN3VrUf466gfj9W_=9dy=EABE-vL+6VQ@mail.gmail.com>
-References: <20180807203914.2192-1-lyude@redhat.com> <20180807203914.2192-11-lyude@redhat.com>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH v5 13/13] drm/nouveau: Call
+ pm_runtime_get_noresume() from hpd handlers
+Date: Sat, 11 Aug 2018 11:35:26 +0200
+Message-ID: <CACO55tthZMOSpU00nAXTPjfN0hfLEejETV=jT9shRDgucEdg7Q@mail.gmail.com>
+References: <20180807203914.2192-1-lyude@redhat.com>
+ <20180807203914.2192-14-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20180807203914.2192-11-lyude@redhat.com>
-Sender: stable-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: nouveau <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, dri-devel <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20180807203914.2192-14-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Reviewed-by: Karol Herbst <kherbst@redhat.com>
-
-On Tue, Aug 7, 2018 at 10:39 PM, Lyude Paul <lyude@redhat.com> wrote:
-> It's true we can't resume the device from poll workers in
-> nouveau_connector_detect(). We can however, prevent the autosuspend
-> timer from elapsing immediately if it hasn't already without risking any
-> sort of deadlock with the runtime suspend/resume operations. So do that
-> instead of entirely avoiding grabbing a power reference.
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Cc: stable@vger.kernel.org
-> Cc: Lukas Wunner <lukas@wunner.de>
-> Cc: Karol Herbst <karolherbst@gmail.com>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_connector.c | 20 +++++++++++---------
->  1 file changed, 11 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> index 2a45b4c2ceb0..010d6db14cba 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> @@ -572,12 +572,16 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
->                 nv_connector->edid = NULL;
->         }
->
-> -       /* Outputs are only polled while runtime active, so acquiring a
-> -        * runtime PM ref here is unnecessary (and would deadlock upon
-> -        * runtime suspend because it waits for polling to finish).
-> +       /* Outputs are only polled while runtime active, so resuming the
-> +        * device here is unnecessary (and would deadlock upon runtime suspend
-> +        * because it waits for polling to finish). We do however, want to
-> +        * prevent the autosuspend timer from elapsing during this operation
-> +        * if possible.
->          */
-> -       if (!drm_kms_helper_is_poll_worker()) {
-> -               ret = pm_runtime_get_sync(connector->dev->dev);
-> +       if (drm_kms_helper_is_poll_worker()) {
-> +               pm_runtime_get_noresume(dev->dev);
-> +       } else {
-> +               ret = pm_runtime_get_sync(dev->dev);
->                 if (ret < 0 && ret != -EACCES)
->                         return conn_status;
->         }
-> @@ -655,10 +659,8 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
->
->   out:
->
-> -       if (!drm_kms_helper_is_poll_worker()) {
-> -               pm_runtime_mark_last_busy(connector->dev->dev);
-> -               pm_runtime_put_autosuspend(connector->dev->dev);
-> -       }
-> +       pm_runtime_mark_last_busy(dev->dev);
-> +       pm_runtime_put_autosuspend(dev->dev);
->
->         return conn_status;
->  }
-> --
-> 2.17.1
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+T24gVHVlLCBBdWcgNywgMjAxOCBhdCAxMDozOSBQTSwgTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0
+LmNvbT4gd3JvdGU6Cj4gV2UgY2FuJ3QgYW5kIGRvbid0IG5lZWQgdG8gdHJ5IHJlc3VtaW5nIHRo
+ZSBkZXZpY2UgZnJvbSBvdXIgaG90cGx1Zwo+IGhhbmRsZXJzLCBidXQgaG90cGx1ZyBldmVudHMg
+YXJlIGdlbmVyYWxseSBzb21ldGhpbmcgd2UnZCBsaWtlIHRvIGtlZXAKPiB0aGUgZGV2aWNlIGF3
+YWtlIGZvciB3aGVuZXZlciBwb3NzaWJsZS4gU28sIGdyYWIgYSBQTSByZWYgc2FmZWx5IGluIG91
+cgo+IGhvdHBsdWcgaGFuZGxlcnMgdXNpbmcgcG1fcnVudGltZV9nZXRfbm9yZXN1bWUoKSBhbmQg
+bWFyayB0aGUgZGV2aWNlIGFzCj4gYnVzeSBvbmNlIHdlJ3JlIGZpbmlzaGVkLgo+Cj4gU2lnbmVk
+LW9mZi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KPiBDYzogc3RhYmxlQHZnZXIu
+a2VybmVsLm9yZwo+IENjOiBMdWthcyBXdW5uZXIgPGx1a2FzQHd1bm5lci5kZT4KPiBDYzogS2Fy
+b2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMgfCA4ICsrKysrKysrCj4gIDEgZmlsZSBjaGFu
+Z2VkLCA4IGluc2VydGlvbnMoKykKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9jb25uZWN0b3IuYwo+IGluZGV4IDg0MDljM2YyYzNhMS4uNWE4ZThjMWFkNjQ3IDEwMDY0NAo+
+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMKPiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jCj4gQEAgLTExNTIs
+NiArMTE1MiwxMSBAQCBub3V2ZWF1X2Nvbm5lY3Rvcl9ob3RwbHVnKHN0cnVjdCBudmlmX25vdGlm
+eSAqbm90aWZ5KQo+ICAgICAgICAgY29uc3QgY2hhciAqbmFtZSA9IGNvbm5lY3Rvci0+bmFtZTsK
+PiAgICAgICAgIHN0cnVjdCBub3V2ZWF1X2VuY29kZXIgKm52X2VuY29kZXI7Cj4KPiArICAgICAg
+IC8qIFJlc3VtaW5nIHRoZSBkZXZpY2UgaGVyZSBpc24ndCBwb3NzaWJsZTsgYnV0IHRoZSBzdXNw
+ZW5kIFBNIG9wcwo+ICsgICAgICAgICogd2lsbCB3YWl0IGZvciB1cyB0byBmaW5pc2ggb3VyIHdv
+cmsgYmVmb3JlIGRpc2FibGluZyB1cyBzbyB0aGlzCj4gKyAgICAgICAgKiBzaG91bGQgYmUgZW5v
+dWdoCj4gKyAgICAgICAgKi8KPiArICAgICAgIHBtX3J1bnRpbWVfZ2V0X25vcmVzdW1lKGRybS0+
+ZGV2LT5kZXYpOwoKd2hhdCBoYXBwZW5zIHdoZW4gcG1fcnVudGltZV9nZXRfbm9yZXN1bWUgaXMg
+Y2FsbGVkIG5kIHRoZSBkZXZpY2UgaXMKc3VzcGVuZGVkIGFscmVhZHk/IERvIHdlIGhhdmUgdG8g
+dGFrZSBjYXJlIG9mIHRoaXMgaGVyZSBhcyB3ZWxsIChsaWtlCnNpbXBseSBhYm9ydGluZykgb3Ig
+aXMgaXQgZmluZSBhcyBpdCBpcz8KCj4gICAgICAgICBudl9jb25uZWN0b3ItPmhwZF90YXNrID0g
+Y3VycmVudDsKPgo+ICAgICAgICAgaWYgKHJlcC0+bWFzayAmIE5WSUZfTk9USUZZX0NPTk5fVjBf
+SVJRKSB7Cj4gQEAgLTExNzEsNiArMTE3Niw5IEBAIG5vdXZlYXVfY29ubmVjdG9yX2hvdHBsdWco
+c3RydWN0IG52aWZfbm90aWZ5ICpub3RpZnkpCj4gICAgICAgICB9Cj4KPiAgICAgICAgIG52X2Nv
+bm5lY3Rvci0+aHBkX3Rhc2sgPSBOVUxMOwo+ICsKPiArICAgICAgIHBtX3J1bnRpbWVfbWFya19s
+YXN0X2J1c3koZHJtLT5kZXYtPmRldik7Cj4gKyAgICAgICBwbV9ydW50aW1lX3B1dF9hdXRvc3Vz
+cGVuZChkcm0tPmRldi0+ZGV2KTsKPiAgICAgICAgIHJldHVybiBOVklGX05PVElGWV9LRUVQOwo+
+ICB9Cj4KPiAtLQo+IDIuMTcuMQo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
