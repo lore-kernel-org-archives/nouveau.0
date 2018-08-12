@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93557] Kernel Panic on Linux Kernel 4.4 when loading
- KDE/KDM on Nvidia GeForce 7025 / nForce 630a
-Date: Sun, 12 Aug 2018 22:23:13 +0000
-Message-ID: <bug-93557-8800-kz4W6uvMsg@http.bugs.freedesktop.org/>
-References: <bug-93557-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 102352] nv4x fan run whole time at 100%,
+ stable patch existing since about 1 year, please merge
+Date: Sun, 12 Aug 2018 22:30:54 +0000
+Message-ID: <bug-102352-8800-yh0ILZBPHQ@http.bugs.freedesktop.org/>
+References: <bug-102352-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1075743287=="
+Content-Type: multipart/mixed; boundary="===============1666154305=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-102352-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1075743287==
-Content-Type: multipart/alternative; boundary="15341125921.870B9Ec02.22440"
+--===============1666154305==
+Content-Type: multipart/alternative; boundary="15341130540.dF0cF66c8.23266"
 Content-Transfer-Encoding: 7bit
 
 
---15341125921.870B9Ec02.22440
-Date: Sun, 12 Aug 2018 22:23:12 +0000
+--15341130540.dF0cF66c8.23266
+Date: Sun, 12 Aug 2018 22:30:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93557
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102352
 
---- Comment #11 from xgfwtvdh-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
-Can some developer please finally help with fixing this?
+--- Comment #11 from caguduzexi-MVPHpGc5C/w@public.gmane.org ---
+I tried now Kernel 4.17.14 (the latest kernel recently).
+The error is still there! Please help fixing this! I dont know what to do. =
+Fans
+are spinning at 100% the whole time.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15341125921.870B9Ec02.22440
-Date: Sun, 12 Aug 2018 22:23:12 +0000
+--15341130540.dF0cF66c8.23266
+Date: Sun, 12 Aug 2018 22:30:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,21 +63,24 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on =
-Nvidia GeForce 7025 / nForce 630a"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93557#c11">Commen=
-t # 11</a>
+   title=3D"NEW - nv4x fan run whole time at 100%, stable patch existing si=
+nce about 1 year, please merge"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102352#c11">Comme=
+nt # 11</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on =
-Nvidia GeForce 7025 / nForce 630a"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93557">bug 93557<=
-/a>
+   title=3D"NEW - nv4x fan run whole time at 100%, stable patch existing si=
+nce about 1 year, please merge"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102352">bug 10235=
+2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-xgfwtvdh&#64;sharklasers.com" title=3D"xgfwtvdh&#64;sharklasers.com">xgfwtv=
-dh&#64;sharklasers.com</a>
+caguduzexi&#64;spam4.me" title=3D"caguduzexi&#64;spam4.me">caguduzexi&#64;s=
+pam4.me</a>
 </span></b>
-        <pre>Can some developer please finally help with fixing this?</pre>
+        <pre>I tried now Kernel 4.17.14 (the latest kernel recently).
+The error is still there! Please help fixing this! I dont know what to do. =
+Fans
+are spinning at 100% the whole time.</pre>
         </div>
       </p>
 
@@ -88,9 +94,9 @@ dh&#64;sharklasers.com</a>
     </body>
 </html>=
 
---15341125921.870B9Ec02.22440--
+--15341130540.dF0cF66c8.23266--
 
---===============1075743287==
+--===============1666154305==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1075743287==--
+--===============1666154305==--
