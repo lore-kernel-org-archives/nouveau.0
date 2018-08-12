@@ -1,52 +1,103 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [Nouveau] [PATCH v5 05/13] drm/nouveau: Remove useless
- poll_enable() call in drm_load()
-Date: Sat, 11 Aug 2018 11:45:58 +0200
-Message-ID: <CACO55ts8cWRpXyEa-t2E_jtj_iDhsruWLfmk4LnJJ9vVBZvoeA@mail.gmail.com>
-References: <20180807203914.2192-1-lyude@redhat.com>
- <20180807203914.2192-6-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93557] Kernel Panic on Linux Kernel 4.4 when loading
+ KDE/KDM on Nvidia GeForce 7025 / nForce 630a
+Date: Sun, 12 Aug 2018 22:23:13 +0000
+Message-ID: <bug-93557-8800-kz4W6uvMsg@http.bugs.freedesktop.org/>
+References: <bug-93557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20180807203914.2192-6-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Lyude Paul <lyude@redhat.com>
-Cc: David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1075743287=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-UGF0Y2hlcyAxLTUgYXJlIEFja2VkLWJ5OiBLYXJvbCBIZXJic3QgPGtoZXJic3RAcmVkaGF0LmNv
-bT4KCk9uIFR1ZSwgQXVnIDcsIDIwMTggYXQgMTA6MzkgUE0sIEx5dWRlIFBhdWwgPGx5dWRlQHJl
-ZGhhdC5jb20+IHdyb3RlOgo+IEFnYWluLCB0aGlzIGRvZXNuJ3QgZG8gYW55dGhpbmcuIGRybV9r
-bXNfaGVscGVyX3BvbGxfZW5hYmxlKCkgd2lsbCBoYXZlCj4gYWxyZWFkeSBiZWVuIGNhbGxlZCBp
-biBub3V2ZWF1X2Rpc3BsYXlfaW5pdCgpCj4KPiBTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxs
-eXVkZUByZWRoYXQuY29tPgo+IENjOiBMdWthcyBXdW5uZXIgPGx1a2FzQHd1bm5lci5kZT4KPiBD
-YzogS2Fyb2wgSGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+Cj4gW29taXR0aW5nIHN0YWJs
-ZSBDYywgdGhpcyBwcm9iYWJseSBkb2Vzbid0IGZpeCBhbnkgcmVhbCBidWdzXQo+IC0tLQo+ICBk
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIHwgNCArLS0tCj4gIDEgZmlsZSBj
-aGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMyBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIGIvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9kcm0uYwo+IGluZGV4IDVmZGMxZmJlMmVlNS4uMDRmNzA0Yjc3YTNjIDEw
-MDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCj4gQEAgLTU5MiwxMCArNTky
-LDggQEAgbm91dmVhdV9kcm1fbG9hZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB1bnNpZ25lZCBs
-b25nIGZsYWdzKQo+ICAgICAgICAgICAgICAgICBwbV9ydW50aW1lX2FsbG93KGRldi0+ZGV2KTsK
-PiAgICAgICAgICAgICAgICAgcG1fcnVudGltZV9tYXJrX2xhc3RfYnVzeShkZXYtPmRldik7Cj4g
-ICAgICAgICAgICAgICAgIHBtX3J1bnRpbWVfcHV0KGRldi0+ZGV2KTsKPiAtICAgICAgIH0gZWxz
-ZSB7Cj4gLSAgICAgICAgICAgICAgIC8qIGVuYWJsZSBwb2xsaW5nIGZvciBleHRlcm5hbCBkaXNw
-bGF5cyAqLwo+IC0gICAgICAgICAgICAgICBkcm1fa21zX2hlbHBlcl9wb2xsX2VuYWJsZShkZXYp
-Owo+ICAgICAgICAgfQo+ICsKPiAgICAgICAgIHJldHVybiAwOwo+Cj4gIGZhaWxfZGlzcGluaXQ6
-Cj4gLS0KPiAyLjE3LjEKPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpk
-cmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============1075743287==
+Content-Type: multipart/alternative; boundary="15341125921.870B9Ec02.22440"
+Content-Transfer-Encoding: 7bit
+
+
+--15341125921.870B9Ec02.22440
+Date: Sun, 12 Aug 2018 22:23:12 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93557
+
+--- Comment #11 from xgfwtvdh-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
+Can some developer please finally help with fixing this?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15341125921.870B9Ec02.22440
+Date: Sun, 12 Aug 2018 22:23:12 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on =
+Nvidia GeForce 7025 / nForce 630a"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93557#c11">Commen=
+t # 11</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Kernel Panic on Linux Kernel 4.4 when loading KDE/KDM on =
+Nvidia GeForce 7025 / nForce 630a"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93557">bug 93557<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+xgfwtvdh&#64;sharklasers.com" title=3D"xgfwtvdh&#64;sharklasers.com">xgfwtv=
+dh&#64;sharklasers.com</a>
+</span></b>
+        <pre>Can some developer please finally help with fixing this?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15341125921.870B9Ec02.22440--
+
+--===============1075743287==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1075743287==--
