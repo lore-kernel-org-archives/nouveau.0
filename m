@@ -1,40 +1,34 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 3/3] drm/nouveau: Remove useless poll_enable() call in drm_load()
-Date: Mon, 13 Aug 2018 15:22:31 -0400
-Message-ID: <20180813192231.28861-4-lyude@redhat.com>
-References: <20180813192231.28861-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180813192231.28861-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
+Subject: [PATCH 0/3] Cleanup drm_kms_helper_poll_enable/disable() calls
+Date: Mon, 13 Aug 2018 15:22:28 -0400
+Message-ID: <20180813192231.28861-1-lyude@redhat.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
 To: nouveau@lists.freedesktop.org
-Cc: Lukas Wunner <lukas@wunner.de>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-Again, this doesn't do anything. drm_kms_helper_poll_enable() will have
-already been called in nouveau_display_init()
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Reviewed-by: Karol Herbst <karolherbst@gmail.com>
-Cc: Lukas Wunner <lukas@wunner.de>
----
- drivers/gpu/drm/nouveau/nouveau_drm.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 5fdc1fbe2ee5..04f704b77a3c 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -592,10 +592,8 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
- 		pm_runtime_allow(dev->dev);
- 		pm_runtime_mark_last_busy(dev->dev);
- 		pm_runtime_put(dev->dev);
--	} else {
--		/* enable polling for external displays */
--		drm_kms_helper_poll_enable(dev);
- 	}
-+
- 	return 0;
- 
- fail_dispinit:
--- 
-2.17.1
+RG9lcyB3aGF0IGl0IHNheXMgb24gdGhlIGxhYmVsLCBhIGxvdCBvZiB0aGVzZSBjYWxscyBhcmUg
+YWxyZWFkeSBoYW5kbGVkCnNvbWV3aGVyZSBlbHNlIGFuZCBkb24ndCBhcHBlYXIgdG8gYmUgaGVy
+ZSBmb3IgYSBsZWdpdGltYXRlIHJlYXNvbgphbnltb3JlLgoKTHl1ZGUgUGF1bCAoMyk6CiAgZHJt
+L25vdXZlYXU6IFJlbW92ZSB1c2VsZXNzIHBvbGxfZW5hYmxlKCkgY2FsbCBpbgogICAgc3dpdGNo
+ZXJvb19zZXRfc3RhdGUoKQogIGRybS9ub3V2ZWF1OiBSZW1vdmUgdXNlbGVzcyBwb2xsX2Rpc2Fi
+bGUoKSBjYWxsIGluCiAgICBzd2l0Y2hlcm9vX3NldF9zdGF0ZSgpCiAgZHJtL25vdXZlYXU6IFJl
+bW92ZSB1c2VsZXNzIHBvbGxfZW5hYmxlKCkgY2FsbCBpbiBkcm1fbG9hZCgpCgogZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyB8IDQgKy0tLQogZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV92Z2EuYyB8IDIgLS0KIDIgZmlsZXMgY2hhbmdlZCwgMSBpbnNlcnRpb24o
+KyksIDUgZGVsZXRpb25zKC0pCgotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9kcmktZGV2ZWwK
