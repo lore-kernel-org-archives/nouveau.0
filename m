@@ -1,48 +1,40 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v6 0/5] Fix connector probing deadlocks from RPM
- bugs
-Date: Mon, 13 Aug 2018 15:06:58 -0400
-Message-ID: <20180813190706.24172-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v6 2/5] drm/nouveau: Remove duplicate poll_enable() in pmops_runtime_suspend()
+Date: Mon, 13 Aug 2018 15:07:00 -0400
+Message-ID: <20180813190706.24172-3-lyude@redhat.com>
+References: <20180813190706.24172-1-lyude@redhat.com>
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20180813190706.24172-1-lyude@redhat.com>
+Sender: stable-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: stable@vger.kernel.org, Lukas Wunner <lukas@wunner.de>, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-TGF0ZXN0IHZlcnNpb24gb2YgaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmll
-cy80NjgxNS8gd2l0aApzb21lIHNpZ25pZmljYW50IGltcHJvdmVtZW50czoKCiAtIEkgZmluYWxs
-eSBmaWd1cmVkIG91dCBhIGNsZWFuIHdheSB0byBkbyB0aGlzIGVudGlyZWx5IHdpdGggcnVudGlt
-ZSBQTQogICBoZWxwZXJzLCBubyBhdm9pZGluZyBncmFiYmluZyByZWZzIHJlcXVpcmVkIQogLSBT
-aW5jZSB0aGlzIG5ldyBtZXRob2QgcmVtb3ZlcyB0aGUgbmVlZCBmb3IgYSBsb3Qgb2YgdGhlIG90
-aGVyIGNoYW5nZXMKICAgSSBtYWRlIChhbHRob3VnaCB3ZSBwcm9iYWJseSBzdGlsbCB3YW50IHRo
-b3NlIGNoYW5nZXMsIGJ1dCBub3QgZm9yCiAgIGZpeGluZyB0aGVzZSBkZWFkbG9ja3MpIEkndmUg
-cmVtb3ZlZCB0aG9zZSBub3cgaXJyZWxldmFudCBwYXRjaGVzIGZyb20KICAgdGhlIHNlcmllcyBh
-bmQgd2lsbCByZXNlbmQgdGhlbSBvbiB0aGVpciBvd24gdG8gbWFrZSByZXZpZXdpbmcgdGhpcwog
-ICBnbyBmYXN0ZXIuCgpMeXVkZSBQYXVsICg1KToKICBkcm0vbm91dmVhdTogRml4IGJvZ3VzIGRy
-bV9rbXNfaGVscGVyX3BvbGxfZW5hYmxlKCkgcGxhY2VtZW50CiAgZHJtL25vdXZlYXU6IFJlbW92
-ZSBkdXBsaWNhdGUgcG9sbF9lbmFibGUoKSBpbiBwbW9wc19ydW50aW1lX3N1c3BlbmQoKQogIGRy
-bS9ub3V2ZWF1OiBGaXggZGVhZGxvY2sgd2l0aCBmYl9oZWxwZXIgd2l0aCBhc3luYyBSUE0gcmVx
-dWVzdHMKICBkcm0vbm91dmVhdTogVXNlIHBtX3J1bnRpbWVfZ2V0X25vcmVzdW1lKCkgaW4gY29u
-bmVjdG9yX2RldGVjdCgpCiAgZHJtL25vdXZlYXU6IEZpeCBkZWFkbG9ja3MgaW4gbm91dmVhdV9j
-b25uZWN0b3JfZGV0ZWN0KCkKCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNw
-LmMgICAgIHwgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9y
-LmMgfCA0MiArKysrKysrKystLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlz
-cGxheS5jICAgfCAgOSArKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMg
-ICAgICAgfCAgMSAtCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMgICAg
-IHwgNzIgKysrKysrKysrKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
-ZWF1X2ZiY29uLmggICAgIHwgIDcgKysKIDYgZmlsZXMgY2hhbmdlZCwgMTE5IGluc2VydGlvbnMo
-KyksIDE0IGRlbGV0aW9ucygtKQoKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9ub3V2ZWF1Cg==
+Since actual hotplug notifications don't get disabled until
+nouveau_display_fini() is called, all this will do is cause any hotplugs
+that happen between this drm_kms_helper_poll_disable() call and the
+actual hotplug disablement to potentially be dropped if ACPI isn't
+around to help us.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: stable@vger.kernel.org
+Cc: Lukas Wunner <lukas@wunner.de>
+Cc: Karol Herbst <karolherbst@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index c7ec86d6c3c9..5fdc1fbe2ee5 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -835,7 +835,6 @@ nouveau_pmops_runtime_suspend(struct device *dev)
+ 		return -EBUSY;
+ 	}
+ 
+-	drm_kms_helper_poll_disable(drm_dev);
+ 	nouveau_switcheroo_optimus_dsm();
+ 	ret = nouveau_do_suspend(drm_dev, true);
+ 	pci_save_state(pdev);
+-- 
+2.17.1
