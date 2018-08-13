@@ -1,109 +1,61 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107447] regression in thermal management of Quadro
- FX 1500
-Date: Mon, 13 Aug 2018 07:19:47 +0000
-Message-ID: <bug-107447-8800-n4R9OQuUr9@http.bugs.freedesktop.org/>
-References: <bug-107447-8800@http.bugs.freedesktop.org/>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH 0/2] Provide init/release functions for struct ttm_bo_global
+Date: Mon, 13 Aug 2018 12:24:41 +0200
+Message-ID: <20180813102443.12662-1-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2097314797=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107447-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: christian.koenig@amd.com, ray.huang@amd.com, Jerry.Zhang@amd.com, dri-devel@lists.freedesktop.org
+Cc: thellstrom@vmware.com, nouveau@lists.freedesktop.org, airlied@linux.ie, puck.chen@hisilicon.com, amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org, z.liuxinliang@hisilicon.com, zourongrong@gmail.com, kong.kongxinwei@hisilicon.com, linux-graphics-maintainer@vmware.com, kraxel@redhat.com, Thomas Zimmermann <tzimmermann@suse.de>, gregkh@linuxfoundation.org, alexander.deucher@amd.com, bskeggs@redhat.com
 List-Id: nouveau.vger.kernel.org
 
-
---===============2097314797==
-Content-Type: multipart/alternative; boundary="15341447870.C0b93f33.14767"
-Content-Transfer-Encoding: 7bit
-
-
---15341447870.C0b93f33.14767
-Date: Mon, 13 Aug 2018 07:19:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107447
-
---- Comment #4 from Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org> ---
-I *guess* that a more better fix would be to check the error from the fan-t=
-able
-parsing and avoid the linear fallback when it failed, instead of the whole
-revert.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15341447870.C0b93f33.14767
-Date: Mon, 13 Aug 2018 07:19:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - regression in thermal management of Quadro FX 1500"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107447#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - regression in thermal management of Quadro FX 1500"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107447">bug 10744=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tiwai&#64;suse.de" title=3D"Takashi Iwai &lt;tiwai&#64;suse.de&gt;"> <span =
-class=3D"fn">Takashi Iwai</span></a>
-</span></b>
-        <pre>I *guess* that a more better fix would be to check the error f=
-rom the fan-table
-parsing and avoid the linear fallback when it failed, instead of the whole
-revert.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15341447870.C0b93f33.14767--
-
---===============2097314797==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2097314797==--
+VFRNIHVzZXMgZ2xvYmFsIG1lbW9yeSBhbmQgQk8gZm9yIGJhY2tpbmcgZ3JhcGhpY3MgYnVmZmVy
+cy4gVGhlc2UgYXJlCnJlcHJlc2VudGVkIGJ5IHN0cnVjdCB0dG1fbWVtX2dsb2JhbCBhbmQgc3Ry
+dWN0IHR0bV9ib19nbG9iYWwuCgpDdXJyZW50bHksIHN0cnVjdCB0dG1fYm9fZ2xvYmFsIGNhbiBv
+bmx5IGJlIGluaXRpYWxpemVkIGFuZCByZWxlYXNlZCB0aHJvdWdoCnN0cnVjdCB0dG1fYm9fZ2xv
+YmFsX3JlZi4gVGhpcyBpcyBhIHdvcmthcm91bmQgZm9yIHBhc3NpbmcgYW4gaW5zdGFuY2Ugb2YK
+dHRtX21lbV9nbG9iYWwgdG8gdGhlIEJPIGdsb2JhbCBpbml0aWFsaXphdGlvbiBjb2RlLgoKVGhl
+IHVzZSBvZiBzdHJ1Y3QgdHRtX2JvX2dsb2JhbF9yZWYgbWFrZXMgZHJpdmVyIGNvZGUgdW5uZWNl
+c3NhcnkgaGFyZCB0bwp1bmRlcnN0YW5kLiBBdCB0aGUgc2FtZSB0aW1lIGRyaXZlcnMgY2FuIHVz
+ZSBhbnkgY29tYmluYXRpb24gb2YgbWVtb3J5IGFuZApCTyBmb3IgaW5pdGlhbGl6aW5nIHRoZSBn
+bG9iYWwgaW5zdGFuY2VzLiBUaGlzIGNhbiByZXN1bHQgaW4gc3VidGxlIGJ1Z3MKd2hlbiB0aGUg
+b3JkZXIgb2YgaW5pdGlhbGl6aW5nIGFuZCByZWxlYXNpbmcgZHJpdmVycyBjaGFuZ2VzLgoKQXMg
+YSBmaXJzdCBzdGVwIGZvciByZXNvbHZpbmcgdGhlc2UgcHJvYmxlbXMsIHRoZSBwcm92aWRlZCBw
+YXRjaCBzZXQKc2VwYXJhdGVzIGluaXRpYWxpemF0aW9uIGFuZCByZWxlYXNlIG9mIHN0cnVjdCB0
+dG1fYm9fZ2xvYmFsIGZyb20Kc3RydWN0IHR0bV9ib19nbG9iYWxfcmVmLgoKVGhlIGZpcnN0IHBh
+dGNoIG9ubHkgcmVuYW1lcyB0dG1fYm9fZ2xvYmFsX3tpbml0L3JlbGVhc2V9LiBIb3BlZnVsbHkg
+dGhpcwpjaGFuZ2UgY2FuIGJlIGFwcGxpZWQgYXQgb25jZSBmb3IgYWxsIGRyaXZlcnMuCgpGdXR1
+cmUgZGlyZWN0aW9uczogQWxsIFRUTS1iYXNlZCBkcml2ZXJzIGZvbGxvdyB0aGUgc2FtZSBwYXR0
+ZXJuIGZvciBzZXR0aW5nCnVwIHRoZSBUVE0uIEluIGEgZm9sbG93LXVwIHBhdGNoLCB0aGlzIGNv
+ZGUgY2FuIGJlIG1vdmVkIGludG8gYSBzaW5nbGUgcGxhY2UKYW5kIHNoYXJlZCBhbW9uZyBkcml2
+ZXJzLgoKVGhvbWFzIFppbW1lcm1hbm4gKDIpOgogIGRybS90dG06IFJlbmFtZSB0dG1fYm9fZ2xv
+YmFsX3tpbml0LHJlbGVhc2V9KCkgdG8KICAgIHR0bV9ib19nbG9iYWxfcmVmXyooKQogIGRybS90
+dG06IFByb3ZpZGUgdHRtX2JvX2dsb2JhbF97aW5pdC9yZWxlYXNlfSgpIGZvciBzdHJ1Y3QKICAg
+IHR0bV9ib19nbG9iYWwKCiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdHRtLmMg
+ICAgIHwgIDQgKy0KIGRyaXZlcnMvZ3B1L2RybS9hc3QvYXN0X3R0bS5jICAgICAgICAgICAgICAg
+fCAgNCArLQogZHJpdmVycy9ncHUvZHJtL2JvY2hzL2JvY2hzX21tLmMgICAgICAgICAgICB8ICA0
+ICstCiBkcml2ZXJzL2dwdS9kcm0vY2lycnVzL2NpcnJ1c190dG0uYyAgICAgICAgIHwgIDQgKy0K
+IGRyaXZlcnMvZ3B1L2RybS9oaXNpbGljb24vaGlibWMvaGlibWNfdHRtLmMgfCAgNCArLQogZHJp
+dmVycy9ncHUvZHJtL21nYWcyMDAvbWdhZzIwMF90dG0uYyAgICAgICB8ICA0ICstCiBkcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3R0bS5jICAgICAgIHwgIDQgKy0KIGRyaXZlcnMvZ3B1
+L2RybS9xeGwvcXhsX3R0bS5jICAgICAgICAgICAgICAgfCAgNCArLQogZHJpdmVycy9ncHUvZHJt
+L3JhZGVvbi9yYWRlb25fdHRtLmMgICAgICAgICB8ICA0ICstCiBkcml2ZXJzL2dwdS9kcm0vdHRt
+L3R0bV9iby5jICAgICAgICAgICAgICAgIHwgMTIgKystLS0KIGRyaXZlcnMvZ3B1L2RybS92aXJ0
+aW8vdmlydGdwdV90dG0uYyAgICAgICAgfCAgNCArLQogZHJpdmVycy9ncHUvZHJtL3Ztd2dmeC92
+bXdnZnhfdHRtX2dsdWUuYyAgICB8ICA0ICstCiBkcml2ZXJzL3N0YWdpbmcvdmJveHZpZGVvL3Zi
+b3hfdHRtLmMgICAgICAgIHwgIDQgKy0KIGluY2x1ZGUvZHJtL3R0bS90dG1fYm9fZHJpdmVyLmgg
+ICAgICAgICAgICAgfCA1MyArKysrKysrKysrKysrKysrLS0tLS0KIDE0IGZpbGVzIGNoYW5nZWQs
+IDcwIGluc2VydGlvbnMoKyksIDQzIGRlbGV0aW9ucygtKQoKLS0KMi4xOC4wCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBs
+aXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
