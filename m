@@ -1,305 +1,286 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [PATCH v7 3/5] drm/nouveau: Fix deadlock with
- fb_helper with async RPM requests
-Date: Tue, 14 Aug 2018 10:53:32 +0200
-Message-ID: <20180814085332.GF21634@phenom.ffwll.local>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v7 3/5] drm/nouveau: Fix deadlock with fb_helper with
+ async RPM requests
+Date: Tue, 14 Aug 2018 10:57:09 +0200
+Message-ID: <20180814085709.GG21634@phenom.ffwll.local>
 References: <20180813191648.27419-1-lyude@redhat.com>
  <20180813191648.27419-4-lyude@redhat.com>
+ <20180814085332.GF21634@phenom.ffwll.local>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <stable-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20180813191648.27419-4-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+In-Reply-To: <20180814085332.GF21634@phenom.ffwll.local>
+Sender: stable-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org, stable@vger.kernel.org, Lukas Wunner <lukas@wunner.de>, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, Thierry Reding <treding@nvidia.com>, Ilia Mirkin <imirkin@alum.mit.edu>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBBdWcgMTMsIDIwMTggYXQgMDM6MTY6NDNQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
-ZToKPiBJJ20gc3VyZSBJIGRvbid0IG5lZWQgdG8gdGVsbCB5b3UgdGhhdCBmYl9oZWxwZXIncyBs
-b2NraW5nIGlzIGEgbWVzcy4KClVoLCBsb2FkZWQgc3RhdGVtZW50IDotKSBFc3BlY2lhbGx5IHNp
-bmNlIHdlJ3ZlIGp1c3QgcmV3b3JrZWQgYWxsIHRoZQpmYmRldiBsb2NraW5nIHRvIHVudGFuZ2xl
-IGl0IGZyb20gZHJtX21vZGVzZXQgbG9ja2luZy4gV2hhdCdzIHN0aWxsIGEgbWVzcwphYm91dCBp
-dD8gSXQncyBkb2N1bWVudGVkLCBhbmQgdmVyeSBjbGVhcmx5IHdyYXBwZWQgYXJvdW5kIGFsbCB0
-aGUKZHJtX21vZGVzZXQgbG9ja3MuIElmIHRoZXJlJ3MgZ2FwcywgcGxlYXNlIGJyaW5nIHRoZW0g
-dXAuCgo+IFRoYXQgYmVpbmcgc2FpZDsgZmJfaGVscGVyJ3MgbG9ja2luZyBtZXNzIGNhbiBzZXJp
-b3VzbHkgY29tcGxpY2F0ZSB0aGUKPiBydW50aW1lIHN1c3BlbmQvcmVzdW1lIG9wZXJhdGlvbnMg
-b2YgZHJpdmVycyBiZWNhdXNlIGl0IGNhbiBpbnZva2UKPiBhdG9taWMgY29tbWl0cyBhbmQgY29u
-bmVjdG9yIHByb2JpbmcgZnJvbSBhbnl3aGVyZSB0aGF0IGNhbGxzCj4gZHJtX2ZiX2hlbHBlcl9o
-b3RwbHVnX2V2ZW50KCkuIFNpbmNlIG1vc3QgZHJpdmVycyB1c2UKPiBkcm1fZmJfaGVscGVyX291
-dHB1dF9wb2xsX2NoYW5nZWQoKSBhcyB0aGVpciBvdXRwdXRfcG9sbF9jaGFuZ2VkCj4gaGFuZGxl
-ciwgdGhpcyBjYW4gaGFwcGVuIGluIGV2ZXJ5IHNpbmdsZSBjb250ZXh0IHRoYXQgY2FuIGZpcmUg
-b2ZmIGEKPiBob3RwbHVnIGV2ZW50LiBBbiBleGFtcGxlOgo+IAo+IFsgIDI0Ni42Njk2MjVdIElO
-Rk86IHRhc2sga3dvcmtlci80OjA6MzcgYmxvY2tlZCBmb3IgbW9yZSB0aGFuIDEyMCBzZWNvbmRz
-Lgo+IFsgIDI0Ni42NzMzOThdICAgICAgIE5vdCB0YWludGVkIDQuMTguMC1yYzVMeXVkZS1UZXN0
-KyAjMgo+IFsgIDI0Ni42NzUyNzFdICJlY2hvIDAgPiAvcHJvYy9zeXMva2VybmVsL2h1bmdfdGFz
-a190aW1lb3V0X3NlY3MiIGRpc2FibGVzIHRoaXMgbWVzc2FnZS4KPiBbICAyNDYuNjc2NTI3XSBr
-d29ya2VyLzQ6MCAgICAgRCAgICAwICAgIDM3ICAgICAgMiAweDgwMDAwMDAwCj4gWyAgMjQ2LjY3
-NzU4MF0gV29ya3F1ZXVlOiBldmVudHMgb3V0cHV0X3BvbGxfZXhlY3V0ZSBbZHJtX2ttc19oZWxw
-ZXJdCj4gWyAgMjQ2LjY3ODcwNF0gQ2FsbCBUcmFjZToKPiBbICAyNDYuNjc5NzUzXSAgX19zY2hl
-ZHVsZSsweDMyMi8weGFmMAo+IFsgIDI0Ni42ODA5MTZdICBzY2hlZHVsZSsweDMzLzB4OTAKPiBb
-ICAyNDYuNjgxOTI0XSAgc2NoZWR1bGVfcHJlZW1wdF9kaXNhYmxlZCsweDE1LzB4MjAKPiBbICAy
-NDYuNjgzMDIzXSAgX19tdXRleF9sb2NrKzB4NTY5LzB4OWEwCj4gWyAgMjQ2LjY4NDAzNV0gID8g
-a29iamVjdF91ZXZlbnRfZW52KzB4MTE3LzB4N2IwCj4gWyAgMjQ2LjY4NTEzMl0gID8gZHJtX2Zi
-X2hlbHBlcl9ob3RwbHVnX2V2ZW50LnBhcnQuMjgrMHgyMC8weGIwIFtkcm1fa21zX2hlbHBlcl0K
-PiBbICAyNDYuNjg2MTc5XSAgbXV0ZXhfbG9ja19uZXN0ZWQrMHgxYi8weDIwCj4gWyAgMjQ2LjY4
-NzI3OF0gID8gbXV0ZXhfbG9ja19uZXN0ZWQrMHgxYi8weDIwCj4gWyAgMjQ2LjY4ODMwN10gIGRy
-bV9mYl9oZWxwZXJfaG90cGx1Z19ldmVudC5wYXJ0LjI4KzB4MjAvMHhiMCBbZHJtX2ttc19oZWxw
-ZXJdCj4gWyAgMjQ2LjY4OTQyMF0gIGRybV9mYl9oZWxwZXJfb3V0cHV0X3BvbGxfY2hhbmdlZCsw
-eDIzLzB4MzAgW2RybV9rbXNfaGVscGVyXQo+IFsgIDI0Ni42OTA0NjJdICBkcm1fa21zX2hlbHBl
-cl9ob3RwbHVnX2V2ZW50KzB4MmEvMHgzMCBbZHJtX2ttc19oZWxwZXJdCj4gWyAgMjQ2LjY5MTU3
-MF0gIG91dHB1dF9wb2xsX2V4ZWN1dGUrMHgxOTgvMHgxYzAgW2RybV9rbXNfaGVscGVyXQo+IFsg
-IDI0Ni42OTI2MTFdICBwcm9jZXNzX29uZV93b3JrKzB4MjMxLzB4NjIwCj4gWyAgMjQ2LjY5Mzcy
-NV0gIHdvcmtlcl90aHJlYWQrMHgyMTQvMHgzYTAKPiBbICAyNDYuNjk0NzU2XSAga3RocmVhZCsw
-eDEyYi8weDE1MAo+IFsgIDI0Ni42OTU4NTZdICA/IHdxX3Bvb2xfaWRzX3Nob3crMHgxNDAvMHgx
-NDAKPiBbICAyNDYuNjk2ODg4XSAgPyBrdGhyZWFkX2NyZWF0ZV93b3JrZXJfb25fY3B1KzB4NzAv
-MHg3MAo+IFsgIDI0Ni42OTc5OThdICByZXRfZnJvbV9mb3JrKzB4M2EvMHg1MAo+IFsgIDI0Ni42
-OTkwMzRdIElORk86IHRhc2sga3dvcmtlci8wOjE6NjAgYmxvY2tlZCBmb3IgbW9yZSB0aGFuIDEy
-MCBzZWNvbmRzLgo+IFsgIDI0Ni43MDAxNTNdICAgICAgIE5vdCB0YWludGVkIDQuMTguMC1yYzVM
-eXVkZS1UZXN0KyAjMgo+IFsgIDI0Ni43MDExODJdICJlY2hvIDAgPiAvcHJvYy9zeXMva2VybmVs
-L2h1bmdfdGFza190aW1lb3V0X3NlY3MiIGRpc2FibGVzIHRoaXMgbWVzc2FnZS4KPiBbICAyNDYu
-NzAyMjc4XSBrd29ya2VyLzA6MSAgICAgRCAgICAwICAgIDYwICAgICAgMiAweDgwMDAwMDAwCj4g
-WyAgMjQ2LjcwMzI5M10gV29ya3F1ZXVlOiBwbSBwbV9ydW50aW1lX3dvcmsKPiBbICAyNDYuNzA0
-MzkzXSBDYWxsIFRyYWNlOgo+IFsgIDI0Ni43MDU0MDNdICBfX3NjaGVkdWxlKzB4MzIyLzB4YWYw
-Cj4gWyAgMjQ2LjcwNjQzOV0gID8gd2FpdF9mb3JfY29tcGxldGlvbisweDEwNC8weDE5MAo+IFsg
-IDI0Ni43MDczOTNdICBzY2hlZHVsZSsweDMzLzB4OTAKPiBbICAyNDYuNzA4Mzc1XSAgc2NoZWR1
-bGVfdGltZW91dCsweDNhNS8weDU5MAo+IFsgIDI0Ni43MDkyODldICA/IG1hcmtfaGVsZF9sb2Nr
-cysweDU4LzB4ODAKPiBbICAyNDYuNzEwMjA4XSAgPyBfcmF3X3NwaW5fdW5sb2NrX2lycSsweDJj
-LzB4NDAKPiBbICAyNDYuNzExMjIyXSAgPyB3YWl0X2Zvcl9jb21wbGV0aW9uKzB4MTA0LzB4MTkw
-Cj4gWyAgMjQ2LjcxMjEzNF0gID8gdHJhY2VfaGFyZGlycXNfb25fY2FsbGVyKzB4ZjQvMHgxOTAK
-PiBbICAyNDYuNzEzMDk0XSAgPyB3YWl0X2Zvcl9jb21wbGV0aW9uKzB4MTA0LzB4MTkwCj4gWyAg
-MjQ2LjcxMzk2NF0gIHdhaXRfZm9yX2NvbXBsZXRpb24rMHgxMmMvMHgxOTAKPiBbICAyNDYuNzE0
-ODk1XSAgPyB3YWtlX3VwX3ErMHg4MC8weDgwCj4gWyAgMjQ2LjcxNTcyN10gID8gZ2V0X3dvcmtf
-cG9vbCsweDkwLzB4OTAKPiBbICAyNDYuNzE2NjQ5XSAgZmx1c2hfd29yaysweDFjOS8weDI4MAo+
-IFsgIDI0Ni43MTc0ODNdICA/IGZsdXNoX3dvcmtxdWV1ZV9wcmVwX3B3cXMrMHgxYjAvMHgxYjAK
-PiBbICAyNDYuNzE4NDQyXSAgX19jYW5jZWxfd29ya190aW1lcisweDE0Ni8weDFkMAo+IFsgIDI0
-Ni43MTkyNDddICBjYW5jZWxfZGVsYXllZF93b3JrX3N5bmMrMHgxMy8weDIwCj4gWyAgMjQ2Ljcy
-MDA0M10gIGRybV9rbXNfaGVscGVyX3BvbGxfZGlzYWJsZSsweDFmLzB4MzAgW2RybV9rbXNfaGVs
-cGVyXQo+IFsgIDI0Ni43MjExMjNdICBub3V2ZWF1X3Btb3BzX3J1bnRpbWVfc3VzcGVuZCsweDNk
-LzB4YjAgW25vdXZlYXVdCj4gWyAgMjQ2LjcyMTg5N10gIHBjaV9wbV9ydW50aW1lX3N1c3BlbmQr
-MHg2Yi8weDE5MAo+IFsgIDI0Ni43MjI4MjVdICA/IHBjaV9oYXNfbGVnYWN5X3BtX3N1cHBvcnQr
-MHg3MC8weDcwCj4gWyAgMjQ2LjcyMzczN10gIF9fcnBtX2NhbGxiYWNrKzB4N2EvMHgxZDAKPiBb
-ICAyNDYuNzI0NzIxXSAgPyBwY2lfaGFzX2xlZ2FjeV9wbV9zdXBwb3J0KzB4NzAvMHg3MAo+IFsg
-IDI0Ni43MjU2MDddICBycG1fY2FsbGJhY2srMHgyNC8weDgwCj4gWyAgMjQ2LjcyNjU1M10gID8g
-cGNpX2hhc19sZWdhY3lfcG1fc3VwcG9ydCsweDcwLzB4NzAKPiBbICAyNDYuNzI3Mzc2XSAgcnBt
-X3N1c3BlbmQrMHgxNDIvMHg2YjAKPiBbICAyNDYuNzI4MTg1XSAgcG1fcnVudGltZV93b3JrKzB4
-OTcvMHhjMAo+IFsgIDI0Ni43Mjg5MzhdICBwcm9jZXNzX29uZV93b3JrKzB4MjMxLzB4NjIwCj4g
-WyAgMjQ2LjcyOTc5Nl0gIHdvcmtlcl90aHJlYWQrMHg0NC8weDNhMAo+IFsgIDI0Ni43MzA2MTRd
-ICBrdGhyZWFkKzB4MTJiLzB4MTUwCj4gWyAgMjQ2LjczMTM5NV0gID8gd3FfcG9vbF9pZHNfc2hv
-dysweDE0MC8weDE0MAo+IFsgIDI0Ni43MzIyMDJdICA/IGt0aHJlYWRfY3JlYXRlX3dvcmtlcl9v
-bl9jcHUrMHg3MC8weDcwCj4gWyAgMjQ2LjczMjg3OF0gIHJldF9mcm9tX2ZvcmsrMHgzYS8weDUw
-Cj4gWyAgMjQ2LjczMzc2OF0gSU5GTzogdGFzayBrd29ya2VyLzQ6Mjo0MjIgYmxvY2tlZCBmb3Ig
-bW9yZSB0aGFuIDEyMCBzZWNvbmRzLgo+IFsgIDI0Ni43MzQ1ODddICAgICAgIE5vdCB0YWludGVk
-IDQuMTguMC1yYzVMeXVkZS1UZXN0KyAjMgo+IFsgIDI0Ni43MzUzOTNdICJlY2hvIDAgPiAvcHJv
-Yy9zeXMva2VybmVsL2h1bmdfdGFza190aW1lb3V0X3NlY3MiIGRpc2FibGVzIHRoaXMgbWVzc2Fn
-ZS4KPiBbICAyNDYuNzM2MTEzXSBrd29ya2VyLzQ6MiAgICAgRCAgICAwICAgNDIyICAgICAgMiAw
-eDgwMDAwMDgwCj4gWyAgMjQ2LjczNjc4OV0gV29ya3F1ZXVlOiBldmVudHNfbG9uZyBkcm1fZHBf
-bXN0X2xpbmtfcHJvYmVfd29yayBbZHJtX2ttc19oZWxwZXJdCj4gWyAgMjQ2LjczNzY2NV0gQ2Fs
-bCBUcmFjZToKPiBbICAyNDYuNzM4NDkwXSAgX19zY2hlZHVsZSsweDMyMi8weGFmMAo+IFsgIDI0
-Ni43MzkyNTBdICBzY2hlZHVsZSsweDMzLzB4OTAKPiBbICAyNDYuNzM5OTA4XSAgcnBtX3Jlc3Vt
-ZSsweDE5Yy8weDg1MAo+IFsgIDI0Ni43NDA3NTBdICA/IGZpbmlzaF93YWl0KzB4OTAvMHg5MAo+
-IFsgIDI0Ni43NDE1NDFdICBfX3BtX3J1bnRpbWVfcmVzdW1lKzB4NGUvMHg5MAo+IFsgIDI0Ni43
-NDIzNzBdICBudjUwX2Rpc3BfYXRvbWljX2NvbW1pdCsweDMxLzB4MjEwIFtub3V2ZWF1XQo+IFsg
-IDI0Ni43NDMxMjRdICBkcm1fYXRvbWljX2NvbW1pdCsweDRhLzB4NTAgW2RybV0KPiBbICAyNDYu
-NzQzNzc1XSAgcmVzdG9yZV9mYmRldl9tb2RlX2F0b21pYysweDFjOC8weDI0MCBbZHJtX2ttc19o
-ZWxwZXJdCj4gWyAgMjQ2Ljc0NDYwM10gIHJlc3RvcmVfZmJkZXZfbW9kZSsweDMxLzB4MTQwIFtk
-cm1fa21zX2hlbHBlcl0KPiBbICAyNDYuNzQ1MzczXSAgZHJtX2ZiX2hlbHBlcl9yZXN0b3JlX2Zi
-ZGV2X21vZGVfdW5sb2NrZWQrMHg1NC8weGIwIFtkcm1fa21zX2hlbHBlcl0KPiBbICAyNDYuNzQ2
-MjIwXSAgZHJtX2ZiX2hlbHBlcl9zZXRfcGFyKzB4MmQvMHg1MCBbZHJtX2ttc19oZWxwZXJdCj4g
-WyAgMjQ2Ljc0Njg4NF0gIGRybV9mYl9oZWxwZXJfaG90cGx1Z19ldmVudC5wYXJ0LjI4KzB4OTYv
-MHhiMCBbZHJtX2ttc19oZWxwZXJdCj4gWyAgMjQ2Ljc0NzY3NV0gIGRybV9mYl9oZWxwZXJfb3V0
-cHV0X3BvbGxfY2hhbmdlZCsweDIzLzB4MzAgW2RybV9rbXNfaGVscGVyXQo+IFsgIDI0Ni43NDg1
-NDRdICBkcm1fa21zX2hlbHBlcl9ob3RwbHVnX2V2ZW50KzB4MmEvMHgzMCBbZHJtX2ttc19oZWxw
-ZXJdCj4gWyAgMjQ2Ljc0OTQzOV0gIG52NTBfbXN0bV9ob3RwbHVnKzB4MTUvMHgyMCBbbm91dmVh
-dV0KPiBbICAyNDYuNzUwMTExXSAgZHJtX2RwX3NlbmRfbGlua19hZGRyZXNzKzB4MTc3LzB4MWMw
-IFtkcm1fa21zX2hlbHBlcl0KPiBbICAyNDYuNzUwNzY0XSAgZHJtX2RwX2NoZWNrX2FuZF9zZW5k
-X2xpbmtfYWRkcmVzcysweGE4LzB4ZDAgW2RybV9rbXNfaGVscGVyXQo+IFsgIDI0Ni43NTE2MDJd
-ICBkcm1fZHBfbXN0X2xpbmtfcHJvYmVfd29yaysweDUxLzB4OTAgW2RybV9rbXNfaGVscGVyXQo+
-IFsgIDI0Ni43NTIzMTRdICBwcm9jZXNzX29uZV93b3JrKzB4MjMxLzB4NjIwCj4gWyAgMjQ2Ljc1
-Mjk3OV0gIHdvcmtlcl90aHJlYWQrMHg0NC8weDNhMAo+IFsgIDI0Ni43NTM4MzhdICBrdGhyZWFk
-KzB4MTJiLzB4MTUwCj4gWyAgMjQ2Ljc1NDYxOV0gID8gd3FfcG9vbF9pZHNfc2hvdysweDE0MC8w
-eDE0MAo+IFsgIDI0Ni43NTUzODZdICA/IGt0aHJlYWRfY3JlYXRlX3dvcmtlcl9vbl9jcHUrMHg3
-MC8weDcwCj4gWyAgMjQ2Ljc1NjE2Ml0gIHJldF9mcm9tX2ZvcmsrMHgzYS8weDUwCj4gWyAgMjQ2
-Ljc1Njg0N10KPiAgICAgICAgICAgIFNob3dpbmcgYWxsIGxvY2tzIGhlbGQgaW4gdGhlIHN5c3Rl
-bToKPiBbICAyNDYuNzU4MjYxXSAzIGxvY2tzIGhlbGQgYnkga3dvcmtlci80OjAvMzc6Cj4gWyAg
-MjQ2Ljc1OTAxNl0gICMwOiAwMDAwMDAwMGY4ZGY0ZDJkICgod3FfY29tcGxldGlvbikiZXZlbnRz
-Iil7Ky4rLn0sIGF0OiBwcm9jZXNzX29uZV93b3JrKzB4MWIzLzB4NjIwCj4gWyAgMjQ2Ljc1OTg1
-Nl0gICMxOiAwMDAwMDAwMGU2MDY1NDYxICgod29ya19jb21wbGV0aW9uKSgmKCZkZXYtPm1vZGVf
-Y29uZmlnLm91dHB1dF9wb2xsX3dvcmspLT53b3JrKSl7Ky4rLn0sIGF0OiBwcm9jZXNzX29uZV93
-b3JrKzB4MWIzLzB4NjIwCj4gWyAgMjQ2Ljc2MDY3MF0gICMyOiAwMDAwMDAwMGNiNjY3MzVmICgm
-aGVscGVyLT5sb2NrKXsrLisufSwgYXQ6IGRybV9mYl9oZWxwZXJfaG90cGx1Z19ldmVudC5wYXJ0
-LjI4KzB4MjAvMHhiMCBbZHJtX2ttc19oZWxwZXJdCj4gWyAgMjQ2Ljc2MTUxNl0gMiBsb2NrcyBo
-ZWxkIGJ5IGt3b3JrZXIvMDoxLzYwOgo+IFsgIDI0Ni43NjIyNzRdICAjMDogMDAwMDAwMDBmZmY2
-YmUwZiAoKHdxX2NvbXBsZXRpb24pInBtIil7Ky4rLn0sIGF0OiBwcm9jZXNzX29uZV93b3JrKzB4
-MWIzLzB4NjIwCj4gWyAgMjQ2Ljc2Mjk4Ml0gICMxOiAwMDAwMDAwMDVhYjQ0ZmI0ICgod29ya19j
-b21wbGV0aW9uKSgmZGV2LT5wb3dlci53b3JrKSl7Ky4rLn0sIGF0OiBwcm9jZXNzX29uZV93b3Jr
-KzB4MWIzLzB4NjIwCj4gWyAgMjQ2Ljc2Mzg5MF0gMSBsb2NrIGhlbGQgYnkga2h1bmd0YXNrZC82
-NDoKPiBbICAyNDYuNzY0NjY0XSAgIzA6IDAwMDAwMDAwOGNiOGI1YzMgKHJjdV9yZWFkX2xvY2sp
-ey4uLi59LCBhdDogZGVidWdfc2hvd19hbGxfbG9ja3MrMHgyMy8weDE4NQo+IFsgIDI0Ni43NjU1
-ODhdIDUgbG9ja3MgaGVsZCBieSBrd29ya2VyLzQ6Mi80MjI6Cj4gWyAgMjQ2Ljc2NjQ0MF0gICMw
-OiAwMDAwMDAwMDIzMmYwOTU5ICgod3FfY29tcGxldGlvbikiZXZlbnRzX2xvbmciKXsrLisufSwg
-YXQ6IHByb2Nlc3Nfb25lX3dvcmsrMHgxYjMvMHg2MjAKPiBbICAyNDYuNzY3MzkwXSAgIzE6IDAw
-MDAwMDAwYmI1OWIxMzQgKCh3b3JrX2NvbXBsZXRpb24pKCZtZ3ItPndvcmspKXsrLisufSwgYXQ6
-IHByb2Nlc3Nfb25lX3dvcmsrMHgxYjMvMHg2MjAKPiBbICAyNDYuNzY4MTU0XSAgIzI6IDAwMDAw
-MDAwY2I2NjczNWYgKCZoZWxwZXItPmxvY2speysuKy59LCBhdDogZHJtX2ZiX2hlbHBlcl9yZXN0
-b3JlX2ZiZGV2X21vZGVfdW5sb2NrZWQrMHg0Yy8weGIwIFtkcm1fa21zX2hlbHBlcl0KPiBbICAy
-NDYuNzY4OTY2XSAgIzM6IDAwMDAwMDAwNGM4ZjBiNmIgKGNydGNfd3dfY2xhc3NfYWNxdWlyZSl7
-Ky4rLn0sIGF0OiByZXN0b3JlX2ZiZGV2X21vZGVfYXRvbWljKzB4NGIvMHgyNDAgW2RybV9rbXNf
-aGVscGVyXQo+IFsgIDI0Ni43Njk5MjFdICAjNDogMDAwMDAwMDA0YzM0YTI5NiAoY3J0Y193d19j
-bGFzc19tdXRleCl7Ky4rLn0sIGF0OiBkcm1fbW9kZXNldF9iYWNrb2ZmKzB4OGEvMHgxYjAgW2Ry
-bV0KPiBbICAyNDYuNzcwODM5XSAxIGxvY2sgaGVsZCBieSBkbWVzZy8xMDM4Ogo+IFsgIDI0Ni43
-NzE3MzldIDIgbG9ja3MgaGVsZCBieSB6c2gvMTE3MjoKPiBbICAyNDYuNzcyNjUwXSAgIzA6IDAw
-MDAwMDAwODM2ZDA0MzggKCZ0dHktPmxkaXNjX3NlbSl7KysrK30sIGF0OiBsZHNlbV9kb3duX3Jl
-YWQrMHgzNy8weDQwCj4gWyAgMjQ2Ljc3MzY4MF0gICMxOiAwMDAwMDAwMDFmNGY0ZDQ4ICgmbGRh
-dGEtPmF0b21pY19yZWFkX2xvY2speysuKy59LCBhdDogbl90dHlfcmVhZCsweGMxLzB4ODcwCj4g
-Cj4gWyAgMjQ2Ljc3NTUyMl0gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09Cj4gCj4gQWZ0ZXIgdHJ5aW5nIGRvemVucyBvZiBkaWZmZXJlbnQgc29sdXRpb25zLCBJ
-IGZvdW5kIG9uZSB2ZXJ5IHNpbXBsZSBvbmUKPiB0aGF0IHNob3VsZCBhbHNvIGhhdmUgdGhlIGJl
-bmVmaXQgb2YgcHJldmVudGluZyB1cyBmcm9tIGhhdmluZyB0byBmaWdodAo+IGxvY2tpbmcgZm9y
-IHRoZSByZXN0IG9mIG91ciBsaXZlcy4gU28sIHdlIHdvcmsgYXJvdW5kIHRoZXNlIGRlYWRsb2Nr
-cyBieQo+IGRlZmVycmluZyBhbGwgZmJjb24gaG90cGx1ZyBldmVudHMgdGhhdCBoYXBwZW4gYWZ0
-ZXIgdGhlIHJ1bnRpbWUgc3VzcGVuZAo+IHByb2Nlc3Mgc3RhcnRzIHVudGlsIGFmdGVyIHRoZSBk
-ZXZpY2UgaXMgcmVzdW1lZCBhZ2Fpbi4KPiAKPiBDaGFuZ2VzIHNpbmNlIHY2Ogo+ICAtIFJlbW92
-ZSB1bnVzZWQgbm91dmVhdV9mYmNvbl9ob3RwbHVnZ2VkX2luX3N1c3BlbmQoKSAtIElsaWEKPiAK
-PiBDaGFuZ2VzIHNpbmNlIHY1Ogo+ICAtIENvbWUgdXAgd2l0aCB0aGUgKGhvcGVmdWxseSBmaW5h
-bCkgc29sdXRpb24gZm9yIHNvbHZpbmcgdGhpcyBkdW1iCj4gICAgcHJvYmxlbSwgb25lIHRoYXQg
-aXMgYSBsb3QgbGVzcyBsaWtlbHkgdG8gY2F1c2UgaXNzdWVzIHdpdGggbG9ja2luZyBpbgo+ICAg
-IHRoZSBmdXR1cmUuIFRoaXMgc2hvdWxkIHdvcmsgYXJvdW5kIGFsbCBkZWFkbG9jayBjb25kaXRp
-b25zIHdpdGggZmJjb24KPiAgICBicm91Z2h0IHVwIHRodXMgZmFyLgo+IAo+IENoYW5nZXMgc2lu
-Y2UgdjQ6Cj4gIC0gQWRkIG5vdXZlYXVfZmJjb25faG90cGx1Z2dlZF9pbl9zdXNwZW5kKCkgdG8g
-d29ya2Fyb3VuZCBkZWFkbG9jawo+ICAgIGNvbmRpdGlvbiB0aGF0IEx1a2FzIGRlc2NyaWJlZAo+
-ICAtIEp1c3QgbW92ZSBhbGwgb2YgdGhpcyBvdXQgb2YgZHJtX2ZiX2hlbHBlci4gSXQgc2VlbXMg
-dGhhdCBvdGhlciBEUk0KPiAgICBkcml2ZXJzIGhhdmUgYWxyZWFkeSBmaWd1cmVkIG91dCBvdGhl
-ciB3b3JrYXJvdW5kcyBmb3IgdGhpcy4gSWYgb3RoZXIKPiAgICBkcml2ZXJzIGRvIGVuZCB1cCBu
-ZWVkaW5nIHRoaXMgaW4gdGhlIGZ1dHVyZSwgd2UgY2FuIGp1c3QgbW92ZSB0aGlzCj4gICAgYmFj
-ayBpbnRvIGRybV9mYl9oZWxwZXIgYWdhaW4uCj4gCj4gQ2hhbmdlcyBzaW5jZSB2MzoKPiAtIEFj
-dHVhbGx5IGNoZWNrIGlmIGZiX2hlbHBlciBpcyBOVUxMIGluIGJvdGggbmV3IGhlbHBlcnMKPiAt
-IEFjdHVhbGx5IGNoZWNrIGRybV9mYmRldl9lbXVsYXRpb24gaW4gYm90aCBuZXcgaGVscGVycwo+
-IC0gRG9uJ3QgZmlyZSBvZmYgYSBmYl9oZWxwZXIgaG90cGx1ZyB1bmNvbmRpdGlvbmFsbHk7IG9u
-bHkgZG8gaXQgaWYKPiAgIHRoZSBmb2xsb3dpbmcgY29uZGl0aW9ucyBhcmUgdHJ1ZSAoYXMgb3Ro
-ZXJ3aXNlLCBjYWxsaW5nIHRoaXMgaW4gdGhlCj4gICB3cm9uZyBzcG90IHdpbGwgY2F1c2UgQmFk
-IFRoaW5ncyB0byBoYXBwZW4pOgo+ICAgLSBmYl9oZWxwZXIgaG90cGx1ZyBoYW5kbGluZyB3YXMg
-YWN0dWFsbHkgaW5oaWJpdGVkIHByZXZpb3VzbHkKPiAgIC0gZmJfaGVscGVyIGFjdHVhbGx5IGhh
-cyBhIGRlbGF5ZWQgaG90cGx1ZyBwZW5kaW5nCj4gICAtIGZiX2hlbHBlciBpcyBhY3R1YWxseSBi
-b3VuZAo+ICAgLSBmYl9oZWxwZXIgaXMgYWN0dWFsbHkgaW5pdGlhbGl6ZWQKPiAtIEFkZCBfX211
-c3RfY2hlY2sgdG8gZHJtX2ZiX2hlbHBlcl9zdXNwZW5kX2hvdHBsdWcoKS4gVGhlcmUncyBubwo+
-ICAgc2l0dWF0aW9uIHdoZXJlIGEgZHJpdmVyIHdvdWxkIGFjdHVhbGx5IHdhbnQgdG8gdXNlIHRo
-aXMgd2l0aG91dAo+ICAgY2hlY2tpbmcgdGhlIHJldHVybiB2YWx1ZSwgc28gZW5mb3JjZSB0aGF0
-Cj4gLSBSZXdyaXRlIGFuZCBjbGFyaWZ5IHRoZSBkb2N1bWVudGF0aW9uIGZvciBib3RoIGhlbHBl
-cnMuCj4gLSBNYWtlIHN1cmUgdG8gcmV0dXJuIHRydWUgaW4gdGhlIGRybV9mYl9oZWxwZXJfc3Vz
-cGVuZF9ob3RwbHVnKCkgc3R1Ygo+ICAgdGhhdCdzIHByb3ZpZGVkIGluIGRybV9mYl9oZWxwZXIu
-aCB3aGVuIENPTkZJR19EUk1fRkJERVZfRU1VTEFUSU9OCj4gICBpc24ndCBlbmFibGVkCj4gLSBB
-Y3R1YWxseSBncmFiIHRoZSB0b3BsZXZlbCBmYl9oZWxwZXIgbG9jayBpbgo+ICAgZHJtX2ZiX2hl
-bHBlcl9yZXN1bWVfaG90cGx1ZygpLCBzaW5jZSBpdCdzIHBvc3NpYmxlIG90aGVyIGFjdGl2aXR5
-Cj4gICAoc3VjaCBhcyBhIGhvdHBsdWcpIGNvdWxkIGJlIGdvaW5nIG9uIGF0IHRoZSBzYW1lIHRp
-bWUgdGhlIGRyaXZlcgo+ICAgY2FsbHMgZHJtX2ZiX2hlbHBlcl9yZXN1bWVfaG90cGx1ZygpLiBX
-ZSBuZWVkIHRoaXMgdG8gY2hlY2sgd2hldGhlciBvcgo+ICAgbm90IGRybV9mYl9oZWxwZXJfaG90
-cGx1Z19ldmVudCgpIG5lZWRzIHRvIGJlIGNhbGxlZCBhbnl3YXkKPiAKPiBTaWduZWQtb2ZmLWJ5
-OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgo+IENjOiBzdGFibGVAdmdlci5rZXJuZWwu
-b3JnCj4gQ2M6IEx1a2FzIFd1bm5lciA8bHVrYXNAd3VubmVyLmRlPgo+IENjOiBLYXJvbCBIZXJi
-c3QgPGthcm9saGVyYnN0QGdtYWlsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvZGlzcG52NTAvZGlzcC5jICAgfCAgMiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2Rpc3BsYXkuYyB8ICAyICstCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfZmJjb24uYyAgIHwgNTcgKysrKysrKysrKysrKysrKysrKysrKysKPiAgZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5oICAgfCAgNSArKwo+ICA0IGZpbGVzIGNoYW5nZWQs
-IDY0IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L2Rpc3BudjUwL2Rpc3AuYwo+IGluZGV4IDhiNTIyYTliMTJmNi4uYTA3NzIzODllZDkwIDEw
-MDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYwo+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYwo+IEBAIC0yMDQ5LDcg
-KzIwNDksNyBAQCBudjUwX2Rpc3BfYXRvbWljX3N0YXRlX2FsbG9jKHN0cnVjdCBkcm1fZGV2aWNl
-ICpkZXYpCj4gIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX21vZGVfY29uZmlnX2Z1bmNzCj4gIG52
-NTBfZGlzcF9mdW5jID0gewo+ICAJLmZiX2NyZWF0ZSA9IG5vdXZlYXVfdXNlcl9mcmFtZWJ1ZmZl
-cl9jcmVhdGUsCj4gLQkub3V0cHV0X3BvbGxfY2hhbmdlZCA9IGRybV9mYl9oZWxwZXJfb3V0cHV0
-X3BvbGxfY2hhbmdlZCwKPiArCS5vdXRwdXRfcG9sbF9jaGFuZ2VkID0gbm91dmVhdV9mYmNvbl9v
-dXRwdXRfcG9sbF9jaGFuZ2VkLAo+ICAJLmF0b21pY19jaGVjayA9IG52NTBfZGlzcF9hdG9taWNf
-Y2hlY2ssCj4gIAkuYXRvbWljX2NvbW1pdCA9IG52NTBfZGlzcF9hdG9taWNfY29tbWl0LAo+ICAJ
-LmF0b21pY19zdGF0ZV9hbGxvYyA9IG52NTBfZGlzcF9hdG9taWNfc3RhdGVfYWxsb2MsCj4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jIGIvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMKPiBpbmRleCAxZDM2YWI1ZDQ3
-OTYuLjRiODczZTY2OGIyNiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2Rpc3BsYXkuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-ZGlzcGxheS5jCj4gQEAgLTI5Myw3ICsyOTMsNyBAQCBub3V2ZWF1X3VzZXJfZnJhbWVidWZmZXJf
-Y3JlYXRlKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4gIAo+ICBzdGF0aWMgY29uc3Qgc3RydWN0
-IGRybV9tb2RlX2NvbmZpZ19mdW5jcyBub3V2ZWF1X21vZGVfY29uZmlnX2Z1bmNzID0gewo+ICAJ
-LmZiX2NyZWF0ZSA9IG5vdXZlYXVfdXNlcl9mcmFtZWJ1ZmZlcl9jcmVhdGUsCj4gLQkub3V0cHV0
-X3BvbGxfY2hhbmdlZCA9IGRybV9mYl9oZWxwZXJfb3V0cHV0X3BvbGxfY2hhbmdlZCwKPiArCS5v
-dXRwdXRfcG9sbF9jaGFuZ2VkID0gbm91dmVhdV9mYmNvbl9vdXRwdXRfcG9sbF9jaGFuZ2VkLAo+
-ICB9Owo+ICAKPiAgCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfZmJjb24uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYwo+IGlu
-ZGV4IDg1YzFmMTBiYzJiNi4uOGNmOTY2NjkwOTYzIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfZmJjb24uYwo+IEBAIC00NjYsNiArNDY2LDcgQEAgbm91dmVhdV9mYmNvbl9z
-ZXRfc3VzcGVuZF93b3JrKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKPiAgCWNvbnNvbGVfdW5s
-b2NrKCk7Cj4gIAo+ICAJaWYgKHN0YXRlID09IEZCSU5GT19TVEFURV9SVU5OSU5HKSB7Cj4gKwkJ
-bm91dmVhdV9mYmNvbl9ob3RwbHVnX3Jlc3VtZShkcm0tPmZiY29uKTsKPiAgCQlwbV9ydW50aW1l
-X21hcmtfbGFzdF9idXN5KGRybS0+ZGV2LT5kZXYpOwo+ICAJCXBtX3J1bnRpbWVfcHV0X3N5bmMo
-ZHJtLT5kZXYtPmRldik7Cj4gIAl9Cj4gQEAgLTQ4Nyw2ICs0ODgsNjEgQEAgbm91dmVhdV9mYmNv
-bl9zZXRfc3VzcGVuZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBpbnQgc3RhdGUpCj4gIAlzY2hl
-ZHVsZV93b3JrKCZkcm0tPmZiY29uX3dvcmspOwo+ICB9Cj4gIAo+ICt2b2lkCj4gK25vdXZlYXVf
-ZmJjb25fb3V0cHV0X3BvbGxfY2hhbmdlZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+ICt7Cj4g
-KwlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKGRldik7Cj4gKwlzdHJ1Y3Qg
-bm91dmVhdV9mYmRldiAqZmJjb24gPSBkcm0tPmZiY29uOwo+ICsJaW50IHJldDsKPiArCj4gKwlp
-ZiAoIWZiY29uKQo+ICsJCXJldHVybjsKPiArCj4gKwltdXRleF9sb2NrKCZmYmNvbi0+aG90cGx1
-Z19sb2NrKTsKPiArCj4gKwlyZXQgPSBwbV9ydW50aW1lX2dldChkZXYtPmRldik7Cj4gKwlpZiAo
-cmV0ID09IDEgfHwgcmV0ID09IC1FQUNDRVMpIHsKPiArCQlkcm1fZmJfaGVscGVyX2hvdHBsdWdf
-ZXZlbnQoJmZiY29uLT5oZWxwZXIpOwo+ICsKPiArCQlwbV9ydW50aW1lX21hcmtfbGFzdF9idXN5
-KGRldi0+ZGV2KTsKPiArCQlwbV9ydW50aW1lX3B1dF9hdXRvc3VzcGVuZChkZXYtPmRldik7Cj4g
-Kwl9IGVsc2UgaWYgKHJldCA9PSAwKSB7Cj4gKwkJLyogSWYgdGhlIEdQVSB3YXMgYWxyZWFkeSBp
-biB0aGUgcHJvY2VzcyBvZiBzdXNwZW5kaW5nIGJlZm9yZQo+ICsJCSAqIHRoaXMgZXZlbnQgaGFw
-cGVuZWQsIHRoZW4gd2UgY2FuJ3QgYmxvY2sgaGVyZSBhcyB3ZSdsbAo+ICsJCSAqIGRlYWRsb2Nr
-IHRoZSBydW50aW1lIHBtb3BzIHNpbmNlIHRoZXkgd2FpdCBmb3IgdXMgdG8KPiArCQkgKiBmaW5p
-c2guIFNvLCBqdXN0IGRlZmVyIHRoaXMgZXZlbnQgZm9yIHdoZW4gd2UgcnVudGltZQo+ICsJCSAq
-IHJlc3VtZSBhZ2Fpbi4gSXQgd2lsbCBiZSBoYW5kbGVkIGJ5IGZiY29uX3dvcmsuCj4gKwkJICov
-CgpIbSwgSSB0aG91Z2h0IHBtX3J1bnRpbWVfZ2V0KCkgbmV2ZXIgZmFpbHMsIGFuZCB5b3UgbmVl
-ZCBvbmUgb2YgdGhlIG90aGVyCnZhcmlhbnRzIGlmIHlvdSB3YW50IHNwZWNpYWwgYmVoYXZpb3Vy
-IGhlcmU/IExpa2UKcG1fcnVudGltZV9nZXRfbm9yZXN1bWUoKS4KCk90aGVyd2lzZSBsZ3RtLgot
-RGFuaWVsCgo+ICsJCU5WX0RFQlVHKGRybSwgImZiY29uIEhQRCBldmVudCBkZWZlcnJlZCB1bnRp
-bCBydW50aW1lIHJlc3VtZVxuIik7Cj4gKwkJZmJjb24tPmhvdHBsdWdfd2FpdGluZyA9IHRydWU7
-Cj4gKwkJcG1fcnVudGltZV9wdXRfbm9pZGxlKGRybS0+ZGV2LT5kZXYpOwo+ICsJfSBlbHNlIHsK
-PiArCQlEUk1fV0FSTigiZmJjb24gSFBEIGV2ZW50IGxvc3QgZHVlIHRvIFJQTSBmYWlsdXJlOiAl
-ZFxuIiwKPiArCQkJIHJldCk7Cj4gKwl9Cj4gKwo+ICsJbXV0ZXhfdW5sb2NrKCZmYmNvbi0+aG90
-cGx1Z19sb2NrKTsKPiArfQo+ICsKPiArdm9pZAo+ICtub3V2ZWF1X2ZiY29uX2hvdHBsdWdfcmVz
-dW1lKHN0cnVjdCBub3V2ZWF1X2ZiZGV2ICpmYmNvbikKPiArewo+ICsJc3RydWN0IG5vdXZlYXVf
-ZHJtICpkcm07Cj4gKwo+ICsJaWYgKCFmYmNvbikKPiArCQlyZXR1cm47Cj4gKwlkcm0gPSBub3V2
-ZWF1X2RybShmYmNvbi0+aGVscGVyLmRldik7Cj4gKwo+ICsJbXV0ZXhfbG9jaygmZmJjb24tPmhv
-dHBsdWdfbG9jayk7Cj4gKwlpZiAoZmJjb24tPmhvdHBsdWdfd2FpdGluZykgewo+ICsJCWZiY29u
-LT5ob3RwbHVnX3dhaXRpbmcgPSBmYWxzZTsKPiArCj4gKwkJTlZfREVCVUcoZHJtLCAiSGFuZGxp
-bmcgZGVmZXJyZWQgZmJjb24gSFBEIGV2ZW50c1xuIik7Cj4gKwkJZHJtX2ZiX2hlbHBlcl9ob3Rw
-bHVnX2V2ZW50KCZmYmNvbi0+aGVscGVyKTsKPiArCX0KPiArCW11dGV4X3VubG9jaygmZmJjb24t
-PmhvdHBsdWdfbG9jayk7Cj4gK30KPiArCj4gIGludAo+ICBub3V2ZWF1X2ZiY29uX2luaXQoc3Ry
-dWN0IGRybV9kZXZpY2UgKmRldikKPiAgewo+IEBAIC01MDUsNiArNTYxLDcgQEAgbm91dmVhdV9m
-YmNvbl9pbml0KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCj4gIAo+ICAJZHJtLT5mYmNvbiA9IGZi
-Y29uOwo+ICAJSU5JVF9XT1JLKCZkcm0tPmZiY29uX3dvcmssIG5vdXZlYXVfZmJjb25fc2V0X3N1
-c3BlbmRfd29yayk7Cj4gKwltdXRleF9pbml0KCZmYmNvbi0+aG90cGx1Z19sb2NrKTsKPiAgCj4g
-IAlkcm1fZmJfaGVscGVyX3ByZXBhcmUoZGV2LCAmZmJjb24tPmhlbHBlciwgJm5vdXZlYXVfZmJj
-b25faGVscGVyX2Z1bmNzKTsKPiAgCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfZmJjb24uaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJj
-b24uaAo+IGluZGV4IGE2ZjE5MmVhM2ZhNi4uZGI5ZDUyMDQ3ZWY4IDEwMDY0NAo+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uaAo+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uaAo+IEBAIC00MSw2ICs0MSw5IEBAIHN0cnVjdCBu
-b3V2ZWF1X2ZiZGV2IHsKPiAgCXN0cnVjdCBudmlmX29iamVjdCBnZGk7Cj4gIAlzdHJ1Y3QgbnZp
-Zl9vYmplY3QgYmxpdDsKPiAgCXN0cnVjdCBudmlmX29iamVjdCB0d29kOwo+ICsKPiArCXN0cnVj
-dCBtdXRleCBob3RwbHVnX2xvY2s7Cj4gKwlib29sIGhvdHBsdWdfd2FpdGluZzsKPiAgfTsKPiAg
-Cj4gIHZvaWQgbm91dmVhdV9mYmNvbl9yZXN0b3JlKHZvaWQpOwo+IEBAIC02OCw2ICs3MSw4IEBA
-IHZvaWQgbm91dmVhdV9mYmNvbl9zZXRfc3VzcGVuZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBp
-bnQgc3RhdGUpOwo+ICB2b2lkIG5vdXZlYXVfZmJjb25fYWNjZWxfc2F2ZV9kaXNhYmxlKHN0cnVj
-dCBkcm1fZGV2aWNlICpkZXYpOwo+ICB2b2lkIG5vdXZlYXVfZmJjb25fYWNjZWxfcmVzdG9yZShz
-dHJ1Y3QgZHJtX2RldmljZSAqZGV2KTsKPiAgCj4gK3ZvaWQgbm91dmVhdV9mYmNvbl9vdXRwdXRf
-cG9sbF9jaGFuZ2VkKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpOwo+ICt2b2lkIG5vdXZlYXVfZmJj
-b25faG90cGx1Z19yZXN1bWUoc3RydWN0IG5vdXZlYXVfZmJkZXYgKmZiY29uKTsKPiAgZXh0ZXJu
-IGludCBub3V2ZWF1X25vZmJhY2NlbDsKPiAgCj4gICNlbmRpZiAvKiBfX05WNTBfRkJDT05fSF9f
-ICovCj4gLS0gCj4gMi4xNy4xCj4gCgotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVl
-ciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+On Tue, Aug 14, 2018 at 10:53:32AM +0200, Daniel Vetter wrote:
+> On Mon, Aug 13, 2018 at 03:16:43PM -0400, Lyude Paul wrote:
+> > I'm sure I don't need to tell you that fb_helper's locking is a mess.
+> 
+> Uh, loaded statement :-) Especially since we've just reworked all the
+> fbdev locking to untangle it from drm_modeset locking. What's still a mess
+> about it? It's documented, and very clearly wrapped around all the
+> drm_modeset locks. If there's gaps, please bring them up.
+> 
+> > That being said; fb_helper's locking mess can seriously complicate the
+> > runtime suspend/resume operations of drivers because it can invoke
+> > atomic commits and connector probing from anywhere that calls
+> > drm_fb_helper_hotplug_event(). Since most drivers use
+> > drm_fb_helper_output_poll_changed() as their output_poll_changed
+> > handler, this can happen in every single context that can fire off a
+> > hotplug event. An example:
+> > 
+> > [  246.669625] INFO: task kworker/4:0:37 blocked for more than 120 seconds.
+> > [  246.673398]       Not tainted 4.18.0-rc5Lyude-Test+ #2
+> > [  246.675271] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+> > [  246.676527] kworker/4:0     D    0    37      2 0x80000000
+> > [  246.677580] Workqueue: events output_poll_execute [drm_kms_helper]
+> > [  246.678704] Call Trace:
+> > [  246.679753]  __schedule+0x322/0xaf0
+> > [  246.680916]  schedule+0x33/0x90
+> > [  246.681924]  schedule_preempt_disabled+0x15/0x20
+> > [  246.683023]  __mutex_lock+0x569/0x9a0
+> > [  246.684035]  ? kobject_uevent_env+0x117/0x7b0
+> > [  246.685132]  ? drm_fb_helper_hotplug_event.part.28+0x20/0xb0 [drm_kms_helper]
+> > [  246.686179]  mutex_lock_nested+0x1b/0x20
+> > [  246.687278]  ? mutex_lock_nested+0x1b/0x20
+> > [  246.688307]  drm_fb_helper_hotplug_event.part.28+0x20/0xb0 [drm_kms_helper]
+> > [  246.689420]  drm_fb_helper_output_poll_changed+0x23/0x30 [drm_kms_helper]
+> > [  246.690462]  drm_kms_helper_hotplug_event+0x2a/0x30 [drm_kms_helper]
+> > [  246.691570]  output_poll_execute+0x198/0x1c0 [drm_kms_helper]
+> > [  246.692611]  process_one_work+0x231/0x620
+> > [  246.693725]  worker_thread+0x214/0x3a0
+> > [  246.694756]  kthread+0x12b/0x150
+> > [  246.695856]  ? wq_pool_ids_show+0x140/0x140
+> > [  246.696888]  ? kthread_create_worker_on_cpu+0x70/0x70
+> > [  246.697998]  ret_from_fork+0x3a/0x50
+> > [  246.699034] INFO: task kworker/0:1:60 blocked for more than 120 seconds.
+> > [  246.700153]       Not tainted 4.18.0-rc5Lyude-Test+ #2
+> > [  246.701182] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+> > [  246.702278] kworker/0:1     D    0    60      2 0x80000000
+> > [  246.703293] Workqueue: pm pm_runtime_work
+> > [  246.704393] Call Trace:
+> > [  246.705403]  __schedule+0x322/0xaf0
+> > [  246.706439]  ? wait_for_completion+0x104/0x190
+> > [  246.707393]  schedule+0x33/0x90
+> > [  246.708375]  schedule_timeout+0x3a5/0x590
+> > [  246.709289]  ? mark_held_locks+0x58/0x80
+> > [  246.710208]  ? _raw_spin_unlock_irq+0x2c/0x40
+> > [  246.711222]  ? wait_for_completion+0x104/0x190
+> > [  246.712134]  ? trace_hardirqs_on_caller+0xf4/0x190
+> > [  246.713094]  ? wait_for_completion+0x104/0x190
+> > [  246.713964]  wait_for_completion+0x12c/0x190
+> > [  246.714895]  ? wake_up_q+0x80/0x80
+> > [  246.715727]  ? get_work_pool+0x90/0x90
+> > [  246.716649]  flush_work+0x1c9/0x280
+> > [  246.717483]  ? flush_workqueue_prep_pwqs+0x1b0/0x1b0
+> > [  246.718442]  __cancel_work_timer+0x146/0x1d0
+> > [  246.719247]  cancel_delayed_work_sync+0x13/0x20
+> > [  246.720043]  drm_kms_helper_poll_disable+0x1f/0x30 [drm_kms_helper]
+> > [  246.721123]  nouveau_pmops_runtime_suspend+0x3d/0xb0 [nouveau]
+> > [  246.721897]  pci_pm_runtime_suspend+0x6b/0x190
+> > [  246.722825]  ? pci_has_legacy_pm_support+0x70/0x70
+> > [  246.723737]  __rpm_callback+0x7a/0x1d0
+> > [  246.724721]  ? pci_has_legacy_pm_support+0x70/0x70
+> > [  246.725607]  rpm_callback+0x24/0x80
+> > [  246.726553]  ? pci_has_legacy_pm_support+0x70/0x70
+> > [  246.727376]  rpm_suspend+0x142/0x6b0
+> > [  246.728185]  pm_runtime_work+0x97/0xc0
+> > [  246.728938]  process_one_work+0x231/0x620
+> > [  246.729796]  worker_thread+0x44/0x3a0
+> > [  246.730614]  kthread+0x12b/0x150
+> > [  246.731395]  ? wq_pool_ids_show+0x140/0x140
+> > [  246.732202]  ? kthread_create_worker_on_cpu+0x70/0x70
+> > [  246.732878]  ret_from_fork+0x3a/0x50
+> > [  246.733768] INFO: task kworker/4:2:422 blocked for more than 120 seconds.
+> > [  246.734587]       Not tainted 4.18.0-rc5Lyude-Test+ #2
+> > [  246.735393] "echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+> > [  246.736113] kworker/4:2     D    0   422      2 0x80000080
+> > [  246.736789] Workqueue: events_long drm_dp_mst_link_probe_work [drm_kms_helper]
+> > [  246.737665] Call Trace:
+> > [  246.738490]  __schedule+0x322/0xaf0
+> > [  246.739250]  schedule+0x33/0x90
+> > [  246.739908]  rpm_resume+0x19c/0x850
+> > [  246.740750]  ? finish_wait+0x90/0x90
+> > [  246.741541]  __pm_runtime_resume+0x4e/0x90
+> > [  246.742370]  nv50_disp_atomic_commit+0x31/0x210 [nouveau]
+> > [  246.743124]  drm_atomic_commit+0x4a/0x50 [drm]
+> > [  246.743775]  restore_fbdev_mode_atomic+0x1c8/0x240 [drm_kms_helper]
+> > [  246.744603]  restore_fbdev_mode+0x31/0x140 [drm_kms_helper]
+> > [  246.745373]  drm_fb_helper_restore_fbdev_mode_unlocked+0x54/0xb0 [drm_kms_helper]
+> > [  246.746220]  drm_fb_helper_set_par+0x2d/0x50 [drm_kms_helper]
+> > [  246.746884]  drm_fb_helper_hotplug_event.part.28+0x96/0xb0 [drm_kms_helper]
+> > [  246.747675]  drm_fb_helper_output_poll_changed+0x23/0x30 [drm_kms_helper]
+> > [  246.748544]  drm_kms_helper_hotplug_event+0x2a/0x30 [drm_kms_helper]
+> > [  246.749439]  nv50_mstm_hotplug+0x15/0x20 [nouveau]
+> > [  246.750111]  drm_dp_send_link_address+0x177/0x1c0 [drm_kms_helper]
+> > [  246.750764]  drm_dp_check_and_send_link_address+0xa8/0xd0 [drm_kms_helper]
+> > [  246.751602]  drm_dp_mst_link_probe_work+0x51/0x90 [drm_kms_helper]
+> > [  246.752314]  process_one_work+0x231/0x620
+> > [  246.752979]  worker_thread+0x44/0x3a0
+> > [  246.753838]  kthread+0x12b/0x150
+> > [  246.754619]  ? wq_pool_ids_show+0x140/0x140
+> > [  246.755386]  ? kthread_create_worker_on_cpu+0x70/0x70
+> > [  246.756162]  ret_from_fork+0x3a/0x50
+> > [  246.756847]
+> >            Showing all locks held in the system:
+> > [  246.758261] 3 locks held by kworker/4:0/37:
+> > [  246.759016]  #0: 00000000f8df4d2d ((wq_completion)"events"){+.+.}, at: process_one_work+0x1b3/0x620
+> > [  246.759856]  #1: 00000000e6065461 ((work_completion)(&(&dev->mode_config.output_poll_work)->work)){+.+.}, at: process_one_work+0x1b3/0x620
+> > [  246.760670]  #2: 00000000cb66735f (&helper->lock){+.+.}, at: drm_fb_helper_hotplug_event.part.28+0x20/0xb0 [drm_kms_helper]
+> > [  246.761516] 2 locks held by kworker/0:1/60:
+> > [  246.762274]  #0: 00000000fff6be0f ((wq_completion)"pm"){+.+.}, at: process_one_work+0x1b3/0x620
+> > [  246.762982]  #1: 000000005ab44fb4 ((work_completion)(&dev->power.work)){+.+.}, at: process_one_work+0x1b3/0x620
+> > [  246.763890] 1 lock held by khungtaskd/64:
+> > [  246.764664]  #0: 000000008cb8b5c3 (rcu_read_lock){....}, at: debug_show_all_locks+0x23/0x185
+> > [  246.765588] 5 locks held by kworker/4:2/422:
+> > [  246.766440]  #0: 00000000232f0959 ((wq_completion)"events_long"){+.+.}, at: process_one_work+0x1b3/0x620
+> > [  246.767390]  #1: 00000000bb59b134 ((work_completion)(&mgr->work)){+.+.}, at: process_one_work+0x1b3/0x620
+> > [  246.768154]  #2: 00000000cb66735f (&helper->lock){+.+.}, at: drm_fb_helper_restore_fbdev_mode_unlocked+0x4c/0xb0 [drm_kms_helper]
+> > [  246.768966]  #3: 000000004c8f0b6b (crtc_ww_class_acquire){+.+.}, at: restore_fbdev_mode_atomic+0x4b/0x240 [drm_kms_helper]
+> > [  246.769921]  #4: 000000004c34a296 (crtc_ww_class_mutex){+.+.}, at: drm_modeset_backoff+0x8a/0x1b0 [drm]
+> > [  246.770839] 1 lock held by dmesg/1038:
+> > [  246.771739] 2 locks held by zsh/1172:
+> > [  246.772650]  #0: 00000000836d0438 (&tty->ldisc_sem){++++}, at: ldsem_down_read+0x37/0x40
+> > [  246.773680]  #1: 000000001f4f4d48 (&ldata->atomic_read_lock){+.+.}, at: n_tty_read+0xc1/0x870
+> > 
+> > [  246.775522] =============================================
+> > 
+> > After trying dozens of different solutions, I found one very simple one
+> > that should also have the benefit of preventing us from having to fight
+> > locking for the rest of our lives. So, we work around these deadlocks by
+> > deferring all fbcon hotplug events that happen after the runtime suspend
+> > process starts until after the device is resumed again.
+> > 
+> > Changes since v6:
+> >  - Remove unused nouveau_fbcon_hotplugged_in_suspend() - Ilia
+> > 
+> > Changes since v5:
+> >  - Come up with the (hopefully final) solution for solving this dumb
+> >    problem, one that is a lot less likely to cause issues with locking in
+> >    the future. This should work around all deadlock conditions with fbcon
+> >    brought up thus far.
+> > 
+> > Changes since v4:
+> >  - Add nouveau_fbcon_hotplugged_in_suspend() to workaround deadlock
+> >    condition that Lukas described
+> >  - Just move all of this out of drm_fb_helper. It seems that other DRM
+> >    drivers have already figured out other workarounds for this. If other
+> >    drivers do end up needing this in the future, we can just move this
+> >    back into drm_fb_helper again.
+> > 
+> > Changes since v3:
+> > - Actually check if fb_helper is NULL in both new helpers
+> > - Actually check drm_fbdev_emulation in both new helpers
+> > - Don't fire off a fb_helper hotplug unconditionally; only do it if
+> >   the following conditions are true (as otherwise, calling this in the
+> >   wrong spot will cause Bad Things to happen):
+> >   - fb_helper hotplug handling was actually inhibited previously
+> >   - fb_helper actually has a delayed hotplug pending
+> >   - fb_helper is actually bound
+> >   - fb_helper is actually initialized
+> > - Add __must_check to drm_fb_helper_suspend_hotplug(). There's no
+> >   situation where a driver would actually want to use this without
+> >   checking the return value, so enforce that
+> > - Rewrite and clarify the documentation for both helpers.
+> > - Make sure to return true in the drm_fb_helper_suspend_hotplug() stub
+> >   that's provided in drm_fb_helper.h when CONFIG_DRM_FBDEV_EMULATION
+> >   isn't enabled
+> > - Actually grab the toplevel fb_helper lock in
+> >   drm_fb_helper_resume_hotplug(), since it's possible other activity
+> >   (such as a hotplug) could be going on at the same time the driver
+> >   calls drm_fb_helper_resume_hotplug(). We need this to check whether or
+> >   not drm_fb_helper_hotplug_event() needs to be called anyway
+> > 
+> > Signed-off-by: Lyude Paul <lyude@redhat.com>
+> > Cc: stable@vger.kernel.org
+> > Cc: Lukas Wunner <lukas@wunner.de>
+> > Cc: Karol Herbst <karolherbst@gmail.com>
+> > ---
+> >  drivers/gpu/drm/nouveau/dispnv50/disp.c   |  2 +-
+> >  drivers/gpu/drm/nouveau/nouveau_display.c |  2 +-
+> >  drivers/gpu/drm/nouveau/nouveau_fbcon.c   | 57 +++++++++++++++++++++++
+> >  drivers/gpu/drm/nouveau/nouveau_fbcon.h   |  5 ++
+> >  4 files changed, 64 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> > index 8b522a9b12f6..a0772389ed90 100644
+> > --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> > +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> > @@ -2049,7 +2049,7 @@ nv50_disp_atomic_state_alloc(struct drm_device *dev)
+> >  static const struct drm_mode_config_funcs
+> >  nv50_disp_func = {
+> >  	.fb_create = nouveau_user_framebuffer_create,
+> > -	.output_poll_changed = drm_fb_helper_output_poll_changed,
+> > +	.output_poll_changed = nouveau_fbcon_output_poll_changed,
+> >  	.atomic_check = nv50_disp_atomic_check,
+> >  	.atomic_commit = nv50_disp_atomic_commit,
+> >  	.atomic_state_alloc = nv50_disp_atomic_state_alloc,
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+> > index 1d36ab5d4796..4b873e668b26 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_display.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+> > @@ -293,7 +293,7 @@ nouveau_user_framebuffer_create(struct drm_device *dev,
+> >  
+> >  static const struct drm_mode_config_funcs nouveau_mode_config_funcs = {
+> >  	.fb_create = nouveau_user_framebuffer_create,
+> > -	.output_poll_changed = drm_fb_helper_output_poll_changed,
+> > +	.output_poll_changed = nouveau_fbcon_output_poll_changed,
+> >  };
+> >  
+> >  
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+> > index 85c1f10bc2b6..8cf966690963 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+> > @@ -466,6 +466,7 @@ nouveau_fbcon_set_suspend_work(struct work_struct *work)
+> >  	console_unlock();
+> >  
+> >  	if (state == FBINFO_STATE_RUNNING) {
+> > +		nouveau_fbcon_hotplug_resume(drm->fbcon);
+> >  		pm_runtime_mark_last_busy(drm->dev->dev);
+> >  		pm_runtime_put_sync(drm->dev->dev);
+> >  	}
+> > @@ -487,6 +488,61 @@ nouveau_fbcon_set_suspend(struct drm_device *dev, int state)
+> >  	schedule_work(&drm->fbcon_work);
+> >  }
+> >  
+> > +void
+> > +nouveau_fbcon_output_poll_changed(struct drm_device *dev)
+> > +{
+> > +	struct nouveau_drm *drm = nouveau_drm(dev);
+> > +	struct nouveau_fbdev *fbcon = drm->fbcon;
+> > +	int ret;
+> > +
+> > +	if (!fbcon)
+> > +		return;
+> > +
+> > +	mutex_lock(&fbcon->hotplug_lock);
+> > +
+> > +	ret = pm_runtime_get(dev->dev);
+> > +	if (ret == 1 || ret == -EACCES) {
+> > +		drm_fb_helper_hotplug_event(&fbcon->helper);
+> > +
+> > +		pm_runtime_mark_last_busy(dev->dev);
+> > +		pm_runtime_put_autosuspend(dev->dev);
+> > +	} else if (ret == 0) {
+> > +		/* If the GPU was already in the process of suspending before
+> > +		 * this event happened, then we can't block here as we'll
+> > +		 * deadlock the runtime pmops since they wait for us to
+> > +		 * finish. So, just defer this event for when we runtime
+> > +		 * resume again. It will be handled by fbcon_work.
+> > +		 */
+> 
+> Hm, I thought pm_runtime_get() never fails, and you need one of the other
+> variants if you want special behaviour here? Like
+> pm_runtime_get_noresume().
+
+TIL that there's both pm_runtime_get() and pm_runtime_get_sync(). Code
+looks correct.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
