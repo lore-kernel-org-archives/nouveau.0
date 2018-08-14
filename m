@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 104181] [NV50/G94] system freeze on youtube with
  epiphany 3.26
-Date: Tue, 14 Aug 2018 10:58:21 +0000
-Message-ID: <bug-104181-8800-JJVTnjhRU0@http.bugs.freedesktop.org/>
+Date: Tue, 14 Aug 2018 11:08:05 +0000
+Message-ID: <bug-104181-8800-KgloTvIXmk@http.bugs.freedesktop.org/>
 References: <bug-104181-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0811453095=="
+Content-Type: multipart/mixed; boundary="===============0977233561=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-104181-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0811453095==
-Content-Type: multipart/alternative; boundary="15342443010.3CDe.26475"
+--===============0977233561==
+Content-Type: multipart/alternative; boundary="15342448843.7aDfa1b.27075"
 Content-Transfer-Encoding: 7bit
 
 
---15342443010.3CDe.26475
-Date: Tue, 14 Aug 2018 10:58:21 +0000
+--15342448843.7aDfa1b.27075
+Date: Tue, 14 Aug 2018 11:08:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D104181
 
---- Comment #2 from guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org ---
-However, I think I have a different chipset, it is reported in Xorg logfile=
- as
-"NVIDIA NVA5", while in the kernel dmesg as "NVIDIA GT216"...
+--- Comment #3 from guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org ---
+It might be related to a similar crash reported in similar bug:
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D70390#c24
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15342443010.3CDe.26475
-Date: Tue, 14 Aug 2018 10:58:21 +0000
+--15342448843.7aDfa1b.27075
+Date: Tue, 14 Aug 2018 11:08:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV50/G94] system freeze on youtube with epiphany 3.26"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104181#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104181#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV50/G94] system freeze on youtube with epiphany 3.26"
@@ -74,10 +74,14 @@ t # 2</a>
 guido&#64;trentalancia.com" title=3D"guido&#64;trentalancia.com">guido&#64;=
 trentalancia.com</a>
 </span></b>
-        <pre>However, I think I have a different chipset, it is reported in=
- Xorg logfile as
-&quot;NVIDIA NVA5&quot;, while in the kernel dmesg as &quot;NVIDIA GT216&qu=
-ot;...</pre>
+        <pre>It might be related to a similar crash reported in similar bug:
+
+<a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV84] Repeated system crashes under graphics load, E[PFI=
+FO] DMA_PUSHER 0x00406040 and lots of E[PGRAPH]"
+   href=3D"show_bug.cgi?id=3D70390#c24">https://bugs.freedesktop.org/show_b=
+ug.cgi?id=3D70390#c24</a></pre>
         </div>
       </p>
 
@@ -91,9 +95,9 @@ ot;...</pre>
     </body>
 </html>=
 
---15342443010.3CDe.26475--
+--15342448843.7aDfa1b.27075--
 
---===============0811453095==
+--===============0977233561==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0811453095==--
+--===============0977233561==--
