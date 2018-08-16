@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107537] 4.14+ - Full screen OpenGL applications
- results in black screen
-Date: Thu, 16 Aug 2018 19:05:31 +0000
-Message-ID: <bug-107537-8800-rYU2B3SjCT@http.bugs.freedesktop.org/>
-References: <bug-107537-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] drm/nouveau: Prevent handling ACPI HPD events too
+ early
+Date: Thu, 16 Aug 2018 16:13:13 -0400
+Message-ID: <20180816201313.6370-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0682169087=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107537-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,106 +17,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0682169087==
-Content-Type: multipart/alternative; boundary="15344463311.aF5FAf4E.31850"
-Content-Transfer-Encoding: 7bit
-
-
---15344463311.aF5FAf4E.31850
-Date: Thu, 16 Aug 2018 19:05:31 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107537
-
---- Comment #4 from Erik Karlsson <pilo-dZJkCKxksfnYtjvyW6yDsg@public.gmane.org> ---
-I don't know what to look for, but these seem to differ:
-
-From 4a97a3d log:
-kernel: nouveau 0000:01:00.0: DRM: commit 0 0
-kernel: nouveau 0000:01:00.0: DRM: head-0: clr 0000 (set 0000)
-kernel: nouveau 0000:01:00.0: DRM: head-0: set 0000 (clr 0000)
-
-From corresponding position in 144a799 log:
-kernel: nouveau 0000:01:00.0: DRM: commit 1 0
-kernel: nouveau 0000:01:00.0: DRM: head-0: clr 0001 (set 000d)
-kernel: nouveau 0000:01:00.0: DRM: head-0: set 000d (clr 0001)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15344463311.aF5FAf4E.31850
-Date: Thu, 16 Aug 2018 19:05:31 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - 4.14+ - Full screen OpenGL applications results in black =
-screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107537#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - 4.14+ - Full screen OpenGL applications results in black =
-screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107537">bug 10753=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pilo&#64;ayeon.org" title=3D"Erik Karlsson &lt;pilo&#64;ayeon.org&gt;"> <sp=
-an class=3D"fn">Erik Karlsson</span></a>
-</span></b>
-        <pre>I don't know what to look for, but these seem to differ:
-
-From 4a97a3d log:
-kernel: nouveau 0000:01:00.0: DRM: commit 0 0
-kernel: nouveau 0000:01:00.0: DRM: head-0: clr 0000 (set 0000)
-kernel: nouveau 0000:01:00.0: DRM: head-0: set 0000 (clr 0000)
-
-From corresponding position in 144a799 log:
-kernel: nouveau 0000:01:00.0: DRM: commit 1 0
-kernel: nouveau 0000:01:00.0: DRM: head-0: clr 0001 (set 000d)
-kernel: nouveau 0000:01:00.0: DRM: head-0: set 000d (clr 0001)</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15344463311.aF5FAf4E.31850--
-
---===============0682169087==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0682169087==--
+T24gbW9zdCBzeXN0ZW1zIHdpdGggQUNQSSBob3RwbHVnZ2luZyBzdXBwb3J0LCBpdCBzZWVtcyB0
+aGF0IHdlIGFsd2F5cwpyZWNlaXZlIGEgaG90cGx1ZyBldmVudCBvbmNlIHdlIHJlLWVuYWJsZSBF
+QyBpbnRlcnJ1cHRzIGV2ZW4gaWYgdGhlIEdQVQpoYXNuJ3QgZXZlbiBiZWVuIHJlc3VtZWQgeWV0
+LgoKVGhpcyBjYW4gY2F1c2UgcHJvYmxlbXMgc2luY2UgZXZlbiB0aG91Z2ggd2Ugc2NoZWR1bGUg
+aHBkX3dvcmsgdG8gaGFuZGxlCmNvbm5lY3RvciByZXByb2JpbmcgZm9yIHVzLCBocGRfd29yayBz
+eW5jaHJvbml6ZXMgb24KcG1fcnVudGltZV9nZXRfc3luYygpIHRvIHdhaXQgdW50aWwgdGhlIGRl
+dmljZSBpcyByZWFkeSB0byBwZXJmb3JtCnJlcHJvYmluZy4gU2luY2UgcnVudGltZSBzdXNwZW5k
+L3Jlc3VtZSBjYWxsYmFja3MgYXJlIGRpc2FibGVkIGJlZm9yZQp0aGUgUE0gY29yZSBjYWxscyAt
+PnN1c3BlbmQoKSwgYW55IGNhbGxzIHRvIHBtX3J1bnRpbWVfZ2V0X3N5bmMoKSBkdXJpbmcKdGhp
+cyBwZXJpb2Qgd2lsbCBncmFiIGEgcnVudGltZSBQTSByZWYgYW5kIHJldHVybiBpbW1lZGlhdGVs
+eSB3aXRoCi1FQUNDRVMuIEJlY2F1c2Ugd2Ugc2NoZWR1bGUgaHBkX3dvcmsgZnJvbSBvdXIgQUNQ
+SSBIUEQgaGFuZGxlciwgYW5kCmhwZF93b3JrIHN5bmNocm9uaXplcyBvbiBwbV9ydW50aW1lX2dl
+dF9zeW5jKCksIHRoaXMgY2F1c2VzIHVzIHRvIGxhdW5jaAphIGNvbm5lY3RvciByZXByb2JlIGlt
+bWVkaWF0ZWx5IGV2ZW4gaWYgdGhlIEdQVSBpc24ndCBhY3R1YWxseSByZXN1bWVkCmp1c3QgeWV0
+LiBUaGlzIGNhdXNlcyB2YXJpb3VzIHdhcm5pbmdzIGluIGRtZXNnIGFuZCBvY2Nhc2lvbmFsbHks
+IGFsc28KcHJldmVudHMgc29tZSBkaXNwbGF5cyBjb25uZWN0ZWQgdG8gdGhlIGRlZGljYXRlZCBH
+UFUgZnJvbSBjb21pbmcgYmFjawp1cCBhZnRlciBzdXNwZW5kLiBFeGFtcGxlOgoKdXNiIDEtNDog
+VVNCIGRpc2Nvbm5lY3QsIGRldmljZSBudW1iZXIgMTQKdXNiIDEtNC4xOiBVU0IgZGlzY29ubmVj
+dCwgZGV2aWNlIG51bWJlciAxNQpXQVJOSU5HOiBDUFU6IDAgUElEOiA4MzggYXQgZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9pMmMuaDoxNzAgbm91dmVhdV9kcF9k
+ZXRlY3QrMHgxN2UvMHgzNzAgW25vdXZlYXVdCkNQVTogMCBQSUQ6IDgzOCBDb21tOiBrd29ya2Vy
+LzA6NiBOb3QgdGFpbnRlZCA0LjE3LjE0LTIwMS5MeXVkZS5iejE0NzcxODIuVjMuZmMyOC54ODZf
+NjQgIzEKSGFyZHdhcmUgbmFtZTogTEVOT1ZPIDIwRVFTNjROMDAvMjBFUVM2NE4wMCwgQklPUyBO
+MUVFVDc3VyAoMS41MCApIDAzLzI4LzIwMTgKV29ya3F1ZXVlOiBldmVudHMgbm91dmVhdV9kaXNw
+bGF5X2hwZF93b3JrIFtub3V2ZWF1XQpSSVA6IDAwMTA6bm91dmVhdV9kcF9kZXRlY3QrMHgxN2Uv
+MHgzNzAgW25vdXZlYXVdClJTUDogMDAxODpmZmZmYTE1MTQzOTMzY2YwIEVGTEFHUzogMDAwMTAy
+OTMKUkFYOiAwMDAwMDAwMDAwMDAwMDAwIFJCWDogZmZmZjhjYjRmNjU2YzQwMCBSQ1g6IDAwMDAw
+MDAwMDAwMDAwMDAKUkRYOiBmZmZmYTE1MTQ1MDBlNGU0IFJTSTogZmZmZmExNTE0NTAwZTRlNCBS
+REk6IDAwMDAwMDAwMDEwMDkwMDIKUkJQOiBmZmZmOGNiNGY0YThhODAwIFIwODogZmZmZmExNTE0
+MzkzM2NmZCBSMDk6IGZmZmZhMTUxNDM5MzNjZmMKUjEwOiAwMDAwMDAwMDAwMDAwMDAwIFIxMTog
+MDAwMDAwMDAwMDAwMDAwMCBSMTI6IGZmZmY4Y2I0ZmI1N2EwMDAKUjEzOiBmZmZmOGNiNGZiNTdh
+MDAwIFIxNDogZmZmZjhjYjRmNGE4ZjgwMCBSMTU6IGZmZmY4Y2I0ZjY1NmM0MTgKRlM6ICAwMDAw
+MDAwMDAwMDAwMDAwKDAwMDApIEdTOmZmZmY4Y2I1MWY0MDAwMDAoMDAwMCkga25sR1M6MDAwMDAw
+MDAwMDAwMDAwMApDUzogIDAwMTAgRFM6IDAwMDAgRVM6IDAwMDAgQ1IwOiAwMDAwMDAwMDgwMDUw
+MDMzCkNSMjogMDAwMDdmNzhlYzkzODAwMCBDUjM6IDAwMDAwMDA3MzcyMGEwMDMgQ1I0OiAwMDAw
+MDAwMDAwMzYwNmYwCkRSMDogMDAwMDAwMDAwMDAwMDAwMCBEUjE6IDAwMDAwMDAwMDAwMDAwMDAg
+RFIyOiAwMDAwMDAwMDAwMDAwMDAwCkRSMzogMDAwMDAwMDAwMDAwMDAwMCBEUjY6IDAwMDAwMDAw
+ZmZmZTBmZjAgRFI3OiAwMDAwMDAwMDAwMDAwNDAwCkNhbGwgVHJhY2U6CiA/IF9jb25kX3Jlc2No
+ZWQrMHgxNS8weDMwCiBub3V2ZWF1X2Nvbm5lY3Rvcl9kZXRlY3QrMHgyY2UvMHg1MjAgW25vdXZl
+YXVdCiA/IF9jb25kX3Jlc2NoZWQrMHgxNS8weDMwCiA/IHd3X211dGV4X2xvY2srMHgxMi8weDQw
+CiBkcm1faGVscGVyX3Byb2JlX2RldGVjdF9jdHgrMHg4Yi8weGUwIFtkcm1fa21zX2hlbHBlcl0K
+IGRybV9oZWxwZXJfaHBkX2lycV9ldmVudCsweGE4LzB4MTIwIFtkcm1fa21zX2hlbHBlcl0KIG5v
+dXZlYXVfZGlzcGxheV9ocGRfd29yaysweDJhLzB4NjAgW25vdXZlYXVdCiBwcm9jZXNzX29uZV93
+b3JrKzB4MTg3LzB4MzQwCiB3b3JrZXJfdGhyZWFkKzB4MmUvMHgzODAKID8gcHdxX3VuYm91bmRf
+cmVsZWFzZV93b3JrZm4rMHhkMC8weGQwCiBrdGhyZWFkKzB4MTEyLzB4MTMwCiA/IGt0aHJlYWRf
+Y3JlYXRlX3dvcmtlcl9vbl9jcHUrMHg3MC8weDcwCiByZXRfZnJvbV9mb3JrKzB4MzUvMHg0MApD
+b2RlOiA0YyA4ZCA0NCAyNCAwZCBiOSAwMCAwNSAwMCAwMCA0OCA4OSBlZiBiYSAwOSAwMCAwMCAw
+MCBiZSAwMSAwMCAwMCAwMCBlOCBlMSAwOSBmOCBmZiA4NSBjMCAwZiA4NSBiMiAwMSAwMCAwMCA4
+MCA3YyAyNCAwYyAwMyA3NCAwMiA8MGY+IDBiIDQ4IDg5IGVmIGU4IGI4IDA3IGY4IGZmIGY2IDA1
+IDUxIDFiIGM4IGZmIDAyIDBmIDg0IDcyIGZmCi0tLVsgZW5kIHRyYWNlIDU1ZDgxMWIzOGZjOGU3
+MWEgXS0tLQoKU28sIHRvIGZpeCB0aGlzIHdlIGF0dGVtcHQgdG8gZ3JhYiBhIHJ1bnRpbWUgUE0g
+cmVmZXJlbmNlIGluIHRoZSBBQ1BJCmhhbmRsZXIgaXRzZWxmIGFzeW5jaHJvbm91c2x5LiBJZiB0
+aGUgR1BVIGlzIGFscmVhZHkgYXdha2UgKGl0IHdpbGwgaGF2ZQpub3JtYWwgaG90cGx1Z2dpbmcg
+YXQgdGhpcyBwb2ludCkgb3IgcnVudGltZSBQTSBjYWxsYmFja3MgYXJlIGN1cnJlbnRseQpkaXNh
+YmxlZCBvbiB0aGUgZGV2aWNlLCB3ZSBkcm9wIG91ciByZWZlcmVuY2Ugd2l0aG91dCB1cGRhdGlu
+ZyB0aGUKYXV0b3N1c3BlbmQgZGVsYXkuIFdlIG9ubHkgc2NoZWR1bGUgY29ubmVjdG9yIHJlcHJv
+YmVzIHdoZW4gd2UKc3VjY2Vzc2Z1bGx5IG1hbmFnZWQgdG8gcXVldWUgdXAgYSByZXN1bWUgcmVx
+dWVzdCB3aXRoIG91ciBhc3luY2hyb25vdXMKUE0gcmVmLgoKVGhpcyBhbHNvIGhhcyB0aGUgYWRk
+ZWQgYmVuZWZpdCBvZiBwcmV2ZW50aW5nIHJlZHVuZGFudCBjb25uZWN0b3IKcmVwcm9iZXMgZnJv
+bSBBQ1BJIHdoaWxlIHRoZSBHUFUgaXMgcnVudGltZSByZXN1bWVkIQoKU2lnbmVkLW9mZi1ieTog
+THl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KQ2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcK
+Q2M6IEthcm9sIEhlcmJzdCA8a2hlcmJzdEByZWRoYXQuY29tPgpCdWd6aWxsYTogaHR0cHM6Ly9i
+dWd6aWxsYS5yZWRoYXQuY29tL3Nob3dfYnVnLmNnaT9pZD0xNDc3MTgyI2M0MQoKU2lnbmVkLW9m
+Zi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyB8IDI2ICsrKysrKysrKysrKysrKysrLS0tLS0tCiAx
+IGZpbGUgY2hhbmdlZCwgMjAgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyBiL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCmluZGV4IDRiODczZTY2OGIyNi4uMmUz
+MjI2ZmY5Zjk1IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rp
+c3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYwpA
+QCAtMzc3LDE1ICszNzcsMjkgQEAgbm91dmVhdV9kaXNwbGF5X2FjcGlfbnRmeShzdHJ1Y3Qgbm90
+aWZpZXJfYmxvY2sgKm5iLCB1bnNpZ25lZCBsb25nIHZhbCwKIHsKIAlzdHJ1Y3Qgbm91dmVhdV9k
+cm0gKmRybSA9IGNvbnRhaW5lcl9vZihuYiwgdHlwZW9mKCpkcm0pLCBhY3BpX25iKTsKIAlzdHJ1
+Y3QgYWNwaV9idXNfZXZlbnQgKmluZm8gPSBkYXRhOworCWludCByZXQ7CiAKIAlpZiAoIXN0cmNt
+cChpbmZvLT5kZXZpY2VfY2xhc3MsIEFDUElfVklERU9fQ0xBU1MpKSB7CiAJCWlmIChpbmZvLT50
+eXBlID09IEFDUElfVklERU9fTk9USUZZX1BST0JFKSB7Ci0JCQkvKgotCQkJICogVGhpcyBtYXkg
+YmUgdGhlIG9ubHkgaW5kaWNhdGlvbiB3ZSByZWNlaXZlIG9mIGEKLQkJCSAqIGNvbm5lY3RvciBo
+b3RwbHVnIG9uIGEgcnVudGltZSBzdXNwZW5kZWQgR1BVLAotCQkJICogc2NoZWR1bGUgaHBkX3dv
+cmsgdG8gY2hlY2suCi0JCQkgKi8KLQkJCXNjaGVkdWxlX3dvcmsoJmRybS0+aHBkX3dvcmspOwor
+CQkJcmV0ID0gcG1fcnVudGltZV9nZXQoZHJtLT5kZXYtPmRldik7CisJCQlpZiAocmV0ID09IDEg
+fHwgcmV0ID09IC1FQUNDRVMpIHsKKwkJCQkvKiBJZiB0aGUgR1BVIGlzIGFscmVhZHkgYXdha2Us
+IG9yIGluIGEgc3RhdGUKKwkJCQkgKiB3aGVyZSB3ZSBjYW4ndCB3YWtlIGl0IHVwLCBpdCBjYW4g
+aGFuZGxlCisJCQkJICogaXQncyBvd24gaG90cGx1ZyBldmVudHMuCisJCQkJICovCisJCQkJcG1f
+cnVudGltZV9wdXRfYXV0b3N1c3BlbmQoZHJtLT5kZXYtPmRldik7CisJCQl9IGVsc2UgaWYgKHJl
+dCA9PSAwKSB7CisJCQkJLyogVGhpcyBtYXkgYmUgdGhlIG9ubHkgaW5kaWNhdGlvbiB3ZSByZWNl
+aXZlCisJCQkJICogb2YgYSBjb25uZWN0b3IgaG90cGx1ZyBvbiBhIHJ1bnRpbWUKKwkJCQkgKiBz
+dXNwZW5kZWQgR1BVLCBzY2hlZHVsZSBocGRfd29yayB0byBjaGVjay4KKwkJCQkgKi8KKwkJCQlO
+Vl9ERUJVRyhkcm0sICJBQ1BJIHJlcXVlc3RlZCBjb25uZWN0b3IgcmVwcm9iZVxuIik7CisJCQkJ
+c2NoZWR1bGVfd29yaygmZHJtLT5ocGRfd29yayk7CisJCQkJcG1fcnVudGltZV9wdXRfbm9pZGxl
+KGRybS0+ZGV2LT5kZXYpOworCQkJfSBlbHNlIHsKKwkJCQlOVl9XQVJOKGRybSwgIkRyb3BwZWQg
+QUNQSSByZXByb2JlIGV2ZW50IGR1ZSB0byBSUE0gZXJyb3I6ICVkXG4iLAorCQkJCQlyZXQpOwor
+CQkJfQogCiAJCQkvKiBhY3BpLXZpZGVvIHNob3VsZCBub3QgZ2VuZXJhdGUga2V5cHJlc3NlcyBm
+b3IgdGhpcyAqLwogCQkJcmV0dXJuIE5PVElGWV9CQUQ7Ci0tIAoyLjE3LjEKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
