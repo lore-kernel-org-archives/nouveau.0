@@ -1,108 +1,143 @@
-From: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 0/5] drm/nouveau+amdgpu: add DP CEC-Tunneling-over-AUX
-Date: Thu, 16 Aug 2018 11:25:50 -0400
-Message-ID: <CADnq5_NiL8Ac=mF3wenpQ3MHuj+8cNJFW2eshkWnf2tPQHPqTA@mail.gmail.com>
-References: <20180816105319.6411-1-hverkuil@xs4all.nl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 107537] 4.14+ - Full screen OpenGL applications
+ results in black screen
+Date: Thu, 16 Aug 2018 17:20:09 +0000
+Message-ID: <bug-107537-8800-RFR44CiTiD@http.bugs.freedesktop.org/>
+References: <bug-107537-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180816105319.6411-1-hverkuil-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans Verkuil <hverkuil-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, linux-media <linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0800461026=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-107537-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBBdWcgMTYsIDIwMTggYXQgNjo1NiBBTSBIYW5zIFZlcmt1aWwgPGh2ZXJrdWlsQHhz
-NGFsbC5ubD4gd3JvdGU6Cj4KPiBGcm9tOiBIYW5zIFZlcmt1aWwgPGhhbnMudmVya3VpbEBjaXNj
-by5jb20+Cj4KPiBOb3cgdGhhdCB0aGUgRGlzcGxheVBvcnQgQ0VDLVR1bm5lbGluZy1vdmVyLUFV
-WCBkcm0raTkxNSBzdXBwb3J0Cj4gaGFzIGJlZW4gbWVyZ2VkIGluIHRoZSBtYWlubGluZSBrZXJu
-ZWwgaXQgaXMgdGltZSB0byByb2xsIHRoaXMKPiBvdXQgdG8gbm91dmVhdSBhbmQgYW1kZ3B1IGFz
-IHdlbGwuCj4KPiBJIGNvbWJpbmVkIGJvdGggaW4gdGhlIHNhbWUgcGF0Y2ggc2VyaWVzIHNpbmNl
-IGJvdGggZGVwZW5kIG9uIHRoZQo+IHNhbWUgZmlyc3QgcGF0Y2gsIHRoZSBjb21tZW50cyBpbiB0
-aGlzIGNvdmVyIGxldHRlciBhcHBseSB0byBib3RoCj4gYW5kIHRoZSBpbXBsZW1lbnRhdGlvbiBp
-cyBhbHNvIHZlcnkgc2ltaWxhciAoYW5kIHNpbXBsZSkuCj4KPiBBcyBtZW50aW9uZWQsIHRoZSBm
-aXJzdCBwYXRjaCBpcyByZXF1aXJlZCBmb3IgdGhpczogaXQgYWRkcyBjaGVja3MgdGhhdAo+IHRo
-ZSBkcm1fZHBfY2VjIGZ1bmN0aW9ucyBhcmUgY2FsbGVkIHdpdGggYSB3b3JraW5nIGF1eCBpbXBs
-ZW1lbnRhdGlvbi4KPiBUaGVzZSBjaGVja3Mgd2VyZW4ndCBuZWNlc3NhcnkgZm9yIHRoZSBpOTE1
-LCBidXQgbm91dmVhdSBhbmQgYW1kZ3B1Cj4gcmVxdWlyZSB0aGVtLgo+Cj4gVGhlIG5leHQgdHdv
-IHBhdGNoZXMgdXBkYXRlIGEgY29tbWVudCBpbiBkcm1fZHBfY2VjLmMgYW5kIGZpeCBhIGJ1Zwo+
-IGluIHNpZGViYW5kIEFVWCBoYW5kbGluZyB0aGF0IEkgZm91bmQgd2hpbGUgcmVzZWFyY2hpbmcg
-Q0VDIFR1bm5lbGluZwo+IG92ZXIgYW4gTVNUIGh1Yi4gSXQncyB0aGVyZSB0byBwcmV2ZW50IG90
-aGVycyBmcm9tIHN0dW1ibGluZyBvdmVyIHRoZQo+IHNhbWUgYnVnIGluIHRoZSBmdXR1cmUuCj4K
-PiBUaGUgZm91cnRoIHBhdGNoIGFkZHMgc3VwcG9ydCBmb3IgQ0VDIHRvIHRoZSBub3V2ZWF1IGRy
-aXZlci4KPgo+IFRoZSBsYXN0IHBhdGNoIGFkZHMgc3VwcG9ydCBmb3IgQ0VDIHRvIHRoZSBhbWRn
-cHUgZHJpdmVyLiBIb3dldmVyLCB0aGVyZQo+IGFwcGVhciB0byBiZSB0d28gY2xhc3NlcyBvZiBh
-bWRncHUgaGFyZHdhcmU6IGFzIGEgZGlzY3JldGUgR1BVIG9yCj4gaW50ZWdyYXRlZC4gSSBvbmx5
-IGhhdmUgYSBkaXNjcmV0ZSBHUFUsIHNvIEkgY2FuJ3QgdGVzdCB0aGUgaW50ZWdyYXRlZAo+IEdQ
-VSBzdXBwb3J0IGFuZCBJIG9ubHkgaW1wbGVtZW50ZWQgdGhpcyBmb3IgdGhlIGRpc2NyZXRlIEdQ
-VSBjYXNlLgo+Cj4gSWYgc29tZW9uZSBoYXMgdGhlIGludGVncmF0ZWQgR1BVIGFuZCB3YW50cyB0
-byBnZXQgdGhpcyB3b3JraW5nIGFuZCBpcwo+IHdpbGxpbmcgdG8gZG8gc29tZSB0ZXN0aW5nLCB0
-aGVuIHBsZWFzZSBjb250YWN0IG1lLiBJdCBzaG91bGRuJ3QgYmUKPiBkaWZmaWN1bHQuIFlvdSB3
-aWxsIGxpa2VseSBoYXZlIHRvIGJ1eSBhIHdvcmtpbmcgRFAtdG8tSERNSSBhZGFwdGVyLgo+IFNl
-ZSBodHRwczovL2h2ZXJrdWlsLmhvbWUueHM0YWxsLm5sL2NlYy1zdGF0dXMudHh0IGZvciBhIChz
-YWRseSB2ZXJ5Cj4gc2hvcnQpIGxpc3Qgb2Ygd29ya2luZyBhZGFwdGVycy4KCkFjdHVhbGx5IHlv
-dSBhZGRlZCBzdXBwb3J0IGZvciBBUFVzIGFzIHdlbGwuICBJbiBhbWRncHUsIHRoZXJlIGFyZSB0
-d28Kc2V0cyBvZiBtb2Rlc2V0dGluZyBjb2RlLCBhbiBvbGRlciBsZXNzIGZlYXR1cmVkIHZlcnNp
-b24KKGFtZC9hbWRncHUvZGNlKi5jKSBhbmQgdGhlIG5ld2VyIG1vcmUgZmVhdHVyZWQgY29kZSAo
-YW1kL2Rpc3BsYXkvKikuCk5ld2VyIGFzaWNzICh2ZWdhIGFuZCByYXZlbikgYXJlIG9ubHkgc3Vw
-cG9ydGVkIGJ5IERDLiAgT2xkZXIgYXNpY3MKYXJlIHN1cHBvcnRlZCBieSBib3RoLiAgRXZlbnR1
-YWxseSB3ZSdkIGxpa2UgdG8gcmVtb3ZlIHRoZSBvbGRlcgptb2Rlc2V0dGluZyBjb2RlLiAgSSdt
-IG5vdCByZWFsbHkgYSBDRUMgZXhwZXJ0LCBidXQgdGhlIHBhdGNoZXMgbG9vawpwcmV0dHkgc3Ry
-YWlnaHQgZm9yd2FyZCB0byBtZS4gIFNlcmllcyBpczoKQWNrZWQtYnk6IEFsZXggRGV1Y2hlciA8
-YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT4KCj4KPiBOb3RlIHRoYXQgSSBtYXkgYmUgY29tcGxl
-dGVseSBvZmYtYmFzZSByZWdhcmRpbmcgd2hhdCBhdG9tYmlvc19kcC5jCj4gZG9lcywgaXQncyB0
-aGUgZmlyc3QgdGltZSBJIGV2ZXIgbG9va2VkIGF0IGFtZGdwdSBjb2RlLgo+Cj4gVHdvIG5vdGVz
-IG9uIENFQy1UdW5uZWxpbmctb3Zlci1BVVg6Cj4KPiAxKSBZb3UgbmVlZCB0byBiZSB2ZXJ5IGNh
-cmVmdWwgYWJvdXQgd2hpY2ggVVNCLUMvRFAvbWluaS1EUCB0byBIRE1JCj4gICAgYWRhcHRlcnMg
-eW91IGJ1eS4gT25seSBhIGZldyBzdXBwb3J0IHRoaXMgZmVhdHVyZSBjb3JyZWN0bHkgdG9kYXku
-Cj4gICAgS25vd24gY2hpcHNldHMgdGhhdCBzdXBwb3J0IHRoaXMgYXJlIFBhcmFkZSBQUzE3NSAm
-IFBTMTc2IGFuZAo+ICAgIE1lZ2FDaGlwcyAyOTAwLiBVbmZvcnR1bmF0ZWx5IGFsbW9zdCBhbGwg
-UGFyYWRlLWJhc2VkIGFkYXB0ZXJzCj4gICAgZG8gbm90IGhvb2sgdXAgdGhlIEhETUkgQ0VDIHBp
-biB0byB0aGUgY2hpcCwgbWFraW5nIHRoZW0gdXNlbGVzcwo+ICAgIGZvciB0aGlzLiBUaGUgUGFy
-YWRlIHJlZmVyZW5jZSBkZXNpZ24gd2FzIG9ubHkgcmVjZW50bHkgY2hhbmdlZAo+ICAgIHRvIGhv
-b2sgdXAgdGhpcyBwaW4sIHNvIHBlcmhhcHMgdGhpcyBzaXR1YXRpb24gd2lsbCBjaGFuZ2UgZm9y
-Cj4gICAgbmV3IFBhcmFkZS1iYXNlZCBhZGFwdGVycy4KPgo+ICAgIEFkYXB0ZXJzIGJhc2VkIG9u
-IHRoZSBuZXcgTWVnYUNoaXBzIDI5MDAgZmFyZSBtdWNoIGJldHRlcjogaXQKPiAgICBhcHBlYXJz
-IHRoYXQgdGhlaXIgcmVmZXJlbmNlIGRlc2lnbiAqZG9lcyogaG9vayB1cCB0aGUgQ0VDIHBpbi4K
-PiAgICBDbHViM0QgaGFzIGFkYXB0ZXJzIHVzaW5nIHRoaXMgZGV2aWNlIGZvciBVU0ItQywgRFAg
-YW5kIG1pbmktRFAKPiAgICB0byBIRE1JLCBhbmQgdGhleSBhbGwgd29yayBmaW5lLgo+Cj4gICAg
-SWYgYW55b25lIGZpbmRzIG90aGVyIGFkYXB0ZXJzIHRoYXQgd29yayBiZXNpZGVzIHRob3NlIEkg
-bGlzdAo+ICAgIGluIGh0dHBzOi8vaHZlcmt1aWwuaG9tZS54czRhbGwubmwvY2VjLXN0YXR1cy50
-eHQsIHBsZWFzZSBsZXQKPiAgICBtZSBrbm93IGFuZCBJJ2xsIGFkZCB0aGVtIHRvIHRoZSBsaXN0
-Lgo+Cj4gICAgTGludXggaXMgdGhlIGZpcnN0IE9TIHRoYXQgc3VwcG9ydHMgdGhpcyBmZWF0dXJl
-LCBzbyBJIGFtCj4gICAgbm90IHN1cnByaXNlZCB0aGF0IEhXIHN1cHBvcnQgZm9yIHRoaXMgaGFz
-IGJlZW4gcG9vci4gSG9wZWZ1bGx5Cj4gICAgdGhpcyB3aWxsIGNoYW5nZSBnb2luZyBmb3J3YXJk
-LiBCVFcsIG5vdGUgdGhlIGlyb255IHRoYXQgQ0VDIGlzCj4gICAgbm93IHN1cHBvcnRlZCBmb3Ig
-RFAtdG8tSERNSSBhZGFwdGVycywgYnV0IG5vdCBmb3IgdGhlIG5hdGl2ZQo+ICAgIEhETUkgcG9y
-dHMgb24gTlZJRElBL0FNRC9JbnRlbCBHUFVzLgo+Cj4gMikgQ0VDLVR1bm5lbGluZyBkb2VzIG5v
-dCB3b3JrICh5ZXQ/KSBpZiB0aGVyZSBpcyBhbiBNU1QgaHViIGluCj4gICAgYmV0d2Vlbi4gSSdt
-IHN0aWxsIHJlc2VhcmNoaW5nIHRoaXMgYnV0IHRoaXMgbWlnaHQgYmUgYSBsaW1pdGF0aW9uCj4g
-ICAgb2YgTVNULgo+Cj4gUmVnYXJkcywKPgo+ICAgICAgICAgSGFucwo+Cj4gSGFucyBWZXJrdWls
-ICg1KToKPiAgIGRybV9kcF9jZWM6IGNoZWNrIHRoYXQgYXV4IGhhcyBhIHRyYW5zZmVyIGZ1bmN0
-aW9uCj4gICBkcm1fZHBfY2VjOiBhZGQgbm90ZSBhYm91dCBnb29kIE1lZ2FDaGlwcyAyOTAwIENF
-QyBzdXBwb3J0Cj4gICBkcm1fZHBfbXN0X3RvcG9sb2d5OiBmaXggYnJva2VuCj4gICAgIGRybV9k
-cF9zaWRlYmFuZF9wYXJzZV9yZW1vdGVfZHBjZF9yZWFkKCkKPiAgIGRybS9ub3V2ZWF1OiBhZGQg
-RGlzcGxheVBvcnQgQ0VDLVR1bm5lbGluZy1vdmVyLUFVWCBzdXBwb3J0Cj4gICBkcm0vYW1kZ3B1
-OiBhZGQgRGlzcGxheVBvcnQgQ0VDLVR1bm5lbGluZy1vdmVyLUFVWCBzdXBwb3J0Cj4KPiAgLi4u
-L2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbS5jICB8IDEzICsrKysrKysr
-KysrLS0KPiAgLi4uL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbV9tc3RfdHlwZXMuYyAgICB8
-ICAyICsrCj4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fZHBfY2VjLmMgICAgICAgICAgICAgICAgICAg
-fCAxOCArKysrKysrKysrKysrKysrKy0KPiAgZHJpdmVycy9ncHUvZHJtL2RybV9kcF9tc3RfdG9w
-b2xvZ3kuYyAgICAgICAgICB8ICAxICsKPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9jb25uZWN0b3IuYyAgICB8IDE3ICsrKysrKysrKysrKysrKy0tCj4gIDUgZmlsZXMgY2hhbmdl
-ZCwgNDYgaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkKPgo+IC0tCj4gMi4xOC4wCj4KPiBf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGRyaS1kZXZl
-bCBtYWlsaW5nIGxpc3QKPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5n
-IGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+
+--===============0800461026==
+Content-Type: multipart/alternative; boundary="15344400100.3f63A222F.27839"
+Content-Transfer-Encoding: 7bit
+
+
+--15344400100.3f63A222F.27839
+Date: Thu, 16 Aug 2018 17:20:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107537
+
+Erik Karlsson <pilo-dZJkCKxksfnYtjvyW6yDsg@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #141039|0                           |1
+        is obsolete|                            |
+
+--- Comment #2 from Erik Karlsson <pilo-dZJkCKxksfnYtjvyW6yDsg@public.gmane.org> ---
+Created attachment 141143
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141143&action=3Dedit
+Log of commit 144a799 with drm.debug=3D30
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15344400100.3f63A222F.27839
+Date: Thu, 16 Aug 2018 17:20:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pilo&#64;=
+ayeon.org" title=3D"Erik Karlsson &lt;pilo&#64;ayeon.org&gt;"> <span class=
+=3D"fn">Erik Karlsson</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - 4.14+ - Full screen OpenGL applications results in black =
+screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107537">bug 10753=
+7</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #141039 is obsolete</=
+td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - 4.14+ - Full screen OpenGL applications results in black =
+screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107537#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - 4.14+ - Full screen OpenGL applications results in black =
+screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107537">bug 10753=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pilo&#64;ayeon.org" title=3D"Erik Karlsson &lt;pilo&#64;ayeon.org&gt;"> <sp=
+an class=3D"fn">Erik Karlsson</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141143=
+" name=3D"attach_141143" title=3D"Log of commit 144a799 with drm.debug=3D30=
+">attachment 141143</a> <a href=3D"attachment.cgi?id=3D141143&amp;action=3D=
+edit" title=3D"Log of commit 144a799 with drm.debug=3D30">[details]</a></sp=
+an>
+Log of commit 144a799 with drm.debug=3D30</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15344400100.3f63A222F.27839--
+
+--===============0800461026==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0800461026==--
