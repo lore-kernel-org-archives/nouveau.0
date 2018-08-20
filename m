@@ -1,14 +1,12 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 2/2] drm/nouveau: Fix GM107 disp dmac chan init on
- ThinkPad P50
-Date: Mon, 20 Aug 2018 13:20:27 -0400
-Message-ID: <20180820172030.10963-3-lyude@redhat.com>
-References: <20180820172030.10963-1-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 107628] New: On GeForce 8200M G,
+ driver reports wild temperature fluctuations,
+ effectively blocking the system at boot
+Date: Mon, 20 Aug 2018 18:43:44 +0000
+Message-ID: <bug-107628-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0867159453=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180820172030.10963-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,63 +17,243 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SnVzdCBsaWtlIGhvdyB0aGUgUDUwIHdpbGwgb2NjYXNpb25hbGx5IGxlYXZlIHRoZSBkaXNwJ3Mg
-Y29yZSBjaGFubmVsIG9uCmJlZm9yZSBub3V2ZWF1IHN0YXJ0cyBpbml0aWFsaXppbmcsIGl0IHdp
-bGwgb2NjYXNpb25hbGx5IGRvIHRoZSBzYW1lCnRoaW5nIHdpdGggdGhlIHJlc3Qgb2YgdGhlIGRt
-YWMgY2hhbm5lbCBpbiBhZGRpdGlvbiB0byB0aGUgY29yZSBjaGFubmVsLgpFeGFtcGxlOgoKWyAg
-ICAxLjYwNDM3NV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGRpc3A6IG91dHAgMDQ6MDAwNjowZjgx
-OiBubyBoZWFkcyAoMCAzIDQpClsgICAgMS42MDQ4NThdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBk
-aXNwOiBvdXRwIDA0OjAwMDY6MGY4MTogYXV4IHBvd2VyIC0+IGFsd2F5cwpbICAgIDEuNjA1MzU0
-XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZGlzcDogb3V0cCAwNDowMDA2OjBmODE6IGF1eCBwb3dl
-ciAtPiBkZW1hbmQKWyAgICAxLjYwNTgxNV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGRpc3A6IG91
-dHAgMDU6MDAwMjowZjgxOiBubyBoZWFkcyAoMCAzIDIpClsgICAgMS42MDcyODldIG5vdXZlYXUg
-MDAwMDowMTowMC4wOiBkaXNwOiBjaGlkIDAgbXRoZCAwMDAwIGRhdGEgMDAwMDA0MDAgMDAwMDEw
-MDAgMDAwMDAwMDIKWyAgICAxLjYwODgxOF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGRpc3A6IGNo
-aWQgMSBtdGhkIDAwMDAgZGF0YSAwMDAwMDQwMCAwMDAwMTAwMCAwMDAwMDAwMgpbICAgIDEuNjA5
-NTAwXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZGlzcDogY2hpZCAyIG10aGQgMDAwMCBkYXRhIDAw
-MDAwNDAwIDAwMDAxMDAwIDAwMDAwMDAyCgpXaGljaCBvZiBjb3Vyc2UsIGxhdGVyIGNhdXNlcyBv
-dGhlciBwYXJ0cyBvZiB0aGUgY2FyZCB0byBzdGFydCB0aW1pbmcKb3V0IGFuZCBmYWlsaW5nLiBD
-bG9zZXIgaW5zcGVjdGlvbiBzaG93cyB0aGUgc2FtZSB0aGluZyBoYXBwZW5pbmcgYXMKd2l0aCBv
-dXIgY29yZSBjaGFubmVsOyAweDYxMDQ5MCArIChjdHJsICogMHgxMCkgYWx3YXlzIGhhcyB0aGUg
-c2FtZQp1bmtub3duIDB4MDAwYTAwMDAgbWFzayBzZXQgd2hlbiB0aGUgcGhhbnRvbSBtdGhkIGZh
-aWx1cmVzIHN0YXJ0CmFwcGVhcmluZy4KClNvLCBpbXBsZW1lbnQgdGhlIHNhbWUgd29ya2Fyb3Vu
-ZCB3ZSB1c2UgZm9yIHRoZSBjb3JlIGRpc3AgY2hhbm5lbCB0bwp0aGUgcmVzdCBvZiB0aGUgZGlz
-cCBjaGFubmVscy4KClRoaXMgYWxvbmcgd2l0aCB0aGUgcHJldmlvdXMgcGF0Y2ggZml4IHJhbmRv
-bSBpbml0aWFsaXphdGlvbiBmYWlsdXJlcwpvYnNlcnZlZCB3aXRoIHRoZSBUaGlua3BhZCBQNTAu
-CgpTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgpDYzogS2Fyb2wg
-SGVyYnN0IDxrYXJvbGhlcmJzdEBnbWFpbC5jb20+CkNjOiBzdGFibGVAdmdlci5rZXJuZWwub3Jn
-Ci0tLQogLi4uL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvZG1hY2dmMTE5LmMgIHwgMTkg
-KysrKysrKysrKysrKysrKystLQogMSBmaWxlIGNoYW5nZWQsIDE3IGluc2VydGlvbnMoKyksIDIg
-ZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9l
-bmdpbmUvZGlzcC9kbWFjZ2YxMTkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5n
-aW5lL2Rpc3AvZG1hY2dmMTE5LmMKaW5kZXggZWRmN2RkMGQ5MzFkLi43YmM5MWYyNjBlMjcgMTAw
-NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvZG1hY2dm
-MTE5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9kbWFj
-Z2YxMTkuYwpAQCAtMzUsOCArMzUsOCBAQCBnZjExOV9kaXNwX2RtYWNfYmluZChzdHJ1Y3QgbnY1
-MF9kaXNwX2NoYW4gKmNoYW4sCiAJCQkJIGNoYW4tPmNoaWQudXNlciA8PCAyNyB8IDB4MDAwMDAw
-MDEpOwogfQogCi12b2lkCi1nZjExOV9kaXNwX2RtYWNfZmluaShzdHJ1Y3QgbnY1MF9kaXNwX2No
-YW4gKmNoYW4pCitzdGF0aWMgYm9vbAorZ2YxMTlfZGlzcF9kbWFjX2RlYWN0aXZhdGUoc3RydWN0
-IG52NTBfZGlzcF9jaGFuICpjaGFuKQogewogCXN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2ID0g
-JmNoYW4tPmRpc3AtPmJhc2UuZW5naW5lLnN1YmRldjsKIAlzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRl
-dmljZSA9IHN1YmRldi0+ZGV2aWNlOwpAQCAtNTIsNyArNTIsMTYgQEAgZ2YxMTlfZGlzcF9kbWFj
-X2Zpbmkoc3RydWN0IG52NTBfZGlzcF9jaGFuICpjaGFuKQogCSkgPCAwKSB7CiAJCW52a21fZXJy
-b3Ioc3ViZGV2LCAiY2ggJWQgZmluaTogJTA4eFxuIiwgdXNlciwKIAkJCSAgIG52a21fcmQzMihk
-ZXZpY2UsIDB4NjEwNDkwICsgKGN0cmwgKiAweDEwKSkpOworCQlyZXR1cm4gZmFsc2U7CiAJfQor
-CisJcmV0dXJuIHRydWU7Cit9CisKK3ZvaWQKK2dmMTE5X2Rpc3BfZG1hY19maW5pKHN0cnVjdCBu
-djUwX2Rpc3BfY2hhbiAqY2hhbikKK3sKKwlnZjExOV9kaXNwX2RtYWNfZGVhY3RpdmF0ZShjaGFu
-KTsKIH0KIAogc3RhdGljIGludApAQCAtNjMsNiArNzIsMTIgQEAgZ2YxMTlfZGlzcF9kbWFjX2lu
-aXQoc3RydWN0IG52NTBfZGlzcF9jaGFuICpjaGFuKQogCWludCBjdHJsID0gY2hhbi0+Y2hpZC5j
-dHJsOwogCWludCB1c2VyID0gY2hhbi0+Y2hpZC51c2VyOwogCisJLyogc2h1dCBkb3duIHRoZSBj
-aGFubmVsIGlmIGl0IHdhcyBsZWZ0IG9uLCBwcm9iYWJseSBieSB0aGUgVkJJT1MgKi8KKwlpZiAo
-KG52a21fcmQzMihkZXZpY2UsIDB4NjEwNDkwICsgKGN0cmwgKiAweDEwKSkgJiAweDAwMGEwMDAw
-KSA9PSAweDAwMGEwMDAwICYmCisJICAgIFdBUk5fT04oIWdmMTE5X2Rpc3BfZG1hY19kZWFjdGl2
-YXRlKGNoYW4pKSkgeworCQlyZXR1cm4gLUVCVVNZOworCX0KKwogCS8qIGluaXRpYWxpc2UgY2hh
-bm5lbCBmb3IgZG1hIGNvbW1hbmQgc3VibWlzc2lvbiAqLwogCW52a21fd3IzMihkZXZpY2UsIDB4
-NjEwNDk0ICsgKGN0cmwgKiAweDAwMTApLCBjaGFuLT5wdXNoKTsKIAludmttX3dyMzIoZGV2aWNl
-LCAweDYxMDQ5OCArIChjdHJsICogMHgwMDEwKSwgMHgwMDAxMDAwMCk7Ci0tIAoyLjE3LjEKCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0867159453==
+Content-Type: multipart/alternative; boundary="15347906251.A14C8C5b.14126"
+Content-Transfer-Encoding: 7bit
+
+
+--15347906251.A14C8C5b.14126
+Date: Mon, 20 Aug 2018 18:43:45 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107628
+
+            Bug ID: 107628
+           Summary: On GeForce 8200M G, driver reports wild temperature
+                    fluctuations, effectively blocking the system at boot
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: rbergen-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+First off, I want to state that I'm aware that I am filing a report that
+concerns a Compaq Presario CQ60 which a) is close to 10 years old, and b) m=
+ay
+well have the worst GPU cooling setup in the history of computing. I will
+therefore completely understand if everybody here concludes they have better
+ways to spend their time than worrying about this.
+
+That said, the CQ60 has an GeForce 8200M G built in and I'm running Gentoo
+x86_64 on said laptop with kernel version 4.14.63.=20
+
+When I boot the laptop with nouveau either built into the kernel or as a
+module, as soon as the driver loads, the screen is continuously flooded with
+messages relating to the GPU temperature either hitting or going below a ra=
+nge
+of thresholds. The messages have the format:=20
+
+[<timestamp>] nouveau 0000:02:00.0: therm: temperature (<x> C) hit/went bel=
+ow
+the '<threshold>' threshold
+
+The temperatures reported vary wildly between subsequent messages, as in
+literally jumping from between below 0 and well above 150 degrees (and vice
+versa).
+
+When this happens I am unable to use Ctrl-Alt-Del to reboot and have to do a
+hard power-down for it to stop. I can boot successfully provided I pass
+nouveau.modeset=3D0 on the kernel command line.
+
+I am currently unable to provide dmesg output as the problem occurs during =
+boot
+before a command prompt is presented that I could use to secure the log. I =
+do
+have a mobile phone video recording available of the laptop screen when the
+problem occurs, in case that helps.
+
+Windows 10 runs fine on this laptop with the nVidia drivers it pulls off the
+Internet during installation. Under Windows, HWiNFO reports mostly stable G=
+PU
+temperatures of around 85 C.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15347906251.A14C8C5b.14126
+Date: Mon, 20 Aug 2018 18:43:45 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - On GeForce 8200M G, driver reports wild temperature fluct=
+uations, effectively blocking the system at boot"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107628">107628</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>On GeForce 8200M G, driver reports wild temperature fluctuati=
+ons, effectively blocking the system at boot
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>rbergen&#64;xs4all.nl
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>First off, I want to state that I'm aware that I am filing a r=
+eport that
+concerns a Compaq Presario CQ60 which a) is close to 10 years old, and b) m=
+ay
+well have the worst GPU cooling setup in the history of computing. I will
+therefore completely understand if everybody here concludes they have better
+ways to spend their time than worrying about this.
+
+That said, the CQ60 has an GeForce 8200M G built in and I'm running Gentoo
+x86_64 on said laptop with kernel version 4.14.63.=20
+
+When I boot the laptop with nouveau either built into the kernel or as a
+module, as soon as the driver loads, the screen is continuously flooded with
+messages relating to the GPU temperature either hitting or going below a ra=
+nge
+of thresholds. The messages have the format:=20
+
+[&lt;timestamp&gt;] nouveau 0000:02:00.0: therm: temperature (&lt;x&gt; C) =
+hit/went below
+the '&lt;threshold&gt;' threshold
+
+The temperatures reported vary wildly between subsequent messages, as in
+literally jumping from between below 0 and well above 150 degrees (and vice
+versa).
+
+When this happens I am unable to use Ctrl-Alt-Del to reboot and have to do a
+hard power-down for it to stop. I can boot successfully provided I pass
+nouveau.modeset=3D0 on the kernel command line.
+
+I am currently unable to provide dmesg output as the problem occurs during =
+boot
+before a command prompt is presented that I could use to secure the log. I =
+do
+have a mobile phone video recording available of the laptop screen when the
+problem occurs, in case that helps.
+
+Windows 10 runs fine on this laptop with the nVidia drivers it pulls off the
+Internet during installation. Under Windows, HWiNFO reports mostly stable G=
+PU
+temperatures of around 85 C.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15347906251.A14C8C5b.14126--
+
+--===============0867159453==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0867159453==--
