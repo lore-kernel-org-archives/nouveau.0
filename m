@@ -1,107 +1,161 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH 2/2] drm/nouveau: Fix GM107 disp dmac chan init on
- ThinkPad P50
-Date: Tue, 21 Aug 2018 12:53:33 -0400
-Message-ID: <7ca062538b41a4190eb6ef78c3f729ab784cfd40.camel@redhat.com>
-References: <20180820172030.10963-1-lyude@redhat.com>
-         <20180820172030.10963-3-lyude@redhat.com>
-Reply-To: lyude@redhat.com
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
+Date: Tue, 21 Aug 2018 17:25:26 +0000
+Message-ID: <bug-105319-8800-ILyQaUZLKV@http.bugs.freedesktop.org/>
+References: <bug-105319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20180820172030.10963-3-lyude@redhat.com>
-Sender: stable-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Karol Herbst <karolherbst@gmail.com>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============1717252934=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-As a note: I don't think this patch is ready /just/ yet now as I just hit this
-problem again this morning (and it looks like I'm checking the wrong mask for
-dmac, it appears to be slightly different from the core), looking into this now
 
-On Mon, 2018-08-20 at 13:20 -0400, Lyude Paul wrote:
-> Just like how the P50 will occasionally leave the disp's core channel on
-> before nouveau starts initializing, it will occasionally do the same
-> thing with the rest of the dmac channel in addition to the core channel.
-> Example:
-> 
-> [    1.604375] nouveau 0000:01:00.0: disp: outp 04:0006:0f81: no heads (0 3 4)
-> [    1.604858] nouveau 0000:01:00.0: disp: outp 04:0006:0f81: aux power ->
-> always
-> [    1.605354] nouveau 0000:01:00.0: disp: outp 04:0006:0f81: aux power ->
-> demand
-> [    1.605815] nouveau 0000:01:00.0: disp: outp 05:0002:0f81: no heads (0 3 2)
-> [    1.607289] nouveau 0000:01:00.0: disp: chid 0 mthd 0000 data 00000400
-> 00001000 00000002
-> [    1.608818] nouveau 0000:01:00.0: disp: chid 1 mthd 0000 data 00000400
-> 00001000 00000002
-> [    1.609500] nouveau 0000:01:00.0: disp: chid 2 mthd 0000 data 00000400
-> 00001000 00000002
-> 
-> Which of course, later causes other parts of the card to start timing
-> out and failing. Closer inspection shows the same thing happening as
-> with our core channel; 0x610490 + (ctrl * 0x10) always has the same
-> unknown 0x000a0000 mask set when the phantom mthd failures start
-> appearing.
-> 
-> So, implement the same workaround we use for the core disp channel to
-> the rest of the disp channels.
-> 
-> This along with the previous patch fix random initialization failures
-> observed with the Thinkpad P50.
-> 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Cc: Karol Herbst <karolherbst@gmail.com>
-> Cc: stable@vger.kernel.org
-> ---
->  .../drm/nouveau/nvkm/engine/disp/dmacgf119.c  | 19 +++++++++++++++++--
->  1 file changed, 17 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/dmacgf119.c
-> b/drivers/gpu/drm/nouveau/nvkm/engine/disp/dmacgf119.c
-> index edf7dd0d931d..7bc91f260e27 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/dmacgf119.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/dmacgf119.c
-> @@ -35,8 +35,8 @@ gf119_disp_dmac_bind(struct nv50_disp_chan *chan,
->  				 chan->chid.user << 27 | 0x00000001);
->  }
->  
-> -void
-> -gf119_disp_dmac_fini(struct nv50_disp_chan *chan)
-> +static bool
-> +gf119_disp_dmac_deactivate(struct nv50_disp_chan *chan)
->  {
->  	struct nvkm_subdev *subdev = &chan->disp->base.engine.subdev;
->  	struct nvkm_device *device = subdev->device;
-> @@ -52,7 +52,16 @@ gf119_disp_dmac_fini(struct nv50_disp_chan *chan)
->  	) < 0) {
->  		nvkm_error(subdev, "ch %d fini: %08x\n", user,
->  			   nvkm_rd32(device, 0x610490 + (ctrl * 0x10)));
-> +		return false;
->  	}
-> +
-> +	return true;
-> +}
-> +
-> +void
-> +gf119_disp_dmac_fini(struct nv50_disp_chan *chan)
-> +{
-> +	gf119_disp_dmac_deactivate(chan);
->  }
->  
->  static int
-> @@ -63,6 +72,12 @@ gf119_disp_dmac_init(struct nv50_disp_chan *chan)
->  	int ctrl = chan->chid.ctrl;
->  	int user = chan->chid.user;
->  
-> +	/* shut down the channel if it was left on, probably by the VBIOS */
-> +	if ((nvkm_rd32(device, 0x610490 + (ctrl * 0x10)) & 0x000a0000) ==
-> 0x000a0000 &&
-> +	    WARN_ON(!gf119_disp_dmac_deactivate(chan))) {
-> +		return -EBUSY;
-> +	}
-> +
->  	/* initialise channel for dma command submission */
->  	nvkm_wr32(device, 0x610494 + (ctrl * 0x0010), chan->push);
->  	nvkm_wr32(device, 0x610498 + (ctrl * 0x0010), 0x00010000);
+--===============1717252934==
+Content-Type: multipart/alternative; boundary="15348723260.418cC.23133"
+Content-Transfer-Encoding: 7bit
+
+
+--15348723260.418cC.23133
+Date: Tue, 21 Aug 2018 17:25:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
+
+--- Comment #26 from S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> ---
+(In reply to Dominik 'Rathann' Mierzejewski from comment #25)
+> I can confirm Sergio's findings so far, though
+> kernel-4.15.0-0.rc4.git4.1.fc28.x86_64 (based on git commit ead68f216110)
+> hangs completely upon switching fbcon to nouveaufb if I have "rhgb" in the
+> kernel command line. I won't be able to provide more details for some time
+> as I have to give back the machine where this can be reproduced. I'll keep
+> my fingers crossed for Sergio.
+
+Correct, here [1] is the kernel I tested .
+
+I just started :
+
+git bisect start v4.15-rc6 ead68f216110
+Bisecting: 173 revisions left to test after this (roughly 8 steps)
+
+
+
+[1]
+kernel-4.15.0-0.rc3.git4.1.fc28
+kernel-4.15.0-0.rc4.git0.1.fc28 good graphics, bad interrupts=20
+kernel-4.15.0-0.rc4.git1.1.fc28
+kernel-4.15.0-0.rc4.git2.1.fc28
+kernel-4.15.0-0.rc4.git3.1.fc28 good graphics, bad interrupts=20
+kernel-4.15.0-0.rc4.git4.1.fc28 good graphics, bad interrupts=20
+kernel-4.15.0-0.rc6.git0.1.fc28 bad graphics
+kernel-4.15.0-0.rc6.git0.2.fc28 bad graphics
+kernel-4.15.0-0.rc6.git0.3.fc28
+kernel-4.15.0-0.rc6.git1.1.fc28 good interrupts (but bad graphics)=20
+kernel-4.15.0-0.rc6.git2.1.fc28
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15348723260.418cC.23133
+Date: Tue, 21 Aug 2018 17:25:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c26">Comme=
+nt # 26</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+sergio&#64;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.=
+com&gt;"> <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
+</span></b>
+        <pre>(In reply to Dominik 'Rathann' Mierzejewski from <a href=3D"sh=
+ow_bug.cgi?id=3D105319#c25">comment #25</a>)
+<span class=3D"quote">&gt; I can confirm Sergio's findings so far, though
+&gt; kernel-4.15.0-0.rc4.git4.1.fc28.x86_64 (based on git commit ead68f2161=
+10)
+&gt; hangs completely upon switching fbcon to nouveaufb if I have &quot;rhg=
+b&quot; in the
+&gt; kernel command line. I won't be able to provide more details for some =
+time
+&gt; as I have to give back the machine where this can be reproduced. I'll =
+keep
+&gt; my fingers crossed for Sergio.</span >
+
+Correct, here [1] is the kernel I tested .
+
+I just started :
+
+git bisect start v4.15-rc6 ead68f216110
+Bisecting: 173 revisions left to test after this (roughly 8 steps)
+
+
+
+[1]
+kernel-4.15.0-0.rc3.git4.1.fc28
+kernel-4.15.0-0.rc4.git0.1.fc28 good graphics, bad interrupts=20
+kernel-4.15.0-0.rc4.git1.1.fc28
+kernel-4.15.0-0.rc4.git2.1.fc28
+kernel-4.15.0-0.rc4.git3.1.fc28 good graphics, bad interrupts=20
+kernel-4.15.0-0.rc4.git4.1.fc28 good graphics, bad interrupts=20
+kernel-4.15.0-0.rc6.git0.1.fc28 bad graphics
+kernel-4.15.0-0.rc6.git0.2.fc28 bad graphics
+kernel-4.15.0-0.rc6.git0.3.fc28
+kernel-4.15.0-0.rc6.git1.1.fc28 good interrupts (but bad graphics)=20
+kernel-4.15.0-0.rc6.git2.1.fc28</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15348723260.418cC.23133--
+
+--===============1717252934==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1717252934==--
