@@ -1,100 +1,122 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH (repost) 1/5] drm_dp_cec: check that aux has a transfer
- function
-Date: Mon, 20 Aug 2018 20:45:05 -0400
-Message-ID: <7ac54c075962760d24b6ed99ba5b0485a80d8f3f.camel@redhat.com>
-References: <20180817141122.9541-1-hverkuil@xs4all.nl>
- <20180817141122.9541-2-hverkuil@xs4all.nl>
- <875a995712d0de615f47f200863376ee617ec533.camel@redhat.com>
- <ad4cd65b-4bb2-4b6c-2bc6-dc0c228c76aa@xs4all.nl>
-Reply-To: lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 106577] broken rendering with nine and nouveau
+ (GM107)
+Date: Tue, 21 Aug 2018 01:02:28 +0000
+Message-ID: <bug-106577-8800-brIwsjWhp1@http.bugs.freedesktop.org/>
+References: <bug-106577-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <ad4cd65b-4bb2-4b6c-2bc6-dc0c228c76aa-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans Verkuil <hverkuil-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org>, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Hans Verkuil <hans.verkuil-FYB4Gu1CFyUAvxtiuMwx3w@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============1444169795=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-106577-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCAyMDE4LTA4LTIwIGF0IDIyOjQ3ICswMjAwLCBIYW5zIFZlcmt1aWwgd3JvdGU6Cj4g
-T24gMDgvMjAvMjAxOCAwODo1MSBQTSwgTHl1ZGUgUGF1bCB3cm90ZToKPiA+IE9uIEZyaSwgMjAx
-OC0wOC0xNyBhdCAxNjoxMSArMDIwMCwgSGFucyBWZXJrdWlsIHdyb3RlOgo+ID4gPiBGcm9tOiBI
-YW5zIFZlcmt1aWwgPGhhbnMudmVya3VpbEBjaXNjby5jb20+Cj4gPiA+IAo+ID4gPiBJZiBhdXgt
-PnRyYW5zZmVyID09IE5VTEwsIHRoZW4ganVzdCByZXR1cm4gd2l0aG91dCBkb2luZwo+ID4gPiBh
-bnl0aGluZy4gSW4gdGhhdCBjYXNlIHRoZSBmdW5jdGlvbiBpcyBsaWtlbHkgY2FsbGVkIGZvcgo+
-ID4gPiBhIG5vbi0oZSlEUCBjb25uZWN0b3IuCj4gPiA+IAo+ID4gPiBUaGlzIG5ldmVyIGhhcHBl
-bmVkIGZvciB0aGUgaTkxNSBkcml2ZXIsIGJ1dCB0aGUgbm91dmVhdSBhbmQgYW1kZ3B1Cj4gPiA+
-IGRyaXZlcnMgbmVlZCB0aGlzIGNoZWNrLgo+ID4gCj4gPiBDb3VsZCB5b3UgZ2l2ZSBhIGJhY2t0
-cmFjZSBmcm9tIHdoZXJlIHlvdSdyZSBoaXR0aW5nIHRoaXMgaXNzdWUgd2l0aCBub3V2ZWF1Cj4g
-PiBhbmQKPiA+IGFtZGdwdT8gSXQgZG9lc24ndCBtYWtlIGEgd2hvbGUgdG9uIG9mIHNlbnNlIHRv
-IGhhdmUgY29ubmVjdG9ycyByZWdpc3RlcmluZwo+ID4gRFAKPiA+IGF1eCBidXNzZXMgaWYgdGhl
-eSBhcmVuJ3QgYWN0dWFsbHkgRFAsIHRoYXQgc2hvdWxkIHByb2JhYmx5IGp1c3QgYmUgZml4ZWQu
-Li4KPiAKQWdoLCBub3V2ZWF1IGFuZCBhbWRncHUgbWFraW5nIHF1ZXN0aW9uYWJsZSBkZWNpc2lv
-bnMgOnMuLi4gYnV0IEkgc3VwcG9zZSB0aGF0Cm1ha2VzIHNlbnNlLgoKUmV2aWV3ZWQtYnk6IEx5
-dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+Cgo+IFRoZSBkaWZmZXJlbmNlIGJldHdlZW4gdGhl
-IGk5MTUgZHJpdmVyIGFuZCB0aGUgbm91dmVhdSAoYW5kIGFtZGdwdSkgZHJpdmVyIGlzCj4gdGhh
-dCBpbiB0aGUgaTkxNSBkcml2ZXIgdGhlIGRybV9kcF9jZWNfc2V0X2VkaWQvdW5zZXRfZWRpZC9p
-cnEgZnVuY3Rpb25zIGFyZQo+IGNhbGxlZCBmcm9tIGNvZGUgdGhhdCBpcyBleGNsdXNpdmVseSBm
-b3IgRGlzcGxheVBvcnQgY29ubmVjdG9ycy4KPiAKPiBGb3Igbm91dmVhdS9hbWRncHUgdGhleSBh
-cmUgY2FsbGVkIGZyb20gY29kZSB0aGF0IGlzIHNoYXJlZCBiZXR3ZWVuCj4gRGlzcGxheVBvcnQK
-PiBhbmQgSERNSSwgc28gYXV4LT50cmFuc2ZlciBtYXkgYmUgTlVMTC4KPiAKPiBSYXRoZXIgdGhh
-biBlaXRoZXIgdGVzdGluZyBmb3IgdGhlIGNvbm5lY3RvciB0eXBlIG9yIGZvciBhIG5vbi1OVUxM
-IGF1eC0KPiA+dHJhbnNmZXIKPiBldmVyeSB0aW1lIEkgY2FsbCBhIGRybV9kcF9jZWNfKiBmdW5j
-dGlvbiwgaXQgaXMgYmV0dGVyIHRvIGp1c3QgdGVzdCBmb3IKPiBhdXgtPnRyYW5zZmVyIGluIHRo
-ZSBkcm1fZHBfY2VjXyogZnVuY3Rpb25zIHRoZW1zZWx2ZXMuIEl0J3MgbW9yZSByb2J1c3QuCj4g
-Cj4gU28gdGhlcmUgaXNuJ3QgYSBidWcgb3IgYW55dGhpbmcgbGlrZSB0aGF0LCBpdCdzIGp1c3Qg
-c28gdGhhdCB0aGVzZSBkcm1fZHBfY2VjCj4gZnVuY3Rpb25zIGNhbiBoYW5kbGUgYSBzbGlnaHRs
-eSBkaWZmZXJlbnQgZHJpdmVyIGRlc2lnbiBzYWZlbHkuCj4gCj4gVGhlIHJlZ2lzdHJhdGlvbiBh
-bmQgdW5yZWdpc3RyYXRpb24gb2YgdGhlIGNlYyBkZXZpY2VzIGlzIGFsd2F5cyBEUCBzcGVjaWZp
-YywKPiBhbmQgYW4gYXR0ZW1wdCB0byByZWdpc3RlciBhIGNlYyBkZXZpY2UgZm9yIGEgbm9uLURQ
-IGNvbm5lY3RvciB3aWxsIG5vdyBmYWlsCj4gd2l0aCBhIFdBUk5fT04uCj4gCj4gUmVnYXJkcywK
-PiAKPiAJSGFucwo+IAo+ID4gCj4gPiA+IAo+ID4gPiBUaGUgYWx0ZXJuYXRpdmUgd291bGQgYmUg
-dG8gYWRkIHRoaXMgY2hlY2sgaW4gdGhvc2UgZHJpdmVycyBiZWZvcmUKPiA+ID4gZXZlcnkgZHJt
-X2RwX2NlYyBjYWxsLCBidXQgaXQgbWFrZXMgc2Vuc2UgdG8gY2hlY2sgaXQgaW4gdGhlCj4gPiA+
-IGRybV9kcF9jZWMgZnVuY3Rpb25zIHRvIHByZXZlbnQgYSBrZXJuZWwgb29wcy4KPiA+ID4gCj4g
-PiA+IFNpZ25lZC1vZmYtYnk6IEhhbnMgVmVya3VpbCA8aGFucy52ZXJrdWlsQGNpc2NvLmNvbT4K
-PiA+ID4gLS0tCj4gPiA+ICBkcml2ZXJzL2dwdS9kcm0vZHJtX2RwX2NlYy5jIHwgMTQgKysrKysr
-KysrKysrKysKPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxNCBpbnNlcnRpb25zKCspCj4gPiA+IAo+
-ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9kcF9jZWMuYyBiL2RyaXZlcnMv
-Z3B1L2RybS9kcm1fZHBfY2VjLmMKPiA+ID4gaW5kZXggOTg4NTEzMzQ2ZTljLi4xNDA3YjEzYThk
-NWQgMTAwNjQ0Cj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfY2VjLmMKPiA+ID4g
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9kcF9jZWMuYwo+ID4gPiBAQCAtMjM4LDYgKzIzOCwx
-MCBAQCB2b2lkIGRybV9kcF9jZWNfaXJxKHN0cnVjdCBkcm1fZHBfYXV4ICphdXgpCj4gPiA+ICAJ
-dTggY2VjX2lycTsKPiA+ID4gIAlpbnQgcmV0Owo+ID4gPiAgCj4gPiA+ICsJLyogTm8gdHJhbnNm
-ZXIgZnVuY3Rpb24gd2FzIHNldCwgc28gbm90IGEgRFAgY29ubmVjdG9yICovCj4gPiA+ICsJaWYg
-KCFhdXgtPnRyYW5zZmVyKQo+ID4gPiArCQlyZXR1cm47Cj4gPiA+ICsKPiA+ID4gIAltdXRleF9s
-b2NrKCZhdXgtPmNlYy5sb2NrKTsKPiA+ID4gIAlpZiAoIWF1eC0+Y2VjLmFkYXApCj4gPiA+ICAJ
-CWdvdG8gdW5sb2NrOwo+ID4gPiBAQCAtMjkzLDYgKzI5NywxMCBAQCB2b2lkIGRybV9kcF9jZWNf
-c2V0X2VkaWQoc3RydWN0IGRybV9kcF9hdXggKmF1eCwKPiA+ID4gY29uc3QKPiA+ID4gc3RydWN0
-IGVkaWQgKmVkaWQpCj4gPiA+ICAJdW5zaWduZWQgaW50IG51bV9sYXMgPSAxOwo+ID4gPiAgCXU4
-IGNhcDsKPiA+ID4gIAo+ID4gPiArCS8qIE5vIHRyYW5zZmVyIGZ1bmN0aW9uIHdhcyBzZXQsIHNv
-IG5vdCBhIERQIGNvbm5lY3RvciAqLwo+ID4gPiArCWlmICghYXV4LT50cmFuc2ZlcikKPiA+ID4g
-KwkJcmV0dXJuOwo+ID4gPiArCj4gPiA+ICAjaWZuZGVmIENPTkZJR19NRURJQV9DRUNfUkMKPiA+
-ID4gIAkvKgo+ID4gPiAgCSAqIENFQ19DQVBfUkMgaXMgcGFydCBvZiBDRUNfQ0FQX0RFRkFVTFRT
-LCBidXQgaXQgaXMgc3RyaXBwZWQgYnkKPiA+ID4gQEAgLTM2MSw2ICszNjksMTAgQEAgRVhQT1JU
-X1NZTUJPTChkcm1fZHBfY2VjX3NldF9lZGlkKTsKPiA+ID4gICAqLwo+ID4gPiAgdm9pZCBkcm1f
-ZHBfY2VjX3Vuc2V0X2VkaWQoc3RydWN0IGRybV9kcF9hdXggKmF1eCkKPiA+ID4gIHsKPiA+ID4g
-KwkvKiBObyB0cmFuc2ZlciBmdW5jdGlvbiB3YXMgc2V0LCBzbyBub3QgYSBEUCBjb25uZWN0b3Ig
-Ki8KPiA+ID4gKwlpZiAoIWF1eC0+dHJhbnNmZXIpCj4gPiA+ICsJCXJldHVybjsKPiA+ID4gKwo+
-ID4gPiAgCWNhbmNlbF9kZWxheWVkX3dvcmtfc3luYygmYXV4LT5jZWMudW5yZWdpc3Rlcl93b3Jr
-KTsKPiA+ID4gIAo+ID4gPiAgCW11dGV4X2xvY2soJmF1eC0+Y2VjLmxvY2spOwo+ID4gPiBAQCAt
-NDA0LDYgKzQxNiw4IEBAIHZvaWQgZHJtX2RwX2NlY19yZWdpc3Rlcl9jb25uZWN0b3Ioc3RydWN0
-IGRybV9kcF9hdXgKPiA+ID4gKmF1eCwKPiA+ID4gY29uc3QgY2hhciAqbmFtZSwKPiA+ID4gIAkJ
-CQkgICBzdHJ1Y3QgZGV2aWNlICpwYXJlbnQpCj4gPiA+ICB7Cj4gPiA+ICAJV0FSTl9PTihhdXgt
-PmNlYy5hZGFwKTsKPiA+ID4gKwlpZiAoV0FSTl9PTighYXV4LT50cmFuc2ZlcikpCj4gPiA+ICsJ
-CXJldHVybjsKPiA+ID4gIAlhdXgtPmNlYy5uYW1lID0gbmFtZTsKPiA+ID4gIAlhdXgtPmNlYy5w
-YXJlbnQgPSBwYXJlbnQ7Cj4gPiA+ICAJSU5JVF9ERUxBWUVEX1dPUksoJmF1eC0+Y2VjLnVucmVn
-aXN0ZXJfd29yaywKPiAKPiAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdm
-eAo=
+
+--===============1444169795==
+Content-Type: multipart/alternative; boundary="15348133501.E1a8d33d2.31362"
+Content-Transfer-Encoding: 7bit
+
+
+--15348133501.E1a8d33d2.31362
+Date: Tue, 21 Aug 2018 01:02:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106577
+
+--- Comment #7 from iive-/E1597aS9LQAvxtiuMwx3w@public.gmane.org ---
+(In reply to Ilia Mirkin from comment #6)
+> (In reply to iive from comment #5)
+> > What is even worse, the tone you are using here, kind of implies that y=
+ou do
+> > not intend to work on a fix.
+>=20
+> I do intend to work on one
+
+Three months have passed since this bug has been open
+and nothing has changed.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15348133501.E1a8d33d2.31362
+Date: Tue, 21 Aug 2018 01:02:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - broken rendering with nine and nouveau (GM107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577#c7">Commen=
+t # 7</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - broken rendering with nine and nouveau (GM107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577">bug 10657=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+iive&#64;yahoo.com" title=3D"iive&#64;yahoo.com">iive&#64;yahoo.com</a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D106=
+577#c6">comment #6</a>)
+<span class=3D"quote">&gt; (In reply to iive from <a href=3D"show_bug.cgi?i=
+d=3D106577#c5">comment #5</a>)
+&gt; &gt; What is even worse, the tone you are using here, kind of implies =
+that you do
+&gt; &gt; not intend to work on a fix.
+&gt;=20
+&gt; I do intend to work on one</span >
+
+Three months have passed since this bug has been open
+and nothing has changed.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15348133501.E1a8d33d2.31362--
+
+--===============1444169795==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1444169795==--
