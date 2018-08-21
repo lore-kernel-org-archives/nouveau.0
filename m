@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106577] broken rendering with nine and nouveau
- (GM107)
-Date: Tue, 21 Aug 2018 01:02:28 +0000
-Message-ID: <bug-106577-8800-brIwsjWhp1@http.bugs.freedesktop.org/>
-References: <bug-106577-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
+Date: Tue, 21 Aug 2018 16:35:06 +0000
+Message-ID: <bug-105319-8800-HIWoosodKr@http.bugs.freedesktop.org/>
+References: <bug-105319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1444169795=="
+Content-Type: multipart/mixed; boundary="===============1242262476=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106577-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1444169795==
-Content-Type: multipart/alternative; boundary="15348133501.E1a8d33d2.31362"
+--===============1242262476==
+Content-Type: multipart/alternative; boundary="15348693061.8D59C07f1.17336"
 Content-Transfer-Encoding: 7bit
 
 
---15348133501.E1a8d33d2.31362
-Date: Tue, 21 Aug 2018 01:02:30 +0000
+--15348693061.8D59C07f1.17336
+Date: Tue, 21 Aug 2018 16:35:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106577
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
 
---- Comment #7 from iive-/E1597aS9LQAvxtiuMwx3w@public.gmane.org ---
-(In reply to Ilia Mirkin from comment #6)
-> (In reply to iive from comment #5)
-> > What is even worse, the tone you are using here, kind of implies that y=
-ou do
-> > not intend to work on a fix.
->=20
-> I do intend to work on one
-
-Three months have passed since this bug has been open
-and nothing has changed.
+--- Comment #25 from Dominik 'Rathann' Mierzejewski <dominik-IZ6Av6enwRKJQ7yn63+t2w@public.gmane.org=
+> ---
+I can confirm Sergio's findings so far, though
+kernel-4.15.0-0.rc4.git4.1.fc28.x86_64 (based on git commit ead68f216110) h=
+angs
+completely upon switching fbcon to nouveaufb if I have "rhgb" in the kernel
+command line. I won't be able to provide more details for some time as I ha=
+ve
+to give back the machine where this can be reproduced. I'll keep my fingers
+crossed for Sergio.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---15348133501.E1a8d33d2.31362
-Date: Tue, 21 Aug 2018 01:02:30 +0000
+--15348693061.8D59C07f1.17336
+Date: Tue, 21 Aug 2018 16:35:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,29 +67,28 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - broken rendering with nine and nouveau (GM107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577#c7">Commen=
-t # 7</a>
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c25">Comme=
+nt # 25</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - broken rendering with nine and nouveau (GM107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577">bug 10657=
-7</a>
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
+9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-iive&#64;yahoo.com" title=3D"iive&#64;yahoo.com">iive&#64;yahoo.com</a>
+dominik&#64;greysector.net" title=3D"Dominik 'Rathann' Mierzejewski &lt;dom=
+inik&#64;greysector.net&gt;"> <span class=3D"fn">Dominik 'Rathann' Mierzeje=
+wski</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D106=
-577#c6">comment #6</a>)
-<span class=3D"quote">&gt; (In reply to iive from <a href=3D"show_bug.cgi?i=
-d=3D106577#c5">comment #5</a>)
-&gt; &gt; What is even worse, the tone you are using here, kind of implies =
-that you do
-&gt; &gt; not intend to work on a fix.
-&gt;=20
-&gt; I do intend to work on one</span >
-
-Three months have passed since this bug has been open
-and nothing has changed.</pre>
+        <pre>I can confirm Sergio's findings so far, though
+kernel-4.15.0-0.rc4.git4.1.fc28.x86_64 (based on git commit ead68f216110) h=
+angs
+completely upon switching fbcon to nouveaufb if I have &quot;rhgb&quot; in =
+the kernel
+command line. I won't be able to provide more details for some time as I ha=
+ve
+to give back the machine where this can be reproduced. I'll keep my fingers
+crossed for Sergio.</pre>
         </div>
       </p>
 
@@ -102,14 +98,13 @@ and nothing has changed.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15348133501.E1a8d33d2.31362--
+--15348693061.8D59C07f1.17336--
 
---===============1444169795==
+--===============1242262476==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1444169795==--
+--===============1242262476==--
