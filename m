@@ -1,96 +1,41 @@
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PATCH 1/4] fbdev: Drop FBINFO_CAN_FORCE_OUTPUT flag
-Date: Wed, 22 Aug 2018 10:54:02 +0200
-Message-ID: <20180822085405.10787-1-daniel.vetter@ffwll.ch>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, Daniel Vetter <daniel.vetter@ffwll.ch>, Ben Skeggs <bskeggs@redhat.com>, Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Hans de Goede <hdegoede@redhat.com>, Alexander Kapshuk <alexander.kapshuk@gmail.com>, Kees Cook <keescook@chromium.org>, Thierry Reding <treding@nvidia.com>, David Lechner <david@lechnology.com>, nouveau@lists.freedesktop.org, linux-fbdev@vger.kernel.org, Daniel Vetter <daniel.vetter@intel.com>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 0/5] drm/nouveau: Backlight fixes and cleanup
+Date: Wed, 22 Aug 2018 21:21:45 -0400
+Message-ID: <20180823012151.20099-1-lyude@redhat.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This was only added for the drm's fbdev emulation support, so that it
-would try harder to show the Oops.
-
-Unfortunately this never really worked reliably, and in practice ended
-up pushing the real Oops off the screen due to plentyfull locking,
-sleep-while-atomic and other issues. So we removed all that support
-from the fbdev emulation a while back. Aside: We've also removed the
-kgdb support, for similar reasons.
-
-Since it's such a small patch I figured I don't split this up into the
-usual 3-phase removal.
-
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Hans de Goede <hdegoede@redhat.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Alexander Kapshuk <alexander.kapshuk@gmail.com>
-Cc: Kees Cook <keescook@chromium.org>
-Cc: Thierry Reding <treding@nvidia.com>
-Cc: David Lechner <david@lechnology.com>
-Cc: nouveau@lists.freedesktop.org
-Cc: linux-fbdev@vger.kernel.org
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
----
- drivers/gpu/drm/nouveau/nouveau_fbcon.c | 1 -
- drivers/staging/vboxvideo/vbox_fb.c     | 3 +--
- drivers/video/fbdev/core/fbcon.c        | 1 -
- include/linux/fb.h                      | 4 ----
- 4 files changed, 1 insertion(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-index 844498c4267c..20a260887be3 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
-@@ -379,7 +379,6 @@ nouveau_fbcon_create(struct drm_fb_helper *helper,
- 		info->flags = FBINFO_DEFAULT | FBINFO_HWACCEL_COPYAREA |
- 			      FBINFO_HWACCEL_FILLRECT |
- 			      FBINFO_HWACCEL_IMAGEBLIT;
--	info->flags |= FBINFO_CAN_FORCE_OUTPUT;
- 	info->fbops = &nouveau_fbcon_sw_ops;
- 	info->fix.smem_start = fb->nvbo->bo.mem.bus.base +
- 			       fb->nvbo->bo.mem.bus.offset;
-diff --git a/drivers/staging/vboxvideo/vbox_fb.c b/drivers/staging/vboxvideo/vbox_fb.c
-index 43c39eca4ae1..034f8ffa8f20 100644
---- a/drivers/staging/vboxvideo/vbox_fb.c
-+++ b/drivers/staging/vboxvideo/vbox_fb.c
-@@ -155,8 +155,7 @@ static int vboxfb_create(struct drm_fb_helper *helper,
- 	 * The last flag forces a mode set on VT switches even if the kernel
- 	 * does not think it is needed.
- 	 */
--	info->flags = FBINFO_DEFAULT | FBINFO_CAN_FORCE_OUTPUT |
--		      FBINFO_MISC_ALWAYS_SETPAR;
-+	info->flags = FBINFO_DEFAULT | FBINFO_MISC_ALWAYS_SETPAR;
- 	info->fbops = &vboxfb_ops;
- 
- 	/*
-diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
-index 5fb156bdcf4e..2b5bb52b1798 100644
---- a/drivers/video/fbdev/core/fbcon.c
-+++ b/drivers/video/fbdev/core/fbcon.c
-@@ -1104,7 +1104,6 @@ static void fbcon_init(struct vc_data *vc, int init)
- 	if (p->userfont)
- 		charcnt = FNTCHARCNT(p->fontdata);
- 
--	vc->vc_panic_force_write = !!(info->flags & FBINFO_CAN_FORCE_OUTPUT);
- 	vc->vc_can_do_color = (fb_get_color_depth(&info->var, &info->fix)!=1);
- 	vc->vc_complement_mask = vc->vc_can_do_color ? 0x7700 : 0x0800;
- 	if (charcnt == 256) {
-diff --git a/include/linux/fb.h b/include/linux/fb.h
-index aa74a228bb92..fa8c6f9c9c3a 100644
---- a/include/linux/fb.h
-+++ b/include/linux/fb.h
-@@ -457,10 +457,6 @@ struct fb_tile_ops {
-  */
- #define FBINFO_BE_MATH  0x100000
- 
--/* report to the VT layer that this fb driver can accept forced console
--   output like oopses */
--#define FBINFO_CAN_FORCE_OUTPUT     0x200000
--
- struct fb_info {
- 	atomic_t count;
- 	int node;
--- 
-2.18.0
+VGhpcyBzZXJpZXMgZml4ZXMgc29tZSBpc3N1ZXMgd2l0aCBub3V2ZWF1J3MgYmFja2xpZ2h0IHN1
+cHBvcnQgdGhhdCB3ZXJlCmNhdXNpbmcga2VybmVsIHBhbmljcyBvbiBtb2R1bGUgcmVsb2Fkcywg
+c3BlY2lmaWNhbGx5IG9uIHN5c3RlbXMgd2l0aApub3V2ZWF1IGhhbmRsaW5nIHRoZSBiYWNrbGln
+aHQgb2Ygb25lIG9mIHRoZSBkaXNwbGF5cy4KCldoaWxlIHdlJ3JlIGF0IGl0LCBsZXQncyBjbGVh
+bnVwIG5vdXZlYXVfYmFja2xpZ2h0LmMgYXMgd2VsbAoKTHl1ZGUgUGF1bCAoNSk6CiAgZHJtL25v
+dXZlYXU6IENoZWNrIGJhY2tsaWdodCBJRHMgYXJlID49IDAsIG5vdCA+IDAKICBkcm0vbm91dmVh
+dTogTW92ZSBiYWNrbGlnaHQgZGV2aWNlIGludG8gbm91dmVhdV9jb25uZWN0b3IKICBkcm0vbm91
+dmVhdTogcy9ub3V2ZWF1X2JhY2tsaWdodF9leGl0L25vdXZlYXVfYmFja2xpZ2h0X2ZpbmkvCiAg
+ZHJtL25vdXZlYXU6IENsZWFudXAgaW5kZW50aW5nIGluIG5vdXZlYXVfYmFja2xpZ2h0LmMKICBk
+cm0vbm91dmVhdTogUmVmYWN0b3IgbnZYWF9iYWNrbGlnaHRfaW5pdCgpCgogZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGlnaHQuYyB8IDE5MyArKysrKysrKysrLS0tLS0tLS0t
+LQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYyB8ICAyMCArKwog
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuaCB8ICAzMyArKysrCiBk
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyAgIHwgICAyIC0KIGRyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5oICAgfCAgMjUgLS0tCiBkcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oICAgICAgIHwgICAyIC0KIDYgZmlsZXMgY2hh
+bmdlZCwgMTQ2IGluc2VydGlvbnMoKyksIDEyOSBkZWxldGlvbnMoLSkKCi0tIAoyLjE3LjEKCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
+bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
