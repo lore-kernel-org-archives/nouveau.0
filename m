@@ -1,224 +1,69 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 5/5] drm/nouveau: Refactor nvXX_backlight_init()
-Date: Wed, 22 Aug 2018 21:21:50 -0400
-Message-ID: <20180823012151.20099-6-lyude@redhat.com>
+Subject: [PATCH 3/5] drm/nouveau:
+ s/nouveau_backlight_exit/nouveau_backlight_fini/
+Date: Wed, 22 Aug 2018 21:21:48 -0400
+Message-ID: <20180823012151.20099-4-lyude@redhat.com>
 References: <20180823012151.20099-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
 In-Reply-To: <20180823012151.20099-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
 To: nouveau@lists.freedesktop.org
-Cc: Jeffery Miller <jmiller@neverware.com>, Karol Herbst <kherbst@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Jeffery Miller <jmiller@neverware.com>
 List-Id: nouveau.vger.kernel.org
 
-There's literally no difference between any of the backlight init
-functions besides the backlight properties they set and the backlight
-callbacks that they set, so move all of the duplicated backlight init
-code out of there and into nouveau_backlight_init().
-
-This gets rid of a lot of copy pasta!
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: Jeffery Miller <jmiller@neverware.com>
-Cc: Karol Herbst <kherbst@redhat.com>
----
- drivers/gpu/drm/nouveau/nouveau_backlight.c | 131 +++++++++-----------
- 1 file changed, 57 insertions(+), 74 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-index 7ad90e7610a1..0712b2688e18 100644
---- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-@@ -94,48 +94,20 @@ static const struct backlight_ops nv40_bl_ops = {
- };
- 
- static int
--nv40_backlight_init(struct drm_connector *connector)
-+nv40_backlight_init(struct drm_connector *connector,
-+		    struct backlight_properties *props,
-+		    const struct backlight_ops **ops)
- {
- 	struct nouveau_drm *drm = nouveau_drm(connector->dev);
--	struct nouveau_backlight *bl;
- 	struct nvif_object *device = &drm->client.device.object;
--	struct backlight_properties props;
--	char backlight_name[BL_NAME_SIZE];
--	int ret = 0;
- 
- 	if (!(nvif_rd32(device, NV40_PMC_BACKLIGHT) & NV40_PMC_BACKLIGHT_MASK))
--		return 0;
--
--	bl = kzalloc(sizeof(*bl), GFP_KERNEL);
--	if (!bl)
--		return -ENOMEM;
--
--	memset(&props, 0, sizeof(struct backlight_properties));
--	props.type = BACKLIGHT_RAW;
--	props.max_brightness = 31;
--	if (!nouveau_get_backlight_name(backlight_name, bl)) {
--		NV_ERROR(drm, "Failed to retrieve a unique name for the backlight interface\n");
--		goto fail_alloc;
--	}
--
--	bl->dev = backlight_device_register(backlight_name, connector->kdev,
--					    drm, &nv40_bl_ops, &props);
--	if (IS_ERR(bl->dev)) {
--		if (bl->id >= 0)
--			ida_simple_remove(&bl_ida, bl->id);
--
--		ret = PTR_ERR(bl->dev);
--		goto fail_alloc;
--	}
--
--	nouveau_connector(connector)->backlight = bl;
--	bl->dev->props.brightness = nv40_get_intensity(bl->dev);
--	backlight_update_status(bl->dev);
-+		return -ENODEV;
- 
-+	props->type = BACKLIGHT_RAW;
-+	props->max_brightness = 31;
-+	*ops = &nv40_bl_ops;
- 	return 0;
--fail_alloc:
--	kfree(bl);
--	return ret;
- }
- 
- static int
-@@ -221,16 +193,13 @@ static const struct backlight_ops nva3_bl_ops = {
- };
- 
- static int
--nv50_backlight_init(struct drm_connector *connector)
-+nv50_backlight_init(struct drm_connector *connector,
-+		    struct backlight_properties *props,
-+		    const struct backlight_ops **ops)
- {
- 	struct nouveau_drm *drm = nouveau_drm(connector->dev);
- 	struct nvif_object *device = &drm->client.device.object;
- 	struct nouveau_encoder *nv_encoder;
--	struct nouveau_backlight *bl;
--	struct backlight_properties props;
--	const struct backlight_ops *ops;
--	char backlight_name[BL_NAME_SIZE];
--	int ret = 0;
- 
- 	nv_encoder = find_encoder(connector, DCB_OUTPUT_LVDS);
- 	if (!nv_encoder) {
-@@ -240,52 +209,31 @@ nv50_backlight_init(struct drm_connector *connector)
- 	}
- 
- 	if (!nvif_rd32(device, NV50_PDISP_SOR_PWM_CTL(ffs(nv_encoder->dcb->or) - 1)))
--		return 0;
--
--	bl = kzalloc(sizeof(*bl), GFP_KERNEL);
--	if (!bl)
--		return -ENOMEM;
-+		return -ENODEV;
- 
- 	if (drm->client.device.info.chipset <= 0xa0 ||
- 	    drm->client.device.info.chipset == 0xaa ||
- 	    drm->client.device.info.chipset == 0xac)
--		ops = &nv50_bl_ops;
-+		*ops = &nv50_bl_ops;
- 	else
--		ops = &nva3_bl_ops;
-+		*ops = &nva3_bl_ops;
- 
--	memset(&props, 0, sizeof(struct backlight_properties));
--	props.type = BACKLIGHT_RAW;
--	props.max_brightness = 100;
--	if (!nouveau_get_backlight_name(backlight_name, bl)) {
--		NV_ERROR(drm, "Failed to retrieve a unique name for the backlight interface\n");
--		goto fail_alloc;
--	}
--
--	bl->dev = backlight_device_register(backlight_name, connector->kdev,
--					    nv_encoder, ops, &props);
--	if (IS_ERR(bl->dev)) {
--		if (bl->id >= 0)
--			ida_simple_remove(&bl_ida, bl->id);
-+	props->type = BACKLIGHT_RAW;
-+	props->max_brightness = 100;
- 
--		ret = PTR_ERR(bl->dev);
--		goto fail_alloc;
--	}
--
--	nouveau_connector(connector)->backlight = bl;
--	bl->dev->props.brightness = bl->dev->ops->get_brightness(bl->dev);
--	backlight_update_status(bl->dev);
- 	return 0;
--
--fail_alloc:
--	kfree(bl);
--	return ret;
- }
- 
- int
- nouveau_backlight_init(struct drm_connector *connector)
- {
- 	struct nouveau_drm *drm = nouveau_drm(connector->dev);
-+	struct nouveau_backlight *bl;
- 	struct nvif_device *device = &drm->client.device;
-+	char backlight_name[BL_NAME_SIZE];
-+	struct backlight_properties props = {0};
-+	const struct backlight_ops *ops;
-+	int ret;
- 
- 	if (apple_gmux_present()) {
- 		NV_INFO(drm, "Apple GMUX detected: not registering Nouveau backlight interface\n");
-@@ -298,15 +246,50 @@ nouveau_backlight_init(struct drm_connector *connector)
- 
- 	switch (device->info.family) {
- 	case NV_DEVICE_INFO_V0_CURIE:
--		return nv40_backlight_init(connector);
-+		ret = nv40_backlight_init(connector, &props, &ops);
-+		break;
- 	case NV_DEVICE_INFO_V0_TESLA:
- 	case NV_DEVICE_INFO_V0_FERMI:
- 	case NV_DEVICE_INFO_V0_KEPLER:
- 	case NV_DEVICE_INFO_V0_MAXWELL:
--		return nv50_backlight_init(connector);
-+		ret = nv50_backlight_init(connector, &props, &ops);
-+		break;
- 	default:
- 		return 0;
- 	}
-+
-+	if (ret == -ENODEV)
-+		return 0;
-+	else if (ret)
-+		return ret;
-+
-+	bl = kzalloc(sizeof(*bl), GFP_KERNEL);
-+	if (!bl)
-+		return -ENOMEM;
-+
-+	if (!nouveau_get_backlight_name(backlight_name, bl)) {
-+		NV_ERROR(drm, "Failed to retrieve a unique name for the backlight interface\n");
-+		goto fail_alloc;
-+	}
-+
-+	bl->dev = backlight_device_register(backlight_name, connector->kdev,
-+					    drm, ops, &props);
-+	if (IS_ERR(bl->dev)) {
-+		if (bl->id >= 0)
-+			ida_simple_remove(&bl_ida, bl->id);
-+		ret = PTR_ERR(bl->dev);
-+		goto fail_alloc;
-+	}
-+
-+	nouveau_connector(connector)->backlight = bl;
-+	bl->dev->props.brightness = bl->dev->ops->get_brightness(bl->dev);
-+	backlight_update_status(bl->dev);
-+
-+	return 0;
-+
-+fail_alloc:
-+	kfree(bl);
-+	return ret;
- }
- 
- void
--- 
-2.17.1
+TW9yZSBjb25zaXN0ZW50IHdpdGggdGhlIHJlc3Qgb2YgdGhlIGNvZGViYXNlLCBubyBmdW5jdGlv
+bmFsIGNoYW5nZXMKaGVyZS4KClNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhh
+dC5jb20+CkNjOiBKZWZmZXJ5IE1pbGxlciA8am1pbGxlckBuZXZlcndhcmUuY29tPgpDYzogS2Fy
+b2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbm91dmVhdV9iYWNrbGlnaHQuYyB8IDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
+dXZlYXVfY29ubmVjdG9yLmMgfCAyICstCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2Nvbm5lY3Rvci5oIHwgNCArKy0tCiAzIGZpbGVzIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwg
+NCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
+ZWF1X2JhY2tsaWdodC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGln
+aHQuYwppbmRleCAzZTQ4NzRmNDA1YWIuLjAxN2Q1Yjc5MjRiYiAxMDA2NDQKLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGlnaHQuYworKysgYi9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jCkBAIC0zMDksNyArMzA5LDcgQEAgbm91dmVh
+dV9iYWNrbGlnaHRfaW5pdChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yKQogfQogCiB2
+b2lkCi1ub3V2ZWF1X2JhY2tsaWdodF9leGl0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0
+b3IpCitub3V2ZWF1X2JhY2tsaWdodF9maW5pKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0
+b3IpCiB7CiAJc3RydWN0IG5vdXZlYXVfY29ubmVjdG9yICpudl9jb25uID0gbm91dmVhdV9jb25u
+ZWN0b3IoY29ubmVjdG9yKTsKIAlzdHJ1Y3Qgbm91dmVhdV9iYWNrbGlnaHQgKmJsID0gbnZfY29u
+bi0+YmFja2xpZ2h0OwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9jb25uZWN0b3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9y
+LmMKaW5kZXggNzY3ZTg5MmRlOWM0Li4zYjI4OGJlOWMzZjcgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwpAQCAtOTExLDcgKzkxMSw3IEBAIG5vdXZlYXVf
+Y29ubmVjdG9yX2xhdGVfcmVnaXN0ZXIoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikK
+IHN0YXRpYyB2b2lkCiBub3V2ZWF1X2Nvbm5lY3Rvcl9lYXJseV91bnJlZ2lzdGVyKHN0cnVjdCBk
+cm1fY29ubmVjdG9yICpjb25uZWN0b3IpCiB7Ci0Jbm91dmVhdV9iYWNrbGlnaHRfZXhpdChjb25u
+ZWN0b3IpOworCW5vdXZlYXVfYmFja2xpZ2h0X2ZpbmkoY29ubmVjdG9yKTsKIH0KIAogc3RhdGlj
+IGludApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0
+b3IuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmgKaW5kZXgg
+NTQ2NWFlODJmYjlmLi43NmU3OTcxN2U0NTEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9jb25uZWN0b3IuaApAQCAtMTkwLDcgKzE5MCw3IEBAIHN0cnVjdCBkcm1fZGlzcGxh
+eV9tb2RlICpub3V2ZWF1X2Nvbm5fbmF0aXZlX21vZGUoc3RydWN0IGRybV9jb25uZWN0b3IgKik7
+CiAKICNpZmRlZiBDT05GSUdfRFJNX05PVVZFQVVfQkFDS0xJR0hUCiBleHRlcm4gaW50IG5vdXZl
+YXVfYmFja2xpZ2h0X2luaXQoc3RydWN0IGRybV9jb25uZWN0b3IgKik7Ci1leHRlcm4gdm9pZCBu
+b3V2ZWF1X2JhY2tsaWdodF9leGl0KHN0cnVjdCBkcm1fY29ubmVjdG9yICopOworZXh0ZXJuIHZv
+aWQgbm91dmVhdV9iYWNrbGlnaHRfZmluaShzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqKTsKIGV4dGVy
+biB2b2lkIG5vdXZlYXVfYmFja2xpZ2h0X2N0b3Iodm9pZCk7CiBleHRlcm4gdm9pZCBub3V2ZWF1
+X2JhY2tsaWdodF9kdG9yKHZvaWQpOwogI2Vsc2UKQEAgLTIwMSw3ICsyMDEsNyBAQCBub3V2ZWF1
+X2JhY2tsaWdodF9pbml0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpCiB9CiAKIHN0
+YXRpYyBpbmxpbmUgdm9pZAotbm91dmVhdV9iYWNrbGlnaHRfZXhpdChzdHJ1Y3QgZHJtX2Nvbm5l
+Y3RvciAqY29ubmVjdG9yKSB7Citub3V2ZWF1X2JhY2tsaWdodF9maW5pKHN0cnVjdCBkcm1fY29u
+bmVjdG9yICpjb25uZWN0b3IpIHsKIH0KIAogc3RhdGljIGlubGluZSB2b2lkCi0tIAoyLjE3LjEK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZl
+bCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
