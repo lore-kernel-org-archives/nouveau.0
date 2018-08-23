@@ -1,65 +1,91 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH 1/5] drm/nouveau: Check backlight IDs are >= 0, not > 0
-Date: Thu, 23 Aug 2018 12:29:44 -0400
-Message-ID: <6f99abb8f474f064588c64e29058db5c66acae13.camel@redhat.com>
-References: <20180823012151.20099-1-lyude@redhat.com>
-         <20180823012151.20099-2-lyude@redhat.com>
-         <CACO55tsuJUyQULA3oGm9VxH7ufObvW1bNH_1g7WCwcpJPrVugw@mail.gmail.com>
-Reply-To: lyude@redhat.com
+From: Harry Wentland <harry.wentland-5C7GfCeVMHo@public.gmane.org>
+Subject: Re: [PATCH (repost) 5/5] drm/amdgpu: add DisplayPort
+ CEC-Tunneling-over-AUX support
+Date: Thu, 23 Aug 2018 14:38:03 -0400
+Message-ID: <79366c45-6cd4-6e19-5b5f-73b50b9e995e@amd.com>
+References: <20180817141122.9541-1-hverkuil@xs4all.nl>
+ <20180817141122.9541-6-hverkuil@xs4all.nl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <CACO55tsuJUyQULA3oGm9VxH7ufObvW1bNH_1g7WCwcpJPrVugw@mail.gmail.com>
-Sender: stable-owner@vger.kernel.org
-To: Karol Herbst <kherbst@redhat.com>
-Cc: nouveau <nouveau@lists.freedesktop.org>, stable@vger.kernel.org, Jeffery Miller <jmiller@neverware.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20180817141122.9541-6-hverkuil-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Hans Verkuil <hverkuil-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org>, linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Hans Verkuil <hans.verkuil-FYB4Gu1CFyUAvxtiuMwx3w@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 2018-08-23 at 14:00 +0200, Karol Herbst wrote:
-> Patches 1-5 are Reviewed-by: Karol Herbst <kherbst@redhat.com>
-> 
-> I think it might be worth to test those patches on a system without
-> any backlight devices just to verify we don't break things, but the
-> code looked good already, so maybe we don't really need to test.
-Did! The P50 lets you switch between dedicated GPU mode and hybrid GPU mode, and
-it switches backlight control between the intel and nvidia GPUs. Seemed to work
-just fine for me
-> 
-> On Thu, Aug 23, 2018 at 3:21 AM, Lyude Paul <lyude@redhat.com> wrote:
-> > Remember, ida IDs start at 0, not 1!
-> > 
-> > Signed-off-by: Lyude Paul <lyude@redhat.com>
-> > Cc: stable@vger.kernel.org
-> > Cc: Jeffery Miller <jmiller@neverware.com>
-> > Cc: Karol Herbst <kherbst@redhat.com>
-> > ---
-> >  drivers/gpu/drm/nouveau/nouveau_backlight.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c
-> > b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-> > index 408b955e5c39..6dd72bc32897 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-> > @@ -116,7 +116,7 @@ nv40_backlight_init(struct drm_connector *connector)
-> >                                        &nv40_bl_ops, &props);
-> > 
-> >         if (IS_ERR(bd)) {
-> > -               if (bl_connector.id > 0)
-> > +               if (bl_connector.id >= 0)
-> >                         ida_simple_remove(&bl_ida, bl_connector.id);
-> >                 return PTR_ERR(bd);
-> >         }
-> > @@ -249,7 +249,7 @@ nv50_backlight_init(struct drm_connector *connector)
-> >                                        nv_encoder, ops, &props);
-> > 
-> >         if (IS_ERR(bd)) {
-> > -               if (bl_connector.id > 0)
-> > +               if (bl_connector.id >= 0)
-> >                         ida_simple_remove(&bl_ida, bl_connector.id);
-> >                 return PTR_ERR(bd);
-> >         }
-> > --
-> > 2.17.1
-> > 
+T24gMjAxOC0wOC0xNyAxMDoxMSBBTSwgSGFucyBWZXJrdWlsIHdyb3RlOgo+IEZyb206IEhhbnMg
+VmVya3VpbCA8aGFucy52ZXJrdWlsQGNpc2NvLmNvbT4KPiAKPiBBZGQgRGlzcGxheVBvcnQgQ0VD
+LVR1bm5lbGluZy1vdmVyLUFVWCBzdXBwb3J0IHRvIGFtZGdwdS4KPiAKPiBTaWduZWQtb2ZmLWJ5
+OiBIYW5zIFZlcmt1aWwgPGhhbnMudmVya3VpbEBjaXNjby5jb20+Cj4gQWNrZWQtYnk6IEFsZXgg
+RGV1Y2hlciA8YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUv
+ZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG0uYyAgIHwgMTMgKysrKysrKysrKyst
+LQo+ICAuLi4vZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG1fbXN0X3R5cGVzLmMg
+fCAgMiArKwo+ICAyIGZpbGVzIGNoYW5nZWQsIDEzIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25z
+KC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVf
+ZG0vYW1kZ3B1X2RtLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2Ft
+ZGdwdV9kbS5jCj4gaW5kZXggMzRmMzQ4MjNiYWI1Li43Nzg5OGM5NWJlZjYgMTAwNjQ0Cj4gLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG0uYwo+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmMKPiBA
+QCAtODk4LDYgKzg5OCw3IEBAIGFtZGdwdV9kbV91cGRhdGVfY29ubmVjdG9yX2FmdGVyX2RldGVj
+dChzdHJ1Y3QgYW1kZ3B1X2RtX2Nvbm5lY3RvciAqYWNvbm5lY3RvcikKPiAgCQlhY29ubmVjdG9y
+LT5kY19zaW5rID0gc2luazsKPiAgCQlpZiAoc2luay0+ZGNfZWRpZC5sZW5ndGggPT0gMCkgewo+
+ICAJCQlhY29ubmVjdG9yLT5lZGlkID0gTlVMTDsKPiArCQkJZHJtX2RwX2NlY191bnNldF9lZGlk
+KCZhY29ubmVjdG9yLT5kbV9kcF9hdXguYXV4KTsKPiAgCQl9IGVsc2Ugewo+ICAJCQlhY29ubmVj
+dG9yLT5lZGlkID0KPiAgCQkJCShzdHJ1Y3QgZWRpZCAqKSBzaW5rLT5kY19lZGlkLnJhd19lZGlk
+Owo+IEBAIC05MDUsMTAgKzkwNiwxMyBAQCBhbWRncHVfZG1fdXBkYXRlX2Nvbm5lY3Rvcl9hZnRl
+cl9kZXRlY3Qoc3RydWN0IGFtZGdwdV9kbV9jb25uZWN0b3IgKmFjb25uZWN0b3IpCj4gIAo+ICAJ
+CQlkcm1fY29ubmVjdG9yX3VwZGF0ZV9lZGlkX3Byb3BlcnR5KGNvbm5lY3RvciwKPiAgCQkJCQlh
+Y29ubmVjdG9yLT5lZGlkKTsKPiArCQkJZHJtX2RwX2NlY19zZXRfZWRpZCgmYWNvbm5lY3Rvci0+
+ZG1fZHBfYXV4LmF1eCwKPiArCQkJCQkgICAgYWNvbm5lY3Rvci0+ZWRpZCk7Cj4gIAkJfQo+ICAJ
+CWFtZGdwdV9kbV9hZGRfc2lua190b19mcmVlc3luY19tb2R1bGUoY29ubmVjdG9yLCBhY29ubmVj
+dG9yLT5lZGlkKTsKPiAgCj4gIAl9IGVsc2Ugewo+ICsJCWRybV9kcF9jZWNfdW5zZXRfZWRpZCgm
+YWNvbm5lY3Rvci0+ZG1fZHBfYXV4LmF1eCk7Cj4gIAkJYW1kZ3B1X2RtX3JlbW92ZV9zaW5rX2Zy
+b21fZnJlZXN5bmNfbW9kdWxlKGNvbm5lY3Rvcik7Cj4gIAkJZHJtX2Nvbm5lY3Rvcl91cGRhdGVf
+ZWRpZF9wcm9wZXJ0eShjb25uZWN0b3IsIE5VTEwpOwo+ICAJCWFjb25uZWN0b3ItPm51bV9tb2Rl
+cyA9IDA7Cj4gQEAgLTEwNTksMTIgKzEwNjMsMTYgQEAgc3RhdGljIHZvaWQgaGFuZGxlX2hwZF9y
+eF9pcnEodm9pZCAqcGFyYW0pCj4gIAkJCWRybV9rbXNfaGVscGVyX2hvdHBsdWdfZXZlbnQoZGV2
+KTsKPiAgCQl9Cj4gIAl9Cj4gKwo+ICAJaWYgKChkY19saW5rLT5jdXJfbGlua19zZXR0aW5ncy5s
+YW5lX2NvdW50ICE9IExBTkVfQ09VTlRfVU5LTk9XTikgfHwKPiAtCSAgICAoZGNfbGluay0+dHlw
+ZSA9PSBkY19jb25uZWN0aW9uX21zdF9icmFuY2gpKQo+ICsJICAgIChkY19saW5rLT50eXBlID09
+IGRjX2Nvbm5lY3Rpb25fbXN0X2JyYW5jaCkpIHsKPiAgCQlkbV9oYW5kbGVfaHBkX3J4X2lycShh
+Y29ubmVjdG9yKTsKPiArCX0KClRoZXNlIGxpbmVzIGRvbid0IHJlYWxseSBhZGQgYW55dGhpbmcg
+ZnVuY3Rpb25hbC4KCkVpdGhlciB3YXksIHRoaXMgcGF0Y2ggaXMKUmV2aWV3ZWQtYnk6IEhhcnJ5
+IFdlbnRsYW5kIDxoYXJyeS53ZW50bGFuZEBhbWQuY29tPgoKSGFycnkKCj4gIAo+IC0JaWYgKGRj
+X2xpbmstPnR5cGUgIT0gZGNfY29ubmVjdGlvbl9tc3RfYnJhbmNoKQo+ICsJaWYgKGRjX2xpbmst
+PnR5cGUgIT0gZGNfY29ubmVjdGlvbl9tc3RfYnJhbmNoKSB7Cj4gKwkJZHJtX2RwX2NlY19pcnEo
+JmFjb25uZWN0b3ItPmRtX2RwX2F1eC5hdXgpOwo+ICAJCW11dGV4X3VubG9jaygmYWNvbm5lY3Rv
+ci0+aHBkX2xvY2spOwo+ICsJfQo+ICB9Cj4gIAo+ICBzdGF0aWMgdm9pZCByZWdpc3Rlcl9ocGRf
+aGFuZGxlcnMoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCj4gQEAgLTI3MzIsNiArMjc0MCw3
+IEBAIHN0YXRpYyB2b2lkIGFtZGdwdV9kbV9jb25uZWN0b3JfZGVzdHJveShzdHJ1Y3QgZHJtX2Nv
+bm5lY3RvciAqY29ubmVjdG9yKQo+ICAJCWRtLT5iYWNrbGlnaHRfZGV2ID0gTlVMTDsKPiAgCX0K
+PiAgI2VuZGlmCj4gKwlkcm1fZHBfY2VjX3VucmVnaXN0ZXJfY29ubmVjdG9yKCZhY29ubmVjdG9y
+LT5kbV9kcF9hdXguYXV4KTsKPiAgCWRybV9jb25uZWN0b3JfdW5yZWdpc3Rlcihjb25uZWN0b3Ip
+Owo+ICAJZHJtX2Nvbm5lY3Rvcl9jbGVhbnVwKGNvbm5lY3Rvcik7Cj4gIAlrZnJlZShjb25uZWN0
+b3IpOwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2Rt
+L2FtZGdwdV9kbV9tc3RfdHlwZXMuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRn
+cHVfZG0vYW1kZ3B1X2RtX21zdF90eXBlcy5jCj4gaW5kZXggOWEzMDA3MzJiYTM3Li4xOGEzYTZl
+NWZmYTAgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9k
+bS9hbWRncHVfZG1fbXN0X3R5cGVzLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3Bs
+YXkvYW1kZ3B1X2RtL2FtZGdwdV9kbV9tc3RfdHlwZXMuYwo+IEBAIC00OTYsNiArNDk2LDggQEAg
+dm9pZCBhbWRncHVfZG1faW5pdGlhbGl6ZV9kcF9jb25uZWN0b3Ioc3RydWN0IGFtZGdwdV9kaXNw
+bGF5X21hbmFnZXIgKmRtLAo+ICAJYWNvbm5lY3Rvci0+ZG1fZHBfYXV4LmRkY19zZXJ2aWNlID0g
+YWNvbm5lY3Rvci0+ZGNfbGluay0+ZGRjOwo+ICAKPiAgCWRybV9kcF9hdXhfcmVnaXN0ZXIoJmFj
+b25uZWN0b3ItPmRtX2RwX2F1eC5hdXgpOwo+ICsJZHJtX2RwX2NlY19yZWdpc3Rlcl9jb25uZWN0
+b3IoJmFjb25uZWN0b3ItPmRtX2RwX2F1eC5hdXgsCj4gKwkJCQkgICAgICBhY29ubmVjdG9yLT5i
+YXNlLm5hbWUsIGRtLT5hZGV2LT5kZXYpOwo+ICAJYWNvbm5lY3Rvci0+bXN0X21nci5jYnMgPSAm
+ZG1fbXN0X2NiczsKPiAgCWRybV9kcF9tc3RfdG9wb2xvZ3lfbWdyX2luaXQoCj4gIAkJJmFjb25u
+ZWN0b3ItPm1zdF9tZ3IsCj4gCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdm
+eAo=
