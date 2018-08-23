@@ -1,69 +1,50 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 3/5] drm/nouveau:
- s/nouveau_backlight_exit/nouveau_backlight_fini/
-Date: Wed, 22 Aug 2018 21:21:48 -0400
-Message-ID: <20180823012151.20099-4-lyude@redhat.com>
-References: <20180823012151.20099-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20180823012151.20099-1-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+Subject: [PATCH 0/3] drm/nouveau: Fixup module probe to add ->shutdown()
+Date: Wed, 22 Aug 2018 21:40:05 -0400
+Message-ID: <20180823014009.21532-1-lyude@redhat.com>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
 To: nouveau@lists.freedesktop.org
-Cc: Karol Herbst <kherbst@redhat.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Jeffery Miller <jmiller@neverware.com>
+Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-TW9yZSBjb25zaXN0ZW50IHdpdGggdGhlIHJlc3Qgb2YgdGhlIGNvZGViYXNlLCBubyBmdW5jdGlv
-bmFsIGNoYW5nZXMKaGVyZS4KClNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhh
-dC5jb20+CkNjOiBKZWZmZXJ5IE1pbGxlciA8am1pbGxlckBuZXZlcndhcmUuY29tPgpDYzogS2Fy
-b2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9iYWNrbGlnaHQuYyB8IDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
-dXZlYXVfY29ubmVjdG9yLmMgfCAyICstCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
-X2Nvbm5lY3Rvci5oIHwgNCArKy0tCiAzIGZpbGVzIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwg
-NCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
-ZWF1X2JhY2tsaWdodC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGln
-aHQuYwppbmRleCAzZTQ4NzRmNDA1YWIuLjAxN2Q1Yjc5MjRiYiAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iYWNrbGlnaHQuYworKysgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jCkBAIC0zMDksNyArMzA5LDcgQEAgbm91dmVh
-dV9iYWNrbGlnaHRfaW5pdChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yKQogfQogCiB2
-b2lkCi1ub3V2ZWF1X2JhY2tsaWdodF9leGl0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0
-b3IpCitub3V2ZWF1X2JhY2tsaWdodF9maW5pKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0
-b3IpCiB7CiAJc3RydWN0IG5vdXZlYXVfY29ubmVjdG9yICpudl9jb25uID0gbm91dmVhdV9jb25u
-ZWN0b3IoY29ubmVjdG9yKTsKIAlzdHJ1Y3Qgbm91dmVhdV9iYWNrbGlnaHQgKmJsID0gbnZfY29u
-bi0+YmFja2xpZ2h0OwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9jb25uZWN0b3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9y
-LmMKaW5kZXggNzY3ZTg5MmRlOWM0Li4zYjI4OGJlOWMzZjcgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwpAQCAtOTExLDcgKzkxMSw3IEBAIG5vdXZlYXVf
-Y29ubmVjdG9yX2xhdGVfcmVnaXN0ZXIoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikK
-IHN0YXRpYyB2b2lkCiBub3V2ZWF1X2Nvbm5lY3Rvcl9lYXJseV91bnJlZ2lzdGVyKHN0cnVjdCBk
-cm1fY29ubmVjdG9yICpjb25uZWN0b3IpCiB7Ci0Jbm91dmVhdV9iYWNrbGlnaHRfZXhpdChjb25u
-ZWN0b3IpOworCW5vdXZlYXVfYmFja2xpZ2h0X2ZpbmkoY29ubmVjdG9yKTsKIH0KIAogc3RhdGlj
-IGludApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0
-b3IuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmgKaW5kZXgg
-NTQ2NWFlODJmYjlmLi43NmU3OTcxN2U0NTEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bm91dmVhdV9jb25uZWN0b3IuaApAQCAtMTkwLDcgKzE5MCw3IEBAIHN0cnVjdCBkcm1fZGlzcGxh
-eV9tb2RlICpub3V2ZWF1X2Nvbm5fbmF0aXZlX21vZGUoc3RydWN0IGRybV9jb25uZWN0b3IgKik7
-CiAKICNpZmRlZiBDT05GSUdfRFJNX05PVVZFQVVfQkFDS0xJR0hUCiBleHRlcm4gaW50IG5vdXZl
-YXVfYmFja2xpZ2h0X2luaXQoc3RydWN0IGRybV9jb25uZWN0b3IgKik7Ci1leHRlcm4gdm9pZCBu
-b3V2ZWF1X2JhY2tsaWdodF9leGl0KHN0cnVjdCBkcm1fY29ubmVjdG9yICopOworZXh0ZXJuIHZv
-aWQgbm91dmVhdV9iYWNrbGlnaHRfZmluaShzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqKTsKIGV4dGVy
-biB2b2lkIG5vdXZlYXVfYmFja2xpZ2h0X2N0b3Iodm9pZCk7CiBleHRlcm4gdm9pZCBub3V2ZWF1
-X2JhY2tsaWdodF9kdG9yKHZvaWQpOwogI2Vsc2UKQEAgLTIwMSw3ICsyMDEsNyBAQCBub3V2ZWF1
-X2JhY2tsaWdodF9pbml0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpCiB9CiAKIHN0
-YXRpYyBpbmxpbmUgdm9pZAotbm91dmVhdV9iYWNrbGlnaHRfZXhpdChzdHJ1Y3QgZHJtX2Nvbm5l
-Y3RvciAqY29ubmVjdG9yKSB7Citub3V2ZWF1X2JhY2tsaWdodF9maW5pKHN0cnVjdCBkcm1fY29u
-bmVjdG9yICpjb25uZWN0b3IpIHsKIH0KIAogc3RhdGljIGlubGluZSB2b2lkCi0tIAoyLjE3LjEK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZl
-bCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+This series is intended to add support for shutting down the GPU on
+kernel shutdown/reboot using the ->shutdown() hook, similar to what
+amdgpu does. This is mainly intended to workaround a bios issue on the
+P50 that was preventing nouveau from initializing the dedicated GM107
+GPU on that system properly. You can find more details on this issue in
+the patch labeled "Shut down GPU on kernel shutdown".
+
+Doing this so that it wouldn't race with userspace took a
+little bit of work (and uncovered one small bug in the process). Mainly,
+I had to convert nouveau to use the new drm_dev_alloc() and
+drm_dev_register() helpers to ensure that there isn't any chance that we
+can race with userspace during shutdown. This also involved removing
+->load() and ->unload() and moving their work into nouveau_drm_probe().
+
+============================== IMPORTANT ===============================
+This patch series WILL NOT WORK PROPERLY unless you also apply the
+following patches which fix some leftover device removal issues:
+
+https://patchwork.freedesktop.org/series/48596/
+This fixes kernel panics on removal on systems with nvidia controlled
+backlights
+
+https://patchwork.freedesktop.org/series/47843/
+This fixes issues with DRM connectors getting leaked on device removal,
+due to hpd_work still being active when unloading nouveau.
+
+============================== IMPORTANT ===============================
+
+This also uncovered one small bug in nouveau_drm_load().
+
+Lyude Paul (3):
+  drm/nouveau: Fix potential memory leak in nouveau_drm_load()
+  drm/nouveau: Start using new drm_dev initialization helpers
+  drm/nouveau: Shut down GPU on kernel shutdown
+
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 180 +++++++++++++++-----------
+ 1 file changed, 106 insertions(+), 74 deletions(-)
+
+-- 
+2.17.1
