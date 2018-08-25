@@ -1,15 +1,13 @@
-From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Subject: Re: Rewriting Intel PCI bridge prefetch base address bits
- solves nvidia graphics issues
-Date: Fri, 24 Aug 2018 17:42:12 +0200
-Message-ID: <20180824154212.GB8601@al>
-References: <CAD8Lp46Y2eOR7WE28xToUL8s-aYiqPa0nS=1GSD0AxkddXq6+A@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 104181] [NV50/G94] system freeze on youtube with
+ epiphany 3.26
+Date: Sat, 25 Aug 2018 17:22:58 +0000
+Message-ID: <bug-104181-8800-82U7iVtFWY@http.bugs.freedesktop.org/>
+References: <bug-104181-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0828616846=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CAD8Lp46Y2eOR7WE28xToUL8s-aYiqPa0nS=1GSD0AxkddXq6+A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-104181-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,105 +17,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
-Cc: linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Endless Linux Upstreaming Team <linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgRGFuaWVsLAoKT24gRnJpLCBBdWcgMjQsIDIwMTggYXQgMTE6MzE6NTRBTSArMDgwMCwgRGFu
-aWVsIERyYWtlIHdyb3RlOgo+IEhpLAo+IAo+IFdlIGFyZSBmYWNpbmcgYSBzdXNwZW5kL3Jlc3Vt
-ZSBwcm9ibGVtIHdpdGggbWFueSBkaWZmZXJlbnQgQXN1cyBsYXB0b3AKPiBtb2RlbHMgKDMwKyBw
-cm9kdWN0cykgd2l0aCBJbnRlbCBjaGlwc2V0cyAobXVsdGlwbGUgZ2VuZXJhdGlvbnMpIGFuZAo+
-IG52aWRpYSBHUFVzIChzZXZlcmFsIGRpZmZlcmVudCBvbmVzKS4gUmVwcm9kdWNlcnMgaW5jbHVk
-ZToKCkFyZSB0aGVzZSBzeXN0ZW1zIGFsc28gYWZmZWN0ZWQgdGhyb3VnaCBydW50aW1lIHBvd2Vy
-IG1hbmFnZW1lbnQ/IEZvcgpleGFtcGxlOgoKICAgIG1vZHByb2JlIG5vdXZlYXUgICAgIyBzaG91
-bGQgZW5hYmxlIHJ1bnRpbWUgUE0KICAgIHNsZWVwIDYgICAgICAgICAgICAgIyB3YWl0IGZvciBy
-dW50aW1lIHN1c3BlbmQgdG8ga2ljayBpbgogICAgbHNwY2kgLXMxOiAgICAgICAgICAjIHJ1bnRp
-bWUgcmVzdW1lIGJ5IHJlYWRpbmcgUENJIGNvbmZpZyBzcGFjZQoKT24gbGFwdG9wcyBmcm9tIGFi
-b3V0IDIwMTUtMjAxNiB3aXRoIGEgR1RYIDl4eE0gdGhpcyBzZXF1ZW5jZSByZXN1bHRzIGluCmhh
-bmdzIG9uIHZhcmlvdXMgbGFwdG9wcwooaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwub3JnL3Nob3df
-YnVnLmNnaT9pZD0xNTYzNDEpLgoKSSB3b25kZXIgaWYgeW91IGFyZSBleHBlcmllbmNpbmcgdGhl
-IHNhbWUgaXNzdWUuIERvIHlvdSBoYXZlIGEgbGlzdCBvZgphZmZlY3RlZCBtb2RlbHMsIGFuIGFj
-cGlkdW1wLCB0aGUgb3V0cHV0IG9mICJsc3BjaSAtbm52dnZ4eHh4IiBhbmQgdGhlCmNvcnJlc3Bv
-bmRpbmcgQklPUyB2ZXJzaW9uIChlLmcuIGZyb20gL3N5cy9jbGFzcy9kbWkvaWQvKT8KCj4gQWZ0
-ZXIgYSBsb3Qgb2YgZXhwZXJpbWVudGF0aW9uIEkgZm91bmQgYSB3b3JrYXJvdW5kOiBkdXJpbmcg
-cmVzdW1lLAo+IHNldCB0aGUgdmFsdWUgb2YgUENJX1BSRUZfQkFTRV9VUFBFUjMyIHRvIDAgb24g
-dGhlIHBhcmVudCBQQ0kgYnJpZGdlLgo+IEVhc2lseSBkb25lIGluIGRyaXZlcnMvcGNpL3F1aXJr
-cy5jLiBOb3cgYWxsIG52aWRpYSBzdHVmZiB3b3JrcyBmaW5lLgoKSSBhbSBjdXJpb3VzLCBob3cg
-ZGlkIHlvdSBkaXNjb3ZlciB0aGlzPyBXaGlsZSB0aGlzIGNvdWxkIHdvcmssIHBlcmhhcHMKdGhl
-cmUgYXJlIGFsdGVybmF0aXZlIHdvcmthcm91bmRzL2ZpeGVzPwoKV2hlbiB5b3Ugc2F5ICJwYXJl
-bnQgUENJIiBicmlkZ2UsIGlzIHRoYXQgYWN0dWFsbHkgdGhlIGRldmljZSB5b3Ugc2VlIGluCiJs
-c3BjaSAtdHYiPyBPbiBhIERlbGwgWFBTIDk1NjAsIHRoZSBHUFUgaXMgdW5kZXIgYSBkaWZmZXJl
-bnQgZGV2aWNlOgoKICAtWzAwMDA6MDBdLSstMDAuMCAgSW50ZWwgQ29ycG9yYXRpb24gWGVvbiBF
-My0xMjAwIHY2Lzd0aCBHZW4gQ29yZSBQcm9jZXNzb3IgSG9zdCBCcmlkZ2UvRFJBTSBSZWdpc3Rl
-cnMKICAgICAgICAgICAgICstMDEuMC1bMDFdLS0tLTAwLjAgIE5WSURJQSBDb3Jwb3JhdGlvbiBH
-UDEwN00gW0dlRm9yY2UgR1RYIDEwNTAgTW9iaWxlXQoKIDAwOjAxLjAgUENJIGJyaWRnZSBbMDYw
-NF06IEludGVsIENvcnBvcmF0aW9uIFhlb24gRTMtMTIwMCB2NS9FMy0xNTAwIHY1LzZ0aCBHZW4g
-Q29yZSBQcm9jZXNzb3IgUENJZSBDb250cm9sbGVyICh4MTYpIFs4MDg2OjE5MDFdIChyZXYgMDUp
-CgpVbmRlciAwMDoxYy4wLCB0aGVyZSBpcyBhIHdpcmVsZXNzIGFkYXB0ZXIuCgo+IEFzIGFuIGV4
-YW1wbGUgb2YgYW4gYWZmZWN0ZWQgcHJvZHVjdCwgdGFrZSB0aGUgQXN1cyBYNTQyVVEgKEludGVs
-Cj4gS2FieUxha2UgaTctNzUwMFUgd2l0aCBOdmlkaWEgR2VGb3JjZSA5NDBNWCkuIFRoZSBQQ0kg
-YnJpZGdlIGlzOgo+IAo+IDAwOjFjLjAgUENJIGJyaWRnZSBbMDYwNF06IEludGVsIENvcnBvcmF0
-aW9uIFN1bnJpc2UgUG9pbnQtTFAgUENJCj4gRXhwcmVzcyBSb290IFBvcnQgWzgwODY6OWQxMF0g
-KHJldiBmMSkgKHByb2ctaWYgMDAgW05vcm1hbCBkZWNvZGVdKQo+ICAgICBGbGFnczogYnVzIG1h
-c3RlciwgZmFzdCBkZXZzZWwsIGxhdGVuY3kgMCwgSVJRIDEyMAo+ICAgICBCdXM6IHByaW1hcnk9
-MDAsIHNlY29uZGFyeT0wMSwgc3Vib3JkaW5hdGU9MDEsIHNlYy1sYXRlbmN5PTAKPiAgICAgSS9P
-IGJlaGluZCBicmlkZ2U6IDAwMDBlMDAwLTAwMDBlZmZmCj4gICAgIE1lbW9yeSBiZWhpbmQgYnJp
-ZGdlOiBlZTAwMDAwMC1lZjBmZmZmZgo+ICAgICBQcmVmZXRjaGFibGUgbWVtb3J5IGJlaGluZCBi
-cmlkZ2U6IDAwMDAwMDAwZDAwMDAwMDAtMDAwMDAwMDBlMWZmZmZmZgo+ICAgICBDYXBhYmlsaXRp
-ZXM6IFs0MF0gRXhwcmVzcyBSb290IFBvcnQgKFNsb3QrKSwgTVNJIDAwCj4gICAgIENhcGFiaWxp
-dGllczogWzgwXSBNU0k6IEVuYWJsZSsgQ291bnQ9MS8xIE1hc2thYmxlLSA2NGJpdC0KPiAgICAg
-Q2FwYWJpbGl0aWVzOiBbOTBdIFN1YnN5c3RlbTogQVNVU1RlSyBDb21wdXRlciBJbmMuIFN1bnJp
-c2UKPiBQb2ludC1MUCBQQ0kgRXhwcmVzcyBSb290IFBvcnQgWzEwNDM6MWEwMF0KPiAgICAgQ2Fw
-YWJpbGl0aWVzOiBbYTBdIFBvd2VyIE1hbmFnZW1lbnQgdmVyc2lvbiAzCj4gICAgIENhcGFiaWxp
-dGllczogWzEwMF0gQWR2YW5jZWQgRXJyb3IgUmVwb3J0aW5nCj4gICAgIENhcGFiaWxpdGllczog
-WzE0MF0gQWNjZXNzIENvbnRyb2wgU2VydmljZXMKPiAgICAgQ2FwYWJpbGl0aWVzOiBbMjAwXSBM
-MSBQTSBTdWJzdGF0ZXMKPiAgICAgQ2FwYWJpbGl0aWVzOiBbMjIwXSAjMTkKPiAgICAgS2VybmVs
-IGRyaXZlciBpbiB1c2U6IHBjaWVwb3J0Cj4gCj4gVGhlIHJlYWxseSB3ZWlyZCB0aGluZyBoZXJl
-IGlzIHRoYXQgdGhlIHdvcmthcm91bmQgcmVnaXN0ZXIKPiBQQ0lfUFJFRl9CQVNFX1VQUEVSMzIg
-YWxyZWFkeSBhcHBlYXJzIHRvIGhhdmUgdmFsdWUgMCwgYXMgc2hvd24gYWJvdmUKPiBhbmQgYWxz
-byB2ZXJpZmllZCBkdXJpbmcgcmVzdW1lLiBCdXQgc2ltcGx5IHdyaXRpbmcgdmFsdWUgMCBhZ2Fp
-bgo+IGRlZmluaXRlbHkgcmVzdWx0cyBpbiBhbGwgdGhlIHByb2JsZW1zIGdvaW5nIGF3YXkuCj4g
-Cj4gMS4gSXMgdGhlIEludGVsIFBDSSBicmlkZ2UgbWlzYmVoYXZpbmcgaGVyZT8gV2h5IGRvZXMg
-d3JpdGluZyB0aGUgc2FtZQo+IHZhbHVlIG9mIFBDSV9QUkVGX0JBU0VfVVBQRVIzMiBtYWtlIGFu
-eSBkaWZmZXJlbmNlIGF0IGFsbD8KCkF0IHdoYXQgcG9pbnQgaW4gdGhlIHN1c3BlbmQgY29kZSBw
-YXRoIGRpZCB5b3UgaW5zZXJ0IHRoaXMgd3JpdGU/IEl0IGlzCnBvc3NpYmxlIHRoYXQgdGhlIHdy
-aXRlIHNvbWVob3cgYWN0ZWQgYXMgYSBmZW5jZS9tZW1vcnkgYmFycmllcj8KCj4gMi4gV2hvIGlz
-IHJlc3BvbnNpYmxlIGZvciBzYXZpbmcgYW5kIHJlc3RvcmluZyBQQ0kgYnJpZGdlCj4gY29uZmln
-dXJhdGlvbiBkdXJpbmcgc3VzcGVuZCBhbmQgcmVzdW1lPyBMaW51eD8gQUNQST8gQklPUz8KCk5v
-dCBzdXJlIGFib3V0IFBDSSBicmlkZ2VzLCBidXQgYXQgbGVhc3QgZm9yIHRoZSBQQ0kgRXhwcmVz
-cyBDYXBhYmlsaXR5CnJlZ2lzdGVycywgaXQgaXMgaW4gY29udHJvbCBvZiB0aGUgT1Mgd2hlbiBj
-b250cm9sIGlzIGdyYW50ZWQgdmlhIHRoZQpBQ1BJIF9PU0MgbWV0aG9kLgoKPiBJIGNvdWxkIG5v
-dCBzZWUgYW55IExpbnV4IGNvZGUgdG8gc2F2ZSBhbmQgcmVzdG9yZSB0aGVzZSByZWdpc3RlcnMu
-Cj4gTGlrZXdpc2UgSSBkaWRuJ3QgZmluZCBhbnl0aGluZyBpbiB0aGUgQUNQSSBEU0RUL1NTRFQg
-LSBuZWl0aGVyIG9uIHRoZQo+IGFmZmVjdGVkIHByb2R1Y3RzLCBub3Igb24gYSBzaW1pbGFyIHBy
-b2R1Y3QgdGhhdCBkb2VzIG5vdCBzdWZmZXIgdGhpcwo+IG52aWRpYSBpc3N1ZS4gTGludXggZG9l
-cyBwdXQgdGhlIFBDSSBicmlkZ2UgaW50byBEMyBwb3dlciBzdGF0ZSBkdXJpbmcKPiBzdXNwZW5k
-LCBhbmQgdXBvbiByZXN1bWUgdGhlIGxvd2VyIDMyIGJpdHMgb2YgdGhlIHByZWZldGNoIGFkZHJl
-c3MgYXJlCj4gc3RpbGwgc2V0IHRvIHRoZSBzYW1lIHZhbHVlLCBzbyB0aHJvdWdoIHNvbWUgbWVh
-bnMgdGhpcyBpbmZvIGlzIG5vdAo+IGJlaW5nIGxvc3QuCj4gCj4gCj4gMy4gQW55IG90aGVyIHN1
-Z2dlc3Rpb25zLCBoaW50cyBvciBleHBlcmltZW50cyBJIGNvdWxkIGRvIHRvIGhlbHAgbW92ZQo+
-IGZvcndhcmQgb24gdGhpcyBpc3N1ZT8KPiAKPiBNeSBnb2FsIGlzIHRvIGFkZCBhIHdvcmthcm91
-bmQgdG8gTGludXggKHBlcmhhcHMgYXMgYSBwY2kgcXVpcmspIGZvcgo+IGV4aXN0aW5nIGRldmlj
-ZXMsIGJ1dCBhbHNvIHdlIGFyZSBpbiBjb252ZXJzYXRpb24gd2l0aCBBc3VzIGVuZ2luZWVycwo+
-IGFuZCBpZiB3ZSBjYW4gY29tZSB1cCB3aXRoIGEgY29uY3JldGUgZGlhZ25vc2lzLCB3ZSBzaG91
-bGQgYmUgYWJsZSB0bwo+IGhhdmUgdGhlbSBmaXggdGhpcyBhdCB0aGUgQklPUyBsZXZlbCBpbiBm
-dXR1cmUgcHJvZHVjdHMuCgpBcyBXaW5kb3dzIGlzIHByb2JhYmx5IG5vdCBhZmZlY3RlZCBieSB0
-aGlzIGlzc3VlLCBhIGNoYW5nZSBtdXN0IGJlCnBvc3NpYmxlIHRvIG1ha2UgTGludXggbW9yZSBj
-b21wYXRpYmxlIHdpdGggV2luZG93cy4gVGhvdWdoIEkgYW0gbm90CnN1cmUgd2hhdCBjaGFuZ2Ug
-aXMgbmVlZGVkLgoKSSByZWNlbnRseSBjb21wYXJlZCBQQ0kgY29uZmlndXJhdGlvbiBzcGFjZSBh
-Y2Nlc3MgYW5kIEFDUEkgbWV0aG9kCmludm9jYXRpb24gdXNpbmcgUUVNVSArIFZGSU8gd2l0aCBM
-aW51eCA0LjE4LCBXaW5kb3dzIDcgYW5kIFdpbmRvd3MgMTAKKDE4MDMpLiBUaGVyZSB3ZXJlIGRp
-ZmZlcmVuY2VzIGxpa2UgZGlzYWJsaW5nIE1TSS9pbnRlcnJ1cHRzIGJlZm9yZQpzdXNwZW5kLCBz
-ZXR0aW5nIHRoZSBFbmFibGUgQ2xvY2sgUG93ZXIgTWFuYWdlbWVudCBiaXQgaW4gUENJIEV4cHJl
-c3MKTGluayBDb250cm9sIGFuZCBtb3JlLCBidXQgYXBwbHlpbmcgdGhlc2UgY2hhbmdlcyB3ZXJl
-IHNvIGZhciBub3QgcmVhbGx5CnN1Y2Nlc3NmdWwuCgpTb21lIHN1cHBvcnRpbmcgZmlsZXMgZm9y
-IHRoYXQgaW52ZXN0aWdhdGlvbiBhcmUgaGVyZToKaHR0cHM6Ly9naXRodWIuY29tL0xla2Vuc3Rl
-eW4vYWNwaS1zdHVmZi90cmVlL21hc3Rlci9kM3Rlc3QKCkthcm9sIG5vdGljZWQgdGhhdCBieSBu
-b3Qgc2V0dGluZyB0aGUgU3RhdGUgaW4gUE1DU1IgdG8gRDMgZm9yIHRoZQpOdmlkaWEgR1BVIGR1
-cmluZyBydW50aW1lIHN1c3BlbmQsIHRoZW4gdGhlIGRldmljZSB3b3VsZCBzdWNjZXNzZnVsbHkK
-cmVzdW1lLiBIb3dldmVyLCBiYXNlZCBvbiB0cmFjZXMgdXNpbmcgVkZJTy1QQ0ksIGl0IGRvZXMg
-bm90IHNlZW0gYSBnb29kCnNvbHV0aW9uIGFzIFdpbmRvd3MgZG9lcyBub3QgYmVoYXZlIGxpa2Ug
-dGhhdC4KLS0gCktpbmQgcmVnYXJkcywKUGV0ZXIgV3UKaHR0cHM6Ly9sZWtlbnN0ZXluLm5sCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0828616846==
+Content-Type: multipart/alternative; boundary="15352177783.C5AF4.30551"
+Content-Transfer-Encoding: 7bit
+
+
+--15352177783.C5AF4.30551
+Date: Sat, 25 Aug 2018 17:22:58 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104181
+
+--- Comment #8 from guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org ---
+I was wrong in my previous comment (Comment 7)...
+
+I have now verified more carefully and realized that this bug has been arou=
+nd
+at least since kernel version 3.0 (August 2011) !
+
+At this point, it might even be that this bug has existed since the initial
+release of the driver...
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15352177783.C5AF4.30551
+Date: Sat, 25 Aug 2018 17:22:58 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV50/G94] system freeze on youtube with epiphany 3.26"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104181#c8">Commen=
+t # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV50/G94] system freeze on youtube with epiphany 3.26"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104181">bug 10418=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+guido&#64;trentalancia.com" title=3D"guido&#64;trentalancia.com">guido&#64;=
+trentalancia.com</a>
+</span></b>
+        <pre>I was wrong in my previous comment (<a href=3D"show_bug.cgi?id=
+=3D104181#c7">Comment 7</a>)...
+
+I have now verified more carefully and realized that this bug has been arou=
+nd
+at least since kernel version 3.0 (August 2011) !
+
+At this point, it might even be that this bug has existed since the initial
+release of the driver...</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15352177783.C5AF4.30551--
+
+--===============0828616846==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0828616846==--
