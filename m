@@ -1,116 +1,51 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104181] [NV50/G94] system freeze on youtube with
- epiphany 3.26
-Date: Sat, 25 Aug 2018 17:22:58 +0000
-Message-ID: <bug-104181-8800-82U7iVtFWY@http.bugs.freedesktop.org/>
-References: <bug-104181-8800@http.bugs.freedesktop.org/>
+From: Hans Verkuil <hverkuil-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org>
+Subject: [PATCHv2 2/5] drm_dp_cec: add note about good MegaChips 2900 CEC
+ support
+Date: Mon, 27 Aug 2018 09:58:17 +0200
+Message-ID: <20180827075820.41109-3-hverkuil@xs4all.nl>
+References: <20180827075820.41109-1-hverkuil@xs4all.nl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0828616846=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104181-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20180827075820.41109-1-hverkuil-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Hans Verkuil <hans.verkuil-FYB4Gu1CFyUAvxtiuMwx3w@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0828616846==
-Content-Type: multipart/alternative; boundary="15352177783.C5AF4.30551"
-Content-Transfer-Encoding: 7bit
-
-
---15352177783.C5AF4.30551
-Date: Sat, 25 Aug 2018 17:22:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104181
-
---- Comment #8 from guido-D1bseh+SzQikhjTqA1DzBQ@public.gmane.org ---
-I was wrong in my previous comment (Comment 7)...
-
-I have now verified more carefully and realized that this bug has been arou=
-nd
-at least since kernel version 3.0 (August 2011) !
-
-At this point, it might even be that this bug has existed since the initial
-release of the driver...
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15352177783.C5AF4.30551
-Date: Sat, 25 Aug 2018 17:22:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV50/G94] system freeze on youtube with epiphany 3.26"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104181#c8">Commen=
-t # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV50/G94] system freeze on youtube with epiphany 3.26"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104181">bug 10418=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-guido&#64;trentalancia.com" title=3D"guido&#64;trentalancia.com">guido&#64;=
-trentalancia.com</a>
-</span></b>
-        <pre>I was wrong in my previous comment (<a href=3D"show_bug.cgi?id=
-=3D104181#c7">Comment 7</a>)...
-
-I have now verified more carefully and realized that this bug has been arou=
-nd
-at least since kernel version 3.0 (August 2011) !
-
-At this point, it might even be that this bug has existed since the initial
-release of the driver...</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15352177783.C5AF4.30551--
-
---===============0828616846==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0828616846==--
+RnJvbTogSGFucyBWZXJrdWlsIDxoYW5zLnZlcmt1aWxAY2lzY28uY29tPgoKQSBiaWcgcHJvYmxl
+bSB3aXRoIERQIENFQy1UdW5uZWxpbmctb3Zlci1BVVggaXMgdGhhdCBpdCBpcyB0cmlja3kKdG8g
+ZmluZCBhZGFwdGVycyB3aXRoIGEgY2hpcHNldCB0aGF0IHN1cHBvcnRzIHRoaXMgQU5EIHdoZXJl
+IHRoZQptYW51ZmFjdHVyZXIgYWN0dWFsbHkgY29ubmVjdGVkIHRoZSBIRE1JIENFQyBsaW5lIHRv
+IHRoZSBjaGlwc2V0LgoKQWRkIGEgbWVudGlvbiBvZiB0aGUgTWVnYUNoaXBzIDI5MDAgY2hpcHNl
+dCB3aGljaCBzZWVtcyB0byBzdXBwb3J0CnRoaXMgZmVhdHVyZSB3ZWxsLgoKU2lnbmVkLW9mZi1i
+eTogSGFucyBWZXJrdWlsIDxoYW5zLnZlcmt1aWxAY2lzY28uY29tPgpSZXZpZXdlZC1ieTogTHl1
+ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KQWNrZWQtYnk6IEFsZXggRGV1Y2hlciA8YWxleGFu
+ZGVyLmRldWNoZXJAYW1kLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vZHJtX2RwX2NlYy5jIHwg
+NCArKystCiAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9kcF9jZWMuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9kcm1fZHBfY2VjLmMKaW5kZXggMTQwN2IxM2E4ZDVkLi44YTcxOGY4NTA3OWEgMTAwNjQ0Ci0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfY2VjLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2Ry
+bV9kcF9jZWMuYwpAQCAtMTYsNyArMTYsOSBAQAogICogaGVyZS4gUXVpdGUgYSBmZXcgYWN0aXZl
+IChtaW5pLSlEUC10by1IRE1JIG9yIFVTQi1DLXRvLUhETUkgYWRhcHRlcnMKICAqIGhhdmUgYSBj
+b252ZXJ0ZXIgY2hpcCB0aGF0IHN1cHBvcnRzIENFQy1UdW5uZWxpbmctb3Zlci1BVVggKHVzdWFs
+bHkgdGhlCiAgKiBQYXJhZGUgUFMxNzYpLCBidXQgdGhleSBkbyBub3Qgd2lyZSB1cCB0aGUgQ0VD
+IHBpbiwgdGh1cyBtYWtpbmcgQ0VDCi0gKiB1c2VsZXNzLgorICogdXNlbGVzcy4gTm90ZSB0aGF0
+IE1lZ2FDaGlwcyAyOTAwLWJhc2VkIGFkYXB0ZXJzIGFwcGVhciB0byBoYXZlIGdvb2QKKyAqIHN1
+cHBvcnQgZm9yIENFQyB0dW5uZWxpbmcuIFRob3NlIGFkYXB0ZXJzIHRoYXQgSSBoYXZlIHRlc3Rl
+ZCB1c2luZworICogdGhpcyBjaGlwc2V0IGFsbCBoYXZlIHRoZSBDRUMgbGluZSBjb25uZWN0ZWQu
+CiAgKgogICogU2FkbHkgdGhlcmUgaXMgbm8gd2F5IGZvciB0aGlzIGRyaXZlciB0byBrbm93IHRo
+aXMuIFdoYXQgaGFwcGVucyBpcwogICogdGhhdCBhIC9kZXYvY2VjWCBkZXZpY2UgaXMgY3JlYXRl
+ZCB0aGF0IGlzIGlzb2xhdGVkIGFuZCB1bmFibGUgdG8gc2VlCi0tIAoyLjE4LjAKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZnggbWFpbGluZyBs
+aXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
