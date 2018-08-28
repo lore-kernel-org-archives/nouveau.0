@@ -1,33 +1,51 @@
-From: Hans Verkuil <hverkuil-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org>
-Subject: Re: [PATCHv2 0/5] drm/nouveau+amdgpu: add DP
- CEC-Tunneling-over-AUX
-Date: Mon, 27 Aug 2018 10:45:38 +0200
-Message-ID: <7e5ddf2f-8edd-bb47-87d5-3c0c4e5b0f7c@xs4all.nl>
-References: <20180827075820.41109-1-hverkuil@xs4all.nl>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH 0/4] drm/dp_mst: Add DP MST debugfs nodes for
+ all drivers
+Date: Mon, 27 Aug 2018 20:36:23 -0400
+Message-ID: <20180828003635.8200-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180827075820.41109-1-hverkuil-qWit8jRvyhVmR6Xm/wNWPw@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-media-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: dri-devel@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, Roman Li <roman.li@amd.com>, amd-gfx@lists.freedesktop.org, "David (ChunMing) Zhou" <david1.zhou@amd.com>, "Jerry (Fangzhi) Zuo" <jerry.zuo@amd.com>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Thierry Reding <treding@nvidia.com>, Harry Wentland <harry.wentland@amd.com>, Andrey Grodzovsky <andrey.grodzovsky@amd.com>, Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org, Sean Paul <seanpaul@chromium.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>, nouveau@lists.freedesktop.org, Tony Cheng <tony.cheng@amd.com>, linux-kernel@vger.kernel.org, Shirish S <shirish.s@amd.com>, Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 List-Id: nouveau.vger.kernel.org
 
-U29ycnksIHRoaXMgdjIgcGF0Y2ggc2VyaWVzIGlzIGEgYml0IG1lc3N5OiBteSBnaXQtc2VuZC1l
-bWFpbCBmYWlsZWQgYXQgcGF0Y2ggMwpmb3Igc29tZSByZWFzb24sIHNvIEkgcG9zdGVkIHBhdGNo
-ZXMgMy01IG1hbnVhbGx5LCBidXQgSSBmb3Jnb3QgdG8gYWRkICd2MicgdG8gdGhlCnN1YmplY3Qg
-b2YgcGF0Y2ggNC81IGFuZCBmb3Igc29tZSByZWFzb24gcGF0Y2ggMyBub3cgYXBwZWFyZWQgdHdp
-Y2UuIFRoZSBjb250ZW50cwpvZiB0aGUgcGF0Y2hlcyBpcyBjb3JyZWN0LCB0aG91Z2ggOi0pCgpS
-ZWdhcmRzLAoKCUhhbnMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+VGhpcyBpcyB0aGUgbmV4dCB2ZXJzaW9uIG9mIG15IHBhdGNoIHNlcmllcyBmb3IgdGVhY2hpbmcg
+RFJNIGhvdyB0bwphdXRvbWF0aWNhbGx5IGNyZWF0ZSBkZWJ1Z2ZzIG5vZGVzIGZvciBkcml2ZXJz
+IHdpdGggTVNUIHRvcG9sb2dpZXMuIFRoaXMKd2FzIG9yaWdpbmFsbHkgaW50ZW5kZWQganVzdCBm
+b3Igbm91dmVhdSwgYnV0IGhhcyBzaW5jZSBiZWVuIGV4cGFuZGVkIHRvCmFsbCBEUk0gZHJpdmVy
+cy4KCkNjOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwu
+Y29tPgpDYzogRGFuaWVsIFN0b25lIDxkYW5pZWxAZm9vaXNoYmFyLm9yZz4KCkx5dWRlIFBhdWwg
+KDQpOgogIGRybS9kZWJ1Z2ZzOiBBZGQgc3VwcG9ydCBmb3IgZHluYW1pYyBkZWJ1Z2ZzIGluaXRp
+YWxpemF0aW9uCiAgZHJtL2RwX21zdDogUGFzcyBlbnRpcmUgY29ubmVjdG9yIHRvIGRybV9kcF9t
+c3RfdG9wb2xvZ3lfbWdyX2luaXQoKQogIGRybS9kcF9tc3Q6IEFkZCBkcF9tc3Rfc3RhdHVzIGRl
+YnVnZnMgbm9kZSBmb3IgYWxsIGRyaXZlcnMKICBkcm0vaTkxNTogUmVtb3ZlIGk5MTVfZHJtX2Rw
+X21zdF9zdGF0dXMKCiAuLi4vZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtX21zdF90eXBlcy5j
+ICAgfCAgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9kcm1fZGVidWdmcy5jICAgICAgICAgICAgICAg
+ICB8IDE3MyArKysrKysrKysrKysrKysrKy0KIGRyaXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3Rv
+cG9sb2d5LmMgICAgICAgICB8IDExNCArKysrKysrKysrKy0KIGRyaXZlcnMvZ3B1L2RybS9kcm1f
+ZHJ2LmMgICAgICAgICAgICAgICAgICAgICB8ICAgMyArCiBkcml2ZXJzL2dwdS9kcm0vZHJtX2lu
+dGVybmFsLmggICAgICAgICAgICAgICAgfCAgIDUgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9kZWJ1Z2ZzLmMgICAgICAgICAgIHwgIDMyIC0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2lu
+dGVsX2RwLmMgICAgICAgICAgICAgICB8ICAgMiArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50
+ZWxfZHBfbXN0LmMgICAgICAgICAgIHwgICA2ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRl
+bF9kcnYuaCAgICAgICAgICAgICAgfCAgIDMgKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rp
+c3BudjUwL2Rpc3AuYyAgICAgICB8ICAgNiArLQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRl
+b25fZHBfbXN0LmMgICAgICAgIHwgICAyICstCiBpbmNsdWRlL2RybS9kcm1fZGVidWdmcy5oICAg
+ICAgICAgICAgICAgICAgICAgfCAgMjcgKysrCiBpbmNsdWRlL2RybS9kcm1fZHBfbXN0X2hlbHBl
+ci5oICAgICAgICAgICAgICAgfCAgMTcgKy0KIGluY2x1ZGUvZHJtL2RybV9maWxlLmggICAgICAg
+ICAgICAgICAgICAgICAgICB8ICAgNCArCiAxNCBmaWxlcyBjaGFuZ2VkLCAzNDIgaW5zZXJ0aW9u
+cygrKSwgNTQgZGVsZXRpb25zKC0pCgotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
