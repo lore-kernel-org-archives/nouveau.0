@@ -1,17 +1,13 @@
-From: Peter Wu <peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org>
-Subject: Re: Rewriting Intel PCI bridge prefetch base address bits
- solves nvidia graphics issues
-Date: Tue, 28 Aug 2018 11:57:22 +0200
-Message-ID: <20180828095722.GA8820@al>
-References: <CAD8Lp46Y2eOR7WE28xToUL8s-aYiqPa0nS=1GSD0AxkddXq6+A@mail.gmail.com>
- <20180824154212.GB8601@al>
- <CAD8Lp45D6=pqsgr_tXS08pE0dbG1XhcwnDB3mGZQ=P3ETxywzw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 107167] constantly firing events while screen
+ attached to NVIDIA card is disabled
+Date: Tue, 28 Aug 2018 09:59:02 +0000
+Message-ID: <bug-107167-8800-ATttvBHLlj@http.bugs.freedesktop.org/>
+References: <bug-107167-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2107060018=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CAD8Lp45D6=pqsgr_tXS08pE0dbG1XhcwnDB3mGZQ=P3ETxywzw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-107167-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,115 +17,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
-Cc: linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Endless Linux Upstreaming Team <linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBBdWcgMjgsIDIwMTggYXQgMTA6MjM6MjRBTSArMDgwMCwgRGFuaWVsIERyYWtlIHdy
-b3RlOgo+IE9uIEZyaSwgQXVnIDI0LCAyMDE4IGF0IDExOjQyIFBNLCBQZXRlciBXdSA8cGV0ZXJA
-bGVrZW5zdGV5bi5ubD4gd3JvdGU6Cj4gPiBBcmUgdGhlc2Ugc3lzdGVtcyBhbHNvIGFmZmVjdGVk
-IHRocm91Z2ggcnVudGltZSBwb3dlciBtYW5hZ2VtZW50PyBGb3IKPiA+IGV4YW1wbGU6Cj4gPgo+
-ID4gICAgIG1vZHByb2JlIG5vdXZlYXUgICAgIyBzaG91bGQgZW5hYmxlIHJ1bnRpbWUgUE0KPiA+
-ICAgICBzbGVlcCA2ICAgICAgICAgICAgICMgd2FpdCBmb3IgcnVudGltZSBzdXNwZW5kIHRvIGtp
-Y2sgaW4KPiA+ICAgICBsc3BjaSAtczE6ICAgICAgICAgICMgcnVudGltZSByZXN1bWUgYnkgcmVh
-ZGluZyBQQ0kgY29uZmlnIHNwYWNlCj4gPgo+ID4gT24gbGFwdG9wcyBmcm9tIGFib3V0IDIwMTUt
-MjAxNiB3aXRoIGEgR1RYIDl4eE0gdGhpcyBzZXF1ZW5jZSByZXN1bHRzIGluCj4gPiBoYW5ncyBv
-biB2YXJpb3VzIGxhcHRvcHMKPiA+IChodHRwczovL2J1Z3ppbGxhLmtlcm5lbC5vcmcvc2hvd19i
-dWcuY2dpP2lkPTE1NjM0MSkuCj4gCj4gVGhpcyB3b3JrcyBmaW5lIGhlcmUuIEknbSBmYWNpbmcg
-YSBkaWZmZXJlbnQgaXNzdWUuCgpKdXN0IHRvIGJlIHN1cmUsIGFmdGVyICJzbGVlcCIsIGRvIGJv
-dGggZGV2aWNlcyByZXBvcnQgInN1c3BlbmRlZCIgaW4KL3N5cy9idXMvcGNpL2RldmljZXMvMDAw
-MDowMDoxYy4wL3Bvd2VyL3J1bnRpbWVfc3RhdHVzCi9zeXMvYnVzL3BjaS9kZXZpY2VzLzAwMDA6
-MDE6MDAuMC9wb3dlci9ydW50aW1lX3N0YXR1cwoKYW5kIHdhcyB0aGlzIHJlcHJvZHVjZWQgd2l0
-aCBhIHJlY2VudCBtYWlubGluZSBrZXJuZWwgd2l0aCBubyBzcGVjaWFsCmNtZGxpbmUgb3B0aW9u
-cz8gVGhlIGVuZGxlc3NtIGtlcm5lbCBvbiBHaXRodWIgc2VlbXMgdG8gaGF2ZSBxdWl0ZSBzb21l
-CnBhdGNoZXMsIG9uZSBvZiB0aGVtIGV4cGxpY2l0bHkgZGlzYWJsZSBydW50aW1lIFBNOgpodHRw
-czovL2dpdGh1Yi5jb20vZW5kbGVzc20vbGludXgvY29tbWl0LzhiMTI4YjUwY2Q2NzI1ZWVlMmFl
-OTAyNWExNTEwYTIyMWQ5YjQyZjIKCj4gPj4gQWZ0ZXIgYSBsb3Qgb2YgZXhwZXJpbWVudGF0aW9u
-IEkgZm91bmQgYSB3b3JrYXJvdW5kOiBkdXJpbmcgcmVzdW1lLAo+ID4+IHNldCB0aGUgdmFsdWUg
-b2YgUENJX1BSRUZfQkFTRV9VUFBFUjMyIHRvIDAgb24gdGhlIHBhcmVudCBQQ0kgYnJpZGdlLgo+
-ID4+IEVhc2lseSBkb25lIGluIGRyaXZlcnMvcGNpL3F1aXJrcy5jLiBOb3cgYWxsIG52aWRpYSBz
-dHVmZiB3b3JrcyBmaW5lLgo+ID4KPiA+IEkgYW0gY3VyaW91cywgaG93IGRpZCB5b3UgZGlzY292
-ZXIgdGhpcz8gV2hpbGUgdGhpcyBjb3VsZCB3b3JrLCBwZXJoYXBzCj4gPiB0aGVyZSBhcmUgYWx0
-ZXJuYXRpdmUgd29ya2Fyb3VuZHMvZml4ZXM/Cj4gCj4gQmFzZWQgb24gdGhlIG9ic2VydmF0aW9u
-IHRoYXQgdGhlIGZvbGxvd2luZyBwcm9jZWR1cmUgd29ya3MgZmluZSAobm90ZQo+IHRoZSBhZGRp
-dGlvbiBvZiBzdGVwIDMpOgo+IAo+IDEuIEJvb3QKPiAyLiBTdXNwZW5kL3Jlc3VtZQo+IDMuIGVj
-aG8gcmVzY2FuID4gL3N5cy9idXMvcGNpL2RldmljZXMvMDAwMDowMDoxYy4wL3Jlc2Nhbgo+IDQu
-IExvYWQgbm91dmVhdSBkcml2ZXIKPiA1LiBTdGFydCBYCj4gCj4gSSB3b3JrZWQgdGhyb3VnaCB0
-aGUgcmVzY2FuIGNvZGVwYXRoIHVudGlsIEkgaGFkIGlzb2xhdGVkIHRoZSBzcGVjaWZpYwo+IGNv
-ZGUgd2hpY2ggbWFnaWNhbGx5IG1ha2VzIHRoaW5ncyB3b3JrIChpbiBwY2lfYnJpZGdlX2NoZWNr
-X3JhbmdlcykuCj4gCj4gSGF2aW5nIGZvdW5kIHRoYXQsIHN0ZXAgMyBpbiB0aGUgYWJvdmUgdGVz
-dCBwcm9jZWR1cmUgY2FuIGJlIHJlcGxhY2VkCj4gd2l0aCBhIHNpbXBsZToKPiAgICBzZXRwY2kg
-LXMgMDA6MWMuMCAweDI4Lmw9MAo+IAo+ID4gV2hlbiB5b3Ugc2F5ICJwYXJlbnQgUENJIiBicmlk
-Z2UsIGlzIHRoYXQgYWN0dWFsbHkgdGhlIGRldmljZSB5b3Ugc2VlIGluCj4gPiAibHNwY2kgLXR2
-Ij8gT24gYSBEZWxsIFhQUyA5NTYwLCB0aGUgR1BVIGlzIHVuZGVyIGEgZGlmZmVyZW50IGRldmlj
-ZToKPiA+Cj4gPiAgIC1bMDAwMDowMF0tKy0wMC4wICBJbnRlbCBDb3Jwb3JhdGlvbiBYZW9uIEUz
-LTEyMDAgdjYvN3RoIEdlbiBDb3JlIFByb2Nlc3NvciBIb3N0IEJyaWRnZS9EUkFNIFJlZ2lzdGVy
-cwo+ID4gICAgICAgICAgICAgICstMDEuMC1bMDFdLS0tLTAwLjAgIE5WSURJQSBDb3Jwb3JhdGlv
-biBHUDEwN00gW0dlRm9yY2UgR1RYIDEwNTAgTW9iaWxlXQo+ID4KPiA+ICAwMDowMS4wIFBDSSBi
-cmlkZ2UgWzA2MDRdOiBJbnRlbCBDb3Jwb3JhdGlvbiBYZW9uIEUzLTEyMDAgdjUvRTMtMTUwMCB2
-NS82dGggR2VuIENvcmUgUHJvY2Vzc29yIFBDSWUgQ29udHJvbGxlciAoeDE2KSBbODA4NjoxOTAx
-XSAocmV2IDA1KQo+IAo+IFllcywgaXQncyB0aGUgcGFyZW50IGJyaWRnZSBzaG93biBieSBsc3Bj
-aS4gVGhlIGFkZHJlc3Mgb2YgdGhpcyB2YXJpZXMKPiBmcm9tIHN5c3RlbSB0byBzeXN0ZW0uCgpD
-b3VsZCB5b3Ugc2hhcmUgc29tZSBkZXRhaWxzOgotIGFjcGlkdW1wCi0gbHNwY2kgLW5ueHh4eHZ2
-dgotIEJJT1MgdmVyc2lvbiAoZnJvbSAvc3lzL2NsYXNzL2RtaS9pZC8pCi0ga2VybmVsIHZlcnNp
-b24gKG1haW5saW5lPykKClBlcmhhcHMgdGhlcmUgaXMgc29tZSBtYWdpYyBpbiB0aGUgQUNQSSBz
-dXNwZW5kIG9yIHJlc3VtZSBwYXRoIHRoYXQKY2F1c2VzIHRoaXMuCgo+ID4+IDEuIElzIHRoZSBJ
-bnRlbCBQQ0kgYnJpZGdlIG1pc2JlaGF2aW5nIGhlcmU/IFdoeSBkb2VzIHdyaXRpbmcgdGhlIHNh
-bWUKPiA+PiB2YWx1ZSBvZiBQQ0lfUFJFRl9CQVNFX1VQUEVSMzIgbWFrZSBhbnkgZGlmZmVyZW5j
-ZSBhdCBhbGw/Cj4gPgo+ID4gQXQgd2hhdCBwb2ludCBpbiB0aGUgc3VzcGVuZCBjb2RlIHBhdGgg
-ZGlkIHlvdSBpbnNlcnQgdGhpcyB3cml0ZT8gSXQgaXMKPiA+IHBvc3NpYmxlIHRoYXQgdGhlIHdy
-aXRlIHNvbWVob3cgYWN0ZWQgYXMgYSBmZW5jZS9tZW1vcnkgYmFycmllcj8KPiAKPiBzdGF0aWMg
-dm9pZCBxdWlya19wcmVmX2Jhc2VfdXBwZXIzMihzdHJ1Y3QgcGNpX2RldiAqZGV2KQo+IHsKPiAg
-ICAgICAgdTMyIHByZWZfYmFzZV91cHBlcjMyOwo+ICAgICAgICBwY2lfcmVhZF9jb25maWdfZHdv
-cmQoZGV2LCBQQ0lfUFJFRl9CQVNFX1VQUEVSMzIsICZwcmVmX2Jhc2VfdXBwZXIzMik7Cj4gICAg
-ICAgIHBjaV93cml0ZV9jb25maWdfZHdvcmQoZGV2LCBQQ0lfUFJFRl9CQVNFX1VQUEVSMzIsIHBy
-ZWZfYmFzZV91cHBlcjMyKTsKPiB9Cj4gREVDTEFSRV9QQ0lfRklYVVBfUkVTVU1FKFBDSV9WRU5E
-T1JfSURfSU5URUwsICAweDlkMTAsIHF1aXJrX3ByZWZfYmFzZV91cHBlcjMyKTsKPiAKPiBJIGRv
-bid0IHRoaW5rIGl0J3MgYWN0aW5nIGFzIGEgYmFycmllci4gSSB0cmllZCBjaGFuZ2luZyB0aGlz
-IGNvZGUgdG8KPiByZXdyaXRlIG90aGVyIHJlZ2lzdGVycyBzdWNoIGFzIFBDSV9QUkVGX01FTU9S
-WV9CQVNFIGFuZCB0aGF0IG1ha2VzCj4gdGhlIGJ1ZyBjb21lIGJhY2suCj4gCj4gPj4gMi4gV2hv
-IGlzIHJlc3BvbnNpYmxlIGZvciBzYXZpbmcgYW5kIHJlc3RvcmluZyBQQ0kgYnJpZGdlCj4gPj4g
-Y29uZmlndXJhdGlvbiBkdXJpbmcgc3VzcGVuZCBhbmQgcmVzdW1lPyBMaW51eD8gQUNQST8gQklP
-Uz8KPiA+Cj4gPiBOb3Qgc3VyZSBhYm91dCBQQ0kgYnJpZGdlcywgYnV0IGF0IGxlYXN0IGZvciB0
-aGUgUENJIEV4cHJlc3MgQ2FwYWJpbGl0eQo+ID4gcmVnaXN0ZXJzLCBpdCBpcyBpbiBjb250cm9s
-IG9mIHRoZSBPUyB3aGVuIGNvbnRyb2wgaXMgZ3JhbnRlZCB2aWEgdGhlCj4gPiBBQ1BJIF9PU0Mg
-bWV0aG9kLgo+IAo+IEkgZ3Vlc3MgeW91IGFyZSByZWZlcnJpbmcgdG8gcGNpX3NhdmVfcGNpZV9z
-dGF0ZSgpLiBJIGNhbid0IHNlZQo+IGFueXRoaW5nIGVxdWl2YWxlbnQgZm9yIHRoZSBicmlkZ2Ug
-cmVnaXN0ZXJzLgoKWWVzIHRoYXQgd291bGQgYmUgdGhlIGZ1bmN0aW9uLCBjYWxsZWQgdmlhIHBj
-aV9zYXZlX3N0YXRlLgoKPiA+IEkgcmVjZW50bHkgY29tcGFyZWQgUENJIGNvbmZpZ3VyYXRpb24g
-c3BhY2UgYWNjZXNzIGFuZCBBQ1BJIG1ldGhvZAo+ID4gaW52b2NhdGlvbiB1c2luZyBRRU1VICsg
-VkZJTyB3aXRoIExpbnV4IDQuMTgsIFdpbmRvd3MgNyBhbmQgV2luZG93cyAxMAo+ID4gKDE4MDMp
-LiBUaGVyZSB3ZXJlIGRpZmZlcmVuY2VzIGxpa2UgZGlzYWJsaW5nIE1TSS9pbnRlcnJ1cHRzIGJl
-Zm9yZQo+ID4gc3VzcGVuZCwgc2V0dGluZyB0aGUgRW5hYmxlIENsb2NrIFBvd2VyIE1hbmFnZW1l
-bnQgYml0IGluIFBDSSBFeHByZXNzCj4gPiBMaW5rIENvbnRyb2wgYW5kIG1vcmUsIGJ1dCBhcHBs
-eWluZyB0aGVzZSBjaGFuZ2VzIHdlcmUgc28gZmFyIG5vdCByZWFsbHkKPiA+IHN1Y2Nlc3NmdWwu
-Cj4gCj4gSW50ZXJlc3RpbmcuIERvIHlvdSBrbm93IGFueSB3YXkgdGhhdCBJIGNvdWxkIHNweSBv
-biBXaW5kb3dzJyBhY2Nlc3Nlcwo+IHRvIHRoZSBQQ0kgYnJpZGdlIHJlZ2lzdGVycz8KPiBMb29r
-aW5nIGF0IGF0IGh0dHBzOi8vd2lraS5hcmNobGludXgub3JnL2luZGV4LnBocC9QQ0lfcGFzc3Ro
-cm91Z2hfdmlhX09WTUYKPiBJIHN1c3BlY3QgVkZJTyB3b3VsZCBub3QgaGVscCBtZSBoZXJlLgo+
-IEl0IHNheXM6Cj4gICAgIE5vdGU6IElmIHRoZXkgYXJlIGdyb3VwZWQgd2l0aCBvdGhlciBkZXZp
-Y2VzIGluIHRoaXMgbWFubmVyLCBwY2kKPiByb290IHBvcnRzIGFuZCBicmlkZ2VzIHNob3VsZCBu
-ZWl0aGVyIGJlIGJvdW5kIHRvIHZmaW8gYXQgYm9vdCwgbm9yIGJlCj4gYWRkZWQgdG8gdGhlIFZN
-LgoKT25seSBub24tYnJpZGdlIGRldmljZXMgY2FuIGJlIHBhc3NlZCB0byBhIGd1ZXN0LCBidXQg
-cGVyaGFwcyBsb2dnaW5nCmFjY2VzcyB0byB0aGUgZW11bGF0ZWQgYnJpZGdlIGlzIGFscmVhZHkg
-c3VmZmljaWVudC4gVGhlIFByZWZldGNoYWJsZQpCYXNlIFVwcGVyIDMyIEJpdHMgcmVnaXN0ZXIg
-aXMgYXQgb2Zmc2V0IDB4MjguCgpJbiBhIHRyYWNlIHdoZXJlIHRoZSBOdmlkaWEgZGV2aWNlIGlz
-IGRpc2FibGVkL2VuYWJsZWQgdmlhIERldmljZQpNYW5hZ2VyLCBJIHNlZSB3cml0ZXMgb24gdGhl
-IGVuYWJsZSBwYXRoOgoKICAgIDI1NzFAMTUzNTEwODkwNC41OTMxMDc6cnBfd3JpdGVfY29uZmln
-IChpb2gzNDIwLCBAMHgyOCwgMHgwLCBsZW49MHg0KQoKRm9yIExpbnV4LCBJIG9ubHkgc2VlIG9u
-ZSB3cml0ZSBhdCBzdGFydHVwLCBub25lIG9uIHJ1bnRpbWUgcmVzdW1lLgpJIGRpZCBub3QgdGVz
-dCBzeXN0ZW0gc2xlZXAvcmVzdW1lLiAoZGlzYWJsZS9lbmFibGUgaXMgYXJndWFibHkgYSBiaXQK
-ZGlmZmVyZW50IGZyb20gc3lzdGVtIHMvciwgeW91IG1heSB3YW50IHRvIGRvIGFkZGl0aW9uYWwg
-dGVzdGluZyBoZXJlLikKCkZ1bGwgbG9nIGZvciBXSW5kb3dzIDEwIGFuZCBMaW51eDoKaHR0cHM6
-Ly9naXRodWIuY29tL0xla2Vuc3RleW4vYWNwaS1zdHVmZi9ibG9iL21hc3Rlci9kM3Rlc3QvWFBT
-OTU2MC9zbG9ncy93aW4xMC1ycC1lbmFibGUtZGlzYWJsZS50eHQjTDM0MTgKaHR0cHM6Ly9naXRo
-dWIuY29tL0xla2Vuc3RleW4vYWNwaS1zdHVmZi9ibG9iL21hc3Rlci9kM3Rlc3QvWFBTOTU2MC9z
-bG9ncy9saW51eC1ycC50eHQKbHNwY2kgZm9yIHRoZSBlbXVsYXRlZCBicmlkZ2U6Cmh0dHBzOi8v
-Z2l0aHViLmNvbS9MZWtlbnN0ZXluL2FjcGktc3R1ZmYvYmxvYi9tYXN0ZXIvZDN0ZXN0L1hQUzk1
-NjAvbHNwY2ktdm0tdmZpby50eHQjTDM1OQpUaGUgcnBfKl9jb25maWcgdHJhY2UgcG9pbnRzIGFy
-ZSBub24tc3RhbmRhcmQgYW5kIHJlcXVpcmUgcGF0Y2hlczoKaHR0cHM6Ly9naXRodWIuY29tL0xl
-a2Vuc3RleW4vYWNwaS1zdHVmZi9ibG9iL21hc3Rlci9kM3Rlc3QvcGF0Y2hlcy9xZW11LXRyYWNl
-LmRpZmYKLS0gCktpbmQgcmVnYXJkcywKUGV0ZXIgV3UKaHR0cHM6Ly9sZWtlbnN0ZXluLm5sCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============2107060018==
+Content-Type: multipart/alternative; boundary="15354503421.cdFb55.19141"
+Content-Transfer-Encoding: 7bit
+
+
+--15354503421.cdFb55.19141
+Date: Tue, 28 Aug 2018 09:59:02 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107167
+
+--- Comment #6 from Sam Morris <sam-qkiumcfQ8OTe9xe1eoZjHA@public.gmane.org> ---
+I haven't seen this since installing a newer kernel from Debian (4.17.14) a=
+nd
+rebooting. Prior to the reboot I was running 4.17.8 and did observe the
+problem.
+
+I'll resolve this bug when I'm sure the problem is gone.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15354503421.cdFb55.19141
+Date: Tue, 28 Aug 2018 09:59:02 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_UNCONFIRMED "
+   title=3D"UNCONFIRMED - constantly firing events while screen attached to=
+ NVIDIA card is disabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107167#c6">Commen=
+t # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_UNCONFIRMED "
+   title=3D"UNCONFIRMED - constantly firing events while screen attached to=
+ NVIDIA card is disabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107167">bug 10716=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+sam&#64;robots.org.uk" title=3D"Sam Morris &lt;sam&#64;robots.org.uk&gt;"> =
+<span class=3D"fn">Sam Morris</span></a>
+</span></b>
+        <pre>I haven't seen this since installing a newer kernel from Debia=
+n (4.17.14) and
+rebooting. Prior to the reboot I was running 4.17.8 and did observe the
+problem.
+
+I'll resolve this bug when I'm sure the problem is gone.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15354503421.cdFb55.19141--
+
+--===============2107060018==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2107060018==--
