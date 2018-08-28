@@ -1,14 +1,12 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v2 3/4] drm/dp_mst: Add dp_mst_status debugfs node
- for all drivers
-Date: Tue, 28 Aug 2018 13:10:29 -0400
-Message-ID: <20180828171036.25943-4-lyude@redhat.com>
-References: <20180828171036.25943-1-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 107729] Nouveau gr BUG
+Date: Tue, 28 Aug 2018 18:31:21 +0000
+Message-ID: <bug-107729-8800-3sCfGPjFnK@http.bugs.freedesktop.org/>
+References: <bug-107729-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1784442957=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180828171036.25943-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-107729-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,101 +16,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Gustavo Padovan <gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Daniel Stone <daniel-rLtY4a/8tF1rovVCs/uTlw@public.gmane.org>, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T3JpZ2luYWxseSBJIHdhcyBqdXN0IGdvaW5nIHRvIGJlIGFkZGluZyBkcF9tc3Rfc3RhdHVzIGZv
-ciBub3V2ZWF1IHVudGlsCkRhbmllbCBTdG9uZSBwb2ludGVkIG91dCB0aGF0IHdlIHNob3VsZCBw
-cm9iYWJseSBqdXN0IG1ha2UgdGhpcyBzbyBpdCdzCm1hZ2ljYWxseSBhZGRlZCBmb3IgZXZlcnkg
-RFJNIGRyaXZlciB0aGF0J3MgdXNpbmcgdGhlIERSTSBEUCBNU1QKaGVscGVycy4gU28sIGxldCdz
-IGRvIHRoYXQhCgpTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgpD
-YzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4K
-Q2M6IERhbmllbCBTdG9uZSA8ZGFuaWVsQGZvb2lzaGJhci5vcmc+Ci0tLQogZHJpdmVycy9ncHUv
-ZHJtL2RybV9kcF9tc3RfdG9wb2xvZ3kuYyB8IDEwNiArKysrKysrKysrKysrKysrKysrKysrKysr
-KwogaW5jbHVkZS9kcm0vZHJtX2RwX21zdF9oZWxwZXIuaCAgICAgICB8ICAxNCArKysrCiAyIGZp
-bGVzIGNoYW5nZWQsIDEyMCBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2RybV9kcF9tc3RfdG9wb2xvZ3kuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3Rv
-cG9sb2d5LmMKaW5kZXggYWNiNzYzM2YzZjcwLi5hNmEyYzAzYWY2MmEgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2RybV9kcF9tc3RfdG9wb2xvZ3kuYwpAQCAtMjcsNiArMjcsNyBAQAogI2luY2x1ZGUgPGxpbnV4
-L3NjaGVkLmg+CiAjaW5jbHVkZSA8bGludXgvc2VxX2ZpbGUuaD4KICNpbmNsdWRlIDxsaW51eC9p
-MmMuaD4KKyNpbmNsdWRlIDxsaW51eC9kZWJ1Z2ZzLmg+CiAjaW5jbHVkZSA8ZHJtL2RybV9kcF9t
-c3RfaGVscGVyLmg+CiAjaW5jbHVkZSA8ZHJtL2RybVAuaD4KIApAQCAtMzE1NCw2ICszMTU1LDEw
-NCBAQCBzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9neV9zdGF0ZSAqZHJtX2F0b21pY19nZXRfbXN0
-X3RvcG9sb2d5X3N0YXRlKHN0cnVjdCBkcm1fYQogfQogRVhQT1JUX1NZTUJPTChkcm1fYXRvbWlj
-X2dldF9tc3RfdG9wb2xvZ3lfc3RhdGUpOwogCisjaWZkZWYgQ09ORklHX0RFQlVHX0ZTCitzdGF0
-aWMgaW50IGRybV9kcF9tc3RfZGVidWdmc19zdGF0ZV9zaG93KHN0cnVjdCBzZXFfZmlsZSAqbSwg
-dm9pZCAqZGF0YSkKK3sKKwlkcm1fZHBfbXN0X2R1bXBfdG9wb2xvZ3kobSwgbS0+cHJpdmF0ZSk7
-CisJcmV0dXJuIDA7Cit9CisKK3N0YXRpYyBpbnQgZHJtX2RwX21zdF9kZWJ1Z2ZzX3N0YXRlX29w
-ZW4oc3RydWN0IGlub2RlICppbm9kZSwKKwkJCQkJIHN0cnVjdCBmaWxlICpmaWxlKQoreworCXN0
-cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5X21nciAqbWdyID0gaW5vZGUtPmlfcHJpdmF0ZTsKKwor
-CXJldHVybiBzaW5nbGVfb3BlbihmaWxlLCBkcm1fZHBfbXN0X2RlYnVnZnNfc3RhdGVfc2hvdywg
-bWdyKTsKK30KKworc3RhdGljIGNvbnN0IHN0cnVjdCBmaWxlX29wZXJhdGlvbnMgZHJtX2RwX21z
-dF9kZWJ1Z2ZzX3N0YXRlX2ZvcHMgPSB7CisJLm93bmVyID0gVEhJU19NT0RVTEUsCisJLm9wZW4g
-PSBkcm1fZHBfbXN0X2RlYnVnZnNfc3RhdGVfb3BlbiwKKwkucmVhZCA9IHNlcV9yZWFkLAorCS5s
-bHNlZWsgPSBzZXFfbHNlZWssCisJLnJlbGVhc2UgPSBzaW5nbGVfcmVsZWFzZSwKK307CisKK3N0
-cnVjdCBkcm1fZHBfbXN0X2RlYnVnZnNfaW5pdF9kYXRhIHsKKwlzdHJ1Y3QgZHJtX2RwX21zdF90
-b3BvbG9neV9tZ3IgKm1ncjsKKwljaGFyICpjb25uZWN0b3JfbmFtZTsKK307CisKK3N0YXRpYyB2
-b2lkCitkcm1fZHBfbXN0X2RlYnVnZnNfaW5pdCh2b2lkICpkYXRhKQoreworCXN0cnVjdCBkcm1f
-ZHBfbXN0X2RlYnVnZnNfaW5pdF9kYXRhICppbml0X2RhdGEgPSBkYXRhOworCXN0cnVjdCBkcm1f
-ZHBfbXN0X3RvcG9sb2d5X21nciAqbWdyID0gaW5pdF9kYXRhLT5tZ3I7CisJc3RydWN0IGRybV9t
-aW5vciAqbWlub3IgPSBtZ3ItPmRldi0+cHJpbWFyeTsKKwlzdHJ1Y3QgZGVudHJ5ICpyb290Owor
-CWJvb2wgcHV0X3JlZiA9IGZhbHNlOworCisJLyogQ3JlYXRlIHRoZSBkcF9tc3QgZGlyZWN0b3J5
-IGZvciB0aGlzIGRldmljZSBpZiBpdCBkb2Vzbid0IGV4aXN0CisJICogYWxyZWFkeQorCSAqLwor
-CXJvb3QgPSBkZWJ1Z2ZzX2xvb2t1cCgiZHBfbXN0IiwgbWlub3ItPmRlYnVnZnNfcm9vdCk7CisJ
-aWYgKHJvb3QpIHsKKwkJcHV0X3JlZiA9IHRydWU7CisJfSBlbHNlIHsKKwkJcm9vdCA9IGRlYnVn
-ZnNfY3JlYXRlX2RpcigiZHBfbXN0IiwgbWlub3ItPmRlYnVnZnNfcm9vdCk7CisJCWlmICghcm9v
-dCB8fCBJU19FUlIocm9vdCkpCisJCQlyZXR1cm47CisJfQorCisJbWdyLT5kZWJ1Z2ZzID0gZGVi
-dWdmc19jcmVhdGVfZGlyKGluaXRfZGF0YS0+Y29ubmVjdG9yX25hbWUsIHJvb3QpOworCWlmICgh
-bWdyLT5kZWJ1Z2ZzKQorCQlnb3RvIG91dF9kcHV0OworCisJZGVidWdmc19jcmVhdGVfZmlsZSgi
-c3RhdGUiLCAwNDQ0LCBtZ3ItPmRlYnVnZnMsIG1nciwKKwkJCSAgICAmZHJtX2RwX21zdF9kZWJ1
-Z2ZzX3N0YXRlX2ZvcHMpOworCitvdXRfZHB1dDoKKwlpZiAocHV0X3JlZikKKwkJZHB1dChyb290
-KTsKK30KKworc3RhdGljIHZvaWQKK2RybV9kcF9tc3RfZGVidWdmc19jbGVhbnVwX2NiKHZvaWQg
-KmRhdGEpCit7CisJc3RydWN0IGRybV9kcF9tc3RfZGVidWdmc19pbml0X2RhdGEgKmluaXRfZGF0
-YSA9IGRhdGE7CisKKwlpbml0X2RhdGEtPm1nci0+ZGVidWdmc19pbml0X2NiID0gTlVMTDsKKwlr
-ZnJlZShpbml0X2RhdGEtPmNvbm5lY3Rvcl9uYW1lKTsKKwlrZnJlZShpbml0X2RhdGEpOworfQor
-CitzdGF0aWMgdm9pZAorZHJtX2RwX21zdF9kZWJ1Z2ZzX3JlZ2lzdGVyKHN0cnVjdCBkcm1fZHBf
-bXN0X3RvcG9sb2d5X21nciAqbWdyLAorCQkJICAgIHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25u
-ZWN0b3IpCit7CisJc3RydWN0IGRybV9kcF9tc3RfZGVidWdmc19pbml0X2RhdGEgKmluaXRfZGF0
-YTsKKworCWlmICghY29ubmVjdG9yKQorCQlyZXR1cm47CisKKwlpbml0X2RhdGEgPSBrbWFsbG9j
-KHNpemVvZigqaW5pdF9kYXRhKSwgR0ZQX0tFUk5FTCk7CisJaWYgKCFpbml0X2RhdGEpCisJCXJl
-dHVybjsKKworCWluaXRfZGF0YS0+bWdyID0gbWdyOworCWluaXRfZGF0YS0+Y29ubmVjdG9yX25h
-bWUgPSBrc3RyZHVwKGNvbm5lY3Rvci0+bmFtZSwgR0ZQX0tFUk5FTCk7CisJaWYgKCFpbml0X2Rh
-dGEtPmNvbm5lY3Rvcl9uYW1lKSB7CisJCWtmcmVlKGluaXRfZGF0YSk7CisJCXJldHVybjsKKwl9
-CisKKwlkcm1fZGVidWdmc19yZWdpc3Rlcl9jYWxsYmFjayhtZ3ItPmRldi0+cHJpbWFyeSwKKwkJ
-CQkgICAgICBkcm1fZHBfbXN0X2RlYnVnZnNfaW5pdCwKKwkJCQkgICAgICBkcm1fZHBfbXN0X2Rl
-YnVnZnNfY2xlYW51cF9jYiwKKwkJCQkgICAgICBpbml0X2RhdGEsICZtZ3ItPmRlYnVnZnNfaW5p
-dF9jYik7Cit9CisjZW5kaWYKKwogLyoqCiAgKiBkcm1fZHBfbXN0X3RvcG9sb2d5X21ncl9pbml0
-IC0gaW5pdGlhbGlzZSBhIHRvcG9sb2d5IG1hbmFnZXIKICAqIEBtZ3I6IG1hbmFnZXIgc3RydWN0
-IHRvIGluaXRpYWxpc2UKQEAgLTMyMTQsNiArMzMxMyw5IEBAIGludCBkcm1fZHBfbXN0X3RvcG9s
-b2d5X21ncl9pbml0KHN0cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5X21nciAqbWdyLAogCWRybV9h
-dG9taWNfcHJpdmF0ZV9vYmpfaW5pdCgmbWdyLT5iYXNlLAogCQkJCSAgICAmbXN0X3N0YXRlLT5i
-YXNlLAogCQkJCSAgICAmbXN0X3N0YXRlX2Z1bmNzKTsKKyNpZmRlZiBDT05GSUdfREVCVUdfRlMK
-Kwlkcm1fZHBfbXN0X2RlYnVnZnNfcmVnaXN0ZXIobWdyLCBjb25uZWN0b3IpOworI2VuZGlmCiAK
-IAlyZXR1cm4gMDsKIH0KQEAgLTMyMjUsNiArMzMyNywxMCBAQCBFWFBPUlRfU1lNQk9MKGRybV9k
-cF9tc3RfdG9wb2xvZ3lfbWdyX2luaXQpOwogICovCiB2b2lkIGRybV9kcF9tc3RfdG9wb2xvZ3lf
-bWdyX2Rlc3Ryb3koc3RydWN0IGRybV9kcF9tc3RfdG9wb2xvZ3lfbWdyICptZ3IpCiB7CisjaWZk
-ZWYgQ09ORklHX0RFQlVHX0ZTCisJZHJtX2RlYnVnZnNfdW5yZWdpc3Rlcl9jYWxsYmFjayhtZ3It
-PmRldi0+cHJpbWFyeSwKKwkJCQkJbWdyLT5kZWJ1Z2ZzX2luaXRfY2IpOworI2VuZGlmCiAJZmx1
-c2hfd29yaygmbWdyLT53b3JrKTsKIAlmbHVzaF93b3JrKCZtZ3ItPmRlc3Ryb3lfY29ubmVjdG9y
-X3dvcmspOwogCW11dGV4X2xvY2soJm1nci0+cGF5bG9hZF9sb2NrKTsKZGlmZiAtLWdpdCBhL2lu
-Y2x1ZGUvZHJtL2RybV9kcF9tc3RfaGVscGVyLmggYi9pbmNsdWRlL2RybS9kcm1fZHBfbXN0X2hl
-bHBlci5oCmluZGV4IGVmOGJhMDkzYWU4YS4uYzcwYjgxY2Q3OGIxIDEwMDY0NAotLS0gYS9pbmNs
-dWRlL2RybS9kcm1fZHBfbXN0X2hlbHBlci5oCisrKyBiL2luY2x1ZGUvZHJtL2RybV9kcF9tc3Rf
-aGVscGVyLmgKQEAgLTI1LDYgKzI1LDcgQEAKICNpbmNsdWRlIDxsaW51eC90eXBlcy5oPgogI2lu
-Y2x1ZGUgPGRybS9kcm1fZHBfaGVscGVyLmg+CiAjaW5jbHVkZSA8ZHJtL2RybV9hdG9taWMuaD4K
-KyNpbmNsdWRlIDxkcm0vZHJtX2RlYnVnZnMuaD4KIAogc3RydWN0IGRybV9kcF9tc3RfYnJhbmNo
-OwogCkBAIC01NjgsNiArNTY5LDE5IEBAIHN0cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5X21nciB7
-CiAJICogYXZvaWQgbG9ja2luZyBpbnZlcnNpb24uCiAJICovCiAJc3RydWN0IHdvcmtfc3RydWN0
-IGRlc3Ryb3lfY29ubmVjdG9yX3dvcms7CisjaWZkZWYgQ09ORklHX0RFQlVHX0ZTCisJLyoqCisJ
-ICogQGRlYnVnZnNfaW5pdF9jYjogUGVuZGluZyBkZWJ1Z2ZzIGNhbGxiYWNrIGZvciBpbml0aWFs
-aXppbmcgdGhlCisJICogZGVidWdmcyBmaWxlcyBmb3IgdGhpcyB0b3BvbG9neS4KKwkgKi8KKwlz
-dHJ1Y3QgZHJtX2RlYnVnZnNfY2FsbGJhY2sgKmRlYnVnZnNfaW5pdF9jYjsKKworCS8qKgorCSAq
-IEBkZWJ1Z2ZzX2VudHJ5OiBkZW50cnkgZm9yIGRwX21zdF9zdGF0dXMgbG9jYXRlZCBpbiBjb25u
-ZWN0b3IncworCSAqIGRlYnVnZnMgZGlyZWN0b3J5LgorCSAqLworCXN0cnVjdCBkZW50cnkgKmRl
-YnVnZnM7CisjZW5kaWYKIH07CiAKIGludCBkcm1fZHBfbXN0X3RvcG9sb2d5X21ncl9pbml0KHN0
-cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5X21nciAqbWdyLAotLSAKMi4xNy4xCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
-dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1784442957==
+Content-Type: multipart/alternative; boundary="15354810813.5ACC.8070"
+Content-Transfer-Encoding: 7bit
+
+
+--15354810813.5ACC.8070
+Date: Tue, 28 Aug 2018 18:31:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107729
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Product|DRI                         |xorg
+            Version|XOrg git                    |unspecified
+           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |.org                        |rg
+          Component|DRM/other                   |Driver/nouveau
+         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15354810813.5ACC.8070
+Date: Tue, 28 Aug 2018 18:31:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau gr BUG"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107729">bug 10772=
+9</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Product</td>
+           <td>DRI
+           </td>
+           <td>xorg
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Version</td>
+           <td>XOrg git
+           </td>
+           <td>unspecified
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>dri-devel&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Component</td>
+           <td>DRM/other
+           </td>
+           <td>Driver/nouveau
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">QA Contact</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>xorg-team&#64;lists.x.org
+           </td>
+         </tr></table>
+      <p>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15354810813.5ACC.8070--
+
+--===============1784442957==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1784442957==--
