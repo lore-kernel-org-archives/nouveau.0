@@ -1,400 +1,166 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v2 1/4] drm/debugfs: Add support for dynamic debugfs initialization
-Date: Tue, 28 Aug 2018 13:10:27 -0400
-Message-ID: <20180828171036.25943-2-lyude@redhat.com>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v2 2/4] drm/dp_mst: Pass entire connector to
+ drm_dp_mst_topology_mgr_init()
+Date: Tue, 28 Aug 2018 13:10:28 -0400
+Message-ID: <20180828171036.25943-3-lyude@redhat.com>
 References: <20180828171036.25943-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180828171036.25943-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Daniel Stone <daniel@fooishbar.org>, Gustavo Padovan <gustavo@padovan.org>, Sean Paul <seanpaul@chromium.org>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20180828171036.25943-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Gustavo Padovan <gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org>, Joonas Lahtinen <joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, "David (ChunMing) Zhou" <David1.Zhou-5C7GfCeVMHo@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "Jerry (Fangzhi) Zuo" <Jerry.Zuo-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Harry Wentland <harry.wentland-5C7GfCeVMHo@public.gmane.org>, Andrey Grodzovsky <Andrey.Grodzovsky-5C7GfCeVMHo@public.gmane.org>, Leo Li <sunpeng.li-5C7GfCeVMHo@public.gmane.org>, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Jani Nikula <jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Rodrigo Vivi <rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Tony Cheng <Tony.Cheng-5C7GfCeVMHo@public.gmane.org>, Roman Li <Roman.Li-5C7GfCeVMHo@public.gmane.org>, Shirish S <shirish.s-5C7GfCeVMHo@public.gmane.org>, Alex
 List-Id: nouveau.vger.kernel.org
 
-Currently all debugfs related initialization for the DRM core happens in
-drm_debugfs_init(), which is called when registering the minor device.
-While this works fine for features such as atomic modesetting and GEM,
-this doesn't work at all for resources like DP MST topology managers
-which can potentially be created both before and after the minor
-device has been registered.
-
-So, in order to add driver-wide debugfs files for MST we'll need to be
-able to handle debugfs initialization for such resources. We do so by
-introducing drm_debugfs_callback_register() and
-drm_debugfs_callback_unregister(). These functions allow driver-agnostic
-parts of DRM to add additional debugfs initialization callbacks at any
-point during a DRM driver's lifetime.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Daniel Stone <daniel@fooishbar.org>
----
- drivers/gpu/drm/drm_debugfs.c  | 173 +++++++++++++++++++++++++++++++--
- drivers/gpu/drm/drm_drv.c      |   3 +
- drivers/gpu/drm/drm_internal.h |   5 +
- include/drm/drm_debugfs.h      |  27 +++++
- include/drm/drm_file.h         |   4 +
- 5 files changed, 203 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_debugfs.c b/drivers/gpu/drm/drm_debugfs.c
-index 6f28fe58f169..a53a454b167f 100644
---- a/drivers/gpu/drm/drm_debugfs.c
-+++ b/drivers/gpu/drm/drm_debugfs.c
-@@ -39,6 +39,13 @@
- 
- #if defined(CONFIG_DEBUG_FS)
- 
-+struct drm_debugfs_callback {
-+	void (*init)(void *data);
-+	void (*cleanup_cb)(void *data);
-+	void *data;
-+	struct list_head list;
-+};
-+
- /***************************************************
-  * Initialization, etc.
-  **************************************************/
-@@ -67,6 +74,113 @@ static const struct file_operations drm_debugfs_fops = {
- 	.release = single_release,
- };
- 
-+/**
-+ * drm_debugfs_register_callback - Register a callback for initializing
-+ *                                 dynamic driver-agnostic debugfs files
-+ * @minor: device minor number
-+ * @init: The callback to invoke to perform the debugfs initialization
-+ * @cleanup_cb: The callback to invoke to cleanup any resources for the
-+ * callback
-+ * @data: Data to pass to @init and @cleanup_cb
-+ * @out: Where to store the pointer to the callback struct
-+ *
-+ * Register an initialization callback with debugfs. This callback can be used
-+ * to creating debugfs nodes for DRM resources that might get created before
-+ * the debugfs node for @minor has been created.
-+ *
-+ * When a callback is registered with this function before the debugfs root
-+ * has been created, the callback's execution will be delayed until all other
-+ * debugfs nodes (including those owned by the DRM device's driver) have been
-+ * instantiated. If a callback is registered with this function after the
-+ * debugfs root has been created, @init and @cleanup_cb will be executed
-+ * immediately without creating a &struct drm_debugfs_callback.
-+ *
-+ * In the event that debugfs creation for the device fails; all registered
-+ * debugfs callbacks will have their @cleanup_cb callbacks invoked without
-+ * having their @init callbacks invoked. This is to ensure that no resources
-+ * are leaked during initialization of debugfs, even if the initialization
-+ * process fails. Likewise; any callbacks that are registered after DRM has
-+ * failed to initialize it's debugfs files will have their @cleanup_cb
-+ * callbacks invoked immediately and all of their respective resources
-+ * destroyed.
-+ *
-+ * Implementations of @cleanup_cb should clean up all resources for the
-+ * callback, with the exception of freeing the memory for @out. Freeing @out
-+ * will be handled by the DRM core automatically.
-+ *
-+ * Users of this function should take care to add a symmetric call to
-+ * @drm_debugfs_unregister_callback to handle destroying a registered callback
-+ * in case the resources for the user of this function are destroyed before
-+ * debugfs root is initialized.
-+ *
-+ */
-+int
-+drm_debugfs_register_callback(struct drm_minor *minor,
-+			      void (*init)(void *),
-+			      void (*cleanup_cb)(void *),
-+			      void *data, struct drm_debugfs_callback **out)
-+{
-+	int ret = 0;
-+
-+	mutex_lock(&minor->debugfs_callback_lock);
-+	if (minor->debugfs_callbacks_done) {
-+		/* debugfs is already setup, so just handle the callback
-+		 * immediately
-+		 */
-+		if (minor->debugfs_root)
-+			(*init)(data);
-+		(*cleanup_cb)(data);
-+		goto out_unlock;
-+	}
-+
-+	*out = kzalloc(sizeof(**out), GFP_KERNEL);
-+	if (!*out) {
-+		ret = -ENOMEM;
-+		goto out_unlock;
-+	}
-+
-+	(*out)->init = init;
-+	(*out)->cleanup_cb = cleanup_cb;
-+	(*out)->data = data;
-+	list_add(&(*out)->list, &minor->debugfs_callback_list);
-+
-+out_unlock:
-+	mutex_unlock(&minor->debugfs_callback_lock);
-+	return ret;
-+}
-+EXPORT_SYMBOL(drm_debugfs_register_callback);
-+
-+/**
-+ * drm_debugfs_unregister_callback - Unregister and release the resources
-+ *                                   associated with a debugfs init callback
-+ * @minor: device minor number
-+ * @cb: A pointer to the &struct drm_debugfs_callback struct returned by
-+ * drm_debugfs_register_callback(). May be NULL
-+ *
-+ * Unregisters a &struct drm_debugfs_callback struct with debugfs and destroys
-+ * all of it's associated resources. This includes a call to the callback's
-+ * @cleanup_cb implementation.
-+ *
-+ * Once the debugfs root is initialized or has failed initialization, all
-+ * registered callbacks are automatically destroyed. If this function is
-+ * called after that point; it will automatically be a no-op.
-+ */
-+void
-+drm_debugfs_unregister_callback(struct drm_minor *minor,
-+				struct drm_debugfs_callback *cb)
-+{
-+	mutex_lock(&minor->debugfs_callback_lock);
-+	/* We don't have to do anything if we've already completed any
-+	 * registered callbacks, as they will have already been destroyed
-+	 */
-+	if (!minor->debugfs_callbacks_done) {
-+		cb->cleanup_cb(cb->data);
-+		list_del(&cb->list);
-+		kfree(cb);
-+	}
-+	mutex_unlock(&minor->debugfs_callback_lock);
-+}
-+EXPORT_SYMBOL(drm_debugfs_unregister_callback);
- 
- /**
-  * drm_debugfs_create_files - Initialize a given set of debugfs files for DRM
-@@ -126,12 +240,24 @@ int drm_debugfs_create_files(const struct drm_info_list *files, int count,
- }
- EXPORT_SYMBOL(drm_debugfs_create_files);
- 
-+int drm_debugfs_alloc(struct drm_minor *minor)
-+{
-+	INIT_LIST_HEAD(&minor->debugfs_callback_list);
-+	mutex_init(&minor->debugfs_callback_lock);
-+	return 0;
-+}
-+
- int drm_debugfs_init(struct drm_minor *minor, int minor_id,
- 		     struct dentry *root)
- {
- 	struct drm_device *dev = minor->dev;
-+	struct drm_debugfs_callback *pos, *tmp;
- 	char name[64];
--	int ret;
-+	int ret = 0;
-+
-+	/* Don't allow any more callbacks to be registered while we setup */
-+	mutex_lock(&minor->debugfs_callback_lock);
-+	minor->debugfs_callbacks_done = true;
- 
- 	INIT_LIST_HEAD(&minor->debugfs_list);
- 	mutex_init(&minor->debugfs_lock);
-@@ -139,7 +265,8 @@ int drm_debugfs_init(struct drm_minor *minor, int minor_id,
- 	minor->debugfs_root = debugfs_create_dir(name, root);
- 	if (!minor->debugfs_root) {
- 		DRM_ERROR("Cannot create /sys/kernel/debug/dri/%s\n", name);
--		return -1;
-+		ret = -1;
-+		goto out_unlock;
- 	}
- 
- 	ret = drm_debugfs_create_files(drm_debugfs_list, DRM_DEBUGFS_ENTRIES,
-@@ -148,14 +275,14 @@ int drm_debugfs_init(struct drm_minor *minor, int minor_id,
- 		debugfs_remove(minor->debugfs_root);
- 		minor->debugfs_root = NULL;
- 		DRM_ERROR("Failed to create core drm debugfs files\n");
--		return ret;
-+		goto out_unlock;
- 	}
- 
- 	if (drm_core_check_feature(dev, DRIVER_ATOMIC)) {
- 		ret = drm_atomic_debugfs_init(minor);
- 		if (ret) {
- 			DRM_ERROR("Failed to create atomic debugfs files\n");
--			return ret;
-+			goto out_unlock;
- 		}
- 	}
- 
-@@ -163,13 +290,13 @@ int drm_debugfs_init(struct drm_minor *minor, int minor_id,
- 		ret = drm_framebuffer_debugfs_init(minor);
- 		if (ret) {
- 			DRM_ERROR("Failed to create framebuffer debugfs file\n");
--			return ret;
-+			goto out_unlock;
- 		}
- 
- 		ret = drm_client_debugfs_init(minor);
- 		if (ret) {
- 			DRM_ERROR("Failed to create client debugfs file\n");
--			return ret;
-+			goto out_unlock;
- 		}
- 	}
- 
-@@ -178,10 +305,23 @@ int drm_debugfs_init(struct drm_minor *minor, int minor_id,
- 		if (ret) {
- 			DRM_ERROR("DRM: Driver failed to initialize "
- 				  "/sys/kernel/debug/dri.\n");
--			return ret;
-+			goto out_unlock;
- 		}
- 	}
--	return 0;
-+
-+out_unlock:
-+	/* Execute any delayed callbacks if we succeeded, or just clean them
-+	 * up without running them if we failed
-+	 */
-+	list_for_each_entry_safe(pos, tmp, &minor->debugfs_callback_list,
-+				 list) {
-+		if (!ret)
-+			pos->init(pos->data);
-+		pos->cleanup_cb(pos->data);
-+		kfree(pos);
-+	}
-+	mutex_unlock(&minor->debugfs_callback_lock);
-+	return ret;
- }
- 
- 
-@@ -223,14 +363,29 @@ static void drm_debugfs_remove_all_files(struct drm_minor *minor)
- 
- int drm_debugfs_cleanup(struct drm_minor *minor)
- {
-+	struct drm_debugfs_callback *pos, *tmp;
-+
-+	mutex_lock(&minor->debugfs_callback_lock);
-+	if (!minor->debugfs_callbacks_done) {
-+		list_for_each_entry_safe(pos, tmp,
-+					 &minor->debugfs_callback_list,
-+					 list) {
-+			pos->cleanup_cb(pos->data);
-+			kfree(pos);
-+		}
-+	}
-+	minor->debugfs_callbacks_done = true;
-+
- 	if (!minor->debugfs_root)
--		return 0;
-+		goto out;
- 
- 	drm_debugfs_remove_all_files(minor);
- 
- 	debugfs_remove_recursive(minor->debugfs_root);
- 	minor->debugfs_root = NULL;
- 
-+out:
-+	mutex_unlock(&minor->debugfs_callback_lock);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-index ea4941da9b27..7041b3137229 100644
---- a/drivers/gpu/drm/drm_drv.c
-+++ b/drivers/gpu/drm/drm_drv.c
-@@ -118,6 +118,9 @@ static int drm_minor_alloc(struct drm_device *dev, unsigned int type)
- 
- 	minor->type = type;
- 	minor->dev = dev;
-+	r = drm_debugfs_alloc(minor);
-+	if (r)
-+		goto err_free;
- 
- 	idr_preload(GFP_KERNEL);
- 	spin_lock_irqsave(&drm_minor_lock, flags);
-diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
-index 40179c5fc6b8..d6394246967d 100644
---- a/drivers/gpu/drm/drm_internal.h
-+++ b/drivers/gpu/drm/drm_internal.h
-@@ -118,6 +118,7 @@ void drm_gem_print_info(struct drm_printer *p, unsigned int indent,
- 
- /* drm_debugfs.c drm_debugfs_crc.c */
- #if defined(CONFIG_DEBUG_FS)
-+int drm_debugfs_alloc(struct drm_minor *minor);
- int drm_debugfs_init(struct drm_minor *minor, int minor_id,
- 		     struct dentry *root);
- int drm_debugfs_cleanup(struct drm_minor *minor);
-@@ -127,6 +128,10 @@ int drm_debugfs_crtc_add(struct drm_crtc *crtc);
- void drm_debugfs_crtc_remove(struct drm_crtc *crtc);
- int drm_debugfs_crtc_crc_add(struct drm_crtc *crtc);
- #else
-+static inline int drm_debugfs_alloc(struct drm_minor *minor)
-+{
-+	return 0;
-+}
- static inline int drm_debugfs_init(struct drm_minor *minor, int minor_id,
- 				   struct dentry *root)
- {
-diff --git a/include/drm/drm_debugfs.h b/include/drm/drm_debugfs.h
-index ac0f75df1ac9..6ac45d96fcd1 100644
---- a/include/drm/drm_debugfs.h
-+++ b/include/drm/drm_debugfs.h
-@@ -77,12 +77,23 @@ struct drm_info_node {
- 	struct dentry *dent;
- };
- 
-+struct drm_debugfs_callback;
-+
- #if defined(CONFIG_DEBUG_FS)
- int drm_debugfs_create_files(const struct drm_info_list *files,
- 			     int count, struct dentry *root,
- 			     struct drm_minor *minor);
- int drm_debugfs_remove_files(const struct drm_info_list *files,
- 			     int count, struct drm_minor *minor);
-+
-+int drm_debugfs_register_callback(struct drm_minor *minor,
-+				  void (*init)(void *),
-+				  void (*cleanup_cb)(void *),
-+				  void *data,
-+				  struct drm_debugfs_callback **out);
-+void drm_debugfs_unregister_callback(struct drm_minor *minor,
-+				     struct drm_debugfs_callback *cb);
-+
- #else
- static inline int drm_debugfs_create_files(const struct drm_info_list *files,
- 					   int count, struct dentry *root,
-@@ -96,6 +107,22 @@ static inline int drm_debugfs_remove_files(const struct drm_info_list *files,
- {
- 	return 0;
- }
-+
-+static inline int
-+drm_debugfs_register_callback(struct drm_minor *minor,
-+			      void (*init)(void *),
-+			      void (*cleanup_cb)(void *),
-+			      void *data,
-+			      struct drm_debugfs_callback **out)
-+{
-+	return 0;
-+}
-+
-+static inline void
-+drm_debugfs_unregister_callback(struct drm_minor *minor,
-+				struct drm_debugfs_callback *cb)
-+{
-+}
- #endif
- 
- #endif /* _DRM_DEBUGFS_H_ */
-diff --git a/include/drm/drm_file.h b/include/drm/drm_file.h
-index 26485acc51d7..180052b51712 100644
---- a/include/drm/drm_file.h
-+++ b/include/drm/drm_file.h
-@@ -74,6 +74,10 @@ struct drm_minor {
- 
- 	struct dentry *debugfs_root;
- 
-+	bool debugfs_callbacks_done;
-+	struct list_head debugfs_callback_list;
-+	struct mutex debugfs_callback_lock;
-+
- 	struct list_head debugfs_list;
- 	struct mutex debugfs_lock; /* Protects debugfs_list. */
- };
--- 
-2.17.1
+VGhlcmUncyBubyBhY3R1YWwgcmVhc29uIHdlIHBhc3MgdGhlIGNvbm5lY3RvciBJRCBpbnN0ZWFk
+IG9mIGEgcG9pbnRlcgp0byB0aGUgY29ubmVjdG9yIGl0c2VsZiwgYW5kIHdlJ3JlIGdvaW5nIHRv
+IG5lZWQgdGhlIGVudGlyZSBjb25uZWN0b3IKKGJ1dCBvbmx5IHRlbXBvcmFyaWx5KSBpbiBvcmRl
+ciB0byBuYW1lIE1TVCBkZWJ1Z2ZzIGZvbGRlcnMgcHJvcGVybHkKc2luY2UgY29ubmVjdG9yIElE
+cyBjYW4ndCBiZSBsb29rZWQgdXAgdW50aWwgdGhlIGRyaXZlciBoYXMgYmVlbgpyZWdpc3RlcmVk
+IHdpdGggdXNlcnNwYWNlIHdoaWNoIGhhcHBlbnMgYWZ0ZXIgZGVidWdmcyBpbml0LgoKU28sIGp1
+c3QgcGFzcyB0aGUgZW50aXJlIGRybV9jb25uZWN0b3Igc3RydWN0IGluc3RlYWQgb2YganVzdCBp
+dHMgaWQuCgpTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgotLS0K
+IC4uLi9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbV9tc3RfdHlwZXMuYyAgICB8
+ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vZHJtX2RwX21zdF90b3BvbG9neS5jICAgICAgICAgICAg
+ICAgICAgfCAxMCArKysrKystLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcC5jICAg
+ICAgICAgICAgICAgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxf
+ZHBfbXN0LmMgICAgICAgICAgICAgICAgICAgIHwgIDYgKysrKy0tCiBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pbnRlbF9kcnYuaCAgICAgICAgICAgICAgICAgICAgICAgfCAgMyArKy0KIGRyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyAgICAgICAgICAgICAgICB8ICA2ICsrKy0t
+LQogZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZHBfbXN0LmMgICAgICAgICAgICAgICAg
+IHwgIDIgKy0KIGluY2x1ZGUvZHJtL2RybV9kcF9tc3RfaGVscGVyLmggICAgICAgICAgICAgICAg
+ICAgICAgICB8ICAzICsrLQogOCBmaWxlcyBjaGFuZ2VkLCAyMCBpbnNlcnRpb25zKCspLCAxNCBk
+ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1k
+Z3B1X2RtL2FtZGdwdV9kbV9tc3RfdHlwZXMuYyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxh
+eS9hbWRncHVfZG0vYW1kZ3B1X2RtX21zdF90eXBlcy5jCmluZGV4IDlhMzAwNzMyYmEzNy4uNjBk
+YTdlOGZjY2E3IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1
+X2RtL2FtZGdwdV9kbV9tc3RfdHlwZXMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3Bs
+YXkvYW1kZ3B1X2RtL2FtZGdwdV9kbV9tc3RfdHlwZXMuYwpAQCAtNTAzLDYgKzUwMyw2IEBAIHZv
+aWQgYW1kZ3B1X2RtX2luaXRpYWxpemVfZHBfY29ubmVjdG9yKHN0cnVjdCBhbWRncHVfZGlzcGxh
+eV9tYW5hZ2VyICpkbSwKIAkJJmFjb25uZWN0b3ItPmRtX2RwX2F1eC5hdXgsCiAJCTE2LAogCQk0
+LAotCQlhY29ubmVjdG9yLT5jb25uZWN0b3JfaWQpOworCQkmYWNvbm5lY3Rvci0+YmFzZSk7CiB9
+CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMgYi9k
+cml2ZXJzL2dwdS9kcm0vZHJtX2RwX21zdF90b3BvbG9neS5jCmluZGV4IDc3ODA1NjdhYTY2OS4u
+YWNiNzYzM2YzZjcwIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2RwX21zdF90b3Bv
+bG9neS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMKQEAgLTMx
+NjEsMTQgKzMxNjEsMTYgQEAgRVhQT1JUX1NZTUJPTChkcm1fYXRvbWljX2dldF9tc3RfdG9wb2xv
+Z3lfc3RhdGUpOwogICogQGF1eDogRFAgaGVscGVyIGF1eCBjaGFubmVsIHRvIHRhbGsgdG8gdGhp
+cyBkZXZpY2UKICAqIEBtYXhfZHBjZF90cmFuc2FjdGlvbl9ieXRlczogaHcgc3BlY2lmaWMgRFBD
+RCB0cmFuc2FjdGlvbiBsaW1pdAogICogQG1heF9wYXlsb2FkczogbWF4aW11bSBudW1iZXIgb2Yg
+cGF5bG9hZHMgdGhpcyBHUFUgY2FuIHNvdXJjZQotICogQGNvbm5fYmFzZV9pZDogdGhlIGNvbm5l
+Y3RvciBvYmplY3QgSUQgdGhlIE1TVCBkZXZpY2UgaXMgY29ubmVjdGVkIHRvLgorICogQGNvbm5l
+Y3RvcjogdGhlICZzdHJ1Y3QgZHJtX2Nvbm5lY3RvciB0aGUgTVNUIGRldmljZSBpcyBjb25uZWN0
+ZWQgdG8uCiAgKgogICogUmV0dXJuIDAgZm9yIHN1Y2Nlc3MsIG9yIG5lZ2F0aXZlIGVycm9yIGNv
+ZGUgb24gZmFpbHVyZQogICovCiBpbnQgZHJtX2RwX21zdF90b3BvbG9neV9tZ3JfaW5pdChzdHJ1
+Y3QgZHJtX2RwX21zdF90b3BvbG9neV9tZ3IgKm1nciwKLQkJCQkgc3RydWN0IGRybV9kZXZpY2Ug
+KmRldiwgc3RydWN0IGRybV9kcF9hdXggKmF1eCwKKwkJCQkgc3RydWN0IGRybV9kZXZpY2UgKmRl
+diwKKwkJCQkgc3RydWN0IGRybV9kcF9hdXggKmF1eCwKIAkJCQkgaW50IG1heF9kcGNkX3RyYW5z
+YWN0aW9uX2J5dGVzLAotCQkJCSBpbnQgbWF4X3BheWxvYWRzLCBpbnQgY29ubl9iYXNlX2lkKQor
+CQkJCSBpbnQgbWF4X3BheWxvYWRzLAorCQkJCSBzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVj
+dG9yKQogewogCXN0cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5X3N0YXRlICptc3Rfc3RhdGU7CiAK
+QEAgLTMxODYsNyArMzE4OCw3IEBAIGludCBkcm1fZHBfbXN0X3RvcG9sb2d5X21ncl9pbml0KHN0
+cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5X21nciAqbWdyLAogCW1nci0+YXV4ID0gYXV4OwogCW1n
+ci0+bWF4X2RwY2RfdHJhbnNhY3Rpb25fYnl0ZXMgPSBtYXhfZHBjZF90cmFuc2FjdGlvbl9ieXRl
+czsKIAltZ3ItPm1heF9wYXlsb2FkcyA9IG1heF9wYXlsb2FkczsKLQltZ3ItPmNvbm5fYmFzZV9p
+ZCA9IGNvbm5fYmFzZV9pZDsKKwltZ3ItPmNvbm5fYmFzZV9pZCA9IGNvbm5lY3Rvci0+YmFzZS5p
+ZDsKIAlpZiAobWF4X3BheWxvYWRzICsgMSA+IHNpemVvZihtZ3ItPnBheWxvYWRfbWFzaykgKiA4
+IHx8CiAJICAgIG1heF9wYXlsb2FkcyArIDEgPiBzaXplb2YobWdyLT52Y3BpX21hc2spICogOCkK
+IAkJcmV0dXJuIC1FSU5WQUw7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRl
+bF9kcC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHAuYwppbmRleCBjZDBmNjQ5YjU3
+YTUuLjM2ODhkZjM4ZGJlNyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxf
+ZHAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcC5jCkBAIC02MjQ3LDcgKzYy
+NDcsNyBAQCBpbnRlbF9kcF9pbml0X2Nvbm5lY3RvcihzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0
+ICppbnRlbF9kaWdfcG9ydCwKIAkgICAgKHBvcnQgPT0gUE9SVF9CIHx8IHBvcnQgPT0gUE9SVF9D
+IHx8CiAJICAgICBwb3J0ID09IFBPUlRfRCB8fCBwb3J0ID09IFBPUlRfRikpCiAJCWludGVsX2Rw
+X21zdF9lbmNvZGVyX2luaXQoaW50ZWxfZGlnX3BvcnQsCi0JCQkJCSAgaW50ZWxfY29ubmVjdG9y
+LT5iYXNlLmJhc2UuaWQpOworCQkJCQkgICZpbnRlbF9jb25uZWN0b3ItPmJhc2UpOwogCiAJaWYg
+KCFpbnRlbF9lZHBfaW5pdF9jb25uZWN0b3IoaW50ZWxfZHAsIGludGVsX2Nvbm5lY3RvcikpIHsK
+IAkJaW50ZWxfZHBfYXV4X2ZpbmkoaW50ZWxfZHApOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaW50ZWxfZHBfbXN0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcF9t
+c3QuYwppbmRleCA3ZTNlMDE2MDc2NDMuLjZjMDdjMjkyMzVkZiAxMDA2NDQKLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaW50ZWxfZHBfbXN0LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+aW50ZWxfZHBfbXN0LmMKQEAgLTU4Myw3ICs1ODMsOCBAQCBpbnRlbF9kcF9jcmVhdGVfZmFrZV9t
+c3RfZW5jb2RlcnMoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqaW50ZWxfZGlnX3BvcnQpCiB9
+CiAKIGludAotaW50ZWxfZHBfbXN0X2VuY29kZXJfaW5pdChzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9w
+b3J0ICppbnRlbF9kaWdfcG9ydCwgaW50IGNvbm5fYmFzZV9pZCkKK2ludGVsX2RwX21zdF9lbmNv
+ZGVyX2luaXQoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqaW50ZWxfZGlnX3BvcnQsCisJCQkg
+IHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpCiB7CiAJc3RydWN0IGludGVsX2RwICpp
+bnRlbF9kcCA9ICZpbnRlbF9kaWdfcG9ydC0+ZHA7CiAJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9
+IGludGVsX2RpZ19wb3J0LT5iYXNlLmJhc2UuZGV2OwpAQCAtNTk1LDcgKzU5Niw4IEBAIGludGVs
+X2RwX21zdF9lbmNvZGVyX2luaXQoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqaW50ZWxfZGln
+X3BvcnQsIGludCBjb25uX2JhCiAJLyogY3JlYXRlIGVuY29kZXJzICovCiAJaW50ZWxfZHBfY3Jl
+YXRlX2Zha2VfbXN0X2VuY29kZXJzKGludGVsX2RpZ19wb3J0KTsKIAlyZXQgPSBkcm1fZHBfbXN0
+X3RvcG9sb2d5X21ncl9pbml0KCZpbnRlbF9kcC0+bXN0X21nciwgZGV2LAotCQkJCQkgICAmaW50
+ZWxfZHAtPmF1eCwgMTYsIDMsIGNvbm5fYmFzZV9pZCk7CisJCQkJCSAgICZpbnRlbF9kcC0+YXV4
+LCAxNiwgMywKKwkJCQkJICAgY29ubmVjdG9yKTsKIAlpZiAocmV0KSB7CiAJCWludGVsX2RwLT5j
+YW5fbXN0ID0gZmFsc2U7CiAJCXJldHVybiByZXQ7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pbnRlbF9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rydi5oCmlu
+ZGV4IDhmYzYxZTk2NzU0Zi4uYWY3YTYxMTFmZjc0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pbnRlbF9kcnYuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcnYu
+aApAQCAtMTc0OSw3ICsxNzQ5LDggQEAgYm9vbCBpbnRlbF9kaWdpdGFsX3BvcnRfY29ubmVjdGVk
+KHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyKTsKIGludCBpbnRlbF9kcF9hdXhfaW5pdF9i
+YWNrbGlnaHRfZnVuY3Moc3RydWN0IGludGVsX2Nvbm5lY3RvciAqaW50ZWxfY29ubmVjdG9yKTsK
+IAogLyogaW50ZWxfZHBfbXN0LmMgKi8KLWludCBpbnRlbF9kcF9tc3RfZW5jb2Rlcl9pbml0KHN0
+cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmludGVsX2RpZ19wb3J0LCBpbnQgY29ubl9pZCk7Citp
+bnQgaW50ZWxfZHBfbXN0X2VuY29kZXJfaW5pdChzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpp
+bnRlbF9kaWdfcG9ydCwKKwkJCSAgICAgIHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3Ip
+Owogdm9pZCBpbnRlbF9kcF9tc3RfZW5jb2Rlcl9jbGVhbnVwKHN0cnVjdCBpbnRlbF9kaWdpdGFs
+X3BvcnQgKmludGVsX2RpZ19wb3J0KTsKIC8qIHZsdl9kc2kuYyAqLwogdm9pZCB2bHZfZHNpX2lu
+aXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KTsKZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L2Rpc3BudjUwL2Rpc3AuYwppbmRleCA3MTM5Yjk2MmM2ZmQuLjkxOGYyNTE5ODU5YiAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCisrKyBiL2Ry
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYwpAQCAtMTIyNiw3ICsxMjI2LDcg
+QEAgbnY1MF9tc3RtX2RlbChzdHJ1Y3QgbnY1MF9tc3RtICoqcG1zdG0pCiAKIHN0YXRpYyBpbnQK
+IG52NTBfbXN0bV9uZXcoc3RydWN0IG5vdXZlYXVfZW5jb2RlciAqb3V0cCwgc3RydWN0IGRybV9k
+cF9hdXggKmF1eCwgaW50IGF1eF9tYXgsCi0JICAgICAgaW50IGNvbm5fYmFzZV9pZCwgc3RydWN0
+IG52NTBfbXN0bSAqKnBtc3RtKQorCSAgICAgIHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0
+b3IsIHN0cnVjdCBudjUwX21zdG0gKipwbXN0bSkKIHsKIAljb25zdCBpbnQgbWF4X3BheWxvYWRz
+ID0gaHdlaWdodDgob3V0cC0+ZGNiLT5oZWFkcyk7CiAJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9
+IG91dHAtPmJhc2UuYmFzZS5kZXY7CkBAIC0xMjUwLDcgKzEyNTAsNyBAQCBudjUwX21zdG1fbmV3
+KHN0cnVjdCBub3V2ZWF1X2VuY29kZXIgKm91dHAsIHN0cnVjdCBkcm1fZHBfYXV4ICphdXgsIGlu
+dCBhdXhfbWF4LAogCW1zdG0tPm1nci5jYnMgPSAmbnY1MF9tc3RtOwogCiAJcmV0ID0gZHJtX2Rw
+X21zdF90b3BvbG9neV9tZ3JfaW5pdCgmbXN0bS0+bWdyLCBkZXYsIGF1eCwgYXV4X21heCwKLQkJ
+CQkJICAgbWF4X3BheWxvYWRzLCBjb25uX2Jhc2VfaWQpOworCQkJCQkgICBtYXhfcGF5bG9hZHMs
+IGNvbm5lY3Rvcik7CiAJaWYgKHJldCkKIAkJcmV0dXJuIHJldDsKIApAQCAtMTQ5Niw3ICsxNDk2
+LDcgQEAgbnY1MF9zb3JfY3JlYXRlKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsIHN0
+cnVjdCBkY2Jfb3V0cHV0ICpkY2JlKQogCQlpZiAoKGRhdGEgPSBudmJpb3NfZHBfdGFibGUoYmlv
+cywgJnZlciwgJmhkciwgJmNudCwgJmxlbikpICYmCiAJCSAgICB2ZXIgPj0gMHg0MCAmJiAobnZi
+aW9zX3JkMDgoYmlvcywgZGF0YSArIDB4MDgpICYgMHgwNCkpIHsKIAkJCXJldCA9IG52NTBfbXN0
+bV9uZXcobnZfZW5jb2RlciwgJm52X2Nvbm5lY3Rvci0+YXV4LCAxNiwKLQkJCQkJICAgIG52X2Nv
+bm5lY3Rvci0+YmFzZS5iYXNlLmlkLAorCQkJCQkgICAgJm52X2Nvbm5lY3Rvci0+YmFzZSwKIAkJ
+CQkJICAgICZudl9lbmNvZGVyLT5kcC5tc3RtKTsKIAkJCWlmIChyZXQpCiAJCQkJcmV0dXJuIHJl
+dDsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2RwX21zdC5jIGIv
+ZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZHBfbXN0LmMKaW5kZXggZjkyMGJlMjM2Y2M5
+Li4zYzY2YjFkMjZmODggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9u
+X2RwX21zdC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2RwX21zdC5jCkBA
+IC02NjQsNyArNjY0LDcgQEAgcmFkZW9uX2RwX21zdF9pbml0KHN0cnVjdCByYWRlb25fY29ubmVj
+dG9yICpyYWRlb25fY29ubmVjdG9yKQogCXJhZGVvbl9jb25uZWN0b3ItPm1zdF9tZ3IuY2JzID0g
+Jm1zdF9jYnM7CiAJcmV0dXJuIGRybV9kcF9tc3RfdG9wb2xvZ3lfbWdyX2luaXQoJnJhZGVvbl9j
+b25uZWN0b3ItPm1zdF9tZ3IsIGRldiwKIAkJCQkJICAgICZyYWRlb25fY29ubmVjdG9yLT5kZGNf
+YnVzLT5hdXgsIDE2LCA2LAotCQkJCQkgICAgcmFkZW9uX2Nvbm5lY3Rvci0+YmFzZS5iYXNlLmlk
+KTsKKwkJCQkJICAgICZyYWRlb25fY29ubmVjdG9yLT5iYXNlKTsKIH0KIAogaW50CmRpZmYgLS1n
+aXQgYS9pbmNsdWRlL2RybS9kcm1fZHBfbXN0X2hlbHBlci5oIGIvaW5jbHVkZS9kcm0vZHJtX2Rw
+X21zdF9oZWxwZXIuaAppbmRleCA3Zjc4ZDI2YTA3NjYuLmVmOGJhMDkzYWU4YSAxMDA2NDQKLS0t
+IGEvaW5jbHVkZS9kcm0vZHJtX2RwX21zdF9oZWxwZXIuaAorKysgYi9pbmNsdWRlL2RybS9kcm1f
+ZHBfbXN0X2hlbHBlci5oCkBAIC01NzMsNyArNTczLDggQEAgc3RydWN0IGRybV9kcF9tc3RfdG9w
+b2xvZ3lfbWdyIHsKIGludCBkcm1fZHBfbXN0X3RvcG9sb2d5X21ncl9pbml0KHN0cnVjdCBkcm1f
+ZHBfbXN0X3RvcG9sb2d5X21nciAqbWdyLAogCQkJCSBzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBz
+dHJ1Y3QgZHJtX2RwX2F1eCAqYXV4LAogCQkJCSBpbnQgbWF4X2RwY2RfdHJhbnNhY3Rpb25fYnl0
+ZXMsCi0JCQkJIGludCBtYXhfcGF5bG9hZHMsIGludCBjb25uX2Jhc2VfaWQpOworCQkJCSBpbnQg
+bWF4X3BheWxvYWRzLAorCQkJCSBzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yKTsKIAog
+dm9pZCBkcm1fZHBfbXN0X3RvcG9sb2d5X21ncl9kZXN0cm95KHN0cnVjdCBkcm1fZHBfbXN0X3Rv
+cG9sb2d5X21nciAqbWdyKTsKIAotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2FtZC1nZngK
