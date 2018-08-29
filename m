@@ -1,41 +1,45 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH RESEND v3 0/6] drm/nouveau: Backlight fixes and
- cleanup
-Date: Wed, 29 Aug 2018 18:28:26 -0400
-Message-ID: <20180829222834.15590-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH RESEND v3 1/6] drm/nouveau: Check backlight IDs are >= 0, not > 0
+Date: Wed, 29 Aug 2018 18:28:27 -0400
+Message-ID: <20180829222834.15590-2-lyude@redhat.com>
+References: <20180829222834.15590-1-lyude@redhat.com>
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20180829222834.15590-1-lyude@redhat.com>
+Sender: stable-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Rm9yZ290IHRvIHNlbmQgNiBwYXRjaGVzIGluc3RlYWQgb2YgZml2ZSBzaW5jZSB0aGVyZSdzIG9u
-ZSBuZXcgb25lIG5vdywKd2hvb3BzIQoKTm8gYWN0dWFsIGNoYW5nZXMsIG5leHQgdmVyc2lvbiBv
-ZgpodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzQ4NTk2LwoKTHl1ZGUg
-UGF1bCAoNik6CiAgZHJtL25vdXZlYXU6IENoZWNrIGJhY2tsaWdodCBJRHMgYXJlID49IDAsIG5v
-dCA+IDAKICBkcm0vbm91dmVhdTogQWRkIE5WX1BSSU5US19PTkNFIGFuZCB2YXJpYW50cwogIGRy
-bS9ub3V2ZWF1OiBNb3ZlIGJhY2tsaWdodCBkZXZpY2UgaW50byBub3V2ZWF1X2Nvbm5lY3Rvcgog
-IGRybS9ub3V2ZWF1OiBzL25vdXZlYXVfYmFja2xpZ2h0X2V4aXQvbm91dmVhdV9iYWNrbGlnaHRf
-ZmluaS8KICBkcm0vbm91dmVhdTogQ2xlYW51cCBpbmRlbnRpbmcgaW4gbm91dmVhdV9iYWNrbGln
-aHQuYwogIGRybS9ub3V2ZWF1OiBSZWZhY3RvciBudlhYX2JhY2tsaWdodF9pbml0KCkKCiBkcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jIHwgMjIwICsrKysrKysrKyst
-LS0tLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jIHwg
-IDIwICsrCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5oIHwgIDMz
-ICsrKwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMgICB8ICAgMiAt
-CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuaCAgIHwgIDI1IC0tLQog
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcnYuaCAgICAgICB8ICAxMCArLQogNiBm
-aWxlcyBjaGFuZ2VkLCAxNjggaW5zZXJ0aW9ucygrKSwgMTQyIGRlbGV0aW9ucygtKQoKLS0gCjIu
-MTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+Remember, ida IDs start at 0, not 1!
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Reviewed-by: Karol Herbst <kherbst@redhat.com>
+Cc: stable@vger.kernel.org
+---
+ drivers/gpu/drm/nouveau/nouveau_backlight.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c b/drivers/gpu/drm/nouveau/nouveau_backlight.c
+index 408b955e5c39..6dd72bc32897 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
++++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
+@@ -116,7 +116,7 @@ nv40_backlight_init(struct drm_connector *connector)
+ 				       &nv40_bl_ops, &props);
+ 
+ 	if (IS_ERR(bd)) {
+-		if (bl_connector.id > 0)
++		if (bl_connector.id >= 0)
+ 			ida_simple_remove(&bl_ida, bl_connector.id);
+ 		return PTR_ERR(bd);
+ 	}
+@@ -249,7 +249,7 @@ nv50_backlight_init(struct drm_connector *connector)
+ 				       nv_encoder, ops, &props);
+ 
+ 	if (IS_ERR(bd)) {
+-		if (bl_connector.id > 0)
++		if (bl_connector.id >= 0)
+ 			ida_simple_remove(&bl_ida, bl_connector.id);
+ 		return PTR_ERR(bd);
+ 	}
+-- 
+2.17.1
