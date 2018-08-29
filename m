@@ -1,59 +1,73 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH RESEND v3 5/6] drm/nouveau: Cleanup indenting in
- nouveau_backlight.c
-Date: Wed, 29 Aug 2018 18:28:31 -0400
-Message-ID: <20180829222834.15590-6-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH RESEND v3 4/6] drm/nouveau: s/nouveau_backlight_exit/nouveau_backlight_fini/
+Date: Wed, 29 Aug 2018 18:28:30 -0400
+Message-ID: <20180829222834.15590-5-lyude@redhat.com>
 References: <20180829222834.15590-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180829222834.15590-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20180829222834.15590-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-U3RpbGwgbm8gZnVuY3Rpb25hbCBjaGFuZ2VzLgoKU2lnbmVkLW9mZi1ieTogTHl1ZGUgUGF1bCA8
-bHl1ZGVAcmVkaGF0LmNvbT4KUmV2aWV3ZWQtYnk6IEthcm9sIEhlcmJzdCA8a2hlcmJzdEByZWRo
-YXQuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMg
-fCAxMyArKysrKysrLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspLCA2IGRl
-bGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-YmFja2xpZ2h0LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5j
-CmluZGV4IGY0NDAwYTY0MDhiNC4uMDFkMDhhY2FjMmYwIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMKQEAgLTY4LDcgKzY4LDcgQEAgbnY0MF9nZXRfaW50
-ZW5zaXR5KHN0cnVjdCBiYWNrbGlnaHRfZGV2aWNlICpiZCkKIAlzdHJ1Y3Qgbm91dmVhdV9kcm0g
-KmRybSA9IGJsX2dldF9kYXRhKGJkKTsKIAlzdHJ1Y3QgbnZpZl9vYmplY3QgKmRldmljZSA9ICZk
-cm0tPmNsaWVudC5kZXZpY2Uub2JqZWN0OwogCWludCB2YWwgPSAobnZpZl9yZDMyKGRldmljZSwg
-TlY0MF9QTUNfQkFDS0xJR0hUKSAmCi0JCQkJICAgTlY0MF9QTUNfQkFDS0xJR0hUX01BU0spID4+
-IDE2OworCQkgICBOVjQwX1BNQ19CQUNLTElHSFRfTUFTSykgPj4gMTY7CiAKIAlyZXR1cm4gdmFs
-OwogfQpAQCAtODIsNyArODIsNyBAQCBudjQwX3NldF9pbnRlbnNpdHkoc3RydWN0IGJhY2tsaWdo
-dF9kZXZpY2UgKmJkKQogCWludCByZWcgPSBudmlmX3JkMzIoZGV2aWNlLCBOVjQwX1BNQ19CQUNL
-TElHSFQpOwogCiAJbnZpZl93cjMyKGRldmljZSwgTlY0MF9QTUNfQkFDS0xJR0hULAotCQkgKHZh
-bCA8PCAxNikgfCAocmVnICYgfk5WNDBfUE1DX0JBQ0tMSUdIVF9NQVNLKSk7CisJCSAgKHZhbCA8
-PCAxNikgfCAocmVnICYgfk5WNDBfUE1DX0JBQ0tMSUdIVF9NQVNLKSk7CiAKIAlyZXR1cm4gMDsK
-IH0KQEAgLTE2NCw3ICsxNjQsNyBAQCBudjUwX3NldF9pbnRlbnNpdHkoc3RydWN0IGJhY2tsaWdo
-dF9kZXZpY2UgKmJkKQogCXUzMiB2YWwgPSAoYmQtPnByb3BzLmJyaWdodG5lc3MgKiBkaXYpIC8g
-MTAwOwogCiAJbnZpZl93cjMyKGRldmljZSwgTlY1MF9QRElTUF9TT1JfUFdNX0NUTChvciksCi0J
-CQlOVjUwX1BESVNQX1NPUl9QV01fQ1RMX05FVyB8IHZhbCk7CisJCSAgTlY1MF9QRElTUF9TT1Jf
-UFdNX0NUTF9ORVcgfCB2YWwpOwogCXJldHVybiAwOwogfQogCkBAIC0yMDQsOSArMjA0LDEwIEBA
-IG52YTNfc2V0X2ludGVuc2l0eShzdHJ1Y3QgYmFja2xpZ2h0X2RldmljZSAqYmQpCiAJZGl2ID0g
-bnZpZl9yZDMyKGRldmljZSwgTlY1MF9QRElTUF9TT1JfUFdNX0RJVihvcikpOwogCXZhbCA9IChi
-ZC0+cHJvcHMuYnJpZ2h0bmVzcyAqIGRpdikgLyAxMDA7CiAJaWYgKGRpdikgewotCQludmlmX3dy
-MzIoZGV2aWNlLCBOVjUwX1BESVNQX1NPUl9QV01fQ1RMKG9yKSwgdmFsIHwKLQkJCQlOVjUwX1BE
-SVNQX1NPUl9QV01fQ1RMX05FVyB8Ci0JCQkJTlZBM19QRElTUF9TT1JfUFdNX0NUTF9VTkspOwor
-CQludmlmX3dyMzIoZGV2aWNlLCBOVjUwX1BESVNQX1NPUl9QV01fQ1RMKG9yKSwKKwkJCSAgdmFs
-IHwKKwkJCSAgTlY1MF9QRElTUF9TT1JfUFdNX0NUTF9ORVcgfAorCQkJICBOVkEzX1BESVNQX1NP
-Ul9QV01fQ1RMX1VOSyk7CiAJCXJldHVybiAwOwogCX0KIAotLSAKMi4xNy4xCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
-dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+More consistent with the rest of the codebase, no functional changes
+here.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Reviewed-by: Karol Herbst <kherbst@redhat.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_backlight.c | 2 +-
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 2 +-
+ drivers/gpu/drm/nouveau/nouveau_connector.h | 4 ++--
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c b/drivers/gpu/drm/nouveau/nouveau_backlight.c
+index 5d0694680f59..f4400a6408b4 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
++++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
+@@ -309,7 +309,7 @@ nouveau_backlight_init(struct drm_connector *connector)
+ }
+ 
+ void
+-nouveau_backlight_exit(struct drm_connector *connector)
++nouveau_backlight_fini(struct drm_connector *connector)
+ {
+ 	struct nouveau_connector *nv_conn = nouveau_connector(connector);
+ 	struct nouveau_backlight *bl = nv_conn->backlight;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 767e892de9c4..3b288be9c3f7 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -911,7 +911,7 @@ nouveau_connector_late_register(struct drm_connector *connector)
+ static void
+ nouveau_connector_early_unregister(struct drm_connector *connector)
+ {
+-	nouveau_backlight_exit(connector);
++	nouveau_backlight_fini(connector);
+ }
+ 
+ static int
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.h b/drivers/gpu/drm/nouveau/nouveau_connector.h
+index 5465ae82fb9f..76e79717e451 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.h
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.h
+@@ -190,7 +190,7 @@ struct drm_display_mode *nouveau_conn_native_mode(struct drm_connector *);
+ 
+ #ifdef CONFIG_DRM_NOUVEAU_BACKLIGHT
+ extern int nouveau_backlight_init(struct drm_connector *);
+-extern void nouveau_backlight_exit(struct drm_connector *);
++extern void nouveau_backlight_fini(struct drm_connector *);
+ extern void nouveau_backlight_ctor(void);
+ extern void nouveau_backlight_dtor(void);
+ #else
+@@ -201,7 +201,7 @@ nouveau_backlight_init(struct drm_connector *connector)
+ }
+ 
+ static inline void
+-nouveau_backlight_exit(struct drm_connector *connector) {
++nouveau_backlight_fini(struct drm_connector *connector) {
+ }
+ 
+ static inline void
+-- 
+2.17.1
