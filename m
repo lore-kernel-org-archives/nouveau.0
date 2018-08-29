@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107735] New: Xorg stops responding when running
+Subject: [Bug 107735] Xorg stops responding when running
  DRI_PRIME=1 glxgears
-Date: Wed, 29 Aug 2018 09:19:26 +0000
-Message-ID: <bug-107735-8800@http.bugs.freedesktop.org/>
+Date: Wed, 29 Aug 2018 09:19:44 +0000
+Message-ID: <bug-107735-8800-fe00fXuS0r@http.bugs.freedesktop.org/>
+References: <bug-107735-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0746819404=="
+Content-Type: multipart/mixed; boundary="===============1296671512=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-107735-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0746819404==
-Content-Type: multipart/alternative; boundary="15355343660.A4b0288de.9914"
+--===============1296671512==
+Content-Type: multipart/alternative; boundary="15355343840.b2D675f.9923"
 Content-Transfer-Encoding: 7bit
 
 
---15355343660.A4b0288de.9914
-Date: Wed, 29 Aug 2018 09:19:26 +0000
+--15355343840.b2D675f.9923
+Date: Wed, 29 Aug 2018 09:19:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,65 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D107735
 
-            Bug ID: 107735
-           Summary: Xorg stops responding when running DRI_PRIME=3D1
-                    glxgears
-           Product: Mesa
-           Version: 18.1
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: sam-qkiumcfQ8OTe9xe1eoZjHA@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-Created attachment 141338
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141338&action=3Dedit
-kernel messages
-
-If I run 'DRI_PRIME=3D1 glxgears', glxgears appears and runs normally for <=
- 1
-second. However then the screen freezes and pressing Esc to close glxgears =
-(and
-other keyboard/mouse input) does not work.
-
-Neither the kernel nor Xorg log anything when this happens.
-
-If I run 'DRI_PRIME=3D1 timeout 5 glxgears', after 5 seconds SIGTERM is sen=
-t to
-the process, it exits and Xorg stops being frozen.
-
-The really weird thing is that if I leave an instance of glxgears (using the
-integrated graphics) running at the same time, then glxgears using the disc=
-rete
-GPU does not cause Xorg to freeze up at all!
-
-This is on a Lenovo P50 with the following setup:
-
-00:02.0 VGA compatible controller: Intel Corporation HD Graphics 530 (rev 0=
-6)
-01:00.0 VGA compatible controller: NVIDIA Corporation GM107GLM [Quadro M200=
-0M]
-(rev a2)
-
-I'm using debian unstable.
-Mesa version: 18.1.6
-nouveau version: 1.0.15
-Kernel: Linux version 4.17.0-3-amd64 (debian-kernel-0aAXYlwwYIJuHlm7Suoebg@public.gmane.org) (gcc
-version 7.3.0 (Debian 7.3.0-28)) #1 SMP Debian 4.17.17-1 (2018-08-18)
-
-I've seen this with earlier kernels too.
+--- Comment #1 from Sam Morris <sam-qkiumcfQ8OTe9xe1eoZjHA@public.gmane.org> ---
+Created attachment 141339
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141339&action=3Dedit
+Xorg log
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15355343660.A4b0288de.9914
-Date: Wed, 29 Aug 2018 09:19:26 +0000
+--15355343840.b2D675f.9923
+Date: Wed, 29 Aug 2018 09:19:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -103,128 +58,28 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg stops responding when running DRI_PRIME=3D1 glxgears"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107735">107735</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Xorg stops responding when running DRI_PRIME=3D1 glxgears
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>18.1
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>sam&#64;robots.org.uk
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141338=
-" name=3D"attach_141338" title=3D"kernel messages">attachment 141338</a> <a=
- href=3D"attachment.cgi?id=3D141338&amp;action=3Dedit" title=3D"kernel mess=
-ages">[details]</a></span>
-kernel messages
-
-If I run 'DRI_PRIME=3D1 glxgears', glxgears appears and runs normally for &=
-lt; 1
-second. However then the screen freezes and pressing Esc to close glxgears =
-(and
-other keyboard/mouse input) does not work.
-
-Neither the kernel nor Xorg log anything when this happens.
-
-If I run 'DRI_PRIME=3D1 timeout 5 glxgears', after 5 seconds SIGTERM is sen=
-t to
-the process, it exits and Xorg stops being frozen.
-
-The really weird thing is that if I leave an instance of glxgears (using the
-integrated graphics) running at the same time, then glxgears using the disc=
-rete
-GPU does not cause Xorg to freeze up at all!
-
-This is on a Lenovo P50 with the following setup:
-
-00:02.0 VGA compatible controller: Intel Corporation HD Graphics 530 (rev 0=
-6)
-01:00.0 VGA compatible controller: NVIDIA Corporation GM107GLM [Quadro M200=
-0M]
-(rev a2)
-
-I'm using debian unstable.
-Mesa version: 18.1.6
-nouveau version: 1.0.15
-Kernel: Linux version 4.17.0-3-amd64 (<a href=3D"mailto:debian-kernel&#64;l=
-ists.debian.org">debian-kernel&#64;lists.debian.org</a>) (gcc
-version 7.3.0 (Debian 7.3.0-28)) #1 SMP Debian 4.17.17-1 (2018-08-18)
-
-I've seen this with earlier kernels too.</pre>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg stops responding when running DRI_PRIME=3D1 glxgears"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107735#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg stops responding when running DRI_PRIME=3D1 glxgears"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107735">bug 10773=
+5</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+sam&#64;robots.org.uk" title=3D"Sam Morris &lt;sam&#64;robots.org.uk&gt;"> =
+<span class=3D"fn">Sam Morris</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141339=
+" name=3D"attach_141339" title=3D"Xorg log">attachment 141339</a> <a href=
+=3D"attachment.cgi?id=3D141339&amp;action=3Dedit" title=3D"Xorg log">[detai=
+ls]</a></span>
+Xorg log</pre>
         </div>
       </p>
 
@@ -233,15 +88,15 @@ I've seen this with earlier kernels too.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15355343660.A4b0288de.9914--
+--15355343840.b2D675f.9923--
 
---===============0746819404==
+--===============1296671512==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -251,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0746819404==--
+--===============1296671512==--
