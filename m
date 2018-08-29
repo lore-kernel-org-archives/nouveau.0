@@ -1,45 +1,58 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH RESEND v3 1/6] drm/nouveau: Check backlight IDs are >= 0, not > 0
-Date: Wed, 29 Aug 2018 18:28:27 -0400
-Message-ID: <20180829222834.15590-2-lyude@redhat.com>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH RESEND v3 2/6] drm/nouveau: Add NV_PRINTK_ONCE and
+ variants
+Date: Wed, 29 Aug 2018 18:28:28 -0400
+Message-ID: <20180829222834.15590-3-lyude@redhat.com>
 References: <20180829222834.15590-1-lyude@redhat.com>
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20180829222834.15590-1-lyude@redhat.com>
-Sender: stable-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20180829222834.15590-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Remember, ida IDs start at 0, not 1!
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Reviewed-by: Karol Herbst <kherbst@redhat.com>
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/nouveau/nouveau_backlight.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-index 408b955e5c39..6dd72bc32897 100644
---- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-@@ -116,7 +116,7 @@ nv40_backlight_init(struct drm_connector *connector)
- 				       &nv40_bl_ops, &props);
- 
- 	if (IS_ERR(bd)) {
--		if (bl_connector.id > 0)
-+		if (bl_connector.id >= 0)
- 			ida_simple_remove(&bl_ida, bl_connector.id);
- 		return PTR_ERR(bd);
- 	}
-@@ -249,7 +249,7 @@ nv50_backlight_init(struct drm_connector *connector)
- 				       nv_encoder, ops, &props);
- 
- 	if (IS_ERR(bd)) {
--		if (bl_connector.id > 0)
-+		if (bl_connector.id >= 0)
- 			ida_simple_remove(&bl_ida, bl_connector.id);
- 		return PTR_ERR(bd);
- 	}
--- 
-2.17.1
+U2luY2Ugd2UncmUgYWJvdXQgdG8gdXNlIHRoaXMgaW4gbm91dmVhdV9iYWNrbGlnaHQuYy4gU2Ft
+ZSB0aGluZyBhcwpEUk1fV0FSTl9PTkNFLCBEUk1fSU5GT19PTkNFLCBldGMuLi4KClNpZ25lZC1v
+ZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkNjOiBLYXJvbCBIZXJic3QgPGto
+ZXJic3RAcmVkaGF0LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Ry
+di5oIHwgOCArKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKQoKZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmggYi9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oCmluZGV4IDZlMWFjYWVjMzQwMC4uZDlkNjg3OTE2
+NTUzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oCisr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmgKQEAgLTI0NCwxMCArMjQ0
+LDEyIEBAIHZvaWQgbm91dmVhdV9kcm1fZGV2aWNlX3JlbW92ZShzdHJ1Y3QgZHJtX2RldmljZSAq
+ZGV2KTsKIAlzdHJ1Y3Qgbm91dmVhdV9jbGkgKl9jbGkgPSAoYyk7ICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIFwKIAlkZXZfIyNsKF9jbGktPmRybS0+ZGV2LT5kZXYsICIl
+czogImYsIF9jbGktPm5hbWUsICMjYSk7ICAgICAgICAgICAgICAgIFwKIH0gd2hpbGUoMCkKKwog
+I2RlZmluZSBOVl9GQVRBTChkcm0sZixhLi4uKSBOVl9QUklOVEsoY3JpdCwgJihkcm0pLT5jbGll
+bnQsIGYsICMjYSkKICNkZWZpbmUgTlZfRVJST1IoZHJtLGYsYS4uLikgTlZfUFJJTlRLKGVyciwg
+Jihkcm0pLT5jbGllbnQsIGYsICMjYSkKICNkZWZpbmUgTlZfV0FSTihkcm0sZixhLi4uKSBOVl9Q
+UklOVEsod2FybiwgJihkcm0pLT5jbGllbnQsIGYsICMjYSkKICNkZWZpbmUgTlZfSU5GTyhkcm0s
+ZixhLi4uKSBOVl9QUklOVEsoaW5mbywgJihkcm0pLT5jbGllbnQsIGYsICMjYSkKKwogI2RlZmlu
+ZSBOVl9ERUJVRyhkcm0sZixhLi4uKSBkbyB7ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIFwKIAlpZiAodW5saWtlbHkoZHJtX2RlYnVnICYgRFJNX1VUX0RSSVZF
+UikpICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKIAkJTlZfUFJJTlRLKGluZm8sICYo
+ZHJtKS0+Y2xpZW50LCBmLCAjI2EpOyAgICAgICAgICAgICAgICAgICAgICAgXApAQCAtMjU3LDYg
+KzI1OSwxMiBAQCB2b2lkIG5vdXZlYXVfZHJtX2RldmljZV9yZW1vdmUoc3RydWN0IGRybV9kZXZp
+Y2UgKmRldik7CiAJCU5WX1BSSU5USyhpbmZvLCAmKGRybSktPmNsaWVudCwgZiwgIyNhKTsgICAg
+ICAgICAgICAgICAgICAgICAgIFwKIH0gd2hpbGUoMCkKIAorI2RlZmluZSBOVl9QUklOVEtfT05D
+RShsLGMsZixhLi4uKSBOVl9QUklOVEsobCMjX29uY2UsYyxmLCAjI2EpCisKKyNkZWZpbmUgTlZf
+RVJST1JfT05DRShkcm0sZixhLi4uKSBOVl9QUklOVEtfT05DRShlcnIsICYoZHJtKS0+Y2xpZW50
+LCBmLCAjI2EpCisjZGVmaW5lIE5WX1dBUk5fT05DRShkcm0sZixhLi4uKSBOVl9QUklOVEtfT05D
+RSh3YXJuLCAmKGRybSktPmNsaWVudCwgZiwgIyNhKQorI2RlZmluZSBOVl9JTkZPX09OQ0UoZHJt
+LGYsYS4uLikgTlZfUFJJTlRLX09OQ0UoaW5mbywgJihkcm0pLT5jbGllbnQsIGYsICMjYSkKKwog
+ZXh0ZXJuIGludCBub3V2ZWF1X21vZGVzZXQ7CiAKICNlbmRpZgotLSAKMi4xNy4xCgpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
+bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
