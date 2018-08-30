@@ -1,150 +1,118 @@
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v2] drm/nouveau: Fix nouveau_connector_ddc_detect()
-Date: Thu, 30 Aug 2018 20:36:03 +0300
-Message-ID: <20180830173603.GP5565@intel.com>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH v2] drm/nouveau: Fix
+ nouveau_connector_ddc_detect()
+Date: Thu, 30 Aug 2018 13:37:41 -0400
+Message-ID: <1070321d947fe290294ab3e838233227590a672c.camel@redhat.com>
 References: <20180830171628.23999-1-lyude@redhat.com>
+ <20180830173603.GP5565@intel.com>
+Reply-To: lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20180830171628.23999-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20180830173603.GP5565-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Aug 30, 2018 at 01:16:28PM -0400, Lyude Paul wrote:
-> It looks like that when we moved over to using
-> drm_connector_for_each_possible_encoder() in nouveau, that one rather
-> important part of this function got dropped by accident:
-> 
-> 	/*          Right   v   here */
-> 	for (i = 0; nv_encoder = NULL, i < DRM_CONNECTOR_MAX_ENCODER; i++) {
-> 		int id = connector->encoder_ids[i];
-> 		if (id == 0)
-> 			break;
-> 
-> Since it's rather difficult to notice: the conditional in this loop is
-> actually:
-> 
-> 	nv_encoder = NULL, i < DRM_CONNECTOR_MAX_ENCODER
-> 
-> Meaning that all early breaks result in nv_encoder keeping it's value,
-> otherwise nv_encoder = NULL. Ugh.
-> 
-> Since this got dropped, nouveau_connector_ddc_detect() now returns an
-> encoder for every single connector, regardless of whether or not it's
-> detected:
-> 
->     [ 1780.056185] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP-2
-> 
-> So: fix this to ensure we only return an encoder if we actually found
-> one, and clean up the rest of the function while we're at it since it's
-> nearly impossible to read properly.
-> 
-> Changes since v1:
-> - Don't skip ddc probing for LVDS if we can't switch DDC through
->   vga-switcheroo, just do the DDC probing without calling
->   vga_switcheroo_lock_ddc() - skeggsb
-> 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Fixes: ddba766dd07e ("drm/nouveau: Use drm_connector_for_each_possible_encoder()")
-> ---
->  drivers/gpu/drm/nouveau/nouveau_connector.c | 49 ++++++++++++---------
->  1 file changed, 28 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> index 71c3bd8ff9f8..461111aaedc4 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> @@ -414,9 +414,10 @@ nouveau_connector_ddc_detect(struct drm_connector *connector)
->  	struct nouveau_connector *nv_connector = nouveau_connector(connector);
->  	struct nouveau_drm *drm = nouveau_drm(dev);
->  	struct nvkm_gpio *gpio = nvxx_gpio(&drm->client.device);
-> -	struct nouveau_encoder *nv_encoder = NULL;
-> +	struct nouveau_encoder *nv_encoder = NULL, *found = NULL;
->  	struct drm_encoder *encoder;
-> -	int i, panel = -ENODEV;
-> +	int i, ret, panel = -ENODEV;
-> +	bool switcheroo_ddc = false;
->  
->  	/* eDP panels need powering on by us (if the VBIOS doesn't default it
->  	 * to on) before doing any AUX channel transactions.  LVDS panel power
-> @@ -433,37 +434,43 @@ nouveau_connector_ddc_detect(struct drm_connector *connector)
->  	drm_connector_for_each_possible_encoder(connector, encoder, i) {
->  		nv_encoder = nouveau_encoder(encoder);
->  
-> -		if (nv_encoder->dcb->type == DCB_OUTPUT_DP) {
-> -			int ret = nouveau_dp_detect(nv_encoder);
-> +		switch (nv_encoder->dcb->type) {
-> +		case DCB_OUTPUT_DP:
-> +			ret = nouveau_dp_detect(nv_encoder);
->  			if (ret == NOUVEAU_DP_MST)
->  				return NULL;
-> -			if (ret == NOUVEAU_DP_SST)
-> -				break;
-> -		} else
-> -		if ((vga_switcheroo_handler_flags() &
-> -		     VGA_SWITCHEROO_CAN_SWITCH_DDC) &&
-> -		    nv_encoder->dcb->type == DCB_OUTPUT_LVDS &&
-> -		    nv_encoder->i2c) {
-> -			int ret;
-> -			vga_switcheroo_lock_ddc(dev->pdev);
-> -			ret = nvkm_probe_i2c(nv_encoder->i2c, 0x50);
-> -			vga_switcheroo_unlock_ddc(dev->pdev);
-> -			if (ret)
-> +			else if (ret == NOUVEAU_DP_SST)
-> +				found = nv_encoder;
-> +
-> +			break;
-> +		case DCB_OUTPUT_LVDS:
-> +			switcheroo_ddc = !!(vga_switcheroo_handler_flags() &
-> +					    VGA_SWITCHEROO_CAN_SWITCH_DDC);
-> +		/* fall-through */
-> +		default:
-> +			if (!nv_encoder->i2c)
->  				break;
-> -		} else
-> -		if (nv_encoder->i2c) {
-> +
-> +			if (switcheroo_ddc)
-> +				vga_switcheroo_lock_ddc(dev->pdev);
->  			if (nvkm_probe_i2c(nv_encoder->i2c, 0x50))
-> -				break;
-> +				found = nv_encoder;
-> +			if (switcheroo_ddc)
-> +				vga_switcheroo_unlock_ddc(dev->pdev);
-> +
-> +			break;
->  		}
-> +		if (found)
-> +			break;
-
-The diff is rather messy due to the change to a switch, but after staring
-at it for a while it does look correct to me.
-
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-and sorry for the mess.
-
->  	}
->  
->  	/* eDP panel not detected, restore panel power GPIO to previous
->  	 * state to avoid confusing the SOR for other output types.
->  	 */
-> -	if (!nv_encoder && panel == 0)
-> +	if (!found && panel == 0)
->  		nvkm_gpio_set(gpio, 0, DCB_GPIO_PANEL_POWER, 0xff, panel);
->  
-> -	return nv_encoder;
-> +	return found;
->  }
->  
->  static struct nouveau_encoder *
-> -- 
-> 2.17.1
-
--- 
-Ville Syrjälä
-Intel
+T24gVGh1LCAyMDE4LTA4LTMwIGF0IDIwOjM2ICswMzAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+Cj4gT24gVGh1LCBBdWcgMzAsIDIwMTggYXQgMDE6MTY6MjhQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3
+cm90ZToKPiA+IEl0IGxvb2tzIGxpa2UgdGhhdCB3aGVuIHdlIG1vdmVkIG92ZXIgdG8gdXNpbmcK
+PiA+IGRybV9jb25uZWN0b3JfZm9yX2VhY2hfcG9zc2libGVfZW5jb2RlcigpIGluIG5vdXZlYXUs
+IHRoYXQgb25lIHJhdGhlcgo+ID4gaW1wb3J0YW50IHBhcnQgb2YgdGhpcyBmdW5jdGlvbiBnb3Qg
+ZHJvcHBlZCBieSBhY2NpZGVudDoKPiA+IAo+ID4gCS8qICAgICAgICAgIFJpZ2h0ICAgdiAgIGhl
+cmUgKi8KPiA+IAlmb3IgKGkgPSAwOyBudl9lbmNvZGVyID0gTlVMTCwgaSA8IERSTV9DT05ORUNU
+T1JfTUFYX0VOQ09ERVI7IGkrKykgewo+ID4gCQlpbnQgaWQgPSBjb25uZWN0b3ItPmVuY29kZXJf
+aWRzW2ldOwo+ID4gCQlpZiAoaWQgPT0gMCkKPiA+IAkJCWJyZWFrOwo+ID4gCj4gPiBTaW5jZSBp
+dCdzIHJhdGhlciBkaWZmaWN1bHQgdG8gbm90aWNlOiB0aGUgY29uZGl0aW9uYWwgaW4gdGhpcyBs
+b29wIGlzCj4gPiBhY3R1YWxseToKPiA+IAo+ID4gCW52X2VuY29kZXIgPSBOVUxMLCBpIDwgRFJN
+X0NPTk5FQ1RPUl9NQVhfRU5DT0RFUgo+ID4gCj4gPiBNZWFuaW5nIHRoYXQgYWxsIGVhcmx5IGJy
+ZWFrcyByZXN1bHQgaW4gbnZfZW5jb2RlciBrZWVwaW5nIGl0J3MgdmFsdWUsCj4gPiBvdGhlcndp
+c2UgbnZfZW5jb2RlciA9IE5VTEwuIFVnaC4KPiA+IAo+ID4gU2luY2UgdGhpcyBnb3QgZHJvcHBl
+ZCwgbm91dmVhdV9jb25uZWN0b3JfZGRjX2RldGVjdCgpIG5vdyByZXR1cm5zIGFuCj4gPiBlbmNv
+ZGVyIGZvciBldmVyeSBzaW5nbGUgY29ubmVjdG9yLCByZWdhcmRsZXNzIG9mIHdoZXRoZXIgb3Ig
+bm90IGl0J3MKPiA+IGRldGVjdGVkOgo+ID4gCj4gPiAgICAgWyAxNzgwLjA1NjE4NV0gbm91dmVh
+dSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yCj4gPiBE
+UC0yCj4gPiAKPiA+IFNvOiBmaXggdGhpcyB0byBlbnN1cmUgd2Ugb25seSByZXR1cm4gYW4gZW5j
+b2RlciBpZiB3ZSBhY3R1YWxseSBmb3VuZAo+ID4gb25lLCBhbmQgY2xlYW4gdXAgdGhlIHJlc3Qg
+b2YgdGhlIGZ1bmN0aW9uIHdoaWxlIHdlJ3JlIGF0IGl0IHNpbmNlIGl0J3MKPiA+IG5lYXJseSBp
+bXBvc3NpYmxlIHRvIHJlYWQgcHJvcGVybHkuCj4gPiAKPiA+IENoYW5nZXMgc2luY2UgdjE6Cj4g
+PiAtIERvbid0IHNraXAgZGRjIHByb2JpbmcgZm9yIExWRFMgaWYgd2UgY2FuJ3Qgc3dpdGNoIERE
+QyB0aHJvdWdoCj4gPiAgIHZnYS1zd2l0Y2hlcm9vLCBqdXN0IGRvIHRoZSBEREMgcHJvYmluZyB3
+aXRob3V0IGNhbGxpbmcKPiA+ICAgdmdhX3N3aXRjaGVyb29fbG9ja19kZGMoKSAtIHNrZWdnc2IK
+PiA+IAo+ID4gU2lnbmVkLW9mZi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KPiA+
+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+ID4g
+Rml4ZXM6IGRkYmE3NjZkZDA3ZSAoImRybS9ub3V2ZWF1OiBVc2UKPiA+IGRybV9jb25uZWN0b3Jf
+Zm9yX2VhY2hfcG9zc2libGVfZW5jb2RlcigpIikKPiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMgfCA0OSArKysrKysrKysrKystLS0tLS0tLS0K
+PiA+ICAxIGZpbGUgY2hhbmdlZCwgMjggaW5zZXJ0aW9ucygrKSwgMjEgZGVsZXRpb25zKC0pCj4g
+PiAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5l
+Y3Rvci5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMK
+PiA+IGluZGV4IDcxYzNiZDhmZjlmOC4uNDYxMTExYWFlZGM0IDEwMDY0NAo+ID4gLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwo+ID4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwo+ID4gQEAgLTQxNCw5ICs0MTQs
+MTAgQEAgbm91dmVhdV9jb25uZWN0b3JfZGRjX2RldGVjdChzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcgo+
+ID4gKmNvbm5lY3RvcikKPiA+ICAJc3RydWN0IG5vdXZlYXVfY29ubmVjdG9yICpudl9jb25uZWN0
+b3IgPSBub3V2ZWF1X2Nvbm5lY3Rvcihjb25uZWN0b3IpOwo+ID4gIAlzdHJ1Y3Qgbm91dmVhdV9k
+cm0gKmRybSA9IG5vdXZlYXVfZHJtKGRldik7Cj4gPiAgCXN0cnVjdCBudmttX2dwaW8gKmdwaW8g
+PSBudnh4X2dwaW8oJmRybS0+Y2xpZW50LmRldmljZSk7Cj4gPiAtCXN0cnVjdCBub3V2ZWF1X2Vu
+Y29kZXIgKm52X2VuY29kZXIgPSBOVUxMOwo+ID4gKwlzdHJ1Y3Qgbm91dmVhdV9lbmNvZGVyICpu
+dl9lbmNvZGVyID0gTlVMTCwgKmZvdW5kID0gTlVMTDsKPiA+ICAJc3RydWN0IGRybV9lbmNvZGVy
+ICplbmNvZGVyOwo+ID4gLQlpbnQgaSwgcGFuZWwgPSAtRU5PREVWOwo+ID4gKwlpbnQgaSwgcmV0
+LCBwYW5lbCA9IC1FTk9ERVY7Cj4gPiArCWJvb2wgc3dpdGNoZXJvb19kZGMgPSBmYWxzZTsKPiA+
+ICAKPiA+ICAJLyogZURQIHBhbmVscyBuZWVkIHBvd2VyaW5nIG9uIGJ5IHVzIChpZiB0aGUgVkJJ
+T1MgZG9lc24ndCBkZWZhdWx0IGl0Cj4gPiAgCSAqIHRvIG9uKSBiZWZvcmUgZG9pbmcgYW55IEFV
+WCBjaGFubmVsIHRyYW5zYWN0aW9ucy4gIExWRFMgcGFuZWwgcG93ZXIKPiA+IEBAIC00MzMsMzcg
+KzQzNCw0MyBAQCBub3V2ZWF1X2Nvbm5lY3Rvcl9kZGNfZGV0ZWN0KHN0cnVjdCBkcm1fY29ubmVj
+dG9yCj4gPiAqY29ubmVjdG9yKQo+ID4gIAlkcm1fY29ubmVjdG9yX2Zvcl9lYWNoX3Bvc3NpYmxl
+X2VuY29kZXIoY29ubmVjdG9yLCBlbmNvZGVyLCBpKSB7Cj4gPiAgCQludl9lbmNvZGVyID0gbm91
+dmVhdV9lbmNvZGVyKGVuY29kZXIpOwo+ID4gIAo+ID4gLQkJaWYgKG52X2VuY29kZXItPmRjYi0+
+dHlwZSA9PSBEQ0JfT1VUUFVUX0RQKSB7Cj4gPiAtCQkJaW50IHJldCA9IG5vdXZlYXVfZHBfZGV0
+ZWN0KG52X2VuY29kZXIpOwo+ID4gKwkJc3dpdGNoIChudl9lbmNvZGVyLT5kY2ItPnR5cGUpIHsK
+PiA+ICsJCWNhc2UgRENCX09VVFBVVF9EUDoKPiA+ICsJCQlyZXQgPSBub3V2ZWF1X2RwX2RldGVj
+dChudl9lbmNvZGVyKTsKPiA+ICAJCQlpZiAocmV0ID09IE5PVVZFQVVfRFBfTVNUKQo+ID4gIAkJ
+CQlyZXR1cm4gTlVMTDsKPiA+IC0JCQlpZiAocmV0ID09IE5PVVZFQVVfRFBfU1NUKQo+ID4gLQkJ
+CQlicmVhazsKPiA+IC0JCX0gZWxzZQo+ID4gLQkJaWYgKCh2Z2Ffc3dpdGNoZXJvb19oYW5kbGVy
+X2ZsYWdzKCkgJgo+ID4gLQkJICAgICBWR0FfU1dJVENIRVJPT19DQU5fU1dJVENIX0REQykgJiYK
+PiA+IC0JCSAgICBudl9lbmNvZGVyLT5kY2ItPnR5cGUgPT0gRENCX09VVFBVVF9MVkRTICYmCj4g
+PiAtCQkgICAgbnZfZW5jb2Rlci0+aTJjKSB7Cj4gPiAtCQkJaW50IHJldDsKPiA+IC0JCQl2Z2Ff
+c3dpdGNoZXJvb19sb2NrX2RkYyhkZXYtPnBkZXYpOwo+ID4gLQkJCXJldCA9IG52a21fcHJvYmVf
+aTJjKG52X2VuY29kZXItPmkyYywgMHg1MCk7Cj4gPiAtCQkJdmdhX3N3aXRjaGVyb29fdW5sb2Nr
+X2RkYyhkZXYtPnBkZXYpOwo+ID4gLQkJCWlmIChyZXQpCj4gPiArCQkJZWxzZSBpZiAocmV0ID09
+IE5PVVZFQVVfRFBfU1NUKQo+ID4gKwkJCQlmb3VuZCA9IG52X2VuY29kZXI7Cj4gPiArCj4gPiAr
+CQkJYnJlYWs7Cj4gPiArCQljYXNlIERDQl9PVVRQVVRfTFZEUzoKPiA+ICsJCQlzd2l0Y2hlcm9v
+X2RkYyA9ICEhKHZnYV9zd2l0Y2hlcm9vX2hhbmRsZXJfZmxhZ3MoKSAmCj4gPiArCQkJCQkgICAg
+VkdBX1NXSVRDSEVST09fQ0FOX1NXSVRDSF9EREMpOwo+ID4gKwkJLyogZmFsbC10aHJvdWdoICov
+Cj4gPiArCQlkZWZhdWx0Ogo+ID4gKwkJCWlmICghbnZfZW5jb2Rlci0+aTJjKQo+ID4gIAkJCQli
+cmVhazsKPiA+IC0JCX0gZWxzZQo+ID4gLQkJaWYgKG52X2VuY29kZXItPmkyYykgewo+ID4gKwo+
+ID4gKwkJCWlmIChzd2l0Y2hlcm9vX2RkYykKPiA+ICsJCQkJdmdhX3N3aXRjaGVyb29fbG9ja19k
+ZGMoZGV2LT5wZGV2KTsKPiA+ICAJCQlpZiAobnZrbV9wcm9iZV9pMmMobnZfZW5jb2Rlci0+aTJj
+LCAweDUwKSkKPiA+IC0JCQkJYnJlYWs7Cj4gPiArCQkJCWZvdW5kID0gbnZfZW5jb2RlcjsKPiA+
+ICsJCQlpZiAoc3dpdGNoZXJvb19kZGMpCj4gPiArCQkJCXZnYV9zd2l0Y2hlcm9vX3VubG9ja19k
+ZGMoZGV2LT5wZGV2KTsKPiA+ICsKPiA+ICsJCQlicmVhazsKPiA+ICAJCX0KPiA+ICsJCWlmIChm
+b3VuZCkKPiA+ICsJCQlicmVhazsKPiAKPiBUaGUgZGlmZiBpcyByYXRoZXIgbWVzc3kgZHVlIHRv
+IHRoZSBjaGFuZ2UgdG8gYSBzd2l0Y2gsIGJ1dCBhZnRlciBzdGFyaW5nCj4gYXQgaXQgZm9yIGEg
+d2hpbGUgaXQgZG9lcyBsb29rIGNvcnJlY3QgdG8gbWUuCj4gCj4gUmV2aWV3ZWQtYnk6IFZpbGxl
+IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gYW5kIHNvcnJ5IGZv
+ciB0aGUgbWVzcy4KTm8gcHJvYmxlbSEgSG9uZXN0bHksIGlmIEkgd2FzIHRoZSBvbmUgd2hvIG1h
+ZGUgdGhvc2UgY2hhbmdlcyBJIGV4cGVjdCBJIHdvdWxkCmhhdmUgYnJva2VuIHRoaXMgc2FtZSBi
+aXQgb2YgY29kZSBhcyB3ZWxsIDpQCgo+IAo+ID4gIAl9Cj4gPiAgCj4gPiAgCS8qIGVEUCBwYW5l
+bCBub3QgZGV0ZWN0ZWQsIHJlc3RvcmUgcGFuZWwgcG93ZXIgR1BJTyB0byBwcmV2aW91cwo+ID4g
+IAkgKiBzdGF0ZSB0byBhdm9pZCBjb25mdXNpbmcgdGhlIFNPUiBmb3Igb3RoZXIgb3V0cHV0IHR5
+cGVzLgo+ID4gIAkgKi8KPiA+IC0JaWYgKCFudl9lbmNvZGVyICYmIHBhbmVsID09IDApCj4gPiAr
+CWlmICghZm91bmQgJiYgcGFuZWwgPT0gMCkKPiA+ICAJCW52a21fZ3Bpb19zZXQoZ3BpbywgMCwg
+RENCX0dQSU9fUEFORUxfUE9XRVIsIDB4ZmYsIHBhbmVsKTsKPiA+ICAKPiA+IC0JcmV0dXJuIG52
+X2VuY29kZXI7Cj4gPiArCXJldHVybiBmb3VuZDsKPiA+ICB9Cj4gPiAgCj4gPiAgc3RhdGljIHN0
+cnVjdCBub3V2ZWF1X2VuY29kZXIgKgo+ID4gLS0gCj4gPiAyLjE3LjEKPiAKPiAKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
+aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
