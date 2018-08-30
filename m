@@ -1,96 +1,150 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v2] drm/nouveau: Fix nouveau_connector_ddc_detect()
-Date: Thu, 30 Aug 2018 13:16:28 -0400
-Message-ID: <20180830171628.23999-1-lyude@redhat.com>
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v2] drm/nouveau: Fix nouveau_connector_ddc_detect()
+Date: Thu, 30 Aug 2018 20:36:03 +0300
+Message-ID: <20180830173603.GP5565@intel.com>
+References: <20180830171628.23999-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20180830171628.23999-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>
+Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-SXQgbG9va3MgbGlrZSB0aGF0IHdoZW4gd2UgbW92ZWQgb3ZlciB0byB1c2luZwpkcm1fY29ubmVj
-dG9yX2Zvcl9lYWNoX3Bvc3NpYmxlX2VuY29kZXIoKSBpbiBub3V2ZWF1LCB0aGF0IG9uZSByYXRo
-ZXIKaW1wb3J0YW50IHBhcnQgb2YgdGhpcyBmdW5jdGlvbiBnb3QgZHJvcHBlZCBieSBhY2NpZGVu
-dDoKCgkvKiAgICAgICAgICBSaWdodCAgIHYgICBoZXJlICovCglmb3IgKGkgPSAwOyBudl9lbmNv
-ZGVyID0gTlVMTCwgaSA8IERSTV9DT05ORUNUT1JfTUFYX0VOQ09ERVI7IGkrKykgewoJCWludCBp
-ZCA9IGNvbm5lY3Rvci0+ZW5jb2Rlcl9pZHNbaV07CgkJaWYgKGlkID09IDApCgkJCWJyZWFrOwoK
-U2luY2UgaXQncyByYXRoZXIgZGlmZmljdWx0IHRvIG5vdGljZTogdGhlIGNvbmRpdGlvbmFsIGlu
-IHRoaXMgbG9vcCBpcwphY3R1YWxseToKCgludl9lbmNvZGVyID0gTlVMTCwgaSA8IERSTV9DT05O
-RUNUT1JfTUFYX0VOQ09ERVIKCk1lYW5pbmcgdGhhdCBhbGwgZWFybHkgYnJlYWtzIHJlc3VsdCBp
-biBudl9lbmNvZGVyIGtlZXBpbmcgaXQncyB2YWx1ZSwKb3RoZXJ3aXNlIG52X2VuY29kZXIgPSBO
-VUxMLiBVZ2guCgpTaW5jZSB0aGlzIGdvdCBkcm9wcGVkLCBub3V2ZWF1X2Nvbm5lY3Rvcl9kZGNf
-ZGV0ZWN0KCkgbm93IHJldHVybnMgYW4KZW5jb2RlciBmb3IgZXZlcnkgc2luZ2xlIGNvbm5lY3Rv
-ciwgcmVnYXJkbGVzcyBvZiB3aGV0aGVyIG9yIG5vdCBpdCdzCmRldGVjdGVkOgoKICAgIFsgMTc4
-MC4wNTYxODVdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEREQyByZXNwb25kZWQsIGJ1dCBu
-byBFRElEIGZvciBEUC0yCgpTbzogZml4IHRoaXMgdG8gZW5zdXJlIHdlIG9ubHkgcmV0dXJuIGFu
-IGVuY29kZXIgaWYgd2UgYWN0dWFsbHkgZm91bmQKb25lLCBhbmQgY2xlYW4gdXAgdGhlIHJlc3Qg
-b2YgdGhlIGZ1bmN0aW9uIHdoaWxlIHdlJ3JlIGF0IGl0IHNpbmNlIGl0J3MKbmVhcmx5IGltcG9z
-c2libGUgdG8gcmVhZCBwcm9wZXJseS4KCkNoYW5nZXMgc2luY2UgdjE6Ci0gRG9uJ3Qgc2tpcCBk
-ZGMgcHJvYmluZyBmb3IgTFZEUyBpZiB3ZSBjYW4ndCBzd2l0Y2ggRERDIHRocm91Z2gKICB2Z2Et
-c3dpdGNoZXJvbywganVzdCBkbyB0aGUgRERDIHByb2Jpbmcgd2l0aG91dCBjYWxsaW5nCiAgdmdh
-X3N3aXRjaGVyb29fbG9ja19kZGMoKSAtIHNrZWdnc2IKClNpZ25lZC1vZmYtYnk6IEx5dWRlIFBh
-dWwgPGx5dWRlQHJlZGhhdC5jb20+CkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFA
-bGludXguaW50ZWwuY29tPgpGaXhlczogZGRiYTc2NmRkMDdlICgiZHJtL25vdXZlYXU6IFVzZSBk
-cm1fY29ubmVjdG9yX2Zvcl9lYWNoX3Bvc3NpYmxlX2VuY29kZXIoKSIpCi0tLQogZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYyB8IDQ5ICsrKysrKysrKysrKy0tLS0t
-LS0tLQogMSBmaWxlIGNoYW5nZWQsIDI4IGluc2VydGlvbnMoKyksIDIxIGRlbGV0aW9ucygtKQoK
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jCmluZGV4IDcxYzNi
-ZDhmZjlmOC4uNDYxMTExYWFlZGM0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X2Nvbm5lY3Rvci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfY29ubmVjdG9yLmMKQEAgLTQxNCw5ICs0MTQsMTAgQEAgbm91dmVhdV9jb25uZWN0b3JfZGRj
-X2RldGVjdChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yKQogCXN0cnVjdCBub3V2ZWF1
-X2Nvbm5lY3RvciAqbnZfY29ubmVjdG9yID0gbm91dmVhdV9jb25uZWN0b3IoY29ubmVjdG9yKTsK
-IAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKGRldik7CiAJc3RydWN0IG52
-a21fZ3BpbyAqZ3BpbyA9IG52eHhfZ3BpbygmZHJtLT5jbGllbnQuZGV2aWNlKTsKLQlzdHJ1Y3Qg
-bm91dmVhdV9lbmNvZGVyICpudl9lbmNvZGVyID0gTlVMTDsKKwlzdHJ1Y3Qgbm91dmVhdV9lbmNv
-ZGVyICpudl9lbmNvZGVyID0gTlVMTCwgKmZvdW5kID0gTlVMTDsKIAlzdHJ1Y3QgZHJtX2VuY29k
-ZXIgKmVuY29kZXI7Ci0JaW50IGksIHBhbmVsID0gLUVOT0RFVjsKKwlpbnQgaSwgcmV0LCBwYW5l
-bCA9IC1FTk9ERVY7CisJYm9vbCBzd2l0Y2hlcm9vX2RkYyA9IGZhbHNlOwogCiAJLyogZURQIHBh
-bmVscyBuZWVkIHBvd2VyaW5nIG9uIGJ5IHVzIChpZiB0aGUgVkJJT1MgZG9lc24ndCBkZWZhdWx0
-IGl0CiAJICogdG8gb24pIGJlZm9yZSBkb2luZyBhbnkgQVVYIGNoYW5uZWwgdHJhbnNhY3Rpb25z
-LiAgTFZEUyBwYW5lbCBwb3dlcgpAQCAtNDMzLDM3ICs0MzQsNDMgQEAgbm91dmVhdV9jb25uZWN0
-b3JfZGRjX2RldGVjdChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yKQogCWRybV9jb25u
-ZWN0b3JfZm9yX2VhY2hfcG9zc2libGVfZW5jb2Rlcihjb25uZWN0b3IsIGVuY29kZXIsIGkpIHsK
-IAkJbnZfZW5jb2RlciA9IG5vdXZlYXVfZW5jb2RlcihlbmNvZGVyKTsKIAotCQlpZiAobnZfZW5j
-b2Rlci0+ZGNiLT50eXBlID09IERDQl9PVVRQVVRfRFApIHsKLQkJCWludCByZXQgPSBub3V2ZWF1
-X2RwX2RldGVjdChudl9lbmNvZGVyKTsKKwkJc3dpdGNoIChudl9lbmNvZGVyLT5kY2ItPnR5cGUp
-IHsKKwkJY2FzZSBEQ0JfT1VUUFVUX0RQOgorCQkJcmV0ID0gbm91dmVhdV9kcF9kZXRlY3QobnZf
-ZW5jb2Rlcik7CiAJCQlpZiAocmV0ID09IE5PVVZFQVVfRFBfTVNUKQogCQkJCXJldHVybiBOVUxM
-OwotCQkJaWYgKHJldCA9PSBOT1VWRUFVX0RQX1NTVCkKLQkJCQlicmVhazsKLQkJfSBlbHNlCi0J
-CWlmICgodmdhX3N3aXRjaGVyb29faGFuZGxlcl9mbGFncygpICYKLQkJICAgICBWR0FfU1dJVENI
-RVJPT19DQU5fU1dJVENIX0REQykgJiYKLQkJICAgIG52X2VuY29kZXItPmRjYi0+dHlwZSA9PSBE
-Q0JfT1VUUFVUX0xWRFMgJiYKLQkJICAgIG52X2VuY29kZXItPmkyYykgewotCQkJaW50IHJldDsK
-LQkJCXZnYV9zd2l0Y2hlcm9vX2xvY2tfZGRjKGRldi0+cGRldik7Ci0JCQlyZXQgPSBudmttX3By
-b2JlX2kyYyhudl9lbmNvZGVyLT5pMmMsIDB4NTApOwotCQkJdmdhX3N3aXRjaGVyb29fdW5sb2Nr
-X2RkYyhkZXYtPnBkZXYpOwotCQkJaWYgKHJldCkKKwkJCWVsc2UgaWYgKHJldCA9PSBOT1VWRUFV
-X0RQX1NTVCkKKwkJCQlmb3VuZCA9IG52X2VuY29kZXI7CisKKwkJCWJyZWFrOworCQljYXNlIERD
-Ql9PVVRQVVRfTFZEUzoKKwkJCXN3aXRjaGVyb29fZGRjID0gISEodmdhX3N3aXRjaGVyb29faGFu
-ZGxlcl9mbGFncygpICYKKwkJCQkJICAgIFZHQV9TV0lUQ0hFUk9PX0NBTl9TV0lUQ0hfRERDKTsK
-KwkJLyogZmFsbC10aHJvdWdoICovCisJCWRlZmF1bHQ6CisJCQlpZiAoIW52X2VuY29kZXItPmky
-YykKIAkJCQlicmVhazsKLQkJfSBlbHNlCi0JCWlmIChudl9lbmNvZGVyLT5pMmMpIHsKKworCQkJ
-aWYgKHN3aXRjaGVyb29fZGRjKQorCQkJCXZnYV9zd2l0Y2hlcm9vX2xvY2tfZGRjKGRldi0+cGRl
-dik7CiAJCQlpZiAobnZrbV9wcm9iZV9pMmMobnZfZW5jb2Rlci0+aTJjLCAweDUwKSkKLQkJCQli
-cmVhazsKKwkJCQlmb3VuZCA9IG52X2VuY29kZXI7CisJCQlpZiAoc3dpdGNoZXJvb19kZGMpCisJ
-CQkJdmdhX3N3aXRjaGVyb29fdW5sb2NrX2RkYyhkZXYtPnBkZXYpOworCisJCQlicmVhazsKIAkJ
-fQorCQlpZiAoZm91bmQpCisJCQlicmVhazsKIAl9CiAKIAkvKiBlRFAgcGFuZWwgbm90IGRldGVj
-dGVkLCByZXN0b3JlIHBhbmVsIHBvd2VyIEdQSU8gdG8gcHJldmlvdXMKIAkgKiBzdGF0ZSB0byBh
-dm9pZCBjb25mdXNpbmcgdGhlIFNPUiBmb3Igb3RoZXIgb3V0cHV0IHR5cGVzLgogCSAqLwotCWlm
-ICghbnZfZW5jb2RlciAmJiBwYW5lbCA9PSAwKQorCWlmICghZm91bmQgJiYgcGFuZWwgPT0gMCkK
-IAkJbnZrbV9ncGlvX3NldChncGlvLCAwLCBEQ0JfR1BJT19QQU5FTF9QT1dFUiwgMHhmZiwgcGFu
-ZWwpOwogCi0JcmV0dXJuIG52X2VuY29kZXI7CisJcmV0dXJuIGZvdW5kOwogfQogCiBzdGF0aWMg
-c3RydWN0IG5vdXZlYXVfZW5jb2RlciAqCi0tIAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQo=
+On Thu, Aug 30, 2018 at 01:16:28PM -0400, Lyude Paul wrote:
+> It looks like that when we moved over to using
+> drm_connector_for_each_possible_encoder() in nouveau, that one rather
+> important part of this function got dropped by accident:
+> 
+> 	/*          Right   v   here */
+> 	for (i = 0; nv_encoder = NULL, i < DRM_CONNECTOR_MAX_ENCODER; i++) {
+> 		int id = connector->encoder_ids[i];
+> 		if (id == 0)
+> 			break;
+> 
+> Since it's rather difficult to notice: the conditional in this loop is
+> actually:
+> 
+> 	nv_encoder = NULL, i < DRM_CONNECTOR_MAX_ENCODER
+> 
+> Meaning that all early breaks result in nv_encoder keeping it's value,
+> otherwise nv_encoder = NULL. Ugh.
+> 
+> Since this got dropped, nouveau_connector_ddc_detect() now returns an
+> encoder for every single connector, regardless of whether or not it's
+> detected:
+> 
+>     [ 1780.056185] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP-2
+> 
+> So: fix this to ensure we only return an encoder if we actually found
+> one, and clean up the rest of the function while we're at it since it's
+> nearly impossible to read properly.
+> 
+> Changes since v1:
+> - Don't skip ddc probing for LVDS if we can't switch DDC through
+>   vga-switcheroo, just do the DDC probing without calling
+>   vga_switcheroo_lock_ddc() - skeggsb
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Fixes: ddba766dd07e ("drm/nouveau: Use drm_connector_for_each_possible_encoder()")
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_connector.c | 49 ++++++++++++---------
+>  1 file changed, 28 insertions(+), 21 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+> index 71c3bd8ff9f8..461111aaedc4 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+> @@ -414,9 +414,10 @@ nouveau_connector_ddc_detect(struct drm_connector *connector)
+>  	struct nouveau_connector *nv_connector = nouveau_connector(connector);
+>  	struct nouveau_drm *drm = nouveau_drm(dev);
+>  	struct nvkm_gpio *gpio = nvxx_gpio(&drm->client.device);
+> -	struct nouveau_encoder *nv_encoder = NULL;
+> +	struct nouveau_encoder *nv_encoder = NULL, *found = NULL;
+>  	struct drm_encoder *encoder;
+> -	int i, panel = -ENODEV;
+> +	int i, ret, panel = -ENODEV;
+> +	bool switcheroo_ddc = false;
+>  
+>  	/* eDP panels need powering on by us (if the VBIOS doesn't default it
+>  	 * to on) before doing any AUX channel transactions.  LVDS panel power
+> @@ -433,37 +434,43 @@ nouveau_connector_ddc_detect(struct drm_connector *connector)
+>  	drm_connector_for_each_possible_encoder(connector, encoder, i) {
+>  		nv_encoder = nouveau_encoder(encoder);
+>  
+> -		if (nv_encoder->dcb->type == DCB_OUTPUT_DP) {
+> -			int ret = nouveau_dp_detect(nv_encoder);
+> +		switch (nv_encoder->dcb->type) {
+> +		case DCB_OUTPUT_DP:
+> +			ret = nouveau_dp_detect(nv_encoder);
+>  			if (ret == NOUVEAU_DP_MST)
+>  				return NULL;
+> -			if (ret == NOUVEAU_DP_SST)
+> -				break;
+> -		} else
+> -		if ((vga_switcheroo_handler_flags() &
+> -		     VGA_SWITCHEROO_CAN_SWITCH_DDC) &&
+> -		    nv_encoder->dcb->type == DCB_OUTPUT_LVDS &&
+> -		    nv_encoder->i2c) {
+> -			int ret;
+> -			vga_switcheroo_lock_ddc(dev->pdev);
+> -			ret = nvkm_probe_i2c(nv_encoder->i2c, 0x50);
+> -			vga_switcheroo_unlock_ddc(dev->pdev);
+> -			if (ret)
+> +			else if (ret == NOUVEAU_DP_SST)
+> +				found = nv_encoder;
+> +
+> +			break;
+> +		case DCB_OUTPUT_LVDS:
+> +			switcheroo_ddc = !!(vga_switcheroo_handler_flags() &
+> +					    VGA_SWITCHEROO_CAN_SWITCH_DDC);
+> +		/* fall-through */
+> +		default:
+> +			if (!nv_encoder->i2c)
+>  				break;
+> -		} else
+> -		if (nv_encoder->i2c) {
+> +
+> +			if (switcheroo_ddc)
+> +				vga_switcheroo_lock_ddc(dev->pdev);
+>  			if (nvkm_probe_i2c(nv_encoder->i2c, 0x50))
+> -				break;
+> +				found = nv_encoder;
+> +			if (switcheroo_ddc)
+> +				vga_switcheroo_unlock_ddc(dev->pdev);
+> +
+> +			break;
+>  		}
+> +		if (found)
+> +			break;
+
+The diff is rather messy due to the change to a switch, but after staring
+at it for a while it does look correct to me.
+
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+and sorry for the mess.
+
+>  	}
+>  
+>  	/* eDP panel not detected, restore panel power GPIO to previous
+>  	 * state to avoid confusing the SOR for other output types.
+>  	 */
+> -	if (!nv_encoder && panel == 0)
+> +	if (!found && panel == 0)
+>  		nvkm_gpio_set(gpio, 0, DCB_GPIO_PANEL_POWER, 0xff, panel);
+>  
+> -	return nv_encoder;
+> +	return found;
+>  }
+>  
+>  static struct nouveau_encoder *
+> -- 
+> 2.17.1
+
+-- 
+Ville Syrjälä
+Intel
