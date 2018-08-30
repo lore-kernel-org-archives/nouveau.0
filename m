@@ -1,200 +1,95 @@
-From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Subject: Re: [PATCH 0/2] Provide init/release functions for struct
  ttm_bo_global
-Date: Thu, 30 Aug 2018 08:34:57 +0200
-Message-ID: <5e815e50-d0be-5069-cf1d-aa881a18f094@suse.de>
+Date: Thu, 30 Aug 2018 08:45:05 +0200
+Message-ID: <73eea61d-e913-4f62-69b5-c4f482724236@amd.com>
 References: <20180813102443.12662-1-tzimmermann@suse.de>
  <b77c649e-4c5d-a19d-8c46-d91c69859293@amd.com>
+ <5e815e50-d0be-5069-cf1d-aa881a18f094@suse.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0177679977=="
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <b77c649e-4c5d-a19d-8c46-d91c69859293-5C7GfCeVMHo@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, ray.huang-5C7GfCeVMHo@public.gmane.org, Jerry.Zhang-5C7GfCeVMHo@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David1.Zhou-5C7GfCeVMHo@public.gmane.org, thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, syeh-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, puck.chen-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, z.liuxinliang-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org, zourongrong-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, kong.kongxinwei-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org, linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <5e815e50-d0be-5069-cf1d-aa881a18f094@suse.de>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>, ray.huang@amd.com, Jerry.Zhang@amd.com, dri-devel@lists.freedesktop.org
+Cc: thellstrom@vmware.com, nouveau@lists.freedesktop.org, airlied@linux.ie, puck.chen@hisilicon.com, amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org, z.liuxinliang@hisilicon.com, zourongrong@gmail.com, kong.kongxinwei@hisilicon.com, linux-graphics-maintainer@vmware.com, kraxel@redhat.com, gregkh@linuxfoundation.org, alexander.deucher@amd.com, bskeggs@redhat.com
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0177679977==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="94YPPfpkXJ5UewInxJbC6xO7okH09vx6w"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---94YPPfpkXJ5UewInxJbC6xO7okH09vx6w
-Content-Type: multipart/mixed; boundary="JQzy3oOasLP7x0qaayQXM6bVeUJB9HA9Z";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>,
- ray.huang-5C7GfCeVMHo@public.gmane.org, Jerry.Zhang-5C7GfCeVMHo@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: alexander.deucher-5C7GfCeVMHo@public.gmane.org, David1.Zhou-5C7GfCeVMHo@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org,
- kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, z.liuxinliang-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org, zourongrong-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org,
- kong.kongxinwei-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org, puck.chen-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org,
- linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, syeh-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org,
- thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org,
- amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org,
- nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Message-ID: <5e815e50-d0be-5069-cf1d-aa881a18f094-l3A5Bk7waGM@public.gmane.org>
-Subject: Re: [PATCH 0/2] Provide init/release functions for struct
- ttm_bo_global
-References: <20180813102443.12662-1-tzimmermann-l3A5Bk7waGM@public.gmane.org>
- <b77c649e-4c5d-a19d-8c46-d91c69859293-5C7GfCeVMHo@public.gmane.org>
-In-Reply-To: <b77c649e-4c5d-a19d-8c46-d91c69859293-5C7GfCeVMHo@public.gmane.org>
-
---JQzy3oOasLP7x0qaayQXM6bVeUJB9HA9Z
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-Hi Christian,
-
-I just wanted to ask if there's something else required to get this
-patch set reviewed and landed.
-
-On top of these two patches, I have a patch set that replaces the
-driver-specific global-bo-and-mem combos with a single struct ttm_global
-structure. It further merges struct drm_global into struct ttm_global
-and implements it such that drivers can either share the global memory
-or create their private instance. It's also a step towards drm device
-hotplug, which someone just asked.
-
-Best regards
-Thomas
-
-
-Am 13.08.2018 um 12:33 schrieb Christian K=C3=B6nig:
-> Yes, please! I had it on my TODO list to clean that up for an eternity.=
-
->=20
-> Actually I never understood why that should be driver work to setup TTM=
-?
->=20
-> I mean can't we just have a module_init/module_exit for TTM?
->=20
-> Thanks,
-> Christian.
->=20
-> Am 13.08.2018 um 12:24 schrieb Thomas Zimmermann:
->> TTM uses global memory and BO for backing graphics buffers. These are
->> represented by struct ttm_mem_global and struct ttm_bo_global.
->>
->> Currently, struct ttm_bo_global can only be initialized and released
->> through
->> struct ttm_bo_global_ref. This is a workaround for passing an instance=
- of
->> ttm_mem_global to the BO global initialization code.
->>
->> The use of struct ttm_bo_global_ref makes driver code unnecessary hard=
- to
->> understand. At the same time drivers can use any combination of memory=
-
->> and
->> BO for initializing the global instances. This can result in subtle bu=
-gs
->> when the order of initializing and releasing drivers changes.
->>
->> As a first step for resolving these problems, the provided patch set
->> separates initialization and release of struct ttm_bo_global from
->> struct ttm_bo_global_ref.
->>
->> The first patch only renames ttm_bo_global_{init/release}. Hopefully t=
-his
->> change can be applied at once for all drivers.
->>
->> Future directions: All TTM-based drivers follow the same pattern for
->> setting
->> up the TTM. In a follow-up patch, this code can be moved into a single=
-
->> place
->> and shared among drivers.
->>
->> Thomas Zimmermann (2):
->> =C2=A0=C2=A0 drm/ttm: Rename ttm_bo_global_{init,release}() to
->> =C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_global_ref_*()
->> =C2=A0=C2=A0 drm/ttm: Provide ttm_bo_global_{init/release}() for struc=
-t
->> =C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_global
->>
->> =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=
- |=C2=A0 4 +-
->> =C2=A0 drivers/gpu/drm/ast/ast_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
->> =C2=A0 drivers/gpu/drm/bochs/bochs_mm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
->> =C2=A0 drivers/gpu/drm/cirrus/cirrus_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
->> =C2=A0 drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c |=C2=A0 4 +-
->> =C2=A0 drivers/gpu/drm/mgag200/mgag200_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 4 +-
->> =C2=A0 drivers/gpu/drm/nouveau/nouveau_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 4 +-
->> =C2=A0 drivers/gpu/drm/qxl/qxl_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
->> =C2=A0 drivers/gpu/drm/radeon/radeon_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
->> =C2=A0 drivers/gpu/drm/ttm/ttm_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 12 ++---
->> =C2=A0 drivers/gpu/drm/virtio/virtgpu_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 4 +-
->> =C2=A0 drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 4 +-
->> =C2=A0 drivers/staging/vboxvideo/vbox_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 4 +-
->> =C2=A0 include/drm/ttm/ttm_bo_driver.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 53 ++++++++++++++++-----
->> =C2=A0 14 files changed, 70 insertions(+), 43 deletions(-)
->>
->> --=20
->> 2.18.0
->>
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Linux GmbH, Maxfeldstr. 5, D-90409 N=C3=BCrnberg
-Tel: +49-911-74053-0; Fax: +49-911-7417755;  https://www.suse.com/
-SUSE Linux GmbH, GF: Felix Imend=C3=B6rffer, Jane Smithard,
-Graham Norton, HRB 21284 (AG N=C3=BCrnberg)
-
-
---JQzy3oOasLP7x0qaayQXM6bVeUJB9HA9Z--
-
---94YPPfpkXJ5UewInxJbC6xO7okH09vx6w
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAluHkBEACgkQaA3BHVML
-eiOOugf/ahb9OWLyvgBBVPACsOzdOaifWA0vbyT7JEJDcTITOx6Ya4lZvX0CaNPE
-apQUyU+hYkAbb4L2vqjeWsJNrhTzVd7uBco4iEdqVA2Q4KBADeqLhdK+t3h+9dN0
-1vBSfxpkoF6IVMcsImuYZlsYiYKEW90eSZwCoWQg4xbpu1pDR1/ZEChs4oj8q9vu
-jBgq64FAxcV9RNodS809GKbTzZj8DDPuRkXdpflVTom9ErSIfhV8fBVCt5a0yRTP
-p0zASsBQ7DObKwPX0I43GqK9p9ZdLo409faBX26jPRf5oRp8je/Sgh2fqDF7nD5Y
-ejAH6dKiqq48952rNshoeFDF03CrMQ==
-=BQPl
------END PGP SIGNATURE-----
-
---94YPPfpkXJ5UewInxJbC6xO7okH09vx6w--
-
---===============0177679977==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
-YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
-
---===============0177679977==--
+SGkgVGhvbWFzLAoKQW0gMzAuMDguMjAxOCB1bSAwODozNCBzY2hyaWViIFRob21hcyBaaW1tZXJt
+YW5uOgo+IEhpIENocmlzdGlhbiwKPgo+IEkganVzdCB3YW50ZWQgdG8gYXNrIGlmIHRoZXJlJ3Mg
+c29tZXRoaW5nIGVsc2UgcmVxdWlyZWQgdG8gZ2V0IHRoaXMKPiBwYXRjaCBzZXQgcmV2aWV3ZWQg
+YW5kIGxhbmRlZC4KCkkganVzdCBuZWVkIHRvIGZpbmQgc29tZSB0aW1lIHRvIHJldmlldyB0aGVt
+LgoKPiBPbiB0b3Agb2YgdGhlc2UgdHdvIHBhdGNoZXMsIEkgaGF2ZSBhIHBhdGNoIHNldCB0aGF0
+IHJlcGxhY2VzIHRoZQo+IGRyaXZlci1zcGVjaWZpYyBnbG9iYWwtYm8tYW5kLW1lbSBjb21ib3Mg
+d2l0aCBhIHNpbmdsZSBzdHJ1Y3QgdHRtX2dsb2JhbAo+IHN0cnVjdHVyZS4gSXQgZnVydGhlciBt
+ZXJnZXMgc3RydWN0IGRybV9nbG9iYWwgaW50byBzdHJ1Y3QgdHRtX2dsb2JhbAo+IGFuZCBpbXBs
+ZW1lbnRzIGl0IHN1Y2ggdGhhdCBkcml2ZXJzIGNhbiBlaXRoZXIgc2hhcmUgdGhlIGdsb2JhbCBt
+ZW1vcnkKClRoYXQgc291bmRzIGdvb2QuCgo+IG9yIGNyZWF0ZSB0aGVpciBwcml2YXRlIGluc3Rh
+bmNlLgoKVGhhdCBkb2Vzbid0IHNvdW5kcyBnb29kLiBEcml2ZXJzIHNob3VsZCBub3QgYmUgYWxs
+b3dlZCB0byBjcmVhdGUgdGhlaXIgCm93biBwcml2YXRlIGluc3RhbmNlIG9mIHRoYXQuCgpUaGFu
+a3MgZm9yIGRvaW5nIHRoaXMsCkNocmlzdGlhbi4KCj4gICBJdCdzIGFsc28gYSBzdGVwIHRvd2Fy
+ZHMgZHJtIGRldmljZQo+IGhvdHBsdWcsIHdoaWNoIHNvbWVvbmUganVzdCBhc2tlZC4KPgo+IEJl
+c3QgcmVnYXJkcwo+IFRob21hcwo+Cj4KPiBBbSAxMy4wOC4yMDE4IHVtIDEyOjMzIHNjaHJpZWIg
+Q2hyaXN0aWFuIEvDtm5pZzoKPj4gWWVzLCBwbGVhc2UhIEkgaGFkIGl0IG9uIG15IFRPRE8gbGlz
+dCB0byBjbGVhbiB0aGF0IHVwIGZvciBhbiBldGVybml0eS4KPj4KPj4gQWN0dWFsbHkgSSBuZXZl
+ciB1bmRlcnN0b29kIHdoeSB0aGF0IHNob3VsZCBiZSBkcml2ZXIgd29yayB0byBzZXR1cCBUVE0/
+Cj4+Cj4+IEkgbWVhbiBjYW4ndCB3ZSBqdXN0IGhhdmUgYSBtb2R1bGVfaW5pdC9tb2R1bGVfZXhp
+dCBmb3IgVFRNPwo+Pgo+PiBUaGFua3MsCj4+IENocmlzdGlhbi4KPj4KPj4gQW0gMTMuMDguMjAx
+OCB1bSAxMjoyNCBzY2hyaWViIFRob21hcyBaaW1tZXJtYW5uOgo+Pj4gVFRNIHVzZXMgZ2xvYmFs
+IG1lbW9yeSBhbmQgQk8gZm9yIGJhY2tpbmcgZ3JhcGhpY3MgYnVmZmVycy4gVGhlc2UgYXJlCj4+
+PiByZXByZXNlbnRlZCBieSBzdHJ1Y3QgdHRtX21lbV9nbG9iYWwgYW5kIHN0cnVjdCB0dG1fYm9f
+Z2xvYmFsLgo+Pj4KPj4+IEN1cnJlbnRseSwgc3RydWN0IHR0bV9ib19nbG9iYWwgY2FuIG9ubHkg
+YmUgaW5pdGlhbGl6ZWQgYW5kIHJlbGVhc2VkCj4+PiB0aHJvdWdoCj4+PiBzdHJ1Y3QgdHRtX2Jv
+X2dsb2JhbF9yZWYuIFRoaXMgaXMgYSB3b3JrYXJvdW5kIGZvciBwYXNzaW5nIGFuIGluc3RhbmNl
+IG9mCj4+PiB0dG1fbWVtX2dsb2JhbCB0byB0aGUgQk8gZ2xvYmFsIGluaXRpYWxpemF0aW9uIGNv
+ZGUuCj4+Pgo+Pj4gVGhlIHVzZSBvZiBzdHJ1Y3QgdHRtX2JvX2dsb2JhbF9yZWYgbWFrZXMgZHJp
+dmVyIGNvZGUgdW5uZWNlc3NhcnkgaGFyZCB0bwo+Pj4gdW5kZXJzdGFuZC4gQXQgdGhlIHNhbWUg
+dGltZSBkcml2ZXJzIGNhbiB1c2UgYW55IGNvbWJpbmF0aW9uIG9mIG1lbW9yeQo+Pj4gYW5kCj4+
+PiBCTyBmb3IgaW5pdGlhbGl6aW5nIHRoZSBnbG9iYWwgaW5zdGFuY2VzLiBUaGlzIGNhbiByZXN1
+bHQgaW4gc3VidGxlIGJ1Z3MKPj4+IHdoZW4gdGhlIG9yZGVyIG9mIGluaXRpYWxpemluZyBhbmQg
+cmVsZWFzaW5nIGRyaXZlcnMgY2hhbmdlcy4KPj4+Cj4+PiBBcyBhIGZpcnN0IHN0ZXAgZm9yIHJl
+c29sdmluZyB0aGVzZSBwcm9ibGVtcywgdGhlIHByb3ZpZGVkIHBhdGNoIHNldAo+Pj4gc2VwYXJh
+dGVzIGluaXRpYWxpemF0aW9uIGFuZCByZWxlYXNlIG9mIHN0cnVjdCB0dG1fYm9fZ2xvYmFsIGZy
+b20KPj4+IHN0cnVjdCB0dG1fYm9fZ2xvYmFsX3JlZi4KPj4+Cj4+PiBUaGUgZmlyc3QgcGF0Y2gg
+b25seSByZW5hbWVzIHR0bV9ib19nbG9iYWxfe2luaXQvcmVsZWFzZX0uIEhvcGVmdWxseSB0aGlz
+Cj4+PiBjaGFuZ2UgY2FuIGJlIGFwcGxpZWQgYXQgb25jZSBmb3IgYWxsIGRyaXZlcnMuCj4+Pgo+
+Pj4gRnV0dXJlIGRpcmVjdGlvbnM6IEFsbCBUVE0tYmFzZWQgZHJpdmVycyBmb2xsb3cgdGhlIHNh
+bWUgcGF0dGVybiBmb3IKPj4+IHNldHRpbmcKPj4+IHVwIHRoZSBUVE0uIEluIGEgZm9sbG93LXVw
+IHBhdGNoLCB0aGlzIGNvZGUgY2FuIGJlIG1vdmVkIGludG8gYSBzaW5nbGUKPj4+IHBsYWNlCj4+
+PiBhbmQgc2hhcmVkIGFtb25nIGRyaXZlcnMuCj4+Pgo+Pj4gVGhvbWFzIFppbW1lcm1hbm4gKDIp
+Ogo+Pj4gIMKgwqAgZHJtL3R0bTogUmVuYW1lIHR0bV9ib19nbG9iYWxfe2luaXQscmVsZWFzZX0o
+KSB0bwo+Pj4gIMKgwqDCoMKgIHR0bV9ib19nbG9iYWxfcmVmXyooKQo+Pj4gIMKgwqAgZHJtL3R0
+bTogUHJvdmlkZSB0dG1fYm9fZ2xvYmFsX3tpbml0L3JlbGVhc2V9KCkgZm9yIHN0cnVjdAo+Pj4g
+IMKgwqDCoMKgIHR0bV9ib19nbG9iYWwKPj4+Cj4+PiAgwqAgZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvYW1kZ3B1X3R0bS5jwqDCoMKgwqAgfMKgIDQgKy0KPj4+ICDCoCBkcml2ZXJzL2dwdS9k
+cm0vYXN0L2FzdF90dG0uY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDQgKy0KPj4+
+ICDCoCBkcml2ZXJzL2dwdS9kcm0vYm9jaHMvYm9jaHNfbW0uY8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgfMKgIDQgKy0KPj4+ICDCoCBkcml2ZXJzL2dwdS9kcm0vY2lycnVzL2NpcnJ1c190dG0uY8Kg
+wqDCoMKgwqDCoMKgwqAgfMKgIDQgKy0KPj4+ICDCoCBkcml2ZXJzL2dwdS9kcm0vaGlzaWxpY29u
+L2hpYm1jL2hpYm1jX3R0bS5jIHzCoCA0ICstCj4+PiAgwqAgZHJpdmVycy9ncHUvZHJtL21nYWcy
+MDAvbWdhZzIwMF90dG0uY8KgwqDCoMKgwqDCoCB8wqAgNCArLQo+Pj4gIMKgIGRyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L25vdXZlYXVfdHRtLmPCoMKgwqDCoMKgwqAgfMKgIDQgKy0KPj4+ICDCoCBk
+cml2ZXJzL2dwdS9kcm0vcXhsL3F4bF90dG0uY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+fMKgIDQgKy0KPj4+ICDCoCBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl90dG0uY8KgwqDC
+oMKgwqDCoMKgwqAgfMKgIDQgKy0KPj4+ICDCoCBkcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5j
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwgMTIgKystLS0KPj4+ICDCoCBkcml2ZXJz
+L2dwdS9kcm0vdmlydGlvL3ZpcnRncHVfdHRtLmPCoMKgwqDCoMKgwqDCoCB8wqAgNCArLQo+Pj4g
+IMKgIGRyaXZlcnMvZ3B1L2RybS92bXdnZngvdm13Z2Z4X3R0bV9nbHVlLmPCoMKgwqAgfMKgIDQg
+Ky0KPj4+ICDCoCBkcml2ZXJzL3N0YWdpbmcvdmJveHZpZGVvL3Zib3hfdHRtLmPCoMKgwqDCoMKg
+wqDCoCB8wqAgNCArLQo+Pj4gIMKgIGluY2x1ZGUvZHJtL3R0bS90dG1fYm9fZHJpdmVyLmjCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgfCA1MyArKysrKysrKysrKysrKysrLS0tLS0KPj4+ICDCoCAx
+NCBmaWxlcyBjaGFuZ2VkLCA3MCBpbnNlcnRpb25zKCspLCA0MyBkZWxldGlvbnMoLSkKPj4+Cj4+
+PiAtLSAKPj4+IDIuMTguMAo+Pj4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2RyaS1kZXZlbAo=
