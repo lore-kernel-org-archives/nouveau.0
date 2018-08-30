@@ -1,653 +1,125 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH RESEND v3 3/6] drm/nouveau: Move backlight device into nouveau_connector
-Date: Wed, 29 Aug 2018 18:28:29 -0400
-Message-ID: <20180829222834.15590-4-lyude@redhat.com>
-References: <20180829222834.15590-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180829222834.15590-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: Rewriting Intel PCI bridge prefetch base address bits
+ solves nvidia graphics issues
+Date: Thu, 30 Aug 2018 02:13:11 +0200
+Message-ID: <CACO55tsY8id344Zs+MeHV7fM0qD7fcU6LZ1VZ=87SGGm7B7jsg@mail.gmail.com>
+References: <CAD8Lp46Y2eOR7WE28xToUL8s-aYiqPa0nS=1GSD0AxkddXq6+A@mail.gmail.com>
+ <20180824154212.GB8601@al>
+ <CAD8Lp45D6=pqsgr_tXS08pE0dbG1XhcwnDB3mGZQ=P3ETxywzw@mail.gmail.com>
+ <CACO55tsoOYfrA2Wqf38JA6n83yz8YGxzvfLun+kOisWN6pjb8A@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CACO55tsoOYfrA2Wqf38JA6n83yz8YGxzvfLun+kOisWN6pjb8A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Endless Linux Upstreaming Team <linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Currently module unloading is broken in nouveau due to a rather annoying
-race condition resulting from nouveau_backlight.c having gone a bit
-stale over time:
-
-[ 1960.791143] ==================================================================
-[ 1960.791394] BUG: KASAN: use-after-free in nouveau_backlight_exit+0x112/0x150 [nouveau]
-[ 1960.791460] Read of size 4 at addr ffff88075accf350 by task zsh/11185
-[ 1960.791521]
-[ 1960.791545] CPU: 7 PID: 11185 Comm: zsh Kdump: loaded Tainted: G           O      4.18.0Lyude-Test+ #4
-[ 1960.791580] Hardware name: LENOVO 20EQS64N0B/20EQS64N0B, BIOS N1EET79W (1.52 ) 07/13/2018
-[ 1960.791628] Call Trace:
-[ 1960.791680]  dump_stack+0xa4/0xfd
-[ 1960.791721]  print_address_description+0x71/0x239
-[ 1960.791833]  ? nouveau_backlight_exit+0x112/0x150 [nouveau]
-[ 1960.791877]  kasan_report.cold.6+0x242/0x2fe
-[ 1960.791919]  __asan_report_load4_noabort+0x19/0x20
-[ 1960.792012]  nouveau_backlight_exit+0x112/0x150 [nouveau]
-[ 1960.792081]  nouveau_display_destroy+0x76/0x150 [nouveau]
-[ 1960.792150]  nouveau_drm_device_fini+0xb7/0x190 [nouveau]
-[ 1960.792265]  nouveau_drm_device_remove+0x14b/0x1d0 [nouveau]
-[ 1960.792347]  ? nouveau_cli_work_queue+0x2e0/0x2e0 [nouveau]
-[ 1960.792378]  ? trace_hardirqs_on_caller+0x38b/0x570
-[ 1960.792406]  ? trace_hardirqs_on+0xd/0x10
-[ 1960.792472]  nouveau_drm_remove+0x37/0x50 [nouveau]
-[ 1960.792502]  pci_device_remove+0x112/0x2d0
-[ 1960.792530]  ? pcibios_free_irq+0x10/0x10
-[ 1960.792558]  ? kasan_check_write+0x14/0x20
-[ 1960.792587]  device_release_driver_internal+0x35c/0x650
-[ 1960.792617]  device_release_driver+0x12/0x20
-[ 1960.792643]  pci_stop_bus_device+0x172/0x1e0
-[ 1960.792671]  pci_stop_and_remove_bus_device_locked+0x1a/0x30
-[ 1960.792715]  remove_store+0xcb/0xe0
-[ 1960.792753]  ? sriov_numvfs_store+0x2e0/0x2e0
-[ 1960.792779]  ? __lock_is_held+0xb5/0x140
-[ 1960.792808]  ? component_add+0x530/0x530
-[ 1960.792834]  dev_attr_store+0x3f/0x70
-[ 1960.792859]  ? sysfs_file_ops+0x11d/0x170
-[ 1960.792885]  sysfs_kf_write+0x104/0x150
-[ 1960.792915]  ? sysfs_file_ops+0x170/0x170
-[ 1960.792940]  kernfs_fop_write+0x24f/0x400
-[ 1960.792978]  ? __lock_acquire+0x6ea/0x47f0
-[ 1960.793021]  __vfs_write+0xeb/0x760
-[ 1960.793048]  ? kernel_read+0x130/0x130
-[ 1960.793076]  ? __lock_is_held+0xb5/0x140
-[ 1960.793107]  ? rcu_read_lock_sched_held+0xdd/0x110
-[ 1960.793135]  ? rcu_sync_lockdep_assert+0x78/0xb0
-[ 1960.793162]  ? __sb_start_write+0x183/0x220
-[ 1960.793189]  vfs_write+0x14d/0x4a0
-[ 1960.793229]  ksys_write+0xd2/0x1b0
-[ 1960.793255]  ? __ia32_sys_read+0xb0/0xb0
-[ 1960.793298]  ? fput+0x1d/0x120
-[ 1960.793324]  ? filp_close+0xf3/0x130
-[ 1960.793349]  ? entry_SYSCALL_64_after_hwframe+0x59/0xbe
-[ 1960.793380]  __x64_sys_write+0x73/0xb0
-[ 1960.793407]  do_syscall_64+0xaa/0x400
-[ 1960.793433]  entry_SYSCALL_64_after_hwframe+0x49/0xbe
-[ 1960.793460] RIP: 0033:0x7f59df433164
-[ 1960.793486] Code: 89 02 48 c7 c0 ff ff ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 66 90 48 8d 05 81 38 2d 00 8b 00 85 c0 75 13 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 54 c3 0f 1f 00 41 54 49 89 d4 55 48 89 f5 53
-[ 1960.793541] RSP: 002b:00007ffd70ee2fb8 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
-[ 1960.793576] RAX: ffffffffffffffda RBX: 0000000000000002 RCX: 00007f59df433164
-[ 1960.793620] RDX: 0000000000000002 RSI: 00005578088640c0 RDI: 0000000000000001
-[ 1960.793665] RBP: 00005578088640c0 R08: 00007f59df7038c0 R09: 00007f59e0995b80
-[ 1960.793696] R10: 000000000000000a R11: 0000000000000246 R12: 00007f59df702760
-[ 1960.793730] R13: 0000000000000002 R14: 00007f59df6fd760 R15: 0000000000000002
-[ 1960.793768]
-[ 1960.793790] Allocated by task 11167:
-[ 1960.793816]  save_stack+0x43/0xd0
-[ 1960.793841]  kasan_kmalloc+0xc4/0xe0
-[ 1960.793880]  kasan_slab_alloc+0x11/0x20
-[ 1960.793905]  kmem_cache_alloc+0xd7/0x270
-[ 1960.793944]  getname_flags+0xbd/0x520
-[ 1960.793969]  user_path_at_empty+0x23/0x50
-[ 1960.793994]  do_faccessat+0x1fc/0x5d0
-[ 1960.794018]  __x64_sys_access+0x59/0x80
-[ 1960.794043]  do_syscall_64+0xaa/0x400
-[ 1960.794067]  entry_SYSCALL_64_after_hwframe+0x49/0xbe
-[ 1960.794093]
-[ 1960.794127] Freed by task 11167:
-[ 1960.794152]  save_stack+0x43/0xd0
-[ 1960.794190]  __kasan_slab_free+0x139/0x190
-[ 1960.794215]  kasan_slab_free+0xe/0x10
-[ 1960.794239]  kmem_cache_free+0xcb/0x2c0
-[ 1960.794264]  putname+0xad/0xe0
-[ 1960.794287]  filename_lookup.part.59+0x1f1/0x360
-[ 1960.794313]  user_path_at_empty+0x3e/0x50
-[ 1960.794338]  do_faccessat+0x1fc/0x5d0
-[ 1960.794362]  __x64_sys_access+0x59/0x80
-[ 1960.794393]  do_syscall_64+0xaa/0x400
-[ 1960.794421]  entry_SYSCALL_64_after_hwframe+0x49/0xbe
-[ 1960.794461]
-[ 1960.794483] The buggy address belongs to the object at ffff88075acceac0
-[ 1960.794483]  which belongs to the cache names_cache of size 4096
-[ 1960.794540] The buggy address is located 2192 bytes inside of
-[ 1960.794540]  4096-byte region [ffff88075acceac0, ffff88075accfac0)
-[ 1960.794581] The buggy address belongs to the page:
-[ 1960.794609] page:ffffea001d6b3200 count:1 mapcount:0 mapping:ffff880778e4b1c0 index:0x0 compound_mapcount: 0
-[ 1960.794651] flags: 0x8000000000008100(slab|head)
-[ 1960.794679] raw: 8000000000008100 ffffea001d39e808 ffffea001d39ea08 ffff880778e4b1c0
-[ 1960.794739] raw: 0000000000000000 0000000000070007 00000001ffffffff 0000000000000000
-[ 1960.794785] page dumped because: kasan: bad access detected
-[ 1960.794813]
-[ 1960.794834] Memory state around the buggy address:
-[ 1960.794861]  ffff88075accf200: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-[ 1960.794894]  ffff88075accf280: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-[ 1960.794925] >ffff88075accf300: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-[ 1960.794956]                                                  ^
-[ 1960.794985]  ffff88075accf380: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-[ 1960.795017]  ffff88075accf400: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-[ 1960.795061] ==================================================================
-[ 1960.795106] Disabling lock debugging due to kernel taint
-[ 1960.795131] ------------[ cut here ]------------
-[ 1960.795148] ida_remove called for id=1802201963 which is not allocated.
-[ 1960.795193] WARNING: CPU: 7 PID: 11185 at lib/idr.c:521 ida_remove+0x184/0x210
-[ 1960.795213] Modules linked in: nouveau(O) mxm_wmi ttm i2c_algo_bit drm_kms_helper syscopyarea sysfillrect sysimgblt fb_sys_fops drm joydev vfat fat intel_rapl x86_pkg_temp_thermal coretemp crc32_pclmul iTCO_wdt psmouse wmi_bmof mei_me tpm_tis mei tpm_tis_core tpm i2c_i801 thinkpad_acpi pcc_cpufreq crc32c_intel serio_raw xhci_pci xhci_hcd wmi video i2c_dev i2c_core
-[ 1960.795305] CPU: 7 PID: 11185 Comm: zsh Kdump: loaded Tainted: G    B      O      4.18.0Lyude-Test+ #4
-[ 1960.795330] Hardware name: LENOVO 20EQS64N0B/20EQS64N0B, BIOS N1EET79W (1.52 ) 07/13/2018
-[ 1960.795352] RIP: 0010:ida_remove+0x184/0x210
-[ 1960.795370] Code: 4c 89 f7 e8 ae c8 00 00 eb 22 41 83 c4 02 4c 89 e8 41 83 fc 3f 0f 86 64 ff ff ff 44 89 fe 48 c7 c7 20 94 1e 83 e8 54 ed 81 fe <0f> 0b 48 b8 00 00 00 00 00 fc ff df 48 01 c3 c7 03 00 00 00 00 c7
-[ 1960.795402] RSP: 0018:ffff88074d4df7b8 EFLAGS: 00010082
-[ 1960.795421] RAX: 0000000000000000 RBX: 1ffff100e9a9befa RCX: ffffffff81479975
-[ 1960.795440] RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffff88077c1de690
-[ 1960.795460] RBP: ffff88074d4df878 R08: ffffed00ef83bcd3 R09: ffffed00ef83bcd2
-[ 1960.795479] R10: ffffed00ef83bcd2 R11: ffff88077c1de697 R12: 000000000000036b
-[ 1960.795498] R13: 0000000000000202 R14: ffffffffa0aa7fa0 R15: 000000006b6b6b6b
-[ 1960.795518] FS:  00007f59e0995b80(0000) GS:ffff88077c1c0000(0000) knlGS:0000000000000000
-[ 1960.795553] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[ 1960.795571] CR2: 00007f59e09a2010 CR3: 00000004a1a70005 CR4: 00000000003606e0
-[ 1960.795596] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-[ 1960.795629] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-[ 1960.795649] Call Trace:
-[ 1960.795667]  ? ida_destroy+0x1d0/0x1d0
-[ 1960.795686]  ? kasan_check_write+0x14/0x20
-[ 1960.795704]  ? do_raw_spin_lock+0xc2/0x1c0
-[ 1960.795724]  ida_simple_remove+0x26/0x40
-[ 1960.795794]  nouveau_backlight_exit+0x9d/0x150 [nouveau]
-[ 1960.795867]  nouveau_display_destroy+0x76/0x150 [nouveau]
-[ 1960.795930]  nouveau_drm_device_fini+0xb7/0x190 [nouveau]
-[ 1960.795989]  nouveau_drm_device_remove+0x14b/0x1d0 [nouveau]
-[ 1960.796047]  ? nouveau_cli_work_queue+0x2e0/0x2e0 [nouveau]
-[ 1960.796067]  ? trace_hardirqs_on_caller+0x38b/0x570
-[ 1960.796089]  ? trace_hardirqs_on+0xd/0x10
-[ 1960.796146]  nouveau_drm_remove+0x37/0x50 [nouveau]
-[ 1960.796167]  pci_device_remove+0x112/0x2d0
-[ 1960.796186]  ? pcibios_free_irq+0x10/0x10
-[ 1960.796218]  ? kasan_check_write+0x14/0x20
-[ 1960.796237]  device_release_driver_internal+0x35c/0x650
-[ 1960.796257]  device_release_driver+0x12/0x20
-[ 1960.796289]  pci_stop_bus_device+0x172/0x1e0
-[ 1960.796308]  pci_stop_and_remove_bus_device_locked+0x1a/0x30
-[ 1960.796328]  remove_store+0xcb/0xe0
-[ 1960.796345]  ? sriov_numvfs_store+0x2e0/0x2e0
-[ 1960.796364]  ? __lock_is_held+0xb5/0x140
-[ 1960.796383]  ? component_add+0x530/0x530
-[ 1960.796401]  dev_attr_store+0x3f/0x70
-[ 1960.796419]  ? sysfs_file_ops+0x11d/0x170
-[ 1960.796436]  sysfs_kf_write+0x104/0x150
-[ 1960.796454]  ? sysfs_file_ops+0x170/0x170
-[ 1960.796471]  kernfs_fop_write+0x24f/0x400
-[ 1960.796488]  ? __lock_acquire+0x6ea/0x47f0
-[ 1960.796520]  __vfs_write+0xeb/0x760
-[ 1960.796538]  ? kernel_read+0x130/0x130
-[ 1960.796556]  ? __lock_is_held+0xb5/0x140
-[ 1960.796590]  ? rcu_read_lock_sched_held+0xdd/0x110
-[ 1960.796608]  ? rcu_sync_lockdep_assert+0x78/0xb0
-[ 1960.796626]  ? __sb_start_write+0x183/0x220
-[ 1960.796648]  vfs_write+0x14d/0x4a0
-[ 1960.796666]  ksys_write+0xd2/0x1b0
-[ 1960.796684]  ? __ia32_sys_read+0xb0/0xb0
-[ 1960.796701]  ? fput+0x1d/0x120
-[ 1960.796732]  ? filp_close+0xf3/0x130
-[ 1960.796749]  ? entry_SYSCALL_64_after_hwframe+0x59/0xbe
-[ 1960.796768]  __x64_sys_write+0x73/0xb0
-[ 1960.796800]  do_syscall_64+0xaa/0x400
-[ 1960.796818]  entry_SYSCALL_64_after_hwframe+0x49/0xbe
-[ 1960.796836] RIP: 0033:0x7f59df433164
-[ 1960.796854] Code: 89 02 48 c7 c0 ff ff ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 66 90 48 8d 05 81 38 2d 00 8b 00 85 c0 75 13 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 54 c3 0f 1f 00 41 54 49 89 d4 55 48 89 f5 53
-[ 1960.796884] RSP: 002b:00007ffd70ee2fb8 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
-[ 1960.796906] RAX: ffffffffffffffda RBX: 0000000000000002 RCX: 00007f59df433164
-[ 1960.796926] RDX: 0000000000000002 RSI: 00005578088640c0 RDI: 0000000000000001
-[ 1960.796946] RBP: 00005578088640c0 R08: 00007f59df7038c0 R09: 00007f59e0995b80
-[ 1960.796966] R10: 000000000000000a R11: 0000000000000246 R12: 00007f59df702760
-[ 1960.796985] R13: 0000000000000002 R14: 00007f59df6fd760 R15: 0000000000000002
-[ 1960.797008] irq event stamp: 509990
-[ 1960.797026] hardirqs last  enabled at (509989): [<ffffffff8119ff78>] flush_work+0x4b8/0x6d0
-[ 1960.797063] hardirqs last disabled at (509990): [<ffffffff8297c395>] _raw_spin_lock_irqsave+0x25/0x60
-[ 1960.797085] softirqs last  enabled at (509744): [<ffffffff82c005ad>] __do_softirq+0x5ad/0x8c0
-[ 1960.797121] softirqs last disabled at (509735): [<ffffffff8115aa15>] irq_exit+0x1a5/0x1e0
-[ 1960.797142] ---[ end trace fb1342325f1846b8 ]---
-
-While I haven't actually gone into the details of what's causing this to
-happen (maybe the kernel removes the backlight device in the device core
-before we get to it?), it doesn't really matter anyway because the way
-nouveau handles backlights has long since been deprecated.
-
-According to the documentation on the drm_connector->late_register()
-hook, the ->late_register() hook should be used for adding extra
-connector-related devices. Vice versa, the ->early_unregister() hook is
-meant to be used for removing those devices.
-
-So: gut nouveau_drm->bl_list and nouveau_drm->backlight, and replace
-them with per-connector backlight structures. Additionally, move
-backlight registration/teardown into the ->late_register() and
-->early_unregister() hooks so that DRM can give us a chance to remove
-the backlight before the connector is even removed. This appears to fix
-the problem once and for all.
-
-Changes since v2:
-- Use NV_INFO_ONCE for printing GMUX information, since otherwise this
-  will end up printing that message for as many times as we have
-  connectors
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Reviewed-by: Karol Herbst <kherbst@redhat.com>
----
- drivers/gpu/drm/nouveau/nouveau_backlight.c | 151 +++++++++++---------
- drivers/gpu/drm/nouveau/nouveau_connector.c |  20 +++
- drivers/gpu/drm/nouveau/nouveau_connector.h |  33 +++++
- drivers/gpu/drm/nouveau/nouveau_display.c   |   2 -
- drivers/gpu/drm/nouveau/nouveau_display.h   |  25 ----
- drivers/gpu/drm/nouveau/nouveau_drv.h       |   2 -
- 6 files changed, 133 insertions(+), 100 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-index 6dd72bc32897..5d0694680f59 100644
---- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-@@ -37,18 +37,19 @@
- #include "nouveau_drv.h"
- #include "nouveau_reg.h"
- #include "nouveau_encoder.h"
-+#include "nouveau_connector.h"
- 
- static struct ida bl_ida;
- #define BL_NAME_SIZE 15 // 12 for name + 2 for digits + 1 for '\0'
- 
--struct backlight_connector {
--	struct list_head head;
-+struct nouveau_backlight {
-+	struct backlight_device *dev;
- 	int id;
- };
- 
- static bool
--nouveau_get_backlight_name(char backlight_name[BL_NAME_SIZE], struct backlight_connector
--		*connector)
-+nouveau_get_backlight_name(char backlight_name[BL_NAME_SIZE],
-+			   struct nouveau_backlight *bl)
- {
- 	const int nb = ida_simple_get(&bl_ida, 0, 0, GFP_KERNEL);
- 	if (nb < 0 || nb >= 100)
-@@ -57,7 +58,7 @@ nouveau_get_backlight_name(char backlight_name[BL_NAME_SIZE], struct backlight_c
- 		snprintf(backlight_name, BL_NAME_SIZE, "nv_backlight%d", nb);
- 	else
- 		snprintf(backlight_name, BL_NAME_SIZE, "nv_backlight");
--	connector->id = nb;
-+	bl->id = nb;
- 	return true;
- }
- 
-@@ -96,36 +97,45 @@ static int
- nv40_backlight_init(struct drm_connector *connector)
- {
- 	struct nouveau_drm *drm = nouveau_drm(connector->dev);
-+	struct nouveau_backlight *bl;
- 	struct nvif_object *device = &drm->client.device.object;
- 	struct backlight_properties props;
--	struct backlight_device *bd;
--	struct backlight_connector bl_connector;
- 	char backlight_name[BL_NAME_SIZE];
-+	int ret = 0;
- 
- 	if (!(nvif_rd32(device, NV40_PMC_BACKLIGHT) & NV40_PMC_BACKLIGHT_MASK))
- 		return 0;
- 
-+	bl = kzalloc(sizeof(*bl), GFP_KERNEL);
-+	if (!bl)
-+		return -ENOMEM;
-+
- 	memset(&props, 0, sizeof(struct backlight_properties));
- 	props.type = BACKLIGHT_RAW;
- 	props.max_brightness = 31;
--	if (!nouveau_get_backlight_name(backlight_name, &bl_connector)) {
-+	if (!nouveau_get_backlight_name(backlight_name, bl)) {
- 		NV_ERROR(drm, "Failed to retrieve a unique name for the backlight interface\n");
--		return 0;
-+		goto fail_alloc;
- 	}
--	bd = backlight_device_register(backlight_name , connector->kdev, drm,
--				       &nv40_bl_ops, &props);
- 
--	if (IS_ERR(bd)) {
--		if (bl_connector.id >= 0)
--			ida_simple_remove(&bl_ida, bl_connector.id);
--		return PTR_ERR(bd);
-+	bl->dev = backlight_device_register(backlight_name, connector->kdev,
-+					    drm, &nv40_bl_ops, &props);
-+	if (IS_ERR(bl->dev)) {
-+		if (bl->id >= 0)
-+			ida_simple_remove(&bl_ida, bl->id);
-+
-+		ret = PTR_ERR(bl->dev);
-+		goto fail_alloc;
- 	}
--	list_add(&bl_connector.head, &drm->bl_connectors);
--	drm->backlight = bd;
--	bd->props.brightness = nv40_get_intensity(bd);
--	backlight_update_status(bd);
-+
-+	nouveau_connector(connector)->backlight = bl;
-+	bl->dev->props.brightness = nv40_get_intensity(bl->dev);
-+	backlight_update_status(bl->dev);
- 
- 	return 0;
-+fail_alloc:
-+	kfree(bl);
-+	return ret;
- }
- 
- static int
-@@ -215,11 +225,11 @@ nv50_backlight_init(struct drm_connector *connector)
- 	struct nouveau_drm *drm = nouveau_drm(connector->dev);
- 	struct nvif_object *device = &drm->client.device.object;
- 	struct nouveau_encoder *nv_encoder;
-+	struct nouveau_backlight *bl;
- 	struct backlight_properties props;
--	struct backlight_device *bd;
- 	const struct backlight_ops *ops;
--	struct backlight_connector bl_connector;
- 	char backlight_name[BL_NAME_SIZE];
-+	int ret = 0;
- 
- 	nv_encoder = find_encoder(connector, DCB_OUTPUT_LVDS);
- 	if (!nv_encoder) {
-@@ -231,6 +241,10 @@ nv50_backlight_init(struct drm_connector *connector)
- 	if (!nvif_rd32(device, NV50_PDISP_SOR_PWM_CTL(ffs(nv_encoder->dcb->or) - 1)))
- 		return 0;
- 
-+	bl = kzalloc(sizeof(*bl), GFP_KERNEL);
-+	if (!bl)
-+		return -ENOMEM;
-+
- 	if (drm->client.device.info.chipset <= 0xa0 ||
- 	    drm->client.device.info.chipset == 0xaa ||
- 	    drm->client.device.info.chipset == 0xac)
-@@ -241,79 +255,74 @@ nv50_backlight_init(struct drm_connector *connector)
- 	memset(&props, 0, sizeof(struct backlight_properties));
- 	props.type = BACKLIGHT_RAW;
- 	props.max_brightness = 100;
--	if (!nouveau_get_backlight_name(backlight_name, &bl_connector)) {
-+	if (!nouveau_get_backlight_name(backlight_name, bl)) {
- 		NV_ERROR(drm, "Failed to retrieve a unique name for the backlight interface\n");
--		return 0;
-+		goto fail_alloc;
- 	}
--	bd = backlight_device_register(backlight_name , connector->kdev,
--				       nv_encoder, ops, &props);
- 
--	if (IS_ERR(bd)) {
--		if (bl_connector.id >= 0)
--			ida_simple_remove(&bl_ida, bl_connector.id);
--		return PTR_ERR(bd);
-+	bl->dev = backlight_device_register(backlight_name, connector->kdev,
-+					    nv_encoder, ops, &props);
-+	if (IS_ERR(bl->dev)) {
-+		if (bl->id >= 0)
-+			ida_simple_remove(&bl_ida, bl->id);
-+
-+		ret = PTR_ERR(bl->dev);
-+		goto fail_alloc;
- 	}
- 
--	list_add(&bl_connector.head, &drm->bl_connectors);
--	drm->backlight = bd;
--	bd->props.brightness = bd->ops->get_brightness(bd);
--	backlight_update_status(bd);
-+	nouveau_connector(connector)->backlight = bl;
-+	bl->dev->props.brightness = bl->dev->ops->get_brightness(bl->dev);
-+	backlight_update_status(bl->dev);
- 	return 0;
-+
-+fail_alloc:
-+	kfree(bl);
-+	return ret;
- }
- 
- int
--nouveau_backlight_init(struct drm_device *dev)
-+nouveau_backlight_init(struct drm_connector *connector)
- {
--	struct nouveau_drm *drm = nouveau_drm(dev);
-+	struct nouveau_drm *drm = nouveau_drm(connector->dev);
- 	struct nvif_device *device = &drm->client.device;
--	struct drm_connector *connector;
--	struct drm_connector_list_iter conn_iter;
--
--	INIT_LIST_HEAD(&drm->bl_connectors);
- 
- 	if (apple_gmux_present()) {
--		NV_INFO(drm, "Apple GMUX detected: not registering Nouveau backlight interface\n");
-+		NV_INFO_ONCE(drm, "Apple GMUX detected: not registering Nouveau backlight interface\n");
- 		return 0;
- 	}
- 
--	drm_connector_list_iter_begin(dev, &conn_iter);
--	drm_for_each_connector_iter(connector, &conn_iter) {
--		if (connector->connector_type != DRM_MODE_CONNECTOR_LVDS &&
--		    connector->connector_type != DRM_MODE_CONNECTOR_eDP)
--			continue;
--
--		switch (device->info.family) {
--		case NV_DEVICE_INFO_V0_CURIE:
--			return nv40_backlight_init(connector);
--		case NV_DEVICE_INFO_V0_TESLA:
--		case NV_DEVICE_INFO_V0_FERMI:
--		case NV_DEVICE_INFO_V0_KEPLER:
--		case NV_DEVICE_INFO_V0_MAXWELL:
--			return nv50_backlight_init(connector);
--		default:
--			break;
--		}
--	}
--	drm_connector_list_iter_end(&conn_iter);
-+	if (connector->connector_type != DRM_MODE_CONNECTOR_LVDS &&
-+	    connector->connector_type != DRM_MODE_CONNECTOR_eDP)
-+		return 0;
- 
--	return 0;
-+	switch (device->info.family) {
-+	case NV_DEVICE_INFO_V0_CURIE:
-+		return nv40_backlight_init(connector);
-+	case NV_DEVICE_INFO_V0_TESLA:
-+	case NV_DEVICE_INFO_V0_FERMI:
-+	case NV_DEVICE_INFO_V0_KEPLER:
-+	case NV_DEVICE_INFO_V0_MAXWELL:
-+		return nv50_backlight_init(connector);
-+	default:
-+		return 0;
-+	}
- }
- 
- void
--nouveau_backlight_exit(struct drm_device *dev)
-+nouveau_backlight_exit(struct drm_connector *connector)
- {
--	struct nouveau_drm *drm = nouveau_drm(dev);
--	struct backlight_connector *connector;
-+	struct nouveau_connector *nv_conn = nouveau_connector(connector);
-+	struct nouveau_backlight *bl = nv_conn->backlight;
- 
--	list_for_each_entry(connector, &drm->bl_connectors, head) {
--		if (connector->id >= 0)
--			ida_simple_remove(&bl_ida, connector->id);
--	}
-+	if (!bl)
-+		return;
- 
--	if (drm->backlight) {
--		backlight_device_unregister(drm->backlight);
--		drm->backlight = NULL;
--	}
-+	if (bl->id >= 0)
-+		ida_simple_remove(&bl_ida, bl->id);
-+
-+	backlight_device_unregister(bl->dev);
-+	nv_conn->backlight = NULL;
-+	kfree(bl);
- }
- 
- void
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index c5eac44e0b61..767e892de9c4 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -898,6 +898,22 @@ nouveau_connector_detect_depth(struct drm_connector *connector)
- 		connector->display_info.bpc = 8;
- }
- 
-+static int
-+nouveau_connector_late_register(struct drm_connector *connector)
-+{
-+	int ret;
-+
-+	ret = nouveau_backlight_init(connector);
-+
-+	return ret;
-+}
-+
-+static void
-+nouveau_connector_early_unregister(struct drm_connector *connector)
-+{
-+	nouveau_backlight_exit(connector);
-+}
-+
- static int
- nouveau_connector_get_modes(struct drm_connector *connector)
- {
-@@ -1082,6 +1098,8 @@ nouveau_connector_funcs = {
- 	.atomic_destroy_state = nouveau_conn_atomic_destroy_state,
- 	.atomic_set_property = nouveau_conn_atomic_set_property,
- 	.atomic_get_property = nouveau_conn_atomic_get_property,
-+	.late_register = nouveau_connector_late_register,
-+	.early_unregister = nouveau_connector_early_unregister,
- };
- 
- static const struct drm_connector_funcs
-@@ -1097,6 +1115,8 @@ nouveau_connector_funcs_lvds = {
- 	.atomic_destroy_state = nouveau_conn_atomic_destroy_state,
- 	.atomic_set_property = nouveau_conn_atomic_set_property,
- 	.atomic_get_property = nouveau_conn_atomic_get_property,
-+	.late_register = nouveau_connector_late_register,
-+	.early_unregister = nouveau_connector_early_unregister,
- };
- 
- static int
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.h b/drivers/gpu/drm/nouveau/nouveau_connector.h
-index 2d9d35a146a4..5465ae82fb9f 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.h
-@@ -38,6 +38,10 @@
- struct nvkm_i2c_port;
- struct dcb_output;
- 
-+#ifdef CONFIG_DRM_NOUVEAU_BACKLIGHT
-+struct nouveau_backlight;
-+#endif
-+
- struct nouveau_connector {
- 	struct drm_connector base;
- 	enum dcb_connector_type type;
-@@ -54,6 +58,9 @@ struct nouveau_connector {
- 	struct nouveau_encoder *detected_encoder;
- 	struct edid *edid;
- 	struct drm_display_mode *native_mode;
-+#ifdef CONFIG_DRM_NOUVEAU_BACKLIGHT
-+	struct nouveau_backlight *backlight;
-+#endif
- };
- 
- static inline struct nouveau_connector *nouveau_connector(
-@@ -180,4 +187,30 @@ int nouveau_conn_atomic_get_property(struct drm_connector *,
- 				     const struct drm_connector_state *,
- 				     struct drm_property *, u64 *);
- struct drm_display_mode *nouveau_conn_native_mode(struct drm_connector *);
-+
-+#ifdef CONFIG_DRM_NOUVEAU_BACKLIGHT
-+extern int nouveau_backlight_init(struct drm_connector *);
-+extern void nouveau_backlight_exit(struct drm_connector *);
-+extern void nouveau_backlight_ctor(void);
-+extern void nouveau_backlight_dtor(void);
-+#else
-+static inline int
-+nouveau_backlight_init(struct drm_connector *connector)
-+{
-+	return 0;
-+}
-+
-+static inline void
-+nouveau_backlight_exit(struct drm_connector *connector) {
-+}
-+
-+static inline void
-+nouveau_backlight_ctor(void) {
-+}
-+
-+static inline void
-+nouveau_backlight_dtor(void) {
-+}
-+#endif
-+
- #endif /* __NOUVEAU_CONNECTOR_H__ */
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index e4024af5a46f..8d4835f6be6b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -579,7 +579,6 @@ nouveau_display_create(struct drm_device *dev)
- 			goto vblank_err;
- 	}
- 
--	nouveau_backlight_init(dev);
- 	INIT_WORK(&drm->hpd_work, nouveau_display_hpd_work);
- #ifdef CONFIG_ACPI
- 	drm->acpi_nb.notifier_call = nouveau_display_acpi_ntfy;
-@@ -604,7 +603,6 @@ nouveau_display_destroy(struct drm_device *dev)
- #ifdef CONFIG_ACPI
- 	unregister_acpi_notifier(&nouveau_drm(dev)->acpi_nb);
- #endif
--	nouveau_backlight_exit(dev);
- 	nouveau_display_vblank_fini(dev);
- 
- 	drm_kms_helper_poll_fini(dev);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.h b/drivers/gpu/drm/nouveau/nouveau_display.h
-index 54aa7c3fa42d..a881cac5a3a9 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.h
-@@ -85,31 +85,6 @@ int  nouveau_display_dumb_map_offset(struct drm_file *, struct drm_device *,
- 
- void nouveau_hdmi_mode_set(struct drm_encoder *, struct drm_display_mode *);
- 
--#ifdef CONFIG_DRM_NOUVEAU_BACKLIGHT
--extern int nouveau_backlight_init(struct drm_device *);
--extern void nouveau_backlight_exit(struct drm_device *);
--extern void nouveau_backlight_ctor(void);
--extern void nouveau_backlight_dtor(void);
--#else
--static inline int
--nouveau_backlight_init(struct drm_device *dev)
--{
--	return 0;
--}
--
--static inline void
--nouveau_backlight_exit(struct drm_device *dev) {
--}
--
--static inline void
--nouveau_backlight_ctor(void) {
--}
--
--static inline void
--nouveau_backlight_dtor(void) {
--}
--#endif
--
- struct drm_framebuffer *
- nouveau_user_framebuffer_create(struct drm_device *, struct drm_file *,
- 				const struct drm_mode_fb_cmd2 *);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index d9d687916553..0b2191fa96f7 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -194,8 +194,6 @@ struct nouveau_drm {
- 	/* modesetting */
- 	struct nvbios vbios;
- 	struct nouveau_display *display;
--	struct backlight_device *backlight;
--	struct list_head bl_connectors;
- 	struct work_struct hpd_work;
- 	struct work_struct fbcon_work;
- 	int fbcon_new_state;
--- 
-2.17.1
+b2hoIGFjdHVhbGx5LCBJIHdhcyB0ZXN0aW5nIHdpdGggYSBrZXJuZWwgd2l0aG91dCB0aGlzIHdv
+cmthcm91bmQKYXBwbGllZCwgc28gSSBuZWVkIHRvIHJldGVzdCBpdCBsYXRlci4KCk9uIFdlZCwg
+QXVnIDI5LCAyMDE4IGF0IDI6NDAgUE0sIEthcm9sIEhlcmJzdCA8a2hlcmJzdEByZWRoYXQuY29t
+PiB3cm90ZToKPiBPbiBUdWUsIEF1ZyAyOCwgMjAxOCBhdCA0OjIzIEFNLCBEYW5pZWwgRHJha2Ug
+PGRyYWtlQGVuZGxlc3NtLmNvbT4gd3JvdGU6Cj4+IE9uIEZyaSwgQXVnIDI0LCAyMDE4IGF0IDEx
+OjQyIFBNLCBQZXRlciBXdSA8cGV0ZXJAbGVrZW5zdGV5bi5ubD4gd3JvdGU6Cj4+PiBBcmUgdGhl
+c2Ugc3lzdGVtcyBhbHNvIGFmZmVjdGVkIHRocm91Z2ggcnVudGltZSBwb3dlciBtYW5hZ2VtZW50
+PyBGb3IKPj4+IGV4YW1wbGU6Cj4+Pgo+Pj4gICAgIG1vZHByb2JlIG5vdXZlYXUgICAgIyBzaG91
+bGQgZW5hYmxlIHJ1bnRpbWUgUE0KPj4+ICAgICBzbGVlcCA2ICAgICAgICAgICAgICMgd2FpdCBm
+b3IgcnVudGltZSBzdXNwZW5kIHRvIGtpY2sgaW4KPj4+ICAgICBsc3BjaSAtczE6ICAgICAgICAg
+ICMgcnVudGltZSByZXN1bWUgYnkgcmVhZGluZyBQQ0kgY29uZmlnIHNwYWNlCj4+Pgo+Pj4gT24g
+bGFwdG9wcyBmcm9tIGFib3V0IDIwMTUtMjAxNiB3aXRoIGEgR1RYIDl4eE0gdGhpcyBzZXF1ZW5j
+ZSByZXN1bHRzIGluCj4+PiBoYW5ncyBvbiB2YXJpb3VzIGxhcHRvcHMKPj4+IChodHRwczovL2J1
+Z3ppbGxhLmtlcm5lbC5vcmcvc2hvd19idWcuY2dpP2lkPTE1NjM0MSkuCj4+Cj4+IFRoaXMgd29y
+a3MgZmluZSBoZXJlLiBJJ20gZmFjaW5nIGEgZGlmZmVyZW50IGlzc3VlLgo+Pgo+Pj4+IEFmdGVy
+IGEgbG90IG9mIGV4cGVyaW1lbnRhdGlvbiBJIGZvdW5kIGEgd29ya2Fyb3VuZDogZHVyaW5nIHJl
+c3VtZSwKPj4+PiBzZXQgdGhlIHZhbHVlIG9mIFBDSV9QUkVGX0JBU0VfVVBQRVIzMiB0byAwIG9u
+IHRoZSBwYXJlbnQgUENJIGJyaWRnZS4KPj4+PiBFYXNpbHkgZG9uZSBpbiBkcml2ZXJzL3BjaS9x
+dWlya3MuYy4gTm93IGFsbCBudmlkaWEgc3R1ZmYgd29ya3MgZmluZS4KPj4+Cj4+PiBJIGFtIGN1
+cmlvdXMsIGhvdyBkaWQgeW91IGRpc2NvdmVyIHRoaXM/IFdoaWxlIHRoaXMgY291bGQgd29yaywg
+cGVyaGFwcwo+Pj4gdGhlcmUgYXJlIGFsdGVybmF0aXZlIHdvcmthcm91bmRzL2ZpeGVzPwo+Pgo+
+PiBCYXNlZCBvbiB0aGUgb2JzZXJ2YXRpb24gdGhhdCB0aGUgZm9sbG93aW5nIHByb2NlZHVyZSB3
+b3JrcyBmaW5lIChub3RlCj4+IHRoZSBhZGRpdGlvbiBvZiBzdGVwIDMpOgo+Pgo+PiAxLiBCb290
+Cj4+IDIuIFN1c3BlbmQvcmVzdW1lCj4+IDMuIGVjaG8gcmVzY2FuID4gL3N5cy9idXMvcGNpL2Rl
+dmljZXMvMDAwMDowMDoxYy4wL3Jlc2Nhbgo+PiA0LiBMb2FkIG5vdXZlYXUgZHJpdmVyCj4+IDUu
+IFN0YXJ0IFgKPj4KPj4gSSB3b3JrZWQgdGhyb3VnaCB0aGUgcmVzY2FuIGNvZGVwYXRoIHVudGls
+IEkgaGFkIGlzb2xhdGVkIHRoZSBzcGVjaWZpYwo+PiBjb2RlIHdoaWNoIG1hZ2ljYWxseSBtYWtl
+cyB0aGluZ3Mgd29yayAoaW4gcGNpX2JyaWRnZV9jaGVja19yYW5nZXMpLgo+Pgo+PiBIYXZpbmcg
+Zm91bmQgdGhhdCwgc3RlcCAzIGluIHRoZSBhYm92ZSB0ZXN0IHByb2NlZHVyZSBjYW4gYmUgcmVw
+bGFjZWQKPj4gd2l0aCBhIHNpbXBsZToKPj4gICAgc2V0cGNpIC1zIDAwOjFjLjAgMHgyOC5sPTAK
+Pj4KPj4+IFdoZW4geW91IHNheSAicGFyZW50IFBDSSIgYnJpZGdlLCBpcyB0aGF0IGFjdHVhbGx5
+IHRoZSBkZXZpY2UgeW91IHNlZSBpbgo+Pj4gImxzcGNpIC10diI/IE9uIGEgRGVsbCBYUFMgOTU2
+MCwgdGhlIEdQVSBpcyB1bmRlciBhIGRpZmZlcmVudCBkZXZpY2U6Cj4+Pgo+Pj4gICAtWzAwMDA6
+MDBdLSstMDAuMCAgSW50ZWwgQ29ycG9yYXRpb24gWGVvbiBFMy0xMjAwIHY2Lzd0aCBHZW4gQ29y
+ZSBQcm9jZXNzb3IgSG9zdCBCcmlkZ2UvRFJBTSBSZWdpc3RlcnMKPj4+ICAgICAgICAgICAgICAr
+LTAxLjAtWzAxXS0tLS0wMC4wICBOVklESUEgQ29ycG9yYXRpb24gR1AxMDdNIFtHZUZvcmNlIEdU
+WCAxMDUwIE1vYmlsZV0KPj4+Cj4+PiAgMDA6MDEuMCBQQ0kgYnJpZGdlIFswNjA0XTogSW50ZWwg
+Q29ycG9yYXRpb24gWGVvbiBFMy0xMjAwIHY1L0UzLTE1MDAgdjUvNnRoIEdlbiBDb3JlIFByb2Nl
+c3NvciBQQ0llIENvbnRyb2xsZXIgKHgxNikgWzgwODY6MTkwMV0gKHJldiAwNSkKPj4KPj4gWWVz
+LCBpdCdzIHRoZSBwYXJlbnQgYnJpZGdlIHNob3duIGJ5IGxzcGNpLiBUaGUgYWRkcmVzcyBvZiB0
+aGlzIHZhcmllcwo+PiBmcm9tIHN5c3RlbSB0byBzeXN0ZW0uCj4+Cj4+Pj4gMS4gSXMgdGhlIElu
+dGVsIFBDSSBicmlkZ2UgbWlzYmVoYXZpbmcgaGVyZT8gV2h5IGRvZXMgd3JpdGluZyB0aGUgc2Ft
+ZQo+Pj4+IHZhbHVlIG9mIFBDSV9QUkVGX0JBU0VfVVBQRVIzMiBtYWtlIGFueSBkaWZmZXJlbmNl
+IGF0IGFsbD8KPj4+Cj4+PiBBdCB3aGF0IHBvaW50IGluIHRoZSBzdXNwZW5kIGNvZGUgcGF0aCBk
+aWQgeW91IGluc2VydCB0aGlzIHdyaXRlPyBJdCBpcwo+Pj4gcG9zc2libGUgdGhhdCB0aGUgd3Jp
+dGUgc29tZWhvdyBhY3RlZCBhcyBhIGZlbmNlL21lbW9yeSBiYXJyaWVyPwo+Pgo+PiBzdGF0aWMg
+dm9pZCBxdWlya19wcmVmX2Jhc2VfdXBwZXIzMihzdHJ1Y3QgcGNpX2RldiAqZGV2KQo+PiB7Cj4+
+ICAgICAgICB1MzIgcHJlZl9iYXNlX3VwcGVyMzI7Cj4+ICAgICAgICBwY2lfcmVhZF9jb25maWdf
+ZHdvcmQoZGV2LCBQQ0lfUFJFRl9CQVNFX1VQUEVSMzIsICZwcmVmX2Jhc2VfdXBwZXIzMik7Cj4+
+ICAgICAgICBwY2lfd3JpdGVfY29uZmlnX2R3b3JkKGRldiwgUENJX1BSRUZfQkFTRV9VUFBFUjMy
+LCBwcmVmX2Jhc2VfdXBwZXIzMik7Cj4+IH0KPj4gREVDTEFSRV9QQ0lfRklYVVBfUkVTVU1FKFBD
+SV9WRU5ET1JfSURfSU5URUwsICAweDlkMTAsIHF1aXJrX3ByZWZfYmFzZV91cHBlcjMyKTsKPj4K
+Pgo+IHRoaXMgd29ya2Fyb3VuZCBmaXhlcyBydW50aW1lIHN1c3BlbmQvcmVzdW1lIG9uIG15IGxh
+cHRvcCBhcyB3ZWxsLi4uCj4gYnV0IHdoYXQgYmFmZmxlcyBtZSBtb3N0IGlzLCB1bmxvYWRpbmcg
+bm91dmVhdSBkb2VzIGFzIHdlbGwuIEkgd2lsbAo+IHNlZSB3aGF0IGJpdHMgYXJlIGV4YWN0bHkg
+ImZpeGluZyIgaXQgaW4gdGhlIG5vdXZlYXUgdW5sb2FkaW5nIHBhdGgKPiBhbmQgbWF5YmUgd2Ug
+Y2FuIGdldCBhcm91bmQgdGhpcyBpc3N1ZSBpbnNpZGUgbm91dmVhdS4gSXQgd291bGQgYmUKPiBz
+dGlsbCBuaWNlIHRvIGdldCB0byB0aGUgcm9vdCBjYXVzZSBvZiBhbGwgb2YgdGhpcyBhcyB0aGVy
+ZSBhcmUgdGhyZWUKPiBrbm93biB3b3JrYXJvdW5kcyAoYXQgbGVhc3Qgb24gbXkgc3lzdGVtKToK
+PiAxLiB1bmxvYWQgbm91dmVhdQo+IDIuIHNraXAgc2V0dGluZyB0aGUgRDMgcG93ZXIgc3RhdGUg
+dmlhIFBDSSBjb25maWcgc3BhY2UgKGFuZCBzdGlsbCBkbwo+IHRoZSBBQ1BJIGJpdHMpCj4gMy4g
+d3JpdGUgdmFsdWUgb2YgUENJX1BSRUZfQkFTRV9VUFBFUjMyCj4KPj4gSSBkb24ndCB0aGluayBp
+dCdzIGFjdGluZyBhcyBhIGJhcnJpZXIuIEkgdHJpZWQgY2hhbmdpbmcgdGhpcyBjb2RlIHRvCj4+
+IHJld3JpdGUgb3RoZXIgcmVnaXN0ZXJzIHN1Y2ggYXMgUENJX1BSRUZfTUVNT1JZX0JBU0UgYW5k
+IHRoYXQgbWFrZXMKPj4gdGhlIGJ1ZyBjb21lIGJhY2suCj4+Cj4+Pj4gMi4gV2hvIGlzIHJlc3Bv
+bnNpYmxlIGZvciBzYXZpbmcgYW5kIHJlc3RvcmluZyBQQ0kgYnJpZGdlCj4+Pj4gY29uZmlndXJh
+dGlvbiBkdXJpbmcgc3VzcGVuZCBhbmQgcmVzdW1lPyBMaW51eD8gQUNQST8gQklPUz8KPj4+Cj4+
+PiBOb3Qgc3VyZSBhYm91dCBQQ0kgYnJpZGdlcywgYnV0IGF0IGxlYXN0IGZvciB0aGUgUENJIEV4
+cHJlc3MgQ2FwYWJpbGl0eQo+Pj4gcmVnaXN0ZXJzLCBpdCBpcyBpbiBjb250cm9sIG9mIHRoZSBP
+UyB3aGVuIGNvbnRyb2wgaXMgZ3JhbnRlZCB2aWEgdGhlCj4+PiBBQ1BJIF9PU0MgbWV0aG9kLgo+
+Pgo+PiBJIGd1ZXNzIHlvdSBhcmUgcmVmZXJyaW5nIHRvIHBjaV9zYXZlX3BjaWVfc3RhdGUoKS4g
+SSBjYW4ndCBzZWUKPj4gYW55dGhpbmcgZXF1aXZhbGVudCBmb3IgdGhlIGJyaWRnZSByZWdpc3Rl
+cnMuCj4+Cj4+PiBBcyBXaW5kb3dzIGlzIHByb2JhYmx5IG5vdCBhZmZlY3RlZCBieSB0aGlzIGlz
+c3VlLCBhIGNoYW5nZSBtdXN0IGJlCj4+PiBwb3NzaWJsZSB0byBtYWtlIExpbnV4IG1vcmUgY29t
+cGF0aWJsZSB3aXRoIFdpbmRvd3MuIFRob3VnaCBJIGFtIG5vdAo+Pj4gc3VyZSB3aGF0IGNoYW5n
+ZSBpcyBuZWVkZWQuCj4+Cj4+IEkgYWdyZWUuIFRoZXJlJ3MgYSBkZWZpbml0ZSBkaWZmZXJlbmNl
+IHdpdGggV2luZG93cyBoZXJlIGFuZCBpdCB3b3VsZAo+PiBiZSBncmVhdCB0byBmaW5kIGEgZml4
+IGFsb25nIHRob3NlIGxpbmVzLgo+Pgo+Pj4gSSByZWNlbnRseSBjb21wYXJlZCBQQ0kgY29uZmln
+dXJhdGlvbiBzcGFjZSBhY2Nlc3MgYW5kIEFDUEkgbWV0aG9kCj4+PiBpbnZvY2F0aW9uIHVzaW5n
+IFFFTVUgKyBWRklPIHdpdGggTGludXggNC4xOCwgV2luZG93cyA3IGFuZCBXaW5kb3dzIDEwCj4+
+PiAoMTgwMykuIFRoZXJlIHdlcmUgZGlmZmVyZW5jZXMgbGlrZSBkaXNhYmxpbmcgTVNJL2ludGVy
+cnVwdHMgYmVmb3JlCj4+PiBzdXNwZW5kLCBzZXR0aW5nIHRoZSBFbmFibGUgQ2xvY2sgUG93ZXIg
+TWFuYWdlbWVudCBiaXQgaW4gUENJIEV4cHJlc3MKPj4+IExpbmsgQ29udHJvbCBhbmQgbW9yZSwg
+YnV0IGFwcGx5aW5nIHRoZXNlIGNoYW5nZXMgd2VyZSBzbyBmYXIgbm90IHJlYWxseQo+Pj4gc3Vj
+Y2Vzc2Z1bC4KPj4KPj4gSW50ZXJlc3RpbmcuIERvIHlvdSBrbm93IGFueSB3YXkgdGhhdCBJIGNv
+dWxkIHNweSBvbiBXaW5kb3dzJyBhY2Nlc3Nlcwo+PiB0byB0aGUgUENJIGJyaWRnZSByZWdpc3Rl
+cnM/Cj4+IExvb2tpbmcgYXQgYXQgaHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvaW5kZXgucGhw
+L1BDSV9wYXNzdGhyb3VnaF92aWFfT1ZNRgo+PiBJIHN1c3BlY3QgVkZJTyB3b3VsZCBub3QgaGVs
+cCBtZSBoZXJlLgo+PiBJdCBzYXlzOgo+PiAgICAgTm90ZTogSWYgdGhleSBhcmUgZ3JvdXBlZCB3
+aXRoIG90aGVyIGRldmljZXMgaW4gdGhpcyBtYW5uZXIsIHBjaQo+PiByb290IHBvcnRzIGFuZCBi
+cmlkZ2VzIHNob3VsZCBuZWl0aGVyIGJlIGJvdW5kIHRvIHZmaW8gYXQgYm9vdCwgbm9yIGJlCj4+
+IGFkZGVkIHRvIHRoZSBWTS4KPj4KPj4gVGhhbmtzCj4+IERhbmllbAo+PiBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1IG1haWxpbmcgbGlz
+dAo+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
