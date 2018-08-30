@@ -1,125 +1,200 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: Rewriting Intel PCI bridge prefetch base address bits
- solves nvidia graphics issues
-Date: Thu, 30 Aug 2018 02:13:11 +0200
-Message-ID: <CACO55tsY8id344Zs+MeHV7fM0qD7fcU6LZ1VZ=87SGGm7B7jsg@mail.gmail.com>
-References: <CAD8Lp46Y2eOR7WE28xToUL8s-aYiqPa0nS=1GSD0AxkddXq6+A@mail.gmail.com>
- <20180824154212.GB8601@al>
- <CAD8Lp45D6=pqsgr_tXS08pE0dbG1XhcwnDB3mGZQ=P3ETxywzw@mail.gmail.com>
- <CACO55tsoOYfrA2Wqf38JA6n83yz8YGxzvfLun+kOisWN6pjb8A@mail.gmail.com>
+From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+Subject: Re: [PATCH 0/2] Provide init/release functions for struct
+ ttm_bo_global
+Date: Thu, 30 Aug 2018 08:34:57 +0200
+Message-ID: <5e815e50-d0be-5069-cf1d-aa881a18f094@suse.de>
+References: <20180813102443.12662-1-tzimmermann@suse.de>
+ <b77c649e-4c5d-a19d-8c46-d91c69859293@amd.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACO55tsoOYfrA2Wqf38JA6n83yz8YGxzvfLun+kOisWN6pjb8A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Endless Linux Upstreaming Team <linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0177679977=="
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <b77c649e-4c5d-a19d-8c46-d91c69859293-5C7GfCeVMHo@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, ray.huang-5C7GfCeVMHo@public.gmane.org, Jerry.Zhang-5C7GfCeVMHo@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David1.Zhou-5C7GfCeVMHo@public.gmane.org, thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, syeh-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, puck.chen-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org, z.liuxinliang-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org, zourongrong-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, kong.kongxinwei-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org, linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-b2hoIGFjdHVhbGx5LCBJIHdhcyB0ZXN0aW5nIHdpdGggYSBrZXJuZWwgd2l0aG91dCB0aGlzIHdv
-cmthcm91bmQKYXBwbGllZCwgc28gSSBuZWVkIHRvIHJldGVzdCBpdCBsYXRlci4KCk9uIFdlZCwg
-QXVnIDI5LCAyMDE4IGF0IDI6NDAgUE0sIEthcm9sIEhlcmJzdCA8a2hlcmJzdEByZWRoYXQuY29t
-PiB3cm90ZToKPiBPbiBUdWUsIEF1ZyAyOCwgMjAxOCBhdCA0OjIzIEFNLCBEYW5pZWwgRHJha2Ug
-PGRyYWtlQGVuZGxlc3NtLmNvbT4gd3JvdGU6Cj4+IE9uIEZyaSwgQXVnIDI0LCAyMDE4IGF0IDEx
-OjQyIFBNLCBQZXRlciBXdSA8cGV0ZXJAbGVrZW5zdGV5bi5ubD4gd3JvdGU6Cj4+PiBBcmUgdGhl
-c2Ugc3lzdGVtcyBhbHNvIGFmZmVjdGVkIHRocm91Z2ggcnVudGltZSBwb3dlciBtYW5hZ2VtZW50
-PyBGb3IKPj4+IGV4YW1wbGU6Cj4+Pgo+Pj4gICAgIG1vZHByb2JlIG5vdXZlYXUgICAgIyBzaG91
-bGQgZW5hYmxlIHJ1bnRpbWUgUE0KPj4+ICAgICBzbGVlcCA2ICAgICAgICAgICAgICMgd2FpdCBm
-b3IgcnVudGltZSBzdXNwZW5kIHRvIGtpY2sgaW4KPj4+ICAgICBsc3BjaSAtczE6ICAgICAgICAg
-ICMgcnVudGltZSByZXN1bWUgYnkgcmVhZGluZyBQQ0kgY29uZmlnIHNwYWNlCj4+Pgo+Pj4gT24g
-bGFwdG9wcyBmcm9tIGFib3V0IDIwMTUtMjAxNiB3aXRoIGEgR1RYIDl4eE0gdGhpcyBzZXF1ZW5j
-ZSByZXN1bHRzIGluCj4+PiBoYW5ncyBvbiB2YXJpb3VzIGxhcHRvcHMKPj4+IChodHRwczovL2J1
-Z3ppbGxhLmtlcm5lbC5vcmcvc2hvd19idWcuY2dpP2lkPTE1NjM0MSkuCj4+Cj4+IFRoaXMgd29y
-a3MgZmluZSBoZXJlLiBJJ20gZmFjaW5nIGEgZGlmZmVyZW50IGlzc3VlLgo+Pgo+Pj4+IEFmdGVy
-IGEgbG90IG9mIGV4cGVyaW1lbnRhdGlvbiBJIGZvdW5kIGEgd29ya2Fyb3VuZDogZHVyaW5nIHJl
-c3VtZSwKPj4+PiBzZXQgdGhlIHZhbHVlIG9mIFBDSV9QUkVGX0JBU0VfVVBQRVIzMiB0byAwIG9u
-IHRoZSBwYXJlbnQgUENJIGJyaWRnZS4KPj4+PiBFYXNpbHkgZG9uZSBpbiBkcml2ZXJzL3BjaS9x
-dWlya3MuYy4gTm93IGFsbCBudmlkaWEgc3R1ZmYgd29ya3MgZmluZS4KPj4+Cj4+PiBJIGFtIGN1
-cmlvdXMsIGhvdyBkaWQgeW91IGRpc2NvdmVyIHRoaXM/IFdoaWxlIHRoaXMgY291bGQgd29yaywg
-cGVyaGFwcwo+Pj4gdGhlcmUgYXJlIGFsdGVybmF0aXZlIHdvcmthcm91bmRzL2ZpeGVzPwo+Pgo+
-PiBCYXNlZCBvbiB0aGUgb2JzZXJ2YXRpb24gdGhhdCB0aGUgZm9sbG93aW5nIHByb2NlZHVyZSB3
-b3JrcyBmaW5lIChub3RlCj4+IHRoZSBhZGRpdGlvbiBvZiBzdGVwIDMpOgo+Pgo+PiAxLiBCb290
-Cj4+IDIuIFN1c3BlbmQvcmVzdW1lCj4+IDMuIGVjaG8gcmVzY2FuID4gL3N5cy9idXMvcGNpL2Rl
-dmljZXMvMDAwMDowMDoxYy4wL3Jlc2Nhbgo+PiA0LiBMb2FkIG5vdXZlYXUgZHJpdmVyCj4+IDUu
-IFN0YXJ0IFgKPj4KPj4gSSB3b3JrZWQgdGhyb3VnaCB0aGUgcmVzY2FuIGNvZGVwYXRoIHVudGls
-IEkgaGFkIGlzb2xhdGVkIHRoZSBzcGVjaWZpYwo+PiBjb2RlIHdoaWNoIG1hZ2ljYWxseSBtYWtl
-cyB0aGluZ3Mgd29yayAoaW4gcGNpX2JyaWRnZV9jaGVja19yYW5nZXMpLgo+Pgo+PiBIYXZpbmcg
-Zm91bmQgdGhhdCwgc3RlcCAzIGluIHRoZSBhYm92ZSB0ZXN0IHByb2NlZHVyZSBjYW4gYmUgcmVw
-bGFjZWQKPj4gd2l0aCBhIHNpbXBsZToKPj4gICAgc2V0cGNpIC1zIDAwOjFjLjAgMHgyOC5sPTAK
-Pj4KPj4+IFdoZW4geW91IHNheSAicGFyZW50IFBDSSIgYnJpZGdlLCBpcyB0aGF0IGFjdHVhbGx5
-IHRoZSBkZXZpY2UgeW91IHNlZSBpbgo+Pj4gImxzcGNpIC10diI/IE9uIGEgRGVsbCBYUFMgOTU2
-MCwgdGhlIEdQVSBpcyB1bmRlciBhIGRpZmZlcmVudCBkZXZpY2U6Cj4+Pgo+Pj4gICAtWzAwMDA6
-MDBdLSstMDAuMCAgSW50ZWwgQ29ycG9yYXRpb24gWGVvbiBFMy0xMjAwIHY2Lzd0aCBHZW4gQ29y
-ZSBQcm9jZXNzb3IgSG9zdCBCcmlkZ2UvRFJBTSBSZWdpc3RlcnMKPj4+ICAgICAgICAgICAgICAr
-LTAxLjAtWzAxXS0tLS0wMC4wICBOVklESUEgQ29ycG9yYXRpb24gR1AxMDdNIFtHZUZvcmNlIEdU
-WCAxMDUwIE1vYmlsZV0KPj4+Cj4+PiAgMDA6MDEuMCBQQ0kgYnJpZGdlIFswNjA0XTogSW50ZWwg
-Q29ycG9yYXRpb24gWGVvbiBFMy0xMjAwIHY1L0UzLTE1MDAgdjUvNnRoIEdlbiBDb3JlIFByb2Nl
-c3NvciBQQ0llIENvbnRyb2xsZXIgKHgxNikgWzgwODY6MTkwMV0gKHJldiAwNSkKPj4KPj4gWWVz
-LCBpdCdzIHRoZSBwYXJlbnQgYnJpZGdlIHNob3duIGJ5IGxzcGNpLiBUaGUgYWRkcmVzcyBvZiB0
-aGlzIHZhcmllcwo+PiBmcm9tIHN5c3RlbSB0byBzeXN0ZW0uCj4+Cj4+Pj4gMS4gSXMgdGhlIElu
-dGVsIFBDSSBicmlkZ2UgbWlzYmVoYXZpbmcgaGVyZT8gV2h5IGRvZXMgd3JpdGluZyB0aGUgc2Ft
-ZQo+Pj4+IHZhbHVlIG9mIFBDSV9QUkVGX0JBU0VfVVBQRVIzMiBtYWtlIGFueSBkaWZmZXJlbmNl
-IGF0IGFsbD8KPj4+Cj4+PiBBdCB3aGF0IHBvaW50IGluIHRoZSBzdXNwZW5kIGNvZGUgcGF0aCBk
-aWQgeW91IGluc2VydCB0aGlzIHdyaXRlPyBJdCBpcwo+Pj4gcG9zc2libGUgdGhhdCB0aGUgd3Jp
-dGUgc29tZWhvdyBhY3RlZCBhcyBhIGZlbmNlL21lbW9yeSBiYXJyaWVyPwo+Pgo+PiBzdGF0aWMg
-dm9pZCBxdWlya19wcmVmX2Jhc2VfdXBwZXIzMihzdHJ1Y3QgcGNpX2RldiAqZGV2KQo+PiB7Cj4+
-ICAgICAgICB1MzIgcHJlZl9iYXNlX3VwcGVyMzI7Cj4+ICAgICAgICBwY2lfcmVhZF9jb25maWdf
-ZHdvcmQoZGV2LCBQQ0lfUFJFRl9CQVNFX1VQUEVSMzIsICZwcmVmX2Jhc2VfdXBwZXIzMik7Cj4+
-ICAgICAgICBwY2lfd3JpdGVfY29uZmlnX2R3b3JkKGRldiwgUENJX1BSRUZfQkFTRV9VUFBFUjMy
-LCBwcmVmX2Jhc2VfdXBwZXIzMik7Cj4+IH0KPj4gREVDTEFSRV9QQ0lfRklYVVBfUkVTVU1FKFBD
-SV9WRU5ET1JfSURfSU5URUwsICAweDlkMTAsIHF1aXJrX3ByZWZfYmFzZV91cHBlcjMyKTsKPj4K
-Pgo+IHRoaXMgd29ya2Fyb3VuZCBmaXhlcyBydW50aW1lIHN1c3BlbmQvcmVzdW1lIG9uIG15IGxh
-cHRvcCBhcyB3ZWxsLi4uCj4gYnV0IHdoYXQgYmFmZmxlcyBtZSBtb3N0IGlzLCB1bmxvYWRpbmcg
-bm91dmVhdSBkb2VzIGFzIHdlbGwuIEkgd2lsbAo+IHNlZSB3aGF0IGJpdHMgYXJlIGV4YWN0bHkg
-ImZpeGluZyIgaXQgaW4gdGhlIG5vdXZlYXUgdW5sb2FkaW5nIHBhdGgKPiBhbmQgbWF5YmUgd2Ug
-Y2FuIGdldCBhcm91bmQgdGhpcyBpc3N1ZSBpbnNpZGUgbm91dmVhdS4gSXQgd291bGQgYmUKPiBz
-dGlsbCBuaWNlIHRvIGdldCB0byB0aGUgcm9vdCBjYXVzZSBvZiBhbGwgb2YgdGhpcyBhcyB0aGVy
-ZSBhcmUgdGhyZWUKPiBrbm93biB3b3JrYXJvdW5kcyAoYXQgbGVhc3Qgb24gbXkgc3lzdGVtKToK
-PiAxLiB1bmxvYWQgbm91dmVhdQo+IDIuIHNraXAgc2V0dGluZyB0aGUgRDMgcG93ZXIgc3RhdGUg
-dmlhIFBDSSBjb25maWcgc3BhY2UgKGFuZCBzdGlsbCBkbwo+IHRoZSBBQ1BJIGJpdHMpCj4gMy4g
-d3JpdGUgdmFsdWUgb2YgUENJX1BSRUZfQkFTRV9VUFBFUjMyCj4KPj4gSSBkb24ndCB0aGluayBp
-dCdzIGFjdGluZyBhcyBhIGJhcnJpZXIuIEkgdHJpZWQgY2hhbmdpbmcgdGhpcyBjb2RlIHRvCj4+
-IHJld3JpdGUgb3RoZXIgcmVnaXN0ZXJzIHN1Y2ggYXMgUENJX1BSRUZfTUVNT1JZX0JBU0UgYW5k
-IHRoYXQgbWFrZXMKPj4gdGhlIGJ1ZyBjb21lIGJhY2suCj4+Cj4+Pj4gMi4gV2hvIGlzIHJlc3Bv
-bnNpYmxlIGZvciBzYXZpbmcgYW5kIHJlc3RvcmluZyBQQ0kgYnJpZGdlCj4+Pj4gY29uZmlndXJh
-dGlvbiBkdXJpbmcgc3VzcGVuZCBhbmQgcmVzdW1lPyBMaW51eD8gQUNQST8gQklPUz8KPj4+Cj4+
-PiBOb3Qgc3VyZSBhYm91dCBQQ0kgYnJpZGdlcywgYnV0IGF0IGxlYXN0IGZvciB0aGUgUENJIEV4
-cHJlc3MgQ2FwYWJpbGl0eQo+Pj4gcmVnaXN0ZXJzLCBpdCBpcyBpbiBjb250cm9sIG9mIHRoZSBP
-UyB3aGVuIGNvbnRyb2wgaXMgZ3JhbnRlZCB2aWEgdGhlCj4+PiBBQ1BJIF9PU0MgbWV0aG9kLgo+
-Pgo+PiBJIGd1ZXNzIHlvdSBhcmUgcmVmZXJyaW5nIHRvIHBjaV9zYXZlX3BjaWVfc3RhdGUoKS4g
-SSBjYW4ndCBzZWUKPj4gYW55dGhpbmcgZXF1aXZhbGVudCBmb3IgdGhlIGJyaWRnZSByZWdpc3Rl
-cnMuCj4+Cj4+PiBBcyBXaW5kb3dzIGlzIHByb2JhYmx5IG5vdCBhZmZlY3RlZCBieSB0aGlzIGlz
-c3VlLCBhIGNoYW5nZSBtdXN0IGJlCj4+PiBwb3NzaWJsZSB0byBtYWtlIExpbnV4IG1vcmUgY29t
-cGF0aWJsZSB3aXRoIFdpbmRvd3MuIFRob3VnaCBJIGFtIG5vdAo+Pj4gc3VyZSB3aGF0IGNoYW5n
-ZSBpcyBuZWVkZWQuCj4+Cj4+IEkgYWdyZWUuIFRoZXJlJ3MgYSBkZWZpbml0ZSBkaWZmZXJlbmNl
-IHdpdGggV2luZG93cyBoZXJlIGFuZCBpdCB3b3VsZAo+PiBiZSBncmVhdCB0byBmaW5kIGEgZml4
-IGFsb25nIHRob3NlIGxpbmVzLgo+Pgo+Pj4gSSByZWNlbnRseSBjb21wYXJlZCBQQ0kgY29uZmln
-dXJhdGlvbiBzcGFjZSBhY2Nlc3MgYW5kIEFDUEkgbWV0aG9kCj4+PiBpbnZvY2F0aW9uIHVzaW5n
-IFFFTVUgKyBWRklPIHdpdGggTGludXggNC4xOCwgV2luZG93cyA3IGFuZCBXaW5kb3dzIDEwCj4+
-PiAoMTgwMykuIFRoZXJlIHdlcmUgZGlmZmVyZW5jZXMgbGlrZSBkaXNhYmxpbmcgTVNJL2ludGVy
-cnVwdHMgYmVmb3JlCj4+PiBzdXNwZW5kLCBzZXR0aW5nIHRoZSBFbmFibGUgQ2xvY2sgUG93ZXIg
-TWFuYWdlbWVudCBiaXQgaW4gUENJIEV4cHJlc3MKPj4+IExpbmsgQ29udHJvbCBhbmQgbW9yZSwg
-YnV0IGFwcGx5aW5nIHRoZXNlIGNoYW5nZXMgd2VyZSBzbyBmYXIgbm90IHJlYWxseQo+Pj4gc3Vj
-Y2Vzc2Z1bC4KPj4KPj4gSW50ZXJlc3RpbmcuIERvIHlvdSBrbm93IGFueSB3YXkgdGhhdCBJIGNv
-dWxkIHNweSBvbiBXaW5kb3dzJyBhY2Nlc3Nlcwo+PiB0byB0aGUgUENJIGJyaWRnZSByZWdpc3Rl
-cnM/Cj4+IExvb2tpbmcgYXQgYXQgaHR0cHM6Ly93aWtpLmFyY2hsaW51eC5vcmcvaW5kZXgucGhw
-L1BDSV9wYXNzdGhyb3VnaF92aWFfT1ZNRgo+PiBJIHN1c3BlY3QgVkZJTyB3b3VsZCBub3QgaGVs
-cCBtZSBoZXJlLgo+PiBJdCBzYXlzOgo+PiAgICAgTm90ZTogSWYgdGhleSBhcmUgZ3JvdXBlZCB3
-aXRoIG90aGVyIGRldmljZXMgaW4gdGhpcyBtYW5uZXIsIHBjaQo+PiByb290IHBvcnRzIGFuZCBi
-cmlkZ2VzIHNob3VsZCBuZWl0aGVyIGJlIGJvdW5kIHRvIHZmaW8gYXQgYm9vdCwgbm9yIGJlCj4+
-IGFkZGVkIHRvIHRoZSBWTS4KPj4KPj4gVGhhbmtzCj4+IERhbmllbAo+PiBfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1IG1haWxpbmcgbGlz
-dAo+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0177679977==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="94YPPfpkXJ5UewInxJbC6xO7okH09vx6w"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--94YPPfpkXJ5UewInxJbC6xO7okH09vx6w
+Content-Type: multipart/mixed; boundary="JQzy3oOasLP7x0qaayQXM6bVeUJB9HA9Z";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann-l3A5Bk7waGM@public.gmane.org>
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>,
+ ray.huang-5C7GfCeVMHo@public.gmane.org, Jerry.Zhang-5C7GfCeVMHo@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: alexander.deucher-5C7GfCeVMHo@public.gmane.org, David1.Zhou-5C7GfCeVMHo@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org,
+ kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, z.liuxinliang-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org, zourongrong-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org,
+ kong.kongxinwei-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org, puck.chen-C8/M+/jPZTeaMJb+Lgu22Q@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org,
+ linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, syeh-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org,
+ thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org,
+ amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org,
+ nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Message-ID: <5e815e50-d0be-5069-cf1d-aa881a18f094-l3A5Bk7waGM@public.gmane.org>
+Subject: Re: [PATCH 0/2] Provide init/release functions for struct
+ ttm_bo_global
+References: <20180813102443.12662-1-tzimmermann-l3A5Bk7waGM@public.gmane.org>
+ <b77c649e-4c5d-a19d-8c46-d91c69859293-5C7GfCeVMHo@public.gmane.org>
+In-Reply-To: <b77c649e-4c5d-a19d-8c46-d91c69859293-5C7GfCeVMHo@public.gmane.org>
+
+--JQzy3oOasLP7x0qaayQXM6bVeUJB9HA9Z
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+
+Hi Christian,
+
+I just wanted to ask if there's something else required to get this
+patch set reviewed and landed.
+
+On top of these two patches, I have a patch set that replaces the
+driver-specific global-bo-and-mem combos with a single struct ttm_global
+structure. It further merges struct drm_global into struct ttm_global
+and implements it such that drivers can either share the global memory
+or create their private instance. It's also a step towards drm device
+hotplug, which someone just asked.
+
+Best regards
+Thomas
+
+
+Am 13.08.2018 um 12:33 schrieb Christian K=C3=B6nig:
+> Yes, please! I had it on my TODO list to clean that up for an eternity.=
+
+>=20
+> Actually I never understood why that should be driver work to setup TTM=
+?
+>=20
+> I mean can't we just have a module_init/module_exit for TTM?
+>=20
+> Thanks,
+> Christian.
+>=20
+> Am 13.08.2018 um 12:24 schrieb Thomas Zimmermann:
+>> TTM uses global memory and BO for backing graphics buffers. These are
+>> represented by struct ttm_mem_global and struct ttm_bo_global.
+>>
+>> Currently, struct ttm_bo_global can only be initialized and released
+>> through
+>> struct ttm_bo_global_ref. This is a workaround for passing an instance=
+ of
+>> ttm_mem_global to the BO global initialization code.
+>>
+>> The use of struct ttm_bo_global_ref makes driver code unnecessary hard=
+ to
+>> understand. At the same time drivers can use any combination of memory=
+
+>> and
+>> BO for initializing the global instances. This can result in subtle bu=
+gs
+>> when the order of initializing and releasing drivers changes.
+>>
+>> As a first step for resolving these problems, the provided patch set
+>> separates initialization and release of struct ttm_bo_global from
+>> struct ttm_bo_global_ref.
+>>
+>> The first patch only renames ttm_bo_global_{init/release}. Hopefully t=
+his
+>> change can be applied at once for all drivers.
+>>
+>> Future directions: All TTM-based drivers follow the same pattern for
+>> setting
+>> up the TTM. In a follow-up patch, this code can be moved into a single=
+
+>> place
+>> and shared among drivers.
+>>
+>> Thomas Zimmermann (2):
+>> =C2=A0=C2=A0 drm/ttm: Rename ttm_bo_global_{init,release}() to
+>> =C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_global_ref_*()
+>> =C2=A0=C2=A0 drm/ttm: Provide ttm_bo_global_{init/release}() for struc=
+t
+>> =C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_global
+>>
+>> =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0 4 +-
+>> =C2=A0 drivers/gpu/drm/ast/ast_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
+>> =C2=A0 drivers/gpu/drm/bochs/bochs_mm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
+>> =C2=A0 drivers/gpu/drm/cirrus/cirrus_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
+>> =C2=A0 drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c |=C2=A0 4 +-
+>> =C2=A0 drivers/gpu/drm/mgag200/mgag200_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 4 +-
+>> =C2=A0 drivers/gpu/drm/nouveau/nouveau_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 4 +-
+>> =C2=A0 drivers/gpu/drm/qxl/qxl_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
+>> =C2=A0 drivers/gpu/drm/radeon/radeon_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0 4 +-
+>> =C2=A0 drivers/gpu/drm/ttm/ttm_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 12 ++---
+>> =C2=A0 drivers/gpu/drm/virtio/virtgpu_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 4 +-
+>> =C2=A0 drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 4 +-
+>> =C2=A0 drivers/staging/vboxvideo/vbox_ttm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 4 +-
+>> =C2=A0 include/drm/ttm/ttm_bo_driver.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 53 ++++++++++++++++-----
+>> =C2=A0 14 files changed, 70 insertions(+), 43 deletions(-)
+>>
+>> --=20
+>> 2.18.0
+>>
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Linux GmbH, Maxfeldstr. 5, D-90409 N=C3=BCrnberg
+Tel: +49-911-74053-0; Fax: +49-911-7417755;  https://www.suse.com/
+SUSE Linux GmbH, GF: Felix Imend=C3=B6rffer, Jane Smithard,
+Graham Norton, HRB 21284 (AG N=C3=BCrnberg)
+
+
+--JQzy3oOasLP7x0qaayQXM6bVeUJB9HA9Z--
+
+--94YPPfpkXJ5UewInxJbC6xO7okH09vx6w
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAluHkBEACgkQaA3BHVML
+eiOOugf/ahb9OWLyvgBBVPACsOzdOaifWA0vbyT7JEJDcTITOx6Ya4lZvX0CaNPE
+apQUyU+hYkAbb4L2vqjeWsJNrhTzVd7uBco4iEdqVA2Q4KBADeqLhdK+t3h+9dN0
+1vBSfxpkoF6IVMcsImuYZlsYiYKEW90eSZwCoWQg4xbpu1pDR1/ZEChs4oj8q9vu
+jBgq64FAxcV9RNodS809GKbTzZj8DDPuRkXdpflVTom9ErSIfhV8fBVCt5a0yRTP
+p0zASsBQ7DObKwPX0I43GqK9p9ZdLo409faBX26jPRf5oRp8je/Sgh2fqDF7nD5Y
+ejAH6dKiqq48952rNshoeFDF03CrMQ==
+=BQPl
+-----END PGP SIGNATURE-----
+
+--94YPPfpkXJ5UewInxJbC6xO7okH09vx6w--
+
+--===============0177679977==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+
+--===============0177679977==--
