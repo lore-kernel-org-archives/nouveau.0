@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107780] Screen is periodically replaced with image
- of screen from some time since boot
-Date: Sat, 01 Sep 2018 15:27:55 +0000
-Message-ID: <bug-107780-8800-s3iXYeKVKM@http.bugs.freedesktop.org/>
-References: <bug-107780-8800@http.bugs.freedesktop.org/>
+From: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Questions Conscerning Pascal ISA and IPA Instruction
+Date: Sat, 1 Sep 2018 21:20:25 -0400
+Message-ID: <CA+MSTo8ZPku3Y5zdy9VhdZyY8tvyHvJiRXp15Dbe8JhddcA_PA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1565424556=="
+Content-Type: multipart/mixed; boundary="===============0893900735=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107780-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,85 +17,40 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============0893900735==
+Content-Type: multipart/alternative; boundary="0000000000007469b30574d93bb0"
 
---===============1565424556==
-Content-Type: multipart/alternative; boundary="15358156750.f314dc6.29490"
-Content-Transfer-Encoding: 7bit
-
-
---15358156750.f314dc6.29490
-Date: Sat, 1 Sep 2018 15:27:55 +0000
-MIME-Version: 1.0
+--0000000000007469b30574d93bb0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107780
+I'm currently running tests to document PASCAL's ISA on Cuda but I've come
+to a dead end with the IPA instruction. I've tried searching around
+Nouveau's codebase for clues but I've fallen short from it. Could someone
+reference me in the right direction?
 
---- Comment #1 from Zebediah Figura <z.figura12-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 141407
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141407&action=3Dedit
-X server log
+-- 
+Atentamente,
+*Fernando A. Sahmkow*
+*Correo*: fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15358156750.f314dc6.29490
-Date: Sat, 1 Sep 2018 15:27:55 +0000
-MIME-Version: 1.0
+--0000000000007469b30574d93bb0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Screen is periodically replaced with image of screen from=
- some time since boot"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107780#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Screen is periodically replaced with image of screen from=
- some time since boot"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107780">bug 10778=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-z.figura12&#64;gmail.com" title=3D"Zebediah Figura &lt;z.figura12&#64;gmail=
-.com&gt;"> <span class=3D"fn">Zebediah Figura</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141407=
-" name=3D"attach_141407" title=3D"X server log">attachment 141407</a> <a hr=
-ef=3D"attachment.cgi?id=3D141407&amp;action=3Dedit" title=3D"X server log">=
-[details]</a></span>
-X server log</pre>
-        </div>
-      </p>
+<div dir=3D"ltr">I&#39;m currently running tests to document PASCAL&#39;s I=
+SA on Cuda but I&#39;ve come to a dead end with the IPA instruction. I&#39;=
+ve tried searching around Nouveau&#39;s codebase for clues but I&#39;ve fal=
+len short from it. Could someone reference me in the right direction?<br cl=
+ear=3D"all"><div><br></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature=
+" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div><div><div><=
+div><div><div>Atentamente,</div></div></div></div></div></div></div><div><s=
+pan style=3D"color:rgb(0,0,255)"><b>Fernando A. Sahmkow</b></span></div><b>=
+Correo</b>:=C2=A0<a href=3D"mailto:fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" style=3D"color:rgb=
+(17,85,204)" target=3D"_blank">fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a></div></div></div>
 
+--0000000000007469b30574d93bb0--
 
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15358156750.f314dc6.29490--
-
---===============1565424556==
+--===============0893900735==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +60,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1565424556==--
+--===============0893900735==--
