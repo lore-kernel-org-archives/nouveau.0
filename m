@@ -1,10 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107818] linux-4.18.5 every boot some drivers errors
-Date: Mon, 03 Sep 2018 17:46:16 +0000
-Message-ID: <bug-107818-8800-6FdzaBJO83@http.bugs.freedesktop.org/>
+Subject: [Bug 107818] [GP107] linux-4.18.5 every boot some drivers
+ errors
+Date: Mon, 03 Sep 2018 17:50:29 +0000
+Message-ID: <bug-107818-8800-QnojHxVhXB@http.bugs.freedesktop.org/>
 References: <bug-107818-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0947902489=="
+Content-Type: multipart/mixed; boundary="===============0858720194=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-107818-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0947902489==
-Content-Type: multipart/alternative; boundary="15359967761.aCd4Ee5B.3558"
+--===============0858720194==
+Content-Type: multipart/alternative; boundary="15359970281.5E53.4749"
 Content-Transfer-Encoding: 7bit
 
 
---15359967761.aCd4Ee5B.3558
-Date: Mon, 3 Sep 2018 17:46:16 +0000
+--15359970281.5E53.4749
+Date: Mon, 3 Sep 2018 17:50:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +36,25 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D107818
 
---- Comment #1 from Boris Vinogradov <no111u3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 141431
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141431&action=3Dedit
-Kernel log
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|linux-4.18.5 every boot     |[GP107] linux-4.18.5 every
+                   |some drivers errors         |boot some drivers errors
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I think this is somewhat common in laptops. Not sure we have a solid theory=
+ on
+how to fix it though -- basically the GPU doesn't really come up as it shou=
+ld.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15359967761.aCd4Ee5B.3558
-Date: Mon, 3 Sep 2018 17:46:16 +0000
+--15359970281.5E53.4749
+Date: Mon, 3 Sep 2018 17:50:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -56,28 +65,50 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GP107] linux-4.18.5 every boot some drivers errors"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107818">bug 10781=
+8</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Summary</td>
+           <td>linux-4.18.5 every boot some drivers errors
+           </td>
+           <td>[GP107] linux-4.18.5 every boot some drivers errors
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - linux-4.18.5 every boot some drivers errors"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107818#c1">Commen=
-t # 1</a>
+   title=3D"NEW - [GP107] linux-4.18.5 every boot some drivers errors"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107818#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - linux-4.18.5 every boot some drivers errors"
+   title=3D"NEW - [GP107] linux-4.18.5 every boot some drivers errors"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107818">bug 10781=
 8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-no111u3&#64;gmail.com" title=3D"Boris Vinogradov &lt;no111u3&#64;gmail.com&=
-gt;"> <span class=3D"fn">Boris Vinogradov</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141431=
-" name=3D"attach_141431" title=3D"Kernel log">attachment 141431</a> <a href=
-=3D"attachment.cgi?id=3D141431&amp;action=3Dedit" title=3D"Kernel log">[det=
-ails]</a></span>
-Kernel log</pre>
+        <pre>I think this is somewhat common in laptops. Not sure we have a=
+ solid theory on
+how to fix it though -- basically the GPU doesn't really come up as it shou=
+ld.</pre>
         </div>
       </p>
 
@@ -91,9 +122,9 @@ Kernel log</pre>
     </body>
 </html>=
 
---15359967761.aCd4Ee5B.3558--
+--15359970281.5E53.4749--
 
---===============0947902489==
+--===============0858720194==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +134,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0947902489==--
+--===============0858720194==--
