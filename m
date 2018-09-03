@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107504] Xorg segmentation fault at
- RRProviderAutoConfigGpuScreen
-Date: Mon, 03 Sep 2018 08:14:33 +0000
-Message-ID: <bug-107504-8800-fzHLKWurQW@http.bugs.freedesktop.org/>
-References: <bug-107504-8800@http.bugs.freedesktop.org/>
+From: Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
+Subject: Re: [PATCH] PCI: add prefetch quirk to work around
+ Asus/Nvidia suspend issues
+Date: Mon, 3 Sep 2018 16:56:32 +0800
+Message-ID: <CAD8Lp45CKCHxTg91zF9bWztqbAwLzgAUpNEHQ6ouKu2PkJT8SQ@mail.gmail.com>
+References: <20180831073057.14626-1-drake@endlessm.com>
+ <20180831191225.GA43106@bhelgaas-glaptop.roam.corp.google.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0484408196=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20180831191225.GA43106-1RhO1Y9PlrlHTL0Zs8A6p5iNqAH0jzoTYJqu5kTmcBRl57MIdRCFDg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,126 +19,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Cc: Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "Rafael J. Wysocki" <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Keith Busch <keith.busch-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, Andy Shevchenko <andriy.shevchenko-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Linux Upstreaming Team <linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, Jon Derrick <jonathan.derrick-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0484408196==
-Content-Type: multipart/alternative; boundary="15359624730.eb4B3.29730"
-Content-Transfer-Encoding: 7bit
-
-
---15359624730.eb4B3.29730
-Date: Mon, 3 Sep 2018 08:14:33 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107504
-
---- Comment #1 from tianhang <1748215448-9uewiaClKEY@public.gmane.org> ---
-Xorg segmentation fault at RRProviderAutoConfigGpuScreen
-this problem has also occured on on my machine with nvidia cards(GM204GL [T=
-esla
-M60])
-
-does the nouveau driver support this nvidia card(GM204GL [Tesla M60]) ?
-https://nouveau.freedesktop.org/wiki/CodeNames/ there is no infomation about
-GM204GL or Telsa M60
-
-OS version :centos 7.4
-nvidia card :
-# lspci -k -s 06:00.0
-06:00.0 VGA compatible controller: NVIDIA Corporation GM204GL [Tesla M60] (=
-rev
-a1)
-        Subsystem: Huawei Corporation Device 2060
-        Kernel modules: nouveau
-
-Look forward to your reply
-
-thanks
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15359624730.eb4B3.29730
-Date: Mon, 3 Sep 2018 08:14:33 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg segmentation fault at RRProviderAutoConfigGpuScreen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107504#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg segmentation fault at RRProviderAutoConfigGpuScreen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107504">bug 10750=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-1748215448&#64;qq.com" title=3D"tianhang &lt;1748215448&#64;qq.com&gt;"> <s=
-pan class=3D"fn">tianhang</span></a>
-</span></b>
-        <pre>Xorg segmentation fault at RRProviderAutoConfigGpuScreen
-this problem has also occured on on my machine with nvidia cards(GM204GL [T=
-esla
-M60])
-
-does the nouveau driver support this nvidia card(GM204GL [Tesla M60]) ?
-<a href=3D"https://nouveau.freedesktop.org/wiki/CodeNames/">https://nouveau=
-.freedesktop.org/wiki/CodeNames/</a> there is no infomation about
-GM204GL or Telsa M60
-
-OS version :centos 7.4
-nvidia card :
-# lspci -k -s 06:00.0
-06:00.0 VGA compatible controller: NVIDIA Corporation GM204GL [Tesla M60] (=
-rev
-a1)
-        Subsystem: Huawei Corporation Device 2060
-        Kernel modules: nouveau
-
-Look forward to your reply
-
-thanks</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15359624730.eb4B3.29730--
-
---===============0484408196==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0484408196==--
+T24gU2F0LCBTZXAgMSwgMjAxOCBhdCAzOjEyIEFNLCBCam9ybiBIZWxnYWFzIDxoZWxnYWFzQGtl
+cm5lbC5vcmc+IHdyb3RlOgo+IElmIHRydWUsIHRoaXMgc291bmRzIGxpa2Ugc29tZSBzb3J0IG9m
+IGVycmF0dW0sIHNvIGl0IHdvdWxkIGJlIGdvb2QgdG8KPiBnZXQgc29tZSBpbnB1dCBmcm9tIElu
+dGVsLCBhbmQgSSBjYydkIGEgZmV3IEludGVsIGZvbGtzLgoKWWVzLCBpdCB3b3VsZCBiZSBncmVh
+dCB0byBnZXQgdGhlaXIgaW5wdXQuCgo+IEl0J3MgaW50ZXJlc3RpbmcgdGhhdCBhbGwgdGhlIHN5
+c3RlbXMgYmVsb3cgYXJlIGZyb20gQXN1cy4gIFRoYXQgbWFrZXMKPiBtZSB0aGluayB0aGVyZSdz
+IHNvbWUgQklPUyBvciBTTU0gY29ubmVjdGlvbiwgZS5nLiwgU01NIHRyYXBzIHRoZQo+IHJlZ2lz
+dGVyIHdyaXRlIGFuZCBkb2VzIHNvbWV0aGluZyBtYWdpYy4KCklzIHRoZXJlIGEgd2F5IEkgY2Fu
+IGNoZWNrIGlmIHRoZXJlIGlzIGEgU01NIHRyYXAgYWN0aXZlIGZvciB0aGlzIGFkZHJlc3M/Cgo+
+IERvZXMgdGhpcyBwcm9ibGVtIGhhcHBlbiBhZnRlciBhIGZ1bGwgc3lzdGVtIHN1c3BlbmQvcmVz
+dW1lLCBvciBkb2VzCj4gaXQgaGFwcGVuIGFmdGVyIHJ1bnRpbWUgc3VzcGVuZCBvZiBvbmx5IHRo
+ZSBHUFU/ICBPciBydW50aW1lIHN1c3BlbmQKPiBvZiBvbmx5IHRoZSBHUFUgYW5kIHRoZSB1cHN0
+cmVhbSBicmlkZ2U/CgpydW50aW1lIHN1c3BlbmQvcmVzdW1lIHdvcmtzIGZpbmUuIEl0IG9ubHkg
+aGFwcGVucyBhZnRlciBTMyBzdXNwZW5kLgoKPiBDYW4gd2UgdGVsbCB3aGV0aGVyIFdpbmRvd3Mg
+cmV3cml0ZXMgdGhpcyByZWdpc3RlciB1bmNvbmRpdGlvbmFsbHkgYXQKPiByZXN1bWUtdGltZT8g
+IElmIHNvLCBpdCBtYXkgYmUgbW9yZSByb2J1c3QgZm9yIExpbnV4IHRvIGRvIHRoZSBzYW1lLgo+
+IFRoZSB3aG9sZSB0aGluZyBpcyBibGFjayBtYWdpYywgd2hpY2ggSSBoYXRlLCBidXQgaWYgaXQn
+cyBvdXIgb25seQo+IGNob2ljZSwgaXQgbWF5IGJlIGJldHRlciB0byBoYXZlIHRoaXMgYXBwbGll
+ZCBldmVyeXdoZXJlIHNvIHdlIGRvbid0Cj4ga2VlcCBzdHViYmluZyBvdXIgdG9lcyBvbiBuZXcg
+c3lzdGVtcyB0aGF0IHJlcXVpcmUgdGhlIHF1aXJrLgoKQW55IHN1Z2dlc3Rpb25zIGZvciBob3cg
+dG8gbWFrZSB0aGlzIGhhcHBlbj8gQm9vdGluZyB3aW5kb3dzIGluCnZpcnQtbWFuYWdlciAoaG9w
+aW5nIHRoYXQgSSBjb3VsZCB0aGVuIHNweSBvbiBQQ0kgY29uZmlnIHNwYWNlIHJlZwphY2Nlc3Nl
+cyksIEkgZG9uJ3Qgc2VlIGFuIG9wdGlvbiBmb3IgUzMgc3VzcGVuZCwgYnV0IEknbGwga2VlcCBs
+b29raW5nCmludG8gdGhpcy4KClRoYW5rcwpEYW5pZWwKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9ub3V2ZWF1Cg==
