@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107817] New: NV50 : Nvidia NVS295 - Printing out
- EDID errors about not connected monitor ports
-Date: Mon, 03 Sep 2018 16:12:43 +0000
-Message-ID: <bug-107817-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 107818] New: linux-4.18.5 every boot some drivers
+ errors
+Date: Mon, 03 Sep 2018 17:38:23 +0000
+Message-ID: <bug-107818-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0501261572=="
+Content-Type: multipart/mixed; boundary="===============1157936420=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,101 +19,232 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0501261572==
-Content-Type: multipart/alternative; boundary="15359911631.3CFac3F.9653"
+--===============1157936420==
+Content-Type: multipart/alternative; boundary="15359963031.D6aD42A7.1260"
 Content-Transfer-Encoding: 7bit
 
 
---15359911631.3CFac3F.9653
-Date: Mon, 3 Sep 2018 16:12:43 +0000
+--15359963031.D6aD42A7.1260
+Date: Mon, 3 Sep 2018 17:38:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107817
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107818
 
-            Bug ID: 107817
-           Summary: NV50 : Nvidia NVS295 - Printing out EDID errors about
-                    not connected monitor ports
+            Bug ID: 107818
+           Summary: linux-4.18.5 every boot some drivers errors
            Product: xorg
            Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
+          Hardware: Other
+                OS: All
             Status: NEW
-          Severity: minor
+          Severity: normal
           Priority: medium
          Component: Driver/nouveau
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: cezdhzez-GK+4nHxFadIswetKESUqMA@public.gmane.org
+          Reporter: no111u3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Card: Nvidia NVS295 with 2 DisplayPort connectors.
+Created attachment 141430
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141430&action=3Dedit
+Xorg load log
 
-Problem: nouveau is spamming the kernel message, that it cant find the EDID=
- of
-not connected ports. Of course it cant, because there is no monitor connect=
-ed
-to that port.
+On new hardware I have some bugs with nouveau:
 
-When i connect the monitor to DisplayPort number 1, it writes, that it cant
-find EDID on DisplayPort number 2. When i connect it to DisplayPort 2, it
-writes that it cant find EDID of Display Port 1.
+1) Driver errors in dmesg:
+[    7.143770] ------------[ cut here ]------------
+[    7.143771] nouveau 0000:01:00.0: timeout
+[    7.143805] WARNING: CPU: 7 PID: 3391 at
+drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c:1524
+gf100_gr_init_ctxctl+0x86a/0xa10 [nouveau]
+[    7.143806] Modules linked in: bnep ipmi_msghandler ext2 hid_multitouch
+spi_pxa2xx_platform intel_rapl intel_pmc_core x86_pkg_temp_thermal uvcvideo
+intel_powerclamp videobuf2_vmalloc asus_nb_wmi videobuf2_memops kvm_intel
+videobuf2_v4l2 asus_wmi wmi_bmof mxm_wmi coretemp videodev kvm irqbypass
+videobuf2_common nouveau mousedev btusb ttm btrtl btbcm sdhci_pci btintel
+pcspkr idma64 bluetooth cqhci nvidiafb ecdh_generic r8822be(C) vgastate sdh=
+ci
+fb_ddc mmc_core processor_thermal_device intel_lpss_pci intel_lpss
+intel_soc_dts_iosf intel_pch_thermal i2c_hid int3403_thermal
+int340x_thermal_zone wmi pinctrl_sunrisepoint pinctrl_intel int3400_thermal
+acpi_thermal_rel asus_wireless efivarfs
+[    7.143825] CPU: 7 PID: 3391 Comm: X Tainted: P         C O=20=20=20=20=
+=20
+4.18.5-gentoo #8
+[    7.143826] Hardware name: ASUSTeK COMPUTER INC. VivoBook 15 ASUS Laptop
+X570UD/X570UD, BIOS X570UD.307 04/10/2018
+[    7.143837] RIP: 0010:gf100_gr_init_ctxctl+0x86a/0xa10 [nouveau]
+[    7.143837] Code: ff ff 48 8b 7b 10 48 8b 5f 50 48 85 db 75 04 48 8b 5f =
+10
+e8 a8 7a 62 c4 48 89 da 48 c7 c7 17 68 6b c0 48 89 c6 e8 0b 9a 0b c4 <0f> 0=
+b b8
+f0 ff ff ff e9 b3 fa ff ff 48 8b 7b 10 48 8b 5f 50 48 85=20
+[    7.143852] RSP: 0018:ffffb5ee81137ac8 EFLAGS: 00010282
+[    7.143853] RAX: 0000000000000000 RBX: ffff9df6a4ac0840 RCX:
+0000000000000006
+[    7.143854] RDX: 0000000000000007 RSI: 0000000000000092 RDI:
+ffff9df6aedd54f0
+[    7.143854] RBP: ffff9df69ce38000 R08: 0000000000000030 R09:
+0000000000000001
+[    7.143855] R10: 0000000000000000 R11: 0000000000000001 R12:
+000000007738ad20
+[    7.143855] R13: ffff9df6a4461180 R14: 0000000132948f80 R15:
+0000000000000005
+[    7.143856] FS:  00007fc5c29f78c0(0000) GS:ffff9df6aedc0000(0000)
+knlGS:0000000000000000
+[    7.143857] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    7.143857] CR2: 00007fc5bf3280e0 CR3: 0000000257fe2006 CR4:
+00000000003606e0
+[    7.143858] Call Trace:
+[    7.143867]  nvkm_engine_init+0xa5/0x1d0 [nouveau]
+[    7.143875]  nvkm_subdev_init+0xad/0x1f0 [nouveau]
+[    7.143882]  nvkm_engine_ref.part.0+0x3e/0x60 [nouveau]
+[    7.143889]  nvkm_ioctl_new+0x120/0x200 [nouveau]
+[    7.143901]  ? nvkm_fifo_chan_dtor+0xe0/0xe0 [nouveau]
+[    7.143911]  ? gf100_fermi_mthd+0xf0/0xf0 [nouveau]
+[    7.143919]  nvkm_ioctl+0xd3/0x170 [nouveau]
+[    7.143925]  nvif_object_init+0xba/0x110 [nouveau]
+[    7.143935]  nouveau_abi16_ioctl_grobj_alloc+0x14c/0x2f0 [nouveau]
+[    7.143945]  ? nouveau_abi16_ioctl_channel_free+0x80/0x80 [nouveau]
+[    7.143947]  drm_ioctl_kernel+0x9c/0xe0
+[    7.143949]  drm_ioctl+0x1d4/0x370
+[    7.143958]  ? nouveau_abi16_ioctl_channel_free+0x80/0x80 [nouveau]
+[    7.143960]  ? filemap_map_pages+0x286/0x2b0
+[    7.143969]  nouveau_drm_ioctl+0x60/0xb0 [nouveau]
+[    7.143972]  do_vfs_ioctl+0x9f/0x5f0
+[    7.143974]  ksys_ioctl+0x5b/0x90
+[    7.143975]  __x64_sys_ioctl+0x11/0x20
+[    7.143976]  do_syscall_64+0x4a/0xf0
+[    7.143978]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[    7.143979] RIP: 0033:0x7fc5c0c785d7
+[    7.143979] Code: 00 00 00 75 0c 48 c7 c0 ff ff ff ff 48 83 c4 18 c3 e8 =
+8d
+db 01 00 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 b8 10 00 00 00 0f 05 <48> 3=
+d 01
+f0 ff ff 73 01 c3 48 8b 0d 81 78 2c 00 f7 d8 64 89 01 48=20
+[    7.143994] RSP: 002b:00007ffeed85c558 EFLAGS: 00003246 ORIG_RAX:
+0000000000000010
+[    7.143995] RAX: ffffffffffffffda RBX: 0000557d579a5f10 RCX:
+00007fc5c0c785d7
+[    7.143996] RDX: 00007ffeed85c5ac RSI: 00000000400c6444 RDI:
+0000000000000012
+[    7.143996] RBP: 00007ffeed85c5ac R08: 0000000000000008 R09:
+0000557d579a5f10
+[    7.143997] R10: 0000000000000000 R11: 0000000000003246 R12:
+00000000400c6444
+[    7.143997] R13: 0000000000000012 R14: 000000000000902d R15:
+000000000000902d
+[    7.143998] ---[ end trace 39a7fcb5eb66313e ]---
+[    7.144003] nouveau 0000:01:00.0: gr: init failed, -16
+and:
+[    9.145276] ------------[ cut here ]------------
+[    9.145277] nouveau 0000:01:00.0: timeout
+[    9.145322] WARNING: CPU: 3 PID: 3391 at
+drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgf100.c:207
+gf100_vmm_flush_+0x149/0x190 [nouveau]
+[    9.145322] Modules linked in: bnep ipmi_msghandler ext2 hid_multitouch
+spi_pxa2xx_platform intel_rapl intel_pmc_core x86_pkg_temp_thermal uvcvideo
+intel_powerclamp videobuf2_vmalloc asus_nb_wmi videobuf2_memops kvm_intel
+videobuf2_v4l2 asus_wmi wmi_bmof mxm_wmi coretemp videodev kvm irqbypass
+videobuf2_common nouveau mousedev btusb ttm btrtl btbcm sdhci_pci btintel
+pcspkr idma64 bluetooth cqhci nvidiafb ecdh_generic r8822be(C) vgastate sdh=
+ci
+fb_ddc mmc_core processor_thermal_device intel_lpss_pci intel_lpss
+intel_soc_dts_iosf intel_pch_thermal i2c_hid int3403_thermal
+int340x_thermal_zone wmi pinctrl_sunrisepoint pinctrl_intel int3400_thermal
+acpi_thermal_rel asus_wireless efivarfs
+[    9.145340] CPU: 3 PID: 3391 Comm: X Tainted: P        WC O=20=20=20=20=
+=20
+4.18.5-gentoo #8
+[    9.145341] Hardware name: ASUSTeK COMPUTER INC. VivoBook 15 ASUS Laptop
+X570UD/X570UD, BIOS X570UD.307 04/10/2018
+[    9.145353] RIP: 0010:gf100_vmm_flush_+0x149/0x190 [nouveau]
+[    9.145353] Code: 5f e9 bb 4b b0 c4 48 8b 7d 10 48 8b 5f 50 48 85 db 74 =
+4c
+e8 69 72 66 c4 48 89 da 48 c7 c7 e2 0b 6b c0 48 89 c6 e8 cc 91 0f c4 <0f> 0=
+b eb
+c2 48 8b 7d 10 48 8b 5f 50 48 85 db 74 1e e8 41 72 66 c4=20
+[    9.145368] RSP: 0018:ffffb5ee811377a0 EFLAGS: 00010286
+[    9.145369] RAX: 0000000000000000 RBX: ffff9df6a4ac0840 RCX:
+0000000000000006
+[    9.145369] RDX: 0000000000000007 RSI: 0000000000000082 RDI:
+ffff9df6aecd54f0
+[    9.145370] RBP: ffff9df6a3980000 R08: 0000000000000030 R09:
+0000000000000001
+[    9.145370] R10: 0000000000000000 R11: 0000000000000001 R12:
+ffff9df6a4461180
+[    9.145371] R13: 00000001a9dfe020 R14: ffff9df69f214c20 R15:
+ffff9df69f1ec800
+[    9.145371] FS:  00007fc5c29f78c0(0000) GS:ffff9df6aecc0000(0000)
+knlGS:0000000000000000
+[    9.145372] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    9.145372] CR2: 000055bea020a000 CR3: 0000000257fe2005 CR4:
+00000000003606e0
+[    9.145373] Call Trace:
+[    9.145386]  nvkm_vmm_iter.constprop.14+0x357/0x830 [nouveau]
+[    9.145399]  ? nvkm_vmm_map_choose+0xb0/0xb0 [nouveau]
+[    9.145411]  ? gp100_vmm_pgt_dma+0x200/0x200 [nouveau]
+[    9.145422]  nvkm_vmm_map+0x203/0x3f0 [nouveau]
+[    9.145435]  ? gp100_vmm_pgt_dma+0x200/0x200 [nouveau]
+[    9.145436]  ? wake_up_klogd+0x2b/0x30
+[    9.145447]  nvkm_vram_map+0x51/0x70 [nouveau]
+[    9.145460]  nvkm_uvmm_mthd+0x5ff/0x8d0 [nouveau]
+[    9.145468]  nvkm_ioctl+0xd3/0x170 [nouveau]
+[    9.145476]  nvif_object_mthd+0x103/0x130 [nouveau]
+[    9.145483]  ? nvif_object_mthd+0x113/0x130 [nouveau]
+[    9.145491]  nvif_vmm_map+0x115/0x130 [nouveau]
+[    9.145493]  ? selinux_inode_alloc_security+0x2d/0x70
+[    9.145503]  nouveau_mem_map+0x7c/0xf0 [nouveau]
+[    9.145513]  nouveau_vma_new+0x1b6/0x1e0 [nouveau]
+[    9.145523]  nouveau_gem_object_open+0x11b/0x150 [nouveau]
+[    9.145525]  drm_gem_handle_create_tail+0xbf/0x140
+[    9.145534]  ? nouveau_gem_new+0x120/0x120 [nouveau]
+[    9.145543]  nouveau_gem_ioctl_new+0x86/0xe0 [nouveau]
+[    9.145545]  drm_ioctl_kernel+0x9c/0xe0
+[    9.145546]  drm_ioctl+0x1d4/0x370
+[    9.145556]  ? nouveau_gem_new+0x120/0x120 [nouveau]
+[    9.145557]  ? ext4_file_write_iter+0x15e/0x3c0
+[    9.145567]  nouveau_drm_ioctl+0x60/0xb0 [nouveau]
+[    9.145569]  do_vfs_ioctl+0x9f/0x5f0
+[    9.145571]  ksys_ioctl+0x5b/0x90
+[    9.145572]  ? ksys_write+0x97/0xb0
+[    9.145573]  __x64_sys_ioctl+0x11/0x20
+[    9.145574]  do_syscall_64+0x4a/0xf0
+[    9.145576]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[    9.145577] RIP: 0033:0x7fc5c0c785d7
+[    9.145577] Code: 00 00 00 75 0c 48 c7 c0 ff ff ff ff 48 83 c4 18 c3 e8 =
+8d
+db 01 00 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 b8 10 00 00 00 0f 05 <48> 3=
+d 01
+f0 ff ff 73 01 c3 48 8b 0d 81 78 2c 00 f7 d8 64 89 01 48=20
+[    9.145592] RSP: 002b:00007ffeed85c5d8 EFLAGS: 00003246 ORIG_RAX:
+0000000000000010
+[    9.145593] RAX: ffffffffffffffda RBX: 0000557d579a5f40 RCX:
+00007fc5c0c785d7
+[    9.145593] RDX: 00007ffeed85c630 RSI: 00000000c0306480 RDI:
+0000000000000012
+[    9.145594] RBP: 00007ffeed85c630 R08: 0000000000000000 R09:
+0000557d579af720
+[    9.145594] R10: 0000557d57975010 R11: 0000000000003246 R12:
+00000000c0306480
+[    9.145595] R13: 0000000000000012 R14: 0000557d579af720 R15:
+0000557d579afae0
+[    9.145595] ---[ end trace 39a7fcb5eb66313f ]---
 
-Linux kernel version: Kernel 4.19RC2 (its also there on older kernels)
+Than in Xorg log I have some errros too: I attached it to bug.
 
-Output when connected to DisplayPort 2 on kernel 4.19RC2 :
-
-[    1.929715] fb: switching to nouveaufb from EFI VGA
-[    1.930182] nouveau 0000:01:00.0: NVIDIA G98 (298e80a2)
-[    2.064262] nouveau 0000:01:00.0: bios: version 62.98.75.00.08
-[    2.086423] nouveau 0000:01:00.0: fb: 256 MiB GDDR3
-[    2.155387] nouveau 0000:01:00.0: DRM: VRAM: 256 MiB
-[    2.155388] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
-[    2.155393] nouveau 0000:01:00.0: DRM: TMDS table version 2.0
-[    2.155394] nouveau 0000:01:00.0: DRM: DCB version 4.0
-[    2.155397] nouveau 0000:01:00.0: DRM: DCB outp 00: 02000386 0f200010
-[    2.155399] nouveau 0000:01:00.0: DRM: DCB outp 01: 02000332 00020010
-[    2.155401] nouveau 0000:01:00.0: DRM: DCB outp 02: 040113a6 0f200010
-[    2.155402] nouveau 0000:01:00.0: DRM: DCB outp 03: 04011342 00020010
-[    2.155404] nouveau 0000:01:00.0: DRM: DCB conn 00: 00005046
-[    2.155405] nouveau 0000:01:00.0: DRM: DCB conn 01: 0000a146
-[    2.164991] nouveau 0000:01:00.0: DRM: MM: using M2MF for buffer copies
-[    2.291693] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[    2.299041] nouveau 0000:01:00.0: DRM: allocated 1920x1080 fb: 0x50000, =
-bo
-(____ptrval____)
-[    2.299785] fbcon: nouveaufb (fb0) is primary device
-[    2.423693] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[    2.607694] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[    2.616508] nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
-[    2.631694] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on
-minor 1
-[    3.283698] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[   38.267703] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[   38.403699] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[   50.075703] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[   50.207697] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[   53.323704] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[   53.455714] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
+This disable hardware acceleration for my graphics card and disable discrete
+graphics card use.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15359911631.3CFac3F.9653
-Date: Mon, 3 Sep 2018 16:12:43 +0000
+--15359963031.D6aD42A7.1260
+Date: Mon, 3 Sep 2018 17:38:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -129,16 +260,14 @@ Auto-Submitted: auto-generated
           <th>Bug ID</th>
           <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - NV50 : Nvidia NVS295 - Printing out EDID errors about not=
- connected monitor ports"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107817">107817</a>
+   title=3D"NEW - linux-4.18.5 every boot some drivers errors"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107818">107818</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>NV50 : Nvidia NVS295 - Printing out EDID errors about not con=
-nected monitor ports
+          <td>linux-4.18.5 every boot some drivers errors
           </td>
         </tr>
 
@@ -156,13 +285,13 @@ nected monitor ports
 
         <tr>
           <th>Hardware</th>
-          <td>x86-64 (AMD64)
+          <td>Other
           </td>
         </tr>
 
         <tr>
           <th>OS</th>
-          <td>Linux (All)
+          <td>All
           </td>
         </tr>
 
@@ -174,7 +303,7 @@ nected monitor ports
 
         <tr>
           <th>Severity</th>
-          <td>minor
+          <td>normal
           </td>
         </tr>
 
@@ -198,7 +327,7 @@ nected monitor ports
 
         <tr>
           <th>Reporter</th>
-          <td>cezdhzez&#64;sharklasers.com
+          <td>no111u3&#64;gmail.com
           </td>
         </tr>
 
@@ -209,64 +338,198 @@ nected monitor ports
         </tr></table>
       <p>
         <div>
-        <pre>Card: Nvidia NVS295 with 2 DisplayPort connectors.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141430=
+" name=3D"attach_141430" title=3D"Xorg load log">attachment 141430</a> <a h=
+ref=3D"attachment.cgi?id=3D141430&amp;action=3Dedit" title=3D"Xorg load log=
+">[details]</a></span>
+Xorg load log
 
-Problem: nouveau is spamming the kernel message, that it cant find the EDID=
- of
-not connected ports. Of course it cant, because there is no monitor connect=
-ed
-to that port.
+On new hardware I have some bugs with nouveau:
 
-When i connect the monitor to DisplayPort number 1, it writes, that it cant
-find EDID on DisplayPort number 2. When i connect it to DisplayPort 2, it
-writes that it cant find EDID of Display Port 1.
+1) Driver errors in dmesg:
+[    7.143770] ------------[ cut here ]------------
+[    7.143771] nouveau 0000:01:00.0: timeout
+[    7.143805] WARNING: CPU: 7 PID: 3391 at
+drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c:1524
+gf100_gr_init_ctxctl+0x86a/0xa10 [nouveau]
+[    7.143806] Modules linked in: bnep ipmi_msghandler ext2 hid_multitouch
+spi_pxa2xx_platform intel_rapl intel_pmc_core x86_pkg_temp_thermal uvcvideo
+intel_powerclamp videobuf2_vmalloc asus_nb_wmi videobuf2_memops kvm_intel
+videobuf2_v4l2 asus_wmi wmi_bmof mxm_wmi coretemp videodev kvm irqbypass
+videobuf2_common nouveau mousedev btusb ttm btrtl btbcm sdhci_pci btintel
+pcspkr idma64 bluetooth cqhci nvidiafb ecdh_generic r8822be(C) vgastate sdh=
+ci
+fb_ddc mmc_core processor_thermal_device intel_lpss_pci intel_lpss
+intel_soc_dts_iosf intel_pch_thermal i2c_hid int3403_thermal
+int340x_thermal_zone wmi pinctrl_sunrisepoint pinctrl_intel int3400_thermal
+acpi_thermal_rel asus_wireless efivarfs
+[    7.143825] CPU: 7 PID: 3391 Comm: X Tainted: P         C O=20=20=20=20=
+=20
+4.18.5-gentoo #8
+[    7.143826] Hardware name: ASUSTeK COMPUTER INC. VivoBook 15 ASUS Laptop
+X570UD/X570UD, BIOS X570UD.307 04/10/2018
+[    7.143837] RIP: 0010:gf100_gr_init_ctxctl+0x86a/0xa10 [nouveau]
+[    7.143837] Code: ff ff 48 8b 7b 10 48 8b 5f 50 48 85 db 75 04 48 8b 5f =
+10
+e8 a8 7a 62 c4 48 89 da 48 c7 c7 17 68 6b c0 48 89 c6 e8 0b 9a 0b c4 &lt;0f=
+&gt; 0b b8
+f0 ff ff ff e9 b3 fa ff ff 48 8b 7b 10 48 8b 5f 50 48 85=20
+[    7.143852] RSP: 0018:ffffb5ee81137ac8 EFLAGS: 00010282
+[    7.143853] RAX: 0000000000000000 RBX: ffff9df6a4ac0840 RCX:
+0000000000000006
+[    7.143854] RDX: 0000000000000007 RSI: 0000000000000092 RDI:
+ffff9df6aedd54f0
+[    7.143854] RBP: ffff9df69ce38000 R08: 0000000000000030 R09:
+0000000000000001
+[    7.143855] R10: 0000000000000000 R11: 0000000000000001 R12:
+000000007738ad20
+[    7.143855] R13: ffff9df6a4461180 R14: 0000000132948f80 R15:
+0000000000000005
+[    7.143856] FS:  00007fc5c29f78c0(0000) GS:ffff9df6aedc0000(0000)
+knlGS:0000000000000000
+[    7.143857] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    7.143857] CR2: 00007fc5bf3280e0 CR3: 0000000257fe2006 CR4:
+00000000003606e0
+[    7.143858] Call Trace:
+[    7.143867]  nvkm_engine_init+0xa5/0x1d0 [nouveau]
+[    7.143875]  nvkm_subdev_init+0xad/0x1f0 [nouveau]
+[    7.143882]  nvkm_engine_ref.part.0+0x3e/0x60 [nouveau]
+[    7.143889]  nvkm_ioctl_new+0x120/0x200 [nouveau]
+[    7.143901]  ? nvkm_fifo_chan_dtor+0xe0/0xe0 [nouveau]
+[    7.143911]  ? gf100_fermi_mthd+0xf0/0xf0 [nouveau]
+[    7.143919]  nvkm_ioctl+0xd3/0x170 [nouveau]
+[    7.143925]  nvif_object_init+0xba/0x110 [nouveau]
+[    7.143935]  nouveau_abi16_ioctl_grobj_alloc+0x14c/0x2f0 [nouveau]
+[    7.143945]  ? nouveau_abi16_ioctl_channel_free+0x80/0x80 [nouveau]
+[    7.143947]  drm_ioctl_kernel+0x9c/0xe0
+[    7.143949]  drm_ioctl+0x1d4/0x370
+[    7.143958]  ? nouveau_abi16_ioctl_channel_free+0x80/0x80 [nouveau]
+[    7.143960]  ? filemap_map_pages+0x286/0x2b0
+[    7.143969]  nouveau_drm_ioctl+0x60/0xb0 [nouveau]
+[    7.143972]  do_vfs_ioctl+0x9f/0x5f0
+[    7.143974]  ksys_ioctl+0x5b/0x90
+[    7.143975]  __x64_sys_ioctl+0x11/0x20
+[    7.143976]  do_syscall_64+0x4a/0xf0
+[    7.143978]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[    7.143979] RIP: 0033:0x7fc5c0c785d7
+[    7.143979] Code: 00 00 00 75 0c 48 c7 c0 ff ff ff ff 48 83 c4 18 c3 e8 =
+8d
+db 01 00 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 b8 10 00 00 00 0f 05 &lt;48=
+&gt; 3d 01
+f0 ff ff 73 01 c3 48 8b 0d 81 78 2c 00 f7 d8 64 89 01 48=20
+[    7.143994] RSP: 002b:00007ffeed85c558 EFLAGS: 00003246 ORIG_RAX:
+0000000000000010
+[    7.143995] RAX: ffffffffffffffda RBX: 0000557d579a5f10 RCX:
+00007fc5c0c785d7
+[    7.143996] RDX: 00007ffeed85c5ac RSI: 00000000400c6444 RDI:
+0000000000000012
+[    7.143996] RBP: 00007ffeed85c5ac R08: 0000000000000008 R09:
+0000557d579a5f10
+[    7.143997] R10: 0000000000000000 R11: 0000000000003246 R12:
+00000000400c6444
+[    7.143997] R13: 0000000000000012 R14: 000000000000902d R15:
+000000000000902d
+[    7.143998] ---[ end trace 39a7fcb5eb66313e ]---
+[    7.144003] nouveau 0000:01:00.0: gr: init failed, -16
+and:
+[    9.145276] ------------[ cut here ]------------
+[    9.145277] nouveau 0000:01:00.0: timeout
+[    9.145322] WARNING: CPU: 3 PID: 3391 at
+drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgf100.c:207
+gf100_vmm_flush_+0x149/0x190 [nouveau]
+[    9.145322] Modules linked in: bnep ipmi_msghandler ext2 hid_multitouch
+spi_pxa2xx_platform intel_rapl intel_pmc_core x86_pkg_temp_thermal uvcvideo
+intel_powerclamp videobuf2_vmalloc asus_nb_wmi videobuf2_memops kvm_intel
+videobuf2_v4l2 asus_wmi wmi_bmof mxm_wmi coretemp videodev kvm irqbypass
+videobuf2_common nouveau mousedev btusb ttm btrtl btbcm sdhci_pci btintel
+pcspkr idma64 bluetooth cqhci nvidiafb ecdh_generic r8822be(C) vgastate sdh=
+ci
+fb_ddc mmc_core processor_thermal_device intel_lpss_pci intel_lpss
+intel_soc_dts_iosf intel_pch_thermal i2c_hid int3403_thermal
+int340x_thermal_zone wmi pinctrl_sunrisepoint pinctrl_intel int3400_thermal
+acpi_thermal_rel asus_wireless efivarfs
+[    9.145340] CPU: 3 PID: 3391 Comm: X Tainted: P        WC O=20=20=20=20=
+=20
+4.18.5-gentoo #8
+[    9.145341] Hardware name: ASUSTeK COMPUTER INC. VivoBook 15 ASUS Laptop
+X570UD/X570UD, BIOS X570UD.307 04/10/2018
+[    9.145353] RIP: 0010:gf100_vmm_flush_+0x149/0x190 [nouveau]
+[    9.145353] Code: 5f e9 bb 4b b0 c4 48 8b 7d 10 48 8b 5f 50 48 85 db 74 =
+4c
+e8 69 72 66 c4 48 89 da 48 c7 c7 e2 0b 6b c0 48 89 c6 e8 cc 91 0f c4 &lt;0f=
+&gt; 0b eb
+c2 48 8b 7d 10 48 8b 5f 50 48 85 db 74 1e e8 41 72 66 c4=20
+[    9.145368] RSP: 0018:ffffb5ee811377a0 EFLAGS: 00010286
+[    9.145369] RAX: 0000000000000000 RBX: ffff9df6a4ac0840 RCX:
+0000000000000006
+[    9.145369] RDX: 0000000000000007 RSI: 0000000000000082 RDI:
+ffff9df6aecd54f0
+[    9.145370] RBP: ffff9df6a3980000 R08: 0000000000000030 R09:
+0000000000000001
+[    9.145370] R10: 0000000000000000 R11: 0000000000000001 R12:
+ffff9df6a4461180
+[    9.145371] R13: 00000001a9dfe020 R14: ffff9df69f214c20 R15:
+ffff9df69f1ec800
+[    9.145371] FS:  00007fc5c29f78c0(0000) GS:ffff9df6aecc0000(0000)
+knlGS:0000000000000000
+[    9.145372] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    9.145372] CR2: 000055bea020a000 CR3: 0000000257fe2005 CR4:
+00000000003606e0
+[    9.145373] Call Trace:
+[    9.145386]  nvkm_vmm_iter.constprop.14+0x357/0x830 [nouveau]
+[    9.145399]  ? nvkm_vmm_map_choose+0xb0/0xb0 [nouveau]
+[    9.145411]  ? gp100_vmm_pgt_dma+0x200/0x200 [nouveau]
+[    9.145422]  nvkm_vmm_map+0x203/0x3f0 [nouveau]
+[    9.145435]  ? gp100_vmm_pgt_dma+0x200/0x200 [nouveau]
+[    9.145436]  ? wake_up_klogd+0x2b/0x30
+[    9.145447]  nvkm_vram_map+0x51/0x70 [nouveau]
+[    9.145460]  nvkm_uvmm_mthd+0x5ff/0x8d0 [nouveau]
+[    9.145468]  nvkm_ioctl+0xd3/0x170 [nouveau]
+[    9.145476]  nvif_object_mthd+0x103/0x130 [nouveau]
+[    9.145483]  ? nvif_object_mthd+0x113/0x130 [nouveau]
+[    9.145491]  nvif_vmm_map+0x115/0x130 [nouveau]
+[    9.145493]  ? selinux_inode_alloc_security+0x2d/0x70
+[    9.145503]  nouveau_mem_map+0x7c/0xf0 [nouveau]
+[    9.145513]  nouveau_vma_new+0x1b6/0x1e0 [nouveau]
+[    9.145523]  nouveau_gem_object_open+0x11b/0x150 [nouveau]
+[    9.145525]  drm_gem_handle_create_tail+0xbf/0x140
+[    9.145534]  ? nouveau_gem_new+0x120/0x120 [nouveau]
+[    9.145543]  nouveau_gem_ioctl_new+0x86/0xe0 [nouveau]
+[    9.145545]  drm_ioctl_kernel+0x9c/0xe0
+[    9.145546]  drm_ioctl+0x1d4/0x370
+[    9.145556]  ? nouveau_gem_new+0x120/0x120 [nouveau]
+[    9.145557]  ? ext4_file_write_iter+0x15e/0x3c0
+[    9.145567]  nouveau_drm_ioctl+0x60/0xb0 [nouveau]
+[    9.145569]  do_vfs_ioctl+0x9f/0x5f0
+[    9.145571]  ksys_ioctl+0x5b/0x90
+[    9.145572]  ? ksys_write+0x97/0xb0
+[    9.145573]  __x64_sys_ioctl+0x11/0x20
+[    9.145574]  do_syscall_64+0x4a/0xf0
+[    9.145576]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[    9.145577] RIP: 0033:0x7fc5c0c785d7
+[    9.145577] Code: 00 00 00 75 0c 48 c7 c0 ff ff ff ff 48 83 c4 18 c3 e8 =
+8d
+db 01 00 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 b8 10 00 00 00 0f 05 &lt;48=
+&gt; 3d 01
+f0 ff ff 73 01 c3 48 8b 0d 81 78 2c 00 f7 d8 64 89 01 48=20
+[    9.145592] RSP: 002b:00007ffeed85c5d8 EFLAGS: 00003246 ORIG_RAX:
+0000000000000010
+[    9.145593] RAX: ffffffffffffffda RBX: 0000557d579a5f40 RCX:
+00007fc5c0c785d7
+[    9.145593] RDX: 00007ffeed85c630 RSI: 00000000c0306480 RDI:
+0000000000000012
+[    9.145594] RBP: 00007ffeed85c630 R08: 0000000000000000 R09:
+0000557d579af720
+[    9.145594] R10: 0000557d57975010 R11: 0000000000003246 R12:
+00000000c0306480
+[    9.145595] R13: 0000000000000012 R14: 0000557d579af720 R15:
+0000557d579afae0
+[    9.145595] ---[ end trace 39a7fcb5eb66313f ]---
 
-Linux kernel version: Kernel 4.19RC2 (its also there on older kernels)
+Than in Xorg log I have some errros too: I attached it to bug.
 
-Output when connected to DisplayPort 2 on kernel 4.19RC2 :
-
-[    1.929715] fb: switching to nouveaufb from EFI VGA
-[    1.930182] nouveau 0000:01:00.0: NVIDIA G98 (298e80a2)
-[    2.064262] nouveau 0000:01:00.0: bios: version 62.98.75.00.08
-[    2.086423] nouveau 0000:01:00.0: fb: 256 MiB GDDR3
-[    2.155387] nouveau 0000:01:00.0: DRM: VRAM: 256 MiB
-[    2.155388] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
-[    2.155393] nouveau 0000:01:00.0: DRM: TMDS table version 2.0
-[    2.155394] nouveau 0000:01:00.0: DRM: DCB version 4.0
-[    2.155397] nouveau 0000:01:00.0: DRM: DCB outp 00: 02000386 0f200010
-[    2.155399] nouveau 0000:01:00.0: DRM: DCB outp 01: 02000332 00020010
-[    2.155401] nouveau 0000:01:00.0: DRM: DCB outp 02: 040113a6 0f200010
-[    2.155402] nouveau 0000:01:00.0: DRM: DCB outp 03: 04011342 00020010
-[    2.155404] nouveau 0000:01:00.0: DRM: DCB conn 00: 00005046
-[    2.155405] nouveau 0000:01:00.0: DRM: DCB conn 01: 0000a146
-[    2.164991] nouveau 0000:01:00.0: DRM: MM: using M2MF for buffer copies
-[    2.291693] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[    2.299041] nouveau 0000:01:00.0: DRM: allocated 1920x1080 fb: 0x50000, =
-bo
-(____ptrval____)
-[    2.299785] fbcon: nouveaufb (fb0) is primary device
-[    2.423693] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[    2.607694] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[    2.616508] nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
-[    2.631694] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on
-minor 1
-[    3.283698] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[   38.267703] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[   38.403699] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[   50.075703] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[   50.207697] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[   53.323704] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1
-[   53.455714] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for DP=
--1</pre>
+This disable hardware acceleration for my graphics card and disable discrete
+graphics card use.</pre>
         </div>
       </p>
 
@@ -280,9 +543,9 @@ minor 1
     </body>
 </html>=
 
---15359911631.3CFac3F.9653--
+--15359963031.D6aD42A7.1260--
 
---===============0501261572==
+--===============1157936420==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -292,4 +555,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0501261572==--
+--===============1157936420==--
