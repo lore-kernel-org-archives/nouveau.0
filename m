@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Questions Conscerning Pascal ISA and IPA Instruction
-Date: Sat, 1 Sep 2018 22:28:44 -0400
-Message-ID: <CAKb7UvhJ4-C3MJCCdENQTCEiDxVWzGaPe8tBqSzOa+9w4HLLdA@mail.gmail.com>
-References: <CA+MSTo8ZPku3Y5zdy9VhdZyY8tvyHvJiRXp15Dbe8JhddcA_PA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 107504] Xorg segmentation fault at
+ RRProviderAutoConfigGpuScreen
+Date: Mon, 03 Sep 2018 08:14:33 +0000
+Message-ID: <bug-107504-8800-fzHLKWurQW@http.bugs.freedesktop.org/>
+References: <bug-107504-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0484408196=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CA+MSTo8ZPku3Y5zdy9VhdZyY8tvyHvJiRXp15Dbe8JhddcA_PA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-107504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,25 +17,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SVBBIGlzIHRvIGludGVycG9sYXRlIGFuIGlucHV0IGluIGEgZnJhZ21lbnQgc2hhZGVyLiBIYXZl
-IGEgbG9vayBhdApPUF9MSU5URVJQIC8gT1BfUElOVEVSUCBpbiBjb2RlZ2VuCihodHRwczovL2Nn
-aXQuZnJlZWRlc2t0b3Aub3JnL21lc2EvbWVzYS90cmVlL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
-dmVhdS9jb2RlZ2VuLykuCkFsc28gZmVlbCBmcmVlIHRvIGFzayBzcGVjaWZpYyBxdWVzdGlvbnMg
-aW4gI25vdXZlYXUgb24KaXJjLmZyZWVub2RlLm5ldC4KCkNoZWVycywKCiAgLWlsaWEKCk9uIFNh
-dCwgU2VwIDEsIDIwMTggYXQgOToyMCBQTSwgRmVybmFuZG8gU2FobWtvdyA8ZnNhaG1rb3cyN0Bn
-bWFpbC5jb20+IHdyb3RlOgo+IEknbSBjdXJyZW50bHkgcnVubmluZyB0ZXN0cyB0byBkb2N1bWVu
-dCBQQVNDQUwncyBJU0Egb24gQ3VkYSBidXQgSSd2ZSBjb21lCj4gdG8gYSBkZWFkIGVuZCB3aXRo
-IHRoZSBJUEEgaW5zdHJ1Y3Rpb24uIEkndmUgdHJpZWQgc2VhcmNoaW5nIGFyb3VuZAo+IE5vdXZl
-YXUncyBjb2RlYmFzZSBmb3IgY2x1ZXMgYnV0IEkndmUgZmFsbGVuIHNob3J0IGZyb20gaXQuIENv
-dWxkIHNvbWVvbmUKPiByZWZlcmVuY2UgbWUgaW4gdGhlIHJpZ2h0IGRpcmVjdGlvbj8KPgo+IC0t
-Cj4gQXRlbnRhbWVudGUsCj4gRmVybmFuZG8gQS4gU2FobWtvdwo+IENvcnJlbzogZnNhaG1rb3cy
-N0BnbWFpbC5jb20KPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
-dmVhdQo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
-dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0484408196==
+Content-Type: multipart/alternative; boundary="15359624730.eb4B3.29730"
+Content-Transfer-Encoding: 7bit
+
+
+--15359624730.eb4B3.29730
+Date: Mon, 3 Sep 2018 08:14:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107504
+
+--- Comment #1 from tianhang <1748215448-9uewiaClKEY@public.gmane.org> ---
+Xorg segmentation fault at RRProviderAutoConfigGpuScreen
+this problem has also occured on on my machine with nvidia cards(GM204GL [T=
+esla
+M60])
+
+does the nouveau driver support this nvidia card(GM204GL [Tesla M60]) ?
+https://nouveau.freedesktop.org/wiki/CodeNames/ there is no infomation about
+GM204GL or Telsa M60
+
+OS version :centos 7.4
+nvidia card :
+# lspci -k -s 06:00.0
+06:00.0 VGA compatible controller: NVIDIA Corporation GM204GL [Tesla M60] (=
+rev
+a1)
+        Subsystem: Huawei Corporation Device 2060
+        Kernel modules: nouveau
+
+Look forward to your reply
+
+thanks
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15359624730.eb4B3.29730
+Date: Mon, 3 Sep 2018 08:14:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg segmentation fault at RRProviderAutoConfigGpuScreen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107504#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg segmentation fault at RRProviderAutoConfigGpuScreen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107504">bug 10750=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+1748215448&#64;qq.com" title=3D"tianhang &lt;1748215448&#64;qq.com&gt;"> <s=
+pan class=3D"fn">tianhang</span></a>
+</span></b>
+        <pre>Xorg segmentation fault at RRProviderAutoConfigGpuScreen
+this problem has also occured on on my machine with nvidia cards(GM204GL [T=
+esla
+M60])
+
+does the nouveau driver support this nvidia card(GM204GL [Tesla M60]) ?
+<a href=3D"https://nouveau.freedesktop.org/wiki/CodeNames/">https://nouveau=
+.freedesktop.org/wiki/CodeNames/</a> there is no infomation about
+GM204GL or Telsa M60
+
+OS version :centos 7.4
+nvidia card :
+# lspci -k -s 06:00.0
+06:00.0 VGA compatible controller: NVIDIA Corporation GM204GL [Tesla M60] (=
+rev
+a1)
+        Subsystem: Huawei Corporation Device 2060
+        Kernel modules: nouveau
+
+Look forward to your reply
+
+thanks</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15359624730.eb4B3.29730--
+
+--===============0484408196==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0484408196==--
