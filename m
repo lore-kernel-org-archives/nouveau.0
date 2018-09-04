@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
- 409800 [ TIMEOUT ]
-Date: Mon, 03 Sep 2018 20:13:34 +0000
-Message-ID: <bug-100228-8800-SnR0OHc3az@http.bugs.freedesktop.org/>
-References: <bug-100228-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 0/5] drm/nouveau: add basic HDMI 2.0 support
+Date: Mon,  3 Sep 2018 20:57:32 -0400
+Message-ID: <20180904005737.5346-1-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1895425172=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,123 +15,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1895425172==
-Content-Type: multipart/alternative; boundary="15360056153.1f1a52fD.15428"
-Content-Transfer-Encoding: 7bit
-
-
---15360056153.1f1a52fD.15428
-Date: Mon, 3 Sep 2018 20:13:35 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
-
-Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |no111u3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #21 from Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-*** Bug 107818 has been marked as a duplicate of this bug. ***
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15360056153.1f1a52fD.15428
-Date: Mon, 3 Sep 2018 20:13:35 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:rhyskidd&=
-#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;"> <span cl=
-ass=3D"fn">Rhys Kidd</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
-8</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>no111u3&#64;gmail.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c21">Comme=
-nt # 21</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rhyskidd&#64;gmail.com" title=3D"Rhys Kidd &lt;rhyskidd&#64;gmail.com&gt;">=
- <span class=3D"fn">Rhys Kidd</span></a>
-</span></b>
-        <pre>*** <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - [GP107] linux-4.18.5 every boot some drive=
-rs errors"
-   href=3D"show_bug.cgi?id=3D107818">Bug 107818</a> has been marked as a du=
-plicate of this bug. ***</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15360056153.1f1a52fD.15428--
-
---===============1895425172==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1895425172==--
+VGhpcyBpcyB0aGUgYmVnaW5uaW5ncyBvZiBIRE1JIDIuMCBzdXBwb3J0LiBBbGwgb2YgdGhlICJl
+eHRyYSIKZmVhdHVyZXMgYXJlIGxlZnQgb3V0LCBzdWNoIGFzIDEyLzE2YnBjLCBZVVY0MjAsIGV0
+Yy4KCkkndmUgdmVyaWZpZWQgdGhhdCB3aXRoIHRoaXMgY29kZSwgYSBHUDEwOCAoR1QxMDMwKSBj
+YW4gc3dpdGNoIGJldHdlZW4KNGtANjAgYW5kIDE5MjB4MTA4MEA2MCBvbiBhIExHIDRLIFRWLiBG
+dXJ0aGVyLCBJJ3ZlIHZlcmlmaWVkIHZpYSBpMmMKdG9vbHMsIHRoYXQgdGhlIFNDREMgd3JpdGVz
+IHJlYWxseSBkbyBoYXBwZW4uCgpJIHN1c3BlY3QgdGhhdCB0aGUgcGF0Y2ggZm9yIGtlZXBpbmcg
+dHJhY2sgb2YgdGhlIGhpZ2gtc3BlZWQgVE1EUwpzZXR0aW5nIGlzIHNvbWVob3cgb2ZmLCBlc3Ag
+aWYgb25lIHdlcmUgdG8gc3dpdGNoIGJldHdlZW4gSERNSSBhbmQgRFZJCm9uIHRoZSBzYW1lIHBv
+cnQsIG9yIERQIGFuZCBIRE1JLiBJJ20gcXVpdGUgY29uZnVzZWQgYWJvdXQgT1IncyB2cwpIRUFE
+J3MsIGFuZCBob3cgdG8gdGVsbCB3aGV0aGVyIGEgcmVnaXN0ZXIgaXMgaW5kZXhlZCBieSBvbmUg
+b3IgdGhlCm90aGVyLiBCdXQgYXQgbGVhc3QgaXQgd29ya3MgYSBsaXR0bGUgYml0IQoKTm90ZSB0
+aGF0IEkgaGF2ZSBsaW1pdGVkIHRlc3RpbmcgZXF1aXBtZW50LCBidXQgSSBkaWQgdmVyaWZ5IHRo
+YXQgYQpHTTIwNCB0cmFjZSByZWZlcnJlZCB0byB0aGUgc2FtZSByZWdpc3RlciBmb3IgY29udHJv
+bGxpbmcKc2NyYW1ibGluZy4gSSBtYXkgZ2V0IGFjY2VzcyB0byBhIEdNMjA2IGxhdGVyIGluIHRo
+ZSB3ZWVrIHRvIHZlcmlmeQp0aGVyZS4KCklsaWEgTWlya2luICg1KToKICBkcm0vbm91dmVhdS9k
+aXNwOiBhZGQgYSB3YXkgdG8gY29uZmlndXJlIHNjcmFtYmxpbmcvdG1kcyBmb3IgaGRtaSAyLjAK
+ICBkcm0vbm91dmVhdS9kaXNwL2dtMjAwLTogYWRkIHNjZGMgcGFyYW1ldGVyIHNldHRlcgogIGRy
+bS9ub3V2ZWF1L2Rpc3A6IGtlZXAgdHJhY2sgb2YgaGlnaC1zcGVlZCBzdGF0ZSwgcHJvZ3JhbSBp
+bnRvIGNsb2NrCiAgZHJtL25vdXZlYXUvZGlzcDogYWRkIHN1cHBvcnQgZm9yIHNldHRpbmcgc2Nk
+YyBwYXJhbWV0ZXJzIGZvciBoaWdoCiAgICBtb2RlcwogIGRybS9ub3V2ZWF1L2Rpc3A6IHRha2Ug
+c2luayBzdXBwb3J0IGludG8gYWNjb3VudCBmb3IgZXhwb3NpbmcgNTk0bWh6CgogZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jICAgICAgICAgICAgfCA0MCArKysrKysrKysr
+KysrKysrKysrKystCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252aWYvY2w1MDcw
+LmggICAgICB8ICA1ICsrLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0
+b3IuYyAgICAgICAgfCAzNCArKysrKysrKysrKy0tLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252a20vZW5naW5lL2Rpc3AvS2J1aWxkICAgIHwgIDEgKwogLi4uL2dwdS9kcm0vbm91dmVh
+dS9udmttL2VuZ2luZS9kaXNwL2hkbWlnbTIwMC5jICAgfCAzNiArKysrKysrKysrKysrKysrKysr
+CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL2lvci5oICAgICB8ICA4
+ICsrKysrCiAuLi4vZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3Avcm9vdG52NTAuYyAg
+ICB8IDEwICsrKystLQogLi4uL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL3Nvcmdm
+MTE5LmMgICAgfCAxMSArKystLS0KIC4uLi9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlz
+cC9zb3JnbTIwMC5jICAgIHwgIDEgKwogLi4uL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9k
+aXNwL3Nvcmd2MTAwLmMgICAgfCAgMSArCiAxMCBmaWxlcyBjaGFuZ2VkLCAxMjcgaW5zZXJ0aW9u
+cygrKSwgMjAgZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9oZG1pZ20yMDAuYwoKLS0gCjIuMTYuNAoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
+IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
