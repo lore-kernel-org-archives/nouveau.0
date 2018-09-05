@@ -1,114 +1,72 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
- 409800 [ TIMEOUT ]
-Date: Wed, 05 Sep 2018 05:56:47 +0000
-Message-ID: <bug-100228-8800-Cuv9bjpxbB@http.bugs.freedesktop.org/>
-References: <bug-100228-8800@http.bugs.freedesktop.org/>
+From: Gerd Hoffmann <kraxel@redhat.com>
+Subject: [PATCH v2 1/6] drm: replace DRIVER_PREFER_XBGR_30BPP driver flag with
+ mode_config quirk
+Date: Wed,  5 Sep 2018 08:04:40 +0200
+Message-ID: <20180905060445.15008-2-kraxel@redhat.com>
+References: <20180905060445.15008-1-kraxel@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0402870343=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20180905060445.15008-1-kraxel@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: dri-devel@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, michel@daenzer.net, open list <linux-kernel@vger.kernel.org>, Gerd Hoffmann <kraxel@redhat.com>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, Sean Paul <sean@poorly.run>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0402870343==
-Content-Type: multipart/alternative; boundary="153612700713.A6dCb9d0B.8773"
-Content-Transfer-Encoding: 7bit
-
-
---153612700713.A6dCb9d0B.8773
-Date: Wed, 5 Sep 2018 05:56:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
-
---- Comment #25 from Boris Vinogradov <no111u3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 141455
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141455&action=3Dedit
-Kernel log with new firmware after some boot
-
-But I have some boot with reproduce error.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---153612700713.A6dCb9d0B.8773
-Date: Wed, 5 Sep 2018 05:56:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c25">Comme=
-nt # 25</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-no111u3&#64;gmail.com" title=3D"Boris Vinogradov &lt;no111u3&#64;gmail.com&=
-gt;"> <span class=3D"fn">Boris Vinogradov</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141455=
-" name=3D"attach_141455" title=3D"Kernel log with new firmware after some b=
-oot">attachment 141455</a> <a href=3D"attachment.cgi?id=3D141455&amp;action=
-=3Dedit" title=3D"Kernel log with new firmware after some boot">[details]</=
-a></span>
-Kernel log with new firmware after some boot
-
-But I have some boot with reproduce error.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---153612700713.A6dCb9d0B.8773--
-
---===============0402870343==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0402870343==--
+U2lnbmVkLW9mZi1ieTogR2VyZCBIb2ZmbWFubiA8a3JheGVsQHJlZGhhdC5jb20+Ci0tLQogaW5j
+bHVkZS9kcm0vZHJtX2Rydi5oICAgICAgICAgICAgICAgICAgIHwgMSAtCiBpbmNsdWRlL2RybS9k
+cm1fbW9kZV9jb25maWcuaCAgICAgICAgICAgfCAxICsKIGRyaXZlcnMvZ3B1L2RybS9kcm1fZnJh
+bWVidWZmZXIuYyAgICAgICB8IDQgKystLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52
+NTAvZGlzcC5jIHwgMiArLQogNCBmaWxlcyBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDQgZGVs
+ZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vZHJtX2Rydi5oIGIvaW5jbHVkZS9k
+cm0vZHJtX2Rydi5oCmluZGV4IDQ2YTgwMDk3ODQuLjIzYjk2NzgxMzcgMTAwNjQ0Ci0tLSBhL2lu
+Y2x1ZGUvZHJtL2RybV9kcnYuaAorKysgYi9pbmNsdWRlL2RybS9kcm1fZHJ2LmgKQEAgLTU2LDcg
+KzU2LDYgQEAgc3RydWN0IGRybV9wcmludGVyOwogI2RlZmluZSBEUklWRVJfQVRPTUlDCQkJMHgx
+MDAwMAogI2RlZmluZSBEUklWRVJfS01TX0xFR0FDWV9DT05URVhUCTB4MjAwMDAKICNkZWZpbmUg
+RFJJVkVSX1NZTkNPQkogICAgICAgICAgICAgICAgICAweDQwMDAwCi0jZGVmaW5lIERSSVZFUl9Q
+UkVGRVJfWEJHUl8zMEJQUCAgICAgICAgMHg4MDAwMAogCiAvKioKICAqIHN0cnVjdCBkcm1fZHJp
+dmVyIC0gRFJNIGRyaXZlciBzdHJ1Y3R1cmUKZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2RybV9t
+b2RlX2NvbmZpZy5oIGIvaW5jbHVkZS9kcm0vZHJtX21vZGVfY29uZmlnLmgKaW5kZXggYTBiMjAy
+ZTFkNi4uNWQyOWY0YmE2ZiAxMDA2NDQKLS0tIGEvaW5jbHVkZS9kcm0vZHJtX21vZGVfY29uZmln
+LmgKKysrIGIvaW5jbHVkZS9kcm0vZHJtX21vZGVfY29uZmlnLmgKQEAgLTgwOSw2ICs4MDksNyBA
+QCBzdHJ1Y3QgZHJtX21vZGVfY29uZmlnIHsKIAogCS8qIGR1bWIgaW9jdGwgcGFyYW1ldGVycyAq
+LwogCXVpbnQzMl90IHByZWZlcnJlZF9kZXB0aCwgcHJlZmVyX3NoYWRvdzsKKwlib29sIHF1aXJr
+X2FkZGZiX3ByZWZlcl94YmdyXzMwYnBwOwogCiAJLyoqCiAJICogQGFzeW5jX3BhZ2VfZmxpcDog
+RG9lcyB0aGlzIGRldmljZSBzdXBwb3J0IGFzeW5jIGZsaXBzIG9uIHRoZSBwcmltYXJ5CmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2ZyYW1lYnVmZmVyLmMgYi9kcml2ZXJzL2dwdS9k
+cm0vZHJtX2ZyYW1lYnVmZmVyLmMKaW5kZXggNzgxYWYxZDQyZC4uMTdiN2I4OTQ0ZCAxMDA2NDQK
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9mcmFtZWJ1ZmZlci5jCisrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9kcm1fZnJhbWVidWZmZXIuYwpAQCAtMTIwLDggKzEyMCw4IEBAIGludCBkcm1fbW9kZV9h
+ZGRmYihzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBzdHJ1Y3QgZHJtX21vZGVfZmJfY21kICpvciwK
+IAlyLnBpeGVsX2Zvcm1hdCA9IGRybV9tb2RlX2xlZ2FjeV9mYl9mb3JtYXQob3ItPmJwcCwgb3It
+PmRlcHRoKTsKIAlyLmhhbmRsZXNbMF0gPSBvci0+aGFuZGxlOwogCi0JaWYgKHIucGl4ZWxfZm9y
+bWF0ID09IERSTV9GT1JNQVRfWFJHQjIxMDEwMTAgJiYKLQkgICAgZGV2LT5kcml2ZXItPmRyaXZl
+cl9mZWF0dXJlcyAmIERSSVZFUl9QUkVGRVJfWEJHUl8zMEJQUCkKKwlpZiAoZGV2LT5tb2RlX2Nv
+bmZpZy5xdWlya19hZGRmYl9wcmVmZXJfeGJncl8zMGJwcCAmJgorCSAgICByLnBpeGVsX2Zvcm1h
+dCA9PSBEUk1fRk9STUFUX1hSR0IyMTAxMDEwKQogCQlyLnBpeGVsX2Zvcm1hdCA9IERSTV9GT1JN
+QVRfWEJHUjIxMDEwMTA7CiAKIAlyZXQgPSBkcm1fbW9kZV9hZGRmYjIoZGV2LCAmciwgZmlsZV9w
+cml2KTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3Au
+YyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYwppbmRleCA4NDEyMTE5
+YmQ5Li5hOWJiNjU2MDU4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNw
+bnY1MC9kaXNwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5j
+CkBAIC0yMTc0LDcgKzIxNzQsNyBAQCBudjUwX2Rpc3BsYXlfY3JlYXRlKHN0cnVjdCBkcm1fZGV2
+aWNlICpkZXYpCiAJbm91dmVhdV9kaXNwbGF5KGRldiktPmZpbmkgPSBudjUwX2Rpc3BsYXlfZmlu
+aTsKIAlkaXNwLT5kaXNwID0gJm5vdXZlYXVfZGlzcGxheShkZXYpLT5kaXNwOwogCWRldi0+bW9k
+ZV9jb25maWcuZnVuY3MgPSAmbnY1MF9kaXNwX2Z1bmM7Ci0JZGV2LT5kcml2ZXItPmRyaXZlcl9m
+ZWF0dXJlcyB8PSBEUklWRVJfUFJFRkVSX1hCR1JfMzBCUFA7CisJZGV2LT5tb2RlX2NvbmZpZy5x
+dWlya19hZGRmYl9wcmVmZXJfeGJncl8zMGJwcCA9IHRydWU7CiAKIAkvKiBzbWFsbCBzaGFyZWQg
+bWVtb3J5IGFyZWEgd2UgdXNlIGZvciBub3RpZmllcnMgYW5kIHNlbWFwaG9yZXMgKi8KIAlyZXQg
+PSBub3V2ZWF1X2JvX25ldygmZHJtLT5jbGllbnQsIDQwOTYsIDB4MTAwMCwgVFRNX1BMX0ZMQUdf
+VlJBTSwKLS0gCjIuOS4zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmkt
+ZGV2ZWwK
