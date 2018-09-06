@@ -1,105 +1,97 @@
-From: Sergey Senozhatsky <sergey.senozhatsky.work-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Ben Skeggs <bskeggs@redhat.com>
 Subject: Re: [linux-next] DDC responded, but no EDID for %s errors
-Date: Thu, 6 Sep 2018 11:42:43 +0900
-Message-ID: <20180906024243.GB749@jagdpanzerIV>
-References: <20180802024648.GA499@jagdpanzerIV>
+Date: Thu, 6 Sep 2018 12:46:50 +1000
+Message-ID: <CABDvA=kjVto=Wo1=K9o36mWkvnmG1ck8dPm--G5jQokqH7XGCA@mail.gmail.com>
+References: <20180802024648.GA499@jagdpanzerIV> <20180906024243.GB749@jagdpanzerIV>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20180802024648.GA499@jagdpanzerIV>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Sergey Senozhatsky <sergey.senozhatsky.work-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20180906024243.GB749@jagdpanzerIV>
+Sender: linux-kernel-owner@vger.kernel.org
+To: sergey.senozhatsky.work@gmail.com
+Cc: David Airlie <airlied@linux.ie>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, torvalds@linux-foundation.org
 List-Id: nouveau.vger.kernel.org
 
-T24gKDA4LzAyLzE4IDExOjQ2KSwgU2VyZ2V5IFNlbm96aGF0c2t5IHdyb3RlOgo+IEhpLAo+IAo+
-IE15IGRtZXNnIGlzIGZpbGxlZCB1cCB3aXRoIHRoZXNlIGVycm9ycwo+IAo+ICBub3V2ZWF1IDAw
-MDA6MDE6MDAuMDogRFJNOiBEREMgcmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3IgSERNSS1BLTEK
-PiAgbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQg
-Zm9yIFZHQS0xCj4gIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEREQyByZXNwb25kZWQsIGJ1
-dCBubyBFRElEIGZvciBIRE1JLUEtMQo+ICBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEREMg
-cmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3IgVkdBLTEKPiAgbm91dmVhdSAwMDAwOjAxOjAwLjA6
-IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yIFZHQS0xCj4gWy4uXQo+ICBub3V2
-ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEREMgcmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3IgVkdB
-LTEKPiAgbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVE
-SUQgZm9yIFZHQS0xCj4gIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEREQyByZXNwb25kZWQs
-IGJ1dCBubyBFRElEIGZvciBWR0EtMQo+ICBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEREMg
-cmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3IgVkdBLTEKPiAgbm91dmVhdSAwMDAwOjAxOjAwLjA6
-IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yIFZHQS0xCj4gIG5vdXZlYXUgMDAw
-MDowMTowMC4wOiBEUk06IEREQyByZXNwb25kZWQsIGJ1dCBubyBFRElEIGZvciBWR0EtMQo+IFsu
-Ll0KPiAKPiBCYXNpY2FsbHksIGEgbWVzc2FnZSBldmVyeSAxMHMgb3Igc28uIEFueSBjaGFuY2Ug
-d2UgY2FuIG1ha2UgdGhlbQo+IGdvIGF3YXk/CgpBIGdlbnRsZSBwaW5nPwoKSXQgbGl0ZXJhbGx5
-IGZsb29kcyBteSBsb2didWYgd2l0aCB0aGF0ICJEUk06IEREQyByZXNwb25kZWQsIGJ1dCBubyBF
-RElECmZvciBWR0EtMSIgdGhpbmcuCgpuYW1lIC1hCjQuMTkuMC1yYzItZGJnLTAwMTE4LWdiOWEz
-YmFkOGFmMmQKCiQgZG1lc2cgfCB0YWlsIC00MgpbIDM2MTUuNzk2OTM4XSBub3V2ZWF1IDAwMDA6
-MDE6MDAuMDogRFJNOiBEREMgcmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3IgVkdBLTEKWyAzNjI2
-LjAzNjg2NV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5v
-IEVESUQgZm9yIFZHQS0xClsgMzYzNi4yNzY4NzhdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06
-IEREQyByZXNwb25kZWQsIGJ1dCBubyBFRElEIGZvciBWR0EtMQpbIDM2NDYuNTE2ODY2XSBub3V2
-ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEREMgcmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3IgVkdB
-LTEKWyAzNjU2Ljc1Njc1MF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRl
-ZCwgYnV0IG5vIEVESUQgZm9yIFZHQS0xClsgMzY2Ni45OTY5NDldIG5vdXZlYXUgMDAwMDowMTow
-MC4wOiBEUk06IEREQyByZXNwb25kZWQsIGJ1dCBubyBFRElEIGZvciBWR0EtMQpbIDM2NzcuMjM2
-ODg0XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEREMgcmVzcG9uZGVkLCBidXQgbm8gRURJ
-RCBmb3IgVkdBLTEKWyAzNjg3LjQ3Njg2NV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRERD
-IHJlc3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yIFZHQS0xClsgMzY5Ny43MTY4NThdIG5vdXZlYXUg
-MDAwMDowMTowMC4wOiBEUk06IEREQyByZXNwb25kZWQsIGJ1dCBubyBFRElEIGZvciBWR0EtMQpb
-IDM3MDcuOTU2OTM0XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEREMgcmVzcG9uZGVkLCBi
-dXQgbm8gRURJRCBmb3IgVkdBLTEKWyAzNzE4LjE5NjkyNV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6
-IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yIFZHQS0xClsgMzcyOC40MzY4ODRd
-IG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEREQyByZXNwb25kZWQsIGJ1dCBubyBFRElEIGZv
-ciBWR0EtMQpbIDM3MzguNjc2ODYxXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEREMgcmVz
-cG9uZGVkLCBidXQgbm8gRURJRCBmb3IgVkdBLTEKWyAzNzQ4LjkxNjczMV0gbm91dmVhdSAwMDAw
-OjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yIFZHQS0xClsgMzc1
-OS4xNTY3NTRdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEREQyByZXNwb25kZWQsIGJ1dCBu
-byBFRElEIGZvciBWR0EtMQpbIDM3NjkuMzk2ODYxXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJN
-OiBEREMgcmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3IgVkdBLTEKWyAzNzc5LjYzNjgyNl0gbm91
-dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yIFZH
-QS0xClsgMzc4OS44NzY4OTJdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEREQyByZXNwb25k
-ZWQsIGJ1dCBubyBFRElEIGZvciBWR0EtMQpbIDM4MDAuMTE2Njg2XSBub3V2ZWF1IDAwMDA6MDE6
-MDAuMDogRFJNOiBEREMgcmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3IgVkdBLTEKWyAzODEwLjM1
-NjkyNl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVE
-SUQgZm9yIFZHQS0xClsgMzgyMC41OTY4ODddIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERE
-QyByZXNwb25kZWQsIGJ1dCBubyBFRElEIGZvciBWR0EtMQpbIDM4MzAuODM2OTA5XSBub3V2ZWF1
-IDAwMDA6MDE6MDAuMDogRFJNOiBEREMgcmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3IgVkdBLTEK
-WyAzODQxLjA3NjkzMl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwg
-YnV0IG5vIEVESUQgZm9yIFZHQS0xClsgMzg1MS4zMTY2ODFdIG5vdXZlYXUgMDAwMDowMTowMC4w
-OiBEUk06IEREQyByZXNwb25kZWQsIGJ1dCBubyBFRElEIGZvciBWR0EtMQpbIDM4NjEuNTU2OTI2
-XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEREMgcmVzcG9uZGVkLCBidXQgbm8gRURJRCBm
-b3IgVkdBLTEKWyAzODcxLjc5Njg2OV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJl
-c3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yIFZHQS0xClsgMzg4Mi4wMzY3NTBdIG5vdXZlYXUgMDAw
-MDowMTowMC4wOiBEUk06IEREQyByZXNwb25kZWQsIGJ1dCBubyBFRElEIGZvciBWR0EtMQpbIDM4
-OTIuMjc2ODM2XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEREMgcmVzcG9uZGVkLCBidXQg
-bm8gRURJRCBmb3IgVkdBLTEKWyAzOTAyLjUxNjgwM10gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERS
-TTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yIFZHQS0xClsgMzkxMi43NTY2NDBdIG5v
-dXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEREQyByZXNwb25kZWQsIGJ1dCBubyBFRElEIGZvciBW
-R0EtMQpbIDM5MjIuOTk2OTU3XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEREMgcmVzcG9u
-ZGVkLCBidXQgbm8gRURJRCBmb3IgVkdBLTEKWyAzOTMzLjIzNjcwMF0gbm91dmVhdSAwMDAwOjAx
-OjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yIFZHQS0xClsgMzk0My40
-NzY4NTFdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEREQyByZXNwb25kZWQsIGJ1dCBubyBF
-RElEIGZvciBWR0EtMQpbIDM5NTMuNzE2OTI4XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBE
-REMgcmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3IgVkdBLTEKWyAzOTYzLjk1NjkxNV0gbm91dmVh
-dSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yIFZHQS0x
-ClsgMzk3NC4xOTY4NjFdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEREQyByZXNwb25kZWQs
-IGJ1dCBubyBFRElEIGZvciBWR0EtMQpbIDM5ODQuNDM2OTI4XSBub3V2ZWF1IDAwMDA6MDE6MDAu
-MDogRFJNOiBEREMgcmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3IgVkdBLTEKWyAzOTk0LjY3Njg4
-NV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQg
-Zm9yIFZHQS0xClsgNDAwNC45MTcwMzBdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEREQyBy
-ZXNwb25kZWQsIGJ1dCBubyBFRElEIGZvciBWR0EtMQpbIDQwMTUuMTU2OTM1XSBub3V2ZWF1IDAw
-MDA6MDE6MDAuMDogRFJNOiBEREMgcmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3IgVkdBLTEKWyA0
-MDI1LjM5Njg3Ml0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0
-IG5vIEVESUQgZm9yIFZHQS0xClsgNDAzNS42MzY4NzddIG5vdXZlYXUgMDAwMDowMTowMC4wOiBE
-Uk06IEREQyByZXNwb25kZWQsIGJ1dCBubyBFRElEIGZvciBWR0EtMQoKCS1zcwpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
-dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+On Thu, Sep 6, 2018 at 12:42 PM Sergey Senozhatsky
+<sergey.senozhatsky.work@gmail.com> wrote:
+>
+> On (08/02/18 11:46), Sergey Senozhatsky wrote:
+> > Hi,
+> >
+> > My dmesg is filled up with these errors
+> >
+> >  nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for HDMI-A-1
+> >  nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> >  nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for HDMI-A-1
+> >  nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> >  nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> > [..]
+> >  nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> >  nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> >  nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> >  nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> >  nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> >  nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> > [..]
+> >
+> > Basically, a message every 10s or so. Any chance we can make them
+> > go away?
+>
+> A gentle ping?
+I've got patches queued in my tree to resolve this, I will get them to
+drm-fixes shortly.
+
+Ben.
+
+>
+> It literally floods my logbuf with that "DRM: DDC responded, but no EDID
+> for VGA-1" thing.
+>
+> name -a
+> 4.19.0-rc2-dbg-00118-gb9a3bad8af2d
+>
+> $ dmesg | tail -42
+> [ 3615.796938] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3626.036865] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3636.276878] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3646.516866] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3656.756750] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3666.996949] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3677.236884] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3687.476865] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3697.716858] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3707.956934] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3718.196925] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3728.436884] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3738.676861] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3748.916731] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3759.156754] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3769.396861] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3779.636826] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3789.876892] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3800.116686] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3810.356926] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3820.596887] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3830.836909] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3841.076932] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3851.316681] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3861.556926] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3871.796869] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3882.036750] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3892.276836] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3902.516803] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3912.756640] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3922.996957] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3933.236700] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3943.476851] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3953.716928] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3963.956915] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3974.196861] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3984.436928] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 3994.676885] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 4004.917030] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 4015.156935] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 4025.396872] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+> [ 4035.636877] nouveau 0000:01:00.0: DRM: DDC responded, but no EDID for VGA-1
+>
+>         -ss
