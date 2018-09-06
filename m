@@ -1,16 +1,13 @@
-From: Sergey Senozhatsky <sergey.senozhatsky.work-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [linux-next] DDC responded, but no EDID for %s errors
-Date: Thu, 6 Sep 2018 11:49:21 +0900
-Message-ID: <20180906024921.GC749@jagdpanzerIV>
-References: <20180802024648.GA499@jagdpanzerIV>
- <20180906024243.GB749@jagdpanzerIV>
- <CABDvA=kjVto=Wo1=K9o36mWkvnmG1ck8dPm--G5jQokqH7XGCA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 107016] Gpio error only from kernel higher as 4.x
+ (k2000m; 0x0e73b0a2; version 80.07.40.00.02)
+Date: Thu, 06 Sep 2018 08:54:54 +0000
+Message-ID: <bug-107016-8800-JHoWBbyQLn@http.bugs.freedesktop.org/>
+References: <bug-107016-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2048242618=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CABDvA=kjVto=Wo1=K9o36mWkvnmG1ck8dPm--G5jQokqH7XGCA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-107016-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +17,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: sergey.senozhatsky.work-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gKDA5LzA2LzE4IDEyOjQ2KSwgQmVuIFNrZWdncyB3cm90ZToKPiBPbiBUaHUsIFNlcCA2LCAy
-MDE4IGF0IDEyOjQyIFBNIFNlcmdleSBTZW5vemhhdHNreQo+IDxzZXJnZXkuc2Vub3poYXRza3ku
-d29ya0BnbWFpbC5jb20+IHdyb3RlOgo+ID4KPiA+IE9uICgwOC8wMi8xOCAxMTo0NiksIFNlcmdl
-eSBTZW5vemhhdHNreSB3cm90ZToKPiA+ID4gSGksCj4gPiA+Cj4gPiA+IE15IGRtZXNnIGlzIGZp
-bGxlZCB1cCB3aXRoIHRoZXNlIGVycm9ycwo+ID4gPgo+ID4gPiAgbm91dmVhdSAwMDAwOjAxOjAw
-LjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yIEhETUktQS0xCj4gPiA+ICBu
-b3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEREMgcmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3Ig
-VkdBLTEKPiA+ID4gIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEREQyByZXNwb25kZWQsIGJ1
-dCBubyBFRElEIGZvciBIRE1JLUEtMQo+ID4gPiAgbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTog
-RERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yIFZHQS0xCj4gPiA+ICBub3V2ZWF1IDAwMDA6
-MDE6MDAuMDogRFJNOiBEREMgcmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3IgVkdBLTEKPiA+ID4g
-Wy4uXQo+ID4gPiAgbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0
-IG5vIEVESUQgZm9yIFZHQS0xCj4gPiA+ICBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEREMg
-cmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3IgVkdBLTEKPiA+ID4gIG5vdXZlYXUgMDAwMDowMTow
-MC4wOiBEUk06IEREQyByZXNwb25kZWQsIGJ1dCBubyBFRElEIGZvciBWR0EtMQo+ID4gPiAgbm91
-dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRERDIHJlc3BvbmRlZCwgYnV0IG5vIEVESUQgZm9yIFZH
-QS0xCj4gPiA+ICBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEREMgcmVzcG9uZGVkLCBidXQg
-bm8gRURJRCBmb3IgVkdBLTEKPiA+ID4gIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEREQyBy
-ZXNwb25kZWQsIGJ1dCBubyBFRElEIGZvciBWR0EtMQo+ID4gPiBbLi5dCj4gPiA+Cj4gPiA+IEJh
-c2ljYWxseSwgYSBtZXNzYWdlIGV2ZXJ5IDEwcyBvciBzby4gQW55IGNoYW5jZSB3ZSBjYW4gbWFr
-ZSB0aGVtCj4gPiA+IGdvIGF3YXk/Cj4gPgo+ID4gQSBnZW50bGUgcGluZz8KPiBJJ3ZlIGdvdCBw
-YXRjaGVzIHF1ZXVlZCBpbiBteSB0cmVlIHRvIHJlc29sdmUgdGhpcywgSSB3aWxsIGdldCB0aGVt
-IHRvCj4gZHJtLWZpeGVzIHNob3J0bHkuCgpUaGFua3MhCgoJLXNzCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============2048242618==
+Content-Type: multipart/alternative; boundary="15362240941.12ce942cb.29174"
+Content-Transfer-Encoding: 7bit
+
+
+--15362240941.12ce942cb.29174
+Date: Thu, 6 Sep 2018 08:54:54 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107016
+
+--- Comment #21 from atirage21 <tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Karol Herbst:
+
+Hi,
+
+do you still have your GK107 Nvidia GPU? I just recently found out,
+that there is a strange thing  to control the GPU voltage there which
+I never saw on any other board and I would like to know if you are up
+for doing some testing.
+
+Greetings
+
+Karol
+
+
+Attila:
+
+Hi,
+
+yes, i am. So , i tried todya oibaf witk last mesa 18.3 devel, but is same.
+
+4.496952] nouveau 0000:01:00.0: bios: version 80.07.40.00.02
+[    4.497677] nouveau 0000:01:00.0: mxm: BIOS version 3.0
+[    4.501493] nouveau 0000:01:00.0: volt: Type mismatch between the voltage
+table type and the GPIO table. Fallback to GPIO mode.
+[    4.502201] nouveau 0000:01:00.0: fb: 2048 MiB DDR3
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15362240941.12ce942cb.29174
+Date: Thu, 6 Sep 2018 08:54:54 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - Gpio error only from kernel higher as 4.x (k2000m; 0=
+x0e73b0a2; version 80.07.40.00.02)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016#c21">Comme=
+nt # 21</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - Gpio error only from kernel higher as 4.x (k2000m; 0=
+x0e73b0a2; version 80.07.40.00.02)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016">bug 10701=
+6</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tothsoft&#64;gmail.com" title=3D"atirage21 &lt;tothsoft&#64;gmail.com&gt;">=
+ <span class=3D"fn">atirage21</span></a>
+</span></b>
+        <pre>Karol Herbst:
+
+Hi,
+
+do you still have your GK107 Nvidia GPU? I just recently found out,
+that there is a strange thing  to control the GPU voltage there which
+I never saw on any other board and I would like to know if you are up
+for doing some testing.
+
+Greetings
+
+Karol
+
+
+Attila:
+
+Hi,
+
+yes, i am. So , i tried todya oibaf witk last mesa 18.3 devel, but is same.
+
+4.496952] nouveau 0000:01:00.0: bios: version 80.07.40.00.02
+[    4.497677] nouveau 0000:01:00.0: mxm: BIOS version 3.0
+[    4.501493] nouveau 0000:01:00.0: volt: Type mismatch between the voltage
+table type and the GPIO table. Fallback to GPIO mode.
+[    4.502201] nouveau 0000:01:00.0: fb: 2048 MiB DDR3</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15362240941.12ce942cb.29174--
+
+--===============2048242618==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2048242618==--
