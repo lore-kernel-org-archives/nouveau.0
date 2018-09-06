@@ -1,45 +1,69 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v4 1/6] drm/nouveau: Check backlight IDs are >= 0, not > 0
-Date: Thu,  6 Sep 2018 17:43:21 -0400
-Message-ID: <20180906214328.24012-2-lyude@redhat.com>
+Subject: [PATCH v4 4/6] drm/nouveau:
+ s/nouveau_backlight_exit/nouveau_backlight_fini/
+Date: Thu,  6 Sep 2018 17:43:24 -0400
+Message-ID: <20180906214328.24012-5-lyude@redhat.com>
 References: <20180906214328.24012-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
 In-Reply-To: <20180906214328.24012-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
 To: nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Remember, ida IDs start at 0, not 1!
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Reviewed-by: Karol Herbst <kherbst@redhat.com>
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/nouveau/nouveau_backlight.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-index 408b955e5c39..6dd72bc32897 100644
---- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-@@ -116,7 +116,7 @@ nv40_backlight_init(struct drm_connector *connector)
- 				       &nv40_bl_ops, &props);
- 
- 	if (IS_ERR(bd)) {
--		if (bl_connector.id > 0)
-+		if (bl_connector.id >= 0)
- 			ida_simple_remove(&bl_ida, bl_connector.id);
- 		return PTR_ERR(bd);
- 	}
-@@ -249,7 +249,7 @@ nv50_backlight_init(struct drm_connector *connector)
- 				       nv_encoder, ops, &props);
- 
- 	if (IS_ERR(bd)) {
--		if (bl_connector.id > 0)
-+		if (bl_connector.id >= 0)
- 			ida_simple_remove(&bl_ida, bl_connector.id);
- 		return PTR_ERR(bd);
- 	}
--- 
-2.17.1
+TW9yZSBjb25zaXN0ZW50IHdpdGggdGhlIHJlc3Qgb2YgdGhlIGNvZGViYXNlLCBubyBmdW5jdGlv
+bmFsIGNoYW5nZXMKaGVyZS4KClNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhh
+dC5jb20+ClJldmlld2VkLWJ5OiBLYXJvbCBIZXJic3QgPGtoZXJic3RAcmVkaGF0LmNvbT4KLS0t
+CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jIHwgMiArLQogZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYyB8IDIgKy0KIGRyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmggfCA0ICsrLS0KIDMgZmlsZXMgY2hh
+bmdlZCwgNCBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMgYi9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdodC5jCmluZGV4IDVkMDY5NDY4MGY1OS4uZjQ0MDBhNjQw
+OGI0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JhY2tsaWdo
+dC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYmFja2xpZ2h0LmMKQEAg
+LTMwOSw3ICszMDksNyBAQCBub3V2ZWF1X2JhY2tsaWdodF9pbml0KHN0cnVjdCBkcm1fY29ubmVj
+dG9yICpjb25uZWN0b3IpCiB9CiAKIHZvaWQKLW5vdXZlYXVfYmFja2xpZ2h0X2V4aXQoc3RydWN0
+IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikKK25vdXZlYXVfYmFja2xpZ2h0X2Zpbmkoc3RydWN0
+IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikKIHsKIAlzdHJ1Y3Qgbm91dmVhdV9jb25uZWN0b3Ig
+Km52X2Nvbm4gPSBub3V2ZWF1X2Nvbm5lY3Rvcihjb25uZWN0b3IpOwogCXN0cnVjdCBub3V2ZWF1
+X2JhY2tsaWdodCAqYmwgPSBudl9jb25uLT5iYWNrbGlnaHQ7CmRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jIGIvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwppbmRleCAzNWM1MzhmOTUxNjcuLjFjMDYzMGJkMTNh
+MyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3Iu
+YworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jCkBAIC04
+OTUsNyArODk1LDcgQEAgbm91dmVhdV9jb25uZWN0b3JfbGF0ZV9yZWdpc3RlcihzdHJ1Y3QgZHJt
+X2Nvbm5lY3RvciAqY29ubmVjdG9yKQogc3RhdGljIHZvaWQKIG5vdXZlYXVfY29ubmVjdG9yX2Vh
+cmx5X3VucmVnaXN0ZXIoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikKIHsKLQlub3V2
+ZWF1X2JhY2tsaWdodF9leGl0KGNvbm5lY3Rvcik7CisJbm91dmVhdV9iYWNrbGlnaHRfZmluaShj
+b25uZWN0b3IpOwogfQogCiBzdGF0aWMgaW50CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5oIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9jb25uZWN0b3IuaAppbmRleCBhZWZjM2NiZjgwOTguLjRkZTU5N2NlNjBkMCAxMDA2NDQK
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuaAorKysgYi9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5oCkBAIC0xODksNyArMTg5
+LDcgQEAgc3RydWN0IGRybV9kaXNwbGF5X21vZGUgKm5vdXZlYXVfY29ubl9uYXRpdmVfbW9kZShz
+dHJ1Y3QgZHJtX2Nvbm5lY3RvciAqKTsKIAogI2lmZGVmIENPTkZJR19EUk1fTk9VVkVBVV9CQUNL
+TElHSFQKIGV4dGVybiBpbnQgbm91dmVhdV9iYWNrbGlnaHRfaW5pdChzdHJ1Y3QgZHJtX2Nvbm5l
+Y3RvciAqKTsKLWV4dGVybiB2b2lkIG5vdXZlYXVfYmFja2xpZ2h0X2V4aXQoc3RydWN0IGRybV9j
+b25uZWN0b3IgKik7CitleHRlcm4gdm9pZCBub3V2ZWF1X2JhY2tsaWdodF9maW5pKHN0cnVjdCBk
+cm1fY29ubmVjdG9yICopOwogZXh0ZXJuIHZvaWQgbm91dmVhdV9iYWNrbGlnaHRfY3Rvcih2b2lk
+KTsKIGV4dGVybiB2b2lkIG5vdXZlYXVfYmFja2xpZ2h0X2R0b3Iodm9pZCk7CiAjZWxzZQpAQCAt
+MjAwLDcgKzIwMCw3IEBAIG5vdXZlYXVfYmFja2xpZ2h0X2luaXQoc3RydWN0IGRybV9jb25uZWN0
+b3IgKmNvbm5lY3RvcikKIH0KIAogc3RhdGljIGlubGluZSB2b2lkCi1ub3V2ZWF1X2JhY2tsaWdo
+dF9leGl0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpIHsKK25vdXZlYXVfYmFja2xp
+Z2h0X2Zpbmkoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikgewogfQogCiBzdGF0aWMg
+aW5saW5lIHZvaWQKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vZHJpLWRldmVsCg==
