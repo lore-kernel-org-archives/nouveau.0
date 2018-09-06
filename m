@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107016] Gpio error only from kernel higher as 4.x
- (k2000m; 0x0e73b0a2; version 80.07.40.00.02)
-Date: Thu, 06 Sep 2018 08:54:54 +0000
-Message-ID: <bug-107016-8800-JHoWBbyQLn@http.bugs.freedesktop.org/>
-References: <bug-107016-8800@http.bugs.freedesktop.org/>
+From: Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
+Subject: Re: [PATCH] PCI: add prefetch quirk to work around
+ Asus/Nvidia suspend issues
+Date: Thu, 6 Sep 2018 17:02:39 +0800
+Message-ID: <CAD8Lp45z-rGaZeh8Cu6eMF03RCVtKdz4Z8+L4QQzO1+JX-L1yg@mail.gmail.com>
+References: <20180831073057.14626-1-drake@endlessm.com>
+ <20180831191225.GA43106@bhelgaas-glaptop.roam.corp.google.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2048242618=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107016-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20180831191225.GA43106-1RhO1Y9PlrlHTL0Zs8A6p5iNqAH0jzoTYJqu5kTmcBRl57MIdRCFDg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,135 +19,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Cc: Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "Rafael J. Wysocki" <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Keith Busch <keith.busch-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, Andy Shevchenko <andriy.shevchenko-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Linux Upstreaming Team <linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, Jon Derrick <jonathan.derrick-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2048242618==
-Content-Type: multipart/alternative; boundary="15362240941.12ce942cb.29174"
-Content-Transfer-Encoding: 7bit
-
-
---15362240941.12ce942cb.29174
-Date: Thu, 6 Sep 2018 08:54:54 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107016
-
---- Comment #21 from atirage21 <tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Karol Herbst:
-
-Hi,
-
-do you still have your GK107 Nvidia GPU? I just recently found out,
-that there is a strange thing  to control the GPU voltage there which
-I never saw on any other board and I would like to know if you are up
-for doing some testing.
-
-Greetings
-
-Karol
-
-
-Attila:
-
-Hi,
-
-yes, i am. So , i tried todya oibaf witk last mesa 18.3 devel, but is same.
-
-4.496952] nouveau 0000:01:00.0: bios: version 80.07.40.00.02
-[    4.497677] nouveau 0000:01:00.0: mxm: BIOS version 3.0
-[    4.501493] nouveau 0000:01:00.0: volt: Type mismatch between the voltage
-table type and the GPIO table. Fallback to GPIO mode.
-[    4.502201] nouveau 0000:01:00.0: fb: 2048 MiB DDR3
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15362240941.12ce942cb.29174
-Date: Thu, 6 Sep 2018 08:54:54 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - Gpio error only from kernel higher as 4.x (k2000m; 0=
-x0e73b0a2; version 80.07.40.00.02)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016#c21">Comme=
-nt # 21</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - Gpio error only from kernel higher as 4.x (k2000m; 0=
-x0e73b0a2; version 80.07.40.00.02)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016">bug 10701=
-6</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tothsoft&#64;gmail.com" title=3D"atirage21 &lt;tothsoft&#64;gmail.com&gt;">=
- <span class=3D"fn">atirage21</span></a>
-</span></b>
-        <pre>Karol Herbst:
-
-Hi,
-
-do you still have your GK107 Nvidia GPU? I just recently found out,
-that there is a strange thing  to control the GPU voltage there which
-I never saw on any other board and I would like to know if you are up
-for doing some testing.
-
-Greetings
-
-Karol
-
-
-Attila:
-
-Hi,
-
-yes, i am. So , i tried todya oibaf witk last mesa 18.3 devel, but is same.
-
-4.496952] nouveau 0000:01:00.0: bios: version 80.07.40.00.02
-[    4.497677] nouveau 0000:01:00.0: mxm: BIOS version 3.0
-[    4.501493] nouveau 0000:01:00.0: volt: Type mismatch between the voltage
-table type and the GPIO table. Fallback to GPIO mode.
-[    4.502201] nouveau 0000:01:00.0: fb: 2048 MiB DDR3</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15362240941.12ce942cb.29174--
-
---===============2048242618==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2048242618==--
+T24gU2F0LCBTZXAgMSwgMjAxOCBhdCAzOjEyIEFNLCBCam9ybiBIZWxnYWFzIDxoZWxnYWFzQGtl
+cm5lbC5vcmc+IHdyb3RlOgo+IENhbiB3ZSB0ZWxsIHdoZXRoZXIgV2luZG93cyByZXdyaXRlcyB0
+aGlzIHJlZ2lzdGVyIHVuY29uZGl0aW9uYWxseSBhdAo+IHJlc3VtZS10aW1lPyAgSWYgc28sIGl0
+IG1heSBiZSBtb3JlIHJvYnVzdCBmb3IgTGludXggdG8gZG8gdGhlIHNhbWUuCj4gVGhlIHdob2xl
+IHRoaW5nIGlzIGJsYWNrIG1hZ2ljLCB3aGljaCBJIGhhdGUsIGJ1dCBpZiBpdCdzIG91ciBvbmx5
+Cj4gY2hvaWNlLCBpdCBtYXkgYmUgYmV0dGVyIHRvIGhhdmUgdGhpcyBhcHBsaWVkIGV2ZXJ5d2hl
+cmUgc28gd2UgZG9uJ3QKPiBrZWVwIHN0dWJiaW5nIG91ciB0b2VzIG9uIG5ldyBzeXN0ZW1zIHRo
+YXQgcmVxdWlyZSB0aGUgcXVpcmsuCgpDaGVja2VkIHRoaXMgd2l0aCBxZW11IGFkZGluZyBhIFBD
+SS10by1QQ0kgYnJpZGdlIChpb2gzNDIwKS4KCiQgcWVtdS1zeXN0ZW0teDg2XzY0IC1lbmFibGUt
+a3ZtIC1NIHEzNSxhY2NlbD1rdm0gLW0gMkcgLXZnYSBxeGwgLWNwdQpob3N0IC1oZGEgdGVzdGlt
+Zy5pbWcgLWRldmljZQppb2gzNDIwLGlkPXJwMSxidXM9cGNpZS4wLGFkZHI9MWMuMCxwb3J0PTEg
+LXRyYWNlIGV2ZW50cz1ldmVudHMudHh0CgpldmVudHMudHh0IGhhczoKcGNpX2NmZ19yZWFkCnBj
+aV9jZmdfd3JpdGUKCkxvZ2dlZCBjZmcgc3BhY2UgYWNjZXNzZXMgZHVyaW5nIGJvb3Q6Cmh0dHBz
+Oi8vZ2lzdC5naXRodWIuY29tL2RzZC8xMzVmYjI1NWNiMmIyMzc1NjdkOGVhMmQ2YmZjNjkxNyNm
+aWxlLWJvb3QtdHh0CgpTdXNwZW5kOgpodHRwczovL2dpc3QuZ2l0aHViLmNvbS9kc2QvMTM1ZmIy
+NTVjYjJiMjM3NTY3ZDhlYTJkNmJmYzY5MTcjZmlsZS1zdXNwZW5kLXR4dAoKUmVzdW1lOgpodHRw
+czovL2dpc3QuZ2l0aHViLmNvbS9kc2QvMTM1ZmIyNTVjYjJiMjM3NTY3ZDhlYTJkNmJmYzY5MTcj
+ZmlsZS1yZXN1bWUtdHh0CgpOb3RhYmx5IGR1cmluZyByZXN1bWUsIHRoZSBwcmVmZXRjaC1yZWxh
+dGVkIHJlZ2lzdGVycyBnZXQgcmV3cml0dGVuOgogIHBjaV9jZmdfd3JpdGUgaW9oMzQyMCAyODow
+IEAweDI0IDwtIDB4ZmViMGZlYTAKICBwY2lfY2ZnX3dyaXRlIGlvaDM0MjAgMjg6MCBAMHgyOCA8
+LSAweDAKICBwY2lfY2ZnX3dyaXRlIGlvaDM0MjAgMjg6MCBAMHgyYyA8LSAweDAKClRoaXMgaGFw
+cGVuZWQgZXZlbiB0aG91Z2ggdGhlcmUgd2FzIG5vdGhpbmcgYmVoaW5kIHRoZSBicmlkZ2UuCldp
+bmRvd3MgZmFpbGVkIHRvIHJlc3VtZSBpbiB0aGlzIHRlc3QgKGJsYWNrIHNjcmVlbikgYnV0IHRo
+ZSB0cmFjZWQKcmVnaXN0ZXIgd3JpdGVzIHNlZW0gaW5kaWNhdGl2ZSBlbm91Z2guCgpQZXRlciBX
+dSBjb25maXJtcyB0aGUgc2FtZSByZXN1bHRzIGluIGEgc2ltaWxhciBleHBlcmltZW50OgpodHRw
+czovL21hcmMuaW5mby8/bD1saW51eC1wY2kmbT0xNTM2MTYzMzYyMjUzODYmdz0yCgpJJ2xsIGxv
+b2sgaW50byBjcmVhdGluZyBhIG5ldyBwYXRjaCB0aGF0IHVuY29uZGl0aW9uYWxseSByZXByb2dy
+YW1zCnRoZSBQQ0kgYnJpZGdlIHByZWZldGNoIHN0dWZmIG9uIHJlc3VtZS4KClRoYW5rcwpEYW5p
+ZWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
+dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
