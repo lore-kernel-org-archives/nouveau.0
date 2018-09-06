@@ -1,76 +1,44 @@
-From: Thomas Martitz <kugel-UCKwuKHb1aVAfugRpC6u6w@public.gmane.org>
-Subject: Re: [PATCH] PCI: add prefetch quirk to work around
- Asus/Nvidia suspend issues
-Date: Thu, 6 Sep 2018 15:35:12 +0200
-Message-ID: <2848f50b-d0c6-12ec-8f24-8461209c13b4@rockbox.org>
-References: <20180831073057.14626-1-drake@endlessm.com>
+From: Julia Lawall <julia.lawall@lip6.fr>
+Subject: [PATCH] drm/nouveau/debugfs: fix pm_runtime.cocci warnings
+Date: Thu, 6 Sep 2018 20:06:45 +0200 (CEST)
+Message-ID: <alpine.DEB.2.20.1809062004110.3318@hadrien>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180831073057.14626-1-drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
-Content-Language: de-AT-frami
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org, peter-VTkQYDcBqhK7DlmcbJSQ7g@public.gmane.org, alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org, linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Content-Type: text/plain; charset=US-ASCII
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Karol Herbst <karolherbst@gmail.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, Martin Peres <martin.peres@free.fr>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, kbuild-all@01.org, nm@ti.com
 List-Id: nouveau.vger.kernel.org
 
-QW0gMzEuMDguMjAxOCB1bSAwOTozMCBzY2hyaWViIERhbmllbCBEcmFrZToKPiBPbiBvdmVyIDQw
-IEludGVsLWJhc2VkIEFzdXMgcHJvZHVjdHMsIHRoZSBudmlkaWEgR1BVIGJlY29tZXMgdW51c2Fi
-bGUKPiBhZnRlciBTMyBzdXNwZW5kL3Jlc3VtZS4gVGhlIGFmZmVjdGVkIHByb2R1Y3RzIGluY2x1
-ZGUgbXVsdGlwbGUKPiBnZW5lcmF0aW9ucyBvZiBudmlkaWEgR1BVcyBhbmQgSW50ZWwgU29Dcy4g
-QWZ0ZXIgcmVzdW1lLCBub3V2ZWF1IGxvZ3MKPiBtYW55IGVycm9ycyBzdWNoIGFzOgo+Cj4gICAg
-ICBmaWZvOiBmYXVsdCAwMCBbUkVBRF0gYXQgMDAwMDAwNTU1NTU1NTAwMCBlbmdpbmUgMDAgW0dS
-XSBjbGllbnQgMDQgW0hVQi9GRV0gcmVhc29uIDRhIFtdIG9uIGNoYW5uZWwgLTEgWzAwN2ZhOTEw
-MDAgdW5rbm93bl0KPiAgICAgIERSTTogZmFpbGVkIHRvIGlkbGUgY2hhbm5lbCAwIFtEUk1dCj4K
-PiBTaW1pbGFybHksIHRoZSBudmlkaWEgcHJvcHJpZXRhcnkgZHJpdmVyIGFsc28gZmFpbHMgYWZ0
-ZXIgcmVzdW1lCj4gKGJsYWNrIHNjcmVlbiwgMTAwJSBDUFUgdXNhZ2UgaW4gWG9yZyBwcm9jZXNz
-KS4gV2Ugc2hpcHBlZCBhIHNhbXBsZQo+IHRvIE52aWRpYSBmb3IgZGlhZ25vc2lzLCBhbmQgdGhl
-aXIgcmVzcG9uc2UgaW5kaWNhdGVkIHRoYXQgaXQncyBhCj4gcHJvYmxlbSB3aXRoIHRoZSBwYXJl
-bnQgUENJIGJyaWRnZSAob24gdGhlIEludGVsIFNvQyksIG5vdCB0aGUgR1BVLgo+Cj4gV2UgZm91
-bmQgYSB3b3JrYXJvdW5kOiBvbiByZXN1bWUsIHJld3JpdGUgdGhlIEludGVsIFBDSSBicmlkZ2UK
-PiAnUHJlZmV0Y2hhYmxlIEJhc2UgVXBwZXIgMzIgQml0cycgcmVnaXN0ZXIuIEluIHRoZSBjYXNl
-cyB0aGF0IEkgY2hlY2tlZCwKPiB0aGlzIHJlZ2lzdGVyIGhhcyB2YWx1ZSAwIGFuZCB3ZSBqdXN0
-IGhhdmUgdG8gcmV3cml0ZSB0aGF0IHZhbHVlLgo+Cj4gSXQncyB2ZXJ5IHN0cmFuZ2UgdGhhdCBy
-ZXdyaXRpbmcgdGhlIGV4YWN0IHNhbWUgcmVnaXN0ZXIgdmFsdWUKPiBtYWtlcyBhIGRpZmZlcmVu
-Y2UsIGJ1dCBpdCBkZWZpbml0ZWx5IG1ha2VzIHRoZSBpc3N1ZSBnbyBhd2F5Lgo+IEl0J3Mgbm90
-IGp1c3QgYWN0aW5nIGFzIHNvbWUga2luZCBvZiBtZW1vcnkgYmFycmllciwgYmVjYXVzZSByZXdy
-aXRpbmcKPiBvdGhlciBicmlkZ2UgcmVnaXN0ZXJzIGRvZXMgbm90IHdvcmsgYXJvdW5kIHRoZSBp
-c3N1ZS4gVGhlcmUncyBzb21ldGhpbmcKPiBtYWdpYyBpbiB0aGlzIHBhcnRpY3VsYXIgcmVnaXN0
-ZXIuCj4KPiBXZSBleGFtaW5lZCBvdXIgZGF0YWJhc2Ugb2YgQXN1cyBoYXJkd2FyZSBhbmQgaWRl
-bnRpZmllZCA0MyBwcm9kdWN0cwo+IHRoYXQgd2UgYmVsaWV2ZSBhcmUgYWZmZWN0ZWQuIENoZWNr
-aW5nIHRoZSBudmlkaWEgR1BVIHBhcmVudCBQQ0kgYnJpZGdlCj4gb24gZWFjaCBvbmUsIGluIHRv
-dGFsIDUgSW50ZWwgUENJIGJyaWRnZXMgbmVlZCBxdWlya2luZyBhcyBiZWxvdy4KPiBUaGUgcXVp
-cmsgd2lsbCBydW4gb24gYnJpZGdlcyBldmVuIHdoZXJlIG5vIG52aWRpYSBHUFUgaXMgY29ubmVj
-dGVkLAo+IGJ1dCBpdCBzaG91bGQgYmUgaGFybWxlc3MsIGFuZCB3ZSBhdCBsZWFzdCBsaW1pdCBp
-dCB0byBvbmx5IHJ1bm5pbmcKPiBvbiBBc3VzIHByb2R1Y3RzLgo+Cj4gVGhpcyBmaXggd2FzIHRl
-c3RlZCBvbiBhbGwgdGhlIGFmZmVjdGVkIG1vZGVscyB0aGF0IHdlIGhhdmUgaW4gaGFuZHMKPiAo
-WDU0MlVRLCBVWDUzM0ZELCBYNTMwVU4sIFYyNzJVTikuCgpIZWxsbywKCnRoaXMgcGF0Y2ggaGVs
-cHMgb24gbXkgSFAgWmJvb2sgMTR1IEc1IHdoaWNoIG90aGVyd2lzZSBmYWlscyB0byByZXN1bWUg
-CnRoZSBkR1BVIGFmdGVyIHN1c3BlbmQuIEluIHRoaXMgY2FzZSBpdCdzIGEgcmFkZW9uIGdwdSAo
-cG9sYXJpcyAxMCkuIE9mIApjb3Vyc2UgSSBoYWQgdG8gcmVtb3ZlIHRoZSBjaGVjayBmb3IgQVNV
-UywgYnV0IG1hZGUgbm8gb3RoZXIgY2hhbmdlcy4KCldpdGggdGhpcyBwYXRjaCBJIGNhbiBzdWNj
-ZXNzZnVsbHkgcnVuICJEUklfUFJJTUU9MSBnbHhpbmZvIHwgZ3JlcCAtaSAKcmVuZGVyZXIiIGFu
-ZCBzZWUgdGhlIHJhZGVvbiwgYXMgd2VsbCBhcyAiRFJJX1BSSU1FPTEgZ2x4Z2VhcnMiLCBhZnRl
-ciAKcmVzdW1pbmcgZnJvbSBzdXNwZW5kLiBBdHRlbXRpbmcgdGhhdCB3aXRob3V0IHRoZSBwYXRj
-aCBtYWtlcyB0aGUgc3lzdGVtIApoYW5nIGZvciBhIGZldyBzZWNvbmRzIGZvbGxvd2VkIGJ5IGxv
-dHMgb2YgcG93ZXJwbGF5IGVycm9ycyBpbiBkbWVzZy4gCmdseGluZm8vZ2VhcnMgc29tZXRpbWVz
-IHVzZSB0aGUgSW50ZWwgZ3JhcGhpY3Mgb3Igc2hvdyBhIGJsYW5rIHdpbmRvdy4KCkZXSVcsIHRo
-aXMgcHJvYmxlbSB3YXMgZGlzY3Vzc2VkIGEgbG90IGluIGJ1ZyAKaHR0cHM6Ly9idWdzLmZyZWVk
-ZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA1NzYwIChpdCdzIGNsb3NlZCBvbmx5IApiZWNh
-dXNlIHRoZSBvcmlnaW5hbCBidWcgY3Jhc2ggaXMgc29sdmVkIGJ1dCB0aGUgcm9vdCBwcm9ibGVt
-IGlzIHN0aWxsIAp1bmZpeGVkKS4gVGhlcmVmb3JlIEkgYWRkIFBldGVyIFd1IGFuZCBBbGV4IERl
-dWNoZXIgd2hvIGF0dGVtcHRlZCB0byAKaGVscCBtZSBvdXQgYWxyZWFkeS4KCkkgdGhpbmsgdGhp
-cyBzdXBwb3J0cyB5b3VyIG90aGVyIG1haWwgd2hlcmUgeW91IHN1Z2dlc3QgaXQgc2hvdWxkIGJl
-IApkb25lIHVuY29uZGl0aW9uYWxseS4KClRoYW5rcyBmb3IgdGhlIHBhdGNoIQoKQmVzdCByZWdh
-cmRzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+From: kbuild test robot <fengguang.wu@intel.com>
+
+pm_runtime_get_sync returns < 0 as error. Unecessary IS_ERR_VALUE at line 164
+
+Generated by: scripts/coccinelle/api/pm_runtime.cocci
+
+Fixes: eaeb9010bb4b ("drm/nouveau/debugfs: Wake up GPU before doing any reclocking")
+CC: Karol Herbst <karolherbst@gmail.com>
+Signed-off-by: kbuild test robot <fengguang.wu@intel.com>
+Signed-off-by: Julia Lawall <julia.lawall@lip6.fr>
+---
+
+tree:   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
+head:   b36fdc6853a38a6f8749897a33435635019e0647
+commit: eaeb9010bb4bcdc20e58254fa42f3fe730a7f908 drm/nouveau/debugfs: Wake up GPU before doing any reclocking
+:::::: branch date: 21 hours ago
+:::::: commit date: 7 weeks ago
+
+ nouveau_debugfs.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
++++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+@@ -161,7 +161,7 @@ nouveau_debugfs_pstate_set(struct file *
+ 	}
+
+ 	ret = pm_runtime_get_sync(drm->dev);
+-	if (IS_ERR_VALUE(ret) && ret != -EACCES)
++	if (ret < 0 && ret != -EACCES)
+ 		return ret;
+ 	ret = nvif_mthd(ctrl, NVIF_CONTROL_PSTATE_USER, &args, sizeof(args));
+ 	pm_runtime_put_autosuspend(drm->dev);
