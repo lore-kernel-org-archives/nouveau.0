@@ -1,23 +1,65 @@
-From: Sinan Kaya <okaya@kernel.org>
-Subject: Re: [PATCH] PCI: Reprogram bridge prefetch registers on resume
-Date: Thu, 6 Sep 2018 23:40:56 -0700
-Message-ID: <3b37e4fd-c793-bd52-7d70-950f846a7d5a@kernel.org>
+From: Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
+Subject: Re: [PATCH] PCI: Reprogram bridge prefetch registers on
+ resume
+Date: Fri, 7 Sep 2018 16:06:19 +0800
+Message-ID: <CAD8Lp466EffdgL5zVZi-L+s78Yxa9+FryB8ch1=UAwwCPqu9Ag@mail.gmail.com>
 References: <20180907053614.6540-1-drake@endlessm.com>
+ <3b37e4fd-c793-bd52-7d70-950f846a7d5a@kernel.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <netdev-owner@vger.kernel.org>
-In-Reply-To: <20180907053614.6540-1-drake@endlessm.com>
-Content-Language: en-US
-Sender: netdev-owner@vger.kernel.org
-To: Daniel Drake <drake@endlessm.com>, bhelgaas@google.com
-Cc: linux-pci@vger.kernel.org, linux@endlessm.com, nouveau@lists.freedesktop.org, linux-pm@vger.kernel.org, peter@lekensteyn.nl, kherbst@redhat.com, andriy.shevchenko@linux.intel.com, rafael.j.wysocki@intel.com, keith.busch@intel.com, mika.westerberg@linux.intel.com, jonathan.derrick@intel.com, kugel@rockbox.org, davem@davemloft.net, hkallweit1@gmail.com, netdev@vger.kernel.org, nic_swsd@realtek.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <3b37e4fd-c793-bd52-7d70-950f846a7d5a-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Sinan Kaya <okaya-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Cc: Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "Wysocki,
+ Rafael J" <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, nic_swsd-Rasf1IRRPZFBDgjK7y7TUQ@public.gmane.org, Keith Busch <keith.busch-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, Andy Shevchenko <andriy.shevchenko-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Linux Upstreaming Team <linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, davem-fT/PcQaiUtIeIZ0/mPfg9Q@public.gmane.org, Jon Derrick <jonathan.derrick-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, hkallweit1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 9/6/2018 10:36 PM, Daniel Drake wrote:
-> +	if (pci_dev->class == PCI_CLASS_BRIDGE_PCI << 8)
-> +		pci_setup_bridge_mmio_pref(pci_dev);
-
-This should probably some kind of a quirk rather than default
-for the listed card as it sounds like you are dealing with
-broken hardware.
+T24gRnJpLCBTZXAgNywgMjAxOCBhdCAyOjQwIFBNLCBTaW5hbiBLYXlhIDxva2F5YUBrZXJuZWwu
+b3JnPiB3cm90ZToKPiBPbiA5LzYvMjAxOCAxMDozNiBQTSwgRGFuaWVsIERyYWtlIHdyb3RlOgo+
+Pgo+PiArICAgICAgIGlmIChwY2lfZGV2LT5jbGFzcyA9PSBQQ0lfQ0xBU1NfQlJJREdFX1BDSSA8
+PCA4KQo+PiArICAgICAgICAgICAgICAgcGNpX3NldHVwX2JyaWRnZV9tbWlvX3ByZWYocGNpX2Rl
+dik7Cj4KPgo+IFRoaXMgc2hvdWxkIHByb2JhYmx5IHNvbWUga2luZCBvZiBhIHF1aXJrIHJhdGhl
+ciB0aGFuIGRlZmF1bHQKPiBmb3IgdGhlIGxpc3RlZCBjYXJkIGFzIGl0IHNvdW5kcyBsaWtlIHlv
+dSBhcmUgZGVhbGluZyB3aXRoCj4gYnJva2VuIGhhcmR3YXJlLgoKV2l0aCB0aGF0IGFwcHJvYWNo
+IHRoZXJlJ3MgYSBzaXplYWJsZSBsaXN0IHRoYXQgeW91ciBxdWlyayBsaXN0IGlzCmluY29tcGxl
+dGUgb3Igb3V0IG9mIGRhdGUuCgpBbmQgd2hlbiB0aGUgYnVnIGJpdGVzLCBpdCdzIGV4dHJlbWVs
+eSBjcnlwdGljLiBXZSd2ZSBzcGVudCBtb250aHMKd29ya2luZyBvbiB0aGlzIGlzc3VlIGFuZCBv
+bmx5IGZvdW5kIHRoaXMgbWFnaWMgcmVnaXN0ZXIgd3JpdGUgbW9zdGx5CnRocm91Z2ggYSBzdHJv
+a2Ugb2YgZ29vZCBsdWNrLiBTZXBhcmF0ZWx5IHRoZXJlJ3MgYmVlbiBhIGZsdXJyeSBvZgptYWls
+cyBhcm91bmQgdGhlIHI4MTY5IE1TSS1YIHByb2JsZW0gYnV0IGFzIGZhciBhcyBJIGNhbiBzZWUg
+bm9ib2R5CnN1Z2dlc3RlZCBldmVuIGxvb2tpbmcgYXQgdGhlIHZhbHVlcyBvZiB0aGUgcGFyZW50
+IGJyaWRnZSBwcmVmZXRjaApyZWdpc3RlcnMuIEFuZCBldmVuIGlmIHRoZXkgZGlkLCB0aGV5J2Qg
+cHJvYmFibHkgaGF2ZSBzYWlkICJ2YWx1ZXMgYXJlCmZpbmUsIG5vdGhpbmcgdG8gc2VlIGhlcmUi
+IChleGFjdGx5IGFzIHdlIGRpZCA0IG1vbnRocyBhZ28gd2hlbiBOdmlkaWEKbWVudGlvbmVkIHRo
+ZXNlIHJlZ2lzdGVycyBhcyBhIHBvc3NpYmxlIGNhdXNlIC0gb29wcyEpLgoKU28gaGVyZSBJJ20g
+aW5zdGVhZCBmb2xsb3dpbmcgYSBzdWdnZXN0aW9uIGZyb20gQmpvcm4sIGFmdGVyIGFsc28KaGF2
+aW5nIGNvbmZpcm1lZCB0aGUgd2luZG93cyBiZWhhdmlvdXI6CgpodHRwczovL21hcmMuaW5mby8/
+bD1saW51eC1wY2kmbT0xNTM1NzQyNzYxMjY0ODQmdz0yCj4gQ2FuIHdlIHRlbGwgd2hldGhlciBX
+aW5kb3dzIHJld3JpdGVzIHRoaXMgcmVnaXN0ZXIgdW5jb25kaXRpb25hbGx5IGF0Cj4gcmVzdW1l
+LXRpbWU/ICBJZiBzbywgaXQgbWF5IGJlIG1vcmUgcm9idXN0IGZvciBMaW51eCB0byBkbyB0aGUg
+c2FtZS4KPiBUaGUgd2hvbGUgdGhpbmcgaXMgYmxhY2sgbWFnaWMsIHdoaWNoIEkgaGF0ZSwgYnV0
+IGlmIGl0J3Mgb3VyIG9ubHkKPiBjaG9pY2UsIGl0IG1heSBiZSBiZXR0ZXIgdG8gaGF2ZSB0aGlz
+IGFwcGxpZWQgZXZlcnl3aGVyZSBzbyB3ZSBkb24ndAo+IGtlZXAgc3R1YmJpbmcgb3VyIHRvZXMg
+b24gbmV3IHN5c3RlbXMgdGhhdCByZXF1aXJlIHRoZSBxdWlyay4KCkFsc28sIHdlIGp1c3Qgc3Bv
+a2UgdG8gQXN1cyBCSU9TIGVuZ2luZWVycyB3aG8gdG9sZCB1cyB0aGF0IHRoZSBCSU9TCmRvZXMg
+YWxyZWFkeSByZXN0b3JlIHRoZSBQQ0kgYnJpZGdlIHByZWZldGNoIHJlZ2lzdGVycyBvbiByZXN1
+bWUuIEkKZ3Vlc3MgdGhpcyBpcyB3aHkgdGhlIG90aGVyIHJlZ2lzdGVycyBsaWtlIHRoZSAobm9u
+LXplcm8pIHByZWZldGNoCmJhc2UgYWRkcmVzcyBsb3dlciAzMiBiaXRzIGRvIGhhdmUgdGhlIHJp
+Z2h0IHZhbHVlIG9uIHJlc3VtZSBldmVuCmJlZm9yZSBteSBwYXRjaC4gSXQgc291bmRzIGxpa2Ug
+YSBtb3JlIHN1YnRsZSBidWcgcmVsYXRlZCB0byByZWdpc3Rlcgp3cml0ZSB0aW1pbmcgb3Igc2Vx
+dWVuY2UsIGluIHRoYXQgY2FzZSBpdCB3aWxsIGJlIGhhcmRlciB0byBkZWZpbmUgd2hvCmlzIHJl
+c3BvbnNpYmxlIGZvciB0aGUgYnJlYWthZ2UgYW5kIGhlbmNlIHVuZGVyIHdoaWNoIGNvbmRpdGlv
+bnMgdGhlCnF1aXJrIHNob3VsZCBhcHBseS4KCkRhbmllbApfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
