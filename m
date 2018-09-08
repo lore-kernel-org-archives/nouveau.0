@@ -1,68 +1,52 @@
-From: Bjorn Helgaas <helgaas@kernel.org>
-Subject: Re: [PATCH] PCI: Reprogram bridge prefetch registers on resume
-Date: Fri, 7 Sep 2018 17:26:47 -0500
-Message-ID: <20180907222647.GD250890@bhelgaas-glaptop.roam.corp.google.com>
-References: <20180907053614.6540-1-drake@endlessm.com>
- <20180907150515.GA28739@al>
+From: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/secboot/acr: fix memory leak
+Date: Fri, 7 Sep 2018 20:02:58 -0700
+Message-ID: <f35a04a0-fa60-7905-96bf-36a0dfb055a8@nvidia.com>
+References: <20180724132719.GA32237@embeddedor.com>
+ <d9e87a82-f70f-3eca-5f63-2450863e7099@embeddedor.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20180907150515.GA28739@al>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Peter Wu <peter@lekensteyn.nl>
-Cc: Daniel Drake <drake@endlessm.com>, bhelgaas@google.com, linux-pci@vger.kernel.org, linux@endlessm.com, nouveau@lists.freedesktop.org, linux-pm@vger.kernel.org, kherbst@redhat.com, andriy.shevchenko@linux.intel.com, rafael.j.wysocki@intel.com, keith.busch@intel.com, mika.westerberg@linux.intel.com, jonathan.derrick@intel.com, kugel@rockbox.org, davem@davemloft.net, hkallweit1@gmail.com, netdev@vger.kernel.org, nic_swsd@realtek.com, linux-kernel@vger.kernel.org, Dave Jones <davej@codemonkey.org.uk>, Luming Yu <luming.yu@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <d9e87a82-f70f-3eca-5f63-2450863e7099-L1vi/lXTdts+Va1GwOuvDg@public.gmane.org>
+Content-Language: en-US-large
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: "Gustavo A. R. Silva" <gustavo-L1vi/lXTdts+Va1GwOuvDg@public.gmane.org>, Kees Cook <keescook-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-[+cc LKML, Dave, Luming]
-
-On Fri, Sep 07, 2018 at 05:05:15PM +0200, Peter Wu wrote:
-> On Fri, Sep 07, 2018 at 01:36:14PM +0800, Daniel Drake wrote:
-> <..>
-> > Thomas Martitz reports that this workaround also solves an issue where
-> > the AMD Radeon Polaris 10 GPU on the HP Zbook 14u G5 is unresponsive
-> > after S3 suspend/resume.
-> 
-> Where was this claimed? It is not stated in the linked bug:
-> (https://bugs.freedesktop.org/show_bug.cgi?id=105760
-> 
-> > On resume, reprogram the PCI bridge prefetch registers, including the
-> > magic register mentioned above.
-> > 
-> > This matches Win10 behaviour, which also rewrites these registers
-> > during S3 resume (checked with qemu tracing).
-> 
-> Windows 10 unconditionally rewrites these registers (BAR, I/O Base +
-> Limit, Memory Base + Limit, etc. from top to bottom), see annotations:
-> https://www.spinics.net/lists/linux-pci/msg75856.html
-> 
-> Linux has a generic "restore" operation that works backwards from the
-> end of the PCI config space to the beginning, see
-> pci_restore_config_space. Do you have a dmesg where you see the
-> "restoring config space at offset" messages?
-> 
-> Would it be reasonable to unconditionally write these registers in
-> pci_restore_config_dword, like Windows does?
-
-That sounds reasonable to me.
-
-We did write them unconditionally, prior to 04d9c1a1100b ("[PATCH]
-PCI: Improve PCI config space writeback") [1].  That commit apparently
-fixed suspend on some laptop.
-
-But at that time, we restored the config space in order of dword 0, 1,
-2, ... 15, which means we restored the command register before the
-BARs and windows, and it's conceivable that the problem was the
-ordering, not the rewriting of the same value.
-
-Only a week later, we reversed the order with 8b8c8d280ab2 ("[PATCH]
-PCI: reverse pci config space restore order") [2], which seems like a
-good idea and even includes a spec reference.  I found similar
-language in the Intel ICH 10 datasheet, sec 14.1.3 [3].
-
-So it seems reasonable to me to try writing them unconditionally in
-reverse order (the same order we use today).
-
-[1] http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=04d9c1a1100b
-[2] http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=8b8c8d280ab2
-[3] Intel ICH 10 IBL 373635
+T24gOC8yLzE4IDEyOjUxIFBNLCBHdXN0YXZvIEEuIFIuIFNpbHZhIHdyb3RlOgo+IEhpIGFsbCwK
+PiAKPiBGcmllbmRseSBwaW5nISBXaG8gY2FuIHRha2UgdGhpcz8KPiAKPiBUaGFua3MKPiAtLQo+
+IEd1c3Rhdm8KPiAKPiBPbiAwNy8yNC8yMDE4IDA4OjI3IEFNLCBHdXN0YXZvIEEuIFIuIFNpbHZh
+IHdyb3RlOgo+PiBJbiBjYXNlIG1lbW9yeSByZXNvdXJjZXMgZm9yICpibF9kZXNjKiB3ZXJlIGFs
+bG9jYXRlZCwgcmVsZWFzZQo+PiB0aGVtIGJlZm9yZSByZXR1cm4uCj4+Cj4+IEFkZHJlc3Nlcy1D
+b3Zlcml0eS1JRDogMTQ3MjAyMSAoIlJlc291cmNlIGxlYWsiKQo+PiBGaXhlczogMGQ0NjY5MDE1
+NTJhICgiZHJtL25vdXZlYXUvc2VjYm9vdC9hY3I6IFJlbW92ZSBWTEEgdXNhZ2UiKQo+PiBTaWdu
+ZWQtb2ZmLWJ5OiBHdXN0YXZvIEEuIFIuIFNpbHZhIDxndXN0YXZvQGVtYmVkZGVkb3IuY29tPgo+
+PiAtLS0KPj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvYWNy
+X3IzNTIuYyB8IDEgKwo+PiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspCj4+Cj4+IGRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L2Fj
+cl9yMzUyLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L2Fj
+cl9yMzUyLmMKPj4gaW5kZXggZDAyZTE4My4uNWMxNGQ2YSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvc2VjYm9vdC9hY3JfcjM1Mi5jCj4+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvYWNyX3IzNTIuYwo+
+PiBAQCAtODAxLDYgKzgwMSw3IEBAIGFjcl9yMzUyX2xvYWQoc3RydWN0IG52a21fYWNyICpfYWNy
+LCBzdHJ1Y3QgbnZrbV9mYWxjb24gKmZhbGNvbiwKPj4gIAkJYmwgPSBhY3ItPmhzYmxfdW5sb2Fk
+X2Jsb2I7Cj4+ICAJfSBlbHNlIHsKPj4gIAkJbnZrbV9lcnJvcihfYWNyLT5zdWJkZXYsICJpbnZh
+bGlkIHNlY3VyZSBib290IGJsb2IhXG4iKTsKPj4gKwkJa2ZyZWUoYmxfZGVzYyk7Cj4+ICAJCXJl
+dHVybiAtRUlOVkFMOwo+PiAgCX0KPj4gIAo+PgoKSGkgR3VzdGF2bywKClNlZWluZyBhcyBob3cg
+SSd2ZSBiZWVuIHdvcmtpbmcgb24gdGhpcyBjb3JuZXIgb2YgTm91dmVhdSBsYXRlbHkgKGRvbid0
+IGFzaywgaGFoYSksCkkgcmV2aWV3ZWQgYW5kIGFsc28gdGVzdGVkIHRoaXMuIEl0IGxvb2tzIGdv
+b2QsIHlvdSBjYW4gYWRkOgoKUmV2aWV3ZWQtYnk6IEpvaG4gSHViYmFyZCA8amh1YmJhcmRAbnZp
+ZGlhLmNvbT4KCnRoYW5rcywKLS0gCkpvaG4gSHViYmFyZApOVklESUEKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
