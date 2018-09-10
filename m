@@ -1,107 +1,50 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107874] Incorrect SPDX-License-Identifier on various
- nouveau drm kernel source files?
-Date: Sun, 09 Sep 2018 15:23:41 +0000
-Message-ID: <bug-107874-8800-8AxUUQAasb@http.bugs.freedesktop.org/>
-References: <bug-107874-8800@http.bugs.freedesktop.org/>
+From: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+Subject: Re: [PATCH 1/4] fbdev: Drop FBINFO_CAN_FORCE_OUTPUT flag
+Date: Mon, 10 Sep 2018 14:48:43 +0200
+Message-ID: <20180910124845eucas1p1b51674cd657757aadf5138e277e57ebe~TCsHYsLqt1779917799eucas1p18@eucas1p1.samsung.com>
+References: <CGME20180822085418epcas5p30ab8aa4b49ba204f4891760af002bce1@epcas5p3.samsung.com>
+ <20180822085405.10787-1-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0803172824=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107874-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20180822085405.10787-1-daniel.vetter@ffwll.ch>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, DRI Development <dri-devel@lists.freedesktop.org>
+Cc: linux-fbdev@vger.kernel.org, Alexander Kapshuk <alexander.kapshuk@gmail.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>, David Lechner <david@lechnology.com>, Thierry Reding <treding@nvidia.com>, Kees Cook <keescook@chromium.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0803172824==
-Content-Type: multipart/alternative; boundary="15365066202.BBC5b.10528"
-Content-Transfer-Encoding: 7bit
-
-
---15365066202.BBC5b.10528
-Date: Sun, 9 Sep 2018 15:23:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107874
-
---- Comment #1 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-well I as a nouveau contributor agree that we should convert those to "GPL-=
-2.0
-OR MIT" as most of drm is licensed under the same terms.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15365066202.BBC5b.10528
-Date: Sun, 9 Sep 2018 15:23:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Incorrect SPDX-License-Identifier on various nouveau drm =
-kernel source files?"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107874#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Incorrect SPDX-License-Identifier on various nouveau drm =
-kernel source files?"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107874">bug 10787=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
-</span></b>
-        <pre>well I as a nouveau contributor agree that we should convert t=
-hose to &quot;GPL-2.0
-OR MIT&quot; as most of drm is licensed under the same terms.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15365066202.BBC5b.10528--
-
---===============0803172824==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0803172824==--
+Ck9uIDA4LzIyLzIwMTggMTA6NTQgQU0sIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4gVGhpcyB3YXMg
+b25seSBhZGRlZCBmb3IgdGhlIGRybSdzIGZiZGV2IGVtdWxhdGlvbiBzdXBwb3J0LCBzbyB0aGF0
+IGl0Cj4gd291bGQgdHJ5IGhhcmRlciB0byBzaG93IHRoZSBPb3BzLgo+IAo+IFVuZm9ydHVuYXRl
+bHkgdGhpcyBuZXZlciByZWFsbHkgd29ya2VkIHJlbGlhYmx5LCBhbmQgaW4gcHJhY3RpY2UgZW5k
+ZWQKPiB1cCBwdXNoaW5nIHRoZSByZWFsIE9vcHMgb2ZmIHRoZSBzY3JlZW4gZHVlIHRvIHBsZW50
+eWZ1bGwgbG9ja2luZywKPiBzbGVlcC13aGlsZS1hdG9taWMgYW5kIG90aGVyIGlzc3Vlcy4gU28g
+d2UgcmVtb3ZlZCBhbGwgdGhhdCBzdXBwb3J0Cj4gZnJvbSB0aGUgZmJkZXYgZW11bGF0aW9uIGEg
+d2hpbGUgYmFjay4gQXNpZGU6IFdlJ3ZlIGFsc28gcmVtb3ZlZCB0aGUKPiBrZ2RiIHN1cHBvcnQs
+IGZvciBzaW1pbGFyIHJlYXNvbnMuCj4gCj4gU2luY2UgaXQncyBzdWNoIGEgc21hbGwgcGF0Y2gg
+SSBmaWd1cmVkIEkgZG9uJ3Qgc3BsaXQgdGhpcyB1cCBpbnRvIHRoZQo+IHVzdWFsIDMtcGhhc2Ug
+cmVtb3ZhbC4KPiAKPiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgo+IENjOiBC
+YXJ0bG9taWVqIFpvbG5pZXJraWV3aWN6IDxiLnpvbG5pZXJraWVAc2Ftc3VuZy5jb20+Cj4gQ2M6
+IEdyZWcgS3JvYWgtSGFydG1hbiA8Z3JlZ2toQGxpbnV4Zm91bmRhdGlvbi5vcmc+Cj4gQ2M6IEhh
+bnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+Cj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRh
+bmllbC52ZXR0ZXJAZmZ3bGwuY2g+Cj4gQ2M6IEFsZXhhbmRlciBLYXBzaHVrIDxhbGV4YW5kZXIu
+a2Fwc2h1a0BnbWFpbC5jb20+Cj4gQ2M6IEtlZXMgQ29vayA8a2Vlc2Nvb2tAY2hyb21pdW0ub3Jn
+Pgo+IENjOiBUaGllcnJ5IFJlZGluZyA8dHJlZGluZ0BudmlkaWEuY29tPgo+IENjOiBEYXZpZCBM
+ZWNobmVyIDxkYXZpZEBsZWNobm9sb2d5LmNvbT4KPiBDYzogbm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKPiBDYzogbGludXgtZmJkZXZAdmdlci5rZXJuZWwub3JnCj4gU2lnbmVkLW9mZi1i
+eTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+CgpBY2tlZC1ieTogQmFy
+dGxvbWllaiBab2xuaWVya2lld2ljeiA8Yi56b2xuaWVya2llQHNhbXN1bmcuY29tPgoKQmVzdCBy
+ZWdhcmRzLAotLQpCYXJ0bG9taWVqIFpvbG5pZXJraWV3aWN6ClNhbXN1bmcgUiZEIEluc3RpdHV0
+ZSBQb2xhbmQKU2Ftc3VuZyBFbGVjdHJvbmljcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9pbnRlbC1nZngK
