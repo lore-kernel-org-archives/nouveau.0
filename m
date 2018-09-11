@@ -1,10 +1,13 @@
-From: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Questions on Maxwell/Pascal Texture Instructions Modes
-Date: Tue, 11 Sep 2018 15:13:58 -0400
-Message-ID: <CA+MSTo-WnPbA=vfOZVSP68-Y9GfxxNSX7G84dReknxb-nK2SDA@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Questions on Maxwell/Pascal Texture Instructions Modes
+Date: Tue, 11 Sep 2018 15:36:46 -0400
+Message-ID: <CAKb7UvjnFnGk9p9aSDGZC4XuaqiU=yo_P-90kB2tmk5kA6Bv9A@mail.gmail.com>
+References: <CA+MSTo-WnPbA=vfOZVSP68-Y9GfxxNSX7G84dReknxb-nK2SDA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1560086337=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CA+MSTo-WnPbA=vfOZVSP68-Y9GfxxNSX7G84dReknxb-nK2SDA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -14,45 +17,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1560086337==
-Content-Type: multipart/alternative; boundary="0000000000005530b305759d474e"
-
---0000000000005530b305759d474e
-Content-Type: text/plain; charset="UTF-8"
-
-Hello, I got some doubts on how texture modes work on TEX, TEXS, TLD4, etc
-instructions.
-
-I got:
-DC, AOFFI, NDV, NODEP, MZ, PTP modes as well as LZ Mode. How does this work
-or change the behavior of the texture instruction. So far of those I know
-AOFFI defines an Offset but I'm on blanks for the rest.
-
---0000000000005530b305759d474e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello, I got some doubts on how texture modes work on TEX,=
- TEXS, TLD4, etc instructions.<div><br></div><div>I got:</div><div>DC, AOFF=
-I, NDV, NODEP, MZ, PTP modes as well as LZ Mode. How does this work or chan=
-ge the behavior of the texture instruction. So far of those I know AOFFI de=
-fines an Offset but I&#39;m on blanks for the rest.<br clear=3D"all"><div><=
-br></div><br><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"g=
-mail_signature"><div dir=3D"ltr"></div></div></div></div>
-
---0000000000005530b305759d474e--
-
---===============1560086337==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1560086337==--
+REMgPSBkZXB0aCBjb21wYXJlIChleHRyYSBhcmcgd2l0aCBjb21wYXJlIHJlZmVyZW5jZSkKQU9G
+RkkgPSB0ZXhlbCBvZmZzZXQgKGV4dHJhIGFyZyB3aXRoIG9mZnNldHMgZW5jb2RlZCkuIE5vdGUg
+dGhhdCBUTEQ0CmNhbiBhbHNvIGhhdmUgYSBpaXJjIEFPRkZJUyB2YXJpYW50IHdoaWNoIHRha2Vz
+IDQgb2Zmc2V0cyBlbmNvZGVkIGluIDIKc2VxdWVudGlhbCByZWdzLiBhbmQgaWlyYyBhdCA4IGJp
+dHMgcGVyIG9mZnNldCwgd2hpbGUgb3RoZXIgb3BzIGRvIDQKYml0cyBwZXIgb2Zmc2V0LiBjaGVj
+ayB3aGF0IG5vdXZlYXUgZG9lcywgaXQncyByaWdodCBhbmQgdG9vayBtZQpmb3JldmVyIHRvIHRy
+YWNrIGl0IGFsbCBkb3duLgpORFYgPSBkb24ndCBydW4gdGhlIHRleHR1cmUgY2FsbCBmb3IgbGFu
+ZXMgdGhhdCBhcmUgbWFza2VkICh3aGljaCBjYW4KY2F1c2UgZG93bnN0cmVhbSBkZXJpdmF0aXZl
+cyB0byBiZSB3cm9uZykKTk9ERVAgPSBpIGZvcmdldCwgYnV0IGNoZWNrIHRoZSBub3V2ZWF1IGVt
+aXR0ZXIsIEkgdGhpbmsgd2Ugc2V0IGl0LgpoYXMgc29tZXRoaW5nIHRvIGRvIHdpdGggYWRkaXRp
+b25hbCB0ZXh0dXJlIG9wcyBiZWluZyBydW4gc2hvcnRseQphZnRlci4uLiBvciBzb21ldGhpbmcu
+IGl0IHdhcyBjYWxsZWQgIlMiIGFuZCAiVCIgb24gZmVybWkgaWlyYywgdGhvc2UKbWF5IGJlIHRo
+ZSB0ZXJtcyB3ZSB1c2UuCk1aID0gPyBwZXJoYXBzIHNvbWV0aGluZyByZWxhdGVkIHRvIE1TIHRl
+eHR1cmVzLCBjbGFtcGluZyB0aGUgc2FtcGxlCnRvIHplcm8/IGR1bm5vLiBuZXZlciBoZWFyZCBv
+ZiBpdC4KUFRQID0gPyBuZXZlciBoZWFyZCBvZiBpdC4KTFogPSBsZXZlbCB6ZXJvCkxMID0gbGV2
+ZWwgbG9kIChleHRyYSBhcmcgd2l0aCBsb2QpCgpSZWFsbHksIGNoZWNrIG5vdXZlYXUgY29kZSAt
+IGl0J3MgYWNjdXJhdGUgYW5kIHRvb2sgY29uc2lkZXJhYmxlCmVmZm9ydCB0byB3b3JrIG91dC4K
+Cmh0dHBzOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvbWVzYS9tZXNhL3RyZWUvc3JjL2dhbGxpdW0v
+ZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19udmMwLmNwcCNuODQxCmh0
+dHBzOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvbWVzYS9tZXNhL3RyZWUvc3JjL2dhbGxpdW0vZHJp
+dmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9lbWl0X2dtMTA3LmNwcCNuMjcyMgoKWW91J3Jl
+IG1pc3Npbmcgb3V0IGJpdHMgbGlrZSBpbmRpcmVjdCBoYW5kbGVzLCBUWEQgYXJndW1lbnRzIGJl
+aW5nCndlaXJkLi4uIHByb2JhYmx5IG90aGVyIGJpdHMuCgpPbiBUdWUsIFNlcCAxMSwgMjAxOCBh
+dCAzOjEzIFBNLCBGZXJuYW5kbyBTYWhta293IDxmc2FobWtvdzI3QGdtYWlsLmNvbT4gd3JvdGU6
+Cj4gSGVsbG8sIEkgZ290IHNvbWUgZG91YnRzIG9uIGhvdyB0ZXh0dXJlIG1vZGVzIHdvcmsgb24g
+VEVYLCBURVhTLCBUTEQ0LCBldGMKPiBpbnN0cnVjdGlvbnMuCj4KPiBJIGdvdDoKPiBEQywgQU9G
+RkksIE5EViwgTk9ERVAsIE1aLCBQVFAgbW9kZXMgYXMgd2VsbCBhcyBMWiBNb2RlLiBIb3cgZG9l
+cyB0aGlzIHdvcmsKPiBvciBjaGFuZ2UgdGhlIGJlaGF2aW9yIG9mIHRoZSB0ZXh0dXJlIGluc3Ry
+dWN0aW9uLiBTbyBmYXIgb2YgdGhvc2UgSSBrbm93Cj4gQU9GRkkgZGVmaW5lcyBhbiBPZmZzZXQg
+YnV0IEknbSBvbiBibGFua3MgZm9yIHRoZSByZXN0Lgo+Cj4KPgo+IF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBO
+b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
