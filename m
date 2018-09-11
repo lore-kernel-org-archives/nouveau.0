@@ -1,56 +1,118 @@
-From: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-Subject: Re: [PATCH 1/4] fbdev: Drop FBINFO_CAN_FORCE_OUTPUT flag
-Date: Tue, 11 Sep 2018 10:47:34 +0200
-Message-ID: <20180911084736eucas1p1e7f98eb3bc4e30bdc1041744fc7fc7a6~TTC14JPXa1980019800eucas1p1O@eucas1p1.samsung.com>
-References: <CGME20180822085418epcas5p30ab8aa4b49ba204f4891760af002bce1@epcas5p3.samsung.com>
- <20180822085405.10787-1-daniel.vetter@ffwll.ch>
- <20180910124845eucas1p1b51674cd657757aadf5138e277e57ebe~TCsHYsLqt1779917799eucas1p18@eucas1p1.samsung.com>
- <20180911074228.GI19774@phenom.ffwll.local>
+From: "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Subject: Re: [PATCH] PCI: Reprogram bridge prefetch registers on resume
+Date: Tue, 11 Sep 2018 11:08:46 +0200
+Message-ID: <1580466.UG53E7BAC6@aspire.rjw.lan>
+References: <20180907053614.6540-1-drake@endlessm.com> <20180907150515.GA28739@al> <CAD8Lp46eDaSF3fNQgYL=3vCXJ5VpV-JkYEu-YTtuh+w4rMU-5w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <20180911074228.GI19774@phenom.ffwll.local>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: DRI Development <dri-devel@lists.freedesktop.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, Ben Skeggs <bskeggs@redhat.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Hans de Goede <hdegoede@redhat.com>, Alexander Kapshuk <alexander.kapshuk@gmail.com>, Kees Cook <keescook@chromium.org>, Thierry Reding <treding@nvidia.com>, David Lechner <david@lechnology.com>, nouveau@lists.freedesktop.org, linux-fbdev@vger.kernel.org, Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7Bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CAD8Lp46eDaSF3fNQgYL=3vCXJ5VpV-JkYEu-YTtuh+w4rMU-5w@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Daniel Drake <drake@endlessm.com>, Bjorn Helgaas <bhelgaas@google.com>
+Cc: Peter Wu <peter@lekensteyn.nl>, linux-pci@vger.kernel.org, Linux Upstreaming Team <linux@endlessm.com>, nouveau@lists.freedesktop.org, Linux PM <linux-pm@vger.kernel.org>, kherbst@redhat.com, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>, Keith Busch <keith.busch@intel.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, Jon Derrick <jonathan.derrick@intel.com>, Thomas Martitz <kugel@rockbox.org>, davem@davemloft.net, hkallweit1@gmail.com, netdev@vger.kernel.org, nic_swsd@realtek.com, Linux Kernel <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gMDkvMTEvMjAxOCAwOTo0MiBBTSwgRGFuaWVsIFZldHRlciB3cm90ZToKPiBPbiBNb24sIFNl
-cCAxMCwgMjAxOCBhdCAwMjo0ODo0M1BNICswMjAwLCBCYXJ0bG9taWVqIFpvbG5pZXJraWV3aWN6
-IHdyb3RlOgo+Pgo+PiBPbiAwOC8yMi8yMDE4IDEwOjU0IEFNLCBEYW5pZWwgVmV0dGVyIHdyb3Rl
-Ogo+Pj4gVGhpcyB3YXMgb25seSBhZGRlZCBmb3IgdGhlIGRybSdzIGZiZGV2IGVtdWxhdGlvbiBz
-dXBwb3J0LCBzbyB0aGF0IGl0Cj4+PiB3b3VsZCB0cnkgaGFyZGVyIHRvIHNob3cgdGhlIE9vcHMu
-Cj4+Pgo+Pj4gVW5mb3J0dW5hdGVseSB0aGlzIG5ldmVyIHJlYWxseSB3b3JrZWQgcmVsaWFibHks
-IGFuZCBpbiBwcmFjdGljZSBlbmRlZAo+Pj4gdXAgcHVzaGluZyB0aGUgcmVhbCBPb3BzIG9mZiB0
-aGUgc2NyZWVuIGR1ZSB0byBwbGVudHlmdWxsIGxvY2tpbmcsCj4+PiBzbGVlcC13aGlsZS1hdG9t
-aWMgYW5kIG90aGVyIGlzc3Vlcy4gU28gd2UgcmVtb3ZlZCBhbGwgdGhhdCBzdXBwb3J0Cj4+PiBm
-cm9tIHRoZSBmYmRldiBlbXVsYXRpb24gYSB3aGlsZSBiYWNrLiBBc2lkZTogV2UndmUgYWxzbyBy
-ZW1vdmVkIHRoZQo+Pj4ga2dkYiBzdXBwb3J0LCBmb3Igc2ltaWxhciByZWFzb25zLgo+Pj4KPj4+
-IFNpbmNlIGl0J3Mgc3VjaCBhIHNtYWxsIHBhdGNoIEkgZmlndXJlZCBJIGRvbid0IHNwbGl0IHRo
-aXMgdXAgaW50byB0aGUKPj4+IHVzdWFsIDMtcGhhc2UgcmVtb3ZhbC4KPj4+Cj4+PiBDYzogQmVu
-IFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgo+Pj4gQ2M6IEJhcnRsb21pZWogWm9sbmllcmtp
-ZXdpY3ogPGIuem9sbmllcmtpZUBzYW1zdW5nLmNvbT4KPj4+IENjOiBHcmVnIEtyb2FoLUhhcnRt
-YW4gPGdyZWdraEBsaW51eGZvdW5kYXRpb24ub3JnPgo+Pj4gQ2M6IEhhbnMgZGUgR29lZGUgPGhk
-ZWdvZWRlQHJlZGhhdC5jb20+Cj4+PiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBm
-ZndsbC5jaD4KPj4+IENjOiBBbGV4YW5kZXIgS2Fwc2h1ayA8YWxleGFuZGVyLmthcHNodWtAZ21h
-aWwuY29tPgo+Pj4gQ2M6IEtlZXMgQ29vayA8a2Vlc2Nvb2tAY2hyb21pdW0ub3JnPgo+Pj4gQ2M6
-IFRoaWVycnkgUmVkaW5nIDx0cmVkaW5nQG52aWRpYS5jb20+Cj4+PiBDYzogRGF2aWQgTGVjaG5l
-ciA8ZGF2aWRAbGVjaG5vbG9neS5jb20+Cj4+PiBDYzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKPj4+IENjOiBsaW51eC1mYmRldkB2Z2VyLmtlcm5lbC5vcmcKPj4+IFNpZ25lZC1vZmYt
-Ynk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgo+Pgo+PiBBY2tlZC1i
-eTogQmFydGxvbWllaiBab2xuaWVya2lld2ljeiA8Yi56b2xuaWVya2llQHNhbXN1bmcuY29tPgo+
-IAo+IEFjayBmb3IgbWVyZ2luZyB0aGUgZW50aXJlIHNlcmllcyB0aHJvdWdoIGRybS1taXNjLW5l
-eHQ/CgpZZXMsIHRoYW5rcyBmb3IgdGFraW5nIGNhcmUgb2YgdGhpcy4KCkJlc3QgcmVnYXJkcywK
-LS0KQmFydGxvbWllaiBab2xuaWVya2lld2ljegpTYW1zdW5nIFImRCBJbnN0aXR1dGUgUG9sYW5k
-ClNhbXN1bmcgRWxlY3Ryb25pY3MKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4Cg==
+On Tuesday, September 11, 2018 5:35:13 AM CEST Daniel Drake wrote:
+> I have created https://bugzilla.kernel.org/show_bug.cgi?id=201069 to
+> archive the research done so far.
+> 
+> On Fri, Sep 7, 2018 at 11:05 PM, Peter Wu <peter@lekensteyn.nl> wrote:
+> > Windows 10 unconditionally rewrites these registers (BAR, I/O Base +
+> > Limit, Memory Base + Limit, etc. from top to bottom), see annotations:
+> > https://www.spinics.net/lists/linux-pci/msg75856.html
+> >
+> > Linux has a generic "restore" operation that works backwards from the
+> > end of the PCI config space to the beginning, see
+> > pci_restore_config_space. Do you have a dmesg where you see the
+> > "restoring config space at offset" messages?
+> 
+> Interesting, I had not spotted this code. The logs for the affected
+> bridge on Asus X542UQ:
+> 
+>  0000:00:1c.0: restoring config space at offset 0x3c (was 0x100,
+> writing 0x1001ff)
+>  0000:00:1c.0: restoring config space at offset 0x24 (was 0x10001,
+> writing 0xe1f1d001)
+>  0000:00:1c.0: restoring config space at offset 0x20 (was 0x0, writing
+> 0xef00ee00)
+>  0000:00:1c.0: restoring config space at offset 0xc (was 0x810000,
+> writing 0x810010)
+>  0000:00:1c.0: restoring config space at offset 0x4 (was 0x100007,
+> writing 0x100407)
+> 
+> So it didn't restore 0x28 (the magic register) and also register 0x2c
+> (prefetch limit upper 32 bits) because their values were already 0 on
+> resume.
+> 
+> https://bugzilla.kernel.org/show_bug.cgi?id=116851#c23 has an
+> assertion that Intel recognises this issue and calls for all those
+> registers to be restored on resume.
+> 
+> I propose for Linux 4.19 we apply a minimally intrusive change that
+> "forcibly" restores dword registers 0x24, 0x28 and 0x2c for PCI
+> bridges (regardless of their current value), while retaining the
+> existing restore order (high to low) over all registers and doing the
+> read-then-maybe-write thing for all of the other regs (per current
+> behaviour).
+
+I agree here.  It would be good to cover this gap and possibly backport
+the fix to "stable".
+
+> Then we also consider swiftly applying a followup patch implementing a
+> more thorough approach and we give it some time in linux-next before
+> releasing in Linux 4.20 which does something more thorough. I think
+> perhaps more discussion is needed there, or at least some more input
+> from Bjorn. Seems like we have 3 approaches to consider:
+> 
+> 1. Peter Wu suggests following what windows does. Windows appears to
+> start with low registers and works its way upwards, which means it
+> writes BAR addresses, I/O base, etc, before writing prefetch
+> registers. It skips over read-only and write-to-clear registers and
+> also only writes some of the registers at the very end - like the
+> command register.
+> 
+> To be thorough here we would probably also have to study and copy what
+> Windows does for non-bridge devices (not sure how many device classes
+> we would want to study here?). Also it is a bit risky in that Bjorn
+> has pointed out that Linux's earlier approach with a high level of
+> similarity here (restore registers in ascending order, regardless of
+> their current value) caused a laptop to hang on resume.
+> 
+> 
+> 2. Bjorn suggested tweaking the existing code to always write the
+> saved value even when the hardware has that same value. The
+> read-maybe-write logic was introduced to avoid a laptop hang, but at
+> that time we were restoring registers in ascending order, now we are
+> descending it might be worth giving this another try.
+
+I agree with Bjorn here.
+
+> 3. Do nothing else beyond the minimal change that I propose for v4.19?
+> Looking a bit more into git history this seems to be a sensitive and
+> problematic area, more changes might mean more trouble. For example
+> right now pci_restore_config_space() does:
+>         pci_restore_config_space_range(pdev, 10, 15, 0, 0);
+>         /* Restore BARs before the command register. */
+>         pci_restore_config_space_range(pdev, 4, 9, 10, 0);
+>         pci_restore_config_space_range(pdev, 0, 3, 0, 0);
+> but pci_restore_config_space_range() already goes in descending order,
+> so the above is already equivalent to the code in the "else" path that
+> follows:
+>         pci_restore_config_space_range(pdev, 0, 15, 0, 0);
+> 
+> and if you look at the history behind this "mixup" there's stuff that
+> goes back to 2012 like commit a6cb9ee7cabe ("PCI: Retry BARs
+> restoration for Type 0 headers only") which was fixing up another
+> problematic commit in this area, etc.
+
+So let's first fix what's known broken and see how this goes IMO.
+
+On top of that and later, try to make the changes suggested by Bjorn and see
+how far we can get with that.
+
+Having done that, revisit and see if there still are any problems to address
+in this area.
+
+Thanks,
+Rafael
