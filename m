@@ -1,62 +1,134 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 1/4] fbdev: Drop FBINFO_CAN_FORCE_OUTPUT flag
-Date: Tue, 11 Sep 2018 14:12:16 +0200
-Message-ID: <20180911121216.GK19774@phenom.ffwll.local>
-References: <CGME20180822085418epcas5p30ab8aa4b49ba204f4891760af002bce1@epcas5p3.samsung.com>
- <20180822085405.10787-1-daniel.vetter@ffwll.ch>
- <20180910124845eucas1p1b51674cd657757aadf5138e277e57ebe~TCsHYsLqt1779917799eucas1p18@eucas1p1.samsung.com>
- <20180911074228.GI19774@phenom.ffwll.local>
- <20180911084736eucas1p1e7f98eb3bc4e30bdc1041744fc7fc7a6~TTC14JPXa1980019800eucas1p1O@eucas1p1.samsung.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
+ 409800 [ TIMEOUT ]
+Date: Tue, 11 Sep 2018 14:40:29 +0000
+Message-ID: <bug-100228-8800-lk0zTP4iHk@http.bugs.freedesktop.org/>
+References: <bug-100228-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20180911084736eucas1p1e7f98eb3bc4e30bdc1041744fc7fc7a6~TTC14JPXa1980019800eucas1p1O@eucas1p1.samsung.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-Cc: linux-fbdev@vger.kernel.org, Alexander Kapshuk <alexander.kapshuk@gmail.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, DRI Development <dri-devel@lists.freedesktop.org>, Hans de Goede <hdegoede@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>, David Lechner <david@lechnology.com>, Thierry Reding <treding@nvidia.com>, Kees Cook <keescook@chromium.org>
+Content-Type: multipart/mixed; boundary="===============0285167143=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBTZXAgMTEsIDIwMTggYXQgMTA6NDc6MzRBTSArMDIwMCwgQmFydGxvbWllaiBab2xu
-aWVya2lld2ljeiB3cm90ZToKPiBPbiAwOS8xMS8yMDE4IDA5OjQyIEFNLCBEYW5pZWwgVmV0dGVy
-IHdyb3RlOgo+ID4gT24gTW9uLCBTZXAgMTAsIDIwMTggYXQgMDI6NDg6NDNQTSArMDIwMCwgQmFy
-dGxvbWllaiBab2xuaWVya2lld2ljeiB3cm90ZToKPiA+Pgo+ID4+IE9uIDA4LzIyLzIwMTggMTA6
-NTQgQU0sIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4gPj4+IFRoaXMgd2FzIG9ubHkgYWRkZWQgZm9y
-IHRoZSBkcm0ncyBmYmRldiBlbXVsYXRpb24gc3VwcG9ydCwgc28gdGhhdCBpdAo+ID4+PiB3b3Vs
-ZCB0cnkgaGFyZGVyIHRvIHNob3cgdGhlIE9vcHMuCj4gPj4+Cj4gPj4+IFVuZm9ydHVuYXRlbHkg
-dGhpcyBuZXZlciByZWFsbHkgd29ya2VkIHJlbGlhYmx5LCBhbmQgaW4gcHJhY3RpY2UgZW5kZWQK
-PiA+Pj4gdXAgcHVzaGluZyB0aGUgcmVhbCBPb3BzIG9mZiB0aGUgc2NyZWVuIGR1ZSB0byBwbGVu
-dHlmdWxsIGxvY2tpbmcsCj4gPj4+IHNsZWVwLXdoaWxlLWF0b21pYyBhbmQgb3RoZXIgaXNzdWVz
-LiBTbyB3ZSByZW1vdmVkIGFsbCB0aGF0IHN1cHBvcnQKPiA+Pj4gZnJvbSB0aGUgZmJkZXYgZW11
-bGF0aW9uIGEgd2hpbGUgYmFjay4gQXNpZGU6IFdlJ3ZlIGFsc28gcmVtb3ZlZCB0aGUKPiA+Pj4g
-a2dkYiBzdXBwb3J0LCBmb3Igc2ltaWxhciByZWFzb25zLgo+ID4+Pgo+ID4+PiBTaW5jZSBpdCdz
-IHN1Y2ggYSBzbWFsbCBwYXRjaCBJIGZpZ3VyZWQgSSBkb24ndCBzcGxpdCB0aGlzIHVwIGludG8g
-dGhlCj4gPj4+IHVzdWFsIDMtcGhhc2UgcmVtb3ZhbC4KPiA+Pj4KPiA+Pj4gQ2M6IEJlbiBTa2Vn
-Z3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KPiA+Pj4gQ2M6IEJhcnRsb21pZWogWm9sbmllcmtpZXdp
-Y3ogPGIuem9sbmllcmtpZUBzYW1zdW5nLmNvbT4KPiA+Pj4gQ2M6IEdyZWcgS3JvYWgtSGFydG1h
-biA8Z3JlZ2toQGxpbnV4Zm91bmRhdGlvbi5vcmc+Cj4gPj4+IENjOiBIYW5zIGRlIEdvZWRlIDxo
-ZGVnb2VkZUByZWRoYXQuY29tPgo+ID4+PiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRl
-ckBmZndsbC5jaD4KPiA+Pj4gQ2M6IEFsZXhhbmRlciBLYXBzaHVrIDxhbGV4YW5kZXIua2Fwc2h1
-a0BnbWFpbC5jb20+Cj4gPj4+IENjOiBLZWVzIENvb2sgPGtlZXNjb29rQGNocm9taXVtLm9yZz4K
-PiA+Pj4gQ2M6IFRoaWVycnkgUmVkaW5nIDx0cmVkaW5nQG52aWRpYS5jb20+Cj4gPj4+IENjOiBE
-YXZpZCBMZWNobmVyIDxkYXZpZEBsZWNobm9sb2d5LmNvbT4KPiA+Pj4gQ2M6IG5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCj4gPj4+IENjOiBsaW51eC1mYmRldkB2Z2VyLmtlcm5lbC5vcmcK
-PiA+Pj4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5j
-b20+Cj4gPj4KPiA+PiBBY2tlZC1ieTogQmFydGxvbWllaiBab2xuaWVya2lld2ljeiA8Yi56b2xu
-aWVya2llQHNhbXN1bmcuY29tPgo+ID4gCj4gPiBBY2sgZm9yIG1lcmdpbmcgdGhlIGVudGlyZSBz
-ZXJpZXMgdGhyb3VnaCBkcm0tbWlzYy1uZXh0Pwo+IAo+IFllcywgdGhhbmtzIGZvciB0YWtpbmcg
-Y2FyZSBvZiB0aGlzLgoKVGhhbmtzLCBhbGwgbWVyZ2VkIGludG8gZHJtLW1pc2MtbmV4dCBmb3Ig
-NC4yMC4KLURhbmllbAotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwg
-Q29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============0285167143==
+Content-Type: multipart/alternative; boundary="15366768306.0BfB.10711"
+Content-Transfer-Encoding: 7bit
+
+
+--15366768306.0BfB.10711
+Date: Tue, 11 Sep 2018 14:40:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
+
+--- Comment #26 from Boris Vinogradov <no111u3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Boris Vinogradov from comment #25)
+> Created attachment 141455 [details]
+> Kernel log with new firmware after some boot
+>=20
+> But I have some boot with reproduce error.
+
+I have many experiments with boot and create stable reproduce way:
+
+1)Instalation new version of kernel,
+2)Reboot, or cold boot
+3)Successefull boot with short time initialization. Sleep/suspend usally wo=
+rk.
+4)Reboot, or cold boot
+5)Reproduce error again.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15366768306.0BfB.10711
+Date: Tue, 11 Sep 2018 14:40:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
+OUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c26">Comme=
+nt # 26</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
+OUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
+8</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+no111u3&#64;gmail.com" title=3D"Boris Vinogradov &lt;no111u3&#64;gmail.com&=
+gt;"> <span class=3D"fn">Boris Vinogradov</span></a>
+</span></b>
+        <pre>(In reply to Boris Vinogradov from <a href=3D"show_bug.cgi?id=
+=3D100228#c25">comment #25</a>)
+<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
+gi?id=3D141455" name=3D"attach_141455" title=3D"Kernel log with new firmwar=
+e after some boot">attachment 141455</a> <a href=3D"attachment.cgi?id=3D141=
+455&amp;action=3Dedit" title=3D"Kernel log with new firmware after some boo=
+t">[details]</a></span>
+&gt; Kernel log with new firmware after some boot
+&gt;=20
+&gt; But I have some boot with reproduce error.</span >
+
+I have many experiments with boot and create stable reproduce way:
+
+1)Instalation new version of kernel,
+2)Reboot, or cold boot
+3)Successefull boot with short time initialization. Sleep/suspend usally wo=
+rk.
+4)Reboot, or cold boot
+5)Reproduce error again.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15366768306.0BfB.10711--
+
+--===============0285167143==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0285167143==--
