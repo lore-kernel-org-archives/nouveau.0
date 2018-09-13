@@ -1,105 +1,45 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99501] xrandr rotation does not work with reverse
- prime
-Date: Thu, 13 Sep 2018 11:16:02 +0000
-Message-ID: <bug-99501-8800-3AJwsE02fd@http.bugs.freedesktop.org/>
-References: <bug-99501-8800@http.bugs.freedesktop.org/>
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+Subject: [PATCH 1/2] drm/nouveau: Disable atomic support on a
+ per-device basis
+Date: Thu, 13 Sep 2018 19:31:46 +0300
+Message-ID: <20180913163147.27900-1-ville.syrjala@linux.intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0329887770=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0329887770==
-Content-Type: multipart/alternative; boundary="15368373610.9EFcB.25841"
-Content-Transfer-Encoding: 7bit
-
-
---15368373610.9EFcB.25841
-Date: Thu, 13 Sep 2018 11:16:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99501
-
---- Comment #1 from main.haarp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Can confirm. Screen is in normal position, but the mouse cursor is offset a=
-nd
-exhibits reversed axis.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15368373610.9EFcB.25841
-Date: Thu, 13 Sep 2018 11:16:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - xrandr rotation does not work with reverse prime"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99501#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - xrandr rotation does not work with reverse prime"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99501">bug 99501<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-main.haarp&#64;gmail.com" title=3D"main.haarp&#64;gmail.com">main.haarp&#64=
-;gmail.com</a>
-</span></b>
-        <pre>Can confirm. Screen is in normal position, but the mouse curso=
-r is offset and
-exhibits reversed axis.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15368373610.9EFcB.25841--
-
---===============0329887770==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0329887770==--
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCldl
+IG5vdyBoYXZlIHBlci1kZXZpY2UgZHJpdmVyX2ZlYXR1cmVzLCBzbyBsZXQncyB1c2UgdGhhdAp0
+byBkaXNhYmxlIGF0b21pYyBvbmx5IGZvciBwcmUtbnY1MC4KCkNjOiBCZW4gU2tlZ2dzIDxic2tl
+Z2dzQHJlZGhhdC5jb20+CkNjOiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgpDYzogbm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0
+ZXJAZmZ3bGwuY2g+ClJldmlld2VkLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZm
+d2xsLmNoPgpTdWdnZXN0ZWQtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwu
+Y2g+ClNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5p
+bnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvZGlzcC5jIHwg
+MiArLQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvZGlzcC5jIGIvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvZGlzcC5jCmluZGV4IDcwZGNlNTQ0OTg0ZS4uNjcw
+NTM1YTY4ZDNiIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9k
+aXNwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvZGlzcC5jCkBAIC01
+Niw3ICs1Niw3IEBAIG52MDRfZGlzcGxheV9jcmVhdGUoc3RydWN0IGRybV9kZXZpY2UgKmRldikK
+IAlub3V2ZWF1X2Rpc3BsYXkoZGV2KS0+ZmluaSA9IG52MDRfZGlzcGxheV9maW5pOwogCiAJLyog
+UHJlLW52NTAgZG9lc24ndCBzdXBwb3J0IGF0b21pYywgc28gZG9uJ3QgZXhwb3NlIHRoZSBpb2N0
+bHMgKi8KLQlkZXYtPmRyaXZlci0+ZHJpdmVyX2ZlYXR1cmVzICY9IH5EUklWRVJfQVRPTUlDOwor
+CWRldi0+ZHJpdmVyX2ZlYXR1cmVzICY9IH5EUklWRVJfQVRPTUlDOwogCiAJbm91dmVhdV9od19z
+YXZlX3ZnYV9mb250cyhkZXYsIDEpOwogCi0tIAoyLjE2LjQKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
+Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
