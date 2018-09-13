@@ -1,120 +1,142 @@
-From: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH v3] PCI: Reprogram bridge prefetch registers
- on resume
-Date: Thu, 13 Sep 2018 08:52:29 +0200
-Message-ID: <CAJZ5v0iBt+mYy4K9YNavqyQkivNqwBp3zyK5QmqGR+kWGsRO4g@mail.gmail.com>
+From: Peter Wu <peter@lekensteyn.nl>
+Subject: Re: [PATCH v3] PCI: Reprogram bridge prefetch registers on resume
+Date: Thu, 13 Sep 2018 09:43:28 +0200
+Message-ID: <20180913074328.GA28376@al>
 References: <20180913033745.11178-1-drake@endlessm.com>
+ <CAJZ5v0iBt+mYy4K9YNavqyQkivNqwBp3zyK5QmqGR+kWGsRO4g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180913033745.11178-1-drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
-Cc: andy.shevchenko-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Rafael Wysocki <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, nic_swsd-Rasf1IRRPZFBDgjK7y7TUQ@public.gmane.org, Keith Busch <keith.busch-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, netdev <netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, rchang-eYqpPyKDWXRBDgjK7y7TUQ@public.gmane.org, Linux Upstreaming Team <linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, David Miller <davem-fT/PcQaiUtIeIZ0/mPfg9Q@public.gmane.org>, jonathan.derrick-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, Heiner Kallweit <hkallweit1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <netdev-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CAJZ5v0iBt+mYy4K9YNavqyQkivNqwBp3zyK5QmqGR+kWGsRO4g@mail.gmail.com>
+Sender: netdev-owner@vger.kernel.org
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Daniel Drake <drake@endlessm.com>, Bjorn Helgaas <bhelgaas@google.com>, Linux PCI <linux-pci@vger.kernel.org>, Linux Upstreaming Team <linux@endlessm.com>, nouveau@lists.freedesktop.org, Linux PM <linux-pm@vger.kernel.org>, kherbst@redhat.com, Rafael Wysocki <rafael.j.wysocki@intel.com>, Keith Busch <keith.busch@intel.com>, jonathan.derrick@intel.com, Thomas Martitz <kugel@rockbox.org>, David Miller <davem@davemloft.net>, Heiner Kallweit <hkallweit1@gmail.com>, netdev <netdev@vger.kernel.org>, nic_swsd@realtek.com, rchang@marvell.com
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBTZXAgMTMsIDIwMTggYXQgNTozNyBBTSBEYW5pZWwgRHJha2UgPGRyYWtlQGVuZGxl
-c3NtLmNvbT4gd3JvdGU6Cj4KPiBPbiAzOCsgSW50ZWwtYmFzZWQgQXN1cyBwcm9kdWN0cywgdGhl
-IG52aWRpYSBHUFUgYmVjb21lcyB1bnVzYWJsZQo+IGFmdGVyIFMzIHN1c3BlbmQvcmVzdW1lLiBU
-aGUgYWZmZWN0ZWQgcHJvZHVjdHMgaW5jbHVkZSBtdWx0aXBsZQo+IGdlbmVyYXRpb25zIG9mIG52
-aWRpYSBHUFVzIGFuZCBJbnRlbCBTb0NzLiBBZnRlciByZXN1bWUsIG5vdXZlYXUgbG9ncwo+IG1h
-bnkgZXJyb3JzIHN1Y2ggYXM6Cj4KPiAgICAgZmlmbzogZmF1bHQgMDAgW1JFQURdIGF0IDAwMDAw
-MDU1NTU1NTUwMDAgZW5naW5lIDAwIFtHUl0gY2xpZW50IDA0Cj4gICAgICAgICAgIFtIVUIvRkVd
-IHJlYXNvbiA0YSBbXSBvbiBjaGFubmVsIC0xIFswMDdmYTkxMDAwIHVua25vd25dCj4gICAgIERS
-TTogZmFpbGVkIHRvIGlkbGUgY2hhbm5lbCAwIFtEUk1dCj4KPiBTaW1pbGFybHksIHRoZSBudmlk
-aWEgcHJvcHJpZXRhcnkgZHJpdmVyIGFsc28gZmFpbHMgYWZ0ZXIgcmVzdW1lCj4gKGJsYWNrIHNj
-cmVlbiwgMTAwJSBDUFUgdXNhZ2UgaW4gWG9yZyBwcm9jZXNzKS4gV2Ugc2hpcHBlZCBhIHNhbXBs
-ZQo+IHRvIE52aWRpYSBmb3IgZGlhZ25vc2lzLCBhbmQgdGhlaXIgcmVzcG9uc2UgaW5kaWNhdGVk
-IHRoYXQgaXQncyBhCj4gcHJvYmxlbSB3aXRoIHRoZSBwYXJlbnQgUENJIGJyaWRnZSAob24gdGhl
-IEludGVsIFNvQyksIG5vdCB0aGUgR1BVLgo+Cj4gUnVudGltZSBzdXNwZW5kL3Jlc3VtZSB3b3Jr
-cyBmaW5lLCBvbmx5IFMzIHN1c3BlbmQgaXMgYWZmZWN0ZWQuCj4KPiBXZSBmb3VuZCBhIHdvcmth
-cm91bmQ6IG9uIHJlc3VtZSwgcmV3cml0ZSB0aGUgSW50ZWwgUENJIGJyaWRnZQo+ICdQcmVmZXRj
-aGFibGUgQmFzZSBVcHBlciAzMiBCaXRzJyByZWdpc3RlciAoUENJX1BSRUZfQkFTRV9VUFBFUjMy
-KS4gSW4KPiB0aGUgY2FzZXMgdGhhdCBJIGNoZWNrZWQsIHRoaXMgcmVnaXN0ZXIgaGFzIHZhbHVl
-IDAgYW5kIHdlIGp1c3QgaGF2ZSB0bwo+IHJld3JpdGUgdGhhdCB2YWx1ZS4KPgo+IExpbnV4IGFs
-cmVhZHkgc2F2ZXMgYW5kIHJlc3RvcmVzIFBDSSBjb25maWcgc3BhY2UgZHVyaW5nIHN1c3BlbmQv
-cmVzdW1lLAo+IGJ1dCB0aGlzIHJlZ2lzdGVyIHdhcyBiZWluZyBza2lwcGVkIGJlY2F1c2UgdXBv
-biByZXN1bWUsIGl0IGFscmVhZHkKPiBoYXMgdmFsdWUgMCAodGhlIGNvcnJlY3QsIHByZS1zdXNw
-ZW5kIHZhbHVlKS4KPgo+IEludGVsIGFwcGVhciB0byBoYXZlIHByZXZpb3VzbHkgYWNrbm93bGVk
-Z2VkIHRoaXMgYmVoYXZpb3VyIGFuZCB0aGUKPiByZXF1aXJlbWVudCB0byByZXdyaXRlIHRoaXMg
-cmVnaXN0ZXIuCj4gaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwub3JnL3Nob3dfYnVnLmNnaT9pZD0x
-MTY4NTEjYzIzCj4KPiBCYXNlZCBvbiB0aGF0LCByZXdyaXRlIHRoZSBwcmVmZXRjaCByZWdpc3Rl
-ciB2YWx1ZXMgZXZlbiB3aGVuIHRoYXQKPiBhcHBlYXJzIHVubmVjZXNzYXJ5Lgo+Cj4gV2UgaGF2
-ZSBjb25maXJtZWQgdGhpcyBzb2x1dGlvbiBvbiBhbGwgdGhlIGFmZmVjdGVkIG1vZGVscyB3ZSBo
-YXZlCj4gaW4taGFuZHMgKFg1NDJVUSwgVVg1MzNGRCwgWDUzMFVOLCBWMjcyVU4pLgo+Cj4gQWRk
-aXRpb25hbGx5LCB0aGlzIHNvbHZlcyBhbiBpc3N1ZSB3aGVyZSByODE2OSBNU0ktWCBpbnRlcnJ1
-cHRzIHdlcmUKPiBicm9rZW4gYWZ0ZXIgUzMgc3VzcGVuZC9yZXN1bWUgb24gQXN1cyBYNDQxVUFS
-LiBUaGlzIGlzc3VlIHdhcyByZWNlbnRseQo+IHdvcmtlZCBhcm91bmQgaW4gY29tbWl0IDdiYjA1
-Yjg1YmMyZCAoInI4MTY5OiBkb24ndCB1c2UgTVNJLVggb24KPiBSVEw4MTA2ZSIpLiBJdCBhbHNv
-IGZpeGVzIHRoZSBzYW1lIGlzc3VlIG9uIFJUTDYxODZldmwvODExMWV2bCBvbiBhbgo+IEFpbWZv
-ci10ZWNoIGxhcHRvcCB0aGF0IHdlIGhhZCBub3QgeWV0IHBhdGNoZWQuIEkgc3VzcGVjdCBpdCB3
-aWxsIGFsc28KPiBmaXggdGhlIGlzc3VlIHRoYXQgd2FzIHdvcmtlZCBhcm91bmQgaW4gY29tbWl0
-IDdjNTNhNzIyNDU5YyAoInI4MTY5Ogo+IGRvbid0IHVzZSBNU0ktWCBvbiBSVEw4MTY4ZyIpLgo+
-Cj4gVGhvbWFzIE1hcnRpdHogcmVwb3J0cyB0aGF0IHRoaXMgY2hhbmdlIGFsc28gc29sdmVzIGFu
-IGlzc3VlIHdoZXJlCj4gdGhlIEFNRCBSYWRlb24gUG9sYXJpcyAxMCBHUFUgb24gdGhlIEhQIFpi
-b29rIDE0dSBHNSBpcyB1bnJlc3BvbnNpdmUKPiBhZnRlciBTMyBzdXNwZW5kL3Jlc3VtZS4KPgo+
-IExpbms6IGh0dHBzOi8vYnVnemlsbGEua2VybmVsLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjAxMDY5
-Cj4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIERyYWtlIDxkcmFrZUBlbmRsZXNzbS5jb20+CgpTdGls
-bAoKUmV2aWV3ZWQtYnk6IFJhZmFlbCBKLiBXeXNvY2tpIDxyYWZhZWwuai53eXNvY2tpQGludGVs
-LmNvbT4KCj4gLS0tCj4gIGRyaXZlcnMvcGNpL3BjaS5jIHwgMjUgKysrKysrKysrKysrKysrKyst
-LS0tLS0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgMTcgaW5zZXJ0aW9ucygrKSwgOCBkZWxldGlvbnMo
-LSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9wY2kuYyBiL2RyaXZlcnMvcGNpL3BjaS5j
-Cj4gaW5kZXggMjlmZjk2MTliNWZhLi41ZDU4MjIwYjY5OTcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
-cy9wY2kvcGNpLmMKPiArKysgYi9kcml2ZXJzL3BjaS9wY2kuYwo+IEBAIC0xMjg5LDEyICsxMjg5
-LDEyIEBAIGludCBwY2lfc2F2ZV9zdGF0ZShzdHJ1Y3QgcGNpX2RldiAqZGV2KQo+ICBFWFBPUlRf
-U1lNQk9MKHBjaV9zYXZlX3N0YXRlKTsKPgo+ICBzdGF0aWMgdm9pZCBwY2lfcmVzdG9yZV9jb25m
-aWdfZHdvcmQoc3RydWN0IHBjaV9kZXYgKnBkZXYsIGludCBvZmZzZXQsCj4gLSAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIHUzMiBzYXZlZF92YWwsIGludCByZXRyeSkKPiArICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdTMyIHNhdmVkX3ZhbCwgaW50IHJldHJ5
-LCBib29sIGZvcmNlKQo+ICB7Cj4gICAgICAgICB1MzIgdmFsOwo+Cj4gICAgICAgICBwY2lfcmVh
-ZF9jb25maWdfZHdvcmQocGRldiwgb2Zmc2V0LCAmdmFsKTsKPiAtICAgICAgIGlmICh2YWwgPT0g
-c2F2ZWRfdmFsKQo+ICsgICAgICAgaWYgKCFmb3JjZSAmJiB2YWwgPT0gc2F2ZWRfdmFsKQo+ICAg
-ICAgICAgICAgICAgICByZXR1cm47Cj4KPiAgICAgICAgIGZvciAoOzspIHsKPiBAQCAtMTMxMywy
-NSArMTMxMywzNCBAQCBzdGF0aWMgdm9pZCBwY2lfcmVzdG9yZV9jb25maWdfZHdvcmQoc3RydWN0
-IHBjaV9kZXYgKnBkZXYsIGludCBvZmZzZXQsCj4gIH0KPgo+ICBzdGF0aWMgdm9pZCBwY2lfcmVz
-dG9yZV9jb25maWdfc3BhY2VfcmFuZ2Uoc3RydWN0IHBjaV9kZXYgKnBkZXYsCj4gLSAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGludCBzdGFydCwgaW50IGVuZCwgaW50
-IHJldHJ5KQo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpbnQg
-c3RhcnQsIGludCBlbmQsIGludCByZXRyeSwKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgYm9vbCBmb3JjZSkKPiAgewo+ICAgICAgICAgaW50IGluZGV4Owo+Cj4g
-ICAgICAgICBmb3IgKGluZGV4ID0gZW5kOyBpbmRleCA+PSBzdGFydDsgaW5kZXgtLSkKPiAgICAg
-ICAgICAgICAgICAgcGNpX3Jlc3RvcmVfY29uZmlnX2R3b3JkKHBkZXYsIDQgKiBpbmRleCwKPiAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBkZXYtPnNhdmVkX2NvbmZp
-Z19zcGFjZVtpbmRleF0sCj4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICByZXRyeSk7Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZXRy
-eSwgZm9yY2UpOwo+ICB9Cj4KPiAgc3RhdGljIHZvaWQgcGNpX3Jlc3RvcmVfY29uZmlnX3NwYWNl
-KHN0cnVjdCBwY2lfZGV2ICpwZGV2KQo+ICB7Cj4gICAgICAgICBpZiAocGRldi0+aGRyX3R5cGUg
-PT0gUENJX0hFQURFUl9UWVBFX05PUk1BTCkgewo+IC0gICAgICAgICAgICAgICBwY2lfcmVzdG9y
-ZV9jb25maWdfc3BhY2VfcmFuZ2UocGRldiwgMTAsIDE1LCAwKTsKPiArICAgICAgICAgICAgICAg
-cGNpX3Jlc3RvcmVfY29uZmlnX3NwYWNlX3JhbmdlKHBkZXYsIDEwLCAxNSwgMCwgZmFsc2UpOwo+
-ICAgICAgICAgICAgICAgICAvKiBSZXN0b3JlIEJBUnMgYmVmb3JlIHRoZSBjb21tYW5kIHJlZ2lz
-dGVyLiAqLwo+IC0gICAgICAgICAgICAgICBwY2lfcmVzdG9yZV9jb25maWdfc3BhY2VfcmFuZ2Uo
-cGRldiwgNCwgOSwgMTApOwo+IC0gICAgICAgICAgICAgICBwY2lfcmVzdG9yZV9jb25maWdfc3Bh
-Y2VfcmFuZ2UocGRldiwgMCwgMywgMCk7Cj4gKyAgICAgICAgICAgICAgIHBjaV9yZXN0b3JlX2Nv
-bmZpZ19zcGFjZV9yYW5nZShwZGV2LCA0LCA5LCAxMCwgZmFsc2UpOwo+ICsgICAgICAgICAgICAg
-ICBwY2lfcmVzdG9yZV9jb25maWdfc3BhY2VfcmFuZ2UocGRldiwgMCwgMywgMCwgZmFsc2UpOwo+
-ICsgICAgICAgfSBlbHNlIGlmIChwZGV2LT5oZHJfdHlwZSA9PSBQQ0lfSEVBREVSX1RZUEVfQlJJ
-REdFKSB7Cj4gKyAgICAgICAgICAgICAgIHBjaV9yZXN0b3JlX2NvbmZpZ19zcGFjZV9yYW5nZShw
-ZGV2LCAxMiwgMTUsIDAsIGZhbHNlKTsKPiArICAgICAgICAgICAgICAgLyogRm9yY2UgcmV3cml0
-aW5nIG9mIHByZWZldGNoIHJlZ2lzdGVycyB0byBhdm9pZAo+ICsgICAgICAgICAgICAgICAgKiBT
-MyByZXN1bWUgaXNzdWVzIG9uIEludGVsIFBDSSBicmlkZ2VzIHRoYXQgb2NjdXIgd2hlbgo+ICsg
-ICAgICAgICAgICAgICAgKiB0aGVzZSByZWdpc3RlcnMgYXJlIG5vdCBleHBsaWNpdGx5IHdyaXR0
-ZW4uCj4gKyAgICAgICAgICAgICAgICAqLwo+ICsgICAgICAgICAgICAgICBwY2lfcmVzdG9yZV9j
-b25maWdfc3BhY2VfcmFuZ2UocGRldiwgOSwgMTEsIDAsIHRydWUpOwo+ICsgICAgICAgICAgICAg
-ICBwY2lfcmVzdG9yZV9jb25maWdfc3BhY2VfcmFuZ2UocGRldiwgMCwgOCwgMCwgZmFsc2UpOwo+
-ICAgICAgICAgfSBlbHNlIHsKPiAtICAgICAgICAgICAgICAgcGNpX3Jlc3RvcmVfY29uZmlnX3Nw
-YWNlX3JhbmdlKHBkZXYsIDAsIDE1LCAwKTsKPiArICAgICAgICAgICAgICAgcGNpX3Jlc3RvcmVf
-Y29uZmlnX3NwYWNlX3JhbmdlKHBkZXYsIDAsIDE1LCAwLCBmYWxzZSk7Cj4gICAgICAgICB9Cj4g
-IH0KPgo+IC0tCj4gMi4xNy4xCj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cg==
+On Thu, Sep 13, 2018 at 08:52:29AM +0200, Rafael J. Wysocki wrote:
+> On Thu, Sep 13, 2018 at 5:37 AM Daniel Drake <drake@endlessm.com> wrote:
+> >
+> > On 38+ Intel-based Asus products, the nvidia GPU becomes unusable
+> > after S3 suspend/resume. The affected products include multiple
+> > generations of nvidia GPUs and Intel SoCs. After resume, nouveau logs
+> > many errors such as:
+> >
+> >     fifo: fault 00 [READ] at 0000005555555000 engine 00 [GR] client 04
+> >           [HUB/FE] reason 4a [] on channel -1 [007fa91000 unknown]
+> >     DRM: failed to idle channel 0 [DRM]
+> >
+> > Similarly, the nvidia proprietary driver also fails after resume
+> > (black screen, 100% CPU usage in Xorg process). We shipped a sample
+> > to Nvidia for diagnosis, and their response indicated that it's a
+> > problem with the parent PCI bridge (on the Intel SoC), not the GPU.
+> >
+> > Runtime suspend/resume works fine, only S3 suspend is affected.
+> >
+> > We found a workaround: on resume, rewrite the Intel PCI bridge
+> > 'Prefetchable Base Upper 32 Bits' register (PCI_PREF_BASE_UPPER32). In
+> > the cases that I checked, this register has value 0 and we just have to
+> > rewrite that value.
+> >
+> > Linux already saves and restores PCI config space during suspend/resume,
+> > but this register was being skipped because upon resume, it already
+> > has value 0 (the correct, pre-suspend value).
+> >
+> > Intel appear to have previously acknowledged this behaviour and the
+> > requirement to rewrite this register.
+> > https://bugzilla.kernel.org/show_bug.cgi?id=116851#c23
+> >
+> > Based on that, rewrite the prefetch register values even when that
+> > appears unnecessary.
+> >
+> > We have confirmed this solution on all the affected models we have
+> > in-hands (X542UQ, UX533FD, X530UN, V272UN).
+> >
+> > Additionally, this solves an issue where r8169 MSI-X interrupts were
+> > broken after S3 suspend/resume on Asus X441UAR. This issue was recently
+> > worked around in commit 7bb05b85bc2d ("r8169: don't use MSI-X on
+> > RTL8106e"). It also fixes the same issue on RTL6186evl/8111evl on an
+> > Aimfor-tech laptop that we had not yet patched. I suspect it will also
+> > fix the issue that was worked around in commit 7c53a722459c ("r8169:
+> > don't use MSI-X on RTL8168g").
+> >
+> > Thomas Martitz reports that this change also solves an issue where
+> > the AMD Radeon Polaris 10 GPU on the HP Zbook 14u G5 is unresponsive
+> > after S3 suspend/resume.
+> >
+> > Link: https://bugzilla.kernel.org/show_bug.cgi?id=201069
+> > Signed-off-by: Daniel Drake <drake@endlessm.com>
+> 
+> Still
+> 
+> Reviewed-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+
+Reviewed-By: Peter Wu <peter@lekensteyn.nl>
+
+> > ---
+> >  drivers/pci/pci.c | 25 +++++++++++++++++--------
+> >  1 file changed, 17 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> > index 29ff9619b5fa..5d58220b6997 100644
+> > --- a/drivers/pci/pci.c
+> > +++ b/drivers/pci/pci.c
+> > @@ -1289,12 +1289,12 @@ int pci_save_state(struct pci_dev *dev)
+> >  EXPORT_SYMBOL(pci_save_state);
+> >
+> >  static void pci_restore_config_dword(struct pci_dev *pdev, int offset,
+> > -                                    u32 saved_val, int retry)
+> > +                                    u32 saved_val, int retry, bool force)
+> >  {
+> >         u32 val;
+> >
+> >         pci_read_config_dword(pdev, offset, &val);
+> > -       if (val == saved_val)
+> > +       if (!force && val == saved_val)
+> >                 return;
+> >
+> >         for (;;) {
+> > @@ -1313,25 +1313,34 @@ static void pci_restore_config_dword(struct pci_dev *pdev, int offset,
+> >  }
+> >
+> >  static void pci_restore_config_space_range(struct pci_dev *pdev,
+> > -                                          int start, int end, int retry)
+> > +                                          int start, int end, int retry,
+> > +                                          bool force)
+> >  {
+> >         int index;
+> >
+> >         for (index = end; index >= start; index--)
+> >                 pci_restore_config_dword(pdev, 4 * index,
+> >                                          pdev->saved_config_space[index],
+> > -                                        retry);
+> > +                                        retry, force);
+> >  }
+> >
+> >  static void pci_restore_config_space(struct pci_dev *pdev)
+> >  {
+> >         if (pdev->hdr_type == PCI_HEADER_TYPE_NORMAL) {
+> > -               pci_restore_config_space_range(pdev, 10, 15, 0);
+> > +               pci_restore_config_space_range(pdev, 10, 15, 0, false);
+> >                 /* Restore BARs before the command register. */
+> > -               pci_restore_config_space_range(pdev, 4, 9, 10);
+> > -               pci_restore_config_space_range(pdev, 0, 3, 0);
+> > +               pci_restore_config_space_range(pdev, 4, 9, 10, false);
+> > +               pci_restore_config_space_range(pdev, 0, 3, 0, false);
+> > +       } else if (pdev->hdr_type == PCI_HEADER_TYPE_BRIDGE) {
+> > +               pci_restore_config_space_range(pdev, 12, 15, 0, false);
+> > +               /* Force rewriting of prefetch registers to avoid
+> > +                * S3 resume issues on Intel PCI bridges that occur when
+> > +                * these registers are not explicitly written.
+> > +                */
+> > +               pci_restore_config_space_range(pdev, 9, 11, 0, true);
+> > +               pci_restore_config_space_range(pdev, 0, 8, 0, false);
+> >         } else {
+> > -               pci_restore_config_space_range(pdev, 0, 15, 0);
+> > +               pci_restore_config_space_range(pdev, 0, 15, 0, false);
+> >         }
+> >  }
+> >
+> > --
+> > 2.17.1
+> >
