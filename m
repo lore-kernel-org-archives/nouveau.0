@@ -1,9 +1,10 @@
-From: Matthew Ary <matthewj.c.ary-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Google's Chrome Team might Blacklist Nouveau on Chromium
-Date: Tue, 18 Sep 2018 11:22:19 -0600
-Message-ID: <CAB15_AMQ8Mxy9AuXBY8R4W=Ek3_XsJzLE68xO-+OAcwT5Am9Mw@mail.gmail.com>
+From: =?UTF-8?B?0JDQu9C10LrRgdC10Lkg0JPRg9Cx0YHQutC40Lk=?=
+ <a.gubskiy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Need help with pstate changing
+Date: Fri, 14 Sep 2018 13:24:58 +0300
+Message-ID: <CAF4qy4LhtVFM-GcNMyA_4br6Uvi6ybJAx4eZocyteXx587ibYg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0451585784=="
+Content-Type: multipart/mixed; boundary="===============1010087808=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -17,33 +18,63 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0451585784==
-Content-Type: multipart/alternative; boundary="000000000000e11c4e0576288830"
+--===============1010087808==
+Content-Type: multipart/alternative; boundary="000000000000f8100a0575d23c33"
 
---000000000000e11c4e0576288830
+--000000000000f8100a0575d23c33
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I thought you all would like to know that Google considers Nouveau to be
-unstable and is now actively considering blacklisting. Please see this
-issue on their issue tracker.
+Greetings!
+I have very old notebook with 8400M Gs.
+I'm experience some overheating on high clocks. I want to change pstate for
+AC mode.
+Currently I have
+sudo cat /sys/kernel/debug/dri/0/pstate
+20: core 169 MHz shader 338 MHz memory 100 MHz
+21: core 275 MHz shader 550 MHz memory 200 MHz
+22: core 400 MHz shader 800 MHz memory 400 MHz
+AC: core 275 MHz shader 550 MHz memory 199 MHz
 
-https://bugs.chromium.org/p/chromium/issues/detail?id=876523
+And I want to set AC to 20 instead of 21.
+Could you please give me some advise how can I do this?
+I'm running lubuntu 18.04
 
---000000000000e11c4e0576288830
+uname -a
+Linux tashpc 4.15.0-33-generic #36-Ubuntu SMP Wed Aug 15 16:00:05 UTC 2018
+x86_64 x86_64 x86_64 GNU/Linux
+Thanks!
+
+--=20
+=D0=A1 =D1=83=D0=B2=D0=B0=D0=B6=D0=B5=D0=BD=D0=B8=D0=B5=D0=BC,
+=D0=93=D1=83=D0=B1=D1=81=D0=BA=D0=B8=D0=B9 =D0=90=D0=BB=D0=B5=D0=BA=D1=81=
+=D0=B5=D0=B9.
+
+--000000000000f8100a0575d23c33
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br clear=3D"all"><div><div dir=3D"ltr" c=
-lass=3D"gmail_signature"><div dir=3D"ltr"><div>I thought you all would like=
- to know that Google considers Nouveau to be unstable and is now actively c=
-onsidering blacklisting. Please see this issue on their issue tracker.</div=
-><div><br></div><div><a href=3D"https://bugs.chromium.org/p/chromium/issues=
-/detail?id=3D876523">https://bugs.chromium.org/p/chromium/issues/detail?id=
-=3D876523</a><br></div></div></div></div></div></div>
+<div dir=3D"ltr">Greetings!<div>I have very old notebook with 8400M Gs.</di=
+v><div>I&#39;m experience some overheating on high clocks. I want to change=
+ pstate for AC mode.</div><div>Currently I have<br clear=3D"all"><div><div>=
+sudo cat /sys/kernel/debug/dri/0/pstate</div><div>20: core 169 MHz shader 3=
+38 MHz memory 100 MHz</div><div>21: core 275 MHz shader 550 MHz memory 200 =
+MHz</div><div>22: core 400 MHz shader 800 MHz memory 400 MHz</div><div>AC: =
+core 275 MHz shader 550 MHz memory 199 MHz</div></div><div><br></div><div>A=
+nd I want to set AC to 20 instead of 21.</div><div>Could you please give me=
+ some advise how can I do this?</div><div>I&#39;m running lubuntu 18.04</di=
+v><div><div><br></div><div>uname -a</div><div>Linux tashpc 4.15.0-33-generi=
+c #36-Ubuntu SMP Wed Aug 15 16:00:05 UTC 2018 x86_64 x86_64 x86_64 GNU/Linu=
+x</div></div><div>Thanks!</div></div><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"l=
+tr"><div><div dir=3D"ltr"><div>=D0=A1 =D1=83=D0=B2=D0=B0=D0=B6=D0=B5=D0=BD=
+=D0=B8=D0=B5=D0=BC,<br>=D0=93=D1=83=D0=B1=D1=81=D0=BA=D0=B8=D0=B9 =D0=90=D0=
+=BB=D0=B5=D0=BA=D1=81=D0=B5=D0=B9.</div><div></div></div></div></div></div>=
+</div>
 
---000000000000e11c4e0576288830--
+--000000000000f8100a0575d23c33--
 
---===============0451585784==
+--===============1010087808==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -53,4 +84,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0451585784==--
+--===============1010087808==--
