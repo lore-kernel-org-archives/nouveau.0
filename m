@@ -1,56 +1,74 @@
-From: Kees Cook <keescook-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/secboot/acr: fix memory leak
-Date: Thu, 13 Sep 2018 14:35:02 -0700
-Message-ID: <CAGXu5jKd5SEabmr4sCW-=Oksi6WvO11tDB_9Un1fRYQAoq2h0w@mail.gmail.com>
-References: <20180724132719.GA32237@embeddedor.com>
- <d9e87a82-f70f-3eca-5f63-2450863e7099@embeddedor.com>
- <f35a04a0-fa60-7905-96bf-36a0dfb055a8@nvidia.com>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [Nouveau] [PATCH] drm/nouveau/secboot/acr: fix memory leak
+Date: Fri, 14 Sep 2018 17:26:19 +1000
+Message-ID: <CACAvsv4V6yJyB1yNaSR7OCHZztc5e3ZoPirz5NorE_Xy222RXA@mail.gmail.com>
+References: <20180724132719.GA32237@embeddedor.com> <d9e87a82-f70f-3eca-5f63-2450863e7099@embeddedor.com>
+ <f35a04a0-fa60-7905-96bf-36a0dfb055a8@nvidia.com> <CAGXu5jKd5SEabmr4sCW-=Oksi6WvO11tDB_9Un1fRYQAoq2h0w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <f35a04a0-fa60-7905-96bf-36a0dfb055a8-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "Gustavo A. R. Silva" <gustavo-L1vi/lXTdts+Va1GwOuvDg@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CAGXu5jKd5SEabmr4sCW-=Oksi6WvO11tDB_9Un1fRYQAoq2h0w@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: keescook@chromium.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, "Gustavo A. R. Silva" <gustavo@embeddedor.com>, Dave Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBTZXAgNywgMjAxOCBhdCA4OjAyIFBNLCBKb2huIEh1YmJhcmQgPGpodWJiYXJkQG52
-aWRpYS5jb20+IHdyb3RlOgo+IE9uIDgvMi8xOCAxMjo1MSBQTSwgR3VzdGF2byBBLiBSLiBTaWx2
-YSB3cm90ZToKPj4gSGkgYWxsLAo+Pgo+PiBGcmllbmRseSBwaW5nISBXaG8gY2FuIHRha2UgdGhp
-cz8KPj4KPj4gVGhhbmtzCj4+IC0tCj4+IEd1c3Rhdm8KPj4KPj4gT24gMDcvMjQvMjAxOCAwODoy
-NyBBTSwgR3VzdGF2byBBLiBSLiBTaWx2YSB3cm90ZToKPj4+IEluIGNhc2UgbWVtb3J5IHJlc291
-cmNlcyBmb3IgKmJsX2Rlc2MqIHdlcmUgYWxsb2NhdGVkLCByZWxlYXNlCj4+PiB0aGVtIGJlZm9y
-ZSByZXR1cm4uCj4+Pgo+Pj4gQWRkcmVzc2VzLUNvdmVyaXR5LUlEOiAxNDcyMDIxICgiUmVzb3Vy
-Y2UgbGVhayIpCj4+PiBGaXhlczogMGQ0NjY5MDE1NTJhICgiZHJtL25vdXZlYXUvc2VjYm9vdC9h
-Y3I6IFJlbW92ZSBWTEEgdXNhZ2UiKQo+Pj4gU2lnbmVkLW9mZi1ieTogR3VzdGF2byBBLiBSLiBT
-aWx2YSA8Z3VzdGF2b0BlbWJlZGRlZG9yLmNvbT4KPj4+IC0tLQo+Pj4gIGRyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvYWNyX3IzNTIuYyB8IDEgKwo+Pj4gIDEgZmls
-ZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQo+Pj4KPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L2Fjcl9yMzUyLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9zZWNib290L2Fjcl9yMzUyLmMKPj4+IGluZGV4IGQw
-MmUxODMuLjVjMTRkNmEgMTAwNjQ0Cj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9zZWNib290L2Fjcl9yMzUyLmMKPj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L3NlY2Jvb3QvYWNyX3IzNTIuYwo+Pj4gQEAgLTgwMSw2ICs4MDEs
-NyBAQCBhY3JfcjM1Ml9sb2FkKHN0cnVjdCBudmttX2FjciAqX2Fjciwgc3RydWN0IG52a21fZmFs
-Y29uICpmYWxjb24sCj4+PiAgICAgICAgICAgICAgYmwgPSBhY3ItPmhzYmxfdW5sb2FkX2Jsb2I7
-Cj4+PiAgICAgIH0gZWxzZSB7Cj4+PiAgICAgICAgICAgICAgbnZrbV9lcnJvcihfYWNyLT5zdWJk
-ZXYsICJpbnZhbGlkIHNlY3VyZSBib290IGJsb2IhXG4iKTsKPj4+ICsgICAgICAgICAgICBrZnJl
-ZShibF9kZXNjKTsKPj4+ICAgICAgICAgICAgICByZXR1cm4gLUVJTlZBTDsKPj4+ICAgICAgfQo+
-Pj4KPj4+Cj4KPiBIaSBHdXN0YXZvLAo+Cj4gU2VlaW5nIGFzIGhvdyBJJ3ZlIGJlZW4gd29ya2lu
-ZyBvbiB0aGlzIGNvcm5lciBvZiBOb3V2ZWF1IGxhdGVseSAoZG9uJ3QgYXNrLCBoYWhhKSwKPiBJ
-IHJldmlld2VkIGFuZCBhbHNvIHRlc3RlZCB0aGlzLiBJdCBsb29rcyBnb29kLCB5b3UgY2FuIGFk
-ZDoKPgo+IFJldmlld2VkLWJ5OiBKb2huIEh1YmJhcmQgPGpodWJiYXJkQG52aWRpYS5jb20+CgpC
-ZW4gY2FuIHlvdSB0YWtlIHRoaXM/CgpSZXZpZXdlZC1ieTogS2VlcyBDb29rIDxrZWVzY29va0Bj
-aHJvbWl1bS5vcmc+CgotS2VlcwoKLS0gCktlZXMgQ29vawpQaXhlbCBTZWN1cml0eQpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+On Fri, 14 Sep 2018 at 07:35, Kees Cook <keescook@chromium.org> wrote:
+>
+> On Fri, Sep 7, 2018 at 8:02 PM, John Hubbard <jhubbard@nvidia.com> wrote:
+> > On 8/2/18 12:51 PM, Gustavo A. R. Silva wrote:
+> >> Hi all,
+> >>
+> >> Friendly ping! Who can take this?
+> >>
+> >> Thanks
+> >> --
+> >> Gustavo
+> >>
+> >> On 07/24/2018 08:27 AM, Gustavo A. R. Silva wrote:
+> >>> In case memory resources for *bl_desc* were allocated, release
+> >>> them before return.
+> >>>
+> >>> Addresses-Coverity-ID: 1472021 ("Resource leak")
+> >>> Fixes: 0d466901552a ("drm/nouveau/secboot/acr: Remove VLA usage")
+> >>> Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
+> >>> ---
+> >>>  drivers/gpu/drm/nouveau/nvkm/subdev/secboot/acr_r352.c | 1 +
+> >>>  1 file changed, 1 insertion(+)
+> >>>
+> >>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/acr_r352.c b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/acr_r352.c
+> >>> index d02e183..5c14d6a 100644
+> >>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/acr_r352.c
+> >>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/secboot/acr_r352.c
+> >>> @@ -801,6 +801,7 @@ acr_r352_load(struct nvkm_acr *_acr, struct nvkm_falcon *falcon,
+> >>>              bl = acr->hsbl_unload_blob;
+> >>>      } else {
+> >>>              nvkm_error(_acr->subdev, "invalid secure boot blob!\n");
+> >>> +            kfree(bl_desc);
+> >>>              return -EINVAL;
+> >>>      }
+> >>>
+> >>>
+> >
+> > Hi Gustavo,
+> >
+> > Seeing as how I've been working on this corner of Nouveau lately (don't ask, haha),
+> > I reviewed and also tested this. It looks good, you can add:
+> >
+> > Reviewed-by: John Hubbard <jhubbard@nvidia.com>
+>
+> Ben can you take this?
+>
+> Reviewed-by: Kees Cook <keescook@chromium.org>
+I've got it in my tree.  Thanks!
+
+>
+> -Kees
+>
+> --
+> Kees Cook
+> Pixel Security
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
