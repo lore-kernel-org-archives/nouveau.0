@@ -1,64 +1,49 @@
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
-Subject: Re: [PATCH 1/2] drm/nouveau: Disable atomic support on a
- per-device basis
-Date: Fri, 14 Sep 2018 18:04:19 +0300
-Message-ID: <20180914150419.GI5565@intel.com>
-References: <20180913163147.27900-1-ville.syrjala@linux.intel.com>
- <9df77326cf0ed944e52091230df129a06872696d.camel@redhat.com>
+From: zhong jiang <zhongjiang@huawei.com>
+Subject: [PATCH] drm: nouveau: use match_string() helper to simplify the code
+Date: Fri, 14 Sep 2018 22:58:16 +0800
+Message-ID: <1536937096-31093-1-git-send-email-zhongjiang@huawei.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <9df77326cf0ed944e52091230df129a06872696d.camel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie
+Cc: seanpaul@chromium.org, daniel.vetter@ffwll.ch, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBTZXAgMTMsIDIwMTggYXQgMDU6MDI6MDVQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
-ZToKPiBIbSwgb25lIG5pdHBpY2sgaGVyZS4gU2luY2UgL3N5cy9rZXJuZWwvZGVidWcvZHJpLyov
-c3RhdGUgY3JlYXRpb24gZGVwZW5kcyBvbgo+IHRoZSBkcml2ZXIgc3VwcG9ydGluZyBhdG9taWMs
-IG1heWJlIGl0IHdvdWxkIGJlIGdvb2QgdG8gbWFrZSBpdCBzbyB0aGF0IHdlIHNldAo+IERSSVZF
-Ul9BVE9NSUMgaW4gdGhlIGRyaXZlcl9zdHViIHN0cnVjdHVyZSwgdGhlbiBkaXNhYmxlIGl0IHBl
-ci1kZXZpY2UgZGVwZW5kaW5nCj4gb24gdGhlIG5vdXZlYXVfYXRvbWljIHNldHRpbmcgKyBodyBz
-dXBwb3J0LiBUaGF0IHdheSB3ZSBjYW4gYWx3YXlzIGhhdmUgdGhlCj4gc3RhdGUgZGVidWdmcyBm
-aWxlIHdoaWxlIG1haW50YWluaW5nIG5vdXZlYXUncyBjdXJyZW50IGJlaGF2aW9yIHdpdGggZXhw
-b3NpbmcKPiBhdG9taWMgaW9jdGxzLiBBc3N1bWluZyB0aGF0IHdvdWxkbid0IGhhdmUgYW55IHVu
-aW50ZW5kZWQgc2lkZS1lZmZlY3RzIG9mIGNvdXJzZQoKSSdtIG5vdCBzdXJlIHdoeSB0aGVyZSBh
-cmUgdGhyZWUgZHJpdmVyIHN0cnVjdHMgaW4gbm91dmVhdS4KTWF5YmUgc29tZW9uZSBjYW4ganVz
-dCBudWtlIHR3byBvZiB0aGVtPwoKPiAKPiBPbiBUaHUsIDIwMTgtMDktMTMgYXQgMTk6MzEgKzAz
-MDAsIFZpbGxlIFN5cmphbGEgd3JvdGU6Cj4gPiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
-LnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+ID4gCj4gPiBXZSBub3cgaGF2ZSBwZXItZGV2aWNl
-IGRyaXZlcl9mZWF0dXJlcywgc28gbGV0J3MgdXNlIHRoYXQKPiA+IHRvIGRpc2FibGUgYXRvbWlj
-IG9ubHkgZm9yIHByZS1udjUwLgo+ID4gCj4gPiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRo
-YXQuY29tPgo+ID4gQ2M6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+Cj4gPiBDYzogbm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+IENjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwu
-dmV0dGVyQGZmd2xsLmNoPgo+ID4gUmV2aWV3ZWQtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52
-ZXR0ZXJAZmZ3bGwuY2g+Cj4gPiBTdWdnZXN0ZWQtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52
-ZXR0ZXJAZmZ3bGwuY2g+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
-LnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+ID4gLS0tCj4gPiAgZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvZGlzcG52MDQvZGlzcC5jIHwgMiArLQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2Vy
-dGlvbigrKSwgMSBkZWxldGlvbigtKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvZGlzcG52MDQvZGlzcC5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L2Rpc3BudjA0L2Rpc3AuYwo+ID4gaW5kZXggNzBkY2U1NDQ5ODRlLi42NzA1MzVhNjhkM2IgMTAw
-NjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9kaXNwLmMKPiA+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0L2Rpc3AuYwo+ID4gQEAgLTU2
-LDcgKzU2LDcgQEAgbnYwNF9kaXNwbGF5X2NyZWF0ZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+
-ID4gIAlub3V2ZWF1X2Rpc3BsYXkoZGV2KS0+ZmluaSA9IG52MDRfZGlzcGxheV9maW5pOwo+ID4g
-IAo+ID4gIAkvKiBQcmUtbnY1MCBkb2Vzbid0IHN1cHBvcnQgYXRvbWljLCBzbyBkb24ndCBleHBv
-c2UgdGhlIGlvY3RscyAqLwo+ID4gLQlkZXYtPmRyaXZlci0+ZHJpdmVyX2ZlYXR1cmVzICY9IH5E
-UklWRVJfQVRPTUlDOwo+ID4gKwlkZXYtPmRyaXZlcl9mZWF0dXJlcyAmPSB+RFJJVkVSX0FUT01J
-QzsKPiA+ICAKPiA+ICAJbm91dmVhdV9od19zYXZlX3ZnYV9mb250cyhkZXYsIDEpOwo+ID4gIAoK
-LS0gClZpbGxlIFN5cmrDpGzDpApJbnRlbApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+match_string() returns the index of an array for a matching string,
+which can be used intead of open coded implementation.
+
+Signed-off-by: zhong jiang <zhongjiang@huawei.com>
+---
+ drivers/gpu/drm/nouveau/dispnv04/tvnv17.c | 14 +++++---------
+ 1 file changed, 5 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+index 6a4ca13..053d794 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+@@ -641,17 +641,13 @@ static int nv17_tv_create_resources(struct drm_encoder *encoder,
+ 	struct dcb_output *dcb = nouveau_encoder(encoder)->dcb;
+ 	int num_tv_norms = dcb->tvconf.has_component_output ? NUM_TV_NORMS :
+ 							NUM_LD_TV_NORMS;
+-	int i;
++	int index;
+ 
+ 	if (nouveau_tv_norm) {
+-		for (i = 0; i < num_tv_norms; i++) {
+-			if (!strcmp(nv17_tv_norm_names[i], nouveau_tv_norm)) {
+-				tv_enc->tv_norm = i;
+-				break;
+-			}
+-		}
+-
+-		if (i == num_tv_norms)
++		index = match_string(nv17_tv_norm_names, num_tv_norms, nouveau_tv_norm);
++		if (index >= 0)
++			tv_enc->tv_norm = index;
++		else
+ 			NV_WARN(drm, "Invalid TV norm setting \"%s\"\n",
+ 				nouveau_tv_norm);
+ 	}
+-- 
+1.7.12.4
