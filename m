@@ -1,59 +1,39 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH] drm/nouveau: Grab runtime PM ref in nv50_mstc_detect()
-Date: Fri, 14 Sep 2018 16:44:03 -0400
-Message-ID: <20180914204407.1214-1-lyude@redhat.com>
-Return-path: <stable-owner@vger.kernel.org>
-Sender: stable-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Sean Paul <seanpaul@chromium.org>, Ilia Mirkin <imirkin@alum.mit.edu>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+From: don fisher <hdf3-Wuw85uim5zDR7s880joybQ@public.gmane.org>
+Subject: missing firmware report
+Date: Sat, 15 Sep 2018 17:35:59 -0700
+Message-ID: <89fcf672-4d8a-f1a3-a55f-57e867936a3f@comcast.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-While we currently grab a runtime PM ref in nouveau's normal connector
-detection code, we apparently don't do this for MST. This means if we're
-in a scenario where the GPU is suspended and userspace attempts to do a
-connector probe on an MSTC connector, the probe will fail entirely due
-to the DP aux channel and GPU not being woken up:
-
-[  316.633489] nouveau 0000:01:00.0: i2c: aux 000a: begin idle timeout ffffffff
-[  316.635713] nouveau 0000:01:00.0: i2c: aux 000a: begin idle timeout ffffffff
-[  316.637785] nouveau 0000:01:00.0: i2c: aux 000a: begin idle timeout ffffffff
-...
-
-So, grab a runtime PM ref here.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index c94b7f42d62d..9da0bdfe1e1c 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -938,9 +938,22 @@ static enum drm_connector_status
- nv50_mstc_detect(struct drm_connector *connector, bool force)
- {
- 	struct nv50_mstc *mstc = nv50_mstc(connector);
-+	enum drm_connector_status conn_status;
-+	int ret;
-+
- 	if (!mstc->port)
- 		return connector_status_disconnected;
--	return drm_dp_mst_detect_port(connector, mstc->port->mgr, mstc->port);
-+
-+	ret = pm_runtime_get_sync(connector->dev->dev);
-+	if (ret < 0 && ret != -EACCES)
-+		return connector_status_disconnected;
-+
-+	conn_status = drm_dp_mst_detect_port(connector, mstc->port->mgr,
-+					     mstc->port);
-+
-+	pm_runtime_mark_last_busy(connector->dev->dev);
-+	pm_runtime_put_autosuspend(connector->dev->dev);
-+	return conn_status;
- }
- 
- static void
--- 
-2.17.1
+SSBqdXN0IGJ1aWx0IGEgbGludXgtNC4xOC43IGtlcm5lbCBmcm9tIGtlcm5lbC5vcmcgZm9yIG9w
+ZW5zdXNlIGxpbnV4IAo0Mi4zLiBXaGVuIEkgaXNzdWVkIHRoZSBjb21tYW5kICJzdWRvIG1ha2Ug
+bW9kdWxlc19pbnN0YWxsIGluc3RhbGwiIEkgCnJlY2VpdmVkIGEgc2VyaWVzIG9mIGVycm9yIG1l
+c3NhZ2VzOgpkcmFjdXQ6IFBvc3NpYmxlIG1pc3NpbmcgZmlybXdhcmUgIm52aWRpYS9ndjEwMC9z
+ZWMyL3NpZy5iaW4iIGZvciBrZXJuZWwgCm1vZHVsZSAibm91dmVhdS5rbyIKZHJhY3V0OiBQb3Nz
+aWJsZSBtaXNzaW5nIGZpcm13YXJlICJudmlkaWEvZ3YxMDAvc2VjMi9pbWFnZS5iaW4iIGZvciAK
+a2VybmVsIG1vZHVsZSAibm91dmVhdS5rbyIKCjIxIG9mIHRoZXNlIG1lc3NhZ2VzIGluIGFsbC4g
+V2hlcmUgZG9lcyBvbmUgZ2V0IHRoZSBudmlkaWEgZ3YxMDAgCmZpcm13YXJlPyBJIGhhdmUgZmly
+bXdhcmUgZnJvbSBvcGVuc3VzZSBpbiAvbGliL2Zpcm13YXJlLCBidXQgdGhlcmUgaXMgCm5vIGVu
+dHJ5IGZvciBndjEwMC4gTXkgY2FyZCBpcyBsaXN0ZWQgYXMgYSBOVklESUEgR1AxMDZNIFtHZUZv
+cmNlIEdUWCAKMTA2MCBNb2JpbGVdLCBhbmQgSSBkbyBub3Qga25vdyBpZiBub3QgaGF2aW5nIHRo
+ZSBndjEwMCBmaXJtd2FyZSBpcyBhIApwcm9ibGVtLgoKVGhlIGtlcm5lbCBkaWQgY3Jhc2ggdHJ5
+aW5nIHRvIGxvYWQgdGhlIFggc3lzdGVtLCBzbyBzaW5jZSBJIHJlY2VpdmVkIAp0aGVzZSB3YXJu
+aW5ncyBpdCB3YXMgbXkgZmlyc3QgcGxhY2UgdG8gbG9vay4gU2hvdWxkIHRoZSBrZXJuZWwgZm9y
+bSAKa2VybmVsLm9yZyBidWlsZCBhbmQgZXhlY3V0ZT8gTXkgc3lzdGVtIGlzIGFuIEFsaWVud2Fy
+ZSAxMyAzLgoKRG9uCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
