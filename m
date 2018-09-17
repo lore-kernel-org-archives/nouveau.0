@@ -1,127 +1,77 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107959] System hangs up when loading nouveau for
- NVIDIA MX150 card
-Date: Mon, 17 Sep 2018 08:34:43 +0000
-Message-ID: <bug-107959-8800-dzd7JNjwqG@http.bugs.freedesktop.org/>
-References: <bug-107959-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH 1/2] drm/nouveau: Disable atomic support on
+ a per-device basis
+Date: Mon, 17 Sep 2018 13:34:42 -0400
+Message-ID: <0e4daed3142fb0c1ceca5ea6af1754f319d62cc3.camel@redhat.com>
+References: <20180913163147.27900-1-ville.syrjala@linux.intel.com>
+ <9df77326cf0ed944e52091230df129a06872696d.camel@redhat.com>
+ <CAKMK7uF9RadM916KwZum6GeKpXaHbi_mhWqkq3M+08Bf_LRS+w@mail.gmail.com>
+Reply-To: lyude@redhat.com
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0355305273=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107959-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <CAKMK7uF9RadM916KwZum6GeKpXaHbi_mhWqkq3M+08Bf_LRS+w@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0355305273==
-Content-Type: multipart/alternative; boundary="15371732831.7dccb3f4.16501"
-Content-Transfer-Encoding: 7bit
-
-
---15371732831.7dccb3f4.16501
-Date: Mon, 17 Sep 2018 08:34:43 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107959
-
---- Comment #1 from jian-hong-6IF/jdPJHihWk0Htik3J/w@public.gmane.org ---
-Created attachment 141594
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141594&action=3Dedit
-dmesg when use nvidia driver
-
-I also has tried nvidia proprietary driver (390.77 and 390.87) with Linux 4=
-.18.
-But I got the error messages:
-
-[   30.160277] NVRM: failed to copy vbios to system memory.
-[   30.160439] NVRM: RmInitAdapter failed! (0x30:0xffff:663)
-[   30.160524] NVRM: rm_init_adapter failed for device bearing minor number=
- 0
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15371732831.7dccb3f4.16501
-Date: Mon, 17 Sep 2018 08:34:43 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System hangs up when loading nouveau for NVIDIA MX150 car=
-d"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107959#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System hangs up when loading nouveau for NVIDIA MX150 car=
-d"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107959">bug 10795=
-9</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jian-hong&#64;endlessm.com" title=3D"jian-hong&#64;endlessm.com">jian-hong&=
-#64;endlessm.com</a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141594=
-" name=3D"attach_141594" title=3D"dmesg when use nvidia driver">attachment =
-141594</a> <a href=3D"attachment.cgi?id=3D141594&amp;action=3Dedit" title=
-=3D"dmesg when use nvidia driver">[details]</a></span>
-dmesg when use nvidia driver
-
-I also has tried nvidia proprietary driver (390.77 and 390.87) with Linux 4=
-.18.
-But I got the error messages:
-
-[   30.160277] NVRM: failed to copy vbios to system memory.
-[   30.160439] NVRM: RmInitAdapter failed! (0x30:0xffff:663)
-[   30.160524] NVRM: rm_init_adapter failed for device bearing minor number=
- 0</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15371732831.7dccb3f4.16501--
-
---===============0355305273==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0355305273==--
+T24gRnJpLCAyMDE4LTA5LTE0IGF0IDEwOjExICswMjAwLCBEYW5pZWwgVmV0dGVyIHdyb3RlOgo+
+IE9uIFRodSwgU2VwIDEzLCAyMDE4IGF0IDExOjAyIFBNLCBMeXVkZSBQYXVsIDxseXVkZUByZWRo
+YXQuY29tPiB3cm90ZToKPiA+IEhtLCBvbmUgbml0cGljayBoZXJlLiBTaW5jZSAvc3lzL2tlcm5l
+bC9kZWJ1Zy9kcmkvKi9zdGF0ZSBjcmVhdGlvbiBkZXBlbmRzCj4gPiBvbgo+ID4gdGhlIGRyaXZl
+ciBzdXBwb3J0aW5nIGF0b21pYywgbWF5YmUgaXQgd291bGQgYmUgZ29vZCB0byBtYWtlIGl0IHNv
+IHRoYXQgd2UKPiA+IHNldAo+ID4gRFJJVkVSX0FUT01JQyBpbiB0aGUgZHJpdmVyX3N0dWIgc3Ry
+dWN0dXJlLCB0aGVuIGRpc2FibGUgaXQgcGVyLWRldmljZQo+ID4gZGVwZW5kaW5nCj4gPiBvbiB0
+aGUgbm91dmVhdV9hdG9taWMgc2V0dGluZyArIGh3IHN1cHBvcnQuIFRoYXQgd2F5IHdlIGNhbiBh
+bHdheXMgaGF2ZSB0aGUKPiA+IHN0YXRlIGRlYnVnZnMgZmlsZSB3aGlsZSBtYWludGFpbmluZyBu
+b3V2ZWF1J3MgY3VycmVudCBiZWhhdmlvciB3aXRoCj4gPiBleHBvc2luZwo+ID4gYXRvbWljIGlv
+Y3Rscy4gQXNzdW1pbmcgdGhhdCB3b3VsZG4ndCBoYXZlIGFueSB1bmludGVuZGVkIHNpZGUtZWZm
+ZWN0cyBvZgo+ID4gY291cnNlCj4gCj4gZHJpLyovc3RhdGUgb25seSB3b3JrcyB3aXRoIGF0b21p
+YyBkcml2ZXJzLiBUaGVyZSdzIG5vIGV4cGxpY2l0IHN0YXRlCj4gd2l0aCBsZWdhY3kgZHJpdmVy
+cyBhdCBhbGwsIGl0J3MgYWxsIGp1c3QgaW1wbGljaXQgaW4gaHcgYW5kIHNvbWUKPiByYW5kb20g
+ZHJpdmVyIHN0cnVjdHVyZXMuCj4gCj4gV2Ugc2hvdWxkIG1ha2Ugc3VyZSB0aG91Z2ggdGhhdCB0
+aGUgZGVidWdmcyBzdHVmZiBsb29rcyBhdAo+IGRybV9kcnZfdXNlc19hdG9taWNfbW9kc2V0dGlu
+ZygpLCBhbmQgbm90IERSSVZFUl9BVE9NSUMuIEZvcm1lciBpcwo+IGFib3V0IHRoZSBpbnRlcm5h
+bHMgKGk5MTUgaXMgaW50ZXJuYWxseSBhdG9taWMgZXZlcnl3aGVyZSksIGxhdHRlcgo+IGFib3V0
+IHRoZSB1YXBpIChzb21lIG9sZCBwbGF0Zm9ybXMgYXJlbid0IHByb3Blcmx5IHZhbGlkYXRlZCBm
+b3IgZnVsbAo+IGF0b21pYyBmZWF0dXJlcywgaGVuY2Ugd2h5IGl0J3MgZGlzYWJsZWQpLgo+IC1E
+YW5pZWwKTWFrZXMgc2Vuc2UsIGl0IHNlZW1zIGRvaW5nIHRoYXQgcmVzdWx0cyBpbiBleGFjdGx5
+IHdoYXQgSSB3YW50ZWQgd2l0aCBub3V2ZWF1IQpBcyBmb3IgdGhpcyBwYXRjaDoKClJldmlld2Vk
+LWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgoKPiAKPiA+IE9uIFRodSwgMjAxOC0w
+OS0xMyBhdCAxOTozMSArMDMwMCwgVmlsbGUgU3lyamFsYSB3cm90ZToKPiA+ID4gRnJvbTogVmls
+bGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiA+ID4gCj4gPiA+
+IFdlIG5vdyBoYXZlIHBlci1kZXZpY2UgZHJpdmVyX2ZlYXR1cmVzLCBzbyBsZXQncyB1c2UgdGhh
+dAo+ID4gPiB0byBkaXNhYmxlIGF0b21pYyBvbmx5IGZvciBwcmUtbnY1MC4KPiA+ID4gCj4gPiA+
+IENjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+Cj4gPiA+IENjOiBMeXVkZSBQYXVs
+IDxseXVkZUByZWRoYXQuY29tPgo+ID4gPiBDYzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKPiA+ID4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+Cj4gPiA+
+IFJldmlld2VkLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgo+ID4g
+PiBTdWdnZXN0ZWQtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+Cj4g
+PiA+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5p
+bnRlbC5jb20+Cj4gPiA+IC0tLQo+ID4gPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52
+MDQvZGlzcC5jIHwgMiArLQo+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAx
+IGRlbGV0aW9uKC0pCj4gPiA+IAo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvZGlzcG52MDQvZGlzcC5jCj4gPiA+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlz
+cG52MDQvZGlzcC5jCj4gPiA+IGluZGV4IDcwZGNlNTQ0OTg0ZS4uNjcwNTM1YTY4ZDNiIDEwMDY0
+NAo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9kaXNwLmMKPiA+
+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvZGlzcC5jCj4gPiA+IEBA
+IC01Niw3ICs1Niw3IEBAIG52MDRfZGlzcGxheV9jcmVhdGUoc3RydWN0IGRybV9kZXZpY2UgKmRl
+dikKPiA+ID4gICAgICAgbm91dmVhdV9kaXNwbGF5KGRldiktPmZpbmkgPSBudjA0X2Rpc3BsYXlf
+ZmluaTsKPiA+ID4gCj4gPiA+ICAgICAgIC8qIFByZS1udjUwIGRvZXNuJ3Qgc3VwcG9ydCBhdG9t
+aWMsIHNvIGRvbid0IGV4cG9zZSB0aGUgaW9jdGxzICovCj4gPiA+IC0gICAgIGRldi0+ZHJpdmVy
+LT5kcml2ZXJfZmVhdHVyZXMgJj0gfkRSSVZFUl9BVE9NSUM7Cj4gPiA+ICsgICAgIGRldi0+ZHJp
+dmVyX2ZlYXR1cmVzICY9IH5EUklWRVJfQVRPTUlDOwo+ID4gPiAKPiA+ID4gICAgICAgbm91dmVh
+dV9od19zYXZlX3ZnYV9mb250cyhkZXYsIDEpOwo+ID4gPiAKPiAKPiAKPiAKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxp
+c3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
