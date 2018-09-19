@@ -1,120 +1,59 @@
 From: Lyude Paul <lyude@redhat.com>
 Subject: Re: [PATCH 1/6] drm/dp_mst: Introduce
- drm_dp_mst_connector_atomic_check() (fwd)
-Date: Wed, 19 Sep 2018 17:59:13 -0400
-Message-ID: <c6ab617cee62c08ce5f81992e62d92dd6805cf7c.camel@redhat.com>
-References: <alpine.DEB.2.21.1809192237110.2433@hadrien>
+ drm_dp_mst_connector_atomic_check()
+Date: Wed, 19 Sep 2018 18:00:55 -0400
+Message-ID: <4a074cc77b180bc16f3356012152451bfbf3bffa.camel@redhat.com>
+References: <20180918230637.20700-2-lyude@redhat.com>
+         <CY4PR21MB0776A3CBF3A154B174C2DCD2FB1C0@CY4PR21MB0776.namprd21.prod.outlook.com>
 Reply-To: lyude@redhat.com
 Mime-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <alpine.DEB.2.21.1809192237110.2433@hadrien>
+In-Reply-To: <CY4PR21MB0776A3CBF3A154B174C2DCD2FB1C0@CY4PR21MB0776.namprd21.prod.outlook.com>
 Sender: stable-owner@vger.kernel.org
-To: Julia Lawall <julia.lawall@lip6.fr>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, stable@vger.kernel.org, Sean Paul <sean@poorly.run>, kbuild-all@01.org
+To: Sasha Levin <Alexander.Levin@microsoft.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>, Gustavo Padovan <gustavo@padovan.org>
 List-Id: nouveau.vger.kernel.org
 
-oh, good catch! will fix and respin in just a little bit
+On Wed, 2018-09-19 at 18:58 +0000, Sasha Levin wrote:
+> Hi,
+> 
+> [This is an automated email]
+> 
+> This commit has been processed because it contains a -stable tag.
+> The stable tag indicates that it's relevant for the following trees: all
+> 
+> The bot has tested the following trees: v4.18.8, v4.14.70, v4.9.127, v4.4.156,
+> v3.18.122, 
+> 
+> v4.18.8: Build OK!
+> v4.14.70: Build OK!
+> v4.9.127: Failed to apply! Possible dependencies:
+>     3f3353b7e121 ("drm/dp: Introduce MST topology state to track available
+> link bandwidth")
+>     edb1ed1ab7d3 ("drm/dp: Add DP MST helpers to atomically find and release
+> vcpi slots")
+> 
+> v4.4.156: Failed to apply! Possible dependencies:
+>     3f3353b7e121 ("drm/dp: Introduce MST topology state to track available
+> link bandwidth")
+>     edb1ed1ab7d3 ("drm/dp: Add DP MST helpers to atomically find and release
+> vcpi slots")
+> 
+> v3.18.122: Failed to apply! Possible dependencies:
+>     3f3353b7e121 ("drm/dp: Introduce MST topology state to track available
+> link bandwidth")
+>     edb1ed1ab7d3 ("drm/dp: Add DP MST helpers to atomically find and release
+> vcpi slots")
+> 
+> 
+> Please let us know how to resolve this.
+...is this the email address I'm supposed to "let you know how to resolve this"
+with? if that is the case, it's 100% OK to simply ignore all of the versions
+that don't apply with this patch.
 
-On Wed, 2018-09-19 at 22:38 +0200, Julia Lawall wrote:
-> Hello,
 > 
-> I don't think you can update the loop index variable in
-> list_for_each_entry, because the mcro uses th index variable to get to the
-> next element.  Perhaps list_for_each_entry_safe would be more suitable?
-> 
-> julia
-> 
-> ---------- Forwarded message ----------
-> Date: Thu, 20 Sep 2018 04:30:13 +0800
-> From: kbuild test robot <lkp@intel.com>
-> To: kbuild@01.org
-> Cc: Julia Lawall <julia.lawall@lip6.fr>
-> Subject: Re: [PATCH 1/6] drm/dp_mst: Introduce
->     drm_dp_mst_connector_atomic_check()
-> 
-> CC: kbuild-all@01.org
-> In-Reply-To: <20180918230637.20700-2-lyude@redhat.com>
-> References: <20180918230637.20700-2-lyude@redhat.com>
-> TO: Lyude Paul <lyude@redhat.com>
-> CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
-> intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-> CC: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, 
-> stable@vger.kernel.org, Sean Paul <sean@poorly.run>
-> 
-> Hi Lyude,
-> 
-> Thank you for the patch! Perhaps something to improve:
-> 
-> [auto build test WARNING on drm-intel/for-linux-next]
-> [also build test WARNING on v4.19-rc4 next-20180919]
-> [if your patch is applied to the wrong git tree, please drop us a note to help
-> improve the system]
-> 
-> url:    
-> https://github.com/0day-ci/linux/commits/Lyude-Paul/Fix-legacy-DPMS-changes-with-MST/20180919-203434
-> base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-> :::::: branch date: 8 hours ago
-> :::::: commit date: 8 hours ago
-> 
-> > > drivers/gpu/drm/drm_dp_mst_topology.c:3144:1-20: iterator with update on
-> > > line 3145
-> 
-> # 
-> https://github.com/0day-ci/linux/commit/f8df31d5221b9a6da6698d4a37e622253bb17cdc
-> git remote add linux-review https://github.com/0day-ci/linux
-> git remote update linux-review
-> git checkout f8df31d5221b9a6da6698d4a37e622253bb17cdc
-> vim +3144 drivers/gpu/drm/drm_dp_mst_topology.c
-> 
-> 3f3353b7 Pandiyan, Dhinakaran 2017-04-20  3131
-> f8df31d5 Lyude Paul           2018-09-18  3132  static bool
-> f8df31d5 Lyude Paul           2018-09-
-> 18  3133  drm_dp_mst_connector_still_exists(struct drm_connector *connector,
-> f8df31d5 Lyude Paul           2018-09-18  3134  				
->   struct drm_dp_mst_topology_mgr *mgr,
-> f8df31d5 Lyude Paul           2018-09-18  3135  				
->   struct drm_dp_mst_branch *mstb)
-> f8df31d5 Lyude Paul           2018-09-18  3136  {
-> f8df31d5 Lyude Paul           2018-09-18  3137  	struct drm_dp_mst_port
-> *port;
-> f8df31d5 Lyude Paul           2018-09-18  3138  	bool exists = false;
-> f8df31d5 Lyude Paul           2018-09-18  3139
-> f8df31d5 Lyude Paul           2018-09-18  3140  	mstb =
-> drm_dp_get_validated_mstb_ref(mgr, mstb);
-> f8df31d5 Lyude Paul           2018-09-18  3141  	if (!mstb)
-> f8df31d5 Lyude Paul           2018-09-18  3142  		return false;
-> f8df31d5 Lyude Paul           2018-09-18  3143
-> f8df31d5 Lyude Paul           2018-09-18 @3144  	list_for_each_entry(port
-> , &mstb->ports, next) {
-> f8df31d5 Lyude Paul           2018-09-18 @3145  		port =
-> drm_dp_get_validated_port_ref(mgr, port);
-> f8df31d5 Lyude Paul           2018-09-18  3146  		if (!port)
-> f8df31d5 Lyude Paul           2018-09-18  3147  			continue
-> ;
-> f8df31d5 Lyude Paul           2018-09-18  3148
-> f8df31d5 Lyude Paul           2018-09-18  3149  		exists = (port-
-> >connector == connector ||
-> f8df31d5 Lyude Paul           2018-09-18  3150  			  (port-
-> >mstb &&
-> f8df31d5 Lyude Paul           2018-09-18  3151  			   drm_d
-> p_mst_connector_still_exists(connector, mgr,
-> f8df31d5 Lyude Paul           2018-09-18  3152  					
-> 		     port->mstb)));
-> f8df31d5 Lyude Paul           2018-09-18  3153
-> f8df31d5 Lyude Paul           2018-09-18  3154  		drm_dp_put_port(
-> port);
-> f8df31d5 Lyude Paul           2018-09-18  3155  		if (exists)
-> f8df31d5 Lyude Paul           2018-09-18  3156  			break;
-> f8df31d5 Lyude Paul           2018-09-18  3157  	}
-> f8df31d5 Lyude Paul           2018-09-18  3158
-> f8df31d5 Lyude Paul           2018-09-18  3159  	drm_dp_put_mst_branch_de
-> vice(mstb);
-> f8df31d5 Lyude Paul           2018-09-18  3160  	return exists;
-> f8df31d5 Lyude Paul           2018-09-18  3161  }
-> f8df31d5 Lyude Paul           2018-09-18  3162
-> 
-> ---
-> 0-DAY kernel test infrastructure                Open Source Technology Center
-> https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+> --
+> Thanks,
+> Sasha
