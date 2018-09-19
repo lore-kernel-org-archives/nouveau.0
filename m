@@ -1,59 +1,49 @@
-From: Sasha Levin <Alexander.Levin-0li6OtcxBFHby3iVrkZq2A@public.gmane.org>
-Subject: Re: [PATCH 3/6] drm/i915: Leave intel_conn->mst_port set,
- use mst_port_gone instead
-Date: Wed, 19 Sep 2018 18:58:49 +0000
-Message-ID: <CY4PR21MB07766A3873241EE2E50CE7EFFB1C0@CY4PR21MB0776.namprd21.prod.outlook.com>
-References: <20180918230637.20700-4-lyude@redhat.com>
+From: Sasha Levin <Alexander.Levin@microsoft.com>
+Subject: Re: [PATCH 1/6] drm/dp_mst: Introduce
+ drm_dp_mst_connector_atomic_check()
+Date: Wed, 19 Sep 2018 18:58:47 +0000
+Message-ID: <CY4PR21MB0776A3CBF3A154B174C2DCD2FB1C0@CY4PR21MB0776.namprd21.prod.outlook.com>
+References: <20180918230637.20700-2-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20180918230637.20700-4-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20180918230637.20700-2-lyude@redhat.com>
 Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Sasha Levin <Alexander.Levin-0li6OtcxBFHby3iVrkZq2A@public.gmane.org>, Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: Jani Nikula <jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, "stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: stable-owner@vger.kernel.org
+To: Sasha Levin <Alexander.Levin@microsoft.com>, Lyude Paul <lyude@redhat.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>, Gustavo Padovan <gustavo@padovan.org>"stable@vger.kernel.org" <stable@vger.kernel.org>"stable@vger.kernel.org" <stable@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpbVGhpcyBpcyBhbiBhdXRvbWF0ZWQgZW1haWxdCgpUaGlzIGNvbW1pdCBoYXMgYmVlbiBw
-cm9jZXNzZWQgYmVjYXVzZSBpdCBjb250YWlucyBhIC1zdGFibGUgdGFnLgpUaGUgc3RhYmxlIHRh
-ZyBpbmRpY2F0ZXMgdGhhdCBpdCdzIHJlbGV2YW50IGZvciB0aGUgZm9sbG93aW5nIHRyZWVzOiBh
-bGwKClRoZSBib3QgaGFzIHRlc3RlZCB0aGUgZm9sbG93aW5nIHRyZWVzOiB2NC4xOC44LCB2NC4x
-NC43MCwgdjQuOS4xMjcsIHY0LjQuMTU2LCB2My4xOC4xMjIsIAoKdjQuMTguODogQnVpbGQgT0sh
-CnY0LjE0LjcwOiBCdWlsZCBPSyEKdjQuOS4xMjc6IEZhaWxlZCB0byBhcHBseSEgUG9zc2libGUg
-ZGVwZW5kZW5jaWVzOgogICAgMDZiZmU1YjBkODkyICgiZHJtL2k5MTU6IEF2b2lkIG51bGwgZGVy
-ZWZlcmVuY2UgaWYgbXN0X3BvcnQgaXMgdW5zZXQuIikKICAgIDIyYTJjOGUwNDU3ZiAoImRybS9p
-OTE1OiBWYWxpZGF0ZSBtb2RlIGFnYWluc3QgbWF4LiBsaW5rIGRhdGEgcmF0ZSBmb3IgRFAgTVNU
-IikKICAgIDkzMDEzOTdhNjNiMyAoImRybS9pOTE1OiBJbXBsZW1lbnQgTGluayBSYXRlIGZhbGxi
-YWNrIG9uIExpbmsgdHJhaW5pbmcgZmFpbHVyZSIpCiAgICBhZjI0MDVhZjA3ZDEgKCJkcm0vZmIt
-aGVscGVyOiBQdXNoIGRvd24gbW9kZXNldCBsb2NrIGludG8gRkIgaGVscGVycyIpCgp2NC40LjE1
-NjogRmFpbGVkIHRvIGFwcGx5ISBQb3NzaWJsZSBkZXBlbmRlbmNpZXM6CiAgICAwNTUyZjc2NTFi
-YzIgKCJkcm0vaTkxNS9tc3Q6IHVzZSByZWZlcmVuY2UgY291bnRlZCBjb25uZWN0b3JzLiAodjMp
-IikKICAgIDA2YmZlNWIwZDg5MiAoImRybS9pOTE1OiBBdm9pZCBudWxsIGRlcmVmZXJlbmNlIGlm
-IG1zdF9wb3J0IGlzIHVuc2V0LiIpCiAgICAyMmEyYzhlMDQ1N2YgKCJkcm0vaTkxNTogVmFsaWRh
-dGUgbW9kZSBhZ2FpbnN0IG1heC4gbGluayBkYXRhIHJhdGUgZm9yIERQIE1TVCIpCiAgICA5MzAx
-Mzk3YTYzYjMgKCJkcm0vaTkxNTogSW1wbGVtZW50IExpbmsgUmF0ZSBmYWxsYmFjayBvbiBMaW5r
-IHRyYWluaW5nIGZhaWx1cmUiKQogICAgYWYyNDA1YWYwN2QxICgiZHJtL2ZiLWhlbHBlcjogUHVz
-aCBkb3duIG1vZGVzZXQgbG9jayBpbnRvIEZCIGhlbHBlcnMiKQoKdjMuMTguMTIyOiBGYWlsZWQg
-dG8gYXBwbHkhIFBvc3NpYmxlIGRlcGVuZGVuY2llczoKICAgIDA1NTJmNzY1MWJjMiAoImRybS9p
-OTE1L21zdDogdXNlIHJlZmVyZW5jZSBjb3VudGVkIGNvbm5lY3RvcnMuICh2MykiKQogICAgMDZi
-ZmU1YjBkODkyICgiZHJtL2k5MTU6IEF2b2lkIG51bGwgZGVyZWZlcmVuY2UgaWYgbXN0X3BvcnQg
-aXMgdW5zZXQuIikKICAgIDIyYTJjOGUwNDU3ZiAoImRybS9pOTE1OiBWYWxpZGF0ZSBtb2RlIGFn
-YWluc3QgbWF4LiBsaW5rIGRhdGEgcmF0ZSBmb3IgRFAgTVNUIikKICAgIDQ1OTQ4NWFkMzUxMyAo
-ImRybS9pOTE1OiBGaXh1cCBkcCBtc3QgZW5jb2RlciBzZWxlY3Rpb24iKQogICAgOTMwMTM5N2E2
-M2IzICgiZHJtL2k5MTU6IEltcGxlbWVudCBMaW5rIFJhdGUgZmFsbGJhY2sgb24gTGluayB0cmFp
-bmluZyBmYWlsdXJlIikKICAgIGFmMjQwNWFmMDdkMSAoImRybS9mYi1oZWxwZXI6IFB1c2ggZG93
-biBtb2Rlc2V0IGxvY2sgaW50byBGQiBoZWxwZXJzIikKICAgIGM2YTBhZWQ0ZDQ5MyAoImRybS9t
-c3Q6IGNhY2hlZCBFRElEIGZvciBsb2dpY2FsIHBvcnRzICh2MikiKQoKClBsZWFzZSBsZXQgdXMg
-a25vdyBob3cgdG8gcmVzb2x2ZSB0aGlzLgoKLS0KVGhhbmtzLApTYXNoYQpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+Hi,
+
+[This is an automated email]
+
+This commit has been processed because it contains a -stable tag.
+The stable tag indicates that it's relevant for the following trees: all
+
+The bot has tested the following trees: v4.18.8, v4.14.70, v4.9.127, v4.4.1=
+56, v3.18.122,=20
+
+v4.18.8: Build OK!
+v4.14.70: Build OK!
+v4.9.127: Failed to apply! Possible dependencies:
+    3f3353b7e121 ("drm/dp: Introduce MST topology state to track available =
+link bandwidth")
+    edb1ed1ab7d3 ("drm/dp: Add DP MST helpers to atomically find and releas=
+e vcpi slots")
+
+v4.4.156: Failed to apply! Possible dependencies:
+    3f3353b7e121 ("drm/dp: Introduce MST topology state to track available =
+link bandwidth")
+    edb1ed1ab7d3 ("drm/dp: Add DP MST helpers to atomically find and releas=
+e vcpi slots")
+
+v3.18.122: Failed to apply! Possible dependencies:
+    3f3353b7e121 ("drm/dp: Introduce MST topology state to track available =
+link bandwidth")
+    edb1ed1ab7d3 ("drm/dp: Add DP MST helpers to atomically find and releas=
+e vcpi slots")
+
+
+Please let us know how to resolve this.
