@@ -1,53 +1,43 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 6/6] drm/amdgpu/dm/mst: Use drm_dp_mst_connector_atomic_check()
-Date: Tue, 18 Sep 2018 19:06:22 -0400
-Message-ID: <20180918230637.20700-7-lyude@redhat.com>
-References: <20180918230637.20700-1-lyude@redhat.com>
+From: zhong jiang <zhongjiang@huawei.com>
+Subject: [PATCH] drm: nouveau: remove a redundant local variable 'pclks'
+Date: Wed, 19 Sep 2018 22:36:04 +0800
+Message-ID: <1537367764-59819-1-git-send-email-zhongjiang@huawei.com>
+Mime-Version: 1.0
+Content-Type: text/plain
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180918230637.20700-1-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, David Airlie <airlied@linux.ie>, "Jerry (Fangzhi) Zuo" <Jerry.Zuo@amd.com>, Roman Li <Roman.Li@amd.com>, Tony Cheng <Tony.Cheng@amd.com>, Andrey Grodzovsky <Andrey.Grodzovsky@amd.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, linux-kernel@vger.kernel.org
+To: airlied@linux.ie
+Cc: bskeggs@redhat.com, okaya@codeaurora.org, helgaas@kernel.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Hook this into amdgpu's atomic check for their connectors so they never
-get modesets on no-longer-present MST connectors. We'll also expand on
-this later once we add DP MST fallback retraining support.
+The local variable 'pclks' is never used after being assigned.
+hence it should be redundant and can be removed.
 
-As well, turns out that the only atomic DRM driver without the
-->best_encoder() bug is amdgpu. Congrats AMD!
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
+Signed-off-by: zhong jiang <zhongjiang@huawei.com>
 ---
- .../drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c  | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/nouveau/dispnv04/arb.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index 9a300732ba37..d011a39f17b2 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -294,10 +294,22 @@ static struct drm_encoder *dm_mst_best_encoder(struct drm_connector *connector)
- 	return &amdgpu_dm_connector->mst_encoder->base;
- }
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/arb.c b/drivers/gpu/drm/nouveau/dispnv04/arb.c
+index c79160c..cae8f71 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/arb.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/arb.c
+@@ -56,7 +56,7 @@ struct nv_sim_state {
+ nv04_calc_arb(struct nv_fifo_info *fifo, struct nv_sim_state *arb)
+ {
+ 	int pagemiss, cas, width, bpp;
+-	int nvclks, mclks, pclks, crtpagemiss;
++	int nvclks, mclks, crtpagemiss;
+ 	int found, mclk_extra, mclk_loop, cbs, m1, p1;
+ 	int mclk_freq, pclk_freq, nvclk_freq;
+ 	int us_m, us_n, us_p, crtc_drain_rate;
+@@ -71,7 +71,6 @@ struct nv_sim_state {
+ 	bpp = arb->bpp;
+ 	cbs = 128;
  
-+static int
-+amdgpu_dm_mst_connector_atomic_check(struct drm_connector *connector,
-+				     struct drm_connector_state *new_cstate)
-+{
-+	struct amdgpu_dm_connector *aconnector =
-+		to_amdgpu_dm_connector(connector);
-+
-+	return drm_dp_mst_connector_atomic_check(connector, new_cstate,
-+						 &aconnector->mst_mgr);
-+}
-+
- static const struct drm_connector_helper_funcs dm_dp_mst_connector_helper_funcs = {
- 	.get_modes = dm_dp_mst_get_modes,
- 	.mode_valid = amdgpu_dm_connector_mode_valid,
- 	.best_encoder = dm_mst_best_encoder,
-+	.atomic_check = amdgpu_dm_mst_connector_atomic_check,
- };
- 
- static void amdgpu_dm_encoder_destroy(struct drm_encoder *encoder)
+-	pclks = 2;
+ 	nvclks = 10;
+ 	mclks = 13 + cas;
+ 	mclk_extra = 3;
 -- 
-2.17.1
+1.7.12.4
