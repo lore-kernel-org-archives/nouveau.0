@@ -1,69 +1,36 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH 3/6] drm/i915: Leave intel_conn->mst_port set, use
- mst_port_gone instead
-Date: Wed, 19 Sep 2018 18:01:03 -0400
-Message-ID: <9770be8055c2aff2be697aaf014bb0364507eb55.camel@redhat.com>
-References: <20180918230637.20700-4-lyude@redhat.com>
-         <CY4PR21MB07766A3873241EE2E50CE7EFFB1C0@CY4PR21MB0776.namprd21.prod.outlook.com>
-Reply-To: lyude@redhat.com
-Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <CY4PR21MB07766A3873241EE2E50CE7EFFB1C0@CY4PR21MB0776.namprd21.prod.outlook.com>
-Sender: stable-owner@vger.kernel.org
-To: Sasha Levin <Alexander.Levin@microsoft.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
-Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PATCH v2 0/6] Fix legacy DPMS changes with MST
+Date: Wed, 19 Sep 2018 19:08:57 -0400
+Message-ID: <20180919230913.16894-1-lyude@redhat.com>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, linux-kernel@vger.kernel.org, Sean Paul <sean@poorly.run>, Gustavo Padovan <gustavo@padovan.org>, Thierry Reding <treding@nvidia.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Ben Skeggs <bskeggs@redhat.com>, Ilia Mirkin <imirkin@alum.mit.edu>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Lyude Paul <lyude@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Andrey Grodzovsky <andrey.grodzovsky@amd.com>, Alex Deucher <alexander.deucher@amd.com>, Leo Li <sunpeng.li@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 2018-09-19 at 18:58 +0000, Sasha Levin wrote:
-> Hi,
-> 
-> [This is an automated email]
-> 
-> This commit has been processed because it contains a -stable tag.
-> The stable tag indicates that it's relevant for the following trees: all
-> 
-> The bot has tested the following trees: v4.18.8, v4.14.70, v4.9.127, v4.4.156,
-> v3.18.122, 
-> 
-> v4.18.8: Build OK!
-> v4.14.70: Build OK!
-> v4.9.127: Failed to apply! Possible dependencies:
->     06bfe5b0d892 ("drm/i915: Avoid null dereference if mst_port is unset.")
->     22a2c8e0457f ("drm/i915: Validate mode against max. link data rate for DP
-> MST")
->     9301397a63b3 ("drm/i915: Implement Link Rate fallback on Link training
-> failure")
->     af2405af07d1 ("drm/fb-helper: Push down modeset lock into FB helpers")
-> 
-> v4.4.156: Failed to apply! Possible dependencies:
->     0552f7651bc2 ("drm/i915/mst: use reference counted connectors. (v3)")
->     06bfe5b0d892 ("drm/i915: Avoid null dereference if mst_port is unset.")
->     22a2c8e0457f ("drm/i915: Validate mode against max. link data rate for DP
-> MST")
->     9301397a63b3 ("drm/i915: Implement Link Rate fallback on Link training
-> failure")
->     af2405af07d1 ("drm/fb-helper: Push down modeset lock into FB helpers")
-> 
-> v3.18.122: Failed to apply! Possible dependencies:
->     0552f7651bc2 ("drm/i915/mst: use reference counted connectors. (v3)")
->     06bfe5b0d892 ("drm/i915: Avoid null dereference if mst_port is unset.")
->     22a2c8e0457f ("drm/i915: Validate mode against max. link data rate for DP
-> MST")
->     459485ad3513 ("drm/i915: Fixup dp mst encoder selection")
->     9301397a63b3 ("drm/i915: Implement Link Rate fallback on Link training
-> failure")
->     af2405af07d1 ("drm/fb-helper: Push down modeset lock into FB helpers")
->     c6a0aed4d493 ("drm/mst: cached EDID for logical ports (v2)")
-> 
-> 
-> Please let us know how to resolve this.
+There's two major things this patchset does:
+ - Add drm_dp_mst_connector_atomic_check() so drivers don't need to use
+   ->best_encoder() to prevent modesets on zombie MST connectors. We'll
+   use this later for implementing MST fallback retraining as well.
+ - Fix DPMS on->off changes failing with legacy modesetting users after
+   an MST connector's topology has disappeared, which resulted in CRTCs
+   being left on when they shouldn't have been
 
-...is this the email address I'm supposed to "let you know how to resolve this"
-with? if that is the case, it's 100% OK to simply ignore all of the versions
-that don't apply with this patch.
-> 
-> --
-> Thanks,
-> Sasha
+Lyude Paul (6):
+  drm/dp_mst: Introduce drm_dp_mst_connector_atomic_check()
+  drm/nouveau: Unbreak nv50_mstc->best_encoder()
+  drm/i915: Leave intel_conn->mst_port set, use mst_port_gone instead
+  drm/i915: Skip vcpi allocation for MSTB ports that are gone
+  drm/i915: Fix intel_dp_mst_best_encoder()
+  drm/amdgpu/dm/mst: Use drm_dp_mst_connector_atomic_check()
+
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   | 12 +++
+ drivers/gpu/drm/drm_dp_mst_topology.c         | 76 +++++++++++++++++++
+ drivers/gpu/drm/i915/intel_dp_mst.c           | 46 ++++++-----
+ drivers/gpu/drm/i915/intel_drv.h              |  1 +
+ drivers/gpu/drm/nouveau/dispnv50/disp.c       | 25 +++---
+ include/drm/drm_dp_mst_helper.h               |  3 +
+ 6 files changed, 132 insertions(+), 31 deletions(-)
+
+-- 
+2.17.1
