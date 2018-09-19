@@ -1,63 +1,48 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 2/2] drm/nouveau: Add size to vbios.rom file in debugfs
-Date: Wed, 19 Sep 2018 13:13:52 -0400
-Message-ID: <20180919171353.29648-3-lyude@redhat.com>
-References: <20180919171353.29648-1-lyude@redhat.com>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180919171353.29648-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH] drm: nouveau: remove a redundant local
+ variable 'pclks'
+Date: Wed, 19 Sep 2018 13:26:28 -0400
+Message-ID: <df06258cf4c30070bb5fdbe0abacbce71024e3d3.camel@redhat.com>
+References: <1537367764-59819-1-git-send-email-zhongjiang@huawei.com>
+Reply-To: lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1537367764-59819-1-git-send-email-zhongjiang-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: zhong jiang <zhongjiang-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>, airlied-cv59FeDIM0c@public.gmane.org
+Cc: okaya-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-With this, nvbios /sys/kernel/debug/dri/*/vbios.rom now works!
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/nouveau_debugfs.c | 23 +++++++++++++++++++----
- 1 file changed, 19 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-index 7379c20584a2..88a52f6b39fe 100644
---- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-@@ -220,8 +220,9 @@ static const struct nouveau_debugfs_files {
- int
- nouveau_drm_debugfs_init(struct drm_minor *minor)
- {
-+	struct nouveau_drm *drm = nouveau_drm(minor->dev);
- 	struct dentry *dentry;
--	int i;
-+	int i, ret;
- 
- 	for (i = 0; i < ARRAY_SIZE(nouveau_debugfs_files); i++) {
- 		dentry = debugfs_create_file(nouveau_debugfs_files[i].name,
-@@ -232,9 +233,23 @@ nouveau_drm_debugfs_init(struct drm_minor *minor)
- 			return -ENOMEM;
- 	}
- 
--	return drm_debugfs_create_files(nouveau_debugfs_list,
--					NOUVEAU_DEBUGFS_ENTRIES,
--					minor->debugfs_root, minor);
-+	ret = drm_debugfs_create_files(nouveau_debugfs_list,
-+				       NOUVEAU_DEBUGFS_ENTRIES,
-+				       minor->debugfs_root, minor);
-+	if (ret)
-+		return ret;
-+
-+	/* Set the size of the vbios since we know it, and it's confusing to
-+	 * userspace if it wants to seek() but the file has a length of 0
-+	 */
-+	dentry = debugfs_lookup("vbios.rom", minor->debugfs_root);
-+	if (!dentry)
-+		return 0;
-+
-+	d_inode(dentry)->i_size = drm->vbios.length;
-+	dput(dentry);
-+
-+	return 0;
- }
- 
- int
--- 
-2.17.1
+bGd0bQoKUmV2aWV3ZWQtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CgpPbiBXZWQs
+IDIwMTgtMDktMTkgYXQgMjI6MzYgKzA4MDAsIHpob25nIGppYW5nIHdyb3RlOgo+IFRoZSBsb2Nh
+bCB2YXJpYWJsZSAncGNsa3MnIGlzIG5ldmVyIHVzZWQgYWZ0ZXIgYmVpbmcgYXNzaWduZWQuCj4g
+aGVuY2UgaXQgc2hvdWxkIGJlIHJlZHVuZGFudCBhbmQgY2FuIGJlIHJlbW92ZWQuCj4gCj4gU2ln
+bmVkLW9mZi1ieTogemhvbmcgamlhbmcgPHpob25namlhbmdAaHVhd2VpLmNvbT4KPiAtLS0KPiAg
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvYXJiLmMgfCAzICstLQo+ICAxIGZpbGUg
+Y2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDIgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0L2FyYi5jCj4gYi9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9kaXNwbnYwNC9hcmIuYwo+IGluZGV4IGM3OTE2MGMuLmNhZThmNzEgMTAwNjQ0
+Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvYXJiLmMKPiArKysgYi9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9hcmIuYwo+IEBAIC01Niw3ICs1Niw3IEBA
+IHN0cnVjdCBudl9zaW1fc3RhdGUgewo+ICBudjA0X2NhbGNfYXJiKHN0cnVjdCBudl9maWZvX2lu
+Zm8gKmZpZm8sIHN0cnVjdCBudl9zaW1fc3RhdGUgKmFyYikKPiAgewo+ICAJaW50IHBhZ2VtaXNz
+LCBjYXMsIHdpZHRoLCBicHA7Cj4gLQlpbnQgbnZjbGtzLCBtY2xrcywgcGNsa3MsIGNydHBhZ2Vt
+aXNzOwo+ICsJaW50IG52Y2xrcywgbWNsa3MsIGNydHBhZ2VtaXNzOwo+ICAJaW50IGZvdW5kLCBt
+Y2xrX2V4dHJhLCBtY2xrX2xvb3AsIGNicywgbTEsIHAxOwo+ICAJaW50IG1jbGtfZnJlcSwgcGNs
+a19mcmVxLCBudmNsa19mcmVxOwo+ICAJaW50IHVzX20sIHVzX24sIHVzX3AsIGNydGNfZHJhaW5f
+cmF0ZTsKPiBAQCAtNzEsNyArNzEsNiBAQCBzdHJ1Y3QgbnZfc2ltX3N0YXRlIHsKPiAgCWJwcCA9
+IGFyYi0+YnBwOwo+ICAJY2JzID0gMTI4Owo+ICAKPiAtCXBjbGtzID0gMjsKPiAgCW52Y2xrcyA9
+IDEwOwo+ICAJbWNsa3MgPSAxMyArIGNhczsKPiAgCW1jbGtfZXh0cmEgPSAzOwoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
