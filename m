@@ -1,126 +1,111 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Leave intel_conn->mst_port
- set, use mst_port_gone instead
-Date: Fri, 21 Sep 2018 11:27:46 +0200
-Message-ID: <20180921092746.GC11082@phenom.ffwll.local>
-References: <20180918230637.20700-1-lyude@redhat.com>
- <20180918230637.20700-4-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+ rescan
+Date: Fri, 21 Sep 2018 11:16:23 +0000
+Message-ID: <bug-75985-8800-rNpoGAUuQZ@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <stable-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20180918230637.20700-4-lyude@redhat.com>
-Sender: stable-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, stable@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Content-Type: multipart/mixed; boundary="===============1791761018=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Sep 18, 2018 at 07:06:19PM -0400, Lyude Paul wrote:
-> Currently we set intel_connector->mst_port to NULL to signify that the
-> MST port has been removed from the system so that we can prevent further
-> action on the port such as connector probes, mode probing, etc.
-> However, we're going to need access to intel_connector->mst_port in
-> order to fixup ->best_encoder() so that it can always return the correct
-> encoder for an MST port to prevent legacy DPMS prop changes from
-> failing. This should be safe, so instead keep intel_connector->mst_port
-> always set and instead add intel_connector->mst_port_gone in order to
-> signify whether or not the connector has disappeared from the system.
-> 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Cc: stable@vger.kernel.org
 
-Hm, how exactly do legacy DPMS setprop blow up here? Or at least I can't
-come up with a scenario that's specific to legacy props, atomic should be
-equally affected. By the time we land in this code, the core code already
-remapping it to be purely an atomic update.
+--===============1791761018==
+Content-Type: multipart/alternative; boundary="15375285835.B9850.1733"
+Content-Transfer-Encoding: 7bit
 
-Another thought: Should we handle at least some of this in the probe
-helpers? I.e. once you unplugged a drm_connector, it always shows
-disconnected and mode list is gone, instead of duplicating this over all
-drivers. We could just check connector->registered.
 
-Thanks, Daniel
-> ---
->  drivers/gpu/drm/i915/intel_dp_mst.c | 14 +++++++-------
->  drivers/gpu/drm/i915/intel_drv.h    |  1 +
->  2 files changed, 8 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c b/drivers/gpu/drm/i915/intel_dp_mst.c
-> index 4ecd65375603..fcb9b87b9339 100644
-> --- a/drivers/gpu/drm/i915/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/intel_dp_mst.c
-> @@ -311,9 +311,8 @@ static int intel_dp_mst_get_ddc_modes(struct drm_connector *connector)
->  	struct edid *edid;
->  	int ret;
->  
-> -	if (!intel_dp) {
-> +	if (intel_connector->mst_port_gone)
->  		return intel_connector_update_modes(connector, NULL);
-> -	}
->  
->  	edid = drm_dp_mst_get_edid(connector, &intel_dp->mst_mgr, intel_connector->port);
->  	ret = intel_connector_update_modes(connector, edid);
-> @@ -328,9 +327,10 @@ intel_dp_mst_detect(struct drm_connector *connector, bool force)
->  	struct intel_connector *intel_connector = to_intel_connector(connector);
->  	struct intel_dp *intel_dp = intel_connector->mst_port;
->  
-> -	if (!intel_dp)
-> +	if (intel_connector->mst_port_gone)
->  		return connector_status_disconnected;
-> -	return drm_dp_mst_detect_port(connector, &intel_dp->mst_mgr, intel_connector->port);
-> +	return drm_dp_mst_detect_port(connector, &intel_dp->mst_mgr,
-> +				      intel_connector->port);
->  }
->  
->  static void
-> @@ -370,7 +370,7 @@ intel_dp_mst_mode_valid(struct drm_connector *connector,
->  	int bpp = 24; /* MST uses fixed bpp */
->  	int max_rate, mode_rate, max_lanes, max_link_clock;
->  
-> -	if (!intel_dp)
-> +	if (intel_connector->mst_port_gone)
->  		return MODE_ERROR;
->  
->  	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
-> @@ -402,7 +402,7 @@ static struct drm_encoder *intel_mst_atomic_best_encoder(struct drm_connector *c
->  	struct intel_dp *intel_dp = intel_connector->mst_port;
->  	struct intel_crtc *crtc = to_intel_crtc(state->crtc);
->  
-> -	if (!intel_dp)
-> +	if (intel_connector->mst_port_gone)
->  		return NULL;
->  	return &intel_dp->mst_encoders[crtc->pipe]->base.base;
->  }
-> @@ -514,7 +514,7 @@ static void intel_dp_destroy_mst_connector(struct drm_dp_mst_topology_mgr *mgr,
->  						   connector);
->  	/* prevent race with the check in ->detect */
->  	drm_modeset_lock(&connector->dev->mode_config.connection_mutex, NULL);
-> -	intel_connector->mst_port = NULL;
-> +	intel_connector->mst_port_gone = true;
->  	drm_modeset_unlock(&connector->dev->mode_config.connection_mutex);
->  
->  	drm_connector_put(connector);
-> diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915/intel_drv.h
-> index 8fc61e96754f..87ce772ae7f8 100644
-> --- a/drivers/gpu/drm/i915/intel_drv.h
-> +++ b/drivers/gpu/drm/i915/intel_drv.h
-> @@ -409,6 +409,7 @@ struct intel_connector {
->  	void *port; /* store this opaque as its illegal to dereference it */
->  
->  	struct intel_dp *mst_port;
-> +	bool mst_port_gone;
->  
->  	/* Work struct to schedule a uevent on link train failure */
->  	struct work_struct modeset_retry_work;
-> -- 
-> 2.17.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+--15375285835.B9850.1733
+Date: Fri, 21 Sep 2018 11:16:23 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+
+--- Comment #73 from fheday-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Hi all, I can confirm that the module posted by Maik Freudenberg [Comment 2=
+7]
+works nicely: I can turn the HDMI audio on/off on the fly with no problems =
+at
+all!=20
+Thank you very much!
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15375285835.B9850.1733
+Date: Fri, 21 Sep 2018 11:16:23 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c73">Commen=
+t # 73</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+fheday&#64;gmail.com" title=3D"fheday&#64;gmail.com">fheday&#64;gmail.com</=
+a>
+</span></b>
+        <pre>Hi all, I can confirm that the module posted by Maik Freudenbe=
+rg [<a href=3D"show_bug.cgi?id=3D75985#c27">Comment 27</a>]
+works nicely: I can turn the HDMI audio on/off on the fly with no problems =
+at
+all!=20
+Thank you very much!</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15375285835.B9850.1733--
+
+--===============1791761018==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1791761018==--
