@@ -1,39 +1,67 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [Nouveau] [PATCH 0/2] drm/nouveau: Allow parsing vbios.rom with
- nvbios from debugfs
-Date: Fri, 21 Sep 2018 21:05:22 +0200
-Message-ID: <CACO55tsma8=OKB-wLAqE_fD+Ao05PWPsiJEsb3jzT+XU1RRjzQ@mail.gmail.com>
-References: <20180919171353.29648-1-lyude@redhat.com>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Grab runtime PM ref in
+ nv50_mstc_detect()
+Date: Fri, 21 Sep 2018 21:12:41 +0200
+Message-ID: <CACO55tsK+hUds6HWTFXhuzAoozafs3E=LPfsjo=HskozvTpq8Q@mail.gmail.com>
+References: <20180914204407.1214-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180919171353.29648-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: nouveau <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20180914204407.1214-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Both patches are Reviewed-by: Karol Herbst <kherbst@redhat.com>
-
-On Wed, Sep 19, 2018 at 7:13 PM, Lyude Paul <lyude@redhat.com> wrote:
-> This is a small patch series that adds a strap_peek file into our
-> debugfs, and sets the size of the vbios.rom debugfs file so that nvbios
-> can easily be used to parse the vbios even on systems where the normal
-> BIOS retrieval methods (for example, laptops that need ACPI to access
-> the vbios for the nvidia GPU) won't work. This should make it a little
-> easier to collect vbioses.
->
-> Lyude Paul (2):
->   drm/nouveau: Add strap_peek to debugfs
->   drm/nouveau: Add size to vbios.rom file in debugfs
->
->  drivers/gpu/drm/nouveau/nouveau_debugfs.c | 46 ++++++++++++++++++++---
->  1 file changed, 41 insertions(+), 5 deletions(-)
->
-> --
-> 2.17.1
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+UmV2aWV3ZWQtYnk6IEthcm9sIEhlcmJzdCA8a2hlcmJzdEByZWRoYXQuY29tPgoKT24gRnJpLCBT
+ZXAgMTQsIDIwMTggYXQgMTA6NDQgUE0sIEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+IHdy
+b3RlOgo+IFdoaWxlIHdlIGN1cnJlbnRseSBncmFiIGEgcnVudGltZSBQTSByZWYgaW4gbm91dmVh
+dSdzIG5vcm1hbCBjb25uZWN0b3IKPiBkZXRlY3Rpb24gY29kZSwgd2UgYXBwYXJlbnRseSBkb24n
+dCBkbyB0aGlzIGZvciBNU1QuIFRoaXMgbWVhbnMgaWYgd2UncmUKPiBpbiBhIHNjZW5hcmlvIHdo
+ZXJlIHRoZSBHUFUgaXMgc3VzcGVuZGVkIGFuZCB1c2Vyc3BhY2UgYXR0ZW1wdHMgdG8gZG8gYQo+
+IGNvbm5lY3RvciBwcm9iZSBvbiBhbiBNU1RDIGNvbm5lY3RvciwgdGhlIHByb2JlIHdpbGwgZmFp
+bCBlbnRpcmVseSBkdWUKPiB0byB0aGUgRFAgYXV4IGNoYW5uZWwgYW5kIEdQVSBub3QgYmVpbmcg
+d29rZW4gdXA6Cj4KPiBbICAzMTYuNjMzNDg5XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogaTJjOiBh
+dXggMDAwYTogYmVnaW4gaWRsZSB0aW1lb3V0IGZmZmZmZmZmCj4gWyAgMzE2LjYzNTcxM10gbm91
+dmVhdSAwMDAwOjAxOjAwLjA6IGkyYzogYXV4IDAwMGE6IGJlZ2luIGlkbGUgdGltZW91dCBmZmZm
+ZmZmZgo+IFsgIDMxNi42Mzc3ODVdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBpMmM6IGF1eCAwMDBh
+OiBiZWdpbiBpZGxlIHRpbWVvdXQgZmZmZmZmZmYKPiAuLi4KPgo+IFNvLCBncmFiIGEgcnVudGlt
+ZSBQTSByZWYgaGVyZS4KPgo+IFNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhh
+dC5jb20+Cj4gQ2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcKPiAtLS0KPiAgZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jIHwgMTUgKysrKysrKysrKysrKystCj4gIDEgZmls
+ZSBjaGFuZ2VkLCAxNCBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4KPiBkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jIGIvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCj4gaW5kZXggYzk0YjdmNDJkNjJkLi45ZGEwYmRm
+ZTFlMWMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlz
+cC5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCj4gQEAg
+LTkzOCw5ICs5MzgsMjIgQEAgc3RhdGljIGVudW0gZHJtX2Nvbm5lY3Rvcl9zdGF0dXMKPiAgbnY1
+MF9tc3RjX2RldGVjdChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLCBib29sIGZvcmNl
+KQo+ICB7Cj4gICAgICAgICBzdHJ1Y3QgbnY1MF9tc3RjICptc3RjID0gbnY1MF9tc3RjKGNvbm5l
+Y3Rvcik7Cj4gKyAgICAgICBlbnVtIGRybV9jb25uZWN0b3Jfc3RhdHVzIGNvbm5fc3RhdHVzOwo+
+ICsgICAgICAgaW50IHJldDsKPiArCj4gICAgICAgICBpZiAoIW1zdGMtPnBvcnQpCj4gICAgICAg
+ICAgICAgICAgIHJldHVybiBjb25uZWN0b3Jfc3RhdHVzX2Rpc2Nvbm5lY3RlZDsKPiAtICAgICAg
+IHJldHVybiBkcm1fZHBfbXN0X2RldGVjdF9wb3J0KGNvbm5lY3RvciwgbXN0Yy0+cG9ydC0+bWdy
+LCBtc3RjLT5wb3J0KTsKPiArCj4gKyAgICAgICByZXQgPSBwbV9ydW50aW1lX2dldF9zeW5jKGNv
+bm5lY3Rvci0+ZGV2LT5kZXYpOwo+ICsgICAgICAgaWYgKHJldCA8IDAgJiYgcmV0ICE9IC1FQUND
+RVMpCj4gKyAgICAgICAgICAgICAgIHJldHVybiBjb25uZWN0b3Jfc3RhdHVzX2Rpc2Nvbm5lY3Rl
+ZDsKPiArCj4gKyAgICAgICBjb25uX3N0YXR1cyA9IGRybV9kcF9tc3RfZGV0ZWN0X3BvcnQoY29u
+bmVjdG9yLCBtc3RjLT5wb3J0LT5tZ3IsCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgbXN0Yy0+cG9ydCk7Cj4gKwo+ICsgICAgICAgcG1fcnVudGltZV9tYXJr
+X2xhc3RfYnVzeShjb25uZWN0b3ItPmRldi0+ZGV2KTsKPiArICAgICAgIHBtX3J1bnRpbWVfcHV0
+X2F1dG9zdXNwZW5kKGNvbm5lY3Rvci0+ZGV2LT5kZXYpOwo+ICsgICAgICAgcmV0dXJuIGNvbm5f
+c3RhdHVzOwo+ICB9Cj4KPiAgc3RhdGljIHZvaWQKPiAtLQo+IDIuMTcuMQo+Cj4gX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcg
+bGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
