@@ -1,147 +1,144 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915: Leave intel_conn->mst_port
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH 3/6] drm/i915: Leave intel_conn->mst_port
  set, use mst_port_gone instead
-Date: Fri, 21 Sep 2018 16:17:16 -0400
-Message-ID: <472fd6a7a46d44c079ce45b67ed23dee35dd96cf.camel@redhat.com>
+Date: Sat, 22 Sep 2018 10:51:01 +0200
+Message-ID: <20180922085101.GK11082@phenom.ffwll.local>
 References: <20180918230637.20700-1-lyude@redhat.com>
-         <20180918230637.20700-4-lyude@redhat.com>
-         <20180921092746.GC11082@phenom.ffwll.local>
+ <20180918230637.20700-4-lyude@redhat.com>
+ <20180921092746.GC11082@phenom.ffwll.local>
+ <472fd6a7a46d44c079ce45b67ed23dee35dd96cf.camel@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20180921092746.GC11082@phenom.ffwll.local>
-Sender: stable-owner@vger.kernel.org
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, stable@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <472fd6a7a46d44c079ce45b67ed23dee35dd96cf.camel@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Lyude Paul <lyude@redhat.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>, stable@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 2018-09-21 at 11:27 +0200, Daniel Vetter wrote:
-> On Tue, Sep 18, 2018 at 07:06:19PM -0400, Lyude Paul wrote:
-> > Currently we set intel_connector->mst_port to NULL to signify that the
-> > MST port has been removed from the system so that we can prevent further
-> > action on the port such as connector probes, mode probing, etc.
-> > However, we're going to need access to intel_connector->mst_port in
-> > order to fixup ->best_encoder() so that it can always return the correct
-> > encoder for an MST port to prevent legacy DPMS prop changes from
-> > failing. This should be safe, so instead keep intel_connector->mst_port
-> > always set and instead add intel_connector->mst_port_gone in order to
-> > signify whether or not the connector has disappeared from the system.
-> > 
-> > Signed-off-by: Lyude Paul <lyude@redhat.com>
-> > Cc: stable@vger.kernel.org
-> 
-> Hm, how exactly do legacy DPMS setprop blow up here? Or at least I can't
-> come up with a scenario that's specific to legacy props, atomic should be
-> equally affected. By the time we land in this code, the core code already
-> remapping it to be purely an atomic update.
-So, what I've been seeing with X that's been blowing this up:
- * Hotplug event gets received, X does reprobe
- * Notices MST connectors are now disconnected, sets DPMS from on->off
- * During atomic_check, drm_atomic_helper_check_modeset() is called
- * update_connector_routing() gets called
- * funcs->best_encoder() returns NULL for the encoder
- * update_connector_routing() fails atomic commit with "No suitable encoder
-   found", line 320 of drm_atomic_helper
-> 
-> Another thought: Should we handle at least some of this in the probe
-> helpers? I.e. once you unplugged a drm_connector, it always shows
-> disconnected and mode list is gone, instead of duplicating this over all
-> drivers. We could just check connector->registered.
-oooh, good idea! I will certainly go do that
-> 
-> Thanks, Daniel
-> > ---
-> >  drivers/gpu/drm/i915/intel_dp_mst.c | 14 +++++++-------
-> >  drivers/gpu/drm/i915/intel_drv.h    |  1 +
-> >  2 files changed, 8 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c
-> > b/drivers/gpu/drm/i915/intel_dp_mst.c
-> > index 4ecd65375603..fcb9b87b9339 100644
-> > --- a/drivers/gpu/drm/i915/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/intel_dp_mst.c
-> > @@ -311,9 +311,8 @@ static int intel_dp_mst_get_ddc_modes(struct
-> > drm_connector *connector)
-> >  	struct edid *edid;
-> >  	int ret;
-> >  
-> > -	if (!intel_dp) {
-> > +	if (intel_connector->mst_port_gone)
-> >  		return intel_connector_update_modes(connector, NULL);
-> > -	}
-> >  
-> >  	edid = drm_dp_mst_get_edid(connector, &intel_dp->mst_mgr,
-> > intel_connector->port);
-> >  	ret = intel_connector_update_modes(connector, edid);
-> > @@ -328,9 +327,10 @@ intel_dp_mst_detect(struct drm_connector *connector,
-> > bool force)
-> >  	struct intel_connector *intel_connector =
-> > to_intel_connector(connector);
-> >  	struct intel_dp *intel_dp = intel_connector->mst_port;
-> >  
-> > -	if (!intel_dp)
-> > +	if (intel_connector->mst_port_gone)
-> >  		return connector_status_disconnected;
-> > -	return drm_dp_mst_detect_port(connector, &intel_dp->mst_mgr,
-> > intel_connector->port);
-> > +	return drm_dp_mst_detect_port(connector, &intel_dp->mst_mgr,
-> > +				      intel_connector->port);
-> >  }
-> >  
-> >  static void
-> > @@ -370,7 +370,7 @@ intel_dp_mst_mode_valid(struct drm_connector
-> > *connector,
-> >  	int bpp = 24; /* MST uses fixed bpp */
-> >  	int max_rate, mode_rate, max_lanes, max_link_clock;
-> >  
-> > -	if (!intel_dp)
-> > +	if (intel_connector->mst_port_gone)
-> >  		return MODE_ERROR;
-> >  
-> >  	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
-> > @@ -402,7 +402,7 @@ static struct drm_encoder
-> > *intel_mst_atomic_best_encoder(struct drm_connector *c
-> >  	struct intel_dp *intel_dp = intel_connector->mst_port;
-> >  	struct intel_crtc *crtc = to_intel_crtc(state->crtc);
-> >  
-> > -	if (!intel_dp)
-> > +	if (intel_connector->mst_port_gone)
-> >  		return NULL;
-> >  	return &intel_dp->mst_encoders[crtc->pipe]->base.base;
-> >  }
-> > @@ -514,7 +514,7 @@ static void intel_dp_destroy_mst_connector(struct
-> > drm_dp_mst_topology_mgr *mgr,
-> >  						   connector);
-> >  	/* prevent race with the check in ->detect */
-> >  	drm_modeset_lock(&connector->dev->mode_config.connection_mutex, NULL);
-> > -	intel_connector->mst_port = NULL;
-> > +	intel_connector->mst_port_gone = true;
-> >  	drm_modeset_unlock(&connector->dev->mode_config.connection_mutex);
-> >  
-> >  	drm_connector_put(connector);
-> > diff --git a/drivers/gpu/drm/i915/intel_drv.h
-> > b/drivers/gpu/drm/i915/intel_drv.h
-> > index 8fc61e96754f..87ce772ae7f8 100644
-> > --- a/drivers/gpu/drm/i915/intel_drv.h
-> > +++ b/drivers/gpu/drm/i915/intel_drv.h
-> > @@ -409,6 +409,7 @@ struct intel_connector {
-> >  	void *port; /* store this opaque as its illegal to dereference it */
-> >  
-> >  	struct intel_dp *mst_port;
-> > +	bool mst_port_gone;
-> >  
-> >  	/* Work struct to schedule a uevent on link train failure */
-> >  	struct work_struct modeset_retry_work;
-> > -- 
-> > 2.17.1
-> > 
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
-> 
--- 
-Cheers,
-	Lyude Paul
+T24gRnJpLCBTZXAgMjEsIDIwMTggYXQgMDQ6MTc6MTZQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
+ZToKPiBPbiBGcmksIDIwMTgtMDktMjEgYXQgMTE6MjcgKzAyMDAsIERhbmllbCBWZXR0ZXIgd3Jv
+dGU6Cj4gPiBPbiBUdWUsIFNlcCAxOCwgMjAxOCBhdCAwNzowNjoxOVBNIC0wNDAwLCBMeXVkZSBQ
+YXVsIHdyb3RlOgo+ID4gPiBDdXJyZW50bHkgd2Ugc2V0IGludGVsX2Nvbm5lY3Rvci0+bXN0X3Bv
+cnQgdG8gTlVMTCB0byBzaWduaWZ5IHRoYXQgdGhlCj4gPiA+IE1TVCBwb3J0IGhhcyBiZWVuIHJl
+bW92ZWQgZnJvbSB0aGUgc3lzdGVtIHNvIHRoYXQgd2UgY2FuIHByZXZlbnQgZnVydGhlcgo+ID4g
+PiBhY3Rpb24gb24gdGhlIHBvcnQgc3VjaCBhcyBjb25uZWN0b3IgcHJvYmVzLCBtb2RlIHByb2Jp
+bmcsIGV0Yy4KPiA+ID4gSG93ZXZlciwgd2UncmUgZ29pbmcgdG8gbmVlZCBhY2Nlc3MgdG8gaW50
+ZWxfY29ubmVjdG9yLT5tc3RfcG9ydCBpbgo+ID4gPiBvcmRlciB0byBmaXh1cCAtPmJlc3RfZW5j
+b2RlcigpIHNvIHRoYXQgaXQgY2FuIGFsd2F5cyByZXR1cm4gdGhlIGNvcnJlY3QKPiA+ID4gZW5j
+b2RlciBmb3IgYW4gTVNUIHBvcnQgdG8gcHJldmVudCBsZWdhY3kgRFBNUyBwcm9wIGNoYW5nZXMg
+ZnJvbQo+ID4gPiBmYWlsaW5nLiBUaGlzIHNob3VsZCBiZSBzYWZlLCBzbyBpbnN0ZWFkIGtlZXAg
+aW50ZWxfY29ubmVjdG9yLT5tc3RfcG9ydAo+ID4gPiBhbHdheXMgc2V0IGFuZCBpbnN0ZWFkIGFk
+ZCBpbnRlbF9jb25uZWN0b3ItPm1zdF9wb3J0X2dvbmUgaW4gb3JkZXIgdG8KPiA+ID4gc2lnbmlm
+eSB3aGV0aGVyIG9yIG5vdCB0aGUgY29ubmVjdG9yIGhhcyBkaXNhcHBlYXJlZCBmcm9tIHRoZSBz
+eXN0ZW0uCj4gPiA+IAo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRo
+YXQuY29tPgo+ID4gPiBDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZwo+ID4gCj4gPiBIbSwgaG93
+IGV4YWN0bHkgZG8gbGVnYWN5IERQTVMgc2V0cHJvcCBibG93IHVwIGhlcmU/IE9yIGF0IGxlYXN0
+IEkgY2FuJ3QKPiA+IGNvbWUgdXAgd2l0aCBhIHNjZW5hcmlvIHRoYXQncyBzcGVjaWZpYyB0byBs
+ZWdhY3kgcHJvcHMsIGF0b21pYyBzaG91bGQgYmUKPiA+IGVxdWFsbHkgYWZmZWN0ZWQuIEJ5IHRo
+ZSB0aW1lIHdlIGxhbmQgaW4gdGhpcyBjb2RlLCB0aGUgY29yZSBjb2RlIGFscmVhZHkKPiA+IHJl
+bWFwcGluZyBpdCB0byBiZSBwdXJlbHkgYW4gYXRvbWljIHVwZGF0ZS4KPiBTbywgd2hhdCBJJ3Zl
+IGJlZW4gc2VlaW5nIHdpdGggWCB0aGF0J3MgYmVlbiBibG93aW5nIHRoaXMgdXA6Cj4gICogSG90
+cGx1ZyBldmVudCBnZXRzIHJlY2VpdmVkLCBYIGRvZXMgcmVwcm9iZQo+ICAqIE5vdGljZXMgTVNU
+IGNvbm5lY3RvcnMgYXJlIG5vdyBkaXNjb25uZWN0ZWQsIHNldHMgRFBNUyBmcm9tIG9uLT5vZmYK
+PiAgKiBEdXJpbmcgYXRvbWljX2NoZWNrLCBkcm1fYXRvbWljX2hlbHBlcl9jaGVja19tb2Rlc2V0
+KCkgaXMgY2FsbGVkCj4gICogdXBkYXRlX2Nvbm5lY3Rvcl9yb3V0aW5nKCkgZ2V0cyBjYWxsZWQK
+PiAgKiBmdW5jcy0+YmVzdF9lbmNvZGVyKCkgcmV0dXJucyBOVUxMIGZvciB0aGUgZW5jb2Rlcgo+
+ICAqIHVwZGF0ZV9jb25uZWN0b3Jfcm91dGluZygpIGZhaWxzIGF0b21pYyBjb21taXQgd2l0aCAi
+Tm8gc3VpdGFibGUgZW5jb2Rlcgo+ICAgIGZvdW5kIiwgbGluZSAzMjAgb2YgZHJtX2F0b21pY19o
+ZWxwZXIKClVoIC4uLiBBbmQgWCB0aGVuIGRvZXNuJ3QgdHJ5IHRvIGZ1bGx5IHNodXQgZG93biB0
+aGUgQ1JUQz8gVGhhdCB3b3VsZCBiZSBhClNFVENSVEMgd2l0aCBudW1fY29ubmVjdG9ycz0wLCBt
+b2RlPTAuCgpUaGUgZmFpbHVyZSBtb2RlIGhhcyBub3RoaW5nIHRvIGRvIHdpdGggbGVnYWN5IGRw
+bXMsIGl0J3MganVzdCBhbnl0aGluZwp0aGF0IHRvdWNoZXMgdGhlIG1vZGVzZXQgc3RhdGUgd2ls
+bCBmYWlsIChleGNlcHQgd2hlbiB5b3UgZnVsbHkgdHVybgp0aGluZ3Mgb2ZmLCBub3QganVzdCBk
+cG1zIG9mZikuIElmIHdlIGZpeCB0aGlzLCB0aGVuIGEgRFBNUyBvbiB3aWxsCnByb2JhYmx5IGFs
+c28gIndvcmsiLCB3aXRoIHBvc3NpYmx5IHNvbWUgaGlsYXJpb3VzIGRtZXNnIG5vaXNlIGFuZCBk
+cml2ZXIKYnVncy4gU28gd2UgbmVlZCB0byBiZSBjYXJlZnVsIHRoYXQgdGhpcyBvbmx5IGFsbG93
+cyBkaXNhYmxpbmcsIG5vdApyZS1lbmFibGluZyBhZnRlcndhcmRzLgoKSG0gLi4uIHRoaW5raW5n
+IGEgYml0IG1vcmUsIEkgdGhpbmsgYSBmdWxsIGRpc2FibGUgYWxzbyB3aWxsIG5vdCBxdWl0ZQp3
+b3JrLiBEZWZpbml0ZWx5IG5lZWQgdG8gdGVzdCB0aGF0LgoKPiA+IEFub3RoZXIgdGhvdWdodDog
+U2hvdWxkIHdlIGhhbmRsZSBhdCBsZWFzdCBzb21lIG9mIHRoaXMgaW4gdGhlIHByb2JlCj4gPiBo
+ZWxwZXJzPyBJLmUuIG9uY2UgeW91IHVucGx1Z2dlZCBhIGRybV9jb25uZWN0b3IsIGl0IGFsd2F5
+cyBzaG93cwo+ID4gZGlzY29ubmVjdGVkIGFuZCBtb2RlIGxpc3QgaXMgZ29uZSwgaW5zdGVhZCBv
+ZiBkdXBsaWNhdGluZyB0aGlzIG92ZXIgYWxsCj4gPiBkcml2ZXJzLiBXZSBjb3VsZCBqdXN0IGNo
+ZWNrIGNvbm5lY3Rvci0+cmVnaXN0ZXJlZC4KPiBvb29oLCBnb29kIGlkZWEhIEkgd2lsbCBjZXJ0
+YWlubHkgZ28gZG8gdGhhdAoKV2UnbGwgcHJvYmFibHkgYWxzbyBuZWVkIHNvbWUgY2hlY2tzIGlu
+IGF0b21pYyBoZWxwZXJzIHRvIHByZXZlbnQKcmUtZW5hYmxpbmcgb2YgYSBnaG9zdCBjb25uZWN0
+b3IuCi1EYW5pZWwKCj4gPiAKPiA+IFRoYW5rcywgRGFuaWVsCj4gPiA+IC0tLQo+ID4gPiAgZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHBfbXN0LmMgfCAxNCArKysrKysrLS0tLS0tLQo+ID4g
+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHJ2LmggICAgfCAgMSArCj4gPiA+ICAyIGZp
+bGVzIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkKPiA+ID4gCj4gPiA+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcF9tc3QuYwo+ID4gPiBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21zdC5jCj4gPiA+IGluZGV4IDRlY2Q2NTM3
+NTYwMy4uZmNiOWI4N2I5MzM5IDEwMDY0NAo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pbnRlbF9kcF9tc3QuYwo+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9k
+cF9tc3QuYwo+ID4gPiBAQCAtMzExLDkgKzMxMSw4IEBAIHN0YXRpYyBpbnQgaW50ZWxfZHBfbXN0
+X2dldF9kZGNfbW9kZXMoc3RydWN0Cj4gPiA+IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikKPiA+
+ID4gIAlzdHJ1Y3QgZWRpZCAqZWRpZDsKPiA+ID4gIAlpbnQgcmV0Owo+ID4gPiAgCj4gPiA+IC0J
+aWYgKCFpbnRlbF9kcCkgewo+ID4gPiArCWlmIChpbnRlbF9jb25uZWN0b3ItPm1zdF9wb3J0X2dv
+bmUpCj4gPiA+ICAJCXJldHVybiBpbnRlbF9jb25uZWN0b3JfdXBkYXRlX21vZGVzKGNvbm5lY3Rv
+ciwgTlVMTCk7Cj4gPiA+IC0JfQo+ID4gPiAgCj4gPiA+ICAJZWRpZCA9IGRybV9kcF9tc3RfZ2V0
+X2VkaWQoY29ubmVjdG9yLCAmaW50ZWxfZHAtPm1zdF9tZ3IsCj4gPiA+IGludGVsX2Nvbm5lY3Rv
+ci0+cG9ydCk7Cj4gPiA+ICAJcmV0ID0gaW50ZWxfY29ubmVjdG9yX3VwZGF0ZV9tb2Rlcyhjb25u
+ZWN0b3IsIGVkaWQpOwo+ID4gPiBAQCAtMzI4LDkgKzMyNywxMCBAQCBpbnRlbF9kcF9tc3RfZGV0
+ZWN0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsCj4gPiA+IGJvb2wgZm9yY2UpCj4g
+PiA+ICAJc3RydWN0IGludGVsX2Nvbm5lY3RvciAqaW50ZWxfY29ubmVjdG9yID0KPiA+ID4gdG9f
+aW50ZWxfY29ubmVjdG9yKGNvbm5lY3Rvcik7Cj4gPiA+ICAJc3RydWN0IGludGVsX2RwICppbnRl
+bF9kcCA9IGludGVsX2Nvbm5lY3Rvci0+bXN0X3BvcnQ7Cj4gPiA+ICAKPiA+ID4gLQlpZiAoIWlu
+dGVsX2RwKQo+ID4gPiArCWlmIChpbnRlbF9jb25uZWN0b3ItPm1zdF9wb3J0X2dvbmUpCj4gPiA+
+ICAJCXJldHVybiBjb25uZWN0b3Jfc3RhdHVzX2Rpc2Nvbm5lY3RlZDsKPiA+ID4gLQlyZXR1cm4g
+ZHJtX2RwX21zdF9kZXRlY3RfcG9ydChjb25uZWN0b3IsICZpbnRlbF9kcC0+bXN0X21nciwKPiA+
+ID4gaW50ZWxfY29ubmVjdG9yLT5wb3J0KTsKPiA+ID4gKwlyZXR1cm4gZHJtX2RwX21zdF9kZXRl
+Y3RfcG9ydChjb25uZWN0b3IsICZpbnRlbF9kcC0+bXN0X21nciwKPiA+ID4gKwkJCQkgICAgICBp
+bnRlbF9jb25uZWN0b3ItPnBvcnQpOwo+ID4gPiAgfQo+ID4gPiAgCj4gPiA+ICBzdGF0aWMgdm9p
+ZAo+ID4gPiBAQCAtMzcwLDcgKzM3MCw3IEBAIGludGVsX2RwX21zdF9tb2RlX3ZhbGlkKHN0cnVj
+dCBkcm1fY29ubmVjdG9yCj4gPiA+ICpjb25uZWN0b3IsCj4gPiA+ICAJaW50IGJwcCA9IDI0OyAv
+KiBNU1QgdXNlcyBmaXhlZCBicHAgKi8KPiA+ID4gIAlpbnQgbWF4X3JhdGUsIG1vZGVfcmF0ZSwg
+bWF4X2xhbmVzLCBtYXhfbGlua19jbG9jazsKPiA+ID4gIAo+ID4gPiAtCWlmICghaW50ZWxfZHAp
+Cj4gPiA+ICsJaWYgKGludGVsX2Nvbm5lY3Rvci0+bXN0X3BvcnRfZ29uZSkKPiA+ID4gIAkJcmV0
+dXJuIE1PREVfRVJST1I7Cj4gPiA+ICAKPiA+ID4gIAlpZiAobW9kZS0+ZmxhZ3MgJiBEUk1fTU9E
+RV9GTEFHX0RCTFNDQU4pCj4gPiA+IEBAIC00MDIsNyArNDAyLDcgQEAgc3RhdGljIHN0cnVjdCBk
+cm1fZW5jb2Rlcgo+ID4gPiAqaW50ZWxfbXN0X2F0b21pY19iZXN0X2VuY29kZXIoc3RydWN0IGRy
+bV9jb25uZWN0b3IgKmMKPiA+ID4gIAlzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwID0gaW50ZWxf
+Y29ubmVjdG9yLT5tc3RfcG9ydDsKPiA+ID4gIAlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YyA9IHRv
+X2ludGVsX2NydGMoc3RhdGUtPmNydGMpOwo+ID4gPiAgCj4gPiA+IC0JaWYgKCFpbnRlbF9kcCkK
+PiA+ID4gKwlpZiAoaW50ZWxfY29ubmVjdG9yLT5tc3RfcG9ydF9nb25lKQo+ID4gPiAgCQlyZXR1
+cm4gTlVMTDsKPiA+ID4gIAlyZXR1cm4gJmludGVsX2RwLT5tc3RfZW5jb2RlcnNbY3J0Yy0+cGlw
+ZV0tPmJhc2UuYmFzZTsKPiA+ID4gIH0KPiA+ID4gQEAgLTUxNCw3ICs1MTQsNyBAQCBzdGF0aWMg
+dm9pZCBpbnRlbF9kcF9kZXN0cm95X21zdF9jb25uZWN0b3Ioc3RydWN0Cj4gPiA+IGRybV9kcF9t
+c3RfdG9wb2xvZ3lfbWdyICptZ3IsCj4gPiA+ICAJCQkJCQkgICBjb25uZWN0b3IpOwo+ID4gPiAg
+CS8qIHByZXZlbnQgcmFjZSB3aXRoIHRoZSBjaGVjayBpbiAtPmRldGVjdCAqLwo+ID4gPiAgCWRy
+bV9tb2Rlc2V0X2xvY2soJmNvbm5lY3Rvci0+ZGV2LT5tb2RlX2NvbmZpZy5jb25uZWN0aW9uX211
+dGV4LCBOVUxMKTsKPiA+ID4gLQlpbnRlbF9jb25uZWN0b3ItPm1zdF9wb3J0ID0gTlVMTDsKPiA+
+ID4gKwlpbnRlbF9jb25uZWN0b3ItPm1zdF9wb3J0X2dvbmUgPSB0cnVlOwo+ID4gPiAgCWRybV9t
+b2Rlc2V0X3VubG9jaygmY29ubmVjdG9yLT5kZXYtPm1vZGVfY29uZmlnLmNvbm5lY3Rpb25fbXV0
+ZXgpOwo+ID4gPiAgCj4gPiA+ICAJZHJtX2Nvbm5lY3Rvcl9wdXQoY29ubmVjdG9yKTsKPiA+ID4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rydi5oCj4gPiA+IGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHJ2LmgKPiA+ID4gaW5kZXggOGZjNjFlOTY3NTRmLi44
+N2NlNzcyYWU3ZjggMTAwNjQ0Cj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
+X2Rydi5oCj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rydi5oCj4gPiA+
+IEBAIC00MDksNiArNDA5LDcgQEAgc3RydWN0IGludGVsX2Nvbm5lY3RvciB7Cj4gPiA+ICAJdm9p
+ZCAqcG9ydDsgLyogc3RvcmUgdGhpcyBvcGFxdWUgYXMgaXRzIGlsbGVnYWwgdG8gZGVyZWZlcmVu
+Y2UgaXQgKi8KPiA+ID4gIAo+ID4gPiAgCXN0cnVjdCBpbnRlbF9kcCAqbXN0X3BvcnQ7Cj4gPiA+
+ICsJYm9vbCBtc3RfcG9ydF9nb25lOwo+ID4gPiAgCj4gPiA+ICAJLyogV29yayBzdHJ1Y3QgdG8g
+c2NoZWR1bGUgYSB1ZXZlbnQgb24gbGluayB0cmFpbiBmYWlsdXJlICovCj4gPiA+ICAJc3RydWN0
+IHdvcmtfc3RydWN0IG1vZGVzZXRfcmV0cnlfd29yazsKPiA+ID4gLS0gCj4gPiA+IDIuMTcuMQo+
+ID4gPiAKPiA+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KPiA+ID4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+ID4gPiBJbnRlbC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCj4gPiA+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vaW50ZWwtZ2Z4Cj4gPiAKPiA+IAo+IC0tIAo+IENoZWVycywKPiAJTHl1ZGUgUGF1
+bAo+IAoKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0
+aW9uCmh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2ludGVsLWdmeAo=
