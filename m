@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108022] Cannot resume from standby - Link training
  fails
-Date: Sat, 22 Sep 2018 18:13:38 +0000
-Message-ID: <bug-108022-8800-llKuRPegmA@http.bugs.freedesktop.org/>
+Date: Sat, 22 Sep 2018 20:42:08 +0000
+Message-ID: <bug-108022-8800-muYMMd7AR1@http.bugs.freedesktop.org/>
 References: <bug-108022-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0914605986=="
+Content-Type: multipart/mixed; boundary="===============0093387153=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108022-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0914605986==
-Content-Type: multipart/alternative; boundary="15376400172.D9Cd69.25060"
+--===============0093387153==
+Content-Type: multipart/alternative; boundary="15376489280.b8a9.23992"
 Content-Transfer-Encoding: 7bit
 
 
---15376400172.D9Cd69.25060
-Date: Sat, 22 Sep 2018 18:13:37 +0000
+--15376489280.b8a9.23992
+Date: Sat, 22 Sep 2018 20:42:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,33 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108022
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-There have been a variety of DP-MST-related fixes recently, both in nouveau=
- as
-well as the drm subsystem courtesy of Lyude. Could you try 4.19-rc4 or late=
-r?
-(No clue if those fixes affect your situation, but easy enough to check.)
+--- Comment #3 from Barry G <barry-RiHDFbPRhGT6V6G2DxALlg@public.gmane.org> ---
+Created attachment 141691
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141691&action=3Dedit
+dmesg with 4.19-rc4 plus
+
+Upgraded to:
+4.19.0-rc4-1-barrgr-00089-g6ad49fa1993d
+
+Same general issue.  Got some new "gr:" lines.  Full dmesg attached.
+
+A few things I have noticed:
+* The unplug/replug monitor thing doesn't always fix it.  Sometimes they ju=
+st
+stay off.
+* If I run "xset dpms force standby" and wait 5-10 seconds and move the mou=
+se
+it seems to always come back (5 tests).
+* If I run "xset dpms force standby" and wait 40 seconds and move the mouse=
+ it
+seems to NOT come back (3 tests).
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15376400172.D9Cd69.25060
-Date: Sat, 22 Sep 2018 18:13:37 +0000
+--15376489280.b8a9.23992
+Date: Sat, 22 Sep 2018 20:42:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,23 +79,39 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Cannot resume from standby - Link training fails"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108022#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108022#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Cannot resume from standby - Link training fails"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108022">bug 10802=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+barry&#64;grussling.com" title=3D"Barry G &lt;barry&#64;grussling.com&gt;">=
+ <span class=3D"fn">Barry G</span></a>
 </span></b>
-        <pre>There have been a variety of DP-MST-related fixes recently, bo=
-th in nouveau as
-well as the drm subsystem courtesy of Lyude. Could you try 4.19-rc4 or late=
-r?
-(No clue if those fixes affect your situation, but easy enough to check.)</=
-pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141691=
+" name=3D"attach_141691" title=3D"dmesg with 4.19-rc4 plus">attachment 1416=
+91</a> <a href=3D"attachment.cgi?id=3D141691&amp;action=3Dedit" title=3D"dm=
+esg with 4.19-rc4 plus">[details]</a></span>
+dmesg with 4.19-rc4 plus
+
+Upgraded to:
+4.19.0-rc4-1-barrgr-00089-g6ad49fa1993d
+
+Same general issue.  Got some new &quot;gr:&quot; lines.  Full dmesg attach=
+ed.
+
+A few things I have noticed:
+* The unplug/replug monitor thing doesn't always fix it.  Sometimes they ju=
+st
+stay off.
+* If I run &quot;xset dpms force standby&quot; and wait 5-10 seconds and mo=
+ve the mouse
+it seems to always come back (5 tests).
+* If I run &quot;xset dpms force standby&quot; and wait 40 seconds and move=
+ the mouse it
+seems to NOT come back (3 tests).</pre>
         </div>
       </p>
 
@@ -95,9 +125,9 @@ pre>
     </body>
 </html>=
 
---15376400172.D9Cd69.25060--
+--15376489280.b8a9.23992--
 
---===============0914605986==
+--===============0093387153==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +137,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0914605986==--
+--===============0093387153==--
