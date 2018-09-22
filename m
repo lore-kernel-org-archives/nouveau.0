@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108022] Cannot resume from standby - Link training
  fails
-Date: Sat, 22 Sep 2018 18:05:54 +0000
-Message-ID: <bug-108022-8800-lprsHkerSw@http.bugs.freedesktop.org/>
+Date: Sat, 22 Sep 2018 18:13:38 +0000
+Message-ID: <bug-108022-8800-llKuRPegmA@http.bugs.freedesktop.org/>
 References: <bug-108022-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1589551421=="
+Content-Type: multipart/mixed; boundary="===============0914605986=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108022-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1589551421==
-Content-Type: multipart/alternative; boundary="15376395541.F8D80.22908"
+--===============0914605986==
+Content-Type: multipart/alternative; boundary="15376400172.D9Cd69.25060"
 Content-Transfer-Encoding: 7bit
 
 
---15376395541.F8D80.22908
-Date: Sat, 22 Sep 2018 18:05:54 +0000
+--15376400172.D9Cd69.25060
+Date: Sat, 22 Sep 2018 18:13:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108022
 
---- Comment #1 from Barry G <barry-RiHDFbPRhGT6V6G2DxALlg@public.gmane.org> ---
-Created attachment 141690
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141690&action=3Dedit
-Xorg logfile.  Failed resume at 2290 and manual plug event at 3468
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+There have been a variety of DP-MST-related fixes recently, both in nouveau=
+ as
+well as the drm subsystem courtesy of Lyude. Could you try 4.19-rc4 or late=
+r?
+(No clue if those fixes affect your situation, but easy enough to check.)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15376395541.F8D80.22908
-Date: Sat, 22 Sep 2018 18:05:54 +0000
+--15376400172.D9Cd69.25060
+Date: Sat, 22 Sep 2018 18:13:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,23 +65,23 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Cannot resume from standby - Link training fails"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108022#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108022#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Cannot resume from standby - Link training fails"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108022">bug 10802=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-barry&#64;grussling.com" title=3D"Barry G &lt;barry&#64;grussling.com&gt;">=
- <span class=3D"fn">Barry G</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141690=
-" name=3D"attach_141690" title=3D"Xorg logfile.  Failed resume at 2290 and =
-manual plug event at 3468">attachment 141690</a> <a href=3D"attachment.cgi?=
-id=3D141690&amp;action=3Dedit" title=3D"Xorg logfile.  Failed resume at 229=
-0 and manual plug event at 3468">[details]</a></span>
-Xorg logfile.  Failed resume at 2290 and manual plug event at 3468</pre>
+        <pre>There have been a variety of DP-MST-related fixes recently, bo=
+th in nouveau as
+well as the drm subsystem courtesy of Lyude. Could you try 4.19-rc4 or late=
+r?
+(No clue if those fixes affect your situation, but easy enough to check.)</=
+pre>
         </div>
       </p>
 
@@ -93,9 +95,9 @@ Xorg logfile.  Failed resume at 2290 and manual plug event at 3468</pre>
     </body>
 </html>=
 
---15376395541.F8D80.22908--
+--15376400172.D9Cd69.25060--
 
---===============1589551421==
+--===============0914605986==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1589551421==--
+--===============0914605986==--
