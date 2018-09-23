@@ -1,9 +1,12 @@
-From: Johannes Winter <yova-YX+nfPaYCPzk1uMJSBkQmQ@public.gmane.org>
-Subject: Dual setup next to radeon not working
-Date: Sun, 23 Sep 2018 10:01:08 +0200
-Message-ID: <20180923100108.65700dcf@radell.fritz.box>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108032] New: nv50_ir_lowering_gm107.cpp:326:
+ undefined reference to
+ `nv50_ir::NVC0LoweringPass::loadMsAdjInfo32(nv50_ir::TexInstruction::Target,
+ unsigned int, int, nv50_ir::Value*, bool)'
+Date: Sun, 23 Sep 2018 15:04:11 +0000
+Message-ID: <bug-108032-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2054991304=="
+Content-Type: multipart/mixed; boundary="===============2111105834=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -17,73 +20,208 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============2054991304==
-Content-Type: multipart/signed; micalg=pgp-sha512;
- boundary="Sig_/yZ/MAHK/p8nPXpS5TDBRzRL"; protocol="application/pgp-signature"
 
---Sig_/yZ/MAHK/p8nPXpS5TDBRzRL
-Content-Type: text/plain; charset=US-ASCII
+--===============2111105834==
+Content-Type: multipart/alternative; boundary="15377150511.06e5Df9.32583"
+Content-Transfer-Encoding: 7bit
+
+
+--15377150511.06e5Df9.32583
+Date: Sun, 23 Sep 2018 15:04:11 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-Dear list,
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108032
+
+            Bug ID: 108032
+           Summary: nv50_ir_lowering_gm107.cpp:326: undefined reference to
+                    `nv50_ir::NVC0LoweringPass::loadMsAdjInfo32(nv50_ir::T
+                    exInstruction::Target, unsigned int, int,
+                    nv50_ir::Value*, bool)'
+           Product: Mesa
+           Version: git
+          Hardware: All
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: pedretti.fabio-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+                CC: pendingchaos02+fdobugzilla-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+Since latest commits mesa fails to build with:
+./.libs/libnouveau.a(nv50_ir_lowering_gm107.o): In function
+`nv50_ir::GM107LoweringPass::handleSUQ(nv50_ir::TexInstruction*)':
+/<<PKGBUILDDIR>>/build/src/gallium/drivers/nouveau/../../../../../src/galli=
+um/drivers/nouveau/codegen/nv50_ir_lowering_gm107.cpp:326:
+undefined reference to
+`nv50_ir::NVC0LoweringPass::loadMsAdjInfo32(nv50_ir::TexInstruction::Target,
+unsigned int, int, nv50_ir::Value*, bool)'
+/<<PKGBUILDDIR>>/build/src/gallium/drivers/nouveau/../../../../../src/galli=
+um/drivers/nouveau/codegen/nv50_ir_lowering_gm107.cpp:322:
+undefined reference to
+`nv50_ir::NVC0LoweringPass::loadMsAdjInfo32(nv50_ir::TexInstruction::Target,
+unsigned int, int, nv50_ir::Value*, bool)'
+collect2: error: ld returned 1 exit status
+Makefile:1178: recipe for target 'nouveau_compiler' failed
+
+Full build log with configure options here:
+https://launchpadlibrarian.net/389864818/buildlog_ubuntu-xenial-i386.mesa_1=
+8.3~git1809230730.b473fc~oibaf~x_BUILDING.txt.gz
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15377150511.06e5Df9.32583
+Date: Sun, 23 Sep 2018 15:04:11 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nv50_ir_lowering_gm107.cpp:326: undefined reference to `n=
+v50_ir::NVC0LoweringPass::loadMsAdjInfo32(nv50_ir::TexInstruction::Target, =
+unsigned int, int, nv50_ir::Value*, bool)'"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108032">108032</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>nv50_ir_lowering_gm107.cpp:326: undefined reference to `nv50_=
+ir::NVC0LoweringPass::loadMsAdjInfo32(nv50_ir::TexInstruction::Target, unsi=
+gned int, int, nv50_ir::Value*, bool)'
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>pedretti.fabio&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>CC</th>
+          <td>pendingchaos02+fdobugzilla&#64;gmail.com
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Since latest commits mesa fails to build with:
+./.libs/libnouveau.a(nv50_ir_lowering_gm107.o): In function
+`nv50_ir::GM107LoweringPass::handleSUQ(nv50_ir::TexInstruction*)':
+/&lt;&lt;PKGBUILDDIR&gt;&gt;/build/src/gallium/drivers/nouveau/../../../../=
+../src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_gm107.cpp:326:
+undefined reference to
+`nv50_ir::NVC0LoweringPass::loadMsAdjInfo32(nv50_ir::TexInstruction::Target,
+unsigned int, int, nv50_ir::Value*, bool)'
+/&lt;&lt;PKGBUILDDIR&gt;&gt;/build/src/gallium/drivers/nouveau/../../../../=
+../src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_gm107.cpp:322:
+undefined reference to
+`nv50_ir::NVC0LoweringPass::loadMsAdjInfo32(nv50_ir::TexInstruction::Target,
+unsigned int, int, nv50_ir::Value*, bool)'
+collect2: error: ld returned 1 exit status
+Makefile:1178: recipe for target 'nouveau_compiler' failed
+
+Full build log with configure options here:
+<a href=3D"https://launchpadlibrarian.net/389864818/buildlog_ubuntu-xenial-=
+i386.mesa_18.3~git1809230730.b473fc~oibaf~x_BUILDING.txt.gz">https://launch=
+padlibrarian.net/389864818/buildlog_ubuntu-xenial-i386.mesa_18.3~git1809230=
+730.b473fc~oibaf~x_BUILDING.txt.gz</a></pre>
+        </div>
+      </p>
 
 
-I'm using an up-to-date debian sid. I don't get my NVDIA Quadro NVS 440
-working next to a Radeon HD 2400 PRO:
+      <hr>
+      <span>You are receiving this mail because:</span>
 
-01:00.0 VGA compatible controller: Advanced Micro Devices, Inc.
-[AMD/ATI] RV610 [Radeon HD 2400 PRO]=20
-01:00.1 Audio device: Advanced Micro Devices, Inc. [AMD/ATI] RV610 HDMI
-Audio [Radeon HD 2350 PRO / 2400 PRO/XT / HD 3410]=20
-03:00.0 PCI bridge: NVIDIA Corporation Device 01b3 (rev a3)=20
-04:00.0 PCI bridge: NVIDIA Corporation Device 01b3 (rev a3)=20
-04:01.0 PCI bridge: NVIDIA Corporation Device 01b3 (rev a3)=20
-05:00.0 VGA compatible controller: NVIDIA Corporation NV43 [Quadro NVS
-440] (rev a2)=20
-06:00.0 VGA compatible controller: NVIDIA Corporation NV43 [Quadro NVS
-440] (rev a2)
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
 
-After starting gnome I get the mouse courser visible with:=20
+--15377150511.06e5Df9.32583--
 
-xrandr --auto --setprovideroutputsource 1 0 --auto
-
-But no visible windows of any kind.
-
-The logs are filled with:
-
-$ grep nouveau /var/log/kern.log | head
-Sep 23 08:32:00 radell kernel: [   27.962958] nouveau 0000:06:00.0:
-DRM: 0xD686: Parsing digital output script table Sep 23 08:32:01 radell
-kernel: [   28.013900] nouveau 0000:06:00.0: Xorg[1095]: fail
-set_domain Sep 23 08:32:01 radell kernel: [   28.013905] nouveau
-0000:06:00.0: Xorg[1095]: validating bo list Sep 23 08:32:01 radell
-kernel: [   28.013909] nouveau 0000:06:00.0: Xorg[1095]: validate: -22
-
-Any ideas what might be wrong?
-
-Best regards,
-
-Johannes Winter
-
---Sig_/yZ/MAHK/p8nPXpS5TDBRzRL
-Content-Type: application/pgp-signature
-Content-Description: Digitale Signatur von OpenPGP
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgsWhsbSeIeg3ZAcglXH7ZlwOzu8FAlunSEQACgkQlXH7ZlwO
-zu8WIgf+JmCLblSM9xrRfNvcuNAjcoXzPgCThC8DalfFl0YwphDaWmZKoWfnyWqX
-4HoGuGr/h6jHyU3N5/q2IeC9v+pwG3uL1C/ws36VmCnrS7RBp2m2OYCMqRZOIjGZ
-KnqLsvZeg2LVquKztJdWVwRElbNrO1oW8WXUjBGNyniYsTlZA8rf7EooGUkLI2pz
-py/vnscS1eDxemXULkZBF+Ybe2EUREmS9QUODjw/Y1KqVV3wa16OoRl75F6730Yu
-nu6ebCbVb+mEwK2PbdTi1y4FHjoWhDZD88VKv6tWFEOhJsQsHItx9x4prIODTh2M
-QOlGljO89SctIJjw0Pep/7JaG35JoQ==
-=N00v
------END PGP SIGNATURE-----
-
---Sig_/yZ/MAHK/p8nPXpS5TDBRzRL--
-
---===============2054991304==
+--===============2111105834==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +231,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2054991304==--
+--===============2111105834==--
