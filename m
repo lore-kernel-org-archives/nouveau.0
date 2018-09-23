@@ -1,15 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108032] nv50_ir_lowering_gm107.cpp:326: undefined
- reference to
- `nv50_ir::NVC0LoweringPass::loadMsAdjInfo32(nv50_ir::TexInstruction::Target,
- unsigned int, int, nv50_ir::Value*, bool)'
-Date: Sun, 23 Sep 2018 17:22:41 +0000
-Message-ID: <bug-108032-8800-lQXLs0qJ28@http.bugs.freedesktop.org/>
-References: <bug-108032-8800@http.bugs.freedesktop.org/>
+From: Wolfgang =?ISO-8859-1?Q?Ri=DFler?= <wolle321-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org>
+Subject: Re: Strange monitor behavior on forced DVI-D output
+Date: Sun, 23 Sep 2018 19:48:52 +0200
+Message-ID: <6d6245d10180e6c0bb4741ae79dc6fba8bb1cd83.camel@freenet.de>
+References: <4e690d5c6b6229e3074868620c3c4bb07a57d2ae.camel@freenet.de>
+ <948b1f7cfa41b5e1979875b56dbcfc630375cf32.camel@freenet.de>
+ <CAKb7UvidrQx9EzP4NXZ1GzoN+Pnw=uszqOqNyNvCjxg0EFEOEw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0711842988=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108032-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvidrQx9EzP4NXZ1GzoN+Pnw=uszqOqNyNvCjxg0EFEOEw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,157 +19,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0711842988==
-Content-Type: multipart/alternative; boundary="15377233611.6BbEC8BD.1121"
-Content-Transfer-Encoding: 7bit
-
-
---15377233611.6BbEC8BD.1121
-Date: Sun, 23 Sep 2018 17:22:41 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108032
-
-Rhys Perry <pendingchaos02+fdobugzilla-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-             Status|NEW                         |RESOLVED
-
---- Comment #3 from Rhys Perry <pendingchaos02+fdobugzilla-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Fixed by:
-
-commit 6ca1402c117856b55d044be1e82224db30ed1b02
-Author: Rhys Perry <pendingchaos02-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Date:   Sun Sep 23 17:57:08 2018 +0100
-
-    nv50/ir: fix link-time build failure
-
-    Seems this fixes linking problems that occur in some situations.
-
-    Signed-off-by: Rhys Perry <pendingchaos02-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-    Reviewed-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15377233611.6BbEC8BD.1121
-Date: Sun, 23 Sep 2018 17:22:41 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pendingch=
-aos02+fdobugzilla&#64;gmail.com" title=3D"Rhys Perry &lt;pendingchaos02+fdo=
-bugzilla&#64;gmail.com&gt;"> <span class=3D"fn">Rhys Perry</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - nv50_ir_lowering_gm107.cpp:326: undefined refe=
-rence to `nv50_ir::NVC0LoweringPass::loadMsAdjInfo32(nv50_ir::TexInstructio=
-n::Target, unsigned int, int, nv50_ir::Value*, bool)'"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108032">bug 10803=
-2</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - nv50_ir_lowering_gm107.cpp:326: undefined refe=
-rence to `nv50_ir::NVC0LoweringPass::loadMsAdjInfo32(nv50_ir::TexInstructio=
-n::Target, unsigned int, int, nv50_ir::Value*, bool)'"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108032#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - nv50_ir_lowering_gm107.cpp:326: undefined refe=
-rence to `nv50_ir::NVC0LoweringPass::loadMsAdjInfo32(nv50_ir::TexInstructio=
-n::Target, unsigned int, int, nv50_ir::Value*, bool)'"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108032">bug 10803=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pendingchaos02+fdobugzilla&#64;gmail.com" title=3D"Rhys Perry &lt;pendingch=
-aos02+fdobugzilla&#64;gmail.com&gt;"> <span class=3D"fn">Rhys Perry</span><=
-/a>
-</span></b>
-        <pre>Fixed by:
-
-commit 6ca1402c117856b55d044be1e82224db30ed1b02
-Author: Rhys Perry &lt;<a href=3D"mailto:pendingchaos02&#64;gmail.com">pend=
-ingchaos02&#64;gmail.com</a>&gt;
-Date:   Sun Sep 23 17:57:08 2018 +0100
-
-    nv50/ir: fix link-time build failure
-
-    Seems this fixes linking problems that occur in some situations.
-
-    Signed-off-by: Rhys Perry &lt;<a href=3D"mailto:pendingchaos02&#64;gmai=
-l.com">pendingchaos02&#64;gmail.com</a>&gt;
-    Reviewed-by: Ilia Mirkin &lt;<a href=3D"mailto:imirkin&#64;alum.mit.edu=
-">imirkin&#64;alum.mit.edu</a>&gt;</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15377233611.6BbEC8BD.1121--
-
---===============0711842988==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0711842988==--
+QW0gU29ubnRhZywgZGVuIDIzLjA5LjIwMTgsIDEyOjU1IC0wNDAwIHNjaHJpZWIgSWxpYSBNaXJr
+aW46Cj4gT24gU3VuLCBTZXAgMjMsIDIwMTggYXQgMTI6MjYgUE0sIFdvbGZnYW5nIFJpw59sZXIK
+PiA8d29sbGUzMjFAZnJlZW5ldC5kZT4gd3JvdGU6CltzbmlwXQo+IAo+IFRoYXQncyBub3QgZXh0
+cmVtZWx5IHN1cnByaXNpbmcgLi4uIGZvcmNlLWVuYWJsaW5nIGFuIG91dHB1dCBJIHRoaW5rCj4g
+bWlnaHQga2lsbCB0aGUgcmVzb2x1dGlvbiBkZXRlY3Rpb24sIGFuZCAxMDI0eDc2OCBpcyB0aGUg
+ZGVmYXVsdC4gV2h5Cj4gYXJlIHlvdSBmb3JjZS1lbmFibGluZy9kaXNhYmxpbmcgdmlkZW8gb3V0
+cHV0cz8gVGhhdCBzaG91bGQgbm90Cj4gZ2VuZXJhbGx5IGJlIG5lY2Vzc2FyeS4KCk9rLCBJIHdv
+dWxkIG5vdCBmb3JjZSBlbmFibGluZy9kaXNhYmxpbmcgYW4gb3V0cHV0LCBpZiBpdCB3b3VsZCBi
+ZQpzd2l0Y2hlZCBvbiBhdXRvbWF0aWNhbGx5LCBidXQgaXQgZG9lc250LgpUaGUgc3lzdGVtIG5v
+cm1hbGx5ICgpd2l0aG91dCBmb3JjaW5nIGFueXRoaW5nKSBzdGFydHMgd2l0aCB0aGUgTFZEUy0x
+Cm9uIGFuIHRoZSAoY29ubmVjdGVkKSBEVkktRC0xIG9mZjoKClsgICAgMTcuNjM2XSAoSUkpIE5P
+VVZFQVUoMCk6IEVESUQgZm9yIG91dHB1dCBMVkRTLTEKWyAgICAxNy42MzZdIChJSSkgTk9VVkVB
+VSgwKTogTWFudWZhY3R1cmVyOiBTRUMgIE1vZGVsOiAzNDQ4ICBTZXJpYWwjOiAwClsgICAgMTcu
+NjM2XSAoSUkpIE5PVVZFQVUoMCk6IFllYXI6IDIwMDUgIFdlZWs6IDAKWyAgICAxNy42MzZdIChJ
+SSkgTk9VVkVBVSgwKTogRURJRCBWZXJzaW9uOiAxLjMKWyAgICAxNy42MzZdIChJSSkgTk9VVkVB
+VSgwKTogRGlnaXRhbCBEaXNwbGF5IElucHV0ClsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6
+IE1heCBJbWFnZSBTaXplIFtjbV06IGhvcml6LjogMzcgIHZlcnQuOiAyMwpbICAgIDE3LjYzNl0g
+KElJKSBOT1VWRUFVKDApOiBHYW1tYTogMi4yMApbICAgIDE3LjYzNl0gKElJKSBOT1VWRUFVKDAp
+OiBObyBEUE1TIGNhcGFiaWxpdGllcyBzcGVjaWZpZWQKWyAgICAxNy42MzZdIChJSSkgTk9VVkVB
+VSgwKTogU3VwcG9ydGVkIGNvbG9yIGVuY29kaW5nczogUkdCIDQ6NDo0IFlDckNiIDQ6NDo0IApb
+ICAgIDE3LjYzNl0gKElJKSBOT1VWRUFVKDApOiBGaXJzdCBkZXRhaWxlZCB0aW1pbmcgaXMgcHJl
+ZmVycmVkIG1vZGUKWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogcmVkWDogMC41ODAgcmVk
+WTogMC4zNDAgICBncmVlblg6IDAuMzEwIGdyZWVuWTogMC41NTAKWyAgICAxNy42MzZdIChJSSkg
+Tk9VVkVBVSgwKTogYmx1ZVg6IDAuMTU1IGJsdWVZOiAwLjE1NSAgIHdoaXRlWDogMC4zMTMgd2hp
+dGVZOiAwLjMyOQpbICAgIDE3LjYzNl0gKElJKSBOT1VWRUFVKDApOiBNYW51ZmFjdHVyZXIncyBt
+YXNrOiAwClsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6IFN1cHBvcnRlZCBkZXRhaWxlZCB0
+aW1pbmc6ClsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6IGNsb2NrOiAxNjEuNiBNSHogICBJ
+bWFnZSBTaXplOiAgMzY3IHggMjMwIG1tClsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6IGhf
+YWN0aXZlOiAxOTIwICBoX3N5bmM6IDE5NjggIGhfc3luY19lbmQgMjAwMCBoX2JsYW5rX2VuZCAy
+MjA4IGhfYm9yZGVyOiAwClsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6IHZfYWN0aXZlOiAx
+MjAwICB2X3N5bmM6IDEyMDIgIHZfc3luY19lbmQgMTIwOCB2X2JsYW5raW5nOiAxMjIwIHZfYm9y
+ZGVyOiAwClsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6IFVua25vd24gdmVuZG9yLXNwZWNp
+ZmljIGJsb2NrIGYKWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogIFNBTVNVTkcKWyAgICAx
+Ny42MzZdIChJSSkgTk9VVkVBVSgwKTogIDE3MENUMDItMDAxClsgICAgMTcuNjM2XSAoSUkpIE5P
+VVZFQVUoMCk6IEVESUQgKGluIGhleCk6ClsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6ICAg
+MDBmZmZmZmZmZmZmZmYwMDRjYTM0ODM0MDAwMDAwMDAKWyAgICAxNy42MzZdIChJSSkgTk9VVkVB
+VSgwKTogICAwMDBmMDEwMzgwMjUxNzc4MGE4N2Y1OTQ1NzRmOGMyNwpbICAgIDE3LjYzNl0gKElJ
+KSBOT1VWRUFVKDApOiAgIDI3NTA1NDAwMDAwMDAxMDEwMTAxMDEwMTAxMDEwMTAxClsgICAgMTcu
+NjM2XSAoSUkpIE5PVVZFQVUoMCk6ICAgMDEwMTAxMDEwMTAxMjMzZjgwMjA3MWIwMTQ0MDMwMjAK
+WyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogICAyNjAwNmZlNjEwMDAwMDE5MDAwMDAwMGYw
+MDAwMDAwMApbICAgIDE3LjYzNl0gKElJKSBOT1VWRUFVKDApOiAgIDAwMDAwMDAwMDA0NmQyMDI2
+NDAwMDAwMDAwZmUwMDUzClsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6ICAgNDE0ZDUzNTU0
+ZTQ3MGEyMDIwMjAyMDIwMDAwMDAwZmUKWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogICAw
+MDMxMzczMDQzNTQzMDMyMmQzMDMwMzEwYTIwMDBkMQpbICAgIDE3LjYzNl0gKElJKSBOT1VWRUFV
+KDApOiBQcmludGluZyBwcm9iZWQgbW9kZXMgZm9yIG91dHB1dCBMVkRTLTEKWyAgICAxNy42MzZd
+IChJSSkgTk9VVkVBVSgwKTogTW9kZWxpbmUgIjE5MjB4MTIwMCJ4NjAuMCAgMTYxLjYzICAxOTIw
+IDE5NjggMjAwMCAyMjA4ICAxMjAwIDEyMDIgMTIwOCAxMjIwIC1oc3luYyAtdnN5bmMgKDczLjIg
+a0h6IGVQKQpbICAgIDE3LjYzNl0gKElJKSBOT1VWRUFVKDApOiBNb2RlbGluZSAiMTkyMHgxMDgw
+Ing2MC4wICAxNzMuMTEgIDE5MjAgMjA0OCAyMjQ4IDI1NzYgIDEwODAgMTA4MyAxMDg4IDExMjAg
+LWhzeW5jICt2c3luYyAoNjcuMiBrSHopClsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6IE1v
+ZGVsaW5lICIxNjAweDEyMDAieDYwLjAgIDE2MS4yMyAgMTYwMCAxNzEyIDE4ODAgMjE2MCAgMTIw
+MCAxMjAzIDEyMDcgMTI0NSAtaHN5bmMgK3ZzeW5jICg3NC42IGtIeikKWyAgICAxNy42MzZdIChJ
+SSkgTk9VVkVBVSgwKTogTW9kZWxpbmUgIjE2ODB4MTA1MCJ4NjAuMCAgMTQ2LjM2ICAxNjgwIDE3
+ODQgMTk2MCAyMjQwICAxMDUwIDEwNTMgMTA1OSAxMDg5IC1oc3luYyArdnN5bmMgKDY1LjMga0h6
+KQpbICAgIDE3LjYzNl0gKElJKSBOT1VWRUFVKDApOiBNb2RlbGluZSAiMTQwMHgxMDUwIng2MC4w
+ICAxMjEuNzkgIDE0MDAgMTQ4OCAxNjMyIDE4NjQgIDEwNTAgMTA1MyAxMDU3IDEwODkgLWhzeW5j
+ICt2c3luYyAoNjUuMyBrSHopClsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6IE1vZGVsaW5l
+ICIxMjgweDEwMjQieDU5LjkgIDEwOS4xMCAgMTI4MCAxMzY4IDE0OTYgMTcxMiAgMTAyNCAxMDI3
+IDEwMzQgMTA2MyAtaHN5bmMgK3ZzeW5jICg2My43IGtIeikKWyAgICAxNy42MzZdIChJSSkgTk9V
+VkVBVSgwKTogTW9kZWxpbmUgIjEyODB4OTYwIng2MC4wICAxMDEuMzQgIDEyODAgMTM2MCAxNDg4
+IDE2OTYgIDk2MCA5NjMgOTY3IDk5NiAtaHN5bmMgK3ZzeW5jICg1OS44IGtIeikKWyAgICAxNy42
+MzZdIChJSSkgTk9VVkVBVSgwKTogTW9kZWxpbmUgIjExNTJ4ODY0Ing2MC4wICAgODEuNzcgIDEx
+NTIgMTIxNiAxMzM2IDE1MjAgIDg2NCA4NjcgODcxIDg5NyAtaHN5bmMgK3ZzeW5jICg1My44IGtI
+eikKWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogTW9kZWxpbmUgIjEwMjR4NzY4Ing1OS45
+ICAgNjMuNTMgIDEwMjQgMTA3MiAxMTc2IDEzMjggIDc2OCA3NzEgNzc1IDc5OCAtaHN5bmMgK3Zz
+eW5jICg0Ny44IGtIeikKWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogTW9kZWxpbmUgIjgw
+MHg2MDAieDYwLjAgICAzOC4zMSAgODAwIDgzMiA5MTIgMTAyNCAgNjAwIDYwMyA2MDcgNjI0IC1o
+c3luYyArdnN5bmMgKDM3LjQga0h6KQpbICAgIDE3LjYzNl0gKElJKSBOT1VWRUFVKDApOiBNb2Rl
+bGluZSAiNjQweDQ4MCJ4NTkuOSAgIDIzLjk4ICA2NDAgNjY0IDcyMCA4MDAgIDQ4MCA0ODMgNDg3
+IDUwMCAtaHN5bmMgK3ZzeW5jICgzMC4wIGtIeikKWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgw
+KTogTW9kZWxpbmUgIjcyMHg0MDAieDYwLjAgICAyMi40MSAgNzIwIDc0NCA4MDggODk2ICA0MDAg
+NDAzIDQxMyA0MTcgLWhzeW5jICt2c3luYyAoMjUuMCBrSHopClsgICAgMTcuNjM2XSAoSUkpIE5P
+VVZFQVUoMCk6IE1vZGVsaW5lICI2NDB4NDAwIng2MC4wICAgMjAuMDAgIDY0MCA2NjQgNzIwIDgw
+MCAgNDAwIDQwMyA0MDkgNDE3IC1oc3luYyArdnN5bmMgKDI1LjAga0h6KQpbICAgIDE3LjYzNl0g
+KElJKSBOT1VWRUFVKDApOiBNb2RlbGluZSAiNjQweDM1MCJ4NTkuOCAgIDE3LjUyICA2NDAgNjY0
+IDcyMCA4MDAgIDM1MCAzNTMgMzYzIDM2NiAtaHN5bmMgK3ZzeW5jICgyMS45IGtIeikKWyAgICAx
+Ny42MzddIChJSSkgTk9VVkVBVSgwKTogRURJRCBmb3Igb3V0cHV0IERWSS1ELTEKWyAgICAxNy42
+MzhdIChJSSkgTk9VVkVBVSgwKTogRURJRCBmb3Igb3V0cHV0IERWSS1ELTIKWyAgICAxNy42NDld
+IChJSSkgTk9VVkVBVSgwKTogRURJRCBmb3Igb3V0cHV0IFZHQS0xClsgICAgMTcuNjQ5XSAoSUkp
+IE5PVVZFQVUoMCk6IE91dHB1dCBMVkRTLTEgY29ubmVjdGVkClsgICAgMTcuNjQ5XSAoSUkpIE5P
+VVZFQVUoMCk6IE91dHB1dCBEVkktRC0xIGRpc2Nvbm5lY3RlZApbICAgIDE3LjY0OV0gKElJKSBO
+T1VWRUFVKDApOiBPdXRwdXQgRFZJLUQtMiBkaXNjb25uZWN0ZWQKWyAgICAxNy42NDldIChJSSkg
+Tk9VVkVBVSgwKTogT3V0cHV0IFZHQS0xIGRpc2Nvbm5lY3RlZApbICAgIDE3LjY0OV0gKElJKSBO
+T1VWRUFVKDApOiBVc2luZyBleGFjdCBzaXplcyBmb3IgaW5pdGlhbCBtb2RlcwpbICAgIDE3LjY0
+OV0gKElJKSBOT1VWRUFVKDApOiBPdXRwdXQgTFZEUy0xIHVzaW5nIGluaXRpYWwgbW9kZSAxOTIw
+eDEyMDAgKzArMApbICAgIDE3LjY0OV0gKD09KSBOT1VWRUFVKDApOiBVc2luZyBnYW1tYSBjb3Jy
+ZWN0aW9uICgxLjAsIDEuMCwgMS4wKQoKQnV0IEkgbWlnaHQgbGlrZSB0byBoYXZlIGEgbXVsdGlz
+Y3JlZW4gc2V0dGluZyBvciBhIHNpbmdsZSBzY3JlZW4gRFZJLgoKU28gaG93IGNvdWxkIEkgc3dp
+dGNoIERWSS1ELTEgb24uIApBdCBmaXJzdCBJIHRyaWVkIHRvIGZvcmNlLWVuYWJsaW5nIGluIHhv
+cmcuY29uZi0+bm8gc3VjY2VzcwpUaGVuIEkgcmVhZCBhYm91dCBLTVMgLT4gc3VjY2VzcyBzbyBm
+YXIgdGhhdCBEVkktRC0xIGlzIG9uLgoKVGhlIGRpZmZlcmVuY2UgaW4gWG9yZy5sb2cgaXMsIHRo
+ZXJlIGlzIG5vIGxvZ2dpbmcgb2Ygc29tZSBFRElELWRhdGEKKGxpa2UgZnJvbSBMVkRTIGluIGRl
+ZmF1bHQgc2V0dGluZykKU28gSSB1bmRlcnN0YW5kIG5vdywgd2h5IGl0IHN0YXJ0cyBvbiAxMDI0
+eDc2OC4KCgpTbyB0aGVyZSBhcmUgc29tZSBxdWVzdGlvbnM6CjEuQ291bGQgSSBtYW5hZ2Ugc29t
+ZWhvdyB0byBib290dXAgd2l0aCB0d28gbW9uaXRvcnMgZW5hYmxlZCB3aXRob3V0CmZvcmNpbmcg
+YW55dGhpbmc/CjIuV2h5IGFyZSB0aGVyZSB0aGVyZSBubyBFRElELUluZm9ybWF0aW9uIG9uIERW
+SS1ELTEgKG52aWRpYSBkcml2ZXJzCmRldGVjdHMgdGhlIG1vbml0b3IsIGhvdyBkbyB0aGV5IHRo
+ZSB0cmljaywgaWYgdGhlIE1vbml0b3Igc2hvdWxkIGJlCmJ1Z2d5PwozLklmIHRoZXJlJ3Mgbm8g
+b3RoZXIgd2F5LCBhbmQgSSBoYXZlIHRvIGZvcmNlIG91dHB1dCBhbmQgcmVzb2x1dGlvbiwKd2h5
+IGRvZXMgaXQgd29yayB3aXRoIDE2MDB4MTIwMCwgYnV0IGhhcyBhIDk2MHgxMjAwIE1vbml0b3Ig
+cmVzb2x1dGlvbgoodG8gYmUgc2VlbiBpbiB0aGUgbW9uaXRvcnMgbWVudSkgd2hpbGUgc2hvd2lu
+ZyAxOTIweDEyMDAgcGljdHVyZT8KCgo+IENvdWxkIGJlLiBJJ2QgZW5jb3VyYWdlIHlvdSB0byBm
+aWxlIGEgYnVnIHdpdGggdGhlIHJlbGV2YW50IGRhdGEKPiAoZS5nLgo+IGEgY29weSBvZiB5b3Vy
+IG1vbml0b3IncyBlZGlkLCB3aGljaCBjYW4gYmUgb2J0YWluZWQgZnJvbQo+IC9zeXMvY2xhc3Mv
+ZHJtL2NhcmQwLSRjb25uL2VkaWQgb3Igc28sIHByb2JhYmx5IGRtZXNnLCBhbnl0aGluZyBlbHNl
+Cj4geW91IHRoaW5rIGlzIHJlbGV2YW50KS4KClRoYW5rIHlvdSBJbGlhLCBJJ2xsIHRyeSB0byBm
+aW5kIG91dCwgaG93IHRvIGZpbGUgYSBidWcgd2l0aCBidWd6aWxsYS4KV2lsbCBhbHNvIHRyeSBh
+bm90aGVyIERWSS1Nb25pdG9yLCBtYXliZSB0aGlzIG9uZSBiZWhhdmVzIGEgbGl0dGxlIGJpdAp3
+cm9uZywgYW5kIG1heWJlIHRoZXJlIGlzIGEgd2F5IHRvIGZha2UgRURJRCBmb3IgdGhpcyBvbmUu
+Li4KCkdyZWV0cyBmcm9tIFNheG9uaWEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
