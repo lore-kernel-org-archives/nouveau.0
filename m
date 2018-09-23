@@ -1,14 +1,15 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Strange monitor behavior on forced DVI-D output
-Date: Sun, 23 Sep 2018 12:55:06 -0400
-Message-ID: <CAKb7UvidrQx9EzP4NXZ1GzoN+Pnw=uszqOqNyNvCjxg0EFEOEw@mail.gmail.com>
-References: <4e690d5c6b6229e3074868620c3c4bb07a57d2ae.camel@freenet.de>
- <948b1f7cfa41b5e1979875b56dbcfc630375cf32.camel@freenet.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108032] nv50_ir_lowering_gm107.cpp:326: undefined
+ reference to
+ `nv50_ir::NVC0LoweringPass::loadMsAdjInfo32(nv50_ir::TexInstruction::Target,
+ unsigned int, int, nv50_ir::Value*, bool)'
+Date: Sun, 23 Sep 2018 17:03:38 +0000
+Message-ID: <bug-108032-8800-jakXfbHVwV@http.bugs.freedesktop.org/>
+References: <bug-108032-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1271458982=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <948b1f7cfa41b5e1979875b56dbcfc630375cf32.camel-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org>
+In-Reply-To: <bug-108032-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,32 +19,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?Q?Wolfgang_Ri=C3=9Fler?= <wolle321-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBTZXAgMjMsIDIwMTggYXQgMTI6MjYgUE0sIFdvbGZnYW5nIFJpw59sZXIgPHdvbGxl
-MzIxQGZyZWVuZXQuZGU+IHdyb3RlOgo+IEkgdHJ5IHRvIHNlbmQgYSBmcmllbmRseSBwaW5nIHRv
-IG15IHByb2JsZW0uCj4gQXQgdGhlIG1vbWVudCBJJ20gcnVubmluZyBhdCAxNjAweDEyMDAgKG1v
-bml0b3IgdGhhbiBoYXMgMTYwMHgxMjAwCj4gdG9vKSwgd2hhdCBsb29rcyBiZXR0ZXIgdGhlbiAx
-OTIweDEyMDAgcGljdHVyZSBvbiB0aGF0IE1vbml0b3Igd2l0aAo+IDk2MHgxMjAwLgo+IEkgY2Fu
-dCBnZXQgMTkyMHgxMjAwIHdvcmtpbmcsIGJ1dCBJJ20gc2h1cmUsIHRoYXQgdGhlIG1vbml0b3Ig
-aGFzIHRoaXMKPiBuYXRpdmUgcmVzb2x1dGlvbi4gKHByb3ByaWV0YXJ5IG52aWRpYS1kcml2ZXIg
-ZG9lcyBpdCwgYnV0IGZyZWV6ZXMKPiBhZnRlciAyMG1pbiwgb2YgY291cnNlLCBub3QgeW91ciBw
-cm9ibGVtKS4KPgo+IDE5MjB4MTIwMCBvbiB0aGUgaW50ZXJuYWwgTFZEUyAtIE1vbml0b3Igb2Yg
-dGhlIExhcHRvcCB3aXRoIG5vdXZlYXUKPiB3b3Jrcy4KPgo+IFdoZW4gSSBib290IHVwIHdpdGgg
-a21zIHZpZGVvPURWSS1ELTE6ZSB2aWRlbz1MVkRTLTE6ZCwgdGhlIHNjcmVlbgo+IHNob3dzIDEw
-MjR4Nzg2LgoKVGhhdCdzIG5vdCBleHRyZW1lbHkgc3VycHJpc2luZyAuLi4gZm9yY2UtZW5hYmxp
-bmcgYW4gb3V0cHV0IEkgdGhpbmsKbWlnaHQga2lsbCB0aGUgcmVzb2x1dGlvbiBkZXRlY3Rpb24s
-IGFuZCAxMDI0eDc2OCBpcyB0aGUgZGVmYXVsdC4gV2h5CmFyZSB5b3UgZm9yY2UtZW5hYmxpbmcv
-ZGlzYWJsaW5nIHZpZGVvIG91dHB1dHM/IFRoYXQgc2hvdWxkIG5vdApnZW5lcmFsbHkgYmUgbmVj
-ZXNzYXJ5LgoKPgo+IENvdWxkIHlvdSBnaXZlIG1lIGFueSBoaW50LCB3aGF0IGFtIEkgZG9pbmcg
-d3JvbmcsIG9yIHdoYXQgSSBjb3VsZCB0cnkKPiB0byBnZXQgRFZJLU1vbml0b3Igd29ya2luZz8K
-Pgo+IENvdWxkIHRoZSBiZSBhIGJ1ZyBpbiB0aGUgRURJRC1kYXRhIGZyb20gdGhlIG1vbml0b3I/
-CgpDb3VsZCBiZS4gSSdkIGVuY291cmFnZSB5b3UgdG8gZmlsZSBhIGJ1ZyB3aXRoIHRoZSByZWxl
-dmFudCBkYXRhIChlLmcuCmEgY29weSBvZiB5b3VyIG1vbml0b3IncyBlZGlkLCB3aGljaCBjYW4g
-YmUgb2J0YWluZWQgZnJvbQovc3lzL2NsYXNzL2RybS9jYXJkMC0kY29ubi9lZGlkIG9yIHNvLCBw
-cm9iYWJseSBkbWVzZywgYW55dGhpbmcgZWxzZQp5b3UgdGhpbmsgaXMgcmVsZXZhbnQpLgoKQ2hl
-ZXJzLAoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1271458982==
+Content-Type: multipart/alternative; boundary="15377222180.69C4F9F22.28184"
+Content-Transfer-Encoding: 7bit
+
+
+--15377222180.69C4F9F22.28184
+Date: Sun, 23 Sep 2018 17:03:38 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108032
+
+--- Comment #2 from Rhys Perry <pendingchaos02+fdobugzilla-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Seems that although I can't reproduce it with 64-bit targeted Meson, I can =
+with
+with 32-bit targeted autotools.
+
+Removing the inline does fix the error and I've posted a patch doing that:
+https://lists.freedesktop.org/archives/mesa-dev/2018-September/205821.html
+
+It or something similar should be pushed soon.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15377222180.69C4F9F22.28184
+Date: Sun, 23 Sep 2018 17:03:38 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nv50_ir_lowering_gm107.cpp:326: undefined reference to `n=
+v50_ir::NVC0LoweringPass::loadMsAdjInfo32(nv50_ir::TexInstruction::Target, =
+unsigned int, int, nv50_ir::Value*, bool)'"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108032#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nv50_ir_lowering_gm107.cpp:326: undefined reference to `n=
+v50_ir::NVC0LoweringPass::loadMsAdjInfo32(nv50_ir::TexInstruction::Target, =
+unsigned int, int, nv50_ir::Value*, bool)'"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108032">bug 10803=
+2</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pendingchaos02+fdobugzilla&#64;gmail.com" title=3D"Rhys Perry &lt;pendingch=
+aos02+fdobugzilla&#64;gmail.com&gt;"> <span class=3D"fn">Rhys Perry</span><=
+/a>
+</span></b>
+        <pre>Seems that although I can't reproduce it with 64-bit targeted =
+Meson, I can with
+with 32-bit targeted autotools.
+
+Removing the inline does fix the error and I've posted a patch doing that:
+<a href=3D"https://lists.freedesktop.org/archives/mesa-dev/2018-September/2=
+05821.html">https://lists.freedesktop.org/archives/mesa-dev/2018-September/=
+205821.html</a>
+
+It or something similar should be pushed soon.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15377222180.69C4F9F22.28184--
+
+--===============1271458982==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1271458982==--
