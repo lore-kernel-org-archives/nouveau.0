@@ -1,108 +1,211 @@
-From: Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [PATCH v2 3/6] drm/i915: Leave intel_conn->mst_port set, use mst_port_gone instead
-Date: Mon, 24 Sep 2018 09:53:47 +0300
-Message-ID: <87sh1zwflw.fsf@intel.com>
-References: <20180919230913.16894-1-lyude@redhat.com> <20180919230913.16894-4-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108043] New: Nouveau reports timeout on MX150
+Date: Mon, 24 Sep 2018 10:58:57 +0000
+Message-ID: <bug-108043-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20180919230913.16894-4-lyude@redhat.com>
-Sender: stable-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============0932164538=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 19 Sep 2018, Lyude Paul <lyude@redhat.com> wrote:
-> Currently we set intel_connector->mst_port to NULL to signify that the
-> MST port has been removed from the system so that we can prevent further
-> action on the port such as connector probes, mode probing, etc.
-> However, we're going to need access to intel_connector->mst_port in
-> order to fixup ->best_encoder() so that it can always return the correct
-> encoder for an MST port to prevent legacy DPMS prop changes from
-> failing. This should be safe, so instead keep intel_connector->mst_port
-> always set and instead add intel_connector->mst_port_gone in order to
-> signify whether or not the connector has disappeared from the system.
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Cc: stable@vger.kernel.org
-> ---
->  drivers/gpu/drm/i915/intel_dp_mst.c | 14 +++++++-------
->  drivers/gpu/drm/i915/intel_drv.h    |  1 +
->  2 files changed, 8 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c b/drivers/gpu/drm/i915/intel_dp_mst.c
-> index 4ecd65375603..fcb9b87b9339 100644
-> --- a/drivers/gpu/drm/i915/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/intel_dp_mst.c
-> @@ -311,9 +311,8 @@ static int intel_dp_mst_get_ddc_modes(struct drm_connector *connector)
->  	struct edid *edid;
->  	int ret;
->  
-> -	if (!intel_dp) {
-> +	if (intel_connector->mst_port_gone)
->  		return intel_connector_update_modes(connector, NULL);
-> -	}
->  
->  	edid = drm_dp_mst_get_edid(connector, &intel_dp->mst_mgr, intel_connector->port);
->  	ret = intel_connector_update_modes(connector, edid);
-> @@ -328,9 +327,10 @@ intel_dp_mst_detect(struct drm_connector *connector, bool force)
->  	struct intel_connector *intel_connector = to_intel_connector(connector);
->  	struct intel_dp *intel_dp = intel_connector->mst_port;
->  
-> -	if (!intel_dp)
-> +	if (intel_connector->mst_port_gone)
->  		return connector_status_disconnected;
-> -	return drm_dp_mst_detect_port(connector, &intel_dp->mst_mgr, intel_connector->port);
-> +	return drm_dp_mst_detect_port(connector, &intel_dp->mst_mgr,
-> +				      intel_connector->port);
->  }
->  
->  static void
-> @@ -370,7 +370,7 @@ intel_dp_mst_mode_valid(struct drm_connector *connector,
->  	int bpp = 24; /* MST uses fixed bpp */
->  	int max_rate, mode_rate, max_lanes, max_link_clock;
->  
-> -	if (!intel_dp)
-> +	if (intel_connector->mst_port_gone)
->  		return MODE_ERROR;
->  
->  	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
-> @@ -402,7 +402,7 @@ static struct drm_encoder *intel_mst_atomic_best_encoder(struct drm_connector *c
->  	struct intel_dp *intel_dp = intel_connector->mst_port;
->  	struct intel_crtc *crtc = to_intel_crtc(state->crtc);
->  
-> -	if (!intel_dp)
-> +	if (intel_connector->mst_port_gone)
->  		return NULL;
->  	return &intel_dp->mst_encoders[crtc->pipe]->base.base;
->  }
-> @@ -514,7 +514,7 @@ static void intel_dp_destroy_mst_connector(struct drm_dp_mst_topology_mgr *mgr,
->  						   connector);
->  	/* prevent race with the check in ->detect */
->  	drm_modeset_lock(&connector->dev->mode_config.connection_mutex, NULL);
-> -	intel_connector->mst_port = NULL;
-> +	intel_connector->mst_port_gone = true;
->  	drm_modeset_unlock(&connector->dev->mode_config.connection_mutex);
->  
->  	drm_connector_put(connector);
-> diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915/intel_drv.h
-> index 8fc61e96754f..87ce772ae7f8 100644
-> --- a/drivers/gpu/drm/i915/intel_drv.h
-> +++ b/drivers/gpu/drm/i915/intel_drv.h
-> @@ -409,6 +409,7 @@ struct intel_connector {
->  	void *port; /* store this opaque as its illegal to dereference it */
->  
->  	struct intel_dp *mst_port;
 
-	/*
-	 * please explain mst_port_gone here too instead of just the
-	 * commit message!
-	 */
+--===============0932164538==
+Content-Type: multipart/alternative; boundary="15377867371.eAFD0.31690"
+Content-Transfer-Encoding: 7bit
 
-> +	bool mst_port_gone;
->  
->  	/* Work struct to schedule a uevent on link train failure */
->  	struct work_struct modeset_retry_work;
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+--15377867371.eAFD0.31690
+Date: Mon, 24 Sep 2018 10:58:57 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108043
+
+            Bug ID: 108043
+           Summary: Nouveau reports timeout on MX150
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: igmar-KTS9L/AgvGvNa8rLGBpkyg@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 141709
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141709&action=3Dedit
+dmesg
+
+Nouveau drivers gives a timeout on load, and on every operation is is reque=
+sted
+to.
+
+Environment :=20
+
+Lenovo T580P
+NVidia MX150
+Intel GPU
+
+Laptop has dual GPU, with a by the looks functional mux.
+
+dmesg attached. If patches need to be tested : Let me know.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15377867371.eAFD0.31690
+Date: Mon, 24 Sep 2018 10:58:57 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau reports timeout on MX150"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108043">108043</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nouveau reports timeout on MX150
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>igmar&#64;palsenberg.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141709=
+" name=3D"attach_141709" title=3D"dmesg">attachment 141709</a> <a href=3D"a=
+ttachment.cgi?id=3D141709&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
+/span>
+dmesg
+
+Nouveau drivers gives a timeout on load, and on every operation is is reque=
+sted
+to.
+
+Environment :=20
+
+Lenovo T580P
+NVidia MX150
+Intel GPU
+
+Laptop has dual GPU, with a by the looks functional mux.
+
+dmesg attached. If patches need to be tested : Let me know.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15377867371.eAFD0.31690--
+
+--===============0932164538==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0932164538==--
