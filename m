@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108047] No recognition of DVI-D monitor
-Date: Mon, 24 Sep 2018 18:33:14 +0000
-Message-ID: <bug-108047-8800-naWGDhLGzm@http.bugs.freedesktop.org/>
+Date: Mon, 24 Sep 2018 18:34:48 +0000
+Message-ID: <bug-108047-8800-636Aa1MwiV@http.bugs.freedesktop.org/>
 References: <bug-108047-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0930209395=="
+Content-Type: multipart/mixed; boundary="===============0762679763=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108047-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0930209395==
-Content-Type: multipart/alternative; boundary="15378139940.1249.5781"
+--===============0762679763==
+Content-Type: multipart/alternative; boundary="15378140880.fCBfd.6096"
 Content-Transfer-Encoding: 7bit
 
 
---15378139940.1249.5781
-Date: Mon, 24 Sep 2018 18:33:14 +0000
+--15378140880.fCBfd.6096
+Date: Mon, 24 Sep 2018 18:34:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108047
 
---- Comment #4 from Wolfgang <wolle321-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org> ---
-Created attachment 141721
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141721&action=3Dedit
-Xorg.log with DVI plugged
+--- Comment #5 from Wolfgang <wolle321-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org> ---
+Created attachment 141722
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141722&action=3Dedit
+dmesg with DVI plugged kms forced
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15378139940.1249.5781
-Date: Mon, 24 Sep 2018 18:33:14 +0000
+--15378140880.fCBfd.6096
+Date: Mon, 24 Sep 2018 18:34:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - No recognition of DVI-D monitor"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108047#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108047#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - No recognition of DVI-D monitor"
@@ -73,11 +73,11 @@ t # 4</a>
 wolle321&#64;freenet.de" title=3D"Wolfgang &lt;wolle321&#64;freenet.de&gt;"=
 > <span class=3D"fn">Wolfgang</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141721=
-" name=3D"attach_141721" title=3D"Xorg.log with DVI plugged">attachment 141=
-721</a> <a href=3D"attachment.cgi?id=3D141721&amp;action=3Dedit" title=3D"X=
-org.log with DVI plugged">[details]</a></span>
-Xorg.log with DVI plugged</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141722=
+" name=3D"attach_141722" title=3D"dmesg with DVI plugged kms forced">attach=
+ment 141722</a> <a href=3D"attachment.cgi?id=3D141722&amp;action=3Dedit" ti=
+tle=3D"dmesg with DVI plugged kms forced">[details]</a></span>
+dmesg with DVI plugged kms forced</pre>
         </div>
       </p>
 
@@ -91,9 +91,9 @@ Xorg.log with DVI plugged</pre>
     </body>
 </html>=
 
---15378139940.1249.5781--
+--15378140880.fCBfd.6096--
 
---===============0930209395==
+--===============0762679763==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0930209395==--
+--===============0762679763==--
