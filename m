@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108047] No recognition of DVI-D monitor
-Date: Mon, 24 Sep 2018 18:31:56 +0000
-Message-ID: <bug-108047-8800-OpOIbv57jh@http.bugs.freedesktop.org/>
+Date: Mon, 24 Sep 2018 18:32:35 +0000
+Message-ID: <bug-108047-8800-wfiaJrV8FG@http.bugs.freedesktop.org/>
 References: <bug-108047-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0350999580=="
+Content-Type: multipart/mixed; boundary="===============0688183096=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108047-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0350999580==
-Content-Type: multipart/alternative; boundary="15378139160.1Be3fD.5033"
+--===============0688183096==
+Content-Type: multipart/alternative; boundary="15378139551.9966Ba.4843"
 Content-Transfer-Encoding: 7bit
 
 
---15378139160.1Be3fD.5033
-Date: Mon, 24 Sep 2018 18:31:56 +0000
+--15378139551.9966Ba.4843
+Date: Mon, 24 Sep 2018 18:32:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108047
 
---- Comment #2 from Wolfgang <wolle321-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org> ---
-Created attachment 141719
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141719&action=3Dedit
-Xorg.log without DVI
+--- Comment #3 from Wolfgang <wolle321-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org> ---
+Created attachment 141720
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141720&action=3Dedit
+dmesg with DVI plugged
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15378139160.1Be3fD.5033
-Date: Mon, 24 Sep 2018 18:31:56 +0000
+--15378139551.9966Ba.4843
+Date: Mon, 24 Sep 2018 18:32:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - No recognition of DVI-D monitor"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108047#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108047#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - No recognition of DVI-D monitor"
@@ -73,11 +73,11 @@ t # 2</a>
 wolle321&#64;freenet.de" title=3D"Wolfgang &lt;wolle321&#64;freenet.de&gt;"=
 > <span class=3D"fn">Wolfgang</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141719=
-" name=3D"attach_141719" title=3D"Xorg.log without DVI">attachment 141719</=
-a> <a href=3D"attachment.cgi?id=3D141719&amp;action=3Dedit" title=3D"Xorg.l=
-og without DVI">[details]</a></span>
-Xorg.log without DVI</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141720=
+" name=3D"attach_141720" title=3D"dmesg with DVI plugged">attachment 141720=
+</a> <a href=3D"attachment.cgi?id=3D141720&amp;action=3Dedit" title=3D"dmes=
+g with DVI plugged">[details]</a></span>
+dmesg with DVI plugged</pre>
         </div>
       </p>
 
@@ -91,9 +91,9 @@ Xorg.log without DVI</pre>
     </body>
 </html>=
 
---15378139160.1Be3fD.5033--
+--15378139551.9966Ba.4843--
 
---===============0350999580==
+--===============0688183096==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0350999580==--
+--===============0688183096==--
