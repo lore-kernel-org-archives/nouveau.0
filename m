@@ -1,129 +1,108 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Strange monitor behavior on forced DVI-D output
-Date: Sun, 23 Sep 2018 14:05:12 -0400
-Message-ID: <CAKb7Uvg_VbE+6PBFucFA8s8+MQ3rvW=eSceiS94Lo_SZuNUugw@mail.gmail.com>
-References: <4e690d5c6b6229e3074868620c3c4bb07a57d2ae.camel@freenet.de>
- <948b1f7cfa41b5e1979875b56dbcfc630375cf32.camel@freenet.de>
- <CAKb7UvidrQx9EzP4NXZ1GzoN+Pnw=uszqOqNyNvCjxg0EFEOEw@mail.gmail.com>
- <6d6245d10180e6c0bb4741ae79dc6fba8bb1cd83.camel@freenet.de>
+From: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH v2 3/6] drm/i915: Leave intel_conn->mst_port set, use mst_port_gone instead
+Date: Mon, 24 Sep 2018 09:53:47 +0300
+Message-ID: <87sh1zwflw.fsf@intel.com>
+References: <20180919230913.16894-1-lyude@redhat.com> <20180919230913.16894-4-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6d6245d10180e6c0bb4741ae79dc6fba8bb1cd83.camel-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?Q?Wolfgang_Ri=C3=9Fler?= <wolle321-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20180919230913.16894-4-lyude@redhat.com>
+Sender: stable-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: stable@vger.kernel.org, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBTZXAgMjMsIDIwMTggYXQgMTo0OCBQTSwgV29sZmdhbmcgUmnDn2xlciA8d29sbGUz
-MjFAZnJlZW5ldC5kZT4gd3JvdGU6Cj4gQW0gU29ubnRhZywgZGVuIDIzLjA5LjIwMTgsIDEyOjU1
-IC0wNDAwIHNjaHJpZWIgSWxpYSBNaXJraW46Cj4+IE9uIFN1biwgU2VwIDIzLCAyMDE4IGF0IDEy
-OjI2IFBNLCBXb2xmZ2FuZyBSacOfbGVyCj4+IDx3b2xsZTMyMUBmcmVlbmV0LmRlPiB3cm90ZToK
-PiBbc25pcF0KPj4KPj4gVGhhdCdzIG5vdCBleHRyZW1lbHkgc3VycHJpc2luZyAuLi4gZm9yY2Ut
-ZW5hYmxpbmcgYW4gb3V0cHV0IEkgdGhpbmsKPj4gbWlnaHQga2lsbCB0aGUgcmVzb2x1dGlvbiBk
-ZXRlY3Rpb24sIGFuZCAxMDI0eDc2OCBpcyB0aGUgZGVmYXVsdC4gV2h5Cj4+IGFyZSB5b3UgZm9y
-Y2UtZW5hYmxpbmcvZGlzYWJsaW5nIHZpZGVvIG91dHB1dHM/IFRoYXQgc2hvdWxkIG5vdAo+PiBn
-ZW5lcmFsbHkgYmUgbmVjZXNzYXJ5Lgo+Cj4gT2ssIEkgd291bGQgbm90IGZvcmNlIGVuYWJsaW5n
-L2Rpc2FibGluZyBhbiBvdXRwdXQsIGlmIGl0IHdvdWxkIGJlCj4gc3dpdGNoZWQgb24gYXV0b21h
-dGljYWxseSwgYnV0IGl0IGRvZXNudC4KPiBUaGUgc3lzdGVtIG5vcm1hbGx5ICgpd2l0aG91dCBm
-b3JjaW5nIGFueXRoaW5nKSBzdGFydHMgd2l0aCB0aGUgTFZEUy0xCj4gb24gYW4gdGhlIChjb25u
-ZWN0ZWQpIERWSS1ELTEgb2ZmOgo+Cj4gWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogRURJ
-RCBmb3Igb3V0cHV0IExWRFMtMQo+IFsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6IE1hbnVm
-YWN0dXJlcjogU0VDICBNb2RlbDogMzQ0OCAgU2VyaWFsIzogMAo+IFsgICAgMTcuNjM2XSAoSUkp
-IE5PVVZFQVUoMCk6IFllYXI6IDIwMDUgIFdlZWs6IDAKPiBbICAgIDE3LjYzNl0gKElJKSBOT1VW
-RUFVKDApOiBFRElEIFZlcnNpb246IDEuMwo+IFsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6
-IERpZ2l0YWwgRGlzcGxheSBJbnB1dAo+IFsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6IE1h
-eCBJbWFnZSBTaXplIFtjbV06IGhvcml6LjogMzcgIHZlcnQuOiAyMwo+IFsgICAgMTcuNjM2XSAo
-SUkpIE5PVVZFQVUoMCk6IEdhbW1hOiAyLjIwCj4gWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgw
-KTogTm8gRFBNUyBjYXBhYmlsaXRpZXMgc3BlY2lmaWVkCj4gWyAgICAxNy42MzZdIChJSSkgTk9V
-VkVBVSgwKTogU3VwcG9ydGVkIGNvbG9yIGVuY29kaW5nczogUkdCIDQ6NDo0IFlDckNiIDQ6NDo0
-Cj4gWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogRmlyc3QgZGV0YWlsZWQgdGltaW5nIGlz
-IHByZWZlcnJlZCBtb2RlCj4gWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogcmVkWDogMC41
-ODAgcmVkWTogMC4zNDAgICBncmVlblg6IDAuMzEwIGdyZWVuWTogMC41NTAKPiBbICAgIDE3LjYz
-Nl0gKElJKSBOT1VWRUFVKDApOiBibHVlWDogMC4xNTUgYmx1ZVk6IDAuMTU1ICAgd2hpdGVYOiAw
-LjMxMyB3aGl0ZVk6IDAuMzI5Cj4gWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogTWFudWZh
-Y3R1cmVyJ3MgbWFzazogMAo+IFsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6IFN1cHBvcnRl
-ZCBkZXRhaWxlZCB0aW1pbmc6Cj4gWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogY2xvY2s6
-IDE2MS42IE1IeiAgIEltYWdlIFNpemU6ICAzNjcgeCAyMzAgbW0KPiBbICAgIDE3LjYzNl0gKElJ
-KSBOT1VWRUFVKDApOiBoX2FjdGl2ZTogMTkyMCAgaF9zeW5jOiAxOTY4ICBoX3N5bmNfZW5kIDIw
-MDAgaF9ibGFua19lbmQgMjIwOCBoX2JvcmRlcjogMAo+IFsgICAgMTcuNjM2XSAoSUkpIE5PVVZF
-QVUoMCk6IHZfYWN0aXZlOiAxMjAwICB2X3N5bmM6IDEyMDIgIHZfc3luY19lbmQgMTIwOCB2X2Js
-YW5raW5nOiAxMjIwIHZfYm9yZGVyOiAwCj4gWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTog
-VW5rbm93biB2ZW5kb3Itc3BlY2lmaWMgYmxvY2sgZgo+IFsgICAgMTcuNjM2XSAoSUkpIE5PVVZF
-QVUoMCk6ICBTQU1TVU5HCj4gWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogIDE3MENUMDIt
-MDAxCj4gWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogRURJRCAoaW4gaGV4KToKPiBbICAg
-IDE3LjYzNl0gKElJKSBOT1VWRUFVKDApOiAgIDAwZmZmZmZmZmZmZmZmMDA0Y2EzNDgzNDAwMDAw
-MDAwCj4gWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogICAwMDBmMDEwMzgwMjUxNzc4MGE4
-N2Y1OTQ1NzRmOGMyNwo+IFsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6ICAgMjc1MDU0MDAw
-MDAwMDEwMTAxMDEwMTAxMDEwMTAxMDEKPiBbICAgIDE3LjYzNl0gKElJKSBOT1VWRUFVKDApOiAg
-IDAxMDEwMTAxMDEwMTIzM2Y4MDIwNzFiMDE0NDAzMDIwCj4gWyAgICAxNy42MzZdIChJSSkgTk9V
-VkVBVSgwKTogICAyNjAwNmZlNjEwMDAwMDE5MDAwMDAwMGYwMDAwMDAwMAo+IFsgICAgMTcuNjM2
-XSAoSUkpIE5PVVZFQVUoMCk6ICAgMDAwMDAwMDAwMDQ2ZDIwMjY0MDAwMDAwMDBmZTAwNTMKPiBb
-ICAgIDE3LjYzNl0gKElJKSBOT1VWRUFVKDApOiAgIDQxNGQ1MzU1NGU0NzBhMjAyMDIwMjAyMDAw
-MDAwMGZlCj4gWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogICAwMDMxMzczMDQzNTQzMDMy
-MmQzMDMwMzEwYTIwMDBkMQo+IFsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6IFByaW50aW5n
-IHByb2JlZCBtb2RlcyBmb3Igb3V0cHV0IExWRFMtMQo+IFsgICAgMTcuNjM2XSAoSUkpIE5PVVZF
-QVUoMCk6IE1vZGVsaW5lICIxOTIweDEyMDAieDYwLjAgIDE2MS42MyAgMTkyMCAxOTY4IDIwMDAg
-MjIwOCAgMTIwMCAxMjAyIDEyMDggMTIyMCAtaHN5bmMgLXZzeW5jICg3My4yIGtIeiBlUCkKPiBb
-ICAgIDE3LjYzNl0gKElJKSBOT1VWRUFVKDApOiBNb2RlbGluZSAiMTkyMHgxMDgwIng2MC4wICAx
-NzMuMTEgIDE5MjAgMjA0OCAyMjQ4IDI1NzYgIDEwODAgMTA4MyAxMDg4IDExMjAgLWhzeW5jICt2
-c3luYyAoNjcuMiBrSHopCj4gWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogTW9kZWxpbmUg
-IjE2MDB4MTIwMCJ4NjAuMCAgMTYxLjIzICAxNjAwIDE3MTIgMTg4MCAyMTYwICAxMjAwIDEyMDMg
-MTIwNyAxMjQ1IC1oc3luYyArdnN5bmMgKDc0LjYga0h6KQo+IFsgICAgMTcuNjM2XSAoSUkpIE5P
-VVZFQVUoMCk6IE1vZGVsaW5lICIxNjgweDEwNTAieDYwLjAgIDE0Ni4zNiAgMTY4MCAxNzg0IDE5
-NjAgMjI0MCAgMTA1MCAxMDUzIDEwNTkgMTA4OSAtaHN5bmMgK3ZzeW5jICg2NS4zIGtIeikKPiBb
-ICAgIDE3LjYzNl0gKElJKSBOT1VWRUFVKDApOiBNb2RlbGluZSAiMTQwMHgxMDUwIng2MC4wICAx
-MjEuNzkgIDE0MDAgMTQ4OCAxNjMyIDE4NjQgIDEwNTAgMTA1MyAxMDU3IDEwODkgLWhzeW5jICt2
-c3luYyAoNjUuMyBrSHopCj4gWyAgICAxNy42MzZdIChJSSkgTk9VVkVBVSgwKTogTW9kZWxpbmUg
-IjEyODB4MTAyNCJ4NTkuOSAgMTA5LjEwICAxMjgwIDEzNjggMTQ5NiAxNzEyICAxMDI0IDEwMjcg
-MTAzNCAxMDYzIC1oc3luYyArdnN5bmMgKDYzLjcga0h6KQo+IFsgICAgMTcuNjM2XSAoSUkpIE5P
-VVZFQVUoMCk6IE1vZGVsaW5lICIxMjgweDk2MCJ4NjAuMCAgMTAxLjM0ICAxMjgwIDEzNjAgMTQ4
-OCAxNjk2ICA5NjAgOTYzIDk2NyA5OTYgLWhzeW5jICt2c3luYyAoNTkuOCBrSHopCj4gWyAgICAx
-Ny42MzZdIChJSSkgTk9VVkVBVSgwKTogTW9kZWxpbmUgIjExNTJ4ODY0Ing2MC4wICAgODEuNzcg
-IDExNTIgMTIxNiAxMzM2IDE1MjAgIDg2NCA4NjcgODcxIDg5NyAtaHN5bmMgK3ZzeW5jICg1My44
-IGtIeikKPiBbICAgIDE3LjYzNl0gKElJKSBOT1VWRUFVKDApOiBNb2RlbGluZSAiMTAyNHg3Njgi
-eDU5LjkgICA2My41MyAgMTAyNCAxMDcyIDExNzYgMTMyOCAgNzY4IDc3MSA3NzUgNzk4IC1oc3lu
-YyArdnN5bmMgKDQ3Ljgga0h6KQo+IFsgICAgMTcuNjM2XSAoSUkpIE5PVVZFQVUoMCk6IE1vZGVs
-aW5lICI4MDB4NjAwIng2MC4wICAgMzguMzEgIDgwMCA4MzIgOTEyIDEwMjQgIDYwMCA2MDMgNjA3
-IDYyNCAtaHN5bmMgK3ZzeW5jICgzNy40IGtIeikKPiBbICAgIDE3LjYzNl0gKElJKSBOT1VWRUFV
-KDApOiBNb2RlbGluZSAiNjQweDQ4MCJ4NTkuOSAgIDIzLjk4ICA2NDAgNjY0IDcyMCA4MDAgIDQ4
-MCA0ODMgNDg3IDUwMCAtaHN5bmMgK3ZzeW5jICgzMC4wIGtIeikKPiBbICAgIDE3LjYzNl0gKElJ
-KSBOT1VWRUFVKDApOiBNb2RlbGluZSAiNzIweDQwMCJ4NjAuMCAgIDIyLjQxICA3MjAgNzQ0IDgw
-OCA4OTYgIDQwMCA0MDMgNDEzIDQxNyAtaHN5bmMgK3ZzeW5jICgyNS4wIGtIeikKPiBbICAgIDE3
-LjYzNl0gKElJKSBOT1VWRUFVKDApOiBNb2RlbGluZSAiNjQweDQwMCJ4NjAuMCAgIDIwLjAwICA2
-NDAgNjY0IDcyMCA4MDAgIDQwMCA0MDMgNDA5IDQxNyAtaHN5bmMgK3ZzeW5jICgyNS4wIGtIeikK
-PiBbICAgIDE3LjYzNl0gKElJKSBOT1VWRUFVKDApOiBNb2RlbGluZSAiNjQweDM1MCJ4NTkuOCAg
-IDE3LjUyICA2NDAgNjY0IDcyMCA4MDAgIDM1MCAzNTMgMzYzIDM2NiAtaHN5bmMgK3ZzeW5jICgy
-MS45IGtIeikKPiBbICAgIDE3LjYzN10gKElJKSBOT1VWRUFVKDApOiBFRElEIGZvciBvdXRwdXQg
-RFZJLUQtMQo+IFsgICAgMTcuNjM4XSAoSUkpIE5PVVZFQVUoMCk6IEVESUQgZm9yIG91dHB1dCBE
-VkktRC0yCj4gWyAgICAxNy42NDldIChJSSkgTk9VVkVBVSgwKTogRURJRCBmb3Igb3V0cHV0IFZH
-QS0xCj4gWyAgICAxNy42NDldIChJSSkgTk9VVkVBVSgwKTogT3V0cHV0IExWRFMtMSBjb25uZWN0
-ZWQKPiBbICAgIDE3LjY0OV0gKElJKSBOT1VWRUFVKDApOiBPdXRwdXQgRFZJLUQtMSBkaXNjb25u
-ZWN0ZWQKPiBbICAgIDE3LjY0OV0gKElJKSBOT1VWRUFVKDApOiBPdXRwdXQgRFZJLUQtMiBkaXNj
-b25uZWN0ZWQKPiBbICAgIDE3LjY0OV0gKElJKSBOT1VWRUFVKDApOiBPdXRwdXQgVkdBLTEgZGlz
-Y29ubmVjdGVkCj4gWyAgICAxNy42NDldIChJSSkgTk9VVkVBVSgwKTogVXNpbmcgZXhhY3Qgc2l6
-ZXMgZm9yIGluaXRpYWwgbW9kZXMKPiBbICAgIDE3LjY0OV0gKElJKSBOT1VWRUFVKDApOiBPdXRw
-dXQgTFZEUy0xIHVzaW5nIGluaXRpYWwgbW9kZSAxOTIweDEyMDAgKzArMAo+IFsgICAgMTcuNjQ5
-XSAoPT0pIE5PVVZFQVUoMCk6IFVzaW5nIGdhbW1hIGNvcnJlY3Rpb24gKDEuMCwgMS4wLCAxLjAp
-Cj4KPiBCdXQgSSBtaWdodCBsaWtlIHRvIGhhdmUgYSBtdWx0aXNjcmVlbiBzZXR0aW5nIG9yIGEg
-c2luZ2xlIHNjcmVlbiBEVkkuCgpPSywgd2VsbCB0aGlzIGlzIGFscmVhZHkgYmFkLiBJdCdzIG5v
-dCBkZXRlY3RpbmcgRFZJLUQtMSBhcyBjb25uZWN0ZWQuCgpJIG5vdGljZSBpbiB5b3VyIGRtZXNn
-IGVhcmxpZXIsIHRoZXJlJ3MgYSBtZXNzYWdlCgpbICAgIDEuNjgwNzY5XSBub3V2ZWF1IDAwMDA6
-MDE6MDAuMDogbXhtOiB1bm1hdGNoZWQgb3V0cHV0IGRldmljZQowMTAzMDEwMjAxMDEwMTAwCgp3
-aGljaCBpcyBwcm9iYWJseSB0aGUgaGFyYmluZ2VyIG9mIHRoZSBsYXRlciBmYWlsdXJlLiBJIGRv
-bid0IGtub3cKYW55dGhpbmcgb2ZmaGFuZCBhYm91dCBob3cgdGhlIG14bSBob29rdXBzIHdvcmss
-IGJ1dCBJJ20gcHJldHR5IHN1cmUKd2UnZCBuZWVkIHRvIHNlZSBhIHZiaW9zIHRvIGZpZ3VyZSBv
-dXQgd2hhdCdzIG9mZi4gUGxlYXNlIGluY2x1ZGUgaXQKaW4gdGhlIGJ1ZyB5b3UgZmlsZSAoL3N5
-cy9rZXJuZWwvZGVidWcvZHJpLzAvdmJpb3Mucm9tKS4KCkNoZWVycywKCiAgLWlsaWEKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
-IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+On Wed, 19 Sep 2018, Lyude Paul <lyude@redhat.com> wrote:
+> Currently we set intel_connector->mst_port to NULL to signify that the
+> MST port has been removed from the system so that we can prevent further
+> action on the port such as connector probes, mode probing, etc.
+> However, we're going to need access to intel_connector->mst_port in
+> order to fixup ->best_encoder() so that it can always return the correct
+> encoder for an MST port to prevent legacy DPMS prop changes from
+> failing. This should be safe, so instead keep intel_connector->mst_port
+> always set and instead add intel_connector->mst_port_gone in order to
+> signify whether or not the connector has disappeared from the system.
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Cc: stable@vger.kernel.org
+> ---
+>  drivers/gpu/drm/i915/intel_dp_mst.c | 14 +++++++-------
+>  drivers/gpu/drm/i915/intel_drv.h    |  1 +
+>  2 files changed, 8 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c b/drivers/gpu/drm/i915/intel_dp_mst.c
+> index 4ecd65375603..fcb9b87b9339 100644
+> --- a/drivers/gpu/drm/i915/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/intel_dp_mst.c
+> @@ -311,9 +311,8 @@ static int intel_dp_mst_get_ddc_modes(struct drm_connector *connector)
+>  	struct edid *edid;
+>  	int ret;
+>  
+> -	if (!intel_dp) {
+> +	if (intel_connector->mst_port_gone)
+>  		return intel_connector_update_modes(connector, NULL);
+> -	}
+>  
+>  	edid = drm_dp_mst_get_edid(connector, &intel_dp->mst_mgr, intel_connector->port);
+>  	ret = intel_connector_update_modes(connector, edid);
+> @@ -328,9 +327,10 @@ intel_dp_mst_detect(struct drm_connector *connector, bool force)
+>  	struct intel_connector *intel_connector = to_intel_connector(connector);
+>  	struct intel_dp *intel_dp = intel_connector->mst_port;
+>  
+> -	if (!intel_dp)
+> +	if (intel_connector->mst_port_gone)
+>  		return connector_status_disconnected;
+> -	return drm_dp_mst_detect_port(connector, &intel_dp->mst_mgr, intel_connector->port);
+> +	return drm_dp_mst_detect_port(connector, &intel_dp->mst_mgr,
+> +				      intel_connector->port);
+>  }
+>  
+>  static void
+> @@ -370,7 +370,7 @@ intel_dp_mst_mode_valid(struct drm_connector *connector,
+>  	int bpp = 24; /* MST uses fixed bpp */
+>  	int max_rate, mode_rate, max_lanes, max_link_clock;
+>  
+> -	if (!intel_dp)
+> +	if (intel_connector->mst_port_gone)
+>  		return MODE_ERROR;
+>  
+>  	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
+> @@ -402,7 +402,7 @@ static struct drm_encoder *intel_mst_atomic_best_encoder(struct drm_connector *c
+>  	struct intel_dp *intel_dp = intel_connector->mst_port;
+>  	struct intel_crtc *crtc = to_intel_crtc(state->crtc);
+>  
+> -	if (!intel_dp)
+> +	if (intel_connector->mst_port_gone)
+>  		return NULL;
+>  	return &intel_dp->mst_encoders[crtc->pipe]->base.base;
+>  }
+> @@ -514,7 +514,7 @@ static void intel_dp_destroy_mst_connector(struct drm_dp_mst_topology_mgr *mgr,
+>  						   connector);
+>  	/* prevent race with the check in ->detect */
+>  	drm_modeset_lock(&connector->dev->mode_config.connection_mutex, NULL);
+> -	intel_connector->mst_port = NULL;
+> +	intel_connector->mst_port_gone = true;
+>  	drm_modeset_unlock(&connector->dev->mode_config.connection_mutex);
+>  
+>  	drm_connector_put(connector);
+> diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915/intel_drv.h
+> index 8fc61e96754f..87ce772ae7f8 100644
+> --- a/drivers/gpu/drm/i915/intel_drv.h
+> +++ b/drivers/gpu/drm/i915/intel_drv.h
+> @@ -409,6 +409,7 @@ struct intel_connector {
+>  	void *port; /* store this opaque as its illegal to dereference it */
+>  
+>  	struct intel_dp *mst_port;
+
+	/*
+	 * please explain mst_port_gone here too instead of just the
+	 * commit message!
+	 */
+
+> +	bool mst_port_gone;
+>  
+>  	/* Work struct to schedule a uevent on link train failure */
+>  	struct work_struct modeset_retry_work;
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
