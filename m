@@ -1,15 +1,11 @@
-From: Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
-Subject: Re: Google's Chrome Team might Blacklist Nouveau on
- Chromium
-Date: Wed, 26 Sep 2018 11:52:33 +0100
-Message-ID: <f760ce1c-b5bd-cd8f-faf3-111948d4ac37@spliet.org>
-References: <CAB15_AMQ8Mxy9AuXBY8R4W=Ek3_XsJzLE68xO-+OAcwT5Am9Mw@mail.gmail.com>
- <CAH0ntzyNrytnbmixkx7hdNBLikWCkqRtRq04qXeONhi6zkhcVw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108080] New: GK106 [GeForce GTX 660] System Freeze -
+ warp 3d0009 [ILLEGAL_INSTR_ENCODING]
+Date: Wed, 26 Sep 2018 23:19:55 +0000
+Message-ID: <bug-108080-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1209155470=="
+Content-Type: multipart/mixed; boundary="===============0316698298=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAH0ntzyNrytnbmixkx7hdNBLikWCkqRtRq04qXeONhi6zkhcVw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Content-Language: en-GB
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,242 +18,247 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---===============1209155470==
-Content-Type: multipart/alternative;
- boundary="------------F9F86BC50836B32830CACBC7"
-Content-Language: en-GB
 
-This is a multi-part message in MIME format.
---------------F9F86BC50836B32830CACBC7
-Content-Type: text/plain; charset=utf-8; format=flowed
+--===============0316698298==
+Content-Type: multipart/alternative; boundary="15380039950.21B2.31662"
 Content-Transfer-Encoding: 7bit
 
-I don't think any nouveau dev would disagree with the choice for a 
-software rendered browser over an unreliable browser. Insofar I still 
-count as a nouveau dev, I'll back this decision because it benefits user 
-experience.
-What is disappointing though is that when I perform a search on our bug 
-tracker (see [0] and [1]), I find precisely _one_ relevant bug. Shame on 
-us for not following up on that one, but shame on the Chrome developers 
-to decide they'd rather blacklist a driver than publicly* reach out and 
-ask what's going on. Blacklisting 3D rendering on nouveau isn't going to 
-fix nouveau, it's a short-term improvement with no long term prospect.
 
-On 26/09/18 11:25, Megaf wrote:
-> Well, I agree with them.
-> Nouveau is extremely unstable on my MacBook Pro with Nvidia 320M, 
-> freezing all the time and draining a lot of battery.
-> Performance wise is not too bad tho.
-> There's plenty of reported bugs already around the web if someone 
-> wants to investigate it.
-Don't take this as personal criticism, I really appreciate the fact that 
-you reach out and bring this to our attention. What I do wish to point 
-out to anyone is that there are too many projects with too many bug 
-trackers out there to track all of them. In reality nouveau devs monitor 
-the nouveau bugtracker [2], and if you're lucky the tracker of their 
-favourite distro. I don't believe it's feasible to expect driver devs to 
-track more - we're already grossly under"staffed". Sure, Chrome is a 
-popular piece of software, but so is Firefox, LibreOffice, VirtualBox, 
-Wine, Dolphin, Gnome Shell etc. etc... So my advice to anyone: if you 
-want bugs actually fixed in nouveau, do your civil duty and file them in 
-the nouveau bugtracker.
+--15380039950.21B2.31662
+Date: Wed, 26 Sep 2018 23:19:55 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-Roy
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108080
 
-[0] 
-https://bugs.freedesktop.org/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&bug_status=NEEDINFO&component=Driver%2Fnouveau&product=xorg&query_format=advanced&short_desc=chrome&short_desc_type=allwordssubstr
-[1] 
-https://bugs.freedesktop.org/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&bug_status=NEEDINFO&component=Drivers%2FDRI%2Fnouveau&product=Mesa&query_format=advanced&short_desc=chrome&short_desc_type=allwordssubstr
-[2] https://nouveau.freedesktop.org/wiki/Bugs/
+            Bug ID: 108080
+           Summary: GK106 [GeForce GTX 660] System Freeze - warp 3d0009
+                    [ILLEGAL_INSTR_ENCODING]
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: All
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: EliasWoods-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-* I'm aware that a sizeable portion of the workforce behind nouveau is 
-currently employed by Red Hat. What happens behind their scenes is 
-unknown to me and other contributors...
->
-> Thanks
-> Megaf
-> https://www.megaf.info/
->
-> email: mmegaf-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org <mailto:mmegaf-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> skype: eumegaf
-> discord: Megaf#6582
->
->
-> On Sun, 23 Sep 2018 at 04:06, Matthew Ary <matthewj.c.ary-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org 
-> <mailto:matthewj.c.ary-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>> wrote:
->
->
->     I thought you all would like to know that Google considers Nouveau
->     to be unstable and is now actively considering blacklisting.
->     Please see this issue on their issue tracker.
->
->     https://bugs.chromium.org/p/chromium/issues/detail?id=876523
->     _______________________________________________
->     Nouveau mailing list
->     Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org <mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
->     https://lists.freedesktop.org/mailman/listinfo/nouveau
->
->
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+Created attachment 141754
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141754&action=3Dedit
+journalctl --system
 
+This is similar but not quite the same bug as #107829
 
---------------F9F86BC50836B32830CACBC7
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
+I recently updated arch linux and attempted to use the nouvea driver with my
+GTX 660 GPU. System will reliable crash after about 30 seconds to 1 min in =
+KDE
+plasma with the following kernel message.
+
+Sep 25 21:18:49 sokka kernel: nouveau 0000:01:00.0: gr: TRAP ch 2 [023fe330=
+00
+Xorg[406]]
+Sep 25 21:18:55 sokka kernel: nouveau 0000:01:00.0: gr: GPC1/TPC1/MP trap:
+global 00000000 [] warp 3d0009 [ILLEGAL_INSTR_ENCODING]
+Sep 25 21:19:16 sokka kernel: input input6: event field not found
+Sep 25 21:19:16 sokka kernel: input input6: event field not found
+Sep 25 21:19:16 sokka kernel: input input6: event field not found
+Sep 25 21:19:16 sokka kernel: input input6: event field not found
+Sep 25 21:21:35 sokka kernel: sysrq: SysRq : This sysrq operation is disabl=
+ed.
+Sep 25 21:21:35 sokka kernel: sysrq: SysRq : This sysrq operation is disabl=
+ed.
+Sep 25 21:21:36 sokka kernel: sysrq: SysRq : This sysrq operation is disabl=
+ed.
+Sep 25 21:21:36 sokka kernel: sysrq: SysRq : Emergency Sync
+Sep 25 21:21:36 sokka kernel: Emergency Sync complete
+Sep 25 21:21:37 sokka kernel: sysrq: SysRq : This sysrq operation is disabl=
+ed.
+Sep 25 21:21:37 sokka kernel: sysrq: SysRq : This sysrq operation is disabl=
+ed.
+Sep 25 21:22:39 sokka kernel: INFO: task kworker/u8:5:177 blocked for more =
+than
+120 seconds.
+Sep 25 21:22:39 sokka kernel:       Not tainted 4.18.9-arch1-1-ARCH #1
+Sep 25 21:22:39 sokka kernel: "echo 0 >
+/proc/sys/kernel/hung_task_timeout_secs" disables this message.
+Sep 25 21:22:39 sokka kernel: kworker/u8:5    D    0   177      2 0x80000000
+Sep 25 21:22:39 sokka kernel: Workqueue: events_unbound
+nv50_disp_atomic_commit_work [nouveau]
+
+Placing nouveau.noaccel=3D1 as a kernel boot parameter fixes the issue but =
+it is
+not ideal.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15380039950.21B2.31662
+Date: Wed, 26 Sep 2018 23:19:55 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    I don't think any nouveau dev would disagree with the choice for a
-    software rendered browser over an unreliable browser. Insofar I
-    still count as a nouveau dev, I'll back this decision because it
-    benefits user experience.<br>
-    What is disappointing though is that when I perform a search on our
-    bug tracker (see [0] and [1]), I find precisely _one_ relevant bug.
-    Shame on us for not following up on that one, but shame on the
-    Chrome developers to decide they'd rather blacklist a driver than
-    publicly* reach out and ask what's going on. Blacklisting 3D
-    rendering on nouveau isn't going to fix nouveau, it's a short-term
-    improvement with no long term prospect.<br>
-    <br>
-    <div class="moz-cite-prefix">On 26/09/18 11:25, Megaf wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAH0ntzyNrytnbmixkx7hdNBLikWCkqRtRq04qXeONhi6zkhcVw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org">
-      <meta http-equiv="content-type" content="text/html; charset=utf-8">
-      <div dir="ltr">
-        <div class="gmail_default"
-          style="font-family:monospace,monospace;font-size:small;color:#444444">Well,
-          I agree with them.</div>
-        <div class="gmail_default"
-          style="font-family:monospace,monospace;font-size:small;color:#444444">Nouveau
-          is extremely unstable on my MacBook Pro with Nvidia 320M,
-          freezing all the time and draining a lot of battery.</div>
-        <div class="gmail_default"
-          style="font-family:monospace,monospace;font-size:small;color:#444444">Performance
-          wise is not too bad tho.</div>
-        <div class="gmail_default"
-          style="font-family:monospace,monospace;font-size:small;color:#444444">There's
-          plenty of reported bugs already around the web if someone
-          wants to investigate it.</div>
-      </div>
-    </blockquote>
-    Don't take this as personal criticism, I really appreciate the fact
-    that you reach out and bring this to our attention. What I do wish
-    to point out to anyone is that there are too many projects with too
-    many bug trackers out there to track all of them. In reality nouveau
-    devs monitor the nouveau bugtracker [2], and if you're lucky the
-    tracker of their favourite distro. I don't believe it's feasible to
-    expect driver devs to track more - we're already grossly
-    under"staffed". Sure, Chrome is a popular piece of software, but so
-    is Firefox, LibreOffice, VirtualBox, Wine, Dolphin, Gnome Shell etc.
-    etc... So my advice to anyone: if you want bugs actually fixed in
-    nouveau, do your civil duty and file them in the nouveau bugtracker.<br>
-    <br>
-    Roy<br>
-    <br>
-    [0]
-<a class="moz-txt-link-freetext" href="https://bugs.freedesktop.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_status=NEEDINFO&amp;component=Driver%2Fnouveau&amp;product=xorg&amp;query_format=advanced&amp;short_desc=chrome&amp;short_desc_type=allwordssubstr">https://bugs.freedesktop.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_status=NEEDINFO&amp;component=Driver%2Fnouveau&amp;product=xorg&amp;query_format=advanced&amp;short_desc=chrome&amp;short_desc_type=allwordssubstr</a><br>
-    [1]
-<a class="moz-txt-link-freetext" href="https://bugs.freedesktop.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_status=NEEDINFO&amp;component=Drivers%2FDRI%2Fnouveau&amp;product=Mesa&amp;query_format=advanced&amp;short_desc=chrome&amp;short_desc_type=allwordssubstr">https://bugs.freedesktop.org/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;bug_status=NEEDINFO&amp;component=Drivers%2FDRI%2Fnouveau&amp;product=Mesa&amp;query_format=advanced&amp;short_desc=chrome&amp;short_desc_type=allwordssubstr</a><br>
-    [2] <a class="moz-txt-link-freetext" href="https://nouveau.freedesktop.org/wiki/Bugs/">https://nouveau.freedesktop.org/wiki/Bugs/</a><br>
-    <br>
-    * I'm aware that a sizeable portion of the workforce behind nouveau
-    is currently employed by Red Hat. What happens behind their scenes
-    is unknown to me and other contributors...<br>
-    <blockquote type="cite"
-cite="mid:CAH0ntzyNrytnbmixkx7hdNBLikWCkqRtRq04qXeONhi6zkhcVw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org">
-      <div dir="ltr">
-        <div class="gmail_default"
-          style="font-family:monospace,monospace;font-size:small;color:#444444"><br>
-        </div>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GK106 [GeForce GTX 660] System Freeze - warp 3d0009 [ILLE=
+GAL_INSTR_ENCODING]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108080">108080</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>GK106 [GeForce GTX 660] System Freeze - warp 3d0009 [ILLEGAL_=
+INSTR_ENCODING]
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>EliasWoods&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
         <div>
-          <div dir="ltr" class="gmail_signature"
-            data-smartmail="gmail_signature">
-            <div dir="ltr"><font color="#444444" face="monospace,
-                monospace">Thanks</font>
-              <div>
-                <div><font color="#444444" face="monospace, monospace">Megaf</font></div>
-                <div><font color="#444444" face="monospace, monospace"><a
-                      href="https://www.megaf.info/" target="_blank"
-                      moz-do-not-send="true">https://www.megaf.info/</a></font></div>
-                <div><font color="#444444" face="monospace, monospace"><br>
-                  </font></div>
-                <div><font color="#444444" face="monospace, monospace">email:
-                    <a href="mailto:mmegaf-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target="_blank"
-                      moz-do-not-send="true">mmegaf-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a></font></div>
-              </div>
-              <div><font color="#444444" face="monospace, monospace">skype:
-                  eumegaf</font></div>
-              <div><font color="#444444" face="monospace, monospace">discord:
-                  Megaf#6582</font></div>
-            </div>
-          </div>
-        </div>
-        <br>
-      </div>
-      <br>
-      <div class="gmail_quote">
-        <div dir="ltr">On Sun, 23 Sep 2018 at 04:06, Matthew Ary &lt;<a
-            href="mailto:matthewj.c.ary-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org"
-            moz-do-not-send="true">matthewj.c.ary-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0 0 0
-          .8ex;border-left:1px #ccc solid;padding-left:1ex">
-          <div dir="ltr">
-            <div dir="ltr"><br clear="all">
-              <div>
-                <div dir="ltr"
-                  class="m_5909146353043396423gmail_signature">
-                  <div dir="ltr">
-                    <div>I thought you all would like to know that
-                      Google considers Nouveau to be unstable and is now
-                      actively considering blacklisting. Please see this
-                      issue on their issue tracker.</div>
-                    <div><br>
-                    </div>
-                    <div><a
-                        href="https://bugs.chromium.org/p/chromium/issues/detail?id=876523"
-                        target="_blank" moz-do-not-send="true">https://bugs.chromium.org/p/chromium/issues/detail?id=876523</a><br>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          _______________________________________________<br>
-          Nouveau mailing list<br>
-          <a href="mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" target="_blank"
-            moz-do-not-send="true">Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org</a><br>
-          <a
-            href="https://lists.freedesktop.org/mailman/listinfo/nouveau"
-            rel="noreferrer" target="_blank" moz-do-not-send="true">https://lists.freedesktop.org/mailman/listinfo/nouveau</a><br>
-        </blockquote>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-Nouveau mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.freedesktop.org/mailman/listinfo/nouveau">https://lists.freedesktop.org/mailman/listinfo/nouveau</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141754=
+" name=3D"attach_141754" title=3D"journalctl --system">attachment 141754</a=
+> <a href=3D"attachment.cgi?id=3D141754&amp;action=3Dedit" title=3D"journal=
+ctl --system">[details]</a></span>
+journalctl --system
 
---------------F9F86BC50836B32830CACBC7--
+This is similar but not quite the same bug as #107829
 
---===============1209155470==
+I recently updated arch linux and attempted to use the nouvea driver with my
+GTX 660 GPU. System will reliable crash after about 30 seconds to 1 min in =
+KDE
+plasma with the following kernel message.
+
+Sep 25 21:18:49 sokka kernel: nouveau 0000:01:00.0: gr: TRAP ch 2 [023fe330=
+00
+Xorg[406]]
+Sep 25 21:18:55 sokka kernel: nouveau 0000:01:00.0: gr: GPC1/TPC1/MP trap:
+global 00000000 [] warp 3d0009 [ILLEGAL_INSTR_ENCODING]
+Sep 25 21:19:16 sokka kernel: input input6: event field not found
+Sep 25 21:19:16 sokka kernel: input input6: event field not found
+Sep 25 21:19:16 sokka kernel: input input6: event field not found
+Sep 25 21:19:16 sokka kernel: input input6: event field not found
+Sep 25 21:21:35 sokka kernel: sysrq: SysRq : This sysrq operation is disabl=
+ed.
+Sep 25 21:21:35 sokka kernel: sysrq: SysRq : This sysrq operation is disabl=
+ed.
+Sep 25 21:21:36 sokka kernel: sysrq: SysRq : This sysrq operation is disabl=
+ed.
+Sep 25 21:21:36 sokka kernel: sysrq: SysRq : Emergency Sync
+Sep 25 21:21:36 sokka kernel: Emergency Sync complete
+Sep 25 21:21:37 sokka kernel: sysrq: SysRq : This sysrq operation is disabl=
+ed.
+Sep 25 21:21:37 sokka kernel: sysrq: SysRq : This sysrq operation is disabl=
+ed.
+Sep 25 21:22:39 sokka kernel: INFO: task kworker/u8:5:177 blocked for more =
+than
+120 seconds.
+Sep 25 21:22:39 sokka kernel:       Not tainted 4.18.9-arch1-1-ARCH #1
+Sep 25 21:22:39 sokka kernel: &quot;echo 0 &gt;
+/proc/sys/kernel/hung_task_timeout_secs&quot; disables this message.
+Sep 25 21:22:39 sokka kernel: kworker/u8:5    D    0   177      2 0x80000000
+Sep 25 21:22:39 sokka kernel: Workqueue: events_unbound
+nv50_disp_atomic_commit_work [nouveau]
+
+Placing nouveau.noaccel=3D1 as a kernel boot parameter fixes the issue but =
+it is
+not ideal.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15380039950.21B2.31662--
+
+--===============0316698298==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -267,4 +268,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1209155470==--
+--===============0316698298==--
