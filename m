@@ -1,10 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108058] New: After resuming from suspend,
- discrete GPU is powered on and can't be turned off
-Date: Tue, 25 Sep 2018 12:15:55 +0000
-Message-ID: <bug-108058-8800@http.bugs.freedesktop.org/>
+From: Colin King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: [PATCH] drm/nouveau/bios/dp: Make array vsoff static,
+ shrinks object size
+Date: Wed, 26 Sep 2018 09:22:28 +0100
+Message-ID: <20180926082228.12635-1-colin.king@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0216190893=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,251 +16,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0216190893==
-Content-Type: multipart/alternative; boundary="15378777551.a1dF63D3.10122"
-Content-Transfer-Encoding: 7bit
-
-
---15378777551.a1dF63D3.10122
-Date: Tue, 25 Sep 2018 12:15:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108058
-
-            Bug ID: 108058
-           Summary: After resuming from suspend, discrete GPU is powered
-                    on and can't be turned off
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: domenico.iezzi.201-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 141734
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141734&action=3Dedit
-kernel log
-
-Overall, nouveau works without problem in managing discrete GPU PM, and if I
-check power consumption using powertop on a fresh boot it reports an average
-battery discharge rate of ~7W like always.
-After I resume the laptop from suspend, /sys/kernel/debug/vgaswitcheroo/swi=
-tch
-reports that the device is
-dynamically turned off:
-
-0:IGD:+:Pwr:0000:00:02.0
-1:DIS: :DynOff:0000:01:00.0
-
-But if I check with powertop, I get a battery discharge rate of ~11W. To be=
-tter
-identify the problem, I tried using bumbleebee+bbswitch+nvidia-driver and s=
-ee
-what bbswitch module reports. On a fresh boot, it works
-ok as the nouveau driver, but after resuming from suspend
-/proc/acpi/bbswitch reports that the card is turned ON, and there is no way=
- to
-power it off:
-
-[root@example user]# cat /proc/acpi/bbswitch=20
-0000:04:00.0 ON
-[root@example user]# tee /proc/acpi/bbswitch <<<OFF
-OFF
-[root@example user]# cat /proc/acpi/bbswitch=20
-0000:04:00.0 ON
-
-I attached the kernel log using following parameters when using only nouveau
-driver (no bumblebee/bbswitch/nvidia): log_buf_len=3D1M nouveau.debug=3Ddeb=
-ug.
-
-System specs:
-Asus Vivobook S551LN
-Intel i7 4500U
-NVIDIA 840M
-Archlinux 4.18.9-arch1-1-ARCH (but affecting older versions, since early 4.x
-version when i started using linux)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15378777551.a1dF63D3.10122
-Date: Tue, 25 Sep 2018 12:15:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - After resuming from suspend, discrete GPU is powered on a=
-nd can't be turned off"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108058">108058</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>After resuming from suspend, discrete GPU is powered on and c=
-an't be turned off
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>domenico.iezzi.201&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141734=
-" name=3D"attach_141734" title=3D"kernel log">attachment 141734</a> <a href=
-=3D"attachment.cgi?id=3D141734&amp;action=3Dedit" title=3D"kernel log">[det=
-ails]</a></span>
-kernel log
-
-Overall, nouveau works without problem in managing discrete GPU PM, and if I
-check power consumption using powertop on a fresh boot it reports an average
-battery discharge rate of ~7W like always.
-After I resume the laptop from suspend, /sys/kernel/debug/vgaswitcheroo/swi=
-tch
-reports that the device is
-dynamically turned off:
-
-0:IGD:+:Pwr:0000:00:02.0
-1:DIS: :DynOff:0000:01:00.0
-
-But if I check with powertop, I get a battery discharge rate of ~11W. To be=
-tter
-identify the problem, I tried using bumbleebee+bbswitch+nvidia-driver and s=
-ee
-what bbswitch module reports. On a fresh boot, it works
-ok as the nouveau driver, but after resuming from suspend
-/proc/acpi/bbswitch reports that the card is turned ON, and there is no way=
- to
-power it off:
-
-[root&#64;example user]# cat /proc/acpi/bbswitch=20
-0000:04:00.0 ON
-[root&#64;example user]# tee /proc/acpi/bbswitch &lt;&lt;&lt;OFF
-OFF
-[root&#64;example user]# cat /proc/acpi/bbswitch=20
-0000:04:00.0 ON
-
-I attached the kernel log using following parameters when using only nouveau
-driver (no bumblebee/bbswitch/nvidia): log_buf_len=3D1M nouveau.debug=3Ddeb=
-ug.
-
-System specs:
-Asus Vivobook S551LN
-Intel i7 4500U
-NVIDIA 840M
-Archlinux 4.18.9-arch1-1-ARCH (but affecting older versions, since early 4.x
-version when i started using linux)</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15378777551.a1dF63D3.10122--
-
---===============0216190893==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0216190893==--
+RnJvbTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KCkRvbid0IHBv
+cHVsYXRlIHRoZSBhcnJheSB2c29mZiBvbiB0aGUgc3RhY2sgYnV0IGluc3RlYWQgbWFrZSBpdApz
+dGF0aWMuIE1ha2VzIHRoZSBvYmplY3QgY29kZSBzbWFsbGVyIGJ5IDY3IGJ5dGVzOgoKQmVmb3Jl
+OgogICB0ZXh0CSAgIGRhdGEJICAgIGJzcwkgICAgZGVjCSAgICBoZXgJZmlsZW5hbWUKICAgNTc1
+MwkgICAgMTEyCSAgICAgIDAJICAgNTg2NQkgICAxNmU5IGRybS9ub3V2ZWF1L252a20vc3ViZGV2
+L2Jpb3MvZHAubwoKQWZ0ZXI6CiAgIHRleHQJICAgZGF0YQkgICAgYnNzCSAgICBkZWMJICAgIGhl
+eAlmaWxlbmFtZQogICA1NjIyCSAgICAxNzYJICAgICAgMAkgICA1Nzk4CSAgIDE2YTYgZHJtL25v
+dXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9kcC5vCgooZ2NjIHZlcnNpb24gOC4yLjAgeDg2XzY0KQoK
+U2lnbmVkLW9mZi1ieTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4K
+LS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL2RwLmMgfCAyICst
+CiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL2RwLmMgYi9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL2RwLmMKaW5kZXggMzEzM2IyOGY4
+NDljLi5iMDk5ZDEyMDliZTggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
+a20vc3ViZGV2L2Jpb3MvZHAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1
+YmRldi9iaW9zL2RwLmMKQEAgLTIxMiw3ICsyMTIsNyBAQCBudmJpb3NfZHBjZmdfbWF0Y2goc3Ry
+dWN0IG52a21fYmlvcyAqYmlvcywgdTE2IG91dHAsIHU4IHBjLCB1OCB2cywgdTggcGUsCiAJdTE2
+IGRhdGE7CiAKIAlpZiAoKnZlciA+PSAweDMwKSB7Ci0JCWNvbnN0IHU4IHZzb2ZmW10gPSB7IDAs
+IDQsIDcsIDkgfTsKKwkJc3RhdGljIGNvbnN0IHU4IHZzb2ZmW10gPSB7IDAsIDQsIDcsIDkgfTsK
+IAkJaWR4ID0gKHBjICogMTApICsgdnNvZmZbdnNdICsgcGU7CiAJCWlmICgqdmVyID49IDB4NDAg
+JiYgKnZlciA8PSAweDQxICYmICpoZHIgPj0gMHgxMikKIAkJCWlkeCArPSBudmJpb3NfcmQwOChi
+aW9zLCBvdXRwICsgMHgxMSkgKiA0MDsKLS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
