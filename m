@@ -1,12 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99464] openmw - Segfault with the nouveau ddx + DRI3
-Date: Thu, 27 Sep 2018 20:43:55 +0000
-Message-ID: <bug-99464-8800-RCoEhBFNtR@http.bugs.freedesktop.org/>
-References: <bug-99464-8800@http.bugs.freedesktop.org/>
+From: Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: Re: [PATCH v3] PCI: Reprogram bridge prefetch registers
+ on resume
+Date: Thu, 27 Sep 2018 15:52:47 -0500
+Message-ID: <20180927205247.GA18434@bhelgaas-glaptop.roam.corp.google.com>
+References: <20180913033745.11178-1-drake@endlessm.com>
+ <20180918213244.GE13616@bhelgaas-glaptop.roam.corp.google.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0996415606=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99464-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20180918213244.GE13616-1RhO1Y9PlrlHTL0Zs8A6p5iNqAH0jzoTYJqu5kTmcBRl57MIdRCFDg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,135 +20,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
+Cc: andy.shevchenko-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nic_swsd-Rasf1IRRPZFBDgjK7y7TUQ@public.gmane.org, keith.busch-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, netdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org, rchang-eYqpPyKDWXRBDgjK7y7TUQ@public.gmane.org, linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org, davem-fT/PcQaiUtIeIZ0/mPfg9Q@public.gmane.org, jonathan.derrick-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, hkallweit1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0996415606==
-Content-Type: multipart/alternative; boundary="15380810351.ba77bcd.11469"
-Content-Transfer-Encoding: 7bit
-
-
---15380810351.ba77bcd.11469
-Date: Thu, 27 Sep 2018 20:43:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99464
-
-Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
-
---- Comment #4 from Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>=
- ---
-The mentioned workaround in the original description got adapted and commit=
-ted
-recently:
-
-c3486cd8c9092cbe33dfc77b906e2475b1e32c8d st/mesa: do not call
-update_framebuffer_size with NULL pointer
-
-This should fix at least the SEGV. Maybe it can be reported if the invisible
-mouse pointer still exists in newer versions of mesa!
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15380810351.ba77bcd.11469
-Date: Thu, 27 Sep 2018 20:43:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:tobias.jo=
-hannes.klausmann&#64;mni.thm.de" title=3D"Tobias Klausmann &lt;tobias.johan=
-nes.klausmann&#64;mni.thm.de&gt;"> <span class=3D"fn">Tobias Klausmann</spa=
-n></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - openmw - Segfault with the nouveau ddx + DRI3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99464">bug 99464<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - openmw - Segfault with the nouveau ddx + DRI3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99464#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - openmw - Segfault with the nouveau ddx + DRI3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99464">bug 99464<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tobias.johannes.klausmann&#64;mni.thm.de" title=3D"Tobias Klausmann &lt;tob=
-ias.johannes.klausmann&#64;mni.thm.de&gt;"> <span class=3D"fn">Tobias Klaus=
-mann</span></a>
-</span></b>
-        <pre>The mentioned workaround in the original description got adapt=
-ed and committed
-recently:
-
-c3486cd8c9092cbe33dfc77b906e2475b1e32c8d st/mesa: do not call
-update_framebuffer_size with NULL pointer
-
-This should fix at least the SEGV. Maybe it can be reported if the invisible
-mouse pointer still exists in newer versions of mesa!</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15380810351.ba77bcd.11469--
-
---===============0996415606==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0996415606==--
+WytjYyBMS01MXQoKT24gVHVlLCBTZXAgMTgsIDIwMTggYXQgMDQ6MzI6NDRQTSAtMDUwMCwgQmpv
+cm4gSGVsZ2FhcyB3cm90ZToKPiBPbiBUaHUsIFNlcCAxMywgMjAxOCBhdCAxMTozNzo0NUFNICsw
+ODAwLCBEYW5pZWwgRHJha2Ugd3JvdGU6Cj4gPiBPbiAzOCsgSW50ZWwtYmFzZWQgQXN1cyBwcm9k
+dWN0cywgdGhlIG52aWRpYSBHUFUgYmVjb21lcyB1bnVzYWJsZQo+ID4gYWZ0ZXIgUzMgc3VzcGVu
+ZC9yZXN1bWUuIFRoZSBhZmZlY3RlZCBwcm9kdWN0cyBpbmNsdWRlIG11bHRpcGxlCj4gPiBnZW5l
+cmF0aW9ucyBvZiBudmlkaWEgR1BVcyBhbmQgSW50ZWwgU29Dcy4gQWZ0ZXIgcmVzdW1lLCBub3V2
+ZWF1IGxvZ3MKPiA+IG1hbnkgZXJyb3JzIHN1Y2ggYXM6Cj4gPiAKPiA+ICAgICBmaWZvOiBmYXVs
+dCAwMCBbUkVBRF0gYXQgMDAwMDAwNTU1NTU1NTAwMCBlbmdpbmUgMDAgW0dSXSBjbGllbnQgMDQK
+PiA+ICAgICAgICAgICBbSFVCL0ZFXSByZWFzb24gNGEgW10gb24gY2hhbm5lbCAtMSBbMDA3ZmE5
+MTAwMCB1bmtub3duXQo+ID4gICAgIERSTTogZmFpbGVkIHRvIGlkbGUgY2hhbm5lbCAwIFtEUk1d
+Cj4gPiAKPiA+IFNpbWlsYXJseSwgdGhlIG52aWRpYSBwcm9wcmlldGFyeSBkcml2ZXIgYWxzbyBm
+YWlscyBhZnRlciByZXN1bWUKPiA+IChibGFjayBzY3JlZW4sIDEwMCUgQ1BVIHVzYWdlIGluIFhv
+cmcgcHJvY2VzcykuIFdlIHNoaXBwZWQgYSBzYW1wbGUKPiA+IHRvIE52aWRpYSBmb3IgZGlhZ25v
+c2lzLCBhbmQgdGhlaXIgcmVzcG9uc2UgaW5kaWNhdGVkIHRoYXQgaXQncyBhCj4gPiBwcm9ibGVt
+IHdpdGggdGhlIHBhcmVudCBQQ0kgYnJpZGdlIChvbiB0aGUgSW50ZWwgU29DKSwgbm90IHRoZSBH
+UFUuCj4gPiAKPiA+IFJ1bnRpbWUgc3VzcGVuZC9yZXN1bWUgd29ya3MgZmluZSwgb25seSBTMyBz
+dXNwZW5kIGlzIGFmZmVjdGVkLgo+ID4gCj4gPiBXZSBmb3VuZCBhIHdvcmthcm91bmQ6IG9uIHJl
+c3VtZSwgcmV3cml0ZSB0aGUgSW50ZWwgUENJIGJyaWRnZQo+ID4gJ1ByZWZldGNoYWJsZSBCYXNl
+IFVwcGVyIDMyIEJpdHMnIHJlZ2lzdGVyIChQQ0lfUFJFRl9CQVNFX1VQUEVSMzIpLiBJbgo+ID4g
+dGhlIGNhc2VzIHRoYXQgSSBjaGVja2VkLCB0aGlzIHJlZ2lzdGVyIGhhcyB2YWx1ZSAwIGFuZCB3
+ZSBqdXN0IGhhdmUgdG8KPiA+IHJld3JpdGUgdGhhdCB2YWx1ZS4KPiA+IAo+ID4gTGludXggYWxy
+ZWFkeSBzYXZlcyBhbmQgcmVzdG9yZXMgUENJIGNvbmZpZyBzcGFjZSBkdXJpbmcgc3VzcGVuZC9y
+ZXN1bWUsCj4gPiBidXQgdGhpcyByZWdpc3RlciB3YXMgYmVpbmcgc2tpcHBlZCBiZWNhdXNlIHVw
+b24gcmVzdW1lLCBpdCBhbHJlYWR5Cj4gPiBoYXMgdmFsdWUgMCAodGhlIGNvcnJlY3QsIHByZS1z
+dXNwZW5kIHZhbHVlKS4KPiA+IAo+ID4gSW50ZWwgYXBwZWFyIHRvIGhhdmUgcHJldmlvdXNseSBh
+Y2tub3dsZWRnZWQgdGhpcyBiZWhhdmlvdXIgYW5kIHRoZQo+ID4gcmVxdWlyZW1lbnQgdG8gcmV3
+cml0ZSB0aGlzIHJlZ2lzdGVyLgo+ID4gaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwub3JnL3Nob3df
+YnVnLmNnaT9pZD0xMTY4NTEjYzIzCj4gPiAKPiA+IEJhc2VkIG9uIHRoYXQsIHJld3JpdGUgdGhl
+IHByZWZldGNoIHJlZ2lzdGVyIHZhbHVlcyBldmVuIHdoZW4gdGhhdAo+ID4gYXBwZWFycyB1bm5l
+Y2Vzc2FyeS4KPiA+IAo+ID4gV2UgaGF2ZSBjb25maXJtZWQgdGhpcyBzb2x1dGlvbiBvbiBhbGwg
+dGhlIGFmZmVjdGVkIG1vZGVscyB3ZSBoYXZlCj4gPiBpbi1oYW5kcyAoWDU0MlVRLCBVWDUzM0ZE
+LCBYNTMwVU4sIFYyNzJVTikuCj4gPiAKPiA+IEFkZGl0aW9uYWxseSwgdGhpcyBzb2x2ZXMgYW4g
+aXNzdWUgd2hlcmUgcjgxNjkgTVNJLVggaW50ZXJydXB0cyB3ZXJlCj4gPiBicm9rZW4gYWZ0ZXIg
+UzMgc3VzcGVuZC9yZXN1bWUgb24gQXN1cyBYNDQxVUFSLiBUaGlzIGlzc3VlIHdhcyByZWNlbnRs
+eQo+ID4gd29ya2VkIGFyb3VuZCBpbiBjb21taXQgN2JiMDViODViYzJkICgicjgxNjk6IGRvbid0
+IHVzZSBNU0ktWCBvbgo+ID4gUlRMODEwNmUiKS4gSXQgYWxzbyBmaXhlcyB0aGUgc2FtZSBpc3N1
+ZSBvbiBSVEw2MTg2ZXZsLzgxMTFldmwgb24gYW4KPiA+IEFpbWZvci10ZWNoIGxhcHRvcCB0aGF0
+IHdlIGhhZCBub3QgeWV0IHBhdGNoZWQuIEkgc3VzcGVjdCBpdCB3aWxsIGFsc28KPiA+IGZpeCB0
+aGUgaXNzdWUgdGhhdCB3YXMgd29ya2VkIGFyb3VuZCBpbiBjb21taXQgN2M1M2E3MjI0NTljICgi
+cjgxNjk6Cj4gPiBkb24ndCB1c2UgTVNJLVggb24gUlRMODE2OGciKS4KPiA+IAo+ID4gVGhvbWFz
+IE1hcnRpdHogcmVwb3J0cyB0aGF0IHRoaXMgY2hhbmdlIGFsc28gc29sdmVzIGFuIGlzc3VlIHdo
+ZXJlCj4gPiB0aGUgQU1EIFJhZGVvbiBQb2xhcmlzIDEwIEdQVSBvbiB0aGUgSFAgWmJvb2sgMTR1
+IEc1IGlzIHVucmVzcG9uc2l2ZQo+ID4gYWZ0ZXIgUzMgc3VzcGVuZC9yZXN1bWUuCj4gPiAKPiA+
+IExpbms6IGh0dHBzOi8vYnVnemlsbGEua2VybmVsLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjAxMDY5
+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgRHJha2UgPGRyYWtlQGVuZGxlc3NtLmNvbT4KPiAK
+PiBBcHBsaWVkIHdpdGggUmFmYWVsJ3MgYW5kIFBldGVyJ3MgcmV2aWV3ZWQtYnkgdG8gcGNpL2Vu
+dW1lcmF0aW9uIGZvciB2NC4yMC4KPiBUaGFua3MgZm9yIHRoZSB0aGUgaHVnZSBpbnZlc3RpZ2F0
+aXZlIGVmZm9ydCEKClNpbmNlIHRoaXMgbG9va3MgbG93LXJpc2sgYW5kIGZpeGVzIHNldmVyYWwg
+cGFpbmZ1bCBpc3N1ZXMsIEkgdGhpbmsKdGhpcyBtZXJpdHMgYSBzdGFibGUgdGFnIGFuZCBiZWlu
+ZyBpbmNsdWRlZCBpbiB2NC4xOSAoaW5zdGVhZCBvZgp3YWl0aW5nIGZvciB2NC4yMCkuICAKCkkg
+bW92ZWQgaXQgdG8gZm9yLWxpbnVzIGZvciB2NC4xOS4gIExldCBtZSBrbm93IGlmIHlvdSBvYmpl
+Y3QuCgo+ID4gLS0tCj4gPiAgZHJpdmVycy9wY2kvcGNpLmMgfCAyNSArKysrKysrKysrKysrKysr
+Ky0tLS0tLS0tCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDE3IGluc2VydGlvbnMoKyksIDggZGVsZXRp
+b25zKC0pCj4gPiAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9wY2kuYyBiL2RyaXZlcnMv
+cGNpL3BjaS5jCj4gPiBpbmRleCAyOWZmOTYxOWI1ZmEuLjVkNTgyMjBiNjk5NyAxMDA2NDQKPiA+
+IC0tLSBhL2RyaXZlcnMvcGNpL3BjaS5jCj4gPiArKysgYi9kcml2ZXJzL3BjaS9wY2kuYwo+ID4g
+QEAgLTEyODksMTIgKzEyODksMTIgQEAgaW50IHBjaV9zYXZlX3N0YXRlKHN0cnVjdCBwY2lfZGV2
+ICpkZXYpCj4gPiAgRVhQT1JUX1NZTUJPTChwY2lfc2F2ZV9zdGF0ZSk7Cj4gPiAgCj4gPiAgc3Rh
+dGljIHZvaWQgcGNpX3Jlc3RvcmVfY29uZmlnX2R3b3JkKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBp
+bnQgb2Zmc2V0LAo+ID4gLQkJCQkgICAgIHUzMiBzYXZlZF92YWwsIGludCByZXRyeSkKPiA+ICsJ
+CQkJICAgICB1MzIgc2F2ZWRfdmFsLCBpbnQgcmV0cnksIGJvb2wgZm9yY2UpCj4gPiAgewo+ID4g
+IAl1MzIgdmFsOwo+ID4gIAo+ID4gIAlwY2lfcmVhZF9jb25maWdfZHdvcmQocGRldiwgb2Zmc2V0
+LCAmdmFsKTsKPiA+IC0JaWYgKHZhbCA9PSBzYXZlZF92YWwpCj4gPiArCWlmICghZm9yY2UgJiYg
+dmFsID09IHNhdmVkX3ZhbCkKPiA+ICAJCXJldHVybjsKPiA+ICAKPiA+ICAJZm9yICg7Oykgewo+
+ID4gQEAgLTEzMTMsMjUgKzEzMTMsMzQgQEAgc3RhdGljIHZvaWQgcGNpX3Jlc3RvcmVfY29uZmln
+X2R3b3JkKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBpbnQgb2Zmc2V0LAo+ID4gIH0KPiA+ICAKPiA+
+ICBzdGF0aWMgdm9pZCBwY2lfcmVzdG9yZV9jb25maWdfc3BhY2VfcmFuZ2Uoc3RydWN0IHBjaV9k
+ZXYgKnBkZXYsCj4gPiAtCQkJCQkgICBpbnQgc3RhcnQsIGludCBlbmQsIGludCByZXRyeSkKPiA+
+ICsJCQkJCSAgIGludCBzdGFydCwgaW50IGVuZCwgaW50IHJldHJ5LAo+ID4gKwkJCQkJICAgYm9v
+bCBmb3JjZSkKPiA+ICB7Cj4gPiAgCWludCBpbmRleDsKPiA+ICAKPiA+ICAJZm9yIChpbmRleCA9
+IGVuZDsgaW5kZXggPj0gc3RhcnQ7IGluZGV4LS0pCj4gPiAgCQlwY2lfcmVzdG9yZV9jb25maWdf
+ZHdvcmQocGRldiwgNCAqIGluZGV4LAo+ID4gIAkJCQkJIHBkZXYtPnNhdmVkX2NvbmZpZ19zcGFj
+ZVtpbmRleF0sCj4gPiAtCQkJCQkgcmV0cnkpOwo+ID4gKwkJCQkJIHJldHJ5LCBmb3JjZSk7Cj4g
+PiAgfQo+ID4gIAo+ID4gIHN0YXRpYyB2b2lkIHBjaV9yZXN0b3JlX2NvbmZpZ19zcGFjZShzdHJ1
+Y3QgcGNpX2RldiAqcGRldikKPiA+ICB7Cj4gPiAgCWlmIChwZGV2LT5oZHJfdHlwZSA9PSBQQ0lf
+SEVBREVSX1RZUEVfTk9STUFMKSB7Cj4gPiAtCQlwY2lfcmVzdG9yZV9jb25maWdfc3BhY2VfcmFu
+Z2UocGRldiwgMTAsIDE1LCAwKTsKPiA+ICsJCXBjaV9yZXN0b3JlX2NvbmZpZ19zcGFjZV9yYW5n
+ZShwZGV2LCAxMCwgMTUsIDAsIGZhbHNlKTsKPiA+ICAJCS8qIFJlc3RvcmUgQkFScyBiZWZvcmUg
+dGhlIGNvbW1hbmQgcmVnaXN0ZXIuICovCj4gPiAtCQlwY2lfcmVzdG9yZV9jb25maWdfc3BhY2Vf
+cmFuZ2UocGRldiwgNCwgOSwgMTApOwo+ID4gLQkJcGNpX3Jlc3RvcmVfY29uZmlnX3NwYWNlX3Jh
+bmdlKHBkZXYsIDAsIDMsIDApOwo+ID4gKwkJcGNpX3Jlc3RvcmVfY29uZmlnX3NwYWNlX3Jhbmdl
+KHBkZXYsIDQsIDksIDEwLCBmYWxzZSk7Cj4gPiArCQlwY2lfcmVzdG9yZV9jb25maWdfc3BhY2Vf
+cmFuZ2UocGRldiwgMCwgMywgMCwgZmFsc2UpOwo+ID4gKwl9IGVsc2UgaWYgKHBkZXYtPmhkcl90
+eXBlID09IFBDSV9IRUFERVJfVFlQRV9CUklER0UpIHsKPiA+ICsJCXBjaV9yZXN0b3JlX2NvbmZp
+Z19zcGFjZV9yYW5nZShwZGV2LCAxMiwgMTUsIDAsIGZhbHNlKTsKPiA+ICsJCS8qIEZvcmNlIHJl
+d3JpdGluZyBvZiBwcmVmZXRjaCByZWdpc3RlcnMgdG8gYXZvaWQKPiA+ICsJCSAqIFMzIHJlc3Vt
+ZSBpc3N1ZXMgb24gSW50ZWwgUENJIGJyaWRnZXMgdGhhdCBvY2N1ciB3aGVuCj4gPiArCQkgKiB0
+aGVzZSByZWdpc3RlcnMgYXJlIG5vdCBleHBsaWNpdGx5IHdyaXR0ZW4uCj4gPiArCQkgKi8KPiA+
+ICsJCXBjaV9yZXN0b3JlX2NvbmZpZ19zcGFjZV9yYW5nZShwZGV2LCA5LCAxMSwgMCwgdHJ1ZSk7
+Cj4gPiArCQlwY2lfcmVzdG9yZV9jb25maWdfc3BhY2VfcmFuZ2UocGRldiwgMCwgOCwgMCwgZmFs
+c2UpOwo+ID4gIAl9IGVsc2Ugewo+ID4gLQkJcGNpX3Jlc3RvcmVfY29uZmlnX3NwYWNlX3Jhbmdl
+KHBkZXYsIDAsIDE1LCAwKTsKPiA+ICsJCXBjaV9yZXN0b3JlX2NvbmZpZ19zcGFjZV9yYW5nZShw
+ZGV2LCAwLCAxNSwgMCwgZmFsc2UpOwo+ID4gIAl9Cj4gPiAgfQo+ID4gIAo+ID4gLS0gCj4gPiAy
+LjE3LjEKPiA+IApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
