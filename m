@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108080] GK106 [GeForce GTX 660] System Freeze - warp
  3d0009 [ILLEGAL_INSTR_ENCODING]
-Date: Wed, 26 Sep 2018 23:24:21 +0000
-Message-ID: <bug-108080-8800-RKTsm8Lufw@http.bugs.freedesktop.org/>
+Date: Thu, 27 Sep 2018 02:14:47 +0000
+Message-ID: <bug-108080-8800-jqRQyu98dp@http.bugs.freedesktop.org/>
 References: <bug-108080-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0613235877=="
+Content-Type: multipart/mixed; boundary="===============0548805170=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108080-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0613235877==
-Content-Type: multipart/alternative; boundary="15380042620.cbC9Ac7F.30592"
+--===============0548805170==
+Content-Type: multipart/alternative; boundary="15380144860.b51De496.23063"
 Content-Transfer-Encoding: 7bit
 
 
---15380042620.cbC9Ac7F.30592
-Date: Wed, 26 Sep 2018 23:24:22 +0000
+--15380144860.b51De496.23063
+Date: Thu, 27 Sep 2018 02:14:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,31 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108080
 
-Eli <EliasWoods-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+A number of GTX 660 users have a variety of issues with nouveau. Can you se=
+e if
+using blob grctx firmware helps? Follow the instructions at
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=3D107829
+https://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware
+
+[make sure you use 325.15 and not another version]
+
+This should get you the appropriate grctx firmware. You can then make use o=
+f it
+by booting with
+
+nouveau.config=3DNvGrUseFW=3D1
+
+(Make sure that the firmware ends up whereever the nouveau module is... if =
+it's
+loaded from initrd, then it should be in initrd, etc.)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15380042620.cbC9Ac7F.30592
-Date: Wed, 26 Sep 2018 23:24:22 +0000
+--15380144860.b51De496.23063
+Date: Thu, 27 Sep 2018 02:14:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,33 +71,44 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:EliasWood=
-s&#64;gmail.com" title=3D"Eli &lt;EliasWoods&#64;gmail.com&gt;"> <span clas=
-s=3D"fn">Eli</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GK106 [GeForce GTX 660] System Freeze - warp 3d0009 [ILLE=
+GAL_INSTR_ENCODING]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108080#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GK106 [GeForce GTX 660] System Freeze - warp 3d0009 [ILLE=
 GAL_INSTR_ENCODING]"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108080">bug 10808=
 0</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>A number of GTX 660 users have a variety of issues with nouvea=
+u. Can you see if
+using blob grctx firmware helps? Follow the instructions at
 
-         <tr>
-           <td style=3D"text-align:right;">See Also</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D107829
-           </td>
-         </tr></table>
-      <p>
+<a href=3D"https://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware=
+">https://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware</a>
+
+[make sure you use 325.15 and not another version]
+
+This should get you the appropriate grctx firmware. You can then make use o=
+f it
+by booting with
+
+nouveau.config=3DNvGrUseFW=3D1
+
+(Make sure that the firmware ends up whereever the nouveau module is... if =
+it's
+loaded from initrd, then it should be in initrd, etc.)</pre>
+        </div>
       </p>
 
 
@@ -98,9 +121,9 @@ GAL_INSTR_ENCODING]"
     </body>
 </html>=
 
---15380042620.cbC9Ac7F.30592--
+--15380144860.b51De496.23063--
 
---===============0613235877==
+--===============0548805170==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +133,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0613235877==--
+--===============0548805170==--
