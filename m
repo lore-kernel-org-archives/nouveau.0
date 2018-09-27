@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108080] GK106 [GeForce GTX 660] System Freeze - warp
- 3d0009 [ILLEGAL_INSTR_ENCODING]
-Date: Thu, 27 Sep 2018 02:14:47 +0000
-Message-ID: <bug-108080-8800-jqRQyu98dp@http.bugs.freedesktop.org/>
-References: <bug-108080-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99464] openmw - Segfault with the nouveau ddx + DRI3
+Date: Thu, 27 Sep 2018 20:43:55 +0000
+Message-ID: <bug-99464-8800-RCoEhBFNtR@http.bugs.freedesktop.org/>
+References: <bug-99464-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0548805170=="
+Content-Type: multipart/mixed; boundary="===============0996415606=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108080-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99464-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,46 +20,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0548805170==
-Content-Type: multipart/alternative; boundary="15380144860.b51De496.23063"
+--===============0996415606==
+Content-Type: multipart/alternative; boundary="15380810351.ba77bcd.11469"
 Content-Transfer-Encoding: 7bit
 
 
---15380144860.b51De496.23063
-Date: Thu, 27 Sep 2018 02:14:46 +0000
+--15380810351.ba77bcd.11469
+Date: Thu, 27 Sep 2018 20:43:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108080
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99464
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-A number of GTX 660 users have a variety of issues with nouveau. Can you se=
-e if
-using blob grctx firmware helps? Follow the instructions at
+Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
 
-https://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
 
-[make sure you use 325.15 and not another version]
+--- Comment #4 from Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>=
+ ---
+The mentioned workaround in the original description got adapted and commit=
+ted
+recently:
 
-This should get you the appropriate grctx firmware. You can then make use o=
-f it
-by booting with
+c3486cd8c9092cbe33dfc77b906e2475b1e32c8d st/mesa: do not call
+update_framebuffer_size with NULL pointer
 
-nouveau.config=3DNvGrUseFW=3D1
-
-(Make sure that the firmware ends up whereever the nouveau module is... if =
-it's
-loaded from initrd, then it should be in initrd, etc.)
+This should fix at least the SEGV. Maybe it can be reported if the invisible
+mouse pointer still exists in newer versions of mesa!
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15380144860.b51De496.23063
-Date: Thu, 27 Sep 2018 02:14:46 +0000
+--15380810351.ba77bcd.11469
+Date: Thu, 27 Sep 2018 20:43:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,43 +70,57 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:tobias.jo=
+hannes.klausmann&#64;mni.thm.de" title=3D"Tobias Klausmann &lt;tobias.johan=
+nes.klausmann&#64;mni.thm.de&gt;"> <span class=3D"fn">Tobias Klausmann</spa=
+n></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - openmw - Segfault with the nouveau ddx + DRI3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99464">bug 99464<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GK106 [GeForce GTX 660] System Freeze - warp 3d0009 [ILLE=
-GAL_INSTR_ENCODING]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108080#c1">Commen=
-t # 1</a>
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - openmw - Segfault with the nouveau ddx + DRI3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99464#c4">Comment=
+ # 4</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GK106 [GeForce GTX 660] System Freeze - warp 3d0009 [ILLE=
-GAL_INSTR_ENCODING]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108080">bug 10808=
-0</a>
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - openmw - Segfault with the nouveau ddx + DRI3"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99464">bug 99464<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+tobias.johannes.klausmann&#64;mni.thm.de" title=3D"Tobias Klausmann &lt;tob=
+ias.johannes.klausmann&#64;mni.thm.de&gt;"> <span class=3D"fn">Tobias Klaus=
+mann</span></a>
 </span></b>
-        <pre>A number of GTX 660 users have a variety of issues with nouvea=
-u. Can you see if
-using blob grctx firmware helps? Follow the instructions at
+        <pre>The mentioned workaround in the original description got adapt=
+ed and committed
+recently:
 
-<a href=3D"https://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware=
-">https://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware</a>
+c3486cd8c9092cbe33dfc77b906e2475b1e32c8d st/mesa: do not call
+update_framebuffer_size with NULL pointer
 
-[make sure you use 325.15 and not another version]
-
-This should get you the appropriate grctx firmware. You can then make use o=
-f it
-by booting with
-
-nouveau.config=3DNvGrUseFW=3D1
-
-(Make sure that the firmware ends up whereever the nouveau module is... if =
-it's
-loaded from initrd, then it should be in initrd, etc.)</pre>
+This should fix at least the SEGV. Maybe it can be reported if the invisible
+mouse pointer still exists in newer versions of mesa!</pre>
         </div>
       </p>
 
@@ -117,13 +130,14 @@ loaded from initrd, then it should be in initrd, etc.)</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15380144860.b51De496.23063--
+--15380810351.ba77bcd.11469--
 
---===============0548805170==
+--===============0996415606==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -133,4 +147,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0548805170==--
+--===============0996415606==--
