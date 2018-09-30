@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103889] [NV50/G86] disp: ERROR 1 [] 01 [] chid 0
  mthd 0000 data 00000000
-Date: Sun, 30 Sep 2018 17:18:43 +0000
-Message-ID: <bug-103889-8800-P3VuGHZsIi@http.bugs.freedesktop.org/>
+Date: Sun, 30 Sep 2018 17:21:17 +0000
+Message-ID: <bug-103889-8800-rVXLiKjLku@http.bugs.freedesktop.org/>
 References: <bug-103889-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0082920689=="
+Content-Type: multipart/mixed; boundary="===============0887422062=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103889-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0082920689==
-Content-Type: multipart/alternative; boundary="15383279230.fdB0bB6.26049"
+--===============0887422062==
+Content-Type: multipart/alternative; boundary="15383280771.5Fca.26527"
 Content-Transfer-Encoding: 7bit
 
 
---15383279230.fdB0bB6.26049
-Date: Sun, 30 Sep 2018 17:18:43 +0000
+--15383280771.5Fca.26527
+Date: Sun, 30 Sep 2018 17:21:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,20 +40,20 @@ erhard_f-cl+VPiYnx/1AfugRpC6u6w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #136019|0                           |1
+ Attachment #135697|0                           |1
         is obsolete|                            |
 
---- Comment #8 from erhard_f-cl+VPiYnx/1AfugRpC6u6w@public.gmane.org ---
-Created attachment 141807
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141807&action=3Dedit
-Xorg.0.log
+--- Comment #9 from erhard_f-cl+VPiYnx/1AfugRpC6u6w@public.gmane.org ---
+Created attachment 141808
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D141808&action=3Dedit
+kernel .config (4.19-rc5)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15383279230.fdB0bB6.26049
-Date: Sun, 30 Sep 2018 17:18:43 +0000
+--15383280771.5Fca.26527
+Date: Sun, 30 Sep 2018 17:21:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -83,7 +83,7 @@ g</a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Attachment #136019 is obsolete</=
+           <td style=3D"text-align:right;">Attachment #135697 is obsolete</=
 td>
            <td>
                &nbsp;
@@ -97,8 +97,8 @@ td>
           bz_status_NEW "
    title=3D"NEW - [NV50/G86] disp: ERROR 1 [] 01 [] chid 0 mthd 0000 data 0=
 0000000"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103889#c8">Commen=
-t # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103889#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV50/G86] disp: ERROR 1 [] 01 [] chid 0 mthd 0000 data 0=
@@ -109,11 +109,11 @@ t # 8</a>
 erhard_f&#64;mailbox.org" title=3D"erhard_f&#64;mailbox.org">erhard_f&#64;m=
 ailbox.org</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141807=
-" name=3D"attach_141807" title=3D"Xorg.0.log">attachment 141807</a> <a href=
-=3D"attachment.cgi?id=3D141807&amp;action=3Dedit" title=3D"Xorg.0.log">[det=
-ails]</a></span>
-Xorg.0.log</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D141808=
+" name=3D"attach_141808" title=3D"kernel .config (4.19-rc5)">attachment 141=
+808</a> <a href=3D"attachment.cgi?id=3D141808&amp;action=3Dedit" title=3D"k=
+ernel .config (4.19-rc5)">[details]</a></span>
+kernel .config (4.19-rc5)</pre>
         </div>
       </p>
 
@@ -127,9 +127,9 @@ Xorg.0.log</pre>
     </body>
 </html>=
 
---15383279230.fdB0bB6.26049--
+--15383280771.5Fca.26527--
 
---===============0082920689==
+--===============0887422062==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -139,4 +139,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0082920689==--
+--===============0887422062==--
