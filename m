@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108047] No recognition of DVI-D monitor
-Date: Thu, 04 Oct 2018 06:06:12 +0000
-Message-ID: <bug-108047-8800-4C6TMvQmC0@http.bugs.freedesktop.org/>
-References: <bug-108047-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
+ 409800 [ TIMEOUT ]
+Date: Thu, 04 Oct 2018 12:06:13 +0000
+Message-ID: <bug-100228-8800-JWqInx4C2G@http.bugs.freedesktop.org/>
+References: <bug-100228-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0593503325=="
+Content-Type: multipart/mixed; boundary="===============0452279624=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108047-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0593503325==
-Content-Type: multipart/alternative; boundary="15386331711.fCE7C529c.25740"
+--===============0452279624==
+Content-Type: multipart/alternative; boundary="15386547733.8f1c3Dae.18077"
 Content-Transfer-Encoding: 7bit
 
 
---15386331711.fCE7C529c.25740
-Date: Thu, 4 Oct 2018 06:06:11 +0000
+--15386547733.8f1c3Dae.18077
+Date: Thu, 4 Oct 2018 12:06:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108047
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
 
---- Comment #9 from Wolfgang <wolle321-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org> ---
-Another idea is, if there is a problem with der EDID-Data on DVI-D, (but th=
-ere
-is no error in the logs, only the line that is not connected), could I fake=
- the
-EDID-Data-Block somehow, to get the native resolution on my Monitor?
+--- Comment #27 from Lo=C3=AFc Yhuel <loic.yhuel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+No change with the new firmwares on Dell Inspiron Gaming 7567.
+
+Fedora 29 with manually installed new firmwares (kernel-4.18.10-300.fc29.x8=
+6_64
++ linux-firmware-20180913-87.git44d4fca9.fc30.noarch).
+
+No issue when booting with nouveau.noaccel=3D1.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15386331711.fCE7C529c.25740
-Date: Thu, 4 Oct 2018 06:06:11 +0000
+--15386547733.8f1c3Dae.18077
+Date: Thu, 4 Oct 2018 12:06:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,23 +66,27 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - No recognition of DVI-D monitor"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108047#c9">Commen=
-t # 9</a>
+   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
+OUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c27">Comme=
+nt # 27</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - No recognition of DVI-D monitor"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108047">bug 10804=
-7</a>
+   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
+OUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
+8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-wolle321&#64;freenet.de" title=3D"Wolfgang &lt;wolle321&#64;freenet.de&gt;"=
-> <span class=3D"fn">Wolfgang</span></a>
+loic.yhuel&#64;gmail.com" title=3D"Lo=C3=AFc Yhuel &lt;loic.yhuel&#64;gmail=
+.com&gt;"> <span class=3D"fn">Lo=C3=AFc Yhuel</span></a>
 </span></b>
-        <pre>Another idea is, if there is a problem with der EDID-Data on D=
-VI-D, (but there
-is no error in the logs, only the line that is not connected), could I fake=
- the
-EDID-Data-Block somehow, to get the native resolution on my Monitor?</pre>
+        <pre>No change with the new firmwares on Dell Inspiron Gaming 7567.
+
+Fedora 29 with manually installed new firmwares (kernel-4.18.10-300.fc29.x8=
+6_64
++ linux-firmware-20180913-87.git44d4fca9.fc30.noarch).
+
+No issue when booting with nouveau.noaccel=3D1.</pre>
         </div>
       </p>
 
@@ -93,9 +100,9 @@ EDID-Data-Block somehow, to get the native resolution on my Monitor?</pre>
     </body>
 </html>=
 
---15386331711.fCE7C529c.25740--
+--15386547733.8f1c3Dae.18077--
 
---===============0593503325==
+--===============0452279624==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0593503325==--
+--===============0452279624==--
