@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108047] No recognition of DVI-D monitor
-Date: Thu, 04 Oct 2018 06:02:09 +0000
-Message-ID: <bug-108047-8800-LLbZDZhKdy@http.bugs.freedesktop.org/>
+Date: Thu, 04 Oct 2018 06:06:12 +0000
+Message-ID: <bug-108047-8800-4C6TMvQmC0@http.bugs.freedesktop.org/>
 References: <bug-108047-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1534724064=="
+Content-Type: multipart/mixed; boundary="===============0593503325=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108047-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1534724064==
-Content-Type: multipart/alternative; boundary="15386329291.aABf4.25096"
+--===============0593503325==
+Content-Type: multipart/alternative; boundary="15386331711.fCE7C529c.25740"
 Content-Transfer-Encoding: 7bit
 
 
---15386329291.aABf4.25096
-Date: Thu, 4 Oct 2018 06:02:09 +0000
+--15386331711.fCE7C529c.25740
+Date: Thu, 4 Oct 2018 06:06:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,33 +35,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108047
 
---- Comment #8 from Wolfgang <wolle321-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org> ---
-Hello again,=20
-
-sending a friendly ping to this report.
-
-Does anybody knows, how to switch on the DVI-D Output per default, or should
-nouveau detect it automatically without doing anything?
-
-Is this something special from Ubuntu or normal nouveau behavior?
-
-Why does the monitor  run with 960x1200 while the picture has 1920x1200 whe=
-n I
-force 1920x1200 (this looks really like a bug), 960 is the half of 1920.
-
-(The exactly same hardware setting works with proprietary nvidia driver, but
-the GPU now is to old, the fitting nvidia driver is not supported by modern
-kernels anymore, so ubuntu deleted it from repos, and I would love to use
-Nouveau insted)
-
-Thank you again.
+--- Comment #9 from Wolfgang <wolle321-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org> ---
+Another idea is, if there is a problem with der EDID-Data on DVI-D, (but th=
+ere
+is no error in the logs, only the line that is not connected), could I fake=
+ the
+EDID-Data-Block somehow, to get the native resolution on my Monitor?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15386329291.aABf4.25096
-Date: Thu, 4 Oct 2018 06:02:09 +0000
+--15386331711.fCE7C529c.25740
+Date: Thu, 4 Oct 2018 06:06:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,8 +64,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - No recognition of DVI-D monitor"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108047#c8">Commen=
-t # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108047#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - No recognition of DVI-D monitor"
@@ -89,25 +75,11 @@ t # 8</a>
 wolle321&#64;freenet.de" title=3D"Wolfgang &lt;wolle321&#64;freenet.de&gt;"=
 > <span class=3D"fn">Wolfgang</span></a>
 </span></b>
-        <pre>Hello again,=20
-
-sending a friendly ping to this report.
-
-Does anybody knows, how to switch on the DVI-D Output per default, or should
-nouveau detect it automatically without doing anything?
-
-Is this something special from Ubuntu or normal nouveau behavior?
-
-Why does the monitor  run with 960x1200 while the picture has 1920x1200 whe=
-n I
-force 1920x1200 (this looks really like a bug), 960 is the half of 1920.
-
-(The exactly same hardware setting works with proprietary nvidia driver, but
-the GPU now is to old, the fitting nvidia driver is not supported by modern
-kernels anymore, so ubuntu deleted it from repos, and I would love to use
-Nouveau insted)
-
-Thank you again.</pre>
+        <pre>Another idea is, if there is a problem with der EDID-Data on D=
+VI-D, (but there
+is no error in the logs, only the line that is not connected), could I fake=
+ the
+EDID-Data-Block somehow, to get the native resolution on my Monitor?</pre>
         </div>
       </p>
 
@@ -121,9 +93,9 @@ Thank you again.</pre>
     </body>
 </html>=
 
---15386329291.aABf4.25096--
+--15386331711.fCE7C529c.25740--
 
---===============1534724064==
+--===============0593503325==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -133,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1534724064==--
+--===============0593503325==--
