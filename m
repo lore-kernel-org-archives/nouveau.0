@@ -1,93 +1,66 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v3 3/5] drm/i915: Leave intel_conn->mst_port set,
- use mst_port_gone instead
-Date: Thu,  4 Oct 2018 19:33:48 -0400
-Message-ID: <20181004233353.5388-4-lyude@redhat.com>
+Subject: [PATCH v3 4/5] drm/i915: Skip vcpi allocation for MSTB ports that are gone
+Date: Thu,  4 Oct 2018 19:33:49 -0400
+Message-ID: <20181004233353.5388-5-lyude@redhat.com>
 References: <20181004233353.5388-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
 In-Reply-To: <20181004233353.5388-1-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+Sender: linux-kernel-owner@vger.kernel.org
 To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>, linux-kernel@vger.kernel.org, stable@vger.kernel.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, stable@vger.kernel.org, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Q3VycmVudGx5IHdlIHNldCBpbnRlbF9jb25uZWN0b3ItPm1zdF9wb3J0IHRvIE5VTEwgdG8gc2ln
-bmlmeSB0aGF0IHRoZQpNU1QgcG9ydCBoYXMgYmVlbiByZW1vdmVkIGZyb20gdGhlIHN5c3RlbSBz
-byB0aGF0IHdlIGNhbiBwcmV2ZW50IGZ1cnRoZXIKYWN0aW9uIG9uIHRoZSBwb3J0IHN1Y2ggYXMg
-Y29ubmVjdG9yIHByb2JlcywgbW9kZSBwcm9iaW5nLCBldGMuCkhvd2V2ZXIsIHdlJ3JlIGdvaW5n
-IHRvIG5lZWQgYWNjZXNzIHRvIGludGVsX2Nvbm5lY3Rvci0+bXN0X3BvcnQgaW4Kb3JkZXIgdG8g
-Zml4dXAgLT5iZXN0X2VuY29kZXIoKSBzbyB0aGF0IGl0IGNhbiBhbHdheXMgcmV0dXJuIHRoZSBj
-b3JyZWN0CmVuY29kZXIgZm9yIGFuIE1TVCBwb3J0IHRvIHByZXZlbnQgbGVnYWN5IERQTVMgcHJv
-cCBjaGFuZ2VzIGZyb20KZmFpbGluZy4gVGhpcyBzaG91bGQgYmUgc2FmZSwgc28gaW5zdGVhZCBr
-ZWVwIGludGVsX2Nvbm5lY3Rvci0+bXN0X3BvcnQKYWx3YXlzIHNldCBhbmQgaW5zdGVhZCBhZGQg
-aW50ZWxfY29ubmVjdG9yLT5tc3RfcG9ydF9nb25lIGluIG9yZGVyIHRvCnNpZ25pZnkgd2hldGhl
-ciBvciBub3QgdGhlIGNvbm5lY3RvciBoYXMgZGlzYXBwZWFyZWQgZnJvbSB0aGUgc3lzdGVtLgoK
-Q2hhbmdlcyBzaW5jZSB2MjoKLSBBZGQgYSBjb21tZW50IHRvIG1zdF9wb3J0X2dvbmUgKEphbmkg
-TmlrdWxhKQotIENoYW5nZSBtc3RfcG9ydF9nb25lIHRvIGEgdTggaW5zdGVhZCBvZiBhIGJvb2ws
-IHBlciB0aGUga2VybmVsIGJvdC4KICBBcHBhcmVudGx5IGJvb2wgaXMgZGlzY291cmFnZWQgaW4g
-c3RydWN0cyB0aGVzZSBkYXlzCgpTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRo
-YXQuY29tPgpDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZwotLS0KIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2ludGVsX2RwX21zdC5jIHwgMTQgKysrKysrKy0tLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2ludGVsX2Rydi5oICAgIHwgIDYgKysrKysrCiAyIGZpbGVzIGNoYW5nZWQsIDEzIGluc2Vy
-dGlvbnMoKyksIDcgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaW50ZWxfZHBfbXN0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcF9tc3QuYwpp
-bmRleCA0ZWNkNjUzNzU2MDMuLmZjYjliODdiOTMzOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaW50ZWxfZHBfbXN0LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxf
-ZHBfbXN0LmMKQEAgLTMxMSw5ICszMTEsOCBAQCBzdGF0aWMgaW50IGludGVsX2RwX21zdF9nZXRf
-ZGRjX21vZGVzKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpCiAJc3RydWN0IGVkaWQg
-KmVkaWQ7CiAJaW50IHJldDsKIAotCWlmICghaW50ZWxfZHApIHsKKwlpZiAoaW50ZWxfY29ubmVj
-dG9yLT5tc3RfcG9ydF9nb25lKQogCQlyZXR1cm4gaW50ZWxfY29ubmVjdG9yX3VwZGF0ZV9tb2Rl
-cyhjb25uZWN0b3IsIE5VTEwpOwotCX0KIAogCWVkaWQgPSBkcm1fZHBfbXN0X2dldF9lZGlkKGNv
-bm5lY3RvciwgJmludGVsX2RwLT5tc3RfbWdyLCBpbnRlbF9jb25uZWN0b3ItPnBvcnQpOwogCXJl
-dCA9IGludGVsX2Nvbm5lY3Rvcl91cGRhdGVfbW9kZXMoY29ubmVjdG9yLCBlZGlkKTsKQEAgLTMy
-OCw5ICszMjcsMTAgQEAgaW50ZWxfZHBfbXN0X2RldGVjdChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAq
-Y29ubmVjdG9yLCBib29sIGZvcmNlKQogCXN0cnVjdCBpbnRlbF9jb25uZWN0b3IgKmludGVsX2Nv
-bm5lY3RvciA9IHRvX2ludGVsX2Nvbm5lY3Rvcihjb25uZWN0b3IpOwogCXN0cnVjdCBpbnRlbF9k
-cCAqaW50ZWxfZHAgPSBpbnRlbF9jb25uZWN0b3ItPm1zdF9wb3J0OwogCi0JaWYgKCFpbnRlbF9k
-cCkKKwlpZiAoaW50ZWxfY29ubmVjdG9yLT5tc3RfcG9ydF9nb25lKQogCQlyZXR1cm4gY29ubmVj
-dG9yX3N0YXR1c19kaXNjb25uZWN0ZWQ7Ci0JcmV0dXJuIGRybV9kcF9tc3RfZGV0ZWN0X3BvcnQo
-Y29ubmVjdG9yLCAmaW50ZWxfZHAtPm1zdF9tZ3IsIGludGVsX2Nvbm5lY3Rvci0+cG9ydCk7CisJ
-cmV0dXJuIGRybV9kcF9tc3RfZGV0ZWN0X3BvcnQoY29ubmVjdG9yLCAmaW50ZWxfZHAtPm1zdF9t
-Z3IsCisJCQkJICAgICAgaW50ZWxfY29ubmVjdG9yLT5wb3J0KTsKIH0KIAogc3RhdGljIHZvaWQK
-QEAgLTM3MCw3ICszNzAsNyBAQCBpbnRlbF9kcF9tc3RfbW9kZV92YWxpZChzdHJ1Y3QgZHJtX2Nv
-bm5lY3RvciAqY29ubmVjdG9yLAogCWludCBicHAgPSAyNDsgLyogTVNUIHVzZXMgZml4ZWQgYnBw
-ICovCiAJaW50IG1heF9yYXRlLCBtb2RlX3JhdGUsIG1heF9sYW5lcywgbWF4X2xpbmtfY2xvY2s7
-CiAKLQlpZiAoIWludGVsX2RwKQorCWlmIChpbnRlbF9jb25uZWN0b3ItPm1zdF9wb3J0X2dvbmUp
-CiAJCXJldHVybiBNT0RFX0VSUk9SOwogCiAJaWYgKG1vZGUtPmZsYWdzICYgRFJNX01PREVfRkxB
-R19EQkxTQ0FOKQpAQCAtNDAyLDcgKzQwMiw3IEBAIHN0YXRpYyBzdHJ1Y3QgZHJtX2VuY29kZXIg
-KmludGVsX21zdF9hdG9taWNfYmVzdF9lbmNvZGVyKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjCiAJ
-c3RydWN0IGludGVsX2RwICppbnRlbF9kcCA9IGludGVsX2Nvbm5lY3Rvci0+bXN0X3BvcnQ7CiAJ
-c3RydWN0IGludGVsX2NydGMgKmNydGMgPSB0b19pbnRlbF9jcnRjKHN0YXRlLT5jcnRjKTsKIAot
-CWlmICghaW50ZWxfZHApCisJaWYgKGludGVsX2Nvbm5lY3Rvci0+bXN0X3BvcnRfZ29uZSkKIAkJ
-cmV0dXJuIE5VTEw7CiAJcmV0dXJuICZpbnRlbF9kcC0+bXN0X2VuY29kZXJzW2NydGMtPnBpcGVd
-LT5iYXNlLmJhc2U7CiB9CkBAIC01MTQsNyArNTE0LDcgQEAgc3RhdGljIHZvaWQgaW50ZWxfZHBf
-ZGVzdHJveV9tc3RfY29ubmVjdG9yKHN0cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5X21nciAqbWdy
-LAogCQkJCQkJICAgY29ubmVjdG9yKTsKIAkvKiBwcmV2ZW50IHJhY2Ugd2l0aCB0aGUgY2hlY2sg
-aW4gLT5kZXRlY3QgKi8KIAlkcm1fbW9kZXNldF9sb2NrKCZjb25uZWN0b3ItPmRldi0+bW9kZV9j
-b25maWcuY29ubmVjdGlvbl9tdXRleCwgTlVMTCk7Ci0JaW50ZWxfY29ubmVjdG9yLT5tc3RfcG9y
-dCA9IE5VTEw7CisJaW50ZWxfY29ubmVjdG9yLT5tc3RfcG9ydF9nb25lID0gdHJ1ZTsKIAlkcm1f
-bW9kZXNldF91bmxvY2soJmNvbm5lY3Rvci0+ZGV2LT5tb2RlX2NvbmZpZy5jb25uZWN0aW9uX211
-dGV4KTsKIAogCWRybV9jb25uZWN0b3JfcHV0KGNvbm5lY3Rvcik7CmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
-X2Rydi5oCmluZGV4IDhmYzYxZTk2NzU0Zi4uODI2MWQ0NTc5NDUyIDEwMDY0NAotLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcnYuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-bnRlbF9kcnYuaApAQCAtNDEwLDYgKzQxMCwxMiBAQCBzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yIHsK
-IAogCXN0cnVjdCBpbnRlbF9kcCAqbXN0X3BvcnQ7CiAKKwkvKgorCSAqIFNldCB0byAxIGlmIHRo
-aXMgaXMgYW4gTVNUIGNvbm5lY3RvciB0aGF0IHdhcyByZW1vdmVkIGZyb20gdGhlCisJICogc3lz
-dGVtIGFuZCB1bnJlZ2lzdGVyZWQgZnJvbSBzeXNmcworCSAqLworCXU4IG1zdF9wb3J0X2dvbmU7
-CisKIAkvKiBXb3JrIHN0cnVjdCB0byBzY2hlZHVsZSBhIHVldmVudCBvbiBsaW5rIHRyYWluIGZh
-aWx1cmUgKi8KIAlzdHJ1Y3Qgd29ya19zdHJ1Y3QgbW9kZXNldF9yZXRyeV93b3JrOwogCi0tIAoy
-LjE3LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Since we need to be able to allow DPMS on->off prop changes after an MST
+port has disappeared from the system, we need to be able to make sure we
+can compute a config for the resulting atomic commit. Currently this is
+impossible when the port has disappeared, since the VCPI slot searching
+we try to do in intel_dp_mst_compute_config() will fail with -EINVAL.
+
+Since the only commits we want to allow on no-longer-present MST ports
+are ones that shut off display hardware, we already know that no VCPI
+allocations are needed. So, hardcode the VCPI slot count to 0 when
+intel_dp_mst_compute_config() is called on an MST port that's gone.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: stable@vger.kernel.org
+---
+ drivers/gpu/drm/i915/intel_dp_mst.c | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c b/drivers/gpu/drm/i915/intel_dp_mst.c
+index fcb9b87b9339..a366f32b048a 100644
+--- a/drivers/gpu/drm/i915/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/intel_dp_mst.c
+@@ -42,7 +42,7 @@ static bool intel_dp_mst_compute_config(struct intel_encoder *encoder,
+ 		to_intel_connector(conn_state->connector);
+ 	struct drm_atomic_state *state = pipe_config->base.state;
+ 	int bpp;
+-	int lane_count, slots;
++	int lane_count, slots = 0;
+ 	const struct drm_display_mode *adjusted_mode = &pipe_config->base.adjusted_mode;
+ 	int mst_pbn;
+ 	bool reduce_m_n = drm_dp_has_quirk(&intel_dp->desc,
+@@ -76,11 +76,16 @@ static bool intel_dp_mst_compute_config(struct intel_encoder *encoder,
+ 	mst_pbn = drm_dp_calc_pbn_mode(adjusted_mode->crtc_clock, bpp);
+ 	pipe_config->pbn = mst_pbn;
+ 
+-	slots = drm_dp_atomic_find_vcpi_slots(state, &intel_dp->mst_mgr,
+-					      connector->port, mst_pbn);
+-	if (slots < 0) {
+-		DRM_DEBUG_KMS("failed finding vcpi slots:%d\n", slots);
+-		return false;
++	if (!connector->mst_port_gone) {
++		slots = drm_dp_atomic_find_vcpi_slots(state,
++						      &intel_dp->mst_mgr,
++						      connector->port,
++						      mst_pbn);
++		if (slots < 0) {
++			DRM_DEBUG_KMS("failed finding vcpi slots:%d\n",
++				      slots);
++			return false;
++		}
+ 	}
+ 
+ 	intel_link_compute_m_n(bpp, lane_count,
+-- 
+2.17.1
