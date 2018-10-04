@@ -1,68 +1,66 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v3 1/5] drm/atomic_helper: Disallow new modesets
- on unregistered connectors
-Date: Thu,  4 Oct 2018 19:33:46 -0400
-Message-ID: <20181004233353.5388-2-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v3 2/5] drm/nouveau: Fix nv50_mstc->best_encoder()
+Date: Thu,  4 Oct 2018 19:33:47 -0400
+Message-ID: <20181004233353.5388-3-lyude@redhat.com>
 References: <20181004233353.5388-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20181004233353.5388-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Jani Nikula <jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Gustavo Padovan <gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org>, Sean Paul <sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20181004233353.5388-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Sean Paul <seanpaul@chromium.org>, Ilia Mirkin <imirkin@alum.mit.edu>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-V2l0aCB0aGUgZXhjZXB0aW9uIG9mIG1vZGVzZXRzIHdoaWNoIHdvdWxkIHN3aXRjaCB0aGUgRFBN
-UyBzdGF0ZSBvZiBhCmNvbm5lY3RvciBmcm9tIG9uIHRvIG9mZiwgd2Ugd2FudCB0byBtYWtlIHN1
-cmUgdGhhdCB3ZSBkaXNhbGxvdyBhbGwKbW9kZXNldHMgd2hpY2ggd291bGQgcmVzdWx0IGluIGVu
-YWJsaW5nIGEgbmV3IG1vbml0b3Igb3IgYSBuZXcgbW9kZQpjb25maWd1cmF0aW9uIG9uIGEgbW9u
-aXRvciBpZiB0aGUgY29ubmVjdG9yIGZvciB0aGUgZGlzcGxheSBpbiBxdWVzdGlvbgppcyBubyBs
-b25nZXIgcmVnaXN0ZXJlZC4gVGhpcyBhbGxvd3MgdXMgdG8gc3RvcCB1c2Vyc3BhY2UgZnJvbSB0
-cnlpbmcgdG8KZW5hYmxlIG5ldyBkaXNwbGF5cyBvbiBjb25uZWN0b3JzIGZvciBhbiBNU1QgdG9w
-b2xvZ3kgdGhhdCB3ZXJlIGp1c3QKcmVtb3ZlZCBmcm9tIHRoZSBzeXN0ZW0sIHdpdGhvdXQgcHJl
-dmVudGluZyB1c2Vyc3BhY2UgZnJvbSBkaXNhYmxpbmcKRFBNUyBvbiB0aG9zZSBjb25uZWN0b3Jz
-LgoKU2lnbmVkLW9mZi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KQ2M6IHN0YWJs
-ZUB2Z2VyLmtlcm5lbC5vcmcKLS0tCiBkcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIu
-YyB8IDIxICsrKysrKysrKysrKysrKysrKysrLQogMSBmaWxlIGNoYW5nZWQsIDIwIGluc2VydGlv
-bnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0
-b21pY19oZWxwZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX2hlbHBlci5jCmluZGV4
-IDgwYmU3NGRmN2JhNi4uY2UyZGVjZmM2ODI2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-ZHJtX2F0b21pY19oZWxwZXIuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxw
-ZXIuYwpAQCAtMzA3LDYgKzMwNywyNiBAQCB1cGRhdGVfY29ubmVjdG9yX3JvdXRpbmcoc3RydWN0
-IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlLAogCQlyZXR1cm4gMDsKIAl9CiAKKwljcnRjX3N0YXRl
-ID0gZHJtX2F0b21pY19nZXRfbmV3X2NydGNfc3RhdGUoc3RhdGUsCisJCQkJCQkgICBuZXdfY29u
-bmVjdG9yX3N0YXRlLT5jcnRjKTsKKwkvKgorCSAqIEZvciBjb21wYXRpYmlsaXR5IHdpdGggbGVn
-YWN5IHVzZXJzLCB3ZSB3YW50IHRvIG1ha2Ugc3VyZSB0aGF0CisJICogd2UgYWxsb3cgRFBNUyBP
-bi0+T2ZmIG1vZGVzZXRzIG9uIHVucmVnaXN0ZXJlZCBjb25uZWN0b3JzLiBNb2Rlc2V0cworCSAq
-IHdoaWNoIHdvdWxkIHJlc3VsdCBpbiBhbnl0aGluZyBlbHNlIG11c3QgYmUgY29uc2lkZXJlZCBp
-bnZhbGlkLCB0bworCSAqIGF2b2lkIHR1cm5pbmcgb24gbmV3IGRpc3BsYXlzIG9uIGRlYWQgY29u
-bmVjdG9ycy4KKwkgKgorCSAqIFNpbmNlIHRoZSBjb25uZWN0b3IgY2FuIGJlIHVucmVnaXN0ZXJl
-ZCBhdCBhbnkgcG9pbnQgZHVyaW5nIGFuCisJICogYXRvbWljIGNoZWNrIG9yIGNvbW1pdCwgdGhp
-cyBpcyByYWN5LiBCdXQgdGhhdCdzIE9LOiBhbGwgd2UgY2FyZQorCSAqIGFib3V0IGlzIGVuc3Vy
-aW5nIHRoYXQgdXNlcnNwYWNlIGNhbid0IGRvIGFueXRoaW5nIGJ1dCBzaHV0IG9mZiB0aGUKKwkg
-KiBkaXNwbGF5IG9uIGEgY29ubmVjdG9yIHRoYXQgd2FzIGRlc3Ryb3llZCBhZnRlciBpdCdzIGJl
-ZW4gbm90aWZpZWQsCisJICogbm90IGJlZm9yZS4KKwkgKi8KKwlpZiAoIVJFQURfT05DRShjb25u
-ZWN0b3ItPnJlZ2lzdGVyZWQpICYmIGNydGNfc3RhdGUtPmFjdGl2ZSkgeworCQlEUk1fREVCVUdf
-QVRPTUlDKCJbQ09OTkVDVE9SOiVkOiVzXSBpcyBub3QgcmVnaXN0ZXJlZFxuIiwKKwkJCQkgY29u
-bmVjdG9yLT5iYXNlLmlkLCBjb25uZWN0b3ItPm5hbWUpOworCQlyZXR1cm4gLUVJTlZBTDsKKwl9
-CisKIAlmdW5jcyA9IGNvbm5lY3Rvci0+aGVscGVyX3ByaXZhdGU7CiAKIAlpZiAoZnVuY3MtPmF0
-b21pY19iZXN0X2VuY29kZXIpCkBAIC0zNTEsNyArMzcxLDYgQEAgdXBkYXRlX2Nvbm5lY3Rvcl9y
-b3V0aW5nKHN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSwKIAogCXNldF9iZXN0X2VuY29k
-ZXIoc3RhdGUsIG5ld19jb25uZWN0b3Jfc3RhdGUsIG5ld19lbmNvZGVyKTsKIAotCWNydGNfc3Rh
-dGUgPSBkcm1fYXRvbWljX2dldF9uZXdfY3J0Y19zdGF0ZShzdGF0ZSwgbmV3X2Nvbm5lY3Rvcl9z
-dGF0ZS0+Y3J0Yyk7CiAJY3J0Y19zdGF0ZS0+Y29ubmVjdG9yc19jaGFuZ2VkID0gdHJ1ZTsKIAog
-CURSTV9ERUJVR19BVE9NSUMoIltDT05ORUNUT1I6JWQ6JXNdIHVzaW5nIFtFTkNPREVSOiVkOiVz
-XSBvbiBbQ1JUQzolZDolc11cbiIsCi0tIAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQo=
+As mentioned in the previous commit, we currently prevent new modesets
+on recently-removed MST connectors by returning no encoder from our
+->best_encoder() callback once the MST port has disappeared. This is
+wrong however, because it prevents legacy modesetting users from being
+able to disable CRTCs on MST connectors after the connector's respective
+topology has disappeared.
+
+So, fix this by instead by just always returning a valid encoder.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: stable@vger.kernel.org
+
+Changes since v2:
+- Remove usage of atomic MST helper for now, since that got replaced
+  with a much simpler solution
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+---
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 14 ++++----------
+ 1 file changed, 4 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index 9da0bdfe1e1c..f58fc12f0a07 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -881,22 +881,16 @@ nv50_mstc_atomic_best_encoder(struct drm_connector *connector,
+ {
+ 	struct nv50_head *head = nv50_head(connector_state->crtc);
+ 	struct nv50_mstc *mstc = nv50_mstc(connector);
+-	if (mstc->port) {
+-		struct nv50_mstm *mstm = mstc->mstm;
+-		return &mstm->msto[head->base.index]->encoder;
+-	}
+-	return NULL;
++
++	return &mstc->mstm->msto[head->base.index]->encoder;
+ }
+ 
+ static struct drm_encoder *
+ nv50_mstc_best_encoder(struct drm_connector *connector)
+ {
+ 	struct nv50_mstc *mstc = nv50_mstc(connector);
+-	if (mstc->port) {
+-		struct nv50_mstm *mstm = mstc->mstm;
+-		return &mstm->msto[0]->encoder;
+-	}
+-	return NULL;
++
++	return &mstc->mstm->msto[0]->encoder;
+ }
+ 
+ static enum drm_mode_status
+-- 
+2.17.1
