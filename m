@@ -1,115 +1,38 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
- 409800 [ TIMEOUT ]
-Date: Thu, 04 Oct 2018 12:06:13 +0000
-Message-ID: <bug-100228-8800-JWqInx4C2G@http.bugs.freedesktop.org/>
-References: <bug-100228-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v3 0/5] Fix legacy DPMS changes with MST
+Date: Thu,  4 Oct 2018 19:33:45 -0400
+Message-ID: <20181004233353.5388-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0452279624=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-kernel@vger.kernel.org, Sean Paul <seanpaul@chromium.org>, Ben Skeggs <bskeggs@redhat.com>, Ilia Mirkin <imirkin@alum.mit.edu>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0452279624==
-Content-Type: multipart/alternative; boundary="15386547733.8f1c3Dae.18077"
-Content-Transfer-Encoding: 7bit
-
-
---15386547733.8f1c3Dae.18077
-Date: Thu, 4 Oct 2018 12:06:13 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
-
---- Comment #27 from Lo=C3=AFc Yhuel <loic.yhuel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-No change with the new firmwares on Dell Inspiron Gaming 7567.
-
-Fedora 29 with manually installed new firmwares (kernel-4.18.10-300.fc29.x8=
-6_64
-+ linux-firmware-20180913-87.git44d4fca9.fc30.noarch).
-
-No issue when booting with nouveau.noaccel=3D1.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15386547733.8f1c3Dae.18077
-Date: Thu, 4 Oct 2018 12:06:13 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c27">Comme=
-nt # 27</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-loic.yhuel&#64;gmail.com" title=3D"Lo=C3=AFc Yhuel &lt;loic.yhuel&#64;gmail=
-.com&gt;"> <span class=3D"fn">Lo=C3=AFc Yhuel</span></a>
-</span></b>
-        <pre>No change with the new firmwares on Dell Inspiron Gaming 7567.
-
-Fedora 29 with manually installed new firmwares (kernel-4.18.10-300.fc29.x8=
-6_64
-+ linux-firmware-20180913-87.git44d4fca9.fc30.noarch).
-
-No issue when booting with nouveau.noaccel=3D1.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15386547733.8f1c3Dae.18077--
-
---===============0452279624==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0452279624==--
+TmV4dCB2ZXJzaW9uIG9mIGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMv
+NDk4NzcvCgpUaGlzIGZpeGVzIHNvbWUgcmF0aGVyIHNpbGx5IGJ1Z3MgcmVnYXJkaW5nIERQTVMg
+T24tPk9mZiBjaGFuZ2VzIGZhaWxpbmcKZm9yIGNvbm5lY3RvcnMgd2hpY2ggd2VyZSBqdXN0IHJl
+Y2VudGx5IGRlc3Ryb3llZC4KCkx5dWRlIFBhdWwgKDUpOgogIGRybS9hdG9taWNfaGVscGVyOiBE
+aXNhbGxvdyBuZXcgbW9kZXNldHMgb24gdW5yZWdpc3RlcmVkIGNvbm5lY3RvcnMKICBkcm0vbm91
+dmVhdTogRml4IG52NTBfbXN0Yy0+YmVzdF9lbmNvZGVyKCkKICBkcm0vaTkxNTogTGVhdmUgaW50
+ZWxfY29ubi0+bXN0X3BvcnQgc2V0LCB1c2UgbXN0X3BvcnRfZ29uZSBpbnN0ZWFkCiAgZHJtL2k5
+MTU6IFNraXAgdmNwaSBhbGxvY2F0aW9uIGZvciBNU1RCIHBvcnRzIHRoYXQgYXJlIGdvbmUKICBk
+cm0vaTkxNTogRml4IGludGVsX2RwX21zdF9iZXN0X2VuY29kZXIoKQoKIGRyaXZlcnMvZ3B1L2Ry
+bS9kcm1fYXRvbWljX2hlbHBlci5jICAgICB8IDIxICsrKysrKysrKysrKysrKystCiBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pbnRlbF9kcF9tc3QuYyAgICAgfCAzMSArKysrKysrKysrKysrKy0tLS0t
+LS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcnYuaCAgICAgICAgfCAgNiArKysr
+KwogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jIHwgMTQgKysrKy0tLS0t
+LS0KIDQgZmlsZXMgY2hhbmdlZCwgNDcgaW5zZXJ0aW9ucygrKSwgMjUgZGVsZXRpb25zKC0pCgot
+LSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
