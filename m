@@ -1,66 +1,108 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v4 2/5] drm/nouveau: Fix nv50_mstc->best_encoder()
-Date: Thu,  4 Oct 2018 20:29:51 -0400
-Message-ID: <20181005002956.7317-3-lyude@redhat.com>
+Subject: [PATCH v4 3/5] drm/i915: Leave intel_conn->mst_port set, use mst_port_gone instead
+Date: Thu,  4 Oct 2018 20:29:52 -0400
+Message-ID: <20181005002956.7317-4-lyude@redhat.com>
 References: <20181005002956.7317-1-lyude@redhat.com>
 Return-path: <linux-kernel-owner@vger.kernel.org>
 In-Reply-To: <20181005002956.7317-1-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
 To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Thierry Reding <treding@nvidia.com>, linux-kernel@vger.kernel.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, stable@vger.kernel.org, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-As mentioned in the previous commit, we currently prevent new modesets
-on recently-removed MST connectors by returning no encoder from our
-->best_encoder() callback once the MST port has disappeared. This is
-wrong however, because it prevents legacy modesetting users from being
-able to disable CRTCs on MST connectors after the connector's respective
-topology has disappeared.
+Currently we set intel_connector->mst_port to NULL to signify that the
+MST port has been removed from the system so that we can prevent further
+action on the port such as connector probes, mode probing, etc.
+However, we're going to need access to intel_connector->mst_port in
+order to fixup ->best_encoder() so that it can always return the correct
+encoder for an MST port to prevent legacy DPMS prop changes from
+failing. This should be safe, so instead keep intel_connector->mst_port
+always set and instead add intel_connector->mst_port_gone in order to
+signify whether or not the connector has disappeared from the system.
 
-So, fix this by instead by just always returning a valid encoder.
+Changes since v2:
+- Add a comment to mst_port_gone (Jani Nikula)
+- Change mst_port_gone to a u8 instead of a bool, per the kernel bot.
+  Apparently bool is discouraged in structs these days
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 Cc: stable@vger.kernel.org
-
-Changes since v2:
-- Remove usage of atomic MST helper for now, since that got replaced
-  with a much simpler solution
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
 ---
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 14 ++++----------
- 1 file changed, 4 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/intel_dp_mst.c | 14 +++++++-------
+ drivers/gpu/drm/i915/intel_drv.h    |  6 ++++++
+ 2 files changed, 13 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 5691dfa1db6f..63a23a80f279 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -843,22 +843,16 @@ nv50_mstc_atomic_best_encoder(struct drm_connector *connector,
- {
- 	struct nv50_head *head = nv50_head(connector_state->crtc);
- 	struct nv50_mstc *mstc = nv50_mstc(connector);
--	if (mstc->port) {
--		struct nv50_mstm *mstm = mstc->mstm;
--		return &mstm->msto[head->base.index]->encoder;
+diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c b/drivers/gpu/drm/i915/intel_dp_mst.c
+index 4ecd65375603..fcb9b87b9339 100644
+--- a/drivers/gpu/drm/i915/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/intel_dp_mst.c
+@@ -311,9 +311,8 @@ static int intel_dp_mst_get_ddc_modes(struct drm_connector *connector)
+ 	struct edid *edid;
+ 	int ret;
+ 
+-	if (!intel_dp) {
++	if (intel_connector->mst_port_gone)
+ 		return intel_connector_update_modes(connector, NULL);
 -	}
--	return NULL;
-+
-+	return &mstc->mstm->msto[head->base.index]->encoder;
+ 
+ 	edid = drm_dp_mst_get_edid(connector, &intel_dp->mst_mgr, intel_connector->port);
+ 	ret = intel_connector_update_modes(connector, edid);
+@@ -328,9 +327,10 @@ intel_dp_mst_detect(struct drm_connector *connector, bool force)
+ 	struct intel_connector *intel_connector = to_intel_connector(connector);
+ 	struct intel_dp *intel_dp = intel_connector->mst_port;
+ 
+-	if (!intel_dp)
++	if (intel_connector->mst_port_gone)
+ 		return connector_status_disconnected;
+-	return drm_dp_mst_detect_port(connector, &intel_dp->mst_mgr, intel_connector->port);
++	return drm_dp_mst_detect_port(connector, &intel_dp->mst_mgr,
++				      intel_connector->port);
  }
  
- static struct drm_encoder *
- nv50_mstc_best_encoder(struct drm_connector *connector)
- {
- 	struct nv50_mstc *mstc = nv50_mstc(connector);
--	if (mstc->port) {
--		struct nv50_mstm *mstm = mstc->mstm;
--		return &mstm->msto[0]->encoder;
--	}
--	return NULL;
-+
-+	return &mstc->mstm->msto[0]->encoder;
- }
+ static void
+@@ -370,7 +370,7 @@ intel_dp_mst_mode_valid(struct drm_connector *connector,
+ 	int bpp = 24; /* MST uses fixed bpp */
+ 	int max_rate, mode_rate, max_lanes, max_link_clock;
  
- static enum drm_mode_status
+-	if (!intel_dp)
++	if (intel_connector->mst_port_gone)
+ 		return MODE_ERROR;
+ 
+ 	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
+@@ -402,7 +402,7 @@ static struct drm_encoder *intel_mst_atomic_best_encoder(struct drm_connector *c
+ 	struct intel_dp *intel_dp = intel_connector->mst_port;
+ 	struct intel_crtc *crtc = to_intel_crtc(state->crtc);
+ 
+-	if (!intel_dp)
++	if (intel_connector->mst_port_gone)
+ 		return NULL;
+ 	return &intel_dp->mst_encoders[crtc->pipe]->base.base;
+ }
+@@ -514,7 +514,7 @@ static void intel_dp_destroy_mst_connector(struct drm_dp_mst_topology_mgr *mgr,
+ 						   connector);
+ 	/* prevent race with the check in ->detect */
+ 	drm_modeset_lock(&connector->dev->mode_config.connection_mutex, NULL);
+-	intel_connector->mst_port = NULL;
++	intel_connector->mst_port_gone = true;
+ 	drm_modeset_unlock(&connector->dev->mode_config.connection_mutex);
+ 
+ 	drm_connector_put(connector);
+diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915/intel_drv.h
+index 8fc61e96754f..8261d4579452 100644
+--- a/drivers/gpu/drm/i915/intel_drv.h
++++ b/drivers/gpu/drm/i915/intel_drv.h
+@@ -410,6 +410,12 @@ struct intel_connector {
+ 
+ 	struct intel_dp *mst_port;
+ 
++	/*
++	 * Set to 1 if this is an MST connector that was removed from the
++	 * system and unregistered from sysfs
++	 */
++	u8 mst_port_gone;
++
+ 	/* Work struct to schedule a uevent on link train failure */
+ 	struct work_struct modeset_retry_work;
+ 
 -- 
 2.17.1
