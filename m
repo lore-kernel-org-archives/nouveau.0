@@ -1,65 +1,137 @@
 From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v4 2/5] drm/nouveau: Fix
- nv50_mstc->best_encoder()
-Date: Fri, 5 Oct 2018 09:14:40 +0200
-Message-ID: <20181005071440.GU31561@phenom.ffwll.local>
+Subject: Re: [PATCH v4 3/5] drm/i915: Leave intel_conn->mst_port set, use
+ mst_port_gone instead
+Date: Fri, 5 Oct 2018 09:20:17 +0200
+Message-ID: <20181005072017.GV31561@phenom.ffwll.local>
 References: <20181005002956.7317-1-lyude@redhat.com>
- <20181005002956.7317-3-lyude@redhat.com>
+ <20181005002956.7317-4-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <stable-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20181005002956.7317-3-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20181005002956.7317-4-lyude@redhat.com>
+Sender: stable-owner@vger.kernel.org
 To: Lyude Paul <lyude@redhat.com>
-Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>, Thierry Reding <treding@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, stable@vger.kernel.org, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBPY3QgMDQsIDIwMTggYXQgMDg6Mjk6NTFQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
-ZToKPiBBcyBtZW50aW9uZWQgaW4gdGhlIHByZXZpb3VzIGNvbW1pdCwgd2UgY3VycmVudGx5IHBy
-ZXZlbnQgbmV3IG1vZGVzZXRzCj4gb24gcmVjZW50bHktcmVtb3ZlZCBNU1QgY29ubmVjdG9ycyBi
-eSByZXR1cm5pbmcgbm8gZW5jb2RlciBmcm9tIG91cgo+IC0+YmVzdF9lbmNvZGVyKCkgY2FsbGJh
-Y2sgb25jZSB0aGUgTVNUIHBvcnQgaGFzIGRpc2FwcGVhcmVkLiBUaGlzIGlzCj4gd3JvbmcgaG93
-ZXZlciwgYmVjYXVzZSBpdCBwcmV2ZW50cyBsZWdhY3kgbW9kZXNldHRpbmcgdXNlcnMgZnJvbSBi
-ZWluZwo+IGFibGUgdG8gZGlzYWJsZSBDUlRDcyBvbiBNU1QgY29ubmVjdG9ycyBhZnRlciB0aGUg
-Y29ubmVjdG9yJ3MgcmVzcGVjdGl2ZQo+IHRvcG9sb2d5IGhhcyBkaXNhcHBlYXJlZC4KPiAKPiBT
-bywgZml4IHRoaXMgYnkgaW5zdGVhZCBieSBqdXN0IGFsd2F5cyByZXR1cm5pbmcgYSB2YWxpZCBl
-bmNvZGVyLgo+IAo+IFNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+
-Cj4gQ2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcKPiAKPiBDaGFuZ2VzIHNpbmNlIHYyOgo+IC0g
-UmVtb3ZlIHVzYWdlIG9mIGF0b21pYyBNU1QgaGVscGVyIGZvciBub3csIHNpbmNlIHRoYXQgZ290
-IHJlcGxhY2VkCj4gICB3aXRoIGEgbXVjaCBzaW1wbGVyIHNvbHV0aW9uCj4gCj4gU2lnbmVkLW9m
-Zi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KClJldmlld2VkLWJ5OiBEYW5pZWwg
-VmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgoKPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvZGlzcG52NTAvZGlzcC5jIHwgMTQgKysrKy0tLS0tLS0tLS0KPiAgMSBmaWxlIGNo
-YW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYwo+IGluZGV4IDU2OTFkZmExZGI2Zi4uNjNhMjNhODBm
-Mjc5IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3Au
-Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYwo+IEBAIC04
-NDMsMjIgKzg0MywxNiBAQCBudjUwX21zdGNfYXRvbWljX2Jlc3RfZW5jb2RlcihzdHJ1Y3QgZHJt
-X2Nvbm5lY3RvciAqY29ubmVjdG9yLAo+ICB7Cj4gIAlzdHJ1Y3QgbnY1MF9oZWFkICpoZWFkID0g
-bnY1MF9oZWFkKGNvbm5lY3Rvcl9zdGF0ZS0+Y3J0Yyk7Cj4gIAlzdHJ1Y3QgbnY1MF9tc3RjICpt
-c3RjID0gbnY1MF9tc3RjKGNvbm5lY3Rvcik7Cj4gLQlpZiAobXN0Yy0+cG9ydCkgewo+IC0JCXN0
-cnVjdCBudjUwX21zdG0gKm1zdG0gPSBtc3RjLT5tc3RtOwo+IC0JCXJldHVybiAmbXN0bS0+bXN0
-b1toZWFkLT5iYXNlLmluZGV4XS0+ZW5jb2RlcjsKPiAtCX0KPiAtCXJldHVybiBOVUxMOwo+ICsK
-PiArCXJldHVybiAmbXN0Yy0+bXN0bS0+bXN0b1toZWFkLT5iYXNlLmluZGV4XS0+ZW5jb2RlcjsK
-PiAgfQo+ICAKPiAgc3RhdGljIHN0cnVjdCBkcm1fZW5jb2RlciAqCj4gIG52NTBfbXN0Y19iZXN0
-X2VuY29kZXIoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikKPiAgewo+ICAJc3RydWN0
-IG52NTBfbXN0YyAqbXN0YyA9IG52NTBfbXN0Yyhjb25uZWN0b3IpOwo+IC0JaWYgKG1zdGMtPnBv
-cnQpIHsKPiAtCQlzdHJ1Y3QgbnY1MF9tc3RtICptc3RtID0gbXN0Yy0+bXN0bTsKPiAtCQlyZXR1
-cm4gJm1zdG0tPm1zdG9bMF0tPmVuY29kZXI7Cj4gLQl9Cj4gLQlyZXR1cm4gTlVMTDsKPiArCj4g
-KwlyZXR1cm4gJm1zdGMtPm1zdG0tPm1zdG9bMF0tPmVuY29kZXI7Cj4gIH0KPiAgCj4gIHN0YXRp
-YyBlbnVtIGRybV9tb2RlX3N0YXR1cwo+IC0tIAo+IDIuMTcuMQo+IAoKLS0gCkRhbmllbCBWZXR0
-ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCmh0dHA6Ly9ibG9nLmZmd2xs
-LmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
-LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Thu, Oct 04, 2018 at 08:29:52PM -0400, Lyude Paul wrote:
+> Currently we set intel_connector->mst_port to NULL to signify that the
+> MST port has been removed from the system so that we can prevent further
+> action on the port such as connector probes, mode probing, etc.
+> However, we're going to need access to intel_connector->mst_port in
+> order to fixup ->best_encoder() so that it can always return the correct
+> encoder for an MST port to prevent legacy DPMS prop changes from
+> failing. This should be safe, so instead keep intel_connector->mst_port
+> always set and instead add intel_connector->mst_port_gone in order to
+> signify whether or not the connector has disappeared from the system.
+> 
+> Changes since v2:
+> - Add a comment to mst_port_gone (Jani Nikula)
+> - Change mst_port_gone to a u8 instead of a bool, per the kernel bot.
+>   Apparently bool is discouraged in structs these days
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Cc: stable@vger.kernel.org
+> ---
+>  drivers/gpu/drm/i915/intel_dp_mst.c | 14 +++++++-------
+>  drivers/gpu/drm/i915/intel_drv.h    |  6 ++++++
+>  2 files changed, 13 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c b/drivers/gpu/drm/i915/intel_dp_mst.c
+> index 4ecd65375603..fcb9b87b9339 100644
+> --- a/drivers/gpu/drm/i915/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/intel_dp_mst.c
+> @@ -311,9 +311,8 @@ static int intel_dp_mst_get_ddc_modes(struct drm_connector *connector)
+>  	struct edid *edid;
+>  	int ret;
+>  
+> -	if (!intel_dp) {
+> +	if (intel_connector->mst_port_gone)
+
+Just use the same READ_ONCE(conn->registered) trick as in the core? Imo no
+need to track this twice ...
+
+>  		return intel_connector_update_modes(connector, NULL);
+> -	}
+>  
+>  	edid = drm_dp_mst_get_edid(connector, &intel_dp->mst_mgr, intel_connector->port);
+>  	ret = intel_connector_update_modes(connector, edid);
+> @@ -328,9 +327,10 @@ intel_dp_mst_detect(struct drm_connector *connector, bool force)
+>  	struct intel_connector *intel_connector = to_intel_connector(connector);
+>  	struct intel_dp *intel_dp = intel_connector->mst_port;
+>  
+> -	if (!intel_dp)
+> +	if (intel_connector->mst_port_gone)
+>  		return connector_status_disconnected;
+> -	return drm_dp_mst_detect_port(connector, &intel_dp->mst_mgr, intel_connector->port);
+> +	return drm_dp_mst_detect_port(connector, &intel_dp->mst_mgr,
+> +				      intel_connector->port);
+>  }
+>  
+>  static void
+> @@ -370,7 +370,7 @@ intel_dp_mst_mode_valid(struct drm_connector *connector,
+>  	int bpp = 24; /* MST uses fixed bpp */
+>  	int max_rate, mode_rate, max_lanes, max_link_clock;
+>  
+> -	if (!intel_dp)
+> +	if (intel_connector->mst_port_gone)
+>  		return MODE_ERROR;
+
+I think if we've move the conn->registered check into drm_probe_helper.c
+we could drop all these checks here too. And fixup nouveau/amdgpu while at
+it - trying to get modes for a disconnected mst sink is somewhat silly :-)
+
+From a functional pov the patch lgtm. With mst_port_gone removed and the
+READ_ON(!conn->registered) trick everywhere instead this has my
+
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+Cheers, Daniel
+
+>  
+>  	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
+> @@ -402,7 +402,7 @@ static struct drm_encoder *intel_mst_atomic_best_encoder(struct drm_connector *c
+>  	struct intel_dp *intel_dp = intel_connector->mst_port;
+>  	struct intel_crtc *crtc = to_intel_crtc(state->crtc);
+>  
+> -	if (!intel_dp)
+> +	if (intel_connector->mst_port_gone)
+>  		return NULL;
+>  	return &intel_dp->mst_encoders[crtc->pipe]->base.base;
+>  }
+> @@ -514,7 +514,7 @@ static void intel_dp_destroy_mst_connector(struct drm_dp_mst_topology_mgr *mgr,
+>  						   connector);
+>  	/* prevent race with the check in ->detect */
+>  	drm_modeset_lock(&connector->dev->mode_config.connection_mutex, NULL);
+> -	intel_connector->mst_port = NULL;
+> +	intel_connector->mst_port_gone = true;
+>  	drm_modeset_unlock(&connector->dev->mode_config.connection_mutex);
+>  
+>  	drm_connector_put(connector);
+> diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915/intel_drv.h
+> index 8fc61e96754f..8261d4579452 100644
+> --- a/drivers/gpu/drm/i915/intel_drv.h
+> +++ b/drivers/gpu/drm/i915/intel_drv.h
+> @@ -410,6 +410,12 @@ struct intel_connector {
+>  
+>  	struct intel_dp *mst_port;
+>  
+> +	/*
+> +	 * Set to 1 if this is an MST connector that was removed from the
+> +	 * system and unregistered from sysfs
+> +	 */
+> +	u8 mst_port_gone;
+-Daniel
+> +
+>  	/* Work struct to schedule a uevent on link train failure */
+>  	struct work_struct modeset_retry_work;
+>  
+> -- 
+> 2.17.1
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
