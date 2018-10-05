@@ -1,38 +1,68 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v4 0/5] Fix legacy DPMS changes with MST
-Date: Thu,  4 Oct 2018 20:29:49 -0400
-Message-ID: <20181005002956.7317-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Joonas Lahtinen <joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Rodrigo Vivi <rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Jani Nikula <jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Gustavo Padovan <gustavo-THi1TnShQwVAfugRpC6u6w@public.gmane.org>, Sean Paul <sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v4 1/5] drm/atomic_helper: Disallow new modesets on unregistered connectors
+Date: Thu,  4 Oct 2018 20:29:50 -0400
+Message-ID: <20181005002956.7317-2-lyude@redhat.com>
+References: <20181005002956.7317-1-lyude@redhat.com>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20181005002956.7317-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, stable@vger.kernel.org, Gustavo Padovan <gustavo@padovan.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-TmV4dCB2ZXJzaW9uIG9mIGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMv
-NDk4NzgvIC4gTm8KY2hhbmdlcywgZXhjZXB0IHRoYXQgdGhlc2UgcGF0Y2hlcyBhcmUgYWdhaW5z
-dCBtYXN0ZXIgc28gaG9wZWZ1bGx5CmludGVsJ3MgQ0kgZG9lc24ndCBnZXQgY29uZnVzZWQgdGhp
-cyB0aW1lLgoKTHl1ZGUgUGF1bCAoNSk6CiAgZHJtL2F0b21pY19oZWxwZXI6IERpc2FsbG93IG5l
-dyBtb2Rlc2V0cyBvbiB1bnJlZ2lzdGVyZWQgY29ubmVjdG9ycwogIGRybS9ub3V2ZWF1OiBGaXgg
-bnY1MF9tc3RjLT5iZXN0X2VuY29kZXIoKQogIGRybS9pOTE1OiBMZWF2ZSBpbnRlbF9jb25uLT5t
-c3RfcG9ydCBzZXQsIHVzZSBtc3RfcG9ydF9nb25lIGluc3RlYWQKICBkcm0vaTkxNTogU2tpcCB2
-Y3BpIGFsbG9jYXRpb24gZm9yIE1TVEIgcG9ydHMgdGhhdCBhcmUgZ29uZQogIGRybS9pOTE1OiBG
-aXggaW50ZWxfZHBfbXN0X2Jlc3RfZW5jb2RlcigpCgogZHJpdmVycy9ncHUvZHJtL2RybV9hdG9t
-aWNfaGVscGVyLmMgICAgIHwgMjEgKysrKysrKysrKysrKysrKy0KIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2ludGVsX2RwX21zdC5jICAgICB8IDMxICsrKysrKysrKysrKysrLS0tLS0tLS0tLS0KIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rydi5oICAgICAgICB8ICA2ICsrKysrCiBkcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMgfCAxNCArKysrLS0tLS0tLQogNCBmaWxl
-cyBjaGFuZ2VkLCA0NyBpbnNlcnRpb25zKCspLCAyNSBkZWxldGlvbnMoLSkKCi0tIAoyLjE3LjEK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
-bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+With the exception of modesets which would switch the DPMS state of a
+connector from on to off, we want to make sure that we disallow all
+modesets which would result in enabling a new monitor or a new mode
+configuration on a monitor if the connector for the display in question
+is no longer registered. This allows us to stop userspace from trying to
+enable new displays on connectors for an MST topology that were just
+removed from the system, without preventing userspace from disabling
+DPMS on those connectors.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: stable@vger.kernel.org
+---
+ drivers/gpu/drm/drm_atomic_helper.c | 21 ++++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index 80be74df7ba6..ce2decfc6826 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -307,6 +307,26 @@ update_connector_routing(struct drm_atomic_state *state,
+ 		return 0;
+ 	}
+ 
++	crtc_state = drm_atomic_get_new_crtc_state(state,
++						   new_connector_state->crtc);
++	/*
++	 * For compatibility with legacy users, we want to make sure that
++	 * we allow DPMS On->Off modesets on unregistered connectors. Modesets
++	 * which would result in anything else must be considered invalid, to
++	 * avoid turning on new displays on dead connectors.
++	 *
++	 * Since the connector can be unregistered at any point during an
++	 * atomic check or commit, this is racy. But that's OK: all we care
++	 * about is ensuring that userspace can't do anything but shut off the
++	 * display on a connector that was destroyed after it's been notified,
++	 * not before.
++	 */
++	if (!READ_ONCE(connector->registered) && crtc_state->active) {
++		DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] is not registered\n",
++				 connector->base.id, connector->name);
++		return -EINVAL;
++	}
++
+ 	funcs = connector->helper_private;
+ 
+ 	if (funcs->atomic_best_encoder)
+@@ -351,7 +371,6 @@ update_connector_routing(struct drm_atomic_state *state,
+ 
+ 	set_best_encoder(state, new_connector_state, new_encoder);
+ 
+-	crtc_state = drm_atomic_get_new_crtc_state(state, new_connector_state->crtc);
+ 	crtc_state->connectors_changed = true;
+ 
+ 	DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] using [ENCODER:%d:%s] on [CRTC:%d:%s]\n",
+-- 
+2.17.1
