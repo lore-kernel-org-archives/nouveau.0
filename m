@@ -1,137 +1,81 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v4 3/5] drm/i915: Leave intel_conn->mst_port set, use
- mst_port_gone instead
-Date: Fri, 5 Oct 2018 09:20:17 +0200
-Message-ID: <20181005072017.GV31561@phenom.ffwll.local>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH v4 4/5] drm/i915: Skip vcpi allocation for
+ MSTB ports that are gone
+Date: Fri, 5 Oct 2018 09:26:45 +0200
+Message-ID: <20181005072645.GW31561@phenom.ffwll.local>
 References: <20181005002956.7317-1-lyude@redhat.com>
- <20181005002956.7317-4-lyude@redhat.com>
+ <20181005002956.7317-5-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <stable-owner@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20181005002956.7317-4-lyude@redhat.com>
-Sender: stable-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, stable@vger.kernel.org, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
+In-Reply-To: <20181005002956.7317-5-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Joonas Lahtinen <joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Rodrigo Vivi <rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Jani Nikula <jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Oct 04, 2018 at 08:29:52PM -0400, Lyude Paul wrote:
-> Currently we set intel_connector->mst_port to NULL to signify that the
-> MST port has been removed from the system so that we can prevent further
-> action on the port such as connector probes, mode probing, etc.
-> However, we're going to need access to intel_connector->mst_port in
-> order to fixup ->best_encoder() so that it can always return the correct
-> encoder for an MST port to prevent legacy DPMS prop changes from
-> failing. This should be safe, so instead keep intel_connector->mst_port
-> always set and instead add intel_connector->mst_port_gone in order to
-> signify whether or not the connector has disappeared from the system.
-> 
-> Changes since v2:
-> - Add a comment to mst_port_gone (Jani Nikula)
-> - Change mst_port_gone to a u8 instead of a bool, per the kernel bot.
->   Apparently bool is discouraged in structs these days
-> 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Cc: stable@vger.kernel.org
-> ---
->  drivers/gpu/drm/i915/intel_dp_mst.c | 14 +++++++-------
->  drivers/gpu/drm/i915/intel_drv.h    |  6 ++++++
->  2 files changed, 13 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c b/drivers/gpu/drm/i915/intel_dp_mst.c
-> index 4ecd65375603..fcb9b87b9339 100644
-> --- a/drivers/gpu/drm/i915/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/intel_dp_mst.c
-> @@ -311,9 +311,8 @@ static int intel_dp_mst_get_ddc_modes(struct drm_connector *connector)
->  	struct edid *edid;
->  	int ret;
->  
-> -	if (!intel_dp) {
-> +	if (intel_connector->mst_port_gone)
-
-Just use the same READ_ONCE(conn->registered) trick as in the core? Imo no
-need to track this twice ...
-
->  		return intel_connector_update_modes(connector, NULL);
-> -	}
->  
->  	edid = drm_dp_mst_get_edid(connector, &intel_dp->mst_mgr, intel_connector->port);
->  	ret = intel_connector_update_modes(connector, edid);
-> @@ -328,9 +327,10 @@ intel_dp_mst_detect(struct drm_connector *connector, bool force)
->  	struct intel_connector *intel_connector = to_intel_connector(connector);
->  	struct intel_dp *intel_dp = intel_connector->mst_port;
->  
-> -	if (!intel_dp)
-> +	if (intel_connector->mst_port_gone)
->  		return connector_status_disconnected;
-> -	return drm_dp_mst_detect_port(connector, &intel_dp->mst_mgr, intel_connector->port);
-> +	return drm_dp_mst_detect_port(connector, &intel_dp->mst_mgr,
-> +				      intel_connector->port);
->  }
->  
->  static void
-> @@ -370,7 +370,7 @@ intel_dp_mst_mode_valid(struct drm_connector *connector,
->  	int bpp = 24; /* MST uses fixed bpp */
->  	int max_rate, mode_rate, max_lanes, max_link_clock;
->  
-> -	if (!intel_dp)
-> +	if (intel_connector->mst_port_gone)
->  		return MODE_ERROR;
-
-I think if we've move the conn->registered check into drm_probe_helper.c
-we could drop all these checks here too. And fixup nouveau/amdgpu while at
-it - trying to get modes for a disconnected mst sink is somewhat silly :-)
-
-From a functional pov the patch lgtm. With mst_port_gone removed and the
-READ_ON(!conn->registered) trick everywhere instead this has my
-
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-Cheers, Daniel
-
->  
->  	if (mode->flags & DRM_MODE_FLAG_DBLSCAN)
-> @@ -402,7 +402,7 @@ static struct drm_encoder *intel_mst_atomic_best_encoder(struct drm_connector *c
->  	struct intel_dp *intel_dp = intel_connector->mst_port;
->  	struct intel_crtc *crtc = to_intel_crtc(state->crtc);
->  
-> -	if (!intel_dp)
-> +	if (intel_connector->mst_port_gone)
->  		return NULL;
->  	return &intel_dp->mst_encoders[crtc->pipe]->base.base;
->  }
-> @@ -514,7 +514,7 @@ static void intel_dp_destroy_mst_connector(struct drm_dp_mst_topology_mgr *mgr,
->  						   connector);
->  	/* prevent race with the check in ->detect */
->  	drm_modeset_lock(&connector->dev->mode_config.connection_mutex, NULL);
-> -	intel_connector->mst_port = NULL;
-> +	intel_connector->mst_port_gone = true;
->  	drm_modeset_unlock(&connector->dev->mode_config.connection_mutex);
->  
->  	drm_connector_put(connector);
-> diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915/intel_drv.h
-> index 8fc61e96754f..8261d4579452 100644
-> --- a/drivers/gpu/drm/i915/intel_drv.h
-> +++ b/drivers/gpu/drm/i915/intel_drv.h
-> @@ -410,6 +410,12 @@ struct intel_connector {
->  
->  	struct intel_dp *mst_port;
->  
-> +	/*
-> +	 * Set to 1 if this is an MST connector that was removed from the
-> +	 * system and unregistered from sysfs
-> +	 */
-> +	u8 mst_port_gone;
--Daniel
-> +
->  	/* Work struct to schedule a uevent on link train failure */
->  	struct work_struct modeset_retry_work;
->  
-> -- 
-> 2.17.1
-> 
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+T24gVGh1LCBPY3QgMDQsIDIwMTggYXQgMDg6Mjk6NTNQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
+ZToKPiBTaW5jZSB3ZSBuZWVkIHRvIGJlIGFibGUgdG8gYWxsb3cgRFBNUyBvbi0+b2ZmIHByb3Ag
+Y2hhbmdlcyBhZnRlciBhbiBNU1QKPiBwb3J0IGhhcyBkaXNhcHBlYXJlZCBmcm9tIHRoZSBzeXN0
+ZW0sIHdlIG5lZWQgdG8gYmUgYWJsZSB0byBtYWtlIHN1cmUgd2UKPiBjYW4gY29tcHV0ZSBhIGNv
+bmZpZyBmb3IgdGhlIHJlc3VsdGluZyBhdG9taWMgY29tbWl0LiBDdXJyZW50bHkgdGhpcyBpcwo+
+IGltcG9zc2libGUgd2hlbiB0aGUgcG9ydCBoYXMgZGlzYXBwZWFyZWQsIHNpbmNlIHRoZSBWQ1BJ
+IHNsb3Qgc2VhcmNoaW5nCj4gd2UgdHJ5IHRvIGRvIGluIGludGVsX2RwX21zdF9jb21wdXRlX2Nv
+bmZpZygpIHdpbGwgZmFpbCB3aXRoIC1FSU5WQUwuCj4gCj4gU2luY2UgdGhlIG9ubHkgY29tbWl0
+cyB3ZSB3YW50IHRvIGFsbG93IG9uIG5vLWxvbmdlci1wcmVzZW50IE1TVCBwb3J0cwo+IGFyZSBv
+bmVzIHRoYXQgc2h1dCBvZmYgZGlzcGxheSBoYXJkd2FyZSwgd2UgYWxyZWFkeSBrbm93IHRoYXQg
+bm8gVkNQSQo+IGFsbG9jYXRpb25zIGFyZSBuZWVkZWQuIFNvLCBoYXJkY29kZSB0aGUgVkNQSSBz
+bG90IGNvdW50IHRvIDAgd2hlbgo+IGludGVsX2RwX21zdF9jb21wdXRlX2NvbmZpZygpIGlzIGNh
+bGxlZCBvbiBhbiBNU1QgcG9ydCB0aGF0J3MgZ29uZS4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBMeXVk
+ZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgo+IENjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnCj4g
+LS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21zdC5jIHwgMTcgKysrKysrKysr
+KystLS0tLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDExIGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25z
+KC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21zdC5j
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHBfbXN0LmMKPiBpbmRleCBmY2I5Yjg3Yjkz
+MzkuLmEzNjZmMzJiMDQ4YSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRl
+bF9kcF9tc3QuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21zdC5jCj4g
+QEAgLTQyLDcgKzQyLDcgQEAgc3RhdGljIGJvb2wgaW50ZWxfZHBfbXN0X2NvbXB1dGVfY29uZmln
+KHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAo+ICAJCXRvX2ludGVsX2Nvbm5lY3Rvcihj
+b25uX3N0YXRlLT5jb25uZWN0b3IpOwo+ICAJc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRl
+ID0gcGlwZV9jb25maWctPmJhc2Uuc3RhdGU7Cj4gIAlpbnQgYnBwOwo+IC0JaW50IGxhbmVfY291
+bnQsIHNsb3RzOwo+ICsJaW50IGxhbmVfY291bnQsIHNsb3RzID0gMDsKPiAgCWNvbnN0IHN0cnVj
+dCBkcm1fZGlzcGxheV9tb2RlICphZGp1c3RlZF9tb2RlID0gJnBpcGVfY29uZmlnLT5iYXNlLmFk
+anVzdGVkX21vZGU7Cj4gIAlpbnQgbXN0X3BibjsKPiAgCWJvb2wgcmVkdWNlX21fbiA9IGRybV9k
+cF9oYXNfcXVpcmsoJmludGVsX2RwLT5kZXNjLAo+IEBAIC03NiwxMSArNzYsMTYgQEAgc3RhdGlj
+IGJvb2wgaW50ZWxfZHBfbXN0X2NvbXB1dGVfY29uZmlnKHN0cnVjdCBpbnRlbF9lbmNvZGVyICpl
+bmNvZGVyLAo+ICAJbXN0X3BibiA9IGRybV9kcF9jYWxjX3Bibl9tb2RlKGFkanVzdGVkX21vZGUt
+PmNydGNfY2xvY2ssIGJwcCk7Cj4gIAlwaXBlX2NvbmZpZy0+cGJuID0gbXN0X3BibjsKPiAgCj4g
+LQlzbG90cyA9IGRybV9kcF9hdG9taWNfZmluZF92Y3BpX3Nsb3RzKHN0YXRlLCAmaW50ZWxfZHAt
+Pm1zdF9tZ3IsCj4gLQkJCQkJICAgICAgY29ubmVjdG9yLT5wb3J0LCBtc3RfcGJuKTsKPiAtCWlm
+IChzbG90cyA8IDApIHsKPiAtCQlEUk1fREVCVUdfS01TKCJmYWlsZWQgZmluZGluZyB2Y3BpIHNs
+b3RzOiVkXG4iLCBzbG90cyk7Cj4gLQkJcmV0dXJuIGZhbHNlOwo+ICsJaWYgKCFjb25uZWN0b3It
+Pm1zdF9wb3J0X2dvbmUpIHsKCldvbmRlcmVkIHdoeSB5b3UgZG9uJ3QgbmVlZCB0aGlzIGZvciBu
+b3V2ZWF1L2FtZGdwdSwgYnV0IGEgYml0IG9mIGdyZXBwaW5nCmxhdGVyIHNheXMgdGhleSBkb24n
+dCBldmVuIGJvdGhlciB0byBjaGVjayB0aGF0IGluIHRoZWlyIGF0b21pY19jaGVjawpmdW5jdGlv
+bnMuIFNvIGlmIGEgbXVsdGktc3RyZWFtIGNhYmxlIHJ1bnMgb3V0IG9mIHZjcGkgc2xvdHMsIHRo
+ZXkganVzdAp0b3NzIHVwIHRoZWlyIGhhbmRzLCBhdG9taWMgYmUgZGFtbmVkIDotKAoKV2l0aCB0
+aGUgcy9tc3RfcG9ydF9nb25lL1JFQURfT05DRSghY29ubi0+cmVnaXN0ZXJlZCkvIGJpa2VzaGVk
+OgoKUmV2aWV3ZWQtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+CgpJ
+IHdvbmRlcmVkIGEgYml0IHdoZXRoZXIgdGhzIGZ1Y3Rpb24gc2hvdWxkbid0IGp1c3QgcmV0dXJu
+IDAgaWYgdGhlCmNvbm5lY3RvciBpcyBnb25lLCBidXQgd2UnZCBuZWVkIHRvIGF1ZGl0L2ZpeCBv
+dGhlciBkcml2ZXJzIGZpcnN0LgotRGFuaWVsCgo+ICsJCXNsb3RzID0gZHJtX2RwX2F0b21pY19m
+aW5kX3ZjcGlfc2xvdHMoc3RhdGUsCj4gKwkJCQkJCSAgICAgICZpbnRlbF9kcC0+bXN0X21nciwK
+PiArCQkJCQkJICAgICAgY29ubmVjdG9yLT5wb3J0LAo+ICsJCQkJCQkgICAgICBtc3RfcGJuKTsK
+PiArCQlpZiAoc2xvdHMgPCAwKSB7Cj4gKwkJCURSTV9ERUJVR19LTVMoImZhaWxlZCBmaW5kaW5n
+IHZjcGkgc2xvdHM6JWRcbiIsCj4gKwkJCQkgICAgICBzbG90cyk7Cj4gKwkJCXJldHVybiBmYWxz
+ZTsKPiArCQl9Cj4gIAl9Cj4gIAo+ICAJaW50ZWxfbGlua19jb21wdXRlX21fbihicHAsIGxhbmVf
+Y291bnQsCj4gLS0gCj4gMi4xNy4xCj4gCgotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdp
+bmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
