@@ -1,81 +1,65 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [PATCH v4 4/5] drm/i915: Skip vcpi allocation for
- MSTB ports that are gone
-Date: Fri, 5 Oct 2018 09:26:45 +0200
-Message-ID: <20181005072645.GW31561@phenom.ffwll.local>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v4 5/5] drm/i915: Fix intel_dp_mst_best_encoder()
+Date: Fri, 5 Oct 2018 09:28:00 +0200
+Message-ID: <20181005072800.GX31561@phenom.ffwll.local>
 References: <20181005002956.7317-1-lyude@redhat.com>
- <20181005002956.7317-5-lyude@redhat.com>
+ <20181005002956.7317-6-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <stable-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20181005002956.7317-5-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Joonas Lahtinen <joonas.lahtinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Rodrigo Vivi <rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Jani Nikula <jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+In-Reply-To: <20181005002956.7317-6-lyude@redhat.com>
+Sender: stable-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, stable@vger.kernel.org, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBPY3QgMDQsIDIwMTggYXQgMDg6Mjk6NTNQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
-ZToKPiBTaW5jZSB3ZSBuZWVkIHRvIGJlIGFibGUgdG8gYWxsb3cgRFBNUyBvbi0+b2ZmIHByb3Ag
-Y2hhbmdlcyBhZnRlciBhbiBNU1QKPiBwb3J0IGhhcyBkaXNhcHBlYXJlZCBmcm9tIHRoZSBzeXN0
-ZW0sIHdlIG5lZWQgdG8gYmUgYWJsZSB0byBtYWtlIHN1cmUgd2UKPiBjYW4gY29tcHV0ZSBhIGNv
-bmZpZyBmb3IgdGhlIHJlc3VsdGluZyBhdG9taWMgY29tbWl0LiBDdXJyZW50bHkgdGhpcyBpcwo+
-IGltcG9zc2libGUgd2hlbiB0aGUgcG9ydCBoYXMgZGlzYXBwZWFyZWQsIHNpbmNlIHRoZSBWQ1BJ
-IHNsb3Qgc2VhcmNoaW5nCj4gd2UgdHJ5IHRvIGRvIGluIGludGVsX2RwX21zdF9jb21wdXRlX2Nv
-bmZpZygpIHdpbGwgZmFpbCB3aXRoIC1FSU5WQUwuCj4gCj4gU2luY2UgdGhlIG9ubHkgY29tbWl0
-cyB3ZSB3YW50IHRvIGFsbG93IG9uIG5vLWxvbmdlci1wcmVzZW50IE1TVCBwb3J0cwo+IGFyZSBv
-bmVzIHRoYXQgc2h1dCBvZmYgZGlzcGxheSBoYXJkd2FyZSwgd2UgYWxyZWFkeSBrbm93IHRoYXQg
-bm8gVkNQSQo+IGFsbG9jYXRpb25zIGFyZSBuZWVkZWQuIFNvLCBoYXJkY29kZSB0aGUgVkNQSSBz
-bG90IGNvdW50IHRvIDAgd2hlbgo+IGludGVsX2RwX21zdF9jb21wdXRlX2NvbmZpZygpIGlzIGNh
-bGxlZCBvbiBhbiBNU1QgcG9ydCB0aGF0J3MgZ29uZS4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBMeXVk
-ZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgo+IENjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnCj4g
-LS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21zdC5jIHwgMTcgKysrKysrKysr
-KystLS0tLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDExIGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25z
-KC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21zdC5j
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHBfbXN0LmMKPiBpbmRleCBmY2I5Yjg3Yjkz
-MzkuLmEzNjZmMzJiMDQ4YSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRl
-bF9kcF9tc3QuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21zdC5jCj4g
-QEAgLTQyLDcgKzQyLDcgQEAgc3RhdGljIGJvb2wgaW50ZWxfZHBfbXN0X2NvbXB1dGVfY29uZmln
-KHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAo+ICAJCXRvX2ludGVsX2Nvbm5lY3Rvcihj
-b25uX3N0YXRlLT5jb25uZWN0b3IpOwo+ICAJc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRl
-ID0gcGlwZV9jb25maWctPmJhc2Uuc3RhdGU7Cj4gIAlpbnQgYnBwOwo+IC0JaW50IGxhbmVfY291
-bnQsIHNsb3RzOwo+ICsJaW50IGxhbmVfY291bnQsIHNsb3RzID0gMDsKPiAgCWNvbnN0IHN0cnVj
-dCBkcm1fZGlzcGxheV9tb2RlICphZGp1c3RlZF9tb2RlID0gJnBpcGVfY29uZmlnLT5iYXNlLmFk
-anVzdGVkX21vZGU7Cj4gIAlpbnQgbXN0X3BibjsKPiAgCWJvb2wgcmVkdWNlX21fbiA9IGRybV9k
-cF9oYXNfcXVpcmsoJmludGVsX2RwLT5kZXNjLAo+IEBAIC03NiwxMSArNzYsMTYgQEAgc3RhdGlj
-IGJvb2wgaW50ZWxfZHBfbXN0X2NvbXB1dGVfY29uZmlnKHN0cnVjdCBpbnRlbF9lbmNvZGVyICpl
-bmNvZGVyLAo+ICAJbXN0X3BibiA9IGRybV9kcF9jYWxjX3Bibl9tb2RlKGFkanVzdGVkX21vZGUt
-PmNydGNfY2xvY2ssIGJwcCk7Cj4gIAlwaXBlX2NvbmZpZy0+cGJuID0gbXN0X3BibjsKPiAgCj4g
-LQlzbG90cyA9IGRybV9kcF9hdG9taWNfZmluZF92Y3BpX3Nsb3RzKHN0YXRlLCAmaW50ZWxfZHAt
-Pm1zdF9tZ3IsCj4gLQkJCQkJICAgICAgY29ubmVjdG9yLT5wb3J0LCBtc3RfcGJuKTsKPiAtCWlm
-IChzbG90cyA8IDApIHsKPiAtCQlEUk1fREVCVUdfS01TKCJmYWlsZWQgZmluZGluZyB2Y3BpIHNs
-b3RzOiVkXG4iLCBzbG90cyk7Cj4gLQkJcmV0dXJuIGZhbHNlOwo+ICsJaWYgKCFjb25uZWN0b3It
-Pm1zdF9wb3J0X2dvbmUpIHsKCldvbmRlcmVkIHdoeSB5b3UgZG9uJ3QgbmVlZCB0aGlzIGZvciBu
-b3V2ZWF1L2FtZGdwdSwgYnV0IGEgYml0IG9mIGdyZXBwaW5nCmxhdGVyIHNheXMgdGhleSBkb24n
-dCBldmVuIGJvdGhlciB0byBjaGVjayB0aGF0IGluIHRoZWlyIGF0b21pY19jaGVjawpmdW5jdGlv
-bnMuIFNvIGlmIGEgbXVsdGktc3RyZWFtIGNhYmxlIHJ1bnMgb3V0IG9mIHZjcGkgc2xvdHMsIHRo
-ZXkganVzdAp0b3NzIHVwIHRoZWlyIGhhbmRzLCBhdG9taWMgYmUgZGFtbmVkIDotKAoKV2l0aCB0
-aGUgcy9tc3RfcG9ydF9nb25lL1JFQURfT05DRSghY29ubi0+cmVnaXN0ZXJlZCkvIGJpa2VzaGVk
-OgoKUmV2aWV3ZWQtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+CgpJ
-IHdvbmRlcmVkIGEgYml0IHdoZXRoZXIgdGhzIGZ1Y3Rpb24gc2hvdWxkbid0IGp1c3QgcmV0dXJu
-IDAgaWYgdGhlCmNvbm5lY3RvciBpcyBnb25lLCBidXQgd2UnZCBuZWVkIHRvIGF1ZGl0L2ZpeCBv
-dGhlciBkcml2ZXJzIGZpcnN0LgotRGFuaWVsCgo+ICsJCXNsb3RzID0gZHJtX2RwX2F0b21pY19m
-aW5kX3ZjcGlfc2xvdHMoc3RhdGUsCj4gKwkJCQkJCSAgICAgICZpbnRlbF9kcC0+bXN0X21nciwK
-PiArCQkJCQkJICAgICAgY29ubmVjdG9yLT5wb3J0LAo+ICsJCQkJCQkgICAgICBtc3RfcGJuKTsK
-PiArCQlpZiAoc2xvdHMgPCAwKSB7Cj4gKwkJCURSTV9ERUJVR19LTVMoImZhaWxlZCBmaW5kaW5n
-IHZjcGkgc2xvdHM6JWRcbiIsCj4gKwkJCQkgICAgICBzbG90cyk7Cj4gKwkJCXJldHVybiBmYWxz
-ZTsKPiArCQl9Cj4gIAl9Cj4gIAo+ICAJaW50ZWxfbGlua19jb21wdXRlX21fbihicHAsIGxhbmVf
-Y291bnQsCj4gLS0gCj4gMi4xNy4xCj4gCgotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdp
-bmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+On Thu, Oct 04, 2018 at 08:29:54PM -0400, Lyude Paul wrote:
+> Currently, i915 appears to rely on blocking modesets on
+> no-longer-present MSTB ports by simply returning NULL for
+> ->best_encoder(), which in turn causes any new atomic commits that don't
+> disable the CRTC to fail. This is wrong however, since we still want to
+> allow userspace to disable CRTCs on no-longer-present MSTB ports by
+> changing the DPMS state to off and this still requires that we retrieve
+> an encoder.
+> 
+> So, fix this by always returning a valid encoder regardless of the state
+> of the MST port.
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Cc: stable@vger.kernel.org
+> 
+> Changes since v1:
+> - Remove mst atomic helper, since this got replaced with a much simpler
+>   solution
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+
+With the obvious rebase onto my bikeshed for patch 3:
+
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> ---
+>  drivers/gpu/drm/i915/intel_dp_mst.c | 2 --
+>  1 file changed, 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c b/drivers/gpu/drm/i915/intel_dp_mst.c
+> index a366f32b048a..daade60c5714 100644
+> --- a/drivers/gpu/drm/i915/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/intel_dp_mst.c
+> @@ -407,8 +407,6 @@ static struct drm_encoder *intel_mst_atomic_best_encoder(struct drm_connector *c
+>  	struct intel_dp *intel_dp = intel_connector->mst_port;
+>  	struct intel_crtc *crtc = to_intel_crtc(state->crtc);
+>  
+> -	if (intel_connector->mst_port_gone)
+> -		return NULL;
+>  	return &intel_dp->mst_encoders[crtc->pipe]->base.base;
+>  }
+>  
+> -- 
+> 2.17.1
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
