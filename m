@@ -1,49 +1,72 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v6 5/5] drm/i915: Fix intel_dp_mst_best_encoder()
-Date: Mon,  8 Oct 2018 18:53:00 -0400
-Message-ID: <20181008225303.2907-6-lyude@redhat.com>
-References: <20181008225303.2907-1-lyude@redhat.com>
+Subject: [PATCH v7 1/5] drm/atomic_helper: Disallow new modesets on unregistered connectors
+Date: Mon,  8 Oct 2018 19:24:30 -0400
+Message-ID: <20181008232437.5571-2-lyude@redhat.com>
+References: <20181008232437.5571-1-lyude@redhat.com>
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20181008225303.2907-1-lyude@redhat.com>
+In-Reply-To: <20181008232437.5571-1-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
 To: intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
+Cc: stable@vger.kernel.org, Gustavo Padovan <gustavo@padovan.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Currently, i915 appears to rely on blocking modesets on
-no-longer-present MSTB ports by simply returning NULL for
-->best_encoder(), which in turn causes any new atomic commits that don't
-disable the CRTC to fail. This is wrong however, since we still want to
-allow userspace to disable CRTCs on no-longer-present MSTB ports by
-changing the DPMS state to off and this still requires that we retrieve
-an encoder.
+With the exception of modesets which would switch the DPMS state of a
+connector from on to off, we want to make sure that we disallow all
+modesets which would result in enabling a new monitor or a new mode
+configuration on a monitor if the connector for the display in question
+is no longer registered. This allows us to stop userspace from trying to
+enable new displays on connectors for an MST topology that were just
+removed from the system, without preventing userspace from disabling
+DPMS on those connectors.
 
-So, fix this by always returning a valid encoder regardless of the state
-of the MST port.
-
-Changes since v1:
-- Remove mst atomic helper, since this got replaced with a much simpler
-  solution
+Changes since v5:
+- Fix typo in comment, nothing else
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 Cc: stable@vger.kernel.org
 ---
- drivers/gpu/drm/i915/intel_dp_mst.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/drm_atomic_helper.c | 21 ++++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c b/drivers/gpu/drm/i915/intel_dp_mst.c
-index 0f14c0d1669c..7f155b4f1a7d 100644
---- a/drivers/gpu/drm/i915/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/intel_dp_mst.c
-@@ -404,8 +404,6 @@ static struct drm_encoder *intel_mst_atomic_best_encoder(struct drm_connector *c
- 	struct intel_dp *intel_dp = intel_connector->mst_port;
- 	struct intel_crtc *crtc = to_intel_crtc(state->crtc);
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index 6f66777dca4b..e6a2cf72de5e 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -319,6 +319,26 @@ update_connector_routing(struct drm_atomic_state *state,
+ 		return 0;
+ 	}
  
--	if (!READ_ONCE(connector->registered))
--		return NULL;
- 	return &intel_dp->mst_encoders[crtc->pipe]->base.base;
- }
++	crtc_state = drm_atomic_get_new_crtc_state(state,
++						   new_connector_state->crtc);
++	/*
++	 * For compatibility with legacy users, we want to make sure that
++	 * we allow DPMS On->Off modesets on unregistered connectors. Modesets
++	 * which would result in anything else must be considered invalid, to
++	 * avoid turning on new displays on dead connectors.
++	 *
++	 * Since the connector can be unregistered at any point during an
++	 * atomic check or commit, this is racy. But that's OK: all we care
++	 * about is ensuring that userspace can't do anything but shut off the
++	 * display on a connector that was destroyed after its been notified,
++	 * not before.
++	 */
++	if (!READ_ONCE(connector->registered) && crtc_state->active) {
++		DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] is not registered\n",
++				 connector->base.id, connector->name);
++		return -EINVAL;
++	}
++
+ 	funcs = connector->helper_private;
  
+ 	if (funcs->atomic_best_encoder)
+@@ -363,7 +383,6 @@ update_connector_routing(struct drm_atomic_state *state,
+ 
+ 	set_best_encoder(state, new_connector_state, new_encoder);
+ 
+-	crtc_state = drm_atomic_get_new_crtc_state(state, new_connector_state->crtc);
+ 	crtc_state->connectors_changed = true;
+ 
+ 	DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] using [ENCODER:%d:%s] on [CRTC:%d:%s]\n",
 -- 
 2.17.1
