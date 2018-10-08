@@ -1,36 +1,72 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v6 0/5] Fix legacy DPMS changes with MST
-Date: Mon,  8 Oct 2018 18:52:55 -0400
-Message-ID: <20181008225303.2907-1-lyude@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+Subject: [PATCH v6 1/5] drm/atomic_helper: Disallow new modesets on unregistered connectors
+Date: Mon,  8 Oct 2018 18:52:56 -0400
+Message-ID: <20181008225303.2907-2-lyude@redhat.com>
+References: <20181008225303.2907-1-lyude@redhat.com>
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20181008225303.2907-1-lyude@redhat.com>
+Sender: stable-owner@vger.kernel.org
 To: intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: David Airlie <airlied@linux.ie>, Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-kernel@vger.kernel.org, Sean Paul <seanpaul@chromium.org>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: stable@vger.kernel.org, Gustavo Padovan <gustavo@padovan.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-TmV4dCB2ZXJzaW9uIG9mIGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMv
-NDk4NzgvCgpObyBmdW5jdGlvbmFsIGNoYW5nZXMsIGp1c3QgYSB0eXBvIGZpeAoKTHl1ZGUgUGF1
-bCAoNSk6CiAgZHJtL2F0b21pY19oZWxwZXI6IERpc2FsbG93IG5ldyBtb2Rlc2V0cyBvbiB1bnJl
-Z2lzdGVyZWQgY29ubmVjdG9ycwogIGRybS9ub3V2ZWF1OiBGaXggbnY1MF9tc3RjLT5iZXN0X2Vu
-Y29kZXIoKQogIGRybS9pOTE1OiBEb24ndCB1bnNldCBpbnRlbF9jb25uZWN0b3ItPm1zdF9wb3J0
-CiAgZHJtL2k5MTU6IFNraXAgdmNwaSBhbGxvY2F0aW9uIGZvciBNU1RCIHBvcnRzIHRoYXQgYXJl
-IGdvbmUKICBkcm0vaTkxNTogRml4IGludGVsX2RwX21zdF9iZXN0X2VuY29kZXIoKQoKIGRyaXZl
-cnMvZ3B1L2RybS9kcm1fYXRvbWljX2hlbHBlci5jICAgICB8IDIxICsrKysrKysrKysrKy0KIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21zdC5jICAgICB8IDQxICsrKysrKysrKysrKy0t
-LS0tLS0tLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyB8IDE0
-ICsrKy0tLS0tLQogMyBmaWxlcyBjaGFuZ2VkLCA0NCBpbnNlcnRpb25zKCspLCAzMiBkZWxldGlv
-bnMoLSkKCi0tIAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeAo=
+With the exception of modesets which would switch the DPMS state of a
+connector from on to off, we want to make sure that we disallow all
+modesets which would result in enabling a new monitor or a new mode
+configuration on a monitor if the connector for the display in question
+is no longer registered. This allows us to stop userspace from trying to
+enable new displays on connectors for an MST topology that were just
+removed from the system, without preventing userspace from disabling
+DPMS on those connectors.
+
+Changes since v5:
+- Fix typo in comment, nothing else
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: stable@vger.kernel.org
+---
+ drivers/gpu/drm/drm_atomic_helper.c | 21 ++++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index 6f66777dca4b..e6a2cf72de5e 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -319,6 +319,26 @@ update_connector_routing(struct drm_atomic_state *state,
+ 		return 0;
+ 	}
+ 
++	crtc_state = drm_atomic_get_new_crtc_state(state,
++						   new_connector_state->crtc);
++	/*
++	 * For compatibility with legacy users, we want to make sure that
++	 * we allow DPMS On->Off modesets on unregistered connectors. Modesets
++	 * which would result in anything else must be considered invalid, to
++	 * avoid turning on new displays on dead connectors.
++	 *
++	 * Since the connector can be unregistered at any point during an
++	 * atomic check or commit, this is racy. But that's OK: all we care
++	 * about is ensuring that userspace can't do anything but shut off the
++	 * display on a connector that was destroyed after its been notified,
++	 * not before.
++	 */
++	if (!READ_ONCE(connector->registered) && crtc_state->active) {
++		DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] is not registered\n",
++				 connector->base.id, connector->name);
++		return -EINVAL;
++	}
++
+ 	funcs = connector->helper_private;
+ 
+ 	if (funcs->atomic_best_encoder)
+@@ -363,7 +383,6 @@ update_connector_routing(struct drm_atomic_state *state,
+ 
+ 	set_best_encoder(state, new_connector_state, new_encoder);
+ 
+-	crtc_state = drm_atomic_get_new_crtc_state(state, new_connector_state->crtc);
+ 	crtc_state->connectors_changed = true;
+ 
+ 	DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] using [ENCODER:%d:%s] on [CRTC:%d:%s]\n",
+-- 
+2.17.1
