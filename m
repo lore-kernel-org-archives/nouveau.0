@@ -1,11 +1,12 @@
-From: Mark Donovan <markbdon-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org>
-Subject: Device release NULL pointer dereference
-Date: Sun, 07 Oct 2018 20:39:52 +0000
-Message-ID: <Ja74ZNpsg9X5eBihb5BEdNJNsDFUucgauRm5sna11MAjs2peZID1tkPCcN_EOYUm_GG_yRZEbLVnvuTVb3rLjNvgtomcub-eF0aPkJQWBv8=@protonmail.com>
-Reply-To: Mark Donovan <markbdon-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108047] No recognition of DVI-D monitor
+Date: Mon, 08 Oct 2018 06:57:51 +0000
+Message-ID: <bug-108047-8800-41wamyCxJj@http.bugs.freedesktop.org/>
+References: <bug-108047-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1718862336=="
+Content-Type: multipart/mixed; boundary="===============0216254383=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-108047-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,230 +16,173 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
 
---===============1718862336==
-Content-Type: multipart/alternative;
-	boundary="b1_9047fd12a5bc6b23bf7665031736e1ce"
-
-This is a multi-part message in MIME format.
-
---b1_9047fd12a5bc6b23bf7665031736e1ce
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
-
-R3JlZXRpbmdzIQoKSSBhbSB0cnlpbmcgdG8gZG8gYSBob3QgZHJpdmVyIHN3YXAgYmV0d2VlbiB0
-aGUgdmZpby1wY2kgYW5kIG5vdXZlYXUgZHJpdmVycyBmb3IgbXkgc2Vjb25kYXJ5IE52aWRpYSBn
-cmFwaGljcyBjYXJkLgpJIGJvb3QgdXAgd2l0aCB2ZmlvLXBjaSBlbmFibGVkLgoKV2l0aCB0aGlz
-IHNjcmlwdCBJIGdpdmUgY29udHJvbCBvdmVyIHRoZSBHUFUgdG8gbm91dmVhdToKCmVjaG8gIjAw
-MDA6MDE6MDAuMCIgPiAvc3lzL2J1cy9wY2kvZGV2aWNlcy8wMDAwXDowMVw6MDAuMC9kcml2ZXIv
-dW5iaW5kCmVjaG8gMHgxMGRlIDB4MTFjNiA+IC9zeXMvYnVzL3BjaS9kcml2ZXJzL25vdXZlYXUv
-bmV3X2lkCmVjaG8gMSA+IC9zeXMvYnVzL3BjaS9yZXNjYW4KCldvcmtzIGdyZWF0LiBOb3cgSSB0
-cnkgdG8gZ2l2ZSB0aGUgY29udHJvbCBiYWNrOgoKZWNobyAiMDAwMDowMTowMC4wIiA+IC9zeXMv
-YnVzL3BjaS9kZXZpY2VzLzAwMDBcOjAxXDowMC4wL2RyaXZlci91bmJpbmQKClJpZ2h0IGhlcmUg
-dGhlIG5vdXZlYXUga2VybmVsIG1vZHVsZSBwYW5pY3Mgd2l0aCBhIE5VTEwgcG9pbnRlciBkZXJl
-ZmVyZW5jZS4KClNvIG15IHF1ZXN0aW9ucyBhcmU6CklzIHRoaXMgaG90LXN3YXAgZXZlbiBwb3Nz
-aWJsZT8gSSB1c2UgdGhlIGNhcmQgZm9yIFZHQSBwYXNzLXRocm91Z2ggYW5kIHdhbnQgdG8gY29u
-dHJvbCB0aGUgY2FyZCdzIGZhbiB3aGlsZSBubyBWTSBpcyBydW5uaW5nLgpJZiB5ZXMsIGRvIEkg
-ZG8gaXQgcmlnaHQ/IChJIG9taXR0ZWQgdGhlIHN3YXAgZnJvbSB2ZmlvLXBjaSB0byBzbmRfaGRh
-X2ludGVsIGZvciB0aGUgY2FyZCdzIHNvdW5kIGRldmljZSwgYnV0IGl0IGxvb2tzIGxpa2UsIHRo
-YXQgbWFrZXMgbm8gZGlmZmVyZW5jZSkuCgpUaGFuayB5b3UhCiAgTWFyawoKQlVHOiB1bmFibGUg
-dG8gaGFuZGxlIGtlcm5lbCBOVUxMIHBvaW50ZXIgZGVyZWZlcmVuY2UgYXQgMDAwMDAwMDAwMDAw
-MDA0OApQR0QgMCBQNEQgMApPb3BzOiAwMDAyIFsjMV0gU01QIFBUSQpDUFU6IDAgUElEOiA1Njk4
-IENvbW06IGJhc2ggVGFpbnRlZDogUCAgICAgICAgICAgTyAgICAgIDQuMTguMC0xLWFtZDY0ICMx
-IERlYmlhbiA0LjE4LjYtMQpIYXJkd2FyZSBuYW1lOiBUbyBCZSBGaWxsZWQgQnkgTy5FLk0uIFRv
-IEJlIEZpbGxlZCBCeSBPLkUuTS4vWjE3MCBQcm80UywgQklPUyBQNy4zMCAxMS8yOC8yMDE2ClJJ
-UDogMDAxMDptdXRleF9sb2NrKzB4MTkvMHgzMApDb2RlOiAwMCAwZiAxZiA0NCAwMCAwMCBiZSAw
-MiAwMCAwMCAwMCBlOSAxMSBmYiBmZiBmZiA5MCAwZiAxZiA0NCAwMCAwMCA1MyA0OCA4OSBmYiBl
-OCBiMiBlNCBmZiBmZiA2NSA0OCA4YiAxNCAyNSAwMCA1YyAwMSAwMCAzMSBjMCA8ZjA+IDQ4IDBm
-IGIxIDEzIDc1IDAyIDViIGMzIDQ4CgpSU1A6IDAwMTg6ZmZmZmE5ODVlMmI5YmEwMCBFRkxBR1M6
-IDAwMDEwMjQ2ClJBWDogMDAwMDAwMDAwMDAwMDAwMCBSQlg6IDAwMDAwMDAwMDAwMDAwNDggUkNY
-OiAwMDAwMDAwMDAwMDAwMDAwClJEWDogZmZmZjg4ZTAzOTc2NWI4MCBSU0k6IGZmZmZhOTg1ZTJi
-OWI4ZWQgUkRJOiAwMDAwMDAwMDAwMDAwMDQ4ClJCUDogMDAwMDAwMDAwMDAwMDA0OCBSMDg6IGZm
-ZmY4OGUwNTU2OTU3NjAgUjA5OiBmZmZmYTk4NWMxOGYwNDEwClIxMDogMDAwMDAwMDAwMTA0MDAw
-MCBSMTE6IGZmZmY4OGUwNDE1YWUzMDAgUjEyOiBmZmZmODhlMDI2NzdkNDAwClIxMzogMDAwMDAw
-MDAwMDAwMDAwMCBSMTQ6IGZmZmZhOTg1ZTJiOWJiZTAgUjE1OiBmZmZmODhlMDFhNzgwNWE4CkZT
-OiAgMDAwMDdmY2EzM2E1MTc0MCgwMDAwKSBHUzpmZmZmODhlMDc1YzAwMDAwKDAwMDApIGtubEdT
-OjAwMDAwMDAwMDAwMDAwMDAKQ1M6ICAwMDEwIERTOiAwMDAwIEVTOiAwMDAwIENSMDogMDAwMDAw
-MDA4MDA1MDAzMwpDUjI6IDAwMDAwMDAwMDAwMDAwNDggQ1IzOiAwMDAwMDAwNDJlNjVhMDA0IENS
-NDogMDAwMDAwMDAwMDM2MDZmMApDYWxsIFRyYWNlOgpub3V2ZWF1X2JvX21vdmVfbTJtZi5jb25z
-dHByb3AuMjQrMHgxMjEvMHgxZTAgW25vdXZlYXVdCm5vdXZlYXVfYm9fbW92ZSsweGFhLzB4NDUw
-IFtub3V2ZWF1XQo/IG52aWZfdm1tX3VubWFwKzB4MzgvMHg2MCBbbm91dmVhdV0KPyBub3V2ZWF1
-X3ZtYV91bm1hcCsweDIwLzB4MzAgW25vdXZlYXVdCnR0bV9ib19oYW5kbGVfbW92ZV9tZW0rMHgy
-OGEvMHg1YTAgW3R0bV0KdHRtX2JvX2V2aWN0KzB4MTcxLzB4MzUwIFt0dG1dCj8gZHJtX21tX3Jl
-bW92ZV9ub2RlKzB4YmUvMHgzNjAgW2RybV0KdHRtX21lbV9ldmljdF9maXJzdCsweDE4ZC8weDIx
-MCBbdHRtXQp0dG1fYm9fZm9yY2VfbGlzdF9jbGVhbisweGExLzB4MTcwIFt0dG1dCnR0bV9ib19j
-bGVhbl9tbSsweDg5LzB4ZjAgW3R0bV0Kbm91dmVhdV90dG1fZmluaSsweDJiLzB4YzAgW25vdXZl
-YXVdCm5vdXZlYXVfZHJtX3VubG9hZCsweDdiLzB4ZDAgW25vdXZlYXVdCmRybV9kZXZfdW5yZWdp
-c3RlcisweDNmLzB4ZDAgW2RybV0KZHJtX3B1dF9kZXYrMHgyNy8weDQwIFtkcm1dCm5vdXZlYXVf
-ZHJtX2RldmljZV9yZW1vdmUrMHg0Ny8weDcwIFtub3V2ZWF1XQpwY2lfZGV2aWNlX3JlbW92ZSsw
-eDNiLzB4YjAKZGV2aWNlX3JlbGVhc2VfZHJpdmVyX2ludGVybmFsKzB4MTgyLzB4MjUwCnBjaV9z
-dG9wX2J1c19kZXZpY2UrMHg3Zi8weGEwCnBjaV9zdG9wX2FuZF9yZW1vdmVfYnVzX2RldmljZV9s
-b2NrZWQrMHgxNi8weDMwCnJlbW92ZV9zdG9yZSsweDc1LzB4OTAKa2VybmZzX2ZvcF93cml0ZSsw
-eDEwZi8weDE5MAp2ZnNfd3JpdGUrMHhhZC8weDFhMAprc3lzX3dyaXRlKzB4NTIvMHhjMApkb19z
-eXNjYWxsXzY0KzB4NTUvMHgxMTAKZW50cnlfU1lTQ0FMTF82NF9hZnRlcl9od2ZyYW1lKzB4NDQv
-MHhhOQpSSVA6IDAwMzM6MHg3ZmNhMzNiM2QyYTQKQ29kZTogODkgMDIgNDggYzcgYzAgZmYgZmYg
-ZmYgZmYgYzMgNjYgMmUgMGYgMWYgODQgMDAgMDAgMDAgMDAgMDAgNjYgOTAgNDggOGQgMDUgNDEg
-MzcgMGQgMDAgOGIgMDAgODUgYzAgNzUgMTMgYjggMDEgMDAgMDAgMDAgMGYgMDUgPDQ4PiAzZCAw
-MCBmMCBmZiBmZiA3NyA1NCBmMyBjMyA2NiA5MCA0MSA1NCA1NSA0OSA4OSBkNCA1MyA0OCA4OSBm
-NQpSU1A6IDAwMmI6MDAwMDdmZmU1ZWVjM2ZhOCBFRkxBR1M6IDAwMDAwMjQ2IE9SSUdfUkFYOiAw
-MDAwMDAwMDAwMDAwMDAxClJBWDogZmZmZmZmZmZmZmZmZmZkYSBSQlg6IDAwMDAwMDAwMDAwMDAw
-MDIgUkNYOiAwMDAwN2ZjYTMzYjNkMmE0ClJEWDogMDAwMDAwMDAwMDAwMDAwMiBSU0k6IDAwMDA1
-NjQ5ZmNlNmU0NTAgUkRJOiAwMDAwMDAwMDAwMDAwMDAxClJCUDogMDAwMDU2NDlmY2U2ZTQ1MCBS
-MDg6IDAwMDAwMDAwMDAwMDAwMGEgUjA5OiAwMDAwNTY0OWZjZWU5NmYwClIxMDogMDAwMDAwMDAw
-MDAwMDAwYSBSMTE6IDAwMDAwMDAwMDAwMDAyNDYgUjEyOiAwMDAwN2ZjYTMzYzBjNzYwClIxMzog
-MDAwMDAwMDAwMDAwMDAwMiBSMTQ6IDAwMDA3ZmNhMzNjMDc3NjAgUjE1OiAwMDAwMDAwMDAwMDAw
-MDAyCk1vZHVsZXMgbGlua2VkIGluOiBub3V2ZWF1IHR0bSBpcHRfTUFTUVVFUkFERSB4dF9DSEVD
-S1NVTSBpcHRfUkVKRUNUIG5mX3JlamVjdF9pcHY0IHR1biBicmlkZ2Ugc3RwIGxsYyBlYnRhYmxl
-X2ZpbHRlciBlYnRhYmxlcyBkZXZsaW5rIGlwNnRhYmxlX2ZpbHRlciBpcDZfdGFibGVzIHBjaV9z
-dHViIHZib3hwY2koTykgdmJveG5ldGFkcChPKSB2Ym94bmV0Zmx0KE8pIHZib3hkcnYoTykgaXB0
-YWJsZV9tYW5nbGUgeHRfbmF0IGlwdGFibGVfbmF0IG5mX25hdF9pcHY0IG5mX25hdCB4dF90Y3B1
-ZHAgbmZfY29ubnRyYWNrX2lwdjQgbmZfZGVmcmFnX2lwdjQgeHRfY29ubnRyYWNrIG5mX2Nvbm50
-cmFjayBsaWJjcmMzMmMgY3JjMzJjX2dlbmVyaWMgY3B1ZnJlcV9wb3dlcnNhdmUgY3B1ZnJlcV91
-c2Vyc3BhY2UgY3B1ZnJlcV9jb25zZXJ2YXRpdmUgaXB0YWJsZV9maWx0ZXIgYmluZm10X21pc2Mg
-bmxzX2FzY2lpIG5sc19jcDQzNyB2ZmF0IGZhdCBpbnRlbF9yYXBsIGpveWRldiB4ODZfcGtnX3Rl
-bXBfdGhlcm1hbCBpbnRlbF9wb3dlcmNsYW1wIGt2bV9pbnRlbCBrdm0gbXhtX3dtaSBjcmN0MTBk
-aWZfcGNsbXVsIGNyYzMyX3BjbG11bCBnaGFzaF9jbG11bG5pX2ludGVsIGV2ZGV2IGludGVsX2Nz
-dGF0ZSBzZXJpb19yYXcgaW50ZWxfdW5jb3JlIGlUQ09fd2R0IHBjc3BrciBpVENPX3ZlbmRvcl9z
-dXBwb3J0IHNnIGVmaV9wc3RvcmUgaW50ZWxfcmFwbF9wZXJmIGVmaXZhcnMgaW50ZWxfcGNoX3Ro
-ZXJtYWwgbWVpX21lIHdtaSBtZWkgYWNwaV9wYWQgcGNjX2NwdWZyZXEgc25kX2hkYV9jb2RlY19o
-ZG1pCm5jdDY3NzUgc25kX2hkYV9jb2RlY19yZWFsdGVrIGh3bW9uX3ZpZCBjb3JldGVtcCBzbmRf
-aGRhX2NvZGVjX2dlbmVyaWMgaTkxNSB2aWRlbyBidXR0b24gZHJtX2ttc19oZWxwZXIgZHJtIGky
-Y19hbGdvX2JpdCBzbmRfaGRhX2ludGVsIHNuZF9oZGFfY29kZWMgc25kX2hkYV9jb3JlIHNuZF9o
-d2RlcCBzbmRfcGNtIHNuZF90aW1lciBzbmQgc291bmRjb3JlIGxvb3AgdmZpb19wY2kgdmZpb192
-aXJxZmQgaXJxYnlwYXNzIHZmaW9faW9tbXVfdHlwZTEgdmZpbyBlY3J5cHRmcyBlZml2YXJmcyBp
-cF90YWJsZXMgeF90YWJsZXMgYXV0b2ZzNCB6ZnMoUE8pIHp1bmljb2RlKFBPKSB6YXZsKFBPKSBp
-Y3AoUE8pIHVhcyB1c2Jfc3RvcmFnZSB6Y29tbW9uKFBPKSB6bnZwYWlyKFBPKSBzcGwoTykgaGlk
-X2dlbmVyaWMgdXNiaGlkIGhpZCBzZF9tb2QgY3JjMzJjX2ludGVsIGFlc25pX2ludGVsIGFlc194
-ODZfNjQgY3J5cHRvX3NpbWQgYWhjaSBjcnlwdGQgZ2x1ZV9oZWxwZXIgbGliYWhjaSBwc21vdXNl
-IHhoY2lfcGNpIGxpYmF0YSB4aGNpX2hjZCBlMTAwMGUgaTJjX2k4MDEgc2NzaV9tb2QgdXNiY29y
-ZSB1c2JfY29tbW9uIFtsYXN0IHVubG9hZGVkOiBub3V2ZWF1XQpDUjI6IDAwMDAwMDAwMDAwMDAw
-NDgKLS0tWyBlbmQgdHJhY2UgMmY5NjY3NGY2N2UxNDcwMyBdLS0t
+--===============0216254383==
+Content-Type: multipart/alternative; boundary="15389818711.de00a8.15341"
+Content-Transfer-Encoding: 7bit
 
 
---b1_9047fd12a5bc6b23bf7665031736e1ce
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
+--15389818711.de00a8.15341
+Date: Mon, 8 Oct 2018 06:57:51 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-PGRpdj5HcmVldGluZ3MhPGJyPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+SSBhbSB0cnlpbmcg
-dG8gZG8gYSBob3QgZHJpdmVyIHN3YXAgYmV0d2VlbiB0aGUgdmZpby1wY2kgYW5kIG5vdXZlYXUg
-ZHJpdmVycyBmb3IgbXkgc2Vjb25kYXJ5IE52aWRpYSBncmFwaGljcyBjYXJkLjxicj48L2Rpdj48
-ZGl2PkkgYm9vdCB1cCB3aXRoIHZmaW8tcGNpIGVuYWJsZWQuPGJyPjwvZGl2PjxkaXY+PGJyPjwv
-ZGl2PjxkaXY+V2l0aCB0aGlzIHNjcmlwdCBJIGdpdmUgIGNvbnRyb2wgb3ZlciB0aGUgR1BVIHRv
-IG5vdXZlYXU6PGJyPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+ZWNobyAiMDAwMDowMTowMC4w
-IiAmZ3Q7IC9zeXMvYnVzL3BjaS9kZXZpY2VzLzAwMDBcOjAxXDowMC4wL2RyaXZlci91bmJpbmQ8
-YnI+PC9kaXY+PGRpdj5lY2hvIDB4MTBkZSAweDExYzYgJmd0OyAvc3lzL2J1cy9wY2kvZHJpdmVy
-cy9ub3V2ZWF1L25ld19pZDxicj48L2Rpdj48ZGl2PmVjaG8gMSAmZ3Q7IC9zeXMvYnVzL3BjaS9y
-ZXNjYW48YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5Xb3JrcyBncmVhdC4mbmJzcDtOb3cg
-SSB0cnkgdG8gZ2l2ZSB0aGUgY29udHJvbCBiYWNrOjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48
-ZGl2PmVjaG8gIjAwMDA6MDE6MDAuMCIgJmd0OyAvc3lzL2J1cy9wY2kvZGV2aWNlcy8wMDAwXDow
-MVw6MDAuMC9kcml2ZXIvdW5iaW5kPGJyPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+UmlnaHQg
-aGVyZSB0aGUgbm91dmVhdSBrZXJuZWwgbW9kdWxlIHBhbmljcyB3aXRoIGEgTlVMTCBwb2ludGVy
-IGRlcmVmZXJlbmNlLjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PlNvIG15IHF1ZXN0aW9u
-cyBhcmU6PGJyPjwvZGl2PjxkaXY+SXMgdGhpcyBob3Qtc3dhcCBldmVuIHBvc3NpYmxlPyBJIHVz
-ZSB0aGUgY2FyZCBmb3IgVkdBIHBhc3MtdGhyb3VnaCBhbmQgd2FudCB0byBjb250cm9sIHRoZSBj
-YXJkJ3MgZmFuIHdoaWxlIG5vIFZNIGlzIHJ1bm5pbmcuPGJyPjwvZGl2PjxkaXY+SWYgeWVzLCBk
-byBJIGRvIGl0IHJpZ2h0PyAoSSBvbWl0dGVkIHRoZSBzd2FwIGZyb20gdmZpby1wY2kgdG8gc25k
-X2hkYV9pbnRlbCBmb3IgdGhlIGNhcmQncyBzb3VuZCBkZXZpY2UsIGJ1dCBpdCBsb29rcyBsaWtl
-LCB0aGF0IG1ha2VzIG5vIGRpZmZlcmVuY2UpLjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2
-PlRoYW5rIHlvdSE8YnI+PC9kaXY+PGRpdj4mbmJzcDsgTWFyazxicj48L2Rpdj48ZGl2Pjxicj48
-L2Rpdj48ZGl2PkJVRzogdW5hYmxlIHRvIGhhbmRsZSBrZXJuZWwgTlVMTCBwb2ludGVyIGRlcmVm
-ZXJlbmNlIGF0IDAwMDAwMDAwMDAwMDAwNDg8YnI+PC9kaXY+PGRpdj5QR0QgMCBQNEQgMDxicj48
-L2Rpdj48ZGl2Pk9vcHM6IDAwMDIgWyMxXSBTTVAgUFRJPGJyPjwvZGl2PjxkaXY+Q1BVOiAwIFBJ
-RDogNTY5OCBDb21tOiBiYXNoIFRhaW50ZWQ6IFAmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgTyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyA0LjE4LjAtMS1hbWQ2NCAjMSBEZWJpYW4gNC4xOC42LTE8YnI+PC9kaXY+PGRpdj5I
-YXJkd2FyZSBuYW1lOiBUbyBCZSBGaWxsZWQgQnkgTy5FLk0uIFRvIEJlIEZpbGxlZCBCeSBPLkUu
-TS4vWjE3MCBQcm80UywgQklPUyBQNy4zMCAxMS8yOC8yMDE2PGJyPjwvZGl2PjxkaXY+UklQOiAw
-MDEwOm11dGV4X2xvY2srMHgxOS8weDMwPGJyPjwvZGl2PjxkaXY+Q29kZTogMDAgMGYgMWYgNDQg
-MDAgMDAgYmUgMDIgMDAgMDAgMDAgZTkgMTEgZmIgZmYgZmYgOTAgMGYgMWYgNDQgMDAgMDAgNTMg
-NDggODkgZmIgZTggYjIgZTQgZmYgZmYgNjUgNDggOGIgMTQgMjUgMDAgNWMgMDEgMDAgMzEgYzAg
-Jmx0O2YwJmd0OyA0OCAwZiBiMSAxMyA3NSAwMiA1YiBjMyA0ODxicj48L2Rpdj48ZGl2Pjxicj48
-L2Rpdj48ZGl2PlJTUDogMDAxODpmZmZmYTk4NWUyYjliYTAwIEVGTEFHUzogMDAwMTAyNDY8YnI+
-PC9kaXY+PGRpdj5SQVg6IDAwMDAwMDAwMDAwMDAwMDAgUkJYOiAwMDAwMDAwMDAwMDAwMDQ4IFJD
-WDogMDAwMDAwMDAwMDAwMDAwMDxicj48L2Rpdj48ZGl2PlJEWDogZmZmZjg4ZTAzOTc2NWI4MCBS
-U0k6IGZmZmZhOTg1ZTJiOWI4ZWQgUkRJOiAwMDAwMDAwMDAwMDAwMDQ4PGJyPjwvZGl2PjxkaXY+
-UkJQOiAwMDAwMDAwMDAwMDAwMDQ4IFIwODogZmZmZjg4ZTA1NTY5NTc2MCBSMDk6IGZmZmZhOTg1
-YzE4ZjA0MTA8YnI+PC9kaXY+PGRpdj5SMTA6IDAwMDAwMDAwMDEwNDAwMDAgUjExOiBmZmZmODhl
-MDQxNWFlMzAwIFIxMjogZmZmZjg4ZTAyNjc3ZDQwMDxicj48L2Rpdj48ZGl2PlIxMzogMDAwMDAw
-MDAwMDAwMDAwMCBSMTQ6IGZmZmZhOTg1ZTJiOWJiZTAgUjE1OiBmZmZmODhlMDFhNzgwNWE4PGJy
-PjwvZGl2PjxkaXY+RlM6Jm5ic3A7IDAwMDA3ZmNhMzNhNTE3NDAoMDAwMCkgR1M6ZmZmZjg4ZTA3
-NWMwMDAwMCgwMDAwKSBrbmxHUzowMDAwMDAwMDAwMDAwMDAwPGJyPjwvZGl2PjxkaXY+Q1M6Jm5i
-c3A7IDAwMTAgRFM6IDAwMDAgRVM6IDAwMDAgQ1IwOiAwMDAwMDAwMDgwMDUwMDMzPGJyPjwvZGl2
-PjxkaXY+Q1IyOiAwMDAwMDAwMDAwMDAwMDQ4IENSMzogMDAwMDAwMDQyZTY1YTAwNCBDUjQ6IDAw
-MDAwMDAwMDAzNjA2ZjA8YnI+PC9kaXY+PGRpdj5DYWxsIFRyYWNlOjxicj48L2Rpdj48ZGl2Pm5v
-dXZlYXVfYm9fbW92ZV9tMm1mLmNvbnN0cHJvcC4yNCsweDEyMS8weDFlMCBbbm91dmVhdV08YnI+
-PC9kaXY+PGRpdj5ub3V2ZWF1X2JvX21vdmUrMHhhYS8weDQ1MCBbbm91dmVhdV08YnI+PC9kaXY+
-PGRpdj4/IG52aWZfdm1tX3VubWFwKzB4MzgvMHg2MCBbbm91dmVhdV08YnI+PC9kaXY+PGRpdj4/
-IG5vdXZlYXVfdm1hX3VubWFwKzB4MjAvMHgzMCBbbm91dmVhdV08YnI+PC9kaXY+PGRpdj50dG1f
-Ym9faGFuZGxlX21vdmVfbWVtKzB4MjhhLzB4NWEwIFt0dG1dPGJyPjwvZGl2PjxkaXY+dHRtX2Jv
-X2V2aWN0KzB4MTcxLzB4MzUwIFt0dG1dPGJyPjwvZGl2PjxkaXY+PyBkcm1fbW1fcmVtb3ZlX25v
-ZGUrMHhiZS8weDM2MCBbZHJtXTxicj48L2Rpdj48ZGl2PnR0bV9tZW1fZXZpY3RfZmlyc3QrMHgx
-OGQvMHgyMTAgW3R0bV08YnI+PC9kaXY+PGRpdj50dG1fYm9fZm9yY2VfbGlzdF9jbGVhbisweGEx
-LzB4MTcwIFt0dG1dPGJyPjwvZGl2PjxkaXY+dHRtX2JvX2NsZWFuX21tKzB4ODkvMHhmMCBbdHRt
-XTxicj48L2Rpdj48ZGl2Pm5vdXZlYXVfdHRtX2ZpbmkrMHgyYi8weGMwIFtub3V2ZWF1XTxicj48
-L2Rpdj48ZGl2Pm5vdXZlYXVfZHJtX3VubG9hZCsweDdiLzB4ZDAgW25vdXZlYXVdPGJyPjwvZGl2
-PjxkaXY+ZHJtX2Rldl91bnJlZ2lzdGVyKzB4M2YvMHhkMCBbZHJtXTxicj48L2Rpdj48ZGl2PmRy
-bV9wdXRfZGV2KzB4MjcvMHg0MCBbZHJtXTxicj48L2Rpdj48ZGl2Pm5vdXZlYXVfZHJtX2Rldmlj
-ZV9yZW1vdmUrMHg0Ny8weDcwIFtub3V2ZWF1XTxicj48L2Rpdj48ZGl2PnBjaV9kZXZpY2VfcmVt
-b3ZlKzB4M2IvMHhiMDxicj48L2Rpdj48ZGl2PmRldmljZV9yZWxlYXNlX2RyaXZlcl9pbnRlcm5h
-bCsweDE4Mi8weDI1MDxicj48L2Rpdj48ZGl2PnBjaV9zdG9wX2J1c19kZXZpY2UrMHg3Zi8weGEw
-PGJyPjwvZGl2PjxkaXY+cGNpX3N0b3BfYW5kX3JlbW92ZV9idXNfZGV2aWNlX2xvY2tlZCsweDE2
-LzB4MzA8YnI+PC9kaXY+PGRpdj5yZW1vdmVfc3RvcmUrMHg3NS8weDkwPGJyPjwvZGl2PjxkaXY+
-a2VybmZzX2ZvcF93cml0ZSsweDEwZi8weDE5MDxicj48L2Rpdj48ZGl2PnZmc193cml0ZSsweGFk
-LzB4MWEwPGJyPjwvZGl2PjxkaXY+a3N5c193cml0ZSsweDUyLzB4YzA8YnI+PC9kaXY+PGRpdj5k
-b19zeXNjYWxsXzY0KzB4NTUvMHgxMTA8YnI+PC9kaXY+PGRpdj5lbnRyeV9TWVNDQUxMXzY0X2Fm
-dGVyX2h3ZnJhbWUrMHg0NC8weGE5PGJyPjwvZGl2PjxkaXY+UklQOiAwMDMzOjB4N2ZjYTMzYjNk
-MmE0PGJyPjwvZGl2PjxkaXY+Q29kZTogODkgMDIgNDggYzcgYzAgZmYgZmYgZmYgZmYgYzMgNjYg
-MmUgMGYgMWYgODQgMDAgMDAgMDAgMDAgMDAgNjYgOTAgNDggOGQgMDUgNDEgMzcgMGQgMDAgOGIg
-MDAgODUgYzAgNzUgMTMgYjggMDEgMDAgMDAgMDAgMGYgMDUgJmx0OzQ4Jmd0OyAzZCAwMCBmMCBm
-ZiBmZiA3NyA1NCBmMyBjMyA2NiA5MCA0MSA1NCA1NSA0OSA4OSBkNCA1MyA0OCA4OSBmNTxicj48
-L2Rpdj48ZGl2PlJTUDogMDAyYjowMDAwN2ZmZTVlZWMzZmE4IEVGTEFHUzogMDAwMDAyNDYgT1JJ
-R19SQVg6IDAwMDAwMDAwMDAwMDAwMDE8YnI+PC9kaXY+PGRpdj5SQVg6IGZmZmZmZmZmZmZmZmZm
-ZGEgUkJYOiAwMDAwMDAwMDAwMDAwMDAyIFJDWDogMDAwMDdmY2EzM2IzZDJhNDxicj48L2Rpdj48
-ZGl2PlJEWDogMDAwMDAwMDAwMDAwMDAwMiBSU0k6IDAwMDA1NjQ5ZmNlNmU0NTAgUkRJOiAwMDAw
-MDAwMDAwMDAwMDAxPGJyPjwvZGl2PjxkaXY+UkJQOiAwMDAwNTY0OWZjZTZlNDUwIFIwODogMDAw
-MDAwMDAwMDAwMDAwYSBSMDk6IDAwMDA1NjQ5ZmNlZTk2ZjA8YnI+PC9kaXY+PGRpdj5SMTA6IDAw
-MDAwMDAwMDAwMDAwMGEgUjExOiAwMDAwMDAwMDAwMDAwMjQ2IFIxMjogMDAwMDdmY2EzM2MwYzc2
-MDxicj48L2Rpdj48ZGl2PlIxMzogMDAwMDAwMDAwMDAwMDAwMiBSMTQ6IDAwMDA3ZmNhMzNjMDc3
-NjAgUjE1OiAwMDAwMDAwMDAwMDAwMDAyPGJyPjwvZGl2PjxkaXY+TW9kdWxlcyBsaW5rZWQgaW46
-IG5vdXZlYXUgdHRtIGlwdF9NQVNRVUVSQURFIHh0X0NIRUNLU1VNIGlwdF9SRUpFQ1QgbmZfcmVq
-ZWN0X2lwdjQgdHVuIGJyaWRnZSBzdHAgbGxjIGVidGFibGVfZmlsdGVyIGVidGFibGVzIGRldmxp
-bmsgaXA2dGFibGVfZmlsdGVyIGlwNl90YWJsZXMgcGNpX3N0dWIgdmJveHBjaShPKSB2Ym94bmV0
-YWRwKE8pIHZib3huZXRmbHQoTykgdmJveGRydihPKSBpcHRhYmxlX21hbmdsZSB4dF9uYXQgaXB0
-YWJsZV9uYXQgbmZfbmF0X2lwdjQgbmZfbmF0IHh0X3RjcHVkcCBuZl9jb25udHJhY2tfaXB2NCBu
-Zl9kZWZyYWdfaXB2NCB4dF9jb25udHJhY2sgbmZfY29ubnRyYWNrIGxpYmNyYzMyYyBjcmMzMmNf
-Z2VuZXJpYyBjcHVmcmVxX3Bvd2Vyc2F2ZSBjcHVmcmVxX3VzZXJzcGFjZSBjcHVmcmVxX2NvbnNl
-cnZhdGl2ZSBpcHRhYmxlX2ZpbHRlciBiaW5mbXRfbWlzYyBubHNfYXNjaWkgbmxzX2NwNDM3IHZm
-YXQgZmF0IGludGVsX3JhcGwgam95ZGV2IHg4Nl9wa2dfdGVtcF90aGVybWFsIGludGVsX3Bvd2Vy
-Y2xhbXAga3ZtX2ludGVsIGt2bSBteG1fd21pIGNyY3QxMGRpZl9wY2xtdWwgY3JjMzJfcGNsbXVs
-IGdoYXNoX2NsbXVsbmlfaW50ZWwgZXZkZXYgaW50ZWxfY3N0YXRlIHNlcmlvX3JhdyBpbnRlbF91
-bmNvcmUgaVRDT193ZHQgcGNzcGtyIGlUQ09fdmVuZG9yX3N1cHBvcnQgc2cgZWZpX3BzdG9yZSBp
-bnRlbF9yYXBsX3BlcmYgZWZpdmFycyBpbnRlbF9wY2hfdGhlcm1hbCBtZWlfbWUgd21pIG1laSBh
-Y3BpX3BhZCBwY2NfY3B1ZnJlcSBzbmRfaGRhX2NvZGVjX2hkbWk8YnI+PC9kaXY+PGRpdj5uY3Q2
-Nzc1IHNuZF9oZGFfY29kZWNfcmVhbHRlayBod21vbl92aWQgY29yZXRlbXAgc25kX2hkYV9jb2Rl
-Y19nZW5lcmljIGk5MTUgdmlkZW8gYnV0dG9uIGRybV9rbXNfaGVscGVyIGRybSBpMmNfYWxnb19i
-aXQgc25kX2hkYV9pbnRlbCBzbmRfaGRhX2NvZGVjIHNuZF9oZGFfY29yZSBzbmRfaHdkZXAgc25k
-X3BjbSBzbmRfdGltZXIgc25kIHNvdW5kY29yZSBsb29wIHZmaW9fcGNpIHZmaW9fdmlycWZkIGly
-cWJ5cGFzcyB2ZmlvX2lvbW11X3R5cGUxIHZmaW8gZWNyeXB0ZnMgZWZpdmFyZnMgaXBfdGFibGVz
-IHhfdGFibGVzIGF1dG9mczQgemZzKFBPKSB6dW5pY29kZShQTykgemF2bChQTykgaWNwKFBPKSB1
-YXMgdXNiX3N0b3JhZ2UgemNvbW1vbihQTykgem52cGFpcihQTykgc3BsKE8pIGhpZF9nZW5lcmlj
-IHVzYmhpZCBoaWQgc2RfbW9kIGNyYzMyY19pbnRlbCBhZXNuaV9pbnRlbCBhZXNfeDg2XzY0IGNy
-eXB0b19zaW1kIGFoY2kgY3J5cHRkIGdsdWVfaGVscGVyIGxpYmFoY2kgcHNtb3VzZSB4aGNpX3Bj
-aSBsaWJhdGEgeGhjaV9oY2QgZTEwMDBlIGkyY19pODAxIHNjc2lfbW9kIHVzYmNvcmUgdXNiX2Nv
-bW1vbiBbbGFzdCB1bmxvYWRlZDogbm91dmVhdV08YnI+PC9kaXY+PGRpdj5DUjI6IDAwMDAwMDAw
-MDAwMDAwNDg8YnI+PC9kaXY+PGRpdj4tLS1bIGVuZCB0cmFjZSAyZjk2Njc0ZjY3ZTE0NzAzIF0t
-LS08YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108047
+
+--- Comment #10 from Wolfgang <wolle321-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org> ---
+Finally I got a workaround, with a lot of pain.
+The problem, that Nouveau doesnt find my connected DVI-display still persis=
+ts.
+
+I tried to load a custom EDID-file from /lib/firmware/edid/.
+This failed, it seems that the driver doesnt load EDID for "not connected"
+displays. Forcing enabled DVI-D-1 didnt help too, I think the display is
+enabled to late. But for those, who want to fix wrong EDID-Data this wight
+work:
+
+The kms-parameter was on older kernels:
+drm_kms_helper.edid_firmware=3Dedid/your_custom_edid.bin
+actually with newer kernels it is=20
+drm.edid_firmware=3Dedid/your_custom_edid.bin
+
+But the idea was not so bad: how to get correct EDID-data for my DVI-monito=
+r:
+I installed nvidia-driver (which freezes after 20 min but detects the monit=
+ior
+out of the box).
+The same thing like under nouveau: only the LVDS-monitor EDID is found with
+get-edid, but xrandr --verbose showed me the EDID of the DVI-Monitor (why?
+thanks you xrandr!).
+I wrote the EDID in a Hex-editor and parsed it with parse-edid. So I got the
+definitely working modeline for 1920x1200 for my DVI-Monitor.
+(It looks different from cvt-generated one, and I think the kernel uses the
+same algorithm, when I force the resolution with kms video=3DDVI-D-1:1920x1=
+200e,
+which produced the 960x1200 monitor resolution with the 1920x1200 desktop
+resolution behind).
+
+So the final workaround back on nouveau is:=20
+1.booting with video=3DDVI-D-1:e and starting up with 1024x768 kernel defau=
+lt
+resolution.=20
+1.1 Also add a grub entry without enabling the DVI port because the LVDS do=
+esnt
+show the LightDM login dialog, when DVI is forced enabled but not plugged i=
+n.
+2.When logging in calling a script, what creates, adds and calls the right
+modline (stolen from nvidia-driver) for my DVI-display.
+
+Not very nice, but works.=20
+Could you explain, why nouveu doesnt detect the DVI-monitor, but nvidia doe=
+s?
+Is this a bug?
+
+Thanks to Ilia Mirkin, who how gave me some hints.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15389818711.de00a8.15341
+Date: Mon, 8 Oct 2018 06:57:51 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - No recognition of DVI-D monitor"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108047#c10">Comme=
+nt # 10</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - No recognition of DVI-D monitor"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108047">bug 10804=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+wolle321&#64;freenet.de" title=3D"Wolfgang &lt;wolle321&#64;freenet.de&gt;"=
+> <span class=3D"fn">Wolfgang</span></a>
+</span></b>
+        <pre>Finally I got a workaround, with a lot of pain.
+The problem, that Nouveau doesnt find my connected DVI-display still persis=
+ts.
+
+I tried to load a custom EDID-file from /lib/firmware/edid/.
+This failed, it seems that the driver doesnt load EDID for &quot;not connec=
+ted&quot;
+displays. Forcing enabled DVI-D-1 didnt help too, I think the display is
+enabled to late. But for those, who want to fix wrong EDID-Data this wight
+work:
+
+The kms-parameter was on older kernels:
+drm_kms_helper.edid_firmware=3Dedid/your_custom_edid.bin
+actually with newer kernels it is=20
+drm.edid_firmware=3Dedid/your_custom_edid.bin
+
+But the idea was not so bad: how to get correct EDID-data for my DVI-monito=
+r:
+I installed nvidia-driver (which freezes after 20 min but detects the monit=
+ior
+out of the box).
+The same thing like under nouveau: only the LVDS-monitor EDID is found with
+get-edid, but xrandr --verbose showed me the EDID of the DVI-Monitor (why?
+thanks you xrandr!).
+I wrote the EDID in a Hex-editor and parsed it with parse-edid. So I got the
+definitely working modeline for 1920x1200 for my DVI-Monitor.
+(It looks different from cvt-generated one, and I think the kernel uses the
+same algorithm, when I force the resolution with kms video=3DDVI-D-1:1920x1=
+200e,
+which produced the 960x1200 monitor resolution with the 1920x1200 desktop
+resolution behind).
+
+So the final workaround back on nouveau is:=20
+1.booting with video=3DDVI-D-1:e and starting up with 1024x768 kernel defau=
+lt
+resolution.=20
+1.1 Also add a grub entry without enabling the DVI port because the LVDS do=
+esnt
+show the LightDM login dialog, when DVI is forced enabled but not plugged i=
+n.
+2.When logging in calling a script, what creates, adds and calls the right
+modline (stolen from nvidia-driver) for my DVI-display.
+
+Not very nice, but works.=20
+Could you explain, why nouveu doesnt detect the DVI-monitor, but nvidia doe=
+s?
+Is this a bug?
+
+Thanks to Ilia Mirkin, who how gave me some hints.</pre>
+        </div>
+      </p>
 
 
+      <hr>
+      <span>You are receiving this mail because:</span>
 
---b1_9047fd12a5bc6b23bf7665031736e1ce--
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
 
+--15389818711.de00a8.15341--
 
---===============1718862336==
+--===============0216254383==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -248,4 +192,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1718862336==--
+--===============0216254383==--
