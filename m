@@ -1,69 +1,65 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v5 1/5] drm/atomic_helper: Disallow new modesets on unregistered connectors
-Date: Mon,  8 Oct 2018 18:39:17 -0400
-Message-ID: <20181008223924.1103-2-lyude@redhat.com>
+Subject: [PATCH v5 2/5] drm/nouveau: Fix nv50_mstc->best_encoder()
+Date: Mon,  8 Oct 2018 18:39:18 -0400
+Message-ID: <20181008223924.1103-3-lyude@redhat.com>
 References: <20181008223924.1103-1-lyude@redhat.com>
 Return-path: <linux-kernel-owner@vger.kernel.org>
 In-Reply-To: <20181008223924.1103-1-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
 To: intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Gustavo Padovan <gustavo@padovan.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
+Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Sean Paul <seanpaul@chromium.org>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-With the exception of modesets which would switch the DPMS state of a
-connector from on to off, we want to make sure that we disallow all
-modesets which would result in enabling a new monitor or a new mode
-configuration on a monitor if the connector for the display in question
-is no longer registered. This allows us to stop userspace from trying to
-enable new displays on connectors for an MST topology that were just
-removed from the system, without preventing userspace from disabling
-DPMS on those connectors.
+As mentioned in the previous commit, we currently prevent new modesets
+on recently-removed MST connectors by returning no encoder from our
+->best_encoder() callback once the MST port has disappeared. This is
+wrong however, because it prevents legacy modesetting users from being
+able to disable CRTCs on MST connectors after the connector's respective
+topology has disappeared.
+
+So, fix this by instead by just always returning a valid encoder.
+
+Changes since v2:
+- Remove usage of atomic MST helper for now, since that got replaced
+  with a much simpler solution
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
 Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 Cc: stable@vger.kernel.org
 ---
- drivers/gpu/drm/drm_atomic_helper.c | 21 ++++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 14 ++++----------
+ 1 file changed, 4 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-index 6f66777dca4b..788749021ac9 100644
---- a/drivers/gpu/drm/drm_atomic_helper.c
-+++ b/drivers/gpu/drm/drm_atomic_helper.c
-@@ -319,6 +319,26 @@ update_connector_routing(struct drm_atomic_state *state,
- 		return 0;
- 	}
- 
-+	crtc_state = drm_atomic_get_new_crtc_state(state,
-+						   new_connector_state->crtc);
-+	/*
-+	 * For compatibility with legacy users, we want to make sure that
-+	 * we allow DPMS On->Off modesets on unregistered connectors. Modesets
-+	 * which would result in anything else must be considered invalid, to
-+	 * avoid turning on new displays on dead connectors.
-+	 *
-+	 * Since the connector can be unregistered at any point during an
-+	 * atomic check or commit, this is racy. But that's OK: all we care
-+	 * about is ensuring that userspace can't do anything but shut off the
-+	 * display on a connector that was destroyed after it's been notified,
-+	 * not before.
-+	 */
-+	if (!READ_ONCE(connector->registered) && crtc_state->active) {
-+		DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] is not registered\n",
-+				 connector->base.id, connector->name);
-+		return -EINVAL;
-+	}
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index 9f32b10c7c29..31b94bc9ec90 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -843,22 +843,16 @@ nv50_mstc_atomic_best_encoder(struct drm_connector *connector,
+ {
+ 	struct nv50_head *head = nv50_head(connector_state->crtc);
+ 	struct nv50_mstc *mstc = nv50_mstc(connector);
+-	if (mstc->port) {
+-		struct nv50_mstm *mstm = mstc->mstm;
+-		return &mstm->msto[head->base.index]->encoder;
+-	}
+-	return NULL;
 +
- 	funcs = connector->helper_private;
++	return &mstc->mstm->msto[head->base.index]->encoder;
+ }
  
- 	if (funcs->atomic_best_encoder)
-@@ -363,7 +383,6 @@ update_connector_routing(struct drm_atomic_state *state,
+ static struct drm_encoder *
+ nv50_mstc_best_encoder(struct drm_connector *connector)
+ {
+ 	struct nv50_mstc *mstc = nv50_mstc(connector);
+-	if (mstc->port) {
+-		struct nv50_mstm *mstm = mstc->mstm;
+-		return &mstm->msto[0]->encoder;
+-	}
+-	return NULL;
++
++	return &mstc->mstm->msto[0]->encoder;
+ }
  
- 	set_best_encoder(state, new_connector_state, new_encoder);
- 
--	crtc_state = drm_atomic_get_new_crtc_state(state, new_connector_state->crtc);
- 	crtc_state->connectors_changed = true;
- 
- 	DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] using [ENCODER:%d:%s] on [CRTC:%d:%s]\n",
+ static enum drm_mode_status
 -- 
 2.17.1
