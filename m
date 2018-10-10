@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 107963] kernel rejected pushbuf: Invalid argument
-Date: Wed, 10 Oct 2018 07:42:05 +0000
-Message-ID: <bug-107963-8800-V9TfORAnZ8@http.bugs.freedesktop.org/>
+Date: Wed, 10 Oct 2018 07:48:25 +0000
+Message-ID: <bug-107963-8800-c7IO3DHMWK@http.bugs.freedesktop.org/>
 References: <bug-107963-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0091917930=="
+Content-Type: multipart/mixed; boundary="===============1035098017=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-107963-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0091917930==
-Content-Type: multipart/alternative; boundary="15391573251.8B62f.31904"
+--===============1035098017==
+Content-Type: multipart/alternative; boundary="15391577052.DCc5F3.704"
 Content-Transfer-Encoding: 7bit
 
 
---15391573251.8B62f.31904
-Date: Wed, 10 Oct 2018 07:42:05 +0000
+--15391577052.DCc5F3.704
+Date: Wed, 10 Oct 2018 07:48:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,38 +35,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D107963
 
-ansata2001-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |ansata2001-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #4 from ansata2001-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Having similar issue with Genymotion:
-
-nouveau: kernel rejected pushbuf: Invalid argument
-nouveau: ch8: krec 0 pushes 3 bufs 13 relocs 0
-nouveau: ch8: buf 00000000 00000002 00000004 00000004 00000000
-nouveau: ch8: buf 00000001 00000006 00000004 00000000 00000004
-nouveau: ch8: buf 00000002 00000007 00000002 00000002 00000000
-nouveau: ch8: buf 00000003 0000000a 00000002 00000002 00000000
-nouveau: ch8: buf 00000004 0000000b 00000002 00000002 00000000
-nouveau: ch8: buf 00000005 0000000b 00000002 00000002 00000000
-nouveau: ch8: buf 00000006 00000008 00000002 00000002 00000000
-nouveau: ch8: buf 00000007 00000008 00000002 00000002 00000000
-nouveau: ch8: buf 00000008 00000019 00000002 00000000 00000002
-nouveau: ch8: buf 00000009 00000019 00000002 00000000 00000002
-nouveau: ch8: buf 0000000a 0000001e 00000002 00000002 00000000
-nouveau: ch8: buf 0000000b 0000000d 00000002 00000002 00000000
-nouveau: ch8: buf 0000000c 00000015 00000004 00000004 00000000
-nouveau: ch8: psh 00000000 000007e73c 000007f524
+--- Comment #5 from ansata2001-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+uname -r
+4.15.0-20-generic
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15391573251.8B62f.31904
-Date: Wed, 10 Oct 2018 07:42:05 +0000
+--15391577052.DCc5F3.704
+Date: Wed, 10 Oct 2018 07:48:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,38 +55,14 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ansata200=
-1&#64;gmail.com" title=3D"ansata2001&#64;gmail.com">ansata2001&#64;gmail.co=
-m</a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - kernel rejected pushbuf: Invalid argument"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107963">bug 10796=
-3</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>ansata2001&#64;gmail.com
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - kernel rejected pushbuf: Invalid argument"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107963#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107963#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - kernel rejected pushbuf: Invalid argument"
@@ -118,24 +72,8 @@ t # 4</a>
 ansata2001&#64;gmail.com" title=3D"ansata2001&#64;gmail.com">ansata2001&#64=
 ;gmail.com</a>
 </span></b>
-        <pre>Having similar issue with Genymotion:
-
-nouveau: kernel rejected pushbuf: Invalid argument
-nouveau: ch8: krec 0 pushes 3 bufs 13 relocs 0
-nouveau: ch8: buf 00000000 00000002 00000004 00000004 00000000
-nouveau: ch8: buf 00000001 00000006 00000004 00000000 00000004
-nouveau: ch8: buf 00000002 00000007 00000002 00000002 00000000
-nouveau: ch8: buf 00000003 0000000a 00000002 00000002 00000000
-nouveau: ch8: buf 00000004 0000000b 00000002 00000002 00000000
-nouveau: ch8: buf 00000005 0000000b 00000002 00000002 00000000
-nouveau: ch8: buf 00000006 00000008 00000002 00000002 00000000
-nouveau: ch8: buf 00000007 00000008 00000002 00000002 00000000
-nouveau: ch8: buf 00000008 00000019 00000002 00000000 00000002
-nouveau: ch8: buf 00000009 00000019 00000002 00000000 00000002
-nouveau: ch8: buf 0000000a 0000001e 00000002 00000002 00000000
-nouveau: ch8: buf 0000000b 0000000d 00000002 00000002 00000000
-nouveau: ch8: buf 0000000c 00000015 00000004 00000004 00000000
-nouveau: ch8: psh 00000000 000007e73c 000007f524</pre>
+        <pre>uname -r
+4.15.0-20-generic</pre>
         </div>
       </p>
 
@@ -149,9 +87,9 @@ nouveau: ch8: psh 00000000 000007e73c 000007f524</pre>
     </body>
 </html>=
 
---15391573251.8B62f.31904--
+--15391577052.DCc5F3.704--
 
---===============0091917930==
+--===============1035098017==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -161,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0091917930==--
+--===============1035098017==--
