@@ -1,116 +1,40 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v7 1/5] drm/atomic_helper: Disallow new modesets on
- unregistered connectors
-Date: Thu, 11 Oct 2018 10:40:15 +0200
-Message-ID: <20181011084015.GX31561@phenom.ffwll.local>
-References: <20181008232437.5571-1-lyude@redhat.com>
- <20181008232437.5571-2-lyude@redhat.com>
- <20181009172027.GK9144@intel.com>
+From: Colin King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: [PATCH] drm/nouveau/bios/init: fix spelling mistake
+ "INIT_GENERIC_CONDITON" -> "INIT_GENERIC_CONDITION"
+Date: Fri, 12 Oct 2018 16:30:59 +0100
+Message-ID: <20181012153059.22052-1-colin.king@canonical.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20181009172027.GK9144@intel.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Cc: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, stable@vger.kernel.org, Sean Paul <sean@poorly.run>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Oct 09, 2018 at 08:20:27PM +0300, Ville Syrjälä wrote:
-> On Mon, Oct 08, 2018 at 07:24:30PM -0400, Lyude Paul wrote:
-> > With the exception of modesets which would switch the DPMS state of a
-> > connector from on to off, we want to make sure that we disallow all
-> > modesets which would result in enabling a new monitor or a new mode
-> > configuration on a monitor if the connector for the display in question
-> > is no longer registered. This allows us to stop userspace from trying to
-> > enable new displays on connectors for an MST topology that were just
-> > removed from the system, without preventing userspace from disabling
-> > DPMS on those connectors.
-> > 
-> > Changes since v5:
-> > - Fix typo in comment, nothing else
-> > 
-> > Signed-off-by: Lyude Paul <lyude@redhat.com>
-> > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > Cc: stable@vger.kernel.org
-> > ---
-> >  drivers/gpu/drm/drm_atomic_helper.c | 21 ++++++++++++++++++++-
-> >  1 file changed, 20 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-> > index 6f66777dca4b..e6a2cf72de5e 100644
-> > --- a/drivers/gpu/drm/drm_atomic_helper.c
-> > +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> > @@ -319,6 +319,26 @@ update_connector_routing(struct drm_atomic_state *state,
-> >  		return 0;
-> >  	}
-> >  
-> > +	crtc_state = drm_atomic_get_new_crtc_state(state,
-> > +						   new_connector_state->crtc);
-> > +	/*
-> > +	 * For compatibility with legacy users, we want to make sure that
-> > +	 * we allow DPMS On->Off modesets on unregistered connectors. Modesets
-> > +	 * which would result in anything else must be considered invalid, to
-> > +	 * avoid turning on new displays on dead connectors.
-> > +	 *
-> > +	 * Since the connector can be unregistered at any point during an
-> > +	 * atomic check or commit, this is racy. But that's OK: all we care
-> > +	 * about is ensuring that userspace can't do anything but shut off the
-> > +	 * display on a connector that was destroyed after its been notified,
-> > +	 * not before.
-> > +	 */
-> > +	if (!READ_ONCE(connector->registered) && crtc_state->active) {
-> > +		DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] is not registered\n",
-> > +				 connector->base.id, connector->name);
-> > +		return -EINVAL;
-> > +	}
-> 
-> This broke my ilk (and presumably snb-bdw as well).
-> 
-> [   25.593121] [drm:drm_atomic_helper_check_modeset [drm_kms_helper]] Updating routing for [CONNECTOR:55:eDP-1]
-> [   25.593131] [drm:drm_atomic_helper_check_modeset [drm_kms_helper]] [CONNECTOR:55:eDP-1] is not registered
-> [   25.593133] ------------[ cut here ]------------
-> [   25.593134] Could not determine valid watermarks for inherited state
-> [   25.593212] WARNING: CPU: 0 PID: 3060 at ../drivers/gpu/drm/i915/intel_display.c:14983 intel_modeset_init+0x12cf/0x1980 [i915]
-> 
-> Also I can't see that any of the repostings of this has undergone the
-> full CI run (just BAT results are visible). Not sure why that is.
-> Not that the full run would have caught this because we unwisely 
-> load the module before the tests start. Which means any failures
-> during initial readout/takeover will not be flagged :(
-
-Ugh, so we need a special bool for "unplugged", to differentiate it from
-the "it's real, but not yet registered because the driver isn't fully
-loaded yet" case.
--Daniel
-
-> 
-> > +
-> >  	funcs = connector->helper_private;
-> >  
-> >  	if (funcs->atomic_best_encoder)
-> > @@ -363,7 +383,6 @@ update_connector_routing(struct drm_atomic_state *state,
-> >  
-> >  	set_best_encoder(state, new_connector_state, new_encoder);
-> >  
-> > -	crtc_state = drm_atomic_get_new_crtc_state(state, new_connector_state->crtc);
-> >  	crtc_state->connectors_changed = true;
-> >  
-> >  	DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] using [ENCODER:%d:%s] on [CRTC:%d:%s]\n",
-> > -- 
-> > 2.17.1
-> > 
-> > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> 
-> -- 
-> Ville Syrjälä
-> Intel
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+RnJvbTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KClRyaXZpYWwg
+Zml4IHRvIHNwZWxsaW5nIG1pc3Rha2UgaW4gd2FybiBtZXNzYWdlIHRleHQKClNpZ25lZC1vZmYt
+Ynk6IENvbGluIElhbiBLaW5nIDxjb2xpbi5raW5nQGNhbm9uaWNhbC5jb20+Ci0tLQogZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9pbml0LmMgfCAyICstCiAxIGZpbGUg
+Y2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL2luaXQuYyBiL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvaW5pdC5jCmluZGV4IDljYzEwZTQzOGIzZC4u
+MDAzZGM4ZWRmMWMzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1
+YmRldi9iaW9zL2luaXQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRl
+di9iaW9zL2luaXQuYwpAQCAtODMxLDcgKzgzMSw3IEBAIGluaXRfZ2VuZXJpY19jb25kaXRpb24o
+c3RydWN0IG52Ymlvc19pbml0ICppbml0KQogCQkJaW5pdF9leGVjX3NldChpbml0LCBmYWxzZSk7
+CiAJCWJyZWFrOwogCWRlZmF1bHQ6Ci0JCXdhcm4oIklOSVRfR0VORVJJQ19DT05ESVRPTjogdW5r
+bm93biAweCUwMnhcbiIsIGNvbmQpOworCQl3YXJuKCJJTklUX0dFTkVSSUNfQ09ORElUSU9OOiB1
+bmtub3duIDB4JTAyeFxuIiwgY29uZCk7CiAJCWluaXQtPm9mZnNldCArPSBzaXplOwogCQlicmVh
+azsKIAl9Ci0tIAoyLjE3LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
+dQo=
