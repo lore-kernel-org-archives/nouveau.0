@@ -1,9 +1,9 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108346] New: System lagging
-Date: Fri, 12 Oct 2018 17:09:27 +0000
-Message-ID: <bug-108346-8800@http.bugs.freedesktop.org/>
+From: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Question on Render Targets Register: Array Mode
+Date: Sat, 13 Oct 2018 17:40:02 -0400
+Message-ID: <CA+MSTo83b+J2==2+35rfCa9Jvx0EuYCOm1_htrwHAFyL+SD5hA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2084031142=="
+Content-Type: multipart/mixed; boundary="===============0670653431=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -17,176 +17,36 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============0670653431==
+Content-Type: multipart/alternative; boundary="0000000000009446180578230c43"
 
---===============2084031142==
-Content-Type: multipart/alternative; boundary="15393641671.A2362dB7.5859"
-Content-Transfer-Encoding: 7bit
-
-
---15393641671.A2362dB7.5859
-Date: Fri, 12 Oct 2018 17:09:27 +0000
-MIME-Version: 1.0
+--0000000000009446180578230c43
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108346
+So there's a register in Render Targets called Array Mode:
+https://github.com/envytools/envytools/blob/master/rnndb/graph/gf100_3d.xml#L289
 
-            Bug ID: 108346
-           Summary: System lagging
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: caravena-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+We've witnessed values of 1 and 6 (array mode -> layers) but we can't tell
+their meaning. Do you guys got any related info?
 
-Hello,
+Thanks in advance.
 
-Open bug in launchpad.net
-https://bugs.launchpad.net/bugs/1797588
-
-"The system is lagging and not opening programs well. even switching between
-windows is very slow."
-
-Best regards,
---
-Cristian Aravena Romero (caravena)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15393641671.A2362dB7.5859
-Date: Fri, 12 Oct 2018 17:09:27 +0000
-MIME-Version: 1.0
+--0000000000009446180578230c43
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - System lagging"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108346">108346</a>
-          </td>
-        </tr>
+<div dir=3D"ltr"><div dir=3D"ltr">So there&#39;s a register in Render Targe=
+ts called Array Mode:<div><a href=3D"https://github.com/envytools/envytools=
+/blob/master/rnndb/graph/gf100_3d.xml#L289">https://github.com/envytools/en=
+vytools/blob/master/rnndb/graph/gf100_3d.xml#L289</a></div><div><br></div><=
+div>We&#39;ve witnessed values of 1 and 6 (array mode -&gt; layers) but we =
+can&#39;t tell their meaning. Do you guys got any related info?</div><div><=
+br></div><div>Thanks in advance.<div dir=3D"ltr" class=3D"gmail_signature">=
+</div></div></div></div>
 
-        <tr>
-          <th>Summary</th>
-          <td>System lagging
-          </td>
-        </tr>
+--0000000000009446180578230c43--
 
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>caravena&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Hello,
-
-Open bug in launchpad.net
-<a href=3D"https://bugs.launchpad.net/bugs/1797588">https://bugs.launchpad.=
-net/bugs/1797588</a>
-
-&quot;The system is lagging and not opening programs well. even switching b=
-etween
-windows is very slow.&quot;
-
-Best regards,
---
-Cristian Aravena Romero (caravena)</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15393641671.A2362dB7.5859--
-
---===============2084031142==
+--===============0670653431==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -196,4 +56,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2084031142==--
+--===============0670653431==--
