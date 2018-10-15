@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
  409800 [ TIMEOUT ]
-Date: Mon, 15 Oct 2018 10:06:06 +0000
-Message-ID: <bug-100228-8800-ZCeUiWGsk5@http.bugs.freedesktop.org/>
+Date: Mon, 15 Oct 2018 10:10:21 +0000
+Message-ID: <bug-100228-8800-AUO2CnM0jM@http.bugs.freedesktop.org/>
 References: <bug-100228-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1464762940=="
+Content-Type: multipart/mixed; boundary="===============1608645956=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1464762940==
-Content-Type: multipart/alternative; boundary="15395979671.bF530AF1.7988"
+--===============1608645956==
+Content-Type: multipart/alternative; boundary="15395982216.52BBD7.9388"
 Content-Transfer-Encoding: 7bit
 
 
---15395979671.bF530AF1.7988
-Date: Mon, 15 Oct 2018 10:06:07 +0000
+--15395982216.52BBD7.9388
+Date: Mon, 15 Oct 2018 10:10:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
 
---- Comment #29 from Sebastian <sebastian.willing-S0/GAf8tV78@public.gmane.org> ---
-Created attachment 142029
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142029&action=3Dedit
-Lenovo Yoga 530-15 IKB Kernel log and additional information
+--- Comment #30 from Sebastian <sebastian.willing-S0/GAf8tV78@public.gmane.org> ---
+I'd vote for an importance upgrade as the affected card spread more and mor=
+e.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15395979671.bF530AF1.7988
-Date: Mon, 15 Oct 2018 10:06:07 +0000
+--15395982216.52BBD7.9388
+Date: Mon, 15 Oct 2018 10:10:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +63,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
 OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c29">Comme=
-nt # 29</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c30">Comme=
+nt # 30</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
@@ -76,12 +75,8 @@ OUT ]"
 sebastian.willing&#64;web.de" title=3D"Sebastian &lt;sebastian.willing&#64;=
 web.de&gt;"> <span class=3D"fn">Sebastian</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142029=
-" name=3D"attach_142029" title=3D"Lenovo Yoga 530-15 IKB Kernel log and add=
-itional information">attachment 142029</a> <a href=3D"attachment.cgi?id=3D1=
-42029&amp;action=3Dedit" title=3D"Lenovo Yoga 530-15 IKB Kernel log and add=
-itional information">[details]</a></span>
-Lenovo Yoga 530-15 IKB Kernel log and additional information</pre>
+        <pre>I'd vote for an importance upgrade as the affected card spread=
+ more and more.</pre>
         </div>
       </p>
 
@@ -95,9 +90,9 @@ Lenovo Yoga 530-15 IKB Kernel log and additional information</pre>
     </body>
 </html>=
 
---15395979671.bF530AF1.7988--
+--15395982216.52BBD7.9388--
 
---===============1464762940==
+--===============1608645956==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1464762940==--
+--===============1608645956==--
