@@ -1,104 +1,300 @@
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 2/2] drm/ttm: Provide ttm_bo_global_{init/release}() for
- struct ttm_bo_global
-Date: Tue, 16 Oct 2018 10:04:09 +0200
-Message-ID: <20181016080409.18838-3-tzimmermann@suse.de>
+From: "Koenig, Christian" <Christian.Koenig@amd.com>
+Subject: Re: [PATCH 1/2] drm/ttm: Rename ttm_bo_global_{init,release}() to
+	ttm_bo_global_ref_{,}()
+Date: Tue, 16 Oct 2018 10:43:17 +0000
+Message-ID: <72d9ad54-af52-55a2-8537-2327fd6f0357@amd.com>
 References: <20181016080409.18838-1-tzimmermann@suse.de>
+	<20181016080409.18838-2-tzimmermann@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20181016080409.18838-1-tzimmermann@suse.de>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: christian.koenig@amd.com, ray.huang@amd.com, Jerry.Zhang@amd.com, airlied@linux.ie, daniel.vetter@ffwll.ch, maarten.lankhorst@linux.intel.com, maxime.ripard@bootlin.com, sean@poorly.run, alexander.deucher@amd.com, corbet@lwn.net, David1.Zhou@amd.com, kraxel@redhat.com, z.liuxinliang@hisilicon.com, zourongrong@gmail.com, kong.kongxinwei@hisilicon.com, puck.chen@hisilicon.com, bskeggs@redhat.com, linux-graphics-maintainer@vmware.com, syeh@vmware.com, thellstrom@vmware.com, dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>, virtualization@lists.linux-foundation.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <virtualization-bounces@lists.linux-foundation.org>
+In-Reply-To: <20181016080409.18838-2-tzimmermann@suse.de>
+Content-Language: en-US
+Content-ID: <20DC8C8EA0E5E0489BDFAF2F7BA56B34@namprd12.prod.outlook.com>
+List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/virtualization>,
+	<mailto:virtualization-request@lists.linux-foundation.org?subject=unsubscribe>
+List-Archive: <http://lists.linuxfoundation.org/pipermail/virtualization/>
+List-Post: <mailto:virtualization@lists.linux-foundation.org>
+List-Help: <mailto:virtualization-request@lists.linux-foundation.org?subject=help>
+List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/virtualization>,
+	<mailto:virtualization-request@lists.linux-foundation.org?subject=subscribe>
+Sender: virtualization-bounces@lists.linux-foundation.org
+Errors-To: virtualization-bounces@lists.linux-foundation.org
+To: Thomas Zimmermann <tzimmermann@suse.de>, "Huang, Ray" <Ray.Huang@amd.com>, "Zhang, Jerry" <Jerry.Zhang@amd.com>, "airlied@linux.ie" <airlied@linux.ie>, "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>, "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, "maxime.ripard@bootlin.com" <maxime.ripard@bootlin.com>, "sean@poorly.run" <sean@poorly.run>, "Deucher, Alexander" <Alexander.Deucher@amd.com>, "corbet@lwn.net" <corbet@lwn.net>, "Zhou, David(ChunMing)" <David1.Zhou@amd.com>, "kraxel@redhat.com" <kraxel@redhat.com>, "z.liuxinliang@hisilicon.com" <z.liuxinliang@hisilicon.com>, "zourongrong@gmail.com" <zourongrong@gmail.com>, "kong.kongxinwei@hisilicon.com" <kong.kongxinwei@hisilicon.com>, "puck.chen@hisilicon.com" <puck.chen@hisilicon.com>, "bskeggs@redhat.com" <bskeggs@redhat.com>, "linux-graphics-maintainer@vmware.com" <linux-graphics-maintainer@vm>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "virtualization@lists.linux-foundation.org" <virtualization@lists.linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
-U28gZmFyLCBzdHJ1Y3QgdHRtX2JvX2dsb2JhbF9yZWYgd2FzIHRoZSBvbmx5IHdheSBvZiBpbml0
-aWFsaXppbmcgYSBzdHJ1Y3QKdHRtX2JvX2dsb2JhbC4gUHJvdmlkaW5nIHNlcGFyYXRlIGluaXRp
-YWxpemVyIGFuZCByZWxlYXNlIGZ1bmN0aW9ucyBmb3IKc3RydWN0IHR0bV9ib19nbG9iYWwgZ2l2
-ZXMgZHJpdmVycyB0aGUgb3B0aW9uIG9mIGltcGxlbWVudGluZyB0aGVpciBvd24KaW5pdCBhbmQg
-cmVsZWFzZSBjYWxsYmFja3MgZm9yIGRybV9nbG9iYWxfcmVmZXJlbmNlcyBvZiB0eXBlCkRSTV9H
-TE9CQUxfVFRNX0JPLgoKVGhlIG9yaWdpbmFsIGZ1bmN0aW9ucyBmb3IgaW5pdGlhbGl6aW5nIGFu
-ZCByZWxlYXNpbmcgdmlhIHN0cnVjdAp0dG1fYm9fZ2xvYmFsX3JlZiBhcmUgd3JhcHBlcnMgYXJv
-dW5kIHRoZSBuZXcgaW50ZXJmYWNlcy4KClNpZ25lZC1vZmYtYnk6IFRob21hcyBaaW1tZXJtYW5u
-IDx0emltbWVybWFubkBzdXNlLmRlPgotLS0KIGRyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvLmMg
-ICAgfCAxNiArKysrLS0tLS0tCiBpbmNsdWRlL2RybS90dG0vdHRtX2JvX2RyaXZlci5oIHwgNTMg
-KysrKysrKysrKysrKysrKysrKysrKysrKystLS0tLS0tCiAyIGZpbGVzIGNoYW5nZWQsIDQ4IGlu
-c2VydGlvbnMoKyksIDIxIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS90dG0vdHRtX2JvLmMgYi9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jCmluZGV4IDljMmJi
-ODgwNDkxZS4uOWVkZWNlNjUxMGQzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0
-bV9iby5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvLmMKQEAgLTE1MjIsMjYgKzE1
-MjIsMjIgQEAgc3RhdGljIHZvaWQgdHRtX2JvX2dsb2JhbF9rb2JqX3JlbGVhc2Uoc3RydWN0IGtv
-YmplY3QgKmtvYmopCiAJa2ZyZWUoZ2xvYik7CiB9CiAKLXZvaWQgdHRtX2JvX2dsb2JhbF9yZWZf
-cmVsZWFzZShzdHJ1Y3QgZHJtX2dsb2JhbF9yZWZlcmVuY2UgKnJlZikKK3ZvaWQgdHRtX2JvX2ds
-b2JhbF9yZWxlYXNlKHN0cnVjdCB0dG1fYm9fZ2xvYmFsICpnbG9iKQogewotCXN0cnVjdCB0dG1f
-Ym9fZ2xvYmFsICpnbG9iID0gcmVmLT5vYmplY3Q7Ci0KIAlrb2JqZWN0X2RlbCgmZ2xvYi0+a29i
-aik7CiAJa29iamVjdF9wdXQoJmdsb2ItPmtvYmopOwogfQotRVhQT1JUX1NZTUJPTCh0dG1fYm9f
-Z2xvYmFsX3JlZl9yZWxlYXNlKTsKK0VYUE9SVF9TWU1CT0wodHRtX2JvX2dsb2JhbF9yZWxlYXNl
-KTsKIAotaW50IHR0bV9ib19nbG9iYWxfcmVmX2luaXQoc3RydWN0IGRybV9nbG9iYWxfcmVmZXJl
-bmNlICpyZWYpCitpbnQgdHRtX2JvX2dsb2JhbF9pbml0KHN0cnVjdCB0dG1fYm9fZ2xvYmFsICpn
-bG9iLAorCQkgICAgICAgc3RydWN0IHR0bV9tZW1fZ2xvYmFsICptZW1fZ2xvYikKIHsKLQlzdHJ1
-Y3QgdHRtX2JvX2dsb2JhbF9yZWYgKmJvX3JlZiA9Ci0JCWNvbnRhaW5lcl9vZihyZWYsIHN0cnVj
-dCB0dG1fYm9fZ2xvYmFsX3JlZiwgcmVmKTsKLQlzdHJ1Y3QgdHRtX2JvX2dsb2JhbCAqZ2xvYiA9
-IHJlZi0+b2JqZWN0OwogCWludCByZXQ7CiAJdW5zaWduZWQgaTsKIAogCW11dGV4X2luaXQoJmds
-b2ItPmRldmljZV9saXN0X211dGV4KTsKIAlzcGluX2xvY2tfaW5pdCgmZ2xvYi0+bHJ1X2xvY2sp
-OwotCWdsb2ItPm1lbV9nbG9iID0gYm9fcmVmLT5tZW1fZ2xvYjsKKwlnbG9iLT5tZW1fZ2xvYiA9
-IG1lbV9nbG9iOwogCWdsb2ItPm1lbV9nbG9iLT5ib19nbG9iID0gZ2xvYjsKIAlnbG9iLT5kdW1t
-eV9yZWFkX3BhZ2UgPSBhbGxvY19wYWdlKF9fR0ZQX1pFUk8gfCBHRlBfRE1BMzIpOwogCkBAIC0x
-NTY0LDcgKzE1NjAsNyBAQCBpbnQgdHRtX2JvX2dsb2JhbF9yZWZfaW5pdChzdHJ1Y3QgZHJtX2ds
-b2JhbF9yZWZlcmVuY2UgKnJlZikKIAlrZnJlZShnbG9iKTsKIAlyZXR1cm4gcmV0OwogfQotRVhQ
-T1JUX1NZTUJPTCh0dG1fYm9fZ2xvYmFsX3JlZl9pbml0KTsKK0VYUE9SVF9TWU1CT0wodHRtX2Jv
-X2dsb2JhbF9pbml0KTsKIAogCiBpbnQgdHRtX2JvX2RldmljZV9yZWxlYXNlKHN0cnVjdCB0dG1f
-Ym9fZGV2aWNlICpiZGV2KQpkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vdHRtL3R0bV9ib19kcml2
-ZXIuaCBiL2luY2x1ZGUvZHJtL3R0bS90dG1fYm9fZHJpdmVyLmgKaW5kZXggYzNjMDc1MWRlYzYz
-Li5jNmVlMDdkMTAyODEgMTAwNjQ0Ci0tLSBhL2luY2x1ZGUvZHJtL3R0bS90dG1fYm9fZHJpdmVy
-LmgKKysrIGIvaW5jbHVkZS9kcm0vdHRtL3R0bV9ib19kcml2ZXIuaApAQCAtMzg0LDE1ICszODQs
-NiBAQCBzdHJ1Y3QgdHRtX2JvX2RyaXZlciB7CiAJCQkgICAgIHZvaWQgKmJ1ZiwgaW50IGxlbiwg
-aW50IHdyaXRlKTsKIH07CiAKLS8qKgotICogc3RydWN0IHR0bV9ib19nbG9iYWxfcmVmIC0gQXJn
-dW1lbnQgdG8gaW5pdGlhbGl6ZSBhIHN0cnVjdCB0dG1fYm9fZ2xvYmFsLgotICovCi0KLXN0cnVj
-dCB0dG1fYm9fZ2xvYmFsX3JlZiB7Ci0Jc3RydWN0IGRybV9nbG9iYWxfcmVmZXJlbmNlIHJlZjsK
-LQlzdHJ1Y3QgdHRtX21lbV9nbG9iYWwgKm1lbV9nbG9iOwotfTsKLQogLyoqCiAgKiBzdHJ1Y3Qg
-dHRtX2JvX2dsb2JhbCAtIEJ1ZmZlciBvYmplY3QgZHJpdmVyIGdsb2JhbCBkYXRhLgogICoKQEAg
-LTU3OCw4ICs1NjksOSBAQCB2b2lkIHR0bV9ib19tZW1fcHV0KHN0cnVjdCB0dG1fYnVmZmVyX29i
-amVjdCAqYm8sIHN0cnVjdCB0dG1fbWVtX3JlZyAqbWVtKTsKIHZvaWQgdHRtX2JvX21lbV9wdXRf
-bG9ja2VkKHN0cnVjdCB0dG1fYnVmZmVyX29iamVjdCAqYm8sCiAJCQkgICBzdHJ1Y3QgdHRtX21l
-bV9yZWcgKm1lbSk7CiAKLXZvaWQgdHRtX2JvX2dsb2JhbF9yZWZfcmVsZWFzZShzdHJ1Y3QgZHJt
-X2dsb2JhbF9yZWZlcmVuY2UgKnJlZik7Ci1pbnQgdHRtX2JvX2dsb2JhbF9yZWZfaW5pdChzdHJ1
-Y3QgZHJtX2dsb2JhbF9yZWZlcmVuY2UgKnJlZik7Cit2b2lkIHR0bV9ib19nbG9iYWxfcmVsZWFz
-ZShzdHJ1Y3QgdHRtX2JvX2dsb2JhbCAqZ2xvYik7CitpbnQgdHRtX2JvX2dsb2JhbF9pbml0KHN0
-cnVjdCB0dG1fYm9fZ2xvYmFsICpnbG9iLAorCQkgICAgICAgc3RydWN0IHR0bV9tZW1fZ2xvYmFs
-ICptZW1fZ2xvYik7CiAKIGludCB0dG1fYm9fZGV2aWNlX3JlbGVhc2Uoc3RydWN0IHR0bV9ib19k
-ZXZpY2UgKmJkZXYpOwogCkBAIC04OTcsNCArODg5LDQzIEBAIHBncHJvdF90IHR0bV9pb19wcm90
-KHVpbnQzMl90IGNhY2hpbmdfZmxhZ3MsIHBncHJvdF90IHRtcCk7CiAKIGV4dGVybiBjb25zdCBz
-dHJ1Y3QgdHRtX21lbV90eXBlX21hbmFnZXJfZnVuYyB0dG1fYm9fbWFuYWdlcl9mdW5jOwogCisv
-KioKKyAqIHN0cnVjdCB0dG1fYm9fZ2xvYmFsX3JlZiAtIEFyZ3VtZW50IHRvIGluaXRpYWxpemUg
-YSBzdHJ1Y3QgdHRtX2JvX2dsb2JhbC4KKyAqLworCitzdHJ1Y3QgdHRtX2JvX2dsb2JhbF9yZWYg
-eworCXN0cnVjdCBkcm1fZ2xvYmFsX3JlZmVyZW5jZSByZWY7CisJc3RydWN0IHR0bV9tZW1fZ2xv
-YmFsICptZW1fZ2xvYjsKK307CisKKy8qKgorICogdHRtX2JvX2dsb2JhbF9yZWZfaW5pdAorICoK
-KyAqIEByZWY6IERSTSBnbG9iYWwgcmVmZXJlbmNlCisgKgorICogSGVscGVyIGZ1bmN0aW9uIHRo
-YXQgaW5pdGlhbGl6ZXMgYSBzdHJ1Y3QgdHRtX2JvX2dsb2JhbC4gVGhpcyBmdW5jdGlvbgorICog
-aXMgdXNlZCBhcyBpbml0IGNhbGwtYmFjayBmdW5jdGlvbiBmb3IgRFJNIGdsb2JhbCByZWZlcmVu
-Y2VzIG9mIHR5cGUKKyAqIERSTV9HTE9CQUxfVFRNX0JPX1JFRi4KKyAqLworc3RhdGljIGlubGlu
-ZSBpbnQgdHRtX2JvX2dsb2JhbF9yZWZfaW5pdChzdHJ1Y3QgZHJtX2dsb2JhbF9yZWZlcmVuY2Ug
-KnJlZikKK3sKKwlzdHJ1Y3QgdHRtX2JvX2dsb2JhbF9yZWYgKmJvX3JlZiA9CisJCWNvbnRhaW5l
-cl9vZihyZWYsIHN0cnVjdCB0dG1fYm9fZ2xvYmFsX3JlZiwgcmVmKTsKKwlyZXR1cm4gdHRtX2Jv
-X2dsb2JhbF9pbml0KHJlZi0+b2JqZWN0LCBib19yZWYtPm1lbV9nbG9iKTsKK30KKworLyoqCisg
-KiB0dG1fYm9fZ2xvYmFsX3JlZl9yZWxlYXNlCisgKgorICogQHJlZjogRFJNIGdsb2JhbCByZWZl
-cmVuY2UKKyAqCisgKiBIZWxwZXIgZnVuY3Rpb24gdGhhdCByZWxlYXNlcyBhIHN0cnVjdCB0dG1f
-Ym9fZ2xvYmFsLiBUaGlzIGZ1bmN0aW9uCisgKiBpcyB1c2VkIGFzIHJlbGVhc2UgY2FsbC1iYWNr
-IGZ1bmN0aW9uIGZvciBEUk0gZ2xvYmFsIHJlZmVyZW5jZXMgb2YgdHlwZQorICogRFJNX0dMT0JB
-TF9UVE1fQk9fUkVGLgorICovCitzdGF0aWMgaW5saW5lIHZvaWQgdHRtX2JvX2dsb2JhbF9yZWZf
-cmVsZWFzZShzdHJ1Y3QgZHJtX2dsb2JhbF9yZWZlcmVuY2UgKnJlZikKK3sKKwl0dG1fYm9fZ2xv
-YmFsX3JlbGVhc2UocmVmLT5vYmplY3QpOworfQorCiAjZW5kaWYKLS0gCjIuMTkuMQoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxp
-bmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+Am 16.10.2018 um 10:04 schrieb Thomas Zimmermann:
+> The functions ttm_bo_global_init() and ttm_bo_global_release() do not
+> receive an argument of type struct ttm_bo_global. Both take a struct
+> drm_global_reference that contains points to a struct ttm_bo_global_ref.
+> Renaming them reflects this.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+Reviewed and pushed upstream.
+
+Christian.
+
+> ---
+>   Documentation/gpu/drm-mm.rst                | 4 ++--
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c     | 4 ++--
+>   drivers/gpu/drm/ast/ast_ttm.c               | 4 ++--
+>   drivers/gpu/drm/bochs/bochs_mm.c            | 4 ++--
+>   drivers/gpu/drm/cirrus/cirrus_ttm.c         | 4 ++--
+>   drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c | 4 ++--
+>   drivers/gpu/drm/mgag200/mgag200_ttm.c       | 4 ++--
+>   drivers/gpu/drm/nouveau/nouveau_ttm.c       | 4 ++--
+>   drivers/gpu/drm/qxl/qxl_ttm.c               | 4 ++--
+>   drivers/gpu/drm/radeon/radeon_ttm.c         | 4 ++--
+>   drivers/gpu/drm/ttm/ttm_bo.c                | 8 ++++----
+>   drivers/gpu/drm/virtio/virtgpu_ttm.c        | 4 ++--
+>   drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c    | 4 ++--
+>   drivers/staging/vboxvideo/vbox_ttm.c        | 4 ++--
+>   include/drm/ttm/ttm_bo_driver.h             | 4 ++--
+>   15 files changed, 32 insertions(+), 32 deletions(-)
+>
+> diff --git a/Documentation/gpu/drm-mm.rst b/Documentation/gpu/drm-mm.rst
+> index e725e8449e72..d0f3c6b03200 100644
+> --- a/Documentation/gpu/drm-mm.rst
+> +++ b/Documentation/gpu/drm-mm.rst
+> @@ -72,8 +72,8 @@ object TTM to provide a pool for buffer object allocation by clients and
+>   the kernel itself. The type of this object should be
+>   TTM_GLOBAL_TTM_BO, and its size should be sizeof(struct
+>   ttm_bo_global). Again, driver-specific init and release functions may
+> -be provided, likely eventually calling ttm_bo_global_init() and
+> -ttm_bo_global_release(), respectively. Also, like the previous
+> +be provided, likely eventually calling ttm_bo_global_ref_init() and
+> +ttm_bo_global_ref_release(), respectively. Also, like the previous
+>   object, ttm_global_item_ref() is used to create an initial reference
+>   count for the TTM, which will call your initialization function.
+>   
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> index a44fc12ae1f9..3a6802846698 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> @@ -125,8 +125,8 @@ static int amdgpu_ttm_global_init(struct amdgpu_device *adev)
+>   	global_ref = &adev->mman.bo_global_ref.ref;
+>   	global_ref->global_type = DRM_GLOBAL_TTM_BO;
+>   	global_ref->size = sizeof(struct ttm_bo_global);
+> -	global_ref->init = &ttm_bo_global_init;
+> -	global_ref->release = &ttm_bo_global_release;
+> +	global_ref->init = &ttm_bo_global_ref_init;
+> +	global_ref->release = &ttm_bo_global_ref_release;
+>   	r = drm_global_item_ref(global_ref);
+>   	if (r) {
+>   		DRM_ERROR("Failed setting up TTM BO subsystem.\n");
+> diff --git a/drivers/gpu/drm/ast/ast_ttm.c b/drivers/gpu/drm/ast/ast_ttm.c
+> index fe354ebf374d..d21fbd26785a 100644
+> --- a/drivers/gpu/drm/ast/ast_ttm.c
+> +++ b/drivers/gpu/drm/ast/ast_ttm.c
+> @@ -70,8 +70,8 @@ static int ast_ttm_global_init(struct ast_private *ast)
+>   	global_ref = &ast->ttm.bo_global_ref.ref;
+>   	global_ref->global_type = DRM_GLOBAL_TTM_BO;
+>   	global_ref->size = sizeof(struct ttm_bo_global);
+> -	global_ref->init = &ttm_bo_global_init;
+> -	global_ref->release = &ttm_bo_global_release;
+> +	global_ref->init = &ttm_bo_global_ref_init;
+> +	global_ref->release = &ttm_bo_global_ref_release;
+>   	r = drm_global_item_ref(global_ref);
+>   	if (r != 0) {
+>   		DRM_ERROR("Failed setting up TTM BO subsystem.\n");
+> diff --git a/drivers/gpu/drm/bochs/bochs_mm.c b/drivers/gpu/drm/bochs/bochs_mm.c
+> index e6ccf7fa92d4..ff4f41dec228 100644
+> --- a/drivers/gpu/drm/bochs/bochs_mm.c
+> +++ b/drivers/gpu/drm/bochs/bochs_mm.c
+> @@ -48,8 +48,8 @@ static int bochs_ttm_global_init(struct bochs_device *bochs)
+>   	global_ref = &bochs->ttm.bo_global_ref.ref;
+>   	global_ref->global_type = DRM_GLOBAL_TTM_BO;
+>   	global_ref->size = sizeof(struct ttm_bo_global);
+> -	global_ref->init = &ttm_bo_global_init;
+> -	global_ref->release = &ttm_bo_global_release;
+> +	global_ref->init = &ttm_bo_global_ref_init;
+> +	global_ref->release = &ttm_bo_global_ref_release;
+>   	r = drm_global_item_ref(global_ref);
+>   	if (r != 0) {
+>   		DRM_ERROR("Failed setting up TTM BO subsystem.\n");
+> diff --git a/drivers/gpu/drm/cirrus/cirrus_ttm.c b/drivers/gpu/drm/cirrus/cirrus_ttm.c
+> index f21953243790..2e2141f26c5b 100644
+> --- a/drivers/gpu/drm/cirrus/cirrus_ttm.c
+> +++ b/drivers/gpu/drm/cirrus/cirrus_ttm.c
+> @@ -70,8 +70,8 @@ static int cirrus_ttm_global_init(struct cirrus_device *cirrus)
+>   	global_ref = &cirrus->ttm.bo_global_ref.ref;
+>   	global_ref->global_type = DRM_GLOBAL_TTM_BO;
+>   	global_ref->size = sizeof(struct ttm_bo_global);
+> -	global_ref->init = &ttm_bo_global_init;
+> -	global_ref->release = &ttm_bo_global_release;
+> +	global_ref->init = &ttm_bo_global_ref_init;
+> +	global_ref->release = &ttm_bo_global_ref_release;
+>   	r = drm_global_item_ref(global_ref);
+>   	if (r != 0) {
+>   		DRM_ERROR("Failed setting up TTM BO subsystem.\n");
+> diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c b/drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c
+> index 2e3e0bdb8932..0454aa43ffc6 100644
+> --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c
+> +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_ttm.c
+> @@ -59,8 +59,8 @@ static int hibmc_ttm_global_init(struct hibmc_drm_private *hibmc)
+>   		hibmc->mem_global_ref.object;
+>   	hibmc->bo_global_ref.ref.global_type = DRM_GLOBAL_TTM_BO;
+>   	hibmc->bo_global_ref.ref.size = sizeof(struct ttm_bo_global);
+> -	hibmc->bo_global_ref.ref.init = &ttm_bo_global_init;
+> -	hibmc->bo_global_ref.ref.release = &ttm_bo_global_release;
+> +	hibmc->bo_global_ref.ref.init = &ttm_bo_global_ref_init;
+> +	hibmc->bo_global_ref.ref.release = &ttm_bo_global_ref_release;
+>   	ret = drm_global_item_ref(&hibmc->bo_global_ref.ref);
+>   	if (ret) {
+>   		DRM_ERROR("failed setting up TTM BO subsystem: %d\n", ret);
+> diff --git a/drivers/gpu/drm/mgag200/mgag200_ttm.c b/drivers/gpu/drm/mgag200/mgag200_ttm.c
+> index 05570f0de4d7..3444b539e7f4 100644
+> --- a/drivers/gpu/drm/mgag200/mgag200_ttm.c
+> +++ b/drivers/gpu/drm/mgag200/mgag200_ttm.c
+> @@ -70,8 +70,8 @@ static int mgag200_ttm_global_init(struct mga_device *ast)
+>   	global_ref = &ast->ttm.bo_global_ref.ref;
+>   	global_ref->global_type = DRM_GLOBAL_TTM_BO;
+>   	global_ref->size = sizeof(struct ttm_bo_global);
+> -	global_ref->init = &ttm_bo_global_init;
+> -	global_ref->release = &ttm_bo_global_release;
+> +	global_ref->init = &ttm_bo_global_ref_init;
+> +	global_ref->release = &ttm_bo_global_ref_release;
+>   	r = drm_global_item_ref(global_ref);
+>   	if (r != 0) {
+>   		DRM_ERROR("Failed setting up TTM BO subsystem.\n");
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+> index 8edb9f2a4269..a293383c8654 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+> @@ -209,8 +209,8 @@ nouveau_ttm_global_init(struct nouveau_drm *drm)
+>   	global_ref = &drm->ttm.bo_global_ref.ref;
+>   	global_ref->global_type = DRM_GLOBAL_TTM_BO;
+>   	global_ref->size = sizeof(struct ttm_bo_global);
+> -	global_ref->init = &ttm_bo_global_init;
+> -	global_ref->release = &ttm_bo_global_release;
+> +	global_ref->init = &ttm_bo_global_ref_init;
+> +	global_ref->release = &ttm_bo_global_ref_release;
+>   
+>   	ret = drm_global_item_ref(global_ref);
+>   	if (unlikely(ret != 0)) {
+> diff --git a/drivers/gpu/drm/qxl/qxl_ttm.c b/drivers/gpu/drm/qxl/qxl_ttm.c
+> index 86a1fb32f6db..db2a0036e9c4 100644
+> --- a/drivers/gpu/drm/qxl/qxl_ttm.c
+> +++ b/drivers/gpu/drm/qxl/qxl_ttm.c
+> @@ -80,8 +80,8 @@ static int qxl_ttm_global_init(struct qxl_device *qdev)
+>   	global_ref = &qdev->mman.bo_global_ref.ref;
+>   	global_ref->global_type = DRM_GLOBAL_TTM_BO;
+>   	global_ref->size = sizeof(struct ttm_bo_global);
+> -	global_ref->init = &ttm_bo_global_init;
+> -	global_ref->release = &ttm_bo_global_release;
+> +	global_ref->init = &ttm_bo_global_ref_init;
+> +	global_ref->release = &ttm_bo_global_ref_release;
+>   	r = drm_global_item_ref(global_ref);
+>   	if (r != 0) {
+>   		DRM_ERROR("Failed setting up TTM BO subsystem.\n");
+> diff --git a/drivers/gpu/drm/radeon/radeon_ttm.c b/drivers/gpu/drm/radeon/radeon_ttm.c
+> index cbb67e9ffb3a..dac4ec5a120b 100644
+> --- a/drivers/gpu/drm/radeon/radeon_ttm.c
+> +++ b/drivers/gpu/drm/radeon/radeon_ttm.c
+> @@ -97,8 +97,8 @@ static int radeon_ttm_global_init(struct radeon_device *rdev)
+>   	global_ref = &rdev->mman.bo_global_ref.ref;
+>   	global_ref->global_type = DRM_GLOBAL_TTM_BO;
+>   	global_ref->size = sizeof(struct ttm_bo_global);
+> -	global_ref->init = &ttm_bo_global_init;
+> -	global_ref->release = &ttm_bo_global_release;
+> +	global_ref->init = &ttm_bo_global_ref_init;
+> +	global_ref->release = &ttm_bo_global_ref_release;
+>   	r = drm_global_item_ref(global_ref);
+>   	if (r != 0) {
+>   		DRM_ERROR("Failed setting up TTM BO subsystem.\n");
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+> index 26b889f86670..9c2bb880491e 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+> @@ -1522,16 +1522,16 @@ static void ttm_bo_global_kobj_release(struct kobject *kobj)
+>   	kfree(glob);
+>   }
+>   
+> -void ttm_bo_global_release(struct drm_global_reference *ref)
+> +void ttm_bo_global_ref_release(struct drm_global_reference *ref)
+>   {
+>   	struct ttm_bo_global *glob = ref->object;
+>   
+>   	kobject_del(&glob->kobj);
+>   	kobject_put(&glob->kobj);
+>   }
+> -EXPORT_SYMBOL(ttm_bo_global_release);
+> +EXPORT_SYMBOL(ttm_bo_global_ref_release);
+>   
+> -int ttm_bo_global_init(struct drm_global_reference *ref)
+> +int ttm_bo_global_ref_init(struct drm_global_reference *ref)
+>   {
+>   	struct ttm_bo_global_ref *bo_ref =
+>   		container_of(ref, struct ttm_bo_global_ref, ref);
+> @@ -1564,7 +1564,7 @@ int ttm_bo_global_init(struct drm_global_reference *ref)
+>   	kfree(glob);
+>   	return ret;
+>   }
+> -EXPORT_SYMBOL(ttm_bo_global_init);
+> +EXPORT_SYMBOL(ttm_bo_global_ref_init);
+>   
+>   
+>   int ttm_bo_device_release(struct ttm_bo_device *bdev)
+> diff --git a/drivers/gpu/drm/virtio/virtgpu_ttm.c b/drivers/gpu/drm/virtio/virtgpu_ttm.c
+> index e3152d45c5f1..526a5e48dc3b 100644
+> --- a/drivers/gpu/drm/virtio/virtgpu_ttm.c
+> +++ b/drivers/gpu/drm/virtio/virtgpu_ttm.c
+> @@ -84,8 +84,8 @@ static int virtio_gpu_ttm_global_init(struct virtio_gpu_device *vgdev)
+>   	global_ref = &vgdev->mman.bo_global_ref.ref;
+>   	global_ref->global_type = DRM_GLOBAL_TTM_BO;
+>   	global_ref->size = sizeof(struct ttm_bo_global);
+> -	global_ref->init = &ttm_bo_global_init;
+> -	global_ref->release = &ttm_bo_global_release;
+> +	global_ref->init = &ttm_bo_global_ref_init;
+> +	global_ref->release = &ttm_bo_global_ref_release;
+>   	r = drm_global_item_ref(global_ref);
+>   	if (r != 0) {
+>   		DRM_ERROR("Failed setting up TTM BO subsystem.\n");
+> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c
+> index 7b1e5a5cbd2c..f3ce43c41978 100644
+> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c
+> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_glue.c
+> @@ -76,8 +76,8 @@ int vmw_ttm_global_init(struct vmw_private *dev_priv)
+>   	global_ref = &dev_priv->bo_global_ref.ref;
+>   	global_ref->global_type = DRM_GLOBAL_TTM_BO;
+>   	global_ref->size = sizeof(struct ttm_bo_global);
+> -	global_ref->init = &ttm_bo_global_init;
+> -	global_ref->release = &ttm_bo_global_release;
+> +	global_ref->init = &ttm_bo_global_ref_init;
+> +	global_ref->release = &ttm_bo_global_ref_release;
+>   	ret = drm_global_item_ref(global_ref);
+>   
+>   	if (unlikely(ret != 0)) {
+> diff --git a/drivers/staging/vboxvideo/vbox_ttm.c b/drivers/staging/vboxvideo/vbox_ttm.c
+> index 548edb7c494b..2329a55d4636 100644
+> --- a/drivers/staging/vboxvideo/vbox_ttm.c
+> +++ b/drivers/staging/vboxvideo/vbox_ttm.c
+> @@ -68,8 +68,8 @@ static int vbox_ttm_global_init(struct vbox_private *vbox)
+>   	global_ref = &vbox->ttm.bo_global_ref.ref;
+>   	global_ref->global_type = DRM_GLOBAL_TTM_BO;
+>   	global_ref->size = sizeof(struct ttm_bo_global);
+> -	global_ref->init = &ttm_bo_global_init;
+> -	global_ref->release = &ttm_bo_global_release;
+> +	global_ref->init = &ttm_bo_global_ref_init;
+> +	global_ref->release = &ttm_bo_global_ref_release;
+>   
+>   	ret = drm_global_item_ref(global_ref);
+>   	if (ret) {
+> diff --git a/include/drm/ttm/ttm_bo_driver.h b/include/drm/ttm/ttm_bo_driver.h
+> index e4fee8e02559..c3c0751dec63 100644
+> --- a/include/drm/ttm/ttm_bo_driver.h
+> +++ b/include/drm/ttm/ttm_bo_driver.h
+> @@ -578,8 +578,8 @@ void ttm_bo_mem_put(struct ttm_buffer_object *bo, struct ttm_mem_reg *mem);
+>   void ttm_bo_mem_put_locked(struct ttm_buffer_object *bo,
+>   			   struct ttm_mem_reg *mem);
+>   
+> -void ttm_bo_global_release(struct drm_global_reference *ref);
+> -int ttm_bo_global_init(struct drm_global_reference *ref);
+> +void ttm_bo_global_ref_release(struct drm_global_reference *ref);
+> +int ttm_bo_global_ref_init(struct drm_global_reference *ref);
+>   
+>   int ttm_bo_device_release(struct ttm_bo_device *bdev);
+>   
