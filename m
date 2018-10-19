@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70390] [NV84] Repeated system crashes under graphics
- load, E[PFIFO] DMA_PUSHER 0x00406040 and lots of E[PGRAPH]
-Date: Fri, 19 Oct 2018 09:09:56 +0000
-Message-ID: <bug-70390-8800-6lLp3uWfCW@http.bugs.freedesktop.org/>
-References: <bug-70390-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?B?5a2r5YGJ56iL?= <dmvictor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: 8K HEVC decoding with NVIDIA GeForce GTX 1060
+Date: Fri, 19 Oct 2018 20:53:05 +0800
+Message-ID: <CAPHE55jvauzGm-QHUSze-Wg+W7S+qnqUobcu5BL+jPKWjBYAAw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0837443673=="
+Content-Type: multipart/mixed; boundary="===============1818937158=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70390-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,106 +17,84 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============1818937158==
+Content-Type: multipart/alternative; boundary="000000000000227e390578946521"
 
---===============0837443673==
-Content-Type: multipart/alternative; boundary="15399401963.4C21C1E43.21531"
-Content-Transfer-Encoding: 7bit
-
-
---15399401963.4C21C1E43.21531
-Date: Fri, 19 Oct 2018 09:09:56 +0000
-MIME-Version: 1.0
+--000000000000227e390578946521
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D70390
+Hi all,
 
---- Comment #26 from Gergely M=C3=A9sz=C3=A1ros <meszaros.gergely-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org=
-> ---
-Similar problem and symptoms here, X and keyboard freeze ssh is working @
-NVIDIA GT218 (GeForce 210). I have two invalid commands however (00502031 a=
-nd
-00400040)
+I have developed an Android VR player, which supports 4K video playback so
+far. I want to include the support for 8K video. The current Snapdragon 845
+mobile platform supports up to 4K video playback, which lacks the support
+for my requirement. So I choose Android-x86 as my platform for development,
+which is Android OS runs on Intel x86 architecture. I've tried to play
+8K(7680*3840) HEVC encoded video on Android-x86 7.1-r2 with VLC for
+Android, the screen freeze. My CPU is Intel Core i5-7400 and my graphics
+card is NVIDIA GeForce GTX 1060. I am pretty sure my NVIDIA card is able to
+decode 8K video. Because with the same hardware, I play the same 8K video
+on Ubuntu 16.04 with ffplay smoothly. NVIDIA's decoder usage is about 40%
+and CPU usage is about 50%.
 
-nouveau 0000:03:00.0: fifo: DMA_PUSHER - ch 3 [systemd-logind[5633]] get
-0020026b94 put 002002accc ib_get 000002fd ib_put 000002fe state 80004861 (e=
-rr:
-INVALID_CMD) push 00502031
+From NVIDIA website (
+https://developer.nvidia.com/nvidia-video-codec-sdk#NVDECFeatures), we know
+Pascal cards support up to 8192*8192 resolution video decoding acceleration
+with HEVC codec. From Nouveau feature matrix (
+https://nouveau.freedesktop.org/wiki/FeatureMatrix/), we know the progress
+of video decoding acceleration on NV130 family (
+https://nouveau.freedesktop.org/wiki/CodeNames/#NV130) is TODO. In Nouveau
+VideoAcceleration page (
+https://nouveau.freedesktop.org/wiki/VideoAcceleration/), we can see that
+each element in VP6+ row is TODO as well.
 
-nouveau 0000:03:00.0: fifo: DMA_PUSHER - ch 3 [systemd-logind[5633]] get
-002002accc put 002002accc ib_get 000002fd ib_put 000002fe state 80000000 (e=
-rr:
-INVALID_CMD) push 00400040
+I can imagine there is a long way to go to fulfill my requirements. But I
+know a driver for my NVIDIA card is a must for the hardware decoder to
+work. Can somebody shed some lights that if I want to play an 8K HEVC
+encoded video on Android-x86 with NVIDIA's decoder enabled, what should I
+do in this project? And how to start?
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+Best regards,
 
---15399401963.4C21C1E43.21531
-Date: Fri, 19 Oct 2018 09:09:56 +0000
-MIME-Version: 1.0
+Victor
+
+--000000000000227e390578946521
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV84] Repeated system crashes under graphics load, E[PFI=
-FO] DMA_PUSHER 0x00406040 and lots of E[PGRAPH]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70390#c26">Commen=
-t # 26</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV84] Repeated system crashes under graphics load, E[PFI=
-FO] DMA_PUSHER 0x00406040 and lots of E[PGRAPH]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70390">bug 70390<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-meszaros.gergely&#64;gmail.com" title=3D"Gergely M=C3=A9sz=C3=A1ros &lt;mes=
-zaros.gergely&#64;gmail.com&gt;"> <span class=3D"fn">Gergely M=C3=A9sz=C3=
-=A1ros</span></a>
-</span></b>
-        <pre>Similar problem and symptoms here, X and keyboard freeze ssh i=
-s working &#64;
-NVIDIA GT218 (GeForce 210). I have two invalid commands however (00502031 a=
-nd
-00400040)
+<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi all,<br></div><div dir=3D"ltr"><b=
+r>I have developed an Android VR player, which supports 4K video playback s=
+o far. I want to include the support for 8K video. The current Snapdragon 8=
+45 mobile platform supports up to 4K video playback, which lacks the suppor=
+t for my requirement. So I choose Android-x86 as my platform for developmen=
+t, which is Android OS runs on Intel x86 architecture. I&#39;ve tried to pl=
+ay 8K(7680*3840) HEVC encoded video on Android-x86 7.1-r2 with VLC for Andr=
+oid, the screen freeze. My CPU is Intel Core i5-7400 and my graphics card i=
+s NVIDIA GeForce GTX 1060. I am pretty sure my NVIDIA card is able to decod=
+e 8K video. Because with the same hardware, I play the same 8K video on Ubu=
+ntu 16.04 with ffplay smoothly. NVIDIA&#39;s decoder usage is about 40% and=
+ CPU usage is about 50%.<br><br>From NVIDIA website (<a href=3D"https://dev=
+eloper.nvidia.com/nvidia-video-codec-sdk#NVDECFeatures">https://developer.n=
+vidia.com/nvidia-video-codec-sdk#NVDECFeatures</a>), we know Pascal cards s=
+upport up to 8192*8192 resolution video decoding acceleration with HEVC cod=
+ec. From Nouveau feature matrix (<a href=3D"https://nouveau.freedesktop.org=
+/wiki/FeatureMatrix/">https://nouveau.freedesktop.org/wiki/FeatureMatrix/</=
+a>), we know the progress of video decoding acceleration on NV130 family (<=
+a href=3D"https://nouveau.freedesktop.org/wiki/CodeNames/#NV130">https://no=
+uveau.freedesktop.org/wiki/CodeNames/#NV130</a>) is TODO. In Nouveau VideoA=
+cceleration page (<a href=3D"https://nouveau.freedesktop.org/wiki/VideoAcce=
+leration/">https://nouveau.freedesktop.org/wiki/VideoAcceleration/</a>), we=
+ can see that each element in VP6+ row is TODO as well. <br><br>I can imagi=
+ne there is a long way to go to fulfill my requirements. But I know a drive=
+r for my NVIDIA card is a must for the hardware decoder to work. Can somebo=
+dy shed some lights that if I want to play an 8K HEVC encoded video on Andr=
+oid-x86 with NVIDIA&#39;s decoder enabled, what should I do in this project=
+? And how to start? <br><br>Best regards,<br><br>Victor<br></div></div></di=
+v>
 
-nouveau 0000:03:00.0: fifo: DMA_PUSHER - ch 3 [systemd-logind[5633]] get
-0020026b94 put 002002accc ib_get 000002fd ib_put 000002fe state 80004861 (e=
-rr:
-INVALID_CMD) push 00502031
+--000000000000227e390578946521--
 
-nouveau 0000:03:00.0: fifo: DMA_PUSHER - ch 3 [systemd-logind[5633]] get
-002002accc put 002002accc ib_get 000002fd ib_put 000002fe state 80000000 (e=
-rr:
-INVALID_CMD) push 00400040</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15399401963.4C21C1E43.21531--
-
---===============0837443673==
+--===============1818937158==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -129,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0837443673==--
+--===============1818937158==--
