@@ -1,13 +1,11 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: 8K HEVC decoding with NVIDIA GeForce GTX 1060
-Date: Fri, 19 Oct 2018 09:08:50 -0400
-Message-ID: <CAKb7UviJ-Nu2X9r1qvhA8Y0DYSfC_P45yPohbe5QG2GaoTNYxA@mail.gmail.com>
-References: <CAPHE55jvauzGm-QHUSze-Wg+W7S+qnqUobcu5BL+jPKWjBYAAw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108500] New: Crash when creating a depth buffer on
+ GeForce 320M
+Date: Fri, 19 Oct 2018 16:59:49 +0000
+Message-ID: <bug-108500-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0531085764=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAPHE55jvauzGm-QHUSze-Wg+W7S+qnqUobcu5BL+jPKWjBYAAw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,41 +15,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dmvictor-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBPY3QgMTksIDIwMTggYXQgODo1MyBBTSDlravlgYnnqIsgPGRtdmljdG9yQGdtYWls
-LmNvbT4gd3JvdGU6Cj4gSSBjYW4gaW1hZ2luZSB0aGVyZSBpcyBhIGxvbmcgd2F5IHRvIGdvIHRv
-IGZ1bGZpbGwgbXkgcmVxdWlyZW1lbnRzLiBCdXQgSSBrbm93IGEgZHJpdmVyIGZvciBteSBOVklE
-SUEgY2FyZCBpcyBhIG11c3QgZm9yIHRoZSBoYXJkd2FyZSBkZWNvZGVyIHRvIHdvcmsuIENhbiBz
-b21lYm9keSBzaGVkIHNvbWUgbGlnaHRzIHRoYXQgaWYgSSB3YW50IHRvIHBsYXkgYW4gOEsgSEVW
-QyBlbmNvZGVkIHZpZGVvIG9uIEFuZHJvaWQteDg2IHdpdGggTlZJRElBJ3MgZGVjb2RlciBlbmFi
-bGVkLCB3aGF0IHNob3VsZCBJIGRvIGluIHRoaXMgcHJvamVjdD8gQW5kIGhvdyB0byBzdGFydD8K
-ClRoZSBzdGVwcyBhcmUgc3RyYWlnaHRmb3J3YXJkLCBhbHRob3VnaCBlYWNoIG9uZSBvZiB0aGVt
-IGlzIGZhaXJseSB0cmlja3kuCgoxLiBMb2FkIGRlY29kaW5nIGZpcm13YXJlIGludG8gdGhlIGVu
-Z2luZQoyLiBIb29rIHVwIGVuZ2luZSAic2VydmljaW5nIiAobGlrZSBpbnRlcnJ1cHRzLCBjaGFu
-bmVscywgZXRjKQozLiBGaWd1cmUgb3V0IHRoZSBob3cgdGhlIGNvbW1hbmRzIHdvcmssIHdoYXQg
-ZGF0YSB0aGV5IHJlcXVpcmUsIGhvdwp0aGF0IGRhdGEgaXMgZm9ybWF0dGVkLCBldGMuCjQuIFNp
-dCBiYWNrIGFuZCBlbmpveSBzb21lIDhLIEhFVkMgdmlkZW8uCgpJbiBWUDMvNC81LCB0aGVyZSBh
-cmUgMyBzdGFnZXMgdG8gZGVjb2RpbmcgLS0gQlNQIChiaXQtc3RyZWFtCnByb2Nlc3NvciksIFZQ
-ICh2aWRlbyBwcm9jZXNzb3IpLCBhbmQgUFBQIChwb3N0LXByb2Nlc3NpbmcKcHJvY2Vzc29yPyku
-IFN0YXJ0aW5nIHdpdGggVlA2LCB3ZSBiZWxpZXZlIHRoZXNlIGdvdCBpbnRlZ3JhdGVkIGludG8g
-YQpzaW5nbGUgZW5naW5lLiBIb3dldmVyIG5vdCBtdWNoIG1vcmUgaXMga25vd24uIEkgaGF2ZSBh
-IHZhZ3VlIG5vdGlvbgp0aGF0IHRoZSB3YXkgdGhlIGRhdGEgaXMgcGFzc2VkIGluIGhhc24ndCBy
-ZWFsbHkgY2hhbmdlZCBtdWNoLAphbHRob3VnaCBvYnZpb3VzbHkgZm9yIEhFVkMgaXQgd2lsbCBo
-YXZlIGFzIHRoYXQncyBhIG5ldyBmb3JtYXQuClBlcmhhcHMgaXQncyBhbGwgZXZlbiBzaW1wbGVy
-IG5vdyBpZiB5b3UgZG9uJ3QgaGF2ZSB0byBkcml2ZSB0aGUKVlAvUFBQIGluZGVwZW5kZW50bHku
-IEJ1dCBwZXJoYXBzIHlvdSBzdGlsbCBkbyBhbmQgdGhleSdyZSBqdXN0IGFsbCBpbgphIHNpbmds
-ZSBlbmdpbmUuIEkgaGF2ZW4ndCBzbyBtdWNoIGFzIGxvb2tlZCBhdCBhIGNvbW1hbmQgc3RyZWFt
-Li4uCgpMb2FkaW5nIHRoZSBmaXJtd2FyZSBjb3VsZCBiZSBhIGRyYWcgb24gR00yMHgrIC0tIGlm
-IHlvdSBoYXZlIHRvIGRlYWwKd2l0aCBzZWN1cmUgbW9kZSwgaXQnbGwgYmUgYSBodWdlIHBhaW4u
-IFlvdSB3aWxsIGFsc28gaGF2ZSB0byBsb2NhdGUKdGhlIGZpcm13YXJlLCB3aGljaCBpcyBubyBs
-b25nZXIgcXVpdGUgYXMgZWFzeSBhcyBpdCBvbmNlIHdhcywgSSB0aGluawp0aGUgR1BVIHdpbGwg
-RE1BIGl0IGZyb20gc3lzdGVtIG1lbW9yeSBub3cgYXMgb3Bwb3NlZCB0byBpdCBiZWluZwp1cGxv
-YWRlZCBkaXJlY3RseSBpbiB0aGUgbW1pb3RyYWNlLiBJJ3ZlIGNyZWF0ZWQgYSAic2Nhbm5lciIg
-dG9vbAp3aGljaCBsb29rcyB0aHJvdWdoIHRoZSBibG9iIGZvciBmaXJtd2FyZS1sb29raW5nIHRo
-aW5ncy4KCkNoZWVycywKCiAgLWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+
+--===============0531085764==
+Content-Type: multipart/alternative; boundary="15399683890.63ED7C7.25912"
+Content-Transfer-Encoding: 7bit
+
+
+--15399683890.63ED7C7.25912
+Date: Fri, 19 Oct 2018 16:59:49 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108500
+
+            Bug ID: 108500
+           Summary: Crash when creating a depth buffer on GeForce 320M
+           Product: Mesa
+           Version: 18.2
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: timo.wiren-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 142101
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142101&action=3Dedit
+glxinfo
+
+Every OpenGL application that wants to use a depth buffer always crashes,
+including glxgears:
+
+glxgears: dri2.c:906: dri2_allocate_textures: Assertion `*zsbuf' failed.
+
+I debugged the assertion with gdb:
+
+templ structure contents passed to resource_create():
+$2 =3D {reference =3D {count =3D 0}, width0 =3D 300, height0 =3D 300, depth=
+0 =3D 1,
+array_size =3D 1, format =3D PIPE_FORMAT_Z24X8_UNORM,
+  target =3D PIPE_TEXTURE_2D, last_level =3D 0, nr_samples =3D 0, nr_storag=
+e_samples
+=3D 0, usage =3D 0, bind =3D 1, flags =3D 0,
+  next =3D 0x0, screen =3D 0x0}
+
+In nv50_miptree_create() in gallium/drivers/nouveau/nv50/nv50_miptree.c:389
+the call to nouveau_bo_new() returns -22 that causes it to return NULL.=20
+
+MESA_DEBUG=3D1 glxgears prints the following before segfaulting:
+Mesa: User error: GL_OUT_OF_MEMORY in Resizing framebuffer
+
+Computer: MacBook Pro 2010 (NVIDIA GeForce 320M "MCP89")
+Resolution: 1280x800
+OS: Lubuntu 18.10
+Mesa: 18.2.2, but happens also with the versions that come with Lubuntu 16.=
+04
+and 18.04
+
+I can compile and run mesa from sources, if it helps debugging.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15399683890.63ED7C7.25912
+Date: Fri, 19 Oct 2018 16:59:49 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500">108500</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Crash when creating a depth buffer on GeForce 320M
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>18.2
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>timo.wiren&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142101=
+" name=3D"attach_142101" title=3D"glxinfo">attachment 142101</a> <a href=3D=
+"attachment.cgi?id=3D142101&amp;action=3Dedit" title=3D"glxinfo">[details]<=
+/a></span>
+glxinfo
+
+Every OpenGL application that wants to use a depth buffer always crashes,
+including glxgears:
+
+glxgears: dri2.c:906: dri2_allocate_textures: Assertion `*zsbuf' failed.
+
+I debugged the assertion with gdb:
+
+templ structure contents passed to resource_create():
+$2 =3D {reference =3D {count =3D 0}, width0 =3D 300, height0 =3D 300, depth=
+0 =3D 1,
+array_size =3D 1, format =3D PIPE_FORMAT_Z24X8_UNORM,
+  target =3D PIPE_TEXTURE_2D, last_level =3D 0, nr_samples =3D 0, nr_storag=
+e_samples
+=3D 0, usage =3D 0, bind =3D 1, flags =3D 0,
+  next =3D 0x0, screen =3D 0x0}
+
+In nv50_miptree_create() in gallium/drivers/nouveau/nv50/nv50_miptree.c:389
+the call to nouveau_bo_new() returns -22 that causes it to return NULL.=20
+
+MESA_DEBUG=3D1 glxgears prints the following before segfaulting:
+Mesa: User error: GL_OUT_OF_MEMORY in Resizing framebuffer
+
+Computer: MacBook Pro 2010 (NVIDIA GeForce 320M &quot;MCP89&quot;)
+Resolution: 1280x800
+OS: Lubuntu 18.10
+Mesa: 18.2.2, but happens also with the versions that come with Lubuntu 16.=
+04
+and 18.04
+
+I can compile and run mesa from sources, if it helps debugging.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15399683890.63ED7C7.25912--
+
+--===============0531085764==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0531085764==--
