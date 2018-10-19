@@ -1,115 +1,132 @@
-From: Jaejoong Kim <climbbb.kim@gmail.com>
-Subject: kmemleak in nvkm_iccsense_oneinit
-Date: Thu, 18 Oct 2018 19:07:48 +0900
-Message-ID: <CAL6iAaLNRFK1OgKfHBHXQ4ht42jPyzTxehanqF9fEn_Hba3b9A@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70390] [NV84] Repeated system crashes under graphics
+ load, E[PFIFO] DMA_PUSHER 0x00406040 and lots of E[PGRAPH]
+Date: Fri, 19 Oct 2018 09:09:56 +0000
+Message-ID: <bug-70390-8800-6lLp3uWfCW@http.bugs.freedesktop.org/>
+References: <bug-70390-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1611874946=="
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: bskeggs@redhat.com, airlied@linux.ie
-Cc: nouveau@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0837443673=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-70390-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1611874946==
-Content-Type: multipart/alternative; boundary="00000000000065bbe005787df617"
 
---00000000000065bbe005787df617
+--===============0837443673==
+Content-Type: multipart/alternative; boundary="15399401963.4C21C1E43.21531"
+Content-Transfer-Encoding: 7bit
+
+
+--15399401963.4C21C1E43.21531
+Date: Fri, 19 Oct 2018 09:09:56 +0000
+MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-Hi
+https://bugs.freedesktop.org/show_bug.cgi?id=3D70390
 
-I got a kmemleak and it is pointing to nvkm_iccsense_oneinit().
-Please refer to the below kmemleak message.
+--- Comment #26 from Gergely M=C3=A9sz=C3=A1ros <meszaros.gergely-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org=
+> ---
+Similar problem and symptoms here, X and keyboard freeze ssh is working @
+NVIDIA GT218 (GeForce 210). I have two invalid commands however (00502031 a=
+nd
+00400040)
 
-# uname -a
-Linux climb 4.19.0-rc1+ #4 SMP Thu Sep 20 11:48:55 KST 2018 x86_64 x86_64
-x86_64 GNU/Linux
+nouveau 0000:03:00.0: fifo: DMA_PUSHER - ch 3 [systemd-logind[5633]] get
+0020026b94 put 002002accc ib_get 000002fd ib_put 000002fe state 80004861 (e=
+rr:
+INVALID_CMD) push 00502031
 
-# HW
-LG Notebook. (Model Name:lg15n54)
+nouveau 0000:03:00.0: fifo: DMA_PUSHER - ch 3 [systemd-logind[5633]] get
+002002accc put 002002accc ib_get 000002fd ib_put 000002fe state 80000000 (e=
+rr:
+INVALID_CMD) push 00400040
 
-# kmemleak mesage
-unreferenced object 0xffff8801e9c58388 (size 96):
-  comm "systemd-udevd", pid 130, jiffies 4294895052 (age 295965.560s)
-  hex dump (first 32 bytes):
-    02 05 00 6b 6b 6b 6b 6b 6b 6b 10 00 02 15 6b 6b  ...kkkkkkk....kk
-    6b 6b 6b 6b 6b 6b 6b 6b 00 00 00 6b 6b 6b 6b 6b  kkkkkkkk...kkkkk
-  backtrace:
-    [<000000000f9caea9>] nvkm_iccsense_oneinit+0x231/0x1cf0 [nouveau]
-    [<00000000d7f5cb68>] nvkm_subdev_init+0x155/0x9a0 [nouveau]
-    [<00000000b2b0e9d8>] nvkm_device_init+0x332/0x5a0 [nouveau]
-    [<000000003b736a7c>] nvkm_udevice_init+0x93/0xe0 [nouveau]
-    [<00000000cc1011dc>] nvkm_object_init+0xcb/0x610 [nouveau]
-    [<0000000006253ff8>] nvkm_ioctl_new+0x412/0x9a0 [nouveau]
-    [<00000000db03ae9a>] nvkm_ioctl+0x3b4/0xbe0 [nouveau]
-    [<00000000ac40bf7e>] nvif_object_init+0x2df/0x530 [nouveau]
-    [<00000000e98baaae>] nvif_device_init+0x12/0xe0 [nouveau]
-    [<000000006d050b26>] nouveau_cli_init+0x4e7/0x15b0 [nouveau]
-    [<00000000d3f314bc>] nouveau_drm_load+0x118/0x1380 [nouveau]
-    [<000000009823b666>] drm_dev_register+0x2c5/0x5a0 [drm]
-    [<000000001a870888>] drm_get_pci_dev+0x16d/0x4b0 [drm]
-    [<000000004d6e667f>] nouveau_drm_probe+0x459/0x620 [nouveau]
-    [<00000000ad85fd78>] local_pci_probe+0xde/0x1a0
-    [<00000000c07cf5fe>] pci_device_probe+0x419/0x590
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
 
-Jaejoong
-
---00000000000065bbe005787df617
+--15399401963.4C21C1E43.21531
+Date: Fri, 19 Oct 2018 09:09:56 +0000
+MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
-r=3D"ltr"><div dir=3D"ltr">Hi<div><br></div><div>I got a kmemleak and it is=
- pointing to=C2=A0nvkm_iccsense_oneinit().</div><div>Please refer to the be=
-low kmemleak message.</div><div><br></div><div># uname -a</div><div><div>Li=
-nux climb 4.19.0-rc1+ #4 SMP Thu Sep 20 11:48:55 KST 2018 x86_64 x86_64 x86=
-_64 GNU/Linux</div></div><div><br></div><div># HW</div><div>LG Notebook. (M=
-odel Name:lg15n54)</div><div><br></div><div># kmemleak mesage</div><div><di=
-v>unreferenced object 0xffff8801e9c58388 (size 96):</div><div>=C2=A0 comm &=
-quot;systemd-udevd&quot;, pid 130, jiffies 4294895052 (age 295965.560s)</di=
-v><div>=C2=A0 hex dump (first 32 bytes):</div><div>=C2=A0 =C2=A0 02 05 00 6=
-b 6b 6b 6b 6b 6b 6b 10 00 02 15 6b 6b=C2=A0 ...kkkkkkk....kk</div><div>=C2=
-=A0 =C2=A0 6b 6b 6b 6b 6b 6b 6b 6b 00 00 00 6b 6b 6b 6b 6b=C2=A0 kkkkkkkk..=
-.kkkkk</div><div>=C2=A0 backtrace:</div><div>=C2=A0 =C2=A0 [&lt;000000000f9=
-caea9&gt;] nvkm_iccsense_oneinit+0x231/0x1cf0 [nouveau]</div><div>=C2=A0 =
-=C2=A0 [&lt;00000000d7f5cb68&gt;] nvkm_subdev_init+0x155/0x9a0 [nouveau]</d=
-iv><div>=C2=A0 =C2=A0 [&lt;00000000b2b0e9d8&gt;] nvkm_device_init+0x332/0x5=
-a0 [nouveau]</div><div>=C2=A0 =C2=A0 [&lt;000000003b736a7c&gt;] nvkm_udevic=
-e_init+0x93/0xe0 [nouveau]</div><div>=C2=A0 =C2=A0 [&lt;00000000cc1011dc&gt=
-;] nvkm_object_init+0xcb/0x610 [nouveau]</div><div>=C2=A0 =C2=A0 [&lt;00000=
-00006253ff8&gt;] nvkm_ioctl_new+0x412/0x9a0 [nouveau]</div><div>=C2=A0 =C2=
-=A0 [&lt;00000000db03ae9a&gt;] nvkm_ioctl+0x3b4/0xbe0 [nouveau]</div><div>=
-=C2=A0 =C2=A0 [&lt;00000000ac40bf7e&gt;] nvif_object_init+0x2df/0x530 [nouv=
-eau]</div><div>=C2=A0 =C2=A0 [&lt;00000000e98baaae&gt;] nvif_device_init+0x=
-12/0xe0 [nouveau]</div><div>=C2=A0 =C2=A0 [&lt;000000006d050b26&gt;] nouvea=
-u_cli_init+0x4e7/0x15b0 [nouveau]</div><div>=C2=A0 =C2=A0 [&lt;00000000d3f3=
-14bc&gt;] nouveau_drm_load+0x118/0x1380 [nouveau]</div><div>=C2=A0 =C2=A0 [=
-&lt;000000009823b666&gt;] drm_dev_register+0x2c5/0x5a0 [drm]</div><div>=C2=
-=A0 =C2=A0 [&lt;000000001a870888&gt;] drm_get_pci_dev+0x16d/0x4b0 [drm]</di=
-v><div>=C2=A0 =C2=A0 [&lt;000000004d6e667f&gt;] nouveau_drm_probe+0x459/0x6=
-20 [nouveau]</div><div>=C2=A0 =C2=A0 [&lt;00000000ad85fd78&gt;] local_pci_p=
-robe+0xde/0x1a0</div><div>=C2=A0 =C2=A0 [&lt;00000000c07cf5fe&gt;] pci_devi=
-ce_probe+0x419/0x590</div></div><div><br></div><div>Jaejoong</div></div></d=
-iv></div></div></div></div>
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV84] Repeated system crashes under graphics load, E[PFI=
+FO] DMA_PUSHER 0x00406040 and lots of E[PGRAPH]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70390#c26">Commen=
+t # 26</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV84] Repeated system crashes under graphics load, E[PFI=
+FO] DMA_PUSHER 0x00406040 and lots of E[PGRAPH]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70390">bug 70390<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+meszaros.gergely&#64;gmail.com" title=3D"Gergely M=C3=A9sz=C3=A1ros &lt;mes=
+zaros.gergely&#64;gmail.com&gt;"> <span class=3D"fn">Gergely M=C3=A9sz=C3=
+=A1ros</span></a>
+</span></b>
+        <pre>Similar problem and symptoms here, X and keyboard freeze ssh i=
+s working &#64;
+NVIDIA GT218 (GeForce 210). I have two invalid commands however (00502031 a=
+nd
+00400040)
 
---00000000000065bbe005787df617--
+nouveau 0000:03:00.0: fifo: DMA_PUSHER - ch 3 [systemd-logind[5633]] get
+0020026b94 put 002002accc ib_get 000002fd ib_put 000002fe state 80004861 (e=
+rr:
+INVALID_CMD) push 00502031
 
---===============1611874946==
+nouveau 0000:03:00.0: fifo: DMA_PUSHER - ch 3 [systemd-logind[5633]] get
+002002accc put 002002accc ib_get 000002fd ib_put 000002fe state 80000000 (e=
+rr:
+INVALID_CMD) push 00400040</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15399401963.4C21C1E43.21531--
+
+--===============0837443673==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
 Content-Disposition: inline
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
-IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1611874946==--
+--===============0837443673==--
