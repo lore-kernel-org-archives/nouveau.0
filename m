@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108500] Crash when creating a depth buffer on
  GeForce 320M
-Date: Fri, 19 Oct 2018 18:15:30 +0000
-Message-ID: <bug-108500-8800-TTH6SuIffz@http.bugs.freedesktop.org/>
+Date: Sat, 20 Oct 2018 05:55:36 +0000
+Message-ID: <bug-108500-8800-9Sigtgvsb6@http.bugs.freedesktop.org/>
 References: <bug-108500-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0299552627=="
+Content-Type: multipart/mixed; boundary="===============0051976925=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0299552627==
-Content-Type: multipart/alternative; boundary="15399729301.863b6.14227"
+--===============0051976925==
+Content-Type: multipart/alternative; boundary="15400149360.DdbC28.25141"
 Content-Transfer-Encoding: 7bit
 
 
---15399729301.863b6.14227
-Date: Fri, 19 Oct 2018 18:15:30 +0000
+--15400149360.DdbC28.25141
+Date: Sat, 20 Oct 2018 05:55:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108500
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please include your dmesg.
+--- Comment #2 from Timo Wiren <timo.wiren-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 142112
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142112&action=3Dedit
+dmesg
 
-The fact that nouveau_bo_new fails is extremely unexpected.
+Added dmesg.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15399729301.863b6.14227
-Date: Fri, 19 Oct 2018 18:15:30 +0000
+--15400149360.DdbC28.25141
+Date: Sat, 20 Oct 2018 05:55:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,20 +66,24 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500">bug 10850=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+timo.wiren&#64;gmail.com" title=3D"Timo Wiren &lt;timo.wiren&#64;gmail.com&=
+gt;"> <span class=3D"fn">Timo Wiren</span></a>
 </span></b>
-        <pre>Please include your dmesg.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142112=
+" name=3D"attach_142112" title=3D"dmesg">attachment 142112</a> <a href=3D"a=
+ttachment.cgi?id=3D142112&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
+/span>
+dmesg
 
-The fact that nouveau_bo_new fails is extremely unexpected.</pre>
+Added dmesg.</pre>
         </div>
       </p>
 
@@ -86,15 +92,15 @@ The fact that nouveau_bo_new fails is extremely unexpected.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15399729301.863b6.14227--
+--15400149360.DdbC28.25141--
 
---===============0299552627==
+--===============0051976925==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0299552627==--
+--===============0051976925==--
