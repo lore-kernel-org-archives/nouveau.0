@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108500] Crash when creating a depth buffer on
- GeForce 320M
-Date: Sat, 20 Oct 2018 16:28:42 +0000
-Message-ID: <bug-108500-8800-FFVq9KNYfT@http.bugs.freedesktop.org/>
-References: <bug-108500-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 108520] New: MST DisplayPort HiDPI screen flicker
+Date: Mon, 22 Oct 2018 23:19:03 +0000
+Message-ID: <bug-108520-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1297908019=="
+Content-Type: multipart/mixed; boundary="===============0190789651=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,53 +18,58 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1297908019==
-Content-Type: multipart/alternative; boundary="15400529220.EAeb.10630"
+--===============0190789651==
+Content-Type: multipart/alternative; boundary="15402503431.Bac97C3.8416"
 Content-Transfer-Encoding: 7bit
 
 
---15400529220.EAeb.10630
-Date: Sat, 20 Oct 2018 16:28:42 +0000
+--15402503431.Bac97C3.8416
+Date: Mon, 22 Oct 2018 23:19:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108500
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108520
 
---- Comment #4 from Timo Wiren <timo.wiren-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #3)
-> Hrmph. Well, nothing in there. So ... what's different about your
-> environment?
->=20
-> I'm on Xorg 1.19, windowmaker, no compositor of any sort. glxgears works
-> fine.
->=20
-> Tell me about your setup.
+            Bug ID: 108520
+           Summary: MST DisplayPort HiDPI screen flicker
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: jhnmlkvch9-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Nothing custom, just the freshly installed Lubuntu 18.10 64-bit, English
-localization, laptop's internal display, no encrypted disks, no compositor
-AFAIK.
+HiDPI MST monitor connected via DisplayPort has bad screen flicker (one to
+three high speed flickers every 20 seconds or so).
 
-But I just found a workaround! I downloaded mesa 18.2.3, edited nv50_miptre=
-e.c
-and disabled compression in nv50_mt_choose_storage_type() for
-PIPE_FORMAT_Z24_X8_UNORM. That is, I put "compressed =3D false;" after tile=
-_flags
-=3D 0x128 + ms;, compiled mesa and ran glxgears with my compiled version an=
-d it
-didn't crash. I don't know if it's a proper workaround. The issue seems to =
-be
-with depth compression, I guess.
+Version of X: 1.20
+Nouveau: 1.0.15-3
+Kernel: 4.18.16-arch1-1-ARCH
+
+Curiously, the flicker only happens on my Optimus laptop with Hybrid Graphi=
+cs
+disabled (Intel off, Nouveau on). The flicker disappears if Hybrid Graphics=
+ is
+enabled (Both Intel and Nouveau cards on).
+
+Can't find anything relevant in dmesg, journal etc., but let me know which =
+logs
+will be useful and I can upload them.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---15400529220.EAeb.10630
-Date: Sat, 20 Oct 2018 16:28:42 +0000
+--15402503431.Bac97C3.8416
+Date: Mon, 22 Oct 2018 23:19:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,49 +80,106 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - MST DisplayPort HiDPI screen flicker"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108520">108520</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>MST DisplayPort HiDPI screen flicker
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jhnmlkvch9&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500">bug 10850=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-timo.wiren&#64;gmail.com" title=3D"Timo Wiren &lt;timo.wiren&#64;gmail.com&=
-gt;"> <span class=3D"fn">Timo Wiren</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D108=
-500#c3">comment #3</a>)
-<span class=3D"quote">&gt; Hrmph. Well, nothing in there. So ... what's dif=
-ferent about your
-&gt; environment?
-&gt;=20
-&gt; I'm on Xorg 1.19, windowmaker, no compositor of any sort. glxgears wor=
-ks
-&gt; fine.
-&gt;=20
-&gt; Tell me about your setup.</span >
+        <pre>HiDPI MST monitor connected via DisplayPort has bad screen fli=
+cker (one to
+three high speed flickers every 20 seconds or so).
 
-Nothing custom, just the freshly installed Lubuntu 18.10 64-bit, English
-localization, laptop's internal display, no encrypted disks, no compositor
-AFAIK.
+Version of X: 1.20
+Nouveau: 1.0.15-3
+Kernel: 4.18.16-arch1-1-ARCH
 
-But I just found a workaround! I downloaded mesa 18.2.3, edited nv50_miptre=
-e.c
-and disabled compression in nv50_mt_choose_storage_type() for
-PIPE_FORMAT_Z24_X8_UNORM. That is, I put &quot;compressed =3D false;&quot; =
-after tile_flags
-=3D 0x128 + ms;, compiled mesa and ran glxgears with my compiled version an=
-d it
-didn't crash. I don't know if it's a proper workaround. The issue seems to =
-be
-with depth compression, I guess.</pre>
+Curiously, the flicker only happens on my Optimus laptop with Hybrid Graphi=
+cs
+disabled (Intel off, Nouveau on). The flicker disappears if Hybrid Graphics=
+ is
+enabled (Both Intel and Nouveau cards on).
+
+Can't find anything relevant in dmesg, journal etc., but let me know which =
+logs
+will be useful and I can upload them.</pre>
         </div>
       </p>
 
@@ -130,14 +189,13 @@ with depth compression, I guess.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15400529220.EAeb.10630--
+--15402503431.Bac97C3.8416--
 
---===============1297908019==
+--===============0190789651==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -147,4 +205,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1297908019==--
+--===============0190789651==--
