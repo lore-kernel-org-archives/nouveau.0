@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108520] [GK104] MST DisplayPort HiDPI screen flicker
-Date: Tue, 23 Oct 2018 19:00:23 +0000
-Message-ID: <bug-108520-8800-3nJkLVDDWt@http.bugs.freedesktop.org/>
+Date: Tue, 23 Oct 2018 19:04:18 +0000
+Message-ID: <bug-108520-8800-gmZxQZWn70@http.bugs.freedesktop.org/>
 References: <bug-108520-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1449557714=="
+Content-Type: multipart/mixed; boundary="===============0595152762=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108520-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1449557714==
-Content-Type: multipart/alternative; boundary="15403212231.8EbCfdD76.26318"
+--===============0595152762==
+Content-Type: multipart/alternative; boundary="15403214580.7BDA8A.30347"
 Content-Transfer-Encoding: 7bit
 
 
---15403212231.8EbCfdD76.26318
-Date: Tue, 23 Oct 2018 19:00:23 +0000
+--15403214580.7BDA8A.30347
+Date: Tue, 23 Oct 2018 19:04:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,19 +35,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108520
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+OK, so ...
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|MST DisplayPort HiDPI       |[GK104] MST DisplayPort
-                   |screen flicker              |HiDPI screen flicker
+A few facts:
+
+ - GK104
+ - Driving 4 monitors
+
+Question: Are the 2560x1440 and 1920x1200 daisy-chained (hence the "MST"
+reference), or is it just that the 2560x1440 monitor's manufacturer name is
+"MST", without any reference to Multi-Stream Transport?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15403212231.8EbCfdD76.26318
-Date: Tue, 23 Oct 2018 19:00:23 +0000
+--15403214580.7BDA8A.30347
+Date: Tue, 23 Oct 2018 19:04:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,31 +63,35 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GK104] MST DisplayPort HiDPI screen flicker"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108520#c5">Commen=
+t # 5</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GK104] MST DisplayPort HiDPI screen flicker"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108520">bug 10852=
 0</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>OK, so ...
 
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>MST DisplayPort HiDPI screen flicker
-           </td>
-           <td>[GK104] MST DisplayPort HiDPI screen flicker
-           </td>
-         </tr></table>
-      <p>
+A few facts:
+
+ - GK104
+ - Driving 4 monitors
+
+Question: Are the 2560x1440 and 1920x1200 daisy-chained (hence the &quot;MS=
+T&quot;
+reference), or is it just that the 2560x1440 monitor's manufacturer name is
+&quot;MST&quot;, without any reference to Multi-Stream Transport?</pre>
+        </div>
       </p>
 
 
@@ -95,9 +104,9 @@ pan class=3D"fn">Ilia Mirkin</span></a>
     </body>
 </html>=
 
---15403212231.8EbCfdD76.26318--
+--15403214580.7BDA8A.30347--
 
---===============1449557714==
+--===============0595152762==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1449557714==--
+--===============0595152762==--
