@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108520] MST DisplayPort HiDPI screen flicker
-Date: Tue, 23 Oct 2018 18:56:52 +0000
-Message-ID: <bug-108520-8800-A1k8eeM5J4@http.bugs.freedesktop.org/>
+Date: Tue, 23 Oct 2018 18:57:17 +0000
+Message-ID: <bug-108520-8800-klOTedeNxY@http.bugs.freedesktop.org/>
 References: <bug-108520-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1852915468=="
+Content-Type: multipart/mixed; boundary="===============1963397224=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108520-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1852915468==
-Content-Type: multipart/alternative; boundary="15403210120.16d2D.27258"
+--===============1963397224==
+Content-Type: multipart/alternative; boundary="15403210371.6ABaBcf.27558"
 Content-Transfer-Encoding: 7bit
 
 
---15403210120.16d2D.27258
-Date: Tue, 23 Oct 2018 18:56:52 +0000
+--15403210371.6ABaBcf.27558
+Date: Tue, 23 Oct 2018 18:57:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108520
 
---- Comment #2 from JM9 <jhnmlkvch9-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 142160
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142160&action=3Dedit
-dmesg
+--- Comment #3 from JM9 <jhnmlkvch9-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 142161
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142161&action=3Dedit
+xorg log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15403210120.16d2D.27258
-Date: Tue, 23 Oct 2018 18:56:52 +0000
+--15403210371.6ABaBcf.27558
+Date: Tue, 23 Oct 2018 18:57:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - MST DisplayPort HiDPI screen flicker"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108520#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108520#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - MST DisplayPort HiDPI screen flicker"
@@ -73,11 +73,11 @@ t # 2</a>
 jhnmlkvch9&#64;gmail.com" title=3D"JM9 &lt;jhnmlkvch9&#64;gmail.com&gt;"> <=
 span class=3D"fn">JM9</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142160=
-" name=3D"attach_142160" title=3D"dmesg">attachment 142160</a> <a href=3D"a=
-ttachment.cgi?id=3D142160&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
-/span>
-dmesg</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142161=
+" name=3D"attach_142161" title=3D"xorg log">attachment 142161</a> <a href=
+=3D"attachment.cgi?id=3D142161&amp;action=3Dedit" title=3D"xorg log">[detai=
+ls]</a></span>
+xorg log</pre>
         </div>
       </p>
 
@@ -91,9 +91,9 @@ dmesg</pre>
     </body>
 </html>=
 
---15403210120.16d2D.27258--
+--15403210371.6ABaBcf.27558--
 
---===============1852915468==
+--===============1963397224==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1852915468==--
+--===============1963397224==--
