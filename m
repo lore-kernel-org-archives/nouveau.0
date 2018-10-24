@@ -1,13 +1,13 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 6/6] drm/nouveau: Use atomic VCPI helpers for MST
-Date: Tue, 23 Oct 2018 19:12:51 -0400
-Message-ID: <20181023231251.16883-7-lyude@redhat.com>
-References: <20181023231251.16883-1-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108500] Crash when creating a depth buffer on
+ GeForce 320M
+Date: Wed, 24 Oct 2018 04:55:23 +0000
+Message-ID: <bug-108500-8800-U6hmgL616m@http.bugs.freedesktop.org/>
+References: <bug-108500-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1467316379=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20181023231251.16883-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-108500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,67 +17,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Q3VycmVudGx5LCBub3V2ZWF1IHVzZXMgdGhlIHlvbG8gbWV0aG9kIG9mIHNldHRpbmcgdXAgTVNU
-IGRpc3BsYXlzOiBpdAp1c2VzIHRoZSBvbGQgVkNQSSBoZWxwZXJzIChkcm1fZHBfZmluZF92Y3Bp
-X3Nsb3RzKCkpIGZvciBjb21wdXRpbmcgdGhlCmRpc3BsYXkgY29uZmlndXJhdGlvbi4gVGhlc2Ug
-aGVscGVycyBkb24ndCB0YWtlIGNhcmUgdG8gbWFrZSBzdXJlIHRoZXkKdGFrZSBhIHJlZmVyZW5j
-ZSB0byB0aGUgbXN0YiBwb3J0IHRoYXQgdGhleSdyZSBjaGVja2luZywgYW5kCmFkZGl0aW9uYWxs
-eSBkb24ndCBhY3R1YWxseSBjaGVjayB3aGV0aGVyIG9yIG5vdCB0aGUgdG9wb2xvZ3kgc3RpbGwg
-aGFzCmVub3VnaCBiYW5kd2lkdGggdG8gcHJvdmlkZSB0aGUgVkNQSSB0b2tlbnMgcmVxdWlyZWQu
-CgpTbywgZHJvcCB1c2FnZSBvZiB0aGUgb2xkIGhlbHBlcnMgYW5kIG1vdmUgZW50aXJlbHkgb3Zl
-ciB0byB0aGUgYXRvbWljCmhlbHBlcnMuCgpTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVk
-ZUByZWRoYXQuY29tPgpDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4K
-LS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMgfCA0NiArKysrKysr
-KysrKysrKysrKysrKystLS0tCiAxIGZpbGUgY2hhbmdlZCwgMzkgaW5zZXJ0aW9ucygrKSwgNyBk
-ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1
-MC9kaXNwLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMKaW5kZXgg
-NmNiYmFlM2Y0MzhiLi5hNDQ2NmI2YzEzNmEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNw
-bnY1MC9kaXNwLmMKQEAgLTc0NywxNiArNzQ3LDIyIEBAIG52NTBfbXN0b19hdG9taWNfY2hlY2so
-c3RydWN0IGRybV9lbmNvZGVyICplbmNvZGVyLAogCQkgICAgICAgc3RydWN0IGRybV9jcnRjX3N0
-YXRlICpjcnRjX3N0YXRlLAogCQkgICAgICAgc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKmNv
-bm5fc3RhdGUpCiB7Ci0Jc3RydWN0IG52NTBfbXN0YyAqbXN0YyA9IG52NTBfbXN0Yyhjb25uX3N0
-YXRlLT5jb25uZWN0b3IpOworCXN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSA9IGNydGNf
-c3RhdGUtPnN0YXRlOworCXN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IgPSBjb25uX3N0
-YXRlLT5jb25uZWN0b3I7CisJc3RydWN0IG52NTBfbXN0YyAqbXN0YyA9IG52NTBfbXN0Yyhjb25u
-ZWN0b3IpOwogCXN0cnVjdCBudjUwX21zdG0gKm1zdG0gPSBtc3RjLT5tc3RtOwotCWludCBicHAg
-PSBjb25uX3N0YXRlLT5jb25uZWN0b3ItPmRpc3BsYXlfaW5mby5icGMgKiAzOworCWludCBicHAg
-PSBjb25uZWN0b3ItPmRpc3BsYXlfaW5mby5icGMgKiAzOwogCWludCBzbG90czsKIAotCW1zdGMt
-PnBibiA9IGRybV9kcF9jYWxjX3Bibl9tb2RlKGNydGNfc3RhdGUtPmFkanVzdGVkX21vZGUuY2xv
-Y2ssIGJwcCk7Ci0KLQlzbG90cyA9IGRybV9kcF9maW5kX3ZjcGlfc2xvdHMoJm1zdG0tPm1nciwg
-bXN0Yy0+cGJuKTsKLQlpZiAoc2xvdHMgPCAwKQotCQlyZXR1cm4gc2xvdHM7CisJbXN0Yy0+cGJu
-ID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoY3J0Y19zdGF0ZS0+YWRqdXN0ZWRfbW9kZS5jbG9jaywK
-KwkJCQkJIGJwcCk7CisJLyogWm9tYmllcyBkb24ndCBuZWVkIFZDUEkgKi8KKwlpZiAoIWRybV9j
-b25uZWN0b3JfaXNfdW5yZWdpc3RlcmVkKGNvbm5lY3RvcikpIHsKKwkJc2xvdHMgPSBkcm1fZHBf
-YXRvbWljX2ZpbmRfdmNwaV9zbG90cyhzdGF0ZSwgJm1zdG0tPm1nciwKKwkJCQkJCSAgICAgIG1z
-dGMtPnBvcnQsIG1zdGMtPnBibik7CisJCWlmIChzbG90cyA8IDApCisJCQlyZXR1cm4gc2xvdHM7
-CisJfQogCiAJcmV0dXJuIG52NTBfb3V0cF9hdG9taWNfY2hlY2tfdmlldyhlbmNvZGVyLCBjcnRj
-X3N0YXRlLCBjb25uX3N0YXRlLAogCQkJCQkgICBtc3RjLT5uYXRpdmUpOwpAQCAtOTIwLDEyICs5
-MjYsMzggQEAgbnY1MF9tc3RjX2dldF9tb2RlcyhzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVj
-dG9yKQogCXJldHVybiByZXQ7CiB9CiAKK3N0YXRpYyBpbnQKK252NTBfbXN0Y19hdG9taWNfY2hl
-Y2soc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciwKKwkJICAgICAgIHN0cnVjdCBkcm1f
-Y29ubmVjdG9yX3N0YXRlICpuZXdfY29ubl9zdGF0ZSkKK3sKKwlzdHJ1Y3QgZHJtX2F0b21pY19z
-dGF0ZSAqc3RhdGUgPSBuZXdfY29ubl9zdGF0ZS0+c3RhdGU7CisJc3RydWN0IG52NTBfbXN0YyAq
-bXN0YyA9IG52NTBfbXN0Yyhjb25uZWN0b3IpOworCXN0cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5
-X21nciAqbWdyID0gJm1zdGMtPm1zdG0tPm1ncjsKKwlzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0
-ZSAqb2xkX2Nvbm5fc3RhdGU7CisJc3RydWN0IGRybV9jcnRjICpvbGRfY3J0YzsKKworCW9sZF9j
-b25uX3N0YXRlID0gZHJtX2F0b21pY19nZXRfb2xkX2Nvbm5lY3Rvcl9zdGF0ZShzdGF0ZSwgY29u
-bmVjdG9yKTsKKwlvbGRfY3J0YyA9IG9sZF9jb25uX3N0YXRlLT5jcnRjOworCisJLyogV2Ugb25s
-eSBuZWVkIHRvIHJlbGVhc2UgVkNQSSBoZXJlIGlmIHdlJ3JlIGdvaW5nIGZyb20gaGF2aW5nIGEg
-Q1JUQworCSAqIG9uIHRoaXMgY29ubmVjdG9yLCB0byBub3QgaGF2aW5nIG9uZQorCSAqLworCWlm
-ICghb2xkX2NydGMgfHwgbmV3X2Nvbm5fc3RhdGUtPmNydGMpCisJCXJldHVybiAwOworCisJLyog
-UmVsZWFzZSB0aGUgcHJldmlvdXMgVkNQSSBhbGxvY2F0aW9uIHNpbmNlIHRoZSBlbmNvZGVyJ3MK
-KwkgKiBhdG9taWNfY2hlY2soKSB3b24ndCBiZSBjYWxsZWQKKwkgKi8KKwlyZXR1cm4gZHJtX2Rw
-X2F0b21pY19yZWxlYXNlX3ZjcGlfc2xvdHMoc3RhdGUsIG1nciwgbXN0Yy0+cG9ydCk7Cit9CisK
-IHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9oZWxwZXJfZnVuY3MKIG52NTBfbXN0
-Y19oZWxwID0gewogCS5nZXRfbW9kZXMgPSBudjUwX21zdGNfZ2V0X21vZGVzLAogCS5tb2RlX3Zh
-bGlkID0gbnY1MF9tc3RjX21vZGVfdmFsaWQsCiAJLmJlc3RfZW5jb2RlciA9IG52NTBfbXN0Y19i
-ZXN0X2VuY29kZXIsCiAJLmF0b21pY19iZXN0X2VuY29kZXIgPSBudjUwX21zdGNfYXRvbWljX2Jl
-c3RfZW5jb2RlciwKKwkuYXRvbWljX2NoZWNrID0gbnY1MF9tc3RjX2F0b21pY19jaGVjaywKIH07
-CiAKIHN0YXRpYyBlbnVtIGRybV9jb25uZWN0b3Jfc3RhdHVzCi0tIAoyLjE3LjIKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
-aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1467316379==
+Content-Type: multipart/alternative; boundary="15403569220.91fc5.1684"
+Content-Transfer-Encoding: 7bit
+
+
+--15403569220.91fc5.1684
+Date: Wed, 24 Oct 2018 04:55:22 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108500
+
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Could you boot with
+
+nouveau.debug=3Dmmu=3Ddebug
+
+and see what gets printed? I think I see why the -22 (EINVAL) is being
+generated -- the RAM is marked as stolen, and it rejects compressed memory =
+on
+it. However I'm not sure that's actually correct.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15403569220.91fc5.1684
+Date: Wed, 24 Oct 2018 04:55:22 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500#c5">Commen=
+t # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500">bug 10850=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Could you boot with
+
+nouveau.debug=3Dmmu=3Ddebug
+
+and see what gets printed? I think I see why the -22 (EINVAL) is being
+generated -- the RAM is marked as stolen, and it rejects compressed memory =
+on
+it. However I'm not sure that's actually correct.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15403569220.91fc5.1684--
+
+--===============1467316379==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1467316379==--
