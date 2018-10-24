@@ -1,117 +1,58 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108500] Crash when creating a depth buffer on
- GeForce 320M
-Date: Wed, 24 Oct 2018 04:55:23 +0000
-Message-ID: <bug-108500-8800-U6hmgL616m@http.bugs.freedesktop.org/>
-References: <bug-108500-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH 1/6] drm/dp_mst: Deprecate
+ drm_dp_find_vcpi_slots()
+Date: Wed, 24 Oct 2018 10:27:13 +0200
+Message-ID: <20181024082713.GE324@phenom.ffwll.local>
+References: <20181023231251.16883-1-lyude@redhat.com>
+ <20181023231251.16883-2-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1467316379=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20181023231251.16883-2-lyude@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Lyude Paul <lyude@redhat.com>
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1467316379==
-Content-Type: multipart/alternative; boundary="15403569220.91fc5.1684"
-Content-Transfer-Encoding: 7bit
-
-
---15403569220.91fc5.1684
-Date: Wed, 24 Oct 2018 04:55:22 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108500
-
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Could you boot with
-
-nouveau.debug=3Dmmu=3Ddebug
-
-and see what gets printed? I think I see why the -22 (EINVAL) is being
-generated -- the RAM is marked as stolen, and it rejects compressed memory =
-on
-it. However I'm not sure that's actually correct.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15403569220.91fc5.1684
-Date: Wed, 24 Oct 2018 04:55:22 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500">bug 10850=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Could you boot with
-
-nouveau.debug=3Dmmu=3Ddebug
-
-and see what gets printed? I think I see why the -22 (EINVAL) is being
-generated -- the RAM is marked as stolen, and it rejects compressed memory =
-on
-it. However I'm not sure that's actually correct.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15403569220.91fc5.1684--
-
---===============1467316379==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1467316379==--
+T24gVHVlLCBPY3QgMjMsIDIwMTggYXQgMDc6MTI6NDZQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
+ZToKPiBCZWNhdXNlIHdlIGhhdmUgZHJtX2RwX2F0b21pY19maW5kX3ZjcGlfc2xvdHMoKSwgd2hp
+Y2ggYWN0dWFsbHkgdGFrZXMKPiBjYXJlIHRvIHVwZGF0ZSB0aGUgYXRvbWljIHN0YXRlIG9mIHRo
+ZSBNU1QgdG9wb2xvZ3ksIHByaW50cyB2YWx1YWJsZQo+IGRlYnVnZ2luZyBvdXRwdXQsIGFuZCBh
+Y3R1YWxseSB0YWtlcyByZWZlcmVuY2VzIHRvIHRoZSBwb3J0cyBpdCdzCj4gY2hlY2tpbmchIFRo
+aXMgZXhwbGFpbnMgc29tZSBpbmNvcnJlY3QgdXNhZ2UgSSd2ZSBiZWVuIHNlZWluZyBhY3Jvc3Mg
+dGhlCj4gdHJlZS4uLgo+IAo+IFNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhh
+dC5jb20+Cj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KPiAtLS0KPiAgZHJp
+dmVycy9ncHUvZHJtL2RybV9kcF9tc3RfdG9wb2xvZ3kuYyB8IDkgKysrKysrKystCj4gIDEgZmls
+ZSBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPiAKPiBkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL2RybV9kcF9tc3RfdG9wb2xvZ3kuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMKPiBpbmRleCA1ZmYxZDc5Yjg2YzQuLjhjM2NmYWM0Mzdm
+NCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2RwX21zdF90b3BvbG9neS5jCj4g
+KysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9kcF9tc3RfdG9wb2xvZ3kuYwo+IEBAIC0yNTY5LDkg
+KzI1NjksMTYgQEAgc3RydWN0IGVkaWQgKmRybV9kcF9tc3RfZ2V0X2VkaWQoc3RydWN0IGRybV9j
+b25uZWN0b3IgKmNvbm5lY3Rvciwgc3RydWN0IGRybV9kcF8KPiAgRVhQT1JUX1NZTUJPTChkcm1f
+ZHBfbXN0X2dldF9lZGlkKTsKPiAgCj4gIC8qKgo+IC0gKiBkcm1fZHBfZmluZF92Y3BpX3Nsb3Rz
+KCkgLSBmaW5kIHNsb3RzIGZvciB0aGlzIFBCTiB2YWx1ZQo+ICsgKiBkcm1fZHBfZmluZF92Y3Bp
+X3Nsb3RzKCkgLSBGaW5kIFZDUEkgc2xvdHMgZm9yIHRoaXMgUEJOIHZhbHVlCj4gICAqIEBtZ3I6
+IG1hbmFnZXIgdG8gdXNlCj4gICAqIEBwYm46IHBheWxvYWQgYmFuZHdpZHRoIHRvIGNvbnZlcnQg
+aW50byBzbG90cy4KPiArICoKPiArICogQ2FsY3VsYXRlIHRoZSBudW1iZXIgb2YgVkNQSSBzbG90
+cyB0aGF0IHdpbGwgYmUgcmVxdWlyZWQgZm9yIHRoZSBnaXZlbiBQQk4KPiArICogdmFsdWUuIFRo
+aXMgZnVuY3Rpb24gaXMgZGVwcmVjYXRlZCwgYW5kIHNob3VsZCBub3QgYmUgdXNlZCBpbiBhdG9t
+aWMKPiArICogZHJpdmVycy4KPiArICoKPiArICogUkVUVVJOUzoKPiArICogVGhlIHRvdGFsIHNs
+b3RzIHJlcXVpcmVkIGZvciB0aGlzIHBvcnQsIG9yIGVycm9yLgo+ICAgKi8KClJldmlld2VkLWJ5
+OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgoKPiAgaW50IGRybV9kcF9m
+aW5kX3ZjcGlfc2xvdHMoc3RydWN0IGRybV9kcF9tc3RfdG9wb2xvZ3lfbWdyICptZ3IsCj4gIAkJ
+CSAgIGludCBwYm4pCj4gLS0gCj4gMi4xNy4yCj4gCgotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2Fy
+ZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
+bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
