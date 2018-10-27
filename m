@@ -1,96 +1,104 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v2 4/4] drm/nouveau: Use atomic VCPI helpers for MST
-Date: Fri, 26 Oct 2018 16:35:49 -0400
-Message-ID: <20181026203549.1796-5-lyude@redhat.com>
-References: <20181026203549.1796-1-lyude@redhat.com>
+From: Christopher Patti <feoh-3tY7U/2Y5hI@public.gmane.org>
+Subject: Linux 4.19 slowdown / crash - nouveau - Ubuntu 18.10 /
+ Alienware 17 R5
+Date: Sat, 27 Oct 2018 18:41:12 -0400
+Message-ID: <F18C6233-6AF5-4C70-9D80-C52B8A373AE0@feoh.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20181026203549.1796-1-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: multipart/mixed; boundary="===============2057447758=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Q3VycmVudGx5LCBub3V2ZWF1IHVzZXMgdGhlIHlvbG8gbWV0aG9kIG9mIHNldHRpbmcgdXAgTVNU
-IGRpc3BsYXlzOiBpdAp1c2VzIHRoZSBvbGQgVkNQSSBoZWxwZXJzIChkcm1fZHBfZmluZF92Y3Bp
-X3Nsb3RzKCkpIGZvciBjb21wdXRpbmcgdGhlCmRpc3BsYXkgY29uZmlndXJhdGlvbi4gVGhlc2Ug
-aGVscGVycyBkb24ndCB0YWtlIGNhcmUgdG8gbWFrZSBzdXJlIHRoZXkKdGFrZSBhIHJlZmVyZW5j
-ZSB0byB0aGUgbXN0YiBwb3J0IHRoYXQgdGhleSdyZSBjaGVja2luZywgYW5kCmFkZGl0aW9uYWxs
-eSBkb24ndCBhY3R1YWxseSBjaGVjayB3aGV0aGVyIG9yIG5vdCB0aGUgdG9wb2xvZ3kgc3RpbGwg
-aGFzCmVub3VnaCBiYW5kd2lkdGggdG8gcHJvdmlkZSB0aGUgVkNQSSB0b2tlbnMgcmVxdWlyZWQu
-CgpTbywgZHJvcCB1c2FnZSBvZiB0aGUgb2xkIGhlbHBlcnMgYW5kIG1vdmUgZW50aXJlbHkgb3Zl
-ciB0byB0aGUgYXRvbWljCmhlbHBlcnMuCgpTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVk
-ZUByZWRoYXQuY29tPgpDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4K
-LS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMgfCA1NCArKysrKysr
-KysrKysrKysrKysrKystLS0tCiAxIGZpbGUgY2hhbmdlZCwgNDcgaW5zZXJ0aW9ucygrKSwgNyBk
-ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1
-MC9kaXNwLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMKaW5kZXgg
-NmNiYmFlM2Y0MzhiLi4zNzUwMzMxOWU1YjEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNw
-bnY1MC9kaXNwLmMKQEAgLTc0NywxNiArNzQ3LDIyIEBAIG52NTBfbXN0b19hdG9taWNfY2hlY2so
-c3RydWN0IGRybV9lbmNvZGVyICplbmNvZGVyLAogCQkgICAgICAgc3RydWN0IGRybV9jcnRjX3N0
-YXRlICpjcnRjX3N0YXRlLAogCQkgICAgICAgc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKmNv
-bm5fc3RhdGUpCiB7Ci0Jc3RydWN0IG52NTBfbXN0YyAqbXN0YyA9IG52NTBfbXN0Yyhjb25uX3N0
-YXRlLT5jb25uZWN0b3IpOworCXN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSA9IGNydGNf
-c3RhdGUtPnN0YXRlOworCXN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IgPSBjb25uX3N0
-YXRlLT5jb25uZWN0b3I7CisJc3RydWN0IG52NTBfbXN0YyAqbXN0YyA9IG52NTBfbXN0Yyhjb25u
-ZWN0b3IpOwogCXN0cnVjdCBudjUwX21zdG0gKm1zdG0gPSBtc3RjLT5tc3RtOwotCWludCBicHAg
-PSBjb25uX3N0YXRlLT5jb25uZWN0b3ItPmRpc3BsYXlfaW5mby5icGMgKiAzOworCWludCBicHAg
-PSBjb25uZWN0b3ItPmRpc3BsYXlfaW5mby5icGMgKiAzOwogCWludCBzbG90czsKIAotCW1zdGMt
-PnBibiA9IGRybV9kcF9jYWxjX3Bibl9tb2RlKGNydGNfc3RhdGUtPmFkanVzdGVkX21vZGUuY2xv
-Y2ssIGJwcCk7Ci0KLQlzbG90cyA9IGRybV9kcF9maW5kX3ZjcGlfc2xvdHMoJm1zdG0tPm1nciwg
-bXN0Yy0+cGJuKTsKLQlpZiAoc2xvdHMgPCAwKQotCQlyZXR1cm4gc2xvdHM7CisJbXN0Yy0+cGJu
-ID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoY3J0Y19zdGF0ZS0+YWRqdXN0ZWRfbW9kZS5jbG9jaywK
-KwkJCQkJIGJwcCk7CisJLyogWm9tYmllcyBkb24ndCBuZWVkIFZDUEkgKi8KKwlpZiAoIWRybV9j
-b25uZWN0b3JfaXNfdW5yZWdpc3RlcmVkKGNvbm5lY3RvcikpIHsKKwkJc2xvdHMgPSBkcm1fZHBf
-YXRvbWljX2ZpbmRfdmNwaV9zbG90cyhzdGF0ZSwgJm1zdG0tPm1nciwKKwkJCQkJCSAgICAgIG1z
-dGMtPnBvcnQsIG1zdGMtPnBibik7CisJCWlmIChzbG90cyA8IDApCisJCQlyZXR1cm4gc2xvdHM7
-CisJfQogCiAJcmV0dXJuIG52NTBfb3V0cF9hdG9taWNfY2hlY2tfdmlldyhlbmNvZGVyLCBjcnRj
-X3N0YXRlLCBjb25uX3N0YXRlLAogCQkJCQkgICBtc3RjLT5uYXRpdmUpOwpAQCAtOTIwLDEyICs5
-MjYsMzggQEAgbnY1MF9tc3RjX2dldF9tb2RlcyhzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVj
-dG9yKQogCXJldHVybiByZXQ7CiB9CiAKK3N0YXRpYyBpbnQKK252NTBfbXN0Y19hdG9taWNfY2hl
-Y2soc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciwKKwkJICAgICAgIHN0cnVjdCBkcm1f
-Y29ubmVjdG9yX3N0YXRlICpuZXdfY29ubl9zdGF0ZSkKK3sKKwlzdHJ1Y3QgZHJtX2F0b21pY19z
-dGF0ZSAqc3RhdGUgPSBuZXdfY29ubl9zdGF0ZS0+c3RhdGU7CisJc3RydWN0IG52NTBfbXN0YyAq
-bXN0YyA9IG52NTBfbXN0Yyhjb25uZWN0b3IpOworCXN0cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5
-X21nciAqbWdyID0gJm1zdGMtPm1zdG0tPm1ncjsKKwlzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0
-ZSAqb2xkX2Nvbm5fc3RhdGU7CisJc3RydWN0IGRybV9jcnRjICpvbGRfY3J0YzsKKworCW9sZF9j
-b25uX3N0YXRlID0gZHJtX2F0b21pY19nZXRfb2xkX2Nvbm5lY3Rvcl9zdGF0ZShzdGF0ZSwgY29u
-bmVjdG9yKTsKKwlvbGRfY3J0YyA9IG9sZF9jb25uX3N0YXRlLT5jcnRjOworCisJLyogV2Ugb25s
-eSBuZWVkIHRvIHJlbGVhc2UgVkNQSSBoZXJlIGlmIHdlJ3JlIGdvaW5nIGZyb20gaGF2aW5nIGEg
-Q1JUQworCSAqIG9uIHRoaXMgY29ubmVjdG9yLCB0byBub3QgaGF2aW5nIG9uZQorCSAqLworCWlm
-ICghb2xkX2NydGMgfHwgbmV3X2Nvbm5fc3RhdGUtPmNydGMpCisJCXJldHVybiAwOworCisJLyog
-UmVsZWFzZSB0aGUgcHJldmlvdXMgVkNQSSBhbGxvY2F0aW9uIHNpbmNlIHRoZSBlbmNvZGVyJ3MK
-KwkgKiBhdG9taWNfY2hlY2soKSB3b24ndCBiZSBjYWxsZWQKKwkgKi8KKwlyZXR1cm4gZHJtX2Rw
-X2F0b21pY19yZWxlYXNlX3ZjcGlfc2xvdHMoc3RhdGUsIG1nciwgbXN0Yy0+cG9ydCk7Cit9CisK
-IHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9oZWxwZXJfZnVuY3MKIG52NTBfbXN0
-Y19oZWxwID0gewogCS5nZXRfbW9kZXMgPSBudjUwX21zdGNfZ2V0X21vZGVzLAogCS5tb2RlX3Zh
-bGlkID0gbnY1MF9tc3RjX21vZGVfdmFsaWQsCiAJLmJlc3RfZW5jb2RlciA9IG52NTBfbXN0Y19i
-ZXN0X2VuY29kZXIsCiAJLmF0b21pY19iZXN0X2VuY29kZXIgPSBudjUwX21zdGNfYXRvbWljX2Jl
-c3RfZW5jb2RlciwKKwkuYXRvbWljX2NoZWNrID0gbnY1MF9tc3RjX2F0b21pY19jaGVjaywKIH07
-CiAKIHN0YXRpYyBlbnVtIGRybV9jb25uZWN0b3Jfc3RhdHVzCkBAIC0yMDg0LDYgKzIxMTYsOCBA
-QCBudjUwX2Rpc3BfYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBk
-cm1fYXRvbWljX3N0YXRlICpzdGF0ZSkKIAlzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9y
-OwogCXN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqbmV3X2NydGNfc3RhdGU7CiAJc3RydWN0IGRybV9j
-cnRjICpjcnRjOworCXN0cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5X21nciAqbWdyOworCXN0cnVj
-dCBkcm1fZHBfbXN0X3RvcG9sb2d5X3N0YXRlICptc3Rfc3RhdGU7CiAJaW50IHJldCwgaTsKIAog
-CS8qIFdlIG5lZWQgdG8gaGFuZGxlIGNvbG91ciBtYW5hZ2VtZW50IG9uIGEgcGVyLXBsYW5lIGJh
-c2lzLiAqLwpAQCAtMjEwOSw2ICsyMTQzLDEyIEBAIG52NTBfZGlzcF9hdG9taWNfY2hlY2soc3Ry
-dWN0IGRybV9kZXZpY2UgKmRldiwgc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlKQogCQkJ
-cmV0dXJuIHJldDsKIAl9CiAKKwlmb3JfZWFjaF9uZXdfbXN0X21ncl9pbl9zdGF0ZShzdGF0ZSwg
-bWdyLCBtc3Rfc3RhdGUsIGkpIHsKKwkJcmV0ID0gZHJtX2RwX21zdF9hdG9taWNfY2hlY2sobXN0
-X3N0YXRlKTsKKwkJaWYgKHJldCkKKwkJCXJldHVybiByZXQ7CisJfQorCiAJcmV0dXJuIDA7CiB9
-CiAKLS0gCjIuMTcuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRl
-dmVsCg==
+
+--===============2057447758==
+Content-Transfer-Encoding: 7bit
+Content-Type: multipart/alternative;
+	boundary=Apple-Mail-C47746ED-D2CF-46D4-AEF9-A1A8D4E77D24
+
+
+--Apple-Mail-C47746ED-D2CF-46D4-AEF9-A1A8D4E77D24
+Content-Type: text/plain;
+	charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+Hi all. I've reported a bug over at the Ubuntu bug tracker: https://bugs.lau=
+nchpad.net/ubuntu/+source/linux/+bug/1799180
+
+Given the logs in kern.log it certainly looks like the nouveau driver is the=
+ culprit. The system becomes incredibly slow ultimately becoming unusable, a=
+nd the fan screams.
+
+Full details including driver / kernel version and full kernel log over at t=
+he bug, but I see a bunch of:
+
+Oct 27 17:01:44 yamato kernel: [  402.710539] nouveau 0000:01:00.0: DRM: bas=
+e-0: timeout
+
+in the kernel log as the system slows down.
+
+I'd love to assist in solving this problem. However I'm not a driver develop=
+er but I know C, can build kernels and follow directions really well :)
+
+Also if there are any work arounds I'd love to hear them. I need to run the 4=
+.19 kernel since my laptop crashes on sleep with prior versions.
+
+Thanks in advance and apologies if this is an inappropriate venue for this q=
+uestion.
+
+-Chris
+
+
+--Apple-Mail-C47746ED-D2CF-46D4-AEF9-A1A8D4E77D24
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto"><div dir="ltr"><span></span></div><div dir="ltr">
+
+
+<title></title>
+<style type="text/css">p.MsoNormal,p.MsoNoSpacing{margin:0}</style>
+
+<div>Hi all. I've reported a bug over at the Ubuntu bug tracker: <a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1799180">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1799180</a><br></div>
+<div><br></div>
+<div>Given the logs in kern.log it certainly looks like the nouveau driver is the culprit. The system becomes incredibly slow ultimately becoming unusable, and the fan screams.<br></div>
+<div><br></div>
+<div>Full details including driver / kernel version and full kernel log over at the bug, but I see a bunch of:<br></div>
+<div><br></div>
+<div>Oct 27 17:01:44 yamato kernel: [&nbsp; 402.710539] nouveau 0000:01:00.0: DRM: base-0: timeout<br></div>
+<div><br></div>
+<div>in the kernel log as the system slows down.<br></div>
+<div><br></div>
+<div>I'd love to assist in solving this problem. However I'm not a driver developer but I know C, can build kernels and follow directions really well :)<br></div>
+<div><br></div>
+<div>Also if there are any work arounds I'd love to hear them. I need to run the 4.19 kernel since my laptop crashes on sleep with prior versions.<br></div>
+<div><br></div>
+<div>Thanks in advance and apologies if this is an inappropriate venue for this question.<br></div>
+<div><br></div>
+<div>-Chris<br></div>
+<div><br></div>
+
+
+</div></body></html>
+--Apple-Mail-C47746ED-D2CF-46D4-AEF9-A1A8D4E77D24--
+
+--===============2057447758==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2057447758==--
