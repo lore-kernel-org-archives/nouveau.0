@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 105117] desktop freeze playing video nouveau:
  DATA_ERROR INVALID_BITFIELD
-Date: Mon, 29 Oct 2018 02:32:56 +0000
-Message-ID: <bug-105117-8800-CIEVBLreAz@http.bugs.freedesktop.org/>
+Date: Mon, 29 Oct 2018 02:34:06 +0000
+Message-ID: <bug-105117-8800-7pKPTTsa6V@http.bugs.freedesktop.org/>
 References: <bug-105117-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1329372446=="
+Content-Type: multipart/mixed; boundary="===============2060909474=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-105117-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1329372446==
-Content-Type: multipart/alternative; boundary="15407803750.dd0bd9Eb.24203"
+--===============2060909474==
+Content-Type: multipart/alternative; boundary="15407804461.4dF2.24612"
 Content-Transfer-Encoding: 7bit
 
 
---15407803750.dd0bd9Eb.24203
-Date: Mon, 29 Oct 2018 02:32:55 +0000
+--15407804461.4dF2.24612
+Date: Mon, 29 Oct 2018 02:34:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D105117
 
---- Comment #3 from rcoe-TsGEh1ee8XYAvxtiuMwx3w@public.gmane.org ---
-I added the environment variable=20
-export WEBKIT_DISABLE_COMPOSITING_MODE=3D1
-and I tested running videos.
-I ran several videos without issue where before the X server would hang but=
- the
-mouse would still move.
-I see WebKitWebProcess is using wayland, and it is multi-threaded.
+--- Comment #4 from rcoe-TsGEh1ee8XYAvxtiuMwx3w@public.gmane.org ---
+Created attachment 142252
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142252&action=3Dedit
+WebKitWebProcess shared libs
+
+List of shared libraries used by WebKitWebProcess
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15407803750.dd0bd9Eb.24203
-Date: Mon, 29 Oct 2018 02:32:55 +0000
+--15407804461.4dF2.24612
+Date: Mon, 29 Oct 2018 02:34:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +66,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - desktop freeze playing video nouveau: DATA_ERROR INVALID_=
 BITFIELD"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105117#c3">Commen=
-t # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105117#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - desktop freeze playing video nouveau: DATA_ERROR INVALID_=
@@ -79,13 +77,13 @@ BITFIELD"
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 rcoe&#64;wi.rr.com" title=3D"rcoe&#64;wi.rr.com">rcoe&#64;wi.rr.com</a>
 </span></b>
-        <pre>I added the environment variable=20
-export WEBKIT_DISABLE_COMPOSITING_MODE=3D1
-and I tested running videos.
-I ran several videos without issue where before the X server would hang but=
- the
-mouse would still move.
-I see WebKitWebProcess is using wayland, and it is multi-threaded.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142252=
+" name=3D"attach_142252" title=3D"WebKitWebProcess shared libs">attachment =
+142252</a> <a href=3D"attachment.cgi?id=3D142252&amp;action=3Dedit" title=
+=3D"WebKitWebProcess shared libs">[details]</a></span>
+WebKitWebProcess shared libs
+
+List of shared libraries used by WebKitWebProcess</pre>
         </div>
       </p>
 
@@ -99,9 +97,9 @@ I see WebKitWebProcess is using wayland, and it is multi-threaded.</pre>
     </body>
 </html>=
 
---15407803750.dd0bd9Eb.24203--
+--15407804461.4dF2.24612--
 
---===============1329372446==
+--===============2060909474==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1329372446==--
+--===============2060909474==--
