@@ -1,179 +1,116 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
- ]
-Date: Mon, 29 Oct 2018 12:16:51 +0000
-Message-ID: <bug-100423-8800-HtJdYCN6Wh@http.bugs.freedesktop.org/>
-References: <bug-100423-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v2 1/4] drm/dp_mst: Add some atomic state
+ iterator macros
+Date: Mon, 29 Oct 2018 15:08:36 +0100
+Message-ID: <20181029140836.GZ21967@phenom.ffwll.local>
+References: <20181026203549.1796-1-lyude@redhat.com>
+ <20181026203549.1796-2-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1620488692=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20181026203549.1796-2-lyude@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Lyude Paul <lyude@redhat.com>
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1620488692==
-Content-Type: multipart/alternative; boundary="15408154110.46136e58.31683"
-Content-Transfer-Encoding: 7bit
-
-
---15408154110.46136e58.31683
-Date: Mon, 29 Oct 2018 12:16:51 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
-
---- Comment #20 from Bruno Pagani <bruno.n.pagani-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to boldingd from comment #19)
-> I think I'm also seeing this with Fedora 29 Beta, I was also seeing errors
-> with updated Fedora 28.
-
-No, yours are different issues.
-
-> [    1.729900] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-> 10ac08 [ IBUS ]
-
-This is https://bugs.freedesktop.org/show_bug.cgi?id=3D104835
-
-> [    8.044183] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-> 619444 [ IBUS ]
-> [    9.126208] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-> 619444 [ IBUS ]
-
-I haven=E2=80=99t found any reference for this one. You might open a new bu=
-greport for
-it.
-
-> [    1.714622] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-> 6013d4 [ IBUS ]
-> [   93.901280] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-> 6013d4 [ IBUS ]
-> [  101.777394] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-> 6013d4 [ IBUS ]
-> [  112.733004] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-> 6013d4 [ IBUS ]
-
-This one also appears (and is briefly discussed) in
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98386
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15408154110.46136e58.31683
-Date: Mon, 29 Oct 2018 12:16:51 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c20">Comme=
-nt # 20</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bruno.n.pagani&#64;gmail.com" title=3D"Bruno Pagani &lt;bruno.n.pagani&#64;=
-gmail.com&gt;"> <span class=3D"fn">Bruno Pagani</span></a>
-</span></b>
-        <pre>(In reply to boldingd from <a href=3D"show_bug.cgi?id=3D100423=
-#c19">comment #19</a>)
-<span class=3D"quote">&gt; I think I'm also seeing this with Fedora 29 Beta=
-, I was also seeing errors
-&gt; with updated Fedora 28.</span >
-
-No, yours are different issues.
-
-<span class=3D"quote">&gt; [    1.729900] nouveau 0000:01:00.0: bus: MMIO r=
-ead of 00000000 FAULT at
-&gt; 10ac08 [ IBUS ]</span >
-
-This is <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]"
-   href=3D"show_bug.cgi?id=3D104835">https://bugs.freedesktop.org/show_bug.=
-cgi?id=3D104835</a>
-
-<span class=3D"quote">&gt; [    8.044183] nouveau 0000:01:00.0: bus: MMIO r=
-ead of 00000000 FAULT at
-&gt; 619444 [ IBUS ]
-&gt; [    9.126208] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT =
-at
-&gt; 619444 [ IBUS ]</span >
-
-I haven=E2=80=99t found any reference for this one. You might open a new bu=
-greport for
-it.
-
-<span class=3D"quote">&gt; [    1.714622] nouveau 0000:01:00.0: bus: MMIO r=
-ead of 00000000 FAULT at
-&gt; 6013d4 [ IBUS ]
-&gt; [   93.901280] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT =
-at
-&gt; 6013d4 [ IBUS ]
-&gt; [  101.777394] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT =
-at
-&gt; 6013d4 [ IBUS ]
-&gt; [  112.733004] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT =
-at
-&gt; 6013d4 [ IBUS ]</span >
-
-This one also appears (and is briefly discussed) in
-<a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer=
- to {TDMS,flat panel} table invalid"
-   href=3D"show_bug.cgi?id=3D98386">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D98386</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15408154110.46136e58.31683--
-
---===============1620488692==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1620488692==--
+T24gRnJpLCBPY3QgMjYsIDIwMTggYXQgMDQ6MzU6NDZQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
+ZToKPiBTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgo+IENjOiBE
+YW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3bGwuY2g+Cj4gLS0tCj4gIGluY2x1ZGUvZHJtL2RybV9k
+cF9tc3RfaGVscGVyLmggfCA3NyArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysKPiAg
+MSBmaWxlIGNoYW5nZWQsIDc3IGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEvaW5jbHVk
+ZS9kcm0vZHJtX2RwX21zdF9oZWxwZXIuaCBiL2luY2x1ZGUvZHJtL2RybV9kcF9tc3RfaGVscGVy
+LmgKPiBpbmRleCA1OWYwMDViNDE5Y2YuLjNmYWNlYjY2ZjVjYiAxMDA2NDQKPiAtLS0gYS9pbmNs
+dWRlL2RybS9kcm1fZHBfbXN0X2hlbHBlci5oCj4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX2RwX21z
+dF9oZWxwZXIuaAo+IEBAIC02MjgsNCArNjI4LDgxIEBAIGludCBkcm1fZHBfYXRvbWljX3JlbGVh
+c2VfdmNwaV9zbG90cyhzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUsCj4gIGludCBkcm1f
+ZHBfc2VuZF9wb3dlcl91cGRvd25fcGh5KHN0cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5X21nciAq
+bWdyLAo+ICAJCQkJIHN0cnVjdCBkcm1fZHBfbXN0X3BvcnQgKnBvcnQsIGJvb2wgcG93ZXJfdXAp
+Owo+ICAKPiArZXh0ZXJuIGNvbnN0IHN0cnVjdCBkcm1fcHJpdmF0ZV9zdGF0ZV9mdW5jcyBkcm1f
+ZHBfbXN0X3RvcG9sb2d5X3N0YXRlX2Z1bmNzOwo+ICsKPiArc3RhdGljIGlubGluZSBib29sCj4g
+K19fZHJtX2RwX21zdF9zdGF0ZV9pdGVyX2dldChzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3Rh
+dGUsCj4gKwkJCSAgICBzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9neV9tZ3IgKiptZ3IsCj4gKwkJ
+CSAgICBzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9neV9zdGF0ZSAqKm9sZF9zdGF0ZSwKPiArCQkJ
+ICAgIHN0cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5X3N0YXRlICoqbmV3X3N0YXRlLAo+ICsJCQkg
+ICAgaW50IGkpCj4gK3sKPiArCXN0cnVjdCBfX2RybV9wcml2YXRlX29ianNfc3RhdGUgKm9ianNf
+c3RhdGUgPSAmc3RhdGUtPnByaXZhdGVfb2Jqc1tpXTsKPiArCj4gKwlpZiAob2Jqc19zdGF0ZS0+
+cHRyLT5mdW5jcyAhPSAmZHJtX2RwX21zdF90b3BvbG9neV9zdGF0ZV9mdW5jcykKPiArCQlyZXR1
+cm4gZmFsc2U7Cj4gKwo+ICsJKm1nciA9IHRvX2RwX21zdF90b3BvbG9neV9tZ3Iob2Jqc19zdGF0
+ZS0+cHRyKTsKPiArCWlmIChvbGRfc3RhdGUpCj4gKwkJKm9sZF9zdGF0ZSA9IHRvX2RwX21zdF90
+b3BvbG9neV9zdGF0ZShvYmpzX3N0YXRlLT5vbGRfc3RhdGUpOwo+ICsJaWYgKG5ld19zdGF0ZSkK
+PiArCQkqbmV3X3N0YXRlID0gdG9fZHBfbXN0X3RvcG9sb2d5X3N0YXRlKG9ianNfc3RhdGUtPm5l
+d19zdGF0ZSk7Cj4gKwo+ICsJcmV0dXJuIHRydWU7Cj4gK30KPiArCj4gKy8qKgo+ICsgKiBmb3Jf
+ZWFjaF9vbGRuZXdfbXN0X21ncl9pbl9zdGF0ZSAtIGl0ZXJhdGUgb3ZlciBhbGwgRFAgTVNUIHRv
+cG9sb2d5Cj4gKyAqIG1hbmFnZXJzIGluIGFuIGF0b21pYyB1cGRhdGUKPiArICogQF9fc3RhdGU6
+ICZzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSBwb2ludGVyCj4gKyAqIEBtZ3I6ICZzdHJ1Y3QgZHJt
+X2RwX21zdF90b3BvbG9neV9tZ3IgaXRlcmF0aW9uIGN1cnNvcgo+ICsgKiBAb2xkX3N0YXRlOiAm
+c3RydWN0IGRybV9kcF9tc3RfdG9wb2xvZ3lfc3RhdGUgaXRlcmF0aW9uIGN1cnNvciBmb3IgdGhl
+IG9sZAo+ICsgKiBzdGF0ZQo+ICsgKiBAbmV3X3N0YXRlOiAmc3RydWN0IGRybV9kcF9tc3RfdG9w
+b2xvZ3lfc3RhdGUgaXRlcmF0aW9uIGN1cnNvciBmb3IgdGhlIG5ldwo+ICsgKiBzdGF0ZQo+ICsg
+KiBAX19pOiBpbnQgaXRlcmF0aW9uIGN1cnNvciwgZm9yIG1hY3JvLWludGVybmFsIHVzZQo+ICsg
+Kgo+ICsgKiBUaGlzIGl0ZXJhdGVzIG92ZXIgYWxsIERSTSBEUCBNU1QgdG9wb2xvZ3kgbWFuYWdl
+cnMgaW4gYW4gYXRvbWljIHVwZGF0ZSwKPiArICogdHJhY2tpbmcgYm90aCBvbGQgYW5kIG5ldyBz
+dGF0ZS4gVGhpcyBpcyB1c2VmdWwgaW4gcGxhY2VzIHdoZXJlIHRoZSBzdGF0ZQo+ICsgKiBkZWx0
+YSBuZWVkcyB0byBiZSBjb25zaWRlcmVkLCBmb3IgZXhhbXBsZSBpbiBhdG9taWMgY2hlY2sgZnVu
+Y3Rpb25zLgo+ICsgKi8KPiArI2RlZmluZSBmb3JfZWFjaF9vbGRuZXdfbXN0X21ncl9pbl9zdGF0
+ZShfX3N0YXRlLCBtZ3IsIG9sZF9zdGF0ZSwgbmV3X3N0YXRlLCBfX2kpIFwKPiArCWZvciAoKF9f
+aSkgPSAwOyAoX19pKSA8IChfX3N0YXRlKS0+bnVtX3ByaXZhdGVfb2JqczsgKF9faSkrKykgXAo+
+ICsJCWZvcl9lYWNoX2lmKF9fZHJtX2RwX21zdF9zdGF0ZV9pdGVyX2dldCgoX19zdGF0ZSksICYo
+bWdyKSwgJihvbGRfc3RhdGUpLCAmKG5ld19zdGF0ZSksIChfX2kpKSkKCkkganVzdCByZWFsaXpl
+ZCB0aGF0IGFsbCBvdXIgaXRlcmF0b3IgbWFjcm9zIGRvIG5vdCBjb21wb3NlIGF0IGFsbC4gV2hp
+YwppcyByYXRoZXIgZGlzYXBwb2ludGluZyA6LS8KCmxpc3RfZm9yX2VhY2ggc29sdmVzIHRoYXQg
+d2l0aCBhIGxpc3RfZm9yX2VhY2hfbWVtYmVyLCB3aGljaCB5b3UgY2FuIHRoZW4KZWFzaWx5IHVz
+ZSB0byBjcmVhdGUgbW9yZSBzcGVjaWFsaXplZCBtYWNyb3MuIEkgd29uZGVyIHdoZXRoZXIgd2Ug
+c2hvdWxkCmhhdmUgYSBtYXN0ZXIgbWFjcm9zLCB3aGljaCBhbHNvIHRha2VzIHRoZSBvYmogdHlw
+ZSAod2UgaGF2ZSB2ZXJ5IHVuaWZvcm0KbmFtaW5nLCBzbyBhIGZldyB3ZWxsIHBsYWNlZCAjIyBz
+aG91bGQgbWFrZSB0aGlzIHdvcmsgbmVhdGx5KSwgYW5kIHRoZW4KeW91IGNvdWxkIGp1c3QgI2Rl
+ZmluZSBtb3JlIHNwZWNpYWxpemVkIGl0ZXJhdG9ycyB3aXRob3V0IGhhdmluZyB0byByZXR5cGUK
+dGhlbSAob3IgdGhlIG5lZWQgZm9yIGR1bW15IGl0ZXJhdG9yIG1hcmtlcnMgYW5kIHRvbnMgb2Yg
+Y2FzdGluZykuCgpBbnl3YXksIHRoYXQncyBhIGxhbWVudCBmb3IgYW5vdGhlciBkYXkmcGF0Y2gu
+IFRoaXMgbG9va3MgZ29vZC4KClJldmlld2VkLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0
+dGVyQGZmd2xsLmNoPgoKPiArCj4gKy8qKgo+ICsgKiBmb3JfZWFjaF9vbGRfbXN0X21ncl9pbl9z
+dGF0ZSAtIGl0ZXJhdGUgb3ZlciBhbGwgRFAgTVNUIHRvcG9sb2d5IG1hbmFnZXJzCj4gKyAqIGlu
+IGFuIGF0b21pYyB1cGRhdGUKPiArICogQF9fc3RhdGU6ICZzdHJ1Y3QgZHJtX2F0b21pY19zdGF0
+ZSBwb2ludGVyCj4gKyAqIEBtZ3I6ICZzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9neV9tZ3IgaXRl
+cmF0aW9uIGN1cnNvcgo+ICsgKiBAb2xkX3N0YXRlOiAmc3RydWN0IGRybV9kcF9tc3RfdG9wb2xv
+Z3lfc3RhdGUgaXRlcmF0aW9uIGN1cnNvciBmb3IgdGhlIG9sZAo+ICsgKiBzdGF0ZQo+ICsgKiBA
+X19pOiBpbnQgaXRlcmF0aW9uIGN1cnNvciwgZm9yIG1hY3JvLWludGVybmFsIHVzZQo+ICsgKgo+
+ICsgKiBUaGlzIGl0ZXJhdGVzIG92ZXIgYWxsIERSTSBEUCBNU1QgdG9wb2xvZ3kgbWFuYWdlcnMg
+aW4gYW4gYXRvbWljIHVwZGF0ZSwKPiArICogdHJhY2tpbmcgb25seSB0aGUgb2xkIHN0YXRlLiBU
+aGlzIGlzIHVzZWZ1bCBpbiBkaXNhYmxlIGZ1bmN0aW9ucywgd2hlcmUgd2UKPiArICogbmVlZCB0
+aGUgb2xkIHN0YXRlIHRoZSBoYXJkd2FyZSBpcyBzdGlsbCBpbi4KPiArICovCj4gKyNkZWZpbmUg
+Zm9yX2VhY2hfb2xkX21zdF9tZ3JfaW5fc3RhdGUoX19zdGF0ZSwgbWdyLCBvbGRfc3RhdGUsIF9f
+aSkgXAo+ICsJZm9yICgoX19pKSA9IDA7IChfX2kpIDwgKF9fc3RhdGUpLT5udW1fcHJpdmF0ZV9v
+YmpzOyAoX19pKSsrKSBcCj4gKwkJZm9yX2VhY2hfaWYoX19kcm1fZHBfbXN0X3N0YXRlX2l0ZXJf
+Z2V0KChfX3N0YXRlKSwgJihtZ3IpLCAmKG9sZF9zdGF0ZSksIE5VTEwsIChfX2kpKSkKPiArCj4g
+Ky8qKgo+ICsgKiBmb3JfZWFjaF9uZXdfbXN0X21ncl9pbl9zdGF0ZSAtIGl0ZXJhdGUgb3ZlciBh
+bGwgRFAgTVNUIHRvcG9sb2d5IG1hbmFnZXJzCj4gKyAqIGluIGFuIGF0b21pYyB1cGRhdGUKPiAr
+ICogQF9fc3RhdGU6ICZzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSBwb2ludGVyCj4gKyAqIEBtZ3I6
+ICZzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9neV9tZ3IgaXRlcmF0aW9uIGN1cnNvcgo+ICsgKiBA
+bmV3X3N0YXRlOiAmc3RydWN0IGRybV9kcF9tc3RfdG9wb2xvZ3lfc3RhdGUgaXRlcmF0aW9uIGN1
+cnNvciBmb3IgdGhlIG5ldwo+ICsgKiBzdGF0ZQo+ICsgKiBAX19pOiBpbnQgaXRlcmF0aW9uIGN1
+cnNvciwgZm9yIG1hY3JvLWludGVybmFsIHVzZQo+ICsgKgo+ICsgKiBUaGlzIGl0ZXJhdGVzIG92
+ZXIgYWxsIERSTSBEUCBNU1QgdG9wb2xvZ3kgbWFuYWdlcnMgaW4gYW4gYXRvbWljIHVwZGF0ZSwK
+PiArICogdHJhY2tpbmcgb25seSB0aGUgbmV3IHN0YXRlLiBUaGlzIGlzIHVzZWZ1bCBpbiBlbmFi
+bGUgZnVuY3Rpb25zLCB3aGVyZSB3ZQo+ICsgKiBuZWVkIHRoZSBuZXcgc3RhdGUgdGhlIGhhcmR3
+YXJlIHNob3VsZCBiZSBpbiB3aGVuIHRoZSBhdG9taWMgY29tbWl0Cj4gKyAqIG9wZXJhdGlvbiBo
+YXMgY29tcGxldGVkLgo+ICsgKi8KPiArI2RlZmluZSBmb3JfZWFjaF9uZXdfbXN0X21ncl9pbl9z
+dGF0ZShfX3N0YXRlLCBtZ3IsIG5ld19zdGF0ZSwgX19pKSBcCj4gKwlmb3IgKChfX2kpID0gMDsg
+KF9faSkgPCAoX19zdGF0ZSktPm51bV9wcml2YXRlX29ianM7IChfX2kpKyspIFwKPiArCQlmb3Jf
+ZWFjaF9pZihfX2RybV9kcF9tc3Rfc3RhdGVfaXRlcl9nZXQoKF9fc3RhdGUpLCAmKG1nciksIE5V
+TEwsICYobmV3X3N0YXRlKSwgKF9faSkpKQo+ICsKPiAgI2VuZGlmCj4gLS0gCj4gMi4xNy4yCj4g
+CgotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24K
+aHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+aW50ZWwtZ2Z4Cg==
