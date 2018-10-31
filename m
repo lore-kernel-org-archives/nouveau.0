@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108615] [NVE7] changing resolution causes blank
  screen
-Date: Wed, 31 Oct 2018 20:29:34 +0000
-Message-ID: <bug-108615-8800-MUtSzQesba@http.bugs.freedesktop.org/>
+Date: Wed, 31 Oct 2018 20:30:36 +0000
+Message-ID: <bug-108615-8800-5xwAHDVynC@http.bugs.freedesktop.org/>
 References: <bug-108615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1382454393=="
+Content-Type: multipart/mixed; boundary="===============0263491646=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1382454393==
-Content-Type: multipart/alternative; boundary="15410177741.7fF4328.18733"
+--===============0263491646==
+Content-Type: multipart/alternative; boundary="15410178360.251BEb.18846"
 Content-Transfer-Encoding: 7bit
 
 
---15410177741.7fF4328.18733
-Date: Wed, 31 Oct 2018 20:29:34 +0000
+--15410178360.251BEb.18846
+Date: Wed, 31 Oct 2018 20:30:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108615
 
---- Comment #1 from jbytecoder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 142309
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142309&action=3Dedit
-Kernel log just after the issue
+--- Comment #2 from jbytecoder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 142310
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142310&action=3Dedit
+Video bios of the faulty card
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15410177741.7fF4328.18733
-Date: Wed, 31 Oct 2018 20:29:34 +0000
+--15410178360.251BEb.18846
+Date: Wed, 31 Oct 2018 20:30:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE7] changing resolution causes blank screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108615#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108615#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVE7] changing resolution causes blank screen"
@@ -74,11 +74,11 @@ t # 1</a>
 jbytecoder&#64;gmail.com" title=3D"jbytecoder&#64;gmail.com">jbytecoder&#64=
 ;gmail.com</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142309=
-" name=3D"attach_142309" title=3D"Kernel log just after the issue">attachme=
-nt 142309</a> <a href=3D"attachment.cgi?id=3D142309&amp;action=3Dedit" titl=
-e=3D"Kernel log just after the issue">[details]</a></span>
-Kernel log just after the issue</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142310=
+" name=3D"attach_142310" title=3D"Video bios of the faulty card">attachment=
+ 142310</a> <a href=3D"attachment.cgi?id=3D142310&amp;action=3Dedit" title=
+=3D"Video bios of the faulty card">[details]</a></span>
+Video bios of the faulty card</pre>
         </div>
       </p>
 
@@ -92,9 +92,9 @@ Kernel log just after the issue</pre>
     </body>
 </html>=
 
---15410177741.7fF4328.18733--
+--15410178360.251BEb.18846--
 
---===============1382454393==
+--===============0263491646==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1382454393==--
+--===============0263491646==--
