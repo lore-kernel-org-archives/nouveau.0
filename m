@@ -1,13 +1,13 @@
-From: Christopher Patti <feoh-3tY7U/2Y5hI@public.gmane.org>
-Subject: Re: Linux 4.19 slowdown / crash - nouveau - Ubuntu 18.10
- / Alienware 17 R5
-Date: Wed, 31 Oct 2018 18:46:28 -0400
-Message-ID: <1541025988.3168290.1561559536.5BB8DC51@webmail.messagingengine.com>
-References: <F18C6233-6AF5-4C70-9D80-C52B8A373AE0@feoh.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108500] Crash when creating a depth buffer on
+ GeForce 320M
+Date: Thu, 01 Nov 2018 18:16:42 +0000
+Message-ID: <bug-108500-8800-DJFZhnAcQR@http.bugs.freedesktop.org/>
+References: <bug-108500-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0779881829=="
+Content-Type: multipart/mixed; boundary="===============2109149916=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <F18C6233-6AF5-4C70-9D80-C52B8A373AE0-3tY7U/2Y5hI@public.gmane.org>
+In-Reply-To: <bug-108500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,101 +20,120 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
 
---===============0779881829==
+--===============2109149916==
+Content-Type: multipart/alternative; boundary="15410962010.feFaeA.16741"
 Content-Transfer-Encoding: 7bit
-Content-Type: multipart/alternative; boundary="_----------=_154102598831682900"
-
-This is a multi-part message in MIME format.
-
---_----------=_154102598831682900
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="utf-8"
-
-Interestingly (at least to me) I switched to i3wm and this hasn't
-happened in days. Maybe something in Gnome tickles this bug? I should
-try KDE just for the halibut and see if it recurs.
--Chris
 
 
-On Sat, Oct 27, 2018, at 6:41 PM, Christopher Patti wrote:
-> 
-> Hi all. I've reported a bug over at the Ubuntu bug tracker:
-> https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1799180> 
-> Given the logs in kern.log it certainly looks like the nouveau driver
-> is the culprit. The system becomes incredibly slow ultimately becoming
-> unusable, and the fan screams.> 
-> Full details including driver / kernel version and full kernel log
-> over at the bug, but I see a bunch of:> 
-> Oct 27 17:01:44 yamato kernel: [  402.710539] nouveau 0000:01:00.0:
-> DRM: base-0: timeout> 
-> in the kernel log as the system slows down.
-> 
-> I'd love to assist in solving this problem. However I'm not a driver
-> developer but I know C, can build kernels and follow directions
-> really well :)> 
-> Also if there are any work arounds I'd love to hear them. I need to
-> run the 4.19 kernel since my laptop crashes on sleep with prior
-> versions.> 
-> Thanks in advance and apologies if this is an inappropriate venue for
-> this question.> 
-> -Chris
-> 
-> _________________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+--15410962010.feFaeA.16741
+Date: Thu, 1 Nov 2018 18:16:41 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108500
 
---_----------=_154102598831682900
-Content-Transfer-Encoding: 7bit
-Content-Type: text/html; charset="utf-8"
+--- Comment #9 from Timo Wiren <timo.wiren-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #8)
+> Could you edit
+> drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv50.c:nv50_vmm_valid, and cha=
+nge
+> it to set aper =3D 0 in the if (ram->stolen) case (so aper=3D0 in both of=
+ the
+> VRAM cases).
 
-<!DOCTYPE html>
+I tested it on kernel 4.18.16 and it caused a crash/hang on bootup. Some of=
+ the
+log messages (copied by hand):
+
+nouveau 0000:04:00.0: fb: trapped read at 015bc9dedc on channel 2 [0fba0000
+DRM] engine 05 [PFIFO] client 08 [PFIFO_READ] subclient 00 [PUSHBUF] reason
+0000000b [PT_NOT_PRESENT]
+nouveau 0000:04:00.0: fifo: DMA_PUSHER - ch 2 [DRM] get 015c25a7a4 put
+015c25a7a4 ib_get 000000a2 ib_put 000000a7 state a0000000 (err: IB_EMPTY)
+nouveau 0000:04:00.0: DRM: GPU lockup - switching to software fbcon
+nouveau 0000:04:00.0: fb: trapped write at 0100131fc0 on channel -1 [0fedf0=
+00
+unknown] engine 06 [BAR] client 04 [PFIFO_WRITE] subclient 01 [IN] reason
+000000b [VRAM_LIMIT]
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15410962010.feFaeA.16741
+Date: Thu, 1 Nov 2018 18:16:41 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
 <html>
-<head>
-<title></title>
-<style type="text/css">p.MsoNormal,p.MsoNoSpacing{margin:0}</style>
-</head>
-<body><div>Interestingly (at least to me) I switched to i3wm and this hasn't happened in days. Maybe something in Gnome tickles this bug? I should try KDE just for the halibut and see if it recurs.<br></div>
-<div><br></div>
-<div>-Chris<br></div>
-<div><br></div>
-<div><br></div>
-<div>On Sat, Oct 27, 2018, at 6:41 PM, Christopher Patti wrote:<br></div>
-<blockquote type="cite"><div dir="ltr"><span></span><br></div>
-<div dir="ltr"><div>Hi all. I've reported a bug over at the Ubuntu bug tracker: <a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1799180">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1799180</a><br></div>
-<div><br></div>
-<div>Given the logs in kern.log it certainly looks like the nouveau driver is the culprit. The system becomes incredibly slow ultimately becoming unusable, and the fan screams.<br></div>
-<div><br></div>
-<div>Full details including driver / kernel version and full kernel log over at the bug, but I see a bunch of:<br></div>
-<div><br></div>
-<div>Oct 27 17:01:44 yamato kernel: [&nbsp; 402.710539] nouveau 0000:01:00.0: DRM: base-0: timeout<br></div>
-<div><br></div>
-<div>in the kernel log as the system slows down.<br></div>
-<div><br></div>
-<div>I'd love to assist in solving this problem. However I'm not a driver developer but I know C, can build kernels and follow directions really well :)<br></div>
-<div><br></div>
-<div>Also if there are any work arounds I'd love to hear them. I need to run the 4.19 kernel since my laptop crashes on sleep with prior versions.<br></div>
-<div><br></div>
-<div>Thanks in advance and apologies if this is an inappropriate venue for this question.<br></div>
-<div><br></div>
-<div>-Chris<br></div>
-<div><br></div>
-</div>
-<div><u>_______________________________________________</u><br></div>
-<div>Nouveau mailing list<br></div>
-<div><a href="mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org</a><br></div>
-<div><a href="https://lists.freedesktop.org/mailman/listinfo/nouveau">https://lists.freedesktop.org/mailman/listinfo/nouveau</a><br></div>
-</blockquote><div><br></div>
-</body>
-</html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500#c9">Commen=
+t # 9</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500">bug 10850=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+timo.wiren&#64;gmail.com" title=3D"Timo Wiren &lt;timo.wiren&#64;gmail.com&=
+gt;"> <span class=3D"fn">Timo Wiren</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D108=
+500#c8">comment #8</a>)
+<span class=3D"quote">&gt; Could you edit
+&gt; drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv50.c:nv50_vmm_valid, and =
+change
+&gt; it to set aper =3D 0 in the if (ram-&gt;stolen) case (so aper=3D0 in b=
+oth of the
+&gt; VRAM cases).</span >
 
---_----------=_154102598831682900--
+I tested it on kernel 4.18.16 and it caused a crash/hang on bootup. Some of=
+ the
+log messages (copied by hand):
+
+nouveau 0000:04:00.0: fb: trapped read at 015bc9dedc on channel 2 [0fba0000
+DRM] engine 05 [PFIFO] client 08 [PFIFO_READ] subclient 00 [PUSHBUF] reason
+0000000b [PT_NOT_PRESENT]
+nouveau 0000:04:00.0: fifo: DMA_PUSHER - ch 2 [DRM] get 015c25a7a4 put
+015c25a7a4 ib_get 000000a2 ib_put 000000a7 state a0000000 (err: IB_EMPTY)
+nouveau 0000:04:00.0: DRM: GPU lockup - switching to software fbcon
+nouveau 0000:04:00.0: fb: trapped write at 0100131fc0 on channel -1 [0fedf0=
+00
+unknown] engine 06 [BAR] client 04 [PFIFO_WRITE] subclient 01 [IN] reason
+000000b [VRAM_LIMIT]</pre>
+        </div>
+      </p>
 
 
---===============0779881829==
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15410962010.feFaeA.16741--
+
+--===============2109149916==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +143,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0779881829==--
+--===============2109149916==--
