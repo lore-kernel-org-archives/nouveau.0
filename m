@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108500] Crash when creating a depth buffer on
- GeForce 320M
-Date: Thu, 01 Nov 2018 18:16:42 +0000
-Message-ID: <bug-108500-8800-DJFZhnAcQR@http.bugs.freedesktop.org/>
-References: <bug-108500-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 102349] nv4x crashing with plasmashell - gdb log
+ included
+Date: Fri, 02 Nov 2018 10:52:44 +0000
+Message-ID: <bug-102349-8800-qZZouSElrF@http.bugs.freedesktop.org/>
+References: <bug-102349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2109149916=="
+Content-Type: multipart/mixed; boundary="===============2014719175=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-102349-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,52 +21,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2109149916==
-Content-Type: multipart/alternative; boundary="15410962010.feFaeA.16741"
+--===============2014719175==
+Content-Type: multipart/alternative; boundary="15411559640.50aE6c6.23864"
 Content-Transfer-Encoding: 7bit
 
 
---15410962010.feFaeA.16741
-Date: Thu, 1 Nov 2018 18:16:41 +0000
+--15411559640.50aE6c6.23864
+Date: Fri, 2 Nov 2018 10:52:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108500
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102349
 
---- Comment #9 from Timo Wiren <timo.wiren-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #8)
-> Could you edit
-> drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv50.c:nv50_vmm_valid, and cha=
-nge
-> it to set aper =3D 0 in the if (ram->stolen) case (so aper=3D0 in both of=
- the
-> VRAM cases).
+Christian Tosta <christian.tosta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-I tested it on kernel 4.18.16 and it caused a crash/hang on bootup. Some of=
- the
-log messages (copied by hand):
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |christian.tosta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-nouveau 0000:04:00.0: fb: trapped read at 015bc9dedc on channel 2 [0fba0000
-DRM] engine 05 [PFIFO] client 08 [PFIFO_READ] subclient 00 [PUSHBUF] reason
-0000000b [PT_NOT_PRESENT]
-nouveau 0000:04:00.0: fifo: DMA_PUSHER - ch 2 [DRM] get 015c25a7a4 put
-015c25a7a4 ib_get 000000a2 ib_put 000000a7 state a0000000 (err: IB_EMPTY)
-nouveau 0000:04:00.0: DRM: GPU lockup - switching to software fbcon
-nouveau 0000:04:00.0: fb: trapped write at 0100131fc0 on channel -1 [0fedf0=
-00
-unknown] engine 06 [BAR] client 04 [PFIFO_WRITE] subclient 01 [IN] reason
-000000b [VRAM_LIMIT]
+--- Comment #12 from Christian Tosta <christian.tosta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 142336
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142336&action=3Dedit
+backtrace of plasmashell process
+
+Same problem here using Fedora 29 rpms. Backtrace attached.
+
+Device: NV44 GeForce 6600 LE 512MB DDR2
+
+System: Fedora 29 x86_64
+Mesa DRI drivers: 18.2.2-1.fc29
+Nouveau: 1.0.15-6.fc29
+Plasmashell: 5.13.5-1.fc29
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15410962010.feFaeA.16741
-Date: Thu, 1 Nov 2018 18:16:41 +0000
+--15411559640.50aE6c6.23864
+Date: Fri, 2 Nov 2018 10:52:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,46 +72,61 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:christian=
+.tosta&#64;gmail.com" title=3D"Christian Tosta &lt;christian.tosta&#64;gmai=
+l.com&gt;"> <span class=3D"fn">Christian Tosta</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349">bug 10234=
+9</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>christian.tosta&#64;gmail.com
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500#c9">Commen=
-t # 9</a>
+   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349#c12">Comme=
+nt # 12</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500">bug 10850=
-0</a>
+   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349">bug 10234=
+9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-timo.wiren&#64;gmail.com" title=3D"Timo Wiren &lt;timo.wiren&#64;gmail.com&=
-gt;"> <span class=3D"fn">Timo Wiren</span></a>
+christian.tosta&#64;gmail.com" title=3D"Christian Tosta &lt;christian.tosta=
+&#64;gmail.com&gt;"> <span class=3D"fn">Christian Tosta</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D108=
-500#c8">comment #8</a>)
-<span class=3D"quote">&gt; Could you edit
-&gt; drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmnv50.c:nv50_vmm_valid, and =
-change
-&gt; it to set aper =3D 0 in the if (ram-&gt;stolen) case (so aper=3D0 in b=
-oth of the
-&gt; VRAM cases).</span >
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142336=
+" name=3D"attach_142336" title=3D"backtrace of plasmashell process">attachm=
+ent 142336</a> <a href=3D"attachment.cgi?id=3D142336&amp;action=3Dedit" tit=
+le=3D"backtrace of plasmashell process">[details]</a></span>
+backtrace of plasmashell process
 
-I tested it on kernel 4.18.16 and it caused a crash/hang on bootup. Some of=
- the
-log messages (copied by hand):
+Same problem here using Fedora 29 rpms. Backtrace attached.
 
-nouveau 0000:04:00.0: fb: trapped read at 015bc9dedc on channel 2 [0fba0000
-DRM] engine 05 [PFIFO] client 08 [PFIFO_READ] subclient 00 [PUSHBUF] reason
-0000000b [PT_NOT_PRESENT]
-nouveau 0000:04:00.0: fifo: DMA_PUSHER - ch 2 [DRM] get 015c25a7a4 put
-015c25a7a4 ib_get 000000a2 ib_put 000000a7 state a0000000 (err: IB_EMPTY)
-nouveau 0000:04:00.0: DRM: GPU lockup - switching to software fbcon
-nouveau 0000:04:00.0: fb: trapped write at 0100131fc0 on channel -1 [0fedf0=
-00
-unknown] engine 06 [BAR] client 04 [PFIFO_WRITE] subclient 01 [IN] reason
-000000b [VRAM_LIMIT]</pre>
+Device: NV44 GeForce 6600 LE 512MB DDR2
+
+System: Fedora 29 x86_64
+Mesa DRI drivers: 18.2.2-1.fc29
+Nouveau: 1.0.15-6.fc29
+Plasmashell: 5.13.5-1.fc29</pre>
         </div>
       </p>
 
@@ -125,15 +135,14 @@ unknown] engine 06 [BAR] client 04 [PFIFO_WRITE] subclient 01 [IN] reason
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15410962010.feFaeA.16741--
+--15411559640.50aE6c6.23864--
 
---===============2109149916==
+--===============2014719175==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -143,4 +152,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2109149916==--
+--===============2014719175==--
