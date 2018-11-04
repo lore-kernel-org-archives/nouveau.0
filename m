@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108651] New: Screen flickering when using compositor
- with OpenGL backend
-Date: Sun, 04 Nov 2018 20:33:11 +0000
-Message-ID: <bug-108651-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 108651] Screen flickering when using compositor with
+ OpenGL backend
+Date: Sun, 04 Nov 2018 21:39:12 +0000
+Message-ID: <bug-108651-8800-9X7w7xwUOv@http.bugs.freedesktop.org/>
+References: <bug-108651-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1885795884=="
+Content-Type: multipart/mixed; boundary="===============1873017056=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-108651-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1885795884==
-Content-Type: multipart/alternative; boundary="15413635900.5e66.30864"
+--===============1873017056==
+Content-Type: multipart/alternative; boundary="15413675520.9A56EeCdf.6434"
 Content-Transfer-Encoding: 7bit
 
 
---15413635900.5e66.30864
-Date: Sun, 4 Nov 2018 20:33:10 +0000
+--15413675520.9A56EeCdf.6434
+Date: Sun, 4 Nov 2018 21:39:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,38 +36,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108651
 
-            Bug ID: 108651
-           Summary: Screen flickering when using compositor with OpenGL
-                    backend
-           Product: Mesa
-           Version: unspecified
-          Hardware: All
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: yshuiv7-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+How reproducible is this?
 
-Some users of both compton and nouveau have experienced screen flickering w=
-hen
-using the upgraded compton with GLX backend.
+Is there an easy way for me, a non-compton user, to see these issues without
+massive software installation? (Could I just run compton with windowmaker, =
+for
+example?)
 
-Nothing really changed in how compton uses OpenGL, so I suspect this could =
-be a
-driver bug.
-
-For details, please go to: https://github.com/yshui/compton/issues/33
+What version of mesa did this work with? Or what was the change that
+precipitates these issues?
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15413635900.5e66.30864
-Date: Sun, 4 Nov 2018 20:33:10 +0000
+--15413675520.9A56EeCdf.6434
+Date: Sun, 4 Nov 2018 21:39:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,100 +64,34 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Screen flickering when using compositor with OpenGL backe=
 nd"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108651">108651</a>
-          </td>
-        </tr>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108651#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Screen flickering when using compositor with OpenGL backe=
+nd"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108651">bug 10865=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>How reproducible is this?
 
-        <tr>
-          <th>Summary</th>
-          <td>Screen flickering when using compositor with OpenGL backend
-          </td>
-        </tr>
+Is there an easy way for me, a non-compton user, to see these issues without
+massive software installation? (Could I just run compton with windowmaker, =
+for
+example?)
 
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>yshuiv7&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Some users of both compton and nouveau have experienced screen=
- flickering when
-using the upgraded compton with GLX backend.
-
-Nothing really changed in how compton uses OpenGL, so I suspect this could =
-be a
-driver bug.
-
-For details, please go to: <a href=3D"https://github.com/yshui/compton/issu=
-es/33">https://github.com/yshui/compton/issues/33</a></pre>
+What version of mesa did this work with? Or what was the change that
+precipitates these issues?</pre>
         </div>
       </p>
 
@@ -184,9 +106,9 @@ es/33">https://github.com/yshui/compton/issues/33</a></pre>
     </body>
 </html>=
 
---15413635900.5e66.30864--
+--15413675520.9A56EeCdf.6434--
 
---===============1885795884==
+--===============1873017056==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -196,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1885795884==--
+--===============1873017056==--
