@@ -1,68 +1,167 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v5 5/5] drm/dp_mst: Stop unsetting mstc->port,
- check connector registration
-Date: Thu,  8 Nov 2018 18:10:43 -0500
-Message-ID: <20181108231043.24064-6-lyude@redhat.com>
-References: <20181108231043.24064-1-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108651] Screen flickering when using compositor with
+ OpenGL backend
+Date: Sat, 10 Nov 2018 18:44:17 +0000
+Message-ID: <bug-108651-8800-AJ3yAxNneD@http.bugs.freedesktop.org/>
+References: <bug-108651-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20181108231043.24064-1-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1969573238=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-108651-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2FtZSB0aGluZyB3ZSBkaWQgaW4gaTkxNSwgYnV0IGZvciBub3V2ZWF1IG5vdy4KClNpZ25lZC1v
-ZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkNjOiBEYW5pZWwgVmV0dGVyIDxk
-YW5pZWxAZmZ3bGwuY2g+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlz
-cC5jIHwgMTUgKysrKysrKy0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCsp
-LCA4IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rp
-c3BudjUwL2Rpc3AuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYwpp
-bmRleCAwNDY5ZWY5ZTFhNTQuLmZmMDRhNTZiNTk0OSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L2Rpc3BudjUwL2Rpc3AuYwpAQCAtNjk4LDggKzY5OCwxMCBAQCBudjUwX21zdG9fY2xlYW51cChz
-dHJ1Y3QgbnY1MF9tc3RvICptc3RvKQogCXN0cnVjdCBudjUwX21zdG0gKm1zdG0gPSBtc3RjLT5t
-c3RtOwogCiAJTlZfQVRPTUlDKGRybSwgIiVzOiBtc3RvIGNsZWFudXBcbiIsIG1zdG8tPmVuY29k
-ZXIubmFtZSk7Ci0JaWYgKG1zdGMtPnBvcnQgJiYgbXN0Yy0+cG9ydC0+dmNwaS52Y3BpID4gMCAm
-JiAhbnY1MF9tc3RvX3BheWxvYWQobXN0bykpCisJaWYgKCFkcm1fY29ubmVjdG9yX2lzX3VucmVn
-aXN0ZXJlZCgmbXN0Yy0+Y29ubmVjdG9yKSAmJgorCSAgICBtc3RjLT5wb3J0LT52Y3BpLnZjcGkg
-PiAwICYmICFudjUwX21zdG9fcGF5bG9hZChtc3RvKSkKIAkJZHJtX2RwX21zdF9kZWFsbG9jYXRl
-X3ZjcGkoJm1zdG0tPm1nciwgbXN0Yy0+cG9ydCk7CisKIAlpZiAobXN0by0+ZGlzYWJsZWQpIHsK
-IAkJbXN0by0+bXN0YyA9IE5VTEw7CiAJCW1zdG8tPmhlYWQgPSBOVUxMOwpAQCAtNzI1LDcgKzcy
-Nyw4IEBAIG52NTBfbXN0b19wcmVwYXJlKHN0cnVjdCBudjUwX21zdG8gKm1zdG8pCiAJfTsKIAog
-CU5WX0FUT01JQyhkcm0sICIlczogbXN0byBwcmVwYXJlXG4iLCBtc3RvLT5lbmNvZGVyLm5hbWUp
-OwotCWlmIChtc3RjLT5wb3J0ICYmIG1zdGMtPnBvcnQtPnZjcGkudmNwaSA+IDApIHsKKwlpZiAo
-IWRybV9jb25uZWN0b3JfaXNfdW5yZWdpc3RlcmVkKCZtc3RjLT5jb25uZWN0b3IpICYmCisJICAg
-IG1zdGMtPnBvcnQtPnZjcGkudmNwaSA+IDApIHsKIAkJc3RydWN0IGRybV9kcF9wYXlsb2FkICpw
-YXlsb2FkID0gbnY1MF9tc3RvX3BheWxvYWQobXN0byk7CiAJCWlmIChwYXlsb2FkKSB7CiAJCQlh
-cmdzLnZjcGkuc3RhcnRfc2xvdCA9IHBheWxvYWQtPnN0YXJ0X3Nsb3Q7CkBAIC04MjgsNyArODMx
-LDcgQEAgbnY1MF9tc3RvX2Rpc2FibGUoc3RydWN0IGRybV9lbmNvZGVyICplbmNvZGVyKQogCXN0
-cnVjdCBudjUwX21zdGMgKm1zdGMgPSBtc3RvLT5tc3RjOwogCXN0cnVjdCBudjUwX21zdG0gKm1z
-dG0gPSBtc3RjLT5tc3RtOwogCi0JaWYgKG1zdGMtPnBvcnQpCisJaWYgKCFkcm1fY29ubmVjdG9y
-X2lzX3VucmVnaXN0ZXJlZCgmbXN0Yy0+Y29ubmVjdG9yKSkKIAkJZHJtX2RwX21zdF9yZXNldF92
-Y3BpX3Nsb3RzKCZtc3RtLT5tZ3IsIG1zdGMtPnBvcnQpOwogCiAJbXN0bS0+b3V0cC0+dXBkYXRl
-KG1zdG0tPm91dHAsIG1zdG8tPmhlYWQtPmJhc2UuaW5kZXgsIE5VTEwsIDAsIDApOwpAQCAtOTY3
-LDcgKzk3MCw3IEBAIG52NTBfbXN0Y19kZXRlY3Qoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5l
-Y3RvciwgYm9vbCBmb3JjZSkKIAllbnVtIGRybV9jb25uZWN0b3Jfc3RhdHVzIGNvbm5fc3RhdHVz
-OwogCWludCByZXQ7CiAKLQlpZiAoIW1zdGMtPnBvcnQpCisJaWYgKGRybV9jb25uZWN0b3JfaXNf
-dW5yZWdpc3RlcmVkKCZtc3RjLT5jb25uZWN0b3IpKQogCQlyZXR1cm4gY29ubmVjdG9yX3N0YXR1
-c19kaXNjb25uZWN0ZWQ7CiAKIAlyZXQgPSBwbV9ydW50aW1lX2dldF9zeW5jKGNvbm5lY3Rvci0+
-ZGV2LT5kZXYpOwpAQCAtMTEwNSwxMCArMTEwOCw2IEBAIG52NTBfbXN0bV9kZXN0cm95X2Nvbm5l
-Y3RvcihzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9neV9tZ3IgKm1nciwKIAogCWRybV9mYl9oZWxw
-ZXJfcmVtb3ZlX29uZV9jb25uZWN0b3IoJmRybS0+ZmJjb24tPmhlbHBlciwgJm1zdGMtPmNvbm5l
-Y3Rvcik7CiAKLQlkcm1fbW9kZXNldF9sb2NrKCZkcm0tPmRldi0+bW9kZV9jb25maWcuY29ubmVj
-dGlvbl9tdXRleCwgTlVMTCk7Ci0JbXN0Yy0+cG9ydCA9IE5VTEw7Ci0JZHJtX21vZGVzZXRfdW5s
-b2NrKCZkcm0tPmRldi0+bW9kZV9jb25maWcuY29ubmVjdGlvbl9tdXRleCk7Ci0KIAlkcm1fY29u
-bmVjdG9yX3B1dCgmbXN0Yy0+Y29ubmVjdG9yKTsKIH0KIAotLSAKMi4xOS4xCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBs
-aXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============1969573238==
+Content-Type: multipart/alternative; boundary="15418754570.Dec4DB.23135"
+Content-Transfer-Encoding: 7bit
+
+
+--15418754570.Dec4DB.23135
+Date: Sat, 10 Nov 2018 18:44:17 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108651
+
+--- Comment #5 from John Lindgren <john-ytntcHzVV1kcWVvVuXF20w@public.gmane.org> ---
+This probably isn't specific to nouveau.  I am using Intel graphics
+(modesetting driver) and I was also bitten by screen flickering in compton
+after the switch to XCB (commits 43f3744fea07 and 7af815a0aaaf).
+
+It is specific to DRI2.  With DRI3 or software rendering
+(LIBGL_ALWAYS_SOFTWARE=3D1), the flickering goes away.
+
+Looking at mesa source (src/glx/dri2.c), DRI2 seems to be incompatible with=
+ xcb
+event processing due to usage of XESetWireToEvent()/XESetEventToWire(), whi=
+ch
+hook into the traditional Xlib event processing.  Without Xlib in the loop,
+DRI2 misses its Invalidate events and the result is that glXSwapBuffers()
+doesn't work as expected.  (Take a look at src/glx/dri2_glx.c -
+dri2XcbSwapBuffers() contains an explicit XSync() call to wait for Invalida=
+te
+events, which it never gets.)
+
+One workaround I found is to change the following line in src/glx/dri2_glx.=
+c:
+
+   pdp->invalidateAvailable =3D (pdp->driMinor >=3D 3);
+
+To this:
+
+   pdp->invalidateAvailable =3D 0;
+
+This causes mesa to think it's using an older X Server that doesn't send
+Invalidate events and use some kind of internal fallback.  It's enough to m=
+ake
+the flickering go away, but I don't know what other side effects it has.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15418754570.Dec4DB.23135
+Date: Sat, 10 Nov 2018 18:44:17 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Screen flickering when using compositor with OpenGL backe=
+nd"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108651#c5">Commen=
+t # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Screen flickering when using compositor with OpenGL backe=
+nd"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108651">bug 10865=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+john&#64;jlindgren.net" title=3D"John Lindgren &lt;john&#64;jlindgren.net&g=
+t;"> <span class=3D"fn">John Lindgren</span></a>
+</span></b>
+        <pre>This probably isn't specific to nouveau.  I am using Intel gra=
+phics
+(modesetting driver) and I was also bitten by screen flickering in compton
+after the switch to XCB (commits 43f3744fea07 and 7af815a0aaaf).
+
+It is specific to DRI2.  With DRI3 or software rendering
+(LIBGL_ALWAYS_SOFTWARE=3D1), the flickering goes away.
+
+Looking at mesa source (src/glx/dri2.c), DRI2 seems to be incompatible with=
+ xcb
+event processing due to usage of XESetWireToEvent()/XESetEventToWire(), whi=
+ch
+hook into the traditional Xlib event processing.  Without Xlib in the loop,
+DRI2 misses its Invalidate events and the result is that glXSwapBuffers()
+doesn't work as expected.  (Take a look at src/glx/dri2_glx.c -
+dri2XcbSwapBuffers() contains an explicit XSync() call to wait for Invalida=
+te
+events, which it never gets.)
+
+One workaround I found is to change the following line in src/glx/dri2_glx.=
+c:
+
+   pdp-&gt;invalidateAvailable =3D (pdp-&gt;driMinor &gt;=3D 3);
+
+To this:
+
+   pdp-&gt;invalidateAvailable =3D 0;
+
+This causes mesa to think it's using an older X Server that doesn't send
+Invalidate events and use some kind of internal fallback.  It's enough to m=
+ake
+the flickering go away, but I don't know what other side effects it has.</p=
+re>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15418754570.Dec4DB.23135--
+
+--===============1969573238==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1969573238==--
