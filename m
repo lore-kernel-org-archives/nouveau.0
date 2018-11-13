@@ -1,10 +1,13 @@
-From: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Question on IPA on GM107
-Date: Mon, 12 Nov 2018 19:10:57 -0400
-Message-ID: <CA+MSTo8ZOXbqEMfmz_Cv8gQ90smPNgpkNMWbGRG4uNc6fmDkHQ@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Question on IPA on GM107
+Date: Mon, 12 Nov 2018 19:16:15 -0500
+Message-ID: <CAKb7UviKinhhOLXqXNZs7v4=4F1u4++uo4h-kNX0KzjSzGxT7Q@mail.gmail.com>
+References: <CA+MSTo8ZOXbqEMfmz_Cv8gQ90smPNgpkNMWbGRG4uNc6fmDkHQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1944903471=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CA+MSTo8ZOXbqEMfmz_Cv8gQ90smPNgpkNMWbGRG4uNc6fmDkHQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -14,68 +17,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1944903471==
-Content-Type: multipart/alternative; boundary="000000000000f12f1a057a7fd010"
-
---000000000000f12f1a057a7fd010
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-So I'm trying to track an special value in IPA instruction generation.
-https://cgit.freedesktop.org/mesa/mesa/tree/src/gallium/drivers/nouveau/cod=
-egen/nv50_ir_emit_gm107.cpp#L2561
-
-Register on 0x14 (20) is set to some source on "insn->op =3D=3D OP_PINTERP"
-
-I have found while emulation that such value can be set sometimes to
-FragCoord.w, I don't however know what that value is and how to represent
-it on glsl. Do you guys know where does that value come from and what it
-means?
-
---=20
-Atentamente,
-*Fernando A. Sahmkow*
-*M=C3=B3vil*: +584242280286
-*Correo*: fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---000000000000f12f1a057a7fd010
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">So I&#39;m trying to track an special val=
-ue in IPA instruction generation.<div><a href=3D"https://cgit.freedesktop.o=
-rg/mesa/mesa/tree/src/gallium/drivers/nouveau/codegen/nv50_ir_emit_gm107.cp=
-p#L2561">https://cgit.freedesktop.org/mesa/mesa/tree/src/gallium/drivers/no=
-uveau/codegen/nv50_ir_emit_gm107.cpp#L2561</a></div><div><br></div><div>Reg=
-ister on 0x14 (20) is set to some source on &quot;<span style=3D"color:rgb(=
-0,0,0);font-size:13.3333px">insn-&gt;op =3D=3D OP_PINTERP&quot;</span></div=
-><div><font color=3D"#000000"><span style=3D"font-size:13.3333px"><br></spa=
-n></font></div><div><font color=3D"#000000"><span style=3D"font-size:13.333=
-3px">I have found while emulation that such value can be set sometimes to F=
-ragCoord.w, I don&#39;t however know what that value is and how to represen=
-t it on glsl. Do you guys know where does that value come from and what it =
-means?<br></span></font><div><br></div>-- <br><div dir=3D"ltr" class=3D"gma=
-il_signature"><div dir=3D"ltr"><div><div><div><div><div><div><div>Atentamen=
-te,</div></div></div></div></div></div></div><div><span style=3D"color:rgb(=
-0,0,255)"><b>Fernando A. Sahmkow</b></span></div><div><b>M=C3=B3vil</b>:=C2=
-=A0<a value=3D"+584242280286" style=3D"color:rgb(17,85,204)">+584242280286<=
-/a><br></div><b>Correo</b>:=C2=A0<a href=3D"mailto:fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" st=
-yle=3D"color:rgb(17,85,204)" target=3D"_blank">fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a></di=
-v></div></div></div></div>
-
---000000000000f12f1a057a7fd010--
-
---===============1944903471==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1944903471==--
+T24gTW9uLCBOb3YgMTIsIDIwMTggYXQgNjoxMSBQTSBGZXJuYW5kbyBTYWhta293IDxmc2FobWtv
+dzI3QGdtYWlsLmNvbT4gd3JvdGU6Cj4KPiBTbyBJJ20gdHJ5aW5nIHRvIHRyYWNrIGFuIHNwZWNp
+YWwgdmFsdWUgaW4gSVBBIGluc3RydWN0aW9uIGdlbmVyYXRpb24uCj4gaHR0cHM6Ly9jZ2l0LmZy
+ZWVkZXNrdG9wLm9yZy9tZXNhL21lc2EvdHJlZS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
+Y29kZWdlbi9udjUwX2lyX2VtaXRfZ20xMDcuY3BwI0wyNTYxCj4KPiBSZWdpc3RlciBvbiAweDE0
+ICgyMCkgaXMgc2V0IHRvIHNvbWUgc291cmNlIG9uICJpbnNuLT5vcCA9PSBPUF9QSU5URVJQIgo+
+Cj4gSSBoYXZlIGZvdW5kIHdoaWxlIGVtdWxhdGlvbiB0aGF0IHN1Y2ggdmFsdWUgY2FuIGJlIHNl
+dCBzb21ldGltZXMgdG8gRnJhZ0Nvb3JkLncsIEkgZG9uJ3QgaG93ZXZlciBrbm93IHdoYXQgdGhh
+dCB2YWx1ZSBpcyBhbmQgaG93IHRvIHJlcHJlc2VudCBpdCBvbiBnbHNsLiBEbyB5b3UgZ3V5cyBr
+bm93IHdoZXJlIGRvZXMgdGhhdCB2YWx1ZSBjb21lIGZyb20gYW5kIHdoYXQgaXQgbWVhbnM/CgpJ
+dCdzIGZvciBwZXJzcGVjdGl2ZSBkaXZpc2lvbi4gSWYgeW91J3JlIGRvaW5nIHBlcnNwZWN0aXZl
+CmludGVycG9sYXRpb24sIHlvdSBoYXZlIHRvIHBhc3MgaW4gMS93IGFzIHRoYXQgYXJndW1lbnQg
+KGFuZCBzZXQgdGhlCmludGVycG9sYXRpb24gbW9kZSB0byAibXVsIiwgd2hpY2ggaWlyYyBkb2Vz
+bid0IGNhdXNlIGFueXRoaW5nIHRvIGJlCnByaW50ZWQgaW4gbnZkaXNhc20pLgoKTm90ZSB0aGF0
+IHRoZXJlJ3MgYWRkaXRpb25hbCBzdWJ0bGV0eSBoZXJlIC4uLiB0aGUgaGFyZHdhcmUgd2lsbCBk
+bwpkaWZmZXJlbnQgdGhpbmdzIGRlcGVuZGluZyBvbiB3aGF0J3MgaW4gdGhlIHNoYWRlciBoZWFk
+ZXIsIGFzIHdlbGwgYXMKb24gdGhlIGdsb2JhbCAic2hhZGUgbW9kZWwiIHdoaWNoIGNhbiBiZSBz
+ZXQgdG8gImZsYXQiLiBIb3dldmVyIGlmCnlvdSdyZSBjb252ZXJ0aW5nIHRvIEdMU0wsCgpJUEEg
+PSBwZXJzcGVjdGl2ZSBpbnRlcnAKSVBBLlBBU1MgPSBsaW5lYXIgaW50ZXJwIChpLmUuICJub3Bl
+cnNwZWN0aXZlIiBpbiBHTFNMKQpJUEEuQ09OU1RBTlQgPSBmbGF0IGludGVycCAoaS5lLiAiZmxh
+dCIgaW4gR0xTTCkKSVBBLlNDID0gd2UgdXNlIHRoaXMgZm9yIGdsX0NvbG9yLiBJICp0aGluayog
+aXQncyBvbmx5IHRoaXMgd2hpY2ggaXMKYWZmZWN0ZWQgYnkgdGhlIGdsb2JhbCAic2hhZGUgbW9k
+ZWwiIHNldHRpbmcuIEJ1dCBkb24ndCBxdW90ZSBtZSBvbgp0aGlzLgoKTm93LCB0aGUgY29udGVu
+dHMgb2YgdGhlIHNoYWRlciBoZWFkZXIgd2lsbCBhZmZlY3QgdGhlIGJhcnljZW50cmljCmNvb3Jk
+aW5hdGVzIHRoYXQgYXJlIGNvbXB1dGVkIGFuZCBhcmUgbWFkZSBhdmFpbGFibGUgdG8gdGhlIElQ
+QSBsb2dpYywKc28geW91IGNhbid0IGhhdmUgdG9vIG11Y2ggZGlzYWdyZWVtZW50LiBIb3dldmVy
+IGlmIHRoZSBzaGFkZXIgaGVhZGVyCnNheXMgImZsYXQiLCB0aGVuIGZsYXQgaW50ZXJwIGlzIHdo
+YXQgeW91J2xsIGdldCBubyBtYXR0ZXIgdGhlIElQQS4qCm1vZGUuIFdlIHVzZSB0aGlzIGZlYXR1
+cmUgdG8gZGVhbCB3aXRoIGEgc2l0dWF0aW9uIHdoZXJlIHlvdSBlLmcuIGhhdmUKCm5vcGVyc3Bl
+Y3RpdmUgZ2xfQ29sb3IKZ2xfU2Vjb25kYXJ5Q29sb3IKCmFuZCB0aGVuIGdsU2hhZGVNb2RlbChH
+TF9GTEFUKSAtLSB0aGlzIGlzIHN1cHBvc2VkIHRvIG9ubHkgYWZmZWN0IHRoZQpnbF9TZWNvbmRh
+cnlDb2xvciwgc2luY2UgdGhlIGdsX0NvbG9yIGhhcyBhbiBleHBsaWNpdCBpbnRlcnBvbGF0aW9u
+Cm1vZGUsIHNvIHdlIGp1c3QgbWVzcyB3aXRoIHRoZSBzaGFkZXIgaGVhZGVyLiBZb3UgY2FuIHNl
+ZSBzb21lIG9mIHRoaXMKYXQgd29yayBhdAoKaHR0cHM6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9t
+ZXNhL21lc2EvdHJlZS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NoYWRl
+cl9zdGF0ZS5jI24xMDQKCkNoZWVycywKCiAgLWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9ub3V2ZWF1Cg==
