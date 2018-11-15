@@ -1,48 +1,41 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH] drm/nouveau: Check rc from drm_dp_mst_topology_mgr_resume()
-Date: Wed, 14 Nov 2018 20:39:51 -0500
-Message-ID: <20181115013954.587-1-lyude@redhat.com>
+From: YueHaibing <yuehaibing@huawei.com>
+Subject: [PATCH -next] drm/nouveau: fix copy-paste error in nouveau_fence_wait_uevent_handler
+Date: Thu, 15 Nov 2018 12:14:02 +0000
+Message-ID: <1542284042-153903-1-git-send-email-yuehaibing@huawei.com>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <stable-owner@vger.kernel.org>
-Sender: stable-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Sean Paul <seanpaul@chromium.org>, Ilia Mirkin <imirkin@alum.mit.edu>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>
+Cc: YueHaibing <yuehaibing@huawei.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-We need to actually make sure we check this on resume since otherwise we
-won't know whether or not the topology is still there once we've
-resumed, which will cause us to still think the topology is connected
-even after it's been removed if the removal happens mid-suspend.
+Fixes gcc '-Wunused-but-set-variable' warning:
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: stable@vger.kernel.org
+drivers/gpu/drm/nouveau/nouveau_fence.c: In function 'nouveau_fence_wait_uevent_handler':
+drivers/gpu/drm/nouveau/nouveau_fence.c:156:27: warning:
+ variable 'chan' set but not used [-Wunused-but-set-variable]
+
+nouveau_fence_update should use rcu protected 'chan'
+rather than 'fence->channel'
+
+Fixes: 0ec5f02f0e2c ("drm/nouveau: prevent stale fence->channel pointers, and protect with rcu")
+Signed-off-by: YueHaibing <yuehaibing@huawei.com>
 ---
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_fence.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 6cbbae3f438b..6aa3521b6326 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -1255,8 +1255,16 @@ nv50_mstm_fini(struct nv50_mstm *mstm)
- static void
- nv50_mstm_init(struct nv50_mstm *mstm)
- {
--	if (mstm && mstm->mgr.mst_state)
--		drm_dp_mst_topology_mgr_resume(&mstm->mgr);
-+	int ret;
-+
-+	if (!mstm || !mstm->mgr.mst_state)
-+		return;
-+
-+	ret = drm_dp_mst_topology_mgr_resume(&mstm->mgr);
-+	if (ret == -1) {
-+		drm_dp_mst_topology_mgr_set_mst(&mstm->mgr, false);
-+		drm_kms_helper_hotplug_event(mstm->mgr.dev);
-+	}
- }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
+index d4964f3..91286d0 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fence.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+@@ -157,7 +157,7 @@
  
- static void
--- 
-2.19.1
+ 		fence = list_entry(fctx->pending.next, typeof(*fence), head);
+ 		chan = rcu_dereference_protected(fence->channel, lockdep_is_held(&fctx->lock));
+-		if (nouveau_fence_update(fence->channel, fctx))
++		if (nouveau_fence_update(chan, fctx))
+ 			ret = NVIF_NOTIFY_DROP;
+ 	}
+ 	spin_unlock_irqrestore(&fctx->lock, flags);
