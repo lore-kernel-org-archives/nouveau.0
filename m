@@ -1,41 +1,44 @@
-From: Sasha Levin <alexander.levin-0li6OtcxBFHby3iVrkZq2A@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Check rc from
- drm_dp_mst_topology_mgr_resume()
-Date: Thu, 15 Nov 2018 18:05:33 +0000
-Message-ID: <20181115180534.B57C3208E7@mail.kernel.org>
-References: <20181115013954.587-1-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v6 0/6] drm/dp_mst: Improve VCPI helpers,
+ use in nouveau
+Date: Thu, 15 Nov 2018 19:50:02 -0500
+Message-ID: <20181116005008.7243-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20181115013954.587-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Sasha Levin <alexander.levin-0li6OtcxBFHby3iVrkZq2A@public.gmane.org>, Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpbVGhpcyBpcyBhbiBhdXRvbWF0ZWQgZW1haWxdCgpUaGlzIGNvbW1pdCBoYXMgYmVlbiBw
-cm9jZXNzZWQgYmVjYXVzZSBpdCBjb250YWlucyBhIC1zdGFibGUgdGFnLgpUaGUgc3RhYmxlIHRh
-ZyBpbmRpY2F0ZXMgdGhhdCBpdCdzIHJlbGV2YW50IGZvciB0aGUgZm9sbG93aW5nIHRyZWVzOiBh
-bGwKClRoZSBib3QgaGFzIHRlc3RlZCB0aGUgZm9sbG93aW5nIHRyZWVzOiB2NC4xOS4yLCB2NC4x
-OC4xOSwgdjQuMTQuODEsIHY0LjkuMTM3LCB2NC40LjE2MywgdjMuMTguMTI1LgoKdjQuMTkuMjog
-QnVpbGQgT0shCnY0LjE4LjE5OiBCdWlsZCBPSyEKdjQuMTQuODE6IEZhaWxlZCB0byBhcHBseSEg
-UG9zc2libGUgZGVwZW5kZW5jaWVzOgogICAgVW5hYmxlIHRvIGNhbGN1bGF0ZQoKdjQuOS4xMzc6
-IEZhaWxlZCB0byBhcHBseSEgUG9zc2libGUgZGVwZW5kZW5jaWVzOgogICAgZjQ3OWMwYmE0YTE3
-ICgiZHJtL25vdXZlYXUva21zL252NTA6IGluaXRpYWwgc3VwcG9ydCBmb3IgRFAgMS4yIG11bHRp
-LXN0cmVhbSIpCgp2NC40LjE2MzogRmFpbGVkIHRvIGFwcGx5ISBQb3NzaWJsZSBkZXBlbmRlbmNp
-ZXM6CiAgICBmNDc5YzBiYTRhMTcgKCJkcm0vbm91dmVhdS9rbXMvbnY1MDogaW5pdGlhbCBzdXBw
-b3J0IGZvciBEUCAxLjIgbXVsdGktc3RyZWFtIikKCnYzLjE4LjEyNTogRmFpbGVkIHRvIGFwcGx5
-ISBQb3NzaWJsZSBkZXBlbmRlbmNpZXM6CiAgICBmNDc5YzBiYTRhMTcgKCJkcm0vbm91dmVhdS9r
-bXMvbnY1MDogaW5pdGlhbCBzdXBwb3J0IGZvciBEUCAxLjIgbXVsdGktc3RyZWFtIikKCgotLQpU
-aGFua3MsClNhc2hhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+VGhpcyBwYXRjaHNldCBkb2VzIHNvbWUgY2xlYW5pbmcgdXAgb2YgdGhlIGF0b21pYyBWQ1BJIGhl
+bHBlcnMgZm9yIE1TVCwKYW5kIGNvbnZlcnRzIG5vdXZlYXUgb3ZlciB0byB1c2luZyB0aGVtLiBJ
+IHdvdWxkIGhhdmUgaW5jbHVkZWQgYW1kZ3B1IGluCnRoaXMgcGF0Y2ggYXMgd2VsbCwgYnV0IGF0
+IHRoZSBtb21lbnQgbW92aW5nIHRoZW0gb3ZlciB0byB0aGUgYXRvbWljCmhlbHBlcnMgaXMgbm9u
+dHJpdmlhbC4KCltzb3JyeSBmb3Igc3RpbGwgbm90IGFkZGluZyB5b3VyIFItQnMhIEkgZW5kZWQg
+dXAgbmVlZGluZyB0byBtYWtlIGEKbG90IG9mIGNoYW5nZXMgdG8gbWFrZSBpdCBzbyB3ZSBkbyBh
+Y3R1YWxseSBrcmVmKCkgZWFjaCBwb3J0IGluIHRoZQphdG9taWMgc3RhdGVdCkNjOiBEYW5pZWwg
+VmV0dGVyIDxkYW5pZWxAZmZ3bGwuY2g+CgpMeXVkZSBQYXVsICg2KToKICBkcm0vZHBfbXN0OiBB
+ZGQgc29tZSBhdG9taWMgc3RhdGUgaXRlcmF0b3IgbWFjcm9zCiAgZHJtL2RwX21zdDogUmV0dXJu
+IGtyZWZfcHV0KCkgcmVzdWx0IGZyb20gZHJtX2RwX3B1dF9wb3J0KCkKICBkcm0vZHBfbXN0OiBT
+dGFydCB0cmFja2luZyBwZXItcG9ydCBWQ1BJIGFsbG9jYXRpb25zCiAgZHJtL2RwX21zdDogQ2hl
+Y2sgcGF5bG9hZCBjb3VudCBpbiBkcm1fZHBfbXN0X2F0b21pY19jaGVjaygpCiAgZHJtL25vdXZl
+YXU6IFN0b3AgdW5zZXR0aW5nIG1zdGMtPnBvcnQsIGNoZWNrIGNvbm5lY3RvciByZWdpc3RyYXRp
+b24KICBkcm0vbm91dmVhdTogVXNlIGF0b21pYyBWQ1BJIGhlbHBlcnMgZm9yIE1TVAoKIGRyaXZl
+cnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMgICB8IDMwNyArKysrKysrKysrKysrKysr
+KysrKystLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rpc3BsYXkuYyAgICB8ICAgNCAr
+CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcF9tc3QuYyAgICAgfCAgNjQgKysrLS0KIGRy
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyB8ICA2NyArKysrLS0KIGluY2x1
+ZGUvZHJtL2RybV9kcF9tc3RfaGVscGVyLmggICAgICAgICB8IDEwMSArKysrKysrLQogNSBmaWxl
+cyBjaGFuZ2VkLCA0NTkgaW5zZXJ0aW9ucygrKSwgODQgZGVsZXRpb25zKC0pCgotLSAKMi4xOS4x
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
+ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
