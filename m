@@ -1,93 +1,142 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v6 6/6] drm/nouveau: Use atomic VCPI helpers for
- MST
-Date: Thu, 15 Nov 2018 19:50:08 -0500
-Message-ID: <20181116005008.7243-7-lyude@redhat.com>
-References: <20181116005008.7243-1-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 106512] Fatal: NVIDIA GEFORCE 320M MCP89: Can't
+ start X on kernel 4.15
+Date: Fri, 16 Nov 2018 14:35:17 +0000
+Message-ID: <bug-106512-8800-912rDQ6Z9H@http.bugs.freedesktop.org/>
+References: <bug-106512-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <20181116005008.7243-1-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Content-Type: multipart/mixed; boundary="===============1754883744=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-106512-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Q3VycmVudGx5LCBub3V2ZWF1IHVzZXMgdGhlIHlvbG8gbWV0aG9kIG9mIHNldHRpbmcgdXAgTVNU
-IGRpc3BsYXlzOiBpdAp1c2VzIHRoZSBvbGQgVkNQSSBoZWxwZXJzIChkcm1fZHBfZmluZF92Y3Bp
-X3Nsb3RzKCkpIGZvciBjb21wdXRpbmcgdGhlCmRpc3BsYXkgY29uZmlndXJhdGlvbi4gVGhlc2Ug
-aGVscGVycyBkb24ndCB0YWtlIGNhcmUgdG8gbWFrZSBzdXJlIHRoZXkKdGFrZSBhIHJlZmVyZW5j
-ZSB0byB0aGUgbXN0YiBwb3J0IHRoYXQgdGhleSdyZSBjaGVja2luZywgYW5kCmFkZGl0aW9uYWxs
-eSBkb24ndCBhY3R1YWxseSBjaGVjayB3aGV0aGVyIG9yIG5vdCB0aGUgdG9wb2xvZ3kgc3RpbGwg
-aGFzCmVub3VnaCBiYW5kd2lkdGggdG8gcHJvdmlkZSB0aGUgVkNQSSB0b2tlbnMgcmVxdWlyZWQu
-CgpTbywgZHJvcCB1c2FnZSBvZiB0aGUgb2xkIGhlbHBlcnMgYW5kIG1vdmUgZW50aXJlbHkgb3Zl
-ciB0byB0aGUgYXRvbWljCmhlbHBlcnMuCgpDaGFuZ2VzIHNpbmNlIHY1OgogLSBVcGRhdGUgbnY1
-MF9tc3RvX2F0b21pY19jaGVjaygpIGFuZCBudjUwX21zdGNfYXRvbWljX2NoZWNrKCkgdG8gdGhl
-CiAgIG5ldyByZXF1aXJlbWVudHMgZm9yIGRybV9kcF9hdG9taWNfZmluZF92Y3BpX3Nsb3RzKCkg
-YW5kCiAgIGRybV9kcF9hdG9taWNfcmVsZWFzZV92Y3BpX3Nsb3RzKCkKClNpZ25lZC1vZmYtYnk6
-IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwu
-dmV0dGVyQGZmd2xsLmNoPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rp
-c3AuYyB8IDUyICsrKysrKysrKysrKysrKysrKysrKystLS0KIDEgZmlsZSBjaGFuZ2VkLCA0NiBp
-bnNlcnRpb25zKCspLCA2IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3Bu
-djUwL2Rpc3AuYwppbmRleCBmMjE2ZmQ0MjA3YzkuLjgzY2IxYWZiOTRlZCAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYwpAQCAtNzUwLDE2ICs3NTAsMjIgQEAgbnY1MF9t
-c3RvX2F0b21pY19jaGVjayhzdHJ1Y3QgZHJtX2VuY29kZXIgKmVuY29kZXIsCiAJCSAgICAgICBz
-dHJ1Y3QgZHJtX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCiAJCSAgICAgICBzdHJ1Y3QgZHJtX2Nv
-bm5lY3Rvcl9zdGF0ZSAqY29ubl9zdGF0ZSkKIHsKLQlzdHJ1Y3QgbnY1MF9tc3RjICptc3RjID0g
-bnY1MF9tc3RjKGNvbm5fc3RhdGUtPmNvbm5lY3Rvcik7CisJc3RydWN0IGRybV9hdG9taWNfc3Rh
-dGUgKnN0YXRlID0gY3J0Y19zdGF0ZS0+c3RhdGU7CisJc3RydWN0IGRybV9jb25uZWN0b3IgKmNv
-bm5lY3RvciA9IGNvbm5fc3RhdGUtPmNvbm5lY3RvcjsKKwlzdHJ1Y3QgbnY1MF9tc3RjICptc3Rj
-ID0gbnY1MF9tc3RjKGNvbm5lY3Rvcik7CiAJc3RydWN0IG52NTBfbXN0bSAqbXN0bSA9IG1zdGMt
-Pm1zdG07Ci0JaW50IGJwcCA9IGNvbm5fc3RhdGUtPmNvbm5lY3Rvci0+ZGlzcGxheV9pbmZvLmJw
-YyAqIDM7CisJaW50IGJwcCA9IGNvbm5lY3Rvci0+ZGlzcGxheV9pbmZvLmJwYyAqIDM7CiAJaW50
-IHNsb3RzOwogCi0JbXN0Yy0+cGJuID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoY3J0Y19zdGF0ZS0+
-YWRqdXN0ZWRfbW9kZS5jbG9jaywgYnBwKTsKKwltc3RjLT5wYm4gPSBkcm1fZHBfY2FsY19wYm5f
-bW9kZShjcnRjX3N0YXRlLT5hZGp1c3RlZF9tb2RlLmNsb2NrLAorCQkJCQkgYnBwKTsKIAotCXNs
-b3RzID0gZHJtX2RwX2ZpbmRfdmNwaV9zbG90cygmbXN0bS0+bWdyLCBtc3RjLT5wYm4pOwotCWlm
-IChzbG90cyA8IDApCi0JCXJldHVybiBzbG90czsKKwlpZiAoY3J0Y19zdGF0ZS0+Y29ubmVjdG9y
-c19jaGFuZ2VkIHx8IGNydGNfc3RhdGUtPm1vZGVfY2hhbmdlZCkgeworCQlzbG90cyA9IGRybV9k
-cF9hdG9taWNfZmluZF92Y3BpX3Nsb3RzKHN0YXRlLCAmbXN0bS0+bWdyLAorCQkJCQkJICAgICAg
-bXN0Yy0+cG9ydCwgbXN0Yy0+cGJuKTsKKwkJaWYgKHNsb3RzIDwgMCkKKwkJCXJldHVybiBzbG90
-czsKKwl9CiAKIAlyZXR1cm4gbnY1MF9vdXRwX2F0b21pY19jaGVja192aWV3KGVuY29kZXIsIGNy
-dGNfc3RhdGUsIGNvbm5fc3RhdGUsCiAJCQkJCSAgIG1zdGMtPm5hdGl2ZSk7CkBAIC05MjMsMTIg
-KzkyOSw0MiBAQCBudjUwX21zdGNfZ2V0X21vZGVzKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25u
-ZWN0b3IpCiAJcmV0dXJuIHJldDsKIH0KIAorc3RhdGljIGludAorbnY1MF9tc3RjX2F0b21pY19j
-aGVjayhzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAorCQkgICAgICAgc3RydWN0IGRy
-bV9jb25uZWN0b3Jfc3RhdGUgKm5ld19jb25uX3N0YXRlKQoreworCXN0cnVjdCBkcm1fYXRvbWlj
-X3N0YXRlICpzdGF0ZSA9IG5ld19jb25uX3N0YXRlLT5zdGF0ZTsKKwlzdHJ1Y3QgbnY1MF9tc3Rj
-ICptc3RjID0gbnY1MF9tc3RjKGNvbm5lY3Rvcik7CisJc3RydWN0IGRybV9kcF9tc3RfdG9wb2xv
-Z3lfbWdyICptZ3IgPSAmbXN0Yy0+bXN0bS0+bWdyOworCXN0cnVjdCBkcm1fY29ubmVjdG9yX3N0
-YXRlICpvbGRfY29ubl9zdGF0ZSA9CisJCWRybV9hdG9taWNfZ2V0X29sZF9jb25uZWN0b3Jfc3Rh
-dGUoc3RhdGUsIGNvbm5lY3Rvcik7CisJc3RydWN0IGRybV9jcnRjX3N0YXRlICpvbGRfY3J0Y19z
-dGF0ZTsKKwlzdHJ1Y3QgZHJtX2NydGMgKm5ld19jcnRjID0gbmV3X2Nvbm5fc3RhdGUtPmNydGMs
-CisJCQkqb2xkX2NydGMgPSBvbGRfY29ubl9zdGF0ZS0+Y3J0YzsKKworCWlmICghb2xkX2NydGMp
-CisJCXJldHVybiAwOworCisJb2xkX2NydGNfc3RhdGUgPSBkcm1fYXRvbWljX2dldF9vbGRfY3J0
-Y19zdGF0ZShzdGF0ZSwgb2xkX2NydGMpOworCWlmICghb2xkX2NydGNfc3RhdGUgfHwgIW9sZF9j
-cnRjX3N0YXRlLT5lbmFibGUpCisJCXJldHVybiAwOworCisJaWYgKG5ld19jcnRjKQorCQlyZXR1
-cm4gMDsKKworCS8qIFRoaXMgY29ubmVjdG9yIHdpbGwgYmUgbGVmdCB3aXRob3V0IGFuIGVuYWJs
-ZWQgQ1JUQywgc28gaXRzIFZDUEkKKwkgKiBtdXN0IGJlIHJlbGVhc2VkIGhlcmUKKwkgKi8KKwly
-ZXR1cm4gZHJtX2RwX2F0b21pY19yZWxlYXNlX3ZjcGlfc2xvdHMoc3RhdGUsIG1nciwgbXN0Yy0+
-cG9ydCk7Cit9CisKIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9oZWxwZXJfZnVu
-Y3MKIG52NTBfbXN0Y19oZWxwID0gewogCS5nZXRfbW9kZXMgPSBudjUwX21zdGNfZ2V0X21vZGVz
-LAogCS5tb2RlX3ZhbGlkID0gbnY1MF9tc3RjX21vZGVfdmFsaWQsCiAJLmJlc3RfZW5jb2RlciA9
-IG52NTBfbXN0Y19iZXN0X2VuY29kZXIsCiAJLmF0b21pY19iZXN0X2VuY29kZXIgPSBudjUwX21z
-dGNfYXRvbWljX2Jlc3RfZW5jb2RlciwKKwkuYXRvbWljX2NoZWNrID0gbnY1MF9tc3RjX2F0b21p
-Y19jaGVjaywKIH07CiAKIHN0YXRpYyBlbnVtIGRybV9jb25uZWN0b3Jfc3RhdHVzCkBAIC0yMTA4
-LDYgKzIxNDQsMTAgQEAgbnY1MF9kaXNwX2F0b21pY19jaGVjayhzdHJ1Y3QgZHJtX2RldmljZSAq
-ZGV2LCBzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUpCiAJCQlyZXR1cm4gcmV0OwogCX0K
-IAorCXJldCA9IGRybV9kcF9tc3RfYXRvbWljX2NoZWNrKHN0YXRlKTsKKwlpZiAocmV0KQorCQly
-ZXR1cm4gcmV0OworCiAJcmV0dXJuIDA7CiB9CiAKLS0gCjIuMTkuMQoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+--===============1754883744==
+Content-Type: multipart/alternative; boundary="15423789170.396dc8E1.16114"
+Content-Transfer-Encoding: 7bit
+
+
+--15423789170.396dc8E1.16114
+Date: Fri, 16 Nov 2018 14:35:17 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106512
+
+Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|FIXED                       |---
+
+--- Comment #6 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+it is still an issue
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15423789170.396dc8E1.16114
+Date: Fri, 16 Nov 2018 14:35:17 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:karolherb=
+st&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.com&gt;">=
+ <span class=3D"fn">Karol Herbst</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Fatal: NVIDIA GEFORCE 320M MCP89: Can't start X on k=
+ernel 4.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106512">bug 10651=
+2</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>FIXED
+           </td>
+           <td>---
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Fatal: NVIDIA GEFORCE 320M MCP89: Can't start X on k=
+ernel 4.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106512#c6">Commen=
+t # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Fatal: NVIDIA GEFORCE 320M MCP89: Can't start X on k=
+ernel 4.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106512">bug 10651=
+2</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+</span></b>
+        <pre>it is still an issue</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15423789170.396dc8E1.16114--
+
+--===============1754883744==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1754883744==--
