@@ -1,57 +1,28 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 6/6] drm/i915: Start using struct
- drm_dp_mst_port again
-Date: Fri, 16 Nov 2018 19:21:20 -0500
-Message-ID: <20181117002120.28703-7-lyude@redhat.com>
-References: <20181117002120.28703-1-lyude@redhat.com>
+Subject: [PATCH 0/2] drm/nouveau: Fix DP AUX RPM issues
+Date: Fri, 16 Nov 2018 20:50:21 -0500
+Message-ID: <20181117015024.5771-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <20181117002120.28703-1-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, Maxime Ripard <maxime.ripard@bootlin.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, linux-kernel@vger.kernel.org, Sean Paul <sean@poorly.run>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-T3JpZ2luYWxseSB3ZSBzdGFydGVkIHN0b3JpbmcgcG9pbnRlcnMgdG8gdGhlIGRybV9kcF9tc3Rf
-cG9ydCBzdHJ1Y3QgZm9yCmVhY2ggaW50ZWxfY29ubmVjdG9yIGFzIHZvaWQqIHRvIHN0b3AgcGVv
-cGxlIGZyb20gdHJ5aW5nIHRvIGRlcmVmZXJlbmNlCnRoZW0uIE5vdyB0aGF0IHdlJ3ZlIHJlbW92
-ZWQgdGhlIHB1YmxpYyBzdHJ1Y3QgZGVmaW5pdGlvbiBmb3IKZHJtX2RwX21zdF9wb3J0IGhvd2V2
-ZXIsIGl0J3Mgbm8gbG9uZ2VyIHBvc3NpYmxlIHRvIGRlcmVmZXJlbmNlIHRoZSBwb3J0CnN0cnVj
-dHVyZSBldmVuIHdoZW4gdXNpbmcgdGhlIHByb3BlciB0eXBlLiBTbywgbW92ZSBiYWNrIHRvIHN0
-cnVjdApkcm1fZHBfbXN0X3BvcnQgZnJvbSB2b2lkKiBmb3IgY2xhcml0eS4KClNpZ25lZC1vZmYt
-Ynk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaW50ZWxfZHBfbXN0LmMgfCAyICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcnYu
-aCAgICB8IDIgKy0KIDIgZmlsZXMgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9u
-cygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21zdC5jIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHBfbXN0LmMKaW5kZXggNGRlMjQ3ZGRmMDVmLi4z
-NDA4ZWZlNjc2OTQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21z
-dC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21zdC5jCkBAIC0zOSw3ICsz
-OSw3IEBAIHN0YXRpYyBib29sIGludGVsX2RwX21zdF9jb21wdXRlX2NvbmZpZyhzdHJ1Y3QgaW50
-ZWxfZW5jb2RlciAqZW5jb2RlciwKIAlzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICppbnRlbF9k
-aWdfcG9ydCA9IGludGVsX21zdC0+cHJpbWFyeTsKIAlzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2Rw
-ID0gJmludGVsX2RpZ19wb3J0LT5kcDsKIAlzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9y
-ID0gY29ubl9zdGF0ZS0+Y29ubmVjdG9yOwotCXZvaWQgKnBvcnQgPSB0b19pbnRlbF9jb25uZWN0
-b3IoY29ubmVjdG9yKS0+cG9ydDsKKwlzdHJ1Y3QgZHJtX2RwX21zdF9wb3J0ICpwb3J0ID0gdG9f
-aW50ZWxfY29ubmVjdG9yKGNvbm5lY3RvciktPnBvcnQ7CiAJc3RydWN0IGRybV9hdG9taWNfc3Rh
-dGUgKnN0YXRlID0gcGlwZV9jb25maWctPmJhc2Uuc3RhdGU7CiAJaW50IGJwcDsKIAlpbnQgbGFu
-ZV9jb3VudCwgc2xvdHMgPSAwOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50
-ZWxfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcnYuaAppbmRleCBmNTc1YmEy
-YTU5ZGEuLjFiYjY5MDk3ZDZjYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50
-ZWxfZHJ2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHJ2LmgKQEAgLTQxNSw3
-ICs0MTUsNyBAQCBzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yIHsKIAkgICBzdGF0ZSBvZiBjb25uZWN0
-b3ItPnBvbGxlZCBpbiBjYXNlIGhvdHBsdWcgc3Rvcm0gZGV0ZWN0aW9uIGNoYW5nZXMgaXQgKi8K
-IAl1OCBwb2xsZWQ7CiAKLQl2b2lkICpwb3J0OyAvKiBzdG9yZSB0aGlzIG9wYXF1ZSBhcyBpdHMg
-aWxsZWdhbCB0byBkZXJlZmVyZW5jZSBpdCAqLworCXN0cnVjdCBkcm1fZHBfbXN0X3BvcnQgKnBv
-cnQ7CiAKIAlzdHJ1Y3QgaW50ZWxfZHAgKm1zdF9wb3J0OwogCi0tIAoyLjE5LjEKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
-IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Here's some fixes for the less important DP AUX issues I mentioned a
+while back.
+
+Lyude Paul (2):
+  drm/dp: Add ->pre/post_transfer() hooks for drm_dp_aux
+  drm/nouveau: Grab an rpm reference before/after DP AUX transactions
+
+ drivers/gpu/drm/drm_dp_helper.c             |  5 ++
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 36 ++++++++
+ drivers/gpu/drm/nouveau/nouveau_drm.c       | 12 ++-
+ drivers/gpu/drm/nouveau/nouveau_drv.h       |  8 ++
+ include/drm/drm_dp_helper.h                 | 91 +++++++++++++++++++++
+ 5 files changed, 151 insertions(+), 1 deletion(-)
+
+-- 
+2.19.1
