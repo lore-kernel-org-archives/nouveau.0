@@ -1,39 +1,41 @@
 From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 0/6] Remove all bad dp_mst_port uses and hide
- struct def
-Date: Fri, 16 Nov 2018 19:21:14 -0500
-Message-ID: <20181117002120.28703-1-lyude@redhat.com>
+Subject: [PATCH 3/6] drm/nouveau: Stop reading port->mgr in nv50_mstc_get_modes()
+Date: Fri, 16 Nov 2018 19:21:17 -0500
+Message-ID: <20181117002120.28703-4-lyude@redhat.com>
+References: <20181117002120.28703-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20181117002120.28703-1-lyude@redhat.com>
+Sender: stable-owner@vger.kernel.org
 To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: Lyude Paul <lyude@redhat.com>, stable@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-U28gd2UgZG9uJ3QgZXZlciBoYXZlIHRvIHdvcnJ5IGFib3V0IGRyaXZlcnMgdG91Y2hpbmcgZHJt
-X2RwX21zdF9wb3J0CnN0cnVjdHMgd2l0aG91dCB2ZXJpZnlpbmcgdGhlbSBhbmQgY3Jhc2hpbmcg
-YWdhaW4uCgpMeXVkZSBQYXVsICg2KToKICBkcm0vZHBfbXN0OiBBZGQgZHJtX2RwX2dldF9wYXls
-b2FkX2luZm8oKQogIGRybS9ub3V2ZWF1OiBVc2UgZHJtX2RwX2dldF9wYXlsb2FkX2luZm8oKSBm
-b3IgZ2V0dGluZyBwYXlsb2FkL3ZjcGkKICBkcm0vbm91dmVhdTogU3RvcCByZWFkaW5nIHBvcnQt
-Pm1nciBpbiBudjUwX21zdGNfZ2V0X21vZGVzKCkKICBkcm0vbm91dmVhdTogU3RvcCByZWFkaW5n
-IHBvcnQtPm1nciBpbiBudjUwX21zdGNfZGV0ZWN0KCkKICBkcm0vZHBfbXN0OiBIaWRlIGRybV9k
-cF9tc3RfcG9ydCBjb250ZW50cyBmcm9tIGRyaXZlcnMKICBkcm0vaTkxNTogU3RhcnQgdXNpbmcg
-c3RydWN0IGRybV9kcF9tc3RfcG9ydCBhZ2FpbgoKIGRyaXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0
-X3RvcG9sb2d5LmMgICB8IDExNSArKysrKysrKysrKysrKysrKysrKysrKysKIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2ludGVsX2RwX21zdC5jICAgICB8ICAgMiArLQogZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaW50ZWxfZHJ2LmggICAgICAgIHwgICAyICstCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9k
-aXNwbnY1MC9kaXNwLmMgfCAgNjAgKysrKystLS0tLS0tLQogaW5jbHVkZS9kcm0vZHJtX2RwX21z
-dF9oZWxwZXIuaCAgICAgICAgIHwgIDY1ICsrLS0tLS0tLS0tLS0tCiA1IGZpbGVzIGNoYW5nZWQs
-IDE0NiBpbnNlcnRpb25zKCspLCA5OCBkZWxldGlvbnMoLSkKCi0tIAoyLjE5LjEKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
-IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+mstc->port isn't validated here so it could be null or worse when we
+access it. And drivers aren't ever supposed to be looking at it's
+contents anyway. Plus, we can already get the MST manager from
+&mstc->mstm->mgr.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: stable@vger.kernel.org
+---
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index e6f72ca0b1fa..66c40b56a0cb 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -893,7 +893,8 @@ nv50_mstc_get_modes(struct drm_connector *connector)
+ 	struct nv50_mstc *mstc = nv50_mstc(connector);
+ 	int ret = 0;
+ 
+-	mstc->edid = drm_dp_mst_get_edid(&mstc->connector, mstc->port->mgr, mstc->port);
++	mstc->edid = drm_dp_mst_get_edid(&mstc->connector,
++					 &mstc->mstm->mgr, mstc->port);
+ 	drm_connector_update_edid_property(&mstc->connector, mstc->edid);
+ 	if (mstc->edid)
+ 		ret = drm_add_edid_modes(&mstc->connector, mstc->edid);
+-- 
+2.19.1
