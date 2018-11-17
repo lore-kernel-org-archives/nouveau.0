@@ -1,179 +1,288 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 2/2] drm/nouveau: Grab an rpm reference before/after DP AUX transactions
-Date: Fri, 16 Nov 2018 20:50:23 -0500
-Message-ID: <20181117015024.5771-3-lyude@redhat.com>
-References: <20181117015024.5771-1-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 95282] G96: system hang on video playback via vdpau
+Date: Sat, 17 Nov 2018 10:39:33 +0000
+Message-ID: <bug-95282-8800-AWWQcXepQt@http.bugs.freedesktop.org/>
+References: <bug-95282-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20181117015024.5771-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============0305335320=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-95282-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Now that we have ->pre_transfer() and ->post_transfer() for DP AUX
-channel devices, we can implement these hooks in order to ensure that
-the GPU is actually woken up before AUX transactions happen. This fixes
-/dev/drm_dp_aux* not working while the GPU is suspended, along with some
-more rare issues where the GPU might runtime-suspend if the time between
-two DP AUX channel transactions ends up being longer then the runtime
-suspend delay (sometimes observed on KASAN kernels where everything is
-slow).
 
-Additionally, we add tracking for the current task that's running our
-runtime suspend/resume callbacks. We need this in order to avoid trying
-to grab a runtime power reference when nouveau uses the DP AUX channel
-for MST suspend/resume in it's runtime susped/resume callbacks.
+--===============0305335320==
+Content-Type: multipart/alternative; boundary="15424511733.Ed0e68d1.21633"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/nouveau_connector.c | 36 +++++++++++++++++++++
- drivers/gpu/drm/nouveau/nouveau_drm.c       | 12 ++++++-
- drivers/gpu/drm/nouveau/nouveau_drv.h       |  8 +++++
- 3 files changed, 55 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index fd80661dff92..d2e9752f2f91 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -1171,6 +1171,38 @@ nouveau_connector_hotplug(struct nvif_notify *notify)
- 	return NVIF_NOTIFY_KEEP;
- }
- 
-+static int
-+nouveau_connector_aux_pre_xfer(struct drm_dp_aux *obj)
-+{
-+	struct nouveau_connector *nv_connector =
-+		container_of(obj, typeof(*nv_connector), aux);
-+	struct nouveau_drm *drm = nouveau_drm(nv_connector->base.dev);
-+	int ret;
-+
-+	if (nouveau_is_rpm_worker(drm))
-+		return 0;
-+
-+	ret = pm_runtime_get_sync(drm->dev->dev);
-+	if (ret < 0 && ret != -EAGAIN)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static void
-+nouveau_connector_aux_post_xfer(struct drm_dp_aux *obj)
-+{
-+	struct nouveau_connector *nv_connector =
-+		container_of(obj, typeof(*nv_connector), aux);
-+	struct nouveau_drm *drm = nouveau_drm(nv_connector->base.dev);
-+
-+	if (nouveau_is_rpm_worker(drm))
-+		return;
-+
-+	pm_runtime_mark_last_busy(drm->dev->dev);
-+	pm_runtime_put_autosuspend(drm->dev->dev);
-+}
-+
- static ssize_t
- nouveau_connector_aux_xfer(struct drm_dp_aux *obj, struct drm_dp_aux_msg *msg)
- {
-@@ -1341,6 +1373,10 @@ nouveau_connector_create(struct drm_device *dev, int index)
- 	case DRM_MODE_CONNECTOR_DisplayPort:
- 	case DRM_MODE_CONNECTOR_eDP:
- 		nv_connector->aux.dev = dev->dev;
-+		nv_connector->aux.pre_transfer =
-+			nouveau_connector_aux_pre_xfer;
-+		nv_connector->aux.post_transfer =
-+			nouveau_connector_aux_post_xfer;
- 		nv_connector->aux.transfer = nouveau_connector_aux_xfer;
- 		ret = drm_dp_aux_register(&nv_connector->aux);
- 		if (ret) {
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 2b2baf6e0e0d..4323e9e61c2e 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -859,6 +859,7 @@ nouveau_pmops_runtime_suspend(struct device *dev)
- {
- 	struct pci_dev *pdev = to_pci_dev(dev);
- 	struct drm_device *drm_dev = pci_get_drvdata(pdev);
-+	struct nouveau_drm *drm = nouveau_drm(drm_dev);
- 	int ret;
- 
- 	if (!nouveau_pmops_runtime()) {
-@@ -866,6 +867,8 @@ nouveau_pmops_runtime_suspend(struct device *dev)
- 		return -EBUSY;
- 	}
- 
-+	drm->rpm_task = current;
-+
- 	nouveau_switcheroo_optimus_dsm();
- 	ret = nouveau_do_suspend(drm_dev, true);
- 	pci_save_state(pdev);
-@@ -873,6 +876,8 @@ nouveau_pmops_runtime_suspend(struct device *dev)
- 	pci_ignore_hotplug(pdev);
- 	pci_set_power_state(pdev, PCI_D3cold);
- 	drm_dev->switch_power_state = DRM_SWITCH_POWER_DYNAMIC_OFF;
-+
-+	drm->rpm_task = NULL;
- 	return ret;
- }
- 
-@@ -881,6 +886,7 @@ nouveau_pmops_runtime_resume(struct device *dev)
- {
- 	struct pci_dev *pdev = to_pci_dev(dev);
- 	struct drm_device *drm_dev = pci_get_drvdata(pdev);
-+	struct nouveau_drm *drm = nouveau_drm(drm_dev);
- 	struct nvif_device *device = &nouveau_drm(drm_dev)->client.device;
- 	int ret;
- 
-@@ -889,11 +895,13 @@ nouveau_pmops_runtime_resume(struct device *dev)
- 		return -EBUSY;
- 	}
- 
-+	drm->rpm_task = current;
-+
- 	pci_set_power_state(pdev, PCI_D0);
- 	pci_restore_state(pdev);
- 	ret = pci_enable_device(pdev);
- 	if (ret)
--		return ret;
-+		goto out;
- 	pci_set_master(pdev);
- 
- 	ret = nouveau_do_resume(drm_dev, true);
-@@ -905,6 +913,8 @@ nouveau_pmops_runtime_resume(struct device *dev)
- 	/* Monitors may have been connected / disconnected during suspend */
- 	schedule_work(&nouveau_drm(drm_dev)->hpd_work);
- 
-+out:
-+	drm->rpm_task = NULL;
- 	return ret;
- }
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index 0b2191fa96f7..e8d4203ddfb4 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -212,6 +212,8 @@ struct nouveau_drm {
- 	bool have_disp_power_ref;
- 
- 	struct dev_pm_domain vga_pm_domain;
-+
-+	struct task_struct *rpm_task;
- };
- 
- static inline struct nouveau_drm *
-@@ -231,6 +233,12 @@ int nouveau_pmops_suspend(struct device *);
- int nouveau_pmops_resume(struct device *);
- bool nouveau_pmops_runtime(void);
- 
-+static inline bool
-+nouveau_is_rpm_worker(struct nouveau_drm *drm)
-+{
-+	return drm->rpm_task == current;
-+}
-+
- #include <nvkm/core/tegra.h>
- 
- struct drm_device *
--- 
-2.19.1
+--15424511733.Ed0e68d1.21633
+Date: Sat, 17 Nov 2018 10:39:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D95282
+
+--- Comment #22 from Maris Nartiss <maris.nartiss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to poma from comment #9)
+> Besides, it is enough to just run the application itself, without starting
+> the video,
+
+I confirm =E2=80=93 starting xine is enough without any need of playing vid=
+eo. I get
+the same error as in comment #9 Still the error looks a bit different than =
+one
+in the log from comment #3
+
+G98M [Quadro NVS 160M]
+sys-kernel/gentoo-sources-4.18.0
+media-libs/mesa-18.2.2-r1
+
+$ xine --verbose
+This is xine (X11 gui) - a free video player v0.99.10.
+Built with xine library 1.2.9 (1.2.9)
+Found xine library version: 1.2.9 (1.2.9).
+main: probing <vdpau> video output plugin
+vo_vdpau: vdpau API version : 1
+vo_vdpau: vdpau implementation description : G3DVL VDPAU Driver Shared Libr=
+ary
+version 1.0
+vo_vdpau: maximum video surface size for chroma type 4:2:2 is 8192x8192
+vo_vdpau: maximum video surface size for chroma type 4:2:0 is 8192x8192
+vo_vdpau: maximum output surface size is 8192x8192
+vo_vdpau: hold a maximum of 10 video output surfaces for reuse
+vo_vdpau: using 3 output surfaces of size 1440x900 for display queue
+vo_vdpau: this hardware doesn't support mpeg4-part2.
+video_out_vdpau: b 0 c 128 s 128 h 0 [full range ITU-R 470 BG / SDTV]
+video_out: max frames used: 1 of 22
+video_out: early wakeups: 1 of 127
+video_out: max frames used: 0 of 22
+video_out: early wakeups: 0 of 128
+
+$ dmesg -t
+WARNING: CPU: 0 PID: 28 at drivers/gpu/drm/nouveau/nvif/vmm.c:71
+nvif_vmm_put+0x65/0x70 [nouveau]
+Modules linked in: ctr ccm uvcvideo videobuf2_vmalloc nouveau videobuf2_mem=
+ops
+videobuf2_v4l2 videodev videobuf2_common i2c_algo_bit drm_kms_helper
+dell_smm_hwmon wmi_bmof dell_wmi iwldvm sparse_keymap coretemp hwmon
+snd_hda_codec_idt cfbfillrect syscopyarea kvm_intel mac80211 cfbimgblt
+dell_laptop kvm sysfillrect sysimgblt dell_smbios fb_sys_fops cfbcopyarea
+dell_wmi_descriptor dcdbas fb snd_hda_codec_generic irqbypass font sdhci_pci
+fbdev snd_hda_intel cqhci ttm snd_hda_codec sdhci iwlwifi pcspkr drm mmc_co=
+re
+firewire_ohci lpc_ich firewire_core snd_hwdep cfg80211 mfd_core crc_itu_t
+drm_panel_orientation_quirks vboxpci(O) snd_hda_core vboxnetadp(O)
+vboxnetflt(O) rfkill e1000e wmi tpm_tis video tpm_tis_core ptp tpm backlight
+pps_core vboxdrv(O) pcc_cpufreq
+CPU: 0 PID: 28 Comm: kworker/0:1 Tainted: G           O      4.18.0-gentoo =
+#1
+Hardware name: Dell Inc. Latitude E6500                  /, BIOS A27 12/06/=
+2011
+Workqueue: events nouveau_cli_work [nouveau]
+RIP: 0010:nvif_vmm_put+0x65/0x70 [nouveau]
+Code: 00 00 48 89 e2 be 02 00 00 00 48 c7 04 24 00 00 00 00 48 89 44 24 08 =
+e8
+a9 e6 ff ff 85 c0 75 0a 48 c7 43 08 00 00 00 00 eb b7 <0f> 0b eb f2 e8 02 9=
+0 9f
+e0 66 90 53 48 83 ec 20 65 48 8b 04 25 28=20
+RSP: 0018:ffffc90000723de8 EFLAGS: 00010282
+RAX: 00000000fffffffe RBX: ffffc90000723e10 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: ffffc90000723d58 RDI: ffffc90000723df8
+RBP: ffffc90000723e40 R08: 000000000042a000 R09: 0000000000000000
+R10: 0000000000000000 R11: fefefefefefefeff R12: ffff8800d10d1e60
+R13: dead000000000200 R14: dead000000000100 R15: ffff8800d10d1e70
+FS:  0000000000000000(0000) GS:ffff88011b800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fd7bd3dc000 CR3: 00000000da5b4000 CR4: 00000000000006f0
+Call Trace:
+ nouveau_vma_del+0x6b/0xb0 [nouveau]
+ nouveau_gem_object_delete_work+0x31/0x60 [nouveau]
+ nouveau_cli_work+0x71/0x100 [nouveau]
+ process_one_work+0x1cf/0x3f0
+ worker_thread+0x28/0x3c0
+ ? process_one_work+0x3f0/0x3f0
+ kthread+0x10e/0x130
+ ? kthread_flush_work_fn+0x10/0x10
+ ret_from_fork+0x35/0x40
+---[ end trace be79f07b609be4df ]---
+CE: hpet increased min_delta_ns to 20115 nsec
+nouveau 0000:01:00.0: gr: TRAP_PROP - TP 0 - 00000040 [RT_FAULT] - Address
+0021340000
+nouveau 0000:01:00.0: gr: TRAP_PROP - TP 0 - e0c: 00000000, e18: 00000000, =
+e1c:
+01000080, e20: 00001800, e24: 00030000
+nouveau 0000:01:00.0: gr: 00200000 [] ch 24 [000dcf9000 xine[5772]] subc 3
+class 8297 mthd 1558 data 00000001
+nouveau 0000:01:00.0: fb: trapped write at 0021340000 on channel 24 [0dcf90=
+00
+xine[5772]] engine 00 [PGRAPH] client 0b [PROP] subclient 00 [RT0] reason
+00000002 [PAGE_NOT_PRESENT]
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15424511733.Ed0e68d1.21633
+Date: Sat, 17 Nov 2018 10:39:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - G96: system hang on video playback via vdpau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282#c22">Commen=
+t # 22</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - G96: system hang on video playback via vdpau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D95282">bug 95282<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+maris.nartiss&#64;gmail.com" title=3D"Maris Nartiss &lt;maris.nartiss&#64;g=
+mail.com&gt;"> <span class=3D"fn">Maris Nartiss</span></a>
+</span></b>
+        <pre>(In reply to poma from <a href=3D"show_bug.cgi?id=3D95282#c9">=
+comment #9</a>)
+<span class=3D"quote">&gt; Besides, it is enough to just run the applicatio=
+n itself, without starting
+&gt; the video,</span >
+
+I confirm =E2=80=93 starting xine is enough without any need of playing vid=
+eo. I get
+the same error as in <a href=3D"show_bug.cgi?id=3D95282#c9">comment #9</a> =
+Still the error looks a bit different than one
+in the log from <a href=3D"show_bug.cgi?id=3D95282#c3">comment #3</a>
+
+G98M [Quadro NVS 160M]
+sys-kernel/gentoo-sources-4.18.0
+media-libs/mesa-18.2.2-r1
+
+$ xine --verbose
+This is xine (X11 gui) - a free video player v0.99.10.
+Built with xine library 1.2.9 (1.2.9)
+Found xine library version: 1.2.9 (1.2.9).
+main: probing &lt;vdpau&gt; video output plugin
+vo_vdpau: vdpau API version : 1
+vo_vdpau: vdpau implementation description : G3DVL VDPAU Driver Shared Libr=
+ary
+version 1.0
+vo_vdpau: maximum video surface size for chroma type 4:2:2 is 8192x8192
+vo_vdpau: maximum video surface size for chroma type 4:2:0 is 8192x8192
+vo_vdpau: maximum output surface size is 8192x8192
+vo_vdpau: hold a maximum of 10 video output surfaces for reuse
+vo_vdpau: using 3 output surfaces of size 1440x900 for display queue
+vo_vdpau: this hardware doesn't support mpeg4-part2.
+video_out_vdpau: b 0 c 128 s 128 h 0 [full range ITU-R 470 BG / SDTV]
+video_out: max frames used: 1 of 22
+video_out: early wakeups: 1 of 127
+video_out: max frames used: 0 of 22
+video_out: early wakeups: 0 of 128
+
+$ dmesg -t
+WARNING: CPU: 0 PID: 28 at drivers/gpu/drm/nouveau/nvif/vmm.c:71
+nvif_vmm_put+0x65/0x70 [nouveau]
+Modules linked in: ctr ccm uvcvideo videobuf2_vmalloc nouveau videobuf2_mem=
+ops
+videobuf2_v4l2 videodev videobuf2_common i2c_algo_bit drm_kms_helper
+dell_smm_hwmon wmi_bmof dell_wmi iwldvm sparse_keymap coretemp hwmon
+snd_hda_codec_idt cfbfillrect syscopyarea kvm_intel mac80211 cfbimgblt
+dell_laptop kvm sysfillrect sysimgblt dell_smbios fb_sys_fops cfbcopyarea
+dell_wmi_descriptor dcdbas fb snd_hda_codec_generic irqbypass font sdhci_pci
+fbdev snd_hda_intel cqhci ttm snd_hda_codec sdhci iwlwifi pcspkr drm mmc_co=
+re
+firewire_ohci lpc_ich firewire_core snd_hwdep cfg80211 mfd_core crc_itu_t
+drm_panel_orientation_quirks vboxpci(O) snd_hda_core vboxnetadp(O)
+vboxnetflt(O) rfkill e1000e wmi tpm_tis video tpm_tis_core ptp tpm backlight
+pps_core vboxdrv(O) pcc_cpufreq
+CPU: 0 PID: 28 Comm: kworker/0:1 Tainted: G           O      4.18.0-gentoo =
+#1
+Hardware name: Dell Inc. Latitude E6500                  /, BIOS A27 12/06/=
+2011
+Workqueue: events nouveau_cli_work [nouveau]
+RIP: 0010:nvif_vmm_put+0x65/0x70 [nouveau]
+Code: 00 00 48 89 e2 be 02 00 00 00 48 c7 04 24 00 00 00 00 48 89 44 24 08 =
+e8
+a9 e6 ff ff 85 c0 75 0a 48 c7 43 08 00 00 00 00 eb b7 &lt;0f&gt; 0b eb f2 e=
+8 02 90 9f
+e0 66 90 53 48 83 ec 20 65 48 8b 04 25 28=20
+RSP: 0018:ffffc90000723de8 EFLAGS: 00010282
+RAX: 00000000fffffffe RBX: ffffc90000723e10 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: ffffc90000723d58 RDI: ffffc90000723df8
+RBP: ffffc90000723e40 R08: 000000000042a000 R09: 0000000000000000
+R10: 0000000000000000 R11: fefefefefefefeff R12: ffff8800d10d1e60
+R13: dead000000000200 R14: dead000000000100 R15: ffff8800d10d1e70
+FS:  0000000000000000(0000) GS:ffff88011b800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fd7bd3dc000 CR3: 00000000da5b4000 CR4: 00000000000006f0
+Call Trace:
+ nouveau_vma_del+0x6b/0xb0 [nouveau]
+ nouveau_gem_object_delete_work+0x31/0x60 [nouveau]
+ nouveau_cli_work+0x71/0x100 [nouveau]
+ process_one_work+0x1cf/0x3f0
+ worker_thread+0x28/0x3c0
+ ? process_one_work+0x3f0/0x3f0
+ kthread+0x10e/0x130
+ ? kthread_flush_work_fn+0x10/0x10
+ ret_from_fork+0x35/0x40
+---[ end trace be79f07b609be4df ]---
+CE: hpet increased min_delta_ns to 20115 nsec
+nouveau 0000:01:00.0: gr: TRAP_PROP - TP 0 - 00000040 [RT_FAULT] - Address
+0021340000
+nouveau 0000:01:00.0: gr: TRAP_PROP - TP 0 - e0c: 00000000, e18: 00000000, =
+e1c:
+01000080, e20: 00001800, e24: 00030000
+nouveau 0000:01:00.0: gr: 00200000 [] ch 24 [000dcf9000 xine[5772]] subc 3
+class 8297 mthd 1558 data 00000001
+nouveau 0000:01:00.0: fb: trapped write at 0021340000 on channel 24 [0dcf90=
+00
+xine[5772]] engine 00 [PGRAPH] client 0b [PROP] subclient 00 [RT0] reason
+00000002 [PAGE_NOT_PRESENT]</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15424511733.Ed0e68d1.21633--
+
+--===============0305335320==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0305335320==--
