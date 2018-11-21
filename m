@@ -1,93 +1,164 @@
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH 1/4] drm/edid: Pass connector to AVI inforframe functions
-Date: Wed, 21 Nov 2018 20:19:37 +0200
-Message-ID: <1697503.tFhaoOeOnK@avalon>
-References: <20181120161345.15440-1-ville.syrjala@linux.intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98386] [NVE7] bus: MMIO write of FAULT at [ IBUS ],
+ Pointer to {TDMS, flat panel} table invalid
+Date: Wed, 21 Nov 2018 18:20:46 +0000
+Message-ID: <bug-98386-8800-8ZQpxxihiN@http.bugs.freedesktop.org/>
+References: <bug-98386-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20181120161345.15440-1-ville.syrjala@linux.intel.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Thierry Reding <thierry.reding@gmail.com>, sts.freedesktop.org@freedesktop.org, Russell King <linux@armlinux.org.uk>, Tomi Valkeinen <tomi.valkeinen@ti.com>, Ben Skeggs <bskeggs@redhat.com>, linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org, linux-tegra@vger.kernel.org, Vincent Abriou <vincent.abriou@st.com>, freedreno@lists.freedesktop.org, Seung-Woo Kim <sw0312.kim@samsung.com>, amd-gfx@li, Kyungmin Park <kyungmin.park@samsung.com>, Alex Deucher <alexander.deucher@amd.com>, Shawn Guo <shawnguo@kernel.org>, Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Content-Type: multipart/mixed; boundary="===============0210262875=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-98386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgVmlsbGUsCgpUaGFuayB5b3UgZm9yIHRoZSBwYXRjaC4KCk9uIFR1ZXNkYXksIDIwIE5vdmVt
-YmVyIDIwMTggMTg6MTM6NDIgRUVUIFZpbGxlIFN5cmphbGEgd3JvdGU6Cj4gRnJvbTogVmlsbGUg
-U3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiAKPiBNYWtlIGxpZmUg
-ZWFzaWVyIGZvciBkcml2ZXJzIGJ5IHNpbXBseSBwYXNzaW5nIHRoZSBjb25uZWN0b3IKPiB0byBk
-cm1faGRtaV9hdmlfaW5mb2ZyYW1lX2Zyb21fZGlzcGxheV9tb2RlKCkgYW5kCj4gZHJtX2hkbWlf
-YXZpX2luZm9mcmFtZV9xdWFudF9yYW5nZSgpLiBUaGF0IHdheSBkcml2ZXJzIGRvbid0Cj4gbmVl
-ZCB0byB3b3JyeSBhYm91dCBpc19oZG1pMl9zaW5rIG1lc3MuCgpXaGlsZSB0aGlzIGlzIGdvb2Qg
-Zm9yIGRpc3BsYXkgY29udHJvbGxlciBkcml2ZXJzLCB0aGUgY2hhbmdlIGlzbid0IGdyZWF0IGZv
-ciAKYnJpZGdlIGRyaXZlcnMuIERvd24gdGhlIHJvYWQgd2UncmUgbG9va2luZyBhdCBtb3Zpbmcg
-Y29ubmVjdG9yIHN1cHBvcnQgb3V0IG9mIAp0aGUgYnJpZGdlIGRyaXZlcnMuIEFkZGluZyBhbiBh
-ZGRpdGlvbmFsIGRlcGVuZGVuY3kgdG8gY29ubmVjdG9ycyBpbiB0aGUgCmJyaWRnZXMgd2lsbCBt
-YWtlIHRoYXQgbW9yZSBkaWZmaWN1bHQuIElkZWFsbHkgYnJpZGdlcyBzaG91bGQgcmV0cmlldmUg
-dGhlIAppbmZvcm1hdGlvbiBmcm9tIHRoZWlyIHNpbmssIHJlZ2FyZGxlc3Mgb2Ygd2hldGhlciBp
-dCBpcyBhIGNvbm5lY3RvciBvciAKYW5vdGhlciBicmlkZ2UuCgpQbGVhc2Ugc2VlIGJlbG93IGZv
-ciBhbiBhZGRpdGlvbmFsIGNvbW1lbnQuCgo+IENjOiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5k
-ZXVjaGVyQGFtZC5jb20+Cj4gQ2M6ICJDaHJpc3RpYW4gS8O2bmlnIiA8Y2hyaXN0aWFuLmtvZW5p
-Z0BhbWQuY29tPgo+IENjOiAiRGF2aWQgKENodW5NaW5nKSBaaG91IiA8RGF2aWQxLlpob3VAYW1k
-LmNvbT4KPiBDYzogQXJjaGl0IFRhbmVqYSA8YXJjaGl0dEBjb2RlYXVyb3JhLm9yZz4KPiBDYzog
-QW5kcnplaiBIYWpkYSA8YS5oYWpkYUBzYW1zdW5nLmNvbT4KPiBDYzogTGF1cmVudCBQaW5jaGFy
-dCA8TGF1cmVudC5waW5jaGFydEBpZGVhc29uYm9hcmQuY29tPgo+IENjOiBJbmtpIERhZSA8aW5r
-aS5kYWVAc2Ftc3VuZy5jb20+Cj4gQ2M6IEpvb255b3VuZyBTaGltIDxqeTA5MjIuc2hpbUBzYW1z
-dW5nLmNvbT4KPiBDYzogU2V1bmctV29vIEtpbSA8c3cwMzEyLmtpbUBzYW1zdW5nLmNvbT4KPiBD
-YzogS3l1bmdtaW4gUGFyayA8a3l1bmdtaW4ucGFya0BzYW1zdW5nLmNvbT4KPiBDYzogUnVzc2Vs
-bCBLaW5nIDxsaW51eEBhcm1saW51eC5vcmcudWs+Cj4gQ2M6IENLIEh1IDxjay5odUBtZWRpYXRl
-ay5jb20+Cj4gQ2M6IFBoaWxpcHAgWmFiZWwgPHAuemFiZWxAcGVuZ3V0cm9uaXguZGU+Cj4gQ2M6
-IFJvYiBDbGFyayA8cm9iZGNsYXJrQGdtYWlsLmNvbT4KPiBDYzogQmVuIFNrZWdncyA8YnNrZWdn
-c0ByZWRoYXQuY29tPgo+IENjOiBUb21pIFZhbGtlaW5lbiA8dG9taS52YWxrZWluZW5AdGkuY29t
-Pgo+IENjOiBTYW5keSBIdWFuZyA8aGpjQHJvY2stY2hpcHMuY29tPgo+IENjOiAiSGVpa28gU3TD
-vGJuZXIiIDxoZWlrb0BzbnRlY2guZGU+Cj4gQ2M6IEJlbmphbWluIEdhaWduYXJkIDxiZW5qYW1p
-bi5nYWlnbmFyZEBsaW5hcm8ub3JnPgo+IENjOiBWaW5jZW50IEFicmlvdSA8dmluY2VudC5hYnJp
-b3VAc3QuY29tPgo+IENjOiBUaGllcnJ5IFJlZGluZyA8dGhpZXJyeS5yZWRpbmdAZ21haWwuY29t
-Pgo+IENjOiBFcmljIEFuaG9sdCA8ZXJpY0BhbmhvbHQubmV0Pgo+IENjOiBTaGF3biBHdW8gPHNo
-YXduZ3VvQGtlcm5lbC5vcmc+Cj4gQ2M6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVk
-dT4KPiBDYzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBDYzogbGludXgtYXJtLW1z
-bUB2Z2VyLmtlcm5lbC5vcmcKPiBDYzogZnJlZWRyZW5vQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+
-IENjOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IENjOiBsaW51eC10ZWdyYUB2Z2Vy
-Lmtlcm5lbC5vcmcKPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmph
-bGFAbGludXguaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9k
-Y2VfdjEwXzAuYyAgICB8ICAyICstCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2RjZV92
-MTFfMC5jICAgIHwgIDIgKy0KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZGNlX3Y2XzAu
-YyAgICAgfCAgMyArKy0KPiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZGNlX3Y4XzAuYyAg
-ICAgfCAgMiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL2FuYWxvZ2l4LWFueDc4eHguYyB8
-ICA1ICsrLS0KPiAgZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zaWk5MDJ4LmMgICAgICAgICAgfCAg
-MyArKy0KPiAgZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zaWwtc2lpODYyMC5jICAgICAgfCAgMyAr
-LS0KPiAgZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zeW5vcHN5cy9kdy1oZG1pLmMgfCAgMyArKy0K
-PiAgZHJpdmVycy9ncHUvZHJtL2RybV9lZGlkLmMgICAgICAgICAgICAgICAgfCAzMyArKysrKysr
-KysrKysrKy0tLS0tLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vZXh5bm9zL2V4eW5vc19oZG1pLmMg
-ICAgICB8ICAzICsrLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTJjL3RkYTk5OHhfZHJ2LmMgICAgICAg
-ICB8ICAzICsrLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9oZG1pLmMgICAgICAgICB8
-IDE0ICsrKysrLS0tLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfbHNwY29uLmMgICAg
-ICAgfCAxNSArKysrKystLS0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9zZHZvLmMg
-ICAgICAgICB8IDEwICsrKystLS0KPiAgZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19oZG1p
-LmMgICAgICAgfCAgMyArKy0KPiAgZHJpdmVycy9ncHUvZHJtL21zbS9oZG1pL2hkbWlfYnJpZGdl
-LmMgICAgfCAgMyArKy0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5j
-ICAgfCAgNyArKystLQo+ICBkcml2ZXJzL2dwdS9kcm0vb21hcGRybS9vbWFwX2VuY29kZXIuYyAg
-ICB8ICA1ICsrLS0KPiAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fYXVkaW8uYyAgICAg
-fCAgMiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vcm9ja2NoaXAvaW5ub19oZG1pLmMgICAgICB8ICA0
-ICsrLQo+ICBkcml2ZXJzL2dwdS9kcm0vc3RpL3N0aV9oZG1pLmMgICAgICAgICAgICB8ICAzICsr
-LQo+ICBkcml2ZXJzL2dwdS9kcm0vc3VuNGkvc3VuNGlfaGRtaV9lbmMuYyAgICB8ICAzICsrLQo+
-ICBkcml2ZXJzL2dwdS9kcm0vdGVncmEvaGRtaS5jICAgICAgICAgICAgICB8ICAzICsrLQo+ICBk
-cml2ZXJzL2dwdS9kcm0vdGVncmEvc29yLmMgICAgICAgICAgICAgICB8ICAzICsrLQo+ICBkcml2
-ZXJzL2dwdS9kcm0vdmM0L3ZjNF9oZG1pLmMgICAgICAgICAgICB8IDExICsrKysrLS0tCj4gIGRy
-aXZlcnMvZ3B1L2RybS96dGUvenhfaGRtaS5jICAgICAgICAgICAgIHwgIDQgKystCj4gIGluY2x1
-ZGUvZHJtL2RybV9lZGlkLmggICAgICAgICAgICAgICAgICAgIHwgIDggKysrLS0tCj4gIDI3IGZp
-bGVzIGNoYW5nZWQsIDk0IGluc2VydGlvbnMoKyksIDY2IGRlbGV0aW9ucygtKQoKRm9yIGR3LWhk
-bWkgYW5kIG9tYXBkcm0sCgpSZXZpZXdlZC1ieTogTGF1cmVudCBQaW5jaGFydCA8bGF1cmVudC5w
-aW5jaGFydEBpZGVhc29uYm9hcmQuY29tPgoKLS0gClJlZ2FyZHMsCgpMYXVyZW50IFBpbmNoYXJ0
-CgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1k
-ZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============0210262875==
+Content-Type: multipart/alternative; boundary="15428244463.EeeB0.28546"
+Content-Transfer-Encoding: 7bit
+
+
+--15428244463.EeeB0.28546
+Date: Wed, 21 Nov 2018 18:20:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98386
+
+--- Comment #22 from Tolga Cakir <cevelnet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I also have this issue. Dell M3800 here, Intel Core i7-4702HQ, Nvidia Quadro
+K1100M, Lynx Point PCH. As already stated earlier in this thread, this lapt=
+op's
+Nvidia GPU only provides 3D acceleration, but is neither directly connected=
+ to
+the screen, nor to any outputs (aka "muxless", iirc). I run Arch Linux, ker=
+nel
+4.19.2.
+
+I also get the issue:
+[   21.893456] nouveau 0000:02:00.0: bus: MMIO write of 00000002 FAULT at
+4188ac [ IBUS ]
+
+This happens during boot, aswell as after resume from S3. I've noticed power
+usage is higher after S3 resume, since nouveau fails to power down the dGPU=
+. It
+successfully powers down the GPU on first boot though. Doesn't happen with
+bbswitch.
+
+I've tested kernel 4.14, where this issue doesn't happen. Nouveau successfu=
+lly
+powers down the GPU both on first boot and on S3 resume. This seems to be a
+regression.
+
+I'm not entirely sure, if this behaviour *really* is related to the nouveau
+error message. Please let me know, if there are any patches I can test or a=
+nd
+debug information I can provide.
+
+Cheers,
+Tolga
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15428244463.EeeB0.28546
+Date: Wed, 21 Nov 2018 18:20:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer=
+ to {TDMS,flat panel} table invalid"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c22">Commen=
+t # 22</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer=
+ to {TDMS,flat panel} table invalid"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">bug 98386<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+cevelnet&#64;gmail.com" title=3D"Tolga Cakir &lt;cevelnet&#64;gmail.com&gt;=
+"> <span class=3D"fn">Tolga Cakir</span></a>
+</span></b>
+        <pre>I also have this issue. Dell M3800 here, Intel Core i7-4702HQ,=
+ Nvidia Quadro
+K1100M, Lynx Point PCH. As already stated earlier in this thread, this lapt=
+op's
+Nvidia GPU only provides 3D acceleration, but is neither directly connected=
+ to
+the screen, nor to any outputs (aka &quot;muxless&quot;, iirc). I run Arch =
+Linux, kernel
+4.19.2.
+
+I also get the issue:
+[   21.893456] nouveau 0000:02:00.0: bus: MMIO write of 00000002 FAULT at
+4188ac [ IBUS ]
+
+This happens during boot, aswell as after resume from S3. I've noticed power
+usage is higher after S3 resume, since nouveau fails to power down the dGPU=
+. It
+successfully powers down the GPU on first boot though. Doesn't happen with
+bbswitch.
+
+I've tested kernel 4.14, where this issue doesn't happen. Nouveau successfu=
+lly
+powers down the GPU both on first boot and on S3 resume. This seems to be a
+regression.
+
+I'm not entirely sure, if this behaviour *really* is related to the nouveau
+error message. Please let me know, if there are any patches I can test or a=
+nd
+debug information I can provide.
+
+Cheers,
+Tolga</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15428244463.EeeB0.28546--
+
+--===============0210262875==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0210262875==--
