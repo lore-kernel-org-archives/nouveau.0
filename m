@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108058] After resuming from suspend,
  discrete GPU is powered on and can't be turned off
-Date: Thu, 22 Nov 2018 20:25:58 +0000
-Message-ID: <bug-108058-8800-KCWHbDX0L8@http.bugs.freedesktop.org/>
+Date: Thu, 22 Nov 2018 20:26:18 +0000
+Message-ID: <bug-108058-8800-eq1E183m7a@http.bugs.freedesktop.org/>
 References: <bug-108058-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2085323282=="
+Content-Type: multipart/mixed; boundary="===============0927125943=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108058-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2085323282==
-Content-Type: multipart/alternative; boundary="15429183581.8eA6a9.7012"
+--===============0927125943==
+Content-Type: multipart/alternative; boundary="15429183782.DaD2.7058"
 Content-Transfer-Encoding: 7bit
 
 
---15429183581.8eA6a9.7012
-Date: Thu, 22 Nov 2018 20:25:58 +0000
+--15429183782.DaD2.7058
+Date: Thu, 22 Nov 2018 20:26:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108058
 
---- Comment #3 from Tolga Cakir <cevelnet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 142576
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142576&action=3Dedit
-dmidecode Dell M3800
+--- Comment #4 from Tolga Cakir <cevelnet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 142577
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142577&action=3Dedit
+lspci Dell M3800
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15429183581.8eA6a9.7012
-Date: Thu, 22 Nov 2018 20:25:58 +0000
+--15429183782.DaD2.7058
+Date: Thu, 22 Nov 2018 20:26:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - After resuming from suspend, discrete GPU is powered on a=
 nd can't be turned off"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108058#c3">Commen=
-t # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108058#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - After resuming from suspend, discrete GPU is powered on a=
@@ -76,11 +76,11 @@ nd can't be turned off"
 cevelnet&#64;gmail.com" title=3D"Tolga Cakir &lt;cevelnet&#64;gmail.com&gt;=
 "> <span class=3D"fn">Tolga Cakir</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142576=
-" name=3D"attach_142576" title=3D"dmidecode Dell M3800">attachment 142576</=
-a> <a href=3D"attachment.cgi?id=3D142576&amp;action=3Dedit" title=3D"dmidec=
-ode Dell M3800">[details]</a></span>
-dmidecode Dell M3800</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142577=
+" name=3D"attach_142577" title=3D"lspci Dell M3800">attachment 142577</a> <=
+a href=3D"attachment.cgi?id=3D142577&amp;action=3Dedit" title=3D"lspci Dell=
+ M3800">[details]</a></span>
+lspci Dell M3800</pre>
         </div>
       </p>
 
@@ -94,9 +94,9 @@ dmidecode Dell M3800</pre>
     </body>
 </html>=
 
---15429183581.8eA6a9.7012--
+--15429183782.DaD2.7058--
 
---===============2085323282==
+--===============0927125943==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2085323282==--
+--===============0927125943==--
