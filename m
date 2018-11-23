@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108058] After resuming from suspend,
- discrete GPU is powered on and can't be turned off
-Date: Thu, 22 Nov 2018 20:26:42 +0000
-Message-ID: <bug-108058-8800-EZ6BYwH5K7@http.bugs.freedesktop.org/>
-References: <bug-108058-8800@http.bugs.freedesktop.org/>
+From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] drm/nouveau: tegra: Call nouveau_drm_device_init()
+Date: Fri, 23 Nov 2018 13:11:51 +0100
+Message-ID: <20181123121151.17766-1-thierry.reding@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1933708731=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108058-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,93 +15,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1933708731==
-Content-Type: multipart/alternative; boundary="15429184021.d59aEED33.7013"
-Content-Transfer-Encoding: 7bit
-
-
---15429184021.d59aEED33.7013
-Date: Thu, 22 Nov 2018 20:26:42 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108058
-
---- Comment #5 from Tolga Cakir <cevelnet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 142578
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142578&action=3Dedit
-lspci verbose Dell M3800
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15429184021.d59aEED33.7013
-Date: Thu, 22 Nov 2018 20:26:42 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - After resuming from suspend, discrete GPU is powered on a=
-nd can't be turned off"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108058#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - After resuming from suspend, discrete GPU is powered on a=
-nd can't be turned off"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108058">bug 10805=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-cevelnet&#64;gmail.com" title=3D"Tolga Cakir &lt;cevelnet&#64;gmail.com&gt;=
-"> <span class=3D"fn">Tolga Cakir</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142578=
-" name=3D"attach_142578" title=3D"lspci verbose Dell M3800">attachment 1425=
-78</a> <a href=3D"attachment.cgi?id=3D142578&amp;action=3Dedit" title=3D"ls=
-pci verbose Dell M3800">[details]</a></span>
-lspci verbose Dell M3800</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15429184021.d59aEED33.7013--
-
---===============1933708731==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1933708731==--
+RnJvbTogVGhpZXJyeSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4KCkFzIHBhcnQgb2YgY29t
+bWl0IGNmZWE4OGE0ZDg2NiAoImRybS9ub3V2ZWF1OiBTdGFydCB1c2luZyBuZXcgZHJtX2Rldgpp
+bml0aWFsaXphdGlvbiBoZWxwZXJzIiksIHRoZSBpbml0aWFsaXphdGlvbiBvZiB0aGUgTm91dmVh
+dSBEUk0gZGV2aWNlCndhcyByZXdvcmtlZCBhbmQgYWxvbmcgdGhlIHdheSB0aGUgcGxhdGZvcm0g
+ZHJpdmVyIGluaXRpYWxpemF0aW9uIHdhcwpsZWZ0IGluY29tcGxldGUuIEFkZCBhIGNhbGwgdG8g
+bm91dmVhdV9kcm1fZGV2aWNlX2luaXQoKSB0byBtYWtlIHN1cmUKYWxsIG9mIHRoZSBzdHJ1Y3R1
+cmVzIGFyZSBwcm9wZXJseSBpbml0aWFsaXplZC4KClNpZ25lZC1vZmYtYnk6IFRoaWVycnkgUmVk
+aW5nIDx0cmVkaW5nQG52aWRpYS5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9kcm0uYyB8IDYgKysrKysrCiAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspCgpk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyBiL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKaW5kZXggMmIyYmFmNmUwZTBkLi5kMjky
+OGQ0M2YyOWEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJt
+LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwpAQCAtMTE3MSwx
+MCArMTE3MSwxNiBAQCBub3V2ZWF1X3BsYXRmb3JtX2RldmljZV9jcmVhdGUoY29uc3Qgc3RydWN0
+IG52a21fZGV2aWNlX3RlZ3JhX2Z1bmMgKmZ1bmMsCiAJCWdvdG8gZXJyX2ZyZWU7CiAJfQogCisJ
+ZXJyID0gbm91dmVhdV9kcm1fZGV2aWNlX2luaXQoZHJtKTsKKwlpZiAoZXJyKQorCQlnb3RvIGVy
+cl9wdXQ7CisKIAlwbGF0Zm9ybV9zZXRfZHJ2ZGF0YShwZGV2LCBkcm0pOwogCiAJcmV0dXJuIGRy
+bTsKIAorZXJyX3B1dDoKKwlkcm1fZGV2X3B1dChkcm0pOwogZXJyX2ZyZWU6CiAJbnZrbV9kZXZp
+Y2VfZGVsKHBkZXZpY2UpOwogCi0tIAoyLjE5LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
