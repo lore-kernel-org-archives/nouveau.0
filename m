@@ -1,10 +1,13 @@
-From: Yang Tsao <yang-RBK+gUnp40Rhl2p70BpVqQ@public.gmane.org>
-Subject: About Porting Android to nouveau
-Date: Wed, 21 Nov 2018 16:01:31 +0800
-Message-ID: <1BEC85DC-B7C2-4851-9E08-71AAD63F695D@flintos.io>
-Mime-Version: 1.0 (Mac OS X Mail 12.1 \(3445.101.1\))
-Content-Type: multipart/mixed; boundary="===============1578591550=="
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: About Porting Android to nouveau
+Date: Fri, 23 Nov 2018 23:20:13 -0500
+Message-ID: <CAKb7UvjM0qMZuesKLRMckdpTXUFMdQpC+oi7=7HkJpoFxxjzmA@mail.gmail.com>
+References: <1BEC85DC-B7C2-4851-9E08-71AAD63F695D@flintos.io>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1BEC85DC-B7C2-4851-9E08-71AAD63F695D-QIUkle2ceesWenYVfaLwtA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -14,137 +17,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: yang-RBK+gUnp40Rhl2p70BpVqQ@public.gmane.org
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1578591550==
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_0BEB3EA6-C0D6-488D-A8B4-453E6B57A156"
-
-
---Apple-Mail=_0BEB3EA6-C0D6-488D-A8B4-453E6B57A156
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
-
-Hi, guys:
-	I=E2=80=99m a developer of FydeOS. We porting ChromiumOS to =
-amd64 and arm platforms. Now, I=E2=80=99m woking on porting android =
-environment to Nvidia graphic cards. I have experience to port android =
-to Vmware(SVGA).
-	I found two display formats were not supported to display in =
-nouveau driver: PIPE_FORMAT_R8G8B8A8_UNORM, PIPE_FORMAT_R8G8B8X8_UNORM. =
-Which are defined at nv50/nv50_formats.c line: 130,131.
-
-C4(A, R8G8B8A8_UNORM, RGBA8_UNORM, R, G, B, A, UNORM, A8B8G8R8, IB),
-F3(A, R8G8B8X8_UNORM, RGBX8_UNORM, R, G, B, xx, UNORM, A8B8G8R8, TB),
-
-	I want the last params to be =E2=80=9CTD=E2=80=9D or =E2=80=9CID=E2=
-=80=9D (support PIPE_BIND_DISPLAY_TARGET) , to support android. I =
-modified these code, but got display issues and kernel issue:
-
-[   93.313995] nouveau 0000:01:00.0: gr: DATA_ERROR 0000009c [] ch 5 =
-[007f6c6000 RenderThread[5395]] subc 0 class a097 mthd 15f0 data =
-002c0014
-[   93.314082] nouveau 0000:01:00.0: gr: DATA_ERROR 0000009c [] ch 5 =
-[007f6c6000 RenderThread[5395]] subc 0 class a097 mthd 15f0 data =
-002d0016
-[   93.314112] nouveau 0000:01:00.0: gr: DATA_ERROR 0000009c [] ch 5 =
-[007f6c6000 RenderThread[5395]] subc 0 class a097 mthd 15f0 data =
-002d0018
-[   93.314215] nouveau 0000:01:00.0: gr: DATA_ERROR 0000009c [] ch 5 =
-[007f6c6000 RenderThread[5395]] subc 0 class a097 mthd 15f0 data =
-002d001a
-[   93.314244] nouveau 0000:01:00.0: gr: DATA_ERROR 0000009c [] ch 5 =
-[007f6c6000 RenderThread[5395]] subc 0 class a097 mthd 15f0 data =
-002d001c
-[   93.314272] nouveau 0000:01:00.0: gr: DATA_ERROR 0000009c [] ch 5 =
-[007f6c6000 RenderThread[5395]] subc 0 class a097 mthd 15f0 data =
-002d001e
-[   93.314301] nouveau 0000:01:00.0: gr: DATA_ERROR 0000009c [] ch 5 =
-[007f6c6000 RenderThread[5395]] subc 0 class a097 mthd 15f0 data =
-002e0020
-[   93.314325] nouveau 0000:01:00.0: gr: DATA_ERROR 0000009c [] ch 5 =
-[007f6c6000 RenderThread[5395]] subc 0 class a097 mthd 15f0 data =
-002e0022
-
-	Any idea?
-
-Best regards,
-
-	Yang Tsao=
-
---Apple-Mail=_0BEB3EA6-C0D6-488D-A8B4-453E6B57A156
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" class=3D""><meta=
- http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8" =
-class=3D""><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: =
-space; line-break: after-white-space;" class=3D"">Hi, guys:<div =
-class=3D""><span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span>I=E2=80=99m a developer of FydeOS. We porting ChromiumOS to amd64 =
-and arm platforms. Now, I=E2=80=99m woking on porting android =
-environment to Nvidia graphic cards. I have experience to port android =
-to Vmware(SVGA).</div><div class=3D""><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span>I found two display formats were =
-not supported to display in nouveau driver:&nbsp;<span =
-style=3D"font-family: HelveticaNeue;" =
-class=3D"">PIPE_FORMAT_R8G8B8A8_UNORM,&nbsp;</span><font =
-face=3D"HelveticaNeue" class=3D"">PIPE_FORMAT_R8G8B8X8_UNORM.&nbsp;Which =
-are defined at nv50/nv50_formats.c line: 130,131.</font></div><div =
-class=3D""><br class=3D""></div><div class=3D""><font =
-face=3D"HelveticaNeue" class=3D"">C4(A, R8G8B8A8_UNORM, RGBA8_UNORM, R, =
-G, B, A, UNORM, A8B8G8R8, IB),</font></div><div class=3D""><font =
-face=3D"HelveticaNeue" class=3D"">F3(A, R8G8B8X8_UNORM, RGBX8_UNORM, R, =
-G, B, xx, UNORM, A8B8G8R8, TB),</font></div><div class=3D""><font =
-face=3D"HelveticaNeue" class=3D""><br class=3D""></font></div><div =
-class=3D""><span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span>I want the last params to be =E2=80=9CTD=E2=80=9D or =E2=80=9CID=E2=
-=80=9D (support PIPE_BIND_DISPLAY_TARGET) , to support android. I =
-modified these code, but got display issues and kernel issue:</div><div =
-class=3D""><br class=3D""></div><div class=3D""><div class=3D"">[ &nbsp; =
-93.313995] nouveau 0000:01:00.0: gr: DATA_ERROR 0000009c [] ch 5 =
-[007f6c6000 RenderThread[5395]] subc 0 class a097 mthd 15f0 data =
-002c0014</div><div class=3D"">[ &nbsp; 93.314082] nouveau 0000:01:00.0: =
-gr: DATA_ERROR 0000009c [] ch 5 [007f6c6000 RenderThread[5395]] subc 0 =
-class a097 mthd 15f0 data 002d0016</div><div class=3D"">[ &nbsp; =
-93.314112] nouveau 0000:01:00.0: gr: DATA_ERROR 0000009c [] ch 5 =
-[007f6c6000 RenderThread[5395]] subc 0 class a097 mthd 15f0 data =
-002d0018</div><div class=3D"">[ &nbsp; 93.314215] nouveau 0000:01:00.0: =
-gr: DATA_ERROR 0000009c [] ch 5 [007f6c6000 RenderThread[5395]] subc 0 =
-class a097 mthd 15f0 data 002d001a</div><div class=3D"">[ &nbsp; =
-93.314244] nouveau 0000:01:00.0: gr: DATA_ERROR 0000009c [] ch 5 =
-[007f6c6000 RenderThread[5395]] subc 0 class a097 mthd 15f0 data =
-002d001c</div><div class=3D"">[ &nbsp; 93.314272] nouveau 0000:01:00.0: =
-gr: DATA_ERROR 0000009c [] ch 5 [007f6c6000 RenderThread[5395]] subc 0 =
-class a097 mthd 15f0 data 002d001e</div><div class=3D"">[ &nbsp; =
-93.314301] nouveau 0000:01:00.0: gr: DATA_ERROR 0000009c [] ch 5 =
-[007f6c6000 RenderThread[5395]] subc 0 class a097 mthd 15f0 data =
-002e0020</div><div class=3D"">[ &nbsp; 93.314325] nouveau 0000:01:00.0: =
-gr: DATA_ERROR 0000009c [] ch 5 [007f6c6000 RenderThread[5395]] subc 0 =
-class a097 mthd 15f0 data 002e0022</div></div><div class=3D""><br =
-class=3D""></div><div class=3D""><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span>Any idea?</div><div class=3D""><br =
-class=3D""></div><div class=3D"">Best regards,</div><div class=3D""><br =
-class=3D""></div><div class=3D""><span class=3D"Apple-tab-span" =
-style=3D"white-space:pre">	</span>Yang =
-Tsao</div></div></body></html>=
-
---Apple-Mail=_0BEB3EA6-C0D6-488D-A8B4-453E6B57A156--
-
---===============1578591550==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1578591550==--
+T24gRnJpLCBOb3YgMjMsIDIwMTggYXQgMTE6MDAgUE0gWWFuZyBUc2FvIDx5YW5nQGZ5ZGVvcy5p
+bz4gd3JvdGU6Cj4KPiBIaSwgZ3V5czoKPiBJ4oCZbSBhIGRldmVsb3BlciBvZiBGeWRlT1MuIFdl
+IHBvcnRpbmcgQ2hyb21pdW1PUyB0byBhbWQ2NCBhbmQgYXJtIHBsYXRmb3Jtcy4gTm93LCBJ4oCZ
+bSB3b2tpbmcgb24gcG9ydGluZyBhbmRyb2lkIGVudmlyb25tZW50IHRvIE52aWRpYSBncmFwaGlj
+IGNhcmRzLiBJIGhhdmUgZXhwZXJpZW5jZSB0byBwb3J0IGFuZHJvaWQgdG8gVm13YXJlKFNWR0Ep
+Lgo+IEkgZm91bmQgdHdvIGRpc3BsYXkgZm9ybWF0cyB3ZXJlIG5vdCBzdXBwb3J0ZWQgdG8gZGlz
+cGxheSBpbiBub3V2ZWF1IGRyaXZlcjogUElQRV9GT1JNQVRfUjhHOEI4QThfVU5PUk0sIFBJUEVf
+Rk9STUFUX1I4RzhCOFg4X1VOT1JNLiBXaGljaCBhcmUgZGVmaW5lZCBhdCBudjUwL252NTBfZm9y
+bWF0cy5jIGxpbmU6IDEzMCwxMzEuCj4KPiBDNChBLCBSOEc4QjhBOF9VTk9STSwgUkdCQThfVU5P
+Uk0sIFIsIEcsIEIsIEEsIFVOT1JNLCBBOEI4RzhSOCwgSUIpLAo+IEYzKEEsIFI4RzhCOFg4X1VO
+T1JNLCBSR0JYOF9VTk9STSwgUiwgRywgQiwgeHgsIFVOT1JNLCBBOEI4RzhSOCwgVEIpLAo+Cj4g
+SSB3YW50IHRoZSBsYXN0IHBhcmFtcyB0byBiZSDigJxUROKAnSBvciDigJxJROKAnSAoc3VwcG9y
+dCBQSVBFX0JJTkRfRElTUExBWV9UQVJHRVQpICwgdG8gc3VwcG9ydCBhbmRyb2lkLiBJIG1vZGlm
+aWVkIHRoZXNlIGNvZGUsIGJ1dCBnb3QgZGlzcGxheSBpc3N1ZXMgYW5kIGtlcm5lbCBpc3N1ZToK
+ClRoYXQncyBnZW5lcmFsbHkgZmluZSAoSUIgLT4gSUQsIFRCIC0+IFREKSwgYnV0IHlvdSBtaWdo
+dCB3YW50IHRvIGZsaXAKdGhlIEJHUkEgZm9ybWF0cyB0byBub3QgaGF2ZSB0aGUgZGlzcGxheSBi
+aXRzLiBTb21lIHdpbnN5cydzIGdldCB1cHNldAppZiB5b3UgaGF2ZSBib3RoIFJHQkEgYW5kIEJH
+UkEgb3JkZXJpbmcgdGhvdWdoLiAoVGhlIHJlYXNvbiB0aGF0IHdlCnByZWZlciBCR1JBOCBvbiBY
+IGlzIGxhcmdlbHkgbGVnYWN5LikKCj4gWyAgIDkzLjMxMzk5NV0gbm91dmVhdSAwMDAwOjAxOjAw
+LjA6IGdyOiBEQVRBX0VSUk9SIDAwMDAwMDljIFtdIGNoIDUgWzAwN2Y2YzYwMDAgUmVuZGVyVGhy
+ZWFkWzUzOTVdXSBzdWJjIDAgY2xhc3MgYTA5NyBtdGhkIDE1ZjAgZGF0YSAwMDJjMDAxNAo+IFsg
+ICA5My4zMTQwODJdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjogREFUQV9FUlJPUiAwMDAwMDA5
+YyBbXSBjaCA1IFswMDdmNmM2MDAwIFJlbmRlclRocmVhZFs1Mzk1XV0gc3ViYyAwIGNsYXNzIGEw
+OTcgbXRoZCAxNWYwIGRhdGEgMDAyZDAwMTYKPiBbICAgOTMuMzE0MTEyXSBub3V2ZWF1IDAwMDA6
+MDE6MDAuMDogZ3I6IERBVEFfRVJST1IgMDAwMDAwOWMgW10gY2ggNSBbMDA3ZjZjNjAwMCBSZW5k
+ZXJUaHJlYWRbNTM5NV1dIHN1YmMgMCBjbGFzcyBhMDk3IG10aGQgMTVmMCBkYXRhIDAwMmQwMDE4
+Cj4gWyAgIDkzLjMxNDIxNV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBEQVRBX0VSUk9SIDAw
+MDAwMDljIFtdIGNoIDUgWzAwN2Y2YzYwMDAgUmVuZGVyVGhyZWFkWzUzOTVdXSBzdWJjIDAgY2xh
+c3MgYTA5NyBtdGhkIDE1ZjAgZGF0YSAwMDJkMDAxYQo+IFsgICA5My4zMTQyNDRdIG5vdXZlYXUg
+MDAwMDowMTowMC4wOiBncjogREFUQV9FUlJPUiAwMDAwMDA5YyBbXSBjaCA1IFswMDdmNmM2MDAw
+IFJlbmRlclRocmVhZFs1Mzk1XV0gc3ViYyAwIGNsYXNzIGEwOTcgbXRoZCAxNWYwIGRhdGEgMDAy
+ZDAwMWMKPiBbICAgOTMuMzE0MjcyXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IERBVEFfRVJS
+T1IgMDAwMDAwOWMgW10gY2ggNSBbMDA3ZjZjNjAwMCBSZW5kZXJUaHJlYWRbNTM5NV1dIHN1YmMg
+MCBjbGFzcyBhMDk3IG10aGQgMTVmMCBkYXRhIDAwMmQwMDFlCj4gWyAgIDkzLjMxNDMwMV0gbm91
+dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBEQVRBX0VSUk9SIDAwMDAwMDljIFtdIGNoIDUgWzAwN2Y2
+YzYwMDAgUmVuZGVyVGhyZWFkWzUzOTVdXSBzdWJjIDAgY2xhc3MgYTA5NyBtdGhkIDE1ZjAgZGF0
+YSAwMDJlMDAyMAo+IFsgICA5My4zMTQzMjVdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjogREFU
+QV9FUlJPUiAwMDAwMDA5YyBbXSBjaCA1IFswMDdmNmM2MDAwIFJlbmRlclRocmVhZFs1Mzk1XV0g
+c3ViYyAwIGNsYXNzIGEwOTcgbXRoZCAxNWYwIGRhdGEgMDAyZTAwMjIKCkkgZG9uJ3QgdGhpbmsg
+dGhpcyBpcyByZWxhdGVkLiBBbHRob3VnaCBJJ20gYSBiaXQgcHV6emxlZCBhcyB0byB3aGF0CnRo
+aXMgbWVhbnMuIFRoaXMgaXMgZnJvbSBpbmRleCBlbGVtZW50IHN1Ym1pc3Npb24gKFZCX0VMRU1F
+TlRfVTE2KS4KVGhlcmUncyBubyByZWFsIHdheSB0byBoYXZlIGEgZGF0YSBlcnJvciB0aGVyZS4u
+LiBwZXJoYXBzIGl0IHRoaW5rCml0J3Mgb3V0IG9mIGJvdW5kcywgb3Igc29tZXRoaW5nIGVsc2Ug
+aXMgbm90IGNvbmZpZ3VyZWQgcHJvcGVybHkuIFRoaXMKY291bGQgaGFwcGVuIGlmIHRoZXJlJ3Mg
+bXVsdGktdGhyZWFkZWQgcmVuZGVyaW5nIGdvaW5nIG9uIC0tIHBsZWFzZQplbnN1cmUgdGhhdCBv
+bmx5IGEgc2luZ2xlIHRocmVhZCBldmVyIGNhbGxzIGludG8gbm91dmVhdSBhdCBhbnkgZ2l2ZW4K
+dGltZSBpbiBhIHByb2Nlc3MuCgpDaGVlcnMsCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
