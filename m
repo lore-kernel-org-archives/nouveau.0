@@ -1,49 +1,46 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 0/6] Remove all bad dp_mst_port uses and hide
- struct def
-Date: Sat, 24 Nov 2018 16:55:30 +0100
-Message-ID: <CACO55tsoo-KcQ=Z=vk6ztW3F1k3TgHL=XQAJaqjcZzy+qgv5Pg@mail.gmail.com>
-References: <20181117002120.28703-1-lyude@redhat.com>
+From: Colin King <colin.king@canonical.com>
+Subject: [PATCH] drm/nouveau/bios/ramcfg: fix missing parentheses when calculating RON
+Date: Sun, 25 Nov 2018 17:09:18 +0000
+Message-ID: <20181125170918.8088-1-colin.king@canonical.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20181117002120.28703-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-UGF0Y2hlcyAxIGFuZCA1IGFyZSBBY2tlZC1ieTogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhh
-dC5jb20+ClBhdGNoZXMgMi00IGFyZSBSZXZpZXdlZC1ieTogS2Fyb2wgSGVyYnN0IDxraGVyYnN0
-QHJlZGhhdC5jb20+Ck9uIFNhdCwgTm92IDE3LCAyMDE4IGF0IDE6MjEgQU0gTHl1ZGUgUGF1bCA8
-bHl1ZGVAcmVkaGF0LmNvbT4gd3JvdGU6Cj4KPiBTbyB3ZSBkb24ndCBldmVyIGhhdmUgdG8gd29y
-cnkgYWJvdXQgZHJpdmVycyB0b3VjaGluZyBkcm1fZHBfbXN0X3BvcnQKPiBzdHJ1Y3RzIHdpdGhv
-dXQgdmVyaWZ5aW5nIHRoZW0gYW5kIGNyYXNoaW5nIGFnYWluLgo+Cj4gTHl1ZGUgUGF1bCAoNik6
-Cj4gICBkcm0vZHBfbXN0OiBBZGQgZHJtX2RwX2dldF9wYXlsb2FkX2luZm8oKQo+ICAgZHJtL25v
-dXZlYXU6IFVzZSBkcm1fZHBfZ2V0X3BheWxvYWRfaW5mbygpIGZvciBnZXR0aW5nIHBheWxvYWQv
-dmNwaQo+ICAgZHJtL25vdXZlYXU6IFN0b3AgcmVhZGluZyBwb3J0LT5tZ3IgaW4gbnY1MF9tc3Rj
-X2dldF9tb2RlcygpCj4gICBkcm0vbm91dmVhdTogU3RvcCByZWFkaW5nIHBvcnQtPm1nciBpbiBu
-djUwX21zdGNfZGV0ZWN0KCkKPiAgIGRybS9kcF9tc3Q6IEhpZGUgZHJtX2RwX21zdF9wb3J0IGNv
-bnRlbnRzIGZyb20gZHJpdmVycwo+ICAgZHJtL2k5MTU6IFN0YXJ0IHVzaW5nIHN0cnVjdCBkcm1f
-ZHBfbXN0X3BvcnQgYWdhaW4KPgo+ICBkcml2ZXJzL2dwdS9kcm0vZHJtX2RwX21zdF90b3BvbG9n
-eS5jICAgfCAxMTUgKysrKysrKysrKysrKysrKysrKysrKysrCj4gIGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2ludGVsX2RwX21zdC5jICAgICB8ICAgMiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-bnRlbF9kcnYuaCAgICAgICAgfCAgIDIgKy0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlz
-cG52NTAvZGlzcC5jIHwgIDYwICsrKysrLS0tLS0tLS0KPiAgaW5jbHVkZS9kcm0vZHJtX2RwX21z
-dF9oZWxwZXIuaCAgICAgICAgIHwgIDY1ICsrLS0tLS0tLS0tLS0tCj4gIDUgZmlsZXMgY2hhbmdl
-ZCwgMTQ2IGluc2VydGlvbnMoKyksIDk4IGRlbGV0aW9ucygtKQo+Cj4gLS0KPiAyLjE5LjEKPgo+
-IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVh
-dSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
-dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+From: Colin Ian King <colin.king@canonical.com>
+
+Currently, the expression for calculating RON is always going to result
+in zero no matter the value of ram->mr[1] because the ! operator has
+higher precedence than the shift >> operator.  I believe the missing
+parentheses around the expression before appying the ! operator will
+result in the desired result.
+
+[ Note, not tested ]
+
+Detected by CoveritScan, CID#1324005 ("Operands don't affect result")
+
+Fixes: c25bf7b6155c ("drm/nouveau/bios/ramcfg: Separate out RON pull value")
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.c
+index 60ece0a8a2e1..1d2d6bae73cd 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/gddr3.c
+@@ -87,7 +87,7 @@ nvkm_gddr3_calc(struct nvkm_ram *ram)
+ 		WR  = (ram->next->bios.timing[2] & 0x007f0000) >> 16;
+ 		/* XXX: Get these values from the VBIOS instead */
+ 		DLL = !(ram->mr[1] & 0x1);
+-		RON = !(ram->mr[1] & 0x300) >> 8;
++		RON = !((ram->mr[1] & 0x300) >> 8);
+ 		break;
+ 	default:
+ 		return -ENOSYS;
+-- 
+2.19.1
