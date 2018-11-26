@@ -1,244 +1,111 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108857] New: display becomes unresponsive and
- keyboard input fails
-Date: Sun, 25 Nov 2018 12:20:11 +0000
-Message-ID: <bug-108857-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [Nouveau] [PATCH v6 1/6] drm/dp_mst: Add some
+ atomic state iterator macros
+Date: Mon, 26 Nov 2018 21:24:05 +0100
+Message-ID: <20181126202405.GP4266@phenom.ffwll.local>
+References: <20181116005008.7243-1-lyude@redhat.com>
+ <20181116005008.7243-2-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1516054098=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20181116005008.7243-2-lyude@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Lyude Paul <lyude@redhat.com>
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1516054098==
-Content-Type: multipart/alternative; boundary="15431484111.Dc8C.6016"
-Content-Transfer-Encoding: 7bit
-
-
---15431484111.Dc8C.6016
-Date: Sun, 25 Nov 2018 12:20:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108857
-
-            Bug ID: 108857
-           Summary: display becomes unresponsive and keyboard input fails
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: tla2k20-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 142607
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142607&action=3Dedit
-dmesg
-
-Fedora release 29 (Twenty Nine)
-Linux s0.home 4.19.3-300.fc29.x86_64 #1 SMP Wed Nov 21 15:27:25 UTC 2018 x8=
-6_64
-x86_64 x86_64 GNU/Linux
-
-System boots and is initially OK for a few minutes then becomes unresponsiv=
-e to
-mouse movements and keyboard input.  Access via a SSH session is fine.
-
-Issue started around 3 kernel updates ago (4.19.*).
-
-top shows the following when the problem is in progress:
-
-top - 12:10:25 up  1:10,  2 users,  load average: 0.23, 0.25, 0.27
-Tasks: 356 total,   2 running, 354 sleeping,   0 stopped,   0 zombie
-%Cpu(s):  0.8 us,  6.6 sy,  0.0 ni, 91.6 id,  0.0 wa,  1.0 hi,  0.0 si,  0.=
-0 st
-MiB Mem :  15982.9 total,   9198.9 free,   4552.3 used,   2231.7 buff/cache
-MiB Swap:   8008.0 total,   8008.0 free,      0.0 used.  11035.1 avail Mem
-
-  PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
- 7144 root      20   0       0      0      0 R  53.8   0.0   0:02.26
-kworker/u16:0+events_unbound
- 2325 user1     20   0 3867708 195040 118048 S   2.0   1.2   0:28.43
-gnome-shell
-
-kworker/u16:2+events_unbound seems to eat CPU and dmesg reports:
-
-nouveau 0000:01:00.0: DRM: base-0: timeout
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15431484111.Dc8C.6016
-Date: Sun, 25 Nov 2018 12:20:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - display becomes unresponsive and keyboard input fails"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108857">108857</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>display becomes unresponsive and keyboard input fails
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>tla2k20&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142607=
-" name=3D"attach_142607" title=3D"dmesg">attachment 142607</a> <a href=3D"a=
-ttachment.cgi?id=3D142607&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
-/span>
-dmesg
-
-Fedora release 29 (Twenty Nine)
-Linux s0.home 4.19.3-300.fc29.x86_64 #1 SMP Wed Nov 21 15:27:25 UTC 2018 x8=
-6_64
-x86_64 x86_64 GNU/Linux
-
-System boots and is initially OK for a few minutes then becomes unresponsiv=
-e to
-mouse movements and keyboard input.  Access via a SSH session is fine.
-
-Issue started around 3 kernel updates ago (4.19.*).
-
-top shows the following when the problem is in progress:
-
-top - 12:10:25 up  1:10,  2 users,  load average: 0.23, 0.25, 0.27
-Tasks: 356 total,   2 running, 354 sleeping,   0 stopped,   0 zombie
-%Cpu(s):  0.8 us,  6.6 sy,  0.0 ni, 91.6 id,  0.0 wa,  1.0 hi,  0.0 si,  0.=
-0 st
-MiB Mem :  15982.9 total,   9198.9 free,   4552.3 used,   2231.7 buff/cache
-MiB Swap:   8008.0 total,   8008.0 free,      0.0 used.  11035.1 avail Mem
-
-  PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
- 7144 root      20   0       0      0      0 R  53.8   0.0   0:02.26
-kworker/u16:0+events_unbound
- 2325 user1     20   0 3867708 195040 118048 S   2.0   1.2   0:28.43
-gnome-shell
-
-kworker/u16:2+events_unbound seems to eat CPU and dmesg reports:
-
-nouveau 0000:01:00.0: DRM: base-0: timeout</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15431484111.Dc8C.6016--
-
---===============1516054098==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1516054098==--
+T24gVGh1LCBOb3YgMTUsIDIwMTggYXQgMDc6NTA6MDNQTSAtMDUwMCwgTHl1ZGUgUGF1bCB3cm90
+ZToKPiBTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgo+IFJldmll
+d2VkLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgo+IC0tLQo+ICBp
+bmNsdWRlL2RybS9kcm1fZHBfbXN0X2hlbHBlci5oIHwgNzcgKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKysrCj4gIDEgZmlsZSBjaGFuZ2VkLCA3NyBpbnNlcnRpb25zKCspCj4gCj4gZGlm
+ZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2RybV9kcF9tc3RfaGVscGVyLmggYi9pbmNsdWRlL2RybS9k
+cm1fZHBfbXN0X2hlbHBlci5oCj4gaW5kZXggNTlmMDA1YjQxOWNmLi4zZmFjZWI2NmY1Y2IgMTAw
+NjQ0Cj4gLS0tIGEvaW5jbHVkZS9kcm0vZHJtX2RwX21zdF9oZWxwZXIuaAo+ICsrKyBiL2luY2x1
+ZGUvZHJtL2RybV9kcF9tc3RfaGVscGVyLmgKPiBAQCAtNjI4LDQgKzYyOCw4MSBAQCBpbnQgZHJt
+X2RwX2F0b21pY19yZWxlYXNlX3ZjcGlfc2xvdHMoc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0
+YXRlLAo+ICBpbnQgZHJtX2RwX3NlbmRfcG93ZXJfdXBkb3duX3BoeShzdHJ1Y3QgZHJtX2RwX21z
+dF90b3BvbG9neV9tZ3IgKm1nciwKPiAgCQkJCSBzdHJ1Y3QgZHJtX2RwX21zdF9wb3J0ICpwb3J0
+LCBib29sIHBvd2VyX3VwKTsKPiAgCj4gK2V4dGVybiBjb25zdCBzdHJ1Y3QgZHJtX3ByaXZhdGVf
+c3RhdGVfZnVuY3MgZHJtX2RwX21zdF90b3BvbG9neV9zdGF0ZV9mdW5jczsKPiArCj4gK3N0YXRp
+YyBpbmxpbmUgYm9vbAo+ICtfX2RybV9kcF9tc3Rfc3RhdGVfaXRlcl9nZXQoc3RydWN0IGRybV9h
+dG9taWNfc3RhdGUgKnN0YXRlLAo+ICsJCQkgICAgc3RydWN0IGRybV9kcF9tc3RfdG9wb2xvZ3lf
+bWdyICoqbWdyLAo+ICsJCQkgICAgc3RydWN0IGRybV9kcF9tc3RfdG9wb2xvZ3lfc3RhdGUgKipv
+bGRfc3RhdGUsCj4gKwkJCSAgICBzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9neV9zdGF0ZSAqKm5l
+d19zdGF0ZSwKPiArCQkJICAgIGludCBpKQo+ICt7Cj4gKwlzdHJ1Y3QgX19kcm1fcHJpdmF0ZV9v
+YmpzX3N0YXRlICpvYmpzX3N0YXRlID0gJnN0YXRlLT5wcml2YXRlX29ianNbaV07Cj4gKwo+ICsJ
+aWYgKG9ianNfc3RhdGUtPnB0ci0+ZnVuY3MgIT0gJmRybV9kcF9tc3RfdG9wb2xvZ3lfc3RhdGVf
+ZnVuY3MpCgpKdXN0IG5vdGljZWQgdGhhdCB0aGlzIHBhdGNoIGlzIG1pc3NpbmcgdGhlIEVYUE9S
+VF9TWU1CT0wsIHdoaWNoIGlzCmJ1cnJpZWQgaW4gcGF0Y2ggMy4gTmVlZHMgdG8gYmUgbW92ZWQu
+IEEgdGlueSBiaXQgb2Yga2VybmVsZG9jIGFsb25nIHRoZQpsaW5lcyBvZiAibmV2ZXIgdXNlIHRo
+aXMgZGlyZWN0bHkiIHdvdWxkIGJlIGdvb2QgdG9vIDotKQotRGFuaWVsCgo+ICsJCXJldHVybiBm
+YWxzZTsKPiArCj4gKwkqbWdyID0gdG9fZHBfbXN0X3RvcG9sb2d5X21ncihvYmpzX3N0YXRlLT5w
+dHIpOwo+ICsJaWYgKG9sZF9zdGF0ZSkKPiArCQkqb2xkX3N0YXRlID0gdG9fZHBfbXN0X3RvcG9s
+b2d5X3N0YXRlKG9ianNfc3RhdGUtPm9sZF9zdGF0ZSk7Cj4gKwlpZiAobmV3X3N0YXRlKQo+ICsJ
+CSpuZXdfc3RhdGUgPSB0b19kcF9tc3RfdG9wb2xvZ3lfc3RhdGUob2Jqc19zdGF0ZS0+bmV3X3N0
+YXRlKTsKPiArCj4gKwlyZXR1cm4gdHJ1ZTsKPiArfQo+ICsKPiArLyoqCj4gKyAqIGZvcl9lYWNo
+X29sZG5ld19tc3RfbWdyX2luX3N0YXRlIC0gaXRlcmF0ZSBvdmVyIGFsbCBEUCBNU1QgdG9wb2xv
+Z3kKPiArICogbWFuYWdlcnMgaW4gYW4gYXRvbWljIHVwZGF0ZQo+ICsgKiBAX19zdGF0ZTogJnN0
+cnVjdCBkcm1fYXRvbWljX3N0YXRlIHBvaW50ZXIKPiArICogQG1ncjogJnN0cnVjdCBkcm1fZHBf
+bXN0X3RvcG9sb2d5X21nciBpdGVyYXRpb24gY3Vyc29yCj4gKyAqIEBvbGRfc3RhdGU6ICZzdHJ1
+Y3QgZHJtX2RwX21zdF90b3BvbG9neV9zdGF0ZSBpdGVyYXRpb24gY3Vyc29yIGZvciB0aGUgb2xk
+Cj4gKyAqIHN0YXRlCj4gKyAqIEBuZXdfc3RhdGU6ICZzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9n
+eV9zdGF0ZSBpdGVyYXRpb24gY3Vyc29yIGZvciB0aGUgbmV3Cj4gKyAqIHN0YXRlCj4gKyAqIEBf
+X2k6IGludCBpdGVyYXRpb24gY3Vyc29yLCBmb3IgbWFjcm8taW50ZXJuYWwgdXNlCj4gKyAqCj4g
+KyAqIFRoaXMgaXRlcmF0ZXMgb3ZlciBhbGwgRFJNIERQIE1TVCB0b3BvbG9neSBtYW5hZ2VycyBp
+biBhbiBhdG9taWMgdXBkYXRlLAo+ICsgKiB0cmFja2luZyBib3RoIG9sZCBhbmQgbmV3IHN0YXRl
+LiBUaGlzIGlzIHVzZWZ1bCBpbiBwbGFjZXMgd2hlcmUgdGhlIHN0YXRlCj4gKyAqIGRlbHRhIG5l
+ZWRzIHRvIGJlIGNvbnNpZGVyZWQsIGZvciBleGFtcGxlIGluIGF0b21pYyBjaGVjayBmdW5jdGlv
+bnMuCj4gKyAqLwo+ICsjZGVmaW5lIGZvcl9lYWNoX29sZG5ld19tc3RfbWdyX2luX3N0YXRlKF9f
+c3RhdGUsIG1nciwgb2xkX3N0YXRlLCBuZXdfc3RhdGUsIF9faSkgXAo+ICsJZm9yICgoX19pKSA9
+IDA7IChfX2kpIDwgKF9fc3RhdGUpLT5udW1fcHJpdmF0ZV9vYmpzOyAoX19pKSsrKSBcCj4gKwkJ
+Zm9yX2VhY2hfaWYoX19kcm1fZHBfbXN0X3N0YXRlX2l0ZXJfZ2V0KChfX3N0YXRlKSwgJihtZ3Ip
+LCAmKG9sZF9zdGF0ZSksICYobmV3X3N0YXRlKSwgKF9faSkpKQo+ICsKPiArLyoqCj4gKyAqIGZv
+cl9lYWNoX29sZF9tc3RfbWdyX2luX3N0YXRlIC0gaXRlcmF0ZSBvdmVyIGFsbCBEUCBNU1QgdG9w
+b2xvZ3kgbWFuYWdlcnMKPiArICogaW4gYW4gYXRvbWljIHVwZGF0ZQo+ICsgKiBAX19zdGF0ZTog
+JnN0cnVjdCBkcm1fYXRvbWljX3N0YXRlIHBvaW50ZXIKPiArICogQG1ncjogJnN0cnVjdCBkcm1f
+ZHBfbXN0X3RvcG9sb2d5X21nciBpdGVyYXRpb24gY3Vyc29yCj4gKyAqIEBvbGRfc3RhdGU6ICZz
+dHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9neV9zdGF0ZSBpdGVyYXRpb24gY3Vyc29yIGZvciB0aGUg
+b2xkCj4gKyAqIHN0YXRlCj4gKyAqIEBfX2k6IGludCBpdGVyYXRpb24gY3Vyc29yLCBmb3IgbWFj
+cm8taW50ZXJuYWwgdXNlCj4gKyAqCj4gKyAqIFRoaXMgaXRlcmF0ZXMgb3ZlciBhbGwgRFJNIERQ
+IE1TVCB0b3BvbG9neSBtYW5hZ2VycyBpbiBhbiBhdG9taWMgdXBkYXRlLAo+ICsgKiB0cmFja2lu
+ZyBvbmx5IHRoZSBvbGQgc3RhdGUuIFRoaXMgaXMgdXNlZnVsIGluIGRpc2FibGUgZnVuY3Rpb25z
+LCB3aGVyZSB3ZQo+ICsgKiBuZWVkIHRoZSBvbGQgc3RhdGUgdGhlIGhhcmR3YXJlIGlzIHN0aWxs
+IGluLgo+ICsgKi8KPiArI2RlZmluZSBmb3JfZWFjaF9vbGRfbXN0X21ncl9pbl9zdGF0ZShfX3N0
+YXRlLCBtZ3IsIG9sZF9zdGF0ZSwgX19pKSBcCj4gKwlmb3IgKChfX2kpID0gMDsgKF9faSkgPCAo
+X19zdGF0ZSktPm51bV9wcml2YXRlX29ianM7IChfX2kpKyspIFwKPiArCQlmb3JfZWFjaF9pZihf
+X2RybV9kcF9tc3Rfc3RhdGVfaXRlcl9nZXQoKF9fc3RhdGUpLCAmKG1nciksICYob2xkX3N0YXRl
+KSwgTlVMTCwgKF9faSkpKQo+ICsKPiArLyoqCj4gKyAqIGZvcl9lYWNoX25ld19tc3RfbWdyX2lu
+X3N0YXRlIC0gaXRlcmF0ZSBvdmVyIGFsbCBEUCBNU1QgdG9wb2xvZ3kgbWFuYWdlcnMKPiArICog
+aW4gYW4gYXRvbWljIHVwZGF0ZQo+ICsgKiBAX19zdGF0ZTogJnN0cnVjdCBkcm1fYXRvbWljX3N0
+YXRlIHBvaW50ZXIKPiArICogQG1ncjogJnN0cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5X21nciBp
+dGVyYXRpb24gY3Vyc29yCj4gKyAqIEBuZXdfc3RhdGU6ICZzdHJ1Y3QgZHJtX2RwX21zdF90b3Bv
+bG9neV9zdGF0ZSBpdGVyYXRpb24gY3Vyc29yIGZvciB0aGUgbmV3Cj4gKyAqIHN0YXRlCj4gKyAq
+IEBfX2k6IGludCBpdGVyYXRpb24gY3Vyc29yLCBmb3IgbWFjcm8taW50ZXJuYWwgdXNlCj4gKyAq
+Cj4gKyAqIFRoaXMgaXRlcmF0ZXMgb3ZlciBhbGwgRFJNIERQIE1TVCB0b3BvbG9neSBtYW5hZ2Vy
+cyBpbiBhbiBhdG9taWMgdXBkYXRlLAo+ICsgKiB0cmFja2luZyBvbmx5IHRoZSBuZXcgc3RhdGUu
+IFRoaXMgaXMgdXNlZnVsIGluIGVuYWJsZSBmdW5jdGlvbnMsIHdoZXJlIHdlCj4gKyAqIG5lZWQg
+dGhlIG5ldyBzdGF0ZSB0aGUgaGFyZHdhcmUgc2hvdWxkIGJlIGluIHdoZW4gdGhlIGF0b21pYyBj
+b21taXQKPiArICogb3BlcmF0aW9uIGhhcyBjb21wbGV0ZWQuCj4gKyAqLwo+ICsjZGVmaW5lIGZv
+cl9lYWNoX25ld19tc3RfbWdyX2luX3N0YXRlKF9fc3RhdGUsIG1nciwgbmV3X3N0YXRlLCBfX2kp
+IFwKPiArCWZvciAoKF9faSkgPSAwOyAoX19pKSA8IChfX3N0YXRlKS0+bnVtX3ByaXZhdGVfb2Jq
+czsgKF9faSkrKykgXAo+ICsJCWZvcl9lYWNoX2lmKF9fZHJtX2RwX21zdF9zdGF0ZV9pdGVyX2dl
+dCgoX19zdGF0ZSksICYobWdyKSwgTlVMTCwgJihuZXdfc3RhdGUpLCAoX19pKSkpCj4gKwo+ICAj
+ZW5kaWYKPiAtLSAKPiAyLjE5LjEKPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUKCi0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRl
+bCBDb3Jwb3JhdGlvbgpodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
