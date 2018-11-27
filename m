@@ -1,114 +1,418 @@
-From: "Michael S. Tsirkin" <mst@redhat.com>
-Subject: 4.20.0-rc3 nouveau/Quadro P2000 Mobile: runpm causing ACPI errors,
- lockups
-Date: Mon, 26 Nov 2018 22:53:26 -0500
-Message-ID: <20181126221005-mutt-send-email-mst@kernel.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108873] New: nouveau/Quadro P2000 Mobile: runpm
+ causing ACPI errors, lockups
+Date: Tue, 27 Nov 2018 04:03:53 +0000
+Message-ID: <bug-108873-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: nouveau@lists.freedesktop.org
-Cc: Dave Airlie <airlied@redhat.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1067427775=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U28gYSBuZXcgdGhpbmtwYWQ6CjAxOjAwLjAgVkdBIGNvbXBhdGlibGUgY29udHJvbGxlcjogTlZJ
-RElBIENvcnBvcmF0aW9uIEdQMTA3R0xNIFtRdWFkcm8gUDIwMDAgTW9iaWxlXSAocmV2IGExKQoK
-SGFuZ3Mgd2hlbmV2ZXIgSSB0cnkgdG8gcG9rZSBhdCB0aGUgY2FyZC4gSXQgc3RhcnRzIGhhcHBp
-bHkgZW5vdWdoIHdpdGgKClsgICAgMy45NzE1MTVdIEFDUEkgV2FybmluZzogXF9TQi5QQ0kwLkdG
-WDAuX0RTTTogQXJndW1lbnQgIzQgdHlwZSBtaXNtYXRjaCAtIEZvdW5kIFtCdWZmZXJdLCBBQ1BJ
-IHJlcXVpcmVzIFtQYWNrYWdlXSAoMjAxODEwMDMvbnNhcmd1bWVudHMtNjYpClsgICAgMy45NzE1
-NTNdIEFDUEkgV2FybmluZzogXF9TQi5QQ0kwLlBFRzAuUEVHUC5fRFNNOiBBcmd1bWVudCAjNCB0
-eXBlIG1pc21hdGNoIC0gRm91bmQgW0J1ZmZlcl0sIEFDUEkgcmVxdWlyZXMgW1BhY2thZ2VdICgy
-MDE4MTAwMy9uc2FyZ3VtZW50cy02NikKWyAgICAzLjk3MTcyMV0gcGNpIDAwMDA6MDE6MDAuMDog
-b3B0aW11cyBjYXBhYmlsaXRpZXM6IGVuYWJsZWQsIHN0YXR1cyBkeW5hbWljIHBvd2VyLCBoZGEg
-YmlvcyBjb2RlYyBzdXBwb3J0ZWQKWyAgICAzLjk3MTcyNl0gVkdBIHN3aXRjaGVyb286IGRldGVj
-dGVkIE9wdGltdXMgRFNNIG1ldGhvZCBcX1NCXy5QQ0kwLlBFRzAuUEVHUCBoYW5kbGUKWyAgICAz
-Ljk3MTcyN10gbm91dmVhdTogZGV0ZWN0ZWQgUFIgc3VwcG9ydCwgd2lsbCBub3QgdXNlIERTTQpb
-ICAgIDMuOTcxNzQ1XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZW5hYmxpbmcgZGV2aWNlICgwMDA2
-IC0+IDAwMDcpClsgICAgMy45NzE5MjNdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBOVklESUEgR1Ax
-MDcgKDEzNzAwMGExKQpbICAgIDQuMDA5ODc1XSBQTTogSW1hZ2Ugbm90IGZvdW5kIChjb2RlIC0y
-MikKWyAgICA0LjEzNTc1Ml0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogVlJBTTogNDA5NiBN
-aUIKWyAgICA0LjEzNTc1M10gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogR0FSVDogNTM2ODcw
-OTEyIE1pQgpbICAgIDQuMTM1NzU0XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBCSVQgdGFi
-bGUgJ0EnIG5vdCBmb3VuZApbICAgIDQuMTM1NzU1XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJN
-OiBCSVQgdGFibGUgJ0wnIG5vdCBmb3VuZApbICAgIDQuMTM1NzU2XSBub3V2ZWF1IDAwMDA6MDE6
-MDAuMDogRFJNOiBUTURTIHRhYmxlIHZlcnNpb24gMi4wClsgICAgNC4xMzU3NTZdIG5vdXZlYXUg
-MDAwMDowMTowMC4wOiBEUk06IERDQiB2ZXJzaW9uIDQuMQpbICAgIDQuMTM1NzU3XSBub3V2ZWF1
-IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMDogMDI4MDBmNzYgMDQ2MDAwMjAKWyAgICA0
-LjEzNTc1OF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRENCIG91dHAgMDE6IDAyMDExZjYy
-IDAwMDIwMDEwClsgICAgNC4xMzU3NTldIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBv
-dXRwIDAyOiAwMTAyMmY0NiAwNDYwMDAxMApbICAgIDQuMTM1NzYwXSBub3V2ZWF1IDAwMDA6MDE6
-MDAuMDogRFJNOiBEQ0Igb3V0cCAwMzogMDEwMzNmNTYgMDQ2MDAwMjAKWyAgICA0LjEzNTc2MV0g
-bm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRENCIGNvbm4gMDA6IDAwMDIwMDQ3ClsgICAgNC4x
-MzU3NjFdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDAxOiAwMDAxMDE2MQpb
-ICAgIDQuMTM1NzYyXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0IgY29ubiAwMjogMDAw
-MDEyNDYKWyAgICA0LjEzNTc2M10gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRENCIGNvbm4g
-MDM6IDAwMDAyMzQ2ClsgICAgNC41MDgzNTVdIFtkcm1dIFN1cHBvcnRzIHZibGFuayB0aW1lc3Rh
-bXAgY2FjaGluZyBSZXYgMiAoMjEuMTAuMjAxMykuClsgICAgNC41MDgzNTVdIFtkcm1dIERyaXZl
-ciBzdXBwb3J0cyBwcmVjaXNlIHZibGFuayB0aW1lc3RhbXAgcXVlcnkuClsgICAgNC41MDk4MTJd
-IFtkcm1dIENhbm5vdCBmaW5kIGFueSBjcnRjIG9yIHNpemVzClsgICAgNC41MTAxNDRdIFtkcm1d
-IEluaXRpYWxpemVkIG5vdXZlYXUgMS4zLjEgMjAxMjA4MDEgZm9yIDAwMDA6MDE6MDAuMCBvbiBt
-aW5vciAyCgoKQWx0aG91Z2ggdGhhdCB0eXBlIG1pc21hdGNoIGlzIGEgYml0IHdvcnJ5aW5nLiBB
-bmQgSSdtIG5vdCBzdXJlIHdoYXQKcHJpbnRzIFBNOiBJbWFnZSBub3QgZm91bmQuCgpCdXQgYWZ0
-ZXIgYSBzaG9ydCB3aGlsZSBpdCBnZXRzIHByZXR0eSBidXN5OgoKClsgICA1Mi45MTcwMDldIE5v
-IExvY2FsIFZhcmlhYmxlcyBhcmUgaW5pdGlhbGl6ZWQgZm9yIE1ldGhvZCBbTlZQT10KWyAgIDUy
-LjkxNzAxMV0gTm8gQXJndW1lbnRzIGFyZSBpbml0aWFsaXplZCBmb3IgbWV0aG9kIFtOVlBPXQpb
-ICAgNTIuOTE3MDEyXSBBQ1BJIEVycm9yOiBNZXRob2QgcGFyc2UvZXhlY3V0aW9uIGZhaWxlZCBc
-X1NCLlBDSTAuUEVHMC5QRUdQLk5WUE8sIEFFX0FNTF9MT09QX1RJTUVPVVQgKDIwMTgxMDAzL3Bz
-cGFyc2UtNTE2KQpbICAgNTIuOTE3MDYzXSBBQ1BJIEVycm9yOiBNZXRob2QgcGFyc2UvZXhlY3V0
-aW9uIGZhaWxlZCBcX1NCLlBDSTAuUEdPTiwgQUVfQU1MX0xPT1BfVElNRU9VVCAoMjAxODEwMDMv
-cHNwYXJzZS01MTYpClsgICA1Mi45MTcwODRdIEFDUEkgRXJyb3I6IE1ldGhvZCBwYXJzZS9leGVj
-dXRpb24gZmFpbGVkIFxfU0IuUENJMC5QRUcwLlBHMDAuX09OLCBBRV9BTUxfTE9PUF9USU1FT1VU
-ICgyMDE4MTAwMy9wc3BhcnNlLTUxNikKWyAgIDUyLjkxNzEwOF0gYWNwaSBkZXZpY2U6MDA6IEZh
-aWxlZCB0byBjaGFuZ2UgcG93ZXIgc3RhdGUgdG8gRDAKWyAgIDUyLjk2OTI4N10gdmlkZW8gTE5Y
-VklERU86MDA6IENhbm5vdCB0cmFuc2l0aW9uIHRvIHBvd2VyIHN0YXRlIEQwIGZvciBwYXJlbnQg
-aW4gKHVua25vd24pClsgICA1Mi45NjkyODldIHBjaV9yYXdfc2V0X3Bvd2VyX3N0YXRlOiAyIGNh
-bGxiYWNrcyBzdXBwcmVzc2VkClsgICA1Mi45NjkyOTFdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBS
-ZWZ1c2VkIHRvIGNoYW5nZSBwb3dlciBzdGF0ZSwgY3VycmVudGx5IGluIEQzClsgICA1My4wMjk1
-MTRdIHZpZGVvIExOWFZJREVPOjAwOiBDYW5ub3QgdHJhbnNpdGlvbiB0byBwb3dlciBzdGF0ZSBE
-MCBmb3IgcGFyZW50IGluICh1bmtub3duKQpbICAgNTMuMDQxMDI3XSBub3V2ZWF1IDAwMDA6MDE6
-MDAuMDogUmVmdXNlZCB0byBjaGFuZ2UgcG93ZXIgc3RhdGUsIGN1cnJlbnRseSBpbiBEMwpbICAg
-NTMuMDQxMDM1XSB2aWRlbyBMTlhWSURFTzowMDogQ2Fubm90IHRyYW5zaXRpb24gdG8gcG93ZXIg
-c3RhdGUgRDAgZm9yIHBhcmVudCBpbiAodW5rbm93bikKWyAgIDUzLjA1MzAwOF0gbm91dmVhdSAw
-MDAwOjAxOjAwLjA6IFJlZnVzZWQgdG8gY2hhbmdlIHBvd2VyIHN0YXRlLCBjdXJyZW50bHkgaW4g
-RDMKCgpBbmQgdGhlbiBrZXJuZWwgcHJvY2VlZHMgdG8gdGhyb3cgdXAgZXJyb3JzIGF0IHJhbmRv
-bSBwbGFjZXMsIGUuZy4KClsgICA2Ny4wMjE4OTJdIGNmZzgwMjExOiBmYWlsZWQgdG8gbG9hZCBy
-ZWd1bGF0b3J5LmRiClsgICA2Ny4wMjE4OTVdIGNmZzgwMjExOiBmYWlsZWQgdG8gbG9hZCByZWd1
-bGF0b3J5LmRiClsgICA2Ny4wMjE4OTddIGNmZzgwMjExOiBmYWlsZWQgdG8gbG9hZCByZWd1bGF0
-b3J5LmRiClsgICA2Ny4wMjE5MDBdIGNmZzgwMjExOiBmYWlsZWQgdG8gbG9hZCByZWd1bGF0b3J5
-LmRiClsgICA2Ny4wMjE5MjddIGNmZzgwMjExOiBmYWlsZWQgdG8gbG9hZCByZWd1bGF0b3J5LmRi
-ClsgICA2Ny4wMjE5MjhdIGNmZzgwMjExOiBmYWlsZWQgdG8gbG9hZCByZWd1bGF0b3J5LmRiClsg
-ICA2Ny4wMjE5MzJdIGNmZzgwMjExOiBmYWlsZWQgdG8gbG9hZCByZWd1bGF0b3J5LmRiClsgICA2
-Ny4wMjE5MzRdIGNmZzgwMjExOiBmYWlsZWQgdG8gbG9hZCByZWd1bGF0b3J5LmRiClsgICA2Ny4w
-MjQ0NjNdIGNmZzgwMjExOiBmYWlsZWQgdG8gbG9hZCByZWd1bGF0b3J5LmRiClsgICA5OS45ODA2
-MjVdIGl3bHdpZmkgMDAwMDowMDoxNC4zOiBFcnJvciBzZW5kaW5nIFNUQVRJU1RJQ1NfQ01EOiB0
-aW1lIG91dCBhZnRlciAyMDAwbXMuCgpmb2xsb3dlZCBieSBzb2Z0IGxvY2t1cHMgYW5kIHNvbWV0
-aW1lcyBoYXJkIGxvY2t1cHMgaW4gcGxhY2VzCmxpa2UgYXR0ZW1wdHMgdG8gd2FsayBza2IgbGlz
-dHMuCgpBZGRpbmcgcnVucG09MCBkb2VzIGF3YXkgd2l0aCB0aGlzIGlzc3VlLgoKVGhlIHNwZWNp
-ZmljIHRlc3Qgd2FzIHdpdGggbm9hY2NlbD0xIC0gaXQgZG9lcyBub3Qgc2VlbSB0byBjaGFuZ2UK
-dGhpbmdzIGZvciBtZS4KCkkgcG9rZWQgYXQgdGhlIEFDUEkgbWV0aG9kIE5WUE8gYW5kIHllcyBp
-dCBkb2VzIGFjdHVhbGx5CnNlZW0gdG8gZXhlY3V0ZSBhIHdoaWxlIGxvb3Agd2FpdGluZyBmb3Ig
-c29tZSByZWdpc3Rlcgp0byBiZWNvbWUgMC4gV2hpY2ggSSBndWVzcyBuZXZlciBoYXBwZW5zPyBC
-ZWNhdXNlIGNhcmQKaXMgaW4gYSBsb3cgcG93ZXIgc3RhdGUgYW5kIHNvIHJlYWRzIHJldHVybiBm
-ZmZmZmZmZiBtYXliZT8KClggaXNuJ3QgaGFwcHkgZXZlbiB3aXRoIHJ1bnBtPTAgYnV0IHRoYXQg
-bWlnaHQgYmUgYSBkaWZmZXJlbnQKaXNzdWUgLSBJIHRob3VnaHQgcnVucG09MCBtaWdodCBiZSBh
-biBlYXNpZXIgcGxhY2UgdG8gc3RhcnQgZGVidWdnaW5nCnRoaW5ncyBnaXZlbiB0aGVyZSBhcmUg
-bG9ncyBvZiB0aGUgZmFpbHVyZS4KClVzaW5nIDQuMjAuMC1yYzMgcmlnaHQgbm93LgoKVXNlcnNw
-YWNlIGJpdHMgYXJlIGZyb20gZmVkb3JhIDI5Ogp4b3JnLXgxMS1kcnYtbm91dmVhdS0xLjAuMTUt
-Ni5mYzI5Lng4Nl82NAoKZmlybXdhcmUgaXMgcHJldHR5IHJlY2VudDoKbGludXgtZmlybXdhcmUt
-MjAxODEwMDgtODguZ2l0YzZiNjI2NWQuZmMyOS5ub2FyY2gKCk1vcmUgaGludHMgZm9yIGRlYnVn
-Z2luZyB3b3VsZCBiZSBhcHByZWNpYXRlZC4KSWYgYW55b25lIHdhbnRzIG1lIHRvIHBsYXkgd2l0
-aCBhIGRpZmZlcmVudCBrZXJuZWwgdHJlZSwKbGV0IG1lIGtub3cuCgotLSAKTVNUCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5n
-IGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============1067427775==
+Content-Type: multipart/alternative; boundary="15432914331.7BD0c6.21855"
+Content-Transfer-Encoding: 7bit
+
+
+--15432914331.7BD0c6.21855
+Date: Tue, 27 Nov 2018 04:03:53 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108873
+
+            Bug ID: 108873
+           Summary: nouveau/Quadro P2000 Mobile: runpm causing ACPI
+                    errors, lockups
+           Product: xorg
+           Version: git
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: mst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 142620
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142620&action=3Dedit
+dmesg showing the errors and the lockup. using noaccel=3D1
+
+So a new thinkpad:
+01:00.0 VGA compatible controller: NVIDIA Corporation GP107GLM [Quadro P2000
+Mobile] (rev a1)
+
+Hangs whenever I try to poke at the card. It starts happily enough with
+
+[    3.971515] ACPI Warning: \_SB.PCI0.GFX0._DSM: Argument #4 type mismatch=
+ -
+Found [Buffer], ACPI requires [Package]
++(20181003/nsarguments-66)
+[    3.971553] ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package]
++(20181003/nsarguments-66)
+[    3.971721] pci 0000:01:00.0: optimus capabilities: enabled, status dyna=
+mic
+power, hda bios codec supported
+[    3.971726] VGA switcheroo: detected Optimus DSM method \_SB_.PCI0.PEG0.=
+PEGP
+handle
+[    3.971727] nouveau: detected PR support, will not use DSM
+[    3.971745] nouveau 0000:01:00.0: enabling device (0006 -> 0007)
+[    3.971923] nouveau 0000:01:00.0: NVIDIA GP107 (137000a1)
+[    4.009875] PM: Image not found (code -22)
+[    4.135752] nouveau 0000:01:00.0: DRM: VRAM: 4096 MiB
+[    4.135753] nouveau 0000:01:00.0: DRM: GART: 536870912 MiB
+[    4.135754] nouveau 0000:01:00.0: DRM: BIT table 'A' not found
+[    4.135755] nouveau 0000:01:00.0: DRM: BIT table 'L' not found
+[    4.135756] nouveau 0000:01:00.0: DRM: TMDS table version 2.0
+[    4.135756] nouveau 0000:01:00.0: DRM: DCB version 4.1
+[    4.135757] nouveau 0000:01:00.0: DRM: DCB outp 00: 02800f76 04600020
+[    4.135758] nouveau 0000:01:00.0: DRM: DCB outp 01: 02011f62 00020010
+[    4.135759] nouveau 0000:01:00.0: DRM: DCB outp 02: 01022f46 04600010
+[    4.135760] nouveau 0000:01:00.0: DRM: DCB outp 03: 01033f56 04600020
+[    4.135761] nouveau 0000:01:00.0: DRM: DCB conn 00: 00020047
+[    4.135761] nouveau 0000:01:00.0: DRM: DCB conn 01: 00010161
+[    4.135762] nouveau 0000:01:00.0: DRM: DCB conn 02: 00001246
+[    4.135763] nouveau 0000:01:00.0: DRM: DCB conn 03: 00002346
+[    4.508355] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    4.508355] [drm] Driver supports precise vblank timestamp query.
+[    4.509812] [drm] Cannot find any crtc or sizes
+[    4.510144] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on
+minor 2
+
+
+Although that type mismatch is a bit worrying. And I'm not sure what
+prints PM: Image not found.
+
+But after a short while it gets pretty busy:
+
+
+[   52.917009] No Local Variables are initialized for Method [NVPO]
+[   52.917011] No Arguments are initialized for method [NVPO]
+[   52.917012] ACPI Error: Method parse/execution failed
+\_SB.PCI0.PEG0.PEGP.NVPO, AE_AML_LOOP_TIMEOUT (20181003/psparse-516)
+[   52.917063] ACPI Error: Method parse/execution failed \_SB.PCI0.PGON,
+AE_AML_LOOP_TIMEOUT (20181003/psparse-516)
+[   52.917084] ACPI Error: Method parse/execution failed
+\_SB.PCI0.PEG0.PG00._ON, AE_AML_LOOP_TIMEOUT (20181003/psparse-516)
+[   52.917108] acpi device:00: Failed to change power state to D0
+[   52.969287] video LNXVIDEO:00: Cannot transition to power state D0 for
+parent in (unknown)
+[   52.969289] pci_raw_set_power_state: 2 callbacks suppressed
+[   52.969291] nouveau 0000:01:00.0: Refused to change power state, current=
+ly
+in D3
+[   53.029514] video LNXVIDEO:00: Cannot transition to power state D0 for
+parent in (unknown)
+[   53.041027] nouveau 0000:01:00.0: Refused to change power state, current=
+ly
+in D3
+[   53.041035] video LNXVIDEO:00: Cannot transition to power state D0 for
+parent in (unknown)
+[   53.053008] nouveau 0000:01:00.0: Refused to change power state, current=
+ly
+in D3
+And then kernel proceeds to throw up errors at random places, e.g.
+
+[   67.021892] cfg80211: failed to load regulatory.db
+[   67.021895] cfg80211: failed to load regulatory.db
+[   67.021897] cfg80211: failed to load regulatory.db
+[   67.021900] cfg80211: failed to load regulatory.db
+[   67.021927] cfg80211: failed to load regulatory.db
+[   67.021928] cfg80211: failed to load regulatory.db
+[   67.021932] cfg80211: failed to load regulatory.db
+[   67.021934] cfg80211: failed to load regulatory.db
+[   67.024463] cfg80211: failed to load regulatory.db
+[   99.980625] iwlwifi 0000:00:14.3: Error sending STATISTICS_CMD: time out
+after 2000ms.
+
+followed by soft lockups and sometimes hard lockups in places
+like attempts to walk skb lists.
+
+Adding runpm=3D0 does away with this issue.
+
+The specific test was with noaccel=3D1 - it does not seem to change
+things for me.
+
+I poked at the ACPI method NVPO and yes it does actually
+seem to execute a while loop waiting for some register
+to become 0. Which I guess never happens? Because card
+is in a low power state and so reads return ffffffff maybe?
+
+
+X isn't happy even with runpm=3D0 but that might be a different
+issue - I thought runpm=3D0 might be an easier place to start debugging
+things given there are logs of the failure.
+
+Using kernel 4.20.0-rc3 right now.
+
+Userspace bits are from fedora 29:
+xorg-x11-drv-nouveau-1.0.15-6.fc29.x86_64
+
+firmware is pretty recent:
+linux-firmware-20181008-88.gitc6b6265d.fc29.noarch
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15432914331.7BD0c6.21855
+Date: Tue, 27 Nov 2018 04:03:53 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau/Quadro P2000 Mobile: runpm causing ACPI errors, l=
+ockups"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108873">108873</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>nouveau/Quadro P2000 Mobile: runpm causing ACPI errors, locku=
+ps
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mst&#64;redhat.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142620=
+" name=3D"attach_142620" title=3D"dmesg showing the errors and the lockup. =
+using noaccel=3D1">attachment 142620</a> <a href=3D"attachment.cgi?id=3D142=
+620&amp;action=3Dedit" title=3D"dmesg showing the errors and the lockup. us=
+ing noaccel=3D1">[details]</a></span>
+dmesg showing the errors and the lockup. using noaccel=3D1
+
+So a new thinkpad:
+01:00.0 VGA compatible controller: NVIDIA Corporation GP107GLM [Quadro P2000
+Mobile] (rev a1)
+
+Hangs whenever I try to poke at the card. It starts happily enough with
+
+[    3.971515] ACPI Warning: \_SB.PCI0.GFX0._DSM: Argument #4 type mismatch=
+ -
+Found [Buffer], ACPI requires [Package]
++(20181003/nsarguments-66)
+[    3.971553] ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type
+mismatch - Found [Buffer], ACPI requires [Package]
++(20181003/nsarguments-66)
+[    3.971721] pci 0000:01:00.0: optimus capabilities: enabled, status dyna=
+mic
+power, hda bios codec supported
+[    3.971726] VGA switcheroo: detected Optimus DSM method \_SB_.PCI0.PEG0.=
+PEGP
+handle
+[    3.971727] nouveau: detected PR support, will not use DSM
+[    3.971745] nouveau 0000:01:00.0: enabling device (0006 -&gt; 0007)
+[    3.971923] nouveau 0000:01:00.0: NVIDIA GP107 (137000a1)
+[    4.009875] PM: Image not found (code -22)
+[    4.135752] nouveau 0000:01:00.0: DRM: VRAM: 4096 MiB
+[    4.135753] nouveau 0000:01:00.0: DRM: GART: 536870912 MiB
+[    4.135754] nouveau 0000:01:00.0: DRM: BIT table 'A' not found
+[    4.135755] nouveau 0000:01:00.0: DRM: BIT table 'L' not found
+[    4.135756] nouveau 0000:01:00.0: DRM: TMDS table version 2.0
+[    4.135756] nouveau 0000:01:00.0: DRM: DCB version 4.1
+[    4.135757] nouveau 0000:01:00.0: DRM: DCB outp 00: 02800f76 04600020
+[    4.135758] nouveau 0000:01:00.0: DRM: DCB outp 01: 02011f62 00020010
+[    4.135759] nouveau 0000:01:00.0: DRM: DCB outp 02: 01022f46 04600010
+[    4.135760] nouveau 0000:01:00.0: DRM: DCB outp 03: 01033f56 04600020
+[    4.135761] nouveau 0000:01:00.0: DRM: DCB conn 00: 00020047
+[    4.135761] nouveau 0000:01:00.0: DRM: DCB conn 01: 00010161
+[    4.135762] nouveau 0000:01:00.0: DRM: DCB conn 02: 00001246
+[    4.135763] nouveau 0000:01:00.0: DRM: DCB conn 03: 00002346
+[    4.508355] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    4.508355] [drm] Driver supports precise vblank timestamp query.
+[    4.509812] [drm] Cannot find any crtc or sizes
+[    4.510144] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on
+minor 2
+
+
+Although that type mismatch is a bit worrying. And I'm not sure what
+prints PM: Image not found.
+
+But after a short while it gets pretty busy:
+
+
+[   52.917009] No Local Variables are initialized for Method [NVPO]
+[   52.917011] No Arguments are initialized for method [NVPO]
+[   52.917012] ACPI Error: Method parse/execution failed
+\_SB.PCI0.PEG0.PEGP.NVPO, AE_AML_LOOP_TIMEOUT (20181003/psparse-516)
+[   52.917063] ACPI Error: Method parse/execution failed \_SB.PCI0.PGON,
+AE_AML_LOOP_TIMEOUT (20181003/psparse-516)
+[   52.917084] ACPI Error: Method parse/execution failed
+\_SB.PCI0.PEG0.PG00._ON, AE_AML_LOOP_TIMEOUT (20181003/psparse-516)
+[   52.917108] acpi device:00: Failed to change power state to D0
+[   52.969287] video LNXVIDEO:00: Cannot transition to power state D0 for
+parent in (unknown)
+[   52.969289] pci_raw_set_power_state: 2 callbacks suppressed
+[   52.969291] nouveau 0000:01:00.0: Refused to change power state, current=
+ly
+in D3
+[   53.029514] video LNXVIDEO:00: Cannot transition to power state D0 for
+parent in (unknown)
+[   53.041027] nouveau 0000:01:00.0: Refused to change power state, current=
+ly
+in D3
+[   53.041035] video LNXVIDEO:00: Cannot transition to power state D0 for
+parent in (unknown)
+[   53.053008] nouveau 0000:01:00.0: Refused to change power state, current=
+ly
+in D3
+And then kernel proceeds to throw up errors at random places, e.g.
+
+[   67.021892] cfg80211: failed to load regulatory.db
+[   67.021895] cfg80211: failed to load regulatory.db
+[   67.021897] cfg80211: failed to load regulatory.db
+[   67.021900] cfg80211: failed to load regulatory.db
+[   67.021927] cfg80211: failed to load regulatory.db
+[   67.021928] cfg80211: failed to load regulatory.db
+[   67.021932] cfg80211: failed to load regulatory.db
+[   67.021934] cfg80211: failed to load regulatory.db
+[   67.024463] cfg80211: failed to load regulatory.db
+[   99.980625] iwlwifi 0000:00:14.3: Error sending STATISTICS_CMD: time out
+after 2000ms.
+
+followed by soft lockups and sometimes hard lockups in places
+like attempts to walk skb lists.
+
+Adding runpm=3D0 does away with this issue.
+
+The specific test was with noaccel=3D1 - it does not seem to change
+things for me.
+
+I poked at the ACPI method NVPO and yes it does actually
+seem to execute a while loop waiting for some register
+to become 0. Which I guess never happens? Because card
+is in a low power state and so reads return ffffffff maybe?
+
+
+X isn't happy even with runpm=3D0 but that might be a different
+issue - I thought runpm=3D0 might be an easier place to start debugging
+things given there are logs of the failure.
+
+Using kernel 4.20.0-rc3 right now.
+
+Userspace bits are from fedora 29:
+xorg-x11-drv-nouveau-1.0.15-6.fc29.x86_64
+
+firmware is pretty recent:
+linux-firmware-20181008-88.gitc6b6265d.fc29.noarch</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15432914331.7BD0c6.21855--
+
+--===============1067427775==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1067427775==--
