@@ -1,107 +1,89 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108857] display becomes unresponsive and keyboard
- input fails
-Date: Wed, 28 Nov 2018 16:37:00 +0000
-Message-ID: <bug-108857-8800-vGGWhTHwld@http.bugs.freedesktop.org/>
-References: <bug-108857-8800@http.bugs.freedesktop.org/>
+From: Eric Anholt <eric@anholt.net>
+Subject: Re: [PATCH v3 1/3] drm/connector: Add generic underscan properties
+Date: Wed, 28 Nov 2018 09:17:07 -0800
+Message-ID: <875zwh6s18.fsf@anholt.net>
+References: <20181122112331.17735-1-boris.brezillon@bootlin.com>
+ <20181122112331.17735-2-boris.brezillon@bootlin.com>
+ <20181122173658.7gvnl3trkdhsqn3p@DESKTOP-E1NTVVP.localdomain>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0955354921=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108857-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============0290045825=="
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20181122173658.7gvnl3trkdhsqn3p@DESKTOP-E1NTVVP.localdomain>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Brian Starkey <Brian.Starkey@arm.com>, Boris Brezillon <boris.brezillon@bootlin.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Alex Deucher <alexander.deucher@amd.com>, nd <nd@arm.com>, Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
+--===============0290045825==
+Content-Type: multipart/signed; boundary="=-=-=";
+	micalg=pgp-sha512; protocol="application/pgp-signature"
 
---===============0955354921==
-Content-Type: multipart/alternative; boundary="15434230200.B5D5608e5.23766"
-Content-Transfer-Encoding: 7bit
+--=-=-=
+Content-Type: text/plain
 
+Brian Starkey <Brian.Starkey@arm.com> writes:
 
---15434230200.B5D5608e5.23766
-Date: Wed, 28 Nov 2018 16:37:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+> Hi Boris,
+>
+> Just because I happened to read the docs in here, one typo below:
+>
+> On Thu, Nov 22, 2018 at 12:23:29PM +0100, Boris Brezillon wrote:
+>>diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+>>index c555e17ab8d7..170317248da6 100644
+>>--- a/drivers/gpu/drm/drm_connector.c
+>>+++ b/drivers/gpu/drm/drm_connector.c
+>>@@ -971,6 +971,38 @@ DRM_ENUM_NAME_FN(drm_get_content_protection_name, drm_cp_enum_list)
+>>  *	can also expose this property to external outputs, in which case they
+>>  *	must support "None", which should be the default (since external screens
+>>  *	have a built-in scaler).
+>>+ *
+>>+ * Connectors for non-analog outputs may also have standardized underscan
+>>+ * properties (drivers can set this up by calling
+>>+ * drm_connector_attach_content_protection_property() on initialization):
+>
+> Should be drm_connector_attach_underscan_properties()
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108857
+Other than this typo, this series is:
 
---- Comment #4 from tla2k20-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 142650
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142650&action=3Dedit
-dmesg from 4.19.4-300.fc29.x86_64
+Reviewed-by: Eric Anholt <eric@anholt.net>
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
 
---15434230200.B5D5608e5.23766
-Date: Wed, 28 Nov 2018 16:37:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+-----BEGIN PGP SIGNATURE-----
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - display becomes unresponsive and keyboard input fails"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108857#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - display becomes unresponsive and keyboard input fails"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108857">bug 10885=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tla2k20&#64;gmail.com" title=3D"tla2k20&#64;gmail.com">tla2k20&#64;gmail.co=
-m</a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142650=
-" name=3D"attach_142650" title=3D"dmesg from 4.19.4-300.fc29.x86_64">attach=
-ment 142650</a> <a href=3D"attachment.cgi?id=3D142650&amp;action=3Dedit" ti=
-tle=3D"dmesg from 4.19.4-300.fc29.x86_64">[details]</a></span>
-dmesg from 4.19.4-300.fc29.x86_64</pre>
-        </div>
-      </p>
+iQIzBAEBCgAdFiEE/JuuFDWp9/ZkuCBXtdYpNtH8nugFAlv+zZMACgkQtdYpNtH8
+nugbfQ//Uqeeq2iFesEUAtE76R436NzQuAZ220SpW+NuV7OzfZPU0HX9wwWygneS
+uUkXlAlDuUatzFgLzoFtLczU2hLyz3czePW5foGzr6roDneZElT/HvANK/xfymO5
+Gim+w1RocqAg3DEZb+pH2LLaqtJnu53DIVk0yQpMGCnL5it3n/lGmzxbA48ozETn
+BOycujwUHvHfpSdmNlxQ0+GwBPaa2dEbxhwhApqdxIGk5JZECgndWZd7CYwxnY0x
+uFr2y1AKfBf/7TJzTTcyQOBTC9+5M2iPTR8yJ6B3YOoP7VlTuGtF9is7ykW8UUi0
+w+XgfSpN2Dti8eL0W65kNcHX/oVOzMkLIdAgfRlq7jC3F0OmlEy5tajPSRoYond4
+xsBKsuhCDOpGOOhucRIn2ktHnL5AWMDc8hwU886eaaWSYJm83I6WTcWuG8YzDY3D
+noxJsqnmJ2uVX5SgxSDon8Sv2mhcuGlqkr9O9+xuY0inV8sBPK2ccDmrBhYB/IId
+54g3zsKIWwWY49MCwAzQ5rjyjixc5WKqCMJpwhKbw4By6vO8KMAO69JHG2ZPOPOQ
+eiD31VlxqVD+DEsy/i8ALmyX6WdZRsnundHuKV4TVglKulPzclt47ATxXKZvuSKP
+ohyF81zTofYM/wF6Tk4y9sh4VbAkhZoYt94HDQ1lUVEZ7qPIZjM=
+=0Pgr
+-----END PGP SIGNATURE-----
+--=-=-=--
 
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15434230200.B5D5608e5.23766--
-
---===============0955354921==
+--===============0290045825==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
 Content-Disposition: inline
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
 
---===============0955354921==--
+--===============0290045825==--
