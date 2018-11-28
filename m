@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108873] nouveau/Quadro P2000 Mobile: runpm causing
  ACPI errors, lockups
-Date: Wed, 28 Nov 2018 14:20:17 +0000
-Message-ID: <bug-108873-8800-XKy68n9PaS@http.bugs.freedesktop.org/>
+Date: Wed, 28 Nov 2018 15:04:33 +0000
+Message-ID: <bug-108873-8800-dERl22QYHP@http.bugs.freedesktop.org/>
 References: <bug-108873-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1159070377=="
+Content-Type: multipart/mixed; boundary="===============0856423164=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108873-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1159070377==
-Content-Type: multipart/alternative; boundary="15434148170.Ee0c0C7d.23877"
+--===============0856423164==
+Content-Type: multipart/alternative; boundary="15434174730.D51f9d0B.1734"
 Content-Transfer-Encoding: 7bit
 
 
---15434148170.Ee0c0C7d.23877
-Date: Wed, 28 Nov 2018 14:20:17 +0000
+--15434174730.D51f9d0B.1734
+Date: Wed, 28 Nov 2018 15:04:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108873
 
---- Comment #1 from mst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org ---
-Created attachment 142646
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142646&action=3Dedit
-acpi dump from the machine
+--- Comment #2 from mst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org ---
+Created attachment 142647
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142647&action=3Dedit
+output of lspci -x
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15434148170.Ee0c0C7d.23877
-Date: Wed, 28 Nov 2018 14:20:17 +0000
+--15434174730.D51f9d0B.1734
+Date: Wed, 28 Nov 2018 15:04:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - nouveau/Quadro P2000 Mobile: runpm causing ACPI errors, l=
 ockups"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108873#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108873#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau/Quadro P2000 Mobile: runpm causing ACPI errors, l=
@@ -75,11 +75,11 @@ ockups"
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 mst&#64;redhat.com" title=3D"mst&#64;redhat.com">mst&#64;redhat.com</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142646=
-" name=3D"attach_142646" title=3D"acpi dump from the machine">attachment 14=
-2646</a> <a href=3D"attachment.cgi?id=3D142646&amp;action=3Dedit" title=3D"=
-acpi dump from the machine">[details]</a></span>
-acpi dump from the machine</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142647=
+" name=3D"attach_142647" title=3D"output of lspci -x">attachment 142647</a>=
+ <a href=3D"attachment.cgi?id=3D142647&amp;action=3Dedit" title=3D"output o=
+f lspci -x">[details]</a></span>
+output of lspci -x</pre>
         </div>
       </p>
 
@@ -93,9 +93,9 @@ acpi dump from the machine</pre>
     </body>
 </html>=
 
---15434148170.Ee0c0C7d.23877--
+--15434174730.D51f9d0B.1734--
 
---===============1159070377==
+--===============0856423164==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1159070377==--
+--===============0856423164==--
