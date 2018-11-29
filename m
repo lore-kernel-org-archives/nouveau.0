@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108651] Screen flickering when using compositor with
  OpenGL backend
-Date: Thu, 29 Nov 2018 10:51:35 +0000
-Message-ID: <bug-108651-8800-hz3TZ05GWU@http.bugs.freedesktop.org/>
+Date: Thu, 29 Nov 2018 10:51:59 +0000
+Message-ID: <bug-108651-8800-gM81fjOqXe@http.bugs.freedesktop.org/>
 References: <bug-108651-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1044778070=="
+Content-Type: multipart/mixed; boundary="===============1889356991=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108651-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1044778070==
-Content-Type: multipart/alternative; boundary="15434886950.EF1af83.2663"
+--===============1889356991==
+Content-Type: multipart/alternative; boundary="15434887190.de34bfaC3.2679"
 Content-Transfer-Encoding: 7bit
 
 
---15434886950.EF1af83.2663
-Date: Thu, 29 Nov 2018 10:51:35 +0000
+--15434887190.de34bfaC3.2679
+Date: Thu, 29 Nov 2018 10:51:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,22 +40,20 @@ Yuxuan Shui <yshuiv7-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Depends on|                            |108705
+         Depends on|                            |105132
 
 
 Referenced Bugs:
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108705
-[Bug 108705] GLX with DRI2 doesn't work properly when xcb is owning the eve=
-nt
-queue
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105132
+[Bug 105132] glxSwapBuffers has no effect
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15434886950.EF1af83.2663
-Date: Thu, 29 Nov 2018 10:51:35 +0000
+--15434887190.de34bfaC3.2679
+Date: Thu, 29 Nov 2018 10:51:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -89,7 +87,7 @@ nd"
            <td>
                &nbsp;
            </td>
-           <td>108705
+           <td>105132
            </td>
          </tr></table>
       <p>
@@ -102,11 +100,9 @@ nd"
               <li>
                 [<a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GLX with DRI2 doesn't work properly when xcb is owning th=
-e event queue"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108705">Bug 10870=
-5</a>] GLX with DRI2 doesn't work properly when xcb is owning the event que=
-ue
+   title=3D"NEW - glxSwapBuffers has no effect"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105132">Bug 10513=
+2</a>] glxSwapBuffers has no effect
               </li>
           </ul>
         </div>
@@ -116,15 +112,15 @@ ue
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15434886950.EF1af83.2663--
+--15434887190.de34bfaC3.2679--
 
---===============1044778070==
+--===============1889356991==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -134,4 +130,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1044778070==--
+--===============1889356991==--
