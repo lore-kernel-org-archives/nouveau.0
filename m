@@ -1,133 +1,65 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108651] Screen flickering when using compositor with
- OpenGL backend
-Date: Thu, 29 Nov 2018 10:51:59 +0000
-Message-ID: <bug-108651-8800-gM81fjOqXe@http.bugs.freedesktop.org/>
-References: <bug-108651-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <kherbst@redhat.com>
+Subject: Re: [Nouveau] 4.20.0-rc3 nouveau/Quadro P2000 Mobile: runpm causing
+ ACPI errors, lockups
+Date: Thu, 29 Nov 2018 11:53:53 +0100
+Message-ID: <CACO55tutwu+46dmhy7RuqRHSBorundx3ZcgDZCqSwvxN+JU4-g@mail.gmail.com>
+References: <20181126221005-mutt-send-email-mst@kernel.org>
+ <20181127093650.GP2296@lahna.fi.intel.com>
+ <20181127212550-mutt-send-email-mst@kernel.org>
+ <20181128110857.GW2296@lahna.fi.intel.com>
+ <20181128093527-mutt-send-email-mst@kernel.org>
+ <20181128155544.GD2296@lahna.fi.intel.com>
+ <20181128111312-mutt-send-email-mst@kernel.org>
+ <CACO55tuzDgTb2g_ebhm7+A=UjEEDoM09-b5X_7fkznkFjJGiag@mail.gmail.com>
+ <20181128202728-mutt-send-email-mst@kernel.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1889356991=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108651-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20181128202728-mutt-send-email-mst@kernel.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: mst@redhat.com
+Cc: nouveau <nouveau@lists.freedesktop.org>, rjw@rjwysocki.net, dri-devel <dri-devel@lists.freedesktop.org>, linux-acpi@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@redhat.com>, mika.westerberg@linux.intel.com, lenb@kernel.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1889356991==
-Content-Type: multipart/alternative; boundary="15434887190.de34bfaC3.2679"
-Content-Transfer-Encoding: 7bit
-
-
---15434887190.de34bfaC3.2679
-Date: Thu, 29 Nov 2018 10:51:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108651
-
-Yuxuan Shui <yshuiv7-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Depends on|                            |105132
-
-
-Referenced Bugs:
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105132
-[Bug 105132] glxSwapBuffers has no effect
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15434887190.de34bfaC3.2679
-Date: Thu, 29 Nov 2018 10:51:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:yshuiv7&#=
-64;gmail.com" title=3D"Yuxuan Shui &lt;yshuiv7&#64;gmail.com&gt;"> <span cl=
-ass=3D"fn">Yuxuan Shui</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Screen flickering when using compositor with OpenGL backe=
-nd"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108651">bug 10865=
-1</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Depends on</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>105132
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-        <div id=3D"referenced">
-          <hr style=3D"border: 1px dashed #969696">
-          <b>Referenced Bugs:</b>
-          <ul>
-              <li>
-                [<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - glxSwapBuffers has no effect"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105132">Bug 10513=
-2</a>] glxSwapBuffers has no effect
-              </li>
-          </ul>
-        </div>
-        <br>
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15434887190.de34bfaC3.2679--
-
---===============1889356991==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1889356991==--
+T24gVGh1LCBOb3YgMjksIDIwMTggYXQgMjoyOSBBTSBNaWNoYWVsIFMuIFRzaXJraW4gPG1zdEBy
+ZWRoYXQuY29tPiB3cm90ZToKPgo+IE9uIFRodSwgTm92IDI5LCAyMDE4IGF0IDEyOjIxOjMxQU0g
+KzAxMDAsIEthcm9sIEhlcmJzdCB3cm90ZToKPiA+IHRoaXMgd2FzIGFscmVhZHkgZGVidWdnZWQg
+YW5kIHRoZXJlIGlzIG5vIHBvaW50IGluIHNlYXJjaGluZyBpbnNpZGUKPiA+IHRoZSBGaXJtd2Fy
+ZS4gSXQncyBub3QgYSBmaXJtd2FyZSBidWcgb3IgYW55dGhpbmcuCj4gPgo+ID4gVGhlIHByb3Bl
+ciBmaXggaXMgdG8gZG8gc29tZXRoaW5nIGluc2lkZSBOb3V2ZWF1IHNvIHRoYXQgd2UgZG9uJ3QK
+PiA+IHVwc2V0IHRoZSBkZXZpY2UgYW5kIGJlaW5nIGFibGUgdG8gcnVudGltZSByZXN1bWUgaXQg
+YWdhaW4uCj4gPgo+ID4gVGhlIGluaXRpYWwgdGhpbmcgd2UgZG8gaW5zaWRlIE5vdXZlYXUgdG8g
+Y2F1c2UgdGhvc2UgaXNzdWVzIGlzIHRvIHJ1bgo+ID4gdGhhdCBzbyBjYWxsZWQgIkRFVklOSVQi
+IHNjcmlwdCBpbnNpZGUgdGhlIHZiaW9zIHRvIGluaXRpYWxpemUgdGhlCj4gPiBHUFUsIHByb2Js
+ZW0gaXMsIGl0IGNoYW5nZXMgc29tZXRoaW5nIG9uIHRoZSBQQ0llIGNvbmZpZ3VyYXRpb24gc28K
+PiA+IHRoYXQgdGhlIEdQVSBpc24ndCBhYmxlIHRvIHJ1bnRpbWUgcmVzdW1lIGFueW1vcmUuIEkg
+YW0gaW4gY29udGFjdAo+ID4gd2l0aCBOdmlkaWEgYWJvdXQgdGhhdCBpc3N1ZSBhbmQgaG9wZWZ1
+bGx5IHdlIGdldCB0aGUgcHJvcGVyIGFuc3dlcnMuCj4gPiBXaGVuIEkgd2FzIGRpZ2dpbmcgaW50
+byB0aGF0IG15c2VsZiBJIHdhcyBhYmxlIHRvIG1ha2UgdGhlIHNpdHVhdGlvbgo+ID4gbW9yZSBz
+dGFibGUgYnkgc2V0dGluZyB0aGUgUENJRSBsaW5rIHNwZWVkIHRvIHRoZSBib290IGRlZmF1bHRz
+LCBidXQKPiA+IHRoYXQgd2FzIHN0aWxsIHByZXR0eSB1bnN0YWJsZS4KPiA+Cj4gPiBBbnl3YXks
+IGJlY2F1c2UgdGhlIGJpbmFyeSBkcml2ZXIgZmFpbHMgaGVyZSBhcyB3ZWxsICh0aHJvdWdoCj4g
+PiBidW1ibGViZWUgYW5kIHNvIG9uKSB0aGVyZSBpc24ndCBtdWNoIG9mIHJldmVyc2UgZW5naW5l
+ZXJpbmcgd2UgY2FuIGRvCj4gPiBiZXNpZGVzIGd1ZXNzaW5nIGFuZCB0cnlpbmcgaXQgb24gbGl0
+ZXJhbGx5IGV2ZXJ5IGhhcmR3YXJlIHVudGlsIGl0Cj4gPiB3b3Jrcy4KPiA+Cj4gPiBXZSBhbHNv
+IGhhdmUgYW4gdXBzdHJlYW0gYnVnIGZvciB0aGlzIGlzc3VlOgo+ID4gaHR0cHM6Ly9idWd6aWxs
+YS5rZXJuZWwub3JnL3Nob3dfYnVnLmNnaT9pZD0xNTYzNDEKPgo+IElmIHlvdSBsaWtlIEkgY2Fu
+IHByb2JhYmx5IGR1bXAgdGhlIHBjaWUgcmVnaXN0ZXJzIG9uIGNhcmQKPiBhbmQvb3IgdGhlIHBj
+aWUgcG9ydCB1bmRlciB3aW5kb3dzLiBUaGUgY2FyZCB3b3JrcyB0aGVyZSA6KQo+IExldCBtZSBr
+bm93Lgo+Cj4gLS0KPiBNU1QKCnRoZSBwcm9ibGVtIGlzLCB3ZSB3b3VsZCBuZWVkIHRvIGtub3cg
+dGhlIHJlZ2lzdGVycyByaWdodCBiZWZvcmUKc3VzcGVuZGluZyB0aGUgR1BVLiBJZiBzb21lb25l
+IHdvdWxkIGJlIGFibGUgdG8gdHJhY2UgYWxsIFBDSWUKcmVnaXN0ZXIgcmVhZCBhbmQgd3JpdGVz
+IGZvciB0aGUgZW50aXJlIHN1c3BlbmRpbmcvcmVzdW1lIHByb2Nlc3MsCnRoYXQgd291bGQgYmUg
+dmVyeSBoZWxwZnVsLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2
+ZWwK
