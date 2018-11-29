@@ -1,22 +1,13 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [Nouveau] 4.20.0-rc3 nouveau/Quadro P2000 Mobile: runpm causing
- ACPI errors, lockups
-Date: Thu, 29 Nov 2018 11:53:53 +0100
-Message-ID: <CACO55tutwu+46dmhy7RuqRHSBorundx3ZcgDZCqSwvxN+JU4-g@mail.gmail.com>
-References: <20181126221005-mutt-send-email-mst@kernel.org>
- <20181127093650.GP2296@lahna.fi.intel.com>
- <20181127212550-mutt-send-email-mst@kernel.org>
- <20181128110857.GW2296@lahna.fi.intel.com>
- <20181128093527-mutt-send-email-mst@kernel.org>
- <20181128155544.GD2296@lahna.fi.intel.com>
- <20181128111312-mutt-send-email-mst@kernel.org>
- <CACO55tuzDgTb2g_ebhm7+A=UjEEDoM09-b5X_7fkznkFjJGiag@mail.gmail.com>
- <20181128202728-mutt-send-email-mst@kernel.org>
+From: Mark Brown <broonie@kernel.org>
+Subject: Re: next/master boot: 142 boots: 2 failed, 130 passed with 7
+ offline, 3 conflicts (next-20181129)
+Date: Thu, 29 Nov 2018 11:44:13 +0000
+Message-ID: <20181129114413.GC10570@sirena.org.uk>
+References: <5bffcc4f.1c69fb81.ee2e8.b541@mx.google.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1491054572=="
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20181128202728-mutt-send-email-mst@kernel.org>
+In-Reply-To: <5bffcc4f.1c69fb81.ee2e8.b541@mx.google.com>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
@@ -26,40 +17,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: dri-devel-bounces@lists.freedesktop.org
 Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: mst@redhat.com
-Cc: nouveau <nouveau@lists.freedesktop.org>, rjw@rjwysocki.net, dri-devel <dri-devel@lists.freedesktop.org>, linux-acpi@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@redhat.com>, mika.westerberg@linux.intel.com, lenb@kernel.org
+To: Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: linux-tegra@vger.kernel.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, kernel-build-reports@lists.linaro.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBOb3YgMjksIDIwMTggYXQgMjoyOSBBTSBNaWNoYWVsIFMuIFRzaXJraW4gPG1zdEBy
-ZWRoYXQuY29tPiB3cm90ZToKPgo+IE9uIFRodSwgTm92IDI5LCAyMDE4IGF0IDEyOjIxOjMxQU0g
-KzAxMDAsIEthcm9sIEhlcmJzdCB3cm90ZToKPiA+IHRoaXMgd2FzIGFscmVhZHkgZGVidWdnZWQg
-YW5kIHRoZXJlIGlzIG5vIHBvaW50IGluIHNlYXJjaGluZyBpbnNpZGUKPiA+IHRoZSBGaXJtd2Fy
-ZS4gSXQncyBub3QgYSBmaXJtd2FyZSBidWcgb3IgYW55dGhpbmcuCj4gPgo+ID4gVGhlIHByb3Bl
-ciBmaXggaXMgdG8gZG8gc29tZXRoaW5nIGluc2lkZSBOb3V2ZWF1IHNvIHRoYXQgd2UgZG9uJ3QK
-PiA+IHVwc2V0IHRoZSBkZXZpY2UgYW5kIGJlaW5nIGFibGUgdG8gcnVudGltZSByZXN1bWUgaXQg
-YWdhaW4uCj4gPgo+ID4gVGhlIGluaXRpYWwgdGhpbmcgd2UgZG8gaW5zaWRlIE5vdXZlYXUgdG8g
-Y2F1c2UgdGhvc2UgaXNzdWVzIGlzIHRvIHJ1bgo+ID4gdGhhdCBzbyBjYWxsZWQgIkRFVklOSVQi
-IHNjcmlwdCBpbnNpZGUgdGhlIHZiaW9zIHRvIGluaXRpYWxpemUgdGhlCj4gPiBHUFUsIHByb2Js
-ZW0gaXMsIGl0IGNoYW5nZXMgc29tZXRoaW5nIG9uIHRoZSBQQ0llIGNvbmZpZ3VyYXRpb24gc28K
-PiA+IHRoYXQgdGhlIEdQVSBpc24ndCBhYmxlIHRvIHJ1bnRpbWUgcmVzdW1lIGFueW1vcmUuIEkg
-YW0gaW4gY29udGFjdAo+ID4gd2l0aCBOdmlkaWEgYWJvdXQgdGhhdCBpc3N1ZSBhbmQgaG9wZWZ1
-bGx5IHdlIGdldCB0aGUgcHJvcGVyIGFuc3dlcnMuCj4gPiBXaGVuIEkgd2FzIGRpZ2dpbmcgaW50
-byB0aGF0IG15c2VsZiBJIHdhcyBhYmxlIHRvIG1ha2UgdGhlIHNpdHVhdGlvbgo+ID4gbW9yZSBz
-dGFibGUgYnkgc2V0dGluZyB0aGUgUENJRSBsaW5rIHNwZWVkIHRvIHRoZSBib290IGRlZmF1bHRz
-LCBidXQKPiA+IHRoYXQgd2FzIHN0aWxsIHByZXR0eSB1bnN0YWJsZS4KPiA+Cj4gPiBBbnl3YXks
-IGJlY2F1c2UgdGhlIGJpbmFyeSBkcml2ZXIgZmFpbHMgaGVyZSBhcyB3ZWxsICh0aHJvdWdoCj4g
-PiBidW1ibGViZWUgYW5kIHNvIG9uKSB0aGVyZSBpc24ndCBtdWNoIG9mIHJldmVyc2UgZW5naW5l
-ZXJpbmcgd2UgY2FuIGRvCj4gPiBiZXNpZGVzIGd1ZXNzaW5nIGFuZCB0cnlpbmcgaXQgb24gbGl0
-ZXJhbGx5IGV2ZXJ5IGhhcmR3YXJlIHVudGlsIGl0Cj4gPiB3b3Jrcy4KPiA+Cj4gPiBXZSBhbHNv
-IGhhdmUgYW4gdXBzdHJlYW0gYnVnIGZvciB0aGlzIGlzc3VlOgo+ID4gaHR0cHM6Ly9idWd6aWxs
-YS5rZXJuZWwub3JnL3Nob3dfYnVnLmNnaT9pZD0xNTYzNDEKPgo+IElmIHlvdSBsaWtlIEkgY2Fu
-IHByb2JhYmx5IGR1bXAgdGhlIHBjaWUgcmVnaXN0ZXJzIG9uIGNhcmQKPiBhbmQvb3IgdGhlIHBj
-aWUgcG9ydCB1bmRlciB3aW5kb3dzLiBUaGUgY2FyZCB3b3JrcyB0aGVyZSA6KQo+IExldCBtZSBr
-bm93Lgo+Cj4gLS0KPiBNU1QKCnRoZSBwcm9ibGVtIGlzLCB3ZSB3b3VsZCBuZWVkIHRvIGtub3cg
-dGhlIHJlZ2lzdGVycyByaWdodCBiZWZvcmUKc3VzcGVuZGluZyB0aGUgR1BVLiBJZiBzb21lb25l
-IHdvdWxkIGJlIGFibGUgdG8gdHJhY2UgYWxsIFBDSWUKcmVnaXN0ZXIgcmVhZCBhbmQgd3JpdGVz
-IGZvciB0aGUgZW50aXJlIHN1c3BlbmRpbmcvcmVzdW1lIHByb2Nlc3MsCnRoYXQgd291bGQgYmUg
-dmVyeSBoZWxwZnVsLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2
-ZWwK
+
+--===============1491054572==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="MnLPg7ZWsaic7Fhd"
+Content-Disposition: inline
+
+
+--MnLPg7ZWsaic7Fhd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Thu, Nov 29, 2018 at 03:23:59AM -0800, kernelci.org bot wrote:
+
+Today's -next crashes on Jetson TK1 when the Nouveau module is loaded if
+it can't find firmware:
+
+[    7.617291] nouveau 57000000.gpu: Linked as a consumer to regulator.33
+[    7.624037] nouveau 57000000.gpu: NVIDIA GK20A (0ea000a1)
+[    7.629880] nouveau 57000000.gpu: imem: using IOMMU
+[    7.635013] nouveau 57000000.gpu: Direct firmware load for nvidia/gk20a/fecs_inst.bin failed with error -2
+[    7.644726] nouveau 57000000.gpu: Direct firmware load for nouveau/nvea_fuc409c failed with error -2
+[    7.653960] nouveau 57000000.gpu: Direct firmware load for nouveau/fuc409c failed with error -2
+[    7.662916] nouveau 57000000.gpu: gr: failed to load fuc409c
+[    7.669694] Unable to handle kernel NULL pointer dereference at virtual address 0000006c
+
+This has been there for ~30 days but obscured by other issues.  Full
+log and other info can be found at:
+
+    https://kernelci.org/boot/id/5bffa74b59b5148342fddd64/
+
+--MnLPg7ZWsaic7Fhd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlv/0QwACgkQJNaLcl1U
+h9DpFwf/XpGYSRyxJo51nt01usoNzd9Qck8cJZUoG2pgAm/i3EBhnoc/TN23xMFx
+aKhpHHgokR99c23+AfAg+yAzzzX5ZTwtYsvMLbnpz/NfSESr9eiyIqyU1VQpM6w8
+osNIFuIdF/Yx4tnRjCl0NY54eyt85zLdU4l7Akxq0qYaeCqisbCpvwtyPiLsf1sf
+5vx4C8Ahmc1urhkjEFJ7I/pBcG3QM6vHGuLwgC1LjTWDDTCxXuY+smCPAnppZCBi
+wRIcdoEJsPmjhwK+R6dQrJni72EXNiwlcpdH7ZY4gdlvfpK8VMWg+lEJUEz8yG+m
+y82xf0yXjuFInNXvBNwpZdo/9M5lig==
+=E0Ch
+-----END PGP SIGNATURE-----
+
+--MnLPg7ZWsaic7Fhd--
+
+--===============1491054572==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============1491054572==--
