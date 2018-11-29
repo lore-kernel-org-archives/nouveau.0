@@ -1,13 +1,24 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108857] display becomes unresponsive and keyboard
- input fails
-Date: Thu, 29 Nov 2018 16:43:20 +0000
-Message-ID: <bug-108857-8800-L2OwcyXbBL@http.bugs.freedesktop.org/>
-References: <bug-108857-8800@http.bugs.freedesktop.org/>
+From: "Michael S. Tsirkin" <mst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: 4.20.0-rc3 nouveau/Quadro P2000 Mobile: runpm causing
+ ACPI errors, lockups
+Date: Thu, 29 Nov 2018 12:12:19 -0500
+Message-ID: <20181129115629-mutt-send-email-mst@kernel.org>
+References: <20181126221005-mutt-send-email-mst@kernel.org>
+ <20181127093650.GP2296@lahna.fi.intel.com>
+ <20181127212550-mutt-send-email-mst@kernel.org>
+ <20181128110857.GW2296@lahna.fi.intel.com>
+ <20181128093527-mutt-send-email-mst@kernel.org>
+ <20181128155544.GD2296@lahna.fi.intel.com>
+ <20181128111312-mutt-send-email-mst@kernel.org>
+ <CACO55tuzDgTb2g_ebhm7+A=UjEEDoM09-b5X_7fkznkFjJGiag@mail.gmail.com>
+ <20181128202728-mutt-send-email-mst@kernel.org>
+ <CACO55tutwu+46dmhy7RuqRHSBorundx3ZcgDZCqSwvxN+JU4-g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0901851494=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108857-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CACO55tutwu+46dmhy7RuqRHSBorundx3ZcgDZCqSwvxN+JU4-g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,105 +28,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, lenb-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0901851494==
-Content-Type: multipart/alternative; boundary="15435098000.8e59d57f.25291"
-Content-Transfer-Encoding: 7bit
-
-
---15435098000.8e59d57f.25291
-Date: Thu, 29 Nov 2018 16:43:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108857
-
---- Comment #5 from tla2k20-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Switched to the nvidia drivers today and no issues, so looks like it is
-probably nouveau related?
-
-sudo dnf config-manager
---add-repo=3Dhttps://negativo17.org/repos/fedora-nvidia.repo
-sudo dnf -y remove \*nvidia\*
-sudo dnf -y install nvidia-driver nvidia-settings kernel-devel
-nvidia-driver-libs.i686
-# wait for the kernel driver to build in the background (top) then...
-sudo reboot
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15435098000.8e59d57f.25291
-Date: Thu, 29 Nov 2018 16:43:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - display becomes unresponsive and keyboard input fails"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108857#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - display becomes unresponsive and keyboard input fails"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108857">bug 10885=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tla2k20&#64;gmail.com" title=3D"tla2k20&#64;gmail.com">tla2k20&#64;gmail.co=
-m</a>
-</span></b>
-        <pre>Switched to the nvidia drivers today and no issues, so looks l=
-ike it is
-probably nouveau related?
-
-sudo dnf config-manager
---add-repo=3D<a href=3D"https://negativo17.org/repos/fedora-nvidia.repo">ht=
-tps://negativo17.org/repos/fedora-nvidia.repo</a>
-sudo dnf -y remove \*nvidia\*
-sudo dnf -y install nvidia-driver nvidia-settings kernel-devel
-nvidia-driver-libs.i686
-# wait for the kernel driver to build in the background (top) then...
-sudo reboot</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15435098000.8e59d57f.25291--
-
---===============0901851494==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0901851494==--
+T24gVGh1LCBOb3YgMjksIDIwMTggYXQgMTE6NTM6NTNBTSArMDEwMCwgS2Fyb2wgSGVyYnN0IHdy
+b3RlOgo+IE9uIFRodSwgTm92IDI5LCAyMDE4IGF0IDI6MjkgQU0gTWljaGFlbCBTLiBUc2lya2lu
+IDxtc3RAcmVkaGF0LmNvbT4gd3JvdGU6Cj4gPgo+ID4gT24gVGh1LCBOb3YgMjksIDIwMTggYXQg
+MTI6MjE6MzFBTSArMDEwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+ID4gPiB0aGlzIHdhcyBhbHJl
+YWR5IGRlYnVnZ2VkIGFuZCB0aGVyZSBpcyBubyBwb2ludCBpbiBzZWFyY2hpbmcgaW5zaWRlCj4g
+PiA+IHRoZSBGaXJtd2FyZS4gSXQncyBub3QgYSBmaXJtd2FyZSBidWcgb3IgYW55dGhpbmcuCj4g
+PiA+Cj4gPiA+IFRoZSBwcm9wZXIgZml4IGlzIHRvIGRvIHNvbWV0aGluZyBpbnNpZGUgTm91dmVh
+dSBzbyB0aGF0IHdlIGRvbid0Cj4gPiA+IHVwc2V0IHRoZSBkZXZpY2UgYW5kIGJlaW5nIGFibGUg
+dG8gcnVudGltZSByZXN1bWUgaXQgYWdhaW4uCj4gPiA+Cj4gPiA+IFRoZSBpbml0aWFsIHRoaW5n
+IHdlIGRvIGluc2lkZSBOb3V2ZWF1IHRvIGNhdXNlIHRob3NlIGlzc3VlcyBpcyB0byBydW4KPiA+
+ID4gdGhhdCBzbyBjYWxsZWQgIkRFVklOSVQiIHNjcmlwdCBpbnNpZGUgdGhlIHZiaW9zIHRvIGlu
+aXRpYWxpemUgdGhlCj4gPiA+IEdQVSwgcHJvYmxlbSBpcywgaXQgY2hhbmdlcyBzb21ldGhpbmcg
+b24gdGhlIFBDSWUgY29uZmlndXJhdGlvbiBzbwo+ID4gPiB0aGF0IHRoZSBHUFUgaXNuJ3QgYWJs
+ZSB0byBydW50aW1lIHJlc3VtZSBhbnltb3JlLiBJIGFtIGluIGNvbnRhY3QKPiA+ID4gd2l0aCBO
+dmlkaWEgYWJvdXQgdGhhdCBpc3N1ZSBhbmQgaG9wZWZ1bGx5IHdlIGdldCB0aGUgcHJvcGVyIGFu
+c3dlcnMuCj4gPiA+IFdoZW4gSSB3YXMgZGlnZ2luZyBpbnRvIHRoYXQgbXlzZWxmIEkgd2FzIGFi
+bGUgdG8gbWFrZSB0aGUgc2l0dWF0aW9uCj4gPiA+IG1vcmUgc3RhYmxlIGJ5IHNldHRpbmcgdGhl
+IFBDSUUgbGluayBzcGVlZCB0byB0aGUgYm9vdCBkZWZhdWx0cywgYnV0Cj4gPiA+IHRoYXQgd2Fz
+IHN0aWxsIHByZXR0eSB1bnN0YWJsZS4KPiA+ID4KPiA+ID4gQW55d2F5LCBiZWNhdXNlIHRoZSBi
+aW5hcnkgZHJpdmVyIGZhaWxzIGhlcmUgYXMgd2VsbCAodGhyb3VnaAo+ID4gPiBidW1ibGViZWUg
+YW5kIHNvIG9uKSB0aGVyZSBpc24ndCBtdWNoIG9mIHJldmVyc2UgZW5naW5lZXJpbmcgd2UgY2Fu
+IGRvCj4gPiA+IGJlc2lkZXMgZ3Vlc3NpbmcgYW5kIHRyeWluZyBpdCBvbiBsaXRlcmFsbHkgZXZl
+cnkgaGFyZHdhcmUgdW50aWwgaXQKPiA+ID4gd29ya3MuCj4gPiA+Cj4gPiA+IFdlIGFsc28gaGF2
+ZSBhbiB1cHN0cmVhbSBidWcgZm9yIHRoaXMgaXNzdWU6Cj4gPiA+IGh0dHBzOi8vYnVnemlsbGEu
+a2VybmVsLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTU2MzQxCj4gPgo+ID4gSWYgeW91IGxpa2UgSSBj
+YW4gcHJvYmFibHkgZHVtcCB0aGUgcGNpZSByZWdpc3RlcnMgb24gY2FyZAo+ID4gYW5kL29yIHRo
+ZSBwY2llIHBvcnQgdW5kZXIgd2luZG93cy4gVGhlIGNhcmQgd29ya3MgdGhlcmUgOikKPiA+IExl
+dCBtZSBrbm93Lgo+ID4KPiA+IC0tCj4gPiBNU1QKPiAKPiB0aGUgcHJvYmxlbSBpcywgd2Ugd291
+bGQgbmVlZCB0byBrbm93IHRoZSByZWdpc3RlcnMgcmlnaHQgYmVmb3JlCj4gc3VzcGVuZGluZyB0
+aGUgR1BVLiBJZiBzb21lb25lIHdvdWxkIGJlIGFibGUgdG8gdHJhY2UgYWxsIFBDSWUKPiByZWdp
+c3RlciByZWFkIGFuZCB3cml0ZXMgZm9yIHRoZSBlbnRpcmUgc3VzcGVuZGluZy9yZXN1bWUgcHJv
+Y2VzcywKPiB0aGF0IHdvdWxkIGJlIHZlcnkgaGVscGZ1bC4KCgpXZWxsIEkgY2FuIHBhc3MgdGhl
+IGNhcmQgdG8gYSBWTSwgYW5kIHRyYWNlIGl0IG9uIHRoZSBoeXBlcnZpc29yLCB0aGF0Cmlzbid0
+IGEgcHJvYmxlbS4gIEEgdHJpY2t5IHRoaW5nIGlzIHRoZSBBQ1BJIHRhYmxlcywgd291bGQgbmVl
+ZCB0bwpzb21laG93IGtub3cgd2hpY2ggb25lcyBhcmUgcmVsZXZhbnQgdG8gcGFzcyB0aGVtIHRv
+IGd1ZXN0IC4uLiBpZGVhcyBvbgp0aGF0PwoKLS0gCk1TVApfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
