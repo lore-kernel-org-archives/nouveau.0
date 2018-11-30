@@ -1,53 +1,93 @@
-From: Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
-Subject: [PATCH RFC 00/15] Zero ****s, hugload of hugs <3
-Date: Fri, 30 Nov 2018 11:27:09 -0800
-Message-ID: <20181130192737.15053-1-jarkko.sakkinen@linux.intel.com>
+From: Kees Cook <keescook@chromium.org>
+Subject: Re: [PATCH RFC 00/15] Zero ****s, hugload of hugs <3
+Date: Fri, 30 Nov 2018 11:40:17 -0800
+Message-ID: <CAGXu5j+jBNBsD3pvUSfEh6Lc5T1YMpbM0HeG1c6BHiJe+cKVOQ@mail.gmail.com>
+References: <20181130192737.15053-1-jarkko.sakkinen@linux.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: linux-kernel@vger.kernel.org
-Cc: "open list:MIPS" <linux-mips@linux-mips.org>, Geert Uytterhoeven <geert+renesas@glider.be>, "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, Amir Goldstein <amir73il@gmail.com>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, "open list:IDE SUBSYSTEM" <linux-ide@vger.kernel.org>, Eric Dumazet <edumazet@google.com>, "open list:MEMORY TECHNOLOGY DEVICES MTD" <linux-mtd@lists.infradead.org>, Toshiaki Makita <makita.toshiaki@lab.ntt.co.jp>, Zhu Yanjun <yanjun.zhu@oracle.com>, "open list:SCSI SUBSYSTEM" <linux-scsi@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>, Helge Deller <deller@gmx.de>, "Steven Rostedt (VMware)" <rostedt@goodmis.org>, Federico Vaga <federico.vaga@vaga.pv.it>, Yonghong Song <yhs@fb.com>, Paolo Abeni <pabeni@redhat.>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-mtd-bounces+gldm-linux-mtd-36=gmane.org@lists.infradead.org>
+In-Reply-To: <20181130192737.15053-1-jarkko.sakkinen@linux.intel.com>
+List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-mtd>,
+ <mailto:linux-mtd-request@lists.infradead.org?subject=unsubscribe>
+List-Archive: <http://lists.infradead.org/pipermail/linux-mtd/>
+List-Post: <mailto:linux-mtd@lists.infradead.org>
+List-Help: <mailto:linux-mtd-request@lists.infradead.org?subject=help>
+List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-mtd>,
+ <mailto:linux-mtd-request@lists.infradead.org?subject=subscribe>
+Sender: "linux-mtd" <linux-mtd-bounces@lists.infradead.org>
+Errors-To: linux-mtd-bounces+gldm-linux-mtd-36=gmane.org@lists.infradead.org
+To: Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
+Cc: Linux MIPS Mailing List <linux-mips@linux-mips.org>, Geert Uytterhoeven <geert+renesas@glider.be>, "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>, nouveau <nouveau@lists.freedesktop.org>, Amir Goldstein <amir73il@gmail.com>, Dominik Brodowski <linux@dominikbrodowski.net>, linux-ide@vger.kernel.org, Eric Dumazet <edumazet@google.com>, Linux mtd <linux-mtd@lists.infradead.org>, makita.toshiaki@lab.ntt.co.jp, yanjun.zhu@oracle.com, Rob Herring <robh@kernel.org>, linux-scsi@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>, Helge Deller <deller@gmx.de>, federico.vaga@vaga.pv.it, Yonghong Song <yhs@fb.com>, Paolo Abeni <pabeni@redhat.com>, Linux Media Mailing List <linux-media@vger.kernel.org>, Petr Mladek <pmladek@suse.com>, Linux PM list <linux-pm@vger.kernel.org>, shannon.nelson@oracle.com, sean.wang@mediatek.com, Steven Rostedt <rostedt@goodmis.org>, Stefano
 List-Id: nouveau.vger.kernel.org
 
-SW4gb3JkZXIgdG8gY29tcGx5IHdpdGggdGhlIENvQywgcmVwbGFjZSAqKioqIHdpdGggYSBodWcu
-CgpKYXJra28gU2Fra2luZW4gKDE1KToKICBNSVBTOiByZXBsYWNlICoqKiogd2l0aCBhIGh1Zwog
-IERvY3VtZW50YXRpb246IHJlcGxhY2UgKioqKiB3aXRoIGEgaHVnCiAgZHJtL25vdXZlYXU6IHJl
-cGxhY2UgKioqKiB3aXRoIGEgaHVnCiAgbTY4azogcmVwbGFjZSAqKioqIHdpdGggYSBodWcKICBw
-YXJpc2M6IHJlcGxhY2UgKioqKiB3aXRoIGEgaHVnCiAgY3B1ZnJlcTogcmVwbGFjZSAqKioqIHdp
-dGggYSBodWcKICBpZGU6IHJlcGxhY2UgKioqKiB3aXRoIGEgaHVnCiAgbWVkaWE6IHJlcGxhY2Ug
-KioqKiB3aXRoIGEgaHVnCiAgbXRkOiByZXBsYWNlICoqKiogd2l0aCBhIGh1ZwogIG5ldC9zdW5o
-bWU6IHJlcGxhY2UgKioqKiB3aXRoIGEgaHVnCiAgc2NzaTogcmVwbGFjZSAqKioqIHdpdGggYSBo
-dWcKICBpbm90aWZ5OiByZXBsYWNlICoqKiogd2l0aCBhIGh1ZwogIGlycTogcmVwbGFjZSAqKioq
-IHdpdGggYSBodWcKICBsaWI6IHJlcGxhY2UgKioqKiB3aXRoIGEgaHVnCiAgbmV0OiByZXBsYWNl
-ICoqKiogd2l0aCBhIGh1ZwoKIERvY3VtZW50YXRpb24va2VybmVsLWhhY2tpbmcvbG9ja2luZy5y
-c3QgICAgICB8ICAyICstCiBhcmNoL202OGsvaW5jbHVkZS9hc20vc3VuM2ludHMuaCAgICAgICAg
-ICAgICAgfCAgMiArLQogYXJjaC9taXBzL3BjaS9vcHMtYnJpZGdlLmMgICAgICAgICAgICAgICAg
-ICAgIHwgMjQgKysrKysrKysrLS0tLS0tLS0tLQogYXJjaC9taXBzL3NnaS1pcDIyL2lwMjItc2V0
-dXAuYyAgICAgICAgICAgICAgIHwgIDIgKy0KIGFyY2gvcGFyaXNjL2tlcm5lbC9zeXNfcGFyaXNj
-LmMgICAgICAgICAgICAgICB8ICAyICstCiBkcml2ZXJzL2NwdWZyZXEvcG93ZXJub3ctazcuYyAg
-ICAgICAgICAgICAgICAgfCAgMiArLQogLi4uL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9i
-aW9zL2luaXQuYyAgIHwgIDIgKy0KIC4uLi9ub3V2ZWF1L252a20vc3ViZGV2L3BtdS9mdWMvbWFj
-cm9zLmZ1YyAgICB8ICAyICstCiBkcml2ZXJzL2lkZS9jbWQ2NDAuYyAgICAgICAgICAgICAgICAg
-ICAgICAgICAgfCAgMiArLQogZHJpdmVycy9tZWRpYS9pMmMvYnQ4MTkuYyAgICAgICAgICAgICAg
-ICAgICAgIHwgIDggKysrKy0tLQogZHJpdmVycy9tdGQvbXRkX2Jsa2RldnMuYyAgICAgICAgICAg
-ICAgICAgICAgIHwgIDIgKy0KIGRyaXZlcnMvbmV0L2V0aGVybmV0L3N1bi9zdW5obWUuYyAgICAg
-ICAgICAgICB8ICA0ICsrLS0KIGRyaXZlcnMvc2NzaS9xbG9naWNwdGkuaCAgICAgICAgICAgICAg
-ICAgICAgICB8ICAyICstCiBmcy9ub3RpZnkvaW5vdGlmeS9pbm90aWZ5X3VzZXIuYyAgICAgICAg
-ICAgICAgfCAgMiArLQoga2VybmVsL2lycS90aW1pbmdzLmMgICAgICAgICAgICAgICAgICAgICAg
-ICAgIHwgIDIgKy0KIGxpYi92c3ByaW50Zi5jICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICB8ICAyICstCiBuZXQvY29yZS9za2J1ZmYuYyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-fCAgMiArLQogMTcgZmlsZXMgY2hhbmdlZCwgMzMgaW5zZXJ0aW9ucygrKSwgMzEgZGVsZXRpb25z
-KC0pCgotLSAKMi4xOS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmkt
-ZGV2ZWwK
+On Fri, Nov 30, 2018 at 11:27 AM Jarkko Sakkinen
+<jarkko.sakkinen@linux.intel.com> wrote:
+>
+> In order to comply with the CoC, replace **** with a hug.
+
+Heh. I support the replacement of the stronger language, but I find
+"hug", "hugged", and "hugging" to be very weird replacements. Can we
+bikeshed this to "heck", "hecked", and "hecking" (or "heckin" to
+follow true Doggo meme style).
+
+"This API is hugged" doesn't make any sense to me. "This API is
+hecked" is better, or at least funnier (to me). "Hug this interface"
+similarly makes no sense, but "Heck this interface" seems better.
+"Don't touch my hecking code", "What the heck were they thinking?"
+etc... "hug" is odd.
+
+Better yet, since it's only 17 files, how about doing context-specific
+changes? "This API is terrible", "Hateful interface", "Don't touch my
+freakin' code", "What in the world were they thinking?" etc?
+
+-Kees
+
+>
+> Jarkko Sakkinen (15):
+>   MIPS: replace **** with a hug
+>   Documentation: replace **** with a hug
+>   drm/nouveau: replace **** with a hug
+>   m68k: replace **** with a hug
+>   parisc: replace **** with a hug
+>   cpufreq: replace **** with a hug
+>   ide: replace **** with a hug
+>   media: replace **** with a hug
+>   mtd: replace **** with a hug
+>   net/sunhme: replace **** with a hug
+>   scsi: replace **** with a hug
+>   inotify: replace **** with a hug
+>   irq: replace **** with a hug
+>   lib: replace **** with a hug
+>   net: replace **** with a hug
+>
+>  Documentation/kernel-hacking/locking.rst      |  2 +-
+>  arch/m68k/include/asm/sun3ints.h              |  2 +-
+>  arch/mips/pci/ops-bridge.c                    | 24 +++++++++----------
+>  arch/mips/sgi-ip22/ip22-setup.c               |  2 +-
+>  arch/parisc/kernel/sys_parisc.c               |  2 +-
+>  drivers/cpufreq/powernow-k7.c                 |  2 +-
+>  .../gpu/drm/nouveau/nvkm/subdev/bios/init.c   |  2 +-
+>  .../nouveau/nvkm/subdev/pmu/fuc/macros.fuc    |  2 +-
+>  drivers/ide/cmd640.c                          |  2 +-
+>  drivers/media/i2c/bt819.c                     |  8 ++++---
+>  drivers/mtd/mtd_blkdevs.c                     |  2 +-
+>  drivers/net/ethernet/sun/sunhme.c             |  4 ++--
+>  drivers/scsi/qlogicpti.h                      |  2 +-
+>  fs/notify/inotify/inotify_user.c              |  2 +-
+>  kernel/irq/timings.c                          |  2 +-
+>  lib/vsprintf.c                                |  2 +-
+>  net/core/skbuff.c                             |  2 +-
+>  17 files changed, 33 insertions(+), 31 deletions(-)
+>
+> --
+> 2.19.1
+>
+
+
+-- 
+Kees Cook
+
+______________________________________________________
+Linux MTD discussion mailing list
+http://lists.infradead.org/mailman/listinfo/linux-mtd/
