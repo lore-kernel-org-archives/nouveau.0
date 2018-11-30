@@ -1,33 +1,53 @@
-From: Jens Axboe <axboe@kernel.dk>
-Subject: Re: [PATCH RFC 00/15] Zero ****s, hugload of hugs <3
-Date: Fri, 30 Nov 2018 13:12:26 -0700
-Message-ID: <d7c34289-f03a-b641-cc9c-00395306511d@kernel.dk>
-References: <20181130192737.15053-1-jarkko.sakkinen@linux.intel.com>
- <CAGXu5j+jBNBsD3pvUSfEh6Lc5T1YMpbM0HeG1c6BHiJe+cKVOQ@mail.gmail.com>
- <20181130195652.7syqys76646kpaph@linux-r8p5>
+From: Diego Viola <diego.viola@gmail.com>
+Subject: Re: [PATCH RFC 03/15] drm/nouveau: replace **** with a hug
+Date: Fri, 30 Nov 2018 18:13:50 -0200
+Message-ID: <CA+ToGPHBNg7k3uT8yrgWuPgD113Sd44TZamYd7j=f_X2idej6Q@mail.gmail.com>
+References: <20181130192737.15053-1-jarkko.sakkinen@linux.intel.com> <20181130192737.15053-4-jarkko.sakkinen@linux.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Return-path: <netdev-owner@vger.kernel.org>
-In-Reply-To: <20181130195652.7syqys76646kpaph@linux-r8p5>
-Content-Language: en-US
-Sender: netdev-owner@vger.kernel.org
-To: Davidlohr Bueso <dave@stgolabs.net>, Kees Cook <keescook@chromium.org>
-Cc: Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>, LKML <linux-kernel@vger.kernel.org>, Amir Goldstein <amir73il@gmail.com>, Andrew Morton <akpm@linux-foundation.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Axtens <dja@axtens.net>, "David S. Miller" <davem@davemloft.net>, Dominik Brodowski <linux@dominikbrodowski.net>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, Eric Dumazet <edumazet@google.com>, federico.vaga@vaga.pv.it, Geert Uytterhoeven <geert+renesas@glider.be>, Helge Deller <deller@gmx.de>, Jonathan Corbet <corbet@lwn.net>, Joshua Kinard <kumba@gentoo.org>, "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>, "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>, linux-ide@vger.kernel.org, linux-m6
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20181130192737.15053-4-jarkko.sakkinen@linux.intel.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: jarkko.sakkinen@linux.intel.com
+Cc: linux-kernel@vger.kernel.org, bskeggs@redhat.com, airlied@linux.ie, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-On 11/30/18 12:56 PM, Davidlohr Bueso wrote:
-> On Fri, 30 Nov 2018, Kees Cook wrote:
-> 
->> On Fri, Nov 30, 2018 at 11:27 AM Jarkko Sakkinen
->> <jarkko.sakkinen@linux.intel.com> wrote:
->>>
->>> In order to comply with the CoC, replace **** with a hug.
-> 
-> I hope this is some kind of joke. How would anyone get offended by reading
-> technical comments? This is all beyond me...
+On Fri, Nov 30, 2018 at 5:30 PM Jarkko Sakkinen
+<jarkko.sakkinen@linux.intel.com> wrote:
+>
+> In order to comply with the CoC, replace **** with a hug.
+>
+> Signed-off-by: Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
+> ---
+>  drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c        | 2 +-
+>  drivers/gpu/drm/nouveau/nvkm/subdev/pmu/fuc/macros.fuc | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+> index 9cc10e438b3d..55a0060881ea 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+> @@ -446,7 +446,7 @@ init_ram_restrict(struct nvbios_init *init)
+>  {
+>         /* This appears to be the behaviour of the VBIOS parser, and *is*
+>          * important to cache the NV_PEXTDEV_BOOT0 on later chipsets to
+> -        * avoid fucking up the memory controller (somehow) by reading it
+> +        * avoid hugging up the memory controller (somehow) by reading it
+>          * on every INIT_RAM_RESTRICT_ZM_GROUP opcode.
+>          *
+>          * Preserving the non-caching behaviour on earlier chipsets just
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/fuc/macros.fuc b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/fuc/macros.fuc
+> index 3737bd27f74e..ee364c71cc2e 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/fuc/macros.fuc
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/fuc/macros.fuc
+> @@ -46,7 +46,7 @@
+>  #define NV_PPWR_INTR_EN_SET_SUBINTR                                  0x00000800
+>  #define NV_PPWR_INTR_EN_SET_WATCHDOG                                 0x00000002
+>  #define NV_PPWR_INTR_EN_CLR                                              0x0014
+> -#define NV_PPWR_INTR_EN_CLR_MASK                    /* fuck i hate envyas */ -1
+> +#define NV_PPWR_INTR_EN_CLR_MASK                    /* hug i hate envyas */ -1
 
-Agree, this is insanity.
+Can you also capitalize the "i" please?
 
--- 
-Jens Axboe
+Thanks,
+Diego
