@@ -1,81 +1,52 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: 4.20.0-rc3 nouveau/Quadro P2000 Mobile: runpm causing
- ACPI errors, lockups
-Date: Thu, 29 Nov 2018 18:26:51 +0100
-Message-ID: <CACO55tug77zWQz_OOZjsq-4zcZjARr8-bj=dNh-aWWotxurtuw@mail.gmail.com>
-References: <20181126221005-mutt-send-email-mst@kernel.org>
- <20181127093650.GP2296@lahna.fi.intel.com>
- <20181127212550-mutt-send-email-mst@kernel.org>
- <20181128110857.GW2296@lahna.fi.intel.com>
- <20181128093527-mutt-send-email-mst@kernel.org>
- <20181128155544.GD2296@lahna.fi.intel.com>
- <20181128111312-mutt-send-email-mst@kernel.org>
- <CACO55tuzDgTb2g_ebhm7+A=UjEEDoM09-b5X_7fkznkFjJGiag@mail.gmail.com>
- <20181128202728-mutt-send-email-mst@kernel.org>
- <CACO55tutwu+46dmhy7RuqRHSBorundx3ZcgDZCqSwvxN+JU4-g@mail.gmail.com>
- <20181129115629-mutt-send-email-mst@kernel.org>
+From: Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
+Subject: [PATCH RFC 03/15] drm/nouveau: replace **** with a hug
+Date: Fri, 30 Nov 2018 11:27:12 -0800
+Message-ID: <20181130192737.15053-4-jarkko.sakkinen@linux.intel.com>
+References: <20181130192737.15053-1-jarkko.sakkinen@linux.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20181129115629-mutt-send-email-mst-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: mst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, lenb-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20181130192737.15053-1-jarkko.sakkinen@linux.intel.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: linux-kernel@vger.kernel.org
+Cc: Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, "open list:DRM DRIVER FOR NVIDIA
+        GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>, "open list:DRM DRIVER FOR NVIDIA
+        GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-eWVhaC4uLiBJIGRvbid0IHRoaW5rIHRoYXQncyBnb25uYSB3b3JrIHRoYXQgbmljZWx5LiBBbnl3
-YXksIHlvdQpwcm9iYWJseSBuZWVkIHRvIGFsbG93IHRoZSBWTSB0byBhY2Nlc3MgYWxsIG9mIEFD
-UEkgaW4gb3JkZXIgdG8KcnVudGltZSBzdXNwZW5kIHRoZSBHUFUgYW5kIG9uIG5ld2VyIGxhcHRv
-cHMgdGhlIHZiaW9zIGlzIHJldHJpZXZlZAp2aWEgQUNQSSBhcyB3ZWxsLiBJdCB3b3VsZCBiZSBw
-cm9iYWJseSBiZXR0ZXIgaWYgdGhlcmUgaXMgYSB3YXkgdG8KdHJhY2UgYWxsIHRoYXQgb24gYSBt
-YWNoaW5lIHJ1bm5pbmcgd2luZG93cyBkaXJlY3RseS4KT24gVGh1LCBOb3YgMjksIDIwMTggYXQg
-NjoxMiBQTSBNaWNoYWVsIFMuIFRzaXJraW4gPG1zdEByZWRoYXQuY29tPiB3cm90ZToKPgo+IE9u
-IFRodSwgTm92IDI5LCAyMDE4IGF0IDExOjUzOjUzQU0gKzAxMDAsIEthcm9sIEhlcmJzdCB3cm90
-ZToKPiA+IE9uIFRodSwgTm92IDI5LCAyMDE4IGF0IDI6MjkgQU0gTWljaGFlbCBTLiBUc2lya2lu
-IDxtc3RAcmVkaGF0LmNvbT4gd3JvdGU6Cj4gPiA+Cj4gPiA+IE9uIFRodSwgTm92IDI5LCAyMDE4
-IGF0IDEyOjIxOjMxQU0gKzAxMDAsIEthcm9sIEhlcmJzdCB3cm90ZToKPiA+ID4gPiB0aGlzIHdh
-cyBhbHJlYWR5IGRlYnVnZ2VkIGFuZCB0aGVyZSBpcyBubyBwb2ludCBpbiBzZWFyY2hpbmcgaW5z
-aWRlCj4gPiA+ID4gdGhlIEZpcm13YXJlLiBJdCdzIG5vdCBhIGZpcm13YXJlIGJ1ZyBvciBhbnl0
-aGluZy4KPiA+ID4gPgo+ID4gPiA+IFRoZSBwcm9wZXIgZml4IGlzIHRvIGRvIHNvbWV0aGluZyBp
-bnNpZGUgTm91dmVhdSBzbyB0aGF0IHdlIGRvbid0Cj4gPiA+ID4gdXBzZXQgdGhlIGRldmljZSBh
-bmQgYmVpbmcgYWJsZSB0byBydW50aW1lIHJlc3VtZSBpdCBhZ2Fpbi4KPiA+ID4gPgo+ID4gPiA+
-IFRoZSBpbml0aWFsIHRoaW5nIHdlIGRvIGluc2lkZSBOb3V2ZWF1IHRvIGNhdXNlIHRob3NlIGlz
-c3VlcyBpcyB0byBydW4KPiA+ID4gPiB0aGF0IHNvIGNhbGxlZCAiREVWSU5JVCIgc2NyaXB0IGlu
-c2lkZSB0aGUgdmJpb3MgdG8gaW5pdGlhbGl6ZSB0aGUKPiA+ID4gPiBHUFUsIHByb2JsZW0gaXMs
-IGl0IGNoYW5nZXMgc29tZXRoaW5nIG9uIHRoZSBQQ0llIGNvbmZpZ3VyYXRpb24gc28KPiA+ID4g
-PiB0aGF0IHRoZSBHUFUgaXNuJ3QgYWJsZSB0byBydW50aW1lIHJlc3VtZSBhbnltb3JlLiBJIGFt
-IGluIGNvbnRhY3QKPiA+ID4gPiB3aXRoIE52aWRpYSBhYm91dCB0aGF0IGlzc3VlIGFuZCBob3Bl
-ZnVsbHkgd2UgZ2V0IHRoZSBwcm9wZXIgYW5zd2Vycy4KPiA+ID4gPiBXaGVuIEkgd2FzIGRpZ2dp
-bmcgaW50byB0aGF0IG15c2VsZiBJIHdhcyBhYmxlIHRvIG1ha2UgdGhlIHNpdHVhdGlvbgo+ID4g
-PiA+IG1vcmUgc3RhYmxlIGJ5IHNldHRpbmcgdGhlIFBDSUUgbGluayBzcGVlZCB0byB0aGUgYm9v
-dCBkZWZhdWx0cywgYnV0Cj4gPiA+ID4gdGhhdCB3YXMgc3RpbGwgcHJldHR5IHVuc3RhYmxlLgo+
-ID4gPiA+Cj4gPiA+ID4gQW55d2F5LCBiZWNhdXNlIHRoZSBiaW5hcnkgZHJpdmVyIGZhaWxzIGhl
-cmUgYXMgd2VsbCAodGhyb3VnaAo+ID4gPiA+IGJ1bWJsZWJlZSBhbmQgc28gb24pIHRoZXJlIGlz
-bid0IG11Y2ggb2YgcmV2ZXJzZSBlbmdpbmVlcmluZyB3ZSBjYW4gZG8KPiA+ID4gPiBiZXNpZGVz
-IGd1ZXNzaW5nIGFuZCB0cnlpbmcgaXQgb24gbGl0ZXJhbGx5IGV2ZXJ5IGhhcmR3YXJlIHVudGls
-IGl0Cj4gPiA+ID4gd29ya3MuCj4gPiA+ID4KPiA+ID4gPiBXZSBhbHNvIGhhdmUgYW4gdXBzdHJl
-YW0gYnVnIGZvciB0aGlzIGlzc3VlOgo+ID4gPiA+IGh0dHBzOi8vYnVnemlsbGEua2VybmVsLm9y
-Zy9zaG93X2J1Zy5jZ2k/aWQ9MTU2MzQxCj4gPiA+Cj4gPiA+IElmIHlvdSBsaWtlIEkgY2FuIHBy
-b2JhYmx5IGR1bXAgdGhlIHBjaWUgcmVnaXN0ZXJzIG9uIGNhcmQKPiA+ID4gYW5kL29yIHRoZSBw
-Y2llIHBvcnQgdW5kZXIgd2luZG93cy4gVGhlIGNhcmQgd29ya3MgdGhlcmUgOikKPiA+ID4gTGV0
-IG1lIGtub3cuCj4gPiA+Cj4gPiA+IC0tCj4gPiA+IE1TVAo+ID4KPiA+IHRoZSBwcm9ibGVtIGlz
-LCB3ZSB3b3VsZCBuZWVkIHRvIGtub3cgdGhlIHJlZ2lzdGVycyByaWdodCBiZWZvcmUKPiA+IHN1
-c3BlbmRpbmcgdGhlIEdQVS4gSWYgc29tZW9uZSB3b3VsZCBiZSBhYmxlIHRvIHRyYWNlIGFsbCBQ
-Q0llCj4gPiByZWdpc3RlciByZWFkIGFuZCB3cml0ZXMgZm9yIHRoZSBlbnRpcmUgc3VzcGVuZGlu
-Zy9yZXN1bWUgcHJvY2VzcywKPiA+IHRoYXQgd291bGQgYmUgdmVyeSBoZWxwZnVsLgo+Cj4KPiBX
-ZWxsIEkgY2FuIHBhc3MgdGhlIGNhcmQgdG8gYSBWTSwgYW5kIHRyYWNlIGl0IG9uIHRoZSBoeXBl
-cnZpc29yLCB0aGF0Cj4gaXNuJ3QgYSBwcm9ibGVtLiAgQSB0cmlja3kgdGhpbmcgaXMgdGhlIEFD
-UEkgdGFibGVzLCB3b3VsZCBuZWVkIHRvCj4gc29tZWhvdyBrbm93IHdoaWNoIG9uZXMgYXJlIHJl
-bGV2YW50IHRvIHBhc3MgdGhlbSB0byBndWVzdCAuLi4gaWRlYXMgb24KPiB0aGF0Pwo+Cj4gLS0K
-PiBNU1QKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+In order to comply with the CoC, replace **** with a hug.
+
+Signed-off-by: Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c        | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/pmu/fuc/macros.fuc | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+index 9cc10e438b3d..55a0060881ea 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+@@ -446,7 +446,7 @@ init_ram_restrict(struct nvbios_init *init)
+ {
+ 	/* This appears to be the behaviour of the VBIOS parser, and *is*
+ 	 * important to cache the NV_PEXTDEV_BOOT0 on later chipsets to
+-	 * avoid fucking up the memory controller (somehow) by reading it
++	 * avoid hugging up the memory controller (somehow) by reading it
+ 	 * on every INIT_RAM_RESTRICT_ZM_GROUP opcode.
+ 	 *
+ 	 * Preserving the non-caching behaviour on earlier chipsets just
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/fuc/macros.fuc b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/fuc/macros.fuc
+index 3737bd27f74e..ee364c71cc2e 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/fuc/macros.fuc
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/fuc/macros.fuc
+@@ -46,7 +46,7 @@
+ #define NV_PPWR_INTR_EN_SET_SUBINTR                                  0x00000800
+ #define NV_PPWR_INTR_EN_SET_WATCHDOG                                 0x00000002
+ #define NV_PPWR_INTR_EN_CLR                                              0x0014
+-#define NV_PPWR_INTR_EN_CLR_MASK                    /* fuck i hate envyas */ -1
++#define NV_PPWR_INTR_EN_CLR_MASK                    /* hug i hate envyas */ -1
+ #define NV_PPWR_INTR_ROUTE                                               0x001c
+ #define NV_PPWR_TIMER_LOW                                                0x002c
+ #define NV_PPWR_WATCHDOG_TIME                                            0x0034
+-- 
+2.19.1
