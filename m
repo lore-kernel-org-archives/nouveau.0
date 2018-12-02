@@ -1,63 +1,147 @@
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: Re: [PATCH RFC 00/15] Zero ****s, hugload of hugs <3
-Date: Sat, 1 Dec 2018 09:20:03 +0100
-Message-ID: <CAMuHMdUkpLWm5NZmYj=uMgVncw6ZOb7j9KxFoDGhrnr7vzpx_w@mail.gmail.com>
-References: <20181130192737.15053-1-jarkko.sakkinen@linux.intel.com>
- <CAGXu5j+jBNBsD3pvUSfEh6Lc5T1YMpbM0HeG1c6BHiJe+cKVOQ@mail.gmail.com>
- <20181130195652.7syqys76646kpaph@linux-r8p5>
- <20181130205521.GA21006@linux.intel.com>
- <1543611662.3031.20.camel@HansenPartnership.com>
- <20181130214405.GG23772@linux.intel.com>
- <1543615069.3031.27.camel@HansenPartnership.com>
- <20181130221219.GA25537@linux.intel.com>
- <20181130151459.3ca2f5c8@lwn.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 106577] broken rendering with nine and nouveau
+ (GM107)
+Date: Sun, 02 Dec 2018 14:12:13 +0000
+Message-ID: <bug-106577-8800-wT1B9BOWFM@http.bugs.freedesktop.org/>
+References: <bug-106577-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20181130151459.3ca2f5c8@lwn.net>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Jonathan Corbet <corbet@lwn.net>
-Cc: Linux MIPS Mailing List <linux-mips@linux-mips.org>, Geert Uytterhoeven <geert+renesas@glider.be>, "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>, nouveau@lists.freedesktop.org, amir73il@gmail.com, DRI Development <dri-devel@lists.freedesktop.org>, James Bottomley <James.Bottomley@hansenpartnership.com>, linux-ide@vger.kernel.org, Eric Dumazet <edumazet@google.com>, MTD Maling List <linux-mtd@lists.infradead.org>, makita.toshiaki@lab.ntt.co.jp, yanjun.zhu@oracle.com, Davidlohr Bueso <dave@stgolabs.net>, scsi <linux-scsi@vger.kernel.org>, Helge Deller <deller@gmx.de>, Steven Rostedt <rostedt@goodmis.org>, federico.vaga@vaga.pv.it, yhs@fb.com, pabeni@redhat.com, Linux Media Mailing List <linux-media@vger.kernel.org>, Petr Mladek <pmladek@suse.com>, Kees Cook <keescook@chromium.org>, Linux PM list <linux-pm@vger.kernel.org>, shannon.nelson@oracle.com, sean.wang@medi
+Content-Type: multipart/mixed; boundary="===============1911249921=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-106577-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgSm9uLAoKT24gRnJpLCBOb3YgMzAsIDIwMTggYXQgMTE6MTUgUE0gSm9uYXRoYW4gQ29yYmV0
-IDxjb3JiZXRAbHduLm5ldD4gd3JvdGU6Cj4gT24gRnJpLCAzMCBOb3YgMjAxOCAxNDoxMjoxOSAt
-MDgwMAo+IEphcmtrbyBTYWtraW5lbiA8amFya2tvLnNha2tpbmVuQGxpbnV4LmludGVsLmNvbT4g
-d3JvdGU6Cj4KPiA+IEFzIGEgbWFpbnRhaW5lciBteXNlbGYgKGFuZCBiYXNlZCBvbiBzb21ld2hh
-dCBkaXN0dXJiZWQgZmVlZGJhY2sgZnJvbQo+ID4gb3RoZXIgbWFpbnRhaW5lcnMpIEkgY2FuIG9u
-bHkgbWFrZSB0aGUgY29uY2x1c2lvbiB0aGF0IG5vYm9keSBrbm93cyB3aGF0Cj4gPiB0aGUgcmVz
-cG9uc2liaWxpdHkgcGFydCBoZXJlIG1lYW5zLgo+ID4KPiA+IEkgd291bGQgaW50ZXJwcmV0LCBp
-ZiBJIHJlYWQgaXQgbGlrZSBhdCBsYXd5ZXIgYXQgbGVhc3QsIHRoYXQgZXZlbiBmb3IKPiA+IGV4
-aXN0aW5nIGNvZGUgeW91IHdvdWxkIG5lZWQgdG8gZG8gdGhlIGNoYW5nZXMgcG9zdG1vcnRlcm0u
-Cj4gPgo+ID4gSXMgdGhpcyB3cm9uZyBpbnRlcnByZXRhdGlvbj8gIFNob3VsZCBJIGNvbmNsdWRl
-IHRoYXQgSSBtYWRlIGEgbWlzdGFrZQo+ID4gYnkgcmVhZGluZyB0aGUgQ29DIGFuZCB0cnlpbmcg
-dG8gdW5kZXJzdGFuZCB3aGF0IGl0ICphY3R1YWxseSogc2F5cz8KPiA+IEFmdGVyIHRoaXMgZGlz
-Y3Vzc2lvbiwgSSBjYW4gc2F5IHRoYXQgSSB1bmRlcnN0YW5kIGl0IGxlc3MgdGhhbiBiZWZvcmUu
-Cj4KPiBIYXZlIHlvdSByZWFkIERvY3VtZW50YXRpb24vcHJvY2Vzcy9jb2RlLW9mLWNvbmR1Y3Qt
-aW50ZXJwcmV0YXRpb24ucnN0Pwo+IEFzIGhhcyBiZWVuIHBvaW50ZWQgb3V0LCBpdCBjb250YWlu
-cyBhIGNsZWFyIGFuc3dlciB0byBob3cgdGhpbmdzIHNob3VsZAo+IGJlIGludGVycHJldGVkIGhl
-cmUuCgpJbmRlZWQ6Cgp8IENvbnRyaWJ1dGlvbnMgc3VibWl0dGVkIGZvciB0aGUga2VybmVsIHNo
-b3VsZCB1c2UgYXBwcm9wcmlhdGUgbGFuZ3VhZ2UuCnwgQ29udGVudCB0aGF0IGFscmVhZHkgZXhp
-c3RzIHByZWRhdGluZyB0aGUgQ29kZSBvZiBDb25kdWN0IHdpbGwgbm90IGJlCnwgYWRkcmVzc2Vk
-IG5vdyBhcyBhIHZpb2xhdGlvbi4KCkhvd2V2ZXI6Cgp8IEluYXBwcm9wcmlhdGUgbGFuZ3VhZ2Ug
-Y2FuIGJlIHNlZW4gYXMgYQp8IGJ1ZywgdGhvdWdoOyBzdWNoIGJ1Z3Mgd2lsbCBiZSBmaXhlZCBt
-b3JlIHF1aWNrbHkgaWYgYW55IGludGVyZXN0ZWQKfCBwYXJ0aWVzIHN1Ym1pdCBwYXRjaGVzIHRv
-IHRoYXQgZWZmZWN0LgoKR3J7b2V0amUsZWV0aW5nfXMsCgogICAgICAgICAgICAgICAgICAgICAg
-ICBHZWVydAoKLS0gCkdlZXJ0IFV5dHRlcmhvZXZlbiAtLSBUaGVyZSdzIGxvdHMgb2YgTGludXgg
-YmV5b25kIGlhMzIgLS0gZ2VlcnRAbGludXgtbTY4ay5vcmcKCkluIHBlcnNvbmFsIGNvbnZlcnNh
-dGlvbnMgd2l0aCB0ZWNobmljYWwgcGVvcGxlLCBJIGNhbGwgbXlzZWxmIGEgaGFja2VyLiBCdXQK
-d2hlbiBJJ20gdGFsa2luZyB0byBqb3VybmFsaXN0cyBJIGp1c3Qgc2F5ICJwcm9ncmFtbWVyIiBv
-ciBzb21ldGhpbmcgbGlrZSB0aGF0LgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0t
-IExpbnVzIFRvcnZhbGRzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1k
-ZXZlbAo=
+
+--===============1911249921==
+Content-Type: multipart/alternative; boundary="15437599320.05F4.7999"
+Content-Transfer-Encoding: 7bit
+
+
+--15437599320.05F4.7999
+Date: Sun, 2 Dec 2018 14:12:12 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D106577
+
+Roman Elshin <roman.elshin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #8 from Roman Elshin <roman.elshin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Fixed in master by commit:
+fc0139d28339f58bcbb4946fea7608ecdaff93e7
+nv50,nvc0: Fix gallium nine regression regarding sampler bindings
+Thanks a lot!
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15437599320.05F4.7999
+Date: Sun, 2 Dec 2018 14:12:12 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:roman.els=
+hin&#64;gmail.com" title=3D"Roman Elshin &lt;roman.elshin&#64;gmail.com&gt;=
+"> <span class=3D"fn">Roman Elshin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - broken rendering with nine and nouveau (GM107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577">bug 10657=
+7</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - broken rendering with nine and nouveau (GM107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577#c8">Commen=
+t # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - broken rendering with nine and nouveau (GM107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106577">bug 10657=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+roman.elshin&#64;gmail.com" title=3D"Roman Elshin &lt;roman.elshin&#64;gmai=
+l.com&gt;"> <span class=3D"fn">Roman Elshin</span></a>
+</span></b>
+        <pre>Fixed in master by commit:
+fc0139d28339f58bcbb4946fea7608ecdaff93e7
+nv50,nvc0: Fix gallium nine regression regarding sampler bindings
+Thanks a lot!</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15437599320.05F4.7999--
+
+--===============1911249921==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1911249921==--
