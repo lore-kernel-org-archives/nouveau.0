@@ -1,172 +1,63 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92961] Xorg freezes (only mouse and ssh are still
- working)
-Date: Sun, 02 Dec 2018 23:25:13 +0000
-Message-ID: <bug-92961-8800-uEyYKOZpGx@http.bugs.freedesktop.org/>
-References: <bug-92961-8800@http.bugs.freedesktop.org/>
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Subject: Re: [PATCH v3 1/3] drm/connector: Add generic underscan properties
+Date: Mon, 3 Dec 2018 16:40:11 +0200
+Message-ID: <20181203144011.GH9144@intel.com>
+References: <20181122112331.17735-1-boris.brezillon@bootlin.com>
+ <20181122112331.17735-2-boris.brezillon@bootlin.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0396836175=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20181122112331.17735-2-boris.brezillon-LDxbnhwyfcJBDgjK7y7TUQ@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Boris Brezillon <boris.brezillon-LDxbnhwyfcJBDgjK7y7TUQ@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Eric Anholt <eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0396836175==
-Content-Type: multipart/alternative; boundary="15437931131.77F8C2b.26355"
-Content-Transfer-Encoding: 7bit
-
-
---15437931131.77F8C2b.26355
-Date: Sun, 2 Dec 2018 23:25:13 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92961
-
---- Comment #20 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Nic Soud=C3=A9e from comment #19)
-> Created attachment 142692 [details] [review]
-> Handle INTR 0x00800000 in gf100_fifo_intr
->=20
-> Attached is a patch I applied to kernel 4.19.5 to desperately thwart my D=
-ELL
-> E6420 from randomly getting its video busted (very similar symptons as
-> Comment #3 of this ticket, and is why I'm posting here). I don't have any
-> experience with such low-level programming but I just pretended I knew wh=
-at
-> I was doing and cut and pasted a condition for that INTR 0x00800000 error
-> which pops up every time that catastrophic random event happens.
->=20
-> So far, my E6420 is working great despite receiving some of those INTRs,
-> thanks to this patch. I am posting this in hopes it might be on the right
-> track towards getting this fixed by someone who knows what they're doing.=
-..
-
-That's a little surprising. The existing logic will mask out further interr=
-upts
-by writing a 0 into the relevant bit of 2140 (which is the INTR_EN register,
-which controls which intr's get surfaced).
-
-Your logic removes that, which means that you'll keep getting the unknown
-intr's, and also you add a read from 258c. That's unlikely to matter though.
-
-However now if we *do* ever get an interrupt for that bit in 2100 after
-disabling the bit in 2140, then it'll be stuck forever. I suspect that the =
-"&
-mask" should be removed at the beginning of that function [and thus the read
-from 2140].
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15437931131.77F8C2b.26355
-Date: Sun, 2 Dec 2018 23:25:13 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961#c20">Commen=
-t # 20</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961">bug 92961<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Nic Soud=C3=A9e from <a href=3D"show_bug.cgi?id=
-=3D92961#c19">comment #19</a>)
-<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
-gi?id=3D142692" name=3D"attach_142692" title=3D"Handle INTR 0x00800000 in g=
-f100_fifo_intr">attachment 142692</a> <a href=3D"attachment.cgi?id=3D142692=
-&amp;action=3Dedit" title=3D"Handle INTR 0x00800000 in gf100_fifo_intr">[de=
-tails]</a></span> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D92961&am=
-p;attachment=3D142692'>[review]</a> [review]
-&gt; Handle INTR 0x00800000 in gf100_fifo_intr
-&gt;=20
-&gt; Attached is a patch I applied to kernel 4.19.5 to desperately thwart m=
-y DELL
-&gt; E6420 from randomly getting its video busted (very similar symptons as
-&gt; <a href=3D"show_bug.cgi?id=3D92961#c3">Comment #3</a> of this ticket, =
-and is why I'm posting here). I don't have any
-&gt; experience with such low-level programming but I just pretended I knew=
- what
-&gt; I was doing and cut and pasted a condition for that INTR 0x00800000 er=
-ror
-&gt; which pops up every time that catastrophic random event happens.
-&gt;=20
-&gt; So far, my E6420 is working great despite receiving some of those INTR=
-s,
-&gt; thanks to this patch. I am posting this in hopes it might be on the ri=
-ght
-&gt; track towards getting this fixed by someone who knows what they're doi=
-ng...</span >
-
-That's a little surprising. The existing logic will mask out further interr=
-upts
-by writing a 0 into the relevant bit of 2140 (which is the INTR_EN register,
-which controls which intr's get surfaced).
-
-Your logic removes that, which means that you'll keep getting the unknown
-intr's, and also you add a read from 258c. That's unlikely to matter though.
-
-However now if we *do* ever get an interrupt for that bit in 2100 after
-disabling the bit in 2140, then it'll be stuck forever. I suspect that the =
-&quot;&amp;
-mask&quot; should be removed at the beginning of that function [and thus th=
-e read
-from 2140].</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15437931131.77F8C2b.26355--
-
---===============0396836175==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0396836175==--
+T24gVGh1LCBOb3YgMjIsIDIwMTggYXQgMTI6MjM6MjlQTSArMDEwMCwgQm9yaXMgQnJlemlsbG9u
+IHdyb3RlOgo+IEBAIC05MjQsNiArOTc4LDI5IEBAIHN0cnVjdCBkcm1fY29ubmVjdG9yIHsKPiAg
+CSAqLwo+ICAJc3RydWN0IGRybV9wcm9wZXJ0eV9ibG9iICpwYXRoX2Jsb2JfcHRyOwo+ICAKPiAr
+CS8qKgo+ICsJICogQHVuZGVyc2Nhbl9tb2RlX3Byb3BlcnR5OiBPcHRpb25hbCBjb25uZWN0b3Ig
+dW5kZXJzY2FuIG1vZGUuIFVzZWQgYnkKPiArCSAqIHRoZSBkcml2ZXIgdG8gc2NhbGUgdGhlIG91
+dHB1dCBpbWFnZSBhbmQgY29tcGVuc2F0ZSBhbiBvdmVyc2NhbiBkb25lCj4gKwkgKiBvbiB0aGUg
+ZGlzcGxheSBzaWRlLgo+ICsJICovCj4gKwlzdHJ1Y3QgZHJtX3Byb3BlcnR5ICp1bmRlcnNjYW5f
+bW9kZV9wcm9wZXJ0eTsKPiArCj4gKwkvKioKPiArCSAqIEB1bmRlcnNjYW5faGJvcmRlcl9wcm9w
+ZXJ0eTogT3B0aW9uYWwgY29ubmVjdG9yIHVuZGVyc2NhbiBob3Jpem9udGFsCj4gKwkgKiBib3Jk
+ZXIgKGV4cHJlc3NlZCBpbiBwaXhlbHMpLiBVc2VkIGJ5IHRoZSBkcml2ZXIgdG8gYWRqdXN0IHRo
+ZQo+ICsJICogb3V0cHV0IGltYWdlIHBvc2l0aW9uIGFuZCBjb21wZW5zYXRlIGFuIG92ZXJzY2Fu
+IGRvbmUgb24gdGhlIGRpc3BsYXkKPiArCSAqIHNpZGUuCj4gKwkgKi8KPiArCXN0cnVjdCBkcm1f
+cHJvcGVydHkgKnVuZGVyc2Nhbl9oYm9yZGVyX3Byb3BlcnR5Owo+ICsKPiArCS8qKgo+ICsJICog
+QHVuZGVyc2Nhbl9oYm9yZGVyX3Byb3BlcnR5OiBPcHRpb25hbCBjb25uZWN0b3IgdW5kZXJzY2Fu
+IHZlcnRpY2FsCj4gKwkgKiBib3JkZXIgKGV4cHJlc3NlZCBpbiBwaXhlbHMpLiBVc2VkIGJ5IHRo
+ZSBkcml2ZXIgdG8gYWRqdXN0IHRoZQo+ICsJICogb3V0cHV0IGltYWdlIHBvc2l0aW9uIGFuZCBj
+b21wZW5zYXRlIGFuIG92ZXJzY2FuIGRvbmUgb24gdGhlIGRpc3BsYXkKPiArCSAqIHNpZGUuCj4g
+KwkgKi8KPiArCXN0cnVjdCBkcm1fcHJvcGVydHkgKnVuZGVyc2Nhbl92Ym9yZGVyX3Byb3BlcnR5
+OwoKSSdtIHdvbmRlcmluZyB3aHkgd2UncmUgYWRkaW5nIHRoZXNlIG5ldyBwcm9wcyB3aGVuIHdl
+IGFscmVhZHkgaGF2ZSB0aGUKKHNsaWdodGx5IG1vcmUgZmxleGlibGUpIG1hcmdpbiBwcm9wZXJ0
+aWVzIGZvciBUViBvdXQuIFdlIGNvdWxkIGp1c3QKcmV1c2UgdGhvc2UgQUZBSUNTLgoKPiArCj4g
+ICNkZWZpbmUgRFJNX0NPTk5FQ1RPUl9QT0xMX0hQRCAoMSA8PCAwKQo+ICAjZGVmaW5lIERSTV9D
+T05ORUNUT1JfUE9MTF9DT05ORUNUICgxIDw8IDEpCj4gICNkZWZpbmUgRFJNX0NPTk5FQ1RPUl9Q
+T0xMX0RJU0NPTk5FQ1QgKDEgPDwgMikKPiBAQCAtMTE4MCw2ICsxMjU3LDkgQEAgaW50IGRybV9t
+b2RlX2NyZWF0ZV9kdmlfaV9wcm9wZXJ0aWVzKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpOwo+ICBp
+bnQgZHJtX21vZGVfY3JlYXRlX3R2X3Byb3BlcnRpZXMoc3RydWN0IGRybV9kZXZpY2UgKmRldiwK
+PiAgCQkJCSAgdW5zaWduZWQgaW50IG51bV9tb2RlcywKPiAgCQkJCSAgY29uc3QgY2hhciAqIGNv
+bnN0IG1vZGVzW10pOwo+ICtpbnQgZHJtX2Nvbm5lY3Rvcl9hdHRhY2hfdW5kZXJzY2FuX3Byb3Bl
+cnRpZXMoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciwKPiArCQkJCQkgICAgICB1MzIg
+bW9kZV9tYXNrLCB1NjQgbWF4X2hib3JkZXIsCj4gKwkJCQkJICAgICAgdTY0IG1heF92Ym9yZGVy
+KTsKPiAgaW50IGRybV9tb2RlX2NyZWF0ZV9zY2FsaW5nX21vZGVfcHJvcGVydHkoc3RydWN0IGRy
+bV9kZXZpY2UgKmRldik7Cj4gIGludCBkcm1fY29ubmVjdG9yX2F0dGFjaF9jb250ZW50X3R5cGVf
+cHJvcGVydHkoc3RydWN0IGRybV9jb25uZWN0b3IgKmRldik7Cj4gIGludCBkcm1fY29ubmVjdG9y
+X2F0dGFjaF9zY2FsaW5nX21vZGVfcHJvcGVydHkoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5l
+Y3RvciwKPiAtLSAKPiAyLjE3LjEKCi0tIApWaWxsZSBTeXJqw6Rsw6QKSW50ZWwKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxp
+c3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
