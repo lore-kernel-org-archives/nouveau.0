@@ -1,71 +1,128 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v3 1/3] drm/connector: Add generic underscan properties
-Date: Tue, 4 Dec 2018 11:42:31 +0100
-Message-ID: <20181204104231.GA21184@phenom.ffwll.local>
-References: <20181122112331.17735-1-boris.brezillon@bootlin.com>
- <20181122112331.17735-2-boris.brezillon@bootlin.com>
- <20181203144011.GH9144@intel.com>
- <20181203163636.7053cffd@bbrezillon> <87k1kqfw2q.fsf@anholt.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
+Date: Tue, 04 Dec 2018 13:18:24 +0000
+Message-ID: <bug-105319-8800-PhQr3eZpXH@http.bugs.freedesktop.org/>
+References: <bug-105319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <87k1kqfw2q.fsf@anholt.net>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Eric Anholt <eric@anholt.net>
-Cc: nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, Boris Brezillon <boris.brezillon@bootlin.com>, dri-devel@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>, Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============0202533414=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBEZWMgMDMsIDIwMTggYXQgMDc6NTA6NTNBTSAtMDgwMCwgRXJpYyBBbmhvbHQgd3Jv
-dGU6Cj4gQm9yaXMgQnJlemlsbG9uIDxib3Jpcy5icmV6aWxsb25AYm9vdGxpbi5jb20+IHdyaXRl
-czoKPiAKPiA+IE9uIE1vbiwgMyBEZWMgMjAxOCAxNjo0MDoxMSArMDIwMAo+ID4gVmlsbGUgU3ly
-asOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4gd3JvdGU6Cj4gPgo+ID4+IE9u
-IFRodSwgTm92IDIyLCAyMDE4IGF0IDEyOjIzOjI5UE0gKzAxMDAsIEJvcmlzIEJyZXppbGxvbiB3
-cm90ZToKPiA+PiA+IEBAIC05MjQsNiArOTc4LDI5IEBAIHN0cnVjdCBkcm1fY29ubmVjdG9yIHsK
-PiA+PiA+ICAJICovCj4gPj4gPiAgCXN0cnVjdCBkcm1fcHJvcGVydHlfYmxvYiAqcGF0aF9ibG9i
-X3B0cjsKPiA+PiA+ICAKPiA+PiA+ICsJLyoqCj4gPj4gPiArCSAqIEB1bmRlcnNjYW5fbW9kZV9w
-cm9wZXJ0eTogT3B0aW9uYWwgY29ubmVjdG9yIHVuZGVyc2NhbiBtb2RlLiBVc2VkIGJ5Cj4gPj4g
-PiArCSAqIHRoZSBkcml2ZXIgdG8gc2NhbGUgdGhlIG91dHB1dCBpbWFnZSBhbmQgY29tcGVuc2F0
-ZSBhbiBvdmVyc2NhbiBkb25lCj4gPj4gPiArCSAqIG9uIHRoZSBkaXNwbGF5IHNpZGUuCj4gPj4g
-PiArCSAqLwo+ID4+ID4gKwlzdHJ1Y3QgZHJtX3Byb3BlcnR5ICp1bmRlcnNjYW5fbW9kZV9wcm9w
-ZXJ0eTsKPiA+PiA+ICsKPiA+PiA+ICsJLyoqCj4gPj4gPiArCSAqIEB1bmRlcnNjYW5faGJvcmRl
-cl9wcm9wZXJ0eTogT3B0aW9uYWwgY29ubmVjdG9yIHVuZGVyc2NhbiBob3Jpem9udGFsCj4gPj4g
-PiArCSAqIGJvcmRlciAoZXhwcmVzc2VkIGluIHBpeGVscykuIFVzZWQgYnkgdGhlIGRyaXZlciB0
-byBhZGp1c3QgdGhlCj4gPj4gPiArCSAqIG91dHB1dCBpbWFnZSBwb3NpdGlvbiBhbmQgY29tcGVu
-c2F0ZSBhbiBvdmVyc2NhbiBkb25lIG9uIHRoZSBkaXNwbGF5Cj4gPj4gPiArCSAqIHNpZGUuCj4g
-Pj4gPiArCSAqLwo+ID4+ID4gKwlzdHJ1Y3QgZHJtX3Byb3BlcnR5ICp1bmRlcnNjYW5faGJvcmRl
-cl9wcm9wZXJ0eTsKPiA+PiA+ICsKPiA+PiA+ICsJLyoqCj4gPj4gPiArCSAqIEB1bmRlcnNjYW5f
-aGJvcmRlcl9wcm9wZXJ0eTogT3B0aW9uYWwgY29ubmVjdG9yIHVuZGVyc2NhbiB2ZXJ0aWNhbAo+
-ID4+ID4gKwkgKiBib3JkZXIgKGV4cHJlc3NlZCBpbiBwaXhlbHMpLiBVc2VkIGJ5IHRoZSBkcml2
-ZXIgdG8gYWRqdXN0IHRoZQo+ID4+ID4gKwkgKiBvdXRwdXQgaW1hZ2UgcG9zaXRpb24gYW5kIGNv
-bXBlbnNhdGUgYW4gb3ZlcnNjYW4gZG9uZSBvbiB0aGUgZGlzcGxheQo+ID4+ID4gKwkgKiBzaWRl
-Lgo+ID4+ID4gKwkgKi8KPiA+PiA+ICsJc3RydWN0IGRybV9wcm9wZXJ0eSAqdW5kZXJzY2FuX3Zi
-b3JkZXJfcHJvcGVydHk7ICAKPiA+PiAKPiA+PiBJJ20gd29uZGVyaW5nIHdoeSB3ZSdyZSBhZGRp
-bmcgdGhlc2UgbmV3IHByb3BzIHdoZW4gd2UgYWxyZWFkeSBoYXZlIHRoZQo+ID4+IChzbGlnaHRs
-eSBtb3JlIGZsZXhpYmxlKSBtYXJnaW4gcHJvcGVydGllcyBmb3IgVFYgb3V0LiBXZSBjb3VsZCBq
-dXN0Cj4gPj4gcmV1c2UgdGhvc2UgQUZBSUNTLgo+ID4KPiA+IEknbSBub3QgYWdhaW5zdCB0aGUg
-aWRlYSwgYnV0IEkgY2FuJ3QgdXNlCj4gPiBkcm1fbW9kZV9jcmVhdGVfdHZfcHJvcGVydGllcygp
-IGRpcmVjdGx5LCBhcyBtb3N0IHByb3BzIGNyZWF0ZWQgYnkgdGhpcwo+ID4gZnVuY3Rpb24gYXJl
-IG5vdCBhcHBsaWNhYmxlIHRvIGFuIEhETUkgZGlzcGxheXMuIFNob3VsZCBJIG1vdmUgdGhlCj4g
-PiBtYXJnaW5zIHByb3BzIG91dCBvZiB0aGUgdHZfY29ubmVjdG9yX3N0YXRlIGFuZCBwcm92aWRl
-IG5ldyBoZWxwZXJzIHRvCj4gPiBjcmVhdGUgdGhvc2UgcHJvcHM/Cj4gCj4gVFYgbWFyZ2luIHBy
-b3BzIGxvb2sgZ29vZCB0byBtZSwgRldJVy4KClllYWggZXh0cmFjdGluZyB0aGUgbWFyZ2luIHBy
-b3BzIGZyb20gdGhlIHR2IHByb3BzIHNvdW5kcyBsaWtlIGEgZ29vZAppZGVhLiBJZiB3ZSBnbyBm
-dWxsIG9jZCB3ZSdkIGFsc28gc3BsaXQgb3V0IG1hcmdpbl9jb25uZWN0b3Jfc3RhdGUgb3IKc29t
-ZXRoaW5nIGxpa2UgdGhhdCAoc2hvdWxkIGJlIGRvYWJsZSB3aXRoIHNvbWUgY29jY2kpLCBidXQg
-bm90IHN1cmUKdGhhdCdzIGZ1bGx5IHdvcnRoIGl0LiBUdW5pbmcgbWFyZ2lucyBpcyBsYXJnZWx5
-IGFuIGFuYWxvZyBUViBpc3N1ZSBJCnRoaW5rLCBzbyBjb3VsZCBqdXN0IGxlYXZlIHRoZW0gdGhl
-cmUuCi1EYW5pZWwKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENv
-cnBvcmF0aW9uCmh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL2RyaS1kZXZlbAo=
+
+--===============0202533414==
+Content-Type: multipart/alternative; boundary="15439295030.bB633.23402"
+Content-Transfer-Encoding: 7bit
+
+
+--15439295030.bB633.23402
+Date: Tue, 4 Dec 2018 13:18:23 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
+
+--- Comment #29 from S=C3=A9rgio M. Basto <sergio-iCFKjj3otdHQT0dZR+AlfA@public.gmane.org> ---
+In resume
+
+My first bad commit: [fdba46ffb4c203b6e6794163493fd310f98bb4be] x86/apic: G=
+et
+rid of multi CPU affinity (in kernel 4.15.0-git2)
+
+My second bad commit: [a31e58e129f73ab5b04016330b13ed51fde7a961] x86/apic:
+Switch all APICs to Fixed delivery mode (in kernel-4.15.0-0.rc6.git1.1) [1]
+commit message say that fixes fdba46ffb4c2 ("x86/apic: Get rid of multi CPU
+affinity")
+
+
+[1]
+https://bugs.freedesktop.org/attachment.cgi?id=3D141327
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15439295030.bB633.23402
+Date: Tue, 4 Dec 2018 13:18:23 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c29">Comme=
+nt # 29</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+sergio&#64;serjux.com" title=3D"S=C3=A9rgio M. Basto &lt;sergio&#64;serjux.=
+com&gt;"> <span class=3D"fn">S=C3=A9rgio M. Basto</span></a>
+</span></b>
+        <pre>In resume
+
+My first bad commit: [fdba46ffb4c203b6e6794163493fd310f98bb4be] x86/apic: G=
+et
+rid of multi CPU affinity (in kernel 4.15.0-git2)
+
+My second bad commit: [a31e58e129f73ab5b04016330b13ed51fde7a961] x86/apic:
+Switch all APICs to Fixed delivery mode (in kernel-4.15.0-0.rc6.git1.1) [1]
+commit message say that fixes fdba46ffb4c2 (&quot;x86/apic: Get rid of mult=
+i CPU
+affinity&quot;)
+
+
+[1]
+<a href=3D"https://bugs.freedesktop.org/attachment.cgi?id=3D141327">https:/=
+/bugs.freedesktop.org/attachment.cgi?id=3D141327</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15439295030.bB633.23402--
+
+--===============0202533414==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0202533414==--
