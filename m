@@ -1,119 +1,70 @@
-From: Andrzej Hajda <a.hajda@samsung.com>
-Subject: Re: [PATCH 1/4] drm/edid: Pass connector to AVI
- inforframe functions
-Date: Tue, 4 Dec 2018 08:46:53 +0100
-Message-ID: <64018e44-9a5e-5b28-63db-f35b97dafb26@samsung.com>
-References: <20181120161345.15440-1-ville.syrjala@linux.intel.com>
- <CGME20181121182023epcas1p1c86d6be2849038018ae535b7718e7753@epcas1p1.samsung.com>
- <1697503.tFhaoOeOnK@avalon>
- <6147ea2d-8044-45d5-7a64-9d632ff41b95@samsung.com>
- <20181203213845.GJ9144@intel.com>
+From: Michel Hermier <michel.hermier-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH RFC 03/15] drm/nouveau: replace **** with a hug
+Date: Tue, 4 Dec 2018 08:57:38 +0100
+Message-ID: <CAAZ5spC1VNr=7-0V8508J37KWKWkurQ52GpY6wkhvFqdbDkLVA@mail.gmail.com>
+References: <20181130192737.15053-1-jarkko.sakkinen@linux.intel.com>
+ <20181130192737.15053-4-jarkko.sakkinen@linux.intel.com>
+ <CA+ToGPHBNg7k3uT8yrgWuPgD113Sd44TZamYd7j=f_X2idej6Q@mail.gmail.com>
+ <20181130212640.GA23772@linux.intel.com>
+ <CA+ToGPEaxYxuzB__SM77J_8596u8Q+wa4uqfDn+LbwmL_NsOhA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <20181203213845.GJ9144@intel.com>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Benjamin Gaignard <benjamin.gaignard@linaro.org>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, Archit Taneja <architt@codeaurora.org>, Joonyoung Shim <jy0922.shim@samsung.com>, Russell King <linux@armlinux.org.uk>, amd-gfx@lists.freedesktop.org, Tomi Valkeinen <tomi.valkeinen@ti.com>, Ben Skeggs <bskeggs@redhat.com>, CK Hu <ck.hu@mediatek.com>, Ilia Mirkin <imirkin@alum.mit.edu>, linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org, Inki Dae <inki.dae@samsung.com>, linux-tegra@vger.kernel.org, Vincent Abriou <vincent.abriou@st.com>, freedreno@lists.freedesktop.org, Seung-Woo Kim <sw0312.kim@samsung.com>, Sandy Huang <hjc@rock-chips.com>, Kyungmin Park <kyungmin.park@samsung.com>, Philipp
+Content-Type: multipart/mixed; boundary="===============1570099764=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CA+ToGPEaxYxuzB__SM77J_8596u8Q+wa4uqfDn+LbwmL_NsOhA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Diego Viola <diego.viola-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: airlied-cv59FeDIM0c@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, jarkko.sakkinen-VuQAYsv1563Yd54FQh9/CA@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDMuMTIuMjAxOCAyMjozOCwgVmlsbGUgU3lyasOkbMOkIHdyb3RlOgo+IE9uIFRodSwgTm92
-IDI5LCAyMDE4IGF0IDEwOjA4OjA3QU0gKzAxMDAsIEFuZHJ6ZWogSGFqZGEgd3JvdGU6Cj4+IE9u
-IDIxLjExLjIwMTggMTk6MTksIExhdXJlbnQgUGluY2hhcnQgd3JvdGU6Cj4+PiBIaSBWaWxsZSwK
-Pj4+Cj4+PiBUaGFuayB5b3UgZm9yIHRoZSBwYXRjaC4KPj4+Cj4+PiBPbiBUdWVzZGF5LCAyMCBO
-b3ZlbWJlciAyMDE4IDE4OjEzOjQyIEVFVCBWaWxsZSBTeXJqYWxhIHdyb3RlOgo+Pj4+IEZyb206
-IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4+Pj4KPj4+
-PiBNYWtlIGxpZmUgZWFzaWVyIGZvciBkcml2ZXJzIGJ5IHNpbXBseSBwYXNzaW5nIHRoZSBjb25u
-ZWN0b3IKPj4+PiB0byBkcm1faGRtaV9hdmlfaW5mb2ZyYW1lX2Zyb21fZGlzcGxheV9tb2RlKCkg
-YW5kCj4+Pj4gZHJtX2hkbWlfYXZpX2luZm9mcmFtZV9xdWFudF9yYW5nZSgpLiBUaGF0IHdheSBk
-cml2ZXJzIGRvbid0Cj4+Pj4gbmVlZCB0byB3b3JyeSBhYm91dCBpc19oZG1pMl9zaW5rIG1lc3Mu
-Cj4+PiBXaGlsZSB0aGlzIGlzIGdvb2QgZm9yIGRpc3BsYXkgY29udHJvbGxlciBkcml2ZXJzLCB0
-aGUgY2hhbmdlIGlzbid0IGdyZWF0IGZvciAKPj4+IGJyaWRnZSBkcml2ZXJzLiBEb3duIHRoZSBy
-b2FkIHdlJ3JlIGxvb2tpbmcgYXQgbW92aW5nIGNvbm5lY3RvciBzdXBwb3J0IG91dCBvZiAKPj4+
-IHRoZSBicmlkZ2UgZHJpdmVycy4gQWRkaW5nIGFuIGFkZGl0aW9uYWwgZGVwZW5kZW5jeSB0byBj
-b25uZWN0b3JzIGluIHRoZSAKPj4+IGJyaWRnZXMgd2lsbCBtYWtlIHRoYXQgbW9yZSBkaWZmaWN1
-bHQuIElkZWFsbHkgYnJpZGdlcyBzaG91bGQgcmV0cmlldmUgdGhlIAo+Pj4gaW5mb3JtYXRpb24g
-ZnJvbSB0aGVpciBzaW5rLCByZWdhcmRsZXNzIG9mIHdoZXRoZXIgaXQgaXMgYSBjb25uZWN0b3Ig
-b3IgCj4+PiBhbm90aGVyIGJyaWRnZS4KPj4KPj4gSSBhZ3JlZSB3aXRoIGl0LCBhbmQgY2FzZSBv
-ZiBzaWk4NjIwIHNob3dzIHRoYXQgdGhlcmUgYXJlIGNhc2VzIHdoZXJlCj4+IGJyaWRnZSBoYXMg
-bm8gZGlyZWN0IGFjY2VzcyB0byB0aGUgY29ubmVjdG9yLgo+IEl0J3MganVzdCBhIG1hdHRlciBv
-ZiBwbHVtYmluZyBpdCB0aHJvdWdoLgoKCldoYXQgZG8geW91IG1lYW4gZXhhY3RseT8KCgo+Cj4+
-IE9uIHRoZSBvdGhlciBzaWRlLMKgIHNpbmNlIHlvdSBhcmUgcGFzc2luZyBjb25uZWN0b3IgdG8K
-Pj4gZHJtX2hkbWlfYXZpX2luZm9mcmFtZV9mcm9tX2Rpc3BsYXlfbW9kZSgpLCB5b3UgY291bGQg
-ZHJvcCBtb2RlCj4+IHBhcmFtZXRlciBhbmQgcmVuYW1lIHRoZSBmdW5jdGlvbiB0bwo+PiBkcm1f
-aGRtaV9hdmlfaW5mb2ZyYW1lX2Zyb21fY29ubmVjdG9yKCkgdGhlbiwgdW5sZXNzIG1vZGUgcGFz
-c2VkIGFuZAo+PiBtb2RlIHNldCBvbiB0aGUgY29ubmVjdG9yIGRpZmZlcnM/Cj4gQ29ubmVjdG9y
-cyBkb24ndCBoYXZlIGEgbW9kZS4KCgpBcyB0aGV5IGFyZSBwYXNzaW5nIHZpZGVvIHN0cmVhbSB0
-aGV5IHNob3VsZCBoYXZlIGl0LCBldmVuIGlmIG5vdApkaXJlY3RseSwgZm9yIGV4YW1wbGU6Cgpj
-b25uZWN0b3ItPnN0YXRlLT5jcnRjLT5tb2RlCgpJbiBtb21lbnQgb2YgY3JlYXRpbmcgaW5mb2Zy
-YW1lIGl0IHNob3VsZCBiZSBzZXQgcHJvcGVybHkuCgoKUmVnYXJkcwoKQW5kcnplagoKCj4KPj4K
-Pj4gUmVnYXJkcwo+Pgo+PiBBbmRyemVqCj4+Cj4+Cj4+PiBQbGVhc2Ugc2VlIGJlbG93IGZvciBh
-biBhZGRpdGlvbmFsIGNvbW1lbnQuCj4+Pgo+Pj4+IENjOiBBbGV4IERldWNoZXIgPGFsZXhhbmRl
-ci5kZXVjaGVyQGFtZC5jb20+Cj4+Pj4gQ2M6ICJDaHJpc3RpYW4gS8O2bmlnIiA8Y2hyaXN0aWFu
-LmtvZW5pZ0BhbWQuY29tPgo+Pj4+IENjOiAiRGF2aWQgKENodW5NaW5nKSBaaG91IiA8RGF2aWQx
-Llpob3VAYW1kLmNvbT4KPj4+PiBDYzogQXJjaGl0IFRhbmVqYSA8YXJjaGl0dEBjb2RlYXVyb3Jh
-Lm9yZz4KPj4+PiBDYzogQW5kcnplaiBIYWpkYSA8YS5oYWpkYUBzYW1zdW5nLmNvbT4KPj4+PiBD
-YzogTGF1cmVudCBQaW5jaGFydCA8TGF1cmVudC5waW5jaGFydEBpZGVhc29uYm9hcmQuY29tPgo+
-Pj4+IENjOiBJbmtpIERhZSA8aW5raS5kYWVAc2Ftc3VuZy5jb20+Cj4+Pj4gQ2M6IEpvb255b3Vu
-ZyBTaGltIDxqeTA5MjIuc2hpbUBzYW1zdW5nLmNvbT4KPj4+PiBDYzogU2V1bmctV29vIEtpbSA8
-c3cwMzEyLmtpbUBzYW1zdW5nLmNvbT4KPj4+PiBDYzogS3l1bmdtaW4gUGFyayA8a3l1bmdtaW4u
-cGFya0BzYW1zdW5nLmNvbT4KPj4+PiBDYzogUnVzc2VsbCBLaW5nIDxsaW51eEBhcm1saW51eC5v
-cmcudWs+Cj4+Pj4gQ2M6IENLIEh1IDxjay5odUBtZWRpYXRlay5jb20+Cj4+Pj4gQ2M6IFBoaWxp
-cHAgWmFiZWwgPHAuemFiZWxAcGVuZ3V0cm9uaXguZGU+Cj4+Pj4gQ2M6IFJvYiBDbGFyayA8cm9i
-ZGNsYXJrQGdtYWlsLmNvbT4KPj4+PiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29t
-Pgo+Pj4+IENjOiBUb21pIFZhbGtlaW5lbiA8dG9taS52YWxrZWluZW5AdGkuY29tPgo+Pj4+IENj
-OiBTYW5keSBIdWFuZyA8aGpjQHJvY2stY2hpcHMuY29tPgo+Pj4+IENjOiAiSGVpa28gU3TDvGJu
-ZXIiIDxoZWlrb0BzbnRlY2guZGU+Cj4+Pj4gQ2M6IEJlbmphbWluIEdhaWduYXJkIDxiZW5qYW1p
-bi5nYWlnbmFyZEBsaW5hcm8ub3JnPgo+Pj4+IENjOiBWaW5jZW50IEFicmlvdSA8dmluY2VudC5h
-YnJpb3VAc3QuY29tPgo+Pj4+IENjOiBUaGllcnJ5IFJlZGluZyA8dGhpZXJyeS5yZWRpbmdAZ21h
-aWwuY29tPgo+Pj4+IENjOiBFcmljIEFuaG9sdCA8ZXJpY0BhbmhvbHQubmV0Pgo+Pj4+IENjOiBT
-aGF3biBHdW8gPHNoYXduZ3VvQGtlcm5lbC5vcmc+Cj4+Pj4gQ2M6IElsaWEgTWlya2luIDxpbWly
-a2luQGFsdW0ubWl0LmVkdT4KPj4+PiBDYzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-Pj4+PiBDYzogbGludXgtYXJtLW1zbUB2Z2VyLmtlcm5lbC5vcmcKPj4+PiBDYzogZnJlZWRyZW5v
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+Pj4+IENjOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwo+Pj4+IENjOiBsaW51eC10ZWdyYUB2Z2VyLmtlcm5lbC5vcmcKPj4+PiBTaWduZWQtb2Zm
-LWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+Pj4+
-IC0tLQo+Pj4+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9kY2VfdjEwXzAuYyAgICB8ICAy
-ICstCj4+Pj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2RjZV92MTFfMC5jICAgIHwgIDIg
-Ky0KPj4+PiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZGNlX3Y2XzAuYyAgICAgfCAgMyAr
-Ky0KPj4+PiAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvZGNlX3Y4XzAuYyAgICAgfCAgMiAr
-LQo+Pj4+ICBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL2FuYWxvZ2l4LWFueDc4eHguYyB8ICA1ICsr
-LS0KPj4+PiAgZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zaWk5MDJ4LmMgICAgICAgICAgfCAgMyAr
-Ky0KPj4+PiAgZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zaWwtc2lpODYyMC5jICAgICAgfCAgMyAr
-LS0KPj4+PiAgZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zeW5vcHN5cy9kdy1oZG1pLmMgfCAgMyAr
-Ky0KPj4+PiAgZHJpdmVycy9ncHUvZHJtL2RybV9lZGlkLmMgICAgICAgICAgICAgICAgfCAzMyAr
-KysrKysrKysrKysrKy0tLS0tLS0tLQo+Pj4+ICBkcml2ZXJzL2dwdS9kcm0vZXh5bm9zL2V4eW5v
-c19oZG1pLmMgICAgICB8ICAzICsrLQo+Pj4+ICBkcml2ZXJzL2dwdS9kcm0vaTJjL3RkYTk5OHhf
-ZHJ2LmMgICAgICAgICB8ICAzICsrLQo+Pj4+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9o
-ZG1pLmMgICAgICAgICB8IDE0ICsrKysrLS0tLS0KPj4+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aW50ZWxfbHNwY29uLmMgICAgICAgfCAxNSArKysrKystLS0tLQo+Pj4+ICBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pbnRlbF9zZHZvLmMgICAgICAgICB8IDEwICsrKystLS0KPj4+PiAgZHJpdmVycy9n
-cHUvZHJtL21lZGlhdGVrL210a19oZG1pLmMgICAgICAgfCAgMyArKy0KPj4+PiAgZHJpdmVycy9n
-cHUvZHJtL21zbS9oZG1pL2hkbWlfYnJpZGdlLmMgICAgfCAgMyArKy0KPj4+PiAgZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jICAgfCAgNyArKystLQo+Pj4+ICBkcml2ZXJz
-L2dwdS9kcm0vb21hcGRybS9vbWFwX2VuY29kZXIuYyAgICB8ICA1ICsrLS0KPj4+PiAgZHJpdmVy
-cy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fYXVkaW8uYyAgICAgfCAgMiArLQo+Pj4+ICBkcml2ZXJz
-L2dwdS9kcm0vcm9ja2NoaXAvaW5ub19oZG1pLmMgICAgICB8ICA0ICsrLQo+Pj4+ICBkcml2ZXJz
-L2dwdS9kcm0vc3RpL3N0aV9oZG1pLmMgICAgICAgICAgICB8ICAzICsrLQo+Pj4+ICBkcml2ZXJz
-L2dwdS9kcm0vc3VuNGkvc3VuNGlfaGRtaV9lbmMuYyAgICB8ICAzICsrLQo+Pj4+ICBkcml2ZXJz
-L2dwdS9kcm0vdGVncmEvaGRtaS5jICAgICAgICAgICAgICB8ICAzICsrLQo+Pj4+ICBkcml2ZXJz
-L2dwdS9kcm0vdGVncmEvc29yLmMgICAgICAgICAgICAgICB8ICAzICsrLQo+Pj4+ICBkcml2ZXJz
-L2dwdS9kcm0vdmM0L3ZjNF9oZG1pLmMgICAgICAgICAgICB8IDExICsrKysrLS0tCj4+Pj4gIGRy
-aXZlcnMvZ3B1L2RybS96dGUvenhfaGRtaS5jICAgICAgICAgICAgIHwgIDQgKystCj4+Pj4gIGlu
-Y2x1ZGUvZHJtL2RybV9lZGlkLmggICAgICAgICAgICAgICAgICAgIHwgIDggKysrLS0tCj4+Pj4g
-IDI3IGZpbGVzIGNoYW5nZWQsIDk0IGluc2VydGlvbnMoKyksIDY2IGRlbGV0aW9ucygtKQo+Pj4g
-Rm9yIGR3LWhkbWkgYW5kIG9tYXBkcm0sCj4+Pgo+Pj4gUmV2aWV3ZWQtYnk6IExhdXJlbnQgUGlu
-Y2hhcnQgPGxhdXJlbnQucGluY2hhcnRAaWRlYXNvbmJvYXJkLmNvbT4KPj4+CgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
-aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+--===============1570099764==
+Content-Type: multipart/alternative; boundary="000000000000437b1a057c2d9ffe"
+
+--000000000000437b1a057c2d9ffe
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+
+I'm just a random user, and I don't really care about the CoC, but I do
+care about the code quality. And with that I think a good comment SHOULD be
+polite and anonymous. So why not change first one with "messing" or
+"corrupting", and remove the second one since it does not being any
+information but the author pov.
+
+My 2 cents, trying to avoid to feed the CoC troll.
+
+Cheers
+
+--000000000000437b1a057c2d9ffe
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi,<div dir=3D"auto"><br><div dir=3D"auto">I&#39;m just a=
+ random user, and I don&#39;t really care about the CoC, but I do care abou=
+t the code quality. And with that I think a good comment SHOULD be polite a=
+nd anonymous. So why not change first one with &quot;messing&quot; or &quot=
+;corrupting&quot;, and remove the second one since it does not being any in=
+formation but the author pov.</div><div dir=3D"auto"><br></div><div dir=3D"=
+auto">My 2 cents, trying to avoid to feed the CoC troll.</div><div dir=3D"a=
+uto"><br></div><div dir=3D"auto">Cheers</div></div></div>
+
+--000000000000437b1a057c2d9ffe--
+
+--===============1570099764==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1570099764==--
