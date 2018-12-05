@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104835] MMIO read of 00000000 FAULT at 10ac08 [ IBUS
- ]
-Date: Wed, 05 Dec 2018 15:47:11 +0000
-Message-ID: <bug-104835-8800-6jogMkglBf@http.bugs.freedesktop.org/>
-References: <bug-104835-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 108959] New: Hangs and reboots while browsing
+ [and/or playing video]
+Date: Wed, 05 Dec 2018 21:53:26 +0000
+Message-ID: <bug-108959-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0623255206=="
+Content-Type: multipart/mixed; boundary="===============0975139725=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,79 +19,77 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0623255206==
-Content-Type: multipart/alternative; boundary="15440248312.FAd7.20466"
+--===============0975139725==
+Content-Type: multipart/alternative; boundary="15440468060.A67fc4.8915"
 Content-Transfer-Encoding: 7bit
 
 
---15440248312.FAd7.20466
-Date: Wed, 5 Dec 2018 15:47:11 +0000
+--15440468060.A67fc4.8915
+Date: Wed, 5 Dec 2018 21:53:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104835
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108959
 
---- Comment #5 from Cameron <cameron-+zXD/wg+ns71P9xLtpHBDw@public.gmane.org> ---
-openSUSE Tumbleweed
-Kernel 4.19.5-1-default
+            Bug ID: 108959
+           Summary: Hangs and reboots while browsing [and/or playing
+                    video]
+           Product: xorg
+           Version: git
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: acca-a09SyBuiYrA@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Getting the same errors
+Created attachment 142736
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142736&action=3Dedit
+dmesg dump
 
-Dell precision 5520
+Random hangs. No mouse pointer, no keyboard. The host is responsive to SSH
+albeit slow. After some time reboots. No traces in journald, /var/log/syslog
+mostly repeats dmesg dump.
 
-Model: "nVidia GM107GLM [Quadro M1200 Mobile]"
-  Vendor: pci 0x10de "nVidia Corporation"
-  Device: pci 0x13b6 "GM107GLM [Quadro M1200 Mobile]"
+System info:
 
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: fb: 4096 MiB GDDR5
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000=
-000
-FAULT at 022554 [ IBUS ]
-Dec 05 07:35:28 flisk kernel: fbcon: Taking over console
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000=
-000
-FAULT at 10ac08 [ IBUS ]
-Dec 05 07:35:28 flisk kernel: usb 1-4: New USB device found, idVendor=3D808=
-7,
-idProduct=3D0a2b, bcdDevice=3D 0.10
-Dec 05 07:35:28 flisk kernel: usb 1-4: New USB device strings: Mfr=3D0,
-Product=3D0, SerialNumber=3D0
-Dec 05 07:35:28 flisk kernel: usb 3-1: New USB device found, idVendor=3D042=
-4,
-idProduct=3D2137, bcdDevice=3D60.80
-Dec 05 07:35:28 flisk kernel: usb 3-1: New USB device strings: Mfr=3D1,
-Product=3D2, SerialNumber=3D0
-Dec 05 07:35:28 flisk kernel: usb 3-1: Product: USB2137B
-Dec 05 07:35:28 flisk kernel: usb 3-1: Manufacturer: SMSC
-Dec 05 07:35:28 flisk kernel: hub 3-1:1.0: USB hub found
-Dec 05 07:35:28 flisk kernel: hub 3-1:1.0: 7 ports detected
-Dec 05 07:35:28 flisk kernel: vga_switcheroo: enabled
-Dec 05 07:35:28 flisk kernel: [TTM] Zone  kernel: Available graphics memory:
-16391158 kiB
-Dec 05 07:35:28 flisk kernel: [TTM] Zone   dma32: Available graphics memory:
-2097152 kiB
-Dec 05 07:35:28 flisk kernel: [TTM] Initializing pool allocator
-Dec 05 07:35:28 flisk kernel: [TTM] Initializing DMA pool allocator
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: DRM: VRAM: 4096 MiB
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: DRM: Pointer to TMDS ta=
-ble
-invalid
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: DRM: DCB version 4.0
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: DRM: MM: using COPY for
-buffer copies
-Dec 05 07:35:28 flisk kernel: [drm] Initialized nouveau 1.3.1 20120801 for
-0000:01:00.0 on minor 1
+$ lspci:
+    07:00.0 VGA compatible controller: NVIDIA Corporation GT215 [GeForce GT
+240] (rev a2)
+
+$ uname:
+Linux  4.18.0-3-amd64 #1 SMP Debian 4.18.20-2 (2018-11-23) x86_64 GNU/Linux
+
+$ dpkg:
+xwayland                        2:1.20.3-1
+libva-wayland2:amd64            2.3.0-2
+libwayland-server0:amd64        1.16.0-1
+xserver-xorg-video-nouveau      1:1.0.15-3
+libdrm-nouveau2:amd64           2.4.95-1
+
+$ lsmod:
+  nouveau              2162688  12
+  mxm_wmi                16384  1 nouveau
+  wmi                    28672  2 mxm_wmi,nouveau
+  video                  45056  1 nouveau
+  ttm                   131072  1 nouveau
+  drm_kms_helper        196608  1 nouveau
+  drm                   475136  13 drm_kms_helper,ttm,nouveau
+  i2c_algo_bit           16384  1 nouveau
+  button                 16384  1 nouveau
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15440248312.FAd7.20466
-Date: Wed, 5 Dec 2018 15:47:11 +0000
+--15440468060.A67fc4.8915
+Date: Wed, 5 Dec 2018 21:53:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -104,73 +100,125 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Hangs and reboots while browsing [and/or playing video]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108959">108959</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Hangs and reboots while browsing [and/or playing video]
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>acca&#64;cpan.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104835#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104835">bug 10483=
-5</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-cameron&#64;seader.us" title=3D"Cameron &lt;cameron&#64;seader.us&gt;"> <sp=
-an class=3D"fn">Cameron</span></a>
-</span></b>
-        <pre>openSUSE Tumbleweed
-Kernel 4.19.5-1-default
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142736=
+" name=3D"attach_142736" title=3D"dmesg dump">attachment 142736</a> <a href=
+=3D"attachment.cgi?id=3D142736&amp;action=3Dedit" title=3D"dmesg dump">[det=
+ails]</a></span>
+dmesg dump
 
-Getting the same errors
+Random hangs. No mouse pointer, no keyboard. The host is responsive to SSH
+albeit slow. After some time reboots. No traces in journald, /var/log/syslog
+mostly repeats dmesg dump.
 
-Dell precision 5520
+System info:
 
-Model: &quot;nVidia GM107GLM [Quadro M1200 Mobile]&quot;
-  Vendor: pci 0x10de &quot;nVidia Corporation&quot;
-  Device: pci 0x13b6 &quot;GM107GLM [Quadro M1200 Mobile]&quot;
+$ lspci:
+    07:00.0 VGA compatible controller: NVIDIA Corporation GT215 [GeForce GT
+240] (rev a2)
 
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: fb: 4096 MiB GDDR5
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000=
-000
-FAULT at 022554 [ IBUS ]
-Dec 05 07:35:28 flisk kernel: fbcon: Taking over console
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000=
-000
-FAULT at 10ac08 [ IBUS ]
-Dec 05 07:35:28 flisk kernel: usb 1-4: New USB device found, idVendor=3D808=
-7,
-idProduct=3D0a2b, bcdDevice=3D 0.10
-Dec 05 07:35:28 flisk kernel: usb 1-4: New USB device strings: Mfr=3D0,
-Product=3D0, SerialNumber=3D0
-Dec 05 07:35:28 flisk kernel: usb 3-1: New USB device found, idVendor=3D042=
-4,
-idProduct=3D2137, bcdDevice=3D60.80
-Dec 05 07:35:28 flisk kernel: usb 3-1: New USB device strings: Mfr=3D1,
-Product=3D2, SerialNumber=3D0
-Dec 05 07:35:28 flisk kernel: usb 3-1: Product: USB2137B
-Dec 05 07:35:28 flisk kernel: usb 3-1: Manufacturer: SMSC
-Dec 05 07:35:28 flisk kernel: hub 3-1:1.0: USB hub found
-Dec 05 07:35:28 flisk kernel: hub 3-1:1.0: 7 ports detected
-Dec 05 07:35:28 flisk kernel: vga_switcheroo: enabled
-Dec 05 07:35:28 flisk kernel: [TTM] Zone  kernel: Available graphics memory:
-16391158 kiB
-Dec 05 07:35:28 flisk kernel: [TTM] Zone   dma32: Available graphics memory:
-2097152 kiB
-Dec 05 07:35:28 flisk kernel: [TTM] Initializing pool allocator
-Dec 05 07:35:28 flisk kernel: [TTM] Initializing DMA pool allocator
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: DRM: VRAM: 4096 MiB
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: DRM: Pointer to TMDS ta=
-ble
-invalid
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: DRM: DCB version 4.0
-Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: DRM: MM: using COPY for
-buffer copies
-Dec 05 07:35:28 flisk kernel: [drm] Initialized nouveau 1.3.1 20120801 for
-0000:01:00.0 on minor 1</pre>
+$ uname:
+Linux  4.18.0-3-amd64 #1 SMP Debian 4.18.20-2 (2018-11-23) x86_64 GNU/Linux
+
+$ dpkg:
+xwayland                        2:1.20.3-1
+libva-wayland2:amd64            2.3.0-2
+libwayland-server0:amd64        1.16.0-1
+xserver-xorg-video-nouveau      1:1.0.15-3
+libdrm-nouveau2:amd64           2.4.95-1
+
+$ lsmod:
+  nouveau              2162688  12
+  mxm_wmi                16384  1 nouveau
+  wmi                    28672  2 mxm_wmi,nouveau
+  video                  45056  1 nouveau
+  ttm                   131072  1 nouveau
+  drm_kms_helper        196608  1 nouveau
+  drm                   475136  13 drm_kms_helper,ttm,nouveau
+  i2c_algo_bit           16384  1 nouveau
+  button                 16384  1 nouveau</pre>
         </div>
       </p>
 
@@ -184,9 +232,9 @@ Dec 05 07:35:28 flisk kernel: [drm] Initialized nouveau 1.3.1 20120801 for
     </body>
 </html>=
 
---15440248312.FAd7.20466--
+--15440468060.A67fc4.8915--
 
---===============0623255206==
+--===============0975139725==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -196,4 +244,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0623255206==--
+--===============0975139725==--
