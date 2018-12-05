@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
  ]
-Date: Wed, 05 Dec 2018 15:09:31 +0000
-Message-ID: <bug-100423-8800-oSP6OFa991@http.bugs.freedesktop.org/>
+Date: Wed, 05 Dec 2018 15:12:05 +0000
+Message-ID: <bug-100423-8800-rFZFJGUof0@http.bugs.freedesktop.org/>
 References: <bug-100423-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0244593935=="
+Content-Type: multipart/mixed; boundary="===============0256592600=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0244593935==
-Content-Type: multipart/alternative; boundary="15440225720.fFec.14655"
+--===============0256592600==
+Content-Type: multipart/alternative; boundary="15440227250.C0E5.15041"
 Content-Transfer-Encoding: 7bit
 
 
---15440225720.fFec.14655
-Date: Wed, 5 Dec 2018 15:09:32 +0000
+--15440227250.C0E5.15041
+Date: Wed, 5 Dec 2018 15:12:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,31 +36,38 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
 
---- Comment #21 from Cameron <cameron-+zXD/wg+ns71P9xLtpHBDw@public.gmane.org> ---
-From my dmesg.
+--- Comment #22 from Bruno Pagani <bruno.n.pagani-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Cameron from comment #21)
+> From my dmesg.
+>=20
+> [   12.189523] ax88179_178a 2-2:1.0 enp0s20f0u2: ax88179 - Link status is=
+: 0
+> [   15.645518] ax88179_178a 2-2:1.0 enp0s20f0u2: ax88179 - Link status is=
+: 1
+> [   29.886049] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
+> 6013d4 [ IBUS ]
+> [   57.810423] logitech-hidpp-device 0003:046D:4013.0009: HID++ 2.0 device
+> connected.
+> [   60.146429] logitech-hidpp-device 0003:046D:4002.000A: HID++ 2.0 device
+> connected.
+>=20
+>=20
+> I am also getting this error
+>=20
+> kernel 4.19.5-1-default
+> openSUSE Tumbleweed
 
-[   12.189523] ax88179_178a 2-2:1.0 enp0s20f0u2: ax88179 - Link status is: 0
-[   15.645518] ax88179_178a 2-2:1.0 enp0s20f0u2: ax88179 - Link status is: 1
-[   29.886049] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 60=
-13d4
-[ IBUS ]
-[   57.810423] logitech-hidpp-device 0003:046D:4013.0009: HID++ 2.0 device
-connected.
-[   60.146429] logitech-hidpp-device 0003:046D:4002.000A: HID++ 2.0 device
-connected.
+No, as I said just above your post, this would be
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98386
 
-
-I am also getting this error
-
-kernel 4.19.5-1-default
-openSUSE Tumbleweed
+The hex value after =E2=80=9Cat=E2=80=9D does matter.=E2=80=AF;)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15440225720.fFec.14655
-Date: Wed, 5 Dec 2018 15:09:32 +0000
+--15440227250.C0E5.15041
+Date: Wed, 5 Dec 2018 15:12:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,34 +84,50 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c21">Comme=
-nt # 21</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c22">Comme=
+nt # 22</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
 3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-cameron&#64;seader.us" title=3D"Cameron &lt;cameron&#64;seader.us&gt;"> <sp=
-an class=3D"fn">Cameron</span></a>
+bruno.n.pagani&#64;gmail.com" title=3D"Bruno Pagani &lt;bruno.n.pagani&#64;=
+gmail.com&gt;"> <span class=3D"fn">Bruno Pagani</span></a>
 </span></b>
-        <pre>From my dmesg.
+        <pre>(In reply to Cameron from <a href=3D"show_bug.cgi?id=3D100423#=
+c21">comment #21</a>)
+<span class=3D"quote">&gt; From my dmesg.
+&gt;=20
+&gt; [   12.189523] ax88179_178a 2-2:1.0 enp0s20f0u2: ax88179 - Link status=
+ is: 0
+&gt; [   15.645518] ax88179_178a 2-2:1.0 enp0s20f0u2: ax88179 - Link status=
+ is: 1
+&gt; [   29.886049] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT =
+at
+&gt; 6013d4 [ IBUS ]
+&gt; [   57.810423] logitech-hidpp-device 0003:046D:4013.0009: HID++ 2.0 de=
+vice
+&gt; connected.
+&gt; [   60.146429] logitech-hidpp-device 0003:046D:4002.000A: HID++ 2.0 de=
+vice
+&gt; connected.
+&gt;=20
+&gt;=20
+&gt; I am also getting this error
+&gt;=20
+&gt; kernel 4.19.5-1-default
+&gt; openSUSE Tumbleweed</span >
 
-[   12.189523] ax88179_178a 2-2:1.0 enp0s20f0u2: ax88179 - Link status is: 0
-[   15.645518] ax88179_178a 2-2:1.0 enp0s20f0u2: ax88179 - Link status is: 1
-[   29.886049] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 60=
-13d4
-[ IBUS ]
-[   57.810423] logitech-hidpp-device 0003:046D:4013.0009: HID++ 2.0 device
-connected.
-[   60.146429] logitech-hidpp-device 0003:046D:4002.000A: HID++ 2.0 device
-connected.
+No, as I said just above your post, this would be
+<a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer=
+ to {TDMS,flat panel} table invalid"
+   href=3D"show_bug.cgi?id=3D98386">https://bugs.freedesktop.org/show_bug.c=
+gi?id=3D98386</a>
 
-
-I am also getting this error
-
-kernel 4.19.5-1-default
-openSUSE Tumbleweed</pre>
+The hex value after =E2=80=9Cat=E2=80=9D does matter.=E2=80=AF;)</pre>
         </div>
       </p>
 
@@ -118,9 +141,9 @@ openSUSE Tumbleweed</pre>
     </body>
 </html>=
 
---15440225720.fFec.14655--
+--15440227250.C0E5.15041--
 
---===============0244593935==
+--===============0256592600==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -130,4 +153,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0244593935==--
+--===============0256592600==--
