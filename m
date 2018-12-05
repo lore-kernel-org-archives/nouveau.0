@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
+Subject: [Bug 104835] MMIO read of 00000000 FAULT at 10ac08 [ IBUS
  ]
-Date: Wed, 05 Dec 2018 15:40:00 +0000
-Message-ID: <bug-100423-8800-fjGS9IgLrv@http.bugs.freedesktop.org/>
-References: <bug-100423-8800@http.bugs.freedesktop.org/>
+Date: Wed, 05 Dec 2018 15:47:11 +0000
+Message-ID: <bug-104835-8800-6jogMkglBf@http.bugs.freedesktop.org/>
+References: <bug-104835-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0954207891=="
+Content-Type: multipart/mixed; boundary="===============0623255206=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-104835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0954207891==
-Content-Type: multipart/alternative; boundary="15440244005.f371fF.19266"
+--===============0623255206==
+Content-Type: multipart/alternative; boundary="15440248312.FAd7.20466"
 Content-Transfer-Encoding: 7bit
 
 
---15440244005.f371fF.19266
-Date: Wed, 5 Dec 2018 15:40:00 +0000
+--15440248312.FAd7.20466
+Date: Wed, 5 Dec 2018 15:47:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
+https://bugs.freedesktop.org/show_bug.cgi?id=3D104835
 
---- Comment #23 from Cameron <cameron-+zXD/wg+ns71P9xLtpHBDw@public.gmane.org> ---
+--- Comment #5 from Cameron <cameron-+zXD/wg+ns71P9xLtpHBDw@public.gmane.org> ---
 openSUSE Tumbleweed
 Kernel 4.19.5-1-default
 
-Getting these messages
+Getting the same errors
+
+Dell precision 5520
+
+Model: "nVidia GM107GLM [Quadro M1200 Mobile]"
+  Vendor: pci 0x10de "nVidia Corporation"
+  Device: pci 0x13b6 "GM107GLM [Quadro M1200 Mobile]"
 
 Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: fb: 4096 MiB GDDR5
 Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000=
@@ -86,8 +92,8 @@ Dec 05 07:35:28 flisk kernel: [drm] Initialized nouveau 1.3.1 20120801 for
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15440244005.f371fF.19266
-Date: Wed, 5 Dec 2018 15:40:00 +0000
+--15440248312.FAd7.20466
+Date: Wed, 5 Dec 2018 15:47:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -103,14 +109,14 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c23">Comme=
-nt # 23</a>
+   title=3D"NEW - MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104835#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
-3</a>
+   title=3D"NEW - MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104835">bug 10483=
+5</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 cameron&#64;seader.us" title=3D"Cameron &lt;cameron&#64;seader.us&gt;"> <sp=
 an class=3D"fn">Cameron</span></a>
@@ -118,7 +124,13 @@ an class=3D"fn">Cameron</span></a>
         <pre>openSUSE Tumbleweed
 Kernel 4.19.5-1-default
 
-Getting these messages
+Getting the same errors
+
+Dell precision 5520
+
+Model: &quot;nVidia GM107GLM [Quadro M1200 Mobile]&quot;
+  Vendor: pci 0x10de &quot;nVidia Corporation&quot;
+  Device: pci 0x13b6 &quot;GM107GLM [Quadro M1200 Mobile]&quot;
 
 Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: fb: 4096 MiB GDDR5
 Dec 05 07:35:28 flisk kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000=
@@ -172,9 +184,9 @@ Dec 05 07:35:28 flisk kernel: [drm] Initialized nouveau 1.3.1 20120801 for
     </body>
 </html>=
 
---15440244005.f371fF.19266--
+--15440248312.FAd7.20466--
 
---===============0954207891==
+--===============0623255206==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -184,4 +196,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0954207891==--
+--===============0623255206==--
