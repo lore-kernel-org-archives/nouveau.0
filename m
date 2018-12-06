@@ -1,10 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108959] New: Hangs and reboots while browsing
- [and/or playing video]
-Date: Wed, 05 Dec 2018 21:53:26 +0000
-Message-ID: <bug-108959-8800@http.bugs.freedesktop.org/>
+From: riveravaldez <riveravaldezmail-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: System freeze: Debian Testing with C61 [GeForce 7025 /
+ nForce 630a]
+Date: Thu, 6 Dec 2018 09:11:35 -0300
+Message-ID: <CAD8U+g8AJD-Duxm4tkyiGSNCsnqU=xdpE1YAmd0_iU4uN7Ecqg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0975139725=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,230 +19,88 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0975139725==
-Content-Type: multipart/alternative; boundary="15440468060.A67fc4.8915"
-Content-Transfer-Encoding: 7bit
-
-
---15440468060.A67fc4.8915
-Date: Wed, 5 Dec 2018 21:53:26 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108959
-
-            Bug ID: 108959
-           Summary: Hangs and reboots while browsing [and/or playing
-                    video]
-           Product: xorg
-           Version: git
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: acca-a09SyBuiYrA@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 142736
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142736&action=3Dedit
-dmesg dump
-
-Random hangs. No mouse pointer, no keyboard. The host is responsive to SSH
-albeit slow. After some time reboots. No traces in journald, /var/log/syslog
-mostly repeats dmesg dump.
-
-System info:
-
-$ lspci:
-    07:00.0 VGA compatible controller: NVIDIA Corporation GT215 [GeForce GT
-240] (rev a2)
-
-$ uname:
-Linux  4.18.0-3-amd64 #1 SMP Debian 4.18.20-2 (2018-11-23) x86_64 GNU/Linux
-
-$ dpkg:
-xwayland                        2:1.20.3-1
-libva-wayland2:amd64            2.3.0-2
-libwayland-server0:amd64        1.16.0-1
-xserver-xorg-video-nouveau      1:1.0.15-3
-libdrm-nouveau2:amd64           2.4.95-1
-
-$ lsmod:
-  nouveau              2162688  12
-  mxm_wmi                16384  1 nouveau
-  wmi                    28672  2 mxm_wmi,nouveau
-  video                  45056  1 nouveau
-  ttm                   131072  1 nouveau
-  drm_kms_helper        196608  1 nouveau
-  drm                   475136  13 drm_kms_helper,ttm,nouveau
-  i2c_algo_bit           16384  1 nouveau
-  button                 16384  1 nouveau
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15440468060.A67fc4.8915
-Date: Wed, 5 Dec 2018 21:53:26 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Hangs and reboots while browsing [and/or playing video]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108959">108959</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Hangs and reboots while browsing [and/or playing video]
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>acca&#64;cpan.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142736=
-" name=3D"attach_142736" title=3D"dmesg dump">attachment 142736</a> <a href=
-=3D"attachment.cgi?id=3D142736&amp;action=3Dedit" title=3D"dmesg dump">[det=
-ails]</a></span>
-dmesg dump
-
-Random hangs. No mouse pointer, no keyboard. The host is responsive to SSH
-albeit slow. After some time reboots. No traces in journald, /var/log/syslog
-mostly repeats dmesg dump.
-
-System info:
-
-$ lspci:
-    07:00.0 VGA compatible controller: NVIDIA Corporation GT215 [GeForce GT
-240] (rev a2)
-
-$ uname:
-Linux  4.18.0-3-amd64 #1 SMP Debian 4.18.20-2 (2018-11-23) x86_64 GNU/Linux
-
-$ dpkg:
-xwayland                        2:1.20.3-1
-libva-wayland2:amd64            2.3.0-2
-libwayland-server0:amd64        1.16.0-1
-xserver-xorg-video-nouveau      1:1.0.15-3
-libdrm-nouveau2:amd64           2.4.95-1
-
-$ lsmod:
-  nouveau              2162688  12
-  mxm_wmi                16384  1 nouveau
-  wmi                    28672  2 mxm_wmi,nouveau
-  video                  45056  1 nouveau
-  ttm                   131072  1 nouveau
-  drm_kms_helper        196608  1 nouveau
-  drm                   475136  13 drm_kms_helper,ttm,nouveau
-  i2c_algo_bit           16384  1 nouveau
-  button                 16384  1 nouveau</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15440468060.A67fc4.8915--
-
---===============0975139725==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0975139725==--
+SGksIEknbSBoYXZpbmcgd2hhdCBzZWVtcyB0byBiZSBhbiBvbGQgaXNzdWVbMV0/CgpTeXN0ZW0g
+ZnJlZXplcyByYW5kb21seSwgd2l0aCBhbnkgImludGVuc2UiIHVzZSwgb3IgbWF5YmUganVzdCBt
+b3ZpbmcKc29tZSB3aW5kb3cuLi4KVGhlIGRpc3BsYXkgZ29lcyBsaWtlIHNub3cgdW5kZXIgd2lu
+ZCBvciBzdG9ybSBhbmQgdGhlIHN5c3RlbSBzdG9wcwpyZXNwb25kaW5nIChJJ20gYmFzaWNhbGx5
+IGluIHRoZSAxMiBjYXNlIG9mIFsyXSksIHRoZW4gSSBoYXZlIHRvCnJlYm9vdCBieSBwcmVzc2lu
+ZyByZXNldCBidXR0b24uIE5vdGhpbmcgZWxzZSB3b3Jrcy4KCkkgY2FuIGF2b2lkIHRoaXMgaGFu
+Z3MvY3Jhc2hlcyBieSB3YXkgb2YgdGhlIGtlcm5lbCBwYXJhbWV0ZXIKJ25vdXZlYXUubm9hY2Nl
+bD0xJyBhbmQgdGhlbiBldmVyeXRoaW5nIHdvcmtzIGZpbmUsIHJvY2stc3RhYmxlLCBidXQgSQps
+b3NlICphIGxvdCogb2YgbmVlZGVkIHBlcmZvcm1hbmNlLgpXaXRob3V0IHRoYXQgcGFyYW1ldGVy
+IHRoZSBzeXN0ZW0gZnJlZXplcyByYW5kb21seS4KClRoaXMgaXMgYW4gdXBkYXRlZCBkZWJpYW4t
+dGVzdGluZyBib3gsIHdpdGggb25seSB0aGUgb2ZmaWNpYWwgKGxpYnJlKQpyZXBvcyBhY3RpdmF0
+ZWQgYW5kIHdpdGggYSByZWd1bGFyIChieS10aGUtYm9vaykgaW5zdGFsbGF0aW9uLgoKJCB1bmFt
+ZSAtYQpMaW51eCBkZWJpYW4gNC4xOC4wLTMtYW1kNjQgIzEgU01QIERlYmlhbiA0LjE4LjIwLTIg
+KDIwMTgtMTEtMjMpCng4Nl82NCBHTlUvTGludXgKCiQgbHNwY2kgLWt2CjAwOjBkLjAgVkdBIGNv
+bXBhdGlibGUgY29udHJvbGxlcjogTlZJRElBIENvcnBvcmF0aW9uIEM2MSBbR2VGb3JjZQo3MDI1
+IC8gbkZvcmNlIDYzMGFdIChyZXYgYTIpIChwcm9nLWlmIDAwIFtWR0EgY29udHJvbGxlcl0pCglT
+dWJzeXN0ZW06IEdpZ2FieXRlIFRlY2hub2xvZ3kgQ28uLCBMdGQgQzYxIFtHZUZvcmNlIDcwMjUg
+LyBuRm9yY2UgNjMwYV0KCUZsYWdzOiBidXMgbWFzdGVyLCA2Nk1IeiwgZmFzdCBkZXZzZWwsIGxh
+dGVuY3kgMCwgSVJRIDIxLCBOVU1BIG5vZGUgMAoJTWVtb3J5IGF0IGZiMDAwMDAwICgzMi1iaXQs
+IG5vbi1wcmVmZXRjaGFibGUpIFtzaXplPTE2TV0KCU1lbW9yeSBhdCBkMDAwMDAwMCAoNjQtYml0
+LCBwcmVmZXRjaGFibGUpIFtzaXplPTI1Nk1dCglNZW1vcnkgYXQgZmMwMDAwMDAgKDY0LWJpdCwg
+bm9uLXByZWZldGNoYWJsZSkgW3NpemU9MTZNXQoJW3ZpcnR1YWxdIEV4cGFuc2lvbiBST00gYXQg
+MDAwYzAwMDAgW2Rpc2FibGVkXSBbc2l6ZT0xMjhLXQoJQ2FwYWJpbGl0aWVzOiA8YWNjZXNzIGRl
+bmllZD4KCUtlcm5lbCBkcml2ZXIgaW4gdXNlOiBub3V2ZWF1CglLZXJuZWwgbW9kdWxlczogbm91
+dmVhdQoKQW5kIGRtZXNnIGdpdmVzIG1lIGEgbG90IG9mIHRoZXNlIGlmIEkgd29yayB3aXRob3V0
+IHRoZSBrZXJuZWwKcGFyYW1ldGVyIChhbmQgbm9uZSB3aXRoIGl0KToKClsgIDMwOS44MTc4MDld
+IG5vdXZlYXUgMDAwMDowMDowZC4wOiBidXM6IE1NSU8gd3JpdGUgb2YgMDEzNzAwMDEgRkFVTFQg
+YXQgMDBiMDEwClsgIDMwOS45ODA1MjddIG5vdXZlYXUgMDAwMDowMDowZC4wOiBidXM6IE1NSU8g
+d3JpdGUgb2YgMDAwMDAwMDAgRkFVTFQgYXQgMDBiMDEwClsgMjAyNy44MTI0MjldIG5vdXZlYXUg
+MDAwMDowMDowZC4wOiBidXM6IE1NSU8gd3JpdGUgb2YgMDEzNjAwMDEgRkFVTFQgYXQgMDBiMDEw
+ClsgMjAyOC4wMzIxMDBdIG5vdXZlYXUgMDAwMDowMDowZC4wOiBidXM6IE1NSU8gd3JpdGUgb2Yg
+MDAwMDAwMDAgRkFVTFQgYXQgMDBiMDEwClsgMjEwNy42ODY4MDNdIG5vdXZlYXUgMDAwMDowMDow
+ZC4wOiBidXM6IE1NSU8gd3JpdGUgb2YgMDEyOTAwMDEgRkFVTFQgYXQgMDBiMDEwClsgMjEwNy43
+MjA5NDFdIG5vdXZlYXUgMDAwMDowMDowZC4wOiBidXM6IE1NSU8gd3JpdGUgb2YgMDAwMDAwMDAg
+RkFVTFQgYXQgMDBiMDEwClsgMjIzMy43NDMzMjldIG5vdXZlYXUgMDAwMDowMDowZC4wOiBidXM6
+IE1NSU8gd3JpdGUgb2YgMDE0NDAwMDEgRkFVTFQgYXQgMDBiMDEwClsgMjIzMy43NjIzMDhdIG5v
+dXZlYXUgMDAwMDowMDowZC4wOiBidXM6IE1NSU8gd3JpdGUgb2YgMDAwMDAwMDAgRkFVTFQgYXQg
+MDBiMDEwCgpbMjA3OTMuMDQwNjcxXSBub3V2ZWF1IDAwMDA6MDA6MGQuMDogYnVzOiBNTUlPIHdy
+aXRlIG9mIDAwZTMwMDAxIEZBVUxUIGF0IDAwYjAxMApbMjA3OTMuMTE3NzA5XSBub3V2ZWF1IDAw
+MDA6MDA6MGQuMDogYnVzOiBNTUlPIHdyaXRlIG9mIDAwMDAwMDAwIEZBVUxUIGF0IDAwYjAxMApb
+Mzk4ODQuNjUyNDg3XSBub3V2ZWF1IDAwMDA6MDA6MGQuMDogYnVzOiBNTUlPIHdyaXRlIG9mIDAw
+ZTQwMDAxIEZBVUxUIGF0IDAwYjAxMApbMzk4ODQuODEyMzkzXSBub3V2ZWF1IDAwMDA6MDA6MGQu
+MDogYnVzOiBNTUlPIHdyaXRlIG9mIDAwMDAwMDAwIEZBVUxUIGF0IDAwYjAxMApbNjkyMjQuMzA5
+NTg2XSBub3V2ZWF1IDAwMDA6MDA6MGQuMDogYnVzOiBNTUlPIHdyaXRlIG9mIDAwZTYwMDAxIEZB
+VUxUIGF0IDAwYjAxMApbNjkyMjQuNDI1MTY2XSBub3V2ZWF1IDAwMDA6MDA6MGQuMDogYnVzOiBN
+TUlPIHdyaXRlIG9mIDAwMDAwMDAwIEZBVUxUIGF0IDAwYjAxMApbNzg4MTAuOTE0NDIwXSBub3V2
+ZWF1IDAwMDA6MDA6MGQuMDogYnVzOiBNTUlPIHdyaXRlIG9mIDAwZTYwMDAxIEZBVUxUIGF0IDAw
+YjAxMApbNzg4MTAuOTQ0MTUwXSBub3V2ZWF1IDAwMDA6MDA6MGQuMDogYnVzOiBNTUlPIHdyaXRl
+IG9mIDAwMDAwMDAwIEZBVUxUIGF0IDAwYjAxMAoKVGhvc2UgYXJlIGp1c3Qgc29tZSByYW5kb20g
+ZXhhbXBsZXMuIEFuZCB0aGlzIGlzIHdoYXQgSSBnZXQgYWZ0ZXIganVzdApib290IGFuZCBsb2ct
+aW4gdG8gZGVza3RvcCAoanVzdCBmbHV4Ym94LCByZWFsbHkpOgoKJCBzdWRvIGRtZXNnIHwgZ3Jl
+cCBub3V2ZWF1ClsgICAxMC4xNzIyNTNdIG5vdXZlYXUgMDAwMDowMDowZC4wOiBOVklESUEgQzYx
+ICgwNGMwMDBhMikKWyAgIDEwLjE4Mjk4MF0gbm91dmVhdSAwMDAwOjAwOjBkLjA6IGJpb3M6IHZl
+cnNpb24gMDUuNjEuMzIuMjkuMDAKWyAgIDEwLjE4Mzg5OF0gbm91dmVhdSAwMDAwOjAwOjBkLjA6
+IGZiOiAyNTYgTWlCIG9mIHVua25vd24gbWVtb3J5IHR5cGUKWyAgIDEwLjIzNTI4OV0gbm91dmVh
+dSAwMDAwOjAwOjBkLjA6IERSTTogVlJBTTogMjUzIE1pQgpbICAgMTAuMjM1MjkwXSBub3V2ZWF1
+IDAwMDA6MDA6MGQuMDogRFJNOiBHQVJUOiA1MTIgTWlCClsgICAxMC4yMzUyOTRdIG5vdXZlYXUg
+MDAwMDowMDowZC4wOiBEUk06IFRNRFMgdGFibGUgdmVyc2lvbiAxLjEKWyAgIDEwLjIzNTI5Nl0g
+bm91dmVhdSAwMDAwOjAwOjBkLjA6IERSTTogRENCIHZlcnNpb24gMy4wClsgICAxMC4yMzUyOThd
+IG5vdXZlYXUgMDAwMDowMDowZC4wOiBEUk06IERDQiBvdXRwIDAwOiAwMTAwMDMxMCAwMDAwMDAy
+MwpbICAgMTAuMjM1MzAxXSBub3V2ZWF1IDAwMDA6MDA6MGQuMDogRFJNOiBEQ0Igb3V0cCAwMTog
+MDAxMTAyMDQgOTQyYjAwMDMKWyAgIDEwLjIzNTMwMl0gbm91dmVhdSAwMDAwOjAwOjBkLjA6IERS
+TTogRENCIGNvbm4gMDA6IDAwMDAKWyAgIDEwLjIzNTMwNF0gbm91dmVhdSAwMDAwOjAwOjBkLjA6
+IERSTTogRENCIGNvbm4gMDE6IDExMzEKWyAgIDEwLjIzNTMwNV0gbm91dmVhdSAwMDAwOjAwOjBk
+LjA6IERSTTogRENCIGNvbm4gMDI6IDAxMTAKWyAgIDEwLjIzNTMwN10gbm91dmVhdSAwMDAwOjAw
+OjBkLjA6IERSTTogRENCIGNvbm4gMDM6IDAxMTEKWyAgIDEwLjIzNTMwOF0gbm91dmVhdSAwMDAw
+OjAwOjBkLjA6IERSTTogRENCIGNvbm4gMDQ6IDAxMTMKWyAgIDEwLjIzNTUyOF0gbm91dmVhdSAw
+MDAwOjAwOjBkLjA6IERSTTogU2F2aW5nIFZHQSBmb250cwpbICAgMTAuMjcyNTAyXSBub3V2ZWF1
+IDAwMDA6MDA6MGQuMDogRFJNOiBEQ0IgdHlwZSA0IG5vdCBrbm93bgpbICAgMTAuMjcyNTA0XSBu
+b3V2ZWF1IDAwMDA6MDA6MGQuMDogRFJNOiBVbmtub3duLTEgaGFzIG5vIGVuY29kZXJzLCByZW1v
+dmluZwpbICAgMTAuMjc1ODA2XSBub3V2ZWF1IDAwMDA6MDA6MGQuMDogRFJNOiBNTTogdXNpbmcg
+TTJNRiBmb3IgYnVmZmVyIGNvcGllcwpbICAgMTAuMzA0NTMwXSBub3V2ZWF1IDAwMDA6MDA6MGQu
+MDogRFJNOiBhbGxvY2F0ZWQgMTYwMHg5MDAgZmI6CjB4OTAwMCwgYm8gKF9fX19wdHJ2YWxfX19f
+KQpbICAgMTAuMzA0NjE4XSBmYmNvbjogbm91dmVhdWZiIChmYjApIGlzIHByaW1hcnkgZGV2aWNl
+ClsgICAxMC40MjA0ODddIG5vdXZlYXUgMDAwMDowMDowZC4wOiBmYjA6IG5vdXZlYXVmYiBmcmFt
+ZSBidWZmZXIgZGV2aWNlClsgICAxMC40NDgwNzhdIFtkcm1dIEluaXRpYWxpemVkIG5vdXZlYXUg
+MS4zLjEgMjAxMjA4MDEgZm9yCjAwMDA6MDA6MGQuMCBvbiBtaW5vciAwClsgICAxNi41NzM0MTld
+IG5vdXZlYXUgMDAwMDowMDowZC4wOiBidXM6IE1NSU8gd3JpdGUgb2YgMDA1YzAwMDEgRkFVTFQg
+YXQgMDBiMDAwCgpTbywgd2hhdCBjb3VsZC9zaG91bGQgSSBkbz8KCkFueSBhZHZpY2UvaGludC9p
+ZGVhIHdpbGwgYmUgdmVyeSwgdmVyeSB3ZWxjb21lLgoKVGhhbmtzIGEgbG90IQoKWzFdIGh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL25vdXZlYXUvMjAxNi1KYW51YXJ5L3Ro
+cmVhZC5odG1sIzIzNjc2ClsyXSBodHRwczovL25vdXZlYXUuZnJlZWRlc2t0b3Aub3JnL3dpa2kv
+SGFuZ0RpYWdub3Npcy8KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
