@@ -1,172 +1,79 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104835] MMIO read of 00000000 FAULT at 10ac08 [ IBUS
- ]
-Date: Fri, 07 Dec 2018 11:27:33 +0000
-Message-ID: <bug-104835-8800-wh6iEa62qD@http.bugs.freedesktop.org/>
-References: <bug-104835-8800@http.bugs.freedesktop.org/>
+From: Eric Curtin <ericcurtin17@gmail.com>
+Subject: Re: [PATCH RFC 00/15] Zero ****s, hugload of hugs <3
+Date: Fri, 7 Dec 2018 13:39:54 +0000
+Message-ID: <CANpvso4ZjJkUA7+saYRR4qssvreZcm-74EPo3nrGSohFZF9akA@mail.gmail.com>
+References: <20181130192737.15053-1-jarkko.sakkinen@linux.intel.com>
+ <CAGXu5j+jBNBsD3pvUSfEh6Lc5T1YMpbM0HeG1c6BHiJe+cKVOQ@mail.gmail.com>
+ <20181130195652.7syqys76646kpaph@linux-r8p5> <20181130205521.GA21006@linux.intel.com>
+ <1543611662.3031.20.camel@HansenPartnership.com> <20181130214405.GG23772@linux.intel.com>
+ <1543615069.3031.27.camel@HansenPartnership.com> <20181130221219.GA25537@linux.intel.com>
+ <20181130151459.3ca2f5c8@lwn.net> <CAMuHMdUkpLWm5NZmYj=uMgVncw6ZOb7j9KxFoDGhrnr7vzpx_w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1260274363=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CAMuHMdUkpLWm5NZmYj=uMgVncw6ZOb7j9KxFoDGhrnr7vzpx_w@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: geert@linux-m68k.org
+Cc: corbet@lwn.net, jarkko.sakkinen@linux.intel.com, James.Bottomley@hansenpartnership.com, dave@stgolabs.net, keescook@chromium.org, Kernel development list <linux-kernel@vger.kernel.org>, amir73il@gmail.com, akpm@linux-foundation.org, andriy.shevchenko@linux.intel.com, dja@axtens.net, davem@davemloft.net, linux@dominikbrodowski.net, dri-devel@lists.freedesktop.org, edumazet@google.com, federico.vaga@vaga.pv.it, geert+renesas@glider.be, deller@gmx.de, kumba@gentoo.org, linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org, linux-ide@vger.kernel.org, linux-m68k@lists.linux-m68k.org, linux-media@vger.kernel.org, linux-mips@linux-mips.org, linux-mtd@lists.infradead.org, linux-parisc@vger.kernel.org, linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org, matthias.bgg@gmail.com
 List-Id: nouveau.vger.kernel.org
 
+Hi Guys,
 
---===============1260274363==
-Content-Type: multipart/alternative; boundary="15441820530.c60Be9Ae9.29743"
-Content-Transfer-Encoding: 7bit
+I initially thought these patches were a joke. But I guess they are
+not. I suppose 2018 is the year everything became offensive.
 
+Could we avoid the s/fuck/hug/g though? I have nothing against
+re-wording this stuff to remove the curse word, but it should at least
+make sense.
 
---15441820530.c60Be9Ae9.29743
-Date: Fri, 7 Dec 2018 11:27:33 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+What's going to happen is someone is a newbie is going to see a comment
+like "We found an mark in the idr at the right wd, but it's not the
+mark we were told to remove. eparis seriously hugged up somewhere",
+probably google the term as they are unfamiliar with it, find out it's
+an alias for "fucked" and if they are sensitive get offended anyway.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104835
-
---- Comment #6 from joel.busch-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
-I'm getting one of these too on Fedora 28 KDE Plasma spin.
-
-Acer Aspire VN7-592G/Aspire VN7-592G, BIOS V1.13 03/21/2018
-Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz
-NVIDIA Corporation GM107M [GeForce GTX 960M] (rev a2)
-
-$ cat /proc/version
-Linux version 4.19.6-200.fc28.x86_64
-(mockbuild-IQyTzKUysSGO0/Z9DF9WQsNrQ1sYaAMk1rGf20DD4Tc@public.gmane.org) (gcc version 8.2.1 20181105 (R=
-ed
-Hat 8.2.1-5) (GCC)) #1 SMP Sun Dec 2 18:03:32 UTC 2018
-
-$ journalctl -b --no-hostname -o short-monotonic | grep nouveau
-[    2.515464] kernel: nouveau: detected PR support, will not use DSM
-[    2.515480] kernel: nouveau 0000:01:00.0: enabling device (0006 -> 0007)
-[    2.515620] kernel: nouveau 0000:01:00.0: NVIDIA GM107 (1171b0a2)
-[    2.537544] kernel: nouveau 0000:01:00.0: bios: version 82.07.80.00.2a
-[    2.586306] kernel: nouveau 0000:01:00.0: fb: 2048 MiB GDDR5
-[    2.586357] kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAU=
-LT
-at 022554 [ IBUS ]
-[    2.599343] kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAU=
-LT
-at 10ac08 [ IBUS ]
-[    3.260508] kernel: nouveau 0000:01:00.0: DRM: VRAM: 2048 MiB
-[    3.260509] kernel: nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
-[    3.260511] kernel: nouveau 0000:01:00.0: DRM: Pointer to TMDS table inv=
-alid
-[    3.260512] kernel: nouveau 0000:01:00.0: DRM: DCB version 4.0
-[    3.261005] kernel: nouveau 0000:01:00.0: DRM: MM: using COPY for buffer
-copies
-[    3.261011] kernel: [drm] Initialized nouveau 1.3.1 20120801 for
-0000:01:00.0 on minor 1
-[    7.846986] kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAU=
-LT
-at 619444 [ IBUS ]
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15441820530.c60Be9Ae9.29743
-Date: Fri, 7 Dec 2018 11:27:33 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104835#c6">Commen=
-t # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104835">bug 10483=
-5</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-joel.busch&#64;hotmail.com" title=3D"joel.busch&#64;hotmail.com">joel.busch=
-&#64;hotmail.com</a>
-</span></b>
-        <pre>I'm getting one of these too on Fedora 28 KDE Plasma spin.
-
-Acer Aspire VN7-592G/Aspire VN7-592G, BIOS V1.13 03/21/2018
-Intel(R) Core(TM) i7-6700HQ CPU &#64; 2.60GHz
-NVIDIA Corporation GM107M [GeForce GTX 960M] (rev a2)
-
-$ cat /proc/version
-Linux version 4.19.6-200.fc28.x86_64
-(<a href=3D"mailto:mockbuild&#64;bkernel04.phx2.fedoraproject.org">mockbuil=
-d&#64;bkernel04.phx2.fedoraproject.org</a>) (gcc version 8.2.1 20181105 (Red
-Hat 8.2.1-5) (GCC)) #1 SMP Sun Dec 2 18:03:32 UTC 2018
-
-$ journalctl -b --no-hostname -o short-monotonic | grep nouveau
-[    2.515464] kernel: nouveau: detected PR support, will not use DSM
-[    2.515480] kernel: nouveau 0000:01:00.0: enabling device (0006 -&gt; 00=
-07)
-[    2.515620] kernel: nouveau 0000:01:00.0: NVIDIA GM107 (1171b0a2)
-[    2.537544] kernel: nouveau 0000:01:00.0: bios: version 82.07.80.00.2a
-[    2.586306] kernel: nouveau 0000:01:00.0: fb: 2048 MiB GDDR5
-[    2.586357] kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAU=
-LT
-at 022554 [ IBUS ]
-[    2.599343] kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAU=
-LT
-at 10ac08 [ IBUS ]
-[    3.260508] kernel: nouveau 0000:01:00.0: DRM: VRAM: 2048 MiB
-[    3.260509] kernel: nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
-[    3.260511] kernel: nouveau 0000:01:00.0: DRM: Pointer to TMDS table inv=
-alid
-[    3.260512] kernel: nouveau 0000:01:00.0: DRM: DCB version 4.0
-[    3.261005] kernel: nouveau 0000:01:00.0: DRM: MM: using COPY for buffer
-copies
-[    3.261011] kernel: [drm] Initialized nouveau 1.3.1 20120801 for
-0000:01:00.0 on minor 1
-[    7.846986] kernel: nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAU=
-LT
-at 619444 [ IBUS ]</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15441820530.c60Be9Ae9.29743--
-
---===============1260274363==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1260274363==--
+On Sat, 1 Dec 2018 at 08:20, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Jon,
+>
+> On Fri, Nov 30, 2018 at 11:15 PM Jonathan Corbet <corbet@lwn.net> wrote:
+> > On Fri, 30 Nov 2018 14:12:19 -0800
+> > Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com> wrote:
+> >
+> > > As a maintainer myself (and based on somewhat disturbed feedback from
+> > > other maintainers) I can only make the conclusion that nobody knows what
+> > > the responsibility part here means.
+> > >
+> > > I would interpret, if I read it like at lawyer at least, that even for
+> > > existing code you would need to do the changes postmorterm.
+> > >
+> > > Is this wrong interpretation?  Should I conclude that I made a mistake
+> > > by reading the CoC and trying to understand what it *actually* says?
+> > > After this discussion, I can say that I understand it less than before.
+> >
+> > Have you read Documentation/process/code-of-conduct-interpretation.rst?
+> > As has been pointed out, it contains a clear answer to how things should
+> > be interpreted here.
+>
+> Indeed:
+>
+> | Contributions submitted for the kernel should use appropriate language.
+> | Content that already exists predating the Code of Conduct will not be
+> | addressed now as a violation.
+>
+> However:
+>
+> | Inappropriate language can be seen as a
+> | bug, though; such bugs will be fixed more quickly if any interested
+> | parties submit patches to that effect.
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
