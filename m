@@ -1,79 +1,361 @@
-From: Eric Curtin <ericcurtin17@gmail.com>
-Subject: Re: [PATCH RFC 00/15] Zero ****s, hugload of hugs <3
-Date: Fri, 7 Dec 2018 13:39:54 +0000
-Message-ID: <CANpvso4ZjJkUA7+saYRR4qssvreZcm-74EPo3nrGSohFZF9akA@mail.gmail.com>
-References: <20181130192737.15053-1-jarkko.sakkinen@linux.intel.com>
- <CAGXu5j+jBNBsD3pvUSfEh6Lc5T1YMpbM0HeG1c6BHiJe+cKVOQ@mail.gmail.com>
- <20181130195652.7syqys76646kpaph@linux-r8p5> <20181130205521.GA21006@linux.intel.com>
- <1543611662.3031.20.camel@HansenPartnership.com> <20181130214405.GG23772@linux.intel.com>
- <1543615069.3031.27.camel@HansenPartnership.com> <20181130221219.GA25537@linux.intel.com>
- <20181130151459.3ca2f5c8@lwn.net> <CAMuHMdUkpLWm5NZmYj=uMgVncw6ZOb7j9KxFoDGhrnr7vzpx_w@mail.gmail.com>
+From: Guillaume Tucker <guillaume.tucker@collabora.com>
+Subject: next/master boot bisection: Oops in nouveau driver on jetson-tk1
+Date: Fri, 7 Dec 2018 23:31:34 +0000
+Message-ID: <89fa50d0-945f-d1ed-ae55-ee947187f209@collabora.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAMuHMdUkpLWm5NZmYj=uMgVncw6ZOb7j9KxFoDGhrnr7vzpx_w@mail.gmail.com>
+Content-Language: en-US
 Sender: linux-kernel-owner@vger.kernel.org
-To: geert@linux-m68k.org
-Cc: corbet@lwn.net, jarkko.sakkinen@linux.intel.com, James.Bottomley@hansenpartnership.com, dave@stgolabs.net, keescook@chromium.org, Kernel development list <linux-kernel@vger.kernel.org>, amir73il@gmail.com, akpm@linux-foundation.org, andriy.shevchenko@linux.intel.com, dja@axtens.net, davem@davemloft.net, linux@dominikbrodowski.net, dri-devel@lists.freedesktop.org, edumazet@google.com, federico.vaga@vaga.pv.it, geert+renesas@glider.be, deller@gmx.de, kumba@gentoo.org, linux-doc@vger.kernel.org, linux-fsdevel@vger.kernel.org, linux-ide@vger.kernel.org, linux-m68k@lists.linux-m68k.org, linux-media@vger.kernel.org, linux-mips@linux-mips.org, linux-mtd@lists.infradead.org, linux-parisc@vger.kernel.org, linux-pm@vger.kernel.org, linux-scsi@vger.kernel.org, matthias.bgg@gmail.com
+To: Ben Skeggs <bskeggs@redhat.com>, Lyude Paul <lyude@redhat.com>
+Cc: nouveau@lists.freedesktop.org, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, kernel@collabora.com, Mark Brown <broonie@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, Karol Herbst <kherbst@redhat.com>, Kevin Hilman <khilman@baylibre.com>
 List-Id: nouveau.vger.kernel.org
 
-Hi Guys,
+Please find below an automated bisection report for a kernel Oops
+seen during the initialisation of the nouveau GPU driver on
+jetson-tk1.
 
-I initially thought these patches were a joke. But I guess they are
-not. I suppose 2018 is the year everything became offensive.
 
-Could we avoid the s/fuck/hug/g though? I have nothing against
-re-wording this stuff to remove the curse word, but it should at least
-make sense.
+All the LAVA test jobs for this bisection can be found here:
 
-What's going to happen is someone is a newbie is going to see a comment
-like "We found an mark in the idr at the right wd, but it's not the
-mark we were told to remove. eparis seriously hugged up somewhere",
-probably google the term as they are unfamiliar with it, find out it's
-an alias for "fucked" and if they are sensitive get offended anyway.
+  http://lava.baylibre.com:10080/scheduler/alljobs?length=25&search=lava-bisect-staging-7366#table
 
-On Sat, 1 Dec 2018 at 08:20, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Jon,
->
-> On Fri, Nov 30, 2018 at 11:15 PM Jonathan Corbet <corbet@lwn.net> wrote:
-> > On Fri, 30 Nov 2018 14:12:19 -0800
-> > Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com> wrote:
-> >
-> > > As a maintainer myself (and based on somewhat disturbed feedback from
-> > > other maintainers) I can only make the conclusion that nobody knows what
-> > > the responsibility part here means.
-> > >
-> > > I would interpret, if I read it like at lawyer at least, that even for
-> > > existing code you would need to do the changes postmorterm.
-> > >
-> > > Is this wrong interpretation?  Should I conclude that I made a mistake
-> > > by reading the CoC and trying to understand what it *actually* says?
-> > > After this discussion, I can say that I understand it less than before.
-> >
-> > Have you read Documentation/process/code-of-conduct-interpretation.rst?
-> > As has been pointed out, it contains a clear answer to how things should
-> > be interpreted here.
->
-> Indeed:
->
-> | Contributions submitted for the kernel should use appropriate language.
-> | Content that already exists predating the Code of Conduct will not be
-> | addressed now as a violation.
->
-> However:
->
-> | Inappropriate language can be seen as a
-> | bug, though; such bugs will be fixed more quickly if any interested
-> | parties submit patches to that effect.
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+
+Here's the beginning of the Oops stack trace:
+
+[    7.485361] [00000064] *pgd=f9e7b835
+[    7.485372] Internal error: Oops: 17 [#1] SMP ARM
+[    7.485376] Modules linked in: snd_soc_tegra_rt5640(+) snd_soc_tegra_utils snd_soc_rt5640(+) snd_soc_rl6231 snd_soc_tegra30_ahub snd_hda_tegra snd_soc_core snd_hda_codec snd_hda_core ac97_bus snd_pcm_dmaengine snd_pcm xhci_tegra(+) snd_timer snd soundcore nouveau(+) ttm tegra_devfreq tegra_wdt
+[    7.542227] CPU: 1 PID: 128 Comm: udevd Not tainted 4.20.0-rc5-next-20181206 #44
+[    7.549603] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
+[    7.555859] PC is at drm_plane_register_all+0x18/0x50
+[    7.560899] LR is at drm_modeset_register_all+0xc/0x6c
+
+
+Full log:
+
+  http://lava.baylibre.com:10080/scheduler/job/68628#L816
+
+
+The bisection was run from next-20181206 as this is where the
+issue was discovered on kernelci.org but the patch it found has
+already been merged in mainline.
+
+Hope this helps!
+
+Guillaume
+
+
+-----------8<------------------------8<-----------
+
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* This automated bisection report was sent to you on the basis  *
+* that you may be involved with the breaking commit it has      *
+* found.  No manual investigation has been done to verify it,   *
+* and the root cause of the problem may be somewhere else.      *
+* Hope this helps!                                              *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+Bisection result for next/master (next-20181206) on jetson-tk1
+
+  Good:       84df9525b0c2 Linux 4.19
+  Bad:        4c92b7b3080d Add linux-next specific files for 20181206
+  Found:      cfea88a4d866 drm/nouveau: Start using new drm_dev initialization helpers
+
+Checks:
+  revert:     PASS
+  verify:     PASS
+
+Parameters:
+  Tree:       next
+  URL:        None
+  Branch:     master
+  Target:     jetson-tk1
+  Lab:        lab-baylibre
+  Config:     multi_v7_defconfig
+  Plan:       dmesg-nouveau
+
+Breaking commit found:
+
+-------------------------------------------------------------------------------
+commit cfea88a4d86632f28cf80be97079f131645b7869
+Author: Lyude Paul <lyude@redhat.com>
+Date:   Wed Aug 22 21:40:07 2018 -0400
+
+    drm/nouveau: Start using new drm_dev initialization helpers
+    
+    Per the documentation in drm_get_pci_dev(), this function is deprecated
+    and shouldn't be used anymore. As it turns out, we're going to need to
+    stop using drm_get_pci_dev() anyway in order to allow us to turn off the
+    card before full system shutdowns, otherwise we'll hit race conditions
+    with userspace while trying to tear down the card on shutdown.
+    
+    So, start using drm_dev_get() and drm_dev_put(), and just turn our
+    load/unload callbacks into open coded init/fini() functions.
+    
+    Signed-off-by: Lyude Paul <lyude@redhat.com>
+    Cc: Karol Herbst <kherbst@redhat.com>
+    Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 905956809d21..2b2baf6e0e0d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -458,75 +458,8 @@ nouveau_accel_init(struct nouveau_drm *drm)
+ 	nouveau_bo_move_init(drm);
+ }
+ 
+-static int nouveau_drm_probe(struct pci_dev *pdev,
+-			     const struct pci_device_id *pent)
+-{
+-	struct nvkm_device *device;
+-	struct apertures_struct *aper;
+-	bool boot = false;
+-	int ret;
+-
+-	if (vga_switcheroo_client_probe_defer(pdev))
+-		return -EPROBE_DEFER;
+-
+-	/* We need to check that the chipset is supported before booting
+-	 * fbdev off the hardware, as there's no way to put it back.
+-	 */
+-	ret = nvkm_device_pci_new(pdev, NULL, "error", true, false, 0, &device);
+-	if (ret)
+-		return ret;
+-
+-	nvkm_device_del(&device);
+-
+-	/* Remove conflicting drivers (vesafb, efifb etc). */
+-	aper = alloc_apertures(3);
+-	if (!aper)
+-		return -ENOMEM;
+-
+-	aper->ranges[0].base = pci_resource_start(pdev, 1);
+-	aper->ranges[0].size = pci_resource_len(pdev, 1);
+-	aper->count = 1;
+-
+-	if (pci_resource_len(pdev, 2)) {
+-		aper->ranges[aper->count].base = pci_resource_start(pdev, 2);
+-		aper->ranges[aper->count].size = pci_resource_len(pdev, 2);
+-		aper->count++;
+-	}
+-
+-	if (pci_resource_len(pdev, 3)) {
+-		aper->ranges[aper->count].base = pci_resource_start(pdev, 3);
+-		aper->ranges[aper->count].size = pci_resource_len(pdev, 3);
+-		aper->count++;
+-	}
+-
+-#ifdef CONFIG_X86
+-	boot = pdev->resource[PCI_ROM_RESOURCE].flags & IORESOURCE_ROM_SHADOW;
+-#endif
+-	if (nouveau_modeset != 2)
+-		drm_fb_helper_remove_conflicting_framebuffers(aper, "nouveaufb", boot);
+-	kfree(aper);
+-
+-	ret = nvkm_device_pci_new(pdev, nouveau_config, nouveau_debug,
+-				  true, true, ~0ULL, &device);
+-	if (ret)
+-		return ret;
+-
+-	pci_set_master(pdev);
+-
+-	if (nouveau_atomic)
+-		driver_pci.driver_features |= DRIVER_ATOMIC;
+-
+-	ret = drm_get_pci_dev(pdev, pent, &driver_pci);
+-	if (ret) {
+-		nvkm_device_del(&device);
+-		return ret;
+-	}
+-
+-	return 0;
+-}
+-
+ static int
+-nouveau_drm_load(struct drm_device *dev, unsigned long flags)
++nouveau_drm_device_init(struct drm_device *dev)
+ {
+ 	struct nouveau_drm *drm;
+ 	int ret;
+@@ -613,7 +546,7 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
+ }
+ 
+ static void
+-nouveau_drm_unload(struct drm_device *dev)
++nouveau_drm_device_fini(struct drm_device *dev)
+ {
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 
+@@ -642,18 +575,116 @@ nouveau_drm_unload(struct drm_device *dev)
+ 	kfree(drm);
+ }
+ 
++static int nouveau_drm_probe(struct pci_dev *pdev,
++			     const struct pci_device_id *pent)
++{
++	struct nvkm_device *device;
++	struct drm_device *drm_dev;
++	struct apertures_struct *aper;
++	bool boot = false;
++	int ret;
++
++	if (vga_switcheroo_client_probe_defer(pdev))
++		return -EPROBE_DEFER;
++
++	/* We need to check that the chipset is supported before booting
++	 * fbdev off the hardware, as there's no way to put it back.
++	 */
++	ret = nvkm_device_pci_new(pdev, NULL, "error", true, false, 0, &device);
++	if (ret)
++		return ret;
++
++	nvkm_device_del(&device);
++
++	/* Remove conflicting drivers (vesafb, efifb etc). */
++	aper = alloc_apertures(3);
++	if (!aper)
++		return -ENOMEM;
++
++	aper->ranges[0].base = pci_resource_start(pdev, 1);
++	aper->ranges[0].size = pci_resource_len(pdev, 1);
++	aper->count = 1;
++
++	if (pci_resource_len(pdev, 2)) {
++		aper->ranges[aper->count].base = pci_resource_start(pdev, 2);
++		aper->ranges[aper->count].size = pci_resource_len(pdev, 2);
++		aper->count++;
++	}
++
++	if (pci_resource_len(pdev, 3)) {
++		aper->ranges[aper->count].base = pci_resource_start(pdev, 3);
++		aper->ranges[aper->count].size = pci_resource_len(pdev, 3);
++		aper->count++;
++	}
++
++#ifdef CONFIG_X86
++	boot = pdev->resource[PCI_ROM_RESOURCE].flags & IORESOURCE_ROM_SHADOW;
++#endif
++	if (nouveau_modeset != 2)
++		drm_fb_helper_remove_conflicting_framebuffers(aper, "nouveaufb", boot);
++	kfree(aper);
++
++	ret = nvkm_device_pci_new(pdev, nouveau_config, nouveau_debug,
++				  true, true, ~0ULL, &device);
++	if (ret)
++		return ret;
++
++	pci_set_master(pdev);
++
++	if (nouveau_atomic)
++		driver_pci.driver_features |= DRIVER_ATOMIC;
++
++	drm_dev = drm_dev_alloc(&driver_pci, &pdev->dev);
++	if (IS_ERR(drm_dev)) {
++		ret = PTR_ERR(drm_dev);
++		goto fail_nvkm;
++	}
++
++	ret = pci_enable_device(pdev);
++	if (ret)
++		goto fail_drm;
++
++	drm_dev->pdev = pdev;
++	pci_set_drvdata(pdev, drm_dev);
++
++	ret = nouveau_drm_device_init(drm_dev);
++	if (ret)
++		goto fail_pci;
++
++	ret = drm_dev_register(drm_dev, pent->driver_data);
++	if (ret)
++		goto fail_drm_dev_init;
++
++	return 0;
++
++fail_drm_dev_init:
++	nouveau_drm_device_fini(drm_dev);
++fail_pci:
++	pci_disable_device(pdev);
++fail_drm:
++	drm_dev_put(drm_dev);
++fail_nvkm:
++	nvkm_device_del(&device);
++	return ret;
++}
++
+ void
+ nouveau_drm_device_remove(struct drm_device *dev)
+ {
++	struct pci_dev *pdev = dev->pdev;
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nvkm_client *client;
+ 	struct nvkm_device *device;
+ 
++	drm_dev_unregister(dev);
++
+ 	dev->irq_enabled = false;
+ 	client = nvxx_client(&drm->client.base);
+ 	device = nvkm_device_find(client->device);
+-	drm_put_dev(dev);
+ 
++	nouveau_drm_device_fini(dev);
++	pci_disable_device(pdev);
++	drm_dev_put(dev);
+ 	nvkm_device_del(&device);
+ }
+ 
+@@ -1020,8 +1051,6 @@ driver_stub = {
+ 		DRIVER_GEM | DRIVER_MODESET | DRIVER_PRIME | DRIVER_RENDER |
+ 		DRIVER_KMS_LEGACY_CONTEXT,
+ 
+-	.load = nouveau_drm_load,
+-	.unload = nouveau_drm_unload,
+ 	.open = nouveau_drm_open,
+ 	.postclose = nouveau_drm_postclose,
+ 	.lastclose = nouveau_vga_lastclose,
+-------------------------------------------------------------------------------
+
+
+Git bisection log:
+
+-------------------------------------------------------------------------------
+git bisect start
+# good: [84df9525b0c27f3ebc2ebb1864fa62a97fdedb7d] Linux 4.19
+git bisect good 84df9525b0c27f3ebc2ebb1864fa62a97fdedb7d
+# bad: [4c92b7b3080d8281941ae81c51cd62bb49bdc3d4] Add linux-next specific files for 20181206
+git bisect bad 4c92b7b3080d8281941ae81c51cd62bb49bdc3d4
+# bad: [c38239b4be1ac7e4bcf5bbd971353bae51525b8f] Merge branch 'parisc-4.20-2' of git://git.kernel.org/pub/scm/linux/kernel/git/deller/parisc-linux
+git bisect bad c38239b4be1ac7e4bcf5bbd971353bae51525b8f
+# good: [d49f8a52b15bf35db778035340d8a673149f9f93] Merge tag 'scsi-misc' of git://git.kernel.org/pub/scm/linux/kernel/git/jejb/scsi
+git bisect good d49f8a52b15bf35db778035340d8a673149f9f93
+# good: [ac747c0715f29c2be3848b719a1b7e65b07f7b21] Merge tag 'kbuild-v4.20' of git://git.kernel.org/pub/scm/linux/kernel/git/masahiroy/linux-kbuild
+git bisect good ac747c0715f29c2be3848b719a1b7e65b07f7b21
+# bad: [46972c03ab667dc298cad0c9db517fb9b1521b5f] Merge tag 'drm-misc-next-fixes-2018-10-10' of git://anongit.freedesktop.org/drm/drm-misc into drm-next
+git bisect bad 46972c03ab667dc298cad0c9db517fb9b1521b5f
+# good: [6ac99a328ee16d3f8cc253f1df62623cee3e9ea5] drm/exynos: mixer: Make plane alpha configurable
+git bisect good 6ac99a328ee16d3f8cc253f1df62623cee3e9ea5
+# good: [0957dc7097a3f462f6cedb45cf9b9785cc29e5bb] drm/amdgpu: revert "stop using gart_start as offset for the GTT domain"
+git bisect good 0957dc7097a3f462f6cedb45cf9b9785cc29e5bb
+# good: [2de0b0a158bf423208c3898522c8fa1c1078df48] Merge tag 'drm/tegra/for-4.20-rc1' of git://anongit.freedesktop.org/tegra/linux into drm-next
+git bisect good 2de0b0a158bf423208c3898522c8fa1c1078df48
+# good: [04b96b63c5640a305e30611def7a9c5fcd7a72cf] drm/msm/dpu: Remove unneeded checks in dpu_crtc.c
+git bisect good 04b96b63c5640a305e30611def7a9c5fcd7a72cf
+# good: [6952e3a1dffcb931cf8625aa01642b9afac2af61] Merge branch 'for-upstream/mali-dp' of git://linux-arm.org/linux-ld into drm-next
+git bisect good 6952e3a1dffcb931cf8625aa01642b9afac2af61
+# good: [62e681f7dcab746412dce22d4b75b32c5ea38cdb] Merge tag 'drm-msm-fixes-2018-10-09' of git://people.freedesktop.org/~robclark/linux into drm-next
+git bisect good 62e681f7dcab746412dce22d4b75b32c5ea38cdb
+# bad: [7e6191d4360a2df6cf2a2613dcb79680cb943df8] Merge branch 'linux-4.20' of git://github.com/skeggsb/linux into drm-next
+git bisect bad 7e6191d4360a2df6cf2a2613dcb79680cb943df8
+# good: [c4cee69a4497d9c6ad8868d63568b30e50cac9e9] drm/nouveau: Fix potential memory leak in nouveau_drm_load()
+git bisect good c4cee69a4497d9c6ad8868d63568b30e50cac9e9
+# bad: [a971558c298755d2c07bc5508c65d689471763c8] drm/nouveau/disp: keep track of high-speed state, program into clock
+git bisect bad a971558c298755d2c07bc5508c65d689471763c8
+# bad: [4126b99e744b7a29746e201e2be6644d2edf3c56] drm/nouveau/disp: add a way to configure scrambling/tmds for hdmi 2.0
+git bisect bad 4126b99e744b7a29746e201e2be6644d2edf3c56
+# bad: [cfea88a4d86632f28cf80be97079f131645b7869] drm/nouveau: Start using new drm_dev initialization helpers
+git bisect bad cfea88a4d86632f28cf80be97079f131645b7869
+# first bad commit: [cfea88a4d86632f28cf80be97079f131645b7869] drm/nouveau: Start using new drm_dev initialization helpers
+-------------------------------------------------------------------------------
