@@ -1,361 +1,259 @@
-From: Guillaume Tucker <guillaume.tucker@collabora.com>
-Subject: next/master boot bisection: Oops in nouveau driver on jetson-tk1
-Date: Fri, 7 Dec 2018 23:31:34 +0000
-Message-ID: <89fa50d0-945f-d1ed-ae55-ee947187f209@collabora.com>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: next/master boot bisection: Oops in nouveau driver on
+ jetson-tk1
+Date: Fri, 07 Dec 2018 19:08:40 -0500
+Message-ID: <95255117123da3702da585491d2fdd74890937c0.camel@redhat.com>
+References: <89fa50d0-945f-d1ed-ae55-ee947187f209@collabora.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>, Lyude Paul <lyude@redhat.com>
-Cc: nouveau@lists.freedesktop.org, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, kernel@collabora.com, Mark Brown <broonie@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, Karol Herbst <kherbst@redhat.com>, Kevin Hilman <khilman@baylibre.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <89fa50d0-945f-d1ed-ae55-ee947187f209-ZGY8ohtN/8qB+jHODAdFcQ@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Guillaume Tucker <guillaume.tucker-ZGY8ohtN/8qB+jHODAdFcQ@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Mark Brown <broonie-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Kevin Hilman <khilman-rdvid1DuHRBWk0Htik3J/w@public.gmane.org>, kernel-ZGY8ohtN/8qB+jHODAdFcQ@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Please find below an automated bisection report for a kernel Oops
-seen during the initialisation of the nouveau GPU driver on
-jetson-tk1.
-
-
-All the LAVA test jobs for this bisection can be found here:
-
-  http://lava.baylibre.com:10080/scheduler/alljobs?length=25&search=lava-bisect-staging-7366#table
-
-
-Here's the beginning of the Oops stack trace:
-
-[    7.485361] [00000064] *pgd=f9e7b835
-[    7.485372] Internal error: Oops: 17 [#1] SMP ARM
-[    7.485376] Modules linked in: snd_soc_tegra_rt5640(+) snd_soc_tegra_utils snd_soc_rt5640(+) snd_soc_rl6231 snd_soc_tegra30_ahub snd_hda_tegra snd_soc_core snd_hda_codec snd_hda_core ac97_bus snd_pcm_dmaengine snd_pcm xhci_tegra(+) snd_timer snd soundcore nouveau(+) ttm tegra_devfreq tegra_wdt
-[    7.542227] CPU: 1 PID: 128 Comm: udevd Not tainted 4.20.0-rc5-next-20181206 #44
-[    7.549603] Hardware name: NVIDIA Tegra SoC (Flattened Device Tree)
-[    7.555859] PC is at drm_plane_register_all+0x18/0x50
-[    7.560899] LR is at drm_modeset_register_all+0xc/0x6c
-
-
-Full log:
-
-  http://lava.baylibre.com:10080/scheduler/job/68628#L816
-
-
-The bisection was run from next-20181206 as this is where the
-issue was discovered on kernelci.org but the patch it found has
-already been merged in mainline.
-
-Hope this helps!
-
-Guillaume
-
-
------------8<------------------------8<-----------
-
-
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* This automated bisection report was sent to you on the basis  *
-* that you may be involved with the breaking commit it has      *
-* found.  No manual investigation has been done to verify it,   *
-* and the root cause of the problem may be somewhere else.      *
-* Hope this helps!                                              *
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-Bisection result for next/master (next-20181206) on jetson-tk1
-
-  Good:       84df9525b0c2 Linux 4.19
-  Bad:        4c92b7b3080d Add linux-next specific files for 20181206
-  Found:      cfea88a4d866 drm/nouveau: Start using new drm_dev initialization helpers
-
-Checks:
-  revert:     PASS
-  verify:     PASS
-
-Parameters:
-  Tree:       next
-  URL:        None
-  Branch:     master
-  Target:     jetson-tk1
-  Lab:        lab-baylibre
-  Config:     multi_v7_defconfig
-  Plan:       dmesg-nouveau
-
-Breaking commit found:
-
--------------------------------------------------------------------------------
-commit cfea88a4d86632f28cf80be97079f131645b7869
-Author: Lyude Paul <lyude@redhat.com>
-Date:   Wed Aug 22 21:40:07 2018 -0400
-
-    drm/nouveau: Start using new drm_dev initialization helpers
-    
-    Per the documentation in drm_get_pci_dev(), this function is deprecated
-    and shouldn't be used anymore. As it turns out, we're going to need to
-    stop using drm_get_pci_dev() anyway in order to allow us to turn off the
-    card before full system shutdowns, otherwise we'll hit race conditions
-    with userspace while trying to tear down the card on shutdown.
-    
-    So, start using drm_dev_get() and drm_dev_put(), and just turn our
-    load/unload callbacks into open coded init/fini() functions.
-    
-    Signed-off-by: Lyude Paul <lyude@redhat.com>
-    Cc: Karol Herbst <kherbst@redhat.com>
-    Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 905956809d21..2b2baf6e0e0d 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -458,75 +458,8 @@ nouveau_accel_init(struct nouveau_drm *drm)
- 	nouveau_bo_move_init(drm);
- }
- 
--static int nouveau_drm_probe(struct pci_dev *pdev,
--			     const struct pci_device_id *pent)
--{
--	struct nvkm_device *device;
--	struct apertures_struct *aper;
--	bool boot = false;
--	int ret;
--
--	if (vga_switcheroo_client_probe_defer(pdev))
--		return -EPROBE_DEFER;
--
--	/* We need to check that the chipset is supported before booting
--	 * fbdev off the hardware, as there's no way to put it back.
--	 */
--	ret = nvkm_device_pci_new(pdev, NULL, "error", true, false, 0, &device);
--	if (ret)
--		return ret;
--
--	nvkm_device_del(&device);
--
--	/* Remove conflicting drivers (vesafb, efifb etc). */
--	aper = alloc_apertures(3);
--	if (!aper)
--		return -ENOMEM;
--
--	aper->ranges[0].base = pci_resource_start(pdev, 1);
--	aper->ranges[0].size = pci_resource_len(pdev, 1);
--	aper->count = 1;
--
--	if (pci_resource_len(pdev, 2)) {
--		aper->ranges[aper->count].base = pci_resource_start(pdev, 2);
--		aper->ranges[aper->count].size = pci_resource_len(pdev, 2);
--		aper->count++;
--	}
--
--	if (pci_resource_len(pdev, 3)) {
--		aper->ranges[aper->count].base = pci_resource_start(pdev, 3);
--		aper->ranges[aper->count].size = pci_resource_len(pdev, 3);
--		aper->count++;
--	}
--
--#ifdef CONFIG_X86
--	boot = pdev->resource[PCI_ROM_RESOURCE].flags & IORESOURCE_ROM_SHADOW;
--#endif
--	if (nouveau_modeset != 2)
--		drm_fb_helper_remove_conflicting_framebuffers(aper, "nouveaufb", boot);
--	kfree(aper);
--
--	ret = nvkm_device_pci_new(pdev, nouveau_config, nouveau_debug,
--				  true, true, ~0ULL, &device);
--	if (ret)
--		return ret;
--
--	pci_set_master(pdev);
--
--	if (nouveau_atomic)
--		driver_pci.driver_features |= DRIVER_ATOMIC;
--
--	ret = drm_get_pci_dev(pdev, pent, &driver_pci);
--	if (ret) {
--		nvkm_device_del(&device);
--		return ret;
--	}
--
--	return 0;
--}
--
- static int
--nouveau_drm_load(struct drm_device *dev, unsigned long flags)
-+nouveau_drm_device_init(struct drm_device *dev)
- {
- 	struct nouveau_drm *drm;
- 	int ret;
-@@ -613,7 +546,7 @@ nouveau_drm_load(struct drm_device *dev, unsigned long flags)
- }
- 
- static void
--nouveau_drm_unload(struct drm_device *dev)
-+nouveau_drm_device_fini(struct drm_device *dev)
- {
- 	struct nouveau_drm *drm = nouveau_drm(dev);
- 
-@@ -642,18 +575,116 @@ nouveau_drm_unload(struct drm_device *dev)
- 	kfree(drm);
- }
- 
-+static int nouveau_drm_probe(struct pci_dev *pdev,
-+			     const struct pci_device_id *pent)
-+{
-+	struct nvkm_device *device;
-+	struct drm_device *drm_dev;
-+	struct apertures_struct *aper;
-+	bool boot = false;
-+	int ret;
-+
-+	if (vga_switcheroo_client_probe_defer(pdev))
-+		return -EPROBE_DEFER;
-+
-+	/* We need to check that the chipset is supported before booting
-+	 * fbdev off the hardware, as there's no way to put it back.
-+	 */
-+	ret = nvkm_device_pci_new(pdev, NULL, "error", true, false, 0, &device);
-+	if (ret)
-+		return ret;
-+
-+	nvkm_device_del(&device);
-+
-+	/* Remove conflicting drivers (vesafb, efifb etc). */
-+	aper = alloc_apertures(3);
-+	if (!aper)
-+		return -ENOMEM;
-+
-+	aper->ranges[0].base = pci_resource_start(pdev, 1);
-+	aper->ranges[0].size = pci_resource_len(pdev, 1);
-+	aper->count = 1;
-+
-+	if (pci_resource_len(pdev, 2)) {
-+		aper->ranges[aper->count].base = pci_resource_start(pdev, 2);
-+		aper->ranges[aper->count].size = pci_resource_len(pdev, 2);
-+		aper->count++;
-+	}
-+
-+	if (pci_resource_len(pdev, 3)) {
-+		aper->ranges[aper->count].base = pci_resource_start(pdev, 3);
-+		aper->ranges[aper->count].size = pci_resource_len(pdev, 3);
-+		aper->count++;
-+	}
-+
-+#ifdef CONFIG_X86
-+	boot = pdev->resource[PCI_ROM_RESOURCE].flags & IORESOURCE_ROM_SHADOW;
-+#endif
-+	if (nouveau_modeset != 2)
-+		drm_fb_helper_remove_conflicting_framebuffers(aper, "nouveaufb", boot);
-+	kfree(aper);
-+
-+	ret = nvkm_device_pci_new(pdev, nouveau_config, nouveau_debug,
-+				  true, true, ~0ULL, &device);
-+	if (ret)
-+		return ret;
-+
-+	pci_set_master(pdev);
-+
-+	if (nouveau_atomic)
-+		driver_pci.driver_features |= DRIVER_ATOMIC;
-+
-+	drm_dev = drm_dev_alloc(&driver_pci, &pdev->dev);
-+	if (IS_ERR(drm_dev)) {
-+		ret = PTR_ERR(drm_dev);
-+		goto fail_nvkm;
-+	}
-+
-+	ret = pci_enable_device(pdev);
-+	if (ret)
-+		goto fail_drm;
-+
-+	drm_dev->pdev = pdev;
-+	pci_set_drvdata(pdev, drm_dev);
-+
-+	ret = nouveau_drm_device_init(drm_dev);
-+	if (ret)
-+		goto fail_pci;
-+
-+	ret = drm_dev_register(drm_dev, pent->driver_data);
-+	if (ret)
-+		goto fail_drm_dev_init;
-+
-+	return 0;
-+
-+fail_drm_dev_init:
-+	nouveau_drm_device_fini(drm_dev);
-+fail_pci:
-+	pci_disable_device(pdev);
-+fail_drm:
-+	drm_dev_put(drm_dev);
-+fail_nvkm:
-+	nvkm_device_del(&device);
-+	return ret;
-+}
-+
- void
- nouveau_drm_device_remove(struct drm_device *dev)
- {
-+	struct pci_dev *pdev = dev->pdev;
- 	struct nouveau_drm *drm = nouveau_drm(dev);
- 	struct nvkm_client *client;
- 	struct nvkm_device *device;
- 
-+	drm_dev_unregister(dev);
-+
- 	dev->irq_enabled = false;
- 	client = nvxx_client(&drm->client.base);
- 	device = nvkm_device_find(client->device);
--	drm_put_dev(dev);
- 
-+	nouveau_drm_device_fini(dev);
-+	pci_disable_device(pdev);
-+	drm_dev_put(dev);
- 	nvkm_device_del(&device);
- }
- 
-@@ -1020,8 +1051,6 @@ driver_stub = {
- 		DRIVER_GEM | DRIVER_MODESET | DRIVER_PRIME | DRIVER_RENDER |
- 		DRIVER_KMS_LEGACY_CONTEXT,
- 
--	.load = nouveau_drm_load,
--	.unload = nouveau_drm_unload,
- 	.open = nouveau_drm_open,
- 	.postclose = nouveau_drm_postclose,
- 	.lastclose = nouveau_vga_lastclose,
--------------------------------------------------------------------------------
-
-
-Git bisection log:
-
--------------------------------------------------------------------------------
-git bisect start
-# good: [84df9525b0c27f3ebc2ebb1864fa62a97fdedb7d] Linux 4.19
-git bisect good 84df9525b0c27f3ebc2ebb1864fa62a97fdedb7d
-# bad: [4c92b7b3080d8281941ae81c51cd62bb49bdc3d4] Add linux-next specific files for 20181206
-git bisect bad 4c92b7b3080d8281941ae81c51cd62bb49bdc3d4
-# bad: [c38239b4be1ac7e4bcf5bbd971353bae51525b8f] Merge branch 'parisc-4.20-2' of git://git.kernel.org/pub/scm/linux/kernel/git/deller/parisc-linux
-git bisect bad c38239b4be1ac7e4bcf5bbd971353bae51525b8f
-# good: [d49f8a52b15bf35db778035340d8a673149f9f93] Merge tag 'scsi-misc' of git://git.kernel.org/pub/scm/linux/kernel/git/jejb/scsi
-git bisect good d49f8a52b15bf35db778035340d8a673149f9f93
-# good: [ac747c0715f29c2be3848b719a1b7e65b07f7b21] Merge tag 'kbuild-v4.20' of git://git.kernel.org/pub/scm/linux/kernel/git/masahiroy/linux-kbuild
-git bisect good ac747c0715f29c2be3848b719a1b7e65b07f7b21
-# bad: [46972c03ab667dc298cad0c9db517fb9b1521b5f] Merge tag 'drm-misc-next-fixes-2018-10-10' of git://anongit.freedesktop.org/drm/drm-misc into drm-next
-git bisect bad 46972c03ab667dc298cad0c9db517fb9b1521b5f
-# good: [6ac99a328ee16d3f8cc253f1df62623cee3e9ea5] drm/exynos: mixer: Make plane alpha configurable
-git bisect good 6ac99a328ee16d3f8cc253f1df62623cee3e9ea5
-# good: [0957dc7097a3f462f6cedb45cf9b9785cc29e5bb] drm/amdgpu: revert "stop using gart_start as offset for the GTT domain"
-git bisect good 0957dc7097a3f462f6cedb45cf9b9785cc29e5bb
-# good: [2de0b0a158bf423208c3898522c8fa1c1078df48] Merge tag 'drm/tegra/for-4.20-rc1' of git://anongit.freedesktop.org/tegra/linux into drm-next
-git bisect good 2de0b0a158bf423208c3898522c8fa1c1078df48
-# good: [04b96b63c5640a305e30611def7a9c5fcd7a72cf] drm/msm/dpu: Remove unneeded checks in dpu_crtc.c
-git bisect good 04b96b63c5640a305e30611def7a9c5fcd7a72cf
-# good: [6952e3a1dffcb931cf8625aa01642b9afac2af61] Merge branch 'for-upstream/mali-dp' of git://linux-arm.org/linux-ld into drm-next
-git bisect good 6952e3a1dffcb931cf8625aa01642b9afac2af61
-# good: [62e681f7dcab746412dce22d4b75b32c5ea38cdb] Merge tag 'drm-msm-fixes-2018-10-09' of git://people.freedesktop.org/~robclark/linux into drm-next
-git bisect good 62e681f7dcab746412dce22d4b75b32c5ea38cdb
-# bad: [7e6191d4360a2df6cf2a2613dcb79680cb943df8] Merge branch 'linux-4.20' of git://github.com/skeggsb/linux into drm-next
-git bisect bad 7e6191d4360a2df6cf2a2613dcb79680cb943df8
-# good: [c4cee69a4497d9c6ad8868d63568b30e50cac9e9] drm/nouveau: Fix potential memory leak in nouveau_drm_load()
-git bisect good c4cee69a4497d9c6ad8868d63568b30e50cac9e9
-# bad: [a971558c298755d2c07bc5508c65d689471763c8] drm/nouveau/disp: keep track of high-speed state, program into clock
-git bisect bad a971558c298755d2c07bc5508c65d689471763c8
-# bad: [4126b99e744b7a29746e201e2be6644d2edf3c56] drm/nouveau/disp: add a way to configure scrambling/tmds for hdmi 2.0
-git bisect bad 4126b99e744b7a29746e201e2be6644d2edf3c56
-# bad: [cfea88a4d86632f28cf80be97079f131645b7869] drm/nouveau: Start using new drm_dev initialization helpers
-git bisect bad cfea88a4d86632f28cf80be97079f131645b7869
-# first bad commit: [cfea88a4d86632f28cf80be97079f131645b7869] drm/nouveau: Start using new drm_dev initialization helpers
--------------------------------------------------------------------------------
+dWhoaGhoaGhoaGhoaGgKZGlkbid0IHdlIGZpeCB0aGlzIHdlZWtzIGFnbz8gd2l0aCAiZHJtL25v
+dXZlYXU6IHRlZ3JhOiBDYWxsCm5vdXZlYXVfZHJtX2RldmljZV9pbml0KCkiCgoKT24gRnJpLCAy
+MDE4LTEyLTA3IGF0IDIzOjMxICswMDAwLCBHdWlsbGF1bWUgVHVja2VyIHdyb3RlOgo+IFBsZWFz
+ZSBmaW5kIGJlbG93IGFuIGF1dG9tYXRlZCBiaXNlY3Rpb24gcmVwb3J0IGZvciBhIGtlcm5lbCBP
+b3BzCj4gc2VlbiBkdXJpbmcgdGhlIGluaXRpYWxpc2F0aW9uIG9mIHRoZSBub3V2ZWF1IEdQVSBk
+cml2ZXIgb24KPiBqZXRzb24tdGsxLgo+IAo+IAo+IEFsbCB0aGUgTEFWQSB0ZXN0IGpvYnMgZm9y
+IHRoaXMgYmlzZWN0aW9uIGNhbiBiZSBmb3VuZCBoZXJlOgo+IAo+ICAgCj4gaHR0cDovL2xhdmEu
+YmF5bGlicmUuY29tOjEwMDgwL3NjaGVkdWxlci9hbGxqb2JzP2xlbmd0aD0yNSZzZWFyY2g9bGF2
+YS1iaXNlY3Qtc3RhZ2luZy03MzY2I3RhYmxlCj4gCj4gCj4gSGVyZSdzIHRoZSBiZWdpbm5pbmcg
+b2YgdGhlIE9vcHMgc3RhY2sgdHJhY2U6Cj4gCj4gWyAgICA3LjQ4NTM2MV0gWzAwMDAwMDY0XSAq
+cGdkPWY5ZTdiODM1Cj4gWyAgICA3LjQ4NTM3Ml0gSW50ZXJuYWwgZXJyb3I6IE9vcHM6IDE3IFsj
+MV0gU01QIEFSTQo+IFsgICAgNy40ODUzNzZdIE1vZHVsZXMgbGlua2VkIGluOiBzbmRfc29jX3Rl
+Z3JhX3J0NTY0MCgrKQo+IHNuZF9zb2NfdGVncmFfdXRpbHMgc25kX3NvY19ydDU2NDAoKykgc25k
+X3NvY19ybDYyMzEgc25kX3NvY190ZWdyYTMwX2FodWIKPiBzbmRfaGRhX3RlZ3JhIHNuZF9zb2Nf
+Y29yZSBzbmRfaGRhX2NvZGVjIHNuZF9oZGFfY29yZSBhYzk3X2J1cwo+IHNuZF9wY21fZG1hZW5n
+aW5lIHNuZF9wY20geGhjaV90ZWdyYSgrKSBzbmRfdGltZXIgc25kIHNvdW5kY29yZSBub3V2ZWF1
+KCspCj4gdHRtIHRlZ3JhX2RldmZyZXEgdGVncmFfd2R0Cj4gWyAgICA3LjU0MjIyN10gQ1BVOiAx
+IFBJRDogMTI4IENvbW06IHVkZXZkIE5vdCB0YWludGVkIDQuMjAuMC1yYzUtbmV4dC0KPiAyMDE4
+MTIwNiAjNDQKPiBbICAgIDcuNTQ5NjAzXSBIYXJkd2FyZSBuYW1lOiBOVklESUEgVGVncmEgU29D
+IChGbGF0dGVuZWQgRGV2aWNlIFRyZWUpCj4gWyAgICA3LjU1NTg1OV0gUEMgaXMgYXQgZHJtX3Bs
+YW5lX3JlZ2lzdGVyX2FsbCsweDE4LzB4NTAKPiBbICAgIDcuNTYwODk5XSBMUiBpcyBhdCBkcm1f
+bW9kZXNldF9yZWdpc3Rlcl9hbGwrMHhjLzB4NmMKPiAKPiAKPiBGdWxsIGxvZzoKPiAKPiAgIGh0
+dHA6Ly9sYXZhLmJheWxpYnJlLmNvbToxMDA4MC9zY2hlZHVsZXIvam9iLzY4NjI4I0w4MTYKPiAK
+PiAKPiBUaGUgYmlzZWN0aW9uIHdhcyBydW4gZnJvbSBuZXh0LTIwMTgxMjA2IGFzIHRoaXMgaXMg
+d2hlcmUgdGhlCj4gaXNzdWUgd2FzIGRpc2NvdmVyZWQgb24ga2VybmVsY2kub3JnIGJ1dCB0aGUg
+cGF0Y2ggaXQgZm91bmQgaGFzCj4gYWxyZWFkeSBiZWVuIG1lcmdlZCBpbiBtYWlubGluZS4KPiAK
+PiBIb3BlIHRoaXMgaGVscHMhCj4gCj4gR3VpbGxhdW1lCj4gCj4gCj4gLS0tLS0tLS0tLS04PC0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLTg8LS0tLS0tLS0tLS0KPiAKPiAKPiAqICogKiAqICogKiAq
+ICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKgo+ICog
+VGhpcyBhdXRvbWF0ZWQgYmlzZWN0aW9uIHJlcG9ydCB3YXMgc2VudCB0byB5b3Ugb24gdGhlIGJh
+c2lzICAqCj4gKiB0aGF0IHlvdSBtYXkgYmUgaW52b2x2ZWQgd2l0aCB0aGUgYnJlYWtpbmcgY29t
+bWl0IGl0IGhhcyAgICAgICoKPiAqIGZvdW5kLiAgTm8gbWFudWFsIGludmVzdGlnYXRpb24gaGFz
+IGJlZW4gZG9uZSB0byB2ZXJpZnkgaXQsICAgKgo+ICogYW5kIHRoZSByb290IGNhdXNlIG9mIHRo
+ZSBwcm9ibGVtIG1heSBiZSBzb21ld2hlcmUgZWxzZS4gICAgICAqCj4gKiBIb3BlIHRoaXMgaGVs
+cHMhICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICoKPiAqICog
+KiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAq
+ICogKgo+IAo+IEJpc2VjdGlvbiByZXN1bHQgZm9yIG5leHQvbWFzdGVyIChuZXh0LTIwMTgxMjA2
+KSBvbiBqZXRzb24tdGsxCj4gCj4gICBHb29kOiAgICAgICA4NGRmOTUyNWIwYzIgTGludXggNC4x
+OQo+ICAgQmFkOiAgICAgICAgNGM5MmI3YjMwODBkIEFkZCBsaW51eC1uZXh0IHNwZWNpZmljIGZp
+bGVzIGZvciAyMDE4MTIwNgo+ICAgRm91bmQ6ICAgICAgY2ZlYTg4YTRkODY2IGRybS9ub3V2ZWF1
+OiBTdGFydCB1c2luZyBuZXcgZHJtX2Rldgo+IGluaXRpYWxpemF0aW9uIGhlbHBlcnMKPiAKPiBD
+aGVja3M6Cj4gICByZXZlcnQ6ICAgICBQQVNTCj4gICB2ZXJpZnk6ICAgICBQQVNTCj4gCj4gUGFy
+YW1ldGVyczoKPiAgIFRyZWU6ICAgICAgIG5leHQKPiAgIFVSTDogICAgICAgIE5vbmUKPiAgIEJy
+YW5jaDogICAgIG1hc3Rlcgo+ICAgVGFyZ2V0OiAgICAgamV0c29uLXRrMQo+ICAgTGFiOiAgICAg
+ICAgbGFiLWJheWxpYnJlCj4gICBDb25maWc6ICAgICBtdWx0aV92N19kZWZjb25maWcKPiAgIFBs
+YW46ICAgICAgIGRtZXNnLW5vdXZlYXUKPiAKPiBCcmVha2luZyBjb21taXQgZm91bmQ6Cj4gCj4g
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLQo+IC0tLQo+IGNvbW1pdCBjZmVhODhhNGQ4NjYzMmYyOGNmODBi
+ZTk3MDc5ZjEzMTY0NWI3ODY5Cj4gQXV0aG9yOiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29t
+Pgo+IERhdGU6ICAgV2VkIEF1ZyAyMiAyMTo0MDowNyAyMDE4IC0wNDAwCj4gCj4gICAgIGRybS9u
+b3V2ZWF1OiBTdGFydCB1c2luZyBuZXcgZHJtX2RldiBpbml0aWFsaXphdGlvbiBoZWxwZXJzCj4g
+ICAgIAo+ICAgICBQZXIgdGhlIGRvY3VtZW50YXRpb24gaW4gZHJtX2dldF9wY2lfZGV2KCksIHRo
+aXMgZnVuY3Rpb24gaXMgZGVwcmVjYXRlZAo+ICAgICBhbmQgc2hvdWxkbid0IGJlIHVzZWQgYW55
+bW9yZS4gQXMgaXQgdHVybnMgb3V0LCB3ZSdyZSBnb2luZyB0byBuZWVkIHRvCj4gICAgIHN0b3Ag
+dXNpbmcgZHJtX2dldF9wY2lfZGV2KCkgYW55d2F5IGluIG9yZGVyIHRvIGFsbG93IHVzIHRvIHR1
+cm4gb2ZmIHRoZQo+ICAgICBjYXJkIGJlZm9yZSBmdWxsIHN5c3RlbSBzaHV0ZG93bnMsIG90aGVy
+d2lzZSB3ZSdsbCBoaXQgcmFjZSBjb25kaXRpb25zCj4gICAgIHdpdGggdXNlcnNwYWNlIHdoaWxl
+IHRyeWluZyB0byB0ZWFyIGRvd24gdGhlIGNhcmQgb24gc2h1dGRvd24uCj4gICAgIAo+ICAgICBT
+bywgc3RhcnQgdXNpbmcgZHJtX2Rldl9nZXQoKSBhbmQgZHJtX2Rldl9wdXQoKSwgYW5kIGp1c3Qg
+dHVybiBvdXIKPiAgICAgbG9hZC91bmxvYWQgY2FsbGJhY2tzIGludG8gb3BlbiBjb2RlZCBpbml0
+L2ZpbmkoKSBmdW5jdGlvbnMuCj4gICAgIAo+ICAgICBTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVs
+IDxseXVkZUByZWRoYXQuY29tPgo+ICAgICBDYzogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhh
+dC5jb20+Cj4gICAgIFNpZ25lZC1vZmYtYnk6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNv
+bT4KPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0u
+Ywo+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+IGluZGV4IDkwNTk1
+NjgwOWQyMS4uMmIyYmFmNmUwZTBkIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L25vdXZlYXVfZHJtLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2RybS5jCj4gQEAgLTQ1OCw3NSArNDU4LDggQEAgbm91dmVhdV9hY2NlbF9pbml0KHN0cnVjdCBu
+b3V2ZWF1X2RybSAqZHJtKQo+ICAJbm91dmVhdV9ib19tb3ZlX2luaXQoZHJtKTsKPiAgfQo+ICAK
+PiAtc3RhdGljIGludCBub3V2ZWF1X2RybV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRldiwKPiAt
+CQkJICAgICBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAqcGVudCkKPiAtewo+IC0Jc3RydWN0
+IG52a21fZGV2aWNlICpkZXZpY2U7Cj4gLQlzdHJ1Y3QgYXBlcnR1cmVzX3N0cnVjdCAqYXBlcjsK
+PiAtCWJvb2wgYm9vdCA9IGZhbHNlOwo+IC0JaW50IHJldDsKPiAtCj4gLQlpZiAodmdhX3N3aXRj
+aGVyb29fY2xpZW50X3Byb2JlX2RlZmVyKHBkZXYpKQo+IC0JCXJldHVybiAtRVBST0JFX0RFRkVS
+Owo+IC0KPiAtCS8qIFdlIG5lZWQgdG8gY2hlY2sgdGhhdCB0aGUgY2hpcHNldCBpcyBzdXBwb3J0
+ZWQgYmVmb3JlIGJvb3RpbmcKPiAtCSAqIGZiZGV2IG9mZiB0aGUgaGFyZHdhcmUsIGFzIHRoZXJl
+J3Mgbm8gd2F5IHRvIHB1dCBpdCBiYWNrLgo+IC0JICovCj4gLQlyZXQgPSBudmttX2RldmljZV9w
+Y2lfbmV3KHBkZXYsIE5VTEwsICJlcnJvciIsIHRydWUsIGZhbHNlLCAwLAo+ICZkZXZpY2UpOwo+
+IC0JaWYgKHJldCkKPiAtCQlyZXR1cm4gcmV0Owo+IC0KPiAtCW52a21fZGV2aWNlX2RlbCgmZGV2
+aWNlKTsKPiAtCj4gLQkvKiBSZW1vdmUgY29uZmxpY3RpbmcgZHJpdmVycyAodmVzYWZiLCBlZmlm
+YiBldGMpLiAqLwo+IC0JYXBlciA9IGFsbG9jX2FwZXJ0dXJlcygzKTsKPiAtCWlmICghYXBlcikK
+PiAtCQlyZXR1cm4gLUVOT01FTTsKPiAtCj4gLQlhcGVyLT5yYW5nZXNbMF0uYmFzZSA9IHBjaV9y
+ZXNvdXJjZV9zdGFydChwZGV2LCAxKTsKPiAtCWFwZXItPnJhbmdlc1swXS5zaXplID0gcGNpX3Jl
+c291cmNlX2xlbihwZGV2LCAxKTsKPiAtCWFwZXItPmNvdW50ID0gMTsKPiAtCj4gLQlpZiAocGNp
+X3Jlc291cmNlX2xlbihwZGV2LCAyKSkgewo+IC0JCWFwZXItPnJhbmdlc1thcGVyLT5jb3VudF0u
+YmFzZSA9IHBjaV9yZXNvdXJjZV9zdGFydChwZGV2LCAyKTsKPiAtCQlhcGVyLT5yYW5nZXNbYXBl
+ci0+Y291bnRdLnNpemUgPSBwY2lfcmVzb3VyY2VfbGVuKHBkZXYsIDIpOwo+IC0JCWFwZXItPmNv
+dW50Kys7Cj4gLQl9Cj4gLQo+IC0JaWYgKHBjaV9yZXNvdXJjZV9sZW4ocGRldiwgMykpIHsKPiAt
+CQlhcGVyLT5yYW5nZXNbYXBlci0+Y291bnRdLmJhc2UgPSBwY2lfcmVzb3VyY2Vfc3RhcnQocGRl
+diwgMyk7Cj4gLQkJYXBlci0+cmFuZ2VzW2FwZXItPmNvdW50XS5zaXplID0gcGNpX3Jlc291cmNl
+X2xlbihwZGV2LCAzKTsKPiAtCQlhcGVyLT5jb3VudCsrOwo+IC0JfQo+IC0KPiAtI2lmZGVmIENP
+TkZJR19YODYKPiAtCWJvb3QgPSBwZGV2LT5yZXNvdXJjZVtQQ0lfUk9NX1JFU09VUkNFXS5mbGFn
+cyAmIElPUkVTT1VSQ0VfUk9NX1NIQURPVzsKPiAtI2VuZGlmCj4gLQlpZiAobm91dmVhdV9tb2Rl
+c2V0ICE9IDIpCj4gLQkJZHJtX2ZiX2hlbHBlcl9yZW1vdmVfY29uZmxpY3RpbmdfZnJhbWVidWZm
+ZXJzKGFwZXIsCj4gIm5vdXZlYXVmYiIsIGJvb3QpOwo+IC0Ja2ZyZWUoYXBlcik7Cj4gLQo+IC0J
+cmV0ID0gbnZrbV9kZXZpY2VfcGNpX25ldyhwZGV2LCBub3V2ZWF1X2NvbmZpZywgbm91dmVhdV9k
+ZWJ1ZywKPiAtCQkJCSAgdHJ1ZSwgdHJ1ZSwgfjBVTEwsICZkZXZpY2UpOwo+IC0JaWYgKHJldCkK
+PiAtCQlyZXR1cm4gcmV0Owo+IC0KPiAtCXBjaV9zZXRfbWFzdGVyKHBkZXYpOwo+IC0KPiAtCWlm
+IChub3V2ZWF1X2F0b21pYykKPiAtCQlkcml2ZXJfcGNpLmRyaXZlcl9mZWF0dXJlcyB8PSBEUklW
+RVJfQVRPTUlDOwo+IC0KPiAtCXJldCA9IGRybV9nZXRfcGNpX2RldihwZGV2LCBwZW50LCAmZHJp
+dmVyX3BjaSk7Cj4gLQlpZiAocmV0KSB7Cj4gLQkJbnZrbV9kZXZpY2VfZGVsKCZkZXZpY2UpOwo+
+IC0JCXJldHVybiByZXQ7Cj4gLQl9Cj4gLQo+IC0JcmV0dXJuIDA7Cj4gLX0KPiAtCj4gIHN0YXRp
+YyBpbnQKPiAtbm91dmVhdV9kcm1fbG9hZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB1bnNpZ25l
+ZCBsb25nIGZsYWdzKQo+ICtub3V2ZWF1X2RybV9kZXZpY2VfaW5pdChzdHJ1Y3QgZHJtX2Rldmlj
+ZSAqZGV2KQo+ICB7Cj4gIAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybTsKPiAgCWludCByZXQ7Cj4g
+QEAgLTYxMyw3ICs1NDYsNyBAQCBub3V2ZWF1X2RybV9sb2FkKHN0cnVjdCBkcm1fZGV2aWNlICpk
+ZXYsIHVuc2lnbmVkIGxvbmcKPiBmbGFncykKPiAgfQo+ICAKPiAgc3RhdGljIHZvaWQKPiAtbm91
+dmVhdV9kcm1fdW5sb2FkKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCj4gK25vdXZlYXVfZHJtX2Rl
+dmljZV9maW5pKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCj4gIHsKPiAgCXN0cnVjdCBub3V2ZWF1
+X2RybSAqZHJtID0gbm91dmVhdV9kcm0oZGV2KTsKPiAgCj4gQEAgLTY0MiwxOCArNTc1LDExNiBA
+QCBub3V2ZWF1X2RybV91bmxvYWQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKPiAgCWtmcmVlKGRy
+bSk7Cj4gIH0KPiAgCj4gK3N0YXRpYyBpbnQgbm91dmVhdV9kcm1fcHJvYmUoc3RydWN0IHBjaV9k
+ZXYgKnBkZXYsCj4gKwkJCSAgICAgY29uc3Qgc3RydWN0IHBjaV9kZXZpY2VfaWQgKnBlbnQpCj4g
+K3sKPiArCXN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlOwo+ICsJc3RydWN0IGRybV9kZXZpY2Ug
+KmRybV9kZXY7Cj4gKwlzdHJ1Y3QgYXBlcnR1cmVzX3N0cnVjdCAqYXBlcjsKPiArCWJvb2wgYm9v
+dCA9IGZhbHNlOwo+ICsJaW50IHJldDsKPiArCj4gKwlpZiAodmdhX3N3aXRjaGVyb29fY2xpZW50
+X3Byb2JlX2RlZmVyKHBkZXYpKQo+ICsJCXJldHVybiAtRVBST0JFX0RFRkVSOwo+ICsKPiArCS8q
+IFdlIG5lZWQgdG8gY2hlY2sgdGhhdCB0aGUgY2hpcHNldCBpcyBzdXBwb3J0ZWQgYmVmb3JlIGJv
+b3RpbmcKPiArCSAqIGZiZGV2IG9mZiB0aGUgaGFyZHdhcmUsIGFzIHRoZXJlJ3Mgbm8gd2F5IHRv
+IHB1dCBpdCBiYWNrLgo+ICsJICovCj4gKwlyZXQgPSBudmttX2RldmljZV9wY2lfbmV3KHBkZXYs
+IE5VTEwsICJlcnJvciIsIHRydWUsIGZhbHNlLCAwLAo+ICZkZXZpY2UpOwo+ICsJaWYgKHJldCkK
+PiArCQlyZXR1cm4gcmV0Owo+ICsKPiArCW52a21fZGV2aWNlX2RlbCgmZGV2aWNlKTsKPiArCj4g
+KwkvKiBSZW1vdmUgY29uZmxpY3RpbmcgZHJpdmVycyAodmVzYWZiLCBlZmlmYiBldGMpLiAqLwo+
+ICsJYXBlciA9IGFsbG9jX2FwZXJ0dXJlcygzKTsKPiArCWlmICghYXBlcikKPiArCQlyZXR1cm4g
+LUVOT01FTTsKPiArCj4gKwlhcGVyLT5yYW5nZXNbMF0uYmFzZSA9IHBjaV9yZXNvdXJjZV9zdGFy
+dChwZGV2LCAxKTsKPiArCWFwZXItPnJhbmdlc1swXS5zaXplID0gcGNpX3Jlc291cmNlX2xlbihw
+ZGV2LCAxKTsKPiArCWFwZXItPmNvdW50ID0gMTsKPiArCj4gKwlpZiAocGNpX3Jlc291cmNlX2xl
+bihwZGV2LCAyKSkgewo+ICsJCWFwZXItPnJhbmdlc1thcGVyLT5jb3VudF0uYmFzZSA9IHBjaV9y
+ZXNvdXJjZV9zdGFydChwZGV2LCAyKTsKPiArCQlhcGVyLT5yYW5nZXNbYXBlci0+Y291bnRdLnNp
+emUgPSBwY2lfcmVzb3VyY2VfbGVuKHBkZXYsIDIpOwo+ICsJCWFwZXItPmNvdW50Kys7Cj4gKwl9
+Cj4gKwo+ICsJaWYgKHBjaV9yZXNvdXJjZV9sZW4ocGRldiwgMykpIHsKPiArCQlhcGVyLT5yYW5n
+ZXNbYXBlci0+Y291bnRdLmJhc2UgPSBwY2lfcmVzb3VyY2Vfc3RhcnQocGRldiwgMyk7Cj4gKwkJ
+YXBlci0+cmFuZ2VzW2FwZXItPmNvdW50XS5zaXplID0gcGNpX3Jlc291cmNlX2xlbihwZGV2LCAz
+KTsKPiArCQlhcGVyLT5jb3VudCsrOwo+ICsJfQo+ICsKPiArI2lmZGVmIENPTkZJR19YODYKPiAr
+CWJvb3QgPSBwZGV2LT5yZXNvdXJjZVtQQ0lfUk9NX1JFU09VUkNFXS5mbGFncyAmIElPUkVTT1VS
+Q0VfUk9NX1NIQURPVzsKPiArI2VuZGlmCj4gKwlpZiAobm91dmVhdV9tb2Rlc2V0ICE9IDIpCj4g
+KwkJZHJtX2ZiX2hlbHBlcl9yZW1vdmVfY29uZmxpY3RpbmdfZnJhbWVidWZmZXJzKGFwZXIsCj4g
+Im5vdXZlYXVmYiIsIGJvb3QpOwo+ICsJa2ZyZWUoYXBlcik7Cj4gKwo+ICsJcmV0ID0gbnZrbV9k
+ZXZpY2VfcGNpX25ldyhwZGV2LCBub3V2ZWF1X2NvbmZpZywgbm91dmVhdV9kZWJ1ZywKPiArCQkJ
+CSAgdHJ1ZSwgdHJ1ZSwgfjBVTEwsICZkZXZpY2UpOwo+ICsJaWYgKHJldCkKPiArCQlyZXR1cm4g
+cmV0Owo+ICsKPiArCXBjaV9zZXRfbWFzdGVyKHBkZXYpOwo+ICsKPiArCWlmIChub3V2ZWF1X2F0
+b21pYykKPiArCQlkcml2ZXJfcGNpLmRyaXZlcl9mZWF0dXJlcyB8PSBEUklWRVJfQVRPTUlDOwo+
+ICsKPiArCWRybV9kZXYgPSBkcm1fZGV2X2FsbG9jKCZkcml2ZXJfcGNpLCAmcGRldi0+ZGV2KTsK
+PiArCWlmIChJU19FUlIoZHJtX2RldikpIHsKPiArCQlyZXQgPSBQVFJfRVJSKGRybV9kZXYpOwo+
+ICsJCWdvdG8gZmFpbF9udmttOwo+ICsJfQo+ICsKPiArCXJldCA9IHBjaV9lbmFibGVfZGV2aWNl
+KHBkZXYpOwo+ICsJaWYgKHJldCkKPiArCQlnb3RvIGZhaWxfZHJtOwo+ICsKPiArCWRybV9kZXYt
+PnBkZXYgPSBwZGV2Owo+ICsJcGNpX3NldF9kcnZkYXRhKHBkZXYsIGRybV9kZXYpOwo+ICsKPiAr
+CXJldCA9IG5vdXZlYXVfZHJtX2RldmljZV9pbml0KGRybV9kZXYpOwo+ICsJaWYgKHJldCkKPiAr
+CQlnb3RvIGZhaWxfcGNpOwo+ICsKPiArCXJldCA9IGRybV9kZXZfcmVnaXN0ZXIoZHJtX2Rldiwg
+cGVudC0+ZHJpdmVyX2RhdGEpOwo+ICsJaWYgKHJldCkKPiArCQlnb3RvIGZhaWxfZHJtX2Rldl9p
+bml0Owo+ICsKPiArCXJldHVybiAwOwo+ICsKPiArZmFpbF9kcm1fZGV2X2luaXQ6Cj4gKwlub3V2
+ZWF1X2RybV9kZXZpY2VfZmluaShkcm1fZGV2KTsKPiArZmFpbF9wY2k6Cj4gKwlwY2lfZGlzYWJs
+ZV9kZXZpY2UocGRldik7Cj4gK2ZhaWxfZHJtOgo+ICsJZHJtX2Rldl9wdXQoZHJtX2Rldik7Cj4g
+K2ZhaWxfbnZrbToKPiArCW52a21fZGV2aWNlX2RlbCgmZGV2aWNlKTsKPiArCXJldHVybiByZXQ7
+Cj4gK30KPiArCj4gIHZvaWQKPiAgbm91dmVhdV9kcm1fZGV2aWNlX3JlbW92ZShzdHJ1Y3QgZHJt
+X2RldmljZSAqZGV2KQo+ICB7Cj4gKwlzdHJ1Y3QgcGNpX2RldiAqcGRldiA9IGRldi0+cGRldjsK
+PiAgCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oZGV2KTsKPiAgCXN0cnVj
+dCBudmttX2NsaWVudCAqY2xpZW50Owo+ICAJc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2U7Cj4g
+IAo+ICsJZHJtX2Rldl91bnJlZ2lzdGVyKGRldik7Cj4gKwo+ICAJZGV2LT5pcnFfZW5hYmxlZCA9
+IGZhbHNlOwo+ICAJY2xpZW50ID0gbnZ4eF9jbGllbnQoJmRybS0+Y2xpZW50LmJhc2UpOwo+ICAJ
+ZGV2aWNlID0gbnZrbV9kZXZpY2VfZmluZChjbGllbnQtPmRldmljZSk7Cj4gLQlkcm1fcHV0X2Rl
+dihkZXYpOwo+ICAKPiArCW5vdXZlYXVfZHJtX2RldmljZV9maW5pKGRldik7Cj4gKwlwY2lfZGlz
+YWJsZV9kZXZpY2UocGRldik7Cj4gKwlkcm1fZGV2X3B1dChkZXYpOwo+ICAJbnZrbV9kZXZpY2Vf
+ZGVsKCZkZXZpY2UpOwo+ICB9Cj4gIAo+IEBAIC0xMDIwLDggKzEwNTEsNiBAQCBkcml2ZXJfc3R1
+YiA9IHsKPiAgCQlEUklWRVJfR0VNIHwgRFJJVkVSX01PREVTRVQgfCBEUklWRVJfUFJJTUUgfCBE
+UklWRVJfUkVOREVSIHwKPiAgCQlEUklWRVJfS01TX0xFR0FDWV9DT05URVhULAo+ICAKPiAtCS5s
+b2FkID0gbm91dmVhdV9kcm1fbG9hZCwKPiAtCS51bmxvYWQgPSBub3V2ZWF1X2RybV91bmxvYWQs
+Cj4gIAkub3BlbiA9IG5vdXZlYXVfZHJtX29wZW4sCj4gIAkucG9zdGNsb3NlID0gbm91dmVhdV9k
+cm1fcG9zdGNsb3NlLAo+ICAJLmxhc3RjbG9zZSA9IG5vdXZlYXVfdmdhX2xhc3RjbG9zZSwKPiAt
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tCj4gLS0tCj4gCj4gCj4gR2l0IGJpc2VjdGlvbiBsb2c6Cj4gCj4g
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLQo+IC0tLQo+IGdpdCBiaXNlY3Qgc3RhcnQKPiAjIGdvb2Q6IFs4
+NGRmOTUyNWIwYzI3ZjNlYmMyZWJiMTg2NGZhNjJhOTdmZGVkYjdkXSBMaW51eCA0LjE5Cj4gZ2l0
+IGJpc2VjdCBnb29kIDg0ZGY5NTI1YjBjMjdmM2ViYzJlYmIxODY0ZmE2MmE5N2ZkZWRiN2QKPiAj
+IGJhZDogWzRjOTJiN2IzMDgwZDgyODE5NDFhZTgxYzUxY2Q2MmJiNDliZGMzZDRdIEFkZCBsaW51
+eC1uZXh0IHNwZWNpZmljCj4gZmlsZXMgZm9yIDIwMTgxMjA2Cj4gZ2l0IGJpc2VjdCBiYWQgNGM5
+MmI3YjMwODBkODI4MTk0MWFlODFjNTFjZDYyYmI0OWJkYzNkNAo+ICMgYmFkOiBbYzM4MjM5YjRi
+ZTFhYzdlNGJjZjViYmQ5NzEzNTNiYWU1MTUyNWI4Zl0gTWVyZ2UgYnJhbmNoICdwYXJpc2MtNC4y
+MC0KPiAyJyBvZiBnaXQ6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQv
+ZGVsbGVyL3BhcmlzYy1saW51eAo+IGdpdCBiaXNlY3QgYmFkIGMzODIzOWI0YmUxYWM3ZTRiY2Y1
+YmJkOTcxMzUzYmFlNTE1MjViOGYKPiAjIGdvb2Q6IFtkNDlmOGE1MmIxNWJmMzVkYjc3ODAzNTM0
+MGQ4YTY3MzE0OWY5ZjkzXSBNZXJnZSB0YWcgJ3Njc2ktbWlzYycgb2YKPiBnaXQ6Ly9naXQua2Vy
+bmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvamVqYi9zY3NpCj4gZ2l0IGJpc2VjdCBn
+b29kIGQ0OWY4YTUyYjE1YmYzNWRiNzc4MDM1MzQwZDhhNjczMTQ5ZjlmOTMKPiAjIGdvb2Q6IFth
+Yzc0N2MwNzE1ZjI5YzJiZTM4NDhiNzE5YTFiN2U2NWIwN2Y3YjIxXSBNZXJnZSB0YWcgJ2tidWls
+ZC12NC4yMCcKPiBvZiBnaXQ6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9n
+aXQvbWFzYWhpcm95L2xpbnV4LWtidWlsZAo+IGdpdCBiaXNlY3QgZ29vZCBhYzc0N2MwNzE1ZjI5
+YzJiZTM4NDhiNzE5YTFiN2U2NWIwN2Y3YjIxCj4gIyBiYWQ6IFs0Njk3MmMwM2FiNjY3ZGMyOThj
+YWQwYzlkYjUxN2ZiOWIxNTIxYjVmXSBNZXJnZSB0YWcgJ2RybS1taXNjLW5leHQtCj4gZml4ZXMt
+MjAxOC0xMC0xMCcgb2YgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZHJtL2RybS1taXNj
+IGludG8gZHJtLQo+IG5leHQKPiBnaXQgYmlzZWN0IGJhZCA0Njk3MmMwM2FiNjY3ZGMyOThjYWQw
+YzlkYjUxN2ZiOWIxNTIxYjVmCj4gIyBnb29kOiBbNmFjOTlhMzI4ZWUxNmQzZjhjYzI1M2YxZGY2
+MjYyM2NlZTNlOWVhNV0gZHJtL2V4eW5vczogbWl4ZXI6IE1ha2UKPiBwbGFuZSBhbHBoYSBjb25m
+aWd1cmFibGUKPiBnaXQgYmlzZWN0IGdvb2QgNmFjOTlhMzI4ZWUxNmQzZjhjYzI1M2YxZGY2MjYy
+M2NlZTNlOWVhNQo+ICMgZ29vZDogWzA5NTdkYzcwOTdhM2Y0NjJmNmNlZGI0NWNmOWI5Nzg1Y2My
+OWU1YmJdIGRybS9hbWRncHU6IHJldmVydCAic3RvcAo+IHVzaW5nIGdhcnRfc3RhcnQgYXMgb2Zm
+c2V0IGZvciB0aGUgR1RUIGRvbWFpbiIKPiBnaXQgYmlzZWN0IGdvb2QgMDk1N2RjNzA5N2EzZjQ2
+MmY2Y2VkYjQ1Y2Y5Yjk3ODVjYzI5ZTViYgo+ICMgZ29vZDogWzJkZTBiMGExNThiZjQyMzIwOGMz
+ODk4NTIyYzhmYTFjMTA3OGRmNDhdIE1lcmdlIHRhZyAnZHJtL3RlZ3JhL2Zvci0KPiA0LjIwLXJj
+MScgb2YgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvdGVncmEvbGludXggaW50byBkcm0t
+bmV4dAo+IGdpdCBiaXNlY3QgZ29vZCAyZGUwYjBhMTU4YmY0MjMyMDhjMzg5ODUyMmM4ZmExYzEw
+NzhkZjQ4Cj4gIyBnb29kOiBbMDRiOTZiNjNjNTY0MGEzMDVlMzA2MTFkZWY3YTljNWZjZDdhNzJj
+Zl0gZHJtL21zbS9kcHU6IFJlbW92ZQo+IHVubmVlZGVkIGNoZWNrcyBpbiBkcHVfY3J0Yy5jCj4g
+Z2l0IGJpc2VjdCBnb29kIDA0Yjk2YjYzYzU2NDBhMzA1ZTMwNjExZGVmN2E5YzVmY2Q3YTcyY2YK
+PiAjIGdvb2Q6IFs2OTUyZTNhMWRmZmNiOTMxY2Y4NjI1YWEwMTY0MmI5YWZhYzJhZjYxXSBNZXJn
+ZSBicmFuY2ggJ2Zvci0KPiB1cHN0cmVhbS9tYWxpLWRwJyBvZiBnaXQ6Ly9saW51eC1hcm0ub3Jn
+L2xpbnV4LWxkIGludG8gZHJtLW5leHQKPiBnaXQgYmlzZWN0IGdvb2QgNjk1MmUzYTFkZmZjYjkz
+MWNmODYyNWFhMDE2NDJiOWFmYWMyYWY2MQo+ICMgZ29vZDogWzYyZTY4MWY3ZGNhYjc0NjQxMmRj
+ZTIyZDRiNzViMzJjNWVhMzhjZGJdIE1lcmdlIHRhZyAnZHJtLW1zbS1maXhlcy0KPiAyMDE4LTEw
+LTA5JyBvZiBnaXQ6Ly9wZW9wbGUuZnJlZWRlc2t0b3Aub3JnL35yb2JjbGFyay9saW51eCBpbnRv
+IGRybS1uZXh0Cj4gZ2l0IGJpc2VjdCBnb29kIDYyZTY4MWY3ZGNhYjc0NjQxMmRjZTIyZDRiNzVi
+MzJjNWVhMzhjZGIKPiAjIGJhZDogWzdlNjE5MWQ0MzYwYTJkZjZjZjJhMjYxM2RjYjc5NjgwY2I5
+NDNkZjhdIE1lcmdlIGJyYW5jaCAnbGludXgtNC4yMCcKPiBvZiBnaXQ6Ly9naXRodWIuY29tL3Nr
+ZWdnc2IvbGludXggaW50byBkcm0tbmV4dAo+IGdpdCBiaXNlY3QgYmFkIDdlNjE5MWQ0MzYwYTJk
+ZjZjZjJhMjYxM2RjYjc5NjgwY2I5NDNkZjgKPiAjIGdvb2Q6IFtjNGNlZTY5YTQ0OTdkOWM2YWQ4
+ODY4ZDYzNTY4YjMwZTUwY2FjOWU5XSBkcm0vbm91dmVhdTogRml4Cj4gcG90ZW50aWFsIG1lbW9y
+eSBsZWFrIGluIG5vdXZlYXVfZHJtX2xvYWQoKQo+IGdpdCBiaXNlY3QgZ29vZCBjNGNlZTY5YTQ0
+OTdkOWM2YWQ4ODY4ZDYzNTY4YjMwZTUwY2FjOWU5Cj4gIyBiYWQ6IFthOTcxNTU4YzI5ODc1NWQy
+YzA3YmM1NTA4YzY1ZDY4OTQ3MTc2M2M4XSBkcm0vbm91dmVhdS9kaXNwOiBrZWVwCj4gdHJhY2sg
+b2YgaGlnaC1zcGVlZCBzdGF0ZSwgcHJvZ3JhbSBpbnRvIGNsb2NrCj4gZ2l0IGJpc2VjdCBiYWQg
+YTk3MTU1OGMyOTg3NTVkMmMwN2JjNTUwOGM2NWQ2ODk0NzE3NjNjOAo+ICMgYmFkOiBbNDEyNmI5
+OWU3NDRiN2EyOTc0NmUyMDFlMmJlNjY0NGQyZWRmM2M1Nl0gZHJtL25vdXZlYXUvZGlzcDogYWRk
+IGEKPiB3YXkgdG8gY29uZmlndXJlIHNjcmFtYmxpbmcvdG1kcyBmb3IgaGRtaSAyLjAKPiBnaXQg
+YmlzZWN0IGJhZCA0MTI2Yjk5ZTc0NGI3YTI5NzQ2ZTIwMWUyYmU2NjQ0ZDJlZGYzYzU2Cj4gIyBi
+YWQ6IFtjZmVhODhhNGQ4NjYzMmYyOGNmODBiZTk3MDc5ZjEzMTY0NWI3ODY5XSBkcm0vbm91dmVh
+dTogU3RhcnQgdXNpbmcKPiBuZXcgZHJtX2RldiBpbml0aWFsaXphdGlvbiBoZWxwZXJzCj4gZ2l0
+IGJpc2VjdCBiYWQgY2ZlYTg4YTRkODY2MzJmMjhjZjgwYmU5NzA3OWYxMzE2NDViNzg2OQo+ICMg
+Zmlyc3QgYmFkIGNvbW1pdDogW2NmZWE4OGE0ZDg2NjMyZjI4Y2Y4MGJlOTcwNzlmMTMxNjQ1Yjc4
+NjldIGRybS9ub3V2ZWF1Ogo+IFN0YXJ0IHVzaW5nIG5ldyBkcm1fZGV2IGluaXRpYWxpemF0aW9u
+IGhlbHBlcnMKPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4gLS0tCi0tIApDaGVlcnMsCglMeXVkZSBQ
+YXVsCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
