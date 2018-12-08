@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108980] GF117: MMIO write of 0000001f FAULT at
- 6013d4 [ IBUS ]
-Date: Sat, 08 Dec 2018 18:19:34 +0000
-Message-ID: <bug-108980-8800-HHGu4pvahs@http.bugs.freedesktop.org/>
-References: <bug-108980-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93629] [NVE6] complete system freeze,
+ PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
+Date: Sat, 08 Dec 2018 22:02:27 +0000
+Message-ID: <bug-93629-8800-ViZfLNRrCS@http.bugs.freedesktop.org/>
+References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0278770435=="
+Content-Type: multipart/mixed; boundary="===============0273517777=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,53 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0278770435==
-Content-Type: multipart/alternative; boundary="15442931740.7777.29052"
+--===============0273517777==
+Content-Type: multipart/alternative; boundary="15443065471.5b06E8a.20248"
 Content-Transfer-Encoding: 7bit
 
 
---15442931740.7777.29052
-Date: Sat, 8 Dec 2018 18:19:34 +0000
+--15443065471.5b06E8a.20248
+Date: Sat, 8 Dec 2018 22:02:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108980
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Could you include your vbios (easiest to grab it from
-/sys/kernel/debug/dri/*/vbios.rom)?
+--- Comment #46 from Franco Forza <ucx-hi6Y0CQ0nG0@public.gmane.org> ---
+I've tested the 'NvGrUseFw=3D1' kernel cmdline argument (as stated in old
+comments from 2016 above) but it doesn't help anymore (the 4 requested fw f=
+iles
+by nouveau during early boot were served properly and the errors about miss=
+ing
+firmware files vanished as well).
 
-Also a boot with nouveau.debug=3Dtrace would help narrow down the source, e=
-ven if
-it's not the bios init logic.
+The system freezes maybe once per week. Mostly hard crash with two keyboard
+leds blinking and hard reset after some time. Sometimes the kernel survives=
+ and
+dmesg can be read out. It shows this:
+[ 7896.354441] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[ 7896.354452] nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recovery
+[ 7896.354458] nouveau 0000:01:00.0: fifo: channel 2: killed
+[ 7896.354464] nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
+[ 7896.354879] nouveau 0000:01:00.0: systemd-logind[473]: channel 2 killed!
+
+If there's something we can do to help debug this let me know.
+
+Arch Linux 4.19.4
+xf86-video-nouveau 1.0.15 modesetting
+mesa 18.2.6
+xorg-server 1.20.3
+Nvidia GTX770 (NVE4/GK104/Kepler)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15442931740.7777.29052
-Date: Sat, 8 Dec 2018 18:19:34 +0000
+--15443065471.5b06E8a.20248
+Date: Sat, 8 Dec 2018 22:02:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,24 +83,45 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980#c2">Commen=
-t # 2</a>
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629#c46">Commen=
+t # 46</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980">bug 10898=
-0</a>
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+ucx&#64;gmx.net" title=3D"Franco Forza &lt;ucx&#64;gmx.net&gt;"> <span clas=
+s=3D"fn">Franco Forza</span></a>
 </span></b>
-        <pre>Could you include your vbios (easiest to grab it from
-/sys/kernel/debug/dri/*/vbios.rom)?
+        <pre>I've tested the 'NvGrUseFw=3D1' kernel cmdline argument (as st=
+ated in old
+comments from 2016 above) but it doesn't help anymore (the 4 requested fw f=
+iles
+by nouveau during early boot were served properly and the errors about miss=
+ing
+firmware files vanished as well).
 
-Also a boot with nouveau.debug=3Dtrace would help narrow down the source, e=
-ven if
-it's not the bios init logic.</pre>
+The system freezes maybe once per week. Mostly hard crash with two keyboard
+leds blinking and hard reset after some time. Sometimes the kernel survives=
+ and
+dmesg can be read out. It shows this:
+[ 7896.354441] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[ 7896.354452] nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recovery
+[ 7896.354458] nouveau 0000:01:00.0: fifo: channel 2: killed
+[ 7896.354464] nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
+[ 7896.354879] nouveau 0000:01:00.0: systemd-logind[473]: channel 2 killed!
+
+If there's something we can do to help debug this let me know.
+
+Arch Linux 4.19.4
+xf86-video-nouveau 1.0.15 modesetting
+mesa 18.2.6
+xorg-server 1.20.3
+Nvidia GTX770 (NVE4/GK104/Kepler)</pre>
         </div>
       </p>
 
@@ -96,9 +135,9 @@ it's not the bios init logic.</pre>
     </body>
 </html>=
 
---15442931740.7777.29052--
+--15443065471.5b06E8a.20248--
 
---===============0278770435==
+--===============0273517777==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +147,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0278770435==--
+--===============0273517777==--
