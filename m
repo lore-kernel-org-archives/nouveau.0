@@ -1,14 +1,11 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: next/master boot bisection: Oops in nouveau driver on
- jetson-tk1
-Date: Fri, 07 Dec 2018 19:08:40 -0500
-Message-ID: <95255117123da3702da585491d2fdd74890937c0.camel@redhat.com>
-References: <89fa50d0-945f-d1ed-ae55-ee947187f209@collabora.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108980] New: GF117: MMIO write of 0000001f FAULT at
+ 6013d4 [ IBUS ]
+Date: Sat, 08 Dec 2018 14:49:13 +0000
+Message-ID: <bug-108980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0352703529=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <89fa50d0-945f-d1ed-ae55-ee947187f209-ZGY8ohtN/8qB+jHODAdFcQ@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,242 +15,416 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Guillaume Tucker <guillaume.tucker-ZGY8ohtN/8qB+jHODAdFcQ@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Mark Brown <broonie-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Kevin Hilman <khilman-rdvid1DuHRBWk0Htik3J/w@public.gmane.org>, kernel-ZGY8ohtN/8qB+jHODAdFcQ@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-dWhoaGhoaGhoaGhoaGgKZGlkbid0IHdlIGZpeCB0aGlzIHdlZWtzIGFnbz8gd2l0aCAiZHJtL25v
-dXZlYXU6IHRlZ3JhOiBDYWxsCm5vdXZlYXVfZHJtX2RldmljZV9pbml0KCkiCgoKT24gRnJpLCAy
-MDE4LTEyLTA3IGF0IDIzOjMxICswMDAwLCBHdWlsbGF1bWUgVHVja2VyIHdyb3RlOgo+IFBsZWFz
-ZSBmaW5kIGJlbG93IGFuIGF1dG9tYXRlZCBiaXNlY3Rpb24gcmVwb3J0IGZvciBhIGtlcm5lbCBP
-b3BzCj4gc2VlbiBkdXJpbmcgdGhlIGluaXRpYWxpc2F0aW9uIG9mIHRoZSBub3V2ZWF1IEdQVSBk
-cml2ZXIgb24KPiBqZXRzb24tdGsxLgo+IAo+IAo+IEFsbCB0aGUgTEFWQSB0ZXN0IGpvYnMgZm9y
-IHRoaXMgYmlzZWN0aW9uIGNhbiBiZSBmb3VuZCBoZXJlOgo+IAo+ICAgCj4gaHR0cDovL2xhdmEu
-YmF5bGlicmUuY29tOjEwMDgwL3NjaGVkdWxlci9hbGxqb2JzP2xlbmd0aD0yNSZzZWFyY2g9bGF2
-YS1iaXNlY3Qtc3RhZ2luZy03MzY2I3RhYmxlCj4gCj4gCj4gSGVyZSdzIHRoZSBiZWdpbm5pbmcg
-b2YgdGhlIE9vcHMgc3RhY2sgdHJhY2U6Cj4gCj4gWyAgICA3LjQ4NTM2MV0gWzAwMDAwMDY0XSAq
-cGdkPWY5ZTdiODM1Cj4gWyAgICA3LjQ4NTM3Ml0gSW50ZXJuYWwgZXJyb3I6IE9vcHM6IDE3IFsj
-MV0gU01QIEFSTQo+IFsgICAgNy40ODUzNzZdIE1vZHVsZXMgbGlua2VkIGluOiBzbmRfc29jX3Rl
-Z3JhX3J0NTY0MCgrKQo+IHNuZF9zb2NfdGVncmFfdXRpbHMgc25kX3NvY19ydDU2NDAoKykgc25k
-X3NvY19ybDYyMzEgc25kX3NvY190ZWdyYTMwX2FodWIKPiBzbmRfaGRhX3RlZ3JhIHNuZF9zb2Nf
-Y29yZSBzbmRfaGRhX2NvZGVjIHNuZF9oZGFfY29yZSBhYzk3X2J1cwo+IHNuZF9wY21fZG1hZW5n
-aW5lIHNuZF9wY20geGhjaV90ZWdyYSgrKSBzbmRfdGltZXIgc25kIHNvdW5kY29yZSBub3V2ZWF1
-KCspCj4gdHRtIHRlZ3JhX2RldmZyZXEgdGVncmFfd2R0Cj4gWyAgICA3LjU0MjIyN10gQ1BVOiAx
-IFBJRDogMTI4IENvbW06IHVkZXZkIE5vdCB0YWludGVkIDQuMjAuMC1yYzUtbmV4dC0KPiAyMDE4
-MTIwNiAjNDQKPiBbICAgIDcuNTQ5NjAzXSBIYXJkd2FyZSBuYW1lOiBOVklESUEgVGVncmEgU29D
-IChGbGF0dGVuZWQgRGV2aWNlIFRyZWUpCj4gWyAgICA3LjU1NTg1OV0gUEMgaXMgYXQgZHJtX3Bs
-YW5lX3JlZ2lzdGVyX2FsbCsweDE4LzB4NTAKPiBbICAgIDcuNTYwODk5XSBMUiBpcyBhdCBkcm1f
-bW9kZXNldF9yZWdpc3Rlcl9hbGwrMHhjLzB4NmMKPiAKPiAKPiBGdWxsIGxvZzoKPiAKPiAgIGh0
-dHA6Ly9sYXZhLmJheWxpYnJlLmNvbToxMDA4MC9zY2hlZHVsZXIvam9iLzY4NjI4I0w4MTYKPiAK
-PiAKPiBUaGUgYmlzZWN0aW9uIHdhcyBydW4gZnJvbSBuZXh0LTIwMTgxMjA2IGFzIHRoaXMgaXMg
-d2hlcmUgdGhlCj4gaXNzdWUgd2FzIGRpc2NvdmVyZWQgb24ga2VybmVsY2kub3JnIGJ1dCB0aGUg
-cGF0Y2ggaXQgZm91bmQgaGFzCj4gYWxyZWFkeSBiZWVuIG1lcmdlZCBpbiBtYWlubGluZS4KPiAK
-PiBIb3BlIHRoaXMgaGVscHMhCj4gCj4gR3VpbGxhdW1lCj4gCj4gCj4gLS0tLS0tLS0tLS04PC0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLTg8LS0tLS0tLS0tLS0KPiAKPiAKPiAqICogKiAqICogKiAq
-ICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKgo+ICog
-VGhpcyBhdXRvbWF0ZWQgYmlzZWN0aW9uIHJlcG9ydCB3YXMgc2VudCB0byB5b3Ugb24gdGhlIGJh
-c2lzICAqCj4gKiB0aGF0IHlvdSBtYXkgYmUgaW52b2x2ZWQgd2l0aCB0aGUgYnJlYWtpbmcgY29t
-bWl0IGl0IGhhcyAgICAgICoKPiAqIGZvdW5kLiAgTm8gbWFudWFsIGludmVzdGlnYXRpb24gaGFz
-IGJlZW4gZG9uZSB0byB2ZXJpZnkgaXQsICAgKgo+ICogYW5kIHRoZSByb290IGNhdXNlIG9mIHRo
-ZSBwcm9ibGVtIG1heSBiZSBzb21ld2hlcmUgZWxzZS4gICAgICAqCj4gKiBIb3BlIHRoaXMgaGVs
-cHMhICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICoKPiAqICog
-KiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAq
-ICogKgo+IAo+IEJpc2VjdGlvbiByZXN1bHQgZm9yIG5leHQvbWFzdGVyIChuZXh0LTIwMTgxMjA2
-KSBvbiBqZXRzb24tdGsxCj4gCj4gICBHb29kOiAgICAgICA4NGRmOTUyNWIwYzIgTGludXggNC4x
-OQo+ICAgQmFkOiAgICAgICAgNGM5MmI3YjMwODBkIEFkZCBsaW51eC1uZXh0IHNwZWNpZmljIGZp
-bGVzIGZvciAyMDE4MTIwNgo+ICAgRm91bmQ6ICAgICAgY2ZlYTg4YTRkODY2IGRybS9ub3V2ZWF1
-OiBTdGFydCB1c2luZyBuZXcgZHJtX2Rldgo+IGluaXRpYWxpemF0aW9uIGhlbHBlcnMKPiAKPiBD
-aGVja3M6Cj4gICByZXZlcnQ6ICAgICBQQVNTCj4gICB2ZXJpZnk6ICAgICBQQVNTCj4gCj4gUGFy
-YW1ldGVyczoKPiAgIFRyZWU6ICAgICAgIG5leHQKPiAgIFVSTDogICAgICAgIE5vbmUKPiAgIEJy
-YW5jaDogICAgIG1hc3Rlcgo+ICAgVGFyZ2V0OiAgICAgamV0c29uLXRrMQo+ICAgTGFiOiAgICAg
-ICAgbGFiLWJheWxpYnJlCj4gICBDb25maWc6ICAgICBtdWx0aV92N19kZWZjb25maWcKPiAgIFBs
-YW46ICAgICAgIGRtZXNnLW5vdXZlYXUKPiAKPiBCcmVha2luZyBjb21taXQgZm91bmQ6Cj4gCj4g
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLQo+IC0tLQo+IGNvbW1pdCBjZmVhODhhNGQ4NjYzMmYyOGNmODBi
-ZTk3MDc5ZjEzMTY0NWI3ODY5Cj4gQXV0aG9yOiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29t
-Pgo+IERhdGU6ICAgV2VkIEF1ZyAyMiAyMTo0MDowNyAyMDE4IC0wNDAwCj4gCj4gICAgIGRybS9u
-b3V2ZWF1OiBTdGFydCB1c2luZyBuZXcgZHJtX2RldiBpbml0aWFsaXphdGlvbiBoZWxwZXJzCj4g
-ICAgIAo+ICAgICBQZXIgdGhlIGRvY3VtZW50YXRpb24gaW4gZHJtX2dldF9wY2lfZGV2KCksIHRo
-aXMgZnVuY3Rpb24gaXMgZGVwcmVjYXRlZAo+ICAgICBhbmQgc2hvdWxkbid0IGJlIHVzZWQgYW55
-bW9yZS4gQXMgaXQgdHVybnMgb3V0LCB3ZSdyZSBnb2luZyB0byBuZWVkIHRvCj4gICAgIHN0b3Ag
-dXNpbmcgZHJtX2dldF9wY2lfZGV2KCkgYW55d2F5IGluIG9yZGVyIHRvIGFsbG93IHVzIHRvIHR1
-cm4gb2ZmIHRoZQo+ICAgICBjYXJkIGJlZm9yZSBmdWxsIHN5c3RlbSBzaHV0ZG93bnMsIG90aGVy
-d2lzZSB3ZSdsbCBoaXQgcmFjZSBjb25kaXRpb25zCj4gICAgIHdpdGggdXNlcnNwYWNlIHdoaWxl
-IHRyeWluZyB0byB0ZWFyIGRvd24gdGhlIGNhcmQgb24gc2h1dGRvd24uCj4gICAgIAo+ICAgICBT
-bywgc3RhcnQgdXNpbmcgZHJtX2Rldl9nZXQoKSBhbmQgZHJtX2Rldl9wdXQoKSwgYW5kIGp1c3Qg
-dHVybiBvdXIKPiAgICAgbG9hZC91bmxvYWQgY2FsbGJhY2tzIGludG8gb3BlbiBjb2RlZCBpbml0
-L2ZpbmkoKSBmdW5jdGlvbnMuCj4gICAgIAo+ICAgICBTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVs
-IDxseXVkZUByZWRoYXQuY29tPgo+ICAgICBDYzogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhh
-dC5jb20+Cj4gICAgIFNpZ25lZC1vZmYtYnk6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNv
-bT4KPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0u
-Ywo+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+IGluZGV4IDkwNTk1
-NjgwOWQyMS4uMmIyYmFmNmUwZTBkIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfZHJtLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
-X2RybS5jCj4gQEAgLTQ1OCw3NSArNDU4LDggQEAgbm91dmVhdV9hY2NlbF9pbml0KHN0cnVjdCBu
-b3V2ZWF1X2RybSAqZHJtKQo+ICAJbm91dmVhdV9ib19tb3ZlX2luaXQoZHJtKTsKPiAgfQo+ICAK
-PiAtc3RhdGljIGludCBub3V2ZWF1X2RybV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRldiwKPiAt
-CQkJICAgICBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAqcGVudCkKPiAtewo+IC0Jc3RydWN0
-IG52a21fZGV2aWNlICpkZXZpY2U7Cj4gLQlzdHJ1Y3QgYXBlcnR1cmVzX3N0cnVjdCAqYXBlcjsK
-PiAtCWJvb2wgYm9vdCA9IGZhbHNlOwo+IC0JaW50IHJldDsKPiAtCj4gLQlpZiAodmdhX3N3aXRj
-aGVyb29fY2xpZW50X3Byb2JlX2RlZmVyKHBkZXYpKQo+IC0JCXJldHVybiAtRVBST0JFX0RFRkVS
-Owo+IC0KPiAtCS8qIFdlIG5lZWQgdG8gY2hlY2sgdGhhdCB0aGUgY2hpcHNldCBpcyBzdXBwb3J0
-ZWQgYmVmb3JlIGJvb3RpbmcKPiAtCSAqIGZiZGV2IG9mZiB0aGUgaGFyZHdhcmUsIGFzIHRoZXJl
-J3Mgbm8gd2F5IHRvIHB1dCBpdCBiYWNrLgo+IC0JICovCj4gLQlyZXQgPSBudmttX2RldmljZV9w
-Y2lfbmV3KHBkZXYsIE5VTEwsICJlcnJvciIsIHRydWUsIGZhbHNlLCAwLAo+ICZkZXZpY2UpOwo+
-IC0JaWYgKHJldCkKPiAtCQlyZXR1cm4gcmV0Owo+IC0KPiAtCW52a21fZGV2aWNlX2RlbCgmZGV2
-aWNlKTsKPiAtCj4gLQkvKiBSZW1vdmUgY29uZmxpY3RpbmcgZHJpdmVycyAodmVzYWZiLCBlZmlm
-YiBldGMpLiAqLwo+IC0JYXBlciA9IGFsbG9jX2FwZXJ0dXJlcygzKTsKPiAtCWlmICghYXBlcikK
-PiAtCQlyZXR1cm4gLUVOT01FTTsKPiAtCj4gLQlhcGVyLT5yYW5nZXNbMF0uYmFzZSA9IHBjaV9y
-ZXNvdXJjZV9zdGFydChwZGV2LCAxKTsKPiAtCWFwZXItPnJhbmdlc1swXS5zaXplID0gcGNpX3Jl
-c291cmNlX2xlbihwZGV2LCAxKTsKPiAtCWFwZXItPmNvdW50ID0gMTsKPiAtCj4gLQlpZiAocGNp
-X3Jlc291cmNlX2xlbihwZGV2LCAyKSkgewo+IC0JCWFwZXItPnJhbmdlc1thcGVyLT5jb3VudF0u
-YmFzZSA9IHBjaV9yZXNvdXJjZV9zdGFydChwZGV2LCAyKTsKPiAtCQlhcGVyLT5yYW5nZXNbYXBl
-ci0+Y291bnRdLnNpemUgPSBwY2lfcmVzb3VyY2VfbGVuKHBkZXYsIDIpOwo+IC0JCWFwZXItPmNv
-dW50Kys7Cj4gLQl9Cj4gLQo+IC0JaWYgKHBjaV9yZXNvdXJjZV9sZW4ocGRldiwgMykpIHsKPiAt
-CQlhcGVyLT5yYW5nZXNbYXBlci0+Y291bnRdLmJhc2UgPSBwY2lfcmVzb3VyY2Vfc3RhcnQocGRl
-diwgMyk7Cj4gLQkJYXBlci0+cmFuZ2VzW2FwZXItPmNvdW50XS5zaXplID0gcGNpX3Jlc291cmNl
-X2xlbihwZGV2LCAzKTsKPiAtCQlhcGVyLT5jb3VudCsrOwo+IC0JfQo+IC0KPiAtI2lmZGVmIENP
-TkZJR19YODYKPiAtCWJvb3QgPSBwZGV2LT5yZXNvdXJjZVtQQ0lfUk9NX1JFU09VUkNFXS5mbGFn
-cyAmIElPUkVTT1VSQ0VfUk9NX1NIQURPVzsKPiAtI2VuZGlmCj4gLQlpZiAobm91dmVhdV9tb2Rl
-c2V0ICE9IDIpCj4gLQkJZHJtX2ZiX2hlbHBlcl9yZW1vdmVfY29uZmxpY3RpbmdfZnJhbWVidWZm
-ZXJzKGFwZXIsCj4gIm5vdXZlYXVmYiIsIGJvb3QpOwo+IC0Ja2ZyZWUoYXBlcik7Cj4gLQo+IC0J
-cmV0ID0gbnZrbV9kZXZpY2VfcGNpX25ldyhwZGV2LCBub3V2ZWF1X2NvbmZpZywgbm91dmVhdV9k
-ZWJ1ZywKPiAtCQkJCSAgdHJ1ZSwgdHJ1ZSwgfjBVTEwsICZkZXZpY2UpOwo+IC0JaWYgKHJldCkK
-PiAtCQlyZXR1cm4gcmV0Owo+IC0KPiAtCXBjaV9zZXRfbWFzdGVyKHBkZXYpOwo+IC0KPiAtCWlm
-IChub3V2ZWF1X2F0b21pYykKPiAtCQlkcml2ZXJfcGNpLmRyaXZlcl9mZWF0dXJlcyB8PSBEUklW
-RVJfQVRPTUlDOwo+IC0KPiAtCXJldCA9IGRybV9nZXRfcGNpX2RldihwZGV2LCBwZW50LCAmZHJp
-dmVyX3BjaSk7Cj4gLQlpZiAocmV0KSB7Cj4gLQkJbnZrbV9kZXZpY2VfZGVsKCZkZXZpY2UpOwo+
-IC0JCXJldHVybiByZXQ7Cj4gLQl9Cj4gLQo+IC0JcmV0dXJuIDA7Cj4gLX0KPiAtCj4gIHN0YXRp
-YyBpbnQKPiAtbm91dmVhdV9kcm1fbG9hZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB1bnNpZ25l
-ZCBsb25nIGZsYWdzKQo+ICtub3V2ZWF1X2RybV9kZXZpY2VfaW5pdChzdHJ1Y3QgZHJtX2Rldmlj
-ZSAqZGV2KQo+ICB7Cj4gIAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybTsKPiAgCWludCByZXQ7Cj4g
-QEAgLTYxMyw3ICs1NDYsNyBAQCBub3V2ZWF1X2RybV9sb2FkKHN0cnVjdCBkcm1fZGV2aWNlICpk
-ZXYsIHVuc2lnbmVkIGxvbmcKPiBmbGFncykKPiAgfQo+ICAKPiAgc3RhdGljIHZvaWQKPiAtbm91
-dmVhdV9kcm1fdW5sb2FkKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCj4gK25vdXZlYXVfZHJtX2Rl
-dmljZV9maW5pKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCj4gIHsKPiAgCXN0cnVjdCBub3V2ZWF1
-X2RybSAqZHJtID0gbm91dmVhdV9kcm0oZGV2KTsKPiAgCj4gQEAgLTY0MiwxOCArNTc1LDExNiBA
-QCBub3V2ZWF1X2RybV91bmxvYWQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKPiAgCWtmcmVlKGRy
-bSk7Cj4gIH0KPiAgCj4gK3N0YXRpYyBpbnQgbm91dmVhdV9kcm1fcHJvYmUoc3RydWN0IHBjaV9k
-ZXYgKnBkZXYsCj4gKwkJCSAgICAgY29uc3Qgc3RydWN0IHBjaV9kZXZpY2VfaWQgKnBlbnQpCj4g
-K3sKPiArCXN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlOwo+ICsJc3RydWN0IGRybV9kZXZpY2Ug
-KmRybV9kZXY7Cj4gKwlzdHJ1Y3QgYXBlcnR1cmVzX3N0cnVjdCAqYXBlcjsKPiArCWJvb2wgYm9v
-dCA9IGZhbHNlOwo+ICsJaW50IHJldDsKPiArCj4gKwlpZiAodmdhX3N3aXRjaGVyb29fY2xpZW50
-X3Byb2JlX2RlZmVyKHBkZXYpKQo+ICsJCXJldHVybiAtRVBST0JFX0RFRkVSOwo+ICsKPiArCS8q
-IFdlIG5lZWQgdG8gY2hlY2sgdGhhdCB0aGUgY2hpcHNldCBpcyBzdXBwb3J0ZWQgYmVmb3JlIGJv
-b3RpbmcKPiArCSAqIGZiZGV2IG9mZiB0aGUgaGFyZHdhcmUsIGFzIHRoZXJlJ3Mgbm8gd2F5IHRv
-IHB1dCBpdCBiYWNrLgo+ICsJICovCj4gKwlyZXQgPSBudmttX2RldmljZV9wY2lfbmV3KHBkZXYs
-IE5VTEwsICJlcnJvciIsIHRydWUsIGZhbHNlLCAwLAo+ICZkZXZpY2UpOwo+ICsJaWYgKHJldCkK
-PiArCQlyZXR1cm4gcmV0Owo+ICsKPiArCW52a21fZGV2aWNlX2RlbCgmZGV2aWNlKTsKPiArCj4g
-KwkvKiBSZW1vdmUgY29uZmxpY3RpbmcgZHJpdmVycyAodmVzYWZiLCBlZmlmYiBldGMpLiAqLwo+
-ICsJYXBlciA9IGFsbG9jX2FwZXJ0dXJlcygzKTsKPiArCWlmICghYXBlcikKPiArCQlyZXR1cm4g
-LUVOT01FTTsKPiArCj4gKwlhcGVyLT5yYW5nZXNbMF0uYmFzZSA9IHBjaV9yZXNvdXJjZV9zdGFy
-dChwZGV2LCAxKTsKPiArCWFwZXItPnJhbmdlc1swXS5zaXplID0gcGNpX3Jlc291cmNlX2xlbihw
-ZGV2LCAxKTsKPiArCWFwZXItPmNvdW50ID0gMTsKPiArCj4gKwlpZiAocGNpX3Jlc291cmNlX2xl
-bihwZGV2LCAyKSkgewo+ICsJCWFwZXItPnJhbmdlc1thcGVyLT5jb3VudF0uYmFzZSA9IHBjaV9y
-ZXNvdXJjZV9zdGFydChwZGV2LCAyKTsKPiArCQlhcGVyLT5yYW5nZXNbYXBlci0+Y291bnRdLnNp
-emUgPSBwY2lfcmVzb3VyY2VfbGVuKHBkZXYsIDIpOwo+ICsJCWFwZXItPmNvdW50Kys7Cj4gKwl9
-Cj4gKwo+ICsJaWYgKHBjaV9yZXNvdXJjZV9sZW4ocGRldiwgMykpIHsKPiArCQlhcGVyLT5yYW5n
-ZXNbYXBlci0+Y291bnRdLmJhc2UgPSBwY2lfcmVzb3VyY2Vfc3RhcnQocGRldiwgMyk7Cj4gKwkJ
-YXBlci0+cmFuZ2VzW2FwZXItPmNvdW50XS5zaXplID0gcGNpX3Jlc291cmNlX2xlbihwZGV2LCAz
-KTsKPiArCQlhcGVyLT5jb3VudCsrOwo+ICsJfQo+ICsKPiArI2lmZGVmIENPTkZJR19YODYKPiAr
-CWJvb3QgPSBwZGV2LT5yZXNvdXJjZVtQQ0lfUk9NX1JFU09VUkNFXS5mbGFncyAmIElPUkVTT1VS
-Q0VfUk9NX1NIQURPVzsKPiArI2VuZGlmCj4gKwlpZiAobm91dmVhdV9tb2Rlc2V0ICE9IDIpCj4g
-KwkJZHJtX2ZiX2hlbHBlcl9yZW1vdmVfY29uZmxpY3RpbmdfZnJhbWVidWZmZXJzKGFwZXIsCj4g
-Im5vdXZlYXVmYiIsIGJvb3QpOwo+ICsJa2ZyZWUoYXBlcik7Cj4gKwo+ICsJcmV0ID0gbnZrbV9k
-ZXZpY2VfcGNpX25ldyhwZGV2LCBub3V2ZWF1X2NvbmZpZywgbm91dmVhdV9kZWJ1ZywKPiArCQkJ
-CSAgdHJ1ZSwgdHJ1ZSwgfjBVTEwsICZkZXZpY2UpOwo+ICsJaWYgKHJldCkKPiArCQlyZXR1cm4g
-cmV0Owo+ICsKPiArCXBjaV9zZXRfbWFzdGVyKHBkZXYpOwo+ICsKPiArCWlmIChub3V2ZWF1X2F0
-b21pYykKPiArCQlkcml2ZXJfcGNpLmRyaXZlcl9mZWF0dXJlcyB8PSBEUklWRVJfQVRPTUlDOwo+
-ICsKPiArCWRybV9kZXYgPSBkcm1fZGV2X2FsbG9jKCZkcml2ZXJfcGNpLCAmcGRldi0+ZGV2KTsK
-PiArCWlmIChJU19FUlIoZHJtX2RldikpIHsKPiArCQlyZXQgPSBQVFJfRVJSKGRybV9kZXYpOwo+
-ICsJCWdvdG8gZmFpbF9udmttOwo+ICsJfQo+ICsKPiArCXJldCA9IHBjaV9lbmFibGVfZGV2aWNl
-KHBkZXYpOwo+ICsJaWYgKHJldCkKPiArCQlnb3RvIGZhaWxfZHJtOwo+ICsKPiArCWRybV9kZXYt
-PnBkZXYgPSBwZGV2Owo+ICsJcGNpX3NldF9kcnZkYXRhKHBkZXYsIGRybV9kZXYpOwo+ICsKPiAr
-CXJldCA9IG5vdXZlYXVfZHJtX2RldmljZV9pbml0KGRybV9kZXYpOwo+ICsJaWYgKHJldCkKPiAr
-CQlnb3RvIGZhaWxfcGNpOwo+ICsKPiArCXJldCA9IGRybV9kZXZfcmVnaXN0ZXIoZHJtX2Rldiwg
-cGVudC0+ZHJpdmVyX2RhdGEpOwo+ICsJaWYgKHJldCkKPiArCQlnb3RvIGZhaWxfZHJtX2Rldl9p
-bml0Owo+ICsKPiArCXJldHVybiAwOwo+ICsKPiArZmFpbF9kcm1fZGV2X2luaXQ6Cj4gKwlub3V2
-ZWF1X2RybV9kZXZpY2VfZmluaShkcm1fZGV2KTsKPiArZmFpbF9wY2k6Cj4gKwlwY2lfZGlzYWJs
-ZV9kZXZpY2UocGRldik7Cj4gK2ZhaWxfZHJtOgo+ICsJZHJtX2Rldl9wdXQoZHJtX2Rldik7Cj4g
-K2ZhaWxfbnZrbToKPiArCW52a21fZGV2aWNlX2RlbCgmZGV2aWNlKTsKPiArCXJldHVybiByZXQ7
-Cj4gK30KPiArCj4gIHZvaWQKPiAgbm91dmVhdV9kcm1fZGV2aWNlX3JlbW92ZShzdHJ1Y3QgZHJt
-X2RldmljZSAqZGV2KQo+ICB7Cj4gKwlzdHJ1Y3QgcGNpX2RldiAqcGRldiA9IGRldi0+cGRldjsK
-PiAgCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oZGV2KTsKPiAgCXN0cnVj
-dCBudmttX2NsaWVudCAqY2xpZW50Owo+ICAJc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2U7Cj4g
-IAo+ICsJZHJtX2Rldl91bnJlZ2lzdGVyKGRldik7Cj4gKwo+ICAJZGV2LT5pcnFfZW5hYmxlZCA9
-IGZhbHNlOwo+ICAJY2xpZW50ID0gbnZ4eF9jbGllbnQoJmRybS0+Y2xpZW50LmJhc2UpOwo+ICAJ
-ZGV2aWNlID0gbnZrbV9kZXZpY2VfZmluZChjbGllbnQtPmRldmljZSk7Cj4gLQlkcm1fcHV0X2Rl
-dihkZXYpOwo+ICAKPiArCW5vdXZlYXVfZHJtX2RldmljZV9maW5pKGRldik7Cj4gKwlwY2lfZGlz
-YWJsZV9kZXZpY2UocGRldik7Cj4gKwlkcm1fZGV2X3B1dChkZXYpOwo+ICAJbnZrbV9kZXZpY2Vf
-ZGVsKCZkZXZpY2UpOwo+ICB9Cj4gIAo+IEBAIC0xMDIwLDggKzEwNTEsNiBAQCBkcml2ZXJfc3R1
-YiA9IHsKPiAgCQlEUklWRVJfR0VNIHwgRFJJVkVSX01PREVTRVQgfCBEUklWRVJfUFJJTUUgfCBE
-UklWRVJfUkVOREVSIHwKPiAgCQlEUklWRVJfS01TX0xFR0FDWV9DT05URVhULAo+ICAKPiAtCS5s
-b2FkID0gbm91dmVhdV9kcm1fbG9hZCwKPiAtCS51bmxvYWQgPSBub3V2ZWF1X2RybV91bmxvYWQs
-Cj4gIAkub3BlbiA9IG5vdXZlYXVfZHJtX29wZW4sCj4gIAkucG9zdGNsb3NlID0gbm91dmVhdV9k
-cm1fcG9zdGNsb3NlLAo+ICAJLmxhc3RjbG9zZSA9IG5vdXZlYXVfdmdhX2xhc3RjbG9zZSwKPiAt
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tCj4gLS0tCj4gCj4gCj4gR2l0IGJpc2VjdGlvbiBsb2c6Cj4gCj4g
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLQo+IC0tLQo+IGdpdCBiaXNlY3Qgc3RhcnQKPiAjIGdvb2Q6IFs4
-NGRmOTUyNWIwYzI3ZjNlYmMyZWJiMTg2NGZhNjJhOTdmZGVkYjdkXSBMaW51eCA0LjE5Cj4gZ2l0
-IGJpc2VjdCBnb29kIDg0ZGY5NTI1YjBjMjdmM2ViYzJlYmIxODY0ZmE2MmE5N2ZkZWRiN2QKPiAj
-IGJhZDogWzRjOTJiN2IzMDgwZDgyODE5NDFhZTgxYzUxY2Q2MmJiNDliZGMzZDRdIEFkZCBsaW51
-eC1uZXh0IHNwZWNpZmljCj4gZmlsZXMgZm9yIDIwMTgxMjA2Cj4gZ2l0IGJpc2VjdCBiYWQgNGM5
-MmI3YjMwODBkODI4MTk0MWFlODFjNTFjZDYyYmI0OWJkYzNkNAo+ICMgYmFkOiBbYzM4MjM5YjRi
-ZTFhYzdlNGJjZjViYmQ5NzEzNTNiYWU1MTUyNWI4Zl0gTWVyZ2UgYnJhbmNoICdwYXJpc2MtNC4y
-MC0KPiAyJyBvZiBnaXQ6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQv
-ZGVsbGVyL3BhcmlzYy1saW51eAo+IGdpdCBiaXNlY3QgYmFkIGMzODIzOWI0YmUxYWM3ZTRiY2Y1
-YmJkOTcxMzUzYmFlNTE1MjViOGYKPiAjIGdvb2Q6IFtkNDlmOGE1MmIxNWJmMzVkYjc3ODAzNTM0
-MGQ4YTY3MzE0OWY5ZjkzXSBNZXJnZSB0YWcgJ3Njc2ktbWlzYycgb2YKPiBnaXQ6Ly9naXQua2Vy
-bmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvamVqYi9zY3NpCj4gZ2l0IGJpc2VjdCBn
-b29kIGQ0OWY4YTUyYjE1YmYzNWRiNzc4MDM1MzQwZDhhNjczMTQ5ZjlmOTMKPiAjIGdvb2Q6IFth
-Yzc0N2MwNzE1ZjI5YzJiZTM4NDhiNzE5YTFiN2U2NWIwN2Y3YjIxXSBNZXJnZSB0YWcgJ2tidWls
-ZC12NC4yMCcKPiBvZiBnaXQ6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9n
-aXQvbWFzYWhpcm95L2xpbnV4LWtidWlsZAo+IGdpdCBiaXNlY3QgZ29vZCBhYzc0N2MwNzE1ZjI5
-YzJiZTM4NDhiNzE5YTFiN2U2NWIwN2Y3YjIxCj4gIyBiYWQ6IFs0Njk3MmMwM2FiNjY3ZGMyOThj
-YWQwYzlkYjUxN2ZiOWIxNTIxYjVmXSBNZXJnZSB0YWcgJ2RybS1taXNjLW5leHQtCj4gZml4ZXMt
-MjAxOC0xMC0xMCcgb2YgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZHJtL2RybS1taXNj
-IGludG8gZHJtLQo+IG5leHQKPiBnaXQgYmlzZWN0IGJhZCA0Njk3MmMwM2FiNjY3ZGMyOThjYWQw
-YzlkYjUxN2ZiOWIxNTIxYjVmCj4gIyBnb29kOiBbNmFjOTlhMzI4ZWUxNmQzZjhjYzI1M2YxZGY2
-MjYyM2NlZTNlOWVhNV0gZHJtL2V4eW5vczogbWl4ZXI6IE1ha2UKPiBwbGFuZSBhbHBoYSBjb25m
-aWd1cmFibGUKPiBnaXQgYmlzZWN0IGdvb2QgNmFjOTlhMzI4ZWUxNmQzZjhjYzI1M2YxZGY2MjYy
-M2NlZTNlOWVhNQo+ICMgZ29vZDogWzA5NTdkYzcwOTdhM2Y0NjJmNmNlZGI0NWNmOWI5Nzg1Y2My
-OWU1YmJdIGRybS9hbWRncHU6IHJldmVydCAic3RvcAo+IHVzaW5nIGdhcnRfc3RhcnQgYXMgb2Zm
-c2V0IGZvciB0aGUgR1RUIGRvbWFpbiIKPiBnaXQgYmlzZWN0IGdvb2QgMDk1N2RjNzA5N2EzZjQ2
-MmY2Y2VkYjQ1Y2Y5Yjk3ODVjYzI5ZTViYgo+ICMgZ29vZDogWzJkZTBiMGExNThiZjQyMzIwOGMz
-ODk4NTIyYzhmYTFjMTA3OGRmNDhdIE1lcmdlIHRhZyAnZHJtL3RlZ3JhL2Zvci0KPiA0LjIwLXJj
-MScgb2YgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvdGVncmEvbGludXggaW50byBkcm0t
-bmV4dAo+IGdpdCBiaXNlY3QgZ29vZCAyZGUwYjBhMTU4YmY0MjMyMDhjMzg5ODUyMmM4ZmExYzEw
-NzhkZjQ4Cj4gIyBnb29kOiBbMDRiOTZiNjNjNTY0MGEzMDVlMzA2MTFkZWY3YTljNWZjZDdhNzJj
-Zl0gZHJtL21zbS9kcHU6IFJlbW92ZQo+IHVubmVlZGVkIGNoZWNrcyBpbiBkcHVfY3J0Yy5jCj4g
-Z2l0IGJpc2VjdCBnb29kIDA0Yjk2YjYzYzU2NDBhMzA1ZTMwNjExZGVmN2E5YzVmY2Q3YTcyY2YK
-PiAjIGdvb2Q6IFs2OTUyZTNhMWRmZmNiOTMxY2Y4NjI1YWEwMTY0MmI5YWZhYzJhZjYxXSBNZXJn
-ZSBicmFuY2ggJ2Zvci0KPiB1cHN0cmVhbS9tYWxpLWRwJyBvZiBnaXQ6Ly9saW51eC1hcm0ub3Jn
-L2xpbnV4LWxkIGludG8gZHJtLW5leHQKPiBnaXQgYmlzZWN0IGdvb2QgNjk1MmUzYTFkZmZjYjkz
-MWNmODYyNWFhMDE2NDJiOWFmYWMyYWY2MQo+ICMgZ29vZDogWzYyZTY4MWY3ZGNhYjc0NjQxMmRj
-ZTIyZDRiNzViMzJjNWVhMzhjZGJdIE1lcmdlIHRhZyAnZHJtLW1zbS1maXhlcy0KPiAyMDE4LTEw
-LTA5JyBvZiBnaXQ6Ly9wZW9wbGUuZnJlZWRlc2t0b3Aub3JnL35yb2JjbGFyay9saW51eCBpbnRv
-IGRybS1uZXh0Cj4gZ2l0IGJpc2VjdCBnb29kIDYyZTY4MWY3ZGNhYjc0NjQxMmRjZTIyZDRiNzVi
-MzJjNWVhMzhjZGIKPiAjIGJhZDogWzdlNjE5MWQ0MzYwYTJkZjZjZjJhMjYxM2RjYjc5NjgwY2I5
-NDNkZjhdIE1lcmdlIGJyYW5jaCAnbGludXgtNC4yMCcKPiBvZiBnaXQ6Ly9naXRodWIuY29tL3Nr
-ZWdnc2IvbGludXggaW50byBkcm0tbmV4dAo+IGdpdCBiaXNlY3QgYmFkIDdlNjE5MWQ0MzYwYTJk
-ZjZjZjJhMjYxM2RjYjc5NjgwY2I5NDNkZjgKPiAjIGdvb2Q6IFtjNGNlZTY5YTQ0OTdkOWM2YWQ4
-ODY4ZDYzNTY4YjMwZTUwY2FjOWU5XSBkcm0vbm91dmVhdTogRml4Cj4gcG90ZW50aWFsIG1lbW9y
-eSBsZWFrIGluIG5vdXZlYXVfZHJtX2xvYWQoKQo+IGdpdCBiaXNlY3QgZ29vZCBjNGNlZTY5YTQ0
-OTdkOWM2YWQ4ODY4ZDYzNTY4YjMwZTUwY2FjOWU5Cj4gIyBiYWQ6IFthOTcxNTU4YzI5ODc1NWQy
-YzA3YmM1NTA4YzY1ZDY4OTQ3MTc2M2M4XSBkcm0vbm91dmVhdS9kaXNwOiBrZWVwCj4gdHJhY2sg
-b2YgaGlnaC1zcGVlZCBzdGF0ZSwgcHJvZ3JhbSBpbnRvIGNsb2NrCj4gZ2l0IGJpc2VjdCBiYWQg
-YTk3MTU1OGMyOTg3NTVkMmMwN2JjNTUwOGM2NWQ2ODk0NzE3NjNjOAo+ICMgYmFkOiBbNDEyNmI5
-OWU3NDRiN2EyOTc0NmUyMDFlMmJlNjY0NGQyZWRmM2M1Nl0gZHJtL25vdXZlYXUvZGlzcDogYWRk
-IGEKPiB3YXkgdG8gY29uZmlndXJlIHNjcmFtYmxpbmcvdG1kcyBmb3IgaGRtaSAyLjAKPiBnaXQg
-YmlzZWN0IGJhZCA0MTI2Yjk5ZTc0NGI3YTI5NzQ2ZTIwMWUyYmU2NjQ0ZDJlZGYzYzU2Cj4gIyBi
-YWQ6IFtjZmVhODhhNGQ4NjYzMmYyOGNmODBiZTk3MDc5ZjEzMTY0NWI3ODY5XSBkcm0vbm91dmVh
-dTogU3RhcnQgdXNpbmcKPiBuZXcgZHJtX2RldiBpbml0aWFsaXphdGlvbiBoZWxwZXJzCj4gZ2l0
-IGJpc2VjdCBiYWQgY2ZlYTg4YTRkODY2MzJmMjhjZjgwYmU5NzA3OWYxMzE2NDViNzg2OQo+ICMg
-Zmlyc3QgYmFkIGNvbW1pdDogW2NmZWE4OGE0ZDg2NjMyZjI4Y2Y4MGJlOTcwNzlmMTMxNjQ1Yjc4
-NjldIGRybS9ub3V2ZWF1Ogo+IFN0YXJ0IHVzaW5nIG5ldyBkcm1fZGV2IGluaXRpYWxpemF0aW9u
-IGhlbHBlcnMKPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4gLS0tCi0tIApDaGVlcnMsCglMeXVkZSBQ
-YXVsCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
-ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0352703529==
+Content-Type: multipart/alternative; boundary="15442805531.b0Bd1fFB.3050"
+Content-Transfer-Encoding: 7bit
+
+
+--15442805531.b0Bd1fFB.3050
+Date: Sat, 8 Dec 2018 14:49:13 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108980
+
+            Bug ID: 108980
+           Summary: GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: adamos-zBjOIweZRQ4nvi+hAk5376sMm+1xrEX8@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Kernel 4.10 and next, till the last:
+
+# dmesg | grep nouveau
+[   15.161745] nouveau: detected PR support, will not use DSM
+[   15.163013] nouveau 0000:08:00.0: enabling device (0006 -> 0007)
+[   15.164408] nouveau 0000:08:00.0: NVIDIA GF117 (0d7000a2)
+[   15.186628] nouveau 0000:08:00.0: bios: version 75.17.86.00.04
+[   15.271378] nouveau 0000:08:00.0: fb: 2048 MiB DDR3
+[   15.289248] nouveau 0000:08:00.0: volt: couldn't find speedo value, volt=
+ing
+not possible
+[   15.289262] nouveau 0000:08:00.0: bus: MMIO write of 0000001f FAULT at
+6013d4 [ IBUS ]
+[   15.935388] nouveau 0000:08:00.0: DRM: VRAM: 2048 MiB
+[   15.936749] nouveau 0000:08:00.0: DRM: GART: 1048576 MiB
+[   15.938436] nouveau 0000:08:00.0: DRM: Pointer to TMDS table invalid
+[   15.939583] nouveau 0000:08:00.0: DRM: DCB version 4.0
+[   15.942999] nouveau 0000:08:00.0: DRM: MM: using COPY0 for buffer copies
+[   15.944156] [drm] Initialized nouveau 1.3.1 20120801 for 0000:08:00.0 on
+minor 1
+
+Before kernel 4.10.x
+(in this example 4.9.140):
+
+# dmesg | grep nouveau
+[   15.755065] nouveau: detected PR support, will not use DSM
+[   15.756863] nouveau 0000:08:00.0: enabling device (0006 -> 0007)
+[   15.758852] nouveau 0000:08:00.0: NVIDIA GF117 (0d7000a2)
+[   15.785141] nouveau 0000:08:00.0: bios: version 75.17.86.00.04
+[   15.868828] nouveau 0000:08:00.0: fb: 2048 MiB DDR3
+[   16.510223] nouveau 0000:08:00.0: DRM: VRAM: 2048 MiB
+[   16.510227] nouveau 0000:08:00.0: DRM: GART: 1048576 MiB
+[   16.510232] nouveau 0000:08:00.0: DRM: Pointer to TMDS table invalid
+[   16.510236] nouveau 0000:08:00.0: DRM: DCB version 4.0
+[   16.510240] nouveau 0000:08:00.0: DRM: Pointer to flat panel table inval=
+id
+[   16.640514] nouveau 0000:08:00.0: DRM: MM: using COPY0 for buffer copies
+[   16.640527] [drm] Initialized nouveau 1.3.1 20120801 for 0000:08:00.0 on
+minor 1
+[   22.007459] nouveau 0000:08:00.0: DRM: evicting buffers...
+[   22.008617] nouveau 0000:08:00.0: DRM: waiting for kernel channels to go
+idle...
+[   22.009842] nouveau 0000:08:00.0: DRM: suspending client object trees...
+[   22.011334] nouveau 0000:08:00.0: DRM: suspending kernel object tree...
+
+Hardware:
+
+Dell Inspiron 3542 (0652).
+
+# lspci -vvv
+08:00.0 3D controller: NVIDIA Corporation GF117M [GeForce 610M/710M/810M/82=
+0M /
+GT 620M/625M/630M/720M] (rev a1)
+        Subsystem: Dell GeForce 820M
+        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx+
+        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=3Dfast >TAbort- <T=
+Abort-
+<MAbort- >SERR- <PERR- INTx-
+        Latency: 0, Cache Line Size: 64 bytes
+        Interrupt: pin A routed to IRQ 49
+        Region 0: Memory at f6000000 (32-bit, non-prefetchable) [size=3D16M]
+        Region 1: Memory at e0000000 (64-bit, prefetchable) [size=3D256M]
+        Region 3: Memory at f0000000 (64-bit, prefetchable) [size=3D32M]
+        Region 5: I/O ports at d000 [size=3D128]
+        Expansion ROM at f7000000 [disabled] [size=3D512K]
+        Capabilities: [60] Power Management version 3
+                Flags: PMEClk- DSI- D1- D2- AuxCurrent=3D0mA
+PME(D0-,D1-,D2-,D3hot-,D3cold-)
+                Status: D0 NoSoftRst+ PME-Enable- DSel=3D0 DScale=3D0 PME-
+        Capabilities: [68] MSI: Enable+ Count=3D1/1 Maskable- 64bit+
+                Address: 00000000fee003b8  Data: 0000
+        Capabilities: [78] Express (v2) Endpoint, MSI 00
+                DevCap: MaxPayload 256 bytes, PhantFunc 0, Latency L0s
+unlimited, L1 <64us
+                        ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset-
+SlotPowerLimit 25.000W
+                DevCtl: Report errors: Correctable- Non-Fatal- Fatal-
+Unsupported-
+                        RlxdOrd- ExtTag+ PhantFunc- AuxPwr- NoSnoop+
+                        MaxPayload 128 bytes, MaxReadReq 512 bytes
+                DevSta: CorrErr- UncorrErr- FatalErr- UnsuppReq- AuxPwr-
+TransPend-
+                LnkCap: Port #0, Speed 2.5GT/s, Width x8, ASPM L0s L1, Exit
+Latency L0s <512ns, L1 <4us
+                        ClockPM+ Surprise- LLActRep- BwNot- ASPMOptComp+
+                LnkCtl: ASPM Disabled; RCB 64 bytes Disabled- CommClk+
+                        ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
+                LnkSta: Speed 2.5GT/s, Width x4, TrErr- Train- SlotClk+
+DLActive- BWMgmt- ABWMgmt-
+                DevCap2: Completion Timeout: Range AB, TimeoutDis+, LTR-, O=
+BFF
+Not Supported
+                         AtomicOpsCap: 32bit- 64bit- 128bitCAS-
+                DevCtl2: Completion Timeout: 50us to 50ms, TimeoutDis-, LTR=
+-,
+OBFF Disabled
+                         AtomicOpsCtl: ReqEn-
+                LnkCtl2: Target Link Speed: 2.5GT/s, EnterCompliance- Speed=
+Dis-
+                         Transmit Margin: Normal Operating Range,
+EnterModifiedCompliance- ComplianceSOS-
+                         Compliance De-emphasis: -6dB
+                LnkSta2: Current De-emphasis Level: -6dB,
+EqualizationComplete-, EqualizationPhase1-
+                         EqualizationPhase2-, EqualizationPhase3-,
+LinkEqualizationRequest-
+        Capabilities: [b4] Vendor Specific Information: Len=3D14 <?>
+        Capabilities: [100 v1] Virtual Channel
+                Caps:   LPEVC=3D0 RefClk=3D100ns PATEntryBits=3D1
+                Arb:    Fixed- WRR32- WRR64- WRR128-
+                Ctrl:   ArbSelect=3DFixed
+                Status: InProgress-
+                VC0:    Caps:   PATOffset=3D00 MaxTimeSlots=3D1 RejSnoopTra=
+ns-
+                        Arb:    Fixed- WRR32- WRR64- WRR128- TWRR128- WRR25=
+6-
+                        Ctrl:   Enable+ ID=3D0 ArbSelect=3DFixed TC/VC=3D01
+                        Status: NegoPending- InProgress-
+        Capabilities: [128 v1] Power Budgeting <?>
+        Capabilities: [600 v1] Vendor Specific Information: ID=3D0001 Rev=
+=3D1
+Len=3D024 <?>
+        Kernel driver in use: nouveau
+        Kernel modules: nouveau
+
+Distribution: Fedora, Gentoo
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15442805531.b0Bd1fFB.3050
+Date: Sat, 8 Dec 2018 14:49:13 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980">108980</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>adamos&#64;hell.factory.net.pl
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Kernel 4.10 and next, till the last:
+
+# dmesg | grep nouveau
+[   15.161745] nouveau: detected PR support, will not use DSM
+[   15.163013] nouveau 0000:08:00.0: enabling device (0006 -&gt; 0007)
+[   15.164408] nouveau 0000:08:00.0: NVIDIA GF117 (0d7000a2)
+[   15.186628] nouveau 0000:08:00.0: bios: version 75.17.86.00.04
+[   15.271378] nouveau 0000:08:00.0: fb: 2048 MiB DDR3
+[   15.289248] nouveau 0000:08:00.0: volt: couldn't find speedo value, volt=
+ing
+not possible
+[   15.289262] nouveau 0000:08:00.0: bus: MMIO write of 0000001f FAULT at
+6013d4 [ IBUS ]
+[   15.935388] nouveau 0000:08:00.0: DRM: VRAM: 2048 MiB
+[   15.936749] nouveau 0000:08:00.0: DRM: GART: 1048576 MiB
+[   15.938436] nouveau 0000:08:00.0: DRM: Pointer to TMDS table invalid
+[   15.939583] nouveau 0000:08:00.0: DRM: DCB version 4.0
+[   15.942999] nouveau 0000:08:00.0: DRM: MM: using COPY0 for buffer copies
+[   15.944156] [drm] Initialized nouveau 1.3.1 20120801 for 0000:08:00.0 on
+minor 1
+
+Before kernel 4.10.x
+(in this example 4.9.140):
+
+# dmesg | grep nouveau
+[   15.755065] nouveau: detected PR support, will not use DSM
+[   15.756863] nouveau 0000:08:00.0: enabling device (0006 -&gt; 0007)
+[   15.758852] nouveau 0000:08:00.0: NVIDIA GF117 (0d7000a2)
+[   15.785141] nouveau 0000:08:00.0: bios: version 75.17.86.00.04
+[   15.868828] nouveau 0000:08:00.0: fb: 2048 MiB DDR3
+[   16.510223] nouveau 0000:08:00.0: DRM: VRAM: 2048 MiB
+[   16.510227] nouveau 0000:08:00.0: DRM: GART: 1048576 MiB
+[   16.510232] nouveau 0000:08:00.0: DRM: Pointer to TMDS table invalid
+[   16.510236] nouveau 0000:08:00.0: DRM: DCB version 4.0
+[   16.510240] nouveau 0000:08:00.0: DRM: Pointer to flat panel table inval=
+id
+[   16.640514] nouveau 0000:08:00.0: DRM: MM: using COPY0 for buffer copies
+[   16.640527] [drm] Initialized nouveau 1.3.1 20120801 for 0000:08:00.0 on
+minor 1
+[   22.007459] nouveau 0000:08:00.0: DRM: evicting buffers...
+[   22.008617] nouveau 0000:08:00.0: DRM: waiting for kernel channels to go
+idle...
+[   22.009842] nouveau 0000:08:00.0: DRM: suspending client object trees...
+[   22.011334] nouveau 0000:08:00.0: DRM: suspending kernel object tree...
+
+Hardware:
+
+Dell Inspiron 3542 (0652).
+
+# lspci -vvv
+08:00.0 3D controller: NVIDIA Corporation GF117M [GeForce 610M/710M/810M/82=
+0M /
+GT 620M/625M/630M/720M] (rev a1)
+        Subsystem: Dell GeForce 820M
+        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx+
+        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=3Dfast &gt;TAbort-=
+ &lt;TAbort-
+&lt;MAbort- &gt;SERR- &lt;PERR- INTx-
+        Latency: 0, Cache Line Size: 64 bytes
+        Interrupt: pin A routed to IRQ 49
+        Region 0: Memory at f6000000 (32-bit, non-prefetchable) [size=3D16M]
+        Region 1: Memory at e0000000 (64-bit, prefetchable) [size=3D256M]
+        Region 3: Memory at f0000000 (64-bit, prefetchable) [size=3D32M]
+        Region 5: I/O ports at d000 [size=3D128]
+        Expansion ROM at f7000000 [disabled] [size=3D512K]
+        Capabilities: [60] Power Management version 3
+                Flags: PMEClk- DSI- D1- D2- AuxCurrent=3D0mA
+PME(D0-,D1-,D2-,D3hot-,D3cold-)
+                Status: D0 NoSoftRst+ PME-Enable- DSel=3D0 DScale=3D0 PME-
+        Capabilities: [68] MSI: Enable+ Count=3D1/1 Maskable- 64bit+
+                Address: 00000000fee003b8  Data: 0000
+        Capabilities: [78] Express (v2) Endpoint, MSI 00
+                DevCap: MaxPayload 256 bytes, PhantFunc 0, Latency L0s
+unlimited, L1 &lt;64us
+                        ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset-
+SlotPowerLimit 25.000W
+                DevCtl: Report errors: Correctable- Non-Fatal- Fatal-
+Unsupported-
+                        RlxdOrd- ExtTag+ PhantFunc- AuxPwr- NoSnoop+
+                        MaxPayload 128 bytes, MaxReadReq 512 bytes
+                DevSta: CorrErr- UncorrErr- FatalErr- UnsuppReq- AuxPwr-
+TransPend-
+                LnkCap: Port #0, Speed 2.5GT/s, Width x8, ASPM L0s L1, Exit
+Latency L0s &lt;512ns, L1 &lt;4us
+                        ClockPM+ Surprise- LLActRep- BwNot- ASPMOptComp+
+                LnkCtl: ASPM Disabled; RCB 64 bytes Disabled- CommClk+
+                        ExtSynch- ClockPM- AutWidDis- BWInt- AutBWInt-
+                LnkSta: Speed 2.5GT/s, Width x4, TrErr- Train- SlotClk+
+DLActive- BWMgmt- ABWMgmt-
+                DevCap2: Completion Timeout: Range AB, TimeoutDis+, LTR-, O=
+BFF
+Not Supported
+                         AtomicOpsCap: 32bit- 64bit- 128bitCAS-
+                DevCtl2: Completion Timeout: 50us to 50ms, TimeoutDis-, LTR=
+-,
+OBFF Disabled
+                         AtomicOpsCtl: ReqEn-
+                LnkCtl2: Target Link Speed: 2.5GT/s, EnterCompliance- Speed=
+Dis-
+                         Transmit Margin: Normal Operating Range,
+EnterModifiedCompliance- ComplianceSOS-
+                         Compliance De-emphasis: -6dB
+                LnkSta2: Current De-emphasis Level: -6dB,
+EqualizationComplete-, EqualizationPhase1-
+                         EqualizationPhase2-, EqualizationPhase3-,
+LinkEqualizationRequest-
+        Capabilities: [b4] Vendor Specific Information: Len=3D14 &lt;?&gt;
+        Capabilities: [100 v1] Virtual Channel
+                Caps:   LPEVC=3D0 RefClk=3D100ns PATEntryBits=3D1
+                Arb:    Fixed- WRR32- WRR64- WRR128-
+                Ctrl:   ArbSelect=3DFixed
+                Status: InProgress-
+                VC0:    Caps:   PATOffset=3D00 MaxTimeSlots=3D1 RejSnoopTra=
+ns-
+                        Arb:    Fixed- WRR32- WRR64- WRR128- TWRR128- WRR25=
+6-
+                        Ctrl:   Enable+ ID=3D0 ArbSelect=3DFixed TC/VC=3D01
+                        Status: NegoPending- InProgress-
+        Capabilities: [128 v1] Power Budgeting &lt;?&gt;
+        Capabilities: [600 v1] Vendor Specific Information: ID=3D0001 Rev=
+=3D1
+Len=3D024 &lt;?&gt;
+        Kernel driver in use: nouveau
+        Kernel modules: nouveau
+
+Distribution: Fedora, Gentoo</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15442805531.b0Bd1fFB.3050--
+
+--===============0352703529==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0352703529==--
