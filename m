@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108982] GM206: MMIO write of 800000ec FAULT at
- 10eb14 [ IBUS ]
-Date: Sun, 09 Dec 2018 05:11:17 +0000
-Message-ID: <bug-108982-8800-mgbnVxlJtX@http.bugs.freedesktop.org/>
-References: <bug-108982-8800@http.bugs.freedesktop.org/>
+From: James <bjlockie-ozXLQgHQwDP3fQ9qLvQP4Q@public.gmane.org>
+Subject: new GP107
+Date: Sun, 9 Dec 2018 00:09:40 -0500
+Message-ID: <pui7uh$o5n$1@blaine.gmane.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0708262576=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108982-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,96 +19,45 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0708262576==
-Content-Type: multipart/alternative; boundary="15443322770.B9cBc.28925"
-Content-Transfer-Encoding: 7bit
-
-
---15443322770.B9cBc.28925
-Date: Sun, 9 Dec 2018 05:11:17 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108982
-
---- Comment #3 from Johnny B. Goode <adamos-zBjOIweZRQ4nvi+hAk5376sMm+1xrEX8@public.gmane.org> ---
-Created attachment 142763
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142763&action=3Dedit
-GM206 nouveau.debug trace2
-
-Once again, because the first one was without -b -1 parameter, so without
-closing nouveau.
-journalctl -b -1 --no-hostname -o short-monotonic | grep nouveau
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15443322770.B9cBc.28925
-Date: Sun, 9 Dec 2018 05:11:17 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM206: MMIO write of 800000ec FAULT at 10eb14 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108982#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM206: MMIO write of 800000ec FAULT at 10eb14 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108982">bug 10898=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-adamos&#64;hell.factory.net.pl" title=3D"Johnny B. Goode &lt;adamos&#64;hel=
-l.factory.net.pl&gt;"> <span class=3D"fn">Johnny B. Goode</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142763=
-" name=3D"attach_142763" title=3D"GM206 nouveau.debug trace2">attachment 14=
-2763</a> <a href=3D"attachment.cgi?id=3D142763&amp;action=3Dedit" title=3D"=
-GM206 nouveau.debug trace2">[details]</a></span>
-GM206 nouveau.debug trace2
-
-Once again, because the first one was without -b -1 parameter, so without
-closing nouveau.
-journalctl -b -1 --no-hostname -o short-monotonic | grep nouveau</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15443322770.B9cBc.28925--
-
---===============0708262576==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0708262576==--
+aHR0cHM6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93aWtpL0NvZGVOYW1lcy8KCj4gSWYgeW91
+J3JlIHJ1bm5pbmcgYSByZWNlbnQgdmVyc2lvbiBub3V2ZWF1LCB5b3UgY2FuIGZpbmQgeW91ciBj
+aGlwc2V0IGJ5IGRvaW5nIGRtZXNnIHwgZ3JlcCAtaSBjaGlwc2V0LiBUaGlzIHdpbGwgYWx3YXlz
+IGJlIGNvcnJlY3QsIHdoZXJlYXMgdGhlIGxpc3RzIGJlbG93IGFyZSBhcHByb3hpbWF0ZS4KCiMg
+ZG1lc2cgfCBncmVwIC1pIGNoaXBzZXQKIwoKTm90IHRydWUgYW55bW9yZSBJIGd1ZXNzLgoKV2hh
+dCBpcyB0aGUgJ0dQJyBpbiAnR1AxMDcnIGlmICdOVi4uLicgYXJlIHRoZSBjb2RlIG5hbWVzPwoK
+IyBkbWVzZyB8IGdyZXAgLWkgbm91dmVhdQo+IFsgICAgMi4xNzE0NzNdIGZiOiBzd2l0Y2hpbmcg
+dG8gbm91dmVhdWZiIGZyb20gVkVTQSBWR0EKPiBbICAgIDIuMTcxNTk1XSBub3V2ZWF1IDAwMDA6
+MDE6MDAuMDogTlZJRElBIEdQMTA3ICgxMzcwMDBhMSkKPiBbICAgIDIuMjg2NTAxXSBub3V2ZWF1
+IDAwMDA6MDE6MDAuMDogYmlvczogdmVyc2lvbiA4Ni4wNy4zOS44MC41ZQo+IFsgICAgMi4yODc2
+NzJdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBmYjogMjA0OCBNaUIgR0REUjUKPiBbICAgIDMuNTcz
+MTEzXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBWUkFNOiAyMDQ4IE1pQgo+IFsgICAgMy41
+NzMxMTRdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEdBUlQ6IDUzNjg3MDkxMiBNaUIKPiBb
+ICAgIDMuNTczMTE2XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBCSVQgdGFibGUgJ0EnIG5v
+dCBmb3VuZAo+IFsgICAgMy41NzMxMTddIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IEJJVCB0
+YWJsZSAnTCcgbm90IGZvdW5kCj4gWyAgICAzLjU3MzExOV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6
+IERSTTogVE1EUyB0YWJsZSB2ZXJzaW9uIDIuMAo+IFsgICAgMy41NzMxMjBdIG5vdXZlYXUgMDAw
+MDowMTowMC4wOiBEUk06IERDQiB2ZXJzaW9uIDQuMQo+IFsgICAgMy41NzMxMjFdIG5vdXZlYXUg
+MDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAwOiAwMTAwMGY0MiAwNDYyMDAzMAo+IFsgICAg
+My41NzMxMjNdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAxOiAwMjAxMWY2
+MiAwNDYyMDAxMAo+IFsgICAgMy41NzMxMjRdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERD
+QiBvdXRwIDAyOiAwMjgyMmY3NiAwNDYwMDAyMAo+IFsgICAgMy41NzMxMjVdIG5vdXZlYXUgMDAw
+MDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAzOiAwMjAyMmY3MiAwNDYyMDAyMAo+IFsgICAgMy41
+NzMxMjZdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDAwOiAwMDAwMTAzMQo+
+IFsgICAgMy41NzMxMjddIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDAxOiAw
+MDAxMDE2MQo+IFsgICAgMy41NzMxMjhdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBj
+b25uIDAyOiAwMDAyMDI0Ngo+IFsgICAgMy44NDQ0MzFdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBE
+Uk06IE1NOiB1c2luZyBDT1BZIGZvciBidWZmZXIgY29waWVzCj4gWyAgICAzLjk4MzczM10gbm91
+dmVhdSAwMDAwOjAxOjAwLjA6IGJ1czogTU1JTyByZWFkIG9mIDAwMDAwMDAwIEZBVUxUIGF0IDEy
+MjEyNCBbIElCVVMgXQo+IFsgICAgNC4wOTE3MzNdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06
+IGFsbG9jYXRlZCAxOTIweDEyMDAgZmI6IDB4MjAwMDAwLCBibyAoX19fX3B0cnZhbF9fX18pCj4g
+WyAgICA0LjE2MDY4Ml0gZmJjb246IG5vdXZlYXVmYiAoZmIwKSBpcyBwcmltYXJ5IGRldmljZQo+
+IFsgICAgNC4xNjA3NThdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBmYjA6IG5vdXZlYXVmYiBmcmFt
+ZSBidWZmZXIgZGV2aWNlCj4gWyAgICA0LjE5MjA0NF0gW2RybV0gSW5pdGlhbGl6ZWQgbm91dmVh
+dSAxLjMuMSAyMDEyMDgwMSBmb3IgMDAwMDowMTowMC4wIG9uIG1pbm9yIDAKCiMgdGFpbCAvdmFy
+L2xvZy9Yb3JnLjAubG9nCj4gWyAgMjc5OC44MjBdIChFRSkgZ2xhbW9yMDogR0wgZXJyb3I6IEdM
+X09VVF9PRl9NRU1PUlkgaW4gZ2xUZXhTdWJJbWFnZQo+IFsgIDI3OTguODIwXSAoV1cpIGdsYW1v
+cjogRmFpbGVkIHRvIGFsbG9jYXRlIDExeDggRkJPIGR1ZSB0byBHTF9PVVRfT0ZfTUVNT1JZLgo+
+IFsgIDI3OTguODIwXSAoV1cpIGdsYW1vcjogRXhwZWN0IHJlZHVjZWQgcGVyZm9ybWFuY2UuCgpJ
+cyB0aGlzIGEgYnVnPwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
