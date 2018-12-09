@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108980] GF117: MMIO write of 0000001f FAULT at
  6013d4 [ IBUS ]
-Date: Sun, 09 Dec 2018 15:35:06 +0000
-Message-ID: <bug-108980-8800-ykoXQNUvFq@http.bugs.freedesktop.org/>
+Date: Sun, 09 Dec 2018 17:03:59 +0000
+Message-ID: <bug-108980-8800-QHt0crrXAG@http.bugs.freedesktop.org/>
 References: <bug-108980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1956955754=="
+Content-Type: multipart/mixed; boundary="===============2016572317=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1956955754==
-Content-Type: multipart/alternative; boundary="15443697050.b352.29268"
+--===============2016572317==
+Content-Type: multipart/alternative; boundary="15443750391.6b907Cc86.21907"
 Content-Transfer-Encoding: 7bit
 
 
---15443697050.b352.29268
-Date: Sun, 9 Dec 2018 15:35:05 +0000
+--15443750391.6b907Cc86.21907
+Date: Sun, 9 Dec 2018 17:03:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,39 +36,25 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108980
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OK, I see what's going on. This is going to be a game of whack-a-mole.
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+... and of course fixing that vga thing isn't as easy as it looks.
 
-We make a bunch of MMIO accesses to "illegal" areas. The "error" buffer is =
-only
-1-deep, i.e. it keeps track of only the last one. When we enable reporting,=
- it
-reports whichever was the first, or the last such error. With the vga write
-fixed, now it's something else.
+nvkm_device_preinit first calls all the preinit's and THEN computes the dis=
+able
+mask. So when nvkm_devinit_preinit runs, it won't have the disable mask that
+tells it that the display unit is fused off.
 
-84048 is PVLD.ACCESS_EN. I guess we're accessing it before it's enabled? It
-looks like this is coming from nvkm_falcon_fini (which is, counter-intuitiv=
-ely,
-called as part of the initialization flow).
-
-The logic in core/subdev.c is to first run ->fini() and then do nvkm_mc_res=
-et()
-which will turn off-then-on the bit that enables the engine.
-
-Ben - what's the proper way to deal with this? Tweak PMC.ENABLE in
-nvkm_device_fini? [We could always just clear out those errors before first
-enabling the bus intr reporting, but that would just be sticking our heads =
-in
-the sand...]
-
-In the meanwhile, I'll work on a proper patch for the vgalock thing.
+And unfortunately I don't know why that logic is there in the first place, =
+so
+this is one for Ben as well. Perhaps it's a holdover from the time of the
+ancients, and can be restricted to family < NV_50 entirely?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15443697050.b352.29268
-Date: Sun, 9 Dec 2018 15:35:05 +0000
+--15443750391.6b907Cc86.21907
+Date: Sun, 9 Dec 2018 17:03:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -85,8 +71,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980#c7">Commen=
-t # 7</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
@@ -96,32 +82,18 @@ t # 7</a>
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>OK, I see what's going on. This is going to be a game of whack=
--a-mole.
+        <pre>... and of course fixing that vga thing isn't as easy as it lo=
+oks.
 
-We make a bunch of MMIO accesses to &quot;illegal&quot; areas. The &quot;er=
-ror&quot; buffer is only
-1-deep, i.e. it keeps track of only the last one. When we enable reporting,=
- it
-reports whichever was the first, or the last such error. With the vga write
-fixed, now it's something else.
+nvkm_device_preinit first calls all the preinit's and THEN computes the dis=
+able
+mask. So when nvkm_devinit_preinit runs, it won't have the disable mask that
+tells it that the display unit is fused off.
 
-84048 is PVLD.ACCESS_EN. I guess we're accessing it before it's enabled? It
-looks like this is coming from nvkm_falcon_fini (which is, counter-intuitiv=
-ely,
-called as part of the initialization flow).
-
-The logic in core/subdev.c is to first run -&gt;fini() and then do nvkm_mc_=
-reset()
-which will turn off-then-on the bit that enables the engine.
-
-Ben - what's the proper way to deal with this? Tweak PMC.ENABLE in
-nvkm_device_fini? [We could always just clear out those errors before first
-enabling the bus intr reporting, but that would just be sticking our heads =
-in
-the sand...]
-
-In the meanwhile, I'll work on a proper patch for the vgalock thing.</pre>
+And unfortunately I don't know why that logic is there in the first place, =
+so
+this is one for Ben as well. Perhaps it's a holdover from the time of the
+ancients, and can be restricted to family &lt; NV_50 entirely?</pre>
         </div>
       </p>
 
@@ -135,9 +107,9 @@ In the meanwhile, I'll work on a proper patch for the vgalock thing.</pre>
     </body>
 </html>=
 
---15443697050.b352.29268--
+--15443750391.6b907Cc86.21907--
 
---===============1956955754==
+--===============2016572317==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -147,4 +119,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1956955754==--
+--===============2016572317==--
