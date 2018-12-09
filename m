@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108980] GF117: MMIO write of 0000001f FAULT at
  6013d4 [ IBUS ]
-Date: Sun, 09 Dec 2018 09:19:02 +0000
-Message-ID: <bug-108980-8800-GTMs723j6K@http.bugs.freedesktop.org/>
+Date: Sun, 09 Dec 2018 15:35:06 +0000
+Message-ID: <bug-108980-8800-ykoXQNUvFq@http.bugs.freedesktop.org/>
 References: <bug-108980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0151077156=="
+Content-Type: multipart/mixed; boundary="===============1956955754=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0151077156==
-Content-Type: multipart/alternative; boundary="15443471421.01d4Cf80D.30405"
+--===============1956955754==
+Content-Type: multipart/alternative; boundary="15443697050.b352.29268"
 Content-Transfer-Encoding: 7bit
 
 
---15443471421.01d4Cf80D.30405
-Date: Sun, 9 Dec 2018 09:19:02 +0000
+--15443697050.b352.29268
+Date: Sun, 9 Dec 2018 15:35:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,37 +36,39 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108980
 
---- Comment #6 from Johnny B. Goode <adamos-zBjOIweZRQ4nvi+hAk5376sMm+1xrEX8@public.gmane.org> ---
-After commenting out "nvkm_lockvgac"
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+OK, I see what's going on. This is going to be a game of whack-a-mole.
 
-dmesg | grep nouveau
-[   15.460433] nouveau: detected PR support, will not use DSM
-[   15.460460] nouveau 0000:08:00.0: enabling device (0006 -> 0007)
-[   15.542557] nouveau 0000:08:00.0: NVIDIA GF117 (0d7000a2)
-[   15.572939] nouveau 0000:08:00.0: bios: version 75.17.86.00.04
-[   15.656684] nouveau 0000:08:00.0: fb: 2048 MiB DDR3
-[   15.674657] nouveau 0000:08:00.0: volt: couldn't find speedo value, volt=
-ing
-not possible
-[   15.674671] nouveau 0000:08:00.0: bus: MMIO read of 00000000 FAULT at 08=
-4048
-[ IBUS ]
-[   16.325269] nouveau 0000:08:00.0: DRM: VRAM: 2048 MiB
-[   16.326428] nouveau 0000:08:00.0: DRM: GART: 1048576 MiB
-[   16.327626] nouveau 0000:08:00.0: DRM: Pointer to TMDS table invalid
-[   16.328896] nouveau 0000:08:00.0: DRM: DCB version 4.0
-[   16.331925] nouveau 0000:08:00.0: DRM: MM: using COPY0 for buffer copies
-[   16.333193] [drm] Initialized nouveau 1.3.1 20120801 for 0000:08:00.0 on
-minor 1
+We make a bunch of MMIO accesses to "illegal" areas. The "error" buffer is =
+only
+1-deep, i.e. it keeps track of only the last one. When we enable reporting,=
+ it
+reports whichever was the first, or the last such error. With the vga write
+fixed, now it's something else.
 
-Now it is MMIO read of 00000000 FAULT at 084048 [ IBUS ]
+84048 is PVLD.ACCESS_EN. I guess we're accessing it before it's enabled? It
+looks like this is coming from nvkm_falcon_fini (which is, counter-intuitiv=
+ely,
+called as part of the initialization flow).
+
+The logic in core/subdev.c is to first run ->fini() and then do nvkm_mc_res=
+et()
+which will turn off-then-on the bit that enables the engine.
+
+Ben - what's the proper way to deal with this? Tweak PMC.ENABLE in
+nvkm_device_fini? [We could always just clear out those errors before first
+enabling the bus intr reporting, but that would just be sticking our heads =
+in
+the sand...]
+
+In the meanwhile, I'll work on a proper patch for the vgalock thing.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15443471421.01d4Cf80D.30405
-Date: Sun, 9 Dec 2018 09:19:02 +0000
+--15443697050.b352.29268
+Date: Sun, 9 Dec 2018 15:35:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -83,40 +85,43 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980#c6">Commen=
-t # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980">bug 10898=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-adamos&#64;hell.factory.net.pl" title=3D"Johnny B. Goode &lt;adamos&#64;hel=
-l.factory.net.pl&gt;"> <span class=3D"fn">Johnny B. Goode</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>After commenting out &quot;nvkm_lockvgac&quot;
+        <pre>OK, I see what's going on. This is going to be a game of whack=
+-a-mole.
 
-dmesg | grep nouveau
-[   15.460433] nouveau: detected PR support, will not use DSM
-[   15.460460] nouveau 0000:08:00.0: enabling device (0006 -&gt; 0007)
-[   15.542557] nouveau 0000:08:00.0: NVIDIA GF117 (0d7000a2)
-[   15.572939] nouveau 0000:08:00.0: bios: version 75.17.86.00.04
-[   15.656684] nouveau 0000:08:00.0: fb: 2048 MiB DDR3
-[   15.674657] nouveau 0000:08:00.0: volt: couldn't find speedo value, volt=
-ing
-not possible
-[   15.674671] nouveau 0000:08:00.0: bus: MMIO read of 00000000 FAULT at 08=
-4048
-[ IBUS ]
-[   16.325269] nouveau 0000:08:00.0: DRM: VRAM: 2048 MiB
-[   16.326428] nouveau 0000:08:00.0: DRM: GART: 1048576 MiB
-[   16.327626] nouveau 0000:08:00.0: DRM: Pointer to TMDS table invalid
-[   16.328896] nouveau 0000:08:00.0: DRM: DCB version 4.0
-[   16.331925] nouveau 0000:08:00.0: DRM: MM: using COPY0 for buffer copies
-[   16.333193] [drm] Initialized nouveau 1.3.1 20120801 for 0000:08:00.0 on
-minor 1
+We make a bunch of MMIO accesses to &quot;illegal&quot; areas. The &quot;er=
+ror&quot; buffer is only
+1-deep, i.e. it keeps track of only the last one. When we enable reporting,=
+ it
+reports whichever was the first, or the last such error. With the vga write
+fixed, now it's something else.
 
-Now it is MMIO read of 00000000 FAULT at 084048 [ IBUS ]</pre>
+84048 is PVLD.ACCESS_EN. I guess we're accessing it before it's enabled? It
+looks like this is coming from nvkm_falcon_fini (which is, counter-intuitiv=
+ely,
+called as part of the initialization flow).
+
+The logic in core/subdev.c is to first run -&gt;fini() and then do nvkm_mc_=
+reset()
+which will turn off-then-on the bit that enables the engine.
+
+Ben - what's the proper way to deal with this? Tweak PMC.ENABLE in
+nvkm_device_fini? [We could always just clear out those errors before first
+enabling the bus intr reporting, but that would just be sticking our heads =
+in
+the sand...]
+
+In the meanwhile, I'll work on a proper patch for the vgalock thing.</pre>
         </div>
       </p>
 
@@ -130,9 +135,9 @@ Now it is MMIO read of 00000000 FAULT at 084048 [ IBUS ]</pre>
     </body>
 </html>=
 
---15443471421.01d4Cf80D.30405--
+--15443697050.b352.29268--
 
---===============0151077156==
+--===============1956955754==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -142,4 +147,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0151077156==--
+--===============1956955754==--
