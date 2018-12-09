@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108982] GM206: MMIO write of 800000ec FAULT at
  10eb14 [ IBUS ]
-Date: Sun, 09 Dec 2018 05:04:02 +0000
-Message-ID: <bug-108982-8800-JVCld4QdxA@http.bugs.freedesktop.org/>
+Date: Sun, 09 Dec 2018 05:11:17 +0000
+Message-ID: <bug-108982-8800-mgbnVxlJtX@http.bugs.freedesktop.org/>
 References: <bug-108982-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0665936606=="
+Content-Type: multipart/mixed; boundary="===============0708262576=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108982-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0665936606==
-Content-Type: multipart/alternative; boundary="15443318421.9aC92eBEc.26887"
+--===============0708262576==
+Content-Type: multipart/alternative; boundary="15443322770.B9cBc.28925"
 Content-Transfer-Encoding: 7bit
 
 
---15443318421.9aC92eBEc.26887
-Date: Sun, 9 Dec 2018 05:04:02 +0000
+--15443322770.B9cBc.28925
+Date: Sun, 9 Dec 2018 05:11:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108982
 
---- Comment #2 from Johnny B. Goode <adamos-zBjOIweZRQ4nvi+hAk5376sMm+1xrEX8@public.gmane.org> ---
-Created attachment 142762
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142762&action=3Dedit
-GM206 nouveau.debug trace
+--- Comment #3 from Johnny B. Goode <adamos-zBjOIweZRQ4nvi+hAk5376sMm+1xrEX8@public.gmane.org> ---
+Created attachment 142763
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142763&action=3Dedit
+GM206 nouveau.debug trace2
 
+Once again, because the first one was without -b -1 parameter, so without
+closing nouveau.
 journalctl -b -1 --no-hostname -o short-monotonic | grep nouveau
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15443318421.9aC92eBEc.26887
-Date: Sun, 9 Dec 2018 05:04:02 +0000
+--15443322770.B9cBc.28925
+Date: Sun, 9 Dec 2018 05:11:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +67,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GM206: MMIO write of 800000ec FAULT at 10eb14 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108982#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108982#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GM206: MMIO write of 800000ec FAULT at 10eb14 [ IBUS ]"
@@ -76,12 +78,14 @@ t # 2</a>
 adamos&#64;hell.factory.net.pl" title=3D"Johnny B. Goode &lt;adamos&#64;hel=
 l.factory.net.pl&gt;"> <span class=3D"fn">Johnny B. Goode</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142762=
-" name=3D"attach_142762" title=3D"GM206 nouveau.debug trace">attachment 142=
-762</a> <a href=3D"attachment.cgi?id=3D142762&amp;action=3Dedit" title=3D"G=
-M206 nouveau.debug trace">[details]</a></span>
-GM206 nouveau.debug trace
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142763=
+" name=3D"attach_142763" title=3D"GM206 nouveau.debug trace2">attachment 14=
+2763</a> <a href=3D"attachment.cgi?id=3D142763&amp;action=3Dedit" title=3D"=
+GM206 nouveau.debug trace2">[details]</a></span>
+GM206 nouveau.debug trace2
 
+Once again, because the first one was without -b -1 parameter, so without
+closing nouveau.
 journalctl -b -1 --no-hostname -o short-monotonic | grep nouveau</pre>
         </div>
       </p>
@@ -96,9 +100,9 @@ journalctl -b -1 --no-hostname -o short-monotonic | grep nouveau</pre>
     </body>
 </html>=
 
---15443318421.9aC92eBEc.26887--
+--15443322770.B9cBc.28925--
 
---===============0665936606==
+--===============0708262576==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0665936606==--
+--===============0708262576==--
