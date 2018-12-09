@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108980] GF117: MMIO write of 0000001f FAULT at
- 6013d4 [ IBUS ]
-Date: Sun, 09 Dec 2018 17:03:59 +0000
-Message-ID: <bug-108980-8800-QHt0crrXAG@http.bugs.freedesktop.org/>
-References: <bug-108980-8800@http.bugs.freedesktop.org/>
+From: James <bjlockie-ozXLQgHQwDP3fQ9qLvQP4Q@public.gmane.org>
+Subject: Re: new GP107
+Date: Sun, 9 Dec 2018 14:16:40 -0500
+Message-ID: <pujpim$q19$1@blaine.gmane.org>
+References: <pui7uh$o5n$1@blaine.gmane.org>
+ <CAKb7Uvg83nMOd9_4xTuGGggY=AH_P=Mi7O2iVLLLaddBTUsNZw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2016572317=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvg83nMOd9_4xTuGGggY=AH_P=Mi7O2iVLLLaddBTUsNZw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,103 +22,65 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============2016572317==
-Content-Type: multipart/alternative; boundary="15443750391.6b907Cc86.21907"
-Content-Transfer-Encoding: 7bit
-
-
---15443750391.6b907Cc86.21907
-Date: Sun, 9 Dec 2018 17:03:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108980
-
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-... and of course fixing that vga thing isn't as easy as it looks.
-
-nvkm_device_preinit first calls all the preinit's and THEN computes the dis=
-able
-mask. So when nvkm_devinit_preinit runs, it won't have the disable mask that
-tells it that the display unit is fused off.
-
-And unfortunately I don't know why that logic is there in the first place, =
-so
-this is one for Ben as well. Perhaps it's a holdover from the time of the
-ancients, and can be restricted to family < NV_50 entirely?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15443750391.6b907Cc86.21907
-Date: Sun, 9 Dec 2018 17:03:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980#c8">Commen=
-t # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980">bug 10898=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>... and of course fixing that vga thing isn't as easy as it lo=
-oks.
-
-nvkm_device_preinit first calls all the preinit's and THEN computes the dis=
-able
-mask. So when nvkm_devinit_preinit runs, it won't have the disable mask that
-tells it that the display unit is fused off.
-
-And unfortunately I don't know why that logic is there in the first place, =
-so
-this is one for Ben as well. Perhaps it's a holdover from the time of the
-ancients, and can be restricted to family &lt; NV_50 entirely?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15443750391.6b907Cc86.21907--
-
---===============2016572317==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============2016572317==--
+T24gMjAxOC0xMi0wOSAxMjo0MSBhLm0uLCBJbGlhIE1pcmtpbiB3cm90ZToKPiBPbiBTdW4sIERl
+YyA5LCAyMDE4IGF0IDEyOjI0IEFNIEphbWVzIDxiamxvY2tpZUBsb2NraWUuY2E+IHdyb3RlOgo+
+Cj4+ICMgZG1lc2cgfCBncmVwIC1pIG5vdXZlYXUKPj4+IFsgICAgMi4xNzE0NzNdIGZiOiBzd2l0
+Y2hpbmcgdG8gbm91dmVhdWZiIGZyb20gVkVTQSBWR0EKPj4+IFsgICAgMi4xNzE1OTVdIG5vdXZl
+YXUgMDAwMDowMTowMC4wOiBOVklESUEgR1AxMDcgKDEzNzAwMGExKQo+Pj4gWyAgICAyLjI4NjUw
+MV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGJpb3M6IHZlcnNpb24gODYuMDcuMzkuODAuNWUKPj4+
+IFsgICAgMi4yODc2NzJdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBmYjogMjA0OCBNaUIgR0REUjUK
+Pj4+IFsgICAgMy41NzMxMTNdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IFZSQU06IDIwNDgg
+TWlCCj4+PiBbICAgIDMuNTczMTE0XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBHQVJUOiA1
+MzY4NzA5MTIgTWlCCj4+PiBbICAgIDMuNTczMTE2XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJN
+OiBCSVQgdGFibGUgJ0EnIG5vdCBmb3VuZAo+Pj4gWyAgICAzLjU3MzExN10gbm91dmVhdSAwMDAw
+OjAxOjAwLjA6IERSTTogQklUIHRhYmxlICdMJyBub3QgZm91bmQKPj4+IFsgICAgMy41NzMxMTld
+IG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IFRNRFMgdGFibGUgdmVyc2lvbiAyLjAKPj4+IFsg
+ICAgMy41NzMxMjBdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiB2ZXJzaW9uIDQuMQo+
+Pj4gWyAgICAzLjU3MzEyMV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRENCIG91dHAgMDA6
+IDAxMDAwZjQyIDA0NjIwMDMwCj4+PiBbICAgIDMuNTczMTIzXSBub3V2ZWF1IDAwMDA6MDE6MDAu
+MDogRFJNOiBEQ0Igb3V0cCAwMTogMDIwMTFmNjIgMDQ2MjAwMTAKPj4+IFsgICAgMy41NzMxMjRd
+IG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAyOiAwMjgyMmY3NiAwNDYwMDAy
+MAo+Pj4gWyAgICAzLjU3MzEyNV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRENCIG91dHAg
+MDM6IDAyMDIyZjcyIDA0NjIwMDIwCj4+PiBbICAgIDMuNTczMTI2XSBub3V2ZWF1IDAwMDA6MDE6
+MDAuMDogRFJNOiBEQ0IgY29ubiAwMDogMDAwMDEwMzEKPj4+IFsgICAgMy41NzMxMjddIG5vdXZl
+YXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDAxOiAwMDAxMDE2MQo+Pj4gWyAgICAzLjU3
+MzEyOF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRENCIGNvbm4gMDI6IDAwMDIwMjQ2Cj4+
+PiBbICAgIDMuODQ0NDMxXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBNTTogdXNpbmcgQ09Q
+WSBmb3IgYnVmZmVyIGNvcGllcwo+Pj4gWyAgICAzLjk4MzczM10gbm91dmVhdSAwMDAwOjAxOjAw
+LjA6IGJ1czogTU1JTyByZWFkIG9mIDAwMDAwMDAwIEZBVUxUIGF0IDEyMjEyNCBbIElCVVMgXQo+
+Pj4gWyAgICA0LjA5MTczM10gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogYWxsb2NhdGVkIDE5
+MjB4MTIwMCBmYjogMHgyMDAwMDAsIGJvIChfX19fcHRydmFsX19fXykKPj4+IFsgICAgNC4xNjA2
+ODJdIGZiY29uOiBub3V2ZWF1ZmIgKGZiMCkgaXMgcHJpbWFyeSBkZXZpY2UKPj4+IFsgICAgNC4x
+NjA3NThdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBmYjA6IG5vdXZlYXVmYiBmcmFtZSBidWZmZXIg
+ZGV2aWNlCj4+PiBbICAgIDQuMTkyMDQ0XSBbZHJtXSBJbml0aWFsaXplZCBub3V2ZWF1IDEuMy4x
+IDIwMTIwODAxIGZvciAwMDAwOjAxOjAwLjAgb24gbWlub3IgMAo+Pgo+PiAjIHRhaWwgL3Zhci9s
+b2cvWG9yZy4wLmxvZwo+Pj4gWyAgMjc5OC44MjBdIChFRSkgZ2xhbW9yMDogR0wgZXJyb3I6IEdM
+X09VVF9PRl9NRU1PUlkgaW4gZ2xUZXhTdWJJbWFnZQo+Pj4gWyAgMjc5OC44MjBdIChXVykgZ2xh
+bW9yOiBGYWlsZWQgdG8gYWxsb2NhdGUgMTF4OCBGQk8gZHVlIHRvIEdMX09VVF9PRl9NRU1PUlku
+Cj4+PiBbICAyNzk4LjgyMF0gKFdXKSBnbGFtb3I6IEV4cGVjdCByZWR1Y2VkIHBlcmZvcm1hbmNl
+Lgo+Pgo+PiBJcyB0aGlzIGEgYnVnPwo+IAo+IFNvbWV0aGluZydzIGZhaWxpbmcgYmlndGltZSAt
+IEdMIGNhbid0IGFsbG9jYXRlIGEgdGV4dHVyZSBvciBvdGhlcgo+IGJ1ZmZlci4gTm90IHJlYWxs
+eSBlbm91Z2ggaW5mbyBoZXJlLCBidXQgcGVyaGFwcyBzb21ldGhpbmcgaW50ZXJlc3RpbmcKPiBp
+biBkbWVzZyBhZnRlciB0aGlzIGhhcHBlbnMuIEknZCByZWNvbW1lbmQgdXNpbmcgeGY4Ni12aWRl
+by1ub3V2ZWF1Cj4gdGhvdWdoLCBpbnN0ZWFkIG9mIG1vZGVzZXR0aW5nLCBzaW5jZSBpdCBkb2Vz
+bid0IGludm9sdmUgdHJ5aW5nIHRvIHVzZQo+IEdMIGFsbCB0aGUgdGltZS4KPiAKPiAgICAtaWxp
+YQoKV2hhdCBoYXMgbHVidW50dSBkb25lPwoKIyBhcHQgaW5zdGFsbCB4Zjg2LXZpZGVvLW5vdXZl
+YXUKUmVhZGluZyBwYWNrYWdlIGxpc3RzLi4uIERvbmUKQnVpbGRpbmcgZGVwZW5kZW5jeSB0cmVl
+ClJlYWRpbmcgc3RhdGUgaW5mb3JtYXRpb24uLi4gRG9uZQpFOiBVbmFibGUgdG8gbG9jYXRlIHBh
+Y2thZ2UgeGY4Ni12aWRlby1ub3V2ZWF1CgojIGFwdC1jYWNoZSBzZWFyY2ggeGY4Ni12aWRlby1u
+b3V2ZWF1CnhzZXJ2ZXIteG9yZy12aWRlby1ub3V2ZWF1IC0gWC5PcmcgWCBzZXJ2ZXIgLS0gTm91
+dmVhdSBkaXNwbGF5IGRyaXZlcgoKIyBhcHQgaW5zdGFsbCB4c2VydmVyLXhvcmctdmlkZW8tbm91
+dmVhdQpSZWFkaW5nIHBhY2thZ2UgbGlzdHMuLi4gRG9uZQpCdWlsZGluZyBkZXBlbmRlbmN5IHRy
+ZWUKUmVhZGluZyBzdGF0ZSBpbmZvcm1hdGlvbi4uLiBEb25lCnhzZXJ2ZXIteG9yZy12aWRlby1u
+b3V2ZWF1IGlzIGFscmVhZHkgdGhlIG5ld2VzdCB2ZXJzaW9uICgxOjEuMC4xNS0zKS4KMCB1cGdy
+YWRlZCwgMCBuZXdseSBpbnN0YWxsZWQsIDAgdG8gcmVtb3ZlIGFuZCAwIG5vdCB1cGdyYWRlZC4K
+CgpodHRwczovL25vdXZlYXUuZnJlZWRlc2t0b3Aub3JnL3dpa2kvCj4gTGl0dGxlIGhvcGUgb2Yg
+cmVjbG9ja2luZyBiZWNvbWluZyBhdmFpbGFibGUgZm9yIEdNMjB4IGFuZCBuZXdlciBHUFVzIGFz
+IGZpcm13YXJlIG5vdyBuZWVkcyB0byBiZSBzaWduZWQgYnkgTlZJRElBIHRvIGhhdmUgdGhlIG5l
+Y2Vzc2FyeSBhY2Nlc3MuCklzIHRoYXQgd2h5IEkgZ2V0IHRoaXM6CiMgY2F0IC9zeXMva2VybmVs
+L2RlYnVnL2RyaS8wL3BzdGF0ZSBjYXQ6IAovc3lzL2tlcm5lbC9kZWJ1Zy9kcmkvMC9wc3RhdGU6
+IE5vIHN1Y2ggZGV2aWNlCgpDYW4gSSBzZWUgdGhlIGN1cnJlbnQgY2xvY2tpbmcgd2l0aCBub3V2
+ZWF1PwpFdmVyeXRoaW5nIHNob3VsZCBhdCBsZWFzdCBiZSByZWFkYWJsZS4KCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
