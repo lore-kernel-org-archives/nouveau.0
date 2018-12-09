@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: new GP107
-Date: Sun, 9 Dec 2018 00:41:11 -0500
-Message-ID: <CAKb7Uvg83nMOd9_4xTuGGggY=AH_P=Mi7O2iVLLLaddBTUsNZw@mail.gmail.com>
-References: <pui7uh$o5n$1@blaine.gmane.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108980] GF117: MMIO write of 0000001f FAULT at
+ 6013d4 [ IBUS ]
+Date: Sun, 09 Dec 2018 09:19:02 +0000
+Message-ID: <bug-108980-8800-GTMs723j6K@http.bugs.freedesktop.org/>
+References: <bug-108980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0151077156=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <pui7uh$o5n$1@blaine.gmane.org>
+In-Reply-To: <bug-108980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,67 +17,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: James <bjlockie-ozXLQgHQwDP3fQ9qLvQP4Q@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBEZWMgOSwgMjAxOCBhdCAxMjoyNCBBTSBKYW1lcyA8Ympsb2NraWVAbG9ja2llLmNh
-PiB3cm90ZToKPgo+IGh0dHBzOi8vbm91dmVhdS5mcmVlZGVza3RvcC5vcmcvd2lraS9Db2RlTmFt
-ZXMvCj4KPiA+IElmIHlvdSdyZSBydW5uaW5nIGEgcmVjZW50IHZlcnNpb24gbm91dmVhdSwgeW91
-IGNhbiBmaW5kIHlvdXIgY2hpcHNldCBieSBkb2luZyBkbWVzZyB8IGdyZXAgLWkgY2hpcHNldC4g
-VGhpcyB3aWxsIGFsd2F5cyBiZSBjb3JyZWN0LCB3aGVyZWFzIHRoZSBsaXN0cyBiZWxvdyBhcmUg
-YXBwcm94aW1hdGUuCj4KPiAjIGRtZXNnIHwgZ3JlcCAtaSBjaGlwc2V0Cj4gIwo+Cj4gTm90IHRy
-dWUgYW55bW9yZSBJIGd1ZXNzLgoKTm8uIEEgdG9uIG9mIHVwZGF0ZXMgd2VudCBpbnRvIGtlcm5l
-bCA0LjMsIGFuZCB0aGlzIHdhcyBvbmUgb2YgdGhlbS4KTm90IGFzIGVhc3kgdG8gZmluZCBvdXQg
-YW55bW9yZSB3aXRoIGEgZml4ZWQgY29tbWFuZC4gTWF5YmUgZ3JlcApOVklESUE/LgoKPgo+IFdo
-YXQgaXMgdGhlICdHUCcgaW4gJ0dQMTA3JyBpZiAnTlYuLi4nIGFyZSB0aGUgY29kZSBuYW1lcz8K
-CldlJ3ZlIG1vc3RseSBtb3ZlZCBvdmVyIHRvIHRoZSBOVklESUEtd2F5IG9mIG5hbWluZyB0aGVz
-ZSBjaGlwcy4gVGhlCk5WSURJQSB3YXkgaW52b2x2ZWQgYSAiTlYiIHByZWZpeCBmb3IgcHJlLW52
-NDYgY2hpcHMsIGFuZCB0aGVuIG5vdXZlYXUKZGl2ZXJnZWQgYnkganVzdCB1c2luZyBOViArIGNo
-aXAgaWQsIHdoaWxlIE5WSURJQSBjYW1lIHVwIHdpdGggbmFtZXMKbGlrZSBHNzAsIEc3MiwgR1Qy
-MTUsIEdLMTA0LCBldGMuIEhvd2V2ZXIgd2UncmUgbW9zdGx5IGJhY2sgdG8gdGhlCk5WSURJQSB3
-YXkgbm93LiBHUCBzdGFuZHMgZm9yIHRoZSBQYXNjYWwgZ2VuZXJhdGlvbi4gKEcgPSBHZW5lcmF0
-aW9uPwpHZUZvcmNlPyBHcmFwaGljcz8gR1BVPyBXaGF0ZXZlciB5b3UgbGlrZS4uLikKCj4KPiAj
-IGRtZXNnIHwgZ3JlcCAtaSBub3V2ZWF1Cj4gPiBbICAgIDIuMTcxNDczXSBmYjogc3dpdGNoaW5n
-IHRvIG5vdXZlYXVmYiBmcm9tIFZFU0EgVkdBCj4gPiBbICAgIDIuMTcxNTk1XSBub3V2ZWF1IDAw
-MDA6MDE6MDAuMDogTlZJRElBIEdQMTA3ICgxMzcwMDBhMSkKPiA+IFsgICAgMi4yODY1MDFdIG5v
-dXZlYXUgMDAwMDowMTowMC4wOiBiaW9zOiB2ZXJzaW9uIDg2LjA3LjM5LjgwLjVlCj4gPiBbICAg
-IDIuMjg3NjcyXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmI6IDIwNDggTWlCIEdERFI1Cj4gPiBb
-ICAgIDMuNTczMTEzXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBWUkFNOiAyMDQ4IE1pQgo+
-ID4gWyAgICAzLjU3MzExNF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogR0FSVDogNTM2ODcw
-OTEyIE1pQgo+ID4gWyAgICAzLjU3MzExNl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogQklU
-IHRhYmxlICdBJyBub3QgZm91bmQKPiA+IFsgICAgMy41NzMxMTddIG5vdXZlYXUgMDAwMDowMTow
-MC4wOiBEUk06IEJJVCB0YWJsZSAnTCcgbm90IGZvdW5kCj4gPiBbICAgIDMuNTczMTE5XSBub3V2
-ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBUTURTIHRhYmxlIHZlcnNpb24gMi4wCj4gPiBbICAgIDMu
-NTczMTIwXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0IgdmVyc2lvbiA0LjEKPiA+IFsg
-ICAgMy41NzMxMjFdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAwOiAwMTAw
-MGY0MiAwNDYyMDAzMAo+ID4gWyAgICAzLjU3MzEyM10gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERS
-TTogRENCIG91dHAgMDE6IDAyMDExZjYyIDA0NjIwMDEwCj4gPiBbICAgIDMuNTczMTI0XSBub3V2
-ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMjogMDI4MjJmNzYgMDQ2MDAwMjAKPiA+
-IFsgICAgMy41NzMxMjVdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAzOiAw
-MjAyMmY3MiAwNDYyMDAyMAo+ID4gWyAgICAzLjU3MzEyNl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6
-IERSTTogRENCIGNvbm4gMDA6IDAwMDAxMDMxCj4gPiBbICAgIDMuNTczMTI3XSBub3V2ZWF1IDAw
-MDA6MDE6MDAuMDogRFJNOiBEQ0IgY29ubiAwMTogMDAwMTAxNjEKPiA+IFsgICAgMy41NzMxMjhd
-IG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDAyOiAwMDAyMDI0Ngo+ID4gWyAg
-ICAzLjg0NDQzMV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogTU06IHVzaW5nIENPUFkgZm9y
-IGJ1ZmZlciBjb3BpZXMKPiA+IFsgICAgMy45ODM3MzNdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBi
-dXM6IE1NSU8gcmVhZCBvZiAwMDAwMDAwMCBGQVVMVCBhdCAxMjIxMjQgWyBJQlVTIF0KPiA+IFsg
-ICAgNC4wOTE3MzNdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IGFsbG9jYXRlZCAxOTIweDEy
-MDAgZmI6IDB4MjAwMDAwLCBibyAoX19fX3B0cnZhbF9fX18pCj4gPiBbICAgIDQuMTYwNjgyXSBm
-YmNvbjogbm91dmVhdWZiIChmYjApIGlzIHByaW1hcnkgZGV2aWNlCj4gPiBbICAgIDQuMTYwNzU4
-XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmIwOiBub3V2ZWF1ZmIgZnJhbWUgYnVmZmVyIGRldmlj
-ZQo+ID4gWyAgICA0LjE5MjA0NF0gW2RybV0gSW5pdGlhbGl6ZWQgbm91dmVhdSAxLjMuMSAyMDEy
-MDgwMSBmb3IgMDAwMDowMTowMC4wIG9uIG1pbm9yIDAKPgo+ICMgdGFpbCAvdmFyL2xvZy9Yb3Jn
-LjAubG9nCj4gPiBbICAyNzk4LjgyMF0gKEVFKSBnbGFtb3IwOiBHTCBlcnJvcjogR0xfT1VUX09G
-X01FTU9SWSBpbiBnbFRleFN1YkltYWdlCj4gPiBbICAyNzk4LjgyMF0gKFdXKSBnbGFtb3I6IEZh
-aWxlZCB0byBhbGxvY2F0ZSAxMXg4IEZCTyBkdWUgdG8gR0xfT1VUX09GX01FTU9SWS4KPiA+IFsg
-IDI3OTguODIwXSAoV1cpIGdsYW1vcjogRXhwZWN0IHJlZHVjZWQgcGVyZm9ybWFuY2UuCj4KPiBJ
-cyB0aGlzIGEgYnVnPwoKU29tZXRoaW5nJ3MgZmFpbGluZyBiaWd0aW1lIC0gR0wgY2FuJ3QgYWxs
-b2NhdGUgYSB0ZXh0dXJlIG9yIG90aGVyCmJ1ZmZlci4gTm90IHJlYWxseSBlbm91Z2ggaW5mbyBo
-ZXJlLCBidXQgcGVyaGFwcyBzb21ldGhpbmcgaW50ZXJlc3RpbmcKaW4gZG1lc2cgYWZ0ZXIgdGhp
-cyBoYXBwZW5zLiBJJ2QgcmVjb21tZW5kIHVzaW5nIHhmODYtdmlkZW8tbm91dmVhdQp0aG91Z2gs
-IGluc3RlYWQgb2YgbW9kZXNldHRpbmcsIHNpbmNlIGl0IGRvZXNuJ3QgaW52b2x2ZSB0cnlpbmcg
-dG8gdXNlCkdMIGFsbCB0aGUgdGltZS4KCiAgLWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0151077156==
+Content-Type: multipart/alternative; boundary="15443471421.01d4Cf80D.30405"
+Content-Transfer-Encoding: 7bit
+
+
+--15443471421.01d4Cf80D.30405
+Date: Sun, 9 Dec 2018 09:19:02 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108980
+
+--- Comment #6 from Johnny B. Goode <adamos-zBjOIweZRQ4nvi+hAk5376sMm+1xrEX8@public.gmane.org> ---
+After commenting out "nvkm_lockvgac"
+
+dmesg | grep nouveau
+[   15.460433] nouveau: detected PR support, will not use DSM
+[   15.460460] nouveau 0000:08:00.0: enabling device (0006 -> 0007)
+[   15.542557] nouveau 0000:08:00.0: NVIDIA GF117 (0d7000a2)
+[   15.572939] nouveau 0000:08:00.0: bios: version 75.17.86.00.04
+[   15.656684] nouveau 0000:08:00.0: fb: 2048 MiB DDR3
+[   15.674657] nouveau 0000:08:00.0: volt: couldn't find speedo value, volt=
+ing
+not possible
+[   15.674671] nouveau 0000:08:00.0: bus: MMIO read of 00000000 FAULT at 08=
+4048
+[ IBUS ]
+[   16.325269] nouveau 0000:08:00.0: DRM: VRAM: 2048 MiB
+[   16.326428] nouveau 0000:08:00.0: DRM: GART: 1048576 MiB
+[   16.327626] nouveau 0000:08:00.0: DRM: Pointer to TMDS table invalid
+[   16.328896] nouveau 0000:08:00.0: DRM: DCB version 4.0
+[   16.331925] nouveau 0000:08:00.0: DRM: MM: using COPY0 for buffer copies
+[   16.333193] [drm] Initialized nouveau 1.3.1 20120801 for 0000:08:00.0 on
+minor 1
+
+Now it is MMIO read of 00000000 FAULT at 084048 [ IBUS ]
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15443471421.01d4Cf80D.30405
+Date: Sun, 9 Dec 2018 09:19:02 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980#c6">Commen=
+t # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980">bug 10898=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+adamos&#64;hell.factory.net.pl" title=3D"Johnny B. Goode &lt;adamos&#64;hel=
+l.factory.net.pl&gt;"> <span class=3D"fn">Johnny B. Goode</span></a>
+</span></b>
+        <pre>After commenting out &quot;nvkm_lockvgac&quot;
+
+dmesg | grep nouveau
+[   15.460433] nouveau: detected PR support, will not use DSM
+[   15.460460] nouveau 0000:08:00.0: enabling device (0006 -&gt; 0007)
+[   15.542557] nouveau 0000:08:00.0: NVIDIA GF117 (0d7000a2)
+[   15.572939] nouveau 0000:08:00.0: bios: version 75.17.86.00.04
+[   15.656684] nouveau 0000:08:00.0: fb: 2048 MiB DDR3
+[   15.674657] nouveau 0000:08:00.0: volt: couldn't find speedo value, volt=
+ing
+not possible
+[   15.674671] nouveau 0000:08:00.0: bus: MMIO read of 00000000 FAULT at 08=
+4048
+[ IBUS ]
+[   16.325269] nouveau 0000:08:00.0: DRM: VRAM: 2048 MiB
+[   16.326428] nouveau 0000:08:00.0: DRM: GART: 1048576 MiB
+[   16.327626] nouveau 0000:08:00.0: DRM: Pointer to TMDS table invalid
+[   16.328896] nouveau 0000:08:00.0: DRM: DCB version 4.0
+[   16.331925] nouveau 0000:08:00.0: DRM: MM: using COPY0 for buffer copies
+[   16.333193] [drm] Initialized nouveau 1.3.1 20120801 for 0000:08:00.0 on
+minor 1
+
+Now it is MMIO read of 00000000 FAULT at 084048 [ IBUS ]</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15443471421.01d4Cf80D.30405--
+
+--===============0151077156==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0151077156==--
