@@ -1,43 +1,38 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: System freeze: Debian Testing with C61 [GeForce 7025
- / nForce 630a]
-Date: Tue, 11 Dec 2018 11:48:11 -0500
-Message-ID: <CAKb7UvgZV7zk_vpMf9bCWrV8MpvqEnkcG4h55BgE+WLV_e13=g@mail.gmail.com>
-References: <CAD8U+g8AJD-Duxm4tkyiGSNCsnqU=xdpE1YAmd0_iU4uN7Ecqg@mail.gmail.com>
- <CAKb7Uviwt5O2b06iG0xC21dLmo+Qs0HUw40D6R1xFpvPowoLAg@mail.gmail.com>
- <CAD8U+g9CaGc=EN0UCgbCW0g6sgA_c=fBJXpiHgpyH8_Op33Fbg@mail.gmail.com>
- <CAD8U+g8gOabGeSKkGnQ0Ub0Zk8HaWdBB3Zwv4N=DXKDKh-eo1Q@mail.gmail.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH] drm/nouveau: Fix memory leak in nv50_mstm_del()
+Date: Tue, 11 Dec 2018 18:56:20 -0500
+Message-ID: <20181211235622.22859-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAD8U+g8gOabGeSKkGnQ0Ub0Zk8HaWdBB3Zwv4N=DXKDKh-eo1Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: rv riveravaldez <riveravaldezmail-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>, Sean Paul <seanpaul@chromium.org>, Ilia Mirkin <imirkin@alum.mit.edu>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBEZWMgMTEsIDIwMTggYXQgMTE6MTYgQU0gcml2ZXJhdmFsZGV6CjxyaXZlcmF2YWxk
-ZXptYWlsQGdtYWlsLmNvbT4gd3JvdGU6Cj4KPiA+IFVzZSBhbiBlbnZpcm9ubWVudCB0aGF0IGRv
-ZXNuJ3QgbWFrZSB1c2Ugb2YgR0wgZm9yIGJhc2ljIHRhc2tzLgo+Cj4gSSd2ZSBiZWVuIHJlc2Vh
-cmNoaW5nIG1vcmUgYW5kIGl0IHNlZW1zIHRoYXQgSSdtIGFscmVhZHkgaW4gdGhhdCBjYXNlLgo+
-IFRoZSBmcmVlemVzIGFwcGVhcnMgcmFuZG9tbHksIGluIGV2ZXJ5IHNpdHVhdGlvbiwgYW5kIG5v
-dCB3aGVuIEkKPiBsYXVuY2ggc29tZSAzRCBhcHBsaWNhdGlvbnMgb3IgYW55dGhpbmcgc2ltaWxh
-ci4KClVuZm9ydHVuYXRlbHkgZXZlcnlvbmUgdGhpbmtzIGl0J3MgaGlsYXJpb3VzIHRvIHVzZSBP
-cGVuR0wgZm9yIGJhc2ljCmRyYXdpbmcgdGFza3Mgbm93YWRheXMuIFRoaW5ncyBsaWtlIEdUSyBh
-bmQgUXQgd2lsbCByYW5kb21seSB1c2UgR0wKbm93LiBUaGVyZSBpcyBubyBtb3JlICJ0aGluZ3Mg
-YXJlIGZpbmUgYXMgbG9uZyBhcyBJIGRvbid0IHVzZSAzRCIgLS0KZXZlcnl0aGluZyBpcyAzRCBu
-b3cuCgpUcnkgcmVtb3Zpbmcgbm91dmVhdV9kcmkuc28gLS0gdGhhdCB3aWxsIGVuc3VyZSBubyAz
-ZCBhY2NlbCBpcyB1c2VkLAp3aGlsZSBrZWVwaW5nIHlvdXIgMmQgYWNjZWwgcHJvdmlkZWQgYnkg
-dGhlIG5vdXZlYXUgZGR4LgoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+Noticed this while working on redoing the reference counting scheme in
+the DP MST helpers. Nouveau doesn't attempt to call
+drm_dp_mst_topology_mgr_destroy() at all, which leaves it leaking all of
+the resources for drm_dp_mst_topology_mgr and it's children mstbs+ports.
+
+Fixes: f479c0ba4a17 ("drm/nouveau/kms/nv50: initial support for DP 1.2 multi-stream")
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Cc: <stable@vger.kernel.org> # v4.10+
+---
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index d153ea2a08ac..a634b3d0b6a1 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -1254,6 +1254,7 @@ nv50_mstm_del(struct nv50_mstm **pmstm)
+ {
+ 	struct nv50_mstm *mstm = *pmstm;
+ 	if (mstm) {
++		drm_dp_mst_topology_mgr_destroy(&mstm->mgr);
+ 		kfree(*pmstm);
+ 		*pmstm = NULL;
+ 	}
+-- 
+2.19.2
