@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
-Date: Thu, 13 Dec 2018 07:55:42 +0000
-Message-ID: <bug-105319-8800-Hdo78rnmG1@http.bugs.freedesktop.org/>
-References: <bug-105319-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 108980] GF117: MMIO write of 0000001f FAULT at
+ 6013d4 [ IBUS ]
+Date: Thu, 13 Dec 2018 18:09:03 +0000
+Message-ID: <bug-108980-8800-jVxjVYNDPw@http.bugs.freedesktop.org/>
+References: <bug-108980-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0865883181=="
+Content-Type: multipart/mixed; boundary="===============1650905540=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-108980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,49 +21,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0865883181==
-Content-Type: multipart/alternative; boundary="15446877422.Aa6ef.24829"
+--===============1650905540==
+Content-Type: multipart/alternative; boundary="15447245420.A4eF.12274"
 Content-Transfer-Encoding: 7bit
 
 
---15446877422.Aa6ef.24829
-Date: Thu, 13 Dec 2018 07:55:42 +0000
+--15447245420.A4eF.12274
+Date: Thu, 13 Dec 2018 18:09:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108980
 
---- Comment #31 from Stef Bon <stefbon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-relevant code in dmesg:
+--- Comment #13 from Johnny B. Goode <adamos-zBjOIweZRQ4nvi+hAk5376sMm+1xrEX8@public.gmane.org> ---
+Now it is clean
 
-[    3.715523] nouveau 0000:01:00.0: bios: version 86.07.42.00.4a
-[    3.726451] nouveau 0000:01:00.0: fb: 4096 MiB GDDR5
-
-[    3.775840] nouveau 0000:01:00.0: DRM: VRAM: 4096 MiB
-[    3.775842] nouveau 0000:01:00.0: DRM: GART: 536870912 MiB
-[    3.775843] nouveau 0000:01:00.0: DRM: BIT table 'A' not found
-[    3.775845] nouveau 0000:01:00.0: DRM: BIT table 'L' not found
-[    3.775846] nouveau 0000:01:00.0: DRM: TMDS table version 2.0
-[    3.775848] nouveau 0000:01:00.0: DRM: DCB version 4.1
-[    3.775850] nouveau 0000:01:00.0: DRM: DCB outp 00: 01000f42 04620030
-[    3.775851] nouveau 0000:01:00.0: DRM: DCB outp 01: 02011f62 00020010
-[    3.775853] nouveau 0000:01:00.0: DRM: DCB outp 02: 02822f76 04600020
-[    3.775854] nouveau 0000:01:00.0: DRM: DCB outp 03: 02022f72 00020020
-[    3.775855] nouveau 0000:01:00.0: DRM: DCB outp 04: 04033f82 00020030
-[    3.775857] nouveau 0000:01:00.0: DRM: DCB conn 00: 00001031
-[    3.775858] nouveau 0000:01:00.0: DRM: DCB conn 01: 00010161
-[    3.775859] nouveau 0000:01:00.0: DRM: DCB conn 02: 00020246
-[    3.775860] nouveau 0000:01:00.0: DRM: DCB conn 03: 01000331
+dmesg | grep nouveau
+[   14.413889] nouveau: detected PR support, will not use DSM
+[   14.414961] nouveau 0000:08:00.0: enabling device (0006 -> 0007)
+[   14.416192] nouveau 0000:08:00.0: NVIDIA GF117 (0d7000a2)
+[   14.438204] nouveau 0000:08:00.0: bios: version 75.17.86.00.04
+[   14.522882] nouveau 0000:08:00.0: fb: 2048 MiB DDR3
+[   15.185221] nouveau 0000:08:00.0: DRM: VRAM: 2048 MiB
+[   15.186151] nouveau 0000:08:00.0: DRM: GART: 1048576 MiB
+[   15.187077] nouveau 0000:08:00.0: DRM: Pointer to TMDS table invalid
+[   15.188001] nouveau 0000:08:00.0: DRM: DCB version 4.0
+[   15.190738] nouveau 0000:08:00.0: DRM: MM: using COPY0 for buffer copies
+[   15.191642] [drm] Initialized nouveau 1.3.1 20120801 for 0000:08:00.0 on
+minor 0
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15446877422.Aa6ef.24829
-Date: Thu, 13 Dec 2018 07:55:42 +0000
+--15447245420.A4eF.12274
+Date: Thu, 13 Dec 2018 18:09:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,38 +74,33 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c31">Comme=
-nt # 31</a>
+   title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980#c13">Comme=
+nt # 13</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
-9</a>
+   title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980">bug 10898=
+0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-stefbon&#64;gmail.com" title=3D"Stef Bon &lt;stefbon&#64;gmail.com&gt;"> <s=
-pan class=3D"fn">Stef Bon</span></a>
+adamos&#64;hell.factory.net.pl" title=3D"Johnny B. Goode &lt;adamos&#64;hel=
+l.factory.net.pl&gt;"> <span class=3D"fn">Johnny B. Goode</span></a>
 </span></b>
-        <pre>relevant code in dmesg:
+        <pre>Now it is clean
 
-[    3.715523] nouveau 0000:01:00.0: bios: version 86.07.42.00.4a
-[    3.726451] nouveau 0000:01:00.0: fb: 4096 MiB GDDR5
-
-[    3.775840] nouveau 0000:01:00.0: DRM: VRAM: 4096 MiB
-[    3.775842] nouveau 0000:01:00.0: DRM: GART: 536870912 MiB
-[    3.775843] nouveau 0000:01:00.0: DRM: BIT table 'A' not found
-[    3.775845] nouveau 0000:01:00.0: DRM: BIT table 'L' not found
-[    3.775846] nouveau 0000:01:00.0: DRM: TMDS table version 2.0
-[    3.775848] nouveau 0000:01:00.0: DRM: DCB version 4.1
-[    3.775850] nouveau 0000:01:00.0: DRM: DCB outp 00: 01000f42 04620030
-[    3.775851] nouveau 0000:01:00.0: DRM: DCB outp 01: 02011f62 00020010
-[    3.775853] nouveau 0000:01:00.0: DRM: DCB outp 02: 02822f76 04600020
-[    3.775854] nouveau 0000:01:00.0: DRM: DCB outp 03: 02022f72 00020020
-[    3.775855] nouveau 0000:01:00.0: DRM: DCB outp 04: 04033f82 00020030
-[    3.775857] nouveau 0000:01:00.0: DRM: DCB conn 00: 00001031
-[    3.775858] nouveau 0000:01:00.0: DRM: DCB conn 01: 00010161
-[    3.775859] nouveau 0000:01:00.0: DRM: DCB conn 02: 00020246
-[    3.775860] nouveau 0000:01:00.0: DRM: DCB conn 03: 01000331</pre>
+dmesg | grep nouveau
+[   14.413889] nouveau: detected PR support, will not use DSM
+[   14.414961] nouveau 0000:08:00.0: enabling device (0006 -&gt; 0007)
+[   14.416192] nouveau 0000:08:00.0: NVIDIA GF117 (0d7000a2)
+[   14.438204] nouveau 0000:08:00.0: bios: version 75.17.86.00.04
+[   14.522882] nouveau 0000:08:00.0: fb: 2048 MiB DDR3
+[   15.185221] nouveau 0000:08:00.0: DRM: VRAM: 2048 MiB
+[   15.186151] nouveau 0000:08:00.0: DRM: GART: 1048576 MiB
+[   15.187077] nouveau 0000:08:00.0: DRM: Pointer to TMDS table invalid
+[   15.188001] nouveau 0000:08:00.0: DRM: DCB version 4.0
+[   15.190738] nouveau 0000:08:00.0: DRM: MM: using COPY0 for buffer copies
+[   15.191642] [drm] Initialized nouveau 1.3.1 20120801 for 0000:08:00.0 on
+minor 0</pre>
         </div>
       </p>
 
@@ -123,9 +114,9 @@ pan class=3D"fn">Stef Bon</span></a>
     </body>
 </html>=
 
---15446877422.Aa6ef.24829--
+--15447245420.A4eF.12274--
 
---===============0865883181==
+--===============1650905540==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0865883181==--
+--===============1650905540==--
