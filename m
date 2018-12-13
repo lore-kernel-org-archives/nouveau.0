@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108980] GF117: MMIO write of 0000001f FAULT at
- 6013d4 [ IBUS ]
-Date: Thu, 13 Dec 2018 04:55:52 +0000
-Message-ID: <bug-108980-8800-od41zzH0k2@http.bugs.freedesktop.org/>
-References: <bug-108980-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105319] DRM: EVO timeout with kernel 4.15.x
+Date: Thu, 13 Dec 2018 07:53:00 +0000
+Message-ID: <bug-105319-8800-1nWl9HeQgt@http.bugs.freedesktop.org/>
+References: <bug-105319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2084090335=="
+Content-Type: multipart/mixed; boundary="===============1630666349=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-105319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +20,55 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2084090335==
-Content-Type: multipart/alternative; boundary="15446769521.A0d0c.6319"
+--===============1630666349==
+Content-Type: multipart/alternative; boundary="15446875802.f2F6D923.24294"
 Content-Transfer-Encoding: 7bit
 
 
---15446769521.A0d0c.6319
-Date: Thu, 13 Dec 2018 04:55:52 +0000
+--15446875802.f2F6D923.24294
+Date: Thu, 13 Dec 2018 07:53:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108980
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105319
 
---- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 142798
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142798&action=3Dedit
-fix gf117 volt speedo fuse id
+--- Comment #30 from Stef Bon <stefbon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I can confirm this nast bug. I also have errormessages like:
 
-Legit bug here -- looks like the speedo fuse moved on GF117 to the kepler
-location. (Still in the old place on GF119, which logically came before GF1=
-17.)
+nouveau 0000:01:00.0: DRM: base-0: timeout
+
+(a lot of them).
+The X systenm becomnes very slow, and strange garph. effects occur. But aft=
+er
+seconds it stablizes again. It happens specially when moving windows.
+
+I've got an arch system, but they don't seem to care there.
+
+My system:
+
+uname -a=20
+
+Linux ws-001 4.19.8-arch1-1-ARCH #1 SMP PREEMPT Sat Dec 8 13:49:11 UTC 2018
+x86_64 GNU/Linux
+
+I've got a dual monitor setup, with=20
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GP107 [GeForce GTX 10=
+50
+Ti] (rev a1)
+
+I think it's somewhere in the dri code is my intuition.
+Stef Bon
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15446769521.A0d0c.6319
-Date: Thu, 13 Dec 2018 04:55:52 +0000
+--15446875802.f2F6D923.24294
+Date: Thu, 13 Dec 2018 07:53:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,28 +84,44 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980#c12">Comme=
-nt # 12</a>
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319#c30">Comme=
+nt # 30</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980">bug 10898=
-0</a>
+   title=3D"NEW - DRM: EVO timeout with kernel 4.15.x"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105319">bug 10531=
+9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+stefbon&#64;gmail.com" title=3D"Stef Bon &lt;stefbon&#64;gmail.com&gt;"> <s=
+pan class=3D"fn">Stef Bon</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142798=
-" name=3D"attach_142798" title=3D"fix gf117 volt speedo fuse id">attachment=
- 142798</a> <a href=3D"attachment.cgi?id=3D142798&amp;action=3Dedit" title=
-=3D"fix gf117 volt speedo fuse id">[details]</a></span> <a href=3D'page.cgi=
-?id=3Dsplinter.html&amp;bug=3D108980&amp;attachment=3D142798'>[review]</a>
-fix gf117 volt speedo fuse id
+        <pre>I can confirm this nast bug. I also have errormessages like:
 
-Legit bug here -- looks like the speedo fuse moved on GF117 to the kepler
-location. (Still in the old place on GF119, which logically came before GF1=
-17.)</pre>
+nouveau 0000:01:00.0: DRM: base-0: timeout
+
+(a lot of them).
+The X systenm becomnes very slow, and strange garph. effects occur. But aft=
+er
+seconds it stablizes again. It happens specially when moving windows.
+
+I've got an arch system, but they don't seem to care there.
+
+My system:
+
+uname -a=20
+
+Linux ws-001 4.19.8-arch1-1-ARCH #1 SMP PREEMPT Sat Dec 8 13:49:11 UTC 2018
+x86_64 GNU/Linux
+
+I've got a dual monitor setup, with=20
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GP107 [GeForce GTX 10=
+50
+Ti] (rev a1)
+
+I think it's somewhere in the dri code is my intuition.
+Stef Bon</pre>
         </div>
       </p>
 
@@ -101,9 +135,9 @@ location. (Still in the old place on GF119, which logically came before GF1=
     </body>
 </html>=
 
---15446769521.A0d0c.6319--
+--15446875802.f2F6D923.24294--
 
---===============2084090335==
+--===============1630666349==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +147,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============2084090335==--
+--===============1630666349==--
