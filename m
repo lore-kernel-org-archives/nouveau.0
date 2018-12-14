@@ -1,101 +1,86 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108980] GF117: MMIO write of 0000001f FAULT at
- 6013d4 [ IBUS ]
-Date: Thu, 13 Dec 2018 18:19:26 +0000
-Message-ID: <bug-108980-8800-JQdvDkAS8x@http.bugs.freedesktop.org/>
-References: <bug-108980-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [WIP PATCH 00/15] MST refcounting/atomic helpers cleanup
+Date: Thu, 13 Dec 2018 20:25:29 -0500
+Message-ID: <20181214012604.13746-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1377923990=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@gmail.com>, Harry Wentland <harry.wentland@amd.com>, Jerry Zuo <Jerry.Zuo@amd.com>, David Airlie <airlied@linux.ie>, Maxime Ripard <maxime.ripard@bootlin.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, linux-kernel@vger.kernel.org, Sean Paul <sean@poorly.run>, linux-doc@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>, Lyude Paul <lyude@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Sean Paul <seanpaul@chromium.org>, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, Ilia Mirkin <imirkin@alum.mit.edu>
 List-Id: nouveau.vger.kernel.org
 
+This is a WIP version of the series I've been working on for a while now
+to get all of the atomic DRM drivers in the tree to use the atomic MST
+helpers, and to make the atomic MST helpers actually idempotent. Turns
+out it's a lot more difficult to do that without also fixing how port
+and branch device refcounting works so that it actually makes sense,
+since the current upstream implementation requires a ton of magic in the
+atomic helpers to work around properly and in many situations just plain
+doesn't work as intended.
 
---===============1377923990==
-Content-Type: multipart/alternative; boundary="15447251660.6dbCFF869.17776"
-Content-Transfer-Encoding: 7bit
+This patch series is starting to get bigger, and since there's still a
+few bits here and there regarding the new refcount implementation that I
+haven't quite decided on yet I figured I should get an opinion from
+everyone else.
 
+Currently I've got a couple of thoughts on how I could improve this
+further:
 
---15447251660.6dbCFF869.17776
-Date: Thu, 13 Dec 2018 18:19:26 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+* Get rid of drm_dp_mst_get_*_validated() entirely - I'm 90% sure that
+  with the new refcounting scheme we might not actually need port
+  validation at all anymore, assuming we make the use of malloc references
+  in all of the DRM drivers. Either way, I don't think validation was ever
+  actually a concept that worked: without malloc references, the port or
+  branch device that's being passed to drm_dp_mst_get_*_validated()
+  could be freed which also in turn means that that the stale pointer
+  could in theory have gotten reused for a new port and thus-cause us to
+  consider a freed port validated.
+* Get rid of drm_dp_mst_get_vcpi_slots() - with malloc references, I
+  don't think there's any use for this either
+* Get rid of drm_dp_mst_reset_vcpi_slots() - I think the only time this
+  function ever made sense was with port validation? Honestly, I wonder
+  if we ever needed this at all...
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108980
+Note: I haven't applied some of the comments from the reviews for the
+series this is based off of:
 
---- Comment #15 from Johnny B. Goode <adamos-zBjOIweZRQ4nvi+hAk5376sMm+1xrEX8@public.gmane.org> ---
-Super. Thank you :)
+drm/dp_mst: Improve VCPI helpers, use in nouveau
+https://patchwork.freedesktop.org/series/51414/
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+This is just getting put on the ML so I can get some feedback on this.
 
---15447251660.6dbCFF869.17776
-Date: Thu, 13 Dec 2018 18:19:26 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Lyude Paul (15):
+  drm/dp_mst: Remove bogus conditional in drm_dp_update_payload_part1()
+  drm/dp_mst: Refactor drm_dp_update_payload_part1()
+  drm/dp_mst: Introduce new refcounting scheme for mstbs and ports
+  drm/dp_mst: Stop releasing VCPI when removing ports from topology
+  drm/dp_mst: Fix payload deallocation on hotplugs using malloc refs
+  drm/i915: Keep malloc references to MST ports
+  drm/nouveau: Remove bogus cleanup in nv50_mstm_add_connector()
+  drm/nouveau: Remove unnecessary VCPI checks in nv50_msto_cleanup()
+  drm/nouveau: Fix potential use-after-frees for MSTCs
+  drm/nouveau: Stop unsetting mstc->port, use malloc refs
+  drm/nouveau: Grab payload lock in nv50_msto_payload()
+  drm/dp_mst: Add some atomic state iterator macros
+  drm/dp_mst: Start tracking per-port VCPI allocations
+  drm/dp_mst: Check payload count in drm_dp_mst_atomic_check()
+  drm/nouveau: Use atomic VCPI helpers for MST
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980#c15">Comme=
-nt # 15</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108980">bug 10898=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-adamos&#64;hell.factory.net.pl" title=3D"Johnny B. Goode &lt;adamos&#64;hel=
-l.factory.net.pl&gt;"> <span class=3D"fn">Johnny B. Goode</span></a>
-</span></b>
-        <pre>Super. Thank you :)</pre>
-        </div>
-      </p>
+ .../gpu/dp-mst/topology-figure-1.dot          |  31 +
+ .../gpu/dp-mst/topology-figure-2.dot          |  37 +
+ .../gpu/dp-mst/topology-figure-3.dot          |  40 +
+ Documentation/gpu/drm-kms-helpers.rst         | 125 ++-
+ drivers/gpu/drm/drm_dp_mst_topology.c         | 910 ++++++++++++++----
+ drivers/gpu/drm/i915/intel_connector.c        |   4 +
+ drivers/gpu/drm/i915/intel_display.c          |   4 +
+ drivers/gpu/drm/i915/intel_dp_mst.c           |  66 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c       |  94 +-
+ include/drm/drm_dp_mst_helper.h               | 139 ++-
+ 10 files changed, 1178 insertions(+), 272 deletions(-)
+ create mode 100644 Documentation/gpu/dp-mst/topology-figure-1.dot
+ create mode 100644 Documentation/gpu/dp-mst/topology-figure-2.dot
+ create mode 100644 Documentation/gpu/dp-mst/topology-figure-3.dot
 
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15447251660.6dbCFF869.17776--
-
---===============1377923990==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1377923990==--
+-- 
+2.19.2
