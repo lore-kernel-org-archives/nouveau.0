@@ -1,41 +1,43 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] drm/nouveau/falcon: avoid touching registers if engine is off
-Date: Thu, 13 Dec 2018 22:44:08 -0500
-Message-ID: <20181214034409.30410-1-imirkin@alum.mit.edu>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] drm/nouveau/volt/gf117: fix speedo readout
+ register
+Date: Thu, 13 Dec 2018 22:44:09 -0500
+Message-ID: <20181214034409.30410-2-imirkin@alum.mit.edu>
+References: <20181214034409.30410-1-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, bskeggs@redhat.com
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20181214034409.30410-1-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QnVnemlsbGE6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTEw
-ODk4MApTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Ci0t
-LQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmFsY29uLmMgfCA3ICsrKysr
-LS0KIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmFsY29uLmMgYi9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9mYWxjb24uYwppbmRleCA4MTZjY2Fl
-ZGZjNzMuLjg2NzU2MTNlMTQyYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bnZrbS9lbmdpbmUvZmFsY29uLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9l
-bmdpbmUvZmFsY29uLmMKQEAgLTIyLDYgKzIyLDcgQEAKICNpbmNsdWRlIDxlbmdpbmUvZmFsY29u
-Lmg+CiAKICNpbmNsdWRlIDxjb3JlL2dwdW9iai5oPgorI2luY2x1ZGUgPHN1YmRldi9tYy5oPgog
-I2luY2x1ZGUgPHN1YmRldi90aW1lci5oPgogI2luY2x1ZGUgPGVuZ2luZS9maWZvLmg+CiAKQEAg
-LTEwNyw4ICsxMDgsMTAgQEAgbnZrbV9mYWxjb25fZmluaShzdHJ1Y3QgbnZrbV9lbmdpbmUgKmVu
-Z2luZSwgYm9vbCBzdXNwZW5kKQogCQl9CiAJfQogCi0JbnZrbV9tYXNrKGRldmljZSwgYmFzZSAr
-IDB4MDQ4LCAweDAwMDAwMDAzLCAweDAwMDAwMDAwKTsKLQludmttX3dyMzIoZGV2aWNlLCBiYXNl
-ICsgMHgwMTQsIDB4ZmZmZmZmZmYpOworCWlmIChudmttX21jX2VuYWJsZWQoZGV2aWNlLCBlbmdp
-bmUtPnN1YmRldi5pbmRleCkpIHsKKwkJbnZrbV9tYXNrKGRldmljZSwgYmFzZSArIDB4MDQ4LCAw
-eDAwMDAwMDAzLCAweDAwMDAwMDAwKTsKKwkJbnZrbV93cjMyKGRldmljZSwgYmFzZSArIDB4MDE0
-LCAweGZmZmZmZmZmKTsKKwl9CiAJcmV0dXJuIDA7CiB9CiAKLS0gCjIuMTguMQoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcg
-bGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+R0YxMTcgYXBwZWFycyB0byB1c2UgdGhlIHNhbWUgcmVnaXN0ZXIgYXMgR0sxMDQgKGJ1dCBzdGls
+bCB3aXRoIHRoZQpnZW5lcmFsIEZlcm1pIHJlYWRvdXQgbWVjaGFuaXNtKS4KCkJ1Z3ppbGxhOiBo
+dHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDg5ODAKU2lnbmVk
+LW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KIGRyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvZ2YxMDAuYyB8IDMgKystCiAxIGZpbGUg
+Y2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9nZjEwMC5jIGIvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9nZjEwMC5jCmluZGV4IGQ5ZWQ2OTI1Y2E2
+NC4uZDg3YzJlZmU2N2U3IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmtt
+L3N1YmRldi92b2x0L2dmMTAwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9z
+dWJkZXYvdm9sdC9nZjEwMC5jCkBAIC0zMCwxMSArMzAsMTIgQEAgZ2YxMDBfdm9sdF9zcGVlZG9f
+cmVhZChzdHJ1Y3QgbnZrbV92b2x0ICp2b2x0KQogewogCXN0cnVjdCBudmttX2RldmljZSAqZGV2
+aWNlID0gdm9sdC0+c3ViZGV2LmRldmljZTsKIAlzdHJ1Y3QgbnZrbV9mdXNlICpmdXNlID0gZGV2
+aWNlLT5mdXNlOworCWNvbnN0IHUzMiBzcGVlZG9fZnVzZSA9IGRldmljZS0+Y2hpcHNldCA9PSAw
+eGQ3ID8gMHgzYTggOiAweDFjYzsKIAogCWlmICghZnVzZSkKIAkJcmV0dXJuIC1FSU5WQUw7CiAK
+LQlyZXR1cm4gbnZrbV9mdXNlX3JlYWQoZnVzZSwgMHgxY2MpOworCXJldHVybiBudmttX2Z1c2Vf
+cmVhZChmdXNlLCBzcGVlZG9fZnVzZSk7CiB9CiAKIGludAotLSAKMi4xOC4xCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
+dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
