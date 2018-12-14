@@ -1,43 +1,54 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] drm/nouveau/volt/gf117: fix speedo readout
- register
-Date: Thu, 13 Dec 2018 22:44:09 -0500
-Message-ID: <20181214034409.30410-2-imirkin@alum.mit.edu>
-References: <20181214034409.30410-1-imirkin@alum.mit.edu>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [WIP PATCH 01/15] drm/dp_mst: Remove bogus conditional in
+ drm_dp_update_payload_part1()
+Date: Fri, 14 Dec 2018 09:42:21 +0100
+Message-ID: <20181214084220.GL21184@phenom.ffwll.local>
+References: <20181214012604.13746-1-lyude@redhat.com>
+ <20181214012604.13746-2-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20181214034409.30410-1-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20181214012604.13746-2-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@gmail.com>, Harry Wentland <harry.wentland@amd.com>, Jerry Zuo <Jerry.Zuo@amd.com>, Juston Li <juston.li@intel.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <maxime.ripard@bootlin.com>, Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-R0YxMTcgYXBwZWFycyB0byB1c2UgdGhlIHNhbWUgcmVnaXN0ZXIgYXMgR0sxMDQgKGJ1dCBzdGls
-bCB3aXRoIHRoZQpnZW5lcmFsIEZlcm1pIHJlYWRvdXQgbWVjaGFuaXNtKS4KCkJ1Z3ppbGxhOiBo
-dHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDg5ODAKU2lnbmVk
-LW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KIGRyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvZ2YxMDAuYyB8IDMgKystCiAxIGZpbGUg
-Y2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9nZjEwMC5jIGIvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9nZjEwMC5jCmluZGV4IGQ5ZWQ2OTI1Y2E2
-NC4uZDg3YzJlZmU2N2U3IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmtt
-L3N1YmRldi92b2x0L2dmMTAwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvdm9sdC9nZjEwMC5jCkBAIC0zMCwxMSArMzAsMTIgQEAgZ2YxMDBfdm9sdF9zcGVlZG9f
-cmVhZChzdHJ1Y3QgbnZrbV92b2x0ICp2b2x0KQogewogCXN0cnVjdCBudmttX2RldmljZSAqZGV2
-aWNlID0gdm9sdC0+c3ViZGV2LmRldmljZTsKIAlzdHJ1Y3QgbnZrbV9mdXNlICpmdXNlID0gZGV2
-aWNlLT5mdXNlOworCWNvbnN0IHUzMiBzcGVlZG9fZnVzZSA9IGRldmljZS0+Y2hpcHNldCA9PSAw
-eGQ3ID8gMHgzYTggOiAweDFjYzsKIAogCWlmICghZnVzZSkKIAkJcmV0dXJuIC1FSU5WQUw7CiAK
-LQlyZXR1cm4gbnZrbV9mdXNlX3JlYWQoZnVzZSwgMHgxY2MpOworCXJldHVybiBudmttX2Z1c2Vf
-cmVhZChmdXNlLCBzcGVlZG9fZnVzZSk7CiB9CiAKIGludAotLSAKMi4xOC4xCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
-dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+On Thu, Dec 13, 2018 at 08:25:30PM -0500, Lyude Paul wrote:
+> There's no reason we need this, it's just confusing looking.
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Cc: Juston Li <juston.li@intel.com>
+> ---
+>  drivers/gpu/drm/drm_dp_mst_topology.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
+> index ad0fb6d003be..9b1b5c9b1fa0 100644
+> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
+> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+> @@ -1896,9 +1896,7 @@ int drm_dp_update_payload_part1(struct drm_dp_mst_topology_mgr *mgr)
+>  			req_payload.num_slots = 0;
+>  		}
+>  
+> -		if (mgr->payloads[i].start_slot != req_payload.start_slot) {
+> -			mgr->payloads[i].start_slot = req_payload.start_slot;
+> -		}
+> +		mgr->payloads[i].start_slot = req_payload.start_slot;
+
+Entertaining!
+
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+>  		/* work out what is required to happen with this payload */
+>  		if (mgr->payloads[i].num_slots != req_payload.num_slots) {
+>  
+> -- 
+> 2.19.2
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
