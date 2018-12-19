@@ -1,94 +1,47 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [WIP PATCH 06/15] drm/i915: Keep malloc references to MST ports
-Date: Wed, 19 Dec 2018 14:20:29 +0100
-Message-ID: <20181219132029.GW21184@phenom.ffwll.local>
-References: <20181214012604.13746-1-lyude@redhat.com>
- <20181214012604.13746-7-lyude@redhat.com>
- <20181214093255.GO21184@phenom.ffwll.local>
- <ed0fbbed2a856e62134baa7ee88023d07f02f73c.camel@redhat.com>
+From: Colin King <colin.king@canonical.com>
+Subject: [PATCH] drm/nouveau/pmu: don't print reply values if exec is false
+Date: Wed, 19 Dec 2018 15:29:49 +0000
+Message-ID: <20181219152949.14669-1-colin.king@canonical.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <ed0fbbed2a856e62134baa7ee88023d07f02f73c.camel@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, Dave Airlie <airlied@gmail.com>, Harry Wentland <harry.wentland@amd.com>, Jerry Zuo <Jerry.Zuo@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Dec 18, 2018 at 04:52:24PM -0500, Lyude Paul wrote:
-> On Fri, 2018-12-14 at 10:32 +0100, Daniel Vetter wrote:
-> > On Thu, Dec 13, 2018 at 08:25:35PM -0500, Lyude Paul wrote:
-> > > So that the ports stay around until we've destroyed the connectors, in
-> > > order to ensure that we don't pass an invalid pointer to any MST helpers
-> > > once we introduce the new MST VCPI helpers.
-> > > 
-> > > Signed-off-by: Lyude Paul <lyude@redhat.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/intel_connector.c | 4 ++++
-> > >  drivers/gpu/drm/i915/intel_dp_mst.c    | 2 ++
-> > >  2 files changed, 6 insertions(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/intel_connector.c
-> > > b/drivers/gpu/drm/i915/intel_connector.c
-> > > index 18e370f607bc..37d2c644f4b8 100644
-> > > --- a/drivers/gpu/drm/i915/intel_connector.c
-> > > +++ b/drivers/gpu/drm/i915/intel_connector.c
-> > > @@ -95,6 +95,10 @@ void intel_connector_destroy(struct drm_connector
-> > > *connector)
-> > >  	intel_panel_fini(&intel_connector->panel);
-> > >  
-> > >  	drm_connector_cleanup(connector);
-> > > +
-> > > +	if (intel_connector->port)
-> > 
-> > We set this as the first thing in intel_dp_add_mst_connector, so this
-> > check isn't doing anything.
-> 
-> I think this comment might be a mistake? intel_connector_destroy() is shared
-> by all of the intel connectors, so some may not have a value in
-> intel_connector->port. I can move it to it's own destroy callback for MST if
-> you would prefer though.
+From: Colin Ian King <colin.king@canonical.com>
 
-Oops, didn't look at the patch carefully enough. I think a
-intel_dp_mst_connector_destroy would be useful in this case. But a bit a
-bikeshed, so up to you.
--Daniel
+Currently the uninitialized values in the array reply are printed out
+when exec is false and nvkm_pmu_send has not updated the array. Avoid
+confusion by only dumping out these values if they have been actually
+updated.
 
-> > 
-> > > +		drm_dp_mst_put_port_malloc(intel_connector->port);
-> > > +
-> > >  	kfree(connector);
-> > >  }
-> > >  
-> > > diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c
-> > > b/drivers/gpu/drm/i915/intel_dp_mst.c
-> > > index f05427b74e34..4d6ced34d465 100644
-> > > --- a/drivers/gpu/drm/i915/intel_dp_mst.c
-> > > +++ b/drivers/gpu/drm/i915/intel_dp_mst.c
-> > > @@ -484,6 +484,8 @@ static struct drm_connector
-> > > *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
-> > >  	if (ret)
-> > >  		goto err;
-> > >  
-> > > +	drm_dp_mst_get_port_malloc(port);
-> > 
-> > Needs to be moved up where we assing intel_connector->port, or it'll
-> > underflow on cleanup on error paths.
-> > 
-> > > +
-> > >  	return connector;
-> > >  
-> > >  err:
-> > > -- 
-> > > 2.19.2
-> > > 
-> -- 
-> Cheers,
-> 	Lyude Paul
-> 
+Detected by CoverityScan, CID#1271291 ("Uninitialized scaler variable")
+Fixes: ebb58dc2ef8c ("drm/nouveau/pmu: rename from pwr (no binary change)")
 
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c
+index 11b28b086a06..7b052879af72 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/memx.c
+@@ -88,10 +88,10 @@ nvkm_memx_fini(struct nvkm_memx **pmemx, bool exec)
+ 	if (exec) {
+ 		nvkm_pmu_send(pmu, reply, PROC_MEMX, MEMX_MSG_EXEC,
+ 			      memx->base, finish);
++		nvkm_debug(subdev, "Exec took %uns, PMU_IN %08x\n",
++			   reply[0], reply[1]);
+ 	}
+ 
+-	nvkm_debug(subdev, "Exec took %uns, PMU_IN %08x\n",
+-		   reply[0], reply[1]);
+ 	kfree(memx);
+ 	return 0;
+ }
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.19.1
