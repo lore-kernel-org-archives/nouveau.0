@@ -1,64 +1,118 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [PATCH v2 06/16] drm/i915: Keep malloc references to MST ports
-Date: Thu, 20 Dec 2018 10:10:52 +0100
-Message-ID: <20181220091052.GH21184@phenom.ffwll.local>
-References: <20181220001959.12486-1-lyude@redhat.com>
- <20181220001959.12486-7-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108982] GM206: MMIO write of 800000ec FAULT at
+ 10eb14 [ IBUS ]
+Date: Thu, 20 Dec 2018 16:45:08 +0000
+Message-ID: <bug-108982-8800-UevaK7V7M0@http.bugs.freedesktop.org/>
+References: <bug-108982-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20181220001959.12486-7-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Jerry Zuo <Jerry.Zuo-5C7GfCeVMHo@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, David Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Harry Wentland <harry.wentland-5C7GfCeVMHo@public.gmane.org>, Juston Li <juston.li-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1033363916=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-108982-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBEZWMgMTksIDIwMTggYXQgMDc6MTk6NTBQTSAtMDUwMCwgTHl1ZGUgUGF1bCB3cm90
-ZToKPiBTbyB0aGF0IHRoZSBwb3J0cyBzdGF5IGFyb3VuZCB1bnRpbCB3ZSd2ZSBkZXN0cm95ZWQg
-dGhlIGNvbm5lY3RvcnMsIGluCj4gb3JkZXIgdG8gZW5zdXJlIHRoYXQgd2UgZG9uJ3QgcGFzcyBh
-biBpbnZhbGlkIHBvaW50ZXIgdG8gYW55IE1TVCBoZWxwZXJzCj4gb25jZSB3ZSBpbnRyb2R1Y2Ug
-dGhlIG5ldyBNU1QgVkNQSSBoZWxwZXJzLgo+IAo+IENoYW5nZXMgc2luY2UgdjE6Cj4gKiBNb3Zl
-IGRybV9kcF9tc3RfZ2V0X3BvcnRfbWFsbG9jKCkgdG8gd2hlcmUgd2UgYXNzaWduCj4gICBpbnRl
-bF9jb25uZWN0b3ItPnBvcnQgLSBkYW52ZXQKPiAKPiBTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVs
-IDxseXVkZUByZWRoYXQuY29tPgo+IENjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3bGwuY2g+
-Cj4gQ2M6IERhdmlkIEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29tPgo+IENjOiBKZXJyeSBadW8g
-PEplcnJ5Llp1b0BhbWQuY29tPgo+IENjOiBIYXJyeSBXZW50bGFuZCA8aGFycnkud2VudGxhbmRA
-YW1kLmNvbT4KPiBDYzogSnVzdG9uIExpIDxqdXN0b24ubGlAaW50ZWwuY29tPgoKUmV2aWV3ZWQt
-Ynk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+Cgo+IC0tLQo+ICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9jb25uZWN0b3IuYyB8IDQgKysrKwo+ICBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pbnRlbF9kcF9tc3QuYyAgICB8IDEgKwo+ICAyIGZpbGVzIGNoYW5nZWQsIDUg
-aW5zZXJ0aW9ucygrKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRl
-bF9jb25uZWN0b3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Nvbm5lY3Rvci5jCj4g
-aW5kZXggMThlMzcwZjYwN2JjLi4zN2QyYzY0NGY0YjggMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaW50ZWxfY29ubmVjdG9yLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pbnRlbF9jb25uZWN0b3IuYwo+IEBAIC05NSw2ICs5NSwxMCBAQCB2b2lkIGludGVsX2Nvbm5l
-Y3Rvcl9kZXN0cm95KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpCj4gIAlpbnRlbF9w
-YW5lbF9maW5pKCZpbnRlbF9jb25uZWN0b3ItPnBhbmVsKTsKPiAgCj4gIAlkcm1fY29ubmVjdG9y
-X2NsZWFudXAoY29ubmVjdG9yKTsKPiArCj4gKwlpZiAoaW50ZWxfY29ubmVjdG9yLT5wb3J0KQo+
-ICsJCWRybV9kcF9tc3RfcHV0X3BvcnRfbWFsbG9jKGludGVsX2Nvbm5lY3Rvci0+cG9ydCk7Cj4g
-Kwo+ICAJa2ZyZWUoY29ubmVjdG9yKTsKPiAgfQo+ICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaW50ZWxfZHBfbXN0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9k
-cF9tc3QuYwo+IGluZGV4IGYwNTQyN2I3NGUzNC4uNjMxZmQxNTM3MjUyIDEwMDY0NAo+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21zdC5jCj4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaW50ZWxfZHBfbXN0LmMKPiBAQCAtNDU3LDYgKzQ1Nyw3IEBAIHN0YXRpYyBzdHJ1
-Y3QgZHJtX2Nvbm5lY3RvciAqaW50ZWxfZHBfYWRkX21zdF9jb25uZWN0b3Ioc3RydWN0IGRybV9k
-cF9tc3RfdG9wb2xvCj4gIAlpbnRlbF9jb25uZWN0b3ItPmdldF9od19zdGF0ZSA9IGludGVsX2Rw
-X21zdF9nZXRfaHdfc3RhdGU7Cj4gIAlpbnRlbF9jb25uZWN0b3ItPm1zdF9wb3J0ID0gaW50ZWxf
-ZHA7Cj4gIAlpbnRlbF9jb25uZWN0b3ItPnBvcnQgPSBwb3J0Owo+ICsJZHJtX2RwX21zdF9nZXRf
-cG9ydF9tYWxsb2MocG9ydCk7Cj4gIAo+ICAJY29ubmVjdG9yID0gJmludGVsX2Nvbm5lY3Rvci0+
-YmFzZTsKPiAgCXJldCA9IGRybV9jb25uZWN0b3JfaW5pdChkZXYsIGNvbm5lY3RvciwgJmludGVs
-X2RwX21zdF9jb25uZWN0b3JfZnVuY3MsCj4gLS0gCj4gMi4xOS4yCj4gCgotLSAKRGFuaWVsIFZl
-dHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3
-bGwuY2gKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1k
-LWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4Cg==
+
+--===============1033363916==
+Content-Type: multipart/alternative; boundary="15453243081.789B.12192"
+Content-Transfer-Encoding: 7bit
+
+
+--15453243081.789B.12192
+Date: Thu, 20 Dec 2018 16:45:08 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108982
+
+--- Comment #5 from Johnny B. Goode <adamos-zBjOIweZRQ4nvi+hAk5376sMm+1xrEX8@public.gmane.org> ---
+Created attachment 142870
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142870&action=3Dedit
+Rom
+
+Rom bios because Asus made few cards GTX 950 with different bioses
+hxxps://www.techpowerup.com/vgabios/?architecture=3DNVIDIA&manufacturer=3DA=
+sus&model=3DGTX+950&interface=3D&memType=3D&memSize=3D&since=3D
+Mine is 84.06.3d.00.6f
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15453243081.789B.12192
+Date: Thu, 20 Dec 2018 16:45:08 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GM206: MMIO write of 800000ec FAULT at 10eb14 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108982#c5">Commen=
+t # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GM206: MMIO write of 800000ec FAULT at 10eb14 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108982">bug 10898=
+2</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+adamos&#64;hell.factory.net.pl" title=3D"Johnny B. Goode &lt;adamos&#64;hel=
+l.factory.net.pl&gt;"> <span class=3D"fn">Johnny B. Goode</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142870=
+" name=3D"attach_142870" title=3D"Rom">attachment 142870</a> <a href=3D"att=
+achment.cgi?id=3D142870&amp;action=3Dedit" title=3D"Rom">[details]</a></spa=
+n>
+Rom
+
+Rom bios because Asus made few cards GTX 950 with different bioses
+hxxps://www.techpowerup.com/vgabios/?architecture=3DNVIDIA&amp;manufacturer=
+=3DAsus&amp;model=3DGTX+950&amp;interface=3D&amp;memType=3D&amp;memSize=3D&=
+amp;since=3D
+Mine is 84.06.3d.00.6f</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15453243081.789B.12192--
+
+--===============1033363916==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1033363916==--
