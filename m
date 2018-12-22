@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107829] nouveau crash/freeze [MULTIPLE_WARP_ERRORS]
- warp 3f0009 [ILLEGAL_INSTR_ENCODING]
-Date: Sat, 22 Dec 2018 11:35:33 +0000
-Message-ID: <bug-107829-8800-HI5BjGpNoF@http.bugs.freedesktop.org/>
-References: <bug-107829-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
+ [CTXSW_TIMEOUT]
+Date: Sat, 22 Dec 2018 11:41:16 +0000
+Message-ID: <bug-100567-8800-xNF4oNmTJi@http.bugs.freedesktop.org/>
+References: <bug-100567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1729666121=="
+Content-Type: multipart/mixed; boundary="===============1295005641=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107829-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,24 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1729666121==
-Content-Type: multipart/alternative; boundary="15454785330.807b1.24866"
+--===============1295005641==
+Content-Type: multipart/alternative; boundary="15454788761.dcE9.25420"
 Content-Transfer-Encoding: 7bit
 
 
---15454785330.807b1.24866
-Date: Sat, 22 Dec 2018 11:35:33 +0000
+--15454788761.dcE9.25420
+Date: Sat, 22 Dec 2018 11:41:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107829
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
 
---- Comment #2 from sassmann-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org ---
-Tested again with 4.20-rc7. System ran for 1-2 days and then froze again.
-The error looked different though.
+--- Comment #17 from sassmann-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org ---
+Same issue with Lenovo P50 on 4.20-rc7.
+
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM107GLM [Quad=
+ro
+M1000M] [10de:13b1] (rev a2) (prog-if 00 [VGA controller])
+
 [162840.653595] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
 [162840.653610] nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recove=
 ry
@@ -51,8 +55,8 @@ d!
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15454785330.807b1.24866
-Date: Sat, 22 Dec 2018 11:35:33 +0000
+--15454788761.dcE9.25420
+Date: Sat, 22 Dec 2018 11:41:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,23 +72,26 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
-ILLEGAL_INSTR_ENCODING]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829#c2">Commen=
-t # 2</a>
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c17">Comme=
+nt # 17</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
-ILLEGAL_INSTR_ENCODING]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829">bug 10782=
-9</a>
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 sassmann&#64;redhat.com" title=3D"sassmann&#64;redhat.com">sassmann&#64;red=
 hat.com</a>
 </span></b>
-        <pre>Tested again with 4.20-rc7. System ran for 1-2 days and then f=
-roze again.
-The error looked different though.
+        <pre>Same issue with Lenovo P50 on 4.20-rc7.
+
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GM107GLM [Quad=
+ro
+M1000M] [10de:13b1] (rev a2) (prog-if 00 [VGA controller])
+
 [162840.653595] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
 [162840.653610] nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recove=
 ry
@@ -105,9 +112,9 @@ d!</pre>
     </body>
 </html>=
 
---15454785330.807b1.24866--
+--15454788761.dcE9.25420--
 
---===============1729666121==
+--===============1295005641==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +124,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1729666121==--
+--===============1295005641==--
