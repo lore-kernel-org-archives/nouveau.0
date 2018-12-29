@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102349] nv4x crashing with plasmashell - gdb log
- included
-Date: Thu, 27 Dec 2018 04:57:44 +0000
-Message-ID: <bug-102349-8800-EoS0736u8y@http.bugs.freedesktop.org/>
-References: <bug-102349-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
+ ]
+Date: Sat, 29 Dec 2018 18:43:05 +0000
+Message-ID: <bug-100423-8800-EquPuoITA3@http.bugs.freedesktop.org/>
+References: <bug-100423-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0610006867=="
+Content-Type: multipart/mixed; boundary="===============0495480730=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-102349-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,91 +21,56 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0610006867==
-Content-Type: multipart/alternative; boundary="15458866641.c2a0114.9895"
+--===============0495480730==
+Content-Type: multipart/alternative; boundary="15461089852.6ddD8beFf.28443"
 Content-Transfer-Encoding: 7bit
 
 
---15458866641.c2a0114.9895
-Date: Thu, 27 Dec 2018 04:57:44 +0000
+--15461089852.6ddD8beFf.28443
+Date: Sat, 29 Dec 2018 18:43:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102349
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
 
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I believe the issue is mostly resolved by:
+--- Comment #26 from Jan <jv1-CmkmPbn3yAE@public.gmane.org> ---
+I have a similar issue with my NP900X5N laptop with Kaby Lake and 940MX car=
+d,
+on 4.20.0 and Kali Linux.
 
-https://patchwork.freedesktop.org/patch/270609/
-
-There's a lingering issue, which I don't think was truly being hit, but fix=
-ed
-by:
-
-https://patchwork.freedesktop.org/patch/270610/
-
-Of course when I went to test these patches with xonotic, I was immediately
-confronted by the fact that we don't handle 3d transfers (which ~never used=
- to
-happen before, but some recent improvements have made it a thing that happe=
-ns a
-lot more often). I quickly hacked around that with the below patch, but tha=
-t's
-obviously not generally acceptable.
-
-diff --git a/src/gallium/auxiliary/util/u_transfer.c
-b/src/gallium/auxiliary/util/u_transfer.c
-index 3089bcb1f34..3550e1e26d3 100644
---- a/src/gallium/auxiliary/util/u_transfer.c
-+++ b/src/gallium/auxiliary/util/u_transfer.c
-@@ -56,11 +56,16 @@ void u_default_texture_subdata(struct pipe_context *pip=
-e,
-    /* texture_subdata implicitly discards the rewritten buffer range */
-    usage |=3D PIPE_TRANSFER_DISCARD_RANGE;
-
-+   for (int z =3D box->z; z < box->z + box->depth; z++) {
-+      struct pipe_box t =3D *box;
-+      t.z =3D z;
-+      t.depth =3D 1;
-+
-    map =3D pipe->transfer_map(pipe,
-                             resource,
-                             level,
-                             usage,
--                            box, &transfer);
-+                            &t, &transfer);
-    if (!map)
-       return;
-
-@@ -71,13 +76,14 @@ void u_default_texture_subdata(struct pipe_context *pip=
-e,
-                  0, 0, 0,
-                  box->width,
-                  box->height,
--                 box->depth,
-+                 1,
-                  src_data,
-                  stride,       /* bytes */
-                  layer_stride, /* bytes */
--                 0, 0, 0);
-+                 0, 0, t.z);
-
-    pipe_transfer_unmap(pipe, transfer);
-+   }
- }
-
-FWIW xonotic looks terrible on the nv34 -- all the colors are messed up, and
-maybe some of the geometry too. But it's the same with 18.3.
+My output:
+root@kali:/etc/modprobe.d# dmesg | grep nouveau=20=20
+[   35.888423] nouveau: detected PR support, will not use DSM
+[   35.888447] nouveau 0000:01:00.0: enabling device (0006 -> 0007)
+[   35.888582] nouveau 0000:01:00.0: NVIDIA GM108 (1180d0a2)
+[   35.900141] nouveau 0000:01:00.0: bios: version 82.08.67.00.04
+[   35.984081] nouveau 0000:01:00.0: fb: 2048 MiB DDR3
+[   35.984104] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 60=
+13d4
+[ IBUS ]
+[   35.997510] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10=
+ac08
+[ IBUS ]
+[   36.035684] nouveau 0000:01:00.0: DRM: VRAM: 2048 MiB
+[   36.035686] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
+[   36.035688] nouveau 0000:01:00.0: DRM: Pointer to TMDS table invalid
+[   36.035690] nouveau 0000:01:00.0: DRM: DCB version 4.0
+[   36.036798] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
+[   36.036915] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on
+minor 1
+[   37.551790] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 61=
+9444
+[ IBUS ]
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15458866641.c2a0114.9895
-Date: Thu, 27 Dec 2018 04:57:44 +0000
+--15461089852.6ddD8beFf.28443
+Date: Sat, 29 Dec 2018 18:43:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -121,82 +86,45 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349#c14">Comme=
-nt # 14</a>
+   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c26">Comme=
+nt # 26</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nv4x crashing with plasmashell - gdb log included"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349">bug 10234=
-9</a>
+   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
+3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+jv1&#64;home.nl" title=3D"Jan &lt;jv1&#64;home.nl&gt;"> <span class=3D"fn">=
+Jan</span></a>
 </span></b>
-        <pre>I believe the issue is mostly resolved by:
+        <pre>I have a similar issue with my NP900X5N laptop with Kaby Lake =
+and 940MX card,
+on 4.20.0 and Kali Linux.
 
-<a href=3D"https://patchwork.freedesktop.org/patch/270609/">https://patchwo=
-rk.freedesktop.org/patch/270609/</a>
-
-There's a lingering issue, which I don't think was truly being hit, but fix=
-ed
-by:
-
-<a href=3D"https://patchwork.freedesktop.org/patch/270610/">https://patchwo=
-rk.freedesktop.org/patch/270610/</a>
-
-Of course when I went to test these patches with xonotic, I was immediately
-confronted by the fact that we don't handle 3d transfers (which ~never used=
- to
-happen before, but some recent improvements have made it a thing that happe=
-ns a
-lot more often). I quickly hacked around that with the below patch, but tha=
-t's
-obviously not generally acceptable.
-
-diff --git a/src/gallium/auxiliary/util/u_transfer.c
-b/src/gallium/auxiliary/util/u_transfer.c
-index 3089bcb1f34..3550e1e26d3 100644
---- a/src/gallium/auxiliary/util/u_transfer.c
-+++ b/src/gallium/auxiliary/util/u_transfer.c
-&#64;&#64; -56,11 +56,16 &#64;&#64; void u_default_texture_subdata(struct p=
-ipe_context *pipe,
-    /* texture_subdata implicitly discards the rewritten buffer range */
-    usage |=3D PIPE_TRANSFER_DISCARD_RANGE;
-
-+   for (int z =3D box-&gt;z; z &lt; box-&gt;z + box-&gt;depth; z++) {
-+      struct pipe_box t =3D *box;
-+      t.z =3D z;
-+      t.depth =3D 1;
-+
-    map =3D pipe-&gt;transfer_map(pipe,
-                             resource,
-                             level,
-                             usage,
--                            box, &amp;transfer);
-+                            &amp;t, &amp;transfer);
-    if (!map)
-       return;
-
-&#64;&#64; -71,13 +76,14 &#64;&#64; void u_default_texture_subdata(struct p=
-ipe_context *pipe,
-                  0, 0, 0,
-                  box-&gt;width,
-                  box-&gt;height,
--                 box-&gt;depth,
-+                 1,
-                  src_data,
-                  stride,       /* bytes */
-                  layer_stride, /* bytes */
--                 0, 0, 0);
-+                 0, 0, t.z);
-
-    pipe_transfer_unmap(pipe, transfer);
-+   }
- }
-
-FWIW xonotic looks terrible on the nv34 -- all the colors are messed up, and
-maybe some of the geometry too. But it's the same with 18.3.</pre>
+My output:
+root&#64;kali:/etc/modprobe.d# dmesg | grep nouveau=20=20
+[   35.888423] nouveau: detected PR support, will not use DSM
+[   35.888447] nouveau 0000:01:00.0: enabling device (0006 -&gt; 0007)
+[   35.888582] nouveau 0000:01:00.0: NVIDIA GM108 (1180d0a2)
+[   35.900141] nouveau 0000:01:00.0: bios: version 82.08.67.00.04
+[   35.984081] nouveau 0000:01:00.0: fb: 2048 MiB DDR3
+[   35.984104] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 60=
+13d4
+[ IBUS ]
+[   35.997510] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10=
+ac08
+[ IBUS ]
+[   36.035684] nouveau 0000:01:00.0: DRM: VRAM: 2048 MiB
+[   36.035686] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
+[   36.035688] nouveau 0000:01:00.0: DRM: Pointer to TMDS table invalid
+[   36.035690] nouveau 0000:01:00.0: DRM: DCB version 4.0
+[   36.036798] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
+[   36.036915] [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on
+minor 1
+[   37.551790] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 61=
+9444
+[ IBUS ]</pre>
         </div>
       </p>
 
@@ -210,9 +138,9 @@ maybe some of the geometry too. But it's the same with 18.3.</pre>
     </body>
 </html>=
 
---15458866641.c2a0114.9895--
+--15461089852.6ddD8beFf.28443--
 
---===============0610006867==
+--===============0495480730==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -222,4 +150,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0610006867==--
+--===============0495480730==--
