@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109185] New: Nouveau is freeze display. Only mouse
+Subject: [Bug 109186] New: Nouveau is freeze display. Only mouse
  working
-Date: Sun, 30 Dec 2018 22:23:12 +0000
-Message-ID: <bug-109185-8800@http.bugs.freedesktop.org/>
+Date: Sun, 30 Dec 2018 22:25:02 +0000
+Message-ID: <bug-109186-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0376067132=="
+Content-Type: multipart/mixed; boundary="===============1274419396=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,22 +19,22 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0376067132==
-Content-Type: multipart/alternative; boundary="15462085920.37AAF.14612"
+--===============1274419396==
+Content-Type: multipart/alternative; boundary="15462087020.5B112dBb.14746"
 Content-Transfer-Encoding: 7bit
 
 
---15462085920.37AAF.14612
-Date: Sun, 30 Dec 2018 22:23:12 +0000
+--15462087020.5B112dBb.14746
+Date: Sun, 30 Dec 2018 22:25:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109185
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109186
 
-            Bug ID: 109185
+            Bug ID: 109186
            Summary: Nouveau is freeze display. Only mouse working
            Product: Mesa
            Version: unspecified
@@ -61,11 +61,11 @@ Kernel:
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15462085920.37AAF.14612
-Date: Sun, 30 Dec 2018 22:23:12 +0000
+--15462087020.5B112dBb.14746
+Date: Sun, 30 Dec 2018 22:25:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -82,7 +82,7 @@ Auto-Submitted: auto-generated
           <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nouveau is freeze display. Only mouse working"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109185">109185</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109186">109186</a>
           </td>
         </tr>
 
@@ -177,15 +177,15 @@ Kernel:
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15462085920.37AAF.14612--
+--15462087020.5B112dBb.14746--
 
---===============0376067132==
+--===============1274419396==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -195,4 +195,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0376067132==--
+--===============1274419396==--
