@@ -1,16 +1,11 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Don't disable polling in
- fallback mode
-Date: Sun, 30 Dec 2018 03:42:42 -0500
-Message-ID: <CAKb7UvgXzvKdgW_n+494=Kn7kfchALJ=MhFaDPx3Umdm+CYktA@mail.gmail.com>
-References: <20180912105843.18117-1-tiwai@suse.de>
- <CACAvsv5i8LK4zU7+EzFMK-WFrczCafHUCTNkkSO2iSkBL80HpA@mail.gmail.com>
- <56e11b21-9a53-1c4c-759e-b132e7674d71@free.fr> <s5hsh03abs2.wl-tiwai@suse.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 109185] New: Nouveau is freeze display. Only mouse
+ working
+Date: Sun, 30 Dec 2018 22:23:12 +0000
+Message-ID: <bug-109185-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0376067132=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <s5hsh03abs2.wl-tiwai-l3A5Bk7waGM@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,82 +15,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org>
-Cc: Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>, thomas.blume-IBi9RG/b67k@public.gmane.org, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QmVuIC0gcGluZz8gSnVzdCByYW4gaW50byB0aGlzIG15c2VsZiBvbiBhIE5WNDIuCgpPbiBXZWQs
-IE5vdiAxNCwgMjAxOCBhdCAxMTowMSBBTSBUYWthc2hpIEl3YWkgPHRpd2FpQHN1c2UuZGU+IHdy
-b3RlOgo+Cj4gT24gRnJpLCAxNCBTZXAgMjAxOCAxMzo1OToyNSArMDIwMCwKPiBNYXJ0aW4gUGVy
-ZXMgd3JvdGU6Cj4gPgo+ID4gT24gMTQvMDkvMjAxOCAxMDoyOCwgQmVuIFNrZWdncyB3cm90ZToK
-PiA+ID4gT24gV2VkLCAxMiBTZXAgMjAxOCBhdCAyMDo1OSwgVGFrYXNoaSBJd2FpIDx0aXdhaUBz
-dXNlLmRlPiB3cm90ZToKPiA+ID4+Cj4gPiA+PiBXaGVuIGEgZmFuIGlzIGNvbnRyb2xsZWQgdmlh
-IGxpbmVhciBmYWxsYmFjayB3aXRob3V0IGNzdGF0ZSwgd2UKPiA+ID4+IHNob3VsZG4ndCBzdG9w
-IHBvbGxpbmcuICBPdGhlcndpc2UgaXQgd29uJ3QgYmUgYWRqdXN0ZWQgYWdhaW4gYW5kCj4gPiA+
-PiBrZWVwcyBydW5uaW5nIGF0IGFuIGluaXRpYWwgY3JhenkgcGFjZS4KPiA+ID4gTWFydGluLAo+
-ID4gPgo+ID4gPiBBbnkgdGhvdWdodHMgb24gdGhpcz8KPiA+ID4KPiA+ID4gQmVuLgo+ID4KPiA+
-IFdvdywgYmxhc3QgZnJvbSB0aGUgcGFzdCEKPiA+Cj4gPiBBbnl3YXksIHRoZSBhbmFseXNpcyBp
-cyBwcmV0dHkgc3BvdCBvbiBoZXJlLiBXaGVuIHVzaW5nIHRoZSBjc3RhdGUtYmFzZWQKPiA+IGZh
-biBzcGVlZCAoY2hhbmdlIHRoZSBzcGVlZCBvZiB0aGUgZmFuIGJhc2VkIG9uIHdoYXQgZnJlcXVl
-bmN5IGlzIHVzZWQpLAo+ID4gdGhlbiBwb2xsaW5nIGlzIHVubmVjZXNzYXJ5IGFuZCB0aGlzIGZ1
-bmN0aW9uIHNob3VsZCBvbmx5IGJlIGNhbGxlZCB3aGVuCj4gPiBjaGFuZ2luZyB0aGUgcHN0YXRl
-Lgo+ID4KPiA+IEhvd2V2ZXIsIGluIHRoZSBhYnNlbmNlIG9mIEFOWSBpbmZvcm1hdGlvbiwgd2Ug
-ZmFsbGJhY2sgdG8gYQo+ID4gdGVtcGVyYXR1cmUtYmFzZWQgbWFuYWdlbWVudCB3aGljaCByZXF1
-aXJlcyBjb25zdGFudCBwb2xsaW5nLCBzbyB0aGUKPiA+IHBhdGNoIGlzIGFjY3VyYXRlIGFuZCBw
-b2xsID0gZmFsc2Ugc2hvdWxkIG9ubHkgYmUgc2V0IGlmIHdlIGhhdmUgYSBjc3RhdGUuCj4gPgo+
-ID4gU28sIHRoZSBwYXRjaCBpcyBSZXZpZXdlZC1ieTogTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVy
-ZXNAZnJlZS5mcj4KPgo+IEp1c3QgYSBnZW50bGUgcmVtaW5kZXI6IHRoaXMgcGF0Y2ggc2VlbXMg
-Zm9yZ290dGVuIGZvciA0LjIwIG1lcmdlLgo+IENvdWxkIHlvdSBndXlzIHBpY2sgaXQgaWYgaXQn
-cyBPSz8KPgo+Cj4gVGhhbmtzIQo+Cj4gVGFrYXNoaQo+Cj4gPgo+ID4gPgo+ID4gPj4KPiA+ID4+
-IEZpeGVzOiA4MDBlZmI0YzI4NTcgKCJkcm0vbm91dmVhdS9kcm0vdGhlcm0vZmFuOiBhZGQgYSBm
-YWxsYmFjayBpZiBubyBmYW4gY29udHJvbCBpcyBzcGVjaWZpZWQgaW4gdGhlIHZiaW9zIikKPiA+
-ID4+IEJ1Z3ppbGxhOiBodHRwczovL2J1Z3ppbGxhLnN1c2UuY29tL3Nob3dfYnVnLmNnaT9pZD0x
-MTAzMzU2Cj4gPiA+PiBCdWd6aWxsYTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93
-X2J1Zy5jZ2k/aWQ9MTA3NDQ3Cj4gPgo+ID4gSSBzZWUgdGhhdCBUaG9tYXMgaGFzIGJlZW4gaGF2
-aW5nIGlzc3VlcyB3aXRoIHRoZSBub2lzZSBsZXZlbCBhbnl3YXkuIEkKPiA+IHN1Z2dlc3QgaGUg
-c2hvdWxkIGJ1bXAgdGhlIHZhbHVlIG9mIHRlbXAxX2F1dG9fcG9pbnQxX3RlbXAgKHNlZQo+ID4g
-aHR0cHM6Ly93d3cua2VybmVsLm9yZy9kb2MvRG9jdW1lbnRhdGlvbi90aGVybWFsL25vdXZlYXVf
-dGhlcm1hbCkuCj4gPgo+ID4gVGhlIGRlZmF1bHQgdmFsdWUgaXMgc2V0IHRvIDkwwrBDIHdoaWNo
-IGlzIHF1aXRlIHNhZmUgb24gdGhlc2Ugb2xkIEdQVXMKPiA+IChOVklESUEgRzcxIC8gbnY0OSku
-IEkgd291bGQgc2F5IHRoYXQgaXQgaXMgc2FmZSB0byBnbyB1cCB0byAxMTDCsEMuCj4gPiBXaGlj
-aCBzaG91bGQgcmVkdWNlIHRoZSBub2lzZSBsZXZlbC4KPiA+Cj4gPiBBbm90aGVyIHRlY2huaXF1
-ZSBtYXkgYmUgdG8gcmVkdWNlIHRoZSBtaW5pbXVtIGZhbiBzcGVlZCB0byBzb21ldGhpbmcKPiA+
-IGxvd2VyIHRoYW4gMzDCsEMuIEl0IHNob3VsZCBpbmNyZWFzZSB0aGUgc2xvcGUgYnV0IHJlZHVj
-ZSB0aGUgbm9pc2UgbGV2ZWwKPiA+IGF0IGEgZ2l2ZW4gdGVtcGVyYXR1cmUuCj4gPgo+ID4gT25l
-IHJlYXNvbiB3aHkgdGhlc2UgR1BVcyBydW4gc28gaG90IG9uIG5vdXZlYXUgaXMgdGhlIGxhY2sg
-b2YgcG93ZXIgYW5kCj4gPiBjbG9jayBnYXRpbmcuIEkgYW0gc29ycnkgdGhhdCBJIG5ldmVyIGZp
-bmlzaGVkIHRvIHJldmVyc2UgZW5naW5lZXIgdGhlc2UuLi4KPiA+Cj4gPiBBbnl3YXksIHRoYW5r
-cyBhIGxvdCBmb3IgdGhlIHBhdGNoIQo+ID4KPiA+ID4+IFJlcG9ydGVkLWJ5OiBUaG9tYXMgQmx1
-bWUgPHRob21hcy5ibHVtZUBzdXNlLmNvbT4KPiA+ID4+IFNpZ25lZC1vZmYtYnk6IFRha2FzaGkg
-SXdhaSA8dGl3YWlAc3VzZS5kZT4KPiA+ID4+Cj4gPiA+PiAtLS0KPiA+ID4+ICBkcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9iYXNlLmMgfCA3ICsrKystLS0KPiA+ID4+
-ICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQo+ID4gPj4K
-PiA+ID4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi90
-aGVybS9iYXNlLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9i
-YXNlLmMKPiA+ID4+IGluZGV4IDM2OTVjZGU2NjlmOC4uMDc5MTRlMzY5MzllIDEwMDY0NAo+ID4g
-Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vYmFzZS5j
-Cj4gPiA+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9i
-YXNlLmMKPiA+ID4+IEBAIC0xMzIsMTEgKzEzMiwxMiBAQCBudmttX3RoZXJtX3VwZGF0ZShzdHJ1
-Y3QgbnZrbV90aGVybSAqdGhlcm0sIGludCBtb2RlKQo+ID4gPj4gICAgICAgICAgICAgICAgICAg
-ICAgICAgZHV0eSA9IG52a21fdGhlcm1fdXBkYXRlX2xpbmVhcih0aGVybSk7Cj4gPiA+PiAgICAg
-ICAgICAgICAgICAgICAgICAgICBicmVhazsKPiA+ID4+ICAgICAgICAgICAgICAgICBjYXNlIE5W
-QklPU19USEVSTV9GQU5fT1RIRVI6Cj4gPiA+PiAtICAgICAgICAgICAgICAgICAgICAgICBpZiAo
-dGhlcm0tPmNzdGF0ZSkKPiA+ID4+ICsgICAgICAgICAgICAgICAgICAgICAgIGlmICh0aGVybS0+
-Y3N0YXRlKSB7Cj4gPiA+PiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGR1dHkgPSB0
-aGVybS0+Y3N0YXRlOwo+ID4gPj4gLSAgICAgICAgICAgICAgICAgICAgICAgZWxzZQo+ID4gPj4g
-KyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwb2xsID0gZmFsc2U7Cj4gPiA+PiArICAg
-ICAgICAgICAgICAgICAgICAgICB9IGVsc2Ugewo+ID4gPj4gICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICBkdXR5ID0gbnZrbV90aGVybV91cGRhdGVfbGluZWFyX2ZhbGxiYWNrKHRoZXJt
-KTsKPiA+ID4+IC0gICAgICAgICAgICAgICAgICAgICAgIHBvbGwgPSBmYWxzZTsKPiA+ID4+ICsg
-ICAgICAgICAgICAgICAgICAgICAgIH0KPiA+ID4+ICAgICAgICAgICAgICAgICAgICAgICAgIGJy
-ZWFrOwo+ID4gPj4gICAgICAgICAgICAgICAgIH0KPiA+ID4+ICAgICAgICAgICAgICAgICBpbW1k
-ID0gZmFsc2U7Cj4gPiA+PiAtLQo+ID4gPj4gMi4xOC4wCj4gPiA+Pgo+ID4gPj4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+ID4+IE5vdXZlYXUgbWFp
-bGluZyBsaXN0Cj4gPiA+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gPj4gaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4gPgo+
-IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVh
-dSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
-dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0376067132==
+Content-Type: multipart/alternative; boundary="15462085920.37AAF.14612"
+Content-Transfer-Encoding: 7bit
+
+
+--15462085920.37AAF.14612
+Date: Sun, 30 Dec 2018 22:23:12 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109185
+
+            Bug ID: 109185
+           Summary: Nouveau is freeze display. Only mouse working
+           Product: Mesa
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: blocker
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: ne-vlezay80-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+The system error from log:
+ 5357.786413] nouveau 0000:01:00.0: minetest[12794]: failed to idle channel=
+ 5
+[minetest[12794]]
+[ 5372.786851] nouveau 0000:01:00.0: minetest[12794]: failed to idle channe=
+l 5
+[minetest[12794]]
+
+Kernel:
+4.18.4
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15462085920.37AAF.14612
+Date: Sun, 30 Dec 2018 22:23:12 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau is freeze display. Only mouse working"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109185">109185</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nouveau is freeze display. Only mouse working
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>blocker
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>ne-vlezay80&#64;yandex.ru
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>The system error from log:
+ 5357.786413] nouveau 0000:01:00.0: minetest[12794]: failed to idle channel=
+ 5
+[minetest[12794]]
+[ 5372.786851] nouveau 0000:01:00.0: minetest[12794]: failed to idle channe=
+l 5
+[minetest[12794]]
+
+Kernel:
+4.18.4</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15462085920.37AAF.14612--
+
+--===============0376067132==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0376067132==--
