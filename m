@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102349] nv4x crashing with plasmashell - gdb log
- included
-Date: Mon, 31 Dec 2018 05:56:36 +0000
-Message-ID: <bug-102349-8800-LgcasxtCfp@http.bugs.freedesktop.org/>
-References: <bug-102349-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 109187] [NVC1][optimus] nouveau black display,
+ only mouse cursor visible
+Date: Mon, 31 Dec 2018 18:24:51 +0000
+Message-ID: <bug-109187-8800-NDEStN2P6O@http.bugs.freedesktop.org/>
+References: <bug-109187-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1330944403=="
+Content-Type: multipart/mixed; boundary="===============0476916888=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-102349-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-109187-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,48 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1330944403==
-Content-Type: multipart/alternative; boundary="15462357963.bed1D4.32432"
+--===============0476916888==
+Content-Type: multipart/alternative; boundary="15462806911.BF855.8991"
 Content-Transfer-Encoding: 7bit
 
 
---15462357963.bed1D4.32432
-Date: Mon, 31 Dec 2018 05:56:36 +0000
+--15462806911.BF855.8991
+Date: Mon, 31 Dec 2018 18:24:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102349
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109187
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #3 from Dominik 'Rathann' Mierzejewski <dominik-IZ6Av6enwRKJQ7yn63+t2w@public.gmane.org>=
+ ---
+Created attachment 142925
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142925&action=3Dedit
+Xorg.log with intel+modesetting drivers
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-             Status|NEW                         |RESOLVED
-
---- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OK, this and some other bits are now pushed to mesa master. I'm considering
-this resolved.
-
-People having issues with steam -- try out steam. I tested that it the clie=
-nt
-loads OK for me but didn't go any further. Friendly reminder that it's a 32=
--bit
-application, not 64-bit.
-
-People having issues with plasmashell -- try out plasmashell. Although I ex=
-pect
-you'll keep having issues, they'll just be different ones.
+Yes, the same thing happens with intel driver for the integrated GPU and
+modesetting for the nVidia GPU. Xorg.0.log attached.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15462357963.bed1D4.32432
-Date: Mon, 31 Dec 2018 05:56:36 +0000
+--15462806911.BF855.8991
+Date: Mon, 31 Dec 2018 18:24:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,70 +61,34 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - nv4x crashing with plasmashell - gdb log inclu=
-ded"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349">bug 10234=
-9</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - nv4x crashing with plasmashell - gdb log inclu=
-ded"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349#c15">Comme=
-nt # 15</a>
+          bz_status_NEW "
+   title=3D"NEW - [NVC1][optimus] nouveau black display, only mouse cursor =
+visible"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109187#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - nv4x crashing with plasmashell - gdb log inclu=
-ded"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349">bug 10234=
-9</a>
+          bz_status_NEW "
+   title=3D"NEW - [NVC1][optimus] nouveau black display, only mouse cursor =
+visible"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109187">bug 10918=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+dominik&#64;greysector.net" title=3D"Dominik 'Rathann' Mierzejewski &lt;dom=
+inik&#64;greysector.net&gt;"> <span class=3D"fn">Dominik 'Rathann' Mierzeje=
+wski</span></a>
 </span></b>
-        <pre>OK, this and some other bits are now pushed to mesa master. I'=
-m considering
-this resolved.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142925=
+" name=3D"attach_142925" title=3D"Xorg.log with intel+modesetting drivers">=
+attachment 142925</a> <a href=3D"attachment.cgi?id=3D142925&amp;action=3Ded=
+it" title=3D"Xorg.log with intel+modesetting drivers">[details]</a></span>
+Xorg.log with intel+modesetting drivers
 
-People having issues with steam -- try out steam. I tested that it the clie=
-nt
-loads OK for me but didn't go any further. Friendly reminder that it's a 32=
--bit
-application, not 64-bit.
-
-People having issues with plasmashell -- try out plasmashell. Although I ex=
-pect
-you'll keep having issues, they'll just be different ones.</pre>
+Yes, the same thing happens with intel driver for the integrated GPU and
+modesetting for the nVidia GPU. Xorg.0.log attached.</pre>
         </div>
       </p>
 
@@ -150,9 +102,9 @@ you'll keep having issues, they'll just be different ones.</pre>
     </body>
 </html>=
 
---15462357963.bed1D4.32432--
+--15462806911.BF855.8991--
 
---===============1330944403==
+--===============0476916888==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -162,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1330944403==--
+--===============0476916888==--
