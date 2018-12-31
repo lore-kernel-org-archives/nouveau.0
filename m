@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109186] New: Nouveau is freeze display. Only mouse
- working
-Date: Sun, 30 Dec 2018 22:25:02 +0000
-Message-ID: <bug-109186-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 109187] New: [NVC1][optimus] nouveau black display,
+ only mouse cursor visible
+Date: Mon, 31 Dec 2018 00:03:29 +0000
+Message-ID: <bug-109187-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1274419396=="
+Content-Type: multipart/mixed; boundary="===============0332096148=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,53 +19,87 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1274419396==
-Content-Type: multipart/alternative; boundary="15462087020.5B112dBb.14746"
+--===============0332096148==
+Content-Type: multipart/alternative; boundary="15462146090.66F7.19191"
 Content-Transfer-Encoding: 7bit
 
 
---15462087020.5B112dBb.14746
-Date: Sun, 30 Dec 2018 22:25:02 +0000
+--15462146090.66F7.19191
+Date: Mon, 31 Dec 2018 00:03:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109186
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109187
 
-            Bug ID: 109186
-           Summary: Nouveau is freeze display. Only mouse working
-           Product: Mesa
+            Bug ID: 109187
+           Summary: [NVC1][optimus] nouveau black display, only mouse
+                    cursor visible
+           Product: xorg
            Version: unspecified
           Hardware: x86-64 (AMD64)
                 OS: Linux (All)
             Status: NEW
-          Severity: blocker
+          Severity: normal
           Priority: medium
-         Component: Drivers/DRI/nouveau
+         Component: Driver/nouveau
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: ne-vlezay80-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: dominik-IZ6Av6enwRKJQ7yn63+t2w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-The system error from log:
- 5357.786413] nouveau 0000:01:00.0: minetest[12794]: failed to idle channel=
- 5
-[minetest[12794]]
-[ 5372.786851] nouveau 0000:01:00.0: minetest[12794]: failed to idle channe=
-l 5
-[minetest[12794]]
+Created attachment 142919
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142919&action=3Dedit
+Xorg.log with intel+nouveau drivers
 
-Kernel:
-4.18.4
+I'm getting black output on HDMI-connected display driven by nVidia GeForce=
+ GT
+525M (GF108M). Mouse cursor is visible on both built-in display and on the
+external HDMI-connected display. This used to work on Fedora 27. I can see =
+this
+on Fedora 29, but I can't pinpoint which package update broke it because I
+haven't checked the external display (a projector) for quite some time. This
+machine is a Dell XPS 15 L502X with Intel HD3000 integrated graphics and nV=
+idia
+GeForce GT 525M discrete GPU in Optimus configuration. Here's my xorg.conf
+snippet:
+
+Section "Monitor"
+        Identifier "Internal LCD"
+        DisplaySize 345 195
+EndSection
+
+Section "Monitor"
+        VendorName "Benq"
+        ModelName  "W1100"
+        Identifier "Projector"
+        DisplaySize 16900 9400
+EndSection
+
+Section "Device"
+        Identifier "Internal Graphics"
+        Driver     "intel"
+        Option     "Monitor-LVDS1" "Internal LCD"
+        Option     "TearFree" "on"
+EndSection
+
+Section "Device"
+        Identifier "Optimus Graphics"
+        Driver     "nouveau"
+        Option     "Monitor-HDMI-1-2" "Projector"
+EndSection
+
+Switching both drivers to "modesetting" makes the issue go away. I'm attach=
+ing
+Xorg logs for both configurations.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---15462087020.5B112dBb.14746
-Date: Sun, 30 Dec 2018 22:25:02 +0000
+--15462146090.66F7.19191
+Date: Mon, 31 Dec 2018 00:03:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -81,20 +115,22 @@ Auto-Submitted: auto-generated
           <th>Bug ID</th>
           <td><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nouveau is freeze display. Only mouse working"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109186">109186</a>
+   title=3D"NEW - [NVC1][optimus] nouveau black display, only mouse cursor =
+visible"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109187">109187</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>Nouveau is freeze display. Only mouse working
+          <td>[NVC1][optimus] nouveau black display, only mouse cursor visi=
+ble
           </td>
         </tr>
 
         <tr>
           <th>Product</th>
-          <td>Mesa
+          <td>xorg
           </td>
         </tr>
 
@@ -124,7 +160,7 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Severity</th>
-          <td>blocker
+          <td>normal
           </td>
         </tr>
 
@@ -136,7 +172,7 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Component</th>
-          <td>Drivers/DRI/nouveau
+          <td>Driver/nouveau
           </td>
         </tr>
 
@@ -148,27 +184,63 @@ Auto-Submitted: auto-generated
 
         <tr>
           <th>Reporter</th>
-          <td>ne-vlezay80&#64;yandex.ru
+          <td>dominik&#64;greysector.net
           </td>
         </tr>
 
         <tr>
           <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
+          <td>xorg-team&#64;lists.x.org
           </td>
         </tr></table>
       <p>
         <div>
-        <pre>The system error from log:
- 5357.786413] nouveau 0000:01:00.0: minetest[12794]: failed to idle channel=
- 5
-[minetest[12794]]
-[ 5372.786851] nouveau 0000:01:00.0: minetest[12794]: failed to idle channe=
-l 5
-[minetest[12794]]
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142919=
+" name=3D"attach_142919" title=3D"Xorg.log with intel+nouveau drivers">atta=
+chment 142919</a> <a href=3D"attachment.cgi?id=3D142919&amp;action=3Dedit" =
+title=3D"Xorg.log with intel+nouveau drivers">[details]</a></span>
+Xorg.log with intel+nouveau drivers
 
-Kernel:
-4.18.4</pre>
+I'm getting black output on HDMI-connected display driven by nVidia GeForce=
+ GT
+525M (GF108M). Mouse cursor is visible on both built-in display and on the
+external HDMI-connected display. This used to work on Fedora 27. I can see =
+this
+on Fedora 29, but I can't pinpoint which package update broke it because I
+haven't checked the external display (a projector) for quite some time. This
+machine is a Dell XPS 15 L502X with Intel HD3000 integrated graphics and nV=
+idia
+GeForce GT 525M discrete GPU in Optimus configuration. Here's my xorg.conf
+snippet:
+
+Section &quot;Monitor&quot;
+        Identifier &quot;Internal LCD&quot;
+        DisplaySize 345 195
+EndSection
+
+Section &quot;Monitor&quot;
+        VendorName &quot;Benq&quot;
+        ModelName  &quot;W1100&quot;
+        Identifier &quot;Projector&quot;
+        DisplaySize 16900 9400
+EndSection
+
+Section &quot;Device&quot;
+        Identifier &quot;Internal Graphics&quot;
+        Driver     &quot;intel&quot;
+        Option     &quot;Monitor-LVDS1&quot; &quot;Internal LCD&quot;
+        Option     &quot;TearFree&quot; &quot;on&quot;
+EndSection
+
+Section &quot;Device&quot;
+        Identifier &quot;Optimus Graphics&quot;
+        Driver     &quot;nouveau&quot;
+        Option     &quot;Monitor-HDMI-1-2&quot; &quot;Projector&quot;
+EndSection
+
+Switching both drivers to &quot;modesetting&quot; makes the issue go away. =
+I'm attaching
+Xorg logs for both configurations.</pre>
         </div>
       </p>
 
@@ -178,14 +250,13 @@ Kernel:
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15462087020.5B112dBb.14746--
+--15462146090.66F7.19191--
 
---===============1274419396==
+--===============0332096148==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -195,4 +266,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1274419396==--
+--===============0332096148==--
