@@ -1,163 +1,67 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
- ]
-Date: Tue, 01 Jan 2019 13:20:23 +0000
-Message-ID: <bug-100423-8800-gW3wQpKOhY@http.bugs.freedesktop.org/>
-References: <bug-100423-8800@http.bugs.freedesktop.org/>
+From: Jan Vlietland <j.vlietland@nisi.nl>
+Subject: Nouveau module results in total lockups without any dmesg trace on a
+ NP900X5N Kaby Lake machine
+Date: Tue, 1 Jan 2019 21:59:02 +0100
+Message-ID: <cb43e1cb-dffa-26d8-c938-49ca4b48d38a@nisi.nl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0130539849=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Language: nl
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel@lists.freedesktop.org>
+Cc: "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
+Hi Ben, David and Daniel ,
 
---===============0130539849==
-Content-Type: multipart/alternative; boundary="15463488230.ab38.13315"
-Content-Transfer-Encoding: 7bit
+First of all happy new year. Based on advice of Greg K-H herewith a mail=20
+about a number of Nouveau issues with my laptop.
 
+I installed various Kali linux versions up to Linux 4.20.0-rc7=20
+(downloaded, compiled and installed) on a Samsung NP900X5N laptop and=20
+have an issue with the driver after loading.
 
---15463488230.ab38.13315
-Date: Tue, 1 Jan 2019 13:20:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+My configuration:
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
+- i7 7500
+- 16 gb / 256 gb ssd
+- nvidia 940MX (for 3D graphics)
 
---- Comment #27 from Bruno Pagani <bruno.n.pagani-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Jan from comment #26)
-> I have a similar issue with my NP900X5N laptop with Kaby Lake and 940MX
-> card, on 4.20.0 and Kali Linux.
->=20
-> [   35.984104] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at =
-6013d4 [ IBUS ]
+When I enable loading of the nouveau module for my Nvidia 3D card I get=20
+three MMIO faults:
 
-This is included in https://bugs.freedesktop.org/show_bug.cgi?id=3D98386. A=
-nd
-apparently also https://bugs.freedesktop.org/show_bug.cgi?id=3D108980, which
-seems recently fixed.
+[   35.984104] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 60=
+13d4 [ IBUS ]
+[   35.997510] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 10=
+ac08 [ IBUS ]
+[   37.551790] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 61=
+9444 [ IBUS ]
 
-> [   35.997510] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at =
-10ac08 [ IBUS ]
+I see currenty varous discussions on bugzilla: (as summarized by Bruno=20
+Pagani) https://bugs.freedesktop.org/show_bug.cgi?id=3D100423.
 
-This one is https://bugs.freedesktop.org/show_bug.cgi?id=3D104835.
+But I do not see any confirmed solutions on the MMIO faults.
 
-> [   37.551790] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at
-> 619444 [ IBUS ]
+The module is loaded but X server cannot run in framebuffer mode. I=20
+assume that the module does not provide any video memory to X to run in=20
+graphics mode.
 
-This is like https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c19, not=
- sure
-if there is already an issue for it.
+First of all I would like to understand what the faults impose.
+And I also would like to help you providing testing to fix the errors.
+
+Many thanks for your kind support.
+
 
 --=20
-You are receiving this mail because:
-You are the assignee for the bug.=
 
---15463488230.ab38.13315
-Date: Tue, 1 Jan 2019 13:20:23 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Met vriendelijke groet,
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c27">Comme=
-nt # 27</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bruno.n.pagani&#64;gmail.com" title=3D"Bruno Pagani &lt;bruno.n.pagani&#64;=
-gmail.com&gt;"> <span class=3D"fn">Bruno Pagani</span></a>
-</span></b>
-        <pre>(In reply to Jan from <a href=3D"show_bug.cgi?id=3D100423#c26"=
->comment #26</a>)
-<span class=3D"quote">&gt; I have a similar issue with my NP900X5N laptop w=
-ith Kaby Lake and 940MX
-&gt; card, on 4.20.0 and Kali Linux.
-&gt;=20
-&gt; [   35.984104] nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT =
-at 6013d4 [ IBUS ]</span >
+*dr. Jan Vlietland*, namens
 
-This is included in <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer=
- to {TDMS,flat panel} table invalid"
-   href=3D"show_bug.cgi?id=3D98386">https://bugs.freedesktop.org/show_bug.c=
-gi?id=3D98386</a>. And
-apparently also <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GF117: MMIO write of 0000001f FAULT at 6013d4 [ IBUS ]"
-   href=3D"show_bug.cgi?id=3D108980">https://bugs.freedesktop.org/show_bug.=
-cgi?id=3D108980</a>, which
-seems recently fixed.
+spin-off
 
-<span class=3D"quote">&gt; [   35.997510] nouveau 0000:01:00.0: bus: MMIO r=
-ead of 00000000 FAULT at 10ac08 [ IBUS ]</span >
+Nederlands Instituut voor de Software Industrie
 
-This one is <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]"
-   href=3D"show_bug.cgi?id=3D104835">https://bugs.freedesktop.org/show_bug.=
-cgi?id=3D104835</a>.
-
-<span class=3D"quote">&gt; [   37.551790] nouveau 0000:01:00.0: bus: MMIO r=
-ead of 00000000 FAULT at
-&gt; 619444 [ IBUS ]</span >
-
-This is like <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"show_bug.cgi?id=3D100423#c19">https://bugs.freedesktop.org/show_=
-bug.cgi?id=3D100423#c19</a>, not sure
-if there is already an issue for it.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15463488230.ab38.13315--
-
---===============0130539849==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0130539849==--
+_j.vlietland@nisi.nl_| 06 =E2=80=93 20 411 834 | 030 =E2=80=93 268 53 98
+Princetonplein 5 | 3584 CC=C2=A0 Utrecht | www.nisi.nl
