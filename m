@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
- ]
-Date: Tue, 01 Jan 2019 22:01:08 +0000
-Message-ID: <bug-100423-8800-qPxUtsAzJv@http.bugs.freedesktop.org/>
-References: <bug-100423-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Nouveau module X server not starting on a NP900X5N
+ Kaby Lake machine
+Date: Tue, 1 Jan 2019 19:18:16 -0500
+Message-ID: <CAKb7UviWGEWSzHeEd1rONqzEfY7S9U2Khw5d-gW_8RZyihwphw@mail.gmail.com>
+References: <cb43e1cb-dffa-26d8-c938-49ca4b48d38a@nisi.nl>
+ <CAKb7UvjMCGOdKybtUrV9DRY1vjiQvi+pkzf2FCHefdedqMGnig@mail.gmail.com>
+ <bff355c8-286f-bf49-4056-02dd10fce222@nisi.nl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1035620258=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bff355c8-286f-bf49-4056-02dd10fce222-1SsgTPLbg+M@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,112 +20,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Jan Vlietland <j.vlietland-1SsgTPLbg+M@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1035620258==
-Content-Type: multipart/alternative; boundary="15463800680.0D4D6916.11837"
-Content-Transfer-Encoding: 7bit
-
-
---15463800680.0D4D6916.11837
-Date: Tue, 1 Jan 2019 22:01:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
-
---- Comment #28 from Jan <jv1-CmkmPbn3yAE@public.gmane.org> ---
-Tonight I tried to see what happens if I generate a xorg.conf file and plac=
-e it
-in /etc/X11/xorg.conf, as described here:
-https://askubuntu.com/questions/4662/where-is-the-x-org-config-file-how-do-=
-i-configure-x-there
-
-When I do that X starts without the error cannot find framebuffer device. It
-starts with a backtrace list and then stops with:
-
-'Segmentation fault at address 0x0.
-
-Fatal sever error etc etc etc.
-
-Hope this helps!
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15463800680.0D4D6916.11837
-Date: Tue, 1 Jan 2019 22:01:08 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c28">Comme=
-nt # 28</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jv1&#64;home.nl" title=3D"Jan &lt;jv1&#64;home.nl&gt;"> <span class=3D"fn">=
-Jan</span></a>
-</span></b>
-        <pre>Tonight I tried to see what happens if I generate a xorg.conf =
-file and place it
-in /etc/X11/xorg.conf, as described here:
-<a href=3D"https://askubuntu.com/questions/4662/where-is-the-x-org-config-f=
-ile-how-do-i-configure-x-there">https://askubuntu.com/questions/4662/where-=
-is-the-x-org-config-file-how-do-i-configure-x-there</a>
-
-When I do that X starts without the error cannot find framebuffer device. It
-starts with a backtrace list and then stops with:
-
-'Segmentation fault at address 0x0.
-
-Fatal sever error etc etc etc.
-
-Hope this helps!</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15463800680.0D4D6916.11837--
-
---===============1035620258==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1035620258==--
+T24gVHVlLCBKYW4gMSwgMjAxOSBhdCA1OjMwIFBNIEphbiBWbGlldGxhbmQgPGoudmxpZXRsYW5k
+QG5pc2kubmw+IHdyb3RlOgo+Cj4gSGkgSWxpYSwgbWFueSB0aGFua3MgZm9yIGFuc3dlcmluZyBt
+eSBtYWlsLgo+Cj4gVG9uaWdodCBJIHRyaWVkIHRvIHNlZSB3aGF0IGhhcHBlbnMgaWYgSSBnZW5l
+cmF0ZSBhIHhvcmcuY29uZiBmaWxlIGFuZCBwbGFjZSBpdCBpbiAvZXRjL1gxMS94b3JnLmNvbmYs
+IGFzIGRlc2NyaWJlZCBoZXJlOgo+IGh0dHBzOi8vYXNrdWJ1bnR1LmNvbS9xdWVzdGlvbnMvNDY2
+Mi93aGVyZS1pcy10aGUteC1vcmctY29uZmlnLWZpbGUtaG93LWRvLWktY29uZmlndXJlLXgtdGhl
+cmUKPgo+IFdoZW4gSSBkbyB0aGF0IFggc3RhcnRzIHdpdGhvdXQgdGhlIGZyYW1lYnVmZmVyIGVy
+cm9yLiBYIHN0YXJ0cyB3aXRoIGEgYmFja3RyYWNlIGxpc3QgaW4gdGhlIHNoZWxsIGFuZCB0aGVu
+IHN0b3BzIHdpdGggdGhlIGVycm9yOgo+Cj4gJ1NlZ21lbnRhdGlvbiBmYXVsdCBhdCBhZGRyZXNz
+IDB4MC4KPgo+IEZhdGFsIHNldmVyIGVycm9yIGV0YyBldGMgZXRjLgoKVW5sZXNzIHlvdSdyZSBh
+biBhZHZhbmNlZCB1c2VyLCB5b3UnbGwgZ2V0IHRoZSBiZXN0IHJlc3VsdHMgYnkgbm90CnN1cHBs
+eWluZyBhIG1hbnVhbCB4b3JnLmNvbmYuIEdlbmVyaWNhbGx5LCB0aGlzIGluZGljYXRlcyB0aGF0
+IHlvdQptZXNzZWQgc29tZXRoaW5nIHVwLiBXaXRob3V0IGtub3dpbmcgcHJlY2lzZWx5IHdoYXQg
+dGhlIGNvbnRlbnRzIG9mCnRoYXQgZmlsZSBhcmUsIGl0IHdvdWxkIGJlIGRpZmZpY3VsdCB0byBz
+YXkgd2hhdCBleGFjdGx5IHdlbnQgd3JvbmcuCkhvd2V2ZXIgSSB3b3VsZG4ndCBhZHZpc2UgdGhp
+cyBwYXRoIHdpdGhvdXQgYSBnb29kIHJlYXNvbi4KCj4KPiBIb3BlIHRoaXMgaGVscHMhCj4KPiBJ
+biBmYWN0IHRoZSBhYm92ZSBpcyBwYXJ0IG9mIGEgbXVjaCBiaWdnZXIgaXNzdWUgSSBoYXZlIHdp
+dGggdGhlCj4gbWFjaGluZS4gV2hlbiBJIGVuYWJsZSB0aGUgaTkxNSBtb2R1bGUgKEthYnkgbGFr
+ZSBuYXRpdmUgdmlkZW8pIG15Cj4gc2NyZWVuIGdvZWQgYmxhY2sgYWZ0ZXIgYSB3aGlsZS4gVGhl
+IG1hY2hpbmUgaXMgdG90YWxseSBzdHVjayBpbiB0aGF0Cj4gc3RhdGUuIEV2ZW4gc3NoIGNvbm5l
+Y3Rpb24gaXMgbm90IHBvc3NpYmxlLiBJdCBzaG93cyBubyBlcnJvcnMgaW4gdGhlCj4gKHNhdmVk
+KSBsb2dzIGFmdGVyIHJlc3RhcnRpbmcgdGhlIG1hY2hpbmUuCj4KPiBTbyBJIGRpc2FibGVkIHRo
+ZSBpOTE1IG1vZHVsZSBhbmQgdHJ5IHRvIGdldCB0aGUgbnZpZGlhIGNhcmQgcnVubmluZy4KPiBX
+aXRob3V0IGFueSBsdWNrLgo+Cj4gVGhhbmsgeW91IGZvciBpbnZpdGluZyBtZSBmb3IgaXJjLmZy
+ZWVub2RlLm5ldC4gV2hhdCBpdCB0aGUgcHJvY3NzIHRvCj4gZ2V0IGFjY2Vzcz8KCkl0J3MgYW4g
+SVJDIG5ldHdvcmsgbGlrZSBhbnkgb3RoZXIuIE1vcmUgaW5mbyBhYm91dCB0aGUgbmV0d29yawph
+dmFpbGFibGUgYXQgaHR0cHM6Ly9mcmVlbm9kZS5uZXQvCgpJdCdzIG9wZW4gdG8gYW55b25lLi4u
+ICNub3V2ZWF1IGZvciBub3V2ZWF1LCAjaW50ZWwtZ2Z4IGZvciBpbnRlbC4KCj4KPiBJIGhhdmUg
+aW5jbHVkZWQgdGhlIGZ1bGwgZG1lc2cgaW4gemlwIGZvcm1hdC4KPgo+IEZvciBtZSBpdCBpcyBh
+IHNob3dzdG9wcGVyIHVzaW5nIHRoZSBtYWNoaW5lIHdpdGggTGludXguIEkgcmVhbGx5IGRvIG5v
+dAo+IHVuZGVyc3RhbmQgdGhhdCBJIGFtIHRoZSBvbmx5IHBlcnNvbiBvbiB0aGlzIHBsYW5ldCB0
+aGF0IGNhbm5vdCBydW4KPiBMaW51eCBvbiBhIHBsYWluIHZhbmlsbGEgS2FieSBsYWtlIG1hY2hp
+bmUuCgpJIGRvbid0IGtub3cgdGhlIHNwZWNpZmljcyBvZiB5b3VyIGxhcHRvcCwgYnV0IG9uIG1h
+bnkgb3RoZXIgR00xMDhNCmxhcHRvcHMsIHRoZSBkaXNwbGF5cyBhcmUgb25seSBhdHRhY2hlZCB0
+byB0aGUgSW50ZWwgR1BVLiBTbyBydW5uaW5nCndpdGhvdXQgaTkxNSBpcyBqdXN0IG5vdCBhbiBv
+cHRpb24sIGlmIHlvdSB3YW50IGFueXRoaW5nIGRpc3BsYXllZC4KWW91IHdvdWxkIGJlIGFibGUg
+dG8gdXNlIHRoZSBHTTEwOE0gY2hpcCBmb3IgM0QgYWNjZWxlcmF0aW9uIGlmIHlvdQpjaG9zZSwg
+YnV0IG5vdGhpbmcgdG8gZG8gd2l0aCBhY3R1YWwgZGlzcGxheS4KCklmIHlvdXIgc2NyZWVuIGdv
+ZXMgYmxhY2sgd2l0aCBpOTE1IGxvYWRlZCwgSSBzdXNwZWN0IHRoYXQgeW91J2QgYmUKYmV0dGVy
+IHNlcnZlZCByZXBvcnRpbmcgdGhpcyBpc3N1ZSB0byBJbnRlbC4KCkZyb20geW91ciBsb2dzLCB5
+b3UgYWxzbyBhcHBlYXIgdG8gaGF2ZSBhIHZhcmlldHkgb2YgY29tYmluYXRpb25zIG9mCm5vbW9k
+ZXNldC88ZHJpdmVyPi5tb2Rlc2V0PTAgY29tYmluYXRpb25zIC0tIHRoZXNlIHdpbGwganVzdCBp
+bXBlZGUKdGhlIHByb3BlciBtb2RlIG9mIG9wZXJhdGlvbi4gVGhlIGk5MTUgYW5kIG5vdXZlYXUg
+ZHJpdmVycyBlZmZlY3RpdmVseQpkbyBub3RoaW5nIHVuZGVyIHRob3NlIGNvbmRpdGlvbnMuCgpD
+aGVlcnMsCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
