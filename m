@@ -1,121 +1,67 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 102349] nv4x crashing with plasmashell - gdb log
- included
-Date: Wed, 02 Jan 2019 22:41:09 +0000
-Message-ID: <bug-102349-8800-fEAzfDfse0@http.bugs.freedesktop.org/>
-References: <bug-102349-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v3 00/16] MST refcounting/atomic helpers cleanup
+Date: Wed,  2 Jan 2019 19:06:19 -0500
+Message-ID: <20190103000635.13628-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1848531653=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-102349-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1848531653==
-Content-Type: multipart/alternative; boundary="15464688694.c724AaF.19029"
-Content-Transfer-Encoding: 7bit
-
-
---15464688694.c724AaF.19029
-Date: Wed, 2 Jan 2019 22:41:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D102349
-
---- Comment #17 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Christian Tosta from comment #16)
-> Not fixed in Mesa 18.2.8 for Fedora 29. Plasmashell keeps segfaulting.
-> Screen turns black with only the cursor. Konsole and other programs=20
-> runs fine, except for plasmashell and sddm-greeter.
-
-Nor is it expected to be fixed in that version. I pushed the changes to mas=
-ter,
-you'll have to build that (or get something for your distro which follows t=
-he
-latest development).
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15464688694.c724AaF.19029
-Date: Wed, 2 Jan 2019 22:41:09 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - nv4x crashing with plasmashell - gdb log included"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349#c17">Comme=
-nt # 17</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - nv4x crashing with plasmashell - gdb log included"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349">bug 10234=
-9</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Christian Tosta from <a href=3D"show_bug.cgi?id=
-=3D102349#c16">comment #16</a>)
-<span class=3D"quote">&gt; Not fixed in Mesa 18.2.8 for Fedora 29. Plasmash=
-ell keeps segfaulting.
-&gt; Screen turns black with only the cursor. Konsole and other programs=20
-&gt; runs fine, except for plasmashell and sddm-greeter.</span >
-
-Nor is it expected to be fixed in that version. I pushed the changes to mas=
-ter,
-you'll have to build that (or get something for your distro which follows t=
-he
-latest development).</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15464688694.c724AaF.19029--
-
---===============1848531653==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1848531653==--
+VGhpcyBpcyB0aGUgc2VyaWVzIEkndmUgYmVlbiB3b3JraW5nIG9uIGZvciBhIHdoaWxlIG5vdyB0
+byBnZXQgYWxsIG9mCnRoZSBhdG9taWMgRFJNIGRyaXZlcnMgaW4gdGhlIHRyZWUgdG8gdXNlIHRo
+ZSBhdG9taWMgTVNUIGhlbHBlcnMsIGFuZCB0bwptYWtlIHRoZSBhdG9taWMgTVNUIGhlbHBlcnMg
+YWN0dWFsbHkgaWRlbXBvdGVudC4gVHVybnMgb3V0IGl0J3MgYSBsb3QKbW9yZSBkaWZmaWN1bHQg
+dG8gZG8gdGhhdCB3aXRob3V0IGFsc28gZml4aW5nIGhvdyBwb3J0IGFuZCBicmFuY2ggZGV2aWNl
+CnJlZmNvdW50aW5nIHdvcmtzIHNvIHRoYXQgaXQgYWN0dWFsbHkgbWFrZXMgc2Vuc2UsIHNpbmNl
+IHRoZSBjdXJyZW50CnVwc3RyZWFtIGltcGxlbWVudGF0aW9uIHJlcXVpcmVzIGEgdG9uIG9mIG1h
+Z2ljIGluIHRoZSBhdG9taWMgaGVscGVycyB0bwp3b3JrIGFyb3VuZCBwcm9wZXJseSBhbmQgaW4g
+bWFueSBzaXR1YXRpb25zIGp1c3QgcGxhaW4gZG9lc24ndCB3b3JrIGFzCmludGVuZGVkLgoKVGhl
+cmUncyBzdGlsbCBtb3JlIGNsZWFudXAgdGhhdCBjYW4gYmUgZG9uZSwgYnV0IEkgdGhpbmsgdGhp
+cyBpcyBhIGdvb2QKcGxhY2UgdG8gc3RhcnQgb2ZmIGZvciBub3cgOikuCgpMeXVkZSBQYXVsICgx
+Nik6CiAgZHJtL2RwX21zdDogUmVuYW1lIGRybV9kcF9tc3RfZ2V0X3ZhbGlkYXRlZF8ocG9ydHxt
+c3RiKV9yZWYgYW5kCiAgICBmcmllbmRzCiAgZHJtL2RwX21zdDogSW50cm9kdWNlIG5ldyByZWZj
+b3VudGluZyBzY2hlbWUgZm9yIG1zdGJzIGFuZCBwb3J0cwogIGRybS9kcF9tc3Q6IFJlc3RhcnQg
+bGFzdF9jb25uZWN0ZWRfcG9ydF9hbmRfbXN0YigpIGlmIHRvcG9sb2d5IHJlZgogICAgZmFpbHMK
+ICBkcm0vZHBfbXN0OiBTdG9wIHJlbGVhc2luZyBWQ1BJIHdoZW4gcmVtb3ZpbmcgcG9ydHMgZnJv
+bSB0b3BvbG9neQogIGRybS9kcF9tc3Q6IEZpeCBwYXlsb2FkIGRlYWxsb2NhdGlvbiBvbiBob3Rw
+bHVncyB1c2luZyBtYWxsb2MgcmVmcwogIGRybS9pOTE1OiBLZWVwIG1hbGxvYyByZWZlcmVuY2Vz
+IHRvIE1TVCBwb3J0cwogIGRybS9hbWRncHUvZGlzcGxheTogS2VlcCBtYWxsb2MgcmVmIHRvIE1T
+VCBwb3J0CiAgZHJtL25vdXZlYXU6IFJlbW92ZSBib2d1cyBjbGVhbnVwIGluIG52NTBfbXN0bV9h
+ZGRfY29ubmVjdG9yKCkKICBkcm0vbm91dmVhdTogUmVtb3ZlIHVubmVjZXNzYXJ5IFZDUEkgY2hl
+Y2tzIGluIG52NTBfbXN0b19jbGVhbnVwKCkKICBkcm0vbm91dmVhdTogS2VlcCBtYWxsb2MgcmVm
+ZXJlbmNlcyB0byBNU1QgcG9ydHMKICBkcm0vbm91dmVhdTogU3RvcCB1bnNldHRpbmcgbXN0Yy0+
+cG9ydCwgdXNlIG1hbGxvYyByZWZzCiAgZHJtL25vdXZlYXU6IEdyYWIgcGF5bG9hZCBsb2NrIGlu
+IG52NTBfbXN0b19wYXlsb2FkKCkKICBkcm0vZHBfbXN0OiBBZGQgc29tZSBhdG9taWMgc3RhdGUg
+aXRlcmF0b3IgbWFjcm9zCiAgZHJtL2RwX21zdDogU3RhcnQgdHJhY2tpbmcgcGVyLXBvcnQgVkNQ
+SSBhbGxvY2F0aW9ucwogIGRybS9kcF9tc3Q6IENoZWNrIHBheWxvYWQgY291bnQgaW4gZHJtX2Rw
+X21zdF9hdG9taWNfY2hlY2soKQogIGRybS9ub3V2ZWF1OiBVc2UgYXRvbWljIFZDUEkgaGVscGVy
+cyBmb3IgTVNUCgogLi4uL2dwdS9kcC1tc3QvdG9wb2xvZ3ktZmlndXJlLTEuZG90ICAgICAgICAg
+IHwgIDUyICsKIC4uLi9ncHUvZHAtbXN0L3RvcG9sb2d5LWZpZ3VyZS0yLmRvdCAgICAgICAgICB8
+ICA1NiArKwogLi4uL2dwdS9kcC1tc3QvdG9wb2xvZ3ktZmlndXJlLTMuZG90ICAgICAgICAgIHwg
+IDU5ICsrCiBEb2N1bWVudGF0aW9uL2dwdS9kcm0ta21zLWhlbHBlcnMucnN0ICAgICAgICAgfCAg
+MjYgKy0KIC4uLi9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG1fbXN0X3R5cGVzLmMgICB8ICAx
+MSArLQogZHJpdmVycy9ncHUvZHJtL2RybV9kcF9tc3RfdG9wb2xvZ3kuYyAgICAgICAgIHwgOTM4
+ICsrKysrKysrKysrKysrLS0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfY29ubmVjdG9y
+LmMgICAgICAgIHwgICA0ICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rpc3BsYXkuYyAg
+ICAgICAgICB8ICAgNCArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcF9tc3QuYyAgICAg
+ICAgICAgfCAgNjUgKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyAg
+ICAgICB8ICA5NCArLQogaW5jbHVkZS9kcm0vZHJtX2RwX21zdF9oZWxwZXIuaCAgICAgICAgICAg
+ICAgIHwgMTUxICsrLQogMTEgZmlsZXMgY2hhbmdlZCwgMTIwOCBpbnNlcnRpb25zKCspLCAyNTIg
+ZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9ncHUvZHAtbXN0
+L3RvcG9sb2d5LWZpZ3VyZS0xLmRvdAogY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24v
+Z3B1L2RwLW1zdC90b3BvbG9neS1maWd1cmUtMi5kb3QKIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1
+bWVudGF0aW9uL2dwdS9kcC1tc3QvdG9wb2xvZ3ktZmlndXJlLTMuZG90CgotLSAKMi4yMC4xCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwg
+bWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
