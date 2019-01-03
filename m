@@ -1,95 +1,110 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v3 16/16] drm/nouveau: Use atomic VCPI helpers for MST
-Date: Wed,  2 Jan 2019 19:06:35 -0500
-Message-ID: <20190103000635.13628-17-lyude@redhat.com>
-References: <20190103000635.13628-1-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 102349] nv4x crashing with plasmashell - gdb log
+ included
+Date: Thu, 03 Jan 2019 17:21:56 +0000
+Message-ID: <bug-102349-8800-7fN4v5tFAA@http.bugs.freedesktop.org/>
+References: <bug-102349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190103000635.13628-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>, Jerry Zuo <Jerry.Zuo-5C7GfCeVMHo@public.gmane.org>, David Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Harry Wentland <harry.wentland-5C7GfCeVMHo@public.gmane.org>, Juston Li <juston.li-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1316027348=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-102349-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Q3VycmVudGx5LCBub3V2ZWF1IHVzZXMgdGhlIHlvbG8gbWV0aG9kIG9mIHNldHRpbmcgdXAgTVNU
-IGRpc3BsYXlzOiBpdAp1c2VzIHRoZSBvbGQgVkNQSSBoZWxwZXJzIChkcm1fZHBfZmluZF92Y3Bp
-X3Nsb3RzKCkpIGZvciBjb21wdXRpbmcgdGhlCmRpc3BsYXkgY29uZmlndXJhdGlvbi4gVGhlc2Ug
-aGVscGVycyBkb24ndCB0YWtlIGNhcmUgdG8gbWFrZSBzdXJlIHRoZXkKdGFrZSBhIHJlZmVyZW5j
-ZSB0byB0aGUgbXN0YiBwb3J0IHRoYXQgdGhleSdyZSBjaGVja2luZywgYW5kCmFkZGl0aW9uYWxs
-eSBkb24ndCBhY3R1YWxseSBjaGVjayB3aGV0aGVyIG9yIG5vdCB0aGUgdG9wb2xvZ3kgc3RpbGwg
-aGFzCmVub3VnaCBiYW5kd2lkdGggdG8gcHJvdmlkZSB0aGUgVkNQSSB0b2tlbnMgcmVxdWlyZWQu
-CgpTbywgZHJvcCB1c2FnZSBvZiB0aGUgb2xkIGhlbHBlcnMgYW5kIG1vdmUgZW50aXJlbHkgb3Zl
-ciB0byB0aGUgYXRvbWljCmhlbHBlcnMuCgpDaGFuZ2VzIHNpbmNlIHY1OgogLSBVcGRhdGUgbnY1
-MF9tc3RvX2F0b21pY19jaGVjaygpIGFuZCBudjUwX21zdGNfYXRvbWljX2NoZWNrKCkgdG8gdGhl
-CiAgIG5ldyByZXF1aXJlbWVudHMgZm9yIGRybV9kcF9hdG9taWNfZmluZF92Y3BpX3Nsb3RzKCkg
-YW5kCiAgIGRybV9kcF9hdG9taWNfcmVsZWFzZV92Y3BpX3Nsb3RzKCkKClNpZ25lZC1vZmYtYnk6
-IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwu
-dmV0dGVyQGZmd2xsLmNoPgpDYzogRGF2aWQgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+CkNj
-OiBKZXJyeSBadW8gPEplcnJ5Llp1b0BhbWQuY29tPgpDYzogSGFycnkgV2VudGxhbmQgPGhhcnJ5
-LndlbnRsYW5kQGFtZC5jb20+CkNjOiBKdXN0b24gTGkgPGp1c3Rvbi5saUBpbnRlbC5jb20+Ci0t
-LQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jIHwgNTIgKysrKysrKysr
-KysrKysrKysrKysrKy0tLQogMSBmaWxlIGNoYW5nZWQsIDQ2IGluc2VydGlvbnMoKyksIDYgZGVs
-ZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAv
-ZGlzcC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCmluZGV4IDY3
-ZjdiZjk3ZTVkOS4uZGY2OTYwMDhkMjA1IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9kaXNwbnY1MC9kaXNwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52
-NTAvZGlzcC5jCkBAIC03NjIsMTYgKzc2MiwyMiBAQCBudjUwX21zdG9fYXRvbWljX2NoZWNrKHN0
-cnVjdCBkcm1fZW5jb2RlciAqZW5jb2RlciwKIAkJICAgICAgIHN0cnVjdCBkcm1fY3J0Y19zdGF0
-ZSAqY3J0Y19zdGF0ZSwKIAkJICAgICAgIHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25u
-X3N0YXRlKQogewotCXN0cnVjdCBudjUwX21zdGMgKm1zdGMgPSBudjUwX21zdGMoY29ubl9zdGF0
-ZS0+Y29ubmVjdG9yKTsKKwlzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUgPSBjcnRjX3N0
-YXRlLT5zdGF0ZTsKKwlzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yID0gY29ubl9zdGF0
-ZS0+Y29ubmVjdG9yOworCXN0cnVjdCBudjUwX21zdGMgKm1zdGMgPSBudjUwX21zdGMoY29ubmVj
-dG9yKTsKIAlzdHJ1Y3QgbnY1MF9tc3RtICptc3RtID0gbXN0Yy0+bXN0bTsKLQlpbnQgYnBwID0g
-Y29ubl9zdGF0ZS0+Y29ubmVjdG9yLT5kaXNwbGF5X2luZm8uYnBjICogMzsKKwlpbnQgYnBwID0g
-Y29ubmVjdG9yLT5kaXNwbGF5X2luZm8uYnBjICogMzsKIAlpbnQgc2xvdHM7CiAKLQltc3RjLT5w
-Ym4gPSBkcm1fZHBfY2FsY19wYm5fbW9kZShjcnRjX3N0YXRlLT5hZGp1c3RlZF9tb2RlLmNsb2Nr
-LCBicHApOworCW1zdGMtPnBibiA9IGRybV9kcF9jYWxjX3Bibl9tb2RlKGNydGNfc3RhdGUtPmFk
-anVzdGVkX21vZGUuY2xvY2ssCisJCQkJCSBicHApOwogCi0Jc2xvdHMgPSBkcm1fZHBfZmluZF92
-Y3BpX3Nsb3RzKCZtc3RtLT5tZ3IsIG1zdGMtPnBibik7Ci0JaWYgKHNsb3RzIDwgMCkKLQkJcmV0
-dXJuIHNsb3RzOworCWlmIChjcnRjX3N0YXRlLT5jb25uZWN0b3JzX2NoYW5nZWQgfHwgY3J0Y19z
-dGF0ZS0+bW9kZV9jaGFuZ2VkKSB7CisJCXNsb3RzID0gZHJtX2RwX2F0b21pY19maW5kX3ZjcGlf
-c2xvdHMoc3RhdGUsICZtc3RtLT5tZ3IsCisJCQkJCQkgICAgICBtc3RjLT5wb3J0LCBtc3RjLT5w
-Ym4pOworCQlpZiAoc2xvdHMgPCAwKQorCQkJcmV0dXJuIHNsb3RzOworCX0KIAogCXJldHVybiBu
-djUwX291dHBfYXRvbWljX2NoZWNrX3ZpZXcoZW5jb2RlciwgY3J0Y19zdGF0ZSwgY29ubl9zdGF0
-ZSwKIAkJCQkJICAgbXN0Yy0+bmF0aXZlKTsKQEAgLTkzNCwxMiArOTQwLDQyIEBAIG52NTBfbXN0
-Y19nZXRfbW9kZXMoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikKIAlyZXR1cm4gcmV0
-OwogfQogCitzdGF0aWMgaW50CitudjUwX21zdGNfYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1fY29u
-bmVjdG9yICpjb25uZWN0b3IsCisJCSAgICAgICBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAq
-bmV3X2Nvbm5fc3RhdGUpCit7CisJc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlID0gbmV3
-X2Nvbm5fc3RhdGUtPnN0YXRlOworCXN0cnVjdCBudjUwX21zdGMgKm1zdGMgPSBudjUwX21zdGMo
-Y29ubmVjdG9yKTsKKwlzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9neV9tZ3IgKm1nciA9ICZtc3Rj
-LT5tc3RtLT5tZ3I7CisJc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKm9sZF9jb25uX3N0YXRl
-ID0KKwkJZHJtX2F0b21pY19nZXRfb2xkX2Nvbm5lY3Rvcl9zdGF0ZShzdGF0ZSwgY29ubmVjdG9y
-KTsKKwlzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKm9sZF9jcnRjX3N0YXRlOworCXN0cnVjdCBkcm1f
-Y3J0YyAqbmV3X2NydGMgPSBuZXdfY29ubl9zdGF0ZS0+Y3J0YywKKwkJCSpvbGRfY3J0YyA9IG9s
-ZF9jb25uX3N0YXRlLT5jcnRjOworCisJaWYgKCFvbGRfY3J0YykKKwkJcmV0dXJuIDA7CisKKwlv
-bGRfY3J0Y19zdGF0ZSA9IGRybV9hdG9taWNfZ2V0X29sZF9jcnRjX3N0YXRlKHN0YXRlLCBvbGRf
-Y3J0Yyk7CisJaWYgKCFvbGRfY3J0Y19zdGF0ZSB8fCAhb2xkX2NydGNfc3RhdGUtPmVuYWJsZSkK
-KwkJcmV0dXJuIDA7CisKKwlpZiAobmV3X2NydGMpCisJCXJldHVybiAwOworCisJLyogVGhpcyBj
-b25uZWN0b3Igd2lsbCBiZSBsZWZ0IHdpdGhvdXQgYW4gZW5hYmxlZCBDUlRDLCBzbyBpdHMgVkNQ
-SQorCSAqIG11c3QgYmUgcmVsZWFzZWQgaGVyZQorCSAqLworCXJldHVybiBkcm1fZHBfYXRvbWlj
-X3JlbGVhc2VfdmNwaV9zbG90cyhzdGF0ZSwgbWdyLCBtc3RjLT5wb3J0KTsKK30KKwogc3RhdGlj
-IGNvbnN0IHN0cnVjdCBkcm1fY29ubmVjdG9yX2hlbHBlcl9mdW5jcwogbnY1MF9tc3RjX2hlbHAg
-PSB7CiAJLmdldF9tb2RlcyA9IG52NTBfbXN0Y19nZXRfbW9kZXMsCiAJLm1vZGVfdmFsaWQgPSBu
-djUwX21zdGNfbW9kZV92YWxpZCwKIAkuYmVzdF9lbmNvZGVyID0gbnY1MF9tc3RjX2Jlc3RfZW5j
-b2RlciwKIAkuYXRvbWljX2Jlc3RfZW5jb2RlciA9IG52NTBfbXN0Y19hdG9taWNfYmVzdF9lbmNv
-ZGVyLAorCS5hdG9taWNfY2hlY2sgPSBudjUwX21zdGNfYXRvbWljX2NoZWNrLAogfTsKIAogc3Rh
-dGljIGVudW0gZHJtX2Nvbm5lY3Rvcl9zdGF0dXMKQEAgLTIxMjEsNiArMjE1NywxMCBAQCBudjUw
-X2Rpc3BfYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHN0cnVjdCBkcm1fYXRv
-bWljX3N0YXRlICpzdGF0ZSkKIAkJCXJldHVybiByZXQ7CiAJfQogCisJcmV0ID0gZHJtX2RwX21z
-dF9hdG9taWNfY2hlY2soc3RhdGUpOworCWlmIChyZXQpCisJCXJldHVybiByZXQ7CisKIAlyZXR1
-cm4gMDsKIH0KIAotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxpbmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2Ft
-ZC1nZngK
+
+--===============1316027348==
+Content-Type: multipart/alternative; boundary="15465361160.AaA9f8f.20187"
+Content-Transfer-Encoding: 7bit
+
+
+--15465361160.AaA9f8f.20187
+Date: Thu, 3 Jan 2019 17:21:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D102349
+
+--- Comment #18 from Christian Tosta <christian.tosta-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Ok, sorry. I understood that it was available in 18.2.8 (released last 27/12
+and packaged 28/12 for Fedora) not for master branch. I'll wait for that to=
+ be
+released. Workaround it disabling acceleration for Nouveau adding
+"nouveau.noaccel=3D1" to cmdline.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15465361160.AaA9f8f.20187
+Date: Thu, 3 Jan 2019 17:21:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349#c18">Comme=
+nt # 18</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - nv4x crashing with plasmashell - gdb log included"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D102349">bug 10234=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+christian.tosta&#64;gmail.com" title=3D"Christian Tosta &lt;christian.tosta=
+&#64;gmail.com&gt;"> <span class=3D"fn">Christian Tosta</span></a>
+</span></b>
+        <pre>Ok, sorry. I understood that it was available in 18.2.8 (relea=
+sed last 27/12
+and packaged 28/12 for Fedora) not for master branch. I'll wait for that to=
+ be
+released. Workaround it disabling acceleration for Nouveau adding
+&quot;nouveau.noaccel=3D1&quot; to cmdline.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15465361160.AaA9f8f.20187--
+
+--===============1316027348==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1316027348==--
