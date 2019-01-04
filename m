@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 104835] MMIO read of 00000000 FAULT at 10ac08 [ IBUS
- ]
-Date: Fri, 04 Jan 2019 09:33:58 +0000
-Message-ID: <bug-104835-8800-hLml1HJHc2@http.bugs.freedesktop.org/>
-References: <bug-104835-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98386] [NVE7] bus: MMIO write of FAULT at [ IBUS ],
+ Pointer to {TDMS, flat panel} table invalid
+Date: Fri, 04 Jan 2019 09:36:25 +0000
+Message-ID: <bug-98386-8800-lwHCkm1YXA@http.bugs.freedesktop.org/>
+References: <bug-98386-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1268200417=="
+Content-Type: multipart/mixed; boundary="===============1841352799=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-104835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,22 +21,22 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1268200417==
-Content-Type: multipart/alternative; boundary="15465944370.Fdbf4cfF.31165"
+--===============1841352799==
+Content-Type: multipart/alternative; boundary="15465945853.25FFF1.31431"
 Content-Transfer-Encoding: 7bit
 
 
---15465944370.Fdbf4cfF.31165
-Date: Fri, 4 Jan 2019 09:33:57 +0000
+--15465945853.25FFF1.31431
+Date: Fri, 4 Jan 2019 09:36:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D104835
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98386
 
---- Comment #7 from Andrei Borzenkov <arvidjaar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+--- Comment #25 from Andrei Borzenkov <arvidjaar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 Have it on Dell Latitude E5450
 
 00:02.0 VGA compatible controller [0300]: Intel Corporation HD Graphics 5500
@@ -136,8 +136,8 @@ The read fault at 10ac08 happens only ones during system boot, read fault
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15465944370.Fdbf4cfF.31165
-Date: Fri, 4 Jan 2019 09:33:57 +0000
+--15465945853.25FFF1.31431
+Date: Fri, 4 Jan 2019 09:36:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -152,15 +152,17 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104835#c7">Commen=
-t # 7</a>
+          bz_status_REOPENED "
+   title=3D"REOPENED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer=
+ to {TDMS,flat panel} table invalid"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c25">Commen=
+t # 25</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 10ac08 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D104835">bug 10483=
-5</a>
+          bz_status_REOPENED "
+   title=3D"REOPENED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer=
+ to {TDMS,flat panel} table invalid"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">bug 98386<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 arvidjaar&#64;gmail.com" title=3D"Andrei Borzenkov &lt;arvidjaar&#64;gmail.=
 com&gt;"> <span class=3D"fn">Andrei Borzenkov</span></a>
@@ -272,9 +274,9 @@ The read fault at 10ac08 happens only ones during system boot, read fault
     </body>
 </html>=
 
---15465944370.Fdbf4cfF.31165--
+--15465945853.25FFF1.31431--
 
---===============1268200417==
+--===============1841352799==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -284,4 +286,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1268200417==--
+--===============1841352799==--
