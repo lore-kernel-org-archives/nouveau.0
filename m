@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99900] [NVC1] nouveau: freeze / crash after kernel
- update to 4.10
-Date: Sat, 05 Jan 2019 21:53:53 +0000
-Message-ID: <bug-99900-8800-vIsnD2Bz7K@http.bugs.freedesktop.org/>
-References: <bug-99900-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 103721] [GM107] Frequent freezes with nouveau on
+ Thinkpad P50
+Date: Sat, 05 Jan 2019 23:41:00 +0000
+Message-ID: <bug-103721-8800-RrgvhRKYxw@http.bugs.freedesktop.org/>
+References: <bug-103721-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0386586916=="
+Content-Type: multipart/mixed; boundary="===============0529810992=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-103721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,53 +21,56 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0386586916==
-Content-Type: multipart/alternative; boundary="15467252330.EaF559dc.12012"
+--===============0529810992==
+Content-Type: multipart/alternative; boundary="15467316604.DaFBaB.21573"
 Content-Transfer-Encoding: 7bit
 
 
---15467252330.EaF559dc.12012
-Date: Sat, 5 Jan 2019 21:53:53 +0000
+--15467316604.DaFBaB.21573
+Date: Sat, 5 Jan 2019 23:41:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99900
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103721
 
---- Comment #26 from kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Similar problem, described in:
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c18
+--- Comment #14 from kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Pasting relevant info from freeze-20180116-drm.debug.log, so it's easier to
+find.
 
-Call Trace:
- __schedule+0x29e/0x840
- schedule+0x2c/0x80
- schedule_timeout+0x258/0x360
- ? nv50_wndw_atomic_destroy_state+0x1d/0x20 [nouveau]
- dma_fence_default_wait+0x1fc/0x260
- ? dma_fence_release+0xa0/0xa0
- dma_fence_wait_timeout+0x3e/0xf0
- drm_atomic_helper_wait_for_fences+0x3f/0xc0 [drm_kms_helper]
- nv50_disp_atomic_commit_tail+0x78/0x860 [nouveau]
- ? __switch_to_asm+0x40/0x70
- ? __switch_to_asm+0x34/0x70
- nv50_disp_atomic_commit_work+0x12/0x20 [nouveau]
- process_one_work+0x20f/0x3c0
- worker_thread+0x34/0x400
- kthread+0x120/0x140
- ? pwq_unbound_release_workfn+0xd0/0xd0
- ? kthread_bind+0x40/0x40
- ret_from_fork+0x35/0x40
-
-Full log: https://gist.github.com/kenorb/5b95caa1694dbf7f030ccc808a110856
+[drm:drm_mode_addfb2 [drm]] [FB:90]
+00a0 2 nv50_base_ntfy_set
+        00000120
+        f0000000
+0084 1 nv50_base_image_set
+        00000010
+00c0 1 nv50_base_image_set
+        fb0000fe
+0400 5 nv50_base_image_set
+        000f6c00
+        00000000
+        04380780
+        00007804
+        0000cf00
+0080 1 nv50_base_update
+        00000000
+nouveau 0000:01:00.0: fifo: read fault at aa8e32b000 engine 00 [GR] client =
+0d
+[GPC0/GCC] reason 00 [PDE] on channel 6 [007f287000 Xorg[2795]]
+nouveau 0000:01:00.0: fifo: channel 6: killed
+nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recovery
+nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
+nouveau 0000:01:00.0: Xorg[2795]: channel 6 killed!
+[drm:drm_mode_addfb2 [drm]] [FB:93]
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15467252330.EaF559dc.12012
-Date: Sat, 5 Jan 2019 21:53:53 +0000
+--15467316604.DaFBaB.21573
+Date: Sat, 5 Jan 2019 23:41:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -83,51 +86,46 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
-0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900#c26">Commen=
-t # 26</a>
+   title=3D"NEW - [GM107] Frequent freezes with nouveau on Thinkpad P50"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721#c14">Comme=
+nt # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
-0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900">bug 99900<=
-/a>
+   title=3D"NEW - [GM107] Frequent freezes with nouveau on Thinkpad P50"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721">bug 10372=
+1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 kenorb&#64;gmail.com" title=3D"kenorb&#64;gmail.com">kenorb&#64;gmail.com</=
 a>
 </span></b>
-        <pre>Similar problem, described in:
-<a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"show_bug.cgi?id=3D100567#c18">https://bugs.freedesktop.org/show_=
-bug.cgi?id=3D100567#c18</a>
+        <pre>Pasting relevant info from freeze-20180116-drm.debug.log, so i=
+t's easier to
+find.
 
-Call Trace:
- __schedule+0x29e/0x840
- schedule+0x2c/0x80
- schedule_timeout+0x258/0x360
- ? nv50_wndw_atomic_destroy_state+0x1d/0x20 [nouveau]
- dma_fence_default_wait+0x1fc/0x260
- ? dma_fence_release+0xa0/0xa0
- dma_fence_wait_timeout+0x3e/0xf0
- drm_atomic_helper_wait_for_fences+0x3f/0xc0 [drm_kms_helper]
- nv50_disp_atomic_commit_tail+0x78/0x860 [nouveau]
- ? __switch_to_asm+0x40/0x70
- ? __switch_to_asm+0x34/0x70
- nv50_disp_atomic_commit_work+0x12/0x20 [nouveau]
- process_one_work+0x20f/0x3c0
- worker_thread+0x34/0x400
- kthread+0x120/0x140
- ? pwq_unbound_release_workfn+0xd0/0xd0
- ? kthread_bind+0x40/0x40
- ret_from_fork+0x35/0x40
-
-Full log: <a href=3D"https://gist.github.com/kenorb/5b95caa1694dbf7f030ccc8=
-08a110856">https://gist.github.com/kenorb/5b95caa1694dbf7f030ccc808a110856<=
-/a></pre>
+[drm:drm_mode_addfb2 [drm]] [FB:90]
+00a0 2 nv50_base_ntfy_set
+        00000120
+        f0000000
+0084 1 nv50_base_image_set
+        00000010
+00c0 1 nv50_base_image_set
+        fb0000fe
+0400 5 nv50_base_image_set
+        000f6c00
+        00000000
+        04380780
+        00007804
+        0000cf00
+0080 1 nv50_base_update
+        00000000
+nouveau 0000:01:00.0: fifo: read fault at aa8e32b000 engine 00 [GR] client =
+0d
+[GPC0/GCC] reason 00 [PDE] on channel 6 [007f287000 Xorg[2795]]
+nouveau 0000:01:00.0: fifo: channel 6: killed
+nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recovery
+nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
+nouveau 0000:01:00.0: Xorg[2795]: channel 6 killed!
+[drm:drm_mode_addfb2 [drm]] [FB:93]</pre>
         </div>
       </p>
 
@@ -141,9 +139,9 @@ Full log: <a href=3D"https://gist.github.com/kenorb/5b95caa1694dbf7f030ccc8=
     </body>
 </html>=
 
---15467252330.EaF559dc.12012--
+--15467316604.DaFBaB.21573--
 
---===============0386586916==
+--===============0529810992==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -153,4 +151,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0386586916==--
+--===============0529810992==--
