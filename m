@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 98138] Random Freeze - nouveau 0000:01:00.0: fifo:
  SCHED_ERROR 0a [CTXSW_TIMEOUT]
-Date: Sat, 05 Jan 2019 21:43:37 +0000
-Message-ID: <bug-98138-8800-3E5yv8FO69@http.bugs.freedesktop.org/>
+Date: Sat, 05 Jan 2019 21:44:24 +0000
+Message-ID: <bug-98138-8800-yXAPijn7yr@http.bugs.freedesktop.org/>
 References: <bug-98138-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1140451307=="
+Content-Type: multipart/mixed; boundary="===============1112944855=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-98138-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1140451307==
-Content-Type: multipart/alternative; boundary="15467246161.D4Bb2B1B.8332"
+--===============1112944855==
+Content-Type: multipart/alternative; boundary="15467246641.ddBDFF7aC.7958"
 Content-Transfer-Encoding: 7bit
 
 
---15467246161.D4Bb2B1B.8332
-Date: Sat, 5 Jan 2019 21:43:36 +0000
+--15467246641.ddBDFF7aC.7958
+Date: Sat, 5 Jan 2019 21:44:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,15 +36,23 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D98138
 
---- Comment #2 from kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Related: #100567
+kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|FIXED                       |DUPLICATE
+
+--- Comment #3 from kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+
+
+*** This bug has been marked as a duplicate of bug 100567 ***
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15467246161.D4Bb2B1B.8332
-Date: Sat, 5 Jan 2019 21:43:36 +0000
+--15467246641.ddBDFF7aC.7958
+Date: Sat, 5 Jan 2019 21:44:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -55,26 +63,55 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:kenorb&#6=
+4;gmail.com" title=3D"kenorb&#64;gmail.com">kenorb&#64;gmail.com</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Random Freeze - nouveau 0000:01:00.0: fifo=
+: SCHED_ERROR 0a [CTXSW_TIMEOUT]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98138">bug 98138<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>FIXED
+           </td>
+           <td>DUPLICATE
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Random Freeze - nouveau 0000:01:00.0: fifo: SC=
-HED_ERROR 0a [CTXSW_TIMEOUT]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98138#c2">Comment=
- # 2</a>
+   title=3D"RESOLVED DUPLICATE - Random Freeze - nouveau 0000:01:00.0: fifo=
+: SCHED_ERROR 0a [CTXSW_TIMEOUT]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98138#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Random Freeze - nouveau 0000:01:00.0: fifo: SC=
-HED_ERROR 0a [CTXSW_TIMEOUT]"
+   title=3D"RESOLVED DUPLICATE - Random Freeze - nouveau 0000:01:00.0: fifo=
+: SCHED_ERROR 0a [CTXSW_TIMEOUT]"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98138">bug 98138<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 kenorb&#64;gmail.com" title=3D"kenorb&#64;gmail.com">kenorb&#64;gmail.com</=
 a>
 </span></b>
-        <pre>Related: #100567</pre>
+        <pre>
+
+*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"show_bug.cgi?id=3D100567">bug 100567</a> ***</pre>
         </div>
       </p>
 
@@ -88,9 +125,9 @@ a>
     </body>
 </html>=
 
---15467246161.D4Bb2B1B.8332--
+--15467246641.ddBDFF7aC.7958--
 
---===============1140451307==
+--===============1112944855==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +137,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1140451307==--
+--===============1112944855==--
