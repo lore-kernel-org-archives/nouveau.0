@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 103721] [GM107] Frequent freezes with nouveau on
  Thinkpad P50
-Date: Sat, 05 Jan 2019 23:41:00 +0000
-Message-ID: <bug-103721-8800-RrgvhRKYxw@http.bugs.freedesktop.org/>
+Date: Sat, 05 Jan 2019 23:45:07 +0000
+Message-ID: <bug-103721-8800-oRdDnhYQBp@http.bugs.freedesktop.org/>
 References: <bug-103721-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0529810992=="
+Content-Type: multipart/mixed; boundary="===============0133965901=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-103721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0529810992==
-Content-Type: multipart/alternative; boundary="15467316604.DaFBaB.21573"
+--===============0133965901==
+Content-Type: multipart/alternative; boundary="15467319072.AB59.24796"
 Content-Transfer-Encoding: 7bit
 
 
---15467316604.DaFBaB.21573
-Date: Sat, 5 Jan 2019 23:41:00 +0000
+--15467319072.AB59.24796
+Date: Sat, 5 Jan 2019 23:45:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,41 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D103721
 
---- Comment #14 from kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Pasting relevant info from freeze-20180116-drm.debug.log, so it's easier to
-find.
+kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
-[drm:drm_mode_addfb2 [drm]] [FB:90]
-00a0 2 nv50_base_ntfy_set
-        00000120
-        f0000000
-0084 1 nv50_base_image_set
-        00000010
-00c0 1 nv50_base_image_set
-        fb0000fe
-0400 5 nv50_base_image_set
-        000f6c00
-        00000000
-        04380780
-        00007804
-        0000cf00
-0080 1 nv50_base_update
-        00000000
-nouveau 0000:01:00.0: fifo: read fault at aa8e32b000 engine 00 [GR] client =
-0d
-[GPC0/GCC] reason 00 [PDE] on channel 6 [007f287000 Xorg[2795]]
-nouveau 0000:01:00.0: fifo: channel 6: killed
-nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recovery
-nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
-nouveau 0000:01:00.0: Xorg[2795]: channel 6 killed!
-[drm:drm_mode_addfb2 [drm]] [FB:93]
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Hardware|Other                       |x86-64 (AMD64)
+
+--- Comment #15 from kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+[drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on minor 0
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15467316604.DaFBaB.21573
-Date: Sat, 5 Jan 2019 23:41:00 +0000
+--15467319072.AB59.24796
+Date: Sat, 5 Jan 2019 23:45:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -81,14 +61,36 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:kenorb&#6=
+4;gmail.com" title=3D"kenorb&#64;gmail.com">kenorb&#64;gmail.com</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [GM107] Frequent freezes with nouveau on Thinkpad P50"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721">bug 10372=
+1</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Hardware</td>
+           <td>Other
+           </td>
+           <td>x86-64 (AMD64)
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM107] Frequent freezes with nouveau on Thinkpad P50"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721#c14">Comme=
-nt # 14</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103721#c15">Comme=
+nt # 15</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [GM107] Frequent freezes with nouveau on Thinkpad P50"
@@ -98,34 +100,8 @@ nt # 14</a>
 kenorb&#64;gmail.com" title=3D"kenorb&#64;gmail.com">kenorb&#64;gmail.com</=
 a>
 </span></b>
-        <pre>Pasting relevant info from freeze-20180116-drm.debug.log, so i=
-t's easier to
-find.
-
-[drm:drm_mode_addfb2 [drm]] [FB:90]
-00a0 2 nv50_base_ntfy_set
-        00000120
-        f0000000
-0084 1 nv50_base_image_set
-        00000010
-00c0 1 nv50_base_image_set
-        fb0000fe
-0400 5 nv50_base_image_set
-        000f6c00
-        00000000
-        04380780
-        00007804
-        0000cf00
-0080 1 nv50_base_update
-        00000000
-nouveau 0000:01:00.0: fifo: read fault at aa8e32b000 engine 00 [GR] client =
-0d
-[GPC0/GCC] reason 00 [PDE] on channel 6 [007f287000 Xorg[2795]]
-nouveau 0000:01:00.0: fifo: channel 6: killed
-nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recovery
-nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
-nouveau 0000:01:00.0: Xorg[2795]: channel 6 killed!
-[drm:drm_mode_addfb2 [drm]] [FB:93]</pre>
+        <pre>[drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on m=
+inor 0</pre>
         </div>
       </p>
 
@@ -139,9 +115,9 @@ nouveau 0000:01:00.0: Xorg[2795]: channel 6 killed!
     </body>
 </html>=
 
---15467316604.DaFBaB.21573--
+--15467319072.AB59.24796--
 
---===============0529810992==
+--===============0133965901==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -151,4 +127,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0529810992==--
+--===============0133965901==--
