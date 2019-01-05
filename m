@@ -1,289 +1,73 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98386] [NVE7] bus: MMIO write of FAULT at [ IBUS ],
- Pointer to {TDMS, flat panel} table invalid
-Date: Fri, 04 Jan 2019 09:36:25 +0000
-Message-ID: <bug-98386-8800-lwHCkm1YXA@http.bugs.freedesktop.org/>
-References: <bug-98386-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v4 00/16] MST refcounting/atomic helpers cleanup
+Date: Fri,  4 Jan 2019 19:14:50 -0500
+Message-ID: <20190105001506.30181-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1841352799=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1841352799==
-Content-Type: multipart/alternative; boundary="15465945853.25FFF1.31431"
-Content-Transfer-Encoding: 7bit
-
-
---15465945853.25FFF1.31431
-Date: Fri, 4 Jan 2019 09:36:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98386
-
---- Comment #25 from Andrei Borzenkov <arvidjaar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Have it on Dell Latitude E5450
-
-00:02.0 VGA compatible controller [0300]: Intel Corporation HD Graphics 5500
-[8086:1616] (rev 09)
-03:00.0 3D controller [0302]: NVIDIA Corporation GM108M [GeForce 830M]
-[10de:1340] (rev a2)
-
-VERSION=3D"18.04.1 LTS (Bionic Beaver)"
-Linux bor-Latitude-E5450 4.18.0-13-generic #14~18.04.1-Ubuntu SMP Thu Dec 6
-14:09:52 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
-
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: fb: switching to inteldrmfb from=
- EFI
-VGA
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: Console: switching to colour dum=
-my
-device 80x25
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: [drm] Replacing VGA console driv=
-er
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: [drm] ACPI BIOS requests an
-excessive sleep of 20000 ms, using 1500 ms instead
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: MXM: GUID detected in BIOS
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: ACPI Warning:
-\_SB.PCI0.RP05.PEGP._DSM: Argument #4 type mismatch - Found [Buffer], ACPI
-requires [Package] (20180531/nsarguments-66)
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: [drm] Supports vblank timestamp
-caching Rev 2 (21.10.2013).
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: [drm] Driver supports precise vb=
-lank
-timestamp query.
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: pci 0000:03:00.0: optimus
-capabilities: enabled, status dynamic power, hda bios codec supported
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: VGA switcheroo: detected Optimus=
- DSM
-method \_SB_.PCI0.RP05.PEGP handle
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau: detected PR support, wi=
-ll
-not use DSM
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: enabling
-device (0006 -> 0007)
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: NVIDIA GM1=
-08
-(118000a2)
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: i915 0000:00:02.0: vgaarb: chang=
-ed
-VGA decodes: olddecodes=3Dio+mem,decodes=3Dio+mem:owns=3Dio+mem
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: [drm] Initialized i915 1.6.0
-20180514 for 0000:00:02.0 on minor 0
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: bios: vers=
-ion
-82.08.18.00.2a
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: ACPI: Video Device [GFX0]
-(multi-head: yes  rom: no  post: no)
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: fb: 2048 M=
-iB
-DDR3
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: bus: MMIO =
-read
-of 00000000 FAULT at 6013d4 [ IBUS ]
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: input: Video Bus as
-/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input7
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: ACPI: Video Device [PEGP]
-(multi-head: no  rom: yes  post: no)
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: input: Video Bus as
-/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/device:1d/LNXVIDEO:01/input/inp=
-ut8
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: fbcon: inteldrmfb (fb0) is prima=
-ry
-device
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: Console: switching to colour fra=
-me
-buffer device 240x67
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: i915 0000:00:02.0: fb0: inteldrm=
-fb
-frame buffer device
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: bus: MMIO =
-read
-of 00000000 FAULT at 10ac08 [ IBUS ]
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: vga_switcheroo: enabled
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: DRM: GART:
-1048576 MiB
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: DRM: Point=
-er
-to TMDS table invalid
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: DRM: DCB
-version 4.0
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: DRM: MM: u=
-sing
-COPY for buffer copies
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: [drm] Initialized nouveau 1.3.1
-20120801 for 0000:03:00.0 on minor 1
-
-The read fault at 10ac08 happens only ones during system boot, read fault
-6013d4 happens apparently every time I suspend/resume.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15465945853.25FFF1.31431
-Date: Fri, 4 Jan 2019 09:36:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer=
- to {TDMS,flat panel} table invalid"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386#c25">Commen=
-t # 25</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - [NVE7] bus: MMIO write of FAULT at [ IBUS ], Pointer=
- to {TDMS,flat panel} table invalid"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98386">bug 98386<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-arvidjaar&#64;gmail.com" title=3D"Andrei Borzenkov &lt;arvidjaar&#64;gmail.=
-com&gt;"> <span class=3D"fn">Andrei Borzenkov</span></a>
-</span></b>
-        <pre>Have it on Dell Latitude E5450
-
-00:02.0 VGA compatible controller [0300]: Intel Corporation HD Graphics 5500
-[8086:1616] (rev 09)
-03:00.0 3D controller [0302]: NVIDIA Corporation GM108M [GeForce 830M]
-[10de:1340] (rev a2)
-
-VERSION=3D&quot;18.04.1 LTS (Bionic Beaver)&quot;
-Linux bor-Latitude-E5450 4.18.0-13-generic #14~18.04.1-Ubuntu SMP Thu Dec 6
-14:09:52 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
-
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: fb: switching to inteldrmfb from=
- EFI
-VGA
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: Console: switching to colour dum=
-my
-device 80x25
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: [drm] Replacing VGA console driv=
-er
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: [drm] ACPI BIOS requests an
-excessive sleep of 20000 ms, using 1500 ms instead
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: MXM: GUID detected in BIOS
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: ACPI Warning:
-\_SB.PCI0.RP05.PEGP._DSM: Argument #4 type mismatch - Found [Buffer], ACPI
-requires [Package] (20180531/nsarguments-66)
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: [drm] Supports vblank timestamp
-caching Rev 2 (21.10.2013).
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: [drm] Driver supports precise vb=
-lank
-timestamp query.
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: pci 0000:03:00.0: optimus
-capabilities: enabled, status dynamic power, hda bios codec supported
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: VGA switcheroo: detected Optimus=
- DSM
-method \_SB_.PCI0.RP05.PEGP handle
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau: detected PR support, wi=
-ll
-not use DSM
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: enabling
-device (0006 -&gt; 0007)
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: NVIDIA GM1=
-08
-(118000a2)
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: i915 0000:00:02.0: vgaarb: chang=
-ed
-VGA decodes: olddecodes=3Dio+mem,decodes=3Dio+mem:owns=3Dio+mem
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: [drm] Initialized i915 1.6.0
-20180514 for 0000:00:02.0 on minor 0
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: bios: vers=
-ion
-82.08.18.00.2a
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: ACPI: Video Device [GFX0]
-(multi-head: yes  rom: no  post: no)
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: fb: 2048 M=
-iB
-DDR3
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: bus: MMIO =
-read
-of 00000000 FAULT at 6013d4 [ IBUS ]
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: input: Video Bus as
-/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input7
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: ACPI: Video Device [PEGP]
-(multi-head: no  rom: yes  post: no)
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: input: Video Bus as
-/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/device:1d/LNXVIDEO:01/input/inp=
-ut8
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: fbcon: inteldrmfb (fb0) is prima=
-ry
-device
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: Console: switching to colour fra=
-me
-buffer device 240x67
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: i915 0000:00:02.0: fb0: inteldrm=
-fb
-frame buffer device
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: bus: MMIO =
-read
-of 00000000 FAULT at 10ac08 [ IBUS ]
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: vga_switcheroo: enabled
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: DRM: GART:
-1048576 MiB
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: DRM: Point=
-er
-to TMDS table invalid
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: DRM: DCB
-version 4.0
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: nouveau 0000:03:00.0: DRM: MM: u=
-sing
-COPY for buffer copies
-Dec 20 21:10:10 bor-Latitude-E5450 kernel: [drm] Initialized nouveau 1.3.1
-20120801 for 0000:03:00.0 on minor 1
-
-The read fault at 10ac08 happens only ones during system boot, read fault
-6013d4 happens apparently every time I suspend/resume.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15465945853.25FFF1.31431--
-
---===============1841352799==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1841352799==--
+VGhpcyBpcyB0aGUgc2VyaWVzIEkndmUgYmVlbiB3b3JraW5nIG9uIGZvciBhIHdoaWxlIG5vdyB0
+byBnZXQgYWxsIG9mCnRoZSBhdG9taWMgRFJNIGRyaXZlcnMgaW4gdGhlIHRyZWUgdG8gdXNlIHRo
+ZSBhdG9taWMgTVNUIGhlbHBlcnMsIGFuZCB0bwptYWtlIHRoZSBhdG9taWMgTVNUIGhlbHBlcnMg
+YWN0dWFsbHkgaWRlbXBvdGVudC4gVHVybnMgb3V0IGl0J3MgYSBsb3QKbW9yZSBkaWZmaWN1bHQg
+dG8gZG8gdGhhdCB3aXRob3V0IGFsc28gZml4aW5nIGhvdyBwb3J0IGFuZCBicmFuY2ggZGV2aWNl
+CnJlZmNvdW50aW5nIHdvcmtzIHNvIHRoYXQgaXQgYWN0dWFsbHkgbWFrZXMgc2Vuc2UsIHNpbmNl
+IHRoZSBjdXJyZW50CnVwc3RyZWFtIGltcGxlbWVudGF0aW9uIHJlcXVpcmVzIGEgdG9uIG9mIG1h
+Z2ljIGluIHRoZSBhdG9taWMgaGVscGVycyB0bwp3b3JrIGFyb3VuZCBwcm9wZXJseSBhbmQgaW4g
+bWFueSBzaXR1YXRpb25zIGp1c3QgcGxhaW4gZG9lc24ndCB3b3JrIGFzCmludGVuZGVkLgoKVGhl
+cmUncyBzdGlsbCBtb3JlIGNsZWFudXAgdGhhdCBjYW4gYmUgZG9uZSwgYnV0IEkgdGhpbmsgdGhp
+cyBpcyBhIGdvb2QKcGxhY2UgdG8gc3RhcnQgb2ZmIGZvciBub3cgOikuCgpUaGlzIHZlcnNpb24g
+anVzdCBjb250YWlucyBzb21lIGNoYW5nZXMgdGhhdCBJIGZvcmdvdCB0byBtYWtlIHRoYXQgaGFk
+CmJlZW4gcmVxdWVzdGVkIG11Y2ggZWFybGllciwgbWFpbmx5IGluIHJlZ2FyZHMgdG8gdGhlIGF0
+b21pYyBjaGVja2luZwpjb2RlIEkgYWRkZWQgdG8gaTkxNSBhbmQgbm91dmVhdSAoYnV0IG5vdCB0
+aGUgaGVscGVycykuCgpBbHNvLCBwZXItcmVxdWVzdCBJJ3ZlIG1hZGUgYSBnaXRsYWIgYnJhbmNo
+IGF2YWlsYWJsZSBmb3IgdGhpczoKCmh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9seXVk
+ZXNzL2xpbnV4L2NvbW1pdHMvd2lwL21zdC1kdWFsLWtyZWYtc3RhcnQtdjQKCkx5dWRlIFBhdWwg
+KDE2KToKICBkcm0vZHBfbXN0OiBSZW5hbWUgZHJtX2RwX21zdF9nZXRfdmFsaWRhdGVkXyhwb3J0
+fG1zdGIpX3JlZiBhbmQKICAgIGZyaWVuZHMKICBkcm0vZHBfbXN0OiBJbnRyb2R1Y2UgbmV3IHJl
+ZmNvdW50aW5nIHNjaGVtZSBmb3IgbXN0YnMgYW5kIHBvcnRzCiAgZHJtL2RwX21zdDogUmVzdGFy
+dCBsYXN0X2Nvbm5lY3RlZF9wb3J0X2FuZF9tc3RiKCkgaWYgdG9wb2xvZ3kgcmVmCiAgICBmYWls
+cwogIGRybS9kcF9tc3Q6IFN0b3AgcmVsZWFzaW5nIFZDUEkgd2hlbiByZW1vdmluZyBwb3J0cyBm
+cm9tIHRvcG9sb2d5CiAgZHJtL2RwX21zdDogRml4IHBheWxvYWQgZGVhbGxvY2F0aW9uIG9uIGhv
+dHBsdWdzIHVzaW5nIG1hbGxvYyByZWZzCiAgZHJtL2k5MTU6IEtlZXAgbWFsbG9jIHJlZmVyZW5j
+ZXMgdG8gTVNUIHBvcnRzCiAgZHJtL2FtZGdwdS9kaXNwbGF5OiBLZWVwIG1hbGxvYyByZWYgdG8g
+TVNUIHBvcnQKICBkcm0vbm91dmVhdTogUmVtb3ZlIGJvZ3VzIGNsZWFudXAgaW4gbnY1MF9tc3Rt
+X2FkZF9jb25uZWN0b3IoKQogIGRybS9ub3V2ZWF1OiBSZW1vdmUgdW5uZWNlc3NhcnkgVkNQSSBj
+aGVja3MgaW4gbnY1MF9tc3RvX2NsZWFudXAoKQogIGRybS9ub3V2ZWF1OiBLZWVwIG1hbGxvYyBy
+ZWZlcmVuY2VzIHRvIE1TVCBwb3J0cwogIGRybS9ub3V2ZWF1OiBTdG9wIHVuc2V0dGluZyBtc3Rj
+LT5wb3J0LCB1c2UgbWFsbG9jIHJlZnMKICBkcm0vbm91dmVhdTogR3JhYiBwYXlsb2FkIGxvY2sg
+aW4gbnY1MF9tc3RvX3BheWxvYWQoKQogIGRybS9kcF9tc3Q6IEFkZCBzb21lIGF0b21pYyBzdGF0
+ZSBpdGVyYXRvciBtYWNyb3MKICBkcm0vZHBfbXN0OiBTdGFydCB0cmFja2luZyBwZXItcG9ydCBW
+Q1BJIGFsbG9jYXRpb25zCiAgZHJtL2RwX21zdDogQ2hlY2sgcGF5bG9hZCBjb3VudCBpbiBkcm1f
+ZHBfbXN0X2F0b21pY19jaGVjaygpCiAgZHJtL25vdXZlYXU6IFVzZSBhdG9taWMgVkNQSSBoZWxw
+ZXJzIGZvciBNU1QKCiAuLi4vZ3B1L2RwLW1zdC90b3BvbG9neS1maWd1cmUtMS5kb3QgICAgICAg
+ICAgfCAgNTIgKwogLi4uL2dwdS9kcC1tc3QvdG9wb2xvZ3ktZmlndXJlLTIuZG90ICAgICAgICAg
+IHwgIDU2ICsrCiAuLi4vZ3B1L2RwLW1zdC90b3BvbG9neS1maWd1cmUtMy5kb3QgICAgICAgICAg
+fCAgNTkgKysKIERvY3VtZW50YXRpb24vZ3B1L2RybS1rbXMtaGVscGVycy5yc3QgICAgICAgICB8
+ICAyNiArLQogLi4uL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbV9tc3RfdHlwZXMuYyAgIHwg
+IDExICstCiBkcml2ZXJzL2dwdS9kcm0vZHJtX2RwX21zdF90b3BvbG9neS5jICAgICAgICAgfCA5
+MzggKysrKysrKysrKysrKystLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9jb25uZWN0
+b3IuYyAgICAgICAgfCAgIDQgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGlzcGxheS5j
+ICAgICAgICAgIHwgICA0ICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21zdC5jICAg
+ICAgICAgICB8ICA1NSArLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5j
+ICAgICAgIHwgIDk2ICstCiBpbmNsdWRlL2RybS9kcm1fZHBfbXN0X2hlbHBlci5oICAgICAgICAg
+ICAgICAgfCAxNTEgKystCiAxMSBmaWxlcyBjaGFuZ2VkLCAxMjAzIGluc2VydGlvbnMoKyksIDI0
+OSBkZWxldGlvbnMoLSkKIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2dwdS9kcC1t
+c3QvdG9wb2xvZ3ktZmlndXJlLTEuZG90CiBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlv
+bi9ncHUvZHAtbXN0L3RvcG9sb2d5LWZpZ3VyZS0yLmRvdAogY3JlYXRlIG1vZGUgMTAwNjQ0IERv
+Y3VtZW50YXRpb24vZ3B1L2RwLW1zdC90b3BvbG9neS1maWd1cmUtMy5kb3QKCi0tIAoyLjIwLjEK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmFtZC1nZngg
+bWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeAo=
