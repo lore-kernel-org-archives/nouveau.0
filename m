@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109230] [crash] Xorg is crashing on startup with
- enabled xinerama
-Date: Sun, 06 Jan 2019 17:47:18 +0000
-Message-ID: <bug-109230-8800-HYDu35iVuc@http.bugs.freedesktop.org/>
-References: <bug-109230-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
+ [CTXSW_TIMEOUT]
+Date: Sun, 06 Jan 2019 18:55:30 +0000
+Message-ID: <bug-100567-8800-yvfJxVTa36@http.bugs.freedesktop.org/>
+References: <bug-100567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1872245075=="
+Content-Type: multipart/mixed; boundary="===============0598449187=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109230-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1872245075==
-Content-Type: multipart/alternative; boundary="15467968381.bABE6a029.18570"
+--===============0598449187==
+Content-Type: multipart/alternative; boundary="15468009312.DD7e56b1.16552"
 Content-Transfer-Encoding: 7bit
 
 
---15467968381.bABE6a029.18570
-Date: Sun, 6 Jan 2019 17:47:18 +0000
+--15468009312.DD7e56b1.16552
+Date: Sun, 6 Jan 2019 18:55:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109230
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Looks like an assertion is failing in nouveau somewhere. I doubt it's relat=
-ed
-to the intel SNA bug.
-
-Do you have a debug symbols package you could install? Or perhaps build
-xf86-video-nouveau yourself?
-
-Also, to eliminate some potential complications -- try commenting out the
-RADEON bit and ensure that it keeps failing. (Not that that shouldn't work,=
- but
-good to know for debugging purposes.)
+--- Comment #23 from A. Wilcox <awilfox-EG4NeYC890/CfDggNXIi3w@public.gmane.org> ---
+Maybe related, my Bug 104448.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15467968381.bABE6a029.18570
-Date: Sun, 6 Jan 2019 17:47:18 +0000
+--15468009312.DD7e56b1.16552
+Date: Sun, 6 Jan 2019 18:55:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,29 +60,25 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [crash] Xorg is crashing on startup with enabled xinerama"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109230#c3">Commen=
-t # 3</a>
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c23">Comme=
+nt # 23</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [crash] Xorg is crashing on startup with enabled xinerama"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109230">bug 10923=
-0</a>
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+awilfox&#64;adelielinux.org" title=3D"A. Wilcox &lt;awilfox&#64;adelielinux=
+.org&gt;"> <span class=3D"fn">A. Wilcox</span></a>
 </span></b>
-        <pre>Looks like an assertion is failing in nouveau somewhere. I dou=
-bt it's related
-to the intel SNA bug.
-
-Do you have a debug symbols package you could install? Or perhaps build
-xf86-video-nouveau yourself?
-
-Also, to eliminate some potential complications -- try commenting out the
-RADEON bit and ensure that it keeps failing. (Not that that shouldn't work,=
- but
-good to know for debugging purposes.)</pre>
+        <pre>Maybe related, my <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV106/GK208B] Multiple issues / hangs with nouveau drive=
+r"
+   href=3D"show_bug.cgi?id=3D104448">Bug 104448</a>.</pre>
         </div>
       </p>
 
@@ -106,9 +92,9 @@ good to know for debugging purposes.)</pre>
     </body>
 </html>=
 
---15467968381.bABE6a029.18570--
+--15468009312.DD7e56b1.16552--
 
---===============1872245075==
+--===============0598449187==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -118,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1872245075==--
+--===============0598449187==--
