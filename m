@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109230] New: [crash] Xorg is crashing on startup
- with enabled xinerama
-Date: Sun, 06 Jan 2019 11:29:09 +0000
-Message-ID: <bug-109230-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 109230] [crash] Xorg is crashing on startup with
+ enabled xinerama
+Date: Sun, 06 Jan 2019 11:29:38 +0000
+Message-ID: <bug-109230-8800-TZFCJYwj7X@http.bugs.freedesktop.org/>
+References: <bug-109230-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1079912549=="
+Content-Type: multipart/mixed; boundary="===============1436296583=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-109230-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1079912549==
-Content-Type: multipart/alternative; boundary="15467741500.9894b2f5.23818"
+--===============1436296583==
+Content-Type: multipart/alternative; boundary="15467741770.a8e58.18211"
 Content-Transfer-Encoding: 7bit
 
 
---15467741500.9894b2f5.23818
-Date: Sun, 6 Jan 2019 11:29:10 +0000
+--15467741770.a8e58.18211
+Date: Sun, 6 Jan 2019 11:29:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,64 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109230
 
-            Bug ID: 109230
-           Summary: [crash] Xorg is crashing on startup with enabled
-                    xinerama
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: All
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: manio-RFXG7K41k5GsTnJN9+BGXg@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Dual gpu configuration: radeon + nouveau.
-When xinerama is enabled xorg is crashing with the following backtrace:
-
-[1208755.149] (EE) Backtrace:
-[1208755.159] (EE) 0: /usr/lib/xorg/Xorg (OsLookupColor+0x139) [0x55b646b6a=
-fc9]
-[1208755.160] (EE) 1: /lib/x86_64-linux-gnu/libpthread.so.0 (funlockfile+0x=
-50)
-[0x7f7d21b486ff]
-[1208755.162] (EE) 2: /lib/x86_64-linux-gnu/libc.so.6 (gsignal+0x10b)
-[0x7f7d219aa85b]
-[1208755.163] (EE) 3: /lib/x86_64-linux-gnu/libc.so.6 (abort+0x121)
-[0x7f7d21995535]
-[1208755.164] (EE) unw_get_proc_name failed: no unwind info found [-10]
-[1208755.164] (EE) 4: /lib/x86_64-linux-gnu/libc.so.6 (?+0x0) [0x7f7d219954=
-00]
-[1208755.165] (EE) 5: /lib/x86_64-linux-gnu/libc.so.6 (__assert_fail+0x42)
-[0x7f7d219a30a2]
-[1208755.166] (EE) 6: /usr/lib/xorg/modules/drivers/nouveau_drv.so
-(_init+0x433b3) [0x7f7d1ff2e743]
-[1208755.167] (EE) 7: /usr/lib/xorg/modules/drivers/nouveau_drv.so
-(_init+0x4430a) [0x7f7d1ff304ea]
-[1208755.168] (EE) 8: /usr/lib/xorg/modules/drivers/nouveau_drv.so
-(_init+0x48b20) [0x7f7d1ff39480]
-[1208755.169] (EE) 9: /usr/lib/xorg/modules/drivers/nouveau_drv.so
-(_init+0x3b581) [0x7f7d1ff1ea81]
-[1208755.175] (EE) 10: /usr/lib/xorg/Xorg (InitExtensions+0x63e)
-[0x55b646a7affe]
-[1208755.176] (EE) 11: /usr/lib/xorg/Xorg (InitFonts+0x279) [0x55b646a10839]
-[1208755.178] (EE) 12: /lib/x86_64-linux-gnu/libc.so.6 (__libc_start_main+0=
-xeb)
-[0x7f7d2199709b]
-[1208755.178] (EE) 13: /usr/lib/xorg/Xorg (_start+0x2a) [0x55b6469fa68a]
-
-Related with?
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108495
+--- Comment #1 from Mariusz Bia=C5=82o=C5=84czyk <manio-RFXG7K41k5GsTnJN9+BGXg@public.gmane.org> ---
+Created attachment 142983
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142983&action=3Dedit
+full Xorg.log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15467741500.9894b2f5.23818
-Date: Sun, 6 Jan 2019 11:29:10 +0000
+--15467741770.a8e58.18211
+Date: Sun, 6 Jan 2019 11:29:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -102,130 +57,28 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [crash] Xorg is crashing on startup with enabled xinerama"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109230">109230</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[crash] Xorg is crashing on startup with enabled xinerama
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>manio&#64;skyboo.net
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Dual gpu configuration: radeon + nouveau.
-When xinerama is enabled xorg is crashing with the following backtrace:
-
-[1208755.149] (EE) Backtrace:
-[1208755.159] (EE) 0: /usr/lib/xorg/Xorg (OsLookupColor+0x139) [0x55b646b6a=
-fc9]
-[1208755.160] (EE) 1: /lib/x86_64-linux-gnu/libpthread.so.0 (funlockfile+0x=
-50)
-[0x7f7d21b486ff]
-[1208755.162] (EE) 2: /lib/x86_64-linux-gnu/libc.so.6 (gsignal+0x10b)
-[0x7f7d219aa85b]
-[1208755.163] (EE) 3: /lib/x86_64-linux-gnu/libc.so.6 (abort+0x121)
-[0x7f7d21995535]
-[1208755.164] (EE) unw_get_proc_name failed: no unwind info found [-10]
-[1208755.164] (EE) 4: /lib/x86_64-linux-gnu/libc.so.6 (?+0x0) [0x7f7d219954=
-00]
-[1208755.165] (EE) 5: /lib/x86_64-linux-gnu/libc.so.6 (__assert_fail+0x42)
-[0x7f7d219a30a2]
-[1208755.166] (EE) 6: /usr/lib/xorg/modules/drivers/nouveau_drv.so
-(_init+0x433b3) [0x7f7d1ff2e743]
-[1208755.167] (EE) 7: /usr/lib/xorg/modules/drivers/nouveau_drv.so
-(_init+0x4430a) [0x7f7d1ff304ea]
-[1208755.168] (EE) 8: /usr/lib/xorg/modules/drivers/nouveau_drv.so
-(_init+0x48b20) [0x7f7d1ff39480]
-[1208755.169] (EE) 9: /usr/lib/xorg/modules/drivers/nouveau_drv.so
-(_init+0x3b581) [0x7f7d1ff1ea81]
-[1208755.175] (EE) 10: /usr/lib/xorg/Xorg (InitExtensions+0x63e)
-[0x55b646a7affe]
-[1208755.176] (EE) 11: /usr/lib/xorg/Xorg (InitFonts+0x279) [0x55b646a10839]
-[1208755.178] (EE) 12: /lib/x86_64-linux-gnu/libc.so.6 (__libc_start_main+0=
-xeb)
-[0x7f7d2199709b]
-[1208755.178] (EE) 13: /usr/lib/xorg/Xorg (_start+0x2a) [0x55b6469fa68a]
-
-Related with?
-<a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [patch][crash] Xorg is crashing on startup in =
-xinerama configuration"
-   href=3D"show_bug.cgi?id=3D108495">https://bugs.freedesktop.org/show_bug.=
-cgi?id=3D108495</a></pre>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [crash] Xorg is crashing on startup with enabled xinerama"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109230#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [crash] Xorg is crashing on startup with enabled xinerama"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109230">bug 10923=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+manio&#64;skyboo.net" title=3D"Mariusz Bia=C5=82o=C5=84czyk &lt;manio&#64;s=
+kyboo.net&gt;"> <span class=3D"fn">Mariusz Bia=C5=82o=C5=84czyk</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142983=
+" name=3D"attach_142983" title=3D"full Xorg.log">attachment 142983</a> <a h=
+ref=3D"attachment.cgi?id=3D142983&amp;action=3Dedit" title=3D"full Xorg.log=
+">[details]</a></span>
+full Xorg.log</pre>
         </div>
       </p>
 
@@ -239,9 +92,9 @@ cgi?id=3D108495</a></pre>
     </body>
 </html>=
 
---15467741500.9894b2f5.23818--
+--15467741770.a8e58.18211--
 
---===============1079912549==
+--===============1436296583==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -251,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1079912549==--
+--===============1436296583==--
