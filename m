@@ -1,13 +1,15 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107829] nouveau crash/freeze [MULTIPLE_WARP_ERRORS]
- warp 3f0009 [ILLEGAL_INSTR_ENCODING]
-Date: Sun, 06 Jan 2019 00:08:40 +0000
-Message-ID: <bug-107829-8800-Ac5ZS87mGU@http.bugs.freedesktop.org/>
-References: <bug-107829-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99202] system freeze - fifo: SCHED_ERROR 0a
+ [CTXSW_TIMEOUT] - MULTIPLE_WARP_ERRORS - DATA_ERROR 00000004
+ [INVALID_VALUE] - ILLEGAL_CLASS ch 11 - RT_STORAGE_TYPE_MISMATCH -
+ CLASS_SUBCH_MISMATCH
+Date: Sun, 06 Jan 2019 00:09:03 +0000
+Message-ID: <bug-99202-8800-xnoKfjTGlY@http.bugs.freedesktop.org/>
+References: <bug-99202-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1883121710=="
+Content-Type: multipart/mixed; boundary="===============1466587728=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107829-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99202-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +23,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1883121710==
-Content-Type: multipart/alternative; boundary="15467333201.9A76.30043"
+--===============1466587728==
+Content-Type: multipart/alternative; boundary="15467333431.8ADBB5f2E.3930"
 Content-Transfer-Encoding: 7bit
 
 
---15467333201.9A76.30043
-Date: Sun, 6 Jan 2019 00:08:40 +0000
+--15467333431.8ADBB5f2E.3930
+Date: Sun, 6 Jan 2019 00:09:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107829
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99202
 
---- Comment #3 from kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+--- Comment #5 from kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Related bug: #107829
 Related post: https://askubuntu.com/q/1046945/78223
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15467333201.9A76.30043
-Date: Sun, 6 Jan 2019 00:08:40 +0000
+--15467333431.8ADBB5f2E.3930
+Date: Sun, 6 Jan 2019 00:09:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,22 +63,25 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
-ILLEGAL_INSTR_ENCODING]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829#c3">Commen=
-t # 3</a>
+   title=3D"NEW - system freeze - fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT] - MU=
+LTIPLE_WARP_ERRORS - DATA_ERROR 00000004 [INVALID_VALUE] - ILLEGAL_CLASS ch=
+ 11 - RT_STORAGE_TYPE_MISMATCH - CLASS_SUBCH_MISMATCH"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99202#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
-ILLEGAL_INSTR_ENCODING]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829">bug 10782=
-9</a>
+   title=3D"NEW - system freeze - fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT] - MU=
+LTIPLE_WARP_ERRORS - DATA_ERROR 00000004 [INVALID_VALUE] - ILLEGAL_CLASS ch=
+ 11 - RT_STORAGE_TYPE_MISMATCH - CLASS_SUBCH_MISMATCH"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99202">bug 99202<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 kenorb&#64;gmail.com" title=3D"kenorb&#64;gmail.com">kenorb&#64;gmail.com</=
 a>
 </span></b>
-        <pre>Related post: <a href=3D"https://askubuntu.com/q/1046945/78223=
-">https://askubuntu.com/q/1046945/78223</a></pre>
+        <pre>Related bug: #107829
+Related post: <a href=3D"https://askubuntu.com/q/1046945/78223">https://ask=
+ubuntu.com/q/1046945/78223</a></pre>
         </div>
       </p>
 
@@ -89,9 +95,9 @@ a>
     </body>
 </html>=
 
---15467333201.9A76.30043--
+--15467333431.8ADBB5f2E.3930--
 
---===============1883121710==
+--===============1466587728==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1883121710==--
+--===============1466587728==--
