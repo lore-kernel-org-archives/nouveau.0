@@ -1,87 +1,181 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+From: Jason Ekstrand <jason@jlekstrand.net>
 Subject: Re: Chromium - Application-level nouveau blacklist
-Date: Sat, 5 Jan 2019 23:05:09 -0500
-Message-ID: <CAKb7UvgK1NphGf_Kj_9TsbGbMNUy=3UK3hvUpxJi-9_=xZUUMA@mail.gmail.com>
-References: <CABeNrKXkSyyETKH2gz_6-L+F1ptWHqCZ3eg=Cwjpu73RodFSuA@mail.gmail.com>
+Date: Sun, 6 Jan 2019 01:37:04 -0600
+Message-ID: <CAOFGe95hG=CR2TxCmfeXHKj0zUUmGfPPA-hDui+D2h1dgZKtUQ@mail.gmail.com>
+References: <CAKb7UvgPTtc1==f3JtUFG+tQUa0CCdiiCfoBYvMpK6raF=ZwAw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CABeNrKXkSyyETKH2gz_6-L+F1ptWHqCZ3eg=Cwjpu73RodFSuA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "K. York" <kanepyork-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1342907933=="
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <CAKb7UvgPTtc1==f3JtUFG+tQUa0CCdiiCfoBYvMpK6raF=ZwAw@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: nouveau <nouveau@lists.freedesktop.org>, ML Mesa-dev <mesa-dev@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBKYW4gNSwgMjAxOSBhdCAxMDozNiBQTSBLLiBZb3JrIDxrYW5lcHlvcmtAZ21haWwu
-Y29tPiB3cm90ZToKPgo+ID4gT3BpbmlvbnMgd2VsY29tZS4KPgo+IEkgaGF2ZSBhIGZldyBpZGVh
-cyBvbiB0aGUgYmVzdCB3YXkgdG8gYXBwcm9hY2ggdGhpcy4KPgo+ICAtIEZpcnN0IG9mIGFsbCwg
-b2J2aW91c2x5LCBmaXggdGhlIFdlYkdMIENUUyBwcm9ibGVtcy4gKHdpdGgKPiAtLWlnbm9yZS1n
-cHUtYmxhY2tsaXN0ICkKPiAgLSBGaXggYWxsIG90aGVyIGNyYXNoaW5nIGlzc3VlcyBhbmQgcmVx
-dWVzdCByZS1pbmNsdXNpb24uIChUaGlzIGlzCj4gY29tbWVudCAjMzcuKSBDaHJvbWUgdmVyc2lv
-bnMgYXJlIG9ubHkgNiB3ZWVrcywgc28gbm90IHRvbyBiYWQgb2YgYQo+IGxlYWQgdGltZS4KPiAg
-LSBTZXQgdXAgZnV6eiB0ZXN0aW5nIHRvIGRpc2NvdmVyIG5ldyBjcmFzaGluZyBhbmQgc3RhYmls
-aXR5IGlzc3Vlcwo+IGJlZm9yZSB0aGV5IGltcGFjdCB1c2Vyc3BhY2UuIFRoaXMgd2lsbCBhbHNv
-IGhlbHAgd2l0aCBkaXNjb3ZlcmluZyB0aGUKPiBjcmFzaCBpc3N1ZXMgdGhhdCBuZWVkIHRvIGdl
-dCBmaXhlZC4gQ2hyb21pdW0gd2lsbCBwcm9iYWJseSBsb2FuCj4gQ2x1c3RlckZ1enogcmVzb3Vy
-Y2VzIHRvIGhlbHAgd2l0aCB0aGlzLgo+ICAtIFNldCB1cCBtb25rZXkgdGVzdGluZyB3aXRoIENo
-cm9tZSBvbiBOb3V2ZWF1IHRvIGRpc2NvdmVyIHRoZSBjYXVzZXMKPiBvZiB0aGUgYmxhY2stcmVj
-dGFuZ2xlIGJ1Z3MuCj4gIC0gU2V0IHVwIGFzLXJlbmRlcmVkIGRpZmYgdGVzdGluZyBiZXR3ZWVu
-IG1ham9yIE5vdXZlYXUgdmVyc2lvbnMgdnMKPiBIRUFEIGFuZCByZXF1aXJlIHJldmlldyBvZiBk
-aWZmZXJlbmNlcyBiZWZvcmUgYSByZWxlYXNlIGNhbiBiZSBtYWRlLgo+IChzZWUgaHR0cHM6Ly9m
-aWZvY2kuZG9scGhpbi1lbXUub3JnL2Fib3V0LyBmb3IgcHJpb3IgYXJ0KQo+ICAtIFNldCB1cCBk
-aWZmIHRlc3Rpbmcgd2l0aCB0aGUgcHJvcGlldGFyeSBOVklESUEgZHJpdmVycy4gKFRoaXMgbWF5
-Cj4gY29zdCBhIHNpZ25pZmljYW50IGFtb3VudCBvZiBtb25leSB0byBkby4pCj4KPiBBbGwgb2Yg
-dGhpcyByZXF1aXJlcyBkZXZlbG9wZXIgdGltZSBhbmQgZWZmb3J0IHRvIGRvLiBZb3UgbWlnaHQg
-bmVlZAo+IHRvIG9yZ2FuaXplIGEgY2FsbCBmb3Igdm9sdW50ZWVycyBmcm9tIGEgd2lkZXIgYXVk
-aWVuY2UgdGhhbiBqdXN0IHRoZQo+IG5vdXZlYXUgbWFpbGluZyBsaXN0LgoKVGhhbmtzIGZvciB5
-b3VyIGZlZWRiYWNrLiBGb2xsb3dpbmcgc3VjaCBzdGVwcyB3b3VsZCBzdXJlbHkgbGVhZCB0byBh
-Cm11Y2ggaGlnaGVyIHF1YWxpdHkgZHJpdmVyIHRoYW4gd2hhdCB3ZSBoYXZlIHRvZGF5LiBBcyB5
-b3UncmUgYXdhcmUsCndoYXQgeW91J3JlIHN1Z2dlc3RpbmcgcmVxdWlyZXMgYW4gSU1NRU5TRSBp
-bnZlc3RtZW50IG9mIGVmZm9ydCwgYW5kCmhvbGRzIHRoZSBub3V2ZWF1IGRyaXZlciB0byBhIGNv
-bnNpZGVyYWJseSBoaWdoZXIgc3RhbmRhcmQgdGhhbiBhbnkgb2YKdGhlIG90aGVyIGRyaXZlcnMs
-IGluY2x1ZGluZyB0aGUgTlZJRElBIHByb3ByaWV0YXJ5IGRyaXZlci4gRm9yIHRoZQpkcml2ZXIg
-dGhhdCdzIGJhY2tlZCBieSB0aGUgZmV3ZXN0IHJlc291cmNlcyBvZiBhbG1vc3QgYW55IG9mIHRo
-ZQpvdGhlciBkcml2ZXIgZWZmb3J0cywgSSBkb24ndCB0aGluayB0aGF0J3MgcmVhc29uYWJsZS4K
-CkhlcmUncyB0aGUgdGhpbmcgLS0gdGhlIG9ubHkgdGhpbmcgdGhhdCBvdXRyaWdodCBkaWVzIGZv
-ciBtZSByaWdodCBub3cKaXMgdGhlIG1heC10ZXh0dXJlLXNpemUgdGhpbmcgKyB3aGF0IGZlZWwg
-bGlrZSBicm93c2VyIGJ1Z3MuIFRoZSBXZWJHTApDVFMgaXMgcmVsYXRpdmVseSBuZXcsIGFuZCBu
-b3Qgd2VsbCBiYXR0bGUtdGVzdGVkLCBzbyBhY2hpZXZpbmcgYSAxMDAlCnBhc3MgcmF0ZSB3aWxs
-IGludm9sdmUgZml4aW5nIGEgbG90IG9mIHRoZWlyIHRlc3RzIChpbiBmYWN0IEkndmUKYWxyZWFk
-eSBmaXhlZCBzb21lIG9mIHRoZW0pLiBBbmQgZXZlbiBpZiBJIGNvbWUgYmFjayB3aXRoIGNsZWFu
-CnJlc3VsdHMsIHRoYXQgd2lsbCBzdGlsbCBiZSAxIHRlc3QgcmVzdWx0IGZyb20gYSBtYXRyaXgg
-b2YgKEdQVSBTS1UsCk1lc2EgdmVyc2lvbiwgS2VybmVsIHZlcnNpb24sIE90aGVyIEZhY3RvcnMp
-IGNvbWJpbmF0aW9ucyB3aGljaApwcm9iYWJseSBudW1iZXJzIGluIHRoZSBtaWxsaW9ucy4KCkkn
-dmUgZ2xhbmNlZCBhdCB0aGUgSE4gZGlzY3Vzc2lvbiBhYm91dCB0aGlzIHNpdHVhdGlvbgooaHR0
-cHM6Ly9uZXdzLnljb21iaW5hdG9yLmNvbS9pdGVtP2lkPTE4ODM0NzE1KSwgYW5kIGl0IGRvZXMg
-c2VlbSBsaWtlCnBlb3BsZSBhcmUgZm9jdXNpbmcgb24gdGhlIHdyb25nIHRoaW5nLi4uIHRoZSBp
-bXBvcnRhbnQgYml0IGlzbid0IHRoYXQKbm91dmVhdSBjcmFzaGVzIGFuZCBidXJucyBpbiBzb21l
-IHNpdHVhdGlvbnMgLS0gZXZlcnlvbmUgYWxyZWFkeSBrbmV3CnRoYXQsIGluY2x1ZGluZyB0aGUg
-dXNlcnMgb2Ygbm91dmVhdSB3aG8gY29udGludWUgdG8gdXNlIGl0Cm5vbmV0aGVsZXNzLiBJdCdz
-IHRoYXQgaWYgZXZlcnkgcGllY2Ugb2Ygc29mdHdhcmUgZmVlbHMgZnJlZSB0byBpZ25vcmUKYSBz
-eXN0ZW0gaW50ZWdyYXRvcidzIG9yIHVzZXIncyB3aXNoZXMsIHRoZW4gdGhlIHVzZXIgbm93IGhh
-cyB0byBrbm93CmhvdyB0byBvdmVycmlkZSB0aGF0IGJlaGF2aW91ciBzZXBhcmF0ZWx5IGluIGV2
-ZXJ5IGFwcGxpY2F0aW9uLiBUaGUKc2l0dWF0aW9uIGlzIHRoYXQgRGlzdHJvIFggaGFzIGRlY2lk
-ZWQgdGhhdCBub3V2ZWF1IGlzIHRoZSByaWdodCB0aGluZwpmb3IgaXRzIHVzZXJzLiBBIHVzZXIg
-Y2FuIGRpc2FibGUgdGhhdCBieSB1bmluc3RhbGxpbmcgb3Igb3RoZXJ3aXNlCmRpc2FibGluZyBu
-b3V2ZWF1IGlmIHRoZXkgd2lzaC4gQnV0IG5vdyBjaHJvbWUgY29tZXMgYWxvbmcgd2l0aCBpdHMK
-b3duIHNldCBvZiBydWxlcy4gV2hhdCBpZiBldmVyeSBhcHBsaWNhdGlvbiBzdGFydHMgZG9pbmcg
-dGhhdD8KCkl0IHNob3VsZCBhbHNvIGJlIG5vdGVkIHRoYXQgb3V0c2lkZSBvZiBhIGZldyBwYXRo
-b2xvZ2ljYWwgY2FzZXMsIGxpa2UKY3JlYXRpbmcgMkdCKyB0ZXh0dXJlcyB3aGljaCBuZXZlciBo
-YXBwZW5zIGluIHByYWN0aWNlLCBub3V2ZWF1IHdvcmtzCmp1c3QgZmluZSBmb3IgbWUuIEZvciBv
-dGhlciBwZW9wbGUsIGl0IGRpZXMgYXQgcmFuZG9tIGludGVydmFscywKaXJyZXNwZWN0aXZlIG9m
-IHdoZXRoZXIgdGhleSdyZSB1c2luZyBjaHJvbWUgb3Igbm90LiBXaGlsZSB0aGlzIGlzIGEKbm9u
-LWlkZWFsIHNjZW5hcmlvLCBjaHJvbWUgc2hvdWxkbid0IGJlIGluIHRoZSBidXNpbmVzcyBvZiB3
-b3JyeWluZwphYm91dCB0aGluZ3MgbGlrZSB0aGF0LiBJdCBqdXN0IGNvbmZ1c2VzIHRoZSBzaXR1
-YXRpb24gZm9yIGV2ZXJ5b25lLgoKQ2hlZXJzLAoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXUK
+--===============1342907933==
+Content-Type: multipart/alternative; boundary="00000000000074063f057ec52ee1"
+
+--00000000000074063f057ec52ee1
+Content-Type: text/plain; charset="UTF-8"
+
+On Sat, Jan 5, 2019 at 2:40 PM Ilia Mirkin <imirkin@alum.mit.edu> wrote:
+
+> It looks like as of Chromium 71, nouveau is completely blacklisted.
+>
+
+That's rather unfortunate. :-(  The intel mesa drivers were also
+blacklisted for quite some time a while back.  I'm not really sure what we
+did to get blacklisted or what we did to get unblacklisted.
+
+
+> I don't really see a way back from this, since they don't cite any
+> easily reproducible issues, except that some people had some issues
+> with indeterminate hardware and indeterminate versions of mesa.
+>
+> In the bug that triggered this
+> (https://bugs.chromium.org/p/chromium/issues/detail?id=876523), where
+> I might have slightly lost my cool, they (at the end) suggested that
+> we try to make nouveau a first-class citizen with chromium. However I
+> will never be able to present concrete evidence that inconcrete issues
+> are resolved. I did run the WebGL CTS suite, but that resulted in some
+> hangs from the the max-texture-size-equivalent test, and some
+> browser-level weirdness after some tests where later tests all fail
+> (due to what I have to assume is a browser bug). I don't think I
+> managed to properly track down the true reason why. I didn't want to
+> reach out to them with such results, as that's just further evidence
+> of nouveau not working perfectly.
+>
+
+If you want concrete bugs to fix, I highly recommend OpenGL[ES] conformance
+tests, dEQP, and the WebGL CTS (which is mostly a re-hash of the OpenGL ES
+3.0 CTS).  Google cares quite a bit about driver conformance and are much
+more likely to consider nouveau to be high-quality if those test suites are
+in good shape.  Years of experience dealing with Google says that dEQP
+results speak much louder than philosophical arguments about who should
+decide whether or not Chromium should accept the distro GL.  Fortunately
+for you, the well funded driver teams (Intel and AMD) have already done a
+lot of the painful work of getting a lot of the bugs and "bugs" out of core
+mesa and galium.  What's left are likely real back-end driver bugs which
+may be affecting some user somewhere so they're worth fixing.
+
+
+> In the meanwhile, end users are losing accelerated WebGL which in
+> practice worked just fine (at least in my usage of it), and probably
+> some other functionality.
+>
+> One idea is to flip GL_VENDOR to some random string if chromium is
+> running. I don't like this idea, but I also don't have any great
+> alternatives. We can also just take this, as yet-another nail in the
+> nouveau coffin.
+>
+
+You asked for opinions, so here you go. :-P  In my personal (and rather
+disinterested) opinion, I would recommend against such measures.  The last
+thing anyone needs is an arms race between nouveau and Chromium teams.  I
+think the better short-term thing to do would be to provide some
+documentation about WebGL and educate users about Chromium's
+--ignore-gpu-blacklist option.  This documentation could go on the mesa
+website or, likely more usefully, it could go in various distro wiki
+entries about nouveau and/or general nvidia issues.  In the long term,
+what's needed is improving nouveau quality and stability and re-building
+trust with the Chromium team.  I'm not trying to attack nouveau here but
+the fact is that trust has been lost due to an unfortunate history of
+mis-filed (against Chromium) bugs.  That trust doesn't get re-built by
+nuclear solutions.
+
+--Jason
+
+--00000000000074063f057ec52ee1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr">On Sat, Jan 5,=
+ 2019 at 2:40 PM Ilia Mirkin &lt;<a href=3D"mailto:imirkin@alum.mit.edu">im=
+irkin@alum.mit.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex">It looks like as of Chromium 71, nouveau is completely bl=
+acklisted.<br></blockquote><div><br></div><div>That&#39;s rather unfortunat=
+e. :-(=C2=A0 The intel mesa drivers were also blacklisted for quite some ti=
+me a while back.=C2=A0 I&#39;m not really sure what we did to get blacklist=
+ed or what we did to get unblacklisted.<br></div><div>=C2=A0</div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
+solid rgb(204,204,204);padding-left:1ex">
+I don&#39;t really see a way back from this, since they don&#39;t cite any<=
+br>
+easily reproducible issues, except that some people had some issues<br>
+with indeterminate hardware and indeterminate versions of mesa.<br>
+<br>
+In the bug that triggered this<br>
+(<a href=3D"https://bugs.chromium.org/p/chromium/issues/detail?id=3D876523"=
+ rel=3D"noreferrer" target=3D"_blank">https://bugs.chromium.org/p/chromium/=
+issues/detail?id=3D876523</a>), where<br>
+I might have slightly lost my cool, they (at the end) suggested that<br>
+we try to make nouveau a first-class citizen with chromium. However I<br>
+will never be able to present concrete evidence that inconcrete issues<br>
+are resolved. I did run the WebGL CTS suite, but that resulted in some<br>
+hangs from the the max-texture-size-equivalent test, and some<br>
+browser-level weirdness after some tests where later tests all fail<br>
+(due to what I have to assume is a browser bug). I don&#39;t think I<br>
+managed to properly track down the true reason why. I didn&#39;t want to<br=
+>
+reach out to them with such results, as that&#39;s just further evidence<br=
+>
+of nouveau not working perfectly.<br></blockquote><div><br></div><div>If yo=
+u want concrete bugs to fix, I highly recommend OpenGL[ES] conformance test=
+s, dEQP, and the WebGL CTS (which is mostly a re-hash of the OpenGL ES 3.0 =
+CTS).=C2=A0 Google cares quite a bit about driver conformance and are much =
+more likely to consider nouveau to be high-quality if those test suites are=
+ in good shape.=C2=A0 Years of experience dealing with Google says that dEQ=
+P results speak much louder than philosophical arguments about who should d=
+ecide whether or not Chromium should accept the distro GL.=C2=A0 Fortunatel=
+y for you, the well funded driver teams (Intel and AMD) have already done a=
+ lot of the painful work of getting a lot of the bugs and &quot;bugs&quot; =
+out of core mesa and galium.=C2=A0 What&#39;s left are likely real back-end=
+ driver bugs which may be affecting some user somewhere so they&#39;re wort=
+h fixing.<br></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex">
+In the meanwhile, end users are losing accelerated WebGL which in<br>
+practice worked just fine (at least in my usage of it), and probably<br>
+some other functionality.<br>
+<br>
+One idea is to flip GL_VENDOR to some random string if chromium is<br>
+running. I don&#39;t like this idea, but I also don&#39;t have any great<br=
+>
+alternatives. We can also just take this, as yet-another nail in the<br>
+nouveau coffin.<br></blockquote><div><br></div><div>You asked for opinions,=
+ so here you go. :-P=C2=A0 In my personal (and rather disinterested) opinio=
+n, I would recommend against such measures.=C2=A0 The last thing anyone nee=
+ds is an arms race between nouveau and Chromium teams.=C2=A0 I think the be=
+tter short-term thing to do would be to provide some documentation about We=
+bGL and educate users about Chromium&#39;s --ignore-gpu-blacklist option.=
+=C2=A0 This documentation could go on the mesa website or, likely more usef=
+ully, it could go in various distro wiki entries about nouveau and/or gener=
+al nvidia issues.=C2=A0 In the long term, what&#39;s needed is improving no=
+uveau quality and stability and re-building trust with the Chromium team.=
+=C2=A0 I&#39;m not trying to attack nouveau here but the fact is that trust=
+ has been lost due to an unfortunate history of mis-filed (against Chromium=
+) bugs.=C2=A0 That trust doesn&#39;t get re-built by nuclear solutions.</di=
+v><div><br></div><div>--Jason<br></div></div></div>
+
+--00000000000074063f057ec52ee1--
+
+--===============1342907933==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYg
+bWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cg==
+
+--===============1342907933==--
