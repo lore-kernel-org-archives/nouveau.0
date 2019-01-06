@@ -1,15 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99202] system freeze - fifo: SCHED_ERROR 0a
- [CTXSW_TIMEOUT] - MULTIPLE_WARP_ERRORS - DATA_ERROR 00000004
- [INVALID_VALUE] - ILLEGAL_CLASS ch 11 - RT_STORAGE_TYPE_MISMATCH -
- CLASS_SUBCH_MISMATCH
-Date: Sun, 06 Jan 2019 00:09:03 +0000
-Message-ID: <bug-99202-8800-xnoKfjTGlY@http.bugs.freedesktop.org/>
-References: <bug-99202-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Chromium - Application-level nouveau blacklist
+Date: Sat, 5 Jan 2019 23:05:09 -0500
+Message-ID: <CAKb7UvgK1NphGf_Kj_9TsbGbMNUy=3UK3hvUpxJi-9_=xZUUMA@mail.gmail.com>
+References: <CABeNrKXkSyyETKH2gz_6-L+F1ptWHqCZ3eg=Cwjpu73RodFSuA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1466587728=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99202-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CABeNrKXkSyyETKH2gz_6-L+F1ptWHqCZ3eg=Cwjpu73RodFSuA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,92 +17,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "K. York" <kanepyork-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1466587728==
-Content-Type: multipart/alternative; boundary="15467333431.8ADBB5f2E.3930"
-Content-Transfer-Encoding: 7bit
-
-
---15467333431.8ADBB5f2E.3930
-Date: Sun, 6 Jan 2019 00:09:03 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99202
-
---- Comment #5 from kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Related bug: #107829
-Related post: https://askubuntu.com/q/1046945/78223
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15467333431.8ADBB5f2E.3930
-Date: Sun, 6 Jan 2019 00:09:03 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - system freeze - fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT] - MU=
-LTIPLE_WARP_ERRORS - DATA_ERROR 00000004 [INVALID_VALUE] - ILLEGAL_CLASS ch=
- 11 - RT_STORAGE_TYPE_MISMATCH - CLASS_SUBCH_MISMATCH"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99202#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - system freeze - fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT] - MU=
-LTIPLE_WARP_ERRORS - DATA_ERROR 00000004 [INVALID_VALUE] - ILLEGAL_CLASS ch=
- 11 - RT_STORAGE_TYPE_MISMATCH - CLASS_SUBCH_MISMATCH"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99202">bug 99202<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-kenorb&#64;gmail.com" title=3D"kenorb&#64;gmail.com">kenorb&#64;gmail.com</=
-a>
-</span></b>
-        <pre>Related bug: #107829
-Related post: <a href=3D"https://askubuntu.com/q/1046945/78223">https://ask=
-ubuntu.com/q/1046945/78223</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15467333431.8ADBB5f2E.3930--
-
---===============1466587728==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1466587728==--
+T24gU2F0LCBKYW4gNSwgMjAxOSBhdCAxMDozNiBQTSBLLiBZb3JrIDxrYW5lcHlvcmtAZ21haWwu
+Y29tPiB3cm90ZToKPgo+ID4gT3BpbmlvbnMgd2VsY29tZS4KPgo+IEkgaGF2ZSBhIGZldyBpZGVh
+cyBvbiB0aGUgYmVzdCB3YXkgdG8gYXBwcm9hY2ggdGhpcy4KPgo+ICAtIEZpcnN0IG9mIGFsbCwg
+b2J2aW91c2x5LCBmaXggdGhlIFdlYkdMIENUUyBwcm9ibGVtcy4gKHdpdGgKPiAtLWlnbm9yZS1n
+cHUtYmxhY2tsaXN0ICkKPiAgLSBGaXggYWxsIG90aGVyIGNyYXNoaW5nIGlzc3VlcyBhbmQgcmVx
+dWVzdCByZS1pbmNsdXNpb24uIChUaGlzIGlzCj4gY29tbWVudCAjMzcuKSBDaHJvbWUgdmVyc2lv
+bnMgYXJlIG9ubHkgNiB3ZWVrcywgc28gbm90IHRvbyBiYWQgb2YgYQo+IGxlYWQgdGltZS4KPiAg
+LSBTZXQgdXAgZnV6eiB0ZXN0aW5nIHRvIGRpc2NvdmVyIG5ldyBjcmFzaGluZyBhbmQgc3RhYmls
+aXR5IGlzc3Vlcwo+IGJlZm9yZSB0aGV5IGltcGFjdCB1c2Vyc3BhY2UuIFRoaXMgd2lsbCBhbHNv
+IGhlbHAgd2l0aCBkaXNjb3ZlcmluZyB0aGUKPiBjcmFzaCBpc3N1ZXMgdGhhdCBuZWVkIHRvIGdl
+dCBmaXhlZC4gQ2hyb21pdW0gd2lsbCBwcm9iYWJseSBsb2FuCj4gQ2x1c3RlckZ1enogcmVzb3Vy
+Y2VzIHRvIGhlbHAgd2l0aCB0aGlzLgo+ICAtIFNldCB1cCBtb25rZXkgdGVzdGluZyB3aXRoIENo
+cm9tZSBvbiBOb3V2ZWF1IHRvIGRpc2NvdmVyIHRoZSBjYXVzZXMKPiBvZiB0aGUgYmxhY2stcmVj
+dGFuZ2xlIGJ1Z3MuCj4gIC0gU2V0IHVwIGFzLXJlbmRlcmVkIGRpZmYgdGVzdGluZyBiZXR3ZWVu
+IG1ham9yIE5vdXZlYXUgdmVyc2lvbnMgdnMKPiBIRUFEIGFuZCByZXF1aXJlIHJldmlldyBvZiBk
+aWZmZXJlbmNlcyBiZWZvcmUgYSByZWxlYXNlIGNhbiBiZSBtYWRlLgo+IChzZWUgaHR0cHM6Ly9m
+aWZvY2kuZG9scGhpbi1lbXUub3JnL2Fib3V0LyBmb3IgcHJpb3IgYXJ0KQo+ICAtIFNldCB1cCBk
+aWZmIHRlc3Rpbmcgd2l0aCB0aGUgcHJvcGlldGFyeSBOVklESUEgZHJpdmVycy4gKFRoaXMgbWF5
+Cj4gY29zdCBhIHNpZ25pZmljYW50IGFtb3VudCBvZiBtb25leSB0byBkby4pCj4KPiBBbGwgb2Yg
+dGhpcyByZXF1aXJlcyBkZXZlbG9wZXIgdGltZSBhbmQgZWZmb3J0IHRvIGRvLiBZb3UgbWlnaHQg
+bmVlZAo+IHRvIG9yZ2FuaXplIGEgY2FsbCBmb3Igdm9sdW50ZWVycyBmcm9tIGEgd2lkZXIgYXVk
+aWVuY2UgdGhhbiBqdXN0IHRoZQo+IG5vdXZlYXUgbWFpbGluZyBsaXN0LgoKVGhhbmtzIGZvciB5
+b3VyIGZlZWRiYWNrLiBGb2xsb3dpbmcgc3VjaCBzdGVwcyB3b3VsZCBzdXJlbHkgbGVhZCB0byBh
+Cm11Y2ggaGlnaGVyIHF1YWxpdHkgZHJpdmVyIHRoYW4gd2hhdCB3ZSBoYXZlIHRvZGF5LiBBcyB5
+b3UncmUgYXdhcmUsCndoYXQgeW91J3JlIHN1Z2dlc3RpbmcgcmVxdWlyZXMgYW4gSU1NRU5TRSBp
+bnZlc3RtZW50IG9mIGVmZm9ydCwgYW5kCmhvbGRzIHRoZSBub3V2ZWF1IGRyaXZlciB0byBhIGNv
+bnNpZGVyYWJseSBoaWdoZXIgc3RhbmRhcmQgdGhhbiBhbnkgb2YKdGhlIG90aGVyIGRyaXZlcnMs
+IGluY2x1ZGluZyB0aGUgTlZJRElBIHByb3ByaWV0YXJ5IGRyaXZlci4gRm9yIHRoZQpkcml2ZXIg
+dGhhdCdzIGJhY2tlZCBieSB0aGUgZmV3ZXN0IHJlc291cmNlcyBvZiBhbG1vc3QgYW55IG9mIHRo
+ZQpvdGhlciBkcml2ZXIgZWZmb3J0cywgSSBkb24ndCB0aGluayB0aGF0J3MgcmVhc29uYWJsZS4K
+CkhlcmUncyB0aGUgdGhpbmcgLS0gdGhlIG9ubHkgdGhpbmcgdGhhdCBvdXRyaWdodCBkaWVzIGZv
+ciBtZSByaWdodCBub3cKaXMgdGhlIG1heC10ZXh0dXJlLXNpemUgdGhpbmcgKyB3aGF0IGZlZWwg
+bGlrZSBicm93c2VyIGJ1Z3MuIFRoZSBXZWJHTApDVFMgaXMgcmVsYXRpdmVseSBuZXcsIGFuZCBu
+b3Qgd2VsbCBiYXR0bGUtdGVzdGVkLCBzbyBhY2hpZXZpbmcgYSAxMDAlCnBhc3MgcmF0ZSB3aWxs
+IGludm9sdmUgZml4aW5nIGEgbG90IG9mIHRoZWlyIHRlc3RzIChpbiBmYWN0IEkndmUKYWxyZWFk
+eSBmaXhlZCBzb21lIG9mIHRoZW0pLiBBbmQgZXZlbiBpZiBJIGNvbWUgYmFjayB3aXRoIGNsZWFu
+CnJlc3VsdHMsIHRoYXQgd2lsbCBzdGlsbCBiZSAxIHRlc3QgcmVzdWx0IGZyb20gYSBtYXRyaXgg
+b2YgKEdQVSBTS1UsCk1lc2EgdmVyc2lvbiwgS2VybmVsIHZlcnNpb24sIE90aGVyIEZhY3RvcnMp
+IGNvbWJpbmF0aW9ucyB3aGljaApwcm9iYWJseSBudW1iZXJzIGluIHRoZSBtaWxsaW9ucy4KCkkn
+dmUgZ2xhbmNlZCBhdCB0aGUgSE4gZGlzY3Vzc2lvbiBhYm91dCB0aGlzIHNpdHVhdGlvbgooaHR0
+cHM6Ly9uZXdzLnljb21iaW5hdG9yLmNvbS9pdGVtP2lkPTE4ODM0NzE1KSwgYW5kIGl0IGRvZXMg
+c2VlbSBsaWtlCnBlb3BsZSBhcmUgZm9jdXNpbmcgb24gdGhlIHdyb25nIHRoaW5nLi4uIHRoZSBp
+bXBvcnRhbnQgYml0IGlzbid0IHRoYXQKbm91dmVhdSBjcmFzaGVzIGFuZCBidXJucyBpbiBzb21l
+IHNpdHVhdGlvbnMgLS0gZXZlcnlvbmUgYWxyZWFkeSBrbmV3CnRoYXQsIGluY2x1ZGluZyB0aGUg
+dXNlcnMgb2Ygbm91dmVhdSB3aG8gY29udGludWUgdG8gdXNlIGl0Cm5vbmV0aGVsZXNzLiBJdCdz
+IHRoYXQgaWYgZXZlcnkgcGllY2Ugb2Ygc29mdHdhcmUgZmVlbHMgZnJlZSB0byBpZ25vcmUKYSBz
+eXN0ZW0gaW50ZWdyYXRvcidzIG9yIHVzZXIncyB3aXNoZXMsIHRoZW4gdGhlIHVzZXIgbm93IGhh
+cyB0byBrbm93CmhvdyB0byBvdmVycmlkZSB0aGF0IGJlaGF2aW91ciBzZXBhcmF0ZWx5IGluIGV2
+ZXJ5IGFwcGxpY2F0aW9uLiBUaGUKc2l0dWF0aW9uIGlzIHRoYXQgRGlzdHJvIFggaGFzIGRlY2lk
+ZWQgdGhhdCBub3V2ZWF1IGlzIHRoZSByaWdodCB0aGluZwpmb3IgaXRzIHVzZXJzLiBBIHVzZXIg
+Y2FuIGRpc2FibGUgdGhhdCBieSB1bmluc3RhbGxpbmcgb3Igb3RoZXJ3aXNlCmRpc2FibGluZyBu
+b3V2ZWF1IGlmIHRoZXkgd2lzaC4gQnV0IG5vdyBjaHJvbWUgY29tZXMgYWxvbmcgd2l0aCBpdHMK
+b3duIHNldCBvZiBydWxlcy4gV2hhdCBpZiBldmVyeSBhcHBsaWNhdGlvbiBzdGFydHMgZG9pbmcg
+dGhhdD8KCkl0IHNob3VsZCBhbHNvIGJlIG5vdGVkIHRoYXQgb3V0c2lkZSBvZiBhIGZldyBwYXRo
+b2xvZ2ljYWwgY2FzZXMsIGxpa2UKY3JlYXRpbmcgMkdCKyB0ZXh0dXJlcyB3aGljaCBuZXZlciBo
+YXBwZW5zIGluIHByYWN0aWNlLCBub3V2ZWF1IHdvcmtzCmp1c3QgZmluZSBmb3IgbWUuIEZvciBv
+dGhlciBwZW9wbGUsIGl0IGRpZXMgYXQgcmFuZG9tIGludGVydmFscywKaXJyZXNwZWN0aXZlIG9m
+IHdoZXRoZXIgdGhleSdyZSB1c2luZyBjaHJvbWUgb3Igbm90LiBXaGlsZSB0aGlzIGlzIGEKbm9u
+LWlkZWFsIHNjZW5hcmlvLCBjaHJvbWUgc2hvdWxkbid0IGJlIGluIHRoZSBidXNpbmVzcyBvZiB3
+b3JyeWluZwphYm91dCB0aGluZ3MgbGlrZSB0aGF0LiBJdCBqdXN0IGNvbmZ1c2VzIHRoZSBzaXR1
+YXRpb24gZm9yIGV2ZXJ5b25lLgoKQ2hlZXJzLAoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL25vdXZlYXUK
