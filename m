@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109230] [crash] Xorg is crashing on startup with
  enabled xinerama
-Date: Sun, 06 Jan 2019 11:29:38 +0000
-Message-ID: <bug-109230-8800-TZFCJYwj7X@http.bugs.freedesktop.org/>
+Date: Sun, 06 Jan 2019 11:30:04 +0000
+Message-ID: <bug-109230-8800-kEpuj7LrWy@http.bugs.freedesktop.org/>
 References: <bug-109230-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1436296583=="
+Content-Type: multipart/mixed; boundary="===============1507421962=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109230-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1436296583==
-Content-Type: multipart/alternative; boundary="15467741770.a8e58.18211"
+--===============1507421962==
+Content-Type: multipart/alternative; boundary="15467742040.D79a9.23377"
 Content-Transfer-Encoding: 7bit
 
 
---15467741770.a8e58.18211
-Date: Sun, 6 Jan 2019 11:29:37 +0000
+--15467742040.D79a9.23377
+Date: Sun, 6 Jan 2019 11:30:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109230
 
---- Comment #1 from Mariusz Bia=C5=82o=C5=84czyk <manio-RFXG7K41k5GsTnJN9+BGXg@public.gmane.org> ---
-Created attachment 142983
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142983&action=3Dedit
-full Xorg.log
+--- Comment #2 from Mariusz Bia=C5=82o=C5=84czyk <manio-RFXG7K41k5GsTnJN9+BGXg@public.gmane.org> ---
+Created attachment 142984
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142984&action=3Dedit
+xorg.conf
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15467741770.a8e58.18211
-Date: Sun, 6 Jan 2019 11:29:37 +0000
+--15467742040.D79a9.23377
+Date: Sun, 6 Jan 2019 11:30:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [crash] Xorg is crashing on startup with enabled xinerama"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109230#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109230#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [crash] Xorg is crashing on startup with enabled xinerama"
@@ -74,11 +74,11 @@ t # 1</a>
 manio&#64;skyboo.net" title=3D"Mariusz Bia=C5=82o=C5=84czyk &lt;manio&#64;s=
 kyboo.net&gt;"> <span class=3D"fn">Mariusz Bia=C5=82o=C5=84czyk</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142983=
-" name=3D"attach_142983" title=3D"full Xorg.log">attachment 142983</a> <a h=
-ref=3D"attachment.cgi?id=3D142983&amp;action=3Dedit" title=3D"full Xorg.log=
-">[details]</a></span>
-full Xorg.log</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142984=
+" name=3D"attach_142984" title=3D"xorg.conf">attachment 142984</a> <a href=
+=3D"attachment.cgi?id=3D142984&amp;action=3Dedit" title=3D"xorg.conf">[deta=
+ils]</a></span>
+xorg.conf</pre>
         </div>
       </p>
 
@@ -92,9 +92,9 @@ full Xorg.log</pre>
     </body>
 </html>=
 
---15467741770.a8e58.18211--
+--15467742040.D79a9.23377--
 
---===============1436296583==
+--===============1507421962==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1436296583==--
+--===============1507421962==--
