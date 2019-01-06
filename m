@@ -1,107 +1,65 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109230] [crash] Xorg is crashing on startup with
- enabled xinerama
-Date: Sun, 06 Jan 2019 11:30:04 +0000
-Message-ID: <bug-109230-8800-kEpuj7LrWy@http.bugs.freedesktop.org/>
-References: <bug-109230-8800@http.bugs.freedesktop.org/>
+From: Rob Clark <robdclark@gmail.com>
+Subject: Re: Chromium - Application-level nouveau blacklist
+Date: Sun, 6 Jan 2019 08:52:00 -0500
+Message-ID: <CAF6AEGsR-yHN=V+vd4kVmw2i7r9r39VqJinKBXYTMAbWZ-a9gw@mail.gmail.com>
+References: <CAKb7UvgPTtc1==f3JtUFG+tQUa0CCdiiCfoBYvMpK6raF=ZwAw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1507421962=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109230-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <CAKb7UvgPTtc1==f3JtUFG+tQUa0CCdiiCfoBYvMpK6raF=ZwAw@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: nouveau <nouveau@lists.freedesktop.org>, ML Mesa-dev <mesa-dev@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1507421962==
-Content-Type: multipart/alternative; boundary="15467742040.D79a9.23377"
-Content-Transfer-Encoding: 7bit
-
-
---15467742040.D79a9.23377
-Date: Sun, 6 Jan 2019 11:30:04 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109230
-
---- Comment #2 from Mariusz Bia=C5=82o=C5=84czyk <manio-RFXG7K41k5GsTnJN9+BGXg@public.gmane.org> ---
-Created attachment 142984
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D142984&action=3Dedit
-xorg.conf
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15467742040.D79a9.23377
-Date: Sun, 6 Jan 2019 11:30:04 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [crash] Xorg is crashing on startup with enabled xinerama"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109230#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [crash] Xorg is crashing on startup with enabled xinerama"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109230">bug 10923=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-manio&#64;skyboo.net" title=3D"Mariusz Bia=C5=82o=C5=84czyk &lt;manio&#64;s=
-kyboo.net&gt;"> <span class=3D"fn">Mariusz Bia=C5=82o=C5=84czyk</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D142984=
-" name=3D"attach_142984" title=3D"xorg.conf">attachment 142984</a> <a href=
-=3D"attachment.cgi?id=3D142984&amp;action=3Dedit" title=3D"xorg.conf">[deta=
-ils]</a></span>
-xorg.conf</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15467742040.D79a9.23377--
-
---===============1507421962==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1507421962==--
+T24gU2F0LCBKYW4gNSwgMjAxOSBhdCAzOjQwIFBNIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0u
+bWl0LmVkdT4gd3JvdGU6Cj4KPiBJdCBsb29rcyBsaWtlIGFzIG9mIENocm9taXVtIDcxLCBub3V2
+ZWF1IGlzIGNvbXBsZXRlbHkgYmxhY2tsaXN0ZWQuCj4KPiBJIGRvbid0IHJlYWxseSBzZWUgYSB3
+YXkgYmFjayBmcm9tIHRoaXMsIHNpbmNlIHRoZXkgZG9uJ3QgY2l0ZSBhbnkKPiBlYXNpbHkgcmVw
+cm9kdWNpYmxlIGlzc3VlcywgZXhjZXB0IHRoYXQgc29tZSBwZW9wbGUgaGFkIHNvbWUgaXNzdWVz
+Cj4gd2l0aCBpbmRldGVybWluYXRlIGhhcmR3YXJlIGFuZCBpbmRldGVybWluYXRlIHZlcnNpb25z
+IG9mIG1lc2EuCj4KPiBJbiB0aGUgYnVnIHRoYXQgdHJpZ2dlcmVkIHRoaXMKPiAoaHR0cHM6Ly9i
+dWdzLmNocm9taXVtLm9yZy9wL2Nocm9taXVtL2lzc3Vlcy9kZXRhaWw/aWQ9ODc2NTIzKSwgd2hl
+cmUKPiBJIG1pZ2h0IGhhdmUgc2xpZ2h0bHkgbG9zdCBteSBjb29sLCB0aGV5IChhdCB0aGUgZW5k
+KSBzdWdnZXN0ZWQgdGhhdAo+IHdlIHRyeSB0byBtYWtlIG5vdXZlYXUgYSBmaXJzdC1jbGFzcyBj
+aXRpemVuIHdpdGggY2hyb21pdW0uIEhvd2V2ZXIgSQo+IHdpbGwgbmV2ZXIgYmUgYWJsZSB0byBw
+cmVzZW50IGNvbmNyZXRlIGV2aWRlbmNlIHRoYXQgaW5jb25jcmV0ZSBpc3N1ZXMKPiBhcmUgcmVz
+b2x2ZWQuIEkgZGlkIHJ1biB0aGUgV2ViR0wgQ1RTIHN1aXRlLCBidXQgdGhhdCByZXN1bHRlZCBp
+biBzb21lCj4gaGFuZ3MgZnJvbSB0aGUgdGhlIG1heC10ZXh0dXJlLXNpemUtZXF1aXZhbGVudCB0
+ZXN0LCBhbmQgc29tZQo+IGJyb3dzZXItbGV2ZWwgd2VpcmRuZXNzIGFmdGVyIHNvbWUgdGVzdHMg
+d2hlcmUgbGF0ZXIgdGVzdHMgYWxsIGZhaWwKPiAoZHVlIHRvIHdoYXQgSSBoYXZlIHRvIGFzc3Vt
+ZSBpcyBhIGJyb3dzZXIgYnVnKS4gSSBkb24ndCB0aGluayBJCj4gbWFuYWdlZCB0byBwcm9wZXJs
+eSB0cmFjayBkb3duIHRoZSB0cnVlIHJlYXNvbiB3aHkuIEkgZGlkbid0IHdhbnQgdG8KPiByZWFj
+aCBvdXQgdG8gdGhlbSB3aXRoIHN1Y2ggcmVzdWx0cywgYXMgdGhhdCdzIGp1c3QgZnVydGhlciBl
+dmlkZW5jZQo+IG9mIG5vdXZlYXUgbm90IHdvcmtpbmcgcGVyZmVjdGx5Lgo+Cj4gSW4gdGhlIG1l
+YW53aGlsZSwgZW5kIHVzZXJzIGFyZSBsb3NpbmcgYWNjZWxlcmF0ZWQgV2ViR0wgd2hpY2ggaW4K
+PiBwcmFjdGljZSB3b3JrZWQganVzdCBmaW5lIChhdCBsZWFzdCBpbiBteSB1c2FnZSBvZiBpdCks
+IGFuZCBwcm9iYWJseQo+IHNvbWUgb3RoZXIgZnVuY3Rpb25hbGl0eS4KPgo+IE9uZSBpZGVhIGlz
+IHRvIGZsaXAgR0xfVkVORE9SIHRvIHNvbWUgcmFuZG9tIHN0cmluZyBpZiBjaHJvbWl1bSBpcwo+
+IHJ1bm5pbmcuIEkgZG9uJ3QgbGlrZSB0aGlzIGlkZWEsIGJ1dCBJIGFsc28gZG9uJ3QgaGF2ZSBh
+bnkgZ3JlYXQKPiBhbHRlcm5hdGl2ZXMuIFdlIGNhbiBhbHNvIGp1c3QgdGFrZSB0aGlzLCBhcyB5
+ZXQtYW5vdGhlciBuYWlsIGluIHRoZQo+IG5vdXZlYXUgY29mZmluLgo+CgpJIHRoaW5rIHRoaXMg
+d291bGQgYmUgYSByZWFsbHkgYmFkIGlkZWEKCkJldHRlciBpZGVhIG1pZ2h0IGJlIHRvIHJlcXVl
+c3QgY2hyb21pdW0gdG8gd2hpdGVsaXN0IG5vdXZlYXUgZm9yCnBhaXJzIG9mIG52IGdlbmVyYXRp
+b24gKyBtZXNhIHZlcnNpb24gdGhhdCBhcmUga25vd24gdG8gcGFzcyAob3IgYXQKbGVhc3QgY29t
+ZXMgcmVhc29uYWJseSBjbG9zZSB0byBwYXNzaW5nPykgV2ViR0wgQ1RTLiAgTWF5YmUgc2V0dXAg
+YQp3aWtpIHBhZ2Ugb3IgdHJlbGxvIG9yIGJ6IG9yIHdoYXRldmVyIHcvIHNvbWUgcG9pbnRlcnMg
+dG8gaW5mbyBhYm91dApob3cgdG8gZGlzYWJsZSBncHUgYmxhY2tsaXN0ICh0byBydW4gdGhlIGN0
+cyB0ZXN0cyBpbiB0aGUgZmlyc3QgcGxhY2UpCmFuZCBob3cgdG8gcnVuIGN0cywgYW5kIHRhYmxl
+IG9mIG52IGdlbmVyYXRpb25zLiAgSSBndWVzcyB5b3UgZG9uJ3QKaGF2ZSBodyBvciB0aW1lIHRv
+IHRlc3QgZXZlcnl0aGluZyB5b3Vyc2VsZiwgYnV0IHRoaXMgaXMgc29tZXRoaW5nCnRoYXQgZGlz
+dHJvcyBhbmQgdXNlcnMgY2FuIGhlbHAgd2l0aC4gIFRoZSBpZGVhIGZvcgp3aWtpL3RyZWxsby93
+aGF0ZXZlciB3YXMgdG8gaGVscCBjb29yZGluYXRlIHRoYXQgYW5kIHRyYWNrIG9wZW4gYnVncwpm
+b3IgZmFpbGluZyBDVFMgdGVzdHMuCgoKQlIsCi1SCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9tZXNhLWRldgo=
