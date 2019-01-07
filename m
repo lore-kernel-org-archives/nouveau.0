@@ -1,102 +1,145 @@
-From: =?UTF-8?Q?Tapani_P=c3=a4lli?= <tapani.palli@intel.com>
-Subject: Re: Chromium - Application-level nouveau blacklist
-Date: Mon, 7 Jan 2019 09:06:09 +0200
-Message-ID: <64631188-4f99-5f8e-dcb9-bd780c81c3f2@intel.com>
-References: <CAKb7UvgPTtc1==f3JtUFG+tQUa0CCdiiCfoBYvMpK6raF=ZwAw@mail.gmail.com>
- <CAOFGe95hG=CR2TxCmfeXHKj0zUUmGfPPA-hDui+D2h1dgZKtUQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 109230] [crash] Xorg is crashing on startup with
+ enabled xinerama
+Date: Mon, 07 Jan 2019 07:42:07 +0000
+Message-ID: <bug-109230-8800-T8jYW4D6Cc@http.bugs.freedesktop.org/>
+References: <bug-109230-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <CAOFGe95hG=CR2TxCmfeXHKj0zUUmGfPPA-hDui+D2h1dgZKtUQ@mail.gmail.com>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Jason Ekstrand <jason@jlekstrand.net>, Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: nouveau <nouveau@lists.freedesktop.org>, ML Mesa-dev <mesa-dev@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1779013929=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-109230-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAxLzYvMTkgOTozNyBBTSwgSmFzb24gRWtzdHJhbmQgd3JvdGU6Cj4gT24gU2F0LCBKYW4g
-NSwgMjAxOSBhdCAyOjQwIFBNIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdSAKPiA8
-bWFpbHRvOmltaXJraW5AYWx1bS5taXQuZWR1Pj4gd3JvdGU6Cj4gCj4gICAgIEl0IGxvb2tzIGxp
-a2UgYXMgb2YgQ2hyb21pdW0gNzEsIG5vdXZlYXUgaXMgY29tcGxldGVseSBibGFja2xpc3RlZC4K
-PiAKPiAKPiBUaGF0J3MgcmF0aGVyIHVuZm9ydHVuYXRlLiA6LSjCoCBUaGUgaW50ZWwgbWVzYSBk
-cml2ZXJzIHdlcmUgYWxzbyAKPiBibGFja2xpc3RlZCBmb3IgcXVpdGUgc29tZSB0aW1lIGEgd2hp
-bGUgYmFjay7CoCBJJ20gbm90IHJlYWxseSBzdXJlIHdoYXQgCj4gd2UgZGlkIHRvIGdldCBibGFj
-a2xpc3RlZCBvciB3aGF0IHdlIGRpZCB0byBnZXQgdW5ibGFja2xpc3RlZC4KCldlIGhhZCBsb3Rz
-IG9mIEdQVSBoYW5ncyBmcm9tIFdlYkdMIHRlc3RzLiBXZSBmaXhlZCB0aGluZ3MgdW50aWwgaW4g
-c29tZSAKcG9pbnQgdGhpbmdzIHdlcmUgcGFzc2luZyBhbmQgb3VyIHdlYiB0ZWFtIHNlbnQgYSBw
-YXRjaCB0byBDaHJvbWl1bSB0byAKZW5hYmxlIGl0IGJhY2sgYWdhaW4uIFRoaXMgaXMgcHJvYmFi
-bHkgdGhlIGJlc3Qgcm91dGUgdG8gZ2V0IE5vdXZlYXUgCmVuYWJsZWQgYXMgd2VsbC4KCkhhdmUg
-dG8gbm90ZSB0aGF0IHdlIGRvIGhhdmUgY3VycmVudGx5IHNvbWUgV2ViR0wgaXNzdWVzIG9uIGk5
-NjUgdG9vIC4uIApzaG91bGQgdGFrZSBhIGxvb2sgYXQgc29tZSBwb2ludC4KCgo+ICAgICBJIGRv
-bid0IHJlYWxseSBzZWUgYSB3YXkgYmFjayBmcm9tIHRoaXMsIHNpbmNlIHRoZXkgZG9uJ3QgY2l0
-ZSBhbnkKPiAgICAgZWFzaWx5IHJlcHJvZHVjaWJsZSBpc3N1ZXMsIGV4Y2VwdCB0aGF0IHNvbWUg
-cGVvcGxlIGhhZCBzb21lIGlzc3Vlcwo+ICAgICB3aXRoIGluZGV0ZXJtaW5hdGUgaGFyZHdhcmUg
-YW5kIGluZGV0ZXJtaW5hdGUgdmVyc2lvbnMgb2YgbWVzYS4KPiAKPiAgICAgSW4gdGhlIGJ1ZyB0
-aGF0IHRyaWdnZXJlZCB0aGlzCj4gICAgIChodHRwczovL2J1Z3MuY2hyb21pdW0ub3JnL3AvY2hy
-b21pdW0vaXNzdWVzL2RldGFpbD9pZD04NzY1MjMpLCB3aGVyZQo+ICAgICBJIG1pZ2h0IGhhdmUg
-c2xpZ2h0bHkgbG9zdCBteSBjb29sLCB0aGV5IChhdCB0aGUgZW5kKSBzdWdnZXN0ZWQgdGhhdAo+
-ICAgICB3ZSB0cnkgdG8gbWFrZSBub3V2ZWF1IGEgZmlyc3QtY2xhc3MgY2l0aXplbiB3aXRoIGNo
-cm9taXVtLiBIb3dldmVyIEkKPiAgICAgd2lsbCBuZXZlciBiZSBhYmxlIHRvIHByZXNlbnQgY29u
-Y3JldGUgZXZpZGVuY2UgdGhhdCBpbmNvbmNyZXRlIGlzc3Vlcwo+ICAgICBhcmUgcmVzb2x2ZWQu
-IEkgZGlkIHJ1biB0aGUgV2ViR0wgQ1RTIHN1aXRlLCBidXQgdGhhdCByZXN1bHRlZCBpbiBzb21l
-Cj4gICAgIGhhbmdzIGZyb20gdGhlIHRoZSBtYXgtdGV4dHVyZS1zaXplLWVxdWl2YWxlbnQgdGVz
-dCwgYW5kIHNvbWUKPiAgICAgYnJvd3Nlci1sZXZlbCB3ZWlyZG5lc3MgYWZ0ZXIgc29tZSB0ZXN0
-cyB3aGVyZSBsYXRlciB0ZXN0cyBhbGwgZmFpbAo+ICAgICAoZHVlIHRvIHdoYXQgSSBoYXZlIHRv
-IGFzc3VtZSBpcyBhIGJyb3dzZXIgYnVnKS4gSSBkb24ndCB0aGluayBJCj4gICAgIG1hbmFnZWQg
-dG8gcHJvcGVybHkgdHJhY2sgZG93biB0aGUgdHJ1ZSByZWFzb24gd2h5LiBJIGRpZG4ndCB3YW50
-IHRvCj4gICAgIHJlYWNoIG91dCB0byB0aGVtIHdpdGggc3VjaCByZXN1bHRzLCBhcyB0aGF0J3Mg
-anVzdCBmdXJ0aGVyIGV2aWRlbmNlCj4gICAgIG9mIG5vdXZlYXUgbm90IHdvcmtpbmcgcGVyZmVj
-dGx5Lgo+IAo+IAo+IElmIHlvdSB3YW50IGNvbmNyZXRlIGJ1Z3MgdG8gZml4LCBJIGhpZ2hseSBy
-ZWNvbW1lbmQgT3BlbkdMW0VTXSAKPiBjb25mb3JtYW5jZSB0ZXN0cywgZEVRUCwgYW5kIHRoZSBX
-ZWJHTCBDVFMgKHdoaWNoIGlzIG1vc3RseSBhIHJlLWhhc2ggb2YgCj4gdGhlIE9wZW5HTCBFUyAz
-LjAgQ1RTKS7CoCBHb29nbGUgY2FyZXMgcXVpdGUgYSBiaXQgYWJvdXQgZHJpdmVyIAo+IGNvbmZv
-cm1hbmNlIGFuZCBhcmUgbXVjaCBtb3JlIGxpa2VseSB0byBjb25zaWRlciBub3V2ZWF1IHRvIGJl
-IAo+IGhpZ2gtcXVhbGl0eSBpZiB0aG9zZSB0ZXN0IHN1aXRlcyBhcmUgaW4gZ29vZCBzaGFwZS7C
-oCBZZWFycyBvZiAKPiBleHBlcmllbmNlIGRlYWxpbmcgd2l0aCBHb29nbGUgc2F5cyB0aGF0IGRF
-UVAgcmVzdWx0cyBzcGVhayBtdWNoIGxvdWRlciAKPiB0aGFuIHBoaWxvc29waGljYWwgYXJndW1l
-bnRzIGFib3V0IHdobyBzaG91bGQgZGVjaWRlIHdoZXRoZXIgb3Igbm90IAo+IENocm9taXVtIHNo
-b3VsZCBhY2NlcHQgdGhlIGRpc3RybyBHTC7CoCBGb3J0dW5hdGVseSBmb3IgeW91LCB0aGUgd2Vs
-bCAKPiBmdW5kZWQgZHJpdmVyIHRlYW1zIChJbnRlbCBhbmQgQU1EKSBoYXZlIGFscmVhZHkgZG9u
-ZSBhIGxvdCBvZiB0aGUgCj4gcGFpbmZ1bCB3b3JrIG9mIGdldHRpbmcgYSBsb3Qgb2YgdGhlIGJ1
-Z3MgYW5kICJidWdzIiBvdXQgb2YgY29yZSBtZXNhIAo+IGFuZCBnYWxpdW0uwqAgV2hhdCdzIGxl
-ZnQgYXJlIGxpa2VseSByZWFsIGJhY2stZW5kIGRyaXZlciBidWdzIHdoaWNoIG1heSAKPiBiZSBh
-ZmZlY3Rpbmcgc29tZSB1c2VyIHNvbWV3aGVyZSBzbyB0aGV5J3JlIHdvcnRoIGZpeGluZy4KPiAK
-PiAgICAgSW4gdGhlIG1lYW53aGlsZSwgZW5kIHVzZXJzIGFyZSBsb3NpbmcgYWNjZWxlcmF0ZWQg
-V2ViR0wgd2hpY2ggaW4KPiAgICAgcHJhY3RpY2Ugd29ya2VkIGp1c3QgZmluZSAoYXQgbGVhc3Qg
-aW4gbXkgdXNhZ2Ugb2YgaXQpLCBhbmQgcHJvYmFibHkKPiAgICAgc29tZSBvdGhlciBmdW5jdGlv
-bmFsaXR5Lgo+IAo+ICAgICBPbmUgaWRlYSBpcyB0byBmbGlwIEdMX1ZFTkRPUiB0byBzb21lIHJh
-bmRvbSBzdHJpbmcgaWYgY2hyb21pdW0gaXMKPiAgICAgcnVubmluZy4gSSBkb24ndCBsaWtlIHRo
-aXMgaWRlYSwgYnV0IEkgYWxzbyBkb24ndCBoYXZlIGFueSBncmVhdAo+ICAgICBhbHRlcm5hdGl2
-ZXMuIFdlIGNhbiBhbHNvIGp1c3QgdGFrZSB0aGlzLCBhcyB5ZXQtYW5vdGhlciBuYWlsIGluIHRo
-ZQo+ICAgICBub3V2ZWF1IGNvZmZpbi4KPiAKPiAKPiBZb3UgYXNrZWQgZm9yIG9waW5pb25zLCBz
-byBoZXJlIHlvdSBnby4gOi1QwqAgSW4gbXkgcGVyc29uYWwgKGFuZCByYXRoZXIgCj4gZGlzaW50
-ZXJlc3RlZCkgb3BpbmlvbiwgSSB3b3VsZCByZWNvbW1lbmQgYWdhaW5zdCBzdWNoIG1lYXN1cmVz
-LsKgIFRoZSAKPiBsYXN0IHRoaW5nIGFueW9uZSBuZWVkcyBpcyBhbiBhcm1zIHJhY2UgYmV0d2Vl
-biBub3V2ZWF1IGFuZCBDaHJvbWl1bSAKPiB0ZWFtcy7CoCBJIHRoaW5rIHRoZSBiZXR0ZXIgc2hv
-cnQtdGVybSB0aGluZyB0byBkbyB3b3VsZCBiZSB0byBwcm92aWRlIAo+IHNvbWUgZG9jdW1lbnRh
-dGlvbiBhYm91dCBXZWJHTCBhbmQgZWR1Y2F0ZSB1c2VycyBhYm91dCBDaHJvbWl1bSdzIAo+IC0t
-aWdub3JlLWdwdS1ibGFja2xpc3Qgb3B0aW9uLsKgIFRoaXMgZG9jdW1lbnRhdGlvbiBjb3VsZCBn
-byBvbiB0aGUgbWVzYSAKPiB3ZWJzaXRlIG9yLCBsaWtlbHkgbW9yZSB1c2VmdWxseSwgaXQgY291
-bGQgZ28gaW4gdmFyaW91cyBkaXN0cm8gd2lraSAKPiBlbnRyaWVzIGFib3V0IG5vdXZlYXUgYW5k
-L29yIGdlbmVyYWwgbnZpZGlhIGlzc3Vlcy7CoCBJbiB0aGUgbG9uZyB0ZXJtLCAKPiB3aGF0J3Mg
-bmVlZGVkIGlzIGltcHJvdmluZyBub3V2ZWF1IHF1YWxpdHkgYW5kIHN0YWJpbGl0eSBhbmQgcmUt
-YnVpbGRpbmcgCj4gdHJ1c3Qgd2l0aCB0aGUgQ2hyb21pdW0gdGVhbS7CoCBJJ20gbm90IHRyeWlu
-ZyB0byBhdHRhY2sgbm91dmVhdSBoZXJlIGJ1dCAKPiB0aGUgZmFjdCBpcyB0aGF0IHRydXN0IGhh
-cyBiZWVuIGxvc3QgZHVlIHRvIGFuIHVuZm9ydHVuYXRlIGhpc3Rvcnkgb2YgCj4gbWlzLWZpbGVk
-IChhZ2FpbnN0IENocm9taXVtKSBidWdzLsKgIFRoYXQgdHJ1c3QgZG9lc24ndCBnZXQgcmUtYnVp
-bHQgYnkgCj4gbnVjbGVhciBzb2x1dGlvbnMuCj4gCj4gLS1KYXNvbgo+IAo+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gbWVzYS1kZXYgbWFpbGluZyBs
-aXN0Cj4gbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo+IApfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVz
-YS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbWVzYS1kZXYK
+
+--===============1779013929==
+Content-Type: multipart/alternative; boundary="15468469271.a9c81Ae.28418"
+Content-Transfer-Encoding: 7bit
+
+
+--15468469271.a9c81Ae.28418
+Date: Mon, 7 Jan 2019 07:42:07 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109230
+
+--- Comment #4 from Mariusz Bia=C5=82o=C5=84czyk <manio-RFXG7K41k5GsTnJN9+BGXg@public.gmane.org> ---
+Hi Ilia,
+> Do you have a debug symbols package you could install? Or perhaps build
+> xf86-video-nouveau yourself?
+yes - I installed it, but the line:
+"unw_get_proc_name failed: no unwind info found"
+was still there, so I compiled nouveau myself and installed with debug symb=
+ols
+but it doesn't help to full unwind, so finally I compiled whole xorg+debug
+symbols and complete unwind still doesn't happen.
+Isn't it that this unwind is for some libc calls which is irrelevant?
+I am attaching new backtrace from console output.
+
+> Also, to eliminate some potential complications -- try commenting out the
+> RADEON bit and ensure that it keeps failing. (Not that that shouldn't wor=
+k,
+> but good to know for debugging purposes.)
+No, it is not failing with nouveau alone (and commented radeon driver).
+
+I was also trying to disable xinerama (with radeon+nouveau) - then it is al=
+so
+not failing. It seems this is triggering only with enabled xinerama and both
+radeon and nouveau drivers loaded.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15468469271.a9c81Ae.28418
+Date: Mon, 7 Jan 2019 07:42:07 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [crash] Xorg is crashing on startup with enabled xinerama"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109230#c4">Commen=
+t # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [crash] Xorg is crashing on startup with enabled xinerama"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109230">bug 10923=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+manio&#64;skyboo.net" title=3D"Mariusz Bia=C5=82o=C5=84czyk &lt;manio&#64;s=
+kyboo.net&gt;"> <span class=3D"fn">Mariusz Bia=C5=82o=C5=84czyk</span></a>
+</span></b>
+        <pre>Hi Ilia,
+<span class=3D"quote">&gt; Do you have a debug symbols package you could in=
+stall? Or perhaps build
+&gt; xf86-video-nouveau yourself?</span >
+yes - I installed it, but the line:
+&quot;unw_get_proc_name failed: no unwind info found&quot;
+was still there, so I compiled nouveau myself and installed with debug symb=
+ols
+but it doesn't help to full unwind, so finally I compiled whole xorg+debug
+symbols and complete unwind still doesn't happen.
+Isn't it that this unwind is for some libc calls which is irrelevant?
+I am attaching new backtrace from console output.
+
+<span class=3D"quote">&gt; Also, to eliminate some potential complications =
+-- try commenting out the
+&gt; RADEON bit and ensure that it keeps failing. (Not that that shouldn't =
+work,
+&gt; but good to know for debugging purposes.)</span >
+No, it is not failing with nouveau alone (and commented radeon driver).
+
+I was also trying to disable xinerama (with radeon+nouveau) - then it is al=
+so
+not failing. It seems this is triggering only with enabled xinerama and both
+radeon and nouveau drivers loaded.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15468469271.a9c81Ae.28418--
+
+--===============1779013929==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1779013929==--
