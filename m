@@ -1,118 +1,112 @@
-From: =?UTF-8?Q?St=C3=A9phane_Marchesin?= <stephane.marchesin@gmail.com>
-Subject: Re: Chromium - Application-level nouveau blacklist
-Date: Mon, 7 Jan 2019 22:56:46 -0800
-Message-ID: <CACP_E++W4=dccEKeRuDvMHiE7Jrf7WmAf-ovwvBSHoEgpgMOoQ@mail.gmail.com>
-References: <CAKb7UvgPTtc1==f3JtUFG+tQUa0CCdiiCfoBYvMpK6raF=ZwAw@mail.gmail.com>
- <CAOFGe95hG=CR2TxCmfeXHKj0zUUmGfPPA-hDui+D2h1dgZKtUQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93629] [NVE6] complete system freeze,
+ PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
+Date: Tue, 08 Jan 2019 11:49:56 +0000
+Message-ID: <bug-93629-8800-yBEOEX9CCu@http.bugs.freedesktop.org/>
+References: <bug-93629-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <CAOFGe95hG=CR2TxCmfeXHKj0zUUmGfPPA-hDui+D2h1dgZKtUQ@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Jason Ekstrand <jason@jlekstrand.net>
-Cc: nouveau <nouveau@lists.freedesktop.org>, ML Mesa-dev <mesa-dev@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0356027906=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBKYW4gNSwgMjAxOSBhdCAxMTozNyBQTSBKYXNvbiBFa3N0cmFuZCA8amFzb25Aamxl
-a3N0cmFuZC5uZXQ+IHdyb3RlOgo+Cj4gT24gU2F0LCBKYW4gNSwgMjAxOSBhdCAyOjQwIFBNIEls
-aWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4+Cj4+IEl0IGxvb2tzIGxp
-a2UgYXMgb2YgQ2hyb21pdW0gNzEsIG5vdXZlYXUgaXMgY29tcGxldGVseSBibGFja2xpc3RlZC4K
-Pgo+Cj4gVGhhdCdzIHJhdGhlciB1bmZvcnR1bmF0ZS4gOi0oICBUaGUgaW50ZWwgbWVzYSBkcml2
-ZXJzIHdlcmUgYWxzbyBibGFja2xpc3RlZCBmb3IgcXVpdGUgc29tZSB0aW1lIGEgd2hpbGUgYmFj
-ay4gIEknbSBub3QgcmVhbGx5IHN1cmUgd2hhdCB3ZSBkaWQgdG8gZ2V0IGJsYWNrbGlzdGVkIG9y
-IHdoYXQgd2UgZGlkIHRvIGdldCB1bmJsYWNrbGlzdGVkLgo+CgpPbmUgbWFqb3IgZGlmZmVyZW5j
-ZSBpcyB0aGF0IHdlIGhhdmUgc2hpcHBlZCBDaHJvbWVib29rcyB3aXRoCmludGVsLWJhc2VkIEdQ
-VXMgZm9yIH44IHllYXJzLCBzbyB3ZSAoY29sbGVjdGl2ZWx5LCBpbnRlbCBhbmQgQ2hyb21lCk9T
-IGZvbGtzKSBoYXZlIGZpeGVkIHRoZSBsb25nIHRhaWwgb2YgQ2hyb21lIGJ1Z3MgZm9yIENocm9t
-ZSBPUyArCkludGVsLCBhbmQgTGludXggYmVuZWZpdGVkIGFzIGEgc2lkZSBlZmZlY3QuCgoKPj4K
-Pj4gSSBkb24ndCByZWFsbHkgc2VlIGEgd2F5IGJhY2sgZnJvbSB0aGlzLCBzaW5jZSB0aGV5IGRv
-bid0IGNpdGUgYW55Cj4+IGVhc2lseSByZXByb2R1Y2libGUgaXNzdWVzLCBleGNlcHQgdGhhdCBz
-b21lIHBlb3BsZSBoYWQgc29tZSBpc3N1ZXMKPj4gd2l0aCBpbmRldGVybWluYXRlIGhhcmR3YXJl
-IGFuZCBpbmRldGVybWluYXRlIHZlcnNpb25zIG9mIG1lc2EuCj4+Cj4+IEluIHRoZSBidWcgdGhh
-dCB0cmlnZ2VyZWQgdGhpcwo+PiAoaHR0cHM6Ly9idWdzLmNocm9taXVtLm9yZy9wL2Nocm9taXVt
-L2lzc3Vlcy9kZXRhaWw/aWQ9ODc2NTIzKSwgd2hlcmUKPj4gSSBtaWdodCBoYXZlIHNsaWdodGx5
-IGxvc3QgbXkgY29vbCwgdGhleSAoYXQgdGhlIGVuZCkgc3VnZ2VzdGVkIHRoYXQKPj4gd2UgdHJ5
-IHRvIG1ha2Ugbm91dmVhdSBhIGZpcnN0LWNsYXNzIGNpdGl6ZW4gd2l0aCBjaHJvbWl1bS4gSG93
-ZXZlciBJCj4+IHdpbGwgbmV2ZXIgYmUgYWJsZSB0byBwcmVzZW50IGNvbmNyZXRlIGV2aWRlbmNl
-IHRoYXQgaW5jb25jcmV0ZSBpc3N1ZXMKPj4gYXJlIHJlc29sdmVkLiBJIGRpZCBydW4gdGhlIFdl
-YkdMIENUUyBzdWl0ZSwgYnV0IHRoYXQgcmVzdWx0ZWQgaW4gc29tZQo+PiBoYW5ncyBmcm9tIHRo
-ZSB0aGUgbWF4LXRleHR1cmUtc2l6ZS1lcXVpdmFsZW50IHRlc3QsIGFuZCBzb21lCj4+IGJyb3dz
-ZXItbGV2ZWwgd2VpcmRuZXNzIGFmdGVyIHNvbWUgdGVzdHMgd2hlcmUgbGF0ZXIgdGVzdHMgYWxs
-IGZhaWwKPj4gKGR1ZSB0byB3aGF0IEkgaGF2ZSB0byBhc3N1bWUgaXMgYSBicm93c2VyIGJ1Zyku
-IEkgZG9uJ3QgdGhpbmsgSQo+PiBtYW5hZ2VkIHRvIHByb3Blcmx5IHRyYWNrIGRvd24gdGhlIHRy
-dWUgcmVhc29uIHdoeS4gSSBkaWRuJ3Qgd2FudCB0bwo+PiByZWFjaCBvdXQgdG8gdGhlbSB3aXRo
-IHN1Y2ggcmVzdWx0cywgYXMgdGhhdCdzIGp1c3QgZnVydGhlciBldmlkZW5jZQo+PiBvZiBub3V2
-ZWF1IG5vdCB3b3JraW5nIHBlcmZlY3RseS4KPgo+Cj4gSWYgeW91IHdhbnQgY29uY3JldGUgYnVn
-cyB0byBmaXgsIEkgaGlnaGx5IHJlY29tbWVuZCBPcGVuR0xbRVNdIGNvbmZvcm1hbmNlIHRlc3Rz
-LCBkRVFQLCBhbmQgdGhlIFdlYkdMIENUUyAod2hpY2ggaXMgbW9zdGx5IGEgcmUtaGFzaCBvZiB0
-aGUgT3BlbkdMIEVTIDMuMCBDVFMpLiAgR29vZ2xlIGNhcmVzIHF1aXRlIGEgYml0IGFib3V0IGRy
-aXZlciBjb25mb3JtYW5jZSBhbmQgYXJlIG11Y2ggbW9yZSBsaWtlbHkgdG8gY29uc2lkZXIgbm91
-dmVhdSB0byBiZSBoaWdoLXF1YWxpdHkgaWYgdGhvc2UgdGVzdCBzdWl0ZXMgYXJlIGluIGdvb2Qg
-c2hhcGUuICBZZWFycyBvZiBleHBlcmllbmNlIGRlYWxpbmcgd2l0aCBHb29nbGUgc2F5cyB0aGF0
-IGRFUVAgcmVzdWx0cyBzcGVhayBtdWNoIGxvdWRlciB0aGFuIHBoaWxvc29waGljYWwgYXJndW1l
-bnRzIGFib3V0IHdobyBzaG91bGQgZGVjaWRlIHdoZXRoZXIgb3Igbm90IENocm9taXVtIHNob3Vs
-ZCBhY2NlcHQgdGhlIGRpc3RybyBHTC4gIEZvcnR1bmF0ZWx5IGZvciB5b3UsIHRoZSB3ZWxsIGZ1
-bmRlZCBkcml2ZXIgdGVhbXMgKEludGVsIGFuZCBBTUQpIGhhdmUgYWxyZWFkeSBkb25lIGEgbG90
-IG9mIHRoZSBwYWluZnVsIHdvcmsgb2YgZ2V0dGluZyBhIGxvdCBvZiB0aGUgYnVncyBhbmQgImJ1
-Z3MiIG91dCBvZiBjb3JlIG1lc2EgYW5kIGdhbGl1bS4gIFdoYXQncyBsZWZ0IGFyZSBsaWtlbHkg
-cmVhbCBiYWNrLWVuZCBkcml2ZXIgYnVncyB3aGljaCBtYXkgYmUgYWZmZWN0aW5nIHNvbWUgdXNl
-ciBzb21ld2hlcmUgc28gdGhleSdyZSB3b3J0aCBmaXhpbmcuCgpUaGUgY2F1c2Ugb2YgdGhpcyBi
-bGFja2xpc3QgaXMgbm90IChsYWNrIG9mKSBkZXFwIGNvbmZvcm1hbmNlLCBidXQKaW5zdGVhZCBt
-b3N0bHkgYXV0b21hdGVkIGNyYXNoIHJlcG9ydHMuIEluIG90aGVyIHdvcmRzLCBjcmFzaGVzIGlu
-IHRoZQpmaWVsZCB3aGVyZSB3ZSBoYXZlIGEgYmFja3RyYWNlIGJ1dCBub3QgbmVjZXNzYXJpbHkg
-YSBnb29kIHJlcHJvIGNhc2UuCkZvciBzb21lb25lIGJ1aWxkaW5nIGFuIGFwcGxpY2F0aW9uIGxp
-a2UgQ2hyb21lLCB0aGUgbXVsdGl0dWRlIG9mCmtlcm5lbCt1c2VyIHNwYWNlIGRyaXZlcnMrT1Mg
-dmVyc2lvbitjb21wb3NpdG9yIGNvbWJpbmF0aW9ucyBiYXNpY2FsbHkKbWFrZXMgZWFjaCBidWcg
-YSB2ZXJ5LCB2ZXJ5IGxvbmcgaW52ZXN0aWdhdGlvbi4gSSBhcmd1ZWQgYSBsb25nIHRpbWUKYWdv
-IHRoYXQgd2Ugc2hvdWxkIHRyeSB0byBnZXQgbW9yZSBjb21tdW5pY2F0aW9uIGdvaW5nIGJldHdl
-ZW4gQ2hyb21lCmZvbGtzIGFuZCBMaW51eCBHUFUgZHJpdmVyIGZvbGtzIHRvIGZpeCB0aGlzLCBi
-dXQgcXVpY2tseSByZWFsaXplZAp0aGF0IHRoZSB0YXNrIGF0IGhhbmQgaXMgaHVnZS4gWW91IGNh
-biBvbmx5IG1ha2UgYSBkZW50IGluIGl0IGJ5IGJlaW5nCnZlcnkgc3lzdGVtYXRpYyBhYm91dCBp
-dC4gSWYgc29tZW9uZSB3YW50cyB0byBjb21taXQgdGhlIHRpbWUgdG8gZG8KdGhhdCwgSSB3b3Vs
-ZCBiZSBoYXBweSB0byBoZWxwIGNvbW11bmljYXRpb24gYXJvdW5kIHRoZXNlIGVmZm9ydHMuCgoK
-Pgo+Pgo+PiBJbiB0aGUgbWVhbndoaWxlLCBlbmQgdXNlcnMgYXJlIGxvc2luZyBhY2NlbGVyYXRl
-ZCBXZWJHTCB3aGljaCBpbgo+PiBwcmFjdGljZSB3b3JrZWQganVzdCBmaW5lIChhdCBsZWFzdCBp
-biBteSB1c2FnZSBvZiBpdCksIGFuZCBwcm9iYWJseQo+PiBzb21lIG90aGVyIGZ1bmN0aW9uYWxp
-dHkuCj4+Cj4+IE9uZSBpZGVhIGlzIHRvIGZsaXAgR0xfVkVORE9SIHRvIHNvbWUgcmFuZG9tIHN0
-cmluZyBpZiBjaHJvbWl1bSBpcwo+PiBydW5uaW5nLiBJIGRvbid0IGxpa2UgdGhpcyBpZGVhLCBi
-dXQgSSBhbHNvIGRvbid0IGhhdmUgYW55IGdyZWF0Cj4+IGFsdGVybmF0aXZlcy4gV2UgY2FuIGFs
-c28ganVzdCB0YWtlIHRoaXMsIGFzIHlldC1hbm90aGVyIG5haWwgaW4gdGhlCj4+IG5vdXZlYXUg
-Y29mZmluLgo+Cj4KPiBZb3UgYXNrZWQgZm9yIG9waW5pb25zLCBzbyBoZXJlIHlvdSBnby4gOi1Q
-ICBJbiBteSBwZXJzb25hbCAoYW5kIHJhdGhlciBkaXNpbnRlcmVzdGVkKSBvcGluaW9uLCBJIHdv
-dWxkIHJlY29tbWVuZCBhZ2FpbnN0IHN1Y2ggbWVhc3VyZXMuICBUaGUgbGFzdCB0aGluZyBhbnlv
-bmUgbmVlZHMgaXMgYW4gYXJtcyByYWNlIGJldHdlZW4gbm91dmVhdSBhbmQgQ2hyb21pdW0gdGVh
-bXMuICBJIHRoaW5rIHRoZSBiZXR0ZXIgc2hvcnQtdGVybSB0aGluZyB0byBkbyB3b3VsZCBiZSB0
-byBwcm92aWRlIHNvbWUgZG9jdW1lbnRhdGlvbiBhYm91dCBXZWJHTCBhbmQgZWR1Y2F0ZSB1c2Vy
-cyBhYm91dCBDaHJvbWl1bSdzIC0taWdub3JlLWdwdS1ibGFja2xpc3Qgb3B0aW9uLiAgVGhpcyBk
-b2N1bWVudGF0aW9uIGNvdWxkIGdvIG9uIHRoZSBtZXNhIHdlYnNpdGUgb3IsIGxpa2VseSBtb3Jl
-IHVzZWZ1bGx5LCBpdCBjb3VsZCBnbyBpbiB2YXJpb3VzIGRpc3RybyB3aWtpIGVudHJpZXMgYWJv
-dXQgbm91dmVhdSBhbmQvb3IgZ2VuZXJhbCBudmlkaWEgaXNzdWVzLiAgSW4gdGhlIGxvbmcgdGVy
-bSwgd2hhdCdzIG5lZWRlZCBpcyBpbXByb3Zpbmcgbm91dmVhdSBxdWFsaXR5IGFuZCBzdGFiaWxp
-dHkgYW5kIHJlLWJ1aWxkaW5nIHRydXN0IHdpdGggdGhlIENocm9taXVtIHRlYW0uICBJJ20gbm90
-IHRyeWluZyB0byBhdHRhY2sgbm91dmVhdSBoZXJlIGJ1dCB0aGUgZmFjdCBpcyB0aGF0IHRydXN0
-IGhhcyBiZWVuIGxvc3QgZHVlIHRvIGFuIHVuZm9ydHVuYXRlIGhpc3Rvcnkgb2YgbWlzLWZpbGVk
-IChhZ2FpbnN0IENocm9taXVtKSBidWdzLiAgVGhhdCB0cnVzdCBkb2Vzbid0IGdldCByZS1idWls
-dCBieSBudWNsZWFyIHNvbHV0aW9ucy4KCgpZZXMgSSB0aGluayB0aGUgQ2hyb21lLXNpZGUgaXMg
-dmVyeSBzaW1wbGUgaGVyZTogYmVjYXVzZSB0aGVyZSBpc24ndAp0aW1lIG9yIG1lYW5zIGZvciBp
-bi1kZXB0aCBpbnZlc3RpZ2F0aW9uLCBpZiBhIGRyaXZlciBjcmFzaGVzIHRvbwptdWNoLCBpdCBn
-ZXRzIGJsYWNrbGlzdGVkLiBUaGUgc2l0dWF0aW9uIGlzIG5vdCB1bmlxdWUsIHRoZSBHUFUKYmxh
-Y2tsaXN0IGZpbGUgaXMgMTcwMCBsaW5lczoKaHR0cHM6Ly9jaHJvbWl1bS5nb29nbGVzb3VyY2Uu
-Y29tL2Nocm9taXVtL3NyYy9ncHUvKy9tYXN0ZXIvY29uZmlnL3NvZnR3YXJlX3JlbmRlcmluZ19s
-aXN0Lmpzb24KCkFueXdheSwgSU1PIGlmIHRoZSBiaWdnZXN0IGNyYXNoZXJzIGNhbiBiZSBmaXhl
-ZCwgSSB0aGluayB3ZSBjb3VsZApldmVudHVhbGx5IG1ha2UgYSBjYXNlIHRvIHJlZW5hYmxlLgoK
-U3TDqXBoYW5lCgo+Cj4gLS1KYXNvbgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCj4gbWVzYS1kZXYgbWFpbGluZyBsaXN0Cj4gbWVzYS1kZXZAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9tZXNhLWRldgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbWVzYS1k
-ZXYK
+
+--===============0356027906==
+Content-Type: multipart/alternative; boundary="15469481971.C2c04.29953"
+Content-Transfer-Encoding: 7bit
+
+
+--15469481971.C2c04.29953
+Date: Tue, 8 Jan 2019 11:49:57 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
+
+kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           See Also|                            |https://bugs.freedesktop.or
+                   |                            |g/show_bug.cgi?id=3D100567
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15469481971.C2c04.29953
+Date: Tue, 8 Jan 2019 11:49:57 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:kenorb&#6=
+4;gmail.com" title=3D"kenorb&#64;gmail.com">kenorb&#64;gmail.com</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
+nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">See Also</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
+           </td>
+         </tr></table>
+      <p>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15469481971.C2c04.29953--
+
+--===============0356027906==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0356027906==--
