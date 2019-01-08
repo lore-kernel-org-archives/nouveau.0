@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93629] [NVE6] complete system freeze,
- PGRAPH engine fault on channel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]
+Subject: [Bug 99900] [NVC1] nouveau: freeze / crash after kernel
+ update to 4.10
 Date: Tue, 08 Jan 2019 11:50:14 +0000
-Message-ID: <bug-93629-8800-mklZt82ifV@http.bugs.freedesktop.org/>
-References: <bug-93629-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-99900-8800-ui4NlMjGUQ@http.bugs.freedesktop.org/>
+References: <bug-99900-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1231630354=="
+Content-Type: multipart/mixed; boundary="===============0983538679=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93629-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1231630354==
-Content-Type: multipart/alternative; boundary="15469482140.2EeA30.30551"
+--===============0983538679==
+Content-Type: multipart/alternative; boundary="154694821412.5a7A4c.30551"
 Content-Transfer-Encoding: 7bit
 
 
---15469482140.2EeA30.30551
+--154694821412.5a7A4c.30551
 Date: Tue, 8 Jan 2019 11:50:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
@@ -34,20 +34,20 @@ Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99900
 
 kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
            See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=3D99900
+                   |                            |g/show_bug.cgi?id=3D93629
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15469482140.2EeA30.30551
+--154694821412.5a7A4c.30551
 Date: Tue, 8 Jan 2019 11:50:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -64,9 +64,9 @@ Auto-Submitted: auto-generated
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NVE6] complete system freeze, PGRAPH engine fault on cha=
-nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93629">bug 93629<=
+   title=3D"NEW - [NVC1] nouveau: freeze / crash after kernel update to 4.1=
+0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99900">bug 99900<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -81,7 +81,7 @@ nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D99900
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=3D93629
            </td>
          </tr></table>
       <p>
@@ -97,9 +97,9 @@ nnel 2, SCHED_ERROR [ CTXSW_TIMEOUT ]"
     </body>
 </html>=
 
---15469482140.2EeA30.30551--
+--154694821412.5a7A4c.30551--
 
---===============1231630354==
+--===============0983538679==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1231630354==--
+--===============0983538679==--
