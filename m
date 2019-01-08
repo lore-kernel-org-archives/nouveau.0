@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
  [CTXSW_TIMEOUT]
-Date: Tue, 08 Jan 2019 11:51:20 +0000
-Message-ID: <bug-100567-8800-pBvxtzFTCV@http.bugs.freedesktop.org/>
+Date: Tue, 08 Jan 2019 11:52:17 +0000
+Message-ID: <bug-100567-8800-ycOL5SgFic@http.bugs.freedesktop.org/>
 References: <bug-100567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0406800934=="
+Content-Type: multipart/mixed; boundary="===============0792808559=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0406800934==
-Content-Type: multipart/alternative; boundary="15469482802.Fb4Fdf57.31752"
+--===============0792808559==
+Content-Type: multipart/alternative; boundary="154694833712.2A2B8bDda.30751"
 Content-Transfer-Encoding: 7bit
 
 
---15469482802.Fb4Fdf57.31752
-Date: Tue, 8 Jan 2019 11:51:20 +0000
+--154694833712.2A2B8bDda.30751
+Date: Tue, 8 Jan 2019 11:52:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,14 +40,15 @@ kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Hardware|Other                       |x86-64 (AMD64)
+           See Also|                            |https://bugzilla.redhat.com
+                   |                            |/show_bug.cgi?id=3D1514831
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15469482802.Fb4Fdf57.31752
-Date: Tue, 8 Jan 2019 11:51:20 +0000
+--154694833712.2A2B8bDda.30751
+Date: Tue, 8 Jan 2019 11:52:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,10 +77,11 @@ Auto-Submitted: auto-generated
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Hardware</td>
-           <td>Other
+           <td style=3D"text-align:right;">See Also</td>
+           <td>
+               &nbsp;
            </td>
-           <td>x86-64 (AMD64)
+           <td>https://bugzilla.redhat.com/show_bug.cgi?id=3D1514831
            </td>
          </tr></table>
       <p>
@@ -95,9 +97,9 @@ Auto-Submitted: auto-generated
     </body>
 </html>=
 
---15469482802.Fb4Fdf57.31752--
+--154694833712.2A2B8bDda.30751--
 
---===============0406800934==
+--===============0792808559==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0406800934==--
+--===============0792808559==--
