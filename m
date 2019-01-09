@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107829] nouveau crash/freeze [MULTIPLE_WARP_ERRORS]
- warp 3f0009 [ILLEGAL_INSTR_ENCODING]
-Date: Wed, 09 Jan 2019 00:47:13 +0000
-Message-ID: <bug-107829-8800-9Dced9SZiP@http.bugs.freedesktop.org/>
-References: <bug-107829-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 101665] lspci blocks forever with a GP107M
+Date: Wed, 09 Jan 2019 09:53:04 +0000
+Message-ID: <bug-101665-8800-OsJSYjZNOd@http.bugs.freedesktop.org/>
+References: <bug-101665-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0883921866=="
+Content-Type: multipart/mixed; boundary="===============0790418303=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107829-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-101665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +20,54 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0883921866==
-Content-Type: multipart/alternative; boundary="15469948322.2D27bC825.26372"
+--===============0790418303==
+Content-Type: multipart/alternative; boundary="15470275850.C31Da23c6.8207"
 Content-Transfer-Encoding: 7bit
 
 
---15469948322.2D27bC825.26372
-Date: Wed, 9 Jan 2019 00:47:12 +0000
+--15470275850.C31Da23c6.8207
+Date: Wed, 9 Jan 2019 09:53:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107829
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101665
 
---- Comment #4 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Problem is, the log isn't able to tell us which application is causing that.
+Andrey Melentyev <andrey+freedesktop-TVrNfIo4idvLoDKTGw+V6w@public.gmane.org> changed:
 
-Do you think you could try to SSH into the machine while the screen hard
-freezes and check with top/htop if there is anything consuming lots of CPU?=
- And
-see if killing that application unfreezes the screen?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |andrey+freedesktop@psyduck.
+                   |                            |se
 
-If the only application consuming significantly more CPU is Xorg, maybe kil=
-ling
-applications inside the Xorg session until it unfreezes could help us track
-down which application is causing that freeze.
+--- Comment #16 from Andrey Melentyev <andrey+freedesktop-TVrNfIo4idvLoDKTGw+V6w@public.gmane.org> ---
+Created attachment 143031
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D143031&action=3Dedit
+dmesg from thinkpad x1 extreme / GTX 1050 Ti on kernel 4.20 with hybrid
+graphics
+
+I may be blind but I haven't seen anyone attaching full dmesg output, sorry=
+ if
+I missed it.
+
+The laptop in question is Thinkpad X1 Extreme with NVIDIA Corporation GP107M
+[GeForce GTX 1050 Ti Mobile] (rev a1). It has a BIOS setting to switch betw=
+een
+"Hybrid" and "Discrete only" graphics.=20
+
+This dmesg output is from a boot with "Hybrid" graphics, where running 'lsp=
+ci'
+hangs and causes the system fans to spin. X server hangs on start too (using
+modesetting DDX)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15469948322.2D27bC825.26372
-Date: Wed, 9 Jan 2019 00:47:12 +0000
+--15470275850.C31Da23c6.8207
+Date: Wed, 9 Jan 2019 09:53:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,37 +78,69 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:andrey+fr=
+eedesktop&#64;psyduck.se" title=3D"Andrey Melentyev &lt;andrey+freedesktop&=
+#64;psyduck.se&gt;"> <span class=3D"fn">Andrey Melentyev</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665">bug 10166=
+5</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>andrey+freedesktop&#64;psyduck.se
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
-ILLEGAL_INSTR_ENCODING]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829#c4">Commen=
-t # 4</a>
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665#c16">Comme=
+nt # 16</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
-ILLEGAL_INSTR_ENCODING]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829">bug 10782=
-9</a>
+   title=3D"NEW - lspci blocks forever with a GP107M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665">bug 10166=
+5</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+andrey+freedesktop&#64;psyduck.se" title=3D"Andrey Melentyev &lt;andrey+fre=
+edesktop&#64;psyduck.se&gt;"> <span class=3D"fn">Andrey Melentyev</span></a>
 </span></b>
-        <pre>Problem is, the log isn't able to tell us which application is=
- causing that.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D143031=
+" name=3D"attach_143031" title=3D"dmesg from thinkpad x1 extreme / GTX 1050=
+ Ti on kernel 4.20 with hybrid graphics">attachment 143031</a> <a href=3D"a=
+ttachment.cgi?id=3D143031&amp;action=3Dedit" title=3D"dmesg from thinkpad x=
+1 extreme / GTX 1050 Ti on kernel 4.20 with hybrid graphics">[details]</a><=
+/span>
+dmesg from thinkpad x1 extreme / GTX 1050 Ti on kernel 4.20 with hybrid
+graphics
 
-Do you think you could try to SSH into the machine while the screen hard
-freezes and check with top/htop if there is anything consuming lots of CPU?=
- And
-see if killing that application unfreezes the screen?
+I may be blind but I haven't seen anyone attaching full dmesg output, sorry=
+ if
+I missed it.
 
-If the only application consuming significantly more CPU is Xorg, maybe kil=
-ling
-applications inside the Xorg session until it unfreezes could help us track
-down which application is causing that freeze.</pre>
+The laptop in question is Thinkpad X1 Extreme with NVIDIA Corporation GP107M
+[GeForce GTX 1050 Ti Mobile] (rev a1). It has a BIOS setting to switch betw=
+een
+&quot;Hybrid&quot; and &quot;Discrete only&quot; graphics.=20
+
+This dmesg output is from a boot with &quot;Hybrid&quot; graphics, where ru=
+nning 'lspci'
+hangs and causes the system fans to spin. X server hangs on start too (using
+modesetting DDX)</pre>
         </div>
       </p>
 
@@ -109,9 +154,9 @@ down which application is causing that freeze.</pre>
     </body>
 </html>=
 
---15469948322.2D27bC825.26372--
+--15470275850.C31Da23c6.8207--
 
---===============0883921866==
+--===============0790418303==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -121,4 +166,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0883921866==--
+--===============0790418303==--
