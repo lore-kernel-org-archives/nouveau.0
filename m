@@ -1,14 +1,13 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v5 20/20] drm/nouveau: Use atomic VCPI helpers for
- MST
-Date: Tue,  8 Jan 2019 19:35:17 -0500
-Message-ID: <20190109003516.14752-21-lyude@redhat.com>
-References: <20190109003516.14752-1-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 107829] nouveau crash/freeze [MULTIPLE_WARP_ERRORS]
+ warp 3f0009 [ILLEGAL_INSTR_ENCODING]
+Date: Wed, 09 Jan 2019 00:47:13 +0000
+Message-ID: <bug-107829-8800-9Dced9SZiP@http.bugs.freedesktop.org/>
+References: <bug-107829-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0883921866=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190109003516.14752-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-107829-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,81 +17,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Jerry Zuo <Jerry.Zuo-5C7GfCeVMHo@public.gmane.org>, David Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Harry Wentland <harry.wentland-5C7GfCeVMHo@public.gmane.org>, Juston Li <juston.li-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Q3VycmVudGx5LCBub3V2ZWF1IHVzZXMgdGhlIHlvbG8gbWV0aG9kIG9mIHNldHRpbmcgdXAgTVNU
-IGRpc3BsYXlzOiBpdAp1c2VzIHRoZSBvbGQgVkNQSSBoZWxwZXJzIChkcm1fZHBfZmluZF92Y3Bp
-X3Nsb3RzKCkpIGZvciBjb21wdXRpbmcgdGhlCmRpc3BsYXkgY29uZmlndXJhdGlvbi4gVGhlc2Ug
-aGVscGVycyBkb24ndCB0YWtlIGNhcmUgdG8gbWFrZSBzdXJlIHRoZXkKdGFrZSBhIHJlZmVyZW5j
-ZSB0byB0aGUgbXN0YiBwb3J0IHRoYXQgdGhleSdyZSBjaGVja2luZywgYW5kCmFkZGl0aW9uYWxs
-eSBkb24ndCBhY3R1YWxseSBjaGVjayB3aGV0aGVyIG9yIG5vdCB0aGUgdG9wb2xvZ3kgc3RpbGwg
-aGFzCmVub3VnaCBiYW5kd2lkdGggdG8gcHJvdmlkZSB0aGUgVkNQSSB0b2tlbnMgcmVxdWlyZWQu
-CgpTbywgZHJvcCB1c2FnZSBvZiB0aGUgb2xkIGhlbHBlcnMgYW5kIG1vdmUgZW50aXJlbHkgb3Zl
-ciB0byB0aGUgYXRvbWljCmhlbHBlcnMuCgpDaGFuZ2VzIHNpbmNlIHY2OgoqIENsZWFudXAgYXRv
-bWljIGNoZWNrIGxvZ2ljIGFuZCByZW1vdmUgYSBidW5jaCBvZiB1bm5lZWRlZCBjaGVja3MgLQog
-IGRhbnZldApDaGFuZ2VzIHNpbmNlIHY1OgoqIFVwZGF0ZSBudjUwX21zdG9fYXRvbWljX2NoZWNr
-KCkgYW5kIG52NTBfbXN0Y19hdG9taWNfY2hlY2soKSB0byB0aGUKICBuZXcgcmVxdWlyZW1lbnRz
-IGZvciBkcm1fZHBfYXRvbWljX2ZpbmRfdmNwaV9zbG90cygpIGFuZAogIGRybV9kcF9hdG9taWNf
-cmVsZWFzZV92Y3BpX3Nsb3RzKCkKClNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJl
-ZGhhdC5jb20+CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgpDYzog
-RGF2aWQgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+CkNjOiBKZXJyeSBadW8gPEplcnJ5Llp1
-b0BhbWQuY29tPgpDYzogSGFycnkgV2VudGxhbmQgPGhhcnJ5LndlbnRsYW5kQGFtZC5jb20+CkNj
-OiBKdXN0b24gTGkgPGp1c3Rvbi5saUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvZGlzcG52NTAvZGlzcC5jIHwgNTQgKysrKysrKysrKysrKysrKysrKysrKy0tLQogMSBm
-aWxlIGNoYW5nZWQsIDQ4IGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jIGIvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCmluZGV4IDY3ZjdiZjk3ZTVkOS4uNTNkNmM4ZGY4
-ZjY4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMK
-KysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCkBAIC03NjIsMTYg
-Kzc2MiwyMyBAQCBudjUwX21zdG9fYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1fZW5jb2RlciAqZW5j
-b2RlciwKIAkJICAgICAgIHN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKIAkJICAg
-ICAgIHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25uX3N0YXRlKQogewotCXN0cnVjdCBu
-djUwX21zdGMgKm1zdGMgPSBudjUwX21zdGMoY29ubl9zdGF0ZS0+Y29ubmVjdG9yKTsKKwlzdHJ1
-Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUgPSBjcnRjX3N0YXRlLT5zdGF0ZTsKKwlzdHJ1Y3Qg
-ZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yID0gY29ubl9zdGF0ZS0+Y29ubmVjdG9yOworCXN0cnVj
-dCBudjUwX21zdGMgKm1zdGMgPSBudjUwX21zdGMoY29ubmVjdG9yKTsKIAlzdHJ1Y3QgbnY1MF9t
-c3RtICptc3RtID0gbXN0Yy0+bXN0bTsKLQlpbnQgYnBwID0gY29ubl9zdGF0ZS0+Y29ubmVjdG9y
-LT5kaXNwbGF5X2luZm8uYnBjICogMzsKKwlpbnQgYnBwID0gY29ubmVjdG9yLT5kaXNwbGF5X2lu
-Zm8uYnBjICogMzsKIAlpbnQgc2xvdHM7CiAKLQltc3RjLT5wYm4gPSBkcm1fZHBfY2FsY19wYm5f
-bW9kZShjcnRjX3N0YXRlLT5hZGp1c3RlZF9tb2RlLmNsb2NrLCBicHApOworCW1zdGMtPnBibiA9
-IGRybV9kcF9jYWxjX3Bibl9tb2RlKGNydGNfc3RhdGUtPmFkanVzdGVkX21vZGUuY2xvY2ssCisJ
-CQkJCSBicHApOwogCi0Jc2xvdHMgPSBkcm1fZHBfZmluZF92Y3BpX3Nsb3RzKCZtc3RtLT5tZ3Is
-IG1zdGMtPnBibik7Ci0JaWYgKHNsb3RzIDwgMCkKLQkJcmV0dXJuIHNsb3RzOworCWlmIChkcm1f
-YXRvbWljX2NydGNfbmVlZHNfbW9kZXNldChjcnRjX3N0YXRlKSAmJgorCSAgICAhZHJtX2Nvbm5l
-Y3Rvcl9pc191bnJlZ2lzdGVyZWQoY29ubmVjdG9yKSkgeworCQlzbG90cyA9IGRybV9kcF9hdG9t
-aWNfZmluZF92Y3BpX3Nsb3RzKHN0YXRlLCAmbXN0bS0+bWdyLAorCQkJCQkJICAgICAgbXN0Yy0+
-cG9ydCwgbXN0Yy0+cGJuKTsKKwkJaWYgKHNsb3RzIDwgMCkKKwkJCXJldHVybiBzbG90czsKKwl9
-CiAKIAlyZXR1cm4gbnY1MF9vdXRwX2F0b21pY19jaGVja192aWV3KGVuY29kZXIsIGNydGNfc3Rh
-dGUsIGNvbm5fc3RhdGUsCiAJCQkJCSAgIG1zdGMtPm5hdGl2ZSk7CkBAIC05MzQsMTIgKzk0MSw0
-MyBAQCBudjUwX21zdGNfZ2V0X21vZGVzKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3Ip
-CiAJcmV0dXJuIHJldDsKIH0KIAorc3RhdGljIGludAorbnY1MF9tc3RjX2F0b21pY19jaGVjayhz
-dHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAorCQkgICAgICAgc3RydWN0IGRybV9jb25u
-ZWN0b3Jfc3RhdGUgKm5ld19jb25uX3N0YXRlKQoreworCXN0cnVjdCBkcm1fYXRvbWljX3N0YXRl
-ICpzdGF0ZSA9IG5ld19jb25uX3N0YXRlLT5zdGF0ZTsKKwlzdHJ1Y3QgbnY1MF9tc3RjICptc3Rj
-ID0gbnY1MF9tc3RjKGNvbm5lY3Rvcik7CisJc3RydWN0IGRybV9kcF9tc3RfdG9wb2xvZ3lfbWdy
-ICptZ3IgPSAmbXN0Yy0+bXN0bS0+bWdyOworCXN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpv
-bGRfY29ubl9zdGF0ZSA9CisJCWRybV9hdG9taWNfZ2V0X29sZF9jb25uZWN0b3Jfc3RhdGUoc3Rh
-dGUsIGNvbm5lY3Rvcik7CisJc3RydWN0IGRybV9jcnRjX3N0YXRlICpjcnRjX3N0YXRlOworCXN0
-cnVjdCBkcm1fY3J0YyAqbmV3X2NydGMgPSBuZXdfY29ubl9zdGF0ZS0+Y3J0YzsKKworCWlmICgh
-b2xkX2Nvbm5fc3RhdGUtPmNydGMpCisJCXJldHVybiAwOworCisJLyogV2Ugb25seSB3YW50IHRv
-IGZyZWUgVkNQSSBpZiB0aGlzIHN0YXRlIGRpc2FibGVzIHRoZSBDUlRDIG9uIHRoaXMKKwkgKiBj
-b25uZWN0b3IKKwkgKi8KKwlpZiAobmV3X2NydGMpIHsKKwkJY3J0Y19zdGF0ZSA9IGRybV9hdG9t
-aWNfZ2V0X25ld19jcnRjX3N0YXRlKHN0YXRlLCBuZXdfY3J0Yyk7CisKKwkJaWYgKCFjcnRjX3N0
-YXRlIHx8CisJCSAgICAhZHJtX2F0b21pY19jcnRjX25lZWRzX21vZGVzZXQoY3J0Y19zdGF0ZSkg
-fHwKKwkJICAgIGNydGNfc3RhdGUtPmVuYWJsZSkKKwkJCXJldHVybiAwOworCX0KKworCXJldHVy
-biBkcm1fZHBfYXRvbWljX3JlbGVhc2VfdmNwaV9zbG90cyhzdGF0ZSwgbWdyLCBtc3RjLT5wb3J0
-KTsKK30KKwogc3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fY29ubmVjdG9yX2hlbHBlcl9mdW5jcwog
-bnY1MF9tc3RjX2hlbHAgPSB7CiAJLmdldF9tb2RlcyA9IG52NTBfbXN0Y19nZXRfbW9kZXMsCiAJ
-Lm1vZGVfdmFsaWQgPSBudjUwX21zdGNfbW9kZV92YWxpZCwKIAkuYmVzdF9lbmNvZGVyID0gbnY1
-MF9tc3RjX2Jlc3RfZW5jb2RlciwKIAkuYXRvbWljX2Jlc3RfZW5jb2RlciA9IG52NTBfbXN0Y19h
-dG9taWNfYmVzdF9lbmNvZGVyLAorCS5hdG9taWNfY2hlY2sgPSBudjUwX21zdGNfYXRvbWljX2No
-ZWNrLAogfTsKIAogc3RhdGljIGVudW0gZHJtX2Nvbm5lY3Rvcl9zdGF0dXMKQEAgLTIxMjEsNiAr
-MjE1OSwxMCBAQCBudjUwX2Rpc3BfYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYs
-IHN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSkKIAkJCXJldHVybiByZXQ7CiAJfQogCisJ
-cmV0ID0gZHJtX2RwX21zdF9hdG9taWNfY2hlY2soc3RhdGUpOworCWlmIChyZXQpCisJCXJldHVy
-biByZXQ7CisKIAlyZXR1cm4gMDsKIH0KIAotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0883921866==
+Content-Type: multipart/alternative; boundary="15469948322.2D27bC825.26372"
+Content-Transfer-Encoding: 7bit
+
+
+--15469948322.2D27bC825.26372
+Date: Wed, 9 Jan 2019 00:47:12 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107829
+
+--- Comment #4 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Problem is, the log isn't able to tell us which application is causing that.
+
+Do you think you could try to SSH into the machine while the screen hard
+freezes and check with top/htop if there is anything consuming lots of CPU?=
+ And
+see if killing that application unfreezes the screen?
+
+If the only application consuming significantly more CPU is Xorg, maybe kil=
+ling
+applications inside the Xorg session until it unfreezes could help us track
+down which application is causing that freeze.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15469948322.2D27bC825.26372
+Date: Wed, 9 Jan 2019 00:47:12 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
+ILLEGAL_INSTR_ENCODING]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829#c4">Commen=
+t # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
+ILLEGAL_INSTR_ENCODING]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829">bug 10782=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+</span></b>
+        <pre>Problem is, the log isn't able to tell us which application is=
+ causing that.
+
+Do you think you could try to SSH into the machine while the screen hard
+freezes and check with top/htop if there is anything consuming lots of CPU?=
+ And
+see if killing that application unfreezes the screen?
+
+If the only application consuming significantly more CPU is Xorg, maybe kil=
+ling
+applications inside the Xorg session until it unfreezes could help us track
+down which application is causing that freeze.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15469948322.2D27bC825.26372--
+
+--===============0883921866==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0883921866==--
