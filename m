@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101665] lspci blocks forever with a GP107M
-Date: Wed, 09 Jan 2019 09:54:58 +0000
-Message-ID: <bug-101665-8800-OKsEDhzUHS@http.bugs.freedesktop.org/>
-References: <bug-101665-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 107829] nouveau crash/freeze [MULTIPLE_WARP_ERRORS]
+ warp 3f0009 [ILLEGAL_INSTR_ENCODING]
+Date: Wed, 09 Jan 2019 12:52:49 +0000
+Message-ID: <bug-107829-8800-GpuqXdtprR@http.bugs.freedesktop.org/>
+References: <bug-107829-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1391090452=="
+Content-Type: multipart/mixed; boundary="===============1176128746=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101665-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-107829-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,38 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1391090452==
-Content-Type: multipart/alternative; boundary="15470276981.33ab.8987"
+--===============1176128746==
+Content-Type: multipart/alternative; boundary="15470383680.AaD8B.29372"
 Content-Transfer-Encoding: 7bit
 
 
---15470276981.33ab.8987
-Date: Wed, 9 Jan 2019 09:54:58 +0000
+--15470383680.AaD8B.29372
+Date: Wed, 9 Jan 2019 12:52:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101665
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107829
 
---- Comment #17 from Andrey Melentyev <andrey+freedesktop-TVrNfIo4idvLoDKTGw+V6w@public.gmane.org> ---
-Created attachment 143032
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D143032&action=3Dedit
-dmesg from thinkpad x1 extreme / GTX 1050 Ti on kernel 4.20 with discrete o=
-nly
-graphics
-
-Not sure if that helps with the diagnostics, but on the same Thinkpad X1
-Extreme laptop with "Discrete only" BIOS setting, lspci works fine, X starts
-and works, but there's a timeout logged by nouveau.
+--- Comment #5 from sassmann-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org ---
+Unfortunately there's no process hogging the CPU. Would it help to add some
+debug kernel cmd line options?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15470276981.33ab.8987
-Date: Wed, 9 Jan 2019 09:54:58 +0000
+--15470383680.AaD8B.29372
+Date: Wed, 9 Jan 2019 12:52:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,32 +61,23 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - lspci blocks forever with a GP107M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665#c17">Comme=
-nt # 17</a>
+   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
+ILLEGAL_INSTR_ENCODING]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - lspci blocks forever with a GP107M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101665">bug 10166=
-5</a>
+   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
+ILLEGAL_INSTR_ENCODING]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829">bug 10782=
+9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-andrey+freedesktop&#64;psyduck.se" title=3D"Andrey Melentyev &lt;andrey+fre=
-edesktop&#64;psyduck.se&gt;"> <span class=3D"fn">Andrey Melentyev</span></a>
+sassmann&#64;redhat.com" title=3D"sassmann&#64;redhat.com">sassmann&#64;red=
+hat.com</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D143032=
-" name=3D"attach_143032" title=3D"dmesg from thinkpad x1 extreme / GTX 1050=
- Ti on kernel 4.20 with discrete only graphics">attachment 143032</a> <a hr=
-ef=3D"attachment.cgi?id=3D143032&amp;action=3Dedit" title=3D"dmesg from thi=
-nkpad x1 extreme / GTX 1050 Ti on kernel 4.20 with discrete only graphics">=
-[details]</a></span>
-dmesg from thinkpad x1 extreme / GTX 1050 Ti on kernel 4.20 with discrete o=
-nly
-graphics
-
-Not sure if that helps with the diagnostics, but on the same Thinkpad X1
-Extreme laptop with &quot;Discrete only&quot; BIOS setting, lspci works fin=
-e, X starts
-and works, but there's a timeout logged by nouveau.</pre>
+        <pre>Unfortunately there's no process hogging the CPU. Would it hel=
+p to add some
+debug kernel cmd line options?</pre>
         </div>
       </p>
 
@@ -106,9 +91,9 @@ and works, but there's a timeout logged by nouveau.</pre>
     </body>
 </html>=
 
---15470276981.33ab.8987--
+--15470383680.AaD8B.29372--
 
---===============1391090452==
+--===============1176128746==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -118,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1391090452==--
+--===============1176128746==--
