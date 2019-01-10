@@ -1,232 +1,74 @@
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-Subject: Re: [PATCH] drm/nouveau/nvkm: mark expected switch fall-throughs
-Date: Thu, 10 Jan 2019 13:33:15 -0600
-Message-ID: <7b562104-f151-0d9f-7cd6-3c72ff8895fa@embeddedor.com>
-References: <20181017142851.GA15329@embeddedor.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v6 00/20] MST refcounting/atomic helpers cleanup
+Date: Thu, 10 Jan 2019 14:57:34 -0500
+Message-ID: <20190110195753.6234-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20181017142851.GA15329@embeddedor.com>
-Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Kees Cook <keescook@chromium.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
-
-Friendly ping:
-
-Who can take this?
-
-Thanks
---
-Gustavo
-
-On 10/17/18 9:28 AM, Gustavo A. R. Silva wrote:
-> In preparation to enabling -Wimplicit-fallthrough, mark switch cases
-> where we are expecting to fall through.
-> 
-> This patch aims to suppress 29 missing-break-in-switch false positives.
-> 
-> Addresses-Coverity-ID: 1456891 ("Missing break in switch")
-> Addresses-Coverity-ID: 1324063 ("Missing break in switch")
-> Addresses-Coverity-ID: 1324063 ("Missing break in switch")
-> Addresses-Coverity-ID: 141432 ("Missing break in switch")
-> Addresses-Coverity-ID: 141433 ("Missing break in switch")
-> Addresses-Coverity-ID: 141434 ("Missing break in switch")
-> Addresses-Coverity-ID: 141435 ("Missing break in switch")
-> Addresses-Coverity-ID: 141436 ("Missing break in switch")
-> Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
-> ---
->   drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmi.c    | 17 +++++++++++++++++
->   drivers/gpu/drm/nouveau/nvkm/engine/dma/usernv04.c |  1 +
->   drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv04.c    |  2 ++
->   drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv40.c    |  1 +
->   drivers/gpu/drm/nouveau/nvkm/subdev/bios/perf.c    |  1 +
->   drivers/gpu/drm/nouveau/nvkm/subdev/bios/pll.c     |  1 +
->   drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c     |  1 +
->   drivers/gpu/drm/nouveau/nvkm/subdev/clk/mcp77.c    |  1 +
->   drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv40.c   |  2 ++
->   drivers/gpu/drm/nouveau/nvkm/subdev/mxm/nv50.c     |  1 +
->   10 files changed, 28 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmi.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmi.c
-> index d131cca..10f2aa9 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmi.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/hdmi.c
-> @@ -23,38 +23,55 @@ void pack_hdmi_infoframe(struct packed_hdmi_infoframe *packed_frame,
->   		 */
->   	case 17:
->   		subpack1_high = (raw_frame[16] << 16);
-> +		/* fall through */
->   	case 16:
->   		subpack1_high |= (raw_frame[15] << 8);
-> +		/* fall through */
->   	case 15:
->   		subpack1_high |= raw_frame[14];
-> +		/* fall through */
->   	case 14:
->   		subpack1_low = (raw_frame[13] << 24);
-> +		/* fall through */
->   	case 13:
->   		subpack1_low |= (raw_frame[12] << 16);
-> +		/* fall through */
->   	case 12:
->   		subpack1_low |= (raw_frame[11] << 8);
-> +		/* fall through */
->   	case 11:
->   		subpack1_low |= raw_frame[10];
-> +		/* fall through */
->   	case 10:
->   		subpack0_high = (raw_frame[9] << 16);
-> +		/* fall through */
->   	case 9:
->   		subpack0_high |= (raw_frame[8] << 8);
-> +		/* fall through */
->   	case 8:
->   		subpack0_high |= raw_frame[7];
-> +		/* fall through */
->   	case 7:
->   		subpack0_low = (raw_frame[6] << 24);
-> +		/* fall through */
->   	case 6:
->   		subpack0_low |= (raw_frame[5] << 16);
-> +		/* fall through */
->   	case 5:
->   		subpack0_low |= (raw_frame[4] << 8);
-> +		/* fall through */
->   	case 4:
->   		subpack0_low |= raw_frame[3];
-> +		/* fall through */
->   	case 3:
->   		header = (raw_frame[2] << 16);
-> +		/* fall through */
->   	case 2:
->   		header |= (raw_frame[1] << 8);
-> +		/* fall through */
->   	case 1:
->   		header |= raw_frame[0];
-> +		/* fall through */
->   	case 0:
->   		break;
->   	}
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/dma/usernv04.c b/drivers/gpu/drm/nouveau/nvkm/engine/dma/usernv04.c
-> index 49ef7e5..7f1adab 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/dma/usernv04.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/dma/usernv04.c
-> @@ -122,6 +122,7 @@ nv04_dmaobj_new(struct nvkm_dma *dma, const struct nvkm_oclass *oclass,
->   		break;
->   	case NV_MEM_ACCESS_WO:
->   		dmaobj->flags0 |= 0x00008000;
-> +		/* fall through */
->   	case NV_MEM_ACCESS_RW:
->   		dmaobj->flags2 |= 0x00000002;
->   		break;
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv04.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv04.c
-> index ad707ff..93493b3 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv04.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv04.c
-> @@ -117,8 +117,10 @@ nv04_fifo_swmthd(struct nvkm_device *device, u32 chid, u32 addr, u32 data)
->   	switch (mthd) {
->   	case 0x0000 ... 0x0000: /* subchannel's engine -> software */
->   		nvkm_wr32(device, 0x003280, (engine &= ~mask));
-> +		/* fall through */
->   	case 0x0180 ... 0x01fc: /* handle -> instance */
->   		data = nvkm_rd32(device, 0x003258) & 0x0000ffff;
-> +		/* fall through */
->   	case 0x0100 ... 0x017c:
->   	case 0x0200 ... 0x1ffc: /* pass method down to sw */
->   		if (!(engine & mask) && sw)
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv40.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv40.c
-> index 8c7ba32..47c1682 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv40.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/nv40.c
-> @@ -81,6 +81,7 @@ nv40_fifo_init(struct nvkm_fifo *base)
->   	case 0x49:
->   	case 0x4b:
->   		nvkm_wr32(device, 0x002230, 0x00000001);
-> +		/* fall through */
->   	case 0x40:
->   	case 0x41:
->   	case 0x42:
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/perf.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/perf.c
-> index c306835..7112992 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/perf.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/perf.c
-> @@ -135,6 +135,7 @@ nvbios_perfEp(struct nvkm_bios *bios, int idx,
->   		break;
->   	case 0x30:
->   		info->script   = nvbios_rd16(bios, perf + 0x02);
-> +		/* fall through */
->   	case 0x35:
->   		info->fanspeed = nvbios_rd08(bios, perf + 0x06);
->   		info->voltage  = nvbios_rd08(bios, perf + 0x07);
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/pll.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/pll.c
-> index e6e804c..bda6cc9 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/pll.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/pll.c
-> @@ -134,6 +134,7 @@ pll_map(struct nvkm_bios *bios)
->   		    device->chipset == 0xaa ||
->   		    device->chipset == 0xac)
->   			return g84_pll_mapping;
-> +		/* fall through */
->   	default:
->   		return NULL;
->   	}
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
-> index ba6a868d..40e5645 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c
-> @@ -90,6 +90,7 @@ nvkm_cstate_valid(struct nvkm_clk *clk, struct nvkm_cstate *cstate,
->   			case NVKM_CLK_BOOST_NONE:
->   				if (clk->base_khz && freq > clk->base_khz)
->   					return false;
-> +				/* fall through */
->   			case NVKM_CLK_BOOST_BIOS:
->   				if (clk->boost_khz && freq > clk->boost_khz)
->   					return false;
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/mcp77.c b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/mcp77.c
-> index 1c21b8b..4f00023 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/clk/mcp77.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/clk/mcp77.c
-> @@ -363,6 +363,7 @@ mcp77_clk_prog(struct nvkm_clk *base)
->   	switch (clk->vsrc) {
->   	case nv_clk_src_cclk:
->   		mast |= 0x00400000;
-> +		/* fall through */
->   	default:
->   		nvkm_wr32(device, 0x4600, clk->vdiv);
->   	}
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv40.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv40.c
-> index 2b12e38..5f4c287 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv40.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv40.c
-> @@ -131,11 +131,13 @@ nv40_ram_prog(struct nvkm_ram *base)
->   		nvkm_mask(device, 0x00402c, 0xc0771100, ram->ctrl);
->   		nvkm_wr32(device, 0x004048, ram->coef);
->   		nvkm_wr32(device, 0x004030, ram->coef);
-> +		/* fall through */
->   	case 0x43:
->   	case 0x49:
->   	case 0x4b:
->   		nvkm_mask(device, 0x004038, 0xc0771100, ram->ctrl);
->   		nvkm_wr32(device, 0x00403c, ram->coef);
-> +		/* fall through */
->   	default:
->   		nvkm_mask(device, 0x004020, 0xc0771100, ram->ctrl);
->   		nvkm_wr32(device, 0x004024, ram->coef);
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mxm/nv50.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mxm/nv50.c
-> index 844971e..2a6150a 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mxm/nv50.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mxm/nv50.c
-> @@ -159,6 +159,7 @@ mxm_dcb_sanitise_entry(struct nvkm_bios *bios, void *data, int idx, u16 pdcb)
->   		break;
->   	case 0x0e: /* eDP, falls through to DPint */
->   		ctx.outp[1] |= 0x00010000;
-> +		/* fall through */
->   	case 0x07: /* DP internal, wtf is this?? HP8670w */
->   		ctx.outp[1] |= 0x00000004; /* use_power_scripts? */
->   		type = DCB_CONNECTOR_eDP;
-> 
+VGhpcyBpcyB0aGUgc2VyaWVzIEkndmUgYmVlbiB3b3JraW5nIG9uIGZvciBhIHdoaWxlIG5vdyB0
+byBnZXQgYWxsIG9mCnRoZSBhdG9taWMgRFJNIGRyaXZlcnMgaW4gdGhlIHRyZWUgdG8gdXNlIHRo
+ZSBhdG9taWMgTVNUIGhlbHBlcnMsIGFuZCB0bwptYWtlIHRoZSBhdG9taWMgTVNUIGhlbHBlcnMg
+YWN0dWFsbHkgaWRlbXBvdGVudC4gVHVybnMgb3V0IGl0J3MgYSBsb3QKbW9yZSBkaWZmaWN1bHQg
+dG8gZG8gdGhhdCB3aXRob3V0IGFsc28gZml4aW5nIGhvdyBwb3J0IGFuZCBicmFuY2ggZGV2aWNl
+CnJlZmNvdW50aW5nIHdvcmtzIHNvIHRoYXQgaXQgYWN0dWFsbHkgbWFrZXMgc2Vuc2UsIHNpbmNl
+IHRoZSBjdXJyZW50CnVwc3RyZWFtIGltcGxlbWVudGF0aW9uIHJlcXVpcmVzIGEgdG9uIG9mIG1h
+Z2ljIGluIHRoZSBhdG9taWMgaGVscGVycyB0bwp3b3JrIGFyb3VuZCBwcm9wZXJseSBhbmQgaW4g
+bWFueSBzaXR1YXRpb25zIGp1c3QgcGxhaW4gZG9lc24ndCB3b3JrIGFzCmludGVuZGVkLgoKVGhl
+cmUncyBzdGlsbCBtb3JlIGNsZWFudXAgdGhhdCBjYW4gYmUgZG9uZSwgYnV0IEkgdGhpbmsgdGhp
+cyBpcyBhIGdvb2QKcGxhY2UgdG8gc3RhcnQgb2ZmIGZvciBub3cgOikuCgpBbHNvIGF2YWlsYWJs
+ZSBvbiBnaXRsYWI6CgpodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvbHl1ZGVzcy9saW51
+eC9jb21taXRzL3dpcC9tc3QtZHVhbC1rcmVmLXN0YXJ0LXY2CgpMeXVkZSBQYXVsICgyMCk6CiAg
+ZHJtL2RwX21zdDogRml4IHNvbWUgZm9ybWF0dGluZyBpbiBkcm1fZHBfYWRkX3BvcnQoKQogIGRy
+bS9kcF9tc3Q6IEZpeCBzb21lIGZvcm1hdHRpbmcgaW4gZHJtX2RwX3BheWxvYWRfc2VuZF9tc2co
+KQogIGRybS9kcF9tc3Q6IEZpeCBzb21lIGZvcm1hdHRpbmcgaW4gZHJtX2RwX21zdF9hbGxvY2F0
+ZV92Y3BpKCkKICBkcm0vZHBfbXN0OiBGaXggc29tZSBmb3JtYXR0aW5nIGluIGRybV9kcF9tc3Rf
+ZGVhbGxvY2F0ZV92Y3BpKCkKICBkcm0vZHBfbXN0OiBSZW5hbWUgZHJtX2RwX21zdF9nZXRfdmFs
+aWRhdGVkXyhwb3J0fG1zdGIpX3JlZiBhbmQKICAgIGZyaWVuZHMKICBkcm0vZHBfbXN0OiBJbnRy
+b2R1Y2UgbmV3IHJlZmNvdW50aW5nIHNjaGVtZSBmb3IgbXN0YnMgYW5kIHBvcnRzCiAgZHJtL2Rw
+X21zdDogUmVzdGFydCBsYXN0X2Nvbm5lY3RlZF9wb3J0X2FuZF9tc3RiKCkgaWYgdG9wb2xvZ3kg
+cmVmCiAgICBmYWlscwogIGRybS9kcF9tc3Q6IFN0b3AgcmVsZWFzaW5nIFZDUEkgd2hlbiByZW1v
+dmluZyBwb3J0cyBmcm9tIHRvcG9sb2d5CiAgZHJtL2RwX21zdDogRml4IHBheWxvYWQgZGVhbGxv
+Y2F0aW9uIG9uIGhvdHBsdWdzIHVzaW5nIG1hbGxvYyByZWZzCiAgZHJtL2k5MTU6IEtlZXAgbWFs
+bG9jIHJlZmVyZW5jZXMgdG8gTVNUIHBvcnRzCiAgZHJtL2FtZGdwdS9kaXNwbGF5OiBLZWVwIG1h
+bGxvYyByZWYgdG8gTVNUIHBvcnQKICBkcm0vbm91dmVhdTogUmVtb3ZlIGJvZ3VzIGNsZWFudXAg
+aW4gbnY1MF9tc3RtX2FkZF9jb25uZWN0b3IoKQogIGRybS9ub3V2ZWF1OiBSZW1vdmUgdW5uZWNl
+c3NhcnkgVkNQSSBjaGVja3MgaW4gbnY1MF9tc3RvX2NsZWFudXAoKQogIGRybS9ub3V2ZWF1OiBL
+ZWVwIG1hbGxvYyByZWZlcmVuY2VzIHRvIE1TVCBwb3J0cwogIGRybS9ub3V2ZWF1OiBTdG9wIHVu
+c2V0dGluZyBtc3RjLT5wb3J0LCB1c2UgbWFsbG9jIHJlZnMKICBkcm0vbm91dmVhdTogR3JhYiBw
+YXlsb2FkIGxvY2sgaW4gbnY1MF9tc3RvX3BheWxvYWQoKQogIGRybS9kcF9tc3Q6IEFkZCBzb21l
+IGF0b21pYyBzdGF0ZSBpdGVyYXRvciBtYWNyb3MKICBkcm0vZHBfbXN0OiBTdGFydCB0cmFja2lu
+ZyBwZXItcG9ydCBWQ1BJIGFsbG9jYXRpb25zCiAgZHJtL2RwX21zdDogQ2hlY2sgcGF5bG9hZCBj
+b3VudCBpbiBkcm1fZHBfbXN0X2F0b21pY19jaGVjaygpCiAgZHJtL25vdXZlYXU6IFVzZSBhdG9t
+aWMgVkNQSSBoZWxwZXJzIGZvciBNU1QKCiAuLi4vZ3B1L2RwLW1zdC90b3BvbG9neS1maWd1cmUt
+MS5kb3QgICAgICAgICAgfCAgNTIgKwogLi4uL2dwdS9kcC1tc3QvdG9wb2xvZ3ktZmlndXJlLTIu
+ZG90ICAgICAgICAgIHwgIDU2ICsrCiAuLi4vZ3B1L2RwLW1zdC90b3BvbG9neS1maWd1cmUtMy5k
+b3QgICAgICAgICAgfCAgNTkgKysKIERvY3VtZW50YXRpb24vZ3B1L2RybS1rbXMtaGVscGVycy5y
+c3QgICAgICAgICB8ICAyNiArLQogLi4uL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbV9tc3Rf
+dHlwZXMuYyAgIHwgIDExICstCiBkcml2ZXJzL2dwdS9kcm0vZHJtX2RwX21zdF90b3BvbG9neS5j
+ICAgICAgICAgfCA5NDYgKysrKysrKysrKysrKystLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+bnRlbF9jb25uZWN0b3IuYyAgICAgICAgfCAgIDQgKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50
+ZWxfZGlzcGxheS5jICAgICAgICAgIHwgICA0ICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
+X2RwX21zdC5jICAgICAgICAgICB8ICA1NSArLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlz
+cG52NTAvZGlzcC5jICAgICAgIHwgIDk2ICstCiBpbmNsdWRlL2RybS9kcm1fZHBfbXN0X2hlbHBl
+ci5oICAgICAgICAgICAgICAgfCAxNTEgKystCiAxMSBmaWxlcyBjaGFuZ2VkLCAxMjA0IGluc2Vy
+dGlvbnMoKyksIDI1NiBkZWxldGlvbnMoLSkKIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0
+aW9uL2dwdS9kcC1tc3QvdG9wb2xvZ3ktZmlndXJlLTEuZG90CiBjcmVhdGUgbW9kZSAxMDA2NDQg
+RG9jdW1lbnRhdGlvbi9ncHUvZHAtbXN0L3RvcG9sb2d5LWZpZ3VyZS0yLmRvdAogY3JlYXRlIG1v
+ZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZ3B1L2RwLW1zdC90b3BvbG9neS1maWd1cmUtMy5kb3QK
+Ci0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
+eAo=
