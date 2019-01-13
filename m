@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109330] GL_ALPHA_BITS set to non-zero with
- EGL_PLATFORM_GBM_MESA
-Date: Sun, 13 Jan 2019 16:17:12 +0000
-Message-ID: <bug-109330-8800-9uqNCJi33M@http.bugs.freedesktop.org/>
-References: <bug-109330-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH v2] drm/nouveau/volt/gf117: fix speedo readout
+ register
+Date: Sun, 13 Jan 2019 17:50:10 -0500
+Message-ID: <20190113225010.891-1-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0610846268=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109330-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,142 +16,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0610846268==
-Content-Type: multipart/alternative; boundary="15473962320.4a9a.1725"
-Content-Transfer-Encoding: 7bit
-
-
---15473962320.4a9a.1725
-Date: Sun, 13 Jan 2019 16:17:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109330
-
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OK, so the 3 GPUs listed by emersion are all nv50, while the GP107 would be
-covered by the nvc0 driver backend. Unfortunately I have a nv42 plugged in =
-ATM,
-but I'll have a look when I'm back on something a bit more modern.
-
-If someone with C/C++ development experience and the requisite hardware is
-interested, feel free to join in #nouveau on irc.freenode.net and I can pro=
-vide
-advice for things to investigate.
-
-Lastly, if someone can provide an apitrace of the application doing
-glReadPixels and getting unexpected results, that would avoid the need to h=
-ave
-to reproduce the software setup. I believe it's possible to look at
-glReadPixels results in qapitrace ... would have to double-check though.
-
-One guess is that we're copying from a RGBX surface to a RGBA surface, and =
-not
-whacking alpha to 1. However that should generally work, so one would have =
-to
-identify the precise code-path followed whereby that does not work.
-
-Another guess is that the result of the rendering really does produce an al=
-pha
-of 0, either due to an earlier bug (unrelated to glReadPixels) happening, or
-due to something specific to the drm formats exposed by nouveau and/or orde=
-r of
-gl configs, which causes something funny to happen..
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15473962320.4a9a.1725
-Date: Sun, 13 Jan 2019 16:17:12 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GL_ALPHA_BITS set to non-zero with EGL_PLATFORM_GBM_MESA"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109330#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GL_ALPHA_BITS set to non-zero with EGL_PLATFORM_GBM_MESA"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109330">bug 10933=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>OK, so the 3 GPUs listed by emersion are all nv50, while the G=
-P107 would be
-covered by the nvc0 driver backend. Unfortunately I have a nv42 plugged in =
-ATM,
-but I'll have a look when I'm back on something a bit more modern.
-
-If someone with C/C++ development experience and the requisite hardware is
-interested, feel free to join in #nouveau on irc.freenode.net and I can pro=
-vide
-advice for things to investigate.
-
-Lastly, if someone can provide an apitrace of the application doing
-glReadPixels and getting unexpected results, that would avoid the need to h=
-ave
-to reproduce the software setup. I believe it's possible to look at
-glReadPixels results in qapitrace ... would have to double-check though.
-
-One guess is that we're copying from a RGBX surface to a RGBA surface, and =
-not
-whacking alpha to 1. However that should generally work, so one would have =
-to
-identify the precise code-path followed whereby that does not work.
-
-Another guess is that the result of the rendering really does produce an al=
-pha
-of 0, either due to an earlier bug (unrelated to glReadPixels) happening, or
-due to something specific to the drm formats exposed by nouveau and/or orde=
-r of
-gl configs, which causes something funny to happen..</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15473962320.4a9a.1725--
-
---===============0610846268==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0610846268==--
+R0YxMTcgYXBwZWFycyB0byB1c2UgdGhlIHNhbWUgcmVnaXN0ZXIgYXMgR0sxMDQgKGJ1dCBzdGls
+bCB3aXRoIHRoZQpnZW5lcmFsIEZlcm1pIHJlYWRvdXQgbWVjaGFuaXNtKS4KCkJ1Z3ppbGxhOiBo
+dHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDg5ODAKU2lnbmVk
+LW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KCnYxIC0+IHYy
+OiBzcGxpdCBvdXQgZGlmZmVyZW50IHJlZ2lkIGludG8gc2VwYXJhdGUgZmlsZS4KCiAuLi4vZHJt
+L25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi92b2x0LmggICAgfCAgMSArCiAuLi4vZ3B1L2Ry
+bS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgfCAgMiArLQogLi4uL2dwdS9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi92b2x0L0tidWlsZCAgIHwgIDEgKwogLi4uL2dwdS9kcm0vbm91
+dmVhdS9udmttL3N1YmRldi92b2x0L2dmMTE3LmMgIHwgNjAgKysrKysrKysrKysrKysrKysrKwog
+NCBmaWxlcyBjaGFuZ2VkLCA2MyBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCiBjcmVhdGUg
+bW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9nZjEx
+Ny5jCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1
+YmRldi92b2x0LmggYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2
+L3ZvbHQuaAppbmRleCA4YTBmODVmNWZjMWEuLjZhNzY1NjgyZmJmYSAxMDA2NDQKLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi92b2x0LmgKKysrIGIvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi92b2x0LmgKQEAgLTM4LDYg
+KzM4LDcgQEAgaW50IG52a21fdm9sdF9zZXRfaWQoc3RydWN0IG52a21fdm9sdCAqLCB1OCBpZCwg
+dTggbWluX2lkLCB1OCB0ZW1wLAogCiBpbnQgbnY0MF92b2x0X25ldyhzdHJ1Y3QgbnZrbV9kZXZp
+Y2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV92b2x0ICoqKTsKIGludCBnZjEwMF92b2x0X25ldyhzdHJ1
+Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV92b2x0ICoqKTsKK2ludCBnZjExN192
+b2x0X25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV92b2x0ICoqKTsK
+IGludCBnazEwNF92b2x0X25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZr
+bV92b2x0ICoqKTsKIGludCBnazIwYV92b2x0X25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50
+LCBzdHJ1Y3QgbnZrbV92b2x0ICoqKTsKIGludCBnbTIwYl92b2x0X25ldyhzdHJ1Y3QgbnZrbV9k
+ZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV92b2x0ICoqKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgYi9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jCmluZGV4IGUyOTQwMTM0MjZjZS4u
+MzQ3YTZhNGNiMzM5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2Vu
+Z2luZS9kZXZpY2UvYmFzZS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5n
+aW5lL2RldmljZS9iYXNlLmMKQEAgLTE2MTMsNyArMTYxMyw3IEBAIG52ZDdfY2hpcHNldCA9IHsK
+IAkucGNpID0gZ2YxMDZfcGNpX25ldywKIAkudGhlcm0gPSBnZjExOV90aGVybV9uZXcsCiAJLnRp
+bWVyID0gbnY0MV90aW1lcl9uZXcsCi0JLnZvbHQgPSBnZjEwMF92b2x0X25ldywKKwkudm9sdCA9
+IGdmMTE3X3ZvbHRfbmV3LAogCS5jZVswXSA9IGdmMTAwX2NlX25ldywKIAkuZGlzcCA9IGdmMTE5
+X2Rpc3BfbmV3LAogCS5kbWEgPSBnZjExOV9kbWFfbmV3LApkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9LYnVpbGQgYi9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi92b2x0L0tidWlsZAppbmRleCBiY2QxNzliYTExZDAuLjE0NmFk
+Y2RkMzE2YSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
+dm9sdC9LYnVpbGQKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9s
+dC9LYnVpbGQKQEAgLTIsNiArMiw3IEBAIG52a20teSArPSBudmttL3N1YmRldi92b2x0L2Jhc2Uu
+bwogbnZrbS15ICs9IG52a20vc3ViZGV2L3ZvbHQvZ3Bpby5vCiBudmttLXkgKz0gbnZrbS9zdWJk
+ZXYvdm9sdC9udjQwLm8KIG52a20teSArPSBudmttL3N1YmRldi92b2x0L2dmMTAwLm8KK252a20t
+eSArPSBudmttL3N1YmRldi92b2x0L2dmMTE3Lm8KIG52a20teSArPSBudmttL3N1YmRldi92b2x0
+L2drMTA0Lm8KIG52a20teSArPSBudmttL3N1YmRldi92b2x0L2drMjBhLm8KIG52a20teSArPSBu
+dmttL3N1YmRldi92b2x0L2dtMjBiLm8KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252a20vc3ViZGV2L3ZvbHQvZ2YxMTcuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
+a20vc3ViZGV2L3ZvbHQvZ2YxMTcuYwpuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRleCAwMDAwMDAw
+MDAwMDAuLjU0N2E1OGYwYWVhYwotLS0gL2Rldi9udWxsCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvZ2YxMTcuYwpAQCAtMCwwICsxLDYwIEBACisvKgorICog
+Q29weXJpZ2h0IDIwMTkgSWxpYSBNaXJraW4KKyAqCisgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBn
+cmFudGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYQorICogY29w
+eSBvZiB0aGlzIHNvZnR3YXJlIGFuZCBhc3NvY2lhdGVkIGRvY3VtZW50YXRpb24gZmlsZXMgKHRo
+ZSAiU29mdHdhcmUiKSwKKyAqIHRvIGRlYWwgaW4gdGhlIFNvZnR3YXJlIHdpdGhvdXQgcmVzdHJp
+Y3Rpb24sIGluY2x1ZGluZyB3aXRob3V0IGxpbWl0YXRpb24KKyAqIHRoZSByaWdodHMgdG8gdXNl
+LCBjb3B5LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLCBkaXN0cmlidXRlLCBzdWJsaWNlbnNlLAor
+ICogYW5kL29yIHNlbGwgY29waWVzIG9mIHRoZSBTb2Z0d2FyZSwgYW5kIHRvIHBlcm1pdCBwZXJz
+b25zIHRvIHdob20gdGhlCisgKiBTb2Z0d2FyZSBpcyBmdXJuaXNoZWQgdG8gZG8gc28sIHN1Ympl
+Y3QgdG8gdGhlIGZvbGxvd2luZyBjb25kaXRpb25zOgorICoKKyAqIFRoZSBhYm92ZSBjb3B5cmln
+aHQgbm90aWNlIGFuZCB0aGlzIHBlcm1pc3Npb24gbm90aWNlIHNoYWxsIGJlIGluY2x1ZGVkIGlu
+CisgKiBhbGwgY29waWVzIG9yIHN1YnN0YW50aWFsIHBvcnRpb25zIG9mIHRoZSBTb2Z0d2FyZS4K
+KyAqCisgKiBUSEUgU09GVFdBUkUgSVMgUFJPVklERUQgIkFTIElTIiwgV0lUSE9VVCBXQVJSQU5U
+WSBPRiBBTlkgS0lORCwgRVhQUkVTUyBPUgorICogSU1QTElFRCwgSU5DTFVESU5HIEJVVCBOT1Qg
+TElNSVRFRCBUTyBUSEUgV0FSUkFOVElFUyBPRiBNRVJDSEFOVEFCSUxJVFksCisgKiBGSVRORVNT
+IEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9OSU5GUklOR0VNRU5ULiAgSU4gTk8gRVZF
+TlQgU0hBTEwKKyAqIFRIRSBDT1BZUklHSFQgSE9MREVSKFMpIE9SIEFVVEhPUihTKSBCRSBMSUFC
+TEUgRk9SIEFOWSBDTEFJTSwgREFNQUdFUyBPUgorICogT1RIRVIgTElBQklMSVRZLCBXSEVUSEVS
+IElOIEFOIEFDVElPTiBPRiBDT05UUkFDVCwgVE9SVCBPUiBPVEhFUldJU0UsCisgKiBBUklTSU5H
+IEZST00sIE9VVCBPRiBPUiBJTiBDT05ORUNUSU9OIFdJVEggVEhFIFNPRlRXQVJFIE9SIFRIRSBV
+U0UgT1IKKyAqIE9USEVSIERFQUxJTkdTIElOIFRIRSBTT0ZUV0FSRS4KKyAqCisgKiBBdXRob3Jz
+OiBJbGlhIE1pcmtpbgorICovCisjaW5jbHVkZSAicHJpdi5oIgorCisjaW5jbHVkZSA8c3ViZGV2
+L2Z1c2UuaD4KKworc3RhdGljIGludAorZ2YxMTdfdm9sdF9zcGVlZG9fcmVhZChzdHJ1Y3QgbnZr
+bV92b2x0ICp2b2x0KQoreworCXN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlID0gdm9sdC0+c3Vi
+ZGV2LmRldmljZTsKKwlzdHJ1Y3QgbnZrbV9mdXNlICpmdXNlID0gZGV2aWNlLT5mdXNlOworCisJ
+aWYgKCFmdXNlKQorCQlyZXR1cm4gLUVJTlZBTDsKKworCXJldHVybiBudmttX2Z1c2VfcmVhZChm
+dXNlLCAweDNhOCk7Cit9CisKK3N0YXRpYyBjb25zdCBzdHJ1Y3QgbnZrbV92b2x0X2Z1bmMKK2dm
+MTE3X3ZvbHQgPSB7CisJLm9uZWluaXQgPSBnZjEwMF92b2x0X29uZWluaXQsCisJLnZpZF9nZXQg
+PSBudmttX3ZvbHRncGlvX2dldCwKKwkudmlkX3NldCA9IG52a21fdm9sdGdwaW9fc2V0LAorCS5z
+cGVlZG9fcmVhZCA9IGdmMTE3X3ZvbHRfc3BlZWRvX3JlYWQsCit9OworCitpbnQKK2dmMTE3X3Zv
+bHRfbmV3KHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlLCBpbnQgaW5kZXgsIHN0cnVjdCBudmtt
+X3ZvbHQgKipwdm9sdCkKK3sKKwlzdHJ1Y3QgbnZrbV92b2x0ICp2b2x0OworCWludCByZXQ7CisK
+KwlyZXQgPSBudmttX3ZvbHRfbmV3XygmZ2YxMTdfdm9sdCwgZGV2aWNlLCBpbmRleCwgJnZvbHQp
+OworCSpwdm9sdCA9IHZvbHQ7CisJaWYgKHJldCkKKwkJcmV0dXJuIHJldDsKKworCXJldHVybiBu
+dmttX3ZvbHRncGlvX2luaXQodm9sdCk7Cit9Ci0tIAoyLjE5LjIKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
