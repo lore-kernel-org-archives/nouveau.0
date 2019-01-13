@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109330] GL_ALPHA_BITS set to non-zero with
  EGL_PLATFORM_GBM_MESA
-Date: Sun, 13 Jan 2019 00:29:28 +0000
-Message-ID: <bug-109330-8800-JUqy8avTkM@http.bugs.freedesktop.org/>
+Date: Sun, 13 Jan 2019 02:30:43 +0000
+Message-ID: <bug-109330-8800-62CKNOEHuE@http.bugs.freedesktop.org/>
 References: <bug-109330-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1084714242=="
+Content-Type: multipart/mixed; boundary="===============0119237979=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109330-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1084714242==
-Content-Type: multipart/alternative; boundary="15473393683.d59063.7939"
+--===============0119237979==
+Content-Type: multipart/alternative; boundary="15473466420.769D2fD71.27143"
 Content-Transfer-Encoding: 7bit
 
 
---15473393683.d59063.7939
-Date: Sun, 13 Jan 2019 00:29:28 +0000
+--15473466420.769D2fD71.27143
+Date: Sun, 13 Jan 2019 02:30:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,28 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109330
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-A few questions:
+--- Comment #2 from emersion <contact-sV0wSBM+kKVWj0EZb7rXcA@public.gmane.org> ---
+The downstream bug is at [1].
 
-1. Which hardware was this tested on? (lspci -nn -d 10de: should produce the
-requisite info)
-2. What mesa version
-3. Is glReadPixels reading into a PBO or a client-side buffer?
+1. So far I've received bug reports for these cards:
+
+NVIDIA Quadro FX 580
+NVIDIA GT218M NVS 3100M
+NVIDIA GT216M GeForce GT 320M
+
+2. Mesa 18.2.6
+
+3. glReadPixels is reading into a client-side buffer
+
+[1]: https://github.com/swaywm/wlroots/issues/1438
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15473393683.d59063.7939
-Date: Sun, 13 Jan 2019 00:29:28 +0000
+--15473466420.769D2fD71.27143
+Date: Sun, 13 Jan 2019 02:30:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,23 +74,31 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GL_ALPHA_BITS set to non-zero with EGL_PLATFORM_GBM_MESA"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109330#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109330#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GL_ALPHA_BITS set to non-zero with EGL_PLATFORM_GBM_MESA"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109330">bug 10933=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+contact&#64;emersion.fr" title=3D"emersion &lt;contact&#64;emersion.fr&gt;"=
+> <span class=3D"fn">emersion</span></a>
 </span></b>
-        <pre>A few questions:
+        <pre>The downstream bug is at [1].
 
-1. Which hardware was this tested on? (lspci -nn -d 10de: should produce the
-requisite info)
-2. What mesa version
-3. Is glReadPixels reading into a PBO or a client-side buffer?</pre>
+1. So far I've received bug reports for these cards:
+
+NVIDIA Quadro FX 580
+NVIDIA GT218M NVS 3100M
+NVIDIA GT216M GeForce GT 320M
+
+2. Mesa 18.2.6
+
+3. glReadPixels is reading into a client-side buffer
+
+[1]: <a href=3D"https://github.com/swaywm/wlroots/issues/1438">https://gith=
+ub.com/swaywm/wlroots/issues/1438</a></pre>
         </div>
       </p>
 
@@ -98,9 +113,9 @@ requisite info)
     </body>
 </html>=
 
---15473393683.d59063.7939--
+--15473466420.769D2fD71.27143--
 
---===============1084714242==
+--===============0119237979==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +125,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1084714242==--
+--===============0119237979==--
