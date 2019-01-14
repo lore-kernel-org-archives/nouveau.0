@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109341] Plasma Wayland locks up immediately on sign
- in
-Date: Mon, 14 Jan 2019 03:10:29 +0000
-Message-ID: <bug-109341-8800-azN378q279@http.bugs.freedesktop.org/>
-References: <bug-109341-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 109342] Display is frozen in X,
+ but mouse cursor moves when using fcitx with nouveau.
+Date: Mon, 14 Jan 2019 12:41:34 +0000
+Message-ID: <bug-109342-8800-SzJ6v3IbJ9@http.bugs.freedesktop.org/>
+References: <bug-109342-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1762068130=="
+Content-Type: multipart/mixed; boundary="===============0417177701=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109341-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-109342-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1762068130==
-Content-Type: multipart/alternative; boundary="15474354291.Bb17.13579"
+--===============0417177701==
+Content-Type: multipart/alternative; boundary="15474696942.eA5268fd.9807"
 Content-Transfer-Encoding: 7bit
 
 
---15474354291.Bb17.13579
-Date: Mon, 14 Jan 2019 03:10:29 +0000
+--15474696942.eA5268fd.9807
+Date: Mon, 14 Jan 2019 12:41:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109341
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109342
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Unfortunately nouveau doesn't do well with concurrent multi-threaded GL usa=
-ge.
-The PBDMA errors, I believe, may be indicators of something like that.
+Sih S=C3=AEng-h=C3=B4ng <ihcaoe-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-I believe plasma added some logic to avoid doing that, at least on top of
-nouveau (or perhaps that was Qt).
-
-There's also some pending work to improve the multi-threaded situation for
-nouveau, but that won't do you much good on a year-old version of mesa.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Component|DRM/other                   |Driver/nouveau
+           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |.org                        |rg
+            Version|XOrg git                    |unspecified
+            Product|DRI                         |xorg
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15474354291.Bb17.13579
-Date: Mon, 14 Jan 2019 03:10:29 +0000
+--15474696942.eA5268fd.9807
+Date: Mon, 14 Jan 2019 12:41:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,34 +63,65 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ihcaoe&#6=
+4;gmail.com" title=3D"Sih S=C3=AEng-h=C3=B4ng &lt;ihcaoe&#64;gmail.com&gt;"=
+> <span class=3D"fn">Sih S=C3=AEng-h=C3=B4ng</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Display is frozen in X, but mouse cursor moves when using=
+ fcitx with nouveau."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109342">bug 10934=
+2</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">QA Contact</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>xorg-team&#64;lists.x.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Component</td>
+           <td>DRM/other
+           </td>
+           <td>Driver/nouveau
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>dri-devel&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Version</td>
+           <td>XOrg git
+           </td>
+           <td>unspecified
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Product</td>
+           <td>DRI
+           </td>
+           <td>xorg
+           </td>
+         </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Plasma Wayland locks up immediately on sign in"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109341#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Plasma Wayland locks up immediately on sign in"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109341">bug 10934=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Unfortunately nouveau doesn't do well with concurrent multi-th=
-readed GL usage.
-The PBDMA errors, I believe, may be indicators of something like that.
-
-I believe plasma added some logic to avoid doing that, at least on top of
-nouveau (or perhaps that was Qt).
-
-There's also some pending work to improve the multi-threaded situation for
-nouveau, but that won't do you much good on a year-old version of mesa.</pr=
-e>
-        </div>
       </p>
 
 
@@ -99,15 +129,14 @@ e>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15474354291.Bb17.13579--
+--15474696942.eA5268fd.9807--
 
---===============1762068130==
+--===============0417177701==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +146,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1762068130==--
+--===============0417177701==--
