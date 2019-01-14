@@ -1,14 +1,11 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v2] drm/nouveau/volt/gf117: fix speedo readout
- register
-Date: Mon, 14 Jan 2019 08:55:39 +1000
-Message-ID: <CACAvsv4yVJyvp1ww3BLwYQU8rGMPF48QCVAPt_18m0=_aUajgg@mail.gmail.com>
-References: <20190113225010.891-1-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 109341] New: Plasma Wayland locks up immediately on
+ sign in
+Date: Mon, 14 Jan 2019 03:00:55 +0000
+Message-ID: <bug-109341-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1415404096=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190113225010.891-1-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,103 +15,264 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCAxNCBKYW4gMjAxOSBhdCAwODo1MCwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5t
-aXQuZWR1PiB3cm90ZToKPgo+IEdGMTE3IGFwcGVhcnMgdG8gdXNlIHRoZSBzYW1lIHJlZ2lzdGVy
-IGFzIEdLMTA0IChidXQgc3RpbGwgd2l0aCB0aGUKPiBnZW5lcmFsIEZlcm1pIHJlYWRvdXQgbWVj
-aGFuaXNtKS4KPgo+IEJ1Z3ppbGxhOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3df
-YnVnLmNnaT9pZD0xMDg5ODAKPiBTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBh
-bHVtLm1pdC5lZHU+Cj4gLS0tCj4KPiB2MSAtPiB2Mjogc3BsaXQgb3V0IGRpZmZlcmVudCByZWdp
-ZCBpbnRvIHNlcGFyYXRlIGZpbGUuCk1lcmdlZC4gIFRoYW5rcyEKCj4KPiAgLi4uL2RybS9ub3V2
-ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvdm9sdC5oICAgIHwgIDEgKwo+ICAuLi4vZ3B1L2RybS9u
-b3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgfCAgMiArLQo+ICAuLi4vZ3B1L2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvS2J1aWxkICAgfCAgMSArCj4gIC4uLi9ncHUvZHJtL25v
-dXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9nZjExNy5jICB8IDYwICsrKysrKysrKysrKysrKysrKysK
-PiAgNCBmaWxlcyBjaGFuZ2VkLCA2MyBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4gIGNy
-ZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0
-L2dmMTE3LmMKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRl
-L252a20vc3ViZGV2L3ZvbHQuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZr
-bS9zdWJkZXYvdm9sdC5oCj4gaW5kZXggOGEwZjg1ZjVmYzFhLi42YTc2NTY4MmZiZmEgMTAwNjQ0
-Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi92b2x0
-LmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3Zv
-bHQuaAo+IEBAIC0zOCw2ICszOCw3IEBAIGludCBudmttX3ZvbHRfc2V0X2lkKHN0cnVjdCBudmtt
-X3ZvbHQgKiwgdTggaWQsIHU4IG1pbl9pZCwgdTggdGVtcCwKPgo+ICBpbnQgbnY0MF92b2x0X25l
-dyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV92b2x0ICoqKTsKPiAgaW50
-IGdmMTAwX3ZvbHRfbmV3KHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQsIHN0cnVjdCBudmttX3Zv
-bHQgKiopOwo+ICtpbnQgZ2YxMTdfdm9sdF9uZXcoc3RydWN0IG52a21fZGV2aWNlICosIGludCwg
-c3RydWN0IG52a21fdm9sdCAqKik7Cj4gIGludCBnazEwNF92b2x0X25ldyhzdHJ1Y3QgbnZrbV9k
-ZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV92b2x0ICoqKTsKPiAgaW50IGdrMjBhX3ZvbHRfbmV3
-KHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQsIHN0cnVjdCBudmttX3ZvbHQgKiopOwo+ICBpbnQg
-Z20yMGJfdm9sdF9uZXcoc3RydWN0IG52a21fZGV2aWNlICosIGludCwgc3RydWN0IG52a21fdm9s
-dCAqKik7Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5l
-L2RldmljZS9iYXNlLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZp
-Y2UvYmFzZS5jCj4gaW5kZXggZTI5NDAxMzQyNmNlLi4zNDdhNmE0Y2IzMzkgMTAwNjQ0Cj4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2UuYwo+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMKPiBA
-QCAtMTYxMyw3ICsxNjEzLDcgQEAgbnZkN19jaGlwc2V0ID0gewo+ICAgICAgICAgLnBjaSA9IGdm
-MTA2X3BjaV9uZXcsCj4gICAgICAgICAudGhlcm0gPSBnZjExOV90aGVybV9uZXcsCj4gICAgICAg
-ICAudGltZXIgPSBudjQxX3RpbWVyX25ldywKPiAtICAgICAgIC52b2x0ID0gZ2YxMDBfdm9sdF9u
-ZXcsCj4gKyAgICAgICAudm9sdCA9IGdmMTE3X3ZvbHRfbmV3LAo+ICAgICAgICAgLmNlWzBdID0g
-Z2YxMDBfY2VfbmV3LAo+ICAgICAgICAgLmRpc3AgPSBnZjExOV9kaXNwX25ldywKPiAgICAgICAg
-IC5kbWEgPSBnZjExOV9kbWFfbmV3LAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9udmttL3N1YmRldi92b2x0L0tidWlsZCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
-a20vc3ViZGV2L3ZvbHQvS2J1aWxkCj4gaW5kZXggYmNkMTc5YmExMWQwLi4xNDZhZGNkZDMxNmEg
-MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9L
-YnVpbGQKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L0ti
-dWlsZAo+IEBAIC0yLDYgKzIsNyBAQCBudmttLXkgKz0gbnZrbS9zdWJkZXYvdm9sdC9iYXNlLm8K
-PiAgbnZrbS15ICs9IG52a20vc3ViZGV2L3ZvbHQvZ3Bpby5vCj4gIG52a20teSArPSBudmttL3N1
-YmRldi92b2x0L252NDAubwo+ICBudmttLXkgKz0gbnZrbS9zdWJkZXYvdm9sdC9nZjEwMC5vCj4g
-K252a20teSArPSBudmttL3N1YmRldi92b2x0L2dmMTE3Lm8KPiAgbnZrbS15ICs9IG52a20vc3Vi
-ZGV2L3ZvbHQvZ2sxMDQubwo+ICBudmttLXkgKz0gbnZrbS9zdWJkZXYvdm9sdC9nazIwYS5vCj4g
-IG52a20teSArPSBudmttL3N1YmRldi92b2x0L2dtMjBiLm8KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9nZjExNy5jIGIvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9nZjExNy5jCj4gbmV3IGZpbGUgbW9kZSAxMDA2
-NDQKPiBpbmRleCAwMDAwMDAwMDAwMDAuLjU0N2E1OGYwYWVhYwo+IC0tLSAvZGV2L251bGwKPiAr
-KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2dmMTE3LmMKPiBA
-QCAtMCwwICsxLDYwIEBACj4gKy8qCj4gKyAqIENvcHlyaWdodCAyMDE5IElsaWEgTWlya2luCj4g
-KyAqCj4gKyAqIFBlcm1pc3Npb24gaXMgaGVyZWJ5IGdyYW50ZWQsIGZyZWUgb2YgY2hhcmdlLCB0
-byBhbnkgcGVyc29uIG9idGFpbmluZyBhCj4gKyAqIGNvcHkgb2YgdGhpcyBzb2Z0d2FyZSBhbmQg
-YXNzb2NpYXRlZCBkb2N1bWVudGF0aW9uIGZpbGVzICh0aGUgIlNvZnR3YXJlIiksCj4gKyAqIHRv
-IGRlYWwgaW4gdGhlIFNvZnR3YXJlIHdpdGhvdXQgcmVzdHJpY3Rpb24sIGluY2x1ZGluZyB3aXRo
-b3V0IGxpbWl0YXRpb24KPiArICogdGhlIHJpZ2h0cyB0byB1c2UsIGNvcHksIG1vZGlmeSwgbWVy
-Z2UsIHB1Ymxpc2gsIGRpc3RyaWJ1dGUsIHN1YmxpY2Vuc2UsCj4gKyAqIGFuZC9vciBzZWxsIGNv
-cGllcyBvZiB0aGUgU29mdHdhcmUsIGFuZCB0byBwZXJtaXQgcGVyc29ucyB0byB3aG9tIHRoZQo+
-ICsgKiBTb2Z0d2FyZSBpcyBmdXJuaXNoZWQgdG8gZG8gc28sIHN1YmplY3QgdG8gdGhlIGZvbGxv
-d2luZyBjb25kaXRpb25zOgo+ICsgKgo+ICsgKiBUaGUgYWJvdmUgY29weXJpZ2h0IG5vdGljZSBh
-bmQgdGhpcyBwZXJtaXNzaW9uIG5vdGljZSBzaGFsbCBiZSBpbmNsdWRlZCBpbgo+ICsgKiBhbGwg
-Y29waWVzIG9yIHN1YnN0YW50aWFsIHBvcnRpb25zIG9mIHRoZSBTb2Z0d2FyZS4KPiArICoKPiAr
-ICogVEhFIFNPRlRXQVJFIElTIFBST1ZJREVEICJBUyBJUyIsIFdJVEhPVVQgV0FSUkFOVFkgT0Yg
-QU5ZIEtJTkQsIEVYUFJFU1MgT1IKPiArICogSU1QTElFRCwgSU5DTFVESU5HIEJVVCBOT1QgTElN
-SVRFRCBUTyBUSEUgV0FSUkFOVElFUyBPRiBNRVJDSEFOVEFCSUxJVFksCj4gKyAqIEZJVE5FU1Mg
-Rk9SIEEgUEFSVElDVUxBUiBQVVJQT1NFIEFORCBOT05JTkZSSU5HRU1FTlQuICBJTiBOTyBFVkVO
-VCBTSEFMTAo+ICsgKiBUSEUgQ09QWVJJR0hUIEhPTERFUihTKSBPUiBBVVRIT1IoUykgQkUgTElB
-QkxFIEZPUiBBTlkgQ0xBSU0sIERBTUFHRVMgT1IKPiArICogT1RIRVIgTElBQklMSVRZLCBXSEVU
-SEVSIElOIEFOIEFDVElPTiBPRiBDT05UUkFDVCwgVE9SVCBPUiBPVEhFUldJU0UsCj4gKyAqIEFS
-SVNJTkcgRlJPTSwgT1VUIE9GIE9SIElOIENPTk5FQ1RJT04gV0lUSCBUSEUgU09GVFdBUkUgT1Ig
-VEhFIFVTRSBPUgo+ICsgKiBPVEhFUiBERUFMSU5HUyBJTiBUSEUgU09GVFdBUkUuCj4gKyAqCj4g
-KyAqIEF1dGhvcnM6IElsaWEgTWlya2luCj4gKyAqLwo+ICsjaW5jbHVkZSAicHJpdi5oIgo+ICsK
-PiArI2luY2x1ZGUgPHN1YmRldi9mdXNlLmg+Cj4gKwo+ICtzdGF0aWMgaW50Cj4gK2dmMTE3X3Zv
-bHRfc3BlZWRvX3JlYWQoc3RydWN0IG52a21fdm9sdCAqdm9sdCkKPiArewo+ICsgICAgICAgc3Ry
-dWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSB2b2x0LT5zdWJkZXYuZGV2aWNlOwo+ICsgICAgICAg
-c3RydWN0IG52a21fZnVzZSAqZnVzZSA9IGRldmljZS0+ZnVzZTsKPiArCj4gKyAgICAgICBpZiAo
-IWZ1c2UpCj4gKyAgICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOwo+ICsKPiArICAgICAgIHJl
-dHVybiBudmttX2Z1c2VfcmVhZChmdXNlLCAweDNhOCk7Cj4gK30KPiArCj4gK3N0YXRpYyBjb25z
-dCBzdHJ1Y3QgbnZrbV92b2x0X2Z1bmMKPiArZ2YxMTdfdm9sdCA9IHsKPiArICAgICAgIC5vbmVp
-bml0ID0gZ2YxMDBfdm9sdF9vbmVpbml0LAo+ICsgICAgICAgLnZpZF9nZXQgPSBudmttX3ZvbHRn
-cGlvX2dldCwKPiArICAgICAgIC52aWRfc2V0ID0gbnZrbV92b2x0Z3Bpb19zZXQsCj4gKyAgICAg
-ICAuc3BlZWRvX3JlYWQgPSBnZjExN192b2x0X3NwZWVkb19yZWFkLAo+ICt9Owo+ICsKPiAraW50
-Cj4gK2dmMTE3X3ZvbHRfbmV3KHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlLCBpbnQgaW5kZXgs
-IHN0cnVjdCBudmttX3ZvbHQgKipwdm9sdCkKPiArewo+ICsgICAgICAgc3RydWN0IG52a21fdm9s
-dCAqdm9sdDsKPiArICAgICAgIGludCByZXQ7Cj4gKwo+ICsgICAgICAgcmV0ID0gbnZrbV92b2x0
-X25ld18oJmdmMTE3X3ZvbHQsIGRldmljZSwgaW5kZXgsICZ2b2x0KTsKPiArICAgICAgICpwdm9s
-dCA9IHZvbHQ7Cj4gKyAgICAgICBpZiAocmV0KQo+ICsgICAgICAgICAgICAgICByZXR1cm4gcmV0
-Owo+ICsKPiArICAgICAgIHJldHVybiBudmttX3ZvbHRncGlvX2luaXQodm9sdCk7Cj4gK30KPiAt
-LQo+IDIuMTkuMgo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1415404096==
+Content-Type: multipart/alternative; boundary="15474348550.B9E6.10209"
+Content-Transfer-Encoding: 7bit
+
+
+--15474348550.B9E6.10209
+Date: Mon, 14 Jan 2019 03:00:55 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109341
+
+            Bug ID: 109341
+           Summary: Plasma Wayland locks up immediately on sign in
+           Product: Mesa
+           Version: 18.0
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: blocker
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: etna-jjFNsPSvq+iXDw4h08c5KA@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 143094
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D143094&action=3Dedit
+dmesg immediately after lockup
+
+Hello Nouveau devs:
+
+I'm facing an issue where attempting to sign into a Wayland Plasma session
+causes the entire GUI to lock up immediately. Under some circumstances, I c=
+an
+still SSH into the unit, but i usually can't do much before even the SSH
+session locks up as well.
+
+STEPS TO REPRODUCE
+1. Boot computer
+2. Sign in to Plasma (Wayland) at SDDM
+
+OBSERVED RESULT
+Machine instantly locks up. Sometimes, I might be able to SSH in, but dmesg
+only prints a bunch of Nouveau FIFO engine fault errors=20
+
+EXPECTED RESULT
+PLasma Wayland session starts normally.
+
+SOFTWARE/OS VERSIONS
+Linux/KDE Plasma: OpenSUSE Leap 15.0
+(available in About System)
+KDE Plasma Version: 5.12
+
+ADDITIONAL INFORMATION
+I have done the following as well:
+
+- Upgrade the default OpenSUSE kernel to a vanilla 4.18 kernel from kernel.=
+org.
+Lockup still occurs upon sign in
+- Upgrade the default=20
+- Tested a Wayland session with Gnome successfully
+- Upgraded Plasma to 5.14 with the repo recommended by OpenSUSE here and lo=
+ckup
+still occurs
+- Booted with nouveau.noaccel=3D1 and Plasma Wayland successfully loads but=
+ with
+terrible performance
+
+This issue was reported to the Plasma bug tracker and they closed it on the
+grounds that anything which causes a system lockup is operates much lower t=
+han
+the DE and should thus be filed with Nouveau.
+
+Attached dmesg and session logs.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15474348550.B9E6.10209
+Date: Mon, 14 Jan 2019 03:00:55 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Plasma Wayland locks up immediately on sign in"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109341">109341</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Plasma Wayland locks up immediately on sign in
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>18.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>blocker
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>etna&#64;linuxmail.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D143094=
+" name=3D"attach_143094" title=3D"dmesg immediately after lockup">attachmen=
+t 143094</a> <a href=3D"attachment.cgi?id=3D143094&amp;action=3Dedit" title=
+=3D"dmesg immediately after lockup">[details]</a></span>
+dmesg immediately after lockup
+
+Hello Nouveau devs:
+
+I'm facing an issue where attempting to sign into a Wayland Plasma session
+causes the entire GUI to lock up immediately. Under some circumstances, I c=
+an
+still SSH into the unit, but i usually can't do much before even the SSH
+session locks up as well.
+
+STEPS TO REPRODUCE
+1. Boot computer
+2. Sign in to Plasma (Wayland) at SDDM
+
+OBSERVED RESULT
+Machine instantly locks up. Sometimes, I might be able to SSH in, but dmesg
+only prints a bunch of Nouveau FIFO engine fault errors=20
+
+EXPECTED RESULT
+PLasma Wayland session starts normally.
+
+SOFTWARE/OS VERSIONS
+Linux/KDE Plasma: OpenSUSE Leap 15.0
+(available in About System)
+KDE Plasma Version: 5.12
+
+ADDITIONAL INFORMATION
+I have done the following as well:
+
+- Upgrade the default OpenSUSE kernel to a vanilla 4.18 kernel from kernel.=
+org.
+Lockup still occurs upon sign in
+- Upgrade the default=20
+- Tested a Wayland session with Gnome successfully
+- Upgraded Plasma to 5.14 with the repo recommended by OpenSUSE here and lo=
+ckup
+still occurs
+- Booted with nouveau.noaccel=3D1 and Plasma Wayland successfully loads but=
+ with
+terrible performance
+
+This issue was reported to the Plasma bug tracker and they closed it on the
+grounds that anything which causes a system lockup is operates much lower t=
+han
+the DE and should thus be filed with Nouveau.
+
+Attached dmesg and session logs.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15474348550.B9E6.10209--
+
+--===============1415404096==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1415404096==--
