@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109341] Plasma Wayland locks up immediately on sign
  in
-Date: Mon, 14 Jan 2019 03:06:03 +0000
-Message-ID: <bug-109341-8800-SHlTv4RiRE@http.bugs.freedesktop.org/>
+Date: Mon, 14 Jan 2019 03:10:29 +0000
+Message-ID: <bug-109341-8800-azN378q279@http.bugs.freedesktop.org/>
 References: <bug-109341-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0824562833=="
+Content-Type: multipart/mixed; boundary="===============1762068130=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109341-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0824562833==
-Content-Type: multipart/alternative; boundary="15474351620.B2eAfC6.7363"
+--===============1762068130==
+Content-Type: multipart/alternative; boundary="15474354291.Bb17.13579"
 Content-Transfer-Encoding: 7bit
 
 
---15474351620.B2eAfC6.7363
-Date: Mon, 14 Jan 2019 03:06:02 +0000
+--15474354291.Bb17.13579
+Date: Mon, 14 Jan 2019 03:10:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109341
 
-etna-jjFNsPSvq+iXDw4h08c5KA@public.gmane.org changed:
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Unfortunately nouveau doesn't do well with concurrent multi-threaded GL usa=
+ge.
+The PBDMA errors, I believe, may be indicators of something like that.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Severity|blocker                     |major
+I believe plasma added some logic to avoid doing that, at least on top of
+nouveau (or perhaps that was Qt).
+
+There's also some pending work to improve the multi-threaded situation for
+nouveau, but that won't do you much good on a year-old version of mesa.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15474351620.B2eAfC6.7363
-Date: Mon, 14 Jan 2019 03:06:02 +0000
+--15474354291.Bb17.13579
+Date: Mon, 14 Jan 2019 03:10:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,30 +64,34 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:etna&#64;=
-linuxmail.org" title=3D"etna&#64;linuxmail.org">etna&#64;linuxmail.org</a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Plasma Wayland locks up immediately on sign in"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109341#c4">Commen=
+t # 4</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Plasma Wayland locks up immediately on sign in"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109341">bug 10934=
 1</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Unfortunately nouveau doesn't do well with concurrent multi-th=
+readed GL usage.
+The PBDMA errors, I believe, may be indicators of something like that.
 
-         <tr>
-           <td style=3D"text-align:right;">Severity</td>
-           <td>blocker
-           </td>
-           <td>major
-           </td>
-         </tr></table>
-      <p>
+I believe plasma added some logic to avoid doing that, at least on top of
+nouveau (or perhaps that was Qt).
+
+There's also some pending work to improve the multi-threaded situation for
+nouveau, but that won't do you much good on a year-old version of mesa.</pr=
+e>
+        </div>
       </p>
 
 
@@ -96,9 +105,9 @@ linuxmail.org" title=3D"etna&#64;linuxmail.org">etna&#64;linuxmail.org</a>
     </body>
 </html>=
 
---15474351620.B2eAfC6.7363--
+--15474354291.Bb17.13579--
 
---===============0824562833==
+--===============1762068130==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0824562833==--
+--===============1762068130==--
