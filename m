@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109342] Display is frozen in X,
  but mouse cursor moves when using fcitx with nouveau.
-Date: Mon, 14 Jan 2019 12:41:34 +0000
-Message-ID: <bug-109342-8800-SzJ6v3IbJ9@http.bugs.freedesktop.org/>
+Date: Mon, 14 Jan 2019 12:42:08 +0000
+Message-ID: <bug-109342-8800-1PRkBTTDEF@http.bugs.freedesktop.org/>
 References: <bug-109342-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0417177701=="
+Content-Type: multipart/mixed; boundary="===============1694485185=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109342-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0417177701==
-Content-Type: multipart/alternative; boundary="15474696942.eA5268fd.9807"
+--===============1694485185==
+Content-Type: multipart/alternative; boundary="15474697280.7E6Ac.7922"
 Content-Transfer-Encoding: 7bit
 
 
---15474696942.eA5268fd.9807
-Date: Mon, 14 Jan 2019 12:41:34 +0000
+--15474697280.7E6Ac.7922
+Date: Mon, 14 Jan 2019 12:42:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,19 +40,14 @@ Sih S=C3=AEng-h=C3=B4ng <ihcaoe-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Component|DRM/other                   |Driver/nouveau
-           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |.org                        |rg
-            Version|XOrg git                    |unspecified
-            Product|DRI                         |xorg
+                 OS|All                         |Linux (All)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15474696942.eA5268fd.9807
-Date: Mon, 14 Jan 2019 12:41:34 +0000
+--15474697280.7E6Ac.7922
+Date: Mon, 14 Jan 2019 12:42:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -82,43 +77,10 @@ Auto-Submitted: auto-generated
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">QA Contact</td>
-           <td>
-               &nbsp;
+           <td style=3D"text-align:right;">OS</td>
+           <td>All
            </td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>DRM/other
-           </td>
-           <td>Driver/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>dri-devel&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Version</td>
-           <td>XOrg git
-           </td>
-           <td>unspecified
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Product</td>
-           <td>DRI
-           </td>
-           <td>xorg
+           <td>Linux (All)
            </td>
          </tr></table>
       <p>
@@ -134,9 +96,9 @@ Auto-Submitted: auto-generated
     </body>
 </html>=
 
---15474696942.eA5268fd.9807--
+--15474697280.7E6Ac.7922--
 
---===============0417177701==
+--===============1694485185==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -146,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0417177701==--
+--===============1694485185==--
