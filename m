@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109341] Plasma Wayland locks up immediately on sign
  in
-Date: Mon, 14 Jan 2019 03:02:42 +0000
-Message-ID: <bug-109341-8800-A3J7tOp7kN@http.bugs.freedesktop.org/>
+Date: Mon, 14 Jan 2019 03:05:39 +0000
+Message-ID: <bug-109341-8800-s8yBvdiLzD@http.bugs.freedesktop.org/>
 References: <bug-109341-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0197884508=="
+Content-Type: multipart/mixed; boundary="===============0541608236=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109341-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0197884508==
-Content-Type: multipart/alternative; boundary="15474349610.0b4DeEe.7363"
+--===============0541608236==
+Content-Type: multipart/alternative; boundary="15474351390.CcDeFf.11593"
 Content-Transfer-Encoding: 7bit
 
 
---15474349610.0b4DeEe.7363
-Date: Mon, 14 Jan 2019 03:02:41 +0000
+--15474351390.CcDeFf.11593
+Date: Mon, 14 Jan 2019 03:05:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109341
 
---- Comment #2 from etna-jjFNsPSvq+iXDw4h08c5KA@public.gmane.org ---
-Created attachment 143096
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D143096&action=3Dedit
-Attempted a backtrace. Not sure of its usefullness.
+--- Comment #3 from etna-jjFNsPSvq+iXDw4h08c5KA@public.gmane.org ---
+By the way, this happens with the bundled Mesa 18.0.2 and my self-built Mesa
+18.0.5.
 
-Attempted a backtrace. Not sure of its usefullness.
+I cannot use any version of Mesa above 18.0.x due to OpenSUSE's Wayland bei=
+ng
+too old.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15474349610.0b4DeEe.7363
-Date: Mon, 14 Jan 2019 03:02:41 +0000
+--15474351390.CcDeFf.11593
+Date: Mon, 14 Jan 2019 03:05:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,8 +67,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Plasma Wayland locks up immediately on sign in"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109341#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109341#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Plasma Wayland locks up immediately on sign in"
@@ -77,14 +78,13 @@ t # 2</a>
 etna&#64;linuxmail.org" title=3D"etna&#64;linuxmail.org">etna&#64;linuxmail=
 .org</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D143096=
-" name=3D"attach_143096" title=3D"Attempted a backtrace. Not sure of its us=
-efullness.">attachment 143096</a> <a href=3D"attachment.cgi?id=3D143096&amp=
-;action=3Dedit" title=3D"Attempted a backtrace. Not sure of its usefullness=
-.">[details]</a></span>
-Attempted a backtrace. Not sure of its usefullness.
+        <pre>By the way, this happens with the bundled Mesa 18.0.2 and my s=
+elf-built Mesa
+18.0.5.
 
-Attempted a backtrace. Not sure of its usefullness.</pre>
+I cannot use any version of Mesa above 18.0.x due to OpenSUSE's Wayland bei=
+ng
+too old.</pre>
         </div>
       </p>
 
@@ -99,9 +99,9 @@ Attempted a backtrace. Not sure of its usefullness.</pre>
     </body>
 </html>=
 
---15474349610.0b4DeEe.7363--
+--15474351390.CcDeFf.11593--
 
---===============0197884508==
+--===============0541608236==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0197884508==--
+--===============0541608236==--
