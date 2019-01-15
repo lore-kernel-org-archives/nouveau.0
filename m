@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109185] Nouveau is freeze display. Only mouse working
-Date: Tue, 15 Jan 2019 18:58:46 +0000
-Message-ID: <bug-109185-8800-uiNEiwUEoP@http.bugs.freedesktop.org/>
-References: <bug-109185-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 109025] Reset Button is not working properly.
+Date: Tue, 15 Jan 2019 19:04:19 +0000
+Message-ID: <bug-109025-8800-uvzxxgMOnM@http.bugs.freedesktop.org/>
+References: <bug-109025-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0889625004=="
+Content-Type: multipart/mixed; boundary="===============0602808979=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109185-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-109025-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,40 +20,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0889625004==
-Content-Type: multipart/alternative; boundary="15475787260.AcbA.24346"
+--===============0602808979==
+Content-Type: multipart/alternative; boundary="15475790590.e4fc3Da.26192"
 Content-Transfer-Encoding: 7bit
 
 
---15475787260.AcbA.24346
-Date: Tue, 15 Jan 2019 18:58:46 +0000
+--15475790590.e4fc3Da.26192
+Date: Tue, 15 Jan 2019 19:04:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109185
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109025
 
 Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |a9016009-Mmb7MZpHnFY@public.gmane.org
-             Status|NEW                         |NEEDINFO
+         Resolution|---                         |INVALID
+             Status|ASSIGNED                    |RESOLVED
+            Version|18.3                        |unspecified
+            Product|Mesa                        |Spam
+          Component|Drivers/DRI/nouveau         |Two
 
 --- Comment #2 from Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> ---
-These requires way more information than just two lines from a log.
+DO NOT TEST HERE.
+Go to https://bugzilla-dev.allizom.org/ to play with some Bugzilla.
 
-Have you filed a bug report to your distribution? Please link to it.
+bugs.freedestop.org is a production database.
+It is not a test system or something to play with.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the QA Contact for the bug.=
 
---15475787260.AcbA.24346
-Date: Tue, 15 Jan 2019 18:58:46 +0000
+--15475790590.e4fc3Da.26192
+Date: Tue, 15 Jan 2019 19:04:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,9 +73,9 @@ Auto-Submitted: auto-generated
 s=3D"fn">Andre Klapper</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - Nouveau is freeze display. Only mouse working"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109185">bug 10918=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - Reset Button is not working properly."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109025">bug 10902=
 5</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -82,41 +86,66 @@ s=3D"fn">Andre Klapper</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
            </td>
-           <td>a9016009&#64;gmx.de
+           <td>INVALID
            </td>
          </tr>
 
          <tr>
            <td style=3D"text-align:right;">Status</td>
-           <td>NEW
+           <td>ASSIGNED
            </td>
-           <td>NEEDINFO
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Version</td>
+           <td>18.3
+           </td>
+           <td>unspecified
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Product</td>
+           <td>Mesa
+           </td>
+           <td>Spam
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Component</td>
+           <td>Drivers/DRI/nouveau
+           </td>
+           <td>Two
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - Nouveau is freeze display. Only mouse working"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109185#c2">Commen=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - Reset Button is not working properly."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109025#c2">Commen=
 t # 2</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - Nouveau is freeze display. Only mouse working"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109185">bug 10918=
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - Reset Button is not working properly."
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109025">bug 10902=
 5</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 a9016009&#64;gmx.de" title=3D"Andre Klapper &lt;a9016009&#64;gmx.de&gt;"> <=
 span class=3D"fn">Andre Klapper</span></a>
 </span></b>
-        <pre>These requires way more information than just two lines from a=
- log.
+        <pre>DO NOT TEST HERE.
+Go to <a href=3D"https://bugzilla-dev.allizom.org/">https://bugzilla-dev.al=
+lizom.org/</a> to play with some Bugzilla.
 
-Have you filed a bug report to your distribution? Please link to it.</pre>
+bugs.freedestop.org is a production database.
+It is not a test system or something to play with.</pre>
         </div>
       </p>
 
@@ -126,14 +155,13 @@ Have you filed a bug report to your distribution? Please link to it.</pre>
 
       <ul>
           <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15475787260.AcbA.24346--
+--15475790590.e4fc3Da.26192--
 
---===============0889625004==
+--===============0602808979==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -143,4 +171,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0889625004==--
+--===============0602808979==--
