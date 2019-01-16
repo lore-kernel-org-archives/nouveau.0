@@ -1,73 +1,115 @@
-From: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm: Split out drm_probe_helper.h
-Date: Tue, 15 Jan 2019 22:30:11 -0500
-Message-ID: <CADnq5_Oa0dj1+eOcAF6QxVxy0XRXNggZT+4K=Cm_=G80V-ejGQ@mail.gmail.com>
-References: <20190115104137.25695-1-daniel.vetter@ffwll.ch>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 109371] Textures seem to be byteswapped on big
+ endian architectures
+Date: Wed, 16 Jan 2019 05:41:23 +0000
+Message-ID: <bug-109371-8800-bGg0uK0UzR@http.bugs.freedesktop.org/>
+References: <bug-109371-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190115104137.25695-1-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/freedreno>,
- <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/freedreno>
-List-Post: <mailto:freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/freedreno>,
- <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Freedreno" <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "open list:VIRTIO CORE,
- NET..." <virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>, Laurent Pinchart <laurent.pinchart-ryLnwIuWjnjg/C1BVhZhaw@public.gmane.org>, Benjamin Gaignard <benjamin.gaignard-QSEj5FYQhm4dnm+yROfE0A@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Sam Ravnborg <sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org>, linux-stm32-XDFAJ8BFU24N7RejjzZ/Li2xQDfSxrLKVpNB7YpNyf8@public.gmane.org, linux-samsung-soc-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, amd-gfx list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, linux-rockchip-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-arm-msm <linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Jani Nikula <jani.nikula-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-mediatek-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, Rodrigo Vivi <rodrigo.vivi-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-amlogic-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, linux-arm-kernel@li
+Content-Type: multipart/mixed; boundary="===============0421831165=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-109371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKYW4gMTUsIDIwMTkgYXQgNTo0MSBBTSBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0
-dGVyQGZmd2xsLmNoPiB3cm90ZToKPgo+IEhhdmluZyB0aGUgcHJvYmUgaGVscGVyIHN0dWZmICh3
-aGljaCBwcmV0dHkgbXVjaCBldmVyeW9uZSBuZWVkcykgaW4KPiB0aGUgZHJtX2NydGNfaGVscGVy
-LmggZmlsZSAod2hpY2ggYXRvbWljIGRyaXZlcnMgc2hvdWxkIG5ldmVyIG5lZWQpIGlzCj4gY29u
-ZnVzaW5nLiBTcGxpdCB0aGVtIG91dC4KPgo+IFRvIG1ha2Ugc3VyZSBJIGFjdHVhbGx5IGFjaGll
-dmVkIHRoZSBnb2FsIGhlcmUgSSB3ZW50IHRocm91Z2ggYWxsCj4gZHJpdmVycy4gQW5kIGluZGVl
-ZCwgYWxsIGF0b21pYyBkcml2ZXJzIGFyZSBub3cgZnJlZSBvZgo+IGRybV9jcnRjX2hlbHBlci5o
-IGluY2x1ZGVzLgo+Cj4gdjI6IE1ha2UgaXQgY29tcGlsZS4gVGhlcmUgd2FzIHNvIG11Y2ggY29t
-cGlsZSBmYWlsIG9uIGFybSBkcml2ZXJzCj4gdGhhdCBJIGZpZ3VyZWQgSSdsbCBiZXR0ZXIgbm90
-IGluY2x1ZGUgYW55IG9mIHRoZSBhY2tzIG9uIHYxLgo+Cj4gdjM6IE1hc3NpdmUgcmViYXNlIGJl
-Y2F1c2UgaTkxNSBoYXMgbG9zdCBhIGxvdCBvZiBkcm1QLmggaW5jbHVkZXMsIGJ1dAo+IG5vdCBh
-bGw6IFRocm91Z2ggZHJtX2NydGNfaGVscGVyLmggPiBkcm1fbW9kZXNldF9oZWxwZXIuaCAtPiBk
-cm1QLmgKPiB0aGVyZSB3YXMgc3RpbGwgb25lLCB3aGljaCB0aGlzIHBhdGNoIGxhcmdlbHkgcmVt
-b3Zlcy4gV2hpY2ggbWVhbnMKPiByb2xsaW5nIG91dCBsb3RzIG1vcmUgaW5jbHVkZXMgYWxsIG92
-ZXIuCj4KPiBUaGlzIHdpbGwgYWxzbyBjb25mbGljdCB3aXRoIG9uZ29pbmcgZHJtUC5oIGNsZWFu
-dXAgYnkgb3RoZXJzIEkKPiBleHBlY3QuCj4KPiB2MzogUmViYXNlIG9uIHRvcCBvZiBhdG9taWMg
-Ym9jaHMuCj4KPiBDYzogU2FtIFJhdm5ib3JnIDxzYW1AcmF2bmJvcmcub3JnPgo+IENjOiBKYW5p
-IE5pa3VsYSA8amFuaS5uaWt1bGFAbGludXguaW50ZWwuY29tPgo+IENjOiBMYXVyZW50IFBpbmNo
-YXJ0IDxsYXVyZW50LnBpbmNoYXJ0QGlkZWFzb25ib2FyZC5jb20+Cj4gQWNrZWQtYnk6IFJvZHJp
-Z28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4gKHYyKQo+IEFja2VkLWJ5OiBCZW5qYW1p
-biBHYWlnbmFyZCA8YmVuamFtaW4uZ2FpZ25hcmRAbGluYXJvLm9yZz4gKHYyKQo+IFNpZ25lZC1v
-ZmYtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgo+IENjOiBsaW51
-eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmcKPiBDYzogdmlydHVhbGl6YXRpb25AbGlz
-dHMubGludXgtZm91bmRhdGlvbi5vcmcKPiBDYzogZXRuYXZpdkBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKPiBDYzogbGludXgtc2Ftc3VuZy1zb2NAdmdlci5rZXJuZWwub3JnCj4gQ2M6IGludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBDYzogbGludXgtbWVkaWF0ZWtAbGlzdHMuaW5mcmFk
-ZWFkLm9yZwo+IENjOiBsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKPiBDYzogbGlu
-dXgtYXJtLW1zbUB2Z2VyLmtlcm5lbC5vcmcKPiBDYzogZnJlZWRyZW5vQGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwo+IENjOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IENjOiBzcGljZS1k
-ZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBDYzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKPiBDYzogbGludXgtcmVuZXNhcy1zb2NAdmdlci5rZXJuZWwub3JnCj4gQ2M6IGxpbnV4
-LXJvY2tjaGlwQGxpc3RzLmluZnJhZGVhZC5vcmcKPiBDYzogbGludXgtc3RtMzJAc3QtbWQtbWFp
-bG1hbi5zdG9ybXJlcGx5LmNvbQo+IENjOiBsaW51eC10ZWdyYUB2Z2VyLmtlcm5lbC5vcmcKPiBD
-YzogeGVuLWRldmVsQGxpc3RzLnhlbi5vcmcKPiAtLS0KPiBNZXJnaW5nIHRoaXMgaXMgZ29pbmcg
-dG8gYmUgYSBiaXQgYSBtZXNzIGR1ZSB0byBhbGwgdGhlIG9uZ29pbmcgZHJtUC5oCj4gY2xlYW51
-cHMuIEkgdGhpbmsgdGhlIGZvbGxvd2luZyBzaG91bGQgd29yazoKPiAtIEFwcGx5IFNhbSdzIHBy
-ZXAgcGF0Y2hlcyBmb3IgcmVtb3ZpbmcgZHJtUC5oIGZyb20KPiAgIGRybV9tb2Rlc2V0X2hlbHBl
-ci5oCj4gLSBHZXQgdGhlIGk5MTUgZHJtUC5oIGNsZWFudXAgYmFja21lcmdlZCBpbnRvIGRybS1t
-aXNjLW5leHQKPiAtIEFwcGx5IHRoaXMgcGF0Y2guCj4gLSBBcHBseSBTYW0ncyBwYXRjaCB0byBy
-ZW1vdmUgZHJtUC5oIGZyb20gZHJtX21vZGVzZXRfaGVscGVyLmgKPiAtIEFsbCB0aHJvdWdoIGRy
-bS1taXNjLW5leHQsIHdoaWNoIGhhcyBzb21lIHBvdGVudGlhbCBmb3IgdHJpdmlhbAo+ICAgY29u
-ZmxpY3RzIGFyb3VuZCAjaW5jbHVkZXMgd2l0aCBvdGhlciBkcml2ZXJzIHVuZm9ydHVuYXRlbHku
-Cj4KPiBJIGhvcGUgdGhlcmUncyBubyBvdGhlciBkcml2ZXIgd2hvJ2xsIGJsb3cgdXAgYWNjaWRl
-bnRhbGx5IGJlY2F1c2UKPiBzb21lb25lIGVsc2UgaXMgZG9pbmcgYSBkcm1QLmggY2xlYW51cC4g
-TGF1cmVudCBtYXliZT8KPgo+IEphbmksIGFjayBvbiB0aGlzPwo+IC1EYW5pZWwKCmFtZGdwdSBh
-bmQgcmFkZW9uOgpBY2tlZC1ieTogQWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQu
-Y29tPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpGcmVl
-ZHJlbm8gbWFpbGluZyBsaXN0CkZyZWVkcmVub0BsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9mcmVlZHJlbm8K
+
+--===============0421831165==
+Content-Type: multipart/alternative; boundary="15476172830.fB0b2fAc8.5970"
+Content-Transfer-Encoding: 7bit
+
+
+--15476172830.fB0b2fAc8.5970
+Date: Wed, 16 Jan 2019 05:41:23 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109371
+
+--- Comment #2 from Adam Stylinski <kungfujesus06-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 143138
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D143138&action=3Dedit
+Trace demoing the issue
+
+Heh, the issue is there by the time I hit the title screen.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15476172830.fB0b2fAc8.5970
+Date: Wed, 16 Jan 2019 05:41:23 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Textures seem to be byteswapped on big endian architectur=
+es"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109371#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Textures seem to be byteswapped on big endian architectur=
+es"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109371">bug 10937=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+kungfujesus06&#64;gmail.com" title=3D"Adam Stylinski &lt;kungfujesus06&#64;=
+gmail.com&gt;"> <span class=3D"fn">Adam Stylinski</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D143138=
+" name=3D"attach_143138" title=3D"Trace demoing the issue">attachment 14313=
+8</a> <a href=3D"attachment.cgi?id=3D143138&amp;action=3Dedit" title=3D"Tra=
+ce demoing the issue">[details]</a></span>
+Trace demoing the issue
+
+Heh, the issue is there by the time I hit the title screen.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15476172830.fB0b2fAc8.5970--
+
+--===============0421831165==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0421831165==--
