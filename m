@@ -1,48 +1,151 @@
-From: Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH] drm: Split out drm_probe_helper.h
-Date: Wed, 16 Jan 2019 19:10:18 +0100
-Message-ID: <20190116181018.GA27364@ravnborg.org>
-References: <20190116163442.12622-1-daniel.vetter@ffwll.ch>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108346] System lagging
+Date: Wed, 16 Jan 2019 22:17:33 +0000
+Message-ID: <bug-108346-8800-2JEJuCgWni@http.bugs.freedesktop.org/>
+References: <bug-108346-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20190116163442.12622-1-daniel.vetter@ffwll.ch>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, nouveau@lists.freedesktop.org, Liviu Dudau <liviu.dudau@arm.com>, DRI Development <dri-devel@lists.freedesktop.org>, virtualization@lists.linux-foundation.org, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Daniel Vetter <daniel.vetter@intel.com>, linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org, Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org, spice-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>, linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org, linux-mediatek@lists.infradead.org, Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, xen-devel@lists.xen.org, linux-renesa
+Content-Type: multipart/mixed; boundary="===============1778809467=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-108346-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgRGFuaWVsLgoKPiB2NTogQWN0dWFsbHkgdHJ5IHRvIHNvcnQgdGhlbSwgYW5kIHdoaWxlIGF0
-IGl0LCBzb3J0IGFsbCB0aGUgb25lcyBJCj4gdG91Y2guCgpBcHBsaWVkIHRoaXMgdmFyaWFudCBv
-biB0b3Agb2YgZHJtLW1pc2MgYW5kIGRpZCBhIGJ1aWxkIHRlc3QuCkxvb2tlZCBnb29kIGZvciBp
-YTY0LCB4ODYgYW5kIGFscGhhLgoKVG9vayBhIGNsb3NlciBsb29rIGF0IHRoZSBjaGFuZ2VzIHRv
-IGF0bWVsX2hsY2QgLSBhbmQgdGhleSBsb29rZWQgT0suCgpCdXQgSSBub3RpY2VkIHRoYXQgYXRt
-ZWxfaGxjZGMgdXNlcyBvbmx5IGRybV9rbXNfaGVscGVyX3BvbGxfaW5pdCgpIGFuZApkcm1fa21z
-X2hlbHBlcl9wb2xsX2ZpbmkoKS4KQnV0IHRoZXJlIGFyZSBubyBoaXRzIG9uIERSTV9DT05ORUNU
-T1JfUE9MTCAtIHNvIEkgdGhpbmsgd2UgbWF5YmUKaGF2ZSBhIGRyaXZlciBoZXJlIHdoZXJlIHdl
-IGhhdmUgcGx1Z2dlZCB0aGUgZHJtX3BvbGwgaW5mcmFzdHJ1Y3R1cmUsCmJ1dCBpdCBpcyBub3Qg
-aW4gdXNlLgoKPiAgaW5jbHVkZS9kcm0vZHJtX2NydGNfaGVscGVyLmggICAgICAgICAgICAgICAg
-IHwgMTYgLS0tLS0tLS0tLS0KClRoZSBsaXN0IG9mIGluY2x1ZGUgZmlsZXMgaW4gdGhpcyBmaWxl
-IGNvdWxkIGJlIGRyb3BwZWQgYW5kIHJlcGxhY2VkIGJ5OgpzdHJ1Y3QgZHJtX2Nvbm5lY3RvcjsK
-c3RydWN0IGRybV9kZXZpY2U7CnN0cnVjdCBkcm1fZGlzcGxheV9tb2RlOwpzdHJ1Y3QgZHJtX2Vu
-Y29kZXI7CnN0cnVjdCBkcm1fZnJhbWVidWZmZXI7CnN0cnVjdCBkcm1fbW9kZV9zZXQ7CnN0cnVj
-dCBkcm1fbW9kZXNldF9hY3F1aXJlX2N0eDsKCkkgdHJpZWQgdG8gZG8gc28gb24gdG9wIG9mIHlv
-dXIgcGF0Y2guCkJ1dCB0aGVyZSB3ZXJlIHRvbyBtYW55IGJ1aWxkIGVycnJvcyBhbmQgSSBzb21l
-aG93IGxvc3QgdGhlIG1vdGl2YXRpb24uCgoKPiAgaW5jbHVkZS9kcm0vZHJtX3Byb2JlX2hlbHBl
-ci5oICAgICAgICAgICAgICAgIHwgMjcgKysrKysrKysrKysrKysrKysrKwpUaGlzIG9uIHRoZSBv
-dGhlciBoYW5kIGlzIGZpbmUgLSBhcyBleHBlY3RlZCBhcyB0aGlzIGlzIGEgbmV3IGZpbGUuCgpC
-dXQgdGhlIGFib3ZlIGlzIGp1c3Qgc29tZSByYW5kb20gY29tbWVudHMgc286CgpBY2tlZC1ieTog
-U2FtIFJhdm5ib3JnIDxzYW1AcmF2bmJvcmcub3JnPgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============1778809467==
+Content-Type: multipart/alternative; boundary="15476770531.bD9fb3.19833"
+Content-Transfer-Encoding: 7bit
+
+
+--15476770531.bD9fb3.19833
+Date: Wed, 16 Jan 2019 22:17:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108346
+
+Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |a9016009-Mmb7MZpHnFY@public.gmane.org
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |WORKSFORME
+
+--- Comment #2 from Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> ---
+No further information provided by reporter, hence unfortunately closing as
+WORKSFORME.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15476770531.bD9fb3.19833
+Date: Wed, 16 Jan 2019 22:17:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:a9016009&=
+#64;gmx.de" title=3D"Andre Klapper &lt;a9016009&#64;gmx.de&gt;"> <span clas=
+s=3D"fn">Andre Klapper</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - System lagging"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108346">bug 10834=
+6</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>a9016009&#64;gmx.de
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>WORKSFORME
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - System lagging"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108346#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - System lagging"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108346">bug 10834=
+6</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+a9016009&#64;gmx.de" title=3D"Andre Klapper &lt;a9016009&#64;gmx.de&gt;"> <=
+span class=3D"fn">Andre Klapper</span></a>
+</span></b>
+        <pre>No further information provided by reporter, hence unfortunate=
+ly closing as
+WORKSFORME.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15476770531.bD9fb3.19833--
+
+--===============1778809467==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1778809467==--
