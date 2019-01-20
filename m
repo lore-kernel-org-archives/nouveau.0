@@ -1,16 +1,11 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH xf86-video-nouveau] xv: fix build warning
- regarding const qualifier
-Date: Sat, 19 Jan 2019 18:48:02 -0500
-Message-ID: <CAKb7UvigKQruStRqB1++Yh5WvsMHtFyGWQugNBtCr6L7bGFv4g@mail.gmail.com>
-References: <20190119233042.7979-1-rhyskidd@gmail.com>
- <CAKb7UvgS66eSyEWj-3k5kjvEffmpG5Oyu1h66xYcTBET7FfSuQ@mail.gmail.com>
- <CA+iOQUHmKdwSzsySzfp+yJX9D9n=Xjf=wg1JvnAmb1y=VTjNbQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 109397] New: PGRAPH TLB flush idle timeout fail: X
+ hangs, ssh login possible
+Date: Sun, 20 Jan 2019 07:57:40 +0000
+Message-ID: <bug-109397-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0734169613=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CA+iOQUHmKdwSzsySzfp+yJX9D9n=Xjf=wg1JvnAmb1y=VTjNbQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,55 +15,349 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBKYW4gMTksIDIwMTkgYXQgNjozOCBQTSBSaHlzIEtpZGQgPHJoeXNraWRkQGdtYWls
-LmNvbT4gd3JvdGU6Cj4KPiBPbiBTYXQsIDE5IEphbiAyMDE5IGF0IDE4OjMyLCBJbGlhIE1pcmtp
-biA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3RlOgo+Pgo+PiBJcyB2bENyZWF0ZUFkYXB0b3JY
-dk1DIGp1c3Qgc2lsbHksIG9yIGRvZXMgaXQgcmVhbGx5IHdhbnQgdG8gdGFrZQo+PiBvd25lcnNo
-aXAgb2YgdGhlIG5hbWUgcG9pbnRlcj8KPgo+Cj4gdmxDcmVhdGVBZGFwdG9yWHZNQyggKSBkb2Vz
-bid0IG5lZWQgdG8gdGFrZSBvdmVyIG93bmVyc2hpcCBvZiB0aGUgbmFtZSBwb2ludGVyLCBzbyB5
-ZXMgLSBJIGd1ZXNzIGl0J3MgYmVpbmcgc2lsbHkgaW4gb25lIHJlc3BlY3QgYnkgbm90IGJlaW5n
-IHNwZWNpZmljIGFib3V0IGNvbnN0LgoKT0suIEknbSBub3QgYSBmYW4gb2YgdGhlc2UgdHlwZXMg
-b2YgY2FzdHMsIGJ1dCBpdCdzIGFsc28gcHJldHR5IG1pbm9yLgpIb3dldmVyIEknZCBhcHByZWNp
-YXRlIHRoZSBzdWJqZWN0IGdldHRpbmcgcmVuYW1lZCB0byAic2lsZW5jZSIgcmF0aGVyCnRoYW4g
-ImZpeCIsIHNpbmNlIGl0J3Mgbm90IGZpeGluZyBhbnl0aGluZyAoaW4gZmFjdCBpdCdzIGFyZ3Vh
-Ymx5CmludHJvZHVjaW5nIGEgYnVnKS4KClJldmlld2VkLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtp
-bkBhbHVtLm1pdC5lZHU+Cgo+Cj4+Cj4+Cj4+IE9uIFNhdCwgSmFuIDE5LCAyMDE5IGF0IDY6MzAg
-UE0gUmh5cyBLaWRkIDxyaHlza2lkZEBnbWFpbC5jb20+IHdyb3RlOgo+PiA+Cj4+ID4gRml4ZXMg
-d2FybmluZyB3aXRoIGdjYyA4LjI6Cj4+ID4KPj4gPiBub3V2ZWF1X3h2LmM6IEluIGZ1bmN0aW9u
-IOKAmE5WSW5pdFZpZGVv4oCZOgo+PiA+IG5vdXZlYXVfeHYuYzoyMjQ3OjY4OiB3YXJuaW5nOiBw
-YXNzaW5nIGFyZ3VtZW50IDIgb2Yg4oCYdmxDcmVhdGVBZGFwdG9yWHZNQ+KAmSBkaXNjYXJkcyDi
-gJhjb25zdOKAmSBxdWFsaWZpZXIgZnJvbSBwb2ludGVyIHRhcmdldCB0eXBlIFstV2Rpc2NhcmRl
-ZC1xdWFsaWZpZXJzXQo+PiA+ICAgICBhZGFwdG9yc1h2TUNbMF0gPSB2bENyZWF0ZUFkYXB0b3JY
-dk1DKHBTY3JlZW4sIHRleHR1cmVBZGFwdG9yWzBdLT5uYW1lKTsKPj4gPiAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB+fn5+fn5+fn5+fn5+fn5+fl5+
-fn5+fgo+PiA+IEluIGZpbGUgaW5jbHVkZWQgZnJvbSBub3V2ZWF1X3h2LmM6NDI6Cj4+ID4gdmxf
-aHdtYy5oOjY6NjM6IG5vdGU6IGV4cGVjdGVkIOKAmGNoYXIgKuKAmSBidXQgYXJndW1lbnQgaXMg
-b2YgdHlwZSDigJhjb25zdCBjaGFyICrigJkKPj4gPiAgWEY4Nk1DQWRhcHRvclB0ciB2bENyZWF0
-ZUFkYXB0b3JYdk1DKFNjcmVlblB0ciBwU2NyZWVuLCBjaGFyICp4dl9hZGFwdG9yX25hbWUpOwo+
-PiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIH5+fn5+fl5+fn5+fn5+fn5+fn5+fgo+PiA+Cj4+ID4gU2lnbmVkLW9mZi1ieTogUmh5cyBL
-aWRkIDxyaHlza2lkZEBnbWFpbC5jb20+Cj4+ID4gLS0tCj4+ID4gIHNyYy9ub3V2ZWF1X3h2LmMg
-fCAyICstCj4+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigt
-KQo+PiA+Cj4+ID4gZGlmZiAtLWdpdCBhL3NyYy9ub3V2ZWF1X3h2LmMgYi9zcmMvbm91dmVhdV94
-di5jCj4+ID4gaW5kZXggYTdlYzIxYS4uMzI1OGVmNyAxMDA2NDQKPj4gPiAtLS0gYS9zcmMvbm91
-dmVhdV94di5jCj4+ID4gKysrIGIvc3JjL25vdXZlYXVfeHYuYwo+PiA+IEBAIC0yMjQ0LDcgKzIy
-NDQsNyBAQCBOVkluaXRWaWRlbyhTY3JlZW5QdHIgcFNjcmVlbikKPj4gPiAgICAgICAgICAgICAg
-ICAgWEY4Nk1DQWRhcHRvclB0ciAqYWRhcHRvcnNYdk1DID0gbWFsbG9jKHNpemVvZihYRjg2TUNB
-ZGFwdG9yUHRyKSk7Cj4+ID4KPj4gPiAgICAgICAgICAgICAgICAgaWYgKGFkYXB0b3JzWHZNQykg
-ewo+PiA+IC0gICAgICAgICAgICAgICAgICAgICAgIGFkYXB0b3JzWHZNQ1swXSA9IHZsQ3JlYXRl
-QWRhcHRvclh2TUMocFNjcmVlbiwgdGV4dHVyZUFkYXB0b3JbMF0tPm5hbWUpOwo+PiA+ICsgICAg
-ICAgICAgICAgICAgICAgICAgIGFkYXB0b3JzWHZNQ1swXSA9IHZsQ3JlYXRlQWRhcHRvclh2TUMo
-cFNjcmVlbiwgKGNoYXIgKil0ZXh0dXJlQWRhcHRvclswXS0+bmFtZSk7Cj4+ID4KPj4gPiAgICAg
-ICAgICAgICAgICAgICAgICAgICBpZiAoYWRhcHRvcnNYdk1DWzBdKSB7Cj4+ID4gICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICB2bEluaXRYdk1DKHBTY3JlZW4sIDEsIGFkYXB0b3JzWHZN
-Qyk7Cj4+ID4gLS0KPj4gPiAyLjE5LjEKPj4gPgo+PiA+IF9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCj4+ID4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPj4gPiBO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiA+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUK
+
+--===============0734169613==
+Content-Type: multipart/alternative; boundary="15479710600.CE220.8719"
+Content-Transfer-Encoding: 7bit
+
+
+--15479710600.CE220.8719
+Date: Sun, 20 Jan 2019 07:57:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109397
+
+            Bug ID: 109397
+           Summary: PGRAPH TLB flush idle timeout fail: X hangs, ssh login
+                    possible
+           Product: Mesa
+           Version: unspecified
+          Hardware: x86 (IA32)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: martin.okrslar-1KBjaw7Xf1+zQB+pC5nmwQ@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Dear nouveau developers and community,
+
+I#m using nouveau on a MacBook Pro mid 2008, with GeForce 8600M GT und Linux
+kernel 4.14.90 under NixOS.
+
+After some 30 to 50 minutes of working, the X server always freezes and giv=
+es
+scattered image. Moving the mouse is often possible, but clicking or typing=
+ are
+without any effect.
+
+Loging in with ssh is still possible. I also tried to restart the X server,=
+ but
+it hangs so hard, the only pressing power off button helps.
+
+Here are the nouveau related logs from systemd.
+
+----during boot---
+
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: NVIDIA G84 (084700a2)
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: Invalid PCI ROM head=
+er
+signature: expecting 0xaa55, got 0xffff
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: bios: version
+60.84.49.03.00
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: fb: 256 MiB GDDR3
+
+[...]
+
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: VRAM: 256 MiB
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: GART: 1048576 M=
+iB
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: TMDS table vers=
+ion
+2.0
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: DCB version 4.0
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: DCB outp 00:
+01000123 00010034
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: DCB outp 01:
+02011210 00000028
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: DCB outp 02:
+02011212 00000030
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: DCB outp 03:
+01011211 0080c070
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: DCB conn 00: 00=
+40
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: DCB conn 01: 11=
+20
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: unknown connect=
+or
+type 20
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: failed to create
+encoder 0/1/0: -19
+
+[...]
+
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: MM: using CRYPT=
+ for
+buffer copies
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: allocated 1440x=
+900
+fb: 0x70000, bo ffff99eff1428000
+Jan 20 07:00:07 hackbetz kernel: Console: switching to colour frame buffer
+device 180x56
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: fb0: nouveaufb frame
+buffer device
+Jan 20 07:00:07 hackbetz kernel: [drm] Initialized nouveau 1.3.1 20120801 f=
+or
+0000:01:00.0 on minor 0
+Jan 20 07:00:07 hackbetz kernel: audit: type=3D1130 audit(1547964002.868:7):
+pid=3D1 uid=3D0 auid=3D4294967295 ses=3D4294967295
+msg=3D'unit=3Dsystemd-backlight@leds:smc::kbd_b>
+
+
+--- on crash this message repeats over and over ---
+
+Jan 20 07:46:51 hackbetz kernel: nouveau 0000:01:00.0: gr: PGRAPH TLB flush
+idle timeout fail
+Jan 20 07:46:51 hackbetz kernel: nouveau 0000:01:00.0: gr: PGRAPH_STATUS
+00000603 [BUSY DISPATCH VFETCH CCACHE_PREGEOM]
+Jan 20 07:46:51 hackbetz kernel: nouveau 0000:01:00.0: gr: PGRAPH_VSTATUS0:
+00000009 [VFETCH CCACHE]
+Jan 20 07:46:51 hackbetz kernel: nouveau 0000:01:00.0: gr: PGRAPH_VSTATUS1:
+00000000 []
+Jan 20 07:46:51 hackbetz kernel: nouveau 0000:01:00.0: gr: PGRAPH_VSTATUS2:
+00000000 []
+
+
+Any ideas?
+
+Thanks a lot to all of you writing this software!
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15479710600.CE220.8719
+Date: Sun, 20 Jan 2019 07:57:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - PGRAPH TLB flush idle timeout fail: X hangs, ssh login po=
+ssible"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109397">109397</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>PGRAPH TLB flush idle timeout fail: X hangs, ssh login possib=
+le
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>martin.okrslar&#64;posteo.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Dear nouveau developers and community,
+
+I#m using nouveau on a MacBook Pro mid 2008, with GeForce 8600M GT und Linux
+kernel 4.14.90 under NixOS.
+
+After some 30 to 50 minutes of working, the X server always freezes and giv=
+es
+scattered image. Moving the mouse is often possible, but clicking or typing=
+ are
+without any effect.
+
+Loging in with ssh is still possible. I also tried to restart the X server,=
+ but
+it hangs so hard, the only pressing power off button helps.
+
+Here are the nouveau related logs from systemd.
+
+----during boot---
+
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: NVIDIA G84 (084700a2)
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: Invalid PCI ROM head=
+er
+signature: expecting 0xaa55, got 0xffff
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: bios: version
+60.84.49.03.00
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: fb: 256 MiB GDDR3
+
+[...]
+
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: VRAM: 256 MiB
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: GART: 1048576 M=
+iB
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: TMDS table vers=
+ion
+2.0
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: DCB version 4.0
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: DCB outp 00:
+01000123 00010034
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: DCB outp 01:
+02011210 00000028
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: DCB outp 02:
+02011212 00000030
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: DCB outp 03:
+01011211 0080c070
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: DCB conn 00: 00=
+40
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: DCB conn 01: 11=
+20
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: unknown connect=
+or
+type 20
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: failed to create
+encoder 0/1/0: -19
+
+[...]
+
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: MM: using CRYPT=
+ for
+buffer copies
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: DRM: allocated 1440x=
+900
+fb: 0x70000, bo ffff99eff1428000
+Jan 20 07:00:07 hackbetz kernel: Console: switching to colour frame buffer
+device 180x56
+Jan 20 07:00:07 hackbetz kernel: nouveau 0000:01:00.0: fb0: nouveaufb frame
+buffer device
+Jan 20 07:00:07 hackbetz kernel: [drm] Initialized nouveau 1.3.1 20120801 f=
+or
+0000:01:00.0 on minor 0
+Jan 20 07:00:07 hackbetz kernel: audit: type=3D1130 audit(1547964002.868:7):
+pid=3D1 uid=3D0 auid=3D4294967295 ses=3D4294967295
+msg=3D'unit=3Dsystemd-backlight&#64;leds:smc::kbd_b&gt;
+
+
+--- on crash this message repeats over and over ---
+
+Jan 20 07:46:51 hackbetz kernel: nouveau 0000:01:00.0: gr: PGRAPH TLB flush
+idle timeout fail
+Jan 20 07:46:51 hackbetz kernel: nouveau 0000:01:00.0: gr: PGRAPH_STATUS
+00000603 [BUSY DISPATCH VFETCH CCACHE_PREGEOM]
+Jan 20 07:46:51 hackbetz kernel: nouveau 0000:01:00.0: gr: PGRAPH_VSTATUS0:
+00000009 [VFETCH CCACHE]
+Jan 20 07:46:51 hackbetz kernel: nouveau 0000:01:00.0: gr: PGRAPH_VSTATUS1:
+00000000 []
+Jan 20 07:46:51 hackbetz kernel: nouveau 0000:01:00.0: gr: PGRAPH_VSTATUS2:
+00000000 []
+
+
+Any ideas?
+
+Thanks a lot to all of you writing this software!</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15479710600.CE220.8719--
+
+--===============0734169613==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0734169613==--
