@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Cannot start a secondary Xserver with resolution
- 6480x3840
-Date: Mon, 21 Jan 2019 13:50:36 -0500
-Message-ID: <CAKb7UviFnvkX7nEvyYikQy3M5jUA9sDbMYaAsJ0w7MqzW=_Y9Q@mail.gmail.com>
-References: <20190121154238.3ffb6eb0@absurd.dom>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 107919] RandR unable to set Screen Size when using
+ Intel+nouveau
+Date: Mon, 21 Jan 2019 19:23:15 +0000
+Message-ID: <bug-107919-8800-JR8gtB2h9G@http.bugs.freedesktop.org/>
+References: <bug-107919-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2042825396=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190121154238.3ffb6eb0-EEQwe9FboP/QT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-107919-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,111 +17,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Janek Kozicki <janek.listy.mailowe-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgSmFuZWssCgpBIGZldyB0aGluZ3MuLi4KCkZpcnN0IG9mZiwgeW91J3JlIG5vdCB1c2luZyB0
-aGUgbm91dmVhdSBkZHgsIHlvdSdyZSB1c2luZyB0aGUKbW9kZXNldHRpbmcgZGR4LiBUaGlzIGlz
-bid0IGEgcHJvYmxlbSBpbiBpdHNlbGYsIGJ1dCBpZiB5b3UncmUgZ29pbmcKdG8gcmVwb3J0IGJ1
-Z3MsIHlvdSBzaG91bGQgZmlsZSB0aGVtIGFnYWluc3QgdGhlIHByb3BlciBjb21wb25lbnQuCgpT
-ZWNvbmRseSwgSSdtIGEgYml0IHVuY2xlYXIgYXMgdG8gd2hhdCB5b3VyIHNldHVwIGlzLiBBIHNp
-bmdsZSBYCnNlcnZlciB0YWtlcyBvdmVyIGEgd2hvbGUgR1BVLiBSZWNlbnRseSAibGVhc2luZyIg
-aGFzIGJlZW4gaW50cm9kdWNlZAp3aGljaCBlbmFibGVzIGEgZHJtIG1hc3RlciB0byAibGVhc2Ui
-IGNlcnRhaW4gb3V0cHV0cyB0byBhbm90aGVyCnByb2Nlc3MsIGJ1dCBJIGhhdmVuJ3QgcGxheWVk
-IG11Y2ggd2l0aCBpdC4gSWYgeW91IHdhbnQgZGlmZmVyZW50IFgKc2VydmVycyBmb3IgZWFjaCAo
-b3IgZ3JvdXBzIG9mKSBvdXRwdXRzIG9mIGEgc2luZ2xlIEdQVSwgdGhlbiB5b3UgbmVlZAp0byBn
-ZXQgbGVhc2luZyBnb2luZy4KCkknbSBub3Qgc3VyZSBhcyB0byB5b3VyIHByZWNpc2UgdXNlLWNh
-c2UsIGJ1dCBwZXJoYXBzIGFub3RoZXIgb3B0aW9uCmlzIHRvIGhhdmUgYSBzaW5nbGUgWCBzZXJ2
-ZXIgd2l0aCBtdWx0aXBsZSBYIHNjcmVlbnMuIFRoaXMgY2FuIGJlIGRvbmUKYnkgZW5hYmxpbmcg
-WmFwaG9kSGVhZHMuIFRoaXMgd2FzIGEgY29tbW9uIHdheSB0byBnZXQgYSBtZWdhLXNjcmVlbgph
-Y3Jvc3MgbXVsdGlwbGUgR1BVcyBwcmlvciB0byBvdXRwdXQgc2xhdmluZyBiZWluZyBpbnRyb2R1
-Y2VkLCB0aGVyZSdzCmEgZ3VpZGUgaGVyZSBodHRwczovL25vdXZlYXUuZnJlZWRlc2t0b3Aub3Jn
-L3dpa2kvTXVsdGlNb25pdG9yRGVza3RvcC8KLgoKTGFzdGx5LCBub3RlIHRoYXQgbm8gbWF0dGVy
-IGhvdyBtYW55IHBoeXNpY2FsIG91dHB1dHMgdGhlcmUgbWlnaHQgYmUsCktlcGxlcisgb25seSBz
-dXBwb3J0cyA0IENSVEMncyBhbmQgZWFybGllciBnZW5zIGhhZCAyLiBUaGF0IHB1dHMgYQpody1p
-bXBvc2VkIHVwcGVyIGxpbWl0IG9uIHRoZSBudW1iZXIgb2YgaW1hZ2VzIHRoYXQgY2FuIGJlIHBy
-b2R1Y2VkCmZvciB0aGVzZSBvdXRwdXRzLgoKQ2hlZXJzLAoKICAtaWxpYQoKT24gTW9uLCBKYW4g
-MjEsIDIwMTkgYXQgOTo0MiBBTSBKYW5layBLb3ppY2tpCjxqYW5lay5saXN0eS5tYWlsb3dlQGdt
-YWlsLmNvbT4gd3JvdGU6Cj4KPiBIaSwKPgo+IEluIG15IHdvcmtmbG93IEkgYW0gdXNpbmcgc2V2
-ZXJhbCBzZXBhcmF0ZSB4c2VydmVycy4gT25lIGZvciB3b3JrLAo+IGFub3RoZXIgZm9yIHJlc2Vh
-cmNoIGFuZCBzbyBvbi4gRWFjaCBvZiB0aGVtIGhhcyBhIHNlcGFyYXRlIHVzZXIKPiBhY2NvdW50
-LCBhbmQgdGhleSBhbGwgYmVsb25nIHRvIHRoZSBzYW1lIChtYWluKSBncm91cCBjYWxsZWQgamFu
-ZWsuCj4KPiBJJ3ZlIGJlZW4gdXNpbmcgbnZpZGlhIGZvciB5ZWFycywgYnV0IGFib3V0IDIgeWVh
-cnMgYWdvIHNvbWUgc3VwZXIKPiBhbm5veWluZyBidWcgYXBwZWFyZWQgaW4gbnZpZGlhLCBuYW1l
-bHkgdGhhdCBzd2l0Y2hpbmcgYmV0d2Vlbgo+IHZpcnR1YWwgdGVybWluYWxzIHNwb3JhZGljYWxs
-eSBjYXVzZXMgbnZpZGlhX21vZGVzZXQgdG8gZnJlZXplIGFsbAo+IHZpcnR1YWwgdGVybWluYWxz
-LiBUaGVuIEkgY2FuIG9ubHkgc3NoIHJlbW90ZWx5IHRvIGludmVzdGlnYXRlIHRoZQo+IHByb2Js
-ZW0uIEFuZCBybW1vZCBudmlkaWEgd291bGQgbm90IHdvcmssIG9yIGFueXRoaW5nIGVsc2UKPiB3
-aGF0c292ZXZlci4gVGhlIG9ubHkgd2F5IHRvIHVubG9jayB2aXJ0dWFsIHRlcm1pbmFscyBpcyBh
-IHJlYm9vdCwKPiB3aGljaCBJIGhhdGUsIGJlY2F1c2UgSSBvZnRlbiBoYXZlIGNhbGN1bGF0aW9u
-cyBydW5uaW5nIGZvciBtb250aHMuCj4KPiBTbyBJIGFtIGhvcGluZyB0aGF0IG5vdmVhdSB3aWxs
-IHdvcmsgbm93ISBBbGFzIGl0IGlzIG5vdC4gV2hlbiBJCj4gY29uZmlndXJlIHhyYW5kciB0byB1
-c2UgYWxsIG15IExDRCBzY3JlZW5zIGluICB+Ly54c2Vzc2lvbiB1c2luZyB0aGlzCj4gY29tbWFu
-ZCBsaW5lOgo+Cj4geHJhbmRyIC0tb3V0cHV0IEhETUktMSAtLW9mZiAtLW91dHB1dCBEUC0xIC0t
-bW9kZSAzODQweDIxNjAgLS1wb3MgMjE2MHgwIC0tcm90YXRlIGxlZnQgLS1vdXRwdXQgRFZJLUQt
-MSAtLW9mZiAtLW91dHB1dCBEUC0yIC0tbW9kZSAzODQweDIxNjAgLS1wb3MgMHgwIC0tcm90YXRl
-IGxlZnQgLS1vdXRwdXQgRFAtMyAtLW1vZGUgMzg0MHgyMTYwIC0tcG9zIDQzMjB4MCAtLXJvdGF0
-ZSBsZWZ0Cj4KPiB0aGVuIG9ubHkgc2luZ2xlIFhzZXJ2ZXIgY2FuIHN0YXJ0IHVwLiBPdGhlciBY
-c2VydmVycyBoYXZlIGEgc2VnZmF1bHQKPiB1cG9uIHN0YXJ0dXAuIElmIEkgdXNlIG9ubHkgb25l
-IExDRCBzY3JlZW4gdGhlbiBJIGNhbiBzdGFydCBtdWx0aXBsZQo+IFhzZXJ2ZXJzLCBidXQgdGhh
-dCBpcyBvYnZpb3Vsc3kgYSB3YXN0ZSBvZiB0d28gc2NyZWVucyEgOikKPgo+IFRoZSBjcmFzaCBs
-b2cgaXMgZm9sbG93aW5nOgo+Cj4gWyAgIDk2My41MTNdIChFRSkKPiBbICAgOTYzLjUxM10gKEVF
-KSBCYWNrdHJhY2U6Cj4gWyAgIDk2My41MTNdIChFRSkgMDogL3Vzci9saWIveG9yZy9Yb3JnICh4
-b3JnX2JhY2t0cmFjZSsweDRhKSBbMHg1NTY2YThiODQ2NmFdCj4gWyAgIDk2My41MTNdIChFRSkg
-MTogL3Vzci9saWIveG9yZy9Yb3JnICgweDU1NjZhODljYjAwMCsweDFiZDNmOSkgWzB4NTU2NmE4
-Yjg4M2Y5XQo+IFsgICA5NjMuNTEzXSAoRUUpIDI6IC9saWIveDg2XzY0LWxpbnV4LWdudS9saWJw
-dGhyZWFkLnNvLjAgKDB4N2ZjNjczYjA2MDAwKzB4MTEwYzApIFsweDdmYzY3M2IxNzBjMF0KPiBb
-ICAgOTYzLjUxM10gKEVFKSAzOiAvbGliL3g4Nl82NC1saW51eC1nbnUvbGliYy5zby42ICgweDdm
-YzY3Mzc2NzAwMCsweDgzZjc0KSBbMHg3ZmM2NzM3ZWFmNzRdCj4gWyAgIDk2My41MTNdIChFRSkg
-NDogL3Vzci9saWIveG9yZy9tb2R1bGVzL2xpYnNoYWRvdy5zbyAoc2hhZG93VXBkYXRlUGFja2Vk
-KzB4MWRhKSBbMHg3ZmM2NjkwZGFiN2FdCj4gWyAgIDk2My41MTNdIChFRSkgNTogL3Vzci9saWIv
-eG9yZy9tb2R1bGVzL2RyaXZlcnMvbW9kZXNldHRpbmdfZHJ2LnNvICgweDdmYzY2ZjQ1NDAwMCsw
-eDhlY2IpIFsweDdmYzY2ZjQ1Y2VjYl0KPiBbICAgOTYzLjUxM10gKEVFKSA2OiAvdXNyL2xpYi94
-b3JnL21vZHVsZXMvbGlic2hhZG93LnNvICgweDdmYzY2OTBkODAwMCsweDE1YTkpIFsweDdmYzY2
-OTBkOTVhOV0KPiBbICAgOTYzLjUxM10gKEVFKSA3OiAvdXNyL2xpYi94b3JnL21vZHVsZXMvbGli
-c2hhZG93LnNvICgweDdmYzY2OTBkODAwMCsweDE2MjQpIFsweDdmYzY2OTBkOTYyNF0KPiBbICAg
-OTYzLjUxM10gKEVFKSA4OiAvdXNyL2xpYi94b3JnL21vZHVsZXMvZHJpdmVycy9tb2Rlc2V0dGlu
-Z19kcnYuc28gKDB4N2ZjNjZmNDU0MDAwKzB4YTExMykgWzB4N2ZjNjZmNDVlMTEzXQo+IFsgICA5
-NjMuNTEzXSAoRUUpIDk6IC91c3IvbGliL3hvcmcvbW9kdWxlcy9kcml2ZXJzL21vZGVzZXR0aW5n
-X2Rydi5zbyAoMHg3ZmM2NmY0NTQwMDArMHhhM2FhKSBbMHg3ZmM2NmY0NWUzYWFdCj4gWyAgIDk2
-My41MTNdIChFRSkgMTA6IC91c3IvbGliL3hvcmcvWG9yZyAoQmxvY2tIYW5kbGVyKzB4YjEpIFsw
-eDU1NjZhOGEyNDBkMV0KPiBbICAgOTYzLjUxM10gKEVFKSAxMTogL3Vzci9saWIveG9yZy9Yb3Jn
-IChXYWl0Rm9yU29tZXRoaW5nKzB4MTQxKSBbMHg1NTY2YThiODFmMDFdCj4gWyAgIDk2My41MTNd
-IChFRSkgMTI6IC91c3IvbGliL3hvcmcvWG9yZyAoMHg1NTY2YTg5Y2IwMDArMHg1NDQ1YSkgWzB4
-NTU2NmE4YTFmNDVhXQo+IFsgICA5NjMuNTEzXSAoRUUpIDEzOiAvdXNyL2xpYi94b3JnL1hvcmcg
-KDB4NTU2NmE4OWNiMDAwKzB4NTg2YTgpIFsweDU1NjZhOGEyMzZhOF0KPiBbICAgOTYzLjUxM10g
-KEVFKSAxNDogL2xpYi94ODZfNjQtbGludXgtZ251L2xpYmMuc28uNiAoX19saWJjX3N0YXJ0X21h
-aW4rMHhmMSkgWzB4N2ZjNjczNzg3MmUxXQo+IFsgICA5NjMuNTEzXSAoRUUpIDE1OiAvdXNyL2xp
-Yi94b3JnL1hvcmcgKF9zdGFydCsweDJhKSBbMHg1NTY2YThhMGQzM2FdCj4gWyAgIDk2My41MTNd
-IChFRSkKPiBbICAgOTYzLjUxM10gKEVFKSBCdXMgZXJyb3IgYXQgYWRkcmVzcyAweDdmYzY1NDhh
-NDAwMAo+Cj4gTm90ZTogSSBpbnN0YWxsZWQgcGFja2FnZSB4c2VydmVyLXhvcmctdmlkZW8tbm91
-dmVhdS1kYmcgMToxLjAuMTMtMywKPiBidXQgdGhpcyBkaWQgbm90IGhlbHAgaW4gbWFraW5nIGFi
-b3ZlIGVycm9ycyBtb3JlIGluZm9ybWF0aXZlLgo+Cj4gV2hpbGUgaW4gYSB3b3JraW5nIFhvcmcu
-MC5sb2cgdGhlcmUgaXMgaW5zdGVhZCBhIG1lc3NhZ2U6Cj4KPiBbICAgIDYxLjg5OF0gKElJKSBt
-b2Rlc2V0KDApOiBBbGxvY2F0ZSBuZXcgZnJhbWUgYnVmZmVyIDY0ODB4Mzg0MCBzdHJpZGUKPiBb
-ICAgIDYyLjAyMV0gKElJKSBtb2Rlc2V0KDApOiBEaXNhYmxpbmcga2VybmVsIGRpcnR5IHVwZGF0
-ZXMsIG5vdCByZXF1aXJlZC4KPiBbICAgMjI0Ljc1M10gKElJKSBtb2Rlc2V0KDApOiBFRElEIHZl
-bmRvciAiREVMIiwgcHJvZCBpZCA1MzM4MAo+IFsgICAyMjQuNzU0XSAoSUkpIG1vZGVzZXQoMCk6
-IFVzaW5nIEVESUQgcmFuZ2UgaW5mbyBmb3IgaG9yaXpvbnRhbCBzeW5jCj4gWyAgIDIyNC43NTRd
-IChJSSkgbW9kZXNldCgwKTogVXNpbmcgRURJRCByYW5nZSBpbmZvIGZvciB2ZXJ0aWNhbCByZWZy
-ZXNoCj4gWyAgIDIyNC43NTRdIChJSSkgbW9kZXNldCgwKTogUHJpbnRpbmcgRERDIGdhdGhlcmVk
-IE1vZGVsaW5lczoKPiBbICAgMjI0Ljc1NF0gKElJKSBtb2Rlc2V0KDApOiBNb2RlbGluZSAiMzg0
-MHgyMTYwIngwLjAgIDUzMy4yNSAgMzg0MCAzODg4IDM5MjAgNDAwMCAgMjE2MCAyMTYzIDIxNjgg
-MjIyMiAraHN5bmMgLXZzeW5jICgxMzMuMyBrSHogZVApCj4KPgo+IFNvIGV2aWRlbnRseSBub3V2
-ZWF1IGNhbm5vdCBhbGxvY2F0ZSBhbm90aGVyIGZyYW1lYnVmZmVyIHdpdGggc2l6ZSA2NDgweDM4
-NDAKPgo+Cj4gSSBhbSB1c2luZyBkZXZ1YW4gYXNjaWkgd2l0aCBsYXRlc3QgbGludXgga2VybmVs
-IDQuMjAuMywgd2hpY2ggSSBoYXZlIGp1c3QgY29tcGlsZWQgdXNpbmcgdGhlc2UgY29tbWFuZHM6
-Cj4KPiBjZCAvaG9tZS9kZWIvbGludXgtaW1hZ2UKPiB1bnh6IC1jIGxpbnV4LTQuMjAuMy50YXIu
-eHogfCBncGcgLS12ZXJpZnkgbGludXgtNC4yMC4zLnRhci5zaWduIC0KPiB1bnAgLi9saW51eC00
-LjIwLjMudGFyLnh6Cj4gY2QgbGludXgtNC4yMC4zCj4gY3AgL2Jvb3QvY29uZmlnLWB1bmFtZSAt
-cmAgLi8uY29uZmlnCj4gbWFrZSBtZW51Y29uZmlnCj4gdGltZSBmYWtlcm9vdCBtYWtlLWtwa2cg
-LS1pbml0cmQgLS1hcHBlbmQtdG8tdmVyc2lvbj0tYWJzdXJkLjIga2VybmVsX2ltYWdlIGtlcm5l
-bF9oZWFkZXJzIC1qNDAKPgo+Cj4gSSB3aWxsIGJlIGhhcHB5IHRvIHByb3ZpZGUgbW9yZSBpbmZv
-cm1hdGlvbiwganVzdCB0ZWxsIG1lIHdoYXQgeW91IG5lZWQuCj4KPiBjYW4geW91IGhlbHAgbWU/
-Cj4gLS0KPiAjIEphbmVrIEtvemlja2kKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2042825396==
+Content-Type: multipart/alternative; boundary="15480985950.dA79CF64d.28084"
+Content-Transfer-Encoding: 7bit
+
+
+--15480985950.dA79CF64d.28084
+Date: Mon, 21 Jan 2019 19:23:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107919
+
+--- Comment #2 from main.haarp-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Kernel 4.18.16
+xorg-server-1.20.3
+xf86-video-nouveau-1.0.15
+
+Using modesetting driver for the Intel chip.
+
+This bug still remains. It makes using this kind of laptop on different
+workplaces a disaster. Switching monitor layouts is painful to impossible. =
+Even
+simple things such as setting an output as primary fail, which turns most
+desktop environments into a nightmare.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15480985950.dA79CF64d.28084
+Date: Mon, 21 Jan 2019 19:23:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - RandR unable to set Screen Size when using Intel+nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107919#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - RandR unable to set Screen Size when using Intel+nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107919">bug 10791=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+main.haarp&#64;gmail.com" title=3D"main.haarp&#64;gmail.com">main.haarp&#64=
+;gmail.com</a>
+</span></b>
+        <pre>Kernel 4.18.16
+xorg-server-1.20.3
+xf86-video-nouveau-1.0.15
+
+Using modesetting driver for the Intel chip.
+
+This bug still remains. It makes using this kind of laptop on different
+workplaces a disaster. Switching monitor layouts is painful to impossible. =
+Even
+simple things such as setting an output as primary fail, which turns most
+desktop environments into a nightmare.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15480985950.dA79CF64d.28084--
+
+--===============2042825396==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2042825396==--
