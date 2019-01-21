@@ -1,12 +1,13 @@
-From: Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH xf86-video-nouveau] wfb: Fix missing init function
- decls behind FB_ACCESS_WRAPPER
-Date: Sun, 20 Jan 2019 19:20:08 -0500
-Message-ID: <20190121002008.31559-1-rhyskidd@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 109330] GL_ALPHA_BITS set to non-zero with
+ EGL_PLATFORM_GBM_MESA
+Date: Mon, 21 Jan 2019 00:30:26 +0000
+Message-ID: <bug-109330-8800-M2jfo4dzso@http.bugs.freedesktop.org/>
+References: <bug-109330-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0101814608=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-109330-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,19 +20,185 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Rml4ZXMgd2FybmluZyB3aXRoIHhzZXJ2ZXIgMS4yMCBhbmQgZ2NjIDguMjoKCm52X2RyaXZlci5j
-OjE0NDM6OTogd2FybmluZzogaW1wbGljaXQgZGVjbGFyYXRpb24gb2YgZnVuY3Rpb24g4oCYd2Zi
-U2NyZWVuSW5pdOKAmTsgZGlkIHlvdSBtZWFuIOKAmGZiU2NyZWVuSW5pdOKAmT8gWy1XaW1wbGlj
-aXQtZnVuY3Rpb24tZGVjbGFyYXRpb25dCiAgIHJldCA9IHdmYlNjcmVlbkluaXQocFNjcmVlbiwg
-RkJTdGFydCwgcFNjcm4tPnZpcnR1YWxYLAogICAgICAgICBefn5+fn5+fn5+fn5+CiAgICAgICAg
-IGZiU2NyZWVuSW5pdAoKKFNlZSB4c2VydmVyIDcwNmU2ZDljZDA3NGRhNjA2MDE2ZWQ0ZWNmZjUx
-ZTljMmE4MjIwODcpCgpTaWduZWQtb2ZmLWJ5OiBSaHlzIEtpZGQgPHJoeXNraWRkQGdtYWlsLmNv
-bT4KLS0tCiBzcmMvbnZfaW5jbHVkZS5oIHwgMSArCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRp
-b24oKykKCmRpZmYgLS1naXQgYS9zcmMvbnZfaW5jbHVkZS5oIGIvc3JjL252X2luY2x1ZGUuaApp
-bmRleCBkZTU1NTcwLi42ZmRlZWFiIDEwMDY0NAotLS0gYS9zcmMvbnZfaW5jbHVkZS5oCisrKyBi
-L3NyYy9udl9pbmNsdWRlLmgKQEAgLTM4LDYgKzM4LDcgQEAKICNpbmNsdWRlICJkaXhzdHJ1Y3Qu
-aCIKICNpbmNsdWRlICJzY3JuaW50c3RyLmgiCiAKKyNkZWZpbmUgRkJfQUNDRVNTX1dSQVBQRVIK
-ICNpbmNsdWRlICJmYi5oIgogCiAjaW5jbHVkZSAieGY4NmNtYXAuaCIKLS0gCjIuMTkuMQoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0101814608==
+Content-Type: multipart/alternative; boundary="15480306260.6DFeAb03A.3612"
+Content-Transfer-Encoding: 7bit
+
+
+--15480306260.6DFeAb03A.3612
+Date: Mon, 21 Jan 2019 00:30:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109330
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |NOTOURBUG
+
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+As per my comments on IRC, I think this is a wlroots bug:
+drm_connector_set_mode calls init_drm_plane_surfaces (which in turn creates=
+ a
+gbm surface) with GBM_FORMAT_XRGB8888. Flipping that to ARGB8888 resolves t=
+he
+issue.
+
+As per my understanding, the config has to match the surface format, otherw=
+ise
+you get stuff like this. (At the extreme, imagine one said RGB10A2.)
+
+The more detailed issue is that the winsys fb calls dri2_drm_image_get_buff=
+ers
+(via the getBuffers loader API call), which in turn uses the surface's form=
+at
+to create a backing bo. That format is XRGB8888, which becomes
+PIPE_FORMAT_BGRX8888_UNORM. The pipe_surface also has this format. However =
+the
+GL believes that the format should be MESA_FORMAT_BGRA8888 (since that's wh=
+at
+the config said), and since that matches the glReadPixels format, decides it
+can just do a memcpy.
+
+Perhaps the pipe_surface should ignore the resource's format in this case, =
+but
+that's not how the current logic flows. In st_framebuffer_validate, it calls
+u_surface_default_template which copies the format out of the given resourc=
+e.
+AFAIK having mismatches between surface format and config format is really =
+bad
+though, and not really supported. But I'm not a gbm API expert.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15480306260.6DFeAb03A.3612
+Date: Mon, 21 Jan 2019 00:30:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTOURBUG - GL_ALPHA_BITS set to non-zero with EGL_PLA=
+TFORM_GBM_MESA"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109330">bug 10933=
+0</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>NOTOURBUG
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTOURBUG - GL_ALPHA_BITS set to non-zero with EGL_PLA=
+TFORM_GBM_MESA"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109330#c5">Commen=
+t # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTOURBUG - GL_ALPHA_BITS set to non-zero with EGL_PLA=
+TFORM_GBM_MESA"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109330">bug 10933=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>As per my comments on IRC, I think this is a wlroots bug:
+drm_connector_set_mode calls init_drm_plane_surfaces (which in turn creates=
+ a
+gbm surface) with GBM_FORMAT_XRGB8888. Flipping that to ARGB8888 resolves t=
+he
+issue.
+
+As per my understanding, the config has to match the surface format, otherw=
+ise
+you get stuff like this. (At the extreme, imagine one said RGB10A2.)
+
+The more detailed issue is that the winsys fb calls dri2_drm_image_get_buff=
+ers
+(via the getBuffers loader API call), which in turn uses the surface's form=
+at
+to create a backing bo. That format is XRGB8888, which becomes
+PIPE_FORMAT_BGRX8888_UNORM. The pipe_surface also has this format. However =
+the
+GL believes that the format should be MESA_FORMAT_BGRA8888 (since that's wh=
+at
+the config said), and since that matches the glReadPixels format, decides it
+can just do a memcpy.
+
+Perhaps the pipe_surface should ignore the resource's format in this case, =
+but
+that's not how the current logic flows. In st_framebuffer_validate, it calls
+u_surface_default_template which copies the format out of the given resourc=
+e.
+AFAIK having mismatches between surface format and config format is really =
+bad
+though, and not really supported. But I'm not a gbm API expert.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15480306260.6DFeAb03A.3612--
+
+--===============0101814608==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0101814608==--
