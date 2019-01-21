@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109407] GTX 1050 fails to initialise acceleration
-Date: Mon, 21 Jan 2019 20:18:36 +0000
-Message-ID: <bug-109407-8800-N4wWQcLbch@http.bugs.freedesktop.org/>
+Date: Mon, 21 Jan 2019 20:28:40 +0000
+Message-ID: <bug-109407-8800-zdYQOZCYUJ@http.bugs.freedesktop.org/>
 References: <bug-109407-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0510854684=="
+Content-Type: multipart/mixed; boundary="===============0554990122=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109407-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0510854684==
-Content-Type: multipart/alternative; boundary="15481019160.32FCF.13577"
+--===============0554990122==
+Content-Type: multipart/alternative; boundary="15481025192.A5E79.13052"
 Content-Transfer-Encoding: 7bit
 
 
---15481019160.32FCF.13577
-Date: Mon, 21 Jan 2019 20:18:36 +0000
+--15481025192.A5E79.13052
+Date: Mon, 21 Jan 2019 20:28:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,39 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109407
 
---- Comment #1 from Tom Hughes <tom-JS3CarkZCLSmg8Ev75riOw@public.gmane.org> ---
-Created attachment 143180
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D143180&action=3Dedit
-Video BIOS
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Hm - this is probably not good:
+
+nouveau 0000:43:00.0: secboot: SEC2 failed to start
+
+There's a comment in the code before this happens:
+
+        /*
+         * There is a bug where the LS firmware sometimes require to be sta=
+rted
+         * twice (this happens only on SEC). Detect and workaround that
+         * condition.
+         *
+         * Once started, the falcon will end up in STOPPED condition (bit 5)
+         * if successful, or in HALT condition (bit 4) if not.
+         */
+
+And then it goes on to try to re-start things, and when *that* fails, you g=
+et
+the "SEC2 failed to start" message. This code was contributed by NVIDIA, I
+don't think we know much about it.
+
+Make sure you have the latest firmware from linux-firmware, as it occasiona=
+lly
+does get updated. However I'm not sure I've seen this particular failure
+before.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15481019160.32FCF.13577
-Date: Mon, 21 Jan 2019 20:18:36 +0000
+--15481025192.A5E79.13052
+Date: Mon, 21 Jan 2019 20:28:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,22 +84,43 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GTX 1050 fails to initialise acceleration"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109407#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109407#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GTX 1050 fails to initialise acceleration"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109407">bug 10940=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tom&#64;compton.nu" title=3D"Tom Hughes &lt;tom&#64;compton.nu&gt;"> <span =
-class=3D"fn">Tom Hughes</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D143180=
-" name=3D"attach_143180" title=3D"Video BIOS">attachment 143180</a> <a href=
-=3D"attachment.cgi?id=3D143180&amp;action=3Dedit" title=3D"Video BIOS">[det=
-ails]</a></span>
-Video BIOS</pre>
+        <pre>Hm - this is probably not good:
+
+nouveau 0000:43:00.0: secboot: SEC2 failed to start
+
+There's a comment in the code before this happens:
+
+        /*
+         * There is a bug where the LS firmware sometimes require to be sta=
+rted
+         * twice (this happens only on SEC). Detect and workaround that
+         * condition.
+         *
+         * Once started, the falcon will end up in STOPPED condition (bit 5)
+         * if successful, or in HALT condition (bit 4) if not.
+         */
+
+And then it goes on to try to re-start things, and when *that* fails, you g=
+et
+the &quot;SEC2 failed to start&quot; message. This code was contributed by =
+NVIDIA, I
+don't think we know much about it.
+
+Make sure you have the latest firmware from linux-firmware, as it occasiona=
+lly
+does get updated. However I'm not sure I've seen this particular failure
+before.</pre>
         </div>
       </p>
 
@@ -91,9 +134,9 @@ Video BIOS</pre>
     </body>
 </html>=
 
---15481019160.32FCF.13577--
+--15481025192.A5E79.13052--
 
---===============0510854684==
+--===============0554990122==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +146,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0510854684==--
+--===============0554990122==--
