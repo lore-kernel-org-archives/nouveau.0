@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109407] GTX 1050 fails to initialise acceleration
-Date: Mon, 21 Jan 2019 20:18:12 +0000
-Message-ID: <bug-109407-8800-kWPUr0VJuA@http.bugs.freedesktop.org/>
+Date: Mon, 21 Jan 2019 20:18:36 +0000
+Message-ID: <bug-109407-8800-N4wWQcLbch@http.bugs.freedesktop.org/>
 References: <bug-109407-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1114536984=="
+Content-Type: multipart/mixed; boundary="===============0510854684=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109407-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1114536984==
-Content-Type: multipart/alternative; boundary="15481018921.fDbCB85.13672"
+--===============0510854684==
+Content-Type: multipart/alternative; boundary="15481019160.32FCF.13577"
 Content-Transfer-Encoding: 7bit
 
 
---15481018921.fDbCB85.13672
-Date: Mon, 21 Jan 2019 20:18:12 +0000
+--15481019160.32FCF.13577
+Date: Mon, 21 Jan 2019 20:18:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,19 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109407
 
-Tom Hughes <tom-JS3CarkZCLSmg8Ev75riOw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #143179|text/x-log                  |text/plain
-          mime type|                            |
+--- Comment #1 from Tom Hughes <tom-JS3CarkZCLSmg8Ev75riOw@public.gmane.org> ---
+Created attachment 143180
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D143180&action=3Dedit
+Video BIOS
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15481018921.fDbCB85.13672
-Date: Mon, 21 Jan 2019 20:18:12 +0000
+--15481019160.32FCF.13577
+Date: Mon, 21 Jan 2019 20:18:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,31 +56,29 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:tom&#64;c=
-ompton.nu" title=3D"Tom Hughes &lt;tom&#64;compton.nu&gt;"> <span class=3D"=
-fn">Tom Hughes</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GTX 1050 fails to initialise acceleration"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109407#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GTX 1050 fails to initialise acceleration"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109407">bug 10940=
 7</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #143179 mime type</td>
-           <td>text/x-log
-           </td>
-           <td>text/plain
-           </td>
-         </tr></table>
-      <p>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tom&#64;compton.nu" title=3D"Tom Hughes &lt;tom&#64;compton.nu&gt;"> <span =
+class=3D"fn">Tom Hughes</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D143180=
+" name=3D"attach_143180" title=3D"Video BIOS">attachment 143180</a> <a href=
+=3D"attachment.cgi?id=3D143180&amp;action=3Dedit" title=3D"Video BIOS">[det=
+ails]</a></span>
+Video BIOS</pre>
+        </div>
       </p>
 
 
@@ -95,9 +91,9 @@ fn">Tom Hughes</span></a>
     </body>
 </html>=
 
---15481018921.fDbCB85.13672--
+--15481019160.32FCF.13577--
 
---===============1114536984==
+--===============0510854684==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1114536984==--
+--===============0510854684==--
