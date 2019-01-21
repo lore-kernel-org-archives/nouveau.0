@@ -1,15 +1,13 @@
-From: Janek Kozicki <janek.listy.mailowe-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Cannot start a secondary Xserver with resolution
- 6480x3840
-Date: Mon, 21 Jan 2019 20:32:23 +0100
-Message-ID: <20190121202705.6557b5f7@absurd.dom>
-References: <20190121154238.3ffb6eb0@absurd.dom>
- <CAKb7UviFnvkX7nEvyYikQy3M5jUA9sDbMYaAsJ0w7MqzW=_Y9Q@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 107919] RandR unable to set Screen Size when using
+ Intel+nouveau
+Date: Mon, 21 Jan 2019 20:00:23 +0000
+Message-ID: <bug-107919-8800-IXMy2DezNV@http.bugs.freedesktop.org/>
+References: <bug-107919-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0887180811=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UviFnvkX7nEvyYikQy3M5jUA9sDbMYaAsJ0w7MqzW=_Y9Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-107919-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,89 +17,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VWgsIEkgd2FudGVkIHRvIGF0dGFjaCB0aGUgWG9yZy4wLmxvZywgYnV0IEkgZ290IGEgcmVwbHkg
-dGhhdCBpdCBpcwp0b28gYmlnLiBIb3cgY2FuIEkgc2VuZCB0byBtYWlsaW5nIGxpc3Qgd2l0aCBh
-dHRhY2htZW50cz8gT3IgaXMgaXQKZmluZSB0byB3YWl0IGZvciBtb2RlcmF0b3IgYXBwcm92YWw/
-CgoKCkhpLAoKdGhhbmsgeW91IHZlcnkgbXVjaCBmb3IgeW91ciByZXBseS4KCkkgd2lsbCBleHBs
-YWluIG15IHVzZSBjYXNlIGluIG1vcmUgZGV0YWlsLiBGaXJzdCB0aGluZyBpcyB0byBub3RlIHRo
-YXQKaXQgd29ya2VkIHdpdGggbnZpZGlhIChhcGFydCBmcm9tIHRoaXMgYW5ub3lpbmcgc3lzdGVt
-IGZyZWV6ZSB3aGljaApoYXBwZW5lZCByb3VnaGx5IGV2ZXJ5IHRocmVlIG1vbnRocykuCgoKPiBG
-aXJzdCBvZmYsIHlvdSdyZSBub3QgdXNpbmcgdGhlIG5vdXZlYXUgZGR4LCB5b3UncmUgdXNpbmcg
-dGhlCj4gbW9kZXNldHRpbmcgZGR4LiBUaGlzIGlzbid0IGEgcHJvYmxlbSBpbiBpdHNlbGYsIGJ1
-dCBpZiB5b3UncmUgZ29pbmcKPiB0byByZXBvcnQgYnVncywgeW91IHNob3VsZCBmaWxlIHRoZW0g
-YWdhaW5zdCB0aGUgcHJvcGVyIGNvbXBvbmVudC4KCm9oLCB3b3cuIEkgZG9uJ3Qga25vdyB3aGF0
-IGlzIGRkeCBvciBtb2Rlc2V0dGluZyBkZHguIEdvb2dsZSB0ZWxscyBtZQp0aGF0IGl0IGlzIHJl
-bGF0ZWQgdG8gaW50ZWwgZHJpdmVycz8gQnV0IEkgaGF2ZSBudmlkaWEgY2FyZC4gQW5kClhvcmcu
-MC5sb2cgcmVmZXJzIHRvIG5vdXZlYXUgYW5kIG52LgoKUGxlYXNlIHByb3ZpZGUgbWUgc29tZSBs
-aW5rcyB3aGVyZSBJIGNhbiBsZWFybiBhYm91dCB0aGUgZGlmZmVyZW5jZQpiZXR3ZWVuIG5vdXZl
-YXUgYW5kIGRkeC4KCgo+IFNlY29uZGx5LCBJJ20gYSBiaXQgdW5jbGVhciBhcyB0byB3aGF0IHlv
-dXIgc2V0dXAgaXMuIEEgc2luZ2xlIFgKPiBzZXJ2ZXIgdGFrZXMgb3ZlciBhIHdob2xlIEdQVS4g
-UmVjZW50bHkgImxlYXNpbmciIGhhcyBiZWVuIGludHJvZHVjZWQKPiB3aGljaCBlbmFibGVzIGEg
-ZHJtIG1hc3RlciB0byAibGVhc2UiIGNlcnRhaW4gb3V0cHV0cyB0byBhbm90aGVyCj4gcHJvY2Vz
-cywgYnV0IEkgaGF2ZW4ndCBwbGF5ZWQgbXVjaCB3aXRoIGl0LgoKSSBwcmVzcyBDdHJsLUFsdC1G
-MiB0byBzd2l0Y2ggdG8gdGV4dCB2aXJ0dWFsIHRlcm1pbmFsLCB0aGVyZSBJIGxvZwppbiBhcyB1
-c2VyICdyZXNlYXJjaCcgYW5kIHR5cGUKCiQgc3RhcnR4IC0tIC1ub2xpc3RlbiB0Y3AgLWRwaSAx
-MDAKClRodXMgSSBzdGFydCBhbiB4c2VydmVyIChvd25lZCBieSB1c2VyIHJlc2VhcmNoKSB3aGlj
-aCB1c2VzIHRocmVlIExDRApzY3JlZW5zIDY0ODB4Mzg0MCBpbiBtdWx0aWhlYWQgY29uZmlndXJh
-dGlvbi4gQWxsIExDRCBzY3JlZW5zIGFyZQpwYXJ0IG9mIHRoZSBzYW1lIGRlc2t0b3AgYW5kIHBh
-cnQgb2YgdGhlIHNhbWUgeHNlcnZlci4KClRoZW4gSSBwcmVzcyBDdHJsLUFsdC1GNCB0byBzd2l0
-Y2ggdG8gYW5vdGhlciB0ZXh0IHZpcnR1YWwgdGVybWluYWwsCnRoZXJlIEkgbG9nIGluIGFzIHVz
-ZXIgJ3lhZGUnIGFuZCB0eXBlCgokIHN0YXJ0eCAtLSAtbm9saXN0ZW4gdGNwIC1kcGkgMTAwCgpP
-biBudmlkaWEgZHJpdmVycyBpdCB3b3JrcyBhbmQgaXQgc3RhcnRzIHlldCBhbm90aGVyIHhzZXJ2
-ZXIgKG93bmVkCmJ5IHVzZXIgeWFkZSkgd2hpY2ggdXNlcyB0aHJlZSBMQ0Qgc2NyZWVucyA2NDgw
-eDM4NDAgaW4gbXVsdGloZWFkCmNvbmZpZ3VyYXRpb24uCgpUaGUgb25seSB3YXkgdG8gd29yayBh
-cyBmb3JtZXIgdXNlciAncmVzZWFyY2gnIGlzIHRvIHByZXNzIEN0cmwtQWx0LUYyCnRvIHN3aXRj
-aCB0byBpdHMgeHNlcnZlci4KClRoZW4gSSBwcmVzcyBDdHJsLUFsdC1GMTEgdG8gYW5vdGhlciB0
-ZXh0IHZpcnR1YWwgY29uc29sZSwgdGhlcmUgSQpsb2cgaW4gYXMgYW5vdGhlciB1c2VyIGFuZCBz
-dGFydCB0aGlyZCB4c2VydmVyIHdpdGggdGhlIHNhbWUgY29tbWFuZDoKCiQgc3RhcnR4IC0tIC1u
-b2xpc3RlbiB0Y3AgLWRwaSAxMDAKCkkgYW0gYXR0YWNoaW5nIFhvcmcuMC5sb2cgZnJvbSBzdWNj
-ZXNmdWxsIHN0YXJ0dXAgYW5kIGEgKHNlY29uZCkKZmFpbGVkIHN0YXJ0dXAuCgpJIGhvcGUgdGhh
-dCBJIGV4cGxhaW5lZCBteSB1c2UgY2FzZSBpbiBhbiB1bmRlcnN0YW5kYWJsZSBtYW5uZXI/Cgo+
-IElmIHlvdSB3YW50IGRpZmZlcmVudCBYCj4gc2VydmVycyBmb3IgZWFjaCAob3IgZ3JvdXBzIG9m
-KSBvdXRwdXRzIG9mIGEgc2luZ2xlIEdQVSwgdGhlbiB5b3UgbmVlZAo+IHRvIGdldCBsZWFzaW5n
-IGdvaW5nLgoKSXQncyBub3QgbGlrZSB0aGlzLiBBdCBzaW5nbGUgdGltZSBhbGwgR1BVIG91dHB1
-dHMgZ28gdG8gc2luZ2xlCnhzZXJ2ZXIuIEkganVzdCBzd2l0Y2ggYmV0d2VlbiB4c2VydmVycyBi
-eSBzd2l0Y2hpbmcgdmlydHVhbAp0ZXJtaW5hbHMgKHByZXNzaW5nIEN0cmwtQWx0LUYyLCB0aGVu
-IEN0cmwtQWx0LUY0KS4KCgo+IEknbSBub3Qgc3VyZSBhcyB0byB5b3VyIHByZWNpc2UgdXNlLWNh
-c2UsIGJ1dCBwZXJoYXBzIGFub3RoZXIgb3B0aW9uCj4gaXMgdG8gaGF2ZSBhIHNpbmdsZSBYIHNl
-cnZlciB3aXRoIG11bHRpcGxlIFggc2NyZWVucy4gVGhpcyBjYW4gYmUgZG9uZQo+IGJ5IGVuYWJs
-aW5nIFphcGhvZEhlYWRzLiBUaGlzIHdhcyBhIGNvbW1vbiB3YXkgdG8gZ2V0IGEgbWVnYS1zY3Jl
-ZW4KPiBhY3Jvc3MgbXVsdGlwbGUgR1BVcyBwcmlvciB0byBvdXRwdXQgc2xhdmluZyBiZWluZyBp
-bnRyb2R1Y2VkLCB0aGVyZSdzCj4gYSBndWlkZSBoZXJlIGh0dHBzOi8vbm91dmVhdS5mcmVlZGVz
-a3RvcC5vcmcvd2lraS9NdWx0aU1vbml0b3JEZXNrdG9wLwoKSSBhbSBzdXJlIHRoYXQgc2luZ2xl
-IFggc2VydmVyIHdpbGwgbm90IHdvcmsgaGVyZS4gRWFjaCB4c2VydmVyIGlzCm93bmVkIGJ5IGRp
-ZmZlcmVudCB1c2VyLiBJIG9yZ2FuaXplZCBpdCBpbiB0aGlzIHdheSBzbyB0aGF0IGNvbW1hbmQK
-InNsYXkgeWFkZSIgd2lsbCBub3QgaW50ZXJmZXJlIHdpdGggbXkgb3RoZXIgd29ya2luZyBYIHNl
-c3Npb25zLgoKSSBoYXZlIG9ubHkgb25lIGdyYXBoaWNzIGNhcmQgaW4gbXkgY29tcHV0ZXIsIGl0
-IGhhcyB0aHJlZQpEaXNwbGF5UG9ydCBvdXRwdXRzLCBhbmQgdGhleSBhcmUgY29ubmVjdGVkIHRv
-IG15IHRocmVlIExDRCBzY3JlZW5zLgoKCj4gTGFzdGx5LCBub3RlIHRoYXQgbm8gbWF0dGVyIGhv
-dyBtYW55IHBoeXNpY2FsIG91dHB1dHMgdGhlcmUgbWlnaHQgYmUsCj4gS2VwbGVyKyBvbmx5IHN1
-cHBvcnRzIDQgQ1JUQydzIGFuZCBlYXJsaWVyIGdlbnMgaGFkIDIuIFRoYXQgcHV0cyBhCj4gaHct
-aW1wb3NlZCB1cHBlciBsaW1pdCBvbiB0aGUgbnVtYmVyIG9mIGltYWdlcyB0aGF0IGNhbiBiZSBw
-cm9kdWNlZAo+IGZvciB0aGVzZSBvdXRwdXRzLgoKCk15IGdyYXBoaWNzIGNhcmQgaXMgR2VGb3Jj
-ZSBHVFggMTA2MCBTQyA2R0IgR0REUjUgKDE5MiBCaXQpIERWSS1ELCAzeERQLCBIRE1JCgpEb2Vz
-IGl0IG1lYW4gdGhhdCB3aXRoIG5vdXZlYXUgZHJpdmVyIG15IHVzZS1jYXNlIHdpbGwgd29yayB3
-aXRoIG9ubHkKMiBzY3JlZW5zIG9yIHdpdGggNCBzY3JlZW5zPwoKUGxlYXNlIG5vdGUgdGhhdCBt
-eSB1c2UtY2FzZSB3b3JrcyBwZXJmZWN0bHkgKGV4Y2VwdCB0aGUgb2NjYXNpb25hbApzeXN0ZW0g
-ZnJlZXplIHJvdWdobHkgZXZlcnkgdGhyZWUgbW9udGhzKSB3aGVuIEkgdXNlIG52aWRpYSBkcml2
-ZXJzLgoKCjA0OjAwLjAgVkdBIGNvbXBhdGlibGUgY29udHJvbGxlcjogTlZJRElBIENvcnBvcmF0
-aW9uIEdQMTA2IFtHZUZvcmNlIEdUWCAxMDYwIDZHQl0gKHJldiBhMSkgKHByb2ctaWYgMDAgW1ZH
-QSBjb250cm9sbGVyXSkKCVN1YnN5c3RlbTogZVZnYS5jb20uIENvcnAuIEdQMTA2IFtHZUZvcmNl
-IEdUWCAxMDYwIDZHQl0KCUNvbnRyb2w6IEkvTysgTWVtKyBCdXNNYXN0ZXIrIFNwZWNDeWNsZS0g
-TWVtV0lOVi0gVkdBU25vb3AtIFBhckVyci0gU3RlcHBpbmctIFNFUlItIEZhc3RCMkItIERpc0lO
-VHgrCglTdGF0dXM6IENhcCsgNjZNSHotIFVERi0gRmFzdEIyQi0gUGFyRXJyLSBERVZTRUw9ZmFz
-dCA+VEFib3J0LSA8VEFib3J0LSA8TUFib3J0LSA+U0VSUi0gPFBFUlItIElOVHgtCglMYXRlbmN5
-OiAwLCBDYWNoZSBMaW5lIFNpemU6IDY0IGJ5dGVzCglJbnRlcnJ1cHQ6IHBpbiBBIHJvdXRlZCB0
-byBJUlEgMTEKCU5VTUEgbm9kZTogMAoJUmVnaW9uIDA6IE1lbW9yeSBhdCBkZTAwMDAwMCAoMzIt
-Yml0LCBub24tcHJlZmV0Y2hhYmxlKQoJUmVnaW9uIDE6IE1lbW9yeSBhdCBjMDAwMDAwMCAoNjQt
-Yml0LCBwcmVmZXRjaGFibGUpCglSZWdpb24gMzogTWVtb3J5IGF0IGQwMDAwMDAwICg2NC1iaXQs
-IHByZWZldGNoYWJsZSkKCVJlZ2lvbiA1OiBJL08gcG9ydHMgYXQgNzAwMAoJRXhwYW5zaW9uIFJP
-TSBhdCBkZjAwMDAwMCBbZGlzYWJsZWRdCglDYXBhYmlsaXRpZXM6IDxhY2Nlc3MgZGVuaWVkPgoJ
-S2VybmVsIGRyaXZlciBpbiB1c2U6IG5vdXZlYXUKCUtlcm5lbCBtb2R1bGVzOiBub3V2ZWF1CgoK
-CnRoYW5rcyBhIGxvdCBmb3IgeW91ciBoZWxwIQpKYW5layBLb3ppY2tpCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0887180811==
+Content-Type: multipart/alternative; boundary="15481008230.4a73Bbadf.6867"
+Content-Transfer-Encoding: 7bit
+
+
+--15481008230.4a73Bbadf.6867
+Date: Mon, 21 Jan 2019 20:00:23 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107919
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The way RandR works is that it will create one giant FB for all your monito=
+rs,
+and then tell each crtc to scan out a portion of it. The intel max on IVB is
+most likely 8k, but having trouble confirming it. This can come into play w=
+hen
+you're turning things on and off, and they're placed "far out", even if the
+desired configuration does fit well.
+
+There's no real benefit to using nouveau ddx for the secondary screens, so =
+you
+should also experiment with using modesetting for those.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15481008230.4a73Bbadf.6867
+Date: Mon, 21 Jan 2019 20:00:23 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - RandR unable to set Screen Size when using Intel+nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107919#c3">Commen=
+t # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - RandR unable to set Screen Size when using Intel+nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107919">bug 10791=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>The way RandR works is that it will create one giant FB for al=
+l your monitors,
+and then tell each crtc to scan out a portion of it. The intel max on IVB is
+most likely 8k, but having trouble confirming it. This can come into play w=
+hen
+you're turning things on and off, and they're placed &quot;far out&quot;, e=
+ven if the
+desired configuration does fit well.
+
+There's no real benefit to using nouveau ddx for the secondary screens, so =
+you
+should also experiment with using modesetting for those.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15481008230.4a73Bbadf.6867--
+
+--===============0887180811==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0887180811==--
