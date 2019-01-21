@@ -1,104 +1,89 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109407] GTX 1050 fails to initialise acceleration
-Date: Mon, 21 Jan 2019 20:36:58 +0000
-Message-ID: <bug-109407-8800-6PQMwA3Y4F@http.bugs.freedesktop.org/>
-References: <bug-109407-8800@http.bugs.freedesktop.org/>
+From: Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [PATCH] drm: Split out drm_probe_helper.h
+Date: Mon, 21 Jan 2019 23:13:29 +0100
+Message-ID: <20190121221329.GA6512@ravnborg.org>
+References: <20190116163442.12622-1-daniel.vetter@ffwll.ch>
+ <20190116181018.GA27364@ravnborg.org>
+ <20190117164541.GE3271@phenom.ffwll.local>
+ <20190117174531.GA14041@ravnborg.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0332521531=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109407-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20190117174531.GA14041@ravnborg.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: Neil Armstrong <narmstrong@baylibre.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Liviu Dudau <liviu.dudau@arm.com>, DRI Development <dri-devel@lists.freedesktop.org>, virtualization@lists.linux-foundation.org, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Daniel Vetter <daniel.vetter@intel.com>, linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org, Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org, nouveau@lists.freedesktop.org, spice-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>, linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org, linux-mediatek@lists.infradead.org, Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.or
 List-Id: nouveau.vger.kernel.org
 
-
---===============0332521531==
-Content-Type: multipart/alternative; boundary="15481030181.EBbB5cCe.20234"
-Content-Transfer-Encoding: 7bit
-
-
---15481030181.EBbB5cCe.20234
-Date: Mon, 21 Jan 2019 20:36:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109407
-
---- Comment #4 from Tom Hughes <tom-JS3CarkZCLSmg8Ev75riOw@public.gmane.org> ---
-No changes to anything under nvidia since then :-(
-
-Of course it works with the nvidia drivers.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15481030181.EBbB5cCe.20234
-Date: Mon, 21 Jan 2019 20:36:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GTX 1050 fails to initialise acceleration"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109407#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GTX 1050 fails to initialise acceleration"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109407">bug 10940=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tom&#64;compton.nu" title=3D"Tom Hughes &lt;tom&#64;compton.nu&gt;"> <span =
-class=3D"fn">Tom Hughes</span></a>
-</span></b>
-        <pre>No changes to anything under nvidia since then :-(
-
-Of course it works with the nvidia drivers.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15481030181.EBbB5cCe.20234--
-
---===============0332521531==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0332521531==--
+SGkgRGFuaWVsIGV0IGFsLgoKPiA+IAo+ID4gWWVhaCB0aGUgZHJtX2NydGNfaGVscGVyLmggaGVh
+ZGVyIGlzIGEgYml0IHRoZSBtaW5pYXR1cmUgZHJtUC5oIGZvciBsZWdhY3kKPiA+IGttcyBkcml2
+ZXJzLiBKdXN0IHJlbW92aW5nIGl0IGZyb20gYWxsIHRoZSBhdG9taWMgZHJpdmVycyBjYXVzZWQg
+bG90cyBvZgo+ID4gZmFsbG91dCwgSSBleHBlY3QgZXZlbiBtb3JlIGlmIHlvdSBlbnRpcmVseSBy
+ZW1vdmUgdGhlIGluY2x1ZGVzIGl0IGhhcy4KPiA+IE1heWJlIGEgdG9kbywgY2FyZSB0byBwbHMg
+Y3JlYXRlIHRoYXQgcGF0Y2ggc2luY2UgaXQncyB5b3VyIGlkZWE/Cj4gCj4gVGhlIG1haW4gcmVh
+c29uIEkgYmFpbGVkIG91dCBpbml0aWFsbHkgd2FzIHRoYXQgdGhpcyB3b3VsZCBjcmVhdGUKPiBz
+bWFsbCBjaGFuZ2VzIHRvIHNldmVyYWwgb3RoZXJ3aXNlIHNlbGRvbWx5IHRvdWNoZWQgZmlsZXMu
+Cj4gQW5kIHRoZW4gd2Ugd291bGQgbGF0ZXIgY29tZSBhbmQgcmVtb3ZlIGRybVAuaCAtIHNvIGxv
+dHMgb2YKPiBzbWFsbCBidXQgaW5jcmVtZW50YWwgY2hhbmdlcyB0byB0aGUgc2FtZSBvdGhlcndp
+c2Ugc2VsZG9tbHkKPiBlZGl0ZWQgZmlsZXMuCj4gQW5kIHRoZSBqb2Igd2FzIG9ubHkgcGFydGlh
+bGx5IGRvbmUuCj4gCj4gSSB3aWxsIHRyeSB0byBleHBlcmltZW50IHdpdGggYW4gYXBwcm9hY2gg
+d2hlcmUgSSBjbGVhbiB1cCB0aGUKPiBpbmNsdWRlL2RybS8qLmggZmlsZXMgYSBsaXR0bGUgKGxp
+a2Ugc3VnZ2VzdGVkIGFib3ZlLCArZGVsZXRlIGRybVAuaAo+IGFuZCBtYXliZSBhIGJpdCBtb3Jl
+KS4KPiAKPiBUaGVuIHRvIHRyeSBvbiBhIGRyaXZlciBieSBkcml2ZXIgYmFzaXMgdG8gbWFrZSBp
+dCBidWlsZCB3aXRoIGEKPiBjbGVhbmVkIHNldCBvZiBpbmNsdWRlIGZpbGVzLgo+IEkgaG9wZSB0
+aGF0IHRoZSBjbGVhbmVkIHVwIGRyaXZlciBjYW4gc3RpbGwgYnVpbGQgd2l0aG91dCB0aGUKPiBj
+bGVhbmVkIGhlYWRlciBmaWxlcyBzbyB0aGUgY2hhbmdlcyBjYW4gYmUgc3VibWl0dGVkIHBpZWNl
+bWFsLgo+IAo+IFdpbGwgZG8gc28gd2l0aCBhbiBleWUgb24gdGhlIGxlc3NlciBtYWludGFpbmVk
+IGRyaXZlcnMgdG8gdHJ5IGl0Cj4gb3V0IHRvIGF2b2lkIGNyZWF0aW5nIHRvbyBtdWNoIGNocnVu
+Y2ggZm9yIG90aGVycy4KCkkgaGF2ZSBub3cgYSBmZXcgcGF0Y2hlcyBxdWV1ZWQsIGJ1dCB0aGUg
+cmVzdWx0IGlzIG5vdCB0b28gcHJldHR5LgpJIGRpZCB0aGUgZm9sbG93aW5nOgoKLSBGb3IgYWxs
+IGZpbGVzIGluIGluY2x1ZGUvZHJtLyouaCB0aGUgc2V0IG9mIGluY2x1ZGUgZmlsZXMKICB3ZXJl
+IGFkanVzdGVkIHRvIHRoZSBtaW5pbXVtIG51bWJlciBvZiBmaWxlcyByZXF1aXJlZCB0byBtYWtl
+CiAgdGhlbSBidWlsZCB3aXRob3V0IGFueSBvdGhlciBmaWxlcyBpbmNsdWRlZCBmaXJzdC4KCiAg
+Q3JlYXRlZCBvbmUgLmMgZmlsZSBmb3IgZWFjaCAuaCBmaWxlLiBUaGVuIGluY2x1ZGVkIHRoZSAu
+aAogIGZpbGUgYW5kIGFkanVzdGVkIHRvIHRoZSBtaW5pbWFsIHNldCBvZiBpbmNsdWRlIGZpbGVz
+LgogIEluIHRoZSBwcm9jZXNzIGEgbG90IG9mIGZvcndhcmRzIHdlcmUgYWRkZWQuCgotIERlbGV0
+ZWQgZHJtUC5oCgotIEZpeGVkIGJ1aWxkIG9mIGEgZmV3IGRyaXZlcnM6IHN0aSwgdGlsY2RjLCBn
+bWE1MDAsIHR2ZTIwMCwgdmlhCgpTb21lIG9ic2VydmF0aW9uczoKCi0gS2lsbGluZyBhbGwgdGhl
+IGluY2x1ZGVzIG5vdCBuZWVkZWQgaW4gdGhlIGhlYWRlcnMgZmlsZXMKICByZXN1bHRzIGluIGEg
+YSBsb3Qgb2YgZXh0cmEgY2hhbmdlcy4KICBFeGFtcGxlczoKICAgIGRybV9tb2RzZXNldF9oZWxw
+ZXJfdnRhYmxlcy5oIGlzIG5vIGxvbmdlcgogICAgaW5jbHVkZWQgYnkgYW55b25lLCBzbyBuZWVk
+cyB0byBiZSBhZGRlZCBpbiBtYW55IGZpbGVzCgogICAgZHJtX2F0b21pY19zdGF0ZV9oZWxwZXIu
+aCBpcyBubyBsb25nZXIgaW5jbHVkZWQKICAgIGJ5IGFueW9uZSBzbyBsaWtld2lzZSBuZWVkcyB0
+byBiZSBhZGRlZCBpbiBtYW55IGZpbGVzCgotIEl0IGlzIHZlcnkgdGVkaW91cyB0byBkbyB0aGlz
+IHByb3Blcmx5LgogIFRoZSBwcm9jZXNzIEkgZm9sbG93ZWQgd2FzOgogIC0gZGVsZXRlIC8gY29t
+bWVudCBvdXQgYWxsIGluY2x1ZGUgZmlsZXMKICAtIGFkZCBiYWNrIHRoZSBvYnZpb3VzIGZyb20g
+YSBxdWljayBzY2FuIG9mIHRoZSBjb2RlCiAgLSBidWlsZCAtIGZpeCAtIGJ1aWxkIC0gZml4IC0g
+YnVpbGQgLSBmaXggLi4uCiAgLSAgIG5leHQgZmlsZS4uLgoKLSBUaGUgcmVzdWx0IGlzIGVycm9y
+cHJvbmUgYXMgb25seSB0aGUgYWxseWVzY29uZmlnICsgYWxsbW9kY29uZmlnCiAgdmFyaWFudHMg
+YXJlIHRlc3RlZC4gQnV0IHJlYWxsaWZlIGNvbmZpZ3VyYXRpb25zIGFyZSBtb3JlIGRpdmVyc2Uu
+CgpDdXJyZW50IGRpZmZzdGF0OgogICAxMTEgZmlsZXMgY2hhbmdlZCwgNzcxIGluc2VydGlvbnMo
+KyksIDQwMSBkZWxldGlvbnMoLSkKClRoaXMgaXMgZm9yIHRoZSA1IGRyaXZlcnMgYWxvbmUgYW5k
+IG5vdCB0aGUgaGVhZGVyIGNsZWFudXAuClNvIGxvbmcgc3Rvcnkgc2hvcnQgLSB0aGlzIGlzIG5v
+dCBnb29kIGFuZCBub3QgdGhlIHdheSBmb3J3YXJkLgoKSSB3aWxsIHRyeSB0byBjb21lIHVwIHdp
+dGggYSBmZXcgaW1wcm92ZW1lbnRzIHRvIG1ha2UgdGhlCmhlYWRlcnMgZmlsZXMgc2VsZmNvbnRh
+aW5lZCwgYnV0IHJlc3RyaWN0ZWQgdG8gdGhlIGNoYW5nZXMgdGhhdAphZGQgZm9yd2FyZHMvaW5j
+bHVkZSB0byBhdm9pZCB0aGUgY2hydW5jaCBpbiBhbGwgdGhlIGRyaXZlcnMuCgpBbmQgdGhlbiBw
+b3N0IGZvciByZXZpZXcgYSBmZXcgcGF0Y2hlcyB0byBjbGVhbiB1cCBzb21lIGhlYWRlcnMuCklm
+IHRoZSBjbGVhbnVwIGdldHMgYSBnbyBJIHdpbGwgdHJ5IHRvIHBlcnN1YWRlIHRoZSBpbnRyb2R1
+Y3Rpb24Kb2YgdGhlc2UuClRoaXMgd2lsbCBpbmNsdWRlLCBidXQgd2lsbCBub3QgYmUgbGltaXRl
+ZCB0bywgdGhlIGFib3ZlIG1lbnRpb25lZApkcm1fY3J0Y19oZWxwZXIuaCBoZWFkZXIgZmlsZS4K
+CkZvciBub3cgdG9vIG11Y2ggdGltZSB3YXMgYWxyZWFkeSBzcGVudCBvbiB0aGlzLCBzbyBpdCBp
+cyBhdCB0aGUKbW9tZW50IHB1c2hlZCBiYWNrIG9uIG15IFRPRE8gbGlzdC4KVGhpcyBtYWlsIHNl
+cnZlIGFsc28gYXMgYSBraW5kIG9mICJ3aGVyZSBoYWQgSSBsZWZ0Iiwgd2hlbi9pZiBJCnBpY2sg
+dGhpcyB1cCBhZ2Fpbi4KCklmIHRoZXJlIGFyZSBhbnlvbmUgdGhhdCBrbm93cyBzb21lIHRvb2xp
+bmcgdGhhdCBjYW4gaGVscCBpbiB0aGUKcHJvY2VzcyBvZiBhZGp1c3RpbmcgdGhlIGhlYWRlciBm
+aWxlcyBJIGFtIGFsbCBlYXJzLgoKCVNhbQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9kcmktZGV2ZWwK
