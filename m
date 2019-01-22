@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109330] GL_ALPHA_BITS set to non-zero with
  EGL_PLATFORM_GBM_MESA
-Date: Tue, 22 Jan 2019 13:15:46 +0000
-Message-ID: <bug-109330-8800-OzE6kBlrYj@http.bugs.freedesktop.org/>
+Date: Tue, 22 Jan 2019 13:19:13 +0000
+Message-ID: <bug-109330-8800-hG4j6wmZpY@http.bugs.freedesktop.org/>
 References: <bug-109330-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0520821033=="
+Content-Type: multipart/mixed; boundary="===============1297103304=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109330-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0520821033==
-Content-Type: multipart/alternative; boundary="15481629480.C79EF24f1.10277"
+--===============1297103304==
+Content-Type: multipart/alternative; boundary="15481631532.b5a7Dd.14897"
 Content-Transfer-Encoding: 7bit
 
 
---15481629480.C79EF24f1.10277
-Date: Tue, 22 Jan 2019 13:15:48 +0000
+--15481631532.b5a7Dd.14897
+Date: Tue, 22 Jan 2019 13:19:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,27 +36,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109330
 
---- Comment #6 from Daniel Stone <daniel-rLtY4a/8tF1rovVCs/uTlw@public.gmane.org> ---
-Yeah, I think it's reasonable. The render target is XRGB8888, and X really =
-does
-mean undefined, including 'throw content away on render' and 'invent fake
-content on sample'.
+emersion <contact-sV0wSBM+kKVWj0EZb7rXcA@public.gmane.org> changed:
 
-I'd suggest allocating the gbm_surface as GBM_SURFACE_ARGB8888, then taking
-those BOs and passing DRM_FORMAT_XRGB8888 to AddFB2. This is totally safe to
-do, and will ensure that drivers preserve the alpha channel when you write =
-out.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |CLOSED
 
-(I was going to say about matching EGL_NATIVE_VISUAL_ID as well given your
-short example, but you already do that properly - nice!)
+--- Comment #7 from emersion <contact-sV0wSBM+kKVWj0EZb7rXcA@public.gmane.org> ---
+Thanks for the explanation, this makes sense. We'll fix this in wlroots.
+
+Again, sorry for filling an invalid bug!
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15481629480.C79EF24f1.10277
-Date: Tue, 22 Jan 2019 13:15:48 +0000
+--15481631532.b5a7Dd.14897
+Date: Tue, 22 Jan 2019 13:19:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,37 +64,53 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:contact&#=
+64;emersion.fr" title=3D"emersion &lt;contact&#64;emersion.fr&gt;"> <span c=
+lass=3D"fn">emersion</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_CLOSED  bz_closed"
+   title=3D"CLOSED NOTOURBUG - GL_ALPHA_BITS set to non-zero with EGL_PLATF=
+ORM_GBM_MESA"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109330">bug 10933=
+0</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>CLOSED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - GL_ALPHA_BITS set to non-zero with EGL_PLA=
-TFORM_GBM_MESA"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109330#c6">Commen=
-t # 6</a>
+          bz_status_CLOSED  bz_closed"
+   title=3D"CLOSED NOTOURBUG - GL_ALPHA_BITS set to non-zero with EGL_PLATF=
+ORM_GBM_MESA"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109330#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - GL_ALPHA_BITS set to non-zero with EGL_PLA=
-TFORM_GBM_MESA"
+          bz_status_CLOSED  bz_closed"
+   title=3D"CLOSED NOTOURBUG - GL_ALPHA_BITS set to non-zero with EGL_PLATF=
+ORM_GBM_MESA"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109330">bug 10933=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-daniel&#64;fooishbar.org" title=3D"Daniel Stone &lt;daniel&#64;fooishbar.or=
-g&gt;"> <span class=3D"fn">Daniel Stone</span></a>
+contact&#64;emersion.fr" title=3D"emersion &lt;contact&#64;emersion.fr&gt;"=
+> <span class=3D"fn">emersion</span></a>
 </span></b>
-        <pre>Yeah, I think it's reasonable. The render target is XRGB8888, =
-and X really does
-mean undefined, including 'throw content away on render' and 'invent fake
-content on sample'.
+        <pre>Thanks for the explanation, this makes sense. We'll fix this i=
+n wlroots.
 
-I'd suggest allocating the gbm_surface as GBM_SURFACE_ARGB8888, then taking
-those BOs and passing DRM_FORMAT_XRGB8888 to AddFB2. This is totally safe to
-do, and will ensure that drivers preserve the alpha channel when you write =
-out.
-
-(I was going to say about matching EGL_NATIVE_VISUAL_ID as well given your
-short example, but you already do that properly - nice!)</pre>
+Again, sorry for filling an invalid bug!</pre>
         </div>
       </p>
 
@@ -106,15 +119,15 @@ short example, but you already do that properly - nice!)</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15481629480.C79EF24f1.10277--
+--15481631532.b5a7Dd.14897--
 
---===============0520821033==
+--===============1297103304==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +137,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0520821033==--
+--===============1297103304==--
