@@ -1,54 +1,52 @@
-From: Colin Ian King <colin.king@canonical.com>
-Subject: Re: [PATCH] drm/nouveau/bios/dp: make array vsoff static, shrinks
- object size
-Date: Thu, 24 Jan 2019 17:26:17 +0000
-Message-ID: <2d84fcfa-67af-ec76-5821-162004113bf3@canonical.com>
-References: <20180904152333.21640-1-colin.king@canonical.com>
+From: Colin Ian King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/bios/ramcfg: fix missing
+ parentheses when calculating RON
+Date: Thu, 24 Jan 2019 17:27:44 +0000
+Message-ID: <c39bd8e8-478f-698c-0746-b41c323fd1d1@canonical.com>
+References: <20181125170918.8088-1-colin.king@canonical.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20180904152333.21640-1-colin.king@canonical.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20181125170918.8088-1-colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
 Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-ping?
-
-On 04/09/2018 16:23, Colin King wrote:
-> From: Colin Ian King <colin.king@canonical.com>
-> 
-> Don't populate the array vsoff on the stack but instead make it
-> static. Makes the object code smaller by 67 bytes:
-> 
-> Before:
->    text	   data	    bss	    dec	    hex	filename
->    5753	    112	      0	   5865	   16e9	.../nouveau/nvkm/subdev/bios/dp.o
-> 
-> After:
->    text	   data	    bss	    dec	    hex	filename
->    5622	    176	      0	   5798	   16a6	.../nouveau/nvkm/subdev/bios/dp.o
-> 
-> (gcc version 8.2.0 x86_64)
-> 
-> Signed-off-by: Colin Ian King <colin.king@canonical.com>
-> ---
->  drivers/gpu/drm/nouveau/nvkm/subdev/bios/dp.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/dp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/dp.c
-> index 3133b28f849c..b099d1209be8 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/dp.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/dp.c
-> @@ -212,7 +212,7 @@ nvbios_dpcfg_match(struct nvkm_bios *bios, u16 outp, u8 pc, u8 vs, u8 pe,
->  	u16 data;
->  
->  	if (*ver >= 0x30) {
-> -		const u8 vsoff[] = { 0, 4, 7, 9 };
-> +		static const u8 vsoff[] = { 0, 4, 7, 9 };
->  		idx = (pc * 10) + vsoff[vs] + pe;
->  		if (*ver >= 0x40 && *ver <= 0x41 && *hdr >= 0x12)
->  			idx += nvbios_rd08(bios, outp + 0x11) * 40;
-> 
+cGluZz8KCk9uIDI1LzExLzIwMTggMTc6MDksIENvbGluIEtpbmcgd3JvdGU6Cj4gRnJvbTogQ29s
+aW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KPiAKPiBDdXJyZW50bHksIHRo
+ZSBleHByZXNzaW9uIGZvciBjYWxjdWxhdGluZyBST04gaXMgYWx3YXlzIGdvaW5nIHRvIHJlc3Vs
+dAo+IGluIHplcm8gbm8gbWF0dGVyIHRoZSB2YWx1ZSBvZiByYW0tPm1yWzFdIGJlY2F1c2UgdGhl
+ICEgb3BlcmF0b3IgaGFzCj4gaGlnaGVyIHByZWNlZGVuY2UgdGhhbiB0aGUgc2hpZnQgPj4gb3Bl
+cmF0b3IuICBJIGJlbGlldmUgdGhlIG1pc3NpbmcKPiBwYXJlbnRoZXNlcyBhcm91bmQgdGhlIGV4
+cHJlc3Npb24gYmVmb3JlIGFwcHlpbmcgdGhlICEgb3BlcmF0b3Igd2lsbAo+IHJlc3VsdCBpbiB0
+aGUgZGVzaXJlZCByZXN1bHQuCj4gCj4gWyBOb3RlLCBub3QgdGVzdGVkIF0KPiAKPiBEZXRlY3Rl
+ZCBieSBDb3Zlcml0U2NhbiwgQ0lEIzEzMjQwMDUgKCJPcGVyYW5kcyBkb24ndCBhZmZlY3QgcmVz
+dWx0IikKPiAKPiBGaXhlczogYzI1YmY3YjYxNTVjICgiZHJtL25vdXZlYXUvYmlvcy9yYW1jZmc6
+IFNlcGFyYXRlIG91dCBST04gcHVsbCB2YWx1ZSIpCj4gU2lnbmVkLW9mZi1ieTogQ29saW4gSWFu
+IEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvZ2RkcjMuYyB8IDIgKy0KPiAgMSBmaWxlIGNoYW5nZWQs
+IDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL2dkZHIzLmMgYi9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9mYi9nZGRyMy5jCj4gaW5kZXggNjBlY2UwYThhMmUxLi4xZDJk
+NmJhZTczY2QgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJk
+ZXYvZmIvZ2RkcjMuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2
+L2ZiL2dkZHIzLmMKPiBAQCAtODcsNyArODcsNyBAQCBudmttX2dkZHIzX2NhbGMoc3RydWN0IG52
+a21fcmFtICpyYW0pCj4gIAkJV1IgID0gKHJhbS0+bmV4dC0+Ymlvcy50aW1pbmdbMl0gJiAweDAw
+N2YwMDAwKSA+PiAxNjsKPiAgCQkvKiBYWFg6IEdldCB0aGVzZSB2YWx1ZXMgZnJvbSB0aGUgVkJJ
+T1MgaW5zdGVhZCAqLwo+ICAJCURMTCA9ICEocmFtLT5tclsxXSAmIDB4MSk7Cj4gLQkJUk9OID0g
+IShyYW0tPm1yWzFdICYgMHgzMDApID4+IDg7Cj4gKwkJUk9OID0gISgocmFtLT5tclsxXSAmIDB4
+MzAwKSA+PiA4KTsKPiAgCQlicmVhazsKPiAgCWRlZmF1bHQ6Cj4gIAkJcmV0dXJuIC1FTk9TWVM7
+Cj4gCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
