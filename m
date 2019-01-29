@@ -1,45 +1,58 @@
 From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-Subject: [PATCH] drm/nouveau: mark expected switch fall-through
-Date: Tue, 29 Jan 2019 14:30:46 -0600
-Message-ID: <20190129203046.GA28384@embeddedor>
+Subject: Re: [PATCH] drm/nouveau: fix missing break in switch statement
+Date: Tue, 29 Jan 2019 14:49:48 -0600
+Message-ID: <63660e1c-1075-80a0-6b11-5f1a8cb253fc@embeddedor.com>
+References: <20181008204736.8941-1-colin.king@canonical.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
+In-Reply-To: <20181008204736.8941-1-colin.king@canonical.com>
+Content-Language: en-US
 Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+To: Colin King <colin.king@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-In preparation to enabling -Wimplicit-fallthrough, mark switch cases
-where we are expecting to fall through.
 
-This patch fixes the following warning:
 
-drivers/gpu/drm/nouveau/nouveau_bo.c:1434:53: warning: this statement may fall through [-Wimplicit-fallthrough=]
+On 10/8/18 3:47 PM, Colin King wrote:
+> From: Colin Ian King <colin.king@canonical.com>
+> 
+> The NOUVEAU_GETPARAM_PCI_DEVICE case is missing a break statement and falls
+> through to the following NOUVEAU_GETPARAM_BUS_TYPE case and may end up
+> re-assigning the getparam->value to an undesired value. Fix this by adding
+> in the missing break.
+> 
+> Detected by CoverityScan, CID#1460507 ("Missing break in switch")
+> 
+> Fixes: 359088d5b8ec ("drm/nouveau: remove trivial cases of nvxx_device() usage")
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
 
-Warning level 3 was used: -Wimplicit-fallthrough=3
+Reviewed-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
 
-This patch is part of the ongoing efforts to enabling
--Wimplicit-fallthrough.
+Friendly ping:
 
-Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
----
- drivers/gpu/drm/nouveau/nouveau_bo.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Who can take this?
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 73eff52036d2..a72be71c45b4 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -1434,7 +1434,7 @@ nouveau_ttm_io_mem_reserve(struct ttm_bo_device *bdev, struct ttm_mem_reg *reg)
- 		if (drm->client.mem->oclass < NVIF_CLASS_MEM_NV50 || !mem->kind)
- 			/* untiled */
- 			break;
--		/* fallthrough, tiled memory */
-+		/* fall through - tiled memory */
- 	case TTM_PL_VRAM:
- 		reg->bus.offset = reg->start << PAGE_SHIFT;
- 		reg->bus.base = device->func->resource_addr(device, 1);
--- 
-2.20.1
+Thanks
+--
+Gustavo
+
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_abi16.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+> index e67a471331b5..6ec745873bc5 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+> @@ -214,6 +214,7 @@ nouveau_abi16_ioctl_getparam(ABI16_IOCTL_ARGS)
+>  			WARN_ON(1);
+>  			break;
+>  		}
+> +		break;
+>  	case NOUVEAU_GETPARAM_FB_SIZE:
+>  		getparam->value = drm->gem.vram_available;
+>  		break;
+> 
