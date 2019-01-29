@@ -1,40 +1,114 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 26/26] drm/<drivers>: Don't set
- FBINFO_(FLAG_)DEFAULT
-Date: Tue, 29 Jan 2019 10:58:34 +0100
-Message-ID: <20190129095834.GP3271@phenom.ffwll.local>
-References: <20190124165831.16427-1-daniel.vetter@ffwll.ch>
- <20190124165831.16427-27-daniel.vetter@ffwll.ch>
- <CACvgo52YJ0kSBVJryELvZn70--4rbPr7R=TJdRgbVr1fEVr2yw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 107829] nouveau crash/freeze [MULTIPLE_WARP_ERRORS]
+ warp 3f0009 [ILLEGAL_INSTR_ENCODING]
+Date: Tue, 29 Jan 2019 17:09:28 +0000
+Message-ID: <bug-107829-8800-rMWp9bCyew@http.bugs.freedesktop.org/>
+References: <bug-107829-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <CACvgo52YJ0kSBVJryELvZn70--4rbPr7R=TJdRgbVr1fEVr2yw@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Emil Velikov <emil.l.velikov@gmail.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, DRI Development <dri-devel@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@intel.com>, "moderated list:ARM/S5P EXYNOS AR..." <linux-samsung-soc@vger.kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, linux-rockchip <linux-rockchip@lists.infradead.org>, Kukjin Kim <kgene@kernel.org>, Ben Skeggs <bskeggs@redhat.com>, ML nouveau <nouveau@lists.freedesktop.org>, Alexander Kapshuk <alexander.kapshuk@gmail.com>, Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, linux-tegra@vger.kernel.org, LAKML <linux-arm-kernel@lists.infradead.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>
+Content-Type: multipart/mixed; boundary="===============1625172335=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-107829-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBKYW4gMjUsIDIwMTkgYXQgMDM6MDI6NDZQTSArMDAwMCwgRW1pbCBWZWxpa292IHdy
-b3RlOgo+IE9uIFRodSwgMjQgSmFuIDIwMTkgYXQgMTc6MDAsIERhbmllbCBWZXR0ZXIgPGRhbmll
-bC52ZXR0ZXJAZmZ3bGwuY2g+IHdyb3RlOgo+ID4KPiA+IEl0J3MgMC4KPiA+Cj4gSSdkIGFkZCBh
-IGJpdCBtb3JlIGluZm9ybWF0aW9uIGhlcmUuIEZlZWwgZnJlZSB0byByZXVzZSBhcyBtdWNoL2xp
-dHRsZQo+IG9mIHRoZSBmb2xsb3dpbmc6Cj4gCj4gQm90aCBtYWNyb3MgZXZhbHVhdGUgdG8gMC4g
-QXQgdGhlIHNhbWUgdGltZSBmbGFnIGlzIGFscmVhZHkgc2V0IHRvCj4gemVybyBzaW5jZSB0aGUg
-c3RydWN0IGlzIGt6YWxsb2MnZCBpbiBmcmFtZWJ1ZmZlcl9hbGxvYygpLgo+IEFzIGNhbGxlZCBi
-eSBkcm1fZmJfaGVscGVyX2FsbG9jX2ZiaSgpIGluIHRoZSBEUk0gZHJpdmVycy4KCkFkZGVkJm1l
-cmdlZCwgdGhhbmtzIGZvciB5b3VyIHJldmlldy4KLURhbmllbAotLSAKRGFuaWVsIFZldHRlcgpT
-b2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
-IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============1625172335==
+Content-Type: multipart/alternative; boundary="15487817682.A4F6a0.12750"
+Content-Transfer-Encoding: 7bit
+
+
+--15487817682.A4F6a0.12750
+Date: Tue, 29 Jan 2019 17:09:28 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107829
+
+--- Comment #8 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+are you still on Fedora 28? I could create a mesa package to try out for you
+for fedora 29 which should fix those issues, but they would need to be test=
+ed a
+bit longer to be sure.
+
+I am sure what the issue is, just fixing it is quite challanging.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15487817682.A4F6a0.12750
+Date: Tue, 29 Jan 2019 17:09:28 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
+ILLEGAL_INSTR_ENCODING]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829#c8">Commen=
+t # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
+ILLEGAL_INSTR_ENCODING]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829">bug 10782=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+</span></b>
+        <pre>are you still on Fedora 28? I could create a mesa package to t=
+ry out for you
+for fedora 29 which should fix those issues, but they would need to be test=
+ed a
+bit longer to be sure.
+
+I am sure what the issue is, just fixing it is quite challanging.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15487817682.A4F6a0.12750--
+
+--===============1625172335==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1625172335==--
