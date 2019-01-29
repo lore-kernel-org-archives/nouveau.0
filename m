@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 107829] nouveau crash/freeze [MULTIPLE_WARP_ERRORS]
  warp 3f0009 [ILLEGAL_INSTR_ENCODING]
-Date: Tue, 29 Jan 2019 17:09:28 +0000
-Message-ID: <bug-107829-8800-rMWp9bCyew@http.bugs.freedesktop.org/>
+Date: Tue, 29 Jan 2019 17:26:55 +0000
+Message-ID: <bug-107829-8800-0f1I4l51U3@http.bugs.freedesktop.org/>
 References: <bug-107829-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1625172335=="
+Content-Type: multipart/mixed; boundary="===============0651516622=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-107829-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1625172335==
-Content-Type: multipart/alternative; boundary="15487817682.A4F6a0.12750"
+--===============0651516622==
+Content-Type: multipart/alternative; boundary="15487828152.6a68E9F.18167"
 Content-Transfer-Encoding: 7bit
 
 
---15487817682.A4F6a0.12750
-Date: Tue, 29 Jan 2019 17:09:28 +0000
+--15487828152.6a68E9F.18167
+Date: Tue, 29 Jan 2019 17:26:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D107829
 
---- Comment #8 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-are you still on Fedora 28? I could create a mesa package to try out for you
-for fedora 29 which should fix those issues, but they would need to be test=
-ed a
-bit longer to be sure.
+--- Comment #9 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+anyway, here is the copr for fc29, just triggered a new build with an updat=
+ed
+version: https://copr.fedorainfracloud.org/coprs/karolherbst/mesa/
 
-I am sure what the issue is, just fixing it is quite challanging.
+version should be 18.2.8-9001.fc29
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15487817682.A4F6a0.12750
-Date: Tue, 29 Jan 2019 17:09:28 +0000
+--15487828152.6a68E9F.18167
+Date: Tue, 29 Jan 2019 17:26:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,8 +66,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
 ILLEGAL_INSTR_ENCODING]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829#c8">Commen=
-t # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
@@ -79,13 +78,12 @@ ILLEGAL_INSTR_ENCODING]"
 karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
 com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>are you still on Fedora 28? I could create a mesa package to t=
-ry out for you
-for fedora 29 which should fix those issues, but they would need to be test=
-ed a
-bit longer to be sure.
+        <pre>anyway, here is the copr for fc29, just triggered a new build =
+with an updated
+version: <a href=3D"https://copr.fedorainfracloud.org/coprs/karolherbst/mes=
+a/">https://copr.fedorainfracloud.org/coprs/karolherbst/mesa/</a>
 
-I am sure what the issue is, just fixing it is quite challanging.</pre>
+version should be 18.2.8-9001.fc29</pre>
         </div>
       </p>
 
@@ -99,9 +97,9 @@ I am sure what the issue is, just fixing it is quite challanging.</pre>
     </body>
 </html>=
 
---15487817682.A4F6a0.12750--
+--15487828152.6a68E9F.18167--
 
---===============1625172335==
+--===============0651516622==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1625172335==--
+--===============0651516622==--
