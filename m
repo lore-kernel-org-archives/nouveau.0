@@ -1,58 +1,53 @@
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-Subject: Re: [PATCH] drm/nouveau: fix missing break in switch statement
-Date: Tue, 29 Jan 2019 14:49:48 -0600
-Message-ID: <63660e1c-1075-80a0-6b11-5f1a8cb253fc@embeddedor.com>
+From: "Gustavo A. R. Silva" <gustavo-L1vi/lXTdts+Va1GwOuvDg@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: fix missing break in switch
+ statement
+Date: Tue, 29 Jan 2019 15:04:33 -0600
+Message-ID: <c1026416-6cab-725d-b13d-bebc1c3a7583@embeddedor.com>
 References: <20181008204736.8941-1-colin.king@canonical.com>
+ <63660e1c-1075-80a0-6b11-5f1a8cb253fc@embeddedor.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20181008204736.8941-1-colin.king@canonical.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <63660e1c-1075-80a0-6b11-5f1a8cb253fc-L1vi/lXTdts+Va1GwOuvDg@public.gmane.org>
 Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Colin King <colin.king@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Colin King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
-
-On 10/8/18 3:47 PM, Colin King wrote:
-> From: Colin Ian King <colin.king@canonical.com>
-> 
-> The NOUVEAU_GETPARAM_PCI_DEVICE case is missing a break statement and falls
-> through to the following NOUVEAU_GETPARAM_BUS_TYPE case and may end up
-> re-assigning the getparam->value to an undesired value. Fix this by adding
-> in the missing break.
-> 
-> Detected by CoverityScan, CID#1460507 ("Missing break in switch")
-> 
-> Fixes: 359088d5b8ec ("drm/nouveau: remove trivial cases of nvxx_device() usage")
-> Signed-off-by: Colin Ian King <colin.king@canonical.com>
-
-Reviewed-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
-
-Friendly ping:
-
-Who can take this?
-
-Thanks
---
-Gustavo
-
-> ---
->  drivers/gpu/drm/nouveau/nouveau_abi16.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-> index e67a471331b5..6ec745873bc5 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-> @@ -214,6 +214,7 @@ nouveau_abi16_ioctl_getparam(ABI16_IOCTL_ARGS)
->  			WARN_ON(1);
->  			break;
->  		}
-> +		break;
->  	case NOUVEAU_GETPARAM_FB_SIZE:
->  		getparam->value = drm->gem.vram_available;
->  		break;
-> 
+CgpPbiAxLzI5LzE5IDI6NDkgUE0sIEd1c3Rhdm8gQS4gUi4gU2lsdmEgd3JvdGU6Cj4gCj4gCj4g
+T24gMTAvOC8xOCAzOjQ3IFBNLCBDb2xpbiBLaW5nIHdyb3RlOgo+PiBGcm9tOiBDb2xpbiBJYW4g
+S2luZyA8Y29saW4ua2luZ0BjYW5vbmljYWwuY29tPgo+Pgo+PiBUaGUgTk9VVkVBVV9HRVRQQVJB
+TV9QQ0lfREVWSUNFIGNhc2UgaXMgbWlzc2luZyBhIGJyZWFrIHN0YXRlbWVudCBhbmQgZmFsbHMK
+Pj4gdGhyb3VnaCB0byB0aGUgZm9sbG93aW5nIE5PVVZFQVVfR0VUUEFSQU1fQlVTX1RZUEUgY2Fz
+ZSBhbmQgbWF5IGVuZCB1cAo+PiByZS1hc3NpZ25pbmcgdGhlIGdldHBhcmFtLT52YWx1ZSB0byBh
+biB1bmRlc2lyZWQgdmFsdWUuIEZpeCB0aGlzIGJ5IGFkZGluZwo+PiBpbiB0aGUgbWlzc2luZyBi
+cmVhay4KPj4KPj4gRGV0ZWN0ZWQgYnkgQ292ZXJpdHlTY2FuLCBDSUQjMTQ2MDUwNyAoIk1pc3Np
+bmcgYnJlYWsgaW4gc3dpdGNoIikKPj4KPj4gRml4ZXM6IDM1OTA4OGQ1YjhlYyAoImRybS9ub3V2
+ZWF1OiByZW1vdmUgdHJpdmlhbCBjYXNlcyBvZiBudnh4X2RldmljZSgpIHVzYWdlIikKPj4gU2ln
+bmVkLW9mZi1ieTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KPiAK
+PiBSZXZpZXdlZC1ieTogR3VzdGF2byBBLiBSLiBTaWx2YSA8Z3VzdGF2b0BlbWJlZGRlZG9yLmNv
+bT4KPiAKPiBGcmllbmRseSBwaW5nOgo+IAo+IFdobyBjYW4gdGFrZSB0aGlzPwo+IAoKQlRXLCB0
+aGlzIHNob3VsZCBiZSB0YWdnZWQgZm9yIHN0YWJsZToKCkNjOiBzdGFibGVAdmdlci5rZXJuZWwu
+b3JnCgpUaGFua3MKLS0KR3VzdGF2bwoKCj4+IC0tLQo+PiAgZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbm91dmVhdV9hYmkxNi5jIHwgMSArCj4+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24o
+KykKPj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWJp
+MTYuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWJpMTYuYwo+PiBpbmRleCBl
+NjdhNDcxMzMxYjUuLjZlYzc0NTg3M2JjNSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9hYmkxNi5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L25vdXZlYXVfYWJpMTYuYwo+PiBAQCAtMjE0LDYgKzIxNCw3IEBAIG5vdXZlYXVfYWJpMTZfaW9j
+dGxfZ2V0cGFyYW0oQUJJMTZfSU9DVExfQVJHUykKPj4gIAkJCVdBUk5fT04oMSk7Cj4+ICAJCQli
+cmVhazsKPj4gIAkJfQo+PiArCQlicmVhazsKPj4gIAljYXNlIE5PVVZFQVVfR0VUUEFSQU1fRkJf
+U0laRToKPj4gIAkJZ2V0cGFyYW0tPnZhbHVlID0gZHJtLT5nZW0udnJhbV9hdmFpbGFibGU7Cj4+
+ICAJCWJyZWFrOwo+PgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
