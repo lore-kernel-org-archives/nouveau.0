@@ -1,16 +1,14 @@
-From: "Gustavo A. R. Silva" <gustavo-L1vi/lXTdts+Va1GwOuvDg@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: fix missing break in switch
- statement
-Date: Tue, 29 Jan 2019 15:04:33 -0600
-Message-ID: <c1026416-6cab-725d-b13d-bebc1c3a7583@embeddedor.com>
-References: <20181008204736.8941-1-colin.king@canonical.com>
- <63660e1c-1075-80a0-6b11-5f1a8cb253fc@embeddedor.com>
+From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Don't WARN_ON VCPI allocation
+ failures
+Date: Tue, 29 Jan 2019 23:15:59 +0000
+Message-ID: <20190129231600.7E38220882@mail.kernel.org>
+References: <20190128210352.18066-1-lyude@redhat.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <63660e1c-1075-80a0-6b11-5f1a8cb253fc-L1vi/lXTdts+Va1GwOuvDg@public.gmane.org>
-Content-Language: en-US
+In-Reply-To: <20190128210352.18066-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +18,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Colin King <colin.king-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAxLzI5LzE5IDI6NDkgUE0sIEd1c3Rhdm8gQS4gUi4gU2lsdmEgd3JvdGU6Cj4gCj4gCj4g
-T24gMTAvOC8xOCAzOjQ3IFBNLCBDb2xpbiBLaW5nIHdyb3RlOgo+PiBGcm9tOiBDb2xpbiBJYW4g
-S2luZyA8Y29saW4ua2luZ0BjYW5vbmljYWwuY29tPgo+Pgo+PiBUaGUgTk9VVkVBVV9HRVRQQVJB
-TV9QQ0lfREVWSUNFIGNhc2UgaXMgbWlzc2luZyBhIGJyZWFrIHN0YXRlbWVudCBhbmQgZmFsbHMK
-Pj4gdGhyb3VnaCB0byB0aGUgZm9sbG93aW5nIE5PVVZFQVVfR0VUUEFSQU1fQlVTX1RZUEUgY2Fz
-ZSBhbmQgbWF5IGVuZCB1cAo+PiByZS1hc3NpZ25pbmcgdGhlIGdldHBhcmFtLT52YWx1ZSB0byBh
-biB1bmRlc2lyZWQgdmFsdWUuIEZpeCB0aGlzIGJ5IGFkZGluZwo+PiBpbiB0aGUgbWlzc2luZyBi
-cmVhay4KPj4KPj4gRGV0ZWN0ZWQgYnkgQ292ZXJpdHlTY2FuLCBDSUQjMTQ2MDUwNyAoIk1pc3Np
-bmcgYnJlYWsgaW4gc3dpdGNoIikKPj4KPj4gRml4ZXM6IDM1OTA4OGQ1YjhlYyAoImRybS9ub3V2
-ZWF1OiByZW1vdmUgdHJpdmlhbCBjYXNlcyBvZiBudnh4X2RldmljZSgpIHVzYWdlIikKPj4gU2ln
-bmVkLW9mZi1ieTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KPiAK
-PiBSZXZpZXdlZC1ieTogR3VzdGF2byBBLiBSLiBTaWx2YSA8Z3VzdGF2b0BlbWJlZGRlZG9yLmNv
-bT4KPiAKPiBGcmllbmRseSBwaW5nOgo+IAo+IFdobyBjYW4gdGFrZSB0aGlzPwo+IAoKQlRXLCB0
-aGlzIHNob3VsZCBiZSB0YWdnZWQgZm9yIHN0YWJsZToKCkNjOiBzdGFibGVAdmdlci5rZXJuZWwu
-b3JnCgpUaGFua3MKLS0KR3VzdGF2bwoKCj4+IC0tLQo+PiAgZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9hYmkxNi5jIHwgMSArCj4+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24o
-KykKPj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWJp
-MTYuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWJpMTYuYwo+PiBpbmRleCBl
-NjdhNDcxMzMxYjUuLjZlYzc0NTg3M2JjNSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9hYmkxNi5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L25vdXZlYXVfYWJpMTYuYwo+PiBAQCAtMjE0LDYgKzIxNCw3IEBAIG5vdXZlYXVfYWJpMTZfaW9j
-dGxfZ2V0cGFyYW0oQUJJMTZfSU9DVExfQVJHUykKPj4gIAkJCVdBUk5fT04oMSk7Cj4+ICAJCQli
-cmVhazsKPj4gIAkJfQo+PiArCQlicmVhazsKPj4gIAljYXNlIE5PVVZFQVVfR0VUUEFSQU1fRkJf
-U0laRToKPj4gIAkJZ2V0cGFyYW0tPnZhbHVlID0gZHJtLT5nZW0udnJhbV9hdmFpbGFibGU7Cj4+
-ICAJCWJyZWFrOwo+PgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+SGksCgpbVGhpcyBpcyBhbiBhdXRvbWF0ZWQgZW1haWxdCgpUaGlzIGNvbW1pdCBoYXMgYmVlbiBw
+cm9jZXNzZWQgYmVjYXVzZSBpdCBjb250YWlucyBhICJGaXhlczoiIHRhZywKZml4aW5nIGNvbW1p
+dDogZjQ3OWMwYmE0YTE3IGRybS9ub3V2ZWF1L2ttcy9udjUwOiBpbml0aWFsIHN1cHBvcnQgZm9y
+IERQIDEuMiBtdWx0aS1zdHJlYW0uCgpUaGUgYm90IGhhcyB0ZXN0ZWQgdGhlIGZvbGxvd2luZyB0
+cmVlczogdjQuMjAuNSwgdjQuMTkuMTgsIHY0LjE0Ljk2LgoKdjQuMjAuNTogQnVpbGQgT0shCnY0
+LjE5LjE4OiBCdWlsZCBPSyEKdjQuMTQuOTY6IEZhaWxlZCB0byBhcHBseSEgUG9zc2libGUgZGVw
+ZW5kZW5jaWVzOgogICAgVW5hYmxlIHRvIGNhbGN1bGF0ZQoKCkhvdyBzaG91bGQgd2UgcHJvY2Vl
+ZCB3aXRoIHRoaXMgcGF0Y2g/CgotLQpUaGFua3MsClNhc2hhCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
