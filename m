@@ -1,34 +1,56 @@
-From: Sasha Levin <sashal@kernel.org>
-Subject: Re: [PATCH] drm/nouveau: Don't WARN_ON VCPI allocation failures
-Date: Tue, 29 Jan 2019 23:15:59 +0000
-Message-ID: <20190129231600.7E38220882__49326.3047932246$1548803771$gmane$org@mail.kernel.org>
-References: <20190128210352.18066-1-lyude@redhat.com>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [Nouveau] [PATCH] drm/nouveau: mark expected switch fall-through
+Date: Wed, 30 Jan 2019 12:51:56 +1000
+Message-ID: <CACAvsv7KU_fyyvAW3L6aCXPon599=tC4CyXdCF6sVOqqOu3SDA@mail.gmail.com>
+References: <20190129203046.GA28384@embeddedor>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20190128210352.18066-1-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Sasha Levin <sashal@kernel.org>, Lyude Paul <lyude@redhat.com>
-Cc: nouveau@lists.freedesktop.org, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190129203046.GA28384@embeddedor>
+Sender: linux-kernel-owner@vger.kernel.org
+To: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpbVGhpcyBpcyBhbiBhdXRvbWF0ZWQgZW1haWxdCgpUaGlzIGNvbW1pdCBoYXMgYmVlbiBw
-cm9jZXNzZWQgYmVjYXVzZSBpdCBjb250YWlucyBhICJGaXhlczoiIHRhZywKZml4aW5nIGNvbW1p
-dDogZjQ3OWMwYmE0YTE3IGRybS9ub3V2ZWF1L2ttcy9udjUwOiBpbml0aWFsIHN1cHBvcnQgZm9y
-IERQIDEuMiBtdWx0aS1zdHJlYW0uCgpUaGUgYm90IGhhcyB0ZXN0ZWQgdGhlIGZvbGxvd2luZyB0
-cmVlczogdjQuMjAuNSwgdjQuMTkuMTgsIHY0LjE0Ljk2LgoKdjQuMjAuNTogQnVpbGQgT0shCnY0
-LjE5LjE4OiBCdWlsZCBPSyEKdjQuMTQuOTY6IEZhaWxlZCB0byBhcHBseSEgUG9zc2libGUgZGVw
-ZW5kZW5jaWVzOgogICAgVW5hYmxlIHRvIGNhbGN1bGF0ZQoKCkhvdyBzaG91bGQgd2UgcHJvY2Vl
-ZCB3aXRoIHRoaXMgcGF0Y2g/CgotLQpUaGFua3MsClNhc2hhCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRl
-dmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+Got it, thanks.
+
+On Wed, 30 Jan 2019 at 06:55, Gustavo A. R. Silva
+<gustavo@embeddedor.com> wrote:
+>
+> In preparation to enabling -Wimplicit-fallthrough, mark switch cases
+> where we are expecting to fall through.
+>
+> This patch fixes the following warning:
+>
+> drivers/gpu/drm/nouveau/nouveau_bo.c:1434:53: warning: this statement may fall through [-Wimplicit-fallthrough=]
+>
+> Warning level 3 was used: -Wimplicit-fallthrough=3
+>
+> This patch is part of the ongoing efforts to enabling
+> -Wimplicit-fallthrough.
+>
+> Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_bo.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> index 73eff52036d2..a72be71c45b4 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+> @@ -1434,7 +1434,7 @@ nouveau_ttm_io_mem_reserve(struct ttm_bo_device *bdev, struct ttm_mem_reg *reg)
+>                 if (drm->client.mem->oclass < NVIF_CLASS_MEM_NV50 || !mem->kind)
+>                         /* untiled */
+>                         break;
+> -               /* fallthrough, tiled memory */
+> +               /* fall through - tiled memory */
+>         case TTM_PL_VRAM:
+>                 reg->bus.offset = reg->start << PAGE_SHIFT;
+>                 reg->bus.base = device->func->resource_addr(device, 1);
+> --
+> 2.20.1
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
