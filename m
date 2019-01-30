@@ -1,70 +1,149 @@
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau: mark expected switch fall-through
-Date: Tue, 29 Jan 2019 21:03:44 -0600
-Message-ID: <f57bdbe8-5096-f36c-4997-9200847449f5@embeddedor.com>
-References: <20190129203046.GA28384@embeddedor>
- <CACAvsv7KU_fyyvAW3L6aCXPon599=tC4CyXdCF6sVOqqOu3SDA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 107829] nouveau crash/freeze [MULTIPLE_WARP_ERRORS]
+ warp 3f0009 [ILLEGAL_INSTR_ENCODING]
+Date: Wed, 30 Jan 2019 09:01:48 +0000
+Message-ID: <bug-107829-8800-KwnfP0DsHH@http.bugs.freedesktop.org/>
+References: <bug-107829-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CACAvsv7KU_fyyvAW3L6aCXPon599=tC4CyXdCF6sVOqqOu3SDA@mail.gmail.com>
-Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <skeggsb@gmail.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0432178646=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-107829-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ben,
 
-I wonder if you can take this too:
+--===============0432178646==
+Content-Type: multipart/alternative; boundary="15488389080.6c7b173.30363"
+Content-Transfer-Encoding: 7bit
 
-https://lore.kernel.org/patchwork/patch/1001180/
 
-Thanks
---
-Gustavo
+--15488389080.6c7b173.30363
+Date: Wed, 30 Jan 2019 09:01:48 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-On 1/29/19 8:51 PM, Ben Skeggs wrote:
-> Got it, thanks.
-> 
-> On Wed, 30 Jan 2019 at 06:55, Gustavo A. R. Silva
-> <gustavo@embeddedor.com> wrote:
->>
->> In preparation to enabling -Wimplicit-fallthrough, mark switch cases
->> where we are expecting to fall through.
->>
->> This patch fixes the following warning:
->>
->> drivers/gpu/drm/nouveau/nouveau_bo.c:1434:53: warning: this statement may fall through [-Wimplicit-fallthrough=]
->>
->> Warning level 3 was used: -Wimplicit-fallthrough=3
->>
->> This patch is part of the ongoing efforts to enabling
->> -Wimplicit-fallthrough.
->>
->> Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
->> ---
->>  drivers/gpu/drm/nouveau/nouveau_bo.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
->> index 73eff52036d2..a72be71c45b4 100644
->> --- a/drivers/gpu/drm/nouveau/nouveau_bo.c
->> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
->> @@ -1434,7 +1434,7 @@ nouveau_ttm_io_mem_reserve(struct ttm_bo_device *bdev, struct ttm_mem_reg *reg)
->>                 if (drm->client.mem->oclass < NVIF_CLASS_MEM_NV50 || !mem->kind)
->>                         /* untiled */
->>                         break;
->> -               /* fallthrough, tiled memory */
->> +               /* fall through - tiled memory */
->>         case TTM_PL_VRAM:
->>                 reg->bus.offset = reg->start << PAGE_SHIFT;
->>                 reg->bus.base = device->func->resource_addr(device, 1);
->> --
->> 2.20.1
->>
->> _______________________________________________
->> Nouveau mailing list
->> Nouveau@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/nouveau
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107829
+
+sassmann-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+--- Comment #10 from sassmann-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org ---
+I'm on f29 by now.
+
+Looking at
+https://copr.fedorainfracloud.org/coprs/karolherbst/mesa/
+the build failed.=20
+
+Let me know when a new build is available.
+Thanks!
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15488389080.6c7b173.30363
+Date: Wed, 30 Jan 2019 09:01:48 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:sassmann&=
+#64;redhat.com" title=3D"sassmann&#64;redhat.com">sassmann&#64;redhat.com</=
+a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
+ILLEGAL_INSTR_ENCODING]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829">bug 10782=
+9</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>karolherbst&#64;gmail.com
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
+ILLEGAL_INSTR_ENCODING]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829#c10">Comme=
+nt # 10</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
+ILLEGAL_INSTR_ENCODING]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829">bug 10782=
+9</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+sassmann&#64;redhat.com" title=3D"sassmann&#64;redhat.com">sassmann&#64;red=
+hat.com</a>
+</span></b>
+        <pre>I'm on f29 by now.
+
+Looking at
+<a href=3D"https://copr.fedorainfracloud.org/coprs/karolherbst/mesa/">https=
+://copr.fedorainfracloud.org/coprs/karolherbst/mesa/</a>
+the build failed.=20
+
+Let me know when a new build is available.
+Thanks!</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15488389080.6c7b173.30363--
+
+--===============0432178646==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0432178646==--
