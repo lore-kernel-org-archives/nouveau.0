@@ -1,149 +1,109 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107829] nouveau crash/freeze [MULTIPLE_WARP_ERRORS]
- warp 3f0009 [ILLEGAL_INSTR_ENCODING]
-Date: Wed, 30 Jan 2019 09:01:48 +0000
-Message-ID: <bug-107829-8800-KwnfP0DsHH@http.bugs.freedesktop.org/>
-References: <bug-107829-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0432178646=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107829-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+From: Masahiro Yamada <yamada.masahiro@socionext.com>
+Subject: [PATCH] drm: prefix header search paths with $(srctree)/
+Date: Thu, 31 Jan 2019 12:56:39 +0900
+Message-ID: <1548906999-22143-1-git-send-email-yamada.masahiro@socionext.com>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org
+Cc: Masahiro Yamada <yamada.masahiro@socionext.com>, freedreno@lists.freedesktop.org, Zhenyu Wang <zhenyuw@linux.intel.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, linux-kernel@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>, Rob Clark <robdclark@gmail.com>, amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, Zhi Wang <zhi.a.wang@intel.com>, intel-gvt-dev@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+Currently, the Kbuild core manipulates header search paths in a crazy
+way [1].
 
---===============0432178646==
-Content-Type: multipart/alternative; boundary="15488389080.6c7b173.30363"
-Content-Transfer-Encoding: 7bit
+To fix this mess, I want all Makefiles to add explicit $(srctree)/ to
+the search paths in the srctree. Some Makefiles are already written in
+that way, but not all. The goal of this work is to make the notation
+consistent, and finally get rid of the gross hacks.
 
+Having whitespaces after -I does not matter since commit 48f6e3cf5bc6
+("kbuild: do not drop -I without parameter").
 
---15488389080.6c7b173.30363
-Date: Wed, 30 Jan 2019 09:01:48 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+[1]: https://patchwork.kernel.org/patch/9632347/
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107829
+Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+---
 
-sassmann-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org changed:
+I put all gpu/drm changes into a single patch because
+they are trivial conversion.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #10 from sassmann-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org ---
-I'm on f29 by now.
-
-Looking at
-https://copr.fedorainfracloud.org/coprs/karolherbst/mesa/
-the build failed.=20
-
-Let me know when a new build is available.
-Thanks!
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15488389080.6c7b173.30363
-Date: Wed, 30 Jan 2019 09:01:48 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:sassmann&=
-#64;redhat.com" title=3D"sassmann&#64;redhat.com">sassmann&#64;redhat.com</=
-a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
-ILLEGAL_INSTR_ENCODING]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829">bug 10782=
-9</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>karolherbst&#64;gmail.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
-ILLEGAL_INSTR_ENCODING]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829#c10">Comme=
-nt # 10</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau crash/freeze [MULTIPLE_WARP_ERRORS] warp 3f0009 [=
-ILLEGAL_INSTR_ENCODING]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107829">bug 10782=
-9</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-sassmann&#64;redhat.com" title=3D"sassmann&#64;redhat.com">sassmann&#64;red=
-hat.com</a>
-</span></b>
-        <pre>I'm on f29 by now.
-
-Looking at
-<a href=3D"https://copr.fedorainfracloud.org/coprs/karolherbst/mesa/">https=
-://copr.fedorainfracloud.org/coprs/karolherbst/mesa/</a>
-the build failed.=20
-
-Let me know when a new build is available.
-Thanks!</pre>
-        </div>
-      </p>
+Please let me know if I need to split this into per-driver patches.
 
 
-      <hr>
-      <span>You are receiving this mail because:</span>
+ drivers/gpu/drm/amd/amdgpu/Makefile | 2 +-
+ drivers/gpu/drm/amd/lib/Makefile    | 2 +-
+ drivers/gpu/drm/i915/gvt/Makefile   | 2 +-
+ drivers/gpu/drm/msm/Makefile        | 6 +++---
+ drivers/gpu/drm/nouveau/Kbuild      | 8 ++++----
+ 5 files changed, 10 insertions(+), 10 deletions(-)
 
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15488389080.6c7b173.30363--
-
---===============0432178646==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0432178646==--
+diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
+index f76bcb9..b21ebb0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/Makefile
++++ b/drivers/gpu/drm/amd/amdgpu/Makefile
+@@ -23,7 +23,7 @@
+ # Makefile for the drm device driver.  This driver provides support for the
+ # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
+ 
+-FULL_AMD_PATH=$(src)/..
++FULL_AMD_PATH=$(srctree)/$(src)/..
+ DISPLAY_FOLDER_NAME=display
+ FULL_AMD_DISPLAY_PATH = $(FULL_AMD_PATH)/$(DISPLAY_FOLDER_NAME)
+ 
+diff --git a/drivers/gpu/drm/amd/lib/Makefile b/drivers/gpu/drm/amd/lib/Makefile
+index 6902430..d534992 100644
+--- a/drivers/gpu/drm/amd/lib/Makefile
++++ b/drivers/gpu/drm/amd/lib/Makefile
+@@ -27,6 +27,6 @@
+ # driver components or later moved to kernel/lib for sharing with
+ # other drivers.
+ 
+-ccflags-y := -I$(src)/../include
++ccflags-y := -I $(srctree)/$(src)/../include
+ 
+ obj-$(CONFIG_CHASH) += chash.o
+diff --git a/drivers/gpu/drm/i915/gvt/Makefile b/drivers/gpu/drm/i915/gvt/Makefile
+index b016dc7..a4a5a96 100644
+--- a/drivers/gpu/drm/i915/gvt/Makefile
++++ b/drivers/gpu/drm/i915/gvt/Makefile
+@@ -5,6 +5,6 @@ GVT_SOURCE := gvt.o aperture_gm.o handlers.o vgpu.o trace_points.o firmware.o \
+ 	execlist.o scheduler.o sched_policy.o mmio_context.o cmd_parser.o debugfs.o \
+ 	fb_decoder.o dmabuf.o page_track.o
+ 
+-ccflags-y				+= -I$(src) -I$(src)/$(GVT_DIR)
++ccflags-y				+= -I $(srctree)/$(src) -I $(srctree)/$(src)/$(GVT_DIR)/
+ i915-y					+= $(addprefix $(GVT_DIR)/, $(GVT_SOURCE))
+ obj-$(CONFIG_DRM_I915_GVT_KVMGT)	+= $(GVT_DIR)/kvmgt.o
+diff --git a/drivers/gpu/drm/msm/Makefile b/drivers/gpu/drm/msm/Makefile
+index 56a70c7..b7b1ebd 100644
+--- a/drivers/gpu/drm/msm/Makefile
++++ b/drivers/gpu/drm/msm/Makefile
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0
+-ccflags-y := -Idrivers/gpu/drm/msm
+-ccflags-y += -Idrivers/gpu/drm/msm/disp/dpu1
+-ccflags-$(CONFIG_DRM_MSM_DSI) += -Idrivers/gpu/drm/msm/dsi
++ccflags-y := -I $(srctree)/$(src)
++ccflags-y += -I $(srctree)/$(src)/disp/dpu1
++ccflags-$(CONFIG_DRM_MSM_DSI) += -I $(srctree)/$(src)/dsi
+ 
+ msm-y := \
+ 	adreno/adreno_device.o \
+diff --git a/drivers/gpu/drm/nouveau/Kbuild b/drivers/gpu/drm/nouveau/Kbuild
+index b17843d..b4bc88ad 100644
+--- a/drivers/gpu/drm/nouveau/Kbuild
++++ b/drivers/gpu/drm/nouveau/Kbuild
+@@ -1,7 +1,7 @@
+-ccflags-y += -I$(src)/include
+-ccflags-y += -I$(src)/include/nvkm
+-ccflags-y += -I$(src)/nvkm
+-ccflags-y += -I$(src)
++ccflags-y += -I $(srctree)/$(src)/include
++ccflags-y += -I $(srctree)/$(src)/include/nvkm
++ccflags-y += -I $(srctree)/$(src)/nvkm
++ccflags-y += -I $(srctree)/$(src)
+ 
+ # NVKM - HW resource manager
+ #- code also used by various userspace tools/tests
+-- 
+2.7.4
