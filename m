@@ -1,56 +1,129 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH -next] drm/nouveau: fix copy-paste error in
- nouveau_fence_wait_uevent_handler
-Date: Fri, 1 Feb 2019 15:51:43 +0100
-Message-ID: <20190201145143.vwiljlpfa5waqyr7@pmoreau.org>
-References: <1542284042-153903-1-git-send-email-yuehaibing@huawei.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v2 2/4] drm/dp_mst: Remove port validation in
+ drm_dp_atomic_find_vcpi_slots()
+Date: Fri, 1 Feb 2019 18:54:17 +0100
+Message-ID: <20190201175417.GG3271@phenom.ffwll.local>
+References: <20190201011506.21055-1-lyude@redhat.com>
+ <20190201011506.21055-3-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <1542284042-153903-1-git-send-email-yuehaibing-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: YueHaibing <yuehaibing-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+In-Reply-To: <20190201011506.21055-3-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <maxime.ripard@bootlin.com>, Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Ben Skeggs <bskeggs@redhat.com>, Karol Herbst <karolherbst@gmail.com>, Ilia Mirkin <imirkin@alum.mit.edu>, linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-RnJpZW5kbHkgcGluZywgQmVuLgpJIHNlZSB0aGF0IGluIGBub3V2ZWF1X2ZlbmNlX2RvbmUoKWAg
-dGhlcmUgaXMgYSBjaGVjayBvbiBgY2hhbmAgbm90IGJlaW5nIE5VTEwKcHJpb3IgdG8gcGFzc2lu
-ZyBpdCB0byBgbm91dmVhdV9mZW5jZV91cGRhdGUoKWAuIFdvdWxkIHNvbWV0aGluZyBzaW1pbGFy
-IGJlCm5lZWRlZCBoZXJlPwoKUGllcnJlCgpPbiAyMDE4LTExLTE1IOKAlCAxMjoxNCwgWXVlSGFp
-YmluZyB3cm90ZToKPiBGaXhlcyBnY2MgJy1XdW51c2VkLWJ1dC1zZXQtdmFyaWFibGUnIHdhcm5p
-bmc6Cj4gCj4gZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mZW5jZS5jOiBJbiBmdW5j
-dGlvbiAnbm91dmVhdV9mZW5jZV93YWl0X3VldmVudF9oYW5kbGVyJzoKPiBkcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2ZlbmNlLmM6MTU2OjI3OiB3YXJuaW5nOgo+ICB2YXJpYWJsZSAn
-Y2hhbicgc2V0IGJ1dCBub3QgdXNlZCBbLVd1bnVzZWQtYnV0LXNldC12YXJpYWJsZV0KPiAKPiBu
-b3V2ZWF1X2ZlbmNlX3VwZGF0ZSBzaG91bGQgdXNlIHJjdSBwcm90ZWN0ZWQgJ2NoYW4nCj4gcmF0
-aGVyIHRoYW4gJ2ZlbmNlLT5jaGFubmVsJwo+IAo+IEZpeGVzOiAwZWM1ZjAyZjBlMmMgKCJkcm0v
-bm91dmVhdTogcHJldmVudCBzdGFsZSBmZW5jZS0+Y2hhbm5lbCBwb2ludGVycywgYW5kIHByb3Rl
-Y3Qgd2l0aCByY3UiKQo+IFNpZ25lZC1vZmYtYnk6IFl1ZUhhaWJpbmcgPHl1ZWhhaWJpbmdAaHVh
-d2VpLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mZW5jZS5j
-IHwgMiArLQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkK
-PiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mZW5jZS5j
-IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mZW5jZS5jCj4gaW5kZXggZDQ5NjRm
-My4uOTEyODZkMCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
-X2ZlbmNlLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZlbmNlLmMK
-PiBAQCAtMTU3LDcgKzE1Nyw3IEBACj4gIAo+ICAJCWZlbmNlID0gbGlzdF9lbnRyeShmY3R4LT5w
-ZW5kaW5nLm5leHQsIHR5cGVvZigqZmVuY2UpLCBoZWFkKTsKPiAgCQljaGFuID0gcmN1X2RlcmVm
-ZXJlbmNlX3Byb3RlY3RlZChmZW5jZS0+Y2hhbm5lbCwgbG9ja2RlcF9pc19oZWxkKCZmY3R4LT5s
-b2NrKSk7Cj4gLQkJaWYgKG5vdXZlYXVfZmVuY2VfdXBkYXRlKGZlbmNlLT5jaGFubmVsLCBmY3R4
-KSkKPiArCQlpZiAobm91dmVhdV9mZW5jZV91cGRhdGUoY2hhbiwgZmN0eCkpCj4gIAkJCXJldCA9
-IE5WSUZfTk9USUZZX0RST1A7Cj4gIAl9Cj4gIAlzcGluX3VubG9ja19pcnFyZXN0b3JlKCZmY3R4
-LT5sb2NrLCBmbGFncyk7Cj4gCj4gCj4gCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+On Thu, Jan 31, 2019 at 08:14:49PM -0500, Lyude Paul wrote:
+> Since we now have an easy way of refcounting drm_dp_mst_port structs and
+> safely accessing their contents, there isn't any good reason to keep
+> validating ports here. It doesn't prevent us from performing modesets on
+> branch devices that have been removed either, and we already disallow
+> enabling new displays on unregistered connectors in
+> update_connector_routing() in drm_atomic_check_modeset(). All it does is
+> cause us to have to make weird special exceptions in our atomic
+> modesetting code. So, get rid of it entirely.
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Fixes: eceae1472467 ("drm/dp_mst: Start tracking per-port VCPI allocations")
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> ---
+>  drivers/gpu/drm/drm_dp_mst_topology.c   | 12 ++----------
+>  drivers/gpu/drm/i915/intel_dp_mst.c     | 17 ++++++-----------
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c |  3 +--
+>  3 files changed, 9 insertions(+), 23 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
+> index abb0ea8ba9d9..4325e1518286 100644
+> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
+> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+> @@ -3117,10 +3117,6 @@ int drm_dp_atomic_find_vcpi_slots(struct drm_atomic_state *state,
+>  	if (IS_ERR(topology_state))
+>  		return PTR_ERR(topology_state);
+>  
+> -	port = drm_dp_mst_topology_get_port_validated(mgr, port);
+> -	if (port == NULL)
+> -		return -EINVAL;
+> -
+>  	/* Find the current allocation for this port, if any */
+>  	list_for_each_entry(pos, &topology_state->vcpis, next) {
+>  		if (pos->port == port) {
+
+Also noticed that the WARN_ON() return -EINVAL; here gets fixed with this
+patch.
+
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+> @@ -3153,10 +3149,8 @@ int drm_dp_atomic_find_vcpi_slots(struct drm_atomic_state *state,
+>  	/* Add the new allocation to the state */
+>  	if (!vcpi) {
+>  		vcpi = kzalloc(sizeof(*vcpi), GFP_KERNEL);
+> -		if (!vcpi) {
+> -			ret = -ENOMEM;
+> -			goto out;
+> -		}
+> +		if (!vcpi)
+> +			return -ENOMEM;
+>  
+>  		drm_dp_mst_get_port_malloc(port);
+>  		vcpi->port = port;
+> @@ -3165,8 +3159,6 @@ int drm_dp_atomic_find_vcpi_slots(struct drm_atomic_state *state,
+>  	vcpi->vcpi = req_slots;
+>  
+>  	ret = req_slots;
+> -out:
+> -	drm_dp_mst_topology_put_port(port);
+>  	return ret;
+>  }
+>  EXPORT_SYMBOL(drm_dp_atomic_find_vcpi_slots);
+> diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c b/drivers/gpu/drm/i915/intel_dp_mst.c
+> index cdb83d294cdd..fb67cd931117 100644
+> --- a/drivers/gpu/drm/i915/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/intel_dp_mst.c
+> @@ -80,17 +80,12 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+>  	mst_pbn = drm_dp_calc_pbn_mode(adjusted_mode->crtc_clock, bpp);
+>  	pipe_config->pbn = mst_pbn;
+>  
+> -	/* Zombie connectors can't have VCPI slots */
+> -	if (!drm_connector_is_unregistered(connector)) {
+> -		slots = drm_dp_atomic_find_vcpi_slots(state,
+> -						      &intel_dp->mst_mgr,
+> -						      port,
+> -						      mst_pbn);
+> -		if (slots < 0) {
+> -			DRM_DEBUG_KMS("failed finding vcpi slots:%d\n",
+> -				      slots);
+> -			return slots;
+> -		}
+> +	slots = drm_dp_atomic_find_vcpi_slots(state, &intel_dp->mst_mgr, port,
+> +					      mst_pbn);
+> +	if (slots < 0) {
+> +		DRM_DEBUG_KMS("failed finding vcpi slots:%d\n",
+> +			      slots);
+> +		return slots;
+>  	}
+>  
+>  	intel_link_compute_m_n(bpp, lane_count,
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> index 2e8a5fd9b262..60d858c2f2ce 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> @@ -771,8 +771,7 @@ nv50_msto_atomic_check(struct drm_encoder *encoder,
+>  	mstc->pbn = drm_dp_calc_pbn_mode(crtc_state->adjusted_mode.clock,
+>  					 bpp);
+>  
+> -	if (drm_atomic_crtc_needs_modeset(crtc_state) &&
+> -	    !drm_connector_is_unregistered(connector)) {
+> +	if (drm_atomic_crtc_needs_modeset(crtc_state)) {
+>  		slots = drm_dp_atomic_find_vcpi_slots(state, &mstm->mgr,
+>  						      mstc->port, mstc->pbn);
+>  		if (slots < 0)
+> -- 
+> 2.20.1
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
