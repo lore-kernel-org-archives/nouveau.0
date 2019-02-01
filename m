@@ -1,11 +1,14 @@
-From: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Render Targets and Pitch Linear Textures in
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Render Targets and Pitch Linear Textures in
  Maxwell/Pascal Question
-Date: Fri, 1 Feb 2019 18:22:36 -0400
-Message-ID: <CA+MSTo8A59Kw4n6eF77OC7tVLQBbBcnogpaPQKKkX8Lyyvy6rQ@mail.gmail.com>
+Date: Fri, 1 Feb 2019 17:34:52 -0500
+Message-ID: <CAKb7Uvia6xOunf1fyYL=UC2WE9GoRt5hhMXq6Woj=W2oaTRTAQ@mail.gmail.com>
+References: <CA+MSTo8A59Kw4n6eF77OC7tVLQBbBcnogpaPQKKkX8Lyyvy6rQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0154132883=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CA+MSTo8A59Kw4n6eF77OC7tVLQBbBcnogpaPQKKkX8Lyyvy6rQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,58 +18,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0154132883==
-Content-Type: multipart/alternative; boundary="0000000000004564f50580dc95ca"
-
---0000000000004564f50580dc95ca
-Content-Type: text/plain; charset="UTF-8"
-
-So I have been going on over the documentation trying to figure out the
-exact layout of Pitch Linear Textures and find some missing values.
-
-First Question: What's the correct layout of pitch linear textures in
-memory? Is padding of the pitch added at start or at the end? Do they have
-some kind of header? Currently I see them as a normal texture matrix with
-just pitch at the end of each row but If I send the game this values, they
-go into an ternal loop.
-
-Second Question: Pitch Value in Render Targets. In the registers in
-https://github.com/envytools/envytools/blob/master/rnndb/graph/gf100_3d.xml#L282
-the pitch does not appear anywhere, where is it stored for Render Targets.
-
-Thanks in advance and I hope you guys can provide me some info.
-
---0000000000004564f50580dc95ca
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">So I have been going on over the document=
-ation trying to figure out the exact layout of Pitch Linear Textures and fi=
-nd some missing values.<div><br></div><div>First Question: What&#39;s the c=
-orrect layout of pitch linear textures in memory? Is padding of the pitch a=
-dded at start or at the end? Do they have some kind of header? Currently I =
-see them as a normal texture matrix with just pitch at the end of each row =
-but If I send the game this values, they go into an ternal loop.</div><div>=
-<br></div><div>Second Question: Pitch Value in Render Targets. In the regis=
-ters in=C2=A0<a href=3D"https://github.com/envytools/envytools/blob/master/=
-rnndb/graph/gf100_3d.xml#L282">https://github.com/envytools/envytools/blob/=
-master/rnndb/graph/gf100_3d.xml#L282</a> the pitch does not appear anywhere=
-, where is it stored for Render Targets.</div><div><br></div><div>Thanks in=
- advance and I hope you guys can provide me some info.</div></div></div>
-
---0000000000004564f50580dc95ca--
-
---===============0154132883==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0154132883==--
+TWlwdHJlZSBsYXlvdXQgZm9yIGxpbmVhciB0ZXh0dXJlczoKCmh0dHBzOi8vY2dpdC5mcmVlZGVz
+a3RvcC5vcmcvbWVzYS9tZXNhL3RyZWUvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAv
+bnY1MF9taXB0cmVlLmMjbjIzOAoKU2V0dGluZyBmb3IgUlRzOgoKaHR0cHM6Ly9jZ2l0LmZyZWVk
+ZXNrdG9wLm9yZy9tZXNhL21lc2EvdHJlZS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZj
+MC9udmMwX3N0YXRlX3ZhbGlkYXRlLmMjbjIyNAoKRm9sbG93IHRoZSAhbm91dmVhdV9ib19tZW10
+eXBlIHBhdGggKGFuZCBub3QgQlVGRkVSKS4KCkhvcGUgdGhpcyBoZWxwcywKCiAgLWlsaWEKCk9u
+IEZyaSwgRmViIDEsIDIwMTkgYXQgNToyNSBQTSBGZXJuYW5kbyBTYWhta293IDxmc2FobWtvdzI3
+QGdtYWlsLmNvbT4gd3JvdGU6Cj4KPiBTbyBJIGhhdmUgYmVlbiBnb2luZyBvbiBvdmVyIHRoZSBk
+b2N1bWVudGF0aW9uIHRyeWluZyB0byBmaWd1cmUgb3V0IHRoZSBleGFjdCBsYXlvdXQgb2YgUGl0
+Y2ggTGluZWFyIFRleHR1cmVzIGFuZCBmaW5kIHNvbWUgbWlzc2luZyB2YWx1ZXMuCj4KPiBGaXJz
+dCBRdWVzdGlvbjogV2hhdCdzIHRoZSBjb3JyZWN0IGxheW91dCBvZiBwaXRjaCBsaW5lYXIgdGV4
+dHVyZXMgaW4gbWVtb3J5PyBJcyBwYWRkaW5nIG9mIHRoZSBwaXRjaCBhZGRlZCBhdCBzdGFydCBv
+ciBhdCB0aGUgZW5kPyBEbyB0aGV5IGhhdmUgc29tZSBraW5kIG9mIGhlYWRlcj8gQ3VycmVudGx5
+IEkgc2VlIHRoZW0gYXMgYSBub3JtYWwgdGV4dHVyZSBtYXRyaXggd2l0aCBqdXN0IHBpdGNoIGF0
+IHRoZSBlbmQgb2YgZWFjaCByb3cgYnV0IElmIEkgc2VuZCB0aGUgZ2FtZSB0aGlzIHZhbHVlcywg
+dGhleSBnbyBpbnRvIGFuIHRlcm5hbCBsb29wLgo+Cj4gU2Vjb25kIFF1ZXN0aW9uOiBQaXRjaCBW
+YWx1ZSBpbiBSZW5kZXIgVGFyZ2V0cy4gSW4gdGhlIHJlZ2lzdGVycyBpbiBodHRwczovL2dpdGh1
+Yi5jb20vZW52eXRvb2xzL2Vudnl0b29scy9ibG9iL21hc3Rlci9ybm5kYi9ncmFwaC9nZjEwMF8z
+ZC54bWwjTDI4MiB0aGUgcGl0Y2ggZG9lcyBub3QgYXBwZWFyIGFueXdoZXJlLCB3aGVyZSBpcyBp
+dCBzdG9yZWQgZm9yIFJlbmRlciBUYXJnZXRzLgo+Cj4gVGhhbmtzIGluIGFkdmFuY2UgYW5kIEkg
+aG9wZSB5b3UgZ3V5cyBjYW4gcHJvdmlkZSBtZSBzb21lIGluZm8uCj4gX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+
+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
