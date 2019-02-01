@@ -1,103 +1,38 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109525] Suspend completely broken on Thinkpad T430S
-Date: Thu, 31 Jan 2019 21:54:06 +0000
-Message-ID: <bug-109525-8800-NRhSC40H68@http.bugs.freedesktop.org/>
-References: <bug-109525-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v2 0/4] drm/dp_mst: Fix regressions from new atomic VCPI helpers
+Date: Thu, 31 Jan 2019 20:14:47 -0500
+Message-ID: <20190201011506.21055-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0810345650=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109525-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>, Maxime Ripard <maxime.ripard@bootlin.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, linux-kernel@vger.kernel.org, Sean Paul <sean@poorly.run>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Ben Skeggs <bskeggs@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>, Ilia Mirkin <imirkin@alum.mit.edu>, intel-gfx@lists.freedesktop.org, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Lyude Paul <lyude@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
+This fixes the extra issues I discovered upstream after the introduction
+of my rework of the atomic VCPI helpers that occur during
+suspend/resume.
 
---===============0810345650==
-Content-Type: multipart/alternative; boundary="15489716460.f0EbE.32552"
-Content-Transfer-Encoding: 7bit
+This time around, we use a slightly different but much less complicated
+approach for fixing said issues.
 
+Cc: Daniel Vetter <daniel@ffwll.ch>
 
---15489716460.f0EbE.32552
-Date: Thu, 31 Jan 2019 21:54:06 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Lyude Paul (4):
+  drm/dp_mst: Fix unbalanced malloc ref in drm_dp_mst_deallocate_vcpi()
+  drm/dp_mst: Remove port validation in drm_dp_atomic_find_vcpi_slots()
+  drm/atomic: Add drm_atomic_state->duplicated
+  drm/nouveau: Move PBN and VCPI allocation into nv50_head_atom
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109525
+ drivers/gpu/drm/drm_atomic_helper.c     | 10 ++++-
+ drivers/gpu/drm/drm_dp_mst_topology.c   | 51 +++++++++++++++++--------
+ drivers/gpu/drm/i915/intel_dp_mst.c     | 17 +++------
+ drivers/gpu/drm/nouveau/dispnv50/atom.h |  6 +++
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 31 ++++++++-------
+ drivers/gpu/drm/nouveau/dispnv50/head.c |  1 +
+ include/drm/drm_atomic.h                |  9 +++++
+ 7 files changed, 85 insertions(+), 40 deletions(-)
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-There's no reference to nouveau in that log ... are you sure it's loaded?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15489716460.f0EbE.32552
-Date: Thu, 31 Jan 2019 21:54:06 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Suspend completely broken on Thinkpad T430S"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109525#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Suspend completely broken on Thinkpad T430S"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109525">bug 10952=
-5</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>There's no reference to nouveau in that log ... are you sure i=
-t's loaded?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15489716460.f0EbE.32552--
-
---===============0810345650==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0810345650==--
+-- 
+2.20.1
