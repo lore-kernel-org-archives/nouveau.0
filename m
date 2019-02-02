@@ -1,240 +1,110 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v3 3/4] drm/atomic: Add drm_atomic_state->duplicated
-Date: Fri,  1 Feb 2019 19:20:03 -0500
-Message-ID: <20190202002023.29665-4-lyude@redhat.com>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v3 4/4] drm/nouveau: Move PBN and VCPI allocation
+ into nv50_head_atom
+Date: Fri,  1 Feb 2019 19:20:04 -0500
+Message-ID: <20190202002023.29665-5-lyude@redhat.com>
 References: <20190202002023.29665-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190202002023.29665-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <maxime.ripard@bootlin.com>, Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190202002023.29665-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Since
-
-commit 39b50c603878 ("drm/atomic_helper: Stop modesets on unregistered
-connectors harder")
-
-We've been failing atomic checks if they try to enable new displays on
-unregistered connectors. This is fine except for the one situation that
-breaks atomic assumptions: suspend/resume. If a connector is
-unregistered before we attempt to restore the atomic state, something we
-end up failing the atomic check that happens when trying to restore the
-state during resume.
-
-Normally this would be OK: we try our best to make sure that the atomic
-state pre-suspend can be restored post-suspend, but failures at that
-point usually don't cause problems. That is of course, until we
-introduced the new atomic MST VCPI helpers:
-
-[drm:drm_atomic_helper_check_modeset [drm_kms_helper]] [CRTC:65:pipe B] active changed
-[drm:drm_atomic_helper_check_modeset [drm_kms_helper]] Updating routing for [CONNECTOR:123:DP-5]
-[drm:drm_atomic_helper_check_modeset [drm_kms_helper]] Disabling [CONNECTOR:123:DP-5]
-[drm:drm_atomic_get_private_obj_state [drm]] Added new private object 0000000025844636 state 000000009fd2899a to 000000003a13d7b8
-WARNING: CPU: 6 PID: 1070 at drivers/gpu/drm/drm_dp_mst_topology.c:3153 drm_dp_atomic_release_vcpi_slots+0xb9/0x200 [drm_kms_helper]
-Modules linked in: fuse vfat fat snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic joydev iTCO_wdt i915(O) wmi_bmof intel_rapl btusb btrtl x86_pkg_temp_thermal btbcm btintel coretemp i2c_algo_bit drm_kms_helper(O) crc32_pclmul snd_hda_intel syscopyarea sysfillrect snd_hda_codec sysimgblt snd_hda_core bluetooth fb_sys_fops snd_pcm pcspkr drm(O) psmouse snd_timer mei_me ecdh_generic i2c_i801 mei i2c_core ucsi_acpi typec_ucsi typec wmi thinkpad_acpi ledtrig_audio snd soundcore tpm_tis rfkill tpm_tis_core video tpm acpi_pad pcc_cpufreq uas usb_storage crc32c_intel nvme serio_raw xhci_pci nvme_core xhci_hcd
-CPU: 6 PID: 1070 Comm: gnome-shell Tainted: G        W  O      5.0.0-rc2Lyude-Test+ #1
-Hardware name: LENOVO 20L8S2N800/20L8S2N800, BIOS N22ET35W (1.12 ) 04/09/2018
-RIP: 0010:drm_dp_atomic_release_vcpi_slots+0xb9/0x200 [drm_kms_helper]
-Code: 00 4c 39 6d f0 74 49 48 8d 7b 10 48 89 f9 48 c1 e9 03 42 80 3c 21 00 0f 85 d2 00 00 00 48 8b 6b 10 48 8d 5d f0 49 39 ee 75 c5 <0f> 0b 48 c7 c7 c0 78 b3 a0 48 89 c2 4c 89 ee e8 03 6c aa ff b8 ea
-RSP: 0018:ffff88841235f268 EFLAGS: 00010246
-RAX: ffff88841bf12ab0 RBX: ffff88841bf12aa8 RCX: 1ffff110837e2557
-RDX: dffffc0000000000 RSI: 0000000000000000 RDI: ffffed108246bde0
-RBP: ffff88841bf12ab8 R08: ffffed1083db3c93 R09: ffffed1083db3c92
-R10: ffffed1083db3c92 R11: ffff88841ed9e497 R12: ffff888419555d80
-R13: ffff8883bc499100 R14: ffff88841bf12ab8 R15: 0000000000000000
-FS:  00007f16fbd4cd00(0000) GS:ffff88841ed80000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007f1687c9f000 CR3: 00000003ba3cc003 CR4: 00000000003606e0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-Call Trace:
- drm_atomic_helper_check_modeset+0xf21/0x2f50 [drm_kms_helper]
- ? drm_atomic_helper_commit_modeset_enables+0xa90/0xa90 [drm_kms_helper]
- ? __printk_safe_exit+0x10/0x10
- ? save_stack+0x8c/0xb0
- ? vprintk_func+0x96/0x1bf
- ? __printk_safe_exit+0x10/0x10
- intel_atomic_check+0x234/0x4750 [i915]
- ? printk+0x9f/0xc5
- ? kmsg_dump_rewind_nolock+0xd9/0xd9
- ? _raw_spin_lock_irqsave+0xa4/0x140
- ? drm_atomic_check_only+0xb1/0x28b0 [drm]
- ? drm_dbg+0x186/0x1b0 [drm]
- ? drm_dev_dbg+0x200/0x200 [drm]
- ? intel_link_compute_m_n+0xb0/0xb0 [i915]
- ? drm_mode_put_tile_group+0x20/0x20 [drm]
- ? skl_plane_format_mod_supported+0x17f/0x1b0 [i915]
- ? drm_plane_check_pixel_format+0x14a/0x310 [drm]
- drm_atomic_check_only+0x13c4/0x28b0 [drm]
- ? drm_state_info+0x220/0x220 [drm]
- ? drm_atomic_helper_disable_plane+0x1d0/0x1d0 [drm_kms_helper]
- ? pick_single_encoder_for_connector+0xe0/0xe0 [drm_kms_helper]
- ? kasan_unpoison_shadow+0x35/0x40
- drm_atomic_commit+0x3b/0x100 [drm]
- drm_atomic_helper_set_config+0xd5/0x100 [drm_kms_helper]
- drm_mode_setcrtc+0x636/0x1660 [drm]
- ? vprintk_func+0x96/0x1bf
- ? drm_dev_dbg+0x200/0x200 [drm]
- ? drm_mode_getcrtc+0x790/0x790 [drm]
- ? printk+0x9f/0xc5
- ? mutex_unlock+0x1d/0x40
- ? drm_mode_addfb2+0x2e9/0x3a0 [drm]
- ? rcu_sync_dtor+0x2e0/0x2e0
- ? drm_dbg+0x186/0x1b0 [drm]
- ? set_page_dirty+0x271/0x4d0
- drm_ioctl_kernel+0x203/0x290 [drm]
- ? drm_mode_getcrtc+0x790/0x790 [drm]
- ? drm_setversion+0x7f0/0x7f0 [drm]
- ? __switch_to_asm+0x34/0x70
- ? __switch_to_asm+0x34/0x70
- drm_ioctl+0x445/0x950 [drm]
- ? drm_mode_getcrtc+0x790/0x790 [drm]
- ? drm_getunique+0x220/0x220 [drm]
- ? expand_files.part.10+0x920/0x920
- do_vfs_ioctl+0x1a1/0x13d0
- ? ioctl_preallocate+0x2b0/0x2b0
- ? __fget_light+0x2d6/0x390
- ? schedule+0xd7/0x2e0
- ? fget_raw+0x10/0x10
- ? apic_timer_interrupt+0xa/0x20
- ? apic_timer_interrupt+0xa/0x20
- ? rcu_cleanup_dead_rnp+0x2c0/0x2c0
- ksys_ioctl+0x60/0x90
- __x64_sys_ioctl+0x6f/0xb0
- do_syscall_64+0x136/0x440
- ? syscall_return_slowpath+0x2d0/0x2d0
- ? do_page_fault+0x89/0x330
- ? __do_page_fault+0x9c0/0x9c0
- ? prepare_exit_to_usermode+0x188/0x200
- ? perf_trace_sys_enter+0x1090/0x1090
- ? __x64_sys_sigaltstack+0x280/0x280
- ? __put_user_4+0x1c/0x30
- entry_SYSCALL_64_after_hwframe+0x44/0xa9
-RIP: 0033:0x7f16ff89a09b
-Code: 0f 1e fa 48 8b 05 ed bd 0c 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa b8 10 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d bd bd 0c 00 f7 d8 64 89 01 48
-RSP: 002b:00007fff001232b8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-RAX: ffffffffffffffda RBX: 00007fff001232f0 RCX: 00007f16ff89a09b
-RDX: 00007fff001232f0 RSI: 00000000c06864a2 RDI: 000000000000000b
-RBP: 00007fff001232f0 R08: 0000000000000000 R09: 000055a79d484460
-R10: 000055a79d44e770 R11: 0000000000000246 R12: 00000000c06864a2
-R13: 000000000000000b R14: 0000000000000000 R15: 000055a79d44e770
-WARNING: CPU: 6 PID: 1070 at drivers/gpu/drm/drm_dp_mst_topology.c:3153 drm_dp_atomic_release_vcpi_slots+0xb9/0x200 [drm_kms_helper]
----[ end trace d536c05c13c83be2 ]---
-[drm:drm_dp_atomic_release_vcpi_slots [drm_kms_helper]] *ERROR* no VCPI for [MST PORT:00000000f9e2b143] found in mst state 000000009fd2899a
-
-This appears to be happening because we destroy the VCPI allocations
-when disabling all connected displays while suspending, and those VCPI
-allocations don't get restored on resume due to failing to restore the
-atomic state.
-
-So, fix this by introducing the suspending option to
-drm_atomic_helper_duplicate_state() and use that to indicate in the
-atomic state that it's being used for suspending or resuming the system,
-and thus needs to be fixed up by the driver. We can then use the new
-state->duplicated hook to tell update_connector_routing() in
-drm_atomic_check_modeset() to allow for modesets on unregistered
-connectors, which allows us to restore atomic states that contain MST
-topologies that were removed after the state was duplicated and thus:
-mostly fixing suspend and resume. This just leaves some issues that were
-introduced with nouveau, that will be addressed next.
-
-Changes since v3:
-* Remove ->duplicated hunks that I left in the VCPI helpers by accident.
-  These don't need to be here, that was the supposed to be the purpose
-  of the last revision
-Changes since v2:
-* Remove the changes in this patch to the VCPI helpers, they aren't
-  needed anymore
-Changes since v1:
-* Rename suspend_or_resume to duplicated
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Fixes: eceae1472467 ("drm/dp_mst: Start tracking per-port VCPI allocations")
-Cc: Daniel Vetter <daniel@ffwll.ch>
----
- drivers/gpu/drm/drm_atomic_helper.c   | 10 +++++++++-
- drivers/gpu/drm/drm_dp_mst_topology.c |  9 +++++++++
- include/drm/drm_atomic.h              |  9 +++++++++
- 3 files changed, 27 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-index 6fe2303fccd9..f578bf1fe164 100644
---- a/drivers/gpu/drm/drm_atomic_helper.c
-+++ b/drivers/gpu/drm/drm_atomic_helper.c
-@@ -332,8 +332,15 @@ update_connector_routing(struct drm_atomic_state *state,
- 	 * about is ensuring that userspace can't do anything but shut off the
- 	 * display on a connector that was destroyed after its been notified,
- 	 * not before.
-+	 *
-+	 * Additionally, we also want to ignore connector registration when
-+	 * we're trying to restore an atomic state during system resume since
-+	 * there's a chance the connector may have been destroyed during the
-+	 * process, but it's better to ignore that then cause
-+	 * drm_atomic_helper_resume() to fail.
- 	 */
--	if (drm_connector_is_unregistered(connector) && crtc_state->active) {
-+	if (!state->duplicated && drm_connector_is_unregistered(connector) &&
-+	    crtc_state->active) {
- 		DRM_DEBUG_ATOMIC("[CONNECTOR:%d:%s] is not registered\n",
- 				 connector->base.id, connector->name);
- 		return -EINVAL;
-@@ -3180,6 +3187,7 @@ drm_atomic_helper_duplicate_state(struct drm_device *dev,
- 		return ERR_PTR(-ENOMEM);
- 
- 	state->acquire_ctx = ctx;
-+	state->duplicated = true;
- 
- 	drm_for_each_crtc(crtc, dev) {
- 		struct drm_crtc_state *crtc_state;
-diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-index 4325e1518286..61bba5bd1551 100644
---- a/drivers/gpu/drm/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-@@ -3097,6 +3097,10 @@ static int drm_dp_init_vcpi(struct drm_dp_mst_topology_mgr *mgr,
-  * @port as needed. It is not OK however, to call this function and
-  * drm_dp_atomic_release_vcpi_slots() in the same atomic check phase.
-  *
-+ * When &drm_atomic_state.duplicated is set to %true%, this function will not
-+ * perform any error checking and will instead simply return the previously
-+ * recorded VCPI allocations.
-+ *
-  * See also:
-  * drm_dp_atomic_release_vcpi_slots()
-  * drm_dp_mst_atomic_check()
-@@ -3181,6 +3185,11 @@ EXPORT_SYMBOL(drm_dp_atomic_find_vcpi_slots);
-  * drm_dp_atomic_find_vcpi_slots() on the same @port in a single atomic check
-  * phase.
-  *
-+ * When &drm_atomic_state.duplicated is set, this function will not
-+ * modify the VCPI allocations in &drm_dp_mst_topology_state.vcpis, so that
-+ * those VCPI allocations may be restored as-is from the duplicated state. In
-+ * this scenario, this function will always return 0.
-+ *
-  * See also:
-  * drm_dp_atomic_find_vcpi_slots()
-  * drm_dp_mst_atomic_check()
-diff --git a/include/drm/drm_atomic.h b/include/drm/drm_atomic.h
-index 811b4a92568f..961c792fa98b 100644
---- a/include/drm/drm_atomic.h
-+++ b/include/drm/drm_atomic.h
-@@ -329,6 +329,15 @@ struct drm_atomic_state {
- 	bool allow_modeset : 1;
- 	bool legacy_cursor_update : 1;
- 	bool async_update : 1;
-+	/**
-+	 * @duplicated:
-+	 *
-+	 * Indicates whether or not this atomic state was duplicated using
-+	 * drm_atomic_helper_duplicate_state(). Drivers and atomic helpers
-+	 * should use this to fixup normal  inconsistencies in duplicated
-+	 * states.
-+	 */
-+	bool duplicated : 1;
- 	struct __drm_planes_state *planes;
- 	struct __drm_crtcs_state *crtcs;
- 	int num_connector;
--- 
-2.20.1
+QXRvbWljIGNoZWNrcyBzaG91bGQgbmV2ZXIgbW9kaWZ5IGFueXRoaW5nIG91dHNpZGUgb2YgdGhl
+IHN0YXRlIHRoYXQKdGhleSdyZSBwYXNzZWQgaW4uIFVuZm9ydHVuYXRlbHkgdGhpcyBhcHBlYXJz
+IHRvIGJlIGV4YWN0bHkgd2hhdCB3ZSdyZQpkb2luZyBpbiBudjUwX21zdG9fYXRvbWljX2NoZWNr
+KCkgd2hlcmUgd2UgdXBkYXRlIG1zdGMtPnBibiBldmVyeSB0aW1lCnRoZSBmdW5jdGlvbiBpcyBj
+YWxsZWQuIFRoaXMgaGFzbid0IGNhdXNlZCBhbnkgYnVncyB5ZXQsIGJ1dCBpdCBuZWVkcyB0bwpi
+ZSBmaXhlZCBpbiBvcmRlciB0byBlbnN1cmUgdGhhdCB3aGVuIGNvbW1pdHRpbmcgYW4gYXJ0aWZp
+Y2lhbGx5CmR1cGxpY2F0ZWQgc3RhdGUgKGxpa2UgZHVyaW5nIHN5c3RlbSByZXN1bWUpLCB0aGF0
+IHdlIHJldXNlIHRoZSBQQk4gb2YKdGhhdCBzdGF0ZSB0byBwZXJmb3JtIFZDUEkgYWxsb2NhdGlv
+bnMgYW5kIGRvbid0IHJlY2FsY3VsYXRlIGEgZGlmZmVyZW50CnZhbHVlIGZyb20gdGhlIGRybSBj
+b25uZWN0b3IncyByZXBvcnRlZCBicGMuCgpBbHNvLCBtb3ZlIHRoZSBWQ1BJIHNsb3QgYWxsb2Nh
+dGlvbnMgd2hpbGUgd2UncmUgYXQgaXQgYXMgd2VsbC4gV2l0aAp0aGlzLCByZW1vdmluZyBhIHRv
+cG9sb2d5IGluIHN1c3BlbmQgd2hpbGUgdXNpbmcgbm91dmVhdSBubyBsb25nZXIKY2F1c2VzIHRo
+ZSBuZXcgYXRvbWljIFZDUEkgaGVscGVycyB0byBjb21wbGFpbi4KClNpZ25lZC1vZmYtYnk6IEx5
+dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkZpeGVzOiBlY2VhZTE0NzI0NjcgKCJkcm0vZHBf
+bXN0OiBTdGFydCB0cmFja2luZyBwZXItcG9ydCBWQ1BJIGFsbG9jYXRpb25zIikKQ2M6IERhbmll
+bCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9k
+aXNwbnY1MC9hdG9tLmggfCAgNiArKysrKysKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3Bu
+djUwL2Rpc3AuYyB8IDI4ICsrKysrKysrKysrKysrKy0tLS0tLS0tLS0KIGRyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQuYyB8ICAxICsKIDMgZmlsZXMgY2hhbmdlZCwgMjQgaW5z
+ZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvZGlzcG52NTAvYXRvbS5oIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52
+NTAvYXRvbS5oCmluZGV4IGExOTQ5OTBkMmIwZC4uYjVmYWU1YWIzZmE4IDEwMDY0NAotLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9hdG9tLmgKKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvZGlzcG52NTAvYXRvbS5oCkBAIC0xMTYsNiArMTE2LDEyIEBAIHN0cnVjdCBu
+djUwX2hlYWRfYXRvbSB7CiAJCXU4IGRlcHRoOjQ7CiAJfSBvcjsKIAorCS8qIEN1cnJlbnRseSBv
+bmx5IHVzZWQgZm9yIE1TVCAqLworCXN0cnVjdCB7CisJCWludCBwYm47CisJCXU4IHR1OjY7CisJ
+fSBkcDsKKwogCXVuaW9uIG52NTBfaGVhZF9hdG9tX21hc2sgewogCQlzdHJ1Y3QgewogCQkJYm9v
+bCBvbHV0OjE7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9k
+aXNwLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMKaW5kZXggNjBk
+ODU4YzJmMmNlLi5lOGJiMzVmNmQwMTUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L2Rpc3BudjUwL2Rpc3AuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1
+MC9kaXNwLmMKQEAgLTY1OSw4ICs2NTksNiBAQCBzdHJ1Y3QgbnY1MF9tc3RjIHsKIAogCXN0cnVj
+dCBkcm1fZGlzcGxheV9tb2RlICpuYXRpdmU7CiAJc3RydWN0IGVkaWQgKmVkaWQ7Ci0KLQlpbnQg
+cGJuOwogfTsKIAogc3RydWN0IG52NTBfbXN0byB7CkBAIC03NjUsMTcgKzc2MywyNiBAQCBudjUw
+X21zdG9fYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1fZW5jb2RlciAqZW5jb2RlciwKIAlzdHJ1Y3Qg
+ZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yID0gY29ubl9zdGF0ZS0+Y29ubmVjdG9yOwogCXN0cnVj
+dCBudjUwX21zdGMgKm1zdGMgPSBudjUwX21zdGMoY29ubmVjdG9yKTsKIAlzdHJ1Y3QgbnY1MF9t
+c3RtICptc3RtID0gbXN0Yy0+bXN0bTsKLQlpbnQgYnBwID0gY29ubmVjdG9yLT5kaXNwbGF5X2lu
+Zm8uYnBjICogMzsKKwlzdHJ1Y3QgbnY1MF9oZWFkX2F0b20gKmFzeWggPSBudjUwX2hlYWRfYXRv
+bShjcnRjX3N0YXRlKTsKIAlpbnQgc2xvdHM7CiAKLQltc3RjLT5wYm4gPSBkcm1fZHBfY2FsY19w
+Ym5fbW9kZShjcnRjX3N0YXRlLT5hZGp1c3RlZF9tb2RlLmNsb2NrLAotCQkJCQkgYnBwKTsKKwkv
+KiBXaGVuIHJlc3RvcmluZyBkdXBsaWNhdGVkIHN0YXRlcywgd2UgbmVlZCB0byBtYWtlIHN1cmUg
+dGhhdCB0aGUKKwkgKiBidyByZW1haW5zIHRoZSBzYW1lIGFuZCBhdm9pZCByZWNhbGN1bGF0aW5n
+IGl0LCBhcyB0aGUgY29ubmVjdG9yJ3MKKwkgKiBicGMgbWF5IGhhdmUgY2hhbmdlZCBhZnRlciB0
+aGUgc3RhdGUgd2FzIGR1cGxpY2F0ZWQKKwkgKi8KKwlpZiAoIXN0YXRlLT5kdXBsaWNhdGVkKQor
+CQlhc3loLT5kcC5wYm4gPQorCQkJZHJtX2RwX2NhbGNfcGJuX21vZGUoY3J0Y19zdGF0ZS0+YWRq
+dXN0ZWRfbW9kZS5jbG9jaywKKwkJCQkJICAgICBjb25uZWN0b3ItPmRpc3BsYXlfaW5mby5icGMg
+KiAzKTsKIAogCWlmIChkcm1fYXRvbWljX2NydGNfbmVlZHNfbW9kZXNldChjcnRjX3N0YXRlKSkg
+ewogCQlzbG90cyA9IGRybV9kcF9hdG9taWNfZmluZF92Y3BpX3Nsb3RzKHN0YXRlLCAmbXN0bS0+
+bWdyLAotCQkJCQkJICAgICAgbXN0Yy0+cG9ydCwgbXN0Yy0+cGJuKTsKKwkJCQkJCSAgICAgIG1z
+dGMtPnBvcnQsCisJCQkJCQkgICAgICBhc3loLT5kcC5wYm4pOwogCQlpZiAoc2xvdHMgPCAwKQog
+CQkJcmV0dXJuIHNsb3RzOworCisJCWFzeWgtPmRwLnR1ID0gc2xvdHM7CiAJfQogCiAJcmV0dXJu
+IG52NTBfb3V0cF9hdG9taWNfY2hlY2tfdmlldyhlbmNvZGVyLCBjcnRjX3N0YXRlLCBjb25uX3N0
+YXRlLApAQCAtNzg2LDEzICs3OTMsMTMgQEAgc3RhdGljIHZvaWQKIG52NTBfbXN0b19lbmFibGUo
+c3RydWN0IGRybV9lbmNvZGVyICplbmNvZGVyKQogewogCXN0cnVjdCBudjUwX2hlYWQgKmhlYWQg
+PSBudjUwX2hlYWQoZW5jb2Rlci0+Y3J0Yyk7CisJc3RydWN0IG52NTBfaGVhZF9hdG9tICphcm1o
+ID0gbnY1MF9oZWFkX2F0b20oaGVhZC0+YmFzZS5iYXNlLnN0YXRlKTsKIAlzdHJ1Y3QgbnY1MF9t
+c3RvICptc3RvID0gbnY1MF9tc3RvKGVuY29kZXIpOwogCXN0cnVjdCBudjUwX21zdGMgKm1zdGMg
+PSBOVUxMOwogCXN0cnVjdCBudjUwX21zdG0gKm1zdG0gPSBOVUxMOwogCXN0cnVjdCBkcm1fY29u
+bmVjdG9yICpjb25uZWN0b3I7CiAJc3RydWN0IGRybV9jb25uZWN0b3JfbGlzdF9pdGVyIGNvbm5f
+aXRlcjsKIAl1OCBwcm90bywgZGVwdGg7Ci0JaW50IHNsb3RzOwogCWJvb2wgcjsKIAogCWRybV9j
+b25uZWN0b3JfbGlzdF9pdGVyX2JlZ2luKGVuY29kZXItPmRldiwgJmNvbm5faXRlcik7CkBAIC04
+MDgsOCArODE1LDggQEAgbnY1MF9tc3RvX2VuYWJsZShzdHJ1Y3QgZHJtX2VuY29kZXIgKmVuY29k
+ZXIpCiAJaWYgKFdBUk5fT04oIW1zdGMpKQogCQlyZXR1cm47CiAKLQlzbG90cyA9IGRybV9kcF9m
+aW5kX3ZjcGlfc2xvdHMoJm1zdG0tPm1nciwgbXN0Yy0+cGJuKTsKLQlyID0gZHJtX2RwX21zdF9h
+bGxvY2F0ZV92Y3BpKCZtc3RtLT5tZ3IsIG1zdGMtPnBvcnQsIG1zdGMtPnBibiwgc2xvdHMpOwor
+CXIgPSBkcm1fZHBfbXN0X2FsbG9jYXRlX3ZjcGkoJm1zdG0tPm1nciwgbXN0Yy0+cG9ydCwgYXJt
+aC0+ZHAucGJuLAorCQkJCSAgICAgYXJtaC0+ZHAudHUpOwogCVdBUk5fT04oIXIpOwogCiAJaWYg
+KCFtc3RtLT5saW5rcysrKQpAQCAtODI3LDggKzgzNCw3IEBAIG52NTBfbXN0b19lbmFibGUoc3Ry
+dWN0IGRybV9lbmNvZGVyICplbmNvZGVyKQogCWRlZmF1bHQ6IGRlcHRoID0gMHg2OyBicmVhazsK
+IAl9CiAKLQltc3RtLT5vdXRwLT51cGRhdGUobXN0bS0+b3V0cCwgaGVhZC0+YmFzZS5pbmRleCwK
+LQkJCSAgIG52NTBfaGVhZF9hdG9tKGhlYWQtPmJhc2UuYmFzZS5zdGF0ZSksIHByb3RvLCBkZXB0
+aCk7CisJbXN0bS0+b3V0cC0+dXBkYXRlKG1zdG0tPm91dHAsIGhlYWQtPmJhc2UuaW5kZXgsIGFy
+bWgsIHByb3RvLCBkZXB0aCk7CiAKIAltc3RvLT5oZWFkID0gaGVhZDsKIAltc3RvLT5tc3RjID0g
+bXN0YzsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQu
+YyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQuYwppbmRleCBhYzk3ZWJj
+ZTViMzUuLjJlN2EwYzM0N2RkYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+ZGlzcG52NTAvaGVhZC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hl
+YWQuYwpAQCAtNDEzLDYgKzQxMyw3IEBAIG52NTBfaGVhZF9hdG9taWNfZHVwbGljYXRlX3N0YXRl
+KHN0cnVjdCBkcm1fY3J0YyAqY3J0YykKIAlhc3loLT5vdmx5ID0gYXJtaC0+b3ZseTsKIAlhc3lo
+LT5kaXRoZXIgPSBhcm1oLT5kaXRoZXI7CiAJYXN5aC0+cHJvY2FtcCA9IGFybWgtPnByb2NhbXA7
+CisJYXN5aC0+ZHAgPSBhcm1oLT5kcDsKIAlhc3loLT5jbHIubWFzayA9IDA7CiAJYXN5aC0+c2V0
+Lm1hc2sgPSAwOwogCXJldHVybiAmYXN5aC0+c3RhdGU7Ci0tIAoyLjIwLjEKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
