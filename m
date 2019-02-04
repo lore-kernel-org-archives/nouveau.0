@@ -1,14 +1,13 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v3 4/4] drm/nouveau: Move PBN and VCPI allocation
- into nv50_head_atom
-Date: Fri,  1 Feb 2019 19:20:04 -0500
-Message-ID: <20190202002023.29665-5-lyude@redhat.com>
-References: <20190202002023.29665-1-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100446] Backlight control not working on Pascal /
+ GP106 using nouveau drivers
+Date: Mon, 04 Feb 2019 06:24:19 +0000
+Message-ID: <bug-100446-8800-bcypxlr841@http.bugs.freedesktop.org/>
+References: <bug-100446-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1760687356=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190202002023.29665-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-100446-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,93 +17,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Sean Paul <seanpaul-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QXRvbWljIGNoZWNrcyBzaG91bGQgbmV2ZXIgbW9kaWZ5IGFueXRoaW5nIG91dHNpZGUgb2YgdGhl
-IHN0YXRlIHRoYXQKdGhleSdyZSBwYXNzZWQgaW4uIFVuZm9ydHVuYXRlbHkgdGhpcyBhcHBlYXJz
-IHRvIGJlIGV4YWN0bHkgd2hhdCB3ZSdyZQpkb2luZyBpbiBudjUwX21zdG9fYXRvbWljX2NoZWNr
-KCkgd2hlcmUgd2UgdXBkYXRlIG1zdGMtPnBibiBldmVyeSB0aW1lCnRoZSBmdW5jdGlvbiBpcyBj
-YWxsZWQuIFRoaXMgaGFzbid0IGNhdXNlZCBhbnkgYnVncyB5ZXQsIGJ1dCBpdCBuZWVkcyB0bwpi
-ZSBmaXhlZCBpbiBvcmRlciB0byBlbnN1cmUgdGhhdCB3aGVuIGNvbW1pdHRpbmcgYW4gYXJ0aWZp
-Y2lhbGx5CmR1cGxpY2F0ZWQgc3RhdGUgKGxpa2UgZHVyaW5nIHN5c3RlbSByZXN1bWUpLCB0aGF0
-IHdlIHJldXNlIHRoZSBQQk4gb2YKdGhhdCBzdGF0ZSB0byBwZXJmb3JtIFZDUEkgYWxsb2NhdGlv
-bnMgYW5kIGRvbid0IHJlY2FsY3VsYXRlIGEgZGlmZmVyZW50CnZhbHVlIGZyb20gdGhlIGRybSBj
-b25uZWN0b3IncyByZXBvcnRlZCBicGMuCgpBbHNvLCBtb3ZlIHRoZSBWQ1BJIHNsb3QgYWxsb2Nh
-dGlvbnMgd2hpbGUgd2UncmUgYXQgaXQgYXMgd2VsbC4gV2l0aAp0aGlzLCByZW1vdmluZyBhIHRv
-cG9sb2d5IGluIHN1c3BlbmQgd2hpbGUgdXNpbmcgbm91dmVhdSBubyBsb25nZXIKY2F1c2VzIHRo
-ZSBuZXcgYXRvbWljIFZDUEkgaGVscGVycyB0byBjb21wbGFpbi4KClNpZ25lZC1vZmYtYnk6IEx5
-dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkZpeGVzOiBlY2VhZTE0NzI0NjcgKCJkcm0vZHBf
-bXN0OiBTdGFydCB0cmFja2luZyBwZXItcG9ydCBWQ1BJIGFsbG9jYXRpb25zIikKQ2M6IERhbmll
-bCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9k
-aXNwbnY1MC9hdG9tLmggfCAgNiArKysrKysKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3Bu
-djUwL2Rpc3AuYyB8IDI4ICsrKysrKysrKysrKysrKy0tLS0tLS0tLS0KIGRyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQuYyB8ICAxICsKIDMgZmlsZXMgY2hhbmdlZCwgMjQgaW5z
-ZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvZGlzcG52NTAvYXRvbS5oIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52
-NTAvYXRvbS5oCmluZGV4IGExOTQ5OTBkMmIwZC4uYjVmYWU1YWIzZmE4IDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9hdG9tLmgKKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvZGlzcG52NTAvYXRvbS5oCkBAIC0xMTYsNiArMTE2LDEyIEBAIHN0cnVjdCBu
-djUwX2hlYWRfYXRvbSB7CiAJCXU4IGRlcHRoOjQ7CiAJfSBvcjsKIAorCS8qIEN1cnJlbnRseSBv
-bmx5IHVzZWQgZm9yIE1TVCAqLworCXN0cnVjdCB7CisJCWludCBwYm47CisJCXU4IHR1OjY7CisJ
-fSBkcDsKKwogCXVuaW9uIG52NTBfaGVhZF9hdG9tX21hc2sgewogCQlzdHJ1Y3QgewogCQkJYm9v
-bCBvbHV0OjE7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9k
-aXNwLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMKaW5kZXggNjBk
-ODU4YzJmMmNlLi5lOGJiMzVmNmQwMTUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L2Rpc3BudjUwL2Rpc3AuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1
-MC9kaXNwLmMKQEAgLTY1OSw4ICs2NTksNiBAQCBzdHJ1Y3QgbnY1MF9tc3RjIHsKIAogCXN0cnVj
-dCBkcm1fZGlzcGxheV9tb2RlICpuYXRpdmU7CiAJc3RydWN0IGVkaWQgKmVkaWQ7Ci0KLQlpbnQg
-cGJuOwogfTsKIAogc3RydWN0IG52NTBfbXN0byB7CkBAIC03NjUsMTcgKzc2MywyNiBAQCBudjUw
-X21zdG9fYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1fZW5jb2RlciAqZW5jb2RlciwKIAlzdHJ1Y3Qg
-ZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yID0gY29ubl9zdGF0ZS0+Y29ubmVjdG9yOwogCXN0cnVj
-dCBudjUwX21zdGMgKm1zdGMgPSBudjUwX21zdGMoY29ubmVjdG9yKTsKIAlzdHJ1Y3QgbnY1MF9t
-c3RtICptc3RtID0gbXN0Yy0+bXN0bTsKLQlpbnQgYnBwID0gY29ubmVjdG9yLT5kaXNwbGF5X2lu
-Zm8uYnBjICogMzsKKwlzdHJ1Y3QgbnY1MF9oZWFkX2F0b20gKmFzeWggPSBudjUwX2hlYWRfYXRv
-bShjcnRjX3N0YXRlKTsKIAlpbnQgc2xvdHM7CiAKLQltc3RjLT5wYm4gPSBkcm1fZHBfY2FsY19w
-Ym5fbW9kZShjcnRjX3N0YXRlLT5hZGp1c3RlZF9tb2RlLmNsb2NrLAotCQkJCQkgYnBwKTsKKwkv
-KiBXaGVuIHJlc3RvcmluZyBkdXBsaWNhdGVkIHN0YXRlcywgd2UgbmVlZCB0byBtYWtlIHN1cmUg
-dGhhdCB0aGUKKwkgKiBidyByZW1haW5zIHRoZSBzYW1lIGFuZCBhdm9pZCByZWNhbGN1bGF0aW5n
-IGl0LCBhcyB0aGUgY29ubmVjdG9yJ3MKKwkgKiBicGMgbWF5IGhhdmUgY2hhbmdlZCBhZnRlciB0
-aGUgc3RhdGUgd2FzIGR1cGxpY2F0ZWQKKwkgKi8KKwlpZiAoIXN0YXRlLT5kdXBsaWNhdGVkKQor
-CQlhc3loLT5kcC5wYm4gPQorCQkJZHJtX2RwX2NhbGNfcGJuX21vZGUoY3J0Y19zdGF0ZS0+YWRq
-dXN0ZWRfbW9kZS5jbG9jaywKKwkJCQkJICAgICBjb25uZWN0b3ItPmRpc3BsYXlfaW5mby5icGMg
-KiAzKTsKIAogCWlmIChkcm1fYXRvbWljX2NydGNfbmVlZHNfbW9kZXNldChjcnRjX3N0YXRlKSkg
-ewogCQlzbG90cyA9IGRybV9kcF9hdG9taWNfZmluZF92Y3BpX3Nsb3RzKHN0YXRlLCAmbXN0bS0+
-bWdyLAotCQkJCQkJICAgICAgbXN0Yy0+cG9ydCwgbXN0Yy0+cGJuKTsKKwkJCQkJCSAgICAgIG1z
-dGMtPnBvcnQsCisJCQkJCQkgICAgICBhc3loLT5kcC5wYm4pOwogCQlpZiAoc2xvdHMgPCAwKQog
-CQkJcmV0dXJuIHNsb3RzOworCisJCWFzeWgtPmRwLnR1ID0gc2xvdHM7CiAJfQogCiAJcmV0dXJu
-IG52NTBfb3V0cF9hdG9taWNfY2hlY2tfdmlldyhlbmNvZGVyLCBjcnRjX3N0YXRlLCBjb25uX3N0
-YXRlLApAQCAtNzg2LDEzICs3OTMsMTMgQEAgc3RhdGljIHZvaWQKIG52NTBfbXN0b19lbmFibGUo
-c3RydWN0IGRybV9lbmNvZGVyICplbmNvZGVyKQogewogCXN0cnVjdCBudjUwX2hlYWQgKmhlYWQg
-PSBudjUwX2hlYWQoZW5jb2Rlci0+Y3J0Yyk7CisJc3RydWN0IG52NTBfaGVhZF9hdG9tICphcm1o
-ID0gbnY1MF9oZWFkX2F0b20oaGVhZC0+YmFzZS5iYXNlLnN0YXRlKTsKIAlzdHJ1Y3QgbnY1MF9t
-c3RvICptc3RvID0gbnY1MF9tc3RvKGVuY29kZXIpOwogCXN0cnVjdCBudjUwX21zdGMgKm1zdGMg
-PSBOVUxMOwogCXN0cnVjdCBudjUwX21zdG0gKm1zdG0gPSBOVUxMOwogCXN0cnVjdCBkcm1fY29u
-bmVjdG9yICpjb25uZWN0b3I7CiAJc3RydWN0IGRybV9jb25uZWN0b3JfbGlzdF9pdGVyIGNvbm5f
-aXRlcjsKIAl1OCBwcm90bywgZGVwdGg7Ci0JaW50IHNsb3RzOwogCWJvb2wgcjsKIAogCWRybV9j
-b25uZWN0b3JfbGlzdF9pdGVyX2JlZ2luKGVuY29kZXItPmRldiwgJmNvbm5faXRlcik7CkBAIC04
-MDgsOCArODE1LDggQEAgbnY1MF9tc3RvX2VuYWJsZShzdHJ1Y3QgZHJtX2VuY29kZXIgKmVuY29k
-ZXIpCiAJaWYgKFdBUk5fT04oIW1zdGMpKQogCQlyZXR1cm47CiAKLQlzbG90cyA9IGRybV9kcF9m
-aW5kX3ZjcGlfc2xvdHMoJm1zdG0tPm1nciwgbXN0Yy0+cGJuKTsKLQlyID0gZHJtX2RwX21zdF9h
-bGxvY2F0ZV92Y3BpKCZtc3RtLT5tZ3IsIG1zdGMtPnBvcnQsIG1zdGMtPnBibiwgc2xvdHMpOwor
-CXIgPSBkcm1fZHBfbXN0X2FsbG9jYXRlX3ZjcGkoJm1zdG0tPm1nciwgbXN0Yy0+cG9ydCwgYXJt
-aC0+ZHAucGJuLAorCQkJCSAgICAgYXJtaC0+ZHAudHUpOwogCVdBUk5fT04oIXIpOwogCiAJaWYg
-KCFtc3RtLT5saW5rcysrKQpAQCAtODI3LDggKzgzNCw3IEBAIG52NTBfbXN0b19lbmFibGUoc3Ry
-dWN0IGRybV9lbmNvZGVyICplbmNvZGVyKQogCWRlZmF1bHQ6IGRlcHRoID0gMHg2OyBicmVhazsK
-IAl9CiAKLQltc3RtLT5vdXRwLT51cGRhdGUobXN0bS0+b3V0cCwgaGVhZC0+YmFzZS5pbmRleCwK
-LQkJCSAgIG52NTBfaGVhZF9hdG9tKGhlYWQtPmJhc2UuYmFzZS5zdGF0ZSksIHByb3RvLCBkZXB0
-aCk7CisJbXN0bS0+b3V0cC0+dXBkYXRlKG1zdG0tPm91dHAsIGhlYWQtPmJhc2UuaW5kZXgsIGFy
-bWgsIHByb3RvLCBkZXB0aCk7CiAKIAltc3RvLT5oZWFkID0gaGVhZDsKIAltc3RvLT5tc3RjID0g
-bXN0YzsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQu
-YyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQuYwppbmRleCBhYzk3ZWJj
-ZTViMzUuLjJlN2EwYzM0N2RkYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-ZGlzcG52NTAvaGVhZC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hl
-YWQuYwpAQCAtNDEzLDYgKzQxMyw3IEBAIG52NTBfaGVhZF9hdG9taWNfZHVwbGljYXRlX3N0YXRl
-KHN0cnVjdCBkcm1fY3J0YyAqY3J0YykKIAlhc3loLT5vdmx5ID0gYXJtaC0+b3ZseTsKIAlhc3lo
-LT5kaXRoZXIgPSBhcm1oLT5kaXRoZXI7CiAJYXN5aC0+cHJvY2FtcCA9IGFybWgtPnByb2NhbXA7
-CisJYXN5aC0+ZHAgPSBhcm1oLT5kcDsKIAlhc3loLT5jbHIubWFzayA9IDA7CiAJYXN5aC0+c2V0
-Lm1hc2sgPSAwOwogCXJldHVybiAmYXN5aC0+c3RhdGU7Ci0tIAoyLjIwLjEKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
-Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1760687356==
+Content-Type: multipart/alternative; boundary="15492614592.d8Bbf66.10974"
+Content-Transfer-Encoding: 7bit
+
+
+--15492614592.d8Bbf66.10974
+Date: Mon, 4 Feb 2019 06:24:19 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100446
+
+--- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Pedro Albuquerque Santos from comment #15)
+> Any reason why this hasn't been fixed yet given that it seems to be an ea=
+sy
+> fix?
+
+This is in Ben's tree now:
+
+https://github.com/skeggsb/nouveau/commit/a9133adc009eb3b982fb27d073e5087e6=
+3187b23
+
+And should make its way to kernel 5.1.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15492614592.d8Bbf66.10974
+Date: Mon, 4 Feb 2019 06:24:19 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
+veau drivers"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446#c16">Comme=
+nt # 16</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
+veau drivers"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446">bug 10044=
+6</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Pedro Albuquerque Santos from <a href=3D"show_bug=
+.cgi?id=3D100446#c15">comment #15</a>)
+<span class=3D"quote">&gt; Any reason why this hasn't been fixed yet given =
+that it seems to be an easy
+&gt; fix?</span >
+
+This is in Ben's tree now:
+
+<a href=3D"https://github.com/skeggsb/nouveau/commit/a9133adc009eb3b982fb27=
+d073e5087e63187b23">https://github.com/skeggsb/nouveau/commit/a9133adc009eb=
+3b982fb27d073e5087e63187b23</a>
+
+And should make its way to kernel 5.1.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15492614592.d8Bbf66.10974--
+
+--===============1760687356==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1760687356==--
