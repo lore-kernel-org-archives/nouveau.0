@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100446] Backlight control not working on Pascal /
  GP106 using nouveau drivers
-Date: Mon, 04 Feb 2019 06:24:19 +0000
-Message-ID: <bug-100446-8800-bcypxlr841@http.bugs.freedesktop.org/>
+Date: Mon, 04 Feb 2019 06:25:45 +0000
+Message-ID: <bug-100446-8800-AfyEglmQAi@http.bugs.freedesktop.org/>
 References: <bug-100446-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1760687356=="
+Content-Type: multipart/mixed; boundary="===============0770477637=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100446-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1760687356==
-Content-Type: multipart/alternative; boundary="15492614592.d8Bbf66.10974"
+--===============0770477637==
+Content-Type: multipart/alternative; boundary="15492615441.EddCcFcA.11286"
 Content-Transfer-Encoding: 7bit
 
 
---15492614592.d8Bbf66.10974
-Date: Mon, 4 Feb 2019 06:24:19 +0000
+--15492615441.EddCcFcA.11286
+Date: Mon, 4 Feb 2019 06:25:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,25 +36,15 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100446
 
---- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Pedro Albuquerque Santos from comment #15)
-> Any reason why this hasn't been fixed yet given that it seems to be an ea=
-sy
-> fix?
-
-This is in Ben's tree now:
-
-https://github.com/skeggsb/nouveau/commit/a9133adc009eb3b982fb27d073e5087e6=
-3187b23
-
-And should make its way to kernel 5.1.
+--- Comment #17 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Er, make that 5.0. It's in 5.0-rc2.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15492614592.d8Bbf66.10974
-Date: Mon, 4 Feb 2019 06:24:19 +0000
+--15492615441.EddCcFcA.11286
+Date: Mon, 4 Feb 2019 06:25:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,8 +62,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
 veau drivers"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446#c16">Comme=
-nt # 16</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100446#c17">Comme=
+nt # 17</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Backlight control not working on Pascal / GP106 using nou=
@@ -84,19 +74,7 @@ veau drivers"
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Pedro Albuquerque Santos from <a href=3D"show_bug=
-.cgi?id=3D100446#c15">comment #15</a>)
-<span class=3D"quote">&gt; Any reason why this hasn't been fixed yet given =
-that it seems to be an easy
-&gt; fix?</span >
-
-This is in Ben's tree now:
-
-<a href=3D"https://github.com/skeggsb/nouveau/commit/a9133adc009eb3b982fb27=
-d073e5087e63187b23">https://github.com/skeggsb/nouveau/commit/a9133adc009eb=
-3b982fb27d073e5087e63187b23</a>
-
-And should make its way to kernel 5.1.</pre>
+        <pre>Er, make that 5.0. It's in 5.0-rc2.</pre>
         </div>
       </p>
 
@@ -110,9 +88,9 @@ And should make its way to kernel 5.1.</pre>
     </body>
 </html>=
 
---15492614592.d8Bbf66.10974--
+--15492615441.EddCcFcA.11286--
 
---===============1760687356==
+--===============0770477637==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -122,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============1760687356==--
+--===============0770477637==--
