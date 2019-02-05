@@ -1,333 +1,157 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
- [CTXSW_TIMEOUT]
-Date: Mon, 04 Feb 2019 21:44:01 +0000
-Message-ID: <bug-100567-8800-5DVudkq717@http.bugs.freedesktop.org/>
-References: <bug-100567-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [Nouveau] [PATCH v3 4/4] drm/nouveau: Move PBN and VCPI
+ allocation into nv50_head_atom
+Date: Tue, 5 Feb 2019 11:37:26 +1000
+Message-ID: <CACAvsv4=+WjPHw8e3CwN-PARxoU3PsyMj9xjYhT72igg0KEN3w@mail.gmail.com>
+References: <20190202002023.29665-1-lyude@redhat.com> <20190202002023.29665-5-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1037243109=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190202002023.29665-5-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, Sean Paul <seanpaul@chromium.org>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
+On Sat, 2 Feb 2019 at 10:20, Lyude Paul <lyude@redhat.com> wrote:
+>
+> Atomic checks should never modify anything outside of the state that
+> they're passed in. Unfortunately this appears to be exactly what we're
+> doing in nv50_msto_atomic_check() where we update mstc->pbn every time
+> the function is called. This hasn't caused any bugs yet, but it needs to
+> be fixed in order to ensure that when committing an artificially
+> duplicated state (like during system resume), that we reuse the PBN of
+> that state to perform VCPI allocations and don't recalculate a different
+> value from the drm connector's reported bpc.
+>
+> Also, move the VCPI slot allocations while we're at it as well. With
+> this, removing a topology in suspend while using nouveau no longer
+> causes the new atomic VCPI helpers to complain.
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Fixes: eceae1472467 ("drm/dp_mst: Start tracking per-port VCPI allocations")
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+Reviewed-by: Ben Skeggs <bskeggs@redhat.com>
 
---===============1037243109==
-Content-Type: multipart/alternative; boundary="15493166413.6D690.17899"
-Content-Transfer-Encoding: 7bit
-
-
---15493166413.6D690.17899
-Date: Mon, 4 Feb 2019 21:44:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
-
---- Comment #24 from kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Happened another 3 times.
-
-Logs and stack traces:
-- https://gist.github.com/kenorb/9e6537747630f72bf7cc4a5afcc288a7
-- https://gist.github.com/kenorb/0e85a737488ad8c294d70dd83d2bcd13
-- https://gist.github.com/kenorb/abb9db39b04b9fd551429c79c6750883
-
-Call Trace:
- __schedule+0x29e/0x840
- schedule+0x2c/0x80
- schedule_timeout+0x258/0x360
- ? nv50_wndw_atomic_destroy_state+0x1d/0x20 [nouveau]
- dma_fence_default_wait+0x1fc/0x260
- ? dma_fence_release+0xa0/0xa0
- dma_fence_wait_timeout+0x3e/0xf0
- drm_atomic_helper_wait_for_fences+0x3f/0xc0 [drm_kms_helper]
- nv50_disp_atomic_commit_tail+0x78/0x860 [nouveau]
- ? __switch_to_asm+0x40/0x70
- ? __switch_to_asm+0x34/0x70
- nv50_disp_atomic_commit_work+0x12/0x20 [nouveau]
- process_one_work+0x20f/0x3c0
- worker_thread+0x34/0x400
- kthread+0x120/0x140
- ? pwq_unbound_release_workfn+0xd0/0xd0
- ? kthread_bind+0x40/0x40
- ret_from_fork+0x35/0x40
-
-Workqueue: events_unbound nv50_disp_atomic_commit_work [nouveau]
-Call Trace:
- __schedule+0x29e/0x840
- ? nvkm_ioctl_ntfy_get+0x5c/0x80 [nouveau]
- schedule+0x2c/0x80
- schedule_timeout+0x258/0x360
- ? nvif_object_ioctl+0x47/0x50 [nouveau]
- ? nouveau_bo_rd32+0x2a/0x30 [nouveau]
- ? nv84_fence_read+0x2c/0x30 [nouveau]
- ? nouveau_fence_no_signaling+0x2a/0x90 [nouveau]
- dma_fence_default_wait+0x1fc/0x260
- ? dma_fence_release+0xa0/0xa0
- dma_fence_wait_timeout+0x3e/0xf0
- drm_atomic_helper_wait_for_fences+0x3f/0xc0 [drm_kms_helper]
- nv50_disp_atomic_commit_tail+0x78/0x860 [nouveau]
- ? __switch_to_asm+0x40/0x70
- ? __switch_to_asm+0x34/0x70
- nv50_disp_atomic_commit_work+0x12/0x20 [nouveau]
- process_one_work+0x20f/0x3c0
- worker_thread+0x34/0x400
- kthread+0x120/0x140
- ? pwq_unbound_release_workfn+0xd0/0xd0
- ? kthread_bind+0x40/0x40
- ret_from_fork+0x35/0x40
-INFO: task kworker/u72:1:35901 blocked for more than 120 seconds.
-      Tainted: G        W  O      4.18.0-13-generic #14-Ubuntu
-
-INFO: task Xorg:5761 blocked for more than 120 seconds.
-      Tainted: G           O      4.18.0-13-generic #14-Ubuntu
-Xorg            D    0  5761   5759 0x00000004
-Call Trace:
- __schedule+0x29e/0x840
- ? kfree+0x15b/0x180
- schedule+0x2c/0x80
- schedule_preempt_disabled+0xe/0x10
- __ww_mutex_lock.isra.6+0x3c1/0x660
- __ww_mutex_lock_slowpath+0x16/0x20
- ww_mutex_lock+0x34/0x50
- drm_modeset_lock+0x6e/0xb0 [drm]
- drm_crtc_get_sequence_ioctl+0xbc/0x190 [drm]
- ? drm_wait_vblank_ioctl+0x610/0x610 [drm]
- drm_ioctl_kernel+0xa4/0xf0 [drm]
- drm_ioctl+0x227/0x400 [drm]
- ? drm_wait_vblank_ioctl+0x610/0x610 [drm]
- ? ep_modify+0x160/0x160
- nouveau_drm_ioctl+0x73/0xc0 [nouveau]
- do_vfs_ioctl+0xa8/0x620
- ? __sys_recvmsg+0x88/0xa0
- ksys_ioctl+0x67/0x90
- __x64_sys_ioctl+0x1a/0x20
- do_syscall_64+0x5a/0x110
- entry_SYSCALL_64_after_hwframe+0x44/0xa9
-RIP: 0033:0x7f8bb9f703c7
-Code: Bad RIP value.
-RSP: 002b:00007ffd077cc868 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-RAX: ffffffffffffffda RBX: 00007ffd077cc900 RCX: 00007f8bb9f703c7
-RDX: 00007ffd077cc8a0 RSI: 00000000c018643b RDI: 000000000000000e
-RBP: 00007ffd077cc8a0 R08: 0000000000000000 R09: 000055aba56d3850
-R10: 0000000000000000 R11: 0000000000000246 R12: 00000000c018643b
-R13: 000000000000000e R14: 000055aba5402c30 R15: 000055aba531dcb0
-INFO: task kworker/u72:1:8681 blocked for more than 120 seconds.
-      Tainted: G           O      4.18.0-13-generic #14-Ubuntu
-
-INFO: task kworker/u72:3:14273 blocked for more than 120 seconds.
-      Tainted: G           O      4.18.0-13-generic #14-Ubuntu
-"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
-kworker/u72:3   D    0 14273      2 0x80000000
-Workqueue: events_unbound nv50_disp_atomic_commit_work [nouveau]
-Call Trace:
- __schedule+0x29e/0x840
- schedule+0x2c/0x80
- schedule_timeout+0x258/0x360
- ? nv50_wndw_atomic_destroy_state+0x1d/0x20 [nouveau]
- dma_fence_default_wait+0x1fc/0x260
- ? dma_fence_release+0xa0/0xa0
- dma_fence_wait_timeout+0x3e/0xf0
- drm_atomic_helper_wait_for_fences+0x3f/0xc0 [drm_kms_helper]
- nv50_disp_atomic_commit_tail+0x78/0x860 [nouveau]
- ? __switch_to_asm+0x40/0x70
- ? __switch_to_asm+0x34/0x70
- nv50_disp_atomic_commit_work+0x12/0x20 [nouveau]
- process_one_work+0x20f/0x3c0
- worker_thread+0x34/0x400
- kthread+0x120/0x140
- ? pwq_unbound_release_workfn+0xd0/0xd0
- ? kthread_bind+0x40/0x40
- ret_from_fork+0x35/0x40
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15493166413.6D690.17899
-Date: Mon, 4 Feb 2019 21:44:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c24">Comme=
-nt # 24</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-kenorb&#64;gmail.com" title=3D"kenorb&#64;gmail.com">kenorb&#64;gmail.com</=
-a>
-</span></b>
-        <pre>Happened another 3 times.
-
-Logs and stack traces:
-- <a href=3D"https://gist.github.com/kenorb/9e6537747630f72bf7cc4a5afcc288a=
-7">https://gist.github.com/kenorb/9e6537747630f72bf7cc4a5afcc288a7</a>
-- <a href=3D"https://gist.github.com/kenorb/0e85a737488ad8c294d70dd83d2bcd1=
-3">https://gist.github.com/kenorb/0e85a737488ad8c294d70dd83d2bcd13</a>
-- <a href=3D"https://gist.github.com/kenorb/abb9db39b04b9fd551429c79c675088=
-3">https://gist.github.com/kenorb/abb9db39b04b9fd551429c79c6750883</a>
-
-Call Trace:
- __schedule+0x29e/0x840
- schedule+0x2c/0x80
- schedule_timeout+0x258/0x360
- ? nv50_wndw_atomic_destroy_state+0x1d/0x20 [nouveau]
- dma_fence_default_wait+0x1fc/0x260
- ? dma_fence_release+0xa0/0xa0
- dma_fence_wait_timeout+0x3e/0xf0
- drm_atomic_helper_wait_for_fences+0x3f/0xc0 [drm_kms_helper]
- nv50_disp_atomic_commit_tail+0x78/0x860 [nouveau]
- ? __switch_to_asm+0x40/0x70
- ? __switch_to_asm+0x34/0x70
- nv50_disp_atomic_commit_work+0x12/0x20 [nouveau]
- process_one_work+0x20f/0x3c0
- worker_thread+0x34/0x400
- kthread+0x120/0x140
- ? pwq_unbound_release_workfn+0xd0/0xd0
- ? kthread_bind+0x40/0x40
- ret_from_fork+0x35/0x40
-
-Workqueue: events_unbound nv50_disp_atomic_commit_work [nouveau]
-Call Trace:
- __schedule+0x29e/0x840
- ? nvkm_ioctl_ntfy_get+0x5c/0x80 [nouveau]
- schedule+0x2c/0x80
- schedule_timeout+0x258/0x360
- ? nvif_object_ioctl+0x47/0x50 [nouveau]
- ? nouveau_bo_rd32+0x2a/0x30 [nouveau]
- ? nv84_fence_read+0x2c/0x30 [nouveau]
- ? nouveau_fence_no_signaling+0x2a/0x90 [nouveau]
- dma_fence_default_wait+0x1fc/0x260
- ? dma_fence_release+0xa0/0xa0
- dma_fence_wait_timeout+0x3e/0xf0
- drm_atomic_helper_wait_for_fences+0x3f/0xc0 [drm_kms_helper]
- nv50_disp_atomic_commit_tail+0x78/0x860 [nouveau]
- ? __switch_to_asm+0x40/0x70
- ? __switch_to_asm+0x34/0x70
- nv50_disp_atomic_commit_work+0x12/0x20 [nouveau]
- process_one_work+0x20f/0x3c0
- worker_thread+0x34/0x400
- kthread+0x120/0x140
- ? pwq_unbound_release_workfn+0xd0/0xd0
- ? kthread_bind+0x40/0x40
- ret_from_fork+0x35/0x40
-INFO: task kworker/u72:1:35901 blocked for more than 120 seconds.
-      Tainted: G        W  O      4.18.0-13-generic #14-Ubuntu
-
-INFO: task Xorg:5761 blocked for more than 120 seconds.
-      Tainted: G           O      4.18.0-13-generic #14-Ubuntu
-Xorg            D    0  5761   5759 0x00000004
-Call Trace:
- __schedule+0x29e/0x840
- ? kfree+0x15b/0x180
- schedule+0x2c/0x80
- schedule_preempt_disabled+0xe/0x10
- __ww_mutex_lock.isra.6+0x3c1/0x660
- __ww_mutex_lock_slowpath+0x16/0x20
- ww_mutex_lock+0x34/0x50
- drm_modeset_lock+0x6e/0xb0 [drm]
- drm_crtc_get_sequence_ioctl+0xbc/0x190 [drm]
- ? drm_wait_vblank_ioctl+0x610/0x610 [drm]
- drm_ioctl_kernel+0xa4/0xf0 [drm]
- drm_ioctl+0x227/0x400 [drm]
- ? drm_wait_vblank_ioctl+0x610/0x610 [drm]
- ? ep_modify+0x160/0x160
- nouveau_drm_ioctl+0x73/0xc0 [nouveau]
- do_vfs_ioctl+0xa8/0x620
- ? __sys_recvmsg+0x88/0xa0
- ksys_ioctl+0x67/0x90
- __x64_sys_ioctl+0x1a/0x20
- do_syscall_64+0x5a/0x110
- entry_SYSCALL_64_after_hwframe+0x44/0xa9
-RIP: 0033:0x7f8bb9f703c7
-Code: Bad RIP value.
-RSP: 002b:00007ffd077cc868 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-RAX: ffffffffffffffda RBX: 00007ffd077cc900 RCX: 00007f8bb9f703c7
-RDX: 00007ffd077cc8a0 RSI: 00000000c018643b RDI: 000000000000000e
-RBP: 00007ffd077cc8a0 R08: 0000000000000000 R09: 000055aba56d3850
-R10: 0000000000000000 R11: 0000000000000246 R12: 00000000c018643b
-R13: 000000000000000e R14: 000055aba5402c30 R15: 000055aba531dcb0
-INFO: task kworker/u72:1:8681 blocked for more than 120 seconds.
-      Tainted: G           O      4.18.0-13-generic #14-Ubuntu
-
-INFO: task kworker/u72:3:14273 blocked for more than 120 seconds.
-      Tainted: G           O      4.18.0-13-generic #14-Ubuntu
-&quot;echo 0 &gt; /proc/sys/kernel/hung_task_timeout_secs&quot; disables th=
-is message.
-kworker/u72:3   D    0 14273      2 0x80000000
-Workqueue: events_unbound nv50_disp_atomic_commit_work [nouveau]
-Call Trace:
- __schedule+0x29e/0x840
- schedule+0x2c/0x80
- schedule_timeout+0x258/0x360
- ? nv50_wndw_atomic_destroy_state+0x1d/0x20 [nouveau]
- dma_fence_default_wait+0x1fc/0x260
- ? dma_fence_release+0xa0/0xa0
- dma_fence_wait_timeout+0x3e/0xf0
- drm_atomic_helper_wait_for_fences+0x3f/0xc0 [drm_kms_helper]
- nv50_disp_atomic_commit_tail+0x78/0x860 [nouveau]
- ? __switch_to_asm+0x40/0x70
- ? __switch_to_asm+0x34/0x70
- nv50_disp_atomic_commit_work+0x12/0x20 [nouveau]
- process_one_work+0x20f/0x3c0
- worker_thread+0x34/0x400
- kthread+0x120/0x140
- ? pwq_unbound_release_workfn+0xd0/0xd0
- ? kthread_bind+0x40/0x40
- ret_from_fork+0x35/0x40</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15493166413.6D690.17899--
-
---===============1037243109==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1037243109==--
+> ---
+>  drivers/gpu/drm/nouveau/dispnv50/atom.h |  6 ++++++
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c | 28 +++++++++++++++----------
+>  drivers/gpu/drm/nouveau/dispnv50/head.c |  1 +
+>  3 files changed, 24 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/atom.h b/drivers/gpu/drm/nouveau/dispnv50/atom.h
+> index a194990d2b0d..b5fae5ab3fa8 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/atom.h
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/atom.h
+> @@ -116,6 +116,12 @@ struct nv50_head_atom {
+>                 u8 depth:4;
+>         } or;
+>
+> +       /* Currently only used for MST */
+> +       struct {
+> +               int pbn;
+> +               u8 tu:6;
+> +       } dp;
+> +
+>         union nv50_head_atom_mask {
+>                 struct {
+>                         bool olut:1;
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> index 60d858c2f2ce..e8bb35f6d015 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> @@ -659,8 +659,6 @@ struct nv50_mstc {
+>
+>         struct drm_display_mode *native;
+>         struct edid *edid;
+> -
+> -       int pbn;
+>  };
+>
+>  struct nv50_msto {
+> @@ -765,17 +763,26 @@ nv50_msto_atomic_check(struct drm_encoder *encoder,
+>         struct drm_connector *connector = conn_state->connector;
+>         struct nv50_mstc *mstc = nv50_mstc(connector);
+>         struct nv50_mstm *mstm = mstc->mstm;
+> -       int bpp = connector->display_info.bpc * 3;
+> +       struct nv50_head_atom *asyh = nv50_head_atom(crtc_state);
+>         int slots;
+>
+> -       mstc->pbn = drm_dp_calc_pbn_mode(crtc_state->adjusted_mode.clock,
+> -                                        bpp);
+> +       /* When restoring duplicated states, we need to make sure that the
+> +        * bw remains the same and avoid recalculating it, as the connector's
+> +        * bpc may have changed after the state was duplicated
+> +        */
+> +       if (!state->duplicated)
+> +               asyh->dp.pbn =
+> +                       drm_dp_calc_pbn_mode(crtc_state->adjusted_mode.clock,
+> +                                            connector->display_info.bpc * 3);
+>
+>         if (drm_atomic_crtc_needs_modeset(crtc_state)) {
+>                 slots = drm_dp_atomic_find_vcpi_slots(state, &mstm->mgr,
+> -                                                     mstc->port, mstc->pbn);
+> +                                                     mstc->port,
+> +                                                     asyh->dp.pbn);
+>                 if (slots < 0)
+>                         return slots;
+> +
+> +               asyh->dp.tu = slots;
+>         }
+>
+>         return nv50_outp_atomic_check_view(encoder, crtc_state, conn_state,
+> @@ -786,13 +793,13 @@ static void
+>  nv50_msto_enable(struct drm_encoder *encoder)
+>  {
+>         struct nv50_head *head = nv50_head(encoder->crtc);
+> +       struct nv50_head_atom *armh = nv50_head_atom(head->base.base.state);
+>         struct nv50_msto *msto = nv50_msto(encoder);
+>         struct nv50_mstc *mstc = NULL;
+>         struct nv50_mstm *mstm = NULL;
+>         struct drm_connector *connector;
+>         struct drm_connector_list_iter conn_iter;
+>         u8 proto, depth;
+> -       int slots;
+>         bool r;
+>
+>         drm_connector_list_iter_begin(encoder->dev, &conn_iter);
+> @@ -808,8 +815,8 @@ nv50_msto_enable(struct drm_encoder *encoder)
+>         if (WARN_ON(!mstc))
+>                 return;
+>
+> -       slots = drm_dp_find_vcpi_slots(&mstm->mgr, mstc->pbn);
+> -       r = drm_dp_mst_allocate_vcpi(&mstm->mgr, mstc->port, mstc->pbn, slots);
+> +       r = drm_dp_mst_allocate_vcpi(&mstm->mgr, mstc->port, armh->dp.pbn,
+> +                                    armh->dp.tu);
+>         WARN_ON(!r);
+>
+>         if (!mstm->links++)
+> @@ -827,8 +834,7 @@ nv50_msto_enable(struct drm_encoder *encoder)
+>         default: depth = 0x6; break;
+>         }
+>
+> -       mstm->outp->update(mstm->outp, head->base.index,
+> -                          nv50_head_atom(head->base.base.state), proto, depth);
+> +       mstm->outp->update(mstm->outp, head->base.index, armh, proto, depth);
+>
+>         msto->head = head;
+>         msto->mstc = mstc;
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/head.c b/drivers/gpu/drm/nouveau/dispnv50/head.c
+> index ac97ebce5b35..2e7a0c347ddb 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/head.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/head.c
+> @@ -413,6 +413,7 @@ nv50_head_atomic_duplicate_state(struct drm_crtc *crtc)
+>         asyh->ovly = armh->ovly;
+>         asyh->dither = armh->dither;
+>         asyh->procamp = armh->procamp;
+> +       asyh->dp = armh->dp;
+>         asyh->clr.mask = 0;
+>         asyh->set.mask = 0;
+>         return &asyh->state;
+> --
+> 2.20.1
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/nouveau
