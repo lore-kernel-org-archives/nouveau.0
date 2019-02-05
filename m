@@ -1,157 +1,329 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [Nouveau] [PATCH v3 4/4] drm/nouveau: Move PBN and VCPI
- allocation into nv50_head_atom
-Date: Tue, 5 Feb 2019 11:37:26 +1000
-Message-ID: <CACAvsv4=+WjPHw8e3CwN-PARxoU3PsyMj9xjYhT72igg0KEN3w@mail.gmail.com>
-References: <20190202002023.29665-1-lyude@redhat.com> <20190202002023.29665-5-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 109556] New: [NV50/GT200] fifo: DMA_PUSHER ... (err:
+ INVALID_CMD) push 00400040
+Date: Tue, 05 Feb 2019 10:32:38 +0000
+Message-ID: <bug-109556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190202002023.29665-5-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, Sean Paul <seanpaul@chromium.org>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>
+Content-Type: multipart/mixed; boundary="===============0507834636=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, 2 Feb 2019 at 10:20, Lyude Paul <lyude@redhat.com> wrote:
->
-> Atomic checks should never modify anything outside of the state that
-> they're passed in. Unfortunately this appears to be exactly what we're
-> doing in nv50_msto_atomic_check() where we update mstc->pbn every time
-> the function is called. This hasn't caused any bugs yet, but it needs to
-> be fixed in order to ensure that when committing an artificially
-> duplicated state (like during system resume), that we reuse the PBN of
-> that state to perform VCPI allocations and don't recalculate a different
-> value from the drm connector's reported bpc.
->
-> Also, move the VCPI slot allocations while we're at it as well. With
-> this, removing a topology in suspend while using nouveau no longer
-> causes the new atomic VCPI helpers to complain.
->
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Fixes: eceae1472467 ("drm/dp_mst: Start tracking per-port VCPI allocations")
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-Reviewed-by: Ben Skeggs <bskeggs@redhat.com>
 
-> ---
->  drivers/gpu/drm/nouveau/dispnv50/atom.h |  6 ++++++
->  drivers/gpu/drm/nouveau/dispnv50/disp.c | 28 +++++++++++++++----------
->  drivers/gpu/drm/nouveau/dispnv50/head.c |  1 +
->  3 files changed, 24 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/atom.h b/drivers/gpu/drm/nouveau/dispnv50/atom.h
-> index a194990d2b0d..b5fae5ab3fa8 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/atom.h
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/atom.h
-> @@ -116,6 +116,12 @@ struct nv50_head_atom {
->                 u8 depth:4;
->         } or;
->
-> +       /* Currently only used for MST */
-> +       struct {
-> +               int pbn;
-> +               u8 tu:6;
-> +       } dp;
-> +
->         union nv50_head_atom_mask {
->                 struct {
->                         bool olut:1;
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> index 60d858c2f2ce..e8bb35f6d015 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> @@ -659,8 +659,6 @@ struct nv50_mstc {
->
->         struct drm_display_mode *native;
->         struct edid *edid;
-> -
-> -       int pbn;
->  };
->
->  struct nv50_msto {
-> @@ -765,17 +763,26 @@ nv50_msto_atomic_check(struct drm_encoder *encoder,
->         struct drm_connector *connector = conn_state->connector;
->         struct nv50_mstc *mstc = nv50_mstc(connector);
->         struct nv50_mstm *mstm = mstc->mstm;
-> -       int bpp = connector->display_info.bpc * 3;
-> +       struct nv50_head_atom *asyh = nv50_head_atom(crtc_state);
->         int slots;
->
-> -       mstc->pbn = drm_dp_calc_pbn_mode(crtc_state->adjusted_mode.clock,
-> -                                        bpp);
-> +       /* When restoring duplicated states, we need to make sure that the
-> +        * bw remains the same and avoid recalculating it, as the connector's
-> +        * bpc may have changed after the state was duplicated
-> +        */
-> +       if (!state->duplicated)
-> +               asyh->dp.pbn =
-> +                       drm_dp_calc_pbn_mode(crtc_state->adjusted_mode.clock,
-> +                                            connector->display_info.bpc * 3);
->
->         if (drm_atomic_crtc_needs_modeset(crtc_state)) {
->                 slots = drm_dp_atomic_find_vcpi_slots(state, &mstm->mgr,
-> -                                                     mstc->port, mstc->pbn);
-> +                                                     mstc->port,
-> +                                                     asyh->dp.pbn);
->                 if (slots < 0)
->                         return slots;
-> +
-> +               asyh->dp.tu = slots;
->         }
->
->         return nv50_outp_atomic_check_view(encoder, crtc_state, conn_state,
-> @@ -786,13 +793,13 @@ static void
->  nv50_msto_enable(struct drm_encoder *encoder)
->  {
->         struct nv50_head *head = nv50_head(encoder->crtc);
-> +       struct nv50_head_atom *armh = nv50_head_atom(head->base.base.state);
->         struct nv50_msto *msto = nv50_msto(encoder);
->         struct nv50_mstc *mstc = NULL;
->         struct nv50_mstm *mstm = NULL;
->         struct drm_connector *connector;
->         struct drm_connector_list_iter conn_iter;
->         u8 proto, depth;
-> -       int slots;
->         bool r;
->
->         drm_connector_list_iter_begin(encoder->dev, &conn_iter);
-> @@ -808,8 +815,8 @@ nv50_msto_enable(struct drm_encoder *encoder)
->         if (WARN_ON(!mstc))
->                 return;
->
-> -       slots = drm_dp_find_vcpi_slots(&mstm->mgr, mstc->pbn);
-> -       r = drm_dp_mst_allocate_vcpi(&mstm->mgr, mstc->port, mstc->pbn, slots);
-> +       r = drm_dp_mst_allocate_vcpi(&mstm->mgr, mstc->port, armh->dp.pbn,
-> +                                    armh->dp.tu);
->         WARN_ON(!r);
->
->         if (!mstm->links++)
-> @@ -827,8 +834,7 @@ nv50_msto_enable(struct drm_encoder *encoder)
->         default: depth = 0x6; break;
->         }
->
-> -       mstm->outp->update(mstm->outp, head->base.index,
-> -                          nv50_head_atom(head->base.base.state), proto, depth);
-> +       mstm->outp->update(mstm->outp, head->base.index, armh, proto, depth);
->
->         msto->head = head;
->         msto->mstc = mstc;
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/head.c b/drivers/gpu/drm/nouveau/dispnv50/head.c
-> index ac97ebce5b35..2e7a0c347ddb 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/head.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/head.c
-> @@ -413,6 +413,7 @@ nv50_head_atomic_duplicate_state(struct drm_crtc *crtc)
->         asyh->ovly = armh->ovly;
->         asyh->dither = armh->dither;
->         asyh->procamp = armh->procamp;
-> +       asyh->dp = armh->dp;
->         asyh->clr.mask = 0;
->         asyh->set.mask = 0;
->         return &asyh->state;
-> --
-> 2.20.1
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/nouveau
+--===============0507834636==
+Content-Type: multipart/alternative; boundary="15493627600.aEa1.19301"
+Content-Transfer-Encoding: 7bit
+
+
+--15493627600.aEa1.19301
+Date: Tue, 5 Feb 2019 10:32:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109556
+
+            Bug ID: 109556
+           Summary: [NV50/GT200] fifo: DMA_PUSHER ... (err: INVALID_CMD)
+                    push 00400040
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 143301
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D143301&action=3Dedit
+dmesg log
+
+I'm using Arch Linux with Linux 4.20.6, X11 and the modesetting driver toge=
+ther
+with the KDE plasma desktop (5.14.5). After using the desktop for a while (=
+in
+particular, after causing some graphics load) visual artifacts appear and
+plasma-desktop often hangs up. Sometimes the hanging process can be restart=
+ed,
+other times X is completely frozen (but can still be ssh'ed into).
+
+The dmesg log shows these lines, although only the fifo DMA_PUSHER lines se=
+em
+to consistently appear every time the problem is triggered:
+
+[  227.576711] nouveau 0000:04:00.0: fifo: DMA_PUSHER - ch 6 [Xorg[751]] get
+00000eb764 put 00000ec8ec ib_get 00000167 ib_put 0000016a state 80006eac (e=
+rr:
+INVALID_CMD) push 00400040
+[  227.630897] nouveau 0000:04:00.0: gr: DATA_ERROR 00000005 [INVALID_ENUM]
+[  227.630904] nouveau 0000:04:00.0: gr: 00100000 [] ch 6 [007f437000
+Xorg[751]] subc 3 class 8397 mthd 1348 data 00046da0
+[  227.630916] nouveau 0000:04:00.0: fifo: DMA_PUSHER - ch 6 [Xorg[751]] get
+00000fcb8c put 0000102f84 ib_get 00000178 ib_put 0000017c state 80007354 (e=
+rr:
+INVALID_CMD) push 00400040
+[  227.630926] nouveau 0000:04:00.0: gr: DATA_ERROR 00000005 [INVALID_ENUM]
+[  227.630929] nouveau 0000:04:00.0: gr: 00100000 [] ch 6 [007f437000
+Xorg[751]] subc 3 class 8397 mthd 134c data 00000000
+[  227.630938] nouveau 0000:04:00.0: gr: DATA_ERROR 00000005 [INVALID_ENUM]
+[  227.630941] nouveau 0000:04:00.0: gr: 00100000 [] ch 6 [007f437000
+Xorg[751]] subc 3 class 8397 mthd 1350 data 000479d0
+[  227.630950] nouveau 0000:04:00.0: gr: DATA_ERROR 00000005 [INVALID_ENUM]
+[  227.630953] nouveau 0000:04:00.0: gr: 00100000 [] ch 6 [007f437000
+Xorg[751]] subc 3 class 8397 mthd 1348 data 00046da0
+[  227.630964] nouveau 0000:04:00.0: fifo: DMA_PUSHER - ch 6 [Xorg[751]] get
+00000fcb8c put 0000102f84 ib_get 0000017a ib_put 0000017c state 80007354 (e=
+rr:
+INVALID_CMD) push 00400040
+[  227.630975] nouveau 0000:04:00.0: gr: DATA_ERROR 00000005 [INVALID_ENUM]
+[  227.630978] nouveau 0000:04:00.0: gr: 00100000 [] ch 6 [007f437000
+Xorg[751]] subc 3 class 8397 mthd 134c data 00000000
+[  227.630988] nouveau 0000:04:00.0: gr: DATA_ERROR 00000005 [INVALID_ENUM]
+[  227.630991] nouveau 0000:04:00.0: gr: 00100000 [] ch 6 [007f437000
+Xorg[751]] subc 3 class 8397 mthd 1350 data 000479d0
+[  227.665017] nouveau 0000:04:00.0: gr: DATA_ERROR 0000000c [INVALID_BITFI=
+ELD]
+[  227.665022] nouveau 0000:04:00.0: gr: 00100000 [] ch 6 [007f437000
+Xorg[751]] subc 3 class 8397 mthd 135c data 000472e8
+[  227.847944] nouveau 0000:04:00.0: fifo: DMA_PUSHER - ch 6 [Xorg[751]] get
+0000138e10 put 000013b454 ib_get 000001ad ib_put 000001b0 state 40000004 (e=
+rr:
+INVALID_MTHD) push 00400040
+[  227.850171] nouveau 0000:04:00.0: fifo: CACHE_ERROR - ch 6 [Xorg[751]] s=
+ubc
+0 mthd 0000 data 00146200
+[  227.889579] nouveau 0000:04:00.0: Xorg[751]: multiple instances of buffe=
+r 4
+on validation list
+[  227.889588] nouveau 0000:04:00.0: Xorg[751]: validate_init
+[  227.889590] nouveau 0000:04:00.0: Xorg[751]: validate: -22
+[  227.891472] nouveau 0000:04:00.0: fifo: DMA_PUSHER - ch 6 [Xorg[751]] get
+0000141bf0 put 00001479b8 ib_get 000001b4 ib_put 000001b5 state 80007418 (e=
+rr:
+INVALID_CMD) push 00400040
+
+(the full dmesg.log is attached)
+
+This problem is rather new. It was introduced with a package upgrade in Arch
+Linux that happened within the last few days (I will attach the pacman upgr=
+ade
+log for those who want to know.)
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15493627600.aEa1.19301
+Date: Tue, 5 Feb 2019 10:32:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV50/GT200] fifo: DMA_PUSHER ... (err: INVALID_CMD) push=
+ 00400040"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109556">109556</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NV50/GT200] fifo: DMA_PUSHER ... (err: INVALID_CMD) push 004=
+00040
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>bastian.beischer&#64;rwth-aachen.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D143301=
+" name=3D"attach_143301" title=3D"dmesg log">attachment 143301</a> <a href=
+=3D"attachment.cgi?id=3D143301&amp;action=3Dedit" title=3D"dmesg log">[deta=
+ils]</a></span>
+dmesg log
+
+I'm using Arch Linux with Linux 4.20.6, X11 and the modesetting driver toge=
+ther
+with the KDE plasma desktop (5.14.5). After using the desktop for a while (=
+in
+particular, after causing some graphics load) visual artifacts appear and
+plasma-desktop often hangs up. Sometimes the hanging process can be restart=
+ed,
+other times X is completely frozen (but can still be ssh'ed into).
+
+The dmesg log shows these lines, although only the fifo DMA_PUSHER lines se=
+em
+to consistently appear every time the problem is triggered:
+
+[  227.576711] nouveau 0000:04:00.0: fifo: DMA_PUSHER - ch 6 [Xorg[751]] get
+00000eb764 put 00000ec8ec ib_get 00000167 ib_put 0000016a state 80006eac (e=
+rr:
+INVALID_CMD) push 00400040
+[  227.630897] nouveau 0000:04:00.0: gr: DATA_ERROR 00000005 [INVALID_ENUM]
+[  227.630904] nouveau 0000:04:00.0: gr: 00100000 [] ch 6 [007f437000
+Xorg[751]] subc 3 class 8397 mthd 1348 data 00046da0
+[  227.630916] nouveau 0000:04:00.0: fifo: DMA_PUSHER - ch 6 [Xorg[751]] get
+00000fcb8c put 0000102f84 ib_get 00000178 ib_put 0000017c state 80007354 (e=
+rr:
+INVALID_CMD) push 00400040
+[  227.630926] nouveau 0000:04:00.0: gr: DATA_ERROR 00000005 [INVALID_ENUM]
+[  227.630929] nouveau 0000:04:00.0: gr: 00100000 [] ch 6 [007f437000
+Xorg[751]] subc 3 class 8397 mthd 134c data 00000000
+[  227.630938] nouveau 0000:04:00.0: gr: DATA_ERROR 00000005 [INVALID_ENUM]
+[  227.630941] nouveau 0000:04:00.0: gr: 00100000 [] ch 6 [007f437000
+Xorg[751]] subc 3 class 8397 mthd 1350 data 000479d0
+[  227.630950] nouveau 0000:04:00.0: gr: DATA_ERROR 00000005 [INVALID_ENUM]
+[  227.630953] nouveau 0000:04:00.0: gr: 00100000 [] ch 6 [007f437000
+Xorg[751]] subc 3 class 8397 mthd 1348 data 00046da0
+[  227.630964] nouveau 0000:04:00.0: fifo: DMA_PUSHER - ch 6 [Xorg[751]] get
+00000fcb8c put 0000102f84 ib_get 0000017a ib_put 0000017c state 80007354 (e=
+rr:
+INVALID_CMD) push 00400040
+[  227.630975] nouveau 0000:04:00.0: gr: DATA_ERROR 00000005 [INVALID_ENUM]
+[  227.630978] nouveau 0000:04:00.0: gr: 00100000 [] ch 6 [007f437000
+Xorg[751]] subc 3 class 8397 mthd 134c data 00000000
+[  227.630988] nouveau 0000:04:00.0: gr: DATA_ERROR 00000005 [INVALID_ENUM]
+[  227.630991] nouveau 0000:04:00.0: gr: 00100000 [] ch 6 [007f437000
+Xorg[751]] subc 3 class 8397 mthd 1350 data 000479d0
+[  227.665017] nouveau 0000:04:00.0: gr: DATA_ERROR 0000000c [INVALID_BITFI=
+ELD]
+[  227.665022] nouveau 0000:04:00.0: gr: 00100000 [] ch 6 [007f437000
+Xorg[751]] subc 3 class 8397 mthd 135c data 000472e8
+[  227.847944] nouveau 0000:04:00.0: fifo: DMA_PUSHER - ch 6 [Xorg[751]] get
+0000138e10 put 000013b454 ib_get 000001ad ib_put 000001b0 state 40000004 (e=
+rr:
+INVALID_MTHD) push 00400040
+[  227.850171] nouveau 0000:04:00.0: fifo: CACHE_ERROR - ch 6 [Xorg[751]] s=
+ubc
+0 mthd 0000 data 00146200
+[  227.889579] nouveau 0000:04:00.0: Xorg[751]: multiple instances of buffe=
+r 4
+on validation list
+[  227.889588] nouveau 0000:04:00.0: Xorg[751]: validate_init
+[  227.889590] nouveau 0000:04:00.0: Xorg[751]: validate: -22
+[  227.891472] nouveau 0000:04:00.0: fifo: DMA_PUSHER - ch 6 [Xorg[751]] get
+0000141bf0 put 00001479b8 ib_get 000001b4 ib_put 000001b5 state 80007418 (e=
+rr:
+INVALID_CMD) push 00400040
+
+(the full dmesg.log is attached)
+
+This problem is rather new. It was introduced with a package upgrade in Arch
+Linux that happened within the last few days (I will attach the pacman upgr=
+ade
+log for those who want to know.)</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15493627600.aEa1.19301--
+
+--===============0507834636==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0507834636==--
