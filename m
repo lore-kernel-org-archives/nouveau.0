@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109556] [NV50/GT200] fifo: DMA_PUSHER ... (err:
- INVALID_CMD) push 00400040
-Date: Wed, 06 Feb 2019 00:10:30 +0000
-Message-ID: <bug-109556-8800-bBlKHSVWDy@http.bugs.freedesktop.org/>
-References: <bug-109556-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 109558] Plasma locks up after splash screen
+Date: Wed, 06 Feb 2019 00:12:23 +0000
+Message-ID: <bug-109558-8800-J3nXXPeQ50@http.bugs.freedesktop.org/>
+References: <bug-109558-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0538153023=="
+Content-Type: multipart/mixed; boundary="===============1284411556=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-109558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0538153023==
-Content-Type: multipart/alternative; boundary="15494118301.Fcd3969d.29110"
+--===============1284411556==
+Content-Type: multipart/alternative; boundary="15494119430.3cCb.29583"
 Content-Transfer-Encoding: 7bit
 
 
---15494118301.Fcd3969d.29110
-Date: Wed, 6 Feb 2019 00:10:30 +0000
+--15494119430.3cCb.29583
+Date: Wed, 6 Feb 2019 00:12:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109556
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109558
 
---- Comment #2 from bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org ---
-Managed to pin down the problem to the upgrade of qt5 from 5.12.0 to 5.12.1=
-. I
-don't know how that upgrade can cause the bug, but problems go away when
-downgrading again.
+--- Comment #1 from qjztreez-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org ---
+Created attachment 143309
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D143309&action=3Dedit
+Part of pacman.log
+
+The problem occurred after upgrading mesa from 18.3.2 to 18.3.3 and qt from
+5.12.0 to 5.12.1, but downgrading mesa to 18.3.2 didn't help.
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15494118301.Fcd3969d.29110
-Date: Wed, 6 Feb 2019 00:10:30 +0000
+--15494119430.3cCb.29583
+Date: Wed, 6 Feb 2019 00:12:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,24 +65,26 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV50/GT200] fifo: DMA_PUSHER ... (err: INVALID_CMD) push=
- 00400040"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109556#c2">Commen=
-t # 2</a>
+   title=3D"NEW - Plasma locks up after splash screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109558#c1">Commen=
+t # 1</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV50/GT200] fifo: DMA_PUSHER ... (err: INVALID_CMD) push=
- 00400040"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109556">bug 10955=
-6</a>
+   title=3D"NEW - Plasma locks up after splash screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109558">bug 10955=
+8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bastian.beischer&#64;rwth-aachen.de" title=3D"bastian.beischer&#64;rwth-aac=
-hen.de">bastian.beischer&#64;rwth-aachen.de</a>
+qjztreez&#64;outlook.com" title=3D"qjztreez&#64;outlook.com">qjztreez&#64;o=
+utlook.com</a>
 </span></b>
-        <pre>Managed to pin down the problem to the upgrade of qt5 from 5.1=
-2.0 to 5.12.1. I
-don't know how that upgrade can cause the bug, but problems go away when
-downgrading again.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D143309=
+" name=3D"attach_143309" title=3D"Part of pacman.log">attachment 143309</a>=
+ <a href=3D"attachment.cgi?id=3D143309&amp;action=3Dedit" title=3D"Part of =
+pacman.log">[details]</a></span>
+Part of pacman.log
+
+The problem occurred after upgrading mesa from 18.3.2 to 18.3.3 and qt from
+5.12.0 to 5.12.1, but downgrading mesa to 18.3.2 didn't help.</pre>
         </div>
       </p>
 
@@ -89,14 +93,15 @@ downgrading again.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15494118301.Fcd3969d.29110--
+--15494119430.3cCb.29583--
 
---===============0538153023==
+--===============1284411556==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0538153023==--
+--===============1284411556==--
