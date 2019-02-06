@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109556] [NV50/GT200] fifo: DMA_PUSHER ... (err:
- INVALID_CMD) push 00400040
+Subject: [Bug 109558] Plasma locks up after splash screen
 Date: Wed, 06 Feb 2019 14:30:56 +0000
-Message-ID: <bug-109556-8800-AAlCqs58yX@http.bugs.freedesktop.org/>
-References: <bug-109556-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-109558-8800-vj1VyQgSbD@http.bugs.freedesktop.org/>
+References: <bug-109558-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0057855602=="
+Content-Type: multipart/mixed; boundary="===============0871119328=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-109558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0057855602==
-Content-Type: multipart/alternative; boundary="15494634561.FCe3B.15463"
+--===============0871119328==
+Content-Type: multipart/alternative; boundary="15494634560.FAf161.15463"
 Content-Transfer-Encoding: 7bit
 
 
---15494634561.FCe3B.15463
+--15494634560.FAf161.15463
 Date: Wed, 6 Feb 2019 14:30:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
@@ -34,22 +33,26 @@ Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109556
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109558
 
 qjztreez-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |qjztreez-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org
+         Resolution|---                         |DUPLICATE
+             Status|NEW                         |RESOLVED
 
---- Comment #3 from qjztreez-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org ---
-*** Bug 109558 has been marked as a duplicate of this bug. ***
+--- Comment #2 from qjztreez-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org ---
+
+
+*** This bug has been marked as a duplicate of bug 109556 ***
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15494634561.FCe3B.15463
+--15494634560.FAf161.15463
 Date: Wed, 6 Feb 2019 14:30:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -66,11 +69,10 @@ Auto-Submitted: auto-generated
 m</a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV50/GT200] fifo: DMA_PUSHER ... (err: INVALID_CMD) push=
- 00400040"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109556">bug 10955=
-6</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Plasma locks up after splash screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109558">bug 10955=
+8</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -80,36 +82,43 @@ m</a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
            </td>
-           <td>qjztreez&#64;outlook.com
+           <td>DUPLICATE
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV50/GT200] fifo: DMA_PUSHER ... (err: INVALID_CMD) push=
- 00400040"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109556#c3">Commen=
-t # 3</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Plasma locks up after splash screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109558#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV50/GT200] fifo: DMA_PUSHER ... (err: INVALID_CMD) push=
- 00400040"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109556">bug 10955=
-6</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Plasma locks up after splash screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109558">bug 10955=
+8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 qjztreez&#64;outlook.com" title=3D"qjztreez&#64;outlook.com">qjztreez&#64;o=
 utlook.com</a>
 </span></b>
-        <pre>*** <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Plasma locks up after splash screen"
-   href=3D"show_bug.cgi?id=3D109558">Bug 109558</a> has been marked as a du=
-plicate of this bug. ***</pre>
+        <pre>
+
+*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV50/GT200] fifo: DMA_PUSHER ... (err: INVALID_CMD) push=
+ 00400040"
+   href=3D"show_bug.cgi?id=3D109556">bug 109556</a> ***</pre>
         </div>
       </p>
 
@@ -118,14 +127,15 @@ plicate of this bug. ***</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15494634561.FCe3B.15463--
+--15494634560.FAf161.15463--
 
---===============0057855602==
+--===============0871119328==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +145,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0057855602==--
+--===============0871119328==--
