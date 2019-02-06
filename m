@@ -1,14 +1,13 @@
-From: pete <pg.nikolic1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Bug 109558] Plasma locks up after splash screen
-Date: Wed, 6 Feb 2019 08:25:39 +0000
-Message-ID: <20190206082539.146be660@ds9>
-References: <bug-109558-8800@http.bugs.freedesktop.org/>
- <bug-109558-8800-J3nXXPeQ50@http.bugs.freedesktop.org/>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 109556] [NV50/GT200] fifo: DMA_PUSHER ... (err:
+ INVALID_CMD) push 00400040
+Date: Wed, 06 Feb 2019 14:30:56 +0000
+Message-ID: <bug-109556-8800-AAlCqs58yX@http.bugs.freedesktop.org/>
+References: <bug-109556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0057855602=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109558-8800-J3nXXPeQ50-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-109556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,63 +20,119 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCAwNiBGZWIgMjAxOSAwMDoxMjoyMyArMDAwMApidWd6aWxsYS1kYWVtb25AZnJlZWRl
-c2t0b3Aub3JnIHdyb3RlOgoKPiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVn
-LmNnaT9pZD0xMDk1NTgKPiAKPiAtLS0gQ29tbWVudCAjMSBmcm9tIHFqenRyZWV6QG91dGxvb2su
-Y29tIC0tLQo+IENyZWF0ZWQgYXR0YWNobWVudCAxNDMzMDkKPiAgIC0tPgo+IGh0dHBzOi8vYnVn
-cy5mcmVlZGVza3RvcC5vcmcvYXR0YWNobWVudC5jZ2k/aWQ9MTQzMzA5JmFjdGlvbj1lZGl0Cj4g
-UGFydCBvZiBwYWNtYW4ubG9nCj4gCj4gVGhlIHByb2JsZW0gb2NjdXJyZWQgYWZ0ZXIgdXBncmFk
-aW5nIG1lc2EgZnJvbSAxOC4zLjIgdG8gMTguMy4zIGFuZAo+IHF0IGZyb20gNS4xMi4wIHRvIDUu
-MTIuMSwgYnV0IGRvd25ncmFkaW5nIG1lc2EgdG8gMTguMy4yIGRpZG4ndCBoZWxwLgo+IAoKWWVz
-IGV4YWN0bHkgdGhlIHNhbWUgaXNzdWUgaGVyZSAuCgpbMjAxOS0wMi0wNCAxOToyMV0gW1BBQ01B
-Tl0gUnVubmluZyAncGFjbWFuIC1TeXl1JwpbMjAxOS0wMi0wNCAxOToyMV0gW1BBQ01BTl0gc3lu
-Y2hyb25pemluZyBwYWNrYWdlIGxpc3RzClsyMDE5LTAyLTA0IDE5OjIyXSBbUEFDTUFOXSBzdGFy
-dGluZyBmdWxsIHN5c3RlbSB1cGdyYWRlClsyMDE5LTAyLTA0IDE5OjI1XSBbQUxQTV0gdHJhbnNh
-Y3Rpb24gc3RhcnRlZApbMjAxOS0wMi0wNCAxOToyNV0gW0FMUE1dIHVwZ3JhZGVkIHF0NS1iYXNl
-ICg1LjEyLjAtMyAtPiA1LjEyLjEtMSkKWzIwMTktMDItMDQgMTk6MjVdIFtBTFBNXSB1cGdyYWRl
-ZCBxdDUtc2NyaXB0ICg1LjEyLjAtMSAtPiA1LjEyLjEtMSkKWzIwMTktMDItMDQgMTk6MjVdIFtB
-TFBNXSB1cGdyYWRlZCBxdDUteDExZXh0cmFzICg1LjEyLjAtMSAtPiA1LjEyLjEtMSkKWzIwMTkt
-MDItMDQgMTk6MjVdIFtBTFBNXSB1cGdyYWRlZCBxdDUtbXVsdGltZWRpYSAoNS4xMi4wLTEgLT4g
-NS4xMi4xLTEpClsyMDE5LTAyLTA0IDE5OjI1XSBbQUxQTV0gdXBncmFkZWQgcXQ1LXNwZWVjaCAo
-NS4xMi4wLTEgLT4gNS4xMi4xLTEpClsyMDE5LTAyLTA0IDE5OjI1XSBbQUxQTV0gdXBncmFkZWQg
-cXQ1LXN2ZyAoNS4xMi4wLTEgLT4gNS4xMi4xLTEpClsyMDE5LTAyLTA0IDE5OjI1XSBbQUxQTV0g
-dXBncmFkZWQgcXQ1LWRlY2xhcmF0aXZlICg1LjEyLjAtMSAtPgo1LjEyLjEtMSkgWzIwMTktMDIt
-MDQgMTk6MjVdIFtBTFBNXSB1cGdyYWRlZCBha29uYWRpICgxOC4xMi4xLTEgLT4KMTguMTIuMS0y
-KSBbMjAxOS0wMi0wNCAxOToyNV0gW0FMUE1dIHVwZ3JhZGVkIGV2b2x1dGlvbi1kYXRhLXNlcnZl
-cgooMy4zMC40LTEgLT4gMy4zMC41LTEpIFsyMDE5LTAyLTA0IDE5OjI1XSBbQUxQTV0gdXBncmFk
-ZWQgZXZvbHV0aW9uCigzLjMwLjQtMSAtPiAzLjMwLjUtMSkgWzIwMTktMDItMDQgMTk6MjVdIFtB
-TFBNXSB1cGdyYWRlZCBnbGlibW0KKDIuNTYuMC0xIC0+IDIuNTguMC0xKSBbMjAxOS0wMi0wNCAx
-OToyNV0gW0FMUE1dIHVwZ3JhZGVkCnF0NS1xdWlja2NvbnRyb2xzICg1LjEyLjAtMSAtPiA1LjEy
-LjEtMSkgWzIwMTktMDItMDQgMTk6MjVdIFtBTFBNXQp1cGdyYWRlZCBxdDUtZ3JhcGhpY2FsZWZm
-ZWN0cyAoNS4xMi4wLTEgLT4gNS4xMi4xLTEpIFsyMDE5LTAyLTA0IDE5OjI1XQpbQUxQTV0gdXBn
-cmFkZWQgcXQ1LXhtbHBhdHRlcm5zICg1LjEyLjAtMSAtPiA1LjEyLjEtMSkgWzIwMTktMDItMDQK
-MTk6MjVdIFtBTFBNXSB1cGdyYWRlZCBrdG91Y2ggKDE4LjEyLjEtMSAtPiAxOC4xMi4xLTIpIFsy
-MDE5LTAyLTA0CjE5OjI1XSBbQUxQTV0gdXBncmFkZWQgcXQ1LXNlbnNvcnMgKDUuMTIuMC0xIC0+
-IDUuMTIuMS0xKSBbMjAxOS0wMi0wNAoxOToyNV0gW0FMUE1dIHVwZ3JhZGVkIHF0NS1xdWlja2Nv
-bnRyb2xzMiAoNS4xMi4wLTEgLT4gNS4xMi4xLTEpClsyMDE5LTAyLTA0IDE5OjI1XSBbQUxQTV0g
-dXBncmFkZWQga3dpbiAoNS4xNC41LTEgLT4gNS4xNC41LTIpClsyMDE5LTAyLTA0IDE5OjI1XSBb
-QUxQTV0gaW5zdGFsbGVkIGxpYmZiY2xpZW50ICgzLjAuNC4zMzA1NC0xKQpbMjAxOS0wMi0wNCAx
-OToyNl0gW0FMUE1dIHVwZ3JhZGVkIGxpYnJlb2ZmaWNlLWZyZXNoICg2LjEuNC00IC0+CjYuMS40
-LTUpIFsyMDE5LTAyLTA0IDE5OjI2XSBbQUxQTV0gdXBncmFkZWQgcGVybC14bWwtbGlieG1sICgy
-LjAxMzItMgotPiAyLjAxMzMtMSkgWzIwMTktMDItMDQgMTk6MjZdIFtBTFBNXSB1cGdyYWRlZCBw
-eXRob24tc2hpYm9rZW4yCig1LjEyLjAtMSAtPiA1LjEyLjEtMSkgWzIwMTktMDItMDQgMTk6MjZd
-IFtBTFBNXSB1cGdyYWRlZCBweXNpZGUyCig1LjEyLjAtMSAtPiA1LjEyLjEtMSkgWzIwMTktMDIt
-MDQgMTk6MjZdIFtBTFBNXSB1cGdyYWRlZApweXRob24tc2V0dXB0b29scyAoMTo0MC43LjItMSAt
-PiAxOjQwLjcuMy0xKSBbMjAxOS0wMi0wNCAxOToyNl0gW0FMUE1dCnVwZ3JhZGVkIHF0NS1jYW52
-YXMzZCAoNS4xMi4wLTEgLT4gNS4xMi4xLTEpIFsyMDE5LTAyLTA0IDE5OjI2XSBbQUxQTV0KdXBn
-cmFkZWQgcXQ1LWxvY2F0aW9uICg1LjEyLjAtMSAtPiA1LjEyLjEtMSkgWzIwMTktMDItMDQgMTk6
-MjZdIFtBTFBNXQp1cGdyYWRlZCBxdDUtc2VyaWFscG9ydCAoNS4xMi4wLTEgLT4gNS4xMi4xLTEp
-IFsyMDE5LTAyLTA0IDE5OjI2XQpbQUxQTV0gdXBncmFkZWQgcXQ1LXRvb2xzICg1LjEyLjAtMiAt
-PiA1LjEyLjEtMSkgWzIwMTktMDItMDQgMTk6MjZdCltBTFBNXSB1cGdyYWRlZCBxdDUtd2ViY2hh
-bm5lbCAoNS4xMi4wLTEgLT4gNS4xMi4xLTEpIFsyMDE5LTAyLTA0CjE5OjI2XSBbQUxQTV0gdXBn
-cmFkZWQgcXQ1LXdlYmVuZ2luZSAoNS4xMi4wLTEgLT4gNS4xMi4xLTEpIFsyMDE5LTAyLTA0CjE5
-OjI2XSBbQUxQTV0gdXBncmFkZWQgcXQ1LXdlYmtpdCAoNS4yMTIuMGFscGhhMi0yMiAtPgo1LjIx
-Mi4wYWxwaGEyLTIzKSBbMjAxOS0wMi0wNCAxOToyNl0gW0FMUE1dIHRyYW5zYWN0aW9uIGNvbXBs
-ZXRlZAoKY29tcGxldGUgZnJlZXplIHVwIGFzIHRoZSBzcGxhc2ggc2NyZWVuIHN0YXJ0cyBmbGFz
-aGVzIHVwIHRoZW4gZnJvemVuIC4KCmkgd2lsbCB0cnkgdGhpcyBldmVuaW5nIHRvIHJldmVydCBl
-dmVyeSB0aGluZyBpbiB0aGF0IGxvZyBzZWUgaWYgdGhhdApmaXhlcyB0aGUgcHJvYmxlbSB1bmxl
-c3Mgc29tZW9uZSBjYW4gcG9pbnQgdG8gb25lIHBhY2thZ2UgdGhhdCBtYXkgYmUKY2F1c2luZyB0
-aGUgaXNzdWUgLgoKUGV0ZSAuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQo=
+
+--===============0057855602==
+Content-Type: multipart/alternative; boundary="15494634561.FCe3B.15463"
+Content-Transfer-Encoding: 7bit
+
+
+--15494634561.FCe3B.15463
+Date: Wed, 6 Feb 2019 14:30:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109556
+
+qjztreez-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |qjztreez-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org
+
+--- Comment #3 from qjztreez-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org ---
+*** Bug 109558 has been marked as a duplicate of this bug. ***
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15494634561.FCe3B.15463
+Date: Wed, 6 Feb 2019 14:30:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:qjztreez&=
+#64;outlook.com" title=3D"qjztreez&#64;outlook.com">qjztreez&#64;outlook.co=
+m</a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV50/GT200] fifo: DMA_PUSHER ... (err: INVALID_CMD) push=
+ 00400040"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109556">bug 10955=
+6</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>qjztreez&#64;outlook.com
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV50/GT200] fifo: DMA_PUSHER ... (err: INVALID_CMD) push=
+ 00400040"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109556#c3">Commen=
+t # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV50/GT200] fifo: DMA_PUSHER ... (err: INVALID_CMD) push=
+ 00400040"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109556">bug 10955=
+6</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+qjztreez&#64;outlook.com" title=3D"qjztreez&#64;outlook.com">qjztreez&#64;o=
+utlook.com</a>
+</span></b>
+        <pre>*** <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Plasma locks up after splash screen"
+   href=3D"show_bug.cgi?id=3D109558">Bug 109558</a> has been marked as a du=
+plicate of this bug. ***</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15494634561.FCe3B.15463--
+
+--===============0057855602==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0057855602==--
