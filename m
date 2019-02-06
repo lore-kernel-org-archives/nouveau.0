@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109558] Plasma locks up after splash screen
-Date: Wed, 06 Feb 2019 14:30:56 +0000
-Message-ID: <bug-109558-8800-vj1VyQgSbD@http.bugs.freedesktop.org/>
-References: <bug-109558-8800@http.bugs.freedesktop.org/>
+From: Dan Espen <dan1espen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: 640x480 does not fill screen
+Date: Wed, 06 Feb 2019 11:31:47 -0500
+Message-ID: <icmun8j2to.fsf@home.home>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0871119328=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,130 +18,17 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0871119328==
-Content-Type: multipart/alternative; boundary="15494634560.FAf161.15463"
-Content-Transfer-Encoding: 7bit
-
-
---15494634560.FAf161.15463
-Date: Wed, 6 Feb 2019 14:30:56 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109558
-
-qjztreez-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |DUPLICATE
-             Status|NEW                         |RESOLVED
-
---- Comment #2 from qjztreez-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org ---
-
-
-*** This bug has been marked as a duplicate of bug 109556 ***
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15494634560.FAf161.15463
-Date: Wed, 6 Feb 2019 14:30:56 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:qjztreez&=
-#64;outlook.com" title=3D"qjztreez&#64;outlook.com">qjztreez&#64;outlook.co=
-m</a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Plasma locks up after splash screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109558">bug 10955=
-8</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Plasma locks up after splash screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109558#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Plasma locks up after splash screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109558">bug 10955=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-qjztreez&#64;outlook.com" title=3D"qjztreez&#64;outlook.com">qjztreez&#64;o=
-utlook.com</a>
-</span></b>
-        <pre>
-
-*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV50/GT200] fifo: DMA_PUSHER ... (err: INVALID_CMD) push=
- 00400040"
-   href=3D"show_bug.cgi?id=3D109556">bug 109556</a> ***</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15494634560.FAf161.15463--
-
---===============0871119328==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============0871119328==--
+CkkndmUgYmVlbiB1c2luZyB0aGUgTlZpZGlhIGRyaXZlcnMgYW5kIHJlY2VudGx5IG1hbmFnZWQg
+dG8KZ2V0IE5vdXZlYXUgd29ya2luZy4gIFdlbGwgYWxtb3N0IHdvcmtpbmcuCgpSdW5uaW5nIHRo
+ZSBjb21tYW5kOgoKeHJhbmRyIC1zIDY0MHg0ODAKCnJlc3VsdHMgaW4gYSBkZXNrdG9wIHRoYXQg
+c3BhbnMgdGhlIG1vbml0b3IgYnV0IGxlYXZlcyBibGFjayBiYW5kcyBvZgphYm91dCBhIHRoaXJk
+IG9mIHRoZSBzY3JlZW4gb24gdGhlIHRvcCBhbmQgYm90dG9tLgpUaGlzIHJlc3VsdHMgaW4gYW4g
+dW5yZWFkYWJsZSBkaXNwbGF5IHBsYXlpbmcgZ2FtZXMgbGlrZSBMYnJpY2tidXN0ZXIyLgpJJ2Qg
+bGlrZSB0aGUgZGlzcGxheSB0byBmaWxsIHRoZSBzY3JlZW4uCgpUbyBjb25maXJtIHRoYXQgdGhp
+cyBpcyBhIE5vdXZlYXUgaXNzdWUsIEkgc3dpdGNoZWQgYmFjayB0byBOVmlkaWEKd2hlcmUgNjQw
+eDQ4MCBsb29rcyBmaW5lLgoKSSdtIHVzaW5nIEZlZG9yYSAyOSAoeG9yZy14MTEtZHJ2LW5vdXZl
+YXUueDg2XzY0IDE6MS4wLjE1LTYuZmMyOSksCk5WaWRpYS0zOTAgZHJpdmVycywgR2VGb3JjZSBH
+VFggMTA1MCBUaSwgYW5kIGEgREVMTCBTMjgxN1EuCgotLSAKRGFuIEVzcGVuCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
