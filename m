@@ -1,17 +1,13 @@
-From: Dan Espen <dan1espen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: 640x480 does not fill screen
-Date: Wed, 06 Feb 2019 18:12:16 -0500
-Message-ID: <ic8sys5x67.fsf@home.home>
-References: <icmun8j2to.fsf@home.home>
- <CAKb7UvjPd4QexPZe+XBAeEugcJOsZS1XqEv=mKnR3XbZeRYcfA@mail.gmail.com>
- <ico97o64rq.fsf@home.home>
- <CAKb7Uvg_zmyegXioF2TTaOkXKD0ByC143MaZE2xrL8kw_yC2=w@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
+ [CTXSW_TIMEOUT]
+Date: Thu, 07 Feb 2019 00:09:26 +0000
+Message-ID: <bug-100567-8800-c5JL0YPOwd@http.bugs.freedesktop.org/>
+References: <bug-100567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1052434449=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvg_zmyegXioF2TTaOkXKD0ByC143MaZE2xrL8kw_yC2=w@mail.gmail.com>
- (Ilia Mirkin's message of "Wed, 6 Feb 2019 17:23:46 -0500")
+In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,50 +17,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PiB3cml0ZXM6Cgo+IE9uIFdlZCwgRmVi
-IDYsIDIwMTkgYXQgMzoyOCBQTSBEYW4gRXNwZW4gPGRhbjFlc3BlbkBnbWFpbC5jb20+IHdyb3Rl
-Ogo+Pgo+PiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyaXRlczoKPj4KPj4g
-PiBJdCB3b3VsZCBiZSB1c2VmdWwgdG8ga25vdyBob3cgdGhlIHNjcmVlbiBpcyBjb25uZWN0ZWQu
-IEFsc28gcGxlYXNlCj4+ID4gZ3JhYiB0aGUgbW9uaXRvcidzIEVESUQgZnJvbSAvc3lzL2NsYXNz
-L2RybS9jYXJkTi1jb25uZWN0b3IvZWRpZCBhbmQKPj4gPiBhdHRhY2ggaXQgaGVyZS4gSXQgd291
-bGQgYWxzbyBiZSBpbnRlcmVzdGluZyB0byBnZXQgYSBib290IHdpdGgKPj4gPiAiZHJtLmRlYnVn
-PTB4MWUgbm91dmVhdS5kZWJ1Zz1kaXNwPXRyYWNlIiB3aGljaCBoYXMgdGhlIG1vZGVzd2l0Y2gg
-aW4KPj4gPiBxdWVzdGlvbi4KPj4KPj4gVGhlIHNjcmVlbiBpcyBjb25uZWN0ZWQgdXNpbmcgdGhl
-IE1EUCBwb3J0Lgo+PiBJIGRvbid0IGZpbmQgYW55IGNhcmROLWNvbm5lY3RvciBkaXJlY3Rvcnks
-Cj4+IHRoZSBjbG9zZXN0IG1hdGNoIGlzOgo+Pgo+PiAvc3lzL2NsYXNzL2RybS9jYXJkMC1EUC0x
-L2VkaWQKPgo+IE4gPSAwCj4gY29ubmVjdG9yID0gRFAtMQo+Cj4gc28gbG9va3MgbGlrZSB5b3Ug
-Zm91bmQgaXQuCj4KPiBJIHdhcyBhY3R1YWxseSBsb29raW5nIGZvciBkbWVzZyB3aXRoIHRob3Nl
-IGJvb3QgcGFyYW1ldGVycywgbm90IHRoZSBYb3JnIGxvZy4KPgo+IFNvbWV0aGluZyB0byByYW5k
-b21seSB0cnkgLS0geHJhbmRyIC1zIDY0MHg0ODAgLXIgNzUgLS0gcGVyaGFwcyBpdCdsbAo+IGxp
-a2UgdGhhdCBtb2RlIGJldHRlci4KClVzaW5nICItciA3NSIgZml4ZXMgdGhlIHByb2JsZW0uCgo+
-IEFsc28gZG9lcyA3MjB4NDgwIHdvcmsgYmV0dGVyPwoKWWVzLCA3MjB4NDgwIHdvcmtzIHdpdGhv
-dXQgdGhlIC1yIHBhcmFtZXRlci4KCj4gTG9va2luZyBhdCB5b3VyIEVESUQsIHlvdSBoYXZlOgo+
-Cj4gRXN0YWJsaXNoZWQgdGltaW5ncyBzdXBwb3J0ZWQ6Cj4gICA3MjB4NDAwQDcwSHogOTo1IEhv
-ckZyZXE6IDMxNDY5IEh6IENsb2NrOiAyOC4zMjAgTUh6Cj4gICA2NDB4NDgwQDYwSHogNDozIEhv
-ckZyZXE6IDMxNDY5IEh6IENsb2NrOiAyNS4xNzUgTUh6Cj4gICA2NDB4NDgwQDc1SHogNDozIEhv
-ckZyZXE6IDM3NTAwIEh6IENsb2NrOiAzMS41MDAgTUh6Cj4gICA4MDB4NjAwQDYwSHogNDozIEhv
-ckZyZXE6IDM3OTAwIEh6IENsb2NrOiA0MC4wMDAgTUh6Cj4gICA4MDB4NjAwQDc1SHogNDozIEhv
-ckZyZXE6IDQ2OTAwIEh6IENsb2NrOiA0OS41MDAgTUh6Cj4gICAxMDI0eDc2OEA2MEh6IDQ6MyBI
-b3JGcmVxOiA0ODQwMCBIeiBDbG9jazogNjUuMDAwIE1Iego+ICAgMTAyNHg3NjhANzVIeiA0OjMg
-SG9yRnJlcTogNjAwMDAgSHogQ2xvY2s6IDc4Ljc1MCBNSHoKPiAgIDEyODB4MTAyNEA3NUh6IDU6
-NCBIb3JGcmVxOiA4MDAwMCBIeiBDbG9jazogMTM1LjAwMCBNSHoKPiBTdGFuZGFyZCB0aW1pbmdz
-IHN1cHBvcnRlZDoKPiAgIDE5MjB4MTA4MEA2MEh6IDE2OjkKPiAgIDE2MDB4MTIwMEA2MEh6IDQ6
-MyBIb3JGcmVxOiA3NTAwMCBIeiBDbG9jazogMTYyLjAwMCBNSHoKPiAgIDEyODB4MTAyNEA2MEh6
-IDU6NCBIb3JGcmVxOiA2NDAwMCBIeiBDbG9jazogMTA4LjAwMCBNSHoKPiAgIDEyODB4ODAwQDYw
-SHogMTY6MTAKPiAgIDExNTJ4ODY0QDc1SHogNDozIEhvckZyZXE6IDY3NTAwIEh6IENsb2NrOiAx
-MDguMDAwIE1Iego+Cj4gQ1RBIGV4dGVuc2lvbiBibG9jawo+IEV4dGVuc2lvbiB2ZXJzaW9uOiAz
-Cj4gMjUgYnl0ZXMgb2YgQ1RBIGRhdGEKPiAgIFZpZGVvIGRhdGEgYmxvY2sKPiAuLi4KPiAgICAg
-VklDICAgMyA3MjB4NDgwQDYwSHogMTY6OSAgSG9yRnJlcTogMzE0NjkgSHogQ2xvY2s6IDI3LjAw
-MCBNSHoKPiAgICAgVklDICAgMiA3MjB4NDgwQDYwSHogNDozICBIb3JGcmVxOiAzMTQ2OSBIeiBD
-bG9jazogMjcuMDAwIE1Iego+ICAgICBWSUMgICAxIDY0MHg0ODBANjBIeiA0OjMgIEhvckZyZXE6
-IDMxNDY5IEh6IENsb2NrOiAyNS4xNzUgTUh6CgpPa2F5LCBpZiBJIHJlYWQgYWxsIHRoYXQgcmln
-aHQgdGhlIEVESUQgc3VwcG9ydHMgNjQweDQ4MCBhdCA2MCBhbmQgNzVoei4KVGhlIG1vbml0b3Ig
-YWN0cyBzdHJhbmdlbHkgYXQgNjBoeiBidXQgaXMgb2theSBhdCA3NWh6LiAKSXMgdGhpcyBzb21l
-dGhpbmcgSSBzaG91bGQgY29uZmlndXJlIG9yIGNhbiBub3V2ZWF1IGZpZ3VyZSBvdXQgdGhlIGJl
-c3QgbW9kZT8KCi0tIApEYW4gRXNwZW4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+
+--===============1052434449==
+Content-Type: multipart/alternative; boundary="15494981666.1aa5e.6056"
+Content-Transfer-Encoding: 7bit
+
+
+--15494981666.1aa5e.6056
+Date: Thu, 7 Feb 2019 00:09:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
+
+--- Comment #25 from kenorb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Another one from today:
+
+nouveau 0000:65:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Feb 06 23:42:47 Ubuntu-PC kernel: nouveau 0000:65:00.0: fifo: SCHED_ERROR 0a
+[CTXSW_TIMEOUT]
+Feb 06 23:42:47 Ubuntu-PC kernel: nouveau 0000:65:00.0: fifo: runlist 0:
+scheduled for recovery
+Feb 06 23:42:47 Ubuntu-PC kernel: nouveau 0000:65:00.0: fifo: channel 4: ki=
+lled
+Feb 06 23:42:47 Ubuntu-PC kernel: nouveau 0000:65:00.0: fifo: engine 0:
+scheduled for recovery
+Feb 06 23:42:59 Ubuntu-PC /usr/lib/gdm3/gdm-x-session[6370]: nouveau: kernel
+rejected pushbuf: Device or resource busy
+Feb 06 23:42:59 Ubuntu-PC /usr/lib/gdm3/gdm-x-session[6370]: nouveau: ch12:
+krec 0 pushes 1 bufs 4 relocs 0
+Feb 06 23:42:59 Ubuntu-PC /usr/lib/gdm3/gdm-x-session[6370]: nouveau: ch12:=
+ buf
+00000000 00000005 00000004 00000004 00000000
+Feb 06 23:42:59 Ubuntu-PC /usr/lib/gdm3/gdm-x-session[6370]: nouveau: ch12:=
+ buf
+00000001 00000006 00000004 00000000 00000004
+Feb 06 23:42:59 Ubuntu-PC /usr/lib/gdm3/gdm-x-session[6370]: nouveau: ch12:=
+ buf
+00000002 000000c6 00000002 00000000 00000002
+Feb 06 23:42:59 Ubuntu-PC /usr/lib/gdm3/gdm-x-session[6370]: nouveau: ch12:=
+ buf
+00000003 000000ec 00000004 00000004 00000000
+Feb 06 23:42:59 Ubuntu-PC /usr/lib/gdm3/gdm-x-session[6370]: nouveau: ch12:=
+ psh
+00000000 000001736c 00000173fc
+
+Full log: https://gist.github.com/kenorb/2e70f27aa25e9ba1d89f34fe186b3c53
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15494981666.1aa5e.6056
+Date: Thu, 7 Feb 2019 00:09:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c25">Comme=
+nt # 25</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+kenorb&#64;gmail.com" title=3D"kenorb&#64;gmail.com">kenorb&#64;gmail.com</=
+a>
+</span></b>
+        <pre>Another one from today:
+
+nouveau 0000:65:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+Feb 06 23:42:47 Ubuntu-PC kernel: nouveau 0000:65:00.0: fifo: SCHED_ERROR 0a
+[CTXSW_TIMEOUT]
+Feb 06 23:42:47 Ubuntu-PC kernel: nouveau 0000:65:00.0: fifo: runlist 0:
+scheduled for recovery
+Feb 06 23:42:47 Ubuntu-PC kernel: nouveau 0000:65:00.0: fifo: channel 4: ki=
+lled
+Feb 06 23:42:47 Ubuntu-PC kernel: nouveau 0000:65:00.0: fifo: engine 0:
+scheduled for recovery
+Feb 06 23:42:59 Ubuntu-PC /usr/lib/gdm3/gdm-x-session[6370]: nouveau: kernel
+rejected pushbuf: Device or resource busy
+Feb 06 23:42:59 Ubuntu-PC /usr/lib/gdm3/gdm-x-session[6370]: nouveau: ch12:
+krec 0 pushes 1 bufs 4 relocs 0
+Feb 06 23:42:59 Ubuntu-PC /usr/lib/gdm3/gdm-x-session[6370]: nouveau: ch12:=
+ buf
+00000000 00000005 00000004 00000004 00000000
+Feb 06 23:42:59 Ubuntu-PC /usr/lib/gdm3/gdm-x-session[6370]: nouveau: ch12:=
+ buf
+00000001 00000006 00000004 00000000 00000004
+Feb 06 23:42:59 Ubuntu-PC /usr/lib/gdm3/gdm-x-session[6370]: nouveau: ch12:=
+ buf
+00000002 000000c6 00000002 00000000 00000002
+Feb 06 23:42:59 Ubuntu-PC /usr/lib/gdm3/gdm-x-session[6370]: nouveau: ch12:=
+ buf
+00000003 000000ec 00000004 00000004 00000000
+Feb 06 23:42:59 Ubuntu-PC /usr/lib/gdm3/gdm-x-session[6370]: nouveau: ch12:=
+ psh
+00000000 000001736c 00000173fc
+
+Full log: <a href=3D"https://gist.github.com/kenorb/2e70f27aa25e9ba1d89f34f=
+e186b3c53">https://gist.github.com/kenorb/2e70f27aa25e9ba1d89f34fe186b3c53<=
+/a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15494981666.1aa5e.6056--
+
+--===============1052434449==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1052434449==--
