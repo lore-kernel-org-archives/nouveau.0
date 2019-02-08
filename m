@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109556] [NV50/GT200] fifo: DMA_PUSHER ... (err:
  INVALID_CMD) push 00400040
-Date: Fri, 08 Feb 2019 21:51:11 +0000
-Message-ID: <bug-109556-8800-CoOJwJwtQs@http.bugs.freedesktop.org/>
+Date: Fri, 08 Feb 2019 21:52:54 +0000
+Message-ID: <bug-109556-8800-6WU0uZN6rv@http.bugs.freedesktop.org/>
 References: <bug-109556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0102360858=="
+Content-Type: multipart/mixed; boundary="===============0612757286=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0102360858==
-Content-Type: multipart/alternative; boundary="15496626710.C9358e38.1699"
+--===============0612757286==
+Content-Type: multipart/alternative; boundary="15496627741.3d1c8dC.1817"
 Content-Transfer-Encoding: 7bit
 
 
---15496626710.C9358e38.1699
-Date: Fri, 8 Feb 2019 21:51:11 +0000
+--15496627741.3d1c8dC.1817
+Date: Fri, 8 Feb 2019 21:52:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,25 +36,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109556
 
---- Comment #4 from bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org ---
-I bisected the problem to a commit in Qt 5.12.1 which enabled multithreaded=
- GL
-rendering. I've read elsewhere that nouveau DRM doesn't deal well with mt
-rendering.
+--- Comment #5 from bastian.beischer-vA1bhqPz9FBZXbeN9DUtxg@public.gmane.org ---
+(In reply to qjztreez from comment #3)
+> *** Bug 109558 has been marked as a duplicate of this bug. ***
 
-For more info, see here:
+Are you using the oxygen theme? If yes, please checkout
 
-https://bugreports.qt.io/browse/QTBUG-73715
+https://bugreports.qt.io/browse/QTBUG-73691
 
-So from the nouveau side there's no new problem here and I think this bug
-report can be closed.
+which is not the same problem as mine.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15496626710.C9358e38.1699
-Date: Fri, 8 Feb 2019 21:51:11 +0000
+--15496627741.3d1c8dC.1817
+Date: Fri, 8 Feb 2019 21:52:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,8 +69,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NV50/GT200] fifo: DMA_PUSHER ... (err: INVALID_CMD) push=
  00400040"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109556#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109556#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV50/GT200] fifo: DMA_PUSHER ... (err: INVALID_CMD) push=
@@ -84,18 +81,20 @@ t # 4</a>
 bastian.beischer&#64;rwth-aachen.de" title=3D"bastian.beischer&#64;rwth-aac=
 hen.de">bastian.beischer&#64;rwth-aachen.de</a>
 </span></b>
-        <pre>I bisected the problem to a commit in Qt 5.12.1 which enabled =
-multithreaded GL
-rendering. I've read elsewhere that nouveau DRM doesn't deal well with mt
-rendering.
+        <pre>(In reply to qjztreez from <a href=3D"show_bug.cgi?id=3D109556=
+#c3">comment #3</a>)
+<span class=3D"quote">&gt; *** <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Plasma locks up after splash screen"
+   href=3D"show_bug.cgi?id=3D109558">Bug 109558</a> has been marked as a du=
+plicate of this bug. ***</span >
 
-For more info, see here:
+Are you using the oxygen theme? If yes, please checkout
 
-<a href=3D"https://bugreports.qt.io/browse/QTBUG-73715">https://bugreports.=
-qt.io/browse/QTBUG-73715</a>
+<a href=3D"https://bugreports.qt.io/browse/QTBUG-73691">https://bugreports.=
+qt.io/browse/QTBUG-73691</a>
 
-So from the nouveau side there's no new problem here and I think this bug
-report can be closed.</pre>
+which is not the same problem as mine.</pre>
         </div>
       </p>
 
@@ -109,9 +108,9 @@ report can be closed.</pre>
     </body>
 </html>=
 
---15496626710.C9358e38.1699--
+--15496627741.3d1c8dC.1817--
 
---===============0102360858==
+--===============0612757286==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -121,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
 
---===============0102360858==--
+--===============0612757286==--
