@@ -1,128 +1,54 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109600] nv138 hibernete resume bug
-Date: Sat, 09 Feb 2019 17:54:40 +0000
-Message-ID: <bug-109600-8800-Hjl2Zv7RtU@http.bugs.freedesktop.org/>
-References: <bug-109600-8800@http.bugs.freedesktop.org/>
+From: Sasha Levin <sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.20 36/42] drm/nouveau: Don't disable polling in
+ fallback mode
+Date: Sat,  9 Feb 2019 13:47:28 -0500
+Message-ID: <20190209184734.125935-36-sashal@kernel.org>
+References: <20190209184734.125935-1-sashal@kernel.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1815006084=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109600-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20190209184734.125935-1-sashal@kernel.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc: Sasha Levin <sashal@kernel.org>, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1815006084==
-Content-Type: multipart/alternative; boundary="15497348801.4cCDB.5949"
-Content-Transfer-Encoding: 7bit
-
-
---15497348801.4cCDB.5949
-Date: Sat, 9 Feb 2019 17:54:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109600
-
-ulf.dambacher-S0/GAf8tV78@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 OS|All                         |Linux (All)
-                 CC|                            |ulf.dambacher-S0/GAf8tV78@public.gmane.org
-           Hardware|Other                       |x86-64 (AMD64)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15497348801.4cCDB.5949
-Date: Sat, 9 Feb 2019 17:54:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ulf.damba=
-cher&#64;web.de" title=3D"ulf.dambacher&#64;web.de">ulf.dambacher&#64;web.d=
-e</a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nv138 hibernete resume bug"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109600">bug 10960=
-0</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">OS</td>
-           <td>All
-           </td>
-           <td>Linux (All)
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>ulf.dambacher&#64;web.de
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Hardware</td>
-           <td>Other
-           </td>
-           <td>x86-64 (AMD64)
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15497348801.4cCDB.5949--
-
---===============1815006084==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
-
---===============1815006084==--
+RnJvbTogVGFrYXNoaSBJd2FpIDx0aXdhaUBzdXNlLmRlPgoKWyBVcHN0cmVhbSBjb21taXQgMTE4
+NzgwMDY2ZTMwYzM0ZGUzZDkzNDk3MTBiNTE3ODBiZmEwYmE4MyBdCgpXaGVuIGEgZmFuIGlzIGNv
+bnRyb2xsZWQgdmlhIGxpbmVhciBmYWxsYmFjayB3aXRob3V0IGNzdGF0ZSwgd2UKc2hvdWxkbid0
+IHN0b3AgcG9sbGluZy4gIE90aGVyd2lzZSBpdCB3b24ndCBiZSBhZGp1c3RlZCBhZ2FpbiBhbmQK
+a2VlcHMgcnVubmluZyBhdCBhbiBpbml0aWFsIGNyYXp5IHBhY2UuCgpGaXhlczogODAwZWZiNGMy
+ODU3ICgiZHJtL25vdXZlYXUvZHJtL3RoZXJtL2ZhbjogYWRkIGEgZmFsbGJhY2sgaWYgbm8gZmFu
+IGNvbnRyb2wgaXMgc3BlY2lmaWVkIGluIHRoZSB2YmlvcyIpCkJ1Z3ppbGxhOiBodHRwczovL2J1
+Z3ppbGxhLnN1c2UuY29tL3Nob3dfYnVnLmNnaT9pZD0xMTAzMzU2CkJ1Z3ppbGxhOiBodHRwczov
+L2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDc0NDcKUmVwb3J0ZWQtYnk6
+IFRob21hcyBCbHVtZSA8dGhvbWFzLmJsdW1lQHN1c2UuY29tPgpTaWduZWQtb2ZmLWJ5OiBUYWth
+c2hpIEl3YWkgPHRpd2FpQHN1c2UuZGU+ClJldmlld2VkLWJ5OiBNYXJ0aW4gUGVyZXMgPG1hcnRp
+bi5wZXJlc0BmcmVlLmZyPgpTaWduZWQtb2ZmLWJ5OiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhh
+dC5jb20+ClNpZ25lZC1vZmYtYnk6IFNhc2hhIExldmluIDxzYXNoYWxAa2VybmVsLm9yZz4KLS0t
+CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9iYXNlLmMgfCA3ICsr
+KystLS0KIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vYmFz
+ZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vYmFzZS5jCmlu
+ZGV4IDM2OTVjZGU2NjlmOC4uMDc5MTRlMzY5MzllIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9iYXNlLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vYmFzZS5jCkBAIC0xMzIsMTEgKzEzMiwxMiBAQCBu
+dmttX3RoZXJtX3VwZGF0ZShzdHJ1Y3QgbnZrbV90aGVybSAqdGhlcm0sIGludCBtb2RlKQogCQkJ
+ZHV0eSA9IG52a21fdGhlcm1fdXBkYXRlX2xpbmVhcih0aGVybSk7CiAJCQlicmVhazsKIAkJY2Fz
+ZSBOVkJJT1NfVEhFUk1fRkFOX09USEVSOgotCQkJaWYgKHRoZXJtLT5jc3RhdGUpCisJCQlpZiAo
+dGhlcm0tPmNzdGF0ZSkgewogCQkJCWR1dHkgPSB0aGVybS0+Y3N0YXRlOwotCQkJZWxzZQorCQkJ
+CXBvbGwgPSBmYWxzZTsKKwkJCX0gZWxzZSB7CiAJCQkJZHV0eSA9IG52a21fdGhlcm1fdXBkYXRl
+X2xpbmVhcl9mYWxsYmFjayh0aGVybSk7Ci0JCQlwb2xsID0gZmFsc2U7CisJCQl9CiAJCQlicmVh
+azsKIAkJfQogCQlpbW1kID0gZmFsc2U7Ci0tIAoyLjE5LjEKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRl
+dmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
