@@ -1,25 +1,25 @@
-From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 4.19 25/28] drm/nouveau: Don't disable
- polling in fallback mode
-Date: Sat,  9 Feb 2019 13:48:33 -0500
-Message-ID: <20190209184840.126418-25-sashal@kernel.org>
-References: <20190209184840.126418-1-sashal@kernel.org>
+From: Sasha Levin <sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 14/16] drm/nouveau: Don't disable polling in
+ fallback mode
+Date: Sat,  9 Feb 2019 13:49:25 -0500
+Message-ID: <20190209184927.126791-14-sashal@kernel.org>
+References: <20190209184927.126791-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190209184840.126418-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org>, Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20190209184927.126791-1-sashal@kernel.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc: Sasha Levin <sashal@kernel.org>, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
 RnJvbTogVGFrYXNoaSBJd2FpIDx0aXdhaUBzdXNlLmRlPgoKWyBVcHN0cmVhbSBjb21taXQgMTE4
@@ -39,9 +39,9 @@ CiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9iYXNlLmMgfCA3ICsr
 KystLS0KIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpk
 aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vYmFz
 ZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vYmFzZS5jCmlu
-ZGV4IDM2OTVjZGU2NjlmOC4uMDc5MTRlMzY5MzllIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
+ZGV4IDk1MmE3Y2IwYTU5YS4uNjkyZDRkOTY3NjZhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
 cm0vbm91dmVhdS9udmttL3N1YmRldi90aGVybS9iYXNlLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vYmFzZS5jCkBAIC0xMzIsMTEgKzEzMiwxMiBAQCBu
+L25vdXZlYXUvbnZrbS9zdWJkZXYvdGhlcm0vYmFzZS5jCkBAIC0xMzEsMTEgKzEzMSwxMiBAQCBu
 dmttX3RoZXJtX3VwZGF0ZShzdHJ1Y3QgbnZrbV90aGVybSAqdGhlcm0sIGludCBtb2RlKQogCQkJ
 ZHV0eSA9IG52a21fdGhlcm1fdXBkYXRlX2xpbmVhcih0aGVybSk7CiAJCQlicmVhazsKIAkJY2Fz
 ZSBOVkJJT1NfVEhFUk1fRkFOX09USEVSOgotCQkJaWYgKHRoZXJtLT5jc3RhdGUpCisJCQlpZiAo
@@ -49,6 +49,6 @@ dGhlcm0tPmNzdGF0ZSkgewogCQkJCWR1dHkgPSB0aGVybS0+Y3N0YXRlOwotCQkJZWxzZQorCQkJ
 CXBvbGwgPSBmYWxzZTsKKwkJCX0gZWxzZSB7CiAJCQkJZHV0eSA9IG52a21fdGhlcm1fdXBkYXRl
 X2xpbmVhcl9mYWxsYmFjayh0aGVybSk7Ci0JCQlwb2xsID0gZmFsc2U7CisJCQl9CiAJCQlicmVh
 azsKIAkJfQogCQlpbW1kID0gZmFsc2U7Ci0tIAoyLjE5LjEKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQo=
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRl
+dmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
