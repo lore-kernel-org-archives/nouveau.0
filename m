@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 4.20 37/42] drm/nouveau/falcon: avoid
+Subject: [PATCH AUTOSEL 4.19 26/28] drm/nouveau/falcon: avoid
  touching registers if engine is off
-Date: Sat,  9 Feb 2019 13:47:29 -0500
-Message-ID: <20190209184734.125935-37-sashal@kernel.org>
-References: <20190209184734.125935-1-sashal@kernel.org>
+Date: Sat,  9 Feb 2019 13:48:34 -0500
+Message-ID: <20190209184840.126418-26-sashal@kernel.org>
+References: <20190209184840.126418-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190209184734.125935-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <20190209184840.126418-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
