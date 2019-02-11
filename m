@@ -1,49 +1,46 @@
-From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 4.14 15/16] drm/nouveau/falcon: avoid
- touching registers if engine is off
-Date: Sat,  9 Feb 2019 13:49:26 -0500
-Message-ID: <20190209184927.126791-15-sashal@kernel.org>
-References: <20190209184927.126791-1-sashal@kernel.org>
+From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+Subject: [PATCH] drm/nouveau/abi16: add missing break in switch statement
+Date: Mon, 11 Feb 2019 12:54:04 -0600
+Message-ID: <20190211185404.GA3416@embeddedor>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190209184927.126791-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, "Gustavo A. R. Silva" <gustavo@embeddedor.com>, Kees Cook <keescook@chromium.org>
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgoKWyBVcHN0cmVhbSBjb21t
-aXQgYTUxNzZhNGNiODViYjYyMTNkYWFkZjY5MTA5N2NmNDExZGEzNWRmMiBdCgpCdWd6aWxsYTog
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA4OTgwClNpZ25l
-ZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KU2lnbmVkLW9mZi1i
-eTogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgpTaWduZWQtb2ZmLWJ5OiBTYXNoYSBM
-ZXZpbiA8c2FzaGFsQGtlcm5lbC5vcmc+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZr
-bS9lbmdpbmUvZmFsY29uLmMgfCA3ICsrKysrLS0KIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlv
-bnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbnZrbS9lbmdpbmUvZmFsY29uLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2Vu
-Z2luZS9mYWxjb24uYwppbmRleCAyZTdiNGUyMTA1ZWYuLjYyY2IzNzZlMmMwMSAxMDA2NDQKLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmFsY29uLmMKKysrIGIvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmFsY29uLmMKQEAgLTIyLDYgKzIyLDcg
-QEAKICNpbmNsdWRlIDxlbmdpbmUvZmFsY29uLmg+CiAKICNpbmNsdWRlIDxjb3JlL2dwdW9iai5o
-PgorI2luY2x1ZGUgPHN1YmRldi9tYy5oPgogI2luY2x1ZGUgPHN1YmRldi90aW1lci5oPgogI2lu
-Y2x1ZGUgPGVuZ2luZS9maWZvLmg+CiAKQEAgLTEwNyw4ICsxMDgsMTAgQEAgbnZrbV9mYWxjb25f
-ZmluaShzdHJ1Y3QgbnZrbV9lbmdpbmUgKmVuZ2luZSwgYm9vbCBzdXNwZW5kKQogCQl9CiAJfQog
-Ci0JbnZrbV9tYXNrKGRldmljZSwgYmFzZSArIDB4MDQ4LCAweDAwMDAwMDAzLCAweDAwMDAwMDAw
-KTsKLQludmttX3dyMzIoZGV2aWNlLCBiYXNlICsgMHgwMTQsIDB4ZmZmZmZmZmYpOworCWlmIChu
-dmttX21jX2VuYWJsZWQoZGV2aWNlLCBlbmdpbmUtPnN1YmRldi5pbmRleCkpIHsKKwkJbnZrbV9t
-YXNrKGRldmljZSwgYmFzZSArIDB4MDQ4LCAweDAwMDAwMDAzLCAweDAwMDAwMDAwKTsKKwkJbnZr
-bV93cjMyKGRldmljZSwgYmFzZSArIDB4MDE0LCAweGZmZmZmZmZmKTsKKwl9CiAJcmV0dXJuIDA7
-CiB9CiAKLS0gCjIuMTkuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-Cg==
+Fix the following warning by adding a missing break:
+
+drivers/gpu/drm/nouveau/nouveau_abi16.c: In function ‘nouveau_abi16_ioctl_getparam’:
+drivers/gpu/drm/nouveau/nouveau_abi16.c:202:3: warning: this statement may fall through [-Wimplicit-fallthrough=]
+   switch (device->info.platform) {
+   ^~~~~~
+drivers/gpu/drm/nouveau/nouveau_abi16.c:217:2: note: here
+  case NOUVEAU_GETPARAM_FB_SIZE:
+  ^~~~
+
+This patch is part of the ongoing efforts to enable
+-Wimplicit-fallthrough.
+
+Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_abi16.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+index b06cdac8f3a2..a95ec3783f39 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
++++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+@@ -214,6 +214,7 @@ nouveau_abi16_ioctl_getparam(ABI16_IOCTL_ARGS)
+ 			WARN_ON(1);
+ 			break;
+ 		}
++		break;
+ 	case NOUVEAU_GETPARAM_FB_SIZE:
+ 		getparam->value = drm->gem.vram_available;
+ 		break;
+-- 
+2.20.1
