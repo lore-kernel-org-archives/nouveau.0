@@ -1,214 +1,118 @@
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-Subject: [PATCH] drm: Mark expected switch fall-throughs
-Date: Fri, 15 Feb 2019 09:45:54 -0600
-Message-ID: <20190215154554.GA27081@embeddedor>
+From: Sasha Levin via dri-devel <dri-devel@lists.freedesktop.org>
+Subject: Re: [PATCH] pci/quirks: Add quirk to reset nvgpu at boot for the
+ Lenovo ThinkPad P50
+Date: Fri, 15 Feb 2019 15:48:34 +0000
+Message-ID: <20190215154834.CB1EF2192D@mail.kernel.org>
+References: <20190212220230.1568-1-lyude@redhat.com>
+Reply-To: Sasha Levin <sashal@kernel.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-Sender: linux-kernel-owner@vger.kernel.org
-To: Alex Deucher <alexander.deucher@amd.com>, Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Rex Zhu <rex.zhu@amd.com>, Evan Quan <evan.quan@amd.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <maxime.ripard@bootlin.com>, Sean Paul <sean@poorly.run>, Ben Skeggs <bskeggs@redhat.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, "Gustavo A. R. Silva" <gustavo@embeddedor.com>, Kees Cook <keescook@chromium.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20190212220230.1568-1-lyude@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Sasha Levin <sashal@kernel.org>, Lyude Paul <lyude@redhat.com>, linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>
+Cc: Karol Herbst <kherbst@redhat.com>, nouveau@lists.freedesktop.org, stable@vger.kernel.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-In preparation to enabling -Wimplicit-fallthrough, mark switch
-cases where we are expecting to fall through.
-
-Warning level 3 was used: -Wimplicit-fallthrough=3
-
-Notice that, in some cases, the code comment is modified
-in accordance with what GCC is expecting to find.
-
-This patch is part of the ongoing efforts to enable
--Wimplicit-fallthrough.
-
-Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
----
- drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c                   | 1 +
- drivers/gpu/drm/amd/amdgpu/si_dpm.c                     | 2 ++
- drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c      | 2 ++
- drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c      | 2 +-
- drivers/gpu/drm/amd/powerplay/hwmgr/smu7_hwmgr.c        | 2 ++
- drivers/gpu/drm/amd/powerplay/smumgr/polaris10_smumgr.c | 1 +
- drivers/gpu/drm/drm_vm.c                                | 4 ++--
- drivers/gpu/drm/nouveau/nouveau_bo.c                    | 2 +-
- drivers/gpu/drm/radeon/ci_dpm.c                         | 2 ++
- drivers/gpu/drm/radeon/evergreen_cs.c                   | 1 +
- drivers/gpu/drm/radeon/si_dpm.c                         | 2 ++
- 11 files changed, 17 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-index b8e50a34bdb3..02955e6e9dd9 100644
---- a/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-+++ b/drivers/gpu/drm/amd/amdgpu/gfx_v8_0.c
-@@ -3236,6 +3236,7 @@ static void gfx_v8_0_tiling_mode_table_init(struct amdgpu_device *adev)
- 		dev_warn(adev->dev,
- 			 "Unknown chip type (%d) in function gfx_v8_0_tiling_mode_table_init() falling through to CHIP_CARRIZO\n",
- 			 adev->asic_type);
-+		/* fall through */
- 
- 	case CHIP_CARRIZO:
- 		modearray[0] = (ARRAY_MODE(ARRAY_2D_TILED_THIN1) |
-diff --git a/drivers/gpu/drm/amd/amdgpu/si_dpm.c b/drivers/gpu/drm/amd/amdgpu/si_dpm.c
-index da58040fdbdc..41e01a7f57a4 100644
---- a/drivers/gpu/drm/amd/amdgpu/si_dpm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/si_dpm.c
-@@ -6216,10 +6216,12 @@ static void si_request_link_speed_change_before_state_change(struct amdgpu_devic
- 			si_pi->force_pcie_gen = AMDGPU_PCIE_GEN2;
- 			if (current_link_speed == AMDGPU_PCIE_GEN2)
- 				break;
-+			/* fall through */
- 		case AMDGPU_PCIE_GEN2:
- 			if (amdgpu_acpi_pcie_performance_request(adev, PCIE_PERF_REQ_PECI_GEN2, false) == 0)
- 				break;
- #endif
-+			/* fall through */
- 		default:
- 			si_pi->force_pcie_gen = si_get_current_pcie_speed(adev);
- 			break;
-diff --git a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-index a1c56f29cfeb..fd5266a58297 100644
---- a/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-+++ b/drivers/gpu/drm/amd/display/dc/bios/bios_parser2.c
-@@ -265,6 +265,7 @@ static struct atom_display_object_path_v2 *get_bios_object(
- 					&& id.enum_id == obj_id.enum_id)
- 				return &bp->object_info_tbl.v1_4->display_path[i];
- 		}
-+		/* fall through */
- 	case OBJECT_TYPE_CONNECTOR:
- 	case OBJECT_TYPE_GENERIC:
- 		/* Both Generic and Connector Object ID
-@@ -277,6 +278,7 @@ static struct atom_display_object_path_v2 *get_bios_object(
- 					&& id.enum_id == obj_id.enum_id)
- 				return &bp->object_info_tbl.v1_4->display_path[i];
- 		}
-+		/* fall through */
- 	default:
- 		return NULL;
- 	}
-diff --git a/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c b/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c
-index 85686d917636..a24a2bda8656 100644
---- a/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c
-+++ b/drivers/gpu/drm/amd/display/dc/dce/dce_mem_input.c
-@@ -479,7 +479,7 @@ static void program_grph_pixel_format(
- 	case SURFACE_PIXEL_FORMAT_GRPH_ABGR16161616F:
- 		sign = 1;
- 		floating = 1;
--		/* no break */
-+		/* fall through */
- 	case SURFACE_PIXEL_FORMAT_GRPH_ARGB16161616F: /* shouldn't this get float too? */
- 	case SURFACE_PIXEL_FORMAT_GRPH_ARGB16161616:
- 		grph_depth = 3;
-diff --git a/drivers/gpu/drm/amd/powerplay/hwmgr/smu7_hwmgr.c b/drivers/gpu/drm/amd/powerplay/hwmgr/smu7_hwmgr.c
-index c8f5c00dd1e7..48187acac59e 100644
---- a/drivers/gpu/drm/amd/powerplay/hwmgr/smu7_hwmgr.c
-+++ b/drivers/gpu/drm/amd/powerplay/hwmgr/smu7_hwmgr.c
-@@ -3681,10 +3681,12 @@ static int smu7_request_link_speed_change_before_state_change(
- 			data->force_pcie_gen = PP_PCIEGen2;
- 			if (current_link_speed == PP_PCIEGen2)
- 				break;
-+			/* fall through */
- 		case PP_PCIEGen2:
- 			if (0 == amdgpu_acpi_pcie_performance_request(hwmgr->adev, PCIE_PERF_REQ_GEN2, false))
- 				break;
- #endif
-+			/* fall through */
- 		default:
- 			data->force_pcie_gen = smu7_get_current_pcie_speed(hwmgr);
- 			break;
-diff --git a/drivers/gpu/drm/amd/powerplay/smumgr/polaris10_smumgr.c b/drivers/gpu/drm/amd/powerplay/smumgr/polaris10_smumgr.c
-index 52abca065764..92de1bbb2e33 100644
---- a/drivers/gpu/drm/amd/powerplay/smumgr/polaris10_smumgr.c
-+++ b/drivers/gpu/drm/amd/powerplay/smumgr/polaris10_smumgr.c
-@@ -2330,6 +2330,7 @@ static uint32_t polaris10_get_offsetof(uint32_t type, uint32_t member)
- 		case DRAM_LOG_BUFF_SIZE:
- 			return offsetof(SMU74_SoftRegisters, DRAM_LOG_BUFF_SIZE);
- 		}
-+		/* fall through */
- 	case SMU_Discrete_DpmTable:
- 		switch (member) {
- 		case UvdBootLevel:
-diff --git a/drivers/gpu/drm/drm_vm.c b/drivers/gpu/drm/drm_vm.c
-index c3301046dfaa..8987501f53b2 100644
---- a/drivers/gpu/drm/drm_vm.c
-+++ b/drivers/gpu/drm/drm_vm.c
-@@ -584,8 +584,8 @@ static int drm_mmap_locked(struct file *filp, struct vm_area_struct *vma)
- 			vma->vm_ops = &drm_vm_ops;
- 			break;
- 		}
--		/* fall through to _DRM_FRAME_BUFFER... */
- #endif
-+		/* fall through - to _DRM_FRAME_BUFFER... */
- 	case _DRM_FRAME_BUFFER:
- 	case _DRM_REGISTERS:
- 		offset = drm_core_get_reg_ofs(dev);
-@@ -610,7 +610,7 @@ static int drm_mmap_locked(struct file *filp, struct vm_area_struct *vma)
- 		    vma->vm_end - vma->vm_start, vma->vm_page_prot))
- 			return -EAGAIN;
- 		vma->vm_page_prot = drm_dma_prot(map->type, vma);
--	/* fall through to _DRM_SHM */
-+		/* fall through - to _DRM_SHM */
- 	case _DRM_SHM:
- 		vma->vm_ops = &drm_vm_shm_ops;
- 		vma->vm_private_data = (void *)map;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 73eff52036d2..a72be71c45b4 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -1434,7 +1434,7 @@ nouveau_ttm_io_mem_reserve(struct ttm_bo_device *bdev, struct ttm_mem_reg *reg)
- 		if (drm->client.mem->oclass < NVIF_CLASS_MEM_NV50 || !mem->kind)
- 			/* untiled */
- 			break;
--		/* fallthrough, tiled memory */
-+		/* fall through - tiled memory */
- 	case TTM_PL_VRAM:
- 		reg->bus.offset = reg->start << PAGE_SHIFT;
- 		reg->bus.base = device->func->resource_addr(device, 1);
-diff --git a/drivers/gpu/drm/radeon/ci_dpm.c b/drivers/gpu/drm/radeon/ci_dpm.c
-index a97294ac96d5..a12439266bb0 100644
---- a/drivers/gpu/drm/radeon/ci_dpm.c
-+++ b/drivers/gpu/drm/radeon/ci_dpm.c
-@@ -4869,10 +4869,12 @@ static void ci_request_link_speed_change_before_state_change(struct radeon_devic
- 			pi->force_pcie_gen = RADEON_PCIE_GEN2;
- 			if (current_link_speed == RADEON_PCIE_GEN2)
- 				break;
-+			/* fall through */
- 		case RADEON_PCIE_GEN2:
- 			if (radeon_acpi_pcie_performance_request(rdev, PCIE_PERF_REQ_PECI_GEN2, false) == 0)
- 				break;
- #endif
-+			/* fall through */
- 		default:
- 			pi->force_pcie_gen = ci_get_current_pcie_speed(rdev);
- 			break;
-diff --git a/drivers/gpu/drm/radeon/evergreen_cs.c b/drivers/gpu/drm/radeon/evergreen_cs.c
-index f471537c852f..fbf346185790 100644
---- a/drivers/gpu/drm/radeon/evergreen_cs.c
-+++ b/drivers/gpu/drm/radeon/evergreen_cs.c
-@@ -1299,6 +1299,7 @@ static int evergreen_cs_handle_reg(struct radeon_cs_parser *p, u32 reg, u32 idx)
- 			return -EINVAL;
- 		}
- 		ib[idx] += (u32)((reloc->gpu_offset >> 8) & 0xffffffff);
-+		/* fall through */
- 	case CB_TARGET_MASK:
- 		track->cb_target_mask = radeon_get_ib_value(p, idx);
- 		track->cb_dirty = true;
-diff --git a/drivers/gpu/drm/radeon/si_dpm.c b/drivers/gpu/drm/radeon/si_dpm.c
-index 0a785ef0ab66..c9f6cb77e857 100644
---- a/drivers/gpu/drm/radeon/si_dpm.c
-+++ b/drivers/gpu/drm/radeon/si_dpm.c
-@@ -5762,10 +5762,12 @@ static void si_request_link_speed_change_before_state_change(struct radeon_devic
- 			si_pi->force_pcie_gen = RADEON_PCIE_GEN2;
- 			if (current_link_speed == RADEON_PCIE_GEN2)
- 				break;
-+			/* fall through */
- 		case RADEON_PCIE_GEN2:
- 			if (radeon_acpi_pcie_performance_request(rdev, PCIE_PERF_REQ_PECI_GEN2, false) == 0)
- 				break;
- #endif
-+			/* fall through */
- 		default:
- 			si_pi->force_pcie_gen = si_get_current_pcie_speed(rdev);
- 			break;
--- 
-2.20.1
+SGksCgpbVGhpcyBpcyBhbiBhdXRvbWF0ZWQgZW1haWxdCgpUaGlzIGNvbW1pdCBoYXMgYmVlbiBw
+cm9jZXNzZWQgYmVjYXVzZSBpdCBjb250YWlucyBhIC1zdGFibGUgdGFnLgpUaGUgc3RhYmxlIHRh
+ZyBpbmRpY2F0ZXMgdGhhdCBpdCdzIHJlbGV2YW50IGZvciB0aGUgZm9sbG93aW5nIHRyZWVzOiBh
+bGwKClRoZSBib3QgaGFzIHRlc3RlZCB0aGUgZm9sbG93aW5nIHRyZWVzOiB2NC4yMC44LCB2NC4x
+OS4yMSwgdjQuMTQuOTksIHY0LjkuMTU2LCB2NC40LjE3NCwgdjMuMTguMTM0LgoKdjQuMjAuODog
+QnVpbGQgT0shCnY0LjE5LjIxOiBGYWlsZWQgdG8gYXBwbHkhIFBvc3NpYmxlIGRlcGVuZGVuY2ll
+czoKICAgIDAxZDVkN2ZhODM3NiAoIlBDSTogQWRkIG1hY3JvIGZvciBTd2l0Y2h0ZWMgcXVpcmsg
+ZGVjbGFyYXRpb25zIikKCnY0LjE0Ljk5OiBGYWlsZWQgdG8gYXBwbHkhIFBvc3NpYmxlIGRlcGVu
+ZGVuY2llczoKICAgIDAxZDVkN2ZhODM3NiAoIlBDSTogQWRkIG1hY3JvIGZvciBTd2l0Y2h0ZWMg
+cXVpcmsgZGVjbGFyYXRpb25zIikKICAgIDA2ZGM0ZWU1NGUzMCAoIlBDSTogRGlzYWJsZSBNU0kg
+Zm9yIEZyZWVzY2FsZSBMYXllcnNjYXBlIFBDSWUgUkMgbW9kZSIpCiAgICAwN2Y0Zjk3ZDdiNGIg
+KCJ2Z2Ffc3dpdGNoZXJvbzogVXNlIGRldmljZSBsaW5rIGZvciBIREEgY29udHJvbGxlciIpCiAg
+ICA4OTQ4Y2ExYTEyYzkgKCJ2Z2Ffc3dpdGNoZXJvbzogRGVkdXBsaWNhdGUgcG93ZXIgc3RhdGUg
+dHJhY2tpbmciKQogICAgYWQyODFlY2YxYzdkICgiUENJOiBBZGQgRE1BIGFsaWFzIHF1aXJrIGZv
+ciBNaWNyb3NlbWkgU3dpdGNodGVjIE5UQiIpCgp2NC45LjE1NjogRmFpbGVkIHRvIGFwcGx5ISBQ
+b3NzaWJsZSBkZXBlbmRlbmNpZXM6CiAgICAwMWQ1ZDdmYTgzNzYgKCJQQ0k6IEFkZCBtYWNybyBm
+b3IgU3dpdGNodGVjIHF1aXJrIGRlY2xhcmF0aW9ucyIpCiAgICAwN2Y0Zjk3ZDdiNGIgKCJ2Z2Ff
+c3dpdGNoZXJvbzogVXNlIGRldmljZSBsaW5rIGZvciBIREEgY29udHJvbGxlciIpCiAgICAzZTEz
+Njc2ODYyZjkgKCJ0aHVuZGVyYm9sdDogQWRkIHN1cHBvcnQgZm9yIERNQSBjb25maWd1cmF0aW9u
+IGJhc2VkIG1haWxib3giKQogICAgNDZjZDRiNzVjZDBlICgiZWZpOiBBZGQgZGV2aWNlIHBhdGgg
+cGFyc2VyIikKICAgIDU4YzU0NzVhYmE2NyAoIng4Ni9lZmk6IFJldHJpZXZlIGFuZCBhc3NpZ24g
+QXBwbGUgZGV2aWNlIHByb3BlcnRpZXMiKQogICAgNjMwYjNhZmY4YTUxICgidHJlZXdpZGU6IENv
+bnNvbGlkYXRlIEFwcGxlIERNSSBjaGVja3MiKQogICAgODFhNTRiNWUxOTg2ICgidGh1bmRlcmJv
+bHQ6IExldCB0aGUgY29ubmVjdGlvbiBtYW5hZ2VyIGhhbmRsZSBhbGwgbm90aWZpY2F0aW9ucyIp
+CiAgICA4OTQ4Y2ExYTEyYzkgKCJ2Z2Ffc3dpdGNoZXJvbzogRGVkdXBsaWNhdGUgcG93ZXIgc3Rh
+dGUgdHJhY2tpbmciKQogICAgOWQzY2NlMGI2MTM2ICgidGh1bmRlcmJvbHQ6IEludHJvZHVjZSB0
+aHVuZGVyYm9sdCBidXMgYW5kIGNvbm5lY3Rpb24gbWFuYWdlciIpCiAgICBhYzZjNDRkZTUwM2Ug
+KCJ0aHVuZGVyYm9sdDogRXhwb3NlIGdldF9yb3V0ZSgpIHRvIG90aGVyIGZpbGVzIikKICAgIGFk
+MjgxZWNmMWM3ZCAoIlBDSTogQWRkIERNQSBhbGlhcyBxdWlyayBmb3IgTWljcm9zZW1pIFN3aXRj
+aHRlYyBOVEIiKQogICAgYmZlNzc4YWM0OTgyICgidGh1bmRlcmJvbHQ6IENvbnZlcnQgc3dpdGNo
+IHRvIGEgZGV2aWNlIikKICAgIGM5Y2MzYWFhMDI4MSAoInRodW5kZXJib2x0OiBVc2UgRGV2aWNl
+IFJPTSByZXRyaWV2ZWQgZnJvbSBFRkkiKQogICAgZGEyZGEwNGI4ZDQ0ICgidGh1bmRlcmJvbHQ6
+IFJld29yayBjYXBhYmlsaXR5IGhhbmRsaW5nIikKICAgIGY2N2NmNDkxMTc1YSAoInRodW5kZXJi
+b2x0OiBBZGQgc3VwcG9ydCBmb3IgSW50ZXJuYWwgQ29ubmVjdGlvbiBNYW5hZ2VyIChJQ00pIikK
+ICAgIGZhNmQ1MTNhZWZlNCAoImRyaXZlcnM6Z3B1OiB2Z2EgOnZnYV9zd2l0Y2hlcm9vLmMgOiBG
+aXhlZCBzb21lIGNvZGluZyBzdHlsZSBpc3N1ZXMiKQoKdjQuNC4xNzQ6IEZhaWxlZCB0byBhcHBs
+eSEgUG9zc2libGUgZGVwZW5kZW5jaWVzOgogICAgMDFkNWQ3ZmE4Mzc2ICgiUENJOiBBZGQgbWFj
+cm8gZm9yIFN3aXRjaHRlYyBxdWlyayBkZWNsYXJhdGlvbnMiKQogICAgMDdmNGY5N2Q3YjRiICgi
+dmdhX3N3aXRjaGVyb286IFVzZSBkZXZpY2UgbGluayBmb3IgSERBIGNvbnRyb2xsZXIiKQogICAg
+MTRkMjAwMDE4MmVkICgiZHJtL3JhZGVvbjogRGVmZXIgcHJvYmUgaWYgZ211eCBpcyBwcmVzZW50
+IGJ1dCBpdHMgZHJpdmVyIGlzbid0IikKICAgIDE1NmQ3ZDQxMjBlMSAoInZnYV9zd2l0Y2hlcm9v
+OiBBZGQgaGFuZGxlciBmbGFncyBpbmZyYXN0cnVjdHVyZSIpCiAgICAzYTg0ODY2MmM3NTEgKCJ2
+Z2Ffc3dpdGNoZXJvbzogUHJldHRpZnkgZG9jdW1lbnRhdGlvbiIpCiAgICA0MTJjOGY3ZGUwMTEg
+KCJkcm0vcmFkZW9uOiBSZXR1cm4gLUVQUk9CRV9ERUZFUiB3aGVuIGFtZGtmZCBub3QgbG9hZGVk
+IikKICAgIDcwNGFiNjE0ZWMxMiAoImRybS9pOTE1OiBEZWZlciBwcm9iZSBpZiBnbXV4IGlzIHBy
+ZXNlbnQgYnV0IGl0cyBkcml2ZXIgaXNuJ3QiKQogICAgODk0OGNhMWExMmM5ICgidmdhX3N3aXRj
+aGVyb286IERlZHVwbGljYXRlIHBvd2VyIHN0YXRlIHRyYWNraW5nIikKICAgIDk4OTU2MWRlOWI1
+MSAoIlBNIC8gRG9tYWluczogYWRkIHNldHRlciBmb3IgZGV2LnBtX2RvbWFpbiIpCiAgICA5OGIz
+YTM0MDJlYjYgKCJkcm0vbm91dmVhdTogRGVmZXIgcHJvYmUgaWYgZ211eCBpcyBwcmVzZW50IGJ1
+dCBpdHMgZHJpdmVyIGlzbid0IikKICAgIGEzNDU5MThkNmVlNiAoInZnYV9zd2l0Y2hlcm9vOiBT
+dXBwb3J0IGRlZmVycmVkIHByb2Jpbmcgb2YgYXVkaW8gY2xpZW50cyIpCiAgICBhZDI4MWVjZjFj
+N2QgKCJQQ0k6IEFkZCBETUEgYWxpYXMgcXVpcmsgZm9yIE1pY3Jvc2VtaSBTd2l0Y2h0ZWMgTlRC
+IikKICAgIGIwMGU1MzM0YWIxYiAoInZnYV9zd2l0Y2hlcm9vOiBBZGQgaGVscGVyIGZvciBkZWZl
+cnJlZCBwcm9iaW5nIikKICAgIGI1Zjg4ZGQxZDZlZiAoIlJldmVydCAiQUNQSSAvIExQU1M6IGFs
+bG93IHRvIHVzZSBzcGVjaWZpYyBQTSBkb21haW4gZHVyaW5nIC0+cHJvYmUoKSIiKQogICAgYzFl
+MTY1NWJiODkyICgiYXBwbGUtZ211eDogQXNzaWduIGFwcGxlX2dtdXhfZGF0YSBiZWZvcmUgcmVn
+aXN0ZXJpbmciKQogICAgYzY4ZjQ1MjhhMmU5ICgiZHJtL2FtZGtmZDogVHJhY2sgd2hlbiBtb2R1
+bGUncyBpbml0IGlzIGNvbXBsZXRlIikKICAgIGZhNmQ1MTNhZWZlNCAoImRyaXZlcnM6Z3B1OiB2
+Z2EgOnZnYV9zd2l0Y2hlcm9vLmMgOiBGaXhlZCBzb21lIGNvZGluZyBzdHlsZSBpc3N1ZXMiKQoK
+djMuMTguMTM0OiBGYWlsZWQgdG8gYXBwbHkhIFBvc3NpYmxlIGRlcGVuZGVuY2llczoKICAgIDAx
+ZDVkN2ZhODM3NiAoIlBDSTogQWRkIG1hY3JvIGZvciBTd2l0Y2h0ZWMgcXVpcmsgZGVjbGFyYXRp
+b25zIikKICAgIDA3ZjRmOTdkN2I0YiAoInZnYV9zd2l0Y2hlcm9vOiBVc2UgZGV2aWNlIGxpbmsg
+Zm9yIEhEQSBjb250cm9sbGVyIikKICAgIDA4M2RiYTAyOTQ3ZCAoImRybS9ub3V2ZWF1L2Rldmlj
+ZTogcmVjb2duaXNlIEdNMjA0IikKICAgIDJmNGE1OGU4NTJkMSAoImRybS9ub3V2ZWF1L3N1YmRl
+djogYWx3YXlzIHVwY2FzdCB0aHJvdWdoIG5vdXZlYXVfc3ViZGV2KCkvbm91dmVhdV9lbmdpbmUo
+KSIpCiAgICA0NzY2ZWM1Mzk0NWYgKCJkcm0vbm91dmVhdS9iaW9zOiBhZGQgcGFyc2luZyBvZiBC
+SVQgTSh2MikgKzB4MDMgdGFibGUiKQogICAgNTBlMjE2ZDZlN2MzICgiZHJtL25vdXZlYXUvYmlv
+czogYWRkIHBhcnNpbmcgb2YgcG11IGltYWdlIHRhYmxlcyIpCiAgICA1NDQ0MjA0MDM2YjIgKCJk
+cm0vbm91dmVhdTogc3dpdGNoIHRvIG5ldy1zdHlsZSB0aW1lciBtYWNyb3MiKQogICAgN2JiNmQ0
+NDI4ZDNkICgiZHJtL25vdXZlYXU6IG1vdmUgdGhlIChmYXIgdG9vIG1hbnkuLi4pIGRpZmZlcmVu
+dCBzL3IgcGF0aHMgdG8gdGhlIHNhbWUgcGxhY2UiKQogICAgOGQ1ZTNhZjE1Yzc5ICgiZHJtL25v
+dXZlYXUvZGV2aWNlOiBBZGQgc3VwcG9ydCBmb3IgR0syMDhCLCByZXNvbHZlcyBidWcgODY5MzUi
+KQogICAgOGQ4NWUwNmI1ZTA0ICgiZHJtL25vdXZlYXUvYmlvczogYWRkIHBjaSBkYXRhIHN0cnVj
+dHVyZSBwYXJzaW5nIikKICAgIDk4OWFhNWI3NmFkMiAoImRybS9ub3V2ZWF1L252aWY6IG5hbWVz
+cGFjZSBvZiBudmttIGFjY2Vzc29ycyAobm8gYmluYXJ5IGNoYW5nZSkiKQogICAgYTAxY2E3OGM4
+ZjExICgiZHJtL25vdXZlYXUvbnZpZjogc2ltcGxpZnkgYW5kIHRpZHkgbGlicmFyeSBpbnRlcmZh
+Y2VzIikKICAgIGFkMjgxZWNmMWM3ZCAoIlBDSTogQWRkIERNQSBhbGlhcyBxdWlyayBmb3IgTWlj
+cm9zZW1pIFN3aXRjaHRlYyBOVEIiKQogICAgYWQ0YTM2MjYzNTM1ICgiZHJtL25vdXZlYXUvYmlv
+czogc3BsaXQgb3V0IHNoYWRvdyBtZXRob2RzIikKICAgIGI3MWExMzQ0ZWMyMCAoImRybS9ub3V2
+ZWF1L2Jpb3M6IGFkZCBOUERFIHBhcnNpbmciKQogICAgYmE2ZTM0ZTYxMjcxICgiZHJtL2dtMjA0
+L2RldmluaXQ6IGluaXRpYWwgaW1wbGVtZW50YXRpb24iKQogICAgYmU4M2NkNGVmOWEyICgiZHJt
+L25vdXZlYXU6IGZpbmFsaXNlIG52a20gbmFtZXNwYWNlIHN3aXRjaCAobm8gYmluYXJ5IGNoYW5n
+ZSkiKQogICAgYzM5ZjQ3MmU5ZjE0ICgiZHJtL25vdXZlYXU6IHJlbW92ZSBzeW1saW5rcywgbW92
+ZSBjb3JlLyB0byBudmttLyAobm8gY29kZSBjaGFuZ2VzKSIpCiAgICBjYjhiYjljZWRiNjAgKCJk
+cm0vbm91dmVhdS90bXI6IGNvc21ldGljIGNoYW5nZXMiKQogICAgZDM4Y2VhZjk5ZWQwICgiZHJt
+L2FtZGdwdTogYWRkIGNvcmUgZHJpdmVyICh2NCkiKQogICAgZjM4NjdmNDM5ZmQ2ICgiZHJtL25v
+dXZlYXUvY2xrOiByZW5hbWUgZnJvbSBjbG9jayAobm8gYmluYXJ5IGNoYW5nZSkiKQogICAgZjhh
+ODU0NjE5NGQ3ICgiZHJtL25vdXZlYXUvY2xrOiBhbGxvdyBub24tYmxvY2tpbmcgZm9yIG5vdXZl
+YXVfY2xvY2tfYXN0YXRlKCkiKQoKCkhvdyBzaG91bGQgd2UgcHJvY2VlZCB3aXRoIHRoaXMgcGF0
+Y2g/CgotLQpUaGFua3MsClNhc2hhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2RyaS1kZXZlbA==
