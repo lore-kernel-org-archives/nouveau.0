@@ -1,11 +1,19 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109654] New: Nouveau picks bad mode setting 640x480
- resolution
-Date: Sat, 16 Feb 2019 18:46:05 +0000
-Message-ID: <bug-109654-8800@http.bugs.freedesktop.org/>
+From: Dan Espen <dan1espen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: 640x480 does not fill screen
+Date: Sat, 16 Feb 2019 14:20:53 -0500
+Message-ID: <ic4l93tu96.fsf@home.home>
+References: <icmun8j2to.fsf@home.home>
+ <CAKb7UvjPd4QexPZe+XBAeEugcJOsZS1XqEv=mKnR3XbZeRYcfA@mail.gmail.com>
+ <ico97o64rq.fsf@home.home>
+ <CAKb7Uvg_zmyegXioF2TTaOkXKD0ByC143MaZE2xrL8kw_yC2=w@mail.gmail.com>
+ <ic8sys5x67.fsf@home.home> <icbm3btyif.fsf@home.home>
+ <CAKb7UvjSoyNctS=jWQ2FJbV=_B6umZjCNt2UsnUG_A=dcXYTgQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0628139241=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7UvjSoyNctS=jWQ2FJbV=_B6umZjCNt2UsnUG_A=dcXYTgQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+ (Ilia Mirkin's message of "Sat, 16 Feb 2019 13:18:37 -0500")
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,197 +23,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0628139241==
-Content-Type: multipart/alternative; boundary="15503427651.F627b2D6E.1800"
-Content-Transfer-Encoding: 7bit
-
-
---15503427651.F627b2D6E.1800
-Date: Sat, 16 Feb 2019 18:46:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109654
-
-            Bug ID: 109654
-           Summary: Nouveau picks bad mode setting 640x480 resolution
-           Product: xorg
-           Version: 7.7 (2012.06)
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: dan1espen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-This has been discussed on the Nouveau mailing list.
-
-When running this command:
-
-xrandr -s 640x480
-
-Nouveau only fills the screen horizontally, vertically it leaves 2/3s of the
-screen at the top and bottom unused.  This makes this mode unusable.
-
-Adding -r 75 to the above command fixes the problem.
-
-Perhaps the higher frequency mode should be used by default.
-
-The NVIDIA drivers do not have this problem, the screen is always filled.
-
-This bug breaks games like "lbrickbuster2" which want to run full screen at
-640x480.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15503427651.F627b2D6E.1800
-Date: Sat, 16 Feb 2019 18:46:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau picks bad mode setting 640x480 resolution"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109654">109654</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Nouveau picks bad mode setting 640x480 resolution
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>7.7 (2012.06)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>dan1espen&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>This has been discussed on the Nouveau mailing list.
-
-When running this command:
-
-xrandr -s 640x480
-
-Nouveau only fills the screen horizontally, vertically it leaves 2/3s of the
-screen at the top and bottom unused.  This makes this mode unusable.
-
-Adding -r 75 to the above command fixes the problem.
-
-Perhaps the higher frequency mode should be used by default.
-
-The NVIDIA drivers do not have this problem, the screen is always filled.
-
-This bug breaks games like &quot;lbrickbuster2&quot; which want to run full=
- screen at
-640x480.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15503427651.F627b2D6E.1800--
-
---===============0628139241==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0628139241==--
+SWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PiB3cml0ZXM6Cgo+IE9uIFNhdCwgRmVi
+IDE2LCAyMDE5IGF0IDEyOjQ5IFBNIERhbiBFc3BlbiA8ZGFuMWVzcGVuQGdtYWlsLmNvbT4gd3Jv
+dGU6Cj4+Cj4+IERhbiBFc3BlbiA8ZGFuMWVzcGVuQGdtYWlsLmNvbT4gd3JpdGVzOgo+Pgo+PiA+
+IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JpdGVzOgo+PiA+Cj4+ID4+IE9u
+IFdlZCwgRmViIDYsIDIwMTkgYXQgMzoyOCBQTSBEYW4gRXNwZW4gPGRhbjFlc3BlbkBnbWFpbC5j
+b20+IHdyb3RlOgo+PiA+Pj4KPj4gPj4+IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVk
+dT4gd3JpdGVzOgo+PiA+Pj4KPj4gPj4+ID4gSXQgd291bGQgYmUgdXNlZnVsIHRvIGtub3cgaG93
+IHRoZSBzY3JlZW4gaXMgY29ubmVjdGVkLiBBbHNvIHBsZWFzZQo+PiA+Pj4gPiBncmFiIHRoZSBt
+b25pdG9yJ3MgRURJRCBmcm9tIC9zeXMvY2xhc3MvZHJtL2NhcmROLWNvbm5lY3Rvci9lZGlkIGFu
+ZAo+PiA+Pj4gPiBhdHRhY2ggaXQgaGVyZS4gSXQgd291bGQgYWxzbyBiZSBpbnRlcmVzdGluZyB0
+byBnZXQgYSBib290IHdpdGgKPj4gPj4+ID4gImRybS5kZWJ1Zz0weDFlIG5vdXZlYXUuZGVidWc9
+ZGlzcD10cmFjZSIgd2hpY2ggaGFzIHRoZSBtb2Rlc3dpdGNoIGluCj4+ID4+PiA+IHF1ZXN0aW9u
+Lgo+PiA+Pj4KPj4gPj4+IFRoZSBzY3JlZW4gaXMgY29ubmVjdGVkIHVzaW5nIHRoZSBNRFAgcG9y
+dC4KPj4gPj4+IEkgZG9uJ3QgZmluZCBhbnkgY2FyZE4tY29ubmVjdG9yIGRpcmVjdG9yeSwKPj4g
+Pj4+IHRoZSBjbG9zZXN0IG1hdGNoIGlzOgo+PiA+Pj4KPj4gPj4+IC9zeXMvY2xhc3MvZHJtL2Nh
+cmQwLURQLTEvZWRpZAo+PiA+Pgo+PiA+PiBOID0gMAo+PiA+PiBjb25uZWN0b3IgPSBEUC0xCj4+
+ID4+Cj4+ID4+IHNvIGxvb2tzIGxpa2UgeW91IGZvdW5kIGl0Lgo+PiA+Pgo+PiA+PiBJIHdhcyBh
+Y3R1YWxseSBsb29raW5nIGZvciBkbWVzZyB3aXRoIHRob3NlIGJvb3QgcGFyYW1ldGVycywgbm90
+IHRoZSBYb3JnIGxvZy4KPj4gPj4KPj4gPj4gU29tZXRoaW5nIHRvIHJhbmRvbWx5IHRyeSAtLSB4
+cmFuZHIgLXMgNjQweDQ4MCAtciA3NSAtLSBwZXJoYXBzIGl0J2xsCj4+ID4+IGxpa2UgdGhhdCBt
+b2RlIGJldHRlci4KPj4gPgo+PiA+IFVzaW5nICItciA3NSIgZml4ZXMgdGhlIHByb2JsZW0uCj4+
+ID4KPj4gPj4gQWxzbyBkb2VzIDcyMHg0ODAgd29yayBiZXR0ZXI/Cj4+ID4KPj4gPiBZZXMsIDcy
+MHg0ODAgd29ya3Mgd2l0aG91dCB0aGUgLXIgcGFyYW1ldGVyLgo+PiA+Cj4+ID4+IExvb2tpbmcg
+YXQgeW91ciBFRElELCB5b3UgaGF2ZToKPj4gPj4KPj4gPj4gRXN0YWJsaXNoZWQgdGltaW5ncyBz
+dXBwb3J0ZWQ6Cj4+ID4+ICAgNzIweDQwMEA3MEh6IDk6NSBIb3JGcmVxOiAzMTQ2OSBIeiBDbG9j
+azogMjguMzIwIE1Iego+PiA+PiAgIDY0MHg0ODBANjBIeiA0OjMgSG9yRnJlcTogMzE0NjkgSHog
+Q2xvY2s6IDI1LjE3NSBNSHoKPj4gPj4gICA2NDB4NDgwQDc1SHogNDozIEhvckZyZXE6IDM3NTAw
+IEh6IENsb2NrOiAzMS41MDAgTUh6Cj4+ID4+ICAgODAweDYwMEA2MEh6IDQ6MyBIb3JGcmVxOiAz
+NzkwMCBIeiBDbG9jazogNDAuMDAwIE1Iego+PiA+PiAgIDgwMHg2MDBANzVIeiA0OjMgSG9yRnJl
+cTogNDY5MDAgSHogQ2xvY2s6IDQ5LjUwMCBNSHoKPj4gPj4gICAxMDI0eDc2OEA2MEh6IDQ6MyBI
+b3JGcmVxOiA0ODQwMCBIeiBDbG9jazogNjUuMDAwIE1Iego+PiA+PiAgIDEwMjR4NzY4QDc1SHog
+NDozIEhvckZyZXE6IDYwMDAwIEh6IENsb2NrOiA3OC43NTAgTUh6Cj4+ID4+ICAgMTI4MHgxMDI0
+QDc1SHogNTo0IEhvckZyZXE6IDgwMDAwIEh6IENsb2NrOiAxMzUuMDAwIE1Iego+PiA+PiBTdGFu
+ZGFyZCB0aW1pbmdzIHN1cHBvcnRlZDoKPj4gPj4gICAxOTIweDEwODBANjBIeiAxNjo5Cj4+ID4+
+ICAgMTYwMHgxMjAwQDYwSHogNDozIEhvckZyZXE6IDc1MDAwIEh6IENsb2NrOiAxNjIuMDAwIE1I
+ego+PiA+PiAgIDEyODB4MTAyNEA2MEh6IDU6NCBIb3JGcmVxOiA2NDAwMCBIeiBDbG9jazogMTA4
+LjAwMCBNSHoKPj4gPj4gICAxMjgweDgwMEA2MEh6IDE2OjEwCj4+ID4+ICAgMTE1Mng4NjRANzVI
+eiA0OjMgSG9yRnJlcTogNjc1MDAgSHogQ2xvY2s6IDEwOC4wMDAgTUh6Cj4+ID4+Cj4+ID4+IENU
+QSBleHRlbnNpb24gYmxvY2sKPj4gPj4gRXh0ZW5zaW9uIHZlcnNpb246IDMKPj4gPj4gMjUgYnl0
+ZXMgb2YgQ1RBIGRhdGEKPj4gPj4gICBWaWRlbyBkYXRhIGJsb2NrCj4+ID4+IC4uLgo+PiA+PiAg
+ICAgVklDICAgMyA3MjB4NDgwQDYwSHogMTY6OSAgSG9yRnJlcTogMzE0NjkgSHogQ2xvY2s6IDI3
+LjAwMCBNSHoKPj4gPj4gICAgIFZJQyAgIDIgNzIweDQ4MEA2MEh6IDQ6MyAgSG9yRnJlcTogMzE0
+NjkgSHogQ2xvY2s6IDI3LjAwMCBNSHoKPj4gPj4gICAgIFZJQyAgIDEgNjQweDQ4MEA2MEh6IDQ6
+MyAgSG9yRnJlcTogMzE0NjkgSHogQ2xvY2s6IDI1LjE3NSBNSHoKPj4gPgo+PiA+IE9rYXksIGlm
+IEkgcmVhZCBhbGwgdGhhdCByaWdodCB0aGUgRURJRCBzdXBwb3J0cyA2NDB4NDgwIGF0IDYwIGFu
+ZCA3NWh6Lgo+PiA+IFRoZSBtb25pdG9yIGFjdHMgc3RyYW5nZWx5IGF0IDYwaHogYnV0IGlzIG9r
+YXkgYXQgNzVoei4KPj4gPiBJcyB0aGlzIHNvbWV0aGluZyBJIHNob3VsZCBjb25maWd1cmUgb3Ig
+Y2FuIG5vdXZlYXUgZmlndXJlIG91dCB0aGUgYmVzdCBtb2RlPwo+Pgo+PiBPa2F5LCBsb29rcyBs
+aWtlIEknbSBtb3ZpbmcgYmFjayB0byB0aGUgTnZpZGlhIHByb3ByaWV0YXJ5IGRyaXZlcnMgdW50
+aWwKPj4gYXQgbGVhc3QgdGhpcyBpc3N1ZSBpcyBmaXhlZC4KPj4KPj4gU28sIEknZCBsaWtlIHRv
+IGZpbGUgYSBidWcgcmVwb3J0IGJ1dCBJIHRyaWVkIGhlcmU6Cj4+Cj4+IGh0dHBzOi8vYnVncy5m
+cmVlZGVza3RvcC5vcmcvZW50ZXJfYnVnLmNnaQo+Pgo+PiBhbmQgbXkgbWFpbGluZyBsaXN0IHVz
+ZXJpZC9wYXNzd29yZCBkb24ndCB3b3JrIHRoZXJlLgo+Pgo+PiBTbywgY291bGQgc29tZW9uZSBn
+aXZlIG1lIGd1aWRhbmNlIG9uIGZpbGluZyB0aGUgYnVnIHJlcG9ydCBvciBmaWxlIG9uZQo+PiBv
+biBteSBiZWhhbGY/Cj4+Cj4+IEl0IGxvb2tzIGxpa2UgdGhlIGlzc3VlIGlzLCB3aGVuIHN3aXRj
+aGluZyBtb2RlcywgaWYgdGhlcmUgYXJlIG11bHRpcGxlCj4+IG1hdGNoZXMgb24gdGhlIHJlc29s
+dXRpb24sIE5vdXZlYXUgc2hvdWxkIHBpY2sgdGhlIG1vZGUgd2l0aCB0aGUKPj4gaGlnaGVzdCBm
+cmVxdWVuY3kuCj4KPiBJIGRvbid0IGtub3cgaWYgdGhhdCdzIHRoZSByaWdodCBwb2xpY3kuIEVp
+dGhlciB3YXksIG5vdXZlYXUgaXMgbm90Cj4gcmVzcG9uc2libGUgZm9yIHRoaW5ncyBsaWtlIHRo
+YXQgLi4uIGl0IGp1c3QgZG9lcyB3aGF0IGl0J3MgdG9sZC4gV2h5Cj4gZG9lc24ndCB0aGUgNjBo
+eiBtb2RlIHdvcms/CgpJIGRvbid0IGtub3cgd2h5IDYwaHogZG9lc24ndCB3b3JrLgpJdCBkaXNw
+bGF5cyB0ZXh0IGJ1dCBkb2Vzbid0IGZpbGwgdGhlIHNjcmVlbiB2ZXJ0aWNhbGx5LgoKSSBkb24n
+dCBrbm93IGZvciBzdXJlIHRoYXQgbm91dmVhdSBpcyB0byBibGFtZSwgYnV0IEkgZG8ga25vdwp0
+aGF0IHRoZSBOVklESUEgZHJpdmVycyBvbiB0aGUgc2FtZSBoYXJkd2FyZSBkbyB0aGUgcmlnaHQg
+dGhpbmcuCgo+IElzIE5WSURJQSdzIGRyaXZlciBhYmxlIHRvIGRyaXZlIHRoZSBtb25pdG9yIGF0
+IDY0MHg0ODBANjA/IElmIHNvLCB3ZQo+IHNob3VsZCBmaWd1cmUgb3V0IHdoYXQgdGhlIGRpZmZl
+cmVuY2UgaXMuCgpBcyBmYXIgYXMgSSBjYW4gdGVsbCwgTlZJRElBIGlzIGRyaXZpbmcgdGhlIG1v
+bml0b3IgYXQgNjQweDQ4MEA3NS4KSSdtIHdvcmtpbmcgb24gZ2V0dGluZyB0aGUgTlZJRElBIGRy
+aXZlciB3b3JraW5nIGFnYWluLCBJJ2xsIHNlZQppZiBJIGNhbiBmaW5kIHRoZSBmcmVxdWVuY3kg
+d2hlbiBJJ20gZG9uZS4KCk1haW5seSB3aGF0IEkgc2VlIGlzIHRoYXQgTm91dmVhdSBnaXZlcyBt
+ZSBhbiB1bnVzYWJsZSA2NDB4NDgwLApOVklESUEgZ2l2ZXMgbWUgYSB3b3JrYWJsZSA2NDB4NDgw
+LgoKPiBBcyBmb3IgZmlsaW5nIGJ1Z3MsIGJ1Z3ppbGxhIGlzIHNlcGFyYXRlIGZyb20gbWFpbG1h
+bi4KCk9rYXksIGdvdCBhIGJ1ZyByZXBvcnQgZmlsZWQuCgotLSAKRGFuIEVzcGVuCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
+aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
