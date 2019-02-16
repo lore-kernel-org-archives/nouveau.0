@@ -1,17 +1,11 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: 640x480 does not fill screen
-Date: Sat, 16 Feb 2019 13:18:37 -0500
-Message-ID: <CAKb7UvjSoyNctS=jWQ2FJbV=_B6umZjCNt2UsnUG_A=dcXYTgQ@mail.gmail.com>
-References: <icmun8j2to.fsf@home.home>
- <CAKb7UvjPd4QexPZe+XBAeEugcJOsZS1XqEv=mKnR3XbZeRYcfA@mail.gmail.com>
- <ico97o64rq.fsf@home.home>
- <CAKb7Uvg_zmyegXioF2TTaOkXKD0ByC143MaZE2xrL8kw_yC2=w@mail.gmail.com>
- <ic8sys5x67.fsf@home.home> <icbm3btyif.fsf@home.home>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 109654] New: Nouveau picks bad mode setting 640x480
+ resolution
+Date: Sat, 16 Feb 2019 18:46:05 +0000
+Message-ID: <bug-109654-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0628139241=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <icbm3btyif.fsf-ZbdcMXxcd5KzQB+pC5nmwQ@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,71 +15,197 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dan Espen <dan1espen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBGZWIgMTYsIDIwMTkgYXQgMTI6NDkgUE0gRGFuIEVzcGVuIDxkYW4xZXNwZW5AZ21h
-aWwuY29tPiB3cm90ZToKPgo+IERhbiBFc3BlbiA8ZGFuMWVzcGVuQGdtYWlsLmNvbT4gd3JpdGVz
-Ogo+Cj4gPiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyaXRlczoKPiA+Cj4g
-Pj4gT24gV2VkLCBGZWIgNiwgMjAxOSBhdCAzOjI4IFBNIERhbiBFc3BlbiA8ZGFuMWVzcGVuQGdt
-YWlsLmNvbT4gd3JvdGU6Cj4gPj4+Cj4gPj4+IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0
-LmVkdT4gd3JpdGVzOgo+ID4+Pgo+ID4+PiA+IEl0IHdvdWxkIGJlIHVzZWZ1bCB0byBrbm93IGhv
-dyB0aGUgc2NyZWVuIGlzIGNvbm5lY3RlZC4gQWxzbyBwbGVhc2UKPiA+Pj4gPiBncmFiIHRoZSBt
-b25pdG9yJ3MgRURJRCBmcm9tIC9zeXMvY2xhc3MvZHJtL2NhcmROLWNvbm5lY3Rvci9lZGlkIGFu
-ZAo+ID4+PiA+IGF0dGFjaCBpdCBoZXJlLiBJdCB3b3VsZCBhbHNvIGJlIGludGVyZXN0aW5nIHRv
-IGdldCBhIGJvb3Qgd2l0aAo+ID4+PiA+ICJkcm0uZGVidWc9MHgxZSBub3V2ZWF1LmRlYnVnPWRp
-c3A9dHJhY2UiIHdoaWNoIGhhcyB0aGUgbW9kZXN3aXRjaCBpbgo+ID4+PiA+IHF1ZXN0aW9uLgo+
-ID4+Pgo+ID4+PiBUaGUgc2NyZWVuIGlzIGNvbm5lY3RlZCB1c2luZyB0aGUgTURQIHBvcnQuCj4g
-Pj4+IEkgZG9uJ3QgZmluZCBhbnkgY2FyZE4tY29ubmVjdG9yIGRpcmVjdG9yeSwKPiA+Pj4gdGhl
-IGNsb3Nlc3QgbWF0Y2ggaXM6Cj4gPj4+Cj4gPj4+IC9zeXMvY2xhc3MvZHJtL2NhcmQwLURQLTEv
-ZWRpZAo+ID4+Cj4gPj4gTiA9IDAKPiA+PiBjb25uZWN0b3IgPSBEUC0xCj4gPj4KPiA+PiBzbyBs
-b29rcyBsaWtlIHlvdSBmb3VuZCBpdC4KPiA+Pgo+ID4+IEkgd2FzIGFjdHVhbGx5IGxvb2tpbmcg
-Zm9yIGRtZXNnIHdpdGggdGhvc2UgYm9vdCBwYXJhbWV0ZXJzLCBub3QgdGhlIFhvcmcgbG9nLgo+
-ID4+Cj4gPj4gU29tZXRoaW5nIHRvIHJhbmRvbWx5IHRyeSAtLSB4cmFuZHIgLXMgNjQweDQ4MCAt
-ciA3NSAtLSBwZXJoYXBzIGl0J2xsCj4gPj4gbGlrZSB0aGF0IG1vZGUgYmV0dGVyLgo+ID4KPiA+
-IFVzaW5nICItciA3NSIgZml4ZXMgdGhlIHByb2JsZW0uCj4gPgo+ID4+IEFsc28gZG9lcyA3MjB4
-NDgwIHdvcmsgYmV0dGVyPwo+ID4KPiA+IFllcywgNzIweDQ4MCB3b3JrcyB3aXRob3V0IHRoZSAt
-ciBwYXJhbWV0ZXIuCj4gPgo+ID4+IExvb2tpbmcgYXQgeW91ciBFRElELCB5b3UgaGF2ZToKPiA+
-Pgo+ID4+IEVzdGFibGlzaGVkIHRpbWluZ3Mgc3VwcG9ydGVkOgo+ID4+ICAgNzIweDQwMEA3MEh6
-IDk6NSBIb3JGcmVxOiAzMTQ2OSBIeiBDbG9jazogMjguMzIwIE1Iego+ID4+ICAgNjQweDQ4MEA2
-MEh6IDQ6MyBIb3JGcmVxOiAzMTQ2OSBIeiBDbG9jazogMjUuMTc1IE1Iego+ID4+ICAgNjQweDQ4
-MEA3NUh6IDQ6MyBIb3JGcmVxOiAzNzUwMCBIeiBDbG9jazogMzEuNTAwIE1Iego+ID4+ICAgODAw
-eDYwMEA2MEh6IDQ6MyBIb3JGcmVxOiAzNzkwMCBIeiBDbG9jazogNDAuMDAwIE1Iego+ID4+ICAg
-ODAweDYwMEA3NUh6IDQ6MyBIb3JGcmVxOiA0NjkwMCBIeiBDbG9jazogNDkuNTAwIE1Iego+ID4+
-ICAgMTAyNHg3NjhANjBIeiA0OjMgSG9yRnJlcTogNDg0MDAgSHogQ2xvY2s6IDY1LjAwMCBNSHoK
-PiA+PiAgIDEwMjR4NzY4QDc1SHogNDozIEhvckZyZXE6IDYwMDAwIEh6IENsb2NrOiA3OC43NTAg
-TUh6Cj4gPj4gICAxMjgweDEwMjRANzVIeiA1OjQgSG9yRnJlcTogODAwMDAgSHogQ2xvY2s6IDEz
-NS4wMDAgTUh6Cj4gPj4gU3RhbmRhcmQgdGltaW5ncyBzdXBwb3J0ZWQ6Cj4gPj4gICAxOTIweDEw
-ODBANjBIeiAxNjo5Cj4gPj4gICAxNjAweDEyMDBANjBIeiA0OjMgSG9yRnJlcTogNzUwMDAgSHog
-Q2xvY2s6IDE2Mi4wMDAgTUh6Cj4gPj4gICAxMjgweDEwMjRANjBIeiA1OjQgSG9yRnJlcTogNjQw
-MDAgSHogQ2xvY2s6IDEwOC4wMDAgTUh6Cj4gPj4gICAxMjgweDgwMEA2MEh6IDE2OjEwCj4gPj4g
-ICAxMTUyeDg2NEA3NUh6IDQ6MyBIb3JGcmVxOiA2NzUwMCBIeiBDbG9jazogMTA4LjAwMCBNSHoK
-PiA+Pgo+ID4+IENUQSBleHRlbnNpb24gYmxvY2sKPiA+PiBFeHRlbnNpb24gdmVyc2lvbjogMwo+
-ID4+IDI1IGJ5dGVzIG9mIENUQSBkYXRhCj4gPj4gICBWaWRlbyBkYXRhIGJsb2NrCj4gPj4gLi4u
-Cj4gPj4gICAgIFZJQyAgIDMgNzIweDQ4MEA2MEh6IDE2OjkgIEhvckZyZXE6IDMxNDY5IEh6IENs
-b2NrOiAyNy4wMDAgTUh6Cj4gPj4gICAgIFZJQyAgIDIgNzIweDQ4MEA2MEh6IDQ6MyAgSG9yRnJl
-cTogMzE0NjkgSHogQ2xvY2s6IDI3LjAwMCBNSHoKPiA+PiAgICAgVklDICAgMSA2NDB4NDgwQDYw
-SHogNDozICBIb3JGcmVxOiAzMTQ2OSBIeiBDbG9jazogMjUuMTc1IE1Iego+ID4KPiA+IE9rYXks
-IGlmIEkgcmVhZCBhbGwgdGhhdCByaWdodCB0aGUgRURJRCBzdXBwb3J0cyA2NDB4NDgwIGF0IDYw
-IGFuZCA3NWh6Lgo+ID4gVGhlIG1vbml0b3IgYWN0cyBzdHJhbmdlbHkgYXQgNjBoeiBidXQgaXMg
-b2theSBhdCA3NWh6Lgo+ID4gSXMgdGhpcyBzb21ldGhpbmcgSSBzaG91bGQgY29uZmlndXJlIG9y
-IGNhbiBub3V2ZWF1IGZpZ3VyZSBvdXQgdGhlIGJlc3QgbW9kZT8KPgo+IE9rYXksIGxvb2tzIGxp
-a2UgSSdtIG1vdmluZyBiYWNrIHRvIHRoZSBOdmlkaWEgcHJvcHJpZXRhcnkgZHJpdmVycyB1bnRp
-bAo+IGF0IGxlYXN0IHRoaXMgaXNzdWUgaXMgZml4ZWQuCj4KPiBTbywgSSdkIGxpa2UgdG8gZmls
-ZSBhIGJ1ZyByZXBvcnQgYnV0IEkgdHJpZWQgaGVyZToKPgo+IGh0dHBzOi8vYnVncy5mcmVlZGVz
-a3RvcC5vcmcvZW50ZXJfYnVnLmNnaQo+Cj4gYW5kIG15IG1haWxpbmcgbGlzdCB1c2VyaWQvcGFz
-c3dvcmQgZG9uJ3Qgd29yayB0aGVyZS4KPgo+IFNvLCBjb3VsZCBzb21lb25lIGdpdmUgbWUgZ3Vp
-ZGFuY2Ugb24gZmlsaW5nIHRoZSBidWcgcmVwb3J0IG9yIGZpbGUgb25lCj4gb24gbXkgYmVoYWxm
-Pwo+Cj4gSXQgbG9va3MgbGlrZSB0aGUgaXNzdWUgaXMsIHdoZW4gc3dpdGNoaW5nIG1vZGVzLCBp
-ZiB0aGVyZSBhcmUgbXVsdGlwbGUKPiBtYXRjaGVzIG9uIHRoZSByZXNvbHV0aW9uLCBOb3V2ZWF1
-IHNob3VsZCBwaWNrIHRoZSBtb2RlIHdpdGggdGhlCj4gaGlnaGVzdCBmcmVxdWVuY3kuCgpJIGRv
-bid0IGtub3cgaWYgdGhhdCdzIHRoZSByaWdodCBwb2xpY3kuIEVpdGhlciB3YXksIG5vdXZlYXUg
-aXMgbm90CnJlc3BvbnNpYmxlIGZvciB0aGluZ3MgbGlrZSB0aGF0IC4uLiBpdCBqdXN0IGRvZXMg
-d2hhdCBpdCdzIHRvbGQuIFdoeQpkb2Vzbid0IHRoZSA2MGh6IG1vZGUgd29yaz8KCklzIE5WSURJ
-QSdzIGRyaXZlciBhYmxlIHRvIGRyaXZlIHRoZSBtb25pdG9yIGF0IDY0MHg0ODBANjA/IElmIHNv
-LCB3ZQpzaG91bGQgZmlndXJlIG91dCB3aGF0IHRoZSBkaWZmZXJlbmNlIGlzLgoKQXMgZm9yIGZp
-bGluZyBidWdzLCBidWd6aWxsYSBpcyBzZXBhcmF0ZSBmcm9tIG1haWxtYW4uCgogIC1pbGlhCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+
+--===============0628139241==
+Content-Type: multipart/alternative; boundary="15503427651.F627b2D6E.1800"
+Content-Transfer-Encoding: 7bit
+
+
+--15503427651.F627b2D6E.1800
+Date: Sat, 16 Feb 2019 18:46:05 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109654
+
+            Bug ID: 109654
+           Summary: Nouveau picks bad mode setting 640x480 resolution
+           Product: xorg
+           Version: 7.7 (2012.06)
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: dan1espen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+This has been discussed on the Nouveau mailing list.
+
+When running this command:
+
+xrandr -s 640x480
+
+Nouveau only fills the screen horizontally, vertically it leaves 2/3s of the
+screen at the top and bottom unused.  This makes this mode unusable.
+
+Adding -r 75 to the above command fixes the problem.
+
+Perhaps the higher frequency mode should be used by default.
+
+The NVIDIA drivers do not have this problem, the screen is always filled.
+
+This bug breaks games like "lbrickbuster2" which want to run full screen at
+640x480.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15503427651.F627b2D6E.1800
+Date: Sat, 16 Feb 2019 18:46:05 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nouveau picks bad mode setting 640x480 resolution"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109654">109654</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nouveau picks bad mode setting 640x480 resolution
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>7.7 (2012.06)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>dan1espen&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>This has been discussed on the Nouveau mailing list.
+
+When running this command:
+
+xrandr -s 640x480
+
+Nouveau only fills the screen horizontally, vertically it leaves 2/3s of the
+screen at the top and bottom unused.  This makes this mode unusable.
+
+Adding -r 75 to the above command fixes the problem.
+
+Perhaps the higher frequency mode should be used by default.
+
+The NVIDIA drivers do not have this problem, the screen is always filled.
+
+This bug breaks games like &quot;lbrickbuster2&quot; which want to run full=
+ screen at
+640x480.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15503427651.F627b2D6E.1800--
+
+--===============0628139241==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0628139241==--
