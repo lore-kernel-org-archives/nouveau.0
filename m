@@ -1,64 +1,117 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: drm/nouveau/bios/ramcfg, setting of RON pull value
-Date: Sat, 16 Feb 2019 11:02:49 -0500
-Message-ID: <CAKb7UvgYJEw5xBjkXtomJwbMHLcTK0fr8pxiMODJ49Vv=3EF-w@mail.gmail.com>
-References: <2e3222ec-3355-b3d9-8409-5dcdc8b6de0c@canonical.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: About Porting Android to nouveau
+Date: Sat, 16 Feb 2019 10:51:20 -0500
+Message-ID: <CAKb7UvjZwfc6LNZbbqvbOT3RL0MCfJKR60ibdP-XEhk09u59zg@mail.gmail.com>
+References: <1BEC85DC-B7C2-4851-9E08-71AAD63F695D@flintos.io>
+ <CAKb7UvjM0qMZuesKLRMckdpTXUFMdQpC+oi7=7HkJpoFxxjzmA@mail.gmail.com>
+ <30549EE7-05DC-4006-B19C-DA72FCAB4229@fydeos.io>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <2e3222ec-3355-b3d9-8409-5dcdc8b6de0c@canonical.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Colin Ian King <colin.king@canonical.com>
-Cc: Roy Spliet <rspliet@eclipso.eu>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <30549EE7-05DC-4006-B19C-DA72FCAB4229-RBK+gUnp40Rhl2p70BpVqQ@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Yang Tsao <yang-RBK+gUnp40Rhl2p70BpVqQ@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Feb 16, 2019 at 10:02 AM Colin Ian King
-<colin.king@canonical.com> wrote:
->
-> Hi,
->
-> Static Analysis with CoverityScan as detected an issue with the setting
-> of the RON pull value in function nvkm_gddr3_calc in
-> drm/nouveau/bios/ramcfg.c
->
-> This was introduced by commit: c25bf7b6155cb ("drm/nouveau/bios/ramcfg:
-> Separate out RON pull value")
->
-> CoverityScan reports the issue as follows:
->
->  84        case 0x20:
->  85                CWL = (ram->next->bios.timing[1] & 0x00000f80) >> 7;
->  86                CL  = (ram->next->bios.timing[1] & 0x0000001f) >> 0;
->  87                WR  = (ram->next->bios.timing[2] & 0x007f0000) >> 16;
->  88                /* XXX: Get these values from the VBIOS instead */
->  89                DLL = !(ram->mr[1] & 0x1);
->
->    CID 1324005 (#1 of 1): Operands don't affect result
-> (CONSTANT_EXPRESSION_RESULT)
->
-> result_independent_of_operands: !(ram->mr[1] & 768) >> 8 is 0 regardless
-> of the values of its operands. This occurs as the operand of assignment.
->
->  90                RON = !(ram->mr[1] & 0x300) >> 8;
->  91                break;
->
-> Looking at this, I believe perhaps the correct setting could be:
->
-> RON = !((ram->mr[1] & 0x300) >> 8);
->
-> ..however I don't have the datasheet available for the H/W so I'm not
-> sure if this a correct fix.
-
-Actually looking at the code a bit, I suspect it should just be
-
-RON = (ram->mr[1] & 0x300) >> 8;
-
-since later on, when we recompose the MR (memory register) value, we do:
-
-        ram->mr[1] |= (RON & 0x03) << 8;
-
-(And the whole point here is that we don't know how to get the proper
-RON value for that timing table version, so we just copy whatever used
-to be there in that case.)
-
-  -ilia
+T24gU2F0LCBGZWIgMTYsIDIwMTkgYXQgMjoyNyBBTSBZYW5nIFRzYW8gPHlhbmdAZnlkZW9zLmlv
+PiB3cm90ZToKPgo+IFRoeCBmb3IgeW91ciByZXBseS4KPiBDaHJvbWl1bSBPUyBpcyBydW5uaW5n
+IGJhc2VkIERSTSBkcml2ZXIuIFRoZXJlIGlzIG5vIFggc2VydmVyIGZyYW1lIHdvcmsuIEkgbW9k
+aWZpZWQgbnY1MC9udjUwX2Zvcm1hdHMuYy4KPgo+IEFuZCB0aGVyZSBhbHNvIGEgZmV3IGNvZGUg
+cmVsYXRlZCB0aGUgZGlzcGxheSBmb3JtYXQ6Cj4gbnY1MF9zdXJmYWNlLmMKPiBGdW5jdGlvbiBu
+djUwXzJkX2Zvcm1hdDoKPiBJIGFkZDoKPgo+IOKAlOKAlOKAlOKAlOKAlOKAlOKAlOKAlOKAlOKA
+lOKAlAo+ICAgIHN3aXRjaCAoZm9ybWF0KSB7Cj4gICAgY2FzZSBQSVBFX0ZPUk1BVF9SOEc4QjhY
+OF9VTk9STToKPiAgICAgICAgIHJldHVybiBHODBfU1VSRkFDRV9GT1JNQVRfUkdCWDhfVU5PUk07
+Cj4gICAgICAgICBicmVhazsKPiAgICBjYXNlIFBJUEVfRk9STUFUX1I4RzhCOEE4X1VOT1JNOgo+
+ICAgICAgICAgcmV0dXJuIEc4MF9TVVJGQUNFX0ZPUk1BVF9SR0JBOF9VTk9STTsKPiAgICAgICAg
+IGJyZWFrOwo+ICAgIGRlZmF1bHQ6Cj4gICAgICAgICBicmVhazsKPiAgICB9CgpJIGRvbid0IHVu
+ZGVyc3RhbmQgd2h5IHRoYXQgd2FzIG5lY2Vzc2FyeS4gQWxsIDQgb2YgUkdCWDgsIFJHQkE4LApC
+R1JYOCwgQkdSQTggYXBwZWFyIHRvIGJlIGluIE5WNTBfRU5HMkRfU1VQUE9SVEVEX0ZPUk1BVFMs
+IHNvIHRoYXQKc2hvdWxkIGZhbGwgdW5kZXIgdGhlCgogICBpZiAoKGlkID49IDB4YzApICYmIChO
+VjUwX0VORzJEX1NVUFBPUlRFRF9GT1JNQVRTICYgKDFVTEwgPDwgKGlkIC0gMHhjMCkpKSkKICAg
+ICAgcmV0dXJuIGlkOwoKbG9naWMuIEFuZCBpZiB0aGV5IHdlcmVuJ3QsIHRoZSAyZCBlbmdpbmUg
+d291bGRuJ3QgYmUgaGFwcHkgaWYgeW91CmhhbmRlZCBpdCB1bmtub3duIGZvcm1hdHMuCgo+IOKA
+lOKAlOKAlOKAlOKAlOKAlOKAlOKAlOKAlOKAlOKAlAo+IE52NTBfYmxpdC5oCj4KPiDigJTigJTi
+gJTigJTigJTigJTigJTigJTigJTigJTigJQKPiBGdW5jdGlvbiBudjUwXzJkX2Zvcm1hdF9zdXBw
+b3J0ZWQKPgo+IEZ1bmN0aW9uIG52NTBfMmRfc3JjX2Zvcm1hdF9mYWl0aGZ1bAo+Cj4g4oCU4oCU
+4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCUCj4KPiBNeSBxdWVzdGlvbiBp
+cyA6IHdoeSBvbmx5IHN1cHBvcnQKPiBUaGUgZm9ybWF0ICB3aGljaCBpZCBiaWdnZXIgdGhhbiAw
+eGMwID8KPgo+IChpZCA+PSAweGMwKSAmJiAobWFzayAmICgxVUxMIDw8IChpZCAtIDB4YzApKSkK
+CldlbGwsIHRoZSBtYXNrcyBhcmUganVzdCBsaWtlIHRoYXQuLi4gd2UgZGVmaW5lLCBmb3IgbnY1
+MDoKCiNkZWZpbmUgTlY1MF9FTkcyRF9TVVBQT1JURURfRk9STUFUUyAweGZmMDg0M2UwODA2MDg0
+MDlVTEwKI2RlZmluZSBOVjUwX0VORzJEX05PQ09OVkVSVF9GT1JNQVRTIDB4MDAwODQwMjAwMDAw
+MDAwMFVMTAojZGVmaW5lIE5WNTBfRU5HMkRfTFVNSU5BTkNFX0ZPUk1BVFMgMHgwMDA4NDAyMDAw
+MDAwMDAwVUxMCiNkZWZpbmUgTlY1MF9FTkcyRF9JTlRFTlNJVFlfRk9STUFUUyAweDAwMDAwMDAw
+MDAwMDAwMDBVTEwKI2RlZmluZSBOVjUwX0VORzJEX09QRVJBVElPTl9GT1JNQVRTIDB4MDYwMDAx
+YzAwMDYwODAwMFVMTAoKQnV0IHRoZSBhY3R1YWwgZW51bSB2YWx1ZXMgYXJlIGxpa2UKCiNkZWZp
+bmUgRzgwX1NVUkZBQ0VfRk9STUFUX1JHQkEzMl9GTE9BVCAweDAwMDAwMGMwCiNkZWZpbmUgRzgw
+X1NVUkZBQ0VfRk9STUFUX1JHQkEzMl9TSU5UIDB4MDAwMDAwYzEKI2RlZmluZSBHODBfU1VSRkFD
+RV9GT1JNQVRfUkdCQTMyX1VJTlQgMHgwMDAwMDBjMgoKZXRjCgpTbyAuLi4gd2UganVzdCBzdWJ0
+cmFjdCAweGMwIHRvIGhhdmUgdGhlIGNhcGFiaWxpdHkgbWFza3MgZml0IGludG8KNjQtYml0IGlu
+dGVnZXJzLiBJTU8gaXQncyBhIGJpdCBvZiBhIHByZW1hdHVyZSBvcHRpbWl6YXRpb24sIGJ1dCBp
+dCdzCndheSBtb3JlIGxpa2UgSSdsbCBzY3JldyBzb21ldGhpbmcgdXAgd2hlbiB1bmRvaW5nIGl0
+IHRoYW4ganVzdApsZWF2aW5nIGl0IGFsb25lLiAoV2h5IGRpZCBOVklESUEgY2hvb3NlIHRvIHN0
+YXJ0IHRoZWlyIGhhcmR3YXJlCmZvcm1hdCBlbnVtcyBhdCAweGMwPyBObyBjbHVlLiBCdXQgaXQn
+cyB3aGF0IHRoZSBIVyBleHBlY3RzLi4uKQoKSG9wZSB0aGlzIGhlbHBzLAoKICAtaWxpYQoKPgo+
+Cj4gPiBPbiAyNCBOb3YgMjAxOCwgYXQgMTI6MjAgUE0sIElsaWEgTWlya2luIDxpbWlya2luQGFs
+dW0ubWl0LmVkdT4gd3JvdGU6Cj4gPgo+ID4gT24gRnJpLCBOb3YgMjMsIDIwMTggYXQgMTE6MDAg
+UE0gWWFuZyBUc2FvIDx5YW5nQGZ5ZGVvcy5pbz4gd3JvdGU6Cj4gPj4KPiA+PiBIaSwgZ3V5czoK
+PiA+PiBJ4oCZbSBhIGRldmVsb3BlciBvZiBGeWRlT1MuIFdlIHBvcnRpbmcgQ2hyb21pdW1PUyB0
+byBhbWQ2NCBhbmQgYXJtIHBsYXRmb3Jtcy4gTm93LCBJ4oCZbSB3b2tpbmcgb24gcG9ydGluZyBh
+bmRyb2lkIGVudmlyb25tZW50IHRvIE52aWRpYSBncmFwaGljIGNhcmRzLiBJIGhhdmUgZXhwZXJp
+ZW5jZSB0byBwb3J0IGFuZHJvaWQgdG8gVm13YXJlKFNWR0EpLgo+ID4+IEkgZm91bmQgdHdvIGRp
+c3BsYXkgZm9ybWF0cyB3ZXJlIG5vdCBzdXBwb3J0ZWQgdG8gZGlzcGxheSBpbiBub3V2ZWF1IGRy
+aXZlcjogUElQRV9GT1JNQVRfUjhHOEI4QThfVU5PUk0sIFBJUEVfRk9STUFUX1I4RzhCOFg4X1VO
+T1JNLiBXaGljaCBhcmUgZGVmaW5lZCBhdCBudjUwL252NTBfZm9ybWF0cy5jIGxpbmU6IDEzMCwx
+MzEuCj4gPj4KPiA+PiBDNChBLCBSOEc4QjhBOF9VTk9STSwgUkdCQThfVU5PUk0sIFIsIEcsIEIs
+IEEsIFVOT1JNLCBBOEI4RzhSOCwgSUIpLAo+ID4+IEYzKEEsIFI4RzhCOFg4X1VOT1JNLCBSR0JY
+OF9VTk9STSwgUiwgRywgQiwgeHgsIFVOT1JNLCBBOEI4RzhSOCwgVEIpLAo+ID4+Cj4gPj4gSSB3
+YW50IHRoZSBsYXN0IHBhcmFtcyB0byBiZSDigJxUROKAnSBvciDigJxJROKAnSAoc3VwcG9ydCBQ
+SVBFX0JJTkRfRElTUExBWV9UQVJHRVQpICwgdG8gc3VwcG9ydCBhbmRyb2lkLiBJIG1vZGlmaWVk
+IHRoZXNlIGNvZGUsIGJ1dCBnb3QgZGlzcGxheSBpc3N1ZXMgYW5kIGtlcm5lbCBpc3N1ZToKPiA+
+Cj4gPiBUaGF0J3MgZ2VuZXJhbGx5IGZpbmUgKElCIC0+IElELCBUQiAtPiBURCksIGJ1dCB5b3Ug
+bWlnaHQgd2FudCB0byBmbGlwCj4gPiB0aGUgQkdSQSBmb3JtYXRzIHRvIG5vdCBoYXZlIHRoZSBk
+aXNwbGF5IGJpdHMuIFNvbWUgd2luc3lzJ3MgZ2V0IHVwc2V0Cj4gPiBpZiB5b3UgaGF2ZSBib3Ro
+IFJHQkEgYW5kIEJHUkEgb3JkZXJpbmcgdGhvdWdoLiAoVGhlIHJlYXNvbiB0aGF0IHdlCj4gPiBw
+cmVmZXIgQkdSQTggb24gWCBpcyBsYXJnZWx5IGxlZ2FjeS4pCj4gPgo+ID4+IFsgICA5My4zMTM5
+OTVdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjogREFUQV9FUlJPUiAwMDAwMDA5YyBbXSBjaCA1
+IFswMDdmNmM2MDAwIFJlbmRlclRocmVhZFs1Mzk1XV0gc3ViYyAwIGNsYXNzIGEwOTcgbXRoZCAx
+NWYwIGRhdGEgMDAyYzAwMTQKPiA+PiBbICAgOTMuMzE0MDgyXSBub3V2ZWF1IDAwMDA6MDE6MDAu
+MDogZ3I6IERBVEFfRVJST1IgMDAwMDAwOWMgW10gY2ggNSBbMDA3ZjZjNjAwMCBSZW5kZXJUaHJl
+YWRbNTM5NV1dIHN1YmMgMCBjbGFzcyBhMDk3IG10aGQgMTVmMCBkYXRhIDAwMmQwMDE2Cj4gPj4g
+WyAgIDkzLjMxNDExMl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBEQVRBX0VSUk9SIDAwMDAw
+MDljIFtdIGNoIDUgWzAwN2Y2YzYwMDAgUmVuZGVyVGhyZWFkWzUzOTVdXSBzdWJjIDAgY2xhc3Mg
+YTA5NyBtdGhkIDE1ZjAgZGF0YSAwMDJkMDAxOAo+ID4+IFsgICA5My4zMTQyMTVdIG5vdXZlYXUg
+MDAwMDowMTowMC4wOiBncjogREFUQV9FUlJPUiAwMDAwMDA5YyBbXSBjaCA1IFswMDdmNmM2MDAw
+IFJlbmRlclRocmVhZFs1Mzk1XV0gc3ViYyAwIGNsYXNzIGEwOTcgbXRoZCAxNWYwIGRhdGEgMDAy
+ZDAwMWEKPiA+PiBbICAgOTMuMzE0MjQ0XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IERBVEFf
+RVJST1IgMDAwMDAwOWMgW10gY2ggNSBbMDA3ZjZjNjAwMCBSZW5kZXJUaHJlYWRbNTM5NV1dIHN1
+YmMgMCBjbGFzcyBhMDk3IG10aGQgMTVmMCBkYXRhIDAwMmQwMDFjCj4gPj4gWyAgIDkzLjMxNDI3
+Ml0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGdyOiBEQVRBX0VSUk9SIDAwMDAwMDljIFtdIGNoIDUg
+WzAwN2Y2YzYwMDAgUmVuZGVyVGhyZWFkWzUzOTVdXSBzdWJjIDAgY2xhc3MgYTA5NyBtdGhkIDE1
+ZjAgZGF0YSAwMDJkMDAxZQo+ID4+IFsgICA5My4zMTQzMDFdIG5vdXZlYXUgMDAwMDowMTowMC4w
+OiBncjogREFUQV9FUlJPUiAwMDAwMDA5YyBbXSBjaCA1IFswMDdmNmM2MDAwIFJlbmRlclRocmVh
+ZFs1Mzk1XV0gc3ViYyAwIGNsYXNzIGEwOTcgbXRoZCAxNWYwIGRhdGEgMDAyZTAwMjAKPiA+PiBb
+ICAgOTMuMzE0MzI1XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IERBVEFfRVJST1IgMDAwMDAw
+OWMgW10gY2ggNSBbMDA3ZjZjNjAwMCBSZW5kZXJUaHJlYWRbNTM5NV1dIHN1YmMgMCBjbGFzcyBh
+MDk3IG10aGQgMTVmMCBkYXRhIDAwMmUwMDIyCj4gPgo+ID4gSSBkb24ndCB0aGluayB0aGlzIGlz
+IHJlbGF0ZWQuIEFsdGhvdWdoIEknbSBhIGJpdCBwdXp6bGVkIGFzIHRvIHdoYXQKPiA+IHRoaXMg
+bWVhbnMuIFRoaXMgaXMgZnJvbSBpbmRleCBlbGVtZW50IHN1Ym1pc3Npb24gKFZCX0VMRU1FTlRf
+VTE2KS4KPiA+IFRoZXJlJ3Mgbm8gcmVhbCB3YXkgdG8gaGF2ZSBhIGRhdGEgZXJyb3IgdGhlcmUu
+Li4gcGVyaGFwcyBpdCB0aGluawo+ID4gaXQncyBvdXQgb2YgYm91bmRzLCBvciBzb21ldGhpbmcg
+ZWxzZSBpcyBub3QgY29uZmlndXJlZCBwcm9wZXJseS4gVGhpcwo+ID4gY291bGQgaGFwcGVuIGlm
+IHRoZXJlJ3MgbXVsdGktdGhyZWFkZWQgcmVuZGVyaW5nIGdvaW5nIG9uIC0tIHBsZWFzZQo+ID4g
+ZW5zdXJlIHRoYXQgb25seSBhIHNpbmdsZSB0aHJlYWQgZXZlciBjYWxscyBpbnRvIG5vdXZlYXUg
+YXQgYW55IGdpdmVuCj4gPiB0aW1lIGluIGEgcHJvY2Vzcy4KPiA+Cj4gPiBDaGVlcnMsCj4gPgo+
+ID4gIC1pbGlhCj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
