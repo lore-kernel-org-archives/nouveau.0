@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109654] Nouveau picks bad mode setting 640x480
- resolution
-Date: Sun, 17 Feb 2019 02:25:43 +0000
-Message-ID: <bug-109654-8800-jiUVFOeNtZ@http.bugs.freedesktop.org/>
-References: <bug-109654-8800@http.bugs.freedesktop.org/>
+From: Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] gr/gf100-: correctly expose fecs methods for
+ ctxsw start and stop
+Date: Sun, 17 Feb 2019 17:07:14 -0500
+Message-ID: <20190217220714.4233-1-rhyskidd@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0946120179=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109654-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,135 +16,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0946120179==
-Content-Type: multipart/alternative; boundary="15503703420.81E91.22749"
-Content-Transfer-Encoding: 7bit
-
-
---15503703420.81E91.22749
-Date: Sun, 17 Feb 2019 02:25:42 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109654
-
-Dan Espen <dan1espen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |NOTOURBUG
-             Status|NEW                         |RESOLVED
-
---- Comment #2 from Dan Espen <dan1espen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Changing status to resolved.
-
-I reinstalled the NVIDIA drivers, did an lsmod and noticed module
-"nvidia_modeset" running.
-I think that explains why I get different behavior with and without nouveau.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15503703420.81E91.22749
-Date: Sun, 17 Feb 2019 02:25:42 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:dan1espen=
-&#64;gmail.com" title=3D"Dan Espen &lt;dan1espen&#64;gmail.com&gt;"> <span =
-class=3D"fn">Dan Espen</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - Nouveau picks bad mode setting 640x480 res=
-olution"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109654">bug 10965=
-4</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>NOTOURBUG
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - Nouveau picks bad mode setting 640x480 res=
-olution"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109654#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTOURBUG - Nouveau picks bad mode setting 640x480 res=
-olution"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109654">bug 10965=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dan1espen&#64;gmail.com" title=3D"Dan Espen &lt;dan1espen&#64;gmail.com&gt;=
-"> <span class=3D"fn">Dan Espen</span></a>
-</span></b>
-        <pre>Changing status to resolved.
-
-I reinstalled the NVIDIA drivers, did an lsmod and noticed module
-&quot;nvidia_modeset&quot; running.
-I think that explains why I get different behavior with and without nouveau=
-.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15503703420.81E91.22749--
-
---===============0946120179==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0946120179==--
+QWxsb3cgZmVjcyB0byBwb3RlbnRpYWxseSBzZXQgYm90aCBtZXRob2RzOgotIDB4MzggIFNUT1Bf
+Q1RYU1cKLSAweDM5IFNUQVJUX0NUWFNXCgpBdCBwcmVzZW50IHRoZSBjb2RlIG9ubHkgZXZlciBz
+dGFydHMgY29udGV4dCBzd2FwLCBhbmQgbmV2ZXIgcGF1c2VzIGl0CmFzIGFwcGVhcnMgdG8gYmUg
+dGhlIGludGVudCBvZiBvbmUgY2FsbGVyIG9mIGdmMTAwX2dyX2ZlY3NfY3RybF9jdHhzKCkuCgpD
+YzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgpGaXhlczogMjY0MmUwYjUgKCJnci9n
+ZjEwMC06IGV4cG9zZSBmZWNzIG1ldGhvZHMgZm9yIHBhdXNpbmcgY3R4c3ciKQpTaWduZWQtb2Zm
+LWJ5OiBSaHlzIEtpZGQgPHJoeXNraWRkQGdtYWlsLmNvbT4KLS0tCgpCZW4sIEkgd3JvdGUgdGhp
+cyBwYXRjaCBhZ2FpbnN0IHRoZSBjb21taXQgaW4gaHR0cHM6Ly9naXRodWIuY29tL3NrZWdnc2Iv
+bm91dmVhdS8KV2hpbHN0IEkgaGF2ZW4ndCBzZWVuIDI2NDJlMGI1IGZyb20geW91ciAibm91dmVh
+dS1uZXh0IiByZXBvIG1lcmdlZCBpbnRvCmRybS1uZXh0IHlldCwgaWYgdGhhdCBvY2N1cnMgdGhp
+cyBwYXRjaCB3aWxsIGFsc28gbmVlZCB0byBiZSB0cmFja2VkIGludG8KZHJtLW5leHQgaW4gb3Jk
+ZXIgZm9yIHRoZSBmaXggdG8gbWFrZSBpdCBpbnRvIExpbnV4IDUuMS4KCldvdWxkIHlvdSBsaWtl
+IG1lIHRvIHdyaXRlIHRoYXQgcGF0Y2ggYXMgd2VsbD8KCiBkcm0vbm91dmVhdS9udmttL2VuZ2lu
+ZS9nci9nZjEwMC5jIHwgMiArLQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRl
+bGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAu
+YyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMKaW5kZXggNWJlYjY4M2EuLjgx
+YTEzY2Y5IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jCisr
+KyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMKQEAgLTcyOSw3ICs3MjksNyBA
+QCBnZjEwMF9ncl9mZWNzX2N0cmxfY3R4c3coc3RydWN0IGdmMTAwX2dyICpnciwgdTMyIG10aGQp
+CiAJbnZrbV93cjMyKGRldmljZSwgMHg0MDk4MDQsIDB4ZmZmZmZmZmYpOwogCW52a21fd3IzMihk
+ZXZpY2UsIDB4NDA5ODQwLCAweGZmZmZmZmZmKTsKIAludmttX3dyMzIoZGV2aWNlLCAweDQwOTUw
+MCwgMHhmZmZmZmZmZik7Ci0JbnZrbV93cjMyKGRldmljZSwgMHg0MDk1MDQsIDB4MDAwMDAwMzkp
+OworCW52a21fd3IzMihkZXZpY2UsIDB4NDA5NTA0LCBtdGhkKTsKIAludmttX21zZWMoZGV2aWNl
+LCAyMDAwLAogCQl1MzIgc3RhdCA9IG52a21fcmQzMihkZXZpY2UsIDB4NDA5ODA0KTsKIAkJaWYg
+KHN0YXQgPT0gMHgwMDAwMDAwMikKLS0gCjIuMTkuMQoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9ub3V2ZWF1
