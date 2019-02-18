@@ -1,49 +1,131 @@
-From: Rhys Kidd <rhyskidd-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] gr/gf100-: correctly expose fecs methods for
- ctxsw start and stop
-Date: Sun, 17 Feb 2019 17:07:14 -0500
-Message-ID: <20190217220714.4233-1-rhyskidd@gmail.com>
+From: Masahiro Yamada <yamada.masahiro@socionext.com>
+Subject: Re: [PATCH] drm: prefix header search paths with $(srctree)/
+Date: Mon, 18 Feb 2019 13:42:46 +0900
+Message-ID: <CAK7LNARkmkQr7Q2rhdB0GVFnvSpspRkoM1f9+=ULJ9y-aXQ3NQ@mail.gmail.com>
+References: <1548906999-22143-1-git-send-email-yamada.masahiro@socionext.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <1548906999-22143-1-git-send-email-yamada.masahiro@socionext.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel <dri-devel@lists.freedesktop.org>
+Cc: freedreno@lists.freedesktop.org, Zhenyu Wang <zhenyuw@linux.intel.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, linux-arm-msm <linux-arm-msm@vger.kernel.org>, intel-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Alex Deucher <alexander.deucher@amd.com>, Rob Clark <robdclark@gmail.com>, amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, Zhi Wang <zhi.a.wang@intel.com>, intel-gvt-dev@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-QWxsb3cgZmVjcyB0byBwb3RlbnRpYWxseSBzZXQgYm90aCBtZXRob2RzOgotIDB4MzggIFNUT1Bf
-Q1RYU1cKLSAweDM5IFNUQVJUX0NUWFNXCgpBdCBwcmVzZW50IHRoZSBjb2RlIG9ubHkgZXZlciBz
-dGFydHMgY29udGV4dCBzd2FwLCBhbmQgbmV2ZXIgcGF1c2VzIGl0CmFzIGFwcGVhcnMgdG8gYmUg
-dGhlIGludGVudCBvZiBvbmUgY2FsbGVyIG9mIGdmMTAwX2dyX2ZlY3NfY3RybF9jdHhzKCkuCgpD
-YzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgpGaXhlczogMjY0MmUwYjUgKCJnci9n
-ZjEwMC06IGV4cG9zZSBmZWNzIG1ldGhvZHMgZm9yIHBhdXNpbmcgY3R4c3ciKQpTaWduZWQtb2Zm
-LWJ5OiBSaHlzIEtpZGQgPHJoeXNraWRkQGdtYWlsLmNvbT4KLS0tCgpCZW4sIEkgd3JvdGUgdGhp
-cyBwYXRjaCBhZ2FpbnN0IHRoZSBjb21taXQgaW4gaHR0cHM6Ly9naXRodWIuY29tL3NrZWdnc2Iv
-bm91dmVhdS8KV2hpbHN0IEkgaGF2ZW4ndCBzZWVuIDI2NDJlMGI1IGZyb20geW91ciAibm91dmVh
-dS1uZXh0IiByZXBvIG1lcmdlZCBpbnRvCmRybS1uZXh0IHlldCwgaWYgdGhhdCBvY2N1cnMgdGhp
-cyBwYXRjaCB3aWxsIGFsc28gbmVlZCB0byBiZSB0cmFja2VkIGludG8KZHJtLW5leHQgaW4gb3Jk
-ZXIgZm9yIHRoZSBmaXggdG8gbWFrZSBpdCBpbnRvIExpbnV4IDUuMS4KCldvdWxkIHlvdSBsaWtl
-IG1lIHRvIHdyaXRlIHRoYXQgcGF0Y2ggYXMgd2VsbD8KCiBkcm0vbm91dmVhdS9udmttL2VuZ2lu
-ZS9nci9nZjEwMC5jIHwgMiArLQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRl
-bGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAu
-YyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMKaW5kZXggNWJlYjY4M2EuLjgx
-YTEzY2Y5IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jCisr
-KyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMKQEAgLTcyOSw3ICs3MjksNyBA
-QCBnZjEwMF9ncl9mZWNzX2N0cmxfY3R4c3coc3RydWN0IGdmMTAwX2dyICpnciwgdTMyIG10aGQp
-CiAJbnZrbV93cjMyKGRldmljZSwgMHg0MDk4MDQsIDB4ZmZmZmZmZmYpOwogCW52a21fd3IzMihk
-ZXZpY2UsIDB4NDA5ODQwLCAweGZmZmZmZmZmKTsKIAludmttX3dyMzIoZGV2aWNlLCAweDQwOTUw
-MCwgMHhmZmZmZmZmZik7Ci0JbnZrbV93cjMyKGRldmljZSwgMHg0MDk1MDQsIDB4MDAwMDAwMzkp
-OworCW52a21fd3IzMihkZXZpY2UsIDB4NDA5NTA0LCBtdGhkKTsKIAludmttX21zZWMoZGV2aWNl
-LCAyMDAwLAogCQl1MzIgc3RhdCA9IG52a21fcmQzMihkZXZpY2UsIDB4NDA5ODA0KTsKIAkJaWYg
-KHN0YXQgPT0gMHgwMDAwMDAwMikKLS0gCjIuMTkuMQoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9ub3V2ZWF1
+On Thu, Jan 31, 2019 at 1:01 PM Masahiro Yamada
+<yamada.masahiro@socionext.com> wrote:
+>
+> Currently, the Kbuild core manipulates header search paths in a crazy
+> way [1].
+>
+> To fix this mess, I want all Makefiles to add explicit $(srctree)/ to
+> the search paths in the srctree. Some Makefiles are already written in
+> that way, but not all. The goal of this work is to make the notation
+> consistent, and finally get rid of the gross hacks.
+>
+> Having whitespaces after -I does not matter since commit 48f6e3cf5bc6
+> ("kbuild: do not drop -I without parameter").
+>
+> [1]: https://patchwork.kernel.org/patch/9632347/
+>
+> Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> ---
+
+
+Could you take a look at this series, please?
+
+Thanks.
+
+
+
+
+
+> I put all gpu/drm changes into a single patch because
+> they are trivial conversion.
+>
+> Please let me know if I need to split this into per-driver patches.
+>
+>
+>  drivers/gpu/drm/amd/amdgpu/Makefile | 2 +-
+>  drivers/gpu/drm/amd/lib/Makefile    | 2 +-
+>  drivers/gpu/drm/i915/gvt/Makefile   | 2 +-
+>  drivers/gpu/drm/msm/Makefile        | 6 +++---
+>  drivers/gpu/drm/nouveau/Kbuild      | 8 ++++----
+>  5 files changed, 10 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
+> index f76bcb9..b21ebb0 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/Makefile
+> +++ b/drivers/gpu/drm/amd/amdgpu/Makefile
+> @@ -23,7 +23,7 @@
+>  # Makefile for the drm device driver.  This driver provides support for the
+>  # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
+>
+> -FULL_AMD_PATH=$(src)/..
+> +FULL_AMD_PATH=$(srctree)/$(src)/..
+>  DISPLAY_FOLDER_NAME=display
+>  FULL_AMD_DISPLAY_PATH = $(FULL_AMD_PATH)/$(DISPLAY_FOLDER_NAME)
+>
+> diff --git a/drivers/gpu/drm/amd/lib/Makefile b/drivers/gpu/drm/amd/lib/Makefile
+> index 6902430..d534992 100644
+> --- a/drivers/gpu/drm/amd/lib/Makefile
+> +++ b/drivers/gpu/drm/amd/lib/Makefile
+> @@ -27,6 +27,6 @@
+>  # driver components or later moved to kernel/lib for sharing with
+>  # other drivers.
+>
+> -ccflags-y := -I$(src)/../include
+> +ccflags-y := -I $(srctree)/$(src)/../include
+>
+>  obj-$(CONFIG_CHASH) += chash.o
+> diff --git a/drivers/gpu/drm/i915/gvt/Makefile b/drivers/gpu/drm/i915/gvt/Makefile
+> index b016dc7..a4a5a96 100644
+> --- a/drivers/gpu/drm/i915/gvt/Makefile
+> +++ b/drivers/gpu/drm/i915/gvt/Makefile
+> @@ -5,6 +5,6 @@ GVT_SOURCE := gvt.o aperture_gm.o handlers.o vgpu.o trace_points.o firmware.o \
+>         execlist.o scheduler.o sched_policy.o mmio_context.o cmd_parser.o debugfs.o \
+>         fb_decoder.o dmabuf.o page_track.o
+>
+> -ccflags-y                              += -I$(src) -I$(src)/$(GVT_DIR)
+> +ccflags-y                              += -I $(srctree)/$(src) -I $(srctree)/$(src)/$(GVT_DIR)/
+>  i915-y                                 += $(addprefix $(GVT_DIR)/, $(GVT_SOURCE))
+>  obj-$(CONFIG_DRM_I915_GVT_KVMGT)       += $(GVT_DIR)/kvmgt.o
+> diff --git a/drivers/gpu/drm/msm/Makefile b/drivers/gpu/drm/msm/Makefile
+> index 56a70c7..b7b1ebd 100644
+> --- a/drivers/gpu/drm/msm/Makefile
+> +++ b/drivers/gpu/drm/msm/Makefile
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0
+> -ccflags-y := -Idrivers/gpu/drm/msm
+> -ccflags-y += -Idrivers/gpu/drm/msm/disp/dpu1
+> -ccflags-$(CONFIG_DRM_MSM_DSI) += -Idrivers/gpu/drm/msm/dsi
+> +ccflags-y := -I $(srctree)/$(src)
+> +ccflags-y += -I $(srctree)/$(src)/disp/dpu1
+> +ccflags-$(CONFIG_DRM_MSM_DSI) += -I $(srctree)/$(src)/dsi
+>
+>  msm-y := \
+>         adreno/adreno_device.o \
+> diff --git a/drivers/gpu/drm/nouveau/Kbuild b/drivers/gpu/drm/nouveau/Kbuild
+> index b17843d..b4bc88ad 100644
+> --- a/drivers/gpu/drm/nouveau/Kbuild
+> +++ b/drivers/gpu/drm/nouveau/Kbuild
+> @@ -1,7 +1,7 @@
+> -ccflags-y += -I$(src)/include
+> -ccflags-y += -I$(src)/include/nvkm
+> -ccflags-y += -I$(src)/nvkm
+> -ccflags-y += -I$(src)
+> +ccflags-y += -I $(srctree)/$(src)/include
+> +ccflags-y += -I $(srctree)/$(src)/include/nvkm
+> +ccflags-y += -I $(srctree)/$(src)/nvkm
+> +ccflags-y += -I $(srctree)/$(src)
+>
+>  # NVKM - HW resource manager
+>  #- code also used by various userspace tools/tests
+> --
+> 2.7.4
+>
+
+
+-- 
+Best Regards
+Masahiro Yamada
