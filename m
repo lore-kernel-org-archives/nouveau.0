@@ -1,131 +1,117 @@
-From: Masahiro Yamada <yamada.masahiro@socionext.com>
-Subject: Re: [PATCH] drm: prefix header search paths with $(srctree)/
-Date: Mon, 18 Feb 2019 13:42:46 +0900
-Message-ID: <CAK7LNARkmkQr7Q2rhdB0GVFnvSpspRkoM1f9+=ULJ9y-aXQ3NQ@mail.gmail.com>
-References: <1548906999-22143-1-git-send-email-yamada.masahiro@socionext.com>
+From: Sasha Levin <sashal@kernel.org>
+Subject: Re: [PATCH] pci/quirks: Add quirk to reset nvgpu at boot for the
+ Lenovo ThinkPad P50
+Date: Mon, 18 Feb 2019 21:14:28 +0000
+Message-ID: <20190218211429.40B7F21773@mail.kernel.org>
+References: <20190212220230.1568-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1548906999-22143-1-git-send-email-yamada.masahiro@socionext.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel <dri-devel@lists.freedesktop.org>
-Cc: freedreno@lists.freedesktop.org, Zhenyu Wang <zhenyuw@linux.intel.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, linux-arm-msm <linux-arm-msm@vger.kernel.org>, intel-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Alex Deucher <alexander.deucher@amd.com>, Rob Clark <robdclark@gmail.com>, amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, Zhi Wang <zhi.a.wang@intel.com>, intel-gvt-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20190212220230.1568-1-lyude@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Sasha Levin <sashal@kernel.org>, Lyude Paul <lyude@redhat.com>, linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>
+Cc: Karol Herbst <kherbst@redhat.com>, nouveau@lists.freedesktop.org, stable@vger.kernel.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jan 31, 2019 at 1:01 PM Masahiro Yamada
-<yamada.masahiro@socionext.com> wrote:
->
-> Currently, the Kbuild core manipulates header search paths in a crazy
-> way [1].
->
-> To fix this mess, I want all Makefiles to add explicit $(srctree)/ to
-> the search paths in the srctree. Some Makefiles are already written in
-> that way, but not all. The goal of this work is to make the notation
-> consistent, and finally get rid of the gross hacks.
->
-> Having whitespaces after -I does not matter since commit 48f6e3cf5bc6
-> ("kbuild: do not drop -I without parameter").
->
-> [1]: https://patchwork.kernel.org/patch/9632347/
->
-> Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
-> ---
-
-
-Could you take a look at this series, please?
-
-Thanks.
-
-
-
-
-
-> I put all gpu/drm changes into a single patch because
-> they are trivial conversion.
->
-> Please let me know if I need to split this into per-driver patches.
->
->
->  drivers/gpu/drm/amd/amdgpu/Makefile | 2 +-
->  drivers/gpu/drm/amd/lib/Makefile    | 2 +-
->  drivers/gpu/drm/i915/gvt/Makefile   | 2 +-
->  drivers/gpu/drm/msm/Makefile        | 6 +++---
->  drivers/gpu/drm/nouveau/Kbuild      | 8 ++++----
->  5 files changed, 10 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/Makefile b/drivers/gpu/drm/amd/amdgpu/Makefile
-> index f76bcb9..b21ebb0 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/Makefile
-> +++ b/drivers/gpu/drm/amd/amdgpu/Makefile
-> @@ -23,7 +23,7 @@
->  # Makefile for the drm device driver.  This driver provides support for the
->  # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
->
-> -FULL_AMD_PATH=$(src)/..
-> +FULL_AMD_PATH=$(srctree)/$(src)/..
->  DISPLAY_FOLDER_NAME=display
->  FULL_AMD_DISPLAY_PATH = $(FULL_AMD_PATH)/$(DISPLAY_FOLDER_NAME)
->
-> diff --git a/drivers/gpu/drm/amd/lib/Makefile b/drivers/gpu/drm/amd/lib/Makefile
-> index 6902430..d534992 100644
-> --- a/drivers/gpu/drm/amd/lib/Makefile
-> +++ b/drivers/gpu/drm/amd/lib/Makefile
-> @@ -27,6 +27,6 @@
->  # driver components or later moved to kernel/lib for sharing with
->  # other drivers.
->
-> -ccflags-y := -I$(src)/../include
-> +ccflags-y := -I $(srctree)/$(src)/../include
->
->  obj-$(CONFIG_CHASH) += chash.o
-> diff --git a/drivers/gpu/drm/i915/gvt/Makefile b/drivers/gpu/drm/i915/gvt/Makefile
-> index b016dc7..a4a5a96 100644
-> --- a/drivers/gpu/drm/i915/gvt/Makefile
-> +++ b/drivers/gpu/drm/i915/gvt/Makefile
-> @@ -5,6 +5,6 @@ GVT_SOURCE := gvt.o aperture_gm.o handlers.o vgpu.o trace_points.o firmware.o \
->         execlist.o scheduler.o sched_policy.o mmio_context.o cmd_parser.o debugfs.o \
->         fb_decoder.o dmabuf.o page_track.o
->
-> -ccflags-y                              += -I$(src) -I$(src)/$(GVT_DIR)
-> +ccflags-y                              += -I $(srctree)/$(src) -I $(srctree)/$(src)/$(GVT_DIR)/
->  i915-y                                 += $(addprefix $(GVT_DIR)/, $(GVT_SOURCE))
->  obj-$(CONFIG_DRM_I915_GVT_KVMGT)       += $(GVT_DIR)/kvmgt.o
-> diff --git a/drivers/gpu/drm/msm/Makefile b/drivers/gpu/drm/msm/Makefile
-> index 56a70c7..b7b1ebd 100644
-> --- a/drivers/gpu/drm/msm/Makefile
-> +++ b/drivers/gpu/drm/msm/Makefile
-> @@ -1,7 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0
-> -ccflags-y := -Idrivers/gpu/drm/msm
-> -ccflags-y += -Idrivers/gpu/drm/msm/disp/dpu1
-> -ccflags-$(CONFIG_DRM_MSM_DSI) += -Idrivers/gpu/drm/msm/dsi
-> +ccflags-y := -I $(srctree)/$(src)
-> +ccflags-y += -I $(srctree)/$(src)/disp/dpu1
-> +ccflags-$(CONFIG_DRM_MSM_DSI) += -I $(srctree)/$(src)/dsi
->
->  msm-y := \
->         adreno/adreno_device.o \
-> diff --git a/drivers/gpu/drm/nouveau/Kbuild b/drivers/gpu/drm/nouveau/Kbuild
-> index b17843d..b4bc88ad 100644
-> --- a/drivers/gpu/drm/nouveau/Kbuild
-> +++ b/drivers/gpu/drm/nouveau/Kbuild
-> @@ -1,7 +1,7 @@
-> -ccflags-y += -I$(src)/include
-> -ccflags-y += -I$(src)/include/nvkm
-> -ccflags-y += -I$(src)/nvkm
-> -ccflags-y += -I$(src)
-> +ccflags-y += -I $(srctree)/$(src)/include
-> +ccflags-y += -I $(srctree)/$(src)/include/nvkm
-> +ccflags-y += -I $(srctree)/$(src)/nvkm
-> +ccflags-y += -I $(srctree)/$(src)
->
->  # NVKM - HW resource manager
->  #- code also used by various userspace tools/tests
-> --
-> 2.7.4
->
-
-
--- 
-Best Regards
-Masahiro Yamada
+SGksCgpbVGhpcyBpcyBhbiBhdXRvbWF0ZWQgZW1haWxdCgpUaGlzIGNvbW1pdCBoYXMgYmVlbiBw
+cm9jZXNzZWQgYmVjYXVzZSBpdCBjb250YWlucyBhIC1zdGFibGUgdGFnLgpUaGUgc3RhYmxlIHRh
+ZyBpbmRpY2F0ZXMgdGhhdCBpdCdzIHJlbGV2YW50IGZvciB0aGUgZm9sbG93aW5nIHRyZWVzOiBh
+bGwKClRoZSBib3QgaGFzIHRlc3RlZCB0aGUgZm9sbG93aW5nIHRyZWVzOiB2NC4yMC44LCB2NC4x
+OS4yMSwgdjQuMTQuOTksIHY0LjkuMTU2LCB2NC40LjE3NCwgdjMuMTguMTM0LgoKdjQuMjAuODog
+QnVpbGQgT0shCnY0LjE5LjIxOiBGYWlsZWQgdG8gYXBwbHkhIFBvc3NpYmxlIGRlcGVuZGVuY2ll
+czoKICAgIDAxZDVkN2ZhODM3NiAoIlBDSTogQWRkIG1hY3JvIGZvciBTd2l0Y2h0ZWMgcXVpcmsg
+ZGVjbGFyYXRpb25zIikKCnY0LjE0Ljk5OiBGYWlsZWQgdG8gYXBwbHkhIFBvc3NpYmxlIGRlcGVu
+ZGVuY2llczoKICAgIDAxZDVkN2ZhODM3NiAoIlBDSTogQWRkIG1hY3JvIGZvciBTd2l0Y2h0ZWMg
+cXVpcmsgZGVjbGFyYXRpb25zIikKICAgIDA2ZGM0ZWU1NGUzMCAoIlBDSTogRGlzYWJsZSBNU0kg
+Zm9yIEZyZWVzY2FsZSBMYXllcnNjYXBlIFBDSWUgUkMgbW9kZSIpCiAgICAwN2Y0Zjk3ZDdiNGIg
+KCJ2Z2Ffc3dpdGNoZXJvbzogVXNlIGRldmljZSBsaW5rIGZvciBIREEgY29udHJvbGxlciIpCiAg
+ICA4OTQ4Y2ExYTEyYzkgKCJ2Z2Ffc3dpdGNoZXJvbzogRGVkdXBsaWNhdGUgcG93ZXIgc3RhdGUg
+dHJhY2tpbmciKQogICAgYWQyODFlY2YxYzdkICgiUENJOiBBZGQgRE1BIGFsaWFzIHF1aXJrIGZv
+ciBNaWNyb3NlbWkgU3dpdGNodGVjIE5UQiIpCgp2NC45LjE1NjogRmFpbGVkIHRvIGFwcGx5ISBQ
+b3NzaWJsZSBkZXBlbmRlbmNpZXM6CiAgICAwMWQ1ZDdmYTgzNzYgKCJQQ0k6IEFkZCBtYWNybyBm
+b3IgU3dpdGNodGVjIHF1aXJrIGRlY2xhcmF0aW9ucyIpCiAgICAwN2Y0Zjk3ZDdiNGIgKCJ2Z2Ff
+c3dpdGNoZXJvbzogVXNlIGRldmljZSBsaW5rIGZvciBIREEgY29udHJvbGxlciIpCiAgICAzZTEz
+Njc2ODYyZjkgKCJ0aHVuZGVyYm9sdDogQWRkIHN1cHBvcnQgZm9yIERNQSBjb25maWd1cmF0aW9u
+IGJhc2VkIG1haWxib3giKQogICAgNDZjZDRiNzVjZDBlICgiZWZpOiBBZGQgZGV2aWNlIHBhdGgg
+cGFyc2VyIikKICAgIDU4YzU0NzVhYmE2NyAoIng4Ni9lZmk6IFJldHJpZXZlIGFuZCBhc3NpZ24g
+QXBwbGUgZGV2aWNlIHByb3BlcnRpZXMiKQogICAgNjMwYjNhZmY4YTUxICgidHJlZXdpZGU6IENv
+bnNvbGlkYXRlIEFwcGxlIERNSSBjaGVja3MiKQogICAgODFhNTRiNWUxOTg2ICgidGh1bmRlcmJv
+bHQ6IExldCB0aGUgY29ubmVjdGlvbiBtYW5hZ2VyIGhhbmRsZSBhbGwgbm90aWZpY2F0aW9ucyIp
+CiAgICA4OTQ4Y2ExYTEyYzkgKCJ2Z2Ffc3dpdGNoZXJvbzogRGVkdXBsaWNhdGUgcG93ZXIgc3Rh
+dGUgdHJhY2tpbmciKQogICAgOWQzY2NlMGI2MTM2ICgidGh1bmRlcmJvbHQ6IEludHJvZHVjZSB0
+aHVuZGVyYm9sdCBidXMgYW5kIGNvbm5lY3Rpb24gbWFuYWdlciIpCiAgICBhYzZjNDRkZTUwM2Ug
+KCJ0aHVuZGVyYm9sdDogRXhwb3NlIGdldF9yb3V0ZSgpIHRvIG90aGVyIGZpbGVzIikKICAgIGFk
+MjgxZWNmMWM3ZCAoIlBDSTogQWRkIERNQSBhbGlhcyBxdWlyayBmb3IgTWljcm9zZW1pIFN3aXRj
+aHRlYyBOVEIiKQogICAgYmZlNzc4YWM0OTgyICgidGh1bmRlcmJvbHQ6IENvbnZlcnQgc3dpdGNo
+IHRvIGEgZGV2aWNlIikKICAgIGM5Y2MzYWFhMDI4MSAoInRodW5kZXJib2x0OiBVc2UgRGV2aWNl
+IFJPTSByZXRyaWV2ZWQgZnJvbSBFRkkiKQogICAgZGEyZGEwNGI4ZDQ0ICgidGh1bmRlcmJvbHQ6
+IFJld29yayBjYXBhYmlsaXR5IGhhbmRsaW5nIikKICAgIGY2N2NmNDkxMTc1YSAoInRodW5kZXJi
+b2x0OiBBZGQgc3VwcG9ydCBmb3IgSW50ZXJuYWwgQ29ubmVjdGlvbiBNYW5hZ2VyIChJQ00pIikK
+ICAgIGZhNmQ1MTNhZWZlNCAoImRyaXZlcnM6Z3B1OiB2Z2EgOnZnYV9zd2l0Y2hlcm9vLmMgOiBG
+aXhlZCBzb21lIGNvZGluZyBzdHlsZSBpc3N1ZXMiKQoKdjQuNC4xNzQ6IEZhaWxlZCB0byBhcHBs
+eSEgUG9zc2libGUgZGVwZW5kZW5jaWVzOgogICAgMDFkNWQ3ZmE4Mzc2ICgiUENJOiBBZGQgbWFj
+cm8gZm9yIFN3aXRjaHRlYyBxdWlyayBkZWNsYXJhdGlvbnMiKQogICAgMDdmNGY5N2Q3YjRiICgi
+dmdhX3N3aXRjaGVyb286IFVzZSBkZXZpY2UgbGluayBmb3IgSERBIGNvbnRyb2xsZXIiKQogICAg
+MTRkMjAwMDE4MmVkICgiZHJtL3JhZGVvbjogRGVmZXIgcHJvYmUgaWYgZ211eCBpcyBwcmVzZW50
+IGJ1dCBpdHMgZHJpdmVyIGlzbid0IikKICAgIDE1NmQ3ZDQxMjBlMSAoInZnYV9zd2l0Y2hlcm9v
+OiBBZGQgaGFuZGxlciBmbGFncyBpbmZyYXN0cnVjdHVyZSIpCiAgICAzYTg0ODY2MmM3NTEgKCJ2
+Z2Ffc3dpdGNoZXJvbzogUHJldHRpZnkgZG9jdW1lbnRhdGlvbiIpCiAgICA0MTJjOGY3ZGUwMTEg
+KCJkcm0vcmFkZW9uOiBSZXR1cm4gLUVQUk9CRV9ERUZFUiB3aGVuIGFtZGtmZCBub3QgbG9hZGVk
+IikKICAgIDcwNGFiNjE0ZWMxMiAoImRybS9pOTE1OiBEZWZlciBwcm9iZSBpZiBnbXV4IGlzIHBy
+ZXNlbnQgYnV0IGl0cyBkcml2ZXIgaXNuJ3QiKQogICAgODk0OGNhMWExMmM5ICgidmdhX3N3aXRj
+aGVyb286IERlZHVwbGljYXRlIHBvd2VyIHN0YXRlIHRyYWNraW5nIikKICAgIDk4OTU2MWRlOWI1
+MSAoIlBNIC8gRG9tYWluczogYWRkIHNldHRlciBmb3IgZGV2LnBtX2RvbWFpbiIpCiAgICA5OGIz
+YTM0MDJlYjYgKCJkcm0vbm91dmVhdTogRGVmZXIgcHJvYmUgaWYgZ211eCBpcyBwcmVzZW50IGJ1
+dCBpdHMgZHJpdmVyIGlzbid0IikKICAgIGEzNDU5MThkNmVlNiAoInZnYV9zd2l0Y2hlcm9vOiBT
+dXBwb3J0IGRlZmVycmVkIHByb2Jpbmcgb2YgYXVkaW8gY2xpZW50cyIpCiAgICBhZDI4MWVjZjFj
+N2QgKCJQQ0k6IEFkZCBETUEgYWxpYXMgcXVpcmsgZm9yIE1pY3Jvc2VtaSBTd2l0Y2h0ZWMgTlRC
+IikKICAgIGIwMGU1MzM0YWIxYiAoInZnYV9zd2l0Y2hlcm9vOiBBZGQgaGVscGVyIGZvciBkZWZl
+cnJlZCBwcm9iaW5nIikKICAgIGI1Zjg4ZGQxZDZlZiAoIlJldmVydCAiQUNQSSAvIExQU1M6IGFs
+bG93IHRvIHVzZSBzcGVjaWZpYyBQTSBkb21haW4gZHVyaW5nIC0+cHJvYmUoKSIiKQogICAgYzFl
+MTY1NWJiODkyICgiYXBwbGUtZ211eDogQXNzaWduIGFwcGxlX2dtdXhfZGF0YSBiZWZvcmUgcmVn
+aXN0ZXJpbmciKQogICAgYzY4ZjQ1MjhhMmU5ICgiZHJtL2FtZGtmZDogVHJhY2sgd2hlbiBtb2R1
+bGUncyBpbml0IGlzIGNvbXBsZXRlIikKICAgIGZhNmQ1MTNhZWZlNCAoImRyaXZlcnM6Z3B1OiB2
+Z2EgOnZnYV9zd2l0Y2hlcm9vLmMgOiBGaXhlZCBzb21lIGNvZGluZyBzdHlsZSBpc3N1ZXMiKQoK
+djMuMTguMTM0OiBGYWlsZWQgdG8gYXBwbHkhIFBvc3NpYmxlIGRlcGVuZGVuY2llczoKICAgIDAx
+ZDVkN2ZhODM3NiAoIlBDSTogQWRkIG1hY3JvIGZvciBTd2l0Y2h0ZWMgcXVpcmsgZGVjbGFyYXRp
+b25zIikKICAgIDA3ZjRmOTdkN2I0YiAoInZnYV9zd2l0Y2hlcm9vOiBVc2UgZGV2aWNlIGxpbmsg
+Zm9yIEhEQSBjb250cm9sbGVyIikKICAgIDA4M2RiYTAyOTQ3ZCAoImRybS9ub3V2ZWF1L2Rldmlj
+ZTogcmVjb2duaXNlIEdNMjA0IikKICAgIDJmNGE1OGU4NTJkMSAoImRybS9ub3V2ZWF1L3N1YmRl
+djogYWx3YXlzIHVwY2FzdCB0aHJvdWdoIG5vdXZlYXVfc3ViZGV2KCkvbm91dmVhdV9lbmdpbmUo
+KSIpCiAgICA0NzY2ZWM1Mzk0NWYgKCJkcm0vbm91dmVhdS9iaW9zOiBhZGQgcGFyc2luZyBvZiBC
+SVQgTSh2MikgKzB4MDMgdGFibGUiKQogICAgNTBlMjE2ZDZlN2MzICgiZHJtL25vdXZlYXUvYmlv
+czogYWRkIHBhcnNpbmcgb2YgcG11IGltYWdlIHRhYmxlcyIpCiAgICA1NDQ0MjA0MDM2YjIgKCJk
+cm0vbm91dmVhdTogc3dpdGNoIHRvIG5ldy1zdHlsZSB0aW1lciBtYWNyb3MiKQogICAgN2JiNmQ0
+NDI4ZDNkICgiZHJtL25vdXZlYXU6IG1vdmUgdGhlIChmYXIgdG9vIG1hbnkuLi4pIGRpZmZlcmVu
+dCBzL3IgcGF0aHMgdG8gdGhlIHNhbWUgcGxhY2UiKQogICAgOGQ1ZTNhZjE1Yzc5ICgiZHJtL25v
+dXZlYXUvZGV2aWNlOiBBZGQgc3VwcG9ydCBmb3IgR0syMDhCLCByZXNvbHZlcyBidWcgODY5MzUi
+KQogICAgOGQ4NWUwNmI1ZTA0ICgiZHJtL25vdXZlYXUvYmlvczogYWRkIHBjaSBkYXRhIHN0cnVj
+dHVyZSBwYXJzaW5nIikKICAgIDk4OWFhNWI3NmFkMiAoImRybS9ub3V2ZWF1L252aWY6IG5hbWVz
+cGFjZSBvZiBudmttIGFjY2Vzc29ycyAobm8gYmluYXJ5IGNoYW5nZSkiKQogICAgYTAxY2E3OGM4
+ZjExICgiZHJtL25vdXZlYXUvbnZpZjogc2ltcGxpZnkgYW5kIHRpZHkgbGlicmFyeSBpbnRlcmZh
+Y2VzIikKICAgIGFkMjgxZWNmMWM3ZCAoIlBDSTogQWRkIERNQSBhbGlhcyBxdWlyayBmb3IgTWlj
+cm9zZW1pIFN3aXRjaHRlYyBOVEIiKQogICAgYWQ0YTM2MjYzNTM1ICgiZHJtL25vdXZlYXUvYmlv
+czogc3BsaXQgb3V0IHNoYWRvdyBtZXRob2RzIikKICAgIGI3MWExMzQ0ZWMyMCAoImRybS9ub3V2
+ZWF1L2Jpb3M6IGFkZCBOUERFIHBhcnNpbmciKQogICAgYmE2ZTM0ZTYxMjcxICgiZHJtL2dtMjA0
+L2RldmluaXQ6IGluaXRpYWwgaW1wbGVtZW50YXRpb24iKQogICAgYmU4M2NkNGVmOWEyICgiZHJt
+L25vdXZlYXU6IGZpbmFsaXNlIG52a20gbmFtZXNwYWNlIHN3aXRjaCAobm8gYmluYXJ5IGNoYW5n
+ZSkiKQogICAgYzM5ZjQ3MmU5ZjE0ICgiZHJtL25vdXZlYXU6IHJlbW92ZSBzeW1saW5rcywgbW92
+ZSBjb3JlLyB0byBudmttLyAobm8gY29kZSBjaGFuZ2VzKSIpCiAgICBjYjhiYjljZWRiNjAgKCJk
+cm0vbm91dmVhdS90bXI6IGNvc21ldGljIGNoYW5nZXMiKQogICAgZDM4Y2VhZjk5ZWQwICgiZHJt
+L2FtZGdwdTogYWRkIGNvcmUgZHJpdmVyICh2NCkiKQogICAgZjM4NjdmNDM5ZmQ2ICgiZHJtL25v
+dXZlYXUvY2xrOiByZW5hbWUgZnJvbSBjbG9jayAobm8gYmluYXJ5IGNoYW5nZSkiKQogICAgZjhh
+ODU0NjE5NGQ3ICgiZHJtL25vdXZlYXUvY2xrOiBhbGxvdyBub24tYmxvY2tpbmcgZm9yIG5vdXZl
+YXVfY2xvY2tfYXN0YXRlKCkiKQoKCkhvdyBzaG91bGQgd2UgcHJvY2VlZCB3aXRoIHRoaXMgcGF0
+Y2g/CgotLQpUaGFua3MsClNhc2hhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2RyaS1kZXZlbA==
