@@ -1,117 +1,104 @@
-From: Sasha Levin <sashal@kernel.org>
+From: Bjorn Helgaas <bhelgaas@google.com>
 Subject: Re: [PATCH] pci/quirks: Add quirk to reset nvgpu at boot for the
  Lenovo ThinkPad P50
-Date: Mon, 18 Feb 2019 21:14:36 +0000
-Message-ID: <20190218211437.7FAF321738@mail.kernel.org>
-References: <20190212220230.1568-1-lyude@redhat.com>
+Date: Mon, 18 Feb 2019 16:18:37 -0600
+Message-ID: <CAErSpo66fUjkFNsCvONY8PzoCrtg-hEA+riWoq0J4pymxZcYXQ@mail.gmail.com>
+References: <20190212220230.1568-1-lyude@redhat.com> <20190218211437.7FAF321738@mail.kernel.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20190212220230.1568-1-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Sasha Levin <sashal@kernel.org>, Lyude Paul <lyude@redhat.com>, linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>
-Cc: Karol Herbst <kherbst@redhat.com>, nouveau@lists.freedesktop.org, stable@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20190218211437.7FAF321738@mail.kernel.org>
+Sender: stable-owner@vger.kernel.org
+To: Sasha Levin <sashal@kernel.org>
+Cc: Lyude Paul <lyude@redhat.com>, linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, DRI mailing list <dri-devel@lists.freedesktop.org>, Karol Herbst <kherbst@redhat.com>, Ben Skeggs <skeggsb@gmail.com>, stable@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpbVGhpcyBpcyBhbiBhdXRvbWF0ZWQgZW1haWxdCgpUaGlzIGNvbW1pdCBoYXMgYmVlbiBw
-cm9jZXNzZWQgYmVjYXVzZSBpdCBjb250YWlucyBhIC1zdGFibGUgdGFnLgpUaGUgc3RhYmxlIHRh
-ZyBpbmRpY2F0ZXMgdGhhdCBpdCdzIHJlbGV2YW50IGZvciB0aGUgZm9sbG93aW5nIHRyZWVzOiBh
-bGwKClRoZSBib3QgaGFzIHRlc3RlZCB0aGUgZm9sbG93aW5nIHRyZWVzOiB2NC4yMC44LCB2NC4x
-OS4yMSwgdjQuMTQuOTksIHY0LjkuMTU2LCB2NC40LjE3NCwgdjMuMTguMTM0LgoKdjQuMjAuODog
-QnVpbGQgT0shCnY0LjE5LjIxOiBGYWlsZWQgdG8gYXBwbHkhIFBvc3NpYmxlIGRlcGVuZGVuY2ll
-czoKICAgIDAxZDVkN2ZhODM3NiAoIlBDSTogQWRkIG1hY3JvIGZvciBTd2l0Y2h0ZWMgcXVpcmsg
-ZGVjbGFyYXRpb25zIikKCnY0LjE0Ljk5OiBGYWlsZWQgdG8gYXBwbHkhIFBvc3NpYmxlIGRlcGVu
-ZGVuY2llczoKICAgIDAxZDVkN2ZhODM3NiAoIlBDSTogQWRkIG1hY3JvIGZvciBTd2l0Y2h0ZWMg
-cXVpcmsgZGVjbGFyYXRpb25zIikKICAgIDA2ZGM0ZWU1NGUzMCAoIlBDSTogRGlzYWJsZSBNU0kg
-Zm9yIEZyZWVzY2FsZSBMYXllcnNjYXBlIFBDSWUgUkMgbW9kZSIpCiAgICAwN2Y0Zjk3ZDdiNGIg
-KCJ2Z2Ffc3dpdGNoZXJvbzogVXNlIGRldmljZSBsaW5rIGZvciBIREEgY29udHJvbGxlciIpCiAg
-ICA4OTQ4Y2ExYTEyYzkgKCJ2Z2Ffc3dpdGNoZXJvbzogRGVkdXBsaWNhdGUgcG93ZXIgc3RhdGUg
-dHJhY2tpbmciKQogICAgYWQyODFlY2YxYzdkICgiUENJOiBBZGQgRE1BIGFsaWFzIHF1aXJrIGZv
-ciBNaWNyb3NlbWkgU3dpdGNodGVjIE5UQiIpCgp2NC45LjE1NjogRmFpbGVkIHRvIGFwcGx5ISBQ
-b3NzaWJsZSBkZXBlbmRlbmNpZXM6CiAgICAwMWQ1ZDdmYTgzNzYgKCJQQ0k6IEFkZCBtYWNybyBm
-b3IgU3dpdGNodGVjIHF1aXJrIGRlY2xhcmF0aW9ucyIpCiAgICAwN2Y0Zjk3ZDdiNGIgKCJ2Z2Ff
-c3dpdGNoZXJvbzogVXNlIGRldmljZSBsaW5rIGZvciBIREEgY29udHJvbGxlciIpCiAgICAzZTEz
-Njc2ODYyZjkgKCJ0aHVuZGVyYm9sdDogQWRkIHN1cHBvcnQgZm9yIERNQSBjb25maWd1cmF0aW9u
-IGJhc2VkIG1haWxib3giKQogICAgNDZjZDRiNzVjZDBlICgiZWZpOiBBZGQgZGV2aWNlIHBhdGgg
-cGFyc2VyIikKICAgIDU4YzU0NzVhYmE2NyAoIng4Ni9lZmk6IFJldHJpZXZlIGFuZCBhc3NpZ24g
-QXBwbGUgZGV2aWNlIHByb3BlcnRpZXMiKQogICAgNjMwYjNhZmY4YTUxICgidHJlZXdpZGU6IENv
-bnNvbGlkYXRlIEFwcGxlIERNSSBjaGVja3MiKQogICAgODFhNTRiNWUxOTg2ICgidGh1bmRlcmJv
-bHQ6IExldCB0aGUgY29ubmVjdGlvbiBtYW5hZ2VyIGhhbmRsZSBhbGwgbm90aWZpY2F0aW9ucyIp
-CiAgICA4OTQ4Y2ExYTEyYzkgKCJ2Z2Ffc3dpdGNoZXJvbzogRGVkdXBsaWNhdGUgcG93ZXIgc3Rh
-dGUgdHJhY2tpbmciKQogICAgOWQzY2NlMGI2MTM2ICgidGh1bmRlcmJvbHQ6IEludHJvZHVjZSB0
-aHVuZGVyYm9sdCBidXMgYW5kIGNvbm5lY3Rpb24gbWFuYWdlciIpCiAgICBhYzZjNDRkZTUwM2Ug
-KCJ0aHVuZGVyYm9sdDogRXhwb3NlIGdldF9yb3V0ZSgpIHRvIG90aGVyIGZpbGVzIikKICAgIGFk
-MjgxZWNmMWM3ZCAoIlBDSTogQWRkIERNQSBhbGlhcyBxdWlyayBmb3IgTWljcm9zZW1pIFN3aXRj
-aHRlYyBOVEIiKQogICAgYmZlNzc4YWM0OTgyICgidGh1bmRlcmJvbHQ6IENvbnZlcnQgc3dpdGNo
-IHRvIGEgZGV2aWNlIikKICAgIGM5Y2MzYWFhMDI4MSAoInRodW5kZXJib2x0OiBVc2UgRGV2aWNl
-IFJPTSByZXRyaWV2ZWQgZnJvbSBFRkkiKQogICAgZGEyZGEwNGI4ZDQ0ICgidGh1bmRlcmJvbHQ6
-IFJld29yayBjYXBhYmlsaXR5IGhhbmRsaW5nIikKICAgIGY2N2NmNDkxMTc1YSAoInRodW5kZXJi
-b2x0OiBBZGQgc3VwcG9ydCBmb3IgSW50ZXJuYWwgQ29ubmVjdGlvbiBNYW5hZ2VyIChJQ00pIikK
-ICAgIGZhNmQ1MTNhZWZlNCAoImRyaXZlcnM6Z3B1OiB2Z2EgOnZnYV9zd2l0Y2hlcm9vLmMgOiBG
-aXhlZCBzb21lIGNvZGluZyBzdHlsZSBpc3N1ZXMiKQoKdjQuNC4xNzQ6IEZhaWxlZCB0byBhcHBs
-eSEgUG9zc2libGUgZGVwZW5kZW5jaWVzOgogICAgMDFkNWQ3ZmE4Mzc2ICgiUENJOiBBZGQgbWFj
-cm8gZm9yIFN3aXRjaHRlYyBxdWlyayBkZWNsYXJhdGlvbnMiKQogICAgMDdmNGY5N2Q3YjRiICgi
-dmdhX3N3aXRjaGVyb286IFVzZSBkZXZpY2UgbGluayBmb3IgSERBIGNvbnRyb2xsZXIiKQogICAg
-MTRkMjAwMDE4MmVkICgiZHJtL3JhZGVvbjogRGVmZXIgcHJvYmUgaWYgZ211eCBpcyBwcmVzZW50
-IGJ1dCBpdHMgZHJpdmVyIGlzbid0IikKICAgIDE1NmQ3ZDQxMjBlMSAoInZnYV9zd2l0Y2hlcm9v
-OiBBZGQgaGFuZGxlciBmbGFncyBpbmZyYXN0cnVjdHVyZSIpCiAgICAzYTg0ODY2MmM3NTEgKCJ2
-Z2Ffc3dpdGNoZXJvbzogUHJldHRpZnkgZG9jdW1lbnRhdGlvbiIpCiAgICA0MTJjOGY3ZGUwMTEg
-KCJkcm0vcmFkZW9uOiBSZXR1cm4gLUVQUk9CRV9ERUZFUiB3aGVuIGFtZGtmZCBub3QgbG9hZGVk
-IikKICAgIDcwNGFiNjE0ZWMxMiAoImRybS9pOTE1OiBEZWZlciBwcm9iZSBpZiBnbXV4IGlzIHBy
-ZXNlbnQgYnV0IGl0cyBkcml2ZXIgaXNuJ3QiKQogICAgODk0OGNhMWExMmM5ICgidmdhX3N3aXRj
-aGVyb286IERlZHVwbGljYXRlIHBvd2VyIHN0YXRlIHRyYWNraW5nIikKICAgIDk4OTU2MWRlOWI1
-MSAoIlBNIC8gRG9tYWluczogYWRkIHNldHRlciBmb3IgZGV2LnBtX2RvbWFpbiIpCiAgICA5OGIz
-YTM0MDJlYjYgKCJkcm0vbm91dmVhdTogRGVmZXIgcHJvYmUgaWYgZ211eCBpcyBwcmVzZW50IGJ1
-dCBpdHMgZHJpdmVyIGlzbid0IikKICAgIGEzNDU5MThkNmVlNiAoInZnYV9zd2l0Y2hlcm9vOiBT
-dXBwb3J0IGRlZmVycmVkIHByb2Jpbmcgb2YgYXVkaW8gY2xpZW50cyIpCiAgICBhZDI4MWVjZjFj
-N2QgKCJQQ0k6IEFkZCBETUEgYWxpYXMgcXVpcmsgZm9yIE1pY3Jvc2VtaSBTd2l0Y2h0ZWMgTlRC
-IikKICAgIGIwMGU1MzM0YWIxYiAoInZnYV9zd2l0Y2hlcm9vOiBBZGQgaGVscGVyIGZvciBkZWZl
-cnJlZCBwcm9iaW5nIikKICAgIGI1Zjg4ZGQxZDZlZiAoIlJldmVydCAiQUNQSSAvIExQU1M6IGFs
-bG93IHRvIHVzZSBzcGVjaWZpYyBQTSBkb21haW4gZHVyaW5nIC0+cHJvYmUoKSIiKQogICAgYzFl
-MTY1NWJiODkyICgiYXBwbGUtZ211eDogQXNzaWduIGFwcGxlX2dtdXhfZGF0YSBiZWZvcmUgcmVn
-aXN0ZXJpbmciKQogICAgYzY4ZjQ1MjhhMmU5ICgiZHJtL2FtZGtmZDogVHJhY2sgd2hlbiBtb2R1
-bGUncyBpbml0IGlzIGNvbXBsZXRlIikKICAgIGZhNmQ1MTNhZWZlNCAoImRyaXZlcnM6Z3B1OiB2
-Z2EgOnZnYV9zd2l0Y2hlcm9vLmMgOiBGaXhlZCBzb21lIGNvZGluZyBzdHlsZSBpc3N1ZXMiKQoK
-djMuMTguMTM0OiBGYWlsZWQgdG8gYXBwbHkhIFBvc3NpYmxlIGRlcGVuZGVuY2llczoKICAgIDAx
-ZDVkN2ZhODM3NiAoIlBDSTogQWRkIG1hY3JvIGZvciBTd2l0Y2h0ZWMgcXVpcmsgZGVjbGFyYXRp
-b25zIikKICAgIDA3ZjRmOTdkN2I0YiAoInZnYV9zd2l0Y2hlcm9vOiBVc2UgZGV2aWNlIGxpbmsg
-Zm9yIEhEQSBjb250cm9sbGVyIikKICAgIDA4M2RiYTAyOTQ3ZCAoImRybS9ub3V2ZWF1L2Rldmlj
-ZTogcmVjb2duaXNlIEdNMjA0IikKICAgIDJmNGE1OGU4NTJkMSAoImRybS9ub3V2ZWF1L3N1YmRl
-djogYWx3YXlzIHVwY2FzdCB0aHJvdWdoIG5vdXZlYXVfc3ViZGV2KCkvbm91dmVhdV9lbmdpbmUo
-KSIpCiAgICA0NzY2ZWM1Mzk0NWYgKCJkcm0vbm91dmVhdS9iaW9zOiBhZGQgcGFyc2luZyBvZiBC
-SVQgTSh2MikgKzB4MDMgdGFibGUiKQogICAgNTBlMjE2ZDZlN2MzICgiZHJtL25vdXZlYXUvYmlv
-czogYWRkIHBhcnNpbmcgb2YgcG11IGltYWdlIHRhYmxlcyIpCiAgICA1NDQ0MjA0MDM2YjIgKCJk
-cm0vbm91dmVhdTogc3dpdGNoIHRvIG5ldy1zdHlsZSB0aW1lciBtYWNyb3MiKQogICAgN2JiNmQ0
-NDI4ZDNkICgiZHJtL25vdXZlYXU6IG1vdmUgdGhlIChmYXIgdG9vIG1hbnkuLi4pIGRpZmZlcmVu
-dCBzL3IgcGF0aHMgdG8gdGhlIHNhbWUgcGxhY2UiKQogICAgOGQ1ZTNhZjE1Yzc5ICgiZHJtL25v
-dXZlYXUvZGV2aWNlOiBBZGQgc3VwcG9ydCBmb3IgR0syMDhCLCByZXNvbHZlcyBidWcgODY5MzUi
-KQogICAgOGQ4NWUwNmI1ZTA0ICgiZHJtL25vdXZlYXUvYmlvczogYWRkIHBjaSBkYXRhIHN0cnVj
-dHVyZSBwYXJzaW5nIikKICAgIDk4OWFhNWI3NmFkMiAoImRybS9ub3V2ZWF1L252aWY6IG5hbWVz
-cGFjZSBvZiBudmttIGFjY2Vzc29ycyAobm8gYmluYXJ5IGNoYW5nZSkiKQogICAgYTAxY2E3OGM4
-ZjExICgiZHJtL25vdXZlYXUvbnZpZjogc2ltcGxpZnkgYW5kIHRpZHkgbGlicmFyeSBpbnRlcmZh
-Y2VzIikKICAgIGFkMjgxZWNmMWM3ZCAoIlBDSTogQWRkIERNQSBhbGlhcyBxdWlyayBmb3IgTWlj
-cm9zZW1pIFN3aXRjaHRlYyBOVEIiKQogICAgYWQ0YTM2MjYzNTM1ICgiZHJtL25vdXZlYXUvYmlv
-czogc3BsaXQgb3V0IHNoYWRvdyBtZXRob2RzIikKICAgIGI3MWExMzQ0ZWMyMCAoImRybS9ub3V2
-ZWF1L2Jpb3M6IGFkZCBOUERFIHBhcnNpbmciKQogICAgYmE2ZTM0ZTYxMjcxICgiZHJtL2dtMjA0
-L2RldmluaXQ6IGluaXRpYWwgaW1wbGVtZW50YXRpb24iKQogICAgYmU4M2NkNGVmOWEyICgiZHJt
-L25vdXZlYXU6IGZpbmFsaXNlIG52a20gbmFtZXNwYWNlIHN3aXRjaCAobm8gYmluYXJ5IGNoYW5n
-ZSkiKQogICAgYzM5ZjQ3MmU5ZjE0ICgiZHJtL25vdXZlYXU6IHJlbW92ZSBzeW1saW5rcywgbW92
-ZSBjb3JlLyB0byBudmttLyAobm8gY29kZSBjaGFuZ2VzKSIpCiAgICBjYjhiYjljZWRiNjAgKCJk
-cm0vbm91dmVhdS90bXI6IGNvc21ldGljIGNoYW5nZXMiKQogICAgZDM4Y2VhZjk5ZWQwICgiZHJt
-L2FtZGdwdTogYWRkIGNvcmUgZHJpdmVyICh2NCkiKQogICAgZjM4NjdmNDM5ZmQ2ICgiZHJtL25v
-dXZlYXUvY2xrOiByZW5hbWUgZnJvbSBjbG9jayAobm8gYmluYXJ5IGNoYW5nZSkiKQogICAgZjhh
-ODU0NjE5NGQ3ICgiZHJtL25vdXZlYXUvY2xrOiBhbGxvdyBub24tYmxvY2tpbmcgZm9yIG5vdXZl
-YXVfY2xvY2tfYXN0YXRlKCkiKQoKCkhvdyBzaG91bGQgd2UgcHJvY2VlZCB3aXRoIHRoaXMgcGF0
-Y2g/CgotLQpUaGFua3MsClNhc2hhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2RyaS1kZXZlbA==
+On Mon, Feb 18, 2019 at 3:14 PM Sasha Levin <sashal@kernel.org> wrote:
+>
+> Hi,
+>
+> [This is an automated email]
+>
+> This commit has been processed because it contains a -stable tag.
+> The stable tag indicates that it's relevant for the following trees: all
+>
+> The bot has tested the following trees: v4.20.8, v4.19.21, v4.14.99, v4.9.156, v4.4.174, v3.18.134.
+>
+> v4.20.8: Build OK!
+> v4.19.21: Failed to apply! Possible dependencies:
+>     01d5d7fa8376 ("PCI: Add macro for Switchtec quirk declarations")
+>
+> v4.14.99: Failed to apply! Possible dependencies:
+>     01d5d7fa8376 ("PCI: Add macro for Switchtec quirk declarations")
+>     06dc4ee54e30 ("PCI: Disable MSI for Freescale Layerscape PCIe RC mode")
+>     07f4f97d7b4b ("vga_switcheroo: Use device link for HDA controller")
+>     8948ca1a12c9 ("vga_switcheroo: Deduplicate power state tracking")
+>     ad281ecf1c7d ("PCI: Add DMA alias quirk for Microsemi Switchtec NTB")
+>
+> v4.9.156: Failed to apply! Possible dependencies:
+>     01d5d7fa8376 ("PCI: Add macro for Switchtec quirk declarations")
+>     07f4f97d7b4b ("vga_switcheroo: Use device link for HDA controller")
+>     3e13676862f9 ("thunderbolt: Add support for DMA configuration based mailbox")
+>     46cd4b75cd0e ("efi: Add device path parser")
+>     58c5475aba67 ("x86/efi: Retrieve and assign Apple device properties")
+>     630b3aff8a51 ("treewide: Consolidate Apple DMI checks")
+>     81a54b5e1986 ("thunderbolt: Let the connection manager handle all notifications")
+>     8948ca1a12c9 ("vga_switcheroo: Deduplicate power state tracking")
+>     9d3cce0b6136 ("thunderbolt: Introduce thunderbolt bus and connection manager")
+>     ac6c44de503e ("thunderbolt: Expose get_route() to other files")
+>     ad281ecf1c7d ("PCI: Add DMA alias quirk for Microsemi Switchtec NTB")
+>     bfe778ac4982 ("thunderbolt: Convert switch to a device")
+>     c9cc3aaa0281 ("thunderbolt: Use Device ROM retrieved from EFI")
+>     da2da04b8d44 ("thunderbolt: Rework capability handling")
+>     f67cf491175a ("thunderbolt: Add support for Internal Connection Manager (ICM)")
+>     fa6d513aefe4 ("drivers:gpu: vga :vga_switcheroo.c : Fixed some coding style issues")
+>
+> v4.4.174: Failed to apply! Possible dependencies:
+>     01d5d7fa8376 ("PCI: Add macro for Switchtec quirk declarations")
+>     07f4f97d7b4b ("vga_switcheroo: Use device link for HDA controller")
+>     14d2000182ed ("drm/radeon: Defer probe if gmux is present but its driver isn't")
+>     156d7d4120e1 ("vga_switcheroo: Add handler flags infrastructure")
+>     3a848662c751 ("vga_switcheroo: Prettify documentation")
+>     412c8f7de011 ("drm/radeon: Return -EPROBE_DEFER when amdkfd not loaded")
+>     704ab614ec12 ("drm/i915: Defer probe if gmux is present but its driver isn't")
+>     8948ca1a12c9 ("vga_switcheroo: Deduplicate power state tracking")
+>     989561de9b51 ("PM / Domains: add setter for dev.pm_domain")
+>     98b3a3402eb6 ("drm/nouveau: Defer probe if gmux is present but its driver isn't")
+>     a345918d6ee6 ("vga_switcheroo: Support deferred probing of audio clients")
+>     ad281ecf1c7d ("PCI: Add DMA alias quirk for Microsemi Switchtec NTB")
+>     b00e5334ab1b ("vga_switcheroo: Add helper for deferred probing")
+>     b5f88dd1d6ef ("Revert "ACPI / LPSS: allow to use specific PM domain during ->probe()"")
+>     c1e1655bb892 ("apple-gmux: Assign apple_gmux_data before registering")
+>     c68f4528a2e9 ("drm/amdkfd: Track when module's init is complete")
+>     fa6d513aefe4 ("drivers:gpu: vga :vga_switcheroo.c : Fixed some coding style issues")
+>
+> v3.18.134: Failed to apply! Possible dependencies:
+>     01d5d7fa8376 ("PCI: Add macro for Switchtec quirk declarations")
+>     07f4f97d7b4b ("vga_switcheroo: Use device link for HDA controller")
+>     083dba02947d ("drm/nouveau/device: recognise GM204")
+>     2f4a58e852d1 ("drm/nouveau/subdev: always upcast through nouveau_subdev()/nouveau_engine()")
+>     4766ec53945f ("drm/nouveau/bios: add parsing of BIT M(v2) +0x03 table")
+>     50e216d6e7c3 ("drm/nouveau/bios: add parsing of pmu image tables")
+>     5444204036b2 ("drm/nouveau: switch to new-style timer macros")
+>     7bb6d4428d3d ("drm/nouveau: move the (far too many...) different s/r paths to the same place")
+>     8d5e3af15c79 ("drm/nouveau/device: Add support for GK208B, resolves bug 86935")
+>     8d85e06b5e04 ("drm/nouveau/bios: add pci data structure parsing")
+>     989aa5b76ad2 ("drm/nouveau/nvif: namespace of nvkm accessors (no binary change)")
+>     a01ca78c8f11 ("drm/nouveau/nvif: simplify and tidy library interfaces")
+>     ad281ecf1c7d ("PCI: Add DMA alias quirk for Microsemi Switchtec NTB")
+>     ad4a36263535 ("drm/nouveau/bios: split out shadow methods")
+>     b71a1344ec20 ("drm/nouveau/bios: add NPDE parsing")
+>     ba6e34e61271 ("drm/gm204/devinit: initial implementation")
+>     be83cd4ef9a2 ("drm/nouveau: finalise nvkm namespace switch (no binary change)")
+>     c39f472e9f14 ("drm/nouveau: remove symlinks, move core/ to nvkm/ (no code changes)")
+>     cb8bb9cedb60 ("drm/nouveau/tmr: cosmetic changes")
+>     d38ceaf99ed0 ("drm/amdgpu: add core driver (v4)")
+>     f3867f439fd6 ("drm/nouveau/clk: rename from clock (no binary change)")
+>     f8a8546194d7 ("drm/nouveau/clk: allow non-blocking for nouveau_clock_astate()")
+>
+>
+> How should we proceed with this patch?
+
+Is there any way we can turn off this automated checking for a while?
+At this stage, where we're just trying to discuss the issue, these
+emails just clutter things up.
