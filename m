@@ -1,43 +1,51 @@
-From: YueHaibing <yuehaibing@huawei.com>
-Subject: [PATCH -next] drm/nouveau/dmem: remove set but not used variable 'drm'
-Date: Thu, 21 Feb 2019 03:38:51 +0000
-Message-ID: <20190221033851.70331-1-yuehaibing@huawei.com>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [Nouveau] [PATCH -next] drm/nouveau/dmem: remove set but not used
+ variable 'drm'
+Date: Fri, 22 Feb 2019 08:11:02 +1000
+Message-ID: <CACAvsv7C2pbruAOGM_8f3yyzxhvCgQoKARRRkTzJenEwYc0zTg@mail.gmail.com>
+References: <20190221033851.70331-1-yuehaibing@huawei.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7BIT
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Cc: YueHaibing <yuehaibing@huawei.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20190221033851.70331-1-yuehaibing@huawei.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: YueHaibing <yuehaibing@huawei.com>
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-Fixes gcc '-Wunused-but-set-variable' warning:
-
-drivers/gpu/drm/nouveau/nouveau_dmem.c: In function 'nouveau_dmem_free':
-drivers/gpu/drm/nouveau/nouveau_dmem.c:103:22: warning:
- variable 'drm' set but not used [-Wunused-but-set-variable]
-  struct nouveau_drm *drm;
-                      ^
-
-Signed-off-by: YueHaibing <yuehaibing@huawei.com>
----
- drivers/gpu/drm/nouveau/nouveau_dmem.c | 2 --
- 1 file changed, 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-index aa9fec80492d..900a302b7ce9 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -100,12 +100,10 @@ static void
- nouveau_dmem_free(struct hmm_devmem *devmem, struct page *page)
- {
- 	struct nouveau_dmem_chunk *chunk;
--	struct nouveau_drm *drm;
- 	unsigned long idx;
- 
- 	chunk = (void *)hmm_devmem_page_get_drvdata(page);
- 	idx = page_to_pfn(page) - chunk->pfn_first;
--	drm = chunk->drm;
- 
- 	/*
- 	 * FIXME:
+T24gVGh1LCAyMSBGZWIgMjAxOSBhdCAxMzo0MSwgWXVlSGFpYmluZyA8eXVlaGFpYmluZ0BodWF3
+ZWkuY29tPiB3cm90ZToKPgo+IEZpeGVzIGdjYyAnLVd1bnVzZWQtYnV0LXNldC12YXJpYWJsZScg
+d2FybmluZzoKPgo+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZG1lbS5jOiBJbiBm
+dW5jdGlvbiAnbm91dmVhdV9kbWVtX2ZyZWUnOgo+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
+dXZlYXVfZG1lbS5jOjEwMzoyMjogd2FybmluZzoKPiAgdmFyaWFibGUgJ2RybScgc2V0IGJ1dCBu
+b3QgdXNlZCBbLVd1bnVzZWQtYnV0LXNldC12YXJpYWJsZV0KPiAgIHN0cnVjdCBub3V2ZWF1X2Ry
+bSAqZHJtOwo+ICAgICAgICAgICAgICAgICAgICAgICBeClRoYW5rcyEgIE1lcmdlZC4KCj4KPiBT
+aWduZWQtb2ZmLWJ5OiBZdWVIYWliaW5nIDx5dWVoYWliaW5nQGh1YXdlaS5jb20+Cj4gLS0tCj4g
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZG1lbS5jIHwgMiAtLQo+ICAxIGZpbGUg
+Y2hhbmdlZCwgMiBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2RtZW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
+ZG1lbS5jCj4gaW5kZXggYWE5ZmVjODA0OTJkLi45MDBhMzAyYjdjZTkgMTAwNjQ0Cj4gLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kbWVtLmMKPiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RtZW0uYwo+IEBAIC0xMDAsMTIgKzEwMCwxMCBAQCBzdGF0
+aWMgdm9pZAo+ICBub3V2ZWF1X2RtZW1fZnJlZShzdHJ1Y3QgaG1tX2Rldm1lbSAqZGV2bWVtLCBz
+dHJ1Y3QgcGFnZSAqcGFnZSkKPiAgewo+ICAgICAgICAgc3RydWN0IG5vdXZlYXVfZG1lbV9jaHVu
+ayAqY2h1bms7Cj4gLSAgICAgICBzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybTsKPiAgICAgICAgIHVu
+c2lnbmVkIGxvbmcgaWR4Owo+Cj4gICAgICAgICBjaHVuayA9ICh2b2lkICopaG1tX2Rldm1lbV9w
+YWdlX2dldF9kcnZkYXRhKHBhZ2UpOwo+ICAgICAgICAgaWR4ID0gcGFnZV90b19wZm4ocGFnZSkg
+LSBjaHVuay0+cGZuX2ZpcnN0Owo+IC0gICAgICAgZHJtID0gY2h1bmstPmRybTsKPgo+ICAgICAg
+ICAgLyoKPiAgICAgICAgICAqIEZJWE1FOgo+Cj4KPgo+Cj4KPiBfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vZHJpLWRldmVs
