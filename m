@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109613] nouveau: KMS is broken on last kernels
  (9700M GT)
-Date: Wed, 27 Feb 2019 07:08:27 +0000
-Message-ID: <bug-109613-8800-fVZGvCNE3T@http.bugs.freedesktop.org/>
+Date: Wed, 27 Feb 2019 13:12:07 +0000
+Message-ID: <bug-109613-8800-J9fY14Xbaz@http.bugs.freedesktop.org/>
 References: <bug-109613-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0074054481=="
+Content-Type: multipart/mixed; boundary="===============0993421747=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109613-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0074054481==
-Content-Type: multipart/alternative; boundary="15512513071.A7Ed2.12047"
+--===============0993421747==
+Content-Type: multipart/alternative; boundary="15512731260.7a54fc35.6097"
 Content-Transfer-Encoding: 7bit
 
 
---15512513071.A7Ed2.12047
-Date: Wed, 27 Feb 2019 07:08:27 +0000
+--15512731260.7a54fc35.6097
+Date: Wed, 27 Feb 2019 13:12:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,16 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109613
 
---- Comment #1 from Evgeny Kurnevsky <kurnevsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Bisected to exact commit that breaks it:
-800efb4c2857ec543fdc33585bbcb1fd5ef28337
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Could you include your vbios?
+
+It's rather surprising that a change to fan control logic, intended to real=
+ly
+only affect nv4x, would affect your display. But it's probably messing with
+GPIOs it shouldn't be touching ... or something?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15512513071.A7Ed2.12047
-Date: Wed, 27 Feb 2019 07:08:27 +0000
+--15512731260.7a54fc35.6097
+Date: Wed, 27 Feb 2019 13:12:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,19 +66,23 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau: KMS is broken on last kernels (9700M GT)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109613#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109613#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau: KMS is broken on last kernels (9700M GT)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109613">bug 10961=
 3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-kurnevsky&#64;gmail.com" title=3D"Evgeny Kurnevsky &lt;kurnevsky&#64;gmail.=
-com&gt;"> <span class=3D"fn">Evgeny Kurnevsky</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Bisected to exact commit that breaks it:
-800efb4c2857ec543fdc33585bbcb1fd5ef28337</pre>
+        <pre>Could you include your vbios?
+
+It's rather surprising that a change to fan control logic, intended to real=
+ly
+only affect nv4x, would affect your display. But it's probably messing with
+GPIOs it shouldn't be touching ... or something?</pre>
         </div>
       </p>
 
@@ -88,9 +96,9 @@ com&gt;"> <span class=3D"fn">Evgeny Kurnevsky</span></a>
     </body>
 </html>=
 
---15512513071.A7Ed2.12047--
+--15512731260.7a54fc35.6097--
 
---===============0074054481==
+--===============0993421747==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0074054481==--
+--===============0993421747==--
