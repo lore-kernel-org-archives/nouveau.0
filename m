@@ -1,13 +1,13 @@
-From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau/dmem: Fix a NULL vs IS_ERR() check
-Date: Tue, 26 Feb 2019 11:38:12 +1000
-Message-ID: <CABDvA=kL2oFQWm8r3C29barB_uUjNSudd7pWgARiC-ecK-t=Fg@mail.gmail.com>
-References: <20190222063404.GA12190@kadam>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 109613] nouveau: KMS is broken on last kernels
+ (9700M GT)
+Date: Wed, 27 Feb 2019 07:08:27 +0000
+Message-ID: <bug-109613-8800-fVZGvCNE3T@http.bugs.freedesktop.org/>
+References: <bug-109613-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0074054481=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190222063404.GA12190@kadam>
+In-Reply-To: <bug-109613-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,29 +17,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dan Carpenter <dan.carpenter-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, kernel-janitors-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-R290IGl0LCB0aGFua3MhCgpPbiBGcmksIEZlYiAyMiwgMjAxOSBhdCA0OjM0IFBNIERhbiBDYXJw
-ZW50ZXIgPGRhbi5jYXJwZW50ZXJAb3JhY2xlLmNvbT4gd3JvdGU6Cj4KPiBUaGUgaG1tX2Rldm1l
-bV9hZGQoKSBmdW5jdGlvbiBkb2Vzbid0IHJldHVybiBOVUxMLCBpdCByZXR1cm5zIGVycm9yCj4g
-cG9pbnRlcnMuCj4KPiBGaXhlczogNWJlNzNiNjkwODc1ICgiZHJtL25vdXZlYXUvZG1lbTogZGV2
-aWNlIG1lbW9yeSBoZWxwZXJzIGZvciBTVk0iKQo+IFNpZ25lZC1vZmYtYnk6IERhbiBDYXJwZW50
-ZXIgPGRhbi5jYXJwZW50ZXJAb3JhY2xlLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9kbWVtLmMgfCAyICstCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlv
-bigrKSwgMSBkZWxldGlvbigtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfZG1lbS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kbWVt
-LmMKPiBpbmRleCBhYTlmZWM4MDQ5MmQuLjI4NjI0ZGQwYzkyMCAxMDA2NDQKPiAtLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RtZW0uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L25vdXZlYXVfZG1lbS5jCj4gQEAgLTYyMyw3ICs2MjMsNyBAQCBub3V2ZWF1X2Rt
-ZW1faW5pdChzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSkKPiAgICAgICAgICAqLwo+ICAgICAgICAg
-ZHJtLT5kbWVtLT5kZXZtZW0gPSBobW1fZGV2bWVtX2FkZCgmbm91dmVhdV9kbWVtX2Rldm1lbV9v
-cHMsCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRldmljZSwg
-c2l6ZSk7Cj4gLSAgICAgICBpZiAoZHJtLT5kbWVtLT5kZXZtZW0gPT0gTlVMTCkgewo+ICsgICAg
-ICAgaWYgKElTX0VSUihkcm0tPmRtZW0tPmRldm1lbSkpIHsKPiAgICAgICAgICAgICAgICAga2Zy
-ZWUoZHJtLT5kbWVtKTsKPiAgICAgICAgICAgICAgICAgZHJtLT5kbWVtID0gTlVMTDsKPiAgICAg
-ICAgICAgICAgICAgcmV0dXJuOwo+IC0tCj4gMi4xNy4xCj4KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0074054481==
+Content-Type: multipart/alternative; boundary="15512513071.A7Ed2.12047"
+Content-Transfer-Encoding: 7bit
+
+
+--15512513071.A7Ed2.12047
+Date: Wed, 27 Feb 2019 07:08:27 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109613
+
+--- Comment #1 from Evgeny Kurnevsky <kurnevsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Bisected to exact commit that breaks it:
+800efb4c2857ec543fdc33585bbcb1fd5ef28337
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15512513071.A7Ed2.12047
+Date: Wed, 27 Feb 2019 07:08:27 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau: KMS is broken on last kernels (9700M GT)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109613#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau: KMS is broken on last kernels (9700M GT)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109613">bug 10961=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+kurnevsky&#64;gmail.com" title=3D"Evgeny Kurnevsky &lt;kurnevsky&#64;gmail.=
+com&gt;"> <span class=3D"fn">Evgeny Kurnevsky</span></a>
+</span></b>
+        <pre>Bisected to exact commit that breaks it:
+800efb4c2857ec543fdc33585bbcb1fd5ef28337</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15512513071.A7Ed2.12047--
+
+--===============0074054481==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0074054481==--
