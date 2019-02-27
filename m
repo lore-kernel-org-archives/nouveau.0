@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109613] nouveau: KMS is broken on last kernels
  (9700M GT)
-Date: Wed, 27 Feb 2019 13:12:07 +0000
-Message-ID: <bug-109613-8800-J9fY14Xbaz@http.bugs.freedesktop.org/>
+Date: Wed, 27 Feb 2019 15:48:35 +0000
+Message-ID: <bug-109613-8800-1lp6Vb3kqY@http.bugs.freedesktop.org/>
 References: <bug-109613-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0993421747=="
+Content-Type: multipart/mixed; boundary="===============1173251603=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109613-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0993421747==
-Content-Type: multipart/alternative; boundary="15512731260.7a54fc35.6097"
+--===============1173251603==
+Content-Type: multipart/alternative; boundary="15512825170.bEb35.22318"
 Content-Transfer-Encoding: 7bit
 
 
---15512731260.7a54fc35.6097
-Date: Wed, 27 Feb 2019 13:12:06 +0000
+--15512825170.bEb35.22318
+Date: Wed, 27 Feb 2019 15:48:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109613
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Could you include your vbios?
-
-It's rather surprising that a change to fan control logic, intended to real=
-ly
-only affect nv4x, would affect your display. But it's probably messing with
-GPIOs it shouldn't be touching ... or something?
+--- Comment #3 from Evgeny Kurnevsky <kurnevsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 143489
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D143489&action=3Dedit
+vbios
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15512731260.7a54fc35.6097
-Date: Wed, 27 Feb 2019 13:12:06 +0000
+--15512825170.bEb35.22318
+Date: Wed, 27 Feb 2019 15:48:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,23 +63,22 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau: KMS is broken on last kernels (9700M GT)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109613#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109613#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau: KMS is broken on last kernels (9700M GT)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109613">bug 10961=
 3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+kurnevsky&#64;gmail.com" title=3D"Evgeny Kurnevsky &lt;kurnevsky&#64;gmail.=
+com&gt;"> <span class=3D"fn">Evgeny Kurnevsky</span></a>
 </span></b>
-        <pre>Could you include your vbios?
-
-It's rather surprising that a change to fan control logic, intended to real=
-ly
-only affect nv4x, would affect your display. But it's probably messing with
-GPIOs it shouldn't be touching ... or something?</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D143489=
+" name=3D"attach_143489" title=3D"vbios">attachment 143489</a> <a href=3D"a=
+ttachment.cgi?id=3D143489&amp;action=3Dedit" title=3D"vbios">[details]</a><=
+/span>
+vbios</pre>
         </div>
       </p>
 
@@ -96,9 +92,9 @@ GPIOs it shouldn't be touching ... or something?</pre>
     </body>
 </html>=
 
---15512731260.7a54fc35.6097--
+--15512825170.bEb35.22318--
 
---===============0993421747==
+--===============1173251603==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0993421747==--
+--===============1173251603==--
