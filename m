@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109613] nouveau: KMS is broken on last kernels
  (9700M GT)
-Date: Thu, 28 Feb 2019 07:10:13 +0000
-Message-ID: <bug-109613-8800-heKaCBMxcV@http.bugs.freedesktop.org/>
+Date: Thu, 28 Feb 2019 10:21:43 +0000
+Message-ID: <bug-109613-8800-dOHvd65ytW@http.bugs.freedesktop.org/>
 References: <bug-109613-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0987233626=="
+Content-Type: multipart/mixed; boundary="===============1555971478=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109613-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0987233626==
-Content-Type: multipart/alternative; boundary="15513378131.EE8a.16400"
+--===============1555971478==
+Content-Type: multipart/alternative; boundary="15513493031.eAe4f.10068"
 Content-Transfer-Encoding: 7bit
 
 
---15513378131.EE8a.16400
-Date: Thu, 28 Feb 2019 07:10:13 +0000
+--15513493031.eAe4f.10068
+Date: Thu, 28 Feb 2019 10:21:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,16 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109613
 
---- Comment #5 from Evgeny Kurnevsky <kurnevsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Tried 4.20.12 version - nothing changed. This patch was included in 4.20.11
-version: https://cdn.kernel.org/pub/linux/kernel/v4.x/ChangeLog-4.20.11
+--- Comment #6 from Evgeny Kurnevsky <kurnevsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Also removing call to nvkm_therm_update_linear_fallback on 4.20 branch fixes
+the issue.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15513378131.EE8a.16400
-Date: Thu, 28 Feb 2019 07:10:13 +0000
+--15513493031.eAe4f.10068
+Date: Thu, 28 Feb 2019 10:21:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau: KMS is broken on last kernels (9700M GT)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109613#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109613#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau: KMS is broken on last kernels (9700M GT)"
@@ -73,11 +73,9 @@ t # 5</a>
 kurnevsky&#64;gmail.com" title=3D"Evgeny Kurnevsky &lt;kurnevsky&#64;gmail.=
 com&gt;"> <span class=3D"fn">Evgeny Kurnevsky</span></a>
 </span></b>
-        <pre>Tried 4.20.12 version - nothing changed. This patch was includ=
-ed in 4.20.11
-version: <a href=3D"https://cdn.kernel.org/pub/linux/kernel/v4.x/ChangeLog-=
-4.20.11">https://cdn.kernel.org/pub/linux/kernel/v4.x/ChangeLog-4.20.11</a>=
-</pre>
+        <pre>Also removing call to nvkm_therm_update_linear_fallback on 4.2=
+0 branch fixes
+the issue.</pre>
         </div>
       </p>
 
@@ -91,9 +89,9 @@ version: <a href=3D"https://cdn.kernel.org/pub/linux/kernel/v4.x/ChangeLog-=
     </body>
 </html>=
 
---15513378131.EE8a.16400--
+--15513493031.eAe4f.10068--
 
---===============0987233626==
+--===============1555971478==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0987233626==--
+--===============1555971478==--
