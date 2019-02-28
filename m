@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109804] New: timeout
-Date: Thu, 28 Feb 2019 20:27:39 +0000
-Message-ID: <bug-109804-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 109804] timeout
+Date: Thu, 28 Feb 2019 20:30:49 +0000
+Message-ID: <bug-109804-8800-sjYneiA9Cz@http.bugs.freedesktop.org/>
+References: <bug-109804-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0766713308=="
+Content-Type: multipart/mixed; boundary="===============0664536503=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-109804-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0766713308==
-Content-Type: multipart/alternative; boundary="15513856590.B0cbEdEC0.2992"
+--===============0664536503==
+Content-Type: multipart/alternative; boundary="15513858490.D6f3dEE.4209"
 Content-Transfer-Encoding: 7bit
 
 
---15513856590.B0cbEdEC0.2992
-Date: Thu, 28 Feb 2019 20:27:39 +0000
+--15513858490.D6f3dEE.4209
+Date: Thu, 28 Feb 2019 20:30:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -33,29 +35,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109804
 
-            Bug ID: 109804
-           Summary: timeout
-           Product: Mesa
-           Version: 7.4
-          Hardware: Other
-                OS: Windows (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: sdindiver-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+hridesh <sdindiver-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-when we loin
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |ASSIGNED
+           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |sdindiver-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+                   |rg                          |
+
+--- Comment #1 from hridesh <sdindiver-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+this is a  critical bug plz fixed it as soon as possible.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15513856590.B0cbEdEC0.2992
-Date: Thu, 28 Feb 2019 20:27:39 +0000
+--15513858490.D6f3dEE.4209
+Date: Thu, 28 Feb 2019 20:30:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,90 +63,55 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - timeout"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109804">109804</a>
-          </td>
-        </tr>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:sdindiver=
+&#64;gmail.com" title=3D"hridesh &lt;sdindiver&#64;gmail.com&gt;"> <span cl=
+ass=3D"fn">hridesh</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - timeout"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109804">bug 10980=
+4</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>timeout
-          </td>
-        </tr>
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>ASSIGNED
+           </td>
+         </tr>
 
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>7.4
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Windows (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>sdindiver&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+           <td>sdindiver&#64;gmail.com
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>when we loin</pre>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - timeout"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109804#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - timeout"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109804">bug 10980=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+sdindiver&#64;gmail.com" title=3D"hridesh &lt;sdindiver&#64;gmail.com&gt;">=
+ <span class=3D"fn">hridesh</span></a>
+</span></b>
+        <pre>this is a  critical bug plz fixed it as soon as possible.</pre>
         </div>
       </p>
 
@@ -164,9 +126,9 @@ Auto-Submitted: auto-generated
     </body>
 </html>=
 
---15513856590.B0cbEdEC0.2992--
+--15513858490.D6f3dEE.4209--
 
---===============0766713308==
+--===============0664536503==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -176,4 +138,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0766713308==--
+--===============0664536503==--
