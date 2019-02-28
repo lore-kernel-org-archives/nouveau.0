@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109613] nouveau: KMS is broken on last kernels
  (9700M GT)
-Date: Thu, 28 Feb 2019 03:57:02 +0000
-Message-ID: <bug-109613-8800-vmYaRUBcUO@http.bugs.freedesktop.org/>
+Date: Thu, 28 Feb 2019 07:10:13 +0000
+Message-ID: <bug-109613-8800-heKaCBMxcV@http.bugs.freedesktop.org/>
 References: <bug-109613-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1924202643=="
+Content-Type: multipart/mixed; boundary="===============0987233626=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109613-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1924202643==
-Content-Type: multipart/alternative; boundary="15513262220.8524f51fC.18245"
+--===============0987233626==
+Content-Type: multipart/alternative; boundary="15513378131.EE8a.16400"
 Content-Transfer-Encoding: 7bit
 
 
---15513262220.8524f51fC.18245
-Date: Thu, 28 Feb 2019 03:57:02 +0000
+--15513378131.EE8a.16400
+Date: Thu, 28 Feb 2019 07:10:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109613
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Thanks. Upon further review, there was a fixup to the commit you bisected t=
-o,
-which is included in v4.20.11 or later. Can you try that? Or alternatively
-apply
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?=
-h=3D118780066e30c34de3d9349710b51780bfa0ba83
-to your tree.
+--- Comment #5 from Evgeny Kurnevsky <kurnevsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Tried 4.20.12 version - nothing changed. This patch was included in 4.20.11
+version: https://cdn.kernel.org/pub/linux/kernel/v4.x/ChangeLog-4.20.11
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15513262220.8524f51fC.18245
-Date: Thu, 28 Feb 2019 03:57:02 +0000
+--15513378131.EE8a.16400
+Date: Thu, 28 Feb 2019 07:10:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,26 +62,22 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau: KMS is broken on last kernels (9700M GT)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109613#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109613#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nouveau: KMS is broken on last kernels (9700M GT)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109613">bug 10961=
 3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+kurnevsky&#64;gmail.com" title=3D"Evgeny Kurnevsky &lt;kurnevsky&#64;gmail.=
+com&gt;"> <span class=3D"fn">Evgeny Kurnevsky</span></a>
 </span></b>
-        <pre>Thanks. Upon further review, there was a fixup to the commit y=
-ou bisected to,
-which is included in v4.20.11 or later. Can you try that? Or alternatively
-apply
-<a href=3D"https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.g=
-it/commit/?h=3D118780066e30c34de3d9349710b51780bfa0ba83">https://git.kernel=
-.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?h=3D118780066e30c3=
-4de3d9349710b51780bfa0ba83</a>
-to your tree.</pre>
+        <pre>Tried 4.20.12 version - nothing changed. This patch was includ=
+ed in 4.20.11
+version: <a href=3D"https://cdn.kernel.org/pub/linux/kernel/v4.x/ChangeLog-=
+4.20.11">https://cdn.kernel.org/pub/linux/kernel/v4.x/ChangeLog-4.20.11</a>=
+</pre>
         </div>
       </p>
 
@@ -100,9 +91,9 @@ to your tree.</pre>
     </body>
 </html>=
 
---15513262220.8524f51fC.18245--
+--15513378131.EE8a.16400--
 
---===============1924202643==
+--===============0987233626==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1924202643==--
+--===============0987233626==--
