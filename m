@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109804] timeout
-Date: Sat, 02 Mar 2019 23:52:25 +0000
-Message-ID: <bug-109804-8800-OZiXBy9GPa@http.bugs.freedesktop.org/>
+Date: Sat, 02 Mar 2019 23:53:52 +0000
+Message-ID: <bug-109804-8800-RyqusdCXR3@http.bugs.freedesktop.org/>
 References: <bug-109804-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1492130139=="
+Content-Type: multipart/mixed; boundary="===============0166184249=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109804-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1492130139==
-Content-Type: multipart/alternative; boundary="15515707450.CF801Af.528"
+--===============0166184249==
+Content-Type: multipart/alternative; boundary="15515708310.ebfBa3c9.1013"
 Content-Transfer-Encoding: 7bit
 
 
---15515707450.CF801Af.528
-Date: Sat, 2 Mar 2019 23:52:25 +0000
+--15515708310.ebfBa3c9.1013
+Date: Sat, 2 Mar 2019 23:53:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,20 +35,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109804
 
---- Comment #2 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to hridesh from comment #1)
-> this is a  critical bug plz fixed it as soon as possible.
+Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-you are well aware that your bug report contains like 0 information and we =
-have
-like no idea what's going on?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|ASSIGNED                    |NEEDINFO
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.=
 
---15515707450.CF801Af.528
-Date: Sat, 2 Mar 2019 23:52:25 +0000
+--15515708310.ebfBa3c9.1013
+Date: Sat, 2 Mar 2019 23:53:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,32 +57,31 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - timeout"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109804#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - timeout"
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:karolherb=
+st&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.com&gt;">=
+ <span class=3D"fn">Karol Herbst</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - timeout"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109804">bug 10980=
 4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
-</span></b>
-        <pre>(In reply to hridesh from <a href=3D"show_bug.cgi?id=3D109804#=
-c1">comment #1</a>)
-<span class=3D"quote">&gt; this is a  critical bug plz fixed it as soon as =
-possible.</span >
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-you are well aware that your bug report contains like 0 information and we =
-have
-like no idea what's going on?</pre>
-        </div>
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>ASSIGNED
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -97,9 +94,9 @@ like no idea what's going on?</pre>
     </body>
 </html>=
 
---15515707450.CF801Af.528--
+--15515708310.ebfBa3c9.1013--
 
---===============1492130139==
+--===============0166184249==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1492130139==--
+--===============0166184249==--
