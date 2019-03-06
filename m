@@ -1,12 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99968] [NV4C] System crashes reliably with glxinfo
-Date: Mon, 04 Mar 2019 04:03:00 +0000
-Message-ID: <bug-99968-8800-amjUwiYTqA@http.bugs.freedesktop.org/>
-References: <bug-99968-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 109876] New: JIYE BHUTTO
+Date: Wed, 06 Mar 2019 07:54:45 +0000
+Message-ID: <bug-109876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1676377481=="
+Content-Type: multipart/mixed; boundary="===============1981458834=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99968-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,48 +18,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1676377481==
-Content-Type: multipart/alternative; boundary="15516721801.aF6eBdD.7459"
+--===============1981458834==
+Content-Type: multipart/alternative; boundary="15518588850.5Ef7Cc43A.31429"
 Content-Transfer-Encoding: 7bit
 
 
---15516721801.aF6eBdD.7459
-Date: Mon, 4 Mar 2019 04:03:00 +0000
+--15518588850.5Ef7Cc43A.31429
+Date: Wed, 6 Mar 2019 07:54:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99968
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109876
 
---- Comment #5 from Dave Odell <dmo2118-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Tried again on the same hardware with Linux 5.0-rc8, and it's not any bette=
-r.
-But now on top of that I've got intermittent system pauses, probably associ=
-ated
-with "rcu_sched detected stalls on CPUs/tasks" that I see in dmesg. That's
-probably unrelated to the problem at hand.
+            Bug ID: 109876
+           Summary: JIYE BHUTTO
+           Product: xorg
+           Version: unspecified
+          Hardware: x86 (IA32)
+                OS: Windows (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: jawad.asghar-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Resizing the glxdemo window repeatedly does it for me, too.
-
-nouveau.config=3DNvMSI=3D0 didn't help me, either.
-
-A twist: I normally run this machine with modprobe.blacklist=3Dnouveau, but=
- it
-still happened (while running Linux 4.15.0-20 from Ubuntu)...except this ti=
-me
-the system hadn't crashed, and CTRL-ALT-F1 (to get to tty1) followed by
-CTRL-ALT-F7 (to get back to X11) restored video.
+JEY HIND!
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-You are on the CC list for the bug.=
+You are the assignee for the bug.=
 
---15516721801.aF6eBdD.7459
-Date: Mon, 4 Mar 2019 04:03:00 +0000
+--15518588850.5Ef7Cc43A.31429
+Date: Wed, 6 Mar 2019 07:54:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,41 +65,90 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - JIYE BHUTTO"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109876">109876</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>JIYE BHUTTO
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Windows (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jawad.asghar&#64;outlook.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV4C] System crashes reliably with glxinfo"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99968#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV4C] System crashes reliably with glxinfo"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99968">bug 99968<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dmo2118&#64;gmail.com" title=3D"Dave Odell &lt;dmo2118&#64;gmail.com&gt;"> =
-<span class=3D"fn">Dave Odell</span></a>
-</span></b>
-        <pre>Tried again on the same hardware with Linux 5.0-rc8, and it's =
-not any better.
-But now on top of that I've got intermittent system pauses, probably associ=
-ated
-with &quot;rcu_sched detected stalls on CPUs/tasks&quot; that I see in dmes=
-g. That's
-probably unrelated to the problem at hand.
-
-Resizing the glxdemo window repeatedly does it for me, too.
-
-nouveau.config=3DNvMSI=3D0 didn't help me, either.
-
-A twist: I normally run this machine with modprobe.blacklist=3Dnouveau, but=
- it
-still happened (while running Linux 4.15.0-20 from Ubuntu)...except this ti=
-me
-the system hadn't crashed, and CTRL-ALT-F1 (to get to tty1) followed by
-CTRL-ALT-F7 (to get back to X11) restored video.</pre>
+        <pre>JEY HIND!</pre>
         </div>
       </p>
 
@@ -115,16 +157,14 @@ CTRL-ALT-F7 (to get back to X11) restored video.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
-          <li>You are on the CC list for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15516721801.aF6eBdD.7459--
+--15518588850.5Ef7Cc43A.31429--
 
---===============1676377481==
+--===============1981458834==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -134,4 +174,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1676377481==--
+--===============1981458834==--
