@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109886] bug submitted
-Date: Wed, 06 Mar 2019 08:05:08 +0000
-Message-ID: <bug-109886-8800-p1yxCS16ZY@http.bugs.freedesktop.org/>
+Date: Wed, 06 Mar 2019 08:05:33 +0000
+Message-ID: <bug-109886-8800-TK9CKPFfBM@http.bugs.freedesktop.org/>
 References: <bug-109886-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0376926155=="
+Content-Type: multipart/mixed; boundary="===============1382154776=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109886-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0376926155==
-Content-Type: multipart/alternative; boundary="15518595070.59101B.4014"
+--===============1382154776==
+Content-Type: multipart/alternative; boundary="15518595320.3eCB449CE.4147"
 Content-Transfer-Encoding: 7bit
 
 
---15518595070.59101B.4014
-Date: Wed, 6 Mar 2019 08:05:07 +0000
+--15518595320.3eCB449CE.4147
+Date: Wed, 6 Mar 2019 08:05:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,22 +35,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109886
 
-izza <mir.izza97-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |areeshajavaid21-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
-
---- Comment #1 from izza <mir.izza97-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-hbjb hhhghh
+--- Comment #2 from Malik Riaz <linawutida-6R/i/sXubIo6431WtnH1zQ@public.gmane.org> ---
+Jai Hind
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15518595070.59101B.4014
-Date: Wed, 6 Mar 2019 08:05:07 +0000
+--15518595320.3eCB449CE.4147
+Date: Wed, 6 Mar 2019 08:05:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,48 +55,24 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:mir.izza9=
-7&#64;gmail.com" title=3D"izza &lt;mir.izza97&#64;gmail.com&gt;"> <span cla=
-ss=3D"fn">izza</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - bug submitted"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109886">bug 10988=
-6</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>areeshajavaid21&#64;hotmail.com
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - bug submitted"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109886#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109886#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - bug submitted"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109886">bug 10988=
 6</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mir.izza97&#64;gmail.com" title=3D"izza &lt;mir.izza97&#64;gmail.com&gt;"> =
-<span class=3D"fn">izza</span></a>
+linawutida&#64;web-experts.net" title=3D"Malik Riaz &lt;linawutida&#64;web-=
+experts.net&gt;"> <span class=3D"fn">Malik Riaz</span></a>
 </span></b>
-        <pre>hbjb hhhghh</pre>
+        <pre>Jai Hind</pre>
         </div>
       </p>
 
@@ -117,9 +87,9 @@ mir.izza97&#64;gmail.com" title=3D"izza &lt;mir.izza97&#64;gmail.com&gt;"> =
     </body>
 </html>=
 
---15518595070.59101B.4014--
+--15518595320.3eCB449CE.4147--
 
---===============0376926155==
+--===============1382154776==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -129,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0376926155==--
+--===============1382154776==--
