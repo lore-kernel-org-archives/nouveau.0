@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109876] JIYE BHUTTO
-Date: Wed, 06 Mar 2019 07:55:18 +0000
-Message-ID: <bug-109876-8800-3XCWRDgXPJ@http.bugs.freedesktop.org/>
+Date: Wed, 06 Mar 2019 07:57:20 +0000
+Message-ID: <bug-109876-8800-jwKlamh8Yr@http.bugs.freedesktop.org/>
 References: <bug-109876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0280365055=="
+Content-Type: multipart/mixed; boundary="===============0620370341=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0280365055==
-Content-Type: multipart/alternative; boundary="15518589183.aaaFBAa1.29640"
+--===============0620370341==
+Content-Type: multipart/alternative; boundary="15518590400.DabfAf00.32443"
 Content-Transfer-Encoding: 7bit
 
 
---15518589183.aaaFBAa1.29640
-Date: Wed, 6 Mar 2019 07:55:18 +0000
+--15518590400.DabfAf00.32443
+Date: Wed, 6 Mar 2019 07:57:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -39,17 +39,17 @@ Muhammad Jawad Asghar <jawad.asghar-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org> cha
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |shifachishti65-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+                 CC|                            |osamamumtaz96-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
---- Comment #1 from Muhammad Jawad Asghar <jawad.asghar-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org> ---
-JAY HIND!
+--- Comment #2 from Muhammad Jawad Asghar <jawad.asghar-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org> ---
+HAN G BAWA G?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15518589183.aaaFBAa1.29640
-Date: Wed, 6 Mar 2019 07:55:18 +0000
+--15518590400.DabfAf00.32443
+Date: Wed, 6 Mar 2019 07:57:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -82,7 +82,7 @@ tlook.com&gt;"> <span class=3D"fn">Muhammad Jawad Asghar</span></a>
            <td>
                &nbsp;
            </td>
-           <td>shifachishti65&#64;gmail.com
+           <td>osamamumtaz96&#64;gmail.com
            </td>
          </tr></table>
       <p>
@@ -90,8 +90,8 @@ tlook.com&gt;"> <span class=3D"fn">Muhammad Jawad Asghar</span></a>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - JIYE BHUTTO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109876#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109876#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - JIYE BHUTTO"
@@ -101,7 +101,7 @@ t # 1</a>
 jawad.asghar&#64;outlook.com" title=3D"Muhammad Jawad Asghar &lt;jawad.asgh=
 ar&#64;outlook.com&gt;"> <span class=3D"fn">Muhammad Jawad Asghar</span></a>
 </span></b>
-        <pre>JAY HIND!</pre>
+        <pre>HAN G BAWA G?</pre>
         </div>
       </p>
 
@@ -115,9 +115,9 @@ ar&#64;outlook.com&gt;"> <span class=3D"fn">Muhammad Jawad Asghar</span></a>
     </body>
 </html>=
 
---15518589183.aaaFBAa1.29640--
+--15518590400.DabfAf00.32443--
 
---===============0280365055==
+--===============0620370341==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -127,4 +127,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0280365055==--
+--===============0620370341==--
