@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 101220] [NV137/GP107] xorg-server-1.19.3 crashes
  when trying to enable HDMI output
-Date: Sat, 09 Mar 2019 18:33:43 +0000
-Message-ID: <bug-101220-8800-TKANRn1LXm@http.bugs.freedesktop.org/>
+Date: Sat, 09 Mar 2019 18:45:49 +0000
+Message-ID: <bug-101220-8800-nWBunGakML@http.bugs.freedesktop.org/>
 References: <bug-101220-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1280851331=="
+Content-Type: multipart/mixed; boundary="===============0016380274=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1280851331==
-Content-Type: multipart/alternative; boundary="15521564234.1ceC2bB.3749"
+--===============0016380274==
+Content-Type: multipart/alternative; boundary="15521571494.10daD52b.5568"
 Content-Transfer-Encoding: 7bit
 
 
---15521564234.1ceC2bB.3749
-Date: Sat, 9 Mar 2019 18:33:43 +0000
+--15521571494.10daD52b.5568
+Date: Sat, 9 Mar 2019 18:45:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,15 +36,40 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
 
---- Comment #20 from Pacho Ramos <pachoramos1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The same with kernel 5.0.0
+--- Comment #21 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Carlo Caione from comment #18)
+> (In reply to Carlo Caione from comment #16)
+> > Created attachment 133924 [details] [review] [review]
+> > [PATCH] Don't advertise any PRIME offloading capabilities without
+> > acceleration
+> >=20
+> > (In reply to Michel D=C3=A4nzer from comment #6)
+> > > (In reply to Ilia Mirkin from comment #5)
+> > > > I wonder if this is due to the fact that it's running in NoAccel mo=
+de.
+> > >=20
+> > > Possibly, you might want something like
+> > >=20
+> > > https://cgit.freedesktop.org/xorg/driver/xf86-video-ati/commit/
+> > > ?id=3Db19417e2fddf4df725951aea5ad5e9558338f59e
+> >=20
+> > Something like this for nouveau?
+>=20
+> ping on this patch. It's not the solution for the underlying problem but =
+at
+> least it's nice to have Xorg not crashing.
+
+Carlo, can you confirm that you've tested this out? My concern is that, wit=
+hout
+further investigation, it's unclear that it's OK to mess with
+pScrn->capabilities in ScreenInit -- the other function does it in PreInit.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15521564234.1ceC2bB.3749
-Date: Sat, 9 Mar 2019 18:33:43 +0000
+--15521571494.10daD52b.5568
+Date: Sat, 9 Mar 2019 18:45:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +87,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
 nable HDMI output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c20">Comme=
-nt # 20</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c21">Comme=
+nt # 21</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
@@ -71,10 +96,48 @@ nable HDMI output"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pachoramos1&#64;gmail.com" title=3D"Pacho Ramos &lt;pachoramos1&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Pacho Ramos</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>The same with kernel 5.0.0</pre>
+        <pre>(In reply to Carlo Caione from <a href=3D"show_bug.cgi?id=3D10=
+1220#c18">comment #18</a>)
+<span class=3D"quote">&gt; (In reply to Carlo Caione from <a href=3D"show_b=
+ug.cgi?id=3D101220#c16">comment #16</a>)
+&gt; &gt; Created <span class=3D""><a href=3D"attachment.cgi?id=3D133924" n=
+ame=3D"attach_133924" title=3D"[PATCH] Don't advertise any PRIME offloading=
+ capabilities without acceleration">attachment 133924</a> <a href=3D"attach=
+ment.cgi?id=3D133924&amp;action=3Dedit" title=3D"[PATCH] Don't advertise an=
+y PRIME offloading capabilities without acceleration">[details]</a></span> =
+<a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=3D101220&amp;attachment=3D13=
+3924'>[review]</a> [review] [review]
+&gt; &gt; [PATCH] Don't advertise any PRIME offloading capabilities without
+&gt; &gt; acceleration
+&gt; &gt;=20
+&gt; &gt; (In reply to Michel D=C3=A4nzer from <a href=3D"show_bug.cgi?id=
+=3D101220#c6">comment #6</a>)
+&gt; &gt; &gt; (In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D1=
+01220#c5">comment #5</a>)
+&gt; &gt; &gt; &gt; I wonder if this is due to the fact that it's running i=
+n NoAccel mode.
+&gt; &gt; &gt;=20
+&gt; &gt; &gt; Possibly, you might want something like
+&gt; &gt; &gt;=20
+&gt; &gt; &gt; <a href=3D"https://cgit.freedesktop.org/xorg/driver/xf86-vid=
+eo-ati/commit/">https://cgit.freedesktop.org/xorg/driver/xf86-video-ati/com=
+mit/</a>
+&gt; &gt; &gt; ?id=3Db19417e2fddf4df725951aea5ad5e9558338f59e
+&gt; &gt;=20
+&gt; &gt; Something like this for nouveau?
+&gt;=20
+&gt; ping on this patch. It's not the solution for the underlying problem b=
+ut at
+&gt; least it's nice to have Xorg not crashing.</span >
+
+Carlo, can you confirm that you've tested this out? My concern is that, wit=
+hout
+further investigation, it's unclear that it's OK to mess with
+pScrn-&gt;capabilities in ScreenInit -- the other function does it in PreIn=
+it.</pre>
         </div>
       </p>
 
@@ -88,9 +151,9 @@ om&gt;"> <span class=3D"fn">Pacho Ramos</span></a>
     </body>
 </html>=
 
---15521564234.1ceC2bB.3749--
+--15521571494.10daD52b.5568--
 
---===============1280851331==
+--===============0016380274==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +163,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1280851331==--
+--===============0016380274==--
