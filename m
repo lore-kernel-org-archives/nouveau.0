@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101220] [NV137/GP107] xorg-server-1.19.3 crashes
- when trying to enable HDMI output
-Date: Sat, 09 Mar 2019 18:48:43 +0000
-Message-ID: <bug-101220-8800-ZsIAsztFqC@http.bugs.freedesktop.org/>
-References: <bug-101220-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 109951] New: Death in Thrive (Game) Causes Hang
+ Followed By Crash
+Date: Sun, 10 Mar 2019 20:57:20 +0000
+Message-ID: <bug-109951-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0941430758=="
+Content-Type: multipart/mixed; boundary="===============0278479152=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101220-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +19,50 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0941430758==
-Content-Type: multipart/alternative; boundary="15521573235.A05d.6992"
+--===============0278479152==
+Content-Type: multipart/alternative; boundary="15522514410.dAdcD.24199"
 Content-Transfer-Encoding: 7bit
 
 
---15521573235.A05d.6992
-Date: Sat, 9 Mar 2019 18:48:43 +0000
+--15522514410.dAdcD.24199
+Date: Sun, 10 Mar 2019 20:57:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101220
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109951
 
---- Comment #23 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Carlo Caione from comment #22)
-> I did test it. But that was more than 1 year ago and I don't have the hw
-> anymore. So not sure what to suggest here.
+            Bug ID: 109951
+           Summary: Death in Thrive (Game) Causes Hang Followed By Crash
+           Product: Mesa
+           Version: 18.3
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: evelyn.eion-NKyL0FI7AOPk1uMJSBkQmQ@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-Good enough for me. I'll give it a whirl myself too. Thanks!
+Created attachment 143617
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D143617&action=3Dedit
+kernel-logs
+
+The game's log fills with things like "nouveau: 0x00000000 nouveau: 0x00000=
+000
+nouveau: 0x00000000" for a minute or two. Then, it crashes.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15521573235.A05d.6992
-Date: Sat, 9 Mar 2019 18:48:43 +0000
+--15522514410.dAdcD.24199
+Date: Sun, 10 Mar 2019 20:57:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,32 +73,98 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Death in Thrive (Game) Causes Hang Followed By Crash"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109951">109951</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Death in Thrive (Game) Causes Hang Followed By Crash
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>18.3
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>evelyn.eion&#64;cowstore.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
-nable HDMI output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220#c23">Comme=
-nt # 23</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137/GP107] xorg-server-1.19.3 crashes when trying to e=
-nable HDMI output"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101220">bug 10122=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Carlo Caione from <a href=3D"show_bug.cgi?id=3D10=
-1220#c22">comment #22</a>)
-<span class=3D"quote">&gt; I did test it. But that was more than 1 year ago=
- and I don't have the hw
-&gt; anymore. So not sure what to suggest here.</span >
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D143617=
+" name=3D"attach_143617" title=3D"kernel-logs">attachment 143617</a> <a hre=
+f=3D"attachment.cgi?id=3D143617&amp;action=3Dedit" title=3D"kernel-logs">[d=
+etails]</a></span>
+kernel-logs
 
-Good enough for me. I'll give it a whirl myself too. Thanks!</pre>
+The game's log fills with things like &quot;nouveau: 0x00000000 nouveau: 0x=
+00000000
+nouveau: 0x00000000&quot; for a minute or two. Then, it crashes.</pre>
         </div>
       </p>
 
@@ -94,13 +174,14 @@ Good enough for me. I'll give it a whirl myself too. Thanks!</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15521573235.A05d.6992--
+--15522514410.dAdcD.24199--
 
---===============0941430758==
+--===============0278479152==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +191,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0941430758==--
+--===============0278479152==--
