@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 109952] nv106 nv108 confusion
-Date: Mon, 11 Mar 2019 13:49:05 +0000
-Message-ID: <bug-109952-8800-PYRVrGsjWx@http.bugs.freedesktop.org/>
+Date: Mon, 11 Mar 2019 13:52:37 +0000
+Message-ID: <bug-109952-8800-BSJSfRh9HK@http.bugs.freedesktop.org/>
 References: <bug-109952-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0752456092=="
+Content-Type: multipart/mixed; boundary="===============1630288465=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-109952-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0752456092==
-Content-Type: multipart/alternative; boundary="15523121450.F6de4.30789"
+--===============1630288465==
+Content-Type: multipart/alternative; boundary="15523123562.E1C1Cd7.1627"
 Content-Transfer-Encoding: 7bit
 
 
---15523121450.F6de4.30789
-Date: Mon, 11 Mar 2019 13:49:05 +0000
+--15523123562.E1C1Cd7.1627
+Date: Mon, 11 Mar 2019 13:52:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,23 +35,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D109952
 
---- Comment #2 from moebius <moebius1-GANU6spQydw@public.gmane.org> ---
-Bonjour,
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please try it with mplayer.
 
-I've tried to symlink every nv106_fuc* to nv108_fuc* (3 files) but kaffeine
-crash again.
-
-So, in Debian Buster (PRETTY_NAME=3D"Debian GNU/Linux buster/sid"), nouveau
-acceleration doesn't work...bug or faulty config ?
-
-cordialement,
+Instructions here:
+https://nouveau.freedesktop.org/wiki/VideoAcceleration/#usingvdpau
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15523121450.F6de4.30789
-Date: Mon, 11 Mar 2019 13:49:05 +0000
+--15523123562.E1C1Cd7.1627
+Date: Mon, 11 Mar 2019 13:52:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,27 +63,23 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nv106 nv108 confusion"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109952#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109952#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - nv106 nv108 confusion"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109952">bug 10995=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-moebius1&#64;free.fr" title=3D"moebius &lt;moebius1&#64;free.fr&gt;"> <span=
- class=3D"fn">moebius</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Bonjour,
+        <pre>Please try it with mplayer.
 
-I've tried to symlink every nv106_fuc* to nv108_fuc* (3 files) but kaffeine
-crash again.
-
-So, in Debian Buster (PRETTY_NAME=3D&quot;Debian GNU/Linux buster/sid&quot;=
-), nouveau
-acceleration doesn't work...bug or faulty config ?
-
-cordialement,</pre>
+Instructions here:
+<a href=3D"https://nouveau.freedesktop.org/wiki/VideoAcceleration/#usingvdp=
+au">https://nouveau.freedesktop.org/wiki/VideoAcceleration/#usingvdpau</a><=
+/pre>
         </div>
       </p>
 
@@ -102,9 +93,9 @@ cordialement,</pre>
     </body>
 </html>=
 
---15523121450.F6de4.30789--
+--15523123562.E1C1Cd7.1627--
 
---===============0752456092==
+--===============1630288465==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0752456092==--
+--===============1630288465==--
