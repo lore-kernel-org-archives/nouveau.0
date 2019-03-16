@@ -1,11 +1,11 @@
-From: Jean Chorin <jean.chorin-omI3DanSII5nItmLHl24hw@public.gmane.org>
-Subject: Questions about envytools: reading card VBIOS
-Date: Wed, 20 Mar 2019 16:49:34 +0100
-Message-ID: <3e7d4b6d-cd35-8c98-7a7c-372cec359cd3@cloudandheat.com>
+From: Jon Derrick <jonathan.derrick-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 0/4] NV50/GF100 behind constrained hierarchies
+Date: Fri, 15 Mar 2019 18:05:14 -0600
+Message-ID: <20190316000518.3081-1-jonathan.derrick@intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1894625767=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,104 +15,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Jon Derrick <jonathan.derrick-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---===============1894625767==
-Content-Type: multipart/alternative;
- boundary="------------FF8756F676AE5FE6AA7FE5EF"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------FF8756F676AE5FE6AA7FE5EF
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-To whom it may concern
-
-I hope here is the right place to ask about envytools.
-
-I am working on securing our GPUs in the case of an OpenStack
-infrastructure, where GPUs can be bound and unbound to VMs from
-different clients.
-
-I wanted to use envytools to retrieve the VBIOS our cards, then check
-after each VM deletion if somebody changed the VBIOS (potentially a
-threat). The VBIOS would be read again and compared to the previously
-stored one.
-
-So we would like to know:
-
-  * is the card harmed in any way by reading the BIOS (I guess not, as
-    we simply read**);
-  * the utility also suggests that the cards have a second VBIOS. Is
-    this second VBIOS also read at the same time? If not, how to read it?=
-
-  * the VBIOS file read is larger than the one that could be read using
-    the NVFlash utility (1 Mo for envytools, against 230 ko for
-    NVFlash). I guess it is not an issue, but could you explain why this
-    difference occurs?
-
-Thanks for your help.
-
-Best regards,
-
-Jean Chorin
-
-
---------------FF8756F676AE5FE6AA7FE5EF
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>To whom it may concern</p>
-    <p>I hope here is the right place to ask about envytools.<br>
-    </p>
-    <p>I am working on securing our GPUs in the case of an OpenStack
-      infrastructure, where GPUs can be bound and unbound to VMs from
-      different clients.</p>
-    <p>I wanted to use envytools to retrieve the VBIOS our cards, then
-      check after each VM deletion if somebody changed the VBIOS
-      (potentially a threat). The VBIOS would be read again and compared
-      to the previously stored one.<br>
-    </p>
-    <p>So we would like to know:<br>
-    </p>
-    <ul data-sourcepos="8:1-11:0" dir="auto">
-      <li data-sourcepos="8:1-8:127">is the card harmed in any way by
-        reading the BIOS (I guess not, as we simply read<strong></strong>);</li>
-      <li data-sourcepos="9:1-9:140">the utility also suggests that the
-        cards have a second VBIOS. Is this second VBIOS also read at the
-        same time? If not, how to read it?<br>
-      </li>
-      <li data-sourcepos="10:1-11:0">the VBIOS file read is larger than
-        the one that could be read using the NVFlash utility (1 Mo for
-        envytools, against 230 ko for NVFlash). I guess it is not an
-        issue, but could you explain why this difference occurs?</li>
-    </ul>
-    <p>Thanks for your help.</p>
-    <p>Best regards,</p>
-    <p>Jean Chorin<br>
-    </p>
-  </body>
-</html>
-
---------------FF8756F676AE5FE6AA7FE5EF--
-
---===============1894625767==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1894625767==--
+SGkgQmVuLAoKSSd2ZSBiZWVuIHdvcmtpbmcgd2l0aCBhbiBtbWlvLWNvbnN0cmFpbmVkIHBjaSBo
+aWVyYXJjaHkgaW50ZW5kZWQgYWxtb3N0CnNvbGVseSBmb3IgbnZtZSBkZXZpY2VzIGFuZCBzd2l0
+Y2hlcy4gQmluZGluZyBub3V2ZWF1IHRvIGFuIE5WNTAtYmFzZWQKZ3B1IHJlc3VsdHMgaW4gYSBr
+ZXJuZWwgcGFuaWMgYXMgdGhlIGRldmljZSBjYW5ub3QgYmUgZnVsbHkgbWFwcGVkLgoKSSd2ZSBt
+YWRlIG1vZGlmaWNhdGlvbnMgaW4gbnY1MCBhbmQgdm1tIHRvIHVuYmluZCB0aGUgZHJpdmVyIGZy
+b20gdGhpcwpoaWVyYXJjaHksIGFuZCBtb2RpZmllZCBnZjEwMCBhc3N1bWluZyBpdCB3aWxsIGhh
+dmUgdGhlIHNhbWUgaXNzdWUuCgoxLzQgYWxzbyBpbmNsdWRlcyBhIGZpeCB3aGVyZSBudjUwIGRv
+ZXNuJ3QgbG9vayBsaWtlIGl0IGNoZWNrcyB0aGUKcmV0dXJuIHZhbHVlIGZvciBudmttX3ZtbV9u
+ZXcgZm9yIGJhcjEuIEkgZG9uJ3Qga25vdyBpZiB0aGlzIHdhcwppbnRlbnRpb25hbCAoZWcsIGl0
+IGNvdWxkIHdvcmsgd2l0aG91dCBpdCkuCgpJJ20gd2hvbGx5IHVuZmFtaWxpYXIgd2l0aCBsaW51
+eCBncmFwaGljcyBkcml2ZXJzIHNvIGxldCBtZSBrbm93IGlmCnRoZXJlJ3MgYSBiZXR0ZXIgcGxh
+Y2UgZm9yIHRoaXMuCgpKb24gRGVycmljayAoNCk6CiAgZHJtL25vdXZlYXUvYmFyL252NTA6IGNo
+ZWNrIGJhcjEgdm1tIHJldHVybiB2YWx1ZQogIGRybS9ub3V2ZWF1L2Jhci9udjUwOiBlbnN1cmUg
+QkFSIGlzIG1hcHBlZAogIGRybS9ub3V2ZWF1L2Jhci9nZjEwMDogZW5zdXJlIEJBUiBpcyBtYXBw
+ZWQKICBkcm0vbm91dmVhdS9tbXU6IHF1YWxpZnkgdm1tIGR1cmluZyBkdG9yCgogZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmFyL2dmMTAwLmMgfCAgMiArKwogZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmFyL252NTAuYyAgfCAxNCArKysrKysrKysrKy0t
+LQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbW11L3ZtbS5jICAgfCAgMiAr
+LQogMyBmaWxlcyBjaGFuZ2VkLCAxNCBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQoKLS0g
+CjIuMTQuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
