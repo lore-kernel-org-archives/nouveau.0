@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110125] found a bug in the driver which provides
- blank screen
-Date: Fri, 15 Mar 2019 12:49:46 +0000
-Message-ID: <bug-110125-8800-ydGyvRiNCE@http.bugs.freedesktop.org/>
-References: <bug-110125-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 108058] After resuming from suspend,
+ discrete GPU is powered on and can't be turned off
+Date: Sun, 17 Mar 2019 17:05:07 +0000
+Message-ID: <bug-108058-8800-dTQnl9whdO@http.bugs.freedesktop.org/>
+References: <bug-108058-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1676606061=="
+Content-Type: multipart/mixed; boundary="===============1231870760=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110125-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-108058-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,43 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1676606061==
-Content-Type: multipart/alternative; boundary="15526541862.FdAFA.11169"
+--===============1231870760==
+Content-Type: multipart/alternative; boundary="15528423072.7DBcEb203.9361"
 Content-Transfer-Encoding: 7bit
 
 
---15526541862.FdAFA.11169
-Date: Fri, 15 Mar 2019 12:49:46 +0000
+--15528423072.7DBcEb203.9361
+Date: Sun, 17 Mar 2019 17:05:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110125
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108058
 
-Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> changed:
+--- Comment #7 from Domenico Iezzi <domenico.iezzi.201-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Still occurring to me on linux 5.0.2.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Severity|critical                    |normal
-                 CC|                            |a9016009-Mmb7MZpHnFY@public.gmane.org
-             Status|NEW                         |NEEDINFO
+I also noticed that after resuming from suspend, if I run something with the
+discrete GPU like this:
 
---- Comment #1 from Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> ---
-ravi: If this is not some test ticket (please do not test here):
+    DRI_PRIME=3D1 glxgears -info
 
-Please provide exact steps to reproduce, exact driver version information,
-system information (operating system and version), graphics hardware
-information.
+the power consumption returns to normal values. This seems to be the same
+behavior already noticed by @Tolga in comment #1
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---15526541862.FdAFA.11169
-Date: Fri, 15 Mar 2019 12:49:46 +0000
+--15528423072.7DBcEb203.9361
+Date: Sun, 17 Mar 2019 17:05:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,72 +63,35 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:a9016009&=
-#64;gmx.de" title=3D"Andre Klapper &lt;a9016009&#64;gmx.de&gt;"> <span clas=
-s=3D"fn">Andre Klapper</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - found a bug in the driver which provides blank scree=
-n"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110125">bug 11012=
-5</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Severity</td>
-           <td>critical
-           </td>
-           <td>normal
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>a9016009&#64;gmx.de
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - found a bug in the driver which provides blank scree=
-n"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110125#c1">Commen=
-t # 1</a>
+          bz_status_NEW "
+   title=3D"NEW - After resuming from suspend, discrete GPU is powered on a=
+nd can't be turned off"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108058#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - found a bug in the driver which provides blank scree=
-n"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110125">bug 11012=
-5</a>
+          bz_status_NEW "
+   title=3D"NEW - After resuming from suspend, discrete GPU is powered on a=
+nd can't be turned off"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108058">bug 10805=
+8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-a9016009&#64;gmx.de" title=3D"Andre Klapper &lt;a9016009&#64;gmx.de&gt;"> <=
-span class=3D"fn">Andre Klapper</span></a>
+domenico.iezzi.201&#64;gmail.com" title=3D"Domenico Iezzi &lt;domenico.iezz=
+i.201&#64;gmail.com&gt;"> <span class=3D"fn">Domenico Iezzi</span></a>
 </span></b>
-        <pre>ravi: If this is not some test ticket (please do not test here=
-):
+        <pre>Still occurring to me on linux 5.0.2.
 
-Please provide exact steps to reproduce, exact driver version information,
-system information (operating system and version), graphics hardware
-information.</pre>
+I also noticed that after resuming from suspend, if I run something with the
+discrete GPU like this:
+
+    DRI_PRIME=3D1 glxgears -info
+
+the power consumption returns to normal values. This seems to be the same
+behavior already noticed by &#64;Tolga in <a href=3D"show_bug.cgi?id=3D1080=
+58#c1">comment #1</a></pre>
         </div>
       </p>
 
@@ -143,14 +101,13 @@ information.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15526541862.FdAFA.11169--
+--15528423072.7DBcEb203.9361--
 
---===============1676606061==
+--===============1231870760==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -160,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1676606061==--
+--===============1231870760==--
