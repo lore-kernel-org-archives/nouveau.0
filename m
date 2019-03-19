@@ -1,956 +1,370 @@
-From: =?UTF-8?Q?St=C3=A9phane_Marchesin?= <marcheu-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>
-Subject: Re: Request for info on a big problems with nouveau driver
-Date: Mon, 18 Mar 2019 16:31:46 -0700
-Message-ID: <CADMs+9bd6Hb73L_hKdz=i8T36FW65DYZKDE-ck=Cp3dLkvXGKg@mail.gmail.com>
-References: <CAEQFVGZZF362bNcC3tSapDRFbNJ20giP38i-zkwADxpga27Xow@mail.gmail.com>
- <CAAFQd5DvYYnyYoQz8zZOrk-Z5646ihxSsHVdg6HxufWVM1+43A@mail.gmail.com>
- <CADMs+9ZKG57UgtP_TH35N3eBnjUDvaWLS9FxVKnxqUnPz-ZcSw@mail.gmail.com>
- <CAEQFVGaiB4R+f24XEsard=syo7OAy7sMMD_GSJ+5zQmMvY+B6Q@mail.gmail.com>
- <CADMs+9bfG7ZbWQXiXXWWHnR9RLW8KDam7WDo=p70zCe_b2qHRQ@mail.gmail.com>
- <CAEQFVGZ_Z=cdtk8sNu==S4jJ2S__5O6Gm011p-cg7p-9AUidQQ@mail.gmail.com>
- <CADMs+9ZPk+ukzPQyRCK9jRPU-22GEJBTS0gNEPBypTNkDGEezQ@mail.gmail.com>
- <CAEQFVGb=JJZRAhmj4bm+pp0-PHkKs5iWSQvpdYei9h=i5BOcbA@mail.gmail.com>
- <CAEQFVGbANHqwxLJ5c2j_0wEho+YrhL8ERM5x7-7Rv9L9GLSXWg@mail.gmail.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH] pci/quirks: Add quirk to reset nvgpu at boot for the
+ Lenovo ThinkPad P50
+Date: Tue, 19 Mar 2019 16:56:03 -0400
+Message-ID: <1e73b768ac65033658740abe553291fd3b0496c6.camel@redhat.com>
+References: <20190212220230.1568-1-lyude@redhat.com>
+ <20190215004329.GR96272@google.com>
+ <2fca9a9feafcd17b27bc71994a71ebc241a93e9a.camel@redhat.com>
+ <52b17f8cb24e179e9661d75548d193843ae87b4c.camel@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0129198384=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAEQFVGbANHqwxLJ5c2j_0wEho+YrhL8ERM5x7-7Rv9L9GLSXWg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Chih-Wei Huang <cwhuang-/Cx9OjMEmUl75Oa3hH2JBw@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <52b17f8cb24e179e9661d75548d193843ae87b4c.camel@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Bjorn Helgaas <helgaas@kernel.org>, David Ober <dober@lenovo.com>
+Cc: Karol Herbst <kherbst@redhat.com>, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
---===============0129198384==
-Content-Type: multipart/alternative; boundary="00000000000069ae14058466cbd1"
-
---00000000000069ae14058466cbd1
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Sat, Mar 16, 2019 at 12:33 PM Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-
-> Hi St=C3=A9phane,
->
-> the good news is that Kerol Herbst patches are mitigating effectively
-> the GPU lockup.
-> it would really be a pity to loose and abandon nouveau driver in
-> android-x86,
-> while intel, radeon and amdgpu are working perfectly.
->
-> The Android GUI reboots always the same way when bringing back main scree=
-n,
-> with home button or using square menu button.
->
-> I've collected log with drm.debug level 63
-> to see what is happening prior to EGL-MAIN: DRI2: failed to create
-> screen/ EGL_NOT_INITIALIZED
->
-> Full log and tombstone in the attachment,
-> could someone in nouveau team decipher the errors?
->
-
-That's a question more appropriate for the nouveau list, I am CCing the
-list.
-
-St=C3=A9phane
-
-
-> In the logs there is also the DRM ioctl commands happening before the
-> DRI screen error
->
-> Mauro
->
-> 03-16 18:57:03.615     0     0 E         : 00a0 2 base507c_ntfy_set
-> 03-16 18:57:03.615     0     0 E         : 00000060
-> 03-16 18:57:03.615     0     0 E         : f0000000
-> 03-16 18:57:03.615     0     0 E         : 0084 1 base907c_image_set
-> 03-16 18:57:03.615     0     0 E         : 00000010
-> 03-16 18:57:03.615     0     0 E         : 00c0 1 base907c_image_set
-> 03-16 18:57:03.615     0     0 E         : fb0000fe
-> 03-16 18:57:03.615     0     0 E         : 0400 5 base907c_image_set
-> 03-16 18:57:03.615     0     0 E         : 00010000
-> 03-16 18:57:03.615     0     0 E         : 00000000
-> 03-16 18:57:03.615     0     0 E         : 04000500
-> 03-16 18:57:03.615     0     0 E         : 00005004
-> 03-16 18:57:03.615     0     0 E         : 0000cf00
-> 03-16 18:57:03.615     0     0 E         : 0080 1 base507c_update
-> 03-16 18:57:03.615     0     0 E         : 00000000
-> 03-16 18:57:03.616  2729  4165 W EGL-MAIN: DRI2: failed to create dri
-> screen
-> 03-16 18:57:03.616  2729  4165 W EGL-MAIN: DRI2: failed to create screen
-> 03-16 18:57:03.617  2729  4165 W libEGL  : eglInitialize(0xad3ab800)
-> failed (EGL_NOT_INITIALIZED)
-> 03-16 18:57:03.617  2729  4165 I system_server:
->
-> android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasWideColo=
-rDisplay
-> retrieved: 0
-> 03-16 18:57:03.617  2729  4165 I OpenGLRenderer: Initialized EGL, version
-> 1.4
-> 03-16 18:57:03.617  2729  4165 D OpenGLRenderer: Swap behavior 2
-> 03-16 18:57:03.617  2729  4165 F OpenGLRenderer: Failed to choose
-> config, error =3D EGL_NOT_INITIALIZED
-> --------- beginning of crash
-> 03-16 18:57:03.617  2729  4165 F libc    : Fatal signal 6 (SIGABRT),
-> code -6 in tid 4165 (RenderThread), pid 2729 (system_server)
->
-> On Tue, Mar 5, 2019 at 8:55 AM Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> >
-> > Hi,
-> > one of the problems (the Play Store Crash) was resolved with following
-> commit:
-> >
-> http://git.osdn.net/view?p=3Dandroid-x86/frameworks-base.git;a=3Dcommit;h=
-=3Dd488a6c2bbedc06fc22942555d0157e7bf09f135
-> >
-> > Now the remaining one, affecting the dEQP-EGL multithreading tests and
-> > RenderThread in general,
-> > has been traced in the attached logs.
-> >
-> > It seams a problem similar to "a second libEGL call failing" when
-> > RenderThread is trying to create dri screen
-> > which is killed by Android attempt to load EGL config which fails and
-> > it is treated as Fatal.
-> > We just need to find the root cause of failure.
-> >
-> > In the logcat there is a clue of what is happening:
-> >
-> > --------- beginning of crash
-> > 03-04 20:50:56.762  1440  1440 E AndroidRuntime: FATAL EXCEPTION: main
-> > 03-04 20:50:56.762  1440  1440 E AndroidRuntime: Process:
-> > com.android.systemui, PID: 1440
-> > 03-04 20:50:56.762  1440  1440 E AndroidRuntime:
-> > java.lang.NullPointerException: Attempt to invoke virtual method
-> > 'android.graphics.GraphicBuffer
-> > android.graphics.Bitmap.createGraphicBufferHandle()' on a null object
-> > reference
-> > 03-04 20:50:56.762  1440  1440 E AndroidRuntime: at
-> >
-> com.android.systemui.recents.views.RecentsTransitionHelper.drawViewIntoGr=
-aphicBuffer(RecentsTransitionHelper.java:436)
-> >
-> > Mauro
-> >
-> > On Tue, Mar 5, 2019 at 1:29 AM St=C3=A9phane Marchesin <marcheu@chromiu=
-m.org>
-> wrote:
-> > >
-> > >
-> > >
-> > > On Sat, Mar 2, 2019 at 12:08 AM Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> wrote:
-> > >>
-> > >> Hi St=C3=A9phane,
-> > >>
-> > >> On Fri, Mar 1, 2019 at 11:24 PM St=C3=A9phane Marchesin <
-> marcheu-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org> wrote:
-> > >> >
-> > >> >
-> > >> >
-> > >> > On Fri, Mar 1, 2019 at 4:30 AM Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> wrote:
-> > >> >>
-> > >> >> Hi St=C3=A9phane,
-> > >> >>
-> > >> >> thanks for responding
-> > >> >>
-> > >> >> On Thu, Feb 28, 2019 at 9:56 PM St=C3=A9phane Marchesin <
-> marcheu-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org> wrote:
-> > >> >> >
-> > >> >> >
-> > >> >> >
-> > >> >> > On Tue, Feb 19, 2019 at 6:54 PM Tomasz Figa <tfiga-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org=
->
-> wrote:
-> > >> >> >>
-> > >> >> >> Hi Mauro,
-> > >> >> >>
-> > >> >> >> Thanks for your query. I'm not very active in the graphics are=
-a
-> > >> >> >> anymore, but let me add +St=C3=A9phane Marchesin , who should =
-know
-> the
-> > >> >> >> best.
-> > >> >> >>
-> > >> >> >> Best regards,
-> > >> >> >> Tomasz
-> > >> >> >>
-> > >> >> >> On Wed, Feb 20, 2019 at 3:00 AM Mauro Rossi <
-> issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> > >> >> >> >
-> > >> >> >> > Hi Tomasz,
-> > >> >> >> >
-> > >> >> >> > I wanted to ask some help, even just some information about
-> how
-> > >> >> >> > nouveau is working with chromeos minigbm stack, because we
-> have big
-> > >> >> >> > issues with drm_gralloc and gbm_gralloc.
-> > >> >> >> >
-> > >> >> >> > nouveau gallium driver does not support Multithreading and
-> oreo-x86
-> > >> >> >> > has introduced additional RenderThread scenarios which cause
-> > >> >> >> > instability.
-> > >> >> >> >
-> > >> >> >> > dEQP-EGL multithreding tests are causing GUI restarts, even
-> with
-> > >> >> >> > latest Karol Herbst patches with per gl context mutex lockin=
-g
-> and per
-> > >> >> >> > fence mutex locking,
-> > >> >> >> > he said there is an additional race condition that may
-> require another
-> > >> >> >> > major rewrite,
-> > >> >> >> > but he did not mention which additional race condition.
-> > >> >> >> >
-> > >> >> >> > I wanted to ask you just some info, in case you may have
-> them, or
-> > >> >> >> > suggestions on how to avoid the problem.
-> > >> >> >> >
-> > >> >> >> > 1) Are you aware of problems with chromeos with nouveau MT
-> and how
-> > >> >> >> > they were avoided?
-> > >> >> >> > At the moment I can boot with minigbm, but the navigation ba=
-r
-> and menu
-> > >> >> >> > bar are trasparent and invisible, so I was not able to check
-> if
-> > >> >> >> > minigbm has same problems we have.
-> > >> >> >> >
-> > >> >> >> > 2) We are so stuck with nouveau support that I was thinking
-> to explore
-> > >> >> >> > another angle,
-> > >> >> >> > is it possible to disable additional threads in android-x86
-> code base for Oreo?
-> > >> >> >> > Do you have some colleagues that may provide indication on
-> how to do it?
-> > >> >> >> >
-> > >> >> >
-> > >> >> >
-> > >> >> > Hi Mauro,
-> > >> >> >
-> > >> >> > We don't officially support nouveau on Chrome OS (there are no
-> devices which use it). The nouveau minigbm driver was written to be able =
-to
-> develop Chrome for Chrome OS on top of a Linux workstation with an nvidia
-> GPU. In particular, we have never started Android with that configuration=
-.
-> > >> >> >
-> > >> >> > Can you give more details on issue 1, i.e. what is invisible?
-> Last I looked Chrome was working. Are you certain this is related to
-> threading?
-> > >> >> >
-> > >> >> > St=C3=A9phane
-> > >> >>
-> > >> >> [minigbm issue]
-> > >> >>
-> > >> >> The problem with minigbm was mentioned after trying to exploit
-> minigbm
-> > >> >> as it is in Chrome OS stack (which supports running Android
-> > >> >> applications AFAIK)
-> > >> >>
-> > >> >> The stock minigbm was not ready to boot in android-x86, lambdadro=
-id
-> > >> >> added dma fb support and I added some required formats (RGBA, RGB=
-X,
-> > >> >> RGB565)
-> > >> >> to be able to boot:
-> > >> >> https://github.com/maurossi/minigbm/commits/minigbm_fb
-> > >> >>
-> > >> >> Using that version of minigbm with android-x86 (oreo-x86) I see i=
-s
-> > >> >> that Android GUI top bar, bottom menu bar, icons and cursor are
-> > >> >> invisible/not rendered,
-> > >> >> even if blind interaction is possible.
-> > >> >> Maybe I've done something wrong because the drm format selection =
-in
-> > >> >> minigbm is not as easy to underdestrand as drm_gralloc and
-> gbm_gralloc
-> > >> >> ones.
-> > >> >
-> > >> >
-> > >> > Yeah as I said, we never ran any Android with the nouveau minigbm
-> driver, not ARC++, even less Android, so I don't know.
-> > >> >
-> > >> >>
-> > >> >>
-> > >> >> The GUI transparency (or missing rendering) with minigbm does not
-> seem
-> > >> >> related to multiple threads using same GL context,
-> > >> >> however the GPU lookups and failure of dEQP-EGL multithreading
-> tests
-> > >> >> happening also with drm_gralloc and gbm_gralloc are certainly
-> related.
-> > >> >>
-> > >> >> [MT issues]
-> > >> >>
-> > >> >> Since it is already assessed and known that nouveau lacks MT
-> support
-> > >> >> as per other mesa drivers i965, radeon, amdgpu
-> > >> >> and Karol Herbst submitted patches to mesa-dev to bring "per gl
-> > >> >> context mutex" and "per fence mutex locking" in nouveau,
-> > >> >> I tried to run CTS dEQP-EGL with mesa GLES/EGL built with those
-> patches,
-> > >> >> the result was that dEQP-EGL multithreading tests failed causing
-> GUI
-> > >> >> reboots or PC restarts.
-> > >> >>
-> > >> >
-> > >> > I am surprised by that; we have no problem with android on radeon
-> which uses gallium which would have the same issues.
-> > >>
-> > >> We have no problem with radeon too,
-> > >> but for nouveau there is an history of GPU lockups with android-x86
-> as we speak,
-> > >> Ilia Mirkin confirmed in several different bugzilla tickets that
-> > >> nouveau does not react well to multiple threads workers on same gl
-> > >> context.
-> > >
-> > >
-> > >
-> > > Hmm if you get GPU lockups, yes that's a different problem.
-> > >
-> > >
-> > >>
-> > >>
-> > >> Infact with some prototypal mutex locking patches we had a mitigatio=
-n
-> > >> for android-x86 releases from lollipop-x86 to nougat-x86
-> > >>
-> > >> Karol Hebst submitted patches to mesa-dev on last december for that
-> > >> exact same problem,
-> > >> the patches are not yet up-streamed, so technically the problem is
-> still there.
-> > >>
-> > >> The current Use Case is android-x86, but the first next GUI using
-> > >> multiple threads will have problems too.
-> > >>
-> > >> >
-> > >> >
-> > >> >> Having contacted Karol Herbst he told that there may be one
-> additional
-> > >> >> race condition, but he did not clarified which one.
-> > >> >>
-> > >> >> What about launching dEQP-EGL on platform different from android,
-> e.g.
-> > >> >> EGL wayland is that possible to see if the tests also fail on Lin=
-ux
-> > >> >> platform?
-> > >> >
-> > >> >
-> > >> > We use the surfaceless/null backend for deqp. We have upstreamed
-> it, you should be able to use that also. Otherwise I have used the glx
-> backend successfully as well on my desktop.
-> > >>
-> > >> Could it be that in your scenario there is only one thread per gl
-> > >> context at a time?
-> > >>
-> > >
-> > > In general, most of deqp is one GL context at a time, unless you run
-> the parallel deqp stuff. So yes it would probably help. Similarly Chrome =
-OS
-> is running pretty much in a single GPU process, so we wouldn't see that
-> problem either when running nouveau.
-> > >
-> > >
-> > >>
-> > >> >
-> > >> >
-> > >> >>
-> > >> >> Are there similar tests in piglit?
-> > >> >
-> > >> >
-> > >> > I'm not aware of any, but I stopped using piglit years ago.
-> > >> >
-> > >> >>
-> > >> >>
-> > >> >> [Other issue appeared with Android 8 Oreo hardware bitmaps]
-> > >> >>
-> > >> >> System UI and Play Store crashes, are happening after successful
-> > >> >> android-x86 boot with drm_gralloc and gbm_gralloc,
-> > >> >> these crashes seem to be very much related to this path:
-> > >> >> CreateHardwareBitmap -> CreateBitmap -> Null Pointer Exception.
-> > >> >> CreateHardwareBitmap (introduced in Android Oreo),
-> > >> >
-> > >> >
-> > >> > Seems like you are missing dri extensions?
-> > >>
-> > >> Checking in the logcat the boot with nouveau has all extensions as p=
-er
-> > >> other drivers,
-> > >> but it has DRI_IMAGE twice, is that bad?
-> > >>
-> > >> 02-02 10:35:37.176  2489  2489 D vndksupport: Loading
-> > >> /vendor/lib/egl/libGLES_mesa.so from current namespace instead of
-> > >> sphal namespace.
-> > >> 02-02 10:35:37.188  2489  2489 D libEGL  : loaded
-> > >> /vendor/lib/egl/libGLES_mesa.so
-> > >> 02-02 10:35:37.251  2489  2489 D vndksupport: Loading
-> > >> /vendor/lib/hw/gralloc.gbm.so from current namespace instead of spha=
-l
-> > >> namespace.
-> > >> 02-02 10:35:37.253  2489  2489 I EGL-MAIN: found extension DRI_Core
-> version 2
-> > >> 02-02 10:35:37.253  2489  2489 I EGL-MAIN: found extension
-> > >> DRI_IMAGE_DRIVER version 1
-> > >> 02-02 10:35:37.253  2489  2489 I EGL-MAIN: found extension
-> > >> DRI_ConfigOptions version 2
-> > >> 02-02 10:35:37.257  2489  2489 I EGL-MAIN: found extension
-> > >> DRI_TexBuffer version 2
-> > >> 02-02 10:35:37.257  2489  2489 I EGL-MAIN: found extension DRI2_Flus=
-h
-> version 4
-> > >> 02-02 10:35:37.257  2489  2489 I EGL-MAIN: found extension DRI_IMAGE
-> version 17
-> > >> 02-02 10:35:37.257  2489  2489 I EGL-MAIN: found extension DRI_IMAGE
-> version 17
-> > >> 02-02 10:35:37.257  2489  2489 I EGL-MAIN: found extension
-> > >> DRI_RENDERER_QUERY version 1
-> > >> 02-02 10:35:37.257  2489  2489 I EGL-MAIN: found extension
-> > >> DRI_CONFIG_QUERY version 1
-> > >> 02-02 10:35:37.257  2489  2489 I EGL-MAIN: found extension DRI2_Fenc=
-e
-> version 2
-> > >> 02-02 10:35:37.257  2489  2489 I EGL-MAIN: found extension
-> > >> DRI2_Interop version 1
-> > >> 02-02 10:35:37.257  2489  2489 I EGL-MAIN: found extension
-> DRI_NoError version 1
-> > >>
-> > >
-> > > Can you put it in gdb and see where the NULL crash is? One can only
-> intuit about what's going on otherwise.
-> > >
-> > > St=C3=A9phane
-> > >
-> > >
-> > >>
-> > >> >
-> > >> > St=C3=A9phane
-> > >> >
-> > >> >
-> > >> >>
-> > >> >> uses only one copy
-> > >> >> of bitmap instead of two, are there some restrictions in nouveau
-> with
-> > >> >> RGBA/RGBX, BGRA hardware bitmaps?
-> > >> >>
-> > >> >> Thanks in advance for any info, suggestions
-> > >> >> I am available and ready to support testing/verifications to see
-> the
-> > >> >> MT and HardwareBitmap issues solved.
-> > >> >>
-> > >> >> Mauro
-> > >> >>
-> > >> >>
-> > >> >>
-> > >> >> >
-> > >> >> >
-> > >> >> >>
-> > >> >> >> > Mauro
->
-
---00000000000069ae14058466cbd1
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Sat, Mar 16, 2019 at 12:33 PM Maur=
-o Rossi &lt;<a href=3D"mailto:issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">H=
-i St=C3=A9phane,<br>
-<br>
-the good news is that Kerol Herbst patches are mitigating effectively<br>
-the GPU lockup.<br>
-it would really be a pity to loose and abandon nouveau driver in android-x8=
-6,<br>
-while intel, radeon and amdgpu are working perfectly.<br>
-<br>
-The Android GUI reboots always the same way when bringing back main screen,=
-<br>
-with home button or using square menu button.<br>
-<br>
-I&#39;ve collected log with drm.debug level 63<br>
-to see what is happening prior to EGL-MAIN: DRI2: failed to create<br>
-screen/ EGL_NOT_INITIALIZED<br>
-<br>
-Full log and tombstone in the attachment,<br>
-could someone in nouveau team decipher the errors?<br></blockquote><div><br=
-></div><div>That&#39;s a question more appropriate for the nouveau list, I =
-am CCing the list.</div><div><br></div><div>St=C3=A9phane</div><div><br></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
-er-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-In the logs there is also the DRM ioctl commands happening before the<br>
-DRI screen error<br>
-<br>
-Mauro<br>
-<br>
-03-16 18:57:03.615=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A00 E=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0: 00a0 2 base507c_ntfy_set<br>
-03-16 18:57:03.615=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A00 E=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0: 00000060<br>
-03-16 18:57:03.615=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A00 E=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0: f0000000<br>
-03-16 18:57:03.615=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A00 E=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0: 0084 1 base907c_image_set<br>
-03-16 18:57:03.615=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A00 E=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0: 00000010<br>
-03-16 18:57:03.615=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A00 E=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0: 00c0 1 base907c_image_set<br>
-03-16 18:57:03.615=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A00 E=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0: fb0000fe<br>
-03-16 18:57:03.615=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A00 E=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0: 0400 5 base907c_image_set<br>
-03-16 18:57:03.615=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A00 E=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0: 00010000<br>
-03-16 18:57:03.615=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A00 E=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0: 00000000<br>
-03-16 18:57:03.615=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A00 E=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0: 04000500<br>
-03-16 18:57:03.615=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A00 E=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0: 00005004<br>
-03-16 18:57:03.615=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A00 E=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0: 0000cf00<br>
-03-16 18:57:03.615=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A00 E=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0: 0080 1 base507c_update<br>
-03-16 18:57:03.615=C2=A0 =C2=A0 =C2=A00=C2=A0 =C2=A0 =C2=A00 E=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0: 00000000<br>
-03-16 18:57:03.616=C2=A0 2729=C2=A0 4165 W EGL-MAIN: DRI2: failed to create=
- dri screen<br>
-03-16 18:57:03.616=C2=A0 2729=C2=A0 4165 W EGL-MAIN: DRI2: failed to create=
- screen<br>
-03-16 18:57:03.617=C2=A0 2729=C2=A0 4165 W libEGL=C2=A0 : eglInitialize(0xa=
-d3ab800)<br>
-failed (EGL_NOT_INITIALIZED)<br>
-03-16 18:57:03.617=C2=A0 2729=C2=A0 4165 I system_server:<br>
-android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasWideColorD=
-isplay<br>
-retrieved: 0<br>
-03-16 18:57:03.617=C2=A0 2729=C2=A0 4165 I OpenGLRenderer: Initialized EGL,=
- version 1.4<br>
-03-16 18:57:03.617=C2=A0 2729=C2=A0 4165 D OpenGLRenderer: Swap behavior 2<=
-br>
-03-16 18:57:03.617=C2=A0 2729=C2=A0 4165 F OpenGLRenderer: Failed to choose=
-<br>
-config, error =3D EGL_NOT_INITIALIZED<br>
---------- beginning of crash<br>
-03-16 18:57:03.617=C2=A0 2729=C2=A0 4165 F libc=C2=A0 =C2=A0 : Fatal signal=
- 6 (SIGABRT),<br>
-code -6 in tid 4165 (RenderThread), pid 2729 (system_server)<br>
-<br>
-On Tue, Mar 5, 2019 at 8:55 AM Mauro Rossi &lt;<a href=3D"mailto:issor.orua=
-m@gmail.com" target=3D"_blank">issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hi,<br>
-&gt; one of the problems (the Play Store Crash) was resolved with following=
- commit:<br>
-&gt; <a href=3D"http://git.osdn.net/view?p=3Dandroid-x86/frameworks-base.gi=
-t;a=3Dcommit;h=3Dd488a6c2bbedc06fc22942555d0157e7bf09f135" rel=3D"noreferre=
-r" target=3D"_blank">http://git.osdn.net/view?p=3Dandroid-x86/frameworks-ba=
-se.git;a=3Dcommit;h=3Dd488a6c2bbedc06fc22942555d0157e7bf09f135</a><br>
-&gt;<br>
-&gt; Now the remaining one, affecting the dEQP-EGL multithreading tests and=
-<br>
-&gt; RenderThread in general,<br>
-&gt; has been traced in the attached logs.<br>
-&gt;<br>
-&gt; It seams a problem similar to &quot;a second libEGL call failing&quot;=
- when<br>
-&gt; RenderThread is trying to create dri screen<br>
-&gt; which is killed by Android attempt to load EGL config which fails and<=
-br>
-&gt; it is treated as Fatal.<br>
-&gt; We just need to find the root cause of failure.<br>
-&gt;<br>
-&gt; In the logcat there is a clue of what is happening:<br>
-&gt;<br>
-&gt; --------- beginning of crash<br>
-&gt; 03-04 20:50:56.762=C2=A0 1440=C2=A0 1440 E AndroidRuntime: FATAL EXCEP=
-TION: main<br>
-&gt; 03-04 20:50:56.762=C2=A0 1440=C2=A0 1440 E AndroidRuntime: Process:<br=
->
-&gt; com.android.systemui, PID: 1440<br>
-&gt; 03-04 20:50:56.762=C2=A0 1440=C2=A0 1440 E AndroidRuntime:<br>
-&gt; java.lang.NullPointerException: Attempt to invoke virtual method<br>
-&gt; &#39;android.graphics.GraphicBuffer<br>
-&gt; android.graphics.Bitmap.createGraphicBufferHandle()&#39; on a null obj=
-ect<br>
-&gt; reference<br>
-&gt; 03-04 20:50:56.762=C2=A0 1440=C2=A0 1440 E AndroidRuntime: at<br>
-&gt; com.android.systemui.recents.views.RecentsTransitionHelper.drawViewInt=
-oGraphicBuffer(RecentsTransitionHelper.java:436)<br>
-&gt;<br>
-&gt; Mauro<br>
-&gt;<br>
-&gt; On Tue, Mar 5, 2019 at 1:29 AM St=C3=A9phane Marchesin &lt;<a href=3D"=
-mailto:marcheu-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org" target=3D"_blank">marcheu-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org</a>&gt;=
- wrote:<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt; On Sat, Mar 2, 2019 at 12:08 AM Mauro Rossi &lt;<a href=3D"mailto=
-:issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blank">issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt; wro=
-te:<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; Hi St=C3=A9phane,<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; On Fri, Mar 1, 2019 at 11:24 PM St=C3=A9phane Marchesin &lt;<=
-a href=3D"mailto:marcheu-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org" target=3D"_blank">marcheu@chromium.o=
-rg</a>&gt; wrote:<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt; On Fri, Mar 1, 2019 at 4:30 AM Mauro Rossi &lt;<a href=
-=3D"mailto:issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blank">issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</=
-a>&gt; wrote:<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; Hi St=C3=A9phane,<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; thanks for responding<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; On Thu, Feb 28, 2019 at 9:56 PM St=C3=A9phane Marche=
-sin &lt;<a href=3D"mailto:marcheu-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org" target=3D"_blank">marcheu@c=
-hromium.org</a>&gt; wrote:<br>
-&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt; On Tue, Feb 19, 2019 at 6:54 PM Tomasz Figa &lt=
-;<a href=3D"mailto:tfiga-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org" target=3D"_blank">tfiga-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org=
-</a>&gt; wrote:<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; Hi Mauro,<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; Thanks for your query. I&#39;m not very act=
-ive in the graphics area<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; anymore, but let me add +St=C3=A9phane Marc=
-hesin , who should know the<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; best.<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; Best regards,<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; Tomasz<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; On Wed, Feb 20, 2019 at 3:00 AM Mauro Rossi=
- &lt;<a href=3D"mailto:issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blank">issor.oruam=
-@gmail.com</a>&gt; wrote:<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; Hi Tomasz,<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; I wanted to ask some help, even just s=
-ome information about how<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; nouveau is working with chromeos minig=
-bm stack, because we have big<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; issues with drm_gralloc and gbm_grallo=
-c.<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; nouveau gallium driver does not suppor=
-t Multithreading and oreo-x86<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; has introduced additional RenderThread=
- scenarios which cause<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; instability.<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; dEQP-EGL multithreding tests are causi=
-ng GUI restarts, even with<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; latest Karol Herbst patches with per g=
-l context mutex locking and per<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; fence mutex locking,<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; he said there is an additional race co=
-ndition that may require another<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; major rewrite,<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; but he did not mention which additiona=
-l race condition.<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; I wanted to ask you just some info, in=
- case you may have them, or<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; suggestions on how to avoid the proble=
-m.<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; 1) Are you aware of problems with chro=
-meos with nouveau MT and how<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; they were avoided?<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; At the moment I can boot with minigbm,=
- but the navigation bar and menu<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; bar are trasparent and invisible, so I=
- was not able to check if<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; minigbm has same problems we have.<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; 2) We are so stuck with nouveau suppor=
-t that I was thinking to explore<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; another angle,<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; is it possible to disable additional t=
-hreads in android-x86 code base for Oreo?<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; Do you have some colleagues that may p=
-rovide indication on how to do it?<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt; Hi Mauro,<br>
-&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt; We don&#39;t officially support nouveau on Chro=
-me OS (there are no devices which use it). The nouveau minigbm driver was w=
-ritten to be able to develop Chrome for Chrome OS on top of a Linux worksta=
-tion with an nvidia GPU. In particular, we have never started Android with =
-that configuration.<br>
-&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt; Can you give more details on issue 1, i.e. what=
- is invisible? Last I looked Chrome was working. Are you certain this is re=
-lated to threading?<br>
-&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt; St=C3=A9phane<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; [minigbm issue]<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; The problem with minigbm was mentioned after trying =
-to exploit minigbm<br>
-&gt; &gt;&gt; &gt;&gt; as it is in Chrome OS stack (which supports running =
-Android<br>
-&gt; &gt;&gt; &gt;&gt; applications AFAIK)<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; The stock minigbm was not ready to boot in android-x=
-86, lambdadroid<br>
-&gt; &gt;&gt; &gt;&gt; added dma fb support and I added some required forma=
-ts (RGBA, RGBX,<br>
-&gt; &gt;&gt; &gt;&gt; RGB565)<br>
-&gt; &gt;&gt; &gt;&gt; to be able to boot:<br>
-&gt; &gt;&gt; &gt;&gt; <a href=3D"https://github.com/maurossi/minigbm/commi=
-ts/minigbm_fb" rel=3D"noreferrer" target=3D"_blank">https://github.com/maur=
-ossi/minigbm/commits/minigbm_fb</a><br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; Using that version of minigbm with android-x86 (oreo=
--x86) I see is<br>
-&gt; &gt;&gt; &gt;&gt; that Android GUI top bar, bottom menu bar, icons and=
- cursor are<br>
-&gt; &gt;&gt; &gt;&gt; invisible/not rendered,<br>
-&gt; &gt;&gt; &gt;&gt; even if blind interaction is possible.<br>
-&gt; &gt;&gt; &gt;&gt; Maybe I&#39;ve done something wrong because the drm =
-format selection in<br>
-&gt; &gt;&gt; &gt;&gt; minigbm is not as easy to underdestrand as drm_grall=
-oc and gbm_gralloc<br>
-&gt; &gt;&gt; &gt;&gt; ones.<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt; Yeah as I said, we never ran any Android with the nouvea=
-u minigbm driver, not ARC++, even less Android, so I don&#39;t know.<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; The GUI transparency (or missing rendering) with min=
-igbm does not seem<br>
-&gt; &gt;&gt; &gt;&gt; related to multiple threads using same GL context,<b=
-r>
-&gt; &gt;&gt; &gt;&gt; however the GPU lookups and failure of dEQP-EGL mult=
-ithreading tests<br>
-&gt; &gt;&gt; &gt;&gt; happening also with drm_gralloc and gbm_gralloc are =
-certainly related.<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; [MT issues]<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; Since it is already assessed and known that nouveau =
-lacks MT support<br>
-&gt; &gt;&gt; &gt;&gt; as per other mesa drivers i965, radeon, amdgpu<br>
-&gt; &gt;&gt; &gt;&gt; and Karol Herbst submitted patches to mesa-dev to br=
-ing &quot;per gl<br>
-&gt; &gt;&gt; &gt;&gt; context mutex&quot; and &quot;per fence mutex lockin=
-g&quot; in nouveau,<br>
-&gt; &gt;&gt; &gt;&gt; I tried to run CTS dEQP-EGL with mesa GLES/EGL built=
- with those patches,<br>
-&gt; &gt;&gt; &gt;&gt; the result was that dEQP-EGL multithreading tests fa=
-iled causing GUI<br>
-&gt; &gt;&gt; &gt;&gt; reboots or PC restarts.<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt; I am surprised by that; we have no problem with android =
-on radeon which uses gallium which would have the same issues.<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; We have no problem with radeon too,<br>
-&gt; &gt;&gt; but for nouveau there is an history of GPU lockups with andro=
-id-x86 as we speak,<br>
-&gt; &gt;&gt; Ilia Mirkin confirmed in several different bugzilla tickets t=
-hat<br>
-&gt; &gt;&gt; nouveau does not react well to multiple threads workers on sa=
-me gl<br>
-&gt; &gt;&gt; context.<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt; Hmm if you get GPU lockups, yes that&#39;s a different problem.<b=
-r>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; Infact with some prototypal mutex locking patches we had a mi=
-tigation<br>
-&gt; &gt;&gt; for android-x86 releases from lollipop-x86 to nougat-x86<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; Karol Hebst submitted patches to mesa-dev on last december fo=
-r that<br>
-&gt; &gt;&gt; exact same problem,<br>
-&gt; &gt;&gt; the patches are not yet up-streamed, so technically the probl=
-em is still there.<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; The current Use Case is android-x86, but the first next GUI u=
-sing<br>
-&gt; &gt;&gt; multiple threads will have problems too.<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; Having contacted Karol Herbst he told that there may=
- be one additional<br>
-&gt; &gt;&gt; &gt;&gt; race condition, but he did not clarified which one.<=
-br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; What about launching dEQP-EGL on platform different =
-from android, e.g.<br>
-&gt; &gt;&gt; &gt;&gt; EGL wayland is that possible to see if the tests als=
-o fail on Linux<br>
-&gt; &gt;&gt; &gt;&gt; platform?<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt; We use the surfaceless/null backend for deqp. We have up=
-streamed it, you should be able to use that also. Otherwise I have used the=
- glx backend successfully as well on my desktop.<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; Could it be that in your scenario there is only one thread pe=
-r gl<br>
-&gt; &gt;&gt; context at a time?<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;<br>
-&gt; &gt; In general, most of deqp is one GL context at a time, unless you =
-run the parallel deqp stuff. So yes it would probably help. Similarly Chrom=
-e OS is running pretty much in a single GPU process, so we wouldn&#39;t see=
- that problem either when running nouveau.<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; Are there similar tests in piglit?<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt; I&#39;m not aware of any, but I stopped using piglit yea=
-rs ago.<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; [Other issue appeared with Android 8 Oreo hardware b=
-itmaps]<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; System UI and Play Store crashes, are happening afte=
-r successful<br>
-&gt; &gt;&gt; &gt;&gt; android-x86 boot with drm_gralloc and gbm_gralloc,<b=
-r>
-&gt; &gt;&gt; &gt;&gt; these crashes seem to be very much related to this p=
-ath:<br>
-&gt; &gt;&gt; &gt;&gt; CreateHardwareBitmap -&gt; CreateBitmap -&gt; Null P=
-ointer Exception.<br>
-&gt; &gt;&gt; &gt;&gt; CreateHardwareBitmap (introduced in Android Oreo),<b=
-r>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt; Seems like you are missing dri extensions?<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; Checking in the logcat the boot with nouveau has all extensio=
-ns as per<br>
-&gt; &gt;&gt; other drivers,<br>
-&gt; &gt;&gt; but it has DRI_IMAGE twice, is that bad?<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; 02-02 10:35:37.176=C2=A0 2489=C2=A0 2489 D vndksupport: Loadi=
-ng<br>
-&gt; &gt;&gt; /vendor/lib/egl/libGLES_mesa.so from current namespace instea=
-d of<br>
-&gt; &gt;&gt; sphal namespace.<br>
-&gt; &gt;&gt; 02-02 10:35:37.188=C2=A0 2489=C2=A0 2489 D libEGL=C2=A0 : loa=
-ded<br>
-&gt; &gt;&gt; /vendor/lib/egl/libGLES_mesa.so<br>
-&gt; &gt;&gt; 02-02 10:35:37.251=C2=A0 2489=C2=A0 2489 D vndksupport: Loadi=
-ng<br>
-&gt; &gt;&gt; /vendor/lib/hw/<a href=3D"http://gralloc.gbm.so" rel=3D"noref=
-errer" target=3D"_blank">gralloc.gbm.so</a> from current namespace instead =
-of sphal<br>
-&gt; &gt;&gt; namespace.<br>
-&gt; &gt;&gt; 02-02 10:35:37.253=C2=A0 2489=C2=A0 2489 I EGL-MAIN: found ex=
-tension DRI_Core version 2<br>
-&gt; &gt;&gt; 02-02 10:35:37.253=C2=A0 2489=C2=A0 2489 I EGL-MAIN: found ex=
-tension<br>
-&gt; &gt;&gt; DRI_IMAGE_DRIVER version 1<br>
-&gt; &gt;&gt; 02-02 10:35:37.253=C2=A0 2489=C2=A0 2489 I EGL-MAIN: found ex=
-tension<br>
-&gt; &gt;&gt; DRI_ConfigOptions version 2<br>
-&gt; &gt;&gt; 02-02 10:35:37.257=C2=A0 2489=C2=A0 2489 I EGL-MAIN: found ex=
-tension<br>
-&gt; &gt;&gt; DRI_TexBuffer version 2<br>
-&gt; &gt;&gt; 02-02 10:35:37.257=C2=A0 2489=C2=A0 2489 I EGL-MAIN: found ex=
-tension DRI2_Flush version 4<br>
-&gt; &gt;&gt; 02-02 10:35:37.257=C2=A0 2489=C2=A0 2489 I EGL-MAIN: found ex=
-tension DRI_IMAGE version 17<br>
-&gt; &gt;&gt; 02-02 10:35:37.257=C2=A0 2489=C2=A0 2489 I EGL-MAIN: found ex=
-tension DRI_IMAGE version 17<br>
-&gt; &gt;&gt; 02-02 10:35:37.257=C2=A0 2489=C2=A0 2489 I EGL-MAIN: found ex=
-tension<br>
-&gt; &gt;&gt; DRI_RENDERER_QUERY version 1<br>
-&gt; &gt;&gt; 02-02 10:35:37.257=C2=A0 2489=C2=A0 2489 I EGL-MAIN: found ex=
-tension<br>
-&gt; &gt;&gt; DRI_CONFIG_QUERY version 1<br>
-&gt; &gt;&gt; 02-02 10:35:37.257=C2=A0 2489=C2=A0 2489 I EGL-MAIN: found ex=
-tension DRI2_Fence version 2<br>
-&gt; &gt;&gt; 02-02 10:35:37.257=C2=A0 2489=C2=A0 2489 I EGL-MAIN: found ex=
-tension<br>
-&gt; &gt;&gt; DRI2_Interop version 1<br>
-&gt; &gt;&gt; 02-02 10:35:37.257=C2=A0 2489=C2=A0 2489 I EGL-MAIN: found ex=
-tension DRI_NoError version 1<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;<br>
-&gt; &gt; Can you put it in gdb and see where the NULL crash is? One can on=
-ly intuit about what&#39;s going on otherwise.<br>
-&gt; &gt;<br>
-&gt; &gt; St=C3=A9phane<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt; St=C3=A9phane<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; uses only one copy<br>
-&gt; &gt;&gt; &gt;&gt; of bitmap instead of two, are there some restriction=
-s in nouveau with<br>
-&gt; &gt;&gt; &gt;&gt; RGBA/RGBX, BGRA hardware bitmaps?<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; Thanks in advance for any info, suggestions<br>
-&gt; &gt;&gt; &gt;&gt; I am available and ready to support testing/verifica=
-tions to see the<br>
-&gt; &gt;&gt; &gt;&gt; MT and HardwareBitmap issues solved.<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; Mauro<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt;<br>
-&gt; &gt;&gt; &gt;&gt; &gt;&gt; &gt; Mauro<br>
-</blockquote></div></div>
-
---00000000000069ae14058466cbd1--
-
---===============0129198384==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0129198384==--
+QnVtcCwgc29ycnkgdG8gYnVnIHlvdSBidXQgaXMgdGhlcmUgYW55IHVwZGF0ZSBvbiB0aGlzIG9y
+IGFueSBpbmZvcm1hdGlvbiB5b3UKc3RpbGwgbmVlZCBmcm9tIG1lIHdoaWNoIHdvdWxkIGhlbHAg
+Z2V0IHRoaXMgdXBzdHJlYW0/CgpPbiBXZWQsIDIwMTktMDMtMTMgYXQgMTg6MjUgLTA0MDAsIEx5
+dWRlIFBhdWwgd3JvdGU6Cj4gW25vdGUgdG8gRGF2aWQgT2JlcjogeW91IC1zaG91bGQtIGJlIGFi
+bGUgdG8gcmVwbHkgdG8gdGhpcywgaG9wZWZ1bGx5LCBidXQgSQo+IGhhdmVuJ3QgYWN0dWFsbHkg
+dGVzdGVkIHRoYXQgc28gcmVzdWx0cyBtYXkgdmFyeV0KPiAKPiBIaSBhZ2FpbiEgU29ycnkgSSBk
+aWRuJ3QgZnVsbHkgYW5zd2VyIGFsbCBvZiB0aGUgcXVlc3Rpb25zIHlvdSBvcmlnaW5hbGx5Cj4g
+YXNrZWQgaW4gdGhpcyBlbWFpbCwgSSBoYWQgdG8gZ2V0IGluIGNvbnRhY3Qgd2l0aCBMZW5vdm8g
+dG8gbWFrZSBzdXJlIHRoYXQKPiBpdAo+IHdhcyBPSyBmb3IgbWUgdG8gZGlzY2xvc2UgbW9yZSBk
+ZXRhaWxzIG9uIHRoaXMgYnVnIChhbmQgSSBoYWQgUFRPIHNjaGVkdWxlZAo+IGltbWVkaWF0ZWx5
+IGFmdGVyIEkgYXNrZWQpLiBJJ3ZlIGFkZGVkIERhdmlkIE9iZXIgZnJvbSBMZW5vdm8gdG8gdGhp
+cyB0aHJlYWQKPiBhcyB3ZWxsLiBTbyBub3cgdGhhdCBJJ3ZlIGdvdCBMZW5vdm8ncyBhcHByb3Zh
+bCBJIGNhbiBhbnN3ZXIgdGhvc2UKPiBxdWVzdGlvbnMsCj4gYW5kIGdpdmUgc29tZSBiZXR0ZXIg
+YW5zd2VycyBmb3IgdGhlIG90aGVycyEgKHNlZSBiZWxvdykKPiAKPiAKPiBPbiBGcmksIDIwMTkt
+MDItMTUgYXQgMTY6MTcgLTA1MDAsIEx5dWRlIFBhdWwgd3JvdGU6Cj4gPiBPbiBUaHUsIDIwMTkt
+MDItMTQgYXQgMTg6NDMgLTA2MDAsIEJqb3JuIEhlbGdhYXMgd3JvdGU6Cj4gPiA+IEhpIEx5dWRl
+LAo+ID4gPiAKPiA+ID4gT24gVHVlLCBGZWIgMTIsIDIwMTkgYXQgMDU6MDI6MzBQTSAtMDUwMCwg
+THl1ZGUgUGF1bCB3cm90ZToKPiA+ID4gPiBPbiBhIHZlcnkgc3BlY2lmaWMgc3Vic2V0IG9mIFRo
+aW5rUGFkIFA1MCBTS1VzLCBwYXJ0aWN1bGFybHkgb25lcyB0aGF0Cj4gPiA+ID4gY29tZSB3aXRo
+IGEgUXVhZHJvIE0xMDAwTSBjaGlwIGluc3RlYWQgb2YgdGhlIE0yMDAwTSB2YXJpYW50LCB0aGUg
+QklPUwo+ID4gPiA+IHNlZW1zIHRvIGhhdmUgYSB2ZXJ5IG5hc3R5IGhhYml0IG9mIG5vdCBhbHdh
+eXMgcmVzZXR0aW5nIHRoZSBzZWNvbmRhcnkKPiA+ID4gPiBOdmlkaWEgR1BVIGJldHdlZW4gZnVs
+bCByZWJvb3RzIGlmIHRoZSBsYXB0b3AgaXMgY29uZmlndXJlZCBpbiBIeWJyaWQKPiA+ID4gPiBH
+cmFwaGljcyBtb2RlLiBUaGUgcmVhc29uIGZvciB0aGlzIGhhcHBlbmluZyBpcyB1bmtub3duLCBi
+dXQgdGhlCj4gPiA+ID4gZm9sbG93aW5nIHN0ZXBzIGFuZCBwb3NzaWJseSBhIGdvb2QgYml0IG9m
+IHBhdGllbmNlIHdpbGwgcmVwcm9kdWNlIHRoZQo+ID4gPiA+IGlzc3VlOgo+ID4gPiA+IAo+ID4g
+PiA+IDEuIEJvb3QgdXAgdGhlIGxhcHRvcCBub3JtYWxseSBpbiBIeWJyaWQgZ3JhcGhpY3MgbW9k
+ZQo+ID4gPiA+IDIuIE1ha2Ugc3VyZSBub3V2ZWF1IGlzIGxvYWRlZCBhbmQgdGhhdCB0aGUgR1BV
+IGlzIGF3YWtlCj4gPiA+ID4gMi4gQWxsb3cgdGhlIG52aWRpYSBHUFUgdG8gcnVudGltZSBzdXNw
+ZW5kIGl0c2VsZiBhZnRlciBiZWluZyBpZGxlCj4gPiA+ID4gMy4gUmVib290IHRoZSBtYWNoaW5l
+LCB0aGUgbW9yZSBzdWRkZW4gdGhlIGJldHRlciAoZS5nIHN5c3JxLWIgbWF5Cj4gPiA+ID4gaGVs
+cCkKPiA+ID4gPiA0LiBJZiBub3V2ZWF1IGxvYWRzIHVwIHByb3Blcmx5LCByZWJvb3QgdGhlIG1h
+Y2hpbmUgYWdhaW4gYW5kIGdvIGJhY2sKPiA+ID4gPiB0bwo+ID4gPiA+IHN0ZXAgMiB1bnRpbCB5
+b3UgcmVwcm9kdWNlIHRoZSBpc3N1ZQo+ID4gPiA+IAo+ID4gPiA+IFRoaXMgcmVzdWx0cyBpbiBz
+b21lIHZlcnkgc3RyYW5nZSBiZWhhdmlvcjogdGhlIEdQVSB3aWxsCj4gPiA+ID4gcXVpdGUgbGl0
+ZXJhbGx5IGJlIGxlZnQgaW4gZXhhY3RseSB0aGUgc2FtZSBzdGF0ZSBpdCB3YXMgaW4gd2hlbiB0
+aGUKPiA+ID4gPiBwcmV2aW91c2x5IGJvb3RlZCBrZXJuZWwgc3RhcnRlZCB0aGUgcmVib290LiBU
+aGlzIGhhcyBhbGwgc29ydHMgb2YgYmFkCj4gPiA+ID4gc2lkZWFmZmVjdHM6IGZvciBzdGFydGVy
+cywgdGhpcyBjb21wbGV0ZWx5IGJyZWFrcyBub3V2ZWF1IHN0YXJ0aW5nCj4gPiA+ID4gd2l0aAo+
+ID4gPiA+IGEKPiA+ID4gPiBteXN0ZXJpb3VzIEVWTyBjaGFubmVsIGZhaWx1cmUgdGhhdCBoYXBw
+ZW5zIHdlbGwgYmVmb3JlIHdlJ3ZlIGFjdHVhbGx5Cj4gPiA+ID4gdXNlZCB0aGUgRVZPIGNoYW5u
+ZWwgZm9yIGFueXRoaW5nOgo+ID4gPiAKPiA+ID4gVGhlcmUgYXJlIGEgbG90IG9mIG1vdmluZyBw
+YXJ0cyBoZXJlIHRoYXQgYXJlIHByb2JhYmx5IG9idmlvdXMgdG8geW91Cj4gPiA+IGJ1dCBub3Qg
+dG8gbWUuICBJIG5lZWQgaGVscCB1bnRhbmdsaW5nIHRoaXMgYSBiaXQgc28gSSdtIGNvbWZvcnRh
+YmxlCj4gPiA+IHRoYXQgd2UgZ290IHRvIHRoZSByb290IGNhdXNlIGFuZCB0aGF0IHdlJ3JlIGRv
+aW5nIHNvbWV0aGluZyBsb2dpY2FsCj4gPiA+IGFzIG9wcG9zZWQgdG8gc29tZXRoaW5nIHRoYXQg
+anVzdCBoYXBwZW5zIHRvIG1ha2UgdGhpbmdzIHdvcmsuICBJCj4gPiA+IHJlYWxseSBkb24ndCBr
+bm93IGVub3VnaCB0byBldmVuIGFzayB0aGUgcmlnaHQgcXVlc3Rpb25zLi4uCj4gPiAKPiA+IEkg
+Y29tcGxldGVseSB1bmRlcnN0YW5kISBJJ20gcHJldHR5IHN1cmUgSSdkIGJlIGp1c3QgYXMgc2tl
+cHRpY2FsIGlmIEkgd2FzCj4gPiBpbgo+ID4geW91ciBwb3NpdGlvbiByZXZpZXdpbmcgYSBwYXRj
+aCBsaWtlIHRoaXMgOlAKPiA+IAo+ID4gPiBJcyB0aGVyZSBhIGJ1ZyByZXBvcnQgZm9yIHRoaXM/
+ICBCdWd6aWxsYS5rZXJuZWwub3JnIHdvdWxkIGJlIGlkZWFsLAo+ID4gPiBpbmNsdWRpbmcgImxz
+cGNpIC12dnh4eCIgYW5kIGRtaWRlY29kZSBmb3IgdGhlIHN5c3RlbS4KPiA+ID4gCj4gPiBOb3Qg
+eWV0LCBidXQgdGhlcmUgaGFzIGJlZW4gZGlzY3Vzc2lvbiBhYm91dCB0aGlzIGJldHdlZW4gbm91
+dmVhdQo+ID4gZGV2ZWxvcGVycwo+ID4gb24gb3VyIElSQyBjaGFubmVsLgo+IEkgbGllZDogeWVz
+IHRoZXJlIGFjdHVhbGx5IGlzIGEgYnVnIHJlcG9ydCBmb3IgdGhpcywgYnV0IGl0J3MgY3VycmVu
+dGx5IG9uCj4gdGhlCj4gUmVkIEhhdCBidWd6aWxsYS4gSSBjYW4gZ2V0IG1vcmUgaW5mb3JtYXRp
+b24gZnJvbSBpdCBpZiB5b3UgbmVlZCAod2l0aAo+IGxlbm92bydzIGFwcHJvdmFsIG9mIGNvdXJz
+ZSkuCj4gCj4gPiA+IElzIHRoaXMgcnVubmluZyBhIGN1cnJlbnQgQklPUz8gIFRoZSBkYXRlIGlu
+IHlvdXIgbG9nIGJlbG93IGxvb2tzCj4gPiA+IHByZXR0eSByZWNlbnQsIHNvIEkgYXNzdW1lIGl0
+IGlzIGN1cnJlbnQuCj4gPiAKPiA+IFllcywgdGhpcyBpcyB0aGUgbW9zdCB1cCB0byBkYXRlIEJJ
+T1MgYXZhaWxhYmxlIGZvciB0aGlzIHN5c3RlbS4KPiAKPiBBbmQgYWRkaXRpb25hbGx5OiBJJ3Zl
+IGJlZW4gd29ya2luZyB3aXRoIExlbm92byBvbiB0aGlzIGlzc3VlIGZvciBhIGNvdXBsZQo+IG9m
+Cj4gbW9udGhzIG5vdywgYW5kIHdlJ3ZlIGdvbmUgdGhyb3VnaCBkb3plbnMgb2YgZGlmZmVyZW50
+IHRyaWFsIEJJT1NlcyB3aXRoIG5vCj4gc3VjY2VzcyB0aHVzIGZhci4gSG93ZXZlciwgTGVub3Zv
+IGlzIGN1cnJlbnRseSB3b3JraW5nIG9uIHRyeWluZyB0byBhZGQgdGhpcwo+IHdvcmthcm91bmQg
+aW50byB0aGVpciBCSU9TIGJ1dCBJJ3ZlIGJlZW4gdG9sZCB0aGF0IHRoaXMgY2hhbmdlIGlzIGdv
+aW5nIHRvCj4gdGFrZSBhIGRlY2VudCBhbW91bnQgb2YgdGltZSBzaW5jZSB0aGV5IG5lZWQgdG8g
+dGVzdCBpdCBhY3Jvc3MgbXVsdGlwbGUKPiBvcGVyYXRpbmcgc3lzdGVtcy4gSSdkIGJlIGhhcHB5
+IHRvIGNvbWUgYmFjayBhbmQgYWRkIGEgY29uZGl0aW9uYWwgbGF0ZXIgdG8KPiB0dXJuIHRoaXMg
+d29ya2Fyb3VuZCBvZmYgZm9yIGxhdGVyIEJJT1MgdmVyc2lvbnMgb25jZSBMZW5vdm8gaGFzIHJl
+bGVhc2VkIGEKPiBwcm9wZXIgZml4Lgo+IAo+IFdpdGggYWxsIG9mIHRoYXQgYmVpbmcgc2FpZCwg
+W2hvd10gZG8geW91IHRoaW5rIHdlIHNob3VsZCBwcm9jZWVkPwo+IAo+ID4gPiBJIGFzc3VtZSAi
+aHlicmlkIGdyYXBoaWNzIiBtZWFucyB5b3UgaGF2ZSB0d28gR1BVcy4gIERvIHlvdSBzZWxlY3QK
+PiA+ID4gaHlicmlkIGdyYXBoaWNzIG1vZGUgaW4gdGhlIEJJT1M/Cj4gPiAKPiA+IFllcywgdGhl
+IFA1MCBoYXMgdHdvIGF2YWlsYWJsZSBtb2RlcyBpbiB0aGUgQklPUzogRGVkaWNhdGVkIChlLmcu
+IG9ubHkKPiA+IHRoZSBudmlkaWEgR1BVIGlzIHVzZWQgZm9yIGV2ZXJ5dGhpbmcpLCBhbmQgSHli
+cmlkIChpOTE1IGRyaXZlcyB0aGUKPiA+IGJ1aWx0LWluIGRpc3BsYXkgcGFuZWwsIG5vdXZlYXUg
+ZHJpdmVzIGV2ZXJ5dGhpbmcgZWxzZSkuIFRoaXMgYnVnIG9ubHkKPiA+IHNlZW1zIHRvIG9jY3Vy
+IGluIEh5YnJpZCBtb2RlLgo+ID4gCj4gPiA+IEkgYXNzdW1lIHdoZW4geW91IHNheSB0aGUgTnZp
+ZGlhIEdQVSBkb2Vzbid0IGdldCByZXNldCBvbiBhIGZ1bGwKPiA+ID4gcmVib290LCB5b3UncmUg
+dGFsa2luZyBhYm91dCBhICJ3YXJtIHJlYm9vdCIsIGFuZCB0aGF0IGlmIHlvdSBhY3R1YWxseQo+
+ID4gPiByZW1vdmUgdGhlIHBvd2VyIGFuZCBkbyBhIGNvbGQgcmVib290LCB0aGVyZSdzIG5vIHBy
+b2JsZW0/Cj4gPiAKPiA+IElmIHlvdSBtZWFudCAidW5wbHVnZ2luZyB0aGUgcG93ZXIgYWRhcHRl
+ciIgd2hlbiB5b3Ugc2FpZCBjdXR0aW5nIHRoZQo+ID4gcG93ZXIgd2UgZG9uJ3QgbmVlZCB0byBn
+byB0aGF0IGZhciwgYnV0IHNodXR0aW5nIGRvd24gdGhlIG1hY2hpbmUgYW5kCj4gPiByZXN0YXJ0
+aW5nIGl0IGJ5IGhhbmQgZG9lcyBhdm9pZCB0aGUgcHJvYmxlbSB5ZXMuCj4gPiAKPiA+ID4gSSBh
+c3N1bWUgTnZpZGlhIEdQVSBiZWluZyBhY3RpdmUgbWVhbnMgeW91IGFyZSB1c2luZyB0aGUgcGVy
+Zm9ybWFuY2UKPiA+ID4gR1BVLiAgRG9lcyB0aGF0IG1lYW4gdGhlIGludGVncmF0ZWQgR1BVIGlz
+IGNvbXBsZXRlbHkgdW51c2VkIGFuZCBMaW51eAo+ID4gPiBkb2VzIG5vdGhpbmcgYXQgYWxsIHdp
+dGggaXQ/ICBJcyBMaW51eCBkb2luZyBhbnkgc3dpdGNoaW5nIGJldHdlZW4KPiA+ID4gdGhlbT8g
+IElmIHNvLCBob3c/ICBJIGFtIG5vdCAxMDAlIGNvbmZpZGVudCBpbiB0aGUgY29kZSBJJ3ZlIHNl
+ZW4gdGhhdAo+ID4gPiBkb2VzIHRoZSBzd2l0Y2hpbmcuCj4gPiAKPiA+ICJTd2l0Y2hpbmciIGlz
+bid0IHJlYWxseSB0aGUgcmlnaHQgd29yZCB0byBkZXNjcmliZSBpdCB0aGVzZSBkYXlzIGFzIHRo
+ZQo+ID4gcHJvY2VzcyBmb3IgaG93IHRoaXMgaXMgaGFuZGxlZCBoYXMgY2hhbmdlZCBxdWl0ZSBh
+IGJpdCBpbiB0aGUgbGFzdCBmZXcKPiA+IHllYXJzLiBBcyBJIG1lbnRpb25lZCBhYm92ZSwgdGhl
+IG1haW4gaW50ZWwgR1BVIGlzIHVzZWQgZm9yIGRyaXZpbmcgdGhlCj4gPiBidWlsdC1pbiBkaXNw
+bGF5LiBBcyBmb3IgdGhlIG52aWRpYSBHUFUsIGl0J3MgdXNlZCB0byBkcml2ZSBhbnkga2luZCBv
+Zgo+ID4gZXh0ZXJuYWwgZGlzcGxheXMgY29ubmVjdGVkIHRvIHRoZSBQNTAgYW5kIGNhbiBhbHNv
+IGJlIHVzZWQgdG8gZG8KPiA+IHJlbmRlcmluZyB0aHJvdWdoIERSSSBQUklNRS4gVGhlIGNvbm5l
+Y3RvciBob29rdXBzIGFyZSBtb3N0bHkgaGFyZGNvZGVkCj4gPiBhcyB0aGVyZSBpc24ndCByZWFs
+bHkgbXVjaCBvZiBhIG11eCwgdW5saWtlIHRoZSBvbGQgZGF5cyB3aGVyZSB3ZSBjb3VsZAo+ID4g
+YWN0dWFsbHkgZG8gdGhpbmdzIGxpa2Ugc3dpdGNoIHdoaWNoIEdQVSB3YXMgZHJpdmluZyB0aGUg
+aW50ZXJuYWwKPiA+IGRpc3BsYXkgb24gdGhlIGZseSB3aXRoICB2Z2Etc3dpdGNoZXJvbyB1c2lu
+ZyB0aGUgX0RTTSBtZXRob2RzIHByb3ZpZGVkCj4gPiBieSBBQ1BJLgo+ID4gCj4gPiBOb3dhZGF5
+cyBtdXhsZXNzIGxhcHRvcHMgbGlrZSB0aGUgVGhpbmtQYWQgUDUwIGRvbid0IG1ha2UgbXVjaCB1
+c2Ugb2YKPiA+IF9EU00gZm9yIHBvd2VyIG1hbmFnZW1lbnQgYW5kIGluc3RlYWQganVzdCBydW50
+aW1lIHN1c3BlbmQgdGhlIGRlZGljYXRlZAo+ID4gbnZpZGlhIEdQVSB3aGVuIGl0J3Mgbm90IGlu
+IHVzZS4gV2UgcmVseSBvbiB0aGUgUENJIHN1YnN5c3RlbSB0byBpbnZva2UKPiA+IHRoZSBfUFIz
+IEFDUEkgbWV0aG9kcyBmb3Igc3VzcGVuZGluZyBhbmQgcmVzdW1pbmcgdGhlIEdQVSBhbmQgZG9u
+J3QKPiA+IGhhbmRsZSBtdWNoIG9mIGl0IG91cnNlbHZlcyBhbnltb3JlOgo+ID4gCj4gPiBodHRw
+czovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC90b3J2YWxkcy9saW51
+eC5naXQvdHJlZS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jP2g9djUuMC1y
+YzYjbjg2MAo+ID4gCj4gPiAoWW91IGNhbiBpZ25vcmUgdGhlIGNhbGwgdG8gbm91dmVhdV9zd2l0
+Y2hlcm9vX29wdGltdXNfZHNtKCkgdGhlcmU7IGl0Cj4gPiAgZG9lc24ndCBkbyBhbnl0aGluZyBv
+biBzeXN0ZW1zIGxpa2UgdGhlIFA1MCB3aGVyZSB3ZSBkZXRlY3QgX1BSMykKPiA+IAo+ID4gQWRk
+aXRpb25hbGx5LWlmIHlvdSBzZWUgYW55IHByb2JsZW1zIHdpdGggaG93IHdlJ3JlIGhhbmRsaW5n
+IHRoaW5ncwo+ID4gdGhlcmUgd2UncmUgYWxsIGVhcnMhIFdlJ3ZlIGJlZW4gdHJ5aW5nIHRvIGZp
+eCBhcyBtYW55IGlzc3VlcyB3aXRoCj4gPiBydW50aW1lIFBNIGFzIHdlIGNhbiBmaW5kLgo+ID4g
+Cj4gPiBTb21ldGhpbmcgZWxzZSB0byBjb25zaWRlciBoZXJlIHRvbzogSSd2ZSBvbmx5IGV2ZXIg
+bWFuYWdlZCB0byByZXByb2R1Y2UKPiA+IHRoaXMgaXNzdWUgb24gdGhpcyBzcGVjaWZpYyBQNTAg
+U0tVLiBTaW5jZSBJIHdvcmsgb24gRGVza3RvcCBlbmdpbmVlcmluZwo+ID4gYXQgUmVkIEhhdCB3
+ZSBoYXZlIGFjY2VzcyB0byBhIHZlcnkgbGFyZ2UgbnVtYmVyIG9mIGxhcHRvcHMgd2l0aCBoeWJy
+aWQKPiA+IEdQVSBzZXR1cHMuIEludGVyZXN0aW5nbHkgSSBoYXZlbid0IGV2ZXIgcmVwcm9kdWNl
+ZCBhbnl0aGluZyBsaWtlIHRoaXMKPiA+IG9uIGFueSBvZiB0aGVtLCBldmVuIFA1MCBTS1VzIHdp
+dGggdGhlIE0yMDAwTSBHUFUgaW5zdGVhZCBvZiB0aGUgTTEwMDBNCj4gPiAod2hpY2ggYXJlIGFs
+bW9zdCBpZGVudGljYWwsIHRoZXkncmUgYm90aCBHTTEwNyBjaGlwcykgSSBjYW4gZm9sbG93IHRo
+ZQo+ID4gc2FtZSBzdGVwcyB0aGF0IEkgZm9sbG93ZWQgdG8gcmVwcm9kdWNlIHRoaXMgYnVnIGFu
+ZCBpdCBuZXZlciBhcHBlYXJzLgo+ID4gCj4gPiBBbm90aGVyIHRoaW5nIHRvIG5vdGU6IHRoaXMg
+YnVnIGFsc28gZG9lc24ndCBhcHBlYXIgdG8gaGFwcGVuIDEwMCUgb2YKPiA+IHRoZSB0aW1lLiBT
+b21lIHdhcm0gcmVib290cyB0aGUgR1BVIHdpbGwgYmUgcmVzZXQgYnkgdGhlIEJJT1MgcGVyZmVj
+dGx5Cj4gPiBmaW5lLgo+ID4gCj4gPiA+ID4gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGRpc3A6IGNo
+aWQgMCBtdGhkIDAwMDAgZGF0YSAwMDAwMDQwMCAwMDAwMTAwMAo+ID4gPiA+IDAwMDAwMDAyCj4g
+PiA+ID4gCj4gPiA+ID4gTGF0ZXIgb24sIHRoaXMgY2F1c2VzIHVzIHRvIHRpbWVvdXQgdHJ5aW5n
+IHRvIGJyaW5nIHVwIHRoZSBHUiBjdHg6Cj4gPiA+ID4gCj4gPiA+ID4gLS0tLS0tLS0tLS0tWyBj
+dXQgaGVyZSBdLS0tLS0tLS0tLS0tCj4gPiA+ID4gbm91dmVhdSAwMDAwOjAxOjAwLjA6IHRpbWVv
+dXQKPiA+ID4gPiBXQVJOSU5HOiBDUFU6IDAgUElEOiAxMiBhdAo+ID4gPiA+IGRyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2N0eGdmMTAwLmM6MTU0Nwo+ID4gPiA+IGdmMTAw
+X2dyY3R4X2dlbmVyYXRlKzB4N2IyLzB4ODUwIFtub3V2ZWF1XQo+ID4gPiA+IE1vZHVsZXMgbGlu
+a2VkIGluOiBub3V2ZWF1IG14bV93bWkgaTkxNSBjcmMzMmNfaW50ZWwgdHRtIGkyY19hbGdvX2Jp
+dAo+ID4gPiA+IHNlcmlvX3JhdyBkcm1fa21zX2hlbHBlciBzeXNjb3B5YXJlYSBzeXNmaWxscmVj
+dCBzeXNpbWdibHQgZmJfc3lzX2ZvcHMKPiA+ID4gPiB4aGNpX3BjaSBkcm0geGhjaV9oY2QgaTJj
+X2NvcmUgd21pIHZpZGVvCj4gPiA+ID4gQ1BVOiAwIFBJRDogMTIgQ29tbToga3dvcmtlci8wOjEg
+Tm90IHRhaW50ZWQgNS4wLjAtcmM1THl1ZGUtVGVzdCsgIzI5Cj4gPiA+ID4gSGFyZHdhcmUgbmFt
+ZTogTEVOT1ZPIDIwRVFTNjROMEIvMjBFUVM2NE4wQiwgQklPUyBOMUVFVDgyVyAoMS41NSApCj4g
+PiA+ID4gMTIvMTgvMjAxOAo+ID4gPiA+IFdvcmtxdWV1ZTogZXZlbnRzX2xvbmcgZHJtX2RwX21z
+dF9saW5rX3Byb2JlX3dvcmsgW2RybV9rbXNfaGVscGVyXQo+ID4gPiA+IFJJUDogMDAxMDpnZjEw
+MF9ncmN0eF9nZW5lcmF0ZSsweDdiMi8weDg1MCBbbm91dmVhdV0KPiA+ID4gPiBDb2RlOiA4NSBk
+MiA3NSAwNCA0OCA4YiA1NyAxMCA0OCA4OSA5NSAyOCBmZiBmZiBmZiBlOCBiNCAzNyAwZSBlMSA0
+OAo+ID4gPiA+IDhiCj4gPiA+ID4gOTUgMjggZmYgZmYgZmYgNDggYzcgYzcgYjEgOTcgNTcgYTAg
+NDggODkgYzYgZTggNWEgMzggYzAgZTAgPDBmPiAwYiBlOQo+ID4gPiA+IGI5IGZkIGZmIGZmIDQ4
+IDhiIDg1IDYwIGZmIGZmIGZmIDQ4IDhiIDQwIDEwIDQ4IDhiIDc4IDEwCj4gPiA+ID4gUlNQOiAw
+MDE4OmZmZmZjOTAwMDAwYjc3ZjAgRUZMQUdTOiAwMDAxMDI4Ngo+ID4gPiA+IFJBWDogMDAwMDAw
+MDAwMDAwMDAwMCBSQlg6IGZmZmY4ODg4NzFhZjgwMDAgUkNYOiAwMDAwMDAwMDAwMDAwMDAwCj4g
+PiA+ID4gUkRYOiBmZmZmODg4ODdmNDFkZmUwIFJTSTogZmZmZjg4ODg3ZjQxNTY5OCBSREk6IGZm
+ZmY4ODg4N2Y0MTU2OTgKPiA+ID4gPiBSQlA6IGZmZmZjOTAwMDAwYjc4YzggUjA4OiAwMDAwMDAw
+MDAwMDAwMDAwIFIwOTogMDAwMDAwMDAwMDAwMDAwMAo+ID4gPiA+IFIxMDogMDAwMDAwMDAwMDAw
+MDAwMCBSMTE6IDAwMDAwMDAwMDAwMDAwMDAgUjEyOiBmZmZmODg4ODcyMTE4MDAwCj4gPiA+ID4g
+UjEzOiAwMDAwMDAwMDAwMDAwMDAwIFIxNDogZmZmZmZmZmZhMDU1MTQyMCBSMTU6IGZmZmZjOTAw
+MDAwYjc4MTgKPiA+ID4gPiBGUzogIDAwMDAwMDAwMDAwMDAwMDAoMDAwMCkgR1M6ZmZmZjg4ODg3
+ZjQwMDAwMCgwMDAwKQo+ID4gPiA+IGtubEdTOjAwMDAwMDAwMDAwMDAwMDAKPiA+ID4gPiBDUzog
+IDAwMTAgRFM6IDAwMDAgRVM6IDAwMDAgQ1IwOiAwMDAwMDAwMDgwMDUwMDMzCj4gPiA+ID4gQ1Iy
+OiAwMDAwNTY0NGQwNTU2Y2E4IENSMzogMDAwMDAwMDAwMjIxNDAwNiBDUjQ6IDAwMDAwMDAwMDAz
+NjA2ZjAKPiA+ID4gPiBEUjA6IDAwMDAwMDAwMDAwMDAwMDAgRFIxOiAwMDAwMDAwMDAwMDAwMDAw
+IERSMjogMDAwMDAwMDAwMDAwMDAwMAo+ID4gPiA+IERSMzogMDAwMDAwMDAwMDAwMDAwMCBEUjY6
+IDAwMDAwMDAwZmZmZTBmZjAgRFI3OiAwMDAwMDAwMDAwMDAwNDAwCj4gPiA+ID4gQ2FsbCBUcmFj
+ZToKPiA+ID4gPiAgZ2YxMDBfZ3JfaW5pdF9jdHhjdGwrMHgyN2IvMHgyZDAgW25vdXZlYXVdCj4g
+PiA+ID4gIGdmMTAwX2dyX2luaXQrMHg1YmQvMHg1ZTAgW25vdXZlYXVdCj4gPiA+ID4gIGdmMTAw
+X2dyX2luaXRfKzB4NjEvMHg3MCBbbm91dmVhdV0KPiA+ID4gPiAgbnZrbV9ncl9pbml0KzB4MWQv
+MHgyMCBbbm91dmVhdV0KPiA+ID4gPiAgbnZrbV9lbmdpbmVfaW5pdCsweGNiLzB4MjEwIFtub3V2
+ZWF1XQo+ID4gPiA+ICBudmttX3N1YmRldl9pbml0KzB4ZDYvMHgyMzAgW25vdXZlYXVdCj4gPiA+
+ID4gIG52a21fZW5naW5lX3JlZi5wYXJ0LjArMHg1Mi8weDcwIFtub3V2ZWF1XQo+ID4gPiA+ICBu
+dmttX2VuZ2luZV9yZWYrMHgxMy8weDIwIFtub3V2ZWF1XQo+ID4gPiA+ICBudmttX2lvY3RsX25l
+dysweDEyYy8weDI2MCBbbm91dmVhdV0KPiA+ID4gPiAgPyBudmttX2ZpZm9fY2hhbl9jaGlsZF9k
+ZWwrMHhhMC8weGEwIFtub3V2ZWF1XQo+ID4gPiA+ICA/IGdmMTAwX2dyX2R0b3IrMHhlMC8weGUw
+IFtub3V2ZWF1XQo+ID4gPiA+ICBudmttX2lvY3RsKzB4ZTIvMHgxODAgW25vdXZlYXVdCj4gPiA+
+ID4gIG52a21fY2xpZW50X2lvY3RsKzB4MTIvMHgyMCBbbm91dmVhdV0KPiA+ID4gPiAgbnZpZl9v
+YmplY3RfaW9jdGwrMHg0Ny8weDUwIFtub3V2ZWF1XQo+ID4gPiA+ICBudmlmX29iamVjdF9pbml0
+KzB4YzgvMHgxMjAgW25vdXZlYXVdCj4gPiA+ID4gIG52YzBfZmJjb25fYWNjZWxfaW5pdCsweDVj
+LzB4OTYwIFtub3V2ZWF1XQo+ID4gPiA+ICBub3V2ZWF1X2ZiY29uX2NyZWF0ZSsweDVhNS8weDVk
+MCBbbm91dmVhdV0KPiA+ID4gPiAgPyBkcm1fc2V0dXBfY3J0Y3MrMHgyN2IvMHhjYjAgW2RybV9r
+bXNfaGVscGVyXQo+ID4gPiA+ICA/IF9fbG9ja19pc19oZWxkKzB4NWUvMHhhMAo+ID4gPiA+ICBf
+X2RybV9mYl9oZWxwZXJfaW5pdGlhbF9jb25maWdfYW5kX3VubG9jaysweDI3Yy8weDUyMAo+ID4g
+PiA+IFtkcm1fa21zX2hlbHBlcl0KPiA+ID4gPiAgZHJtX2ZiX2hlbHBlcl9ob3RwbHVnX2V2ZW50
+LnBhcnQuMjkrMHhhZS8weGMwIFtkcm1fa21zX2hlbHBlcl0KPiA+ID4gPiAgZHJtX2ZiX2hlbHBl
+cl9ob3RwbHVnX2V2ZW50KzB4MWMvMHgzMCBbZHJtX2ttc19oZWxwZXJdCj4gPiA+ID4gIG5vdXZl
+YXVfZmJjb25fb3V0cHV0X3BvbGxfY2hhbmdlZCsweGI4LzB4MTEwIFtub3V2ZWF1XQo+ID4gPiA+
+ICBkcm1fa21zX2hlbHBlcl9ob3RwbHVnX2V2ZW50KzB4MmEvMHg0MCBbZHJtX2ttc19oZWxwZXJd
+Cj4gPiA+ID4gIGRybV9kcF9zZW5kX2xpbmtfYWRkcmVzcysweDE3Ni8weDFjMCBbZHJtX2ttc19o
+ZWxwZXJdCj4gPiA+ID4gIGRybV9kcF9jaGVja19hbmRfc2VuZF9saW5rX2FkZHJlc3MrMHhhMC8w
+eGIwIFtkcm1fa21zX2hlbHBlcl0KPiA+ID4gPiAgZHJtX2RwX21zdF9saW5rX3Byb2JlX3dvcmsr
+MHhhNC8weGMwIFtkcm1fa21zX2hlbHBlcl0KPiA+ID4gPiAgcHJvY2Vzc19vbmVfd29yaysweDIy
+Zi8weDVjMAo+ID4gPiA+ICB3b3JrZXJfdGhyZWFkKzB4NDQvMHgzYTAKPiA+ID4gPiAga3RocmVh
+ZCsweDEyYi8weDE1MAo+ID4gPiA+ICA/IHdxX3Bvb2xfaWRzX3Nob3crMHgxNDAvMHgxNDAKPiA+
+ID4gPiAgPyBrdGhyZWFkX2NyZWF0ZV9vbl9ub2RlKzB4NjAvMHg2MAo+ID4gPiA+ICByZXRfZnJv
+bV9mb3JrKzB4M2EvMHg1MAo+ID4gPiA+IGlycSBldmVudCBzdGFtcDogMjI0OTAKPiA+ID4gPiBo
+YXJkaXJxcyBsYXN0ICBlbmFibGVkIGF0ICgyMjQ4OSk6IFs8ZmZmZmZmZmY4MTEzMjgxZD5dCj4g
+PiA+ID4gY29uc29sZV91bmxvY2srMHg0NGQvMHg1ZjAKPiA+ID4gPiBoYXJkaXJxcyBsYXN0IGRp
+c2FibGVkIGF0ICgyMjQ5MCk6IFs8ZmZmZmZmZmY4MTAwMWMwMz5dCj4gPiA+ID4gdHJhY2VfaGFy
+ZGlycXNfb2ZmX3RodW5rKzB4MWEvMHgxYwo+ID4gPiA+IHNvZnRpcnFzIGxhc3QgIGVuYWJsZWQg
+YXQgKDIyNDg2KTogWzxmZmZmZmZmZjgxYzAwMzMwPl0KPiA+ID4gPiBfX2RvX3NvZnRpcnErMHgz
+MzAvMHg0NGQKPiA+ID4gPiBzb2Z0aXJxcyBsYXN0IGRpc2FibGVkIGF0ICgyMjQ3OSk6IFs8ZmZm
+ZmZmZmY4MTBjMzEwNT5dCj4gPiA+ID4gaXJxX2V4aXQrMHhlNS8weGYwCj4gPiA+ID4gV0FSTklO
+RzogQ1BVOiAwIFBJRDogMTIgYXQKPiA+ID4gPiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmtt
+L2VuZ2luZS9nci9jdHhnZjEwMC5jOjE1NDcKPiA+ID4gPiBnZjEwMF9ncmN0eF9nZW5lcmF0ZSsw
+eDdiMi8weDg1MCBbbm91dmVhdV0KPiA+ID4gPiAtLS1bIGVuZCB0cmFjZSBiZjA5NzZlZDg4YjEy
+MmE4IF0tLS0KPiA+ID4gPiBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IHdhaXQgZm9yIGlkbGUg
+dGltZW91dCAoZW46IDEsIGN0eHN3OiAwLAo+ID4gPiA+IGJ1c3k6Cj4gPiA+ID4gMSkKPiA+ID4g
+PiBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IHdhaXQgZm9yIGlkbGUgdGltZW91dCAoZW46IDEs
+IGN0eHN3OiAwLAo+ID4gPiA+IGJ1c3k6Cj4gPiA+ID4gMSkKPiA+ID4gPiBub3V2ZWF1IDAwMDA6
+MDE6MDAuMDogZmlmbzogZmF1bHQgMDEgW1dSSVRFXSBhdCAwMDAwMDAwMDAwMDA4MDAwCj4gPiA+
+ID4gZW5naW5lCj4gPiA+ID4gMDAgW0dSXSBjbGllbnQgMTUgW0hVQi9TQ0NfTkJdIHJlYXNvbiBj
+NCBbXSBvbiBjaGFubmVsIC0xIFswMDAwMDAwMDAwCj4gPiA+ID4gdW5rbm93bl0KPiA+ID4gPiAK
+PiA+ID4gPiBGcm9tIHdoaWNoIHRoZSBHUFUgbmV2ZXIgbWFuYWdlcyB0byByZWNvdmVyLiBCb290
+aW5nIHdpdGhvdXQgbm91dmVhdQo+ID4gPiA+IGxvYWRpbmcgY2F1c2VzIGlzc3VlcyBhcyB3ZWxs
+LCBzaW5jZSB0aGUgR1BVIHN0YXJ0cyBzZW5kaW5nIHNwdXJpb3VzCj4gPiA+ID4gaW50ZXJydXB0
+cyB0aGF0IGNhdXNlIG90aGVyIGRldmljZSdzIElSUXMgdG8gZ2V0IGRpc2FibGVkIGJ5IHRoZQo+
+ID4gPiA+IGtlcm5lbDoKPiA+ID4gPiAKPiA+ID4gPiBpcnEgMTY6IG5vYm9keSBjYXJlZCAodHJ5
+IGJvb3Rpbmcgd2l0aCB0aGUgImlycXBvbGwiIG9wdGlvbikKPiA+ID4gPiDigKYKPiA+ID4gPiBo
+YW5kbGVyczoKPiA+ID4gPiBbPDAwMDAwMDAwN2ZhYTllOTk+XSBpODAxX2lzciBbaTJjX2k4MDFd
+Cj4gPiA+ID4gRGlzYWJsaW5nIElSUSAjMTYKPiA+ID4gPiDigKYKPiA+ID4gPiBzZXJpbzogUk1J
+NCBQUy8yIHBhc3MtdGhyb3VnaCBwb3J0IGF0IHJtaTQtMDAuZm4wMwo+ID4gPiA+IGk4MDFfc21i
+dXMgMDAwMDowMDoxZi40OiBUaW1lb3V0IHdhaXRpbmcgZm9yIGludGVycnVwdCEKPiA+ID4gPiBp
+ODAxX3NtYnVzIDAwMDA6MDA6MWYuNDogVHJhbnNhY3Rpb24gdGltZW91dAo+ID4gPiA+IHJtaTRf
+ZjAzIHJtaTQtMDAuZm4wMzogcm1pX2YwM19wdF93cml0ZTogRmFpbGVkIHRvIHdyaXRlIHRvIEYw
+MyBUWAo+ID4gPiA+IHJlZ2lzdGVyICgtMTEwKS4KPiA+ID4gPiBpODAxX3NtYnVzIDAwMDA6MDA6
+MWYuNDogVGltZW91dCB3YWl0aW5nIGZvciBpbnRlcnJ1cHQhCj4gPiA+ID4gaTgwMV9zbWJ1cyAw
+MDAwOjAwOjFmLjQ6IFRyYW5zYWN0aW9uIHRpbWVvdXQKPiA+ID4gPiBybWk0X3BoeXNpY2FsIHJt
+aTQtMDA6IHJtaV9kcml2ZXJfc2V0X2lycV9iaXRzOiBGYWlsZWQgdG8gY2hhbmdlCj4gPiA+ID4g
+ZW5hYmxlZAo+ID4gPiA+IGludGVycnVwdHMhCj4gPiA+ID4gCj4gPiA+ID4gV2hpY2ggaW4gdHVy
+biBjYXVzZXMgdGhlIHRvdWNocGFkIGFuZCBzb21ldGltZXMgZXZlbiBvdGhlciB0aGluZ3MgdG8K
+PiA+ID4gPiBnZXQKPiA+ID4gPiBkaXNhYmxlZC4KPiA+ID4gPiAKPiA+ID4gPiBTaW5jZSB0aGUg
+R1BVIHN0YXlpbmcgb24gY2F1c2VzIHByb2JsZW1zIGV2ZW4gd2l0aG91dCBub3V2ZWF1J3MKPiA+
+ID4gPiBpbnRlcnZlbnRpb24sIHdlIGNhbid0IGZpeCB0aGlzIHByb2JsZW0gZnJvbSBub3V2ZWF1
+IGl0c2VsZi4gV2UgaGF2ZQo+ID4gPiA+IHRvCj4gPiA+ID4gZml4IGl0IGFzIGVhcmx5IGFzIHBv
+c3NpYmxlIGluIHRoZSBib290IHNlcXVlbmNlIGluIG9yZGVyIHRvIG1ha2Ugc3VyZQo+ID4gPiA+
+IHRoYXQgdGhlIEdQVSBpcyBpbiBhIGNsZWFuIHN0YXRlIGJlZm9yZSBpdCBoYXMgYSBjaGFuY2Ug
+dG8gc3BhbSB1cwo+ID4gPiA+IHdpdGgKPiA+ID4gPiBpbnRlcnJ1cHRzIGFuZCBicmVhayB0aGlu
+Z3MuCj4gPiA+IAo+ID4gPiBXYXMgbm91dmVhdSBsb2FkZWQgKmJlZm9yZSogdGhlIHJlYm9vdD8g
+IE9yIGNhbiB5b3UgcmVwcm9kdWNlIHRoZQo+ID4gPiBzcHVyaW91cyBpbnRlcnJ1cHRzIGV2ZW4g
+aWYgeW91IGRvIGEgY29sZCByZWJvb3Qgd2l0aG91dCBub3V2ZWF1LCB0aGVuCj4gPiA+IGEgd2Fy
+bSByZWJvb3QgYWdhaW4gd2l0aG91dCBub3V2ZWF1Pwo+ID4gCj4gPiBOb3V2ZWF1IHdhcyBsb2Fk
+ZWQgYmVmb3JlIHRoZSByZWJvb3QsIHllcywgYW5kIGFzIGZhciBhcyBJJ20gYXdhcmUgdGhpcwo+
+ID4gYnVnIHdvbid0IHNob3cgdXAgZm9sbG93aW5nIHRoZSBzdGVwcyB5b3UgZGVzY3JpYmVkIGhl
+cmUuIFdlIHdvdWxkbid0Cj4gPiByZWFsbHkgbm90aWNlIHRoZSBpbnRlcnJ1cHRzIGlmIHRoaXMg
+YnVnIGhhcHBlbmVkIHdpdGhvdXQgbm91dmVhdSBsb2FkZWQKPiA+IChzaW5jZSB0aGUgQklPUyBk
+b2Vzbid0IGFybSB0aGVtKS4gSG93ZXZlciwgSSBjYW4gY29uZmlybSBpdCdzIGJlaW5nCj4gPiBy
+ZXNldCBlYWNoIG9uIGVhY2ggd2FybSByZWJvb3Qgd2hlbiBub3V2ZWF1J3MgY29tcGxldGVseSBk
+aXNhYmxlZCBieQo+ID4gc3RpY2tpbmcgdmFsdWVzIGludG8gc29tZSBNTUlPIHJlZ2lzdGVycyB3
+ZSBrbm93IHRoZSBWQklPUyBkb2Vzbid0IHRvdWNoCj4gPiBmb2xsb3dlZCBieSByZWJvb3Rpbmcg
+aW4gb3JkZXIgdG8gc2VlIGlmIHRoZXkgcmV0YWluIHRoZWlyIHZhbHVlICh0aGlzCj4gPiBpcyBo
+b3cgSSBkaXNjb3ZlcmVkIHRoYXQgdGhlIEdQVSB3YXNuJ3QgYmVpbmcgcG93ZXIgY3ljbGVkIGlu
+IHRoZSBmaXJzdAo+ID4gcGxhY2UsIGlmIHRoZSB2YWx1ZXMgSSBzdGljayBpbnRvIHNhaWQgcmVn
+aXN0ZXJzIGdldHMgY2xlYXJlZCBhZnRlcgo+ID4gcmVib290IHRoZW4gdGhlIEdQVSB3YXMgcmVz
+ZXQsIG90aGVyd2lzZSBpdCB3YXNuJ3QpLgo+ID4gCj4gPiAKPiA+ID4gPiBTbyB0byBkbyB0aGlz
+LCB3ZSBhZGQgYSBuZXcgcGNpIHF1aXJrIHVzaW5nCj4gPiA+ID4gREVDTEFSRV9QQ0lfRklYVVBf
+Q0xBU1NfRklOQUwgdGhhdCB3aWxsIGJlIGludm9rZWQgYmVmb3JlIHRoZSBQQ0kKPiA+ID4gPiBw
+cm9iZQo+ID4gPiA+IGF0IGJvb3QgZmluaXNoZXMuIEZyb20gdGhlcmUsIHdlIGNoZWNrIHRvIG1h
+a2Ugc3VyZSB0aGF0IHRoaXMgaXMKPiA+ID4gPiBpbmRlZWQKPiA+ID4gPiB0aGUgc3BlY2lmaWMg
+UDUwIHZhcmlhbnQgb2YgdGhpcyBHUFUuIFdlIGFsc28gbWFrZSBzdXJlIHRoYXQgdGhlIEdQVQo+
+ID4gPiA+IFBDSQo+ID4gPiA+IGRldmljZSBpcyBhZHZlcnRpc2luZyBOb1Jlc2V0LSBpbiBvcmRl
+ciB0byBwcmV2ZW50IHVzIGZyb20gdHJ5aW5nIHRvCj4gPiA+ID4gcmVzZXQgdGhlIEdQVSB3aGVu
+IHRoZSBtYWNoaW5lIGlzIGluIERlZGljYXRlZCBncmFwaGljcyBtb2RlICh3aGVyZQo+ID4gPiA+
+IHRoZQo+ID4gPiA+IEdQVSBiZWluZyBpbml0aWFsaXplZCBieSB0aGUgQklPUyBpcyBub3JtYWwg
+YW5kIGV4cGVjdGVkKS4gRmluYWxseSwgd2UKPiA+ID4gPiB0cnkgbWFwcGluZyB0aGUgTU1JTyBz
+cGFjZSBmb3IgdGhlIEdQVSB3aGljaCBzaG91bGQgb25seSB3b3JrIGlmIHRoZQo+ID4gPiA+IEdQ
+VQo+ID4gPiA+IGlzIGFjdHVhbGx5IGFjdGl2ZSBpbiBEMCBtb2RlLiBXZSBjYW4gdGhlbiByZWFk
+IHRoZSBtYWdpYyAweDIyNDBjCj4gPiA+ID4gcmVnaXN0ZXIgb24gdGhlIEdQVSwgd2hpY2ggd2ls
+bCBoYXZlIGJpdCAxIHNldCBpZiB0aGUgR1BVJ3MgZmlybXdhcmUKPiA+ID4gPiBoYXMKPiA+ID4g
+PiBhbHJlYWR5IGJlZW4gcG9zdGVkIGR1cmluZyBhIHByZXZpb3VzIGJvb3QuIE9uY2Ugd2UndmUg
+Y29uZmlybWVkIGFsbAo+ID4gPiA+IG9mCj4gPiA+ID4gdGhpcywgd2UgcmVzZXQgdGhlIFBDSSBk
+ZXZpY2UgYW5kIHJlLWRpc2FibGUgaXQgLSBicmluZ2luZyB0aGUgR1BVCj4gPiA+ID4gYmFjawo+
+ID4gPiA+IGludG8gYSBoZWFsdGh5IHN0YXRlLgo+ID4gPiA+IAo+ID4gPiA+IFNpZ25lZC1vZmYt
+Ynk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+Cj4gPiA+ID4gQ2M6IG5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCj4gPiA+ID4gQ2M6IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKPiA+ID4gPiBDYzogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+Cj4gPiA+
+ID4gQ2M6IEJlbiBTa2VnZ3MgPHNrZWdnc2JAZ21haWwuY29tPgo+ID4gPiA+IENjOiBzdGFibGVA
+dmdlci5rZXJuZWwub3JnCj4gPiA+ID4gLS0tCj4gPiA+ID4gIGRyaXZlcnMvcGNpL3F1aXJrcy5j
+IHwgNjUKPiA+ID4gPiArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
+Kwo+ID4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgNjUgaW5zZXJ0aW9ucygrKQo+ID4gPiA+IAo+ID4g
+PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9xdWlya3MuYyBiL2RyaXZlcnMvcGNpL3F1aXJr
+cy5jCj4gPiA+ID4gaW5kZXggYjBhNDEzZjNmN2NhLi45NDg0OTJmZGE4YmYgMTAwNjQ0Cj4gPiA+
+ID4gLS0tIGEvZHJpdmVycy9wY2kvcXVpcmtzLmMKPiA+ID4gPiArKysgYi9kcml2ZXJzL3BjaS9x
+dWlya3MuYwo+ID4gPiA+IEBAIC01MTE3LDMgKzUxMTcsNjggQEAgU1dJVENIVEVDX1FVSVJLKDB4
+ODU3Myk7ICAvKiBQRlhJIDQ4WEczICovCj4gPiA+ID4gIFNXSVRDSFRFQ19RVUlSSygweDg1NzQp
+OyAgLyogUEZYSSA2NFhHMyAqLwo+ID4gPiA+ICBTV0lUQ0hURUNfUVVJUksoMHg4NTc1KTsgIC8q
+IFBGWEkgODBYRzMgKi8KPiA+ID4gPiAgU1dJVENIVEVDX1FVSVJLKDB4ODU3Nik7ICAvKiBQRlhJ
+IDk2WEczICovCj4gPiA+ID4gKwo+ID4gPiA+ICsvKgo+ID4gPiA+ICsgKiBPbiBjZXJ0YWluIExl
+bm92byBUaGlua3BhZCBQNTAgU0tVcywgc3BlY2lmaWNhbGx5IHRob3NlIHdpdGggYQo+ID4gPiA+
+IE52aWRpYQo+ID4gPiA+ICsgKiBRdWFkcm8gTTEwMDBNLCB0aGUgQklPUyB3aWxsIG9jY2FzaW9u
+YWxseSBtYWtlIHRoZSBtaXN0YWtlIG9mIG5vdAo+ID4gPiA+IHJlc2V0dGluZwo+ID4gPiA+ICsg
+KiB0aGUgbnZpZGlhIEdQVSBiZXR3ZWVuIHJlYm9vdHMgaWYgdGhlIHN5c3RlbSBpcyBjb25maWd1
+cmVkIHRvIHVzZQo+ID4gPiA+IGh5YnJpZAo+ID4gPiA+ICsgKiBncmFwaGljcyBtb2RlLiBUaGlz
+IHJlc3VsdHMgaW4gdGhlIEdQVSBiZWluZyBsZWZ0IGluIHdoYXRldmVyCj4gPiA+ID4gc3RhdGUK
+PiA+ID4gPiBpdAo+ID4gPiA+IHdhcwo+ID4gPiA+ICsgKiBpbiBkdXJpbmcgdGhlIHByZXZpb3Vz
+IGJvb3Qgd2hpY2ggY2F1c2VzIHNwdXJpb3VzIGludGVycnVwdHMgZnJvbQo+ID4gPiA+IHRoZQo+
+ID4gPiA+IEdQVSwKPiA+ID4gPiArICogd2hpY2ggaW4gdHVybiBjYXVzZSB1cyB0byBkaXNhYmxl
+IHRoZSB3cm9uZyBJUlFzIGFuZCBlbmQgdXAKPiA+ID4gPiBicmVha2luZwo+ID4gPiA+IHRoZQo+
+ID4gPiA+ICsgKiB0b3VjaHBhZC4gVW5zdXJwcmlzaW5nbHksIHRoaXMgYWxzbyBjb21wbGV0ZWx5
+IGJyZWFrcyBub3V2ZWF1Lgo+ID4gPiA+ICsgKgo+ID4gPiA+ICsgKiBMdWNraWx5LCBpdCBzZWVt
+cyBhIHNpbXBsZSByZXNldCBvZiB0aGUgUENJIGRldmljZSBmb3IgdGhlIG52aWRpYQo+ID4gPiA+
+IEdQVQo+ID4gPiA+ICsgKiBtYW5hZ2VzIHRvIGJyaW5nIHRoZSBHUFUgYmFjayBpbnRvIGEgY2xl
+YW4gc3RhdGUgYW5kIGZpeCBhbGwgb2YKPiA+ID4gPiB0aGVzZQo+ID4gPiA+ICsgKiBpc3N1ZXMu
+IEFkZGl0aW9uYWxseSBzaW5jZSB0aGUgR1BVIHdpbGwgcmVwb3J0IE5vUmVzZXQrIHdoZW4gdGhl
+Cj4gPiA+ID4gbWFjaGluZSBpcwo+ID4gPiA+ICsgKiBjb25maWd1cmVkIGluIERlZGljYXRlZCBk
+aXNwbGF5IG1vZGUsIHdlIGRvbid0IG5lZWQgdG8gd29ycnkgYWJvdXQKPiA+ID4gPiArICogYWNj
+aWRlbnRhbGx5IHJlc2V0dGluZyB0aGUgR1BVIHdoZW4gaXQncyBzdXBwb3NlZCB0byBhbHJlYWR5
+IGJlCj4gPiA+ID4gKyAqIGluaXRpYWxpemVkLgo+ID4gPiA+ICsgKi8KPiA+ID4gPiArc3RhdGlj
+IHZvaWQKPiA+ID4gPiArcXVpcmtfbGVub3ZvX3RoaW5rcGFkX3A1MF9udmdwdV9zdXJ2aXZlc19y
+ZWJvb3Qoc3RydWN0IHBjaV9kZXYgKnBkZXYpCj4gPiA+ID4gK3sKPiA+ID4gPiArCXZvaWQgX19p
+b21lbSAqbWFwOwo+ID4gPiA+ICsJaW50IHJldDsKPiA+ID4gPiArCj4gPiA+ID4gKwlpZiAocGRl
+di0+c3Vic3lzdGVtX3ZlbmRvciAhPSBQQ0lfVkVORE9SX0lEX0xFTk9WTyB8fAo+ID4gPiA+ICsJ
+ICAgIHBkZXYtPnN1YnN5c3RlbV9kZXZpY2UgIT0gMHgyMjJlIHx8Cj4gPiA+ID4gKwkgICAgIXBk
+ZXYtPnJlc2V0X2ZuKQo+ID4gPiA+ICsJCXJldHVybjsKPiA+ID4gPiArCj4gPiA+ID4gKwkvKgo+
+ID4gPiA+ICsJICogSWYgd2UgY2FuJ3QgZW5hYmxlIHRoZSBkZXZpY2UncyBtbWlvIHNwYWNlLCBp
+dCdzIHByb2JhYmx5Cj4gPiA+ID4gbm90IGV2ZW4KPiA+ID4gPiArCSAqIGluaXRpYWxpemVkLiBU
+aGlzIGlzIGZpbmUsIGFuZCBtZWFucyB3ZSBjYW4ganVzdCBza2lwIHRoZQo+ID4gPiA+IHF1aXJr
+Cj4gPiA+ID4gKwkgKiBlbnRpcmVseS4KPiA+ID4gPiArCSAqLwo+ID4gPiA+ICsJaWYgKHBjaV9l
+bmFibGVfZGV2aWNlX21lbShwZGV2KSkgewo+ID4gPiA+ICsJCXBjaV9kYmcocGRldiwgIkNhbid0
+IGVuYWJsZSBkZXZpY2UgbWVtLCBubyByZXNldAo+ID4gPiA+IG5lZWRlZFxuIik7Cj4gPiA+ID4g
+KwkJcmV0dXJuOwo+ID4gPiA+ICsJfQo+ID4gPiA+ICsKPiA+ID4gPiArCS8qIFRha2VuIGZyb20g
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZW5naW5lL2RldmljZS9iYXNlLmMgKi8KPiA+ID4gPiAr
+CW1hcCA9IGlvcmVtYXAocGNpX3Jlc291cmNlX3N0YXJ0KHBkZXYsIDApLCAweDEwMjAwMCk7Cj4g
+PiA+ID4gKwlpZiAoIW1hcCkgewo+ID4gPiA+ICsJCXBjaV9lcnIocGRldiwgIkNhbid0IG1hcCBN
+TUlPIHNwYWNlLCB0aGlzIGlzIHByb2JhYmx5Cj4gPiA+ID4gdmVyeQo+ID4gPiA+IGJhZFxuIik7
+Cj4gPiA+ID4gKwkJZ290byBvdXRfZGlzYWJsZTsKPiA+ID4gPiArCX0KPiA+ID4gPiArCj4gPiA+
+ID4gKwkvKgo+ID4gPiA+ICsJICogQmUgZXh0cmEgY2FyZWZ1bCwgYW5kIG1ha2Ugc3VyZSB0aGF0
+IHRoZSBHUFUgZmlybXdhcmUgaXMKPiA+ID4gPiBwb3N0ZWQKPiA+ID4gPiArCSAqIGJlZm9yZSB0
+cnlpbmcgYSByZXNldAo+ID4gPiA+ICsJICovCj4gPiA+ID4gKwlpZiAoaW9yZWFkMzIobWFwICsg
+MHgyMjQwYykgJiAweDIpIHsKPiA+ID4gPiArCQlwY2lfaW5mbyhwZGV2LAo+ID4gPiA+ICsJCQkg
+RldfQlVHICJHUFUgbGVmdCBpbml0aWFsaXplZCBieSBFRkksCj4gPiA+ID4gcmVzZXR0aW5nXG4i
+KTsKPiA+ID4gPiArCQlyZXQgPSBwY2lfcmVzZXRfZnVuY3Rpb24ocGRldik7Cj4gPiA+ID4gKwkJ
+aWYgKHJldCA8IDApCj4gPiA+ID4gKwkJCXBjaV9lcnIocGRldiwgIkZhaWxlZCB0byByZXNldCBH
+UFU6ICVkXG4iLAo+ID4gPiA+IHJldCk7Cj4gPiA+ID4gKwl9Cj4gPiA+ID4gKwo+ID4gPiA+ICsJ
+aW91bm1hcChtYXApOwo+ID4gPiA+ICtvdXRfZGlzYWJsZToKPiA+ID4gPiArCXBjaV9kaXNhYmxl
+X2RldmljZShwZGV2KTsKPiA+ID4gPiArfQo+ID4gPiA+ICsKPiA+ID4gPiArREVDTEFSRV9QQ0lf
+RklYVVBfQ0xBU1NfRklOQUwoUENJX1ZFTkRPUl9JRF9OVklESUEsIDB4MTNiMSwKPiA+ID4gPiAr
+CQkJICAgICAgUENJX0NMQVNTX0RJU1BMQVlfVkdBLCA4LAo+ID4gPiA+ICsJCQkgICAgICBxdWly
+a19sZW5vdm9fdGhpbmtwYWRfcDUwX252Z3B1X3N1cnZpdmVzCj4gPiA+ID4gX3JlYm9vdCkKPiA+
+ID4gPiA7Cj4gPiA+ID4gLS0gCj4gPiA+ID4gMi4yMC4xCj4gPiA+ID4gCi0tIApDaGVlcnMsCglM
+eXVkZSBQYXVsCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWw=
