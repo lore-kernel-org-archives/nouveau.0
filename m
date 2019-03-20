@@ -1,255 +1,118 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH] pci/quirks: Add quirk to reset nvgpu at boot for the
- Lenovo ThinkPad P50
-Date: Fri, 22 Mar 2019 19:50:22 -0400
-Message-ID: <b73419b7b48ef5ef26ae874dcfa19b21a7b0fde1.camel@redhat.com>
-References: <20190212220230.1568-1-lyude@redhat.com>
-         <20190215004329.GR96272@google.com>
-         <2fca9a9feafcd17b27bc71994a71ebc241a93e9a.camel@redhat.com>
-         <52b17f8cb24e179e9661d75548d193843ae87b4c.camel@redhat.com>
-         <20190321224819.GK251185@google.com>
+From: Jean Chorin <jean.chorin-omI3DanSII5nItmLHl24hw@public.gmane.org>
+Subject: Questions about envytools: reading card VBIOS
+Date: Wed, 20 Mar 2019 16:49:34 +0100
+Message-ID: <3e7d4b6d-cd35-8c98-7a7c-372cec359cd3@cloudandheat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190321224819.GK251185@google.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: David Ober <dober@lenovo.com>, linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Karol Herbst <kherbst@redhat.com>, Ben Skeggs <skeggsb@gmail.com>, stable@vger.kernel.org, linux-kernel@vger.kernel.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Content-Type: multipart/mixed; boundary="===============1894625767=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Note: I did read your response lower down in the thread, but I wanted to make
-sure I addressed one of the comments here (see below)
+This is a multi-part message in MIME format.
+--===============1894625767==
+Content-Type: multipart/alternative;
+ boundary="------------FF8756F676AE5FE6AA7FE5EF"
+Content-Language: en-US
 
-On Thu, 2019-03-21 at 17:48 -0500, Bjorn Helgaas wrote:
-> [+cc Rafael]
-> 
-> On Wed, Mar 13, 2019 at 06:25:02PM -0400, Lyude Paul wrote:
-> > On Fri, 2019-02-15 at 16:17 -0500, Lyude Paul wrote:
-> > > On Thu, 2019-02-14 at 18:43 -0600, Bjorn Helgaas wrote:
-> > > > On Tue, Feb 12, 2019 at 05:02:30PM -0500, Lyude Paul wrote:
-> > > > > On a very specific subset of ThinkPad P50 SKUs, particularly
-> > > > > ones that come with a Quadro M1000M chip instead of the M2000M
-> > > > > variant, the BIOS seems to have a very nasty habit of not
-> > > > > always resetting the secondary Nvidia GPU between full reboots
-> > > > > if the laptop is configured in Hybrid Graphics mode. The
-> > > > > reason for this happening is unknown, but the following steps
-> > > > > and possibly a good bit of patience will reproduce the issue:
-> > > > > 
-> > > > > 1. Boot up the laptop normally in Hybrid graphics mode
-> > > > > 2. Make sure nouveau is loaded and that the GPU is awake
-> > > > > 2. Allow the nvidia GPU to runtime suspend itself after being idle
-> > > > > 3. Reboot the machine, the more sudden the better (e.g sysrq-b may
-> > > > > help)
-> > > > > 4. If nouveau loads up properly, reboot the machine again and go
-> > > > > back to
-> > > > > step 2 until you reproduce the issue
-> > > > > 
-> > > > > This results in some very strange behavior: the GPU will quite
-> > > > > literally be left in exactly the same state it was in when the
-> > > > > previously booted kernel started the reboot. This has all
-> > > > > sorts of bad sideaffects: for starters, this completely breaks
-> > > > > nouveau starting with a mysterious EVO channel failure that
-> > > > > happens well before we've actually used the EVO channel for
-> > > > > anything:
-> 
-> Thanks for the hybrid tutorial (snipped from this response).  IIUC,
-> what you said was that in hybrid mode, the Intel GPU drives the
-> built-in display and the Nvidia GPU drives any external displays and
-> may be used for DRI PRIME rendering (whatever that is).  But since you
-> say the Nvidia device gets runtime suspended, I assume there's no
-> external display here and you're not using DRI PRIME.
-> 
-> I wonder if it's related to the fact that the Nvidia GPU has been
-> runtime suspended before you do the reboot.  Can you try turning of
-> runtime power management for the GPU by setting the runpm module
-> parameter to 0?  I *think* this would be booting with
-> "nouveau.runpm=0".
-> 
-> > > > Is there a bug report for this?  Bugzilla.kernel.org would be ideal,
-> > > > including "lspci -vvxxx" and dmidecode for the system.
-> > > > 
-> > > Not yet, but there has been discussion about this between nouveau
-> > > developers on our IRC channel.
-> > 
-> > I lied: yes there actually is a bug report for this, but it's
-> > currently on the Red Hat bugzilla. I can get more information from
-> > it if you need (with lenovo's approval of course).
-> 
-> Can you please make a bugzilla.kernel.org entry with as much
-> information (dmesg, "lspci -vvxxx", dmidecode, etc) as you can get
-> approval for?  You can include the Red Hat bugzilla URL in the commit
-> log, too, but that's not quite as good because we have no control over
-> whether it's public.
-> 
-> > And additionally: I've been working with Lenovo on this issue for a
-> > couple of months now, and we've gone through dozens of different
-> > trial BIOSes with no success thus far. However, Lenovo is currently
-> > working on trying to add this workaround into their BIOS but I've
-> > been told that this change is going to take a decent amount of time
-> > since they need to test it across multiple operating systems. I'd be
-> > happy to come back and add a conditional later to turn this
-> > workaround off for later BIOS versions once Lenovo has released a
-> > proper fix.
-> 
-> Sounds like Lenovo is going to a lot of trouble for this.  The ideal
-> thing from my point of view would be if they could figure out why this
-> works on Windows but not on Linux.  I doubt Windows has a quirk like
-> this, so if we could figure out why it works on Windows, we could
-> likely do something similar in Linux.
+This is a multi-part message in MIME format.
+--------------FF8756F676AE5FE6AA7FE5EF
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-I did actually try this route after first finding this bug, but unfortunately
-from what I understand there isn't really much more Lenovo can do other then
-give us a patched BIOS or look at their own BIOS to see if it's the cause. 
+To whom it may concern
 
-Anyway, went ahead and filed a bug with as much information as I could get my
-hands on here (different email then the one I'm talking to you from): 
-https://bugzilla.kernel.org/show_bug.cgi?id=203003
+I hope here is the right place to ask about envytools.
 
-> 
-> > > > > So to do this, we add a new pci quirk using
-> > > > > DECLARE_PCI_FIXUP_CLASS_FINAL that will be invoked before the PCI
-> > > > > probe
-> > > > > at boot finishes. From there, we check to make sure that this is
-> > > > > indeed
-> > > > > the specific P50 variant of this GPU. We also make sure that the GPU
-> > > > > PCI
-> > > > > device is advertising NoReset- in order to prevent us from trying to
-> > > > > reset the GPU when the machine is in Dedicated graphics mode (where
-> > > > > the
-> > > > > GPU being initialized by the BIOS is normal and expected). Finally,
-> > > > > we
-> > > > > try mapping the MMIO space for the GPU which should only work if the
-> > > > > GPU
-> > > > > is actually active in D0 mode. We can then read the magic 0x2240c
-> > > > > register on the GPU, which will have bit 1 set if the GPU's firmware
-> > > > > has
-> > > > > already been posted during a previous boot. Once we've confirmed all
-> > > > > of
-> > > > > this, we reset the PCI device and re-disable it - bringing the GPU
-> > > > > back
-> > > > > into a healthy state.
-> > > > > 
-> > > > > Signed-off-by: Lyude Paul <lyude@redhat.com>
-> > > > > Cc: nouveau@lists.freedesktop.org
-> > > > > Cc: dri-devel@lists.freedesktop.org
-> > > > > Cc: Karol Herbst <kherbst@redhat.com>
-> > > > > Cc: Ben Skeggs <skeggsb@gmail.com>
-> > > > > Cc: stable@vger.kernel.org
-> > > > > ---
-> > > > >  drivers/pci/quirks.c | 65
-> > > > > ++++++++++++++++++++++++++++++++++++++++++++
-> > > > >  1 file changed, 65 insertions(+)
-> > > > > 
-> > > > > diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-> > > > > index b0a413f3f7ca..948492fda8bf 100644
-> > > > > --- a/drivers/pci/quirks.c
-> > > > > +++ b/drivers/pci/quirks.c
-> > > > > @@ -5117,3 +5117,68 @@ SWITCHTEC_QUIRK(0x8573);  /* PFXI 48XG3 */
-> > > > >  SWITCHTEC_QUIRK(0x8574);  /* PFXI 64XG3 */
-> > > > >  SWITCHTEC_QUIRK(0x8575);  /* PFXI 80XG3 */
-> > > > >  SWITCHTEC_QUIRK(0x8576);  /* PFXI 96XG3 */
-> > > > > +
-> > > > > +/*
-> > > > > + * On certain Lenovo Thinkpad P50 SKUs, specifically those with a
-> > > > > Nvidia
-> > > > > + * Quadro M1000M, the BIOS will occasionally make the mistake of
-> > > > > not
-> > > > > resetting
-> > > > > + * the nvidia GPU between reboots if the system is configured to
-> > > > > use
-> > > > > hybrid
-> > > > > + * graphics mode. This results in the GPU being left in whatever
-> > > > > state
-> > > > > it
-> > > > > was
-> > > > > + * in during the previous boot which causes spurious interrupts
-> > > > > from
-> > > > > the
-> > > > > GPU,
-> > > > > + * which in turn cause us to disable the wrong IRQs and end up
-> > > > > breaking
-> > > > > the
-> > > > > + * touchpad. Unsurprisingly, this also completely breaks nouveau.
-> > > > > + *
-> > > > > + * Luckily, it seems a simple reset of the PCI device for the
-> > > > > nvidia
-> > > > > GPU
-> > > > > + * manages to bring the GPU back into a clean state and fix all of
-> > > > > these
-> > > > > + * issues. Additionally since the GPU will report NoReset+ when the
-> > > > > machine is
-> > > > > + * configured in Dedicated display mode, we don't need to worry
-> > > > > about
-> > > > > + * accidentally resetting the GPU when it's supposed to already be
-> > > > > + * initialized.
-> > > > > + */
-> > > > > +static void
-> > > > > +quirk_lenovo_thinkpad_p50_nvgpu_survives_reboot(struct pci_dev
-> > > > > *pdev)
-> > > > > +{
-> > > > > +	void __iomem *map;
-> > > > > +	int ret;
-> > > > > +
-> > > > > +	if (pdev->subsystem_vendor != PCI_VENDOR_ID_LENOVO ||
-> > > > > +	    pdev->subsystem_device != 0x222e ||
-> > > > > +	    !pdev->reset_fn)
-> > > > > +		return;
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * If we can't enable the device's mmio space, it's probably
-> > > > > not even
-> > > > > +	 * initialized. This is fine, and means we can just skip the
-> > > > > quirk
-> > > > > +	 * entirely.
-> > > > > +	 */
-> > > > > +	if (pci_enable_device_mem(pdev)) {
-> > > > > +		pci_dbg(pdev, "Can't enable device mem, no reset
-> > > > > needed\n");
-> > > > > +		return;
-> > > > > +	}
-> > > > > +
-> > > > > +	/* Taken from drivers/gpu/drm/nouveau/engine/device/base.c */
-> > > > > +	map = ioremap(pci_resource_start(pdev, 0), 0x102000);
-> > > > > +	if (!map) {
-> > > > > +		pci_err(pdev, "Can't map MMIO space, this is probably
-> > > > > very
-> > > > > bad\n");
-> > > > > +		goto out_disable;
-> > > > > +	}
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * Be extra careful, and make sure that the GPU firmware is
-> > > > > posted
-> > > > > +	 * before trying a reset
-> > > > > +	 */
-> > > > > +	if (ioread32(map + 0x2240c) & 0x2) {
-> > > > > +		pci_info(pdev,
-> > > > > +			 FW_BUG "GPU left initialized by EFI,
-> > > > > resetting\n");
-> > > > > +		ret = pci_reset_function(pdev);
-> > > > > +		if (ret < 0)
-> > > > > +			pci_err(pdev, "Failed to reset GPU: %d\n",
-> > > > > ret);
-> > > > > +	}
-> > > > > +
-> > > > > +	iounmap(map);
-> > > > > +out_disable:
-> > > > > +	pci_disable_device(pdev);
-> > > > > +}
-> > > > > +
-> > > > > +DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_NVIDIA, 0x13b1,
-> > > > > +			      PCI_CLASS_DISPLAY_VGA, 8,
-> > > > > +			      quirk_lenovo_thinkpad_p50_nvgpu_survives
-> > > > > _reboot)
-> > > > > ;
-> > > > > -- 
-> > > > > 2.20.1
-> > > > > 
-> > -- 
-> > Cheers,
-> > 	Lyude Paul
-> > 
--- 
-Cheers,
-	Lyude Paul
+I am working on securing our GPUs in the case of an OpenStack
+infrastructure, where GPUs can be bound and unbound to VMs from
+different clients.
+
+I wanted to use envytools to retrieve the VBIOS our cards, then check
+after each VM deletion if somebody changed the VBIOS (potentially a
+threat). The VBIOS would be read again and compared to the previously
+stored one.
+
+So we would like to know:
+
+  * is the card harmed in any way by reading the BIOS (I guess not, as
+    we simply read**);
+  * the utility also suggests that the cards have a second VBIOS. Is
+    this second VBIOS also read at the same time? If not, how to read it?=
+
+  * the VBIOS file read is larger than the one that could be read using
+    the NVFlash utility (1 Mo for envytools, against 230 ko for
+    NVFlash). I guess it is not an issue, but could you explain why this
+    difference occurs?
+
+Thanks for your help.
+
+Best regards,
+
+Jean Chorin
+
+
+--------------FF8756F676AE5FE6AA7FE5EF
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>To whom it may concern</p>
+    <p>I hope here is the right place to ask about envytools.<br>
+    </p>
+    <p>I am working on securing our GPUs in the case of an OpenStack
+      infrastructure, where GPUs can be bound and unbound to VMs from
+      different clients.</p>
+    <p>I wanted to use envytools to retrieve the VBIOS our cards, then
+      check after each VM deletion if somebody changed the VBIOS
+      (potentially a threat). The VBIOS would be read again and compared
+      to the previously stored one.<br>
+    </p>
+    <p>So we would like to know:<br>
+    </p>
+    <ul data-sourcepos="8:1-11:0" dir="auto">
+      <li data-sourcepos="8:1-8:127">is the card harmed in any way by
+        reading the BIOS (I guess not, as we simply read<strong></strong>);</li>
+      <li data-sourcepos="9:1-9:140">the utility also suggests that the
+        cards have a second VBIOS. Is this second VBIOS also read at the
+        same time? If not, how to read it?<br>
+      </li>
+      <li data-sourcepos="10:1-11:0">the VBIOS file read is larger than
+        the one that could be read using the NVFlash utility (1 Mo for
+        envytools, against 230 ko for NVFlash). I guess it is not an
+        issue, but could you explain why this difference occurs?</li>
+    </ul>
+    <p>Thanks for your help.</p>
+    <p>Best regards,</p>
+    <p>Jean Chorin<br>
+    </p>
+  </body>
+</html>
+
+--------------FF8756F676AE5FE6AA7FE5EF--
+
+--===============1894625767==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1894625767==--
