@@ -1,210 +1,80 @@
-From: Bjorn Helgaas <helgaas@kernel.org>
-Subject: Re: [PATCH] pci/quirks: Add quirk to reset nvgpu at boot for the
- Lenovo ThinkPad P50
-Date: Thu, 21 Mar 2019 17:48:19 -0500
-Message-ID: <20190321224819.GK251185@google.com>
+From: Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: Re: [PATCH] pci/quirks: Add quirk to reset nvgpu at boot
+ for the Lenovo ThinkPad P50
+Date: Fri, 22 Mar 2019 06:30:15 -0500
+Message-ID: <20190322113015.GM251185@google.com>
 References: <20190212220230.1568-1-lyude@redhat.com>
  <20190215004329.GR96272@google.com>
  <2fca9a9feafcd17b27bc71994a71ebc241a93e9a.camel@redhat.com>
  <52b17f8cb24e179e9661d75548d193843ae87b4c.camel@redhat.com>
+ <20190321224819.GK251185@google.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <stable-owner@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <52b17f8cb24e179e9661d75548d193843ae87b4c.camel@redhat.com>
-Sender: stable-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: David Ober <dober@lenovo.com>, linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Karol Herbst <kherbst@redhat.com>, Ben Skeggs <skeggsb@gmail.com>, stable@vger.kernel.org, linux-kernel@vger.kernel.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>
+In-Reply-To: <20190321224819.GK251185-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "Rafael J. Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, David Ober <dober-6jq1YtArVR3QT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-[+cc Rafael]
-
-On Wed, Mar 13, 2019 at 06:25:02PM -0400, Lyude Paul wrote:
-> On Fri, 2019-02-15 at 16:17 -0500, Lyude Paul wrote:
-> > On Thu, 2019-02-14 at 18:43 -0600, Bjorn Helgaas wrote:
-> > > On Tue, Feb 12, 2019 at 05:02:30PM -0500, Lyude Paul wrote:
-> > > > On a very specific subset of ThinkPad P50 SKUs, particularly
-> > > > ones that come with a Quadro M1000M chip instead of the M2000M
-> > > > variant, the BIOS seems to have a very nasty habit of not
-> > > > always resetting the secondary Nvidia GPU between full reboots
-> > > > if the laptop is configured in Hybrid Graphics mode. The
-> > > > reason for this happening is unknown, but the following steps
-> > > > and possibly a good bit of patience will reproduce the issue:
-> > > > 
-> > > > 1. Boot up the laptop normally in Hybrid graphics mode
-> > > > 2. Make sure nouveau is loaded and that the GPU is awake
-> > > > 2. Allow the nvidia GPU to runtime suspend itself after being idle
-> > > > 3. Reboot the machine, the more sudden the better (e.g sysrq-b may help)
-> > > > 4. If nouveau loads up properly, reboot the machine again and go back to
-> > > > step 2 until you reproduce the issue
-> > > > 
-> > > > This results in some very strange behavior: the GPU will quite
-> > > > literally be left in exactly the same state it was in when the
-> > > > previously booted kernel started the reboot. This has all
-> > > > sorts of bad sideaffects: for starters, this completely breaks
-> > > > nouveau starting with a mysterious EVO channel failure that
-> > > > happens well before we've actually used the EVO channel for
-> > > > anything:
-
-Thanks for the hybrid tutorial (snipped from this response).  IIUC,
-what you said was that in hybrid mode, the Intel GPU drives the
-built-in display and the Nvidia GPU drives any external displays and
-may be used for DRI PRIME rendering (whatever that is).  But since you
-say the Nvidia device gets runtime suspended, I assume there's no
-external display here and you're not using DRI PRIME.
-
-I wonder if it's related to the fact that the Nvidia GPU has been
-runtime suspended before you do the reboot.  Can you try turning of
-runtime power management for the GPU by setting the runpm module
-parameter to 0?  I *think* this would be booting with
-"nouveau.runpm=0".
-
-> > > Is there a bug report for this?  Bugzilla.kernel.org would be ideal,
-> > > including "lspci -vvxxx" and dmidecode for the system.
-> > > 
-> > Not yet, but there has been discussion about this between nouveau
-> > developers on our IRC channel.
->
-> I lied: yes there actually is a bug report for this, but it's
-> currently on the Red Hat bugzilla. I can get more information from
-> it if you need (with lenovo's approval of course).
-
-Can you please make a bugzilla.kernel.org entry with as much
-information (dmesg, "lspci -vvxxx", dmidecode, etc) as you can get
-approval for?  You can include the Red Hat bugzilla URL in the commit
-log, too, but that's not quite as good because we have no control over
-whether it's public.
-
-> And additionally: I've been working with Lenovo on this issue for a
-> couple of months now, and we've gone through dozens of different
-> trial BIOSes with no success thus far. However, Lenovo is currently
-> working on trying to add this workaround into their BIOS but I've
-> been told that this change is going to take a decent amount of time
-> since they need to test it across multiple operating systems. I'd be
-> happy to come back and add a conditional later to turn this
-> workaround off for later BIOS versions once Lenovo has released a
-> proper fix.
-
-Sounds like Lenovo is going to a lot of trouble for this.  The ideal
-thing from my point of view would be if they could figure out why this
-works on Windows but not on Linux.  I doubt Windows has a quirk like
-this, so if we could figure out why it works on Windows, we could
-likely do something similar in Linux.
-
-> > > > So to do this, we add a new pci quirk using
-> > > > DECLARE_PCI_FIXUP_CLASS_FINAL that will be invoked before the PCI probe
-> > > > at boot finishes. From there, we check to make sure that this is indeed
-> > > > the specific P50 variant of this GPU. We also make sure that the GPU PCI
-> > > > device is advertising NoReset- in order to prevent us from trying to
-> > > > reset the GPU when the machine is in Dedicated graphics mode (where the
-> > > > GPU being initialized by the BIOS is normal and expected). Finally, we
-> > > > try mapping the MMIO space for the GPU which should only work if the GPU
-> > > > is actually active in D0 mode. We can then read the magic 0x2240c
-> > > > register on the GPU, which will have bit 1 set if the GPU's firmware has
-> > > > already been posted during a previous boot. Once we've confirmed all of
-> > > > this, we reset the PCI device and re-disable it - bringing the GPU back
-> > > > into a healthy state.
-> > > > 
-> > > > Signed-off-by: Lyude Paul <lyude@redhat.com>
-> > > > Cc: nouveau@lists.freedesktop.org
-> > > > Cc: dri-devel@lists.freedesktop.org
-> > > > Cc: Karol Herbst <kherbst@redhat.com>
-> > > > Cc: Ben Skeggs <skeggsb@gmail.com>
-> > > > Cc: stable@vger.kernel.org
-> > > > ---
-> > > >  drivers/pci/quirks.c | 65 ++++++++++++++++++++++++++++++++++++++++++++
-> > > >  1 file changed, 65 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-> > > > index b0a413f3f7ca..948492fda8bf 100644
-> > > > --- a/drivers/pci/quirks.c
-> > > > +++ b/drivers/pci/quirks.c
-> > > > @@ -5117,3 +5117,68 @@ SWITCHTEC_QUIRK(0x8573);  /* PFXI 48XG3 */
-> > > >  SWITCHTEC_QUIRK(0x8574);  /* PFXI 64XG3 */
-> > > >  SWITCHTEC_QUIRK(0x8575);  /* PFXI 80XG3 */
-> > > >  SWITCHTEC_QUIRK(0x8576);  /* PFXI 96XG3 */
-> > > > +
-> > > > +/*
-> > > > + * On certain Lenovo Thinkpad P50 SKUs, specifically those with a
-> > > > Nvidia
-> > > > + * Quadro M1000M, the BIOS will occasionally make the mistake of not
-> > > > resetting
-> > > > + * the nvidia GPU between reboots if the system is configured to use
-> > > > hybrid
-> > > > + * graphics mode. This results in the GPU being left in whatever state
-> > > > it
-> > > > was
-> > > > + * in during the previous boot which causes spurious interrupts from
-> > > > the
-> > > > GPU,
-> > > > + * which in turn cause us to disable the wrong IRQs and end up breaking
-> > > > the
-> > > > + * touchpad. Unsurprisingly, this also completely breaks nouveau.
-> > > > + *
-> > > > + * Luckily, it seems a simple reset of the PCI device for the nvidia
-> > > > GPU
-> > > > + * manages to bring the GPU back into a clean state and fix all of
-> > > > these
-> > > > + * issues. Additionally since the GPU will report NoReset+ when the
-> > > > machine is
-> > > > + * configured in Dedicated display mode, we don't need to worry about
-> > > > + * accidentally resetting the GPU when it's supposed to already be
-> > > > + * initialized.
-> > > > + */
-> > > > +static void
-> > > > +quirk_lenovo_thinkpad_p50_nvgpu_survives_reboot(struct pci_dev *pdev)
-> > > > +{
-> > > > +	void __iomem *map;
-> > > > +	int ret;
-> > > > +
-> > > > +	if (pdev->subsystem_vendor != PCI_VENDOR_ID_LENOVO ||
-> > > > +	    pdev->subsystem_device != 0x222e ||
-> > > > +	    !pdev->reset_fn)
-> > > > +		return;
-> > > > +
-> > > > +	/*
-> > > > +	 * If we can't enable the device's mmio space, it's probably not even
-> > > > +	 * initialized. This is fine, and means we can just skip the quirk
-> > > > +	 * entirely.
-> > > > +	 */
-> > > > +	if (pci_enable_device_mem(pdev)) {
-> > > > +		pci_dbg(pdev, "Can't enable device mem, no reset needed\n");
-> > > > +		return;
-> > > > +	}
-> > > > +
-> > > > +	/* Taken from drivers/gpu/drm/nouveau/engine/device/base.c */
-> > > > +	map = ioremap(pci_resource_start(pdev, 0), 0x102000);
-> > > > +	if (!map) {
-> > > > +		pci_err(pdev, "Can't map MMIO space, this is probably very
-> > > > bad\n");
-> > > > +		goto out_disable;
-> > > > +	}
-> > > > +
-> > > > +	/*
-> > > > +	 * Be extra careful, and make sure that the GPU firmware is posted
-> > > > +	 * before trying a reset
-> > > > +	 */
-> > > > +	if (ioread32(map + 0x2240c) & 0x2) {
-> > > > +		pci_info(pdev,
-> > > > +			 FW_BUG "GPU left initialized by EFI, resetting\n");
-> > > > +		ret = pci_reset_function(pdev);
-> > > > +		if (ret < 0)
-> > > > +			pci_err(pdev, "Failed to reset GPU: %d\n", ret);
-> > > > +	}
-> > > > +
-> > > > +	iounmap(map);
-> > > > +out_disable:
-> > > > +	pci_disable_device(pdev);
-> > > > +}
-> > > > +
-> > > > +DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_NVIDIA, 0x13b1,
-> > > > +			      PCI_CLASS_DISPLAY_VGA, 8,
-> > > > +			      quirk_lenovo_thinkpad_p50_nvgpu_survives_reboot)
-> > > > ;
-> > > > -- 
-> > > > 2.20.1
-> > > > 
-> -- 
-> Cheers,
-> 	Lyude Paul
-> 
+T24gVGh1LCBNYXIgMjEsIDIwMTkgYXQgMDU6NDg6MTlQTSAtMDUwMCwgQmpvcm4gSGVsZ2FhcyB3
+cm90ZToKPiBPbiBXZWQsIE1hciAxMywgMjAxOSBhdCAwNjoyNTowMlBNIC0wNDAwLCBMeXVkZSBQ
+YXVsIHdyb3RlOgo+ID4gT24gRnJpLCAyMDE5LTAyLTE1IGF0IDE2OjE3IC0wNTAwLCBMeXVkZSBQ
+YXVsIHdyb3RlOgo+ID4gPiBPbiBUaHUsIDIwMTktMDItMTQgYXQgMTg6NDMgLTA2MDAsIEJqb3Ju
+IEhlbGdhYXMgd3JvdGU6Cj4gPiA+ID4gT24gVHVlLCBGZWIgMTIsIDIwMTkgYXQgMDU6MDI6MzBQ
+TSAtMDUwMCwgTHl1ZGUgUGF1bCB3cm90ZToKPiA+ID4gPiA+IE9uIGEgdmVyeSBzcGVjaWZpYyBz
+dWJzZXQgb2YgVGhpbmtQYWQgUDUwIFNLVXMsIHBhcnRpY3VsYXJseQo+ID4gPiA+ID4gb25lcyB0
+aGF0IGNvbWUgd2l0aCBhIFF1YWRybyBNMTAwME0gY2hpcCBpbnN0ZWFkIG9mIHRoZSBNMjAwME0K
+PiA+ID4gPiA+IHZhcmlhbnQsIHRoZSBCSU9TIHNlZW1zIHRvIGhhdmUgYSB2ZXJ5IG5hc3R5IGhh
+Yml0IG9mIG5vdAo+ID4gPiA+ID4gYWx3YXlzIHJlc2V0dGluZyB0aGUgc2Vjb25kYXJ5IE52aWRp
+YSBHUFUgYmV0d2VlbiBmdWxsIHJlYm9vdHMKPiA+ID4gPiA+IGlmIHRoZSBsYXB0b3AgaXMgY29u
+ZmlndXJlZCBpbiBIeWJyaWQgR3JhcGhpY3MgbW9kZS4gVGhlCj4gPiA+ID4gPiByZWFzb24gZm9y
+IHRoaXMgaGFwcGVuaW5nIGlzIHVua25vd24sIGJ1dCB0aGUgZm9sbG93aW5nIHN0ZXBzCj4gPiA+
+ID4gPiBhbmQgcG9zc2libHkgYSBnb29kIGJpdCBvZiBwYXRpZW5jZSB3aWxsIHJlcHJvZHVjZSB0
+aGUgaXNzdWU6Cj4gPiA+ID4gPiAKPiA+ID4gPiA+IDEuIEJvb3QgdXAgdGhlIGxhcHRvcCBub3Jt
+YWxseSBpbiBIeWJyaWQgZ3JhcGhpY3MgbW9kZQo+ID4gPiA+ID4gMi4gTWFrZSBzdXJlIG5vdXZl
+YXUgaXMgbG9hZGVkIGFuZCB0aGF0IHRoZSBHUFUgaXMgYXdha2UKPiA+ID4gPiA+IDIuIEFsbG93
+IHRoZSBudmlkaWEgR1BVIHRvIHJ1bnRpbWUgc3VzcGVuZCBpdHNlbGYgYWZ0ZXIgYmVpbmcgaWRs
+ZQo+ID4gPiA+ID4gMy4gUmVib290IHRoZSBtYWNoaW5lLCB0aGUgbW9yZSBzdWRkZW4gdGhlIGJl
+dHRlciAoZS5nIHN5c3JxLWIgbWF5IGhlbHApCj4gPiA+ID4gPiA0LiBJZiBub3V2ZWF1IGxvYWRz
+IHVwIHByb3Blcmx5LCByZWJvb3QgdGhlIG1hY2hpbmUgYWdhaW4gYW5kIGdvIGJhY2sgdG8KPiA+
+ID4gPiA+IHN0ZXAgMiB1bnRpbCB5b3UgcmVwcm9kdWNlIHRoZSBpc3N1ZQo+ID4gPiA+ID4gCj4g
+PiA+ID4gPiBUaGlzIHJlc3VsdHMgaW4gc29tZSB2ZXJ5IHN0cmFuZ2UgYmVoYXZpb3I6IHRoZSBH
+UFUgd2lsbCBxdWl0ZQo+ID4gPiA+ID4gbGl0ZXJhbGx5IGJlIGxlZnQgaW4gZXhhY3RseSB0aGUg
+c2FtZSBzdGF0ZSBpdCB3YXMgaW4gd2hlbiB0aGUKPiA+ID4gPiA+IHByZXZpb3VzbHkgYm9vdGVk
+IGtlcm5lbCBzdGFydGVkIHRoZSByZWJvb3QuIFRoaXMgaGFzIGFsbAo+ID4gPiA+ID4gc29ydHMg
+b2YgYmFkIHNpZGVhZmZlY3RzOiBmb3Igc3RhcnRlcnMsIHRoaXMgY29tcGxldGVseSBicmVha3MK
+PiA+ID4gPiA+IG5vdXZlYXUgc3RhcnRpbmcgd2l0aCBhIG15c3RlcmlvdXMgRVZPIGNoYW5uZWwg
+ZmFpbHVyZSB0aGF0Cj4gPiA+ID4gPiBoYXBwZW5zIHdlbGwgYmVmb3JlIHdlJ3ZlIGFjdHVhbGx5
+IHVzZWQgdGhlIEVWTyBjaGFubmVsIGZvcgo+ID4gPiA+ID4gYW55dGhpbmc6Cj4gCj4gVGhhbmtz
+IGZvciB0aGUgaHlicmlkIHR1dG9yaWFsIChzbmlwcGVkIGZyb20gdGhpcyByZXNwb25zZSkuICBJ
+SVVDLAo+IHdoYXQgeW91IHNhaWQgd2FzIHRoYXQgaW4gaHlicmlkIG1vZGUsIHRoZSBJbnRlbCBH
+UFUgZHJpdmVzIHRoZQo+IGJ1aWx0LWluIGRpc3BsYXkgYW5kIHRoZSBOdmlkaWEgR1BVIGRyaXZl
+cyBhbnkgZXh0ZXJuYWwgZGlzcGxheXMgYW5kCj4gbWF5IGJlIHVzZWQgZm9yIERSSSBQUklNRSBy
+ZW5kZXJpbmcgKHdoYXRldmVyIHRoYXQgaXMpLiAgQnV0IHNpbmNlIHlvdQo+IHNheSB0aGUgTnZp
+ZGlhIGRldmljZSBnZXRzIHJ1bnRpbWUgc3VzcGVuZGVkLCBJIGFzc3VtZSB0aGVyZSdzIG5vCj4g
+ZXh0ZXJuYWwgZGlzcGxheSBoZXJlIGFuZCB5b3UncmUgbm90IHVzaW5nIERSSSBQUklNRS4KPiAK
+PiBJIHdvbmRlciBpZiBpdCdzIHJlbGF0ZWQgdG8gdGhlIGZhY3QgdGhhdCB0aGUgTnZpZGlhIEdQ
+VSBoYXMgYmVlbgo+IHJ1bnRpbWUgc3VzcGVuZGVkIGJlZm9yZSB5b3UgZG8gdGhlIHJlYm9vdC4g
+IENhbiB5b3UgdHJ5IHR1cm5pbmcgb2YKPiBydW50aW1lIHBvd2VyIG1hbmFnZW1lbnQgZm9yIHRo
+ZSBHUFUgYnkgc2V0dGluZyB0aGUgcnVucG0gbW9kdWxlCj4gcGFyYW1ldGVyIHRvIDA/ICBJICp0
+aGluayogdGhpcyB3b3VsZCBiZSBib290aW5nIHdpdGgKPiAibm91dmVhdS5ydW5wbT0wIi4KClNv
+cnJ5LCBJIHdhc24ndCByZWFsbHkgdGhpbmtpbmcgaGVyZS4gIFlvdSBhbHJlYWR5ICpzYWlkKiB0
+aGlzIGlzCnJlbGF0ZWQgdG8gcnVudGltZSBzdXNwZW5kLiAgSXQgb25seSBoYXBwZW5zIHdoZW4g
+dGhlIE52aWRpYSBHUFUgaGFzCmJlZW4gc3VzcGVuZGVkLgoKSSBkb24ndCBrbm93IHRoYXQgbXVj
+aCBhYm91dCBzdXNwZW5kLCBidXQgSVNUUiBzZWVpbmcgY29tbWVudHMgYWJvdXQKcmVzdW1pbmcg
+ZGV2aWNlcyBiZWZvcmUgd2Ugc2h1dGRvd24uICBJZiB3ZSBkbyB0aGF0LCBtYXliZSB0aGVyZSdz
+CnNvbWUga2luZCBvZiByYWNlIGJldHdlZW4gdGhhdCByZXN1bWUgYW5kIHRoZSByZWJvb3Q/CgpC
+am9ybgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
