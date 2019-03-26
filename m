@@ -1,207 +1,66 @@
-From: Nicholas Mc Guire <hofrat@osadl.org>
-Subject: [RFC PATCH] drm/nouveau/fb/ram/gk104: move assignment out of condition
-Date: Tue, 26 Mar 2019 02:55:18 +0100
-Message-ID: <1553565318-15108-1-git-send-email-hofrat@osadl.org>
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>
-Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Nicholas Mc Guire <hofrat@osadl.org>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: [PATCH 14/21] drm/nouveau: Use drm_fb_helper_fill_info
+Date: Tue, 26 Mar 2019 14:20:01 +0100
+Message-ID: <20190326132008.11781-14-daniel.vetter@ffwll.ch>
+References: <20190326132008.11781-1-daniel.vetter@ffwll.ch>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20190326132008.11781-1-daniel.vetter@ffwll.ch>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Cc: nouveau@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>
 List-Id: nouveau.vger.kernel.org
 
-"hiding" unconditional assignments in the if() parentesis makes for
-hard to read code and has no advantage over placing these assignments
-in proper formated lines before the if() statement. Simply move those
-lines out.
-
-Before sending out roughly 20 patches to fix the roughly 50 cases - all
-in the nouveau driver. I would like to know if this will be accepted at
-all. 
-
-Signed-off-by: Nicholas Mc Guire <hofrat@osadl.org>
----
-
-Problem located by and experiemental coccinelle script.
-
-Note that the last hunk retained the if (i == 0) rather than switching
-to a more consistent if (!i) - but then again the code is not really
-consistent on that - so not sure if that should be done or not.
-
-Cocciscript to generate the appropriate patches - note though that it
-will *not* remove excess parentesis where these are present in the
-current code:
-<snip>
-/// Check for unconditional code "hiding" in an if condition
-/// effectively that code is unconditionally executed before
-/// reaching the actual branch statement - which just makes it
-/// hard to read and thus is always wrong.
-/// Some of the cases found also look buggy
-/// In other cases some excess () are left in place in the
-/// generated patches - so some postprocessing may be needed.
-///
-/// As of 5.0-rc8 all 50 cases look like they are found and fixed
-/// correctly - correctly only in the sense that the patched
-/// code is equivalent to the original code. but as this is in
-/// the nouveau driver only it might well be that this only
-/// fits that specific pattern and others might have wilder ways
-/// to achieve the same level of confusing code- so confidence
-/// Low for now (though the the nouveau cases all are patched
-/// correctly)
-///
-// Copyright: (C) 2019 Nicholas Mc Guire. GPL-V2.
-// Confidence: Low
-// Comments:
-// Options: --no-includes --include-headers
-
-virtual patch
-virtual report
-
-@badif@
-position p;
-statement S;
-expression E1,E2;
-@@
-
-  if@p (E1,E2) S
-
-@script:python depends on report@
-p << badif.p;
-@@
-
-msg = "unconditional code hiding in if condition"
-coccilib.report.print_report(p[0],msg)
-
-@fixbadif depends on badif && patch@
-position p=badif.p;
-statement S;
-expression E1=badif.E1,E2=badif.E2;
-@@
-
-+ E1;
-  if@p (
-- E1,
-  E2)
-  S
-
-@script:python depends on patch@
-p << fixbadif.p;
-@@
-<snip>
-
- drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c | 42 +++++++++++++++--------
- 1 file changed, 28 insertions(+), 14 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c
-index 8bcb7e7..885c24d 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c
-@@ -1168,7 +1168,8 @@ gk104_ram_prog_0(struct gk104_ram *ram, u32 freq)
- 	if (&cfg->head == &ram->cfg)
- 		return;
- 
--	if (mask = 0, data = 0, ram->diff.rammap_11_0a_03fe) {
-+	mask = 0, data = 0;
-+	if (ram->diff.rammap_11_0a_03fe) {
- 		data |= cfg->bios.rammap_11_0a_03fe << 12;
- 		mask |= 0x001ff000;
- 	}
-@@ -1178,31 +1179,36 @@ gk104_ram_prog_0(struct gk104_ram *ram, u32 freq)
- 	}
- 	nvkm_mask(device, 0x10f468, mask, data);
- 
--	if (mask = 0, data = 0, ram->diff.rammap_11_0a_0400) {
-+	mask = 0, data = 0;
-+	if (ram->diff.rammap_11_0a_0400) {
- 		data |= cfg->bios.rammap_11_0a_0400;
- 		mask |= 0x00000001;
- 	}
- 	nvkm_mask(device, 0x10f420, mask, data);
- 
--	if (mask = 0, data = 0, ram->diff.rammap_11_0a_0800) {
-+	mask = 0, data = 0;
-+	if (ram->diff.rammap_11_0a_0800) {
- 		data |= cfg->bios.rammap_11_0a_0800;
- 		mask |= 0x00000001;
- 	}
- 	nvkm_mask(device, 0x10f430, mask, data);
- 
--	if (mask = 0, data = 0, ram->diff.rammap_11_0b_01f0) {
-+	mask = 0, data = 0;
-+	if (ram->diff.rammap_11_0b_01f0) {
- 		data |= cfg->bios.rammap_11_0b_01f0;
- 		mask |= 0x0000001f;
- 	}
- 	nvkm_mask(device, 0x10f400, mask, data);
- 
--	if (mask = 0, data = 0, ram->diff.rammap_11_0b_0200) {
-+	mask = 0, data = 0;
-+	if (ram->diff.rammap_11_0b_0200) {
- 		data |= cfg->bios.rammap_11_0b_0200 << 9;
- 		mask |= 0x00000200;
- 	}
- 	nvkm_mask(device, 0x10f410, mask, data);
- 
--	if (mask = 0, data = 0, ram->diff.rammap_11_0d) {
-+	mask = 0, data = 0;
-+	if (ram->diff.rammap_11_0d) {
- 		data |= cfg->bios.rammap_11_0d << 16;
- 		mask |= 0x00ff0000;
- 	}
-@@ -1212,7 +1218,8 @@ gk104_ram_prog_0(struct gk104_ram *ram, u32 freq)
- 	}
- 	nvkm_mask(device, 0x10f440, mask, data);
- 
--	if (mask = 0, data = 0, ram->diff.rammap_11_0e) {
-+	mask = 0, data = 0;
-+	if (ram->diff.rammap_11_0e) {
- 		data |= cfg->bios.rammap_11_0e << 8;
- 		mask |= 0x0000ff00;
- 	}
-@@ -1453,17 +1460,21 @@ gk104_ram_ctor_data(struct gk104_ram *ram, u8 ramcfg, int i)
- 
- 	/* memory config data for a range of target frequencies */
- 	data = nvbios_rammapEp(bios, i, &ver, &hdr, &cnt, &len, &cfg->bios);
--	if (ret = -ENOENT, !data)
-+	ret = -ENOENT;
-+	if (!data)
- 		goto done;
--	if (ret = -ENOSYS, ver != 0x11 || hdr < 0x12)
-+	ret = -ENOSYS;
-+	if (ver != 0x11 || hdr < 0x12)
- 		goto done;
- 
- 	/* ... and a portion specific to the attached memory */
- 	data = nvbios_rammapSp(bios, data, ver, hdr, cnt, len, ramcfg,
- 			       &ver, &hdr, &cfg->bios);
--	if (ret = -EINVAL, !data)
-+	ret = -EINVAL;
-+	if (!data)
- 		goto done;
--	if (ret = -ENOSYS, ver != 0x11 || hdr < 0x0a)
-+	ret = -ENOSYS;
-+	if (ver != 0x11 || hdr < 0x0a)
- 		goto done;
- 
- 	/* lookup memory timings, if bios says they're present */
-@@ -1471,14 +1482,17 @@ gk104_ram_ctor_data(struct gk104_ram *ram, u8 ramcfg, int i)
- 		data = nvbios_timingEp(bios, cfg->bios.ramcfg_timing,
- 				       &ver, &hdr, &cnt, &len,
- 				       &cfg->bios);
--		if (ret = -EINVAL, !data)
-+		ret = -EINVAL;
-+		if (!data)
- 			goto done;
--		if (ret = -ENOSYS, ver != 0x20 || hdr < 0x33)
-+		ret = -ENOSYS;
-+		if (ver != 0x20 || hdr < 0x33)
- 			goto done;
- 	}
- 
- 	list_add_tail(&cfg->head, &ram->cfg);
--	if (ret = 0, i == 0)
-+	ret = 0;
-+	if (i == 0)
- 		goto done;
- 
- 	d->rammap_11_0a_03fe |= p->rammap_11_0a_03fe != n->rammap_11_0a_03fe;
--- 
-2.1.4
+VGhpcyBjaGFuZ2VzIHRoZSBmYiBuYW1lIGZyb20gIm5vdXZlYXVmYiIgdG8gIm5vdXZlYXVkcm1m
+YiIuCgpBc2lkZTogSSB3b25kZXIgd2hldGhlciB0aGUgaW5faW50ZXJydXB0KCkgY2hlY2sgaXMg
+Z29vZCBlbm91Z2ggZm9yCnRoZSBub3V2ZWF1IGFjY2VsZXJhdGlvbi4gQ2FyZ28tY3VsdCBzYXlz
+IGRybV9jYW5fc2xlZXAoKSBpcyBuZWVkZWQsCndoaWNoIGlzbid0IGFjdHVhbGx5IHdvcmtpbmcg
+aWYgeW91IHBpY2sgYSAuY29uZmlnIHdpdGhvdXQgUFJFRU1QVC4KRm9yIHRoZSBnZW5lcmljIGZi
+ZGV2IGRlZmlvIHN1cHBvcnQgd2UndmUgZ29uZSB3aXRoIG9mZmxvYWRpbmcKZXZlcnl0aGluZyB0
+byBhIHdvcmtlci4gRm9yIHRoZSBub24tYWNjZWwgY2FsbGJhY2tzIChzZXRfcGFyLCBibGFuawph
+bmQgZnJpZW5kcykgY2hlY2tpbmcgZm9yIG9vcHNfaW5fcHJvZ3Jlc3MgaXMgZ29vZCBlbm91Z2gg
+dG8gY2F0Y2ggYWxsCnRoZSBldmlsIGNhbGxpbmcgY29udGV4dHMuCgp2MjogUmViYXNlCgpTaWdu
+ZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KQ2M6IEJl
+biBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCi0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jIHwgNyAr
+LS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmggfCAyICstCiAy
+IGZpbGVzIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMgYi9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMKaW5kZXggOWQ2ZGJhMDdjNzI3Li43M2NjMzIx
+NzA2OGEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24u
+YworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMKQEAgLTM2Niwx
+MiArMzY2LDkgQEAgbm91dmVhdV9mYmNvbl9jcmVhdGUoc3RydWN0IGRybV9mYl9oZWxwZXIgKmhl
+bHBlciwKIAkJZ290byBvdXRfdW5sb2NrOwogCX0KIAotCWluZm8tPnBhciA9IGZiY29uOwotCiAJ
+Lyogc2V0dXAgaGVscGVyICovCiAJZmJjb24tPmhlbHBlci5mYiA9ICZmYi0+YmFzZTsKIAotCXN0
+cmNweShpbmZvLT5maXguaWQsICJub3V2ZWF1ZmIiKTsKIAlpZiAoIWNoYW4pCiAJCWluZm8tPmZs
+YWdzID0gRkJJTkZPX0hXQUNDRUxfRElTQUJMRUQ7CiAJZWxzZQpAQCAtMzg2LDkgKzM4Myw3IEBA
+IG5vdXZlYXVfZmJjb25fY3JlYXRlKHN0cnVjdCBkcm1fZmJfaGVscGVyICpoZWxwZXIsCiAJaW5m
+by0+c2NyZWVuX2Jhc2UgPSBudmJvX2ttYXBfb2JqX2lvdmlydHVhbChmYi0+bnZibyk7CiAJaW5m
+by0+c2NyZWVuX3NpemUgPSBmYi0+bnZiby0+Ym8ubWVtLm51bV9wYWdlcyA8PCBQQUdFX1NISUZU
+OwogCi0JZHJtX2ZiX2hlbHBlcl9maWxsX2ZpeChpbmZvLCBmYi0+YmFzZS5waXRjaGVzWzBdLAot
+CQkJICAgICAgIGZiLT5iYXNlLmZvcm1hdC0+ZGVwdGgpOwotCWRybV9mYl9oZWxwZXJfZmlsbF92
+YXIoaW5mbywgJmZiY29uLT5oZWxwZXIsIHNpemVzLT5mYl93aWR0aCwgc2l6ZXMtPmZiX2hlaWdo
+dCk7CisJZHJtX2ZiX2hlbHBlcl9maWxsX2luZm8oaW5mbywgJmZiY29uLT5oZWxwZXIsIHNpemVz
+KTsKIAogCS8qIFVzZSBkZWZhdWx0IHNjcmF0Y2ggcGl4bWFwIChpbmZvLT5waXhtYXAuZmxhZ3Mg
+PSBGQl9QSVhNQVBfU1lTVEVNKSAqLwogCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9ub3V2ZWF1X2ZiY29uLmggYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Zi
+Y29uLmgKaW5kZXggZGI5ZDUyMDQ3ZWY4Li43M2E3ZWViYTM5NzMgMTAwNjQ0Ci0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uaAorKysgYi9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2ZiY29uLmgKQEAgLTMyLDcgKzMyLDcgQEAKICNpbmNsdWRlICJub3V2
+ZWF1X2Rpc3BsYXkuaCIKIAogc3RydWN0IG5vdXZlYXVfZmJkZXYgewotCXN0cnVjdCBkcm1fZmJf
+aGVscGVyIGhlbHBlcjsKKwlzdHJ1Y3QgZHJtX2ZiX2hlbHBlciBoZWxwZXI7IC8qIG11c3QgYmUg
+Zmlyc3QgKi8KIAl1bnNpZ25lZCBpbnQgc2F2ZWRfZmxhZ3M7CiAJc3RydWN0IG52aWZfb2JqZWN0
+IHN1cmYyZDsKIAlzdHJ1Y3QgbnZpZl9vYmplY3QgY2xpcDsKLS0gCjIuMjAuMQoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
+bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
