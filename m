@@ -1,66 +1,115 @@
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: [PATCH 14/21] drm/nouveau: Use drm_fb_helper_fill_info
-Date: Tue, 26 Mar 2019 14:20:01 +0100
-Message-ID: <20190326132008.11781-14-daniel.vetter@ffwll.ch>
-References: <20190326132008.11781-1-daniel.vetter@ffwll.ch>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89572] [NV86] Video playback corruption with nouveau, vdpau
+Date: Tue, 26 Mar 2019 13:56:19 +0000
+Message-ID: <bug-89572-8800-2mowFQgoU2@http.bugs.freedesktop.org/>
+References: <bug-89572-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <20190326132008.11781-1-daniel.vetter@ffwll.ch>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Cc: nouveau@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============0068666888=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-89572-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBjaGFuZ2VzIHRoZSBmYiBuYW1lIGZyb20gIm5vdXZlYXVmYiIgdG8gIm5vdXZlYXVkcm1m
-YiIuCgpBc2lkZTogSSB3b25kZXIgd2hldGhlciB0aGUgaW5faW50ZXJydXB0KCkgY2hlY2sgaXMg
-Z29vZCBlbm91Z2ggZm9yCnRoZSBub3V2ZWF1IGFjY2VsZXJhdGlvbi4gQ2FyZ28tY3VsdCBzYXlz
-IGRybV9jYW5fc2xlZXAoKSBpcyBuZWVkZWQsCndoaWNoIGlzbid0IGFjdHVhbGx5IHdvcmtpbmcg
-aWYgeW91IHBpY2sgYSAuY29uZmlnIHdpdGhvdXQgUFJFRU1QVC4KRm9yIHRoZSBnZW5lcmljIGZi
-ZGV2IGRlZmlvIHN1cHBvcnQgd2UndmUgZ29uZSB3aXRoIG9mZmxvYWRpbmcKZXZlcnl0aGluZyB0
-byBhIHdvcmtlci4gRm9yIHRoZSBub24tYWNjZWwgY2FsbGJhY2tzIChzZXRfcGFyLCBibGFuawph
-bmQgZnJpZW5kcykgY2hlY2tpbmcgZm9yIG9vcHNfaW5fcHJvZ3Jlc3MgaXMgZ29vZCBlbm91Z2gg
-dG8gY2F0Y2ggYWxsCnRoZSBldmlsIGNhbGxpbmcgY29udGV4dHMuCgp2MjogUmViYXNlCgpTaWdu
-ZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KQ2M6IEJl
-biBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCi0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jIHwgNyAr
-LS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmggfCAyICstCiAy
-IGZpbGVzIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMKaW5kZXggOWQ2ZGJhMDdjNzI3Li43M2NjMzIx
-NzA2OGEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24u
-YworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2ZiY29uLmMKQEAgLTM2Niwx
-MiArMzY2LDkgQEAgbm91dmVhdV9mYmNvbl9jcmVhdGUoc3RydWN0IGRybV9mYl9oZWxwZXIgKmhl
-bHBlciwKIAkJZ290byBvdXRfdW5sb2NrOwogCX0KIAotCWluZm8tPnBhciA9IGZiY29uOwotCiAJ
-Lyogc2V0dXAgaGVscGVyICovCiAJZmJjb24tPmhlbHBlci5mYiA9ICZmYi0+YmFzZTsKIAotCXN0
-cmNweShpbmZvLT5maXguaWQsICJub3V2ZWF1ZmIiKTsKIAlpZiAoIWNoYW4pCiAJCWluZm8tPmZs
-YWdzID0gRkJJTkZPX0hXQUNDRUxfRElTQUJMRUQ7CiAJZWxzZQpAQCAtMzg2LDkgKzM4Myw3IEBA
-IG5vdXZlYXVfZmJjb25fY3JlYXRlKHN0cnVjdCBkcm1fZmJfaGVscGVyICpoZWxwZXIsCiAJaW5m
-by0+c2NyZWVuX2Jhc2UgPSBudmJvX2ttYXBfb2JqX2lvdmlydHVhbChmYi0+bnZibyk7CiAJaW5m
-by0+c2NyZWVuX3NpemUgPSBmYi0+bnZiby0+Ym8ubWVtLm51bV9wYWdlcyA8PCBQQUdFX1NISUZU
-OwogCi0JZHJtX2ZiX2hlbHBlcl9maWxsX2ZpeChpbmZvLCBmYi0+YmFzZS5waXRjaGVzWzBdLAot
-CQkJICAgICAgIGZiLT5iYXNlLmZvcm1hdC0+ZGVwdGgpOwotCWRybV9mYl9oZWxwZXJfZmlsbF92
-YXIoaW5mbywgJmZiY29uLT5oZWxwZXIsIHNpemVzLT5mYl93aWR0aCwgc2l6ZXMtPmZiX2hlaWdo
-dCk7CisJZHJtX2ZiX2hlbHBlcl9maWxsX2luZm8oaW5mbywgJmZiY29uLT5oZWxwZXIsIHNpemVz
-KTsKIAogCS8qIFVzZSBkZWZhdWx0IHNjcmF0Y2ggcGl4bWFwIChpbmZvLT5waXhtYXAuZmxhZ3Mg
-PSBGQl9QSVhNQVBfU1lTVEVNKSAqLwogCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9ub3V2ZWF1X2ZiY29uLmggYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Zi
-Y29uLmgKaW5kZXggZGI5ZDUyMDQ3ZWY4Li43M2E3ZWViYTM5NzMgMTAwNjQ0Ci0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZmJjb24uaAorKysgYi9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9ub3V2ZWF1X2ZiY29uLmgKQEAgLTMyLDcgKzMyLDcgQEAKICNpbmNsdWRlICJub3V2
-ZWF1X2Rpc3BsYXkuaCIKIAogc3RydWN0IG5vdXZlYXVfZmJkZXYgewotCXN0cnVjdCBkcm1fZmJf
-aGVscGVyIGhlbHBlcjsKKwlzdHJ1Y3QgZHJtX2ZiX2hlbHBlciBoZWxwZXI7IC8qIG11c3QgYmUg
-Zmlyc3QgKi8KIAl1bnNpZ25lZCBpbnQgc2F2ZWRfZmxhZ3M7CiAJc3RydWN0IG52aWZfb2JqZWN0
-IHN1cmYyZDsKIAlzdHJ1Y3QgbnZpZl9vYmplY3QgY2xpcDsKLS0gCjIuMjAuMQoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
-bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+
+--===============0068666888==
+Content-Type: multipart/alternative; boundary="15536085793.1fbB6.5676"
+Content-Transfer-Encoding: 7bit
+
+
+--15536085793.1fbB6.5676
+Date: Tue, 26 Mar 2019 13:56:19 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89572
+
+--- Comment #9 from marthasimons2 <marthasimons9999-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Mar 21 18:13:20 fixe kernel: nouveau E[  PGRAPH][0000:02:00.0] TRAP_PROP - =
+TP 0
+- RT_FAULT - Address 002048c080=20
+Mar 21 18:13:20 fixe kernel: nouveau E[  PGRAPH][0000:02:00.0] TRAP_PROP - =
+TP 0
+- e0c: 00000000, e18: 00000000, e1c: 07a40020 , e20: 00001100, e24: 00030000
+Mar 21 18:13:20 https://goo.gl/nuKiGX fixe kernel: nouveau E[=20
+PGRAPH][0000:02:00.0] TRAP_PROP - TP 1 - RT_FAULT - Address 002048c0c0
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15536085793.1fbB6.5676
+Date: Tue, 26 Mar 2019 13:56:19 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV86] Video playback corruption with nouveau, vdpau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89572#c9">Comment=
+ # 9</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV86] Video playback corruption with nouveau, vdpau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89572">bug 89572<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+marthasimons9999&#64;gmail.com" title=3D"marthasimons2 &lt;marthasimons9999=
+&#64;gmail.com&gt;"> <span class=3D"fn">marthasimons2</span></a>
+</span></b>
+        <pre>Mar 21 18:13:20 fixe kernel: nouveau E[  PGRAPH][0000:02:00.0]=
+ TRAP_PROP - TP 0
+- RT_FAULT - Address 002048c080=20
+Mar 21 18:13:20 fixe kernel: nouveau E[  PGRAPH][0000:02:00.0] TRAP_PROP - =
+TP 0
+- e0c: 00000000, e18: 00000000, e1c: 07a40020 , e20: 00001100, e24: 00030000
+Mar 21 18:13:20 <a href=3D"https://goo.gl/nuKiGX">https://goo.gl/nuKiGX</a>=
+ fixe kernel: nouveau E[=20
+PGRAPH][0000:02:00.0] TRAP_PROP - TP 1 - RT_FAULT - Address 002048c0c0</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15536085793.1fbB6.5676--
+
+--===============0068666888==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0068666888==--
