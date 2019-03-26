@@ -1,41 +1,41 @@
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-Subject: Re: [PATCH 14/21] drm/nouveau: Use drm_fb_helper_fill_info
-Date: Tue, 26 Mar 2019 15:47:53 +0100
-Message-ID: <58de34e7-ace7-4327-67de-fa48df850e36@tronnes.org>
-References: <20190326132008.11781-1-daniel.vetter@ffwll.ch>
- <20190326132008.11781-14-daniel.vetter@ffwll.ch>
+From: Trevor Woerner <twoerner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Piglit] X.Org GSoC 2019 - Student Application Period
+Date: Tue, 26 Mar 2019 10:56:38 -0400
+Message-ID: <20190326145638.GA3403@linux-uys3>
+References: <20190326143228.GA25068@linux-uys3>
+ <CAKb7Uvh7QAJhJb4JU5J=KdWqv=9EdFS6bXFy4iThnW6ioqK1mA@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20190326132008.11781-14-daniel.vetter@ffwll.ch>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, DRI Development <dri-devel@lists.freedesktop.org>
-Cc: nouveau@lists.freedesktop.org, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <CAKb7Uvh7QAJhJb4JU5J=KdWqv=9EdFS6bXFy4iThnW6ioqK1mA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-CgpEZW4gMjYuMDMuMjAxOSAxNC4yMCwgc2tyZXYgRGFuaWVsIFZldHRlcjoKPiBUaGlzIGNoYW5n
-ZXMgdGhlIGZiIG5hbWUgZnJvbSAibm91dmVhdWZiIiB0byAibm91dmVhdWRybWZiIi4KPiAKPiBB
-c2lkZTogSSB3b25kZXIgd2hldGhlciB0aGUgaW5faW50ZXJydXB0KCkgY2hlY2sgaXMgZ29vZCBl
-bm91Z2ggZm9yCj4gdGhlIG5vdXZlYXUgYWNjZWxlcmF0aW9uLiBDYXJnby1jdWx0IHNheXMgZHJt
-X2Nhbl9zbGVlcCgpIGlzIG5lZWRlZCwKPiB3aGljaCBpc24ndCBhY3R1YWxseSB3b3JraW5nIGlm
-IHlvdSBwaWNrIGEgLmNvbmZpZyB3aXRob3V0IFBSRUVNUFQuCj4gRm9yIHRoZSBnZW5lcmljIGZi
-ZGV2IGRlZmlvIHN1cHBvcnQgd2UndmUgZ29uZSB3aXRoIG9mZmxvYWRpbmcKPiBldmVyeXRoaW5n
-IHRvIGEgd29ya2VyLiBGb3IgdGhlIG5vbi1hY2NlbCBjYWxsYmFja3MgKHNldF9wYXIsIGJsYW5r
-Cj4gYW5kIGZyaWVuZHMpIGNoZWNraW5nIGZvciBvb3BzX2luX3Byb2dyZXNzIGlzIGdvb2QgZW5v
-dWdoIHRvIGNhdGNoIGFsbAo+IHRoZSBldmlsIGNhbGxpbmcgY29udGV4dHMuCj4gCj4gdjI6IFJl
-YmFzZQo+IAo+IFNpZ25lZC1vZmYtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50
-ZWwuY29tPgo+IENjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+Cj4gQ2M6IG5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gLS0tCgpBY2tlZC1ieTogTm9yYWxmIFRyw7hubmVz
-IDxub3JhbGZAdHJvbm5lcy5vcmc+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2RyaS1kZXZlbA==
+T24gVHVlIDIwMTktMDMtMjYgQCAxMDo0MDo0OSBBTSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gSnVz
+dCBsb29rZWQgb3ZlciB0aGUgcHJvamVjdHMuLi4gdGhleSBhbGwgc2VlbSB2YWxpZAoKVGhhbmsg
+eW91IGZvciB0YWtpbmcgdGhlIHRpbWUgdG8gaGF2ZSBhIGxvb2sgYW5kIHByb3ZpZGUgZmVlZGJh
+Y2shCgo+IGJ1dCBhcmUgdGhlcmUKPiBwZW9wbGUgd2hvIGNvdWxkIHJlYWxpc3RpY2FsbHkgbWVu
+dG9yIGEgR1NvQyBzdHVkZW50IGZvciB0aGVzZT8gSU1ITwo+IHVubGVzcyBtZW50b3JzIGNhbiBi
+ZSBpZGVudGlmaWVkLCB0aGVzZSBzaG91bGQgYWxsIGJlIGFyY2hpdmVkLgoKQXR0cmFjdGluZyBt
+ZW50b3JzIGlzIHByb2JhYmx5IHRoZSBoYXJkZXN0IHBhcnQgb2YgcnVubmluZyBHU29DLiBQZXJo
+YXBzIGlmIGEKc3R1ZGVudCBzaG93cyBpbnRlcmVzdCBpbiBhIGdpdmVuIHRvcGljLCBzb21lb25l
+IG1pZ2h0IGJlIGluc3BpcmVkIHRvIHNpZ24gdXAKYXMgYSBtZW50b3I/CgpLZWVwaW5nIHRoZSBs
+aXN0IG9mIGlkZWFzIHVwLXRvLWRhdGUgYW5kIGZpbmRpbmcgbWVudG9ycyBhcmUgdGhlIHR3byB0
+aGluZ3MKSSdtIGhvcGluZyB0byBtYWtlIGEgbm90aWNlYWJsZSBpbXByb3ZlbWVudCB0byB0aGlz
+IHllYXIuIEl0IGFsc28gdGllcyBpbgpzdHJvbmdseSB3aXRoOgoKCWh0dHBzOi8vZ2l0bGFiLmZy
+ZWVkZXNrdG9wLm9yZy9mcmVlZGVza3RvcC9mcmVlZGVza3RvcC9pc3N1ZXMvNzYKCkJlc3QgcmVn
+YXJkcywKCVRyZXZvcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
