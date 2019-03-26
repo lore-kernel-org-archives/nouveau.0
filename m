@@ -1,115 +1,49 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89572] [NV86] Video playback corruption with nouveau, vdpau
-Date: Tue, 26 Mar 2019 13:56:19 +0000
-Message-ID: <bug-89572-8800-2mowFQgoU2@http.bugs.freedesktop.org/>
-References: <bug-89572-8800@http.bugs.freedesktop.org/>
+From: Trevor Woerner <twoerner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: X.Org GSoC 2019 - Student Application Period
+Date: Tue, 26 Mar 2019 10:32:28 -0400
+Message-ID: <20190326143228.GA25068@linux-uys3>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0068666888=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89572-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <piglit-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/piglit>,
+ <mailto:piglit-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/piglit>
+List-Post: <mailto:piglit-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:piglit-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/piglit>,
+ <mailto:piglit-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: piglit-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Piglit" <piglit-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: twoerner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: piglit-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, xorg-devel-go0+a7rfsptAfugRpC6u6w@public.gmane.org, etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, wayland-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0068666888==
-Content-Type: multipart/alternative; boundary="15536085793.1fbB6.5676"
-Content-Transfer-Encoding: 7bit
-
-
---15536085793.1fbB6.5676
-Date: Tue, 26 Mar 2019 13:56:19 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D89572
-
---- Comment #9 from marthasimons2 <marthasimons9999-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Mar 21 18:13:20 fixe kernel: nouveau E[  PGRAPH][0000:02:00.0] TRAP_PROP - =
-TP 0
-- RT_FAULT - Address 002048c080=20
-Mar 21 18:13:20 fixe kernel: nouveau E[  PGRAPH][0000:02:00.0] TRAP_PROP - =
-TP 0
-- e0c: 00000000, e18: 00000000, e1c: 07a40020 , e20: 00001100, e24: 00030000
-Mar 21 18:13:20 https://goo.gl/nuKiGX fixe kernel: nouveau E[=20
-PGRAPH][0000:02:00.0] TRAP_PROP - TP 1 - RT_FAULT - Address 002048c0c0
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15536085793.1fbB6.5676
-Date: Tue, 26 Mar 2019 13:56:19 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV86] Video playback corruption with nouveau, vdpau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89572#c9">Comment=
- # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV86] Video playback corruption with nouveau, vdpau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89572">bug 89572<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-marthasimons9999&#64;gmail.com" title=3D"marthasimons2 &lt;marthasimons9999=
-&#64;gmail.com&gt;"> <span class=3D"fn">marthasimons2</span></a>
-</span></b>
-        <pre>Mar 21 18:13:20 fixe kernel: nouveau E[  PGRAPH][0000:02:00.0]=
- TRAP_PROP - TP 0
-- RT_FAULT - Address 002048c080=20
-Mar 21 18:13:20 fixe kernel: nouveau E[  PGRAPH][0000:02:00.0] TRAP_PROP - =
-TP 0
-- e0c: 00000000, e18: 00000000, e1c: 07a40020 , e20: 00001100, e24: 00030000
-Mar 21 18:13:20 <a href=3D"https://goo.gl/nuKiGX">https://goo.gl/nuKiGX</a>=
- fixe kernel: nouveau E[=20
-PGRAPH][0000:02:00.0] TRAP_PROP - TP 1 - RT_FAULT - Address 002048c0c0</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15536085793.1fbB6.5676--
-
---===============0068666888==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0068666888==--
+SSdtIGhhcHB5IHRvIGFubm91bmNlIHRoYXQgdGhlIFguT3JnIEZvdW5kYXRpb24gaGFzIGJlZW4g
+Y2hvc2VuIHRvCnBhcnRpY2lwYXRlIGluIHRoaXMgeWVhcidzIEdTb0MgcHJvZ3JhbSEKClN0dWRl
+bnRzIGhhdmUgZnJvbSBub3cgdW50aWwgQXByaWwgOXRoIHRvIHN1Ym1pdCB0aGVpciBwcm9wb3Nh
+bHMuCgpTdHVkZW50cyB3aWxsIGJlIGxvb2tpbmcgYXQgaHR0cHM6Ly93d3cueC5vcmcvd2lraS9T
+dW1tZXJPZkNvZGVJZGVhcy8gYW5kCmh0dHBzOi8vd3d3Lngub3JnL3dpa2kvVG9Eby8gZm9yIGlk
+ZWFzLiBQbGVhc2UgdGFrZSBhIG1vbWVudCB0byByZXZpZXcgdGhvc2UKbGlzdHMgdG8gc2VlOgoK
+LSBhcmUgdGhlc2UgdmFsaWQgaWRlYXM/Ci0gc2hvdWxkIGl0ZW1zIGJlIHJlbW92ZWQ/Ci0gYXJl
+IHRoZXJlIGl0ZW1zIHRoYXQgY2FuIGJlIGFkZGVkPwoKQWxzbywgcGxlYXNlIGNvbnNpZGVyIHNp
+Z25pbmcgdXAgdG8gbWVudG9yLiBBbGwgdGhlIHN0dWRlbnQgZW50aHVzaWFzbSBpbiB0aGUKd29y
+bGQgY2FuJ3QgYmUgcHV0IHRvIGFueSB1c2UgaWYgdGhlcmUgYXJlIG5vIG1lbnRvcnMuIEEgbWVu
+dG9yIG9ubHkgbmVlZHMgdG8KcHJvdmlkZSB0ZWNobmljYWwgZGlyZWN0aW9uIGFuZCBncmFkaW5n
+LCBhbGwgb3RoZXIgYXNwZWN0cyBvZiB0aGUgcHJvZ3JhbSB3aWxsCmJlIGhhbmRsZWQgYnkgbXlz
+ZWxmLgoKSWYgeW91IGhhdmUgYW55IHVwZGF0ZXMgdG8gdGhlIGlkZWFzIHBhZ2VzIG9yIGFyZSBp
+bnRlcmVzdGVkIGluIG1lbnRvcmluZywKcGxlYXNlIGdldCBpbiB0b3VjaCEKClN0dWRlbnRzOgoK
+QXBwbGljYXRpb24gcmVxdWlyZW1lbnRzOgogKiBBcHBsaWNhbnRzIG1lZXQgR29vZ2xlJ3MgcmVx
+dWlyZW1lbnRzIGZvciBwYXJ0aWNpcGF0aW9uIGluIFN1bW1lciBvZiBDb2RlLgogKiBBcHBsaWNh
+bnRzIGFyZSBpbiByZWd1bGFyIGFuZCBjbG9zZSBjb250YWN0IHdpdGggdGhlaXIgWC5PcmcgbWVu
+dG9ycyBhbmQgdGhlIGNvbW11bml0eSAoSVJDLCBlbWFpbCkKICogQXBwbGljYW50cyBrbm93IHRo
+ZWlyIHRhcmdldCBwcm9ncmFtbWluZyBsYW5ndWFnZS4KICogQXBwbGljYW50cyBtdXN0IHN1Y2Nl
+c3NmdWxseSB1cHN0cmVhbSBhIHNpbXBsZSBwYXRjaCB0byBkZW1vbnN0cmF0ZSB0aGV5IGtub3cg
+dGhlIHByb2Nlc3MuCiAqIEFwcGxpY2FudHMgYXJlIHdpbGxpbmcgdG8gYmxvZyB3ZWVrbHkgYW5k
+IGludGVyYWN0IHdpdGggdGhlIGNvbW11bml0eSAoZmFpbHVyZSB0byBkbyBzbyB3aWxsIHJlc3Vs
+dCBpbiBhIGZhaWwgYXQgdGhlIG5leHQgcmV2aWV3KQoKQ2hlY2sgb3V0IGh0dHBzOi8vd3d3Lngu
+b3JnL3dpa2kvR1NvQ0FwcGxpY2F0aW9uLyBmb3IgaW5mb3JtYXRpb24gYWJvdXQgaG93IHRvIGFw
+cGx5LgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpQaWds
+aXQgbWFpbGluZyBsaXN0ClBpZ2xpdEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9waWdsaXQ=
