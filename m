@@ -1,41 +1,207 @@
-From: Jon Derrick <jonathan.derrick-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 1/4] drm/nouveau/bar/nv50: check bar1 vmm return
- value
-Date: Fri, 15 Mar 2019 18:05:15 -0600
-Message-ID: <20190316000518.3081-2-jonathan.derrick@intel.com>
-References: <20190316000518.3081-1-jonathan.derrick@intel.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190316000518.3081-1-jonathan.derrick-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Jon Derrick <jonathan.derrick-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+From: Nicholas Mc Guire <hofrat@osadl.org>
+Subject: [RFC PATCH] drm/nouveau/fb/ram/gk104: move assignment out of condition
+Date: Tue, 26 Mar 2019 02:55:18 +0100
+Message-ID: <1553565318-15108-1-git-send-email-hofrat@osadl.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Nicholas Mc Guire <hofrat@osadl.org>
 List-Id: nouveau.vger.kernel.org
 
-Q2hlY2sgYmFyMSdzIG5ldyB2bW0gY3JlYXRpb24gcmV0dXJuIHZhbHVlIGZvciBlcnJvcnMuCgpT
-aWduZWQtb2ZmLWJ5OiBKb24gRGVycmljayA8am9uYXRoYW4uZGVycmlja0BpbnRlbC5jb20+Ci0t
-LQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmFyL252NTAuYyB8IDIgKysK
-IDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iYXIvbnY1MC5jIGIvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbnZrbS9zdWJkZXYvYmFyL252NTAuYwppbmRleCAxNTdiMDc2YTEyNzIuLjhlNjRiMTlm
-M2Y4YSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmFy
-L252NTAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iYXIvbnY1
-MC5jCkBAIC0xNjgsNiArMTY4LDggQEAgbnY1MF9iYXJfb25laW5pdChzdHJ1Y3QgbnZrbV9iYXIg
-KmJhc2UpCiAKIAlyZXQgPSBudmttX3ZtbV9uZXcoZGV2aWNlLCBzdGFydCwgbGltaXQtLSAtIHN0
-YXJ0LCBOVUxMLCAwLAogCQkJICAgJmJhcjFfbG9jaywgImJhcjEiLCAmYmFyLT5iYXIxX3ZtbSk7
-CisJaWYgKHJldCkKKwkJcmV0dXJuIHJldDsKIAogCWF0b21pY19pbmMoJmJhci0+YmFyMV92bW0t
-PmVuZ3JlZltOVktNX1NVQkRFVl9CQVJdKTsKIAliYXItPmJhcjFfdm1tLT5kZWJ1ZyA9IGJhci0+
-YmFzZS5zdWJkZXYuZGVidWc7Ci0tIAoyLjE0LjQKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vbm91dmVhdQ==
+"hiding" unconditional assignments in the if() parentesis makes for
+hard to read code and has no advantage over placing these assignments
+in proper formated lines before the if() statement. Simply move those
+lines out.
+
+Before sending out roughly 20 patches to fix the roughly 50 cases - all
+in the nouveau driver. I would like to know if this will be accepted at
+all. 
+
+Signed-off-by: Nicholas Mc Guire <hofrat@osadl.org>
+---
+
+Problem located by and experiemental coccinelle script.
+
+Note that the last hunk retained the if (i == 0) rather than switching
+to a more consistent if (!i) - but then again the code is not really
+consistent on that - so not sure if that should be done or not.
+
+Cocciscript to generate the appropriate patches - note though that it
+will *not* remove excess parentesis where these are present in the
+current code:
+<snip>
+/// Check for unconditional code "hiding" in an if condition
+/// effectively that code is unconditionally executed before
+/// reaching the actual branch statement - which just makes it
+/// hard to read and thus is always wrong.
+/// Some of the cases found also look buggy
+/// In other cases some excess () are left in place in the
+/// generated patches - so some postprocessing may be needed.
+///
+/// As of 5.0-rc8 all 50 cases look like they are found and fixed
+/// correctly - correctly only in the sense that the patched
+/// code is equivalent to the original code. but as this is in
+/// the nouveau driver only it might well be that this only
+/// fits that specific pattern and others might have wilder ways
+/// to achieve the same level of confusing code- so confidence
+/// Low for now (though the the nouveau cases all are patched
+/// correctly)
+///
+// Copyright: (C) 2019 Nicholas Mc Guire. GPL-V2.
+// Confidence: Low
+// Comments:
+// Options: --no-includes --include-headers
+
+virtual patch
+virtual report
+
+@badif@
+position p;
+statement S;
+expression E1,E2;
+@@
+
+  if@p (E1,E2) S
+
+@script:python depends on report@
+p << badif.p;
+@@
+
+msg = "unconditional code hiding in if condition"
+coccilib.report.print_report(p[0],msg)
+
+@fixbadif depends on badif && patch@
+position p=badif.p;
+statement S;
+expression E1=badif.E1,E2=badif.E2;
+@@
+
++ E1;
+  if@p (
+- E1,
+  E2)
+  S
+
+@script:python depends on patch@
+p << fixbadif.p;
+@@
+<snip>
+
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c | 42 +++++++++++++++--------
+ 1 file changed, 28 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c
+index 8bcb7e7..885c24d 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramgk104.c
+@@ -1168,7 +1168,8 @@ gk104_ram_prog_0(struct gk104_ram *ram, u32 freq)
+ 	if (&cfg->head == &ram->cfg)
+ 		return;
+ 
+-	if (mask = 0, data = 0, ram->diff.rammap_11_0a_03fe) {
++	mask = 0, data = 0;
++	if (ram->diff.rammap_11_0a_03fe) {
+ 		data |= cfg->bios.rammap_11_0a_03fe << 12;
+ 		mask |= 0x001ff000;
+ 	}
+@@ -1178,31 +1179,36 @@ gk104_ram_prog_0(struct gk104_ram *ram, u32 freq)
+ 	}
+ 	nvkm_mask(device, 0x10f468, mask, data);
+ 
+-	if (mask = 0, data = 0, ram->diff.rammap_11_0a_0400) {
++	mask = 0, data = 0;
++	if (ram->diff.rammap_11_0a_0400) {
+ 		data |= cfg->bios.rammap_11_0a_0400;
+ 		mask |= 0x00000001;
+ 	}
+ 	nvkm_mask(device, 0x10f420, mask, data);
+ 
+-	if (mask = 0, data = 0, ram->diff.rammap_11_0a_0800) {
++	mask = 0, data = 0;
++	if (ram->diff.rammap_11_0a_0800) {
+ 		data |= cfg->bios.rammap_11_0a_0800;
+ 		mask |= 0x00000001;
+ 	}
+ 	nvkm_mask(device, 0x10f430, mask, data);
+ 
+-	if (mask = 0, data = 0, ram->diff.rammap_11_0b_01f0) {
++	mask = 0, data = 0;
++	if (ram->diff.rammap_11_0b_01f0) {
+ 		data |= cfg->bios.rammap_11_0b_01f0;
+ 		mask |= 0x0000001f;
+ 	}
+ 	nvkm_mask(device, 0x10f400, mask, data);
+ 
+-	if (mask = 0, data = 0, ram->diff.rammap_11_0b_0200) {
++	mask = 0, data = 0;
++	if (ram->diff.rammap_11_0b_0200) {
+ 		data |= cfg->bios.rammap_11_0b_0200 << 9;
+ 		mask |= 0x00000200;
+ 	}
+ 	nvkm_mask(device, 0x10f410, mask, data);
+ 
+-	if (mask = 0, data = 0, ram->diff.rammap_11_0d) {
++	mask = 0, data = 0;
++	if (ram->diff.rammap_11_0d) {
+ 		data |= cfg->bios.rammap_11_0d << 16;
+ 		mask |= 0x00ff0000;
+ 	}
+@@ -1212,7 +1218,8 @@ gk104_ram_prog_0(struct gk104_ram *ram, u32 freq)
+ 	}
+ 	nvkm_mask(device, 0x10f440, mask, data);
+ 
+-	if (mask = 0, data = 0, ram->diff.rammap_11_0e) {
++	mask = 0, data = 0;
++	if (ram->diff.rammap_11_0e) {
+ 		data |= cfg->bios.rammap_11_0e << 8;
+ 		mask |= 0x0000ff00;
+ 	}
+@@ -1453,17 +1460,21 @@ gk104_ram_ctor_data(struct gk104_ram *ram, u8 ramcfg, int i)
+ 
+ 	/* memory config data for a range of target frequencies */
+ 	data = nvbios_rammapEp(bios, i, &ver, &hdr, &cnt, &len, &cfg->bios);
+-	if (ret = -ENOENT, !data)
++	ret = -ENOENT;
++	if (!data)
+ 		goto done;
+-	if (ret = -ENOSYS, ver != 0x11 || hdr < 0x12)
++	ret = -ENOSYS;
++	if (ver != 0x11 || hdr < 0x12)
+ 		goto done;
+ 
+ 	/* ... and a portion specific to the attached memory */
+ 	data = nvbios_rammapSp(bios, data, ver, hdr, cnt, len, ramcfg,
+ 			       &ver, &hdr, &cfg->bios);
+-	if (ret = -EINVAL, !data)
++	ret = -EINVAL;
++	if (!data)
+ 		goto done;
+-	if (ret = -ENOSYS, ver != 0x11 || hdr < 0x0a)
++	ret = -ENOSYS;
++	if (ver != 0x11 || hdr < 0x0a)
+ 		goto done;
+ 
+ 	/* lookup memory timings, if bios says they're present */
+@@ -1471,14 +1482,17 @@ gk104_ram_ctor_data(struct gk104_ram *ram, u8 ramcfg, int i)
+ 		data = nvbios_timingEp(bios, cfg->bios.ramcfg_timing,
+ 				       &ver, &hdr, &cnt, &len,
+ 				       &cfg->bios);
+-		if (ret = -EINVAL, !data)
++		ret = -EINVAL;
++		if (!data)
+ 			goto done;
+-		if (ret = -ENOSYS, ver != 0x20 || hdr < 0x33)
++		ret = -ENOSYS;
++		if (ver != 0x20 || hdr < 0x33)
+ 			goto done;
+ 	}
+ 
+ 	list_add_tail(&cfg->head, &ram->cfg);
+-	if (ret = 0, i == 0)
++	ret = 0;
++	if (i == 0)
+ 		goto done;
+ 
+ 	d->rammap_11_0a_03fe |= p->rammap_11_0a_03fe != n->rammap_11_0a_03fe;
+-- 
+2.1.4
