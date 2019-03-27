@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 4.14 114/123] drm/nouveau: Stop using
+Subject: [PATCH AUTOSEL 4.9 80/87] drm/nouveau: Stop using
  drm_crtc_force_disable
-Date: Wed, 27 Mar 2019 14:16:18 -0400
-Message-ID: <20190327181628.15899-114-sashal@kernel.org>
-References: <20190327181628.15899-1-sashal@kernel.org>
+Date: Wed, 27 Mar 2019 14:20:33 -0400
+Message-ID: <20190327182040.17444-80-sashal@kernel.org>
+References: <20190327182040.17444-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190327181628.15899-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <20190327182040.17444-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -40,8 +40,8 @@ ZmZ3bGwuY2gKU2lnbmVkLW9mZi1ieTogU2FzaGEgTGV2aW4gPHNhc2hhbEBrZXJuZWwub3JnPgot
 LS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0L3R2bnYxNy5jIHwgNCArKystCiAx
 IGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0
 IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvdHZudjE3LmMgYi9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9kaXNwbnYwNC90dm52MTcuYwppbmRleCA2ZDk5ZjExZmVlNGUuLjRiYzhl
-OWZlMzA5NSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvdHZu
+dS9kcm0vbm91dmVhdS9kaXNwbnYwNC90dm52MTcuYwppbmRleCA0MzRkMWUyOWYyNzkuLmNkMzdk
+MDBlOTcyMyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvdHZu
 djE3LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvdHZudjE3LmMKQEAg
 LTc1MCw3ICs3NTAsOSBAQCBzdGF0aWMgaW50IG52MTdfdHZfc2V0X3Byb3BlcnR5KHN0cnVjdCBk
 cm1fZW5jb2RlciAqZW5jb2RlciwKIAkJLyogRGlzYWJsZSB0aGUgY3J0YyB0byBlbnN1cmUgYSBm
