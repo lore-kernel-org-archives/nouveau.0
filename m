@@ -1,17 +1,12 @@
-From: Trevor Woerner <twoerner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Piglit] X.Org GSoC 2019 - Student Application Period
-Date: Thu, 28 Mar 2019 01:40:38 -0400
-Message-ID: <CAHUNapR0w=Hg1UGUF-NAkWsi69th1kM04pP=KkC-d7QGkfN4ag@mail.gmail.com>
-References: <20190326143228.GA25068@linux-uys3>
- <CAKb7Uvh7QAJhJb4JU5J=KdWqv=9EdFS6bXFy4iThnW6ioqK1mA@mail.gmail.com>
- <20190326145638.GA3403@linux-uys3>
- <CAKb7UviCLvPG+71PY2E52dQBAm5KKVRd4oSPM=Hy5CutvLmhug@mail.gmail.com>
- <094a674b-b7cb-5e54-8a3a-2c5b8f0669f2@spliet.org>
- <CACO55tv_ZaMqEm9OXH9kRr5VGh2ZqtsOTOx2e879FzMNEiM3Hw@mail.gmail.com>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: [PATCH] nouveau: forward error generated while resuming
+ objects tree
+Date: Thu, 28 Mar 2019 14:17:31 +0100
+Message-ID: <20190328131731.9085-1-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2043286915=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACO55tv_ZaMqEm9OXH9kRr5VGh2ZqtsOTOx2e879FzMNEiM3Hw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,51 +16,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============2043286915==
-Content-Type: multipart/alternative; boundary="000000000000c837be058520ffe7"
-
---000000000000c837be058520ffe7
-Content-Type: text/plain; charset="UTF-8"
-
-On Wed, Mar 27, 2019 at 3:38 PM Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
-
-> well generally I would be available for all the nouveau projects,
-> although I am lacking proper knowledge for a few of those like video
-> acceleration. But I am sure I would be able to dig into stuff enough
-> before the projects starts.
->
-
-Excellent! Thank you :-D
-
---000000000000c837be058520ffe7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Wed, Mar 27, 2019 at 3:38 PM Karol Herbst &lt;<a href=3D"mail=
-to:kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org">kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org</a>&gt; wrote:<br></div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
-solid rgb(204,204,204);padding-left:1ex">well generally I would be availabl=
-e for all the nouveau projects,<br>
-although I am lacking proper knowledge for a few of those like video<br>
-acceleration. But I am sure I would be able to dig into stuff enough<br>
-before the projects starts.<br></blockquote><div><br></div><div>Excellent! =
-Thank you :-D <br></div></div></div>
-
---000000000000c837be058520ffe7--
-
---===============2043286915==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============2043286915==--
+T24gYSBmYWlsZWQgcmVzdW1lIHdlIG1heSBleHBlcmllbmNlIHVucmVjb3ZlcmFibGUgZXJyb3Jz
+LiBQbHVtYiB0aGUgZXJyb3IgY29kZQp0aHJvdWdoIHRvIGFjdHVhbGx5IGxldCB0aGUgZHJpdmVy
+IGZhaWwuIE9uIGEgcmV2ZXJzZS1wcmltZSBzZXR1cCB0aGlzIGhlbHBzIHRoZQpkcm0gc3Vic3lz
+dGVtIHRvIGF0IGxlYXN0IHJlY292ZXIgdGhlIGludGVncmF0ZWQgZ3B1LgoKVGhpcyBjYW4gZXNw
+ZWNpYWxseSBoYXBwZW4gd2l0aCBzZWNib290IHRpbWluZyBvdXQsIGxlYXZpbmcgdGhlIGhhcmR3
+YXJlIGluIGEKbm9uLWZ1bmN0aW9uaW5nIHN0YXRlLgoKU2lnbmVkLW9mZi1ieTogVG9iaWFzIEts
+YXVzbWFubiA8dG9iaWFzLmpvaGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPgotLS0KIGRyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgfCAxMiArKysrKysrKysrKy0KIDEgZmls
+ZSBjaGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L25vdXZlYXVfZHJtLmMKaW5kZXggNTAyMDI2NWJmYmQ5Li41NmExMDdmM2EwZTEgMTAw
+NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKKysrIGIvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwpAQCAtODAyLDEwICs4MDIsMTUgQEAg
+bm91dmVhdV9kb19zdXNwZW5kKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIGJvb2wgcnVudGltZSkK
+IHN0YXRpYyBpbnQKIG5vdXZlYXVfZG9fcmVzdW1lKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIGJv
+b2wgcnVudGltZSkKIHsKKwlpbnQgcmV0ID0gMDsKIAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9
+IG5vdXZlYXVfZHJtKGRldik7CiAKIAlOVl9ERUJVRyhkcm0sICJyZXN1bWluZyBvYmplY3QgdHJl
+ZS4uLlxuIik7Ci0JbnZpZl9jbGllbnRfcmVzdW1lKCZkcm0tPm1hc3Rlci5iYXNlKTsKKwlyZXQg
+PSBudmlmX2NsaWVudF9yZXN1bWUoJmRybS0+bWFzdGVyLmJhc2UpOworCWlmIChyZXQpIHsKKwkJ
+TlZfRVJST1IoZHJtLCAiQ2xpZW50IHJlc3VtZSBmYWlsZWQgd2l0aCBlcnJvcjogJWRcbiIsIHJl
+dCk7CisJCXJldHVybiByZXQ7CisJfQogCiAJTlZfREVCVUcoZHJtLCAicmVzdW1pbmcgZmVuY2Uu
+Li5cbiIpOwogCWlmIChkcm0tPmZlbmNlICYmIG5vdXZlYXVfZmVuY2UoZHJtKS0+cmVzdW1lKQpA
+QCAtOTI1LDYgKzkzMCw3IEBAIG5vdXZlYXVfcG1vcHNfcnVudGltZV9yZXN1bWUoc3RydWN0IGRl
+dmljZSAqZGV2KQogewogCXN0cnVjdCBwY2lfZGV2ICpwZGV2ID0gdG9fcGNpX2RldihkZXYpOwog
+CXN0cnVjdCBkcm1fZGV2aWNlICpkcm1fZGV2ID0gcGNpX2dldF9kcnZkYXRhKHBkZXYpOworCXN0
+cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oZHJtX2Rldik7CiAJc3RydWN0IG52
+aWZfZGV2aWNlICpkZXZpY2UgPSAmbm91dmVhdV9kcm0oZHJtX2RldiktPmNsaWVudC5kZXZpY2U7
+CiAJaW50IHJldDsKIApAQCAtOTQxLDYgKzk0NywxMCBAQCBub3V2ZWF1X3Btb3BzX3J1bnRpbWVf
+cmVzdW1lKHN0cnVjdCBkZXZpY2UgKmRldikKIAlwY2lfc2V0X21hc3RlcihwZGV2KTsKIAogCXJl
+dCA9IG5vdXZlYXVfZG9fcmVzdW1lKGRybV9kZXYsIHRydWUpOworCWlmIChyZXQpIHsKKwkJTlZf
+RVJST1IoZHJtLCAicmVzdW1lIGZhaWxlZCB3aXRoOiAlZFxuIiwgcmV0KTsKKwkJcmV0dXJuIHJl
+dDsKKwl9CiAKIAkvKiBkbyBtYWdpYyAqLwogCW52aWZfbWFzaygmZGV2aWNlLT5vYmplY3QsIDB4
+MDg4NDg4LCAoMSA8PCAyNSksICgxIDw8IDI1KSk7Ci0tIAoyLjIxLjAKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
