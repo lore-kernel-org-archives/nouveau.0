@@ -1,118 +1,109 @@
-From: Liviu Dudau <liviu.dudau@arm.com>
-Subject: Re: [PATCH v2] drm: prefix header search paths with
- $(srctree)/
-Date: Fri, 29 Mar 2019 14:24:36 +0000
-Message-ID: <20190329142436.GQ21747@e110455-lin.cambridge.arm.com>
-References: <1553859161-2628-1-git-send-email-yamada.masahiro@socionext.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110280] Random slow down the system with Geforce
+ GTX1070 Mobile
+Date: Fri, 29 Mar 2019 19:10:08 +0000
+Message-ID: <bug-110280-8800-BLFQdWdh2R@http.bugs.freedesktop.org/>
+References: <bug-110280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <1553859161-2628-1-git-send-email-yamada.masahiro@socionext.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Masahiro Yamada <yamada.masahiro@socionext.com>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, amd-gfx@lists.freedesktop.org, "James (Qian) Wang" <james.qian.wang@arm.com>, Ben Skeggs <bskeggs@redhat.com>, linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, linux-kernel@vger.kernel.org, Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0637416745=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-110280-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBNYXIgMjksIDIwMTkgYXQgMDg6MzI6NDFQTSArMDkwMCwgTWFzYWhpcm8gWWFtYWRh
-IHdyb3RlOgo+IEN1cnJlbnRseSwgdGhlIEtidWlsZCBjb3JlIG1hbmlwdWxhdGVzIGhlYWRlciBz
-ZWFyY2ggcGF0aHMgaW4gYSBjcmF6eQo+IHdheSBbMV0uCj4gCj4gVG8gZml4IHRoaXMgbWVzcywg
-SSB3YW50IGFsbCBNYWtlZmlsZXMgdG8gYWRkIGV4cGxpY2l0ICQoc3JjdHJlZSkvIHRvCj4gdGhl
-IHNlYXJjaCBwYXRocyBpbiB0aGUgc3JjdHJlZS4gU29tZSBNYWtlZmlsZXMgYXJlIGFscmVhZHkg
-d3JpdHRlbiBpbgo+IHRoYXQgd2F5LCBidXQgbm90IGFsbC4gVGhlIGdvYWwgb2YgdGhpcyB3b3Jr
-IGlzIHRvIG1ha2UgdGhlIG5vdGF0aW9uCj4gY29uc2lzdGVudCwgYW5kIGZpbmFsbHkgZ2V0IHJp
-ZCBvZiB0aGUgZ3Jvc3MgaGFja3MuCj4gCj4gSGF2aW5nIHdoaXRlc3BhY2VzIGFmdGVyIC1JIGRv
-ZXMgbm90IG1hdHRlciBzaW5jZSBjb21taXQgNDhmNmUzY2Y1YmM2Cj4gKCJrYnVpbGQ6IGRvIG5v
-dCBkcm9wIC1JIHdpdGhvdXQgcGFyYW1ldGVyIikuCj4gCj4gWzFdOiBodHRwczovL3BhdGNod29y
-ay5rZXJuZWwub3JnL3BhdGNoLzk2MzIzNDcvCj4gCj4gU2lnbmVkLW9mZi1ieTogTWFzYWhpcm8g
-WWFtYWRhIDx5YW1hZGEubWFzYWhpcm9Ac29jaW9uZXh0LmNvbT4KPiBSZXZpZXdlZC1ieTogU2Ft
-IFJhdm5ib3JnIDxzYW1AcmF2bmJvcmcub3JnPgo+IC0tLQo+IAo+IEkgcHV0IGFsbCBncHUvZHJt
-IGNoYW5nZXMgaW50byBhIHNpbmdsZSBwYXRjaCBiZWNhdXNlCj4gdGhleSBhcmUgdHJpdmlhbCBj
-b252ZXJzaW9uLgo+IAo+IElmIHlvdSBhcmUgaW50ZXJlc3RlZCBpbiB0aGUgYmlnIHBpY3R1cmUg
-b2YgdGhpcyB3b3JrLAo+IHRoZSBmdWxsIHBhdGNoIHNldCBpcyBhdmFpbGFibGUgYXQgdGhlIGZv
-bGxvd2luZyBVUkwuCj4gCj4gZ2l0Oi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9rZXJu
-ZWwvZ2l0L21hc2FoaXJveS9saW51eC1rYnVpbGQuZ2l0IGJ1aWxkLXRlc3QKPiAKPiAKPiBDaGFu
-Z2VzIGluIHYyOgo+ICAgLSBmaXggdXAgdGhlIG5ldyBkcml2ZXIga29tZWRhCj4gICAtIEFkZCBT
-YW0ncyBSZXZpZXdlZC1ieQo+IAo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9NYWtlZmls
-ZSAgICAgICAgIHwgMiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vYW1kL2xpYi9NYWtlZmlsZSAgICAg
-ICAgICAgIHwgMiArLQo+ICBkcml2ZXJzL2dwdS9kcm0vYXJtL2Rpc3BsYXkva29tZWRhL01ha2Vm
-aWxlIHwgNCArKy0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d2dC9NYWtlZmlsZSAgICAgICAg
-ICAgfCAyICstCj4gIGRyaXZlcnMvZ3B1L2RybS9tc20vTWFrZWZpbGUgICAgICAgICAgICAgICAg
-fCA2ICsrKy0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LYnVpbGQgICAgICAgICAgICAg
-IHwgOCArKysrLS0tLQo+ICA2IGZpbGVzIGNoYW5nZWQsIDEyIGluc2VydGlvbnMoKyksIDEyIGRl
-bGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9N
-YWtlZmlsZSBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L01ha2VmaWxlCj4gaW5kZXggNDY2
-ZGE1OS4uNjJiZjlkYSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9N
-YWtlZmlsZQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L01ha2VmaWxlCj4gQEAg
-LTIzLDcgKzIzLDcgQEAKPiAgIyBNYWtlZmlsZSBmb3IgdGhlIGRybSBkZXZpY2UgZHJpdmVyLiAg
-VGhpcyBkcml2ZXIgcHJvdmlkZXMgc3VwcG9ydCBmb3IgdGhlCj4gICMgRGlyZWN0IFJlbmRlcmlu
-ZyBJbmZyYXN0cnVjdHVyZSAoRFJJKSBpbiBYRnJlZTg2IDQuMS4wIGFuZCBoaWdoZXIuCj4gIAo+
-IC1GVUxMX0FNRF9QQVRIPSQoc3JjKS8uLgo+ICtGVUxMX0FNRF9QQVRIPSQoc3JjdHJlZSkvJChz
-cmMpLy4uCj4gIERJU1BMQVlfRk9MREVSX05BTUU9ZGlzcGxheQo+ICBGVUxMX0FNRF9ESVNQTEFZ
-X1BBVEggPSAkKEZVTExfQU1EX1BBVEgpLyQoRElTUExBWV9GT0xERVJfTkFNRSkKPiAgCj4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvbGliL01ha2VmaWxlIGIvZHJpdmVycy9ncHUv
-ZHJtL2FtZC9saWIvTWFrZWZpbGUKPiBpbmRleCA2OTAyNDMwLi5kNTM0OTkyIDEwMDY0NAo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvbGliL01ha2VmaWxlCj4gKysrIGIvZHJpdmVycy9ncHUv
-ZHJtL2FtZC9saWIvTWFrZWZpbGUKPiBAQCAtMjcsNiArMjcsNiBAQAo+ICAjIGRyaXZlciBjb21w
-b25lbnRzIG9yIGxhdGVyIG1vdmVkIHRvIGtlcm5lbC9saWIgZm9yIHNoYXJpbmcgd2l0aAo+ICAj
-IG90aGVyIGRyaXZlcnMuCj4gIAo+IC1jY2ZsYWdzLXkgOj0gLUkkKHNyYykvLi4vaW5jbHVkZQo+
-ICtjY2ZsYWdzLXkgOj0gLUkgJChzcmN0cmVlKS8kKHNyYykvLi4vaW5jbHVkZQo+ICAKPiAgb2Jq
-LSQoQ09ORklHX0NIQVNIKSArPSBjaGFzaC5vCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9hcm0vZGlzcGxheS9rb21lZGEvTWFrZWZpbGUgYi9kcml2ZXJzL2dwdS9kcm0vYXJtL2Rpc3Bs
-YXkva29tZWRhL01ha2VmaWxlCj4gaW5kZXggMWI4NzVlNS4uYTcyZTMwYyAxMDA2NDQKPiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vYXJtL2Rpc3BsYXkva29tZWRhL01ha2VmaWxlCj4gKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2FybS9kaXNwbGF5L2tvbWVkYS9NYWtlZmlsZQo+IEBAIC0xLDggKzEsOCBA
-QAo+ICAjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wCj4gIAo+ICBjY2ZsYWdzLXkg
-Oj0gXAo+IC0JLUkkKHNyYykvLi4vaW5jbHVkZSBcCj4gLQktSSQoc3JjKQo+ICsJLUkgJChzcmN0
-cmVlKS8kKHNyYykvLi4vaW5jbHVkZSBcCj4gKwktSSAkKHNyY3RyZWUpLyQoc3JjKQo+ICAKPiAg
-a29tZWRhLXkgOj0gXAo+ICAJa29tZWRhX2Rydi5vIFwKCkZvciBrb21lZGE6CgpBY2tlZC1ieTog
-TGl2aXUgRHVkYXUgPGxpdml1LmR1ZGF1QGFybS5jb20+CgpJJ20gYXNzdW1pbmcgdGhlIHNlcmll
-cyBpbiBnb2luZyB0byBiZSBtZXJnZWQgaW50byBvbmUgZ28sIHNvIEkgZG9uJ3QKaGF2ZSB0byB0
-YWtlIHRoZSBpbmRpdmlkdWFsIHBhdGNoIGluIG15IHRyZWUsIGJ1dCBpZiBJJ20gd3JvbmcgcGxl
-YXNlCmxldCBtZSBrbm93LgoKQmVzdCByZWdhcmRzLApMaXZpdQoKPiBkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ3Z0L01ha2VmaWxlIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Z0
-L01ha2VmaWxlCj4gaW5kZXggMjcxZmI0Ni4uZWE4MzI0YSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9ndnQvTWFrZWZpbGUKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dnQvTWFrZWZpbGUKPiBAQCAtNSw1ICs1LDUgQEAgR1ZUX1NPVVJDRSA6PSBndnQubyBhcGVydHVy
-ZV9nbS5vIGhhbmRsZXJzLm8gdmdwdS5vIHRyYWNlX3BvaW50cy5vIGZpcm13YXJlLm8gXAo+ICAJ
-ZXhlY2xpc3QubyBzY2hlZHVsZXIubyBzY2hlZF9wb2xpY3kubyBtbWlvX2NvbnRleHQubyBjbWRf
-cGFyc2VyLm8gZGVidWdmcy5vIFwKPiAgCWZiX2RlY29kZXIubyBkbWFidWYubyBwYWdlX3RyYWNr
-Lm8KPiAgCj4gLWNjZmxhZ3MteQkJCQkrPSAtSSQoc3JjKSAtSSQoc3JjKS8kKEdWVF9ESVIpCj4g
-K2NjZmxhZ3MteQkJCQkrPSAtSSAkKHNyY3RyZWUpLyQoc3JjKSAtSSAkKHNyY3RyZWUpLyQoc3Jj
-KS8kKEdWVF9ESVIpLwo+ICBpOTE1LXkJCQkJCSs9ICQoYWRkcHJlZml4ICQoR1ZUX0RJUikvLCAk
-KEdWVF9TT1VSQ0UpKQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbXNtL01ha2VmaWxl
-IGIvZHJpdmVycy9ncHUvZHJtL21zbS9NYWtlZmlsZQo+IGluZGV4IDU2YTcwYzcuLmI3YjFlYmQg
-MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21zbS9NYWtlZmlsZQo+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9tc20vTWFrZWZpbGUKPiBAQCAtMSw3ICsxLDcgQEAKPiAgIyBTUERYLUxpY2Vu
-c2UtSWRlbnRpZmllcjogR1BMLTIuMAo+IC1jY2ZsYWdzLXkgOj0gLUlkcml2ZXJzL2dwdS9kcm0v
-bXNtCj4gLWNjZmxhZ3MteSArPSAtSWRyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9kcHUxCj4gLWNj
-ZmxhZ3MtJChDT05GSUdfRFJNX01TTV9EU0kpICs9IC1JZHJpdmVycy9ncHUvZHJtL21zbS9kc2kK
-PiArY2NmbGFncy15IDo9IC1JICQoc3JjdHJlZSkvJChzcmMpCj4gK2NjZmxhZ3MteSArPSAtSSAk
-KHNyY3RyZWUpLyQoc3JjKS9kaXNwL2RwdTEKPiArY2NmbGFncy0kKENPTkZJR19EUk1fTVNNX0RT
-SSkgKz0gLUkgJChzcmN0cmVlKS8kKHNyYykvZHNpCj4gIAo+ICBtc20teSA6PSBcCj4gIAlhZHJl
-bm8vYWRyZW5vX2RldmljZS5vIFwKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvS2J1aWxkIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvS2J1aWxkCj4gaW5kZXggZWEzMDM1
-ZS4uNGZhZTcyOCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LYnVpbGQK
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LYnVpbGQKPiBAQCAtMSw3ICsxLDcgQEAK
-PiAtY2NmbGFncy15ICs9IC1JJChzcmMpL2luY2x1ZGUKPiAtY2NmbGFncy15ICs9IC1JJChzcmMp
-L2luY2x1ZGUvbnZrbQo+IC1jY2ZsYWdzLXkgKz0gLUkkKHNyYykvbnZrbQo+IC1jY2ZsYWdzLXkg
-Kz0gLUkkKHNyYykKPiArY2NmbGFncy15ICs9IC1JICQoc3JjdHJlZSkvJChzcmMpL2luY2x1ZGUK
-PiArY2NmbGFncy15ICs9IC1JICQoc3JjdHJlZSkvJChzcmMpL2luY2x1ZGUvbnZrbQo+ICtjY2Zs
-YWdzLXkgKz0gLUkgJChzcmN0cmVlKS8kKHNyYykvbnZrbQo+ICtjY2ZsYWdzLXkgKz0gLUkgJChz
-cmN0cmVlKS8kKHNyYykKPiAgCj4gICMgTlZLTSAtIEhXIHJlc291cmNlIG1hbmFnZXIKPiAgIy0g
-Y29kZSBhbHNvIHVzZWQgYnkgdmFyaW91cyB1c2Vyc3BhY2UgdG9vbHMvdGVzdHMKPiAtLSAKPiAy
-LjcuNAo+IAoKLS0gCj09PT09PT09PT09PT09PT09PT09CnwgSSB3b3VsZCBsaWtlIHRvIHwKfCBm
-aXggdGhlIHdvcmxkLCAgfAp8IGJ1dCB0aGV5J3JlIG5vdCB8CnwgZ2l2aW5nIG1lIHRoZSAgIHwK
-IFwgc291cmNlIGNvZGUhICAvCiAgLS0tLS0tLS0tLS0tLS0tCiAgICDCr1xfKOODhClfL8KvCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
-YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA==
+
+--===============0637416745==
+Content-Type: multipart/alternative; boundary="15538866081.9ecc3.6644"
+Content-Transfer-Encoding: 7bit
+
+
+--15538866081.9ecc3.6644
+Date: Fri, 29 Mar 2019 19:10:08 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110280
+
+--- Comment #2 from Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>=
+ ---
+Just noting: While looking a bit further bug #109600 and #109407 seem to
+describe the same problem.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15538866081.9ecc3.6644
+Date: Fri, 29 Mar 2019 19:10:08 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Random slow down the system with Geforce GTX1070 Mobile"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110280#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Random slow down the system with Geforce GTX1070 Mobile"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110280">bug 11028=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tobias.johannes.klausmann&#64;mni.thm.de" title=3D"Tobias Klausmann &lt;tob=
+ias.johannes.klausmann&#64;mni.thm.de&gt;"> <span class=3D"fn">Tobias Klaus=
+mann</span></a>
+</span></b>
+        <pre>Just noting: While looking a bit further <a class=3D"bz_bug_li=
+nk=20
+          bz_status_NEW "
+   title=3D"NEW - nv138 hibernete resume bug"
+   href=3D"show_bug.cgi?id=3D109600">bug #109600</a> and #109407 seem to
+describe the same problem.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15538866081.9ecc3.6644--
+
+--===============0637416745==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0637416745==--
