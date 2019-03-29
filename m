@@ -1,11 +1,10 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: [PATCH] nouveau: forward error generated while resuming
- objects tree
-Date: Thu, 28 Mar 2019 14:17:31 +0100
-Message-ID: <20190328131731.9085-1-tobias.johannes.klausmann@mni.thm.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110280] New: Random slow down the system with
+ Geforce GTX1070 Mobile
+Date: Fri, 29 Mar 2019 08:07:19 +0000
+Message-ID: <bug-110280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1010042908=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -16,42 +15,196 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gYSBmYWlsZWQgcmVzdW1lIHdlIG1heSBleHBlcmllbmNlIHVucmVjb3ZlcmFibGUgZXJyb3Jz
-LiBQbHVtYiB0aGUgZXJyb3IgY29kZQp0aHJvdWdoIHRvIGFjdHVhbGx5IGxldCB0aGUgZHJpdmVy
-IGZhaWwuIE9uIGEgcmV2ZXJzZS1wcmltZSBzZXR1cCB0aGlzIGhlbHBzIHRoZQpkcm0gc3Vic3lz
-dGVtIHRvIGF0IGxlYXN0IHJlY292ZXIgdGhlIGludGVncmF0ZWQgZ3B1LgoKVGhpcyBjYW4gZXNw
-ZWNpYWxseSBoYXBwZW4gd2l0aCBzZWNib290IHRpbWluZyBvdXQsIGxlYXZpbmcgdGhlIGhhcmR3
-YXJlIGluIGEKbm9uLWZ1bmN0aW9uaW5nIHN0YXRlLgoKU2lnbmVkLW9mZi1ieTogVG9iaWFzIEts
-YXVzbWFubiA8dG9iaWFzLmpvaGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPgotLS0KIGRyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgfCAxMiArKysrKysrKysrKy0KIDEgZmls
-ZSBjaGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L25vdXZlYXVfZHJtLmMKaW5kZXggNTAyMDI2NWJmYmQ5Li41NmExMDdmM2EwZTEgMTAw
-NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKKysrIGIvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwpAQCAtODAyLDEwICs4MDIsMTUgQEAg
-bm91dmVhdV9kb19zdXNwZW5kKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIGJvb2wgcnVudGltZSkK
-IHN0YXRpYyBpbnQKIG5vdXZlYXVfZG9fcmVzdW1lKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIGJv
-b2wgcnVudGltZSkKIHsKKwlpbnQgcmV0ID0gMDsKIAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9
-IG5vdXZlYXVfZHJtKGRldik7CiAKIAlOVl9ERUJVRyhkcm0sICJyZXN1bWluZyBvYmplY3QgdHJl
-ZS4uLlxuIik7Ci0JbnZpZl9jbGllbnRfcmVzdW1lKCZkcm0tPm1hc3Rlci5iYXNlKTsKKwlyZXQg
-PSBudmlmX2NsaWVudF9yZXN1bWUoJmRybS0+bWFzdGVyLmJhc2UpOworCWlmIChyZXQpIHsKKwkJ
-TlZfRVJST1IoZHJtLCAiQ2xpZW50IHJlc3VtZSBmYWlsZWQgd2l0aCBlcnJvcjogJWRcbiIsIHJl
-dCk7CisJCXJldHVybiByZXQ7CisJfQogCiAJTlZfREVCVUcoZHJtLCAicmVzdW1pbmcgZmVuY2Uu
-Li5cbiIpOwogCWlmIChkcm0tPmZlbmNlICYmIG5vdXZlYXVfZmVuY2UoZHJtKS0+cmVzdW1lKQpA
-QCAtOTI1LDYgKzkzMCw3IEBAIG5vdXZlYXVfcG1vcHNfcnVudGltZV9yZXN1bWUoc3RydWN0IGRl
-dmljZSAqZGV2KQogewogCXN0cnVjdCBwY2lfZGV2ICpwZGV2ID0gdG9fcGNpX2RldihkZXYpOwog
-CXN0cnVjdCBkcm1fZGV2aWNlICpkcm1fZGV2ID0gcGNpX2dldF9kcnZkYXRhKHBkZXYpOworCXN0
-cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oZHJtX2Rldik7CiAJc3RydWN0IG52
-aWZfZGV2aWNlICpkZXZpY2UgPSAmbm91dmVhdV9kcm0oZHJtX2RldiktPmNsaWVudC5kZXZpY2U7
-CiAJaW50IHJldDsKIApAQCAtOTQxLDYgKzk0NywxMCBAQCBub3V2ZWF1X3Btb3BzX3J1bnRpbWVf
-cmVzdW1lKHN0cnVjdCBkZXZpY2UgKmRldikKIAlwY2lfc2V0X21hc3RlcihwZGV2KTsKIAogCXJl
-dCA9IG5vdXZlYXVfZG9fcmVzdW1lKGRybV9kZXYsIHRydWUpOworCWlmIChyZXQpIHsKKwkJTlZf
-RVJST1IoZHJtLCAicmVzdW1lIGZhaWxlZCB3aXRoOiAlZFxuIiwgcmV0KTsKKwkJcmV0dXJuIHJl
-dDsKKwl9CiAKIAkvKiBkbyBtYWdpYyAqLwogCW52aWZfbWFzaygmZGV2aWNlLT5vYmplY3QsIDB4
-MDg4NDg4LCAoMSA8PCAyNSksICgxIDw8IDI1KSk7Ci0tIAoyLjIxLjAKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+
+--===============1010042908==
+Content-Type: multipart/alternative; boundary="15538468391.CEeB6.17516"
+Content-Transfer-Encoding: 7bit
+
+
+--15538468391.CEeB6.17516
+Date: Fri, 29 Mar 2019 08:07:19 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110280
+
+            Bug ID: 110280
+           Summary: Random slow down the system with Geforce GTX1070
+                    Mobile
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: crashbit-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 143803
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D143803&action=3Dedit
+dmesg journalctl
+
+[crashbit@msi-gt62vr ~]$ lspci | grep -i vga
+01:00.0 VGA compatible controller: NVIDIA Corporation GP104BM [GeForce GTX =
+1070
+Mobile] (rev a1)
+
+
+Sometimes after reboot machine when I enter to Wayland or Xorg with nouveau
+driver, when I pass the mouse over my user icon or click any menu, my system
+slow down the graphics.
+
+When it happens I can see the error showed on the boot and attached here
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15538468391.CEeB6.17516
+Date: Fri, 29 Mar 2019 08:07:19 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Random slow down the system with Geforce GTX1070 Mobile"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110280">110280</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Random slow down the system with Geforce GTX1070 Mobile
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>crashbit&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D143803=
+" name=3D"attach_143803" title=3D"dmesg journalctl">attachment 143803</a> <=
+a href=3D"attachment.cgi?id=3D143803&amp;action=3Dedit" title=3D"dmesg jour=
+nalctl">[details]</a></span>
+dmesg journalctl
+
+[crashbit&#64;msi-gt62vr ~]$ lspci | grep -i vga
+01:00.0 VGA compatible controller: NVIDIA Corporation GP104BM [GeForce GTX =
+1070
+Mobile] (rev a1)
+
+
+Sometimes after reboot machine when I enter to Wayland or Xorg with nouveau
+driver, when I pass the mouse over my user icon or click any menu, my system
+slow down the graphics.
+
+When it happens I can see the error showed on the boot and attached here</p=
+re>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15538468391.CEeB6.17516--
+
+--===============1010042908==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1010042908==--
