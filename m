@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110280] Random slow down the system with Geforce
- GTX1070 Mobile
-Date: Fri, 29 Mar 2019 19:10:08 +0000
-Message-ID: <bug-110280-8800-BLFQdWdh2R@http.bugs.freedesktop.org/>
-References: <bug-110280-8800@http.bugs.freedesktop.org/>
+From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: [PATCH AUTOSEL 5.0 59/67] drm/nouveau/debugfs: Fix check
+ of pm_runtime_get_sync failure
+Date: Fri, 29 Mar 2019 20:50:39 -0400
+Message-ID: <20190330005047.25998-59-sashal@kernel.org>
+References: <20190330005047.25998-1-sashal@kernel.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0637416745=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110280-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20190330005047.25998-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,93 +18,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, YueHaibing <yuehaibing-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0637416745==
-Content-Type: multipart/alternative; boundary="15538866081.9ecc3.6644"
-Content-Transfer-Encoding: 7bit
-
-
---15538866081.9ecc3.6644
-Date: Fri, 29 Mar 2019 19:10:08 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110280
-
---- Comment #2 from Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>=
- ---
-Just noting: While looking a bit further bug #109600 and #109407 seem to
-describe the same problem.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15538866081.9ecc3.6644
-Date: Fri, 29 Mar 2019 19:10:08 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Random slow down the system with Geforce GTX1070 Mobile"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110280#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Random slow down the system with Geforce GTX1070 Mobile"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110280">bug 11028=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tobias.johannes.klausmann&#64;mni.thm.de" title=3D"Tobias Klausmann &lt;tob=
-ias.johannes.klausmann&#64;mni.thm.de&gt;"> <span class=3D"fn">Tobias Klaus=
-mann</span></a>
-</span></b>
-        <pre>Just noting: While looking a bit further <a class=3D"bz_bug_li=
-nk=20
-          bz_status_NEW "
-   title=3D"NEW - nv138 hibernete resume bug"
-   href=3D"show_bug.cgi?id=3D109600">bug #109600</a> and #109407 seem to
-describe the same problem.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15538866081.9ecc3.6644--
-
---===============0637416745==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0637416745==--
+RnJvbTogWXVlSGFpYmluZyA8eXVlaGFpYmluZ0BodWF3ZWkuY29tPgoKWyBVcHN0cmVhbSBjb21t
+aXQgOTA5ZTljOWM0MjgzNzZlMmE0M2QxNzhlZDRiMGEyZDViYTljYjdkMyBdCgpwbV9ydW50aW1l
+X2dldF9zeW5jIHJldHVybnMgbmVnYXRpdmUgb24gZmFpbHVyZS4KCkZpeGVzOiBlYWViOTAxMGJi
+NGIgKCJkcm0vbm91dmVhdS9kZWJ1Z2ZzOiBXYWtlIHVwIEdQVSBiZWZvcmUgZG9pbmcgYW55IHJl
+Y2xvY2tpbmciKQpTaWduZWQtb2ZmLWJ5OiBZdWVIYWliaW5nIDx5dWVoYWliaW5nQGh1YXdlaS5j
+b20+ClNpZ25lZC1vZmYtYnk6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KU2lnbmVk
+LW9mZi1ieTogU2FzaGEgTGV2aW4gPHNhc2hhbEBrZXJuZWwub3JnPgotLS0KIGRyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L25vdXZlYXVfZGVidWdmcy5jIHwgMiArLQogMSBmaWxlIGNoYW5nZWQsIDEg
+aW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9kZWJ1Z2ZzLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
+ZWF1X2RlYnVnZnMuYwppbmRleCA4OGE1MmY2YjM5ZmUuLjdkZmJiYmMxYmVlYSAxMDA2NDQKLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kZWJ1Z2ZzLmMKKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kZWJ1Z2ZzLmMKQEAgLTE4MSw3ICsxODEsNyBAQCBu
+b3V2ZWF1X2RlYnVnZnNfcHN0YXRlX3NldChzdHJ1Y3QgZmlsZSAqZmlsZSwgY29uc3QgY2hhciBf
+X3VzZXIgKnVidWYsCiAJfQogCiAJcmV0ID0gcG1fcnVudGltZV9nZXRfc3luYyhkcm0tPmRldik7
+Ci0JaWYgKElTX0VSUl9WQUxVRShyZXQpICYmIHJldCAhPSAtRUFDQ0VTKQorCWlmIChyZXQgPCAw
+ICYmIHJldCAhPSAtRUFDQ0VTKQogCQlyZXR1cm4gcmV0OwogCXJldCA9IG52aWZfbXRoZChjdHJs
+LCBOVklGX0NPTlRST0xfUFNUQVRFX1VTRVIsICZhcmdzLCBzaXplb2YoYXJncykpOwogCXBtX3J1
+bnRpbWVfcHV0X2F1dG9zdXNwZW5kKGRybS0+ZGV2KTsKLS0gCjIuMTkuMQoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
