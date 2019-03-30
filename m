@@ -1,46 +1,43 @@
-From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 5.0 59/67] drm/nouveau/debugfs: Fix check
- of pm_runtime_get_sync failure
-Date: Fri, 29 Mar 2019 20:50:39 -0400
-Message-ID: <20190330005047.25998-59-sashal@kernel.org>
-References: <20190330005047.25998-1-sashal@kernel.org>
+From: Sasha Levin <sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 47/52] drm/nouveau/debugfs: Fix check of pm_runtime_get_sync failure
+Date: Fri, 29 Mar 2019 20:52:54 -0400
+Message-ID: <20190330005301.26868-47-sashal@kernel.org>
+References: <20190330005301.26868-1-sashal@kernel.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190330005047.25998-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, YueHaibing <yuehaibing-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Transfer-Encoding: 8bit
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20190330005301.26868-1-sashal@kernel.org>
+Sender: stable-owner@vger.kernel.org
+To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc: YueHaibing <yuehaibing@huawei.com>, Ben Skeggs <bskeggs@redhat.com>, Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogWXVlSGFpYmluZyA8eXVlaGFpYmluZ0BodWF3ZWkuY29tPgoKWyBVcHN0cmVhbSBjb21t
-aXQgOTA5ZTljOWM0MjgzNzZlMmE0M2QxNzhlZDRiMGEyZDViYTljYjdkMyBdCgpwbV9ydW50aW1l
-X2dldF9zeW5jIHJldHVybnMgbmVnYXRpdmUgb24gZmFpbHVyZS4KCkZpeGVzOiBlYWViOTAxMGJi
-NGIgKCJkcm0vbm91dmVhdS9kZWJ1Z2ZzOiBXYWtlIHVwIEdQVSBiZWZvcmUgZG9pbmcgYW55IHJl
-Y2xvY2tpbmciKQpTaWduZWQtb2ZmLWJ5OiBZdWVIYWliaW5nIDx5dWVoYWliaW5nQGh1YXdlaS5j
-b20+ClNpZ25lZC1vZmYtYnk6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KU2lnbmVk
-LW9mZi1ieTogU2FzaGEgTGV2aW4gPHNhc2hhbEBrZXJuZWwub3JnPgotLS0KIGRyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfZGVidWdmcy5jIHwgMiArLQogMSBmaWxlIGNoYW5nZWQsIDEg
-aW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9kZWJ1Z2ZzLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
-ZWF1X2RlYnVnZnMuYwppbmRleCA4OGE1MmY2YjM5ZmUuLjdkZmJiYmMxYmVlYSAxMDA2NDQKLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kZWJ1Z2ZzLmMKKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kZWJ1Z2ZzLmMKQEAgLTE4MSw3ICsxODEsNyBAQCBu
-b3V2ZWF1X2RlYnVnZnNfcHN0YXRlX3NldChzdHJ1Y3QgZmlsZSAqZmlsZSwgY29uc3QgY2hhciBf
-X3VzZXIgKnVidWYsCiAJfQogCiAJcmV0ID0gcG1fcnVudGltZV9nZXRfc3luYyhkcm0tPmRldik7
-Ci0JaWYgKElTX0VSUl9WQUxVRShyZXQpICYmIHJldCAhPSAtRUFDQ0VTKQorCWlmIChyZXQgPCAw
-ICYmIHJldCAhPSAtRUFDQ0VTKQogCQlyZXR1cm4gcmV0OwogCXJldCA9IG52aWZfbXRoZChjdHJs
-LCBOVklGX0NPTlRST0xfUFNUQVRFX1VTRVIsICZhcmdzLCBzaXplb2YoYXJncykpOwogCXBtX3J1
-bnRpbWVfcHV0X2F1dG9zdXNwZW5kKGRybS0+ZGV2KTsKLS0gCjIuMTkuMQoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+From: YueHaibing <yuehaibing@huawei.com>
+
+[ Upstream commit 909e9c9c428376e2a43d178ed4b0a2d5ba9cb7d3 ]
+
+pm_runtime_get_sync returns negative on failure.
+
+Fixes: eaeb9010bb4b ("drm/nouveau/debugfs: Wake up GPU before doing any reclocking")
+Signed-off-by: YueHaibing <yuehaibing@huawei.com>
+Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_debugfs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+index 9109b69cd052..9635704a1d86 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
++++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+@@ -161,7 +161,7 @@ nouveau_debugfs_pstate_set(struct file *file, const char __user *ubuf,
+ 	}
+ 
+ 	ret = pm_runtime_get_sync(drm->dev);
+-	if (IS_ERR_VALUE(ret) && ret != -EACCES)
++	if (ret < 0 && ret != -EACCES)
+ 		return ret;
+ 	ret = nvif_mthd(ctrl, NVIF_CONTROL_PSTATE_USER, &args, sizeof(args));
+ 	pm_runtime_put_autosuspend(drm->dev);
+-- 
+2.19.1
