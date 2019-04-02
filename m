@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109952] Possible nv106 nv108 confusion ;
- different bugs too
-Date: Tue, 02 Apr 2019 12:00:44 +0000
-Message-ID: <bug-109952-8800-YMPCUzmPZk@http.bugs.freedesktop.org/>
-References: <bug-109952-8800@http.bugs.freedesktop.org/>
+From: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Questions on GPU syncpoint handling from inside the GPU
+Date: Tue, 2 Apr 2019 11:11:49 -0400
+Message-ID: <CA+MSTo9rS0orUXA2eAqmi8x143zL8y7xSs3zx4kTemRv9sWf4g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1399681049=="
+Content-Type: multipart/mixed; boundary="===============2122960962=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109952-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,86 +17,38 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============2122960962==
+Content-Type: multipart/alternative; boundary="00000000000007805805858d8fce"
 
---===============1399681049==
-Content-Type: multipart/alternative; boundary="15542064441.9a9C63.8771"
-Content-Transfer-Encoding: 7bit
-
-
---15542064441.9a9C63.8771
-Date: Tue, 2 Apr 2019 12:00:44 +0000
-MIME-Version: 1.0
+--00000000000007805805858d8fce
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109952
+Hi guys how are you doing? I have some questions on how the GPU handles
+syncpoints from the commandlist.
 
-moebius <moebius1-GANU6spQydw@public.gmane.org> changed:
+I do know the register 0xB2 is the one written in the Maxwell3D Engine. As
+far as I know bits 0:15 are the syncpoint id, bit 16 is unknown for me, bit
+20 is increment? What other bits are set and what should be done on
+increment?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Possible nv106 nv108        |Possible nv106 nv108
-                   |confusion ; different bugs  |confusion ; different bugs
-                   |                            |too
+Thanks in advance.
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15542064441.9a9C63.8771
-Date: Tue, 2 Apr 2019 12:00:44 +0000
-MIME-Version: 1.0
+--00000000000007805805858d8fce
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:moebius1&=
-#64;free.fr" title=3D"moebius &lt;moebius1&#64;free.fr&gt;"> <span class=3D=
-"fn">moebius</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Possible nv106 nv108 confusion ; different bugs too"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109952">bug 10995=
-2</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+<div dir=3D"ltr">Hi guys how are you doing? I have some questions on how th=
+e GPU handles syncpoints from the commandlist.<div><br></div><div>I do know=
+ the register 0xB2 is the one written in the Maxwell3D Engine. As far as I =
+know bits 0:15 are the syncpoint id, bit 16 is unknown for me, bit 20 is in=
+crement? What other bits are set and what should be done on increment?<div =
+dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><d=
+iv dir=3D"ltr"></div></div></div><div><br></div><div>Thanks in advance.</di=
+v></div>
 
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>Possible nv106 nv108 confusion ; different bugs
-           </td>
-           <td>Possible nv106 nv108 confusion ; different bugs too
-           </td>
-         </tr></table>
-      <p>
-      </p>
+--00000000000007805805858d8fce--
 
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15542064441.9a9C63.8771--
-
---===============1399681049==
+--===============2122960962==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +58,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1399681049==--
+--===============2122960962==--
