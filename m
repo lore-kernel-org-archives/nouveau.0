@@ -1,79 +1,152 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH] pci/quirks: Add quirk to reset nvgpu at boot for the
- Lenovo ThinkPad P50
-Date: Wed, 03 Apr 2019 13:27:25 -0400
-Message-ID: <59dbed40fc0fad4a945cbfe09c9f622b81c7bd94.camel@redhat.com>
-References: <20190212220230.1568-1-lyude@redhat.com>
-         <20190215004329.GR96272@google.com>
-         <2fca9a9feafcd17b27bc71994a71ebc241a93e9a.camel@redhat.com>
-         <52b17f8cb24e179e9661d75548d193843ae87b4c.camel@redhat.com>
-         <20190321224819.GK251185@google.com> <20190322113015.GM251185@google.com>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] drm/nouveau/i2c: Disable i2c bus access after
+ ->fini()
+Date: Wed,  3 Apr 2019 18:37:28 -0400
+Message-ID: <20190403223732.30876-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190322113015.GM251185@google.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: David Ober <dober@lenovo.com>, linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Karol Herbst <kherbst@redhat.com>, Ben Skeggs <skeggsb@gmail.com>, stable@vger.kernel.org, linux-kernel@vger.kernel.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi, any update on this/do you guys need any more information here? Would very
-much like to get this upstream
-
-On Fri, 2019-03-22 at 06:30 -0500, Bjorn Helgaas wrote:
-> On Thu, Mar 21, 2019 at 05:48:19PM -0500, Bjorn Helgaas wrote:
-> > On Wed, Mar 13, 2019 at 06:25:02PM -0400, Lyude Paul wrote:
-> > > On Fri, 2019-02-15 at 16:17 -0500, Lyude Paul wrote:
-> > > > On Thu, 2019-02-14 at 18:43 -0600, Bjorn Helgaas wrote:
-> > > > > On Tue, Feb 12, 2019 at 05:02:30PM -0500, Lyude Paul wrote:
-> > > > > > On a very specific subset of ThinkPad P50 SKUs, particularly
-> > > > > > ones that come with a Quadro M1000M chip instead of the M2000M
-> > > > > > variant, the BIOS seems to have a very nasty habit of not
-> > > > > > always resetting the secondary Nvidia GPU between full reboots
-> > > > > > if the laptop is configured in Hybrid Graphics mode. The
-> > > > > > reason for this happening is unknown, but the following steps
-> > > > > > and possibly a good bit of patience will reproduce the issue:
-> > > > > > 
-> > > > > > 1. Boot up the laptop normally in Hybrid graphics mode
-> > > > > > 2. Make sure nouveau is loaded and that the GPU is awake
-> > > > > > 2. Allow the nvidia GPU to runtime suspend itself after being idle
-> > > > > > 3. Reboot the machine, the more sudden the better (e.g sysrq-b may
-> > > > > > help)
-> > > > > > 4. If nouveau loads up properly, reboot the machine again and go
-> > > > > > back to
-> > > > > > step 2 until you reproduce the issue
-> > > > > > 
-> > > > > > This results in some very strange behavior: the GPU will quite
-> > > > > > literally be left in exactly the same state it was in when the
-> > > > > > previously booted kernel started the reboot. This has all
-> > > > > > sorts of bad sideaffects: for starters, this completely breaks
-> > > > > > nouveau starting with a mysterious EVO channel failure that
-> > > > > > happens well before we've actually used the EVO channel for
-> > > > > > anything:
-> > 
-> > Thanks for the hybrid tutorial (snipped from this response).  IIUC,
-> > what you said was that in hybrid mode, the Intel GPU drives the
-> > built-in display and the Nvidia GPU drives any external displays and
-> > may be used for DRI PRIME rendering (whatever that is).  But since you
-> > say the Nvidia device gets runtime suspended, I assume there's no
-> > external display here and you're not using DRI PRIME.
-> > 
-> > I wonder if it's related to the fact that the Nvidia GPU has been
-> > runtime suspended before you do the reboot.  Can you try turning of
-> > runtime power management for the GPU by setting the runpm module
-> > parameter to 0?  I *think* this would be booting with
-> > "nouveau.runpm=0".
-> 
-> Sorry, I wasn't really thinking here.  You already *said* this is
-> related to runtime suspend.  It only happens when the Nvidia GPU has
-> been suspended.
-> 
-> I don't know that much about suspend, but ISTR seeing comments about
-> resuming devices before we shutdown.  If we do that, maybe there's
-> some kind of race between that resume and the reboot?
-> 
-> Bjorn
--- 
-Cheers,
-	Lyude Paul
+Rm9yIGEgd2hpbGUsIHdlJ3ZlIGhhZCB0aGUgcHJvYmxlbSBvZiBpMmMgYnVzIGFjY2VzcyBub3Qg
+Z3JhYmJpbmcKYSBydW50aW1lIFBNIHJlZiB3aGVuIGl0J3MgYmVpbmcgdXNlZCBpbiB1c2Vyc3Bh
+Y2UgYnkgaTJjLWRldiwgcmVzdWx0aW5nCmluIG5vdXZlYXUgc3BhbW1pbmcgdGhlIGtlcm5lbCBs
+b2cgd2l0aCBlcnJvcnMgaWYgYW55dGhpbmcgYXR0ZW1wdHMgdG8KYWNjZXNzIHRoZSBpMmMgYnVz
+IHdoaWxlIHRoZSBHUFUgaXMgaW4gcnVudGltZSBzdXNwZW5kLiBBbiBleGFtcGxlOgoKWyAgMTMw
+LjA3ODM4Nl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGkyYzogYXV4IDAwMGQ6IGJlZ2luIGlkbGUg
+dGltZW91dCBmZmZmZmZmZgoKU2luY2UgdGhlIEdQVSBpcyBpbiBydW50aW1lIHN1c3BlbmQsIHRo
+ZSBNTUlPIHJlZ2lvbiB0aGF0IHRoZSBpMmMgYnVzIGlzCm9uIGlzbid0IGFjY2Vzc2libGUuIE9u
+IHg4NiwgdGhlIHN0YW5kYXJkIGJlaGF2aW9yIGZvciBhY2Nlc3NpbmcgYW4KdW5hdmFpbGFibGUg
+TU1JTyByZWdpb24gaXMgdG8ganVzdCByZXR1cm4gfjAuCgpFeGNlcHQsIHRoYXQgdHVybmVkIG91
+dCB0byBiZSBhIGxpZS4gV2hpbGUgY29tcHV0ZXJzIHdpdGggYSBjbGVhbgpjb25jaW91cyB3aWxs
+IHJldHVybiB+MCBpbiB0aGlzIHNjZW5hcmlvLCBzb21lIG1hY2hpbmVzIHdpbGwgYWN0dWFsbHkK
+Y29tcGxldGVseSBoYW5nIGEgQ1BVIG9uIGNlcnRpYW4gYmFkIE1NSU8gYWNjZXNzZXMuIFRoaXMg
+d2FzIHdpdG5lc3NlZAp3aXRoIHNvbWVvbmUncyBMZW5vdm8gVGhpbmtQYWQgUDUwLCB3aGVyZSBz
+ZW5zb3JzLWRldGVjdCBhdHRlbXB0aW5nIHRvCmFjY2VzcyB0aGUgaTJjIGJ1cyB3aGlsZSB0aGUg
+R1BVIHdhcyBzdXNwZW5kZWQgd291bGQgcmVzdWx0IGluIGEgQ1BVCmhhbmc6CgogIENQVTogNSBQ
+SUQ6IDEyNDM4IENvbW06IHNlbnNvcnMtZGV0ZWN0IE5vdCB0YWludGVkIDUuMC4wLTAucmM0Lmdp
+dDMuMS5mYzMwLng4Nl82NCAjMQogIEhhcmR3YXJlIG5hbWU6IExFTk9WTyAyMEVRUzY0TjE3LzIw
+RVFTNjROMTcsIEJJT1MgTjFFRVQ3NFcgKDEuNDcgKSAxMS8yMS8yMDE3CiAgUklQOiAwMDEwOmlv
+cmVhZDMyKzB4MmIvMHgzMAogIENvZGU6IDgxIGZmIGZmIGZmIDAzIDAwIDc3IDIwIDQ4IDgxIGZm
+IDAwIDAwIDAxIDAwIDc2IDA1IDBmIGI3IGQ3IGVkIGMzCiAgNDggYzcgYzYgZTEgMGMgMzYgOTYg
+ZTggMmQgZmYgZmYgZmYgYjggZmYgZmYgZmYgZmYgYzMgOGIgMDcgPGMzPiAwZiAxZgogIDQwIDAw
+IDQ5IDg5IGYwIDQ4IDgxIGZlIGZmIGZmIDAzIDAwIDc2IDA0IDQwIDg4IDNlIGMzIDQ4CiAgUlNQ
+OiAwMDE4OmZmZmZhYWMzYzUwMDdiNDggRUZMQUdTOiAwMDAwMDI5MiBPUklHX1JBWDogZmZmZmZm
+ZmZmZmZmZmYxMwogIFJBWDogMDAwMDAwMDAwMTExMTAwMCBSQlg6IDAwMDAwMDAwMDExMTEwMDAg
+UkNYOiAwMDAwMDQzMDE3YTk3MTg2CiAgUkRYOiAwMDAwMDAwMDAwMDAwYWFhIFJTSTogMDAwMDAw
+MDAwMDAwMDAwNSBSREk6IGZmZmZhYWMzYzQwMGU0ZTQKICBSQlA6IGZmZmY5ZTY0NDM5MDJjMDAg
+UjA4OiBmZmZmYWFjM2M0MDBlNGU0IFIwOTogZmZmZmFhYzNjNTAwN2JlNwogIFIxMDogMDAwMDAw
+MDAwMDAwMDAwNCBSMTE6IDAwMDAwMDAwMDAwMDAwMDEgUjEyOiBmZmZmOWU2NDQ1ZGQwMDAwCiAg
+UjEzOiAwMDAwMDAwMDAwMDBlNGU0IFIxNDogMDAwMDAwMDAwMDAwMDNjNCBSMTU6IDAwMDAwMDAw
+MDAwMDAwMDAKICBGUzogIDAwMDA3ZjI1MzE1NWE3NDAoMDAwMCkgR1M6ZmZmZjllNjQ0ZjYwMDAw
+MCgwMDAwKSBrbmxHUzowMDAwMDAwMDAwMDAwMDAwCiAgQ1M6ICAwMDEwIERTOiAwMDAwIEVTOiAw
+MDAwIENSMDogMDAwMDAwMDA4MDA1MDAzMwogIENSMjogMDAwMDU2MzBkMTUwMDM1OCBDUjM6IDAw
+MDAwMDA0MTdjNDQwMDYgQ1I0OiAwMDAwMDAwMDAwMzYwNmUwCiAgRFIwOiAwMDAwMDAwMDAwMDAw
+MDAwIERSMTogMDAwMDAwMDAwMDAwMDAwMCBEUjI6IDAwMDAwMDAwMDAwMDAwMDAKICBEUjM6IDAw
+MDAwMDAwMDAwMDAwMDAgRFI2OiAwMDAwMDAwMGZmZmUwZmYwIERSNzogMDAwMDAwMDAwMDAwMDQw
+MAogIENhbGwgVHJhY2U6CiAgIGc5NF9pMmNfYXV4X3hmZXIrMHgzMjYvMHg4NTAgW25vdXZlYXVd
+CiAgIG52a21faTJjX2F1eF9pMmNfeGZlcisweDllLzB4MTQwIFtub3V2ZWF1XQogICBfX2kyY190
+cmFuc2ZlcisweDE0Yi8weDYyMAogICBpMmNfc21idXNfeGZlcl9lbXVsYXRlZCsweDE1OS8weDY4
+MAogICA/IF9yYXdfc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSsweDEvMHg2MAogICA/IHJ0X211dGV4
+X3Nsb3dsb2NrLmNvbnN0cHJvcC4wKzB4MTNkLzB4MWUwCiAgID8gX19sb2NrX2lzX2hlbGQrMHg1
+OS8weGEwCiAgIF9faTJjX3NtYnVzX3hmZXIrMHgxMzgvMHg1YTAKICAgaTJjX3NtYnVzX3hmZXIr
+MHg0Zi8weDgwCiAgIGkyY2Rldl9pb2N0bF9zbWJ1cysweDE2Mi8weDJkMCBbaTJjX2Rldl0KICAg
+aTJjZGV2X2lvY3RsKzB4MWRiLzB4MmMwIFtpMmNfZGV2XQogICBkb192ZnNfaW9jdGwrMHg0MDgv
+MHg3NTAKICAga3N5c19pb2N0bCsweDVlLzB4OTAKICAgX194NjRfc3lzX2lvY3RsKzB4MTYvMHgy
+MAogICBkb19zeXNjYWxsXzY0KzB4NjAvMHgxZTAKICAgZW50cnlfU1lTQ0FMTF82NF9hZnRlcl9o
+d2ZyYW1lKzB4NDkvMHhiZQogIFJJUDogMDAzMzoweDdmMjUzMTdmNTQ2YgogIENvZGU6IDBmIDFl
+IGZhIDQ4IDhiIDA1IDFkIGRhIDBjIDAwIDY0IGM3IDAwIDI2IDAwIDAwIDAwIDQ4IGM3IGMwIGZm
+IGZmCiAgZmYgZmYgYzMgNjYgMGYgMWYgNDQgMDAgMDAgZjMgMGYgMWUgZmEgYjggMTAgMDAgMDAg
+MDAgMGYgMDUgPDQ4PiAzZCAwMQogIGYwIGZmIGZmIDczIDAxIGMzIDQ4IDhiIDBkIGVkIGQ5IDBj
+IDAwIGY3IGQ4IDY0IDg5IDAxIDQ4CiAgUlNQOiAwMDJiOjAwMDA3ZmZjODhjYWFiNjggRUZMQUdT
+OiAwMDAwMDI0NiBPUklHX1JBWDogMDAwMDAwMDAwMDAwMDAxMAogIFJBWDogZmZmZmZmZmZmZmZm
+ZmZkYSBSQlg6IDAwMDA1NjMwZDBmZTcyNjAgUkNYOiAwMDAwN2YyNTMxN2Y1NDZiCiAgUkRYOiAw
+MDAwNTYzMGQxNTk4ZTgwIFJTSTogMDAwMDAwMDAwMDAwMDcyMCBSREk6IDAwMDAwMDAwMDAwMDAw
+MDMKICBSQlA6IDAwMDA1NjMwZDE1NWI5NjggUjA4OiAwMDAwMDAwMDAwMDAwMDAxIFIwOTogMDAw
+MDU2MzBkMTVhMWRhMAogIFIxMDogMDAwMDAwMDAwMDAwMDA3MCBSMTE6IDAwMDAwMDAwMDAwMDAy
+NDYgUjEyOiAwMDAwNTYzMGQxNTk4ZTgwCiAgUjEzOiAwMDAwNTYzMGQxMmYzZDI4IFIxNDogMDAw
+MDAwMDAwMDAwMDcyMCBSMTU6IDAwMDA1NjMwZDEyZjNjZTAKICB3YXRjaGRvZzogQlVHOiBzb2Z0
+IGxvY2t1cCAtIENQVSM1IHN0dWNrIGZvciAyM3MhIFtzZW5zb3JzLWRldGVjdDoxMjQzOF0KCllp
+a2VzISBXaGlsZSBJIHdhbnRlZCB0byB0cnkgdG8gbWFrZSBpdCBzbyB0aGF0IGFjY2Vzc2luZyBh
+biBpMmMgYnVzIG9uCm5vdXZlYXUgd291bGQgd2FrZSB1cCB0aGUgR1BVIGFzIG5lZWRlZCwgYWly
+bGllZCBwb2ludGVkIG91dCB0aGF0IHByZXR0eQptdWNoIGFueSB1c2VjYXNlIGZvciB1c2Vyc3Bh
+Y2UgYWNjZXNzaW5nIGFuIGkyYyBidXMgb24gYSBHUFUgKG1haW5seSBmb3IKdGhlIEREQyBicmln
+aHRuZXNzIGNvbnRyb2wgdGhhdCBzb21lIGRpc3BsYXlzIGhhdmUpIGlzIGdvaW5nIHRvIG9ubHkg
+YmUKdXNlZnVsIHdoaWxlIHRoZXJlJ3MgYXQgbGVhc3Qgb25lIGRpc3BsYXkgZW5hYmxlZCBvbiB0
+aGUgR1BVIGFueXdheSwgYW5kCnRoZSBHUFUgbmV2ZXIgc2xlZXBzIHdoaWxlIHRoZXJlJ3MgZGlz
+cGxheXMgcnVubmluZy4KClNpbmNlIHRlYWNoaW5nIHRoZSBpMmMgYnVzIHRvIHdha2UgdXAgdGhl
+IEdQVSBvbiB1c2Vyc3BhY2UgYWNjZXNzZXMgaXMgYQpnb29kIGRlYWwgbW9yZSBkaWZmaWN1bHQg
+dGhhbiBpdCBtaWdodCBzZWVtLCBtb3N0bHkgZHVlIHRvIHRoZSBmYWN0IHRoYXQKd2UgaGF2ZSB0
+byB1c2UgdGhlIGkyYyBidXMgZHVyaW5nIHJ1bnRpbWUgcmVzdW1lIG9mIHRoZSBHUFUsIHdlIGlu
+c3RlYWQKb3B0IGZvciB0aGUgZWFzaWVzdCBzb2x1dGlvbjogZG9uJ3QgbGV0IHVzZXJzcGFjZSBh
+Y2Nlc3MgaTJjIGJ1c3NlcyBvbgp0aGUgR1BVIGF0IGFsbCB3aGlsZSBpdCdzIGluIHJ1bnRpbWUg
+c3VzcGVuZC4KClNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkNj
+OiBzdGFibGVAdmdlci5rZXJuZWwub3JnCi0tLQogLi4uL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRl
+L252a20vc3ViZGV2L2kyYy5oIHwgIDEgKwogLi4uL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRl
+di9pMmMvYmFzZS5jICAgIHwgIDUgKysrKysKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20v
+c3ViZGV2L2kyYy9idXMuYyB8IDIxICsrKysrKysrKysrKysrKysrKy0KIGRyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L252a20vc3ViZGV2L2kyYy9idXMuaCB8ICAxICsKIDQgZmlsZXMgY2hhbmdlZCwg
+MjcgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvaTJjLmggYi9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2kyYy5oCmluZGV4IGVlZjU0ZTliNWQ3Ny4uN2M0
+NTA1NmM0N2RkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252
+a20vc3ViZGV2L2kyYy5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZr
+bS9zdWJkZXYvaTJjLmgKQEAgLTM2LDYgKzM2LDcgQEAgc3RydWN0IG52a21faTJjX2J1cyB7CiAJ
+aW50IGlkOwogCiAJc3RydWN0IG11dGV4IG11dGV4OworCXU4IGVuYWJsZWQ7CiAJc3RydWN0IGxp
+c3RfaGVhZCBoZWFkOwogCXN0cnVjdCBpMmNfYWRhcHRlciBpMmM7CiB9OwpkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaTJjL2Jhc2UuYyBiL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2kyYy9iYXNlLmMKaW5kZXggNGYxOTdiMTVhY2Y2
+Li41NGQ5ODgyZjk5MzEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20v
+c3ViZGV2L2kyYy9iYXNlLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJk
+ZXYvaTJjL2Jhc2UuYwpAQCAtMTYwLDggKzE2MCwxMyBAQCBudmttX2kyY19maW5pKHN0cnVjdCBu
+dmttX3N1YmRldiAqc3ViZGV2LCBib29sIHN1c3BlbmQpCiB7CiAJc3RydWN0IG52a21faTJjICpp
+MmMgPSBudmttX2kyYyhzdWJkZXYpOwogCXN0cnVjdCBudmttX2kyY19wYWQgKnBhZDsKKwlzdHJ1
+Y3QgbnZrbV9pMmNfYnVzICpidXM7CiAJdTMyIG1hc2s7CiAKKwlsaXN0X2Zvcl9lYWNoX2VudHJ5
+KGJ1cywgJmkyYy0+YnVzLCBoZWFkKSB7CisJCW52a21faTJjX2J1c19maW5pKGJ1cyk7CisJfQor
+CiAJaWYgKChtYXNrID0gKDEgPDwgaTJjLT5mdW5jLT5hdXgpIC0gMSksIGkyYy0+ZnVuYy0+YXV4
+X3N0YXQpIHsKIAkJaTJjLT5mdW5jLT5hdXhfbWFzayhpMmMsIE5WS01fSTJDX0FOWSwgbWFzaywg
+MCk7CiAJCWkyYy0+ZnVuYy0+YXV4X3N0YXQoaTJjLCAmbWFzaywgJm1hc2ssICZtYXNrLCAmbWFz
+ayk7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pMmMv
+YnVzLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pMmMvYnVzLmMKaW5k
+ZXggODA3YTJiNjdiZDY0Li5lZDUwY2MzNzM2YjkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9ub3V2ZWF1L252a20vc3ViZGV2L2kyYy9idXMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9udmttL3N1YmRldi9pMmMvYnVzLmMKQEAgLTExMCw2ICsxMTAsMTkgQEAgbnZrbV9pMmNf
+YnVzX2luaXQoc3RydWN0IG52a21faTJjX2J1cyAqYnVzKQogCUJVU19UUkFDRShidXMsICJpbml0
+Iik7CiAJaWYgKGJ1cy0+ZnVuYy0+aW5pdCkKIAkJYnVzLT5mdW5jLT5pbml0KGJ1cyk7CisKKwlt
+dXRleF9sb2NrKCZidXMtPm11dGV4KTsKKwlidXMtPmVuYWJsZWQgPSB0cnVlOworCW11dGV4X3Vu
+bG9jaygmYnVzLT5tdXRleCk7Cit9CisKK3ZvaWQKK252a21faTJjX2J1c19maW5pKHN0cnVjdCBu
+dmttX2kyY19idXMgKmJ1cykKK3sKKwlCVVNfVFJBQ0UoYnVzLCAiZmluaSIpOworCW11dGV4X2xv
+Y2soJmJ1cy0+bXV0ZXgpOworCWJ1cy0+ZW5hYmxlZCA9IGZhbHNlOworCW11dGV4X3VubG9jaygm
+YnVzLT5tdXRleCk7CiB9CiAKIHZvaWQKQEAgLTEyNiw5ICsxMzksMTUgQEAgbnZrbV9pMmNfYnVz
+X2FjcXVpcmUoc3RydWN0IG52a21faTJjX2J1cyAqYnVzKQogewogCXN0cnVjdCBudmttX2kyY19w
+YWQgKnBhZCA9IGJ1cy0+cGFkOwogCWludCByZXQ7CisKIAlCVVNfVFJBQ0UoYnVzLCAiYWNxdWly
+ZSIpOwogCW11dGV4X2xvY2soJmJ1cy0+bXV0ZXgpOwotCXJldCA9IG52a21faTJjX3BhZF9hY3F1
+aXJlKHBhZCwgTlZLTV9JMkNfUEFEX0kyQyk7CisKKwlpZiAoYnVzLT5lbmFibGVkKQorCQlyZXQg
+PSBudmttX2kyY19wYWRfYWNxdWlyZShwYWQsIE5WS01fSTJDX1BBRF9JMkMpOworCWVsc2UKKwkJ
+cmV0ID0gLUVJTzsKKwogCWlmIChyZXQpCiAJCW11dGV4X3VubG9jaygmYnVzLT5tdXRleCk7CiAJ
+cmV0dXJuIHJldDsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3Vi
+ZGV2L2kyYy9idXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2kyYy9i
+dXMuaAppbmRleCBiZWEwZGQzMzk2MWUuLjQ2NTQ2NGJiYTU4YiAxMDA2NDQKLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaTJjL2J1cy5oCisrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2kyYy9idXMuaApAQCAtMTgsNiArMTgsNyBAQCBpbnQg
+bnZrbV9pMmNfYnVzX25ld18oY29uc3Qgc3RydWN0IG52a21faTJjX2J1c19mdW5jICosIHN0cnVj
+dCBudmttX2kyY19wYWQgKiwKIAkJICAgICAgaW50IGlkLCBzdHJ1Y3QgbnZrbV9pMmNfYnVzICoq
+KTsKIHZvaWQgbnZrbV9pMmNfYnVzX2RlbChzdHJ1Y3QgbnZrbV9pMmNfYnVzICoqKTsKIHZvaWQg
+bnZrbV9pMmNfYnVzX2luaXQoc3RydWN0IG52a21faTJjX2J1cyAqKTsKK3ZvaWQgbnZrbV9pMmNf
+YnVzX2Zpbmkoc3RydWN0IG52a21faTJjX2J1cyAqKTsKIAogaW50IG52a21faTJjX2JpdF94ZmVy
+KHN0cnVjdCBudmttX2kyY19idXMgKiwgc3RydWN0IGkyY19tc2cgKiwgaW50KTsKIAotLSAKMi4y
+MC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
