@@ -1,105 +1,79 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108857] display becomes unresponsive and keyboard
- input fails
-Date: Tue, 02 Apr 2019 18:16:01 +0000
-Message-ID: <bug-108857-8800-KXAizVhPTI@http.bugs.freedesktop.org/>
-References: <bug-108857-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH] pci/quirks: Add quirk to reset nvgpu at boot for the
+ Lenovo ThinkPad P50
+Date: Wed, 03 Apr 2019 13:27:25 -0400
+Message-ID: <59dbed40fc0fad4a945cbfe09c9f622b81c7bd94.camel@redhat.com>
+References: <20190212220230.1568-1-lyude@redhat.com>
+         <20190215004329.GR96272@google.com>
+         <2fca9a9feafcd17b27bc71994a71ebc241a93e9a.camel@redhat.com>
+         <52b17f8cb24e179e9661d75548d193843ae87b4c.camel@redhat.com>
+         <20190321224819.GK251185@google.com> <20190322113015.GM251185@google.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1207668732=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108857-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190322113015.GM251185@google.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: David Ober <dober@lenovo.com>, linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Karol Herbst <kherbst@redhat.com>, Ben Skeggs <skeggsb@gmail.com>, stable@vger.kernel.org, linux-kernel@vger.kernel.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>
 List-Id: nouveau.vger.kernel.org
 
+Hi, any update on this/do you guys need any more information here? Would very
+much like to get this upstream
 
---===============1207668732==
-Content-Type: multipart/alternative; boundary="15542289612.d3Bb01EB1.24567"
-Content-Transfer-Encoding: 7bit
-
-
---15542289612.d3Bb01EB1.24567
-Date: Tue, 2 Apr 2019 18:16:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108857
-
---- Comment #8 from c_norman-/E1597aS9LQAvxtiuMwx3w@public.gmane.org ---
-Deleted that kernel version in my previous comment:
-
- 5.0.5-200.fc29.x86_64
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15542289612.d3Bb01EB1.24567
-Date: Tue, 2 Apr 2019 18:16:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - display becomes unresponsive and keyboard input fails"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108857#c8">Commen=
-t # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - display becomes unresponsive and keyboard input fails"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108857">bug 10885=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-c_norman&#64;yahoo.com" title=3D"c_norman&#64;yahoo.com">c_norman&#64;yahoo=
-.com</a>
-</span></b>
-        <pre>Deleted that kernel version in my previous comment:
-
- 5.0.5-200.fc29.x86_64</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15542289612.d3Bb01EB1.24567--
-
---===============1207668732==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1207668732==--
+On Fri, 2019-03-22 at 06:30 -0500, Bjorn Helgaas wrote:
+> On Thu, Mar 21, 2019 at 05:48:19PM -0500, Bjorn Helgaas wrote:
+> > On Wed, Mar 13, 2019 at 06:25:02PM -0400, Lyude Paul wrote:
+> > > On Fri, 2019-02-15 at 16:17 -0500, Lyude Paul wrote:
+> > > > On Thu, 2019-02-14 at 18:43 -0600, Bjorn Helgaas wrote:
+> > > > > On Tue, Feb 12, 2019 at 05:02:30PM -0500, Lyude Paul wrote:
+> > > > > > On a very specific subset of ThinkPad P50 SKUs, particularly
+> > > > > > ones that come with a Quadro M1000M chip instead of the M2000M
+> > > > > > variant, the BIOS seems to have a very nasty habit of not
+> > > > > > always resetting the secondary Nvidia GPU between full reboots
+> > > > > > if the laptop is configured in Hybrid Graphics mode. The
+> > > > > > reason for this happening is unknown, but the following steps
+> > > > > > and possibly a good bit of patience will reproduce the issue:
+> > > > > > 
+> > > > > > 1. Boot up the laptop normally in Hybrid graphics mode
+> > > > > > 2. Make sure nouveau is loaded and that the GPU is awake
+> > > > > > 2. Allow the nvidia GPU to runtime suspend itself after being idle
+> > > > > > 3. Reboot the machine, the more sudden the better (e.g sysrq-b may
+> > > > > > help)
+> > > > > > 4. If nouveau loads up properly, reboot the machine again and go
+> > > > > > back to
+> > > > > > step 2 until you reproduce the issue
+> > > > > > 
+> > > > > > This results in some very strange behavior: the GPU will quite
+> > > > > > literally be left in exactly the same state it was in when the
+> > > > > > previously booted kernel started the reboot. This has all
+> > > > > > sorts of bad sideaffects: for starters, this completely breaks
+> > > > > > nouveau starting with a mysterious EVO channel failure that
+> > > > > > happens well before we've actually used the EVO channel for
+> > > > > > anything:
+> > 
+> > Thanks for the hybrid tutorial (snipped from this response).  IIUC,
+> > what you said was that in hybrid mode, the Intel GPU drives the
+> > built-in display and the Nvidia GPU drives any external displays and
+> > may be used for DRI PRIME rendering (whatever that is).  But since you
+> > say the Nvidia device gets runtime suspended, I assume there's no
+> > external display here and you're not using DRI PRIME.
+> > 
+> > I wonder if it's related to the fact that the Nvidia GPU has been
+> > runtime suspended before you do the reboot.  Can you try turning of
+> > runtime power management for the GPU by setting the runpm module
+> > parameter to 0?  I *think* this would be booting with
+> > "nouveau.runpm=0".
+> 
+> Sorry, I wasn't really thinking here.  You already *said* this is
+> related to runtime suspend.  It only happens when the Nvidia GPU has
+> been suspended.
+> 
+> I don't know that much about suspend, but ISTR seeing comments about
+> resuming devices before we shutdown.  If we do that, maybe there's
+> some kind of race between that resume and the reboot?
+> 
+> Bjorn
+-- 
+Cheers,
+	Lyude Paul
