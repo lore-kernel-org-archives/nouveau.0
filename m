@@ -1,69 +1,133 @@
-From: Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [PATCH] drm/nouveau: Remove duplicate ACPI_VIDEO_NOTIFY_PROBE
- definition
-Date: Thu, 4 Apr 2019 15:51:16 +0200
-Message-ID: <e03eeb0f-a95a-97cb-6459-11c3356a0d9d@redhat.com>
-References: <20190404134943.149428-1-helgaas@kernel.org>
+From: Bjorn Helgaas <helgaas@kernel.org>
+Subject: Re: [PATCH] pci/quirks: Add quirk to reset nvgpu at boot for the
+ Lenovo ThinkPad P50
+Date: Thu, 4 Apr 2019 09:17:24 -0500
+Message-ID: <20190404141724.GJ141706@google.com>
+References: <20190212220230.1568-1-lyude@redhat.com>
+ <20190215004329.GR96272@google.com>
+ <2fca9a9feafcd17b27bc71994a71ebc241a93e9a.camel@redhat.com>
+ <52b17f8cb24e179e9661d75548d193843ae87b4c.camel@redhat.com>
+ <20190321224819.GK251185@google.com>
+ <20190322113015.GM251185@google.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190404134943.149428-1-helgaas@kernel.org>
-Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Bjorn Helgaas <helgaas@kernel.org>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20190322113015.GM251185@google.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Lyude Paul <lyude@redhat.com>
+Cc: Karol Herbst <kherbst@redhat.com>, linux-pci@vger.kernel.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>, stable@vger.kernel.org, David Ober <dober@lenovo.com>, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Hi,
-
-On 04-04-19 15:49, Bjorn Helgaas wrote:
-> From: Bjorn Helgaas <bhelgaas@google.com>
-> 
-> Commit 3a6536c51d5d ("drm/nouveau: Intercept ACPI_VIDEO_NOTIFY_PROBE")
-> added a definition of ACPI_VIDEO_NOTIFY_PROBE because <acpi/video.h> didn't
-> supply one.  Later, commit eff4a751cce5 ("ACPI / video: Move
-> ACPI_VIDEO_NOTIFY_* defines to acpi/video.h") moved ACPI_VIDEO_NOTIFY_PROBE
-> and other definitions to <acpi/video.h>, so the copy in nouveau_display.c
-> is now unnecessary.
-> 
-> Remove the unnecessary definition from nouveau_display.c.
-> 
-> Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
-> CC: Hans de Goede <hdegoede@redhat.com>
-
-Thank you for cleaning this up:
-
-Acked-by: Hans de Goede <hdegoede@redhat.com>
-
-Regards,
-
-Hans
-
-
-
-> ---
->   drivers/gpu/drm/nouveau/nouveau_display.c | 9 ---------
->   1 file changed, 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-> index 55c0fa451163..832da8e0020d 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-> @@ -358,15 +358,6 @@ nouveau_display_hpd_work(struct work_struct *work)
->   
->   #ifdef CONFIG_ACPI
->   
-> -/*
-> - * Hans de Goede: This define belongs in acpi/video.h, I've submitted a patch
-> - * to the acpi subsys to move it there from drivers/acpi/acpi_video.c .
-> - * This should be dropped once that is merged.
-> - */
-> -#ifndef ACPI_VIDEO_NOTIFY_PROBE
-> -#define ACPI_VIDEO_NOTIFY_PROBE			0x81
-> -#endif
-> -
->   static int
->   nouveau_display_acpi_ntfy(struct notifier_block *nb, unsigned long val,
->   			  void *data)
-> 
+WytjYyBIYW5zLCBhdXRob3Igb2YgMGIyZmU2NTk0ZmEyICgiZHJtL25vdXZlYXU6IFF1ZXVlIGhw
+ZF93b3JrIG9uIChydW50aW1lKSByZXN1bWUiKV0KCk9uIEZyaSwgTWFyIDIyLCAyMDE5IGF0IDA2
+OjMwOjE1QU0gLTA1MDAsIEJqb3JuIEhlbGdhYXMgd3JvdGU6Cj4gT24gVGh1LCBNYXIgMjEsIDIw
+MTkgYXQgMDU6NDg6MTlQTSAtMDUwMCwgQmpvcm4gSGVsZ2FhcyB3cm90ZToKPiA+IE9uIFdlZCwg
+TWFyIDEzLCAyMDE5IGF0IDA2OjI1OjAyUE0gLTA0MDAsIEx5dWRlIFBhdWwgd3JvdGU6Cj4gPiA+
+IE9uIEZyaSwgMjAxOS0wMi0xNSBhdCAxNjoxNyAtMDUwMCwgTHl1ZGUgUGF1bCB3cm90ZToKPiA+
+ID4gPiBPbiBUaHUsIDIwMTktMDItMTQgYXQgMTg6NDMgLTA2MDAsIEJqb3JuIEhlbGdhYXMgd3Jv
+dGU6Cj4gPiA+ID4gPiBPbiBUdWUsIEZlYiAxMiwgMjAxOSBhdCAwNTowMjozMFBNIC0wNTAwLCBM
+eXVkZSBQYXVsIHdyb3RlOgo+ID4gPiA+ID4gPiBPbiBhIHZlcnkgc3BlY2lmaWMgc3Vic2V0IG9m
+IFRoaW5rUGFkIFA1MCBTS1VzLCBwYXJ0aWN1bGFybHkKPiA+ID4gPiA+ID4gb25lcyB0aGF0IGNv
+bWUgd2l0aCBhIFF1YWRybyBNMTAwME0gY2hpcCBpbnN0ZWFkIG9mIHRoZSBNMjAwME0KPiA+ID4g
+PiA+ID4gdmFyaWFudCwgdGhlIEJJT1Mgc2VlbXMgdG8gaGF2ZSBhIHZlcnkgbmFzdHkgaGFiaXQg
+b2Ygbm90Cj4gPiA+ID4gPiA+IGFsd2F5cyByZXNldHRpbmcgdGhlIHNlY29uZGFyeSBOdmlkaWEg
+R1BVIGJldHdlZW4gZnVsbCByZWJvb3RzCj4gPiA+ID4gPiA+IGlmIHRoZSBsYXB0b3AgaXMgY29u
+ZmlndXJlZCBpbiBIeWJyaWQgR3JhcGhpY3MgbW9kZS4gVGhlCj4gPiA+ID4gPiA+IHJlYXNvbiBm
+b3IgdGhpcyBoYXBwZW5pbmcgaXMgdW5rbm93biwgYnV0IHRoZSBmb2xsb3dpbmcgc3RlcHMKPiA+
+ID4gPiA+ID4gYW5kIHBvc3NpYmx5IGEgZ29vZCBiaXQgb2YgcGF0aWVuY2Ugd2lsbCByZXByb2R1
+Y2UgdGhlIGlzc3VlOgo+ID4gPiA+ID4gPiAKPiA+ID4gPiA+ID4gMS4gQm9vdCB1cCB0aGUgbGFw
+dG9wIG5vcm1hbGx5IGluIEh5YnJpZCBncmFwaGljcyBtb2RlCj4gPiA+ID4gPiA+IDIuIE1ha2Ug
+c3VyZSBub3V2ZWF1IGlzIGxvYWRlZCBhbmQgdGhhdCB0aGUgR1BVIGlzIGF3YWtlCj4gPiA+ID4g
+PiA+IDIuIEFsbG93IHRoZSBudmlkaWEgR1BVIHRvIHJ1bnRpbWUgc3VzcGVuZCBpdHNlbGYgYWZ0
+ZXIgYmVpbmcgaWRsZQo+ID4gPiA+ID4gPiAzLiBSZWJvb3QgdGhlIG1hY2hpbmUsIHRoZSBtb3Jl
+IHN1ZGRlbiB0aGUgYmV0dGVyIChlLmcgc3lzcnEtYiBtYXkgaGVscCkKPiA+ID4gPiA+ID4gNC4g
+SWYgbm91dmVhdSBsb2FkcyB1cCBwcm9wZXJseSwgcmVib290IHRoZSBtYWNoaW5lIGFnYWluIGFu
+ZCBnbyBiYWNrIHRvCj4gPiA+ID4gPiA+IHN0ZXAgMiB1bnRpbCB5b3UgcmVwcm9kdWNlIHRoZSBp
+c3N1ZQo+ID4gPiA+ID4gPiAKPiA+ID4gPiA+ID4gVGhpcyByZXN1bHRzIGluIHNvbWUgdmVyeSBz
+dHJhbmdlIGJlaGF2aW9yOiB0aGUgR1BVIHdpbGwgcXVpdGUKPiA+ID4gPiA+ID4gbGl0ZXJhbGx5
+IGJlIGxlZnQgaW4gZXhhY3RseSB0aGUgc2FtZSBzdGF0ZSBpdCB3YXMgaW4gd2hlbiB0aGUKPiA+
+ID4gPiA+ID4gcHJldmlvdXNseSBib290ZWQga2VybmVsIHN0YXJ0ZWQgdGhlIHJlYm9vdC4gVGhp
+cyBoYXMgYWxsCj4gPiA+ID4gPiA+IHNvcnRzIG9mIGJhZCBzaWRlYWZmZWN0czogZm9yIHN0YXJ0
+ZXJzLCB0aGlzIGNvbXBsZXRlbHkgYnJlYWtzCj4gPiA+ID4gPiA+IG5vdXZlYXUgc3RhcnRpbmcg
+d2l0aCBhIG15c3RlcmlvdXMgRVZPIGNoYW5uZWwgZmFpbHVyZSB0aGF0Cj4gPiA+ID4gPiA+IGhh
+cHBlbnMgd2VsbCBiZWZvcmUgd2UndmUgYWN0dWFsbHkgdXNlZCB0aGUgRVZPIGNoYW5uZWwgZm9y
+Cj4gPiA+ID4gPiA+IGFueXRoaW5nOgo+ID4gCj4gPiBUaGFua3MgZm9yIHRoZSBoeWJyaWQgdHV0
+b3JpYWwgKHNuaXBwZWQgZnJvbSB0aGlzIHJlc3BvbnNlKS4gIElJVUMsCj4gPiB3aGF0IHlvdSBz
+YWlkIHdhcyB0aGF0IGluIGh5YnJpZCBtb2RlLCB0aGUgSW50ZWwgR1BVIGRyaXZlcyB0aGUKPiA+
+IGJ1aWx0LWluIGRpc3BsYXkgYW5kIHRoZSBOdmlkaWEgR1BVIGRyaXZlcyBhbnkgZXh0ZXJuYWwg
+ZGlzcGxheXMgYW5kCj4gPiBtYXkgYmUgdXNlZCBmb3IgRFJJIFBSSU1FIHJlbmRlcmluZyAod2hh
+dGV2ZXIgdGhhdCBpcykuICBCdXQgc2luY2UgeW91Cj4gPiBzYXkgdGhlIE52aWRpYSBkZXZpY2Ug
+Z2V0cyBydW50aW1lIHN1c3BlbmRlZCwgSSBhc3N1bWUgdGhlcmUncyBubwo+ID4gZXh0ZXJuYWwg
+ZGlzcGxheSBoZXJlIGFuZCB5b3UncmUgbm90IHVzaW5nIERSSSBQUklNRS4KPiA+IAo+ID4gSSB3
+b25kZXIgaWYgaXQncyByZWxhdGVkIHRvIHRoZSBmYWN0IHRoYXQgdGhlIE52aWRpYSBHUFUgaGFz
+IGJlZW4KPiA+IHJ1bnRpbWUgc3VzcGVuZGVkIGJlZm9yZSB5b3UgZG8gdGhlIHJlYm9vdC4gIENh
+biB5b3UgdHJ5IHR1cm5pbmcgb2YKPiA+IHJ1bnRpbWUgcG93ZXIgbWFuYWdlbWVudCBmb3IgdGhl
+IEdQVSBieSBzZXR0aW5nIHRoZSBydW5wbSBtb2R1bGUKPiA+IHBhcmFtZXRlciB0byAwPyAgSSAq
+dGhpbmsqIHRoaXMgd291bGQgYmUgYm9vdGluZyB3aXRoCj4gPiAibm91dmVhdS5ydW5wbT0wIi4K
+PiAKPiBTb3JyeSwgSSB3YXNuJ3QgcmVhbGx5IHRoaW5raW5nIGhlcmUuICBZb3UgYWxyZWFkeSAq
+c2FpZCogdGhpcyBpcwo+IHJlbGF0ZWQgdG8gcnVudGltZSBzdXNwZW5kLiAgSXQgb25seSBoYXBw
+ZW5zIHdoZW4gdGhlIE52aWRpYSBHUFUgaGFzCj4gYmVlbiBzdXNwZW5kZWQuCj4gCj4gSSBkb24n
+dCBrbm93IHRoYXQgbXVjaCBhYm91dCBzdXNwZW5kLCBidXQgSVNUUiBzZWVpbmcgY29tbWVudHMg
+YWJvdXQKPiByZXN1bWluZyBkZXZpY2VzIGJlZm9yZSB3ZSBzaHV0ZG93bi4gIElmIHdlIGRvIHRo
+YXQsIG1heWJlIHRoZXJlJ3MKPiBzb21lIGtpbmQgb2YgcmFjZSBiZXR3ZWVuIHRoYXQgcmVzdW1l
+IGFuZCB0aGUgcmVib290PwoKSSB0aGluayB3ZSBkbyBpbiBmYWN0IHJlc3VtZSBQQ0kgZGV2aWNl
+cyBiZWZvcmUgc2h1dGRvd24uICBIZXJlJ3MgdGhlCnBhdGggSSdtIGxvb2tpbmcgYXQ6CgogIGRl
+dmljZV9zaHV0ZG93bgogICAgcG1fcnVudGltZV9nZXRfbm9yZXN1bWUKICAgIHBtX3J1bnRpbWVf
+YmFycmllcgogICAgZGV2LT5idXMtPnNodXRkb3duCiAgICAgIHBjaV9kZXZpY2Vfc2h1dGRvd24K
+ICAgICAgICBwbV9ydW50aW1lX3Jlc3VtZQogICAgICAgICAgX19wbV9ydW50aW1lX3Jlc3VtZShk
+ZXYsIDApCiAgICAgICAgICAgIHJwbV9yZXN1bWUoZGV2LCAwKQogICAgICAgICAgICAgIF9fdXBk
+YXRlX3J1bnRpbWVfc3RhdHVzKGRldiwgUlBNX1JFU1VNSU5HKQogICAgICAgICAgICAgIGNhbGxi
+YWNrID0gUlBNX0dFVF9DQUxMQkFDSyhkZXYsIHJ1bnRpbWVfcmVzdW1lKQogICAgICAgICAgICAg
+IHJwbV9jYWxsYmFjayhjYWxsYmFjaywgZGV2KQogICAgICAgICAgICAgICAgX19ycG1fY2FsbGJh
+Y2sKICAgICAgICAgICAgICAgICAgcGNpX3BtX3J1bnRpbWVfcmVzdW1lCiAgICAgICAgICAgICAg
+ICAgICAgZHJ2LT5wbS0+cnVudGltZV9yZXN1bWUKICAgICAgICAgICAgICAgICAgICAgIG5vdXZl
+YXVfcG1vcHNfcnVudGltZV9yZXN1bWUKICAgICAgICAgICAgICAgICAgICAgICAgbm91dmVhdV9k
+b19yZXN1bWUKICAgICAgICAgICAgICAgICAgICAgICAgc2NoZWR1bGVfd29yayhocGRfd29yaykg
+ICAjIDwtLS0KICAgICAgICAgICAgICAgICAgICAgICAgLi4uCiAgICAgICAgICAgICAgICAgICAg
+ICAgIG5vdXZlYXVfZGlzcGxheV9ocGRfd29yawogICAgICAgICAgICAgICAgICAgICAgICAgIHBt
+X3J1bnRpbWVfZ2V0X3N5bmMKICAgICAgICAgICAgICAgICAgICAgICAgICBkcm1faGVscGVyX2hw
+ZF9pcnFfZXZlbnQKICAgICAgICAgICAgICAgICAgICAgICAgICBwbV9ydW50aW1lX21hcmtfbGFz
+dF9idXN5CiAgICAgICAgICAgICAgICAgICAgICAgICAgcG1fcnVudGltZV9wdXRfc3luYwoKSSdt
+IGN1cmlvdXMgYWJvdXQgdGhhdCAic2NoZWR1bGVfd29yayhocGRfd29yaykiIG5lYXIgdGhlIGVu
+ZCBiZWNhdXNlCm5vIG90aGVyIGRyaXZlcnMgc2VlbSB0byB1c2Ugc2NoZWR1bGVfd29yaygpIGlu
+IHRoZSBydW50aW1lX3Jlc3VtZQpwYXRoLCBhbmQgSSBkb24ndCBrbm93IGhvdyB0aGF0IHN5bmNo
+cm9uaXplcyB3aXRoIHRoZSBzaHV0ZG93bgpwcm9jZXNzLiAgSSBkb24ndCBzZWUgYW55dGhpbmcg
+dGhhdCB3YWl0cyBmb3IKbm91dmVhdV9kaXNwbGF5X2hwZF93b3JrKCkgdG8gY29tcGxldGUsIHNv
+IGl0IHNlZW1zIGxpa2Ugc29tZXRoaW5nCnRoYXQgY291bGQgYmUgYSByYWNlLgoKSSB3b25kZXIg
+dGhpcyBwcm9ibGVtIHdvdWxkIGJlIGVhc2llciB0byByZXByb2R1Y2UgaWYgeW91IGFkZGVkIGEK
+c2xlZXAgaW4gbm91dmVhdV9kaXNwbGF5X2hwZF93b3JrKCkgYXMgaW4gdGhlIGZpcnN0IGh1bmsg
+YmVsb3csIGFuZCBJCndvbmRlciBpZiB0aGUgcHJvYmxlbSB3b3VsZCB0aGVuIGdvIGF3YXkgaWYg
+eW91IHN0b3BwZWQgc2NoZWR1bGluZwpocGRfd29yayBhcyBpbiB0aGUgc2Vjb25kIGh1bms/ICBP
+YnZpb3VzbHkgdGhlIHNlY29uZCBodW5rIGlzbid0IGEKc29sdXRpb24sIGl0J3MganVzdCBhbiBh
+dHRlbXB0IHRvIGZpZ3VyZSBvdXQgaWYgSSdtIGxvb2tpbmcgaW4gdGhlCnJpZ2h0IGFyZWEuCgpC
+am9ybgoKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3Bs
+YXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCmluZGV4IDU1
+YzBmYTQ1MTE2My4uZTUwODA2MDEyZDQxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
+ZWF1X2Rpc3BsYXkuYwpAQCAtMzUwLDYgKzM1MCw3IEBAIG5vdXZlYXVfZGlzcGxheV9ocGRfd29y
+ayhzdHJ1Y3Qgd29ya19zdHJ1Y3QgKndvcmspCiAKIAlwbV9ydW50aW1lX2dldF9zeW5jKGRybS0+
+ZGV2LT5kZXYpOwogCisJbXNsZWVwKDIwMDApOwogCWRybV9oZWxwZXJfaHBkX2lycV9ldmVudChk
+cm0tPmRldik7CiAKIAlwbV9ydW50aW1lX21hcmtfbGFzdF9idXN5KGRybS0+ZGV2LT5kZXYpOwoK
+CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKaW5kZXggNTAyMDI2NWJmYmQ5Li40
+OGRhNzJjYWEwMTcgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
+ZHJtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwpAQCAtOTQ2
+LDkgKzk0Niw2IEBAIG5vdXZlYXVfcG1vcHNfcnVudGltZV9yZXN1bWUoc3RydWN0IGRldmljZSAq
+ZGV2KQogCW52aWZfbWFzaygmZGV2aWNlLT5vYmplY3QsIDB4MDg4NDg4LCAoMSA8PCAyNSksICgx
+IDw8IDI1KSk7CiAJZHJtX2Rldi0+c3dpdGNoX3Bvd2VyX3N0YXRlID0gRFJNX1NXSVRDSF9QT1dF
+Ul9PTjsKIAotCS8qIE1vbml0b3JzIG1heSBoYXZlIGJlZW4gY29ubmVjdGVkIC8gZGlzY29ubmVj
+dGVkIGR1cmluZyBzdXNwZW5kICovCi0Jc2NoZWR1bGVfd29yaygmbm91dmVhdV9kcm0oZHJtX2Rl
+diktPmhwZF93b3JrKTsKLQogCXJldHVybiByZXQ7CiB9CiAKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2
+ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
