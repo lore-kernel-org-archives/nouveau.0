@@ -1,15 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Questions on GPU syncpoint handling from inside the
- GPU
-Date: Wed, 10 Apr 2019 00:56:05 -0400
-Message-ID: <CAKb7Uvhk0=v0eE=oa6MV2NtJbbyk-nay2Da6dfp_ozisAZ7Myg@mail.gmail.com>
-References: <CA+MSTo9rS0orUXA2eAqmi8x143zL8y7xSs3zx4kTemRv9sWf4g@mail.gmail.com>
- <CA+MSTo9DMasRNuqZ3Lsw1TN9uwNM7xPPrhQRLtXMRGW8=mQNOg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 107325] Reported temperature of nvidia card with
+ nouveau driver is wrong
+Date: Wed, 10 Apr 2019 14:31:02 +0000
+Message-ID: <bug-107325-8800-L4J9Co1afv@http.bugs.freedesktop.org/>
+References: <bug-107325-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0581304682=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CA+MSTo9DMasRNuqZ3Lsw1TN9uwNM7xPPrhQRLtXMRGW8=mQNOg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-107325-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,36 +17,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgRmVybmFuZG8sCgpQZXJoYXBzIHlvdSBjYW4gZWxhYm9yYXRlPyBUaGUgcXVlc3Rpb24gZG9l
-c24ndCByZWFsbHkgbWFrZSBzZW5zZSB0byBtZS4KCldoYXQgcmVnaXN0ZXIgYXJlIHlvdSB0YWxr
-aW5nIGFib3V0PyBEbyB5b3UgcGVyaGFwcyBtZWFuIGEgbWV0aG9kIGNhbGwKaW4gdGhlIGIxOTcg
-Y2xhc3M/IChBbmQgd2hhdCdzIDB4QjI/IE1ldGhvZHMgYXJlIGFsd2F5cyBhdCBtdWx0aXBsZXMK
-b2YgNC4uLiBkbyB5b3UgbWVhbiAweDJjOCBwZXJoYXBzPyBJZiBzbywgdGhhdCdzIG5vdCBkb2N1
-bWVudGVkIHBvc3QKRmVybWkgaW4gdGhlIDNkIGNsYXNzLikgQW5kIGxhc3RseSwgd2hhdCBkbyB5
-b3UgbWVhbiBieSBzeW5jcG9pbnRzCmV4YWN0bHk/IFRoZXJlIGFyZSB2YXJpb3VzIGNsYXNzIG1l
-dGhvZHMgdGhhdCB3aWxsIGFsbG93IHlvdSB0byB3YWl0CmZvciBhIHZhbHVlIGluIG1lbW9yeSB0
-byBiZSBlcXVhbCAob3IgZ3JlYXRlcikgdGhhbiBhIHZhbHVlIGluIHRoZQpjb21tYW5kIHN0cmVh
-bSwgZm9yIGV4YW1wbGUgKGUuZy4gUVVFUllfR0VUIC0tIG1ldGhvZCAweDFiMGMsIG9yIHRoZQpm
-aWZvLWxldmVsIDB4MTAuLjB4MWMgU0VNQVBIT1JFXyogbWV0aG9kcykgLS0gaXMgdGhhdCB3aGF0
-IHlvdSdyZQp0YWxraW5nIGFib3V0PwoKICAtaWxpYQoKT24gVHVlLCBBcHIgOSwgMjAxOSBhdCA5
-OjQ2IFBNIEZlcm5hbmRvIFNhaG1rb3cgPGZzYWhta293MjdAZ21haWwuY29tPiB3cm90ZToKPgo+
-IGJ1bXAKPgo+IEVsIG1hci4sIDIgYWJyLiAyMDE5IGEgbGFzIDExOjExLCBGZXJuYW5kbyBTYWht
-a293ICg8ZnNhaG1rb3cyN0BnbWFpbC5jb20+KSBlc2NyaWJpw7M6Cj4+Cj4+IEhpIGd1eXMgaG93
-IGFyZSB5b3UgZG9pbmc/IEkgaGF2ZSBzb21lIHF1ZXN0aW9ucyBvbiBob3cgdGhlIEdQVSBoYW5k
-bGVzIHN5bmNwb2ludHMgZnJvbSB0aGUgY29tbWFuZGxpc3QuCj4+Cj4+IEkgZG8ga25vdyB0aGUg
-cmVnaXN0ZXIgMHhCMiBpcyB0aGUgb25lIHdyaXR0ZW4gaW4gdGhlIE1heHdlbGwzRCBFbmdpbmUu
-IEFzIGZhciBhcyBJIGtub3cgYml0cyAwOjE1IGFyZSB0aGUgc3luY3BvaW50IGlkLCBiaXQgMTYg
-aXMgdW5rbm93biBmb3IgbWUsIGJpdCAyMCBpcyBpbmNyZW1lbnQ/IFdoYXQgb3RoZXIgYml0cyBh
-cmUgc2V0IGFuZCB3aGF0IHNob3VsZCBiZSBkb25lIG9uIGluY3JlbWVudD8KPj4KPj4gVGhhbmtz
-IGluIGFkdmFuY2UuCj4KPgo+Cj4gLS0KPiBBdGVudGFtZW50ZSwKPiBGZXJuYW5kbyBBLiBTYWht
-a293Cj4gTcOzdmlsOiArNTg0MjQyMjgwMjg2Cj4gQ29ycmVvOiBmc2FobWtvdzI3QGdtYWlsLmNv
-bQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91
-dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+
+--===============0581304682==
+Content-Type: multipart/alternative; boundary="15549066622.EfDEB.11634"
+Content-Transfer-Encoding: 7bit
+
+
+--15549066622.EfDEB.11634
+Date: Wed, 10 Apr 2019 14:31:02 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107325
+
+--- Comment #6 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+this is a runtime suspend issue. While the GPU is suspended the temperature
+reading fails, but we don't actually check for that, so we return the error
+value (-1 & 0x1ff =3D 511).
+
+I think I had a patch for that somewhere, let me see.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15549066622.EfDEB.11634
+Date: Wed, 10 Apr 2019 14:31:02 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Reported temperature of nvidia card with nouveau driver i=
+s wrong"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107325#c6">Commen=
+t # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Reported temperature of nvidia card with nouveau driver i=
+s wrong"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107325">bug 10732=
+5</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+</span></b>
+        <pre>this is a runtime suspend issue. While the GPU is suspended th=
+e temperature
+reading fails, but we don't actually check for that, so we return the error
+value (-1 &amp; 0x1ff =3D 511).
+
+I think I had a patch for that somewhere, let me see.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15549066622.EfDEB.11634--
+
+--===============0581304682==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0581304682==--
