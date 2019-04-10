@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 107325] Reported temperature of nvidia card with
  nouveau driver is wrong
-Date: Wed, 10 Apr 2019 14:31:02 +0000
-Message-ID: <bug-107325-8800-L4J9Co1afv@http.bugs.freedesktop.org/>
+Date: Wed, 10 Apr 2019 14:34:26 +0000
+Message-ID: <bug-107325-8800-GR9aQ7t1BV@http.bugs.freedesktop.org/>
 References: <bug-107325-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0581304682=="
+Content-Type: multipart/mixed; boundary="===============0997604488=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-107325-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0581304682==
-Content-Type: multipart/alternative; boundary="15549066622.EfDEB.11634"
+--===============0997604488==
+Content-Type: multipart/alternative; boundary="15549068653.Cd69cCEc5.12641"
 Content-Transfer-Encoding: 7bit
 
 
---15549066622.EfDEB.11634
-Date: Wed, 10 Apr 2019 14:31:02 +0000
+--15549068653.Cd69cCEc5.12641
+Date: Wed, 10 Apr 2019 14:34:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D107325
 
---- Comment #6 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-this is a runtime suspend issue. While the GPU is suspended the temperature
-reading fails, but we don't actually check for that, so we return the error
-value (-1 & 0x1ff =3D 511).
-
-I think I had a patch for that somewhere, let me see.
+--- Comment #7 from Roy <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org> ---
+Will this bug interact with Lyude's recent patch, "drm/nouveau/i2c: Disable=
+ i2c
+bus access after ->fini()"?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15549066622.EfDEB.11634
-Date: Wed, 10 Apr 2019 14:31:02 +0000
+--15549068653.Cd69cCEc5.12641
+Date: Wed, 10 Apr 2019 14:34:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Reported temperature of nvidia card with nouveau driver i=
 s wrong"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107325#c6">Commen=
-t # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107325#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Reported temperature of nvidia card with nouveau driver i=
@@ -75,15 +73,12 @@ s wrong"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107325">bug 10732=
 5</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
-com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+nouveau&#64;spliet.org" title=3D"Roy &lt;nouveau&#64;spliet.org&gt;"> <span=
+ class=3D"fn">Roy</span></a>
 </span></b>
-        <pre>this is a runtime suspend issue. While the GPU is suspended th=
-e temperature
-reading fails, but we don't actually check for that, so we return the error
-value (-1 &amp; 0x1ff =3D 511).
-
-I think I had a patch for that somewhere, let me see.</pre>
+        <pre>Will this bug interact with Lyude's recent patch, &quot;drm/no=
+uveau/i2c: Disable i2c
+bus access after -&gt;fini()&quot;?</pre>
         </div>
       </p>
 
@@ -97,9 +92,9 @@ I think I had a patch for that somewhere, let me see.</pre>
     </body>
 </html>=
 
---15549066622.EfDEB.11634--
+--15549068653.Cd69cCEc5.12641--
 
---===============0581304682==
+--===============0997604488==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0581304682==--
+--===============0997604488==--
