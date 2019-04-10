@@ -1,13 +1,15 @@
-From: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Subject: Re: Questions on GPU syncpoint handling from inside the
  GPU
-Date: Tue, 9 Apr 2019 21:45:36 -0400
-Message-ID: <CA+MSTo9DMasRNuqZ3Lsw1TN9uwNM7xPPrhQRLtXMRGW8=mQNOg@mail.gmail.com>
+Date: Wed, 10 Apr 2019 00:56:05 -0400
+Message-ID: <CAKb7Uvhk0=v0eE=oa6MV2NtJbbyk-nay2Da6dfp_ozisAZ7Myg@mail.gmail.com>
 References: <CA+MSTo9rS0orUXA2eAqmi8x143zL8y7xSs3zx4kTemRv9sWf4g@mail.gmail.com>
+ <CA+MSTo9DMasRNuqZ3Lsw1TN9uwNM7xPPrhQRLtXMRGW8=mQNOg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0699856510=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CA+MSTo9rS0orUXA2eAqmi8x143zL8y7xSs3zx4kTemRv9sWf4g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CA+MSTo9DMasRNuqZ3Lsw1TN9uwNM7xPPrhQRLtXMRGW8=mQNOg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,76 +19,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0699856510==
-Content-Type: multipart/alternative; boundary="000000000000ee9a8e0586233b15"
-
---000000000000ee9a8e0586233b15
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-bump
-
-El mar., 2 abr. 2019 a las 11:11, Fernando Sahmkow (<fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>)
-escribi=C3=B3:
-
-> Hi guys how are you doing? I have some questions on how the GPU handles
-> syncpoints from the commandlist.
->
-> I do know the register 0xB2 is the one written in the Maxwell3D Engine. A=
-s
-> far as I know bits 0:15 are the syncpoint id, bit 16 is unknown for me, b=
-it
-> 20 is increment? What other bits are set and what should be done on
-> increment?
->
-> Thanks in advance.
->
-
-
---=20
-Atentamente,
-*Fernando A. Sahmkow*
-*M=C3=B3vil*: +584242280286
-*Correo*: fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---000000000000ee9a8e0586233b15
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">bump</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
-class=3D"gmail_attr">El mar., 2 abr. 2019 a las 11:11, Fernando Sahmkow (&l=
-t;<a href=3D"mailto:fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt;) esc=
-ribi=C3=B3:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
- dir=3D"ltr">Hi guys how are you doing? I have some questions on how the GP=
-U handles syncpoints from the commandlist.<div><br></div><div>I do know the=
- register 0xB2 is the one written in the Maxwell3D Engine. As far as I know=
- bits 0:15 are the syncpoint id, bit 16 is unknown for me, bit 20 is increm=
-ent? What other bits are set and what should be done on increment?<div dir=
-=3D"ltr" class=3D"gmail-m_-7001824509662224291gmail_signature"><div dir=3D"=
-ltr"></div></div></div><div><br></div><div>Thanks in advance.</div></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr"><div><div><div><div><div><div><=
-div>Atentamente,</div></div></div></div></div></div></div><div><span style=
-=3D"color:rgb(0,0,255)"><b>Fernando A. Sahmkow</b></span></div><div><b>M=C3=
-=B3vil</b>:=C2=A0<a value=3D"+584242280286" style=3D"color:rgb(17,85,204)">=
-+584242280286</a><br></div><b>Correo</b>:=C2=A0<a href=3D"mailto:fsahmkow27=
-@gmail.com" style=3D"color:rgb(17,85,204)" target=3D"_blank">fsahmkow27@gma=
-il.com</a></div></div>
-
---000000000000ee9a8e0586233b15--
-
---===============0699856510==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0699856510==--
+SGkgRmVybmFuZG8sCgpQZXJoYXBzIHlvdSBjYW4gZWxhYm9yYXRlPyBUaGUgcXVlc3Rpb24gZG9l
+c24ndCByZWFsbHkgbWFrZSBzZW5zZSB0byBtZS4KCldoYXQgcmVnaXN0ZXIgYXJlIHlvdSB0YWxr
+aW5nIGFib3V0PyBEbyB5b3UgcGVyaGFwcyBtZWFuIGEgbWV0aG9kIGNhbGwKaW4gdGhlIGIxOTcg
+Y2xhc3M/IChBbmQgd2hhdCdzIDB4QjI/IE1ldGhvZHMgYXJlIGFsd2F5cyBhdCBtdWx0aXBsZXMK
+b2YgNC4uLiBkbyB5b3UgbWVhbiAweDJjOCBwZXJoYXBzPyBJZiBzbywgdGhhdCdzIG5vdCBkb2N1
+bWVudGVkIHBvc3QKRmVybWkgaW4gdGhlIDNkIGNsYXNzLikgQW5kIGxhc3RseSwgd2hhdCBkbyB5
+b3UgbWVhbiBieSBzeW5jcG9pbnRzCmV4YWN0bHk/IFRoZXJlIGFyZSB2YXJpb3VzIGNsYXNzIG1l
+dGhvZHMgdGhhdCB3aWxsIGFsbG93IHlvdSB0byB3YWl0CmZvciBhIHZhbHVlIGluIG1lbW9yeSB0
+byBiZSBlcXVhbCAob3IgZ3JlYXRlcikgdGhhbiBhIHZhbHVlIGluIHRoZQpjb21tYW5kIHN0cmVh
+bSwgZm9yIGV4YW1wbGUgKGUuZy4gUVVFUllfR0VUIC0tIG1ldGhvZCAweDFiMGMsIG9yIHRoZQpm
+aWZvLWxldmVsIDB4MTAuLjB4MWMgU0VNQVBIT1JFXyogbWV0aG9kcykgLS0gaXMgdGhhdCB3aGF0
+IHlvdSdyZQp0YWxraW5nIGFib3V0PwoKICAtaWxpYQoKT24gVHVlLCBBcHIgOSwgMjAxOSBhdCA5
+OjQ2IFBNIEZlcm5hbmRvIFNhaG1rb3cgPGZzYWhta293MjdAZ21haWwuY29tPiB3cm90ZToKPgo+
+IGJ1bXAKPgo+IEVsIG1hci4sIDIgYWJyLiAyMDE5IGEgbGFzIDExOjExLCBGZXJuYW5kbyBTYWht
+a293ICg8ZnNhaG1rb3cyN0BnbWFpbC5jb20+KSBlc2NyaWJpw7M6Cj4+Cj4+IEhpIGd1eXMgaG93
+IGFyZSB5b3UgZG9pbmc/IEkgaGF2ZSBzb21lIHF1ZXN0aW9ucyBvbiBob3cgdGhlIEdQVSBoYW5k
+bGVzIHN5bmNwb2ludHMgZnJvbSB0aGUgY29tbWFuZGxpc3QuCj4+Cj4+IEkgZG8ga25vdyB0aGUg
+cmVnaXN0ZXIgMHhCMiBpcyB0aGUgb25lIHdyaXR0ZW4gaW4gdGhlIE1heHdlbGwzRCBFbmdpbmUu
+IEFzIGZhciBhcyBJIGtub3cgYml0cyAwOjE1IGFyZSB0aGUgc3luY3BvaW50IGlkLCBiaXQgMTYg
+aXMgdW5rbm93biBmb3IgbWUsIGJpdCAyMCBpcyBpbmNyZW1lbnQ/IFdoYXQgb3RoZXIgYml0cyBh
+cmUgc2V0IGFuZCB3aGF0IHNob3VsZCBiZSBkb25lIG9uIGluY3JlbWVudD8KPj4KPj4gVGhhbmtz
+IGluIGFkdmFuY2UuCj4KPgo+Cj4gLS0KPiBBdGVudGFtZW50ZSwKPiBGZXJuYW5kbyBBLiBTYWht
+a293Cj4gTcOzdmlsOiArNTg0MjQyMjgwMjg2Cj4gQ29ycmVvOiBmc2FobWtvdzI3QGdtYWlsLmNv
+bQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91
+dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
+bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
