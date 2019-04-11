@@ -1,247 +1,322 @@
-From: Lyude Paul <lyude@redhat.com>
+From: Ben Skeggs <skeggsb@gmail.com>
 Subject: Re: [PATCH v2] drm/nouveau/i2c: Disable i2c bus access after ->fini()
-Date: Thu, 11 Apr 2019 13:37:16 -0400
-Message-ID: <430ed8f2ecaf0706c81de0b4d787b9604e07cf0f.camel@redhat.com>
-References: <20190409202335.4190-1-lyude@redhat.com>
- <CACAvsv5woW9wr3JaKSOSSX8v4NACv5ubVyCoO9q9+OumspwsZQ@mail.gmail.com>
+Date: Fri, 12 Apr 2019 09:04:58 +1000
+Message-ID: <CACAvsv6Crk_0vX-g8E99CEeZ2a6c4QDLsDhf7zE_r=bFySmjpg@mail.gmail.com>
+References: <20190409202335.4190-1-lyude@redhat.com> <CACAvsv5woW9wr3JaKSOSSX8v4NACv5ubVyCoO9q9+OumspwsZQ@mail.gmail.com>
+ <430ed8f2ecaf0706c81de0b4d787b9604e07cf0f.camel@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CACAvsv5woW9wr3JaKSOSSX8v4NACv5ubVyCoO9q9+OumspwsZQ@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ben Skeggs <skeggsb@gmail.com>
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <430ed8f2ecaf0706c81de0b4d787b9604e07cf0f.camel@redhat.com>
+Sender: stable-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>
+Cc: nouveau@lists.freedesktop.org, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, stable@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCAyMDE5LTA0LTExIGF0IDA4OjQ4ICsxMDAwLCBCZW4gU2tlZ2dzIHdyb3RlOgo+IE9u
-IFdlZCwgMTAgQXByIDIwMTkgYXQgMDY6MjMsIEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+
-IHdyb3RlOgo+ID4gRm9yIGEgd2hpbGUsIHdlJ3ZlIGhhZCB0aGUgcHJvYmxlbSBvZiBpMmMgYnVz
-IGFjY2VzcyBub3QgZ3JhYmJpbmcKPiA+IGEgcnVudGltZSBQTSByZWYgd2hlbiBpdCdzIGJlaW5n
-IHVzZWQgaW4gdXNlcnNwYWNlIGJ5IGkyYy1kZXYsIHJlc3VsdGluZwo+ID4gaW4gbm91dmVhdSBz
-cGFtbWluZyB0aGUga2VybmVsIGxvZyB3aXRoIGVycm9ycyBpZiBhbnl0aGluZyBhdHRlbXB0cyB0
-bwo+ID4gYWNjZXNzIHRoZSBpMmMgYnVzIHdoaWxlIHRoZSBHUFUgaXMgaW4gcnVudGltZSBzdXNw
-ZW5kLiBBbiBleGFtcGxlOgo+ID4gCj4gPiBbICAxMzAuMDc4Mzg2XSBub3V2ZWF1IDAwMDA6MDE6
-MDAuMDogaTJjOiBhdXggMDAwZDogYmVnaW4gaWRsZSB0aW1lb3V0Cj4gPiBmZmZmZmZmZgo+ID4g
-Cj4gPiBTaW5jZSB0aGUgR1BVIGlzIGluIHJ1bnRpbWUgc3VzcGVuZCwgdGhlIE1NSU8gcmVnaW9u
-IHRoYXQgdGhlIGkyYyBidXMgaXMKPiA+IG9uIGlzbid0IGFjY2Vzc2libGUuIE9uIHg4NiwgdGhl
-IHN0YW5kYXJkIGJlaGF2aW9yIGZvciBhY2Nlc3NpbmcgYW4KPiA+IHVuYXZhaWxhYmxlIE1NSU8g
-cmVnaW9uIGlzIHRvIGp1c3QgcmV0dXJuIH4wLgo+ID4gCj4gPiBFeGNlcHQsIHRoYXQgdHVybmVk
-IG91dCB0byBiZSBhIGxpZS4gV2hpbGUgY29tcHV0ZXJzIHdpdGggYSBjbGVhbgo+ID4gY29uY2lv
-dXMgd2lsbCByZXR1cm4gfjAgaW4gdGhpcyBzY2VuYXJpbywgc29tZSBtYWNoaW5lcyB3aWxsIGFj
-dHVhbGx5Cj4gPiBjb21wbGV0ZWx5IGhhbmcgYSBDUFUgb24gY2VydGlhbiBiYWQgTU1JTyBhY2Nl
-c3Nlcy4gVGhpcyB3YXMgd2l0bmVzc2VkCj4gPiB3aXRoIHNvbWVvbmUncyBMZW5vdm8gVGhpbmtQ
-YWQgUDUwLCB3aGVyZSBzZW5zb3JzLWRldGVjdCBhdHRlbXB0aW5nIHRvCj4gPiBhY2Nlc3MgdGhl
-IGkyYyBidXMgd2hpbGUgdGhlIEdQVSB3YXMgc3VzcGVuZGVkIHdvdWxkIHJlc3VsdCBpbiBhIENQ
-VQo+ID4gaGFuZzoKPiA+IAo+ID4gICBDUFU6IDUgUElEOiAxMjQzOCBDb21tOiBzZW5zb3JzLWRl
-dGVjdCBOb3QgdGFpbnRlZCA1LjAuMC0KPiA+IDAucmM0LmdpdDMuMS5mYzMwLng4Nl82NCAjMQo+
-ID4gICBIYXJkd2FyZSBuYW1lOiBMRU5PVk8gMjBFUVM2NE4xNy8yMEVRUzY0TjE3LCBCSU9TIE4x
-RUVUNzRXICgxLjQ3ICkKPiA+IDExLzIxLzIwMTcKPiA+ICAgUklQOiAwMDEwOmlvcmVhZDMyKzB4
-MmIvMHgzMAo+ID4gICBDb2RlOiA4MSBmZiBmZiBmZiAwMyAwMCA3NyAyMCA0OCA4MSBmZiAwMCAw
-MCAwMSAwMCA3NiAwNSAwZiBiNyBkNyBlZCBjMwo+ID4gICA0OCBjNyBjNiBlMSAwYyAzNiA5NiBl
-OCAyZCBmZiBmZiBmZiBiOCBmZiBmZiBmZiBmZiBjMyA4YiAwNyA8YzM+IDBmIDFmCj4gPiAgIDQw
-IDAwIDQ5IDg5IGYwIDQ4IDgxIGZlIGZmIGZmIDAzIDAwIDc2IDA0IDQwIDg4IDNlIGMzIDQ4Cj4g
-PiAgIFJTUDogMDAxODpmZmZmYWFjM2M1MDA3YjQ4IEVGTEFHUzogMDAwMDAyOTIgT1JJR19SQVg6
-IGZmZmZmZmZmZmZmZmZmMTMKPiA+ICAgUkFYOiAwMDAwMDAwMDAxMTExMDAwIFJCWDogMDAwMDAw
-MDAwMTExMTAwMCBSQ1g6IDAwMDAwNDMwMTdhOTcxODYKPiA+ICAgUkRYOiAwMDAwMDAwMDAwMDAw
-YWFhIFJTSTogMDAwMDAwMDAwMDAwMDAwNSBSREk6IGZmZmZhYWMzYzQwMGU0ZTQKPiA+ICAgUkJQ
-OiBmZmZmOWU2NDQzOTAyYzAwIFIwODogZmZmZmFhYzNjNDAwZTRlNCBSMDk6IGZmZmZhYWMzYzUw
-MDdiZTcKPiA+ICAgUjEwOiAwMDAwMDAwMDAwMDAwMDA0IFIxMTogMDAwMDAwMDAwMDAwMDAwMSBS
-MTI6IGZmZmY5ZTY0NDVkZDAwMDAKPiA+ICAgUjEzOiAwMDAwMDAwMDAwMDBlNGU0IFIxNDogMDAw
-MDAwMDAwMDAwMDNjNCBSMTU6IDAwMDAwMDAwMDAwMDAwMDAKPiA+ICAgRlM6ICAwMDAwN2YyNTMx
-NTVhNzQwKDAwMDApIEdTOmZmZmY5ZTY0NGY2MDAwMDAoMDAwMCkKPiA+IGtubEdTOjAwMDAwMDAw
-MDAwMDAwMDAKPiA+ICAgQ1M6ICAwMDEwIERTOiAwMDAwIEVTOiAwMDAwIENSMDogMDAwMDAwMDA4
-MDA1MDAzMwo+ID4gICBDUjI6IDAwMDA1NjMwZDE1MDAzNTggQ1IzOiAwMDAwMDAwNDE3YzQ0MDA2
-IENSNDogMDAwMDAwMDAwMDM2MDZlMAo+ID4gICBEUjA6IDAwMDAwMDAwMDAwMDAwMDAgRFIxOiAw
-MDAwMDAwMDAwMDAwMDAwIERSMjogMDAwMDAwMDAwMDAwMDAwMAo+ID4gICBEUjM6IDAwMDAwMDAw
-MDAwMDAwMDAgRFI2OiAwMDAwMDAwMGZmZmUwZmYwIERSNzogMDAwMDAwMDAwMDAwMDQwMAo+ID4g
-ICBDYWxsIFRyYWNlOgo+ID4gICAgZzk0X2kyY19hdXhfeGZlcisweDMyNi8weDg1MCBbbm91dmVh
-dV0KPiA+ICAgIG52a21faTJjX2F1eF9pMmNfeGZlcisweDllLzB4MTQwIFtub3V2ZWF1XQo+ID4g
-ICAgX19pMmNfdHJhbnNmZXIrMHgxNGIvMHg2MjAKPiA+ICAgIGkyY19zbWJ1c194ZmVyX2VtdWxh
-dGVkKzB4MTU5LzB4NjgwCj4gPiAgICA/IF9yYXdfc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSsweDEv
-MHg2MAo+ID4gICAgPyBydF9tdXRleF9zbG93bG9jay5jb25zdHByb3AuMCsweDEzZC8weDFlMAo+
-ID4gICAgPyBfX2xvY2tfaXNfaGVsZCsweDU5LzB4YTAKPiA+ICAgIF9faTJjX3NtYnVzX3hmZXIr
-MHgxMzgvMHg1YTAKPiA+ICAgIGkyY19zbWJ1c194ZmVyKzB4NGYvMHg4MAo+ID4gICAgaTJjZGV2
-X2lvY3RsX3NtYnVzKzB4MTYyLzB4MmQwIFtpMmNfZGV2XQo+ID4gICAgaTJjZGV2X2lvY3RsKzB4
-MWRiLzB4MmMwIFtpMmNfZGV2XQo+ID4gICAgZG9fdmZzX2lvY3RsKzB4NDA4LzB4NzUwCj4gPiAg
-ICBrc3lzX2lvY3RsKzB4NWUvMHg5MAo+ID4gICAgX194NjRfc3lzX2lvY3RsKzB4MTYvMHgyMAo+
-ID4gICAgZG9fc3lzY2FsbF82NCsweDYwLzB4MWUwCj4gPiAgICBlbnRyeV9TWVNDQUxMXzY0X2Fm
-dGVyX2h3ZnJhbWUrMHg0OS8weGJlCj4gPiAgIFJJUDogMDAzMzoweDdmMjUzMTdmNTQ2Ygo+ID4g
-ICBDb2RlOiAwZiAxZSBmYSA0OCA4YiAwNSAxZCBkYSAwYyAwMCA2NCBjNyAwMCAyNiAwMCAwMCAw
-MCA0OCBjNyBjMCBmZiBmZgo+ID4gICBmZiBmZiBjMyA2NiAwZiAxZiA0NCAwMCAwMCBmMyAwZiAx
-ZSBmYSBiOCAxMCAwMCAwMCAwMCAwZiAwNSA8NDg+IDNkIDAxCj4gPiAgIGYwIGZmIGZmIDczIDAx
-IGMzIDQ4IDhiIDBkIGVkIGQ5IDBjIDAwIGY3IGQ4IDY0IDg5IDAxIDQ4Cj4gPiAgIFJTUDogMDAy
-YjowMDAwN2ZmYzg4Y2FhYjY4IEVGTEFHUzogMDAwMDAyNDYgT1JJR19SQVg6IDAwMDAwMDAwMDAw
-MDAwMTAKPiA+ICAgUkFYOiBmZmZmZmZmZmZmZmZmZmRhIFJCWDogMDAwMDU2MzBkMGZlNzI2MCBS
-Q1g6IDAwMDA3ZjI1MzE3ZjU0NmIKPiA+ICAgUkRYOiAwMDAwNTYzMGQxNTk4ZTgwIFJTSTogMDAw
-MDAwMDAwMDAwMDcyMCBSREk6IDAwMDAwMDAwMDAwMDAwMDMKPiA+ICAgUkJQOiAwMDAwNTYzMGQx
-NTViOTY4IFIwODogMDAwMDAwMDAwMDAwMDAwMSBSMDk6IDAwMDA1NjMwZDE1YTFkYTAKPiA+ICAg
-UjEwOiAwMDAwMDAwMDAwMDAwMDcwIFIxMTogMDAwMDAwMDAwMDAwMDI0NiBSMTI6IDAwMDA1NjMw
-ZDE1OThlODAKPiA+ICAgUjEzOiAwMDAwNTYzMGQxMmYzZDI4IFIxNDogMDAwMDAwMDAwMDAwMDcy
-MCBSMTU6IDAwMDA1NjMwZDEyZjNjZTAKPiA+ICAgd2F0Y2hkb2c6IEJVRzogc29mdCBsb2NrdXAg
-LSBDUFUjNSBzdHVjayBmb3IgMjNzISBbc2Vuc29ycy1kZXRlY3Q6MTI0MzhdCj4gPiAKPiA+IFlp
-a2VzISBXaGlsZSBJIHdhbnRlZCB0byB0cnkgdG8gbWFrZSBpdCBzbyB0aGF0IGFjY2Vzc2luZyBh
-biBpMmMgYnVzIG9uCj4gPiBub3V2ZWF1IHdvdWxkIHdha2UgdXAgdGhlIEdQVSBhcyBuZWVkZWQs
-IGFpcmxpZWQgcG9pbnRlZCBvdXQgdGhhdCBwcmV0dHkKPiA+IG11Y2ggYW55IHVzZWNhc2UgZm9y
-IHVzZXJzcGFjZSBhY2Nlc3NpbmcgYW4gaTJjIGJ1cyBvbiBhIEdQVSAobWFpbmx5IGZvcgo+ID4g
-dGhlIEREQyBicmlnaHRuZXNzIGNvbnRyb2wgdGhhdCBzb21lIGRpc3BsYXlzIGhhdmUpIGlzIGdv
-aW5nIHRvIG9ubHkgYmUKPiA+IHVzZWZ1bCB3aGlsZSB0aGVyZSdzIGF0IGxlYXN0IG9uZSBkaXNw
-bGF5IGVuYWJsZWQgb24gdGhlIEdQVSBhbnl3YXksIGFuZAo+ID4gdGhlIEdQVSBuZXZlciBzbGVl
-cHMgd2hpbGUgdGhlcmUncyBkaXNwbGF5cyBydW5uaW5nLgo+ID4gCj4gPiBTaW5jZSB0ZWFjaGlu
-ZyB0aGUgaTJjIGJ1cyB0byB3YWtlIHVwIHRoZSBHUFUgb24gdXNlcnNwYWNlIGFjY2Vzc2VzIGlz
-IGEKPiA+IGdvb2QgZGVhbCBtb3JlIGRpZmZpY3VsdCB0aGFuIGl0IG1pZ2h0IHNlZW0sIG1vc3Rs
-eSBkdWUgdG8gdGhlIGZhY3QgdGhhdAo+ID4gd2UgaGF2ZSB0byB1c2UgdGhlIGkyYyBidXMgZHVy
-aW5nIHJ1bnRpbWUgcmVzdW1lIG9mIHRoZSBHUFUsIHdlIGluc3RlYWQKPiA+IG9wdCBmb3IgdGhl
-IGVhc2llc3Qgc29sdXRpb246IGRvbid0IGxldCB1c2Vyc3BhY2UgYWNjZXNzIGkyYyBidXNzZXMg
-b24KPiA+IHRoZSBHUFUgYXQgYWxsIHdoaWxlIGl0J3MgaW4gcnVudGltZSBzdXNwZW5kLgo+ID4g
-Cj4gPiBDaGFuZ2VzIHNpbmNlIHYxOgo+ID4gKiBBbHNvIGRpc2FibGUgaTJjIGJ1c3NlcyB0aGF0
-IHJ1biBvdmVyIERQIEFVWAo+IEkndmUgdXBkYXRlZCBteSB0cmVlIHdpdGggdGhlIHYyIHZlcnNp
-b24gb2YgdGhlIHBhdGNoLiAgSSBoYXZlbid0Cj4gaW52ZXN0aWdhdGVkIHRvbyB0aG9yb3VnaGx5
-LCBidXQgc2hvdWxkbid0IGl0IGJlIHBvc3NpYmxlIHRvIG1vdmUgdGhpcwo+IGNoZWNrIGludG8g
-YSBzaW5nbGUgcGxhY2UgKHBhZF9hY3F1aXJlKCk/KSBmb3IgYm90aCBpMmMvYXV4PwoKVGhhdCBz
-aG91bGQgYmUgZmluZSBhcyBsb25nIGFzIHdlIGRvbid0IHVzZSBwYWRzIGluZGVwZW5kZW50bHkg
-b2YgdGhlaXIgaTJjCmJ1c3NlcyAoZS5nLiB3aXRoaW4gbnZrbSBmb3IgdGhlcm1hbCBzZW5zb3Jz
-IG9yIHRoZSBsaWtlKSwgYnV0IEkgZGlkbid0IHRha2UKdGhlIHRpbWUgdG8gY2hlY2sgd2hldGhl
-ciB0aGF0J3MgdHJ1ZSBvciBub3QuIERvIHlvdSBrbm93PwoKPiAKPiBUaGFua3MsCj4gQmVuLgo+
-IAo+ID4gU2lnbmVkLW9mZi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KPiA+IENj
-OiBzdGFibGVAdmdlci5rZXJuZWwub3JnCj4gPiAtLS0KPiA+ICAuLi4vZ3B1L2RybS9ub3V2ZWF1
-L2luY2x1ZGUvbnZrbS9zdWJkZXYvaTJjLmggfCAgMiArKwo+ID4gIGRyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L2kyYy9hdXguYyB8IDI2ICsrKysrKysrKysrKysrKysrKy0KPiA+
-ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pMmMvYXV4LmggfCAgMiArKwo+
-ID4gIC4uLi9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaTJjL2Jhc2UuYyAgICB8IDE1ICsr
-KysrKysrKysrCj4gPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaTJjL2J1
-cy5jIHwgMjEgKysrKysrKysrKysrKystCj4gPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvaTJjL2J1cy5oIHwgIDEgKwo+ID4gIDYgZmlsZXMgY2hhbmdlZCwgNjUgaW5zZXJ0
-aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPiA+IAo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvaTJjLmgKPiA+IGIvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9pMmMuaAo+ID4gaW5kZXggZWVmNTRlOWI1
-ZDc3Li43OTU3ZWFmYTVmMGUgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9pbmNsdWRlL252a20vc3ViZGV2L2kyYy5oCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2kyYy5oCj4gPiBAQCAtMzgsNiArMzgsNyBAQCBzdHJ1
-Y3QgbnZrbV9pMmNfYnVzIHsKPiA+ICAgICAgICAgc3RydWN0IG11dGV4IG11dGV4Owo+ID4gICAg
-ICAgICBzdHJ1Y3QgbGlzdF9oZWFkIGhlYWQ7Cj4gPiAgICAgICAgIHN0cnVjdCBpMmNfYWRhcHRl
-ciBpMmM7Cj4gPiArICAgICAgIHU4IGVuYWJsZWQ7Cj4gPiAgfTsKPiA+IAo+ID4gIGludCBudmtt
-X2kyY19idXNfYWNxdWlyZShzdHJ1Y3QgbnZrbV9pMmNfYnVzICopOwo+ID4gQEAgLTU3LDYgKzU4
-LDcgQEAgc3RydWN0IG52a21faTJjX2F1eCB7Cj4gPiAgICAgICAgIHN0cnVjdCBtdXRleCBtdXRl
-eDsKPiA+ICAgICAgICAgc3RydWN0IGxpc3RfaGVhZCBoZWFkOwo+ID4gICAgICAgICBzdHJ1Y3Qg
-aTJjX2FkYXB0ZXIgaTJjOwo+ID4gKyAgICAgICB1OCBlbmFibGVkOwo+ID4gCj4gPiAgICAgICAg
-IHUzMiBpbnRyOwo+ID4gIH07Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvaTJjL2F1eC5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
-a20vc3ViZGV2L2kyYy9hdXguYwo+ID4gaW5kZXggNGMxZjU0N2RhNDYzLi5iNGU3NDA0ZmU2NjAg
-MTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pMmMv
-YXV4LmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2kyYy9h
-dXguYwo+ID4gQEAgLTEwNSw5ICsxMDUsMTUgQEAgbnZrbV9pMmNfYXV4X2FjcXVpcmUoc3RydWN0
-IG52a21faTJjX2F1eCAqYXV4KQo+ID4gIHsKPiA+ICAgICAgICAgc3RydWN0IG52a21faTJjX3Bh
-ZCAqcGFkID0gYXV4LT5wYWQ7Cj4gPiAgICAgICAgIGludCByZXQ7Cj4gPiArCj4gPiAgICAgICAg
-IEFVWF9UUkFDRShhdXgsICJhY3F1aXJlIik7Cj4gPiAgICAgICAgIG11dGV4X2xvY2soJmF1eC0+
-bXV0ZXgpOwo+ID4gLSAgICAgICByZXQgPSBudmttX2kyY19wYWRfYWNxdWlyZShwYWQsIE5WS01f
-STJDX1BBRF9BVVgpOwo+ID4gKwo+ID4gKyAgICAgICBpZiAoYXV4LT5lbmFibGVkKQo+ID4gKyAg
-ICAgICAgICAgICAgIHJldCA9IG52a21faTJjX3BhZF9hY3F1aXJlKHBhZCwgTlZLTV9JMkNfUEFE
-X0FVWCk7Cj4gPiArICAgICAgIGVsc2UKPiA+ICsgICAgICAgICAgICAgICByZXQgPSAtRUlPOwo+
-ID4gKwo+ID4gICAgICAgICBpZiAocmV0KQo+ID4gICAgICAgICAgICAgICAgIG11dGV4X3VubG9j
-aygmYXV4LT5tdXRleCk7Cj4gPiAgICAgICAgIHJldHVybiByZXQ7Cj4gPiBAQCAtMTQ1LDYgKzE1
-MSwyNCBAQCBudmttX2kyY19hdXhfZGVsKHN0cnVjdCBudmttX2kyY19hdXggKipwYXV4KQo+ID4g
-ICAgICAgICB9Cj4gPiAgfQo+ID4gCj4gPiArdm9pZAo+ID4gK252a21faTJjX2F1eF9pbml0KHN0
-cnVjdCBudmttX2kyY19hdXggKmF1eCkKPiA+ICt7Cj4gPiArICAgICAgIEFVWF9UUkFDRShhdXgs
-ICJpbml0Iik7Cj4gPiArICAgICAgIG11dGV4X2xvY2soJmF1eC0+bXV0ZXgpOwo+ID4gKyAgICAg
-ICBhdXgtPmVuYWJsZWQgPSB0cnVlOwo+ID4gKyAgICAgICBtdXRleF91bmxvY2soJmF1eC0+bXV0
-ZXgpOwo+ID4gK30KPiA+ICsKPiA+ICt2b2lkCj4gPiArbnZrbV9pMmNfYXV4X2Zpbmkoc3RydWN0
-IG52a21faTJjX2F1eCAqYXV4KQo+ID4gK3sKPiA+ICsgICAgICAgQVVYX1RSQUNFKGF1eCwgImZp
-bmkiKTsKPiA+ICsgICAgICAgbXV0ZXhfbG9jaygmYXV4LT5tdXRleCk7Cj4gPiArICAgICAgIGF1
-eC0+ZW5hYmxlZCA9IGZhbHNlOwo+ID4gKyAgICAgICBtdXRleF91bmxvY2soJmF1eC0+bXV0ZXgp
-Owo+ID4gK30KPiA+ICsKPiA+ICBpbnQKPiA+ICBudmttX2kyY19hdXhfY3Rvcihjb25zdCBzdHJ1
-Y3QgbnZrbV9pMmNfYXV4X2Z1bmMgKmZ1bmMsCj4gPiAgICAgICAgICAgICAgICAgICBzdHJ1Y3Qg
-bnZrbV9pMmNfcGFkICpwYWQsIGludCBpZCwKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9udmttL3N1YmRldi9pMmMvYXV4LmgKPiA+IGIvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbnZrbS9zdWJkZXYvaTJjL2F1eC5oCj4gPiBpbmRleCA3ZDU2YzRiYTY5M2MuLjA4ZjZi
-MmVlNjRhYiAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L2kyYy9hdXguaAo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJk
-ZXYvaTJjL2F1eC5oCj4gPiBAQCAtMTYsNiArMTYsOCBAQCBpbnQgbnZrbV9pMmNfYXV4X2N0b3Io
-Y29uc3Qgc3RydWN0IG52a21faTJjX2F1eF9mdW5jICosCj4gPiBzdHJ1Y3QgbnZrbV9pMmNfcGFk
-ICosCj4gPiAgaW50IG52a21faTJjX2F1eF9uZXdfKGNvbnN0IHN0cnVjdCBudmttX2kyY19hdXhf
-ZnVuYyAqLCBzdHJ1Y3QKPiA+IG52a21faTJjX3BhZCAqLAo+ID4gICAgICAgICAgICAgICAgICAg
-ICAgIGludCBpZCwgc3RydWN0IG52a21faTJjX2F1eCAqKik7Cj4gPiAgdm9pZCBudmttX2kyY19h
-dXhfZGVsKHN0cnVjdCBudmttX2kyY19hdXggKiopOwo+ID4gK3ZvaWQgbnZrbV9pMmNfYXV4X2lu
-aXQoc3RydWN0IG52a21faTJjX2F1eCAqKTsKPiA+ICt2b2lkIG52a21faTJjX2F1eF9maW5pKHN0
-cnVjdCBudmttX2kyY19hdXggKik7Cj4gPiAgaW50IG52a21faTJjX2F1eF94ZmVyKHN0cnVjdCBu
-dmttX2kyY19hdXggKiwgYm9vbCByZXRyeSwgdTggdHlwZSwKPiA+ICAgICAgICAgICAgICAgICAg
-ICAgICB1MzIgYWRkciwgdTggKmRhdGEsIHU4ICpzaXplKTsKPiA+IAo+ID4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2kyYy9iYXNlLmMKPiA+IGIvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaTJjL2Jhc2UuYwo+ID4gaW5kZXggNGYx
-OTdiMTVhY2Y2Li5lY2FjYjIyODM0ZDcgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9udmttL3N1YmRldi9pMmMvYmFzZS5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9udmttL3N1YmRldi9pMmMvYmFzZS5jCj4gPiBAQCAtMTYwLDggKzE2MCwxOCBAQCBu
-dmttX2kyY19maW5pKHN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2LCBib29sCj4gPiBzdXNwZW5k
-KQo+ID4gIHsKPiA+ICAgICAgICAgc3RydWN0IG52a21faTJjICppMmMgPSBudmttX2kyYyhzdWJk
-ZXYpOwo+ID4gICAgICAgICBzdHJ1Y3QgbnZrbV9pMmNfcGFkICpwYWQ7Cj4gPiArICAgICAgIHN0
-cnVjdCBudmttX2kyY19idXMgKmJ1czsKPiA+ICsgICAgICAgc3RydWN0IG52a21faTJjX2F1eCAq
-YXV4Owo+ID4gICAgICAgICB1MzIgbWFzazsKPiA+IAo+ID4gKyAgICAgICBsaXN0X2Zvcl9lYWNo
-X2VudHJ5KGF1eCwgJmkyYy0+YXV4LCBoZWFkKSB7Cj4gPiArICAgICAgICAgICAgICAgbnZrbV9p
-MmNfYXV4X2ZpbmkoYXV4KTsKPiA+ICsgICAgICAgfQo+ID4gKwo+ID4gKyAgICAgICBsaXN0X2Zv
-cl9lYWNoX2VudHJ5KGJ1cywgJmkyYy0+YnVzLCBoZWFkKSB7Cj4gPiArICAgICAgICAgICAgICAg
-bnZrbV9pMmNfYnVzX2ZpbmkoYnVzKTsKPiA+ICsgICAgICAgfQo+ID4gKwo+ID4gICAgICAgICBp
-ZiAoKG1hc2sgPSAoMSA8PCBpMmMtPmZ1bmMtPmF1eCkgLSAxKSwgaTJjLT5mdW5jLT5hdXhfc3Rh
-dCkgewo+ID4gICAgICAgICAgICAgICAgIGkyYy0+ZnVuYy0+YXV4X21hc2soaTJjLCBOVktNX0ky
-Q19BTlksIG1hc2ssIDApOwo+ID4gICAgICAgICAgICAgICAgIGkyYy0+ZnVuYy0+YXV4X3N0YXQo
-aTJjLCAmbWFzaywgJm1hc2ssICZtYXNrLCAmbWFzayk7Cj4gPiBAQCAtMTgwLDYgKzE5MCw3IEBA
-IG52a21faTJjX2luaXQoc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYpCj4gPiAgICAgICAgIHN0
-cnVjdCBudmttX2kyYyAqaTJjID0gbnZrbV9pMmMoc3ViZGV2KTsKPiA+ICAgICAgICAgc3RydWN0
-IG52a21faTJjX2J1cyAqYnVzOwo+ID4gICAgICAgICBzdHJ1Y3QgbnZrbV9pMmNfcGFkICpwYWQ7
-Cj4gPiArICAgICAgIHN0cnVjdCBudmttX2kyY19hdXggKmF1eDsKPiA+IAo+ID4gICAgICAgICBs
-aXN0X2Zvcl9lYWNoX2VudHJ5KHBhZCwgJmkyYy0+cGFkLCBoZWFkKSB7Cj4gPiAgICAgICAgICAg
-ICAgICAgbnZrbV9pMmNfcGFkX2luaXQocGFkKTsKPiA+IEBAIC0xODksNiArMjAwLDEwIEBAIG52
-a21faTJjX2luaXQoc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYpCj4gPiAgICAgICAgICAgICAg
-ICAgbnZrbV9pMmNfYnVzX2luaXQoYnVzKTsKPiA+ICAgICAgICAgfQo+ID4gCj4gPiArICAgICAg
-IGxpc3RfZm9yX2VhY2hfZW50cnkoYXV4LCAmaTJjLT5hdXgsIGhlYWQpIHsKPiA+ICsgICAgICAg
-ICAgICAgICBudmttX2kyY19hdXhfaW5pdChhdXgpOwo+ID4gKyAgICAgICB9Cj4gPiArCj4gPiAg
-ICAgICAgIHJldHVybiAwOwo+ID4gIH0KPiA+IAo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2kyYy9idXMuYwo+ID4gYi9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9udmttL3N1YmRldi9pMmMvYnVzLmMKPiA+IGluZGV4IDgwN2EyYjY3YmQ2NC4uZWQ1
-MGNjMzczNmI5IDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvaTJjL2J1cy5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1
-YmRldi9pMmMvYnVzLmMKPiA+IEBAIC0xMTAsNiArMTEwLDE5IEBAIG52a21faTJjX2J1c19pbml0
-KHN0cnVjdCBudmttX2kyY19idXMgKmJ1cykKPiA+ICAgICAgICAgQlVTX1RSQUNFKGJ1cywgImlu
-aXQiKTsKPiA+ICAgICAgICAgaWYgKGJ1cy0+ZnVuYy0+aW5pdCkKPiA+ICAgICAgICAgICAgICAg
-ICBidXMtPmZ1bmMtPmluaXQoYnVzKTsKPiA+ICsKPiA+ICsgICAgICAgbXV0ZXhfbG9jaygmYnVz
-LT5tdXRleCk7Cj4gPiArICAgICAgIGJ1cy0+ZW5hYmxlZCA9IHRydWU7Cj4gPiArICAgICAgIG11
-dGV4X3VubG9jaygmYnVzLT5tdXRleCk7Cj4gPiArfQo+ID4gKwo+ID4gK3ZvaWQKPiA+ICtudmtt
-X2kyY19idXNfZmluaShzdHJ1Y3QgbnZrbV9pMmNfYnVzICpidXMpCj4gPiArewo+ID4gKyAgICAg
-ICBCVVNfVFJBQ0UoYnVzLCAiZmluaSIpOwo+ID4gKyAgICAgICBtdXRleF9sb2NrKCZidXMtPm11
-dGV4KTsKPiA+ICsgICAgICAgYnVzLT5lbmFibGVkID0gZmFsc2U7Cj4gPiArICAgICAgIG11dGV4
-X3VubG9jaygmYnVzLT5tdXRleCk7Cj4gPiAgfQo+ID4gCj4gPiAgdm9pZAo+ID4gQEAgLTEyNiw5
-ICsxMzksMTUgQEAgbnZrbV9pMmNfYnVzX2FjcXVpcmUoc3RydWN0IG52a21faTJjX2J1cyAqYnVz
-KQo+ID4gIHsKPiA+ICAgICAgICAgc3RydWN0IG52a21faTJjX3BhZCAqcGFkID0gYnVzLT5wYWQ7
-Cj4gPiAgICAgICAgIGludCByZXQ7Cj4gPiArCj4gPiAgICAgICAgIEJVU19UUkFDRShidXMsICJh
-Y3F1aXJlIik7Cj4gPiAgICAgICAgIG11dGV4X2xvY2soJmJ1cy0+bXV0ZXgpOwo+ID4gLSAgICAg
-ICByZXQgPSBudmttX2kyY19wYWRfYWNxdWlyZShwYWQsIE5WS01fSTJDX1BBRF9JMkMpOwo+ID4g
-Kwo+ID4gKyAgICAgICBpZiAoYnVzLT5lbmFibGVkKQo+ID4gKyAgICAgICAgICAgICAgIHJldCA9
-IG52a21faTJjX3BhZF9hY3F1aXJlKHBhZCwgTlZLTV9JMkNfUEFEX0kyQyk7Cj4gPiArICAgICAg
-IGVsc2UKPiA+ICsgICAgICAgICAgICAgICByZXQgPSAtRUlPOwo+ID4gKwo+ID4gICAgICAgICBp
-ZiAocmV0KQo+ID4gICAgICAgICAgICAgICAgIG11dGV4X3VubG9jaygmYnVzLT5tdXRleCk7Cj4g
-PiAgICAgICAgIHJldHVybiByZXQ7Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbnZrbS9zdWJkZXYvaTJjL2J1cy5oCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L252a20vc3ViZGV2L2kyYy9idXMuaAo+ID4gaW5kZXggYmVhMGRkMzM5NjFlLi40NjU0NjRiYmE1
-OGIgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9p
-MmMvYnVzLmgKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ky
-Yy9idXMuaAo+ID4gQEAgLTE4LDYgKzE4LDcgQEAgaW50IG52a21faTJjX2J1c19uZXdfKGNvbnN0
-IHN0cnVjdCBudmttX2kyY19idXNfZnVuYyAqLAo+ID4gc3RydWN0IG52a21faTJjX3BhZCAqLAo+
-ID4gICAgICAgICAgICAgICAgICAgICAgIGludCBpZCwgc3RydWN0IG52a21faTJjX2J1cyAqKik7
-Cj4gPiAgdm9pZCBudmttX2kyY19idXNfZGVsKHN0cnVjdCBudmttX2kyY19idXMgKiopOwo+ID4g
-IHZvaWQgbnZrbV9pMmNfYnVzX2luaXQoc3RydWN0IG52a21faTJjX2J1cyAqKTsKPiA+ICt2b2lk
-IG52a21faTJjX2J1c19maW5pKHN0cnVjdCBudmttX2kyY19idXMgKik7Cj4gPiAKPiA+ICBpbnQg
-bnZrbV9pMmNfYml0X3hmZXIoc3RydWN0IG52a21faTJjX2J1cyAqLCBzdHJ1Y3QgaTJjX21zZyAq
-LCBpbnQpOwo+ID4gCj4gPiAtLQo+ID4gMi4yMC4xCj4gPiAKPiA+IF9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiBkcmktZGV2ZWwgbWFpbGluZyBsaXN0
-Cj4gPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiBodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAotLSAKQ2hlZXJzLAoJTHl1
-ZGUgUGF1bAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-ZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
+On Fri, 12 Apr 2019 at 03:37, Lyude Paul <lyude@redhat.com> wrote:
+>
+> On Thu, 2019-04-11 at 08:48 +1000, Ben Skeggs wrote:
+> > On Wed, 10 Apr 2019 at 06:23, Lyude Paul <lyude@redhat.com> wrote:
+> > > For a while, we've had the problem of i2c bus access not grabbing
+> > > a runtime PM ref when it's being used in userspace by i2c-dev, resulting
+> > > in nouveau spamming the kernel log with errors if anything attempts to
+> > > access the i2c bus while the GPU is in runtime suspend. An example:
+> > >
+> > > [  130.078386] nouveau 0000:01:00.0: i2c: aux 000d: begin idle timeout
+> > > ffffffff
+> > >
+> > > Since the GPU is in runtime suspend, the MMIO region that the i2c bus is
+> > > on isn't accessible. On x86, the standard behavior for accessing an
+> > > unavailable MMIO region is to just return ~0.
+> > >
+> > > Except, that turned out to be a lie. While computers with a clean
+> > > concious will return ~0 in this scenario, some machines will actually
+> > > completely hang a CPU on certian bad MMIO accesses. This was witnessed
+> > > with someone's Lenovo ThinkPad P50, where sensors-detect attempting to
+> > > access the i2c bus while the GPU was suspended would result in a CPU
+> > > hang:
+> > >
+> > >   CPU: 5 PID: 12438 Comm: sensors-detect Not tainted 5.0.0-
+> > > 0.rc4.git3.1.fc30.x86_64 #1
+> > >   Hardware name: LENOVO 20EQS64N17/20EQS64N17, BIOS N1EET74W (1.47 )
+> > > 11/21/2017
+> > >   RIP: 0010:ioread32+0x2b/0x30
+> > >   Code: 81 ff ff ff 03 00 77 20 48 81 ff 00 00 01 00 76 05 0f b7 d7 ed c3
+> > >   48 c7 c6 e1 0c 36 96 e8 2d ff ff ff b8 ff ff ff ff c3 8b 07 <c3> 0f 1f
+> > >   40 00 49 89 f0 48 81 fe ff ff 03 00 76 04 40 88 3e c3 48
+> > >   RSP: 0018:ffffaac3c5007b48 EFLAGS: 00000292 ORIG_RAX: ffffffffffffff13
+> > >   RAX: 0000000001111000 RBX: 0000000001111000 RCX: 0000043017a97186
+> > >   RDX: 0000000000000aaa RSI: 0000000000000005 RDI: ffffaac3c400e4e4
+> > >   RBP: ffff9e6443902c00 R08: ffffaac3c400e4e4 R09: ffffaac3c5007be7
+> > >   R10: 0000000000000004 R11: 0000000000000001 R12: ffff9e6445dd0000
+> > >   R13: 000000000000e4e4 R14: 00000000000003c4 R15: 0000000000000000
+> > >   FS:  00007f253155a740(0000) GS:ffff9e644f600000(0000)
+> > > knlGS:0000000000000000
+> > >   CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> > >   CR2: 00005630d1500358 CR3: 0000000417c44006 CR4: 00000000003606e0
+> > >   DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+> > >   DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+> > >   Call Trace:
+> > >    g94_i2c_aux_xfer+0x326/0x850 [nouveau]
+> > >    nvkm_i2c_aux_i2c_xfer+0x9e/0x140 [nouveau]
+> > >    __i2c_transfer+0x14b/0x620
+> > >    i2c_smbus_xfer_emulated+0x159/0x680
+> > >    ? _raw_spin_unlock_irqrestore+0x1/0x60
+> > >    ? rt_mutex_slowlock.constprop.0+0x13d/0x1e0
+> > >    ? __lock_is_held+0x59/0xa0
+> > >    __i2c_smbus_xfer+0x138/0x5a0
+> > >    i2c_smbus_xfer+0x4f/0x80
+> > >    i2cdev_ioctl_smbus+0x162/0x2d0 [i2c_dev]
+> > >    i2cdev_ioctl+0x1db/0x2c0 [i2c_dev]
+> > >    do_vfs_ioctl+0x408/0x750
+> > >    ksys_ioctl+0x5e/0x90
+> > >    __x64_sys_ioctl+0x16/0x20
+> > >    do_syscall_64+0x60/0x1e0
+> > >    entry_SYSCALL_64_after_hwframe+0x49/0xbe
+> > >   RIP: 0033:0x7f25317f546b
+> > >   Code: 0f 1e fa 48 8b 05 1d da 0c 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff
+> > >   ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa b8 10 00 00 00 0f 05 <48> 3d 01
+> > >   f0 ff ff 73 01 c3 48 8b 0d ed d9 0c 00 f7 d8 64 89 01 48
+> > >   RSP: 002b:00007ffc88caab68 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+> > >   RAX: ffffffffffffffda RBX: 00005630d0fe7260 RCX: 00007f25317f546b
+> > >   RDX: 00005630d1598e80 RSI: 0000000000000720 RDI: 0000000000000003
+> > >   RBP: 00005630d155b968 R08: 0000000000000001 R09: 00005630d15a1da0
+> > >   R10: 0000000000000070 R11: 0000000000000246 R12: 00005630d1598e80
+> > >   R13: 00005630d12f3d28 R14: 0000000000000720 R15: 00005630d12f3ce0
+> > >   watchdog: BUG: soft lockup - CPU#5 stuck for 23s! [sensors-detect:12438]
+> > >
+> > > Yikes! While I wanted to try to make it so that accessing an i2c bus on
+> > > nouveau would wake up the GPU as needed, airlied pointed out that pretty
+> > > much any usecase for userspace accessing an i2c bus on a GPU (mainly for
+> > > the DDC brightness control that some displays have) is going to only be
+> > > useful while there's at least one display enabled on the GPU anyway, and
+> > > the GPU never sleeps while there's displays running.
+> > >
+> > > Since teaching the i2c bus to wake up the GPU on userspace accesses is a
+> > > good deal more difficult than it might seem, mostly due to the fact that
+> > > we have to use the i2c bus during runtime resume of the GPU, we instead
+> > > opt for the easiest solution: don't let userspace access i2c busses on
+> > > the GPU at all while it's in runtime suspend.
+> > >
+> > > Changes since v1:
+> > > * Also disable i2c busses that run over DP AUX
+> > I've updated my tree with the v2 version of the patch.  I haven't
+> > investigated too thoroughly, but shouldn't it be possible to move this
+> > check into a single place (pad_acquire()?) for both i2c/aux?
+>
+> That should be fine as long as we don't use pads independently of their i2c
+> busses (e.g. within nvkm for thermal sensors or the like), but I didn't take
+> the time to check whether that's true or not. Do you know?
+No, only i2c/aux are externally exposed.  So, it should be fine to do then.
+
+>
+> >
+> > Thanks,
+> > Ben.
+> >
+> > > Signed-off-by: Lyude Paul <lyude@redhat.com>
+> > > Cc: stable@vger.kernel.org
+> > > ---
+> > >  .../gpu/drm/nouveau/include/nvkm/subdev/i2c.h |  2 ++
+> > >  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c | 26 ++++++++++++++++++-
+> > >  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h |  2 ++
+> > >  .../gpu/drm/nouveau/nvkm/subdev/i2c/base.c    | 15 +++++++++++
+> > >  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c | 21 ++++++++++++++-
+> > >  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.h |  1 +
+> > >  6 files changed, 65 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/i2c.h
+> > > b/drivers/gpu/drm/nouveau/include/nvkm/subdev/i2c.h
+> > > index eef54e9b5d77..7957eafa5f0e 100644
+> > > --- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/i2c.h
+> > > +++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/i2c.h
+> > > @@ -38,6 +38,7 @@ struct nvkm_i2c_bus {
+> > >         struct mutex mutex;
+> > >         struct list_head head;
+> > >         struct i2c_adapter i2c;
+> > > +       u8 enabled;
+> > >  };
+> > >
+> > >  int nvkm_i2c_bus_acquire(struct nvkm_i2c_bus *);
+> > > @@ -57,6 +58,7 @@ struct nvkm_i2c_aux {
+> > >         struct mutex mutex;
+> > >         struct list_head head;
+> > >         struct i2c_adapter i2c;
+> > > +       u8 enabled;
+> > >
+> > >         u32 intr;
+> > >  };
+> > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
+> > > b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
+> > > index 4c1f547da463..b4e7404fe660 100644
+> > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
+> > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
+> > > @@ -105,9 +105,15 @@ nvkm_i2c_aux_acquire(struct nvkm_i2c_aux *aux)
+> > >  {
+> > >         struct nvkm_i2c_pad *pad = aux->pad;
+> > >         int ret;
+> > > +
+> > >         AUX_TRACE(aux, "acquire");
+> > >         mutex_lock(&aux->mutex);
+> > > -       ret = nvkm_i2c_pad_acquire(pad, NVKM_I2C_PAD_AUX);
+> > > +
+> > > +       if (aux->enabled)
+> > > +               ret = nvkm_i2c_pad_acquire(pad, NVKM_I2C_PAD_AUX);
+> > > +       else
+> > > +               ret = -EIO;
+> > > +
+> > >         if (ret)
+> > >                 mutex_unlock(&aux->mutex);
+> > >         return ret;
+> > > @@ -145,6 +151,24 @@ nvkm_i2c_aux_del(struct nvkm_i2c_aux **paux)
+> > >         }
+> > >  }
+> > >
+> > > +void
+> > > +nvkm_i2c_aux_init(struct nvkm_i2c_aux *aux)
+> > > +{
+> > > +       AUX_TRACE(aux, "init");
+> > > +       mutex_lock(&aux->mutex);
+> > > +       aux->enabled = true;
+> > > +       mutex_unlock(&aux->mutex);
+> > > +}
+> > > +
+> > > +void
+> > > +nvkm_i2c_aux_fini(struct nvkm_i2c_aux *aux)
+> > > +{
+> > > +       AUX_TRACE(aux, "fini");
+> > > +       mutex_lock(&aux->mutex);
+> > > +       aux->enabled = false;
+> > > +       mutex_unlock(&aux->mutex);
+> > > +}
+> > > +
+> > >  int
+> > >  nvkm_i2c_aux_ctor(const struct nvkm_i2c_aux_func *func,
+> > >                   struct nvkm_i2c_pad *pad, int id,
+> > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h
+> > > b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h
+> > > index 7d56c4ba693c..08f6b2ee64ab 100644
+> > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h
+> > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h
+> > > @@ -16,6 +16,8 @@ int nvkm_i2c_aux_ctor(const struct nvkm_i2c_aux_func *,
+> > > struct nvkm_i2c_pad *,
+> > >  int nvkm_i2c_aux_new_(const struct nvkm_i2c_aux_func *, struct
+> > > nvkm_i2c_pad *,
+> > >                       int id, struct nvkm_i2c_aux **);
+> > >  void nvkm_i2c_aux_del(struct nvkm_i2c_aux **);
+> > > +void nvkm_i2c_aux_init(struct nvkm_i2c_aux *);
+> > > +void nvkm_i2c_aux_fini(struct nvkm_i2c_aux *);
+> > >  int nvkm_i2c_aux_xfer(struct nvkm_i2c_aux *, bool retry, u8 type,
+> > >                       u32 addr, u8 *data, u8 *size);
+> > >
+> > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
+> > > b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
+> > > index 4f197b15acf6..ecacb22834d7 100644
+> > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
+> > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
+> > > @@ -160,8 +160,18 @@ nvkm_i2c_fini(struct nvkm_subdev *subdev, bool
+> > > suspend)
+> > >  {
+> > >         struct nvkm_i2c *i2c = nvkm_i2c(subdev);
+> > >         struct nvkm_i2c_pad *pad;
+> > > +       struct nvkm_i2c_bus *bus;
+> > > +       struct nvkm_i2c_aux *aux;
+> > >         u32 mask;
+> > >
+> > > +       list_for_each_entry(aux, &i2c->aux, head) {
+> > > +               nvkm_i2c_aux_fini(aux);
+> > > +       }
+> > > +
+> > > +       list_for_each_entry(bus, &i2c->bus, head) {
+> > > +               nvkm_i2c_bus_fini(bus);
+> > > +       }
+> > > +
+> > >         if ((mask = (1 << i2c->func->aux) - 1), i2c->func->aux_stat) {
+> > >                 i2c->func->aux_mask(i2c, NVKM_I2C_ANY, mask, 0);
+> > >                 i2c->func->aux_stat(i2c, &mask, &mask, &mask, &mask);
+> > > @@ -180,6 +190,7 @@ nvkm_i2c_init(struct nvkm_subdev *subdev)
+> > >         struct nvkm_i2c *i2c = nvkm_i2c(subdev);
+> > >         struct nvkm_i2c_bus *bus;
+> > >         struct nvkm_i2c_pad *pad;
+> > > +       struct nvkm_i2c_aux *aux;
+> > >
+> > >         list_for_each_entry(pad, &i2c->pad, head) {
+> > >                 nvkm_i2c_pad_init(pad);
+> > > @@ -189,6 +200,10 @@ nvkm_i2c_init(struct nvkm_subdev *subdev)
+> > >                 nvkm_i2c_bus_init(bus);
+> > >         }
+> > >
+> > > +       list_for_each_entry(aux, &i2c->aux, head) {
+> > > +               nvkm_i2c_aux_init(aux);
+> > > +       }
+> > > +
+> > >         return 0;
+> > >  }
+> > >
+> > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c
+> > > b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c
+> > > index 807a2b67bd64..ed50cc3736b9 100644
+> > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c
+> > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c
+> > > @@ -110,6 +110,19 @@ nvkm_i2c_bus_init(struct nvkm_i2c_bus *bus)
+> > >         BUS_TRACE(bus, "init");
+> > >         if (bus->func->init)
+> > >                 bus->func->init(bus);
+> > > +
+> > > +       mutex_lock(&bus->mutex);
+> > > +       bus->enabled = true;
+> > > +       mutex_unlock(&bus->mutex);
+> > > +}
+> > > +
+> > > +void
+> > > +nvkm_i2c_bus_fini(struct nvkm_i2c_bus *bus)
+> > > +{
+> > > +       BUS_TRACE(bus, "fini");
+> > > +       mutex_lock(&bus->mutex);
+> > > +       bus->enabled = false;
+> > > +       mutex_unlock(&bus->mutex);
+> > >  }
+> > >
+> > >  void
+> > > @@ -126,9 +139,15 @@ nvkm_i2c_bus_acquire(struct nvkm_i2c_bus *bus)
+> > >  {
+> > >         struct nvkm_i2c_pad *pad = bus->pad;
+> > >         int ret;
+> > > +
+> > >         BUS_TRACE(bus, "acquire");
+> > >         mutex_lock(&bus->mutex);
+> > > -       ret = nvkm_i2c_pad_acquire(pad, NVKM_I2C_PAD_I2C);
+> > > +
+> > > +       if (bus->enabled)
+> > > +               ret = nvkm_i2c_pad_acquire(pad, NVKM_I2C_PAD_I2C);
+> > > +       else
+> > > +               ret = -EIO;
+> > > +
+> > >         if (ret)
+> > >                 mutex_unlock(&bus->mutex);
+> > >         return ret;
+> > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.h
+> > > b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.h
+> > > index bea0dd33961e..465464bba58b 100644
+> > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.h
+> > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.h
+> > > @@ -18,6 +18,7 @@ int nvkm_i2c_bus_new_(const struct nvkm_i2c_bus_func *,
+> > > struct nvkm_i2c_pad *,
+> > >                       int id, struct nvkm_i2c_bus **);
+> > >  void nvkm_i2c_bus_del(struct nvkm_i2c_bus **);
+> > >  void nvkm_i2c_bus_init(struct nvkm_i2c_bus *);
+> > > +void nvkm_i2c_bus_fini(struct nvkm_i2c_bus *);
+> > >
+> > >  int nvkm_i2c_bit_xfer(struct nvkm_i2c_bus *, struct i2c_msg *, int);
+> > >
+> > > --
+> > > 2.20.1
+> > >
+> > > _______________________________________________
+> > > dri-devel mailing list
+> > > dri-devel@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> --
+> Cheers,
+>         Lyude Paul
+>
