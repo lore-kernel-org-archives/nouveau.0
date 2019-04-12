@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110407] /sys/class/backlight/nv_backlight doesn't
  work on Dell Precision 7530 GP107GLM [Quadro P1000 Mobile]
-Date: Fri, 12 Apr 2019 14:02:43 +0000
-Message-ID: <bug-110407-8800-UPW4I24PQN@http.bugs.freedesktop.org/>
+Date: Fri, 12 Apr 2019 15:10:12 +0000
+Message-ID: <bug-110407-8800-wGQpVItcUA@http.bugs.freedesktop.org/>
 References: <bug-110407-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0147302364=="
+Content-Type: multipart/mixed; boundary="===============2115982173=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110407-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0147302364==
-Content-Type: multipart/alternative; boundary="15550777630.0E20.1530"
+--===============2115982173==
+Content-Type: multipart/alternative; boundary="15550818122.aCF6.28064"
 Content-Transfer-Encoding: 7bit
 
 
---15550777630.0E20.1530
-Date: Fri, 12 Apr 2019 14:02:43 +0000
+--15550818122.aCF6.28064
+Date: Fri, 12 Apr 2019 15:10:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,34 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110407
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-When in non-switchable mode, are there other things in /sys/class/backlight?
-e.g. acpi_video0?
+--- Comment #2 from Kai-Heng Feng <kai.heng.feng-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #1)
+> When in non-switchable mode, are there other things in /sys/class/backlig=
+ht?
+> e.g. acpi_video0?
 
-Also, presumably this is on v5.0 or later? Prior to that, there was no
-backlight support for Pascal.
+No, nv_backlight (or nvidia_0) is the only interface.
+
+I also tried to call _BCM directly via acpidbg, but both Intel's and Nvidia=
+'s
+_BCM method changes nothing.
+
+Please refer to the original bug report [1].
+
+>=20
+> Also, presumably this is on v5.0 or later? Prior to that, there was no
+> backlight support for Pascal.
+
+Yes, on both v5.0 and linux-next.
+
+[1] https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1821882
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15550777630.0E20.1530
-Date: Fri, 12 Apr 2019 14:02:43 +0000
+--15550818122.aCF6.28064
+Date: Fri, 12 Apr 2019 15:10:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,8 +81,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - /sys/class/backlight/nv_backlight doesn't work on Dell Pr=
 ecision 7530 GP107GLM [Quadro P1000 Mobile]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110407#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110407#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - /sys/class/backlight/nv_backlight doesn't work on Dell Pr=
@@ -75,15 +90,31 @@ ecision 7530 GP107GLM [Quadro P1000 Mobile]"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110407">bug 11040=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+kai.heng.feng&#64;canonical.com" title=3D"Kai-Heng Feng &lt;kai.heng.feng&#=
+64;canonical.com&gt;"> <span class=3D"fn">Kai-Heng Feng</span></a>
 </span></b>
-        <pre>When in non-switchable mode, are there other things in /sys/cl=
-ass/backlight?
-e.g. acpi_video0?
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D110=
+407#c1">comment #1</a>)
+<span class=3D"quote">&gt; When in non-switchable mode, are there other thi=
+ngs in /sys/class/backlight?
+&gt; e.g. acpi_video0?</span >
 
-Also, presumably this is on v5.0 or later? Prior to that, there was no
-backlight support for Pascal.</pre>
+No, nv_backlight (or nvidia_0) is the only interface.
+
+I also tried to call _BCM directly via acpidbg, but both Intel's and Nvidia=
+'s
+_BCM method changes nothing.
+
+Please refer to the original bug report [1].
+
+<span class=3D"quote">&gt;=20
+&gt; Also, presumably this is on v5.0 or later? Prior to that, there was no
+&gt; backlight support for Pascal.</span >
+
+Yes, on both v5.0 and linux-next.
+
+[1] <a href=3D"https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1821882=
+">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1821882</a></pre>
         </div>
       </p>
 
@@ -97,9 +128,9 @@ backlight support for Pascal.</pre>
     </body>
 </html>=
 
---15550777630.0E20.1530--
+--15550818122.aCF6.28064--
 
---===============0147302364==
+--===============2115982173==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +140,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0147302364==--
+--===============2115982173==--
