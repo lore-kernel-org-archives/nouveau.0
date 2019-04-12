@@ -1,303 +1,290 @@
-From: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [PATCH] drm: remove redundant 'default n' from
- Kconfig
-Date: Fri, 12 Apr 2019 12:56:50 -0400
-Message-ID: <CADnq5_PC7y8xRYVBiW2p99ix4oQW+A2f0Ynoh2ZGQd3QeS7x+Q@mail.gmail.com>
-References: <CGME20190412095608eucas1p29bce9e8a81c58c72c4b45c27138a826a@eucas1p2.samsung.com>
- <78400d66-a1c7-3688-0ffa-3e8c34cec34c@samsung.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110414] New: mesa-vdpau 19.0.2 contains broken
+ symlinks to libvdpau_gallium.so.1.0.0
+Date: Fri, 12 Apr 2019 20:07:20 +0000
+Message-ID: <bug-110414-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <78400d66-a1c7-3688-0ffa-3e8c34cec34c@samsung.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-Cc: David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, Joonyoung Shim <jy0922.shim@samsung.com>, amd-gfx list <amd-gfx@lists.freedesktop.org>, Maxime Ripard <maxime.ripard@bootlin.com>, Tomi Valkeinen <tomi.valkeinen@ti.com>, Ben Skeggs <bskeggs@redhat.com>, linux-arm-msm <linux-arm-msm@vger.kernel.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, LKML <linux-kernel@vger.kernel.org>, Kyungmin Park <kyungmin.park@samsung.com>, Alex Deucher <alexander.deucher@amd.com>, freedreno <freedreno@lists.freedesktop.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: multipart/mixed; boundary="===============0334487553=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBBcHIgMTIsIDIwMTkgYXQgNTo1NiBBTSBCYXJ0bG9taWVqIFpvbG5pZXJraWV3aWN6
-CjxiLnpvbG5pZXJraWVAc2Ftc3VuZy5jb20+IHdyb3RlOgo+Cj4gJ2RlZmF1bHQgbicgaXMgdGhl
-IGRlZmF1bHQgdmFsdWUgZm9yIGFueSBib29sIG9yIHRyaXN0YXRlIEtjb25maWcKPiBzZXR0aW5n
-IHNvIHRoZXJlIGlzIG5vIG5lZWQgdG8gd3JpdGUgaXQgZXhwbGljaXRseS4KPgo+IEFsc28gc2lu
-Y2UgY29tbWl0IGY0NjdjNTY0MGMyOSAoImtjb25maWc6IG9ubHkgd3JpdGUgJyMgQ09ORklHX0ZP
-Two+IGlzIG5vdCBzZXQnIGZvciB2aXNpYmxlIHN5bWJvbHMiKSB0aGUgS2NvbmZpZyBiZWhhdmlv
-ciBpcyB0aGUgc2FtZQo+IHJlZ2FyZGxlc3Mgb2YgJ2RlZmF1bHQgbicgYmVpbmcgcHJlc2VudCBv
-ciBub3Q6Cj4KPiAgICAgLi4uCj4gICAgIE9uZSBzaWRlIGVmZmVjdCBvZiAoYW5kIHRoZSBtYWlu
-IG1vdGl2YXRpb24gZm9yKSB0aGlzIGNoYW5nZSBpcyBtYWtpbmcKPiAgICAgdGhlIGZvbGxvd2lu
-ZyB0d28gZGVmaW5pdGlvbnMgYmVoYXZlIGV4YWN0bHkgdGhlIHNhbWU6Cj4KPiAgICAgICAgIGNv
-bmZpZyBGT08KPiAgICAgICAgICAgICAgICAgYm9vbAo+Cj4gICAgICAgICBjb25maWcgRk9PCj4g
-ICAgICAgICAgICAgICAgIGJvb2wKPiAgICAgICAgICAgICAgICAgZGVmYXVsdCBuCj4KPiAgICAg
-V2l0aCB0aGlzIGNoYW5nZSwgbmVpdGhlciBvZiB0aGVzZSB3aWxsIGdlbmVyYXRlIGEKPiAgICAg
-JyMgQ09ORklHX0ZPTyBpcyBub3Qgc2V0JyBsaW5lIChhc3N1bWluZyBGT08gaXNuJ3Qgc2VsZWN0
-ZWQvaW1wbGllZCkuCj4gICAgIFRoYXQgbWlnaHQgbWFrZSBpdCBjbGVhcmVyIHRvIHBlb3BsZSB0
-aGF0IGEgYmFyZSAnZGVmYXVsdCBuJyBpcwo+ICAgICByZWR1bmRhbnQuCj4gICAgIC4uLgo+Cj4g
-U2lnbmVkLW9mZi1ieTogQmFydGxvbWllaiBab2xuaWVya2lld2ljeiA8Yi56b2xuaWVya2llQHNh
-bXN1bmcuY29tPgoKQWNrZWQtYnk6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRldWNoZXJAYW1k
-LmNvbT4KZm9yIGFtZGdwdSBhbmQgZHJtLgoKPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL0tjb25m
-aWcgICAgICAgICAgICAgfCAgICA1IC0tLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
-L0tjb25maWcgIHwgICAgMSAtCj4gIGRyaXZlcnMvZ3B1L2RybS9hcm0vS2NvbmZpZyAgICAgICAg
-IHwgICAgMSAtCj4gIGRyaXZlcnMvZ3B1L2RybS9leHlub3MvS2NvbmZpZyAgICAgIHwgICAgMiAt
-LQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9LY29uZmlnICAgICAgICB8ICAgIDMgLS0tCj4gIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L0tjb25maWcuZGVidWcgIHwgICAxMyAtLS0tLS0tLS0tLS0tCj4g
-IGRyaXZlcnMvZ3B1L2RybS9tc20vS2NvbmZpZyAgICAgICAgIHwgICAgMiAtLQo+ICBkcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9LY29uZmlnICAgICB8ICAgIDIgLS0KPiAgZHJpdmVycy9ncHUvZHJt
-L29tYXBkcm0vS2NvbmZpZyAgICAgfCAgICAxIC0KPiAgZHJpdmVycy9ncHUvZHJtL29tYXBkcm0v
-ZHNzL0tjb25maWcgfCAgICA2IC0tLS0tLQo+ICAxMCBmaWxlcyBjaGFuZ2VkLCAzNiBkZWxldGlv
-bnMoLSkKPgo+IEluZGV4OiBiL2RyaXZlcnMvZ3B1L2RybS9LY29uZmlnCj4gPT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQo+
-IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9LY29uZmlnICAgMjAxOS0wNC0xMiAxMTo0MjozMC4wNzAw
-OTUzNTkgKzAyMDAKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vS2NvbmZpZyAgIDIwMTktMDQtMTIg
-MTE6NDI6MzAuMDY2MDk1MzU5ICswMjAwCj4gQEAgLTM3LDcgKzM3LDYgQEAgY29uZmlnIERSTV9E
-UF9BVVhfQ0hBUkRFVgo+Cj4gIGNvbmZpZyBEUk1fREVCVUdfTU0KPiAgICAgICAgIGJvb2wgIklu
-c2VydCBleHRyYSBjaGVja3MgYW5kIGRlYnVnIGluZm8gaW50byB0aGUgRFJNIHJhbmdlIG1hbmFn
-ZXJzIgo+IC0gICAgICAgZGVmYXVsdCBuCj4gICAgICAgICBkZXBlbmRzIG9uIERSTT15Cj4gICAg
-ICAgICBkZXBlbmRzIG9uIFNUQUNLVFJBQ0VfU1VQUE9SVAo+ICAgICAgICAgc2VsZWN0IFNUQUNL
-REVQT1QKPiBAQCAtNTYsNyArNTUsNiBAQCBjb25maWcgRFJNX0RFQlVHX1NFTEZURVNUCj4gICAg
-ICAgICBzZWxlY3QgUFJJTUVfTlVNQkVSUwo+ICAgICAgICAgc2VsZWN0IERSTV9MSUJfUkFORE9N
-Cj4gICAgICAgICBzZWxlY3QgRFJNX0tNU19IRUxQRVIKPiAtICAgICAgIGRlZmF1bHQgbgo+ICAg
-ICAgICAgaGVscAo+ICAgICAgICAgICBUaGlzIG9wdGlvbiBwcm92aWRlcyBrZXJuZWwgbW9kdWxl
-cyB0aGF0IGNhbiBiZSB1c2VkIHRvIHJ1bgo+ICAgICAgICAgICB2YXJpb3VzIHNlbGZ0ZXN0cyBv
-biBwYXJ0cyBvZiB0aGUgRFJNIGFwaS4gVGhpcyBvcHRpb24gaXMgbm90Cj4gQEAgLTExMyw3ICsx
-MTEsNiBAQCBjb25maWcgRFJNX0ZCREVWX09WRVJBTExPQwo+ICBjb25maWcgRFJNX0ZCREVWX0xF
-QUtfUEhZU19TTUVNCj4gICAgICAgICBib29sICJTaGFtZWxlc3NseSBhbGxvdyBsZWFraW5nIG9m
-IGZiZGV2IHBoeXNpY2FsIGFkZHJlc3MgKERBTkdFUk9VUykiCj4gICAgICAgICBkZXBlbmRzIG9u
-IERSTV9GQkRFVl9FTVVMQVRJT04gJiYgRVhQRVJUCj4gLSAgICAgICBkZWZhdWx0IG4KPiAgICAg
-ICAgIGhlbHAKPiAgICAgICAgICAgSW4gb3JkZXIgdG8ga2VlcCB1c2VyLXNwYWNlIGNvbXBhdGli
-aWxpdHksIHdlIHdhbnQgaW4gY2VydGFpbgo+ICAgICAgICAgICB1c2UtY2FzZXMgdG8ga2VlcCBs
-ZWFraW5nIHRoZSBmYmRldiBwaHlzaWNhbCBhZGRyZXNzIHRvIHRoZQo+IEBAIC0yNDcsNyArMjQ0
-LDYgQEAgY29uZmlnIERSTV9WS01TCj4gICAgICAgICB0cmlzdGF0ZSAiVmlydHVhbCBLTVMgKEVY
-UEVSSU1FTlRBTCkiCj4gICAgICAgICBkZXBlbmRzIG9uIERSTQo+ICAgICAgICAgc2VsZWN0IERS
-TV9LTVNfSEVMUEVSCj4gLSAgICAgICBkZWZhdWx0IG4KPiAgICAgICAgIGhlbHAKPiAgICAgICAg
-ICAgVmlydHVhbCBLZXJuZWwgTW9kZS1TZXR0aW5nIChWS01TKSBpcyB1c2VkIGZvciB0ZXN0aW5n
-IG9yIGZvcgo+ICAgICAgICAgICBydW5uaW5nIEdQVSBpbiBhIGhlYWRsZXNzIG1hY2hpbmVzLiBD
-aG9vc2UgdGhpcyBvcHRpb24gdG8gZ2V0Cj4gQEAgLTQyNCw0ICs0MjAsMyBAQCBjb25maWcgRFJN
-X1BBTkVMX09SSUVOVEFUSU9OX1FVSVJLUwo+Cj4gIGNvbmZpZyBEUk1fTElCX1JBTkRPTQo+ICAg
-ICAgICAgYm9vbAo+IC0gICAgICAgZGVmYXVsdCBuCj4gSW5kZXg6IGIvZHJpdmVycy9ncHUvZHJt
-L2FtZC9hbWRncHUvS2NvbmZpZwo+ID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2FtZGdwdS9LY29uZmlnICAgICAgICAyMDE5LTA0LTEyIDExOjQyOjMwLjA3MDA5NTM1OSAr
-MDIwMAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L0tjb25maWcgICAgICAgIDIw
-MTktMDQtMTIgMTE6NDI6MzAuMDY2MDk1MzU5ICswMjAwCj4gQEAgLTM1LDcgKzM1LDYgQEAgY29u
-ZmlnIERSTV9BTURHUFVfR0FSVF9ERUJVR0ZTCj4gICAgICAgICBib29sICJBbGxvdyBHQVJUIGFj
-Y2VzcyB0aHJvdWdoIGRlYnVnZnMiCj4gICAgICAgICBkZXBlbmRzIG9uIERSTV9BTURHUFUKPiAg
-ICAgICAgIGRlcGVuZHMgb24gREVCVUdfRlMKPiAtICAgICAgIGRlZmF1bHQgbgo+ICAgICAgICAg
-aGVscAo+ICAgICAgICAgICBTZWxlY3RpbmcgdGhpcyBvcHRpb24gY3JlYXRlcyBhIGRlYnVnZnMg
-ZmlsZSB0byBpbnNwZWN0IHRoZSBtYXBwZWQKPiAgICAgICAgICAgcGFnZXMuIFVzZXMgbW9yZSBt
-ZW1vcnkgZm9yIGhvdXNla2VlcGluZywgZW5hYmxlIG9ubHkgZm9yIGRlYnVnZ2luZy4KPiBJbmRl
-eDogYi9kcml2ZXJzL2dwdS9kcm0vYXJtL0tjb25maWcKPiA9PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cj4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2FybS9LY29uZmlnICAgICAgIDIwMTktMDQtMTIgMTE6NDI6MzAuMDcwMDk1
-MzU5ICswMjAwCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FybS9LY29uZmlnICAgICAgIDIwMTkt
-MDQtMTIgMTE6NDI6MzAuMDY2MDk1MzU5ICswMjAwCj4gQEAgLTE2LDcgKzE2LDYgQEAgY29uZmln
-IERSTV9IRExDRAo+ICBjb25maWcgRFJNX0hETENEX1NIT1dfVU5ERVJSVU4KPiAgICAgICAgIGJv
-b2wgIlNob3cgdW5kZXJydW4gY29uZGl0aW9ucyIKPiAgICAgICAgIGRlcGVuZHMgb24gRFJNX0hE
-TENECj4gLSAgICAgICBkZWZhdWx0IG4KPiAgICAgICAgIGhlbHAKPiAgICAgICAgICAgRW5hYmxl
-IHRoaXMgb3B0aW9uIHRvIHNob3cgaW4gcmVkIGNvbG91ciB0aGUgcGl4ZWxzIHRoYXQgdGhlCj4g
-ICAgICAgICAgIEhETENEIGRldmljZSBkaWQgbm90IGZldGNoIGZyb20gZnJhbWVidWZmZXIgZHVl
-IHRvIHVuZGVycnVuCj4gSW5kZXg6IGIvZHJpdmVycy9ncHUvZHJtL2V4eW5vcy9LY29uZmlnCj4g
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9leHlub3MvS2NvbmZpZyAgICAyMDE5
-LTA0LTEyIDExOjQyOjMwLjA3MDA5NTM1OSArMDIwMAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9l
-eHlub3MvS2NvbmZpZyAgICAyMDE5LTA0LTEyIDExOjQyOjMwLjA2NjA5NTM1OSArMDIwMAo+IEBA
-IC00Niw3ICs0Niw2IEBAIGNvbmZpZyBEUk1fRVhZTk9TX0RQSQo+ICAgICAgICAgYm9vbCAiUGFy
-YWxsZWwgb3V0cHV0Igo+ICAgICAgICAgZGVwZW5kcyBvbiBEUk1fRVhZTk9TX0ZJTUQKPiAgICAg
-ICAgIHNlbGVjdCBEUk1fUEFORUwKPiAtICAgICAgIGRlZmF1bHQgbgo+ICAgICAgICAgaGVscAo+
-ICAgICAgICAgICBUaGlzIGVuYWJsZXMgc3VwcG9ydCBmb3IgRXh5bm9zIHBhcmFsbGVsIG91dHB1
-dC4KPgo+IEBAIC01NSw3ICs1NCw2IEBAIGNvbmZpZyBEUk1fRVhZTk9TX0RTSQo+ICAgICAgICAg
-ZGVwZW5kcyBvbiBEUk1fRVhZTk9TX0ZJTUQgfHwgRFJNX0VYWU5PUzU0MzNfREVDT04gfHwgRFJN
-X0VYWU5PUzdfREVDT04KPiAgICAgICAgIHNlbGVjdCBEUk1fTUlQSV9EU0kKPiAgICAgICAgIHNl
-bGVjdCBEUk1fUEFORUwKPiAtICAgICAgIGRlZmF1bHQgbgo+ICAgICAgICAgaGVscAo+ICAgICAg
-ICAgICBUaGlzIGVuYWJsZXMgc3VwcG9ydCBmb3IgRXh5bm9zIE1JUEktRFNJIGRldmljZS4KPgo+
-IEluZGV4OiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L0tjb25maWcKPiA9PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cj4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvS2NvbmZpZyAgICAgIDIwMTktMDQtMTIgMTE6NDI6MzAu
-MDcwMDk1MzU5ICswMjAwCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvS2NvbmZpZyAgICAg
-IDIwMTktMDQtMTIgMTE6NDI6MzAuMDY2MDk1MzU5ICswMjAwCj4gQEAgLTQ1LDcgKzQ1LDYgQEAg
-Y29uZmlnIERSTV9JOTE1Cj4gIGNvbmZpZyBEUk1fSTkxNV9BTFBIQV9TVVBQT1JUCj4gICAgICAg
-ICBib29sICJFbmFibGUgYWxwaGEgcXVhbGl0eSBzdXBwb3J0IGZvciBuZXcgSW50ZWwgaGFyZHdh
-cmUgYnkgZGVmYXVsdCIKPiAgICAgICAgIGRlcGVuZHMgb24gRFJNX0k5MTUKPiAtICAgICAgIGRl
-ZmF1bHQgbgo+ICAgICAgICAgaGVscAo+ICAgICAgICAgICBDaG9vc2UgdGhpcyBvcHRpb24gaWYg
-eW91IGhhdmUgbmV3IEludGVsIGhhcmR3YXJlIGFuZCB3YW50IHRvIGVuYWJsZQo+ICAgICAgICAg
-ICB0aGUgYWxwaGEgcXVhbGl0eSBpOTE1IGRyaXZlciBzdXBwb3J0IGZvciB0aGUgaGFyZHdhcmUg
-aW4gdGhpcyBrZXJuZWwKPiBAQCAtOTksNyArOTgsNiBAQCBjb25maWcgRFJNX0k5MTVfR1ZUCj4g
-ICAgICAgICAgYm9vbCAiRW5hYmxlIEludGVsIEdWVC1nIGdyYXBoaWNzIHZpcnR1YWxpemF0aW9u
-IGhvc3Qgc3VwcG9ydCIKPiAgICAgICAgICBkZXBlbmRzIG9uIERSTV9JOTE1Cj4gICAgICAgICAg
-ZGVwZW5kcyBvbiA2NEJJVAo+IC0gICAgICAgIGRlZmF1bHQgbgo+ICAgICAgICAgIGhlbHAKPiAg
-ICAgICAgICAgQ2hvb3NlIHRoaXMgb3B0aW9uIGlmIHlvdSB3YW50IHRvIGVuYWJsZSBJbnRlbCBH
-VlQtZyBncmFwaGljcwo+ICAgICAgICAgICB2aXJ0dWFsaXphdGlvbiB0ZWNobm9sb2d5IGhvc3Qg
-c3VwcG9ydCB3aXRoIGludGVncmF0ZWQgZ3JhcGhpY3MuCj4gQEAgLTEyMyw3ICsxMjEsNiBAQCBj
-b25maWcgRFJNX0k5MTVfR1ZUX0tWTUdUCj4gICAgICAgICBkZXBlbmRzIG9uIERSTV9JOTE1X0dW
-VAo+ICAgICAgICAgZGVwZW5kcyBvbiBLVk0KPiAgICAgICAgIGRlcGVuZHMgb24gVkZJT19NREVW
-ICYmIFZGSU9fTURFVl9ERVZJQ0UKPiAtICAgICAgIGRlZmF1bHQgbgo+ICAgICAgICAgaGVscAo+
-ICAgICAgICAgICBDaG9vc2UgdGhpcyBvcHRpb24gaWYgeW91IHdhbnQgdG8gZW5hYmxlIEtWTUdU
-IHN1cHBvcnQgZm9yCj4gICAgICAgICAgIEludGVsIEdWVC1nLgo+IEluZGV4OiBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L0tjb25maWcuZGVidWcKPiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvS2NvbmZpZy5kZWJ1ZyAgICAgICAgMjAxOS0wNC0xMiAxMTo0MjozMC4wNzAw
-OTUzNTkgKzAyMDAKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9LY29uZmlnLmRlYnVnICAg
-ICAgICAyMDE5LTA0LTEyIDExOjQyOjMwLjA2NjA5NTM1OSArMDIwMAo+IEBAIC02LDcgKzYsNiBA
-QCBjb25maWcgRFJNX0k5MTVfV0VSUk9SCj4gICAgICAgICAgIyBXZSB1c2UgdGhlIGRlcGVuZGVu
-Y3kgb24gIUNPTVBJTEVfVEVTVCB0byBub3QgYmUgZW5hYmxlZCBpbgo+ICAgICAgICAgICMgYWxs
-bW9kY29uZmlnIG9yIGFsbHllc2NvbmZpZyBjb25maWd1cmF0aW9ucwo+ICAgICAgICAgIGRlcGVu
-ZHMgb24gIUNPTVBJTEVfVEVTVAo+IC0gICAgICAgIGRlZmF1bHQgbgo+ICAgICAgICAgIGhlbHAK
-PiAgICAgICAgICAgIEFkZCAtV2Vycm9yIHRvIHRoZSBidWlsZCBmbGFncyBmb3IgKGFuZCBvbmx5
-IGZvcikgaTkxNS5rby4KPiAgICAgICAgICAgIERvIG5vdCBlbmFibGUgdGhpcyB1bmxlc3MgeW91
-IGFyZSB3cml0aW5nIGNvZGUgZm9yIHRoZSBpOTE1LmtvIG1vZHVsZS4KPiBAQCAtMzEsNyArMzAs
-NiBAQCBjb25maWcgRFJNX0k5MTVfREVCVUcKPiAgICAgICAgIHNlbGVjdCBEUk1fSTkxNV9TV19G
-RU5DRV9ERUJVR19PQkpFQ1RTCj4gICAgICAgICBzZWxlY3QgRFJNX0k5MTVfU0VMRlRFU1QKPiAg
-ICAgICAgIHNlbGVjdCBEUk1fSTkxNV9ERUJVR19SVU5USU1FX1BNCj4gLSAgICAgICAgZGVmYXVs
-dCBuCj4gICAgICAgICAgaGVscAo+ICAgICAgICAgICAgQ2hvb3NlIHRoaXMgb3B0aW9uIHRvIHR1
-cm4gb24gZXh0cmEgZHJpdmVyIGRlYnVnZ2luZyB0aGF0IG1heSBhZmZlY3QKPiAgICAgICAgICAg
-IHBlcmZvcm1hbmNlIGJ1dCB3aWxsIGNhdGNoIHNvbWUgaW50ZXJuYWwgaXNzdWVzLgo+IEBAIC00
-Miw3ICs0MCw2IEBAIGNvbmZpZyBEUk1fSTkxNV9ERUJVRwo+Cj4gIGNvbmZpZyBEUk1fSTkxNV9E
-RUJVR19HRU0KPiAgICAgICAgICBib29sICJJbnNlcnQgZXh0cmEgY2hlY2tzIGludG8gdGhlIEdF
-TSBpbnRlcm5hbHMiCj4gLSAgICAgICAgZGVmYXVsdCBuCj4gICAgICAgICAgZGVwZW5kcyBvbiBE
-Uk1fSTkxNV9XRVJST1IKPiAgICAgICAgICBoZWxwCj4gICAgICAgICAgICBFbmFibGUgZXh0cmEg
-c2FuaXR5IGNoZWNrcyAoaW5jbHVkaW5nIEJVR3MpIGFsb25nIHRoZSBHRU0gZHJpdmVyCj4gQEAg
-LTU0LDcgKzUxLDYgQEAgY29uZmlnIERSTV9JOTE1X0RFQlVHX0dFTQo+Cj4gIGNvbmZpZyBEUk1f
-STkxNV9FUlJMT0dfR0VNCj4gICAgICAgICBib29sICJJbnNlcnQgZXh0cmEgbG9nZ2luZyAodmVy
-eSB2ZXJib3NlKSBmb3IgY29tbW9uIEdFTSBlcnJvcnMiCj4gLSAgICAgICBkZWZhdWx0IG4KPiAg
-ICAgICAgIGRlcGVuZHMgb24gRFJNX0k5MTVfREVCVUdfR0VNCj4gICAgICAgICBoZWxwCj4gICAg
-ICAgICAgIEVuYWJsZSBhZGRpdGlvbmFsIGxvZ2dpbmcgdGhhdCBtYXkgaGVscCB0cmFjayBkb3du
-IHRoZSBjYXVzZSBvZgo+IEBAIC02OCw3ICs2NCw2IEBAIGNvbmZpZyBEUk1fSTkxNV9UUkFDRV9H
-RU0KPiAgICAgICAgIGJvb2wgIkluc2VydCBleHRyYSBmdHJhY2Ugb3V0cHV0IGZyb20gdGhlIEdF
-TSBpbnRlcm5hbHMiCj4gICAgICAgICBkZXBlbmRzIG9uIERSTV9JOTE1X0RFQlVHX0dFTQo+ICAg
-ICAgICAgc2VsZWN0IFRSQUNJTkcKPiAtICAgICAgIGRlZmF1bHQgbgo+ICAgICAgICAgaGVscAo+
-ICAgICAgICAgICBFbmFibGUgYWRkaXRpb25hbCBhbmQgdmVyYm9zZSBkZWJ1Z2dpbmcgb3V0cHV0
-IHRoYXQgd2lsbCBzcGFtCj4gICAgICAgICAgIG9yZGluYXJ5IHRlc3RzLCBidXQgbWF5IGJlIHZp
-dGFsIGZvciBwb3N0LW1vcnRlbSBkZWJ1Z2dpbmcgd2hlbgo+IEBAIC04Miw3ICs3Nyw2IEBAIGNv
-bmZpZyBEUk1fSTkxNV9TV19GRU5DRV9ERUJVR19PQkpFQ1RTCj4gICAgICAgICAgYm9vbCAiRW5h
-YmxlIGFkZGl0aW9uYWwgZHJpdmVyIGRlYnVnZ2luZyBmb3IgZmVuY2Ugb2JqZWN0cyIKPiAgICAg
-ICAgICBkZXBlbmRzIG9uIERSTV9JOTE1Cj4gICAgICAgICAgc2VsZWN0IERFQlVHX09CSkVDVFMK
-PiAtICAgICAgICBkZWZhdWx0IG4KPiAgICAgICAgICBoZWxwCj4gICAgICAgICAgICBDaG9vc2Ug
-dGhpcyBvcHRpb24gdG8gdHVybiBvbiBleHRyYSBkcml2ZXIgZGVidWdnaW5nIHRoYXQgbWF5IGFm
-ZmVjdAo+ICAgICAgICAgICAgcGVyZm9ybWFuY2UgYnV0IHdpbGwgY2F0Y2ggc29tZSBpbnRlcm5h
-bCBpc3N1ZXMuCj4gQEAgLTk0LDcgKzg4LDYgQEAgY29uZmlnIERSTV9JOTE1X1NXX0ZFTkNFX0RF
-QlVHX09CSkVDVFMKPiAgY29uZmlnIERSTV9JOTE1X1NXX0ZFTkNFX0NIRUNLX0RBRwo+ICAgICAg
-ICAgIGJvb2wgIkVuYWJsZSBhZGRpdGlvbmFsIGRyaXZlciBkZWJ1Z2dpbmcgZm9yIGRldGVjdGlu
-ZyBkZXBlbmRlbmN5IGN5Y2xlcyIKPiAgICAgICAgICBkZXBlbmRzIG9uIERSTV9JOTE1Cj4gLSAg
-ICAgICAgZGVmYXVsdCBuCj4gICAgICAgICAgaGVscAo+ICAgICAgICAgICAgQ2hvb3NlIHRoaXMg
-b3B0aW9uIHRvIHR1cm4gb24gZXh0cmEgZHJpdmVyIGRlYnVnZ2luZyB0aGF0IG1heSBhZmZlY3QK
-PiAgICAgICAgICAgIHBlcmZvcm1hbmNlIGJ1dCB3aWxsIGNhdGNoIHNvbWUgaW50ZXJuYWwgaXNz
-dWVzLgo+IEBAIC0xMDYsNyArOTksNiBAQCBjb25maWcgRFJNX0k5MTVfU1dfRkVOQ0VfQ0hFQ0tf
-REFHCj4gIGNvbmZpZyBEUk1fSTkxNV9ERUJVR19HVUMKPiAgICAgICAgICBib29sICJFbmFibGUg
-YWRkaXRpb25hbCBkcml2ZXIgZGVidWdnaW5nIGZvciBHdUMiCj4gICAgICAgICAgZGVwZW5kcyBv
-biBEUk1fSTkxNQo+IC0gICAgICAgIGRlZmF1bHQgbgo+ICAgICAgICAgIGhlbHAKPiAgICAgICAg
-ICAgIENob29zZSB0aGlzIG9wdGlvbiB0byB0dXJuIG9uIGV4dHJhIGRyaXZlciBkZWJ1Z2dpbmcg
-dGhhdCBtYXkgYWZmZWN0Cj4gICAgICAgICAgICBwZXJmb3JtYW5jZSBidXQgd2lsbCBoZWxwIHJl
-c29sdmUgR3VDIHJlbGF0ZWQgaXNzdWVzLgo+IEBAIC0xMTgsNyArMTEwLDYgQEAgY29uZmlnIERS
-TV9JOTE1X0RFQlVHX0dVQwo+ICBjb25maWcgRFJNX0k5MTVfU0VMRlRFU1QKPiAgICAgICAgIGJv
-b2wgIkVuYWJsZSBzZWxmdGVzdHMgdXBvbiBkcml2ZXIgbG9hZCIKPiAgICAgICAgIGRlcGVuZHMg
-b24gRFJNX0k5MTUKPiAtICAgICAgIGRlZmF1bHQgbgo+ICAgICAgICAgc2VsZWN0IEZBVUxUX0lO
-SkVDVElPTgo+ICAgICAgICAgc2VsZWN0IFBSSU1FX05VTUJFUlMKPiAgICAgICAgIGhlbHAKPiBA
-QCAtMTM1LDcgKzEyNiw2IEBAIGNvbmZpZyBEUk1fSTkxNV9TRUxGVEVTVF9CUk9LRU4KPiAgICAg
-ICAgIGJvb2wgIkVuYWJsZSBicm9rZW4gYW5kIGRhbmdlcm91cyBzZWxmdGVzdHMiCj4gICAgICAg
-ICBkZXBlbmRzIG9uIERSTV9JOTE1X1NFTEZURVNUCj4gICAgICAgICBkZXBlbmRzIG9uIEJST0tF
-Tgo+IC0gICAgICAgZGVmYXVsdCBuCj4gICAgICAgICBoZWxwCj4gICAgICAgICAgIFRoaXMgb3B0
-aW9uIGVuYWJsZXMgdGhlIGV4ZWN1dGlvbiBvZiBzZWxmdGVzdHMgdGhhdCBhcmUgImRhbmdlcm91
-cyIKPiAgICAgICAgICAgYW5kIG1heSB0cmlnZ2VyIHVuaW50ZW5kZWQgSFcgc2lkZS1lZmZlY3Rz
-IGFzIHRoZXkgYnJlYWsgc3RyaWN0Cj4gQEAgLTE0OCw3ICsxMzgsNiBAQCBjb25maWcgRFJNX0k5
-MTVfU0VMRlRFU1RfQlJPS0VOCj4gIGNvbmZpZyBEUk1fSTkxNV9MT1dfTEVWRUxfVFJBQ0VQT0lO
-VFMKPiAgICAgICAgICBib29sICJFbmFibGUgbG93IGxldmVsIHJlcXVlc3QgdHJhY2luZyBldmVu
-dHMiCj4gICAgICAgICAgZGVwZW5kcyBvbiBEUk1fSTkxNQo+IC0gICAgICAgIGRlZmF1bHQgbgo+
-ICAgICAgICAgIGhlbHAKPiAgICAgICAgICAgIENob29zZSB0aGlzIG9wdGlvbiB0byB0dXJuIG9u
-IGxvdyBsZXZlbCByZXF1ZXN0IHRyYWNpbmcgZXZlbnRzLgo+ICAgICAgICAgICAgVGhpcyBwcm92
-aWRlcyB0aGUgYWJpbGl0eSB0byBwcmVjaXNlbHkgbW9uaXRvciBlbmdpbmUgdXRpbGlzYXRpb24K
-PiBAQCAtMTU5LDcgKzE0OCw2IEBAIGNvbmZpZyBEUk1fSTkxNV9MT1dfTEVWRUxfVFJBQ0VQT0lO
-VFMKPiAgY29uZmlnIERSTV9JOTE1X0RFQlVHX1ZCTEFOS19FVkFERQo+ICAgICAgICAgYm9vbCAi
-RW5hYmxlIGV4dHJhIGRlYnVnIHdhcm5pbmdzIGZvciB2YmxhbmsgZXZhc2lvbiIKPiAgICAgICAg
-IGRlcGVuZHMgb24gRFJNX0k5MTUKPiAtICAgICAgIGRlZmF1bHQgbgo+ICAgICAgICAgaGVscAo+
-ICAgICAgICAgICBDaG9vc2UgdGhpcyBvcHRpb24gdG8gdHVybiBvbiBleHRyYSBkZWJ1ZyB3YXJu
-aW5ncyBmb3IgdGhlCj4gICAgICAgICAgIHZibGFuayBldmFkZSBtZWNoYW5pc20uIFRoaXMgZ2l2
-ZXMgYSB3YXJuaW5nIGV2ZXJ5IHRpbWUgdGhlCj4gQEAgLTE3Miw3ICsxNjAsNiBAQCBjb25maWcg
-RFJNX0k5MTVfREVCVUdfVkJMQU5LX0VWQURFCj4gIGNvbmZpZyBEUk1fSTkxNV9ERUJVR19SVU5U
-SU1FX1BNCj4gICAgICAgICBib29sICJFbmFibGUgZXh0cmEgc3RhdGUgY2hlY2tpbmcgZm9yIHJ1
-bnRpbWUgUE0iCj4gICAgICAgICBkZXBlbmRzIG9uIERSTV9JOTE1Cj4gLSAgICAgICBkZWZhdWx0
-IG4KPiAgICAgICAgIHNlbGVjdCBTVEFDS0RFUE9UCj4gICAgICAgICBoZWxwCj4gICAgICAgICAg
-IENob29zZSB0aGlzIG9wdGlvbiB0byB0dXJuIG9uIGV4dHJhIHN0YXRlIGNoZWNraW5nIGZvciB0
-aGUKPiBJbmRleDogYi9kcml2ZXJzL2dwdS9kcm0vbXNtL0tjb25maWcKPiA9PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL21zbS9LY29uZmlnICAgICAgIDIwMTktMDQtMTIgMTE6NDI6
-MzAuMDcwMDk1MzU5ICswMjAwCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL21zbS9LY29uZmlnICAg
-ICAgIDIwMTktMDQtMTIgMTE6NDI6MzAuMDY2MDk1MzU5ICswMjAwCj4gQEAgLTI0LDcgKzI0LDYg
-QEAgY29uZmlnIERSTV9NU00KPiAgY29uZmlnIERSTV9NU01fUkVHSVNURVJfTE9HR0lORwo+ICAg
-ICAgICAgYm9vbCAiTVNNIERSTSByZWdpc3RlciBsb2dnaW5nIgo+ICAgICAgICAgZGVwZW5kcyBv
-biBEUk1fTVNNCj4gLSAgICAgICBkZWZhdWx0IG4KPiAgICAgICAgIGhlbHAKPiAgICAgICAgICAg
-Q29tcGlsZSBpbiBzdXBwb3J0IGZvciBsb2dnaW5nIHJlZ2lzdGVyIHJlYWRzL3dyaXRlcyBpbiBh
-IGZvcm1hdAo+ICAgICAgICAgICB0aGF0IGNhbiBiZSBwYXJzZWQgYnkgZW52eXRvb2xzIGRlbXNt
-IHRvb2wuICBJZiBlbmFibGVkLCByZWdpc3Rlcgo+IEBAIC0zMyw3ICszMiw2IEBAIGNvbmZpZyBE
-Uk1fTVNNX1JFR0lTVEVSX0xPR0dJTkcKPiAgY29uZmlnIERSTV9NU01fR1BVX1NVRE8KPiAgICAg
-ICAgIGJvb2wgIkVuYWJsZSBTVURPIGZsYWcgb24gc3VibWl0cyIKPiAgICAgICAgIGRlcGVuZHMg
-b24gRFJNX01TTSAmJiBFWFBFUlQKPiAtICAgICAgIGRlZmF1bHQgbgo+ICAgICAgICAgaGVscAo+
-ICAgICAgICAgICBFbmFibGUgdXNlcnNwYWNlIHRoYXQgaGFzIENBUF9TWVNfUkFXSU8gdG8gc3Vi
-bWl0IEdQVSBjb21tYW5kcwo+ICAgICAgICAgICB0aGF0IGFyZSBydW4gZnJvbSBSQiBpbnN0ZWFk
-IG9mIElCMS4gIFRoaXMgZXNzZW50aWFsbHkgZ2l2ZXMKPiBJbmRleDogYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9LY29uZmlnCj4gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L0tjb25maWcgICAyMDE5LTA0LTEyIDExOjQyOjMwLjA3MDA5NTM1OSArMDIwMAo+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L0tjb25maWcgICAyMDE5LTA0LTEyIDExOjQzOjI1
-Ljk5ODA5Njc2NyArMDIwMAo+IEBAIC02MCw3ICs2MCw2IEBAIGNvbmZpZyBOT1VWRUFVX0RFQlVH
-X0RFRkFVTFQKPiAgY29uZmlnIE5PVVZFQVVfREVCVUdfTU1VCj4gICAgICAgICBib29sICJFbmFi
-bGUgYWRkaXRpb25hbCBNTVUgZGVidWdnaW5nIgo+ICAgICAgICAgZGVwZW5kcyBvbiBEUk1fTk9V
-VkVBVQo+IC0gICAgICAgZGVmYXVsdCBuCj4gICAgICAgICBoZWxwCj4gICAgICAgICAgIFNheSBZ
-IGhlcmUgaWYgeW91IHdhbnQgdG8gZW5hYmxlIHZlcmJvc2UgTU1VIGRlYnVnIG91dHB1dC4KPgo+
-IEBAIC03OSw3ICs3OCw2IEBAIGNvbmZpZyBEUk1fTk9VVkVBVV9TVk0KPiAgICAgICAgIGRlcGVu
-ZHMgb24gU1RBR0lORwo+ICAgICAgICAgc2VsZWN0IEhNTV9NSVJST1IKPiAgICAgICAgIHNlbGVj
-dCBERVZJQ0VfUFJJVkFURQo+IC0gICAgICAgZGVmYXVsdCBuCj4gICAgICAgICBoZWxwCj4gICAg
-ICAgICAgIFNheSBZIGhlcmUgaWYgeW91IHdhbnQgdG8gZW5hYmxlIGV4cGVyaW1lbnRhbCBzdXBw
-b3J0IGZvcgo+ICAgICAgICAgICBTaGFyZWQgVmlydHVhbCBNZW1vcnkgKFNWTSkuCj4gSW5kZXg6
-IGIvZHJpdmVycy9ncHUvZHJtL29tYXBkcm0vS2NvbmZpZwo+ID09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KPiAtLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vb21hcGRybS9LY29uZmlnICAgMjAxOS0wNC0xMiAxMTo0MjozMC4wNzAw
-OTUzNTkgKzAyMDAKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vb21hcGRybS9LY29uZmlnICAgMjAx
-OS0wNC0xMiAxMTo0MjozMC4wNzAwOTUzNTkgKzAyMDAKPiBAQCAtNCw3ICs0LDYgQEAgY29uZmln
-IERSTV9PTUFQCj4gICAgICAgICBkZXBlbmRzIG9uIEFSQ0hfT01BUDJQTFVTIHx8IEFSQ0hfTVVM
-VElQTEFURk9STQo+ICAgICAgICAgc2VsZWN0IE9NQVAyX0RTUwo+ICAgICAgICAgc2VsZWN0IERS
-TV9LTVNfSEVMUEVSCj4gLSAgICAgICBkZWZhdWx0IG4KPiAgICAgICAgIGhlbHAKPiAgICAgICAg
-ICAgRFJNIGRpc3BsYXkgZHJpdmVyIGZvciBPTUFQMi8zLzQgYmFzZWQgYm9hcmRzLgo+Cj4gSW5k
-ZXg6IGIvZHJpdmVycy9ncHUvZHJtL29tYXBkcm0vZHNzL0tjb25maWcKPiA9PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL29tYXBkcm0vZHNzL0tjb25maWcgICAgICAgMjAxOS0wNC0x
-MiAxMTo0MjozMC4wNzAwOTUzNTkgKzAyMDAKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vb21hcGRy
-bS9kc3MvS2NvbmZpZyAgICAgICAyMDE5LTA0LTEyIDExOjQyOjMwLjA3MDA5NTM1OSArMDIwMAo+
-IEBAIC0xNyw3ICsxNyw2IEBAIGlmIE9NQVAyX0RTUwo+Cj4gIGNvbmZpZyBPTUFQMl9EU1NfREVC
-VUcKPiAgICAgICAgIGJvb2wgIkRlYnVnIHN1cHBvcnQiCj4gLSAgICAgICBkZWZhdWx0IG4KPiAg
-ICAgICAgIGhlbHAKPiAgICAgICAgICAgVGhpcyBlbmFibGVzIHByaW50aW5nIG9mIGRlYnVnIG1l
-c3NhZ2VzLiBBbHRlcm5hdGl2ZWx5LCBkZWJ1ZyBtZXNzYWdlcwo+ICAgICAgICAgICBjYW4gYWxz
-byBiZSBlbmFibGVkIGJ5IHNldHRpbmcgQ09ORklHX0RZTkFNSUNfREVCVUcgYW5kIHRoZW4gc2V0
-dGluZwo+IEBAIC0yNiw3ICsyNSw2IEBAIGNvbmZpZyBPTUFQMl9EU1NfREVCVUcKPiAgY29uZmln
-IE9NQVAyX0RTU19ERUJVR0ZTCj4gICAgICAgICBib29sICJEZWJ1Z2ZzIGZpbGVzeXN0ZW0gc3Vw
-cG9ydCIKPiAgICAgICAgIGRlcGVuZHMgb24gREVCVUdfRlMKPiAtICAgICAgIGRlZmF1bHQgbgo+
-ICAgICAgICAgaGVscAo+ICAgICAgICAgICBUaGlzIGVuYWJsZXMgZGVidWdmcyBmb3IgT01BUERT
-UyBhdCA8ZGVidWdmcz4vb21hcGRzcy4gVGhpcyBlbmFibGVzCj4gICAgICAgICAgIHF1ZXJ5aW5n
-IGFib3V0IGNsb2NrIGNvbmZpZ3VyYXRpb24gYW5kIHJlZ2lzdGVyIGNvbmZpZ3VyYXRpb24gb2Yg
-ZHNzLAo+IEBAIC0zNSw3ICszMyw2IEBAIGNvbmZpZyBPTUFQMl9EU1NfREVCVUdGUwo+ICBjb25m
-aWcgT01BUDJfRFNTX0NPTExFQ1RfSVJRX1NUQVRTCj4gICAgICAgICBib29sICJDb2xsZWN0IERT
-UyBJUlEgc3RhdGlzdGljcyIKPiAgICAgICAgIGRlcGVuZHMgb24gT01BUDJfRFNTX0RFQlVHRlMK
-PiAtICAgICAgIGRlZmF1bHQgbgo+ICAgICAgICAgaGVscAo+ICAgICAgICAgICBDb2xsZWN0IERT
-UyBJUlEgc3RhdGlzdGljcywgcHJpbnRhYmxlIHZpYSBkZWJ1Z2ZzLgo+Cj4gQEAgLTc1LDcgKzcy
-LDYgQEAgY29uZmlnIE9NQVA0X0RTU19IRE1JX0NFQwo+Cj4gIGNvbmZpZyBPTUFQNV9EU1NfSERN
-SQo+ICAgICAgICAgYm9vbCAiSERNSSBzdXBwb3J0IGZvciBPTUFQNSIKPiAtICAgICAgIGRlZmF1
-bHQgbgo+ICAgICAgICAgc2VsZWN0IE9NQVAyX0RTU19IRE1JX0NPTU1PTgo+ICAgICAgICAgaGVs
-cAo+ICAgICAgICAgICBIRE1JIEludGVyZmFjZSBmb3IgT01BUDUgYW5kIHNpbWlsYXIgY29yZXMu
-IFRoaXMgYWRkcyB0aGUgSGlnaAo+IEBAIC04NCw3ICs4MCw2IEBAIGNvbmZpZyBPTUFQNV9EU1Nf
-SERNSQo+Cj4gIGNvbmZpZyBPTUFQMl9EU1NfU0RJCj4gICAgICAgICBib29sICJTREkgc3VwcG9y
-dCIKPiAtICAgICAgICBkZWZhdWx0IG4KPiAgICAgICAgIGhlbHAKPiAgICAgICAgICAgU0RJIChT
-ZXJpYWwgRGlzcGxheSBJbnRlcmZhY2UpIHN1cHBvcnQuCj4KPiBAQCAtOTMsNyArODgsNiBAQCBj
-b25maWcgT01BUDJfRFNTX1NESQo+Cj4gIGNvbmZpZyBPTUFQMl9EU1NfRFNJCj4gICAgICAgICBi
-b29sICJEU0kgc3VwcG9ydCIKPiAtICAgICAgICBkZWZhdWx0IG4KPiAgICAgICAgIGhlbHAKPiAg
-ICAgICAgICAgTUlQSSBEU0kgKERpc3BsYXkgU2VyaWFsIEludGVyZmFjZSkgc3VwcG9ydC4KPgo+
-IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gYW1kLWdm
-eCBtYWlsaW5nIGxpc3QKPiBhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeApfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
-aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZng=
+
+--===============0334487553==
+Content-Type: multipart/alternative; boundary="15550996410.A84f8d02.9876"
+Content-Transfer-Encoding: 7bit
+
+
+--15550996410.A84f8d02.9876
+Date: Fri, 12 Apr 2019 20:07:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110414
+
+            Bug ID: 110414
+           Summary: mesa-vdpau 19.0.2 contains broken symlinks to
+                    libvdpau_gallium.so.1.0.0
+           Product: Mesa
+           Version: 19.0
+          Hardware: Other
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: glitsj16-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+OS: Arch Linux
+
+$ pacman -Q mesa-vdpau
+mesa-vdpau 19.0.2-1
+
+$ pacman -Ql mesa-vdpau
+mesa-vdpau /usr/
+mesa-vdpau /usr/lib/
+mesa-vdpau /usr/lib/vdpau/
+mesa-vdpau /usr/lib/vdpau/libvdpau_gallium.so
+mesa-vdpau /usr/lib/vdpau/libvdpau_nouveau.so
+mesa-vdpau /usr/lib/vdpau/libvdpau_nouveau.so.1
+mesa-vdpau /usr/lib/vdpau/libvdpau_nouveau.so.1.0
+mesa-vdpau /usr/lib/vdpau/libvdpau_nouveau.so.1.0.0
+mesa-vdpau /usr/lib/vdpau/libvdpau_r300.so
+mesa-vdpau /usr/lib/vdpau/libvdpau_r300.so.1
+mesa-vdpau /usr/lib/vdpau/libvdpau_r300.so.1.0
+mesa-vdpau /usr/lib/vdpau/libvdpau_r300.so.1.0.0
+mesa-vdpau /usr/lib/vdpau/libvdpau_r600.so
+mesa-vdpau /usr/lib/vdpau/libvdpau_r600.so.1
+mesa-vdpau /usr/lib/vdpau/libvdpau_r600.so.1.0
+mesa-vdpau /usr/lib/vdpau/libvdpau_r600.so.1.0.0
+mesa-vdpau /usr/lib/vdpau/libvdpau_radeonsi.so
+mesa-vdpau /usr/lib/vdpau/libvdpau_radeonsi.so.1
+mesa-vdpau /usr/lib/vdpau/libvdpau_radeonsi.so.1.0
+mesa-vdpau /usr/lib/vdpau/libvdpau_radeonsi.so.1.0.0
+mesa-vdpau /usr/share/
+mesa-vdpau /usr/share/licenses/
+mesa-vdpau /usr/share/licenses/mesa-vdpau/
+mesa-vdpau /usr/share/licenses/mesa-vdpau/LICENSE
+
+$ sudo find -L / -not \( -type d -path "/dev" -prune -o -path "/home" -prun=
+e -o
+-path "/media" -prune -o -path "/mnt" -prune -o -path "/proc" -prune -o -pa=
+th
+"/root" -prune -o -path "/run" -prune -o -path "/sys" -prune -o -path "/tmp"
+-prune -o -path "/var" -prune \) -type l -ls
+920254 0 lrwxrwxrwx 1 root root 25 Apr 12 07:07
+/usr/lib64/vdpau/libvdpau_gallium.so -> libvdpau_gallium.so.1.0.0
+920254 0 lrwxrwxrwx 1 root root 25 Apr 12 07:07
+/usr/lib/vdpau/libvdpau_gallium.so -> libvdpau_gallium.so.1.0.0
+920254 0 lrwxrwxrwx 1 root root 25 Apr 12 07:07
+/lib64/vdpau/libvdpau_gallium.so -> libvdpau_gallium.so.1.0.0
+920254 0 lrwxrwxrwx 1 root root 25 Apr 12 07:07 /lib/vdpau/libvdpau_gallium=
+.so
+-> libvdpau_gallium.so.1.0.0
+
+The file libvdpau_gallium.so isn't in 19.0.1-1. First I thought this was an
+Arch Linux packaging issue and reported it at
+https://bugs.archlinux.org/task/62323. But according to the bug handler it =
+is
+an upstream issue, so reporting it here.
+
+Regards
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15550996410.A84f8d02.9876
+Date: Fri, 12 Apr 2019 20:07:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - mesa-vdpau 19.0.2 contains broken symlinks to libvdpau_ga=
+llium.so.1.0.0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110414">110414</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>mesa-vdpau 19.0.2 contains broken symlinks to libvdpau_galliu=
+m.so.1.0.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>19.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>glitsj16&#64;riseup.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>OS: Arch Linux
+
+$ pacman -Q mesa-vdpau
+mesa-vdpau 19.0.2-1
+
+$ pacman -Ql mesa-vdpau
+mesa-vdpau /usr/
+mesa-vdpau /usr/lib/
+mesa-vdpau /usr/lib/vdpau/
+mesa-vdpau /usr/lib/vdpau/libvdpau_gallium.so
+mesa-vdpau /usr/lib/vdpau/libvdpau_nouveau.so
+mesa-vdpau /usr/lib/vdpau/libvdpau_nouveau.so.1
+mesa-vdpau /usr/lib/vdpau/libvdpau_nouveau.so.1.0
+mesa-vdpau /usr/lib/vdpau/libvdpau_nouveau.so.1.0.0
+mesa-vdpau /usr/lib/vdpau/libvdpau_r300.so
+mesa-vdpau /usr/lib/vdpau/libvdpau_r300.so.1
+mesa-vdpau /usr/lib/vdpau/libvdpau_r300.so.1.0
+mesa-vdpau /usr/lib/vdpau/libvdpau_r300.so.1.0.0
+mesa-vdpau /usr/lib/vdpau/libvdpau_r600.so
+mesa-vdpau /usr/lib/vdpau/libvdpau_r600.so.1
+mesa-vdpau /usr/lib/vdpau/libvdpau_r600.so.1.0
+mesa-vdpau /usr/lib/vdpau/libvdpau_r600.so.1.0.0
+mesa-vdpau /usr/lib/vdpau/libvdpau_radeonsi.so
+mesa-vdpau /usr/lib/vdpau/libvdpau_radeonsi.so.1
+mesa-vdpau /usr/lib/vdpau/libvdpau_radeonsi.so.1.0
+mesa-vdpau /usr/lib/vdpau/libvdpau_radeonsi.so.1.0.0
+mesa-vdpau /usr/share/
+mesa-vdpau /usr/share/licenses/
+mesa-vdpau /usr/share/licenses/mesa-vdpau/
+mesa-vdpau /usr/share/licenses/mesa-vdpau/LICENSE
+
+$ sudo find -L / -not \( -type d -path &quot;/dev&quot; -prune -o -path &qu=
+ot;/home&quot; -prune -o
+-path &quot;/media&quot; -prune -o -path &quot;/mnt&quot; -prune -o -path &=
+quot;/proc&quot; -prune -o -path
+&quot;/root&quot; -prune -o -path &quot;/run&quot; -prune -o -path &quot;/s=
+ys&quot; -prune -o -path &quot;/tmp&quot;
+-prune -o -path &quot;/var&quot; -prune \) -type l -ls
+920254 0 lrwxrwxrwx 1 root root 25 Apr 12 07:07
+/usr/lib64/vdpau/libvdpau_gallium.so -&gt; libvdpau_gallium.so.1.0.0
+920254 0 lrwxrwxrwx 1 root root 25 Apr 12 07:07
+/usr/lib/vdpau/libvdpau_gallium.so -&gt; libvdpau_gallium.so.1.0.0
+920254 0 lrwxrwxrwx 1 root root 25 Apr 12 07:07
+/lib64/vdpau/libvdpau_gallium.so -&gt; libvdpau_gallium.so.1.0.0
+920254 0 lrwxrwxrwx 1 root root 25 Apr 12 07:07 /lib/vdpau/libvdpau_gallium=
+.so
+-&gt; libvdpau_gallium.so.1.0.0
+
+The file libvdpau_gallium.so isn't in 19.0.1-1. First I thought this was an
+Arch Linux packaging issue and reported it at
+<a href=3D"https://bugs.archlinux.org/task/62323">https://bugs.archlinux.or=
+g/task/62323</a>. But according to the bug handler it is
+an upstream issue, so reporting it here.
+
+Regards</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15550996410.A84f8d02.9876--
+
+--===============0334487553==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0334487553==--
