@@ -1,322 +1,210 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH v2] drm/nouveau/i2c: Disable i2c bus access after ->fini()
-Date: Fri, 12 Apr 2019 09:04:58 +1000
-Message-ID: <CACAvsv6Crk_0vX-g8E99CEeZ2a6c4QDLsDhf7zE_r=bFySmjpg@mail.gmail.com>
-References: <20190409202335.4190-1-lyude@redhat.com> <CACAvsv5woW9wr3JaKSOSSX8v4NACv5ubVyCoO9q9+OumspwsZQ@mail.gmail.com>
- <430ed8f2ecaf0706c81de0b4d787b9604e07cf0f.camel@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110407] New: /sys/class/backlight/nv_backlight
+ doesn't work on Dell Precision 7530 GP107GLM [Quadro P1000 Mobile]
+Date: Fri, 12 Apr 2019 05:56:55 +0000
+Message-ID: <bug-110407-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <430ed8f2ecaf0706c81de0b4d787b9604e07cf0f.camel@redhat.com>
-Sender: stable-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: nouveau@lists.freedesktop.org, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, stable@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============1563224148=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 12 Apr 2019 at 03:37, Lyude Paul <lyude@redhat.com> wrote:
->
-> On Thu, 2019-04-11 at 08:48 +1000, Ben Skeggs wrote:
-> > On Wed, 10 Apr 2019 at 06:23, Lyude Paul <lyude@redhat.com> wrote:
-> > > For a while, we've had the problem of i2c bus access not grabbing
-> > > a runtime PM ref when it's being used in userspace by i2c-dev, resulting
-> > > in nouveau spamming the kernel log with errors if anything attempts to
-> > > access the i2c bus while the GPU is in runtime suspend. An example:
-> > >
-> > > [  130.078386] nouveau 0000:01:00.0: i2c: aux 000d: begin idle timeout
-> > > ffffffff
-> > >
-> > > Since the GPU is in runtime suspend, the MMIO region that the i2c bus is
-> > > on isn't accessible. On x86, the standard behavior for accessing an
-> > > unavailable MMIO region is to just return ~0.
-> > >
-> > > Except, that turned out to be a lie. While computers with a clean
-> > > concious will return ~0 in this scenario, some machines will actually
-> > > completely hang a CPU on certian bad MMIO accesses. This was witnessed
-> > > with someone's Lenovo ThinkPad P50, where sensors-detect attempting to
-> > > access the i2c bus while the GPU was suspended would result in a CPU
-> > > hang:
-> > >
-> > >   CPU: 5 PID: 12438 Comm: sensors-detect Not tainted 5.0.0-
-> > > 0.rc4.git3.1.fc30.x86_64 #1
-> > >   Hardware name: LENOVO 20EQS64N17/20EQS64N17, BIOS N1EET74W (1.47 )
-> > > 11/21/2017
-> > >   RIP: 0010:ioread32+0x2b/0x30
-> > >   Code: 81 ff ff ff 03 00 77 20 48 81 ff 00 00 01 00 76 05 0f b7 d7 ed c3
-> > >   48 c7 c6 e1 0c 36 96 e8 2d ff ff ff b8 ff ff ff ff c3 8b 07 <c3> 0f 1f
-> > >   40 00 49 89 f0 48 81 fe ff ff 03 00 76 04 40 88 3e c3 48
-> > >   RSP: 0018:ffffaac3c5007b48 EFLAGS: 00000292 ORIG_RAX: ffffffffffffff13
-> > >   RAX: 0000000001111000 RBX: 0000000001111000 RCX: 0000043017a97186
-> > >   RDX: 0000000000000aaa RSI: 0000000000000005 RDI: ffffaac3c400e4e4
-> > >   RBP: ffff9e6443902c00 R08: ffffaac3c400e4e4 R09: ffffaac3c5007be7
-> > >   R10: 0000000000000004 R11: 0000000000000001 R12: ffff9e6445dd0000
-> > >   R13: 000000000000e4e4 R14: 00000000000003c4 R15: 0000000000000000
-> > >   FS:  00007f253155a740(0000) GS:ffff9e644f600000(0000)
-> > > knlGS:0000000000000000
-> > >   CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> > >   CR2: 00005630d1500358 CR3: 0000000417c44006 CR4: 00000000003606e0
-> > >   DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-> > >   DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-> > >   Call Trace:
-> > >    g94_i2c_aux_xfer+0x326/0x850 [nouveau]
-> > >    nvkm_i2c_aux_i2c_xfer+0x9e/0x140 [nouveau]
-> > >    __i2c_transfer+0x14b/0x620
-> > >    i2c_smbus_xfer_emulated+0x159/0x680
-> > >    ? _raw_spin_unlock_irqrestore+0x1/0x60
-> > >    ? rt_mutex_slowlock.constprop.0+0x13d/0x1e0
-> > >    ? __lock_is_held+0x59/0xa0
-> > >    __i2c_smbus_xfer+0x138/0x5a0
-> > >    i2c_smbus_xfer+0x4f/0x80
-> > >    i2cdev_ioctl_smbus+0x162/0x2d0 [i2c_dev]
-> > >    i2cdev_ioctl+0x1db/0x2c0 [i2c_dev]
-> > >    do_vfs_ioctl+0x408/0x750
-> > >    ksys_ioctl+0x5e/0x90
-> > >    __x64_sys_ioctl+0x16/0x20
-> > >    do_syscall_64+0x60/0x1e0
-> > >    entry_SYSCALL_64_after_hwframe+0x49/0xbe
-> > >   RIP: 0033:0x7f25317f546b
-> > >   Code: 0f 1e fa 48 8b 05 1d da 0c 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff
-> > >   ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa b8 10 00 00 00 0f 05 <48> 3d 01
-> > >   f0 ff ff 73 01 c3 48 8b 0d ed d9 0c 00 f7 d8 64 89 01 48
-> > >   RSP: 002b:00007ffc88caab68 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-> > >   RAX: ffffffffffffffda RBX: 00005630d0fe7260 RCX: 00007f25317f546b
-> > >   RDX: 00005630d1598e80 RSI: 0000000000000720 RDI: 0000000000000003
-> > >   RBP: 00005630d155b968 R08: 0000000000000001 R09: 00005630d15a1da0
-> > >   R10: 0000000000000070 R11: 0000000000000246 R12: 00005630d1598e80
-> > >   R13: 00005630d12f3d28 R14: 0000000000000720 R15: 00005630d12f3ce0
-> > >   watchdog: BUG: soft lockup - CPU#5 stuck for 23s! [sensors-detect:12438]
-> > >
-> > > Yikes! While I wanted to try to make it so that accessing an i2c bus on
-> > > nouveau would wake up the GPU as needed, airlied pointed out that pretty
-> > > much any usecase for userspace accessing an i2c bus on a GPU (mainly for
-> > > the DDC brightness control that some displays have) is going to only be
-> > > useful while there's at least one display enabled on the GPU anyway, and
-> > > the GPU never sleeps while there's displays running.
-> > >
-> > > Since teaching the i2c bus to wake up the GPU on userspace accesses is a
-> > > good deal more difficult than it might seem, mostly due to the fact that
-> > > we have to use the i2c bus during runtime resume of the GPU, we instead
-> > > opt for the easiest solution: don't let userspace access i2c busses on
-> > > the GPU at all while it's in runtime suspend.
-> > >
-> > > Changes since v1:
-> > > * Also disable i2c busses that run over DP AUX
-> > I've updated my tree with the v2 version of the patch.  I haven't
-> > investigated too thoroughly, but shouldn't it be possible to move this
-> > check into a single place (pad_acquire()?) for both i2c/aux?
->
-> That should be fine as long as we don't use pads independently of their i2c
-> busses (e.g. within nvkm for thermal sensors or the like), but I didn't take
-> the time to check whether that's true or not. Do you know?
-No, only i2c/aux are externally exposed.  So, it should be fine to do then.
 
->
-> >
-> > Thanks,
-> > Ben.
-> >
-> > > Signed-off-by: Lyude Paul <lyude@redhat.com>
-> > > Cc: stable@vger.kernel.org
-> > > ---
-> > >  .../gpu/drm/nouveau/include/nvkm/subdev/i2c.h |  2 ++
-> > >  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c | 26 ++++++++++++++++++-
-> > >  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h |  2 ++
-> > >  .../gpu/drm/nouveau/nvkm/subdev/i2c/base.c    | 15 +++++++++++
-> > >  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c | 21 ++++++++++++++-
-> > >  drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.h |  1 +
-> > >  6 files changed, 65 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/i2c.h
-> > > b/drivers/gpu/drm/nouveau/include/nvkm/subdev/i2c.h
-> > > index eef54e9b5d77..7957eafa5f0e 100644
-> > > --- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/i2c.h
-> > > +++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/i2c.h
-> > > @@ -38,6 +38,7 @@ struct nvkm_i2c_bus {
-> > >         struct mutex mutex;
-> > >         struct list_head head;
-> > >         struct i2c_adapter i2c;
-> > > +       u8 enabled;
-> > >  };
-> > >
-> > >  int nvkm_i2c_bus_acquire(struct nvkm_i2c_bus *);
-> > > @@ -57,6 +58,7 @@ struct nvkm_i2c_aux {
-> > >         struct mutex mutex;
-> > >         struct list_head head;
-> > >         struct i2c_adapter i2c;
-> > > +       u8 enabled;
-> > >
-> > >         u32 intr;
-> > >  };
-> > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
-> > > b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
-> > > index 4c1f547da463..b4e7404fe660 100644
-> > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
-> > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
-> > > @@ -105,9 +105,15 @@ nvkm_i2c_aux_acquire(struct nvkm_i2c_aux *aux)
-> > >  {
-> > >         struct nvkm_i2c_pad *pad = aux->pad;
-> > >         int ret;
-> > > +
-> > >         AUX_TRACE(aux, "acquire");
-> > >         mutex_lock(&aux->mutex);
-> > > -       ret = nvkm_i2c_pad_acquire(pad, NVKM_I2C_PAD_AUX);
-> > > +
-> > > +       if (aux->enabled)
-> > > +               ret = nvkm_i2c_pad_acquire(pad, NVKM_I2C_PAD_AUX);
-> > > +       else
-> > > +               ret = -EIO;
-> > > +
-> > >         if (ret)
-> > >                 mutex_unlock(&aux->mutex);
-> > >         return ret;
-> > > @@ -145,6 +151,24 @@ nvkm_i2c_aux_del(struct nvkm_i2c_aux **paux)
-> > >         }
-> > >  }
-> > >
-> > > +void
-> > > +nvkm_i2c_aux_init(struct nvkm_i2c_aux *aux)
-> > > +{
-> > > +       AUX_TRACE(aux, "init");
-> > > +       mutex_lock(&aux->mutex);
-> > > +       aux->enabled = true;
-> > > +       mutex_unlock(&aux->mutex);
-> > > +}
-> > > +
-> > > +void
-> > > +nvkm_i2c_aux_fini(struct nvkm_i2c_aux *aux)
-> > > +{
-> > > +       AUX_TRACE(aux, "fini");
-> > > +       mutex_lock(&aux->mutex);
-> > > +       aux->enabled = false;
-> > > +       mutex_unlock(&aux->mutex);
-> > > +}
-> > > +
-> > >  int
-> > >  nvkm_i2c_aux_ctor(const struct nvkm_i2c_aux_func *func,
-> > >                   struct nvkm_i2c_pad *pad, int id,
-> > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h
-> > > b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h
-> > > index 7d56c4ba693c..08f6b2ee64ab 100644
-> > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h
-> > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h
-> > > @@ -16,6 +16,8 @@ int nvkm_i2c_aux_ctor(const struct nvkm_i2c_aux_func *,
-> > > struct nvkm_i2c_pad *,
-> > >  int nvkm_i2c_aux_new_(const struct nvkm_i2c_aux_func *, struct
-> > > nvkm_i2c_pad *,
-> > >                       int id, struct nvkm_i2c_aux **);
-> > >  void nvkm_i2c_aux_del(struct nvkm_i2c_aux **);
-> > > +void nvkm_i2c_aux_init(struct nvkm_i2c_aux *);
-> > > +void nvkm_i2c_aux_fini(struct nvkm_i2c_aux *);
-> > >  int nvkm_i2c_aux_xfer(struct nvkm_i2c_aux *, bool retry, u8 type,
-> > >                       u32 addr, u8 *data, u8 *size);
-> > >
-> > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
-> > > b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
-> > > index 4f197b15acf6..ecacb22834d7 100644
-> > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
-> > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
-> > > @@ -160,8 +160,18 @@ nvkm_i2c_fini(struct nvkm_subdev *subdev, bool
-> > > suspend)
-> > >  {
-> > >         struct nvkm_i2c *i2c = nvkm_i2c(subdev);
-> > >         struct nvkm_i2c_pad *pad;
-> > > +       struct nvkm_i2c_bus *bus;
-> > > +       struct nvkm_i2c_aux *aux;
-> > >         u32 mask;
-> > >
-> > > +       list_for_each_entry(aux, &i2c->aux, head) {
-> > > +               nvkm_i2c_aux_fini(aux);
-> > > +       }
-> > > +
-> > > +       list_for_each_entry(bus, &i2c->bus, head) {
-> > > +               nvkm_i2c_bus_fini(bus);
-> > > +       }
-> > > +
-> > >         if ((mask = (1 << i2c->func->aux) - 1), i2c->func->aux_stat) {
-> > >                 i2c->func->aux_mask(i2c, NVKM_I2C_ANY, mask, 0);
-> > >                 i2c->func->aux_stat(i2c, &mask, &mask, &mask, &mask);
-> > > @@ -180,6 +190,7 @@ nvkm_i2c_init(struct nvkm_subdev *subdev)
-> > >         struct nvkm_i2c *i2c = nvkm_i2c(subdev);
-> > >         struct nvkm_i2c_bus *bus;
-> > >         struct nvkm_i2c_pad *pad;
-> > > +       struct nvkm_i2c_aux *aux;
-> > >
-> > >         list_for_each_entry(pad, &i2c->pad, head) {
-> > >                 nvkm_i2c_pad_init(pad);
-> > > @@ -189,6 +200,10 @@ nvkm_i2c_init(struct nvkm_subdev *subdev)
-> > >                 nvkm_i2c_bus_init(bus);
-> > >         }
-> > >
-> > > +       list_for_each_entry(aux, &i2c->aux, head) {
-> > > +               nvkm_i2c_aux_init(aux);
-> > > +       }
-> > > +
-> > >         return 0;
-> > >  }
-> > >
-> > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c
-> > > b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c
-> > > index 807a2b67bd64..ed50cc3736b9 100644
-> > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c
-> > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c
-> > > @@ -110,6 +110,19 @@ nvkm_i2c_bus_init(struct nvkm_i2c_bus *bus)
-> > >         BUS_TRACE(bus, "init");
-> > >         if (bus->func->init)
-> > >                 bus->func->init(bus);
-> > > +
-> > > +       mutex_lock(&bus->mutex);
-> > > +       bus->enabled = true;
-> > > +       mutex_unlock(&bus->mutex);
-> > > +}
-> > > +
-> > > +void
-> > > +nvkm_i2c_bus_fini(struct nvkm_i2c_bus *bus)
-> > > +{
-> > > +       BUS_TRACE(bus, "fini");
-> > > +       mutex_lock(&bus->mutex);
-> > > +       bus->enabled = false;
-> > > +       mutex_unlock(&bus->mutex);
-> > >  }
-> > >
-> > >  void
-> > > @@ -126,9 +139,15 @@ nvkm_i2c_bus_acquire(struct nvkm_i2c_bus *bus)
-> > >  {
-> > >         struct nvkm_i2c_pad *pad = bus->pad;
-> > >         int ret;
-> > > +
-> > >         BUS_TRACE(bus, "acquire");
-> > >         mutex_lock(&bus->mutex);
-> > > -       ret = nvkm_i2c_pad_acquire(pad, NVKM_I2C_PAD_I2C);
-> > > +
-> > > +       if (bus->enabled)
-> > > +               ret = nvkm_i2c_pad_acquire(pad, NVKM_I2C_PAD_I2C);
-> > > +       else
-> > > +               ret = -EIO;
-> > > +
-> > >         if (ret)
-> > >                 mutex_unlock(&bus->mutex);
-> > >         return ret;
-> > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.h
-> > > b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.h
-> > > index bea0dd33961e..465464bba58b 100644
-> > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.h
-> > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.h
-> > > @@ -18,6 +18,7 @@ int nvkm_i2c_bus_new_(const struct nvkm_i2c_bus_func *,
-> > > struct nvkm_i2c_pad *,
-> > >                       int id, struct nvkm_i2c_bus **);
-> > >  void nvkm_i2c_bus_del(struct nvkm_i2c_bus **);
-> > >  void nvkm_i2c_bus_init(struct nvkm_i2c_bus *);
-> > > +void nvkm_i2c_bus_fini(struct nvkm_i2c_bus *);
-> > >
-> > >  int nvkm_i2c_bit_xfer(struct nvkm_i2c_bus *, struct i2c_msg *, int);
-> > >
-> > > --
-> > > 2.20.1
-> > >
-> > > _______________________________________________
-> > > dri-devel mailing list
-> > > dri-devel@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> --
-> Cheers,
->         Lyude Paul
->
+--===============1563224148==
+Content-Type: multipart/alternative; boundary="15550486152.0dEaea6.8733"
+Content-Transfer-Encoding: 7bit
+
+
+--15550486152.0dEaea6.8733
+Date: Fri, 12 Apr 2019 05:56:55 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110407
+
+            Bug ID: 110407
+           Summary: /sys/class/backlight/nv_backlight doesn't work on Dell
+                    Precision 7530 GP107GLM [Quadro P1000 Mobile]
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: kai.heng.feng-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+This laptop has an BIOS option "Switchable Graphics". When the options is
+selected, it behaves like a normal Optimus laptop. In this case, brightness
+sysfs works since it's driven by Intel graphics.
+
+When the options is deselected, the Intel graphics device disappears, Nvidi=
+a is
+the only graphics device. The issue happens in this case.
+
+Changing /sys/class/backlight/nv_backlight/brightness, the brightness level
+remains the same - almost no backlight.
+
+Using proprietary driver, brightness gets changed correctly by
+/sys/class/backlight/nvidia_0/brightness.
+
+No trace while using MMIOTRACE, under proprietary driver.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15550486152.0dEaea6.8733
+Date: Fri, 12 Apr 2019 05:56:55 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - /sys/class/backlight/nv_backlight doesn't work on Dell Pr=
+ecision 7530 GP107GLM [Quadro P1000 Mobile]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110407">110407</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>/sys/class/backlight/nv_backlight doesn't work on Dell Precis=
+ion 7530 GP107GLM [Quadro P1000 Mobile]
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>kai.heng.feng&#64;canonical.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>This laptop has an BIOS option &quot;Switchable Graphics&quot;=
+. When the options is
+selected, it behaves like a normal Optimus laptop. In this case, brightness
+sysfs works since it's driven by Intel graphics.
+
+When the options is deselected, the Intel graphics device disappears, Nvidi=
+a is
+the only graphics device. The issue happens in this case.
+
+Changing /sys/class/backlight/nv_backlight/brightness, the brightness level
+remains the same - almost no backlight.
+
+Using proprietary driver, brightness gets changed correctly by
+/sys/class/backlight/nvidia_0/brightness.
+
+No trace while using MMIOTRACE, under proprietary driver.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15550486152.0dEaea6.8733--
+
+--===============1563224148==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1563224148==--
