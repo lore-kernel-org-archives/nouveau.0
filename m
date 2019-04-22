@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110487] adwefrf
-Date: Mon, 22 Apr 2019 09:31:23 +0000
-Message-ID: <bug-110487-8800-shU4ZHvgiw@http.bugs.freedesktop.org/>
+Date: Mon, 22 Apr 2019 09:31:47 +0000
+Message-ID: <bug-110487-8800-10cwwOZ6Nt@http.bugs.freedesktop.org/>
 References: <bug-110487-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1108467751=="
+Content-Type: multipart/mixed; boundary="===============2095032617=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110487-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1108467751==
-Content-Type: multipart/alternative; boundary="15559254831.ebc0C9F.31893"
+--===============2095032617==
+Content-Type: multipart/alternative; boundary="15559255062.4a7f137.31434"
 Content-Transfer-Encoding: 7bit
 
 
---15559254831.ebc0C9F.31893
-Date: Mon, 22 Apr 2019 09:31:23 +0000
+--15559255062.4a7f137.31434
+Date: Mon, 22 Apr 2019 09:31:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -39,18 +39,14 @@ Vishnu Sankar <vishnusankar2012-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #1 from Vishnu Sankar <vishnusankar2012-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-fixed.please do restest
+             Status|RESOLVED                    |CLOSED
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15559254831.ebc0C9F.31893
-Date: Mon, 22 Apr 2019 09:31:23 +0000
+--15559255062.4a7f137.31434
+Date: Mon, 22 Apr 2019 09:31:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,8 +62,8 @@ kar2012&#64;gmail.com" title=3D"Vishnu Sankar &lt;vishnusankar2012&#64;gmai=
 l.com&gt;"> <span class=3D"fn">Vishnu Sankar</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - adwefrf"
+          bz_status_CLOSED  bz_closed"
+   title=3D"CLOSED FIXED - adwefrf"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110487">bug 11048=
 7</a>
           <br>
@@ -80,37 +76,12 @@ l.com&gt;"> <span class=3D"fn">Vishnu Sankar</span></a>
 
          <tr>
            <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
            <td>RESOLVED
            </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
+           <td>CLOSED
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - adwefrf"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110487#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - adwefrf"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110487">bug 11048=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-vishnusankar2012&#64;gmail.com" title=3D"Vishnu Sankar &lt;vishnusankar2012=
-&#64;gmail.com&gt;"> <span class=3D"fn">Vishnu Sankar</span></a>
-</span></b>
-        <pre>fixed.please do restest</pre>
-        </div>
       </p>
 
 
@@ -123,9 +94,9 @@ vishnusankar2012&#64;gmail.com" title=3D"Vishnu Sankar &lt;vishnusankar2012=
     </body>
 </html>=
 
---15559254831.ebc0C9F.31893--
+--15559255062.4a7f137.31434--
 
---===============1108467751==
+--===============2095032617==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1108467751==--
+--===============2095032617==--
