@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110500] X-Server crashes - GL error:
  GL_OUT_OF_MEMORY in glTexSubImage
-Date: Tue, 23 Apr 2019 18:41:02 +0000
-Message-ID: <bug-110500-8800-w5dM3HXf7g@http.bugs.freedesktop.org/>
+Date: Tue, 23 Apr 2019 18:44:04 +0000
+Message-ID: <bug-110500-8800-K7mdOXPqma@http.bugs.freedesktop.org/>
 References: <bug-110500-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0411512475=="
+Content-Type: multipart/mixed; boundary="===============1293213149=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0411512475==
-Content-Type: multipart/alternative; boundary="15560448620.a862A2E5.11338"
+--===============1293213149==
+Content-Type: multipart/alternative; boundary="15560450443.d47be.12451"
 Content-Transfer-Encoding: 7bit
 
 
---15560448620.a862A2E5.11338
-Date: Tue, 23 Apr 2019 18:41:02 +0000
+--15560450443.d47be.12451
+Date: Tue, 23 Apr 2019 18:44:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,19 +40,18 @@ Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         QA Contact|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-                   |rg                          |
-          Component|Drivers/DRI/nouveau         |Driver/nouveau
-            Version|unspecified                 |git
-            Product|Mesa                        |xorg
+            Product|xorg                        |Mesa
+          Component|Driver/nouveau              |Drivers/DRI/nouveau
+         QA Contact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15560448620.a862A2E5.11338
-Date: Tue, 23 Apr 2019 18:41:02 +0000
+--15560450443.d47be.12451
+Date: Tue, 23 Apr 2019 18:44:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -82,34 +81,26 @@ Image"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">QA Contact</td>
-           <td>nouveau&#64;lists.freedesktop.org
+           <td style=3D"text-align:right;">Product</td>
+           <td>xorg
            </td>
-           <td>xorg-team&#64;lists.x.org
+           <td>Mesa
            </td>
          </tr>
 
          <tr>
            <td style=3D"text-align:right;">Component</td>
-           <td>Drivers/DRI/nouveau
-           </td>
            <td>Driver/nouveau
            </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Version</td>
-           <td>unspecified
-           </td>
-           <td>git
+           <td>Drivers/DRI/nouveau
            </td>
          </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Product</td>
-           <td>Mesa
+           <td style=3D"text-align:right;">QA Contact</td>
+           <td>xorg-team&#64;lists.x.org
            </td>
-           <td>xorg
+           <td>nouveau&#64;lists.freedesktop.org
            </td>
          </tr></table>
       <p>
@@ -120,15 +111,15 @@ Image"
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15560448620.a862A2E5.11338--
+--15560450443.d47be.12451--
 
---===============0411512475==
+--===============1293213149==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -138,4 +129,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0411512475==--
+--===============1293213149==--
