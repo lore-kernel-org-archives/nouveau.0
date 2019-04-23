@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110500] X-Server crashes - GL error:
  GL_OUT_OF_MEMORY in glTexSubImage
-Date: Tue, 23 Apr 2019 18:56:06 +0000
-Message-ID: <bug-110500-8800-PcZc6apxvU@http.bugs.freedesktop.org/>
+Date: Tue, 23 Apr 2019 19:16:02 +0000
+Message-ID: <bug-110500-8800-mvwlLd9vh8@http.bugs.freedesktop.org/>
 References: <bug-110500-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1015557924=="
+Content-Type: multipart/mixed; boundary="===============2089074024=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1015557924==
-Content-Type: multipart/alternative; boundary="15560457660.656f29.16820"
+--===============2089074024==
+Content-Type: multipart/alternative; boundary="15560469620.a59e37.21896"
 Content-Transfer-Encoding: 7bit
 
 
---15560457660.656f29.16820
-Date: Tue, 23 Apr 2019 18:56:06 +0000
+--15560469620.a59e37.21896
+Date: Tue, 23 Apr 2019 19:16:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,46 +36,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110500
 
---- Comment #5 from wixbisce-jFQLhMmostjmZLV5cmOKUwC/G2K4zDHf@public.gmane.org <wixbisce-jFQLhMmostjmZLV5cmOKUwC/G2K4zDHf@public.gmane.org>=
- ---
-Karol Herbst gave me this here to put into
-/etc/X11/xorg.conf.d/20-nouveau.conf:
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to wixbisce-jFQLhMmostjmZLV5cmOKUwC/G2K4zDHf@public.gmane.org from comment #5)
+> I think this should be fixed so that normal user dont have to struggle
+> around with this.
 
-Section "Device"
-        Identifier "NvidiaCard"
-        Driver "nouveau"
-        BusID "PCI:01:00:0" # PCI bus address of the Nvidia GPU here
-EndSection
+Agreed. Your distro has made some sort of modification which causes modeset=
+ to
+be preferred to nouveau. Feel free to inform them that this was a poor idea.
 
-I had to create xorg.conf.d first. Afterwards i put the config file there
-inside.
-
-Now i also see in the xorg.log NOUVEAU(0). Lets hope the machine works fine
-now.
-
-I think this should be fixed so that normal user dont have to struggle arou=
-nd
-with this. I think i am a more advanced user. The person i help here that w=
-ould
-like to switch to Linux told me now about 10 times that he would not have b=
-een
-able to do that what i did (understand that its nouveau, report a bug, know
-about IRC, join IRC, dmesg things, lsmod things, ...).
-
-This is a machine with 8 CPU cores, support up to 32GB of RAM, ... It have =
-been
-updated few times. Its just for office usage. The GPU have 512MB of VRAM. I
-have played good looking games on 128MB of VRAM.
-The system should not crash in office mode (browsing the emails in a email
-software, not browser).
+IMO, nouveau's GL implementation is a bad match for GLAMOR.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15560457660.656f29.16820
-Date: Tue, 23 Apr 2019 18:56:06 +0000
+--15560469620.a59e37.21896
+Date: Tue, 23 Apr 2019 19:16:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -93,8 +71,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - X-Server crashes - GL error: GL_OUT_OF_MEMORY in glTexSub=
 Image"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110500#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110500#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - X-Server crashes - GL error: GL_OUT_OF_MEMORY in glTexSub=
@@ -102,41 +80,21 @@ Image"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110500">bug 11050=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-wixbisce&#64;guerrillamail.com" title=3D"wixbisce&#64;guerrillamail.com &lt=
-;wixbisce&#64;guerrillamail.com&gt;"> <span class=3D"fn">wixbisce&#64;guerr=
-illamail.com</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Karol Herbst gave me this here to put into
-/etc/X11/xorg.conf.d/20-nouveau.conf:
+        <pre>(In reply to <a href=3D"mailto:wixbisce&#64;guerrillamail.com"=
+>wixbisce&#64;guerrillamail.com</a> from <a href=3D"show_bug.cgi?id=3D11050=
+0#c5">comment #5</a>)
+<span class=3D"quote">&gt; I think this should be fixed so that normal user=
+ dont have to struggle
+&gt; around with this.</span >
 
-Section &quot;Device&quot;
-        Identifier &quot;NvidiaCard&quot;
-        Driver &quot;nouveau&quot;
-        BusID &quot;PCI:01:00:0&quot; # PCI bus address of the Nvidia GPU h=
-ere
-EndSection
+Agreed. Your distro has made some sort of modification which causes modeset=
+ to
+be preferred to nouveau. Feel free to inform them that this was a poor idea.
 
-I had to create xorg.conf.d first. Afterwards i put the config file there
-inside.
-
-Now i also see in the xorg.log NOUVEAU(0). Lets hope the machine works fine
-now.
-
-I think this should be fixed so that normal user dont have to struggle arou=
-nd
-with this. I think i am a more advanced user. The person i help here that w=
-ould
-like to switch to Linux told me now about 10 times that he would not have b=
-een
-able to do that what i did (understand that its nouveau, report a bug, know
-about IRC, join IRC, dmesg things, lsmod things, ...).
-
-This is a machine with 8 CPU cores, support up to 32GB of RAM, ... It have =
-been
-updated few times. Its just for office usage. The GPU have 512MB of VRAM. I
-have played good looking games on 128MB of VRAM.
-The system should not crash in office mode (browsing the emails in a email
-software, not browser).</pre>
+IMO, nouveau's GL implementation is a bad match for GLAMOR.</pre>
         </div>
       </p>
 
@@ -145,15 +103,15 @@ software, not browser).</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15560457660.656f29.16820--
+--15560469620.a59e37.21896--
 
---===============1015557924==
+--===============2089074024==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -163,4 +121,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1015557924==--
+--===============2089074024==--
