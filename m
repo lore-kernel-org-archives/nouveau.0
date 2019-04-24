@@ -1,221 +1,301 @@
-From: Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH] pci/quirks: Add quirk to reset nvgpu at boot
- for the Lenovo ThinkPad P50
-Date: Wed, 24 Apr 2019 17:36:38 -0500
-Message-ID: <20190424223638.GC11428@google.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH] pci/quirks: Add quirk to reset nvgpu at boot for the
+ Lenovo ThinkPad P50
+Date: Wed, 24 Apr 2019 19:03:16 -0400
+Message-ID: <0fde652ad43ad3eaaa0f6dae34377cdf479697ec.camel@redhat.com>
 References: <20190212220230.1568-1-lyude@redhat.com>
- <20190215004329.GR96272@google.com>
- <2fca9a9feafcd17b27bc71994a71ebc241a93e9a.camel@redhat.com>
- <52b17f8cb24e179e9661d75548d193843ae87b4c.camel@redhat.com>
- <20190321224819.GK251185@google.com>
- <20190322113015.GM251185@google.com>
- <20190404141724.GJ141706@google.com>
- <3987ad435bfdb2d92e5e42648174634814b1646d.camel@redhat.com>
- <20190424185937.GB11428@google.com>
- <4e45b65b2151293d91dfc5811f64f3453f591f9d.camel@redhat.com>
+         <20190215004329.GR96272@google.com>
+         <2fca9a9feafcd17b27bc71994a71ebc241a93e9a.camel@redhat.com>
+         <52b17f8cb24e179e9661d75548d193843ae87b4c.camel@redhat.com>
+         <20190321224819.GK251185@google.com> <20190322113015.GM251185@google.com>
+         <20190404141724.GJ141706@google.com>
+         <3987ad435bfdb2d92e5e42648174634814b1646d.camel@redhat.com>
+         <20190424185937.GB11428@google.com>
+         <4e45b65b2151293d91dfc5811f64f3453f591f9d.camel@redhat.com>
+         <20190424223638.GC11428@google.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <4e45b65b2151293d91dfc5811f64f3453f591f9d.camel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "Rafael J. Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, David Ober <dober-6jq1YtArVR3QT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20190424223638.GC11428@google.com>
+Sender: stable-owner@vger.kernel.org
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: David Ober <dober@lenovo.com>, linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Karol Herbst <kherbst@redhat.com>, Ben Skeggs <skeggsb@gmail.com>, stable@vger.kernel.org, linux-kernel@vger.kernel.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>, Hans de Goede <hdegoede@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBBcHIgMjQsIDIwMTkgYXQgMDM6MTY6MzdQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
-ZToKPiBPbiBXZWQsIDIwMTktMDQtMjQgYXQgMTM6NTkgLTA1MDAsIEJqb3JuIEhlbGdhYXMgd3Jv
-dGU6Cj4gPiBOb3QgYmVpbmcgYSBzY2hlZHVsZWQgd29yayBleHBlcnQsIEkgd2FzIHVuc3VyZSBp
-ZiB0aGlzIGV4cGVyaW1lbnQgd2FzCj4gPiBlcXVpdmFsZW50IHRvIHdoYXQgSSBwcm9wb3NlZC4K
-PiA+IAo+ID4gSSdtIGFsd2F5cyBzdXNwaWNpb3VzIG9mIHNpbmdsZXRvbiBzb2x1dGlvbnMgbGlr
-ZSB0aGlzICh1c2luZwo+ID4gc2NoZWR1bGVfd29yaygpIGluIHJ1bnRpbWVfcmVzdW1lKCkpIGJl
-Y2F1c2UgdXN1YWxseSB0aGV5IHNlZW0gdG8gYmUKPiA+IHNvbHZpbmcgYSBnZW5lcmljIHByb2Js
-ZW0gdGhhdCBzaG91bGQgaGFwcGVuIG9uIG1hbnkga2luZHMgb2YKPiA+IGhhcmR3YXJlLiAgVGhl
-IDBiMmZlNjU5NGZhMiAoImRybS9ub3V2ZWF1OiBRdWV1ZSBocGRfd29yayBvbiAocnVudGltZSkK
-PiA+IHJlc3VtZSIpIGNvbW1pdCBsb2cgc2F5czoKPiA+IAo+ID4gICBXZSBuZWVkIHRvIGNhbGwg
-ZHJtX2hlbHBlcl9ocGRfaXJxX2V2ZW50KCkgb24gcmVzdW1lIHRvIHByb3Blcmx5Cj4gPiAgIGRl
-dGVjdCBtb25pdG9yIGNvbm5lY3Rpb24gLyBkaXNjb25uZWN0aW9uIG9uIHNvbWUgbGFwdG9wcywg
-dXNlCj4gPiAgIGhwZF93b3JrIGZvciB0aGlzIHRvIGF2b2lkIGRlYWRsb2Nrcy4KPiA+IAo+ID4g
-VGhlIHNpdHVhdGlvbiBvZiBhIG1vbml0b3IgYmVpbmcgY29ubmVjdGVkIG9yIGRpc2Nvbm5lY3Rl
-ZCBkdXJpbmcKPiA+IHN1c3BlbmQgY2FuIGhhcHBlbiB0byAqYW55KiBHUFUsIGJ1dCB0aGUgY29t
-bWl0IG9ubHkgY2hhbmdlcyBub3V2ZWF1LAo+ID4gd2hpY2ggb2YgY291cnNlIHJhaXNlcyB0aGUg
-cXVlc3Rpb24gb2YgaG93IHdlIGRlYWwgd2l0aCB0aGF0IGluIG90aGVyCj4gPiBkcml2ZXJzLiAg
-SWYgdGhlIE52aWRpYSBHUFUgaGFzIHNvbWUgdW5pcXVlIGJlaGF2aW9yIHJlbGF0ZWQgdG8KPiA+
-IG1vbml0b3IgY29ubmVjdGlvbiwgdGhhdCB3b3VsZCBleHBsYWluIHNwZWNpYWwtY2FzZSBjb2Rl
-IHRoZXJlLCBidXQKPiA+IHRoZSBjb21taXQgZG9lc24ndCBtZW50aW9uIGFueXRoaW5nIGxpa2Ug
-dGhhdC4KPiA+IAo+ID4gSXQgc2hvdWxkIGJlIHNpbXBsZSB0byByZXZlcnQgMGIyZmU2NTk0ZmEy
-IGFuZCBzZWUgd2hldGhlciBpdCBjaGFuZ2VzCj4gPiB0aGUgYmVoYXZpb3IgYXQgYWxsICh3ZWxs
-LCBzaW1wbGUgZXhjZXB0IGZvciB0aGUgZmFjdCB0aGF0IHRoaXMKPiA+IHByb2JsZW0gaXNuJ3Qg
-MTAwJSByZXByb2R1Y2libGUgaW4gdGhlIGZpcnN0IHBsYWNlKS4KPiAKPiBJdCdzIG5vdCAxMDAl
-IHJlcHJvZHVjaWJsZSwgYnV0IGl0J3MgYXQgbGVhc3QgOTAlIHNvIGl0J3Mgbm90Cj4gZGlmZmlj
-dWx0IGZvciBtZSB0byB0ZXN0IGF0IGFsbC4KPiAKPiBBbHNvLCByZXZlcnRpbmcgdGhpcyBjb21t
-aXQgbWFrZXMgbm8gZGlmZmVyZW5jZSBlaXRoZXIuIAoKT0ssIGdyZWF0LCB0aGF0IG1ha2VzIGl0
-IGNyeXN0YWwgY2xlYXIuICBJIGRpZG4ndCBrbm93IHlvdSBoYWQKc3BlY2lmaWNhbGx5IHRlc3Rl
-ZCB0aGF0IHJldmVydC4gIFRoYW5rcyBmb3IgZG9pbmcgdGhhdC4KCj4gTm90ZSB0aGF0IHdoaWxl
-IHRoYXQgY29tbWl0IG9ubHkgY2hhbmdlZCBub3V2ZWF1LCBzY2hlZHVsZWRfd29yaygpCj4gaXMg
-ZXhhY3RseSBob3cgYSBudW1iZXIgb2Ygb3RoZXIgZHJpdmVycyAoaTkxNSBmb3IgaW5zdGFuY2Up
-IGhhbmRsZQo+IHJlcHJvYmluZyBsaWtlIHRoaXMgYXMgd2VsbC4KCk9LLiAgVGhlIEdQVSBjb2Rl
-IHdvdWxkIGJlIGEgbG90IG1vcmUgYXBwcm9hY2hhYmxlIGlmIHNpbWlsYXIgdGhpbmdzCndlcmUg
-ZG9uZSBpbiBzaW1pbGFyIHdheXMuICBJIHNwZW50IGFuIGhvdXIgb3Igc28gbG9va2luZyBmb3Ig
-dGhpcwpzaW1pbGFyIGNvZGUgaW4gaTkxNSwgYnV0IGdhdmUgdXAuCgo+IFRoZSByZWFzb24gYmVp
-bmcgdGhhdCB3ZSBjYW4ndCBkbyBmdWxsIGNvbm5lY3RvciByZXByb2JpbmcgaW4gb3VyCj4gcnVu
-dGltZSByZXN1bWUgdGhyZWFkIGJlY2F1c2Ugd2UgY291bGQgZGVhZGxvY2sgaWYgc29tZW9uZSBl
-bHNlIGlzCj4gaG9sZGluZyBhIG1vZGVzZXR0aW5nIGxvY2sgd2UgbmVlZCBhbmQgd2FpdGluZyBv
-biB1cyB0byByZXN1bWUgYXQKPiB0aGUgc2FtZSB0aW1lICh0aGVyZSdzIGEgbnVtYmVyIG9mIG90
-aGVyIGJ1ZyBmaXhlcyBpbiBub3V2ZWF1IGZvcgo+IG90aGVyIGlzc3VlcyBjYXVzZWQgYnkgdGhl
-IHNhbWUgZGVhZGxvY2sgc2NlbmFyaW8pLiAKCllvdSBtZW50aW9uIG5vdXZlYXUgc3BlY2lmaWNh
-bGx5IGhlcmUsIGJ1dCBJIGFzc3VtZSB0aGlzIGlzIGEgZ2VuZXJpYwpkZWFkbG9jayBzY2VuYXJp
-byB0aGF0IGFwcGxpZXMgdG8gYW55IEdQVSwgYW5kIHRoZXkgYWxsIGF2b2lkIHRoZQpkZWFkbG9j
-ayBpbiB0aGUgc2FtZSB3YXkuICBSaWdodD8KCj4gSSdtIGNvbmZ1c2VkIGhlcmUgdGhvdWdoLCBp
-dCBzb3VuZHMgbGlrZSB5b3UncmUgcnVubmluZyB1bmRlciB0aGUKPiBhc3N1bXB0aW9uIHRoYXQg
-UENJIGRldmljZXMgbGlrZSB0aGlzIGFyZW4ndCByZXNldCBpbnRvIGEgY2xlYW4KPiBzdGF0ZSBk
-dXJpbmcgYSBzeXN0ZW0gcmVib290LCBpcyB0aGF0IGNvcnJlY3Q/CgpObywgSSB3YXNuJ3QgdHJ5
-aW5nIHRvIHNheSBhbnl0aGluZyBhYm91dCB0aGF0LiAgTXkgcG9pbnQgaGVyZSBpcwp0aGF0OgoK
-ICAtIHlvdSdyZSByZXBvcnRpbmcgYSBwcm9ibGVtIHRoYXQgb25seSBoYXBwZW5zIHdpdGggbm91
-dmVhdSBhbmQKICAgIG9ubHkgaGFwcGVucyBkdXJpbmcgc2h1dGRvd24vcmVib290CiAgLSB0aGUg
-YmVoYXZpb3IgaXMgc2ltaWxhciB0byBhIHJhY2UgKG5vdCAxMDAlIHJlcHJvZHVjaWJsZSwgc2Vl
-bXMKICAgIHRvIGhhcHBlbiBtb3JlIGlmIHNodXRkb3duIGlzIGZhc3RlcikKICAtIHNodXRkb3du
-IGludm9sdmVzIHJlc3VtaW5nIHRoZSBkZXZpY2UgKHNlZSBwY2lfZGV2aWNlX3NodXRkb3duKCkp
-CiAgLSBub3V2ZWF1X3Btb3BzX3J1bnRpbWVfcmVzdW1lKCkgc2NoZWR1bGVzIGFzeW5jaHJvbm91
-cyB3b3JrLCB3aGljaAogICAgKHRvIG15IHVudHJhaW5lZCBleWUpIGxvb2tzIHVudXN1YWwKICAt
-IGFzeW5jaHJvbm91cyB3b3JrIGlzIGluaGVyZW50bHkgc3ViamVjdCB0byByYWNlcwoKU28gSSB0
-aGluayB0aGF0J3MgYWxsIHNvbWV3aGF0IHN1c3BpY2lvdXMuICBCdXQgaWYgdGhlIHNhbWUgcHJv
-YmxlbQpoYXBwZW5zIHdpdGhvdXQgdGhlIGFzeW5jaHJvbm91cyB3b3JrLCBvYnZpb3VzbHkgdGhl
-IGlzc3VlIGlzCmVsc2V3aGVyZS4KCkJ1dCB5b3UgKmFyZSogcmlnaHQgdGhhdCBpZiB0aGUgZGV2
-aWNlIHdlcmUgYWN0dWFsbHkgcmVzZXQsIG5vbmUgb2YKdGhpcyBzaG91bGQgbWF0dGVyLiAgSXQg
-Y2VydGFpbmx5IHNlZW1zIHRoYXQgdGhlIEJJT1MgbmVnbGVjdHMgdG8KcmVzZXQgaXQgaW4gc29t
-ZSBjYXNlcy4KCkkgY2FuIHNvcnQgb2YgaW1hZ2luZSBhIEJJT1MgZW5naW5lZXIgdGhpbmtpbmcg
-dGhhdCBpZiB0aGUgZGV2aWNlCmxvb2tzIGxpa2UgaXQncyBpbiB1c2UsIHdlIHNob3VsZG4ndCBy
-ZXNldCBpdCwgYW5kIGl0J3Mgc3RpbGwKY29uY2VpdmFibGUgdGhhdCBzb21lIHNvcnQgb2YgTGlu
-dXggc2h1dGRvd24gcmFjZSBjb3VsZCBsZWF2ZSBpdApsb29raW5nIGxpa2UgaXQncyBpbiB1c2Uu
-ICBCdXQgeW91J3ZlIGJlZW4gd29ya2luZyB3aXRoIExlbm92byBvbgp0aGlzLCBhbmQgaXQgc2Vl
-bXMgbGlrZSB0aGF0IHdvdWxkIGJlIHByZXR0eSBvYnZpb3VzIHRvIHNvbWVib2R5IHdpdGgKdGhl
-IEJJT1Mgc291cmNlICh0aG91Z2ggSSBqdXN0IGRlbW9uc3RyYXRlZCBhYm92ZSB0aGF0IGV2ZW4g
-d2l0aCB0aGUKc291cmNlIGl0J3MgZWFzeSB0byBtaXNzIHRoaW5ncykuCgpJJ20gb3V0IG9mIGlk
-ZWFzLCBzbyBJIHRoaW5rIHlvdXIgcXVpcmsgaXMgdGhlIGJlc3Qgd2F5IGZvcndhcmQuICBJCnRy
-aW1tZWQgb3V0IHNvbWUgb2YgdGhlIGNvbW1pdCBsb2cgYmFja3RyYWNlcyBhbmQgc3VjaCwgYWRk
-ZWQgdGhlCmJ1Z3ppbGxhLCBhbmQgdHdlYWtlZCB0aGUgcGF0Y2ggdG8gdXNlIHBjaV9pb21hcCgp
-IGluc3RlYWQgb2YKaW9yZW1hcCgpLiAgV291bGQgdGhlIHBhdGNoIGJlbG93IHdvcmsgZm9yIHlv
-dT8KCgpjb21taXQgMThkYzViM2M3ZGRjCkF1dGhvcjogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0
-LmNvbT4KRGF0ZTogICBUdWUgRmViIDEyIDE3OjAyOjMwIDIwMTkgLTA1MDAKCiAgICBQQ0k6IFJl
-c2V0IExlbm92byBUaGlua1BhZCBQNTAgbnZncHUgYXQgYm9vdCBpZiBuZWNlc3NhcnkKICAgIAog
-ICAgT24gVGhpbmtQYWQgUDUwIFNLVXMgd2l0aCBhbiBOdmlkaWEgUXVhZHJvIE0xMDAwTSBpbnN0
-ZWFkIG9mIHRoZSBNMjAwME0KICAgIHZhcmlhbnQsIHRoZSBCSU9TIGRvZXMgbm90IGFsd2F5cyBy
-ZXNldCB0aGUgc2Vjb25kYXJ5IE52aWRpYSBHUFUgZHVyaW5nCiAgICByZWJvb3QgaWYgdGhlIGxh
-cHRvcCBpcyBjb25maWd1cmVkIGluIEh5YnJpZCBHcmFwaGljcyBtb2RlLiAgVGhlIHJlYXNvbiBp
-cwogICAgdW5rbm93biwgYnV0IHRoZSBmb2xsb3dpbmcgc3RlcHMgYW5kIHBvc3NpYmx5IGEgZ29v
-ZCBiaXQgb2YgcGF0aWVuY2Ugd2lsbAogICAgcmVwcm9kdWNlIHRoZSBpc3N1ZToKICAgIAogICAg
-ICAxLiBCb290IHVwIHRoZSBsYXB0b3Agbm9ybWFsbHkgaW4gSHlicmlkIEdyYXBoaWNzIG1vZGUK
-ICAgICAgMi4gTWFrZSBzdXJlIG5vdXZlYXUgaXMgbG9hZGVkIGFuZCB0aGF0IHRoZSBHUFUgaXMg
-YXdha2UKICAgICAgMi4gQWxsb3cgdGhlIE52aWRpYSBHUFUgdG8gcnVudGltZSBzdXNwZW5kIGl0
-c2VsZiBhZnRlciBiZWluZyBpZGxlCiAgICAgIDMuIFJlYm9vdCB0aGUgbWFjaGluZSwgdGhlIG1v
-cmUgc3VkZGVuIHRoZSBiZXR0ZXIgKGUuZyBzeXNycS1iIG1heSBoZWxwKQogICAgICA0LiBJZiBu
-b3V2ZWF1IGxvYWRzIHVwIHByb3Blcmx5LCByZWJvb3QgdGhlIG1hY2hpbmUgYWdhaW4gYW5kIGdv
-IGJhY2sgdG8KICAgICAgICAgc3RlcCAyIHVudGlsIHlvdSByZXByb2R1Y2UgdGhlIGlzc3VlCiAg
-ICAKICAgIFRoaXMgcmVzdWx0cyBpbiBzb21lIHZlcnkgc3RyYW5nZSBiZWhhdmlvcjogdGhlIEdQ
-VSB3aWxsIGJlIGxlZnQgaW4gZXhhY3RseQogICAgdGhlIHNhbWUgc3RhdGUgaXQgd2FzIGluIHdo
-ZW4gdGhlIHByZXZpb3VzbHkgYm9vdGVkIGtlcm5lbCBzdGFydGVkIHRoZQogICAgcmVib290LiAg
-VGhpcyBoYXMgYWxsIHNvcnRzIG9mIGJhZCBzaWRlIGVmZmVjdHM6IGZvciBzdGFydGVycywgdGhp
-cwogICAgY29tcGxldGVseSBicmVha3Mgbm91dmVhdSBzdGFydGluZyB3aXRoIGEgbXlzdGVyaW91
-cyBFVk8gY2hhbm5lbCBmYWlsdXJlCiAgICB0aGF0IGhhcHBlbnMgd2VsbCBiZWZvcmUgd2UndmUg
-YWN0dWFsbHkgdXNlZCB0aGUgRVZPIGNoYW5uZWwgZm9yIGFueXRoaW5nOgogICAgCiAgICAgIG5v
-dXZlYXUgMDAwMDowMTowMC4wOiBkaXNwOiBjaGlkIDAgbXRoZCAwMDAwIGRhdGEgMDAwMDA0MDAg
-MDAwMDEwMDAgMDAwMDAwMDIKICAgIAogICAgVGhpcyBjYXVzZXMgYSB0aW1lb3V0IHRyeWluZyB0
-byBicmluZyB1cCB0aGUgR1IgY3R4OgogICAgCiAgICAgIG5vdXZlYXUgMDAwMDowMTowMC4wOiB0
-aW1lb3V0CiAgICAgIFdBUk5JTkc6IENQVTogMCBQSUQ6IDEyIGF0IGRyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252a20vZW5naW5lL2dyL2N0eGdmMTAwLmM6MTU0NyBnZjEwMF9ncmN0eF9nZW5lcmF0
-ZSsweDdiMi8weDg1MCBbbm91dmVhdV0KICAgICAgSGFyZHdhcmUgbmFtZTogTEVOT1ZPIDIwRVFT
-NjROMEIvMjBFUVM2NE4wQiwgQklPUyBOMUVFVDgyVyAoMS41NSApIDEyLzE4LzIwMTgKICAgICAg
-V29ya3F1ZXVlOiBldmVudHNfbG9uZyBkcm1fZHBfbXN0X2xpbmtfcHJvYmVfd29yayBbZHJtX2tt
-c19oZWxwZXJdCiAgICAgIC4uLgogICAgICBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IHdhaXQg
-Zm9yIGlkbGUgdGltZW91dCAoZW46IDEsIGN0eHN3OiAwLCBidXN5OiAxKQogICAgICBub3V2ZWF1
-IDAwMDA6MDE6MDAuMDogZ3I6IHdhaXQgZm9yIGlkbGUgdGltZW91dCAoZW46IDEsIGN0eHN3OiAw
-LCBidXN5OiAxKQogICAgICBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmlmbzogZmF1bHQgMDEgW1dS
-SVRFXSBhdCAwMDAwMDAwMDAwMDA4MDAwIGVuZ2luZSAwMCBbR1JdIGNsaWVudCAxNSBbSFVCL1ND
-Q19OQl0gcmVhc29uIGM0IFtdIG9uIGNoYW5uZWwgLTEgWzAwMDAwMDAwMDAgdW5rbm93bl0KICAg
-IAogICAgVGhlIEdQVSBuZXZlciBtYW5hZ2VzIHRvIHJlY292ZXIuICBCb290aW5nIHdpdGhvdXQg
-bG9hZGluZyBub3V2ZWF1IGNhdXNlcwogICAgaXNzdWVzIGFzIHdlbGwsIHNpbmNlIHRoZSBHUFUg
-c3RhcnRzIHNlbmRpbmcgc3B1cmlvdXMgaW50ZXJydXB0cyB0aGF0IGNhdXNlCiAgICBvdGhlciBk
-ZXZpY2UncyBJUlFzIHRvIGdldCBkaXNhYmxlZCBieSB0aGUga2VybmVsOgogICAgCiAgICAgIGly
-cSAxNjogbm9ib2R5IGNhcmVkICh0cnkgYm9vdGluZyB3aXRoIHRoZSAiaXJxcG9sbCIgb3B0aW9u
-KQogICAgICAuLi4KICAgICAgaGFuZGxlcnM6CiAgICAgIFs8MDAwMDAwMDA3ZmFhOWU5OT5dIGk4
-MDFfaXNyIFtpMmNfaTgwMV0KICAgICAgRGlzYWJsaW5nIElSUSAjMTYKICAgICAgLi4uCiAgICAg
-IHNlcmlvOiBSTUk0IFBTLzIgcGFzcy10aHJvdWdoIHBvcnQgYXQgcm1pNC0wMC5mbjAzCiAgICAg
-IGk4MDFfc21idXMgMDAwMDowMDoxZi40OiBUaW1lb3V0IHdhaXRpbmcgZm9yIGludGVycnVwdCEK
-ICAgICAgaTgwMV9zbWJ1cyAwMDAwOjAwOjFmLjQ6IFRyYW5zYWN0aW9uIHRpbWVvdXQKICAgICAg
-cm1pNF9mMDMgcm1pNC0wMC5mbjAzOiBybWlfZjAzX3B0X3dyaXRlOiBGYWlsZWQgdG8gd3JpdGUg
-dG8gRjAzIFRYIHJlZ2lzdGVyICgtMTEwKS4KICAgICAgaTgwMV9zbWJ1cyAwMDAwOjAwOjFmLjQ6
-IFRpbWVvdXQgd2FpdGluZyBmb3IgaW50ZXJydXB0IQogICAgICBpODAxX3NtYnVzIDAwMDA6MDA6
-MWYuNDogVHJhbnNhY3Rpb24gdGltZW91dAogICAgICBybWk0X3BoeXNpY2FsIHJtaTQtMDA6IHJt
-aV9kcml2ZXJfc2V0X2lycV9iaXRzOiBGYWlsZWQgdG8gY2hhbmdlIGVuYWJsZWQgaW50ZXJydXB0
-cyEKICAgIAogICAgVGhpcyBjYXVzZXMgdGhlIHRvdWNocGFkIGFuZCBzb21ldGltZXMgb3RoZXIg
-dGhpbmdzIHRvIGdldCBkaXNhYmxlZC4KICAgIAogICAgU2luY2UgdGhpcyBoYXBwZW5zIHdpdGhv
-dXQgbm91dmVhdSwgd2UgY2FuJ3QgZml4IHRoaXMgcHJvYmxlbSBmcm9tIG5vdXZlYXUKICAgIGl0
-c2VsZi4KICAgIAogICAgQWRkIGEgUENJIHF1aXJrIGZvciB0aGUgc3BlY2lmaWMgUDUwIHZhcmlh
-bnQgb2YgdGhpcyBHUFUuICBNYWtlIHN1cmUgdGhlCiAgICBHUFUgaXMgYWR2ZXJ0aXNpbmcgTm9S
-ZXNldC0gc28gd2UgZG9uJ3QgcmVzZXQgdGhlIEdQVSB3aGVuIHRoZSBtYWNoaW5lIGlzCiAgICBp
-biBEZWRpY2F0ZWQgZ3JhcGhpY3MgbW9kZSAod2hlcmUgdGhlIEdQVSBiZWluZyBpbml0aWFsaXpl
-ZCBieSB0aGUgQklPUyBpcwogICAgbm9ybWFsIGFuZCBleHBlY3RlZCkuICBNYXAgdGhlIEdQVSBN
-TUlPIHNwYWNlIGFuZCByZWFkIHRoZSBtYWdpYyAweDIyNDBjCiAgICByZWdpc3Rlciwgd2hpY2gg
-d2lsbCBoYXZlIGJpdCAxIHNldCBpZiB0aGUgZGV2aWNlIHdhcyBQT1NUZWQgZHVyaW5nIGEKICAg
-IHByZXZpb3VzIGJvb3QuICBPbmNlIHdlJ3ZlIGNvbmZpcm1lZCBhbGwgb2YgdGhpcywgcmVzZXQg
-dGhlIEdQVSBhbmQKICAgIHJlLWRpc2FibGUgaXQgLSBicmluZ2luZyBpdCBiYWNrIHRvIGEgaGVh
-bHRoeSBzdGF0ZS4KICAgIAogICAgTGluazogaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwub3JnL3No
-b3dfYnVnLmNnaT9pZD0yMDMwMDMKICAgIExpbms6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xr
-bWwvMjAxOTAyMTIyMjAyMzAuMTU2OC0xLWx5dWRlQHJlZGhhdC5jb20KICAgIFNpZ25lZC1vZmYt
-Ynk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CiAgICBTaWduZWQtb2ZmLWJ5OiBCam9y
-biBIZWxnYWFzIDxiaGVsZ2Fhc0Bnb29nbGUuY29tPgogICAgQ2M6IG5vdXZlYXVAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCiAgICBDYzogZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwogICAg
-Q2M6IEthcm9sIEhlcmJzdCA8a2hlcmJzdEByZWRoYXQuY29tPgogICAgQ2M6IEJlbiBTa2VnZ3Mg
-PHNrZWdnc2JAZ21haWwuY29tPgogICAgQ2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcKCmRpZmYg
-LS1naXQgYS9kcml2ZXJzL3BjaS9xdWlya3MuYyBiL2RyaXZlcnMvcGNpL3F1aXJrcy5jCmluZGV4
-IGE1OWFkMDljZTkxMS4uODE5YTU5NWIwYjFkIDEwMDY0NAotLS0gYS9kcml2ZXJzL3BjaS9xdWly
-a3MuYworKysgYi9kcml2ZXJzL3BjaS9xdWlya3MuYwpAQCAtNTEyMCwzICs1MTIwLDYxIEBAIFNX
-SVRDSFRFQ19RVUlSSygweDg1NzMpOyAgLyogUEZYSSA0OFhHMyAqLwogU1dJVENIVEVDX1FVSVJL
-KDB4ODU3NCk7ICAvKiBQRlhJIDY0WEczICovCiBTV0lUQ0hURUNfUVVJUksoMHg4NTc1KTsgIC8q
-IFBGWEkgODBYRzMgKi8KIFNXSVRDSFRFQ19RVUlSSygweDg1NzYpOyAgLyogUEZYSSA5NlhHMyAq
-LworCisvKgorICogT24gTGVub3ZvIFRoaW5rcGFkIFA1MCBTS1VzIHdpdGggYSBOdmlkaWEgUXVh
-ZHJvIE0xMDAwTSwgdGhlIEJJT1MgZG9lcworICogbm90IGFsd2F5cyByZXNldCB0aGUgc2Vjb25k
-YXJ5IE52aWRpYSBHUFUgYmV0d2VlbiByZWJvb3RzIGlmIHRoZSBzeXN0ZW0KKyAqIGlzIGNvbmZp
-Z3VyZWQgdG8gdXNlIEh5YnJpZCBHcmFwaGljcyBtb2RlLiAgVGhpcyByZXN1bHRzIGluIHRoZSBH
-UFUKKyAqIGJlaW5nIGxlZnQgaW4gd2hhdGV2ZXIgc3RhdGUgaXQgd2FzIGluIGR1cmluZyB0aGUg
-KnByZXZpb3VzKiBib290LCB3aGljaAorICogY2F1c2VzIHNwdXJpb3VzIGludGVycnVwdHMgZnJv
-bSB0aGUgR1BVLCB3aGljaCBpbiB0dXJuIGNhdXNlcyB1cyB0bworICogZGlzYWJsZSB0aGUgd3Jv
-bmcgSVJRIGFuZCBlbmQgdXAgYnJlYWtpbmcgdGhlIHRvdWNocGFkLiAgVW5zdXJwcmlzaW5nbHks
-CisgKiB0aGlzIGFsc28gY29tcGxldGVseSBicmVha3Mgbm91dmVhdS4KKyAqCisgKiBMdWNraWx5
-LCBpdCBzZWVtcyBhIHNpbXBsZSByZXNldCBvZiB0aGUgTnZpZGlhIEdQVSBicmluZ3MgaXQgYmFj
-ayB0byBhCisgKiBjbGVhbiBzdGF0ZSBhbmQgZml4ZXMgYWxsIHRoZXNlIGlzc3Vlcy4KKyAqCisg
-KiBXaGVuIHRoZSBtYWNoaW5lIGlzIGNvbmZpZ3VyZWQgaW4gRGVkaWNhdGVkIGRpc3BsYXkgbW9k
-ZSwgdGhlIGlzc3VlCisgKiBkb2Vzbid0IG9jY3VyLiAgRm9ydHVuYXRlbHkgdGhlIEdQVSBhZHZl
-cnRpc2VzIE5vUmVzZXQrIHdoZW4gaW4gdGhpcworICogbW9kZSwgc28gd2UgY2FuIGRldGVjdCB0
-aGF0IGFuZCBhdm9pZCByZXNldHRpbmcgaXQuCisgKi8KK3N0YXRpYyB2b2lkIHF1aXJrX3Jlc2V0
-X2xlbm92b190aGlua3BhZF9wNTBfbnZncHUoc3RydWN0IHBjaV9kZXYgKnBkZXYpCit7CisJdm9p
-ZCBfX2lvbWVtICptYXA7CisJaW50IHJldDsKKworCWlmIChwZGV2LT5zdWJzeXN0ZW1fdmVuZG9y
-ICE9IFBDSV9WRU5ET1JfSURfTEVOT1ZPIHx8CisJICAgIHBkZXYtPnN1YnN5c3RlbV9kZXZpY2Ug
-IT0gMHgyMjJlIHx8CisJICAgICFwZGV2LT5yZXNldF9mbikKKwkJcmV0dXJuOworCisJaWYgKHBj
-aV9lbmFibGVfZGV2aWNlX21lbShwZGV2KSkKKwkJcmV0dXJuOworCisJLyoKKwkgKiBCYXNlZCBv
-biBudmttX2RldmljZV9jdG9yKCkgaW4KKwkgKiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmtt
-L2VuZ2luZS9kZXZpY2UvYmFzZS5jCisJICovCisJbWFwID0gcGNpX2lvbWFwKHBkZXYsIDAsIDB4
-MjMwMDApOworCWlmICghbWFwKSB7CisJCXBjaV9lcnIocGRldiwgIkNhbid0IG1hcCBNTUlPIHNw
-YWNlXG4iKTsKKwkJZ290byBvdXRfZGlzYWJsZTsKKwl9CisKKwkvKgorCSAqIE1ha2Ugc3VyZSB0
-aGUgR1BVIGxvb2tzIGxpa2UgaXQncyBiZWVuIFBPU1RlZCBiZWZvcmUgcmVzZXR0aW5nCisJICog
-aXQuCisJICovCisJaWYgKGlvcmVhZDMyKG1hcCArIDB4MjI0MGMpICYgMHgyKSB7CisJCXBjaV9p
-bmZvKHBkZXYsIEZXX0JVRyAiR1BVIGxlZnQgaW5pdGlhbGl6ZWQgYnkgRUZJLCByZXNldHRpbmdc
-biIpOworCQlyZXQgPSBwY2lfcmVzZXRfZnVuY3Rpb24ocGRldik7CisJCWlmIChyZXQgPCAwKQor
-CQkJcGNpX2VycihwZGV2LCAiRmFpbGVkIHRvIHJlc2V0IEdQVTogJWRcbiIsIHJldCk7CisJfQor
-CisJaW91bm1hcChtYXApOworb3V0X2Rpc2FibGU6CisJcGNpX2Rpc2FibGVfZGV2aWNlKHBkZXYp
-OworfQorREVDTEFSRV9QQ0lfRklYVVBfQ0xBU1NfRklOQUwoUENJX1ZFTkRPUl9JRF9OVklESUEs
-IDB4MTNiMSwKKwkJCSAgICAgIFBDSV9DTEFTU19ESVNQTEFZX1ZHQSwgOCwKKwkJCSAgICAgIHF1
-aXJrX3Jlc2V0X2xlbm92b190aGlua3BhZF9wNTBfbnZncHUpOwpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXU=
+On Wed, 2019-04-24 at 17:36 -0500, Bjorn Helgaas wrote:
+> On Wed, Apr 24, 2019 at 03:16:37PM -0400, Lyude Paul wrote:
+> > On Wed, 2019-04-24 at 13:59 -0500, Bjorn Helgaas wrote:
+> > > Not being a scheduled work expert, I was unsure if this experiment was
+> > > equivalent to what I proposed.
+> > > 
+> > > I'm always suspicious of singleton solutions like this (using
+> > > schedule_work() in runtime_resume()) because usually they seem to be
+> > > solving a generic problem that should happen on many kinds of
+> > > hardware.  The 0b2fe6594fa2 ("drm/nouveau: Queue hpd_work on (runtime)
+> > > resume") commit log says:
+> > > 
+> > >   We need to call drm_helper_hpd_irq_event() on resume to properly
+> > >   detect monitor connection / disconnection on some laptops, use
+> > >   hpd_work for this to avoid deadlocks.
+> > > 
+> > > The situation of a monitor being connected or disconnected during
+> > > suspend can happen to *any* GPU, but the commit only changes nouveau,
+> > > which of course raises the question of how we deal with that in other
+> > > drivers.  If the Nvidia GPU has some unique behavior related to
+> > > monitor connection, that would explain special-case code there, but
+> > > the commit doesn't mention anything like that.
+> > > 
+> > > It should be simple to revert 0b2fe6594fa2 and see whether it changes
+> > > the behavior at all (well, simple except for the fact that this
+> > > problem isn't 100% reproducible in the first place).
+> > 
+> > It's not 100% reproducible, but it's at least 90% so it's not
+> > difficult for me to test at all.
+> > 
+> > Also, reverting this commit makes no difference either. 
+> 
+> OK, great, that makes it crystal clear.  I didn't know you had
+> specifically tested that revert.  Thanks for doing that.
+> 
+> > Note that while that commit only changed nouveau, scheduled_work()
+> > is exactly how a number of other drivers (i915 for instance) handle
+> > reprobing like this as well.
+> 
+> OK.  The GPU code would be a lot more approachable if similar things
+> were done in similar ways.  I spent an hour or so looking for this
+> similar code in i915, but gave up.
+
+We try
+> 
+> > The reason being that we can't do full connector reprobing in our
+> > runtime resume thread because we could deadlock if someone else is
+> > holding a modesetting lock we need and waiting on us to resume at
+> > the same time (there's a number of other bug fixes in nouveau for
+> > other issues caused by the same deadlock scenario). 
+> 
+> You mention nouveau specifically here, but I assume this is a generic
+> deadlock scenario that applies to any GPU, and they all avoid the
+> deadlock in the same way.  Right?
+
+Yes-there is only one exception in the tree that I know of (amdgpu/radeon),
+but fixing that is on my todo if someone else hasn't already gotten to it yet.
+
+> 
+> > I'm confused here though, it sounds like you're running under the
+> > assumption that PCI devices like this aren't reset into a clean
+> > state during a system reboot, is that correct?
+> 
+> No, I wasn't trying to say anything about that.  My point here is
+> that:
+> 
+>   - you're reporting a problem that only happens with nouveau and
+>     only happens during shutdown/reboot
+>   - the behavior is similar to a race (not 100% reproducible, seems
+>     to happen more if shutdown is faster)
+>   - shutdown involves resuming the device (see pci_device_shutdown())
+>   - nouveau_pmops_runtime_resume() schedules asynchronous work, which
+>     (to my untrained eye) looks unusual
+>   - asynchronous work is inherently subject to races
+> 
+> So I think that's all somewhat suspicious.  But if the same problem
+> happens without the asynchronous work, obviously the issue is
+> elsewhere.
+> 
+> But you *are* right that if the device were actually reset, none of
+> this should matter.  It certainly seems that the BIOS neglects to
+> reset it in some cases.
+> 
+> I can sort of imagine a BIOS engineer thinking that if the device
+> looks like it's in use, we shouldn't reset it, and it's still
+> conceivable that some sort of Linux shutdown race could leave it
+> looking like it's in use.  But you've been working with Lenovo on
+> this, and it seems like that would be pretty obvious to somebody with
+> the BIOS source (though I just demonstrated above that even with the
+> source it's easy to miss things).
+
+Yeah, that's what I thought as well! This experience has taught me that
+there's a surprising amount of things about BIOSes that BIOS engineers don't
+seem to know about…
+
+> 
+> I'm out of ideas, so I think your quirk is the best way forward.  I
+> trimmed out some of the commit log backtraces and such, added the
+> bugzilla, and tweaked the patch to use pci_iomap() instead of
+> ioremap().  Would the patch below work for you?
+
+Works for me, tested on the problematic P50 as well.
+
+> 
+> 
+> commit 18dc5b3c7ddc
+> Author: Lyude Paul <lyude@redhat.com>
+> Date:   Tue Feb 12 17:02:30 2019 -0500
+> 
+>     PCI: Reset Lenovo ThinkPad P50 nvgpu at boot if necessary
+>     
+>     On ThinkPad P50 SKUs with an Nvidia Quadro M1000M instead of the M2000M
+>     variant, the BIOS does not always reset the secondary Nvidia GPU during
+>     reboot if the laptop is configured in Hybrid Graphics mode.  The reason
+> is
+>     unknown, but the following steps and possibly a good bit of patience
+> will
+>     reproduce the issue:
+>     
+>       1. Boot up the laptop normally in Hybrid Graphics mode
+>       2. Make sure nouveau is loaded and that the GPU is awake
+>       2. Allow the Nvidia GPU to runtime suspend itself after being idle
+>       3. Reboot the machine, the more sudden the better (e.g sysrq-b may
+> help)
+>       4. If nouveau loads up properly, reboot the machine again and go back
+> to
+>          step 2 until you reproduce the issue
+>     
+>     This results in some very strange behavior: the GPU will be left in
+> exactly
+>     the same state it was in when the previously booted kernel started the
+>     reboot.  This has all sorts of bad side effects: for starters, this
+>     completely breaks nouveau starting with a mysterious EVO channel failure
+>     that happens well before we've actually used the EVO channel for
+> anything:
+>     
+>       nouveau 0000:01:00.0: disp: chid 0 mthd 0000 data 00000400 00001000
+> 00000002
+>     
+>     This causes a timeout trying to bring up the GR ctx:
+>     
+>       nouveau 0000:01:00.0: timeout
+>       WARNING: CPU: 0 PID: 12 at
+> drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgf100.c:1547
+> gf100_grctx_generate+0x7b2/0x850 [nouveau]
+>       Hardware name: LENOVO 20EQS64N0B/20EQS64N0B, BIOS N1EET82W (1.55 )
+> 12/18/2018
+>       Workqueue: events_long drm_dp_mst_link_probe_work [drm_kms_helper]
+>       ...
+>       nouveau 0000:01:00.0: gr: wait for idle timeout (en: 1, ctxsw: 0,
+> busy: 1)
+>       nouveau 0000:01:00.0: gr: wait for idle timeout (en: 1, ctxsw: 0,
+> busy: 1)
+>       nouveau 0000:01:00.0: fifo: fault 01 [WRITE] at 0000000000008000
+> engine 00 [GR] client 15 [HUB/SCC_NB] reason c4 [] on channel -1 [0000000000
+> unknown]
+>     
+>     The GPU never manages to recover.  Booting without loading nouveau
+> causes
+>     issues as well, since the GPU starts sending spurious interrupts that
+> cause
+>     other device's IRQs to get disabled by the kernel:
+>     
+>       irq 16: nobody cared (try booting with the "irqpoll" option)
+>       ...
+>       handlers:
+>       [<000000007faa9e99>] i801_isr [i2c_i801]
+>       Disabling IRQ #16
+>       ...
+>       serio: RMI4 PS/2 pass-through port at rmi4-00.fn03
+>       i801_smbus 0000:00:1f.4: Timeout waiting for interrupt!
+>       i801_smbus 0000:00:1f.4: Transaction timeout
+>       rmi4_f03 rmi4-00.fn03: rmi_f03_pt_write: Failed to write to F03 TX
+> register (-110).
+>       i801_smbus 0000:00:1f.4: Timeout waiting for interrupt!
+>       i801_smbus 0000:00:1f.4: Transaction timeout
+>       rmi4_physical rmi4-00: rmi_driver_set_irq_bits: Failed to change
+> enabled interrupts!
+>     
+>     This causes the touchpad and sometimes other things to get disabled.
+>     
+>     Since this happens without nouveau, we can't fix this problem from
+> nouveau
+>     itself.
+>     
+>     Add a PCI quirk for the specific P50 variant of this GPU.  Make sure the
+>     GPU is advertising NoReset- so we don't reset the GPU when the machine
+> is
+>     in Dedicated graphics mode (where the GPU being initialized by the BIOS
+> is
+>     normal and expected).  Map the GPU MMIO space and read the magic 0x2240c
+>     register, which will have bit 1 set if the device was POSTed during a
+>     previous boot.  Once we've confirmed all of this, reset the GPU and
+>     re-disable it - bringing it back to a healthy state.
+>     
+>     Link: https://bugzilla.kernel.org/show_bug.cgi?id=203003
+>     Link: 
+> https://lore.kernel.org/lkml/20190212220230.1568-1-lyude@redhat.com
+>     Signed-off-by: Lyude Paul <lyude@redhat.com>
+>     Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
+>     Cc: nouveau@lists.freedesktop.org
+>     Cc: dri-devel@lists.freedesktop.org
+>     Cc: Karol Herbst <kherbst@redhat.com>
+>     Cc: Ben Skeggs <skeggsb@gmail.com>
+>     Cc: stable@vger.kernel.org
+> 
+> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
+> index a59ad09ce911..819a595b0b1d 100644
+> --- a/drivers/pci/quirks.c
+> +++ b/drivers/pci/quirks.c
+> @@ -5120,3 +5120,61 @@ SWITCHTEC_QUIRK(0x8573);  /* PFXI 48XG3 */
+>  SWITCHTEC_QUIRK(0x8574);  /* PFXI 64XG3 */
+>  SWITCHTEC_QUIRK(0x8575);  /* PFXI 80XG3 */
+>  SWITCHTEC_QUIRK(0x8576);  /* PFXI 96XG3 */
+> +
+> +/*
+> + * On Lenovo Thinkpad P50 SKUs with a Nvidia Quadro M1000M, the BIOS does
+> + * not always reset the secondary Nvidia GPU between reboots if the system
+> + * is configured to use Hybrid Graphics mode.  This results in the GPU
+> + * being left in whatever state it was in during the *previous* boot, which
+> + * causes spurious interrupts from the GPU, which in turn causes us to
+> + * disable the wrong IRQ and end up breaking the touchpad.  Unsurprisingly,
+> + * this also completely breaks nouveau.
+> + *
+> + * Luckily, it seems a simple reset of the Nvidia GPU brings it back to a
+> + * clean state and fixes all these issues.
+> + *
+> + * When the machine is configured in Dedicated display mode, the issue
+> + * doesn't occur.  Fortunately the GPU advertises NoReset+ when in this
+> + * mode, so we can detect that and avoid resetting it.
+> + */
+> +static void quirk_reset_lenovo_thinkpad_p50_nvgpu(struct pci_dev *pdev)
+> +{
+> +	void __iomem *map;
+> +	int ret;
+> +
+> +	if (pdev->subsystem_vendor != PCI_VENDOR_ID_LENOVO ||
+> +	    pdev->subsystem_device != 0x222e ||
+> +	    !pdev->reset_fn)
+> +		return;
+> +
+> +	if (pci_enable_device_mem(pdev))
+> +		return;
+> +
+> +	/*
+> +	 * Based on nvkm_device_ctor() in
+> +	 * drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
+> +	 */
+> +	map = pci_iomap(pdev, 0, 0x23000);
+> +	if (!map) {
+> +		pci_err(pdev, "Can't map MMIO space\n");
+> +		goto out_disable;
+> +	}
+> +
+> +	/*
+> +	 * Make sure the GPU looks like it's been POSTed before resetting
+> +	 * it.
+> +	 */
+> +	if (ioread32(map + 0x2240c) & 0x2) {
+> +		pci_info(pdev, FW_BUG "GPU left initialized by EFI,
+> resetting\n");
+> +		ret = pci_reset_function(pdev);
+> +		if (ret < 0)
+> +			pci_err(pdev, "Failed to reset GPU: %d\n", ret);
+> +	}
+> +
+> +	iounmap(map);
+> +out_disable:
+> +	pci_disable_device(pdev);
+> +}
+> +DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_NVIDIA, 0x13b1,
+> +			      PCI_CLASS_DISPLAY_VGA, 8,
+> +			      quirk_reset_lenovo_thinkpad_p50_nvgpu);
+-- 
+Cheers,
+	Lyude Paul
