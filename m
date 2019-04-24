@@ -1,114 +1,36 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110500] X-Server crashes - GL error:
- GL_OUT_OF_MEMORY in glTexSubImage
-Date: Wed, 24 Apr 2019 10:45:03 +0000
-Message-ID: <bug-110500-8800-xp9MoOUZVD@http.bugs.freedesktop.org/>
-References: <bug-110500-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH] pci/quirks: Add quirk to reset nvgpu at boot for the
+ Lenovo ThinkPad P50
+Date: Wed, 24 Apr 2019 13:31:09 -0400
+Message-ID: <389c7b3117168209fb4760537d908a477446d013.camel@redhat.com>
+References: <20190212220230.1568-1-lyude@redhat.com>
+ <20190215004329.GR96272@google.com>
+ <2fca9a9feafcd17b27bc71994a71ebc241a93e9a.camel@redhat.com>
+ <52b17f8cb24e179e9661d75548d193843ae87b4c.camel@redhat.com>
+ <20190321224819.GK251185@google.com> <20190322113015.GM251185@google.com>
+ <20190404141724.GJ141706@google.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1848140920=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20190404141724.GJ141706@google.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Karol Herbst <kherbst@redhat.com>, linux-pci@vger.kernel.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>, stable@vger.kernel.org, David Ober <dober@lenovo.com>, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1848140920==
-Content-Type: multipart/alternative; boundary="15561027030.2a4a3B58.24708"
-Content-Transfer-Encoding: 7bit
-
-
---15561027030.2a4a3B58.24708
-Date: Wed, 24 Apr 2019 10:45:03 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110500
-
---- Comment #8 from Jordan Belfort <jordanbelfort533-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The mistake messages originate from _glamor_create_tex() which is called by
-glamor_create_fbo(), and when this happens, pixmap_priv->fbo is set to NULL
-since, well, the FBO couldn't be distributed.
-http://www.domyassignmentforme.com/help-homework
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15561027030.2a4a3B58.24708
-Date: Wed, 24 Apr 2019 10:45:03 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - X-Server crashes - GL error: GL_OUT_OF_MEMORY in glTexSub=
-Image"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110500#c8">Commen=
-t # 8</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - X-Server crashes - GL error: GL_OUT_OF_MEMORY in glTexSub=
-Image"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110500">bug 11050=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jordanbelfort533&#64;gmail.com" title=3D"Jordan Belfort &lt;jordanbelfort53=
-3&#64;gmail.com&gt;"> <span class=3D"fn">Jordan Belfort</span></a>
-</span></b>
-        <pre>The mistake messages originate from _glamor_create_tex() which=
- is called by
-glamor_create_fbo(), and when this happens, pixmap_priv-&gt;fbo is set to N=
-ULL
-since, well, the FBO couldn't be distributed.
-<a href=3D"http://www.domyassignmentforme.com/help-homework">http://www.dom=
-yassignmentforme.com/help-homework</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15561027030.2a4a3B58.24708--
-
---===============1848140920==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1848140920==--
+QW55IHVwZGF0ZSBvbiB0aGlzPyBUaGlzIGhhcyBiZWVuIHdhaXRpbmcgZm9yIGEgd2hpbGUgbm93
+CgpPbiBUaHUsIDIwMTktMDQtMDQgYXQgMDk6MTcgLTA1MDAsIEJqb3JuIEhlbGdhYXMgd3JvdGU6
+Cj4gWytjYyBIYW5zLCBhdXRob3Igb2YgMGIyZmU2NTk0ZmEyICgiZHJtL25vdXZlYXU6IFF1ZXVl
+IGhwZF93b3JrIG9uIChydW50aW1lKQo+IHJlc3VtZSIpXQotLSAKQ2hlZXJzLAoJTHl1ZGUgUGF1
+bAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRl
+dmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
