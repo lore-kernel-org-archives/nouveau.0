@@ -1,113 +1,123 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93834] BUG: unable to handle kernel paging request
- at ffff88110fa7cffc
-Date: Thu, 25 Apr 2019 08:27:06 +0000
-Message-ID: <bug-93834-8800-I2oHOHoRO3@http.bugs.freedesktop.org/>
-References: <bug-93834-8800@http.bugs.freedesktop.org/>
+From: Bjorn Helgaas <helgaas@kernel.org>
+Subject: Re: [PATCH] pci/quirks: Add quirk to reset nvgpu at boot for the
+ Lenovo ThinkPad P50
+Date: Thu, 25 Apr 2019 08:01:24 -0500
+Message-ID: <20190425130124.GD11428@google.com>
+References: <20190212220230.1568-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0806708142=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93834-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20190212220230.1568-1-lyude@redhat.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Lyude Paul <lyude@redhat.com>
+Cc: Karol Herbst <kherbst@redhat.com>, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0806708142==
-Content-Type: multipart/alternative; boundary="15561808260.56F94b7f.11411"
-Content-Transfer-Encoding: 7bit
-
-
---15561808260.56F94b7f.11411
-Date: Thu, 25 Apr 2019 08:27:06 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93834
-
---- Comment #3 from RobertIngham <judeelliot2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Which could occur in other spot, that why flaw is in the lock code, lock is
-potentially undermined, at that point netflow_scan_and_export crashes when
-endeavor to utilize debased lock. Not really netflow_scan_and_export is
-connected at all with the reason for defilement.
-https://www.assignmentland.co.uk
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15561808260.56F94b7f.11411
-Date: Thu, 25 Apr 2019 08:27:06 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - BUG: unable to handle kernel paging request at ffff88110f=
-a7cffc"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93834#c3">Comment=
- # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - BUG: unable to handle kernel paging request at ffff88110f=
-a7cffc"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93834">bug 93834<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-judeelliot2&#64;gmail.com" title=3D"RobertIngham &lt;judeelliot2&#64;gmail.=
-com&gt;"> <span class=3D"fn">RobertIngham</span></a>
-</span></b>
-        <pre>Which could occur in other spot, that why flaw is in the lock =
-code, lock is
-potentially undermined, at that point netflow_scan_and_export crashes when
-endeavor to utilize debased lock. Not really netflow_scan_and_export is
-connected at all with the reason for defilement.
-<a href=3D"https://www.assignmentland.co.uk">https://www.assignmentland.co.=
-uk</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15561808260.56F94b7f.11411--
-
---===============0806708142==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0806708142==--
+T24gVHVlLCBGZWIgMTIsIDIwMTkgYXQgMDU6MDI6MzBQTSAtMDUwMCwgTHl1ZGUgUGF1bCB3cm90
+ZToKPiBPbiBhIHZlcnkgc3BlY2lmaWMgc3Vic2V0IG9mIFRoaW5rUGFkIFA1MCBTS1VzLCBwYXJ0
+aWN1bGFybHkgb25lcyB0aGF0Cj4gY29tZSB3aXRoIGEgUXVhZHJvIE0xMDAwTSBjaGlwIGluc3Rl
+YWQgb2YgdGhlIE0yMDAwTSB2YXJpYW50LCB0aGUgQklPUwo+IHNlZW1zIHRvIGhhdmUgYSB2ZXJ5
+IG5hc3R5IGhhYml0IG9mIG5vdCBhbHdheXMgcmVzZXR0aW5nIHRoZSBzZWNvbmRhcnkKPiBOdmlk
+aWEgR1BVIGJldHdlZW4gZnVsbCByZWJvb3RzIGlmIHRoZSBsYXB0b3AgaXMgY29uZmlndXJlZCBp
+biBIeWJyaWQKPiBHcmFwaGljcyBtb2RlLiBUaGUgcmVhc29uIGZvciB0aGlzIGhhcHBlbmluZyBp
+cyB1bmtub3duLCBidXQgdGhlCj4gZm9sbG93aW5nIHN0ZXBzIGFuZCBwb3NzaWJseSBhIGdvb2Qg
+Yml0IG9mIHBhdGllbmNlIHdpbGwgcmVwcm9kdWNlIHRoZQo+IGlzc3VlOgo+IAo+IDEuIEJvb3Qg
+dXAgdGhlIGxhcHRvcCBub3JtYWxseSBpbiBIeWJyaWQgZ3JhcGhpY3MgbW9kZQo+IDIuIE1ha2Ug
+c3VyZSBub3V2ZWF1IGlzIGxvYWRlZCBhbmQgdGhhdCB0aGUgR1BVIGlzIGF3YWtlCj4gMi4gQWxs
+b3cgdGhlIG52aWRpYSBHUFUgdG8gcnVudGltZSBzdXNwZW5kIGl0c2VsZiBhZnRlciBiZWluZyBp
+ZGxlCj4gMy4gUmVib290IHRoZSBtYWNoaW5lLCB0aGUgbW9yZSBzdWRkZW4gdGhlIGJldHRlciAo
+ZS5nIHN5c3JxLWIgbWF5IGhlbHApCj4gNC4gSWYgbm91dmVhdSBsb2FkcyB1cCBwcm9wZXJseSwg
+cmVib290IHRoZSBtYWNoaW5lIGFnYWluIGFuZCBnbyBiYWNrIHRvCj4gc3RlcCAyIHVudGlsIHlv
+dSByZXByb2R1Y2UgdGhlIGlzc3VlCj4gCj4gVGhpcyByZXN1bHRzIGluIHNvbWUgdmVyeSBzdHJh
+bmdlIGJlaGF2aW9yOiB0aGUgR1BVIHdpbGwKPiBxdWl0ZSBsaXRlcmFsbHkgYmUgbGVmdCBpbiBl
+eGFjdGx5IHRoZSBzYW1lIHN0YXRlIGl0IHdhcyBpbiB3aGVuIHRoZQo+IHByZXZpb3VzbHkgYm9v
+dGVkIGtlcm5lbCBzdGFydGVkIHRoZSByZWJvb3QuIFRoaXMgaGFzIGFsbCBzb3J0cyBvZiBiYWQK
+PiBzaWRlYWZmZWN0czogZm9yIHN0YXJ0ZXJzLCB0aGlzIGNvbXBsZXRlbHkgYnJlYWtzIG5vdXZl
+YXUgc3RhcnRpbmcgd2l0aCBhCj4gbXlzdGVyaW91cyBFVk8gY2hhbm5lbCBmYWlsdXJlIHRoYXQg
+aGFwcGVucyB3ZWxsIGJlZm9yZSB3ZSd2ZSBhY3R1YWxseQo+IHVzZWQgdGhlIEVWTyBjaGFubmVs
+IGZvciBhbnl0aGluZzoKPiAKPiBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZGlzcDogY2hpZCAwIG10
+aGQgMDAwMCBkYXRhIDAwMDAwNDAwIDAwMDAxMDAwCj4gMDAwMDAwMDIKPiAuLi4KCj4gU28gdG8g
+ZG8gdGhpcywgd2UgYWRkIGEgbmV3IHBjaSBxdWlyayB1c2luZwo+IERFQ0xBUkVfUENJX0ZJWFVQ
+X0NMQVNTX0ZJTkFMIHRoYXQgd2lsbCBiZSBpbnZva2VkIGJlZm9yZSB0aGUgUENJIHByb2JlCj4g
+YXQgYm9vdCBmaW5pc2hlcy4gRnJvbSB0aGVyZSwgd2UgY2hlY2sgdG8gbWFrZSBzdXJlIHRoYXQg
+dGhpcyBpcyBpbmRlZWQKPiB0aGUgc3BlY2lmaWMgUDUwIHZhcmlhbnQgb2YgdGhpcyBHUFUuIFdl
+IGFsc28gbWFrZSBzdXJlIHRoYXQgdGhlIEdQVSBQQ0kKPiBkZXZpY2UgaXMgYWR2ZXJ0aXNpbmcg
+Tm9SZXNldC0gaW4gb3JkZXIgdG8gcHJldmVudCB1cyBmcm9tIHRyeWluZyB0bwo+IHJlc2V0IHRo
+ZSBHUFUgd2hlbiB0aGUgbWFjaGluZSBpcyBpbiBEZWRpY2F0ZWQgZ3JhcGhpY3MgbW9kZSAod2hl
+cmUgdGhlCj4gR1BVIGJlaW5nIGluaXRpYWxpemVkIGJ5IHRoZSBCSU9TIGlzIG5vcm1hbCBhbmQg
+ZXhwZWN0ZWQpLiBGaW5hbGx5LCB3ZQo+IHRyeSBtYXBwaW5nIHRoZSBNTUlPIHNwYWNlIGZvciB0
+aGUgR1BVIHdoaWNoIHNob3VsZCBvbmx5IHdvcmsgaWYgdGhlIEdQVQo+IGlzIGFjdHVhbGx5IGFj
+dGl2ZSBpbiBEMCBtb2RlLiBXZSBjYW4gdGhlbiByZWFkIHRoZSBtYWdpYyAweDIyNDBjCj4gcmVn
+aXN0ZXIgb24gdGhlIEdQVSwgd2hpY2ggd2lsbCBoYXZlIGJpdCAxIHNldCBpZiB0aGUgR1BVJ3Mg
+ZmlybXdhcmUgaGFzCj4gYWxyZWFkeSBiZWVuIHBvc3RlZCBkdXJpbmcgYSBwcmV2aW91cyBib290
+LiBPbmNlIHdlJ3ZlIGNvbmZpcm1lZCBhbGwgb2YKPiB0aGlzLCB3ZSByZXNldCB0aGUgUENJIGRl
+dmljZSBhbmQgcmUtZGlzYWJsZSBpdCAtIGJyaW5naW5nIHRoZSBHUFUgYmFjawo+IGludG8gYSBo
+ZWFsdGh5IHN0YXRlLgo+IAo+IFNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhh
+dC5jb20+Cj4gQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gQ2M6IGRyaS1kZXZl
+bEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBDYzogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhh
+dC5jb20+Cj4gQ2M6IEJlbiBTa2VnZ3MgPHNrZWdnc2JAZ21haWwuY29tPgo+IENjOiBzdGFibGVA
+dmdlci5rZXJuZWwub3JnCgpBcHBsaWVkIHRvIHBjaS9taXNjIGZvciB2NS4yLCB0aGFua3MhCgo+
+IC0tLQo+ICBkcml2ZXJzL3BjaS9xdWlya3MuYyB8IDY1ICsrKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrCj4gIDEgZmlsZSBjaGFuZ2VkLCA2NSBpbnNlcnRpb25zKCsp
+Cj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL3F1aXJrcy5jIGIvZHJpdmVycy9wY2kvcXVp
+cmtzLmMKPiBpbmRleCBiMGE0MTNmM2Y3Y2EuLjk0ODQ5MmZkYThiZiAxMDA2NDQKPiAtLS0gYS9k
+cml2ZXJzL3BjaS9xdWlya3MuYwo+ICsrKyBiL2RyaXZlcnMvcGNpL3F1aXJrcy5jCj4gQEAgLTUx
+MTcsMyArNTExNyw2OCBAQCBTV0lUQ0hURUNfUVVJUksoMHg4NTczKTsgIC8qIFBGWEkgNDhYRzMg
+Ki8KPiAgU1dJVENIVEVDX1FVSVJLKDB4ODU3NCk7ICAvKiBQRlhJIDY0WEczICovCj4gIFNXSVRD
+SFRFQ19RVUlSSygweDg1NzUpOyAgLyogUEZYSSA4MFhHMyAqLwo+ICBTV0lUQ0hURUNfUVVJUkso
+MHg4NTc2KTsgIC8qIFBGWEkgOTZYRzMgKi8KPiArCj4gKy8qCj4gKyAqIE9uIGNlcnRhaW4gTGVu
+b3ZvIFRoaW5rcGFkIFA1MCBTS1VzLCBzcGVjaWZpY2FsbHkgdGhvc2Ugd2l0aCBhIE52aWRpYQo+
+ICsgKiBRdWFkcm8gTTEwMDBNLCB0aGUgQklPUyB3aWxsIG9jY2FzaW9uYWxseSBtYWtlIHRoZSBt
+aXN0YWtlIG9mIG5vdCByZXNldHRpbmcKPiArICogdGhlIG52aWRpYSBHUFUgYmV0d2VlbiByZWJv
+b3RzIGlmIHRoZSBzeXN0ZW0gaXMgY29uZmlndXJlZCB0byB1c2UgaHlicmlkCj4gKyAqIGdyYXBo
+aWNzIG1vZGUuIFRoaXMgcmVzdWx0cyBpbiB0aGUgR1BVIGJlaW5nIGxlZnQgaW4gd2hhdGV2ZXIg
+c3RhdGUgaXQgd2FzCj4gKyAqIGluIGR1cmluZyB0aGUgcHJldmlvdXMgYm9vdCB3aGljaCBjYXVz
+ZXMgc3B1cmlvdXMgaW50ZXJydXB0cyBmcm9tIHRoZSBHUFUsCj4gKyAqIHdoaWNoIGluIHR1cm4g
+Y2F1c2UgdXMgdG8gZGlzYWJsZSB0aGUgd3JvbmcgSVJRcyBhbmQgZW5kIHVwIGJyZWFraW5nIHRo
+ZQo+ICsgKiB0b3VjaHBhZC4gVW5zdXJwcmlzaW5nbHksIHRoaXMgYWxzbyBjb21wbGV0ZWx5IGJy
+ZWFrcyBub3V2ZWF1Lgo+ICsgKgo+ICsgKiBMdWNraWx5LCBpdCBzZWVtcyBhIHNpbXBsZSByZXNl
+dCBvZiB0aGUgUENJIGRldmljZSBmb3IgdGhlIG52aWRpYSBHUFUKPiArICogbWFuYWdlcyB0byBi
+cmluZyB0aGUgR1BVIGJhY2sgaW50byBhIGNsZWFuIHN0YXRlIGFuZCBmaXggYWxsIG9mIHRoZXNl
+Cj4gKyAqIGlzc3Vlcy4gQWRkaXRpb25hbGx5IHNpbmNlIHRoZSBHUFUgd2lsbCByZXBvcnQgTm9S
+ZXNldCsgd2hlbiB0aGUgbWFjaGluZSBpcwo+ICsgKiBjb25maWd1cmVkIGluIERlZGljYXRlZCBk
+aXNwbGF5IG1vZGUsIHdlIGRvbid0IG5lZWQgdG8gd29ycnkgYWJvdXQKPiArICogYWNjaWRlbnRh
+bGx5IHJlc2V0dGluZyB0aGUgR1BVIHdoZW4gaXQncyBzdXBwb3NlZCB0byBhbHJlYWR5IGJlCj4g
+KyAqIGluaXRpYWxpemVkLgo+ICsgKi8KPiArc3RhdGljIHZvaWQKPiArcXVpcmtfbGVub3ZvX3Ro
+aW5rcGFkX3A1MF9udmdwdV9zdXJ2aXZlc19yZWJvb3Qoc3RydWN0IHBjaV9kZXYgKnBkZXYpCj4g
+K3sKPiArCXZvaWQgX19pb21lbSAqbWFwOwo+ICsJaW50IHJldDsKPiArCj4gKwlpZiAocGRldi0+
+c3Vic3lzdGVtX3ZlbmRvciAhPSBQQ0lfVkVORE9SX0lEX0xFTk9WTyB8fAo+ICsJICAgIHBkZXYt
+PnN1YnN5c3RlbV9kZXZpY2UgIT0gMHgyMjJlIHx8Cj4gKwkgICAgIXBkZXYtPnJlc2V0X2ZuKQo+
+ICsJCXJldHVybjsKPiArCj4gKwkvKgo+ICsJICogSWYgd2UgY2FuJ3QgZW5hYmxlIHRoZSBkZXZp
+Y2UncyBtbWlvIHNwYWNlLCBpdCdzIHByb2JhYmx5IG5vdCBldmVuCj4gKwkgKiBpbml0aWFsaXpl
+ZC4gVGhpcyBpcyBmaW5lLCBhbmQgbWVhbnMgd2UgY2FuIGp1c3Qgc2tpcCB0aGUgcXVpcmsKPiAr
+CSAqIGVudGlyZWx5Lgo+ICsJICovCj4gKwlpZiAocGNpX2VuYWJsZV9kZXZpY2VfbWVtKHBkZXYp
+KSB7Cj4gKwkJcGNpX2RiZyhwZGV2LCAiQ2FuJ3QgZW5hYmxlIGRldmljZSBtZW0sIG5vIHJlc2V0
+IG5lZWRlZFxuIik7Cj4gKwkJcmV0dXJuOwo+ICsJfQo+ICsKPiArCS8qIFRha2VuIGZyb20gZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvZW5naW5lL2RldmljZS9iYXNlLmMgKi8KPiArCW1hcCA9IGlv
+cmVtYXAocGNpX3Jlc291cmNlX3N0YXJ0KHBkZXYsIDApLCAweDEwMjAwMCk7Cj4gKwlpZiAoIW1h
+cCkgewo+ICsJCXBjaV9lcnIocGRldiwgIkNhbid0IG1hcCBNTUlPIHNwYWNlLCB0aGlzIGlzIHBy
+b2JhYmx5IHZlcnkgYmFkXG4iKTsKPiArCQlnb3RvIG91dF9kaXNhYmxlOwo+ICsJfQo+ICsKPiAr
+CS8qCj4gKwkgKiBCZSBleHRyYSBjYXJlZnVsLCBhbmQgbWFrZSBzdXJlIHRoYXQgdGhlIEdQVSBm
+aXJtd2FyZSBpcyBwb3N0ZWQKPiArCSAqIGJlZm9yZSB0cnlpbmcgYSByZXNldAo+ICsJICovCj4g
+KwlpZiAoaW9yZWFkMzIobWFwICsgMHgyMjQwYykgJiAweDIpIHsKPiArCQlwY2lfaW5mbyhwZGV2
+LAo+ICsJCQkgRldfQlVHICJHUFUgbGVmdCBpbml0aWFsaXplZCBieSBFRkksIHJlc2V0dGluZ1xu
+Iik7Cj4gKwkJcmV0ID0gcGNpX3Jlc2V0X2Z1bmN0aW9uKHBkZXYpOwo+ICsJCWlmIChyZXQgPCAw
+KQo+ICsJCQlwY2lfZXJyKHBkZXYsICJGYWlsZWQgdG8gcmVzZXQgR1BVOiAlZFxuIiwgcmV0KTsK
+PiArCX0KPiArCj4gKwlpb3VubWFwKG1hcCk7Cj4gK291dF9kaXNhYmxlOgo+ICsJcGNpX2Rpc2Fi
+bGVfZGV2aWNlKHBkZXYpOwo+ICt9Cj4gKwo+ICtERUNMQVJFX1BDSV9GSVhVUF9DTEFTU19GSU5B
+TChQQ0lfVkVORE9SX0lEX05WSURJQSwgMHgxM2IxLAo+ICsJCQkgICAgICBQQ0lfQ0xBU1NfRElT
+UExBWV9WR0EsIDgsCj4gKwkJCSAgICAgIHF1aXJrX2xlbm92b190aGlua3BhZF9wNTBfbnZncHVf
+c3Vydml2ZXNfcmVib290KTsKPiAtLSAKPiAyLjIwLjEKPiAKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2
+ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
