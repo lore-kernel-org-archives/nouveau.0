@@ -1,81 +1,118 @@
-From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Intel-gfx] [PATCH v2] drm: prefix header search
- paths with $(srctree)/
-Date: Fri, 26 Apr 2019 12:56:48 +1000
-Message-ID: <CAPM=9tyRHNp2R_No_0Gx0N59XR2RvD4=1G2GWgLLDxmKNk6JVg@mail.gmail.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH v2] drm: prefix header search paths with
+ $(srctree)/
+Date: Fri, 26 Apr 2019 17:05:05 +0200
+Message-ID: <20190426150505.GA3271@phenom.ffwll.local>
 References: <1553859161-2628-1-git-send-email-yamada.masahiro@socionext.com>
  <CAK7LNAR6bT93kmyPCzJg2ZFvk239nz0nyVX5z23G+8Y0Wiba1Q@mail.gmail.com>
  <CAPM=9txpmjQqh0eLA1sMjcDatQG83vk=juLehiUDi=sBO+c9Tg@mail.gmail.com>
  <8d04d30e86a54b3e9b27b30ac0ab3822@SOC-EX01V.e01.socionext.com>
+ <CAPM=9tyRHNp2R_No_0Gx0N59XR2RvD4=1G2GWgLLDxmKNk6JVg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <8d04d30e86a54b3e9b27b30ac0ab3822-g8DdyCBfZHbb3YxnlB/upqWE4/SHLhzCQQ4Iyu8u01E@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/freedreno>,
- <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/freedreno>
-List-Post: <mailto:freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/freedreno>,
- <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Freedreno" <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Masahiro Yamada <yamada.masahiro-uWyLwvC0a2jby3iVrkZq2A@public.gmane.org>
-Cc: zhoucm1 <David1.Zhou-5C7GfCeVMHo@public.gmane.org>, intel-gvt-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "James (Qian) Wang" <james.qian.wang-5wv7dgnIgG8@public.gmane.org>, amd-gfx mailing list <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, linux-arm-msm <linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "Deucher, Alexander" <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Sam Ravnborg <sam-uyr5N9Q2VtJg9hUCZPvPmw@public.gmane.org>, "Koenig,
- Christian" <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CAPM=9tyRHNp2R_No_0Gx0N59XR2RvD4=1G2GWgLLDxmKNk6JVg@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Dave Airlie <airlied@gmail.com>
+Cc: Masahiro Yamada <yamada.masahiro@socionext.com>, Dave Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Sam Ravnborg <sam@ravnborg.org>, zhoucm1 <David1.Zhou@amd.com>, amd-gfx mailing list <amd-gfx@lists.freedesktop.org>, "James (Qian) Wang" <james.qian.wang@arm.com>, Ben Skeggs <bskeggs@redhat.com>, linux-arm-msm <linux-arm-msm@vger.kernel.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, intel-gvt-dev@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>, "Koenig, Christian" <christian.koenig@amd.com>, "Deucher, Alexander" <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-RGFuaWVsLCBkcm0tbWlzYy1uZXh0LWZpeGVzPwoKRGF2ZS4KCk9uIEZyaSwgMjYgQXByIDIwMTkg
-YXQgMTI6MjUsIDx5YW1hZGEubWFzYWhpcm9Ac29jaW9uZXh0LmNvbT4gd3JvdGU6Cj4KPiBIaSBE
-YXZlLAo+Cj4gPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQo+ID4gRnJvbTogRGF2ZSBBaXJs
-aWUgW21haWx0bzphaXJsaWVkQGdtYWlsLmNvbV0KPiA+IFNlbnQ6IEZyaWRheSwgQXByaWwgMjYs
-IDIwMTkgMTE6MTkgQU0KPiA+IFRvOiBZYW1hZGEsIE1hc2FoaXJvL+WxseeUsCDnnJ/lvJggPHlh
-bWFkYS5tYXNhaGlyb0Bzb2Npb25leHQuY29tPgo+ID4gQ2M6IERhdmlkIEFpcmxpZSA8YWlybGll
-ZEBsaW51eC5pZT47IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD47Cj4gPiBkcmktZGV2
-ZWwgPGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmc+OyBub3V2ZWF1Cj4gPiA8bm91dmVh
-dUBsaXN0cy5mcmVlZGVza3RvcC5vcmc+OyBTYW0gUmF2bmJvcmcgPHNhbUByYXZuYm9yZy5vcmc+
-OyBEYXZpZAo+ID4gKENodW5NaW5nKSBaaG91IDxEYXZpZDEuWmhvdUBhbWQuY29tPjsgYW1kLWdm
-eCBtYWlsaW5nIGxpc3QKPiA+IDxhbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZz47IEphbWVz
-IChRaWFuKSBXYW5nCj4gPiA8amFtZXMucWlhbi53YW5nQGFybS5jb20+OyBCZW4gU2tlZ2dzIDxi
-c2tlZ2dzQHJlZGhhdC5jb20+Owo+ID4gbGludXgtYXJtLW1zbSA8bGludXgtYXJtLW1zbUB2Z2Vy
-Lmtlcm5lbC5vcmc+OyBJbnRlbCBHcmFwaGljcwo+ID4gRGV2ZWxvcG1lbnQgPGludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmc+Owo+ID4gaW50ZWwtZ3Z0LWRldkBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmc7IExpbnV4IEtlcm5lbCBNYWlsaW5nIExpc3QKPiA+IDxsaW51eC1rZXJuZWxAdmdlci5r
-ZXJuZWwub3JnPjsgQ2hyaXN0aWFuIEvDtm5pZwo+ID4gPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNv
-bT47IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRldWNoZXJAYW1kLmNvbT47Cj4gPiBmcmVlZHJl
-bm9AbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiBTdWJqZWN0OiBSZTogW0ludGVsLWdmeF0gW1BB
-VENIIHYyXSBkcm06IHByZWZpeCBoZWFkZXIgc2VhcmNoIHBhdGhzIHdpdGgKPiA+ICQoc3JjdHJl
-ZSkvCj4gPgo+ID4gT24gRnJpLCAyNiBBcHIgMjAxOSBhdCAxMTo0NiwgTWFzYWhpcm8gWWFtYWRh
-Cj4gPiA8eWFtYWRhLm1hc2FoaXJvQHNvY2lvbmV4dC5jb20+IHdyb3RlOgo+ID4gPgo+ID4gPiBI
-aS4KPiA+ID4KPiA+ID4KPiA+ID4gT24gRnJpLCBNYXIgMjksIDIwMTkgYXQgODozNyBQTSBNYXNh
-aGlybyBZYW1hZGEKPiA+ID4gPHlhbWFkYS5tYXNhaGlyb0Bzb2Npb25leHQuY29tPiB3cm90ZToK
-PiA+ID4gPgo+ID4gPiA+IEN1cnJlbnRseSwgdGhlIEtidWlsZCBjb3JlIG1hbmlwdWxhdGVzIGhl
-YWRlciBzZWFyY2ggcGF0aHMgaW4gYSBjcmF6eQo+ID4gPiA+IHdheSBbMV0uCj4gPiA+ID4KPiA+
-ID4gPiBUbyBmaXggdGhpcyBtZXNzLCBJIHdhbnQgYWxsIE1ha2VmaWxlcyB0byBhZGQgZXhwbGlj
-aXQgJChzcmN0cmVlKS8gdG8KPiA+ID4gPiB0aGUgc2VhcmNoIHBhdGhzIGluIHRoZSBzcmN0cmVl
-LiBTb21lIE1ha2VmaWxlcyBhcmUgYWxyZWFkeSB3cml0dGVuCj4gPiBpbgo+ID4gPiA+IHRoYXQg
-d2F5LCBidXQgbm90IGFsbC4gVGhlIGdvYWwgb2YgdGhpcyB3b3JrIGlzIHRvIG1ha2UgdGhlIG5v
-dGF0aW9uCj4gPiA+ID4gY29uc2lzdGVudCwgYW5kIGZpbmFsbHkgZ2V0IHJpZCBvZiB0aGUgZ3Jv
-c3MgaGFja3MuCj4gPiA+ID4KPiA+ID4gPiBIYXZpbmcgd2hpdGVzcGFjZXMgYWZ0ZXIgLUkgZG9l
-cyBub3QgbWF0dGVyIHNpbmNlIGNvbW1pdCA0OGY2ZTNjZjViYzYKPiA+ID4gPiAoImtidWlsZDog
-ZG8gbm90IGRyb3AgLUkgd2l0aG91dCBwYXJhbWV0ZXIiKS4KPiA+ID4gPgo+ID4gPiA+IFsxXTog
-aHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wYXRjaC85NjMyMzQ3Lwo+ID4gPiA+Cj4gPiA+
-ID4gU2lnbmVkLW9mZi1ieTogTWFzYWhpcm8gWWFtYWRhIDx5YW1hZGEubWFzYWhpcm9Ac29jaW9u
-ZXh0LmNvbT4KPiA+ID4gPiBSZXZpZXdlZC1ieTogU2FtIFJhdm5ib3JnIDxzYW1AcmF2bmJvcmcu
-b3JnPgo+ID4gPiA+IC0tLQo+ID4gPiA+Cj4gPiA+ID4gSSBwdXQgYWxsIGdwdS9kcm0gY2hhbmdl
-cyBpbnRvIGEgc2luZ2xlIHBhdGNoIGJlY2F1c2UKPiA+ID4gPiB0aGV5IGFyZSB0cml2aWFsIGNv
-bnZlcnNpb24uCj4gPiA+ID4KPiA+ID4gPiBJZiB5b3UgYXJlIGludGVyZXN0ZWQgaW4gdGhlIGJp
-ZyBwaWN0dXJlIG9mIHRoaXMgd29yaywKPiA+ID4gPiB0aGUgZnVsbCBwYXRjaCBzZXQgaXMgYXZh
-aWxhYmxlIGF0IHRoZSBmb2xsb3dpbmcgVVJMLgo+ID4gPiA+Cj4gPiA+ID4KPiA+IGdpdDovL2dp
-dC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC9tYXNhaGlyb3kvbGludXgta2J1
-aWxkLmcKPiA+IGl0IGJ1aWxkLXRlc3QKPiA+ID4KPiA+ID4KPiA+ID4gSXMgc29tZWJvZHkgdGFr
-aW5nIGNhcmUgb2YgdGhpcz8KPiA+ID4KPiA+Cj4gPiBBcmUgeW91IGV4cGVjdGluZyB0aGlzIHRv
-IGJlIG1lcmdlZCBpbiB0aGUgZHJtIHRyZWU/IGlmIHNvIHBsZWFzZQo+ID4gaW5kaWNhdGUgdGhh
-dCB3aGVuIHBvc3RpbmcuCj4KPgo+IFNvcnJ5IGZvciB1bmNsZWFybmVzcy4KPgo+IENvdWxkIHlv
-dSBhcHBseSB0aGlzIHRvIHlvdXIgZHJtIHRyZWU/Cj4KPiBUaGFua3MuCj4KPgo+Cj4KPiA+IEkn
-ZCBhc3N1bWVkIHRoaXMgd291bGQgZ28gdmlhIGtidWlsZCB0cmVlLgo+ID4KPiA+IElmIHRoZSBs
-YXRlciwKPiA+IEFja2VkLWJ5OiBEYXZlIEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29tPgo+ID4g
-RGF2ZS4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KRnJl
-ZWRyZW5vIG1haWxpbmcgbGlzdApGcmVlZHJlbm9AbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZnJlZWRyZW5v
+On Fri, Apr 26, 2019 at 12:56:48PM +1000, Dave Airlie wrote:
+> Daniel, drm-misc-next-fixes?
+
+Makes sense. Pushed.
+
+Cheers, Daniel
+
+> 
+> Dave.
+> 
+> On Fri, 26 Apr 2019 at 12:25, <yamada.masahiro@socionext.com> wrote:
+> >
+> > Hi Dave,
+> >
+> > > -----Original Message-----
+> > > From: Dave Airlie [mailto:airlied@gmail.com]
+> > > Sent: Friday, April 26, 2019 11:19 AM
+> > > To: Yamada, Masahiro/山田 真弘 <yamada.masahiro@socionext.com>
+> > > Cc: David Airlie <airlied@linux.ie>; Daniel Vetter <daniel@ffwll.ch>;
+> > > dri-devel <dri-devel@lists.freedesktop.org>; nouveau
+> > > <nouveau@lists.freedesktop.org>; Sam Ravnborg <sam@ravnborg.org>; David
+> > > (ChunMing) Zhou <David1.Zhou@amd.com>; amd-gfx mailing list
+> > > <amd-gfx@lists.freedesktop.org>; James (Qian) Wang
+> > > <james.qian.wang@arm.com>; Ben Skeggs <bskeggs@redhat.com>;
+> > > linux-arm-msm <linux-arm-msm@vger.kernel.org>; Intel Graphics
+> > > Development <intel-gfx@lists.freedesktop.org>;
+> > > intel-gvt-dev@lists.freedesktop.org; Linux Kernel Mailing List
+> > > <linux-kernel@vger.kernel.org>; Christian König
+> > > <christian.koenig@amd.com>; Alex Deucher <alexander.deucher@amd.com>;
+> > > freedreno@lists.freedesktop.org
+> > > Subject: Re: [Intel-gfx] [PATCH v2] drm: prefix header search paths with
+> > > $(srctree)/
+> > >
+> > > On Fri, 26 Apr 2019 at 11:46, Masahiro Yamada
+> > > <yamada.masahiro@socionext.com> wrote:
+> > > >
+> > > > Hi.
+> > > >
+> > > >
+> > > > On Fri, Mar 29, 2019 at 8:37 PM Masahiro Yamada
+> > > > <yamada.masahiro@socionext.com> wrote:
+> > > > >
+> > > > > Currently, the Kbuild core manipulates header search paths in a crazy
+> > > > > way [1].
+> > > > >
+> > > > > To fix this mess, I want all Makefiles to add explicit $(srctree)/ to
+> > > > > the search paths in the srctree. Some Makefiles are already written
+> > > in
+> > > > > that way, but not all. The goal of this work is to make the notation
+> > > > > consistent, and finally get rid of the gross hacks.
+> > > > >
+> > > > > Having whitespaces after -I does not matter since commit 48f6e3cf5bc6
+> > > > > ("kbuild: do not drop -I without parameter").
+> > > > >
+> > > > > [1]: https://patchwork.kernel.org/patch/9632347/
+> > > > >
+> > > > > Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> > > > > Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+> > > > > ---
+> > > > >
+> > > > > I put all gpu/drm changes into a single patch because
+> > > > > they are trivial conversion.
+> > > > >
+> > > > > If you are interested in the big picture of this work,
+> > > > > the full patch set is available at the following URL.
+> > > > >
+> > > > >
+> > > git://git.kernel.org/pub/scm/linux/kernel/git/masahiroy/linux-kbuild.g
+> > > it build-test
+> > > >
+> > > >
+> > > > Is somebody taking care of this?
+> > > >
+> > >
+> > > Are you expecting this to be merged in the drm tree? if so please
+> > > indicate that when posting.
+> >
+> >
+> > Sorry for unclearness.
+> >
+> > Could you apply this to your drm tree?
+> >
+> > Thanks.
+> >
+> >
+> >
+> >
+> > > I'd assumed this would go via kbuild tree.
+> > >
+> > > If the later,
+> > > Acked-by: Dave Airlie <airlied@redhat.com>
+> > > Dave.
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
