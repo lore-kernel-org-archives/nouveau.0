@@ -1,13 +1,13 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 5/5] pci: restore the boot pcie link speed on fini
-Date: Sat,  4 May 2019 18:32:19 +0200
-Message-ID: <20190504163219.8349-6-kherbst@redhat.com>
-References: <20190504163219.8349-1-kherbst@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110500] X-Server crashes - GL error:
+ GL_OUT_OF_MEMORY in glTexSubImage
+Date: Sat, 04 May 2019 17:14:38 +0000
+Message-ID: <bug-110500-8800-dYVdeQAHpU@http.bugs.freedesktop.org/>
+References: <bug-110500-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0393959503=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190504163219.8349-1-kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-110500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +20,119 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Zml4ZXMgcnVudGltZSBzdXNwZW5kIG9uIG15IGdwMTA3CgpTaWduZWQtb2ZmLWJ5OiBLYXJvbCBI
-ZXJic3QgPGtoZXJic3RAcmVkaGF0LmNvbT4KLS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9w
-Y2kvYmFzZS5jIHwgMiArKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL3BjaWUuYyB8IDgg
-KysrKysrKysKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9wcml2LmggfCAxICsKIDMgZmls
-ZXMgY2hhbmdlZCwgMTEgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252
-a20vc3ViZGV2L3BjaS9iYXNlLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvYmFzZS5j
-CmluZGV4IGI2ZWJlZTZmLi5kOWZiNWE4MyAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvcGNpL2Jhc2UuYworKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvYmFzZS5j
-CkBAIC05MCw2ICs5MCw4IEBAIG52a21fcGNpX2Zpbmkoc3RydWN0IG52a21fc3ViZGV2ICpzdWJk
-ZXYsIGJvb2wgc3VzcGVuZCkKIAogCWlmIChwY2ktPmFncC5icmlkZ2UpCiAJCW52a21fYWdwX2Zp
-bmkocGNpKTsKKwllbHNlIGlmIChwY2lfaXNfcGNpZShwY2ktPnBkZXYpKQorCQludmttX3BjaWVf
-ZmluaShwY2kpOwogCiAJcmV0dXJuIDA7CiB9CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmtt
-L3N1YmRldi9wY2kvcGNpZS5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL3BjaWUuYwpp
-bmRleCA3MjdiNWQ2YS4uMDBjMDdmZDggMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L3BjaS9wY2llLmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL3BjaWUuYwpA
-QCAtMTE4LDYgKzExOCwxNCBAQCBudmttX3BjaWVfaW5pdChzdHJ1Y3QgbnZrbV9wY2kgKnBjaSkK
-IAlyZXR1cm4gMDsKIH0KIAoraW50CitudmttX3BjaWVfZmluaShzdHJ1Y3QgbnZrbV9wY2kgKnBj
-aSkKK3sKKwlpZiAoIUlTX0VSUl9WQUxVRShwY2ktPnBjaWUuZGVmX3NwZWVkKSkKKwkJcmV0dXJu
-IG52a21fcGNpZV9zZXRfbGluayhwY2ksIHBjaS0+cGNpZS5kZWZfc3BlZWQsIDE2KTsKKwlyZXR1
-cm4gMDsKK30KKwogaW50CiBudmttX3BjaWVfc2V0X2xpbmsoc3RydWN0IG52a21fcGNpICpwY2ks
-IGVudW0gbnZrbV9wY2llX3NwZWVkIHNwZWVkLCB1OCB3aWR0aCkKIHsKZGlmZiAtLWdpdCBhL2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9wcml2LmggYi9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di9wY2kvcHJpdi5oCmluZGV4IGRjM2FlM2NkLi5lNzc0NDY3MSAxMDA2NDQKLS0tIGEvZHJtL25v
-dXZlYXUvbnZrbS9zdWJkZXYvcGNpL3ByaXYuaAorKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di9wY2kvcHJpdi5oCkBAIC02Miw0ICs2Miw1IEBAIGludCBnazEwNF9wY2llX3ZlcnNpb25fc3Vw
-cG9ydGVkKHN0cnVjdCBudmttX3BjaSAqKTsKIGludCBudmttX3BjaWVfb25laW5pdChzdHJ1Y3Qg
-bnZrbV9wY2kgKik7CiBpbnQgbnZrbV9wY2llX3ByZWluaXQoc3RydWN0IG52a21fcGNpICopOwog
-aW50IG52a21fcGNpZV9pbml0KHN0cnVjdCBudmttX3BjaSAqKTsKK2ludCBudmttX3BjaWVfZmlu
-aShzdHJ1Y3QgbnZrbV9wY2kgKik7CiAjZW5kaWYKLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0393959503==
+Content-Type: multipart/alternative; boundary="15569900780.82dA43.32314"
+Content-Transfer-Encoding: 7bit
+
+
+--15569900780.82dA43.32314
+Date: Sat, 4 May 2019 17:14:38 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110500
+
+--- Comment #9 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to wixbisce-jFQLhMmostjmZLV5cmOKUwC/G2K4zDHf@public.gmane.org from comment #7)
+> I talked with a developer. I get told, that when a driver provide a
+> functionality, that functionality should be working. They should be able =
+to
+> rely on a normal, expected functionality.
+>=20
+
+I don't see how that is a Nouveau issue except somebody shows otherwise. Su=
+re
+Nouveau should be able to handle out of memory situations better, but the i=
+ssue
+here is, that glamor crashes. This is nothing Nouveau could prevent.
+
+Anyway, ignoring that out of memory issue for now. It's not even proven that
+the crash actually resulted from this out of memory error (even though it is
+likely). Glamor tries to workaround it, but fails.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15569900780.82dA43.32314
+Date: Sat, 4 May 2019 17:14:38 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - X-Server crashes - GL error: GL_OUT_OF_MEMORY in glTexSub=
+Image"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110500#c9">Commen=
+t # 9</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - X-Server crashes - GL error: GL_OUT_OF_MEMORY in glTexSub=
+Image"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110500">bug 11050=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+</span></b>
+        <pre>(In reply to <a href=3D"mailto:wixbisce&#64;guerrillamail.com"=
+>wixbisce&#64;guerrillamail.com</a> from <a href=3D"show_bug.cgi?id=3D11050=
+0#c7">comment #7</a>)
+<span class=3D"quote">&gt; I talked with a developer. I get told, that when=
+ a driver provide a
+&gt; functionality, that functionality should be working. They should be ab=
+le to
+&gt; rely on a normal, expected functionality.
+&gt; </span >
+
+I don't see how that is a Nouveau issue except somebody shows otherwise. Su=
+re
+Nouveau should be able to handle out of memory situations better, but the i=
+ssue
+here is, that glamor crashes. This is nothing Nouveau could prevent.
+
+Anyway, ignoring that out of memory issue for now. It's not even proven that
+the crash actually resulted from this out of memory error (even though it is
+likely). Glamor tries to workaround it, but fails.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15569900780.82dA43.32314--
+
+--===============0393959503==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0393959503==--
