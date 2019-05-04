@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110500] X-Server crashes - GL error:
  GL_OUT_OF_MEMORY in glTexSubImage
-Date: Sat, 04 May 2019 17:18:06 +0000
-Message-ID: <bug-110500-8800-XCI7P5lLYd@http.bugs.freedesktop.org/>
+Date: Sat, 04 May 2019 17:20:00 +0000
+Message-ID: <bug-110500-8800-HdsSEK1iRd@http.bugs.freedesktop.org/>
 References: <bug-110500-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0526073855=="
+Content-Type: multipart/mixed; boundary="===============0321085701=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0526073855==
-Content-Type: multipart/alternative; boundary="15569902860.BDbf1820.32485"
+--===============0321085701==
+Content-Type: multipart/alternative; boundary="15569904000.cFC2F31.435"
 Content-Transfer-Encoding: 7bit
 
 
---15569902860.BDbf1820.32485
-Date: Sat, 4 May 2019 17:18:06 +0000
+--15569904000.cFC2F31.435
+Date: Sat, 4 May 2019 17:20:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110500
 
-Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |NOTOURBUG
-             Status|NEW                         |RESOLVED
+--- Comment #11 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+If you don't think any of the glamor bugs fit, feel free to open a bug agai=
+nst
+glamor on gitlab.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15569902860.BDbf1820.32485
-Date: Sat, 4 May 2019 17:18:06 +0000
+--15569904000.cFC2F31.435
+Date: Sat, 4 May 2019 17:20:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,40 +58,29 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:karolherb=
-st&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.com&gt;">=
- <span class=3D"fn">Karol Herbst</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTOURBUG - X-Server crashes - GL error: GL_OUT_OF_MEM=
+ORY in glTexSubImage"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110500#c11">Comme=
+nt # 11</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
    title=3D"RESOLVED NOTOURBUG - X-Server crashes - GL error: GL_OUT_OF_MEM=
 ORY in glTexSubImage"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110500">bug 11050=
 0</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>NOTOURBUG
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
-      <p>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
+</span></b>
+        <pre>If you don't think any of the glamor bugs fit, feel free to op=
+en a bug against
+glamor on gitlab.</pre>
+        </div>
       </p>
 
 
@@ -107,9 +94,9 @@ ORY in glTexSubImage"
     </body>
 </html>=
 
---15569902860.BDbf1820.32485--
+--15569904000.cFC2F31.435--
 
---===============0526073855==
+--===============0321085701==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0526073855==--
+--===============0321085701==--
