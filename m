@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110500] X-Server crashes - GL error:
  GL_OUT_OF_MEMORY in glTexSubImage
-Date: Sat, 04 May 2019 17:20:00 +0000
-Message-ID: <bug-110500-8800-HdsSEK1iRd@http.bugs.freedesktop.org/>
+Date: Sat, 04 May 2019 17:41:19 +0000
+Message-ID: <bug-110500-8800-RWoJZ2h7I8@http.bugs.freedesktop.org/>
 References: <bug-110500-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0321085701=="
+Content-Type: multipart/mixed; boundary="===============0858854700=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0321085701==
-Content-Type: multipart/alternative; boundary="15569904000.cFC2F31.435"
+--===============0858854700==
+Content-Type: multipart/alternative; boundary="15569916781.d207.3520"
 Content-Transfer-Encoding: 7bit
 
 
---15569904000.cFC2F31.435
-Date: Sat, 4 May 2019 17:20:00 +0000
+--15569916781.d207.3520
+Date: Sat, 4 May 2019 17:41:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110500
 
---- Comment #11 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-If you don't think any of the glamor bugs fit, feel free to open a bug agai=
-nst
-glamor on gitlab.
+--- Comment #12 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+also testing with a more updated stack might help as 18.04 still only uses X
+1.19 and this issue might have been fixed already...
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15569904000.cFC2F31.435
-Date: Sat, 4 May 2019 17:20:00 +0000
+--15569916781.d207.3520
+Date: Sat, 4 May 2019 17:41:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_RESOLVED  bz_closed"
    title=3D"RESOLVED NOTOURBUG - X-Server crashes - GL error: GL_OUT_OF_MEM=
 ORY in glTexSubImage"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110500#c11">Comme=
-nt # 11</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110500#c12">Comme=
+nt # 12</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
    title=3D"RESOLVED NOTOURBUG - X-Server crashes - GL error: GL_OUT_OF_MEM=
@@ -77,9 +76,9 @@ ORY in glTexSubImage"
 karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
 com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>If you don't think any of the glamor bugs fit, feel free to op=
-en a bug against
-glamor on gitlab.</pre>
+        <pre>also testing with a more updated stack might help as 18.04 sti=
+ll only uses X
+1.19 and this issue might have been fixed already...</pre>
         </div>
       </p>
 
@@ -94,9 +93,9 @@ glamor on gitlab.</pre>
     </body>
 </html>=
 
---15569904000.cFC2F31.435--
+--15569916781.d207.3520--
 
---===============0321085701==
+--===============0858854700==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0321085701==--
+--===============0858854700==--
