@@ -1,156 +1,65 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
- [CTXSW_TIMEOUT]
-Date: Sun, 05 May 2019 18:24:39 +0000
-Message-ID: <bug-100567-8800-leSaENeknd@http.bugs.freedesktop.org/>
-References: <bug-100567-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH] gpu/drm: Remove duplicate headers
+Date: Mon, 6 May 2019 16:43:34 +0200
+Message-ID: <20190506144334.GH17751@phenom.ffwll.local>
+References: <1556906293-128921-1-git-send-email-jagdsh.linux@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0954155295=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <1556906293-128921-1-git-send-email-jagdsh.linux-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/freedreno>,
+ <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/freedreno>
+List-Post: <mailto:freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/freedreno>,
+ <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Freedreno" <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: jagdsh.linux-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, jcrouse-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, paul.burton-8NJIiSa5LzA@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, hierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jsanka-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org, sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org, skolluku-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org, jrdr.linux-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0954155295==
-Content-Type: multipart/alternative; boundary="155708067912.EfaFdb.17567"
-Content-Transfer-Encoding: 7bit
-
-
---155708067912.EfaFdb.17567
-Date: Sun, 5 May 2019 18:24:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
-
---- Comment #28 from Roy <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org> ---
-Somewhat surprised that this particular report hasn't received any attention
-from a core dev. Sadly, I'm afraid my response will not be hugely satisfying
-eiter.
-
-The message "fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]" is not the result of *a =
-bug*
-and does not point in the direction of one. Rather it is a symptom of a wide
-variety of potential problems with nouveau, (all of) which result in a hang=
- of
-the rendering part of the GPU. On itself it doesn't give meaningful informa=
-tion
-to any developer as to what may be the culprit. It's like measuring a fever=
-, it
-could be the result of many conditions.
-
-Developers would be helped if there was a reliably reproducible situation in
-which this event can be triggered. If there is a list of steps that can be
-followed that would result in this message and a hang, that somehow doesn't
-involve words like "random" or "wait for possibly a few hours", and that ca=
-n be
-traced with tools such as APITrace, we could get a step further in analysing
-what goes wrong. However, it seems unlikely this is the case, especially si=
-nce
-we are also aware of multithreading-related issues that make isolating such
-problems extremely difficult. Unfortunately, post-mortem syslogs and dmesgs=
- are
-unlikely to add any useful information to this or similar bug reports.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---155708067912.EfaFdb.17567
-Date: Sun, 5 May 2019 18:24:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c28">Comme=
-nt # 28</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-nouveau&#64;spliet.org" title=3D"Roy &lt;nouveau&#64;spliet.org&gt;"> <span=
- class=3D"fn">Roy</span></a>
-</span></b>
-        <pre>Somewhat surprised that this particular report hasn't received=
- any attention
-from a core dev. Sadly, I'm afraid my response will not be hugely satisfying
-eiter.
-
-The message &quot;fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]&quot; is not the res=
-ult of *a bug*
-and does not point in the direction of one. Rather it is a symptom of a wide
-variety of potential problems with nouveau, (all of) which result in a hang=
- of
-the rendering part of the GPU. On itself it doesn't give meaningful informa=
-tion
-to any developer as to what may be the culprit. It's like measuring a fever=
-, it
-could be the result of many conditions.
-
-Developers would be helped if there was a reliably reproducible situation in
-which this event can be triggered. If there is a list of steps that can be
-followed that would result in this message and a hang, that somehow doesn't
-involve words like &quot;random&quot; or &quot;wait for possibly a few hour=
-s&quot;, and that can be
-traced with tools such as APITrace, we could get a step further in analysing
-what goes wrong. However, it seems unlikely this is the case, especially si=
-nce
-we are also aware of multithreading-related issues that make isolating such
-problems extremely difficult. Unfortunately, post-mortem syslogs and dmesgs=
- are
-unlikely to add any useful information to this or similar bug reports.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---155708067912.EfaFdb.17567--
-
---===============0954155295==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0954155295==--
+T24gRnJpLCBNYXkgMDMsIDIwMTkgYXQgMTE6Mjg6MTNQTSArMDUzMCwgamFnZHNoLmxpbnV4QGdt
+YWlsLmNvbSB3cm90ZToKPiBGcm9tOiBKYWdhZGVlc2ggUGFnYWRhbGEgPGphZ2RzaC5saW51eEBn
+bWFpbC5jb20+Cj4gCj4gUmVtb3ZlIGR1cGxpY2F0ZSBoZWFkZXJzIHdoaWNoIGFyZSBpbmNsdWRl
+ZCB0d2ljZS4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBKYWdhZGVlc2ggUGFnYWRhbGEgPGphZ2RzaC5s
+aW51eEBnbWFpbC5jb20+CgpJIGNvbGxlY3RlZCBzb21lIGFja3MgZm9yIHRoZSBtc20gYW5kIG5v
+dXZlYXUgcGFydHMgYW5kIHB1c2hlZCB0aGlzLiBGb3IKbmV4dCB0aW1lIGFyb3VuZCB3b3VsZCBi
+ZSBncmVhdCBpZiB5b3Ugc3BsaXQgdGhlc2UgdXAgYWxvbmcgZHJpdmVyL21vZHVsZQpib3VuZGFy
+aWVzLCBzbyB0aGF0IGVhY2ggbWFpbnRhaW5lciBjYW4gcGljayB0aGlzIHVwIGRpcmVjdGx5LgoK
+VGhhbmtzIGZvciB5b3VyIHBhdGNoLgotRGFuaWVsCgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0v
+bXNtL2Rpc3AvZHB1MS9kcHVfaHdfbG0uYyAgICAgICAgICAgICB8IDEgLQo+ICBkcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9idXMvbnYwNC5jICAgICAgICB8IDIgLS0KPiAgZHJp
+dmVycy9ncHUvZHJtL3BhbmVsL3BhbmVsLXJhc3BiZXJyeXBpLXRvdWNoc2NyZWVuLmMgfCAxIC0K
+PiAgMyBmaWxlcyBjaGFuZ2VkLCA0IGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vbXNtL2Rpc3AvZHB1MS9kcHVfaHdfbG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9t
+c20vZGlzcC9kcHUxL2RwdV9od19sbS5jCj4gaW5kZXggMDE4ZGYyYy4uNDVhNWJjNiAxMDA2NDQK
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbXNtL2Rpc3AvZHB1MS9kcHVfaHdfbG0uYwo+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9kcHUxL2RwdV9od19sbS5jCj4gQEAgLTE1LDcgKzE1
+LDYgQEAKPiAgI2luY2x1ZGUgImRwdV9od2lvLmgiCj4gICNpbmNsdWRlICJkcHVfaHdfbG0uaCIK
+PiAgI2luY2x1ZGUgImRwdV9od19tZHNzLmgiCj4gLSNpbmNsdWRlICJkcHVfa21zLmgiCj4gIAo+
+ICAjZGVmaW5lIExNX09QX01PREUgICAgICAgICAgICAgICAgICAgICAgICAweDAwCj4gICNkZWZp
+bmUgTE1fT1VUX1NJWkUgICAgICAgICAgICAgICAgICAgICAgIDB4MDQKPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYnVzL252MDQuYyBiL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2J1cy9udjA0LmMKPiBpbmRleCBjODBiOTY3Li4y
+YjQ0YmE1IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2
+L2J1cy9udjA0LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9i
+dXMvbnYwNC5jCj4gQEAgLTI2LDggKzI2LDYgQEAKPiAgCj4gICNpbmNsdWRlIDxzdWJkZXYvZ3Bp
+by5oPgo+ICAKPiAtI2luY2x1ZGUgPHN1YmRldi9ncGlvLmg+Cj4gLQo+ICBzdGF0aWMgdm9pZAo+
+ICBudjA0X2J1c19pbnRyKHN0cnVjdCBudmttX2J1cyAqYnVzKQo+ICB7Cj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvZ3B1L2RybS9wYW5lbC9wYW5lbC1yYXNwYmVycnlwaS10b3VjaHNjcmVlbi5jIGIv
+ZHJpdmVycy9ncHUvZHJtL3BhbmVsL3BhbmVsLXJhc3BiZXJyeXBpLXRvdWNoc2NyZWVuLmMKPiBp
+bmRleCAyYzljOTcyLi5jYWNmMmUwIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9wYW5l
+bC9wYW5lbC1yYXNwYmVycnlwaS10b3VjaHNjcmVlbi5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L3BhbmVsL3BhbmVsLXJhc3BiZXJyeXBpLXRvdWNoc2NyZWVuLmMKPiBAQCAtNTMsNyArNTMsNiBA
+QAo+ICAjaW5jbHVkZSA8bGludXgvb2ZfZ3JhcGguaD4KPiAgI2luY2x1ZGUgPGxpbnV4L3BtLmg+
+Cj4gIAo+IC0jaW5jbHVkZSA8ZHJtL2RybV9wYW5lbC5oPgo+ICAjaW5jbHVkZSA8ZHJtL2RybVAu
+aD4KPiAgI2luY2x1ZGUgPGRybS9kcm1fY3J0Yy5oPgo+ICAjaW5jbHVkZSA8ZHJtL2RybV9taXBp
+X2RzaS5oPgo+IC0tIAo+IDEuOC4zLjEKPiAKCi0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJlIEVu
+Z2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgpodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpGcmVlZHJlbm8gbWFpbGluZyBs
+aXN0CkZyZWVkcmVub0BsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9mcmVlZHJlbm8=
