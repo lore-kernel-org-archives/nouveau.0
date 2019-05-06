@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
  [CTXSW_TIMEOUT]
-Date: Mon, 06 May 2019 17:05:03 +0000
-Message-ID: <bug-100567-8800-8kSgiLgKrq@http.bugs.freedesktop.org/>
+Date: Mon, 06 May 2019 17:36:09 +0000
+Message-ID: <bug-100567-8800-Tdzx2Rmr37@http.bugs.freedesktop.org/>
 References: <bug-100567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0456223655=="
+Content-Type: multipart/mixed; boundary="===============1058245485=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0456223655==
-Content-Type: multipart/alternative; boundary="155716230312.FE17aA6F.30036"
+--===============1058245485==
+Content-Type: multipart/alternative; boundary="15571641695.d262e90.2480"
 Content-Transfer-Encoding: 7bit
 
 
---155716230312.FE17aA6F.30036
-Date: Mon, 6 May 2019 17:05:03 +0000
+--15571641695.d262e90.2480
+Date: Mon, 6 May 2019 17:36:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,42 +36,51 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
 
---- Comment #30 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Marc Burkhardt from comment #29)
-> I'm pretty happy to run my machines without the "BLOB" and would happily
-> keep it this way. But this is a showstopper. A showstopper that has not
-> gotten the right attention for a long time now.
+--- Comment #31 from Marc Burkhardt <libreoffice.org-5+OZ0iQkl5WoYr4blSSd5g@public.gmane.org> ---
+Hi Ilia,
 
-The best way to get a good experience is to avoid doing things which break
-nouveau. If you don't need the 3d acceleration, just remove nouveau_dri.so.=
- You
-still get the X-based acceleration (via xf86-video-nouveau, not the GL-based
-modesetting driver), but no OpenGL. This gets you a fairly rock-solid
-experience.
+by offering a $100 for this the intention was to just get this thing sorted=
+ out
+from the nouveau guys _prior_ to any "my game X still doesn't work with
+nouveau" bug. I don't want to lean out toooo far out of the window, but I t=
+hink
+this actually is a gregression, too. Not just a bug. Nevertheless, I know
+developers earn much more than that, I'm a developer myself.
 
-Unfortunately software whose name starts with the letters G and K has come =
-to
-depend on OpenGL for even the most basic tasks without much care about driv=
-er
-support for this in the past couple of years. I generally avoid those, and =
-do
-just fine. (While I do run GL-using applications on occasion, I don't do it=
- all
-the time, or many of them.)
+I cannot share your expression "The best way to get a good experience is to
+avoid doing things which break nouveau". What experience is this if you use=
+ a
+product that you know has a bug and you try to avoid it? Someday you change=
+ the
+product. But I do not want this. I want the bug to be sorted out, offering =
+my
+spare time, some bucks for you to have a night out and nothing more.
 
-While your offer for $100 is well-meaning and appreciated, the reality is t=
-hat
-the capable developers either work for free in their spare time (at which p=
-oint
-accepting $100 is probably more trouble than it's worth), or need stable
-full-time jobs (so a lot more 0's are needed on that offer).
+I use enlightenment desktop on top of modesetting driver with
+"nouveau.noaccel=3D0 nouveau.nofbaccel=3D1 nouveau.modeset=3D1 nouveau.runp=
+m=3D0
+nouveau.debug=3Ddisp=3Dtrace,i2c=3Dtrace,bios=3Dtrace nouveau.config=3DNvPm=
+ShowAll=3Dtrue"
+applied. I see no reason to just _not_ use the features the driver offers. =
+And
+when they do not work: either fix them or get rid of them.
+
+I'm also absolutely not into heavy 3D, hevay OpenGL or whatever-usage. I ju=
+st
+use a modern and advanced desktop environment (Enlightenment, git) on recent
+"stable" hardware (ThinkPad P50). Not trying to _force_ nouveau to go down.
+
+If your answer really is to "not stress" the driver with a usual workload,
+avoid stuff "with the letters G and K" or whatever... oh dear. Cannot imagi=
+ne
+how I start to argue over this for _my_ work with _my_ boss...
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---155716230312.FE17aA6F.30036
-Date: Mon, 6 May 2019 17:05:03 +0000
+--15571641695.d262e90.2480
+Date: Mon, 6 May 2019 17:36:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -89,8 +98,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
 ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c30">Comme=
-nt # 30</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c31">Comme=
+nt # 31</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
@@ -98,39 +107,49 @@ nt # 30</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+libreoffice.org&#64;marc.ngoe.de" title=3D"Marc Burkhardt &lt;libreoffice.o=
+rg&#64;marc.ngoe.de&gt;"> <span class=3D"fn">Marc Burkhardt</span></a>
 </span></b>
-        <pre>(In reply to Marc Burkhardt from <a href=3D"show_bug.cgi?id=3D=
-100567#c29">comment #29</a>)
-<span class=3D"quote">&gt; I'm pretty happy to run my machines without the =
-&quot;BLOB&quot; and would happily
-&gt; keep it this way. But this is a showstopper. A showstopper that has not
-&gt; gotten the right attention for a long time now.</span >
+        <pre>Hi Ilia,
 
-The best way to get a good experience is to avoid doing things which break
-nouveau. If you don't need the 3d acceleration, just remove nouveau_dri.so.=
- You
-still get the X-based acceleration (via xf86-video-nouveau, not the GL-based
-modesetting driver), but no OpenGL. This gets you a fairly rock-solid
-experience.
+by offering a $100 for this the intention was to just get this thing sorted=
+ out
+from the nouveau guys _prior_ to any &quot;my game X still doesn't work with
+nouveau&quot; bug. I don't want to lean out toooo far out of the window, bu=
+t I think
+this actually is a gregression, too. Not just a bug. Nevertheless, I know
+developers earn much more than that, I'm a developer myself.
 
-Unfortunately software whose name starts with the letters G and K has come =
-to
-depend on OpenGL for even the most basic tasks without much care about driv=
-er
-support for this in the past couple of years. I generally avoid those, and =
-do
-just fine. (While I do run GL-using applications on occasion, I don't do it=
- all
-the time, or many of them.)
+I cannot share your expression &quot;The best way to get a good experience =
+is to
+avoid doing things which break nouveau&quot;. What experience is this if yo=
+u use a
+product that you know has a bug and you try to avoid it? Someday you change=
+ the
+product. But I do not want this. I want the bug to be sorted out, offering =
+my
+spare time, some bucks for you to have a night out and nothing more.
 
-While your offer for $100 is well-meaning and appreciated, the reality is t=
-hat
-the capable developers either work for free in their spare time (at which p=
-oint
-accepting $100 is probably more trouble than it's worth), or need stable
-full-time jobs (so a lot more 0's are needed on that offer).</pre>
+I use enlightenment desktop on top of modesetting driver with
+&quot;nouveau.noaccel=3D0 nouveau.nofbaccel=3D1 nouveau.modeset=3D1 nouveau=
+.runpm=3D0
+nouveau.debug=3Ddisp=3Dtrace,i2c=3Dtrace,bios=3Dtrace nouveau.config=3DNvPm=
+ShowAll=3Dtrue&quot;
+applied. I see no reason to just _not_ use the features the driver offers. =
+And
+when they do not work: either fix them or get rid of them.
+
+I'm also absolutely not into heavy 3D, hevay OpenGL or whatever-usage. I ju=
+st
+use a modern and advanced desktop environment (Enlightenment, git) on recent
+&quot;stable&quot; hardware (ThinkPad P50). Not trying to _force_ nouveau t=
+o go down.
+
+If your answer really is to &quot;not stress&quot; the driver with a usual =
+workload,
+avoid stuff &quot;with the letters G and K&quot; or whatever... oh dear. Ca=
+nnot imagine
+how I start to argue over this for _my_ work with _my_ boss...</pre>
         </div>
       </p>
 
@@ -144,9 +163,9 @@ full-time jobs (so a lot more 0's are needed on that offer).</pre>
     </body>
 </html>=
 
---155716230312.FE17aA6F.30036--
+--15571641695.d262e90.2480--
 
---===============0456223655==
+--===============1058245485==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -156,4 +175,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0456223655==--
+--===============1058245485==--
