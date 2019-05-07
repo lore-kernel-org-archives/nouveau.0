@@ -1,14 +1,12 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v2 4/4] pci: save the boot pcie link speed and
- restore it on fini
-Date: Tue,  7 May 2019 22:12:45 +0200
-Message-ID: <20190507201245.9295-5-kherbst@redhat.com>
-References: <20190507201245.9295-1-kherbst@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 109407] GTX 1050 fails to initialise acceleration
+Date: Tue, 07 May 2019 22:11:33 +0000
+Message-ID: <bug-109407-8800-C3V2fdlEVl@http.bugs.freedesktop.org/>
+References: <bug-109407-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0468687432=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190507201245.9295-1-kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-109407-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,80 +17,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-QXBwZXJhbnRseSB0aGluZ3MgZ28gc291dGggaWYgd2Ugc3VzcGVuZCB0aGUgZGV2aWNlIHdpdGgg
-YSBkaWZmZXJlbnQgUENJRQpsaW5rIHNwZWVkIHNldCB0aGFuIGl0IGdvdCBib290ZWQgd2l0aC4g
-Rml4ZXMgcnVudGltZSBzdXNwZW5kIG9uIG15IGdwMTA3LgoKVGhpcyBhbGwgbG9va3MgbGlrZSBz
-b21lIGJ1ZyBpbnNpZGUgdGhlIHBjaSBzdWJzeXN0ZW0gYW5kIEkgd291bGQgcHJlZmVyIGEKZml4
-IHRoZXJlIGluc3RlYWQgb2Ygbm91dmVhdSwgYnV0IG1heWJlIHRoZXJlIGlzIG5vIHJlYWwgbmlj
-ZSB3YXkgb2YgZG9pbmcKdGhhdCBvdXRzaWRlIG9mIGRyaXZlcnM/Cgp2Mjogc3F1YXNoZWQgdG9n
-ZXRoZXIgcGF0Y2ggNCBhbmQgNQoKU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxraGVyYnN0
-QHJlZGhhdC5jb20+ClJldmlld2VkLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgot
-LS0KIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvcGNpLmggfCAgNSArKystLQogZHJt
-L25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYyAgICB8ICA5ICsrKysrKystLQogZHJtL25v
-dXZlYXUvbnZrbS9zdWJkZXYvcGNpL3BjaWUuYyAgICB8IDI0ICsrKysrKysrKysrKysrKysrKysr
-LS0tLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL3ByaXYuaCAgICB8ICAyICsrCiA0IGZp
-bGVzIGNoYW5nZWQsIDMyIGluc2VydGlvbnMoKyksIDggZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0
-IGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9wY2kuaCBiL2RybS9ub3V2ZWF1L2lu
-Y2x1ZGUvbnZrbS9zdWJkZXYvcGNpLmgKaW5kZXggMWZkZjMwOTguLmIyMzc5M2EyIDEwMDY0NAot
-LS0gYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3BjaS5oCisrKyBiL2RybS9ub3V2
-ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvcGNpLmgKQEAgLTI2LDggKzI2LDkgQEAgc3RydWN0IG52
-a21fcGNpIHsKIAl9IGFncDsKIAogCXN0cnVjdCB7Ci0JCWVudW0gbnZrbV9wY2llX3NwZWVkIHNw
-ZWVkOwotCQl1OCB3aWR0aDsKKwkJZW51bSBudmttX3BjaWVfc3BlZWQgY3VyX3NwZWVkOworCQll
-bnVtIG52a21fcGNpZV9zcGVlZCBkZWZfc3BlZWQ7CisJCXU4IGN1cl93aWR0aDsKIAl9IHBjaWU7
-CiAKIAlib29sIG1zaTsKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9i
-YXNlLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvYmFzZS5jCmluZGV4IGVlMjQzMWE3
-Li5kOWZiNWE4MyAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2Uu
-YworKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvYmFzZS5jCkBAIC05MCw2ICs5MCw4
-IEBAIG52a21fcGNpX2Zpbmkoc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYsIGJvb2wgc3VzcGVu
-ZCkKIAogCWlmIChwY2ktPmFncC5icmlkZ2UpCiAJCW52a21fYWdwX2ZpbmkocGNpKTsKKwllbHNl
-IGlmIChwY2lfaXNfcGNpZShwY2ktPnBkZXYpKQorCQludmttX3BjaWVfZmluaShwY2kpOwogCiAJ
-cmV0dXJuIDA7CiB9CkBAIC0xMDAsNiArMTAyLDggQEAgbnZrbV9wY2lfcHJlaW5pdChzdHJ1Y3Qg
-bnZrbV9zdWJkZXYgKnN1YmRldikKIAlzdHJ1Y3QgbnZrbV9wY2kgKnBjaSA9IG52a21fcGNpKHN1
-YmRldik7CiAJaWYgKHBjaS0+YWdwLmJyaWRnZSkKIAkJbnZrbV9hZ3BfcHJlaW5pdChwY2kpOwor
-CWVsc2UgaWYgKHBjaV9pc19wY2llKHBjaS0+cGRldikpCisJCW52a21fcGNpZV9wcmVpbml0KHBj
-aSk7CiAJcmV0dXJuIDA7CiB9CiAKQEAgLTE5Myw4ICsxOTcsOSBAQCBudmttX3BjaV9uZXdfKGNv
-bnN0IHN0cnVjdCBudmttX3BjaV9mdW5jICpmdW5jLCBzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmlj
-ZSwKIAlwY2ktPmZ1bmMgPSBmdW5jOwogCXBjaS0+cGRldiA9IGRldmljZS0+ZnVuYy0+cGNpKGRl
-dmljZSktPnBkZXY7CiAJcGNpLT5pcnEgPSAtMTsKLQlwY2ktPnBjaWUuc3BlZWQgPSAtMTsKLQlw
-Y2ktPnBjaWUud2lkdGggPSAtMTsKKwlwY2ktPnBjaWUuY3VyX3NwZWVkID0gLTE7CisJcGNpLT5w
-Y2llLmRlZl9zcGVlZCA9IC0xOworCXBjaS0+cGNpZS5jdXJfd2lkdGggPSAtMTsKIAogCWlmIChk
-ZXZpY2UtPnR5cGUgPT0gTlZLTV9ERVZJQ0VfQUdQKQogCQludmttX2FncF9jdG9yKHBjaSk7CmRp
-ZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvcGNpZS5jIGIvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvcGNpL3BjaWUuYwppbmRleCA3MGNjYmUwZC4uNzMxZGQzMGUgMTAwNjQ0
-Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9wY2llLmMKKysrIGIvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvcGNpL3BjaWUuYwpAQCAtODUsNiArODUsMTMgQEAgbnZrbV9wY2llX29u
-ZWluaXQoc3RydWN0IG52a21fcGNpICpwY2kpCiAJcmV0dXJuIDA7CiB9CiAKK2ludAorbnZrbV9w
-Y2llX3ByZWluaXQoc3RydWN0IG52a21fcGNpICpwY2kpCit7CisJcGNpLT5wY2llLmRlZl9zcGVl
-ZCA9IG52a21fcGNpZV9nZXRfc3BlZWQocGNpKTsKKwlyZXR1cm4gMDsKK30KKwogaW50CiBudmtt
-X3BjaWVfaW5pdChzdHJ1Y3QgbnZrbV9wY2kgKnBjaSkKIHsKQEAgLTEwNSwxMiArMTEyLDIxIEBA
-IG52a21fcGNpZV9pbml0KHN0cnVjdCBudmttX3BjaSAqcGNpKQogCWlmIChwY2ktPmZ1bmMtPnBj
-aWUuaW5pdCkKIAkJcGNpLT5mdW5jLT5wY2llLmluaXQocGNpKTsKIAotCWlmIChwY2ktPnBjaWUu
-c3BlZWQgIT0gLTEpCi0JCW52a21fcGNpZV9zZXRfbGluayhwY2ksIHBjaS0+cGNpZS5zcGVlZCwg
-cGNpLT5wY2llLndpZHRoKTsKKwlpZiAocGNpLT5wY2llLmN1cl9zcGVlZCAhPSAtMSkKKwkJbnZr
-bV9wY2llX3NldF9saW5rKHBjaSwgcGNpLT5wY2llLmN1cl9zcGVlZCwKKwkJCQkgICBwY2ktPnBj
-aWUuY3VyX3dpZHRoKTsKIAogCXJldHVybiAwOwogfQogCitpbnQKK252a21fcGNpZV9maW5pKHN0
-cnVjdCBudmttX3BjaSAqcGNpKQoreworCWlmICghSVNfRVJSX1ZBTFVFKHBjaS0+cGNpZS5kZWZf
-c3BlZWQpKQorCQlyZXR1cm4gbnZrbV9wY2llX3NldF9saW5rKHBjaSwgcGNpLT5wY2llLmRlZl9z
-cGVlZCwgMTYpOworCXJldHVybiAwOworfQorCiBpbnQKIG52a21fcGNpZV9zZXRfbGluayhzdHJ1
-Y3QgbnZrbV9wY2kgKnBjaSwgZW51bSBudmttX3BjaWVfc3BlZWQgc3BlZWQsIHU4IHdpZHRoKQog
-ewpAQCAtMTQ2LDggKzE2Miw4IEBAIG52a21fcGNpZV9zZXRfbGluayhzdHJ1Y3QgbnZrbV9wY2kg
-KnBjaSwgZW51bSBudmttX3BjaWVfc3BlZWQgc3BlZWQsIHU4IHdpZHRoKQogCQlzcGVlZCA9IG1h
-eF9zcGVlZDsKIAl9CiAKLQlwY2ktPnBjaWUuc3BlZWQgPSBzcGVlZDsKLQlwY2ktPnBjaWUud2lk
-dGggPSB3aWR0aDsKKwlwY2ktPnBjaWUuY3VyX3NwZWVkID0gc3BlZWQ7CisJcGNpLT5wY2llLmN1
-cl93aWR0aCA9IHdpZHRoOwogCiAJaWYgKHNwZWVkID09IGN1cl9zcGVlZCkgewogCQludmttX2Rl
-YnVnKHN1YmRldiwgInJlcXVlc3RlZCBtYXRjaGVzIGN1cnJlbnQgc3BlZWRcbiIpOwpkaWZmIC0t
-Z2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL3ByaXYuaCBiL2RybS9ub3V2ZWF1L252
-a20vc3ViZGV2L3BjaS9wcml2LmgKaW5kZXggYTBkNGMwMDcuLmU3NzQ0NjcxIDEwMDY0NAotLS0g
-YS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvcHJpdi5oCisrKyBiL2RybS9ub3V2ZWF1L252
-a20vc3ViZGV2L3BjaS9wcml2LmgKQEAgLTYwLDUgKzYwLDcgQEAgZW51bSBudmttX3BjaWVfc3Bl
-ZWQgZ2sxMDRfcGNpZV9tYXhfc3BlZWQoc3RydWN0IG52a21fcGNpICopOwogaW50IGdrMTA0X3Bj
-aWVfdmVyc2lvbl9zdXBwb3J0ZWQoc3RydWN0IG52a21fcGNpICopOwogCiBpbnQgbnZrbV9wY2ll
-X29uZWluaXQoc3RydWN0IG52a21fcGNpICopOworaW50IG52a21fcGNpZV9wcmVpbml0KHN0cnVj
-dCBudmttX3BjaSAqKTsKIGludCBudmttX3BjaWVfaW5pdChzdHJ1Y3QgbnZrbV9wY2kgKik7Citp
-bnQgbnZrbV9wY2llX2Zpbmkoc3RydWN0IG52a21fcGNpICopOwogI2VuZGlmCi0tIAoyLjIxLjAK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
-bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+
+--===============0468687432==
+Content-Type: multipart/alternative; boundary="15572670930.BDc042B1.23476"
+Content-Transfer-Encoding: 7bit
+
+
+--15572670930.BDc042B1.23476
+Date: Tue, 7 May 2019 22:11:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109407
+
+--- Comment #5 from John Connett <jrc-okwXFwuUDgyHCRyBVyKX4rVCufUGDwFn@public.gmane.org> ---
+Seeing similar behaviour with a PNY Quadro P620 card in a Supermicro X11SPM=
+-TF
+motherboard running openSUSE Tumbleweed (VERSION=3D"20190505").  Slightly
+different BIOS version:
+
+    nouveau 0000:65:00.0: NVIDIA GP107 (137000a1)
+    nouveau 0000:65:00.0: bios: version 86.07.51.00.04
+    nouveau 0000:65:00.0: fb: 2048 MiB GDDR5
+    [...]
+    nouveau 0000:65:00.0: secboot: SEC2 failed to start
+    nouveau 0000:65:00.0: sec2: unhandled intr 00000010
+    nouveau 0000:65:00.0: gr: init failed, -22
+
+Might be some further confusion as this motherboard has an onboard ASPEED A=
+ST
+2500, a Server Management Processor which also provides a 2D Video Graphics
+Adapter.
+
+Please let me know if I might be able to provide more information to identi=
+fy
+the problem.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15572670930.BDc042B1.23476
+Date: Tue, 7 May 2019 22:11:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GTX 1050 fails to initialise acceleration"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109407#c5">Commen=
+t # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GTX 1050 fails to initialise acceleration"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109407">bug 10940=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jrc&#64;skylon.demon.co.uk" title=3D"John Connett &lt;jrc&#64;skylon.demon.=
+co.uk&gt;"> <span class=3D"fn">John Connett</span></a>
+</span></b>
+        <pre>Seeing similar behaviour with a PNY Quadro P620 card in a Supe=
+rmicro X11SPM-TF
+motherboard running openSUSE Tumbleweed (VERSION=3D&quot;20190505&quot;).  =
+Slightly
+different BIOS version:
+
+    nouveau 0000:65:00.0: NVIDIA GP107 (137000a1)
+    nouveau 0000:65:00.0: bios: version 86.07.51.00.04
+    nouveau 0000:65:00.0: fb: 2048 MiB GDDR5
+    [...]
+    nouveau 0000:65:00.0: secboot: SEC2 failed to start
+    nouveau 0000:65:00.0: sec2: unhandled intr 00000010
+    nouveau 0000:65:00.0: gr: init failed, -22
+
+Might be some further confusion as this motherboard has an onboard ASPEED A=
+ST
+2500, a Server Management Processor which also provides a 2D Video Graphics
+Adapter.
+
+Please let me know if I might be able to provide more information to identi=
+fy
+the problem.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15572670930.BDc042B1.23476--
+
+--===============0468687432==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0468687432==--
