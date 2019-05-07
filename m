@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110631] New: EDID confusion with LG 4K TV as monitor
+Subject: [Bug 110631] EDID confusion with LG 4K TV as monitor
  running X rather than wayland
-Date: Tue, 07 May 2019 00:16:01 +0000
-Message-ID: <bug-110631-8800@http.bugs.freedesktop.org/>
+Date: Tue, 07 May 2019 01:02:09 +0000
+Message-ID: <bug-110631-8800-j99A69pweV@http.bugs.freedesktop.org/>
+References: <bug-110631-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0358434531=="
+Content-Type: multipart/mixed; boundary="===============1235212217=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-110631-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0358434531==
-Content-Type: multipart/alternative; boundary="15571881611.31e4Bd.2977"
+--===============1235212217==
+Content-Type: multipart/alternative; boundary="15571909281.E3E01f.10934"
 Content-Transfer-Encoding: 7bit
 
 
---15571881611.31e4Bd.2977
-Date: Tue, 7 May 2019 00:16:01 +0000
+--15571909281.E3E01f.10934
+Date: Tue, 7 May 2019 01:02:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,62 +36,35 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110631
 
-            Bug ID: 110631
-           Summary: EDID confusion with LG 4K TV as monitor running X
-                    rather than wayland
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: horsley1953-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+FWIW I have a LG C7P which I tested with a GM206 and GP107. Slightly differ=
+ent
+than your setup, but comparable.
 
-Starting with fedora 28 and going through fedora 30, the nouveau driver
-produces a bad signal when trying to display X on my LG OLEDB6P 4K televisi=
-on.
+I used this setup for bringup of HDMI 2.0 support, available in kernel 4.20.
+HDMI 2.0 is required for 4k@60 over HDMI.
 
-Weirdly, with what is presumably the same driver, it displays a full UHD
-resolution when running wayland rather than X. (I really don't understand w=
-hy
-something as low level as the video timing would be different between wayla=
-nd
-and X, but if someone does know, they probably know where the bug is too :-=
-).
+Looking at those logs, you appear to be using modeset instead of
+xf86-video-nouveau (note how it says "modeset" instead of "NOUVEAU"). The l=
+ogs
+make it look like modeset is trying to use a 3840x2160 594MHz mode. This
+requires HDMI 2.0 to work (and should have been filtered out, but nonethele=
+ss
+is the modeline presented).
 
-This isn't restricted to fedora either. I've just been testing a multi-boot=
- USB
-stick, and the drivers on the ubuntu 19.04 live CD and the System Rescue CD
-6.0.3 produce the same "bad signal" errors on this monitor.
-
-For details (like X log files) see:
-
-https://bugzilla.redhat.com/show_bug.cgi?id=3D1575391
-
-and=20
-
-https://bugzilla.redhat.com/show_bug.cgi?id=3D1648608
-
-If I add nomodeset and forcevesa kernel parameters, I can boot and see (low=
-er
-resolution) video rather than a black screen.
-
-Switching to the nvidia binary drivers makes the display work properly agai=
-n.
-
-Booting the USB stick on different systems with more conventional resolution
-monitors, nouveau works fine.
+I'd recommend (a) using xf86-video-nouveau [RH has made local changes to th=
+is
+driver to not load, but I believe this to be a very bad idea, you can overr=
+ide
+with an xorg.conf iirc], and (b) updating to a 4.20+ kernel so that you get
+HDMI 2.0 to work to get access to the higher refresh rates.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15571881611.31e4Bd.2977
-Date: Tue, 7 May 2019 00:16:01 +0000
+--15571909281.E3E01f.10934
+Date: Tue, 7 May 2019 01:02:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -100,128 +75,46 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - EDID confusion with LG 4K TV as monitor running X rather =
 than wayland"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110631">110631</a>
-          </td>
-        </tr>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110631#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - EDID confusion with LG 4K TV as monitor running X rather =
+than wayland"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110631">bug 11063=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>FWIW I have a LG C7P which I tested with a GM206 and GP107. Sl=
+ightly different
+than your setup, but comparable.
 
-        <tr>
-          <th>Summary</th>
-          <td>EDID confusion with LG 4K TV as monitor running X rather than=
- wayland
-          </td>
-        </tr>
+I used this setup for bringup of HDMI 2.0 support, available in kernel 4.20.
+HDMI 2.0 is required for 4k&#64;60 over HDMI.
 
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
+Looking at those logs, you appear to be using modeset instead of
+xf86-video-nouveau (note how it says &quot;modeset&quot; instead of &quot;N=
+OUVEAU&quot;). The logs
+make it look like modeset is trying to use a 3840x2160 594MHz mode. This
+requires HDMI 2.0 to work (and should have been filtered out, but nonethele=
+ss
+is the modeline presented).
 
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>horsley1953&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Starting with fedora 28 and going through fedora 30, the nouve=
-au driver
-produces a bad signal when trying to display X on my LG OLEDB6P 4K televisi=
-on.
-
-Weirdly, with what is presumably the same driver, it displays a full UHD
-resolution when running wayland rather than X. (I really don't understand w=
-hy
-something as low level as the video timing would be different between wayla=
-nd
-and X, but if someone does know, they probably know where the bug is too :-=
-).
-
-This isn't restricted to fedora either. I've just been testing a multi-boot=
- USB
-stick, and the drivers on the ubuntu 19.04 live CD and the System Rescue CD
-6.0.3 produce the same &quot;bad signal&quot; errors on this monitor.
-
-For details (like X log files) see:
-
-<a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1575391">https://b=
-ugzilla.redhat.com/show_bug.cgi?id=3D1575391</a>
-
-and=20
-
-<a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1648608">https://b=
-ugzilla.redhat.com/show_bug.cgi?id=3D1648608</a>
-
-If I add nomodeset and forcevesa kernel parameters, I can boot and see (low=
-er
-resolution) video rather than a black screen.
-
-Switching to the nvidia binary drivers makes the display work properly agai=
-n.
-
-Booting the USB stick on different systems with more conventional resolution
-monitors, nouveau works fine.</pre>
+I'd recommend (a) using xf86-video-nouveau [RH has made local changes to th=
+is
+driver to not load, but I believe this to be a very bad idea, you can overr=
+ide
+with an xorg.conf iirc], and (b) updating to a 4.20+ kernel so that you get
+HDMI 2.0 to work to get access to the higher refresh rates.</pre>
         </div>
       </p>
 
@@ -235,9 +128,9 @@ monitors, nouveau works fine.</pre>
     </body>
 </html>=
 
---15571881611.31e4Bd.2977--
+--15571909281.E3E01f.10934--
 
---===============0358434531==
+--===============1235212217==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -247,4 +140,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0358434531==--
+--===============1235212217==--
