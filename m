@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
  409800 [ TIMEOUT ]
-Date: Tue, 07 May 2019 03:26:18 +0000
-Message-ID: <bug-100228-8800-Tft95AAQfl@http.bugs.freedesktop.org/>
+Date: Tue, 07 May 2019 03:31:08 +0000
+Message-ID: <bug-100228-8800-bZmqLq0RJc@http.bugs.freedesktop.org/>
 References: <bug-100228-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0697974039=="
+Content-Type: multipart/mixed; boundary="===============1828794857=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0697974039==
-Content-Type: multipart/alternative; boundary="15571995799.8711ec.3133"
+--===============1828794857==
+Content-Type: multipart/alternative; boundary="15571998694.Eb5EBA6.2648"
 Content-Transfer-Encoding: 7bit
 
 
---15571995799.8711ec.3133
-Date: Tue, 7 May 2019 03:26:19 +0000
+--15571998694.Eb5EBA6.2648
+Date: Tue, 7 May 2019 03:31:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,43 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
 
---- Comment #33 from krinkodot22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
-The 1050 card has been tripping up Nouveau for me as well, ever since I got=
- my
-laptop over a year ago.
-
-Card info:
-
-~$ lspci | grep -E 'VGA|3D'
-00:02.0 VGA compatible controller: Intel Corporation HD Graphics 630 (rev 0=
-4)
-01:00.0 3D controller: NVIDIA Corporation GP107M [GeForce GTX 1050 Mobile] =
-(rev
-a1)
-
-It's possible to use Intel integrated graphics by using the kernel paramete=
-rs
-"nomodeset i915.modeset=3D1" or "nouveau.modeset=3D0 i915.modeset=3D1", whi=
-ch is what
-I've been using. The proprietary Nvidia driver works fine as well, along wi=
-th
-the kernel parameters that RPMFusion's package adds.
-
-Without modeset parameters, the laptop used to lock up on boot. Lately, not
-using modeset parameters has the laptop shut down during the boot process
-instead.
-
-For what it's worth, I'll attach the journal of a failed boot that I invoked
-recently. The call traces might be the only important parts, but I'll just =
-post
-the whole thing in case other parts are useful.
+--- Comment #34 from krinkodot22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
+Created attachment 144183
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144183&action=3Dedit
+Journal logs from a boot without any modeset-altering kernel parameters.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15571995799.8711ec.3133
-Date: Tue, 7 May 2019 03:26:19 +0000
+--15571998694.Eb5EBA6.2648
+Date: Tue, 7 May 2019 03:31:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -90,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
 OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c33">Comme=
-nt # 33</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c34">Comme=
+nt # 34</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
@@ -102,35 +76,13 @@ OUT ]"
 krinkodot22&#64;hotmail.com" title=3D"krinkodot22&#64;hotmail.com">krinkodo=
 t22&#64;hotmail.com</a>
 </span></b>
-        <pre>The 1050 card has been tripping up Nouveau for me as well, eve=
-r since I got my
-laptop over a year ago.
-
-Card info:
-
-~$ lspci | grep -E 'VGA|3D'
-00:02.0 VGA compatible controller: Intel Corporation HD Graphics 630 (rev 0=
-4)
-01:00.0 3D controller: NVIDIA Corporation GP107M [GeForce GTX 1050 Mobile] =
-(rev
-a1)
-
-It's possible to use Intel integrated graphics by using the kernel paramete=
-rs
-&quot;nomodeset i915.modeset=3D1&quot; or &quot;nouveau.modeset=3D0 i915.mo=
-deset=3D1&quot;, which is what
-I've been using. The proprietary Nvidia driver works fine as well, along wi=
-th
-the kernel parameters that RPMFusion's package adds.
-
-Without modeset parameters, the laptop used to lock up on boot. Lately, not
-using modeset parameters has the laptop shut down during the boot process
-instead.
-
-For what it's worth, I'll attach the journal of a failed boot that I invoked
-recently. The call traces might be the only important parts, but I'll just =
-post
-the whole thing in case other parts are useful.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144183=
+" name=3D"attach_144183" title=3D"Journal logs from a boot without any mode=
+set-altering kernel parameters.">attachment 144183</a> <a href=3D"attachmen=
+t.cgi?id=3D144183&amp;action=3Dedit" title=3D"Journal logs from a boot with=
+out any modeset-altering kernel parameters.">[details]</a></span>
+Journal logs from a boot without any modeset-altering kernel parameters.</p=
+re>
         </div>
       </p>
 
@@ -144,9 +96,9 @@ the whole thing in case other parts are useful.</pre>
     </body>
 </html>=
 
---15571995799.8711ec.3133--
+--15571998694.Eb5EBA6.2648--
 
---===============0697974039==
+--===============1828794857==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -156,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0697974039==--
+--===============1828794857==--
