@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
- [CTXSW_TIMEOUT]
-Date: Mon, 06 May 2019 20:23:11 +0000
-Message-ID: <bug-100567-8800-Xm3tn6diMs@http.bugs.freedesktop.org/>
-References: <bug-100567-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 110631] New: EDID confusion with LG 4K TV as monitor
+ running X rather than wayland
+Date: Tue, 07 May 2019 00:16:01 +0000
+Message-ID: <bug-110631-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0675374912=="
+Content-Type: multipart/mixed; boundary="===============0358434531=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,44 +19,77 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0675374912==
-Content-Type: multipart/alternative; boundary="15571741924.2AD1EaE8E.562"
+--===============0358434531==
+Content-Type: multipart/alternative; boundary="15571881611.31e4Bd.2977"
 Content-Transfer-Encoding: 7bit
 
 
---15571741924.2AD1EaE8E.562
-Date: Mon, 6 May 2019 20:23:12 +0000
+--15571881611.31e4Bd.2977
+Date: Tue, 7 May 2019 00:16:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110631
 
---- Comment #32 from Jeremy Booker <jeremy.booker-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Yes, I'm quite concerned by the "just avoid the bug" mentality too. I first
-reported this bug because running a web browser, terminal, and text editor =
-(as
-a web developer) on a default Fedora install was seemingly asking too much =
-of
-the Nouveau driver. I wasn't taxing it with any unusual. I ended up switchi=
-ng
-to the proprietary driver because I couldn't be productive with so many cra=
-shes
-in the course of a work day.
+            Bug ID: 110631
+           Summary: EDID confusion with LG 4K TV as monitor running X
+                    rather than wayland
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: horsley1953-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-I now work at a different place and no longer have access to the hardware w=
-here
-I was experiencing this issue, so I'm afraid I can't be of any further help
-here. I wish you all luck!
+Starting with fedora 28 and going through fedora 30, the nouveau driver
+produces a bad signal when trying to display X on my LG OLEDB6P 4K televisi=
+on.
+
+Weirdly, with what is presumably the same driver, it displays a full UHD
+resolution when running wayland rather than X. (I really don't understand w=
+hy
+something as low level as the video timing would be different between wayla=
+nd
+and X, but if someone does know, they probably know where the bug is too :-=
+).
+
+This isn't restricted to fedora either. I've just been testing a multi-boot=
+ USB
+stick, and the drivers on the ubuntu 19.04 live CD and the System Rescue CD
+6.0.3 produce the same "bad signal" errors on this monitor.
+
+For details (like X log files) see:
+
+https://bugzilla.redhat.com/show_bug.cgi?id=3D1575391
+
+and=20
+
+https://bugzilla.redhat.com/show_bug.cgi?id=3D1648608
+
+If I add nomodeset and forcevesa kernel parameters, I can boot and see (low=
+er
+resolution) video rather than a black screen.
+
+Switching to the nvidia binary drivers makes the display work properly agai=
+n.
+
+Booting the USB stick on different systems with more conventional resolution
+monitors, nouveau works fine.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15571741924.2AD1EaE8E.562
-Date: Mon, 6 May 2019 20:23:12 +0000
+--15571881611.31e4Bd.2977
+Date: Tue, 7 May 2019 00:16:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,41 +100,128 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - EDID confusion with LG 4K TV as monitor running X rather =
+than wayland"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110631">110631</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>EDID confusion with LG 4K TV as monitor running X rather than=
+ wayland
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>horsley1953&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c32">Comme=
-nt # 32</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jeremy.booker&#64;gmail.com" title=3D"Jeremy Booker &lt;jeremy.booker&#64;g=
-mail.com&gt;"> <span class=3D"fn">Jeremy Booker</span></a>
-</span></b>
-        <pre>Yes, I'm quite concerned by the &quot;just avoid the bug&quot;=
- mentality too. I first
-reported this bug because running a web browser, terminal, and text editor =
-(as
-a web developer) on a default Fedora install was seemingly asking too much =
-of
-the Nouveau driver. I wasn't taxing it with any unusual. I ended up switchi=
-ng
-to the proprietary driver because I couldn't be productive with so many cra=
-shes
-in the course of a work day.
+        <pre>Starting with fedora 28 and going through fedora 30, the nouve=
+au driver
+produces a bad signal when trying to display X on my LG OLEDB6P 4K televisi=
+on.
 
-I now work at a different place and no longer have access to the hardware w=
-here
-I was experiencing this issue, so I'm afraid I can't be of any further help
-here. I wish you all luck!</pre>
+Weirdly, with what is presumably the same driver, it displays a full UHD
+resolution when running wayland rather than X. (I really don't understand w=
+hy
+something as low level as the video timing would be different between wayla=
+nd
+and X, but if someone does know, they probably know where the bug is too :-=
+).
+
+This isn't restricted to fedora either. I've just been testing a multi-boot=
+ USB
+stick, and the drivers on the ubuntu 19.04 live CD and the System Rescue CD
+6.0.3 produce the same &quot;bad signal&quot; errors on this monitor.
+
+For details (like X log files) see:
+
+<a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1575391">https://b=
+ugzilla.redhat.com/show_bug.cgi?id=3D1575391</a>
+
+and=20
+
+<a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1648608">https://b=
+ugzilla.redhat.com/show_bug.cgi?id=3D1648608</a>
+
+If I add nomodeset and forcevesa kernel parameters, I can boot and see (low=
+er
+resolution) video rather than a black screen.
+
+Switching to the nvidia binary drivers makes the display work properly agai=
+n.
+
+Booting the USB stick on different systems with more conventional resolution
+monitors, nouveau works fine.</pre>
         </div>
       </p>
 
@@ -117,9 +235,9 @@ here. I wish you all luck!</pre>
     </body>
 </html>=
 
---15571741924.2AD1EaE8E.562--
+--15571881611.31e4Bd.2977--
 
---===============0675374912==
+--===============0358434531==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -129,4 +247,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0675374912==--
+--===============0358434531==--
