@@ -1,111 +1,75 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
- 409800 [ TIMEOUT ]
-Date: Tue, 07 May 2019 03:31:08 +0000
-Message-ID: <bug-100228-8800-bZmqLq0RJc@http.bugs.freedesktop.org/>
-References: <bug-100228-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH] gpu/drm: Remove duplicate headers
+Date: Tue, 7 May 2019 12:05:32 +0200
+Message-ID: <20190507100532.GP17751@phenom.ffwll.local>
+References: <1556906293-128921-1-git-send-email-jagdsh.linux@gmail.com>
+ <20190506144334.GH17751@phenom.ffwll.local>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1828794857=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20190506144334.GH17751-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/freedreno>,
+ <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/freedreno>
+List-Post: <mailto:freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/freedreno>,
+ <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Freedreno" <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: jagdsh.linux-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, airlied-cv59FeDIM0c@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, jcrouse-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, paul.burton-8NJIiSa5LzA@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, daniel-/w4YWyX8dFk@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, hierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, jsanka-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org, sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org, skolluku-sgV2jX0FEOL9JmXXK+q4OQ@public.gmane.org, jrdr.linux-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1828794857==
-Content-Type: multipart/alternative; boundary="15571998694.Eb5EBA6.2648"
-Content-Transfer-Encoding: 7bit
-
-
---15571998694.Eb5EBA6.2648
-Date: Tue, 7 May 2019 03:31:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
-
---- Comment #34 from krinkodot22-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org ---
-Created attachment 144183
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144183&action=3Dedit
-Journal logs from a boot without any modeset-altering kernel parameters.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15571998694.Eb5EBA6.2648
-Date: Tue, 7 May 2019 03:31:09 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c34">Comme=
-nt # 34</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-krinkodot22&#64;hotmail.com" title=3D"krinkodot22&#64;hotmail.com">krinkodo=
-t22&#64;hotmail.com</a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144183=
-" name=3D"attach_144183" title=3D"Journal logs from a boot without any mode=
-set-altering kernel parameters.">attachment 144183</a> <a href=3D"attachmen=
-t.cgi?id=3D144183&amp;action=3Dedit" title=3D"Journal logs from a boot with=
-out any modeset-altering kernel parameters.">[details]</a></span>
-Journal logs from a boot without any modeset-altering kernel parameters.</p=
-re>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15571998694.Eb5EBA6.2648--
-
---===============1828794857==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1828794857==--
+T24gTW9uLCBNYXkgMDYsIDIwMTkgYXQgMDQ6NDM6MzRQTSArMDIwMCwgRGFuaWVsIFZldHRlciB3
+cm90ZToKPiBPbiBGcmksIE1heSAwMywgMjAxOSBhdCAxMToyODoxM1BNICswNTMwLCBqYWdkc2gu
+bGludXhAZ21haWwuY29tIHdyb3RlOgo+ID4gRnJvbTogSmFnYWRlZXNoIFBhZ2FkYWxhIDxqYWdk
+c2gubGludXhAZ21haWwuY29tPgo+ID4gCj4gPiBSZW1vdmUgZHVwbGljYXRlIGhlYWRlcnMgd2hp
+Y2ggYXJlIGluY2x1ZGVkIHR3aWNlLgo+ID4gCj4gPiBTaWduZWQtb2ZmLWJ5OiBKYWdhZGVlc2gg
+UGFnYWRhbGEgPGphZ2RzaC5saW51eEBnbWFpbC5jb20+Cj4gCj4gSSBjb2xsZWN0ZWQgc29tZSBh
+Y2tzIGZvciB0aGUgbXNtIGFuZCBub3V2ZWF1IHBhcnRzIGFuZCBwdXNoZWQgdGhpcy4gRm9yCj4g
+bmV4dCB0aW1lIGFyb3VuZCB3b3VsZCBiZSBncmVhdCBpZiB5b3Ugc3BsaXQgdGhlc2UgdXAgYWxv
+bmcgZHJpdmVyL21vZHVsZQo+IGJvdW5kYXJpZXMsIHNvIHRoYXQgZWFjaCBtYWludGFpbmVyIGNh
+biBwaWNrIHRoaXMgdXAgZGlyZWN0bHkuCj4gCj4gVGhhbmtzIGZvciB5b3VyIHBhdGNoLgo+IC1E
+YW5pZWwKPiAKPiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9kcHUxL2RwdV9o
+d19sbS5jICAgICAgICAgICAgIHwgMSAtCj4gPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZr
+bS9zdWJkZXYvYnVzL252MDQuYyAgICAgICAgfCAyIC0tCj4gPiAgZHJpdmVycy9ncHUvZHJtL3Bh
+bmVsL3BhbmVsLXJhc3BiZXJyeXBpLXRvdWNoc2NyZWVuLmMgfCAxIC0KCkNvcnJlY3Rpb24sIHRo
+aXMgZGlkbid0IGNvbXBpbGUsIHNvIEkgZHJvcHBlZCB0aGUgY2hhbmdlcyB0byBwYW5lbC1ycGku
+CkFub3RoZXIgcmVhc29uIHRvIHNwbGl0IHBhdGNoZXMgbW9yZSBmb3IgbmV4dCB0aW1lIGFyb3Vu
+ZC4gQWxzbywgbmVlZHMKbW9yZSBjb21waWxlIHRlc3RpbmcgKHlvdSBuZWVkIGNyb3NzIGNvbXBp
+bGVycyBmb3IgYXQgbGVhc3QgYXJtIHRvIHRlc3QKdGhpcyBzdHVmZikuCi1EYW5pZWwKCj4gPiAg
+MyBmaWxlcyBjaGFuZ2VkLCA0IGRlbGV0aW9ucygtKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL21zbS9kaXNwL2RwdTEvZHB1X2h3X2xtLmMgYi9kcml2ZXJzL2dwdS9kcm0v
+bXNtL2Rpc3AvZHB1MS9kcHVfaHdfbG0uYwo+ID4gaW5kZXggMDE4ZGYyYy4uNDVhNWJjNiAxMDA2
+NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9tc20vZGlzcC9kcHUxL2RwdV9od19sbS5jCj4g
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbXNtL2Rpc3AvZHB1MS9kcHVfaHdfbG0uYwo+ID4gQEAg
+LTE1LDcgKzE1LDYgQEAKPiA+ICAjaW5jbHVkZSAiZHB1X2h3aW8uaCIKPiA+ICAjaW5jbHVkZSAi
+ZHB1X2h3X2xtLmgiCj4gPiAgI2luY2x1ZGUgImRwdV9od19tZHNzLmgiCj4gPiAtI2luY2x1ZGUg
+ImRwdV9rbXMuaCIKPiA+ICAKPiA+ICAjZGVmaW5lIExNX09QX01PREUgICAgICAgICAgICAgICAg
+ICAgICAgICAweDAwCj4gPiAgI2RlZmluZSBMTV9PVVRfU0laRSAgICAgICAgICAgICAgICAgICAg
+ICAgMHgwNAo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3Vi
+ZGV2L2J1cy9udjA0LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9idXMv
+bnYwNC5jCj4gPiBpbmRleCBjODBiOTY3Li4yYjQ0YmE1IDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYnVzL252MDQuYwo+ID4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYnVzL252MDQuYwo+ID4gQEAgLTI2LDggKzI2
+LDYgQEAKPiA+ICAKPiA+ICAjaW5jbHVkZSA8c3ViZGV2L2dwaW8uaD4KPiA+ICAKPiA+IC0jaW5j
+bHVkZSA8c3ViZGV2L2dwaW8uaD4KPiA+IC0KPiA+ICBzdGF0aWMgdm9pZAo+ID4gIG52MDRfYnVz
+X2ludHIoc3RydWN0IG52a21fYnVzICpidXMpCj4gPiAgewo+ID4gZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9wYW5lbC9wYW5lbC1yYXNwYmVycnlwaS10b3VjaHNjcmVlbi5jIGIvZHJpdmVy
+cy9ncHUvZHJtL3BhbmVsL3BhbmVsLXJhc3BiZXJyeXBpLXRvdWNoc2NyZWVuLmMKPiA+IGluZGV4
+IDJjOWM5NzIuLmNhY2YyZTAgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vcGFuZWwv
+cGFuZWwtcmFzcGJlcnJ5cGktdG91Y2hzY3JlZW4uYwo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJt
+L3BhbmVsL3BhbmVsLXJhc3BiZXJyeXBpLXRvdWNoc2NyZWVuLmMKPiA+IEBAIC01Myw3ICs1Myw2
+IEBACj4gPiAgI2luY2x1ZGUgPGxpbnV4L29mX2dyYXBoLmg+Cj4gPiAgI2luY2x1ZGUgPGxpbnV4
+L3BtLmg+Cj4gPiAgCj4gPiAtI2luY2x1ZGUgPGRybS9kcm1fcGFuZWwuaD4KPiA+ICAjaW5jbHVk
+ZSA8ZHJtL2RybVAuaD4KPiA+ICAjaW5jbHVkZSA8ZHJtL2RybV9jcnRjLmg+Cj4gPiAgI2luY2x1
+ZGUgPGRybS9kcm1fbWlwaV9kc2kuaD4KPiA+IC0tIAo+ID4gMS44LjMuMQo+ID4gCj4gCj4gLS0g
+Cj4gRGFuaWVsIFZldHRlcgo+IFNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgo+
+IGh0dHA6Ly9ibG9nLmZmd2xsLmNoCgotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVl
+ciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KRnJlZWRyZW5vIG1haWxpbmcgbGlzdApG
+cmVlZHJlbm9AbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vZnJlZWRyZW5v
