@@ -1,141 +1,301 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109407] GTX 1050 fails to initialise acceleration
-Date: Tue, 07 May 2019 22:11:33 +0000
-Message-ID: <bug-109407-8800-C3V2fdlEVl@http.bugs.freedesktop.org/>
-References: <bug-109407-8800@http.bugs.freedesktop.org/>
+From: Sean Paul <sean@poorly.run>
+Subject: [PATCH v4 04/11] drm: Convert connector_helper_funcs->atomic_check to accept drm_atomic_state
+Date: Wed,  8 May 2019 12:09:09 -0400
+Message-ID: <20190508160920.144739-5-sean@poorly.run>
+References: <20190508160920.144739-1-sean@poorly.run>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0468687432=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109407-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190508160920.144739-1-sean@poorly.run>
+Sender: linux-kernel-owner@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
+Cc: Sean Paul <seanpaul@chromium.org>, Daniel Vetter <daniel@ffwll.ch>, =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Ben Skeggs <bskeggs@redhat.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Eric Anholt <eric@anholt.net>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <maxime.ripard@bootlin.com>, Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
+From: Sean Paul <seanpaul@chromium.org>
 
---===============0468687432==
-Content-Type: multipart/alternative; boundary="15572670930.BDc042B1.23476"
-Content-Transfer-Encoding: 7bit
+Everyone who implements connector_helper_funcs->atomic_check reaches
+into the connector state to get the atomic state. Instead of continuing
+this pattern, change the callback signature to just give atomic state
+and let the driver determine what it does and does not need from it.
 
+Eventually all atomic functions should do this, but that's just too much
+busy work for me.
 
---15572670930.BDc042B1.23476
-Date: Tue, 7 May 2019 22:11:33 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Changes in v3:
+- Added to the set
+Changes in v4:
+- None
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109407
+Link to v3: https://patchwork.freedesktop.org/patch/msgid/20190502194956.218441-5-sean@poorly.run
 
---- Comment #5 from John Connett <jrc-okwXFwuUDgyHCRyBVyKX4rVCufUGDwFn@public.gmane.org> ---
-Seeing similar behaviour with a PNY Quadro P620 card in a Supermicro X11SPM=
--TF
-motherboard running openSUSE Tumbleweed (VERSION=3D"20190505").  Slightly
-different BIOS version:
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Cc: Eric Anholt <eric@anholt.net>
+Acked-by: Daniel Vetter <daniel@ffwll.ch>
+Signed-off-by: Sean Paul <seanpaul@chromium.org>
+---
+ drivers/gpu/drm/drm_atomic_helper.c      |  4 ++--
+ drivers/gpu/drm/i915/intel_atomic.c      |  8 +++++---
+ drivers/gpu/drm/i915/intel_dp_mst.c      |  7 ++++---
+ drivers/gpu/drm/i915/intel_drv.h         |  2 +-
+ drivers/gpu/drm/i915/intel_sdvo.c        |  9 +++++----
+ drivers/gpu/drm/i915/intel_tv.c          |  8 +++++---
+ drivers/gpu/drm/nouveau/dispnv50/disp.c  |  5 +++--
+ drivers/gpu/drm/rcar-du/rcar_lvds.c      | 12 +++++++-----
+ drivers/gpu/drm/vc4/vc4_txp.c            |  7 ++++---
+ include/drm/drm_modeset_helper_vtables.h |  2 +-
+ 10 files changed, 37 insertions(+), 27 deletions(-)
 
-    nouveau 0000:65:00.0: NVIDIA GP107 (137000a1)
-    nouveau 0000:65:00.0: bios: version 86.07.51.00.04
-    nouveau 0000:65:00.0: fb: 2048 MiB GDDR5
-    [...]
-    nouveau 0000:65:00.0: secboot: SEC2 failed to start
-    nouveau 0000:65:00.0: sec2: unhandled intr 00000010
-    nouveau 0000:65:00.0: gr: init failed, -22
-
-Might be some further confusion as this motherboard has an onboard ASPEED A=
-ST
-2500, a Server Management Processor which also provides a 2D Video Graphics
-Adapter.
-
-Please let me know if I might be able to provide more information to identi=
-fy
-the problem.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15572670930.BDc042B1.23476
-Date: Tue, 7 May 2019 22:11:33 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GTX 1050 fails to initialise acceleration"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109407#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GTX 1050 fails to initialise acceleration"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109407">bug 10940=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jrc&#64;skylon.demon.co.uk" title=3D"John Connett &lt;jrc&#64;skylon.demon.=
-co.uk&gt;"> <span class=3D"fn">John Connett</span></a>
-</span></b>
-        <pre>Seeing similar behaviour with a PNY Quadro P620 card in a Supe=
-rmicro X11SPM-TF
-motherboard running openSUSE Tumbleweed (VERSION=3D&quot;20190505&quot;).  =
-Slightly
-different BIOS version:
-
-    nouveau 0000:65:00.0: NVIDIA GP107 (137000a1)
-    nouveau 0000:65:00.0: bios: version 86.07.51.00.04
-    nouveau 0000:65:00.0: fb: 2048 MiB GDDR5
-    [...]
-    nouveau 0000:65:00.0: secboot: SEC2 failed to start
-    nouveau 0000:65:00.0: sec2: unhandled intr 00000010
-    nouveau 0000:65:00.0: gr: init failed, -22
-
-Might be some further confusion as this motherboard has an onboard ASPEED A=
-ST
-2500, a Server Management Processor which also provides a 2D Video Graphics
-Adapter.
-
-Please let me know if I might be able to provide more information to identi=
-fy
-the problem.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15572670930.BDc042B1.23476--
-
---===============0468687432==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0468687432==--
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index e8b7187a8494..ee945d6f1cba 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -683,7 +683,7 @@ drm_atomic_helper_check_modeset(struct drm_device *dev,
+ 		}
+ 
+ 		if (funcs->atomic_check)
+-			ret = funcs->atomic_check(connector, new_connector_state);
++			ret = funcs->atomic_check(connector, state);
+ 		if (ret)
+ 			return ret;
+ 
+@@ -725,7 +725,7 @@ drm_atomic_helper_check_modeset(struct drm_device *dev,
+ 			continue;
+ 
+ 		if (funcs->atomic_check)
+-			ret = funcs->atomic_check(connector, new_connector_state);
++			ret = funcs->atomic_check(connector, state);
+ 		if (ret)
+ 			return ret;
+ 	}
+diff --git a/drivers/gpu/drm/i915/intel_atomic.c b/drivers/gpu/drm/i915/intel_atomic.c
+index b844e8840c6f..e8a5b82e9242 100644
+--- a/drivers/gpu/drm/i915/intel_atomic.c
++++ b/drivers/gpu/drm/i915/intel_atomic.c
+@@ -103,12 +103,14 @@ int intel_digital_connector_atomic_set_property(struct drm_connector *connector,
+ }
+ 
+ int intel_digital_connector_atomic_check(struct drm_connector *conn,
+-					 struct drm_connector_state *new_state)
++					 struct drm_atomic_state *state)
+ {
++	struct drm_connector_state *new_state =
++		drm_atomic_get_new_connector_state(state, conn);
+ 	struct intel_digital_connector_state *new_conn_state =
+ 		to_intel_digital_connector_state(new_state);
+ 	struct drm_connector_state *old_state =
+-		drm_atomic_get_old_connector_state(new_state->state, conn);
++		drm_atomic_get_old_connector_state(state, conn);
+ 	struct intel_digital_connector_state *old_conn_state =
+ 		to_intel_digital_connector_state(old_state);
+ 	struct drm_crtc_state *crtc_state;
+@@ -118,7 +120,7 @@ int intel_digital_connector_atomic_check(struct drm_connector *conn,
+ 	if (!new_state->crtc)
+ 		return 0;
+ 
+-	crtc_state = drm_atomic_get_new_crtc_state(new_state->state, new_state->crtc);
++	crtc_state = drm_atomic_get_new_crtc_state(state, new_state->crtc);
+ 
+ 	/*
+ 	 * These properties are handled by fastset, and might not end
+diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c b/drivers/gpu/drm/i915/intel_dp_mst.c
+index 19d81cef2ab6..89cfec128ba0 100644
+--- a/drivers/gpu/drm/i915/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/intel_dp_mst.c
+@@ -143,9 +143,10 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+ 
+ static int
+ intel_dp_mst_atomic_check(struct drm_connector *connector,
+-			  struct drm_connector_state *new_conn_state)
++			  struct drm_atomic_state *state)
+ {
+-	struct drm_atomic_state *state = new_conn_state->state;
++	struct drm_connector_state *new_conn_state =
++		drm_atomic_get_new_connector_state(state, connector);
+ 	struct drm_connector_state *old_conn_state =
+ 		drm_atomic_get_old_connector_state(state, connector);
+ 	struct intel_connector *intel_connector =
+@@ -155,7 +156,7 @@ intel_dp_mst_atomic_check(struct drm_connector *connector,
+ 	struct drm_dp_mst_topology_mgr *mgr;
+ 	int ret;
+ 
+-	ret = intel_digital_connector_atomic_check(connector, new_conn_state);
++	ret = intel_digital_connector_atomic_check(connector, state);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915/intel_drv.h
+index f8c7b291fdc3..88571b8e8d62 100644
+--- a/drivers/gpu/drm/i915/intel_drv.h
++++ b/drivers/gpu/drm/i915/intel_drv.h
+@@ -2481,7 +2481,7 @@ int intel_digital_connector_atomic_set_property(struct drm_connector *connector,
+ 						struct drm_property *property,
+ 						u64 val);
+ int intel_digital_connector_atomic_check(struct drm_connector *conn,
+-					 struct drm_connector_state *new_state);
++					 struct drm_atomic_state *state);
+ struct drm_connector_state *
+ intel_digital_connector_duplicate_state(struct drm_connector *connector);
+ 
+diff --git a/drivers/gpu/drm/i915/intel_sdvo.c b/drivers/gpu/drm/i915/intel_sdvo.c
+index 68f497493d43..72ea164b971c 100644
+--- a/drivers/gpu/drm/i915/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/intel_sdvo.c
+@@ -2342,9 +2342,10 @@ static const struct drm_connector_funcs intel_sdvo_connector_funcs = {
+ };
+ 
+ static int intel_sdvo_atomic_check(struct drm_connector *conn,
+-				   struct drm_connector_state *new_conn_state)
++				   struct drm_atomic_state *state)
+ {
+-	struct drm_atomic_state *state = new_conn_state->state;
++	struct drm_connector_state *new_conn_state =
++		drm_atomic_get_new_connector_state(state, conn);
+ 	struct drm_connector_state *old_conn_state =
+ 		drm_atomic_get_old_connector_state(state, conn);
+ 	struct intel_sdvo_connector_state *old_state =
+@@ -2356,13 +2357,13 @@ static int intel_sdvo_atomic_check(struct drm_connector *conn,
+ 	    (memcmp(&old_state->tv, &new_state->tv, sizeof(old_state->tv)) ||
+ 	     memcmp(&old_conn_state->tv, &new_conn_state->tv, sizeof(old_conn_state->tv)))) {
+ 		struct drm_crtc_state *crtc_state =
+-			drm_atomic_get_new_crtc_state(new_conn_state->state,
++			drm_atomic_get_new_crtc_state(state,
+ 						      new_conn_state->crtc);
+ 
+ 		crtc_state->connectors_changed = true;
+ 	}
+ 
+-	return intel_digital_connector_atomic_check(conn, new_conn_state);
++	return intel_digital_connector_atomic_check(conn, state);
+ }
+ 
+ static const struct drm_connector_helper_funcs intel_sdvo_connector_helper_funcs = {
+diff --git a/drivers/gpu/drm/i915/intel_tv.c b/drivers/gpu/drm/i915/intel_tv.c
+index 3924c4944e1f..a41c5b467c14 100644
+--- a/drivers/gpu/drm/i915/intel_tv.c
++++ b/drivers/gpu/drm/i915/intel_tv.c
+@@ -1817,16 +1817,18 @@ static const struct drm_connector_funcs intel_tv_connector_funcs = {
+ };
+ 
+ static int intel_tv_atomic_check(struct drm_connector *connector,
+-				 struct drm_connector_state *new_state)
++				 struct drm_atomic_state *state)
+ {
++	struct drm_connector_state *new_state;
+ 	struct drm_crtc_state *new_crtc_state;
+ 	struct drm_connector_state *old_state;
+ 
++	new_state = drm_atomic_get_new_connector_state(state, connector);
+ 	if (!new_state->crtc)
+ 		return 0;
+ 
+-	old_state = drm_atomic_get_old_connector_state(new_state->state, connector);
+-	new_crtc_state = drm_atomic_get_new_crtc_state(new_state->state, new_state->crtc);
++	old_state = drm_atomic_get_old_connector_state(state, connector);
++	new_crtc_state = drm_atomic_get_new_crtc_state(state, new_state->crtc);
+ 
+ 	if (old_state->tv.mode != new_state->tv.mode ||
+ 	    old_state->tv.margins.left != new_state->tv.margins.left ||
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index 4b1650f51955..7ba373f493b2 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -948,11 +948,12 @@ nv50_mstc_get_modes(struct drm_connector *connector)
+ 
+ static int
+ nv50_mstc_atomic_check(struct drm_connector *connector,
+-		       struct drm_connector_state *new_conn_state)
++		       struct drm_atomic_state *state)
+ {
+-	struct drm_atomic_state *state = new_conn_state->state;
+ 	struct nv50_mstc *mstc = nv50_mstc(connector);
+ 	struct drm_dp_mst_topology_mgr *mgr = &mstc->mstm->mgr;
++	struct drm_connector_state *new_conn_state =
++		drm_atomic_get_new_connector_state(state, connector);
+ 	struct drm_connector_state *old_conn_state =
+ 		drm_atomic_get_old_connector_state(state, connector);
+ 	struct drm_crtc_state *crtc_state;
+diff --git a/drivers/gpu/drm/rcar-du/rcar_lvds.c b/drivers/gpu/drm/rcar-du/rcar_lvds.c
+index 620b51aab291..5b81ba2a7f27 100644
+--- a/drivers/gpu/drm/rcar-du/rcar_lvds.c
++++ b/drivers/gpu/drm/rcar-du/rcar_lvds.c
+@@ -92,13 +92,15 @@ static int rcar_lvds_connector_get_modes(struct drm_connector *connector)
+ }
+ 
+ static int rcar_lvds_connector_atomic_check(struct drm_connector *connector,
+-					    struct drm_connector_state *state)
++					    struct drm_atomic_state *state)
+ {
+ 	struct rcar_lvds *lvds = connector_to_rcar_lvds(connector);
+ 	const struct drm_display_mode *panel_mode;
++	struct drm_connector_state *conn_state;
+ 	struct drm_crtc_state *crtc_state;
+ 
+-	if (!state->crtc)
++	conn_state = drm_atomic_get_new_connector_state(state, connector);
++	if (!conn_state->crtc)
+ 		return 0;
+ 
+ 	if (list_empty(&connector->modes)) {
+@@ -110,9 +112,9 @@ static int rcar_lvds_connector_atomic_check(struct drm_connector *connector,
+ 				      struct drm_display_mode, head);
+ 
+ 	/* We're not allowed to modify the resolution. */
+-	crtc_state = drm_atomic_get_crtc_state(state->state, state->crtc);
+-	if (IS_ERR(crtc_state))
+-		return PTR_ERR(crtc_state);
++	crtc_state = drm_atomic_get_crtc_state(state, conn_state->crtc);
++	if (!crtc_state)
++		return -EINVAL;
+ 
+ 	if (crtc_state->mode.hdisplay != panel_mode->hdisplay ||
+ 	    crtc_state->mode.vdisplay != panel_mode->vdisplay)
+diff --git a/drivers/gpu/drm/vc4/vc4_txp.c b/drivers/gpu/drm/vc4/vc4_txp.c
+index c8b89a78f9f4..96f91c1b4b6e 100644
+--- a/drivers/gpu/drm/vc4/vc4_txp.c
++++ b/drivers/gpu/drm/vc4/vc4_txp.c
+@@ -221,17 +221,18 @@ static const u32 txp_fmts[] = {
+ };
+ 
+ static int vc4_txp_connector_atomic_check(struct drm_connector *conn,
+-					struct drm_connector_state *conn_state)
++					  struct drm_atomic_state *state)
+ {
++	struct drm_connector_state *conn_state;
+ 	struct drm_crtc_state *crtc_state;
+ 	struct drm_framebuffer *fb;
+ 	int i;
+ 
++	conn_state = drm_atomic_get_new_connector_state(state, conn);
+ 	if (!conn_state->writeback_job || !conn_state->writeback_job->fb)
+ 		return 0;
+ 
+-	crtc_state = drm_atomic_get_new_crtc_state(conn_state->state,
+-						   conn_state->crtc);
++	crtc_state = drm_atomic_get_new_crtc_state(state, conn_state->crtc);
+ 
+ 	fb = conn_state->writeback_job->fb;
+ 	if (fb->width != crtc_state->mode.hdisplay ||
+diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/drm_modeset_helper_vtables.h
+index aa509c107083..2cdf58da4c90 100644
+--- a/include/drm/drm_modeset_helper_vtables.h
++++ b/include/drm/drm_modeset_helper_vtables.h
+@@ -1023,7 +1023,7 @@ struct drm_connector_helper_funcs {
+ 	 * deadlock.
+ 	 */
+ 	int (*atomic_check)(struct drm_connector *connector,
+-			    struct drm_connector_state *state);
++			    struct drm_atomic_state *state);
+ 
+ 	/**
+ 	 * @atomic_commit:
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
