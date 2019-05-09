@@ -1,11 +1,14 @@
-From: Karthik Guru <karth251998-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Project :Adding new compiler optimization Passes to
- Codegen
-Date: Tue, 7 May 2019 19:08:45 +0530
-Message-ID: <CAKzjFsurZr1UtEyReOR_rpqO1r-fEFu+FxKpDF3N+2fsvWR_Uw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110572] Regularly System Crash: (ca. 1 hour) nouveau
+ 0000:08:00.0: gr: PGRAPH TLB flush idle timeout fail and nouveau
+ 0000:08:00.0: mmu: ce0 mmu invalidate timeout
+Date: Thu, 09 May 2019 08:22:29 +0000
+Message-ID: <bug-110572-8800-IIpsAshciR@http.bugs.freedesktop.org/>
+References: <bug-110572-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1372226162=="
+Content-Type: multipart/mixed; boundary="===============1760303570=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-110572-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,32 +21,88 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1372226162==
-Content-Type: multipart/alternative; boundary="000000000000a3359a05884c5615"
 
---000000000000a3359a05884c5615
+--===============1760303570==
+Content-Type: multipart/alternative; boundary="15573901480.b5bBEb0ED.1868"
+Content-Transfer-Encoding: 7bit
+
+
+--15573901480.b5bBEb0ED.1868
+Date: Thu, 9 May 2019 08:22:28 +0000
+MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-Hello
-I am looking to contribute to the about Nouveau based project.
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110572
 
-Could you please tell me how I can participate in  XORG EVOC for this
-project?
+Linux Freak <Linuxfreak-RbZlAiThDcE@public.gmane.org> changed:
 
-Thank you
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Priority|medium                      |high
 
---000000000000a3359a05884c5615
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15573901480.b5bBEb0ED.1868
+Date: Thu, 9 May 2019 08:22:28 +0000
+MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-<div dir=3D"ltr">Hello<div>I am looking to contribute to the about Nouveau =
-based project.</div><div><br></div><div>Could you please tell me how I can =
-participate in=C2=A0 XORG EVOC for this project?</div><div><br></div><div>T=
-hank you</div></div>
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:Linuxfrea=
+k&#64;gmx.at" title=3D"Linux Freak &lt;Linuxfreak&#64;gmx.at&gt;"> <span cl=
+ass=3D"fn">Linux Freak</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Regularly System Crash: (ca. 1 hour) nouveau 0000:08:00.0=
+: gr: PGRAPH TLB flush idle timeout fail and nouveau 0000:08:00.0: mmu: ce0=
+ mmu invalidate timeout"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110572">bug 11057=
+2</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
---000000000000a3359a05884c5615--
+         <tr>
+           <td style=3D"text-align:right;">Priority</td>
+           <td>medium
+           </td>
+           <td>high
+           </td>
+         </tr></table>
+      <p>
+      </p>
 
---===============1372226162==
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15573901480.b5bBEb0ED.1868--
+
+--===============1760303570==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -53,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1372226162==--
+--===============1760303570==--
