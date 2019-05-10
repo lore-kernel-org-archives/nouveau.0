@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110660] GeForce GT 750M Mac Edition fullscreen issues
-Date: Fri, 10 May 2019 12:08:07 +0000
-Message-ID: <bug-110660-8800-JqvjJmLNAk@http.bugs.freedesktop.org/>
+Date: Fri, 10 May 2019 12:09:41 +0000
+Message-ID: <bug-110660-8800-ukf3FlZUIu@http.bugs.freedesktop.org/>
 References: <bug-110660-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0725549701=="
+Content-Type: multipart/mixed; boundary="===============2141883317=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0725549701==
-Content-Type: multipart/alternative; boundary="15574900870.15A2.4795"
+--===============2141883317==
+Content-Type: multipart/alternative; boundary="15574901800.f5050.4795"
 Content-Transfer-Encoding: 7bit
 
 
---15574900870.15A2.4795
-Date: Fri, 10 May 2019 12:08:07 +0000
+--15574901800.f5050.4795
+Date: Fri, 10 May 2019 12:09:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110660
 
---- Comment #3 from Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> ---
-Created attachment 144218
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144218&action=3Dedit
-guildwars window mode (slow)
+--- Comment #4 from Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> ---
+openarea youtube video https://youtu.be/EtvDPZ1T4E4
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15574900870.15A2.4795
-Date: Fri, 10 May 2019 12:08:07 +0000
+--15574901800.f5050.4795
+Date: Fri, 10 May 2019 12:09:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +61,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c3">Commen=
-t # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
@@ -74,11 +72,8 @@ t # 3</a>
 ak&#64;axet.ru" title=3D"Alexey Kuznetsov &lt;ak&#64;axet.ru&gt;"> <span cl=
 ass=3D"fn">Alexey Kuznetsov</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144218=
-" name=3D"attach_144218" title=3D"guildwars window mode (slow)">attachment =
-144218</a> <a href=3D"attachment.cgi?id=3D144218&amp;action=3Dedit" title=
-=3D"guildwars window mode (slow)">[details]</a></span>
-guildwars window mode (slow)</pre>
+        <pre>openarea youtube video <a href=3D"https://youtu.be/EtvDPZ1T4E4=
+">https://youtu.be/EtvDPZ1T4E4</a></pre>
         </div>
       </p>
 
@@ -87,15 +82,15 @@ guildwars window mode (slow)</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15574900870.15A2.4795--
+--15574901800.f5050.4795--
 
---===============0725549701==
+--===============2141883317==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0725549701==--
+--===============2141883317==--
