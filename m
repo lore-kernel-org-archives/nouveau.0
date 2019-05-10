@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110660] GeForce GT 750M Mac Edition fullscreen issues
-Date: Fri, 10 May 2019 16:37:18 +0000
-Message-ID: <bug-110660-8800-dtdcH6Mcdg@http.bugs.freedesktop.org/>
+Date: Fri, 10 May 2019 16:47:28 +0000
+Message-ID: <bug-110660-8800-CjvGaWsukl@http.bugs.freedesktop.org/>
 References: <bug-110660-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0374179654=="
+Content-Type: multipart/mixed; boundary="===============1735568288=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0374179654==
-Content-Type: multipart/alternative; boundary="15575062380.178BA7C7.16761"
+--===============1735568288==
+Content-Type: multipart/alternative; boundary="15575068480.b9dBb2.17880"
 Content-Transfer-Encoding: 7bit
 
 
---15575062380.178BA7C7.16761
-Date: Fri, 10 May 2019 16:37:17 +0000
+--15575068480.b9dBb2.17880
+Date: Fri, 10 May 2019 16:47:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,26 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110660
 
---- Comment #13 from Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> ---
-Confirming: none modes are working. Modes below 640x480 - breaking X-server
-(only mouse cursor visible)
+--- Comment #14 from Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> ---
+xrandr --output eDP-1 --set "scaling mode" "Full"
+
+fix the issue. When I use "Full" scaling, resolution switch properly, "720x=
+400"
+killing Xserver.
+
+Same as:
+
+xrandr --output eDP-1 --set "scaling mode" "Full aspect"
+
+Working fine, but scaling properly with black box around.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15575062380.178BA7C7.16761
-Date: Fri, 10 May 2019 16:37:18 +0000
+--15575068480.b9dBb2.17880
+Date: Fri, 10 May 2019 16:47:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +71,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c13">Comme=
-nt # 13</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c14">Comme=
+nt # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
@@ -73,9 +82,18 @@ nt # 13</a>
 ak&#64;axet.ru" title=3D"Alexey Kuznetsov &lt;ak&#64;axet.ru&gt;"> <span cl=
 ass=3D"fn">Alexey Kuznetsov</span></a>
 </span></b>
-        <pre>Confirming: none modes are working. Modes below 640x480 - brea=
-king X-server
-(only mouse cursor visible)</pre>
+        <pre>xrandr --output eDP-1 --set &quot;scaling mode&quot; &quot;Ful=
+l&quot;
+
+fix the issue. When I use &quot;Full&quot; scaling, resolution switch prope=
+rly, &quot;720x400&quot;
+killing Xserver.
+
+Same as:
+
+xrandr --output eDP-1 --set &quot;scaling mode&quot; &quot;Full aspect&quot;
+
+Working fine, but scaling properly with black box around.</pre>
         </div>
       </p>
 
@@ -84,15 +102,15 @@ king X-server
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15575062380.178BA7C7.16761--
+--15575068480.b9dBb2.17880--
 
---===============0374179654==
+--===============1735568288==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0374179654==--
+--===============1735568288==--
