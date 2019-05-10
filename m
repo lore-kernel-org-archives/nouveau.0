@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110660] GeForce GT 750M Mac Edition fullscreen issues
-Date: Fri, 10 May 2019 15:15:57 +0000
-Message-ID: <bug-110660-8800-faitqnxy2z@http.bugs.freedesktop.org/>
+Date: Fri, 10 May 2019 16:06:59 +0000
+Message-ID: <bug-110660-8800-0pZzDkheyC@http.bugs.freedesktop.org/>
 References: <bug-110660-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1445310184=="
+Content-Type: multipart/mixed; boundary="===============0831337576=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1445310184==
-Content-Type: multipart/alternative; boundary="15575013570.bc7c73.2324"
+--===============0831337576==
+Content-Type: multipart/alternative; boundary="15575044191.99d5f8.12275"
 Content-Transfer-Encoding: 7bit
 
 
---15575013570.bc7c73.2324
-Date: Fri, 10 May 2019 15:15:57 +0000
+--15575044191.99d5f8.12275
+Date: Fri, 10 May 2019 16:06:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,32 +35,89 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110660
 
-Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> changed:
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Alexey Kuznetsov from comment #8)
+> Created attachment 144220 [details]
+> lightdm xorg logs
+>=20
+> I switched from gdm to lightdm and "No such file or directory" gone. Than=
+ks
+> to https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D748463 and 'sudo l=
+sof
+> /dev/dri/card0'
+>=20
+> But graphics issues are the same!
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #144215|0                           |1
-        is obsolete|                            |
+OK well those logs look MUCH happier.
 
---- Comment #8 from Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> ---
-Created attachment 144220
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144220&action=3Dedit
-lightdm xorg logs
+Now ... that "panel gets messed up with vertical white lines" thing is weir=
+d.
+That feels like that would happen on a modeswitch, e.g. when switching into
+full-screen mode of a game that's not running at 2880x1800, you want to cha=
+nge
+resolutions. (e.g. to 1024x768).
 
-I switched from gdm to lightdm and "No such file or directory" gone. Thanks=
- to
-https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D748463 and 'sudo lsof
-/dev/dri/card0'
+Looks like we're not providing some setting quite right. Perhaps the panel
+needs us to do scaling... here are the valid modes reported:
 
-But graphics issues are the same!
+[    36.683] (II) NOUVEAU(0): Modeline "2880x1800"x60.0  337.75  2880 2928 =
+2960
+3040  1800 1803 1809 1852 +hsync -vsync (111.1 kHz eP)
+[    36.683] (II) NOUVEAU(0): Modeline "1920x1200"x60.0  193.48  1920 2056 =
+2256
+2592  1200 1203 1209 1245 -hsync +vsync (74.6 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline "1920x1080"x60.0  173.11  1920 2048 =
+2248
+2576  1080 1083 1088 1120 -hsync +vsync (67.2 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline "1600x1200"x60.0  161.23  1600 1712 =
+1880
+2160  1200 1203 1207 1245 -hsync +vsync (74.6 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline "1680x1050"x60.0  146.36  1680 1784 =
+1960
+2240  1050 1053 1059 1089 -hsync +vsync (65.3 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline "1400x1050"x60.0  121.79  1400 1488 =
+1632
+1864  1050 1053 1057 1089 -hsync +vsync (65.3 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline "1280x1024"x59.9  109.10  1280 1368 =
+1496
+1712  1024 1027 1034 1063 -hsync +vsync (63.7 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline "1280x960"x60.0  101.34  1280 1360 1=
+488
+1696  960 963 967 996 -hsync +vsync (59.8 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline "1152x864"x60.0   81.77  1152 1216 1=
+336
+1520  864 867 871 897 -hsync +vsync (53.8 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline "1024x768"x59.9   63.53  1024 1072 1=
+176
+1328  768 771 775 798 -hsync +vsync (47.8 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline "800x600"x60.0   38.31  800 832 912 =
+1024
+ 600 603 607 624 -hsync +vsync (37.4 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline "640x480"x59.9   23.98  640 664 720 =
+800=20
+480 483 487 500 -hsync +vsync (30.0 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline "720x400"x60.0   22.41  720 744 808 =
+896=20
+400 403 413 417 -hsync +vsync (25.0 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline "640x400"x60.0   20.00  640 664 720 =
+800=20
+400 403 409 417 -hsync +vsync (25.0 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline "640x350"x59.8   17.52  640 664 720 =
+800=20
+350 353 363 366 -hsync +vsync (21.9 kHz)
+
+Can you try, one-by-one, switching to them (e.g. with xrandr -s 1920x1200) =
+and
+seeing if that's what causes the screwup? Is it only some modes, or any
+non-2880x1800 mode?
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15575013570.bc7c73.2324
-Date: Fri, 10 May 2019 15:15:57 +0000
+--15575044191.99d5f8.12275
+Date: Fri, 10 May 2019 16:06:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,61 +128,102 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ak&#64;ax=
-et.ru" title=3D"Alexey Kuznetsov &lt;ak&#64;axet.ru&gt;"> <span class=3D"fn=
-">Alexey Kuznetsov</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660">bug 11066=
-0</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #144215 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c8">Commen=
-t # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660">bug 11066=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ak&#64;axet.ru" title=3D"Alexey Kuznetsov &lt;ak&#64;axet.ru&gt;"> <span cl=
-ass=3D"fn">Alexey Kuznetsov</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144220=
-" name=3D"attach_144220" title=3D"lightdm xorg logs">attachment 144220</a> =
-<a href=3D"attachment.cgi?id=3D144220&amp;action=3Dedit" title=3D"lightdm x=
-org logs">[details]</a></span>
-lightdm xorg logs
+        <pre>(In reply to Alexey Kuznetsov from <a href=3D"show_bug.cgi?id=
+=3D110660#c8">comment #8</a>)
+<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
+gi?id=3D144220" name=3D"attach_144220" title=3D"lightdm xorg logs">attachme=
+nt 144220</a> <a href=3D"attachment.cgi?id=3D144220&amp;action=3Dedit" titl=
+e=3D"lightdm xorg logs">[details]</a></span>
+&gt; lightdm xorg logs
+&gt;=20
+&gt; I switched from gdm to lightdm and &quot;No such file or directory&quo=
+t; gone. Thanks
+&gt; to <a href=3D"https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D7484=
+63">https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D748463</a> and 'sud=
+o lsof
+&gt; /dev/dri/card0'
+&gt;=20
+&gt; But graphics issues are the same!</span >
 
-I switched from gdm to lightdm and &quot;No such file or directory&quot; go=
-ne. Thanks to
-<a href=3D"https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D748463">http=
-s://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D748463</a> and 'sudo lsof
-/dev/dri/card0'
+OK well those logs look MUCH happier.
 
-But graphics issues are the same!</pre>
+Now ... that &quot;panel gets messed up with vertical white lines&quot; thi=
+ng is weird.
+That feels like that would happen on a modeswitch, e.g. when switching into
+full-screen mode of a game that's not running at 2880x1800, you want to cha=
+nge
+resolutions. (e.g. to 1024x768).
+
+Looks like we're not providing some setting quite right. Perhaps the panel
+needs us to do scaling... here are the valid modes reported:
+
+[    36.683] (II) NOUVEAU(0): Modeline &quot;2880x1800&quot;x60.0  337.75  =
+2880 2928 2960
+3040  1800 1803 1809 1852 +hsync -vsync (111.1 kHz eP)
+[    36.683] (II) NOUVEAU(0): Modeline &quot;1920x1200&quot;x60.0  193.48  =
+1920 2056 2256
+2592  1200 1203 1209 1245 -hsync +vsync (74.6 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline &quot;1920x1080&quot;x60.0  173.11  =
+1920 2048 2248
+2576  1080 1083 1088 1120 -hsync +vsync (67.2 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline &quot;1600x1200&quot;x60.0  161.23  =
+1600 1712 1880
+2160  1200 1203 1207 1245 -hsync +vsync (74.6 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline &quot;1680x1050&quot;x60.0  146.36  =
+1680 1784 1960
+2240  1050 1053 1059 1089 -hsync +vsync (65.3 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline &quot;1400x1050&quot;x60.0  121.79  =
+1400 1488 1632
+1864  1050 1053 1057 1089 -hsync +vsync (65.3 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline &quot;1280x1024&quot;x59.9  109.10  =
+1280 1368 1496
+1712  1024 1027 1034 1063 -hsync +vsync (63.7 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline &quot;1280x960&quot;x60.0  101.34  1=
+280 1360 1488
+1696  960 963 967 996 -hsync +vsync (59.8 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline &quot;1152x864&quot;x60.0   81.77  1=
+152 1216 1336
+1520  864 867 871 897 -hsync +vsync (53.8 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline &quot;1024x768&quot;x59.9   63.53  1=
+024 1072 1176
+1328  768 771 775 798 -hsync +vsync (47.8 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline &quot;800x600&quot;x60.0   38.31  80=
+0 832 912 1024
+ 600 603 607 624 -hsync +vsync (37.4 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline &quot;640x480&quot;x59.9   23.98  64=
+0 664 720 800=20
+480 483 487 500 -hsync +vsync (30.0 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline &quot;720x400&quot;x60.0   22.41  72=
+0 744 808 896=20
+400 403 413 417 -hsync +vsync (25.0 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline &quot;640x400&quot;x60.0   20.00  64=
+0 664 720 800=20
+400 403 409 417 -hsync +vsync (25.0 kHz)
+[    36.683] (II) NOUVEAU(0): Modeline &quot;640x350&quot;x59.8   17.52  64=
+0 664 720 800=20
+350 353 363 366 -hsync +vsync (21.9 kHz)
+
+Can you try, one-by-one, switching to them (e.g. with xrandr -s 1920x1200) =
+and
+seeing if that's what causes the screwup? Is it only some modes, or any
+non-2880x1800 mode?</pre>
         </div>
       </p>
 
@@ -134,15 +232,15 @@ But graphics issues are the same!</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15575013570.bc7c73.2324--
+--15575044191.99d5f8.12275--
 
---===============1445310184==
+--===============0831337576==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -152,4 +250,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1445310184==--
+--===============0831337576==--
