@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110660] GeForce GT 750M Mac Edition fullscreen issues
-Date: Fri, 10 May 2019 16:47:28 +0000
-Message-ID: <bug-110660-8800-CjvGaWsukl@http.bugs.freedesktop.org/>
+Date: Fri, 10 May 2019 16:52:07 +0000
+Message-ID: <bug-110660-8800-zclKxEPXWo@http.bugs.freedesktop.org/>
 References: <bug-110660-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1735568288=="
+Content-Type: multipart/mixed; boundary="===============1159832250=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1735568288==
-Content-Type: multipart/alternative; boundary="15575068480.b9dBb2.17880"
+--===============1159832250==
+Content-Type: multipart/alternative; boundary="15575071271.4eECdb3FE.19187"
 Content-Transfer-Encoding: 7bit
 
 
---15575068480.b9dBb2.17880
-Date: Fri, 10 May 2019 16:47:28 +0000
+--15575071271.4eECdb3FE.19187
+Date: Fri, 10 May 2019 16:52:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,26 +35,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110660
 
---- Comment #14 from Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> ---
-xrandr --output eDP-1 --set "scaling mode" "Full"
+--- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+When you say 720x400 "kills" the Xserver in scaling mode =3D full ... what =
+do you
+mean exactly? Xorg process dies? Kernel hangs?
 
-fix the issue. When I use "Full" scaling, resolution switch properly, "720x=
-400"
-killing Xserver.
-
-Same as:
-
-xrandr --output eDP-1 --set "scaling mode" "Full aspect"
-
-Working fine, but scaling properly with black box around.
+I don't remember where the scaling is done, but IIRC it's in the kernel, so=
+ we
+could be driving the scaling engine incorrectly in certain cases.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15575068480.b9dBb2.17880
-Date: Fri, 10 May 2019 16:47:28 +0000
+--15575071271.4eECdb3FE.19187
+Date: Fri, 10 May 2019 16:52:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,29 +67,24 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c14">Comme=
-nt # 14</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c15">Comme=
+nt # 15</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660">bug 11066=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ak&#64;axet.ru" title=3D"Alexey Kuznetsov &lt;ak&#64;axet.ru&gt;"> <span cl=
-ass=3D"fn">Alexey Kuznetsov</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>xrandr --output eDP-1 --set &quot;scaling mode&quot; &quot;Ful=
-l&quot;
+        <pre>When you say 720x400 &quot;kills&quot; the Xserver in scaling =
+mode =3D full ... what do you
+mean exactly? Xorg process dies? Kernel hangs?
 
-fix the issue. When I use &quot;Full&quot; scaling, resolution switch prope=
-rly, &quot;720x400&quot;
-killing Xserver.
-
-Same as:
-
-xrandr --output eDP-1 --set &quot;scaling mode&quot; &quot;Full aspect&quot;
-
-Working fine, but scaling properly with black box around.</pre>
+I don't remember where the scaling is done, but IIRC it's in the kernel, so=
+ we
+could be driving the scaling engine incorrectly in certain cases.</pre>
         </div>
       </p>
 
@@ -108,9 +99,9 @@ Working fine, but scaling properly with black box around.</pre>
     </body>
 </html>=
 
---15575068480.b9dBb2.17880--
+--15575071271.4eECdb3FE.19187--
 
---===============1735568288==
+--===============1159832250==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1735568288==--
+--===============1159832250==--
