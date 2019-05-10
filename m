@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110660] GeForce GT 750M Mac Edition fullscreen issues
-Date: Fri, 10 May 2019 17:16:30 +0000
-Message-ID: <bug-110660-8800-NltaYtlJZW@http.bugs.freedesktop.org/>
+Date: Fri, 10 May 2019 17:36:23 +0000
+Message-ID: <bug-110660-8800-ykt1CKrpW9@http.bugs.freedesktop.org/>
 References: <bug-110660-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0970277156=="
+Content-Type: multipart/mixed; boundary="===============0915689283=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0970277156==
-Content-Type: multipart/alternative; boundary="15575085901.caa0CbbD6.22620"
+--===============0915689283==
+Content-Type: multipart/alternative; boundary="15575097830.EB6aa.25718"
 Content-Transfer-Encoding: 7bit
 
 
---15575085901.caa0CbbD6.22620
-Date: Fri, 10 May 2019 17:16:30 +0000
+--15575097830.EB6aa.25718
+Date: Fri, 10 May 2019 17:36:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,26 +35,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110660
 
---- Comment #17 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Alexey Kuznetsov from comment #16)
-> No matter what mode "Full", "Default" 720x400 enter wired mode: feels like
-> static screen below cursor and only mouse cursor moving, I can't change or
-> click anything.
-
-OK, so there's no crash. It just doesn't work. Can you switch back from it?
-
-e.g. xrandr -s 720x400; sleep 5; xrandr -s 2880x1800
-
-does that come back? Or is it stuck forever? If it's stuck, could you see if
-there's anything in the kernel logs?
+--- Comment #18 from Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> ---
+I did several tests and now it working, probably it is dropbox hangs the sy=
+stem
+for few minutes during scanning.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15575085901.caa0CbbD6.22620
-Date: Fri, 10 May 2019 17:16:30 +0000
+--15575097830.EB6aa.25718
+Date: Fri, 10 May 2019 17:36:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,31 +63,20 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c17">Comme=
-nt # 17</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c18">Comme=
+nt # 18</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660">bug 11066=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+ak&#64;axet.ru" title=3D"Alexey Kuznetsov &lt;ak&#64;axet.ru&gt;"> <span cl=
+ass=3D"fn">Alexey Kuznetsov</span></a>
 </span></b>
-        <pre>(In reply to Alexey Kuznetsov from <a href=3D"show_bug.cgi?id=
-=3D110660#c16">comment #16</a>)
-<span class=3D"quote">&gt; No matter what mode &quot;Full&quot;, &quot;Defa=
-ult&quot; 720x400 enter wired mode: feels like
-&gt; static screen below cursor and only mouse cursor moving, I can't chang=
-e or
-&gt; click anything.</span >
-
-OK, so there's no crash. It just doesn't work. Can you switch back from it?
-
-e.g. xrandr -s 720x400; sleep 5; xrandr -s 2880x1800
-
-does that come back? Or is it stuck forever? If it's stuck, could you see if
-there's anything in the kernel logs?</pre>
+        <pre>I did several tests and now it working, probably it is dropbox=
+ hangs the system
+for few minutes during scanning.</pre>
         </div>
       </p>
 
@@ -104,15 +85,15 @@ there's anything in the kernel logs?</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15575085901.caa0CbbD6.22620--
+--15575097830.EB6aa.25718--
 
---===============0970277156==
+--===============0915689283==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -122,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0970277156==--
+--===============0915689283==--
