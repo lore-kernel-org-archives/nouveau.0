@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110660] GeForce GT 750M Mac Edition fullscreen issues
-Date: Fri, 10 May 2019 14:58:50 +0000
-Message-ID: <bug-110660-8800-snrLQ5uzWH@http.bugs.freedesktop.org/>
+Date: Fri, 10 May 2019 15:15:57 +0000
+Message-ID: <bug-110660-8800-faitqnxy2z@http.bugs.freedesktop.org/>
 References: <bug-110660-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1839940538=="
+Content-Type: multipart/mixed; boundary="===============1445310184=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1839940538==
-Content-Type: multipart/alternative; boundary="15575003291.EFe1EfC3A.31911"
+--===============1445310184==
+Content-Type: multipart/alternative; boundary="15575013570.bc7c73.2324"
 Content-Transfer-Encoding: 7bit
 
 
---15575003291.EFe1EfC3A.31911
-Date: Fri, 10 May 2019 14:58:49 +0000
+--15575013570.bc7c73.2324
+Date: Fri, 10 May 2019 15:15:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,25 +35,32 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110660
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-J'accuse ... systemd. I have no idea how that handoff is meant to work, I t=
-hink
-it's supposed to get a file handle somehow for the card device? I don't know
-and am not particularly inclined to find out. Maybe someone else who looks =
-at
-this bug tracker knows.
+Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> changed:
 
-Perhaps you can get some help from ubuntu support channels? This doesn't se=
-em
-to be a nouveau issue (at least not yet).
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #144215|0                           |1
+        is obsolete|                            |
+
+--- Comment #8 from Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> ---
+Created attachment 144220
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144220&action=3Dedit
+lightdm xorg logs
+
+I switched from gdm to lightdm and "No such file or directory" gone. Thanks=
+ to
+https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D748463 and 'sudo lsof
+/dev/dri/card0'
+
+But graphics issues are the same!
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15575003291.EFe1EfC3A.31911
-Date: Fri, 10 May 2019 14:58:49 +0000
+--15575013570.bc7c73.2324
+Date: Fri, 10 May 2019 15:15:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,33 +71,61 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ak&#64;ax=
+et.ru" title=3D"Alexey Kuznetsov &lt;ak&#64;axet.ru&gt;"> <span class=3D"fn=
+">Alexey Kuznetsov</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660">bug 11066=
+0</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #144215 is obsolete</=
+td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c7">Commen=
-t # 7</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660">bug 11066=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+ak&#64;axet.ru" title=3D"Alexey Kuznetsov &lt;ak&#64;axet.ru&gt;"> <span cl=
+ass=3D"fn">Alexey Kuznetsov</span></a>
 </span></b>
-        <pre>J'accuse ... systemd. I have no idea how that handoff is meant=
- to work, I think
-it's supposed to get a file handle somehow for the card device? I don't know
-and am not particularly inclined to find out. Maybe someone else who looks =
-at
-this bug tracker knows.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144220=
+" name=3D"attach_144220" title=3D"lightdm xorg logs">attachment 144220</a> =
+<a href=3D"attachment.cgi?id=3D144220&amp;action=3Dedit" title=3D"lightdm x=
+org logs">[details]</a></span>
+lightdm xorg logs
 
-Perhaps you can get some help from ubuntu support channels? This doesn't se=
-em
-to be a nouveau issue (at least not yet).</pre>
+I switched from gdm to lightdm and &quot;No such file or directory&quot; go=
+ne. Thanks to
+<a href=3D"https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D748463">http=
+s://bugs.debian.org/cgi-bin/bugreport.cgi?bug=3D748463</a> and 'sudo lsof
+/dev/dri/card0'
+
+But graphics issues are the same!</pre>
         </div>
       </p>
 
@@ -99,15 +134,15 @@ to be a nouveau issue (at least not yet).</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15575003291.EFe1EfC3A.31911--
+--15575013570.bc7c73.2324--
 
---===============1839940538==
+--===============1445310184==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +152,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1839940538==--
+--===============1445310184==--
