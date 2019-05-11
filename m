@@ -1,198 +1,53 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110572] Regularly System Crash: (ca. 1 hour) nouveau
- 0000:08:00.0: gr: PGRAPH TLB flush idle timeout fail and nouveau
- 0000:08:00.0: mmu: ce0 mmu invalidate timeout
-Date: Sat, 11 May 2019 18:21:32 +0000
-Message-ID: <bug-110572-8800-7Lab7356IA@http.bugs.freedesktop.org/>
-References: <bug-110572-8800@http.bugs.freedesktop.org/>
+From: Peteris Rudzusiks <peteris.rudzusiks@gmail.com>
+Subject: [PATCH] drm/nouveau: fix duplication of nv50_head_atom struct
+Date: Sat, 11 May 2019 19:08:31 +0200
+Message-ID: <20190511170831.25645-1-peteris.rudzusiks@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1936096574=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110572-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org, Peteris Rudzusiks <peteris.rudzusiks@gmail.com>, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1936096574==
-Content-Type: multipart/alternative; boundary="15575988920.307480E.19117"
-Content-Transfer-Encoding: 7bit
-
-
---15575988920.307480E.19117
-Date: Sat, 11 May 2019 18:21:32 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110572
-
---- Comment #3 from Linux Freak <Linuxfreak-RbZlAiThDcE@public.gmane.org> ---
-Created attachment 144236
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144236&action=3Dedit
-a huge:    journalctl -p 4 -b -1   of the last crash
-
-A lot of hang up messages...
-
-e.g.
-Call Trace:
-Mai 11 19:58:16  kernel:  ? nvkm_ioctl_new+0x1a0/0x200 [nouveau]
-Call Trace:
-Mai 11 19:58:18  kernel:  nvkm_vmm_ptes_get_map+0x246/0x3f0 [nouveau]
-Call Trace:
-Mai 11 19:58:22  kernel:  nv50_vmm_flush+0x1f2/0x220 [nouveau]
-Call Trace:
-Mai 11 19:58:24  kernel:  nvkm_vmm_ptes_get_map+0x246/0x3f0 [nouveau]
-Call Trace:
-Mai 11 19:58:28  kernel:  nv50_vmm_flush+0x1f2/0x220 [nouveau]
-
-
-INFO: task kworker/u8:2:1002 blocked for more than 122 seconds.
-Mai 11 20:01:38  kernel:       Tainted: G        W         5.1.0-1-MANJARO =
-#1
-Mai 11 20:01:38  kernel: "echo 0 > /proc/sys/kernel/hung_task_timeout_secs"
-disables this message.
-Mai 11 20:01:38  kernel: Call Trace:
-Mai 11 20:01:38  kernel:  ? __schedule+0x30b/0x8b0
-Mai 11 20:01:38  kernel:  ? g84_fifo_uevent_init+0x1a/0x40 [nouveau]
-Mai 11 20:01:38  kernel:  schedule+0x32/0x80
-Mai 11 20:01:38  kernel:  schedule_timeout+0x311/0x4a0
-Mai 11 20:01:38  kernel:  ? nouveau_fence_is_signaled+0x39/0x40 [nouveau]
-Mai 11 20:01:38  kernel:  dma_fence_default_wait+0x204/0x280
-Mai 11 20:01:38  kernel:  ? dma_fence_wait_timeout+0x120/0x120
-Mai 11 20:01:38  kernel:  dma_fence_wait_timeout+0x105/0x120
-Mai 11 20:01:38  kernel:  drm_atomic_helper_wait_for_fences+0x38/0xc0
-[drm_kms_helper]
-Mai 11 20:01:38  kernel:  nv50_disp_atomic_commit_tail+0x72/0x690 [nouveau]
-Mai 11 20:01:38  kernel:  ? finish_task_switch+0x84/0x2d0
-Mai 11 20:01:38  kernel:  ? __switch_to_asm+0x40/0x70
-Mai 11 20:01:38  kernel:  process_one_work+0x1eb/0x410
-Mai 11 20:01:38  kernel:  worker_thread+0x2d/0x3d0
-Mai 11 20:01:38  kernel:  ? process_one_work+0x410/0x410
-Mai 11 20:01:38  kernel:  kthread+0x112/0x130
-Mai 11 20:01:38  kernel:  ? kthread_park+0x80/0x80
-Mai 11 20:01:38  kernel:  ret_from_fork+0x35/0x40
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15575988920.307480E.19117
-Date: Sat, 11 May 2019 18:21:32 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Regularly System Crash: (ca. 1 hour) nouveau 0000:08:00.0=
-: gr: PGRAPH TLB flush idle timeout fail and nouveau 0000:08:00.0: mmu: ce0=
- mmu invalidate timeout"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110572#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Regularly System Crash: (ca. 1 hour) nouveau 0000:08:00.0=
-: gr: PGRAPH TLB flush idle timeout fail and nouveau 0000:08:00.0: mmu: ce0=
- mmu invalidate timeout"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110572">bug 11057=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-Linuxfreak&#64;gmx.at" title=3D"Linux Freak &lt;Linuxfreak&#64;gmx.at&gt;">=
- <span class=3D"fn">Linux Freak</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144236=
-" name=3D"attach_144236" title=3D"a huge:    journalctl -p 4 -b -1   of the=
- last crash">attachment 144236</a> <a href=3D"attachment.cgi?id=3D144236&am=
-p;action=3Dedit" title=3D"a huge:    journalctl -p 4 -b -1   of the last cr=
-ash">[details]</a></span>
-a huge:    journalctl -p 4 -b -1   of the last crash
-
-A lot of hang up messages...
-
-e.g.
-Call Trace:
-Mai 11 19:58:16  kernel:  ? nvkm_ioctl_new+0x1a0/0x200 [nouveau]
-Call Trace:
-Mai 11 19:58:18  kernel:  nvkm_vmm_ptes_get_map+0x246/0x3f0 [nouveau]
-Call Trace:
-Mai 11 19:58:22  kernel:  nv50_vmm_flush+0x1f2/0x220 [nouveau]
-Call Trace:
-Mai 11 19:58:24  kernel:  nvkm_vmm_ptes_get_map+0x246/0x3f0 [nouveau]
-Call Trace:
-Mai 11 19:58:28  kernel:  nv50_vmm_flush+0x1f2/0x220 [nouveau]
-
-
-INFO: task kworker/u8:2:1002 blocked for more than 122 seconds.
-Mai 11 20:01:38  kernel:       Tainted: G        W         5.1.0-1-MANJARO =
-#1
-Mai 11 20:01:38  kernel: &quot;echo 0 &gt; /proc/sys/kernel/hung_task_timeo=
-ut_secs&quot;
-disables this message.
-Mai 11 20:01:38  kernel: Call Trace:
-Mai 11 20:01:38  kernel:  ? __schedule+0x30b/0x8b0
-Mai 11 20:01:38  kernel:  ? g84_fifo_uevent_init+0x1a/0x40 [nouveau]
-Mai 11 20:01:38  kernel:  schedule+0x32/0x80
-Mai 11 20:01:38  kernel:  schedule_timeout+0x311/0x4a0
-Mai 11 20:01:38  kernel:  ? nouveau_fence_is_signaled+0x39/0x40 [nouveau]
-Mai 11 20:01:38  kernel:  dma_fence_default_wait+0x204/0x280
-Mai 11 20:01:38  kernel:  ? dma_fence_wait_timeout+0x120/0x120
-Mai 11 20:01:38  kernel:  dma_fence_wait_timeout+0x105/0x120
-Mai 11 20:01:38  kernel:  drm_atomic_helper_wait_for_fences+0x38/0xc0
-[drm_kms_helper]
-Mai 11 20:01:38  kernel:  nv50_disp_atomic_commit_tail+0x72/0x690 [nouveau]
-Mai 11 20:01:38  kernel:  ? finish_task_switch+0x84/0x2d0
-Mai 11 20:01:38  kernel:  ? __switch_to_asm+0x40/0x70
-Mai 11 20:01:38  kernel:  process_one_work+0x1eb/0x410
-Mai 11 20:01:38  kernel:  worker_thread+0x2d/0x3d0
-Mai 11 20:01:38  kernel:  ? process_one_work+0x410/0x410
-Mai 11 20:01:38  kernel:  kthread+0x112/0x130
-Mai 11 20:01:38  kernel:  ? kthread_park+0x80/0x80
-Mai 11 20:01:38  kernel:  ret_from_fork+0x35/0x40</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15575988920.307480E.19117--
-
---===============1936096574==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1936096574==--
+bnY1MF9oZWFkX2F0b21pY19kdXBsaWNhdGVfc3RhdGUoKSBtYWtlcyBhIGNvcHkgb2YgbnY1MF9o
+ZWFkX2F0b20Kc3RydWN0LiBUaGlzIHBhdGNoIGFkZHMgY29weWluZyBvZiBzdHJ1Y3QgbWVtYmVy
+IG5hbWVkICJvciIsIHdoaWNoCnByZXZpb3VzbHkgd2FzIGxlZnQgdW5pbml0aWFsaXplZCBpbiB0
+aGUgZHVwbGljYXRlZCBzdHJ1Y3R1cmUuCgpEdWUgdG8gdGhpcyBidWcsIGluY29ycmVjdCBuaHN5
+bmMgYW5kIG52c3luYyB2YWx1ZXMgd2VyZSBzb21ldGltZXMgdXNlZC4KSW4gbXkgcGFydGljdWxh
+ciBjYXNlLCB0aGF0IGxlYWQgdG8gYSBtaXNtYXRjaCBiZXR3ZWVuIHRoZSBvdXRwdXQKcmVzb2x1
+dGlvbiBvZiB0aGUgZ3JhcGhpY3MgZGV2aWNlIChHZUZvcmNlIEdUIDYzMCBPRU0pIGFuZCB0aGUg
+cmVwb3J0ZWQKaW5wdXQgc2lnbmFsIHJlc29sdXRpb24gb24gdGhlIGRpc3BsYXkuIHhyYW5kciBy
+ZXBvcnRlZCAxNjgweDEwNTAsIGJ1dAp0aGUgZGlzcGxheSByZXBvcnRlZCAxMjgweDEwMjQuIEFz
+IGEgcmVzdWx0IG9mIHRoaXMgbWlzbWF0Y2gsIHRoZSBvdXRwdXQKb24gdGhlIGRpc3BsYXkgbG9v
+a2VkIGxpa2UgaXQgd2FzIGNyb3BwZWQgKG9ubHkgcGFydCBvZiB0aGUgb3V0cHV0IHdhcwphY3R1
+YWxseSB2aXNpYmxlIG9uIHRoZSBkaXNwbGF5KS4KCmdpdCBiaXNlY3QgcG9pbnRlZCB0byBjb21t
+aXQgMmNhN2ZiNWMxY2M2ICgiZHJtL25vdXZlYXUva21zL252NTA6IGhhbmRsZQpTZXRDb250cm9s
+T3V0cHV0UmVzb3VyY2UgZnJvbSBoZWFkIiksIHdoaWNoIGFkZGVkIHRoZSBtZW1iZXIgIm9yIiB0
+bwpudjUwX2hlYWRfYXRvbSBzdHJ1Y3R1cmUsIGJ1dCBmb3Jnb3QgdG8gY29weSBpdCBpbgpudjUw
+X2hlYWRfYXRvbWljX2R1cGxpY2F0ZV9zdGF0ZSgpLgoKRml4ZXM6IDJjYTdmYjVjMWNjNiAoImRy
+bS9ub3V2ZWF1L2ttcy9udjUwOiBoYW5kbGUgU2V0Q29udHJvbE91dHB1dFJlc291cmNlIGZyb20g
+aGVhZCIpClNpZ25lZC1vZmYtYnk6IFBldGVyaXMgUnVkenVzaWtzIDxwZXRlcmlzLnJ1ZHp1c2lr
+c0BnbWFpbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvaGVhZC5j
+IHwgMSArCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykKCmRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9oZWFkLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9kaXNwbnY1MC9oZWFkLmMKaW5kZXggMmU3YTBjMzQ3ZGRiLi5hZGNlNjJmNGUxOGYgMTAw
+NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQuYworKysgYi9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9oZWFkLmMKQEAgLTQxMyw2ICs0MTMsNyBA
+QCBudjUwX2hlYWRfYXRvbWljX2R1cGxpY2F0ZV9zdGF0ZShzdHJ1Y3QgZHJtX2NydGMgKmNydGMp
+CiAJYXN5aC0+b3ZseSA9IGFybWgtPm92bHk7CiAJYXN5aC0+ZGl0aGVyID0gYXJtaC0+ZGl0aGVy
+OwogCWFzeWgtPnByb2NhbXAgPSBhcm1oLT5wcm9jYW1wOworCWFzeWgtPm9yID0gYXJtaC0+b3I7
+CiAJYXN5aC0+ZHAgPSBhcm1oLT5kcDsKIAlhc3loLT5jbHIubWFzayA9IDA7CiAJYXN5aC0+c2V0
+Lm1hc2sgPSAwOwotLSAKMi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9kcmktZGV2ZWw=
