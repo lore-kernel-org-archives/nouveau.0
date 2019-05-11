@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110660] GeForce GT 750M Mac Edition fullscreen issues
-Date: Sat, 11 May 2019 16:20:31 +0000
-Message-ID: <bug-110660-8800-g73a7hCTgB@http.bugs.freedesktop.org/>
-References: <bug-110660-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 110572] Regularly System Crash: (ca. 1 hour) nouveau
+ 0000:08:00.0: gr: PGRAPH TLB flush idle timeout fail and nouveau
+ 0000:08:00.0: mmu: ce0 mmu invalidate timeout
+Date: Sat, 11 May 2019 18:21:32 +0000
+Message-ID: <bug-110572-8800-7Lab7356IA@http.bugs.freedesktop.org/>
+References: <bug-110572-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1954499055=="
+Content-Type: multipart/mixed; boundary="===============1936096574=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-110572-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,65 +22,74 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1954499055==
-Content-Type: multipart/alternative; boundary="15575916300.28bd70b.3430"
+--===============1936096574==
+Content-Type: multipart/alternative; boundary="15575988920.307480E.19117"
 Content-Transfer-Encoding: 7bit
 
 
---15575916300.28bd70b.3430
-Date: Sat, 11 May 2019 16:20:30 +0000
+--15575988920.307480E.19117
+Date: Sat, 11 May 2019 18:21:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110660
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110572
 
---- Comment #26 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Alexey Kuznetsov from comment #25)
-> axet@axet-laptop:~/Downloads$ grep . /sys/class/drm/card*-*/modes
-> /sys/class/drm/card0-eDP-1/modes:2880x1800
-> /sys/class/drm/card0-eDP-1/modes:1920x1200
-> /sys/class/drm/card0-eDP-1/modes:1920x1080
-> /sys/class/drm/card0-eDP-1/modes:1600x1200
-> /sys/class/drm/card0-eDP-1/modes:1680x1050
-> /sys/class/drm/card0-eDP-1/modes:1400x1050
-> /sys/class/drm/card0-eDP-1/modes:1280x1024
-> /sys/class/drm/card0-eDP-1/modes:1280x960
-> /sys/class/drm/card0-eDP-1/modes:1152x864
-> /sys/class/drm/card0-eDP-1/modes:1024x768
-> /sys/class/drm/card0-eDP-1/modes:800x600
-> /sys/class/drm/card0-eDP-1/modes:640x480
-> /sys/class/drm/card0-eDP-1/modes:720x400
-> /sys/class/drm/card0-eDP-1/modes:640x400
-> /sys/class/drm/card0-eDP-1/modes:640x350
-> axet@axet-laptop:~/Downloads$=20
+--- Comment #3 from Linux Freak <Linuxfreak-RbZlAiThDcE@public.gmane.org> ---
+Created attachment 144236
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144236&action=3Dedit
+a huge:    journalctl -p 4 -b -1   of the last crash
 
-Thanks, that's useful. I'm going to study the code a bit to figure out where
-these extra modes are coming from exactly. They're not in the EDID explicit=
-ly,
-but there's various logic to add various extra modes based on ... complex
-conditions.
+A lot of hang up messages...
 
-> Also, "Full aspect" cut display from left and right on following resoluti=
-ons:
->=20
-> 1920x1080
-> 720x400
-> 640x350
+e.g.
+Call Trace:
+Mai 11 19:58:16  kernel:  ? nvkm_ioctl_new+0x1a0/0x200 [nouveau]
+Call Trace:
+Mai 11 19:58:18  kernel:  nvkm_vmm_ptes_get_map+0x246/0x3f0 [nouveau]
+Call Trace:
+Mai 11 19:58:22  kernel:  nv50_vmm_flush+0x1f2/0x220 [nouveau]
+Call Trace:
+Mai 11 19:58:24  kernel:  nvkm_vmm_ptes_get_map+0x246/0x3f0 [nouveau]
+Call Trace:
+Mai 11 19:58:28  kernel:  nv50_vmm_flush+0x1f2/0x220 [nouveau]
 
-Hm, ideally they should have letterboxes on top/bottom in those cases. I'll
-have a look at the logic that does the full aspect scaling, it may be
-determining width/heights incorrectly.
+
+INFO: task kworker/u8:2:1002 blocked for more than 122 seconds.
+Mai 11 20:01:38  kernel:       Tainted: G        W         5.1.0-1-MANJARO =
+#1
+Mai 11 20:01:38  kernel: "echo 0 > /proc/sys/kernel/hung_task_timeout_secs"
+disables this message.
+Mai 11 20:01:38  kernel: Call Trace:
+Mai 11 20:01:38  kernel:  ? __schedule+0x30b/0x8b0
+Mai 11 20:01:38  kernel:  ? g84_fifo_uevent_init+0x1a/0x40 [nouveau]
+Mai 11 20:01:38  kernel:  schedule+0x32/0x80
+Mai 11 20:01:38  kernel:  schedule_timeout+0x311/0x4a0
+Mai 11 20:01:38  kernel:  ? nouveau_fence_is_signaled+0x39/0x40 [nouveau]
+Mai 11 20:01:38  kernel:  dma_fence_default_wait+0x204/0x280
+Mai 11 20:01:38  kernel:  ? dma_fence_wait_timeout+0x120/0x120
+Mai 11 20:01:38  kernel:  dma_fence_wait_timeout+0x105/0x120
+Mai 11 20:01:38  kernel:  drm_atomic_helper_wait_for_fences+0x38/0xc0
+[drm_kms_helper]
+Mai 11 20:01:38  kernel:  nv50_disp_atomic_commit_tail+0x72/0x690 [nouveau]
+Mai 11 20:01:38  kernel:  ? finish_task_switch+0x84/0x2d0
+Mai 11 20:01:38  kernel:  ? __switch_to_asm+0x40/0x70
+Mai 11 20:01:38  kernel:  process_one_work+0x1eb/0x410
+Mai 11 20:01:38  kernel:  worker_thread+0x2d/0x3d0
+Mai 11 20:01:38  kernel:  ? process_one_work+0x410/0x410
+Mai 11 20:01:38  kernel:  kthread+0x112/0x130
+Mai 11 20:01:38  kernel:  ? kthread_park+0x80/0x80
+Mai 11 20:01:38  kernel:  ret_from_fork+0x35/0x40
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15575916300.28bd70b.3430
-Date: Sat, 11 May 2019 16:20:30 +0000
+--15575988920.307480E.19117
+Date: Sat, 11 May 2019 18:21:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -94,55 +105,70 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c26">Comme=
-nt # 26</a>
+   title=3D"NEW - Regularly System Crash: (ca. 1 hour) nouveau 0000:08:00.0=
+: gr: PGRAPH TLB flush idle timeout fail and nouveau 0000:08:00.0: mmu: ce0=
+ mmu invalidate timeout"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110572#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660">bug 11066=
-0</a>
+   title=3D"NEW - Regularly System Crash: (ca. 1 hour) nouveau 0000:08:00.0=
+: gr: PGRAPH TLB flush idle timeout fail and nouveau 0000:08:00.0: mmu: ce0=
+ mmu invalidate timeout"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110572">bug 11057=
+2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+Linuxfreak&#64;gmx.at" title=3D"Linux Freak &lt;Linuxfreak&#64;gmx.at&gt;">=
+ <span class=3D"fn">Linux Freak</span></a>
 </span></b>
-        <pre>(In reply to Alexey Kuznetsov from <a href=3D"show_bug.cgi?id=
-=3D110660#c25">comment #25</a>)
-<span class=3D"quote">&gt; axet&#64;axet-laptop:~/Downloads$ grep . /sys/cl=
-ass/drm/card*-*/modes
-&gt; /sys/class/drm/card0-eDP-1/modes:2880x1800
-&gt; /sys/class/drm/card0-eDP-1/modes:1920x1200
-&gt; /sys/class/drm/card0-eDP-1/modes:1920x1080
-&gt; /sys/class/drm/card0-eDP-1/modes:1600x1200
-&gt; /sys/class/drm/card0-eDP-1/modes:1680x1050
-&gt; /sys/class/drm/card0-eDP-1/modes:1400x1050
-&gt; /sys/class/drm/card0-eDP-1/modes:1280x1024
-&gt; /sys/class/drm/card0-eDP-1/modes:1280x960
-&gt; /sys/class/drm/card0-eDP-1/modes:1152x864
-&gt; /sys/class/drm/card0-eDP-1/modes:1024x768
-&gt; /sys/class/drm/card0-eDP-1/modes:800x600
-&gt; /sys/class/drm/card0-eDP-1/modes:640x480
-&gt; /sys/class/drm/card0-eDP-1/modes:720x400
-&gt; /sys/class/drm/card0-eDP-1/modes:640x400
-&gt; /sys/class/drm/card0-eDP-1/modes:640x350
-&gt; axet&#64;axet-laptop:~/Downloads$ </span >
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144236=
+" name=3D"attach_144236" title=3D"a huge:    journalctl -p 4 -b -1   of the=
+ last crash">attachment 144236</a> <a href=3D"attachment.cgi?id=3D144236&am=
+p;action=3Dedit" title=3D"a huge:    journalctl -p 4 -b -1   of the last cr=
+ash">[details]</a></span>
+a huge:    journalctl -p 4 -b -1   of the last crash
 
-Thanks, that's useful. I'm going to study the code a bit to figure out where
-these extra modes are coming from exactly. They're not in the EDID explicit=
-ly,
-but there's various logic to add various extra modes based on ... complex
-conditions.
+A lot of hang up messages...
 
-<span class=3D"quote">&gt; Also, &quot;Full aspect&quot; cut display from l=
-eft and right on following resolutions:
-&gt;=20
-&gt; 1920x1080
-&gt; 720x400
-&gt; 640x350</span >
+e.g.
+Call Trace:
+Mai 11 19:58:16  kernel:  ? nvkm_ioctl_new+0x1a0/0x200 [nouveau]
+Call Trace:
+Mai 11 19:58:18  kernel:  nvkm_vmm_ptes_get_map+0x246/0x3f0 [nouveau]
+Call Trace:
+Mai 11 19:58:22  kernel:  nv50_vmm_flush+0x1f2/0x220 [nouveau]
+Call Trace:
+Mai 11 19:58:24  kernel:  nvkm_vmm_ptes_get_map+0x246/0x3f0 [nouveau]
+Call Trace:
+Mai 11 19:58:28  kernel:  nv50_vmm_flush+0x1f2/0x220 [nouveau]
 
-Hm, ideally they should have letterboxes on top/bottom in those cases. I'll
-have a look at the logic that does the full aspect scaling, it may be
-determining width/heights incorrectly.</pre>
+
+INFO: task kworker/u8:2:1002 blocked for more than 122 seconds.
+Mai 11 20:01:38  kernel:       Tainted: G        W         5.1.0-1-MANJARO =
+#1
+Mai 11 20:01:38  kernel: &quot;echo 0 &gt; /proc/sys/kernel/hung_task_timeo=
+ut_secs&quot;
+disables this message.
+Mai 11 20:01:38  kernel: Call Trace:
+Mai 11 20:01:38  kernel:  ? __schedule+0x30b/0x8b0
+Mai 11 20:01:38  kernel:  ? g84_fifo_uevent_init+0x1a/0x40 [nouveau]
+Mai 11 20:01:38  kernel:  schedule+0x32/0x80
+Mai 11 20:01:38  kernel:  schedule_timeout+0x311/0x4a0
+Mai 11 20:01:38  kernel:  ? nouveau_fence_is_signaled+0x39/0x40 [nouveau]
+Mai 11 20:01:38  kernel:  dma_fence_default_wait+0x204/0x280
+Mai 11 20:01:38  kernel:  ? dma_fence_wait_timeout+0x120/0x120
+Mai 11 20:01:38  kernel:  dma_fence_wait_timeout+0x105/0x120
+Mai 11 20:01:38  kernel:  drm_atomic_helper_wait_for_fences+0x38/0xc0
+[drm_kms_helper]
+Mai 11 20:01:38  kernel:  nv50_disp_atomic_commit_tail+0x72/0x690 [nouveau]
+Mai 11 20:01:38  kernel:  ? finish_task_switch+0x84/0x2d0
+Mai 11 20:01:38  kernel:  ? __switch_to_asm+0x40/0x70
+Mai 11 20:01:38  kernel:  process_one_work+0x1eb/0x410
+Mai 11 20:01:38  kernel:  worker_thread+0x2d/0x3d0
+Mai 11 20:01:38  kernel:  ? process_one_work+0x410/0x410
+Mai 11 20:01:38  kernel:  kthread+0x112/0x130
+Mai 11 20:01:38  kernel:  ? kthread_park+0x80/0x80
+Mai 11 20:01:38  kernel:  ret_from_fork+0x35/0x40</pre>
         </div>
       </p>
 
@@ -151,15 +177,15 @@ determining width/heights incorrectly.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15575916300.28bd70b.3430--
+--15575988920.307480E.19117--
 
---===============1954499055==
+--===============1936096574==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -169,4 +195,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1954499055==--
+--===============1936096574==--
