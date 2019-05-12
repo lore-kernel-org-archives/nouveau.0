@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110660] GeForce GT 750M Mac Edition fullscreen issues
-Date: Sun, 12 May 2019 14:42:53 +0000
-Message-ID: <bug-110660-8800-o8kDWz8YNk@http.bugs.freedesktop.org/>
+Date: Sun, 12 May 2019 14:43:06 +0000
+Message-ID: <bug-110660-8800-sRfs1hejbT@http.bugs.freedesktop.org/>
 References: <bug-110660-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0145819529=="
+Content-Type: multipart/mixed; boundary="===============1418895104=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0145819529==
-Content-Type: multipart/alternative; boundary="15576721720.B0Ab3Cb04.19848"
+--===============1418895104==
+Content-Type: multipart/alternative; boundary="15576721850.CE2dEe.20026"
 Content-Transfer-Encoding: 7bit
 
 
---15576721720.B0Ab3Cb04.19848
-Date: Sun, 12 May 2019 14:42:52 +0000
+--15576721850.CE2dEe.20026
+Date: Sun, 12 May 2019 14:43:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110660
 
---- Comment #28 from Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> ---
-Created attachment 144240
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144240&action=3Dedit
-dmesg freeze
+--- Comment #29 from Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> ---
+Created attachment 144241
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144241&action=3Dedit
+xorg.log freeze
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15576721720.B0Ab3Cb04.19848
-Date: Sun, 12 May 2019 14:42:52 +0000
+--15576721850.CE2dEe.20026
+Date: Sun, 12 May 2019 14:43:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c28">Comme=
-nt # 28</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c29">Comme=
+nt # 29</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
@@ -74,11 +74,11 @@ nt # 28</a>
 ak&#64;axet.ru" title=3D"Alexey Kuznetsov &lt;ak&#64;axet.ru&gt;"> <span cl=
 ass=3D"fn">Alexey Kuznetsov</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144240=
-" name=3D"attach_144240" title=3D"dmesg freeze">attachment 144240</a> <a hr=
-ef=3D"attachment.cgi?id=3D144240&amp;action=3Dedit" title=3D"dmesg freeze">=
-[details]</a></span>
-dmesg freeze</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144241=
+" name=3D"attach_144241" title=3D"xorg.log freeze">attachment 144241</a> <a=
+ href=3D"attachment.cgi?id=3D144241&amp;action=3Dedit" title=3D"xorg.log fr=
+eeze">[details]</a></span>
+xorg.log freeze</pre>
         </div>
       </p>
 
@@ -87,15 +87,15 @@ dmesg freeze</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15576721720.B0Ab3Cb04.19848--
+--15576721850.CE2dEe.20026--
 
---===============0145819529==
+--===============1418895104==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0145819529==--
+--===============1418895104==--
