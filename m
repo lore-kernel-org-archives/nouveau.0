@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110660] GeForce GT 750M Mac Edition fullscreen issues
-Date: Sun, 12 May 2019 14:43:06 +0000
-Message-ID: <bug-110660-8800-sRfs1hejbT@http.bugs.freedesktop.org/>
-References: <bug-110660-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 110669] New: iMac with GK107M unstable - hangs with
+ xorg / crashes with xwayland
+Date: Mon, 13 May 2019 09:17:25 +0000
+Message-ID: <bug-110669-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1418895104=="
+Content-Type: multipart/mixed; boundary="===============0729154217=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +19,128 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1418895104==
-Content-Type: multipart/alternative; boundary="15576721850.CE2dEe.20026"
+--===============0729154217==
+Content-Type: multipart/alternative; boundary="15577390440.E92E8.11710"
 Content-Transfer-Encoding: 7bit
 
 
---15576721850.CE2dEe.20026
-Date: Sun, 12 May 2019 14:43:05 +0000
+--15577390440.E92E8.11710
+Date: Mon, 13 May 2019 09:17:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110660
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110669
 
---- Comment #29 from Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> ---
-Created attachment 144241
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144241&action=3Dedit
-xorg.log freeze
+            Bug ID: 110669
+           Summary: iMac with GK107M unstable - hangs with xorg / crashes
+                    with xwayland
+           Product: Mesa
+           Version: 19.0
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: sjon-bheiZbv1XdVtjaSKtHux1w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+I'd like to start with noting this issue has been occurring for years on mo=
+st
+of our iMacs and I strongly suspect this isn't necessarily "caused" by nouv=
+eau
+but rather by an implementation detail NVidia forgot to document (please re=
+mind
+me why I keep buying their hardware?)
+
+Hardware: Apple Inc. iMac13,2/Mac-FC02E91DDD3FA6A4, BIOS
+IM131.88Z.010A.B05.1211151146 11/15/2012
+Software: Archlinux / any nouveau release, currenty running xf86-video-nouv=
+eau
+1.0.16-1
+
+Using Xorg this iMac hangs maybe 2 or 3 times a day, using Xwayland (using
+sway, a native wayland implementation) there actually is a backtrace and I =
+have
+a chance to reboot instead of kill the power. I'd love to help debug this s=
+ince
+I assume it only happens when using this specific hardware. To start with -
+here is a backtrace:
+
+Stack trace of thread 765:
+#0  0x00007f9374fe282f raise (libc.so.6)
+#1  0x00007f9374fcd672 abort (libc.so.6)
+#2  0x000055ef04386f6a n/a (Xwayland)
+#3  0x000055ef0437f645 n/a (Xwayland)
+#4  0x000055ef0438a7a6 n/a (Xwayland)
+#5  0x00007f9374fe28b0 __restore_rt (libc.so.6)
+#6  0x00007f9374fe282f raise (libc.so.6)
+#7  0x00007f9374fcd672 abort (libc.so.6)
+#8  0x00007f9375024e78 __libc_message (libc.so.6)
+#9  0x00007f937502b78a malloc_printerr (libc.so.6)
+#10 0x00007f937502d007 _int_free (libc.so.6)
+#11 0x00007f936e02b7da nouveau_bo_ref (libdrm_nouveau.so.2)
+#12 0x00007f9372866894 n/a (nouveau_dri.so)
+#13 0x00007f9372a14c87 n/a (nouveau_dri.so)
+#14 0x00007f93729d6604 n/a (nouveau_dri.so)
+#15 0x00007f93729d9031 n/a (nouveau_dri.so)
+#16 0x00007f93729dc5c8 n/a (nouveau_dri.so)
+#17 0x000055ef0448d8d4 n/a (Xwayland)
+#18 0x000055ef0449963d n/a (Xwayland)
+#19 0x000055ef04404ec1 n/a (Xwayland)
+#20 0x000055ef043e53c8 n/a (Xwayland)
+#21 0x000055ef043e5933 n/a (Xwayland)
+#22 0x000055ef04451270 n/a (Xwayland)
+#23 0x000055ef0434b11d n/a (Xwayland)
+#24 0x00007f9374fcece3 __libc_start_main (libc.so.6)
+#25 0x000055ef0434c14e n/a (Xwayland)
+
+Stack trace of thread 769:
+#0  0x00007f93746f2bac pthread_cond_wait@@GLIBC_2.3.2 (libpthread.so.0)
+#1  0x00007f9372687474 n/a (nouveau_dri.so)
+#2  0x00007f93726872c8 n/a (nouveau_dri.so)
+#3  0x00007f93746eca92 start_thread (libpthread.so.0)
+#4  0x00007f93750a5cd3 __clone (libc.so.6)
+
+Stack trace of thread 771:
+#0  0x00007f93746f2bac pthread_cond_wait@@GLIBC_2.3.2 (libpthread.so.0)
+#1  0x00007f9372687474 n/a (nouveau_dri.so)
+#2  0x00007f93726872c8 n/a (nouveau_dri.so)
+#3  0x00007f93746eca92 start_thread (libpthread.so.0)
+#4  0x00007f93750a5cd3 __clone (libc.so.6)
+
+Stack trace of thread 772:
+#0  0x00007f93746f2bac pthread_cond_wait@@GLIBC_2.3.2 (libpthread.so.0)
+#1  0x00007f9372687474 n/a (nouveau_dri.so)
+#2  0x00007f93726872c8 n/a (nouveau_dri.so)
+#3  0x00007f93746eca92 start_thread (libpthread.so.0)
+#4  0x00007f93750a5cd3 __clone (libc.so.6)
+
+Stack trace of thread 768:
+#0  0x00007f93746f2bac pthread_cond_wait@@GLIBC_2.3.2 (libpthread.so.0)
+#1  0x00007f9372cc81e4 n/a (nouveau_dri.so)
+#2  0x00007f9372cc7f08 n/a (nouveau_dri.so)
+#3  0x00007f93746eca92 start_thread (libpthread.so.0)
+#4  0x00007f93750a5cd3 __clone (libc.so.6)
+
+Stack trace of thread 770:
+#0  0x00007f93746f2bac pthread_cond_wait@@GLIBC_2.3.2 (libpthread.so.0)
+#1  0x00007f9372687474 n/a (nouveau_dri.so)
+#2  0x00007f93726872c8 n/a (nouveau_dri.so)
+#3  0x00007f93746eca92 start_thread (libpthread.so.0)
+#4  0x00007f93750a5cd3 __clone (libc.so.6)
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15576721850.CE2dEe.20026
-Date: Sun, 12 May 2019 14:43:05 +0000
+--15577390440.E92E8.11710
+Date: Mon, 13 May 2019 09:17:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -57,28 +151,180 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - iMac with GK107M unstable - hangs with xorg / crashes wit=
+h xwayland"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110669">110669</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>iMac with GK107M unstable - hangs with xorg / crashes with xw=
+ayland
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>19.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>sjon&#64;hortensius.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c29">Comme=
-nt # 29</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660">bug 11066=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ak&#64;axet.ru" title=3D"Alexey Kuznetsov &lt;ak&#64;axet.ru&gt;"> <span cl=
-ass=3D"fn">Alexey Kuznetsov</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144241=
-" name=3D"attach_144241" title=3D"xorg.log freeze">attachment 144241</a> <a=
- href=3D"attachment.cgi?id=3D144241&amp;action=3Dedit" title=3D"xorg.log fr=
-eeze">[details]</a></span>
-xorg.log freeze</pre>
+        <pre>I'd like to start with noting this issue has been occurring fo=
+r years on most
+of our iMacs and I strongly suspect this isn't necessarily &quot;caused&quo=
+t; by nouveau
+but rather by an implementation detail NVidia forgot to document (please re=
+mind
+me why I keep buying their hardware?)
+
+Hardware: Apple Inc. iMac13,2/Mac-FC02E91DDD3FA6A4, BIOS
+IM131.88Z.010A.B05.1211151146 11/15/2012
+Software: Archlinux / any nouveau release, currenty running xf86-video-nouv=
+eau
+1.0.16-1
+
+Using Xorg this iMac hangs maybe 2 or 3 times a day, using Xwayland (using
+sway, a native wayland implementation) there actually is a backtrace and I =
+have
+a chance to reboot instead of kill the power. I'd love to help debug this s=
+ince
+I assume it only happens when using this specific hardware. To start with -
+here is a backtrace:
+
+Stack trace of thread 765:
+#0  0x00007f9374fe282f raise (libc.so.6)
+#1  0x00007f9374fcd672 abort (libc.so.6)
+#2  0x000055ef04386f6a n/a (Xwayland)
+#3  0x000055ef0437f645 n/a (Xwayland)
+#4  0x000055ef0438a7a6 n/a (Xwayland)
+#5  0x00007f9374fe28b0 __restore_rt (libc.so.6)
+#6  0x00007f9374fe282f raise (libc.so.6)
+#7  0x00007f9374fcd672 abort (libc.so.6)
+#8  0x00007f9375024e78 __libc_message (libc.so.6)
+#9  0x00007f937502b78a malloc_printerr (libc.so.6)
+#10 0x00007f937502d007 _int_free (libc.so.6)
+#11 0x00007f936e02b7da nouveau_bo_ref (libdrm_nouveau.so.2)
+#12 0x00007f9372866894 n/a (nouveau_dri.so)
+#13 0x00007f9372a14c87 n/a (nouveau_dri.so)
+#14 0x00007f93729d6604 n/a (nouveau_dri.so)
+#15 0x00007f93729d9031 n/a (nouveau_dri.so)
+#16 0x00007f93729dc5c8 n/a (nouveau_dri.so)
+#17 0x000055ef0448d8d4 n/a (Xwayland)
+#18 0x000055ef0449963d n/a (Xwayland)
+#19 0x000055ef04404ec1 n/a (Xwayland)
+#20 0x000055ef043e53c8 n/a (Xwayland)
+#21 0x000055ef043e5933 n/a (Xwayland)
+#22 0x000055ef04451270 n/a (Xwayland)
+#23 0x000055ef0434b11d n/a (Xwayland)
+#24 0x00007f9374fcece3 __libc_start_main (libc.so.6)
+#25 0x000055ef0434c14e n/a (Xwayland)
+
+Stack trace of thread 769:
+#0  0x00007f93746f2bac pthread_cond_wait&#64;&#64;GLIBC_2.3.2 (libpthread.s=
+o.0)
+#1  0x00007f9372687474 n/a (nouveau_dri.so)
+#2  0x00007f93726872c8 n/a (nouveau_dri.so)
+#3  0x00007f93746eca92 start_thread (libpthread.so.0)
+#4  0x00007f93750a5cd3 __clone (libc.so.6)
+
+Stack trace of thread 771:
+#0  0x00007f93746f2bac pthread_cond_wait&#64;&#64;GLIBC_2.3.2 (libpthread.s=
+o.0)
+#1  0x00007f9372687474 n/a (nouveau_dri.so)
+#2  0x00007f93726872c8 n/a (nouveau_dri.so)
+#3  0x00007f93746eca92 start_thread (libpthread.so.0)
+#4  0x00007f93750a5cd3 __clone (libc.so.6)
+
+Stack trace of thread 772:
+#0  0x00007f93746f2bac pthread_cond_wait&#64;&#64;GLIBC_2.3.2 (libpthread.s=
+o.0)
+#1  0x00007f9372687474 n/a (nouveau_dri.so)
+#2  0x00007f93726872c8 n/a (nouveau_dri.so)
+#3  0x00007f93746eca92 start_thread (libpthread.so.0)
+#4  0x00007f93750a5cd3 __clone (libc.so.6)
+
+Stack trace of thread 768:
+#0  0x00007f93746f2bac pthread_cond_wait&#64;&#64;GLIBC_2.3.2 (libpthread.s=
+o.0)
+#1  0x00007f9372cc81e4 n/a (nouveau_dri.so)
+#2  0x00007f9372cc7f08 n/a (nouveau_dri.so)
+#3  0x00007f93746eca92 start_thread (libpthread.so.0)
+#4  0x00007f93750a5cd3 __clone (libc.so.6)
+
+Stack trace of thread 770:
+#0  0x00007f93746f2bac pthread_cond_wait&#64;&#64;GLIBC_2.3.2 (libpthread.s=
+o.0)
+#1  0x00007f9372687474 n/a (nouveau_dri.so)
+#2  0x00007f93726872c8 n/a (nouveau_dri.so)
+#3  0x00007f93746eca92 start_thread (libpthread.so.0)
+#4  0x00007f93750a5cd3 __clone (libc.so.6)</pre>
         </div>
       </p>
 
@@ -93,9 +339,9 @@ xorg.log freeze</pre>
     </body>
 </html>=
 
---15576721850.CE2dEe.20026--
+--15577390440.E92E8.11710--
 
---===============1418895104==
+--===============0729154217==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +351,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1418895104==--
+--===============0729154217==--
