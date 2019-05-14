@@ -1,63 +1,164 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH] drm/nouveau: fix duplication of nv50_head_atom struct
-Date: Tue, 14 May 2019 16:55:05 +1000
-Message-ID: <CACAvsv5Ux7Av45JGQ7Rqe+ZX2zWcbbBNqc+kCZgLT-uGkQAegw@mail.gmail.com>
-References: <20190511170831.25645-1-peteris.rudzusiks@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110572] Regularly System Crash: (ca. 1 hour) nouveau
+ 0000:08:00.0: gr: PGRAPH TLB flush idle timeout fail and nouveau
+ 0000:08:00.0: mmu: ce0 mmu invalidate timeout
+Date: Tue, 14 May 2019 14:52:42 +0000
+Message-ID: <bug-110572-8800-As9zjY2e6V@http.bugs.freedesktop.org/>
+References: <bug-110572-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20190511170831.25645-1-peteris.rudzusiks@gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Peteris Rudzusiks <peteris.rudzusiks@gmail.com>
-Cc: nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0437405444=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-110572-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCAxMiBNYXkgMjAxOSBhdCAwNDoyMywgUGV0ZXJpcyBSdWR6dXNpa3MKPHBldGVyaXMu
-cnVkenVzaWtzQGdtYWlsLmNvbT4gd3JvdGU6Cj4KPiBudjUwX2hlYWRfYXRvbWljX2R1cGxpY2F0
-ZV9zdGF0ZSgpIG1ha2VzIGEgY29weSBvZiBudjUwX2hlYWRfYXRvbQo+IHN0cnVjdC4gVGhpcyBw
-YXRjaCBhZGRzIGNvcHlpbmcgb2Ygc3RydWN0IG1lbWJlciBuYW1lZCAib3IiLCB3aGljaAo+IHBy
-ZXZpb3VzbHkgd2FzIGxlZnQgdW5pbml0aWFsaXplZCBpbiB0aGUgZHVwbGljYXRlZCBzdHJ1Y3R1
-cmUuCj4KPiBEdWUgdG8gdGhpcyBidWcsIGluY29ycmVjdCBuaHN5bmMgYW5kIG52c3luYyB2YWx1
-ZXMgd2VyZSBzb21ldGltZXMgdXNlZC4KPiBJbiBteSBwYXJ0aWN1bGFyIGNhc2UsIHRoYXQgbGVh
-ZCB0byBhIG1pc21hdGNoIGJldHdlZW4gdGhlIG91dHB1dAo+IHJlc29sdXRpb24gb2YgdGhlIGdy
-YXBoaWNzIGRldmljZSAoR2VGb3JjZSBHVCA2MzAgT0VNKSBhbmQgdGhlIHJlcG9ydGVkCj4gaW5w
-dXQgc2lnbmFsIHJlc29sdXRpb24gb24gdGhlIGRpc3BsYXkuIHhyYW5kciByZXBvcnRlZCAxNjgw
-eDEwNTAsIGJ1dAo+IHRoZSBkaXNwbGF5IHJlcG9ydGVkIDEyODB4MTAyNC4gQXMgYSByZXN1bHQg
-b2YgdGhpcyBtaXNtYXRjaCwgdGhlIG91dHB1dAo+IG9uIHRoZSBkaXNwbGF5IGxvb2tlZCBsaWtl
-IGl0IHdhcyBjcm9wcGVkIChvbmx5IHBhcnQgb2YgdGhlIG91dHB1dCB3YXMKPiBhY3R1YWxseSB2
-aXNpYmxlIG9uIHRoZSBkaXNwbGF5KS4KPgo+IGdpdCBiaXNlY3QgcG9pbnRlZCB0byBjb21taXQg
-MmNhN2ZiNWMxY2M2ICgiZHJtL25vdXZlYXUva21zL252NTA6IGhhbmRsZQo+IFNldENvbnRyb2xP
-dXRwdXRSZXNvdXJjZSBmcm9tIGhlYWQiKSwgd2hpY2ggYWRkZWQgdGhlIG1lbWJlciAib3IiIHRv
-Cj4gbnY1MF9oZWFkX2F0b20gc3RydWN0dXJlLCBidXQgZm9yZ290IHRvIGNvcHkgaXQgaW4KPiBu
-djUwX2hlYWRfYXRvbWljX2R1cGxpY2F0ZV9zdGF0ZSgpLgo+Cj4gRml4ZXM6IDJjYTdmYjVjMWNj
-NiAoImRybS9ub3V2ZWF1L2ttcy9udjUwOiBoYW5kbGUgU2V0Q29udHJvbE91dHB1dFJlc291cmNl
-IGZyb20gaGVhZCIpCj4gU2lnbmVkLW9mZi1ieTogUGV0ZXJpcyBSdWR6dXNpa3MgPHBldGVyaXMu
-cnVkenVzaWtzQGdtYWlsLmNvbT4KT29wcywgbmljZSBjYXRjaC4gIFRoYW5rIHlvdSBmb3IgdGhp
-cywgSSd2ZSBtZXJnZWQgaXQgaW4gbXkgdHJlZSBhbmQKd2lsbCBnZXQgaXQgdXBzdHJlYW0gQVNB
-UC4KClRoYW5rcywKQmVuLgoKPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52
-NTAvaGVhZC5jIHwgMSArCj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQo+Cj4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQuYyBiL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQuYwo+IGluZGV4IDJlN2EwYzM0N2RkYi4u
-YWRjZTYyZjRlMThmIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3Bu
-djUwL2hlYWQuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQu
-Ywo+IEBAIC00MTMsNiArNDEzLDcgQEAgbnY1MF9oZWFkX2F0b21pY19kdXBsaWNhdGVfc3RhdGUo
-c3RydWN0IGRybV9jcnRjICpjcnRjKQo+ICAgICAgICAgYXN5aC0+b3ZseSA9IGFybWgtPm92bHk7
-Cj4gICAgICAgICBhc3loLT5kaXRoZXIgPSBhcm1oLT5kaXRoZXI7Cj4gICAgICAgICBhc3loLT5w
-cm9jYW1wID0gYXJtaC0+cHJvY2FtcDsKPiArICAgICAgIGFzeWgtPm9yID0gYXJtaC0+b3I7Cj4g
-ICAgICAgICBhc3loLT5kcCA9IGFybWgtPmRwOwo+ICAgICAgICAgYXN5aC0+Y2xyLm1hc2sgPSAw
-Owo+ICAgICAgICAgYXN5aC0+c2V0Lm1hc2sgPSAwOwo+IC0tCj4gMi4xNy4xCj4KPiBfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IGRyaS1kZXZlbCBtYWls
-aW5nIGxpc3QKPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlz
-dApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
+
+--===============0437405444==
+Content-Type: multipart/alternative; boundary="15578455620.816b8e5.9022"
+Content-Transfer-Encoding: 7bit
+
+
+--15578455620.816b8e5.9022
+Date: Tue, 14 May 2019 14:52:42 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110572
+
+--- Comment #8 from Linux Freak <Linuxfreak-RbZlAiThDcE@public.gmane.org> ---
+QUESTION: fbcon
+
+Is nouveaufb the fbcon module?
+
+sudo dmesg | grep nouveaufb
+
+[   20.165256] fb0: switching to nouveaufb from VESA VGA
+[   20.468352] fbcon: nouveaufb (fb0) is primary device
+[   20.510301] nouveau 0000:08:00.0: fb0: nouveaufb frame buffer device
+
+the error on
+journalctl -p 3 -b -0
+kernel: nouveau 0000:08:00.0: bios: OOB 1 d7500086 d7500086
+has the same address as nouveaufb... !
+
+
+*** Maybe the nouveau error is due to the missing fbcon? ***
+
+
+MANJARO has in linux50 the following config:
+
+CONFIG_FRAMEBUFFER_CONSOLE=3Dy
+CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=3Dy
+CONFIG_FRAMEBUFFER_CONSOLE_ROTATION=3Dy
+CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=3Dy
+
+In older kernels different config is available, but all of them certainly h=
+ave
+CONFIG_FRAMEBUFFER_CONSOLE enabled.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15578455620.816b8e5.9022
+Date: Tue, 14 May 2019 14:52:42 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Regularly System Crash: (ca. 1 hour) nouveau 0000:08:00.0=
+: gr: PGRAPH TLB flush idle timeout fail and nouveau 0000:08:00.0: mmu: ce0=
+ mmu invalidate timeout"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110572#c8">Commen=
+t # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Regularly System Crash: (ca. 1 hour) nouveau 0000:08:00.0=
+: gr: PGRAPH TLB flush idle timeout fail and nouveau 0000:08:00.0: mmu: ce0=
+ mmu invalidate timeout"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110572">bug 11057=
+2</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+Linuxfreak&#64;gmx.at" title=3D"Linux Freak &lt;Linuxfreak&#64;gmx.at&gt;">=
+ <span class=3D"fn">Linux Freak</span></a>
+</span></b>
+        <pre>QUESTION: fbcon
+
+Is nouveaufb the fbcon module?
+
+sudo dmesg | grep nouveaufb
+
+[   20.165256] fb0: switching to nouveaufb from VESA VGA
+[   20.468352] fbcon: nouveaufb (fb0) is primary device
+[   20.510301] nouveau 0000:08:00.0: fb0: nouveaufb frame buffer device
+
+the error on
+journalctl -p 3 -b -0
+kernel: nouveau 0000:08:00.0: bios: OOB 1 d7500086 d7500086
+has the same address as nouveaufb... !
+
+
+*** Maybe the nouveau error is due to the missing fbcon? ***
+
+
+MANJARO has in linux50 the following config:
+
+CONFIG_FRAMEBUFFER_CONSOLE=3Dy
+CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=3Dy
+CONFIG_FRAMEBUFFER_CONSOLE_ROTATION=3Dy
+CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=3Dy
+
+In older kernels different config is available, but all of them certainly h=
+ave
+CONFIG_FRAMEBUFFER_CONSOLE enabled.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15578455620.816b8e5.9022--
+
+--===============0437405444==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0437405444==--
