@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110572] Regularly System Crash: (ca. 1 hour) nouveau
  0000:08:00.0: gr: PGRAPH TLB flush idle timeout fail and nouveau
  0000:08:00.0: mmu: ce0 mmu invalidate timeout
-Date: Tue, 14 May 2019 14:57:09 +0000
-Message-ID: <bug-110572-8800-1fGbhEQ55u@http.bugs.freedesktop.org/>
+Date: Tue, 14 May 2019 16:37:23 +0000
+Message-ID: <bug-110572-8800-Fs0lbh3La8@http.bugs.freedesktop.org/>
 References: <bug-110572-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1983674297=="
+Content-Type: multipart/mixed; boundary="===============1942394960=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110572-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,13 +22,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1983674297==
-Content-Type: multipart/alternative; boundary="15578458280.E80bcabc3.9796"
+--===============1942394960==
+Content-Type: multipart/alternative; boundary="15578518420.46663D0D.3982"
 Content-Transfer-Encoding: 7bit
 
 
---15578458280.E80bcabc3.9796
-Date: Tue, 14 May 2019 14:57:08 +0000
+--15578518420.46663D0D.3982
+Date: Tue, 14 May 2019 16:37:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -37,30 +37,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110572
 
---- Comment #10 from Linux Freak <Linuxfreak-RbZlAiThDcE@public.gmane.org> ---
-Created attachment 144262
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144262&action=3Dedit
-Crash from 14.05.2019
+--- Comment #11 from Linux Freak <Linuxfreak-RbZlAiThDcE@public.gmane.org> ---
+Created attachment 144263
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144263&action=3Dedit
+crash 6
 
-Call Trace:
-Mai 14 15:55:47  kernel:  ? _raw_spin_lock+0x13/0x30
-Call Trace:
-Mai 14 15:55:55  kernel:  <IRQ>
-Mai 14 15:55:55  kernel:  nvkm_pci_intr+0x4c/0x90 [nouveau]
-Call Trace:
-Mai 14 15:56:00  kernel:  nv50_instobj_release+0x27/0x90 [nouveau]
-Call Trace:
-Mai 14 15:56:10  kernel:  nvkm_vmm_ptes_get_map+0x246/0x3f0 [nouveau]
-Call Trace:
-Mai 14 15:56:10  kernel:  nv50_vmm_flush+0x1f2/0x220 [nouveau]
+While it crashed, the music of VLC was playing until the end of the song.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15578458280.E80bcabc3.9796
-Date: Tue, 14 May 2019 14:57:08 +0000
+--15578518420.46663D0D.3982
+Date: Tue, 14 May 2019 16:37:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -79,8 +69,8 @@ Auto-Submitted: auto-generated
    title=3D"NEW - Regularly System Crash: (ca. 1 hour) nouveau 0000:08:00.0=
 : gr: PGRAPH TLB flush idle timeout fail and nouveau 0000:08:00.0: mmu: ce0=
  mmu invalidate timeout"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110572#c10">Comme=
-nt # 10</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110572#c11">Comme=
+nt # 11</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Regularly System Crash: (ca. 1 hour) nouveau 0000:08:00.0=
@@ -92,23 +82,14 @@ nt # 10</a>
 Linuxfreak&#64;gmx.at" title=3D"Linux Freak &lt;Linuxfreak&#64;gmx.at&gt;">=
  <span class=3D"fn">Linux Freak</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144262=
-" name=3D"attach_144262" title=3D"Crash from 14.05.2019">attachment 144262<=
-/a> <a href=3D"attachment.cgi?id=3D144262&amp;action=3Dedit" title=3D"Crash=
- from 14.05.2019">[details]</a></span>
-Crash from 14.05.2019
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144263=
+" name=3D"attach_144263" title=3D"crash 6">attachment 144263</a> <a href=3D=
+"attachment.cgi?id=3D144263&amp;action=3Dedit" title=3D"crash 6">[details]<=
+/a></span>
+crash 6
 
-Call Trace:
-Mai 14 15:55:47  kernel:  ? _raw_spin_lock+0x13/0x30
-Call Trace:
-Mai 14 15:55:55  kernel:  &lt;IRQ&gt;
-Mai 14 15:55:55  kernel:  nvkm_pci_intr+0x4c/0x90 [nouveau]
-Call Trace:
-Mai 14 15:56:00  kernel:  nv50_instobj_release+0x27/0x90 [nouveau]
-Call Trace:
-Mai 14 15:56:10  kernel:  nvkm_vmm_ptes_get_map+0x246/0x3f0 [nouveau]
-Call Trace:
-Mai 14 15:56:10  kernel:  nv50_vmm_flush+0x1f2/0x220 [nouveau]</pre>
+While it crashed, the music of VLC was playing until the end of the song.</=
+pre>
         </div>
       </p>
 
@@ -123,9 +104,9 @@ Mai 14 15:56:10  kernel:  nv50_vmm_flush+0x1f2/0x220 [nouveau]</pre>
     </body>
 </html>=
 
---15578458280.E80bcabc3.9796--
+--15578518420.46663D0D.3982--
 
---===============1983674297==
+--===============1942394960==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1983674297==--
+--===============1942394960==--
