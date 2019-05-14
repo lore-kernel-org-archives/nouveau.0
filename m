@@ -1,76 +1,37 @@
-From: Peteris Rudzusiks <peteris.rudzusiks-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: fix duplication of
- nv50_head_atom struct
-Date: Tue, 14 May 2019 21:57:37 +0200
-Message-ID: <20190514195736.GB5179@y40-linux>
-References: <20190511170831.25645-1-peteris.rudzusiks@gmail.com>
- <CACAvsv5Ux7Av45JGQ7Rqe+ZX2zWcbbBNqc+kCZgLT-uGkQAegw@mail.gmail.com>
+From: Colin King <colin.king@canonical.com>
+Subject: [PATCH] drm/nouveau/bios/init: fix spelling mistake "CONDITON" -> "CONDITION"
+Date: Tue, 14 May 2019 21:57:01 +0100
+Message-ID: <20190514205701.5750-1-colin.king@canonical.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CACAvsv5Ux7Av45JGQ7Rqe+ZX2zWcbbBNqc+kCZgLT-uGkQAegw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBNYXkgMTQsIDIwMTkgYXQgMDQ6NTU6MDVQTSArMTAwMCwgQmVuIFNrZWdncyB3cm90
-ZToKPiBPbiBTdW4sIDEyIE1heSAyMDE5IGF0IDA0OjIzLCBQZXRlcmlzIFJ1ZHp1c2lrcwo+IDxw
-ZXRlcmlzLnJ1ZHp1c2lrc0BnbWFpbC5jb20+IHdyb3RlOgo+ID4KPiA+IG52NTBfaGVhZF9hdG9t
-aWNfZHVwbGljYXRlX3N0YXRlKCkgbWFrZXMgYSBjb3B5IG9mIG52NTBfaGVhZF9hdG9tCj4gPiBz
-dHJ1Y3QuIFRoaXMgcGF0Y2ggYWRkcyBjb3B5aW5nIG9mIHN0cnVjdCBtZW1iZXIgbmFtZWQgIm9y
-Iiwgd2hpY2gKPiA+IHByZXZpb3VzbHkgd2FzIGxlZnQgdW5pbml0aWFsaXplZCBpbiB0aGUgZHVw
-bGljYXRlZCBzdHJ1Y3R1cmUuCj4gPgo+ID4gRHVlIHRvIHRoaXMgYnVnLCBpbmNvcnJlY3Qgbmhz
-eW5jIGFuZCBudnN5bmMgdmFsdWVzIHdlcmUgc29tZXRpbWVzIHVzZWQuCj4gPiBJbiBteSBwYXJ0
-aWN1bGFyIGNhc2UsIHRoYXQgbGVhZCB0byBhIG1pc21hdGNoIGJldHdlZW4gdGhlIG91dHB1dAo+
-ID4gcmVzb2x1dGlvbiBvZiB0aGUgZ3JhcGhpY3MgZGV2aWNlIChHZUZvcmNlIEdUIDYzMCBPRU0p
-IGFuZCB0aGUgcmVwb3J0ZWQKPiA+IGlucHV0IHNpZ25hbCByZXNvbHV0aW9uIG9uIHRoZSBkaXNw
-bGF5LiB4cmFuZHIgcmVwb3J0ZWQgMTY4MHgxMDUwLCBidXQKPiA+IHRoZSBkaXNwbGF5IHJlcG9y
-dGVkIDEyODB4MTAyNC4gQXMgYSByZXN1bHQgb2YgdGhpcyBtaXNtYXRjaCwgdGhlIG91dHB1dAo+
-ID4gb24gdGhlIGRpc3BsYXkgbG9va2VkIGxpa2UgaXQgd2FzIGNyb3BwZWQgKG9ubHkgcGFydCBv
-ZiB0aGUgb3V0cHV0IHdhcwo+ID4gYWN0dWFsbHkgdmlzaWJsZSBvbiB0aGUgZGlzcGxheSkuCj4g
-Pgo+ID4gZ2l0IGJpc2VjdCBwb2ludGVkIHRvIGNvbW1pdCAyY2E3ZmI1YzFjYzYgKCJkcm0vbm91
-dmVhdS9rbXMvbnY1MDogaGFuZGxlCj4gPiBTZXRDb250cm9sT3V0cHV0UmVzb3VyY2UgZnJvbSBo
-ZWFkIiksIHdoaWNoIGFkZGVkIHRoZSBtZW1iZXIgIm9yIiB0bwo+ID4gbnY1MF9oZWFkX2F0b20g
-c3RydWN0dXJlLCBidXQgZm9yZ290IHRvIGNvcHkgaXQgaW4KPiA+IG52NTBfaGVhZF9hdG9taWNf
-ZHVwbGljYXRlX3N0YXRlKCkuCj4gPgo+ID4gRml4ZXM6IDJjYTdmYjVjMWNjNiAoImRybS9ub3V2
-ZWF1L2ttcy9udjUwOiBoYW5kbGUgU2V0Q29udHJvbE91dHB1dFJlc291cmNlIGZyb20gaGVhZCIp
-Cj4gPiBTaWduZWQtb2ZmLWJ5OiBQZXRlcmlzIFJ1ZHp1c2lrcyA8cGV0ZXJpcy5ydWR6dXNpa3NA
-Z21haWwuY29tPgo+IE9vcHMsIG5pY2UgY2F0Y2guICBUaGFuayB5b3UgZm9yIHRoaXMsIEkndmUg
-bWVyZ2VkIGl0IGluIG15IHRyZWUgYW5kCj4gd2lsbCBnZXQgaXQgdXBzdHJlYW0gQVNBUC4KPiAK
-PiBUaGFua3MsCj4gQmVuLgo+IApIaSBCZW4sCgpUaGFuayB5b3UgZm9yIHRha2luZyB0aGUgdGlt
-ZSB0byByZXZpZXcgYW5kIG1lcmdlIHRoaXMgcGF0Y2guCgpJJ20gbmV3IHRvIHRoZSBMaW51eCBr
-ZXJuZWwgZGV2ZWxvcG1lbnQgcHJvY2Vzcywgc28gSSBhbSBub3Qgc3VyZSB3aGF0CmhhcHBlbnMg
-bmV4dC4gRG9lcyBpbmNsdXNpb24gaW4geW91ciB0cmVlIGltcGx5IHRoYXQgdGhpcyBmaXggd2ls
-bCBlbmQKdXAgaW4gc29tZSAobW9zdCBsaWtlbHkgLSBuZXh0KSBtYWlubGluZSBrZXJuZWw/IFdp
-bGwgaXQgYWxzbyBiZQpiYWNrcG9ydGVkIHRvIDQuMTkgTFRTIGJyYW5jaD8KClRoaXMgYnVnIGFm
-ZmVjdHMgYWxsIGtlcm5lbCB2ZXJzaW9ucyBzdGFydGluZyBmcm9tIHY0LjE4LiBQcm9iYWJseSBu
-b3QKdGhhdCBtYW55IHN5c3RlbXMgdGhvdWdoLgoKQ2hlZXJzLApQZXRlcmlzCgo+ID4gLS0tCj4g
-PiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvaGVhZC5jIHwgMSArCj4gPiAgMSBm
-aWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspCj4gPgo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L2Rpc3BudjUwL2hlYWQuYwo+ID4gaW5kZXggMmU3YTBjMzQ3ZGRiLi5hZGNlNjJmNGUxOGYgMTAw
-NjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9oZWFkLmMKPiA+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2hlYWQuYwo+ID4gQEAgLTQx
-Myw2ICs0MTMsNyBAQCBudjUwX2hlYWRfYXRvbWljX2R1cGxpY2F0ZV9zdGF0ZShzdHJ1Y3QgZHJt
-X2NydGMgKmNydGMpCj4gPiAgICAgICAgIGFzeWgtPm92bHkgPSBhcm1oLT5vdmx5Owo+ID4gICAg
-ICAgICBhc3loLT5kaXRoZXIgPSBhcm1oLT5kaXRoZXI7Cj4gPiAgICAgICAgIGFzeWgtPnByb2Nh
-bXAgPSBhcm1oLT5wcm9jYW1wOwo+ID4gKyAgICAgICBhc3loLT5vciA9IGFybWgtPm9yOwo+ID4g
-ICAgICAgICBhc3loLT5kcCA9IGFybWgtPmRwOwo+ID4gICAgICAgICBhc3loLT5jbHIubWFzayA9
-IDA7Cj4gPiAgICAgICAgIGFzeWgtPnNldC5tYXNrID0gMDsKPiA+IC0tCj4gPiAyLjE3LjEKPiA+
-Cj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+ID4g
-ZHJpLWRldmVsIG1haWxpbmcgbGlzdAo+ID4gZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9y
-Zwo+ID4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmkt
-ZGV2ZWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+From: Colin Ian King <colin.king@canonical.com>
+
+There is a spelling mistake in a warning message. Fix it.
+
+Signed-off-by: Colin Ian King <colin.king@canonical.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+index ec0e9f7224b5..3f4f27d191ae 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+@@ -834,7 +834,7 @@ init_generic_condition(struct nvbios_init *init)
+ 		init_exec_set(init, false);
+ 		break;
+ 	default:
+-		warn("INIT_GENERIC_CONDITON: unknown 0x%02x\n", cond);
++		warn("INIT_GENERIC_CONDITION: unknown 0x%02x\n", cond);
+ 		init->offset += size;
+ 		break;
+ 	}
+-- 
+2.20.1
