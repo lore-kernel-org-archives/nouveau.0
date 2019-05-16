@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110572] Regularly System Crash: (ca. 1 hour) nouveau
- 0000:08:00.0: gr: PGRAPH TLB flush idle timeout fail and nouveau
- 0000:08:00.0: mmu: ce0 mmu invalidate timeout
-Date: Thu, 16 May 2019 17:01:36 +0000
-Message-ID: <bug-110572-8800-DnngSY4paX@http.bugs.freedesktop.org/>
-References: <bug-110572-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 108500] Crash when creating a depth buffer on
+ GeForce 320M
+Date: Thu, 16 May 2019 18:31:30 +0000
+Message-ID: <bug-108500-8800-lS3oGnU43j@http.bugs.freedesktop.org/>
+References: <bug-108500-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0069691358=="
+Content-Type: multipart/mixed; boundary="===============0564990776=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110572-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-108500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,35 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0069691358==
-Content-Type: multipart/alternative; boundary="15580260950.ecE5aE3.12833"
+--===============0564990776==
+Content-Type: multipart/alternative; boundary="15580314900.a5DdA0f5.31134"
 Content-Transfer-Encoding: 7bit
 
 
---15580260950.ecE5aE3.12833
-Date: Thu, 16 May 2019 17:01:35 +0000
+--15580314900.a5DdA0f5.31134
+Date: Thu, 16 May 2019 18:31:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110572
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108500
 
---- Comment #14 from Linux Freak <Linuxfreak-RbZlAiThDcE@public.gmane.org> ---
-Created attachment 144284
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144284&action=3Dedit
-crash   nouveau 0000:08:00.0: timeout
+--- Comment #10 from Timo Wiren <timo.wiren-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Since Lubuntu 19.04 the crash has disappeared but I get broken depth testing
+instead in all GL applications, including glxgears. My workaround (disabling
+depth compression) still works.
 
-crash    nouveau 0000:08:00.0: timeout
+Current kernel: 5.0.0-13-generic
+Mesa: 19.0.2
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15580260950.ecE5aE3.12833
-Date: Thu, 16 May 2019 17:01:35 +0000
+--15580314900.a5DdA0f5.31134
+Date: Thu, 16 May 2019 18:31:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,29 +66,25 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Regularly System Crash: (ca. 1 hour) nouveau 0000:08:00.0=
-: gr: PGRAPH TLB flush idle timeout fail and nouveau 0000:08:00.0: mmu: ce0=
- mmu invalidate timeout"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110572#c14">Comme=
-nt # 14</a>
+   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500#c10">Comme=
+nt # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Regularly System Crash: (ca. 1 hour) nouveau 0000:08:00.0=
-: gr: PGRAPH TLB flush idle timeout fail and nouveau 0000:08:00.0: mmu: ce0=
- mmu invalidate timeout"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110572">bug 11057=
-2</a>
+   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500">bug 10850=
+0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-Linuxfreak&#64;gmx.at" title=3D"Linux Freak &lt;Linuxfreak&#64;gmx.at&gt;">=
- <span class=3D"fn">Linux Freak</span></a>
+timo.wiren&#64;gmail.com" title=3D"Timo Wiren &lt;timo.wiren&#64;gmail.com&=
+gt;"> <span class=3D"fn">Timo Wiren</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144284=
-" name=3D"attach_144284" title=3D"crash   nouveau 0000:08:00.0: timeout">at=
-tachment 144284</a> <a href=3D"attachment.cgi?id=3D144284&amp;action=3Dedit=
-" title=3D"crash   nouveau 0000:08:00.0: timeout">[details]</a></span>
-crash   nouveau 0000:08:00.0: timeout
+        <pre>Since Lubuntu 19.04 the crash has disappeared but I get broken=
+ depth testing
+instead in all GL applications, including glxgears. My workaround (disabling
+depth compression) still works.
 
-crash    nouveau 0000:08:00.0: timeout</pre>
+Current kernel: 5.0.0-13-generic
+Mesa: 19.0.2</pre>
         </div>
       </p>
 
@@ -103,9 +99,9 @@ crash    nouveau 0000:08:00.0: timeout</pre>
     </body>
 </html>=
 
---15580260950.ecE5aE3.12833--
+--15580314900.a5DdA0f5.31134--
 
---===============0069691358==
+--===============0564990776==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0069691358==--
+--===============0564990776==--
