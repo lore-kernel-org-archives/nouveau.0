@@ -1,76 +1,47 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau: fix duplication of nv50_head_atom
- struct
-Date: Wed, 15 May 2019 23:29:40 -0400
-Message-ID: <CAKb7Uvhhre6-k_GJUmLW59z4XEjg5eX6EQiHN5aGts_gcC3+2w@mail.gmail.com>
-References: <20190511170831.25645-1-peteris.rudzusiks@gmail.com>
- <CACAvsv5Ux7Av45JGQ7Rqe+ZX2zWcbbBNqc+kCZgLT-uGkQAegw@mail.gmail.com>
- <20190514195736.GB5179@y40-linux>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [PATCH] drm/nouveau/bios/init: fix spelling mistake "CONDITON" -> "CONDITION"
+Date: Thu, 16 May 2019 13:41:04 +1000
+Message-ID: <CACAvsv5qD7LotsmK9Cv3XNH56sp8UmovOU3cxiE158oQwXS=jg@mail.gmail.com>
+References: <20190514205701.5750-1-colin.king@canonical.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20190514195736.GB5179@y40-linux>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Peteris Rudzusiks <peteris.rudzusiks@gmail.com>
-Cc: nouveau <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190514205701.5750-1-colin.king@canonical.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Colin King <colin.king@canonical.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBNYXkgMTQsIDIwMTkgYXQgMzo1NyBQTSBQZXRlcmlzIFJ1ZHp1c2lrcwo8cGV0ZXJp
-cy5ydWR6dXNpa3NAZ21haWwuY29tPiB3cm90ZToKPgo+IE9uIFR1ZSwgTWF5IDE0LCAyMDE5IGF0
-IDA0OjU1OjA1UE0gKzEwMDAsIEJlbiBTa2VnZ3Mgd3JvdGU6Cj4gPiBPbiBTdW4sIDEyIE1heSAy
-MDE5IGF0IDA0OjIzLCBQZXRlcmlzIFJ1ZHp1c2lrcwo+ID4gPHBldGVyaXMucnVkenVzaWtzQGdt
-YWlsLmNvbT4gd3JvdGU6Cj4gPiA+Cj4gPiA+IG52NTBfaGVhZF9hdG9taWNfZHVwbGljYXRlX3N0
-YXRlKCkgbWFrZXMgYSBjb3B5IG9mIG52NTBfaGVhZF9hdG9tCj4gPiA+IHN0cnVjdC4gVGhpcyBw
-YXRjaCBhZGRzIGNvcHlpbmcgb2Ygc3RydWN0IG1lbWJlciBuYW1lZCAib3IiLCB3aGljaAo+ID4g
-PiBwcmV2aW91c2x5IHdhcyBsZWZ0IHVuaW5pdGlhbGl6ZWQgaW4gdGhlIGR1cGxpY2F0ZWQgc3Ry
-dWN0dXJlLgo+ID4gPgo+ID4gPiBEdWUgdG8gdGhpcyBidWcsIGluY29ycmVjdCBuaHN5bmMgYW5k
-IG52c3luYyB2YWx1ZXMgd2VyZSBzb21ldGltZXMgdXNlZC4KPiA+ID4gSW4gbXkgcGFydGljdWxh
-ciBjYXNlLCB0aGF0IGxlYWQgdG8gYSBtaXNtYXRjaCBiZXR3ZWVuIHRoZSBvdXRwdXQKPiA+ID4g
-cmVzb2x1dGlvbiBvZiB0aGUgZ3JhcGhpY3MgZGV2aWNlIChHZUZvcmNlIEdUIDYzMCBPRU0pIGFu
-ZCB0aGUgcmVwb3J0ZWQKPiA+ID4gaW5wdXQgc2lnbmFsIHJlc29sdXRpb24gb24gdGhlIGRpc3Bs
-YXkuIHhyYW5kciByZXBvcnRlZCAxNjgweDEwNTAsIGJ1dAo+ID4gPiB0aGUgZGlzcGxheSByZXBv
-cnRlZCAxMjgweDEwMjQuIEFzIGEgcmVzdWx0IG9mIHRoaXMgbWlzbWF0Y2gsIHRoZSBvdXRwdXQK
-PiA+ID4gb24gdGhlIGRpc3BsYXkgbG9va2VkIGxpa2UgaXQgd2FzIGNyb3BwZWQgKG9ubHkgcGFy
-dCBvZiB0aGUgb3V0cHV0IHdhcwo+ID4gPiBhY3R1YWxseSB2aXNpYmxlIG9uIHRoZSBkaXNwbGF5
-KS4KPiA+ID4KPiA+ID4gZ2l0IGJpc2VjdCBwb2ludGVkIHRvIGNvbW1pdCAyY2E3ZmI1YzFjYzYg
-KCJkcm0vbm91dmVhdS9rbXMvbnY1MDogaGFuZGxlCj4gPiA+IFNldENvbnRyb2xPdXRwdXRSZXNv
-dXJjZSBmcm9tIGhlYWQiKSwgd2hpY2ggYWRkZWQgdGhlIG1lbWJlciAib3IiIHRvCj4gPiA+IG52
-NTBfaGVhZF9hdG9tIHN0cnVjdHVyZSwgYnV0IGZvcmdvdCB0byBjb3B5IGl0IGluCj4gPiA+IG52
-NTBfaGVhZF9hdG9taWNfZHVwbGljYXRlX3N0YXRlKCkuCj4gPiA+Cj4gPiA+IEZpeGVzOiAyY2E3
-ZmI1YzFjYzYgKCJkcm0vbm91dmVhdS9rbXMvbnY1MDogaGFuZGxlIFNldENvbnRyb2xPdXRwdXRS
-ZXNvdXJjZSBmcm9tIGhlYWQiKQo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBQZXRlcmlzIFJ1ZHp1c2lr
-cyA8cGV0ZXJpcy5ydWR6dXNpa3NAZ21haWwuY29tPgo+ID4gT29wcywgbmljZSBjYXRjaC4gIFRo
-YW5rIHlvdSBmb3IgdGhpcywgSSd2ZSBtZXJnZWQgaXQgaW4gbXkgdHJlZSBhbmQKPiA+IHdpbGwg
-Z2V0IGl0IHVwc3RyZWFtIEFTQVAuCj4gPgo+ID4gVGhhbmtzLAo+ID4gQmVuLgo+ID4KPiBIaSBC
-ZW4sCj4KPiBUaGFuayB5b3UgZm9yIHRha2luZyB0aGUgdGltZSB0byByZXZpZXcgYW5kIG1lcmdl
-IHRoaXMgcGF0Y2guCj4KPiBJJ20gbmV3IHRvIHRoZSBMaW51eCBrZXJuZWwgZGV2ZWxvcG1lbnQg
-cHJvY2Vzcywgc28gSSBhbSBub3Qgc3VyZSB3aGF0Cj4gaGFwcGVucyBuZXh0LiBEb2VzIGluY2x1
-c2lvbiBpbiB5b3VyIHRyZWUgaW1wbHkgdGhhdCB0aGlzIGZpeCB3aWxsIGVuZAo+IHVwIGluIHNv
-bWUgKG1vc3QgbGlrZWx5IC0gbmV4dCkgbWFpbmxpbmUga2VybmVsPyBXaWxsIGl0IGFsc28gYmUK
-PiBiYWNrcG9ydGVkIHRvIDQuMTkgTFRTIGJyYW5jaD8KPgo+IFRoaXMgYnVnIGFmZmVjdHMgYWxs
-IGtlcm5lbCB2ZXJzaW9ucyBzdGFydGluZyBmcm9tIHY0LjE4LiBQcm9iYWJseSBub3QKPiB0aGF0
-IG1hbnkgc3lzdGVtcyB0aG91Z2guCgpCZW4gc3VibWl0cyBhIHB1bGwgcmVxdWVzdCB0byBEYXZl
-IEFpcmxpZSAoZHJtIG1haW50YWluZXIpLCBhbmQgRGF2ZQpzdWJtaXRzIG9uZSB0byBMaW51cyBm
-b3IgaW5jbHVzaW9uIGluIHRoZSAib2ZmaWNpYWwiIHVwc3RyZWFtCnJlcG9zaXRvcnkuIERhdmUg
-anVzdCBzZW50IGEgcHVsbCByZXF1ZXN0IHRvIExpbnVzLCB3aG8gdXN1YWxseSBwaWNrcwp0aGVz
-ZSB1cCB3aXRoaW4gYSBmZXcgZGF5cyAoZXhjZXB0aW9ucyBhcHBseSkuCgpPbmNlIGluIHRoZSBt
-YWlubGluZSB0cmVlLCB0aGUgIkZpeGVzIiB0YWcgaXMgbGlrZWx5IHRvIGNhdXNlIGl0IHRvCmdl
-dCBwaWNrZWQgdXAgZm9yIHN0YWJsZS4gWW91IGNhbiBhbHNvIG5vbWluYXRlIGl0IGZvciBzdGFi
-bGUga2VybmVsCmJyYW5jaCBpbmNsdXNpb24gZXhwbGljaXRseSAodGhlcmUgYXJlIGluc3RydWN0
-aW9ucyBzb21ld2hlcmUsIGJ1dApiYXNpY2FsbHkgeW91IHNlbmQgYW4gZW1haWwgdG8gc29tZSBs
-aXN0IHNheWluZyAicGxlYXNlIGluY2x1ZGUgY29tbWl0CkFCQyBpbiBrZXJuZWxzIFhZWiIpLgoK
-V2hhdCBVYnVudHUgc2hpcHMgaXMsIHVsdGltYXRlbHksIHVwIHRvIFVidW50dS4gVGhleSB3aWxs
-LCBob3dldmVyLApmcmVxdWVudGx5IGZvbGxvdyB0aGUgc3RhYmxlIGtlcm5lbCBicmFuY2hlcywg
-YW5kIGxpc3RlbiB0byB0aGUgbGlzdAphYm92ZSBhcyB3ZWxsLgoKSG9wZSB0aGlzIGhlbHBzLAoK
-ICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpk
-cmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWw=
+On Wed, 15 May 2019 at 06:57, Colin King <colin.king@canonical.com> wrote:
+>
+> From: Colin Ian King <colin.king@canonical.com>
+>
+> There is a spelling mistake in a warning message. Fix it.
+Thanks, merged.
+
+>
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
+> ---
+>  drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+> index ec0e9f7224b5..3f4f27d191ae 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
+> @@ -834,7 +834,7 @@ init_generic_condition(struct nvbios_init *init)
+>                 init_exec_set(init, false);
+>                 break;
+>         default:
+> -               warn("INIT_GENERIC_CONDITON: unknown 0x%02x\n", cond);
+> +               warn("INIT_GENERIC_CONDITION: unknown 0x%02x\n", cond);
+>                 init->offset += size;
+>                 break;
+>         }
+> --
+> 2.20.1
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
