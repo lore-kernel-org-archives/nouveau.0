@@ -1,282 +1,418 @@
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v3 04/10] drm: Convert
- connector_helper_funcs->atomic_check to accept drm_atomic_state
-Date: Thu, 16 May 2019 15:02:21 +0300
-Message-ID: <20190516120221.GI14820@pendragon.ideasonboard.com>
-References: <20190502194956.218441-1-sean@poorly.run>
- <20190502194956.218441-5-sean@poorly.run>
- <20190511191202.GL13043@pendragon.ideasonboard.com>
- <20190513144747.GR17751@phenom.ffwll.local>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v3 04/10] drm: Convert connector_helper_funcs->atomic_check
+ to accept drm_atomic_state
+Date: Thu, 16 May 2019 14:07:34 +0200
+Message-ID: <CAKMK7uG_TmzZBgVkJ+j9C53KRp1OgswYuxpFV77+eU6BPWwGgw@mail.gmail.com>
+References: <20190502194956.218441-1-sean@poorly.run> <20190502194956.218441-5-sean@poorly.run>
+ <20190511191202.GL13043@pendragon.ideasonboard.com> <20190513144747.GR17751@phenom.ffwll.local>
+ <20190516120221.GI14820@pendragon.ideasonboard.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20190513144747.GR17751@phenom.ffwll.local>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org, Sean Paul <seanpaul@chromium.org>, Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Ben Skeggs <bskeggs@redhat.com>, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Eric Anholt <eric@anholt.net>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <maxime.ripard@bootlin.com>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190516120221.GI14820@pendragon.ideasonboard.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Sean Paul <sean@poorly.run>, dri-devel <dri-devel@lists.freedesktop.org>, Sean Paul <seanpaul@chromium.org>, =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Ben Skeggs <bskeggs@redhat.com>, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Eric Anholt <eric@anholt.net>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <maxime.ripard@bootlin.com>, David Airlie <airlied@linux.ie>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, intel-gfx <intel-gfx@lists.freedesktop.org>, Nouveau Dev <nouveau@lists.freedesktop.org>, "open list:DRM DRIVERS FOR RENESAS" <linux-renesas>
 List-Id: nouveau.vger.kernel.org
 
-SGkgRGFuaWVsLAoKT24gTW9uLCBNYXkgMTMsIDIwMTkgYXQgMDQ6NDc6NDdQTSArMDIwMCwgRGFu
-aWVsIFZldHRlciB3cm90ZToKPiBPbiBTYXQsIE1heSAxMSwgMjAxOSBhdCAxMDoxMjowMlBNICsw
-MzAwLCBMYXVyZW50IFBpbmNoYXJ0IHdyb3RlOgo+ID4gT24gVGh1LCBNYXkgMDIsIDIwMTkgYXQg
-MDM6NDk6NDZQTSAtMDQwMCwgU2VhbiBQYXVsIHdyb3RlOgo+ID4+IEZyb206IFNlYW4gUGF1bCA8
-c2VhbnBhdWxAY2hyb21pdW0ub3JnPgo+ID4+IAo+ID4+IEV2ZXJ5b25lIHdobyBpbXBsZW1lbnRz
-IGNvbm5lY3Rvcl9oZWxwZXJfZnVuY3MtPmF0b21pY19jaGVjayByZWFjaGVzCj4gPj4gaW50byB0
-aGUgY29ubmVjdG9yIHN0YXRlIHRvIGdldCB0aGUgYXRvbWljIHN0YXRlLiBJbnN0ZWFkIG9mIGNv
-bnRpbnVpbmcKPiA+PiB0aGlzIHBhdHRlcm4sIGNoYW5nZSB0aGUgY2FsbGJhY2sgc2lnbmF0dXJl
-IHRvIGp1c3QgZ2l2ZSBhdG9taWMgc3RhdGUKPiA+PiBhbmQgbGV0IHRoZSBkcml2ZXIgZGV0ZXJt
-aW5lIHdoYXQgaXQgZG9lcyBhbmQgZG9lcyBub3QgbmVlZCBmcm9tIGl0Lgo+ID4+IAo+ID4+IEV2
-ZW50dWFsbHkgYWxsIGF0b21pYyBmdW5jdGlvbnMgc2hvdWxkIGRvIHRoaXMsIGJ1dCB0aGF0J3Mg
-anVzdCB0b28gbXVjaAo+ID4+IGJ1c3kgd29yayBmb3IgbWUuCj4gPiAKPiA+IEdpdmVuIHRoYXQg
-ZHJpdmVycyBhbHNvIGFjY2VzcyB0aGUgY29ubmVjdG9yIHN0YXRlLCBpc24ndCB0aGlzIHNsaWdo
-dGx5Cj4gPiBtb3JlIGluZWZmaWNpZW50ID8KPiAKPiBJdCdzIGF0b21pYyBjb2RlLCB3ZSdyZSB0
-cnlpbmcgdG8gb3B0aW1pemUgZm9yIGNsZWFuIGNvZGUgYXQgdGhlIGV4cGVuc2UKPiBvZiBhIGJp
-dCBvZiBydW50aW1lIG92ZXJoZWFkIGR1ZSB0byBtb3JlIHBvaW50ZXIgY2hhc2luZy4gQW5kIEkg
-YWdyZWUgd2l0aAo+IHRoZSBnZW5lcmFsIHB1c2gsIHRoZSBwaWxlIG9mIG9sZC9uZXdfc3RhdGUg
-cG9pbnRlcnMgb2YgdmFyaW91cyBvYmplY3RzCj4gd2UncmUgcGFzc2luZyBhcm91bmQgaXMgY29u
-ZnVzaW5nLiBQYXNzaW5nIHRoZSBvdmVyYWxsIGRybV9hdG9taWNfc3RhdGUKPiBzZWVtcyBtdWNo
-IG1vcmUgcmVhc29uYWJsZSwgYW5kIHdpdGggdGhhdCB3ZSBjYW4gZ2V0IGV2ZXJ5dGhpbmcgZWxz
-ZS4gUGx1cwo+IGl0J3MgbXVjaCBtb3JlIG9idmlvdXMgd2hldGhlciB5b3UgaGF2ZSB0aGUgb2xk
-L25ldyBzdGF0ZSAoc2luY2UgdGhhdCdzCj4gZXhwbGljaXQgd2hlbiB5b3UgbG9vayBpdCB1cCBm
-cm9tIHRoZSBkcm1fYXRvbWljX3N0YXRlKS4KClllcywgSSBhZ3JlZSBpdCdzIGNsZWFuZXIuIEkg
-anVzdCBob3BlIHRoZSBhdG9taWMgc3RhdGUgdHJhY2tpbmcgY29zdApjYW4gYmUga2VwdCB1bmRl
-ciBjb250cm9sIDotKQoKQnkgdGhlIHdheSwgdGhpcyBpcyBsaWtlbHkgbm90IGdvaW5nIHRvIGhh
-cHBlbiBhcyBpdCB3b3VsZCBiZSB3YXkgdG9vCmludHJ1c2l2ZSwgYnV0IGl0IHdvdWxkIGJlIG5p
-Y2UgdG8gcmVuYW1lIGRybV9hdG9taWNfc3RhdGUgdG8KZHJtX2F0b21pY190cmFuc2FjdGlvbiAo
-b3Igc29tZXRoaW5nIHNpbWlsYXIpLiBJdCBkb2Vzbid0IG1vZGVsIGEgc3RhdGUsCmJ1dCBhIGNo
-YW5nZSBiZXR3ZWVuIGFuIG9sZCBzdGF0ZSB0byBhIG5ldyBzdGF0ZS4gVGhpcyBjb25mdXNlZCBt
-ZSBpbgp0aGUgcGFzdCwgYW5kIEknbSBzdXJlIGl0IGNhbiBzdGlsbCBiZSBjb25mdXNpbmcgdG8g
-bmV3Y29tZXJzLgoKPiBJZiB3ZSBldmVyIHNlZSB0aGlzIHNob3cgdXAgaW4gcHJvZmlsZSwgYW5k
-IGl0IHN0YXJ0cyBtYXR0ZXJpbmcsIGZpcnN0Cj4gdGhpbmcgd2UgbmVlZCBpcyBhIGhhc2h0YWJs
-ZSBJIHRoaW5rIChhdG0gaXQncyBsaXN0IHdhbGtpbmcsIHdoaWNoIGlzIGp1c3QKPiB0ZXJyaWJs
-ZSkuIEJ1dCB0aHVzIGZhciBubyBvbmUgY2FyZXMuCj4gCj4gPj4gQ2hhbmdlcyBpbiB2MzoKPiA+
-PiAtIEFkZGVkIHRvIHRoZSBzZXQKPiA+PiAKPiA+PiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVs
-QGZmd2xsLmNoPgo+ID4+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXgu
-aW50ZWwuY29tPgo+ID4+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAbGludXguaW50ZWwu
-Y29tPgo+ID4+IENjOiBKb29uYXMgTGFodGluZW4gPGpvb25hcy5sYWh0aW5lbkBsaW51eC5pbnRl
-bC5jb20+Cj4gPj4gQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4KPiA+
-PiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgo+ID4+IENjOiBMYXVyZW50IFBp
-bmNoYXJ0IDxsYXVyZW50LnBpbmNoYXJ0QGlkZWFzb25ib2FyZC5jb20+Cj4gPj4gQ2M6IEtpZXJh
-biBCaW5naGFtIDxraWVyYW4uYmluZ2hhbStyZW5lc2FzQGlkZWFzb25ib2FyZC5jb20+Cj4gPj4g
-Q2M6IEVyaWMgQW5ob2x0IDxlcmljQGFuaG9sdC5uZXQ+Cj4gPj4gU2lnbmVkLW9mZi1ieTogU2Vh
-biBQYXVsIDxzZWFucGF1bEBjaHJvbWl1bS5vcmc+Cj4gPj4gLS0tCj4gPj4gIGRyaXZlcnMvZ3B1
-L2RybS9kcm1fYXRvbWljX2hlbHBlci5jICAgICAgfCAgNCArKy0tCj4gPj4gIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2ludGVsX2F0b21pYy5jICAgICAgfCAgOCArKysrKy0tLQo+ID4+ICBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pbnRlbF9kcF9tc3QuYyAgICAgIHwgIDcgKysrKy0tLQo+ID4+ICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcnYuaCAgICAgICAgIHwgIDIgKy0KPiA+PiAgZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaW50ZWxfc2R2by5jICAgICAgICB8ICA5ICsrKysrLS0tLQo+ID4+ICBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF90di5jICAgICAgICAgIHwgIDggKysrKystLS0KPiA+
-PiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jICB8ICA1ICsrKy0tCj4g
-Pj4gIGRyaXZlcnMvZ3B1L2RybS9yY2FyLWR1L3JjYXJfbHZkcy5jICAgICAgfCAxMiArKysrKysr
-LS0tLS0KPiA+PiAgZHJpdmVycy9ncHUvZHJtL3ZjNC92YzRfdHhwLmMgICAgICAgICAgICB8ICA3
-ICsrKystLS0KPiA+PiAgaW5jbHVkZS9kcm0vZHJtX21vZGVzZXRfaGVscGVyX3Z0YWJsZXMuaCB8
-ICAyICstCj4gPj4gIDEwIGZpbGVzIGNoYW5nZWQsIDM3IGluc2VydGlvbnMoKyksIDI3IGRlbGV0
-aW9ucygtKQo+ID4+IAo+ID4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21p
-Y19oZWxwZXIuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljX2hlbHBlci5jCj4gPj4gaW5k
-ZXggOWQ5ZTQ3Mjc2ODM5Li5mYTVhMzY3NTA3YzEgMTAwNjQ0Cj4gPj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2RybV9hdG9taWNfaGVscGVyLmMKPiA+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJt
-X2F0b21pY19oZWxwZXIuYwo+ID4+IEBAIC02ODMsNyArNjgzLDcgQEAgZHJtX2F0b21pY19oZWxw
-ZXJfY2hlY2tfbW9kZXNldChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+ID4+ICAJCX0KPiA+PiAg
-Cj4gPj4gIAkJaWYgKGZ1bmNzLT5hdG9taWNfY2hlY2spCj4gPj4gLQkJCXJldCA9IGZ1bmNzLT5h
-dG9taWNfY2hlY2soY29ubmVjdG9yLCBuZXdfY29ubmVjdG9yX3N0YXRlKTsKPiA+PiArCQkJcmV0
-ID0gZnVuY3MtPmF0b21pY19jaGVjayhjb25uZWN0b3IsIHN0YXRlKTsKPiA+PiAgCQlpZiAocmV0
-KQo+ID4+ICAJCQlyZXR1cm4gcmV0Owo+ID4+ICAKPiA+PiBAQCAtNzI1LDcgKzcyNSw3IEBAIGRy
-bV9hdG9taWNfaGVscGVyX2NoZWNrX21vZGVzZXQoc3RydWN0IGRybV9kZXZpY2UgKmRldiwKPiA+
-PiAgCQkJY29udGludWU7Cj4gPj4gIAo+ID4+ICAJCWlmIChmdW5jcy0+YXRvbWljX2NoZWNrKQo+
-ID4+IC0JCQlyZXQgPSBmdW5jcy0+YXRvbWljX2NoZWNrKGNvbm5lY3RvciwgbmV3X2Nvbm5lY3Rv
-cl9zdGF0ZSk7Cj4gPj4gKwkJCXJldCA9IGZ1bmNzLT5hdG9taWNfY2hlY2soY29ubmVjdG9yLCBz
-dGF0ZSk7Cj4gPj4gIAkJaWYgKHJldCkKPiA+PiAgCQkJcmV0dXJuIHJldDsKPiA+PiAgCX0KPiA+
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfYXRvbWljLmMgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9hdG9taWMuYwo+ID4+IGluZGV4IGI4NDRlODg0MGM2Zi4u
-ZThhNWI4MmU5MjQyIDEwMDY0NAo+ID4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
-X2F0b21pYy5jCj4gPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfYXRvbWljLmMK
-PiA+PiBAQCAtMTAzLDEyICsxMDMsMTQgQEAgaW50IGludGVsX2RpZ2l0YWxfY29ubmVjdG9yX2F0
-b21pY19zZXRfcHJvcGVydHkoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciwKPiA+PiAg
-fQo+ID4+ICAKPiA+PiAgaW50IGludGVsX2RpZ2l0YWxfY29ubmVjdG9yX2F0b21pY19jaGVjayhz
-dHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubiwKPiA+PiAtCQkJCQkgc3RydWN0IGRybV9jb25uZWN0
-b3Jfc3RhdGUgKm5ld19zdGF0ZSkKPiA+PiArCQkJCQkgc3RydWN0IGRybV9hdG9taWNfc3RhdGUg
-KnN0YXRlKQo+ID4+ICB7Cj4gPj4gKwlzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqbmV3X3N0
-YXRlID0KPiA+PiArCQlkcm1fYXRvbWljX2dldF9uZXdfY29ubmVjdG9yX3N0YXRlKHN0YXRlLCBj
-b25uKTsKPiA+PiAgCXN0cnVjdCBpbnRlbF9kaWdpdGFsX2Nvbm5lY3Rvcl9zdGF0ZSAqbmV3X2Nv
-bm5fc3RhdGUgPQo+ID4+ICAJCXRvX2ludGVsX2RpZ2l0YWxfY29ubmVjdG9yX3N0YXRlKG5ld19z
-dGF0ZSk7Cj4gPj4gIAlzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqb2xkX3N0YXRlID0KPiA+
-PiAtCQlkcm1fYXRvbWljX2dldF9vbGRfY29ubmVjdG9yX3N0YXRlKG5ld19zdGF0ZS0+c3RhdGUs
-IGNvbm4pOwo+ID4+ICsJCWRybV9hdG9taWNfZ2V0X29sZF9jb25uZWN0b3Jfc3RhdGUoc3RhdGUs
-IGNvbm4pOwo+ID4+ICAJc3RydWN0IGludGVsX2RpZ2l0YWxfY29ubmVjdG9yX3N0YXRlICpvbGRf
-Y29ubl9zdGF0ZSA9Cj4gPj4gIAkJdG9faW50ZWxfZGlnaXRhbF9jb25uZWN0b3Jfc3RhdGUob2xk
-X3N0YXRlKTsKPiA+PiAgCXN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZTsKPiA+PiBA
-QCAtMTE4LDcgKzEyMCw3IEBAIGludCBpbnRlbF9kaWdpdGFsX2Nvbm5lY3Rvcl9hdG9taWNfY2hl
-Y2soc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm4sCj4gPj4gIAlpZiAoIW5ld19zdGF0ZS0+Y3J0
-YykKPiA+PiAgCQlyZXR1cm4gMDsKPiA+PiAgCj4gPj4gLQljcnRjX3N0YXRlID0gZHJtX2F0b21p
-Y19nZXRfbmV3X2NydGNfc3RhdGUobmV3X3N0YXRlLT5zdGF0ZSwgbmV3X3N0YXRlLT5jcnRjKTsK
-PiA+PiArCWNydGNfc3RhdGUgPSBkcm1fYXRvbWljX2dldF9uZXdfY3J0Y19zdGF0ZShzdGF0ZSwg
-bmV3X3N0YXRlLT5jcnRjKTsKPiA+PiAgCj4gPj4gIAkvKgo+ID4+ICAJICogVGhlc2UgcHJvcGVy
-dGllcyBhcmUgaGFuZGxlZCBieSBmYXN0c2V0LCBhbmQgbWlnaHQgbm90IGVuZAo+ID4+IGRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcF9tc3QuYyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2ludGVsX2RwX21zdC5jCj4gPj4gaW5kZXggMTlkODFjZWYyYWI2Li44OWNmZWMx
-MjhiYTAgMTAwNjQ0Cj4gPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHBfbXN0
-LmMKPiA+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcF9tc3QuYwo+ID4+IEBA
-IC0xNDMsOSArMTQzLDEwIEBAIHN0YXRpYyBpbnQgaW50ZWxfZHBfbXN0X2NvbXB1dGVfY29uZmln
-KHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAo+ID4+ICAKPiA+PiAgc3RhdGljIGludAo+
-ID4+ICBpbnRlbF9kcF9tc3RfYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25u
-ZWN0b3IsCj4gPj4gLQkJCSAgc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKm5ld19jb25uX3N0
-YXRlKQo+ID4+ICsJCQkgIHN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSkKPiA+PiAgewo+
-ID4+IC0Jc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlID0gbmV3X2Nvbm5fc3RhdGUtPnN0
-YXRlOwo+ID4+ICsJc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKm5ld19jb25uX3N0YXRlID0K
-PiA+PiArCQlkcm1fYXRvbWljX2dldF9uZXdfY29ubmVjdG9yX3N0YXRlKHN0YXRlLCBjb25uZWN0
-b3IpOwo+ID4+ICAJc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKm9sZF9jb25uX3N0YXRlID0K
-PiA+PiAgCQlkcm1fYXRvbWljX2dldF9vbGRfY29ubmVjdG9yX3N0YXRlKHN0YXRlLCBjb25uZWN0
-b3IpOwo+ID4+ICAJc3RydWN0IGludGVsX2Nvbm5lY3RvciAqaW50ZWxfY29ubmVjdG9yID0KPiA+
-PiBAQCAtMTU1LDcgKzE1Niw3IEBAIGludGVsX2RwX21zdF9hdG9taWNfY2hlY2soc3RydWN0IGRy
-bV9jb25uZWN0b3IgKmNvbm5lY3RvciwKPiA+PiAgCXN0cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5
-X21nciAqbWdyOwo+ID4+ICAJaW50IHJldDsKPiA+PiAgCj4gPj4gLQlyZXQgPSBpbnRlbF9kaWdp
-dGFsX2Nvbm5lY3Rvcl9hdG9taWNfY2hlY2soY29ubmVjdG9yLCBuZXdfY29ubl9zdGF0ZSk7Cj4g
-Pj4gKwlyZXQgPSBpbnRlbF9kaWdpdGFsX2Nvbm5lY3Rvcl9hdG9taWNfY2hlY2soY29ubmVjdG9y
-LCBzdGF0ZSk7Cj4gPj4gIAlpZiAocmV0KQo+ID4+ICAJCXJldHVybiByZXQ7Cj4gPj4gIAo+ID4+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcnYuaCBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2ludGVsX2Rydi5oCj4gPj4gaW5kZXggZjhjN2IyOTFmZGMzLi44ODU3MWI4
-ZThkNjIgMTAwNjQ0Cj4gPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZHJ2LmgK
-PiA+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kcnYuaAo+ID4+IEBAIC0yNDgx
-LDcgKzI0ODEsNyBAQCBpbnQgaW50ZWxfZGlnaXRhbF9jb25uZWN0b3JfYXRvbWljX3NldF9wcm9w
-ZXJ0eShzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAo+ID4+ICAJCQkJCQlzdHJ1Y3Qg
-ZHJtX3Byb3BlcnR5ICpwcm9wZXJ0eSwKPiA+PiAgCQkJCQkJdTY0IHZhbCk7Cj4gPj4gIGludCBp
-bnRlbF9kaWdpdGFsX2Nvbm5lY3Rvcl9hdG9taWNfY2hlY2soc3RydWN0IGRybV9jb25uZWN0b3Ig
-KmNvbm4sCj4gPj4gLQkJCQkJIHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpuZXdfc3RhdGUp
-Owo+ID4+ICsJCQkJCSBzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUpOwo+ID4+ICBzdHJ1
-Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqCj4gPj4gIGludGVsX2RpZ2l0YWxfY29ubmVjdG9yX2R1
-cGxpY2F0ZV9zdGF0ZShzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yKTsKPiA+PiAgCj4g
-Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Nkdm8uYyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2ludGVsX3Nkdm8uYwo+ID4+IGluZGV4IDY4ZjQ5NzQ5M2Q0My4uNzJl
-YTE2NGI5NzFjIDEwMDY0NAo+ID4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Nk
-dm8uYwo+ID4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Nkdm8uYwo+ID4+IEBA
-IC0yMzQyLDkgKzIzNDIsMTAgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fY29ubmVjdG9yX2Z1
-bmNzIGludGVsX3Nkdm9fY29ubmVjdG9yX2Z1bmNzID0gewo+ID4+ICB9Owo+ID4+ICAKPiA+PiAg
-c3RhdGljIGludCBpbnRlbF9zZHZvX2F0b21pY19jaGVjayhzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAq
-Y29ubiwKPiA+PiAtCQkJCSAgIHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpuZXdfY29ubl9z
-dGF0ZSkKPiA+PiArCQkJCSAgIHN0cnVjdCBkcm1fYXRvbWljX3N0YXRlICpzdGF0ZSkKPiA+PiAg
-ewo+ID4+IC0Jc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlID0gbmV3X2Nvbm5fc3RhdGUt
-PnN0YXRlOwo+ID4+ICsJc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKm5ld19jb25uX3N0YXRl
-ID0KPiA+PiArCQlkcm1fYXRvbWljX2dldF9uZXdfY29ubmVjdG9yX3N0YXRlKHN0YXRlLCBjb25u
-KTsKPiA+PiAgCXN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpvbGRfY29ubl9zdGF0ZSA9Cj4g
-Pj4gIAkJZHJtX2F0b21pY19nZXRfb2xkX2Nvbm5lY3Rvcl9zdGF0ZShzdGF0ZSwgY29ubik7Cj4g
-Pj4gIAlzdHJ1Y3QgaW50ZWxfc2R2b19jb25uZWN0b3Jfc3RhdGUgKm9sZF9zdGF0ZSA9Cj4gPj4g
-QEAgLTIzNTYsMTMgKzIzNTcsMTMgQEAgc3RhdGljIGludCBpbnRlbF9zZHZvX2F0b21pY19jaGVj
-ayhzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubiwKPiA+PiAgCSAgICAobWVtY21wKCZvbGRfc3Rh
-dGUtPnR2LCAmbmV3X3N0YXRlLT50diwgc2l6ZW9mKG9sZF9zdGF0ZS0+dHYpKSB8fAo+ID4+ICAJ
-ICAgICBtZW1jbXAoJm9sZF9jb25uX3N0YXRlLT50diwgJm5ld19jb25uX3N0YXRlLT50diwgc2l6
-ZW9mKG9sZF9jb25uX3N0YXRlLT50dikpKSkgewo+ID4+ICAJCXN0cnVjdCBkcm1fY3J0Y19zdGF0
-ZSAqY3J0Y19zdGF0ZSA9Cj4gPj4gLQkJCWRybV9hdG9taWNfZ2V0X25ld19jcnRjX3N0YXRlKG5l
-d19jb25uX3N0YXRlLT5zdGF0ZSwKPiA+PiArCQkJZHJtX2F0b21pY19nZXRfbmV3X2NydGNfc3Rh
-dGUoc3RhdGUsCj4gPj4gIAkJCQkJCSAgICAgIG5ld19jb25uX3N0YXRlLT5jcnRjKTsKPiA+PiAg
-Cj4gPj4gIAkJY3J0Y19zdGF0ZS0+Y29ubmVjdG9yc19jaGFuZ2VkID0gdHJ1ZTsKPiA+PiAgCX0K
-PiA+PiAgCj4gPj4gLQlyZXR1cm4gaW50ZWxfZGlnaXRhbF9jb25uZWN0b3JfYXRvbWljX2NoZWNr
-KGNvbm4sIG5ld19jb25uX3N0YXRlKTsKPiA+PiArCXJldHVybiBpbnRlbF9kaWdpdGFsX2Nvbm5l
-Y3Rvcl9hdG9taWNfY2hlY2soY29ubiwgc3RhdGUpOwo+ID4+ICB9Cj4gPj4gIAo+ID4+ICBzdGF0
-aWMgY29uc3Qgc3RydWN0IGRybV9jb25uZWN0b3JfaGVscGVyX2Z1bmNzIGludGVsX3Nkdm9fY29u
-bmVjdG9yX2hlbHBlcl9mdW5jcyA9IHsKPiA+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaW50ZWxfdHYuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3R2LmMKPiA+PiBp
-bmRleCAzOTI0YzQ5NDRlMWYuLmE0MWM1YjQ2N2MxNCAxMDA2NDQKPiA+PiAtLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pbnRlbF90di5jCj4gPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aW50ZWxfdHYuYwo+ID4+IEBAIC0xODE3LDE2ICsxODE3LDE4IEBAIHN0YXRpYyBjb25zdCBzdHJ1
-Y3QgZHJtX2Nvbm5lY3Rvcl9mdW5jcyBpbnRlbF90dl9jb25uZWN0b3JfZnVuY3MgPSB7Cj4gPj4g
-IH07Cj4gPj4gIAo+ID4+ICBzdGF0aWMgaW50IGludGVsX3R2X2F0b21pY19jaGVjayhzdHJ1Y3Qg
-ZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAo+ID4+IC0JCQkJIHN0cnVjdCBkcm1fY29ubmVjdG9y
-X3N0YXRlICpuZXdfc3RhdGUpCj4gPj4gKwkJCQkgc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0
-YXRlKQo+ID4+ICB7Cj4gPj4gKwlzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqbmV3X3N0YXRl
-Owo+ID4+ICAJc3RydWN0IGRybV9jcnRjX3N0YXRlICpuZXdfY3J0Y19zdGF0ZTsKPiA+PiAgCXN0
-cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpvbGRfc3RhdGU7Cj4gPj4gIAo+ID4+ICsJbmV3X3N0
-YXRlID0gZHJtX2F0b21pY19nZXRfbmV3X2Nvbm5lY3Rvcl9zdGF0ZShzdGF0ZSwgY29ubmVjdG9y
-KTsKPiA+PiAgCWlmICghbmV3X3N0YXRlLT5jcnRjKQo+ID4+ICAJCXJldHVybiAwOwo+ID4+ICAK
-PiA+PiAtCW9sZF9zdGF0ZSA9IGRybV9hdG9taWNfZ2V0X29sZF9jb25uZWN0b3Jfc3RhdGUobmV3
-X3N0YXRlLT5zdGF0ZSwgY29ubmVjdG9yKTsKPiA+PiAtCW5ld19jcnRjX3N0YXRlID0gZHJtX2F0
-b21pY19nZXRfbmV3X2NydGNfc3RhdGUobmV3X3N0YXRlLT5zdGF0ZSwgbmV3X3N0YXRlLT5jcnRj
-KTsKPiA+PiArCW9sZF9zdGF0ZSA9IGRybV9hdG9taWNfZ2V0X29sZF9jb25uZWN0b3Jfc3RhdGUo
-c3RhdGUsIGNvbm5lY3Rvcik7Cj4gPj4gKwluZXdfY3J0Y19zdGF0ZSA9IGRybV9hdG9taWNfZ2V0
-X25ld19jcnRjX3N0YXRlKHN0YXRlLCBuZXdfc3RhdGUtPmNydGMpOwo+ID4+ICAKPiA+PiAgCWlm
-IChvbGRfc3RhdGUtPnR2Lm1vZGUgIT0gbmV3X3N0YXRlLT50di5tb2RlIHx8Cj4gPj4gIAkgICAg
-b2xkX3N0YXRlLT50di5tYXJnaW5zLmxlZnQgIT0gbmV3X3N0YXRlLT50di5tYXJnaW5zLmxlZnQg
-fHwKPiA+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlz
-cC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCj4gPj4gaW5kZXgg
-NGIxNjUwZjUxOTU1Li43YmEzNzNmNDkzYjIgMTAwNjQ0Cj4gPj4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCj4gPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvZGlzcG52NTAvZGlzcC5jCj4gPj4gQEAgLTk0OCwxMSArOTQ4LDEyIEBAIG52NTBfbXN0
-Y19nZXRfbW9kZXMoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvcikKPiA+PiAgCj4gPj4g
-IHN0YXRpYyBpbnQKPiA+PiAgbnY1MF9tc3RjX2F0b21pY19jaGVjayhzdHJ1Y3QgZHJtX2Nvbm5l
-Y3RvciAqY29ubmVjdG9yLAo+ID4+IC0JCSAgICAgICBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0
-ZSAqbmV3X2Nvbm5fc3RhdGUpCj4gPj4gKwkJICAgICAgIHN0cnVjdCBkcm1fYXRvbWljX3N0YXRl
-ICpzdGF0ZSkKPiA+PiAgewo+ID4+IC0Jc3RydWN0IGRybV9hdG9taWNfc3RhdGUgKnN0YXRlID0g
-bmV3X2Nvbm5fc3RhdGUtPnN0YXRlOwo+ID4+ICAJc3RydWN0IG52NTBfbXN0YyAqbXN0YyA9IG52
-NTBfbXN0Yyhjb25uZWN0b3IpOwo+ID4+ICAJc3RydWN0IGRybV9kcF9tc3RfdG9wb2xvZ3lfbWdy
-ICptZ3IgPSAmbXN0Yy0+bXN0bS0+bWdyOwo+ID4+ICsJc3RydWN0IGRybV9jb25uZWN0b3Jfc3Rh
-dGUgKm5ld19jb25uX3N0YXRlID0KPiA+PiArCQlkcm1fYXRvbWljX2dldF9uZXdfY29ubmVjdG9y
-X3N0YXRlKHN0YXRlLCBjb25uZWN0b3IpOwo+ID4+ICAJc3RydWN0IGRybV9jb25uZWN0b3Jfc3Rh
-dGUgKm9sZF9jb25uX3N0YXRlID0KPiA+PiAgCQlkcm1fYXRvbWljX2dldF9vbGRfY29ubmVjdG9y
-X3N0YXRlKHN0YXRlLCBjb25uZWN0b3IpOwo+ID4+ICAJc3RydWN0IGRybV9jcnRjX3N0YXRlICpj
-cnRjX3N0YXRlOwo+ID4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmNhci1kdS9yY2Fy
-X2x2ZHMuYyBiL2RyaXZlcnMvZ3B1L2RybS9yY2FyLWR1L3JjYXJfbHZkcy5jCj4gPj4gaW5kZXgg
-NjIwYjUxYWFiMjkxLi41YjgxYmEyYTdmMjcgMTAwNjQ0Cj4gPj4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL3JjYXItZHUvcmNhcl9sdmRzLmMKPiA+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vcmNhci1k
-dS9yY2FyX2x2ZHMuYwo+ID4+IEBAIC05MiwxMyArOTIsMTUgQEAgc3RhdGljIGludCByY2FyX2x2
-ZHNfY29ubmVjdG9yX2dldF9tb2RlcyhzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yKQo+
-ID4+ICB9Cj4gPj4gIAo+ID4+ICBzdGF0aWMgaW50IHJjYXJfbHZkc19jb25uZWN0b3JfYXRvbWlj
-X2NoZWNrKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsCj4gPj4gLQkJCQkJICAgIHN0
-cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpzdGF0ZSkKPiA+PiArCQkJCQkgICAgc3RydWN0IGRy
-bV9hdG9taWNfc3RhdGUgKnN0YXRlKQo+ID4+ICB7Cj4gPj4gIAlzdHJ1Y3QgcmNhcl9sdmRzICps
-dmRzID0gY29ubmVjdG9yX3RvX3JjYXJfbHZkcyhjb25uZWN0b3IpOwo+ID4+ICAJY29uc3Qgc3Ry
-dWN0IGRybV9kaXNwbGF5X21vZGUgKnBhbmVsX21vZGU7Cj4gPj4gKwlzdHJ1Y3QgZHJtX2Nvbm5l
-Y3Rvcl9zdGF0ZSAqY29ubl9zdGF0ZTsKPiA+PiAgCXN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqY3J0
-Y19zdGF0ZTsKPiA+PiAgCj4gPj4gLQlpZiAoIXN0YXRlLT5jcnRjKQo+ID4+ICsJY29ubl9zdGF0
-ZSA9IGRybV9hdG9taWNfZ2V0X25ld19jb25uZWN0b3Jfc3RhdGUoc3RhdGUsIGNvbm5lY3Rvcik7
-Cj4gPj4gKwlpZiAoIWNvbm5fc3RhdGUtPmNydGMpCj4gPj4gIAkJcmV0dXJuIDA7Cj4gPj4gIAo+
-ID4+ICAJaWYgKGxpc3RfZW1wdHkoJmNvbm5lY3Rvci0+bW9kZXMpKSB7Cj4gPj4gQEAgLTExMCw5
-ICsxMTIsOSBAQCBzdGF0aWMgaW50IHJjYXJfbHZkc19jb25uZWN0b3JfYXRvbWljX2NoZWNrKHN0
-cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsCj4gPj4gIAkJCQkgICAgICBzdHJ1Y3QgZHJt
-X2Rpc3BsYXlfbW9kZSwgaGVhZCk7Cj4gPj4gIAo+ID4+ICAJLyogV2UncmUgbm90IGFsbG93ZWQg
-dG8gbW9kaWZ5IHRoZSByZXNvbHV0aW9uLiAqLwo+ID4+IC0JY3J0Y19zdGF0ZSA9IGRybV9hdG9t
-aWNfZ2V0X2NydGNfc3RhdGUoc3RhdGUtPnN0YXRlLCBzdGF0ZS0+Y3J0Yyk7Cj4gPj4gLQlpZiAo
-SVNfRVJSKGNydGNfc3RhdGUpKQo+ID4+IC0JCXJldHVybiBQVFJfRVJSKGNydGNfc3RhdGUpOwo+
-ID4+ICsJY3J0Y19zdGF0ZSA9IGRybV9hdG9taWNfZ2V0X2NydGNfc3RhdGUoc3RhdGUsIGNvbm5f
-c3RhdGUtPmNydGMpOwo+ID4+ICsJaWYgKCFjcnRjX3N0YXRlKQo+ID4+ICsJCXJldHVybiAtRUlO
-VkFMOwo+ID4+ICAKPiA+PiAgCWlmIChjcnRjX3N0YXRlLT5tb2RlLmhkaXNwbGF5ICE9IHBhbmVs
-X21vZGUtPmhkaXNwbGF5IHx8Cj4gPj4gIAkgICAgY3J0Y19zdGF0ZS0+bW9kZS52ZGlzcGxheSAh
-PSBwYW5lbF9tb2RlLT52ZGlzcGxheSkKPiA+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L3ZjNC92YzRfdHhwLmMgYi9kcml2ZXJzL2dwdS9kcm0vdmM0L3ZjNF90eHAuYwo+ID4+IGluZGV4
-IGM4Yjg5YTc4ZjlmNC4uOTZmOTFjMWI0YjZlIDEwMDY0NAo+ID4+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS92YzQvdmM0X3R4cC5jCj4gPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3ZjNC92YzRfdHhw
-LmMKPiA+PiBAQCAtMjIxLDE3ICsyMjEsMTggQEAgc3RhdGljIGNvbnN0IHUzMiB0eHBfZm10c1td
-ID0gewo+ID4+ICB9Owo+ID4+ICAKPiA+PiAgc3RhdGljIGludCB2YzRfdHhwX2Nvbm5lY3Rvcl9h
-dG9taWNfY2hlY2soc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm4sCj4gPj4gLQkJCQkJc3RydWN0
-IGRybV9jb25uZWN0b3Jfc3RhdGUgKmNvbm5fc3RhdGUpCj4gPj4gKwkJCQkJICBzdHJ1Y3QgZHJt
-X2F0b21pY19zdGF0ZSAqc3RhdGUpCj4gPj4gIHsKPiA+PiArCXN0cnVjdCBkcm1fY29ubmVjdG9y
-X3N0YXRlICpjb25uX3N0YXRlOwo+ID4+ICAJc3RydWN0IGRybV9jcnRjX3N0YXRlICpjcnRjX3N0
-YXRlOwo+ID4+ICAJc3RydWN0IGRybV9mcmFtZWJ1ZmZlciAqZmI7Cj4gPj4gIAlpbnQgaTsKPiA+
-PiAgCj4gPj4gKwljb25uX3N0YXRlID0gZHJtX2F0b21pY19nZXRfbmV3X2Nvbm5lY3Rvcl9zdGF0
-ZShzdGF0ZSwgY29ubik7Cj4gPj4gIAlpZiAoIWNvbm5fc3RhdGUtPndyaXRlYmFja19qb2IgfHwg
-IWNvbm5fc3RhdGUtPndyaXRlYmFja19qb2ItPmZiKQo+ID4+ICAJCXJldHVybiAwOwo+ID4+ICAK
-PiA+PiAtCWNydGNfc3RhdGUgPSBkcm1fYXRvbWljX2dldF9uZXdfY3J0Y19zdGF0ZShjb25uX3N0
-YXRlLT5zdGF0ZSwKPiA+PiAtCQkJCQkJICAgY29ubl9zdGF0ZS0+Y3J0Yyk7Cj4gPj4gKwljcnRj
-X3N0YXRlID0gZHJtX2F0b21pY19nZXRfbmV3X2NydGNfc3RhdGUoc3RhdGUsIGNvbm5fc3RhdGUt
-PmNydGMpOwo+ID4+ICAKPiA+PiAgCWZiID0gY29ubl9zdGF0ZS0+d3JpdGViYWNrX2pvYi0+ZmI7
-Cj4gPj4gIAlpZiAoZmItPndpZHRoICE9IGNydGNfc3RhdGUtPm1vZGUuaGRpc3BsYXkgfHwKPiA+
-PiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vZHJtX21vZGVzZXRfaGVscGVyX3Z0YWJsZXMuaCBi
-L2luY2x1ZGUvZHJtL2RybV9tb2Rlc2V0X2hlbHBlcl92dGFibGVzLmgKPiA+PiBpbmRleCBkZTU3
-ZmI0MGNiNmUuLmFkYzhiN2NmNjRiNSAxMDA2NDQKPiA+PiAtLS0gYS9pbmNsdWRlL2RybS9kcm1f
-bW9kZXNldF9oZWxwZXJfdnRhYmxlcy5oCj4gPj4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX21vZGVz
-ZXRfaGVscGVyX3Z0YWJsZXMuaAo+ID4+IEBAIC0xMDIwLDcgKzEwMjAsNyBAQCBzdHJ1Y3QgZHJt
-X2Nvbm5lY3Rvcl9oZWxwZXJfZnVuY3Mgewo+ID4+ICAJICogZGVhZGxvY2suCj4gPj4gIAkgKi8K
-PiA+PiAgCWludCAoKmF0b21pY19jaGVjaykoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3Rv
-ciwKPiA+PiAtCQkJICAgIHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpzdGF0ZSk7Cj4gPj4g
-KwkJCSAgICBzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUpOwo+ID4+ICAKPiA+PiAgCS8q
-Kgo+ID4+ICAJICogQGF0b21pY19jb21taXQ6CgotLSAKUmVnYXJkcywKCkxhdXJlbnQgUGluY2hh
-cnQKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRl
-dmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
+On Thu, May 16, 2019 at 2:02 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Daniel,
+>
+> On Mon, May 13, 2019 at 04:47:47PM +0200, Daniel Vetter wrote:
+> > On Sat, May 11, 2019 at 10:12:02PM +0300, Laurent Pinchart wrote:
+> > > On Thu, May 02, 2019 at 03:49:46PM -0400, Sean Paul wrote:
+> > >> From: Sean Paul <seanpaul@chromium.org>
+> > >>
+> > >> Everyone who implements connector_helper_funcs->atomic_check reaches
+> > >> into the connector state to get the atomic state. Instead of continu=
+ing
+> > >> this pattern, change the callback signature to just give atomic stat=
+e
+> > >> and let the driver determine what it does and does not need from it.
+> > >>
+> > >> Eventually all atomic functions should do this, but that's just too =
+much
+> > >> busy work for me.
+> > >
+> > > Given that drivers also access the connector state, isn't this slight=
+ly
+> > > more inefficient ?
+> >
+> > It's atomic code, we're trying to optimize for clean code at the expens=
+e
+> > of a bit of runtime overhead due to more pointer chasing. And I agree w=
+ith
+> > the general push, the pile of old/new_state pointers of various objects
+> > we're passing around is confusing. Passing the overall drm_atomic_state
+> > seems much more reasonable, and with that we can get everything else. P=
+lus
+> > it's much more obvious whether you have the old/new state (since that's
+> > explicit when you look it up from the drm_atomic_state).
+>
+> Yes, I agree it's cleaner. I just hope the atomic state tracking cost
+> can be kept under control :-)
+>
+> By the way, this is likely not going to happen as it would be way too
+> intrusive, but it would be nice to rename drm_atomic_state to
+> drm_atomic_transaction (or something similar). It doesn't model a state,
+> but a change between an old state to a new state. This confused me in
+> the past, and I'm sure it can still be confusing to newcomers.
+
+Why are you the first to suggest this, this is awesome!
+drm_atomic_state is indeed not a state, but a transaction representing
+how we go from the old to the new state.
+
+I think this is awesome enough that we should actually try to make it
+happen. Tree-wide cocci + bribing Dave on St. Patrick's day with lots
+of beer might be enough :-)
+-Daniel
+
+> > If we ever see this show up in profile, and it starts mattering, first
+> > thing we need is a hashtable I think (atm it's list walking, which is j=
+ust
+> > terrible). But thus far no one cares.
+> >
+> > >> Changes in v3:
+> > >> - Added to the set
+> > >>
+> > >> Cc: Daniel Vetter <daniel@ffwll.ch>
+> > >> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> > >> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > >> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> > >> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > >> Cc: Ben Skeggs <bskeggs@redhat.com>
+> > >> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > >> Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> > >> Cc: Eric Anholt <eric@anholt.net>
+> > >> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> > >> ---
+> > >>  drivers/gpu/drm/drm_atomic_helper.c      |  4 ++--
+> > >>  drivers/gpu/drm/i915/intel_atomic.c      |  8 +++++---
+> > >>  drivers/gpu/drm/i915/intel_dp_mst.c      |  7 ++++---
+> > >>  drivers/gpu/drm/i915/intel_drv.h         |  2 +-
+> > >>  drivers/gpu/drm/i915/intel_sdvo.c        |  9 +++++----
+> > >>  drivers/gpu/drm/i915/intel_tv.c          |  8 +++++---
+> > >>  drivers/gpu/drm/nouveau/dispnv50/disp.c  |  5 +++--
+> > >>  drivers/gpu/drm/rcar-du/rcar_lvds.c      | 12 +++++++-----
+> > >>  drivers/gpu/drm/vc4/vc4_txp.c            |  7 ++++---
+> > >>  include/drm/drm_modeset_helper_vtables.h |  2 +-
+> > >>  10 files changed, 37 insertions(+), 27 deletions(-)
+> > >>
+> > >> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/d=
+rm_atomic_helper.c
+> > >> index 9d9e47276839..fa5a367507c1 100644
+> > >> --- a/drivers/gpu/drm/drm_atomic_helper.c
+> > >> +++ b/drivers/gpu/drm/drm_atomic_helper.c
+> > >> @@ -683,7 +683,7 @@ drm_atomic_helper_check_modeset(struct drm_devic=
+e *dev,
+> > >>            }
+> > >>
+> > >>            if (funcs->atomic_check)
+> > >> -                  ret =3D funcs->atomic_check(connector, new_connec=
+tor_state);
+> > >> +                  ret =3D funcs->atomic_check(connector, state);
+> > >>            if (ret)
+> > >>                    return ret;
+> > >>
+> > >> @@ -725,7 +725,7 @@ drm_atomic_helper_check_modeset(struct drm_devic=
+e *dev,
+> > >>                    continue;
+> > >>
+> > >>            if (funcs->atomic_check)
+> > >> -                  ret =3D funcs->atomic_check(connector, new_connec=
+tor_state);
+> > >> +                  ret =3D funcs->atomic_check(connector, state);
+> > >>            if (ret)
+> > >>                    return ret;
+> > >>    }
+> > >> diff --git a/drivers/gpu/drm/i915/intel_atomic.c b/drivers/gpu/drm/i=
+915/intel_atomic.c
+> > >> index b844e8840c6f..e8a5b82e9242 100644
+> > >> --- a/drivers/gpu/drm/i915/intel_atomic.c
+> > >> +++ b/drivers/gpu/drm/i915/intel_atomic.c
+> > >> @@ -103,12 +103,14 @@ int intel_digital_connector_atomic_set_propert=
+y(struct drm_connector *connector,
+> > >>  }
+> > >>
+> > >>  int intel_digital_connector_atomic_check(struct drm_connector *conn=
+,
+> > >> -                                   struct drm_connector_state *new_=
+state)
+> > >> +                                   struct drm_atomic_state *state)
+> > >>  {
+> > >> +  struct drm_connector_state *new_state =3D
+> > >> +          drm_atomic_get_new_connector_state(state, conn);
+> > >>    struct intel_digital_connector_state *new_conn_state =3D
+> > >>            to_intel_digital_connector_state(new_state);
+> > >>    struct drm_connector_state *old_state =3D
+> > >> -          drm_atomic_get_old_connector_state(new_state->state, conn=
+);
+> > >> +          drm_atomic_get_old_connector_state(state, conn);
+> > >>    struct intel_digital_connector_state *old_conn_state =3D
+> > >>            to_intel_digital_connector_state(old_state);
+> > >>    struct drm_crtc_state *crtc_state;
+> > >> @@ -118,7 +120,7 @@ int intel_digital_connector_atomic_check(struct =
+drm_connector *conn,
+> > >>    if (!new_state->crtc)
+> > >>            return 0;
+> > >>
+> > >> -  crtc_state =3D drm_atomic_get_new_crtc_state(new_state->state, ne=
+w_state->crtc);
+> > >> +  crtc_state =3D drm_atomic_get_new_crtc_state(state, new_state->cr=
+tc);
+> > >>
+> > >>    /*
+> > >>     * These properties are handled by fastset, and might not end
+> > >> diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c b/drivers/gpu/drm/i=
+915/intel_dp_mst.c
+> > >> index 19d81cef2ab6..89cfec128ba0 100644
+> > >> --- a/drivers/gpu/drm/i915/intel_dp_mst.c
+> > >> +++ b/drivers/gpu/drm/i915/intel_dp_mst.c
+> > >> @@ -143,9 +143,10 @@ static int intel_dp_mst_compute_config(struct i=
+ntel_encoder *encoder,
+> > >>
+> > >>  static int
+> > >>  intel_dp_mst_atomic_check(struct drm_connector *connector,
+> > >> -                    struct drm_connector_state *new_conn_state)
+> > >> +                    struct drm_atomic_state *state)
+> > >>  {
+> > >> -  struct drm_atomic_state *state =3D new_conn_state->state;
+> > >> +  struct drm_connector_state *new_conn_state =3D
+> > >> +          drm_atomic_get_new_connector_state(state, connector);
+> > >>    struct drm_connector_state *old_conn_state =3D
+> > >>            drm_atomic_get_old_connector_state(state, connector);
+> > >>    struct intel_connector *intel_connector =3D
+> > >> @@ -155,7 +156,7 @@ intel_dp_mst_atomic_check(struct drm_connector *=
+connector,
+> > >>    struct drm_dp_mst_topology_mgr *mgr;
+> > >>    int ret;
+> > >>
+> > >> -  ret =3D intel_digital_connector_atomic_check(connector, new_conn_=
+state);
+> > >> +  ret =3D intel_digital_connector_atomic_check(connector, state);
+> > >>    if (ret)
+> > >>            return ret;
+> > >>
+> > >> diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915=
+/intel_drv.h
+> > >> index f8c7b291fdc3..88571b8e8d62 100644
+> > >> --- a/drivers/gpu/drm/i915/intel_drv.h
+> > >> +++ b/drivers/gpu/drm/i915/intel_drv.h
+> > >> @@ -2481,7 +2481,7 @@ int intel_digital_connector_atomic_set_propert=
+y(struct drm_connector *connector,
+> > >>                                            struct drm_property *prop=
+erty,
+> > >>                                            u64 val);
+> > >>  int intel_digital_connector_atomic_check(struct drm_connector *conn=
+,
+> > >> -                                   struct drm_connector_state *new_=
+state);
+> > >> +                                   struct drm_atomic_state *state);
+> > >>  struct drm_connector_state *
+> > >>  intel_digital_connector_duplicate_state(struct drm_connector *conne=
+ctor);
+> > >>
+> > >> diff --git a/drivers/gpu/drm/i915/intel_sdvo.c b/drivers/gpu/drm/i91=
+5/intel_sdvo.c
+> > >> index 68f497493d43..72ea164b971c 100644
+> > >> --- a/drivers/gpu/drm/i915/intel_sdvo.c
+> > >> +++ b/drivers/gpu/drm/i915/intel_sdvo.c
+> > >> @@ -2342,9 +2342,10 @@ static const struct drm_connector_funcs intel=
+_sdvo_connector_funcs =3D {
+> > >>  };
+> > >>
+> > >>  static int intel_sdvo_atomic_check(struct drm_connector *conn,
+> > >> -                             struct drm_connector_state *new_conn_s=
+tate)
+> > >> +                             struct drm_atomic_state *state)
+> > >>  {
+> > >> -  struct drm_atomic_state *state =3D new_conn_state->state;
+> > >> +  struct drm_connector_state *new_conn_state =3D
+> > >> +          drm_atomic_get_new_connector_state(state, conn);
+> > >>    struct drm_connector_state *old_conn_state =3D
+> > >>            drm_atomic_get_old_connector_state(state, conn);
+> > >>    struct intel_sdvo_connector_state *old_state =3D
+> > >> @@ -2356,13 +2357,13 @@ static int intel_sdvo_atomic_check(struct dr=
+m_connector *conn,
+> > >>        (memcmp(&old_state->tv, &new_state->tv, sizeof(old_state->tv)=
+) ||
+> > >>         memcmp(&old_conn_state->tv, &new_conn_state->tv, sizeof(old_=
+conn_state->tv)))) {
+> > >>            struct drm_crtc_state *crtc_state =3D
+> > >> -                  drm_atomic_get_new_crtc_state(new_conn_state->sta=
+te,
+> > >> +                  drm_atomic_get_new_crtc_state(state,
+> > >>                                                  new_conn_state->crt=
+c);
+> > >>
+> > >>            crtc_state->connectors_changed =3D true;
+> > >>    }
+> > >>
+> > >> -  return intel_digital_connector_atomic_check(conn, new_conn_state)=
+;
+> > >> +  return intel_digital_connector_atomic_check(conn, state);
+> > >>  }
+> > >>
+> > >>  static const struct drm_connector_helper_funcs intel_sdvo_connector=
+_helper_funcs =3D {
+> > >> diff --git a/drivers/gpu/drm/i915/intel_tv.c b/drivers/gpu/drm/i915/=
+intel_tv.c
+> > >> index 3924c4944e1f..a41c5b467c14 100644
+> > >> --- a/drivers/gpu/drm/i915/intel_tv.c
+> > >> +++ b/drivers/gpu/drm/i915/intel_tv.c
+> > >> @@ -1817,16 +1817,18 @@ static const struct drm_connector_funcs inte=
+l_tv_connector_funcs =3D {
+> > >>  };
+> > >>
+> > >>  static int intel_tv_atomic_check(struct drm_connector *connector,
+> > >> -                           struct drm_connector_state *new_state)
+> > >> +                           struct drm_atomic_state *state)
+> > >>  {
+> > >> +  struct drm_connector_state *new_state;
+> > >>    struct drm_crtc_state *new_crtc_state;
+> > >>    struct drm_connector_state *old_state;
+> > >>
+> > >> +  new_state =3D drm_atomic_get_new_connector_state(state, connector=
+);
+> > >>    if (!new_state->crtc)
+> > >>            return 0;
+> > >>
+> > >> -  old_state =3D drm_atomic_get_old_connector_state(new_state->state=
+, connector);
+> > >> -  new_crtc_state =3D drm_atomic_get_new_crtc_state(new_state->state=
+, new_state->crtc);
+> > >> +  old_state =3D drm_atomic_get_old_connector_state(state, connector=
+);
+> > >> +  new_crtc_state =3D drm_atomic_get_new_crtc_state(state, new_state=
+->crtc);
+> > >>
+> > >>    if (old_state->tv.mode !=3D new_state->tv.mode ||
+> > >>        old_state->tv.margins.left !=3D new_state->tv.margins.left ||
+> > >> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/d=
+rm/nouveau/dispnv50/disp.c
+> > >> index 4b1650f51955..7ba373f493b2 100644
+> > >> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> > >> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> > >> @@ -948,11 +948,12 @@ nv50_mstc_get_modes(struct drm_connector *conn=
+ector)
+> > >>
+> > >>  static int
+> > >>  nv50_mstc_atomic_check(struct drm_connector *connector,
+> > >> -                 struct drm_connector_state *new_conn_state)
+> > >> +                 struct drm_atomic_state *state)
+> > >>  {
+> > >> -  struct drm_atomic_state *state =3D new_conn_state->state;
+> > >>    struct nv50_mstc *mstc =3D nv50_mstc(connector);
+> > >>    struct drm_dp_mst_topology_mgr *mgr =3D &mstc->mstm->mgr;
+> > >> +  struct drm_connector_state *new_conn_state =3D
+> > >> +          drm_atomic_get_new_connector_state(state, connector);
+> > >>    struct drm_connector_state *old_conn_state =3D
+> > >>            drm_atomic_get_old_connector_state(state, connector);
+> > >>    struct drm_crtc_state *crtc_state;
+> > >> diff --git a/drivers/gpu/drm/rcar-du/rcar_lvds.c b/drivers/gpu/drm/r=
+car-du/rcar_lvds.c
+> > >> index 620b51aab291..5b81ba2a7f27 100644
+> > >> --- a/drivers/gpu/drm/rcar-du/rcar_lvds.c
+> > >> +++ b/drivers/gpu/drm/rcar-du/rcar_lvds.c
+> > >> @@ -92,13 +92,15 @@ static int rcar_lvds_connector_get_modes(struct =
+drm_connector *connector)
+> > >>  }
+> > >>
+> > >>  static int rcar_lvds_connector_atomic_check(struct drm_connector *c=
+onnector,
+> > >> -                                      struct drm_connector_state *s=
+tate)
+> > >> +                                      struct drm_atomic_state *stat=
+e)
+> > >>  {
+> > >>    struct rcar_lvds *lvds =3D connector_to_rcar_lvds(connector);
+> > >>    const struct drm_display_mode *panel_mode;
+> > >> +  struct drm_connector_state *conn_state;
+> > >>    struct drm_crtc_state *crtc_state;
+> > >>
+> > >> -  if (!state->crtc)
+> > >> +  conn_state =3D drm_atomic_get_new_connector_state(state, connecto=
+r);
+> > >> +  if (!conn_state->crtc)
+> > >>            return 0;
+> > >>
+> > >>    if (list_empty(&connector->modes)) {
+> > >> @@ -110,9 +112,9 @@ static int rcar_lvds_connector_atomic_check(stru=
+ct drm_connector *connector,
+> > >>                                  struct drm_display_mode, head);
+> > >>
+> > >>    /* We're not allowed to modify the resolution. */
+> > >> -  crtc_state =3D drm_atomic_get_crtc_state(state->state, state->crt=
+c);
+> > >> -  if (IS_ERR(crtc_state))
+> > >> -          return PTR_ERR(crtc_state);
+> > >> +  crtc_state =3D drm_atomic_get_crtc_state(state, conn_state->crtc)=
+;
+> > >> +  if (!crtc_state)
+> > >> +          return -EINVAL;
+> > >>
+> > >>    if (crtc_state->mode.hdisplay !=3D panel_mode->hdisplay ||
+> > >>        crtc_state->mode.vdisplay !=3D panel_mode->vdisplay)
+> > >> diff --git a/drivers/gpu/drm/vc4/vc4_txp.c b/drivers/gpu/drm/vc4/vc4=
+_txp.c
+> > >> index c8b89a78f9f4..96f91c1b4b6e 100644
+> > >> --- a/drivers/gpu/drm/vc4/vc4_txp.c
+> > >> +++ b/drivers/gpu/drm/vc4/vc4_txp.c
+> > >> @@ -221,17 +221,18 @@ static const u32 txp_fmts[] =3D {
+> > >>  };
+> > >>
+> > >>  static int vc4_txp_connector_atomic_check(struct drm_connector *con=
+n,
+> > >> -                                  struct drm_connector_state *conn_=
+state)
+> > >> +                                    struct drm_atomic_state *state)
+> > >>  {
+> > >> +  struct drm_connector_state *conn_state;
+> > >>    struct drm_crtc_state *crtc_state;
+> > >>    struct drm_framebuffer *fb;
+> > >>    int i;
+> > >>
+> > >> +  conn_state =3D drm_atomic_get_new_connector_state(state, conn);
+> > >>    if (!conn_state->writeback_job || !conn_state->writeback_job->fb)
+> > >>            return 0;
+> > >>
+> > >> -  crtc_state =3D drm_atomic_get_new_crtc_state(conn_state->state,
+> > >> -                                             conn_state->crtc);
+> > >> +  crtc_state =3D drm_atomic_get_new_crtc_state(state, conn_state->c=
+rtc);
+> > >>
+> > >>    fb =3D conn_state->writeback_job->fb;
+> > >>    if (fb->width !=3D crtc_state->mode.hdisplay ||
+> > >> diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/=
+drm_modeset_helper_vtables.h
+> > >> index de57fb40cb6e..adc8b7cf64b5 100644
+> > >> --- a/include/drm/drm_modeset_helper_vtables.h
+> > >> +++ b/include/drm/drm_modeset_helper_vtables.h
+> > >> @@ -1020,7 +1020,7 @@ struct drm_connector_helper_funcs {
+> > >>     * deadlock.
+> > >>     */
+> > >>    int (*atomic_check)(struct drm_connector *connector,
+> > >> -                      struct drm_connector_state *state);
+> > >> +                      struct drm_atomic_state *state);
+> > >>
+> > >>    /**
+> > >>     * @atomic_commit:
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+
+
+--=20
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
