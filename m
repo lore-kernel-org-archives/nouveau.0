@@ -1,47 +1,84 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH] drm/nouveau/bios/init: fix spelling mistake "CONDITON" -> "CONDITION"
-Date: Thu, 16 May 2019 13:41:04 +1000
-Message-ID: <CACAvsv5qD7LotsmK9Cv3XNH56sp8UmovOU3cxiE158oQwXS=jg@mail.gmail.com>
-References: <20190514205701.5750-1-colin.king@canonical.com>
+From: Peteris Rudzusiks <peteris.rudzusiks-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: fix duplication of
+ nv50_head_atom struct
+Date: Thu, 16 May 2019 13:31:24 +0200
+Message-ID: <20190516113123.GA14864@y40-linux>
+References: <20190511170831.25645-1-peteris.rudzusiks@gmail.com>
+ <CACAvsv5Ux7Av45JGQ7Rqe+ZX2zWcbbBNqc+kCZgLT-uGkQAegw@mail.gmail.com>
+ <20190514195736.GB5179@y40-linux>
+ <CAKb7Uvhhre6-k_GJUmLW59z4XEjg5eX6EQiHN5aGts_gcC3+2w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190514205701.5750-1-colin.king@canonical.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Colin King <colin.king@canonical.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <CAKb7Uvhhre6-k_GJUmLW59z4XEjg5eX6EQiHN5aGts_gcC3+2w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 15 May 2019 at 06:57, Colin King <colin.king@canonical.com> wrote:
->
-> From: Colin Ian King <colin.king@canonical.com>
->
-> There is a spelling mistake in a warning message. Fix it.
-Thanks, merged.
-
->
-> Signed-off-by: Colin Ian King <colin.king@canonical.com>
-> ---
->  drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
-> index ec0e9f7224b5..3f4f27d191ae 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/init.c
-> @@ -834,7 +834,7 @@ init_generic_condition(struct nvbios_init *init)
->                 init_exec_set(init, false);
->                 break;
->         default:
-> -               warn("INIT_GENERIC_CONDITON: unknown 0x%02x\n", cond);
-> +               warn("INIT_GENERIC_CONDITION: unknown 0x%02x\n", cond);
->                 init->offset += size;
->                 break;
->         }
-> --
-> 2.20.1
->
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+T24gV2VkLCBNYXkgMTUsIDIwMTkgYXQgMTE6Mjk6NDBQTSAtMDQwMCwgSWxpYSBNaXJraW4gd3Jv
+dGU6Cj4gT24gVHVlLCBNYXkgMTQsIDIwMTkgYXQgMzo1NyBQTSBQZXRlcmlzIFJ1ZHp1c2lrcwo+
+IDxwZXRlcmlzLnJ1ZHp1c2lrc0BnbWFpbC5jb20+IHdyb3RlOgo+ID4KPiA+IE9uIFR1ZSwgTWF5
+IDE0LCAyMDE5IGF0IDA0OjU1OjA1UE0gKzEwMDAsIEJlbiBTa2VnZ3Mgd3JvdGU6Cj4gPiA+IE9u
+IFN1biwgMTIgTWF5IDIwMTkgYXQgMDQ6MjMsIFBldGVyaXMgUnVkenVzaWtzCj4gPiA+IDxwZXRl
+cmlzLnJ1ZHp1c2lrc0BnbWFpbC5jb20+IHdyb3RlOgo+ID4gPiA+Cj4gPiA+ID4gbnY1MF9oZWFk
+X2F0b21pY19kdXBsaWNhdGVfc3RhdGUoKSBtYWtlcyBhIGNvcHkgb2YgbnY1MF9oZWFkX2F0b20K
+PiA+ID4gPiBzdHJ1Y3QuIFRoaXMgcGF0Y2ggYWRkcyBjb3B5aW5nIG9mIHN0cnVjdCBtZW1iZXIg
+bmFtZWQgIm9yIiwgd2hpY2gKPiA+ID4gPiBwcmV2aW91c2x5IHdhcyBsZWZ0IHVuaW5pdGlhbGl6
+ZWQgaW4gdGhlIGR1cGxpY2F0ZWQgc3RydWN0dXJlLgo+ID4gPiA+Cj4gPiA+ID4gRHVlIHRvIHRo
+aXMgYnVnLCBpbmNvcnJlY3QgbmhzeW5jIGFuZCBudnN5bmMgdmFsdWVzIHdlcmUgc29tZXRpbWVz
+IHVzZWQuCj4gPiA+ID4gSW4gbXkgcGFydGljdWxhciBjYXNlLCB0aGF0IGxlYWQgdG8gYSBtaXNt
+YXRjaCBiZXR3ZWVuIHRoZSBvdXRwdXQKPiA+ID4gPiByZXNvbHV0aW9uIG9mIHRoZSBncmFwaGlj
+cyBkZXZpY2UgKEdlRm9yY2UgR1QgNjMwIE9FTSkgYW5kIHRoZSByZXBvcnRlZAo+ID4gPiA+IGlu
+cHV0IHNpZ25hbCByZXNvbHV0aW9uIG9uIHRoZSBkaXNwbGF5LiB4cmFuZHIgcmVwb3J0ZWQgMTY4
+MHgxMDUwLCBidXQKPiA+ID4gPiB0aGUgZGlzcGxheSByZXBvcnRlZCAxMjgweDEwMjQuIEFzIGEg
+cmVzdWx0IG9mIHRoaXMgbWlzbWF0Y2gsIHRoZSBvdXRwdXQKPiA+ID4gPiBvbiB0aGUgZGlzcGxh
+eSBsb29rZWQgbGlrZSBpdCB3YXMgY3JvcHBlZCAob25seSBwYXJ0IG9mIHRoZSBvdXRwdXQgd2Fz
+Cj4gPiA+ID4gYWN0dWFsbHkgdmlzaWJsZSBvbiB0aGUgZGlzcGxheSkuCj4gPiA+ID4KPiA+ID4g
+PiBnaXQgYmlzZWN0IHBvaW50ZWQgdG8gY29tbWl0IDJjYTdmYjVjMWNjNiAoImRybS9ub3V2ZWF1
+L2ttcy9udjUwOiBoYW5kbGUKPiA+ID4gPiBTZXRDb250cm9sT3V0cHV0UmVzb3VyY2UgZnJvbSBo
+ZWFkIiksIHdoaWNoIGFkZGVkIHRoZSBtZW1iZXIgIm9yIiB0bwo+ID4gPiA+IG52NTBfaGVhZF9h
+dG9tIHN0cnVjdHVyZSwgYnV0IGZvcmdvdCB0byBjb3B5IGl0IGluCj4gPiA+ID4gbnY1MF9oZWFk
+X2F0b21pY19kdXBsaWNhdGVfc3RhdGUoKS4KPiA+ID4gPgo+ID4gPiA+IEZpeGVzOiAyY2E3ZmI1
+YzFjYzYgKCJkcm0vbm91dmVhdS9rbXMvbnY1MDogaGFuZGxlIFNldENvbnRyb2xPdXRwdXRSZXNv
+dXJjZSBmcm9tIGhlYWQiKQo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IFBldGVyaXMgUnVkenVzaWtz
+IDxwZXRlcmlzLnJ1ZHp1c2lrc0BnbWFpbC5jb20+Cj4gPiA+IE9vcHMsIG5pY2UgY2F0Y2guICBU
+aGFuayB5b3UgZm9yIHRoaXMsIEkndmUgbWVyZ2VkIGl0IGluIG15IHRyZWUgYW5kCj4gPiA+IHdp
+bGwgZ2V0IGl0IHVwc3RyZWFtIEFTQVAuCj4gPiA+Cj4gPiA+IFRoYW5rcywKPiA+ID4gQmVuLgo+
+ID4gPgo+ID4gSGkgQmVuLAo+ID4KPiA+IFRoYW5rIHlvdSBmb3IgdGFraW5nIHRoZSB0aW1lIHRv
+IHJldmlldyBhbmQgbWVyZ2UgdGhpcyBwYXRjaC4KPiA+Cj4gPiBJJ20gbmV3IHRvIHRoZSBMaW51
+eCBrZXJuZWwgZGV2ZWxvcG1lbnQgcHJvY2Vzcywgc28gSSBhbSBub3Qgc3VyZSB3aGF0Cj4gPiBo
+YXBwZW5zIG5leHQuIERvZXMgaW5jbHVzaW9uIGluIHlvdXIgdHJlZSBpbXBseSB0aGF0IHRoaXMg
+Zml4IHdpbGwgZW5kCj4gPiB1cCBpbiBzb21lIChtb3N0IGxpa2VseSAtIG5leHQpIG1haW5saW5l
+IGtlcm5lbD8gV2lsbCBpdCBhbHNvIGJlCj4gPiBiYWNrcG9ydGVkIHRvIDQuMTkgTFRTIGJyYW5j
+aD8KPiA+Cj4gPiBUaGlzIGJ1ZyBhZmZlY3RzIGFsbCBrZXJuZWwgdmVyc2lvbnMgc3RhcnRpbmcg
+ZnJvbSB2NC4xOC4gUHJvYmFibHkgbm90Cj4gPiB0aGF0IG1hbnkgc3lzdGVtcyB0aG91Z2guCj4g
+Cj4gQmVuIHN1Ym1pdHMgYSBwdWxsIHJlcXVlc3QgdG8gRGF2ZSBBaXJsaWUgKGRybSBtYWludGFp
+bmVyKSwgYW5kIERhdmUKPiBzdWJtaXRzIG9uZSB0byBMaW51cyBmb3IgaW5jbHVzaW9uIGluIHRo
+ZSAib2ZmaWNpYWwiIHVwc3RyZWFtCj4gcmVwb3NpdG9yeS4gRGF2ZSBqdXN0IHNlbnQgYSBwdWxs
+IHJlcXVlc3QgdG8gTGludXMsIHdobyB1c3VhbGx5IHBpY2tzCj4gdGhlc2UgdXAgd2l0aGluIGEg
+ZmV3IGRheXMgKGV4Y2VwdGlvbnMgYXBwbHkpLgo+IAo+IE9uY2UgaW4gdGhlIG1haW5saW5lIHRy
+ZWUsIHRoZSAiRml4ZXMiIHRhZyBpcyBsaWtlbHkgdG8gY2F1c2UgaXQgdG8KPiBnZXQgcGlja2Vk
+IHVwIGZvciBzdGFibGUuIFlvdSBjYW4gYWxzbyBub21pbmF0ZSBpdCBmb3Igc3RhYmxlIGtlcm5l
+bAo+IGJyYW5jaCBpbmNsdXNpb24gZXhwbGljaXRseSAodGhlcmUgYXJlIGluc3RydWN0aW9ucyBz
+b21ld2hlcmUsIGJ1dAo+IGJhc2ljYWxseSB5b3Ugc2VuZCBhbiBlbWFpbCB0byBzb21lIGxpc3Qg
+c2F5aW5nICJwbGVhc2UgaW5jbHVkZSBjb21taXQKPiBBQkMgaW4ga2VybmVscyBYWVoiKS4KPiAK
+PiBXaGF0IFVidW50dSBzaGlwcyBpcywgdWx0aW1hdGVseSwgdXAgdG8gVWJ1bnR1LiBUaGV5IHdp
+bGwsIGhvd2V2ZXIsCj4gZnJlcXVlbnRseSBmb2xsb3cgdGhlIHN0YWJsZSBrZXJuZWwgYnJhbmNo
+ZXMsIGFuZCBsaXN0ZW4gdG8gdGhlIGxpc3QKPiBhYm92ZSBhcyB3ZWxsLgo+IAo+IEhvcGUgdGhp
+cyBoZWxwcywKPiAKPiAgIC1pbGlhCgpUaGFua3MgZm9yIGV4cGxhaW5nIHRoaXMuIEknbGwgd2Fp
+dCBhbmQgc2VlIGlmIHRoaXMgcGF0Y2ggZ2V0cyBpbmNsdWRlZAppbiBzdGFibGUgcmVsZWFzZXMg
+d2l0aG91dCBleHBsaWNpdGx5IGFza2luZyBmb3IgaXQuCgpSZWdhcmRzLApQZXRlcmlzCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
+ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
