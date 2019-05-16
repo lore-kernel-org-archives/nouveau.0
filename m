@@ -1,418 +1,78 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH v3 04/10] drm: Convert connector_helper_funcs->atomic_check
- to accept drm_atomic_state
-Date: Thu, 16 May 2019 14:07:34 +0200
-Message-ID: <CAKMK7uG_TmzZBgVkJ+j9C53KRp1OgswYuxpFV77+eU6BPWwGgw@mail.gmail.com>
-References: <20190502194956.218441-1-sean@poorly.run> <20190502194956.218441-5-sean@poorly.run>
- <20190511191202.GL13043@pendragon.ideasonboard.com> <20190513144747.GR17751@phenom.ffwll.local>
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v3 04/10] drm: Convert
+ connector_helper_funcs->atomic_check to accept drm_atomic_state
+Date: Thu, 16 May 2019 16:28:03 +0300
+Message-ID: <20190516132803.GM24299@intel.com>
+References: <20190502194956.218441-1-sean@poorly.run>
+ <20190502194956.218441-5-sean@poorly.run>
+ <20190511191202.GL13043@pendragon.ideasonboard.com>
+ <20190513144747.GR17751@phenom.ffwll.local>
  <20190516120221.GI14820@pendragon.ideasonboard.com>
+ <CAKMK7uG_TmzZBgVkJ+j9C53KRp1OgswYuxpFV77+eU6BPWwGgw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190516120221.GI14820@pendragon.ideasonboard.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Sean Paul <sean@poorly.run>, dri-devel <dri-devel@lists.freedesktop.org>, Sean Paul <seanpaul@chromium.org>, =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Ben Skeggs <bskeggs@redhat.com>, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Eric Anholt <eric@anholt.net>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <maxime.ripard@bootlin.com>, David Airlie <airlied@linux.ie>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, intel-gfx <intel-gfx@lists.freedesktop.org>, Nouveau Dev <nouveau@lists.freedesktop.org>, "open list:DRM DRIVERS FOR RENESAS" <linux-renesas>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uG_TmzZBgVkJ+j9C53KRp1OgswYuxpFV77+eU6BPWwGgw@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: David Airlie <airlied@linux.ie>, Maxime Ripard <maxime.ripard@bootlin.com>, Nouveau Dev <nouveau@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "open list:DRM DRIVERS FOR RENESAS" <linux-renesas-soc@vger.kernel.org>, Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Sean Paul <seanpaul@chromium.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>, intel-gfx <intel-gfx@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, May 16, 2019 at 2:02 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Daniel,
->
-> On Mon, May 13, 2019 at 04:47:47PM +0200, Daniel Vetter wrote:
-> > On Sat, May 11, 2019 at 10:12:02PM +0300, Laurent Pinchart wrote:
-> > > On Thu, May 02, 2019 at 03:49:46PM -0400, Sean Paul wrote:
-> > >> From: Sean Paul <seanpaul@chromium.org>
-> > >>
-> > >> Everyone who implements connector_helper_funcs->atomic_check reaches
-> > >> into the connector state to get the atomic state. Instead of continu=
-ing
-> > >> this pattern, change the callback signature to just give atomic stat=
-e
-> > >> and let the driver determine what it does and does not need from it.
-> > >>
-> > >> Eventually all atomic functions should do this, but that's just too =
-much
-> > >> busy work for me.
-> > >
-> > > Given that drivers also access the connector state, isn't this slight=
-ly
-> > > more inefficient ?
-> >
-> > It's atomic code, we're trying to optimize for clean code at the expens=
-e
-> > of a bit of runtime overhead due to more pointer chasing. And I agree w=
-ith
-> > the general push, the pile of old/new_state pointers of various objects
-> > we're passing around is confusing. Passing the overall drm_atomic_state
-> > seems much more reasonable, and with that we can get everything else. P=
-lus
-> > it's much more obvious whether you have the old/new state (since that's
-> > explicit when you look it up from the drm_atomic_state).
->
-> Yes, I agree it's cleaner. I just hope the atomic state tracking cost
-> can be kept under control :-)
->
-> By the way, this is likely not going to happen as it would be way too
-> intrusive, but it would be nice to rename drm_atomic_state to
-> drm_atomic_transaction (or something similar). It doesn't model a state,
-> but a change between an old state to a new state. This confused me in
-> the past, and I'm sure it can still be confusing to newcomers.
-
-Why are you the first to suggest this, this is awesome!
-drm_atomic_state is indeed not a state, but a transaction representing
-how we go from the old to the new state.
-
-I think this is awesome enough that we should actually try to make it
-happen. Tree-wide cocci + bribing Dave on St. Patrick's day with lots
-of beer might be enough :-)
--Daniel
-
-> > If we ever see this show up in profile, and it starts mattering, first
-> > thing we need is a hashtable I think (atm it's list walking, which is j=
-ust
-> > terrible). But thus far no one cares.
-> >
-> > >> Changes in v3:
-> > >> - Added to the set
-> > >>
-> > >> Cc: Daniel Vetter <daniel@ffwll.ch>
-> > >> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> > >> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > >> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > >> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > >> Cc: Ben Skeggs <bskeggs@redhat.com>
-> > >> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > >> Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> > >> Cc: Eric Anholt <eric@anholt.net>
-> > >> Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> > >> ---
-> > >>  drivers/gpu/drm/drm_atomic_helper.c      |  4 ++--
-> > >>  drivers/gpu/drm/i915/intel_atomic.c      |  8 +++++---
-> > >>  drivers/gpu/drm/i915/intel_dp_mst.c      |  7 ++++---
-> > >>  drivers/gpu/drm/i915/intel_drv.h         |  2 +-
-> > >>  drivers/gpu/drm/i915/intel_sdvo.c        |  9 +++++----
-> > >>  drivers/gpu/drm/i915/intel_tv.c          |  8 +++++---
-> > >>  drivers/gpu/drm/nouveau/dispnv50/disp.c  |  5 +++--
-> > >>  drivers/gpu/drm/rcar-du/rcar_lvds.c      | 12 +++++++-----
-> > >>  drivers/gpu/drm/vc4/vc4_txp.c            |  7 ++++---
-> > >>  include/drm/drm_modeset_helper_vtables.h |  2 +-
-> > >>  10 files changed, 37 insertions(+), 27 deletions(-)
-> > >>
-> > >> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/d=
-rm_atomic_helper.c
-> > >> index 9d9e47276839..fa5a367507c1 100644
-> > >> --- a/drivers/gpu/drm/drm_atomic_helper.c
-> > >> +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> > >> @@ -683,7 +683,7 @@ drm_atomic_helper_check_modeset(struct drm_devic=
-e *dev,
-> > >>            }
-> > >>
-> > >>            if (funcs->atomic_check)
-> > >> -                  ret =3D funcs->atomic_check(connector, new_connec=
-tor_state);
-> > >> +                  ret =3D funcs->atomic_check(connector, state);
-> > >>            if (ret)
-> > >>                    return ret;
-> > >>
-> > >> @@ -725,7 +725,7 @@ drm_atomic_helper_check_modeset(struct drm_devic=
-e *dev,
-> > >>                    continue;
-> > >>
-> > >>            if (funcs->atomic_check)
-> > >> -                  ret =3D funcs->atomic_check(connector, new_connec=
-tor_state);
-> > >> +                  ret =3D funcs->atomic_check(connector, state);
-> > >>            if (ret)
-> > >>                    return ret;
-> > >>    }
-> > >> diff --git a/drivers/gpu/drm/i915/intel_atomic.c b/drivers/gpu/drm/i=
-915/intel_atomic.c
-> > >> index b844e8840c6f..e8a5b82e9242 100644
-> > >> --- a/drivers/gpu/drm/i915/intel_atomic.c
-> > >> +++ b/drivers/gpu/drm/i915/intel_atomic.c
-> > >> @@ -103,12 +103,14 @@ int intel_digital_connector_atomic_set_propert=
-y(struct drm_connector *connector,
-> > >>  }
-> > >>
-> > >>  int intel_digital_connector_atomic_check(struct drm_connector *conn=
-,
-> > >> -                                   struct drm_connector_state *new_=
-state)
-> > >> +                                   struct drm_atomic_state *state)
-> > >>  {
-> > >> +  struct drm_connector_state *new_state =3D
-> > >> +          drm_atomic_get_new_connector_state(state, conn);
-> > >>    struct intel_digital_connector_state *new_conn_state =3D
-> > >>            to_intel_digital_connector_state(new_state);
-> > >>    struct drm_connector_state *old_state =3D
-> > >> -          drm_atomic_get_old_connector_state(new_state->state, conn=
-);
-> > >> +          drm_atomic_get_old_connector_state(state, conn);
-> > >>    struct intel_digital_connector_state *old_conn_state =3D
-> > >>            to_intel_digital_connector_state(old_state);
-> > >>    struct drm_crtc_state *crtc_state;
-> > >> @@ -118,7 +120,7 @@ int intel_digital_connector_atomic_check(struct =
-drm_connector *conn,
-> > >>    if (!new_state->crtc)
-> > >>            return 0;
-> > >>
-> > >> -  crtc_state =3D drm_atomic_get_new_crtc_state(new_state->state, ne=
-w_state->crtc);
-> > >> +  crtc_state =3D drm_atomic_get_new_crtc_state(state, new_state->cr=
-tc);
-> > >>
-> > >>    /*
-> > >>     * These properties are handled by fastset, and might not end
-> > >> diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c b/drivers/gpu/drm/i=
-915/intel_dp_mst.c
-> > >> index 19d81cef2ab6..89cfec128ba0 100644
-> > >> --- a/drivers/gpu/drm/i915/intel_dp_mst.c
-> > >> +++ b/drivers/gpu/drm/i915/intel_dp_mst.c
-> > >> @@ -143,9 +143,10 @@ static int intel_dp_mst_compute_config(struct i=
-ntel_encoder *encoder,
-> > >>
-> > >>  static int
-> > >>  intel_dp_mst_atomic_check(struct drm_connector *connector,
-> > >> -                    struct drm_connector_state *new_conn_state)
-> > >> +                    struct drm_atomic_state *state)
-> > >>  {
-> > >> -  struct drm_atomic_state *state =3D new_conn_state->state;
-> > >> +  struct drm_connector_state *new_conn_state =3D
-> > >> +          drm_atomic_get_new_connector_state(state, connector);
-> > >>    struct drm_connector_state *old_conn_state =3D
-> > >>            drm_atomic_get_old_connector_state(state, connector);
-> > >>    struct intel_connector *intel_connector =3D
-> > >> @@ -155,7 +156,7 @@ intel_dp_mst_atomic_check(struct drm_connector *=
-connector,
-> > >>    struct drm_dp_mst_topology_mgr *mgr;
-> > >>    int ret;
-> > >>
-> > >> -  ret =3D intel_digital_connector_atomic_check(connector, new_conn_=
-state);
-> > >> +  ret =3D intel_digital_connector_atomic_check(connector, state);
-> > >>    if (ret)
-> > >>            return ret;
-> > >>
-> > >> diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915=
-/intel_drv.h
-> > >> index f8c7b291fdc3..88571b8e8d62 100644
-> > >> --- a/drivers/gpu/drm/i915/intel_drv.h
-> > >> +++ b/drivers/gpu/drm/i915/intel_drv.h
-> > >> @@ -2481,7 +2481,7 @@ int intel_digital_connector_atomic_set_propert=
-y(struct drm_connector *connector,
-> > >>                                            struct drm_property *prop=
-erty,
-> > >>                                            u64 val);
-> > >>  int intel_digital_connector_atomic_check(struct drm_connector *conn=
-,
-> > >> -                                   struct drm_connector_state *new_=
-state);
-> > >> +                                   struct drm_atomic_state *state);
-> > >>  struct drm_connector_state *
-> > >>  intel_digital_connector_duplicate_state(struct drm_connector *conne=
-ctor);
-> > >>
-> > >> diff --git a/drivers/gpu/drm/i915/intel_sdvo.c b/drivers/gpu/drm/i91=
-5/intel_sdvo.c
-> > >> index 68f497493d43..72ea164b971c 100644
-> > >> --- a/drivers/gpu/drm/i915/intel_sdvo.c
-> > >> +++ b/drivers/gpu/drm/i915/intel_sdvo.c
-> > >> @@ -2342,9 +2342,10 @@ static const struct drm_connector_funcs intel=
-_sdvo_connector_funcs =3D {
-> > >>  };
-> > >>
-> > >>  static int intel_sdvo_atomic_check(struct drm_connector *conn,
-> > >> -                             struct drm_connector_state *new_conn_s=
-tate)
-> > >> +                             struct drm_atomic_state *state)
-> > >>  {
-> > >> -  struct drm_atomic_state *state =3D new_conn_state->state;
-> > >> +  struct drm_connector_state *new_conn_state =3D
-> > >> +          drm_atomic_get_new_connector_state(state, conn);
-> > >>    struct drm_connector_state *old_conn_state =3D
-> > >>            drm_atomic_get_old_connector_state(state, conn);
-> > >>    struct intel_sdvo_connector_state *old_state =3D
-> > >> @@ -2356,13 +2357,13 @@ static int intel_sdvo_atomic_check(struct dr=
-m_connector *conn,
-> > >>        (memcmp(&old_state->tv, &new_state->tv, sizeof(old_state->tv)=
-) ||
-> > >>         memcmp(&old_conn_state->tv, &new_conn_state->tv, sizeof(old_=
-conn_state->tv)))) {
-> > >>            struct drm_crtc_state *crtc_state =3D
-> > >> -                  drm_atomic_get_new_crtc_state(new_conn_state->sta=
-te,
-> > >> +                  drm_atomic_get_new_crtc_state(state,
-> > >>                                                  new_conn_state->crt=
-c);
-> > >>
-> > >>            crtc_state->connectors_changed =3D true;
-> > >>    }
-> > >>
-> > >> -  return intel_digital_connector_atomic_check(conn, new_conn_state)=
-;
-> > >> +  return intel_digital_connector_atomic_check(conn, state);
-> > >>  }
-> > >>
-> > >>  static const struct drm_connector_helper_funcs intel_sdvo_connector=
-_helper_funcs =3D {
-> > >> diff --git a/drivers/gpu/drm/i915/intel_tv.c b/drivers/gpu/drm/i915/=
-intel_tv.c
-> > >> index 3924c4944e1f..a41c5b467c14 100644
-> > >> --- a/drivers/gpu/drm/i915/intel_tv.c
-> > >> +++ b/drivers/gpu/drm/i915/intel_tv.c
-> > >> @@ -1817,16 +1817,18 @@ static const struct drm_connector_funcs inte=
-l_tv_connector_funcs =3D {
-> > >>  };
-> > >>
-> > >>  static int intel_tv_atomic_check(struct drm_connector *connector,
-> > >> -                           struct drm_connector_state *new_state)
-> > >> +                           struct drm_atomic_state *state)
-> > >>  {
-> > >> +  struct drm_connector_state *new_state;
-> > >>    struct drm_crtc_state *new_crtc_state;
-> > >>    struct drm_connector_state *old_state;
-> > >>
-> > >> +  new_state =3D drm_atomic_get_new_connector_state(state, connector=
-);
-> > >>    if (!new_state->crtc)
-> > >>            return 0;
-> > >>
-> > >> -  old_state =3D drm_atomic_get_old_connector_state(new_state->state=
-, connector);
-> > >> -  new_crtc_state =3D drm_atomic_get_new_crtc_state(new_state->state=
-, new_state->crtc);
-> > >> +  old_state =3D drm_atomic_get_old_connector_state(state, connector=
-);
-> > >> +  new_crtc_state =3D drm_atomic_get_new_crtc_state(state, new_state=
-->crtc);
-> > >>
-> > >>    if (old_state->tv.mode !=3D new_state->tv.mode ||
-> > >>        old_state->tv.margins.left !=3D new_state->tv.margins.left ||
-> > >> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/d=
-rm/nouveau/dispnv50/disp.c
-> > >> index 4b1650f51955..7ba373f493b2 100644
-> > >> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> > >> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> > >> @@ -948,11 +948,12 @@ nv50_mstc_get_modes(struct drm_connector *conn=
-ector)
-> > >>
-> > >>  static int
-> > >>  nv50_mstc_atomic_check(struct drm_connector *connector,
-> > >> -                 struct drm_connector_state *new_conn_state)
-> > >> +                 struct drm_atomic_state *state)
-> > >>  {
-> > >> -  struct drm_atomic_state *state =3D new_conn_state->state;
-> > >>    struct nv50_mstc *mstc =3D nv50_mstc(connector);
-> > >>    struct drm_dp_mst_topology_mgr *mgr =3D &mstc->mstm->mgr;
-> > >> +  struct drm_connector_state *new_conn_state =3D
-> > >> +          drm_atomic_get_new_connector_state(state, connector);
-> > >>    struct drm_connector_state *old_conn_state =3D
-> > >>            drm_atomic_get_old_connector_state(state, connector);
-> > >>    struct drm_crtc_state *crtc_state;
-> > >> diff --git a/drivers/gpu/drm/rcar-du/rcar_lvds.c b/drivers/gpu/drm/r=
-car-du/rcar_lvds.c
-> > >> index 620b51aab291..5b81ba2a7f27 100644
-> > >> --- a/drivers/gpu/drm/rcar-du/rcar_lvds.c
-> > >> +++ b/drivers/gpu/drm/rcar-du/rcar_lvds.c
-> > >> @@ -92,13 +92,15 @@ static int rcar_lvds_connector_get_modes(struct =
-drm_connector *connector)
-> > >>  }
-> > >>
-> > >>  static int rcar_lvds_connector_atomic_check(struct drm_connector *c=
-onnector,
-> > >> -                                      struct drm_connector_state *s=
-tate)
-> > >> +                                      struct drm_atomic_state *stat=
-e)
-> > >>  {
-> > >>    struct rcar_lvds *lvds =3D connector_to_rcar_lvds(connector);
-> > >>    const struct drm_display_mode *panel_mode;
-> > >> +  struct drm_connector_state *conn_state;
-> > >>    struct drm_crtc_state *crtc_state;
-> > >>
-> > >> -  if (!state->crtc)
-> > >> +  conn_state =3D drm_atomic_get_new_connector_state(state, connecto=
-r);
-> > >> +  if (!conn_state->crtc)
-> > >>            return 0;
-> > >>
-> > >>    if (list_empty(&connector->modes)) {
-> > >> @@ -110,9 +112,9 @@ static int rcar_lvds_connector_atomic_check(stru=
-ct drm_connector *connector,
-> > >>                                  struct drm_display_mode, head);
-> > >>
-> > >>    /* We're not allowed to modify the resolution. */
-> > >> -  crtc_state =3D drm_atomic_get_crtc_state(state->state, state->crt=
-c);
-> > >> -  if (IS_ERR(crtc_state))
-> > >> -          return PTR_ERR(crtc_state);
-> > >> +  crtc_state =3D drm_atomic_get_crtc_state(state, conn_state->crtc)=
-;
-> > >> +  if (!crtc_state)
-> > >> +          return -EINVAL;
-> > >>
-> > >>    if (crtc_state->mode.hdisplay !=3D panel_mode->hdisplay ||
-> > >>        crtc_state->mode.vdisplay !=3D panel_mode->vdisplay)
-> > >> diff --git a/drivers/gpu/drm/vc4/vc4_txp.c b/drivers/gpu/drm/vc4/vc4=
-_txp.c
-> > >> index c8b89a78f9f4..96f91c1b4b6e 100644
-> > >> --- a/drivers/gpu/drm/vc4/vc4_txp.c
-> > >> +++ b/drivers/gpu/drm/vc4/vc4_txp.c
-> > >> @@ -221,17 +221,18 @@ static const u32 txp_fmts[] =3D {
-> > >>  };
-> > >>
-> > >>  static int vc4_txp_connector_atomic_check(struct drm_connector *con=
-n,
-> > >> -                                  struct drm_connector_state *conn_=
-state)
-> > >> +                                    struct drm_atomic_state *state)
-> > >>  {
-> > >> +  struct drm_connector_state *conn_state;
-> > >>    struct drm_crtc_state *crtc_state;
-> > >>    struct drm_framebuffer *fb;
-> > >>    int i;
-> > >>
-> > >> +  conn_state =3D drm_atomic_get_new_connector_state(state, conn);
-> > >>    if (!conn_state->writeback_job || !conn_state->writeback_job->fb)
-> > >>            return 0;
-> > >>
-> > >> -  crtc_state =3D drm_atomic_get_new_crtc_state(conn_state->state,
-> > >> -                                             conn_state->crtc);
-> > >> +  crtc_state =3D drm_atomic_get_new_crtc_state(state, conn_state->c=
-rtc);
-> > >>
-> > >>    fb =3D conn_state->writeback_job->fb;
-> > >>    if (fb->width !=3D crtc_state->mode.hdisplay ||
-> > >> diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/=
-drm_modeset_helper_vtables.h
-> > >> index de57fb40cb6e..adc8b7cf64b5 100644
-> > >> --- a/include/drm/drm_modeset_helper_vtables.h
-> > >> +++ b/include/drm/drm_modeset_helper_vtables.h
-> > >> @@ -1020,7 +1020,7 @@ struct drm_connector_helper_funcs {
-> > >>     * deadlock.
-> > >>     */
-> > >>    int (*atomic_check)(struct drm_connector *connector,
-> > >> -                      struct drm_connector_state *state);
-> > >> +                      struct drm_atomic_state *state);
-> > >>
-> > >>    /**
-> > >>     * @atomic_commit:
->
-> --
-> Regards,
->
-> Laurent Pinchart
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
-
-
---=20
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+T24gVGh1LCBNYXkgMTYsIDIwMTkgYXQgMDI6MDc6MzRQTSArMDIwMCwgRGFuaWVsIFZldHRlciB3
+cm90ZToKPiBPbiBUaHUsIE1heSAxNiwgMjAxOSBhdCAyOjAyIFBNIExhdXJlbnQgUGluY2hhcnQK
+PiA8bGF1cmVudC5waW5jaGFydEBpZGVhc29uYm9hcmQuY29tPiB3cm90ZToKPiA+Cj4gPiBIaSBE
+YW5pZWwsCj4gPgo+ID4gT24gTW9uLCBNYXkgMTMsIDIwMTkgYXQgMDQ6NDc6NDdQTSArMDIwMCwg
+RGFuaWVsIFZldHRlciB3cm90ZToKPiA+ID4gT24gU2F0LCBNYXkgMTEsIDIwMTkgYXQgMTA6MTI6
+MDJQTSArMDMwMCwgTGF1cmVudCBQaW5jaGFydCB3cm90ZToKPiA+ID4gPiBPbiBUaHUsIE1heSAw
+MiwgMjAxOSBhdCAwMzo0OTo0NlBNIC0wNDAwLCBTZWFuIFBhdWwgd3JvdGU6Cj4gPiA+ID4+IEZy
+b206IFNlYW4gUGF1bCA8c2VhbnBhdWxAY2hyb21pdW0ub3JnPgo+ID4gPiA+Pgo+ID4gPiA+PiBF
+dmVyeW9uZSB3aG8gaW1wbGVtZW50cyBjb25uZWN0b3JfaGVscGVyX2Z1bmNzLT5hdG9taWNfY2hl
+Y2sgcmVhY2hlcwo+ID4gPiA+PiBpbnRvIHRoZSBjb25uZWN0b3Igc3RhdGUgdG8gZ2V0IHRoZSBh
+dG9taWMgc3RhdGUuIEluc3RlYWQgb2YgY29udGludWluZwo+ID4gPiA+PiB0aGlzIHBhdHRlcm4s
+IGNoYW5nZSB0aGUgY2FsbGJhY2sgc2lnbmF0dXJlIHRvIGp1c3QgZ2l2ZSBhdG9taWMgc3RhdGUK
+PiA+ID4gPj4gYW5kIGxldCB0aGUgZHJpdmVyIGRldGVybWluZSB3aGF0IGl0IGRvZXMgYW5kIGRv
+ZXMgbm90IG5lZWQgZnJvbSBpdC4KPiA+ID4gPj4KPiA+ID4gPj4gRXZlbnR1YWxseSBhbGwgYXRv
+bWljIGZ1bmN0aW9ucyBzaG91bGQgZG8gdGhpcywgYnV0IHRoYXQncyBqdXN0IHRvbyBtdWNoCj4g
+PiA+ID4+IGJ1c3kgd29yayBmb3IgbWUuCj4gPiA+ID4KPiA+ID4gPiBHaXZlbiB0aGF0IGRyaXZl
+cnMgYWxzbyBhY2Nlc3MgdGhlIGNvbm5lY3RvciBzdGF0ZSwgaXNuJ3QgdGhpcyBzbGlnaHRseQo+
+ID4gPiA+IG1vcmUgaW5lZmZpY2llbnQgPwo+ID4gPgo+ID4gPiBJdCdzIGF0b21pYyBjb2RlLCB3
+ZSdyZSB0cnlpbmcgdG8gb3B0aW1pemUgZm9yIGNsZWFuIGNvZGUgYXQgdGhlIGV4cGVuc2UKPiA+
+ID4gb2YgYSBiaXQgb2YgcnVudGltZSBvdmVyaGVhZCBkdWUgdG8gbW9yZSBwb2ludGVyIGNoYXNp
+bmcuIEFuZCBJIGFncmVlIHdpdGgKPiA+ID4gdGhlIGdlbmVyYWwgcHVzaCwgdGhlIHBpbGUgb2Yg
+b2xkL25ld19zdGF0ZSBwb2ludGVycyBvZiB2YXJpb3VzIG9iamVjdHMKPiA+ID4gd2UncmUgcGFz
+c2luZyBhcm91bmQgaXMgY29uZnVzaW5nLiBQYXNzaW5nIHRoZSBvdmVyYWxsIGRybV9hdG9taWNf
+c3RhdGUKPiA+ID4gc2VlbXMgbXVjaCBtb3JlIHJlYXNvbmFibGUsIGFuZCB3aXRoIHRoYXQgd2Ug
+Y2FuIGdldCBldmVyeXRoaW5nIGVsc2UuIFBsdXMKPiA+ID4gaXQncyBtdWNoIG1vcmUgb2J2aW91
+cyB3aGV0aGVyIHlvdSBoYXZlIHRoZSBvbGQvbmV3IHN0YXRlIChzaW5jZSB0aGF0J3MKPiA+ID4g
+ZXhwbGljaXQgd2hlbiB5b3UgbG9vayBpdCB1cCBmcm9tIHRoZSBkcm1fYXRvbWljX3N0YXRlKS4K
+PiA+Cj4gPiBZZXMsIEkgYWdyZWUgaXQncyBjbGVhbmVyLiBJIGp1c3QgaG9wZSB0aGUgYXRvbWlj
+IHN0YXRlIHRyYWNraW5nIGNvc3QKPiA+IGNhbiBiZSBrZXB0IHVuZGVyIGNvbnRyb2wgOi0pCj4g
+Pgo+ID4gQnkgdGhlIHdheSwgdGhpcyBpcyBsaWtlbHkgbm90IGdvaW5nIHRvIGhhcHBlbiBhcyBp
+dCB3b3VsZCBiZSB3YXkgdG9vCj4gPiBpbnRydXNpdmUsIGJ1dCBpdCB3b3VsZCBiZSBuaWNlIHRv
+IHJlbmFtZSBkcm1fYXRvbWljX3N0YXRlIHRvCj4gPiBkcm1fYXRvbWljX3RyYW5zYWN0aW9uIChv
+ciBzb21ldGhpbmcgc2ltaWxhcikuIEl0IGRvZXNuJ3QgbW9kZWwgYSBzdGF0ZSwKPiA+IGJ1dCBh
+IGNoYW5nZSBiZXR3ZWVuIGFuIG9sZCBzdGF0ZSB0byBhIG5ldyBzdGF0ZS4gVGhpcyBjb25mdXNl
+ZCBtZSBpbgo+ID4gdGhlIHBhc3QsIGFuZCBJJ20gc3VyZSBpdCBjYW4gc3RpbGwgYmUgY29uZnVz
+aW5nIHRvIG5ld2NvbWVycy4KPiAKPiBXaHkgYXJlIHlvdSB0aGUgZmlyc3QgdG8gc3VnZ2VzdCB0
+aGlzLCB0aGlzIGlzIGF3ZXNvbWUhCgpDYW4ndCBxdWl0ZSB0ZWxsIGlmIHRoYXQncyBpcm9ueSBv
+ciBub3QuIEFueXdheXMsIHRoaXMgaGFzIGJlZW4Kc3VnZ2VzdGVkIGJlZm9yZSBidXQgbm8gdm9s
+dW50ZWVycyBzdGVwcGVkIGZvcndhcmQuCgo+IGRybV9hdG9taWNfc3RhdGUgaXMgaW5kZWVkIG5v
+dCBhIHN0YXRlLCBidXQgYSB0cmFuc2FjdGlvbiByZXByZXNlbnRpbmcKPiBob3cgd2UgZ28gZnJv
+bSB0aGUgb2xkIHRvIHRoZSBuZXcgc3RhdGUuCgpPbiBhIHNlbWktcmVsYXRlZCB0b3BpYywgSSd2
+ZSBvY2Nhc2lvbmFsbHkgcG9uZGVyZWQgYWJvdXQgbW92aW5nCm1vZGVfY2hhbmdlZCAmIGNvLiBm
+cm9tIHRoZSBvYmogc3RhdGVzIHRvIHRoZSB0b3AgbGV2ZWwKc3RhdGUvdHJhbnNhY3Rpb24gKG1h
+eWJlIHN0b3JlZCBhcyBhIGJpdG1hc2spLiBCdXQgdGhhdCB3b3VsZApkZWZpbml0ZWx5IG5vdCBi
+ZSBhIHRyaXZpYWwgc2VkIGpvYi4KCi0tIApWaWxsZSBTeXJqw6Rsw6QKSW50ZWwKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcg
+bGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
