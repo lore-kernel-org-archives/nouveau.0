@@ -1,65 +1,92 @@
-From: Sergey Senozhatsky <sergey.senozhatsky.work-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: drm/nouveau/core/memory: kmemleak 684 new suspected
- memory leaks
-Date: Fri, 17 May 2019 15:13:40 +0900
-Message-ID: <20190517061340.GA709@jagdpanzerIV>
+From: Sergey Senozhatsky <sergey.senozhatsky.work@gmail.com>
+Subject: Re: drm/nouveau/core/memory: kmemleak 684 new suspected memory leaks
+Date: Fri, 17 May 2019 15:31:34 +0900
+Message-ID: <20190517063134.GA812@jagdpanzerIV>
+References: <20190517061340.GA709@jagdpanzerIV>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
 Content-Disposition: inline
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Sergey Senozhatsky <sergey.senozhatsky-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Sergey Senozhatsky <sergey.senozhatsky.work-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <20190517061340.GA709@jagdpanzerIV>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Sergey Senozhatsky <sergey.senozhatsky@gmail.com>, Sergey Senozhatsky <sergey.senozhatsky.work@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8sCgo1LjEuMC1uZXh0LTIwMTkwNTE3CgpJJ20gbG9va2luZyBhdCBxdWl0ZSBhIGxvdCBv
-ZiBrbWVtbGVhayByZXBvcnRzIGNvbWluZyBmcm9tCmRybS9ub3V2ZWF1L2NvcmUvbWVtb3J5LCBh
-bGwgb2Ygd2hpY2ggYXJlOgoKICAgIHVucmVmZXJlbmNlZCBvYmplY3QgMHhmZmZmOGRlZWMyN2M0
-YWMwIChzaXplIDE2KToKICAgICAgY29tbSAiV2ViIENvbnRlbnQiLCBwaWQgNTMwOSwgamlmZmll
-cyA0MzA5Njc1MDExIChhZ2UgNjguMDc2cykKICAgICAgaGV4IGR1bXAgKGZpcnN0IDE2IGJ5dGVz
-KToKICAgICAgICAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAw
-MCAgLi4uLi4uLi4uLi4uLi4uLgogICAgICBiYWNrdHJhY2U6CiAgICAgICAgWzwwMDAwMDAwMDgx
-ZjI4OTRmPl0gbnZrbV9tZW1vcnlfdGFnc19nZXQrMHg4ZS8weDEzMAogICAgICAgIFs8MDAwMDAw
-MDA3Y2Q3YzBiYz5dIGdmMTAwX3ZtbV92YWxpZCsweDE5Ni8weDJmMAogICAgICAgIFs8MDAwMDAw
-MDA3MGNjNmQ2Nz5dIG52a21fdm1tX21hcCsweGE4LzB4MzYwCiAgICAgICAgWzwwMDAwMDAwMGFi
-Njc4NjQ0Pl0gbnZrbV92cmFtX21hcCsweDQ4LzB4NTAKICAgICAgICBbPDAwMDAwMDAwZDgxNzYz
-Nzg+XSBudmttX3V2bW1fbXRoZCsweDY1OC8weDc3MAogICAgICAgIFs8MDAwMDAwMDA0NjNmY2E1
-YT5dIG52a21faW9jdGwrMHhkZi8weDE3NwogICAgICAgIFs8MDAwMDAwMDAwYWZjNDk5Nj5dIG52
-aWZfb2JqZWN0X210aGQrMHhkNC8weDEwMAogICAgICAgIFs8MDAwMDAwMDAyZjdhNzM4NT5dIG52
-aWZfdm1tX21hcCsweGViLzB4MTAwCiAgICAgICAgWzwwMDAwMDAwMGVmMjUzN2VkPl0gbm91dmVh
-dV9tZW1fbWFwKzB4NzkvMHhkMAogICAgICAgIFs8MDAwMDAwMDAxNGRkYzBjZj5dIG5vdXZlYXVf
-dm1hX25ldysweDE5ZC8weDFjMAogICAgICAgIFs8MDAwMDAwMDBmOTk4ODhhMT5dIG5vdXZlYXVf
-Z2VtX29iamVjdF9vcGVuKzB4ZDQvMHgxNDAKICAgICAgICBbPDAwMDAwMDAwOWNkMjU4NjE+XSBk
-cm1fZ2VtX2hhbmRsZV9jcmVhdGVfdGFpbCsweGUzLzB4MTYwCiAgICAgICAgWzwwMDAwMDAwMDE5
-MTc4NGQ5Pl0gbm91dmVhdV9nZW1faW9jdGxfbmV3KzB4NmUvMHhkMAogICAgICAgIFs8MDAwMDAw
-MDAxNTk2NzhkZj5dIGRybV9pb2N0bF9rZXJuZWwrMHg4Yy8weGQwCiAgICAgICAgWzwwMDAwMDAw
-MGZiYWE2MTU0Pl0gZHJtX2lvY3RsKzB4MWM0LzB4MzYwCiAgICAgICAgWzwwMDAwMDAwMDY4MzNm
-ZTE1Pl0gbm91dmVhdV9kcm1faW9jdGwrMHg2My8weGIwCgpXb25kZXJpbmcgaWYgdGhvc2UgYXJl
-IHJlYWwgbGVha3Mgb3IganVzdCBmYWxzZSBwb3NpdGl2ZXMuCgpGb3Igbm93IEkgbWFya2VkIGB0
-YWdzJyBhcyBrbWVtbGVha19ub3RfbGVhaygpOyBidXQgbW9zdApsaWtlbHkgaXQncyB1dHRlcmx5
-IHdyb25nLgoKQW55IHRob3VnaHRzPwoKLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmtt
-L2NvcmUvbWVtb3J5LmMgfCAyICsrCiAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspCgpk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9jb3JlL21lbW9yeS5jIGIv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9jb3JlL21lbW9yeS5jCmluZGV4IGU4NWEwOGVj
-ZDlkYS4uY2Q0NmY1NGM1YzMyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-dmttL2NvcmUvbWVtb3J5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9jb3Jl
-L21lbW9yeS5jCkBAIC0yNSw2ICsyNSw3IEBACiAjaW5jbHVkZSA8Y29yZS9tbS5oPgogI2luY2x1
-ZGUgPHN1YmRldi9mYi5oPgogI2luY2x1ZGUgPHN1YmRldi9pbnN0bWVtLmg+CisjaW5jbHVkZSA8
-bGludXgva21lbWxlYWsuaD4KIAogdm9pZAogbnZrbV9tZW1vcnlfdGFnc19wdXQoc3RydWN0IG52
-a21fbWVtb3J5ICptZW1vcnksIHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlLApAQCAtOTIsNiAr
-OTMsNyBAQCBudmttX21lbW9yeV90YWdzX2dldChzdHJ1Y3QgbnZrbV9tZW1vcnkgKm1lbW9yeSwg
-c3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UsCiAKIAlyZWZjb3VudF9zZXQoJnRhZ3MtPnJlZmNv
-dW50LCAxKTsKIAltdXRleF91bmxvY2soJmZiLT5zdWJkZXYubXV0ZXgpOworCWttZW1sZWFrX25v
-dF9sZWFrKHRhZ3MpOwogCSpwdGFncyA9IHRhZ3M7CiAJcmV0dXJuIDA7CiB9Ci0tIAoyLjIxLjAK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
-bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+On (05/17/19 15:13), Sergey Senozhatsky wrote:
+> 5.1.0-next-20190517
+> 
+> I'm looking at quite a lot of kmemleak reports coming from
+> drm/nouveau/core/memory, all of which are:
+> 
+>     unreferenced object 0xffff8deec27c4ac0 (size 16):
+>       comm "Web Content", pid 5309, jiffies 4309675011 (age 68.076s)
+>       hex dump (first 16 bytes):
+>         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+>       backtrace:
+>         [<0000000081f2894f>] nvkm_memory_tags_get+0x8e/0x130
+>         [<000000007cd7c0bc>] gf100_vmm_valid+0x196/0x2f0
+>         [<0000000070cc6d67>] nvkm_vmm_map+0xa8/0x360
+>         [<00000000ab678644>] nvkm_vram_map+0x48/0x50
+>         [<00000000d8176378>] nvkm_uvmm_mthd+0x658/0x770
+>         [<00000000463fca5a>] nvkm_ioctl+0xdf/0x177
+>         [<000000000afc4996>] nvif_object_mthd+0xd4/0x100
+>         [<000000002f7a7385>] nvif_vmm_map+0xeb/0x100
+>         [<00000000ef2537ed>] nouveau_mem_map+0x79/0xd0
+>         [<0000000014ddc0cf>] nouveau_vma_new+0x19d/0x1c0
+>         [<00000000f99888a1>] nouveau_gem_object_open+0xd4/0x140
+>         [<000000009cd25861>] drm_gem_handle_create_tail+0xe3/0x160
+>         [<00000000191784d9>] nouveau_gem_ioctl_new+0x6e/0xd0
+>         [<00000000159678df>] drm_ioctl_kernel+0x8c/0xd0
+>         [<00000000fbaa6154>] drm_ioctl+0x1c4/0x360
+>         [<000000006833fe15>] nouveau_drm_ioctl+0x63/0xb0
+
+Yet another one (4 leaks), but this looks more like a real leak.
+
+unreferenced object 0xffff8f1e0cbbe840 (size 192):
+  comm "swapper/0", pid 1, jiffies 4294668445 (age 742.639s)
+  hex dump (first 32 bytes):
+    00 90 89 0c 1e 8f ff ff 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<000000006933ed2b>] nouveau_conn_reset+0x20/0xb0
+    [<00000000572e2e30>] nouveau_connector_create+0x356/0x54c
+    [<000000008a6a13cd>] nv50_display_create+0x2fb/0x917
+    [<000000007fab0a58>] nouveau_display_create+0x3e6/0x600
+    [<000000008b8644c8>] nouveau_drm_device_init+0x149/0x6b0
+    [<000000004fd78a1f>] nouveau_drm_probe+0x263/0x2b0
+    [<00000000357716ef>] pci_device_probe+0xa3/0x110
+    [<00000000061d40e4>] really_probe+0xd3/0x240
+    [<000000000ade44b6>] driver_probe_device+0x50/0xc0
+    [<000000009cd0024c>] device_driver_attach+0x53/0x60
+    [<00000000b11ab0bb>] __driver_attach+0x4c/0xb0
+    [<0000000016d8457f>] bus_for_each_dev+0x66/0x90
+    [<00000000f2855f5e>] bus_add_driver+0x171/0x1c0
+    [<0000000021c08fc1>] driver_register+0x6c/0xaf
+    [<0000000086357843>] do_one_initcall+0x36/0x1d4
+    [<00000000a6be055a>] kernel_init_freeable+0x1bf/0x24f
+
+Seems that connector ->state is not fully destroyed.
+
+---
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 4116ee62adaf..caec1737a7de 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -251,8 +251,10 @@ nouveau_conn_reset(struct drm_connector *connector)
+ 	if (WARN_ON(!(asyc = kzalloc(sizeof(*asyc), GFP_KERNEL))))
+ 		return;
+ 
+-	if (connector->state)
++	if (connector->state) {
+ 		__drm_atomic_helper_connector_destroy_state(connector->state);
++		kfree(connector->state);
++	}
+ 	__drm_atomic_helper_connector_reset(connector, &asyc->state);
+ 	asyc->dither.mode = DITHERING_MODE_AUTO;
+ 	asyc->dither.depth = DITHERING_DEPTH_AUTO;
+-- 
+2.21.0
