@@ -1,49 +1,121 @@
-From: Sergey Senozhatsky <sergey.senozhatsky.work@gmail.com>
-Subject: Re: drm/nouveau/core/memory: kmemleak 684 new suspected memory leaks
-Date: Fri, 17 May 2019 16:35:05 +0900
-Message-ID: <20190517073505.GA7102@jagdpanzerIV>
-References: <20190517061340.GA709@jagdpanzerIV>
- <20190517072737.GA651@jagdpanzerIV>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108500] Crash when creating a depth buffer on
+ GeForce 320M
+Date: Fri, 17 May 2019 15:19:50 +0000
+Message-ID: <bug-108500-8800-Abpzj7UxBC@http.bugs.freedesktop.org/>
+References: <bug-108500-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20190517072737.GA651@jagdpanzerIV>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Sergey Senozhatsky <sergey.senozhatsky.work@gmail.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Sergey Senozhatsky <sergey.senozhatsky@gmail.com>
+Content-Type: multipart/mixed; boundary="===============0449964652=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-108500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On (05/17/19 16:27), Sergey Senozhatsky wrote:
-> > ... but most likely it's utterly wrong.
-> > 
-> 
-> JFI, I removed kmemleak annotation
 
-meeehhh....
+--===============0449964652==
+Content-Type: multipart/alternative; boundary="15581063900.ab1D43b.11786"
+Content-Transfer-Encoding: 7bit
 
-kmemleak: 2046 new suspected memory leaks (see /sys/kernel/debug/kmemleak)
 
-unreferenced object 0xffff95cbea4e6060 (size 16):
-  comm "Web Content", pid 1191, jiffies 4294795669 (age 735.950s)
-  hex dump (first 16 bytes):
-    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-  backtrace:
-    [<00000000d0781ea4>] nvkm_memory_tags_get+0x8e/0x130
-    [<00000000061f3c89>] gf100_vmm_valid+0x196/0x2f0
-    [<00000000d79084b7>] nvkm_vmm_map+0xa8/0x360
-    [<00000000e3174e33>] nvkm_vram_map+0x48/0x50
-    [<00000000006adddb>] nvkm_uvmm_mthd+0x658/0x770
-    [<00000000b36f3a8b>] nvkm_ioctl+0xdf/0x177
-    [<0000000003acea2c>] nvif_object_mthd+0xd4/0x100
-    [<0000000033824292>] nvif_vmm_map+0xeb/0x100
-    [<00000000537f8629>] nouveau_mem_map+0x79/0xd0
-    [<00000000c3b20b73>] nouveau_vma_new+0x19d/0x1c0
-    [<00000000dc91383f>] nouveau_gem_object_open+0xd4/0x140
-    [<000000005a53123b>] drm_gem_handle_create_tail+0xe3/0x160
-    [<00000000e733f5a8>] nouveau_gem_ioctl_new+0x6e/0xd0
-    [<00000000b5bebef5>] drm_ioctl_kernel+0x8c/0xd0
-    [<000000004f28d8a6>] drm_ioctl+0x1c4/0x360
-    [<00000000b08b5723>] nouveau_drm_ioctl+0x63/0xb0
+--15581063900.ab1D43b.11786
+Date: Fri, 17 May 2019 15:19:50 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-	-ss
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108500
+
+--- Comment #12 from Timo Wiren <timo.wiren-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #11)
+
+> Timo - are you up to sending a change to fix the above in the kernel? If
+> not, I can do it.
+
+Well, I have never submitted a patch to the kernel before, but this is a go=
+od
+opportunity to learn the process :-). I'll try to make it happen in a few d=
+ays.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15581063900.ab1D43b.11786
+Date: Fri, 17 May 2019 15:19:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500#c12">Comme=
+nt # 12</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500">bug 10850=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+timo.wiren&#64;gmail.com" title=3D"Timo Wiren &lt;timo.wiren&#64;gmail.com&=
+gt;"> <span class=3D"fn">Timo Wiren</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D108=
+500#c11">comment #11</a>)
+
+<span class=3D"quote">&gt; Timo - are you up to sending a change to fix the=
+ above in the kernel? If
+&gt; not, I can do it.</span >
+
+Well, I have never submitted a patch to the kernel before, but this is a go=
+od
+opportunity to learn the process :-). I'll try to make it happen in a few d=
+ays.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15581063900.ab1D43b.11786--
+
+--===============0449964652==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0449964652==--
