@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108500] Crash when creating a depth buffer on
- GeForce 320M
-Date: Fri, 17 May 2019 15:19:50 +0000
-Message-ID: <bug-108500-8800-Abpzj7UxBC@http.bugs.freedesktop.org/>
-References: <bug-108500-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 110572] Regularly System Crash: (ca. 1 hour) nouveau
+ 0000:08:00.0: gr: PGRAPH TLB flush idle timeout fail and nouveau
+ 0000:08:00.0: mmu: ce0 mmu invalidate timeout
+Date: Sun, 19 May 2019 12:31:13 +0000
+Message-ID: <bug-110572-8800-lC7pPcnwHv@http.bugs.freedesktop.org/>
+References: <bug-110572-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0449964652=="
+Content-Type: multipart/mixed; boundary="===============0231800894=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-110572-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +22,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0449964652==
-Content-Type: multipart/alternative; boundary="15581063900.ab1D43b.11786"
+--===============0231800894==
+Content-Type: multipart/alternative; boundary="15582690730.a98C2CA4.24133"
 Content-Transfer-Encoding: 7bit
 
 
---15581063900.ab1D43b.11786
-Date: Fri, 17 May 2019 15:19:50 +0000
+--15582690730.a98C2CA4.24133
+Date: Sun, 19 May 2019 12:31:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108500
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110572
 
---- Comment #12 from Timo Wiren <timo.wiren-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #11)
+--- Comment #15 from Linux Freak <Linuxfreak-RbZlAiThDcE@public.gmane.org> ---
+Created attachment 144299
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144299&action=3Dedit
+crash 9
 
-> Timo - are you up to sending a change to fix the above in the kernel? If
-> not, I can do it.
-
-Well, I have never submitted a patch to the kernel before, but this is a go=
-od
-opportunity to learn the process :-). I'll try to make it happen in a few d=
-ays.
+nouveau 0000:08:00.0: timeout
+RIP: 0010:g84_gr_tlb_flush+0x2ec/0x300 [nouveau]
+Call Trace:
+Mai 17 08:07:29  kernel:  ? _raw_spin_lock+0x13/0x30
+Mai 17 08:07:29  kernel:  ? gv100_fb_new+0x20/0x20 [nouveau]
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15581063900.ab1D43b.11786
-Date: Fri, 17 May 2019 15:19:50 +0000
+--15582690730.a98C2CA4.24133
+Date: Sun, 19 May 2019 12:31:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,29 +70,33 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500#c12">Comme=
-nt # 12</a>
+   title=3D"NEW - Regularly System Crash: (ca. 1 hour) nouveau 0000:08:00.0=
+: gr: PGRAPH TLB flush idle timeout fail and nouveau 0000:08:00.0: mmu: ce0=
+ mmu invalidate timeout"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110572#c15">Comme=
+nt # 15</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Crash when creating a depth buffer on GeForce 320M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108500">bug 10850=
-0</a>
+   title=3D"NEW - Regularly System Crash: (ca. 1 hour) nouveau 0000:08:00.0=
+: gr: PGRAPH TLB flush idle timeout fail and nouveau 0000:08:00.0: mmu: ce0=
+ mmu invalidate timeout"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110572">bug 11057=
+2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-timo.wiren&#64;gmail.com" title=3D"Timo Wiren &lt;timo.wiren&#64;gmail.com&=
-gt;"> <span class=3D"fn">Timo Wiren</span></a>
+Linuxfreak&#64;gmx.at" title=3D"Linux Freak &lt;Linuxfreak&#64;gmx.at&gt;">=
+ <span class=3D"fn">Linux Freak</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D108=
-500#c11">comment #11</a>)
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144299=
+" name=3D"attach_144299" title=3D"crash 9">attachment 144299</a> <a href=3D=
+"attachment.cgi?id=3D144299&amp;action=3Dedit" title=3D"crash 9">[details]<=
+/a></span>
+crash 9
 
-<span class=3D"quote">&gt; Timo - are you up to sending a change to fix the=
- above in the kernel? If
-&gt; not, I can do it.</span >
-
-Well, I have never submitted a patch to the kernel before, but this is a go=
-od
-opportunity to learn the process :-). I'll try to make it happen in a few d=
-ays.</pre>
+nouveau 0000:08:00.0: timeout
+RIP: 0010:g84_gr_tlb_flush+0x2ec/0x300 [nouveau]
+Call Trace:
+Mai 17 08:07:29  kernel:  ? _raw_spin_lock+0x13/0x30
+Mai 17 08:07:29  kernel:  ? gv100_fb_new+0x20/0x20 [nouveau]</pre>
         </div>
       </p>
 
@@ -100,15 +105,15 @@ ays.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15581063900.ab1D43b.11786--
+--15582690730.a98C2CA4.24133--
 
---===============0449964652==
+--===============0231800894==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -118,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0449964652==--
+--===============0231800894==--
