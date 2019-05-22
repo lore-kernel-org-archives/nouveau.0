@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH AUTOSEL 5.1 043/375] drm/nouveau/bar/nv50: ensure
+Subject: [PATCH AUTOSEL 5.0 037/317] drm/nouveau/bar/nv50: ensure
  BAR is mapped
-Date: Wed, 22 May 2019 15:15:43 -0400
-Message-ID: <20190522192115.22666-43-sashal@kernel.org>
-References: <20190522192115.22666-1-sashal@kernel.org>
+Date: Wed, 22 May 2019 15:18:58 -0400
+Message-ID: <20190522192338.23715-37-sashal@kernel.org>
+References: <20190522192338.23715-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190522192115.22666-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+In-Reply-To: <20190522192338.23715-1-sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
