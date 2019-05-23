@@ -1,49 +1,98 @@
-From: Linus Torvalds <torvalds@linux-foundation.org>
+From: Steven Rostedt <rostedt@goodmis.org>
 Subject: Re: [RFC][PATCH] kernel.h: Add generic roundup_64() macro
-Date: Thu, 23 May 2019 08:10:44 -0700
-Message-ID: <CAHk-=wg5HqJ2Kfgpub+tCWQ2_FiFwEW9H1Rm+an-BLGaGvDDXw@mail.gmail.com>
+Date: Thu, 23 May 2019 11:27:40 -0400
+Message-ID: <20190523112740.7167aba4@gandalf.local.home>
 References: <20190523100013.52a8d2a6@gandalf.local.home>
+        <CAHk-=wg5HqJ2Kfgpub+tCWQ2_FiFwEW9H1Rm+an-BLGaGvDDXw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190523100013.52a8d2a6@gandalf.local.home>
+In-Reply-To: <CAHk-=wg5HqJ2Kfgpub+tCWQ2_FiFwEW9H1Rm+an-BLGaGvDDXw@mail.gmail.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Steven Rostedt <rostedt@goodmis.org>
+To: Linus Torvalds <torvalds@linux-foundation.org>
 Cc: LKML <linux-kernel@vger.kernel.org>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Leon Romanovsky <leon@kernel.org>, Doug Ledford <dledford@redhat.com>, Jason Gunthorpe <jgg@ziepe.ca>, "Darrick J. Wong" <darrick.wong@oracle.com>, linux-xfs@vger.kernel.org, dri-devel <dri-devel@lists.freedesktop.org>, nouveau@lists.freedesktop.org, linux-rdma <linux-rdma@vger.kernel.org>, Andrew Morton <akpm@linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, May 23, 2019 at 7:00 AM Steven Rostedt <rostedt@goodmis.org> wrote:
->
-> +# define roundup_64(x, y) (                            \
-> +{                                                      \
-> +       typeof(y) __y = y;                              \
-> +       typeof(x) __x = (x) + (__y - 1);                \
-> +       do_div(__x, __y);                               \
-> +       __x * __y;                                      \
-> +}                                                      \
+On Thu, 23 May 2019 08:10:44 -0700
+Linus Torvalds <torvalds@linux-foundation.org> wrote:
 
-The thing about this is that it absolutely sucks for power-of-two arguments.
+> On Thu, May 23, 2019 at 7:00 AM Steven Rostedt <rostedt@goodmis.org> wrote:
+> >
+> > +# define roundup_64(x, y) (                            \
+> > +{                                                      \
+> > +       typeof(y) __y = y;                              \
+> > +       typeof(x) __x = (x) + (__y - 1);                \
+> > +       do_div(__x, __y);                               \
+> > +       __x * __y;                                      \
+> > +}                                                      \
+> 
+> The thing about this is that it absolutely sucks for power-of-two arguments.
+> 
+> The regular roundup() that uses division has the compiler at least
+> optimize them to shifts - at least for constant cases. But do_div() is
+> meant for "we already know it's not a power of two", and the compiler
+> doesn't have any understanding of the internals.
+> 
+> And it looks to me like the use case you want this for is very much
+> probably a power of two. In which case division is all kinds of just
+> stupid.
+> 
+> And we already have a power-of-two round up function that works on
+> u64. It's called "round_up()".
+> 
+> I wish we had a better visual warning about the differences between
+> "round_up()" (limited to powers-of-two, but efficient, and works with
+> any size) and "roundup()" (generic, potentially horribly slow, and
+> doesn't work for 64-bit on 32-bit).
+> 
+> Side note: "round_up()" has the problem that it uses "x" twice.
+> 
+> End result: somebody should look at this, but I really don't like the
+> "force division" case that is likely horribly slow and nasty.
 
-The regular roundup() that uses division has the compiler at least
-optimize them to shifts - at least for constant cases. But do_div() is
-meant for "we already know it's not a power of two", and the compiler
-doesn't have any understanding of the internals.
+I haven't yet tested this, but what about something like the following:
 
-And it looks to me like the use case you want this for is very much
-probably a power of two. In which case division is all kinds of just
-stupid.
+# define roundup_64(x, y) (				\
+{							\
+	typeof(y) __y;					\
+	typeof(x) __x;					\
+							\
+	if (__builtin_constant_p(y) &&			\
+	    !(y & (y >> 1))) {				\
+		__x = round_up(x, y);			\
+	} else {					\
+		__y = y;				\
+		__x = (x) + (__y - 1);			\
+		do_div(__x, __y);			\
+		__x = __x * __y;			\
+	}						\
+	__x;						\
+}							\
+)
 
-And we already have a power-of-two round up function that works on
-u64. It's called "round_up()".
+If the compiler knows enough that y is a power of two, it will use the
+shift version. Otherwise, it doesn't know enough and would divide
+regardless. Or perhaps forget about the constant check, and just force
+the power of two check:
 
-I wish we had a better visual warning about the differences between
-"round_up()" (limited to powers-of-two, but efficient, and works with
-any size) and "roundup()" (generic, potentially horribly slow, and
-doesn't work for 64-bit on 32-bit).
+# define roundup_64(x, y) (				\
+{							\
+	typeof(y) __y = y;				\
+	typeof(x) __x;					\
+							\
+	if (!(__y & (__y >> 1))) {			\
+		__x = round_up(x, y);			\
+	} else {					\
+		__x = (x) + (__y - 1);			\
+		do_div(__x, __y);			\
+		__x = __x * __y;			\
+	}						\
+	__x;						\
+}							\
+)
 
-Side note: "round_up()" has the problem that it uses "x" twice.
+This way even if the compiler doesn't know that this is a power of two,
+it will still do the shift if y ends up being one.
 
-End result: somebody should look at this, but I really don't like the
-"force division" case that is likely horribly slow and nasty.
-
-                  Linus
+-- Steve
