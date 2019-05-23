@@ -1,98 +1,70 @@
-From: Steven Rostedt <rostedt@goodmis.org>
+From: Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
 Subject: Re: [RFC][PATCH] kernel.h: Add generic roundup_64() macro
-Date: Thu, 23 May 2019 11:27:40 -0400
-Message-ID: <20190523112740.7167aba4@gandalf.local.home>
+Date: Thu, 23 May 2019 09:51:29 -0700
+Message-ID: <CAHk-=whFJqTOk0mSxJGeh38ZxDksgRaMrNV8hqTngiuokyJzew@mail.gmail.com>
 References: <20190523100013.52a8d2a6@gandalf.local.home>
-        <CAHk-=wg5HqJ2Kfgpub+tCWQ2_FiFwEW9H1Rm+an-BLGaGvDDXw@mail.gmail.com>
+ <CAHk-=wg5HqJ2Kfgpub+tCWQ2_FiFwEW9H1Rm+an-BLGaGvDDXw@mail.gmail.com>
+ <20190523112740.7167aba4@gandalf.local.home>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAHk-=wg5HqJ2Kfgpub+tCWQ2_FiFwEW9H1Rm+an-BLGaGvDDXw@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: LKML <linux-kernel@vger.kernel.org>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Leon Romanovsky <leon@kernel.org>, Doug Ledford <dledford@redhat.com>, Jason Gunthorpe <jgg@ziepe.ca>, "Darrick J. Wong" <darrick.wong@oracle.com>, linux-xfs@vger.kernel.org, dri-devel <dri-devel@lists.freedesktop.org>, nouveau@lists.freedesktop.org, linux-rdma <linux-rdma@vger.kernel.org>, Andrew Morton <akpm@linux-foundation.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190523112740.7167aba4-f9ZlEuEWxVcJvu8Pb33WZ0EMvNT87kid@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Steven Rostedt <rostedt-nx8X9YLhiw1AfugRpC6u6w@public.gmane.org>
+Cc: Leon Romanovsky <leon-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, "Darrick J. Wong" <darrick.wong-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, linux-xfs-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>, Doug Ledford <dledford-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, linux-rdma <linux-rdma-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 23 May 2019 08:10:44 -0700
-Linus Torvalds <torvalds@linux-foundation.org> wrote:
-
-> On Thu, May 23, 2019 at 7:00 AM Steven Rostedt <rostedt@goodmis.org> wrote:
-> >
-> > +# define roundup_64(x, y) (                            \
-> > +{                                                      \
-> > +       typeof(y) __y = y;                              \
-> > +       typeof(x) __x = (x) + (__y - 1);                \
-> > +       do_div(__x, __y);                               \
-> > +       __x * __y;                                      \
-> > +}                                                      \
-> 
-> The thing about this is that it absolutely sucks for power-of-two arguments.
-> 
-> The regular roundup() that uses division has the compiler at least
-> optimize them to shifts - at least for constant cases. But do_div() is
-> meant for "we already know it's not a power of two", and the compiler
-> doesn't have any understanding of the internals.
-> 
-> And it looks to me like the use case you want this for is very much
-> probably a power of two. In which case division is all kinds of just
-> stupid.
-> 
-> And we already have a power-of-two round up function that works on
-> u64. It's called "round_up()".
-> 
-> I wish we had a better visual warning about the differences between
-> "round_up()" (limited to powers-of-two, but efficient, and works with
-> any size) and "roundup()" (generic, potentially horribly slow, and
-> doesn't work for 64-bit on 32-bit).
-> 
-> Side note: "round_up()" has the problem that it uses "x" twice.
-> 
-> End result: somebody should look at this, but I really don't like the
-> "force division" case that is likely horribly slow and nasty.
-
-I haven't yet tested this, but what about something like the following:
-
-# define roundup_64(x, y) (				\
-{							\
-	typeof(y) __y;					\
-	typeof(x) __x;					\
-							\
-	if (__builtin_constant_p(y) &&			\
-	    !(y & (y >> 1))) {				\
-		__x = round_up(x, y);			\
-	} else {					\
-		__y = y;				\
-		__x = (x) + (__y - 1);			\
-		do_div(__x, __y);			\
-		__x = __x * __y;			\
-	}						\
-	__x;						\
-}							\
-)
-
-If the compiler knows enough that y is a power of two, it will use the
-shift version. Otherwise, it doesn't know enough and would divide
-regardless. Or perhaps forget about the constant check, and just force
-the power of two check:
-
-# define roundup_64(x, y) (				\
-{							\
-	typeof(y) __y = y;				\
-	typeof(x) __x;					\
-							\
-	if (!(__y & (__y >> 1))) {			\
-		__x = round_up(x, y);			\
-	} else {					\
-		__x = (x) + (__y - 1);			\
-		do_div(__x, __y);			\
-		__x = __x * __y;			\
-	}						\
-	__x;						\
-}							\
-)
-
-This way even if the compiler doesn't know that this is a power of two,
-it will still do the shift if y ends up being one.
-
--- Steve
+T24gVGh1LCBNYXkgMjMsIDIwMTkgYXQgODoyNyBBTSBTdGV2ZW4gUm9zdGVkdCA8cm9zdGVkdEBn
+b29kbWlzLm9yZz4gd3JvdGU6Cj4KPiBJIGhhdmVuJ3QgeWV0IHRlc3RlZCB0aGlzLCBidXQgd2hh
+dCBhYm91dCBzb21ldGhpbmcgbGlrZSB0aGUgZm9sbG93aW5nOgoKU28gdGhhdCBhdCBsZWFzdCBo
+YW5kbGVzIHRoZSBjb25zdGFudCBjYXNlIHRoYXQgdGhlIG5vcm1hbCAicm91bmR1cCgpIgpjYXNl
+IGFsc28gaGFuZGxlcy4KCkF0IHRoZSBzYW1lIHRpbWUsIGluIHRoZSBjYXNlIHlvdSBhcmUgdGFs
+a2luZyBhYm91dCwgSSByZWFsbHkgZG8Kc3VzcGVjdCB0aGF0IHdlIGhhdmUgYSAobm9uLWNvbnN0
+YW50KSBwb3dlciBvZiB0d28sIGFuZCB0aGF0IHlvdQpzaG91bGQgaGF2ZSBqdXN0IHVzZWQgInJv
+dW5kX3VwKCkiIHdoaWNoIHdvcmtzIGZpbmUgcmVnYXJkbGVzcyBvZgpzaXplLCBhbmQgaXMgYWx3
+YXlzIGVmZmljaWVudC4KCk9uIGEgc2xpZ2h0IHRhbmdlbnQuLiBNYXliZSB3ZSBzaG91bGQgaGF2
+ZSBzb21ldGhpbmcgbGlrZSB0aGlzOgoKI2RlZmluZSBzaXplX2ZuKHgsIHByZWZpeCwgLi4uKSAo
+eyAgICAgICAgICAgICAgICAgICAgICBcCiAgICAgICAgdHlwZW9mKHgpIF9fcmV0OyAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgXAogICAgICAgIHN3aXRjaCAoc2l6ZW9mKHgpKSB7ICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIFwKICAgICAgICBjYXNlIDE6IF9fcmV0ID0gcHJlZml4
+IyM4KF9fVkFfQVJHU19fKTsgYnJlYWs7ICBcCiAgICAgICAgY2FzZSAyOiBfX3JldCA9IHByZWZp
+eCMjMTYoX19WQV9BUkdTX18pOyBicmVhazsgXAogICAgICAgIGNhc2UgNDogX19yZXQgPSBwcmVm
+aXgjIzMyKF9fVkFfQVJHU19fKTsgYnJlYWs7IFwKICAgICAgICBjYXNlIDg6IF9fcmV0ID0gcHJl
+Zml4IyM2NChfX1ZBX0FSR1NfXyk7IGJyZWFrOyBcCiAgICAgICAgZGVmYXVsdDogX19yZXQgPSBw
+cmVmaXgjI2JhZChfX1ZBX0FSR1NfXyk7ICAgICAgXAogICAgICAgIH0gX19yZXQ7IH0pCgojZGVm
+aW5lIHR5cGVfZm4oeCwgcHJlZml4LCAuLi4pICh7ICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgXAogICAgICAgIHR5cGVvZih4KSBfX3JldDsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgXAogICAgICAgIGlmICgodHlwZW9mKHgpKS0xID4gMSkgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgXAogICAgICAgICAgICAgICAgX19yZXQgPSBzaXplX2ZuKHgs
+IHByZWZpeCMjX3UsIF9fVkFfQVJHU19fKTsgICAgXAogICAgICAgIGVsc2UgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXAogICAgICAgICAgICAgICAg
+X19yZXQgPSBzaXplX2ZuKHgsIHByZWZpeCMjX3MsIF9fVkFfQVJHU19fKTsgICAgXAogICAgICAg
+IF9fcmV0OyB9KQoKd2hpY2ggd291bGQgYWxsb3cgdHlwZWQgaW50ZWdlciBmdW5jdGlvbnMgbGlr
+ZSB0aGlzLiBTbyB5b3UgY291bGQgZG8Kc29tZXRoaW5nIGxpa2UKCiAgICAgI2RlZmluZSByb3Vu
+ZF91cCh4LCB5KSBzaXplX2ZuKHgsIHJvdW5kX3VwX3NpemUsIHgsIHkpCgphbmQgdGhlbiB5b3Ug
+ZGVmaW5lIGZ1bmN0aW9ucyBmb3Igcm91bmRfdXBfc2l6ZTgvMTYvMzIvNjQgKGFuZCB5b3UKaGF2
+ZSB0b2kgZGVjbGFyZSAtIGJ1dCBub3QgZGVmaW5lIC0gcm91bmRfdXBfc2l6ZWJhZCgpKS4KCk9m
+IGNvdXJzZSwgeW91IHByb2JhYmx5IHdhbnQgdGhlIHVzdWFsICJhdCBsZWFzdCB1c2UgJ2ludCci
+IHNlbWFudGljcywKaW4gd2hpY2ggY2FzZSB0aGUgInR5cGUiIHNob3VsZCBiZSAiKHgpKzAiOgoK
+ICAgICAjZGVmaW5lIHJvdW5kX3VwKHgsIHkpIHNpemVfZm4oKHgpKzAsIHJvdW5kX3VwX3NpemUs
+IHgsIHkpCgogYW5kIHRoZSA4LWJpdCBhbmQgMTYtYml0IGNhc2VzIHdpbGwgbmV2ZXIgYmUgdXNl
+ZC4KCldlIGhhdmUgYSBsb3Qgb2YgY2FzZXMgd2hlcmUgd2UgZW5kIHVwIHVzaW5nICJ0eXBlIG92
+ZXJsb2FkaW5nIiBieQpzaXplLiBUaGUgbW9zdCBleHBsaWNpdCBjYXNlIGlzIHBlcmhhcHMgImdl
+dF91c2VyKCkiIGFuZCAicHV0X3VzZXIoKSIsCmJ1dCB0aGlzIHdob2xlIHJvdW5kX3VwIHRoaW5n
+IGlzIGFub3RoZXIgZXhhbXBsZS4KCk1heWJlIHdlIG5ldmVyIHJlYWxseSBjYXJlIGFib3V0ICJj
+aGFyIiBhbmQgInNob3J0IiwgYW5kIGFsd2F5cyB3YW50Cmp1c3QgdGhlICJpbnQtdnMtbG9uZy12
+cy1sb25nbG9uZyI/IFRoYXQgd291bGQgbWFrZSB0aGUgY2FzZXMgc2ltcGxlcgooMzIgYW5kIDY0
+KS4gQW5kIG1heWJlIHdlIG5ldmVyIGNhcmUgYWJvdXQgc2lnbi4gQnV0IHdlIGNvdWxkIHRyeSB0
+bwpoYXZlIHNvbWUgdW5pZmllZCBoZWxwZXIgbW9kZWwgbGlrZSB0aGUgYWJvdmUuLgoKICAgICAg
+ICAgICAgICAgICAgTGludXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
