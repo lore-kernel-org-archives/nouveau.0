@@ -1,116 +1,133 @@
-From: Steven Rostedt <rostedt@goodmis.org>
-Subject: Re: [RFC][PATCH] kernel.h: Add generic roundup_64() macro
-Date: Thu, 23 May 2019 13:36:48 -0400
-Message-ID: <20190523133648.591f9e78@gandalf.local.home>
-References: <20190523100013.52a8d2a6@gandalf.local.home>
-        <CAHk-=wg5HqJ2Kfgpub+tCWQ2_FiFwEW9H1Rm+an-BLGaGvDDXw@mail.gmail.com>
-        <20190523112740.7167aba4@gandalf.local.home>
-        <CAHk-=whFJqTOk0mSxJGeh38ZxDksgRaMrNV8hqTngiuokyJzew@mail.gmail.com>
+From: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
+Subject: [PATCH 5.0 087/139] PCI: Reset Lenovo ThinkPad P50 nvgpu
+ at boot if necessary
+Date: Thu, 23 May 2019 21:06:15 +0200
+Message-ID: <20190523181732.035427564@linuxfoundation.org>
+References: <20190523181720.120897565@linuxfoundation.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAHk-=whFJqTOk0mSxJGeh38ZxDksgRaMrNV8hqTngiuokyJzew@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: LKML <linux-kernel@vger.kernel.org>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Leon Romanovsky <leon@kernel.org>, Doug Ledford <dledford@redhat.com>, Jason Gunthorpe <jgg@ziepe.ca>, "Darrick J. Wong" <darrick.wong@oracle.com>, linux-xfs@vger.kernel.org, dri-devel <dri-devel@lists.freedesktop.org>, nouveau@lists.freedesktop.org, linux-rdma <linux-rdma@vger.kernel.org>, Andrew Morton <akpm@linux-foundation.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190523181720.120897565-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 23 May 2019 09:51:29 -0700
-Linus Torvalds <torvalds@linux-foundation.org> wrote:
-
-> On Thu, May 23, 2019 at 8:27 AM Steven Rostedt <rostedt@goodmis.org> wrote:
-> >
-> > I haven't yet tested this, but what about something like the following:  
-> 
-> So that at least handles the constant case that the normal "roundup()"
-> case also handles.
-> 
-> At the same time, in the case you are talking about, I really do
-> suspect that we have a (non-constant) power of two, and that you
-> should have just used "round_up()" which works fine regardless of
-> size, and is always efficient.
-
-I think you are correct in this.
-
-       act_size = roundup_64(attr->length, MLX5_SW_ICM_BLOCK_SIZE(dm_db->dev));
-
-Where we have:
-
-#define MLX5_SW_ICM_BLOCK_SIZE(dev) (1 << MLX5_LOG_SW_ICM_BLOCK_SIZE(dev))
-
-Which pretty much guarantees that it is a power of two. Thus, the real
-fix here is simply to s/roundup/round_up/ as you suggest.
-
-> 
-> On a slight tangent.. Maybe we should have something like this:
-> 
-> #define size_fn(x, prefix, ...) ({                      \
->         typeof(x) __ret;                                \
->         switch (sizeof(x)) {                            \
->         case 1: __ret = prefix##8(__VA_ARGS__); break;  \
->         case 2: __ret = prefix##16(__VA_ARGS__); break; \
->         case 4: __ret = prefix##32(__VA_ARGS__); break; \
->         case 8: __ret = prefix##64(__VA_ARGS__); break; \
->         default: __ret = prefix##bad(__VA_ARGS__);      \
->         } __ret; })
-> 
-> #define type_fn(x, prefix, ...) ({                              \
->         typeof(x) __ret;                                        \
->         if ((typeof(x))-1 > 1)                                  \
->                 __ret = size_fn(x, prefix##_u, __VA_ARGS__);    \
->         else                                                    \
->                 __ret = size_fn(x, prefix##_s, __VA_ARGS__);    \
->         __ret; })
-> 
-> which would allow typed integer functions like this. So you could do
-> something like
-> 
->      #define round_up(x, y) size_fn(x, round_up_size, x, y)
-> 
-> and then you define functions for round_up_size8/16/32/64 (and you
-
-You mean define functions for round_up_size_{u|s}8/16/32/64
-
-> have toi declare - but not define - round_up_sizebad()).
-> 
-> Of course, you probably want the usual "at least use 'int'" semantics,
-> in which case the "type" should be "(x)+0":
-> 
->      #define round_up(x, y) size_fn((x)+0, round_up_size, x, y)
-> 
->  and the 8-bit and 16-bit cases will never be used.
-
-I'm curious to what the advantage of that is?
-
-> 
-> We have a lot of cases where we end up using "type overloading" by
-> size. The most explicit case is perhaps "get_user()" and "put_user()",
-> but this whole round_up thing is another example.
-> 
-> Maybe we never really care about "char" and "short", and always want
-> just the "int-vs-long-vs-longlong"? That would make the cases simpler
-> (32 and 64). And maybe we never care about sign. But we could try to
-> have some unified helper model like the above..
-
-It may be simpler and perhaps more robust if we keep the char and short
-cases.
-
-I'm fine with adding something like this for round_up(), but do we want
-to have a generic roundup_64() as well? I'm also thinking that we
-perhaps should test for power of two on roundup():
-
-#define roundup(x, y) (					\
-{							\
-	typeof(y) __y = y;				\
-	typeof(x) __x;					\
-							\
-	if (__y & (__y - 1))				\
-		__x = round_up(x, __y);			\
-	else						\
-		__x = (((x) + (__y - 1)) / __y) * __y;	\
-	__x;						\
-})
-
-
--- Steve
+RnJvbTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KCmNvbW1pdCBlMDU0N2M4MWJmY2Zh
+ZDAxY2JiZmE5M2E1ZTY2YmI5OGFiOTMyZjgwIHVwc3RyZWFtLgoKT24gVGhpbmtQYWQgUDUwIFNL
+VXMgd2l0aCBhbiBOdmlkaWEgUXVhZHJvIE0xMDAwTSBpbnN0ZWFkIG9mIHRoZSBNMjAwME0KdmFy
+aWFudCwgdGhlIEJJT1MgZG9lcyBub3QgYWx3YXlzIHJlc2V0IHRoZSBzZWNvbmRhcnkgTnZpZGlh
+IEdQVSBkdXJpbmcKcmVib290IGlmIHRoZSBsYXB0b3AgaXMgY29uZmlndXJlZCBpbiBIeWJyaWQg
+R3JhcGhpY3MgbW9kZS4gIFRoZSByZWFzb24gaXMKdW5rbm93biwgYnV0IHRoZSBmb2xsb3dpbmcg
+c3RlcHMgYW5kIHBvc3NpYmx5IGEgZ29vZCBiaXQgb2YgcGF0aWVuY2Ugd2lsbApyZXByb2R1Y2Ug
+dGhlIGlzc3VlOgoKICAxLiBCb290IHVwIHRoZSBsYXB0b3Agbm9ybWFsbHkgaW4gSHlicmlkIEdy
+YXBoaWNzIG1vZGUKICAyLiBNYWtlIHN1cmUgbm91dmVhdSBpcyBsb2FkZWQgYW5kIHRoYXQgdGhl
+IEdQVSBpcyBhd2FrZQogIDMuIEFsbG93IHRoZSBOdmlkaWEgR1BVIHRvIHJ1bnRpbWUgc3VzcGVu
+ZCBpdHNlbGYgYWZ0ZXIgYmVpbmcgaWRsZQogIDQuIFJlYm9vdCB0aGUgbWFjaGluZSwgdGhlIG1v
+cmUgc3VkZGVuIHRoZSBiZXR0ZXIgKGUuZy4gc3lzcnEtYiBtYXkgaGVscCkKICA1LiBJZiBub3V2
+ZWF1IGxvYWRzIHVwIHByb3Blcmx5LCByZWJvb3QgdGhlIG1hY2hpbmUgYWdhaW4gYW5kIGdvIGJh
+Y2sgdG8KICAgICBzdGVwIDIgdW50aWwgeW91IHJlcHJvZHVjZSB0aGUgaXNzdWUKClRoaXMgcmVz
+dWx0cyBpbiBzb21lIHZlcnkgc3RyYW5nZSBiZWhhdmlvcjogdGhlIEdQVSB3aWxsIGJlIGxlZnQg
+aW4gZXhhY3RseQp0aGUgc2FtZSBzdGF0ZSBpdCB3YXMgaW4gd2hlbiB0aGUgcHJldmlvdXNseSBi
+b290ZWQga2VybmVsIHN0YXJ0ZWQgdGhlCnJlYm9vdC4gIFRoaXMgaGFzIGFsbCBzb3J0cyBvZiBi
+YWQgc2lkZSBlZmZlY3RzOiBmb3Igc3RhcnRlcnMsIHRoaXMKY29tcGxldGVseSBicmVha3Mgbm91
+dmVhdSBzdGFydGluZyB3aXRoIGEgbXlzdGVyaW91cyBFVk8gY2hhbm5lbCBmYWlsdXJlCnRoYXQg
+aGFwcGVucyB3ZWxsIGJlZm9yZSB3ZSd2ZSBhY3R1YWxseSB1c2VkIHRoZSBFVk8gY2hhbm5lbCBm
+b3IgYW55dGhpbmc6CgogIG5vdXZlYXUgMDAwMDowMTowMC4wOiBkaXNwOiBjaGlkIDAgbXRoZCAw
+MDAwIGRhdGEgMDAwMDA0MDAgMDAwMDEwMDAgMDAwMDAwMDIKClRoaXMgY2F1c2VzIGEgdGltZW91
+dCB0cnlpbmcgdG8gYnJpbmcgdXAgdGhlIEdSIGN0eDoKCiAgbm91dmVhdSAwMDAwOjAxOjAwLjA6
+IHRpbWVvdXQKICBXQVJOSU5HOiBDUFU6IDAgUElEOiAxMiBhdCBkcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9udmttL2VuZ2luZS9nci9jdHhnZjEwMC5jOjE1NDcgZ2YxMDBfZ3JjdHhfZ2VuZXJhdGUr
+MHg3YjIvMHg4NTAgW25vdXZlYXVdCiAgSGFyZHdhcmUgbmFtZTogTEVOT1ZPIDIwRVFTNjROMEIv
+MjBFUVM2NE4wQiwgQklPUyBOMUVFVDgyVyAoMS41NSApIDEyLzE4LzIwMTgKICBXb3JrcXVldWU6
+IGV2ZW50c19sb25nIGRybV9kcF9tc3RfbGlua19wcm9iZV93b3JrIFtkcm1fa21zX2hlbHBlcl0K
+ICAuLi4KICBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZ3I6IHdhaXQgZm9yIGlkbGUgdGltZW91dCAo
+ZW46IDEsIGN0eHN3OiAwLCBidXN5OiAxKQogIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjogd2Fp
+dCBmb3IgaWRsZSB0aW1lb3V0IChlbjogMSwgY3R4c3c6IDAsIGJ1c3k6IDEpCiAgbm91dmVhdSAw
+MDAwOjAxOjAwLjA6IGZpZm86IGZhdWx0IDAxIFtXUklURV0gYXQgMDAwMDAwMDAwMDAwODAwMCBl
+bmdpbmUgMDAgW0dSXSBjbGllbnQgMTUgW0hVQi9TQ0NfTkJdIHJlYXNvbiBjNCBbXSBvbiBjaGFu
+bmVsIC0xIFswMDAwMDAwMDAwIHVua25vd25dCgpUaGUgR1BVIG5ldmVyIG1hbmFnZXMgdG8gcmVj
+b3Zlci4gIEJvb3Rpbmcgd2l0aG91dCBsb2FkaW5nIG5vdXZlYXUgY2F1c2VzCmlzc3VlcyBhcyB3
+ZWxsLCBzaW5jZSB0aGUgR1BVIHN0YXJ0cyBzZW5kaW5nIHNwdXJpb3VzIGludGVycnVwdHMgdGhh
+dCBjYXVzZQpvdGhlciBkZXZpY2UncyBJUlFzIHRvIGdldCBkaXNhYmxlZCBieSB0aGUga2VybmVs
+OgoKICBpcnEgMTY6IG5vYm9keSBjYXJlZCAodHJ5IGJvb3Rpbmcgd2l0aCB0aGUgImlycXBvbGwi
+IG9wdGlvbikKICAuLi4KICBoYW5kbGVyczoKICBbPDAwMDAwMDAwN2ZhYTllOTk+XSBpODAxX2lz
+ciBbaTJjX2k4MDFdCiAgRGlzYWJsaW5nIElSUSAjMTYKICAuLi4KICBzZXJpbzogUk1JNCBQUy8y
+IHBhc3MtdGhyb3VnaCBwb3J0IGF0IHJtaTQtMDAuZm4wMwogIGk4MDFfc21idXMgMDAwMDowMDox
+Zi40OiBUaW1lb3V0IHdhaXRpbmcgZm9yIGludGVycnVwdCEKICBpODAxX3NtYnVzIDAwMDA6MDA6
+MWYuNDogVHJhbnNhY3Rpb24gdGltZW91dAogIHJtaTRfZjAzIHJtaTQtMDAuZm4wMzogcm1pX2Yw
+M19wdF93cml0ZTogRmFpbGVkIHRvIHdyaXRlIHRvIEYwMyBUWCByZWdpc3RlciAoLTExMCkuCiAg
+aTgwMV9zbWJ1cyAwMDAwOjAwOjFmLjQ6IFRpbWVvdXQgd2FpdGluZyBmb3IgaW50ZXJydXB0IQog
+IGk4MDFfc21idXMgMDAwMDowMDoxZi40OiBUcmFuc2FjdGlvbiB0aW1lb3V0CiAgcm1pNF9waHlz
+aWNhbCBybWk0LTAwOiBybWlfZHJpdmVyX3NldF9pcnFfYml0czogRmFpbGVkIHRvIGNoYW5nZSBl
+bmFibGVkIGludGVycnVwdHMhCgpUaGlzIGNhdXNlcyB0aGUgdG91Y2hwYWQgYW5kIHNvbWV0aW1l
+cyBvdGhlciB0aGluZ3MgdG8gZ2V0IGRpc2FibGVkLgoKU2luY2UgdGhpcyBoYXBwZW5zIHdpdGhv
+dXQgbm91dmVhdSwgd2UgY2FuJ3QgZml4IHRoaXMgcHJvYmxlbSBmcm9tIG5vdXZlYXUKaXRzZWxm
+LgoKQWRkIGEgUENJIHF1aXJrIGZvciB0aGUgc3BlY2lmaWMgUDUwIHZhcmlhbnQgb2YgdGhpcyBH
+UFUuICBNYWtlIHN1cmUgdGhlCkdQVSBpcyBhZHZlcnRpc2luZyBOb1Jlc2V0LSBzbyB3ZSBkb24n
+dCByZXNldCB0aGUgR1BVIHdoZW4gdGhlIG1hY2hpbmUgaXMKaW4gRGVkaWNhdGVkIGdyYXBoaWNz
+IG1vZGUgKHdoZXJlIHRoZSBHUFUgYmVpbmcgaW5pdGlhbGl6ZWQgYnkgdGhlIEJJT1MgaXMKbm9y
+bWFsIGFuZCBleHBlY3RlZCkuICBNYXAgdGhlIEdQVSBNTUlPIHNwYWNlIGFuZCByZWFkIHRoZSBt
+YWdpYyAweDIyNDBjCnJlZ2lzdGVyLCB3aGljaCB3aWxsIGhhdmUgYml0IDEgc2V0IGlmIHRoZSBk
+ZXZpY2Ugd2FzIFBPU1RlZCBkdXJpbmcgYQpwcmV2aW91cyBib290LiAgT25jZSB3ZSd2ZSBjb25m
+aXJtZWQgYWxsIG9mIHRoaXMsIHJlc2V0IHRoZSBHUFUgYW5kCnJlLWRpc2FibGUgaXQgLSBicmlu
+Z2luZyBpdCBiYWNrIHRvIGEgaGVhbHRoeSBzdGF0ZS4KCkxpbms6IGh0dHBzOi8vYnVnemlsbGEu
+a2VybmVsLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjAzMDAzCkxpbms6IGh0dHBzOi8vbG9yZS5rZXJu
+ZWwub3JnL2xrbWwvMjAxOTAyMTIyMjAyMzAuMTU2OC0xLWx5dWRlQHJlZGhhdC5jb20KU2lnbmVk
+LW9mZi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KU2lnbmVkLW9mZi1ieTogQmpv
+cm4gSGVsZ2FhcyA8YmhlbGdhYXNAZ29vZ2xlLmNvbT4KQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCkNjOiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCkNjOiBLYXJvbCBI
+ZXJic3QgPGtoZXJic3RAcmVkaGF0LmNvbT4KQ2M6IEJlbiBTa2VnZ3MgPHNrZWdnc2JAZ21haWwu
+Y29tPgpDYzogc3RhYmxlQHZnZXIua2VybmVsLm9yZwpTaWduZWQtb2ZmLWJ5OiBHcmVnIEtyb2Fo
+LUhhcnRtYW4gPGdyZWdraEBsaW51eGZvdW5kYXRpb24ub3JnPgoKLS0tCiBkcml2ZXJzL3BjaS9x
+dWlya3MuYyB8ICAgNTggKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKysrCiAxIGZpbGUgY2hhbmdlZCwgNTggaW5zZXJ0aW9ucygrKQoKLS0tIGEvZHJpdmVy
+cy9wY2kvcXVpcmtzLmMKKysrIGIvZHJpdmVycy9wY2kvcXVpcmtzLmMKQEAgLTUxMjIsMyArNTEy
+Miw2MSBAQCBTV0lUQ0hURUNfUVVJUksoMHg4NTczKTsgIC8qIFBGWEkgNDhYRzMKIFNXSVRDSFRF
+Q19RVUlSSygweDg1NzQpOyAgLyogUEZYSSA2NFhHMyAqLwogU1dJVENIVEVDX1FVSVJLKDB4ODU3
+NSk7ICAvKiBQRlhJIDgwWEczICovCiBTV0lUQ0hURUNfUVVJUksoMHg4NTc2KTsgIC8qIFBGWEkg
+OTZYRzMgKi8KKworLyoKKyAqIE9uIExlbm92byBUaGlua3BhZCBQNTAgU0tVcyB3aXRoIGEgTnZp
+ZGlhIFF1YWRybyBNMTAwME0sIHRoZSBCSU9TIGRvZXMKKyAqIG5vdCBhbHdheXMgcmVzZXQgdGhl
+IHNlY29uZGFyeSBOdmlkaWEgR1BVIGJldHdlZW4gcmVib290cyBpZiB0aGUgc3lzdGVtCisgKiBp
+cyBjb25maWd1cmVkIHRvIHVzZSBIeWJyaWQgR3JhcGhpY3MgbW9kZS4gIFRoaXMgcmVzdWx0cyBp
+biB0aGUgR1BVCisgKiBiZWluZyBsZWZ0IGluIHdoYXRldmVyIHN0YXRlIGl0IHdhcyBpbiBkdXJp
+bmcgdGhlICpwcmV2aW91cyogYm9vdCwgd2hpY2gKKyAqIGNhdXNlcyBzcHVyaW91cyBpbnRlcnJ1
+cHRzIGZyb20gdGhlIEdQVSwgd2hpY2ggaW4gdHVybiBjYXVzZXMgdXMgdG8KKyAqIGRpc2FibGUg
+dGhlIHdyb25nIElSUSBhbmQgZW5kIHVwIGJyZWFraW5nIHRoZSB0b3VjaHBhZC4gIFVuc3VycHJp
+c2luZ2x5LAorICogdGhpcyBhbHNvIGNvbXBsZXRlbHkgYnJlYWtzIG5vdXZlYXUuCisgKgorICog
+THVja2lseSwgaXQgc2VlbXMgYSBzaW1wbGUgcmVzZXQgb2YgdGhlIE52aWRpYSBHUFUgYnJpbmdz
+IGl0IGJhY2sgdG8gYQorICogY2xlYW4gc3RhdGUgYW5kIGZpeGVzIGFsbCB0aGVzZSBpc3N1ZXMu
+CisgKgorICogV2hlbiB0aGUgbWFjaGluZSBpcyBjb25maWd1cmVkIGluIERlZGljYXRlZCBkaXNw
+bGF5IG1vZGUsIHRoZSBpc3N1ZQorICogZG9lc24ndCBvY2N1ci4gIEZvcnR1bmF0ZWx5IHRoZSBH
+UFUgYWR2ZXJ0aXNlcyBOb1Jlc2V0KyB3aGVuIGluIHRoaXMKKyAqIG1vZGUsIHNvIHdlIGNhbiBk
+ZXRlY3QgdGhhdCBhbmQgYXZvaWQgcmVzZXR0aW5nIGl0LgorICovCitzdGF0aWMgdm9pZCBxdWly
+a19yZXNldF9sZW5vdm9fdGhpbmtwYWRfcDUwX252Z3B1KHN0cnVjdCBwY2lfZGV2ICpwZGV2KQor
+eworCXZvaWQgX19pb21lbSAqbWFwOworCWludCByZXQ7CisKKwlpZiAocGRldi0+c3Vic3lzdGVt
+X3ZlbmRvciAhPSBQQ0lfVkVORE9SX0lEX0xFTk9WTyB8fAorCSAgICBwZGV2LT5zdWJzeXN0ZW1f
+ZGV2aWNlICE9IDB4MjIyZSB8fAorCSAgICAhcGRldi0+cmVzZXRfZm4pCisJCXJldHVybjsKKwor
+CWlmIChwY2lfZW5hYmxlX2RldmljZV9tZW0ocGRldikpCisJCXJldHVybjsKKworCS8qCisJICog
+QmFzZWQgb24gbnZrbV9kZXZpY2VfY3RvcigpIGluCisJICogZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2UuYworCSAqLworCW1hcCA9IHBjaV9pb21hcChwZGV2
+LCAwLCAweDIzMDAwKTsKKwlpZiAoIW1hcCkgeworCQlwY2lfZXJyKHBkZXYsICJDYW4ndCBtYXAg
+TU1JTyBzcGFjZVxuIik7CisJCWdvdG8gb3V0X2Rpc2FibGU7CisJfQorCisJLyoKKwkgKiBNYWtl
+IHN1cmUgdGhlIEdQVSBsb29rcyBsaWtlIGl0J3MgYmVlbiBQT1NUZWQgYmVmb3JlIHJlc2V0dGlu
+ZworCSAqIGl0LgorCSAqLworCWlmIChpb3JlYWQzMihtYXAgKyAweDIyNDBjKSAmIDB4Mikgewor
+CQlwY2lfaW5mbyhwZGV2LCBGV19CVUcgIkdQVSBsZWZ0IGluaXRpYWxpemVkIGJ5IEVGSSwgcmVz
+ZXR0aW5nXG4iKTsKKwkJcmV0ID0gcGNpX3Jlc2V0X2Z1bmN0aW9uKHBkZXYpOworCQlpZiAocmV0
+IDwgMCkKKwkJCXBjaV9lcnIocGRldiwgIkZhaWxlZCB0byByZXNldCBHUFU6ICVkXG4iLCByZXQp
+OworCX0KKworCWlvdW5tYXAobWFwKTsKK291dF9kaXNhYmxlOgorCXBjaV9kaXNhYmxlX2Rldmlj
+ZShwZGV2KTsKK30KK0RFQ0xBUkVfUENJX0ZJWFVQX0NMQVNTX0ZJTkFMKFBDSV9WRU5ET1JfSURf
+TlZJRElBLCAweDEzYjEsCisJCQkgICAgICBQQ0lfQ0xBU1NfRElTUExBWV9WR0EsIDgsCisJCQkg
+ICAgICBxdWlya19yZXNldF9sZW5vdm9fdGhpbmtwYWRfcDUwX252Z3B1KTsKCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
+dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
