@@ -1,107 +1,116 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110748] [NVC1] [optimus] fifo: read fault at
- 0000000000 engine 00 [PGRAPH] client 00 [] reason 02 [PAGE_NOT_PRESENT]
-Date: Thu, 23 May 2019 17:14:40 +0000
-Message-ID: <bug-110748-8800-3f2dDoHgBj@http.bugs.freedesktop.org/>
-References: <bug-110748-8800@http.bugs.freedesktop.org/>
+From: Steven Rostedt <rostedt@goodmis.org>
+Subject: Re: [RFC][PATCH] kernel.h: Add generic roundup_64() macro
+Date: Thu, 23 May 2019 13:36:48 -0400
+Message-ID: <20190523133648.591f9e78@gandalf.local.home>
+References: <20190523100013.52a8d2a6@gandalf.local.home>
+        <CAHk-=wg5HqJ2Kfgpub+tCWQ2_FiFwEW9H1Rm+an-BLGaGvDDXw@mail.gmail.com>
+        <20190523112740.7167aba4@gandalf.local.home>
+        <CAHk-=whFJqTOk0mSxJGeh38ZxDksgRaMrNV8hqTngiuokyJzew@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1581519466=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110748-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CAHk-=whFJqTOk0mSxJGeh38ZxDksgRaMrNV8hqTngiuokyJzew@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Leon Romanovsky <leon@kernel.org>, Doug Ledford <dledford@redhat.com>, Jason Gunthorpe <jgg@ziepe.ca>, "Darrick J. Wong" <darrick.wong@oracle.com>, linux-xfs@vger.kernel.org, dri-devel <dri-devel@lists.freedesktop.org>, nouveau@lists.freedesktop.org, linux-rdma <linux-rdma@vger.kernel.org>, Andrew Morton <akpm@linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
+On Thu, 23 May 2019 09:51:29 -0700
+Linus Torvalds <torvalds@linux-foundation.org> wrote:
 
---===============1581519466==
-Content-Type: multipart/alternative; boundary="15586316790.A247Db24.20127"
-Content-Transfer-Encoding: 7bit
+> On Thu, May 23, 2019 at 8:27 AM Steven Rostedt <rostedt@goodmis.org> wrote:
+> >
+> > I haven't yet tested this, but what about something like the following:  
+> 
+> So that at least handles the constant case that the normal "roundup()"
+> case also handles.
+> 
+> At the same time, in the case you are talking about, I really do
+> suspect that we have a (non-constant) power of two, and that you
+> should have just used "round_up()" which works fine regardless of
+> size, and is always efficient.
+
+I think you are correct in this.
+
+       act_size = roundup_64(attr->length, MLX5_SW_ICM_BLOCK_SIZE(dm_db->dev));
+
+Where we have:
+
+#define MLX5_SW_ICM_BLOCK_SIZE(dev) (1 << MLX5_LOG_SW_ICM_BLOCK_SIZE(dev))
+
+Which pretty much guarantees that it is a power of two. Thus, the real
+fix here is simply to s/roundup/round_up/ as you suggest.
+
+> 
+> On a slight tangent.. Maybe we should have something like this:
+> 
+> #define size_fn(x, prefix, ...) ({                      \
+>         typeof(x) __ret;                                \
+>         switch (sizeof(x)) {                            \
+>         case 1: __ret = prefix##8(__VA_ARGS__); break;  \
+>         case 2: __ret = prefix##16(__VA_ARGS__); break; \
+>         case 4: __ret = prefix##32(__VA_ARGS__); break; \
+>         case 8: __ret = prefix##64(__VA_ARGS__); break; \
+>         default: __ret = prefix##bad(__VA_ARGS__);      \
+>         } __ret; })
+> 
+> #define type_fn(x, prefix, ...) ({                              \
+>         typeof(x) __ret;                                        \
+>         if ((typeof(x))-1 > 1)                                  \
+>                 __ret = size_fn(x, prefix##_u, __VA_ARGS__);    \
+>         else                                                    \
+>                 __ret = size_fn(x, prefix##_s, __VA_ARGS__);    \
+>         __ret; })
+> 
+> which would allow typed integer functions like this. So you could do
+> something like
+> 
+>      #define round_up(x, y) size_fn(x, round_up_size, x, y)
+> 
+> and then you define functions for round_up_size8/16/32/64 (and you
+
+You mean define functions for round_up_size_{u|s}8/16/32/64
+
+> have toi declare - but not define - round_up_sizebad()).
+> 
+> Of course, you probably want the usual "at least use 'int'" semantics,
+> in which case the "type" should be "(x)+0":
+> 
+>      #define round_up(x, y) size_fn((x)+0, round_up_size, x, y)
+> 
+>  and the 8-bit and 16-bit cases will never be used.
+
+I'm curious to what the advantage of that is?
+
+> 
+> We have a lot of cases where we end up using "type overloading" by
+> size. The most explicit case is perhaps "get_user()" and "put_user()",
+> but this whole round_up thing is another example.
+> 
+> Maybe we never really care about "char" and "short", and always want
+> just the "int-vs-long-vs-longlong"? That would make the cases simpler
+> (32 and 64). And maybe we never care about sign. But we could try to
+> have some unified helper model like the above..
+
+It may be simpler and perhaps more robust if we keep the char and short
+cases.
+
+I'm fine with adding something like this for round_up(), but do we want
+to have a generic roundup_64() as well? I'm also thinking that we
+perhaps should test for power of two on roundup():
+
+#define roundup(x, y) (					\
+{							\
+	typeof(y) __y = y;				\
+	typeof(x) __x;					\
+							\
+	if (__y & (__y - 1))				\
+		__x = round_up(x, __y);			\
+	else						\
+		__x = (((x) + (__y - 1)) / __y) * __y;	\
+	__x;						\
+})
 
 
---15586316790.A247Db24.20127
-Date: Thu, 23 May 2019 17:14:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110748
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Is there a -vo=3Dvdpau? If so, that's likely to work better. I suspect vo=
-=3Dgpu
-becomes GL, and GL + vdpau in separate threads =3D disaster.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15586316790.A247Db24.20127
-Date: Thu, 23 May 2019 17:14:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] [optimus] fifo: read fault at 0000000000 engine 00=
- [PGRAPH] client 00 [] reason 02 [PAGE_NOT_PRESENT]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110748#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] [optimus] fifo: read fault at 0000000000 engine 00=
- [PGRAPH] client 00 [] reason 02 [PAGE_NOT_PRESENT]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110748">bug 11074=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Is there a -vo=3Dvdpau? If so, that's likely to work better. I=
- suspect vo=3Dgpu
-becomes GL, and GL + vdpau in separate threads =3D disaster.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15586316790.A247Db24.20127--
-
---===============1581519466==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1581519466==--
+-- Steve
