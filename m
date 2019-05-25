@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110660] GeForce GT 750M Mac Edition fullscreen issues
-Date: Sat, 25 May 2019 22:37:04 +0000
-Message-ID: <bug-110660-8800-FDZwuI5VKv@http.bugs.freedesktop.org/>
-References: <bug-110660-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 1/2] drm/nouveau/disp/nv50-: force scaler for any
+ non-default LVDS/eDP modes
+Date: Sat, 25 May 2019 18:41:48 -0400
+Message-ID: <20190525224149.4652-1-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0151090925=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,98 +16,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0151090925==
-Content-Type: multipart/alternative; boundary="15588238240.E987BE.19282"
-Content-Transfer-Encoding: 7bit
-
-
---15588238240.E987BE.19282
-Date: Sat, 25 May 2019 22:37:04 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110660
-
---- Comment #31 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 144346
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144346&action=3Dedit
-fix center and aspect scaling
-
-This patch should fix the aspect scaling mode (and also makes adjustments to
-the center one - it wasn't obviously correct before).
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15588238240.E987BE.19282
-Date: Sat, 25 May 2019 22:37:04 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c31">Comme=
-nt # 31</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660">bug 11066=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144346=
-" name=3D"attach_144346" title=3D"fix center and aspect scaling">attachment=
- 144346</a> <a href=3D"attachment.cgi?id=3D144346&amp;action=3Dedit" title=
-=3D"fix center and aspect scaling">[details]</a></span> <a href=3D'page.cgi=
-?id=3Dsplinter.html&amp;bug=3D110660&amp;attachment=3D144346'>[review]</a>
-fix center and aspect scaling
-
-This patch should fix the aspect scaling mode (and also makes adjustments to
-the center one - it wasn't obviously correct before).</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15588238240.E987BE.19282--
-
---===============0151090925==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0151090925==--
+SGlnaGVyIGxheWVycyB0ZW5kIHRvIGFkZCBhIGxvdCBvZiBtb2RlcyBub3QgYWN0dWFsbHkgaW4g
+dGhlIEVESUQsIHN1Y2gKYXMgdGhlIHN0YW5kYXJkIERNVCBtb2Rlcy4gQ2hhbmdpbmcgdGhpcyB3
+b3VsZCBiZSBleHRyZW1lbHkgaW50cnVzaXZlIHRvCmV2ZXJ5b25lLCBzbyBqdXN0IGZvcmNlIHRo
+ZSBzY2FsZXIgbW9yZSBvZnRlbi4gVGhlcmUgYXJlIG5vIHByYWN0aWNhbApjYXNlcyB3ZSdyZSBh
+d2FyZSBvZiB3aGVyZSBhIExWRFMvZURQIHBhbmVsIGhhcyBtdWx0aXBsZSByZXNvbHV0aW9ucwpl
+eHBvc2VkLCBhbmQgaTkxNSBhbHJlYWR5IGRvZXMgaXQgdGhpcyB3YXkuCgpCdWd6aWxsYTogaHR0
+cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTEwNjYwClNpZ25lZC1v
+ZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KLS0tCgpVbnRlc3RlZCBm
+b3Igbm93LCBob3BpbmcgdGhhdCB0aGUgYnVnemlsbGEgZmlsZXIgd2lsbCB0ZXN0IGl0IG91dC4g
+U2VlbXMKb2J2aW91cyB0aG91Z2guCgogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAv
+ZGlzcC5jIHwgOSArKysrKysrLS0KIDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKyksIDIg
+ZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52
+NTAvZGlzcC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCmluZGV4
+IDEzNDcwMWE4MzdjOC4uZWY4ZDdhNzE1NjRhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9kaXNwbnY1MC9kaXNwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlz
+cG52NTAvZGlzcC5jCkBAIC0zMjIsOCArMzIyLDEzIEBAIG52NTBfb3V0cF9hdG9taWNfY2hlY2tf
+dmlldyhzdHJ1Y3QgZHJtX2VuY29kZXIgKmVuY29kZXIsCiAJCXN3aXRjaCAoY29ubmVjdG9yLT5j
+b25uZWN0b3JfdHlwZSkgewogCQljYXNlIERSTV9NT0RFX0NPTk5FQ1RPUl9MVkRTOgogCQljYXNl
+IERSTV9NT0RFX0NPTk5FQ1RPUl9lRFA6Ci0JCQkvKiBGb3JjZSB1c2Ugb2Ygc2NhbGVyIGZvciBu
+b24tRURJRCBtb2Rlcy4gKi8KLQkJCWlmIChhZGp1c3RlZF9tb2RlLT50eXBlICYgRFJNX01PREVf
+VFlQRV9EUklWRVIpCisJCQkvKiBEb24ndCBmb3JjZSBzY2FsZXIgZm9yIEVESUQgbW9kZXMgd2l0
+aAorCQkJICogc2FtZSBzaXplIGFzIHRoZSBuYXRpdmUgb25lIChlLmcuIGRpZmZlcmVudAorCQkJ
+ICogcmVmcmVzaCByYXRlKQorCQkJICovCisJCQlpZiAoYWRqdXN0ZWRfbW9kZS0+aGRpc3BsYXkg
+PT0gbmF0aXZlX21vZGUtPmhkaXNwbGF5ICYmCisJCQkgICAgYWRqdXN0ZWRfbW9kZS0+dmRpc3Bs
+YXkgPT0gbmF0aXZlX21vZGUtPnZkaXNwbGF5ICYmCisJCQkgICAgYWRqdXN0ZWRfbW9kZS0+dHlw
+ZSAmIERSTV9NT0RFX1RZUEVfRFJJVkVSKQogCQkJCWJyZWFrOwogCQkJbW9kZSA9IG5hdGl2ZV9t
+b2RlOwogCQkJYXN5Yy0+c2NhbGVyLmZ1bGwgPSB0cnVlOwotLSAKMi4yMS4wCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
+dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
