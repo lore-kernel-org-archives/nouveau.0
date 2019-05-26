@@ -1,71 +1,36 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 2/2] drm/nouveau/disp/nv50-: fix
- center/aspect-corrected scaling
-Date: Sat, 25 May 2019 18:41:49 -0400
-Message-ID: <20190525224149.4652-2-imirkin@alum.mit.edu>
-References: <20190525224149.4652-1-imirkin@alum.mit.edu>
+From: Hariprasad Kelam <hariprasad.kelam@gmail.com>
+Subject: [PATCH] drm/nouveau/dispnv04: subdev/bios.h is included more than
+ once
+Date: Sun, 26 May 2019 16:29:36 +0530
+Message-ID: <20190526105935.GA2983@hari-Inspiron-1545>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190525224149.4652-1-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Hariprasad Kelam <hariprasad.kelam@gmail.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-UHJldmlvdXNseSBjZW50ZXIgc2NhbGluZyB3b3VsZCBnZXQgc2NhbGluZyBhcHBsaWVkIHRvIGl0
-ICh3aGVuIGl0IHdhcwpvbmx5IHN1cHBvc2VkIHRvIGNlbnRlciB0aGUgaW1hZ2UpLCBhbmQgYXNw
-ZWN0LWNvcnJlY3RlZCBzY2FsaW5nIGRpZCBub3QKYWx3YXlzIGNvcnJlY3RseSBwaWNrIHdoZXRo
-ZXIgdG8gcmVkdWNlIHdpZHRoIG9yIGhlaWdodCBmb3IgYSBwYXJ0aWN1bGFyCmNvbWJpbmF0aW9u
-IG9mIGlucHV0cy9vdXRwdXRzLgoKQnVnemlsbGE6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5v
-cmcvc2hvd19idWcuY2dpP2lkPTExMDY2MApTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1p
-cmtpbkBhbHVtLm1pdC5lZHU+Ci0tLQoKVGVzdGVkIG9uIGEgMTkyMHgxMjAwLW5hdGl2ZSBzY3Jl
-ZW4gd2l0aCBhIDY0MHg0ODAgbW9kZSAoZ290IGxldHRlcgpib3hlcyBvbiB0aGUgc2lkZSkgYW5k
-IDcyMHg0MDAgbW9kZSAoZ290IGxldHRlciBib3hlcyBvbiB0b3AvYm90dG9tKS4KCiBkcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9oZWFkLmMgfCAyOCArKysrKysrKysrKysrKysrKysr
-KystLS0tCiAxIGZpbGUgY2hhbmdlZCwgMjQgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkK
-CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9oZWFkLmMgYi9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9oZWFkLmMKaW5kZXggYWM5N2ViY2U1YjM1
-Li5lMjIwNzk5MGQzY2MgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3Bu
-djUwL2hlYWQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9oZWFkLmMK
-QEAgLTE2OSwxNCArMTY5LDM0IEBAIG52NTBfaGVhZF9hdG9taWNfY2hlY2tfdmlldyhzdHJ1Y3Qg
-bnY1MF9oZWFkX2F0b20gKmFybWgsCiAJICovCiAJc3dpdGNoIChtb2RlKSB7CiAJY2FzZSBEUk1f
-TU9ERV9TQ0FMRV9DRU5URVI6Ci0JCWFzeWgtPnZpZXcub1cgPSBtaW4oKHUxNil1bW9kZS0+aGRp
-c3BsYXksIGFzeWgtPnZpZXcub1cpOwotCQlhc3loLT52aWV3Lm9IID0gbWluKCh1MTYpdW1vZGVf
-dmRpc3BsYXksIGFzeWgtPnZpZXcub0gpOwotCQkvKiBmYWxsLXRocm91Z2ggKi8KKwkJLyogTk9U
-RTogVGhpcyB3aWxsIGNhdXNlIHNjYWxpbmcgd2hlbiB0aGUgaW5wdXQgaXMKKwkJICogbGFyZ2Vy
-IHRoYW4gdGhlIG91dHB1dC4KKwkJICovCisJCWFzeWgtPnZpZXcub1cgPSBtaW4oYXN5aC0+dmll
-dy5pVywgYXN5aC0+dmlldy5vVyk7CisJCWFzeWgtPnZpZXcub0ggPSBtaW4oYXN5aC0+dmlldy5p
-SCwgYXN5aC0+dmlldy5vSCk7CisJCWJyZWFrOwogCWNhc2UgRFJNX01PREVfU0NBTEVfQVNQRUNU
-OgotCQlpZiAoYXN5aC0+dmlldy5vSCA8IGFzeWgtPnZpZXcub1cpIHsKKwkJLyogRGV0ZXJtaW5l
-IHdoZXRoZXIgdGhlIHNjYWxpbmcgc2hvdWxkIGJlIG9uIHdpZHRoIG9yIG9uCisJCSAqIGhlaWdo
-dC4gVGhpcyBpcyBkb25lIGJ5IGNvbXBhcmluZyB0aGUgYXNwZWN0IHJhdGlvcyBvZiB0aGUKKwkJ
-ICogc2l6ZXMuIElmIHRoZSBvdXRwdXQgQVIgaXMgbGFyZ2VyIHRoYW4gaW5wdXQgQVIsIHRoYXQg
-bWVhbnMKKwkJICogd2Ugd2FudCB0byBjaGFuZ2UgdGhlIHdpZHRoIChsZXR0ZXJib3hlZCBvbiB0
-aGUKKwkJICogbGVmdC9yaWdodCksIG90aGVyd2lzZSBvbiB0aGUgaGVpZ2h0IChsZXR0ZXJib3hl
-ZCBvbiB0aGUKKwkJICogdG9wL2JvdHRvbSkuCisJCSAqCisJCSAqIEUuZy4gNDozICgxLjMzMykg
-QVIgaW1hZ2UgZGlzcGxheWVkIG9uIGEgMTY6MTAgKDEuNikgQVIKKwkJICogc2NyZWVuIHdpbGwg
-aGF2ZSBsZXR0ZXJib3hlcyBvbiB0aGUgbGVmdC9yaWdodC4gSG93ZXZlciBhCisJCSAqIDE2Ojkg
-KDEuNzc3KSBBUiBpbWFnZSBvbiB0aGF0IHNhbWUgc2NyZWVuIHdpbGwgaGF2ZQorCQkgKiBsZXR0
-ZXJib3hlcyBvbiB0aGUgdG9wL2JvdHRvbS4KKwkJICoKKwkJICogaW5wdXRBUiA9IGlXIC8gaUg7
-IG91dHB1dEFSID0gb1cgLyBvSAorCQkgKiBvdXRwdXRBUiA+IGlucHV0QVIgaXMgZXF1aXZhbGVu
-dCB0byBvVyAqIGlIID4gaVcgKiBvSAorCQkgKi8KKwkJaWYgKGFzeWgtPnZpZXcub1cgKiBhc3lo
-LT52aWV3LmlIID4gYXN5aC0+dmlldy5pVyAqIGFzeWgtPnZpZXcub0gpIHsKKwkJCS8qIFJlY29t
-cHV0ZSBvdXRwdXQgd2lkdGgsIGkuZS4gbGVmdC9yaWdodCBsZXR0ZXJib3ggKi8KIAkJCXUzMiBy
-ID0gKGFzeWgtPnZpZXcuaVcgPDwgMTkpIC8gYXN5aC0+dmlldy5pSDsKIAkJCWFzeWgtPnZpZXcu
-b1cgPSAoKGFzeWgtPnZpZXcub0ggKiByKSArIChyIC8gMikpID4+IDE5OwogCQl9IGVsc2Ugewor
-CQkJLyogUmVjb21wdXRlIG91dHB1dCBoZWlnaHQsIGkuZS4gdG9wL2JvdHRvbSBsZXR0ZXJib3gg
-Ki8KIAkJCXUzMiByID0gKGFzeWgtPnZpZXcuaUggPDwgMTkpIC8gYXN5aC0+dmlldy5pVzsKIAkJ
-CWFzeWgtPnZpZXcub0ggPSAoKGFzeWgtPnZpZXcub1cgKiByKSArIChyIC8gMikpID4+IDE5Owog
-CQl9Ci0tIAoyLjIxLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+remove duplicate inclusion of subdev/bios.h
+
+Issue identified by includecheck
+
+Signed-off-by: Hariprasad Kelam <hariprasad.kelam@gmail.com>
+---
+ drivers/gpu/drm/nouveau/dispnv04/disp.h | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/disp.h b/drivers/gpu/drm/nouveau/dispnv04/disp.h
+index c6ed20a..195d899 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/disp.h
++++ b/drivers/gpu/drm/nouveau/dispnv04/disp.h
+@@ -161,7 +161,6 @@ nv_match_device(struct drm_device *dev, unsigned device,
+ 		dev->pdev->subsystem_device == sub_device;
+ }
+ 
+-#include <subdev/bios.h>
+ #include <subdev/bios/init.h>
+ 
+ static inline void
+-- 
+2.7.4
