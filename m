@@ -1,35 +1,103 @@
-From: Hariprasad Kelam <hariprasad.kelam@gmail.com>
-Subject: [PATCH] drm/nouveau: fix nvif/device.h is included more than once
-Date: Sun, 26 May 2019 16:36:25 +0530
-Message-ID: <20190526110625.GA3143@hari-Inspiron-1545>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110660] GeForce GT 750M Mac Edition fullscreen issues
+Date: Sun, 26 May 2019 19:11:52 +0000
+Message-ID: <bug-110660-8800-04qSSW74vp@http.bugs.freedesktop.org/>
+References: <bug-110660-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============1509441833=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-110660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-remove duplicate inclusion of nvif/device.h
 
-Issue identified by includecheck
+--===============1509441833==
+Content-Type: multipart/alternative; boundary="15588979120.43AB8Bcc.4076"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Hariprasad Kelam <hariprasad.kelam@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_drv.h | 1 -
- 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index 35ff0ca..cfebb14 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -127,7 +127,6 @@ nouveau_cli(struct drm_file *fpriv)
- }
- 
- #include <nvif/object.h>
--#include <nvif/device.h>
- 
- struct nouveau_drm {
- 	struct nouveau_cli master;
--- 
-2.7.4
+--15588979120.43AB8Bcc.4076
+Date: Sun, 26 May 2019 19:11:52 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110660
+
+--- Comment #32 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Alexei - if you get a chance, try applying the two patches I provide. They
+should make things work for you out of the box.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15588979120.43AB8Bcc.4076
+Date: Sun, 26 May 2019 19:11:52 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c32">Comme=
+nt # 32</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660">bug 11066=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Alexei - if you get a chance, try applying the two patches I p=
+rovide. They
+should make things work for you out of the box.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15588979120.43AB8Bcc.4076--
+
+--===============1509441833==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1509441833==--
