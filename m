@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
  409800 [ TIMEOUT ]
-Date: Mon, 27 May 2019 20:54:54 +0000
-Message-ID: <bug-100228-8800-XZy9cRNS3S@http.bugs.freedesktop.org/>
+Date: Mon, 27 May 2019 20:55:44 +0000
+Message-ID: <bug-100228-8800-DAfln476wS@http.bugs.freedesktop.org/>
 References: <bug-100228-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1687105957=="
+Content-Type: multipart/mixed; boundary="===============1809097844=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1687105957==
-Content-Type: multipart/alternative; boundary="15589904943.D90fe.32013"
+--===============1809097844==
+Content-Type: multipart/alternative; boundary="155899054415.6dea.32100"
 Content-Transfer-Encoding: 7bit
 
 
---15589904943.D90fe.32013
-Date: Mon, 27 May 2019 20:54:54 +0000
+--155899054415.6dea.32100
+Date: Mon, 27 May 2019 20:55:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
 
---- Comment #35 from Markus Wanner <markus-XHb0b+agOrdyDzI6CaY1VQ@public.gmane.org> ---
-Created attachment 144355
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144355&action=3Dedit
-GP107GLM - kernel log
+--- Comment #36 from Markus Wanner <markus-XHb0b+agOrdyDzI6CaY1VQ@public.gmane.org> ---
+Created attachment 144356
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144356&action=3Dedit
+GP107GLM (ThinkPad P1) - lspci
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15589904943.D90fe.32013
-Date: Mon, 27 May 2019 20:54:54 +0000
+--155899054415.6dea.32100
+Date: Mon, 27 May 2019 20:55:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
 OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c35">Comme=
-nt # 35</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c36">Comme=
+nt # 36</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
@@ -76,11 +76,11 @@ OUT ]"
 markus&#64;bluegap.ch" title=3D"Markus Wanner &lt;markus&#64;bluegap.ch&gt;=
 "> <span class=3D"fn">Markus Wanner</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144355=
-" name=3D"attach_144355" title=3D"GP107GLM - kernel log">attachment 144355<=
-/a> <a href=3D"attachment.cgi?id=3D144355&amp;action=3Dedit" title=3D"GP107=
-GLM - kernel log">[details]</a></span>
-GP107GLM - kernel log</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144356=
+" name=3D"attach_144356" title=3D"GP107GLM (ThinkPad P1) - lspci">attachmen=
+t 144356</a> <a href=3D"attachment.cgi?id=3D144356&amp;action=3Dedit" title=
+=3D"GP107GLM (ThinkPad P1) - lspci">[details]</a></span>
+GP107GLM (ThinkPad P1) - lspci</pre>
         </div>
       </p>
 
@@ -94,9 +94,9 @@ GP107GLM - kernel log</pre>
     </body>
 </html>=
 
---15589904943.D90fe.32013--
+--155899054415.6dea.32100--
 
---===============1687105957==
+--===============1809097844==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1687105957==--
+--===============1809097844==--
