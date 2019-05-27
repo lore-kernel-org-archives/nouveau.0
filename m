@@ -1,90 +1,42 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 08/13] drm/nouveau: drop DRM_AUTH from
- DRM_RENDER_ALLOW ioctls
-Date: Mon, 27 May 2019 09:17:36 +0100
-Message-ID: <20190527081741.14235-8-emil.l.velikov@gmail.com>
-References: <20190527081741.14235-1-emil.l.velikov@gmail.com>
+From: Souptick Joarder <jrdr.linux@gmail.com>
+Subject: Re: [PATCH] drm/nouveau/svm: Convert to use hmm_range_fault()
+Date: Mon, 27 May 2019 23:33:28 +0530
+Message-ID: <CAFqt6zaVp5nvuz65tiaBisnoRpXrjpQf7Y4bc_Eyt0-pcOYvrA@mail.gmail.com>
+References: <1558378918-25279-1-git-send-email-jrdr.linux@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190527081741.14235-1-emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <1558378918-25279-1-git-send-email-jrdr.linux@gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie, Daniel Vetter <daniel@ffwll.ch>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogRW1pbCBWZWxpa292IDxlbWlsLnZlbGlrb3ZAY29sbGFib3JhLmNvbT4KClRoZSBhdXRo
-ZW50aWNhdGlvbiBjYW4gYmUgY2lyY3VtdmVudGVkLCBieSBkZXNpZ24sIGJ5IHVzaW5nIHRoZSBy
-ZW5kZXIKbm9kZS4KCkZyb20gdGhlIGRyaXZlciBQT1YgdGhlcmUgaXMgbm8gZGlzdGluY3Rpb24g
-YmV0d2VlbiBwcmltYXJ5IGFuZCByZW5kZXIKbm9kZXMsIHRodXMgd2UgY2FuIGRyb3AgdGhlIHRv
-a2VuLgoKTm90ZTogdGhlIG91dHN0YW5kaW5nIERSTV9BVVRIIGluc3RhbmNlIGlzOgogLSBsZWdh
-Y3kgRFJJMSBpb2N0bCwgd2hpY2ggaXMgYWxyZWFkeSBuZXV0ZXJlZAoKQ2M6IEJlbiBTa2VnZ3Mg
-PGJza2VnZ3NAcmVkaGF0LmNvbT4KQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCkNj
-OiBEYXZpZCBBaXJsaWUgPGFpcmxpZWRAbGludXguaWU+CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5p
-ZWxAZmZ3bGwuY2g+ClNpZ25lZC1vZmYtYnk6IEVtaWwgVmVsaWtvdiA8ZW1pbC52ZWxpa292QGNv
-bGxhYm9yYS5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyB8
-IDI2ICsrKysrKysrKysrKystLS0tLS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMTMgaW5zZXJ0
-aW9ucygrKSwgMTMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9kcm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJt
-LmMKaW5kZXggMjJjZDQ1ODQ1ZTA3Li5mZjU5OTRjMGQ0MjkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9kcm0uYwpAQCAtMTA0NSwyMCArMTA0NSwyMCBAQCBub3V2ZWF1X2RybV9wb3N0
-Y2xvc2Uoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgc3RydWN0IGRybV9maWxlICpmcHJpdikKIAog
-c3RhdGljIGNvbnN0IHN0cnVjdCBkcm1faW9jdGxfZGVzYwogbm91dmVhdV9pb2N0bHNbXSA9IHsK
-LQlEUk1fSU9DVExfREVGX0RSVihOT1VWRUFVX0dFVFBBUkFNLCBub3V2ZWF1X2FiaTE2X2lvY3Rs
-X2dldHBhcmFtLCBEUk1fQVVUSHxEUk1fUkVOREVSX0FMTE9XKSwKKwlEUk1fSU9DVExfREVGX0RS
-VihOT1VWRUFVX0dFVFBBUkFNLCBub3V2ZWF1X2FiaTE2X2lvY3RsX2dldHBhcmFtLCBEUk1fUkVO
-REVSX0FMTE9XKSwKIAlEUk1fSU9DVExfREVGX0RSVihOT1VWRUFVX1NFVFBBUkFNLCBub3V2ZWF1
-X2FiaTE2X2lvY3RsX3NldHBhcmFtLCBEUk1fQVVUSHxEUk1fTUFTVEVSfERSTV9ST09UX09OTFkp
-LAotCURSTV9JT0NUTF9ERUZfRFJWKE5PVVZFQVVfQ0hBTk5FTF9BTExPQywgbm91dmVhdV9hYmkx
-Nl9pb2N0bF9jaGFubmVsX2FsbG9jLCBEUk1fQVVUSHxEUk1fUkVOREVSX0FMTE9XKSwKLQlEUk1f
-SU9DVExfREVGX0RSVihOT1VWRUFVX0NIQU5ORUxfRlJFRSwgbm91dmVhdV9hYmkxNl9pb2N0bF9j
-aGFubmVsX2ZyZWUsIERSTV9BVVRIfERSTV9SRU5ERVJfQUxMT1cpLAotCURSTV9JT0NUTF9ERUZf
-RFJWKE5PVVZFQVVfR1JPQkpfQUxMT0MsIG5vdXZlYXVfYWJpMTZfaW9jdGxfZ3JvYmpfYWxsb2Ms
-IERSTV9BVVRIfERSTV9SRU5ERVJfQUxMT1cpLAotCURSTV9JT0NUTF9ERUZfRFJWKE5PVVZFQVVf
-Tk9USUZJRVJPQkpfQUxMT0MsIG5vdXZlYXVfYWJpMTZfaW9jdGxfbm90aWZpZXJvYmpfYWxsb2Ms
-IERSTV9BVVRIfERSTV9SRU5ERVJfQUxMT1cpLAotCURSTV9JT0NUTF9ERUZfRFJWKE5PVVZFQVVf
-R1BVT0JKX0ZSRUUsIG5vdXZlYXVfYWJpMTZfaW9jdGxfZ3B1b2JqX2ZyZWUsIERSTV9BVVRIfERS
-TV9SRU5ERVJfQUxMT1cpLAotCURSTV9JT0NUTF9ERUZfRFJWKE5PVVZFQVVfU1ZNX0lOSVQsIG5v
-dXZlYXVfc3ZtbV9pbml0LCBEUk1fQVVUSHxEUk1fUkVOREVSX0FMTE9XKSwKLQlEUk1fSU9DVExf
-REVGX0RSVihOT1VWRUFVX1NWTV9CSU5ELCBub3V2ZWF1X3N2bW1fYmluZCwgRFJNX0FVVEh8RFJN
-X1JFTkRFUl9BTExPVyksCi0JRFJNX0lPQ1RMX0RFRl9EUlYoTk9VVkVBVV9HRU1fTkVXLCBub3V2
-ZWF1X2dlbV9pb2N0bF9uZXcsIERSTV9BVVRIfERSTV9SRU5ERVJfQUxMT1cpLAotCURSTV9JT0NU
-TF9ERUZfRFJWKE5PVVZFQVVfR0VNX1BVU0hCVUYsIG5vdXZlYXVfZ2VtX2lvY3RsX3B1c2hidWYs
-IERSTV9BVVRIfERSTV9SRU5ERVJfQUxMT1cpLAotCURSTV9JT0NUTF9ERUZfRFJWKE5PVVZFQVVf
-R0VNX0NQVV9QUkVQLCBub3V2ZWF1X2dlbV9pb2N0bF9jcHVfcHJlcCwgRFJNX0FVVEh8RFJNX1JF
-TkRFUl9BTExPVyksCi0JRFJNX0lPQ1RMX0RFRl9EUlYoTk9VVkVBVV9HRU1fQ1BVX0ZJTkksIG5v
-dXZlYXVfZ2VtX2lvY3RsX2NwdV9maW5pLCBEUk1fQVVUSHxEUk1fUkVOREVSX0FMTE9XKSwKLQlE
-Uk1fSU9DVExfREVGX0RSVihOT1VWRUFVX0dFTV9JTkZPLCBub3V2ZWF1X2dlbV9pb2N0bF9pbmZv
-LCBEUk1fQVVUSHxEUk1fUkVOREVSX0FMTE9XKSwKKwlEUk1fSU9DVExfREVGX0RSVihOT1VWRUFV
-X0NIQU5ORUxfQUxMT0MsIG5vdXZlYXVfYWJpMTZfaW9jdGxfY2hhbm5lbF9hbGxvYywgRFJNX1JF
-TkRFUl9BTExPVyksCisJRFJNX0lPQ1RMX0RFRl9EUlYoTk9VVkVBVV9DSEFOTkVMX0ZSRUUsIG5v
-dXZlYXVfYWJpMTZfaW9jdGxfY2hhbm5lbF9mcmVlLCBEUk1fUkVOREVSX0FMTE9XKSwKKwlEUk1f
-SU9DVExfREVGX0RSVihOT1VWRUFVX0dST0JKX0FMTE9DLCBub3V2ZWF1X2FiaTE2X2lvY3RsX2dy
-b2JqX2FsbG9jLCBEUk1fUkVOREVSX0FMTE9XKSwKKwlEUk1fSU9DVExfREVGX0RSVihOT1VWRUFV
-X05PVElGSUVST0JKX0FMTE9DLCBub3V2ZWF1X2FiaTE2X2lvY3RsX25vdGlmaWVyb2JqX2FsbG9j
-LCBEUk1fUkVOREVSX0FMTE9XKSwKKwlEUk1fSU9DVExfREVGX0RSVihOT1VWRUFVX0dQVU9CSl9G
-UkVFLCBub3V2ZWF1X2FiaTE2X2lvY3RsX2dwdW9ial9mcmVlLCBEUk1fUkVOREVSX0FMTE9XKSwK
-KwlEUk1fSU9DVExfREVGX0RSVihOT1VWRUFVX1NWTV9JTklULCBub3V2ZWF1X3N2bW1faW5pdCwg
-RFJNX1JFTkRFUl9BTExPVyksCisJRFJNX0lPQ1RMX0RFRl9EUlYoTk9VVkVBVV9TVk1fQklORCwg
-bm91dmVhdV9zdm1tX2JpbmQsIERSTV9SRU5ERVJfQUxMT1cpLAorCURSTV9JT0NUTF9ERUZfRFJW
-KE5PVVZFQVVfR0VNX05FVywgbm91dmVhdV9nZW1faW9jdGxfbmV3LCBEUk1fUkVOREVSX0FMTE9X
-KSwKKwlEUk1fSU9DVExfREVGX0RSVihOT1VWRUFVX0dFTV9QVVNIQlVGLCBub3V2ZWF1X2dlbV9p
-b2N0bF9wdXNoYnVmLCBEUk1fUkVOREVSX0FMTE9XKSwKKwlEUk1fSU9DVExfREVGX0RSVihOT1VW
-RUFVX0dFTV9DUFVfUFJFUCwgbm91dmVhdV9nZW1faW9jdGxfY3B1X3ByZXAsIERSTV9SRU5ERVJf
-QUxMT1cpLAorCURSTV9JT0NUTF9ERUZfRFJWKE5PVVZFQVVfR0VNX0NQVV9GSU5JLCBub3V2ZWF1
-X2dlbV9pb2N0bF9jcHVfZmluaSwgRFJNX1JFTkRFUl9BTExPVyksCisJRFJNX0lPQ1RMX0RFRl9E
-UlYoTk9VVkVBVV9HRU1fSU5GTywgbm91dmVhdV9nZW1faW9jdGxfaW5mbywgRFJNX1JFTkRFUl9B
-TExPVyksCiB9OwogCiBsb25nCi0tIAoyLjIxLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vbm91dmVhdQ==
+On Tue, May 21, 2019 at 12:27 AM Souptick Joarder <jrdr.linux@gmail.com> wrote:
+>
+> Convert to use hmm_range_fault().
+
+Any comment on this patch ?
+
+>
+> Signed-off-by: Souptick Joarder <jrdr.linux@gmail.com>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_svm.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> index 93ed43c..8d56bd6 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> @@ -649,7 +649,7 @@ struct nouveau_svmm {
+>                 range.values = nouveau_svm_pfn_values;
+>                 range.pfn_shift = NVIF_VMM_PFNMAP_V0_ADDR_SHIFT;
+>  again:
+> -               ret = hmm_vma_fault(&range, true);
+> +               ret = hmm_range_fault(&range, true);
+>                 if (ret == 0) {
+>                         mutex_lock(&svmm->mutex);
+>                         if (!hmm_vma_range_done(&range)) {
+> --
+> 1.9.1
+>
