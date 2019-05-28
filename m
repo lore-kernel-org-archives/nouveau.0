@@ -1,12 +1,12 @@
-From: Markus Wanner <markus-XHb0b+agOrdyDzI6CaY1VQ@public.gmane.org>
-Subject: Support for GP107(GL)M with Optimus
-Date: Tue, 28 May 2019 11:58:34 +0200
-Message-ID: <2b626681-3504-c7e9-10d2-0f906dcb176d@bluegap.ch>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110660] GeForce GT 750M Mac Edition fullscreen issues
+Date: Tue, 28 May 2019 16:58:14 +0000
+Message-ID: <bug-110660-8800-HQctwUw2Ia@http.bugs.freedesktop.org/>
+References: <bug-110660-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1478351466=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-GB
+In-Reply-To: <bug-110660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,20 +19,103 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpJIHJlY2VudGx5IGFkZGVkIGxvZ3MgYW5kIGFub3RoZXIgcmVwb3J0IGZyb20gYSBUaGlu
-a1BhZCBQMSB3aXRoIGEKUXVhZHJvIFAyMDAwIE1vYmlsZSAoR1AxMDdHTE0pIHRvIGlzc3VlICMx
-MDAyMjguCgpUaGF0J3Mgd2l0aCBhIHZlcnkgcmVjZW50IExpbnV4IGtlcm5lbCBhbmQgY3VycmVu
-dCBub3V2ZWF1IGRyaXZlcgpzb3VyY2VzLCBhbGwgYm9vdGVkIGZyb20gYW4gTkZTLXJvb3Qgc2V0
-dXAsIG1ha2luZyBpdCB3ZWxsIHJlcHJvZHVjaWJsZS4KIEkgY2FuIG9wdGlvbmFsbHkgYm9vdCBp
-bnRvIGEgc2ltaWxhciBORlMgaW5zdGFsbGF0aW9uIHdpdGggdGhlCnByb3ByaWV0YXJ5IE52aWRp
-YSBkcml2ZXIsIGFsbG93aW5nIG1lIHRvIGNhcHR1cmUgTU1JTyB0cmFjZXMgYXMgd2VsbC4KCkhv
-d2V2ZXIsIEknbSBub3Qgc3VyZSB3aGVyZSB0byBnbyBmcm9tIGhlcmUgYW5kIHdvdWxkIGFwcHJl
-Y2lhdGUgc29tZQpoZWxwIGluIGRpYWdub3NpbmcgdGhpcyBhbmQvb3IgbW92aW5nIGl0IGZvcndh
-cmQuICBJJ20gYSBwcm9mZXNzaW9uYWwKYW5kIGV4cGVyaWVuY2VkIGRldmVsb3BlciwgYnV0IGhh
-dmUgcGxlbnR5IG9mIG90aGVyIGludGVyZXN0aW5nIHByb2plY3RzCm9uIG15IHRhYmxlLCBhbHJl
-YWR5LgoKRG8gb3JkaW5hcnkgKG5vbi1PcHRpbXVzKSBzZXR1cHMgd2l0aCBHUDEwNyB3b3JrPyAg
-V2hhdCBkbyB5b3UgbG9vayBmb3IKd2hlbiByZWFkaW5nIE1NSU8gdHJhY2VzPyAgV2hhdCBhY2Nv
-bXBhbnlpbmcgZGF0YSBkbyBJIG5lZWQgdG8gY29sbGVjdD8KCktpbmQgUmVnYXJkcwoKTWFya3Vz
-IFdhbm5lcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+
+--===============1478351466==
+Content-Type: multipart/alternative; boundary="15590626942.bE07.5229"
+Content-Transfer-Encoding: 7bit
+
+
+--15590626942.bE07.5229
+Date: Tue, 28 May 2019 16:58:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110660
+
+--- Comment #33 from Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> ---
+Thanks! In Ubuntu kernel has no drivers/gpu/drm/nouveau/dispnv50/disp.c and
+drivers/gpu/drm/nouveau/dispnv50/head.c but instead those files merged into=
+ one
+drivers/gpu/drm/nouveau/nv50_display.c for some heck reason.
+
+Patching this file makes one problem disappear, only "fix center and aspect
+scaling" work properly (which confirms I build a kernel properly) but scali=
+ng
+modes without calling 'xrandr --output eDP-1 --set "scaling mode" "Full
+aspect"' still produces broken 8 displays.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15590626942.bE07.5229
+Date: Tue, 28 May 2019 16:58:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c33">Comme=
+nt # 33</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660">bug 11066=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+ak&#64;axet.ru" title=3D"Alexey Kuznetsov &lt;ak&#64;axet.ru&gt;"> <span cl=
+ass=3D"fn">Alexey Kuznetsov</span></a>
+</span></b>
+        <pre>Thanks! In Ubuntu kernel has no drivers/gpu/drm/nouveau/dispnv=
+50/disp.c and
+drivers/gpu/drm/nouveau/dispnv50/head.c but instead those files merged into=
+ one
+drivers/gpu/drm/nouveau/nv50_display.c for some heck reason.
+
+Patching this file makes one problem disappear, only &quot;fix center and a=
+spect
+scaling&quot; work properly (which confirms I build a kernel properly) but =
+scaling
+modes without calling 'xrandr --output eDP-1 --set &quot;scaling mode&quot;=
+ &quot;Full
+aspect&quot;' still produces broken 8 displays.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15590626942.bE07.5229--
+
+--===============1478351466==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1478351466==--
