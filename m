@@ -1,105 +1,62 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110797] No video if nomodeset is not set with GTX 460
-Date: Thu, 30 May 2019 14:46:15 +0000
-Message-ID: <bug-110797-8800-D7vD5QIJhy@http.bugs.freedesktop.org/>
-References: <bug-110797-8800@http.bugs.freedesktop.org/>
+From: Yuehaibing <yuehaibing@huawei.com>
+Subject: Re: [PATCH] drm/nouveau: Fix DEVICE_PRIVATE dependencies
+Date: Thu, 30 May 2019 23:31:12 +0800
+Message-ID: <583de550-d816-f619-d402-688c87c86fe3@huawei.com>
+References: <20190417142632.12992-1-yuehaibing@huawei.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0595397269=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110797-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190417142632.12992-1-yuehaibing@huawei.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch, jglisse@redhat.com, jgg@mellanox.com, rcampbell@nvidia.com, leonro@mellanox.com, akpm@linux-foundation.org, sfr@canb.auug.org.au, gregkh@linuxfoundation.org, b.zolnierkie@samsung.com
+Cc: linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-mm@kvack.org
 List-Id: nouveau.vger.kernel.org
 
+Hi all,
 
---===============0595397269==
-Content-Type: multipart/alternative; boundary="15592275743.De97.24474"
-Content-Transfer-Encoding: 7bit
+Friendly ping:
 
+Who can take this?
 
---15592275743.De97.24474
-Date: Thu, 30 May 2019 14:46:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110797
-
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Once it's booted, just run "dmesg" (remotely, obviously). If this is a
-post-facto look at the FS, then whatever file contains the kernel log (which
-ends up in /var/log/messages for me, but probably not for you...)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15592275743.De97.24474
-Date: Thu, 30 May 2019 14:46:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - No video if nomodeset is not set with GTX 460"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - No video if nomodeset is not set with GTX 460"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797">bug 11079=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Once it's booted, just run &quot;dmesg&quot; (remotely, obviou=
-sly). If this is a
-post-facto look at the FS, then whatever file contains the kernel log (which
-ends up in /var/log/messages for me, but probably not for you...)</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15592275743.De97.24474--
-
---===============0595397269==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0595397269==--
+On 2019/4/17 22:26, Yue Haibing wrote:
+> From: YueHaibing <yuehaibing@huawei.com>
+> 
+> During randconfig builds, I occasionally run into an invalid configuration
+> 
+> WARNING: unmet direct dependencies detected for DEVICE_PRIVATE
+>   Depends on [n]: ARCH_HAS_HMM_DEVICE [=n] && ZONE_DEVICE [=n]
+>   Selected by [y]:
+>   - DRM_NOUVEAU_SVM [=y] && HAS_IOMEM [=y] && ARCH_HAS_HMM [=y] && DRM_NOUVEAU [=y] && STAGING [=y]
+> 
+> mm/memory.o: In function `do_swap_page':
+> memory.c:(.text+0x2754): undefined reference to `device_private_entry_fault'
+> 
+> commit 5da25090ab04 ("mm/hmm: kconfig split HMM address space mirroring from device memory")
+> split CONFIG_DEVICE_PRIVATE dependencies from
+> ARCH_HAS_HMM to ARCH_HAS_HMM_DEVICE and ZONE_DEVICE,
+> so enable DRM_NOUVEAU_SVM will trigger this warning,
+> cause building failed.
+> 
+> Reported-by: Hulk Robot <hulkci@huawei.com>
+> Fixes: 5da25090ab04 ("mm/hmm: kconfig split HMM address space mirroring from device memory")
+> Signed-off-by: YueHaibing <yuehaibing@huawei.com>
+> ---
+>  drivers/gpu/drm/nouveau/Kconfig | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
+> index 00cd9ab..99e30c1 100644
+> --- a/drivers/gpu/drm/nouveau/Kconfig
+> +++ b/drivers/gpu/drm/nouveau/Kconfig
+> @@ -74,7 +74,8 @@ config DRM_NOUVEAU_BACKLIGHT
+>  
+>  config DRM_NOUVEAU_SVM
+>  	bool "(EXPERIMENTAL) Enable SVM (Shared Virtual Memory) support"
+> -	depends on ARCH_HAS_HMM
+> +	depends on ARCH_HAS_HMM_DEVICE
+> +	depends on ZONE_DEVICE
+>  	depends on DRM_NOUVEAU
+>  	depends on STAGING
+>  	select HMM_MIRROR
+> 
