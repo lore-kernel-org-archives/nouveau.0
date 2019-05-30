@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110797] No video if nomodeset is not set with GTX 460
-Date: Thu, 30 May 2019 14:43:39 +0000
-Message-ID: <bug-110797-8800-0c92j4SvSx@http.bugs.freedesktop.org/>
+Date: Thu, 30 May 2019 14:46:15 +0000
+Message-ID: <bug-110797-8800-D7vD5QIJhy@http.bugs.freedesktop.org/>
 References: <bug-110797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1707830633=="
+Content-Type: multipart/mixed; boundary="===============0595397269=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110797-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1707830633==
-Content-Type: multipart/alternative; boundary="15592274190.d8F31b9b.23069"
+--===============0595397269==
+Content-Type: multipart/alternative; boundary="15592275743.De97.24474"
 Content-Transfer-Encoding: 7bit
 
 
---15592274190.d8F31b9b.23069
-Date: Thu, 30 May 2019 14:43:39 +0000
+--15592275743.De97.24474
+Date: Thu, 30 May 2019 14:46:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,16 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110797
 
---- Comment #3 from Newbyte <newbytee-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org> ---
-Yes, I am able to access the entire filesystem. Which log(s) might be of
-interest to you?
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Once it's booted, just run "dmesg" (remotely, obviously). If this is a
+post-facto look at the FS, then whatever file contains the kernel log (which
+ends up in /var/log/messages for me, but probably not for you...)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15592274190.d8F31b9b.23069
-Date: Thu, 30 May 2019 14:43:39 +0000
+--15592275743.De97.24474
+Date: Thu, 30 May 2019 14:46:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,20 +62,21 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - No video if nomodeset is not set with GTX 460"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797#c3">Commen=
-t # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - No video if nomodeset is not set with GTX 460"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797">bug 11079=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-newbytee&#64;protonmail.com" title=3D"Newbyte &lt;newbytee&#64;protonmail.c=
-om&gt;"> <span class=3D"fn">Newbyte</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Yes, I am able to access the entire filesystem. Which log(s) m=
-ight be of
-interest to you?</pre>
+        <pre>Once it's booted, just run &quot;dmesg&quot; (remotely, obviou=
+sly). If this is a
+post-facto look at the FS, then whatever file contains the kernel log (which
+ends up in /var/log/messages for me, but probably not for you...)</pre>
         </div>
       </p>
 
@@ -88,9 +90,9 @@ interest to you?</pre>
     </body>
 </html>=
 
---15592274190.d8F31b9b.23069--
+--15592275743.De97.24474--
 
---===============1707830633==
+--===============0595397269==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1707830633==--
+--===============0595397269==--
