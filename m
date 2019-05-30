@@ -1,79 +1,114 @@
-From: Jason Gunthorpe <jgg@mellanox.com>
-Subject: Re: [PATCH] drm/nouveau: Fix DEVICE_PRIVATE dependencies
-Date: Thu, 30 May 2019 15:49:27 +0000
-Message-ID: <20190530154923.GJ13461@mellanox.com>
-References: <20190417142632.12992-1-yuehaibing@huawei.com>
- <583de550-d816-f619-d402-688c87c86fe3@huawei.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110797] No video if nomodeset is not set with GTX 460
+Date: Thu, 30 May 2019 16:50:39 +0000
+Message-ID: <bug-110797-8800-laDsZa7OxA@http.bugs.freedesktop.org/>
+References: <bug-110797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <583de550-d816-f619-d402-688c87c86fe3@huawei.com>
-Content-Language: en-US
-Content-ID: <56987BA9B86175409FE65B63660189BB@eurprd05.prod.outlook.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Yuehaibing <yuehaibing@huawei.com>
-Cc: "bskeggs@redhat.com" <bskeggs@redhat.com>, "airlied@linux.ie" <airlied@linux.ie>, "daniel@ffwll.ch" <daniel@ffwll.ch>, "jglisse@redhat.com" <jglisse@redhat.com>, "rcampbell@nvidia.com" <rcampbell@nvidia.com>, Leon Romanovsky <leonro@mellanox.com>, "akpm@linux-foundation.org" <akpm@linux-foundation.org>, "sfr@canb.auug.org.au" <sfr@canb.auug.org.au>, "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>, "b.zolnierkie@samsung.com" <b.zolnierkie@samsung.com>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "linux-mm@kvack.org" <linux-mm@kvack.org>
+Content-Type: multipart/mixed; boundary="===============0856674934=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-110797-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
-On Thu, May 30, 2019 at 11:31:12PM +0800, Yuehaibing wrote:
-> Hi all,
->=20
-> Friendly ping:
->=20
-> Who can take this?
->=20
-> On 2019/4/17 22:26, Yue Haibing wrote:
-> > From: YueHaibing <yuehaibing@huawei.com>
-> >=20
-> > During randconfig builds, I occasionally run into an invalid configurat=
-ion
-> >=20
-> > WARNING: unmet direct dependencies detected for DEVICE_PRIVATE
-> >   Depends on [n]: ARCH_HAS_HMM_DEVICE [=3Dn] && ZONE_DEVICE [=3Dn]
-> >   Selected by [y]:
-> >   - DRM_NOUVEAU_SVM [=3Dy] && HAS_IOMEM [=3Dy] && ARCH_HAS_HMM [=3Dy] &=
-& DRM_NOUVEAU [=3Dy] && STAGING [=3Dy]
-> >=20
-> > mm/memory.o: In function `do_swap_page':
-> > memory.c:(.text+0x2754): undefined reference to `device_private_entry_f=
-ault'
-> >=20
-> > commit 5da25090ab04 ("mm/hmm: kconfig split HMM address space mirroring=
- from device memory")
-> > split CONFIG_DEVICE_PRIVATE dependencies from
-> > ARCH_HAS_HMM to ARCH_HAS_HMM_DEVICE and ZONE_DEVICE,
-> > so enable DRM_NOUVEAU_SVM will trigger this warning,
-> > cause building failed.
-> >=20
-> > Reported-by: Hulk Robot <hulkci@huawei.com>
-> > Fixes: 5da25090ab04 ("mm/hmm: kconfig split HMM address space mirroring=
- from device memory")
-> > Signed-off-by: YueHaibing <yuehaibing@huawei.com>
-> >  drivers/gpu/drm/nouveau/Kconfig | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/=
-Kconfig
-> > index 00cd9ab..99e30c1 100644
-> > +++ b/drivers/gpu/drm/nouveau/Kconfig
-> > @@ -74,7 +74,8 @@ config DRM_NOUVEAU_BACKLIGHT
-> > =20
-> >  config DRM_NOUVEAU_SVM
-> >  	bool "(EXPERIMENTAL) Enable SVM (Shared Virtual Memory) support"
-> > -	depends on ARCH_HAS_HMM
-> > +	depends on ARCH_HAS_HMM_DEVICE
-> > +	depends on ZONE_DEVICE
-> >  	depends on DRM_NOUVEAU
-> >  	depends on STAGING
-> >  	select HMM_MIRROR
-> >=20
+--===============0856674934==
+Content-Type: multipart/alternative; boundary="15592350392.dFDDE.25982"
+Content-Transfer-Encoding: 7bit
 
-I'm expecting to take a patch like this into the new hmm git tree once
-Jerome sends his Final Solution for the kconfig problems.
 
-Maybe it is this patch, Jerome??
+--15592350392.dFDDE.25982
+Date: Thu, 30 May 2019 16:50:39 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-Regards,
-Jason=20
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110797
+
+--- Comment #5 from Newbyte <newbytee-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org> ---
+Created attachment 144381
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144381&action=3Dedit
+Kernel log from boot with nouveau
+
+Alright, here is the kernel log (dmesg) from a boot after removing akmod-nv=
+idia
+from the system, taken via ssh.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15592350392.dFDDE.25982
+Date: Thu, 30 May 2019 16:50:39 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - No video if nomodeset is not set with GTX 460"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797#c5">Commen=
+t # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - No video if nomodeset is not set with GTX 460"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797">bug 11079=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+newbytee&#64;protonmail.com" title=3D"Newbyte &lt;newbytee&#64;protonmail.c=
+om&gt;"> <span class=3D"fn">Newbyte</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144381=
+" name=3D"attach_144381" title=3D"Kernel log from boot with nouveau">attach=
+ment 144381</a> <a href=3D"attachment.cgi?id=3D144381&amp;action=3Dedit" ti=
+tle=3D"Kernel log from boot with nouveau">[details]</a></span>
+Kernel log from boot with nouveau
+
+Alright, here is the kernel log (dmesg) from a boot after removing akmod-nv=
+idia
+from the system, taken via ssh.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15592350392.dFDDE.25982--
+
+--===============0856674934==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0856674934==--
