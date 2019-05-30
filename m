@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110797] No video if nomodeset is not set with GTX 460
-Date: Thu, 30 May 2019 16:58:11 +0000
-Message-ID: <bug-110797-8800-hLXLpLQx0i@http.bugs.freedesktop.org/>
+Date: Thu, 30 May 2019 17:26:10 +0000
+Message-ID: <bug-110797-8800-9mtkehAxwt@http.bugs.freedesktop.org/>
 References: <bug-110797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0222792325=="
+Content-Type: multipart/mixed; boundary="===============0167739551=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110797-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0222792325==
-Content-Type: multipart/alternative; boundary="15592354901.9CcECffB.29221"
+--===============0167739551==
+Content-Type: multipart/alternative; boundary="15592371700.810aaC5.3046"
 Content-Transfer-Encoding: 7bit
 
 
---15592354901.9CcECffB.29221
-Date: Thu, 30 May 2019 16:58:10 +0000
+--15592371700.810aaC5.3046
+Date: Thu, 30 May 2019 17:26:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,29 +35,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110797
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-You have the wrong version of nvidia blob installed for your GPU. They drop=
-ped
-Fermi a while back, so you have to use some long-term-support variant.
+--- Comment #8 from Newbyte <newbytee-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org> ---
+Created attachment 144384
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144384&action=3Dedit
+Kernel log from boot with nouveau (log_buf_len=3D4M)
 
-The nouveau log indicates that there's something REALLY UNHAPPY going on. A=
-ll
-those errors mean that it's basically rejecting all MMIO's. The log probably
-ran out of memory, which is why the first part isn't visible. Could you try
-booting it with like
-
-log_buf_len=3D2M
-
-and see if you can capture the start of it? Once the MMIO errors start flow=
-ing,
-anything that follows isn't particularly interesting.
+Note: I noticed that the kernel boot parameters blacklist nouveau. I attemp=
+ted
+to remove that, but in doing so I'm no longer able to ssh into the PC, so I
+added them again (which is what this log contains).
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15592354901.9CcECffB.29221
-Date: Thu, 30 May 2019 16:58:10 +0000
+--15592371700.810aaC5.3046
+Date: Thu, 30 May 2019 17:26:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -74,32 +67,28 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - No video if nomodeset is not set with GTX 460"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797#c7">Commen=
-t # 7</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - No video if nomodeset is not set with GTX 460"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797">bug 11079=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+newbytee&#64;protonmail.com" title=3D"Newbyte &lt;newbytee&#64;protonmail.c=
+om&gt;"> <span class=3D"fn">Newbyte</span></a>
 </span></b>
-        <pre>You have the wrong version of nvidia blob installed for your G=
-PU. They dropped
-Fermi a while back, so you have to use some long-term-support variant.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144384=
+" name=3D"attach_144384" title=3D"Kernel log from boot with nouveau (log_bu=
+f_len=3D4M)">attachment 144384</a> <a href=3D"attachment.cgi?id=3D144384&am=
+p;action=3Dedit" title=3D"Kernel log from boot with nouveau (log_buf_len=3D=
+4M)">[details]</a></span>
+Kernel log from boot with nouveau (log_buf_len=3D4M)
 
-The nouveau log indicates that there's something REALLY UNHAPPY going on. A=
-ll
-those errors mean that it's basically rejecting all MMIO's. The log probably
-ran out of memory, which is why the first part isn't visible. Could you try
-booting it with like
-
-log_buf_len=3D2M
-
-and see if you can capture the start of it? Once the MMIO errors start flow=
-ing,
-anything that follows isn't particularly interesting.</pre>
+Note: I noticed that the kernel boot parameters blacklist nouveau. I attemp=
+ted
+to remove that, but in doing so I'm no longer able to ssh into the PC, so I
+added them again (which is what this log contains).</pre>
         </div>
       </p>
 
@@ -113,9 +102,9 @@ anything that follows isn't particularly interesting.</pre>
     </body>
 </html>=
 
---15592354901.9CcECffB.29221--
+--15592371700.810aaC5.3046--
 
---===============0222792325==
+--===============0167739551==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -125,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0222792325==--
+--===============0167739551==--
