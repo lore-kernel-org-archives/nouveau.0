@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110797] No video if nomodeset is not set with GTX 460
-Date: Thu, 30 May 2019 17:26:10 +0000
-Message-ID: <bug-110797-8800-9mtkehAxwt@http.bugs.freedesktop.org/>
+Date: Thu, 30 May 2019 17:44:41 +0000
+Message-ID: <bug-110797-8800-5ndwGx9gE8@http.bugs.freedesktop.org/>
 References: <bug-110797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0167739551=="
+Content-Type: multipart/mixed; boundary="===============1021793218=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110797-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0167739551==
-Content-Type: multipart/alternative; boundary="15592371700.810aaC5.3046"
+--===============1021793218==
+Content-Type: multipart/alternative; boundary="15592382810.152350c6.6963"
 Content-Transfer-Encoding: 7bit
 
 
---15592371700.810aaC5.3046
-Date: Thu, 30 May 2019 17:26:10 +0000
+--15592382810.152350c6.6963
+Date: Thu, 30 May 2019 17:44:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,22 +35,25 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110797
 
---- Comment #8 from Newbyte <newbytee-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org> ---
-Created attachment 144384
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144384&action=3Dedit
-Kernel log from boot with nouveau (log_buf_len=3D4M)
+--- Comment #9 from Newbyte <newbytee-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org> ---
+Hello again,
 
-Note: I noticed that the kernel boot parameters blacklist nouveau. I attemp=
-ted
-to remove that, but in doing so I'm no longer able to ssh into the PC, so I
-added them again (which is what this log contains).
+It turns out I must apologise for my ignorance. I thought that removing
+akmod-nvidia was sufficient to rid the blob from my system, but it so turns=
+ out
+that is not the case. I apologise for any confusion this might have caused.
+
+Removing that also caused dnf to update my grub config so that it no longer
+blacklists nouveau, and I'm now in the system via ssh (turns out I needed t=
+o be
+more patient). Log will come in a moment.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15592371700.810aaC5.3046
-Date: Thu, 30 May 2019 17:26:10 +0000
+--15592382810.152350c6.6963
+Date: Thu, 30 May 2019 17:44:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,8 +70,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - No video if nomodeset is not set with GTX 460"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797#c8">Commen=
-t # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - No video if nomodeset is not set with GTX 460"
@@ -78,17 +81,17 @@ t # 8</a>
 newbytee&#64;protonmail.com" title=3D"Newbyte &lt;newbytee&#64;protonmail.c=
 om&gt;"> <span class=3D"fn">Newbyte</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144384=
-" name=3D"attach_144384" title=3D"Kernel log from boot with nouveau (log_bu=
-f_len=3D4M)">attachment 144384</a> <a href=3D"attachment.cgi?id=3D144384&am=
-p;action=3Dedit" title=3D"Kernel log from boot with nouveau (log_buf_len=3D=
-4M)">[details]</a></span>
-Kernel log from boot with nouveau (log_buf_len=3D4M)
+        <pre>Hello again,
 
-Note: I noticed that the kernel boot parameters blacklist nouveau. I attemp=
-ted
-to remove that, but in doing so I'm no longer able to ssh into the PC, so I
-added them again (which is what this log contains).</pre>
+It turns out I must apologise for my ignorance. I thought that removing
+akmod-nvidia was sufficient to rid the blob from my system, but it so turns=
+ out
+that is not the case. I apologise for any confusion this might have caused.
+
+Removing that also caused dnf to update my grub config so that it no longer
+blacklists nouveau, and I'm now in the system via ssh (turns out I needed t=
+o be
+more patient). Log will come in a moment.</pre>
         </div>
       </p>
 
@@ -102,9 +105,9 @@ added them again (which is what this log contains).</pre>
     </body>
 </html>=
 
---15592371700.810aaC5.3046--
+--15592382810.152350c6.6963--
 
---===============0167739551==
+--===============1021793218==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0167739551==--
+--===============1021793218==--
