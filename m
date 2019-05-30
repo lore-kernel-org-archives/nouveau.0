@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37471] Website with information about
- maintainers/developers
-Date: Wed, 29 May 2019 16:58:40 +0000
-Message-ID: <bug-37471-8800-wBgRyCWzNv@http.bugs.freedesktop.org/>
-References: <bug-37471-8800@http.bugs.freedesktop.org/>
+From: Markus Wanner <markus-XHb0b+agOrdyDzI6CaY1VQ@public.gmane.org>
+Subject: Re: Support for GP107(GL)M with Optimus
+Date: Thu, 30 May 2019 10:23:07 +0200
+Message-ID: <169b8cf4-df8a-558b-5d68-e1400c73f6a5@bluegap.ch>
+References: <2b626681-3504-c7e9-10d2-0f906dcb176d@bluegap.ch>
+ <CACO55tsFLc1M0pPe0_2=Dn7j8KctApganDoe=hNBsLCfNLXULw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1549495479=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37471-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CACO55tsFLc1M0pPe0_2=Dn7j8KctApganDoe=hNBsLCfNLXULw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Language: en-GB
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,128 +19,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1549495479==
-Content-Type: multipart/alternative; boundary="15591491204.fDa3FC3.20336"
-Content-Transfer-Encoding: 7bit
-
-
---15591491204.fDa3FC3.20336
-Date: Wed, 29 May 2019 16:58:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D37471
-
-Adam Jackson <ajax-TAsg7VrFCGc@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #2 from Adam Jackson <ajax-TAsg7VrFCGc@public.gmane.org> ---
-https://gitlab.freedesktop.org/mesa/mesa/blob/master/REVIEWERS
-
---=20
-You are receiving this mail because:
-You are on the CC list for the bug.=
-
---15591491204.fDa3FC3.20336
-Date: Wed, 29 May 2019 16:58:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:ajax&#64;=
-nwnk.net" title=3D"Adam Jackson &lt;ajax&#64;nwnk.net&gt;"> <span class=3D"=
-fn">Adam Jackson</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Website with information about maintainers/dev=
-elopers"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D37471">bug 37471<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Website with information about maintainers/dev=
-elopers"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D37471#c2">Comment=
- # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Website with information about maintainers/dev=
-elopers"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D37471">bug 37471<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-ajax&#64;nwnk.net" title=3D"Adam Jackson &lt;ajax&#64;nwnk.net&gt;"> <span =
-class=3D"fn">Adam Jackson</span></a>
-</span></b>
-        <pre><a href=3D"https://gitlab.freedesktop.org/mesa/mesa/blob/maste=
-r/REVIEWERS">https://gitlab.freedesktop.org/mesa/mesa/blob/master/REVIEWERS=
-</a></pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are on the CC list for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15591491204.fDa3FC3.20336--
-
---===============1549495479==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1549495479==--
+SGVsbG8gS2Fyb2wsCgpPbiA1LzI5LzE5IDQ6MDQgUE0sIEthcm9sIEhlcmJzdCB3cm90ZToKPiBJ
+ZiB5b3Ugd2FudCB5b3UgY291bGQgdHJ5IG91dCB0aG9zZSBwYXRjaGVzIG9uIGEga2VybmVsIGFu
+ZCBzZWUgaWYKPiB0aG9zZSBtYWtlIGFueSBkaWZmZXJlbmNlIG9uIHlvdXIgbWFjaGluZToKPiAK
+PiBodHRwczovL2dpdGh1Yi5jb20va2Fyb2xoZXJic3QvbGludXgvY29tbWl0cy9ydW5wbV9maXhl
+cwoKdGhhbmtzLCBJIHRyaWVkLCBzZWUgYmVsb3cuICBUaGlzIHJhaXNlcyBhbm90aGVyIHF1ZXN0
+aW9uOiB3aGVyZSBkb2VzCm5vdXZlYXUgZGV2ZWxvcG1lbnQgdGFrZSBwbGFjZT8gIEluIGEgdHJl
+ZSBiYXNlZCBvbiB0aGUgbGludXgga2VybmVsCihzdWNoIGFzIHRoZSBhYm92ZSByZXBvKSBvciBp
+biBzb21lIGRlZGljYXRlZCBtb2R1bGUtb25seSByZXBvIGxpa2UKc2tlZ2dzYi9ub3V2ZWF1PwoK
+SSBtYW51YWxseSAicmViYXNlZCIgdGhlIGxhc3QgZml2ZSBjb21taXRzIGZyb20gdGhlICJydW5w
+bV9maXhlcyIgYnJhbmNoCm9mIHRoZSByZXBvIGFib3ZlIG9udG8gc2tlZ2dzYi9ub3V2ZWF1LCB3
+aGljaCBhcHBsaWVkIHcvbyBjb25mbGljdHMuClJlc3VsdHMgYmVsb3cgYXJlIGZvciBhIG5vdXZl
+YXUgbW9kdWxlIGJ1aWx0IHRoYXQgd2F5LgoKPiBtYWtlIHN1cmUgeW91IHVzZSB0aGUgInJ1bnBt
+X2ZpeGVzIiBicmFuY2guIFdlIGFyZSBraW5kIG9mIGF3YXJlIG9mCj4gdGhlIGlzc3VlcyBvbiBt
+b2Rlcm4gbGFwdG9wcyBhbmQgYWxyZWFkeSB0cnkgdG8gZmluZCBhIHByb3Blcgo+IHNvbHV0aW9u
+LCBpdCBtb3N0bHkgYm9pbHMgZG93biB0byB0ZXN0aW5nIGFuZCBjaGVja2luZyBpZiB0aGVyZSBh
+cmUKPiBvdGhlciBpc3N1ZXMgbGVmdCB3ZSBkaWRuJ3QgYWRkcmVzcyB5ZXQuCgpVbmRlcnN0b29k
+LiAgVGhhdCdzIHBhcnQgb2Ygd2h5IEkgc2V0dXAgdGhhdCBpbmZyYXN0cnVjdHVyZS4KCj4gQWxz
+byB3aXRob3V0IGtub3dpbmcgd2hhdAo+IGVycm9yIG1lc3NhZ2UgeW91IGFyZSBnZXR0aW5nIHBy
+ZWNpc2VseQoKU29ycnksIEkgdGhvdWdodCB0aGUgcmVmZXJlbmNlIHRvIGlzc3VlICMxMDAyMjgg
+d2FzIGVub3VnaC4gIEkgY2VydGFpbmx5CmdvdCB0aGUgZXhhY3Qgc2FtZSAiYnVzOiBNTUlPIHJl
+YWQgb2YgMDAwMDAwMDAgRkFVTFQgYXQgNDA5ODAwIiB0aW1lb3V0CmFuZCBmaWd1cmVkIEkgYmV0
+dGVyIG5vdCBmaWxlIGEgZHVwbGljYXRlLgoKSSByZWFsaXplIG1lc3NlZCB1cCB0aGUgdXBsb2Fk
+IG9mIHRoZSBrZXJuZWwgbG9nIHRvIHRoYXQgaXNzdWUuICBJIGp1c3QKY29ycmVjdGVkIHRoYXQu
+CgpTbywgY3VycmVudCBzdGF0dXMgb24gc2tlZ2dzYi9ub3V2ZWF1IGZhaWxzIHRoYXQgd2F5IGZv
+ciBtZSwgaW5kZXBlbmRlbnQKb2YgdGhlIHJ1bnBtIHNldHRpbmcuICBIb3dldmVyLCB3aXRoIHRo
+ZSBmaXZlIHBhdGNoZXMgZnJvbSB5b3VyCnJ1bnBtX2ZpeGVzIGJyYW5jaCBhZGRlZCwgSSBzZWUg
+ZGlmZmVyZW50IHJlc3VsdHM6CgoqIG5vIHN1Y2ggdGltZW91dHMgYW55IG1vcmUgaW4ga2VybmVs
+IGxvZ3MgKHlheSEpCiogWDExIHJlY29nbml6ZXMgdGhlIERlbGwgZGlzcGxheSBjb25uZWN0ZWQg
+b24gSERNSS0xIChpbmRlcGVuZGVudAogIG9mIGtlcm5lbCBtb2R1bGUgcGFyYW1ldGVycyBvciBY
+MTEgY29uZmlnKQoqIHN0YXJ0aW5nIFgxMSB3aXRoIG9ubHkgdGhlIG5vdXZlYXUgZHJpdmVyLCBh
+IHRlcm1pbmFsIGFwcGVhcnMKICBvbiB0aGUgZGlzcGxheSAoeWF5ISkKKiBsb2FkaW5nIG5vdXZl
+YXUgd2l0aCBgZGVidWc9ZGVidWdgIGFuZCBzdGFydGluZyBYMTEsIHRoZSBkaXNwbGF5CiAgcmVt
+YWlucyBkYXJrCiogbG9hZGluZyBub3V2ZWF1IGFuZCBpbnRlbCAoZm9yIHRoZSBpbnRlcm5hbCBk
+aXNwbGF5KSwgdGhlIGV4dGVybmFsCiAgZGlzcGxheSByZW1haW5zIGRhcmsgYXMgd2VsbCwgeHJh
+bmRyIGRvZXMgbm90IHNob3cgaXQsIGJ1dAogIGB4cmFuZHIgLS1saXN0cHJvdmlkZXJzYCBhdCBs
+ZWFzdCBsaXN0cyB0d28gcHJvdmlkZXJzIChJJ20gbm90IHN1cmUKICB3aGV0aGVyIEkgY2FuIHNv
+bWVob3cgZW5hYmxlIHRoZSBleHRlcm5hbCBkaXNwbGF5IGluIHRoaXMgY2FzZSkuCgoKVGhhdCdz
+IGFsbCB0ZXN0ZWQgb246CgoqIGEgTGVub3ZvIFRoaW5rUGFkIFAxLCB3aXRoIGEgIEdQMTA3R0xN
+LCBBS0EgUXVhZHJvIFAyMDAwCiogRGViaWFuIHRlc3RpbmcKKiBsaW51eCA1LjItcmMxCiogWDEx
+IHN0YXJ0ZWQgdXNpbmcgeGluaXQsIGxvYWRpbmcgbm90aGluZyBidXQgYW4geHRlcm0KCgpJJ20g
+aGFwcHkgdG8gcHJvdmlkZSBsb2dzIGZyb20gdGhlc2UgcnVucyBvciBjb25kdWN0IGZ1cnRoZXIK
+ZXhwZXJpbWVudHMsIGJ1dCB3b3VsZCBhcHByZWNpYXRlIHNvbWUgZ3VpZGFuY2Ugb24gd2hhdCdz
+IHVzZWZ1bC4gIFRoYW5rCnlvdS4KCktpbmQgUmVnYXJkcwoKTWFya3VzCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
