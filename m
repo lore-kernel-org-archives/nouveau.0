@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110797] No video if nomodeset is not set with GTX 460
-Date: Sat, 01 Jun 2019 13:27:25 +0000
-Message-ID: <bug-110797-8800-rmWu3mmhQE@http.bugs.freedesktop.org/>
-References: <bug-110797-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
+ 409800 [ TIMEOUT ]
+Date: Sat, 01 Jun 2019 14:13:10 +0000
+Message-ID: <bug-100228-8800-oKLbzLKEOz@http.bugs.freedesktop.org/>
+References: <bug-100228-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1823880011=="
+Content-Type: multipart/mixed; boundary="===============2114229068=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110797-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,44 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1823880011==
-Content-Type: multipart/alternative; boundary="15593956441.daBD8AABd.31592"
+--===============2114229068==
+Content-Type: multipart/alternative; boundary="15593983903.fc8e9.8980"
 Content-Transfer-Encoding: 7bit
 
 
---15593956441.daBD8AABd.31592
-Date: Sat, 1 Jun 2019 13:27:24 +0000
+--15593983903.fc8e9.8980
+Date: Sat, 1 Jun 2019 14:13:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110797
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
 
-Newbyte <newbytee-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
-
---- Comment #14 from Newbyte <newbytee-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org> ---
-Good and bad news! Sort of. I decided to try Windows 10 again today, and it
-seems as though the PC has issues there too (isn't able to get pass the spi=
-nny
-thingy with a Windows logo when booting), so I interpret this as being a
-hardware issue after all.
-
-I'll close this as invalid since the issue seems to originate from somewhere
-else other than nouveau, thank you for your time.
+--- Comment #38 from Pacho Ramos <pachoramos1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+"nouveau.modeset=3D0 i915.modeset=3D1" solves the problem for me, thanks a =
+lot! :D
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15593956441.daBD8AABd.31592
-Date: Sat, 1 Jun 2019 13:27:24 +0000
+--15593983903.fc8e9.8980
+Date: Sat, 1 Jun 2019 14:13:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,66 +56,27 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:newbytee&=
-#64;protonmail.com" title=3D"Newbyte &lt;newbytee&#64;protonmail.com&gt;"> =
-<span class=3D"fn">Newbyte</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - No video if nomodeset is not set with GTX 46=
-0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797">bug 11079=
-7</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - No video if nomodeset is not set with GTX 46=
-0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797#c14">Comme=
-nt # 14</a>
+          bz_status_NEW "
+   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
+OUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c38">Comme=
+nt # 38</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - No video if nomodeset is not set with GTX 46=
-0"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797">bug 11079=
-7</a>
+          bz_status_NEW "
+   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
+OUT ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
+8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-newbytee&#64;protonmail.com" title=3D"Newbyte &lt;newbytee&#64;protonmail.c=
-om&gt;"> <span class=3D"fn">Newbyte</span></a>
+pachoramos1&#64;gmail.com" title=3D"Pacho Ramos &lt;pachoramos1&#64;gmail.c=
+om&gt;"> <span class=3D"fn">Pacho Ramos</span></a>
 </span></b>
-        <pre>Good and bad news! Sort of. I decided to try Windows 10 again =
-today, and it
-seems as though the PC has issues there too (isn't able to get pass the spi=
-nny
-thingy with a Windows logo when booting), so I interpret this as being a
-hardware issue after all.
-
-I'll close this as invalid since the issue seems to originate from somewhere
-else other than nouveau, thank you for your time.</pre>
+        <pre>&quot;nouveau.modeset=3D0 i915.modeset=3D1&quot; solves the pr=
+oblem for me, thanks a lot! :D</pre>
         </div>
       </p>
 
@@ -141,9 +90,9 @@ else other than nouveau, thank you for your time.</pre>
     </body>
 </html>=
 
---15593956441.daBD8AABd.31592--
+--15593983903.fc8e9.8980--
 
---===============1823880011==
+--===============2114229068==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -153,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1823880011==--
+--===============2114229068==--
