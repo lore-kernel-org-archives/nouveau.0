@@ -1,52 +1,156 @@
-From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 4.14 18/99] drm/nouveau/disp/dp: respect sink limits
- when selecting failsafe link configuration
-Date: Sat,  1 Jun 2019 09:22:25 -0400
-Message-ID: <20190601132346.26558-18-sashal@kernel.org>
-References: <20190601132346.26558-1-sashal@kernel.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110797] No video if nomodeset is not set with GTX 460
+Date: Sat, 01 Jun 2019 13:27:25 +0000
+Message-ID: <bug-110797-8800-rmWu3mmhQE@http.bugs.freedesktop.org/>
+References: <bug-110797-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20190601132346.26558-1-sashal@kernel.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc: Sasha Levin <sashal@kernel.org>, nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1823880011=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-110797-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgoKWyBVcHN0cmVhbSBjb21taXQg
-MTNkMDNlOWRhZjcwZGFiMDMyYzAzZGMxNzJlNzViYjk4YWQ4OTljNCBdCgpXaGVyZSBwb3NzaWJs
-ZSwgd2Ugd2FudCB0aGUgZmFpbHNhZmUgbGluayBjb25maWd1cmF0aW9uIChvbmUgd2hpY2ggd29u
-J3QKaGFuZyB0aGUgT1IgZHVyaW5nIG1vZGVzZXQgYmVjYXVzZSBvZiBub3QgZW5vdWdoIGJhbmR3
-aWR0aCBmb3IgdGhlIG1vZGUpCnRvIGFsc28gYmUgc3VwcG9ydGVkIGJ5IHRoZSBzaW5rLgoKVGhp
-cyBwcmV2ZW50cyAibGluayByYXRlIHVuc3VwcG9ydGVkIGJ5IHNpbmsiIG1lc3NhZ2VzIHdoZW4g
-bGluayB0cmFpbmluZwpmYWlscy4KClNpZ25lZC1vZmYtYnk6IEJlbiBTa2VnZ3MgPGJza2VnZ3NA
-cmVkaGF0LmNvbT4KU2lnbmVkLW9mZi1ieTogU2FzaGEgTGV2aW4gPHNhc2hhbEBrZXJuZWwub3Jn
-PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvZHAuYyB8IDEx
-ICsrKysrKysrKy0tCiAxIGZpbGUgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9u
-cygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rp
-c3AvZHAuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvZHAuYwpp
-bmRleCA2MTYwYTYxNThjZjI2Li41ZTUxYTVjMWViMDEzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL2RwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9kcC5jCkBAIC0zNjQsOCArMzY0LDE1IEBAIG52a21f
-ZHBfdHJhaW4oc3RydWN0IG52a21fZHAgKmRwLCB1MzIgZGF0YUtCcHMpCiAJICogYW5kIGl0J3Mg
-YmV0dGVyIHRvIGhhdmUgYSBmYWlsZWQgbW9kZXNldCB0aGFuIHRoYXQuCiAJICovCiAJZm9yIChj
-ZmcgPSBudmttX2RwX3JhdGVzOyBjZmctPnJhdGU7IGNmZysrKSB7Ci0JCWlmIChjZmctPm5yIDw9
-IG91dHBfbnIgJiYgY2ZnLT5uciA8PSBvdXRwX2J3KQotCQkJZmFpbHNhZmUgPSBjZmc7CisJCWlm
-IChjZmctPm5yIDw9IG91dHBfbnIgJiYgY2ZnLT5uciA8PSBvdXRwX2J3KSB7CisJCQkvKiBUcnkg
-dG8gcmVzcGVjdCBzaW5rIGxpbWl0cyB0b28gd2hlbiBzZWxlY3RpbmcKKwkJCSAqIGxvd2VzdCBs
-aW5rIGNvbmZpZ3VyYXRpb24uCisJCQkgKi8KKwkJCWlmICghZmFpbHNhZmUgfHwKKwkJCSAgICAo
-Y2ZnLT5uciA8PSBzaW5rX25yICYmIGNmZy0+YncgPD0gc2lua19idykpCisJCQkJZmFpbHNhZmUg
-PSBjZmc7CisJCX0KKwogCQlpZiAoZmFpbHNhZmUgJiYgY2ZnWzFdLnJhdGUgPCBkYXRhS0JwcykK
-IAkJCWJyZWFrOwogCX0KLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vZHJpLWRldmVs
+
+--===============1823880011==
+Content-Type: multipart/alternative; boundary="15593956441.daBD8AABd.31592"
+Content-Transfer-Encoding: 7bit
+
+
+--15593956441.daBD8AABd.31592
+Date: Sat, 1 Jun 2019 13:27:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110797
+
+Newbyte <newbytee-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #14 from Newbyte <newbytee-g/b1ySJe57IN+BqQ9rBEUg@public.gmane.org> ---
+Good and bad news! Sort of. I decided to try Windows 10 again today, and it
+seems as though the PC has issues there too (isn't able to get pass the spi=
+nny
+thingy with a Windows logo when booting), so I interpret this as being a
+hardware issue after all.
+
+I'll close this as invalid since the issue seems to originate from somewhere
+else other than nouveau, thank you for your time.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15593956441.daBD8AABd.31592
+Date: Sat, 1 Jun 2019 13:27:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:newbytee&=
+#64;protonmail.com" title=3D"Newbyte &lt;newbytee&#64;protonmail.com&gt;"> =
+<span class=3D"fn">Newbyte</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - No video if nomodeset is not set with GTX 46=
+0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797">bug 11079=
+7</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - No video if nomodeset is not set with GTX 46=
+0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797#c14">Comme=
+nt # 14</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED INVALID - No video if nomodeset is not set with GTX 46=
+0"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110797">bug 11079=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+newbytee&#64;protonmail.com" title=3D"Newbyte &lt;newbytee&#64;protonmail.c=
+om&gt;"> <span class=3D"fn">Newbyte</span></a>
+</span></b>
+        <pre>Good and bad news! Sort of. I decided to try Windows 10 again =
+today, and it
+seems as though the PC has issues there too (isn't able to get pass the spi=
+nny
+thingy with a Windows logo when booting), so I interpret this as being a
+hardware issue after all.
+
+I'll close this as invalid since the issue seems to originate from somewhere
+else other than nouveau, thank you for your time.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15593956441.daBD8AABd.31592--
+
+--===============1823880011==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1823880011==--
