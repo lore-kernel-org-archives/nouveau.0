@@ -1,7 +1,7 @@
 From: Rhys Kidd <rhyskidd@gmail.com>
-Subject: [PATCH] drm/nouveau/bios: downgrade absence of tmds table to info from an error
-Date: Sun,  2 Jun 2019 22:07:27 +1000
-Message-ID: <20190602120727.4001-1-rhyskidd@gmail.com>
+Subject: [PATCH 0/2] drm/nouveau/bios/init: Improve pre-PMU devinit opcode coverage
+Date: Mon,  3 Jun 2019 00:13:13 +1000
+Message-ID: <20190602141315.6197-1-rhyskidd@gmail.com>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
@@ -10,31 +10,28 @@ To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vet
 Cc: Rhys Kidd <rhyskidd@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
-Absence of a TMDS Info Table is common on Optimus setups where the NVIDIA
-gpu is not connected directly to any outputs.
+NVIDIA GPUs include a common scripting language (devinit) that can be
+interpreted by a number of "engines", e.g. within a kernel-mode software
+driver, the VGA BIOS or an on-board small microcontroller which provides
+certain security assertions (the 'PMU').
 
-Reporting an error in this scenario is too harsh. Accordingly, change the
-error message to an info message.
+This system allows a GPU programming sequence to be shared by multiple
+entities that would not otherwise be able to execute common code.
 
-By default the error message also causes a boot flicker for these sytems.
+This series adds support to nouveau for two opcodes seen on VBIOSes prior
+to the locked-down PMU taking over responsibility for executing devinit
+scripts.
 
-Signed-off-by: Rhys Kidd <rhyskidd@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_bios.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Documentation for these two opcodes can be found at:
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
-index 66bf2aff4a3e..bdfadc63204a 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bios.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
-@@ -935,7 +935,7 @@ static int parse_bit_tmds_tbl_entry(struct drm_device *dev, struct nvbios *bios,
- 
- 	tmdstableptr = ROM16(bios->data[bitentry->offset]);
- 	if (!tmdstableptr) {
--		NV_ERROR(drm, "Pointer to TMDS table invalid\n");
-+		NV_INFO(drm, "Pointer to TMDS table not found\n");
- 		return -EINVAL;
- 	}
- 
+  https://github.com/envytools/envytools/pull/189
+
+Rhys Kidd (2):
+  drm/nouveau/bios/init: handle INIT_RESET_BEGUN devinit opcode
+  drm/nouveau/bios/init: handle INIT_RESET_END devinit opcode
+
+ .../gpu/drm/nouveau/nvkm/subdev/bios/init.c   | 26 +++++++++++++++++--
+ 1 file changed, 24 insertions(+), 2 deletions(-)
+
 -- 
 2.20.1
