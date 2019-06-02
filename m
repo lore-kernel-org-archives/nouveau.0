@@ -1,105 +1,40 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100228] [NV137] bus: MMIO read of 00000000 FAULT at
- 409800 [ TIMEOUT ]
-Date: Sat, 01 Jun 2019 14:13:10 +0000
-Message-ID: <bug-100228-8800-oKLbzLKEOz@http.bugs.freedesktop.org/>
-References: <bug-100228-8800@http.bugs.freedesktop.org/>
+From: Rhys Kidd <rhyskidd@gmail.com>
+Subject: [PATCH] drm/nouveau/bios: downgrade absence of tmds table to info from an error
+Date: Sun,  2 Jun 2019 22:07:27 +1000
+Message-ID: <20190602120727.4001-1-rhyskidd@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2114229068=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100228-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: Rhys Kidd <rhyskidd@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
+Absence of a TMDS Info Table is common on Optimus setups where the NVIDIA
+gpu is not connected directly to any outputs.
 
---===============2114229068==
-Content-Type: multipart/alternative; boundary="15593983903.fc8e9.8980"
-Content-Transfer-Encoding: 7bit
+Reporting an error in this scenario is too harsh. Accordingly, change the
+error message to an info message.
 
+By default the error message also causes a boot flicker for these sytems.
 
---15593983903.fc8e9.8980
-Date: Sat, 1 Jun 2019 14:13:10 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Signed-off-by: Rhys Kidd <rhyskidd@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_bios.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100228
-
---- Comment #38 from Pacho Ramos <pachoramos1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-"nouveau.modeset=3D0 i915.modeset=3D1" solves the problem for me, thanks a =
-lot! :D
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15593983903.fc8e9.8980
-Date: Sat, 1 Jun 2019 14:13:10 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228#c38">Comme=
-nt # 38</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV137] bus: MMIO read of 00000000 FAULT at 409800 [ TIME=
-OUT ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100228">bug 10022=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pachoramos1&#64;gmail.com" title=3D"Pacho Ramos &lt;pachoramos1&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Pacho Ramos</span></a>
-</span></b>
-        <pre>&quot;nouveau.modeset=3D0 i915.modeset=3D1&quot; solves the pr=
-oblem for me, thanks a lot! :D</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15593983903.fc8e9.8980--
-
---===============2114229068==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============2114229068==--
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
+index 66bf2aff4a3e..bdfadc63204a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bios.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
+@@ -935,7 +935,7 @@ static int parse_bit_tmds_tbl_entry(struct drm_device *dev, struct nvbios *bios,
+ 
+ 	tmdstableptr = ROM16(bios->data[bitentry->offset]);
+ 	if (!tmdstableptr) {
+-		NV_ERROR(drm, "Pointer to TMDS table invalid\n");
++		NV_INFO(drm, "Pointer to TMDS table not found\n");
+ 		return -EINVAL;
+ 	}
+ 
+-- 
+2.20.1
