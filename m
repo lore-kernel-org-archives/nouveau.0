@@ -1,12 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] drm/nouveau/kms/nv50-: remove overlay alpha
- formats
-Date: Mon,  3 Jun 2019 01:59:42 -0400
-Message-ID: <20190603055942.11148-1-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+ rescan
+Date: Mon, 03 Jun 2019 12:46:56 +0000
+Message-ID: <bug-75985-8800-EIMmWJ1XBt@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1903301841=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,52 +17,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIG92ZXJsYXkgbG9naWMgY2FuIG9ubHkgZG8gY29sb3JrZXktYmFzZWQgc2VsZWN0aW9uLCBu
-b3QKYWxwaGEtYmxlbmRpbmcuCgpTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBh
-bHVtLm1pdC5lZHU+Ci0tLQoKVGhpcyBhcHBsaWVzIG9uIHRvcCBvZiB0aGUgRlAxNiBwYXRjaCBJ
-IHNlbnQgZWFybGllci4KCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9vdmx5NTA3
-ZS5jIHwgMiAtLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvb3ZseTgyN2UuYyB8
-IDMgLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9vdmx5OTA3ZS5jIHwgNCAt
-LS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9vdmx5OTE3ZS5jIHwgNSAtLS0t
-LQogNCBmaWxlcyBjaGFuZ2VkLCAxNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9vdmx5NTA3ZS5jIGIvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvZGlzcG52NTAvb3ZseTUwN2UuYwppbmRleCBjYzQxNzY2NGY4MjMuLjljMDc0ZGI5YjVi
-ZSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvb3ZseTUwN2Uu
-YworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9vdmx5NTA3ZS5jCkBAIC0x
-NjAsOSArMTYwLDcgQEAgb3ZseTUwN2VfZm9ybWF0W10gPSB7CiAJRFJNX0ZPUk1BVF9ZVVlWLAog
-CURSTV9GT1JNQVRfVVlWWSwKIAlEUk1fRk9STUFUX1hSR0I4ODg4LAotCURSTV9GT1JNQVRfQVJH
-Qjg4ODgsCiAJRFJNX0ZPUk1BVF9YUkdCMTU1NSwKLQlEUk1fRk9STUFUX0FSR0IxNTU1LAogCTAK
-IH07CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL292bHk4
-MjdlLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9vdmx5ODI3ZS5jCmluZGV4
-IGFhYTlmZTVhNGZjOC4uMmU2OGZjNzM2ZmUxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9kaXNwbnY1MC9vdmx5ODI3ZS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L2Rpc3BudjUwL292bHk4MjdlLmMKQEAgLTkwLDExICs5MCw4IEBAIG92bHk4MjdlX2Zvcm1hdFtd
-ID0gewogCURSTV9GT1JNQVRfWVVZViwKIAlEUk1fRk9STUFUX1VZVlksCiAJRFJNX0ZPUk1BVF9Y
-UkdCODg4OCwKLQlEUk1fRk9STUFUX0FSR0I4ODg4LAogCURSTV9GT1JNQVRfWFJHQjE1NTUsCi0J
-RFJNX0ZPUk1BVF9BUkdCMTU1NSwKIAlEUk1fRk9STUFUX1hCR1IyMTAxMDEwLAotCURSTV9GT1JN
-QVRfQUJHUjIxMDEwMTAsCiAJMAogfTsKIApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvZGlzcG52NTAvb3ZseTkwN2UuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3Bu
-djUwL292bHk5MDdlLmMKaW5kZXggZjk0NzExN2Q2MmIxLi45ZWZlNWU5ZDVjZTQgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL292bHk5MDdlLmMKKysrIGIvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvb3ZseTkwN2UuYwpAQCAtNjYsMTMgKzY2LDkg
-QEAgb3ZseTkwN2VfZm9ybWF0W10gPSB7CiAJRFJNX0ZPUk1BVF9ZVVlWLAogCURSTV9GT1JNQVRf
-VVlWWSwKIAlEUk1fRk9STUFUX1hSR0I4ODg4LAotCURSTV9GT1JNQVRfQVJHQjg4ODgsCiAJRFJN
-X0ZPUk1BVF9YUkdCMTU1NSwKLQlEUk1fRk9STUFUX0FSR0IxNTU1LAogCURSTV9GT1JNQVRfWEJH
-UjIxMDEwMTAsCi0JRFJNX0ZPUk1BVF9BQkdSMjEwMTAxMCwKIAlEUk1fRk9STUFUX1hCR1IxNjE2
-MTYxNkYsCi0JRFJNX0ZPUk1BVF9BQkdSMTYxNjE2MTZGLAogCTAKIH07CiAKZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL292bHk5MTdlLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9kaXNwbnY1MC9vdmx5OTE3ZS5jCmluZGV4IGZhYjU2N2UyNThmOS4uZTI0
-ZDZmZDIzNDUwIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9v
-dmx5OTE3ZS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL292bHk5MTdl
-LmMKQEAgLTI2LDE1ICsyNiwxMCBAQCBvdmx5OTE3ZV9mb3JtYXRbXSA9IHsKIAlEUk1fRk9STUFU
-X1lVWVYsCiAJRFJNX0ZPUk1BVF9VWVZZLAogCURSTV9GT1JNQVRfWFJHQjg4ODgsCi0JRFJNX0ZP
-Uk1BVF9BUkdCODg4OCwKIAlEUk1fRk9STUFUX1hSR0IxNTU1LAotCURSTV9GT1JNQVRfQVJHQjE1
-NTUsCiAJRFJNX0ZPUk1BVF9YQkdSMjEwMTAxMCwKLQlEUk1fRk9STUFUX0FCR1IyMTAxMDEwLAog
-CURSTV9GT1JNQVRfWFJHQjIxMDEwMTAsCi0JRFJNX0ZPUk1BVF9BUkdCMjEwMTAxMCwKIAlEUk1f
-Rk9STUFUX1hCR1IxNjE2MTYxNkYsCi0JRFJNX0ZPUk1BVF9BQkdSMTYxNjE2MTZGLAogCTAKIH07
-CiAKLS0gCjIuMjEuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1903301841==
+Content-Type: multipart/alternative; boundary="15595660160.49FbF6cD6.8345"
+Content-Transfer-Encoding: 7bit
+
+
+--15595660160.49FbF6cD6.8345
+Date: Mon, 3 Jun 2019 12:46:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+
+--- Comment #76 from Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org> ---
+(In reply to jonasz from comment #75)
+> Hi guys,
+>=20
+> I have a dell t7610 centOS installation with two K6000 gpus with the late=
+st
+> available firmware installed. These gpus have two DisplayPorts and two DVI
+> ports each.
+
+This bug report is about the sound device of notebooks. So this does not ap=
+ply
+to your desktop hardware. You're probably hitting this nvidia bug:
+https://devtalk.nvidia.com/default/topic/1044547/linux/audio-problems-with-=
+the-415-18-drivers/
+The workaround would be to downgrade the driver to v410 or v390.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15595660160.49FbF6cD6.8345
+Date: Mon, 3 Jun 2019 12:46:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c76">Commen=
+t # 76</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+hhfeuer&#64;gmx.de" title=3D"Maik Freudenberg &lt;hhfeuer&#64;gmx.de&gt;"> =
+<span class=3D"fn">Maik Freudenberg</span></a>
+</span></b>
+        <pre>(In reply to jonasz from <a href=3D"show_bug.cgi?id=3D75985#c7=
+5">comment #75</a>)
+<span class=3D"quote">&gt; Hi guys,
+&gt;=20
+&gt; I have a dell t7610 centOS installation with two K6000 gpus with the l=
+atest
+&gt; available firmware installed. These gpus have two DisplayPorts and two=
+ DVI
+&gt; ports each.</span >
+
+This bug report is about the sound device of notebooks. So this does not ap=
+ply
+to your desktop hardware. You're probably hitting this nvidia bug:
+<a href=3D"https://devtalk.nvidia.com/default/topic/1044547/linux/audio-pro=
+blems-with-the-415-18-drivers/">https://devtalk.nvidia.com/default/topic/10=
+44547/linux/audio-problems-with-the-415-18-drivers/</a>
+The workaround would be to downgrade the driver to v410 or v390.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15595660160.49FbF6cD6.8345--
+
+--===============1903301841==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1903301841==--
