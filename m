@@ -1,119 +1,48 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110830] [nouveau] GeForce GTX 1660 Ti (mobile) not
- supported (NV168/TU116)
-Date: Mon, 03 Jun 2019 18:54:41 +0000
-Message-ID: <bug-110830-8800-kWlod8uxcF@http.bugs.freedesktop.org/>
-References: <bug-110830-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH 0/2] drm/nouveau/bios/init: Improve pre-PMU devinit
+ opcode coverage
+Date: Tue, 04 Jun 2019 14:07:05 -0400
+Message-ID: <ad520b3710906bfcf51d2f823db5cc99fb12ee90.camel@redhat.com>
+References: <20190602141315.6197-1-rhyskidd@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1186113628=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190602141315.6197-1-rhyskidd@gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Rhys Kidd <rhyskidd@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Karol Herbst <kherbst@redhat.com>, Ilia Mirkin <imirkin@alum.mit.edu>
 List-Id: nouveau.vger.kernel.org
 
+For the whole series:
 
---===============1186113628==
-Content-Type: multipart/alternative; boundary="15595880814.14DDC.30504"
-Content-Transfer-Encoding: 7bit
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
+Tested on a GK104 and GK110 (same ones as my vbios traces in our vbios repo)
 
---15595880814.14DDC.30504
-Date: Mon, 3 Jun 2019 18:54:41 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110830
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-With a kernel with TU117 support, boot with
-
-nouveau.config=3DNvChipset=3D0x167
-
-And see if it Just Works (tm). (Note that the NvChipset thing is quite new,=
- and
-is in the commit right before TU117 support... otherwise you could go down =
-to
-TU102, which appears to be ~the same.)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15595880814.14DDC.30504
-Date: Mon, 3 Jun 2019 18:54:41 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] GeForce GTX 1660 Ti (mobile) not supported (NV1=
-68/TU116)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110830#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] GeForce GTX 1660 Ti (mobile) not supported (NV1=
-68/TU116)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110830">bug 11083=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>With a kernel with TU117 support, boot with
-
-nouveau.config=3DNvChipset=3D0x167
-
-And see if it Just Works (tm). (Note that the NvChipset thing is quite new,=
- and
-is in the commit right before TU117 support... otherwise you could go down =
-to
-TU102, which appears to be ~the same.)</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15595880814.14DDC.30504--
-
---===============1186113628==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1186113628==--
+On Mon, 2019-06-03 at 00:13 +1000, Rhys Kidd wrote:
+> NVIDIA GPUs include a common scripting language (devinit) that can be
+> interpreted by a number of "engines", e.g. within a kernel-mode software
+> driver, the VGA BIOS or an on-board small microcontroller which provides
+> certain security assertions (the 'PMU').
+> 
+> This system allows a GPU programming sequence to be shared by multiple
+> entities that would not otherwise be able to execute common code.
+> 
+> This series adds support to nouveau for two opcodes seen on VBIOSes prior
+> to the locked-down PMU taking over responsibility for executing devinit
+> scripts.
+> 
+> Documentation for these two opcodes can be found at:
+> 
+>   https://github.com/envytools/envytools/pull/189
+> 
+> Rhys Kidd (2):
+>   drm/nouveau/bios/init: handle INIT_RESET_BEGUN devinit opcode
+>   drm/nouveau/bios/init: handle INIT_RESET_END devinit opcode
+> 
+>  .../gpu/drm/nouveau/nvkm/subdev/bios/init.c   | 26 +++++++++++++++++--
+>  1 file changed, 24 insertions(+), 2 deletions(-)
+> 
+-- 
+Cheers,
+	Lyude Paul
