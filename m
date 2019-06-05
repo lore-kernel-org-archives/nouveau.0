@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110679] va-api scaling with nv50-class cards
  incomplete?
-Date: Wed, 05 Jun 2019 16:39:04 +0000
-Message-ID: <bug-110679-8800-7eFSgSQfvz@http.bugs.freedesktop.org/>
+Date: Wed, 05 Jun 2019 16:39:42 +0000
+Message-ID: <bug-110679-8800-dwBMujPrQA@http.bugs.freedesktop.org/>
 References: <bug-110679-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0446862210=="
+Content-Type: multipart/mixed; boundary="===============1299314288=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110679-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0446862210==
-Content-Type: multipart/alternative; boundary="15597527440.5ED76DA.22338"
+--===============1299314288==
+Content-Type: multipart/alternative; boundary="15597527820.8b41cC4C3.22863"
 Content-Transfer-Encoding: 7bit
 
 
---15597527440.5ED76DA.22338
-Date: Wed, 5 Jun 2019 16:39:04 +0000
+--15597527820.8b41cC4C3.22863
+Date: Wed, 5 Jun 2019 16:39:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110679
 
---- Comment #4 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-Created attachment 144462
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144462&action=3Dedit
-libva log file (with VL activated)
+--- Comment #5 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Created attachment 144463
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144463&action=3Dedit
+libva log without VL
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15597527440.5ED76DA.22338
-Date: Wed, 5 Jun 2019 16:39:04 +0000
+--15597527820.8b41cC4C3.22863
+Date: Wed, 5 Jun 2019 16:39:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - va-api scaling with nv50-class cards incomplete?"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110679#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110679#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - va-api scaling with nv50-class cards incomplete?"
@@ -75,11 +75,11 @@ t # 4</a>
 randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
 gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144462=
-" name=3D"attach_144462" title=3D"libva log file (with VL activated)">attac=
-hment 144462</a> <a href=3D"attachment.cgi?id=3D144462&amp;action=3Dedit" t=
-itle=3D"libva log file (with VL activated)">[details]</a></span>
-libva log file (with VL activated)</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144463=
+" name=3D"attach_144463" title=3D"libva log without VL">attachment 144463</=
+a> <a href=3D"attachment.cgi?id=3D144463&amp;action=3Dedit" title=3D"libva =
+log without VL">[details]</a></span>
+libva log without VL</pre>
         </div>
       </p>
 
@@ -88,15 +88,15 @@ libva log file (with VL activated)</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15597527440.5ED76DA.22338--
+--15597527820.8b41cC4C3.22863--
 
---===============0446862210==
+--===============1299314288==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0446862210==--
+--===============1299314288==--
