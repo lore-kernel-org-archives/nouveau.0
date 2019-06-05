@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110572] Regularly System Crash: (ca. 1 hour) nouveau
- 0000:08:00.0: gr: PGRAPH TLB flush idle timeout fail and nouveau
- 0000:08:00.0: mmu: ce0 mmu invalidate timeout
-Date: Wed, 05 Jun 2019 08:42:40 +0000
-Message-ID: <bug-110572-8800-PCjRqbGFTn@http.bugs.freedesktop.org/>
-References: <bug-110572-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 110679] va-api scaling with nv50-class cards
+ incomplete?
+Date: Wed, 05 Jun 2019 14:49:44 +0000
+Message-ID: <bug-110679-8800-1wMGoqgGyc@http.bugs.freedesktop.org/>
+References: <bug-110679-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0971161727=="
+Content-Type: multipart/mixed; boundary="===============0700452241=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110572-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-110679-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,34 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0971161727==
-Content-Type: multipart/alternative; boundary="15597241600.ea8E4D.2512"
+--===============0700452241==
+Content-Type: multipart/alternative; boundary="15597461830.285ce.29015"
 Content-Transfer-Encoding: 7bit
 
 
---15597241600.ea8E4D.2512
-Date: Wed, 5 Jun 2019 08:42:40 +0000
+--15597461830.285ce.29015
+Date: Wed, 5 Jun 2019 14:49:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110572
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110679
 
---- Comment #19 from Linux Freak <Linuxfreak-RbZlAiThDcE@public.gmane.org> ---
-journalctl -p 7 -b -1 | grep fbcon
-Jun 05 09:59:17  kernel: fbcon: Deferring console take-over
-Jun 05 09:59:17  kernel: fbcon: Taking over console
-Jun 05 09:59:25  kernel: fbcon: nouveaufb (fb0) is primary device
+--- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+After adding XVMC_VL=3D1 variable ffmpeg command above started to work ?!
+Apparently, 'normal' nouveau video allocator dislikes two differently-sized
+buffers (command also worked when I set "scale_vaapi=3Dw=3D1280:h=3D720" , =
+in other
+words to strictly same dimensions as input ....)
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15597241600.ea8E4D.2512
-Date: Wed, 5 Jun 2019 08:42:40 +0000
+--15597461830.285ce.29015
+Date: Wed, 5 Jun 2019 14:49:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,26 +65,24 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Regularly System Crash: (ca. 1 hour) nouveau 0000:08:00.0=
-: gr: PGRAPH TLB flush idle timeout fail and nouveau 0000:08:00.0: mmu: ce0=
- mmu invalidate timeout"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110572#c19">Comme=
-nt # 19</a>
+   title=3D"NEW - va-api scaling with nv50-class cards incomplete?"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110679#c1">Commen=
+t # 1</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Regularly System Crash: (ca. 1 hour) nouveau 0000:08:00.0=
-: gr: PGRAPH TLB flush idle timeout fail and nouveau 0000:08:00.0: mmu: ce0=
- mmu invalidate timeout"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110572">bug 11057=
-2</a>
+   title=3D"NEW - va-api scaling with nv50-class cards incomplete?"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110679">bug 11067=
+9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-Linuxfreak&#64;gmx.at" title=3D"Linux Freak &lt;Linuxfreak&#64;gmx.at&gt;">=
- <span class=3D"fn">Linux Freak</span></a>
+randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
+gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>journalctl -p 7 -b -1 | grep fbcon
-Jun 05 09:59:17  kernel: fbcon: Deferring console take-over
-Jun 05 09:59:17  kernel: fbcon: Taking over console
-Jun 05 09:59:25  kernel: fbcon: nouveaufb (fb0) is primary device</pre>
+        <pre>After adding XVMC_VL=3D1 variable ffmpeg command above started=
+ to work ?!
+Apparently, 'normal' nouveau video allocator dislikes two differently-sized
+buffers (command also worked when I set &quot;scale_vaapi=3Dw=3D1280:h=3D72=
+0&quot; , in other
+words to strictly same dimensions as input ....)</pre>
         </div>
       </p>
 
@@ -99,9 +97,9 @@ Jun 05 09:59:25  kernel: fbcon: nouveaufb (fb0) is primary device</pre>
     </body>
 </html>=
 
---15597241600.ea8E4D.2512--
+--15597461830.285ce.29015--
 
---===============0971161727==
+--===============0700452241==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0971161727==--
+--===============0700452241==--
