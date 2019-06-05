@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110679] va-api scaling with nv50-class cards
  incomplete?
-Date: Wed, 05 Jun 2019 16:38:04 +0000
-Message-ID: <bug-110679-8800-eoglF5evTx@http.bugs.freedesktop.org/>
+Date: Wed, 05 Jun 2019 16:39:04 +0000
+Message-ID: <bug-110679-8800-7eFSgSQfvz@http.bugs.freedesktop.org/>
 References: <bug-110679-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1462766297=="
+Content-Type: multipart/mixed; boundary="===============0446862210=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110679-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1462766297==
-Content-Type: multipart/alternative; boundary="15597526840.92CEA3A.22150"
+--===============0446862210==
+Content-Type: multipart/alternative; boundary="15597527440.5ED76DA.22338"
 Content-Transfer-Encoding: 7bit
 
 
---15597526840.92CEA3A.22150
-Date: Wed, 5 Jun 2019 16:38:04 +0000
+--15597527440.5ED76DA.22338
+Date: Wed, 5 Jun 2019 16:39:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,37 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110679
 
---- Comment #3 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-using those two command lines
-
-XVMC_VL=3D1 LIBVA_MESSAGING_LEVEL=3D2 LIBVA_TRACE=3D/dev/shm/log_file ./ffm=
-peg
--vaapi_device /dev/dri/renderD128 -benchmark -c:v libdav1d   -i
-/mnt/sdb1/Stream2_AV1_720p_3.2mbps.webm  -vf
-format=3Dnv12,hwupload,scale_vaapi=3Dw=3D3840:h=3D2160:mode=3Dhq,hwdownload=
-,format=3Dyuv420p
--map 0:v:0  /dev/shm/1.avi
-
----------working--------
-
- LIBVA_MESSAGING_LEVEL=3D2 LIBVA_TRACE=3D/dev/shm/log_file_no_vl ./ffmpeg
--vaapi_device /dev/dri/renderD128 -benchmark -c:v libdav1d   -i
-/mnt/sdb1/Stream2_AV1_720p_3.2mbps.webm  -vf
-format=3Dnv12,hwupload,scale_vaapi=3Dw=3D3840:h=3D2160:mode=3Dhq,hwdownload=
-,format=3Dyuv420p
--map 0:v:0  /dev/shm/1.avi
-
---------failing----------
-
-I got two trace files, will attach them.
+--- Comment #4 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Created attachment 144462
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144462&action=3Dedit
+libva log file (with VL activated)
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15597526840.92CEA3A.22150
-Date: Wed, 5 Jun 2019 16:38:04 +0000
+--15597527440.5ED76DA.22338
+Date: Wed, 5 Jun 2019 16:39:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -83,8 +64,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - va-api scaling with nv50-class cards incomplete?"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110679#c3">Commen=
-t # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110679#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - va-api scaling with nv50-class cards incomplete?"
@@ -94,28 +75,11 @@ t # 3</a>
 randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
 gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>using those two command lines
-
-XVMC_VL=3D1 LIBVA_MESSAGING_LEVEL=3D2 LIBVA_TRACE=3D/dev/shm/log_file ./ffm=
-peg
--vaapi_device /dev/dri/renderD128 -benchmark -c:v libdav1d   -i
-/mnt/sdb1/Stream2_AV1_720p_3.2mbps.webm  -vf
-format=3Dnv12,hwupload,scale_vaapi=3Dw=3D3840:h=3D2160:mode=3Dhq,hwdownload=
-,format=3Dyuv420p
--map 0:v:0  /dev/shm/1.avi
-
----------working--------
-
- LIBVA_MESSAGING_LEVEL=3D2 LIBVA_TRACE=3D/dev/shm/log_file_no_vl ./ffmpeg
--vaapi_device /dev/dri/renderD128 -benchmark -c:v libdav1d   -i
-/mnt/sdb1/Stream2_AV1_720p_3.2mbps.webm  -vf
-format=3Dnv12,hwupload,scale_vaapi=3Dw=3D3840:h=3D2160:mode=3Dhq,hwdownload=
-,format=3Dyuv420p
--map 0:v:0  /dev/shm/1.avi
-
---------failing----------
-
-I got two trace files, will attach them.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144462=
+" name=3D"attach_144462" title=3D"libva log file (with VL activated)">attac=
+hment 144462</a> <a href=3D"attachment.cgi?id=3D144462&amp;action=3Dedit" t=
+itle=3D"libva log file (with VL activated)">[details]</a></span>
+libva log file (with VL activated)</pre>
         </div>
       </p>
 
@@ -124,15 +88,15 @@ I got two trace files, will attach them.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15597526840.92CEA3A.22150--
+--15597527440.5ED76DA.22338--
 
---===============1462766297==
+--===============0446862210==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -142,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1462766297==--
+--===============0446862210==--
