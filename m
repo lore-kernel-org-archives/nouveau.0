@@ -1,16 +1,12 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 08/13] drm/nouveau: drop DRM_AUTH from
- DRM_RENDER_ALLOW ioctls
-Date: Fri, 7 Jun 2019 10:24:25 +1000
-Message-ID: <CACAvsv6sob8e-x8tskmG2bWaifVKoCY4OE8VW+6wudVSrG4ELQ@mail.gmail.com>
-References: <20190527081741.14235-1-emil.l.velikov@gmail.com>
- <20190527081741.14235-8-emil.l.velikov@gmail.com>
- <CACvgo53skE1TpixEDBxmfAgFouJD66351fkcx40zR3vgF41c1Q@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 98039] KMail crash on starting (nouveau-related)
+Date: Fri, 07 Jun 2019 02:57:23 +0000
+Message-ID: <bug-98039-8800-B8Vi7oO3S4@http.bugs.freedesktop.org/>
+References: <bug-98039-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0664688855=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACvgo53skE1TpixEDBxmfAgFouJD66351fkcx40zR3vgF41c1Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-98039-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,88 +16,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCA2IEp1biAyMDE5IGF0IDIxOjAwLCBFbWlsIFZlbGlrb3YgPGVtaWwubC52ZWxpa292
-QGdtYWlsLmNvbT4gd3JvdGU6Cj4KPiBPbiBNb24sIDI3IE1heSAyMDE5IGF0IDA5OjE5LCBFbWls
-IFZlbGlrb3YgPGVtaWwubC52ZWxpa292QGdtYWlsLmNvbT4gd3JvdGU6Cj4gPgo+ID4gRnJvbTog
-RW1pbCBWZWxpa292IDxlbWlsLnZlbGlrb3ZAY29sbGFib3JhLmNvbT4KPiA+Cj4gPiBUaGUgYXV0
-aGVudGljYXRpb24gY2FuIGJlIGNpcmN1bXZlbnRlZCwgYnkgZGVzaWduLCBieSB1c2luZyB0aGUg
-cmVuZGVyCj4gPiBub2RlLgo+ID4KPiA+IEZyb20gdGhlIGRyaXZlciBQT1YgdGhlcmUgaXMgbm8g
-ZGlzdGluY3Rpb24gYmV0d2VlbiBwcmltYXJ5IGFuZCByZW5kZXIKPiA+IG5vZGVzLCB0aHVzIHdl
-IGNhbiBkcm9wIHRoZSB0b2tlbi4KPiA+Cj4gPiBOb3RlOiB0aGUgb3V0c3RhbmRpbmcgRFJNX0FV
-VEggaW5zdGFuY2UgaXM6Cj4gPiAgLSBsZWdhY3kgRFJJMSBpb2N0bCwgd2hpY2ggaXMgYWxyZWFk
-eSBuZXV0ZXJlZAo+ID4KPiA+IENjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+Cj4g
-PiBDYzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+IENjOiBEYXZpZCBBaXJsaWUg
-PGFpcmxpZWRAbGludXguaWU+Cj4gPiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNo
-Pgo+ID4gU2lnbmVkLW9mZi1ieTogRW1pbCBWZWxpa292IDxlbWlsLnZlbGlrb3ZAY29sbGFib3Jh
-LmNvbT4KPiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMg
-fCAyNiArKysrKysrKysrKysrLS0tLS0tLS0tLS0tLQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxMyBp
-bnNlcnRpb25zKCspLCAxMyBkZWxldGlvbnMoLSkKPiA+Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L25vdXZlYXVfZHJtLmMKPiA+IGluZGV4IDIyY2Q0NTg0NWUwNy4uZmY1OTk0YzBkNDI5IDEwMDY0
-NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+ID4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+ID4gQEAgLTEwNDUsMjAg
-KzEwNDUsMjAgQEAgbm91dmVhdV9kcm1fcG9zdGNsb3NlKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYs
-IHN0cnVjdCBkcm1fZmlsZSAqZnByaXYpCj4gPgo+ID4gIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJt
-X2lvY3RsX2Rlc2MKPiA+ICBub3V2ZWF1X2lvY3Rsc1tdID0gewo+ID4gLSAgICAgICBEUk1fSU9D
-VExfREVGX0RSVihOT1VWRUFVX0dFVFBBUkFNLCBub3V2ZWF1X2FiaTE2X2lvY3RsX2dldHBhcmFt
-LCBEUk1fQVVUSHxEUk1fUkVOREVSX0FMTE9XKSwKPiA+ICsgICAgICAgRFJNX0lPQ1RMX0RFRl9E
-UlYoTk9VVkVBVV9HRVRQQVJBTSwgbm91dmVhdV9hYmkxNl9pb2N0bF9nZXRwYXJhbSwgRFJNX1JF
-TkRFUl9BTExPVyksCj4gPiAgICAgICAgIERSTV9JT0NUTF9ERUZfRFJWKE5PVVZFQVVfU0VUUEFS
-QU0sIG5vdXZlYXVfYWJpMTZfaW9jdGxfc2V0cGFyYW0sIERSTV9BVVRIfERSTV9NQVNURVJ8RFJN
-X1JPT1RfT05MWSksCj4gPiAtICAgICAgIERSTV9JT0NUTF9ERUZfRFJWKE5PVVZFQVVfQ0hBTk5F
-TF9BTExPQywgbm91dmVhdV9hYmkxNl9pb2N0bF9jaGFubmVsX2FsbG9jLCBEUk1fQVVUSHxEUk1f
-UkVOREVSX0FMTE9XKSwKPiA+IC0gICAgICAgRFJNX0lPQ1RMX0RFRl9EUlYoTk9VVkVBVV9DSEFO
-TkVMX0ZSRUUsIG5vdXZlYXVfYWJpMTZfaW9jdGxfY2hhbm5lbF9mcmVlLCBEUk1fQVVUSHxEUk1f
-UkVOREVSX0FMTE9XKSwKPiA+IC0gICAgICAgRFJNX0lPQ1RMX0RFRl9EUlYoTk9VVkVBVV9HUk9C
-Sl9BTExPQywgbm91dmVhdV9hYmkxNl9pb2N0bF9ncm9ial9hbGxvYywgRFJNX0FVVEh8RFJNX1JF
-TkRFUl9BTExPVyksCj4gPiAtICAgICAgIERSTV9JT0NUTF9ERUZfRFJWKE5PVVZFQVVfTk9USUZJ
-RVJPQkpfQUxMT0MsIG5vdXZlYXVfYWJpMTZfaW9jdGxfbm90aWZpZXJvYmpfYWxsb2MsIERSTV9B
-VVRIfERSTV9SRU5ERVJfQUxMT1cpLAo+ID4gLSAgICAgICBEUk1fSU9DVExfREVGX0RSVihOT1VW
-RUFVX0dQVU9CSl9GUkVFLCBub3V2ZWF1X2FiaTE2X2lvY3RsX2dwdW9ial9mcmVlLCBEUk1fQVVU
-SHxEUk1fUkVOREVSX0FMTE9XKSwKPiA+IC0gICAgICAgRFJNX0lPQ1RMX0RFRl9EUlYoTk9VVkVB
-VV9TVk1fSU5JVCwgbm91dmVhdV9zdm1tX2luaXQsIERSTV9BVVRIfERSTV9SRU5ERVJfQUxMT1cp
-LAo+ID4gLSAgICAgICBEUk1fSU9DVExfREVGX0RSVihOT1VWRUFVX1NWTV9CSU5ELCBub3V2ZWF1
-X3N2bW1fYmluZCwgRFJNX0FVVEh8RFJNX1JFTkRFUl9BTExPVyksCj4gPiAtICAgICAgIERSTV9J
-T0NUTF9ERUZfRFJWKE5PVVZFQVVfR0VNX05FVywgbm91dmVhdV9nZW1faW9jdGxfbmV3LCBEUk1f
-QVVUSHxEUk1fUkVOREVSX0FMTE9XKSwKPiA+IC0gICAgICAgRFJNX0lPQ1RMX0RFRl9EUlYoTk9V
-VkVBVV9HRU1fUFVTSEJVRiwgbm91dmVhdV9nZW1faW9jdGxfcHVzaGJ1ZiwgRFJNX0FVVEh8RFJN
-X1JFTkRFUl9BTExPVyksCj4gPiAtICAgICAgIERSTV9JT0NUTF9ERUZfRFJWKE5PVVZFQVVfR0VN
-X0NQVV9QUkVQLCBub3V2ZWF1X2dlbV9pb2N0bF9jcHVfcHJlcCwgRFJNX0FVVEh8RFJNX1JFTkRF
-Ul9BTExPVyksCj4gPiAtICAgICAgIERSTV9JT0NUTF9ERUZfRFJWKE5PVVZFQVVfR0VNX0NQVV9G
-SU5JLCBub3V2ZWF1X2dlbV9pb2N0bF9jcHVfZmluaSwgRFJNX0FVVEh8RFJNX1JFTkRFUl9BTExP
-VyksCj4gPiAtICAgICAgIERSTV9JT0NUTF9ERUZfRFJWKE5PVVZFQVVfR0VNX0lORk8sIG5vdXZl
-YXVfZ2VtX2lvY3RsX2luZm8sIERSTV9BVVRIfERSTV9SRU5ERVJfQUxMT1cpLAo+ID4gKyAgICAg
-ICBEUk1fSU9DVExfREVGX0RSVihOT1VWRUFVX0NIQU5ORUxfQUxMT0MsIG5vdXZlYXVfYWJpMTZf
-aW9jdGxfY2hhbm5lbF9hbGxvYywgRFJNX1JFTkRFUl9BTExPVyksCj4gPiArICAgICAgIERSTV9J
-T0NUTF9ERUZfRFJWKE5PVVZFQVVfQ0hBTk5FTF9GUkVFLCBub3V2ZWF1X2FiaTE2X2lvY3RsX2No
-YW5uZWxfZnJlZSwgRFJNX1JFTkRFUl9BTExPVyksCj4gPiArICAgICAgIERSTV9JT0NUTF9ERUZf
-RFJWKE5PVVZFQVVfR1JPQkpfQUxMT0MsIG5vdXZlYXVfYWJpMTZfaW9jdGxfZ3JvYmpfYWxsb2Ms
-IERSTV9SRU5ERVJfQUxMT1cpLAo+ID4gKyAgICAgICBEUk1fSU9DVExfREVGX0RSVihOT1VWRUFV
-X05PVElGSUVST0JKX0FMTE9DLCBub3V2ZWF1X2FiaTE2X2lvY3RsX25vdGlmaWVyb2JqX2FsbG9j
-LCBEUk1fUkVOREVSX0FMTE9XKSwKPiA+ICsgICAgICAgRFJNX0lPQ1RMX0RFRl9EUlYoTk9VVkVB
-VV9HUFVPQkpfRlJFRSwgbm91dmVhdV9hYmkxNl9pb2N0bF9ncHVvYmpfZnJlZSwgRFJNX1JFTkRF
-Ul9BTExPVyksCj4gPiArICAgICAgIERSTV9JT0NUTF9ERUZfRFJWKE5PVVZFQVVfU1ZNX0lOSVQs
-IG5vdXZlYXVfc3ZtbV9pbml0LCBEUk1fUkVOREVSX0FMTE9XKSwKPiA+ICsgICAgICAgRFJNX0lP
-Q1RMX0RFRl9EUlYoTk9VVkVBVV9TVk1fQklORCwgbm91dmVhdV9zdm1tX2JpbmQsIERSTV9SRU5E
-RVJfQUxMT1cpLAo+ID4gKyAgICAgICBEUk1fSU9DVExfREVGX0RSVihOT1VWRUFVX0dFTV9ORVcs
-IG5vdXZlYXVfZ2VtX2lvY3RsX25ldywgRFJNX1JFTkRFUl9BTExPVyksCj4gPiArICAgICAgIERS
-TV9JT0NUTF9ERUZfRFJWKE5PVVZFQVVfR0VNX1BVU0hCVUYsIG5vdXZlYXVfZ2VtX2lvY3RsX3B1
-c2hidWYsIERSTV9SRU5ERVJfQUxMT1cpLAo+ID4gKyAgICAgICBEUk1fSU9DVExfREVGX0RSVihO
-T1VWRUFVX0dFTV9DUFVfUFJFUCwgbm91dmVhdV9nZW1faW9jdGxfY3B1X3ByZXAsIERSTV9SRU5E
-RVJfQUxMT1cpLAo+ID4gKyAgICAgICBEUk1fSU9DVExfREVGX0RSVihOT1VWRUFVX0dFTV9DUFVf
-RklOSSwgbm91dmVhdV9nZW1faW9jdGxfY3B1X2ZpbmksIERSTV9SRU5ERVJfQUxMT1cpLAo+ID4g
-KyAgICAgICBEUk1fSU9DVExfREVGX0RSVihOT1VWRUFVX0dFTV9JTkZPLCBub3V2ZWF1X2dlbV9p
-b2N0bF9pbmZvLCBEUk1fUkVOREVSX0FMTE9XKSwKPiA+ICB9Owo+ID4KPiA+ICBsb25nCj4gPiAt
-LQo+ID4gMi4yMS4wCj4gPgo+Cj4gSHVtYmxlIHBva2U/CkkgY2FuIHRha2UgdGhlIG5vdXZlYXUg
-b25lIGluIG15IHRyZWUsIGJ1dCBpZiB0aGV5J3JlIGFsbCBnb2luZyB0b2dldGhlcjoKClJldmll
-d2VkLWJ5OiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+Cgo+Cj4gVGhhbmtzLAo+IEVt
-aWwKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5v
-dXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
-IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0664688855==
+Content-Type: multipart/alternative; boundary="15598762432.bA92c.28751"
+Content-Transfer-Encoding: 7bit
+
+
+--15598762432.bA92c.28751
+Date: Fri, 7 Jun 2019 02:57:23 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98039
+
+--- Comment #16 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+well, may be I should link those here (Ilia, please don't be mad at me):
+
+https://github.com/karolherbst/mesa/tree/mt_fixes_take2 (last update from 13
+april 2019)
+
+https://lists.freedesktop.org/archives/nouveau/2019-January/031968.html
+([Nouveau] Nouveau channel resets userspace handling) with links to Karol's
+github.
+
+Also, not sure if it helped or I was just lucky, but running kernel 5.1.6 w=
+ith
+
+CONFIG_IOMMU_DEFAULT_PASSTHROUGH=3Dy
+
+and=20
+
+CONFIG_PREEMPT=3Dy
+CONFIG_PREEMPT_COUNT=3Dy
+CONFIG_PREEMPT_RCU=3Dy
+CONFIG_PREEMPT_NOTIFIERS=3Dy
+CONFIG_DEBUG_PREEMPT=3Dy
+
+[low-latency desktop in kconfig]
+
+apparently helped my stability with nouveau and 01:00.0 VGA compatible
+controller: NVIDIA Corporation G92 [GeForce 8800 GS] (rev a2)
+
+but I can't be ubersure, may be this is weather, or power (un)stability
+..currently uptime is '05:18:58 up 6 days,  1:10,  2 users,  load average:
+0.85, 1.04, 1.05' and before this  same machine was staying on and s2ram for
+two weeks. So, may be preemtion level actually can play some role? (I once =
+run
+into bug where nouveau stopped working for older machine if I build my kern=
+el
+without any preemtion - https://bugs.freedesktop.org/show_bug.cgi?id=3D58615
+comment #13)
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15598762432.bA92c.28751
+Date: Fri, 7 Jun 2019 02:57:23 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - KMail crash on starting (nouveau-related)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039#c16">Commen=
+t # 16</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - KMail crash on starting (nouveau-related)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98039">bug 98039<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
+gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
+</span></b>
+        <pre>well, may be I should link those here (Ilia, please don't be m=
+ad at me):
+
+<a href=3D"https://github.com/karolherbst/mesa/tree/mt_fixes_take2">https:/=
+/github.com/karolherbst/mesa/tree/mt_fixes_take2</a> (last update from 13
+april 2019)
+
+<a href=3D"https://lists.freedesktop.org/archives/nouveau/2019-January/0319=
+68.html">https://lists.freedesktop.org/archives/nouveau/2019-January/031968=
+.html</a>
+([Nouveau] Nouveau channel resets userspace handling) with links to Karol's
+github.
+
+Also, not sure if it helped or I was just lucky, but running kernel 5.1.6 w=
+ith
+
+CONFIG_IOMMU_DEFAULT_PASSTHROUGH=3Dy
+
+and=20
+
+CONFIG_PREEMPT=3Dy
+CONFIG_PREEMPT_COUNT=3Dy
+CONFIG_PREEMPT_RCU=3Dy
+CONFIG_PREEMPT_NOTIFIERS=3Dy
+CONFIG_DEBUG_PREEMPT=3Dy
+
+[low-latency desktop in kconfig]
+
+apparently helped my stability with nouveau and 01:00.0 VGA compatible
+controller: NVIDIA Corporation G92 [GeForce 8800 GS] (rev a2)
+
+but I can't be ubersure, may be this is weather, or power (un)stability
+..currently uptime is '05:18:58 up 6 days,  1:10,  2 users,  load average:
+0.85, 1.04, 1.05' and before this  same machine was staying on and s2ram for
+two weeks. So, may be preemtion level actually can play some role? (I once =
+run
+into bug where nouveau stopped working for older machine if I build my kern=
+el
+without any preemtion - <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED WORKSFORME - [NV43] hangs with direct rendering since =
+3.7 rework"
+   href=3D"show_bug.cgi?id=3D58615">https://bugs.freedesktop.org/show_bug.c=
+gi?id=3D58615</a>
+<a href=3D"show_bug.cgi?id=3D98039#c13">comment #13</a>)</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15598762432.bA92c.28751--
+
+--===============0664688855==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0664688855==--
