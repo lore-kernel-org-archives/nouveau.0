@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110830] [nouveau] GeForce GTX 1660 Ti (mobile) not
  supported (NV168/TU116)
-Date: Fri, 07 Jun 2019 20:25:34 +0000
-Message-ID: <bug-110830-8800-tB5m8NXIXf@http.bugs.freedesktop.org/>
+Date: Fri, 07 Jun 2019 20:49:20 +0000
+Message-ID: <bug-110830-8800-YjydqHkQl1@http.bugs.freedesktop.org/>
 References: <bug-110830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0069313640=="
+Content-Type: multipart/mixed; boundary="===============0049421822=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0069313640==
-Content-Type: multipart/alternative; boundary="15599391342.2bBb.29286"
+--===============0049421822==
+Content-Type: multipart/alternative; boundary="15599405600.A3C64CFeA.3635"
 Content-Transfer-Encoding: 7bit
 
 
---15599391342.2bBb.29286
-Date: Fri, 7 Jun 2019 20:25:34 +0000
+--15599405600.A3C64CFeA.3635
+Date: Fri, 7 Jun 2019 20:49:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,76 +36,26 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110830
 
---- Comment #7 from Marcin Zajaczkowski <mszpak-5tc4TXWwyLM@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #6)
-> (In reply to Marcin Zajaczkowski from comment #4)
-> > Of course it didn't make sense to turn it on, as it was already turned =
-on
-> > (DynPwr) in my case :) ). I can switch it off with vgaswitcheroo (or at
-> > least to be reported as DynOff - I will check it later with powertop) w=
-hen
-> > no external output is connected. And what I missed in my previous comme=
-nt -
-> > the external monitor works out-of-box, which is nice progress.
->=20
-> vgaswitcheroo explicit control is for hard muxes. These were popular 2005=
- to
-> 2010 or so. You just have 2 GPUs. vgaswitcheroo reports whether they're on
-> or off, but that control is performed dynamically by the driver based on
-> usage.
+--- Comment #8 from Marcin Zajaczkowski <mszpak-5tc4TXWwyLM@public.gmane.org> ---
+I know about a lack of acceleration, but I wanted to test offloading with
+NVidia GPU. I doesn't seem to work:
 
-You are right. Afew seconds after an external monitor is disconnected the
-discrete card becomes DynOff.
+> $ glxinfo | grep "OpenGL vendor string"
+> OpenGL vendor string: Intel Open Source Technology Center
+> $ DRI_PRIME=3D1 glxinfo | grep "OpenGL vendor string"
+> libGL error: failed to create dri screen
+> libGL error: failed to load driver: nouveau
+> OpenGL vendor string: VMware, Inc.
 
-I have a hard mux in my (quite) old Asus. I can use only the Intel card to =
-save
-energy and the Nvidia card is used only occasionally for CUDA and gaming. I
-wonder why in multiple laptops nowadays the outputs are wired to one card
-limiting the aforementioned use case? What are the benefits of that (assumi=
-ng
-the modern Intel can handle 3 displays enabled at the same time)?
-
-> > There are also no reported providers in xrandr:
-> > > $ xrandr --listproviders
-> > > Providers: number: 0
->=20
-> This is incredibly odd -- there must always be at least 1! Are you running
-> Xwayland or something? If so, the displays would be controlled through yo=
-ur
-> wayland compositor. You can check that kms is working:
-
-Yes, it was Wayland. With Xorg I see two providers:
-
-> Providers: number : 2
-> Provider 0: id: 0x6b cap: 0xf, Source Output, Sink Output, Source Offload=
-, Sink Offload crtcs: 3 outputs: 3 associated providers: 1 name:modesetting
-> Provider 1: id: 0x45 cap: 0x2, Sink Output crtcs: 4 outputs: 2 associated=
- providers: 1 name:modesetting
-
-Hmm, why there are 3 and 4 outputs associated to them? Is it possible that =
-DP
-output is accessible with the Intel card only (I don't have a connector rig=
-ht
-here to test it organoleptically)?
-
->=20
-> grep . /sys/class/drm/card*-*/status
->=20
-> You should see some card0-* and card1-* entries.
-
-Yes, I see different outputs.
-> /sys/class/drm/card0-DP-1/status:disconnected
-> /sys/class/drm/card0-eDP-1/status:connected
-> /sys/class/drm/card0-HDMI-A-1/status:disconnected
-> /sys/class/drm/card1-DP-2/status:disconnected
-> /sys/class/drm/card1-HDMI-A-2/status:disconnected
+Can it be specific to my graphic card or rather some Xorg/Wayland related
+stuff?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15599391342.2bBb.29286
-Date: Fri, 7 Jun 2019 20:25:34 +0000
+--15599405600.A3C64CFeA.3635
+Date: Fri, 7 Jun 2019 20:49:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -123,8 +73,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [nouveau] GeForce GTX 1660 Ti (mobile) not supported (NV1=
 68/TU116)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110830#c7">Commen=
-t # 7</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110830#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [nouveau] GeForce GTX 1660 Ti (mobile) not supported (NV1=
@@ -135,76 +85,19 @@ t # 7</a>
 mszpak&#64;wp.pl" title=3D"Marcin Zajaczkowski &lt;mszpak&#64;wp.pl&gt;"> <=
 span class=3D"fn">Marcin Zajaczkowski</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D110=
-830#c6">comment #6</a>)
-<span class=3D"quote">&gt; (In reply to Marcin Zajaczkowski from <a href=3D=
-"show_bug.cgi?id=3D110830#c4">comment #4</a>)
-&gt; &gt; Of course it didn't make sense to turn it on, as it was already t=
-urned on
-&gt; &gt; (DynPwr) in my case :) ). I can switch it off with vgaswitcheroo =
-(or at
-&gt; &gt; least to be reported as DynOff - I will check it later with power=
-top) when
-&gt; &gt; no external output is connected. And what I missed in my previous=
- comment -
-&gt; &gt; the external monitor works out-of-box, which is nice progress.
-&gt;=20
-&gt; vgaswitcheroo explicit control is for hard muxes. These were popular 2=
-005 to
-&gt; 2010 or so. You just have 2 GPUs. vgaswitcheroo reports whether they'r=
-e on
-&gt; or off, but that control is performed dynamically by the driver based =
-on
-&gt; usage.</span >
+        <pre>I know about a lack of acceleration, but I wanted to test offl=
+oading with
+NVidia GPU. I doesn't seem to work:
 
-You are right. Afew seconds after an external monitor is disconnected the
-discrete card becomes DynOff.
+<span class=3D"quote">&gt; $ glxinfo | grep &quot;OpenGL vendor string&quot;
+&gt; OpenGL vendor string: Intel Open Source Technology Center
+&gt; $ DRI_PRIME=3D1 glxinfo | grep &quot;OpenGL vendor string&quot;
+&gt; libGL error: failed to create dri screen
+&gt; libGL error: failed to load driver: nouveau
+&gt; OpenGL vendor string: VMware, Inc.</span >
 
-I have a hard mux in my (quite) old Asus. I can use only the Intel card to =
-save
-energy and the Nvidia card is used only occasionally for CUDA and gaming. I
-wonder why in multiple laptops nowadays the outputs are wired to one card
-limiting the aforementioned use case? What are the benefits of that (assumi=
-ng
-the modern Intel can handle 3 displays enabled at the same time)?
-
-<span class=3D"quote">&gt; &gt; There are also no reported providers in xra=
-ndr:
-&gt; &gt; &gt; $ xrandr --listproviders
-&gt; &gt; &gt; Providers: number: 0
-&gt;=20
-&gt; This is incredibly odd -- there must always be at least 1! Are you run=
-ning
-&gt; Xwayland or something? If so, the displays would be controlled through=
- your
-&gt; wayland compositor. You can check that kms is working:</span >
-
-Yes, it was Wayland. With Xorg I see two providers:
-
-<span class=3D"quote">&gt; Providers: number : 2
-&gt; Provider 0: id: 0x6b cap: 0xf, Source Output, Sink Output, Source Offl=
-oad, Sink Offload crtcs: 3 outputs: 3 associated providers: 1 name:modesett=
-ing
-&gt; Provider 1: id: 0x45 cap: 0x2, Sink Output crtcs: 4 outputs: 2 associa=
-ted providers: 1 name:modesetting</span >
-
-Hmm, why there are 3 and 4 outputs associated to them? Is it possible that =
-DP
-output is accessible with the Intel card only (I don't have a connector rig=
-ht
-here to test it organoleptically)?
-
-<span class=3D"quote">&gt;=20
-&gt; grep . /sys/class/drm/card*-*/status
-&gt;=20
-&gt; You should see some card0-* and card1-* entries.</span >
-
-Yes, I see different outputs.
-<span class=3D"quote">&gt; /sys/class/drm/card0-DP-1/status:disconnected
-&gt; /sys/class/drm/card0-eDP-1/status:connected
-&gt; /sys/class/drm/card0-HDMI-A-1/status:disconnected
-&gt; /sys/class/drm/card1-DP-2/status:disconnected
-&gt; /sys/class/drm/card1-HDMI-A-2/status:disconnected</span ></pre>
+Can it be specific to my graphic card or rather some Xorg/Wayland related
+stuff?</pre>
         </div>
       </p>
 
@@ -218,9 +111,9 @@ Yes, I see different outputs.
     </body>
 </html>=
 
---15599391342.2bBb.29286--
+--15599405600.A3C64CFeA.3635--
 
---===============0069313640==
+--===============0049421822==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -230,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0069313640==--
+--===============0049421822==--
