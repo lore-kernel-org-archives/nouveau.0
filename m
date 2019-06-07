@@ -1,175 +1,45 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110830] [nouveau] GeForce GTX 1660 Ti (mobile) not
- supported (NV168/TU116)
-Date: Fri, 07 Jun 2019 13:21:23 +0000
-Message-ID: <bug-110830-8800-g7a1EYDlCD@http.bugs.freedesktop.org/>
-References: <bug-110830-8800@http.bugs.freedesktop.org/>
+From: Souptick Joarder <jrdr.linux@gmail.com>
+Subject: Re: [PATCH] drm/nouveau/svm: Convert to use hmm_range_fault()
+Date: Sat, 8 Jun 2019 00:14:50 +0530
+Message-ID: <CAFqt6zYmL2P9w0Z4yfPtB=ftiy-H6-_beYsXJq-nD9T5OAw6Dg@mail.gmail.com>
+References: <1558378918-25279-1-git-send-email-jrdr.linux@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0803200780=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <1558378918-25279-1-git-send-email-jrdr.linux@gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com, airlied@linux.ie, Daniel Vetter <daniel@ffwll.ch>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, jasojgg@ziepe.ca
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
+Hi Jason,
 
---===============0803200780==
-Content-Type: multipart/alternative; boundary="15599136830.10E65.25825"
-Content-Transfer-Encoding: 7bit
+On Tue, May 21, 2019 at 12:27 AM Souptick Joarder <jrdr.linux@gmail.com> wrote:
+>
+> Convert to use hmm_range_fault().
+>
+> Signed-off-by: Souptick Joarder <jrdr.linux@gmail.com>
 
+Would you like to take it through your new hmm tree or do I
+need to resend it ?
 
---15599136830.10E65.25825
-Date: Fri, 7 Jun 2019 13:21:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110830
-
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Marcin Zajaczkowski from comment #4)
-> Of course it didn't make sense to turn it on, as it was already turned on
-> (DynPwr) in my case :) ). I can switch it off with vgaswitcheroo (or at
-> least to be reported as DynOff - I will check it later with powertop) when
-> no external output is connected. And what I missed in my previous comment=
- -
-> the external monitor works out-of-box, which is nice progress.
-
-vgaswitcheroo explicit control is for hard muxes. These were popular 2005 to
-2010 or so. You just have 2 GPUs. vgaswitcheroo reports whether they're on =
-or
-off, but that control is performed dynamically by the driver based on usage.
-
->=20
-> Later on I will try to play with DRI_PRIME to enable also rendering with =
-the
-> NVidia card.
->=20
-> What could be the side effects of:
-> > kernel: nouveau 0000:01:00.0: DRM: failed to create kernel channel, -22
-> ?
-
-No acceleration. This means that DRI_PRIME will not do anything.
-
-> There are also no reported providers in xrandr:
-> > $ xrandr --listproviders
-> > Providers: number: 0
-
-This is incredibly odd -- there must always be at least 1! Are you running
-Xwayland or something? If so, the displays would be controlled through your
-wayland compositor. You can check that kms is working:
-
-grep . /sys/class/drm/card*-*/status
-
-You should see some card0-* and card1-* entries.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15599136830.10E65.25825
-Date: Fri, 7 Jun 2019 13:21:23 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] GeForce GTX 1660 Ti (mobile) not supported (NV1=
-68/TU116)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110830#c6">Commen=
-t # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [nouveau] GeForce GTX 1660 Ti (mobile) not supported (NV1=
-68/TU116)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110830">bug 11083=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Marcin Zajaczkowski from <a href=3D"show_bug.cgi?=
-id=3D110830#c4">comment #4</a>)
-<span class=3D"quote">&gt; Of course it didn't make sense to turn it on, as=
- it was already turned on
-&gt; (DynPwr) in my case :) ). I can switch it off with vgaswitcheroo (or at
-&gt; least to be reported as DynOff - I will check it later with powertop) =
-when
-&gt; no external output is connected. And what I missed in my previous comm=
-ent -
-&gt; the external monitor works out-of-box, which is nice progress.</span >
-
-vgaswitcheroo explicit control is for hard muxes. These were popular 2005 to
-2010 or so. You just have 2 GPUs. vgaswitcheroo reports whether they're on =
-or
-off, but that control is performed dynamically by the driver based on usage.
-
-<span class=3D"quote">&gt;=20
-&gt; Later on I will try to play with DRI_PRIME to enable also rendering wi=
-th the
-&gt; NVidia card.
-&gt;=20
-&gt; What could be the side effects of:
-&gt; &gt; kernel: nouveau 0000:01:00.0: DRM: failed to create kernel channe=
-l, -22
-&gt; ?</span >
-
-No acceleration. This means that DRI_PRIME will not do anything.
-
-<span class=3D"quote">&gt; There are also no reported providers in xrandr:
-&gt; &gt; $ xrandr --listproviders
-&gt; &gt; Providers: number: 0</span >
-
-This is incredibly odd -- there must always be at least 1! Are you running
-Xwayland or something? If so, the displays would be controlled through your
-wayland compositor. You can check that kms is working:
-
-grep . /sys/class/drm/card*-*/status
-
-You should see some card0-* and card1-* entries.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15599136830.10E65.25825--
-
---===============0803200780==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0803200780==--
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_svm.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> index 93ed43c..8d56bd6 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> @@ -649,7 +649,7 @@ struct nouveau_svmm {
+>                 range.values = nouveau_svm_pfn_values;
+>                 range.pfn_shift = NVIF_VMM_PFNMAP_V0_ADDR_SHIFT;
+>  again:
+> -               ret = hmm_vma_fault(&range, true);
+> +               ret = hmm_range_fault(&range, true);
+>                 if (ret == 0) {
+>                         mutex_lock(&svmm->mutex);
+>                         if (!hmm_vma_range_done(&range)) {
+> --
+> 1.9.1
+>
