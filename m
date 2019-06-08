@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110830] [nouveau] GeForce GTX 1660 Ti (mobile) not
- supported (NV168/TU116)
-Date: Fri, 07 Jun 2019 21:20:35 +0000
-Message-ID: <bug-110830-8800-aDcvKLz52a@http.bugs.freedesktop.org/>
-References: <bug-110830-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
+ [CTXSW_TIMEOUT]
+Date: Sat, 08 Jun 2019 14:07:43 +0000
+Message-ID: <bug-100567-8800-N370QJkkS2@http.bugs.freedesktop.org/>
+References: <bug-100567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0770429747=="
+Content-Type: multipart/mixed; boundary="===============0555505096=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,63 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0770429747==
-Content-Type: multipart/alternative; boundary="15599424354.5dBB.11307"
+--===============0555505096==
+Content-Type: multipart/alternative; boundary="15600028631.5BCB79.28607"
 Content-Transfer-Encoding: 7bit
 
 
---15599424354.5dBB.11307
-Date: Fri, 7 Jun 2019 21:20:35 +0000
+--15600028631.5BCB79.28607
+Date: Sat, 8 Jun 2019 14:07:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110830
+https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
 
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Marcin Zajaczkowski from comment #7)
-> > Providers: number : 2
-> > Provider 0: id: 0x6b cap: 0xf, Source Output, Sink Output, Source Offlo=
-ad, Sink Offload crtcs: 3 outputs: 3 associated providers: 1 name:modesetti=
-ng
-> > Provider 1: id: 0x45 cap: 0x2, Sink Output crtcs: 4 outputs: 2 associat=
-ed providers: 1 name:modesetting
->=20
-> Hmm, why there are 3 and 4 outputs associated to them? Is it possible that
-> DP output is accessible with the Intel card only (I don't have a connector
-> right here to test it organoleptically)?
+--- Comment #34 from Marc Burkhardt <libreoffice.org-5+OZ0iQkl5WoYr4blSSd5g@public.gmane.org> ---
+(In reply to Brian J. Murrell from comment #33)
 
-"crtcs: 4; outputs: 2". All modern NVIDIA GPU's have 4 CRTC's. You can see =
-the
-full list of outputs with that grep command you ran.
+> Although there is probably nothing new and/or useful here and given the l=
+ack
+> of movement, I guess I will just go back to the nvidia driver, unfortunat=
+ely.
 
-You can now slave the nvidia GPU's outputs to the primary (intel) GPU:
-
-xrandr --setprovideroutputsource 1 0
-
-which should allow you to drive on your NVIDIA GPU's outputs by configuring
-them in xrandr.
-
-This should also be possible with a Wayland compositor, however the specifi=
-cs
-will vary by compositor. Xwayland has no ability to control screen setup.
-
-(In reply to Marcin Zajaczkowski from comment #8)
-> I know about a lack of acceleration, but I wanted to test offloading with
-> NVidia GPU. I doesn't seem to work:
-
-Lack of acceleration =3D no opengl, or anything else which requires the GPU=
- to
-execute things in the "graphics" engine.
+14 days ago I went back to Nvidia BLOB after almost 3 years of noveau usage=
+. So
+I at least can use my hardware without the unpredictable interruption which
+resulted in lost work also. Side effect: also have CUDA/OpenCL now.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15599424354.5dBB.11307
-Date: Fri, 7 Jun 2019 21:20:35 +0000
+--15600028631.5BCB79.28607
+Date: Sat, 8 Jun 2019 14:07:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -93,59 +70,32 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [nouveau] GeForce GTX 1660 Ti (mobile) not supported (NV1=
-68/TU116)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110830#c9">Commen=
-t # 9</a>
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c34">Comme=
+nt # 34</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [nouveau] GeForce GTX 1660 Ti (mobile) not supported (NV1=
-68/TU116)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110830">bug 11083=
-0</a>
+   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
+]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+libreoffice.org&#64;marc.ngoe.de" title=3D"Marc Burkhardt &lt;libreoffice.o=
+rg&#64;marc.ngoe.de&gt;"> <span class=3D"fn">Marc Burkhardt</span></a>
 </span></b>
-        <pre>(In reply to Marcin Zajaczkowski from <a href=3D"show_bug.cgi?=
-id=3D110830#c7">comment #7</a>)
-<span class=3D"quote">&gt; &gt; Providers: number : 2
-&gt; &gt; Provider 0: id: 0x6b cap: 0xf, Source Output, Sink Output, Source=
- Offload, Sink Offload crtcs: 3 outputs: 3 associated providers: 1 name:mod=
-esetting
-&gt; &gt; Provider 1: id: 0x45 cap: 0x2, Sink Output crtcs: 4 outputs: 2 as=
-sociated providers: 1 name:modesetting
-&gt;=20
-&gt; Hmm, why there are 3 and 4 outputs associated to them? Is it possible =
-that
-&gt; DP output is accessible with the Intel card only (I don't have a conne=
-ctor
-&gt; right here to test it organoleptically)?</span >
+        <pre>(In reply to Brian J. Murrell from <a href=3D"show_bug.cgi?id=
+=3D100567#c33">comment #33</a>)
 
-&quot;crtcs: 4; outputs: 2&quot;. All modern NVIDIA GPU's have 4 CRTC's. Yo=
-u can see the
-full list of outputs with that grep command you ran.
+<span class=3D"quote">&gt; Although there is probably nothing new and/or us=
+eful here and given the lack
+&gt; of movement, I guess I will just go back to the nvidia driver, unfortu=
+nately.</span >
 
-You can now slave the nvidia GPU's outputs to the primary (intel) GPU:
-
-xrandr --setprovideroutputsource 1 0
-
-which should allow you to drive on your NVIDIA GPU's outputs by configuring
-them in xrandr.
-
-This should also be possible with a Wayland compositor, however the specifi=
-cs
-will vary by compositor. Xwayland has no ability to control screen setup.
-
-(In reply to Marcin Zajaczkowski from <a href=3D"show_bug.cgi?id=3D110830#c=
-8">comment #8</a>)
-<span class=3D"quote">&gt; I know about a lack of acceleration, but I wante=
-d to test offloading with
-&gt; NVidia GPU. I doesn't seem to work:</span >
-
-Lack of acceleration =3D no opengl, or anything else which requires the GPU=
- to
-execute things in the &quot;graphics&quot; engine.</pre>
+14 days ago I went back to Nvidia BLOB after almost 3 years of noveau usage=
+. So
+I at least can use my hardware without the unpredictable interruption which
+resulted in lost work also. Side effect: also have CUDA/OpenCL now.</pre>
         </div>
       </p>
 
@@ -159,9 +109,9 @@ execute things in the &quot;graphics&quot; engine.</pre>
     </body>
 </html>=
 
---15599424354.5dBB.11307--
+--15600028631.5BCB79.28607--
 
---===============0770429747==
+--===============0555505096==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -171,4 +121,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0770429747==--
+--===============0555505096==--
