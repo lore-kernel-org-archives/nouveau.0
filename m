@@ -1,10 +1,13 @@
-From: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Questions on syncing mechanisms
-Date: Sun, 9 Jun 2019 12:10:25 -0400
-Message-ID: <CA+MSTo_dCwtDxwT+2z__8gKayXmMmpGox_rVTMT-9QYoJkZa7A@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Questions on syncing mechanisms
+Date: Sun, 9 Jun 2019 12:34:30 -0400
+Message-ID: <CAKb7UvhU-fr+XBEnE_n7+vWvi_hX1NGTj64jKi_d-eE4sEE+bA@mail.gmail.com>
+References: <CA+MSTo_dCwtDxwT+2z__8gKayXmMmpGox_rVTMT-9QYoJkZa7A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0182240893=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CA+MSTo_dCwtDxwT+2z__8gKayXmMmpGox_rVTMT-9QYoJkZa7A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -14,64 +17,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0182240893==
-Content-Type: multipart/alternative; boundary="000000000000d18184058ae64d83"
-
---000000000000d18184058ae64d83
-Content-Type: text/plain; charset="UTF-8"
-
-So I have been implementing syncing mechanisms to yuzu's switch emulator,
-aka Tegra X1 emulation and I already have: Semaphores, Syncpoints and
-Queries to some extent. I'm missing the barriers (GPU waits for CPU):
-I got this from RE:
-Barrier mode has priority (from highest to lowest): 1) 0x08 sets needsWfi=0
--> highest priority, does puller refcnt + split(0,0) + 0x100 NoOperation +
-rest of cmds + split(1,1) 2) 0x01 sets needsWfi=0 -> uses 0x0110
-Serialize/"WaitForIdle" 3) 0x02 sets needsWfi=1 -> uses 0xDE0 (??) 4) 0x04
-sets needsWfi=1 -> uses 0xF7C (??) <-- tile related? Used by
-nvnQueue_ctrlTiledDownsample 5) nothing; sets needsWfi=0
- Do you guys know any info on this and how the GPU must behave in each
-situation. For instance, on Serialize, what should the GPU be waiting for?
-I do know you guys use that one not sure on the rest.
-
---000000000000d18184058ae64d83
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">So I have been implementing syncing mechanisms to yuzu&#39=
-;s switch emulator, aka Tegra X1 emulation and I already have: Semaphores, =
-Syncpoints and Queries to some extent. I&#39;m missing the barriers (GPU wa=
-its for CPU):<div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"g=
-mail_signature"></div><div>I got this from RE:</div><div><span style=3D"col=
-or:rgb(131,148,150);font-family:Consolas,&quot;Liberation Mono&quot;,Menlo,=
-Courier,monospace;font-size:14px;white-space:pre-wrap;background-color:rgb(=
-47,49,54)">Barrier mode has priority (from highest to lowest):
-
- 1) 0x08 sets needsWfi=3D0 -&gt; highest priority, does puller refcnt + spl=
-it(0,0) + 0x100 NoOperation + rest of cmds + split(1,1)
- 2) 0x01 sets needsWfi=3D0 -&gt; uses 0x0110 Serialize/&quot;WaitForIdle&qu=
-ot;
- 3) 0x02 sets needsWfi=3D1 -&gt; uses 0xDE0 (??)
- 4) 0x04 sets needsWfi=3D1 -&gt; uses 0xF7C (??) &lt;-- tile related? Used =
-by nvnQueue_ctrlTiledDownsample
- 5) nothing; sets needsWfi=3D0</span>=C2=A0</div><div>=C2=A0Do you guys kno=
-w any info on this and how the GPU must behave in each situation. For insta=
-nce, on Serialize, what should the GPU be waiting for? I do know you guys u=
-se that one not sure on the rest.<br></div></div>
-
---000000000000d18184058ae64d83--
-
---===============0182240893==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0182240893==--
+SGVyZSdzIHdoYXQgSSBrbm93LCB3aGljaCBtYXkgb3IgbWF5IG5vdCBiZSBhY2N1cmF0ZSwgYW5k
+IG1heSBvciBtYXkKbm90IGJlIGNvbXBsZXRlLiBZb3UndmUgYmVlbiB3YXJuZWQuCgpHUkFQSC5T
+RVJJQUxJWkUgKDB4MDExMCkKClRoaXMgaXMgYSBtZXRob2QgYXZhaWxhYmxlIG9uIGFsbCBHUkFQ
+SC1lbmdpbmUgY2xhc3NlcyAoYXQgbGVhc3QgM2QKYW5kIDJkKS4gV2hhdCB0aGlzIGRvZXMgaXMg
+dGhhdCBpdCB0ZWxscyB0aGUgR1JBUEggZW5naW5lIChub3QgRklGTyEpCnRvIHdhaXQgdW50aWwg
+YWxsIHByZXZpb3VzIGRyYXdzIGFyZSBkb25lIGJlZm9yZSB0YWtpbmcgYWN0aW9uIG9uCmNvbW1h
+bmRzIHRoYXQgZ28gYWZ0ZXIgdGhlIFNFUklBTElaRS4gVGhpcyBtYXkgYmUgZG9uZSBpZiB5b3Ug
+d2FudCB0bwplLmcuIHF1ZXJ5IHNvbWV0aGluZyBhYm91dCBhIGRyYXcsIGFuZCB5b3Ugd2FudCB0
+byBtYWtlIHN1cmUgdGhhdCBkcmF3CmNvbXBsZXRlcyBmaXJzdC4gSG93ZXZlciBub3RlIHRoYXQg
+dGhpcyBkb2VzIG5vdCBzdG9wIHByb2Nlc3NpbmcgYXQKdGhlIEZJRk8gbGV2ZWwgLSBpdCBrZWVw
+cyByZWFkaW5nIGFuZCBmaWxsaW5nIHRoZSBHUkFQSCBxdWV1ZS4KCldlIGFsc28gZG8gdGhpcyBp
+ZiB3ZSdyZSBhYm91dCB0byByZW5kZXIgdG8gYSB0ZXh0dXJlIHRoYXQgYSBwcmV2aW91cwpkcmF3
+IGlzIHJlYWRpbmcgZnJvbS4gV2UgY291bGQgd2FpdCBmb3IgZXZlcnl0aGluZyB0byBjbGVhciBv
+dXQgZmlyc3QsCmJ1dCBqdXN0IHN0aWNraW5nIGluIGEgU0VSSUFMSVpFIG1lYW5zIGxlc3MgR1BV
+IDwtPiBDUFUKc3luY2hyb25pemF0aW9uLgoKRklGTy5ZSUVMRCAoMHgwMDgwKQoKVGhpcyBpcyBp
+cyBhIEZJRk8gY29tbWFuZCAoYXZhaWxhYmxlIG9uIGFueSBzdWJjaGFuKSB0byBpbmRpY2F0ZSB0
+aGF0CnRoZSBGSUZPIHNob3VsZCBzd2l0Y2ggdG8gYW5vdGhlciBjaGFubmVsIHdpdGhvdXQgd2Fp
+dGluZyBmb3IgaXRzCnRpbWVzbGljZSB0byBiZSBvdmVyLgoKRklGTy5TRU1BUEhPUkVfVFJJR0dF
+UiAoMHgwMDFjKQoKVGhpcyB0ZWxscyB0aGUgRklGTyB0byB3YWl0IGJlZm9yZSBwcm9jZXNzaW5n
+IGFueSBhZGRpdGlvbmFsIGNvbW1hbmRzCnVudGlsIHRoZSBjb25kaXRpb24gaW4gdGhlIEFDVElP
+TiBmaWVsZCBpcyBtZXQuIFVzdWFsbHkgZG9uZSB0byBlbnN1cmUKdGhhdCBzb21lIGluY3JlbWVu
+dGluZyBzZXF1ZW5jZSBudW1iZXIgaXMgaGl0IGF0IHNvbWUgbWVtb3J5IGFkZHJlc3MuCihUaGlz
+IGluY3JlbWVudGluZyBzZXF1ZW5jZSBudW1iZXIgaXMgdXN1YWxseSBrbm93biBhcyBhICJmZW5j
+ZSIuKQpUaGlzIGlzIGRvbmUgZm9yIGludGVyLWVuZ2luZSBzeW5jLCB3aGVyZSB5b3UgY2FuJ3Qg
+anVzdCByZWx5IG9uIEdSQVBICnRvIHByb2Nlc3MgY29tbWFuZHMgc2VxdWVudGlhbGx5LiBGb3Ig
+ZXhhbXBsZSBsZXQncyBzYXkgeW91IHdhbnQgdG8KY29weSBmcm9tIGEgcmVuZGVyZWQgc3VyZmFj
+ZSBzb21ld2hlcmUgdXNpbmcgdGhlIEZJRk8tYmFzZWQgY29weQplbmdpbmUsIHlvdSBoYXZlIHRv
+IHdhaXQgZm9yIHRoYXQgZHJhdyB0byBmaW5pc2ggZmlyc3QsIGFuZCB5b3UgbWlnaHQKdXNlIFNF
+TUFQSE9SRV9UUklHR0VSIHRvIGRvIHRoYXQuCgpUaGVyZSdzIG1vcmUgb24gc29tZSBvZiB0aGlz
+IGhlcmU6CgpodHRwczovL2Vudnl0b29scy5yZWFkdGhlZG9jcy5pby9lbi9sYXRlc3QvaHcvZmlm
+by9wdWxsZXIuaHRtbCNwdWxsZXItYnVpbHRpbi1tZXRob2RzCgpPbiBTdW4sIEp1biA5LCAyMDE5
+IGF0IDEyOjExIFBNIEZlcm5hbmRvIFNhaG1rb3cgPGZzYWhta293MjdAZ21haWwuY29tPiB3cm90
+ZToKPgo+IFNvIEkgaGF2ZSBiZWVuIGltcGxlbWVudGluZyBzeW5jaW5nIG1lY2hhbmlzbXMgdG8g
+eXV6dSdzIHN3aXRjaCBlbXVsYXRvciwgYWthIFRlZ3JhIFgxIGVtdWxhdGlvbiBhbmQgSSBhbHJl
+YWR5IGhhdmU6IFNlbWFwaG9yZXMsIFN5bmNwb2ludHMgYW5kIFF1ZXJpZXMgdG8gc29tZSBleHRl
+bnQuIEknbSBtaXNzaW5nIHRoZSBiYXJyaWVycyAoR1BVIHdhaXRzIGZvciBDUFUpOgo+IEkgZ290
+IHRoaXMgZnJvbSBSRToKPiBCYXJyaWVyIG1vZGUgaGFzIHByaW9yaXR5IChmcm9tIGhpZ2hlc3Qg
+dG8gbG93ZXN0KTogMSkgMHgwOCBzZXRzIG5lZWRzV2ZpPTAgLT4gaGlnaGVzdCBwcmlvcml0eSwg
+ZG9lcyBwdWxsZXIgcmVmY250ICsgc3BsaXQoMCwwKSArIDB4MTAwIE5vT3BlcmF0aW9uICsgcmVz
+dCBvZiBjbWRzICsgc3BsaXQoMSwxKSAyKSAweDAxIHNldHMgbmVlZHNXZmk9MCAtPiB1c2VzIDB4
+MDExMCBTZXJpYWxpemUvIldhaXRGb3JJZGxlIiAzKSAweDAyIHNldHMgbmVlZHNXZmk9MSAtPiB1
+c2VzIDB4REUwICg/PykgNCkgMHgwNCBzZXRzIG5lZWRzV2ZpPTEgLT4gdXNlcyAweEY3QyAoPz8p
+IDwtLSB0aWxlIHJlbGF0ZWQ/IFVzZWQgYnkgbnZuUXVldWVfY3RybFRpbGVkRG93bnNhbXBsZSA1
+KSBub3RoaW5nOyBzZXRzIG5lZWRzV2ZpPTAKPiAgRG8geW91IGd1eXMga25vdyBhbnkgaW5mbyBv
+biB0aGlzIGFuZCBob3cgdGhlIEdQVSBtdXN0IGJlaGF2ZSBpbiBlYWNoIHNpdHVhdGlvbi4gRm9y
+IGluc3RhbmNlLCBvbiBTZXJpYWxpemUsIHdoYXQgc2hvdWxkIHRoZSBHUFUgYmUgd2FpdGluZyBm
+b3I/IEkgZG8ga25vdyB5b3UgZ3V5cyB1c2UgdGhhdCBvbmUgbm90IHN1cmUgb24gdGhlIHJlc3Qu
+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2
+ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
+aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
