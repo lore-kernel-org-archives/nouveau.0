@@ -1,55 +1,190 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 20/22] mm: sort out the DEVICE_PRIVATE Kconfig mess
-Date: Thu, 13 Jun 2019 11:43:23 +0200
-Message-ID: <20190613094326.24093-21-hch@lst.de>
+Subject: [PATCH 21/22] mm: remove the HMM config option
+Date: Thu, 13 Jun 2019 11:43:24 +0200
+Message-ID: <20190613094326.24093-22-hch@lst.de>
 References: <20190613094326.24093-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
 In-Reply-To: <20190613094326.24093-1-hch-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
+List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
+Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
 To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIFpPTkVfREVWSUNFIHN1cHBvcnQgZG9lc24ndCBkZXBlbmQgb24gYW55dGhpbmcgSE1NIHJl
-bGF0ZWQsIGp1c3Qgb24KdmFyaW91cyBiaXRzIG9mIGFyY2ggc3VwcG9ydCBhcyBpbmRpY2F0ZWQg
-YnkgdGhlIGFyY2hpdGVjdHVyZS4gIEFsc28KZG9uJ3Qgc2VsZWN0IHRoZSBvcHRpb24gZnJvbSBu
-b3V2ZWF1IGFzIGl0IGlzbid0IHByZXNlbnQgaW4gbWFueSBzZXR1cHMsCmFuZCBkZXBlbmQgb24g
-aXQgaW5zdGVhZC4KClNpZ25lZC1vZmYtYnk6IENocmlzdG9waCBIZWxsd2lnIDxoY2hAbHN0LmRl
-PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L0tjb25maWcgfCAyICstCiBtbS9LY29uZmln
-ICAgICAgICAgICAgICAgICAgICAgIHwgNSArKy0tLQogMiBmaWxlcyBjaGFuZ2VkLCAzIGluc2Vy
-dGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvS2NvbmZpZyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L0tjb25maWcKaW5kZXggZGJh
-MjYxM2Y3MTgwLi42MzAzZDIwM2FiMWQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L0tjb25maWcKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvS2NvbmZpZwpAQCAtODUs
-MTAgKzg1LDEwIEBAIGNvbmZpZyBEUk1fTk9VVkVBVV9CQUNLTElHSFQKIGNvbmZpZyBEUk1fTk9V
-VkVBVV9TVk0KIAlib29sICIoRVhQRVJJTUVOVEFMKSBFbmFibGUgU1ZNIChTaGFyZWQgVmlydHVh
-bCBNZW1vcnkpIHN1cHBvcnQiCiAJZGVwZW5kcyBvbiBBUkNIX0hBU19ITU0KKwlkZXBlbmRzIG9u
-IERFVklDRV9QUklWQVRFCiAJZGVwZW5kcyBvbiBEUk1fTk9VVkVBVQogCWRlcGVuZHMgb24gU1RB
-R0lORwogCXNlbGVjdCBITU1fTUlSUk9SCi0Jc2VsZWN0IERFVklDRV9QUklWQVRFCiAJZGVmYXVs
-dCBuCiAJaGVscAogCSAgU2F5IFkgaGVyZSBpZiB5b3Ugd2FudCB0byBlbmFibGUgZXhwZXJpbWVu
-dGFsIHN1cHBvcnQgZm9yCmRpZmYgLS1naXQgYS9tbS9LY29uZmlnIGIvbW0vS2NvbmZpZwppbmRl
-eCA0MDZmYTQ1ZTllY2MuLjRkYmQ3MThjOGNmNCAxMDA2NDQKLS0tIGEvbW0vS2NvbmZpZworKysg
-Yi9tbS9LY29uZmlnCkBAIC02NzcsMTMgKzY3NywxMyBAQCBjb25maWcgQVJDSF9IQVNfSE1NX01J
-UlJPUgogCiBjb25maWcgQVJDSF9IQVNfSE1NCiAJYm9vbAotCWRlZmF1bHQgeQogCWRlcGVuZHMg
-b24gKFg4Nl82NCB8fCBQUEM2NCkKIAlkZXBlbmRzIG9uIFpPTkVfREVWSUNFCiAJZGVwZW5kcyBv
-biBNTVUgJiYgNjRCSVQKIAlkZXBlbmRzIG9uIE1FTU9SWV9IT1RQTFVHCiAJZGVwZW5kcyBvbiBN
-RU1PUllfSE9UUkVNT1ZFCiAJZGVwZW5kcyBvbiBTUEFSU0VNRU1fVk1FTU1BUAorCWRlZmF1bHQg
-eQogCiBjb25maWcgTUlHUkFURV9WTUFfSEVMUEVSCiAJYm9vbApAQCAtNzA5LDggKzcwOSw3IEBA
-IGNvbmZpZyBITU1fTUlSUk9SCiAKIGNvbmZpZyBERVZJQ0VfUFJJVkFURQogCWJvb2wgIlVuYWRk
-cmVzc2FibGUgZGV2aWNlIG1lbW9yeSAoR1BVIG1lbW9yeSwgLi4uKSIKLQlkZXBlbmRzIG9uIEFS
-Q0hfSEFTX0hNTQotCXNlbGVjdCBITU0KKwlkZXBlbmRzIG9uIFpPTkVfREVWSUNFCiAJc2VsZWN0
-IERFVl9QQUdFTUFQX09QUwogCiAJaGVscAotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXU=
+All the mm/hmm.c code is better keyed off HMM_MIRROR.  Also let nouveau
+depend on it instead of the mix of a dummy dependency symbol plus the
+actually selected one.  Drop various odd dependencies, as the code is
+pretty portable.
+
+Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/Kconfig |  3 +--
+ include/linux/hmm.h             | 14 +++-----------
+ include/linux/mm_types.h        |  2 +-
+ mm/Kconfig                      | 27 +++------------------------
+ mm/Makefile                     |  2 +-
+ mm/hmm.c                        |  2 --
+ 6 files changed, 9 insertions(+), 41 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
+index 6303d203ab1d..66c839d8e9d1 100644
+--- a/drivers/gpu/drm/nouveau/Kconfig
++++ b/drivers/gpu/drm/nouveau/Kconfig
+@@ -84,11 +84,10 @@ config DRM_NOUVEAU_BACKLIGHT
+ 
+ config DRM_NOUVEAU_SVM
+ 	bool "(EXPERIMENTAL) Enable SVM (Shared Virtual Memory) support"
+-	depends on ARCH_HAS_HMM
+ 	depends on DEVICE_PRIVATE
+ 	depends on DRM_NOUVEAU
++	depends on HMM_MIRROR
+ 	depends on STAGING
+-	select HMM_MIRROR
+ 	default n
+ 	help
+ 	  Say Y here if you want to enable experimental support for
+diff --git a/include/linux/hmm.h b/include/linux/hmm.h
+index e095a8b55dfa..64ea2fa00872 100644
+--- a/include/linux/hmm.h
++++ b/include/linux/hmm.h
+@@ -62,7 +62,7 @@
+ #include <linux/kconfig.h>
+ #include <asm/pgtable.h>
+ 
+-#if IS_ENABLED(CONFIG_HMM)
++#ifdef CONFIG_HMM_MIRROR
+ 
+ #include <linux/device.h>
+ #include <linux/migrate.h>
+@@ -324,9 +324,6 @@ static inline uint64_t hmm_pfn_from_pfn(const struct hmm_range *range,
+ 	return hmm_device_entry_from_pfn(range, pfn);
+ }
+ 
+-
+-
+-#if IS_ENABLED(CONFIG_HMM_MIRROR)
+ /*
+  * Mirroring: how to synchronize device page table with CPU page table.
+  *
+@@ -546,13 +543,8 @@ static inline void hmm_mm_init(struct mm_struct *mm)
+ {
+ 	mm->hmm = NULL;
+ }
+-#else /* IS_ENABLED(CONFIG_HMM_MIRROR) */
+-static inline void hmm_mm_init(struct mm_struct *mm) {}
+-#endif /* IS_ENABLED(CONFIG_HMM_MIRROR) */
+-
+-#else /* IS_ENABLED(CONFIG_HMM) */
+-static inline void hmm_mm_destroy(struct mm_struct *mm) {}
++#else /* CONFIG_HMM_MIRROR */
+ static inline void hmm_mm_init(struct mm_struct *mm) {}
+-#endif /* IS_ENABLED(CONFIG_HMM) */
++#endif /* CONFIG_HMM_MIRROR */
+ 
+ #endif /* LINUX_HMM_H */
+diff --git a/include/linux/mm_types.h b/include/linux/mm_types.h
+index f33a1289c101..8d37182f8dbe 100644
+--- a/include/linux/mm_types.h
++++ b/include/linux/mm_types.h
+@@ -501,7 +501,7 @@ struct mm_struct {
+ #endif
+ 		struct work_struct async_put_work;
+ 
+-#if IS_ENABLED(CONFIG_HMM)
++#ifdef CONFIG_HMM_MIRROR
+ 		/* HMM needs to track a few things per mm */
+ 		struct hmm *hmm;
+ #endif
+diff --git a/mm/Kconfig b/mm/Kconfig
+index 4dbd718c8cf4..73676cb4693f 100644
+--- a/mm/Kconfig
++++ b/mm/Kconfig
+@@ -669,37 +669,17 @@ config ZONE_DEVICE
+ 
+ 	  If FS_DAX is enabled, then say Y.
+ 
+-config ARCH_HAS_HMM_MIRROR
+-	bool
+-	default y
+-	depends on (X86_64 || PPC64)
+-	depends on MMU && 64BIT
+-
+-config ARCH_HAS_HMM
+-	bool
+-	depends on (X86_64 || PPC64)
+-	depends on ZONE_DEVICE
+-	depends on MMU && 64BIT
+-	depends on MEMORY_HOTPLUG
+-	depends on MEMORY_HOTREMOVE
+-	depends on SPARSEMEM_VMEMMAP
+-	default y
+-
+ config MIGRATE_VMA_HELPER
+ 	bool
+ 
+ config DEV_PAGEMAP_OPS
+ 	bool
+ 
+-config HMM
+-	bool
+-	select MMU_NOTIFIER
+-	select MIGRATE_VMA_HELPER
+-
+ config HMM_MIRROR
+ 	bool "HMM mirror CPU page table into a device page table"
+-	depends on ARCH_HAS_HMM
+-	select HMM
++	depends on MMU
++	select MMU_NOTIFIER
++	select MIGRATE_VMA_HELPER
+ 	help
+ 	  Select HMM_MIRROR if you want to mirror range of the CPU page table of a
+ 	  process into a device page table. Here, mirror means "keep synchronized".
+@@ -721,7 +701,6 @@ config DEVICE_PUBLIC
+ 	bool "Addressable device memory (like GPU memory)"
+ 	depends on ARCH_HAS_HMM
+ 	depends on BROKEN
+-	select HMM
+ 	select DEV_PAGEMAP_OPS
+ 
+ 	help
+diff --git a/mm/Makefile b/mm/Makefile
+index ac5e5ba78874..91c99040065c 100644
+--- a/mm/Makefile
++++ b/mm/Makefile
+@@ -102,5 +102,5 @@ obj-$(CONFIG_FRAME_VECTOR) += frame_vector.o
+ obj-$(CONFIG_DEBUG_PAGE_REF) += debug_page_ref.o
+ obj-$(CONFIG_HARDENED_USERCOPY) += usercopy.o
+ obj-$(CONFIG_PERCPU_STATS) += percpu-stats.o
+-obj-$(CONFIG_HMM) += hmm.o
++obj-$(CONFIG_HMM_MIRROR) += hmm.o
+ obj-$(CONFIG_MEMFD_CREATE) += memfd.o
+diff --git a/mm/hmm.c b/mm/hmm.c
+index 5b2e9bb6063a..8d50c482469c 100644
+--- a/mm/hmm.c
++++ b/mm/hmm.c
+@@ -26,7 +26,6 @@
+ #include <linux/mmu_notifier.h>
+ #include <linux/memory_hotplug.h>
+ 
+-#if IS_ENABLED(CONFIG_HMM_MIRROR)
+ static const struct mmu_notifier_ops hmm_mmu_notifier_ops;
+ 
+ /**
+@@ -1289,4 +1288,3 @@ long hmm_range_dma_unmap(struct hmm_range *range,
+ 	return cpages;
+ }
+ EXPORT_SYMBOL(hmm_range_dma_unmap);
+-#endif /* IS_ENABLED(CONFIG_HMM_MIRROR) */
+-- 
+2.20.1
