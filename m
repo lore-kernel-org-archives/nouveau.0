@@ -1,87 +1,70 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH] PCI: Expose hidden NVIDIA HDA controllers
-Date: Thu, 13 Jun 2019 15:44:54 -0400
-Message-ID: <CAKb7UvhWzHaRzG3WK3-fu=cWZNbsn9Q1EQ4hvV7JhEoT7LpP5w@mail.gmail.com>
-References: <20190613063514.15317-1-drake@endlessm.com>
- <CAKb7UvjAGtQrcgO=GE8JHuy=mgCtOr+eTinBVwekXGHiam1t1A@mail.gmail.com>
+From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH 18/22] mm: mark DEVICE_PUBLIC as broken
+Date: Thu, 13 Jun 2019 12:53:02 -0700
+Message-ID: <a27251ad-a152-f84d-139d-e1a3bf01c153@nvidia.com>
+References: <20190613094326.24093-1-hch@lst.de>
+ <20190613094326.24093-19-hch@lst.de> <20190613194430.GY22062@mellanox.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvjAGtQrcgO=GE8JHuy=mgCtOr+eTinBVwekXGHiam1t1A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>
-Cc: Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+In-Reply-To: <20190613194430.GY22062-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
+List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
+Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+To: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Cc: "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBKdW4gMTMsIDIwMTkgYXQgOToxNSBBTSBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVt
-Lm1pdC5lZHU+IHdyb3RlOgo+Cj4gT24gVGh1LCBKdW4gMTMsIDIwMTkgYXQgMjozNSBBTSBEYW5p
-ZWwgRHJha2UgPGRyYWtlQGVuZGxlc3NtLmNvbT4gd3JvdGU6Cj4gPgo+ID4gRnJvbTogTHVrYXMg
-V3VubmVyIDxsdWthc0B3dW5uZXIuZGU+Cj4gPgo+ID4gVGhlIGludGVncmF0ZWQgSERBIGNvbnRy
-b2xsZXIgb24gTnZpZGlhIEdQVXMgY2FuIGJlIGhpZGRlbiB3aXRoIGEgYml0IGluCj4gPiB0aGUg
-R1BVJ3MgY29uZmlnIHNwYWNlLiBJbmZvcm1hdGlvbiBhYm91dCB0aGlzIHNjaGVtZSB3YXMgcHJv
-dmlkZWQgYnkKPiA+IE5WSURJQSBvbiB0aGVpciBmb3J1bXMuCj4gPgo+ID4gTWFueSBsYXB0b3Bz
-IG5vdyBzaGlwIHdpdGggdGhpcyBkZXZpY2UgaGlkZGVuLCBtZWFuaW5nIHRoYXQgTGludXggdXNl
-cnMKPiA+IG9mIGFmZmVjdGVkIHBsYXRmb3JtcyAod2hlcmUgdGhlIEhETUkgY29ubmVjdG9yIGNv
-bWVzIG9mZiB0aGUgTlZJRElBIEdQVSkKPiA+IGNhbm5vdCB1c2UgSERNSSBhdWRpbyBmdW5jdGlv
-bmFsaXR5Lgo+ID4KPiA+IEF2b2lkIHRoaXMgaXNzdWUgYnkgZXhwb3NpbmcgdGhlIEhETUkgYXVk
-aW8gZGV2aWNlIG9uIGRldmljZSBlbnVtZXJhdGlvbgo+ID4gYW5kIHJlc3VtZS4KPiA+Cj4gPiBU
-aGUgR1BVIGFuZCBIREEgY29udHJvbGxlciBhcmUgdHdvIGZ1bmN0aW9ucyBvZiB0aGUgc2FtZSBQ
-Q0kgZGV2aWNlCj4gPiAoVkdBIGNsYXNzIGRldmljZSBvbiBmdW5jdGlvbiAwIGFuZCBhdWRpbyBk
-ZXZpY2Ugb24gZnVuY3Rpb24gMSkuCj4gPiBUaGUgbXVsdGlmdW5jdGlvbiBmbGFnIGluIHRoZSBH
-UFUncyBIZWFkZXIgVHlwZSByZWdpc3RlciBpcyBjbGVhcmVkIHdoZW4KPiA+IHRoZSBIREEgY29u
-dHJvbGxlciBpcyBoaWRkZW4gYW5kIHNldCBpZiBpdCdzIGV4cG9zZWQsIHNvIHJlcmVhZCB0aGUg
-ZmxhZwo+ID4gYWZ0ZXIgZXhwb3NpbmcgdGhlIEhEQS4KPiA+Cj4gPiBBY2NvcmRpbmcgdG8gSWxp
-YSBNaXJraW4sIHRoZSBIREEgY29udHJvbGxlciBpcyBvbmx5IHByZXNlbnQgZnJvbSBNQ1A4OQo+
-ID4gb253YXJkLCBzbyBkbyBub3QgdG91Y2ggY29uZmlnIHNwYWNlIG9uIG9sZGVyIEdQVXMuCj4K
-PiBBY3R1YWxseSBHRjEwMCBhbHNvIGhhcyBpdCwgYW5kIGhhcyBhIGxvd2VyIFBDSSBJRCB0aGFu
-IE1DUDg5LiBCdXQgSQo+IGRvbid0IHRoaW5rIGl0IHJlYWxseSBtYXR0ZXJzIC0gSSBjYW4ndCBp
-bWFnaW5lIGFueW9uZSBwbGF5ZWQgSERBCj4gaGlkaW5nIHRyaWNrcyBvbiB0aGF0IHBvd2VyLWh1
-bmdyeSBtb25zdGVyLiBJJ2QgYXBwcmVjaWF0ZSBpdCBpZiB5b3UKPiBjb3VsZCByZXdvcmQgdGhp
-cyBzZW50ZW5jZSB0byBpbXBseSB0aGF0IGl0J3Mgb24gUENJIElEcyA+PSBNQ1A4OSdzCj4gcmF0
-aGVyIHRoYW4gR1BVcyBuZXdlciB0aGFuIE1DUDg5LiBHVDIxNSB3YXMgcmVsZWFzZWQgYmVmb3Jl
-IE1DUDg5LAo+IEknbSBmYWlybHkgc3VyZSwgYnV0IGl0cyBQQ0kgSUQgY29tZXMgbGF0ZXIsIGZv
-ciBleGFtcGxlLiBbV2lraXBlZGlhCj4gc2F5cyBOb3ZlbWJlciAxNywgMjAwOSBmb3IgR1QyMTUg
-dnMgc29tZSBwb2ludCBpbiAyMDEwIGZvciBNQ1A4OS5dCj4gTWF5YmUgbGlrZQo+Cj4gIi4uLiwg
-dGhlIEhEQSBjb250cm9sbGVyIGlzIG9ubHkgcHJlc2VudCBvbiBHUFVzIHdpdGggUENJIElEcyB2
-YWx1ZXMKPiBmcm9tIE1DUDg5J3MgYW5kIG9ud2FyZCwgc28gLi4uIgo+Cj4gPgo+ID4gVGhpcyBx
-dWlyayBpcyBsaW1pdGVkIHRvIE5WSURJQSBQQ0kgZGV2aWNlcyB3aXRoIHRoZSBWR0EgQ29udHJv
-bGxlcgo+ID4gZGV2aWNlIGNsYXNzLiBUaGlzIGlzIGV4cGVjdGVkIHRvIGNvcnJlc3BvbmQgdG8g
-cHJvZHVjdCBjb25maWd1cmF0aW9ucwo+ID4gd2hlcmUgdGhlIE5WSURJQSBHUFUgaGFzIGNvbm5l
-Y3RvcnMgYXR0YWNoZWQuIE90aGVyIHByb2R1Y3RzIHdoZXJlIHRoZQo+ID4gZGV2aWNlIGNsYXNz
-IGlzIDNEIENvbnRyb2xsZXIgYXJlIGV4cGVjdGVkIHRvIGNvcnJlc3BvbmQgdG8gY29uZmlndXJh
-dGlvbnMKPiA+IHdoZXJlIHRoZSBOVklESUEgR1BVIGlzIGRlZGljYXRlZCAoZEdQVSkgYW5kIGhh
-cyBubyBjb25uZWN0b3JzLgo+ID4KPiA+IEl0J3Mgc2Vuc2libGUgdG8gYXZvaWQgZXhwb3Npbmcg
-dGhlIEhEQSBjb250cm9sbGVyIG9uIGRHUFUgc2V0dXBzLAo+ID4gZXNwZWNpYWxseSBiZWNhdXNl
-IHdlJ3ZlIHNlZW4gY2FzZXMgd2hlcmUgdGhlIFBDSSBCQVJzIGFyZSBub3Qgc2V0Cj4gPiB1cCBj
-b3JyZWN0bHkgYnkgdGhlIHBsYXRmb3JtIGluIHRoaXMgY2FzZSwgY2F1c2luZyBMaW51eCB0byBs
-b2cKPiA+IGVycm9ycyBpZiB0aGUgZGV2aWNlIGlzIHZpc2libGUuIFRoaXMgYXNzdW1wdGlvbiBv
-ZiBkZXZpY2UgY2xhc3MKPiA+IGFjY3VyYXRlbHkgY29ycmVzcG9uZGluZyB0byBwcm9kdWN0IGNv
-bmZpZ3VyYXRpb24gaXMgdHJ1ZSBmb3IgNiBvZiA2Cj4gPiBsYXB0b3BzIHJlY2VudGx5IGNoZWNr
-ZWQgYXQgdGhlIEVuZGxlc3MgbGFiLCBhbmQgdGhlcmUgYXJlIGFsc28gc2lnbnMgb2YKPiA+IGFn
-cmVlbWVudCBjaGVja2luZyB0aGUgZGF0YSBmcm9tIDc0IHByZXZpb3VzbHkgdGVzdGVkIHByb2R1
-Y3RzLCBob3dldmVyCj4gPiBJbGlhIE1pcmtpbiBjb21tZW50cyB0aGF0IGhlJ3Mgc2VlbiBjYXNl
-cyB3aGVyZSBpdCBpcyBub3QgdHJ1ZS4gQW55d2F5LCBpdAo+ID4gbG9va3MgbGlrZSB0aGlzIHF1
-aXJrIHNob3VsZCBmaXggYXVkaW8gc3VwcG9ydCBmb3IgdGhlIG1ham9yaXR5IG9mCj4gPiBhZmZl
-Y3RlZCB1c2Vycy4KPgo+IFllYWgsIHRoaXMgaXMgZmluZS4gV2UgdXNlZCB0byBoYXZlIGNvZGUg
-d2hpY2ggcHJldmVudGVkIGVuYWJsaW5nIHRoZQo+IGRpc3BsYXkgcG9ydGlvbiB3aGVuIDNkIGNs
-YXNzICE9IFZHQS4gV2UgaGFkIHRvIGNoYW5nZSBpdCA6KSBTbyBJJ20KPiBkZWZpbml0ZWx5IG5v
-dCBtYWtpbmcgdGhpbmdzIHVwLi4uIEhvd2V2ZXIgd2hldGhlciBhbnkgb2YgdGhvc2UgcGVvcGxl
-Cj4gKmFsc28qIGhhZCBIREEgaGlkaW5nIGlzc3VlcyAtLSB1bmtub3duLiBBbmQgaXQgd291bGRu
-J3QgbWFrZSB0aGluZ3MKPiBhbnkgd29yc2UgZm9yIHRoZW0uCgpGVFIsIHRoaXMgaXMgd2hlcmUg
-aXQgd2FzIGVuYWJsZWQ6Cgpjb21taXQgZmMxNjIwODgzYWY4Y2JjMTBiZmIxYTRlZjJlYjRlODEx
-MzI0MzAxMgpBdXRob3I6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KRGF0ZTogICBU
-dWUgU2VwIDEwIDEzOjIwOjM0IDIwMTMgKzEwMDAKCiAgICBkcm0vbm91dmVhdS9rbXM6IGVuYWJs
-ZSBmb3Igbm9uLXZnYSBwY2kgY2xhc3NlcwoKICAgIFNpZ25lZC1vZmYtYnk6IEJlbiBTa2VnZ3Mg
-PGJza2VnZ3NAcmVkaGF0LmNvbT4KClVuZm9ydHVuYXRlbHkgbm8gYnVnIGlkIGluY2x1ZGVkLgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
-aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+
+On 6/13/19 12:44 PM, Jason Gunthorpe wrote:
+> On Thu, Jun 13, 2019 at 11:43:21AM +0200, Christoph Hellwig wrote:
+>> The code hasn't been used since it was added to the tree, and doesn't
+>> appear to actually be usable.  Mark it as BROKEN until either a user
+>> comes along or we finally give up on it.
+>>
+>> Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+>>   mm/Kconfig | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/mm/Kconfig b/mm/Kconfig
+>> index 0d2ba7e1f43e..406fa45e9ecc 100644
+>> +++ b/mm/Kconfig
+>> @@ -721,6 +721,7 @@ config DEVICE_PRIVATE
+>>   config DEVICE_PUBLIC
+>>   	bool "Addressable device memory (like GPU memory)"
+>>   	depends on ARCH_HAS_HMM
+>> +	depends on BROKEN
+>>   	select HMM
+>>   	select DEV_PAGEMAP_OPS
+> 
+> This seems a bit harsh, we do have another kconfig that selects this
+> one today:
+> 
+> config DRM_NOUVEAU_SVM
+>          bool "(EXPERIMENTAL) Enable SVM (Shared Virtual Memory) support"
+>          depends on ARCH_HAS_HMM
+>          depends on DRM_NOUVEAU
+>          depends on STAGING
+>          select HMM_MIRROR
+>          select DEVICE_PRIVATE
+>          default n
+>          help
+>            Say Y here if you want to enable experimental support for
+>            Shared Virtual Memory (SVM).
+> 
+> Maybe it should be depends on STAGING not broken?
+> 
+> or maybe nouveau_svm doesn't actually need DEVICE_PRIVATE?
+> 
+> Jason
+
+I think you are confusing DEVICE_PRIVATE for DEVICE_PUBLIC.
+DRM_NOUVEAU_SVM does use DEVICE_PRIVATE but not DEVICE_PUBLIC.
