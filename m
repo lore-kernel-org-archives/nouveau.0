@@ -1,13 +1,17 @@
-From: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Subject: Re: dev_pagemap related cleanups
-Date: Thu, 13 Jun 2019 11:27:39 -0700
-Message-ID: <CAPcyv4jBdwYaiVwkhy6kP78OBAs+vJme1UTm47dX4Eq_5=JgSg@mail.gmail.com>
+From: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Subject: Re: [PATCH 01/22] mm: remove the unused ARCH_HAS_HMM_DEVICE Kconfig
+ option
+Date: Thu, 13 Jun 2019 18:30:28 +0000
+Message-ID: <20190613183024.GN22062@mellanox.com>
 References: <20190613094326.24093-1-hch@lst.de>
+ <20190613094326.24093-2-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-In-Reply-To: <20190613094326.24093-1-hch-jcswGhMUV9g@public.gmane.org>
+In-Reply-To: <20190613094326.24093-2-hch-jcswGhMUV9g@public.gmane.org>
+Content-Language: en-US
+Content-ID: <1C3FD7879859344FA6C6020F72EC479A-wNKe6lTLrGecE4WynfumptQqCkab/8FMAL8bYrjMMd8@public.gmane.org>
 List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
  <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
@@ -18,52 +22,24 @@ List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
 Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
 Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
 To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+Cc: "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?iso-8859-1?Q?J=E9r=F4me_Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBKdW4gMTMsIDIwMTkgYXQgMjo0MyBBTSBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGxz
-dC5kZT4gd3JvdGU6Cj4KPiBIaSBEYW4sIErDqXLDtG1lIGFuZCBKYXNvbiwKPgo+IGJlbG93IGlz
-IGEgc2VyaWVzIHRoYXQgY2xlYW5zIHVwIHRoZSBkZXZfcGFnZW1hcCBpbnRlcmZhY2Ugc28gdGhh
-dAo+IGl0IGlzIG1vcmUgZWFzaWx5IHVzYWJsZSwgd2hpY2ggcmVtb3ZlcyB0aGUgbmVlZCB0byB3
-cmFwIGl0IGluIGhtbQo+IGFuZCB0aHVzIGFsbG93aW5nIHRvIGtpbGwgYSBsb3Qgb2YgY29kZQo+
-Cj4gRGlmZnN0YXQ6Cj4KPiAgMjIgZmlsZXMgY2hhbmdlZCwgMjQ1IGluc2VydGlvbnMoKyksIDgw
-MiBkZWxldGlvbnMoLSkKCkhvb3JheSEKCj4gR2l0IHRyZWU6Cj4KPiAgICAgZ2l0Oi8vZ2l0Lmlu
-ZnJhZGVhZC5vcmcvdXNlcnMvaGNoL21pc2MuZ2l0IGhtbS1kZXZtZW0tY2xlYW51cAoKSSBqdXN0
-IHJlYWxpemVkIHRoaXMgY29sbGlkZXMgd2l0aCB0aGUgZGV2X3BhZ2VtYXAgcmVsZWFzZSByZXdv
-cmsgaW4KQW5kcmV3J3MgdHJlZSAoY29tbWl0IGlkcyBiZWxvdyBhcmUgZnJvbSBuZXh0LmdpdCBh
-bmQgYXJlIG5vdCBzdGFibGUpCgo0NDIyZWU4NDc2ZjAgbW0vZGV2bV9tZW1yZW1hcF9wYWdlczog
-Zml4IGZpbmFsIHBhZ2UgcHV0IHJhY2UKNzcxZjA3MTRkMGRjIFBDSS9QMlBETUE6IHRyYWNrIHBn
-bWFwIHJlZmVyZW5jZXMgcGVyIHJlc291cmNlLCBub3QgZ2xvYmFsbHkKYWYzNzA4NWRlOTA2IGxp
-Yi9nZW5hbGxvYzogaW50cm9kdWNlIGNodW5rIG93bmVycwplMDA0N2ZmOGFhNzcgUENJL1AyUERN
-QTogZml4IHRoZSBnZW5fcG9vbF9hZGRfdmlydCgpIGZhaWx1cmUgcGF0aAowMzE1ZDQ3ZDZhZTkg
-bW0vZGV2bV9tZW1yZW1hcF9wYWdlczogaW50cm9kdWNlIGRldm1fbWVtdW5tYXBfcGFnZXMKMjE2
-NDc1YzdlYWE4IGRyaXZlcnMvYmFzZS9kZXZyZXM6IGludHJvZHVjZSBkZXZtX3JlbGVhc2VfYWN0
-aW9uKCkKCkNPTkZMSUNUIChjb250ZW50KTogTWVyZ2UgY29uZmxpY3QgaW4gdG9vbHMvdGVzdGlu
-Zy9udmRpbW0vdGVzdC9pb21hcC5jCkNPTkZMSUNUIChjb250ZW50KTogTWVyZ2UgY29uZmxpY3Qg
-aW4gbW0vaG1tLmMKQ09ORkxJQ1QgKGNvbnRlbnQpOiBNZXJnZSBjb25mbGljdCBpbiBrZXJuZWwv
-bWVtcmVtYXAuYwpDT05GTElDVCAoY29udGVudCk6IE1lcmdlIGNvbmZsaWN0IGluIGluY2x1ZGUv
-bGludXgvbWVtcmVtYXAuaApDT05GTElDVCAoY29udGVudCk6IE1lcmdlIGNvbmZsaWN0IGluIGRy
-aXZlcnMvcGNpL3AycGRtYS5jCkNPTkZMSUNUIChjb250ZW50KTogTWVyZ2UgY29uZmxpY3QgaW4g
-ZHJpdmVycy9udmRpbW0vcG1lbS5jCkNPTkZMSUNUIChjb250ZW50KTogTWVyZ2UgY29uZmxpY3Qg
-aW4gZHJpdmVycy9kYXgvZGV2aWNlLmMKQ09ORkxJQ1QgKGNvbnRlbnQpOiBNZXJnZSBjb25mbGlj
-dCBpbiBkcml2ZXJzL2RheC9kYXgtcHJpdmF0ZS5oCgpQZXJoYXBzIHdlIHNob3VsZCBwdWxsIHRo
-b3NlIG91dCBhbmQgcmVzZW5kIHRoZW0gdGhyb3VnaCBobW0uZ2l0PwoKSXQgYWxzbyB0dXJucyBv
-dXQgdGhlIG52ZGltbSB1bml0IHRlc3RzIGNyYXNoIHdpdGggdGhpcyBzaWduYXR1cmUgb24KdGhh
-dCBicmFuY2ggd2hlcmUgYmFzZSB2NS4yLXJjMyBwYXNzZXM6CgogICAgQlVHOiBrZXJuZWwgTlVM
-TCBwb2ludGVyIGRlcmVmZXJlbmNlLCBhZGRyZXNzOiAwMDAwMDAwMDAwMDAwMDA4CiAgICBbLi5d
-CiAgICBDUFU6IDE1IFBJRDogMTQxNCBDb21tOiBsdC1saWJuZGN0bCBUYWludGVkOiBHICAgICAg
-ICAgICBPRQo1LjIuMC1yYzMrICMzMzk5CiAgICBIYXJkd2FyZSBuYW1lOiBRRU1VIFN0YW5kYXJk
-IFBDIChpNDQwRlggKyBQSUlYLCAxOTk2KSwgQklPUyAwLjAuMCAwMi8wNi8yMDE1CiAgICBSSVA6
-IDAwMTA6cGVyY3B1X3JlZl9raWxsX2FuZF9jb25maXJtKzB4MWUvMHgxODAKICAgIFsuLl0KICAg
-IENhbGwgVHJhY2U6CiAgICAgcmVsZWFzZV9ub2RlcysweDIzNC8weDI4MAogICAgIGRldmljZV9y
-ZWxlYXNlX2RyaXZlcl9pbnRlcm5hbCsweGU4LzB4MWIwCiAgICAgYnVzX3JlbW92ZV9kZXZpY2Ur
-MHhmMi8weDE2MAogICAgIGRldmljZV9kZWwrMHgxNjYvMHgzNzAKICAgICB1bnJlZ2lzdGVyX2Rl
-dl9kYXgrMHgyMy8weDUwCiAgICAgcmVsZWFzZV9ub2RlcysweDIzNC8weDI4MAogICAgIGRldmlj
-ZV9yZWxlYXNlX2RyaXZlcl9pbnRlcm5hbCsweGU4LzB4MWIwCiAgICAgdW5iaW5kX3N0b3JlKzB4
-OTQvMHgxMjAKICAgICBrZXJuZnNfZm9wX3dyaXRlKzB4ZjAvMHgxYTAKICAgICB2ZnNfd3JpdGUr
-MHhiNy8weDFiMAogICAgIGtzeXNfd3JpdGUrMHg1Yy8weGQwCiAgICAgZG9fc3lzY2FsbF82NCsw
-eDYwLzB4MjQwCgpUaGUgY3Jhc2ggYmlzZWN0cyB0bzoKCiAgICBkOGNjOGJiZTEwOGMgZGV2aWNl
-LWRheDogdXNlIHRoZSBkZXZfcGFnZW1hcCBpbnRlcm5hbCByZWZjb3VudApfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpMaW51eC1udmRpbW0gbWFpbGluZyBs
-aXN0CkxpbnV4LW52ZGltbUBsaXN0cy4wMS5vcmcKaHR0cHM6Ly9saXN0cy4wMS5vcmcvbWFpbG1h
-bi9saXN0aW5mby9saW51eC1udmRpbW0K
+On Thu, Jun 13, 2019 at 11:43:04AM +0200, Christoph Hellwig wrote:
+> Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+> ---
+>  mm/Kconfig | 10 ----------
+>  1 file changed, 10 deletions(-)
+
+So long as we are willing to run a hmm.git we can merge only complete
+features going forward.
+
+Thus we don't need the crazy process described in the commit message
+that (deliberately) introduced this unused kconfig.
+
+I also tried to find something in-flight for 5.3 that would need this
+and found nothing
+
+Reviewed-by: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+
+Jason
