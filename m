@@ -1,17 +1,15 @@
-From: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-Subject: Re: [PATCH 08/22] memremap: pass a struct dev_pagemap to
- ->kill
-Date: Thu, 13 Jun 2019 19:26:20 +0000
-Message-ID: <20190613192615.GT22062@mellanox.com>
-References: <20190613094326.24093-1-hch@lst.de>
- <20190613094326.24093-9-hch@lst.de>
+From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Subject: Re: [PATCH] PCI: Expose hidden NVIDIA HDA controllers
+Date: Thu, 13 Jun 2019 21:25:44 +0200
+Message-ID: <20190613192544.jpz35sjtmnw25gox@wunner.de>
+References: <20190613063514.15317-1-drake@endlessm.com>
+ <CAKb7UvjAGtQrcgO=GE8JHuy=mgCtOr+eTinBVwekXGHiam1t1A@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190613094326.24093-9-hch-jcswGhMUV9g@public.gmane.org>
-Content-Language: en-US
-Content-ID: <6555DEAFF3F4AF4A941D63DB429D69BC-wNKe6lTLrGecE4WynfumptQqCkab/8FMAL8bYrjMMd8@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <CAKb7UvjAGtQrcgO=GE8JHuy=mgCtOr+eTinBVwekXGHiam1t1A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +19,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Cc: "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org>, Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>, linux-6IF/jdPJHihWk0Htik3J/w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBKdW4gMTMsIDIwMTkgYXQgMTE6NDM6MTFBTSArMDIwMCwgQ2hyaXN0b3BoIEhlbGx3
-aWcgd3JvdGU6Cj4gUGFzc2luZyB0aGUgYWN0dWFsIHR5cGVkIHN0cnVjdHVyZSBsZWFkcyB0byBt
-b3JlIHVuZGVyc3RhbmRhYmxlIGNvZGUKPiB2cyB0aGUgYWN0dWFsIHJlZmVyZW5jZXMuCj4gCj4g
-U2lnbmVkLW9mZi1ieTogQ2hyaXN0b3BoIEhlbGx3aWcgPGhjaEBsc3QuZGU+Cj4gIGRyaXZlcnMv
-ZGF4L2RldmljZS5jICAgICAgICAgICAgICB8IDcgKysrLS0tLQo+ICBkcml2ZXJzL252ZGltbS9w
-bWVtLmMgICAgICAgICAgICAgfCA2ICsrKy0tLQo+ICBkcml2ZXJzL3BjaS9wMnBkbWEuYyAgICAg
-ICAgICAgICAgfCA2ICsrKy0tLQo+ICBpbmNsdWRlL2xpbnV4L21lbXJlbWFwLmggICAgICAgICAg
-fCAyICstCj4gIGtlcm5lbC9tZW1yZW1hcC5jICAgICAgICAgICAgICAgICB8IDQgKystLQo+ICBt
-bS9obW0uYyAgICAgICAgICAgICAgICAgICAgICAgICAgfCA0ICsrLS0KPiAgdG9vbHMvdGVzdGlu
-Zy9udmRpbW0vdGVzdC9pb21hcC5jIHwgNiArKy0tLS0KPiAgNyBmaWxlcyBjaGFuZ2VkLCAxNiBp
-bnNlcnRpb25zKCspLCAxOSBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2Rh
-eC9kZXZpY2UuYyBiL2RyaXZlcnMvZGF4L2RldmljZS5jCj4gaW5kZXggNGFkYWI3NzRkYWRlLi5l
-MjNmYTFiZDhjOTcgMTAwNjQ0Cj4gKysrIGIvZHJpdmVycy9kYXgvZGV2aWNlLmMKPiBAQCAtMzcs
-MTMgKzM3LDEyIEBAIHN0YXRpYyB2b2lkIGRldl9kYXhfcGVyY3B1X2V4aXQodm9pZCAqZGF0YSkK
-PiAgCXBlcmNwdV9yZWZfZXhpdChyZWYpOwo+ICB9Cj4gIAo+IC1zdGF0aWMgdm9pZCBkZXZfZGF4
-X3BlcmNwdV9raWxsKHN0cnVjdCBwZXJjcHVfcmVmICpkYXRhKQo+ICtzdGF0aWMgdm9pZCBkZXZf
-ZGF4X3BlcmNwdV9raWxsKHN0cnVjdCBkZXZfcGFnZW1hcCAqcGdtYXApCj4gIHsKCkxvb2tzIGxp
-a2UgaXQgd2FzIGFsd2F5cyBsaWtlIHRoaXMsIGJ1dCBJIGFsc28gY2FuJ3Qgc2VlIGEgcmVhc29u
-IHRvCnVzZSB0aGUgcGVyY3B1IGFzIGEgaGFuZGxlIGZvciBhIGRldl9wYWdlbWFwIGNhbGxiYWNr
-LgoKUmV2aWV3ZWQtYnk6IEphc29uIEd1bnRob3JwZSA8amdnQG1lbGxhbm94LmNvbT4KCkphc29u
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
-bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+T24gVGh1LCBKdW4gMTMsIDIwMTkgYXQgMDk6MTU6MzFBTSAtMDQwMCwgSWxpYSBNaXJraW4gd3Jv
+dGU6Cj4gT24gVGh1LCBKdW4gMTMsIDIwMTkgYXQgMjozNSBBTSBEYW5pZWwgRHJha2UgPGRyYWtl
+QGVuZGxlc3NtLmNvbT4gd3JvdGU6Cj4gPiBMaW5rOiBodHRwczovL2RldnRhbGsubnZpZGlhLmNv
+bS9kZWZhdWx0L3RvcGljLzEwMjQwMjIKPiA+IEJ1Z3ppbGxhOiBodHRwczovL2J1Z3MuZnJlZWRl
+c2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD03NTk4NQo+ID4gQ2M6IEFhcm9uIFBsYXR0bmVyIDxh
+cGxhdHRuZXJAbnZpZGlhLmNvbT4KPiA+IENjOiBQZXRlciBXdSA8cGV0ZXJAbGVrZW5zdGV5bi5u
+bD4KPiA+IENjOiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Cj4gPiBDYzogS2Fy
+b2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+Cj4gPiBDYzogTWFpayBGcmV1ZGVuYmVyZyA8
+aGhmZXVlckBnbXguZGU+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBMdWthcyBXdW5uZXIgPGx1a2FzQHd1
+bm5lci5kZT4KPiA+IFRlc3RlZC1ieTogRGFuaWVsIERyYWtlIDxkcmFrZUBlbmRsZXNzbS5jb20+
+CgpEYW5pZWwsIGlmIHlvdSBzdWJtaXQgYSB2MiB0byBhZGRyZXNzIElsaWEncyBjb21tZW50cywg
+cGxlYXNlIGJlIHN1cmUKdG8gYWRkIHlvdXIgU2lnbmVkLW9mZi1ieS4gIFRoYW5rcyBmb3IgdGFr
+aW5nIGNhcmUgb2YgbWFpbmxpbmluZyB0aGlzLgoKS2luZCByZWdhcmRzLAoKTHVrYXMKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
+IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
