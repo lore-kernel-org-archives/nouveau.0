@@ -1,39 +1,233 @@
-From: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-Subject: Re: dev_pagemap related cleanups
-Date: Thu, 13 Jun 2019 23:10:45 +0000
-Message-ID: <20190613231039.GE22062@mellanox.com>
+From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH 10/22] memremap: add a migrate callback to struct
+ dev_pagemap_ops
+Date: Thu, 13 Jun 2019 16:42:07 -0700
+Message-ID: <d6916d71-c17e-74df-58f2-c28ff8044b96@nvidia.com>
 References: <20190613094326.24093-1-hch@lst.de>
- <CAPcyv4jBdwYaiVwkhy6kP78OBAs+vJme1UTm47dX4Eq_5=JgSg@mail.gmail.com>
- <20190613204043.GD22062@mellanox.com> <20190613212101.GA27174@lst.de>
+ <20190613094326.24093-11-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190613212101.GA27174-jcswGhMUV9g@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+In-Reply-To: <20190613094326.24093-11-hch-jcswGhMUV9g@public.gmane.org>
 Content-Language: en-US
-Content-ID: <9DD504E2832E244190B09BBD35CAF05D-wNKe6lTLrGecE4WynfumptQqCkab/8FMAL8bYrjMMd8@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
+List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
+Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBKdW4gMTMsIDIwMTkgYXQgMTE6MjE6MDFQTSArMDIwMCwgQ2hyaXN0b3BoIEhlbGx3
-aWcgd3JvdGU6Cj4gT24gVGh1LCBKdW4gMTMsIDIwMTkgYXQgMDg6NDA6NDZQTSArMDAwMCwgSmFz
-b24gR3VudGhvcnBlIHdyb3RlOgo+ID4gPiBQZXJoYXBzIHdlIHNob3VsZCBwdWxsIHRob3NlIG91
-dCBhbmQgcmVzZW5kIHRoZW0gdGhyb3VnaCBobW0uZ2l0Pwo+ID4gCj4gPiBJdCBjb3VsZCBiZSBk
-b25lIC0gYnV0IGhvdyBiYWQgaXMgdGhlIGNvbmZsaWN0IHJlc29sdXRpb24/Cj4gCj4gVHJpdmlh
-bC4gIEFsbCBidXQgb25lIHBhdGNoIGp1c3QgYXBwbHkgdXNpbmcgZ2l0LWFtLCBhbmQgdGhlIG90
-aGVyIG9uZQo+IGp1c3QgaGFzIGEgZmV3IGxpbmVzIG9mIG9mZnNldHMuCgpPa2F5LCBOUCB0aGVu
-LCB0cml2aWFsIG9uZXMgYXJlIE9LIHRvIHNlbmQgdG8gTGludXMuLgoKSWYgQW5kcmV3IGdldHMg
-dGhlbSBpbnRvIC1yYzUgdGhlbiBJIHdpbGwgZ2V0IHJjNSBpbnRvIGhtbS5naXQgbmV4dAp3ZWVr
-LgoKVGhhbmtzLApKYXNvbgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+
+On 6/13/19 2:43 AM, Christoph Hellwig wrote:
+> This replaces the hacky ->fault callback, which is currently directly
+> called from common code through a hmm specific data structure as an
+> exercise in layering violations.
+> 
+> Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+> ---
+>   include/linux/hmm.h      |  6 ------
+>   include/linux/memremap.h |  6 ++++++
+>   include/linux/swapops.h  | 15 ---------------
+>   kernel/memremap.c        | 31 -------------------------------
+>   mm/hmm.c                 | 13 +++++--------
+>   mm/memory.c              |  9 ++-------
+>   6 files changed, 13 insertions(+), 67 deletions(-)
+> 
+> diff --git a/include/linux/hmm.h b/include/linux/hmm.h
+> index 5761a39221a6..3c9a59dbfdb8 100644
+> --- a/include/linux/hmm.h
+> +++ b/include/linux/hmm.h
+> @@ -658,11 +658,6 @@ struct hmm_devmem_ops {
+>    * chunk, as an optimization. It must, however, prioritize the faulting address
+>    * over all the others.
+>    */
+> -typedef vm_fault_t (*dev_page_fault_t)(struct vm_area_struct *vma,
+> -				unsigned long addr,
+> -				const struct page *page,
+> -				unsigned int flags,
+> -				pmd_t *pmdp);
+>   
+>   struct hmm_devmem {
+>   	struct completion		completion;
+> @@ -673,7 +668,6 @@ struct hmm_devmem {
+>   	struct dev_pagemap		pagemap;
+>   	const struct hmm_devmem_ops	*ops;
+>   	struct percpu_ref		ref;
+> -	dev_page_fault_t		page_fault;
+>   };
+>   
+>   /*
+> diff --git a/include/linux/memremap.h b/include/linux/memremap.h
+> index 96a3a6d564ad..03a4099be701 100644
+> --- a/include/linux/memremap.h
+> +++ b/include/linux/memremap.h
+> @@ -75,6 +75,12 @@ struct dev_pagemap_ops {
+>   	 * Transition the percpu_ref in struct dev_pagemap to the dead state.
+>   	 */
+>   	void (*kill)(struct dev_pagemap *pgmap);
+> +
+> +	/*
+> +	 * Used for private (un-addressable) device memory only.  Must migrate
+> +	 * the page back to a CPU accessible page.
+> +	 */
+> +	vm_fault_t (*migrate)(struct vm_fault *vmf);
+>   };
+>   
+>   /**
+> diff --git a/include/linux/swapops.h b/include/linux/swapops.h
+> index 4d961668e5fc..15bdb6fe71e5 100644
+> --- a/include/linux/swapops.h
+> +++ b/include/linux/swapops.h
+> @@ -129,12 +129,6 @@ static inline struct page *device_private_entry_to_page(swp_entry_t entry)
+>   {
+>   	return pfn_to_page(swp_offset(entry));
+>   }
+> -
+> -vm_fault_t device_private_entry_fault(struct vm_area_struct *vma,
+> -		       unsigned long addr,
+> -		       swp_entry_t entry,
+> -		       unsigned int flags,
+> -		       pmd_t *pmdp);
+>   #else /* CONFIG_DEVICE_PRIVATE */
+>   static inline swp_entry_t make_device_private_entry(struct page *page, bool write)
+>   {
+> @@ -164,15 +158,6 @@ static inline struct page *device_private_entry_to_page(swp_entry_t entry)
+>   {
+>   	return NULL;
+>   }
+> -
+> -static inline vm_fault_t device_private_entry_fault(struct vm_area_struct *vma,
+> -				     unsigned long addr,
+> -				     swp_entry_t entry,
+> -				     unsigned int flags,
+> -				     pmd_t *pmdp)
+> -{
+> -	return VM_FAULT_SIGBUS;
+> -}
+>   #endif /* CONFIG_DEVICE_PRIVATE */
+>   
+>   #ifdef CONFIG_MIGRATION
+> diff --git a/kernel/memremap.c b/kernel/memremap.c
+> index 6a3183cac764..7167e717647d 100644
+> --- a/kernel/memremap.c
+> +++ b/kernel/memremap.c
+> @@ -11,7 +11,6 @@
+>   #include <linux/types.h>
+>   #include <linux/wait_bit.h>
+>   #include <linux/xarray.h>
+> -#include <linux/hmm.h>
+>   
+>   static DEFINE_XARRAY(pgmap_array);
+>   #define SECTION_MASK ~((1UL << PA_SECTION_SHIFT) - 1)
+> @@ -48,36 +47,6 @@ static inline int dev_pagemap_enable(struct device *dev)
+>   }
+>   #endif /* CONFIG_DEV_PAGEMAP_OPS */
+>   
+> -#if IS_ENABLED(CONFIG_DEVICE_PRIVATE)
+> -vm_fault_t device_private_entry_fault(struct vm_area_struct *vma,
+> -		       unsigned long addr,
+> -		       swp_entry_t entry,
+> -		       unsigned int flags,
+> -		       pmd_t *pmdp)
+> -{
+> -	struct page *page = device_private_entry_to_page(entry);
+> -	struct hmm_devmem *devmem;
+> -
+> -	devmem = container_of(page->pgmap, typeof(*devmem), pagemap);
+> -
+> -	/*
+> -	 * The page_fault() callback must migrate page back to system memory
+> -	 * so that CPU can access it. This might fail for various reasons
+> -	 * (device issue, device was unsafely unplugged, ...). When such
+> -	 * error conditions happen, the callback must return VM_FAULT_SIGBUS.
+> -	 *
+> -	 * Note that because memory cgroup charges are accounted to the device
+> -	 * memory, this should never fail because of memory restrictions (but
+> -	 * allocation of regular system page might still fail because we are
+> -	 * out of memory).
+> -	 *
+> -	 * There is a more in-depth description of what that callback can and
+> -	 * cannot do, in include/linux/memremap.h
+> -	 */
+> -	return devmem->page_fault(vma, addr, page, flags, pmdp);
+> -}
+> -#endif /* CONFIG_DEVICE_PRIVATE */
+> -
+>   static void pgmap_array_delete(struct resource *res)
+>   {
+>   	xa_store_range(&pgmap_array, PHYS_PFN(res->start), PHYS_PFN(res->end),
+> diff --git a/mm/hmm.c b/mm/hmm.c
+> index 6dc769feb2e1..aab799677c7d 100644
+> --- a/mm/hmm.c
+> +++ b/mm/hmm.c
+> @@ -1330,15 +1330,12 @@ static void hmm_devmem_ref_kill(struct dev_pagemap *pgmap)
+>   	percpu_ref_kill(pgmap->ref);
+>   }
+>   
+> -static vm_fault_t hmm_devmem_fault(struct vm_area_struct *vma,
+> -			    unsigned long addr,
+> -			    const struct page *page,
+> -			    unsigned int flags,
+> -			    pmd_t *pmdp)
+> +static vm_fault_t hmm_devmem_migrate(struct vm_fault *vmf)
+>   {
+> -	struct hmm_devmem *devmem = page->pgmap->data;
+> +	struct hmm_devmem *devmem = vmf->page->pgmap->data;
+>   
+> -	return devmem->ops->fault(devmem, vma, addr, page, flags, pmdp);
+> +	return devmem->ops->fault(devmem, vmf->vma, vmf->address, vmf->page,
+> +			vmf->flags, vmf->pmd);
+>   }
+>   
+>   static void hmm_devmem_free(struct page *page, void *data)
+> @@ -1351,6 +1348,7 @@ static void hmm_devmem_free(struct page *page, void *data)
+>   static const struct dev_pagemap_ops hmm_pagemap_ops = {
+>   	.page_free		= hmm_devmem_free,
+>   	.kill			= hmm_devmem_ref_kill,
+> +	.migrate		= hmm_devmem_migrate,
+>   };
+>   
+>   /*
+> @@ -1405,7 +1403,6 @@ struct hmm_devmem *hmm_devmem_add(const struct hmm_devmem_ops *ops,
+>   	devmem->pfn_first = devmem->resource->start >> PAGE_SHIFT;
+>   	devmem->pfn_last = devmem->pfn_first +
+>   			   (resource_size(devmem->resource) >> PAGE_SHIFT);
+> -	devmem->page_fault = hmm_devmem_fault;
+>   
+>   	devmem->pagemap.type = MEMORY_DEVICE_PRIVATE;
+>   	devmem->pagemap.res = *devmem->resource;
+> diff --git a/mm/memory.c b/mm/memory.c
+> index ddf20bd0c317..cbf3cb598436 100644
+> --- a/mm/memory.c
+> +++ b/mm/memory.c
+> @@ -2782,13 +2782,8 @@ vm_fault_t do_swap_page(struct vm_fault *vmf)
+>   			migration_entry_wait(vma->vm_mm, vmf->pmd,
+>   					     vmf->address);
+>   		} else if (is_device_private_entry(entry)) {
+> -			/*
+> -			 * For un-addressable device memory we call the pgmap
+> -			 * fault handler callback. The callback must migrate
+> -			 * the page back to some CPU accessible page.
+> -			 */
+> -			ret = device_private_entry_fault(vma, vmf->address, entry,
+> -						 vmf->flags, vmf->pmd);
+> +			vmf->page = device_private_entry_to_page(entry);
+> +			ret = page->pgmap->ops->migrate(vmf);
+
+This needs to either initialize "page" or be changed to "vmf->page".
+Otherwise, it is a NULL pointer dereference.
+
+>   		} else if (is_hwpoison_entry(entry)) {
+>   			ret = VM_FAULT_HWPOISON;
+>   		} else {
+> 
+
+You can add:
+Reviewed-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
