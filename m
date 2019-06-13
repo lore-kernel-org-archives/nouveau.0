@@ -1,68 +1,70 @@
-From: Dan Williams <dan.j.williams@intel.com>
+From: Logan Gunthorpe <logang-OTvnGxWRz7hWk0Htik3J/w@public.gmane.org>
 Subject: Re: dev_pagemap related cleanups
-Date: Thu, 13 Jun 2019 13:21:27 -0700
-Message-ID: <CAPcyv4hx=ng3SxzAWd8s_8VtAfoiiWhiA5kodi9KPc=jGmnejg@mail.gmail.com>
-References: <20190613094326.24093-1-hch@lst.de> <CAPcyv4jBdwYaiVwkhy6kP78OBAs+vJme1UTm47dX4Eq_5=JgSg@mail.gmail.com>
+Date: Thu, 13 Jun 2019 14:24:20 -0600
+Message-ID: <d0da4c86-ef52-b981-06af-b37e3e0515ee@deltatee.com>
+References: <20190613094326.24093-1-hch@lst.de>
+ <CAPcyv4jBdwYaiVwkhy6kP78OBAs+vJme1UTm47dX4Eq_5=JgSg@mail.gmail.com>
  <283e87e8-20b6-0505-a19b-5d18e057f008@deltatee.com>
+ <CAPcyv4hx=ng3SxzAWd8s_8VtAfoiiWhiA5kodi9KPc=jGmnejg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <283e87e8-20b6-0505-a19b-5d18e057f008@deltatee.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Logan Gunthorpe <logang@deltatee.com>
-Cc: Christoph Hellwig <hch@lst.de>, linux-nvdimm <linux-nvdimm@lists.01.org>, nouveau@lists.freedesktop.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, Linux MM <linux-mm@kvack.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, linux-pci@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+In-Reply-To: <CAPcyv4hx=ng3SxzAWd8s_8VtAfoiiWhiA5kodi9KPc=jGmnejg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
+List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
+Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jun 13, 2019 at 1:18 PM Logan Gunthorpe <logang@deltatee.com> wrote=
-:
->
->
->
-> On 2019-06-13 12:27 p.m., Dan Williams wrote:
-> > On Thu, Jun 13, 2019 at 2:43 AM Christoph Hellwig <hch@lst.de> wrote:
-> >>
-> >> Hi Dan, J=C3=A9r=C3=B4me and Jason,
-> >>
-> >> below is a series that cleans up the dev_pagemap interface so that
-> >> it is more easily usable, which removes the need to wrap it in hmm
-> >> and thus allowing to kill a lot of code
-> >>
-> >> Diffstat:
-> >>
-> >>  22 files changed, 245 insertions(+), 802 deletions(-)
-> >
-> > Hooray!
-> >
-> >> Git tree:
-> >>
-> >>     git://git.infradead.org/users/hch/misc.git hmm-devmem-cleanup
-> >
-> > I just realized this collides with the dev_pagemap release rework in
-> > Andrew's tree (commit ids below are from next.git and are not stable)
-> >
-> > 4422ee8476f0 mm/devm_memremap_pages: fix final page put race
-> > 771f0714d0dc PCI/P2PDMA: track pgmap references per resource, not globa=
-lly
-> > af37085de906 lib/genalloc: introduce chunk owners
-> > e0047ff8aa77 PCI/P2PDMA: fix the gen_pool_add_virt() failure path
-> > 0315d47d6ae9 mm/devm_memremap_pages: introduce devm_memunmap_pages
-> > 216475c7eaa8 drivers/base/devres: introduce devm_release_action()
-> >
-> > CONFLICT (content): Merge conflict in tools/testing/nvdimm/test/iomap.c
-> > CONFLICT (content): Merge conflict in mm/hmm.c
-> > CONFLICT (content): Merge conflict in kernel/memremap.c
-> > CONFLICT (content): Merge conflict in include/linux/memremap.h
-> > CONFLICT (content): Merge conflict in drivers/pci/p2pdma.c
-> > CONFLICT (content): Merge conflict in drivers/nvdimm/pmem.c
-> > CONFLICT (content): Merge conflict in drivers/dax/device.c
-> > CONFLICT (content): Merge conflict in drivers/dax/dax-private.h
-> >
-> > Perhaps we should pull those out and resend them through hmm.git?
->
-> Hmm, I've been waiting for those patches to get in for a little while now=
- ;(
-
-Unless Andrew was going to submit as v5.2-rc fixes I think I should
-rebase / submit them on current hmm.git and then throw these cleanups
-from Christoph on top?
+CgpPbiAyMDE5LTA2LTEzIDI6MjEgcC5tLiwgRGFuIFdpbGxpYW1zIHdyb3RlOgo+IE9uIFRodSwg
+SnVuIDEzLCAyMDE5IGF0IDE6MTggUE0gTG9nYW4gR3VudGhvcnBlIDxsb2dhbmdAZGVsdGF0ZWUu
+Y29tPiB3cm90ZToKPj4KPj4KPj4KPj4gT24gMjAxOS0wNi0xMyAxMjoyNyBwLm0uLCBEYW4gV2ls
+bGlhbXMgd3JvdGU6Cj4+PiBPbiBUaHUsIEp1biAxMywgMjAxOSBhdCAyOjQzIEFNIENocmlzdG9w
+aCBIZWxsd2lnIDxoY2hAbHN0LmRlPiB3cm90ZToKPj4+Pgo+Pj4+IEhpIERhbiwgSsOpcsO0bWUg
+YW5kIEphc29uLAo+Pj4+Cj4+Pj4gYmVsb3cgaXMgYSBzZXJpZXMgdGhhdCBjbGVhbnMgdXAgdGhl
+IGRldl9wYWdlbWFwIGludGVyZmFjZSBzbyB0aGF0Cj4+Pj4gaXQgaXMgbW9yZSBlYXNpbHkgdXNh
+YmxlLCB3aGljaCByZW1vdmVzIHRoZSBuZWVkIHRvIHdyYXAgaXQgaW4gaG1tCj4+Pj4gYW5kIHRo
+dXMgYWxsb3dpbmcgdG8ga2lsbCBhIGxvdCBvZiBjb2RlCj4+Pj4KPj4+PiBEaWZmc3RhdDoKPj4+
+Pgo+Pj4+ICAyMiBmaWxlcyBjaGFuZ2VkLCAyNDUgaW5zZXJ0aW9ucygrKSwgODAyIGRlbGV0aW9u
+cygtKQo+Pj4KPj4+IEhvb3JheSEKPj4+Cj4+Pj4gR2l0IHRyZWU6Cj4+Pj4KPj4+PiAgICAgZ2l0
+Oi8vZ2l0LmluZnJhZGVhZC5vcmcvdXNlcnMvaGNoL21pc2MuZ2l0IGhtbS1kZXZtZW0tY2xlYW51
+cAo+Pj4KPj4+IEkganVzdCByZWFsaXplZCB0aGlzIGNvbGxpZGVzIHdpdGggdGhlIGRldl9wYWdl
+bWFwIHJlbGVhc2UgcmV3b3JrIGluCj4+PiBBbmRyZXcncyB0cmVlIChjb21taXQgaWRzIGJlbG93
+IGFyZSBmcm9tIG5leHQuZ2l0IGFuZCBhcmUgbm90IHN0YWJsZSkKPj4+Cj4+PiA0NDIyZWU4NDc2
+ZjAgbW0vZGV2bV9tZW1yZW1hcF9wYWdlczogZml4IGZpbmFsIHBhZ2UgcHV0IHJhY2UKPj4+IDc3
+MWYwNzE0ZDBkYyBQQ0kvUDJQRE1BOiB0cmFjayBwZ21hcCByZWZlcmVuY2VzIHBlciByZXNvdXJj
+ZSwgbm90IGdsb2JhbGx5Cj4+PiBhZjM3MDg1ZGU5MDYgbGliL2dlbmFsbG9jOiBpbnRyb2R1Y2Ug
+Y2h1bmsgb3duZXJzCj4+PiBlMDA0N2ZmOGFhNzcgUENJL1AyUERNQTogZml4IHRoZSBnZW5fcG9v
+bF9hZGRfdmlydCgpIGZhaWx1cmUgcGF0aAo+Pj4gMDMxNWQ0N2Q2YWU5IG1tL2Rldm1fbWVtcmVt
+YXBfcGFnZXM6IGludHJvZHVjZSBkZXZtX21lbXVubWFwX3BhZ2VzCj4+PiAyMTY0NzVjN2VhYTgg
+ZHJpdmVycy9iYXNlL2RldnJlczogaW50cm9kdWNlIGRldm1fcmVsZWFzZV9hY3Rpb24oKQo+Pj4K
+Pj4+IENPTkZMSUNUIChjb250ZW50KTogTWVyZ2UgY29uZmxpY3QgaW4gdG9vbHMvdGVzdGluZy9u
+dmRpbW0vdGVzdC9pb21hcC5jCj4+PiBDT05GTElDVCAoY29udGVudCk6IE1lcmdlIGNvbmZsaWN0
+IGluIG1tL2htbS5jCj4+PiBDT05GTElDVCAoY29udGVudCk6IE1lcmdlIGNvbmZsaWN0IGluIGtl
+cm5lbC9tZW1yZW1hcC5jCj4+PiBDT05GTElDVCAoY29udGVudCk6IE1lcmdlIGNvbmZsaWN0IGlu
+IGluY2x1ZGUvbGludXgvbWVtcmVtYXAuaAo+Pj4gQ09ORkxJQ1QgKGNvbnRlbnQpOiBNZXJnZSBj
+b25mbGljdCBpbiBkcml2ZXJzL3BjaS9wMnBkbWEuYwo+Pj4gQ09ORkxJQ1QgKGNvbnRlbnQpOiBN
+ZXJnZSBjb25mbGljdCBpbiBkcml2ZXJzL252ZGltbS9wbWVtLmMKPj4+IENPTkZMSUNUIChjb250
+ZW50KTogTWVyZ2UgY29uZmxpY3QgaW4gZHJpdmVycy9kYXgvZGV2aWNlLmMKPj4+IENPTkZMSUNU
+IChjb250ZW50KTogTWVyZ2UgY29uZmxpY3QgaW4gZHJpdmVycy9kYXgvZGF4LXByaXZhdGUuaAo+
+Pj4KPj4+IFBlcmhhcHMgd2Ugc2hvdWxkIHB1bGwgdGhvc2Ugb3V0IGFuZCByZXNlbmQgdGhlbSB0
+aHJvdWdoIGhtbS5naXQ/Cj4+Cj4+IEhtbSwgSSd2ZSBiZWVuIHdhaXRpbmcgZm9yIHRob3NlIHBh
+dGNoZXMgdG8gZ2V0IGluIGZvciBhIGxpdHRsZSB3aGlsZSBub3cgOygKPiAKPiBVbmxlc3MgQW5k
+cmV3IHdhcyBnb2luZyB0byBzdWJtaXQgYXMgdjUuMi1yYyBmaXhlcyBJIHRoaW5rIEkgc2hvdWxk
+Cj4gcmViYXNlIC8gc3VibWl0IHRoZW0gb24gY3VycmVudCBobW0uZ2l0IGFuZCB0aGVuIHRocm93
+IHRoZXNlIGNsZWFudXBzCj4gZnJvbSBDaHJpc3RvcGggb24gdG9wPwoKV2hhdGV2ZXIgeW91IGZl
+ZWwgaXMgYmVzdC4gSSdtIGp1c3QgaG9waW5nIHRoZXkgZ2V0IGluIHNvb25lciByYXRoZXIKdGhh
+biBsYXRlci4gVGhleSBkbyBmaXggYSBidWcgYWZ0ZXIgYWxsLiBMZXQgbWUga25vdyBpZiB5b3Ug
+d2FudCBtZSB0bwpyZXRlc3QgdGhlIFAyUERNQSBzdHVmZiBhZnRlciB0aGUgcmViYXNlLgoKVGhh
+bmtzLAoKTG9nYW4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTGludXgtbnZkaW1tIG1haWxpbmcgbGlzdApMaW51eC1udmRpbW1AbGlzdHMuMDEub3JnCmh0
+dHBzOi8vbGlzdHMuMDEub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtbnZkaW1tCg==
