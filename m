@@ -1,70 +1,62 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 18/22] mm: mark DEVICE_PUBLIC as broken
-Date: Thu, 13 Jun 2019 12:53:02 -0700
-Message-ID: <a27251ad-a152-f84d-139d-e1a3bf01c153@nvidia.com>
+From: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Subject: Re: [PATCH 20/22] mm: sort out the DEVICE_PRIVATE Kconfig
+ mess
+Date: Thu, 13 Jun 2019 19:55:27 +0000
+Message-ID: <20190613195522.GZ22062@mellanox.com>
 References: <20190613094326.24093-1-hch@lst.de>
- <20190613094326.24093-19-hch@lst.de> <20190613194430.GY22062@mellanox.com>
+ <20190613094326.24093-21-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-In-Reply-To: <20190613194430.GY22062-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190613094326.24093-21-hch-jcswGhMUV9g@public.gmane.org>
 Content-Language: en-US
-List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
-List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
-Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
-Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-To: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Cc: "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-ID: <9319F5409ED4434CA9F8E3BAE5D597B1-wNKe6lTLrGecE4WynfumptQqCkab/8FMAL8bYrjMMd8@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Cc: "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
-On 6/13/19 12:44 PM, Jason Gunthorpe wrote:
-> On Thu, Jun 13, 2019 at 11:43:21AM +0200, Christoph Hellwig wrote:
->> The code hasn't been used since it was added to the tree, and doesn't
->> appear to actually be usable.  Mark it as BROKEN until either a user
->> comes along or we finally give up on it.
->>
->> Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
->>   mm/Kconfig | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/mm/Kconfig b/mm/Kconfig
->> index 0d2ba7e1f43e..406fa45e9ecc 100644
->> +++ b/mm/Kconfig
->> @@ -721,6 +721,7 @@ config DEVICE_PRIVATE
->>   config DEVICE_PUBLIC
->>   	bool "Addressable device memory (like GPU memory)"
->>   	depends on ARCH_HAS_HMM
->> +	depends on BROKEN
->>   	select HMM
->>   	select DEV_PAGEMAP_OPS
-> 
-> This seems a bit harsh, we do have another kconfig that selects this
-> one today:
-> 
-> config DRM_NOUVEAU_SVM
->          bool "(EXPERIMENTAL) Enable SVM (Shared Virtual Memory) support"
->          depends on ARCH_HAS_HMM
->          depends on DRM_NOUVEAU
->          depends on STAGING
->          select HMM_MIRROR
->          select DEVICE_PRIVATE
->          default n
->          help
->            Say Y here if you want to enable experimental support for
->            Shared Virtual Memory (SVM).
-> 
-> Maybe it should be depends on STAGING not broken?
-> 
-> or maybe nouveau_svm doesn't actually need DEVICE_PRIVATE?
-> 
-> Jason
-
-I think you are confusing DEVICE_PRIVATE for DEVICE_PUBLIC.
-DRM_NOUVEAU_SVM does use DEVICE_PRIVATE but not DEVICE_PUBLIC.
+T24gVGh1LCBKdW4gMTMsIDIwMTkgYXQgMTE6NDM6MjNBTSArMDIwMCwgQ2hyaXN0b3BoIEhlbGx3
+aWcgd3JvdGU6Cj4gVGhlIFpPTkVfREVWSUNFIHN1cHBvcnQgZG9lc24ndCBkZXBlbmQgb24gYW55
+dGhpbmcgSE1NIHJlbGF0ZWQsIGp1c3Qgb24KPiB2YXJpb3VzIGJpdHMgb2YgYXJjaCBzdXBwb3J0
+IGFzIGluZGljYXRlZCBieSB0aGUgYXJjaGl0ZWN0dXJlLiAgQWxzbwo+IGRvbid0IHNlbGVjdCB0
+aGUgb3B0aW9uIGZyb20gbm91dmVhdSBhcyBpdCBpc24ndCBwcmVzZW50IGluIG1hbnkgc2V0dXBz
+LAo+IGFuZCBkZXBlbmQgb24gaXQgaW5zdGVhZC4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBDaHJpc3Rv
+cGggSGVsbHdpZyA8aGNoQGxzdC5kZT4KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvS2NvbmZp
+ZyB8IDIgKy0KPiAgbW0vS2NvbmZpZyAgICAgICAgICAgICAgICAgICAgICB8IDUgKystLS0KPiAg
+MiBmaWxlcyBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCj4gCj4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L0tjb25maWcgYi9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9LY29uZmlnCj4gaW5kZXggZGJhMjYxM2Y3MTgwLi42MzAzZDIwM2FiMWQgMTAw
+NjQ0Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvS2NvbmZpZwo+IEBAIC04NSwxMCAr
+ODUsMTAgQEAgY29uZmlnIERSTV9OT1VWRUFVX0JBQ0tMSUdIVAo+ICBjb25maWcgRFJNX05PVVZF
+QVVfU1ZNCj4gIAlib29sICIoRVhQRVJJTUVOVEFMKSBFbmFibGUgU1ZNIChTaGFyZWQgVmlydHVh
+bCBNZW1vcnkpIHN1cHBvcnQiCj4gIAlkZXBlbmRzIG9uIEFSQ0hfSEFTX0hNTQo+ICsJZGVwZW5k
+cyBvbiBERVZJQ0VfUFJJVkFURQo+ICAJZGVwZW5kcyBvbiBEUk1fTk9VVkVBVQo+ICAJZGVwZW5k
+cyBvbiBTVEFHSU5HCj4gIAlzZWxlY3QgSE1NX01JUlJPUgo+IC0Jc2VsZWN0IERFVklDRV9QUklW
+QVRFCj4gIAlkZWZhdWx0IG4KPiAgCWhlbHAKPiAgCSAgU2F5IFkgaGVyZSBpZiB5b3Ugd2FudCB0
+byBlbmFibGUgZXhwZXJpbWVudGFsIHN1cHBvcnQgZm9yCgpCZW4sIEkgaGVhcmQgeW91IG1pZ2h0
+IGhhdmUgYSBwYXRjaCBsaWtlIHRoaXMgaW4geW91ciB0cmVlLCBidXQgSQpkb24ndCB0aGluayBJ
+IGNvdWxkIGZpbmQgeW91ciB0cmVlPz8gCgpEbyB5b3UgaGF2ZSBhbnkgbm91dmVhdS9LY29uZmln
+IHBhdGNoZXMgdGhhdCBtaWdodCBjb25mbGljdD8gVGhhbmtzCgpEb2VzIHRoaXMgZml4IHRoZSBy
+YW5kY29uZmlncyBmYWlsdXJlcyB0aGF0IGhhdmUgYmVlbiByZXBvcnRlZD8KCj4gZGlmZiAtLWdp
+dCBhL21tL0tjb25maWcgYi9tbS9LY29uZmlnCj4gaW5kZXggNDA2ZmE0NWU5ZWNjLi40ZGJkNzE4
+YzhjZjQgMTAwNjQ0Cj4gKysrIGIvbW0vS2NvbmZpZwo+IEBAIC02NzcsMTMgKzY3NywxMyBAQCBj
+b25maWcgQVJDSF9IQVNfSE1NX01JUlJPUgo+ICAKPiAgY29uZmlnIEFSQ0hfSEFTX0hNTQo+ICAJ
+Ym9vbAo+IC0JZGVmYXVsdCB5Cj4gIAlkZXBlbmRzIG9uIChYODZfNjQgfHwgUFBDNjQpCj4gIAlk
+ZXBlbmRzIG9uIFpPTkVfREVWSUNFCj4gIAlkZXBlbmRzIG9uIE1NVSAmJiA2NEJJVAo+ICAJZGVw
+ZW5kcyBvbiBNRU1PUllfSE9UUExVRwo+ICAJZGVwZW5kcyBvbiBNRU1PUllfSE9UUkVNT1ZFCj4g
+IAlkZXBlbmRzIG9uIFNQQVJTRU1FTV9WTUVNTUFQCj4gKwlkZWZhdWx0IHkKCldoYXQgaXMgdGhl
+IHJlYXNvbiB3ZSBoYXZlIHRoaXMgQVJDSCB0aGluZyBhbnlob3c/IERvZXMgaG1tIGhhdmUgYXJj
+aApkZXBlbmRlbmNpZXMgc29tZXBsYWNlPwoKVGhhbmtzCkphc29uCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
