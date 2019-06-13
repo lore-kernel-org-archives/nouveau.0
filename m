@@ -1,59 +1,52 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 22/22] mm: don't select MIGRATE_VMA_HELPER from HMM_MIRROR
-Date: Thu, 13 Jun 2019 11:43:25 +0200
-Message-ID: <20190613094326.24093-23-hch@lst.de>
-References: <20190613094326.24093-1-hch@lst.de>
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: [PATCH] nouveau: no need to check return value of debugfs_create
+ functions
+Date: Thu, 13 Jun 2019 13:58:23 +0200
+Message-ID: <20190613115823.GD26335@kroah.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-In-Reply-To: <20190613094326.24093-1-hch-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
-List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
-Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
-Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-The migrate_vma helper is only used by noveau to migrate device private
-pages around.  Other HMM_MIRROR users like amdgpu or infiniband don't
-need it.
-
-Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
----
- drivers/gpu/drm/nouveau/Kconfig | 1 +
- mm/Kconfig                      | 1 -
- 2 files changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
-index 66c839d8e9d1..96b9814e6d06 100644
---- a/drivers/gpu/drm/nouveau/Kconfig
-+++ b/drivers/gpu/drm/nouveau/Kconfig
-@@ -88,6 +88,7 @@ config DRM_NOUVEAU_SVM
- 	depends on DRM_NOUVEAU
- 	depends on HMM_MIRROR
- 	depends on STAGING
-+	select MIGRATE_VMA_HELPER
- 	default n
- 	help
- 	  Say Y here if you want to enable experimental support for
-diff --git a/mm/Kconfig b/mm/Kconfig
-index 73676cb4693f..eca88679b624 100644
---- a/mm/Kconfig
-+++ b/mm/Kconfig
-@@ -679,7 +679,6 @@ config HMM_MIRROR
- 	bool "HMM mirror CPU page table into a device page table"
- 	depends on MMU
- 	select MMU_NOTIFIER
--	select MIGRATE_VMA_HELPER
- 	help
- 	  Select HMM_MIRROR if you want to mirror range of the CPU page table of a
- 	  process into a device page table. Here, mirror means "keep synchronized".
--- 
-2.20.1
+V2hlbiBjYWxsaW5nIGRlYnVnZnMgZnVuY3Rpb25zLCB0aGVyZSBpcyBubyBuZWVkIHRvIGV2ZXIg
+Y2hlY2sgdGhlCnJldHVybiB2YWx1ZS4gIFRoZSBmdW5jdGlvbiBjYW4gd29yayBvciBub3QsIGJ1
+dCB0aGUgY29kZSBsb2dpYyBzaG91bGQKbmV2ZXIgZG8gc29tZXRoaW5nIGRpZmZlcmVudCBiYXNl
+ZCBvbiB0aGlzLgoKQ2M6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KQ2M6IERhdmlk
+IEFpcmxpZSA8YWlybGllZEBsaW51eC5pZT4KQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZnds
+bC5jaD4KQ2M6IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKQ2M6IG5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnClNpZ25lZC1vZmYtYnk6IEdyZWcgS3JvYWgtSGFydG1hbiA8Z3Jl
+Z2toQGxpbnV4Zm91bmRhdGlvbi5vcmc+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9kZWJ1Z2ZzLmMgfCAxMiArKysrLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2Vy
+dGlvbnMoKyksIDggZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbm91dmVhdV9kZWJ1Z2ZzLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2RlYnVnZnMuYwppbmRleCA3ZGZiYmJjMWJlZWEuLjdiM2ZmNTVhYzlhMiAxMDA2NDQKLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kZWJ1Z2ZzLmMKKysrIGIvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbm91dmVhdV9kZWJ1Z2ZzLmMKQEAgLTIyNCwxNCArMjI0LDEwIEBAIG5v
+dXZlYXVfZHJtX2RlYnVnZnNfaW5pdChzdHJ1Y3QgZHJtX21pbm9yICptaW5vcikKIAlzdHJ1Y3Qg
+ZGVudHJ5ICpkZW50cnk7CiAJaW50IGksIHJldDsKIAotCWZvciAoaSA9IDA7IGkgPCBBUlJBWV9T
+SVpFKG5vdXZlYXVfZGVidWdmc19maWxlcyk7IGkrKykgewotCQlkZW50cnkgPSBkZWJ1Z2ZzX2Ny
+ZWF0ZV9maWxlKG5vdXZlYXVfZGVidWdmc19maWxlc1tpXS5uYW1lLAotCQkJCQkgICAgIFNfSVJV
+R08gfCBTX0lXVVNSLAotCQkJCQkgICAgIG1pbm9yLT5kZWJ1Z2ZzX3Jvb3QsIG1pbm9yLT5kZXYs
+Ci0JCQkJCSAgICAgbm91dmVhdV9kZWJ1Z2ZzX2ZpbGVzW2ldLmZvcHMpOwotCQlpZiAoIWRlbnRy
+eSkKLQkJCXJldHVybiAtRU5PTUVNOwotCX0KKwlmb3IgKGkgPSAwOyBpIDwgQVJSQVlfU0laRShu
+b3V2ZWF1X2RlYnVnZnNfZmlsZXMpOyBpKyspCisJCWRlYnVnZnNfY3JlYXRlX2ZpbGUobm91dmVh
+dV9kZWJ1Z2ZzX2ZpbGVzW2ldLm5hbWUsCisJCQkJICAgIFNfSVJVR08gfCBTX0lXVVNSLCBtaW5v
+ci0+ZGVidWdmc19yb290LAorCQkJCSAgICBtaW5vci0+ZGV2LCBub3V2ZWF1X2RlYnVnZnNfZmls
+ZXNbaV0uZm9wcyk7CiAKIAlyZXQgPSBkcm1fZGVidWdmc19jcmVhdGVfZmlsZXMobm91dmVhdV9k
+ZWJ1Z2ZzX2xpc3QsCiAJCQkJICAgICAgIE5PVVZFQVVfREVCVUdGU19FTlRSSUVTLAotLSAKMi4y
+Mi4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmkt
+ZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWw=
