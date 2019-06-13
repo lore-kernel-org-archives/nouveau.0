@@ -1,58 +1,68 @@
-From: Logan Gunthorpe <logang-OTvnGxWRz7hWk0Htik3J/w@public.gmane.org>
+From: Dan Williams <dan.j.williams@intel.com>
 Subject: Re: dev_pagemap related cleanups
-Date: Thu, 13 Jun 2019 14:17:49 -0600
-Message-ID: <283e87e8-20b6-0505-a19b-5d18e057f008@deltatee.com>
-References: <20190613094326.24093-1-hch@lst.de>
- <CAPcyv4jBdwYaiVwkhy6kP78OBAs+vJme1UTm47dX4Eq_5=JgSg@mail.gmail.com>
+Date: Thu, 13 Jun 2019 13:21:27 -0700
+Message-ID: <CAPcyv4hx=ng3SxzAWd8s_8VtAfoiiWhiA5kodi9KPc=jGmnejg@mail.gmail.com>
+References: <20190613094326.24093-1-hch@lst.de> <CAPcyv4jBdwYaiVwkhy6kP78OBAs+vJme1UTm47dX4Eq_5=JgSg@mail.gmail.com>
+ <283e87e8-20b6-0505-a19b-5d18e057f008@deltatee.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-In-Reply-To: <CAPcyv4jBdwYaiVwkhy6kP78OBAs+vJme1UTm47dX4Eq_5=JgSg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
-List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
-Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
-Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <283e87e8-20b6-0505-a19b-5d18e057f008@deltatee.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Logan Gunthorpe <logang@deltatee.com>
+Cc: Christoph Hellwig <hch@lst.de>, linux-nvdimm <linux-nvdimm@lists.01.org>, nouveau@lists.freedesktop.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, Linux MM <linux-mm@kvack.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, linux-pci@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAyMDE5LTA2LTEzIDEyOjI3IHAubS4sIERhbiBXaWxsaWFtcyB3cm90ZToKPiBPbiBUaHUs
-IEp1biAxMywgMjAxOSBhdCAyOjQzIEFNIENocmlzdG9waCBIZWxsd2lnIDxoY2hAbHN0LmRlPiB3
-cm90ZToKPj4KPj4gSGkgRGFuLCBKw6lyw7RtZSBhbmQgSmFzb24sCj4+Cj4+IGJlbG93IGlzIGEg
-c2VyaWVzIHRoYXQgY2xlYW5zIHVwIHRoZSBkZXZfcGFnZW1hcCBpbnRlcmZhY2Ugc28gdGhhdAo+
-PiBpdCBpcyBtb3JlIGVhc2lseSB1c2FibGUsIHdoaWNoIHJlbW92ZXMgdGhlIG5lZWQgdG8gd3Jh
-cCBpdCBpbiBobW0KPj4gYW5kIHRodXMgYWxsb3dpbmcgdG8ga2lsbCBhIGxvdCBvZiBjb2RlCj4+
-Cj4+IERpZmZzdGF0Ogo+Pgo+PiAgMjIgZmlsZXMgY2hhbmdlZCwgMjQ1IGluc2VydGlvbnMoKyks
-IDgwMiBkZWxldGlvbnMoLSkKPiAKPiBIb29yYXkhCj4gCj4+IEdpdCB0cmVlOgo+Pgo+PiAgICAg
-Z2l0Oi8vZ2l0LmluZnJhZGVhZC5vcmcvdXNlcnMvaGNoL21pc2MuZ2l0IGhtbS1kZXZtZW0tY2xl
-YW51cAo+IAo+IEkganVzdCByZWFsaXplZCB0aGlzIGNvbGxpZGVzIHdpdGggdGhlIGRldl9wYWdl
-bWFwIHJlbGVhc2UgcmV3b3JrIGluCj4gQW5kcmV3J3MgdHJlZSAoY29tbWl0IGlkcyBiZWxvdyBh
-cmUgZnJvbSBuZXh0LmdpdCBhbmQgYXJlIG5vdCBzdGFibGUpCj4gCj4gNDQyMmVlODQ3NmYwIG1t
-L2Rldm1fbWVtcmVtYXBfcGFnZXM6IGZpeCBmaW5hbCBwYWdlIHB1dCByYWNlCj4gNzcxZjA3MTRk
-MGRjIFBDSS9QMlBETUE6IHRyYWNrIHBnbWFwIHJlZmVyZW5jZXMgcGVyIHJlc291cmNlLCBub3Qg
-Z2xvYmFsbHkKPiBhZjM3MDg1ZGU5MDYgbGliL2dlbmFsbG9jOiBpbnRyb2R1Y2UgY2h1bmsgb3du
-ZXJzCj4gZTAwNDdmZjhhYTc3IFBDSS9QMlBETUE6IGZpeCB0aGUgZ2VuX3Bvb2xfYWRkX3ZpcnQo
-KSBmYWlsdXJlIHBhdGgKPiAwMzE1ZDQ3ZDZhZTkgbW0vZGV2bV9tZW1yZW1hcF9wYWdlczogaW50
-cm9kdWNlIGRldm1fbWVtdW5tYXBfcGFnZXMKPiAyMTY0NzVjN2VhYTggZHJpdmVycy9iYXNlL2Rl
-dnJlczogaW50cm9kdWNlIGRldm1fcmVsZWFzZV9hY3Rpb24oKQo+IAo+IENPTkZMSUNUIChjb250
-ZW50KTogTWVyZ2UgY29uZmxpY3QgaW4gdG9vbHMvdGVzdGluZy9udmRpbW0vdGVzdC9pb21hcC5j
-Cj4gQ09ORkxJQ1QgKGNvbnRlbnQpOiBNZXJnZSBjb25mbGljdCBpbiBtbS9obW0uYwo+IENPTkZM
-SUNUIChjb250ZW50KTogTWVyZ2UgY29uZmxpY3QgaW4ga2VybmVsL21lbXJlbWFwLmMKPiBDT05G
-TElDVCAoY29udGVudCk6IE1lcmdlIGNvbmZsaWN0IGluIGluY2x1ZGUvbGludXgvbWVtcmVtYXAu
-aAo+IENPTkZMSUNUIChjb250ZW50KTogTWVyZ2UgY29uZmxpY3QgaW4gZHJpdmVycy9wY2kvcDJw
-ZG1hLmMKPiBDT05GTElDVCAoY29udGVudCk6IE1lcmdlIGNvbmZsaWN0IGluIGRyaXZlcnMvbnZk
-aW1tL3BtZW0uYwo+IENPTkZMSUNUIChjb250ZW50KTogTWVyZ2UgY29uZmxpY3QgaW4gZHJpdmVy
-cy9kYXgvZGV2aWNlLmMKPiBDT05GTElDVCAoY29udGVudCk6IE1lcmdlIGNvbmZsaWN0IGluIGRy
-aXZlcnMvZGF4L2RheC1wcml2YXRlLmgKPiAKPiBQZXJoYXBzIHdlIHNob3VsZCBwdWxsIHRob3Nl
-IG91dCBhbmQgcmVzZW5kIHRoZW0gdGhyb3VnaCBobW0uZ2l0PwoKSG1tLCBJJ3ZlIGJlZW4gd2Fp
-dGluZyBmb3IgdGhvc2UgcGF0Y2hlcyB0byBnZXQgaW4gZm9yIGEgbGl0dGxlIHdoaWxlIG5vdyA7
-KAoKTG9nYW4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-TGludXgtbnZkaW1tIG1haWxpbmcgbGlzdApMaW51eC1udmRpbW1AbGlzdHMuMDEub3JnCmh0dHBz
-Oi8vbGlzdHMuMDEub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtbnZkaW1tCg==
+On Thu, Jun 13, 2019 at 1:18 PM Logan Gunthorpe <logang@deltatee.com> wrote=
+:
+>
+>
+>
+> On 2019-06-13 12:27 p.m., Dan Williams wrote:
+> > On Thu, Jun 13, 2019 at 2:43 AM Christoph Hellwig <hch@lst.de> wrote:
+> >>
+> >> Hi Dan, J=C3=A9r=C3=B4me and Jason,
+> >>
+> >> below is a series that cleans up the dev_pagemap interface so that
+> >> it is more easily usable, which removes the need to wrap it in hmm
+> >> and thus allowing to kill a lot of code
+> >>
+> >> Diffstat:
+> >>
+> >>  22 files changed, 245 insertions(+), 802 deletions(-)
+> >
+> > Hooray!
+> >
+> >> Git tree:
+> >>
+> >>     git://git.infradead.org/users/hch/misc.git hmm-devmem-cleanup
+> >
+> > I just realized this collides with the dev_pagemap release rework in
+> > Andrew's tree (commit ids below are from next.git and are not stable)
+> >
+> > 4422ee8476f0 mm/devm_memremap_pages: fix final page put race
+> > 771f0714d0dc PCI/P2PDMA: track pgmap references per resource, not globa=
+lly
+> > af37085de906 lib/genalloc: introduce chunk owners
+> > e0047ff8aa77 PCI/P2PDMA: fix the gen_pool_add_virt() failure path
+> > 0315d47d6ae9 mm/devm_memremap_pages: introduce devm_memunmap_pages
+> > 216475c7eaa8 drivers/base/devres: introduce devm_release_action()
+> >
+> > CONFLICT (content): Merge conflict in tools/testing/nvdimm/test/iomap.c
+> > CONFLICT (content): Merge conflict in mm/hmm.c
+> > CONFLICT (content): Merge conflict in kernel/memremap.c
+> > CONFLICT (content): Merge conflict in include/linux/memremap.h
+> > CONFLICT (content): Merge conflict in drivers/pci/p2pdma.c
+> > CONFLICT (content): Merge conflict in drivers/nvdimm/pmem.c
+> > CONFLICT (content): Merge conflict in drivers/dax/device.c
+> > CONFLICT (content): Merge conflict in drivers/dax/dax-private.h
+> >
+> > Perhaps we should pull those out and resend them through hmm.git?
+>
+> Hmm, I've been waiting for those patches to get in for a little while now=
+ ;(
+
+Unless Andrew was going to submit as v5.2-rc fixes I think I should
+rebase / submit them on current hmm.git and then throw these cleanups
+from Christoph on top?
