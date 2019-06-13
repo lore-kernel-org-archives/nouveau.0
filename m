@@ -1,123 +1,69 @@
-From: Mar Mel <marmel6942-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
-Subject: NOUVEAU_LEGACY_CTX_SUPPORT Fan Speed
-Date: Thu, 13 Jun 2019 15:19:25 +0000 (UTC)
-Message-ID: <1119631907.971876.1560439165339@mail.yahoo.com>
-References: <1119631907.971876.1560439165339.ref@mail.yahoo.com>
+From: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Subject: Re: dev_pagemap related cleanups
+Date: Thu, 13 Jun 2019 11:27:39 -0700
+Message-ID: <CAPcyv4jBdwYaiVwkhy6kP78OBAs+vJme1UTm47dX4Eq_5=JgSg@mail.gmail.com>
+References: <20190613094326.24093-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1723392338=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+In-Reply-To: <20190613094326.24093-1-hch-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
+List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
+Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1723392338==
-Content-Type: multipart/alternative;
-	boundary="----=_Part_971875_2077526317.1560439165337"
-
-------=_Part_971875_2077526317.1560439165337
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-As of kernel 5.1.9, on resume from suspend, my NV50 fan runs at full speed.=
-=20
-
-Not sure if it has to do with this new config option (NOUVEAU_LEGACY_CTX_SU=
-PPORT)?
-
-This issue is not present using kernel 5.0.21.
-Years ago I filed a similar issue:
-
-60704 =E2=80=93 [nouveau, git regression] - I2C PWM fan control broken on n=
-v50 adt7475 on kernels 3.3.x+
-Thanks.
-
-
-
-|=20
-|=20
-|  |=20
-60704 =E2=80=93 [nouveau, git regression] - I2C PWM fan control broken on n=
-v50 a...
-
-
- |
-
- |
-
- |
-
-
-
-
-------=_Part_971875_2077526317.1560439165337
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
-ft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office"><head><!--[=
-if gte mso 9]><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>=
-96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]--></head><bo=
-dy><div class=3D"yahoo-style-wrap" style=3D"font-family:Helvetica Neue, Hel=
-vetica, Arial, sans-serif;font-size:13px;"><div>As of kernel 5.1.9, on resu=
-me from suspend, my NV50 fan runs at full speed. <br></div><div><br></div><=
-div>Not sure if it has to do with this new config option (<span>NOUVEAU_LEG=
-ACY_CTX_SUPPORT)?</span><br></div><div><br></div><div>This issue is not pre=
-sent using kernel 5.0.21.</div><div><br></div><div>Years ago I filed a simi=
-lar issue:<br></div><div><br></div><div><a href=3D"https://bugs.freedesktop=
-.org/show_bug.cgi?id=3D60704" rel=3D"nofollow" target=3D"_blank" class=3D"e=
-nhancr_card_0655079240">60704 =E2=80=93 [nouveau, git regression] - I2C PWM=
- fan control broken on nv50 adt7475 on kernels 3.3.x+</a></div><div><br></d=
-iv><div>Thanks.<br></div><div><br></div><div><br></div><div id=3D"ydp73b97a=
-3aenhancr_card_0655079240" class=3D"ydp73b97a3ayahoo-link-enhancr-card ydp7=
-3b97a3ayahoo-link-enhancr-not-allow-cover ydp73b97a3aymail-preserve-class y=
-dp73b97a3aymail-preserve-style" style=3D"max-width:400px;font-family:&quot;=
-Helvetica Neue&quot;, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif" d=
-ata-url=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D60704" data-type=
-=3D"YENHANCER" data-size=3D"MEDIUM" contenteditable=3D"false"><a href=3D"ht=
-tps://bugs.freedesktop.org/show_bug.cgi?id=3D60704" style=3D"text-decoratio=
-n:none !important;color:#000 !important" class=3D"ydp73b97a3ayahoo-enhancr-=
-cardlink" rel=3D"nofollow" target=3D"_blank"><table class=3D"ydp73b97a3acar=
-d-wrapper ydp73b97a3ayahoo-ignore-table" style=3D"max-width:400px" cellspac=
-ing=3D"0" cellpadding=3D"0" border=3D"0"><tbody><tr><td width=3D"400"><tabl=
-e class=3D"ydp73b97a3acard ydp73b97a3ayahoo-ignore-table" style=3D"max-widt=
-h:400px;border-width:1px;border-style:solid;border-color:rgb(224, 228, 233)=
-;border-radius:2px" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" bord=
-er=3D"0"><tbody><tr><td><table class=3D"ydp73b97a3acard-info ydp73b97a3ayah=
-oo-ignore-table" style=3D"background-color: rgb(255, 255, 255); background-=
-repeat: repeat; background-attachment: scroll; background-image: none; back=
-ground-size: auto; position: relative; z-index: 2; width: 100%; max-width: =
-400px; border-radius: 0px 0px 2px 2px; border-top: 1px solid rgb(224, 228, =
-233);" cellspacing=3D"0" cellpadding=3D"0" border=3D"0"><tbody><tr><td styl=
-e=3D"background-color:#ffffff;padding:16px 0 16px 12px;vertical-align:top;b=
-order-radius:0 0 0 2px"></td><td style=3D"vertical-align:middle;padding:12p=
-x 24px 16px 12px;width:99%;font-family:&quot;Helvetica Neue&quot;, &quot;Se=
-goe UI&quot;, Helvetica, Arial, sans-serif;border-radius:0 0 2px 0"><h2 cla=
-ss=3D"ydp73b97a3acard-title" style=3D"font-size: 14px; line-height: 19px; m=
-argin: 0px 0px 6px; font-family: &quot;Helvetica Neue&quot;, &quot;Segoe UI=
-&quot;, Helvetica, Arial, sans-serif; color: rgb(38, 40, 42);">60704 =E2=80=
-=93 [nouveau, git regression] - I2C PWM fan control broken on nv50 a...</h2=
-><p class=3D"ydp73b97a3acard-description" style=3D"font-size: 12px; line-he=
-ight: 16px; margin: 0px; color: rgb(151, 155, 167);"></p></td></tr></tbody>=
-</table></td></tr></tbody></table></td></tr></tbody></table></a></div><div>=
-<br></div><div><br></div></div></body></html>
-------=_Part_971875_2077526317.1560439165337--
-
---===============1723392338==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1723392338==--
+T24gVGh1LCBKdW4gMTMsIDIwMTkgYXQgMjo0MyBBTSBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGxz
+dC5kZT4gd3JvdGU6Cj4KPiBIaSBEYW4sIErDqXLDtG1lIGFuZCBKYXNvbiwKPgo+IGJlbG93IGlz
+IGEgc2VyaWVzIHRoYXQgY2xlYW5zIHVwIHRoZSBkZXZfcGFnZW1hcCBpbnRlcmZhY2Ugc28gdGhh
+dAo+IGl0IGlzIG1vcmUgZWFzaWx5IHVzYWJsZSwgd2hpY2ggcmVtb3ZlcyB0aGUgbmVlZCB0byB3
+cmFwIGl0IGluIGhtbQo+IGFuZCB0aHVzIGFsbG93aW5nIHRvIGtpbGwgYSBsb3Qgb2YgY29kZQo+
+Cj4gRGlmZnN0YXQ6Cj4KPiAgMjIgZmlsZXMgY2hhbmdlZCwgMjQ1IGluc2VydGlvbnMoKyksIDgw
+MiBkZWxldGlvbnMoLSkKCkhvb3JheSEKCj4gR2l0IHRyZWU6Cj4KPiAgICAgZ2l0Oi8vZ2l0Lmlu
+ZnJhZGVhZC5vcmcvdXNlcnMvaGNoL21pc2MuZ2l0IGhtbS1kZXZtZW0tY2xlYW51cAoKSSBqdXN0
+IHJlYWxpemVkIHRoaXMgY29sbGlkZXMgd2l0aCB0aGUgZGV2X3BhZ2VtYXAgcmVsZWFzZSByZXdv
+cmsgaW4KQW5kcmV3J3MgdHJlZSAoY29tbWl0IGlkcyBiZWxvdyBhcmUgZnJvbSBuZXh0LmdpdCBh
+bmQgYXJlIG5vdCBzdGFibGUpCgo0NDIyZWU4NDc2ZjAgbW0vZGV2bV9tZW1yZW1hcF9wYWdlczog
+Zml4IGZpbmFsIHBhZ2UgcHV0IHJhY2UKNzcxZjA3MTRkMGRjIFBDSS9QMlBETUE6IHRyYWNrIHBn
+bWFwIHJlZmVyZW5jZXMgcGVyIHJlc291cmNlLCBub3QgZ2xvYmFsbHkKYWYzNzA4NWRlOTA2IGxp
+Yi9nZW5hbGxvYzogaW50cm9kdWNlIGNodW5rIG93bmVycwplMDA0N2ZmOGFhNzcgUENJL1AyUERN
+QTogZml4IHRoZSBnZW5fcG9vbF9hZGRfdmlydCgpIGZhaWx1cmUgcGF0aAowMzE1ZDQ3ZDZhZTkg
+bW0vZGV2bV9tZW1yZW1hcF9wYWdlczogaW50cm9kdWNlIGRldm1fbWVtdW5tYXBfcGFnZXMKMjE2
+NDc1YzdlYWE4IGRyaXZlcnMvYmFzZS9kZXZyZXM6IGludHJvZHVjZSBkZXZtX3JlbGVhc2VfYWN0
+aW9uKCkKCkNPTkZMSUNUIChjb250ZW50KTogTWVyZ2UgY29uZmxpY3QgaW4gdG9vbHMvdGVzdGlu
+Zy9udmRpbW0vdGVzdC9pb21hcC5jCkNPTkZMSUNUIChjb250ZW50KTogTWVyZ2UgY29uZmxpY3Qg
+aW4gbW0vaG1tLmMKQ09ORkxJQ1QgKGNvbnRlbnQpOiBNZXJnZSBjb25mbGljdCBpbiBrZXJuZWwv
+bWVtcmVtYXAuYwpDT05GTElDVCAoY29udGVudCk6IE1lcmdlIGNvbmZsaWN0IGluIGluY2x1ZGUv
+bGludXgvbWVtcmVtYXAuaApDT05GTElDVCAoY29udGVudCk6IE1lcmdlIGNvbmZsaWN0IGluIGRy
+aXZlcnMvcGNpL3AycGRtYS5jCkNPTkZMSUNUIChjb250ZW50KTogTWVyZ2UgY29uZmxpY3QgaW4g
+ZHJpdmVycy9udmRpbW0vcG1lbS5jCkNPTkZMSUNUIChjb250ZW50KTogTWVyZ2UgY29uZmxpY3Qg
+aW4gZHJpdmVycy9kYXgvZGV2aWNlLmMKQ09ORkxJQ1QgKGNvbnRlbnQpOiBNZXJnZSBjb25mbGlj
+dCBpbiBkcml2ZXJzL2RheC9kYXgtcHJpdmF0ZS5oCgpQZXJoYXBzIHdlIHNob3VsZCBwdWxsIHRo
+b3NlIG91dCBhbmQgcmVzZW5kIHRoZW0gdGhyb3VnaCBobW0uZ2l0PwoKSXQgYWxzbyB0dXJucyBv
+dXQgdGhlIG52ZGltbSB1bml0IHRlc3RzIGNyYXNoIHdpdGggdGhpcyBzaWduYXR1cmUgb24KdGhh
+dCBicmFuY2ggd2hlcmUgYmFzZSB2NS4yLXJjMyBwYXNzZXM6CgogICAgQlVHOiBrZXJuZWwgTlVM
+TCBwb2ludGVyIGRlcmVmZXJlbmNlLCBhZGRyZXNzOiAwMDAwMDAwMDAwMDAwMDA4CiAgICBbLi5d
+CiAgICBDUFU6IDE1IFBJRDogMTQxNCBDb21tOiBsdC1saWJuZGN0bCBUYWludGVkOiBHICAgICAg
+ICAgICBPRQo1LjIuMC1yYzMrICMzMzk5CiAgICBIYXJkd2FyZSBuYW1lOiBRRU1VIFN0YW5kYXJk
+IFBDIChpNDQwRlggKyBQSUlYLCAxOTk2KSwgQklPUyAwLjAuMCAwMi8wNi8yMDE1CiAgICBSSVA6
+IDAwMTA6cGVyY3B1X3JlZl9raWxsX2FuZF9jb25maXJtKzB4MWUvMHgxODAKICAgIFsuLl0KICAg
+IENhbGwgVHJhY2U6CiAgICAgcmVsZWFzZV9ub2RlcysweDIzNC8weDI4MAogICAgIGRldmljZV9y
+ZWxlYXNlX2RyaXZlcl9pbnRlcm5hbCsweGU4LzB4MWIwCiAgICAgYnVzX3JlbW92ZV9kZXZpY2Ur
+MHhmMi8weDE2MAogICAgIGRldmljZV9kZWwrMHgxNjYvMHgzNzAKICAgICB1bnJlZ2lzdGVyX2Rl
+dl9kYXgrMHgyMy8weDUwCiAgICAgcmVsZWFzZV9ub2RlcysweDIzNC8weDI4MAogICAgIGRldmlj
+ZV9yZWxlYXNlX2RyaXZlcl9pbnRlcm5hbCsweGU4LzB4MWIwCiAgICAgdW5iaW5kX3N0b3JlKzB4
+OTQvMHgxMjAKICAgICBrZXJuZnNfZm9wX3dyaXRlKzB4ZjAvMHgxYTAKICAgICB2ZnNfd3JpdGUr
+MHhiNy8weDFiMAogICAgIGtzeXNfd3JpdGUrMHg1Yy8weGQwCiAgICAgZG9fc3lzY2FsbF82NCsw
+eDYwLzB4MjQwCgpUaGUgY3Jhc2ggYmlzZWN0cyB0bzoKCiAgICBkOGNjOGJiZTEwOGMgZGV2aWNl
+LWRheDogdXNlIHRoZSBkZXZfcGFnZW1hcCBpbnRlcm5hbCByZWZjb3VudApfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpMaW51eC1udmRpbW0gbWFpbGluZyBs
+aXN0CkxpbnV4LW52ZGltbUBsaXN0cy4wMS5vcmcKaHR0cHM6Ly9saXN0cy4wMS5vcmcvbWFpbG1h
+bi9saXN0aW5mby9saW51eC1udmRpbW0K
