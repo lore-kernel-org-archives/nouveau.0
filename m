@@ -1,75 +1,37 @@
-From: Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 Subject: Re: dev_pagemap related cleanups
-Date: Thu, 13 Jun 2019 13:48:31 -0700
-Message-ID: <20190613134831.a7ecb1b422a732bff156ec50@linux-foundation.org>
+Date: Thu, 13 Jun 2019 23:21:01 +0200
+Message-ID: <20190613212101.GA27174@lst.de>
 References: <20190613094326.24093-1-hch@lst.de>
  <CAPcyv4jBdwYaiVwkhy6kP78OBAs+vJme1UTm47dX4Eq_5=JgSg@mail.gmail.com>
- <283e87e8-20b6-0505-a19b-5d18e057f008@deltatee.com>
- <CAPcyv4hx=ng3SxzAWd8s_8VtAfoiiWhiA5kodi9KPc=jGmnejg@mail.gmail.com>
- <d0da4c86-ef52-b981-06af-b37e3e0515ee@deltatee.com>
+ <20190613204043.GD22062@mellanox.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <d0da4c86-ef52-b981-06af-b37e3e0515ee-OTvnGxWRz7hWk0Htik3J/w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Logan Gunthorpe <logang-OTvnGxWRz7hWk0Htik3J/w@public.gmane.org>
-Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20190613204043.GD22062-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
+List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
+Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+To: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Cc: Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCAxMyBKdW4gMjAxOSAxNDoyNDoyMCAtMDYwMCBMb2dhbiBHdW50aG9ycGUgPGxvZ2Fu
-Z0BkZWx0YXRlZS5jb20+IHdyb3RlOgoKPiAKPiAKPiBPbiAyMDE5LTA2LTEzIDI6MjEgcC5tLiwg
-RGFuIFdpbGxpYW1zIHdyb3RlOgo+ID4gT24gVGh1LCBKdW4gMTMsIDIwMTkgYXQgMToxOCBQTSBM
-b2dhbiBHdW50aG9ycGUgPGxvZ2FuZ0BkZWx0YXRlZS5jb20+IHdyb3RlOgo+ID4+Cj4gPj4KPiA+
-Pgo+ID4+IE9uIDIwMTktMDYtMTMgMTI6MjcgcC5tLiwgRGFuIFdpbGxpYW1zIHdyb3RlOgo+ID4+
-PiBPbiBUaHUsIEp1biAxMywgMjAxOSBhdCAyOjQzIEFNIENocmlzdG9waCBIZWxsd2lnIDxoY2hA
-bHN0LmRlPiB3cm90ZToKPiA+Pj4+Cj4gPj4+PiBIaSBEYW4sIErDqXLDtG1lIGFuZCBKYXNvbiwK
-PiA+Pj4+Cj4gPj4+PiBiZWxvdyBpcyBhIHNlcmllcyB0aGF0IGNsZWFucyB1cCB0aGUgZGV2X3Bh
-Z2VtYXAgaW50ZXJmYWNlIHNvIHRoYXQKPiA+Pj4+IGl0IGlzIG1vcmUgZWFzaWx5IHVzYWJsZSwg
-d2hpY2ggcmVtb3ZlcyB0aGUgbmVlZCB0byB3cmFwIGl0IGluIGhtbQo+ID4+Pj4gYW5kIHRodXMg
-YWxsb3dpbmcgdG8ga2lsbCBhIGxvdCBvZiBjb2RlCj4gPj4+Pgo+ID4+Pj4gRGlmZnN0YXQ6Cj4g
-Pj4+Pgo+ID4+Pj4gIDIyIGZpbGVzIGNoYW5nZWQsIDI0NSBpbnNlcnRpb25zKCspLCA4MDIgZGVs
-ZXRpb25zKC0pCj4gPj4+Cj4gPj4+IEhvb3JheSEKPiA+Pj4KPiA+Pj4+IEdpdCB0cmVlOgo+ID4+
-Pj4KPiA+Pj4+ICAgICBnaXQ6Ly9naXQuaW5mcmFkZWFkLm9yZy91c2Vycy9oY2gvbWlzYy5naXQg
-aG1tLWRldm1lbS1jbGVhbnVwCj4gPj4+Cj4gPj4+IEkganVzdCByZWFsaXplZCB0aGlzIGNvbGxp
-ZGVzIHdpdGggdGhlIGRldl9wYWdlbWFwIHJlbGVhc2UgcmV3b3JrIGluCj4gPj4+IEFuZHJldydz
-IHRyZWUgKGNvbW1pdCBpZHMgYmVsb3cgYXJlIGZyb20gbmV4dC5naXQgYW5kIGFyZSBub3Qgc3Rh
-YmxlKQo+ID4+Pgo+ID4+PiA0NDIyZWU4NDc2ZjAgbW0vZGV2bV9tZW1yZW1hcF9wYWdlczogZml4
-IGZpbmFsIHBhZ2UgcHV0IHJhY2UKPiA+Pj4gNzcxZjA3MTRkMGRjIFBDSS9QMlBETUE6IHRyYWNr
-IHBnbWFwIHJlZmVyZW5jZXMgcGVyIHJlc291cmNlLCBub3QgZ2xvYmFsbHkKPiA+Pj4gYWYzNzA4
-NWRlOTA2IGxpYi9nZW5hbGxvYzogaW50cm9kdWNlIGNodW5rIG93bmVycwo+ID4+PiBlMDA0N2Zm
-OGFhNzcgUENJL1AyUERNQTogZml4IHRoZSBnZW5fcG9vbF9hZGRfdmlydCgpIGZhaWx1cmUgcGF0
-aAo+ID4+PiAwMzE1ZDQ3ZDZhZTkgbW0vZGV2bV9tZW1yZW1hcF9wYWdlczogaW50cm9kdWNlIGRl
-dm1fbWVtdW5tYXBfcGFnZXMKPiA+Pj4gMjE2NDc1YzdlYWE4IGRyaXZlcnMvYmFzZS9kZXZyZXM6
-IGludHJvZHVjZSBkZXZtX3JlbGVhc2VfYWN0aW9uKCkKPiA+Pj4KPiA+Pj4gQ09ORkxJQ1QgKGNv
-bnRlbnQpOiBNZXJnZSBjb25mbGljdCBpbiB0b29scy90ZXN0aW5nL252ZGltbS90ZXN0L2lvbWFw
-LmMKPiA+Pj4gQ09ORkxJQ1QgKGNvbnRlbnQpOiBNZXJnZSBjb25mbGljdCBpbiBtbS9obW0uYwo+
-ID4+PiBDT05GTElDVCAoY29udGVudCk6IE1lcmdlIGNvbmZsaWN0IGluIGtlcm5lbC9tZW1yZW1h
-cC5jCj4gPj4+IENPTkZMSUNUIChjb250ZW50KTogTWVyZ2UgY29uZmxpY3QgaW4gaW5jbHVkZS9s
-aW51eC9tZW1yZW1hcC5oCj4gPj4+IENPTkZMSUNUIChjb250ZW50KTogTWVyZ2UgY29uZmxpY3Qg
-aW4gZHJpdmVycy9wY2kvcDJwZG1hLmMKPiA+Pj4gQ09ORkxJQ1QgKGNvbnRlbnQpOiBNZXJnZSBj
-b25mbGljdCBpbiBkcml2ZXJzL252ZGltbS9wbWVtLmMKPiA+Pj4gQ09ORkxJQ1QgKGNvbnRlbnQp
-OiBNZXJnZSBjb25mbGljdCBpbiBkcml2ZXJzL2RheC9kZXZpY2UuYwo+ID4+PiBDT05GTElDVCAo
-Y29udGVudCk6IE1lcmdlIGNvbmZsaWN0IGluIGRyaXZlcnMvZGF4L2RheC1wcml2YXRlLmgKPiA+
-Pj4KPiA+Pj4gUGVyaGFwcyB3ZSBzaG91bGQgcHVsbCB0aG9zZSBvdXQgYW5kIHJlc2VuZCB0aGVt
-IHRocm91Z2ggaG1tLmdpdD8KPiA+Pgo+ID4+IEhtbSwgSSd2ZSBiZWVuIHdhaXRpbmcgZm9yIHRo
-b3NlIHBhdGNoZXMgdG8gZ2V0IGluIGZvciBhIGxpdHRsZSB3aGlsZSBub3cgOygKPiA+IAo+ID4g
-VW5sZXNzIEFuZHJldyB3YXMgZ29pbmcgdG8gc3VibWl0IGFzIHY1LjItcmMgZml4ZXMgSSB0aGlu
-ayBJIHNob3VsZAo+ID4gcmViYXNlIC8gc3VibWl0IHRoZW0gb24gY3VycmVudCBobW0uZ2l0IGFu
-ZCB0aGVuIHRocm93IHRoZXNlIGNsZWFudXBzCj4gPiBmcm9tIENocmlzdG9waCBvbiB0b3A/Cj4g
-Cj4gV2hhdGV2ZXIgeW91IGZlZWwgaXMgYmVzdC4gSSdtIGp1c3QgaG9waW5nIHRoZXkgZ2V0IGlu
-IHNvb25lciByYXRoZXIKPiB0aGFuIGxhdGVyLiBUaGV5IGRvIGZpeCBhIGJ1ZyBhZnRlciBhbGwu
-IExldCBtZSBrbm93IGlmIHlvdSB3YW50IG1lIHRvCj4gcmV0ZXN0IHRoZSBQMlBETUEgc3R1ZmYg
-YWZ0ZXIgdGhlIHJlYmFzZS4KCkkgaGFkIHRoZW0gZG93biBmb3IgNS4zLXJjMS4gIEknbGwgc2Vu
-ZCB0aGVtIGFsb25nIGZvciA1LjItcmM1IGluc3RlYWQuCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXU=
+On Thu, Jun 13, 2019 at 08:40:46PM +0000, Jason Gunthorpe wrote:
+> > Perhaps we should pull those out and resend them through hmm.git?
+> 
+> It could be done - but how bad is the conflict resolution?
+
+Trivial.  All but one patch just apply using git-am, and the other one
+just has a few lines of offsets.
+
+I've also done a preliminary rebase of my series on top of those
+patches, and it really nicely helps making the drivers even simpler
+and allows using the internal refcount in p2pdma.c as well.
