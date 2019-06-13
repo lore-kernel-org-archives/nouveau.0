@@ -1,7 +1,8 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 08/22] memremap: pass a struct dev_pagemap to ->kill
-Date: Thu, 13 Jun 2019 11:43:11 +0200
-Message-ID: <20190613094326.24093-9-hch@lst.de>
+Subject: [PATCH 09/22] memremap: lift the devmap_enable manipulation into
+ devm_memremap_pages
+Date: Thu, 13 Jun 2019 11:43:12 +0200
+Message-ID: <20190613094326.24093-10-hch@lst.de>
 References: <20190613094326.24093-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,154 +22,196 @@ To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF
 Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Passing the actual typed structure leads to more understandable code
-vs the actual references.
+Just check if there is a ->page_free operation set and take care of the
+static key enable, as well as the put using device managed resources.
 
 Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 ---
- drivers/dax/device.c              | 7 +++----
- drivers/nvdimm/pmem.c             | 6 +++---
- drivers/pci/p2pdma.c              | 6 +++---
- include/linux/memremap.h          | 2 +-
- kernel/memremap.c                 | 4 ++--
- mm/hmm.c                          | 4 ++--
- tools/testing/nvdimm/test/iomap.c | 6 ++----
- 7 files changed, 16 insertions(+), 19 deletions(-)
+ drivers/nvdimm/pmem.c | 23 +++--------------
+ include/linux/mm.h    | 10 --------
+ kernel/memremap.c     | 59 +++++++++++++++++++++++++++----------------
+ mm/hmm.c              |  2 --
+ 4 files changed, 41 insertions(+), 53 deletions(-)
 
-diff --git a/drivers/dax/device.c b/drivers/dax/device.c
-index 4adab774dade..e23fa1bd8c97 100644
---- a/drivers/dax/device.c
-+++ b/drivers/dax/device.c
-@@ -37,13 +37,12 @@ static void dev_dax_percpu_exit(void *data)
- 	percpu_ref_exit(ref);
- }
- 
--static void dev_dax_percpu_kill(struct percpu_ref *data)
-+static void dev_dax_percpu_kill(struct dev_pagemap *pgmap)
- {
--	struct percpu_ref *ref = data;
--	struct dev_dax *dev_dax = ref_to_dev_dax(ref);
-+	struct dev_dax *dev_dax = container_of(pgmap, struct dev_dax, pgmap);
- 
- 	dev_dbg(&dev_dax->dev, "%s\n", __func__);
--	percpu_ref_kill(ref);
-+	percpu_ref_kill(pgmap->ref);
- }
- 
- static int check_vma(struct dev_dax *dev_dax, struct vm_area_struct *vma,
 diff --git a/drivers/nvdimm/pmem.c b/drivers/nvdimm/pmem.c
-index 4efbf184ea68..b9638c6553a1 100644
+index b9638c6553a1..66837eed6375 100644
 --- a/drivers/nvdimm/pmem.c
 +++ b/drivers/nvdimm/pmem.c
-@@ -316,11 +316,11 @@ static void pmem_release_queue(void *q)
- 	blk_cleanup_queue(q);
+@@ -334,11 +334,6 @@ static void pmem_release_disk(void *__pmem)
+ 	put_disk(pmem->disk);
  }
  
--static void pmem_kill(struct percpu_ref *ref)
-+static void pmem_kill(struct dev_pagemap *pgmap)
+-static void pmem_release_pgmap_ops(void *__pgmap)
+-{
+-	dev_pagemap_put_ops();
+-}
+-
+ static void pmem_fsdax_page_free(struct page *page, void *data)
  {
--	struct request_queue *q;
-+	struct request_queue *q =
-+		container_of(pgmap->ref, struct request_queue, q_usage_counter);
- 
--	q = container_of(ref, typeof(*q), q_usage_counter);
- 	blk_freeze_queue_start(q);
- }
- 
-diff --git a/drivers/pci/p2pdma.c b/drivers/pci/p2pdma.c
-index 6e76380f5b97..3bcacc9222c6 100644
---- a/drivers/pci/p2pdma.c
-+++ b/drivers/pci/p2pdma.c
-@@ -82,7 +82,7 @@ static void pci_p2pdma_percpu_release(struct percpu_ref *ref)
- 	complete_all(&p2p->devmap_ref_done);
- }
- 
--static void pci_p2pdma_percpu_kill(struct percpu_ref *ref)
-+static void pci_p2pdma_percpu_kill(struct dev_pagemap *pgmap)
- {
- 	/*
- 	 * pci_p2pdma_add_resource() may be called multiple times
-@@ -90,10 +90,10 @@ static void pci_p2pdma_percpu_kill(struct percpu_ref *ref)
- 	 * times. We only want the first action to actually kill the
- 	 * percpu_ref.
- 	 */
--	if (percpu_ref_is_dying(ref))
-+	if (percpu_ref_is_dying(pgmap->ref))
- 		return;
- 
--	percpu_ref_kill(ref);
-+	percpu_ref_kill(pgmap->ref);
- }
- 
- static void pci_p2pdma_release(void *data)
-diff --git a/include/linux/memremap.h b/include/linux/memremap.h
-index 5f7f40875b35..96a3a6d564ad 100644
---- a/include/linux/memremap.h
-+++ b/include/linux/memremap.h
-@@ -74,7 +74,7 @@ struct dev_pagemap_ops {
- 	/*
- 	 * Transition the percpu_ref in struct dev_pagemap to the dead state.
- 	 */
--	void (*kill)(struct percpu_ref *ref);
-+	void (*kill)(struct dev_pagemap *pgmap);
+ 	wake_up_var(&page->_refcount);
+@@ -353,16 +348,6 @@ static const struct dev_pagemap_ops pmem_legacy_pagemap_ops = {
+ 	.kill			= pmem_kill,
  };
  
- /**
+-static int setup_pagemap_fsdax(struct device *dev, struct dev_pagemap *pgmap)
+-{
+-	dev_pagemap_get_ops();
+-	if (devm_add_action_or_reset(dev, pmem_release_pgmap_ops, pgmap))
+-		return -ENOMEM;
+-	pgmap->type = MEMORY_DEVICE_FS_DAX;
+-	pgmap->ops = &fsdax_pagemap_ops;
+-	return 0;
+-}
+-
+ static int pmem_attach_disk(struct device *dev,
+ 		struct nd_namespace_common *ndns)
+ {
+@@ -421,8 +406,8 @@ static int pmem_attach_disk(struct device *dev,
+ 	pmem->pfn_flags = PFN_DEV;
+ 	pmem->pgmap.ref = &q->q_usage_counter;
+ 	if (is_nd_pfn(dev)) {
+-		if (setup_pagemap_fsdax(dev, &pmem->pgmap))
+-			return -ENOMEM;
++		pmem->pgmap.type = MEMORY_DEVICE_FS_DAX;
++		pmem->pgmap.ops = &fsdax_pagemap_ops;
+ 		addr = devm_memremap_pages(dev, &pmem->pgmap);
+ 		pfn_sb = nd_pfn->pfn_sb;
+ 		pmem->data_offset = le64_to_cpu(pfn_sb->dataoff);
+@@ -434,8 +419,8 @@ static int pmem_attach_disk(struct device *dev,
+ 	} else if (pmem_should_map_pages(dev)) {
+ 		memcpy(&pmem->pgmap.res, &nsio->res, sizeof(pmem->pgmap.res));
+ 		pmem->pgmap.altmap_valid = false;
+-		if (setup_pagemap_fsdax(dev, &pmem->pgmap))
+-			return -ENOMEM;
++		pmem->pgmap.type = MEMORY_DEVICE_FS_DAX;
++		pmem->pgmap.ops = &fsdax_pagemap_ops;
+ 		addr = devm_memremap_pages(dev, &pmem->pgmap);
+ 		pmem->pfn_flags |= PFN_MAP;
+ 		memcpy(&bb_res, &pmem->pgmap.res, sizeof(bb_res));
+diff --git a/include/linux/mm.h b/include/linux/mm.h
+index 0e8834ac32b7..edcf2b821647 100644
+--- a/include/linux/mm.h
++++ b/include/linux/mm.h
+@@ -921,8 +921,6 @@ static inline bool is_zone_device_page(const struct page *page)
+ #endif
+ 
+ #ifdef CONFIG_DEV_PAGEMAP_OPS
+-void dev_pagemap_get_ops(void);
+-void dev_pagemap_put_ops(void);
+ void __put_devmap_managed_page(struct page *page);
+ DECLARE_STATIC_KEY_FALSE(devmap_managed_key);
+ static inline bool put_devmap_managed_page(struct page *page)
+@@ -969,14 +967,6 @@ static inline bool is_pci_p2pdma_page(const struct page *page)
+ #endif /* CONFIG_PCI_P2PDMA */
+ 
+ #else /* CONFIG_DEV_PAGEMAP_OPS */
+-static inline void dev_pagemap_get_ops(void)
+-{
+-}
+-
+-static inline void dev_pagemap_put_ops(void)
+-{
+-}
+-
+ static inline bool put_devmap_managed_page(struct page *page)
+ {
+ 	return false;
 diff --git a/kernel/memremap.c b/kernel/memremap.c
-index e23286ce0ec4..94b830b6eca5 100644
+index 94b830b6eca5..6a3183cac764 100644
 --- a/kernel/memremap.c
 +++ b/kernel/memremap.c
-@@ -92,7 +92,7 @@ static void devm_memremap_pages_release(void *data)
- 	unsigned long pfn;
- 	int nid;
+@@ -17,6 +17,37 @@ static DEFINE_XARRAY(pgmap_array);
+ #define SECTION_MASK ~((1UL << PA_SECTION_SHIFT) - 1)
+ #define SECTION_SIZE (1UL << PA_SECTION_SHIFT)
  
--	pgmap->ops->kill(pgmap->ref);
-+	pgmap->ops->kill(pgmap);
- 	for_each_device_pfn(pfn, pgmap)
- 		put_page(pfn_to_page(pfn));
++#ifdef CONFIG_DEV_PAGEMAP_OPS
++DEFINE_STATIC_KEY_FALSE(devmap_managed_key);
++EXPORT_SYMBOL(devmap_managed_key);
++static atomic_t devmap_enable;
++
++static void dev_pagemap_put_ops(void *data)
++{
++	if (atomic_dec_and_test(&devmap_enable))
++		static_branch_disable(&devmap_managed_key);
++}
++
++/*
++ * Toggle the static key for ->page_free() callbacks when dev_pagemap
++ * pages go idle.
++ */
++static int dev_pagemap_enable(struct device *dev)
++{
++	if (atomic_inc_return(&devmap_enable) == 1)
++		static_branch_enable(&devmap_managed_key);
++
++	if (devm_add_action_or_reset(dev, dev_pagemap_put_ops, NULL))
++		return -ENOMEM;
++	return 0;
++}
++#else
++static inline int dev_pagemap_enable(struct device *dev)
++{
++	return 0;
++}
++#endif /* CONFIG_DEV_PAGEMAP_OPS */
++
+ #if IS_ENABLED(CONFIG_DEVICE_PRIVATE)
+ vm_fault_t device_private_entry_fault(struct vm_area_struct *vma,
+ 		       unsigned long addr,
+@@ -159,6 +190,12 @@ void *devm_memremap_pages(struct device *dev, struct dev_pagemap *pgmap)
+ 	if (!pgmap->ref || !pgmap->ops || !pgmap->ops->kill)
+ 		return ERR_PTR(-EINVAL);
  
-@@ -266,7 +266,7 @@ void *devm_memremap_pages(struct device *dev, struct dev_pagemap *pgmap)
-  err_pfn_remap:
- 	pgmap_array_delete(res);
-  err_array:
--	pgmap->ops->kill(pgmap->ref);
-+	pgmap->ops->kill(pgmap);
- 	return ERR_PTR(error);
- }
- EXPORT_SYMBOL_GPL(devm_memremap_pages);
++	if (pgmap->ops->page_free) {
++		error = dev_pagemap_enable(dev);
++		if (error)
++			return ERR_PTR(error);
++	}
++
+ 	align_start = res->start & ~(SECTION_SIZE - 1);
+ 	align_size = ALIGN(res->start + resource_size(res), SECTION_SIZE)
+ 		- align_start;
+@@ -316,28 +353,6 @@ struct dev_pagemap *get_dev_pagemap(unsigned long pfn,
+ EXPORT_SYMBOL_GPL(get_dev_pagemap);
+ 
+ #ifdef CONFIG_DEV_PAGEMAP_OPS
+-DEFINE_STATIC_KEY_FALSE(devmap_managed_key);
+-EXPORT_SYMBOL(devmap_managed_key);
+-static atomic_t devmap_enable;
+-
+-/*
+- * Toggle the static key for ->page_free() callbacks when dev_pagemap
+- * pages go idle.
+- */
+-void dev_pagemap_get_ops(void)
+-{
+-	if (atomic_inc_return(&devmap_enable) == 1)
+-		static_branch_enable(&devmap_managed_key);
+-}
+-EXPORT_SYMBOL_GPL(dev_pagemap_get_ops);
+-
+-void dev_pagemap_put_ops(void)
+-{
+-	if (atomic_dec_and_test(&devmap_enable))
+-		static_branch_disable(&devmap_managed_key);
+-}
+-EXPORT_SYMBOL_GPL(dev_pagemap_put_ops);
+-
+ void __put_devmap_managed_page(struct page *page)
+ {
+ 	int count = page_ref_dec_return(page);
 diff --git a/mm/hmm.c b/mm/hmm.c
-index 2501ac6045d0..c76a1b5defda 100644
+index c76a1b5defda..6dc769feb2e1 100644
 --- a/mm/hmm.c
 +++ b/mm/hmm.c
-@@ -1325,9 +1325,9 @@ static void hmm_devmem_ref_exit(void *data)
- 	percpu_ref_exit(ref);
- }
+@@ -1378,8 +1378,6 @@ struct hmm_devmem *hmm_devmem_add(const struct hmm_devmem_ops *ops,
+ 	void *result;
+ 	int ret;
  
--static void hmm_devmem_ref_kill(struct percpu_ref *ref)
-+static void hmm_devmem_ref_kill(struct dev_pagemap *pgmap)
- {
--	percpu_ref_kill(ref);
-+	percpu_ref_kill(pgmap->ref);
- }
- 
- static vm_fault_t hmm_devmem_fault(struct vm_area_struct *vma,
-diff --git a/tools/testing/nvdimm/test/iomap.c b/tools/testing/nvdimm/test/iomap.c
-index 7f5ece9b5011..ee07c4de2b35 100644
---- a/tools/testing/nvdimm/test/iomap.c
-+++ b/tools/testing/nvdimm/test/iomap.c
-@@ -104,11 +104,9 @@ void *__wrap_devm_memremap(struct device *dev, resource_size_t offset,
- }
- EXPORT_SYMBOL(__wrap_devm_memremap);
- 
--static void nfit_test_kill(void *_pgmap)
-+static void nfit_test_kill(void *pgmap)
- {
--	struct dev_pagemap *pgmap = _pgmap;
+-	dev_pagemap_get_ops();
 -
--	pgmap->ops->kill(pgmap->ref);
-+	pgmap->ops->kill(pgmap);
- }
- 
- void *__wrap_devm_memremap_pages(struct device *dev, struct dev_pagemap *pgmap)
+ 	devmem = devm_kzalloc(device, sizeof(*devmem), GFP_KERNEL);
+ 	if (!devmem)
+ 		return ERR_PTR(-ENOMEM);
 -- 
 2.20.1
