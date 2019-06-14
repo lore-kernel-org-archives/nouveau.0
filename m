@@ -1,75 +1,83 @@
-From: John Hubbard <jhubbard@nvidia.com>
-Subject: Re: [PATCH] drm/nouveau/dmem: missing mutex_lock in error path
-Date: Thu, 13 Jun 2019 17:49:00 -0700
-Message-ID: <1fc63655-985a-0d60-523f-00a51648dc38@nvidia.com>
-References: <20190614001121.23950-1-rcampbell@nvidia.com>
+From: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH 03/22] mm: remove hmm_devmem_add_resource
+Date: Thu, 13 Jun 2019 17:54:05 -0700
+Message-ID: <b0136e6b-2262-ae4e-67ba-3d0b3895873b@nvidia.com>
+References: <20190613094326.24093-1-hch@lst.de>
+ <20190613094326.24093-4-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190614001121.23950-1-rcampbell@nvidia.com>
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190613094326.24093-4-hch-jcswGhMUV9g@public.gmane.org>
 Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ralph Campbell <rcampbell@nvidia.com>, Jerome Glisse <jglisse@redhat.com>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>
-Cc: nouveau@lists.freedesktop.org, linux-mm@kvack.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 6/13/19 5:11 PM, Ralph Campbell wrote:
-> In nouveau_dmem_pages_alloc(), the drm->dmem->mutex is unlocked before
-> calling nouveau_dmem_chunk_alloc().
-> Reacquire the lock before continuing to the next page.
-> 
-> Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
-> ---
-> 
-> I found this while testing Jason Gunthorpe's hmm tree but this is
-> independant of those changes. I guess it could go through
-> David Airlie's tree for nouveau or Jason's tree.
-> 
-
-Hi Ralph,
-
-btw, was this the fix for the crash you were seeing? It might be nice to
-mention in the commit description, if you are seeing real symptoms.
-
-
->  drivers/gpu/drm/nouveau/nouveau_dmem.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> index 27aa4e72abe9..00f7236af1b9 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> @@ -379,9 +379,10 @@ nouveau_dmem_pages_alloc(struct nouveau_drm *drm,
->  			ret = nouveau_dmem_chunk_alloc(drm);
->  			if (ret) {
->  				if (c)
-> -					break;
-
-Actually, the pre-existing code is a little concerning. Your change preserves
-the behavior, but it seems questionable to be doing a "return 0" (whether
-via the above break, or your change) when it's in this partially allocated
-state. It's reporting success when it only allocates part of what was requested,
-and it doesn't fill in the pages array either.
-
-
-
-> +					return 0;
->  				return ret;
->  			}
-> +			mutex_lock(&drm->dmem->mutex);
->  			continue;
->  		}
->  
-> 
-
-The above comment is about pre-existing potential problems, but your patch itself
-looks correct, so:
-
-Reviewed-by: John Hubbard <jhubbard@nvidia.com> 
-
-
-thanks,
--- 
-John Hubbard
-NVIDIA
+T24gNi8xMy8xOSAyOjQzIEFNLCBDaHJpc3RvcGggSGVsbHdpZyB3cm90ZToKPiBUaGlzIGZ1bmN0
+aW9uIGhhcyBuZXZlciBiZWVuIHVzZWQgc2luY2UgaXQgd2FzIGZpcnN0IGFkZGVkIHRvIHRoZSBr
+ZXJuZWwKPiBtb3JlIHRoYW4gYSB5ZWFyIGFuZCBhIGhhbGYgYWdvLCBhbmQgaWYgd2UgZXZlciBn
+cm93IGEgY29uc3VtZXIgb2YgdGhlCj4gTUVNT1JZX0RFVklDRV9QVUJMSUMgaW5mcmFzdHJ1Y3R1
+cmUgaXQgY2FuIGVhc2lseSB1c2UgZGV2bV9tZW1yZW1hcF9wYWdlcwo+IGRpcmVjdGx5IG5vdyB0
+aGF0IHdlJ3ZlIHNpbXBsaWZpZWQgdGhlIEFQSSBmb3IgaXQuCj4gCj4gU2lnbmVkLW9mZi1ieTog
+Q2hyaXN0b3BoIEhlbGx3aWcgPGhjaEBsc3QuZGU+Cj4gLS0tCj4gIGluY2x1ZGUvbGludXgvaG1t
+LmggfCAgMyAtLS0KPiAgbW0vaG1tLmMgICAgICAgICAgICB8IDU0IC0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+ICAyIGZpbGVzIGNoYW5nZWQsIDU3IGRlbGV0
+aW9ucygtKQo+IAoKTm8gb2JqZWN0aW9ucyBoZXJlLCBnb29kIGNsZWFudXAuCgpSZXZpZXdlZC1i
+eTogSm9obiBIdWJiYXJkIDxqaHViYmFyZEBudmlkaWEuY29tPiAKCnRoYW5rcywKLS0gCkpvaG4g
+SHViYmFyZApOVklESUEKCj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvbGludXgvaG1tLmggYi9pbmNs
+dWRlL2xpbnV4L2htbS5oCj4gaW5kZXggNDg2N2I5ZGExYjZjLi41NzYxYTM5MjIxYTYgMTAwNjQ0
+Cj4gLS0tIGEvaW5jbHVkZS9saW51eC9obW0uaAo+ICsrKyBiL2luY2x1ZGUvbGludXgvaG1tLmgK
+PiBAQCAtNjg4LDkgKzY4OCw2IEBAIHN0cnVjdCBobW1fZGV2bWVtIHsKPiAgc3RydWN0IGhtbV9k
+ZXZtZW0gKmhtbV9kZXZtZW1fYWRkKGNvbnN0IHN0cnVjdCBobW1fZGV2bWVtX29wcyAqb3BzLAo+
+ICAJCQkJICBzdHJ1Y3QgZGV2aWNlICpkZXZpY2UsCj4gIAkJCQkgIHVuc2lnbmVkIGxvbmcgc2l6
+ZSk7Cj4gLXN0cnVjdCBobW1fZGV2bWVtICpobW1fZGV2bWVtX2FkZF9yZXNvdXJjZShjb25zdCBz
+dHJ1Y3QgaG1tX2Rldm1lbV9vcHMgKm9wcywKPiAtCQkJCQkgICBzdHJ1Y3QgZGV2aWNlICpkZXZp
+Y2UsCj4gLQkJCQkJICAgc3RydWN0IHJlc291cmNlICpyZXMpOwo+ICAKPiAgLyoKPiAgICogaG1t
+X2Rldm1lbV9wYWdlX3NldF9kcnZkYXRhIC0gc2V0IHBlci1wYWdlIGRyaXZlciBkYXRhIGZpZWxk
+Cj4gZGlmZiAtLWdpdCBhL21tL2htbS5jIGIvbW0vaG1tLmMKPiBpbmRleCBmZjI1OThlYjczNzcu
+LjBjNjI0MjZkMTI1NyAxMDA2NDQKPiAtLS0gYS9tbS9obW0uYwo+ICsrKyBiL21tL2htbS5jCj4g
+QEAgLTE0NDUsNTggKzE0NDUsNCBAQCBzdHJ1Y3QgaG1tX2Rldm1lbSAqaG1tX2Rldm1lbV9hZGQo
+Y29uc3Qgc3RydWN0IGhtbV9kZXZtZW1fb3BzICpvcHMsCj4gIAlyZXR1cm4gZGV2bWVtOwo+ICB9
+Cj4gIEVYUE9SVF9TWU1CT0xfR1BMKGhtbV9kZXZtZW1fYWRkKTsKPiAtCj4gLXN0cnVjdCBobW1f
+ZGV2bWVtICpobW1fZGV2bWVtX2FkZF9yZXNvdXJjZShjb25zdCBzdHJ1Y3QgaG1tX2Rldm1lbV9v
+cHMgKm9wcywKPiAtCQkJCQkgICBzdHJ1Y3QgZGV2aWNlICpkZXZpY2UsCj4gLQkJCQkJICAgc3Ry
+dWN0IHJlc291cmNlICpyZXMpCj4gLXsKPiAtCXN0cnVjdCBobW1fZGV2bWVtICpkZXZtZW07Cj4g
+LQl2b2lkICpyZXN1bHQ7Cj4gLQlpbnQgcmV0Owo+IC0KPiAtCWlmIChyZXMtPmRlc2MgIT0gSU9S
+RVNfREVTQ19ERVZJQ0VfUFVCTElDX01FTU9SWSkKPiAtCQlyZXR1cm4gRVJSX1BUUigtRUlOVkFM
+KTsKPiAtCj4gLQlkZXZfcGFnZW1hcF9nZXRfb3BzKCk7Cj4gLQo+IC0JZGV2bWVtID0gZGV2bV9r
+emFsbG9jKGRldmljZSwgc2l6ZW9mKCpkZXZtZW0pLCBHRlBfS0VSTkVMKTsKPiAtCWlmICghZGV2
+bWVtKQo+IC0JCXJldHVybiBFUlJfUFRSKC1FTk9NRU0pOwo+IC0KPiAtCWluaXRfY29tcGxldGlv
+bigmZGV2bWVtLT5jb21wbGV0aW9uKTsKPiAtCWRldm1lbS0+cGZuX2ZpcnN0ID0gLTFVTDsKPiAt
+CWRldm1lbS0+cGZuX2xhc3QgPSAtMVVMOwo+IC0JZGV2bWVtLT5yZXNvdXJjZSA9IHJlczsKPiAt
+CWRldm1lbS0+ZGV2aWNlID0gZGV2aWNlOwo+IC0JZGV2bWVtLT5vcHMgPSBvcHM7Cj4gLQo+IC0J
+cmV0ID0gcGVyY3B1X3JlZl9pbml0KCZkZXZtZW0tPnJlZiwgJmhtbV9kZXZtZW1fcmVmX3JlbGVh
+c2UsCj4gLQkJCSAgICAgIDAsIEdGUF9LRVJORUwpOwo+IC0JaWYgKHJldCkKPiAtCQlyZXR1cm4g
+RVJSX1BUUihyZXQpOwo+IC0KPiAtCXJldCA9IGRldm1fYWRkX2FjdGlvbl9vcl9yZXNldChkZXZp
+Y2UsIGhtbV9kZXZtZW1fcmVmX2V4aXQsCj4gLQkJCSZkZXZtZW0tPnJlZik7Cj4gLQlpZiAocmV0
+KQo+IC0JCXJldHVybiBFUlJfUFRSKHJldCk7Cj4gLQo+IC0JZGV2bWVtLT5wZm5fZmlyc3QgPSBk
+ZXZtZW0tPnJlc291cmNlLT5zdGFydCA+PiBQQUdFX1NISUZUOwo+IC0JZGV2bWVtLT5wZm5fbGFz
+dCA9IGRldm1lbS0+cGZuX2ZpcnN0ICsKPiAtCQkJICAgKHJlc291cmNlX3NpemUoZGV2bWVtLT5y
+ZXNvdXJjZSkgPj4gUEFHRV9TSElGVCk7Cj4gLQlkZXZtZW0tPnBhZ2VfZmF1bHQgPSBobW1fZGV2
+bWVtX2ZhdWx0Owo+IC0KPiAtCWRldm1lbS0+cGFnZW1hcC50eXBlID0gTUVNT1JZX0RFVklDRV9Q
+VUJMSUM7Cj4gLQlkZXZtZW0tPnBhZ2VtYXAucmVzID0gKmRldm1lbS0+cmVzb3VyY2U7Cj4gLQlk
+ZXZtZW0tPnBhZ2VtYXAucGFnZV9mcmVlID0gaG1tX2Rldm1lbV9mcmVlOwo+IC0JZGV2bWVtLT5w
+YWdlbWFwLmFsdG1hcF92YWxpZCA9IGZhbHNlOwo+IC0JZGV2bWVtLT5wYWdlbWFwLnJlZiA9ICZk
+ZXZtZW0tPnJlZjsKPiAtCWRldm1lbS0+cGFnZW1hcC5kYXRhID0gZGV2bWVtOwo+IC0JZGV2bWVt
+LT5wYWdlbWFwLmtpbGwgPSBobW1fZGV2bWVtX3JlZl9raWxsOwo+IC0KPiAtCXJlc3VsdCA9IGRl
+dm1fbWVtcmVtYXBfcGFnZXMoZGV2bWVtLT5kZXZpY2UsICZkZXZtZW0tPnBhZ2VtYXApOwo+IC0J
+aWYgKElTX0VSUihyZXN1bHQpKQo+IC0JCXJldHVybiByZXN1bHQ7Cj4gLQlyZXR1cm4gZGV2bWVt
+Owo+IC19Cj4gLUVYUE9SVF9TWU1CT0xfR1BMKGhtbV9kZXZtZW1fYWRkX3Jlc291cmNlKTsKPiAg
+I2VuZGlmIC8qIENPTkZJR19ERVZJQ0VfUFJJVkFURSB8fCBDT05GSUdfREVWSUNFX1BVQkxJQyAq
+Lwo+IApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
