@@ -1,64 +1,63 @@
 From: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 18/22] mm: mark DEVICE_PUBLIC as broken
-Date: Thu, 13 Jun 2019 18:23:04 -0700
-Message-ID: <d2b77ea1-7b27-e37d-c248-267a57441374@nvidia.com>
+Subject: Re: [PATCH 04/22] mm: don't clear ->mapping in hmm_devmem_free
+Date: Thu, 13 Jun 2019 18:46:29 -0700
+Message-ID: <b0584ac6-72e3-08d3-6b76-1ac5e5b3bb4f@nvidia.com>
 References: <20190613094326.24093-1-hch@lst.de>
- <20190613094326.24093-19-hch@lst.de> <20190613194430.GY22062@mellanox.com>
- <a27251ad-a152-f84d-139d-e1a3bf01c153@nvidia.com>
- <20190613195819.GA22062@mellanox.com>
- <20190614004314.GD783@iweiny-DESK2.sc.intel.com>
+ <20190613094326.24093-5-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190614004314.GD783-J5EW/p2F9lUlb2qzJQmr9q2pdiUAq4bhAL8bYrjMMd8@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+In-Reply-To: <20190613094326.24093-5-hch-jcswGhMUV9g@public.gmane.org>
 Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ira Weiny <ira.weiny-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
+List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
+Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gNi8xMy8xOSA1OjQzIFBNLCBJcmEgV2Vpbnkgd3JvdGU6Cj4gT24gVGh1LCBKdW4gMTMsIDIw
-MTkgYXQgMDc6NTg6MjlQTSArMDAwMCwgSmFzb24gR3VudGhvcnBlIHdyb3RlOgo+PiBPbiBUaHUs
-IEp1biAxMywgMjAxOSBhdCAxMjo1MzowMlBNIC0wNzAwLCBSYWxwaCBDYW1wYmVsbCB3cm90ZToK
-Pj4+Ci4uLgo+PiBIdW0sIHNvIHRoZSBvbmx5IHRoaW5nIHRoaXMgY29uZmlnIGRvZXMgaXMgc2hv
-cnQgY2lyY3VpdCBoZXJlOgo+Pgo+PiBzdGF0aWMgaW5saW5lIGJvb2wgaXNfZGV2aWNlX3B1Ymxp
-Y19wYWdlKGNvbnN0IHN0cnVjdCBwYWdlICpwYWdlKQo+PiB7Cj4+ICAgICAgICAgcmV0dXJuIElT
-X0VOQUJMRUQoQ09ORklHX0RFVl9QQUdFTUFQX09QUykgJiYKPj4gICAgICAgICAgICAgICAgIElT
-X0VOQUJMRUQoQ09ORklHX0RFVklDRV9QVUJMSUMpICYmCj4+ICAgICAgICAgICAgICAgICBpc196
-b25lX2RldmljZV9wYWdlKHBhZ2UpICYmCj4+ICAgICAgICAgICAgICAgICBwYWdlLT5wZ21hcC0+
-dHlwZSA9PSBNRU1PUllfREVWSUNFX1BVQkxJQzsKPj4gfQo+Pgo+PiBXaGljaCBpcyBjYWxsZWQg
-YWxsIG92ZXIgdGhlIHBsYWNlLi4gCj4gCj4gPHNpZ2g+ICB5ZXMgYnV0IHRoZSBlYXJsaWVyIHBh
-dGNoOgo+IAo+IFtQQVRDSCAwMy8yMl0gbW06IHJlbW92ZSBobW1fZGV2bWVtX2FkZF9yZXNvdXJj
-ZQo+IAo+IFJlbW92ZXMgdGhlIG9ubHkgcGxhY2UgdHlwZSBpcyBzZXQgdG8gTUVNT1JZX0RFVklD
-RV9QVUJMSUMuCj4gCj4gU28gSSB0aGluayBpdCBpcyBvay4gIEZyYW5rbHkgSSB3YXMgd29uZGVy
-aW5nIGlmIHdlIHNob3VsZCByZW1vdmUgdGhlIHB1YmxpYwo+IHR5cGUgYWx0b2dldGhlciBidXQg
-Y29uY2VwdHVhbGx5IGl0IHNlZW1zIG9rLiAgQnV0IEkgZG9uJ3Qgc2VlIGFueSB1c2VycyBvZiBp
-dAo+IHNvLi4uICBzaG91bGQgd2UgZ2V0IHJpZCBvZiBpdCBpbiB0aGUgY29kZSByYXRoZXIgdGhh
-biB0dXJuaW5nIHRoZSBjb25maWcgb2ZmPwo+IAo+IElyYQoKVGhhdCBzZWVtcyByZWFzb25hYmxl
-LiBJIHJlY2FsbCB0aGF0IHRoZSBob3BlIHdhcyBmb3IgdGhvc2UgSUJNIFBvd2VyIDkKc3lzdGVt
-cyB0byB1c2UgX1BVQkxJQywgYXMgdGhleSBoYXZlIGhhcmR3YXJlLWJhc2VkIGNvaGVyZW50IGRl
-dmljZSAoR1BVKQptZW1vcnksIGFuZCBzbyB0aGUgbWVtb3J5IHJlYWxseSBpcyB2aXNpYmxlIHRv
-IHRoZSBDUFUuIEFuZCB0aGUgSUJNIHRlYW0Kd2FzIHRoaW5raW5nIG9mIHRha2luZyBhZHZhbnRh
-Z2Ugb2YgaXQuIEJ1dCBJIGhhdmVuJ3Qgc2VlbiBhbnl0aGluZyBvbgp0aGF0IGZyb250IGZvciBh
-IHdoaWxlLgoKU28gbWF5YmUgaXQgd2lsbCBnZXQgcmUtYWRkZWQgYXMgcGFydCBvZiBhIGZ1dHVy
-ZSBwYXRjaHNldCB0byB1c2UgdGhhdApraW5kIG9mIG1lbW9yeSwgYnV0IHllcywgd2Ugc2hvdWxk
-IG5vdCBoZXNpdGF0ZSB0byBjbGVhbiBob3VzZSBhdCB0aGlzCnBvaW50LCBhbmQgZGVsZXRlIHVu
-dXNlZCBjb2RlLgoKCnRoYW5rcywKLS0gCkpvaG4gSHViYmFyZApOVklESUEKCj4gCj4+Cj4+IFNv
-LCB5ZXMsIHdlIHJlYWxseSBkb24ndCB3YW50IGFueSBkaXN0cm8gb3Igc29tZXRoaW5nIHRvIHR1
-cm4gdGhpcyBvbgo+PiB1bnRpbCBpdCBoYXMgYSB1c2UuCj4+Cj4+IFJldmlld2VkLWJ5OiBKYXNv
-biBHdW50aG9ycGUgPGpnZ0BtZWxsYW5veC5jb20+Cj4+Cj4+IEphc29uCj4+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+IExpbnV4LW52ZGltbSBtYWls
-aW5nIGxpc3QKPj4gTGludXgtbnZkaW1tQGxpc3RzLjAxLm9yZwo+PiBodHRwczovL2xpc3RzLjAx
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LW52ZGltbQpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXU=
+On 6/13/19 2:43 AM, Christoph Hellwig wrote:
+> ->mapping isn't even used by HMM users, and the field at the same offset
+> in the zone_device part of the union is declared as pad.  (Which btw is
+> rather confusing, as DAX uses ->pgmap and ->mapping from two different
+> sides of the union, but DAX doesn't use hmm_devmem_free).
+> 
+> Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+> ---
+>  mm/hmm.c | 2 --
+>  1 file changed, 2 deletions(-)
+> 
+> diff --git a/mm/hmm.c b/mm/hmm.c
+> index 0c62426d1257..e1dc98407e7b 100644
+> --- a/mm/hmm.c
+> +++ b/mm/hmm.c
+> @@ -1347,8 +1347,6 @@ static void hmm_devmem_free(struct page *page, void *data)
+>  {
+>  	struct hmm_devmem *devmem = data;
+>  
+> -	page->mapping = NULL;
+> -
+>  	devmem->ops->free(devmem, page);
+>  }
+>  
+> 
+
+Yes, I think that line was unnecessary. I see from git history that it was
+originally being set to NULL from within __put_devmap_managed_page(), and then
+in commit 2fa147bdbf672c53386a8f5f2c7fe358004c3ef8, Dan moved it out of there,
+and stashed in specifically here. But it appears to have been unnecessary from
+the beginning.
+
+Reviewed-by: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> 
+
+thanks,
+-- 
+John Hubbard
+NVIDIA
