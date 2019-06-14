@@ -1,87 +1,36 @@
-From: John Hubbard <jhubbard@nvidia.com>
-Subject: Re: [Nouveau] [PATCH 22/22] mm: don't select MIGRATE_VMA_HELPER from
- HMM_MIRROR
-Date: Thu, 13 Jun 2019 18:53:15 -0700
-Message-ID: <7f6c6837-93cd-3b89-63fb-7a60d906c70c@nvidia.com>
-References: <20190613094326.24093-1-hch@lst.de>
- <20190613094326.24093-23-hch@lst.de>
+From: Sergey Senozhatsky <sergey.senozhatsky.work-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: nouveau: DRM: GPU lockup - switching to software fbcon
+Date: Fri, 14 Jun 2019 11:49:57 +0900
+Message-ID: <20190614024957.GA9645@jagdpanzerIV>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190613094326.24093-23-hch@lst.de>
-Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Christoph Hellwig <hch@lst.de>, Dan Williams <dan.j.williams@intel.com>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-mm@kvack.org, nouveau@lists.freedesktop.org
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 6/13/19 2:43 AM, Christoph Hellwig wrote:
-> The migrate_vma helper is only used by noveau to migrate device private
-> pages around.  Other HMM_MIRROR users like amdgpu or infiniband don't
-> need it.
-> 
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
-> ---
->  drivers/gpu/drm/nouveau/Kconfig | 1 +
->  mm/Kconfig                      | 1 -
->  2 files changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
-> index 66c839d8e9d1..96b9814e6d06 100644
-> --- a/drivers/gpu/drm/nouveau/Kconfig
-> +++ b/drivers/gpu/drm/nouveau/Kconfig
-> @@ -88,6 +88,7 @@ config DRM_NOUVEAU_SVM
->  	depends on DRM_NOUVEAU
->  	depends on HMM_MIRROR
->  	depends on STAGING
-> +	select MIGRATE_VMA_HELPER
->  	default n
->  	help
->  	  Say Y here if you want to enable experimental support for
-> diff --git a/mm/Kconfig b/mm/Kconfig
-> index 73676cb4693f..eca88679b624 100644
-> --- a/mm/Kconfig
-> +++ b/mm/Kconfig
-> @@ -679,7 +679,6 @@ config HMM_MIRROR
->  	bool "HMM mirror CPU page table into a device page table"
->  	depends on MMU
->  	select MMU_NOTIFIER
-> -	select MIGRATE_VMA_HELPER
->  	help
->  	  Select HMM_MIRROR if you want to mirror range of the CPU page table of a
->  	  process into a device page table. Here, mirror means "keep synchronized".
-> 
-
-For those who have out of tree drivers that need migrate_vma(), but are not
-Nouveau, could we pretty please allow a way to select that independently?
-
-It's not a big deal, as I expect the Nouveau option will normally be selected, 
-but it would be nice. Because there is a valid configuration that involves 
-Nouveau not being selected, but our driver still wanting to run.
-
-Maybe we can add something like this on top of what you have?
-
-diff --git a/mm/Kconfig b/mm/Kconfig
-index eca88679b624..330996632513 100644
---- a/mm/Kconfig
-+++ b/mm/Kconfig
-@@ -670,7 +670,10 @@ config ZONE_DEVICE
-          If FS_DAX is enabled, then say Y.
- 
- config MIGRATE_VMA_HELPER
--       bool
-+       bool "migrate_vma() helper routine"
-+       help
-+         Provides a migrate_vma() routine that GPUs and other
-+         device drivers may need.
- 
- config DEV_PAGEMAP_OPS
-        bool
-
-
-
-thanks,
--- 
-John Hubbard
-NVIDIA
+NS4yLjAtcmM0LW5leHQtMjAxOTA2MTMKCmRtZXNnCgogbm91dmVhdSAwMDAwOjAxOjAwLjA6IERS
+TTogR1BVIGxvY2t1cCAtIHN3aXRjaGluZyB0byBzb2Z0d2FyZSBmYmNvbgogbm91dmVhdSAwMDAw
+OjAxOjAwLjA6IGZpZm86IFNDSEVEX0VSUk9SIDBhIFtDVFhTV19USU1FT1VUXQogbm91dmVhdSAw
+MDAwOjAxOjAwLjA6IGZpZm86IHJ1bmxpc3QgMDogc2NoZWR1bGVkIGZvciByZWNvdmVyeQogbm91
+dmVhdSAwMDAwOjAxOjAwLjA6IGZpZm86IGNoYW5uZWwgNToga2lsbGVkCiBub3V2ZWF1IDAwMDA6
+MDE6MDAuMDogZmlmbzogZW5naW5lIDY6IHNjaGVkdWxlZCBmb3IgcmVjb3ZlcnkKIG5vdXZlYXUg
+MDAwMDowMTowMC4wOiBmaWZvOiBlbmdpbmUgMDogc2NoZWR1bGVkIGZvciByZWNvdmVyeQogbm91
+dmVhdSAwMDAwOjAxOjAwLjA6IGZpcmVmb3hbNDc2XTogY2hhbm5lbCA1IGtpbGxlZCEKIG5vdXZl
+YXUgMDAwMDowMTowMC4wOiBmaXJlZm94WzQ3Nl06IGZhaWxlZCB0byBpZGxlIGNoYW5uZWwgNSBb
+ZmlyZWZveFs0NzZdXQoKSXQgbG9ja3VwcyBzZXZlcmFsIHRpbWVzIGEgZGF5LiBUd2ljZSBpbiBq
+dXN0IG9uZSBob3VyIHRvZGF5LgpDYW4gd2UgZml4IHRoaXM/CgoJLXNzCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
