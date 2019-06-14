@@ -1,84 +1,75 @@
-From: Ira Weiny <ira.weiny@intel.com>
-Subject: Re: [PATCH 18/22] mm: mark DEVICE_PUBLIC as broken
-Date: Thu, 13 Jun 2019 17:43:15 -0700
-Message-ID: <20190614004314.GD783@iweiny-DESK2.sc.intel.com>
-References: <20190613094326.24093-1-hch@lst.de>
- <20190613094326.24093-19-hch@lst.de>
- <20190613194430.GY22062@mellanox.com>
- <a27251ad-a152-f84d-139d-e1a3bf01c153@nvidia.com>
- <20190613195819.GA22062@mellanox.com>
+From: John Hubbard <jhubbard@nvidia.com>
+Subject: Re: [PATCH] drm/nouveau/dmem: missing mutex_lock in error path
+Date: Thu, 13 Jun 2019 17:49:00 -0700
+Message-ID: <1fc63655-985a-0d60-523f-00a51648dc38@nvidia.com>
+References: <20190614001121.23950-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <20190613195819.GA22062@mellanox.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Jason Gunthorpe <jgg@mellanox.com>
-Cc: Ralph Campbell <rcampbell@nvidia.com>, "linux-nvdimm@lists.01.org" <linux-nvdimm@lists.01.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "linux-mm@kvack.org" <linux-mm@kvack.org>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, Christoph Hellwig <hch@lst.de>
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190614001121.23950-1-rcampbell@nvidia.com>
+Content-Language: en-US
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ralph Campbell <rcampbell@nvidia.com>, Jerome Glisse <jglisse@redhat.com>, David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>
+Cc: nouveau@lists.freedesktop.org, linux-mm@kvack.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBKdW4gMTMsIDIwMTkgYXQgMDc6NTg6MjlQTSArMDAwMCwgSmFzb24gR3VudGhvcnBl
-IHdyb3RlOgo+IE9uIFRodSwgSnVuIDEzLCAyMDE5IGF0IDEyOjUzOjAyUE0gLTA3MDAsIFJhbHBo
-IENhbXBiZWxsIHdyb3RlOgo+ID4gCj4gPiBPbiA2LzEzLzE5IDEyOjQ0IFBNLCBKYXNvbiBHdW50
-aG9ycGUgd3JvdGU6Cj4gPiA+IE9uIFRodSwgSnVuIDEzLCAyMDE5IGF0IDExOjQzOjIxQU0gKzAy
-MDAsIENocmlzdG9waCBIZWxsd2lnIHdyb3RlOgo+ID4gPiA+IFRoZSBjb2RlIGhhc24ndCBiZWVu
-IHVzZWQgc2luY2UgaXQgd2FzIGFkZGVkIHRvIHRoZSB0cmVlLCBhbmQgZG9lc24ndAo+ID4gPiA+
-IGFwcGVhciB0byBhY3R1YWxseSBiZSB1c2FibGUuICBNYXJrIGl0IGFzIEJST0tFTiB1bnRpbCBl
-aXRoZXIgYSB1c2VyCj4gPiA+ID4gY29tZXMgYWxvbmcgb3Igd2UgZmluYWxseSBnaXZlIHVwIG9u
-IGl0Lgo+ID4gPiA+IAo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IENocmlzdG9waCBIZWxsd2lnIDxo
-Y2hAbHN0LmRlPgo+ID4gPiA+ICAgbW0vS2NvbmZpZyB8IDEgKwo+ID4gPiA+ICAgMSBmaWxlIGNo
-YW5nZWQsIDEgaW5zZXJ0aW9uKCspCj4gPiA+ID4gCj4gPiA+ID4gZGlmZiAtLWdpdCBhL21tL0tj
-b25maWcgYi9tbS9LY29uZmlnCj4gPiA+ID4gaW5kZXggMGQyYmE3ZTFmNDNlLi40MDZmYTQ1ZTll
-Y2MgMTAwNjQ0Cj4gPiA+ID4gKysrIGIvbW0vS2NvbmZpZwo+ID4gPiA+IEBAIC03MjEsNiArNzIx
-LDcgQEAgY29uZmlnIERFVklDRV9QUklWQVRFCj4gPiA+ID4gICBjb25maWcgREVWSUNFX1BVQkxJ
-Qwo+ID4gPiA+ICAgCWJvb2wgIkFkZHJlc3NhYmxlIGRldmljZSBtZW1vcnkgKGxpa2UgR1BVIG1l
-bW9yeSkiCj4gPiA+ID4gICAJZGVwZW5kcyBvbiBBUkNIX0hBU19ITU0KPiA+ID4gPiArCWRlcGVu
-ZHMgb24gQlJPS0VOCj4gPiA+ID4gICAJc2VsZWN0IEhNTQo+ID4gPiA+ICAgCXNlbGVjdCBERVZf
-UEFHRU1BUF9PUFMKPiA+ID4gCj4gPiA+IFRoaXMgc2VlbXMgYSBiaXQgaGFyc2gsIHdlIGRvIGhh
-dmUgYW5vdGhlciBrY29uZmlnIHRoYXQgc2VsZWN0cyB0aGlzCj4gPiA+IG9uZSB0b2RheToKPiA+
-ID4gCj4gPiA+IGNvbmZpZyBEUk1fTk9VVkVBVV9TVk0KPiA+ID4gICAgICAgICAgYm9vbCAiKEVY
-UEVSSU1FTlRBTCkgRW5hYmxlIFNWTSAoU2hhcmVkIFZpcnR1YWwgTWVtb3J5KSBzdXBwb3J0Igo+
-ID4gPiAgICAgICAgICBkZXBlbmRzIG9uIEFSQ0hfSEFTX0hNTQo+ID4gPiAgICAgICAgICBkZXBl
-bmRzIG9uIERSTV9OT1VWRUFVCj4gPiA+ICAgICAgICAgIGRlcGVuZHMgb24gU1RBR0lORwo+ID4g
-PiAgICAgICAgICBzZWxlY3QgSE1NX01JUlJPUgo+ID4gPiAgICAgICAgICBzZWxlY3QgREVWSUNF
-X1BSSVZBVEUKPiA+ID4gICAgICAgICAgZGVmYXVsdCBuCj4gPiA+ICAgICAgICAgIGhlbHAKPiA+
-ID4gICAgICAgICAgICBTYXkgWSBoZXJlIGlmIHlvdSB3YW50IHRvIGVuYWJsZSBleHBlcmltZW50
-YWwgc3VwcG9ydCBmb3IKPiA+ID4gICAgICAgICAgICBTaGFyZWQgVmlydHVhbCBNZW1vcnkgKFNW
-TSkuCj4gPiA+IAo+ID4gPiBNYXliZSBpdCBzaG91bGQgYmUgZGVwZW5kcyBvbiBTVEFHSU5HIG5v
-dCBicm9rZW4/Cj4gPiA+IAo+ID4gPiBvciBtYXliZSBub3V2ZWF1X3N2bSBkb2Vzbid0IGFjdHVh
-bGx5IG5lZWQgREVWSUNFX1BSSVZBVEU/Cj4gPiA+IAo+ID4gPiBKYXNvbgo+ID4gCj4gPiBJIHRo
-aW5rIHlvdSBhcmUgY29uZnVzaW5nIERFVklDRV9QUklWQVRFIGZvciBERVZJQ0VfUFVCTElDLgo+
-ID4gRFJNX05PVVZFQVVfU1ZNIGRvZXMgdXNlIERFVklDRV9QUklWQVRFIGJ1dCBub3QgREVWSUNF
-X1BVQkxJQy4KPiAKPiBJbmRlZWQgeW91IGFyZSBjb3JyZWN0LCBuZXZlciBtaW5kCj4gCj4gSHVt
-LCBzbyB0aGUgb25seSB0aGluZyB0aGlzIGNvbmZpZyBkb2VzIGlzIHNob3J0IGNpcmN1aXQgaGVy
-ZToKPiAKPiBzdGF0aWMgaW5saW5lIGJvb2wgaXNfZGV2aWNlX3B1YmxpY19wYWdlKGNvbnN0IHN0
-cnVjdCBwYWdlICpwYWdlKQo+IHsKPiAgICAgICAgIHJldHVybiBJU19FTkFCTEVEKENPTkZJR19E
-RVZfUEFHRU1BUF9PUFMpICYmCj4gICAgICAgICAgICAgICAgIElTX0VOQUJMRUQoQ09ORklHX0RF
-VklDRV9QVUJMSUMpICYmCj4gICAgICAgICAgICAgICAgIGlzX3pvbmVfZGV2aWNlX3BhZ2UocGFn
-ZSkgJiYKPiAgICAgICAgICAgICAgICAgcGFnZS0+cGdtYXAtPnR5cGUgPT0gTUVNT1JZX0RFVklD
-RV9QVUJMSUM7Cj4gfQo+IAo+IFdoaWNoIGlzIGNhbGxlZCBhbGwgb3ZlciB0aGUgcGxhY2UuLiAK
-CjxzaWdoPiAgeWVzIGJ1dCB0aGUgZWFybGllciBwYXRjaDoKCltQQVRDSCAwMy8yMl0gbW06IHJl
-bW92ZSBobW1fZGV2bWVtX2FkZF9yZXNvdXJjZQoKUmVtb3ZlcyB0aGUgb25seSBwbGFjZSB0eXBl
-IGlzIHNldCB0byBNRU1PUllfREVWSUNFX1BVQkxJQy4KClNvIEkgdGhpbmsgaXQgaXMgb2suICBG
-cmFua2x5IEkgd2FzIHdvbmRlcmluZyBpZiB3ZSBzaG91bGQgcmVtb3ZlIHRoZSBwdWJsaWMKdHlw
-ZSBhbHRvZ2V0aGVyIGJ1dCBjb25jZXB0dWFsbHkgaXQgc2VlbXMgb2suICBCdXQgSSBkb24ndCBz
-ZWUgYW55IHVzZXJzIG9mIGl0CnNvLi4uICBzaG91bGQgd2UgZ2V0IHJpZCBvZiBpdCBpbiB0aGUg
-Y29kZSByYXRoZXIgdGhhbiB0dXJuaW5nIHRoZSBjb25maWcgb2ZmPwoKSXJhCgo+IAo+IFNvLCB5
-ZXMsIHdlIHJlYWxseSBkb24ndCB3YW50IGFueSBkaXN0cm8gb3Igc29tZXRoaW5nIHRvIHR1cm4g
-dGhpcyBvbgo+IHVudGlsIGl0IGhhcyBhIHVzZS4KPiAKPiBSZXZpZXdlZC1ieTogSmFzb24gR3Vu
-dGhvcnBlIDxqZ2dAbWVsbGFub3guY29tPgo+IAo+IEphc29uCj4gX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBMaW51eC1udmRpbW0gbWFpbGluZyBsaXN0
-Cj4gTGludXgtbnZkaW1tQGxpc3RzLjAxLm9yZwo+IGh0dHBzOi8vbGlzdHMuMDEub3JnL21haWxt
-YW4vbGlzdGluZm8vbGludXgtbnZkaW1tCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2RyaS1kZXZlbA==
+On 6/13/19 5:11 PM, Ralph Campbell wrote:
+> In nouveau_dmem_pages_alloc(), the drm->dmem->mutex is unlocked before
+> calling nouveau_dmem_chunk_alloc().
+> Reacquire the lock before continuing to the next page.
+> 
+> Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
+> ---
+> 
+> I found this while testing Jason Gunthorpe's hmm tree but this is
+> independant of those changes. I guess it could go through
+> David Airlie's tree for nouveau or Jason's tree.
+> 
+
+Hi Ralph,
+
+btw, was this the fix for the crash you were seeing? It might be nice to
+mention in the commit description, if you are seeing real symptoms.
+
+
+>  drivers/gpu/drm/nouveau/nouveau_dmem.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+> index 27aa4e72abe9..00f7236af1b9 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+> @@ -379,9 +379,10 @@ nouveau_dmem_pages_alloc(struct nouveau_drm *drm,
+>  			ret = nouveau_dmem_chunk_alloc(drm);
+>  			if (ret) {
+>  				if (c)
+> -					break;
+
+Actually, the pre-existing code is a little concerning. Your change preserves
+the behavior, but it seems questionable to be doing a "return 0" (whether
+via the above break, or your change) when it's in this partially allocated
+state. It's reporting success when it only allocates part of what was requested,
+and it doesn't fill in the pages array either.
+
+
+
+> +					return 0;
+>  				return ret;
+>  			}
+> +			mutex_lock(&drm->dmem->mutex);
+>  			continue;
+>  		}
+>  
+> 
+
+The above comment is about pre-existing potential problems, but your patch itself
+looks correct, so:
+
+Reviewed-by: John Hubbard <jhubbard@nvidia.com> 
+
+
+thanks,
+-- 
+John Hubbard
+NVIDIA
