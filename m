@@ -1,32 +1,26 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: Re: [PATCH 10/22] memremap: add a migrate callback to struct
- dev_pagemap_ops
-Date: Fri, 14 Jun 2019 08:33:17 +0200
-Message-ID: <20190614063317.GJ7246@lst.de>
-References: <20190613094326.24093-1-hch@lst.de>
- <20190613094326.24093-11-hch@lst.de>
- <d6916d71-c17e-74df-58f2-c28ff8044b96@nvidia.com>
+From: Christoph Hellwig <hch@lst.de>
+Subject: Re: [PATCH 13/22] device-dax: use the dev_pagemap internal refcount
+Date: Fri, 14 Jun 2019 08:35:49 +0200
+Message-ID: <20190614063549.GK7246@lst.de>
+References: <20190613094326.24093-1-hch@lst.de> <20190613094326.24093-14-hch@lst.de> <20190614002217.GB783@iweiny-DESK2.sc.intel.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <d6916d71-c17e-74df-58f2-c28ff8044b96-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
-List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
-Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
-Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+In-Reply-To: <20190614002217.GB783@iweiny-DESK2.sc.intel.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ira Weiny <ira.weiny@intel.com>
+Cc: Christoph Hellwig <hch@lst.de>, Dan Williams <dan.j.williams@intel.com>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-mm@kvack.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jun 13, 2019 at 04:42:07PM -0700, Ralph Campbell wrote:
-> This needs to either initialize "page" or be changed to "vmf->page".
-> Otherwise, it is a NULL pointer dereference.
+On Thu, Jun 13, 2019 at 05:22:17PM -0700, Ira Weiny wrote:
+> > -	dev_dax->pgmap.ref = &dev_dax->ref;
+> 
+> I don't think this exactly correct.  pgmap.ref is a pointer to the dev_dax ref
+> structure.  Taking it away will cause devm_memremap_pages() to fail AFAICS.
+> 
+> I think you need to change struct dev_pagemap as well:
 
-Thanks, fixed.
+Take a look at the previous patch, which adds an internal_ref field
+to dev_pagemap that ->ref is set up to point to if not otherwise
+initialized.
