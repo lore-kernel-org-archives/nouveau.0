@@ -1,35 +1,64 @@
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Subject: Re: [PATCH 06/59] drm/prime: Actually remove DRIVER_PRIME everywhere
-Date: Mon, 17 Jun 2019 18:56:06 +0100
-Message-ID: <20190617175606.GE26766@arch-x1c3>
-References: <20190614203615.12639-1-daniel.vetter@ffwll.ch>
-	<20190614203615.12639-7-daniel.vetter@ffwll.ch>
+From: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 07/25] memremap: validate the pagemap type
+ passed to devm_memremap_pages
+Date: Mon, 17 Jun 2019 12:02:09 -0700
+Message-ID: <CAPcyv4hbGfOawfafqQ-L1CMr6OMFGmnDtdgLTXrgQuPxYNHA2w@mail.gmail.com>
+References: <20190617122733.22432-1-hch@lst.de>
+ <20190617122733.22432-8-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <virtualization-bounces@lists.linux-foundation.org>
-Content-Disposition: inline
-In-Reply-To: <20190614203615.12639-7-daniel.vetter@ffwll.ch>
-List-Unsubscribe: <https://lists.linuxfoundation.org/mailman/options/virtualization>,
-	<mailto:virtualization-request@lists.linux-foundation.org?subject=unsubscribe>
-List-Archive: <http://lists.linuxfoundation.org/pipermail/virtualization/>
-List-Post: <mailto:virtualization@lists.linux-foundation.org>
-List-Help: <mailto:virtualization-request@lists.linux-foundation.org?subject=help>
-List-Subscribe: <https://lists.linuxfoundation.org/mailman/listinfo/virtualization>,
-	<mailto:virtualization-request@lists.linux-foundation.org?subject=subscribe>
-Sender: virtualization-bounces@lists.linux-foundation.org
-Errors-To: virtualization-bounces@lists.linux-foundation.org
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: linux-aspeed@lists.ozlabs.org, nouveau@lists.freedesktop.org, DRI Development <dri-devel@lists.freedesktop.org>, virtualization@lists.linux-foundation.org, Daniel Vetter <daniel.vetter@intel.com>, linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org, lima@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org, VMware Graphics <linux-graphics-maintainer@vmware.com>, NXP Linux Team <linux-imx@nxp.com>, spice-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, etnaviv@lists.freedesktop.org, xen-devel@lists.xenproject.org, linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org, freedreno@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190617122733.22432-8-hch-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 2019/06/14, Daniel Vetter wrote:
-> Split out to make the functional changes stick out more.
-> 
-Since this patch flew-by, as standalone one (intentionally or not) I'd
-add, anything vaguely like:
-
-"Core users of DRIVER_PRIME were removed from core with prior patches."
-
-HTH
-Emil
+T24gTW9uLCBKdW4gMTcsIDIwMTkgYXQgNToyNyBBTSBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGxz
+dC5kZT4gd3JvdGU6Cj4KPiBNb3N0IHBnbWFwIHR5cGVzIGFyZSBvbmx5IHN1cHBvcnRlZCB3aGVu
+IGNlcnRhaW4gY29uZmlnIG9wdGlvbnMgYXJlCj4gZW5hYmxlZC4gIENoZWNrIGZvciBhIHR5cGUg
+dGhhdCBpcyB2YWxpZCBmb3IgdGhlIGN1cnJlbnQgY29uZmlndXJhdGlvbgo+IGJlZm9yZSBzZXR0
+aW5nIHVwIHRoZSBwYWdlbWFwLgo+Cj4gU2lnbmVkLW9mZi1ieTogQ2hyaXN0b3BoIEhlbGx3aWcg
+PGhjaEBsc3QuZGU+Cj4gLS0tCj4gIGtlcm5lbC9tZW1yZW1hcC5jIHwgMjcgKysrKysrKysrKysr
+KysrKysrKysrKysrKysrCj4gIDEgZmlsZSBjaGFuZ2VkLCAyNyBpbnNlcnRpb25zKCspCj4KPiBk
+aWZmIC0tZ2l0IGEva2VybmVsL21lbXJlbWFwLmMgYi9rZXJuZWwvbWVtcmVtYXAuYwo+IGluZGV4
+IDZlMTk3MDcxOWRjMi4uNmEyZGQzMWE2MjUwIDEwMDY0NAo+IC0tLSBhL2tlcm5lbC9tZW1yZW1h
+cC5jCj4gKysrIGIva2VybmVsL21lbXJlbWFwLmMKPiBAQCAtMTU3LDYgKzE1NywzMyBAQCB2b2lk
+ICpkZXZtX21lbXJlbWFwX3BhZ2VzKHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IGRldl9wYWdl
+bWFwICpwZ21hcCkKPiAgICAgICAgIHBncHJvdF90IHBncHJvdCA9IFBBR0VfS0VSTkVMOwo+ICAg
+ICAgICAgaW50IGVycm9yLCBuaWQsIGlzX3JhbTsKPgo+ICsgICAgICAgc3dpdGNoIChwZ21hcC0+
+dHlwZSkgewo+ICsgICAgICAgY2FzZSBNRU1PUllfREVWSUNFX1BSSVZBVEU6Cj4gKyAgICAgICAg
+ICAgICAgIGlmICghSVNfRU5BQkxFRChDT05GSUdfREVWSUNFX1BSSVZBVEUpKSB7Cj4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgV0FSTigxLCAiRGV2aWNlIHByaXZhdGUgbWVtb3J5IG5vdCBzdXBw
+b3J0ZWRcbiIpOwo+ICsgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBFUlJfUFRSKC1FSU5W
+QUwpOwo+ICsgICAgICAgICAgICAgICB9Cj4gKyAgICAgICAgICAgICAgIGJyZWFrOwo+ICsgICAg
+ICAgY2FzZSBNRU1PUllfREVWSUNFX1BVQkxJQzoKPiArICAgICAgICAgICAgICAgaWYgKCFJU19F
+TkFCTEVEKENPTkZJR19ERVZJQ0VfUFVCTElDKSkgewo+ICsgICAgICAgICAgICAgICAgICAgICAg
+IFdBUk4oMSwgIkRldmljZSBwdWJsaWMgbWVtb3J5IG5vdCBzdXBwb3J0ZWRcbiIpOwo+ICsgICAg
+ICAgICAgICAgICAgICAgICAgIHJldHVybiBFUlJfUFRSKC1FSU5WQUwpOwo+ICsgICAgICAgICAg
+ICAgICB9Cj4gKyAgICAgICAgICAgICAgIGJyZWFrOwo+ICsgICAgICAgY2FzZSBNRU1PUllfREVW
+SUNFX0ZTX0RBWDoKPiArICAgICAgICAgICAgICAgaWYgKCFJU19FTkFCTEVEKENPTkZJR19aT05F
+X0RFVklDRSkgfHwKPiArICAgICAgICAgICAgICAgICAgIElTX0VOQUJMRUQoQ09ORklHX0ZTX0RB
+WF9MSU1JVEVEKSkgewo+ICsgICAgICAgICAgICAgICAgICAgICAgIFdBUk4oMSwgIkZpbGUgc3lz
+dGVtIERBWCBub3Qgc3VwcG9ydGVkXG4iKTsKPiArICAgICAgICAgICAgICAgICAgICAgICByZXR1
+cm4gRVJSX1BUUigtRUlOVkFMKTsKPiArICAgICAgICAgICAgICAgfQo+ICsgICAgICAgICAgICAg
+ICBicmVhazsKPiArICAgICAgIGNhc2UgTUVNT1JZX0RFVklDRV9QQ0lfUDJQRE1BOgoKTmVlZCBh
+IGxlYWQgaW4gcGF0Y2ggdGhhdCBpbnRyb2R1Y2VzIE1FTU9SWV9ERVZJQ0VfREVWREFYLCBvdGhl
+cndpc2U6CgogSW52YWxpZCBwZ21hcCB0eXBlIDAKIFdBUk5JTkc6IENQVTogNiBQSUQ6IDEzMTYg
+YXQga2VybmVsL21lbXJlbWFwLmM6MTgzCmRldm1fbWVtcmVtYXBfcGFnZXMrMHgxZDgvMHg3MDAK
+IFsuLl0KIFJJUDogMDAxMDpkZXZtX21lbXJlbWFwX3BhZ2VzKzB4MWQ4LzB4NzAwCiBbLi5dCiBD
+YWxsIFRyYWNlOgogIGRldl9kYXhfcHJvYmUrMHhjNy8weDFlMCBbZGV2aWNlX2RheF0KICByZWFs
+bHlfcHJvYmUrMHhlZi8weDM5MAogIGRyaXZlcl9wcm9iZV9kZXZpY2UrMHhiNC8weDEwMAogIGRl
+dmljZV9kcml2ZXJfYXR0YWNoKzB4NGYvMHg2MApfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXU=
