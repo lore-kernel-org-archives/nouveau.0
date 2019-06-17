@@ -1,37 +1,75 @@
-From: Christoph Hellwig <hch@lst.de>
-Subject: dev_pagemap related cleanups v2
-Date: Mon, 17 Jun 2019 14:27:08 +0200
-Message-ID: <20190617122733.22432-1-hch@lst.de>
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Subject: [PATCH 03/25] mm: remove hmm_devmem_add_resource
+Date: Mon, 17 Jun 2019 14:27:11 +0200
+Message-ID: <20190617122733.22432-4-hch@lst.de>
+References: <20190617122733.22432-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Dan Williams <dan.j.williams@intel.com>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190617122733.22432-1-hch-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi Dan, Jérôme and Jason,
-
-below is a series that cleans up the dev_pagemap interface so that
-it is more easily usable, which removes the need to wrap it in hmm
-and thus allowing to kill a lot of code
-
-Note: this series is on top of the rdma/hmm branch + the dev_pagemap
-releas fix series from Dan that went into 5.2-rc5.
-
-Git tree:
-
-    git://git.infradead.org/users/hch/misc.git hmm-devmem-cleanup.2
-
-Gitweb:
-
-    http://git.infradead.org/users/hch/misc.git/shortlog/refs/heads/hmm-devmem-cleanup.2
-
-Changes since v1:
- - rebase
- - also switch p2pdma to the internal refcount
- - add type checking for pgmap->type
- - rename the migrate method to migrate_to_ram
- - cleanup the altmap_valid flag
- - various tidbits from the reviews
+VGhpcyBmdW5jdGlvbiBoYXMgbmV2ZXIgYmVlbiB1c2VkIHNpbmNlIGl0IHdhcyBmaXJzdCBhZGRl
+ZCB0byB0aGUga2VybmVsCm1vcmUgdGhhbiBhIHllYXIgYW5kIGEgaGFsZiBhZ28sIGFuZCBpZiB3
+ZSBldmVyIGdyb3cgYSBjb25zdW1lciBvZiB0aGUKTUVNT1JZX0RFVklDRV9QVUJMSUMgaW5mcmFz
+dHJ1Y3R1cmUgaXQgY2FuIGVhc2lseSB1c2UgZGV2bV9tZW1yZW1hcF9wYWdlcwpkaXJlY3RseS4K
+ClNpZ25lZC1vZmYtYnk6IENocmlzdG9waCBIZWxsd2lnIDxoY2hAbHN0LmRlPgpSZXZpZXdlZC1i
+eTogSmFzb24gR3VudGhvcnBlIDxqZ2dAbWVsbGFub3guY29tPgpSZXZpZXdlZC1ieTogSm9obiBI
+dWJiYXJkIDxqaHViYmFyZEBudmlkaWEuY29tPgotLS0KIGluY2x1ZGUvbGludXgvaG1tLmggfCAg
+MyAtLS0KIG1tL2htbS5jICAgICAgICAgICAgfCA1MCAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0KIDIgZmlsZXMgY2hhbmdlZCwgNTMgZGVsZXRpb25zKC0pCgpk
+aWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9obW0uaCBiL2luY2x1ZGUvbGludXgvaG1tLmgKaW5k
+ZXggYzkyZjM1M2Q3MDFhLi4zMWUxYzUzNDczMzEgMTAwNjQ0Ci0tLSBhL2luY2x1ZGUvbGludXgv
+aG1tLmgKKysrIGIvaW5jbHVkZS9saW51eC9obW0uaApAQCAtNzI0LDkgKzcyNCw2IEBAIHN0cnVj
+dCBobW1fZGV2bWVtIHsKIHN0cnVjdCBobW1fZGV2bWVtICpobW1fZGV2bWVtX2FkZChjb25zdCBz
+dHJ1Y3QgaG1tX2Rldm1lbV9vcHMgKm9wcywKIAkJCQkgIHN0cnVjdCBkZXZpY2UgKmRldmljZSwK
+IAkJCQkgIHVuc2lnbmVkIGxvbmcgc2l6ZSk7Ci1zdHJ1Y3QgaG1tX2Rldm1lbSAqaG1tX2Rldm1l
+bV9hZGRfcmVzb3VyY2UoY29uc3Qgc3RydWN0IGhtbV9kZXZtZW1fb3BzICpvcHMsCi0JCQkJCSAg
+IHN0cnVjdCBkZXZpY2UgKmRldmljZSwKLQkJCQkJICAgc3RydWN0IHJlc291cmNlICpyZXMpOwog
+CiAvKgogICogaG1tX2Rldm1lbV9wYWdlX3NldF9kcnZkYXRhIC0gc2V0IHBlci1wYWdlIGRyaXZl
+ciBkYXRhIGZpZWxkCmRpZmYgLS1naXQgYS9tbS9obW0uYyBiL21tL2htbS5jCmluZGV4IGYzMzUw
+ZmM1NjdhYi4uZGMyNTFjNTE4MDNhIDEwMDY0NAotLS0gYS9tbS9obW0uYworKysgYi9tbS9obW0u
+YwpAQCAtMTQ3NSw1NCArMTQ3NSw0IEBAIHN0cnVjdCBobW1fZGV2bWVtICpobW1fZGV2bWVtX2Fk
+ZChjb25zdCBzdHJ1Y3QgaG1tX2Rldm1lbV9vcHMgKm9wcywKIAlyZXR1cm4gZGV2bWVtOwogfQog
+RVhQT1JUX1NZTUJPTF9HUEwoaG1tX2Rldm1lbV9hZGQpOwotCi1zdHJ1Y3QgaG1tX2Rldm1lbSAq
+aG1tX2Rldm1lbV9hZGRfcmVzb3VyY2UoY29uc3Qgc3RydWN0IGhtbV9kZXZtZW1fb3BzICpvcHMs
+Ci0JCQkJCSAgIHN0cnVjdCBkZXZpY2UgKmRldmljZSwKLQkJCQkJICAgc3RydWN0IHJlc291cmNl
+ICpyZXMpCi17Ci0Jc3RydWN0IGhtbV9kZXZtZW0gKmRldm1lbTsKLQl2b2lkICpyZXN1bHQ7Ci0J
+aW50IHJldDsKLQotCWlmIChyZXMtPmRlc2MgIT0gSU9SRVNfREVTQ19ERVZJQ0VfUFVCTElDX01F
+TU9SWSkKLQkJcmV0dXJuIEVSUl9QVFIoLUVJTlZBTCk7Ci0KLQlkZXZfcGFnZW1hcF9nZXRfb3Bz
+KCk7Ci0KLQlkZXZtZW0gPSBkZXZtX2t6YWxsb2MoZGV2aWNlLCBzaXplb2YoKmRldm1lbSksIEdG
+UF9LRVJORUwpOwotCWlmICghZGV2bWVtKQotCQlyZXR1cm4gRVJSX1BUUigtRU5PTUVNKTsKLQot
+CWluaXRfY29tcGxldGlvbigmZGV2bWVtLT5jb21wbGV0aW9uKTsKLQlkZXZtZW0tPnBmbl9maXJz
+dCA9IC0xVUw7Ci0JZGV2bWVtLT5wZm5fbGFzdCA9IC0xVUw7Ci0JZGV2bWVtLT5yZXNvdXJjZSA9
+IHJlczsKLQlkZXZtZW0tPmRldmljZSA9IGRldmljZTsKLQlkZXZtZW0tPm9wcyA9IG9wczsKLQot
+CXJldCA9IHBlcmNwdV9yZWZfaW5pdCgmZGV2bWVtLT5yZWYsICZobW1fZGV2bWVtX3JlZl9yZWxl
+YXNlLAotCQkJICAgICAgMCwgR0ZQX0tFUk5FTCk7Ci0JaWYgKHJldCkKLQkJcmV0dXJuIEVSUl9Q
+VFIocmV0KTsKLQotCWRldm1lbS0+cGZuX2ZpcnN0ID0gZGV2bWVtLT5yZXNvdXJjZS0+c3RhcnQg
+Pj4gUEFHRV9TSElGVDsKLQlkZXZtZW0tPnBmbl9sYXN0ID0gZGV2bWVtLT5wZm5fZmlyc3QgKwot
+CQkJICAgKHJlc291cmNlX3NpemUoZGV2bWVtLT5yZXNvdXJjZSkgPj4gUEFHRV9TSElGVCk7Ci0J
+ZGV2bWVtLT5wYWdlX2ZhdWx0ID0gaG1tX2Rldm1lbV9mYXVsdDsKLQotCWRldm1lbS0+cGFnZW1h
+cC50eXBlID0gTUVNT1JZX0RFVklDRV9QVUJMSUM7Ci0JZGV2bWVtLT5wYWdlbWFwLnJlcyA9ICpk
+ZXZtZW0tPnJlc291cmNlOwotCWRldm1lbS0+cGFnZW1hcC5wYWdlX2ZyZWUgPSBobW1fZGV2bWVt
+X2ZyZWU7Ci0JZGV2bWVtLT5wYWdlbWFwLmFsdG1hcF92YWxpZCA9IGZhbHNlOwotCWRldm1lbS0+
+cGFnZW1hcC5yZWYgPSAmZGV2bWVtLT5yZWY7Ci0JZGV2bWVtLT5wYWdlbWFwLmRhdGEgPSBkZXZt
+ZW07Ci0JZGV2bWVtLT5wYWdlbWFwLmtpbGwgPSBobW1fZGV2bWVtX3JlZl9raWxsOwotCWRldm1l
+bS0+cGFnZW1hcC5jbGVhbnVwID0gaG1tX2Rldm1lbV9yZWZfZXhpdDsKLQotCXJlc3VsdCA9IGRl
+dm1fbWVtcmVtYXBfcGFnZXMoZGV2bWVtLT5kZXZpY2UsICZkZXZtZW0tPnBhZ2VtYXApOwotCWlm
+IChJU19FUlIocmVzdWx0KSkKLQkJcmV0dXJuIHJlc3VsdDsKLQlyZXR1cm4gZGV2bWVtOwotfQot
+RVhQT1JUX1NZTUJPTF9HUEwoaG1tX2Rldm1lbV9hZGRfcmVzb3VyY2UpOwogI2VuZGlmIC8qIENP
+TkZJR19ERVZJQ0VfUFJJVkFURSB8fCBDT05GSUdfREVWSUNFX1BVQkxJQyAqLwotLSAKMi4yMC4x
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
+IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
