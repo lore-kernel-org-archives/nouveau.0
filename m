@@ -1,53 +1,34 @@
-From: Jerome Glisse <jglisse@redhat.com>
-Subject: Re: [PATCH] drm/nouveau/svm: Convert to use hmm_range_fault()
-Date: Mon, 17 Jun 2019 15:54:25 -0400
-Message-ID: <20190617195425.GA4085@redhat.com>
-References: <1558378918-25279-1-git-send-email-jrdr.linux@gmail.com>
- <CAFqt6zYmL2P9w0Z4yfPtB=ftiy-H6-_beYsXJq-nD9T5OAw6Dg@mail.gmail.com>
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Subject: Re: [PATCH 07/25] memremap: validate the pagemap type
+ passed to devm_memremap_pages
+Date: Mon, 17 Jun 2019 21:54:04 +0200
+Message-ID: <20190617195404.GA20275@lst.de>
+References: <20190617122733.22432-1-hch@lst.de>
+ <20190617122733.22432-8-hch@lst.de>
+ <CAPcyv4hbGfOawfafqQ-L1CMr6OMFGmnDtdgLTXrgQuPxYNHA2w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <CAFqt6zYmL2P9w0Z4yfPtB=ftiy-H6-_beYsXJq-nD9T5OAw6Dg@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Souptick Joarder <jrdr.linux@gmail.com>
-Cc: bskeggs@redhat.com, airlied@linux.ie, Daniel Vetter <daniel@ffwll.ch>, jasojgg@ziepe.ca, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+In-Reply-To: <CAPcyv4hbGfOawfafqQ-L1CMr6OMFGmnDtdgLTXrgQuPxYNHA2w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Jun 08, 2019 at 12:14:50AM +0530, Souptick Joarder wrote:
-> Hi Jason,
-> 
-> On Tue, May 21, 2019 at 12:27 AM Souptick Joarder <jrdr.linux@gmail.com> wrote:
-> >
-> > Convert to use hmm_range_fault().
-> >
-> > Signed-off-by: Souptick Joarder <jrdr.linux@gmail.com>
-> 
-> Would you like to take it through your new hmm tree or do I
-> need to resend it ?
-
-This patch is wrong as the API is different between the two see what
-is in hmm.h to see the differences between hmm_vma_fault() hmm_range_fault()
-a simple rename break things.
-
-> 
-> > ---
-> >  drivers/gpu/drm/nouveau/nouveau_svm.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-> > index 93ed43c..8d56bd6 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-> > @@ -649,7 +649,7 @@ struct nouveau_svmm {
-> >                 range.values = nouveau_svm_pfn_values;
-> >                 range.pfn_shift = NVIF_VMM_PFNMAP_V0_ADDR_SHIFT;
-> >  again:
-> > -               ret = hmm_vma_fault(&range, true);
-> > +               ret = hmm_range_fault(&range, true);
-> >                 if (ret == 0) {
-> >                         mutex_lock(&svmm->mutex);
-> >                         if (!hmm_vma_range_done(&range)) {
-> > --
-> > 1.9.1
-> >
+T24gTW9uLCBKdW4gMTcsIDIwMTkgYXQgMTI6MDI6MDlQTSAtMDcwMCwgRGFuIFdpbGxpYW1zIHdy
+b3RlOgo+IE5lZWQgYSBsZWFkIGluIHBhdGNoIHRoYXQgaW50cm9kdWNlcyBNRU1PUllfREVWSUNF
+X0RFVkRBWCwgb3RoZXJ3aXNlOgoKT3IgbWF5YmUgYSBNRU1PUllfREVWSUNFX0RFRkFVTFQgPSAw
+IHNoYXJlZCBieSBmc2RheCBhbmQgcDJwZG1hPwpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXU=
