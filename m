@@ -1,41 +1,60 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: Re: [PATCH 08/25] memremap: move dev_pagemap callbacks
- into a separate structure
-Date: Mon, 17 Jun 2019 21:55:26 +0200
-Message-ID: <20190617195526.GB20275@lst.de>
+From: Logan Gunthorpe <logang@deltatee.com>
+Subject: Re: [PATCH 08/25] memremap: move dev_pagemap callbacks into a
+ separate structure
+Date: Mon, 17 Jun 2019 14:08:14 -0600
+Message-ID: <d68c5e4c-b2de-95c3-0b75-1f2391b25a34@deltatee.com>
 References: <20190617122733.22432-1-hch@lst.de>
  <20190617122733.22432-9-hch@lst.de>
- <CAPcyv4i_0wUJHDqY91R=x5M2o_De+_QKZxPyob5=E9CCv8rM7A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CAPcyv4i_0wUJHDqY91R=x5M2o_De+_QKZxPyob5=E9CCv8rM7A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Logan Gunthorpe <logang-OTvnGxWRz7hWk0Htik3J/w@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190617122733.22432-9-hch@lst.de>
+Content-Language: en-CA
+Sender: linux-kernel-owner@vger.kernel.org
+To: Christoph Hellwig <hch@lst.de>, Dan Williams <dan.j.williams@intel.com>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBKdW4gMTcsIDIwMTkgYXQgMTA6NTE6MzVBTSAtMDcwMCwgRGFuIFdpbGxpYW1zIHdy
-b3RlOgo+ID4gLSAgICAgICBzdHJ1Y3QgZGV2X3BhZ2VtYXAgKnBnbWFwID0gX3BnbWFwOwo+IAo+
-IFdob29wcywgbmVlZGVkIHRvIGtlZXAgdGhpcyBsaW5lIHRvIGF2b2lkOgo+IAo+IHRvb2xzL3Rl
-c3RpbmcvbnZkaW1tL3Rlc3QvaW9tYXAuYzoxMDk6MTE6IGVycm9yOiDigJhwZ21hcOKAmSB1bmRl
-Y2xhcmVkCj4gKGZpcnN0IHVzZSBpbiB0aGlzIGZ1bmN0aW9uKTsgZGlkIHlvdSBtZWFuIOKAmF9w
-Z21hcOKAmT8KClNvIEkgcmVhbGx5IHNob3VsZG4ndCBiZSB0cmlwcGluZyBvdmVyIHRoaXMgYW55
-bW9yZSwgYnV0IGNhbiB3ZSBzb21laG93CnRoaXMgbWVzcz8KCiAtIGF0IGxlYXN0IGFkZCBpdCB0
-byB0aGUgbm9ybWFsIGJ1aWxkIHN5c3RlbSBhbmQga2NvbmZpZyBkZXBzIGluc3RlYWQKICAgb2Yg
-c3Rhc2hpbmcgaXQgYXdheSBzbyB0aGF0IHRoaW5ncyBsaWtlIGJ1aWxkYm90IGNhbiBidWlsZCBp
-dD8KIC0gYXQgbGVhc3QgYWxsb3cgYnVpbGRpbmcgaXQgKHVuZGVyIENPTVBJTEVfVEVTVCkgaWYg
-bmVlZGVkIGV2ZW4gd2hlbgogICBwbWVtLmtvIGFuZCBmcmllbmRzIGFyZSBidWlsdCBpbiB0aGUg
-a2VybmVsPwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+
+
+On 2019-06-17 6:27 a.m., Christoph Hellwig wrote:
+> diff --git a/drivers/pci/p2pdma.c b/drivers/pci/p2pdma.c
+> index a98126ad9c3a..e083567d26ef 100644
+> --- a/drivers/pci/p2pdma.c
+> +++ b/drivers/pci/p2pdma.c
+> @@ -100,7 +100,7 @@ static void pci_p2pdma_percpu_cleanup(struct percpu_ref *ref)
+>  	struct p2pdma_pagemap *p2p_pgmap = to_p2p_pgmap(ref);
+>  
+>  	wait_for_completion(&p2p_pgmap->ref_done);
+> -	percpu_ref_exit(&p2p_pgmap->ref);
+> +	percpu_ref_exit(ref);
+>  }
+>  
+>  static void pci_p2pdma_release(void *data)
+> @@ -152,6 +152,11 @@ static int pci_p2pdma_setup(struct pci_dev *pdev)
+>  	return error;
+>  }
+>  
+> +static const struct dev_pagemap_ops pci_p2pdma_pagemap_ops = {
+> +	.kill		= pci_p2pdma_percpu_kill,
+> +	.cleanup	= pci_p2pdma_percpu_cleanup,
+> +};
+> +
+>  /**
+>   * pci_p2pdma_add_resource - add memory for use as p2p memory
+>   * @pdev: the device to add the memory to
+> @@ -207,8 +212,6 @@ int pci_p2pdma_add_resource(struct pci_dev *pdev, int bar, size_t size,
+>  	pgmap->type = MEMORY_DEVICE_PCI_P2PDMA;
+>  	pgmap->pci_p2pdma_bus_offset = pci_bus_address(pdev, bar) -
+>  		pci_resource_start(pdev, bar);
+> -	pgmap->kill = pci_p2pdma_percpu_kill;
+> -	pgmap->cleanup = pci_p2pdma_percpu_cleanup;
+
+I just noticed this is missing a line to set pgmap->ops to
+pci_p2pdma_pagemap_ops. I must have gotten confused by the other users
+in my original review. Though I'm not sure how this compiles as the new
+struct is static and unused. However, it is rendered moot in Patch 16
+when this is all removed.
+
+Logan
