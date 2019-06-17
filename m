@@ -1,35 +1,53 @@
-From: Christoph Hellwig <hch@lst.de>
-Subject: Re: [PATCH 06/25] mm: factor out a devm_request_free_mem_region
- helper
-Date: Mon, 17 Jun 2019 19:40:18 +0200
-Message-ID: <20190617174018.GA18185@lst.de>
-References: <20190617122733.22432-1-hch@lst.de> <20190617122733.22432-7-hch@lst.de> <CAPcyv4hoRR6gzTSkWnwMiUtX6jCKz2NMOhCUfXTji8f2H1v+rg@mail.gmail.com>
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Subject: Re: [PATCH 06/25] mm: factor out a
+ devm_request_free_mem_region helper
+Date: Mon, 17 Jun 2019 19:42:51 +0200
+Message-ID: <20190617174251.GA18249@lst.de>
+References: <20190617122733.22432-1-hch@lst.de>
+ <20190617122733.22432-7-hch@lst.de>
+ <CAPcyv4hoRR6gzTSkWnwMiUtX6jCKz2NMOhCUfXTji8f2H1v+rg@mail.gmail.com>
+ <20190617174018.GA18185@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <CAPcyv4hoRR6gzTSkWnwMiUtX6jCKz2NMOhCUfXTji8f2H1v+rg@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Dan Williams <dan.j.williams@intel.com>
-Cc: Christoph Hellwig <hch@lst.de>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Linux MM <linux-mm@kvack.org>, nouveau@lists.freedesktop.org, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, linux-nvdimm <linux-nvdimm@lists.01.org>, linux-pci@vger.kernel.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, John Hubbard <jhubbard@nvidia.com>
+In-Reply-To: <20190617174018.GA18185-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jun 17, 2019 at 10:37:12AM -0700, Dan Williams wrote:
-> > +struct resource *devm_request_free_mem_region(struct device *dev,
-> > +               struct resource *base, unsigned long size);
-> 
-> This appears to need a 'static inline' helper stub in the
-> CONFIG_DEVICE_PRIVATE=n case, otherwise this compile error triggers:
-> 
-> ld: mm/hmm.o: in function `hmm_devmem_add':
-> /home/dwillia2/git/linux/mm/hmm.c:1427: undefined reference to
-> `devm_request_free_mem_region'
-
-*sigh* - hmm_devmem_add already only works for device private memory,
-so it shouldn't be built if that option is not enabled, but in the
-current code it is.  And a few patches later in the series we just
-kill it off entirely, and the only real caller of this function
-already depends on CONFIG_DEVICE_PRIVATE.  So I'm tempted to just
-ignore the strict bisectability requirement here instead of making
-things messy by either adding the proper ifdefs in hmm.c or providing
-a stub we don't really need.
+T24gTW9uLCBKdW4gMTcsIDIwMTkgYXQgMDc6NDA6MThQTSArMDIwMCwgQ2hyaXN0b3BoIEhlbGx3
+aWcgd3JvdGU6Cj4gT24gTW9uLCBKdW4gMTcsIDIwMTkgYXQgMTA6Mzc6MTJBTSAtMDcwMCwgRGFu
+IFdpbGxpYW1zIHdyb3RlOgo+ID4gPiArc3RydWN0IHJlc291cmNlICpkZXZtX3JlcXVlc3RfZnJl
+ZV9tZW1fcmVnaW9uKHN0cnVjdCBkZXZpY2UgKmRldiwKPiA+ID4gKyAgICAgICAgICAgICAgIHN0
+cnVjdCByZXNvdXJjZSAqYmFzZSwgdW5zaWduZWQgbG9uZyBzaXplKTsKPiA+IAo+ID4gVGhpcyBh
+cHBlYXJzIHRvIG5lZWQgYSAnc3RhdGljIGlubGluZScgaGVscGVyIHN0dWIgaW4gdGhlCj4gPiBD
+T05GSUdfREVWSUNFX1BSSVZBVEU9biBjYXNlLCBvdGhlcndpc2UgdGhpcyBjb21waWxlIGVycm9y
+IHRyaWdnZXJzOgo+ID4gCj4gPiBsZDogbW0vaG1tLm86IGluIGZ1bmN0aW9uIGBobW1fZGV2bWVt
+X2FkZCc6Cj4gPiAvaG9tZS9kd2lsbGlhMi9naXQvbGludXgvbW0vaG1tLmM6MTQyNzogdW5kZWZp
+bmVkIHJlZmVyZW5jZSB0bwo+ID4gYGRldm1fcmVxdWVzdF9mcmVlX21lbV9yZWdpb24nCj4gCj4g
+KnNpZ2gqIC0gaG1tX2Rldm1lbV9hZGQgYWxyZWFkeSBvbmx5IHdvcmtzIGZvciBkZXZpY2UgcHJp
+dmF0ZSBtZW1vcnksCj4gc28gaXQgc2hvdWxkbid0IGJlIGJ1aWx0IGlmIHRoYXQgb3B0aW9uIGlz
+IG5vdCBlbmFibGVkLCBidXQgaW4gdGhlCj4gY3VycmVudCBjb2RlIGl0IGlzLiAgQW5kIGEgZmV3
+IHBhdGNoZXMgbGF0ZXIgaW4gdGhlIHNlcmllcyB3ZSBqdXN0Cj4ga2lsbCBpdCBvZmYgZW50aXJl
+bHksIGFuZCB0aGUgb25seSByZWFsIGNhbGxlciBvZiB0aGlzIGZ1bmN0aW9uCj4gYWxyZWFkeSBk
+ZXBlbmRzIG9uIENPTkZJR19ERVZJQ0VfUFJJVkFURS4gIFNvIEknbSB0ZW1wdGVkIHRvIGp1c3QK
+PiBpZ25vcmUgdGhlIHN0cmljdCBiaXNlY3RhYmlsaXR5IHJlcXVpcmVtZW50IGhlcmUgaW5zdGVh
+ZCBvZiBtYWtpbmcKPiB0aGluZ3MgbWVzc3kgYnkgZWl0aGVyIGFkZGluZyB0aGUgcHJvcGVyIGlm
+ZGVmcyBpbiBobW0uYyBvciBwcm92aWRpbmcKPiBhIHN0dWIgd2UgZG9uJ3QgcmVhbGx5IG5lZWQu
+CgpBY3R1YWxseSwgSSBjb3VsZCBqdXN0IG1vdmUgdGhlIHBhdGNoIHRvIG1hcmsgQ09ORklHX0RF
+VklDRV9QVUJMSUMKYnJva2VuIGVhcmxpZXIsIHdoaWNoIHdvdWxkIGZvcmNlIGhtbV9kZXZtZW1f
+YWRkIHRvIG9ubHkgYmUgYnVpbHQKd2hlbiBDT05GSUdfREVWSUNFX1BSSVZBVEUgaXN0IHNldC4K
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
