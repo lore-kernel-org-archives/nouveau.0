@@ -1,212 +1,51 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 18/25] nouveau: use devm_memremap_pages directly
-Date: Mon, 17 Jun 2019 14:27:26 +0200
-Message-ID: <20190617122733.22432-19-hch@lst.de>
+Subject: [PATCH 19/25] mm: remove hmm_vma_alloc_locked_page
+Date: Mon, 17 Jun 2019 14:27:27 +0200
+Message-ID: <20190617122733.22432-20-hch@lst.de>
 References: <20190617122733.22432-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <20190617122733.22432-1-hch-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
-List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
-Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
-Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Just use devm_memremap_pages instead of hmm_devmem_add pages to allow
-killing that wrapper which doesn't provide a whole lot of benefits.
-
-Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_dmem.c | 82 ++++++++++++--------------
- 1 file changed, 38 insertions(+), 44 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-index a50f6fd2fe24..0fb7a44b8bc4 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -72,7 +72,8 @@ struct nouveau_dmem_migrate {
- };
- 
- struct nouveau_dmem {
--	struct hmm_devmem *devmem;
-+	struct nouveau_drm *drm;
-+	struct dev_pagemap pagemap;
- 	struct nouveau_dmem_migrate migrate;
- 	struct list_head chunk_free;
- 	struct list_head chunk_full;
-@@ -80,6 +81,11 @@ struct nouveau_dmem {
- 	struct mutex mutex;
- };
- 
-+static inline struct nouveau_dmem *page_to_dmem(struct page *page)
-+{
-+	return container_of(page->pgmap, struct nouveau_dmem, pagemap);
-+}
-+
- struct nouveau_dmem_fault {
- 	struct nouveau_drm *drm;
- 	struct nouveau_fence *fence;
-@@ -96,8 +102,7 @@ struct nouveau_migrate {
- 	unsigned long dma_nr;
- };
- 
--static void
--nouveau_dmem_free(struct hmm_devmem *devmem, struct page *page)
-+static void nouveau_dmem_page_free(struct page *page)
- {
- 	struct nouveau_dmem_chunk *chunk;
- 	unsigned long idx;
-@@ -260,29 +265,21 @@ static const struct migrate_vma_ops nouveau_dmem_fault_migrate_ops = {
- 	.finalize_and_map	= nouveau_dmem_fault_finalize_and_map,
- };
- 
--static vm_fault_t
--nouveau_dmem_fault(struct hmm_devmem *devmem,
--		   struct vm_area_struct *vma,
--		   unsigned long addr,
--		   const struct page *page,
--		   unsigned int flags,
--		   pmd_t *pmdp)
-+static vm_fault_t nouveau_dmem_migrate_to_ram(struct vm_fault *vmf)
- {
--	struct drm_device *drm_dev = dev_get_drvdata(devmem->device);
-+	struct nouveau_dmem *dmem = page_to_dmem(vmf->page);
- 	unsigned long src[1] = {0}, dst[1] = {0};
--	struct nouveau_dmem_fault fault = {0};
-+	struct nouveau_dmem_fault fault = { .drm = dmem->drm };
- 	int ret;
- 
--
--
- 	/*
- 	 * FIXME what we really want is to find some heuristic to migrate more
- 	 * than just one page on CPU fault. When such fault happens it is very
- 	 * likely that more surrounding page will CPU fault too.
- 	 */
--	fault.drm = nouveau_drm(drm_dev);
--	ret = migrate_vma(&nouveau_dmem_fault_migrate_ops, vma, addr,
--			  addr + PAGE_SIZE, src, dst, &fault);
-+	ret = migrate_vma(&nouveau_dmem_fault_migrate_ops, vmf->vma,
-+			vmf->address, vmf->address + PAGE_SIZE,
-+			src, dst, &fault);
- 	if (ret)
- 		return VM_FAULT_SIGBUS;
- 
-@@ -292,10 +289,9 @@ nouveau_dmem_fault(struct hmm_devmem *devmem,
- 	return 0;
- }
- 
--static const struct hmm_devmem_ops
--nouveau_dmem_devmem_ops = {
--	.free = nouveau_dmem_free,
--	.fault = nouveau_dmem_fault,
-+static const struct dev_pagemap_ops nouveau_dmem_pagemap_ops = {
-+	.page_free		= nouveau_dmem_page_free,
-+	.migrate_to_ram		= nouveau_dmem_migrate_to_ram,
- };
- 
- static int
-@@ -581,7 +577,8 @@ void
- nouveau_dmem_init(struct nouveau_drm *drm)
- {
- 	struct device *device = drm->dev->dev;
--	unsigned long i, size;
-+	struct resource *res;
-+	unsigned long i, size, pfn_first;
- 	int ret;
- 
- 	/* This only make sense on PASCAL or newer */
-@@ -591,6 +588,7 @@ nouveau_dmem_init(struct nouveau_drm *drm)
- 	if (!(drm->dmem = kzalloc(sizeof(*drm->dmem), GFP_KERNEL)))
- 		return;
- 
-+	drm->dmem->drm = drm;
- 	mutex_init(&drm->dmem->mutex);
- 	INIT_LIST_HEAD(&drm->dmem->chunk_free);
- 	INIT_LIST_HEAD(&drm->dmem->chunk_full);
-@@ -600,11 +598,8 @@ nouveau_dmem_init(struct nouveau_drm *drm)
- 
- 	/* Initialize migration dma helpers before registering memory */
- 	ret = nouveau_dmem_migrate_init(drm);
--	if (ret) {
--		kfree(drm->dmem);
--		drm->dmem = NULL;
--		return;
--	}
-+	if (ret)
-+		goto out_free;
- 
- 	/*
- 	 * FIXME we need some kind of policy to decide how much VRAM we
-@@ -612,14 +607,16 @@ nouveau_dmem_init(struct nouveau_drm *drm)
- 	 * and latter if we want to do thing like over commit then we
- 	 * could revisit this.
- 	 */
--	drm->dmem->devmem = hmm_devmem_add(&nouveau_dmem_devmem_ops,
--					   device, size);
--	if (IS_ERR(drm->dmem->devmem)) {
--		kfree(drm->dmem);
--		drm->dmem = NULL;
--		return;
--	}
--
-+	res = devm_request_free_mem_region(device, &iomem_resource, size);
-+	if (IS_ERR(res))
-+		goto out_free;
-+	drm->dmem->pagemap.type = MEMORY_DEVICE_PRIVATE;
-+	drm->dmem->pagemap.res = *res;
-+	drm->dmem->pagemap.ops = &nouveau_dmem_pagemap_ops;
-+	if (IS_ERR(devm_memremap_pages(device, &drm->dmem->pagemap)))
-+		goto out_free;
-+
-+	pfn_first = res->start >> PAGE_SHIFT;
- 	for (i = 0; i < (size / DMEM_CHUNK_SIZE); ++i) {
- 		struct nouveau_dmem_chunk *chunk;
- 		struct page *page;
-@@ -632,8 +629,7 @@ nouveau_dmem_init(struct nouveau_drm *drm)
- 		}
- 
- 		chunk->drm = drm;
--		chunk->pfn_first = drm->dmem->devmem->pfn_first;
--		chunk->pfn_first += (i * DMEM_CHUNK_NPAGES);
-+		chunk->pfn_first = pfn_first + (i * DMEM_CHUNK_NPAGES);
- 		list_add_tail(&chunk->list, &drm->dmem->chunk_empty);
- 
- 		page = pfn_to_page(chunk->pfn_first);
-@@ -643,6 +639,10 @@ nouveau_dmem_init(struct nouveau_drm *drm)
- 	}
- 
- 	NV_INFO(drm, "DMEM: registered %ldMB of device memory\n", size >> 20);
-+	return;
-+out_free:
-+	kfree(drm->dmem);
-+	drm->dmem = NULL;
- }
- 
- static void
-@@ -833,13 +833,7 @@ nouveau_dmem_migrate_vma(struct nouveau_drm *drm,
- static inline bool
- nouveau_dmem_page(struct nouveau_drm *drm, struct page *page)
- {
--	if (!is_device_private_page(page))
--		return false;
--
--	if (drm->dmem->devmem != page->pgmap->data)
--		return false;
--
--	return true;
-+	return is_device_private_page(page) && drm->dmem == page_to_dmem(page);
- }
- 
- void
--- 
-2.20.1
+VGhlIG9ubHkgdXNlciBvZiBpdCBoYXMganVzdCBiZWVuIHJlbW92ZWQsIGFuZCB0aGVyZSB3YXNu
+J3QgcmVhbGx5IGFueSBuZWVkCnRvIHdyYXAgYSBiYXNpYyBtZW1vcnkgYWxsb2NhdG9yIHRvIHN0
+YXJ0IHdpdGguCgpTaWduZWQtb2ZmLWJ5OiBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGxzdC5kZT4K
+LS0tCiBpbmNsdWRlL2xpbnV4L2htbS5oIHwgIDMgLS0tCiBtbS9obW0uYyAgICAgICAgICAgIHwg
+MTQgLS0tLS0tLS0tLS0tLS0KIDIgZmlsZXMgY2hhbmdlZCwgMTcgZGVsZXRpb25zKC0pCgpkaWZm
+IC0tZ2l0IGEvaW5jbHVkZS9saW51eC9obW0uaCBiL2luY2x1ZGUvbGludXgvaG1tLmgKaW5kZXgg
+ZTY0ODI0MzM0Yjg1Li44OTU3MWU4ZDljNjMgMTAwNjQ0Ci0tLSBhL2luY2x1ZGUvbGludXgvaG1t
+LmgKKysrIGIvaW5jbHVkZS9saW51eC9obW0uaApAQCAtNTg5LDkgKzU4OSw2IEBAIHN0YXRpYyBp
+bmxpbmUgdm9pZCBobW1fbW1faW5pdChzdHJ1Y3QgbW1fc3RydWN0ICptbSkge30KICNpZiBJU19F
+TkFCTEVEKENPTkZJR19ERVZJQ0VfUFJJVkFURSkgfHwgIElTX0VOQUJMRUQoQ09ORklHX0RFVklD
+RV9QVUJMSUMpCiBzdHJ1Y3QgaG1tX2Rldm1lbTsKIAotc3RydWN0IHBhZ2UgKmhtbV92bWFfYWxs
+b2NfbG9ja2VkX3BhZ2Uoc3RydWN0IHZtX2FyZWFfc3RydWN0ICp2bWEsCi0JCQkJICAgICAgIHVu
+c2lnbmVkIGxvbmcgYWRkcik7Ci0KIC8qCiAgKiBzdHJ1Y3QgaG1tX2Rldm1lbV9vcHMgLSBjYWxs
+YmFjayBmb3IgWk9ORV9ERVZJQ0UgbWVtb3J5IGV2ZW50cwogICoKZGlmZiAtLWdpdCBhL21tL2ht
+bS5jIGIvbW0vaG1tLmMKaW5kZXggMzA3YzEyZDc1MzFjLi4wZWYxYTE5MjFhZmIgMTAwNjQ0Ci0t
+LSBhL21tL2htbS5jCisrKyBiL21tL2htbS5jCkBAIC0xMzI3LDIwICsxMzI3LDYgQEAgRVhQT1JU
+X1NZTUJPTChobW1fcmFuZ2VfZG1hX3VubWFwKTsKIAogCiAjaWYgSVNfRU5BQkxFRChDT05GSUdf
+REVWSUNFX1BSSVZBVEUpIHx8ICBJU19FTkFCTEVEKENPTkZJR19ERVZJQ0VfUFVCTElDKQotc3Ry
+dWN0IHBhZ2UgKmhtbV92bWFfYWxsb2NfbG9ja2VkX3BhZ2Uoc3RydWN0IHZtX2FyZWFfc3RydWN0
+ICp2bWEsCi0JCQkJICAgICAgIHVuc2lnbmVkIGxvbmcgYWRkcikKLXsKLQlzdHJ1Y3QgcGFnZSAq
+cGFnZTsKLQotCXBhZ2UgPSBhbGxvY19wYWdlX3ZtYShHRlBfSElHSFVTRVIsIHZtYSwgYWRkcik7
+Ci0JaWYgKCFwYWdlKQotCQlyZXR1cm4gTlVMTDsKLQlsb2NrX3BhZ2UocGFnZSk7Ci0JcmV0dXJu
+IHBhZ2U7Ci19Ci1FWFBPUlRfU1lNQk9MKGhtbV92bWFfYWxsb2NfbG9ja2VkX3BhZ2UpOwotCi0K
+IHN0YXRpYyB2b2lkIGhtbV9kZXZtZW1fcmVmX3JlbGVhc2Uoc3RydWN0IHBlcmNwdV9yZWYgKnJl
+ZikKIHsKIAlzdHJ1Y3QgaG1tX2Rldm1lbSAqZGV2bWVtOwotLSAKMi4yMC4xCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
+dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
