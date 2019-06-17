@@ -1,53 +1,53 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: Re: [PATCH 06/25] mm: factor out a
- devm_request_free_mem_region helper
-Date: Mon, 17 Jun 2019 19:42:51 +0200
-Message-ID: <20190617174251.GA18249@lst.de>
-References: <20190617122733.22432-1-hch@lst.de>
- <20190617122733.22432-7-hch@lst.de>
- <CAPcyv4hoRR6gzTSkWnwMiUtX6jCKz2NMOhCUfXTji8f2H1v+rg@mail.gmail.com>
- <20190617174018.GA18185@lst.de>
+From: Dan Williams <dan.j.williams@intel.com>
+Subject: Re: [PATCH 08/25] memremap: move dev_pagemap callbacks into a
+ separate structure
+Date: Mon, 17 Jun 2019 10:51:35 -0700
+Message-ID: <CAPcyv4i_0wUJHDqY91R=x5M2o_De+_QKZxPyob5=E9CCv8rM7A@mail.gmail.com>
+References: <20190617122733.22432-1-hch@lst.de> <20190617122733.22432-9-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20190617174018.GA18185-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190617122733.22432-9-hch@lst.de>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Christoph Hellwig <hch@lst.de>
+Cc: =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Linux MM <linux-mm@kvack.org>, nouveau@lists.freedesktop.org, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, linux-nvdimm <linux-nvdimm@lists.01.org>, linux-pci@vger.kernel.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Logan Gunthorpe <logang@deltatee.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBKdW4gMTcsIDIwMTkgYXQgMDc6NDA6MThQTSArMDIwMCwgQ2hyaXN0b3BoIEhlbGx3
-aWcgd3JvdGU6Cj4gT24gTW9uLCBKdW4gMTcsIDIwMTkgYXQgMTA6Mzc6MTJBTSAtMDcwMCwgRGFu
-IFdpbGxpYW1zIHdyb3RlOgo+ID4gPiArc3RydWN0IHJlc291cmNlICpkZXZtX3JlcXVlc3RfZnJl
-ZV9tZW1fcmVnaW9uKHN0cnVjdCBkZXZpY2UgKmRldiwKPiA+ID4gKyAgICAgICAgICAgICAgIHN0
-cnVjdCByZXNvdXJjZSAqYmFzZSwgdW5zaWduZWQgbG9uZyBzaXplKTsKPiA+IAo+ID4gVGhpcyBh
-cHBlYXJzIHRvIG5lZWQgYSAnc3RhdGljIGlubGluZScgaGVscGVyIHN0dWIgaW4gdGhlCj4gPiBD
-T05GSUdfREVWSUNFX1BSSVZBVEU9biBjYXNlLCBvdGhlcndpc2UgdGhpcyBjb21waWxlIGVycm9y
-IHRyaWdnZXJzOgo+ID4gCj4gPiBsZDogbW0vaG1tLm86IGluIGZ1bmN0aW9uIGBobW1fZGV2bWVt
-X2FkZCc6Cj4gPiAvaG9tZS9kd2lsbGlhMi9naXQvbGludXgvbW0vaG1tLmM6MTQyNzogdW5kZWZp
-bmVkIHJlZmVyZW5jZSB0bwo+ID4gYGRldm1fcmVxdWVzdF9mcmVlX21lbV9yZWdpb24nCj4gCj4g
-KnNpZ2gqIC0gaG1tX2Rldm1lbV9hZGQgYWxyZWFkeSBvbmx5IHdvcmtzIGZvciBkZXZpY2UgcHJp
-dmF0ZSBtZW1vcnksCj4gc28gaXQgc2hvdWxkbid0IGJlIGJ1aWx0IGlmIHRoYXQgb3B0aW9uIGlz
-IG5vdCBlbmFibGVkLCBidXQgaW4gdGhlCj4gY3VycmVudCBjb2RlIGl0IGlzLiAgQW5kIGEgZmV3
-IHBhdGNoZXMgbGF0ZXIgaW4gdGhlIHNlcmllcyB3ZSBqdXN0Cj4ga2lsbCBpdCBvZmYgZW50aXJl
-bHksIGFuZCB0aGUgb25seSByZWFsIGNhbGxlciBvZiB0aGlzIGZ1bmN0aW9uCj4gYWxyZWFkeSBk
-ZXBlbmRzIG9uIENPTkZJR19ERVZJQ0VfUFJJVkFURS4gIFNvIEknbSB0ZW1wdGVkIHRvIGp1c3QK
-PiBpZ25vcmUgdGhlIHN0cmljdCBiaXNlY3RhYmlsaXR5IHJlcXVpcmVtZW50IGhlcmUgaW5zdGVh
-ZCBvZiBtYWtpbmcKPiB0aGluZ3MgbWVzc3kgYnkgZWl0aGVyIGFkZGluZyB0aGUgcHJvcGVyIGlm
-ZGVmcyBpbiBobW0uYyBvciBwcm92aWRpbmcKPiBhIHN0dWIgd2UgZG9uJ3QgcmVhbGx5IG5lZWQu
-CgpBY3R1YWxseSwgSSBjb3VsZCBqdXN0IG1vdmUgdGhlIHBhdGNoIHRvIG1hcmsgQ09ORklHX0RF
-VklDRV9QVUJMSUMKYnJva2VuIGVhcmxpZXIsIHdoaWNoIHdvdWxkIGZvcmNlIGhtbV9kZXZtZW1f
-YWRkIHRvIG9ubHkgYmUgYnVpbHQKd2hlbiBDT05GSUdfREVWSUNFX1BSSVZBVEUgaXN0IHNldC4K
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+On Mon, Jun 17, 2019 at 5:27 AM Christoph Hellwig <hch@lst.de> wrote:
+>
+> The dev_pagemap is a growing too many callbacks.  Move them into a
+> separate ops structure so that they are not duplicated for multiple
+> instances, and an attacker can't easily overwrite them.
+>
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
+> Reviewed-by: Jason Gunthorpe <jgg@mellanox.com>
+> ---
+>  drivers/dax/device.c              | 11 ++++++----
+>  drivers/dax/pmem/core.c           |  2 +-
+>  drivers/nvdimm/pmem.c             | 19 +++++++++-------
+>  drivers/pci/p2pdma.c              |  9 +++++---
+>  include/linux/memremap.h          | 36 +++++++++++++++++--------------
+>  kernel/memremap.c                 | 18 ++++++++--------
+>  mm/hmm.c                          | 10 ++++++---
+>  tools/testing/nvdimm/test/iomap.c |  9 ++++----
+>  8 files changed, 65 insertions(+), 49 deletions(-)
+>
+[..]
+> diff --git a/tools/testing/nvdimm/test/iomap.c b/tools/testing/nvdimm/tes=
+t/iomap.c
+> index 219dd0a1cb08..a667d974155e 100644
+> --- a/tools/testing/nvdimm/test/iomap.c
+> +++ b/tools/testing/nvdimm/test/iomap.c
+> @@ -106,11 +106,10 @@ EXPORT_SYMBOL(__wrap_devm_memremap);
+>
+>  static void nfit_test_kill(void *_pgmap)
+>  {
+> -       struct dev_pagemap *pgmap =3D _pgmap;
+
+Whoops, needed to keep this line to avoid:
+
+tools/testing/nvdimm/test/iomap.c:109:11: error: =E2=80=98pgmap=E2=80=99 un=
+declared
+(first use in this function); did you mean =E2=80=98_pgmap=E2=80=99?
