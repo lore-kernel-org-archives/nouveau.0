@@ -1,64 +1,68 @@
 From: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 07/25] memremap: validate the pagemap type
- passed to devm_memremap_pages
-Date: Mon, 17 Jun 2019 12:02:09 -0700
-Message-ID: <CAPcyv4hbGfOawfafqQ-L1CMr6OMFGmnDtdgLTXrgQuPxYNHA2w@mail.gmail.com>
+Subject: Re: [PATCH 10/25] memremap: lift the devmap_enable manipulation into
+ devm_memremap_pages
+Date: Mon, 17 Jun 2019 12:25:17 -0700
+Message-ID: <CAPcyv4jtZSK7bgQX_Sm1E-Thqmyhs30SrZKoSApjghRLL12Ngg@mail.gmail.com>
 References: <20190617122733.22432-1-hch@lst.de>
- <20190617122733.22432-8-hch@lst.de>
+ <20190617122733.22432-11-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190617122733.22432-8-hch-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+In-Reply-To: <20190617122733.22432-11-hch-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
+List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
+Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
 To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBKdW4gMTcsIDIwMTkgYXQgNToyNyBBTSBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGxz
-dC5kZT4gd3JvdGU6Cj4KPiBNb3N0IHBnbWFwIHR5cGVzIGFyZSBvbmx5IHN1cHBvcnRlZCB3aGVu
-IGNlcnRhaW4gY29uZmlnIG9wdGlvbnMgYXJlCj4gZW5hYmxlZC4gIENoZWNrIGZvciBhIHR5cGUg
-dGhhdCBpcyB2YWxpZCBmb3IgdGhlIGN1cnJlbnQgY29uZmlndXJhdGlvbgo+IGJlZm9yZSBzZXR0
-aW5nIHVwIHRoZSBwYWdlbWFwLgo+Cj4gU2lnbmVkLW9mZi1ieTogQ2hyaXN0b3BoIEhlbGx3aWcg
-PGhjaEBsc3QuZGU+Cj4gLS0tCj4gIGtlcm5lbC9tZW1yZW1hcC5jIHwgMjcgKysrKysrKysrKysr
-KysrKysrKysrKysrKysrCj4gIDEgZmlsZSBjaGFuZ2VkLCAyNyBpbnNlcnRpb25zKCspCj4KPiBk
-aWZmIC0tZ2l0IGEva2VybmVsL21lbXJlbWFwLmMgYi9rZXJuZWwvbWVtcmVtYXAuYwo+IGluZGV4
-IDZlMTk3MDcxOWRjMi4uNmEyZGQzMWE2MjUwIDEwMDY0NAo+IC0tLSBhL2tlcm5lbC9tZW1yZW1h
-cC5jCj4gKysrIGIva2VybmVsL21lbXJlbWFwLmMKPiBAQCAtMTU3LDYgKzE1NywzMyBAQCB2b2lk
-ICpkZXZtX21lbXJlbWFwX3BhZ2VzKHN0cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IGRldl9wYWdl
-bWFwICpwZ21hcCkKPiAgICAgICAgIHBncHJvdF90IHBncHJvdCA9IFBBR0VfS0VSTkVMOwo+ICAg
-ICAgICAgaW50IGVycm9yLCBuaWQsIGlzX3JhbTsKPgo+ICsgICAgICAgc3dpdGNoIChwZ21hcC0+
-dHlwZSkgewo+ICsgICAgICAgY2FzZSBNRU1PUllfREVWSUNFX1BSSVZBVEU6Cj4gKyAgICAgICAg
-ICAgICAgIGlmICghSVNfRU5BQkxFRChDT05GSUdfREVWSUNFX1BSSVZBVEUpKSB7Cj4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgV0FSTigxLCAiRGV2aWNlIHByaXZhdGUgbWVtb3J5IG5vdCBzdXBw
-b3J0ZWRcbiIpOwo+ICsgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBFUlJfUFRSKC1FSU5W
-QUwpOwo+ICsgICAgICAgICAgICAgICB9Cj4gKyAgICAgICAgICAgICAgIGJyZWFrOwo+ICsgICAg
-ICAgY2FzZSBNRU1PUllfREVWSUNFX1BVQkxJQzoKPiArICAgICAgICAgICAgICAgaWYgKCFJU19F
-TkFCTEVEKENPTkZJR19ERVZJQ0VfUFVCTElDKSkgewo+ICsgICAgICAgICAgICAgICAgICAgICAg
-IFdBUk4oMSwgIkRldmljZSBwdWJsaWMgbWVtb3J5IG5vdCBzdXBwb3J0ZWRcbiIpOwo+ICsgICAg
-ICAgICAgICAgICAgICAgICAgIHJldHVybiBFUlJfUFRSKC1FSU5WQUwpOwo+ICsgICAgICAgICAg
-ICAgICB9Cj4gKyAgICAgICAgICAgICAgIGJyZWFrOwo+ICsgICAgICAgY2FzZSBNRU1PUllfREVW
-SUNFX0ZTX0RBWDoKPiArICAgICAgICAgICAgICAgaWYgKCFJU19FTkFCTEVEKENPTkZJR19aT05F
-X0RFVklDRSkgfHwKPiArICAgICAgICAgICAgICAgICAgIElTX0VOQUJMRUQoQ09ORklHX0ZTX0RB
-WF9MSU1JVEVEKSkgewo+ICsgICAgICAgICAgICAgICAgICAgICAgIFdBUk4oMSwgIkZpbGUgc3lz
-dGVtIERBWCBub3Qgc3VwcG9ydGVkXG4iKTsKPiArICAgICAgICAgICAgICAgICAgICAgICByZXR1
-cm4gRVJSX1BUUigtRUlOVkFMKTsKPiArICAgICAgICAgICAgICAgfQo+ICsgICAgICAgICAgICAg
-ICBicmVhazsKPiArICAgICAgIGNhc2UgTUVNT1JZX0RFVklDRV9QQ0lfUDJQRE1BOgoKTmVlZCBh
-IGxlYWQgaW4gcGF0Y2ggdGhhdCBpbnRyb2R1Y2VzIE1FTU9SWV9ERVZJQ0VfREVWREFYLCBvdGhl
-cndpc2U6CgogSW52YWxpZCBwZ21hcCB0eXBlIDAKIFdBUk5JTkc6IENQVTogNiBQSUQ6IDEzMTYg
-YXQga2VybmVsL21lbXJlbWFwLmM6MTgzCmRldm1fbWVtcmVtYXBfcGFnZXMrMHgxZDgvMHg3MDAK
-IFsuLl0KIFJJUDogMDAxMDpkZXZtX21lbXJlbWFwX3BhZ2VzKzB4MWQ4LzB4NzAwCiBbLi5dCiBD
-YWxsIFRyYWNlOgogIGRldl9kYXhfcHJvYmUrMHhjNy8weDFlMCBbZGV2aWNlX2RheF0KICByZWFs
-bHlfcHJvYmUrMHhlZi8weDM5MAogIGRyaXZlcl9wcm9iZV9kZXZpY2UrMHhiNC8weDEwMAogIGRl
-dmljZV9kcml2ZXJfYXR0YWNoKzB4NGYvMHg2MApfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL25vdXZlYXU=
+On Mon, Jun 17, 2019 at 5:28 AM Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org> wrote:
+>
+> Just check if there is a ->page_free operation set and take care of the
+> static key enable, as well as the put using device managed resources.
+> Also check that a ->page_free is provided for the pgmaps types that
+> require it, and check for a valid type as well while we are at it.
+>
+> Note that this also fixes the fact that hmm never called
+> dev_pagemap_put_ops and thus would leave the slow path enabled forever,
+> even after a device driver unload or disable.
+>
+> Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+> ---
+>  drivers/nvdimm/pmem.c | 23 +++--------------
+>  include/linux/mm.h    | 10 --------
+>  kernel/memremap.c     | 57 ++++++++++++++++++++++++++-----------------
+>  mm/hmm.c              |  2 --
+>  4 files changed, 39 insertions(+), 53 deletions(-)
+>
+[..]
+> diff --git a/kernel/memremap.c b/kernel/memremap.c
+> index ba7156bd52d1..7272027fbdd7 100644
+> --- a/kernel/memremap.c
+> +++ b/kernel/memremap.c
+[..]
+> @@ -190,6 +219,12 @@ void *devm_memremap_pages(struct device *dev, struct dev_pagemap *pgmap)
+>                 return ERR_PTR(-EINVAL);
+>         }
+>
+> +       if (pgmap->type != MEMORY_DEVICE_PCI_P2PDMA) {
+
+Once we have MEMORY_DEVICE_DEVDAX then this check needs to be fixed up
+to skip that case as well, otherwise:
+
+ Missing page_free method
+ WARNING: CPU: 19 PID: 1518 at kernel/memremap.c:33
+devm_memremap_pages+0x745/0x7d0
+ RIP: 0010:devm_memremap_pages+0x745/0x7d0
+ Call Trace:
+  dev_dax_probe+0xc6/0x1e0 [device_dax]
+  really_probe+0xef/0x390
+  ? driver_allows_async_probing+0x50/0x50
+  driver_probe_device+0xb4/0x100
