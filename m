@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110931] Timeout initializing Falcon after cold boot
-Date: Tue, 18 Jun 2019 00:43:45 +0000
-Message-ID: <bug-110931-8800-E6SeS8Spzf@http.bugs.freedesktop.org/>
+Date: Tue, 18 Jun 2019 00:44:18 +0000
+Message-ID: <bug-110931-8800-NwEmz5EHxL@http.bugs.freedesktop.org/>
 References: <bug-110931-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1649167100=="
+Content-Type: multipart/mixed; boundary="===============0788941945=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110931-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1649167100==
-Content-Type: multipart/alternative; boundary="15608186252.FC5CfEE.19293"
+--===============0788941945==
+Content-Type: multipart/alternative; boundary="15608186570.A9D6aC.20294"
 Content-Transfer-Encoding: 7bit
 
 
---15608186252.FC5CfEE.19293
-Date: Tue, 18 Jun 2019 00:43:45 +0000
+--15608186570.A9D6aC.20294
+Date: Tue, 18 Jun 2019 00:44:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110931
 
---- Comment #2 from Andrey Taranov <taranov.andrey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 144581
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144581&action=3Dedit
-Failing Xorg log
+--- Comment #3 from Andrey Taranov <taranov.andrey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 144582
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144582&action=3Dedit
+Successful kernel log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15608186252.FC5CfEE.19293
-Date: Tue, 18 Jun 2019 00:43:45 +0000
+--15608186570.A9D6aC.20294
+Date: Tue, 18 Jun 2019 00:44:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Timeout initializing Falcon after cold boot"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110931#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110931#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Timeout initializing Falcon after cold boot"
@@ -73,11 +73,11 @@ t # 2</a>
 taranov.andrey&#64;gmail.com" title=3D"Andrey Taranov &lt;taranov.andrey&#6=
 4;gmail.com&gt;"> <span class=3D"fn">Andrey Taranov</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144581=
-" name=3D"attach_144581" title=3D"Failing Xorg log">attachment 144581</a> <=
-a href=3D"attachment.cgi?id=3D144581&amp;action=3Dedit" title=3D"Failing Xo=
-rg log">[details]</a></span>
-Failing Xorg log</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144582=
+" name=3D"attach_144582" title=3D"Successful kernel log">attachment 144582<=
+/a> <a href=3D"attachment.cgi?id=3D144582&amp;action=3Dedit" title=3D"Succe=
+ssful kernel log">[details]</a></span>
+Successful kernel log</pre>
         </div>
       </p>
 
@@ -91,9 +91,9 @@ Failing Xorg log</pre>
     </body>
 </html>=
 
---15608186252.FC5CfEE.19293--
+--15608186570.A9D6aC.20294--
 
---===============1649167100==
+--===============0788941945==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1649167100==--
+--===============0788941945==--
