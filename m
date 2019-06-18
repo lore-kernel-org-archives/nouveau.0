@@ -1,158 +1,123 @@
-From: Dan Williams <dan.j.williams@intel.com>
-Subject: Re: dev_pagemap related cleanups v2
-Date: Tue, 18 Jun 2019 12:47:10 -0700
-Message-ID: <CAPcyv4hBUJB2RxkDqHkfEGCupDdXfQSrEJmAdhLFwnDOwt8Lig@mail.gmail.com>
-References: <20190617122733.22432-1-hch@lst.de>
+From: "Harald Harders" <harald.harders-Mmb7MZpHnFY@public.gmane.org>
+Subject: Re: Instable graphics with GeForce GT 730M,
+ especially on external monitor
+Date: Tue, 18 Jun 2019 22:12:47 +0200
+Message-ID: <trinity-1a0b5a21-eb2a-4e86-81ce-5c34a2831c44-1560888767918@3c-app-gmx-bs22>
+References: <trinity-60f06d18-ea3c-49a9-8a25-d6aa7f233436-1560886110718@3c-app-gmx-bs22>
+ <CAKb7UvifuLNe_Nq+7oGHTzgmo4a3mQ1kg0QX-kKfdABB8Ok_Hg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="000000000000872d5f058b9e614c"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190617122733.22432-1-hch@lst.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Christoph Hellwig <hch@lst.de>
-Cc: =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Linux MM <linux-mm@kvack.org>, nouveau@lists.freedesktop.org, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, linux-nvdimm <linux-nvdimm@lists.01.org>, linux-pci@vger.kernel.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============1202199696=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7UvifuLNe_Nq+7oGHTzgmo4a3mQ1kg0QX-kKfdABB8Ok_Hg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---000000000000872d5f058b9e614c
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--===============1202199696==
+Content-Type: text/html; charset=UTF-8
 
-On Mon, Jun 17, 2019 at 5:27 AM Christoph Hellwig <hch@lst.de> wrote:
->
-> Hi Dan, J=C3=A9r=C3=B4me and Jason,
->
-> below is a series that cleans up the dev_pagemap interface so that
-> it is more easily usable, which removes the need to wrap it in hmm
-> and thus allowing to kill a lot of code
->
-> Note: this series is on top of the rdma/hmm branch + the dev_pagemap
-> releas fix series from Dan that went into 5.2-rc5.
->
-> Git tree:
->
->     git://git.infradead.org/users/hch/misc.git hmm-devmem-cleanup.2
->
-> Gitweb:
->
->     http://git.infradead.org/users/hch/misc.git/shortlog/refs/heads/hmm-d=
-evmem-cleanup.2
->
-> Changes since v1:
->  - rebase
->  - also switch p2pdma to the internal refcount
->  - add type checking for pgmap->type
->  - rename the migrate method to migrate_to_ram
->  - cleanup the altmap_valid flag
->  - various tidbits from the reviews
+<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>Hi Ilia,</div>
 
-Attached is my incremental fixups on top of this series, with those
-integrated you can add:
+<div>&nbsp;</div>
 
-Tested-by: Dan Williams <dan.j.williams@intel.com>
+<div>First I had upgraded from OpenSUSE 13.2 (where it worked) to OpenSUSE Leap 15.1. After having the same issue I have done a clean new install. The new kernel version is 4.12.14, as you suspected. In OpenSUSE, I suspect it was version 3.16.7. Unfortunately, I cannot find out anymore which nouveau version I have used before. I have a file backup of the old installation. Can I find out which nouveau version I had before?</div>
 
-...to the patches that touch kernel/memremap.c, drivers/dax, and drivers/nv=
-dimm.
+<div>&nbsp;</div>
 
-You can also add:
+<div>During all my attempts, I have also installed Ubuntu 18.04.2 with the same strange behaviour. I guess this was the 4.18 kernel version?</div>
 
-Reviewed-by: Dan Williams <dan.j.williams@intel.com>
+<div>Do you know which distrubtion already uses a 5.0 kernel? I will try a live system, then.</div>
 
-...for the series.
+<div>&nbsp;</div>
 
---000000000000872d5f058b9e614c
-Content-Type: text/x-patch; charset="US-ASCII"; name="incremental.diff"
-Content-Disposition: attachment; filename="incremental.diff"
+<div>I have a docking station with 4 monitor ports: VGA, DVI, HDMI, Displayport. And my laptop has VGA and Mini-Displayport. My monitor (Fujitsu P24W-7 LED) has VGA, DVI, HDMI, and Displayport.</div>
+
+<div>I have tried&nbsp; DVI-&gt;DVI and DisplayPort-&gt;HDMI cable on the docking station (I don&#39;t hav. In one of my attempts, I have connected the screen via analog VGA cable directly to the computer. The same effect resulted. Thus, I believe the docking station and digital connection to the monitor are not part of the problem.</div>
+
+<div>&nbsp;</div>
+
+<div>Best regards</div>
+
+<div>Harald</div>
+
+<div>&nbsp;</div>
+
+<div>PS: I guess sending to the mailing list and omitting your personal mail address is correct, right?</div>
+
+<div>&nbsp;
+<div>
+<div>&nbsp;
+<div style="margin: 10.0px 5.0px 5.0px 10.0px;padding: 10.0px 0 10.0px 10.0px;border-left: 2.0px solid rgb(195,217,229);">
+<div style="margin: 0 0 10.0px 0;"><b>Gesendet:</b>&nbsp;Dienstag, 18. Juni 2019 um 21:36 Uhr<br/>
+<b>Von:</b>&nbsp;&quot;Ilia Mirkin&quot; &lt;imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org&gt;<br/>
+<b>An:</b>&nbsp;&quot;Harald Harders&quot; &lt;harald.harders-Mmb7MZpHnFY@public.gmane.org&gt;<br/>
+<b>Cc:</b>&nbsp;nouveau &lt;nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org&gt;<br/>
+<b>Betreff:</b>&nbsp;Re: [Nouveau] Instable graphics with GeForce GT 730M, especially on external monitor</div>
+
+<div>Which kernel did you update from and to? Also, 4.12 is fairly old -<br/>
+can you try like a live usb image of some distro with e.g. a 5.0<br/>
+kernel or something?<br/>
+<br/>
+How do you connect the external screen? Is it like a DP port with an<br/>
+optional dock with a variety of active DP adapters? Or is there a DP++<br/>
+port that you&#39;re plugging a DP &lt;-&gt; HDMI passive adapter into?<br/>
+<br/>
+On Tue, Jun 18, 2019 at 3:28 PM Harald Harders &lt;harald.harders-Mmb7MZpHnFY@public.gmane.org&gt; wrote:<br/>
+&gt;<br/>
+&gt; Dear all,<br/>
+&gt;<br/>
+&gt; I have recently updated my Lenovo T440p with a dual graphics card (Intel Core + GeForce GT 730M) to OpenSUSE Leap 15.1. Since then, the external screen (connected either via VGA, DVI, HDMI, or DisplayPort) has a vertically stretched output which jumps horizontally in high frequency. Whenever touching any settings for the built in display (e.g. by gnome-control-center), also this screen starts incorrect display. Sometimes, however, also the external screen works as expected.<br/>
+&gt;<br/>
+&gt; Installed driver version is (only 2D installed):<br/>
+&gt; xf86-video-nouveau: 1.0.15-lp151.4.1<br/>
+&gt; libvdpau_nouveau: 18.3.2-lp151.22.4<br/>
+&gt; libdrm_nouveau2: 2.4.97-lp151.1.1<br/>
+&gt;<br/>
+&gt; I have followed your instructions on the TroubleShooting page, No signs for NVIDIA drivers running, everything appears to be okay. Minimal xorg.conf did not work, screenshots are okay.Unfortunately, I failed in installing the most recent nouveau version (neither /lib/modules/4.12.14-lp151.28.4-default/source nor /lib/modules/4.12.14-lp151.28.4-default/build are present on my computer even though I have installed the Kernel sources). The installed version is still quite new, isn&#39;t it?<br/>
+&gt;<br/>
+&gt; I suspect that I might have the issue you describe under &quot;Blank monitor, flicker, snow, or other random live image corruption&quot;. I would like to make sure, however. And since you warn with regards to potential permanent damage, I would like to make sure, first.<br/>
+&gt; Can you confirm that it should be this issue? Or are there any other things I should try first?<br/>
+&gt;<br/>
+&gt; Best regards<br/>
+&gt; Harald<br/>
+&gt;<br/>
+&gt;<br/>
+&gt;<br/>
+&gt;<br/>
+&gt;<br/>
+&gt;<br/>
+&gt;<br/>
+&gt;<br/>
+&gt;<br/>
+&gt; lose:/home/harders/download/nouveau/drm # lspci &#124; grep -i vga<br/>
+&gt; 00:02.0 VGA compatible controller: Intel Corporation 4th Gen Core Processor Integrated Graphics Controller (rev 06)<br/>
+&gt; 02:00.0 VGA compatible controller: NVIDIA Corporation GK208M [GeForce GT 730M] (rev a1)<br/>
+&gt;<br/>
+&gt; _______________________________________________<br/>
+&gt; Nouveau mailing list<br/>
+&gt; Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org<br/>
+&gt; <a href="https://lists.freedesktop.org/mailman/listinfo/nouveau" target="_blank">https://lists.freedesktop.org/mailman/listinfo/nouveau</a></div>
+</div>
+</div>
+</div>
+</div></div></body></html>
+
+--===============1202199696==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: base64
-Content-ID: <f_jx27x1rf0>
-X-Attachment-Id: f_jx27x1rf0
+Content-Disposition: inline
 
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZGF4L2RldmljZS5jIGIvZHJpdmVycy9kYXgvZGV2aWNlLmMK
-aW5kZXggYTlkN2M5MGVjZjFlLi4xYWY4MjNiMmZlNmIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZGF4
-L2RldmljZS5jCisrKyBiL2RyaXZlcnMvZGF4L2RldmljZS5jCkBAIC00MjgsNiArNDI4LDcgQEAg
-aW50IGRldl9kYXhfcHJvYmUoc3RydWN0IGRldmljZSAqZGV2KQogCQlyZXR1cm4gLUVCVVNZOwog
-CX0KIAorCWRldl9kYXgtPnBnbWFwLnR5cGUgPSBNRU1PUllfREVWSUNFX0RFVkRBWDsKIAlhZGRy
-ID0gZGV2bV9tZW1yZW1hcF9wYWdlcyhkZXYsICZkZXZfZGF4LT5wZ21hcCk7CiAJaWYgKElTX0VS
-UihhZGRyKSkKIAkJcmV0dXJuIFBUUl9FUlIoYWRkcik7CmRpZmYgLS1naXQgYS9kcml2ZXJzL252
-ZGltbS9LY29uZmlnIGIvZHJpdmVycy9udmRpbW0vS2NvbmZpZwppbmRleCA1NDUwMDc5OGYyM2Eu
-LjU3ZDNhNmMzYWM3MCAxMDA2NDQKLS0tIGEvZHJpdmVycy9udmRpbW0vS2NvbmZpZworKysgYi9k
-cml2ZXJzL252ZGltbS9LY29uZmlnCkBAIC0xMTgsNCArMTE4LDE1IEBAIGNvbmZpZyBOVkRJTU1f
-S0VZUwogCWRlcGVuZHMgb24gRU5DUllQVEVEX0tFWVMKIAlkZXBlbmRzIG9uIChMSUJOVkRJTU09
-RU5DUllQVEVEX0tFWVMpIHx8IExJQk5WRElNTT1tCiAKK2NvbmZpZyBOVkRJTU1fVEVTVF9CVUlM
-RAorCWJvb2wgIkJ1aWxkIHRoZSB1bml0IHRlc3QgY29yZSIKKwlkZXBlbmRzIG9uIENPTVBJTEVf
-VEVTVAorCWRlZmF1bHQgQ09NUElMRV9URVNUCisJaGVscAorCSAgQnVpbGQgdGhlIGNvcmUgb2Yg
-dGhlIHVuaXQgdGVzdCBpbmZyYXN0cnVjdHVyZS4gIFRoZSByZXN1bHQgb2YKKwkgIHRoaXMgYnVp
-bGQgaXMgbm9uLWZ1bmN0aW9uYWwgZm9yIHVuaXQgdGVzdCBleGVjdXRpb24sIGJ1dCBpdAorCSAg
-b3RoZXJ3aXNlIGhlbHBzIGNhdGNoIGJ1aWxkIGVycm9ycyBpbmR1Y2VkIGJ5IGNoYW5nZXMgdG8g
-dGhlCisJICBjb3JlIGRldm1fbWVtcmVtYXBfcGFnZXMoKSBpbXBsZW1lbnRhdGlvbiBhbmQgb3Ro
-ZXIKKwkgIGluZnJhc3RydWN0dXJlLgorCiBlbmRpZgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9udmRp
-bW0vTWFrZWZpbGUgYi9kcml2ZXJzL252ZGltbS9NYWtlZmlsZQppbmRleCA2ZjJhMDg4YWZhZDYu
-LjQwMDgwYzEyMDM2MyAxMDA2NDQKLS0tIGEvZHJpdmVycy9udmRpbW0vTWFrZWZpbGUKKysrIGIv
-ZHJpdmVycy9udmRpbW0vTWFrZWZpbGUKQEAgLTI4LDMgKzI4LDcgQEAgbGlibnZkaW1tLSQoQ09O
-RklHX0JUVCkgKz0gYnR0X2RldnMubwogbGlibnZkaW1tLSQoQ09ORklHX05WRElNTV9QRk4pICs9
-IHBmbl9kZXZzLm8KIGxpYm52ZGltbS0kKENPTkZJR19OVkRJTU1fREFYKSArPSBkYXhfZGV2cy5v
-CiBsaWJudmRpbW0tJChDT05GSUdfTlZESU1NX0tFWVMpICs9IHNlY3VyaXR5Lm8KKworVE9PTFMg
-Oj0gLi4vLi4vdG9vbHMKK1RFU1RfU1JDIDo9ICQoVE9PTFMpL3Rlc3RpbmcvbnZkaW1tL3Rlc3QK
-K29iai0kKENPTkZJR19OVkRJTU1fVEVTVF9CVUlMRCkgOj0gJChURVNUX1NSQykvaW9tYXAubwpk
-aWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9tZW1yZW1hcC5oIGIvaW5jbHVkZS9saW51eC9tZW1y
-ZW1hcC5oCmluZGV4IDdlMGYwNzJkZGNlNy4uNDcwZGU2OGRhYmQ2IDEwMDY0NAotLS0gYS9pbmNs
-dWRlL2xpbnV4L21lbXJlbWFwLmgKKysrIGIvaW5jbHVkZS9saW51eC9tZW1yZW1hcC5oCkBAIC01
-NSwxMiArNTUsMTkgQEAgc3RydWN0IHZtZW1fYWx0bWFwIHsKICAqIE1FTU9SWV9ERVZJQ0VfUENJ
-X1AyUERNQToKICAqIERldmljZSBtZW1vcnkgcmVzaWRpbmcgaW4gYSBQQ0kgQkFSIGludGVuZGVk
-IGZvciB1c2Ugd2l0aCBQZWVyLXRvLVBlZXIKICAqIHRyYW5zYWN0aW9ucy4KKyAqCisgKiBNRU1P
-UllfREVWSUNFX0RFVkRBWDoKKyAqIEhvc3QgbWVtb3J5IHRoYXQgaGFzIHNpbWlsYXIgYWNjZXNz
-IHNlbWFudGljcyBhcyBTeXN0ZW0gUkFNIGkuZS4gRE1BCisgKiBjb2hlcmVudCBhbmQgc3VwcG9y
-dHMgcGFnZSBwaW5uaW5nLiBJbiBjb250cmFzdCB0bworICogTUVNT1JZX0RFVklDRV9GU19EQVgs
-IHRoaXMgbWVtb3J5IGlzIGFjY2VzcyB2aWEgYSBkZXZpY2UtZGF4CisgKiBjaGFyYWN0ZXIgZGV2
-aWNlLgogICovCiBlbnVtIG1lbW9yeV90eXBlIHsKIAlNRU1PUllfREVWSUNFX1BSSVZBVEUgPSAx
-LAogCU1FTU9SWV9ERVZJQ0VfUFVCTElDLAogCU1FTU9SWV9ERVZJQ0VfRlNfREFYLAogCU1FTU9S
-WV9ERVZJQ0VfUENJX1AyUERNQSwKKwlNRU1PUllfREVWSUNFX0RFVkRBWCwKIH07CiAKIHN0cnVj
-dCBkZXZfcGFnZW1hcF9vcHMgewpkaWZmIC0tZ2l0IGEva2VybmVsL21lbXJlbWFwLmMgYi9rZXJu
-ZWwvbWVtcmVtYXAuYwppbmRleCA2MDY5M2ExZThlOTIuLjUyYjQ5NjhlNjJjZCAxMDA2NDQKLS0t
-IGEva2VybmVsL21lbXJlbWFwLmMKKysrIGIva2VybmVsL21lbXJlbWFwLmMKQEAgLTE3Myw2ICsx
-NzMsNyBAQCB2b2lkICpkZXZtX21lbXJlbWFwX3BhZ2VzKHN0cnVjdCBkZXZpY2UgKmRldiwgc3Ry
-dWN0IGRldl9wYWdlbWFwICpwZ21hcCkKIAl9OwogCXBncHJvdF90IHBncHJvdCA9IFBBR0VfS0VS
-TkVMOwogCWludCBlcnJvciwgbmlkLCBpc19yYW07CisJYm9vbCBnZXRfb3BzID0gdHJ1ZTsKIAog
-CXN3aXRjaCAocGdtYXAtPnR5cGUpIHsKIAljYXNlIE1FTU9SWV9ERVZJQ0VfUFJJVkFURToKQEAg
-LTE5OSw2ICsyMDAsOCBAQCB2b2lkICpkZXZtX21lbXJlbWFwX3BhZ2VzKHN0cnVjdCBkZXZpY2Ug
-KmRldiwgc3RydWN0IGRldl9wYWdlbWFwICpwZ21hcCkKIAkJfQogCQlicmVhazsKIAljYXNlIE1F
-TU9SWV9ERVZJQ0VfUENJX1AyUERNQToKKwljYXNlIE1FTU9SWV9ERVZJQ0VfREVWREFYOgorCQln
-ZXRfb3BzID0gZmFsc2U7CiAJCWJyZWFrOwogCWRlZmF1bHQ6CiAJCVdBUk4oMSwgIkludmFsaWQg
-cGdtYXAgdHlwZSAlZFxuIiwgcGdtYXAtPnR5cGUpOwpAQCAtMjIyLDcgKzIyNSw3IEBAIHZvaWQg
-KmRldm1fbWVtcmVtYXBfcGFnZXMoc3RydWN0IGRldmljZSAqZGV2LCBzdHJ1Y3QgZGV2X3BhZ2Vt
-YXAgKnBnbWFwKQogCQl9CiAJfQogCi0JaWYgKHBnbWFwLT50eXBlICE9IE1FTU9SWV9ERVZJQ0Vf
-UENJX1AyUERNQSkgeworCWlmIChnZXRfb3BzKSB7CiAJCWVycm9yID0gZGV2X3BhZ2VtYXBfZ2V0
-X29wcyhkZXYsIHBnbWFwKTsKIAkJaWYgKGVycm9yKQogCQkJcmV0dXJuIEVSUl9QVFIoZXJyb3Ip
-OwpkaWZmIC0tZ2l0IGEvdG9vbHMvdGVzdGluZy9udmRpbW0vdGVzdC9pb21hcC5jIGIvdG9vbHMv
-dGVzdGluZy9udmRpbW0vdGVzdC9pb21hcC5jCmluZGV4IDhjZDliOTg3M2E3Zi4uOTAxOWRkOGFm
-YmMxIDEwMDY0NAotLS0gYS90b29scy90ZXN0aW5nL252ZGltbS90ZXN0L2lvbWFwLmMKKysrIGIv
-dG9vbHMvdGVzdGluZy9udmRpbW0vdGVzdC9pb21hcC5jCkBAIC0xMDYsNyArMTA2LDcgQEAgRVhQ
-T1JUX1NZTUJPTChfX3dyYXBfZGV2bV9tZW1yZW1hcCk7CiAKIHN0YXRpYyB2b2lkIG5maXRfdGVz
-dF9raWxsKHZvaWQgKl9wZ21hcCkKIHsKLQlXQVJOX09OKCFwZ21hcCB8fCAhcGdtYXAtPnJlZikK
-KwlzdHJ1Y3QgZGV2X3BhZ2VtYXAgKnBnbWFwID0gX3BnbWFwOwogCiAJaWYgKHBnbWFwLT5vcHMg
-JiYgcGdtYXAtPm9wcy0+a2lsbCkKIAkJcGdtYXAtPm9wcy0+a2lsbChwZ21hcCk7CkBAIC0xMjEs
-MjAgKzEyMSw0NSBAQCBzdGF0aWMgdm9pZCBuZml0X3Rlc3Rfa2lsbCh2b2lkICpfcGdtYXApCiAJ
-fQogfQogCitzdGF0aWMgdm9pZCBkZXZfcGFnZW1hcF9wZXJjcHVfcmVsZWFzZShzdHJ1Y3QgcGVy
-Y3B1X3JlZiAqcmVmKQoreworCXN0cnVjdCBkZXZfcGFnZW1hcCAqcGdtYXAgPQorCQljb250YWlu
-ZXJfb2YocmVmLCBzdHJ1Y3QgZGV2X3BhZ2VtYXAsIGludGVybmFsX3JlZik7CisKKwljb21wbGV0
-ZSgmcGdtYXAtPmRvbmUpOworfQorCiB2b2lkICpfX3dyYXBfZGV2bV9tZW1yZW1hcF9wYWdlcyhz
-dHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdCBkZXZfcGFnZW1hcCAqcGdtYXApCiB7CisJaW50IGVy
-cm9yOwogCXJlc291cmNlX3NpemVfdCBvZmZzZXQgPSBwZ21hcC0+cmVzLnN0YXJ0OwogCXN0cnVj
-dCBuZml0X3Rlc3RfcmVzb3VyY2UgKm5maXRfcmVzID0gZ2V0X25maXRfcmVzKG9mZnNldCk7CiAK
-LQlpZiAobmZpdF9yZXMpIHsKLQkJaW50IHJjOworCWlmICghbmZpdF9yZXMpCisJCXJldHVybiBk
-ZXZtX21lbXJlbWFwX3BhZ2VzKGRldiwgcGdtYXApOwogCi0JCXJjID0gZGV2bV9hZGRfYWN0aW9u
-X29yX3Jlc2V0KGRldiwgbmZpdF90ZXN0X2tpbGwsIHBnbWFwKTsKLQkJaWYgKHJjKQotCQkJcmV0
-dXJuIEVSUl9QVFIocmMpOwotCQlyZXR1cm4gbmZpdF9yZXMtPmJ1ZiArIG9mZnNldCAtIG5maXRf
-cmVzLT5yZXMuc3RhcnQ7CisJcGdtYXAtPmRldiA9IGRldjsKKwlpZiAoIXBnbWFwLT5yZWYpIHsK
-KwkJaWYgKHBnbWFwLT5vcHMgJiYgKHBnbWFwLT5vcHMtPmtpbGwgfHwgcGdtYXAtPm9wcy0+Y2xl
-YW51cCkpCisJCQlyZXR1cm4gRVJSX1BUUigtRUlOVkFMKTsKKworCQlpbml0X2NvbXBsZXRpb24o
-JnBnbWFwLT5kb25lKTsKKwkJZXJyb3IgPSBwZXJjcHVfcmVmX2luaXQoJnBnbWFwLT5pbnRlcm5h
-bF9yZWYsCisJCQkJZGV2X3BhZ2VtYXBfcGVyY3B1X3JlbGVhc2UsIDAsIEdGUF9LRVJORUwpOwor
-CQlpZiAoZXJyb3IpCisJCQlyZXR1cm4gRVJSX1BUUihlcnJvcik7CisJCXBnbWFwLT5yZWYgPSAm
-cGdtYXAtPmludGVybmFsX3JlZjsKKwl9IGVsc2UgeworCQlpZiAoIXBnbWFwLT5vcHMgfHwgIXBn
-bWFwLT5vcHMtPmtpbGwgfHwgIXBnbWFwLT5vcHMtPmNsZWFudXApIHsKKwkJCVdBUk4oMSwgIk1p
-c3NpbmcgcmVmZXJlbmNlIGNvdW50IHRlYXJkb3duIGRlZmluaXRpb25cbiIpOworCQkJcmV0dXJu
-IEVSUl9QVFIoLUVJTlZBTCk7CisJCX0KIAl9Ci0JcmV0dXJuIGRldm1fbWVtcmVtYXBfcGFnZXMo
-ZGV2LCBwZ21hcCk7CisKKwllcnJvciA9IGRldm1fYWRkX2FjdGlvbl9vcl9yZXNldChkZXYsIG5m
-aXRfdGVzdF9raWxsLCBwZ21hcCk7CisJaWYgKGVycm9yKQorCQlyZXR1cm4gRVJSX1BUUihlcnJv
-cik7CisJcmV0dXJuIG5maXRfcmVzLT5idWYgKyBvZmZzZXQgLSBuZml0X3Jlcy0+cmVzLnN0YXJ0
-OwogfQogRVhQT1JUX1NZTUJPTF9HUEwoX193cmFwX2Rldm1fbWVtcmVtYXBfcGFnZXMpOwogCg==
---000000000000872d5f058b9e614c--
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1202199696==--
