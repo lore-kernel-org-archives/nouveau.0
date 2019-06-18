@@ -1,70 +1,105 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Instable graphics with GeForce GT 730M,
- especially on external monitor
-Date: Tue, 18 Jun 2019 15:36:20 -0400
-Message-ID: <CAKb7UvifuLNe_Nq+7oGHTzgmo4a3mQ1kg0QX-kKfdABB8Ok_Hg@mail.gmail.com>
-References: <trinity-60f06d18-ea3c-49a9-8a25-d6aa7f233436-1560886110718@3c-app-gmx-bs22>
+From: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 15/25] device-dax: use the dev_pagemap internal refcount
+Date: Tue, 18 Jun 2019 12:43:59 -0700
+Message-ID: <CAPcyv4iwawKnG4jQtcNWNtXQeH3PYG6iWc6JV59DnyixmwDEcg@mail.gmail.com>
+References: <20190617122733.22432-1-hch@lst.de>
+ <20190617122733.22432-16-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <trinity-60f06d18-ea3c-49a9-8a25-d6aa7f233436-1560886110718@3c-app-gmx-bs22>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Harald Harders <harald.harders-Mmb7MZpHnFY@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="0000000000003f3c23058b9e5615"
+Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+In-Reply-To: <20190617122733.22432-16-hch-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
+List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
+Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2hpY2gga2VybmVsIGRpZCB5b3UgdXBkYXRlIGZyb20gYW5kIHRvPyBBbHNvLCA0LjEyIGlzIGZh
-aXJseSBvbGQgLQpjYW4geW91IHRyeSBsaWtlIGEgbGl2ZSB1c2IgaW1hZ2Ugb2Ygc29tZSBkaXN0
-cm8gd2l0aCBlLmcuIGEgNS4wCmtlcm5lbCBvciBzb21ldGhpbmc/CgpIb3cgZG8geW91IGNvbm5l
-Y3QgdGhlIGV4dGVybmFsIHNjcmVlbj8gSXMgaXQgbGlrZSBhIERQIHBvcnQgd2l0aCBhbgpvcHRp
-b25hbCBkb2NrIHdpdGggYSB2YXJpZXR5IG9mIGFjdGl2ZSBEUCBhZGFwdGVycz8gT3IgaXMgdGhl
-cmUgYSBEUCsrCnBvcnQgdGhhdCB5b3UncmUgcGx1Z2dpbmcgYSBEUCA8LT4gSERNSSBwYXNzaXZl
-IGFkYXB0ZXIgaW50bz8KCk9uIFR1ZSwgSnVuIDE4LCAyMDE5IGF0IDM6MjggUE0gSGFyYWxkIEhh
-cmRlcnMgPGhhcmFsZC5oYXJkZXJzQGdteC5kZT4gd3JvdGU6Cj4KPiBEZWFyIGFsbCwKPgo+IEkg
-aGF2ZSByZWNlbnRseSB1cGRhdGVkIG15IExlbm92byBUNDQwcCB3aXRoIGEgZHVhbCBncmFwaGlj
-cyBjYXJkIChJbnRlbCBDb3JlICsgR2VGb3JjZSBHVCA3MzBNKSB0byBPcGVuU1VTRSBMZWFwIDE1
-LjEuIFNpbmNlIHRoZW4sIHRoZSBleHRlcm5hbCBzY3JlZW4gKGNvbm5lY3RlZCBlaXRoZXIgdmlh
-IFZHQSwgRFZJLCBIRE1JLCBvciBEaXNwbGF5UG9ydCkgaGFzIGEgdmVydGljYWxseSBzdHJldGNo
-ZWQgb3V0cHV0IHdoaWNoIGp1bXBzIGhvcml6b250YWxseSBpbiBoaWdoIGZyZXF1ZW5jeS4gV2hl
-bmV2ZXIgdG91Y2hpbmcgYW55IHNldHRpbmdzIGZvciB0aGUgYnVpbHQgaW4gZGlzcGxheSAoZS5n
-LiBieSBnbm9tZS1jb250cm9sLWNlbnRlciksIGFsc28gdGhpcyBzY3JlZW4gc3RhcnRzIGluY29y
-cmVjdCBkaXNwbGF5LiBTb21ldGltZXMsIGhvd2V2ZXIsIGFsc28gdGhlIGV4dGVybmFsIHNjcmVl
-biB3b3JrcyBhcyBleHBlY3RlZC4KPgo+IEluc3RhbGxlZCBkcml2ZXIgdmVyc2lvbiBpcyAob25s
-eSAyRCBpbnN0YWxsZWQpOgo+IHhmODYtdmlkZW8tbm91dmVhdTogMS4wLjE1LWxwMTUxLjQuMQo+
-IGxpYnZkcGF1X25vdXZlYXU6IDE4LjMuMi1scDE1MS4yMi40Cj4gbGliZHJtX25vdXZlYXUyOiAy
-LjQuOTctbHAxNTEuMS4xCj4KPiBJIGhhdmUgZm9sbG93ZWQgeW91ciBpbnN0cnVjdGlvbnMgb24g
-dGhlIFRyb3VibGVTaG9vdGluZyBwYWdlLCBObyBzaWducyBmb3IgTlZJRElBIGRyaXZlcnMgcnVu
-bmluZywgZXZlcnl0aGluZyBhcHBlYXJzIHRvIGJlIG9rYXkuIE1pbmltYWwgeG9yZy5jb25mIGRp
-ZCBub3Qgd29yaywgc2NyZWVuc2hvdHMgYXJlIG9rYXkuVW5mb3J0dW5hdGVseSwgSSBmYWlsZWQg
-aW4gaW5zdGFsbGluZyB0aGUgbW9zdCByZWNlbnQgbm91dmVhdSB2ZXJzaW9uIChuZWl0aGVyIC9s
-aWIvbW9kdWxlcy80LjEyLjE0LWxwMTUxLjI4LjQtZGVmYXVsdC9zb3VyY2Ugbm9yIC9saWIvbW9k
-dWxlcy80LjEyLjE0LWxwMTUxLjI4LjQtZGVmYXVsdC9idWlsZCBhcmUgcHJlc2VudCBvbiBteSBj
-b21wdXRlciBldmVuIHRob3VnaCBJIGhhdmUgaW5zdGFsbGVkIHRoZSBLZXJuZWwgc291cmNlcyku
-IFRoZSBpbnN0YWxsZWQgdmVyc2lvbiBpcyBzdGlsbCBxdWl0ZSBuZXcsIGlzbid0IGl0Pwo+Cj4g
-SSBzdXNwZWN0IHRoYXQgSSBtaWdodCBoYXZlIHRoZSBpc3N1ZSB5b3UgZGVzY3JpYmUgdW5kZXIg
-IkJsYW5rIG1vbml0b3IsIGZsaWNrZXIsIHNub3csIG9yIG90aGVyIHJhbmRvbSBsaXZlIGltYWdl
-IGNvcnJ1cHRpb24iLiBJIHdvdWxkIGxpa2UgdG8gbWFrZSBzdXJlLCBob3dldmVyLiBBbmQgc2lu
-Y2UgeW91IHdhcm4gd2l0aCByZWdhcmRzIHRvIHBvdGVudGlhbCBwZXJtYW5lbnQgZGFtYWdlLCBJ
-IHdvdWxkIGxpa2UgdG8gbWFrZSBzdXJlLCBmaXJzdC4KPiBDYW4geW91IGNvbmZpcm0gdGhhdCBp
-dCBzaG91bGQgYmUgdGhpcyBpc3N1ZT8gT3IgYXJlIHRoZXJlIGFueSBvdGhlciB0aGluZ3MgSSBz
-aG91bGQgdHJ5IGZpcnN0Pwo+Cj4gQmVzdCByZWdhcmRzCj4gSGFyYWxkCj4KPgo+Cj4KPgo+Cj4K
-Pgo+Cj4gbG9zZTovaG9tZS9oYXJkZXJzL2Rvd25sb2FkL25vdXZlYXUvZHJtICMgbHNwY2kgfCBn
-cmVwIC1pIHZnYQo+IDAwOjAyLjAgVkdBIGNvbXBhdGlibGUgY29udHJvbGxlcjogSW50ZWwgQ29y
-cG9yYXRpb24gNHRoIEdlbiBDb3JlIFByb2Nlc3NvciBJbnRlZ3JhdGVkIEdyYXBoaWNzIENvbnRy
-b2xsZXIgKHJldiAwNikKPiAwMjowMC4wIFZHQSBjb21wYXRpYmxlIGNvbnRyb2xsZXI6IE5WSURJ
-QSBDb3Jwb3JhdGlvbiBHSzIwOE0gW0dlRm9yY2UgR1QgNzMwTV0gKHJldiBhMSkKPgo+IF9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWls
-aW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+--0000000000003f3c23058b9e5615
+Content-Type: text/plain; charset="UTF-8"
+
+On Mon, Jun 17, 2019 at 5:28 AM Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org> wrote:
+>
+> The functionality is identical to the one currently open coded in
+> device-dax.
+>
+> Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+> ---
+>  drivers/dax/dax-private.h |  4 ----
+>  drivers/dax/device.c      | 43 ---------------------------------------
+>  2 files changed, 47 deletions(-)
+
+This needs the mock devm_memremap_pages() to setup the common
+percpu_ref. Incremental patch attached:
+
+--0000000000003f3c23058b9e5615
+Content-Type: text/x-patch; charset="US-ASCII";
+	name="0001-tools-testing-nvdimm-Support-the-internal-ref-of-dev.patch"
+Content-Disposition: attachment;
+	filename="0001-tools-testing-nvdimm-Support-the-internal-ref-of-dev.patch"
+Content-Transfer-Encoding: base64
+Content-ID: <f_jx27u7050>
+X-Attachment-Id: f_jx27u7050
+
+RnJvbSA4NzVlNzE0ODljODQ4NTQ0OGE1YjdkZjJkOGE4YjJlZDc3ZDJiNTU1IE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBEYW4gV2lsbGlhbXMgPGRhbi5qLndpbGxpYW1zQGludGVsLmNv
+bT4KRGF0ZTogVHVlLCAxOCBKdW4gMjAxOSAxMTo1ODoyNCAtMDcwMApTdWJqZWN0OiBbUEFUQ0hd
+IHRvb2xzL3Rlc3RpbmcvbnZkaW1tOiBTdXBwb3J0IHRoZSAnaW50ZXJuYWwnIHJlZiBvZgogZGV2
+X3BhZ2VtYXAKCkZvciB1c2VycyBvZiB0aGUgY29tbW9uIHBlcmNwdS1yZWYgaW1wbGVtZW50YXRp
+b24sIGxpa2UgZGV2aWNlLWRheCwKYXJyYW5nZSBmb3IgbmZpdF90ZXN0IHRvIGluaXRpYWxpemUg
+dGhlIGNvbW1vbiBwYXJhbWV0ZXJzLgoKU2lnbmVkLW9mZi1ieTogRGFuIFdpbGxpYW1zIDxkYW4u
+ai53aWxsaWFtc0BpbnRlbC5jb20+Ci0tLQogdG9vbHMvdGVzdGluZy9udmRpbW0vdGVzdC9pb21h
+cC5jIHwgNDEgKysrKysrKysrKysrKysrKysrKysrKysrLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQs
+IDMyIGluc2VydGlvbnMoKyksIDkgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvdG9vbHMvdGVz
+dGluZy9udmRpbW0vdGVzdC9pb21hcC5jIGIvdG9vbHMvdGVzdGluZy9udmRpbW0vdGVzdC9pb21h
+cC5jCmluZGV4IDNiYzFjMTZjNGVmOS4uOTAxOWRkOGFmYmMxIDEwMDY0NAotLS0gYS90b29scy90
+ZXN0aW5nL252ZGltbS90ZXN0L2lvbWFwLmMKKysrIGIvdG9vbHMvdGVzdGluZy9udmRpbW0vdGVz
+dC9pb21hcC5jCkBAIC0xMDgsOCArMTA4LDYgQEAgc3RhdGljIHZvaWQgbmZpdF90ZXN0X2tpbGwo
+dm9pZCAqX3BnbWFwKQogewogCXN0cnVjdCBkZXZfcGFnZW1hcCAqcGdtYXAgPSBfcGdtYXA7CiAK
+LQlXQVJOX09OKCFwZ21hcCB8fCAhcGdtYXAtPnJlZik7Ci0KIAlpZiAocGdtYXAtPm9wcyAmJiBw
+Z21hcC0+b3BzLT5raWxsKQogCQlwZ21hcC0+b3BzLT5raWxsKHBnbWFwKTsKIAllbHNlCkBAIC0x
+MjMsMjAgKzEyMSw0NSBAQCBzdGF0aWMgdm9pZCBuZml0X3Rlc3Rfa2lsbCh2b2lkICpfcGdtYXAp
+CiAJfQogfQogCitzdGF0aWMgdm9pZCBkZXZfcGFnZW1hcF9wZXJjcHVfcmVsZWFzZShzdHJ1Y3Qg
+cGVyY3B1X3JlZiAqcmVmKQoreworCXN0cnVjdCBkZXZfcGFnZW1hcCAqcGdtYXAgPQorCQljb250
+YWluZXJfb2YocmVmLCBzdHJ1Y3QgZGV2X3BhZ2VtYXAsIGludGVybmFsX3JlZik7CisKKwljb21w
+bGV0ZSgmcGdtYXAtPmRvbmUpOworfQorCiB2b2lkICpfX3dyYXBfZGV2bV9tZW1yZW1hcF9wYWdl
+cyhzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdCBkZXZfcGFnZW1hcCAqcGdtYXApCiB7CisJaW50
+IGVycm9yOwogCXJlc291cmNlX3NpemVfdCBvZmZzZXQgPSBwZ21hcC0+cmVzLnN0YXJ0OwogCXN0
+cnVjdCBuZml0X3Rlc3RfcmVzb3VyY2UgKm5maXRfcmVzID0gZ2V0X25maXRfcmVzKG9mZnNldCk7
+CiAKLQlpZiAobmZpdF9yZXMpIHsKLQkJaW50IHJjOworCWlmICghbmZpdF9yZXMpCisJCXJldHVy
+biBkZXZtX21lbXJlbWFwX3BhZ2VzKGRldiwgcGdtYXApOwogCi0JCXJjID0gZGV2bV9hZGRfYWN0
+aW9uX29yX3Jlc2V0KGRldiwgbmZpdF90ZXN0X2tpbGwsIHBnbWFwKTsKLQkJaWYgKHJjKQotCQkJ
+cmV0dXJuIEVSUl9QVFIocmMpOwotCQlyZXR1cm4gbmZpdF9yZXMtPmJ1ZiArIG9mZnNldCAtIG5m
+aXRfcmVzLT5yZXMuc3RhcnQ7CisJcGdtYXAtPmRldiA9IGRldjsKKwlpZiAoIXBnbWFwLT5yZWYp
+IHsKKwkJaWYgKHBnbWFwLT5vcHMgJiYgKHBnbWFwLT5vcHMtPmtpbGwgfHwgcGdtYXAtPm9wcy0+
+Y2xlYW51cCkpCisJCQlyZXR1cm4gRVJSX1BUUigtRUlOVkFMKTsKKworCQlpbml0X2NvbXBsZXRp
+b24oJnBnbWFwLT5kb25lKTsKKwkJZXJyb3IgPSBwZXJjcHVfcmVmX2luaXQoJnBnbWFwLT5pbnRl
+cm5hbF9yZWYsCisJCQkJZGV2X3BhZ2VtYXBfcGVyY3B1X3JlbGVhc2UsIDAsIEdGUF9LRVJORUwp
+OworCQlpZiAoZXJyb3IpCisJCQlyZXR1cm4gRVJSX1BUUihlcnJvcik7CisJCXBnbWFwLT5yZWYg
+PSAmcGdtYXAtPmludGVybmFsX3JlZjsKKwl9IGVsc2UgeworCQlpZiAoIXBnbWFwLT5vcHMgfHwg
+IXBnbWFwLT5vcHMtPmtpbGwgfHwgIXBnbWFwLT5vcHMtPmNsZWFudXApIHsKKwkJCVdBUk4oMSwg
+Ik1pc3NpbmcgcmVmZXJlbmNlIGNvdW50IHRlYXJkb3duIGRlZmluaXRpb25cbiIpOworCQkJcmV0
+dXJuIEVSUl9QVFIoLUVJTlZBTCk7CisJCX0KIAl9Ci0JcmV0dXJuIGRldm1fbWVtcmVtYXBfcGFn
+ZXMoZGV2LCBwZ21hcCk7CisKKwllcnJvciA9IGRldm1fYWRkX2FjdGlvbl9vcl9yZXNldChkZXYs
+IG5maXRfdGVzdF9raWxsLCBwZ21hcCk7CisJaWYgKGVycm9yKQorCQlyZXR1cm4gRVJSX1BUUihl
+cnJvcik7CisJcmV0dXJuIG5maXRfcmVzLT5idWYgKyBvZmZzZXQgLSBuZml0X3Jlcy0+cmVzLnN0
+YXJ0OwogfQogRVhQT1JUX1NZTUJPTF9HUEwoX193cmFwX2Rldm1fbWVtcmVtYXBfcGFnZXMpOwog
+Ci0tIAoyLjIwLjEKCg==
+--0000000000003f3c23058b9e5615
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Linux-nvdimm mailing list
+Linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+https://lists.01.org/mailman/listinfo/linux-nvdimm
+
+--0000000000003f3c23058b9e5615--
