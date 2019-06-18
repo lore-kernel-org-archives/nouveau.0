@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110931] Timeout initializing Falcon after cold boot
-Date: Tue, 18 Jun 2019 00:44:38 +0000
-Message-ID: <bug-110931-8800-QIpQhvq4VT@http.bugs.freedesktop.org/>
+Date: Tue, 18 Jun 2019 00:48:44 +0000
+Message-ID: <bug-110931-8800-Hb2kMsr00N@http.bugs.freedesktop.org/>
 References: <bug-110931-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2060634161=="
+Content-Type: multipart/mixed; boundary="===============0594021460=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110931-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2060634161==
-Content-Type: multipart/alternative; boundary="15608186782.Ff3e.19991"
+--===============0594021460==
+Content-Type: multipart/alternative; boundary="15608189242.dD400Ec1d.20806"
 Content-Transfer-Encoding: 7bit
 
 
---15608186782.Ff3e.19991
-Date: Tue, 18 Jun 2019 00:44:38 +0000
+--15608189242.dD400Ec1d.20806
+Date: Tue, 18 Jun 2019 00:48:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110931
 
---- Comment #4 from Andrey Taranov <taranov.andrey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 144583
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144583&action=3Dedit
-Successful Xorg log
+--- Comment #5 from Andrey Taranov <taranov.andrey-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 144584
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144584&action=3Dedit
+VBIOS
+
+Produced with
+# cp /sys/kernel/debug/dri/1/vbios.rom .
+
+In my case, it is dri/1:
+# cat /sys/kernel/debug/dri/1/name
+nouveau dev=3D0000:01:00.0 master=3Dpci:0000:01:00.0 unique=3D0000:01:00.0
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15608186782.Ff3e.19991
-Date: Tue, 18 Jun 2019 00:44:38 +0000
+--15608189242.dD400Ec1d.20806
+Date: Tue, 18 Jun 2019 00:48:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +69,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Timeout initializing Falcon after cold boot"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110931#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110931#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Timeout initializing Falcon after cold boot"
@@ -73,11 +80,19 @@ t # 4</a>
 taranov.andrey&#64;gmail.com" title=3D"Andrey Taranov &lt;taranov.andrey&#6=
 4;gmail.com&gt;"> <span class=3D"fn">Andrey Taranov</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144583=
-" name=3D"attach_144583" title=3D"Successful Xorg log">attachment 144583</a=
-> <a href=3D"attachment.cgi?id=3D144583&amp;action=3Dedit" title=3D"Success=
-ful Xorg log">[details]</a></span>
-Successful Xorg log</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144584=
+" name=3D"attach_144584" title=3D"VBIOS">attachment 144584</a> <a href=3D"a=
+ttachment.cgi?id=3D144584&amp;action=3Dedit" title=3D"VBIOS">[details]</a><=
+/span>
+VBIOS
+
+Produced with
+# cp /sys/kernel/debug/dri/1/vbios.rom .
+
+In my case, it is dri/1:
+# cat /sys/kernel/debug/dri/1/name
+nouveau dev=3D0000:01:00.0 master=3Dpci:0000:01:00.0 unique=3D0000:01:00.0<=
+/pre>
         </div>
       </p>
 
@@ -91,9 +106,9 @@ Successful Xorg log</pre>
     </body>
 </html>=
 
---15608186782.Ff3e.19991--
+--15608189242.dD400Ec1d.20806--
 
---===============2060634161==
+--===============0594021460==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============2060634161==--
+--===============0594021460==--
