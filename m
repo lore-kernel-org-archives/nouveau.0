@@ -1,36 +1,32 @@
-From: Sergey Senozhatsky <sergey.senozhatsky.work@gmail.com>
-Subject: Re: nouveau: DRM: GPU lockup - switching to software fbcon
-Date: Wed, 19 Jun 2019 15:36:35 +0900
-Message-ID: <20190619063635.GA576@jagdpanzerIV>
-References: <20190614024957.GA9645@jagdpanzerIV>
- <20190619050811.GA15221@jagdpanzerIV>
- <CAKb7UvhdN=RUdfrnWswT4ANK5UwPcM-upDP85=84zsCF+a5-bg@mail.gmail.com>
- <20190619054826.GA2059@jagdpanzerIV>
- <CAKb7UvgkEXtmJV67EXeBctgaOxM1D91fBbKw9oFMUaB1ZViZQg@mail.gmail.com>
- <20190619062714.GA11457@jagdpanzerIV>
+From: Christoph Hellwig <hch@lst.de>
+Subject: Re: dev_pagemap related cleanups v2
+Date: Wed, 19 Jun 2019 11:40:32 +0200
+Message-ID: <20190619094032.GA8928@lst.de>
+References: <20190617122733.22432-1-hch@lst.de> <CAPcyv4hBUJB2RxkDqHkfEGCupDdXfQSrEJmAdhLFwnDOwt8Lig@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20190619062714.GA11457@jagdpanzerIV>
+In-Reply-To: <CAPcyv4hBUJB2RxkDqHkfEGCupDdXfQSrEJmAdhLFwnDOwt8Lig@mail.gmail.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Sergey Senozhatsky <sergey.senozhatsky.work@gmail.com>
-Cc: Ilia Mirkin <imirkin@alum.mit.edu>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>, dri-devel <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
+To: Dan Williams <dan.j.williams@intel.com>
+Cc: Christoph Hellwig <hch@lst.de>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Linux MM <linux-mm@kvack.org>, nouveau@lists.freedesktop.org, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, linux-nvdimm <linux-nvdimm@lists.01.org>, linux-pci@vger.kernel.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-On (06/19/19 15:27), Sergey Senozhatsky wrote:
-> [..]
+On Tue, Jun 18, 2019 at 12:47:10PM -0700, Dan Williams wrote:
+> > Git tree:
+> >
+> >     git://git.infradead.org/users/hch/misc.git hmm-devmem-cleanup.2
+> >
+> > Gitweb:
+> >
+> >     http://git.infradead.org/users/hch/misc.git/shortlog/refs/heads/hmm-devmem-cleanup.2
+
 > 
-> > If all else fails, just remove nouveau_dri.so and/or boot with
-> > nouveau.noaccel=1 -- should be perfect.
-> 
-> Can give it a try.
+> Attached is my incremental fixups on top of this series, with those
+> integrated you can add:
 
-That has some impact on system responsiveness:
-
- CPU%		COMM
- 339.7		firefox
-
-Which is slightly less than perfect :)
-
-	-ss
+I've folded your incremental bits in and pushed out a new
+hmm-devmem-cleanup.3 to the repo above.  Let me know if I didn't mess
+up anything else.  I'll wait for a few more comments and Jason's
+planned rebase of the hmm branch before reposting.
