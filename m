@@ -1,174 +1,128 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Instable graphics with GeForce GT 730M,
- especially on external monitor
-Date: Wed, 19 Jun 2019 02:09:07 -0400
-Message-ID: <CAKb7UvhUeDGqcNepqTpZ_opFo9MWBJexPLaAdMdnqX3gCexqXw@mail.gmail.com>
-References: <trinity-60f06d18-ea3c-49a9-8a25-d6aa7f233436-1560886110718@3c-app-gmx-bs22>
- <CAKb7UvifuLNe_Nq+7oGHTzgmo4a3mQ1kg0QX-kKfdABB8Ok_Hg@mail.gmail.com>
- <trinity-1a0b5a21-eb2a-4e86-81ce-5c34a2831c44-1560888767918@3c-app-gmx-bs22>
- <CAKb7Uvg4=G5Y_jGr8MGJ08ghkvv+FPPiz-zkkHKP2bZNjhrd7g@mail.gmail.com>
- <trinity-500c06a8-5dd3-4622-88f6-d6f4a3a6088a-1560924194315@3c-app-gmx-bs56>
+From: Sergey Senozhatsky <sergey.senozhatsky.work@gmail.com>
+Subject: Re: nouveau: DRM: GPU lockup - switching to software fbcon
+Date: Wed, 19 Jun 2019 15:27:14 +0900
+Message-ID: <20190619062714.GA11457@jagdpanzerIV>
+References: <20190614024957.GA9645@jagdpanzerIV>
+ <20190619050811.GA15221@jagdpanzerIV>
+ <CAKb7UvhdN=RUdfrnWswT4ANK5UwPcM-upDP85=84zsCF+a5-bg@mail.gmail.com>
+ <20190619054826.GA2059@jagdpanzerIV>
+ <CAKb7UvgkEXtmJV67EXeBctgaOxM1D91fBbKw9oFMUaB1ZViZQg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <trinity-500c06a8-5dd3-4622-88f6-d6f4a3a6088a-1560924194315@3c-app-gmx-bs56>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Harald Harders <harald.harders-Mmb7MZpHnFY@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CAKb7UvgkEXtmJV67EXeBctgaOxM1D91fBbKw9oFMUaB1ZViZQg@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: Sergey Senozhatsky <sergey.senozhatsky.work@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>, Daniel Vetter <daniel@ffwll.ch>, dri-devel <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-U2lnaCAuLi4geW91J3JlIG9uIHdheWxhbmQuIHhyYW5kciBpcyBqdXN0IHNob3dpbmcgeW91IHdo
-YXQncyBwYXNzZWQKdGhyb3VnaCB2aWEgWHdheWxhbmQsIHdoaWNoIGlzIG5vdCB0aGUgY29ubmVj
-dG9yIG5hbWVzLiBMZXQncyB0cnkKc29tZXRoaW5nIGVsc2UuLi4KCmdyZXAgLiAvc3lzL2NsYXNz
-L2RybS9jYXJkKi0qL3N0YXR1cwoKU2hvdWxkIGdpdmUgeW91IHRoZSBzdGF0dXMgb2YgZWFjaCBj
-b25uZWN0b3IuIElzIGl0IHRoZSBEUC0qIG9uZXMgdGhhdAphcmUgY29ubmVjdGVkLCBvciBhcmUg
-ZS5nLiBWR0EtMSBvciBEVkktRC0xL2V0YyBjb25uZWN0ZWQ/CgogIC1pbGlhCgpPbiBXZWQsIEp1
-biAxOSwgMjAxOSBhdCAyOjAzIEFNIEhhcmFsZCBIYXJkZXJzIDxoYXJhbGQuaGFyZGVyc0BnbXgu
-ZGU+IHdyb3RlOgo+Cj4gV2hlbiB0aGUgbW9uaXRvciBpcyBjb25uZWN0ZWQgdmlhIERWSSwgdGhl
-IHhyYW5kciBvdXRwdXQgaXMgYXMgZm9sbG93czoKPgo+IGhhcmRlcnNAbG9zZTp+PiB4cmFuZHIK
-PiBTY3JlZW4gMDogbWluaW11bSAzMjAgeCAyMDAsIGN1cnJlbnQgMzg0MCB4IDEyMDAsIG1heGlt
-dW0gODE5MiB4IDgxOTIKPiBYV0FZTEFORDAgY29ubmVjdGVkIDE5MjB4MTA4MCsxOTIwKzAgKG5v
-cm1hbCBsZWZ0IGludmVydGVkIHJpZ2h0IHggYXhpcyB5IGF4aXMpIDMxMG1tIHggMTcwbW0KPiAg
-ICAxOTIweDEwODAgICAgIDU5Ljk2KisKPiBYV0FZTEFORDEgY29ubmVjdGVkIDE5MjB4MTIwMCsw
-KzAgKG5vcm1hbCBsZWZ0IGludmVydGVkIHJpZ2h0IHggYXhpcyB5IGF4aXMpIDUyMG1tIHggMzIw
-bW0KPiAgICAxOTIweDEyMDAgICAgIDU5Ljg4KisKPgo+IG9yIHZlcmJvc2U6Cj4KPiBoYXJkZXJz
-QGxvc2U6fj4geHJhbmRyIC0tdmVyYm9zZQo+IFNjcmVlbiAwOiBtaW5pbXVtIDMyMCB4IDIwMCwg
-Y3VycmVudCAzODQwIHggMTIwMCwgbWF4aW11bSA4MTkyIHggODE5Mgo+IFhXQVlMQU5EMCBjb25u
-ZWN0ZWQgMTkyMHgxMDgwKzE5MjArMCAoMHgyNCkgbm9ybWFsIChub3JtYWwgbGVmdCBpbnZlcnRl
-ZCByaWdodCB4IGF4aXMgeSBheGlzKSAzMTBtbSB4IDE3MG1tCj4gICAgICAgICBJZGVudGlmaWVy
-OiAweDIxCj4gICAgICAgICBUaW1lc3RhbXA6ICA0MTU3Mgo+ICAgICAgICAgU3VicGl4ZWw6ICAg
-dW5rbm93bgo+ICAgICAgICAgR2FtbWE6ICAgICAgMS4wOjEuMDoxLjAKPiAgICAgICAgIEJyaWdo
-dG5lc3M6IDAuMAo+ICAgICAgICAgQ2xvbmVzOgo+ICAgICAgICAgQ1JUQzogICAgICAgMAo+ICAg
-ICAgICAgQ1JUQ3M6ICAgICAgMAo+ICAgICAgICAgVHJhbnNmb3JtOiAgMS4wMDAwMDAgMC4wMDAw
-MDAgMC4wMDAwMDAKPiAgICAgICAgICAgICAgICAgICAgIDAuMDAwMDAwIDEuMDAwMDAwIDAuMDAw
-MDAwCj4gICAgICAgICAgICAgICAgICAgICAwLjAwMDAwMCAwLjAwMDAwMCAxLjAwMDAwMAo+ICAg
-ICAgICAgICAgICAgICAgICBmaWx0ZXI6Cj4gICAgICAgICBub24tZGVza3RvcDogMAo+ICAgICAg
-ICAgICAgICAgICBzdXBwb3J0ZWQ6IDAsIDEKPiAgIDE5MjB4MTA4MCAoMHgyNCkgMTczLjAwME1I
-eiAtSFN5bmMgK1ZTeW5jICpjdXJyZW50ICtwcmVmZXJyZWQKPiAgICAgICAgIGg6IHdpZHRoICAx
-OTIwIHN0YXJ0IDIwNDggZW5kIDIyNDggdG90YWwgMjU3NiBza2V3ICAgIDAgY2xvY2sgIDY3LjE2
-S0h6Cj4gICAgICAgICB2OiBoZWlnaHQgMTA4MCBzdGFydCAxMDgzIGVuZCAxMDg4IHRvdGFsIDEx
-MjAgICAgICAgICAgIGNsb2NrICA1OS45Nkh6Cj4gWFdBWUxBTkQxIGNvbm5lY3RlZCAxOTIweDEy
-MDArMCswICgweDI1KSBub3JtYWwgKG5vcm1hbCBsZWZ0IGludmVydGVkIHJpZ2h0IHggYXhpcyB5
-IGF4aXMpIDUyMG1tIHggMzIwbW0KPiAgICAgICAgIElkZW50aWZpZXI6IDB4MjMKPiAgICAgICAg
-IFRpbWVzdGFtcDogIDQxNTcyCj4gICAgICAgICBTdWJwaXhlbDogICB1bmtub3duCj4gICAgICAg
-ICBHYW1tYTogICAgICAxLjA6MS4wOjEuMAo+ICAgICAgICAgQnJpZ2h0bmVzczogMC4wCj4gICAg
-ICAgICBDbG9uZXM6Cj4gICAgICAgICBDUlRDOiAgICAgICAxCj4gICAgICAgICBDUlRDczogICAg
-ICAxCj4gICAgICAgICBUcmFuc2Zvcm06ICAxLjAwMDAwMCAwLjAwMDAwMCAwLjAwMDAwMAo+ICAg
-ICAgICAgICAgICAgICAgICAgMC4wMDAwMDAgMS4wMDAwMDAgMC4wMDAwMDAKPiAgICAgICAgICAg
-ICAgICAgICAgIDAuMDAwMDAwIDAuMDAwMDAwIDEuMDAwMDAwCj4gICAgICAgICAgICAgICAgICAg
-IGZpbHRlcjoKPiAgICAgICAgIG5vbi1kZXNrdG9wOiAwCj4gICAgICAgICAgICAgICAgIHN1cHBv
-cnRlZDogMCwgMQo+ICAgMTkyMHgxMjAwICgweDI1KSAxOTMuMjUwTUh6IC1IU3luYyArVlN5bmMg
-KmN1cnJlbnQgK3ByZWZlcnJlZAo+ICAgICAgICAgaDogd2lkdGggIDE5MjAgc3RhcnQgMjA1NiBl
-bmQgMjI1NiB0b3RhbCAyNTkyIHNrZXcgICAgMCBjbG9jayAgNzQuNTZLSHoKPiAgICAgICAgIHY6
-IGhlaWdodCAxMjAwIHN0YXJ0IDEyMDMgZW5kIDEyMDkgdG90YWwgMTI0NSAgICAgICAgICAgY2xv
-Y2sgIDU5Ljg4SHoKPgo+IFdoZW4gc3dpdGNoaW5nIHRvIFZHQSBjYWJsZSwgdGhlIG9ubHkgY2hh
-bmdlcyBhcmUgaW4gdGhlIGdhbW1hLCBicmlnaHRuZXNzLCBhbmQgSWRlbnRpZmllciB2YWx1ZXMu
-IEkgZG9uJ3QgZmluZCBhbnl0aGluZyB3aGljaCByZWZlcnMgdG8gRFAgb3IgYSBwb3J0LiBXaGF0
-IGVsc2UgY2FuIEkgZG8gdG8gbmFycm93IGl0IGRvd24/Cj4gLS0KPiBIYXJhbGQgSGFyZGVycwo+
-IGhhcmFsZC5oYXJkZXJzQGdteC5kZQo+Cj4KPiBHZXNlbmRldDogRGllbnN0YWcsIDE4LiBKdW5p
-IDIwMTkgdW0gMjI6MzAgVWhyCj4gVm9uOiAiSWxpYSBNaXJraW4iIDxpbWlya2luQGFsdW0ubWl0
-LmVkdT4KPiBBbjogIkhhcmFsZCBIYXJkZXJzIiA8aGFyYWxkLmhhcmRlcnNAZ214LmRlPgo+IENj
-OiBub3V2ZWF1IDxub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4KPiBCZXRyZWZmOiBSZTog
-W05vdXZlYXVdIEluc3RhYmxlIGdyYXBoaWNzIHdpdGggR2VGb3JjZSBHVCA3MzBNLCBlc3BlY2lh
-bGx5IG9uIGV4dGVybmFsIG1vbml0b3IKPiBXaGF0J3MgdGhlIGNvbm5lY3RvciBuYW1lIHdoZW4g
-eW91IHBsdWcgaW4gdmlhLCBzYXksIERWST8gSXMgaXQgIkRQLTEiCj4gb3IgaXMgaXQgIkRWSS1E
-LTEiIG9yIHdoYXRldmVyPyBZb3Ugc2hvdWxkIGJlIGFibGUgdG8gc2VlIHRoZSBuYW1lIGluCj4g
-J3hyYW5kcicuIFVuZm9ydHVuYXRlbHkgSSBkb24ndCBrbm93IGhvdyB0aGUgVDQ0MHAgaXMgd2ly
-ZWQsIHRoZXJlIGFyZQo+IGEgZmV3IHdheXMgaXQgY291bGQgZ28uIEluIHNvbWUgY2FzZXMsIGV2
-ZW4gdGhlICJWR0EiIHBvcnQgaXMgc2VjcmV0bHkKPiBhIERQIC0+IFZHQSBhY3RpdmUgYWRhcHRl
-ciBpbnNpZGUgdGhlIGxhcHRvcC4KPgo+IEJhc2ljYWxseSBJJ20gdHJ5aW5nIHRvIHJ1bGUgRGlz
-cGxheVBvcnQgYXMgYSBzb3VyY2Ugb2YgcG90ZW50aWFsIGlzc3Vlcy4KPgo+IC1pbGlhCj4KPiBP
-biBUdWUsIEp1biAxOCwgMjAxOSBhdCA0OjEyIFBNIEhhcmFsZCBIYXJkZXJzIDxoYXJhbGQuaGFy
-ZGVyc0BnbXguZGU+IHdyb3RlOgo+ID4KPiA+IEhpIElsaWEsCj4gPgo+ID4gRmlyc3QgSSBoYWQg
-dXBncmFkZWQgZnJvbSBPcGVuU1VTRSAxMy4yICh3aGVyZSBpdCB3b3JrZWQpIHRvIE9wZW5TVVNF
-IExlYXAgMTUuMS4gQWZ0ZXIgaGF2aW5nIHRoZSBzYW1lIGlzc3VlIEkgaGF2ZSBkb25lIGEgY2xl
-YW4gbmV3IGluc3RhbGwuIFRoZSBuZXcga2VybmVsIHZlcnNpb24gaXMgNC4xMi4xNCwgYXMgeW91
-IHN1c3BlY3RlZC4gSW4gT3BlblNVU0UsIEkgc3VzcGVjdCBpdCB3YXMgdmVyc2lvbiAzLjE2Ljcu
-IFVuZm9ydHVuYXRlbHksIEkgY2Fubm90IGZpbmQgb3V0IGFueW1vcmUgd2hpY2ggbm91dmVhdSB2
-ZXJzaW9uIEkgaGF2ZSB1c2VkIGJlZm9yZS4gSSBoYXZlIGEgZmlsZSBiYWNrdXAgb2YgdGhlIG9s
-ZCBpbnN0YWxsYXRpb24uIENhbiBJIGZpbmQgb3V0IHdoaWNoIG5vdXZlYXUgdmVyc2lvbiBJIGhh
-ZCBiZWZvcmU/Cj4gPgo+ID4gRHVyaW5nIGFsbCBteSBhdHRlbXB0cywgSSBoYXZlIGFsc28gaW5z
-dGFsbGVkIFVidW50dSAxOC4wNC4yIHdpdGggdGhlIHNhbWUgc3RyYW5nZSBiZWhhdmlvdXIuIEkg
-Z3Vlc3MgdGhpcyB3YXMgdGhlIDQuMTgga2VybmVsIHZlcnNpb24/Cj4gPiBEbyB5b3Uga25vdyB3
-aGljaCBkaXN0cnVidGlvbiBhbHJlYWR5IHVzZXMgYSA1LjAga2VybmVsPyBJIHdpbGwgdHJ5IGEg
-bGl2ZSBzeXN0ZW0sIHRoZW4uCj4gPgo+ID4gSSBoYXZlIGEgZG9ja2luZyBzdGF0aW9uIHdpdGgg
-NCBtb25pdG9yIHBvcnRzOiBWR0EsIERWSSwgSERNSSwgRGlzcGxheXBvcnQuIEFuZCBteSBsYXB0
-b3AgaGFzIFZHQSBhbmQgTWluaS1EaXNwbGF5cG9ydC4gTXkgbW9uaXRvciAoRnVqaXRzdSBQMjRX
-LTcgTEVEKSBoYXMgVkdBLCBEVkksIEhETUksIGFuZCBEaXNwbGF5cG9ydC4KPiA+IEkgaGF2ZSB0
-cmllZCBEVkktPkRWSSBhbmQgRGlzcGxheVBvcnQtPkhETUkgY2FibGUgb24gdGhlIGRvY2tpbmcg
-c3RhdGlvbiAoSSBkb24ndCBoYXYuIEluIG9uZSBvZiBteSBhdHRlbXB0cywgSSBoYXZlIGNvbm5l
-Y3RlZCB0aGUgc2NyZWVuIHZpYSBhbmFsb2cgVkdBIGNhYmxlIGRpcmVjdGx5IHRvIHRoZSBjb21w
-dXRlci4gVGhlIHNhbWUgZWZmZWN0IHJlc3VsdGVkLiBUaHVzLCBJIGJlbGlldmUgdGhlIGRvY2tp
-bmcgc3RhdGlvbiBhbmQgZGlnaXRhbCBjb25uZWN0aW9uIHRvIHRoZSBtb25pdG9yIGFyZSBub3Qg
-cGFydCBvZiB0aGUgcHJvYmxlbS4KPiA+Cj4gPiBCZXN0IHJlZ2FyZHMKPiA+IEhhcmFsZAo+ID4K
-PiA+IFBTOiBJIGd1ZXNzIHNlbmRpbmcgdG8gdGhlIG1haWxpbmcgbGlzdCBhbmQgb21pdHRpbmcg
-eW91ciBwZXJzb25hbCBtYWlsIGFkZHJlc3MgaXMgY29ycmVjdCwgcmlnaHQ/Cj4gPgo+ID4KPiA+
-IEdlc2VuZGV0OiBEaWVuc3RhZywgMTguIEp1bmkgMjAxOSB1bSAyMTozNiBVaHIKPiA+IFZvbjog
-IklsaWEgTWlya2luIiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Cj4gPiBBbjogIkhhcmFsZCBIYXJk
-ZXJzIiA8aGFyYWxkLmhhcmRlcnNAZ214LmRlPgo+ID4gQ2M6IG5vdXZlYXUgPG5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnPgo+ID4gQmV0cmVmZjogUmU6IFtOb3V2ZWF1XSBJbnN0YWJsZSBn
-cmFwaGljcyB3aXRoIEdlRm9yY2UgR1QgNzMwTSwgZXNwZWNpYWxseSBvbiBleHRlcm5hbCBtb25p
-dG9yCj4gPiBXaGljaCBrZXJuZWwgZGlkIHlvdSB1cGRhdGUgZnJvbSBhbmQgdG8/IEFsc28sIDQu
-MTIgaXMgZmFpcmx5IG9sZCAtCj4gPiBjYW4geW91IHRyeSBsaWtlIGEgbGl2ZSB1c2IgaW1hZ2Ug
-b2Ygc29tZSBkaXN0cm8gd2l0aCBlLmcuIGEgNS4wCj4gPiBrZXJuZWwgb3Igc29tZXRoaW5nPwo+
-ID4KPiA+IEhvdyBkbyB5b3UgY29ubmVjdCB0aGUgZXh0ZXJuYWwgc2NyZWVuPyBJcyBpdCBsaWtl
-IGEgRFAgcG9ydCB3aXRoIGFuCj4gPiBvcHRpb25hbCBkb2NrIHdpdGggYSB2YXJpZXR5IG9mIGFj
-dGl2ZSBEUCBhZGFwdGVycz8gT3IgaXMgdGhlcmUgYSBEUCsrCj4gPiBwb3J0IHRoYXQgeW91J3Jl
-IHBsdWdnaW5nIGEgRFAgPC0+IEhETUkgcGFzc2l2ZSBhZGFwdGVyIGludG8/Cj4gPgo+ID4gT24g
-VHVlLCBKdW4gMTgsIDIwMTkgYXQgMzoyOCBQTSBIYXJhbGQgSGFyZGVycyA8aGFyYWxkLmhhcmRl
-cnNAZ214LmRlPiB3cm90ZToKPiA+ID4KPiA+ID4gRGVhciBhbGwsCj4gPiA+Cj4gPiA+IEkgaGF2
-ZSByZWNlbnRseSB1cGRhdGVkIG15IExlbm92byBUNDQwcCB3aXRoIGEgZHVhbCBncmFwaGljcyBj
-YXJkIChJbnRlbCBDb3JlICsgR2VGb3JjZSBHVCA3MzBNKSB0byBPcGVuU1VTRSBMZWFwIDE1LjEu
-IFNpbmNlIHRoZW4sIHRoZSBleHRlcm5hbCBzY3JlZW4gKGNvbm5lY3RlZCBlaXRoZXIgdmlhIFZH
-QSwgRFZJLCBIRE1JLCBvciBEaXNwbGF5UG9ydCkgaGFzIGEgdmVydGljYWxseSBzdHJldGNoZWQg
-b3V0cHV0IHdoaWNoIGp1bXBzIGhvcml6b250YWxseSBpbiBoaWdoIGZyZXF1ZW5jeS4gV2hlbmV2
-ZXIgdG91Y2hpbmcgYW55IHNldHRpbmdzIGZvciB0aGUgYnVpbHQgaW4gZGlzcGxheSAoZS5nLiBi
-eSBnbm9tZS1jb250cm9sLWNlbnRlciksIGFsc28gdGhpcyBzY3JlZW4gc3RhcnRzIGluY29ycmVj
-dCBkaXNwbGF5LiBTb21ldGltZXMsIGhvd2V2ZXIsIGFsc28gdGhlIGV4dGVybmFsIHNjcmVlbiB3
-b3JrcyBhcyBleHBlY3RlZC4KPiA+ID4KPiA+ID4gSW5zdGFsbGVkIGRyaXZlciB2ZXJzaW9uIGlz
-IChvbmx5IDJEIGluc3RhbGxlZCk6Cj4gPiA+IHhmODYtdmlkZW8tbm91dmVhdTogMS4wLjE1LWxw
-MTUxLjQuMQo+ID4gPiBsaWJ2ZHBhdV9ub3V2ZWF1OiAxOC4zLjItbHAxNTEuMjIuNAo+ID4gPiBs
-aWJkcm1fbm91dmVhdTI6IDIuNC45Ny1scDE1MS4xLjEKPiA+ID4KPiA+ID4gSSBoYXZlIGZvbGxv
-d2VkIHlvdXIgaW5zdHJ1Y3Rpb25zIG9uIHRoZSBUcm91YmxlU2hvb3RpbmcgcGFnZSwgTm8gc2ln
-bnMgZm9yIE5WSURJQSBkcml2ZXJzIHJ1bm5pbmcsIGV2ZXJ5dGhpbmcgYXBwZWFycyB0byBiZSBv
-a2F5LiBNaW5pbWFsIHhvcmcuY29uZiBkaWQgbm90IHdvcmssIHNjcmVlbnNob3RzIGFyZSBva2F5
-LlVuZm9ydHVuYXRlbHksIEkgZmFpbGVkIGluIGluc3RhbGxpbmcgdGhlIG1vc3QgcmVjZW50IG5v
-dXZlYXUgdmVyc2lvbiAobmVpdGhlciAvbGliL21vZHVsZXMvNC4xMi4xNC1scDE1MS4yOC40LWRl
-ZmF1bHQvc291cmNlIG5vciAvbGliL21vZHVsZXMvNC4xMi4xNC1scDE1MS4yOC40LWRlZmF1bHQv
-YnVpbGQgYXJlIHByZXNlbnQgb24gbXkgY29tcHV0ZXIgZXZlbiB0aG91Z2ggSSBoYXZlIGluc3Rh
-bGxlZCB0aGUgS2VybmVsIHNvdXJjZXMpLiBUaGUgaW5zdGFsbGVkIHZlcnNpb24gaXMgc3RpbGwg
-cXVpdGUgbmV3LCBpc24ndCBpdD8KPiA+ID4KPiA+ID4gSSBzdXNwZWN0IHRoYXQgSSBtaWdodCBo
-YXZlIHRoZSBpc3N1ZSB5b3UgZGVzY3JpYmUgdW5kZXIgIkJsYW5rIG1vbml0b3IsIGZsaWNrZXIs
-IHNub3csIG9yIG90aGVyIHJhbmRvbSBsaXZlIGltYWdlIGNvcnJ1cHRpb24iLiBJIHdvdWxkIGxp
-a2UgdG8gbWFrZSBzdXJlLCBob3dldmVyLiBBbmQgc2luY2UgeW91IHdhcm4gd2l0aCByZWdhcmRz
-IHRvIHBvdGVudGlhbCBwZXJtYW5lbnQgZGFtYWdlLCBJIHdvdWxkIGxpa2UgdG8gbWFrZSBzdXJl
-LCBmaXJzdC4KPiA+ID4gQ2FuIHlvdSBjb25maXJtIHRoYXQgaXQgc2hvdWxkIGJlIHRoaXMgaXNz
-dWU/IE9yIGFyZSB0aGVyZSBhbnkgb3RoZXIgdGhpbmdzIEkgc2hvdWxkIHRyeSBmaXJzdD8KPiA+
-ID4KPiA+ID4gQmVzdCByZWdhcmRzCj4gPiA+IEhhcmFsZAo+ID4gPgo+ID4gPgo+ID4gPgo+ID4g
-Pgo+ID4gPgo+ID4gPgo+ID4gPgo+ID4gPgo+ID4gPgo+ID4gPiBsb3NlOi9ob21lL2hhcmRlcnMv
-ZG93bmxvYWQvbm91dmVhdS9kcm0gIyBsc3BjaSB8IGdyZXAgLWkgdmdhCj4gPiA+IDAwOjAyLjAg
-VkdBIGNvbXBhdGlibGUgY29udHJvbGxlcjogSW50ZWwgQ29ycG9yYXRpb24gNHRoIEdlbiBDb3Jl
-IFByb2Nlc3NvciBJbnRlZ3JhdGVkIEdyYXBoaWNzIENvbnRyb2xsZXIgKHJldiAwNikKPiA+ID4g
-MDI6MDAuMCBWR0EgY29tcGF0aWJsZSBjb250cm9sbGVyOiBOVklESUEgQ29ycG9yYXRpb24gR0sy
-MDhNIFtHZUZvcmNlIEdUIDczME1dIChyZXYgYTEpCj4gPiA+Cj4gPiA+IF9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiA+IE5vdXZlYXUgbWFpbGluZyBs
-aXN0Cj4gPiA+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiA+IGh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+ID4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+IE5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Cj4gPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4gX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlz
-dAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQ==
+On (06/19/19 02:07), Ilia Mirkin wrote:
+> On Wed, Jun 19, 2019 at 1:48 AM Sergey Senozhatsky
+> <sergey.senozhatsky.work@gmail.com> wrote:
+> >
+> > On (06/19/19 01:20), Ilia Mirkin wrote:
+> > > On Wed, Jun 19, 2019 at 1:08 AM Sergey Senozhatsky
+> > > <sergey.senozhatsky.work@gmail.com> wrote:
+> > > >
+> > > > On (06/14/19 11:50), Sergey Senozhatsky wrote:
+> > > > > dmesg
+> > > > >
+> > > > >  nouveau 0000:01:00.0: DRM: GPU lockup - switching to software fbcon
+> > > > >  nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+> > > > >  nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recovery
+> > > > >  nouveau 0000:01:00.0: fifo: channel 5: killed
+> > > > >  nouveau 0000:01:00.0: fifo: engine 6: scheduled for recovery
+> > > > >  nouveau 0000:01:00.0: fifo: engine 0: scheduled for recovery
+> > > > >  nouveau 0000:01:00.0: firefox[476]: channel 5 killed!
+> > > > >  nouveau 0000:01:00.0: firefox[476]: failed to idle channel 5 [firefox[476]]
+> > > > >
+> > > > > It lockups several times a day. Twice in just one hour today.
+> > > > > Can we fix this?
+> > > >
+> > > > Unusable
+> > >
+> > > Are you using a GTX 660 by any chance? You've provided rather minimal
+> > > system info.
+> >
+> > 01:00.0 VGA compatible controller: NVIDIA Corporation GK208B [GeForce GT 730] (rev a1)
+> 
+> Quite literally the same GPU I have plugged in...
+> 
+> 02:00.0 VGA compatible controller [0300]: NVIDIA Corporation GK208B
+> [GeForce GT 730] [10de:1287] (rev a1)
+> 
+> Works great here! Only other thing I can think of is that I avoid
+> applications with the letters "G" and "K" in their names, and I'm
+> using xf86-video-nouveau ddx, whereas you might be using the "modeset"
+> ddx with glamor.
+
+xf86-video-nouveau 1.0.16-1
+
+cat .local/share/xorg/Xorg.0.log
+
+[..]
+[   304.159] (II) NOUVEAU driver 
+[   304.159] (II) NOUVEAU driver for NVIDIA chipset families :
+[   304.159] 	RIVA TNT            (NV04)
+[   304.159] 	RIVA TNT2           (NV05)
+[   304.159] 	GeForce 256         (NV10)
+[   304.159] 	GeForce 2           (NV11, NV15)
+[   304.159] 	GeForce 4MX         (NV17, NV18)
+[   304.159] 	GeForce 3           (NV20)
+[   304.159] 	GeForce 4Ti         (NV25, NV28)
+[   304.159] 	GeForce FX          (NV3x)
+[   304.159] 	GeForce 6           (NV4x)
+[   304.159] 	GeForce 7           (G7x)
+[   304.159] 	GeForce 8           (G8x)
+[   304.159] 	GeForce 9           (G9x)
+[   304.159] 	GeForce GTX 2xx/3xx (GT2xx)
+[   304.159] 	GeForce GTX 4xx/5xx (GFxxx)
+[   304.159] 	GeForce GTX 6xx/7xx (GKxxx)
+[   304.159] 	GeForce GTX 9xx     (GMxxx)
+[   304.159] 	GeForce GTX 10xx    (GPxxx)
+[   304.159] (II) modesetting: Driver for Modesetting Kernel Drivers: kms
+[   304.159] (II) [drm] nouveau interface version: 1.3.1
+[   304.159] (WW) Falling back to old probe method for modesetting
+[   304.159] (WW) VGA arbiter: cannot open kernel arbiter, no multi-card support
+[   304.159] (II) Loading sub module "dri2"
+[   304.159] (II) LoadModule: "dri2"
+[   304.159] (II) Module "dri2" already built-in
+[   304.159] (--) NOUVEAU(0): Chipset: "NVIDIA NV106"
+[   304.159] (II) NOUVEAU(0): Creating default Display subsection in Screen section
+	"Default Screen Section" for depth/fbbpp 24/32
+[...]
+[   304.309] (II) UnloadModule: "modesetting"
+[   304.309] (II) Unloading modesetting
+[   304.310] (II) NOUVEAU(0): Channel setup complete.
+[   304.310] (II) NOUVEAU(0): [COPY] async initialised.
+[   304.310] (II) NOUVEAU(0): Hardware support for Present enabled
+[   304.310] (II) NOUVEAU(0): [DRI2] Setup complete
+[   304.310] (II) NOUVEAU(0): [DRI2]   DRI driver: nouveau
+[   304.310] (II) NOUVEAU(0): [DRI2]   VDPAU driver: nouveau
+[   304.310] (II) Loading sub module "exa"
+[   304.310] (II) LoadModule: "exa"
+[   304.310] (II) Loading /usr/lib/xorg/modules/libexa.so
+[   304.310] (II) Module exa: vendor="X.Org Foundation"
+[   304.310] 	compiled for 1.20.5, module version = 2.6.0
+[   304.310] 	ABI class: X.Org Video Driver, version 24.0
+[   304.310] (II) EXA(0): Driver allocated offscreen pixmaps
+[   304.310] (II) EXA(0): Driver registered support for the following operations:
+[   304.310] (II)         Solid
+[   304.310] (II)         Copy
+[   304.310] (II)         Composite (RENDER acceleration)
+[   304.310] (II)         UploadToScreen
+[   304.310] (II)         DownloadFromScreen
+[   304.310] (==) NOUVEAU(0): Backing store enabled
+[   304.310] (==) NOUVEAU(0): Silken mouse disabled
+[   304.310] (II) NOUVEAU(0): [XvMC] Associated with Nouveau GeForce 8/9 Textured Video.
+[   304.310] (II) NOUVEAU(0): [XvMC] Extension initialized.
+[   304.310] (==) NOUVEAU(0): DPMS enabled
+[..]
+
+> If all else fails, just remove nouveau_dri.so and/or boot with
+> nouveau.noaccel=1 -- should be perfect.
+
+Can give it a try.
+
+	-ss
