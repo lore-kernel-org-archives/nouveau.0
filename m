@@ -1,40 +1,49 @@
 From: Michal Hocko <mhocko@kernel.org>
-Subject: Re: [PATCH 05/22] mm: export alloc_pages_vma
-Date: Thu, 20 Jun 2019 21:17:33 +0200
-Message-ID: <20190620191733.GH12083@dhcp22.suse.cz>
+Subject: Re: [PATCH 18/22] mm: mark DEVICE_PUBLIC as broken
+Date: Thu, 20 Jun 2019 21:26:48 +0200
+Message-ID: <20190620192648.GI12083@dhcp22.suse.cz>
 References: <20190613094326.24093-1-hch@lst.de>
- <20190613094326.24093-6-hch@lst.de>
+ <20190613094326.24093-19-hch@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20190613094326.24093-6-hch@lst.de>
+In-Reply-To: <20190613094326.24093-19-hch@lst.de>
 Sender: linux-kernel-owner@vger.kernel.org
 To: Christoph Hellwig <hch@lst.de>
 Cc: Dan Williams <dan.j.williams@intel.com>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu 13-06-19 11:43:08, Christoph Hellwig wrote:
-> noveau is currently using this through an odd hmm wrapper, and I plan
-> to switch it to the real thing later in this series.
-> 
+On Thu 13-06-19 11:43:21, Christoph Hellwig wrote:
+> The code hasn't been used since it was added to the tree, and doesn't
+> appear to actually be usable.  Mark it as BROKEN until either a user
+> comes along or we finally give up on it.
+
+I would go even further and simply remove all the DEVICE_PUBLIC code.
+
 > Signed-off-by: Christoph Hellwig <hch@lst.de>
+
+Anyway
+Acked-by: Michal Hocko <mhocko@suse.com>
+
 > ---
->  mm/mempolicy.c | 1 +
+>  mm/Kconfig | 1 +
 >  1 file changed, 1 insertion(+)
 > 
-> diff --git a/mm/mempolicy.c b/mm/mempolicy.c
-> index 01600d80ae01..f9023b5fba37 100644
-> --- a/mm/mempolicy.c
-> +++ b/mm/mempolicy.c
-> @@ -2098,6 +2098,7 @@ alloc_pages_vma(gfp_t gfp, int order, struct vm_area_struct *vma,
->  out:
->  	return page;
->  }
-> +EXPORT_SYMBOL_GPL(alloc_pages_vma);
-
-All allocator exported symbols are EXPORT_SYMBOL, what is a reason to
-have this one special?
+> diff --git a/mm/Kconfig b/mm/Kconfig
+> index 0d2ba7e1f43e..406fa45e9ecc 100644
+> --- a/mm/Kconfig
+> +++ b/mm/Kconfig
+> @@ -721,6 +721,7 @@ config DEVICE_PRIVATE
+>  config DEVICE_PUBLIC
+>  	bool "Addressable device memory (like GPU memory)"
+>  	depends on ARCH_HAS_HMM
+> +	depends on BROKEN
+>  	select HMM
+>  	select DEV_PAGEMAP_OPS
+>  
+> -- 
+> 2.20.1
 
 -- 
 Michal Hocko
