@@ -1,162 +1,41 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
- rescan
-Date: Thu, 20 Jun 2019 08:16:41 +0000
-Message-ID: <bug-75985-8800-Ga3e5NYPYw@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+From: Michal Hocko <mhocko@kernel.org>
+Subject: Re: [PATCH 05/22] mm: export alloc_pages_vma
+Date: Thu, 20 Jun 2019 21:17:33 +0200
+Message-ID: <20190620191733.GH12083@dhcp22.suse.cz>
+References: <20190613094326.24093-1-hch@lst.de>
+ <20190613094326.24093-6-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1480666761=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20190613094326.24093-6-hch@lst.de>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Christoph Hellwig <hch@lst.de>
+Cc: Dan Williams <dan.j.williams@intel.com>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
+On Thu 13-06-19 11:43:08, Christoph Hellwig wrote:
+> noveau is currently using this through an odd hmm wrapper, and I plan
+> to switch it to the real thing later in this series.
+> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+>  mm/mempolicy.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/mm/mempolicy.c b/mm/mempolicy.c
+> index 01600d80ae01..f9023b5fba37 100644
+> --- a/mm/mempolicy.c
+> +++ b/mm/mempolicy.c
+> @@ -2098,6 +2098,7 @@ alloc_pages_vma(gfp_t gfp, int order, struct vm_area_struct *vma,
+>  out:
+>  	return page;
+>  }
+> +EXPORT_SYMBOL_GPL(alloc_pages_vma);
 
---===============1480666761==
-Content-Type: multipart/alternative; boundary="15610186015.c7D5e3.25955"
-Content-Transfer-Encoding: 7bit
+All allocator exported symbols are EXPORT_SYMBOL, what is a reason to
+have this one special?
 
-
---15610186015.c7D5e3.25955
-Date: Thu, 20 Jun 2019 08:16:41 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
-
---- Comment #78 from Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> ---
-(In reply to Daniel Drake from comment #77)
-> MLTF presumably means multifunction and it's exactly the bit we've been
-> working with. But I haven't yet managed to get _PS0 to run this code. I g=
-et
-> to the GGIV(0x01080001) call, but it returns 0, so the bit doesn't get se=
-t.
->=20
-> I tried understanding what GGIV() does but nothing is clear there. It ends
-> up reading bit 1 from physical memory address 0xfdac0408 which is under:
-> pci_bus 0000:00: resource 21 [mem 0xfd000000-0xfe7fffff window]
-> and I can't immediately spot any ACPI code that writes to that address.
-
-GGIV is a method name used by many vendors to read a GPIO pin. "Get GPIO In=
-put
-Value" or something like that.
-
-Quite likely the GPIO pin in question is attached to HPD of an HDMI or DP p=
-ort.
-So if an external display is attached, GGIV(0x01080001) should return 1 and=
- the
-HDA is exposed, else it's hidden.
-
-If the GPIO pin in question is on the PCH then you can download the spec for
-the PCH from Intel's website to verify that the MMIO space at 0x01080001 is=
- a
-GPIO block. The GPIO pin could also be on the Nvidia card itself, in that c=
-ase
-physical address 0x01080001 would belong to a resource of the GPU's PCI dev=
-ice.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15610186015.c7D5e3.25955
-Date: Thu, 20 Jun 2019 08:16:41 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c78">Commen=
-t # 78</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lukas&#64;wunner.de" title=3D"Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <s=
-pan class=3D"fn">Lukas Wunner</span></a>
-</span></b>
-        <pre>(In reply to Daniel Drake from <a href=3D"show_bug.cgi?id=3D75=
-985#c77">comment #77</a>)
-<span class=3D"quote">&gt; MLTF presumably means multifunction and it's exa=
-ctly the bit we've been
-&gt; working with. But I haven't yet managed to get _PS0 to run this code. =
-I get
-&gt; to the GGIV(0x01080001) call, but it returns 0, so the bit doesn't get=
- set.
-&gt;=20
-&gt; I tried understanding what GGIV() does but nothing is clear there. It =
-ends
-&gt; up reading bit 1 from physical memory address 0xfdac0408 which is unde=
-r:
-&gt; pci_bus 0000:00: resource 21 [mem 0xfd000000-0xfe7fffff window]
-&gt; and I can't immediately spot any ACPI code that writes to that address=
-.</span >
-
-GGIV is a method name used by many vendors to read a GPIO pin. &quot;Get GP=
-IO Input
-Value&quot; or something like that.
-
-Quite likely the GPIO pin in question is attached to HPD of an HDMI or DP p=
-ort.
-So if an external display is attached, GGIV(0x01080001) should return 1 and=
- the
-HDA is exposed, else it's hidden.
-
-If the GPIO pin in question is on the PCH then you can download the spec for
-the PCH from Intel's website to verify that the MMIO space at 0x01080001 is=
- a
-GPIO block. The GPIO pin could also be on the Nvidia card itself, in that c=
-ase
-physical address 0x01080001 would belong to a resource of the GPU's PCI dev=
-ice.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15610186015.c7D5e3.25955--
-
---===============1480666761==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1480666761==--
+-- 
+Michal Hocko
+SUSE Labs
