@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110955] Mesa 18.2.8 implementation error: Invalid
- GLSL version in shading_language_version()
-Date: Fri, 21 Jun 2019 17:42:30 +0000
-Message-ID: <bug-110955-8800-QamslXuh4c@http.bugs.freedesktop.org/>
-References: <bug-110955-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: fix bogus GPL-2 license header
+Date: Fri, 21 Jun 2019 19:10:26 +0100
+Message-ID: <20190621181026.GG21486@arch-x1c3>
+References: <20190620001343.11046-1-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1105118541=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110955-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20190620001343.11046-1-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,89 +18,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1105118541==
-Content-Type: multipart/alternative; boundary="15611389501.eed6.11751"
-Content-Transfer-Encoding: 7bit
-
-
---15611389501.eed6.11751
-Date: Fri, 21 Jun 2019 17:42:30 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110955
-
---- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-s/wine/wine or application/
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15611389501.eed6.11751
-Date: Fri, 21 Jun 2019 17:42:30 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Mesa 18.2.8 implementation error: Invalid GLSL version in=
- shading_language_version()"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110955#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Mesa 18.2.8 implementation error: Invalid GLSL version in=
- shading_language_version()"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110955">bug 11095=
-5</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-emil.l.velikov&#64;gmail.com" title=3D"Emil Velikov &lt;emil.l.velikov&#64;=
-gmail.com&gt;"> <span class=3D"fn">Emil Velikov</span></a>
-</span></b>
-        <pre>s/wine/wine or application/</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15611389501.eed6.11751--
-
---===============1105118541==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1105118541==--
+T24gMjAxOS8wNi8xOSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gVGhlIGJ1bGsgU1BEWCBhZGRpdGlv
+biBtYWRlIGFsbCB0aGVzZSBmaWxlcyBpbnRvIEdQTC0yLjAgbGljZW5zZWQgZmlsZXMuCj4gSG93
+ZXZlciB0aGUgcmVtYWluZGVyIG9mIHRoZSBwcm9qZWN0IGlzIE1JVC1saWNlbnNlZCwgdGhlc2Ug
+ZmlsZXMKPiAocHJpbWFyaWx5IGhlYWRlciBmaWxlcykgd2VyZSBzaW1wbHkgbWlzc2luZyB0aGUg
+Ym9pbGVyIHBsYXRlIGFuZCBnb3QKPiBjYXVnaHQgdXAgaW4gdGhlIGdsb2JhbCB1cGRhdGUuCj4g
+Cj4gRml4ZXM6IGIyNDQxMzE4MGY1IChMaWNlbnNlIGNsZWFudXA6IGFkZCBTUERYIEdQTC0yLjAg
+bGljZW5zZSBpZGVudGlmaWVyIHRvIGZpbGVzIHdpdGggbm8gbGljZW5zZSkKPiBTaWduZWQtb2Zm
+LWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Cj4gLS0tCj4gCj4gQmVuLCB5
+b3UgZGlkIGxpa2UgOTkuNyUgb2YgdGhpcyB3b3JrLCBzbyB1bHRpbWF0ZWx5IHlvdXIgY2FsbC4g
+UHJldHR5Cj4gbXVjaCBhbGwgb2YgdGhlc2Ugd2VyZSBzcGxpdCBvdXQgZnJvbSBvdGhlciBNSVQt
+bGljZW5zZWQgZmlsZXMsIGFuZCBtb3N0Cj4gYXJlIGhlYWRlciBmaWxlcyBhbnl3YXlzLgo+IApB
+bGwgb2YgbXkgZ2xvcmlvdXMgMjMgcGF0Y2hlcyB0byBub3V2ZWF1IGFyZSBtZWFudCB0byBiZSB1
+bmRlciBNSVQuCkFja2VkLWJ5OiBFbWlsIFZlbGlrb3YgPGVtaWwubC52ZWxpa292QGdtYWlsLmNv
+bT4KCj4gQW5vdGhlciBjaGFuZ2UgbWlnaHQgYmUgdG8gYWRkIHRoZSBTUERYIGlkZW50aWZpZXIg
+dG8gZmlsZXMgKndpdGgqCj4gdGhlIE1JVCBib2lsZXJwbGF0ZSwgYnV0IEkgZGlkbid0IHdhbnQg
+dG8gZG8gdG9vIG11Y2ggaGVyZS4KPiAKTm8gb2JqZWN0aW9ucyBvbiBteSBlbmQgOi0pCgotRW1p
+bAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
+dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
