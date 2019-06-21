@@ -1,13 +1,20 @@
-From: Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v2 06/18] drm/nouveau: use embedded gem object
-Date: Fri, 21 Jun 2019 13:57:43 +0200
-Message-ID: <20190621115755.8481-7-kraxel@redhat.com>
-References: <20190621115755.8481-1-kraxel@redhat.com>
+From: "Harald Harders" <harald.harders-Mmb7MZpHnFY@public.gmane.org>
+Subject: Re: Instable graphics with GeForce GT 730M,
+ especially on external monitor
+Date: Fri, 21 Jun 2019 15:40:32 +0200
+Message-ID: <trinity-35f9facc-7a00-4a02-8f6f-98f3a451a5e2-1561124432206@3c-app-gmx-bs06>
+References: <trinity-60f06d18-ea3c-49a9-8a25-d6aa7f233436-1560886110718@3c-app-gmx-bs22>
+ <CAKb7UvifuLNe_Nq+7oGHTzgmo4a3mQ1kg0QX-kKfdABB8Ok_Hg@mail.gmail.com>
+ <trinity-1a0b5a21-eb2a-4e86-81ce-5c34a2831c44-1560888767918@3c-app-gmx-bs22>
+ <CAKb7Uvg4=G5Y_jGr8MGJ08ghkvv+FPPiz-zkkHKP2bZNjhrd7g@mail.gmail.com>
+ <trinity-500c06a8-5dd3-4622-88f6-d6f4a3a6088a-1560924194315@3c-app-gmx-bs56>
+ <CAKb7UvhUeDGqcNepqTpZ_opFo9MWBJexPLaAdMdnqX3gCexqXw@mail.gmail.com>
+ <trinity-a8b265d3-e433-4ed5-a5ac-490a62fb2a92-1560939088597@3c-app-gmx-bs49>
+ <trinity-16f49b00-55d6-4efb-a770-85f3c109b3de-1560947450982@3c-app-gmx-bs75>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0507387362=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190621115755.8481-1-kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <trinity-16f49b00-55d6-4efb-a770-85f3c109b3de-1560947450982@3c-app-gmx-bs75>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,143 +24,339 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RHJvcCBkcm1fZ2VtX29iamVjdCBmcm9tIG5vdXZlYXVfYm8sIHVzZSB0aGUKdHRtX2J1ZmZlcl9v
-YmplY3QuYmFzZSBpbnN0ZWFkLgoKQnVpbGQgdGVzdGVkIG9ubHkuCgpTaWduZWQtb2ZmLWJ5OiBH
-ZXJkIEhvZmZtYW5uIDxrcmF4ZWxAcmVkaGF0LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9ub3V2ZWF1X2JvLmggICAgICB8ICA1IC0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X2dlbS5oICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
-ZWF1X2FiaTE2LmMgICB8ICA0ICsrLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-Ym8uYyAgICAgIHwgIDQgKystLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNw
-bGF5LmMgfCAgOCArKysrLS0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9nZW0u
-YyAgICAgfCAxNSArKysrKysrKy0tLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfcHJpbWUuYyAgIHwgIDQgKystLQogNyBmaWxlcyBjaGFuZ2VkLCAxOSBpbnNlcnRpb25zKCsp
-LCAyMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2JvLmggYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmgKaW5kZXgg
-ODQ2ZjRiZGVjMGRlLi40MGYwMWI5YTA3ZDQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L25vdXZlYXVfYm8uaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
-X2JvLmgKQEAgLTM1LDExICszNSw2IEBAIHN0cnVjdCBub3V2ZWF1X2JvIHsKIAogCXN0cnVjdCBu
-b3V2ZWF1X2RybV90aWxlICp0aWxlOwogCi0JLyogT25seSB2YWxpZCBpZiBhbGxvY2F0ZWQgdmlh
-IG5vdXZlYXVfZ2VtX25ldygpIGFuZCBpZmYgeW91IGhvbGQgYQotCSAqIGdlbSByZWZlcmVuY2Ug
-dG8gaXQhIEZvciBkZWJ1Z2dpbmcsIHVzZSBnZW0uZmlscCAhPSBOVUxMIHRvIHRlc3QKLQkgKiB3
-aGV0aGVyIGl0IGlzIHZhbGlkLiAqLwotCXN0cnVjdCBkcm1fZ2VtX29iamVjdCBnZW07Ci0KIAkv
-KiBwcm90ZWN0IGJ5IHRoZSB0dG0gcmVzZXJ2YXRpb24gbG9jayAqLwogCWludCBwaW5fcmVmY250
-OwogCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5oIGIv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9nZW0uaAppbmRleCBmZTM5OTk4ZjY1Y2Mu
-LjQ3N2NkMGZiMDUwZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9nZW0uaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5oCkBAIC0x
-MCw3ICsxMCw3IEBACiBzdGF0aWMgaW5saW5lIHN0cnVjdCBub3V2ZWF1X2JvICoKIG5vdXZlYXVf
-Z2VtX29iamVjdChzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKmdlbSkKIHsKLQlyZXR1cm4gZ2VtID8g
-Y29udGFpbmVyX29mKGdlbSwgc3RydWN0IG5vdXZlYXVfYm8sIGdlbSkgOiBOVUxMOworCXJldHVy
-biBnZW0gPyBjb250YWluZXJfb2YoZ2VtLCBzdHJ1Y3Qgbm91dmVhdV9ibywgYm8uYmFzZSkgOiBO
-VUxMOwogfQogCiAvKiBub3V2ZWF1X2dlbS5jICovCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2FiaTE2LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
-ZWF1X2FiaTE2LmMKaW5kZXggYzNmZDVkZDM5ZWQ5Li45NDM4N2U2MmIzMzggMTAwNjQ0Ci0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWJpMTYuYworKysgYi9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2FiaTE2LmMKQEAgLTEzOSw3ICsxMzksNyBAQCBub3V2ZWF1
-X2FiaTE2X2NoYW5fZmluaShzdHJ1Y3Qgbm91dmVhdV9hYmkxNiAqYWJpMTYsCiAJaWYgKGNoYW4t
-Pm50ZnkpIHsKIAkJbm91dmVhdV92bWFfZGVsKCZjaGFuLT5udGZ5X3ZtYSk7CiAJCW5vdXZlYXVf
-Ym9fdW5waW4oY2hhbi0+bnRmeSk7Ci0JCWRybV9nZW1fb2JqZWN0X3B1dF91bmxvY2tlZCgmY2hh
-bi0+bnRmeS0+Z2VtKTsKKwkJZHJtX2dlbV9vYmplY3RfcHV0X3VubG9ja2VkKCZjaGFuLT5udGZ5
-LT5iby5iYXNlKTsKIAl9CiAKIAlpZiAoY2hhbi0+aGVhcC5ibG9ja19zaXplKQpAQCAtMzQ1LDcg
-KzM0NSw3IEBAIG5vdXZlYXVfYWJpMTZfaW9jdGxfY2hhbm5lbF9hbGxvYyhBQkkxNl9JT0NUTF9B
-UkdTKQogCQkJZ290byBkb25lOwogCX0KIAotCXJldCA9IGRybV9nZW1faGFuZGxlX2NyZWF0ZShm
-aWxlX3ByaXYsICZjaGFuLT5udGZ5LT5nZW0sCisJcmV0ID0gZHJtX2dlbV9oYW5kbGVfY3JlYXRl
-KGZpbGVfcHJpdiwgJmNoYW4tPm50ZnktPmJvLmJhc2UsCiAJCQkJICAgICZpbml0LT5ub3RpZmll
-cl9oYW5kbGUpOwogCWlmIChyZXQpCiAJCWdvdG8gZG9uZTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
-dXZlYXVfYm8uYwppbmRleCAzNGE5OTgwMTJiZjYuLjM3NjIxNWIyMjA2ZiAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L25vdXZlYXVfYm8uYwpAQCAtMTM2LDcgKzEzNiw3IEBAIG5vdXZlYXVfYm9fZGVs
-X3R0bShzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QgKmJvKQogCXN0cnVjdCBkcm1fZGV2aWNlICpk
-ZXYgPSBkcm0tPmRldjsKIAlzdHJ1Y3Qgbm91dmVhdV9ibyAqbnZibyA9IG5vdXZlYXVfYm8oYm8p
-OwogCi0JaWYgKHVubGlrZWx5KG52Ym8tPmdlbS5maWxwKSkKKwlpZiAodW5saWtlbHkobnZiby0+
-Ym8uYmFzZS5maWxwKSkKIAkJRFJNX0VSUk9SKCJibyAlcCBzdGlsbCBhdHRhY2hlZCB0byBHRU0g
-b2JqZWN0XG4iLCBibyk7CiAJV0FSTl9PTihudmJvLT5waW5fcmVmY250ID4gMCk7CiAJbnYxMF9i
-b19wdXRfdGlsZV9yZWdpb24oZGV2LCBudmJvLT50aWxlLCBOVUxMKTsKQEAgLTE0MDAsNyArMTQw
-MCw3IEBAIG5vdXZlYXVfYm9fdmVyaWZ5X2FjY2VzcyhzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3Qg
-KmJvLCBzdHJ1Y3QgZmlsZSAqZmlscCkKIHsKIAlzdHJ1Y3Qgbm91dmVhdV9ibyAqbnZibyA9IG5v
-dXZlYXVfYm8oYm8pOwogCi0JcmV0dXJuIGRybV92bWFfbm9kZV92ZXJpZnlfYWNjZXNzKCZudmJv
-LT5nZW0udm1hX25vZGUsCisJcmV0dXJuIGRybV92bWFfbm9kZV92ZXJpZnlfYWNjZXNzKCZudmJv
-LT5iby5iYXNlLnZtYV9ub2RlLAogCQkJCQkgIGZpbHAtPnByaXZhdGVfZGF0YSk7CiB9CiAKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jIGIvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMKaW5kZXggODMyZGE4ZTAwMjBk
-Li5mYzhmNWJiNzNjYTggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxh
-eS5jCkBAIC0yMDEsNyArMjAxLDcgQEAgbm91dmVhdV91c2VyX2ZyYW1lYnVmZmVyX2Rlc3Ryb3ko
-c3RydWN0IGRybV9mcmFtZWJ1ZmZlciAqZHJtX2ZiKQogCXN0cnVjdCBub3V2ZWF1X2ZyYW1lYnVm
-ZmVyICpmYiA9IG5vdXZlYXVfZnJhbWVidWZmZXIoZHJtX2ZiKTsKIAogCWlmIChmYi0+bnZibykK
-LQkJZHJtX2dlbV9vYmplY3RfcHV0X3VubG9ja2VkKCZmYi0+bnZiby0+Z2VtKTsKKwkJZHJtX2dl
-bV9vYmplY3RfcHV0X3VubG9ja2VkKCZmYi0+bnZiby0+Ym8uYmFzZSk7CiAKIAlkcm1fZnJhbWVi
-dWZmZXJfY2xlYW51cChkcm1fZmIpOwogCWtmcmVlKGZiKTsKQEAgLTIxNCw3ICsyMTQsNyBAQCBu
-b3V2ZWF1X3VzZXJfZnJhbWVidWZmZXJfY3JlYXRlX2hhbmRsZShzdHJ1Y3QgZHJtX2ZyYW1lYnVm
-ZmVyICpkcm1fZmIsCiB7CiAJc3RydWN0IG5vdXZlYXVfZnJhbWVidWZmZXIgKmZiID0gbm91dmVh
-dV9mcmFtZWJ1ZmZlcihkcm1fZmIpOwogCi0JcmV0dXJuIGRybV9nZW1faGFuZGxlX2NyZWF0ZShm
-aWxlX3ByaXYsICZmYi0+bnZiby0+Z2VtLCBoYW5kbGUpOworCXJldHVybiBkcm1fZ2VtX2hhbmRs
-ZV9jcmVhdGUoZmlsZV9wcml2LCAmZmItPm52Ym8tPmJvLmJhc2UsIGhhbmRsZSk7CiB9CiAKIHN0
-YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVyX2Z1bmNzIG5vdXZlYXVfZnJhbWVidWZm
-ZXJfZnVuY3MgPSB7CkBAIC02NjAsOCArNjYwLDggQEAgbm91dmVhdV9kaXNwbGF5X2R1bWJfY3Jl
-YXRlKHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2LCBzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAog
-CWlmIChyZXQpCiAJCXJldHVybiByZXQ7CiAKLQlyZXQgPSBkcm1fZ2VtX2hhbmRsZV9jcmVhdGUo
-ZmlsZV9wcml2LCAmYm8tPmdlbSwgJmFyZ3MtPmhhbmRsZSk7Ci0JZHJtX2dlbV9vYmplY3RfcHV0
-X3VubG9ja2VkKCZiby0+Z2VtKTsKKwlyZXQgPSBkcm1fZ2VtX2hhbmRsZV9jcmVhdGUoZmlsZV9w
-cml2LCAmYm8tPmJvLmJhc2UsICZhcmdzLT5oYW5kbGUpOworCWRybV9nZW1fb2JqZWN0X3B1dF91
-bmxvY2tlZCgmYm8tPmJvLmJhc2UpOwogCXJldHVybiByZXQ7CiB9CiAKZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZ2VtLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9ub3V2ZWF1X2dlbS5jCmluZGV4IGI0YmRhNzE2NTY0ZC4uMmY0ODRhYjdkYmNhIDEwMDY0
-NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5jCisrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZ2VtLmMKQEAgLTIwNSwxMyArMjA1LDEzIEBAIG5v
-dXZlYXVfZ2VtX25ldyhzdHJ1Y3Qgbm91dmVhdV9jbGkgKmNsaSwgdTY0IHNpemUsIGludCBhbGln
-biwgdWludDMyX3QgZG9tYWluLAogCiAJLyogSW5pdGlhbGl6ZSB0aGUgZW1iZWRkZWQgZ2VtLW9i
-amVjdC4gV2UgcmV0dXJuIGEgc2luZ2xlIGdlbS1yZWZlcmVuY2UKIAkgKiB0byB0aGUgY2FsbGVy
-LCBpbnN0ZWFkIG9mIGEgbm9ybWFsIG5vdXZlYXVfYm8gdHRtIHJlZmVyZW5jZS4gKi8KLQlyZXQg
-PSBkcm1fZ2VtX29iamVjdF9pbml0KGRybS0+ZGV2LCAmbnZiby0+Z2VtLCBudmJvLT5iby5tZW0u
-c2l6ZSk7CisJcmV0ID0gZHJtX2dlbV9vYmplY3RfaW5pdChkcm0tPmRldiwgJm52Ym8tPmJvLmJh
-c2UsIG52Ym8tPmJvLm1lbS5zaXplKTsKIAlpZiAocmV0KSB7CiAJCW5vdXZlYXVfYm9fcmVmKE5V
-TEwsIHBudmJvKTsKIAkJcmV0dXJuIC1FTk9NRU07CiAJfQogCi0JbnZiby0+Ym8ucGVyc2lzdGVu
-dF9zd2FwX3N0b3JhZ2UgPSBudmJvLT5nZW0uZmlscDsKKwludmJvLT5iby5wZXJzaXN0ZW50X3N3
-YXBfc3RvcmFnZSA9IG52Ym8tPmJvLmJhc2UuZmlscDsKIAlyZXR1cm4gMDsKIH0KIApAQCAtMjY4
-LDE1ICsyNjgsMTYgQEAgbm91dmVhdV9nZW1faW9jdGxfbmV3KHN0cnVjdCBkcm1fZGV2aWNlICpk
-ZXYsIHZvaWQgKmRhdGEsCiAJaWYgKHJldCkKIAkJcmV0dXJuIHJldDsKIAotCXJldCA9IGRybV9n
-ZW1faGFuZGxlX2NyZWF0ZShmaWxlX3ByaXYsICZudmJvLT5nZW0sICZyZXEtPmluZm8uaGFuZGxl
-KTsKKwlyZXQgPSBkcm1fZ2VtX2hhbmRsZV9jcmVhdGUoZmlsZV9wcml2LCAmbnZiby0+Ym8uYmFz
-ZSwKKwkJCQkgICAgJnJlcS0+aW5mby5oYW5kbGUpOwogCWlmIChyZXQgPT0gMCkgewotCQlyZXQg
-PSBub3V2ZWF1X2dlbV9pbmZvKGZpbGVfcHJpdiwgJm52Ym8tPmdlbSwgJnJlcS0+aW5mbyk7CisJ
-CXJldCA9IG5vdXZlYXVfZ2VtX2luZm8oZmlsZV9wcml2LCAmbnZiby0+Ym8uYmFzZSwgJnJlcS0+
-aW5mbyk7CiAJCWlmIChyZXQpCiAJCQlkcm1fZ2VtX2hhbmRsZV9kZWxldGUoZmlsZV9wcml2LCBy
-ZXEtPmluZm8uaGFuZGxlKTsKIAl9CiAKIAkvKiBkcm9wIHJlZmVyZW5jZSBmcm9tIGFsbG9jYXRl
-IC0gaGFuZGxlIGhvbGRzIGl0IG5vdyAqLwotCWRybV9nZW1fb2JqZWN0X3B1dF91bmxvY2tlZCgm
-bnZiby0+Z2VtKTsKKwlkcm1fZ2VtX29iamVjdF9wdXRfdW5sb2NrZWQoJm52Ym8tPmJvLmJhc2Up
-OwogCXJldHVybiByZXQ7CiB9CiAKQEAgLTM1NSw3ICszNTYsNyBAQCB2YWxpZGF0ZV9maW5pX25v
-X3RpY2tldChzdHJ1Y3QgdmFsaWRhdGVfb3AgKm9wLCBzdHJ1Y3Qgbm91dmVhdV9jaGFubmVsICpj
-aGFuLAogCQlsaXN0X2RlbCgmbnZiby0+ZW50cnkpOwogCQludmJvLT5yZXNlcnZlZF9ieSA9IE5V
-TEw7CiAJCXR0bV9ib191bnJlc2VydmUoJm52Ym8tPmJvKTsKLQkJZHJtX2dlbV9vYmplY3RfcHV0
-X3VubG9ja2VkKCZudmJvLT5nZW0pOworCQlkcm1fZ2VtX29iamVjdF9wdXRfdW5sb2NrZWQoJm52
-Ym8tPmJvLmJhc2UpOwogCX0KIH0KIApAQCAtNDkzLDcgKzQ5NCw3IEBAIHZhbGlkYXRlX2xpc3Qo
-c3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbiwgc3RydWN0IG5vdXZlYXVfY2xpICpjbGksCiAJ
-bGlzdF9mb3JfZWFjaF9lbnRyeShudmJvLCBsaXN0LCBlbnRyeSkgewogCQlzdHJ1Y3QgZHJtX25v
-dXZlYXVfZ2VtX3B1c2hidWZfYm8gKmIgPSAmcGJib1tudmJvLT5wYmJvX2luZGV4XTsKIAotCQly
-ZXQgPSBub3V2ZWF1X2dlbV9zZXRfZG9tYWluKCZudmJvLT5nZW0sIGItPnJlYWRfZG9tYWlucywK
-KwkJcmV0ID0gbm91dmVhdV9nZW1fc2V0X2RvbWFpbigmbnZiby0+Ym8uYmFzZSwgYi0+cmVhZF9k
-b21haW5zLAogCQkJCQkgICAgIGItPndyaXRlX2RvbWFpbnMsCiAJCQkJCSAgICAgYi0+dmFsaWRf
-ZG9tYWlucyk7CiAJCWlmICh1bmxpa2VseShyZXQpKSB7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X3ByaW1lLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X3ByaW1lLmMKaW5kZXggMWZlZmM5M2FmMWQ3Li4wNzUwY2FmODZlMTIgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfcHJpbWUuYworKysgYi9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3ByaW1lLmMKQEAgLTc5LDEzICs3OSwxMyBAQCBzdHJ1
-Y3QgZHJtX2dlbV9vYmplY3QgKm5vdXZlYXVfZ2VtX3ByaW1lX2ltcG9ydF9zZ190YWJsZShzdHJ1
-Y3QgZHJtX2RldmljZSAqZGV2LAogCiAJLyogSW5pdGlhbGl6ZSB0aGUgZW1iZWRkZWQgZ2VtLW9i
-amVjdC4gV2UgcmV0dXJuIGEgc2luZ2xlIGdlbS1yZWZlcmVuY2UKIAkgKiB0byB0aGUgY2FsbGVy
-LCBpbnN0ZWFkIG9mIGEgbm9ybWFsIG5vdXZlYXVfYm8gdHRtIHJlZmVyZW5jZS4gKi8KLQlyZXQg
-PSBkcm1fZ2VtX29iamVjdF9pbml0KGRldiwgJm52Ym8tPmdlbSwgbnZiby0+Ym8ubWVtLnNpemUp
-OworCXJldCA9IGRybV9nZW1fb2JqZWN0X2luaXQoZGV2LCAmbnZiby0+Ym8uYmFzZSwgbnZiby0+
-Ym8ubWVtLnNpemUpOwogCWlmIChyZXQpIHsKIAkJbm91dmVhdV9ib19yZWYoTlVMTCwgJm52Ym8p
-OwogCQlyZXR1cm4gRVJSX1BUUigtRU5PTUVNKTsKIAl9CiAKLQlyZXR1cm4gJm52Ym8tPmdlbTsK
-KwlyZXR1cm4gJm52Ym8tPmJvLmJhc2U7CiB9CiAKIGludCBub3V2ZWF1X2dlbV9wcmltZV9waW4o
-c3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmopCi0tIAoyLjE4LjEKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+--===============0507387362==
+Content-Type: text/html; charset=UTF-8
+
+<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>In the meanwhile I have tried OpenSUSE Tumbleweed as live version:</div>
+
+<div>Kernel version 5.1.7</div>
+
+<div>xf86-video-nouveau 1.0.15</div>
+
+<div>libdrm_nouveau2 2.4.98</div>
+
+<div>libvdpau_nouveau 19.0.5</div>
+
+<div>Mesa-dri-nouveau 19.0.5</div>
+
+<div>&nbsp;</div>
+
+<div>Behaviour is the same:</div>
+
+<div>- In most cases, external display does not show correct screen</div>
+
+<div>- After hot-plugging the connection cable, the external display usually works until screensaver is invoked once.</div>
+
+<div>&nbsp;</div>
+
+<div>Do you have any idea how to narrow down the problem?</div>
+
+<div>&nbsp;</div>
+
+<div>Best regards</div>
+
+<div>Harald</div>
+
+<div>&nbsp;
+<div>&nbsp;
+<div name="quote" style="margin:10px 5px 5px 10px; padding: 10px 0 10px 10px; border-left:2px solid #C3D9E5; word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">
+<div style="margin:0 0 10px 0;"><b>Gesendet:</b>&nbsp;Mittwoch, 19. Juni 2019 um 08:30 Uhr<br/>
+<b>Von:</b>&nbsp;&quot;Harald Harders&quot; &lt;harald.harders-Mmb7MZpHnFY@public.gmane.org&gt;<br/>
+<b>An:</b>&nbsp;nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org<br/>
+<b>Betreff:</b>&nbsp;Re: [Nouveau] Instable graphics with GeForce GT 730M, especially on external monitor</div>
+
+<div name="quoted-content">
+<div style="font-family: Verdana;font-size: 12.0px;">
+<div>One additional remark: I have the impression that the graphics output works with higher probability after unplugging and plugging the cable.</div>
+
+<div>After system start, display is usually distorted and after screensaver, display is usually distorted...</div>
+
+<div>
+<div>&nbsp;
+<div style="margin: 10.0px 5.0px 5.0px 10.0px;padding: 10.0px 0 10.0px 10.0px;border-left: 2.0px solid rgb(195,217,229);">
+<div style="margin: 0 0 10.0px 0;"><b>Gesendet:</b>&nbsp;Mittwoch, 19. Juni 2019 um 12:11 Uhr<br/>
+<b>Von:</b>&nbsp;&quot;Harald Harders&quot; &lt;harald.harders-Mmb7MZpHnFY@public.gmane.org&gt;<br/>
+<b>An:</b>&nbsp;nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org<br/>
+<b>Betreff:</b>&nbsp;Re: [Nouveau] Instable graphics with GeForce GT 730M, especially on external monitor</div>
+
+<div>
+<div style="font-family: Verdana;font-size: 12.0px;">
+<div>Please excuse that I might be not too clever in finding the problem. I&#39;m an experienced user, but I&#39;m not that deep into administration and hardware.</div>
+
+<div>&nbsp;</div>
+
+<div>When connected via DVI on the docking station: the output is as follows:</div>
+
+<div>&nbsp;</div>
+
+<div>
+<div>harders@lose:~&gt; grep . /sys/class/drm/card*-*/status<br/>
+/sys/class/drm/card0-DP-1/status:disconnected<br/>
+/sys/class/drm/card0-DP-2/status:disconnected<br/>
+/sys/class/drm/card0-DP-3/status:disconnected<br/>
+/sys/class/drm/card0-DP-4/status:connected<br/>
+/sys/class/drm/card0-DP-5/status:disconnected<br/>
+/sys/class/drm/card0-eDP-1/status:connected<br/>
+/sys/class/drm/card0-HDMI-A-1/status:disconnected<br/>
+/sys/class/drm/card0-HDMI-A-2/status:disconnected<br/>
+/sys/class/drm/card0-VGA-1/status:disconnected</div>
+
+<div>&nbsp;</div>
+
+<div>When connected via VGA on the docking station, it is:</div>
+
+<div>&nbsp;</div>
+
+<div>
+<div>harders@lose:~&gt; grep . /sys/class/drm/card*-*/status<br/>
+/sys/class/drm/card0-DP-1/status:disconnected<br/>
+/sys/class/drm/card0-DP-2/status:disconnected<br/>
+/sys/class/drm/card0-DP-3/status:disconnected<br/>
+/sys/class/drm/card0-DP-5/status:disconnected<br/>
+/sys/class/drm/card0-DP-6/status:connected<br/>
+/sys/class/drm/card0-eDP-1/status:connected<br/>
+/sys/class/drm/card0-HDMI-A-1/status:disconnected<br/>
+/sys/class/drm/card0-HDMI-A-2/status:disconnected<br/>
+/sys/class/drm/card0-VGA-1/status:disconnected</div>
+
+<div>&nbsp;</div>
+
+<div>When connected via VGA on the computer directly, it is:</div>
+
+<div>&nbsp;</div>
+
+<div>
+<div>harders@lose:~&gt; grep . /sys/class/drm/card*-*/status<br/>
+/sys/class/drm/card0-DP-1/status:disconnected<br/>
+/sys/class/drm/card0-DP-2/status:disconnected<br/>
+/sys/class/drm/card0-eDP-1/status:connected<br/>
+/sys/class/drm/card0-HDMI-A-1/status:disconnected<br/>
+/sys/class/drm/card0-HDMI-A-2/status:disconnected<br/>
+/sys/class/drm/card0-VGA-1/status:connected</div>
+
+<div>&nbsp;</div>
+
+<div>After hot-plugging the DVI cable again, the output is as follows:</div>
+
+<div>&nbsp;</div>
+
+<div>
+<div>harders@lose:~&gt; grep . /sys/class/drm/card*-*/status<br/>
+/sys/class/drm/card0-DP-1/status:disconnected<br/>
+/sys/class/drm/card0-DP-2/status:disconnected<br/>
+/sys/class/drm/card0-DP-3/status:disconnected<br/>
+/sys/class/drm/card0-DP-5/status:connected<br/>
+/sys/class/drm/card0-DP-6/status:disconnected<br/>
+/sys/class/drm/card0-eDP-1/status:connected<br/>
+/sys/class/drm/card0-HDMI-A-1/status:disconnected<br/>
+/sys/class/drm/card0-HDMI-A-2/status:disconnected<br/>
+/sys/class/drm/card0-VGA-1/status:disconnected</div>
+
+<div>&nbsp;</div>
+
+<div>Thus, the number of connected DP has changed from 4 to 5, while the hardware condition is identical.</div>
+</div>
+
+<div>&nbsp;</div>
+
+<div>I guess your assumption is correct that most connectors are handled as DP internally. The only thing which makes me wonder is that I have encountered the problem also with VGA on the laptop itself (which is listed as VGA-1, here.</div>
+
+<div>&nbsp;</div>
+
+<div>Side note: After booting my computer (with monitor connected via DVI), I had the display error. After switching to VGA on docking station, to VGA on laptop, and back to DVI on docking station, the diplay is just fine right now. That&#39;s the strange thing that the error is not showing consistently.</div>
+</div>
+</div>
+&nbsp;
+
+<div style="margin: 10.0px 5.0px 5.0px 10.0px;padding: 10.0px 0 10.0px 10.0px;border-left: 2.0px solid rgb(195,217,229);">
+<div style="margin: 0 0 10.0px 0;"><b>Gesendet:</b>&nbsp;Mittwoch, 19. Juni 2019 um 08:09 Uhr<br/>
+<b>Von:</b>&nbsp;&quot;Ilia Mirkin&quot; &lt;imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org&gt;<br/>
+<b>An:</b>&nbsp;&quot;Harald Harders&quot; &lt;harald.harders-Mmb7MZpHnFY@public.gmane.org&gt;<br/>
+<b>Cc:</b>&nbsp;nouveau &lt;nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org&gt;<br/>
+<b>Betreff:</b>&nbsp;Re: [Nouveau] Instable graphics with GeForce GT 730M, especially on external monitor</div>
+
+<div>Sigh ... you&#39;re on wayland. xrandr is just showing you what&#39;s passed<br/>
+through via Xwayland, which is not the connector names. Let&#39;s try<br/>
+something else...<br/>
+<br/>
+grep . /sys/class/drm/card*-*/status<br/>
+<br/>
+Should give you the status of each connector. Is it the DP-* ones that<br/>
+are connected, or are e.g. VGA-1 or DVI-D-1/etc connected?<br/>
+<br/>
+-ilia<br/>
+<br/>
+On Wed, Jun 19, 2019 at 2:03 AM Harald Harders &lt;harald.harders-Mmb7MZpHnFY@public.gmane.org&gt; wrote:<br/>
+&gt;<br/>
+&gt; When the monitor is connected via DVI, the xrandr output is as follows:<br/>
+&gt;<br/>
+&gt; harders@lose:~&gt; xrandr<br/>
+&gt; Screen 0: minimum 320 x 200, current 3840 x 1200, maximum 8192 x 8192<br/>
+&gt; XWAYLAND0 connected 1920x1080+1920+0 (normal left inverted right x axis y axis) 310mm x 170mm<br/>
+&gt; 1920x1080 59.96*+<br/>
+&gt; XWAYLAND1 connected 1920x1200+0+0 (normal left inverted right x axis y axis) 520mm x 320mm<br/>
+&gt; 1920x1200 59.88*+<br/>
+&gt;<br/>
+&gt; or verbose:<br/>
+&gt;<br/>
+&gt; harders@lose:~&gt; xrandr --verbose<br/>
+&gt; Screen 0: minimum 320 x 200, current 3840 x 1200, maximum 8192 x 8192<br/>
+&gt; XWAYLAND0 connected 1920x1080+1920+0 (0x24) normal (normal left inverted right x axis y axis) 310mm x 170mm<br/>
+&gt; Identifier: 0x21<br/>
+&gt; Timestamp: 41572<br/>
+&gt; Subpixel: unknown<br/>
+&gt; Gamma: 1.0:1.0:1.0<br/>
+&gt; Brightness: 0.0<br/>
+&gt; Clones:<br/>
+&gt; CRTC: 0<br/>
+&gt; CRTCs: 0<br/>
+&gt; Transform: 1.000000 0.000000 0.000000<br/>
+&gt; 0.000000 1.000000 0.000000<br/>
+&gt; 0.000000 0.000000 1.000000<br/>
+&gt; filter:<br/>
+&gt; non-desktop: 0<br/>
+&gt; supported: 0, 1<br/>
+&gt; 1920x1080 (0x24) 173.000MHz -HSync +VSync *current +preferred<br/>
+&gt; h: width 1920 start 2048 end 2248 total 2576 skew 0 clock 67.16KHz<br/>
+&gt; v: height 1080 start 1083 end 1088 total 1120 clock 59.96Hz<br/>
+&gt; XWAYLAND1 connected 1920x1200+0+0 (0x25) normal (normal left inverted right x axis y axis) 520mm x 320mm<br/>
+&gt; Identifier: 0x23<br/>
+&gt; Timestamp: 41572<br/>
+&gt; Subpixel: unknown<br/>
+&gt; Gamma: 1.0:1.0:1.0<br/>
+&gt; Brightness: 0.0<br/>
+&gt; Clones:<br/>
+&gt; CRTC: 1<br/>
+&gt; CRTCs: 1<br/>
+&gt; Transform: 1.000000 0.000000 0.000000<br/>
+&gt; 0.000000 1.000000 0.000000<br/>
+&gt; 0.000000 0.000000 1.000000<br/>
+&gt; filter:<br/>
+&gt; non-desktop: 0<br/>
+&gt; supported: 0, 1<br/>
+&gt; 1920x1200 (0x25) 193.250MHz -HSync +VSync *current +preferred<br/>
+&gt; h: width 1920 start 2056 end 2256 total 2592 skew 0 clock 74.56KHz<br/>
+&gt; v: height 1200 start 1203 end 1209 total 1245 clock 59.88Hz<br/>
+&gt;<br/>
+&gt; When switching to VGA cable, the only changes are in the gamma, brightness, and Identifier values. I don&#39;t find anything which refers to DP or a port. What else can I do to narrow it down?<br/>
+&gt; --<br/>
+&gt; Harald Harders<br/>
+&gt; harald.harders-Mmb7MZpHnFY@public.gmane.org<br/>
+&gt;<br/>
+&gt;<br/>
+&gt; Gesendet: Dienstag, 18. Juni 2019 um 22:30 Uhr<br/>
+&gt; Von: &quot;Ilia Mirkin&quot; &lt;imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org&gt;<br/>
+&gt; An: &quot;Harald Harders&quot; &lt;harald.harders-Mmb7MZpHnFY@public.gmane.org&gt;<br/>
+&gt; Cc: nouveau &lt;nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org&gt;<br/>
+&gt; Betreff: Re: [Nouveau] Instable graphics with GeForce GT 730M, especially on external monitor<br/>
+&gt; What&#39;s the connector name when you plug in via, say, DVI? Is it &quot;DP-1&quot;<br/>
+&gt; or is it &quot;DVI-D-1&quot; or whatever? You should be able to see the name in<br/>
+&gt; &#39;xrandr&#39;. Unfortunately I don&#39;t know how the T440p is wired, there are<br/>
+&gt; a few ways it could go. In some cases, even the &quot;VGA&quot; port is secretly<br/>
+&gt; a DP -&gt; VGA active adapter inside the laptop.<br/>
+&gt;<br/>
+&gt; Basically I&#39;m trying to rule DisplayPort as a source of potential issues.<br/>
+&gt;<br/>
+&gt; -ilia<br/>
+&gt;<br/>
+&gt; On Tue, Jun 18, 2019 at 4:12 PM Harald Harders &lt;harald.harders-Mmb7MZpHnFY@public.gmane.org&gt; wrote:<br/>
+&gt; &gt;<br/>
+&gt; &gt; Hi Ilia,<br/>
+&gt; &gt;<br/>
+&gt; &gt; First I had upgraded from OpenSUSE 13.2 (where it worked) to OpenSUSE Leap 15.1. After having the same issue I have done a clean new install. The new kernel version is 4.12.14, as you suspected. In OpenSUSE, I suspect it was version 3.16.7. Unfortunately, I cannot find out anymore which nouveau version I have used before. I have a file backup of the old installation. Can I find out which nouveau version I had before?<br/>
+&gt; &gt;<br/>
+&gt; &gt; During all my attempts, I have also installed Ubuntu 18.04.2 with the same strange behaviour. I guess this was the 4.18 kernel version?<br/>
+&gt; &gt; Do you know which distrubtion already uses a 5.0 kernel? I will try a live system, then.<br/>
+&gt; &gt;<br/>
+&gt; &gt; I have a docking station with 4 monitor ports: VGA, DVI, HDMI, Displayport. And my laptop has VGA and Mini-Displayport. My monitor (Fujitsu P24W-7 LED) has VGA, DVI, HDMI, and Displayport.<br/>
+&gt; &gt; I have tried DVI-&gt;DVI and DisplayPort-&gt;HDMI cable on the docking station (I don&#39;t hav. In one of my attempts, I have connected the screen via analog VGA cable directly to the computer. The same effect resulted. Thus, I believe the docking station and digital connection to the monitor are not part of the problem.<br/>
+&gt; &gt;<br/>
+&gt; &gt; Best regards<br/>
+&gt; &gt; Harald<br/>
+&gt; &gt;<br/>
+&gt; &gt; PS: I guess sending to the mailing list and omitting your personal mail address is correct, right?<br/>
+&gt; &gt;<br/>
+&gt; &gt;<br/>
+&gt; &gt; Gesendet: Dienstag, 18. Juni 2019 um 21:36 Uhr<br/>
+&gt; &gt; Von: &quot;Ilia Mirkin&quot; &lt;imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org&gt;<br/>
+&gt; &gt; An: &quot;Harald Harders&quot; &lt;harald.harders-Mmb7MZpHnFY@public.gmane.org&gt;<br/>
+&gt; &gt; Cc: nouveau &lt;nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org&gt;<br/>
+&gt; &gt; Betreff: Re: [Nouveau] Instable graphics with GeForce GT 730M, especially on external monitor<br/>
+&gt; &gt; Which kernel did you update from and to? Also, 4.12 is fairly old -<br/>
+&gt; &gt; can you try like a live usb image of some distro with e.g. a 5.0<br/>
+&gt; &gt; kernel or something?<br/>
+&gt; &gt;<br/>
+&gt; &gt; How do you connect the external screen? Is it like a DP port with an<br/>
+&gt; &gt; optional dock with a variety of active DP adapters? Or is there a DP++<br/>
+&gt; &gt; port that you&#39;re plugging a DP &lt;-&gt; HDMI passive adapter into?<br/>
+&gt; &gt;<br/>
+&gt; &gt; On Tue, Jun 18, 2019 at 3:28 PM Harald Harders &lt;harald.harders-Mmb7MZpHnFY@public.gmane.org&gt; wrote:<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt; Dear all,<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt; I have recently updated my Lenovo T440p with a dual graphics card (Intel Core + GeForce GT 730M) to OpenSUSE Leap 15.1. Since then, the external screen (connected either via VGA, DVI, HDMI, or DisplayPort) has a vertically stretched output which jumps horizontally in high frequency. Whenever touching any settings for the built in display (e.g. by gnome-control-center), also this screen starts incorrect display. Sometimes, however, also the external screen works as expected.<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt; Installed driver version is (only 2D installed):<br/>
+&gt; &gt; &gt; xf86-video-nouveau: 1.0.15-lp151.4.1<br/>
+&gt; &gt; &gt; libvdpau_nouveau: 18.3.2-lp151.22.4<br/>
+&gt; &gt; &gt; libdrm_nouveau2: 2.4.97-lp151.1.1<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt; I have followed your instructions on the TroubleShooting page, No signs for NVIDIA drivers running, everything appears to be okay. Minimal xorg.conf did not work, screenshots are okay.Unfortunately, I failed in installing the most recent nouveau version (neither /lib/modules/4.12.14-lp151.28.4-default/source nor /lib/modules/4.12.14-lp151.28.4-default/build are present on my computer even though I have installed the Kernel sources). The installed version is still quite new, isn&#39;t it?<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt; I suspect that I might have the issue you describe under &quot;Blank monitor, flicker, snow, or other random live image corruption&quot;. I would like to make sure, however. And since you warn with regards to potential permanent damage, I would like to make sure, first.<br/>
+&gt; &gt; &gt; Can you confirm that it should be this issue? Or are there any other things I should try first?<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt; Best regards<br/>
+&gt; &gt; &gt; Harald<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt; lose:/home/harders/download/nouveau/drm # lspci &#124; grep -i vga<br/>
+&gt; &gt; &gt; 00:02.0 VGA compatible controller: Intel Corporation 4th Gen Core Processor Integrated Graphics Controller (rev 06)<br/>
+&gt; &gt; &gt; 02:00.0 VGA compatible controller: NVIDIA Corporation GK208M [GeForce GT 730M] (rev a1)<br/>
+&gt; &gt; &gt;<br/>
+&gt; &gt; &gt; _______________________________________________<br/>
+&gt; &gt; &gt; Nouveau mailing list<br/>
+&gt; &gt; &gt; Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org<br/>
+&gt; &gt; &gt; <a href="https://lists.freedesktop.org/mailman/listinfo/nouveau" target="_blank">https://lists.freedesktop.org/mailman/listinfo/nouveau</a><br/>
+&gt; &gt; _______________________________________________<br/>
+&gt; &gt; Nouveau mailing list<br/>
+&gt; &gt; Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org<br/>
+&gt; &gt; <a href="https://lists.freedesktop.org/mailman/listinfo/nouveau" target="_blank">https://lists.freedesktop.org/mailman/listinfo/nouveau</a><br/>
+&gt; _______________________________________________<br/>
+&gt; Nouveau mailing list<br/>
+&gt; Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org<br/>
+&gt; <a href="https://lists.freedesktop.org/mailman/listinfo/nouveau" target="_blank">https://lists.freedesktop.org/mailman/listinfo/nouveau</a></div>
+</div>
+</div>
+</div>
+_______________________________________________ Nouveau mailing list Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org <a href="https://lists.freedesktop.org/mailman/listinfo/nouveau" target="_blank">https://lists.freedesktop.org/mailman/listinfo/nouveau</a></div>
+</div>
+</div>
+</div>
+</div>
+_______________________________________________ Nouveau mailing list Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org <a href="https://lists.freedesktop.org/mailman/listinfo/nouveau" target="_blank">https://lists.freedesktop.org/mailman/listinfo/nouveau</a></div>
+</div>
+</div>
+</div></div></body></html>
+
+--===============0507387362==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0507387362==--
