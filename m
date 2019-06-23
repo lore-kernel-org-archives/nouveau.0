@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110973] GeForce GT 750M Mac Edition backlight
-Date: Sun, 23 Jun 2019 20:53:36 +0000
-Message-ID: <bug-110973-8800-vT4m0KT2N2@http.bugs.freedesktop.org/>
+Date: Sun, 23 Jun 2019 20:54:45 +0000
+Message-ID: <bug-110973-8800-fyemj58Olx@http.bugs.freedesktop.org/>
 References: <bug-110973-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2063763378=="
+Content-Type: multipart/mixed; boundary="===============1139196905=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110973-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2063763378==
-Content-Type: multipart/alternative; boundary="15613232161.D2206A.25385"
+--===============1139196905==
+Content-Type: multipart/alternative; boundary="15613232841.1Ba83.25551"
 Content-Transfer-Encoding: 7bit
 
 
---15613232161.D2206A.25385
-Date: Sun, 23 Jun 2019 20:53:36 +0000
+--15613232841.1Ba83.25551
+Date: Sun, 23 Jun 2019 20:54:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,18 +35,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110973
 
---- Comment #4 from Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> ---
-Created attachment 144620
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144620&action=3Dedit
-grep -r . /proc/acpi > acpi
+--- Comment #5 from Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> ---
+PS: I do not remember, if it is ever worked.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15613232161.D2206A.25385
-Date: Sun, 23 Jun 2019 20:53:36 +0000
+--15613232841.1Ba83.25551
+Date: Sun, 23 Jun 2019 20:54:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +61,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition backlight"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110973#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110973#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - GeForce GT 750M Mac Edition backlight"
@@ -74,11 +72,7 @@ t # 4</a>
 ak&#64;axet.ru" title=3D"Alexey Kuznetsov &lt;ak&#64;axet.ru&gt;"> <span cl=
 ass=3D"fn">Alexey Kuznetsov</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144620=
-" name=3D"attach_144620" title=3D"grep -r . /proc/acpi &gt; acpi">attachmen=
-t 144620</a> <a href=3D"attachment.cgi?id=3D144620&amp;action=3Dedit" title=
-=3D"grep -r . /proc/acpi &gt; acpi">[details]</a></span>
-grep -r . /proc/acpi &gt; acpi</pre>
+        <pre>PS: I do not remember, if it is ever worked.</pre>
         </div>
       </p>
 
@@ -87,15 +81,15 @@ grep -r . /proc/acpi &gt; acpi</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15613232161.D2206A.25385--
+--15613232841.1Ba83.25551--
 
---===============2063763378==
+--===============1139196905==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============2063763378==--
+--===============1139196905==--
