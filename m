@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110997] NV50 fan runs at full speed after resume
  from suspend on kernels 5.1.8, 4.19.49
-Date: Tue, 25 Jun 2019 20:56:49 +0000
-Message-ID: <bug-110997-8800-NTiPiufVGn@http.bugs.freedesktop.org/>
+Date: Tue, 25 Jun 2019 21:54:14 +0000
+Message-ID: <bug-110997-8800-2vf4LLsFaX@http.bugs.freedesktop.org/>
 References: <bug-110997-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0375541549=="
+Content-Type: multipart/mixed; boundary="===============0861280786=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110997-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0375541549==
-Content-Type: multipart/alternative; boundary="15614962090.E67d14F3.32757"
+--===============0861280786==
+Content-Type: multipart/alternative; boundary="15614996541.CBaEad.9892"
 Content-Transfer-Encoding: 7bit
 
 
---15614962090.E67d14F3.32757
-Date: Tue, 25 Jun 2019 20:56:49 +0000
+--15614996541.CBaEad.9892
+Date: Tue, 25 Jun 2019 21:54:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110997
 
-Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> changed:
+--- Comment #2 from Marc Meledandri <m.meledandri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi! Thanks so much for the quick turnaround on this one. Great that you had=
+ a
+card on hand to test with.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
+I can confirm that this patch applied against stable kernel 5.1.15 resolves=
+ the
+fan speed issue when resuming from suspend.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15614962090.E67d14F3.32757
-Date: Tue, 25 Jun 2019 20:56:49 +0000
+--15614996541.CBaEad.9892
+Date: Tue, 25 Jun 2019 21:54:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -58,32 +61,33 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:lyude&#64=
-;redhat.com" title=3D"Lyude Paul &lt;lyude&#64;redhat.com&gt;"> <span class=
-=3D"fn">Lyude Paul</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEEDINFO "
+   title=3D"NEEDINFO - NV50 fan runs at full speed after resume from suspen=
+d on kernels 5.1.8, 4.19.49"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110997#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEEDINFO "
    title=3D"NEEDINFO - NV50 fan runs at full speed after resume from suspen=
 d on kernels 5.1.8, 4.19.49"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110997">bug 11099=
 7</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+m.meledandri&#64;gmail.com" title=3D"Marc Meledandri &lt;m.meledandri&#64;g=
+mail.com&gt;"> <span class=3D"fn">Marc Meledandri</span></a>
+</span></b>
+        <pre>Hi! Thanks so much for the quick turnaround on this one. Great=
+ that you had a
+card on hand to test with.
 
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
-      <p>
+I can confirm that this patch applied against stable kernel 5.1.15 resolves=
+ the
+fan speed issue when resuming from suspend.</pre>
+        </div>
       </p>
 
 
@@ -96,9 +100,9 @@ d on kernels 5.1.8, 4.19.49"
     </body>
 </html>=
 
---15614962090.E67d14F3.32757--
+--15614996541.CBaEad.9892--
 
---===============0375541549==
+--===============0861280786==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0375541549==--
+--===============0861280786==--
