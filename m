@@ -1,30 +1,293 @@
-From: Christoph Hellwig <hch@lst.de>
-Subject: Re: [PATCH 18/22] mm: mark DEVICE_PUBLIC as broken
-Date: Tue, 25 Jun 2019 09:29:15 +0200
-Message-ID: <20190625072915.GD30350@lst.de>
-References: <20190613094326.24093-1-hch@lst.de> <20190613094326.24093-19-hch@lst.de> <20190620192648.GI12083@dhcp22.suse.cz>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110988] New: [NV49] Graphical issues on KDE desktop
+ with GeForce 7950 GX2
+Date: Tue, 25 Jun 2019 08:28:17 +0000
+Message-ID: <bug-110988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20190620192648.GI12083@dhcp22.suse.cz>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Michal Hocko <mhocko@kernel.org>
-Cc: Christoph Hellwig <hch@lst.de>, Dan Williams <dan.j.williams@intel.com>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============0434138849=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jun 20, 2019 at 09:26:48PM +0200, Michal Hocko wrote:
-> On Thu 13-06-19 11:43:21, Christoph Hellwig wrote:
-> > The code hasn't been used since it was added to the tree, and doesn't
-> > appear to actually be usable.  Mark it as BROKEN until either a user
-> > comes along or we finally give up on it.
-> 
-> I would go even further and simply remove all the DEVICE_PUBLIC code.
 
-I looked into that as I now got the feedback twice.  It would
-create a conflict with another tree cleaning things up around the
-is_device_private defintion, but otherwise I'd be glad to just remove
-it.
+--===============0434138849==
+Content-Type: multipart/alternative; boundary="15614512970.4d4D4f.30311"
+Content-Transfer-Encoding: 7bit
 
-Jason, as this goes through your tree, do you mind the additional
-conflict?
+
+--15614512970.4d4D4f.30311
+Date: Tue, 25 Jun 2019 08:28:17 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110988
+
+            Bug ID: 110988
+           Summary: [NV49] Graphical issues on KDE desktop with GeForce
+                    7950 GX2
+           Product: Mesa
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: praiogriff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+SUMMARY
+Since I did a new installation of openSUSE tumbleweed on 29th March 2019, I
+have severe graphical issues on my desktop:
+https://abload.de/image.php?img=3Ddesktop3w4ks2.png
+https://abload.de/image.php?img=3Ddesktop4myjjn.png
+https://abload.de/image.php?img=3Ddesktop5xwk6d.png
+https://abload.de/image.php?img=3Ddesktop6k8jb2.png
+
+Before this new installation, everything was fine. Unfortunately, I don't k=
+now
+which version the old driver had. I didn't expect such a problem so I didn't
+pay attention for it. The old system was installed round about one year ago.
+There the driver was locked and never updated.
+
+Problems now appear as soon as the desktop is fully loaded.
+Games like 0 A.D. or Supertux seem not to be affected or only at a lesser
+extent.
+
+STEPS TO REPRODUCE
+1. installation
+2. booting system
+
+OBSERVED RESULT
+- KDE-Menu is semi-transparent (see second picture:
+https://abload.de/image.php?img=3Ddesktop4myjjn.png )
+- Icon titles are overlapped with colored blocks (see third picture in the
+upper line: https://abload.de/image.php?img=3Ddesktop5xwk6d.png )
+- Program windows are overlapped with colored fields (see fourth picture:
+https://abload.de/image.php?img=3Ddesktop6k8jb2.png )
+
+EXPECTED RESULT
+- Clear desktop presentation
+
+SOFTWARE/OS VERSIONS
+Linux/KDE Plasma: Kernel 5.1.7-1, openSUSE tumbleweed 64-bit (current versi=
+on)
+(available in About System)
+KDE Plasma Version: 5.16.0
+KDE Frameworks Version: 5.58.0
+Qt Version: 5.12.3
+
+MY HARDWARE/DRIVER:
+Motherboard: Asus P5N32-E SLI Plus
+CPU: Intel Core2 Duo E8200 @ 2,66GHz
+RAM: 4 GiB
+Graphics card: [NV49] Gigabyte Nvidia GeForce 7950 GX2 with 2x 512 GDDR3
+Graphics Driver: nouveau=20
+Graphics Renderer: NV49
+OpenGL Version: 2.1 Mesa 19.0.5
+
+ADDITIONAL INFORMATION
+There are no problems when booting Windows XP. So I exclude defective hardw=
+are.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15614512970.4d4D4f.30311
+Date: Tue, 25 Jun 2019 08:28:17 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV49] Graphical issues on KDE desktop with GeForce 7950 =
+GX2"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110988">110988</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NV49] Graphical issues on KDE desktop with GeForce 7950 GX2
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>praiogriff&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>SUMMARY
+Since I did a new installation of openSUSE tumbleweed on 29th March 2019, I
+have severe graphical issues on my desktop:
+<a href=3D"https://abload.de/image.php?img=3Ddesktop3w4ks2.png">https://abl=
+oad.de/image.php?img=3Ddesktop3w4ks2.png</a>
+<a href=3D"https://abload.de/image.php?img=3Ddesktop4myjjn.png">https://abl=
+oad.de/image.php?img=3Ddesktop4myjjn.png</a>
+<a href=3D"https://abload.de/image.php?img=3Ddesktop5xwk6d.png">https://abl=
+oad.de/image.php?img=3Ddesktop5xwk6d.png</a>
+<a href=3D"https://abload.de/image.php?img=3Ddesktop6k8jb2.png">https://abl=
+oad.de/image.php?img=3Ddesktop6k8jb2.png</a>
+
+Before this new installation, everything was fine. Unfortunately, I don't k=
+now
+which version the old driver had. I didn't expect such a problem so I didn't
+pay attention for it. The old system was installed round about one year ago.
+There the driver was locked and never updated.
+
+Problems now appear as soon as the desktop is fully loaded.
+Games like 0 A.D. or Supertux seem not to be affected or only at a lesser
+extent.
+
+STEPS TO REPRODUCE
+1. installation
+2. booting system
+
+OBSERVED RESULT
+- KDE-Menu is semi-transparent (see second picture:
+<a href=3D"https://abload.de/image.php?img=3Ddesktop4myjjn.png">https://abl=
+oad.de/image.php?img=3Ddesktop4myjjn.png</a> )
+- Icon titles are overlapped with colored blocks (see third picture in the
+upper line: <a href=3D"https://abload.de/image.php?img=3Ddesktop5xwk6d.png"=
+>https://abload.de/image.php?img=3Ddesktop5xwk6d.png</a> )
+- Program windows are overlapped with colored fields (see fourth picture:
+<a href=3D"https://abload.de/image.php?img=3Ddesktop6k8jb2.png">https://abl=
+oad.de/image.php?img=3Ddesktop6k8jb2.png</a> )
+
+EXPECTED RESULT
+- Clear desktop presentation
+
+SOFTWARE/OS VERSIONS
+Linux/KDE Plasma: Kernel 5.1.7-1, openSUSE tumbleweed 64-bit (current versi=
+on)
+(available in About System)
+KDE Plasma Version: 5.16.0
+KDE Frameworks Version: 5.58.0
+Qt Version: 5.12.3
+
+MY HARDWARE/DRIVER:
+Motherboard: Asus P5N32-E SLI Plus
+CPU: Intel Core2 Duo E8200 &#64; 2,66GHz
+RAM: 4 GiB
+Graphics card: [NV49] Gigabyte Nvidia GeForce 7950 GX2 with 2x 512 GDDR3
+Graphics Driver: nouveau=20
+Graphics Renderer: NV49
+OpenGL Version: 2.1 Mesa 19.0.5
+
+ADDITIONAL INFORMATION
+There are no problems when booting Windows XP. So I exclude defective hardw=
+are.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15614512970.4d4D4f.30311--
+
+--===============0434138849==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0434138849==--
