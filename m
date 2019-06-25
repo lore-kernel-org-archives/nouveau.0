@@ -1,90 +1,86 @@
-From: Dan Williams <dan.j.williams@intel.com>
-Subject: Re: [PATCH 05/22] mm: export alloc_pages_vma
-Date: Tue, 25 Jun 2019 12:52:18 -0700
-Message-ID: <CAPcyv4hU13v7dSQpF0WTQTxQM3L3UsHMUhsFMVz7i4UGLoM89g@mail.gmail.com>
-References: <20190613094326.24093-1-hch@lst.de> <20190613094326.24093-6-hch@lst.de>
- <20190620191733.GH12083@dhcp22.suse.cz> <CAPcyv4h9+Ha4FVrvDAe-YAr1wBOjc4yi7CAzVuASv=JCxPcFaw@mail.gmail.com>
- <20190625072317.GC30350@lst.de> <20190625150053.GJ11400@dhcp22.suse.cz>
- <CAPcyv4j1e5dbBHnc+wmtsNUyFbMK_98WxHNwuD_Vxo4dX9Ce=Q@mail.gmail.com> <20190625190038.GK11400@dhcp22.suse.cz>
+From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Subject: [PATCH 5/7] drm/nouveau: Fill out gem_object->resv
+Date: Tue, 25 Jun 2019 22:42:06 +0200
+Message-ID: <20190625204208.5614-6-daniel.vetter@ffwll.ch>
+References: <20190625204208.5614-1-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190625190038.GK11400@dhcp22.suse.cz>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Michal Hocko <mhocko@kernel.org>
-Cc: Christoph Hellwig <hch@lst.de>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Linux MM <linux-mm@kvack.org>, nouveau@lists.freedesktop.org, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, linux-nvdimm <linux-nvdimm@lists.01.org>, linux-pci@vger.kernel.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190625204208.5614-1-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Emil Velikov <emil.velikov-ZGY8ohtN/8qB+jHODAdFcQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jun 25, 2019 at 12:01 PM Michal Hocko <mhocko@kernel.org> wrote:
->
-> On Tue 25-06-19 11:03:53, Dan Williams wrote:
-> > On Tue, Jun 25, 2019 at 8:01 AM Michal Hocko <mhocko@kernel.org> wrote:
-> > >
-> > > On Tue 25-06-19 09:23:17, Christoph Hellwig wrote:
-> > > > On Mon, Jun 24, 2019 at 11:24:48AM -0700, Dan Williams wrote:
-> > > > > I asked for this simply because it was not exported historically. In
-> > > > > general I want to establish explicit export-type criteria so the
-> > > > > community can spend less time debating when to use EXPORT_SYMBOL_GPL
-> > > > > [1].
-> > > > >
-> > > > > The thought in this instance is that it is not historically exported
-> > > > > to modules and it is safer from a maintenance perspective to start
-> > > > > with GPL-only for new symbols in case we don't want to maintain that
-> > > > > interface long-term for out-of-tree modules.
-> > > > >
-> > > > > Yes, we always reserve the right to remove / change interfaces
-> > > > > regardless of the export type, but history has shown that external
-> > > > > pressure to keep an interface stable (contrary to
-> > > > > Documentation/process/stable-api-nonsense.rst) tends to be less for
-> > > > > GPL-only exports.
-> > > >
-> > > > Fully agreed.  In the end the decision is with the MM maintainers,
-> > > > though, although I'd prefer to keep it as in this series.
-> > >
-> > > I am sorry but I am not really convinced by the above reasoning wrt. to
-> > > the allocator API and it has been a subject of many changes over time. I
-> > > do not remember a single case where we would be bending the allocator
-> > > API because of external modules and I am pretty sure we will push back
-> > > heavily if that was the case in the future.
-> >
-> > This seems to say that you have no direct experience of dealing with
-> > changing symbols that that a prominent out-of-tree module needs? GPU
-> > drivers and the core-mm are on a path to increase their cooperation on
-> > memory management mechanisms over time, and symbol export changes for
-> > out-of-tree GPU drivers have been a significant source of friction in
-> > the past.
->
-> I have an experience e.g. to rework semantic of some gfp flags and that is
-> something that users usualy get wrong and never heard that an out of
-> tree code would insist on an old semantic and pushing us to the corner.
->
-> > > So in this particular case I would go with consistency and export the
-> > > same way we do with other functions. Also we do not want people to
-> > > reinvent this API and screw that like we have seen in other cases when
-> > > external modules try reimplement core functionality themselves.
-> >
-> > Consistency is a weak argument when the cost to the upstream community
-> > is negligible. If the same functionality was available via another /
-> > already exported interface *that* would be an argument to maintain the
-> > existing export policy. "Consistency" in and of itself is not a
-> > precedent we can use more widely in default export-type decisions.
-> >
-> > Effectively I'm arguing EXPORT_SYMBOL_GPL by default with a later
-> > decision to drop the _GPL. Similar to how we are careful to mark sysfs
-> > interfaces in Documentation/ABI/ that we are not fully committed to
-> > maintaining over time, or are otherwise so new that there is not yet a
-> > good read on whether they can be made permanent.
->
-> Documentation/process/stable-api-nonsense.rst
-
-That document has failed to preclude symbol export fights in the past
-and there is a reasonable argument to try not to retract functionality
-that had been previously exported regardless of that document.
-
-> Really. If you want to play with GPL vs. EXPORT_SYMBOL else this is up
-> to you but I do not see any technical argument to make this particular
-> interface to the page allocator any different from all others that are
-> exported to modules.
-
-I'm failing to find any practical substance to your argument, but in
-the end I agree with Chrishoph, it's up to MM maintainers.
+VGhhdCB3YXkgd2UgY2FuIGRpdGNoIG91ciBnZW1fcHJpbWVfcmVzX29iaiBpbXBsZW1lbnRhdGlv
+bi4gU2luY2UgdHRtCmFic29sdXRlbHkgbmVlZHMgdGhlIHJpZ2h0IHJlc2VydmF0aW9uIG9iamVj
+dCBhbGwgdGhlIGJvaWxlcnBsYXRlIGlzCmFscmVhZHkgdGhlcmUgYW5kIHdlIGp1c3QgaGF2ZSB0
+byB3aXJlIGl0IHVwIGNvcnJlY3RseS4KCk5vdGUgdGhhdCBnZW0vcHJpbWUgZG9lc24ndCBjYXJl
+IHdoZW4gd2UgZG8gdGhpcywgYXMgbG9uZyBhcyB3ZSBkbyBpdApiZWZvcmUgdGhlIGJvIGlzIHJl
+Z2lzdGVyZWQgYW5kIHNvbWVvbmUgY2FuIGNhbGwgdGhlIGhhbmRsZTJmZCBpb2N0bApvbiBpdC4K
+CkFzaWRlOiB0dG1fYnVmZmVyX29iamVjdC50dG1fcmVzdiBjb3VsZCBwcm9iYWJseSBiZSBkaXRj
+aGVkIGluIGZhdm91cgpvZiBhbHdheXMgcGFzc2luZyBhIG5vbi1OVUxMIHJlc3YgdG8gdHRtX2Jv
+X2luaXQoKS4gQXQgbGVhc3QgZm9yIGdlbQpkcml2ZXJzIHRoYXQgd291bGQgYXZvaWQgaGF2aW5n
+IHR3byBvZiB0aGVzZSwgb24gaW4gdHRtX2J1ZmZlcl9vYmplY3QKYW5kIHRoZSBvdGhlciBpbiBk
+cm1fZ2VtX29iamVjdCwgb25lIGp1c3QgdGhlcmUgZm9yIGNvbmZ1c2lvbi4KClJldmlld2VkLWJ5
+OiBFbWlsIFZlbGlrb3YgPGVtaWwudmVsaWtvdkBjb2xsYWJvcmEuY29tPgpTaWduZWQtb2ZmLWJ5
+OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KQ2M6IEJlbiBTa2VnZ3Mg
+PGJza2VnZ3NAcmVkaGF0LmNvbT4KQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCi0t
+LQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jICAgIHwgMiArKwogZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyAgIHwgMSAtCiBkcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2dlbS5oICAgfCAxIC0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
+dXZlYXVfcHJpbWUuYyB8IDcgLS0tLS0tLQogNCBmaWxlcyBjaGFuZ2VkLCAyIGluc2VydGlvbnMo
+KyksIDkgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9iby5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jCmluZGV4
+IDM0YTk5ODAxMmJmNi4uNmYxMjE3YjNlNmI5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X2JvLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9iby5jCkBAIC0yOTksNiArMjk5LDggQEAgbm91dmVhdV9ib19uZXcoc3RydWN0IG5vdXZlYXVf
+Y2xpICpjbGksIHU2NCBzaXplLCBpbnQgYWxpZ24sCiAJCQkgIHR5cGUsICZudmJvLT5wbGFjZW1l
+bnQsCiAJCQkgIGFsaWduID4+IFBBR0VfU0hJRlQsIGZhbHNlLCBhY2Nfc2l6ZSwgc2csCiAJCQkg
+IHJvYmosIG5vdXZlYXVfYm9fZGVsX3R0bSk7CisJbnZiby0+Z2VtLnJlc3YgPSBudmJvLT5iby5y
+ZXN2OworCiAJaWYgKHJldCkgewogCQkvKiB0dG0gd2lsbCBjYWxsIG5vdXZlYXVfYm9fZGVsX3R0
+bSBpZiBpdCBmYWlscy4uICovCiAJCXJldHVybiByZXQ7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9kcm0uYwppbmRleCA0Mzc3YjgzNjI2NWYuLjJjMzYzMTljMTU4ZiAxMDA2NDQKLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYworKysgYi9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCkBAIC0xMTMxLDcgKzExMzEsNiBAQCBkcml2ZXJfc3R1
+YiA9IHsKIAkucHJpbWVfaGFuZGxlX3RvX2ZkID0gZHJtX2dlbV9wcmltZV9oYW5kbGVfdG9fZmQs
+CiAJLnByaW1lX2ZkX3RvX2hhbmRsZSA9IGRybV9nZW1fcHJpbWVfZmRfdG9faGFuZGxlLAogCS5n
+ZW1fcHJpbWVfcGluID0gbm91dmVhdV9nZW1fcHJpbWVfcGluLAotCS5nZW1fcHJpbWVfcmVzX29i
+aiA9IG5vdXZlYXVfZ2VtX3ByaW1lX3Jlc19vYmosCiAJLmdlbV9wcmltZV91bnBpbiA9IG5vdXZl
+YXVfZ2VtX3ByaW1lX3VucGluLAogCS5nZW1fcHJpbWVfZ2V0X3NnX3RhYmxlID0gbm91dmVhdV9n
+ZW1fcHJpbWVfZ2V0X3NnX3RhYmxlLAogCS5nZW1fcHJpbWVfaW1wb3J0X3NnX3RhYmxlID0gbm91
+dmVhdV9nZW1fcHJpbWVfaW1wb3J0X3NnX3RhYmxlLApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbm91dmVhdV9nZW0uaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
+YXVfZ2VtLmgKaW5kZXggZmUzOTk5OGY2NWNjLi45ZGVhMDE1Mzg3ZmQgMTAwNjQ0Ci0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZ2VtLmgKKysrIGIvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9nZW0uaApAQCAtMzMsNyArMzMsNiBAQCBleHRlcm4gaW50IG5vdXZl
+YXVfZ2VtX2lvY3RsX2luZm8oc3RydWN0IGRybV9kZXZpY2UgKiwgdm9pZCAqLAogCQkJCSAgc3Ry
+dWN0IGRybV9maWxlICopOwogCiBleHRlcm4gaW50IG5vdXZlYXVfZ2VtX3ByaW1lX3BpbihzdHJ1
+Y3QgZHJtX2dlbV9vYmplY3QgKik7Ci1zdHJ1Y3QgcmVzZXJ2YXRpb25fb2JqZWN0ICpub3V2ZWF1
+X2dlbV9wcmltZV9yZXNfb2JqKHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqKTsKIGV4dGVybiB2b2lk
+IG5vdXZlYXVfZ2VtX3ByaW1lX3VucGluKHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqKTsKIGV4dGVy
+biBzdHJ1Y3Qgc2dfdGFibGUgKm5vdXZlYXVfZ2VtX3ByaW1lX2dldF9zZ190YWJsZShzdHJ1Y3Qg
+ZHJtX2dlbV9vYmplY3QgKik7CiBleHRlcm4gc3RydWN0IGRybV9nZW1fb2JqZWN0ICpub3V2ZWF1
+X2dlbV9wcmltZV9pbXBvcnRfc2dfdGFibGUoCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X3ByaW1lLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X3ByaW1lLmMKaW5kZXggMWZlZmM5M2FmMWQ3Li5lYzUwMDE3NjkyZDQgMTAwNjQ0Ci0tLSBhL2Ry
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfcHJpbWUuYworKysgYi9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9ub3V2ZWF1X3ByaW1lLmMKQEAgLTEwNywxMCArMTA3LDMgQEAgdm9pZCBub3V2
+ZWF1X2dlbV9wcmltZV91bnBpbihzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaikKIAogCW5vdXZl
+YXVfYm9fdW5waW4obnZibyk7CiB9Ci0KLXN0cnVjdCByZXNlcnZhdGlvbl9vYmplY3QgKm5vdXZl
+YXVfZ2VtX3ByaW1lX3Jlc19vYmooc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmopCi17Ci0Jc3Ry
+dWN0IG5vdXZlYXVfYm8gKm52Ym8gPSBub3V2ZWF1X2dlbV9vYmplY3Qob2JqKTsKLQotCXJldHVy
+biBudmJvLT5iby5yZXN2OwotfQotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXU=
