@@ -1,11 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110993] New: GP107GLM [Quadro P1000 Mobile]:
- frequent failure to initialize displays on Thunderbolt dock
-Date: Tue, 25 Jun 2019 10:51:11 +0000
-Message-ID: <bug-110993-8800@http.bugs.freedesktop.org/>
+From: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Subject: Re: [PATCH 18/22] mm: mark DEVICE_PUBLIC as broken
+Date: Tue, 25 Jun 2019 11:44:28 +0000
+Message-ID: <20190625114422.GA3118@mellanox.com>
+References: <20190613094326.24093-1-hch@lst.de>
+ <20190613094326.24093-19-hch@lst.de> <20190620192648.GI12083@dhcp22.suse.cz>
+ <20190625072915.GD30350@lst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1022817006=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190625072915.GD30350-jcswGhMUV9g@public.gmane.org>
+Content-Language: en-US
+Content-ID: <9099450B868E3548B355AC3B0AFD1F5E-wNKe6lTLrGecE4WynfumptQqCkab/8FMAL8bYrjMMd8@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,241 +21,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Cc: "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Michal Hocko <mhocko-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1022817006==
-Content-Type: multipart/alternative; boundary="15614598711.A666b24F.21670"
-Content-Transfer-Encoding: 7bit
-
-
---15614598711.A666b24F.21670
-Date: Tue, 25 Jun 2019 10:51:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110993
-
-            Bug ID: 110993
-           Summary: GP107GLM [Quadro P1000 Mobile]: frequent failure to
-                    initialize displays on Thunderbolt dock
-           Product: xorg
-           Version: git
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: markus-XHb0b+agOrdyDzI6CaY1VQ@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-When connecting to the Thunderbolt 3 Dock, the monitors attached to it more
-often remain black rather than showing a proper image.  Sometimes the Laptop
-freezes entirely, other times just one of the two comes up, most of the tim=
-e,
-they remain black and eventually enter standby.
-
-I'm using a Lenovo P1 featuring a Quadro P1000 Mobile GPU.  An integrated G=
-PU
-is wired to the internal display as eDP-1.  The Nvidia card exposes an HDMI
-port on the laptop.  Plugging a monitor there directly usually works.  Vie =
-the
-docking station, I get another 3 ports controlled by the Nvidia GPU.  These=
- are
-either HDMI or DisplayPort.  I have two monitors for experimentation, a Dell
-one and a Lenovo one.
-
-I'm running a Linux 5.2-rc5 kernel and the nouveau driver compiled from a
-current checkout of the git repo of Ben Skeggs
-(https://github.com/skeggsb/nouveau/tree/f91e915b6a12c281aed4401a869881f293=
-b72d4e).
- Most of the time, I'm running with the runpm_fixes of Karol Herbst (that is
-the last five revisions from
-https://github.com/karolherbst/nouveau/tree/runpm_fixes).
-
-The output of `grep . /sys/class/drm/card*-*/status` after a start w/o the =
-dock
-or any display attached is:
-
-/sys/class/drm/card0-eDP-1/status:connected
-/sys/class/drm/card1-DP-1/status:disconnected
-/sys/class/drm/card1-DP-2/status:disconnected
-/sys/class/drm/card1-HDMI-A-1/status:connected
-/sys/class/drm/card1-eDP-2/status:disconnected
-
-I'll provide further details of what I did together with the corresponding
-kernel logs with tracing enabled in follow-up comments and attachments.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15614598711.A666b24F.21670
-Date: Tue, 25 Jun 2019 10:51:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GP107GLM [Quadro P1000 Mobile]: frequent failure to initi=
-alize displays on Thunderbolt dock"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110993">110993</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>GP107GLM [Quadro P1000 Mobile]: frequent failure to initializ=
-e displays on Thunderbolt dock
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>markus&#64;bluegap.ch
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>When connecting to the Thunderbolt 3 Dock, the monitors attach=
-ed to it more
-often remain black rather than showing a proper image.  Sometimes the Laptop
-freezes entirely, other times just one of the two comes up, most of the tim=
-e,
-they remain black and eventually enter standby.
-
-I'm using a Lenovo P1 featuring a Quadro P1000 Mobile GPU.  An integrated G=
-PU
-is wired to the internal display as eDP-1.  The Nvidia card exposes an HDMI
-port on the laptop.  Plugging a monitor there directly usually works.  Vie =
-the
-docking station, I get another 3 ports controlled by the Nvidia GPU.  These=
- are
-either HDMI or DisplayPort.  I have two monitors for experimentation, a Dell
-one and a Lenovo one.
-
-I'm running a Linux 5.2-rc5 kernel and the nouveau driver compiled from a
-current checkout of the git repo of Ben Skeggs
-(<a href=3D"https://github.com/skeggsb/nouveau/tree/f91e915b6a12c281aed4401=
-a869881f293b72d4e">https://github.com/skeggsb/nouveau/tree/f91e915b6a12c281=
-aed4401a869881f293b72d4e</a>).
- Most of the time, I'm running with the runpm_fixes of Karol Herbst (that is
-the last five revisions from
-<a href=3D"https://github.com/karolherbst/nouveau/tree/runpm_fixes">https:/=
-/github.com/karolherbst/nouveau/tree/runpm_fixes</a>).
-
-The output of `grep . /sys/class/drm/card*-*/status` after a start w/o the =
-dock
-or any display attached is:
-
-/sys/class/drm/card0-eDP-1/status:connected
-/sys/class/drm/card1-DP-1/status:disconnected
-/sys/class/drm/card1-DP-2/status:disconnected
-/sys/class/drm/card1-HDMI-A-1/status:connected
-/sys/class/drm/card1-eDP-2/status:disconnected
-
-I'll provide further details of what I did together with the corresponding
-kernel logs with tracing enabled in follow-up comments and attachments.</pr=
-e>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15614598711.A666b24F.21670--
-
---===============1022817006==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1022817006==--
+T24gVHVlLCBKdW4gMjUsIDIwMTkgYXQgMDk6Mjk6MTVBTSArMDIwMCwgQ2hyaXN0b3BoIEhlbGx3
+aWcgd3JvdGU6Cj4gT24gVGh1LCBKdW4gMjAsIDIwMTkgYXQgMDk6MjY6NDhQTSArMDIwMCwgTWlj
+aGFsIEhvY2tvIHdyb3RlOgo+ID4gT24gVGh1IDEzLTA2LTE5IDExOjQzOjIxLCBDaHJpc3RvcGgg
+SGVsbHdpZyB3cm90ZToKPiA+ID4gVGhlIGNvZGUgaGFzbid0IGJlZW4gdXNlZCBzaW5jZSBpdCB3
+YXMgYWRkZWQgdG8gdGhlIHRyZWUsIGFuZCBkb2Vzbid0Cj4gPiA+IGFwcGVhciB0byBhY3R1YWxs
+eSBiZSB1c2FibGUuICBNYXJrIGl0IGFzIEJST0tFTiB1bnRpbCBlaXRoZXIgYSB1c2VyCj4gPiA+
+IGNvbWVzIGFsb25nIG9yIHdlIGZpbmFsbHkgZ2l2ZSB1cCBvbiBpdC4KPiA+IAo+ID4gSSB3b3Vs
+ZCBnbyBldmVuIGZ1cnRoZXIgYW5kIHNpbXBseSByZW1vdmUgYWxsIHRoZSBERVZJQ0VfUFVCTElD
+IGNvZGUuCj4gCj4gSSBsb29rZWQgaW50byB0aGF0IGFzIEkgbm93IGdvdCB0aGUgZmVlZGJhY2sg
+dHdpY2UuICBJdCB3b3VsZAo+IGNyZWF0ZSBhIGNvbmZsaWN0IHdpdGggYW5vdGhlciB0cmVlIGNs
+ZWFuaW5nIHRoaW5ncyB1cCBhcm91bmQgdGhlCj4gaXNfZGV2aWNlX3ByaXZhdGUgZGVmaW50aW9u
+LCBidXQgb3RoZXJ3aXNlIEknZCBiZSBnbGFkIHRvIGp1c3QgcmVtb3ZlCj4gaXQuCj4gCj4gSmFz
+b24sIGFzIHRoaXMgZ29lcyB0aHJvdWdoIHlvdXIgdHJlZSwgZG8geW91IG1pbmQgdGhlIGFkZGl0
+aW9uYWwKPiBjb25mbGljdD8KCldoaWNoIHRyZWUgYW5kIHdoYXQgZG9lcyB0aGUgcmVzb2x1dGlv
+biBsb29rIGxpa2U/CgpBbHNvLCBJIGRvbid0IHdhbnQgdG8gYmUgbWFraW5nIHRoZSBkZWNpc2lv
+biBpZiB3ZSBzaG91bGQga2VlcC9yZW1vdmUKREVWSUNFX1BVQkxJQywgc28gbGV0J3MgZ2V0IGFu
+IEFjayBmcm9tIEFuZHJldy9ldGM/CgpNeSBtYWluIHJlbHVjdGFuY2UgaXMgdGhhdCBJIGtub3cg
+dGhlcmUgaXMgSFcgb3V0IHRoZXJlIHRoYXQgY2FuIGRvCmNvaGVyZW50LCBhbmQgSSB3YW50IHRv
+IGJlbGlldmUgdGhleSBhcmUgY29taW5nIHdpdGggcGF0Y2hlcywganVzdAp0b28gc2xvd2x5LiBC
+dXQgSSdkIGFsc28gcmF0aGVyIHRob3NlIHBlb3BsZSBkZWZlbmQgdGhlbXNlbHZlcyA6UAoKVGhh
+bmtzLApKYXNvbgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
