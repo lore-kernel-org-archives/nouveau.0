@@ -1,112 +1,68 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110996] swaywm (wayland) crashes when turning off
- monitors through dpms
-Date: Tue, 25 Jun 2019 16:41:36 +0000
-Message-ID: <bug-110996-8800-PRgKxwsZu2@http.bugs.freedesktop.org/>
-References: <bug-110996-8800@http.bugs.freedesktop.org/>
+From: Dan Williams <dan.j.williams@intel.com>
+Subject: Re: [PATCH 05/22] mm: export alloc_pages_vma
+Date: Tue, 25 Jun 2019 11:03:53 -0700
+Message-ID: <CAPcyv4j1e5dbBHnc+wmtsNUyFbMK_98WxHNwuD_Vxo4dX9Ce=Q@mail.gmail.com>
+References: <20190613094326.24093-1-hch@lst.de> <20190613094326.24093-6-hch@lst.de>
+ <20190620191733.GH12083@dhcp22.suse.cz> <CAPcyv4h9+Ha4FVrvDAe-YAr1wBOjc4yi7CAzVuASv=JCxPcFaw@mail.gmail.com>
+ <20190625072317.GC30350@lst.de> <20190625150053.GJ11400@dhcp22.suse.cz>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0972354280=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110996-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190625150053.GJ11400@dhcp22.suse.cz>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Michal Hocko <mhocko@kernel.org>
+Cc: Christoph Hellwig <hch@lst.de>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Linux MM <linux-mm@kvack.org>, nouveau@lists.freedesktop.org, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, linux-nvdimm <linux-nvdimm@lists.01.org>, linux-pci@vger.kernel.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
+On Tue, Jun 25, 2019 at 8:01 AM Michal Hocko <mhocko@kernel.org> wrote:
+>
+> On Tue 25-06-19 09:23:17, Christoph Hellwig wrote:
+> > On Mon, Jun 24, 2019 at 11:24:48AM -0700, Dan Williams wrote:
+> > > I asked for this simply because it was not exported historically. In
+> > > general I want to establish explicit export-type criteria so the
+> > > community can spend less time debating when to use EXPORT_SYMBOL_GPL
+> > > [1].
+> > >
+> > > The thought in this instance is that it is not historically exported
+> > > to modules and it is safer from a maintenance perspective to start
+> > > with GPL-only for new symbols in case we don't want to maintain that
+> > > interface long-term for out-of-tree modules.
+> > >
+> > > Yes, we always reserve the right to remove / change interfaces
+> > > regardless of the export type, but history has shown that external
+> > > pressure to keep an interface stable (contrary to
+> > > Documentation/process/stable-api-nonsense.rst) tends to be less for
+> > > GPL-only exports.
+> >
+> > Fully agreed.  In the end the decision is with the MM maintainers,
+> > though, although I'd prefer to keep it as in this series.
+>
+> I am sorry but I am not really convinced by the above reasoning wrt. to
+> the allocator API and it has been a subject of many changes over time. I
+> do not remember a single case where we would be bending the allocator
+> API because of external modules and I am pretty sure we will push back
+> heavily if that was the case in the future.
 
---===============0972354280==
-Content-Type: multipart/alternative; boundary="15614808962.56bfd87ce.20004"
-Content-Transfer-Encoding: 7bit
+This seems to say that you have no direct experience of dealing with
+changing symbols that that a prominent out-of-tree module needs? GPU
+drivers and the core-mm are on a path to increase their cooperation on
+memory management mechanisms over time, and symbol export changes for
+out-of-tree GPU drivers have been a significant source of friction in
+the past.
 
+> So in this particular case I would go with consistency and export the
+> same way we do with other functions. Also we do not want people to
+> reinvent this API and screw that like we have seen in other cases when
+> external modules try reimplement core functionality themselves.
 
---15614808962.56bfd87ce.20004
-Date: Tue, 25 Jun 2019 16:41:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Consistency is a weak argument when the cost to the upstream community
+is negligible. If the same functionality was available via another /
+already exported interface *that* would be an argument to maintain the
+existing export policy. "Consistency" in and of itself is not a
+precedent we can use more widely in default export-type decisions.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110996
-
-Sjon <sjon-bheiZbv1XdVtjaSKtHux1w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #144636|text/plain                  |application/gzip
-          mime type|                            |
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15614808962.56bfd87ce.20004
-Date: Tue, 25 Jun 2019 16:41:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:sjon&#64;=
-hortensius.net" title=3D"Sjon &lt;sjon&#64;hortensius.net&gt;"> <span class=
-=3D"fn">Sjon</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - swaywm (wayland) crashes when turning off monitors throug=
-h dpms"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110996">bug 11099=
-6</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #144636 mime type</td>
-           <td>text/plain
-           </td>
-           <td>application/gzip
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15614808962.56bfd87ce.20004--
-
---===============0972354280==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0972354280==--
+Effectively I'm arguing EXPORT_SYMBOL_GPL by default with a later
+decision to drop the _GPL. Similar to how we are careful to mark sysfs
+interfaces in Documentation/ABI/ that we are not fully committed to
+maintaining over time, or are otherwise so new that there is not yet a
+good read on whether they can be made permanent.
