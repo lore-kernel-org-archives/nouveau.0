@@ -1,40 +1,61 @@
-From: Dan Williams <dan.j.williams@intel.com>
-Subject: Re: [PATCH 05/22] mm: export alloc_pages_vma
-Date: Wed, 26 Jun 2019 09:14:32 -0700
-Message-ID: <CAPcyv4jLK2F2UHqbwp4bCEiB7tL8sVsr775egKMmJvfZG+W+NQ@mail.gmail.com>
-References: <20190613094326.24093-1-hch@lst.de> <20190613094326.24093-6-hch@lst.de>
- <20190620191733.GH12083@dhcp22.suse.cz> <CAPcyv4h9+Ha4FVrvDAe-YAr1wBOjc4yi7CAzVuASv=JCxPcFaw@mail.gmail.com>
- <20190625072317.GC30350@lst.de> <20190625150053.GJ11400@dhcp22.suse.cz>
- <CAPcyv4j1e5dbBHnc+wmtsNUyFbMK_98WxHNwuD_Vxo4dX9Ce=Q@mail.gmail.com>
- <20190625190038.GK11400@dhcp22.suse.cz> <CAPcyv4hU13v7dSQpF0WTQTxQM3L3UsHMUhsFMVz7i4UGLoM89g@mail.gmail.com>
- <20190626054645.GB17798@dhcp22.suse.cz>
+From: Ira Weiny <ira.weiny-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 04/25] mm: remove MEMORY_DEVICE_PUBLIC support
+Date: Wed, 26 Jun 2019 10:14:45 -0700
+Message-ID: <20190626171445.GA4605@iweiny-DESK2.sc.intel.com>
+References: <20190626122724.13313-1-hch@lst.de>
+ <20190626122724.13313-5-hch@lst.de>
+ <CAPcyv4gTOf+EWzSGrFrh2GrTZt5HVR=e+xicUKEpiy57px8J+w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190626054645.GB17798@dhcp22.suse.cz>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Michal Hocko <mhocko@kernel.org>
-Cc: Christoph Hellwig <hch@lst.de>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Linux MM <linux-mm@kvack.org>, nouveau@lists.freedesktop.org, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, linux-nvdimm <linux-nvdimm@lists.01.org>, linux-pci@vger.kernel.org, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <CAPcyv4gTOf+EWzSGrFrh2GrTZt5HVR=e+xicUKEpiy57px8J+w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Cc: Michal Hocko <mhocko-IBi9RG/b67k@public.gmane.org>, linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jun 25, 2019 at 10:46 PM Michal Hocko <mhocko@kernel.org> wrote:
->
-> On Tue 25-06-19 12:52:18, Dan Williams wrote:
-> [...]
-> > > Documentation/process/stable-api-nonsense.rst
-> >
-> > That document has failed to preclude symbol export fights in the past
-> > and there is a reasonable argument to try not to retract functionality
-> > that had been previously exported regardless of that document.
->
-> Can you point me to any specific example where this would be the case
-> for the core kernel symbols please?
-
-The most recent example that comes to mind was the thrash around
-__kernel_fpu_{begin,end} [1]. I referenced that when debating _GPL
-symbol policy with J=C3=A9r=C3=B4me [2].
-
-[1]: https://lore.kernel.org/lkml/20190522100959.GA15390@kroah.com/
-[2]: https://lore.kernel.org/lkml/CAPcyv4gb+r=3D=3DriKFXkVZ7gGdnKe62yBmZ7xO=
-a4uBBByhnK9Tzg@mail.gmail.com/
+T24gV2VkLCBKdW4gMjYsIDIwMTkgYXQgMDk6MDA6NDdBTSAtMDcwMCwgRGFuIFdpbGxpYW1zIHdy
+b3RlOgo+IFsgYWRkIElyYSBdCj4gCj4gT24gV2VkLCBKdW4gMjYsIDIwMTkgYXQgNToyNyBBTSBD
+aHJpc3RvcGggSGVsbHdpZyA8aGNoQGxzdC5kZT4gd3JvdGU6Cj4gPgo+ID4gVGhlIGNvZGUgaGFz
+bid0IGJlZW4gdXNlZCBzaW5jZSBpdCB3YXMgYWRkZWQgdG8gdGhlIHRyZWUsIGFuZCBkb2Vzbid0
+Cj4gPiBhcHBlYXIgdG8gYWN0dWFsbHkgYmUgdXNhYmxlLgo+ID4KPiA+IFNpZ25lZC1vZmYtYnk6
+IENocmlzdG9waCBIZWxsd2lnIDxoY2hAbHN0LmRlPgo+ID4gUmV2aWV3ZWQtYnk6IEphc29uIEd1
+bnRob3JwZSA8amdnQG1lbGxhbm94LmNvbT4KPiA+IEFja2VkLWJ5OiBNaWNoYWwgSG9ja28gPG1o
+b2Nrb0BzdXNlLmNvbT4KPiBbLi5dCj4gPiBkaWZmIC0tZ2l0IGEvbW0vc3dhcC5jIGIvbW0vc3dh
+cC5jCj4gPiBpbmRleCA3ZWRlM2VkZGMxMmEuLjgzMTA3NDEwZDI5ZiAxMDA2NDQKPiA+IC0tLSBh
+L21tL3N3YXAuYwo+ID4gKysrIGIvbW0vc3dhcC5jCj4gPiBAQCAtNzQwLDE3ICs3NDAsNiBAQCB2
+b2lkIHJlbGVhc2VfcGFnZXMoc3RydWN0IHBhZ2UgKipwYWdlcywgaW50IG5yKQo+ID4gICAgICAg
+ICAgICAgICAgIGlmIChpc19odWdlX3plcm9fcGFnZShwYWdlKSkKPiA+ICAgICAgICAgICAgICAg
+ICAgICAgICAgIGNvbnRpbnVlOwo+ID4KPiA+IC0gICAgICAgICAgICAgICAvKiBEZXZpY2UgcHVi
+bGljIHBhZ2UgY2FuIG5vdCBiZSBodWdlIHBhZ2UgKi8KPiA+IC0gICAgICAgICAgICAgICBpZiAo
+aXNfZGV2aWNlX3B1YmxpY19wYWdlKHBhZ2UpKSB7Cj4gPiAtICAgICAgICAgICAgICAgICAgICAg
+ICBpZiAobG9ja2VkX3BnZGF0KSB7Cj4gPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IHNwaW5fdW5sb2NrX2lycXJlc3RvcmUoJmxvY2tlZF9wZ2RhdC0+bHJ1X2xvY2ssCj4gPiAtICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZmxhZ3Mp
+Owo+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBsb2NrZWRfcGdkYXQgPSBOVUxM
+Owo+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgfQo+ID4gLSAgICAgICAgICAgICAgICAgICAg
+ICAgcHV0X2Rldm1hcF9tYW5hZ2VkX3BhZ2UocGFnZSk7Cj4gPiAtICAgICAgICAgICAgICAgICAg
+ICAgICBjb250aW51ZTsKPiA+IC0gICAgICAgICAgICAgICB9Cj4gPiAtCj4gCj4gVGhpcyBjb2xs
+aWRlcyB3aXRoIElyYSdzIGJ1ZyBmaXggWzFdLiBUaGUgTUVNT1JZX0RFVklDRV9GU0RBWCBjYXNl
+Cj4gbmVlZHMgdGhpcyB0byBiZSBjb252ZXJ0ZWQgdG8gYmUgaW5kZXBlbmRlbnQgb2YgInB1Ymxp
+YyIgcGFnZXMuCj4gUGVyaGFwcyBpdCBzaG91bGQgYmUgcHVsbGVkIG91dCBvZiAtbW0gYW5kIGlu
+Y29ycG9yYXRlZCBpbiB0aGlzCj4gc2VyaWVzLgo+IAo+IFsxXTogaHR0cHM6Ly9sb3JlLmtlcm5l
+bC5vcmcvbGttbC8yMDE5MDYwNTIxNDkyMi4xNzY4NC0xLWlyYS53ZWlueUBpbnRlbC5jb20vCgpB
+Z3JlZWQgYW5kIEFuZHJldyBwaWNrZWQgdGhlIGZpcnN0IDIgdmVyc2lvbnMgb2YgaXQsIG1tb3Rt
+IGNvbW1pdHM6CgozZWVkMTE0YjViNmIgbW0tc3dhcC1maXgtcmVsZWFzZV9wYWdlcy13aGVuLXJl
+bGVhc2luZy1kZXZtYXAtcGFnZXMtdjIKOWI3ZDhkMGY1NzJmIG1tL3N3YXAuYzogZml4IHJlbGVh
+c2VfcGFnZXMoKSB3aGVuIHJlbGVhc2luZyBkZXZtYXAgcGFnZXMKCkkgZG9uJ3Qgc2VlIHYzIGJ1
+dCB0aGVyZSB3ZXJlIG5vIG9iamVjdGlvbnMuLi4KCklyYQoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1
