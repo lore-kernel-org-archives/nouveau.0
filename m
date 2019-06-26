@@ -1,60 +1,42 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 25/25] mm: don't select MIGRATE_VMA_HELPER from HMM_MIRROR
-Date: Wed, 26 Jun 2019 14:27:24 +0200
-Message-ID: <20190626122724.13313-26-hch@lst.de>
+From: Michal Hocko <mhocko@kernel.org>
+Subject: Re: [PATCH 06/25] mm: export alloc_pages_vma
+Date: Wed, 26 Jun 2019 14:36:23 +0200
+Message-ID: <20190626123623.GU17798@dhcp22.suse.cz>
 References: <20190626122724.13313-1-hch@lst.de>
+ <20190626122724.13313-7-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-In-Reply-To: <20190626122724.13313-1-hch-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
-List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
-Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
-Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20190626122724.13313-7-hch@lst.de>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Christoph Hellwig <hch@lst.de>
+Cc: John Hubbard <jhubbard@nvidia.com>, linux-nvdimm@lists.01.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-mm@kvack.org, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, linux-pci@vger.kernel.org, Dan Williams <dan.j.williams@intel.com>
 List-Id: nouveau.vger.kernel.org
 
-The migrate_vma helper is only used by noveau to migrate device private
-pages around.  Other HMM_MIRROR users like amdgpu or infiniband don't
-need it.
-
-Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Reviewed-by: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
----
- drivers/gpu/drm/nouveau/Kconfig | 1 +
- mm/Kconfig                      | 1 -
- 2 files changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
-index 66c839d8e9d1..96b9814e6d06 100644
---- a/drivers/gpu/drm/nouveau/Kconfig
-+++ b/drivers/gpu/drm/nouveau/Kconfig
-@@ -88,6 +88,7 @@ config DRM_NOUVEAU_SVM
- 	depends on DRM_NOUVEAU
- 	depends on HMM_MIRROR
- 	depends on STAGING
-+	select MIGRATE_VMA_HELPER
- 	default n
- 	help
- 	  Say Y here if you want to enable experimental support for
-diff --git a/mm/Kconfig b/mm/Kconfig
-index 1e426c26b1d6..40cf0562412d 100644
---- a/mm/Kconfig
-+++ b/mm/Kconfig
-@@ -680,7 +680,6 @@ config HMM_MIRROR
- 	depends on (X86_64 || PPC64)
- 	depends on MMU && 64BIT
- 	select MMU_NOTIFIER
--	select MIGRATE_VMA_HELPER
- 	help
- 	  Select HMM_MIRROR if you want to mirror range of the CPU page table of a
- 	  process into a device page table. Here, mirror means "keep synchronized".
--- 
-2.20.1
+T24gV2VkIDI2LTA2LTE5IDE0OjI3OjA1LCBDaHJpc3RvcGggSGVsbHdpZyB3cm90ZToKPiBub3V2
+ZWF1IGlzIGN1cnJlbnRseSB1c2luZyB0aGlzIHRocm91Z2ggYW4gb2RkIGhtbSB3cmFwcGVyLCBh
+bmQgSSBwbGFuCj4gdG8gc3dpdGNoIGl0IHRvIHRoZSByZWFsIHRoaW5nIGxhdGVyIGluIHRoaXMg
+c2VyaWVzLgo+IAo+IFNpZ25lZC1vZmYtYnk6IENocmlzdG9waCBIZWxsd2lnIDxoY2hAbHN0LmRl
+Pgo+IFJldmlld2VkLWJ5OiBKb2huIEh1YmJhcmQgPGpodWJiYXJkQG52aWRpYS5jb20+CgpBY2tl
+ZC1ieTogTWljaGFsIEhvY2tvIDxtaG9ja29Ac3VzZS5jb20+CgpUaGFua3MhCgo+IC0tLQo+ICBt
+bS9tZW1wb2xpY3kuYyB8IDEgKwo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykKPiAK
+PiBkaWZmIC0tZ2l0IGEvbW0vbWVtcG9saWN5LmMgYi9tbS9tZW1wb2xpY3kuYwo+IGluZGV4IDAx
+NjAwZDgwYWUwMS4uZjQ4NTY5YWExODYzIDEwMDY0NAo+IC0tLSBhL21tL21lbXBvbGljeS5jCj4g
+KysrIGIvbW0vbWVtcG9saWN5LmMKPiBAQCAtMjA5OCw2ICsyMDk4LDcgQEAgYWxsb2NfcGFnZXNf
+dm1hKGdmcF90IGdmcCwgaW50IG9yZGVyLCBzdHJ1Y3Qgdm1fYXJlYV9zdHJ1Y3QgKnZtYSwKPiAg
+b3V0Ogo+ICAJcmV0dXJuIHBhZ2U7Cj4gIH0KPiArRVhQT1JUX1NZTUJPTChhbGxvY19wYWdlc192
+bWEpOwo+ICAKPiAgLyoqCj4gICAqIAlhbGxvY19wYWdlc19jdXJyZW50IC0gQWxsb2NhdGUgcGFn
+ZXMuCj4gLS0gCj4gMi4yMC4xCgotLSAKTWljaGFsIEhvY2tvClNVU0UgTGFicwpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBs
+aXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWw=
