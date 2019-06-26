@@ -1,103 +1,37 @@
-From: Christoph Hellwig <hch@lst.de>
-Subject: [PATCH 03/25] mm: remove hmm_devmem_add_resource
-Date: Wed, 26 Jun 2019 14:27:02 +0200
-Message-ID: <20190626122724.13313-4-hch@lst.de>
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Subject: [PATCH 06/25] mm: export alloc_pages_vma
+Date: Wed, 26 Jun 2019 14:27:05 +0200
+Message-ID: <20190626122724.13313-7-hch@lst.de>
 References: <20190626122724.13313-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190626122724.13313-1-hch@lst.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Dan Williams <dan.j.williams@intel.com>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, John Hubbard <jhubbard@nvidia.com>, Michal Hocko <mhocko@suse.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190626122724.13313-1-hch-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This function has never been used since it was first added to the kernel
-more than a year and a half ago, and if we ever grow a consumer of the
-MEMORY_DEVICE_PUBLIC infrastructure it can easily use devm_memremap_pages
-directly.
-
-Signed-off-by: Christoph Hellwig <hch@lst.de>
-Reviewed-by: Jason Gunthorpe <jgg@mellanox.com>
-Reviewed-by: John Hubbard <jhubbard@nvidia.com>
-Acked-by: Michal Hocko <mhocko@suse.com>
----
- include/linux/hmm.h |  3 ---
- mm/hmm.c            | 50 ---------------------------------------------
- 2 files changed, 53 deletions(-)
-
-diff --git a/include/linux/hmm.h b/include/linux/hmm.h
-index 99765be3284d..5c46b0f603fd 100644
---- a/include/linux/hmm.h
-+++ b/include/linux/hmm.h
-@@ -722,9 +722,6 @@ struct hmm_devmem {
- struct hmm_devmem *hmm_devmem_add(const struct hmm_devmem_ops *ops,
- 				  struct device *device,
- 				  unsigned long size);
--struct hmm_devmem *hmm_devmem_add_resource(const struct hmm_devmem_ops *ops,
--					   struct device *device,
--					   struct resource *res);
- 
- /*
-  * hmm_devmem_page_set_drvdata - set per-page driver data field
-diff --git a/mm/hmm.c b/mm/hmm.c
-index 00cc642b3d7e..bd260a3b6b09 100644
---- a/mm/hmm.c
-+++ b/mm/hmm.c
-@@ -1478,54 +1478,4 @@ struct hmm_devmem *hmm_devmem_add(const struct hmm_devmem_ops *ops,
- 	return devmem;
- }
- EXPORT_SYMBOL_GPL(hmm_devmem_add);
--
--struct hmm_devmem *hmm_devmem_add_resource(const struct hmm_devmem_ops *ops,
--					   struct device *device,
--					   struct resource *res)
--{
--	struct hmm_devmem *devmem;
--	void *result;
--	int ret;
--
--	if (res->desc != IORES_DESC_DEVICE_PUBLIC_MEMORY)
--		return ERR_PTR(-EINVAL);
--
--	dev_pagemap_get_ops();
--
--	devmem = devm_kzalloc(device, sizeof(*devmem), GFP_KERNEL);
--	if (!devmem)
--		return ERR_PTR(-ENOMEM);
--
--	init_completion(&devmem->completion);
--	devmem->pfn_first = -1UL;
--	devmem->pfn_last = -1UL;
--	devmem->resource = res;
--	devmem->device = device;
--	devmem->ops = ops;
--
--	ret = percpu_ref_init(&devmem->ref, &hmm_devmem_ref_release,
--			      0, GFP_KERNEL);
--	if (ret)
--		return ERR_PTR(ret);
--
--	devmem->pfn_first = devmem->resource->start >> PAGE_SHIFT;
--	devmem->pfn_last = devmem->pfn_first +
--			   (resource_size(devmem->resource) >> PAGE_SHIFT);
--	devmem->page_fault = hmm_devmem_fault;
--
--	devmem->pagemap.type = MEMORY_DEVICE_PUBLIC;
--	devmem->pagemap.res = *devmem->resource;
--	devmem->pagemap.page_free = hmm_devmem_free;
--	devmem->pagemap.altmap_valid = false;
--	devmem->pagemap.ref = &devmem->ref;
--	devmem->pagemap.data = devmem;
--	devmem->pagemap.kill = hmm_devmem_ref_kill;
--	devmem->pagemap.cleanup = hmm_devmem_ref_exit;
--
--	result = devm_memremap_pages(devmem->device, &devmem->pagemap);
--	if (IS_ERR(result))
--		return result;
--	return devmem;
--}
--EXPORT_SYMBOL_GPL(hmm_devmem_add_resource);
- #endif /* CONFIG_DEVICE_PRIVATE || CONFIG_DEVICE_PUBLIC */
--- 
-2.20.1
+bm91dmVhdSBpcyBjdXJyZW50bHkgdXNpbmcgdGhpcyB0aHJvdWdoIGFuIG9kZCBobW0gd3JhcHBl
+ciwgYW5kIEkgcGxhbgp0byBzd2l0Y2ggaXQgdG8gdGhlIHJlYWwgdGhpbmcgbGF0ZXIgaW4gdGhp
+cyBzZXJpZXMuCgpTaWduZWQtb2ZmLWJ5OiBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGxzdC5kZT4K
+UmV2aWV3ZWQtYnk6IEpvaG4gSHViYmFyZCA8amh1YmJhcmRAbnZpZGlhLmNvbT4KLS0tCiBtbS9t
+ZW1wb2xpY3kuYyB8IDEgKwogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspCgpkaWZmIC0t
+Z2l0IGEvbW0vbWVtcG9saWN5LmMgYi9tbS9tZW1wb2xpY3kuYwppbmRleCAwMTYwMGQ4MGFlMDEu
+LmY0ODU2OWFhMTg2MyAxMDA2NDQKLS0tIGEvbW0vbWVtcG9saWN5LmMKKysrIGIvbW0vbWVtcG9s
+aWN5LmMKQEAgLTIwOTgsNiArMjA5OCw3IEBAIGFsbG9jX3BhZ2VzX3ZtYShnZnBfdCBnZnAsIGlu
+dCBvcmRlciwgc3RydWN0IHZtX2FyZWFfc3RydWN0ICp2bWEsCiBvdXQ6CiAJcmV0dXJuIHBhZ2U7
+CiB9CitFWFBPUlRfU1lNQk9MKGFsbG9jX3BhZ2VzX3ZtYSk7CiAKIC8qKgogICogCWFsbG9jX3Bh
+Z2VzX2N1cnJlbnQgLSBBbGxvY2F0ZSBwYWdlcy4KLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
