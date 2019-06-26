@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111007] New: Blender crash when opening material tab
- GTX 750Ti -- NV117 (GM107)
-Date: Wed, 26 Jun 2019 18:55:19 +0000
-Message-ID: <bug-111007-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 111007] Blender crash when opening material tab GTX
+ 750Ti -- NV117 (GM107)
+Date: Wed, 26 Jun 2019 19:02:07 +0000
+Message-ID: <bug-111007-8800-0cZEvtWaVz@http.bugs.freedesktop.org/>
+References: <bug-111007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1438397664=="
+Content-Type: multipart/mixed; boundary="===============0188051269=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-111007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1438397664==
-Content-Type: multipart/alternative; boundary="15615753190.99F90ec.7235"
+--===============0188051269==
+Content-Type: multipart/alternative; boundary="15615757260.6dE1CD36A.8784"
 Content-Transfer-Encoding: 7bit
 
 
---15615753190.99F90ec.7235
-Date: Wed, 26 Jun 2019 18:55:19 +0000
+--15615757260.6dE1CD36A.8784
+Date: Wed, 26 Jun 2019 19:02:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,60 +36,27 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111007
 
-            Bug ID: 111007
-           Summary: Blender crash when opening material tab GTX 750Ti --
-                    NV117 (GM107)
-           Product: Mesa
-           Version: 19.1
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: joinlaw-kcyQbWKpldg@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Unfortunately blender can be very difficult to use for someone who has no i=
+dea
+about any of that stuff (like me). Can you make an apitrace which reproduces
+the crash when replayed?
 
-System Information
-Operating system: Linux-5.1.6-gnu-1-x86_64-with-arch 64 Bits (Parabola
-GNU/Linux-libre) arch derivative
-Graphics card: NV117 nouveau 4.3 (Core Profile) Mesa 19.1.0
-
-description of error:
-Blender crash when opening the material tab in properties and opening previ=
-ew
-tab
-this GPU ( nividia GTX 750Ti ) support OpenGL 4.3 on the nouveau and blender
-run fine but when opening material
-tab it crash.
-
-and here is glxinfo | grep OpenGL :
-OpenGL vendor string: nouveau
-OpenGL renderer string: NV117
-OpenGL core profile version string: 4.3 (Core Profile) Mesa 19.1.0
-OpenGL core profile shading language version string: 4.30
-OpenGL core profile context flags: (none)
-OpenGL core profile profile mask: core profile
-OpenGL core profile extensions:
-OpenGL version string: 4.3 (Compatibility Profile) Mesa 19.1.0
-OpenGL shading language version string: 4.30
-OpenGL context flags: (none)
-OpenGL profile mask: compatibility profile
-OpenGL extensions:
-OpenGL ES profile version string: OpenGL ES 3.2 Mesa 19.1.0
-OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.20
-OpenGL ES profile extensions:.....
-
-NOTE: also reported in https://developer.blender.org/T66159
+Failing that, can you provide idiot-proof instructions for how to trigger t=
+he
+crash, given that I don't know how to locate tabs in Blender, much less the
+"material" one? (I don't think I even have a copy of Blender installed eith=
+er,
+and definitely low on disk space, so the apitrace way is much more likely to
+lead to an investigation and perhaps eventual fix.)
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15615753190.99F90ec.7235
-Date: Wed, 26 Jun 2019 18:55:19 +0000
+--15615757260.6dE1CD36A.8784
+Date: Wed, 26 Jun 2019 19:02:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -98,123 +67,37 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Blender crash when opening material tab GTX 750Ti -- NV11=
 7 (GM107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111007">111007</a>
-          </td>
-        </tr>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111007#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Blender crash when opening material tab GTX 750Ti -- NV11=
+7 (GM107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111007">bug 11100=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Unfortunately blender can be very difficult to use for someone=
+ who has no idea
+about any of that stuff (like me). Can you make an apitrace which reproduces
+the crash when replayed?
 
-        <tr>
-          <th>Summary</th>
-          <td>Blender crash when opening material tab GTX 750Ti -- NV117 (G=
-M107)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>19.1
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>joinlaw&#64;cock.li
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>System Information
-Operating system: Linux-5.1.6-gnu-1-x86_64-with-arch 64 Bits (Parabola
-GNU/Linux-libre) arch derivative
-Graphics card: NV117 nouveau 4.3 (Core Profile) Mesa 19.1.0
-
-description of error:
-Blender crash when opening the material tab in properties and opening previ=
-ew
-tab
-this GPU ( nividia GTX 750Ti ) support OpenGL 4.3 on the nouveau and blender
-run fine but when opening material
-tab it crash.
-
-and here is glxinfo | grep OpenGL :
-OpenGL vendor string: nouveau
-OpenGL renderer string: NV117
-OpenGL core profile version string: 4.3 (Core Profile) Mesa 19.1.0
-OpenGL core profile shading language version string: 4.30
-OpenGL core profile context flags: (none)
-OpenGL core profile profile mask: core profile
-OpenGL core profile extensions:
-OpenGL version string: 4.3 (Compatibility Profile) Mesa 19.1.0
-OpenGL shading language version string: 4.30
-OpenGL context flags: (none)
-OpenGL profile mask: compatibility profile
-OpenGL extensions:
-OpenGL ES profile version string: OpenGL ES 3.2 Mesa 19.1.0
-OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.20
-OpenGL ES profile extensions:.....
-
-NOTE: also reported in <a href=3D"https://developer.blender.org/T66159">htt=
-ps://developer.blender.org/T66159</a></pre>
+Failing that, can you provide idiot-proof instructions for how to trigger t=
+he
+crash, given that I don't know how to locate tabs in Blender, much less the
+&quot;material&quot; one? (I don't think I even have a copy of Blender inst=
+alled either,
+and definitely low on disk space, so the apitrace way is much more likely to
+lead to an investigation and perhaps eventual fix.)</pre>
         </div>
       </p>
 
@@ -229,9 +112,9 @@ ps://developer.blender.org/T66159</a></pre>
     </body>
 </html>=
 
---15615753190.99F90ec.7235--
+--15615757260.6dE1CD36A.8784--
 
---===============1438397664==
+--===============0188051269==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -241,4 +124,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1438397664==--
+--===============0188051269==--
