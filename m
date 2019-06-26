@@ -1,115 +1,71 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110997] NV50 fan runs at full speed after resume
- from suspend on kernels 5.1.8, 4.19.49
-Date: Tue, 25 Jun 2019 21:54:14 +0000
-Message-ID: <bug-110997-8800-2vf4LLsFaX@http.bugs.freedesktop.org/>
-References: <bug-110997-8800@http.bugs.freedesktop.org/>
+From: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH 18/22] mm: mark DEVICE_PUBLIC as broken
+Date: Tue, 25 Jun 2019 20:15:28 -0700
+Message-ID: <29f43c79-b454-0477-a799-7850e6571bd3@nvidia.com>
+References: <20190613094326.24093-1-hch@lst.de>
+ <20190613094326.24093-19-hch@lst.de> <20190613194430.GY22062@mellanox.com>
+ <a27251ad-a152-f84d-139d-e1a3bf01c153@nvidia.com>
+ <20190613195819.GA22062@mellanox.com>
+ <20190614004314.GD783@iweiny-DESK2.sc.intel.com>
+ <d2b77ea1-7b27-e37d-c248-267a57441374@nvidia.com>
+ <20190619192719.GO9374@mellanox.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0861280786=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110997-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+In-Reply-To: <20190619192719.GO9374-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
+List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
+Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+To: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On 6/19/19 12:27 PM, Jason Gunthorpe wrote:
+> On Thu, Jun 13, 2019 at 06:23:04PM -0700, John Hubbard wrote:
+>> On 6/13/19 5:43 PM, Ira Weiny wrote:
+>>> On Thu, Jun 13, 2019 at 07:58:29PM +0000, Jason Gunthorpe wrote:
+>>>> On Thu, Jun 13, 2019 at 12:53:02PM -0700, Ralph Campbell wrote:
+>>>>>
+>> ...
+>>> So I think it is ok.  Frankly I was wondering if we should remove the public
+>>> type altogether but conceptually it seems ok.  But I don't see any users of it
+>>> so...  should we get rid of it in the code rather than turning the config off?
+>>>
+>>> Ira
+>>
+>> That seems reasonable. I recall that the hope was for those IBM Power 9
+>> systems to use _PUBLIC, as they have hardware-based coherent device (GPU)
+>> memory, and so the memory really is visible to the CPU. And the IBM team
+>> was thinking of taking advantage of it. But I haven't seen anything on
+>> that front for a while.
+> 
+> Does anyone know who those people are and can we encourage them to
+> send some patches? :)
+> 
 
---===============0861280786==
-Content-Type: multipart/alternative; boundary="15614996541.CBaEad.9892"
-Content-Transfer-Encoding: 7bit
+I asked about this, and it seems that the idea was: DEVICE_PUBLIC was there
+in order to provide an alternative way to do things (such as migrate memory
+to and from a device), in case the combination of existing and near-future
+NUMA APIs was insufficient. This probably came as a follow-up to the early
+2017-ish conversations about NUMA, in which the linux-mm recommendation was
+"try using HMM mechanisms, and if those are inadequate, then maybe we can
+look at enhancing NUMA so that it has better handling of advanced (GPU-like)
+devices".
 
+In the end, however, _PUBLIC was never used, nor does anyone in the local
+(NVIDIA + IBM) kernel vicinity seem to have plans to use it.  So it really
+does seem safe to remove, although of course it's good to start with 
+BROKEN and see if anyone pops up and complains.
 
---15614996541.CBaEad.9892
-Date: Tue, 25 Jun 2019 21:54:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110997
-
---- Comment #2 from Marc Meledandri <m.meledandri-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi! Thanks so much for the quick turnaround on this one. Great that you had=
- a
-card on hand to test with.
-
-I can confirm that this patch applied against stable kernel 5.1.15 resolves=
- the
-fan speed issue when resuming from suspend.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15614996541.CBaEad.9892
-Date: Tue, 25 Jun 2019 21:54:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - NV50 fan runs at full speed after resume from suspen=
-d on kernels 5.1.8, 4.19.49"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110997#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEEDINFO "
-   title=3D"NEEDINFO - NV50 fan runs at full speed after resume from suspen=
-d on kernels 5.1.8, 4.19.49"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110997">bug 11099=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-m.meledandri&#64;gmail.com" title=3D"Marc Meledandri &lt;m.meledandri&#64;g=
-mail.com&gt;"> <span class=3D"fn">Marc Meledandri</span></a>
-</span></b>
-        <pre>Hi! Thanks so much for the quick turnaround on this one. Great=
- that you had a
-card on hand to test with.
-
-I can confirm that this patch applied against stable kernel 5.1.15 resolves=
- the
-fan speed issue when resuming from suspend.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15614996541.CBaEad.9892--
-
---===============0861280786==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0861280786==--
+thanks,
+-- 
+John Hubbard
+NVIDIA
