@@ -1,82 +1,71 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH] drm/nouveau: Enable i2c pads & busses during preinit
-Date: Wed, 26 Jun 2019 14:10:27 -0400
-Message-ID: <20190626181029.4168-1-lyude@redhat.com>
+From: Ira Weiny <ira.weiny-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 04/25] mm: remove MEMORY_DEVICE_PUBLIC support
+Date: Wed, 26 Jun 2019 11:49:53 -0700
+Message-ID: <20190626184953.GC4605@iweiny-DESK2.sc.intel.com>
+References: <20190626122724.13313-1-hch@lst.de>
+ <20190626122724.13313-5-hch@lst.de>
+ <CAPcyv4gTOf+EWzSGrFrh2GrTZt5HVR=e+xicUKEpiy57px8J+w@mail.gmail.com>
+ <20190626171445.GA4605@iweiny-DESK2.sc.intel.com>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <stable-owner@vger.kernel.org>
-Sender: stable-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Marc Meledandri <m.meledandri@gmail.com>, stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20190626171445.GA4605-J5EW/p2F9lUlb2qzJQmr9q2pdiUAq4bhAL8bYrjMMd8@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Cc: Michal Hocko <mhocko-IBi9RG/b67k@public.gmane.org>, linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-It turns out that while disabling i2c bus access from software when the
-GPU is suspended was a step in the right direction with:
-
-commit 342406e4fbba ("drm/nouveau/i2c: Disable i2c bus access after
-->fini()")
-
-We also ended up accidentally breaking the vbios init scripts on some
-older Tesla GPUs, as apparently said scripts can actually use the i2c
-bus. Since these scripts are executed before initializing any
-subdevices, we end up failing to acquire access to the i2c bus which has
-left a number of cards with their fan controllers uninitialized. Luckily
-this doesn't break hardware - it just means the fan gets stuck at 100%.
-
-This also means that we've always been using our i2c busses before
-initializing them during the init scripts for older GPUs, we just didn't
-notice it until we started preventing them from being used until init.
-It's pretty impressive this never caused us any issues before!
-
-So, fix this by initializing our i2c pad and busses during subdev
-pre-init. We skip initializing aux busses during pre-init, as those are
-guaranteed to only ever be used by nouveau for DP aux transactions.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Tested-by: Marc Meledandri <m.meledandri@gmail.com>
-Fixes: 342406e4fbba ("drm/nouveau/i2c: Disable i2c bus access after ->fini()")
-Cc: stable@vger.kernel.org
----
- .../gpu/drm/nouveau/nvkm/subdev/i2c/base.c    | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
-index ecacb22834d7..719345074711 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
-@@ -184,6 +184,25 @@ nvkm_i2c_fini(struct nvkm_subdev *subdev, bool suspend)
- 	return 0;
- }
- 
-+static int
-+nvkm_i2c_preinit(struct nvkm_subdev *subdev)
-+{
-+	struct nvkm_i2c *i2c = nvkm_i2c(subdev);
-+	struct nvkm_i2c_bus *bus;
-+	struct nvkm_i2c_pad *pad;
-+
-+	/*
-+	 * We init our i2c busses as early as possible, since they may be
-+	 * needed by the vbios init scripts on some cards
-+	 */
-+	list_for_each_entry(pad, &i2c->pad, head)
-+		nvkm_i2c_pad_init(pad);
-+	list_for_each_entry(bus, &i2c->bus, head)
-+		nvkm_i2c_bus_init(bus);
-+
-+	return 0;
-+}
-+
- static int
- nvkm_i2c_init(struct nvkm_subdev *subdev)
- {
-@@ -238,6 +257,7 @@ nvkm_i2c_dtor(struct nvkm_subdev *subdev)
- static const struct nvkm_subdev_func
- nvkm_i2c = {
- 	.dtor = nvkm_i2c_dtor,
-+	.preinit = nvkm_i2c_preinit,
- 	.init = nvkm_i2c_init,
- 	.fini = nvkm_i2c_fini,
- 	.intr = nvkm_i2c_intr,
--- 
-2.21.0
+T24gV2VkLCBKdW4gMjYsIDIwMTkgYXQgMTA6MTQ6NDVBTSAtMDcwMCwgJ0lyYSBXZWlueScgd3Jv
+dGU6Cj4gT24gV2VkLCBKdW4gMjYsIDIwMTkgYXQgMDk6MDA6NDdBTSAtMDcwMCwgRGFuIFdpbGxp
+YW1zIHdyb3RlOgo+ID4gWyBhZGQgSXJhIF0KPiA+IAo+ID4gT24gV2VkLCBKdW4gMjYsIDIwMTkg
+YXQgNToyNyBBTSBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGxzdC5kZT4gd3JvdGU6Cj4gPiA+Cj4g
+PiA+IFRoZSBjb2RlIGhhc24ndCBiZWVuIHVzZWQgc2luY2UgaXQgd2FzIGFkZGVkIHRvIHRoZSB0
+cmVlLCBhbmQgZG9lc24ndAo+ID4gPiBhcHBlYXIgdG8gYWN0dWFsbHkgYmUgdXNhYmxlLgo+ID4g
+Pgo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGxzdC5kZT4KPiA+
+ID4gUmV2aWV3ZWQtYnk6IEphc29uIEd1bnRob3JwZSA8amdnQG1lbGxhbm94LmNvbT4KPiA+ID4g
+QWNrZWQtYnk6IE1pY2hhbCBIb2NrbyA8bWhvY2tvQHN1c2UuY29tPgo+ID4gWy4uXQo+ID4gPiBk
+aWZmIC0tZ2l0IGEvbW0vc3dhcC5jIGIvbW0vc3dhcC5jCj4gPiA+IGluZGV4IDdlZGUzZWRkYzEy
+YS4uODMxMDc0MTBkMjlmIDEwMDY0NAo+ID4gPiAtLS0gYS9tbS9zd2FwLmMKPiA+ID4gKysrIGIv
+bW0vc3dhcC5jCj4gPiA+IEBAIC03NDAsMTcgKzc0MCw2IEBAIHZvaWQgcmVsZWFzZV9wYWdlcyhz
+dHJ1Y3QgcGFnZSAqKnBhZ2VzLCBpbnQgbnIpCj4gPiA+ICAgICAgICAgICAgICAgICBpZiAoaXNf
+aHVnZV96ZXJvX3BhZ2UocGFnZSkpCj4gPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIGNvbnRp
+bnVlOwo+ID4gPgo+ID4gPiAtICAgICAgICAgICAgICAgLyogRGV2aWNlIHB1YmxpYyBwYWdlIGNh
+biBub3QgYmUgaHVnZSBwYWdlICovCj4gPiA+IC0gICAgICAgICAgICAgICBpZiAoaXNfZGV2aWNl
+X3B1YmxpY19wYWdlKHBhZ2UpKSB7Cj4gPiA+IC0gICAgICAgICAgICAgICAgICAgICAgIGlmIChs
+b2NrZWRfcGdkYXQpIHsKPiA+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzcGlu
+X3VubG9ja19pcnFyZXN0b3JlKCZsb2NrZWRfcGdkYXQtPmxydV9sb2NrLAo+ID4gPiAtICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZmxhZ3MpOwo+
+ID4gPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxvY2tlZF9wZ2RhdCA9IE5VTEw7
+Cj4gPiA+IC0gICAgICAgICAgICAgICAgICAgICAgIH0KPiA+ID4gLSAgICAgICAgICAgICAgICAg
+ICAgICAgcHV0X2Rldm1hcF9tYW5hZ2VkX3BhZ2UocGFnZSk7Cj4gPiA+IC0gICAgICAgICAgICAg
+ICAgICAgICAgIGNvbnRpbnVlOwo+ID4gPiAtICAgICAgICAgICAgICAgfQo+ID4gPiAtCj4gPiAK
+PiA+IFRoaXMgY29sbGlkZXMgd2l0aCBJcmEncyBidWcgZml4IFsxXS4gVGhlIE1FTU9SWV9ERVZJ
+Q0VfRlNEQVggY2FzZQo+ID4gbmVlZHMgdGhpcyB0byBiZSBjb252ZXJ0ZWQgdG8gYmUgaW5kZXBl
+bmRlbnQgb2YgInB1YmxpYyIgcGFnZXMuCj4gPiBQZXJoYXBzIGl0IHNob3VsZCBiZSBwdWxsZWQg
+b3V0IG9mIC1tbSBhbmQgaW5jb3Jwb3JhdGVkIGluIHRoaXMKPiA+IHNlcmllcy4KPiA+IAo+ID4g
+WzFdOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9sa21sLzIwMTkwNjA1MjE0OTIyLjE3Njg0LTEt
+aXJhLndlaW55QGludGVsLmNvbS8KPiAKPiBBZ3JlZWQgYW5kIEFuZHJldyBwaWNrZWQgdGhlIGZp
+cnN0IDIgdmVyc2lvbnMgb2YgaXQsIG1tb3RtIGNvbW1pdHM6Cj4gCj4gM2VlZDExNGI1YjZiIG1t
+LXN3YXAtZml4LXJlbGVhc2VfcGFnZXMtd2hlbi1yZWxlYXNpbmctZGV2bWFwLXBhZ2VzLXYyCj4g
+OWI3ZDhkMGY1NzJmIG1tL3N3YXAuYzogZml4IHJlbGVhc2VfcGFnZXMoKSB3aGVuIHJlbGVhc2lu
+ZyBkZXZtYXAgcGFnZXMKPiAKPiBJIGRvbid0IHNlZSB2MyBidXQgdGhlcmUgd2VyZSBubyBvYmpl
+Y3Rpb25zLi4uCgpPayBzb21laG93IEkgY2FuJ3QgZmV0Y2ggbW1vdG0gcmlnaHQgbm93Li4uCgpE
+YW4gaGFkIGFuZCB1cGRhdGVkIG1tb3RtIHRyZWUgYW5kIGl0IGRvZXMgaGF2ZSBteSB2NCBwYXRj
+aC4KCkRvZXMgYW55b25lIGVsc2UgaGF2ZSBpc3N1ZXMgd2l0aCBnaXQ6Ly9naXQuY21weGNoZy5v
+cmcvbGludXgtbW1vdG0uZ2l0IG9yIGlzCml0IGp1c3QgbWU/ICBGV0lXIEkgaGF2ZSBjaGVja2Vk
+IHByb3hpZXMgZXRjLi4uIGFuZCBjYW4gZ2V0IHRvIGxpbnVzIGFuZCBvdGhlcgpzaXRlcyBqdXN0
+IGZpbmUsIHNvIGl0IGxvb2tzIGxpa2UgYW4gaXNzdWUgdGhlcmUuICBBbHRob3VnaCB0aGUgd2Vi
+IHBhZ2UgaXMKZmluZS4uLgoKU29ycnksCklyYQoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1
