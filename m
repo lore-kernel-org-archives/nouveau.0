@@ -1,17 +1,11 @@
-From: Ira Weiny <ira.weiny-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 04/25] mm: remove MEMORY_DEVICE_PUBLIC support
-Date: Wed, 26 Jun 2019 11:49:53 -0700
-Message-ID: <20190626184953.GC4605@iweiny-DESK2.sc.intel.com>
-References: <20190626122724.13313-1-hch@lst.de>
- <20190626122724.13313-5-hch@lst.de>
- <CAPcyv4gTOf+EWzSGrFrh2GrTZt5HVR=e+xicUKEpiy57px8J+w@mail.gmail.com>
- <20190626171445.GA4605@iweiny-DESK2.sc.intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111007] New: Blender crash when opening material tab
+ GTX 750Ti -- NV117 (GM107)
+Date: Wed, 26 Jun 2019 18:55:19 +0000
+Message-ID: <bug-111007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1438397664=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20190626171445.GA4605-J5EW/p2F9lUlb2qzJQmr9q2pdiUAq4bhAL8bYrjMMd8@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,51 +15,230 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: Michal Hocko <mhocko-IBi9RG/b67k@public.gmane.org>, linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBKdW4gMjYsIDIwMTkgYXQgMTA6MTQ6NDVBTSAtMDcwMCwgJ0lyYSBXZWlueScgd3Jv
-dGU6Cj4gT24gV2VkLCBKdW4gMjYsIDIwMTkgYXQgMDk6MDA6NDdBTSAtMDcwMCwgRGFuIFdpbGxp
-YW1zIHdyb3RlOgo+ID4gWyBhZGQgSXJhIF0KPiA+IAo+ID4gT24gV2VkLCBKdW4gMjYsIDIwMTkg
-YXQgNToyNyBBTSBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGxzdC5kZT4gd3JvdGU6Cj4gPiA+Cj4g
-PiA+IFRoZSBjb2RlIGhhc24ndCBiZWVuIHVzZWQgc2luY2UgaXQgd2FzIGFkZGVkIHRvIHRoZSB0
-cmVlLCBhbmQgZG9lc24ndAo+ID4gPiBhcHBlYXIgdG8gYWN0dWFsbHkgYmUgdXNhYmxlLgo+ID4g
-Pgo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGxzdC5kZT4KPiA+
-ID4gUmV2aWV3ZWQtYnk6IEphc29uIEd1bnRob3JwZSA8amdnQG1lbGxhbm94LmNvbT4KPiA+ID4g
-QWNrZWQtYnk6IE1pY2hhbCBIb2NrbyA8bWhvY2tvQHN1c2UuY29tPgo+ID4gWy4uXQo+ID4gPiBk
-aWZmIC0tZ2l0IGEvbW0vc3dhcC5jIGIvbW0vc3dhcC5jCj4gPiA+IGluZGV4IDdlZGUzZWRkYzEy
-YS4uODMxMDc0MTBkMjlmIDEwMDY0NAo+ID4gPiAtLS0gYS9tbS9zd2FwLmMKPiA+ID4gKysrIGIv
-bW0vc3dhcC5jCj4gPiA+IEBAIC03NDAsMTcgKzc0MCw2IEBAIHZvaWQgcmVsZWFzZV9wYWdlcyhz
-dHJ1Y3QgcGFnZSAqKnBhZ2VzLCBpbnQgbnIpCj4gPiA+ICAgICAgICAgICAgICAgICBpZiAoaXNf
-aHVnZV96ZXJvX3BhZ2UocGFnZSkpCj4gPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIGNvbnRp
-bnVlOwo+ID4gPgo+ID4gPiAtICAgICAgICAgICAgICAgLyogRGV2aWNlIHB1YmxpYyBwYWdlIGNh
-biBub3QgYmUgaHVnZSBwYWdlICovCj4gPiA+IC0gICAgICAgICAgICAgICBpZiAoaXNfZGV2aWNl
-X3B1YmxpY19wYWdlKHBhZ2UpKSB7Cj4gPiA+IC0gICAgICAgICAgICAgICAgICAgICAgIGlmIChs
-b2NrZWRfcGdkYXQpIHsKPiA+ID4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzcGlu
-X3VubG9ja19pcnFyZXN0b3JlKCZsb2NrZWRfcGdkYXQtPmxydV9sb2NrLAo+ID4gPiAtICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZmxhZ3MpOwo+
-ID4gPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxvY2tlZF9wZ2RhdCA9IE5VTEw7
-Cj4gPiA+IC0gICAgICAgICAgICAgICAgICAgICAgIH0KPiA+ID4gLSAgICAgICAgICAgICAgICAg
-ICAgICAgcHV0X2Rldm1hcF9tYW5hZ2VkX3BhZ2UocGFnZSk7Cj4gPiA+IC0gICAgICAgICAgICAg
-ICAgICAgICAgIGNvbnRpbnVlOwo+ID4gPiAtICAgICAgICAgICAgICAgfQo+ID4gPiAtCj4gPiAK
-PiA+IFRoaXMgY29sbGlkZXMgd2l0aCBJcmEncyBidWcgZml4IFsxXS4gVGhlIE1FTU9SWV9ERVZJ
-Q0VfRlNEQVggY2FzZQo+ID4gbmVlZHMgdGhpcyB0byBiZSBjb252ZXJ0ZWQgdG8gYmUgaW5kZXBl
-bmRlbnQgb2YgInB1YmxpYyIgcGFnZXMuCj4gPiBQZXJoYXBzIGl0IHNob3VsZCBiZSBwdWxsZWQg
-b3V0IG9mIC1tbSBhbmQgaW5jb3Jwb3JhdGVkIGluIHRoaXMKPiA+IHNlcmllcy4KPiA+IAo+ID4g
-WzFdOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9sa21sLzIwMTkwNjA1MjE0OTIyLjE3Njg0LTEt
-aXJhLndlaW55QGludGVsLmNvbS8KPiAKPiBBZ3JlZWQgYW5kIEFuZHJldyBwaWNrZWQgdGhlIGZp
-cnN0IDIgdmVyc2lvbnMgb2YgaXQsIG1tb3RtIGNvbW1pdHM6Cj4gCj4gM2VlZDExNGI1YjZiIG1t
-LXN3YXAtZml4LXJlbGVhc2VfcGFnZXMtd2hlbi1yZWxlYXNpbmctZGV2bWFwLXBhZ2VzLXYyCj4g
-OWI3ZDhkMGY1NzJmIG1tL3N3YXAuYzogZml4IHJlbGVhc2VfcGFnZXMoKSB3aGVuIHJlbGVhc2lu
-ZyBkZXZtYXAgcGFnZXMKPiAKPiBJIGRvbid0IHNlZSB2MyBidXQgdGhlcmUgd2VyZSBubyBvYmpl
-Y3Rpb25zLi4uCgpPayBzb21laG93IEkgY2FuJ3QgZmV0Y2ggbW1vdG0gcmlnaHQgbm93Li4uCgpE
-YW4gaGFkIGFuZCB1cGRhdGVkIG1tb3RtIHRyZWUgYW5kIGl0IGRvZXMgaGF2ZSBteSB2NCBwYXRj
-aC4KCkRvZXMgYW55b25lIGVsc2UgaGF2ZSBpc3N1ZXMgd2l0aCBnaXQ6Ly9naXQuY21weGNoZy5v
-cmcvbGludXgtbW1vdG0uZ2l0IG9yIGlzCml0IGp1c3QgbWU/ICBGV0lXIEkgaGF2ZSBjaGVja2Vk
-IHByb3hpZXMgZXRjLi4uIGFuZCBjYW4gZ2V0IHRvIGxpbnVzIGFuZCBvdGhlcgpzaXRlcyBqdXN0
-IGZpbmUsIHNvIGl0IGxvb2tzIGxpa2UgYW4gaXNzdWUgdGhlcmUuICBBbHRob3VnaCB0aGUgd2Vi
-IHBhZ2UgaXMKZmluZS4uLgoKU29ycnksCklyYQoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9ub3V2ZWF1
+
+--===============1438397664==
+Content-Type: multipart/alternative; boundary="15615753190.99F90ec.7235"
+Content-Transfer-Encoding: 7bit
+
+
+--15615753190.99F90ec.7235
+Date: Wed, 26 Jun 2019 18:55:19 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111007
+
+            Bug ID: 111007
+           Summary: Blender crash when opening material tab GTX 750Ti --
+                    NV117 (GM107)
+           Product: Mesa
+           Version: 19.1
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: joinlaw-kcyQbWKpldg@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+System Information
+Operating system: Linux-5.1.6-gnu-1-x86_64-with-arch 64 Bits (Parabola
+GNU/Linux-libre) arch derivative
+Graphics card: NV117 nouveau 4.3 (Core Profile) Mesa 19.1.0
+
+description of error:
+Blender crash when opening the material tab in properties and opening previ=
+ew
+tab
+this GPU ( nividia GTX 750Ti ) support OpenGL 4.3 on the nouveau and blender
+run fine but when opening material
+tab it crash.
+
+and here is glxinfo | grep OpenGL :
+OpenGL vendor string: nouveau
+OpenGL renderer string: NV117
+OpenGL core profile version string: 4.3 (Core Profile) Mesa 19.1.0
+OpenGL core profile shading language version string: 4.30
+OpenGL core profile context flags: (none)
+OpenGL core profile profile mask: core profile
+OpenGL core profile extensions:
+OpenGL version string: 4.3 (Compatibility Profile) Mesa 19.1.0
+OpenGL shading language version string: 4.30
+OpenGL context flags: (none)
+OpenGL profile mask: compatibility profile
+OpenGL extensions:
+OpenGL ES profile version string: OpenGL ES 3.2 Mesa 19.1.0
+OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.20
+OpenGL ES profile extensions:.....
+
+NOTE: also reported in https://developer.blender.org/T66159
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15615753190.99F90ec.7235
+Date: Wed, 26 Jun 2019 18:55:19 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Blender crash when opening material tab GTX 750Ti -- NV11=
+7 (GM107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111007">111007</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Blender crash when opening material tab GTX 750Ti -- NV117 (G=
+M107)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>19.1
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>joinlaw&#64;cock.li
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>System Information
+Operating system: Linux-5.1.6-gnu-1-x86_64-with-arch 64 Bits (Parabola
+GNU/Linux-libre) arch derivative
+Graphics card: NV117 nouveau 4.3 (Core Profile) Mesa 19.1.0
+
+description of error:
+Blender crash when opening the material tab in properties and opening previ=
+ew
+tab
+this GPU ( nividia GTX 750Ti ) support OpenGL 4.3 on the nouveau and blender
+run fine but when opening material
+tab it crash.
+
+and here is glxinfo | grep OpenGL :
+OpenGL vendor string: nouveau
+OpenGL renderer string: NV117
+OpenGL core profile version string: 4.3 (Core Profile) Mesa 19.1.0
+OpenGL core profile shading language version string: 4.30
+OpenGL core profile context flags: (none)
+OpenGL core profile profile mask: core profile
+OpenGL core profile extensions:
+OpenGL version string: 4.3 (Compatibility Profile) Mesa 19.1.0
+OpenGL shading language version string: 4.30
+OpenGL context flags: (none)
+OpenGL profile mask: compatibility profile
+OpenGL extensions:
+OpenGL ES profile version string: OpenGL ES 3.2 Mesa 19.1.0
+OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.20
+OpenGL ES profile extensions:.....
+
+NOTE: also reported in <a href=3D"https://developer.blender.org/T66159">htt=
+ps://developer.blender.org/T66159</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15615753190.99F90ec.7235--
+
+--===============1438397664==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1438397664==--
