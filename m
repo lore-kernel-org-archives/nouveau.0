@@ -1,92 +1,292 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 17/25] PCI/P2PDMA: use the dev_pagemap internal
- refcount
-Date: Wed, 26 Jun 2019 14:27:16 +0200
-Message-ID: <20190626122724.13313-18-hch@lst.de>
+Subject: [PATCH 14/25] memremap: replace the altmap_valid field with a
+ PGMAP_ALTMAP_VALID flag
+Date: Wed, 26 Jun 2019 14:27:13 +0200
+Message-ID: <20190626122724.13313-15-hch@lst.de>
 References: <20190626122724.13313-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
 In-Reply-To: <20190626122724.13313-1-hch-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
+List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
+Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
 To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIGZ1bmN0aW9uYWxpdHkgaXMgaWRlbnRpY2FsIHRvIHRoZSBvbmUgY3VycmVudGx5IG9wZW4g
-Y29kZWQgaW4KcDJwZG1hLmMuCgpTaWduZWQtb2ZmLWJ5OiBDaHJpc3RvcGggSGVsbHdpZyA8aGNo
-QGxzdC5kZT4KLS0tCiBkcml2ZXJzL3BjaS9wMnBkbWEuYyB8IDU3ICsrKystLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25z
-KCspLCA1MyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9wMnBkbWEuYyBi
-L2RyaXZlcnMvcGNpL3AycGRtYS5jCmluZGV4IGViZDhjZTNiYmEyZS4uNjA4Zjg0ZGY2MDRhIDEw
-MDY0NAotLS0gYS9kcml2ZXJzL3BjaS9wMnBkbWEuYworKysgYi9kcml2ZXJzL3BjaS9wMnBkbWEu
-YwpAQCAtMjQsMTIgKzI0LDYgQEAgc3RydWN0IHBjaV9wMnBkbWEgewogCWJvb2wgcDJwbWVtX3B1
-Ymxpc2hlZDsKIH07CiAKLXN0cnVjdCBwMnBkbWFfcGFnZW1hcCB7Ci0Jc3RydWN0IGRldl9wYWdl
-bWFwIHBnbWFwOwotCXN0cnVjdCBwZXJjcHVfcmVmIHJlZjsKLQlzdHJ1Y3QgY29tcGxldGlvbiBy
-ZWZfZG9uZTsKLX07Ci0KIHN0YXRpYyBzc2l6ZV90IHNpemVfc2hvdyhzdHJ1Y3QgZGV2aWNlICpk
-ZXYsIHN0cnVjdCBkZXZpY2VfYXR0cmlidXRlICphdHRyLAogCQkJIGNoYXIgKmJ1ZikKIHsKQEAg
-LTc4LDMyICs3Miw2IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgYXR0cmlidXRlX2dyb3VwIHAycG1l
-bV9ncm91cCA9IHsKIAkubmFtZSA9ICJwMnBtZW0iLAogfTsKIAotc3RhdGljIHN0cnVjdCBwMnBk
-bWFfcGFnZW1hcCAqdG9fcDJwX3BnbWFwKHN0cnVjdCBwZXJjcHVfcmVmICpyZWYpCi17Ci0JcmV0
-dXJuIGNvbnRhaW5lcl9vZihyZWYsIHN0cnVjdCBwMnBkbWFfcGFnZW1hcCwgcmVmKTsKLX0KLQot
-c3RhdGljIHZvaWQgcGNpX3AycGRtYV9wZXJjcHVfcmVsZWFzZShzdHJ1Y3QgcGVyY3B1X3JlZiAq
-cmVmKQotewotCXN0cnVjdCBwMnBkbWFfcGFnZW1hcCAqcDJwX3BnbWFwID0gdG9fcDJwX3BnbWFw
-KHJlZik7Ci0KLQljb21wbGV0ZSgmcDJwX3BnbWFwLT5yZWZfZG9uZSk7Ci19Ci0KLXN0YXRpYyB2
-b2lkIHBjaV9wMnBkbWFfcGVyY3B1X2tpbGwoc3RydWN0IGRldl9wYWdlbWFwICpwZ21hcCkKLXsK
-LQlwZXJjcHVfcmVmX2tpbGwocGdtYXAtPnJlZik7Ci19Ci0KLXN0YXRpYyB2b2lkIHBjaV9wMnBk
-bWFfcGVyY3B1X2NsZWFudXAoc3RydWN0IGRldl9wYWdlbWFwICpwZ21hcCkKLXsKLQlzdHJ1Y3Qg
-cDJwZG1hX3BhZ2VtYXAgKnAycF9wZ21hcCA9Ci0JCWNvbnRhaW5lcl9vZihwZ21hcCwgc3RydWN0
-IHAycGRtYV9wYWdlbWFwLCBwZ21hcCk7Ci0KLQl3YWl0X2Zvcl9jb21wbGV0aW9uKCZwMnBfcGdt
-YXAtPnJlZl9kb25lKTsKLQlwZXJjcHVfcmVmX2V4aXQoJnAycF9wZ21hcC0+cmVmKTsKLX0KLQog
-c3RhdGljIHZvaWQgcGNpX3AycGRtYV9yZWxlYXNlKHZvaWQgKmRhdGEpCiB7CiAJc3RydWN0IHBj
-aV9kZXYgKnBkZXYgPSBkYXRhOwpAQCAtMTUzLDExICsxMjEsNiBAQCBzdGF0aWMgaW50IHBjaV9w
-MnBkbWFfc2V0dXAoc3RydWN0IHBjaV9kZXYgKnBkZXYpCiAJcmV0dXJuIGVycm9yOwogfQogCi1z
-dGF0aWMgY29uc3Qgc3RydWN0IGRldl9wYWdlbWFwX29wcyBwY2lfcDJwZG1hX3BhZ2VtYXBfb3Bz
-ID0gewotCS5raWxsCQk9IHBjaV9wMnBkbWFfcGVyY3B1X2tpbGwsCi0JLmNsZWFudXAJPSBwY2lf
-cDJwZG1hX3BlcmNwdV9jbGVhbnVwLAotfTsKLQogLyoqCiAgKiBwY2lfcDJwZG1hX2FkZF9yZXNv
-dXJjZSAtIGFkZCBtZW1vcnkgZm9yIHVzZSBhcyBwMnAgbWVtb3J5CiAgKiBAcGRldjogdGhlIGRl
-dmljZSB0byBhZGQgdGhlIG1lbW9yeSB0bwpAQCAtMTcxLDcgKzEzNCw2IEBAIHN0YXRpYyBjb25z
-dCBzdHJ1Y3QgZGV2X3BhZ2VtYXBfb3BzIHBjaV9wMnBkbWFfcGFnZW1hcF9vcHMgPSB7CiBpbnQg
-cGNpX3AycGRtYV9hZGRfcmVzb3VyY2Uoc3RydWN0IHBjaV9kZXYgKnBkZXYsIGludCBiYXIsIHNp
-emVfdCBzaXplLAogCQkJICAgIHU2NCBvZmZzZXQpCiB7Ci0Jc3RydWN0IHAycGRtYV9wYWdlbWFw
-ICpwMnBfcGdtYXA7CiAJc3RydWN0IGRldl9wYWdlbWFwICpwZ21hcDsKIAl2b2lkICphZGRyOwog
-CWludCBlcnJvcjsKQEAgLTE5NCwyNiArMTU2LDE1IEBAIGludCBwY2lfcDJwZG1hX2FkZF9yZXNv
-dXJjZShzdHJ1Y3QgcGNpX2RldiAqcGRldiwgaW50IGJhciwgc2l6ZV90IHNpemUsCiAJCQlyZXR1
-cm4gZXJyb3I7CiAJfQogCi0JcDJwX3BnbWFwID0gZGV2bV9remFsbG9jKCZwZGV2LT5kZXYsIHNp
-emVvZigqcDJwX3BnbWFwKSwgR0ZQX0tFUk5FTCk7Ci0JaWYgKCFwMnBfcGdtYXApCisJcGdtYXAg
-PSBkZXZtX2t6YWxsb2MoJnBkZXYtPmRldiwgc2l6ZW9mKCpwZ21hcCksIEdGUF9LRVJORUwpOwor
-CWlmICghcGdtYXApCiAJCXJldHVybiAtRU5PTUVNOwotCi0JaW5pdF9jb21wbGV0aW9uKCZwMnBf
-cGdtYXAtPnJlZl9kb25lKTsKLQllcnJvciA9IHBlcmNwdV9yZWZfaW5pdCgmcDJwX3BnbWFwLT5y
-ZWYsCi0JCQlwY2lfcDJwZG1hX3BlcmNwdV9yZWxlYXNlLCAwLCBHRlBfS0VSTkVMKTsKLQlpZiAo
-ZXJyb3IpCi0JCWdvdG8gcGdtYXBfZnJlZTsKLQotCXBnbWFwID0gJnAycF9wZ21hcC0+cGdtYXA7
-Ci0KIAlwZ21hcC0+cmVzLnN0YXJ0ID0gcGNpX3Jlc291cmNlX3N0YXJ0KHBkZXYsIGJhcikgKyBv
-ZmZzZXQ7CiAJcGdtYXAtPnJlcy5lbmQgPSBwZ21hcC0+cmVzLnN0YXJ0ICsgc2l6ZSAtIDE7CiAJ
-cGdtYXAtPnJlcy5mbGFncyA9IHBjaV9yZXNvdXJjZV9mbGFncyhwZGV2LCBiYXIpOwotCXBnbWFw
-LT5yZWYgPSAmcDJwX3BnbWFwLT5yZWY7CiAJcGdtYXAtPnR5cGUgPSBNRU1PUllfREVWSUNFX1BD
-SV9QMlBETUE7CiAJcGdtYXAtPnBjaV9wMnBkbWFfYnVzX29mZnNldCA9IHBjaV9idXNfYWRkcmVz
-cyhwZGV2LCBiYXIpIC0KIAkJcGNpX3Jlc291cmNlX3N0YXJ0KHBkZXYsIGJhcik7Ci0JcGdtYXAt
-Pm9wcyA9ICZwY2lfcDJwZG1hX3BhZ2VtYXBfb3BzOwogCiAJYWRkciA9IGRldm1fbWVtcmVtYXBf
-cGFnZXMoJnBkZXYtPmRldiwgcGdtYXApOwogCWlmIChJU19FUlIoYWRkcikpIHsKQEAgLTIyNCw3
-ICsxNzUsNyBAQCBpbnQgcGNpX3AycGRtYV9hZGRfcmVzb3VyY2Uoc3RydWN0IHBjaV9kZXYgKnBk
-ZXYsIGludCBiYXIsIHNpemVfdCBzaXplLAogCWVycm9yID0gZ2VuX3Bvb2xfYWRkX293bmVyKHBk
-ZXYtPnAycGRtYS0+cG9vbCwgKHVuc2lnbmVkIGxvbmcpYWRkciwKIAkJCXBjaV9idXNfYWRkcmVz
-cyhwZGV2LCBiYXIpICsgb2Zmc2V0LAogCQkJcmVzb3VyY2Vfc2l6ZSgmcGdtYXAtPnJlcyksIGRl
-dl90b19ub2RlKCZwZGV2LT5kZXYpLAotCQkJJnAycF9wZ21hcC0+cmVmKTsKKwkJCXBnbWFwLT5y
-ZWYpOwogCWlmIChlcnJvcikKIAkJZ290byBwYWdlc19mcmVlOwogCkBAIC0yMzYsNyArMTg3LDcg
-QEAgaW50IHBjaV9wMnBkbWFfYWRkX3Jlc291cmNlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBpbnQg
-YmFyLCBzaXplX3Qgc2l6ZSwKIHBhZ2VzX2ZyZWU6CiAJZGV2bV9tZW11bm1hcF9wYWdlcygmcGRl
-di0+ZGV2LCBwZ21hcCk7CiBwZ21hcF9mcmVlOgotCWRldm1fa2ZyZWUoJnBkZXYtPmRldiwgcDJw
-X3BnbWFwKTsKKwlkZXZtX2tmcmVlKCZwZGV2LT5kZXYsIHBnbWFwKTsKIAlyZXR1cm4gZXJyb3I7
-CiB9CiBFWFBPUlRfU1lNQk9MX0dQTChwY2lfcDJwZG1hX2FkZF9yZXNvdXJjZSk7Ci0tIAoyLjIw
-LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+Add a flags field to struct dev_pagemap to replace the altmap_valid
+boolean to be a little more extensible.  Also add a pgmap_altmap() helper
+to find the optional altmap and clean up the code using the altmap using
+it.
+
+Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+---
+ arch/powerpc/mm/mem.c     | 10 +---------
+ arch/x86/mm/init_64.c     |  8 ++------
+ drivers/nvdimm/pfn_devs.c |  3 +--
+ drivers/nvdimm/pmem.c     |  1 -
+ include/linux/memremap.h  | 12 +++++++++++-
+ kernel/memremap.c         | 26 ++++++++++----------------
+ mm/hmm.c                  |  1 -
+ mm/memory_hotplug.c       |  6 ++----
+ mm/page_alloc.c           |  5 ++---
+ 9 files changed, 29 insertions(+), 43 deletions(-)
+
+diff --git a/arch/powerpc/mm/mem.c b/arch/powerpc/mm/mem.c
+index cba29131bccc..f774d80df025 100644
+--- a/arch/powerpc/mm/mem.c
++++ b/arch/powerpc/mm/mem.c
+@@ -131,17 +131,9 @@ void __ref arch_remove_memory(int nid, u64 start, u64 size,
+ {
+ 	unsigned long start_pfn = start >> PAGE_SHIFT;
+ 	unsigned long nr_pages = size >> PAGE_SHIFT;
+-	struct page *page;
++	struct page *page = pfn_to_page(start_pfn) + vmem_altmap_offset(altmap);
+ 	int ret;
+ 
+-	/*
+-	 * If we have an altmap then we need to skip over any reserved PFNs
+-	 * when querying the zone.
+-	 */
+-	page = pfn_to_page(start_pfn);
+-	if (altmap)
+-		page += vmem_altmap_offset(altmap);
+-
+ 	__remove_pages(page_zone(page), start_pfn, nr_pages, altmap);
+ 
+ 	/* Remove htab bolted mappings for this section of memory */
+diff --git a/arch/x86/mm/init_64.c b/arch/x86/mm/init_64.c
+index 693aaf28d5fe..3139e992ef9d 100644
+--- a/arch/x86/mm/init_64.c
++++ b/arch/x86/mm/init_64.c
+@@ -1211,13 +1211,9 @@ void __ref arch_remove_memory(int nid, u64 start, u64 size,
+ {
+ 	unsigned long start_pfn = start >> PAGE_SHIFT;
+ 	unsigned long nr_pages = size >> PAGE_SHIFT;
+-	struct page *page = pfn_to_page(start_pfn);
+-	struct zone *zone;
++	struct page *page = pfn_to_page(start_pfn) + vmem_altmap_offset(altmap);
++	struct zone *zone = page_zone(page);
+ 
+-	/* With altmap the first mapped page is offset from @start */
+-	if (altmap)
+-		page += vmem_altmap_offset(altmap);
+-	zone = page_zone(page);
+ 	__remove_pages(zone, start_pfn, nr_pages, altmap);
+ 	kernel_physical_mapping_remove(start, start + size);
+ }
+diff --git a/drivers/nvdimm/pfn_devs.c b/drivers/nvdimm/pfn_devs.c
+index 0f81fc56bbfd..55fb6b7433ed 100644
+--- a/drivers/nvdimm/pfn_devs.c
++++ b/drivers/nvdimm/pfn_devs.c
+@@ -622,7 +622,6 @@ static int __nvdimm_setup_pfn(struct nd_pfn *nd_pfn, struct dev_pagemap *pgmap)
+ 		if (offset < reserve)
+ 			return -EINVAL;
+ 		nd_pfn->npfns = le64_to_cpu(pfn_sb->npfns);
+-		pgmap->altmap_valid = false;
+ 	} else if (nd_pfn->mode == PFN_MODE_PMEM) {
+ 		nd_pfn->npfns = PFN_SECTION_ALIGN_UP((resource_size(res)
+ 					- offset) / PAGE_SIZE);
+@@ -634,7 +633,7 @@ static int __nvdimm_setup_pfn(struct nd_pfn *nd_pfn, struct dev_pagemap *pgmap)
+ 		memcpy(altmap, &__altmap, sizeof(*altmap));
+ 		altmap->free = PHYS_PFN(offset - reserve);
+ 		altmap->alloc = 0;
+-		pgmap->altmap_valid = true;
++		pgmap->flags |= PGMAP_ALTMAP_VALID;
+ 	} else
+ 		return -ENXIO;
+ 
+diff --git a/drivers/nvdimm/pmem.c b/drivers/nvdimm/pmem.c
+index 093408ce40ad..e7d8cc9f41e8 100644
+--- a/drivers/nvdimm/pmem.c
++++ b/drivers/nvdimm/pmem.c
+@@ -412,7 +412,6 @@ static int pmem_attach_disk(struct device *dev,
+ 		bb_res.start += pmem->data_offset;
+ 	} else if (pmem_should_map_pages(dev)) {
+ 		memcpy(&pmem->pgmap.res, &nsio->res, sizeof(pmem->pgmap.res));
+-		pmem->pgmap.altmap_valid = false;
+ 		pmem->pgmap.type = MEMORY_DEVICE_FS_DAX;
+ 		pmem->pgmap.ops = &fsdax_pagemap_ops;
+ 		addr = devm_memremap_pages(dev, &pmem->pgmap);
+diff --git a/include/linux/memremap.h b/include/linux/memremap.h
+index 336eca601dad..e25685b878e9 100644
+--- a/include/linux/memremap.h
++++ b/include/linux/memremap.h
+@@ -88,6 +88,8 @@ struct dev_pagemap_ops {
+ 	vm_fault_t (*migrate_to_ram)(struct vm_fault *vmf);
+ };
+ 
++#define PGMAP_ALTMAP_VALID	(1 << 0)
++
+ /**
+  * struct dev_pagemap - metadata for ZONE_DEVICE mappings
+  * @altmap: pre-allocated/reserved memory for vmemmap allocations
+@@ -96,19 +98,27 @@ struct dev_pagemap_ops {
+  * @dev: host device of the mapping for debug
+  * @data: private data pointer for page_free()
+  * @type: memory type: see MEMORY_* in memory_hotplug.h
++ * @flags: PGMAP_* flags to specify defailed behavior
+  * @ops: method table
+  */
+ struct dev_pagemap {
+ 	struct vmem_altmap altmap;
+-	bool altmap_valid;
+ 	struct resource res;
+ 	struct percpu_ref *ref;
+ 	struct device *dev;
+ 	enum memory_type type;
++	unsigned int flags;
+ 	u64 pci_p2pdma_bus_offset;
+ 	const struct dev_pagemap_ops *ops;
+ };
+ 
++static inline struct vmem_altmap *pgmap_altmap(struct dev_pagemap *pgmap)
++{
++	if (pgmap->flags & PGMAP_ALTMAP_VALID)
++		return &pgmap->altmap;
++	return NULL;
++}
++
+ #ifdef CONFIG_ZONE_DEVICE
+ void *devm_memremap_pages(struct device *dev, struct dev_pagemap *pgmap);
+ void devm_memunmap_pages(struct device *dev, struct dev_pagemap *pgmap);
+diff --git a/kernel/memremap.c b/kernel/memremap.c
+index 6c3dbb692037..eee490e7d7e1 100644
+--- a/kernel/memremap.c
++++ b/kernel/memremap.c
+@@ -54,14 +54,8 @@ static void pgmap_array_delete(struct resource *res)
+ 
+ static unsigned long pfn_first(struct dev_pagemap *pgmap)
+ {
+-	const struct resource *res = &pgmap->res;
+-	struct vmem_altmap *altmap = &pgmap->altmap;
+-	unsigned long pfn;
+-
+-	pfn = res->start >> PAGE_SHIFT;
+-	if (pgmap->altmap_valid)
+-		pfn += vmem_altmap_offset(altmap);
+-	return pfn;
++	return (pgmap->res.start >> PAGE_SHIFT) +
++		vmem_altmap_offset(pgmap_altmap(pgmap));
+ }
+ 
+ static unsigned long pfn_end(struct dev_pagemap *pgmap)
+@@ -109,7 +103,7 @@ static void devm_memremap_pages_release(void *data)
+ 				align_size >> PAGE_SHIFT, NULL);
+ 	} else {
+ 		arch_remove_memory(nid, align_start, align_size,
+-				pgmap->altmap_valid ? &pgmap->altmap : NULL);
++				pgmap_altmap(pgmap));
+ 		kasan_remove_zero_shadow(__va(align_start), align_size);
+ 	}
+ 	mem_hotplug_done();
+@@ -129,8 +123,8 @@ static void devm_memremap_pages_release(void *data)
+  * 1/ At a minimum the res, ref and type and ops members of @pgmap must be
+  *    initialized by the caller before passing it to this function
+  *
+- * 2/ The altmap field may optionally be initialized, in which case altmap_valid
+- *    must be set to true
++ * 2/ The altmap field may optionally be initialized, in which case
++ *    PGMAP_ALTMAP_VALID must be set in pgmap->flags.
+  *
+  * 3/ pgmap->ref must be 'live' on entry and will be killed and reaped
+  *    at devm_memremap_pages_release() time, or if this routine fails.
+@@ -142,15 +136,13 @@ static void devm_memremap_pages_release(void *data)
+ void *devm_memremap_pages(struct device *dev, struct dev_pagemap *pgmap)
+ {
+ 	resource_size_t align_start, align_size, align_end;
+-	struct vmem_altmap *altmap = pgmap->altmap_valid ?
+-			&pgmap->altmap : NULL;
+ 	struct resource *res = &pgmap->res;
+ 	struct dev_pagemap *conflict_pgmap;
+ 	struct mhp_restrictions restrictions = {
+ 		/*
+ 		 * We do not want any optional features only our own memmap
+ 		*/
+-		.altmap = altmap,
++		.altmap = pgmap_altmap(pgmap),
+ 	};
+ 	pgprot_t pgprot = PAGE_KERNEL;
+ 	int error, nid, is_ram;
+@@ -274,7 +266,7 @@ void *devm_memremap_pages(struct device *dev, struct dev_pagemap *pgmap)
+ 
+ 		zone = &NODE_DATA(nid)->node_zones[ZONE_DEVICE];
+ 		move_pfn_range_to_zone(zone, align_start >> PAGE_SHIFT,
+-				align_size >> PAGE_SHIFT, altmap);
++				align_size >> PAGE_SHIFT, pgmap_altmap(pgmap));
+ 	}
+ 
+ 	mem_hotplug_done();
+@@ -319,7 +311,9 @@ EXPORT_SYMBOL_GPL(devm_memunmap_pages);
+ unsigned long vmem_altmap_offset(struct vmem_altmap *altmap)
+ {
+ 	/* number of pfns from base where pfn_to_page() is valid */
+-	return altmap->reserve + altmap->free;
++	if (altmap)
++		return altmap->reserve + altmap->free;
++	return 0;
+ }
+ 
+ void vmem_altmap_free(struct vmem_altmap *altmap, unsigned long nr_pfns)
+diff --git a/mm/hmm.c b/mm/hmm.c
+index 36e25cdbdac1..e4470462298f 100644
+--- a/mm/hmm.c
++++ b/mm/hmm.c
+@@ -1442,7 +1442,6 @@ struct hmm_devmem *hmm_devmem_add(const struct hmm_devmem_ops *ops,
+ 	devmem->pagemap.type = MEMORY_DEVICE_PRIVATE;
+ 	devmem->pagemap.res = *devmem->resource;
+ 	devmem->pagemap.ops = &hmm_pagemap_ops;
+-	devmem->pagemap.altmap_valid = false;
+ 	devmem->pagemap.ref = &devmem->ref;
+ 
+ 	result = devm_memremap_pages(devmem->device, &devmem->pagemap);
+diff --git a/mm/memory_hotplug.c b/mm/memory_hotplug.c
+index e096c987d261..6166ba5a15f3 100644
+--- a/mm/memory_hotplug.c
++++ b/mm/memory_hotplug.c
+@@ -557,10 +557,8 @@ void __remove_pages(struct zone *zone, unsigned long phys_start_pfn,
+ 	int sections_to_remove;
+ 
+ 	/* In the ZONE_DEVICE case device driver owns the memory region */
+-	if (is_dev_zone(zone)) {
+-		if (altmap)
+-			map_offset = vmem_altmap_offset(altmap);
+-	}
++	if (is_dev_zone(zone))
++		map_offset = vmem_altmap_offset(altmap);
+ 
+ 	clear_zone_contiguous(zone);
+ 
+diff --git a/mm/page_alloc.c b/mm/page_alloc.c
+index d66bc8abe0af..17a39d40a556 100644
+--- a/mm/page_alloc.c
++++ b/mm/page_alloc.c
+@@ -5853,6 +5853,7 @@ void __ref memmap_init_zone_device(struct zone *zone,
+ {
+ 	unsigned long pfn, end_pfn = start_pfn + size;
+ 	struct pglist_data *pgdat = zone->zone_pgdat;
++	struct vmem_altmap *altmap = pgmap_altmap(pgmap);
+ 	unsigned long zone_idx = zone_idx(zone);
+ 	unsigned long start = jiffies;
+ 	int nid = pgdat->node_id;
+@@ -5865,9 +5866,7 @@ void __ref memmap_init_zone_device(struct zone *zone,
+ 	 * of the pages reserved for the memmap, so we can just jump to
+ 	 * the end of that region and start processing the device pages.
+ 	 */
+-	if (pgmap->altmap_valid) {
+-		struct vmem_altmap *altmap = &pgmap->altmap;
+-
++	if (altmap) {
+ 		start_pfn = altmap->base_pfn + vmem_altmap_offset(altmap);
+ 		size = end_pfn - start_pfn;
+ 	}
+-- 
+2.20.1
