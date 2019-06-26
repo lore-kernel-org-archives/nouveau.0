@@ -1,103 +1,50 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 07/25] mm: factor out a
- devm_request_free_mem_region helper
-Date: Wed, 26 Jun 2019 14:27:06 +0200
-Message-ID: <20190626122724.13313-8-hch@lst.de>
+Subject: [PATCH 05/25] mm: don't clear ->mapping in hmm_devmem_free
+Date: Wed, 26 Jun 2019 14:27:04 +0200
+Message-ID: <20190626122724.13313-6-hch@lst.de>
 References: <20190626122724.13313-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
 In-Reply-To: <20190626122724.13313-1-hch-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
+List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
+Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
 To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-S2VlcCB0aGUgcGh5c2ljYWwgYWRkcmVzcyBhbGxvY2F0aW9uIHRoYXQgaG1tX2FkZF9kZXZpY2Ug
-ZG9lcyB3aXRoIHRoZQpyZXN0IG9mIHRoZSByZXNvdXJjZSBjb2RlLCBhbmQgYWxsb3cgZnV0dXJl
-IHJldXNlIG9mIGl0IHdpdGhvdXQgdGhlIGhtbQp3cmFwcGVyLgoKU2lnbmVkLW9mZi1ieTogQ2hy
-aXN0b3BoIEhlbGx3aWcgPGhjaEBsc3QuZGU+ClJldmlld2VkLWJ5OiBKYXNvbiBHdW50aG9ycGUg
-PGpnZ0BtZWxsYW5veC5jb20+ClJldmlld2VkLWJ5OiBKb2huIEh1YmJhcmQgPGpodWJiYXJkQG52
-aWRpYS5jb20+Ci0tLQogaW5jbHVkZS9saW51eC9pb3BvcnQuaCB8ICAyICsrCiBrZXJuZWwvcmVz
-b3VyY2UuYyAgICAgIHwgMzkgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-CiBtbS9obW0uYyAgICAgICAgICAgICAgIHwgMzMgKysrKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tCiAzIGZpbGVzIGNoYW5nZWQsIDQ1IGluc2VydGlvbnMoKyksIDI5IGRlbGV0aW9ucygt
-KQoKZGlmZiAtLWdpdCBhL2luY2x1ZGUvbGludXgvaW9wb3J0LmggYi9pbmNsdWRlL2xpbnV4L2lv
-cG9ydC5oCmluZGV4IGRkOTYxODgyYmM3NC4uYTAyYjI5MGNhMDhhIDEwMDY0NAotLS0gYS9pbmNs
-dWRlL2xpbnV4L2lvcG9ydC5oCisrKyBiL2luY2x1ZGUvbGludXgvaW9wb3J0LmgKQEAgLTI4NSw2
-ICsyODUsOCBAQCBzdGF0aWMgaW5saW5lIGJvb2wgcmVzb3VyY2Vfb3ZlcmxhcHMoc3RydWN0IHJl
-c291cmNlICpyMSwgc3RydWN0IHJlc291cmNlICpyMikKICAgICAgICByZXR1cm4gKHIxLT5zdGFy
-dCA8PSByMi0+ZW5kICYmIHIxLT5lbmQgPj0gcjItPnN0YXJ0KTsKIH0KIAorc3RydWN0IHJlc291
-cmNlICpkZXZtX3JlcXVlc3RfZnJlZV9tZW1fcmVnaW9uKHN0cnVjdCBkZXZpY2UgKmRldiwKKwkJ
-c3RydWN0IHJlc291cmNlICpiYXNlLCB1bnNpZ25lZCBsb25nIHNpemUpOwogCiAjZW5kaWYgLyog
-X19BU1NFTUJMWV9fICovCiAjZW5kaWYJLyogX0xJTlVYX0lPUE9SVF9IICovCmRpZmYgLS1naXQg
-YS9rZXJuZWwvcmVzb3VyY2UuYyBiL2tlcm5lbC9yZXNvdXJjZS5jCmluZGV4IDE1OGYwNGVjMWQ0
-Zi4uZDIyNDIzZTg1Y2Y4IDEwMDY0NAotLS0gYS9rZXJuZWwvcmVzb3VyY2UuYworKysgYi9rZXJu
-ZWwvcmVzb3VyY2UuYwpAQCAtMTYyOCw2ICsxNjI4LDQ1IEBAIHZvaWQgcmVzb3VyY2VfbGlzdF9m
-cmVlKHN0cnVjdCBsaXN0X2hlYWQgKmhlYWQpCiB9CiBFWFBPUlRfU1lNQk9MKHJlc291cmNlX2xp
-c3RfZnJlZSk7CiAKKyNpZmRlZiBDT05GSUdfREVWSUNFX1BSSVZBVEUKKy8qKgorICogZGV2bV9y
-ZXF1ZXN0X2ZyZWVfbWVtX3JlZ2lvbiAtIGZpbmQgZnJlZSByZWdpb24gZm9yIGRldmljZSBwcml2
-YXRlIG1lbW9yeQorICoKKyAqIEBkZXY6IGRldmljZSBzdHJ1Y3QgdG8gYmluZCB0aGUgcmVzb3Vy
-Y2UgdG8KKyAqIEBzaXplOiBzaXplIGluIGJ5dGVzIG9mIHRoZSBkZXZpY2UgbWVtb3J5IHRvIGFk
-ZAorICogQGJhc2U6IHJlc291cmNlIHRyZWUgdG8gbG9vayBpbgorICoKKyAqIFRoaXMgZnVuY3Rp
-b24gdHJpZXMgdG8gZmluZCBhbiBlbXB0eSByYW5nZSBvZiBwaHlzaWNhbCBhZGRyZXNzIGJpZyBl
-bm91Z2ggdG8KKyAqIGNvbnRhaW4gdGhlIG5ldyByZXNvdXJjZSwgc28gdGhhdCBpdCBjYW4gbGF0
-ZXIgYmUgaG90cGx1Z2dlZCBhcyBaT05FX0RFVklDRQorICogbWVtb3J5LCB3aGljaCBpbiB0dXJu
-IGFsbG9jYXRlcyBzdHJ1Y3QgcGFnZXMuCisgKi8KK3N0cnVjdCByZXNvdXJjZSAqZGV2bV9yZXF1
-ZXN0X2ZyZWVfbWVtX3JlZ2lvbihzdHJ1Y3QgZGV2aWNlICpkZXYsCisJCXN0cnVjdCByZXNvdXJj
-ZSAqYmFzZSwgdW5zaWduZWQgbG9uZyBzaXplKQoreworCXJlc291cmNlX3NpemVfdCBlbmQsIGFk
-ZHI7CisJc3RydWN0IHJlc291cmNlICpyZXM7CisKKwlzaXplID0gQUxJR04oc2l6ZSwgMVVMIDw8
-IFBBX1NFQ1RJT05fU0hJRlQpOworCWVuZCA9IG1pbl90KHVuc2lnbmVkIGxvbmcsIGJhc2UtPmVu
-ZCwgKDFVTCA8PCBNQVhfUEhZU01FTV9CSVRTKSAtIDEpOworCWFkZHIgPSBlbmQgLSBzaXplICsg
-MVVMOworCisJZm9yICg7IGFkZHIgPiBzaXplICYmIGFkZHIgPj0gYmFzZS0+c3RhcnQ7IGFkZHIg
-LT0gc2l6ZSkgeworCQlpZiAocmVnaW9uX2ludGVyc2VjdHMoYWRkciwgc2l6ZSwgMCwgSU9SRVNf
-REVTQ19OT05FKSAhPQorCQkJCVJFR0lPTl9ESVNKT0lOVCkKKwkJCWNvbnRpbnVlOworCisJCXJl
-cyA9IGRldm1fcmVxdWVzdF9tZW1fcmVnaW9uKGRldiwgYWRkciwgc2l6ZSwgZGV2X25hbWUoZGV2
-KSk7CisJCWlmICghcmVzKQorCQkJcmV0dXJuIEVSUl9QVFIoLUVOT01FTSk7CisJCXJlcy0+ZGVz
-YyA9IElPUkVTX0RFU0NfREVWSUNFX1BSSVZBVEVfTUVNT1JZOworCQlyZXR1cm4gcmVzOworCX0K
-KworCXJldHVybiBFUlJfUFRSKC1FUkFOR0UpOworfQorRVhQT1JUX1NZTUJPTF9HUEwoZGV2bV9y
-ZXF1ZXN0X2ZyZWVfbWVtX3JlZ2lvbik7CisjZW5kaWYgLyogQ09ORklHX0RFVklDRV9QUklWQVRF
-ICovCisKIHN0YXRpYyBpbnQgX19pbml0IHN0cmljdF9pb21lbShjaGFyICpzdHIpCiB7CiAJaWYg
-KHN0cnN0cihzdHIsICJyZWxheGVkIikpCmRpZmYgLS1naXQgYS9tbS9obW0uYyBiL21tL2htbS5j
-CmluZGV4IGU3ZGQyYWI4ZjlhYi4uNDg1NzRmODQ4NWJiIDEwMDY0NAotLS0gYS9tbS9obW0uYwor
-KysgYi9tbS9obW0uYwpAQCAtMjUsOCArMjUsNiBAQAogI2luY2x1ZGUgPGxpbnV4L21tdV9ub3Rp
-Zmllci5oPgogI2luY2x1ZGUgPGxpbnV4L21lbW9yeV9ob3RwbHVnLmg+CiAKLSNkZWZpbmUgUEFf
-U0VDVElPTl9TSVpFICgxVUwgPDwgUEFfU0VDVElPTl9TSElGVCkKLQogI2lmIElTX0VOQUJMRUQo
-Q09ORklHX0hNTV9NSVJST1IpCiBzdGF0aWMgY29uc3Qgc3RydWN0IG1tdV9ub3RpZmllcl9vcHMg
-aG1tX21tdV9ub3RpZmllcl9vcHM7CiAKQEAgLTE0MDgsNyArMTQwNiw2IEBAIHN0cnVjdCBobW1f
-ZGV2bWVtICpobW1fZGV2bWVtX2FkZChjb25zdCBzdHJ1Y3QgaG1tX2Rldm1lbV9vcHMgKm9wcywK
-IAkJCQkgIHVuc2lnbmVkIGxvbmcgc2l6ZSkKIHsKIAlzdHJ1Y3QgaG1tX2Rldm1lbSAqZGV2bWVt
-OwotCXJlc291cmNlX3NpemVfdCBhZGRyOwogCXZvaWQgKnJlc3VsdDsKIAlpbnQgcmV0OwogCkBA
-IC0xNDMwLDMyICsxNDI3LDEwIEBAIHN0cnVjdCBobW1fZGV2bWVtICpobW1fZGV2bWVtX2FkZChj
-b25zdCBzdHJ1Y3QgaG1tX2Rldm1lbV9vcHMgKm9wcywKIAlpZiAocmV0KQogCQlyZXR1cm4gRVJS
-X1BUUihyZXQpOwogCi0Jc2l6ZSA9IEFMSUdOKHNpemUsIFBBX1NFQ1RJT05fU0laRSk7Ci0JYWRk
-ciA9IG1pbigodW5zaWduZWQgbG9uZylpb21lbV9yZXNvdXJjZS5lbmQsCi0JCSAgICgxVUwgPDwg
-TUFYX1BIWVNNRU1fQklUUykgLSAxKTsKLQlhZGRyID0gYWRkciAtIHNpemUgKyAxVUw7Ci0KLQkv
-KgotCSAqIEZJWE1FIGFkZCBhIG5ldyBoZWxwZXIgdG8gcXVpY2tseSB3YWxrIHJlc291cmNlIHRy
-ZWUgYW5kIGZpbmQgZnJlZQotCSAqIHJhbmdlCi0JICoKLQkgKiBGSVhNRSB3aGF0IGFib3V0IGlv
-cG9ydF9yZXNvdXJjZSByZXNvdXJjZSA/Ci0JICovCi0JZm9yICg7IGFkZHIgPiBzaXplICYmIGFk
-ZHIgPj0gaW9tZW1fcmVzb3VyY2Uuc3RhcnQ7IGFkZHIgLT0gc2l6ZSkgewotCQlyZXQgPSByZWdp
-b25faW50ZXJzZWN0cyhhZGRyLCBzaXplLCAwLCBJT1JFU19ERVNDX05PTkUpOwotCQlpZiAocmV0
-ICE9IFJFR0lPTl9ESVNKT0lOVCkKLQkJCWNvbnRpbnVlOwotCi0JCWRldm1lbS0+cmVzb3VyY2Ug
-PSBkZXZtX3JlcXVlc3RfbWVtX3JlZ2lvbihkZXZpY2UsIGFkZHIsIHNpemUsCi0JCQkJCQkJICAg
-ZGV2X25hbWUoZGV2aWNlKSk7Ci0JCWlmICghZGV2bWVtLT5yZXNvdXJjZSkKLQkJCXJldHVybiBF
-UlJfUFRSKC1FTk9NRU0pOwotCQlicmVhazsKLQl9Ci0JaWYgKCFkZXZtZW0tPnJlc291cmNlKQot
-CQlyZXR1cm4gRVJSX1BUUigtRVJBTkdFKTsKLQotCWRldm1lbS0+cmVzb3VyY2UtPmRlc2MgPSBJ
-T1JFU19ERVNDX0RFVklDRV9QUklWQVRFX01FTU9SWTsKKwlkZXZtZW0tPnJlc291cmNlID0gZGV2
-bV9yZXF1ZXN0X2ZyZWVfbWVtX3JlZ2lvbihkZXZpY2UsICZpb21lbV9yZXNvdXJjZSwKKwkJCXNp
-emUpOworCWlmIChJU19FUlIoZGV2bWVtLT5yZXNvdXJjZSkpCisJCXJldHVybiBFUlJfQ0FTVChk
-ZXZtZW0tPnJlc291cmNlKTsKIAlkZXZtZW0tPnBmbl9maXJzdCA9IGRldm1lbS0+cmVzb3VyY2Ut
-PnN0YXJ0ID4+IFBBR0VfU0hJRlQ7CiAJZGV2bWVtLT5wZm5fbGFzdCA9IGRldm1lbS0+cGZuX2Zp
-cnN0ICsKIAkJCSAgIChyZXNvdXJjZV9zaXplKGRldm1lbS0+cmVzb3VyY2UpID4+IFBBR0VfU0hJ
-RlQpOwotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+->mapping isn't even used by HMM users, and the field at the same offset
+in the zone_device part of the union is declared as pad.  (Which btw is
+rather confusing, as DAX uses ->pgmap and ->mapping from two different
+sides of the union, but DAX doesn't use hmm_devmem_free).
+
+Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Reviewed-by: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Reviewed-by: John Hubbard <jhubbard-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+ mm/hmm.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/mm/hmm.c b/mm/hmm.c
+index 376159a769fb..e7dd2ab8f9ab 100644
+--- a/mm/hmm.c
++++ b/mm/hmm.c
+@@ -1383,8 +1383,6 @@ static void hmm_devmem_free(struct page *page, void *data)
+ {
+ 	struct hmm_devmem *devmem = data;
+ 
+-	page->mapping = NULL;
+-
+ 	devmem->ops->free(devmem, page);
+ }
+ 
+-- 
+2.20.1
