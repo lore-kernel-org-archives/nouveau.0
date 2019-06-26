@@ -1,107 +1,265 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111007] Blender crash when opening material tab GTX
- 750Ti -- NV117 (GM107)
-Date: Wed, 26 Jun 2019 21:43:11 +0000
-Message-ID: <bug-111007-8800-dAacBH9Jt2@http.bugs.freedesktop.org/>
-References: <bug-111007-8800@http.bugs.freedesktop.org/>
+From: Ira Weiny <ira.weiny@intel.com>
+Subject: Re: [PATCH 15/25] memremap: provide an optional internal refcount in
+ struct dev_pagemap
+Date: Wed, 26 Jun 2019 14:47:50 -0700
+Message-ID: <20190626214750.GC8399@iweiny-DESK2.sc.intel.com>
+References: <20190626122724.13313-1-hch@lst.de>
+ <20190626122724.13313-16-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0295142741=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20190626122724.13313-16-hch@lst.de>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Christoph Hellwig <hch@lst.de>
+Cc: Dan Williams <dan.j.williams@intel.com>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-mm@kvack.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+On Wed, Jun 26, 2019 at 02:27:14PM +0200, Christoph Hellwig wrote:
+> Provide an internal refcounting logic if no ->ref field is provided
+> in the pagemap passed into devm_memremap_pages so that callers don't
+> have to reinvent it poorly.
+> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+>  include/linux/memremap.h          |  4 ++
+>  kernel/memremap.c                 | 64 ++++++++++++++++++++++++-------
+>  tools/testing/nvdimm/test/iomap.c | 58 ++++++++++++++++++++++------
+>  3 files changed, 101 insertions(+), 25 deletions(-)
+> 
+> diff --git a/include/linux/memremap.h b/include/linux/memremap.h
+> index e25685b878e9..f8a5b2a19945 100644
+> --- a/include/linux/memremap.h
+> +++ b/include/linux/memremap.h
+> @@ -95,6 +95,8 @@ struct dev_pagemap_ops {
+>   * @altmap: pre-allocated/reserved memory for vmemmap allocations
+>   * @res: physical address range covered by @ref
+>   * @ref: reference count that pins the devm_memremap_pages() mapping
+> + * @internal_ref: internal reference if @ref is not provided by the caller
+> + * @done: completion for @internal_ref
+>   * @dev: host device of the mapping for debug
+>   * @data: private data pointer for page_free()
+>   * @type: memory type: see MEMORY_* in memory_hotplug.h
+> @@ -105,6 +107,8 @@ struct dev_pagemap {
+>  	struct vmem_altmap altmap;
+>  	struct resource res;
+>  	struct percpu_ref *ref;
+> +	struct percpu_ref internal_ref;
+> +	struct completion done;
+>  	struct device *dev;
+>  	enum memory_type type;
+>  	unsigned int flags;
+> diff --git a/kernel/memremap.c b/kernel/memremap.c
+> index eee490e7d7e1..bea6f887adad 100644
+> --- a/kernel/memremap.c
+> +++ b/kernel/memremap.c
+> @@ -29,7 +29,7 @@ static void devmap_managed_enable_put(void *data)
+>  
+>  static int devmap_managed_enable_get(struct device *dev, struct dev_pagemap *pgmap)
+>  {
+> -	if (!pgmap->ops->page_free) {
+> +	if (!pgmap->ops || !pgmap->ops->page_free) {
+>  		WARN(1, "Missing page_free method\n");
+>  		return -EINVAL;
+>  	}
+> @@ -75,6 +75,24 @@ static unsigned long pfn_next(unsigned long pfn)
+>  #define for_each_device_pfn(pfn, map) \
+>  	for (pfn = pfn_first(map); pfn < pfn_end(map); pfn = pfn_next(pfn))
+>  
+> +static void dev_pagemap_kill(struct dev_pagemap *pgmap)
+> +{
+> +	if (pgmap->ops && pgmap->ops->kill)
+> +		pgmap->ops->kill(pgmap);
+> +	else
+> +		percpu_ref_kill(pgmap->ref);
+> +}
+> +
+> +static void dev_pagemap_cleanup(struct dev_pagemap *pgmap)
+> +{
+> +	if (pgmap->ops && pgmap->ops->cleanup) {
+> +		pgmap->ops->cleanup(pgmap);
+> +	} else {
+> +		wait_for_completion(&pgmap->done);
+> +		percpu_ref_exit(pgmap->ref);
+> +	}
+> +}
+> +
+>  static void devm_memremap_pages_release(void *data)
+>  {
+>  	struct dev_pagemap *pgmap = data;
+> @@ -84,10 +102,10 @@ static void devm_memremap_pages_release(void *data)
+>  	unsigned long pfn;
+>  	int nid;
+>  
+> -	pgmap->ops->kill(pgmap);
+> +	dev_pagemap_kill(pgmap);
+>  	for_each_device_pfn(pfn, pgmap)
+>  		put_page(pfn_to_page(pfn));
+> -	pgmap->ops->cleanup(pgmap);
+> +	dev_pagemap_cleanup(pgmap);
+>  
+>  	/* pages are dead and unused, undo the arch mapping */
+>  	align_start = res->start & ~(SECTION_SIZE - 1);
+> @@ -114,20 +132,29 @@ static void devm_memremap_pages_release(void *data)
+>  		      "%s: failed to free all reserved pages\n", __func__);
+>  }
+>  
+> +static void dev_pagemap_percpu_release(struct percpu_ref *ref)
+> +{
+> +	struct dev_pagemap *pgmap =
+> +		container_of(ref, struct dev_pagemap, internal_ref);
+> +
+> +	complete(&pgmap->done);
+> +}
+> +
+>  /**
+>   * devm_memremap_pages - remap and provide memmap backing for the given resource
+>   * @dev: hosting device for @res
+>   * @pgmap: pointer to a struct dev_pagemap
+>   *
+>   * Notes:
+> - * 1/ At a minimum the res, ref and type and ops members of @pgmap must be
+> - *    initialized by the caller before passing it to this function
+> + * 1/ At a minimum the res and type members of @pgmap must be initialized
+> + *    by the caller before passing it to this function
+>   *
+>   * 2/ The altmap field may optionally be initialized, in which case
+>   *    PGMAP_ALTMAP_VALID must be set in pgmap->flags.
+>   *
+> - * 3/ pgmap->ref must be 'live' on entry and will be killed and reaped
+> - *    at devm_memremap_pages_release() time, or if this routine fails.
+> + * 3/ The ref field may optionally be provided, in which pgmap->ref must be
+> + *    'live' on entry and will be killed and reaped at
+> + *    devm_memremap_pages_release() time, or if this routine fails.
+>   *
+>   * 4/ res is expected to be a host memory range that could feasibly be
+>   *    treated as a "System RAM" range, i.e. not a device mmio range, but
+> @@ -175,10 +202,21 @@ void *devm_memremap_pages(struct device *dev, struct dev_pagemap *pgmap)
+>  		break;
+>  	}
+>  
+> -	if (!pgmap->ref || !pgmap->ops || !pgmap->ops->kill ||
+> -	    !pgmap->ops->cleanup) {
+> -		WARN(1, "Missing reference count teardown definition\n");
+> -		return ERR_PTR(-EINVAL);
+> +	if (!pgmap->ref) {
+> +		if (pgmap->ops && (pgmap->ops->kill || pgmap->ops->cleanup))
+> +			return ERR_PTR(-EINVAL);
+> +
+> +		init_completion(&pgmap->done);
+> +		error = percpu_ref_init(&pgmap->internal_ref,
+> +				dev_pagemap_percpu_release, 0, GFP_KERNEL);
+> +		if (error)
+> +			return ERR_PTR(error);
+> +		pgmap->ref = &pgmap->internal_ref;
+> +	} else {
+> +		if (!pgmap->ops || !pgmap->ops->kill || !pgmap->ops->cleanup) {
+> +			WARN(1, "Missing reference count teardown definition\n");
+> +			return ERR_PTR(-EINVAL);
+> +		}
 
---===============0295142741==
-Content-Type: multipart/alternative; boundary="15615853900.1CFb2B2b3.4677"
-Content-Transfer-Encoding: 7bit
+After this series are there any users who continue to supply their own
+reference object and these callbacks?
 
+As it stands:
 
---15615853900.1CFb2B2b3.4677
-Date: Wed, 26 Jun 2019 21:43:10 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Reviewed-by: Ira Weiny <ira.weiny@intel.com>
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111007
-
---- Comment #5 from joinlaw <joinlaw-kcyQbWKpldg@public.gmane.org> ---
-I put photo tutorial to reproduce the bug in the attachment
-steps and arrange by their number from 1 to 8
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15615853900.1CFb2B2b3.4677
-Date: Wed, 26 Jun 2019 21:43:10 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Blender crash when opening material tab GTX 750Ti -- NV11=
-7 (GM107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111007#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Blender crash when opening material tab GTX 750Ti -- NV11=
-7 (GM107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111007">bug 11100=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-joinlaw&#64;cock.li" title=3D"joinlaw &lt;joinlaw&#64;cock.li&gt;"> <span c=
-lass=3D"fn">joinlaw</span></a>
-</span></b>
-        <pre>I put photo tutorial to reproduce the bug in the attachment
-steps and arrange by their number from 1 to 8</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15615853900.1CFb2B2b3.4677--
-
---===============0295142741==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0295142741==--
+>  	}
+>  
+>  	if (need_devmap_managed) {
+> @@ -296,8 +334,8 @@ void *devm_memremap_pages(struct device *dev, struct dev_pagemap *pgmap)
+>   err_pfn_remap:
+>  	pgmap_array_delete(res);
+>   err_array:
+> -	pgmap->ops->kill(pgmap);
+> -	pgmap->ops->cleanup(pgmap);
+> +	dev_pagemap_kill(pgmap);
+> +	dev_pagemap_cleanup(pgmap);
+>  	return ERR_PTR(error);
+>  }
+>  EXPORT_SYMBOL_GPL(devm_memremap_pages);
+> diff --git a/tools/testing/nvdimm/test/iomap.c b/tools/testing/nvdimm/test/iomap.c
+> index 82f901569e06..cd040b5abffe 100644
+> --- a/tools/testing/nvdimm/test/iomap.c
+> +++ b/tools/testing/nvdimm/test/iomap.c
+> @@ -100,26 +100,60 @@ static void nfit_test_kill(void *_pgmap)
+>  {
+>  	struct dev_pagemap *pgmap = _pgmap;
+>  
+> -	WARN_ON(!pgmap || !pgmap->ref || !pgmap->ops || !pgmap->ops->kill ||
+> -		!pgmap->ops->cleanup);
+> -	pgmap->ops->kill(pgmap);
+> -	pgmap->ops->cleanup(pgmap);
+> +	WARN_ON(!pgmap || !pgmap->ref);
+> +
+> +	if (pgmap->ops && pgmap->ops->kill)
+> +		pgmap->ops->kill(pgmap);
+> +	else
+> +		percpu_ref_kill(pgmap->ref);
+> +
+> +	if (pgmap->ops && pgmap->ops->cleanup) {
+> +		pgmap->ops->cleanup(pgmap);
+> +	} else {
+> +		wait_for_completion(&pgmap->done);
+> +		percpu_ref_exit(pgmap->ref);
+> +	}
+> +}
+> +
+> +static void dev_pagemap_percpu_release(struct percpu_ref *ref)
+> +{
+> +	struct dev_pagemap *pgmap =
+> +		container_of(ref, struct dev_pagemap, internal_ref);
+> +
+> +	complete(&pgmap->done);
+>  }
+>  
+>  void *__wrap_devm_memremap_pages(struct device *dev, struct dev_pagemap *pgmap)
+>  {
+> +	int error;
+>  	resource_size_t offset = pgmap->res.start;
+>  	struct nfit_test_resource *nfit_res = get_nfit_res(offset);
+>  
+> -	if (nfit_res) {
+> -		int rc;
+> -
+> -		rc = devm_add_action_or_reset(dev, nfit_test_kill, pgmap);
+> -		if (rc)
+> -			return ERR_PTR(rc);
+> -		return nfit_res->buf + offset - nfit_res->res.start;
+> +	if (!nfit_res)
+> +		return devm_memremap_pages(dev, pgmap);
+> +
+> +	pgmap->dev = dev;
+> +	if (!pgmap->ref) {
+> +		if (pgmap->ops && (pgmap->ops->kill || pgmap->ops->cleanup))
+> +			return ERR_PTR(-EINVAL);
+> +
+> +		init_completion(&pgmap->done);
+> +		error = percpu_ref_init(&pgmap->internal_ref,
+> +				dev_pagemap_percpu_release, 0, GFP_KERNEL);
+> +		if (error)
+> +			return ERR_PTR(error);
+> +		pgmap->ref = &pgmap->internal_ref;
+> +	} else {
+> +		if (!pgmap->ops || !pgmap->ops->kill || !pgmap->ops->cleanup) {
+> +			WARN(1, "Missing reference count teardown definition\n");
+> +			return ERR_PTR(-EINVAL);
+> +		}
+>  	}
+> -	return devm_memremap_pages(dev, pgmap);
+> +
+> +	error = devm_add_action_or_reset(dev, nfit_test_kill, pgmap);
+> +	if (error)
+> +		return ERR_PTR(error);
+> +	return nfit_res->buf + offset - nfit_res->res.start;
+>  }
+>  EXPORT_SYMBOL_GPL(__wrap_devm_memremap_pages);
+>  
+> -- 
+> 2.20.1
+> 
+> _______________________________________________
+> Linux-nvdimm mailing list
+> Linux-nvdimm@lists.01.org
+> https://lists.01.org/mailman/listinfo/linux-nvdimm
