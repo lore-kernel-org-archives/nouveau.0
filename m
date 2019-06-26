@@ -1,115 +1,322 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 22/25] mm: simplify ZONE_DEVICE page private data
-Date: Wed, 26 Jun 2019 14:27:21 +0200
-Message-ID: <20190626122724.13313-23-hch@lst.de>
+From: Christoph Hellwig <hch@lst.de>
+Subject: [PATCH 21/25] mm: remove hmm_devmem_add
+Date: Wed, 26 Jun 2019 14:27:20 +0200
+Message-ID: <20190626122724.13313-22-hch@lst.de>
 References: <20190626122724.13313-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190626122724.13313-1-hch-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190626122724.13313-1-hch@lst.de>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Dan Williams <dan.j.williams@intel.com>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-UmVtb3ZlIHRoZSBjbHVtc3kgaG1tX2Rldm1lbV9wYWdlX3tnZXQsc2V0fV9kcnZkYXRhIGhlbHBl
-cnMsIGFuZAppbnN0ZWFkIGp1c3QgYWNjZXNzIHRoZSBwYWdlIGRpcmVjdGx5LiAgQWxzbyBtYWtl
-IHRoZSBwYWdlIGRhdGEKYSB2b2lkIHBvaW50ZXIsIGFuZCB0aHVzIG11Y2ggZWFzaWVyIHRvIHVz
-ZS4KClNpZ25lZC1vZmYtYnk6IENocmlzdG9waCBIZWxsd2lnIDxoY2hAbHN0LmRlPgotLS0KIGRy
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZG1lbS5jIHwgMTggKysrKysrLS0tLS0tLS0t
-CiBpbmNsdWRlL2xpbnV4L2htbS5oICAgICAgICAgICAgICAgICAgICB8IDMyIC0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tCiBpbmNsdWRlL2xpbnV4L21tX3R5cGVzLmggICAgICAgICAgICAgICB8
-ICAyICstCiBtbS9wYWdlX2FsbG9jLmMgICAgICAgICAgICAgICAgICAgICAgICB8ICA4ICsrKy0t
-LS0KIDQgZmlsZXMgY2hhbmdlZCwgMTIgaW5zZXJ0aW9ucygrKSwgNDggZGVsZXRpb25zKC0pCgpk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kbWVtLmMgYi9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RtZW0uYwppbmRleCAwZmI3YTQ0YjhiYzQuLjQy
-YzAyNjAxMDkzOCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9k
-bWVtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kbWVtLmMKQEAgLTEw
-NCwxMSArMTA0LDggQEAgc3RydWN0IG5vdXZlYXVfbWlncmF0ZSB7CiAKIHN0YXRpYyB2b2lkIG5v
-dXZlYXVfZG1lbV9wYWdlX2ZyZWUoc3RydWN0IHBhZ2UgKnBhZ2UpCiB7Ci0Jc3RydWN0IG5vdXZl
-YXVfZG1lbV9jaHVuayAqY2h1bms7Ci0JdW5zaWduZWQgbG9uZyBpZHg7Ci0KLQljaHVuayA9ICh2
-b2lkICopaG1tX2Rldm1lbV9wYWdlX2dldF9kcnZkYXRhKHBhZ2UpOwotCWlkeCA9IHBhZ2VfdG9f
-cGZuKHBhZ2UpIC0gY2h1bmstPnBmbl9maXJzdDsKKwlzdHJ1Y3Qgbm91dmVhdV9kbWVtX2NodW5r
-ICpjaHVuayA9IHBhZ2UtPnpvbmVfZGV2aWNlX2RhdGE7CisJdW5zaWduZWQgbG9uZyBpZHggPSBw
-YWdlX3RvX3BmbihwYWdlKSAtIGNodW5rLT5wZm5fZmlyc3Q7CiAKIAkvKgogCSAqIEZJWE1FOgpA
-QCAtMjAwLDcgKzE5Nyw3IEBAIG5vdXZlYXVfZG1lbV9mYXVsdF9hbGxvY19hbmRfY29weShzdHJ1
-Y3Qgdm1fYXJlYV9zdHJ1Y3QgKnZtYSwKIAogCQlkc3RfYWRkciA9IGZhdWx0LT5kbWFbZmF1bHQt
-Pm5wYWdlcysrXTsKIAotCQljaHVuayA9ICh2b2lkICopaG1tX2Rldm1lbV9wYWdlX2dldF9kcnZk
-YXRhKHNwYWdlKTsKKwkJY2h1bmsgPSBzcGFnZS0+em9uZV9kZXZpY2VfZGF0YTsKIAkJc3JjX2Fk
-ZHIgPSBwYWdlX3RvX3BmbihzcGFnZSkgLSBjaHVuay0+cGZuX2ZpcnN0OwogCQlzcmNfYWRkciA9
-IChzcmNfYWRkciA8PCBQQUdFX1NISUZUKSArIGNodW5rLT5iby0+Ym8ub2Zmc2V0OwogCkBAIC02
-MzMsOSArNjMwLDggQEAgbm91dmVhdV9kbWVtX2luaXQoc3RydWN0IG5vdXZlYXVfZHJtICpkcm0p
-CiAJCWxpc3RfYWRkX3RhaWwoJmNodW5rLT5saXN0LCAmZHJtLT5kbWVtLT5jaHVua19lbXB0eSk7
-CiAKIAkJcGFnZSA9IHBmbl90b19wYWdlKGNodW5rLT5wZm5fZmlyc3QpOwotCQlmb3IgKGogPSAw
-OyBqIDwgRE1FTV9DSFVOS19OUEFHRVM7ICsraiwgKytwYWdlKSB7Ci0JCQlobW1fZGV2bWVtX3Bh
-Z2Vfc2V0X2RydmRhdGEocGFnZSwgKGxvbmcpY2h1bmspOwotCQl9CisJCWZvciAoaiA9IDA7IGog
-PCBETUVNX0NIVU5LX05QQUdFUzsgKytqLCArK3BhZ2UpCisJCQlwYWdlLT56b25lX2RldmljZV9k
-YXRhID0gY2h1bms7CiAJfQogCiAJTlZfSU5GTyhkcm0sICJETUVNOiByZWdpc3RlcmVkICVsZE1C
-IG9mIGRldmljZSBtZW1vcnlcbiIsIHNpemUgPj4gMjApOwpAQCAtNjk4LDcgKzY5NCw3IEBAIG5v
-dXZlYXVfZG1lbV9taWdyYXRlX2FsbG9jX2FuZF9jb3B5KHN0cnVjdCB2bV9hcmVhX3N0cnVjdCAq
-dm1hLAogCQlpZiAoIWRwYWdlIHx8IGRzdF9wZm5zW2ldID09IE1JR1JBVEVfUEZOX0VSUk9SKQog
-CQkJY29udGludWU7CiAKLQkJY2h1bmsgPSAodm9pZCAqKWhtbV9kZXZtZW1fcGFnZV9nZXRfZHJ2
-ZGF0YShkcGFnZSk7CisJCWNodW5rID0gZHBhZ2UtPnpvbmVfZGV2aWNlX2RhdGE7CiAJCWRzdF9h
-ZGRyID0gcGFnZV90b19wZm4oZHBhZ2UpIC0gY2h1bmstPnBmbl9maXJzdDsKIAkJZHN0X2FkZHIg
-PSAoZHN0X2FkZHIgPDwgUEFHRV9TSElGVCkgKyBjaHVuay0+Ym8tPmJvLm9mZnNldDsKIApAQCAt
-ODYyLDcgKzg1OCw3IEBAIG5vdXZlYXVfZG1lbV9jb252ZXJ0X3BmbihzdHJ1Y3Qgbm91dmVhdV9k
-cm0gKmRybSwKIAkJCWNvbnRpbnVlOwogCQl9CiAKLQkJY2h1bmsgPSAodm9pZCAqKWhtbV9kZXZt
-ZW1fcGFnZV9nZXRfZHJ2ZGF0YShwYWdlKTsKKwkJY2h1bmsgPSBwYWdlLT56b25lX2RldmljZV9k
-YXRhOwogCQlhZGRyID0gcGFnZV90b19wZm4ocGFnZSkgLSBjaHVuay0+cGZuX2ZpcnN0OwogCQlh
-ZGRyID0gKGFkZHIgKyBjaHVuay0+Ym8tPmJvLm1lbS5zdGFydCkgPDwgUEFHRV9TSElGVDsKIApk
-aWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9obW0uaCBiL2luY2x1ZGUvbGludXgvaG1tLmgKaW5k
-ZXggODZhYTRlYzM0MDRjLi4zZDAwZTk1NTBlNzcgMTAwNjQ0Ci0tLSBhL2luY2x1ZGUvbGludXgv
-aG1tLmgKKysrIGIvaW5jbHVkZS9saW51eC9obW0uaApAQCAtNTg0LDM2ICs1ODQsNCBAQCBzdGF0
-aWMgaW5saW5lIHZvaWQgaG1tX21tX2Rlc3Ryb3koc3RydWN0IG1tX3N0cnVjdCAqbW0pIHt9CiBz
-dGF0aWMgaW5saW5lIHZvaWQgaG1tX21tX2luaXQoc3RydWN0IG1tX3N0cnVjdCAqbW0pIHt9CiAj
-ZW5kaWYgLyogSVNfRU5BQkxFRChDT05GSUdfSE1NX01JUlJPUikgKi8KIAotI2lmIElTX0VOQUJM
-RUQoQ09ORklHX0RFVklDRV9QUklWQVRFKQotLyoKLSAqIGhtbV9kZXZtZW1fcGFnZV9zZXRfZHJ2
-ZGF0YSAtIHNldCBwZXItcGFnZSBkcml2ZXIgZGF0YSBmaWVsZAotICoKLSAqIEBwYWdlOiBwb2lu
-dGVyIHRvIHN0cnVjdCBwYWdlCi0gKiBAZGF0YTogZHJpdmVyIGRhdGEgdmFsdWUgdG8gc2V0Ci0g
-KgotICogQmVjYXVzZSBwYWdlIGNhbiBub3QgYmUgb24gbHJ1IHdlIGhhdmUgYW4gdW5zaWduZWQg
-bG9uZyB0aGF0IGRyaXZlciBjYW4gdXNlCi0gKiB0byBzdG9yZSBhIHBlciBwYWdlIGZpZWxkLiBU
-aGlzIGp1c3QgYSBzaW1wbGUgaGVscGVyIHRvIGRvIHRoYXQuCi0gKi8KLXN0YXRpYyBpbmxpbmUg
-dm9pZCBobW1fZGV2bWVtX3BhZ2Vfc2V0X2RydmRhdGEoc3RydWN0IHBhZ2UgKnBhZ2UsCi0JCQkJ
-CSAgICAgICB1bnNpZ25lZCBsb25nIGRhdGEpCi17Ci0JcGFnZS0+aG1tX2RhdGEgPSBkYXRhOwot
-fQotCi0vKgotICogaG1tX2Rldm1lbV9wYWdlX2dldF9kcnZkYXRhIC0gZ2V0IHBlciBwYWdlIGRy
-aXZlciBkYXRhIGZpZWxkCi0gKgotICogQHBhZ2U6IHBvaW50ZXIgdG8gc3RydWN0IHBhZ2UKLSAq
-IFJldHVybjogZHJpdmVyIGRhdGEgdmFsdWUKLSAqLwotc3RhdGljIGlubGluZSB1bnNpZ25lZCBs
-b25nIGhtbV9kZXZtZW1fcGFnZV9nZXRfZHJ2ZGF0YShjb25zdCBzdHJ1Y3QgcGFnZSAqcGFnZSkK
-LXsKLQlyZXR1cm4gcGFnZS0+aG1tX2RhdGE7Ci19Ci0jZW5kaWYgLyogQ09ORklHX0RFVklDRV9Q
-UklWQVRFICovCi0jZWxzZSAvKiBJU19FTkFCTEVEKENPTkZJR19ITU0pICovCi1zdGF0aWMgaW5s
-aW5lIHZvaWQgaG1tX21tX2Rlc3Ryb3koc3RydWN0IG1tX3N0cnVjdCAqbW0pIHt9Ci1zdGF0aWMg
-aW5saW5lIHZvaWQgaG1tX21tX2luaXQoc3RydWN0IG1tX3N0cnVjdCAqbW0pIHt9Ci0jZW5kaWYg
-LyogSVNfRU5BQkxFRChDT05GSUdfSE1NKSAqLwotCiAjZW5kaWYgLyogTElOVVhfSE1NX0ggKi8K
-ZGlmZiAtLWdpdCBhL2luY2x1ZGUvbGludXgvbW1fdHlwZXMuaCBiL2luY2x1ZGUvbGludXgvbW1f
-dHlwZXMuaAppbmRleCA4ZWMzOGIxMWIzNjEuLmYzM2ExMjg5YzEwMSAxMDA2NDQKLS0tIGEvaW5j
-bHVkZS9saW51eC9tbV90eXBlcy5oCisrKyBiL2luY2x1ZGUvbGludXgvbW1fdHlwZXMuaApAQCAt
-MTU4LDcgKzE1OCw3IEBAIHN0cnVjdCBwYWdlIHsKIAkJc3RydWN0IHsJLyogWk9ORV9ERVZJQ0Ug
-cGFnZXMgKi8KIAkJCS8qKiBAcGdtYXA6IFBvaW50cyB0byB0aGUgaG9zdGluZyBkZXZpY2UgcGFn
-ZSBtYXAuICovCiAJCQlzdHJ1Y3QgZGV2X3BhZ2VtYXAgKnBnbWFwOwotCQkJdW5zaWduZWQgbG9u
-ZyBobW1fZGF0YTsKKwkJCXZvaWQgKnpvbmVfZGV2aWNlX2RhdGE7CiAJCQl1bnNpZ25lZCBsb25n
-IF96ZF9wYWRfMTsJLyogdXNlcyBtYXBwaW5nICovCiAJCX07CiAKZGlmZiAtLWdpdCBhL21tL3Bh
-Z2VfYWxsb2MuYyBiL21tL3BhZ2VfYWxsb2MuYwppbmRleCAxN2EzOWQ0MGE1NTYuLmMwZTAzMWM1
-MmRiNSAxMDA2NDQKLS0tIGEvbW0vcGFnZV9hbGxvYy5jCisrKyBiL21tL3BhZ2VfYWxsb2MuYwpA
-QCAtNTg4NiwxMiArNTg4NiwxMiBAQCB2b2lkIF9fcmVmIG1lbW1hcF9pbml0X3pvbmVfZGV2aWNl
-KHN0cnVjdCB6b25lICp6b25lLAogCQlfX1NldFBhZ2VSZXNlcnZlZChwYWdlKTsKIAogCQkvKgot
-CQkgKiBaT05FX0RFVklDRSBwYWdlcyB1bmlvbiAtPmxydSB3aXRoIGEgLT5wZ21hcCBiYWNrCi0J
-CSAqIHBvaW50ZXIgYW5kIGhtbV9kYXRhLiAgSXQgaXMgYSBidWcgaWYgYSBaT05FX0RFVklDRQot
-CQkgKiBwYWdlIGlzIGV2ZXIgZnJlZWQgb3IgcGxhY2VkIG9uIGEgZHJpdmVyLXByaXZhdGUgbGlz
-dC4KKwkJICogWk9ORV9ERVZJQ0UgcGFnZXMgdW5pb24gLT5scnUgd2l0aCBhIC0+cGdtYXAgYmFj
-ayBwb2ludGVyCisJCSAqIGFuZCB6b25lX2RldmljZV9kYXRhLiAgSXQgaXMgYSBidWcgaWYgYSBa
-T05FX0RFVklDRSBwYWdlIGlzCisJCSAqIGV2ZXIgZnJlZWQgb3IgcGxhY2VkIG9uIGEgZHJpdmVy
-LXByaXZhdGUgbGlzdC4KIAkJICovCiAJCXBhZ2UtPnBnbWFwID0gcGdtYXA7Ci0JCXBhZ2UtPmht
-bV9kYXRhID0gMDsKKwkJcGFnZS0+em9uZV9kZXZpY2VfZGF0YSA9IE5VTEw7CiAKIAkJLyoKIAkJ
-ICogTWFyayB0aGUgYmxvY2sgbW92YWJsZSBzbyB0aGF0IGJsb2NrcyBhcmUgcmVzZXJ2ZWQgZm9y
-Ci0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+There isn't really much value add in the hmm_devmem_add wrapper and
+more, as using devm_memremap_pages directly now is just as simple.
+
+Signed-off-by: Christoph Hellwig <hch@lst.de>
+Reviewed-by: Jason Gunthorpe <jgg@mellanox.com>
+---
+ Documentation/vm/hmm.rst |  26 --------
+ include/linux/hmm.h      | 129 ---------------------------------------
+ mm/hmm.c                 | 110 ---------------------------------
+ 3 files changed, 265 deletions(-)
+
+diff --git a/Documentation/vm/hmm.rst b/Documentation/vm/hmm.rst
+index 7cdf7282e022..50e1380950a9 100644
+--- a/Documentation/vm/hmm.rst
++++ b/Documentation/vm/hmm.rst
+@@ -329,32 +329,6 @@ directly using struct page for device memory which left most kernel code paths
+ unaware of the difference. We only need to make sure that no one ever tries to
+ map those pages from the CPU side.
+ 
+-HMM provides a set of helpers to register and hotplug device memory as a new
+-region needing a struct page. This is offered through a very simple API::
+-
+- struct hmm_devmem *hmm_devmem_add(const struct hmm_devmem_ops *ops,
+-                                   struct device *device,
+-                                   unsigned long size);
+- void hmm_devmem_remove(struct hmm_devmem *devmem);
+-
+-The hmm_devmem_ops is where most of the important things are::
+-
+- struct hmm_devmem_ops {
+-     void (*free)(struct hmm_devmem *devmem, struct page *page);
+-     int (*fault)(struct hmm_devmem *devmem,
+-                  struct vm_area_struct *vma,
+-                  unsigned long addr,
+-                  struct page *page,
+-                  unsigned flags,
+-                  pmd_t *pmdp);
+- };
+-
+-The first callback (free()) happens when the last reference on a device page is
+-dropped. This means the device page is now free and no longer used by anyone.
+-The second callback happens whenever the CPU tries to access a device page
+-which it cannot do. This second callback must trigger a migration back to
+-system memory.
+-
+ 
+ Migration to and from device memory
+ ===================================
+diff --git a/include/linux/hmm.h b/include/linux/hmm.h
+index 1d55b7ea2da6..86aa4ec3404c 100644
+--- a/include/linux/hmm.h
++++ b/include/linux/hmm.h
+@@ -585,135 +585,6 @@ static inline void hmm_mm_init(struct mm_struct *mm) {}
+ #endif /* IS_ENABLED(CONFIG_HMM_MIRROR) */
+ 
+ #if IS_ENABLED(CONFIG_DEVICE_PRIVATE)
+-struct hmm_devmem;
+-
+-/*
+- * struct hmm_devmem_ops - callback for ZONE_DEVICE memory events
+- *
+- * @free: call when refcount on page reach 1 and thus is no longer use
+- * @fault: call when there is a page fault to unaddressable memory
+- *
+- * Both callback happens from page_free() and page_fault() callback of struct
+- * dev_pagemap respectively. See include/linux/memremap.h for more details on
+- * those.
+- *
+- * The hmm_devmem_ops callback are just here to provide a coherent and
+- * uniq API to device driver and device driver should not register their
+- * own page_free() or page_fault() but rely on the hmm_devmem_ops call-
+- * back.
+- */
+-struct hmm_devmem_ops {
+-	/*
+-	 * free() - free a device page
+-	 * @devmem: device memory structure (see struct hmm_devmem)
+-	 * @page: pointer to struct page being freed
+-	 *
+-	 * Call back occurs whenever a device page refcount reach 1 which
+-	 * means that no one is holding any reference on the page anymore
+-	 * (ZONE_DEVICE page have an elevated refcount of 1 as default so
+-	 * that they are not release to the general page allocator).
+-	 *
+-	 * Note that callback has exclusive ownership of the page (as no
+-	 * one is holding any reference).
+-	 */
+-	void (*free)(struct hmm_devmem *devmem, struct page *page);
+-	/*
+-	 * fault() - CPU page fault or get user page (GUP)
+-	 * @devmem: device memory structure (see struct hmm_devmem)
+-	 * @vma: virtual memory area containing the virtual address
+-	 * @addr: virtual address that faulted or for which there is a GUP
+-	 * @page: pointer to struct page backing virtual address (unreliable)
+-	 * @flags: FAULT_FLAG_* (see include/linux/mm.h)
+-	 * @pmdp: page middle directory
+-	 * Returns: VM_FAULT_MINOR/MAJOR on success or one of VM_FAULT_ERROR
+-	 *   on error
+-	 *
+-	 * The callback occurs whenever there is a CPU page fault or GUP on a
+-	 * virtual address. This means that the device driver must migrate the
+-	 * page back to regular memory (CPU accessible).
+-	 *
+-	 * The device driver is free to migrate more than one page from the
+-	 * fault() callback as an optimization. However if device decide to
+-	 * migrate more than one page it must always priotirize the faulting
+-	 * address over the others.
+-	 *
+-	 * The struct page pointer is only given as an hint to allow quick
+-	 * lookup of internal device driver data. A concurrent migration
+-	 * might have already free that page and the virtual address might
+-	 * not longer be back by it. So it should not be modified by the
+-	 * callback.
+-	 *
+-	 * Note that mmap semaphore is held in read mode at least when this
+-	 * callback occurs, hence the vma is valid upon callback entry.
+-	 */
+-	vm_fault_t (*fault)(struct hmm_devmem *devmem,
+-		     struct vm_area_struct *vma,
+-		     unsigned long addr,
+-		     const struct page *page,
+-		     unsigned int flags,
+-		     pmd_t *pmdp);
+-};
+-
+-/*
+- * struct hmm_devmem - track device memory
+- *
+- * @completion: completion object for device memory
+- * @pfn_first: first pfn for this resource (set by hmm_devmem_add())
+- * @pfn_last: last pfn for this resource (set by hmm_devmem_add())
+- * @resource: IO resource reserved for this chunk of memory
+- * @pagemap: device page map for that chunk
+- * @device: device to bind resource to
+- * @ops: memory operations callback
+- * @ref: per CPU refcount
+- * @page_fault: callback when CPU fault on an unaddressable device page
+- *
+- * This an helper structure for device drivers that do not wish to implement
+- * the gory details related to hotplugging new memoy and allocating struct
+- * pages.
+- *
+- * Device drivers can directly use ZONE_DEVICE memory on their own if they
+- * wish to do so.
+- *
+- * The page_fault() callback must migrate page back, from device memory to
+- * system memory, so that the CPU can access it. This might fail for various
+- * reasons (device issues,  device have been unplugged, ...). When such error
+- * conditions happen, the page_fault() callback must return VM_FAULT_SIGBUS and
+- * set the CPU page table entry to "poisoned".
+- *
+- * Note that because memory cgroup charges are transferred to the device memory,
+- * this should never fail due to memory restrictions. However, allocation
+- * of a regular system page might still fail because we are out of memory. If
+- * that happens, the page_fault() callback must return VM_FAULT_OOM.
+- *
+- * The page_fault() callback can also try to migrate back multiple pages in one
+- * chunk, as an optimization. It must, however, prioritize the faulting address
+- * over all the others.
+- */
+-
+-struct hmm_devmem {
+-	struct completion		completion;
+-	unsigned long			pfn_first;
+-	unsigned long			pfn_last;
+-	struct resource			*resource;
+-	struct device			*device;
+-	struct dev_pagemap		pagemap;
+-	const struct hmm_devmem_ops	*ops;
+-	struct percpu_ref		ref;
+-};
+-
+-/*
+- * To add (hotplug) device memory, HMM assumes that there is no real resource
+- * that reserves a range in the physical address space (this is intended to be
+- * use by unaddressable device memory). It will reserve a physical range big
+- * enough and allocate struct page for it.
+- *
+- * The device driver can wrap the hmm_devmem struct inside a private device
+- * driver struct.
+- */
+-struct hmm_devmem *hmm_devmem_add(const struct hmm_devmem_ops *ops,
+-				  struct device *device,
+-				  unsigned long size);
+-
+ /*
+  * hmm_devmem_page_set_drvdata - set per-page driver data field
+  *
+diff --git a/mm/hmm.c b/mm/hmm.c
+index fdbd48771292..90ca0cdab9db 100644
+--- a/mm/hmm.c
++++ b/mm/hmm.c
+@@ -1327,113 +1327,3 @@ long hmm_range_dma_unmap(struct hmm_range *range,
+ }
+ EXPORT_SYMBOL(hmm_range_dma_unmap);
+ #endif /* IS_ENABLED(CONFIG_HMM_MIRROR) */
+-
+-
+-#if IS_ENABLED(CONFIG_DEVICE_PRIVATE)
+-static void hmm_devmem_ref_release(struct percpu_ref *ref)
+-{
+-	struct hmm_devmem *devmem;
+-
+-	devmem = container_of(ref, struct hmm_devmem, ref);
+-	complete(&devmem->completion);
+-}
+-
+-static void hmm_devmem_ref_exit(struct dev_pagemap *pgmap)
+-{
+-	struct hmm_devmem *devmem;
+-
+-	devmem = container_of(pgmap, struct hmm_devmem, pagemap);
+-	wait_for_completion(&devmem->completion);
+-	percpu_ref_exit(pgmap->ref);
+-}
+-
+-static void hmm_devmem_ref_kill(struct dev_pagemap *pgmap)
+-{
+-	percpu_ref_kill(pgmap->ref);
+-}
+-
+-static vm_fault_t hmm_devmem_migrate_to_ram(struct vm_fault *vmf)
+-{
+-	struct hmm_devmem *devmem =
+-		container_of(vmf->page->pgmap, struct hmm_devmem, pagemap);
+-
+-	return devmem->ops->fault(devmem, vmf->vma, vmf->address, vmf->page,
+-			vmf->flags, vmf->pmd);
+-}
+-
+-static void hmm_devmem_free(struct page *page)
+-{
+-	struct hmm_devmem *devmem =
+-		container_of(page->pgmap, struct hmm_devmem, pagemap);
+-
+-	devmem->ops->free(devmem, page);
+-}
+-
+-static const struct dev_pagemap_ops hmm_pagemap_ops = {
+-	.page_free		= hmm_devmem_free,
+-	.kill			= hmm_devmem_ref_kill,
+-	.cleanup		= hmm_devmem_ref_exit,
+-	.migrate_to_ram		= hmm_devmem_migrate_to_ram,
+-};
+-
+-/*
+- * hmm_devmem_add() - hotplug ZONE_DEVICE memory for device memory
+- *
+- * @ops: memory event device driver callback (see struct hmm_devmem_ops)
+- * @device: device struct to bind the resource too
+- * @size: size in bytes of the device memory to add
+- * Returns: pointer to new hmm_devmem struct ERR_PTR otherwise
+- *
+- * This function first finds an empty range of physical address big enough to
+- * contain the new resource, and then hotplugs it as ZONE_DEVICE memory, which
+- * in turn allocates struct pages. It does not do anything beyond that; all
+- * events affecting the memory will go through the various callbacks provided
+- * by hmm_devmem_ops struct.
+- *
+- * Device driver should call this function during device initialization and
+- * is then responsible of memory management. HMM only provides helpers.
+- */
+-struct hmm_devmem *hmm_devmem_add(const struct hmm_devmem_ops *ops,
+-				  struct device *device,
+-				  unsigned long size)
+-{
+-	struct hmm_devmem *devmem;
+-	void *result;
+-	int ret;
+-
+-	devmem = devm_kzalloc(device, sizeof(*devmem), GFP_KERNEL);
+-	if (!devmem)
+-		return ERR_PTR(-ENOMEM);
+-
+-	init_completion(&devmem->completion);
+-	devmem->pfn_first = -1UL;
+-	devmem->pfn_last = -1UL;
+-	devmem->resource = NULL;
+-	devmem->device = device;
+-	devmem->ops = ops;
+-
+-	ret = percpu_ref_init(&devmem->ref, &hmm_devmem_ref_release,
+-			      0, GFP_KERNEL);
+-	if (ret)
+-		return ERR_PTR(ret);
+-
+-	devmem->resource = devm_request_free_mem_region(device, &iomem_resource,
+-			size);
+-	if (IS_ERR(devmem->resource))
+-		return ERR_CAST(devmem->resource);
+-	devmem->pfn_first = devmem->resource->start >> PAGE_SHIFT;
+-	devmem->pfn_last = devmem->pfn_first +
+-			   (resource_size(devmem->resource) >> PAGE_SHIFT);
+-
+-	devmem->pagemap.type = MEMORY_DEVICE_PRIVATE;
+-	devmem->pagemap.res = *devmem->resource;
+-	devmem->pagemap.ops = &hmm_pagemap_ops;
+-	devmem->pagemap.ref = &devmem->ref;
+-
+-	result = devm_memremap_pages(devmem->device, &devmem->pagemap);
+-	if (IS_ERR(result))
+-		return result;
+-	return devmem;
+-}
+-EXPORT_SYMBOL_GPL(hmm_devmem_add);
+-#endif /* CONFIG_DEVICE_PRIVATE  */
+-- 
+2.20.1
