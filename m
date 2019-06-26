@@ -1,45 +1,90 @@
-From: Michal Hocko <mhocko-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH 05/22] mm: export alloc_pages_vma
-Date: Wed, 26 Jun 2019 07:46:45 +0200
-Message-ID: <20190626054645.GB17798@dhcp22.suse.cz>
+From: John Hubbard <jhubbard@nvidia.com>
+Subject: Re: [PATCH 18/22] mm: mark DEVICE_PUBLIC as broken
+Date: Tue, 25 Jun 2019 23:07:13 -0700
+Message-ID: <f71f16a4-d411-a540-fc71-34d15f4f02d6@nvidia.com>
 References: <20190613094326.24093-1-hch@lst.de>
- <20190613094326.24093-6-hch@lst.de>
- <20190620191733.GH12083@dhcp22.suse.cz>
- <CAPcyv4h9+Ha4FVrvDAe-YAr1wBOjc4yi7CAzVuASv=JCxPcFaw@mail.gmail.com>
- <20190625072317.GC30350@lst.de>
- <20190625150053.GJ11400@dhcp22.suse.cz>
- <CAPcyv4j1e5dbBHnc+wmtsNUyFbMK_98WxHNwuD_Vxo4dX9Ce=Q@mail.gmail.com>
- <20190625190038.GK11400@dhcp22.suse.cz>
- <CAPcyv4hU13v7dSQpF0WTQTxQM3L3UsHMUhsFMVz7i4UGLoM89g@mail.gmail.com>
+ <20190613094326.24093-19-hch@lst.de> <20190613194430.GY22062@mellanox.com>
+ <a27251ad-a152-f84d-139d-e1a3bf01c153@nvidia.com>
+ <20190613195819.GA22062@mellanox.com>
+ <20190614004314.GD783@iweiny-DESK2.sc.intel.com>
+ <d2b77ea1-7b27-e37d-c248-267a57441374@nvidia.com>
+ <20190619192719.GO9374@mellanox.com>
+ <29f43c79-b454-0477-a799-7850e6571bd3@nvidia.com>
+ <20190626054554.GA17798@dhcp22.suse.cz>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CAPcyv4hU13v7dSQpF0WTQTxQM3L3UsHMUhsFMVz7i4UGLoM89g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
-List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
-Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
-Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190626054554.GA17798@dhcp22.suse.cz>
+Content-Language: en-US
+Sender: linux-kernel-owner@vger.kernel.org
+To: Michal Hocko <mhocko@kernel.org>
+Cc: Jason Gunthorpe <jgg@mellanox.com>, Ira Weiny <ira.weiny@intel.com>, Ralph Campbell <rcampbell@nvidia.com>, "linux-nvdimm@lists.01.org" <linux-nvdimm@lists.01.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "linux-mm@kvack.org" <linux-mm@kvack.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, Christoph Hellwig <hch@lst.de>
 List-Id: nouveau.vger.kernel.org
 
-On Tue 25-06-19 12:52:18, Dan Williams wrote:
-[...]
-> > Documentation/process/stable-api-nonsense.rst
+On 6/25/19 10:45 PM, Michal Hocko wrote:
+> On Tue 25-06-19 20:15:28, John Hubbard wrote:
+>> On 6/19/19 12:27 PM, Jason Gunthorpe wrote:
+>>> On Thu, Jun 13, 2019 at 06:23:04PM -0700, John Hubbard wrote:
+>>>> On 6/13/19 5:43 PM, Ira Weiny wrote:
+>>>>> On Thu, Jun 13, 2019 at 07:58:29PM +0000, Jason Gunthorpe wrote:
+>>>>>> On Thu, Jun 13, 2019 at 12:53:02PM -0700, Ralph Campbell wrote:
+>>>>>>>
+>>>> ...
+>>>>> So I think it is ok.  Frankly I was wondering if we should remove the public
+>>>>> type altogether but conceptually it seems ok.  But I don't see any users of it
+>>>>> so...  should we get rid of it in the code rather than turning the config off?
+>>>>>
+>>>>> Ira
+>>>>
+>>>> That seems reasonable. I recall that the hope was for those IBM Power 9
+>>>> systems to use _PUBLIC, as they have hardware-based coherent device (GPU)
+>>>> memory, and so the memory really is visible to the CPU. And the IBM team
+>>>> was thinking of taking advantage of it. But I haven't seen anything on
+>>>> that front for a while.
+>>>
+>>> Does anyone know who those people are and can we encourage them to
+>>> send some patches? :)
+>>>
+>>
+>> I asked about this, and it seems that the idea was: DEVICE_PUBLIC was there
+>> in order to provide an alternative way to do things (such as migrate memory
+>> to and from a device), in case the combination of existing and near-future
+>> NUMA APIs was insufficient. This probably came as a follow-up to the early
+>> 2017-ish conversations about NUMA, in which the linux-mm recommendation was
+>> "try using HMM mechanisms, and if those are inadequate, then maybe we can
+>> look at enhancing NUMA so that it has better handling of advanced (GPU-like)
+>> devices".
 > 
-> That document has failed to preclude symbol export fights in the past
-> and there is a reasonable argument to try not to retract functionality
-> that had been previously exported regardless of that document.
+> Yes that was the original idea. It sounds so much better to use a common
+> framework rather than awkward special cased cpuless NUMA nodes with
+> a weird semantic. User of the neither of the two has shown up so I guess
+> that the envisioned HW just didn't materialized. Or has there been a
+> completely different approach chosen?
 
-Can you point me to any specific example where this would be the case
-for the core kernel symbols please?
+The HW showed up, alright: it's the IBM Power 9, which provides HW-based
+memory coherency between its CPUs and GPUs. So on this system, the CPU is
+allowed to access GPU memory, which *could* be modeled as DEVICE_PUBLIC.
+
+However, what happened was that the system worked well enough with a combination
+of the device driver, plus NUMA APIs, plus heaven knows what sort of /proc tuning
+might have also gone on. :) No one saw the need to reach for the DEVICE_PUBLIC
+functionality.
+
+> 
+>> In the end, however, _PUBLIC was never used, nor does anyone in the local
+>> (NVIDIA + IBM) kernel vicinity seem to have plans to use it.  So it really
+>> does seem safe to remove, although of course it's good to start with 
+>> BROKEN and see if anyone pops up and complains.
+> 
+> Well, I do not really see much of a difference. Preserving an unused
+> code which doesn't have any user in sight just adds a maintenance burden
+> whether the code depends on BROKEN or not. We can always revert patches
+> which remove the code once a real user shows up.
+
+Sure, I don't see much difference either. Either way seems fine.
+
+thanks,
 -- 
-Michal Hocko
-SUSE Labs
+John Hubbard
+NVIDIA
