@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111007] Blender crash when opening material tab GTX
  750Ti -- NV117 (GM107)
-Date: Wed, 26 Jun 2019 21:39:32 +0000
-Message-ID: <bug-111007-8800-gLcq0Bbjda@http.bugs.freedesktop.org/>
+Date: Wed, 26 Jun 2019 21:43:11 +0000
+Message-ID: <bug-111007-8800-dAacBH9Jt2@http.bugs.freedesktop.org/>
 References: <bug-111007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1910704859=="
+Content-Type: multipart/mixed; boundary="===============0295142741=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1910704859==
-Content-Type: multipart/alternative; boundary="15615851720.f29Cccf4E.3915"
+--===============0295142741==
+Content-Type: multipart/alternative; boundary="15615853900.1CFb2B2b3.4677"
 Content-Transfer-Encoding: 7bit
 
 
---15615851720.f29Cccf4E.3915
-Date: Wed, 26 Jun 2019 21:39:32 +0000
+--15615853900.1CFb2B2b3.4677
+Date: Wed, 26 Jun 2019 21:43:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111007
 
---- Comment #4 from joinlaw <joinlaw-kcyQbWKpldg@public.gmane.org> ---
-Created attachment 144649
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144649&action=3Dedit
-Photo tutorial to reproduce the bug
+--- Comment #5 from joinlaw <joinlaw-kcyQbWKpldg@public.gmane.org> ---
+I put photo tutorial to reproduce the bug in the attachment
+steps and arrange by their number from 1 to 8
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15615851720.f29Cccf4E.3915
-Date: Wed, 26 Jun 2019 21:39:32 +0000
+--15615853900.1CFb2B2b3.4677
+Date: Wed, 26 Jun 2019 21:43:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Blender crash when opening material tab GTX 750Ti -- NV11=
 7 (GM107)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111007#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111007#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Blender crash when opening material tab GTX 750Ti -- NV11=
@@ -77,11 +76,8 @@ t # 4</a>
 joinlaw&#64;cock.li" title=3D"joinlaw &lt;joinlaw&#64;cock.li&gt;"> <span c=
 lass=3D"fn">joinlaw</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144649=
-" name=3D"attach_144649" title=3D"Photo tutorial to reproduce the bug">atta=
-chment 144649</a> <a href=3D"attachment.cgi?id=3D144649&amp;action=3Dedit" =
-title=3D"Photo tutorial to reproduce the bug">[details]</a></span>
-Photo tutorial to reproduce the bug</pre>
+        <pre>I put photo tutorial to reproduce the bug in the attachment
+steps and arrange by their number from 1 to 8</pre>
         </div>
       </p>
 
@@ -96,9 +92,9 @@ Photo tutorial to reproduce the bug</pre>
     </body>
 </html>=
 
---15615851720.f29Cccf4E.3915--
+--15615853900.1CFb2B2b3.4677--
 
---===============1910704859==
+--===============0295142741==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1910704859==--
+--===============0295142741==--
