@@ -1,81 +1,99 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 23/25] mm: sort out the DEVICE_PRIVATE Kconfig mess
-Date: Wed, 26 Jun 2019 14:27:22 +0200
-Message-ID: <20190626122724.13313-24-hch@lst.de>
+Subject: [PATCH 24/25] mm: remove the HMM config option
+Date: Wed, 26 Jun 2019 14:27:23 +0200
+Message-ID: <20190626122724.13313-25-hch@lst.de>
 References: <20190626122724.13313-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <20190626122724.13313-1-hch-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
-List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
-Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
-Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-The ZONE_DEVICE support doesn't depend on anything HMM related, just on
-various bits of arch support as indicated by the architecture.  Also
-don't select the option from nouveau as it isn't present in many setups,
-and depend on it instead.
-
-Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
----
- drivers/gpu/drm/nouveau/Kconfig | 2 +-
- mm/Kconfig                      | 5 ++---
- 2 files changed, 3 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
-index dba2613f7180..6303d203ab1d 100644
---- a/drivers/gpu/drm/nouveau/Kconfig
-+++ b/drivers/gpu/drm/nouveau/Kconfig
-@@ -85,10 +85,10 @@ config DRM_NOUVEAU_BACKLIGHT
- config DRM_NOUVEAU_SVM
- 	bool "(EXPERIMENTAL) Enable SVM (Shared Virtual Memory) support"
- 	depends on ARCH_HAS_HMM
-+	depends on DEVICE_PRIVATE
- 	depends on DRM_NOUVEAU
- 	depends on STAGING
- 	select HMM_MIRROR
--	select DEVICE_PRIVATE
- 	default n
- 	help
- 	  Say Y here if you want to enable experimental support for
-diff --git a/mm/Kconfig b/mm/Kconfig
-index 6f35b85b3052..eecf037a54b3 100644
---- a/mm/Kconfig
-+++ b/mm/Kconfig
-@@ -677,13 +677,13 @@ config ARCH_HAS_HMM_MIRROR
- 
- config ARCH_HAS_HMM
- 	bool
--	default y
- 	depends on (X86_64 || PPC64)
- 	depends on ZONE_DEVICE
- 	depends on MMU && 64BIT
- 	depends on MEMORY_HOTPLUG
- 	depends on MEMORY_HOTREMOVE
- 	depends on SPARSEMEM_VMEMMAP
-+	default y
- 
- config MIGRATE_VMA_HELPER
- 	bool
-@@ -709,8 +709,7 @@ config HMM_MIRROR
- 
- config DEVICE_PRIVATE
- 	bool "Unaddressable device memory (GPU memory, ...)"
--	depends on ARCH_HAS_HMM
--	select HMM
-+	depends on ZONE_DEVICE
- 	select DEV_PAGEMAP_OPS
- 
- 	help
--- 
-2.20.1
+QWxsIHRoZSBtbS9obW0uYyBjb2RlIGlzIGJldHRlciBrZXllZCBvZmYgSE1NX01JUlJPUi4gIEFs
+c28gbGV0IG5vdXZlYXUKZGVwZW5kIG9uIGl0IGluc3RlYWQgb2YgdGhlIG1peCBvZiBhIGR1bW15
+IGRlcGVuZGVuY3kgc3ltYm9sIHBsdXMgdGhlCmFjdHVhbGx5IHNlbGVjdGVkIG9uZS4gIERyb3Ag
+dmFyaW91cyBvZGQgZGVwZW5kZW5jaWVzLCBhcyB0aGUgY29kZSBpcwpwcmV0dHkgcG9ydGFibGUu
+CgpTaWduZWQtb2ZmLWJ5OiBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGxzdC5kZT4KLS0tCiBkcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9LY29uZmlnIHwgIDMgKy0tCiBpbmNsdWRlL2xpbnV4L2htbS5o
+ICAgICAgICAgICAgIHwgIDUgKy0tLS0KIGluY2x1ZGUvbGludXgvbW1fdHlwZXMuaCAgICAgICAg
+fCAgMiArLQogbW0vS2NvbmZpZyAgICAgICAgICAgICAgICAgICAgICB8IDI3ICsrKystLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLQogbW0vTWFrZWZpbGUgICAgICAgICAgICAgICAgICAgICB8ICAyICst
+CiBtbS9obW0uYyAgICAgICAgICAgICAgICAgICAgICAgIHwgIDIgLS0KIDYgZmlsZXMgY2hhbmdl
+ZCwgOCBpbnNlcnRpb25zKCspLCAzMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9LY29uZmlnIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvS2NvbmZp
+ZwppbmRleCA2MzAzZDIwM2FiMWQuLjY2YzgzOWQ4ZTlkMSAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvS2NvbmZpZworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LY29u
+ZmlnCkBAIC04NCwxMSArODQsMTAgQEAgY29uZmlnIERSTV9OT1VWRUFVX0JBQ0tMSUdIVAogCiBj
+b25maWcgRFJNX05PVVZFQVVfU1ZNCiAJYm9vbCAiKEVYUEVSSU1FTlRBTCkgRW5hYmxlIFNWTSAo
+U2hhcmVkIFZpcnR1YWwgTWVtb3J5KSBzdXBwb3J0IgotCWRlcGVuZHMgb24gQVJDSF9IQVNfSE1N
+CiAJZGVwZW5kcyBvbiBERVZJQ0VfUFJJVkFURQogCWRlcGVuZHMgb24gRFJNX05PVVZFQVUKKwlk
+ZXBlbmRzIG9uIEhNTV9NSVJST1IKIAlkZXBlbmRzIG9uIFNUQUdJTkcKLQlzZWxlY3QgSE1NX01J
+UlJPUgogCWRlZmF1bHQgbgogCWhlbHAKIAkgIFNheSBZIGhlcmUgaWYgeW91IHdhbnQgdG8gZW5h
+YmxlIGV4cGVyaW1lbnRhbCBzdXBwb3J0IGZvcgpkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9o
+bW0uaCBiL2luY2x1ZGUvbGludXgvaG1tLmgKaW5kZXggM2QwMGU5NTUwZTc3Li5iNjk3NDk2ZTg1
+YmEgMTAwNjQ0Ci0tLSBhL2luY2x1ZGUvbGludXgvaG1tLmgKKysrIGIvaW5jbHVkZS9saW51eC9o
+bW0uaApAQCAtNjIsNyArNjIsNyBAQAogI2luY2x1ZGUgPGxpbnV4L2tjb25maWcuaD4KICNpbmNs
+dWRlIDxhc20vcGd0YWJsZS5oPgogCi0jaWYgSVNfRU5BQkxFRChDT05GSUdfSE1NKQorI2lmZGVm
+IENPTkZJR19ITU1fTUlSUk9SCiAKICNpbmNsdWRlIDxsaW51eC9kZXZpY2UuaD4KICNpbmNsdWRl
+IDxsaW51eC9taWdyYXRlLmg+CkBAIC0zMzIsOSArMzMyLDYgQEAgc3RhdGljIGlubGluZSB1aW50
+NjRfdCBobW1fcGZuX2Zyb21fcGZuKGNvbnN0IHN0cnVjdCBobW1fcmFuZ2UgKnJhbmdlLAogCXJl
+dHVybiBobW1fZGV2aWNlX2VudHJ5X2Zyb21fcGZuKHJhbmdlLCBwZm4pOwogfQogCi0KLQotI2lm
+IElTX0VOQUJMRUQoQ09ORklHX0hNTV9NSVJST1IpCiAvKgogICogTWlycm9yaW5nOiBob3cgdG8g
+c3luY2hyb25pemUgZGV2aWNlIHBhZ2UgdGFibGUgd2l0aCBDUFUgcGFnZSB0YWJsZS4KICAqCmRp
+ZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L21tX3R5cGVzLmggYi9pbmNsdWRlL2xpbnV4L21tX3R5
+cGVzLmgKaW5kZXggZjMzYTEyODljMTAxLi44ZDM3MTgyZjhkYmUgMTAwNjQ0Ci0tLSBhL2luY2x1
+ZGUvbGludXgvbW1fdHlwZXMuaAorKysgYi9pbmNsdWRlL2xpbnV4L21tX3R5cGVzLmgKQEAgLTUw
+MSw3ICs1MDEsNyBAQCBzdHJ1Y3QgbW1fc3RydWN0IHsKICNlbmRpZgogCQlzdHJ1Y3Qgd29ya19z
+dHJ1Y3QgYXN5bmNfcHV0X3dvcms7CiAKLSNpZiBJU19FTkFCTEVEKENPTkZJR19ITU0pCisjaWZk
+ZWYgQ09ORklHX0hNTV9NSVJST1IKIAkJLyogSE1NIG5lZWRzIHRvIHRyYWNrIGEgZmV3IHRoaW5n
+cyBwZXIgbW0gKi8KIAkJc3RydWN0IGhtbSAqaG1tOwogI2VuZGlmCmRpZmYgLS1naXQgYS9tbS9L
+Y29uZmlnIGIvbW0vS2NvbmZpZwppbmRleCBlZWNmMDM3YTU0YjMuLjFlNDI2YzI2YjFkNiAxMDA2
+NDQKLS0tIGEvbW0vS2NvbmZpZworKysgYi9tbS9LY29uZmlnCkBAIC02NjksMzcgKzY2OSwxOCBA
+QCBjb25maWcgWk9ORV9ERVZJQ0UKIAogCSAgSWYgRlNfREFYIGlzIGVuYWJsZWQsIHRoZW4gc2F5
+IFkuCiAKLWNvbmZpZyBBUkNIX0hBU19ITU1fTUlSUk9SCi0JYm9vbAotCWRlZmF1bHQgeQotCWRl
+cGVuZHMgb24gKFg4Nl82NCB8fCBQUEM2NCkKLQlkZXBlbmRzIG9uIE1NVSAmJiA2NEJJVAotCi1j
+b25maWcgQVJDSF9IQVNfSE1NCi0JYm9vbAotCWRlcGVuZHMgb24gKFg4Nl82NCB8fCBQUEM2NCkK
+LQlkZXBlbmRzIG9uIFpPTkVfREVWSUNFCi0JZGVwZW5kcyBvbiBNTVUgJiYgNjRCSVQKLQlkZXBl
+bmRzIG9uIE1FTU9SWV9IT1RQTFVHCi0JZGVwZW5kcyBvbiBNRU1PUllfSE9UUkVNT1ZFCi0JZGVw
+ZW5kcyBvbiBTUEFSU0VNRU1fVk1FTU1BUAotCWRlZmF1bHQgeQotCiBjb25maWcgTUlHUkFURV9W
+TUFfSEVMUEVSCiAJYm9vbAogCiBjb25maWcgREVWX1BBR0VNQVBfT1BTCiAJYm9vbAogCi1jb25m
+aWcgSE1NCi0JYm9vbAotCXNlbGVjdCBNTVVfTk9USUZJRVIKLQlzZWxlY3QgTUlHUkFURV9WTUFf
+SEVMUEVSCi0KIGNvbmZpZyBITU1fTUlSUk9SCiAJYm9vbCAiSE1NIG1pcnJvciBDUFUgcGFnZSB0
+YWJsZSBpbnRvIGEgZGV2aWNlIHBhZ2UgdGFibGUiCi0JZGVwZW5kcyBvbiBBUkNIX0hBU19ITU0K
+LQlzZWxlY3QgSE1NCisJZGVwZW5kcyBvbiAoWDg2XzY0IHx8IFBQQzY0KQorCWRlcGVuZHMgb24g
+TU1VICYmIDY0QklUCisJc2VsZWN0IE1NVV9OT1RJRklFUgorCXNlbGVjdCBNSUdSQVRFX1ZNQV9I
+RUxQRVIKIAloZWxwCiAJICBTZWxlY3QgSE1NX01JUlJPUiBpZiB5b3Ugd2FudCB0byBtaXJyb3Ig
+cmFuZ2Ugb2YgdGhlIENQVSBwYWdlIHRhYmxlIG9mIGEKIAkgIHByb2Nlc3MgaW50byBhIGRldmlj
+ZSBwYWdlIHRhYmxlLiBIZXJlLCBtaXJyb3IgbWVhbnMgImtlZXAgc3luY2hyb25pemVkIi4KZGlm
+ZiAtLWdpdCBhL21tL01ha2VmaWxlIGIvbW0vTWFrZWZpbGUKaW5kZXggYWM1ZTViYTc4ODc0Li45
+MWM5OTA0MDA2NWMgMTAwNjQ0Ci0tLSBhL21tL01ha2VmaWxlCisrKyBiL21tL01ha2VmaWxlCkBA
+IC0xMDIsNSArMTAyLDUgQEAgb2JqLSQoQ09ORklHX0ZSQU1FX1ZFQ1RPUikgKz0gZnJhbWVfdmVj
+dG9yLm8KIG9iai0kKENPTkZJR19ERUJVR19QQUdFX1JFRikgKz0gZGVidWdfcGFnZV9yZWYubwog
+b2JqLSQoQ09ORklHX0hBUkRFTkVEX1VTRVJDT1BZKSArPSB1c2VyY29weS5vCiBvYmotJChDT05G
+SUdfUEVSQ1BVX1NUQVRTKSArPSBwZXJjcHUtc3RhdHMubwotb2JqLSQoQ09ORklHX0hNTSkgKz0g
+aG1tLm8KK29iai0kKENPTkZJR19ITU1fTUlSUk9SKSArPSBobW0ubwogb2JqLSQoQ09ORklHX01F
+TUZEX0NSRUFURSkgKz0gbWVtZmQubwpkaWZmIC0tZ2l0IGEvbW0vaG1tLmMgYi9tbS9obW0uYwpp
+bmRleCA5MGNhMGNkYWI5ZGIuLmQ2MmNlNjRkNmJjYSAxMDA2NDQKLS0tIGEvbW0vaG1tLmMKKysr
+IGIvbW0vaG1tLmMKQEAgLTI1LDcgKzI1LDYgQEAKICNpbmNsdWRlIDxsaW51eC9tbXVfbm90aWZp
+ZXIuaD4KICNpbmNsdWRlIDxsaW51eC9tZW1vcnlfaG90cGx1Zy5oPgogCi0jaWYgSVNfRU5BQkxF
+RChDT05GSUdfSE1NX01JUlJPUikKIHN0YXRpYyBjb25zdCBzdHJ1Y3QgbW11X25vdGlmaWVyX29w
+cyBobW1fbW11X25vdGlmaWVyX29wczsKIAogc3RhdGljIGlubGluZSBzdHJ1Y3QgaG1tICptbV9n
+ZXRfaG1tKHN0cnVjdCBtbV9zdHJ1Y3QgKm1tKQpAQCAtMTMyNiw0ICsxMzI1LDMgQEAgbG9uZyBo
+bW1fcmFuZ2VfZG1hX3VubWFwKHN0cnVjdCBobW1fcmFuZ2UgKnJhbmdlLAogCXJldHVybiBjcGFn
+ZXM7CiB9CiBFWFBPUlRfU1lNQk9MKGhtbV9yYW5nZV9kbWFfdW5tYXApOwotI2VuZGlmIC8qIElT
+X0VOQUJMRUQoQ09ORklHX0hNTV9NSVJST1IpICovCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
