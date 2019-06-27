@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111006] Adding a uniform-dependent if-statement in
  shader renders a different image
-Date: Thu, 27 Jun 2019 09:29:15 +0000
-Message-ID: <bug-111006-8800-RyUoB4MaHv@http.bugs.freedesktop.org/>
+Date: Thu, 27 Jun 2019 13:43:15 +0000
+Message-ID: <bug-111006-8800-EHxZd313od@http.bugs.freedesktop.org/>
 References: <bug-111006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1244142239=="
+Content-Type: multipart/mixed; boundary="===============1674471252=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111006-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1244142239==
-Content-Type: multipart/alternative; boundary="15616277550.A5Fb2ae.21584"
+--===============1674471252==
+Content-Type: multipart/alternative; boundary="15616429951.bBdf25F.4972"
 Content-Transfer-Encoding: 7bit
 
 
---15616277550.A5Fb2ae.21584
-Date: Thu, 27 Jun 2019 09:29:15 +0000
+--15616429951.bBdf25F.4972
+Date: Thu, 27 Jun 2019 13:43:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111006
 
---- Comment #2 from Paul <qamonstergl-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi Abel.
-
-Could you provide your configure command, please?
+--- Comment #3 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+this is caused by a "call/return stack" overflow. We know of another shader
+causing this issue in a game, so it's something we probably want to fix.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15616277550.A5Fb2ae.21584
-Date: Thu, 27 Jun 2019 09:29:15 +0000
+--15616429951.bBdf25F.4972
+Date: Thu, 27 Jun 2019 13:43:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Adding a uniform-dependent if-statement in shader renders=
  a different image"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111006#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111006#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Adding a uniform-dependent if-statement in shader renders=
@@ -74,12 +73,13 @@ t # 2</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111006">bug 11100=
 6</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-qamonstergl&#64;gmail.com" title=3D"Paul &lt;qamonstergl&#64;gmail.com&gt;"=
-> <span class=3D"fn">Paul</span></a>
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>Hi Abel.
-
-Could you provide your configure command, please?</pre>
+        <pre>this is caused by a &quot;call/return stack&quot; overflow. We=
+ know of another shader
+causing this issue in a game, so it's something we probably want to fix.</p=
+re>
         </div>
       </p>
 
@@ -94,9 +94,9 @@ Could you provide your configure command, please?</pre>
     </body>
 </html>=
 
---15616277550.A5Fb2ae.21584--
+--15616429951.bBdf25F.4972--
 
---===============1244142239==
+--===============1674471252==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1244142239==--
+--===============1674471252==--
