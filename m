@@ -1,54 +1,39 @@
-From: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-Subject: Re: [PATCH 12/25] memremap: add a migrate_to_ram method
- to struct dev_pagemap_ops
-Date: Thu, 27 Jun 2019 16:29:45 +0000
-Message-ID: <20190627162439.GD9499@mellanox.com>
+From: Jason Gunthorpe <jgg@mellanox.com>
+Subject: Re: [PATCH 24/25] mm: remove the HMM config option
+Date: Thu, 27 Jun 2019 16:29:59 +0000
+Message-ID: <20190627162953.GF9499@mellanox.com>
 References: <20190626122724.13313-1-hch@lst.de>
- <20190626122724.13313-13-hch@lst.de>
+ <20190626122724.13313-25-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190626122724.13313-13-hch-jcswGhMUV9g@public.gmane.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190626122724.13313-25-hch@lst.de>
 Content-Language: en-US
-Content-ID: <D936285C7F16454CABEEFE9D1BD77309-wNKe6lTLrGecE4WynfumptQqCkab/8FMAL8bYrjMMd8@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Content-ID: <F6F5CD4C0A7BBA40A1967D61F8AD76F1@eurprd05.prod.outlook.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Christoph Hellwig <hch@lst.de>
+Cc: Dan Williams <dan.j.williams@intel.com>, =?iso-8859-1?Q?J=E9r=F4me_Glisse?= <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "linux-nvdimm@lists.01.org" <linux-nvdimm@lists.01.org>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBKdW4gMjYsIDIwMTkgYXQgMDI6Mjc6MTFQTSArMDIwMCwgQ2hyaXN0b3BoIEhlbGx3
-aWcgd3JvdGU6Cj4gVGhpcyByZXBsYWNlcyB0aGUgaGFja3kgLT5mYXVsdCBjYWxsYmFjaywgd2hp
-Y2ggaXMgY3VycmVudGx5IGRpcmVjdGx5Cj4gY2FsbGVkIGZyb20gY29tbW9uIGNvZGUgdGhyb3Vn
-aCBhIGhtbSBzcGVjaWZpYyBkYXRhIHN0cnVjdHVyZSBhcyBhbgo+IGV4ZXJjaXNlIGluIGxheWVy
-aW5nIHZpb2xhdGlvbnMuCj4gCj4gU2lnbmVkLW9mZi1ieTogQ2hyaXN0b3BoIEhlbGx3aWcgPGhj
-aEBsc3QuZGU+Cj4gUmV2aWV3ZWQtYnk6IFJhbHBoIENhbXBiZWxsIDxyY2FtcGJlbGxAbnZpZGlh
-LmNvbT4KPiAtLS0KPiAgaW5jbHVkZS9saW51eC9obW0uaCAgICAgIHwgIDYgLS0tLS0tCj4gIGlu
-Y2x1ZGUvbGludXgvbWVtcmVtYXAuaCB8ICA2ICsrKysrKwo+ICBpbmNsdWRlL2xpbnV4L3N3YXBv
-cHMuaCAgfCAxNSAtLS0tLS0tLS0tLS0tLS0KPiAga2VybmVsL21lbXJlbWFwLmMgICAgICAgIHwg
-MzUgKysrKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KPiAgbW0vaG1tLmMgICAgICAg
-ICAgICAgICAgIHwgMTMgKysrKystLS0tLS0tLQo+ICBtbS9tZW1vcnkuYyAgICAgICAgICAgICAg
-fCAgOSArKy0tLS0tLS0KPiAgNiBmaWxlcyBjaGFuZ2VkLCAxNyBpbnNlcnRpb25zKCspLCA2NyBk
-ZWxldGlvbnMoLSkKClJldmlld2VkLWJ5OiBKYXNvbiBHdW50aG9ycGUgPGpnZ0BtZWxsYW5veC5j
-b20+CiAKSSd2ZXIgaGVhcmQgdGhlcmUgYXJlIHNvbWUgb3RoZXIgdXNlIG1vZGVscyBmb3IgZmF1
-bHQoKSBoZXJlIGJleW9uZAptaWdyYXRlIHRvIHJhbSwgYnV0IHdlIGNhbiByZW5hbWUgaXQgaWYg
-d2UgZXZlciBzZWUgdGhlbS4KCj4gK3N0YXRpYyB2bV9mYXVsdF90IGhtbV9kZXZtZW1fbWlncmF0
-ZV90b19yYW0oc3RydWN0IHZtX2ZhdWx0ICp2bWYpCj4gIHsKPiAtCXN0cnVjdCBobW1fZGV2bWVt
-ICpkZXZtZW0gPSBwYWdlLT5wZ21hcC0+ZGF0YTsKPiArCXN0cnVjdCBobW1fZGV2bWVtICpkZXZt
-ZW0gPSB2bWYtPnBhZ2UtPnBnbWFwLT5kYXRhOwo+ICAKPiAtCXJldHVybiBkZXZtZW0tPm9wcy0+
-ZmF1bHQoZGV2bWVtLCB2bWEsIGFkZHIsIHBhZ2UsIGZsYWdzLCBwbWRwKTsKPiArCXJldHVybiBk
-ZXZtZW0tPm9wcy0+ZmF1bHQoZGV2bWVtLCB2bWYtPnZtYSwgdm1mLT5hZGRyZXNzLCB2bWYtPnBh
-Z2UsCj4gKwkJCXZtZi0+ZmxhZ3MsIHZtZi0+cG1kKTsKPiAgfQoKTmV4dCBjeWNsZSB3ZSBzaG91
-bGQgcHJvYmFibHkgcmVuYW1lIHRoaXMgZmF1bHQgdG8gbWlncmF0ZV90b19yYW0gYXMKd2VsbCBh
-bmQgcGFzcyBpbiB0aGUgdm1mLi4KCkphc29uCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbm91dmVhdQ==
+On Wed, Jun 26, 2019 at 02:27:23PM +0200, Christoph Hellwig wrote:
+> All the mm/hmm.c code is better keyed off HMM_MIRROR.  Also let nouveau
+> depend on it instead of the mix of a dummy dependency symbol plus the
+> actually selected one.  Drop various odd dependencies, as the code is
+> pretty portable.
+>=20
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> ---
+>  drivers/gpu/drm/nouveau/Kconfig |  3 +--
+>  include/linux/hmm.h             |  5 +----
+>  include/linux/mm_types.h        |  2 +-
+>  mm/Kconfig                      | 27 ++++-----------------------
+>  mm/Makefile                     |  2 +-
+>  mm/hmm.c                        |  2 --
+>  6 files changed, 8 insertions(+), 33 deletions(-)
+
+Makes more sense to me too
+
+Reviewed-by: Jason Gunthorpe <jgg@mellanox.com>
+
+Jason
