@@ -1,17 +1,13 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: Re: [PATCH 15/25] memremap: provide an optional internal
- refcount in struct dev_pagemap
-Date: Thu, 27 Jun 2019 10:51:35 +0200
-Message-ID: <20190627085135.GB11420@lst.de>
-References: <20190626122724.13313-1-hch@lst.de>
- <20190626122724.13313-16-hch@lst.de>
- <20190626214750.GC8399@iweiny-DESK2.sc.intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111006] Adding a uniform-dependent if-statement in
+ shader renders a different image
+Date: Thu, 27 Jun 2019 09:29:15 +0000
+Message-ID: <bug-111006-8800-RyUoB4MaHv@http.bugs.freedesktop.org/>
+References: <bug-111006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1244142239=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20190626214750.GC8399-J5EW/p2F9lUlb2qzJQmr9q2pdiUAq4bhAL8bYrjMMd8@public.gmane.org>
+In-Reply-To: <bug-111006-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,22 +17,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ira Weiny <ira.weiny-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBKdW4gMjYsIDIwMTkgYXQgMDI6NDc6NTBQTSAtMDcwMCwgSXJhIFdlaW55IHdyb3Rl
-Ogo+ID4gKwo+ID4gKwkJaW5pdF9jb21wbGV0aW9uKCZwZ21hcC0+ZG9uZSk7Cj4gPiArCQllcnJv
-ciA9IHBlcmNwdV9yZWZfaW5pdCgmcGdtYXAtPmludGVybmFsX3JlZiwKPiA+ICsJCQkJZGV2X3Bh
-Z2VtYXBfcGVyY3B1X3JlbGVhc2UsIDAsIEdGUF9LRVJORUwpOwo+ID4gKwkJaWYgKGVycm9yKQo+
-ID4gKwkJCXJldHVybiBFUlJfUFRSKGVycm9yKTsKPiA+ICsJCXBnbWFwLT5yZWYgPSAmcGdtYXAt
-PmludGVybmFsX3JlZjsKPiA+ICsJfSBlbHNlIHsKPiA+ICsJCWlmICghcGdtYXAtPm9wcyB8fCAh
-cGdtYXAtPm9wcy0+a2lsbCB8fCAhcGdtYXAtPm9wcy0+Y2xlYW51cCkgewo+ID4gKwkJCVdBUk4o
-MSwgIk1pc3NpbmcgcmVmZXJlbmNlIGNvdW50IHRlYXJkb3duIGRlZmluaXRpb25cbiIpOwo+ID4g
-KwkJCXJldHVybiBFUlJfUFRSKC1FSU5WQUwpOwo+ID4gKwkJfQo+IAo+IEFmdGVyIHRoaXMgc2Vy
-aWVzIGFyZSB0aGVyZSBhbnkgdXNlcnMgd2hvIGNvbnRpbnVlIHRvIHN1cHBseSB0aGVpciBvd24K
-PiByZWZlcmVuY2Ugb2JqZWN0IGFuZCB0aGVzZSBjYWxsYmFja3M/CgpZZXMsIGZzZGF4IHVzZXMg
-dGhlIGJsb2NrIGxheWVyIHJlcXVlc3RfcXVldWUgcmVmZXJlbmNlIGNvdW50LgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
-dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+
+--===============1244142239==
+Content-Type: multipart/alternative; boundary="15616277550.A5Fb2ae.21584"
+Content-Transfer-Encoding: 7bit
+
+
+--15616277550.A5Fb2ae.21584
+Date: Thu, 27 Jun 2019 09:29:15 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111006
+
+--- Comment #2 from Paul <qamonstergl-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi Abel.
+
+Could you provide your configure command, please?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15616277550.A5Fb2ae.21584
+Date: Thu, 27 Jun 2019 09:29:15 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Adding a uniform-dependent if-statement in shader renders=
+ a different image"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111006#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Adding a uniform-dependent if-statement in shader renders=
+ a different image"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111006">bug 11100=
+6</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+qamonstergl&#64;gmail.com" title=3D"Paul &lt;qamonstergl&#64;gmail.com&gt;"=
+> <span class=3D"fn">Paul</span></a>
+</span></b>
+        <pre>Hi Abel.
+
+Could you provide your configure command, please?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15616277550.A5Fb2ae.21584--
+
+--===============1244142239==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1244142239==--
