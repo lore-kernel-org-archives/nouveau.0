@@ -1,15 +1,13 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: Re: [PATCH 03/25] mm: remove hmm_devmem_add_resource
-Date: Thu, 27 Jun 2019 18:54:28 +0200
-Message-ID: <20190627165428.GC10652@lst.de>
-References: <20190626122724.13313-1-hch@lst.de>
- <20190626122724.13313-4-hch@lst.de> <20190627161813.GB9499@mellanox.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111006] Adding a uniform-dependent if-statement in
+ shader renders a different image
+Date: Thu, 27 Jun 2019 17:43:33 +0000
+Message-ID: <bug-111006-8800-8fnPDHCHBB@http.bugs.freedesktop.org/>
+References: <bug-111006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0032800101=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20190627161813.GB9499-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+In-Reply-To: <bug-111006-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,25 +17,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-Cc: Michal Hocko <mhocko-IBi9RG/b67k@public.gmane.org>, "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBKdW4gMjcsIDIwMTkgYXQgMDQ6MTg6MjJQTSArMDAwMCwgSmFzb24gR3VudGhvcnBl
-IHdyb3RlOgo+IE9uIFdlZCwgSnVuIDI2LCAyMDE5IGF0IDAyOjI3OjAyUE0gKzAyMDAsIENocmlz
-dG9waCBIZWxsd2lnIHdyb3RlOgo+ID4gVGhpcyBmdW5jdGlvbiBoYXMgbmV2ZXIgYmVlbiB1c2Vk
-IHNpbmNlIGl0IHdhcyBmaXJzdCBhZGRlZCB0byB0aGUga2VybmVsCj4gPiBtb3JlIHRoYW4gYSB5
-ZWFyIGFuZCBhIGhhbGYgYWdvLCBhbmQgaWYgd2UgZXZlciBncm93IGEgY29uc3VtZXIgb2YgdGhl
-Cj4gPiBNRU1PUllfREVWSUNFX1BVQkxJQyBpbmZyYXN0cnVjdHVyZSBpdCBjYW4gZWFzaWx5IHVz
-ZSBkZXZtX21lbXJlbWFwX3BhZ2VzCj4gPiBkaXJlY3RseS4KPiA+IAo+ID4gU2lnbmVkLW9mZi1i
-eTogQ2hyaXN0b3BoIEhlbGx3aWcgPGhjaEBsc3QuZGU+Cj4gPiBSZXZpZXdlZC1ieTogSmFzb24g
-R3VudGhvcnBlIDxqZ2dAbWVsbGFub3guY29tPgo+ID4gUmV2aWV3ZWQtYnk6IEpvaG4gSHViYmFy
-ZCA8amh1YmJhcmRAbnZpZGlhLmNvbT4KPiA+IEFja2VkLWJ5OiBNaWNoYWwgSG9ja28gPG1ob2Nr
-b0BzdXNlLmNvbT4KPiA+IC0tLQo+ID4gIGluY2x1ZGUvbGludXgvaG1tLmggfCAgMyAtLS0KPiA+
-ICBtbS9obW0uYyAgICAgICAgICAgIHwgNTAgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tCj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCA1MyBkZWxldGlvbnMoLSkKPiAK
-PiBUaGlzIHNob3VsZCBiZSBzcXVhc2hlZCB0byB0aGUgbmV3IGVhcmxpZXIgcGF0Y2g/CgpXZSBj
-b3VsZCBkbyB0aGF0LiAgRG8geW91IGp1c3Qgd2FudCB0byBkbyB0aGF0IHdoZW4geW91IGFwcGx5
-IGl0PwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
-ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+
+--===============0032800101==
+Content-Type: multipart/alternative; boundary="15616574131.f1AE39c9A.19052"
+Content-Transfer-Encoding: 7bit
+
+
+--15616574131.f1AE39c9A.19052
+Date: Thu, 27 Jun 2019 17:43:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111006
+
+Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |ASSIGNED
+           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+                   |rg                          |
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15616574131.f1AE39c9A.19052
+Date: Thu, 27 Jun 2019 17:43:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:karolherb=
+st&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.com&gt;">=
+ <span class=3D"fn">Karol Herbst</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - Adding a uniform-dependent if-statement in shader re=
+nders a different image"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111006">bug 11100=
+6</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>ASSIGNED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+           <td>karolherbst&#64;gmail.com
+           </td>
+         </tr></table>
+      <p>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15616574131.f1AE39c9A.19052--
+
+--===============0032800101==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0032800101==--
