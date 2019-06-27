@@ -1,161 +1,73 @@
-From: Ira Weiny <ira.weiny-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 17/25] PCI/P2PDMA: use the dev_pagemap internal refcount
-Date: Wed, 26 Jun 2019 14:49:04 -0700
-Message-ID: <20190626214903.GE8399@iweiny-DESK2.sc.intel.com>
-References: <20190626122724.13313-1-hch@lst.de>
- <20190626122724.13313-18-hch@lst.de>
+From: Michal Hocko <mhocko-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
+Subject: Re: [PATCH 05/22] mm: export alloc_pages_vma
+Date: Thu, 27 Jun 2019 08:41:06 +0200
+Message-ID: <20190627064106.GC17798@dhcp22.suse.cz>
+References: <20190613094326.24093-6-hch@lst.de>
+ <20190620191733.GH12083@dhcp22.suse.cz>
+ <CAPcyv4h9+Ha4FVrvDAe-YAr1wBOjc4yi7CAzVuASv=JCxPcFaw@mail.gmail.com>
+ <20190625072317.GC30350@lst.de>
+ <20190625150053.GJ11400@dhcp22.suse.cz>
+ <CAPcyv4j1e5dbBHnc+wmtsNUyFbMK_98WxHNwuD_Vxo4dX9Ce=Q@mail.gmail.com>
+ <20190625190038.GK11400@dhcp22.suse.cz>
+ <CAPcyv4hU13v7dSQpF0WTQTxQM3L3UsHMUhsFMVz7i4UGLoM89g@mail.gmail.com>
+ <20190626054645.GB17798@dhcp22.suse.cz>
+ <CAPcyv4jLK2F2UHqbwp4bCEiB7tL8sVsr775egKMmJvfZG+W+NQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20190626122724.13313-18-hch-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
-List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
-Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
-Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+In-Reply-To: <CAPcyv4jLK2F2UHqbwp4bCEiB7tL8sVsr775egKMmJvfZG+W+NQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Cc: linux-nvdimm <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jun 26, 2019 at 02:27:16PM +0200, Christoph Hellwig wrote:
-> The functionality is identical to the one currently open coded in
-> p2pdma.c.
-> 
-> Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-
-Reviewed-by: Ira Weiny <ira.weiny-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-
-> ---
->  drivers/pci/p2pdma.c | 57 ++++----------------------------------------
->  1 file changed, 4 insertions(+), 53 deletions(-)
-> 
-> diff --git a/drivers/pci/p2pdma.c b/drivers/pci/p2pdma.c
-> index ebd8ce3bba2e..608f84df604a 100644
-> --- a/drivers/pci/p2pdma.c
-> +++ b/drivers/pci/p2pdma.c
-> @@ -24,12 +24,6 @@ struct pci_p2pdma {
->  	bool p2pmem_published;
->  };
->  
-> -struct p2pdma_pagemap {
-> -	struct dev_pagemap pgmap;
-> -	struct percpu_ref ref;
-> -	struct completion ref_done;
-> -};
-> -
->  static ssize_t size_show(struct device *dev, struct device_attribute *attr,
->  			 char *buf)
->  {
-> @@ -78,32 +72,6 @@ static const struct attribute_group p2pmem_group = {
->  	.name = "p2pmem",
->  };
->  
-> -static struct p2pdma_pagemap *to_p2p_pgmap(struct percpu_ref *ref)
-> -{
-> -	return container_of(ref, struct p2pdma_pagemap, ref);
-> -}
-> -
-> -static void pci_p2pdma_percpu_release(struct percpu_ref *ref)
-> -{
-> -	struct p2pdma_pagemap *p2p_pgmap = to_p2p_pgmap(ref);
-> -
-> -	complete(&p2p_pgmap->ref_done);
-> -}
-> -
-> -static void pci_p2pdma_percpu_kill(struct dev_pagemap *pgmap)
-> -{
-> -	percpu_ref_kill(pgmap->ref);
-> -}
-> -
-> -static void pci_p2pdma_percpu_cleanup(struct dev_pagemap *pgmap)
-> -{
-> -	struct p2pdma_pagemap *p2p_pgmap =
-> -		container_of(pgmap, struct p2pdma_pagemap, pgmap);
-> -
-> -	wait_for_completion(&p2p_pgmap->ref_done);
-> -	percpu_ref_exit(&p2p_pgmap->ref);
-> -}
-> -
->  static void pci_p2pdma_release(void *data)
->  {
->  	struct pci_dev *pdev = data;
-> @@ -153,11 +121,6 @@ static int pci_p2pdma_setup(struct pci_dev *pdev)
->  	return error;
->  }
->  
-> -static const struct dev_pagemap_ops pci_p2pdma_pagemap_ops = {
-> -	.kill		= pci_p2pdma_percpu_kill,
-> -	.cleanup	= pci_p2pdma_percpu_cleanup,
-> -};
-> -
->  /**
->   * pci_p2pdma_add_resource - add memory for use as p2p memory
->   * @pdev: the device to add the memory to
-> @@ -171,7 +134,6 @@ static const struct dev_pagemap_ops pci_p2pdma_pagemap_ops = {
->  int pci_p2pdma_add_resource(struct pci_dev *pdev, int bar, size_t size,
->  			    u64 offset)
->  {
-> -	struct p2pdma_pagemap *p2p_pgmap;
->  	struct dev_pagemap *pgmap;
->  	void *addr;
->  	int error;
-> @@ -194,26 +156,15 @@ int pci_p2pdma_add_resource(struct pci_dev *pdev, int bar, size_t size,
->  			return error;
->  	}
->  
-> -	p2p_pgmap = devm_kzalloc(&pdev->dev, sizeof(*p2p_pgmap), GFP_KERNEL);
-> -	if (!p2p_pgmap)
-> +	pgmap = devm_kzalloc(&pdev->dev, sizeof(*pgmap), GFP_KERNEL);
-> +	if (!pgmap)
->  		return -ENOMEM;
-> -
-> -	init_completion(&p2p_pgmap->ref_done);
-> -	error = percpu_ref_init(&p2p_pgmap->ref,
-> -			pci_p2pdma_percpu_release, 0, GFP_KERNEL);
-> -	if (error)
-> -		goto pgmap_free;
-> -
-> -	pgmap = &p2p_pgmap->pgmap;
-> -
->  	pgmap->res.start = pci_resource_start(pdev, bar) + offset;
->  	pgmap->res.end = pgmap->res.start + size - 1;
->  	pgmap->res.flags = pci_resource_flags(pdev, bar);
-> -	pgmap->ref = &p2p_pgmap->ref;
->  	pgmap->type = MEMORY_DEVICE_PCI_P2PDMA;
->  	pgmap->pci_p2pdma_bus_offset = pci_bus_address(pdev, bar) -
->  		pci_resource_start(pdev, bar);
-> -	pgmap->ops = &pci_p2pdma_pagemap_ops;
->  
->  	addr = devm_memremap_pages(&pdev->dev, pgmap);
->  	if (IS_ERR(addr)) {
-> @@ -224,7 +175,7 @@ int pci_p2pdma_add_resource(struct pci_dev *pdev, int bar, size_t size,
->  	error = gen_pool_add_owner(pdev->p2pdma->pool, (unsigned long)addr,
->  			pci_bus_address(pdev, bar) + offset,
->  			resource_size(&pgmap->res), dev_to_node(&pdev->dev),
-> -			&p2p_pgmap->ref);
-> +			pgmap->ref);
->  	if (error)
->  		goto pages_free;
->  
-> @@ -236,7 +187,7 @@ int pci_p2pdma_add_resource(struct pci_dev *pdev, int bar, size_t size,
->  pages_free:
->  	devm_memunmap_pages(&pdev->dev, pgmap);
->  pgmap_free:
-> -	devm_kfree(&pdev->dev, p2p_pgmap);
-> +	devm_kfree(&pdev->dev, pgmap);
->  	return error;
->  }
->  EXPORT_SYMBOL_GPL(pci_p2pdma_add_resource);
-> -- 
-> 2.20.1
-> 
-> _______________________________________________
-> Linux-nvdimm mailing list
-> Linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
-> https://lists.01.org/mailman/listinfo/linux-nvdimm
+T24gV2VkIDI2LTA2LTE5IDA5OjE0OjMyLCBEYW4gV2lsbGlhbXMgd3JvdGU6Cj4gT24gVHVlLCBK
+dW4gMjUsIDIwMTkgYXQgMTA6NDYgUE0gTWljaGFsIEhvY2tvIDxtaG9ja29Aa2VybmVsLm9yZz4g
+d3JvdGU6Cj4gPgo+ID4gT24gVHVlIDI1LTA2LTE5IDEyOjUyOjE4LCBEYW4gV2lsbGlhbXMgd3Jv
+dGU6Cj4gPiBbLi4uXQo+ID4gPiA+IERvY3VtZW50YXRpb24vcHJvY2Vzcy9zdGFibGUtYXBpLW5v
+bnNlbnNlLnJzdAo+ID4gPgo+ID4gPiBUaGF0IGRvY3VtZW50IGhhcyBmYWlsZWQgdG8gcHJlY2x1
+ZGUgc3ltYm9sIGV4cG9ydCBmaWdodHMgaW4gdGhlIHBhc3QKPiA+ID4gYW5kIHRoZXJlIGlzIGEg
+cmVhc29uYWJsZSBhcmd1bWVudCB0byB0cnkgbm90IHRvIHJldHJhY3QgZnVuY3Rpb25hbGl0eQo+
+ID4gPiB0aGF0IGhhZCBiZWVuIHByZXZpb3VzbHkgZXhwb3J0ZWQgcmVnYXJkbGVzcyBvZiB0aGF0
+IGRvY3VtZW50Lgo+ID4KPiA+IENhbiB5b3UgcG9pbnQgbWUgdG8gYW55IHNwZWNpZmljIGV4YW1w
+bGUgd2hlcmUgdGhpcyB3b3VsZCBiZSB0aGUgY2FzZQo+ID4gZm9yIHRoZSBjb3JlIGtlcm5lbCBz
+eW1ib2xzIHBsZWFzZT8KPiAKPiBUaGUgbW9zdCByZWNlbnQgZXhhbXBsZSB0aGF0IGNvbWVzIHRv
+IG1pbmQgd2FzIHRoZSB0aHJhc2ggYXJvdW5kCj4gX19rZXJuZWxfZnB1X3tiZWdpbixlbmR9IFsx
+XS4KCldlbGwsIHRoaXMgc2VlbXMgbW9yZSBsaWtlIGEgZGlzYWdyZWVtZW50IG92ZXIgYSBmdW5j
+dGlvbmFsaXR5IHRoYXQgaGFzCnJlZHVjZWQgaXRzIHZpc2liaWxpdHkgcmF0aGVyIHRoYW4gZW5m
+b3JjZW1lbnQgb2YgYSBzcGVjaWZpYyBBUEkuIEFuZCBJCmRvIGFncmVlIHRoYXQgdGhlIGFib3Zl
+IGRvY3VtZW50IHN0YXRlcyB0aGF0IHRoaXMgaXMgcGVyZmVjdGx5CmxlZ2l0aW1hdGUgYW5kIG5v
+IG91dC1vZi10cmVlIGNvZGUgY2FuIHJlbHkgb24gX2FueV8gZnVuY3Rpb25hbGl0eSB0byBiZQpw
+cmVzZXJ2ZWQuCgpPbiB0aGUgb3RoZXIgaGFuZCwgSSBhbSBub3QgcmVhbGx5IHN1cnByaXNlZCBh
+Ym91dCB0aGUgZGlzY3Vzc2lvbgpiZWNhdXNlIGQ2M2U3OWIxMTRjMDIgaXMgYSBtZXJlIGNsZWFu
+IHVwIG5vdCBleHBsYWluaW5nIHdoeSB0aGUKZnVuY3Rpb25hbGl0eSBzaG91bGQgYmUgcmVzdHJp
+Y3RlZCB0byBHUEwgb25seSBjb2RlLiBTbyB0aGVyZSBjZXJ0YWlubHkKaXMgYSByb29tIGZvciBj
+bGFyaWZpY2F0aW9uLiBFc3BlY2lhbGx5IHdoZW4gdGhlIGNvZGUgaGFzIGJlZW4gZXhwb3J0ZWQK
+d2l0aG91dCB0aGlzIHJlc3RyaWN0aW9uIGluIHRoZSBwYXN0IChzZWUgODU0NmMwMDg5MjRkNSku
+IFNvIHRvIG1lIHRoaXMKc291bmRzIG1vcmUgbGlrZSBhIHVzdWFsIEVYUE9SVF9TWU1CT0x7X0dQ
+TH0gbWVzcy4KCkluIGFueSBjYXNlIEkgcmVhbGx5IGRvIG5vdCBzZWUgYW55IHJlbGF0aW9uIHRv
+IHRoZSBtYWludGVuYW5jZSBjb3N0CmhlcmUuIEdQTCBzeW1ib2xzIGFyZSBub3QgaW4gYW55IHNl
+bnNlIG1vcmUgc3RhYmxlIHRoYW4gYW55IG90aGVyCmV4cG9ydGVkIHN5bWJvbC4gVGhleSBjYW4g
+Y2hhbmdlIGF0IGFueSB0aW1lLiBUaGUgb25seSBtYWludGVuYW5jZQpidXJkZW4gaXMgdG8gdXBk
+YXRlIGFsbCBfaW5fa2VybmVsXyB1c2VycyBvZiB0aGUgc2FpZCBzeW1ib2wuIEFueQpvdXQtb2Yt
+dHJlZSBjb2RlIGlzIG9uIGl0cyBvd24gdG8gZGVhbCB3aXRoIHRoaXMuIEZ1bGwgc3RvcC4KCkdQ
+TCBvciBub24tR1BMIHN5bWJvbHMgYXJlIHNvbGVseSB0byBkZWZpbmUgYSBzY29wZSBvZiB0aGUg
+dXNhZ2UuCk5vdGhpbmcgbGVzcyBhbmQgbm90aGluZyBtb3JlLgoKPiBJIHJlZmVyZW5jZWQgdGhh
+dCB3aGVuIGRlYmF0aW5nIF9HUEwgc3ltYm9sIHBvbGljeSB3aXRoIErDqXLDtG1lIFsyXS4KPiAK
+PiBbMV06IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xrbWwvMjAxOTA1MjIxMDA5NTkuR0ExNTM5
+MEBrcm9haC5jb20vCj4gWzJdOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9sa21sL0NBUGN5djRn
+YityPT1yaUtGWGtWWjdnR2RuS2U2MnlCbVo3eE9hNHVCQkJ5aG5LOVR6Z0BtYWlsLmdtYWlsLmNv
+bS8KCi0tIApNaWNoYWwgSG9ja28KU1VTRSBMYWJzCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQ==
