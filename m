@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111006] Adding a uniform-dependent if-statement in
  shader renders a different image
-Date: Thu, 27 Jun 2019 17:43:33 +0000
-Message-ID: <bug-111006-8800-8fnPDHCHBB@http.bugs.freedesktop.org/>
+Date: Thu, 27 Jun 2019 17:54:29 +0000
+Message-ID: <bug-111006-8800-e5oRfgPSFg@http.bugs.freedesktop.org/>
 References: <bug-111006-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0032800101=="
+Content-Type: multipart/mixed; boundary="===============0732987269=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111006-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0032800101==
-Content-Type: multipart/alternative; boundary="15616574131.f1AE39c9A.19052"
+--===============0732987269==
+Content-Type: multipart/alternative; boundary="15616580691.02eA29C.20620"
 Content-Transfer-Encoding: 7bit
 
 
---15616574131.f1AE39c9A.19052
-Date: Thu, 27 Jun 2019 17:43:33 +0000
+--15616580691.02eA29C.20620
+Date: Thu, 27 Jun 2019 17:54:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,17 +40,17 @@ Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |ASSIGNED
-           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-                   |rg                          |
+                URL|                            |https://trello.com/c/ESKBoR
+                   |                            |GN/215-codegen-use-off-chip
+                   |                            |-return-call-stack-where-th
+                   |                            |e-on-chip-one-isnt-enough
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the QA Contact for the bug.=
 
---15616574131.f1AE39c9A.19052
-Date: Thu, 27 Jun 2019 17:43:33 +0000
+--15616580691.02eA29C.20620
+Date: Thu, 27 Jun 2019 17:54:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,18 +80,12 @@ nders a different image"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
+           <td style=3D"text-align:right;">URL</td>
+           <td>
+               &nbsp;
            </td>
-           <td>ASSIGNED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-           <td>karolherbst&#64;gmail.com
+           <td>https://trello.com/c/ESKBoRGN/215-codegen-use-off-chip-retur=
+n-call-stack-where-the-on-chip-one-isnt-enough
            </td>
          </tr></table>
       <p>
@@ -103,14 +97,13 @@ nders a different image"
 
       <ul>
           <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15616574131.f1AE39c9A.19052--
+--15616580691.02eA29C.20620--
 
---===============0032800101==
+--===============0732987269==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0032800101==--
+--===============0732987269==--
