@@ -1,39 +1,48 @@
-From: Jason Gunthorpe <jgg@mellanox.com>
-Subject: Re: [PATCH 24/25] mm: remove the HMM config option
-Date: Thu, 27 Jun 2019 16:29:59 +0000
-Message-ID: <20190627162953.GF9499@mellanox.com>
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Subject: Re: [PATCH 12/25] memremap: add a migrate_to_ram method to struct
+ dev_pagemap_ops
+Date: Thu, 27 Jun 2019 18:53:49 +0200
+Message-ID: <20190627165349.GB10652@lst.de>
 References: <20190626122724.13313-1-hch@lst.de>
- <20190626122724.13313-25-hch@lst.de>
+ <20190626122724.13313-13-hch@lst.de> <20190627162439.GD9499@mellanox.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190626122724.13313-25-hch@lst.de>
-Content-Language: en-US
-Content-ID: <F6F5CD4C0A7BBA40A1967D61F8AD76F1@eurprd05.prod.outlook.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Christoph Hellwig <hch@lst.de>
-Cc: Dan Williams <dan.j.williams@intel.com>, =?iso-8859-1?Q?J=E9r=F4me_Glisse?= <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "linux-nvdimm@lists.01.org" <linux-nvdimm@lists.01.org>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20190627162439.GD9499-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
+List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
+Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+To: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jun 26, 2019 at 02:27:23PM +0200, Christoph Hellwig wrote:
-> All the mm/hmm.c code is better keyed off HMM_MIRROR.  Also let nouveau
-> depend on it instead of the mix of a dummy dependency symbol plus the
-> actually selected one.  Drop various odd dependencies, as the code is
-> pretty portable.
->=20
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
-> ---
->  drivers/gpu/drm/nouveau/Kconfig |  3 +--
->  include/linux/hmm.h             |  5 +----
->  include/linux/mm_types.h        |  2 +-
->  mm/Kconfig                      | 27 ++++-----------------------
->  mm/Makefile                     |  2 +-
->  mm/hmm.c                        |  2 --
->  6 files changed, 8 insertions(+), 33 deletions(-)
+On Thu, Jun 27, 2019 at 04:29:45PM +0000, Jason Gunthorpe wrote:
+> I'ver heard there are some other use models for fault() here beyond
+> migrate to ram, but we can rename it if we ever see them.
 
-Makes more sense to me too
+Well, it absolutely needs to migrate to some piece of addressable
+and coherent memory, so ram might be a nice shortcut for that.
 
-Reviewed-by: Jason Gunthorpe <jgg@mellanox.com>
+> > +static vm_fault_t hmm_devmem_migrate_to_ram(struct vm_fault *vmf)
+> >  {
+> > -	struct hmm_devmem *devmem = page->pgmap->data;
+> > +	struct hmm_devmem *devmem = vmf->page->pgmap->data;
+> >  
+> > -	return devmem->ops->fault(devmem, vma, addr, page, flags, pmdp);
+> > +	return devmem->ops->fault(devmem, vmf->vma, vmf->address, vmf->page,
+> > +			vmf->flags, vmf->pmd);
+> >  }
+> 
+> Next cycle we should probably rename this fault to migrate_to_ram as
+> well and pass in the vmf..
 
-Jason
+That ->fault op goes away entirely in one of the next patches in the
+series.
