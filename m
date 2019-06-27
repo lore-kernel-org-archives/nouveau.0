@@ -1,116 +1,157 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111006] Adding a uniform-dependent if-statement in
- shader renders a different image
-Date: Thu, 27 Jun 2019 17:54:29 +0000
-Message-ID: <bug-111006-8800-e5oRfgPSFg@http.bugs.freedesktop.org/>
-References: <bug-111006-8800@http.bugs.freedesktop.org/>
+From: Logan Gunthorpe <logang@deltatee.com>
+Subject: Re: [PATCH 17/25] PCI/P2PDMA: use the dev_pagemap internal refcount
+Date: Thu, 27 Jun 2019 12:49:47 -0600
+Message-ID: <580609fd-5ef2-bae4-e8f8-adc1eb0314a1@deltatee.com>
+References: <20190626122724.13313-1-hch@lst.de>
+ <20190626122724.13313-18-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0732987269=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111006-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190626122724.13313-18-hch@lst.de>
+Content-Language: en-US
+Sender: linux-kernel-owner@vger.kernel.org
+To: Christoph Hellwig <hch@lst.de>, Dan Williams <dan.j.williams@intel.com>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-mm@kvack.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0732987269==
-Content-Type: multipart/alternative; boundary="15616580691.02eA29C.20620"
-Content-Transfer-Encoding: 7bit
 
+On 2019-06-26 6:27 a.m., Christoph Hellwig wrote:
+> The functionality is identical to the one currently open coded in
+> p2pdma.c.
+> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
 
---15616580691.02eA29C.20620
-Date: Thu, 27 Jun 2019 17:54:29 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111006
+Also, for the P2PDMA changes in this series:
 
-Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Tested-by: Logan Gunthorpe <logang@deltatee.com>
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                URL|                            |https://trello.com/c/ESKBoR
-                   |                            |GN/215-codegen-use-off-chip
-                   |                            |-return-call-stack-where-th
-                   |                            |e-on-chip-one-isnt-enough
+I've ran this series through my simple P2PDMA tests.
 
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.=
+Logan
 
---15616580691.02eA29C.20620
-Date: Thu, 27 Jun 2019 17:54:29 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:karolherb=
-st&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.com&gt;">=
- <span class=3D"fn">Karol Herbst</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_ASSIGNED "
-   title=3D"ASSIGNED - Adding a uniform-dependent if-statement in shader re=
-nders a different image"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111006">bug 11100=
-6</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">URL</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>https://trello.com/c/ESKBoRGN/215-codegen-use-off-chip-retur=
-n-call-stack-where-the-on-chip-one-isnt-enough
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15616580691.02eA29C.20620--
-
---===============0732987269==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0732987269==--
+> ---
+>  drivers/pci/p2pdma.c | 57 ++++----------------------------------------
+>  1 file changed, 4 insertions(+), 53 deletions(-)
+> 
+> diff --git a/drivers/pci/p2pdma.c b/drivers/pci/p2pdma.c
+> index ebd8ce3bba2e..608f84df604a 100644
+> --- a/drivers/pci/p2pdma.c
+> +++ b/drivers/pci/p2pdma.c
+> @@ -24,12 +24,6 @@ struct pci_p2pdma {
+>  	bool p2pmem_published;
+>  };
+>  
+> -struct p2pdma_pagemap {
+> -	struct dev_pagemap pgmap;
+> -	struct percpu_ref ref;
+> -	struct completion ref_done;
+> -};
+> -
+>  static ssize_t size_show(struct device *dev, struct device_attribute *attr,
+>  			 char *buf)
+>  {
+> @@ -78,32 +72,6 @@ static const struct attribute_group p2pmem_group = {
+>  	.name = "p2pmem",
+>  };
+>  
+> -static struct p2pdma_pagemap *to_p2p_pgmap(struct percpu_ref *ref)
+> -{
+> -	return container_of(ref, struct p2pdma_pagemap, ref);
+> -}
+> -
+> -static void pci_p2pdma_percpu_release(struct percpu_ref *ref)
+> -{
+> -	struct p2pdma_pagemap *p2p_pgmap = to_p2p_pgmap(ref);
+> -
+> -	complete(&p2p_pgmap->ref_done);
+> -}
+> -
+> -static void pci_p2pdma_percpu_kill(struct dev_pagemap *pgmap)
+> -{
+> -	percpu_ref_kill(pgmap->ref);
+> -}
+> -
+> -static void pci_p2pdma_percpu_cleanup(struct dev_pagemap *pgmap)
+> -{
+> -	struct p2pdma_pagemap *p2p_pgmap =
+> -		container_of(pgmap, struct p2pdma_pagemap, pgmap);
+> -
+> -	wait_for_completion(&p2p_pgmap->ref_done);
+> -	percpu_ref_exit(&p2p_pgmap->ref);
+> -}
+> -
+>  static void pci_p2pdma_release(void *data)
+>  {
+>  	struct pci_dev *pdev = data;
+> @@ -153,11 +121,6 @@ static int pci_p2pdma_setup(struct pci_dev *pdev)
+>  	return error;
+>  }
+>  
+> -static const struct dev_pagemap_ops pci_p2pdma_pagemap_ops = {
+> -	.kill		= pci_p2pdma_percpu_kill,
+> -	.cleanup	= pci_p2pdma_percpu_cleanup,
+> -};
+> -
+>  /**
+>   * pci_p2pdma_add_resource - add memory for use as p2p memory
+>   * @pdev: the device to add the memory to
+> @@ -171,7 +134,6 @@ static const struct dev_pagemap_ops pci_p2pdma_pagemap_ops = {
+>  int pci_p2pdma_add_resource(struct pci_dev *pdev, int bar, size_t size,
+>  			    u64 offset)
+>  {
+> -	struct p2pdma_pagemap *p2p_pgmap;
+>  	struct dev_pagemap *pgmap;
+>  	void *addr;
+>  	int error;
+> @@ -194,26 +156,15 @@ int pci_p2pdma_add_resource(struct pci_dev *pdev, int bar, size_t size,
+>  			return error;
+>  	}
+>  
+> -	p2p_pgmap = devm_kzalloc(&pdev->dev, sizeof(*p2p_pgmap), GFP_KERNEL);
+> -	if (!p2p_pgmap)
+> +	pgmap = devm_kzalloc(&pdev->dev, sizeof(*pgmap), GFP_KERNEL);
+> +	if (!pgmap)
+>  		return -ENOMEM;
+> -
+> -	init_completion(&p2p_pgmap->ref_done);
+> -	error = percpu_ref_init(&p2p_pgmap->ref,
+> -			pci_p2pdma_percpu_release, 0, GFP_KERNEL);
+> -	if (error)
+> -		goto pgmap_free;
+> -
+> -	pgmap = &p2p_pgmap->pgmap;
+> -
+>  	pgmap->res.start = pci_resource_start(pdev, bar) + offset;
+>  	pgmap->res.end = pgmap->res.start + size - 1;
+>  	pgmap->res.flags = pci_resource_flags(pdev, bar);
+> -	pgmap->ref = &p2p_pgmap->ref;
+>  	pgmap->type = MEMORY_DEVICE_PCI_P2PDMA;
+>  	pgmap->pci_p2pdma_bus_offset = pci_bus_address(pdev, bar) -
+>  		pci_resource_start(pdev, bar);
+> -	pgmap->ops = &pci_p2pdma_pagemap_ops;
+>  
+>  	addr = devm_memremap_pages(&pdev->dev, pgmap);
+>  	if (IS_ERR(addr)) {
+> @@ -224,7 +175,7 @@ int pci_p2pdma_add_resource(struct pci_dev *pdev, int bar, size_t size,
+>  	error = gen_pool_add_owner(pdev->p2pdma->pool, (unsigned long)addr,
+>  			pci_bus_address(pdev, bar) + offset,
+>  			resource_size(&pgmap->res), dev_to_node(&pdev->dev),
+> -			&p2p_pgmap->ref);
+> +			pgmap->ref);
+>  	if (error)
+>  		goto pages_free;
+>  
+> @@ -236,7 +187,7 @@ int pci_p2pdma_add_resource(struct pci_dev *pdev, int bar, size_t size,
+>  pages_free:
+>  	devm_memunmap_pages(&pdev->dev, pgmap);
+>  pgmap_free:
+> -	devm_kfree(&pdev->dev, p2p_pgmap);
+> +	devm_kfree(&pdev->dev, pgmap);
+>  	return error;
+>  }
+>  EXPORT_SYMBOL_GPL(pci_p2pdma_add_resource);
+> 
