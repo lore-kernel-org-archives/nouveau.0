@@ -1,84 +1,81 @@
-From: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-Subject: Re: [PATCH 16/25] device-dax: use the dev_pagemap
- internal refcount
-Date: Fri, 28 Jun 2019 18:29:29 +0000
-Message-ID: <20190628182922.GA15242@mellanox.com>
-References: <20190626122724.13313-1-hch@lst.de>
- <20190626122724.13313-17-hch@lst.de> <20190628153827.GA5373@mellanox.com>
- <CAPcyv4joSiFMeYq=D08C-QZSkHz0kRpvRfseNQWrN34Rrm+S7g@mail.gmail.com>
- <20190628170219.GA3608@mellanox.com>
- <CAPcyv4ja9DVL2zuxuSup8x3VOT_dKAOS8uBQweE9R81vnYRNWg@mail.gmail.com>
- <CAPcyv4iWTe=vOXUqkr_CguFrFRqgA7hJSt4J0B3RpuP-Okz0Vw@mail.gmail.com>
+From: Dan Williams <dan.j.williams@intel.com>
+Subject: Re: [PATCH 16/25] device-dax: use the dev_pagemap internal refcount
+Date: Fri, 28 Jun 2019 11:44:35 -0700
+Message-ID: <CAPcyv4g+zk9pnLcj6Xvwh-svKM+w4hxfYGikcmuoBAFGCr-HAw@mail.gmail.com>
+References: <20190626122724.13313-1-hch@lst.de> <20190626122724.13313-17-hch@lst.de>
+ <20190628153827.GA5373@mellanox.com> <CAPcyv4joSiFMeYq=D08C-QZSkHz0kRpvRfseNQWrN34Rrm+S7g@mail.gmail.com>
+ <20190628170219.GA3608@mellanox.com> <CAPcyv4ja9DVL2zuxuSup8x3VOT_dKAOS8uBQweE9R81vnYRNWg@mail.gmail.com>
+ <CAPcyv4iWTe=vOXUqkr_CguFrFRqgA7hJSt4J0B3RpuP-Okz0Vw@mail.gmail.com> <20190628182922.GA15242@mellanox.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAPcyv4iWTe=vOXUqkr_CguFrFRqgA7hJSt4J0B3RpuP-Okz0Vw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Content-Language: en-US
-Content-ID: <14F6B0C5B925FB4B8ECAEFC2C0B435B0-wNKe6lTLrGecE4WynfumptQqCkab/8FMAL8bYrjMMd8@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190628182922.GA15242@mellanox.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Jason Gunthorpe <jgg@mellanox.com>
+Cc: Christoph Hellwig <hch@lst.de>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "linux-nvdimm@lists.01.org" <linux-nvdimm@lists.01.org>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Andrew Morton <akpm@linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBKdW4gMjgsIDIwMTkgYXQgMTA6MTA6MTJBTSAtMDcwMCwgRGFuIFdpbGxpYW1zIHdy
-b3RlOgo+IE9uIEZyaSwgSnVuIDI4LCAyMDE5IGF0IDEwOjA4IEFNIERhbiBXaWxsaWFtcyA8ZGFu
-Lmoud2lsbGlhbXNAaW50ZWwuY29tPiB3cm90ZToKPiA+Cj4gPiBPbiBGcmksIEp1biAyOCwgMjAx
-OSBhdCAxMDowMiBBTSBKYXNvbiBHdW50aG9ycGUgPGpnZ0BtZWxsYW5veC5jb20+IHdyb3RlOgo+
-ID4gPgo+ID4gPiBPbiBGcmksIEp1biAyOCwgMjAxOSBhdCAwOToyNzo0NEFNIC0wNzAwLCBEYW4g
-V2lsbGlhbXMgd3JvdGU6Cj4gPiA+ID4gT24gRnJpLCBKdW4gMjgsIDIwMTkgYXQgODozOSBBTSBK
-YXNvbiBHdW50aG9ycGUgPGpnZ0BtZWxsYW5veC5jb20+IHdyb3RlOgo+ID4gPiA+ID4KPiA+ID4g
-PiA+IE9uIFdlZCwgSnVuIDI2LCAyMDE5IGF0IDAyOjI3OjE1UE0gKzAyMDAsIENocmlzdG9waCBI
-ZWxsd2lnIHdyb3RlOgo+ID4gPiA+ID4gPiBUaGUgZnVuY3Rpb25hbGl0eSBpcyBpZGVudGljYWwg
-dG8gdGhlIG9uZSBjdXJyZW50bHkgb3BlbiBjb2RlZCBpbgo+ID4gPiA+ID4gPiBkZXZpY2UtZGF4
-Lgo+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBDaHJpc3RvcGggSGVsbHdp
-ZyA8aGNoQGxzdC5kZT4KPiA+ID4gPiA+ID4gUmV2aWV3ZWQtYnk6IElyYSBXZWlueSA8aXJhLndl
-aW55QGludGVsLmNvbT4KPiA+ID4gPiA+ID4gIGRyaXZlcnMvZGF4L2RheC1wcml2YXRlLmggfCAg
-NCAtLS0tCj4gPiA+ID4gPiA+ICBkcml2ZXJzL2RheC9kZXZpY2UuYyAgICAgIHwgNDMgLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4gPiA+ID4gPiA+ICAyIGZpbGVzIGNo
-YW5nZWQsIDQ3IGRlbGV0aW9ucygtKQo+ID4gPiA+ID4KPiA+ID4gPiA+IERhblc6IEkgdGhpbmsg
-dGhpcyBzZXJpZXMgaGFzIHJlYWNoZWQgZW5vdWdoIHJldmlldywgZGlkIHlvdSB3YW50Cj4gPiA+
-ID4gPiB0byBhY2svdGVzdCBhbnkgZnVydGhlcj8KPiA+ID4gPiA+Cj4gPiA+ID4gPiBUaGlzIG5l
-ZWRzIHRvIGxhbmQgaW4gaG1tLmdpdCBzb29uIHRvIG1ha2UgdGhlIG1lcmdlIHdpbmRvdy4KPiA+
-ID4gPgo+ID4gPiA+IEkgd2FzIGF3YWl0aW5nIGEgZGVjaXNpb24gYWJvdXQgcmVzb2x2aW5nIHRo
-ZSBjb2xsaXNpb24gd2l0aCBJcmEncwo+ID4gPiA+IHBhdGNoIGJlZm9yZSB0ZXN0aW5nIHRoZSBm
-aW5hbCByZXN1bHQgYWdhaW4gWzFdLiBZb3UgY2FuIGdvIGFoZWFkIGFuZAo+ID4gPiA+IGFkZCBt
-eSByZXZpZXdlZC1ieSBmb3IgdGhlIHNlcmllcywgYnV0IG15IHRlc3RlZC1ieSBzaG91bGQgYmUg
-b24gdGhlCj4gPiA+ID4gZmluYWwgc3RhdGUgb2YgdGhlIHNlcmllcy4KPiA+ID4KPiA+ID4gVGhl
-IGNvbmZsaWN0IGxvb2tzIE9LIHRvIG1lLCBJIHRoaW5rIHdlIGNhbiBsZXQgQW5kcmV3IGFuZCBM
-aW51cwo+ID4gPiByZXNvbHZlIGl0Lgo+ID4KPiA+IEFuZHJldydzIHRyZWUgZWZmZWN0aXZlbHkg
-YWx3YXlzIHJlYmFzZXMgc2luY2UgaXQncyBhIHF1aWx0IHNlcmllcy4KPiA+IEknZCByZWNvbW1l
-bmQgcHVsbGluZyBJcmEncyBwYXRjaCBvdXQgb2YgLW1tIGFuZCBhcHBseWluZyBpdCB3aXRoIHRo
-ZQo+ID4gcmVzdCBvZiBobW0gcmV3b3Jrcy4gQW55IG90aGVyIGdpdCB0cmVlIEknZCBhZ3JlZSB3
-aXRoIGp1c3QgZG9pbmcgdGhlCj4gPiBsYXRlIGNvbmZsaWN0IHJlc29sdXRpb24sIGJ1dCBJJ20g
-bm90IGNsZWFyIG9uIHdoYXQncyB0aGUgYmVzdAo+ID4gcHJhY3RpY2Ugd2hlbiBjb25mbGljdGlu
-ZyB3aXRoIC1tbS4KCldoYXQgaGFwcGVucyBkZXBlbmRzIG9uIHRpbWluZyBhcyB0aGluZ3MgYXJy
-aXZlIHRvIExpbnVzLiBJIHByb21pc2VkCnRvIHNlbmQgaG1tLmdpdCBlYXJseSwgc28gSSB1bmRl
-cnN0YW5kIHRoYXQgQW5kcmV3IHdpbGwgcXVpbHQgcmViYXNlCmhpcyB0cmVlIHRvIExpbnVzJ3Mg
-YW5kIGZpeCB0aGUgY29uZmxpY3QgaW4gSXJhJ3MgcGF0Y2ggYmVmb3JlIGhlCnNlbmRzIGl0LgoK
-PiBSZWdhcmRsZXNzIHRoZSBwYXRjaCBpcyBidWdneS4gSWYgeW91IHdhbnQgdG8gZG8gdGhlIGNv
-bmZsaWN0Cj4gcmVzb2x1dGlvbiBpdCBzaG91bGQgYmUgYmVjYXVzZSB0aGUgREVWSUNFX1BVQkxJ
-QyByZW1vdmFsIGVmZmVjdGl2ZWx5Cj4gZG9lcyB0aGUgc2FtZSBmaXggb3RoZXJ3aXNlIHdlJ3Jl
-IGtub3dpbmdseSBsZWF2aW5nIGEgYnJva2VuIHBvaW50IGluCj4gdGhlIGhpc3RvcnkuCgpJJ20g
-bm90IHN1cmUgSSB1bmRlcnN0YW5kIHlvdXIgY29uY2VybiwgaXMgdGhlcmUgc29tZXRoaW5nIHdy
-b25nIHdpdGgKQ0gncyBzZXJpZXMgYXMgaXQgc3RhbmRzPyBobW0gaXMgYSBub24tcmViYXNpbmcg
-Z2l0IHRyZWUsIHNvIGFzIGxvbmcKYXMgdGhlIHNlcmllcyBpcyBjb3JyZWN0ICp3aGVuIEkgYXBw
-bHkgaXQqIHRoZXJlIGlzIG5vIGJyb2tlbiBoaXN0b3J5LgoKSSBhc3N1bWVkIHRoZSBjb25mbGlj
-dCByZXNvbHV0aW9uIGZvciBJcmEncyBwYXRjaCB3YXMgdG8gc2ltcGx5IHRha2UKdGhlIGRlbGV0
-aW9uIG9mIHRoZSBpZiBibG9jayBmcm9tIENIJ3Mgc2VyaWVzIC0gcmlnaHQ/CgpJZiB3ZSBkbyBu
-ZWVkIHRvIHRha2UgSXJhJ3MgcGF0Y2ggaW50byBobW0uZ2l0IGl0IHdpbGwgZ28gYWZ0ZXIgQ0gn
-cwpzZXJpZXMgKGFuZCBJcmEgd2lsbCBoYXZlIHRvIHJlYmFzZS9yZXBvc3QgaXQpLCBzbyBJIHRo
-aW5rIHRoZXJlIGlzCm5vdGhpbmcgdG8gZG8gYXQgdGhpcyBtb21lbnQgLSB1bmxlc3MgeW91IGFy
-ZSBzYXlpbmcgdGhlcmUgaXMgYQpwcm9ibGVtIHdpdGggdGhlIHNlcmllcyBpbiBDSCdzIGdpdCB0
-cmVlPwoKUmVnYXJkcywKSmFzb24KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1
+On Fri, Jun 28, 2019 at 11:29 AM Jason Gunthorpe <jgg@mellanox.com> wrote:
+>
+> On Fri, Jun 28, 2019 at 10:10:12AM -0700, Dan Williams wrote:
+> > On Fri, Jun 28, 2019 at 10:08 AM Dan Williams <dan.j.williams@intel.com> wrote:
+> > >
+> > > On Fri, Jun 28, 2019 at 10:02 AM Jason Gunthorpe <jgg@mellanox.com> wrote:
+> > > >
+> > > > On Fri, Jun 28, 2019 at 09:27:44AM -0700, Dan Williams wrote:
+> > > > > On Fri, Jun 28, 2019 at 8:39 AM Jason Gunthorpe <jgg@mellanox.com> wrote:
+> > > > > >
+> > > > > > On Wed, Jun 26, 2019 at 02:27:15PM +0200, Christoph Hellwig wrote:
+> > > > > > > The functionality is identical to the one currently open coded in
+> > > > > > > device-dax.
+> > > > > > >
+> > > > > > > Signed-off-by: Christoph Hellwig <hch@lst.de>
+> > > > > > > Reviewed-by: Ira Weiny <ira.weiny@intel.com>
+> > > > > > >  drivers/dax/dax-private.h |  4 ----
+> > > > > > >  drivers/dax/device.c      | 43 ---------------------------------------
+> > > > > > >  2 files changed, 47 deletions(-)
+> > > > > >
+> > > > > > DanW: I think this series has reached enough review, did you want
+> > > > > > to ack/test any further?
+> > > > > >
+> > > > > > This needs to land in hmm.git soon to make the merge window.
+> > > > >
+> > > > > I was awaiting a decision about resolving the collision with Ira's
+> > > > > patch before testing the final result again [1]. You can go ahead and
+> > > > > add my reviewed-by for the series, but my tested-by should be on the
+> > > > > final state of the series.
+> > > >
+> > > > The conflict looks OK to me, I think we can let Andrew and Linus
+> > > > resolve it.
+> > >
+> > > Andrew's tree effectively always rebases since it's a quilt series.
+> > > I'd recommend pulling Ira's patch out of -mm and applying it with the
+> > > rest of hmm reworks. Any other git tree I'd agree with just doing the
+> > > late conflict resolution, but I'm not clear on what's the best
+> > > practice when conflicting with -mm.
+>
+> What happens depends on timing as things arrive to Linus. I promised
+> to send hmm.git early, so I understand that Andrew will quilt rebase
+> his tree to Linus's and fix the conflict in Ira's patch before he
+> sends it.
+>
+> > Regardless the patch is buggy. If you want to do the conflict
+> > resolution it should be because the DEVICE_PUBLIC removal effectively
+> > does the same fix otherwise we're knowingly leaving a broken point in
+> > the history.
+>
+> I'm not sure I understand your concern, is there something wrong with
+> CH's series as it stands? hmm is a non-rebasing git tree, so as long
+> as the series is correct *when I apply it* there is no broken history.
+>
+> I assumed the conflict resolution for Ira's patch was to simply take
+> the deletion of the if block from CH's series - right?
+>
+> If we do need to take Ira's patch into hmm.git it will go after CH's
+> series (and Ira will have to rebase/repost it), so I think there is
+> nothing to do at this moment - unless you are saying there is a
+> problem with the series in CH's git tree?
+
+There is a problem with the series in CH's tree. It removes the
+->page_free() callback from the release_pages() path because it goes
+too far and removes the put_devmap_managed_page() call.
