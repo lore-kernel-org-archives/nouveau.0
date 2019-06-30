@@ -1,56 +1,73 @@
-From: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 16/25] device-dax: use the dev_pagemap internal refcount
-Date: Fri, 28 Jun 2019 12:14:44 -0700
-Message-ID: <CAPcyv4h90DAVHbZ4bgvJwpfB8wr2K28oEes6HcdQOpf02+NL=g@mail.gmail.com>
-References: <20190626122724.13313-17-hch@lst.de>
- <20190628153827.GA5373@mellanox.com>
- <CAPcyv4joSiFMeYq=D08C-QZSkHz0kRpvRfseNQWrN34Rrm+S7g@mail.gmail.com>
- <20190628170219.GA3608@mellanox.com>
- <CAPcyv4ja9DVL2zuxuSup8x3VOT_dKAOS8uBQweE9R81vnYRNWg@mail.gmail.com>
- <CAPcyv4iWTe=vOXUqkr_CguFrFRqgA7hJSt4J0B3RpuP-Okz0Vw@mail.gmail.com>
- <20190628182922.GA15242@mellanox.com>
- <CAPcyv4g+zk9pnLcj6Xvwh-svKM+w4hxfYGikcmuoBAFGCr-HAw@mail.gmail.com>
- <20190628185152.GA9117@lst.de>
- <CAPcyv4i+b6bKhSF2+z7Wcw4OUAvb1=m289u9QF8zPwLk402JVg@mail.gmail.com>
- <20190628190207.GA9317@lst.de>
+From: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Question on Conditional Rendering Maxwell/Pascal
+Date: Sun, 30 Jun 2019 18:54:57 -0400
+Message-ID: <CA+MSTo_HoKD2vxF68oJm6OpVf76Uy9shmB2itBucYv4CJj8VEg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-In-Reply-To: <20190628190207.GA9317-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
-List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
-Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
-Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Cc: "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1755129873=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Jun 28, 2019 at 12:02 PM Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org> wrote:
->
-> On Fri, Jun 28, 2019 at 11:59:19AM -0700, Dan Williams wrote:
-> > It's a bug that the call to put_devmap_managed_page() was gated by
-> > MEMORY_DEVICE_PUBLIC in release_pages(). That path is also applicable
-> > to MEMORY_DEVICE_FSDAX because it needs to trigger the ->page_free()
-> > callback to wake up wait_on_var() via fsdax_pagefree().
-> >
-> > So I guess you could argue that the MEMORY_DEVICE_PUBLIC removal patch
-> > left the original bug in place. In that sense we're no worse off, but
-> > since we know about the bug, the fix and the patches have not been
-> > applied yet, why not fix it now?
->
-> The fix it now would simply be to apply Ira original patch now, but
-> given that we are at -rc6 is this really a good time?  And if we don't
-> apply it now based on the quilt based -mm worflow it just seems a lot
-> easier to apply it after my series.  Unless we want to include it in
-> the series, in which case I can do a quick rebase, we'd just need to
-> make sure Andrew pulls it from -mm.
+--===============1755129873==
+Content-Type: multipart/alternative; boundary="0000000000002c0ed5058c9267db"
 
-I believe -mm auto drops patches when they appear in the -next
-baseline. So it should "just work" to pull it into the series and send
-it along for -next inclusion.
+--0000000000002c0ed5058c9267db
+Content-Type: text/plain; charset="UTF-8"
+
+So we are currently doing tests and complying with them in our Emulator.
+Currently the conditional rendering test does not pass (no wonder we not
+even implement it). I've been looking at the current documentation
+https://github.com/envytools/envytools/blob/master/rnndb/graph/gf100_3d.xml#L796
+So
+far I don't understand how the cond address is used and to what it's
+compared.
+https://github.com/envytools/envytools/blob/0d91b8bcef3ceb47ff0b114025d301edb790d472/rnndb/g80_defs.xml#L61
+
+It says it uses 2 queries, how do I know which query it's talking off and
+what it's the comparison that should be done.
+
+Also, does failing conditional rendering makes registers not write into the
+engine or just drawcalls/claers are ignored?
+
+--0000000000002c0ed5058c9267db
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">So we are currently doing tests and complying with them in=
+ our Emulator. Currently the conditional rendering test does not pass (no w=
+onder we not even implement it). I&#39;ve been looking at the current docum=
+entation=C2=A0<a href=3D"https://github.com/envytools/envytools/blob/master=
+/rnndb/graph/gf100_3d.xml#L796">https://github.com/envytools/envytools/blob=
+/master/rnndb/graph/gf100_3d.xml#L796</a>=C2=A0So far I don&#39;t understan=
+d how the cond address is used and to what it&#39;s compared.=C2=A0<a href=
+=3D"https://github.com/envytools/envytools/blob/0d91b8bcef3ceb47ff0b114025d=
+301edb790d472/rnndb/g80_defs.xml#L61">https://github.com/envytools/envytool=
+s/blob/0d91b8bcef3ceb47ff0b114025d301edb790d472/rnndb/g80_defs.xml#L61</a><=
+div><br></div><div>It says it uses 2 queries, how do I know which query it&=
+#39;s talking off and what it&#39;s the comparison that should be done.</di=
+v><div><br></div><div>Also, does failing conditional rendering makes regist=
+ers not write into the engine or just drawcalls/claers are ignored?</div></=
+div>
+
+--0000000000002c0ed5058c9267db--
+
+--===============1755129873==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1755129873==--
