@@ -1,11 +1,14 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: dev_pagemap related cleanups v4
-Date: Mon,  1 Jul 2019 08:19:58 +0200
-Message-ID: <20190701062020.19239-1-hch@lst.de>
+Subject: [PATCH 01/22] mm/hmm.c: suppress compilation warnings when
+ CONFIG_HUGETLB_PAGE is not set
+Date: Mon,  1 Jul 2019 08:19:59 +0200
+Message-ID: <20190701062020.19239-2-hch@lst.de>
+References: <20190701062020.19239-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+In-Reply-To: <20190701062020.19239-1-hch-jcswGhMUV9g@public.gmane.org>
 List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
  <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
@@ -16,34 +19,63 @@ List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
 Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
 Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
 To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SGkgRGFuLCBKw6lyw7RtZSBhbmQgSmFzb24sCgpiZWxvdyBpcyBhIHNlcmllcyB0aGF0IGNsZWFu
-cyB1cCB0aGUgZGV2X3BhZ2VtYXAgaW50ZXJmYWNlIHNvIHRoYXQKaXQgaXMgbW9yZSBlYXNpbHkg
-dXNhYmxlLCB3aGljaCByZW1vdmVzIHRoZSBuZWVkIHRvIHdyYXAgaXQgaW4gaG1tCmFuZCB0aHVz
-IGFsbG93aW5nIHRvIGtpbGwgYSBsb3Qgb2YgY29kZQoKTm90ZTogdGhpcyBzZXJpZXMgaXMgb24g
-dG9wIG9mIExpbnV4IDUuMi1yYzYgYW5kIGhhcyBzb21lIG1pbm9yCmNvbmZsaWN0cyB3aXRoIHRo
-ZSBobW0gdHJlZSB0aGF0IGFyZSBlYXN5IHRvIHJlc29sdmUuCgpEaWZmc3RhdCBzdW1tYXJ5OgoK
-IDM0IGZpbGVzIGNoYW5nZWQsIDM3OSBpbnNlcnRpb25zKCspLCAxMDE2IGRlbGV0aW9ucygtKQoK
-R2l0IHRyZWU6CgogICAgZ2l0Oi8vZ2l0LmluZnJhZGVhZC5vcmcvdXNlcnMvaGNoL21pc2MuZ2l0
-IGhtbS1kZXZtZW0tY2xlYW51cC40CgpHaXR3ZWI6CgogICAgaHR0cDovL2dpdC5pbmZyYWRlYWQu
-b3JnL3VzZXJzL2hjaC9taXNjLmdpdC9zaG9ydGxvZy9yZWZzL2hlYWRzL2htbS1kZXZtZW0tY2xl
-YW51cC40CgoKQ2hhbmdlcyBzaW5jZSB2MzoKIC0gcHVsbCBpbiAibW0vc3dhcDogRml4IHJlbGVh
-c2VfcGFnZXMoKSB3aGVuIHJlbGVhc2luZyBkZXZtYXAgcGFnZXMiIGFuZAogICByZWJhc2UgdGhl
-IG90aGVyIHBhdGNoZXMgb24gdG9wIG9mIHRoYXQKIC0gZm9sZCB0aGUgaG1tX2Rldm1lbV9hZGRf
-cmVzb3VyY2UgaW50byB0aGUgREVWSUNFX1BVQkxJQyBtZW1vcnkgcmVtb3ZhbAogICBwYXRjaAog
-LSByZW1vdmUgX3ZtX25vcm1hbF9wYWdlIGFzIGl0IGlzbid0IG5lZWRlZCB3aXRob3V0IERFVklD
-RV9QVUJMSUMgbWVtb3J5CiAtIHBpY2sgdXAgdmFyaW91cyBBQ0tzCgpDaGFuZ2VzIHNpbmNlIHYy
-OgogLSBmaXggbnZkaW1tIGt1bml0IGJ1aWxkCiAtIGFkZCBhIG5ldyBtZW1vcnkgdHlwZSBmb3Ig
-ZGV2aWNlIGRheAogLSBmaXggYSBmZXcgaXNzdWVzIGluIGludGVybWVkaWF0ZSBwYXRjaGVzIHRo
-YXQgZGlkbid0IHNob3cgdXAgaW4gdGhlIGVuZAogICByZXN1bHQKIC0gaW5jb3Jwb3JhdGUgZmVl
-ZGJhY2sgZnJvbSBNaWNoYWwgSG9ja28sIGluY2x1ZGluZyBraWxsaW5nIG9mCiAgIHRoZSBERVZJ
-Q0VfUFVCTElDIG1lbW9yeSB0eXBlIGVudGlyZWx5CgpDaGFuZ2VzIHNpbmNlIHYxOgogLSByZWJh
-c2UKIC0gYWxzbyBzd2l0Y2ggcDJwZG1hIHRvIHRoZSBpbnRlcm5hbCByZWZjb3VudAogLSBhZGQg
-dHlwZSBjaGVja2luZyBmb3IgcGdtYXAtPnR5cGUKIC0gcmVuYW1lIHRoZSBtaWdyYXRlIG1ldGhv
-ZCB0byBtaWdyYXRlX3RvX3JhbQogLSBjbGVhbnVwIHRoZSBhbHRtYXBfdmFsaWQgZmxhZwogLSB2
-YXJpb3VzIHRpZGJpdHMgZnJvbSB0aGUgcmV2aWV3cwpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpMaW51eC1udmRpbW0gbWFpbGluZyBsaXN0CkxpbnV4LW52
-ZGltbUBsaXN0cy4wMS5vcmcKaHR0cHM6Ly9saXN0cy4wMS5vcmcvbWFpbG1hbi9saXN0aW5mby9s
-aW51eC1udmRpbW0K
+From: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+
+gcc reports that several variables are defined but not used.
+
+For the first hunk CONFIG_HUGETLB_PAGE the entire if block is already
+protected by pud_huge() which is forced to 0.  None of the stuff under the
+ifdef causes compilation problems as it is already stubbed out in the
+header files.
+
+For the second hunk the dummy huge_page_shift macro doesn't touch the
+argument, so just inline the argument.
+
+Link: http://lkml.kernel.org/r/20190522195151.GA23955-uk2M96/98Pc@public.gmane.org
+Signed-off-by: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Reviewed-by: Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+Reviewed-by: Ira Weiny <ira.weiny-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Signed-off-by: Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+---
+ mm/hmm.c | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
+
+diff --git a/mm/hmm.c b/mm/hmm.c
+index c5d840e34b28..c62ae414a3a2 100644
+--- a/mm/hmm.c
++++ b/mm/hmm.c
+@@ -788,7 +788,6 @@ static int hmm_vma_walk_pud(pud_t *pudp,
+ 			return hmm_vma_walk_hole_(addr, end, fault,
+ 						write_fault, walk);
+ 
+-#ifdef CONFIG_HUGETLB_PAGE
+ 		pfn = pud_pfn(pud) + ((addr & ~PUD_MASK) >> PAGE_SHIFT);
+ 		for (i = 0; i < npages; ++i, ++pfn) {
+ 			hmm_vma_walk->pgmap = get_dev_pagemap(pfn,
+@@ -804,9 +803,6 @@ static int hmm_vma_walk_pud(pud_t *pudp,
+ 		}
+ 		hmm_vma_walk->last = end;
+ 		return 0;
+-#else
+-		return -EINVAL;
+-#endif
+ 	}
+ 
+ 	split_huge_pud(walk->vma, pudp, addr);
+@@ -1015,9 +1011,8 @@ long hmm_range_snapshot(struct hmm_range *range)
+ 			return -EFAULT;
+ 
+ 		if (is_vm_hugetlb_page(vma)) {
+-			struct hstate *h = hstate_vma(vma);
+-
+-			if (huge_page_shift(h) != range->page_shift &&
++			if (huge_page_shift(hstate_vma(vma)) !=
++				    range->page_shift &&
+ 			    range->page_shift != PAGE_SHIFT)
+ 				return -EINVAL;
+ 		} else {
+-- 
+2.20.1
