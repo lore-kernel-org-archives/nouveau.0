@@ -1,10 +1,13 @@
-From: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Question on Conditional Rendering Maxwell/Pascal
-Date: Sun, 30 Jun 2019 18:54:57 -0400
-Message-ID: <CA+MSTo_HoKD2vxF68oJm6OpVf76Uy9shmB2itBucYv4CJj8VEg@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Question on Conditional Rendering Maxwell/Pascal
+Date: Sun, 30 Jun 2019 20:56:30 -0400
+Message-ID: <CAKb7Uvg3=zMvZZ1tS0ry_mhtNBLu7omSvmhoYgqh3KjzUsxtdg@mail.gmail.com>
+References: <CA+MSTo_HoKD2vxF68oJm6OpVf76Uy9shmB2itBucYv4CJj8VEg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1755129873=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CA+MSTo_HoKD2vxF68oJm6OpVf76Uy9shmB2itBucYv4CJj8VEg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -14,60 +17,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1755129873==
-Content-Type: multipart/alternative; boundary="0000000000002c0ed5058c9267db"
-
---0000000000002c0ed5058c9267db
-Content-Type: text/plain; charset="UTF-8"
-
-So we are currently doing tests and complying with them in our Emulator.
-Currently the conditional rendering test does not pass (no wonder we not
-even implement it). I've been looking at the current documentation
-https://github.com/envytools/envytools/blob/master/rnndb/graph/gf100_3d.xml#L796
-So
-far I don't understand how the cond address is used and to what it's
-compared.
-https://github.com/envytools/envytools/blob/0d91b8bcef3ceb47ff0b114025d301edb790d472/rnndb/g80_defs.xml#L61
-
-It says it uses 2 queries, how do I know which query it's talking off and
-what it's the comparison that should be done.
-
-Also, does failing conditional rendering makes registers not write into the
-engine or just drawcalls/claers are ignored?
-
---0000000000002c0ed5058c9267db
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">So we are currently doing tests and complying with them in=
- our Emulator. Currently the conditional rendering test does not pass (no w=
-onder we not even implement it). I&#39;ve been looking at the current docum=
-entation=C2=A0<a href=3D"https://github.com/envytools/envytools/blob/master=
-/rnndb/graph/gf100_3d.xml#L796">https://github.com/envytools/envytools/blob=
-/master/rnndb/graph/gf100_3d.xml#L796</a>=C2=A0So far I don&#39;t understan=
-d how the cond address is used and to what it&#39;s compared.=C2=A0<a href=
-=3D"https://github.com/envytools/envytools/blob/0d91b8bcef3ceb47ff0b114025d=
-301edb790d472/rnndb/g80_defs.xml#L61">https://github.com/envytools/envytool=
-s/blob/0d91b8bcef3ceb47ff0b114025d301edb790d472/rnndb/g80_defs.xml#L61</a><=
-div><br></div><div>It says it uses 2 queries, how do I know which query it&=
-#39;s talking off and what it&#39;s the comparison that should be done.</di=
-v><div><br></div><div>Also, does failing conditional rendering makes regist=
-ers not write into the engine or just drawcalls/claers are ignored?</div></=
-div>
-
---0000000000002c0ed5058c9267db--
-
---===============1755129873==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1755129873==--
+WWVhaCwgdGhpcyBpcyBhIGxpdHRsZSBjb25mdXNpbmcuIEl0J3MgaW1wb3J0YW50IHRvIHJlbWVt
+YmVyIGhvdwpxdWVyaWVzIHdvcmsgaW4gdGhlIGZpcnN0IHBsYWNlLCB3aGljaCBpbmZvcm1zIGhv
+dyBjb25kaXRpb25hbApyZW5kZXJpbmcgd29ya3MuCgpUaGVyZSBhcmUgdHdvIGtpbmQgb2YgcXVl
+cmllcyAoUVVFUllfQUREUkVTU19ISUdIICYgY28pIC0tICJzaG9ydCIgYW5kCiJsb25nIi4gQSAi
+c2hvcnQiIHF1ZXJ5IHZhbHVlIGlzIGEgc2luZ2xlIDMyLWJpdCB2YWx1ZSwgcHJlc3VtYWJseSB0
+aGUKdmFsdWUgb2YgdGhlIHRoaW5nIGJlaW5nIHF1ZXJpZWQuIE5vdCBhbGwgcXVlcmllcyBhcmUg
+YXZhaWxhYmxlIGluCnRoaXMgbW9kZSwgYnV0IHNvbWUgYXJlLiBUaGlzIG1vZGUgaXMgdXNlbGVz
+cyBmb3IgY29uZGl0aW9uYWwKcmVuZGVyaW5nLiBUaGUgbG9uZyBtb2RlIGlzIGEgYSB2YWx1ZSwg
+YW5kLCBpaXJjLCBhIHRpbWVzdGFtcCB2YWx1ZS4KVGhlIHZhbHVlIGl0c2VsZiBjYW4gYmUgMngg
+MzItYml0IHZhbHVlcyB0b28sIHdoaWxlIHRoZSB0aW1lc3RhbXAgaXMKYmFzaWNhbGx5IHVzZWxl
+c3MgKGV4Y2VwdCBmb3IgdGhlICJ0aW1lc3RhbXAiIHF1ZXJ5KS4KCk5vdywgY29uZGl0aW9uYWwg
+cmVuZGVyaW5nIGlzIGJhc2ljYWxseSBvbmx5IHVzZWQgd2l0aApHTF9TQU1QTEVTX1BBU1NFRCBh
+bmQgR0xfQU5ZX1NBTVBMRVNfUEFTU0VEIChhbmQKc3RyZWFtLW92ZXJmbG93LXByZWRpY2F0ZSku
+IEZvciBib3RoIG9mIHRoZXNlLCB5b3UgZG8gYSBsb25nLW1vZGUKcXVlcnksIHdoaWNoIGR1bXBz
+IHRoZSBmb2xsb3dpbmcgMzItYml0IHZhbHVlcyBpbnRvIHRoZSAxMjgtYml0CnJlY29yZDoKCnNl
+cW5vIChRVUVSWV9BRERSRVNTX1NFUVVFTkNFKSwgY291bnQsIHRzbG8sIHRzaGkKCkNvbmRpdGlv
+bmFsIHJlbmRlcmluZyBleHBlY3RzIGEgcGFpciBvZiBzdWNoIDEyOC1iaXQgcmVjb3JkcyB0byBm
+b2xsb3cKb25lIGFub3RoZXIsIGFuZCwgSSBiZWxpZXZlLCBwZXJmb3JtcyB0aGUgaW5kaWNhdGVk
+IG9wZXJhdGlvbiBvbiB0aGUKZmlyc3QgNjQtYml0IHZhbHVlLiBXZSBwcmUtaW5pdGlhbGl6ZSB0
+aGUgcGFpciBvZiBzdWNoIHZhbHVlcyBoZXJlOgoKaHR0cHM6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9y
+Zy9tZXNhL21lc2EvdHJlZS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3F1
+ZXJ5X2h3LmMjbjE1MQoKICAgICAgaHEtPmRhdGFbMF0gPSBocS0+c2VxdWVuY2U7IC8qIGluaXRp
+YWxpemUgc2VxdWVuY2UgKi8KICAgICAgaHEtPmRhdGFbMV0gPSAxOyAvKiBpbml0aWFsIHJlbmRl
+ciBjb25kaXRpb24gPSB0cnVlICovCiAgICAgIGhxLT5kYXRhWzRdID0gaHEtPnNlcXVlbmNlICsg
+MTsgLyogZm9yIGNvbXBhcmlzb24gQ09ORF9NT0RFICovCiAgICAgIGhxLT5kYXRhWzVdID0gMDsK
+CkFuZCB3ZSBtYWtlIHN1cmUgdGhhdCB0aGUgRW5kQ29uZGl0aW9uYWxSZW5kZXIgZGF0YSBxdWVy
+eSBlbmRzIHVwIGluCmRhdGFbMDozXSwgd2hpbGUgdGhlIEJlZ2luQ29uZGl0aW9uYWxSZW5kZXIg
+ZGF0YSBlbmRzIHVwIGluIGRhdGFbNDo3XS4KCkFuZCBzbyB0aGUgdmFsdWVzIFJFU19OT05fWkVS
+TyBtZWFucyAiZGF0YVswOjFdICE9IDAiLCBFUVVBTCBtZWFucwoiZGF0YVswOjFdID09IGRhdGFb
+NDo1XSIsIE5PVF9FUVVBTCAtLSBJJ2xsIGxldCB5b3UgZ3Vlc3MuIEFuZCBzbyB0aGUKcmVuZGVy
+IGNvbmRpdGlvbiBpbiB0aGUgY29tbW9uIGNhc2UgaXMgTk9UX0VRVUFMLCBzaW5jZSB3ZSBvbmx5
+IHdhbnQKdG8gcmVuZGVyIHdoZW4gdGhlcmUgaXMgYSBkaWZmZXJlbmNlIGluIHRoZSBjb3VudCBv
+ZiBzYW1wbGVzIHBhc3NlZC4KKFRoaXMgaXMgYSBjb250ZXh0LWxldmVsIGNvdW50ZXIsIHdob3Nl
+IGVuYWJsZW1lbnQgaXMgY29udHJvbGxlZCBieQpTQU1QTEVDTlRfRU5BQkxFIChhbmQgQ09VTlRF
+Ul9SRVNFVCB0byBjbGVhciBpdCkuCgpBcyBmb3Igd2hhdCBoYXBwZW5zIHdoZW4gdGhlcmUgaXMg
+bm8gZHJhdywgb25seSB0aGUgZHJhdyBpdHNlbGYgaXMKc2tpcHBlZC4gQWxsIHZhbHVlIHVwZGF0
+ZXMgc2hvdWxkIGhhcHBlbiBhcyBub3JtYWwuCgpIb3BlIHRoaXMgaGVscHMsCgogIC1pbGlhCgpP
+biBTdW4sIEp1biAzMCwgMjAxOSBhdCA2OjU1IFBNIEZlcm5hbmRvIFNhaG1rb3cgPGZzYWhta293
+MjdAZ21haWwuY29tPiB3cm90ZToKPgo+IFNvIHdlIGFyZSBjdXJyZW50bHkgZG9pbmcgdGVzdHMg
+YW5kIGNvbXBseWluZyB3aXRoIHRoZW0gaW4gb3VyIEVtdWxhdG9yLiBDdXJyZW50bHkgdGhlIGNv
+bmRpdGlvbmFsIHJlbmRlcmluZyB0ZXN0IGRvZXMgbm90IHBhc3MgKG5vIHdvbmRlciB3ZSBub3Qg
+ZXZlbiBpbXBsZW1lbnQgaXQpLiBJJ3ZlIGJlZW4gbG9va2luZyBhdCB0aGUgY3VycmVudCBkb2N1
+bWVudGF0aW9uIGh0dHBzOi8vZ2l0aHViLmNvbS9lbnZ5dG9vbHMvZW52eXRvb2xzL2Jsb2IvbWFz
+dGVyL3JubmRiL2dyYXBoL2dmMTAwXzNkLnhtbCNMNzk2IFNvIGZhciBJIGRvbid0IHVuZGVyc3Rh
+bmQgaG93IHRoZSBjb25kIGFkZHJlc3MgaXMgdXNlZCBhbmQgdG8gd2hhdCBpdCdzIGNvbXBhcmVk
+LiBodHRwczovL2dpdGh1Yi5jb20vZW52eXRvb2xzL2Vudnl0b29scy9ibG9iLzBkOTFiOGJjZWYz
+Y2ViNDdmZjBiMTE0MDI1ZDMwMWVkYjc5MGQ0NzIvcm5uZGIvZzgwX2RlZnMueG1sI0w2MQo+Cj4g
+SXQgc2F5cyBpdCB1c2VzIDIgcXVlcmllcywgaG93IGRvIEkga25vdyB3aGljaCBxdWVyeSBpdCdz
+IHRhbGtpbmcgb2ZmIGFuZCB3aGF0IGl0J3MgdGhlIGNvbXBhcmlzb24gdGhhdCBzaG91bGQgYmUg
+ZG9uZS4KPgo+IEFsc28sIGRvZXMgZmFpbGluZyBjb25kaXRpb25hbCByZW5kZXJpbmcgbWFrZXMg
+cmVnaXN0ZXJzIG5vdCB3cml0ZSBpbnRvIHRoZSBlbmdpbmUgb3IganVzdCBkcmF3Y2FsbHMvY2xh
+ZXJzIGFyZSBpZ25vcmVkPwo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
+b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
