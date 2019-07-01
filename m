@@ -1,62 +1,109 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 19/22] mm: always return EBUSY for invalid ranges in
- hmm_range_{fault, snapshot}
-Date: Mon,  1 Jul 2019 08:20:17 +0200
-Message-ID: <20190701062020.19239-20-hch@lst.de>
+Subject: [PATCH 20/22] mm: move hmm_vma_fault to nouveau
+Date: Mon,  1 Jul 2019 08:20:18 +0200
+Message-ID: <20190701062020.19239-21-hch@lst.de>
 References: <20190701062020.19239-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <20190701062020.19239-1-hch-jcswGhMUV9g@public.gmane.org>
-List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
-List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
-Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
-Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ira Weiny <ira.weiny-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-We should not have two different error codes for the same condition.  In
-addition this really complicates the code due to the special handling of
-EAGAIN that drops the mmap_sem due to the FAULT_FLAG_ALLOW_RETRY logic
-in the core vm.
-
-Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
----
- mm/hmm.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
-
-diff --git a/mm/hmm.c b/mm/hmm.c
-index c85ed7d4e2ce..d125df698e2b 100644
---- a/mm/hmm.c
-+++ b/mm/hmm.c
-@@ -974,7 +974,7 @@ long hmm_range_snapshot(struct hmm_range *range)
- 	do {
- 		/* If range is no longer valid force retry. */
- 		if (!range->valid)
--			return -EAGAIN;
-+			return -EBUSY;
- 
- 		vma = find_vma(hmm->mm, start);
- 		if (vma == NULL || (vma->vm_flags & device_vma))
-@@ -1069,10 +1069,8 @@ long hmm_range_fault(struct hmm_range *range, bool block)
- 
- 	do {
- 		/* If range is no longer valid force retry. */
--		if (!range->valid) {
--			up_read(&hmm->mm->mmap_sem);
--			return -EAGAIN;
--		}
-+		if (!range->valid)
-+			return -EBUSY;
- 
- 		vma = find_vma(hmm->mm, start);
- 		if (vma == NULL || (vma->vm_flags & device_vma))
--- 
-2.20.1
+aG1tX3ZtYV9mYXVsdCBpcyBtYXJrZWQgYXMgYSBsZWdhY3kgQVBJIHRvIGdldCByaWQgb2YsIGJ1
+dCBxdWl0ZSBzdWl0ZXMKdGhlIGN1cnJlbnQgbm91dmVhIGZsb3cuICBNb3ZlIGl0IHRvIHRoZSBv
+bmx5IHVzZXIgaW4gcHJlcGFyYXRpb24gZm9yCmZpeGluZyBhIGxvY2tpbmcgYnVnIGludm9sdmlu
+ZyBjYWxsZXIgYW5kIGNhbGxlZS4KClNpZ25lZC1vZmYtYnk6IENocmlzdG9waCBIZWxsd2lnIDxo
+Y2hAbHN0LmRlPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfc3ZtLmMgfCA1
+NCArKysrKysrKysrKysrKysrKysrKysrKysrKy0KIGluY2x1ZGUvbGludXgvaG1tLmggICAgICAg
+ICAgICAgICAgICAgfCA1NCAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KIDIgZmlsZXMgY2hh
+bmdlZCwgNTMgaW5zZXJ0aW9ucygrKSwgNTUgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9zdm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L25vdXZlYXVfc3ZtLmMKaW5kZXggOWQ0MDExNGQ3OTQ5Li5lODMxZjQxODRhMTcgMTAwNjQ0
+Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfc3ZtLmMKKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9zdm0uYwpAQCAtMzYsNiArMzYsMTMgQEAKICNpbmNs
+dWRlIDxsaW51eC9zb3J0Lmg+CiAjaW5jbHVkZSA8bGludXgvaG1tLmg+CiAKKy8qCisgKiBXaGVu
+IHdhaXRpbmcgZm9yIG1tdSBub3RpZmllcnMgd2UgbmVlZCBzb21lIGtpbmQgb2YgdGltZSBvdXQg
+b3RoZXJ3aXNlIHdlCisgKiBjb3VsZCBwb3RlbnRpYWx5IHdhaXQgZm9yIGV2ZXIsIDEwMDBtcyBp
+ZSAxcyBzb3VuZHMgbGlrZSBhIGxvbmcgdGltZSB0bworICogd2FpdCBhbHJlYWR5LgorICovCisj
+ZGVmaW5lIE5PVVZFQVVfUkFOR0VfRkFVTFRfVElNRU9VVCAxMDAwCisKIHN0cnVjdCBub3V2ZWF1
+X3N2bSB7CiAJc3RydWN0IG5vdXZlYXVfZHJtICpkcm07CiAJc3RydWN0IG11dGV4IG11dGV4OwpA
+QCAtNDc1LDYgKzQ4Miw1MSBAQCBub3V2ZWF1X3N2bV9mYXVsdF9jYWNoZShzdHJ1Y3Qgbm91dmVh
+dV9zdm0gKnN2bSwKIAkJZmF1bHQtPmluc3QsIGZhdWx0LT5hZGRyLCBmYXVsdC0+YWNjZXNzKTsK
+IH0KIAorc3RhdGljIGludAorbm91dmVhdV9yYW5nZV9mYXVsdChzdHJ1Y3QgaG1tX21pcnJvciAq
+bWlycm9yLCBzdHJ1Y3QgaG1tX3JhbmdlICpyYW5nZSwKKwkJICAgIGJvb2wgYmxvY2spCit7CisJ
+bG9uZyByZXQ7CisKKwkvKgorCSAqIFdpdGggdGhlIG9sZCBBUEkgdGhlIGRyaXZlciBtdXN0IHNl
+dCBlYWNoIGluZGl2aWR1YWwgZW50cmllcyB3aXRoCisJICogdGhlIHJlcXVlc3RlZCBmbGFncyAo
+dmFsaWQsIHdyaXRlLCAuLi4pLiBTbyBoZXJlIHdlIHNldCB0aGUgbWFzayB0bworCSAqIGtlZXAg
+aW50YWN0IHRoZSBlbnRyaWVzIHByb3ZpZGVkIGJ5IHRoZSBkcml2ZXIgYW5kIHplcm8gb3V0IHRo
+ZQorCSAqIGRlZmF1bHRfZmxhZ3MuCisJICovCisJcmFuZ2UtPmRlZmF1bHRfZmxhZ3MgPSAwOwor
+CXJhbmdlLT5wZm5fZmxhZ3NfbWFzayA9IC0xVUw7CisKKwlyZXQgPSBobW1fcmFuZ2VfcmVnaXN0
+ZXIocmFuZ2UsIG1pcnJvciwKKwkJCQkgcmFuZ2UtPnN0YXJ0LCByYW5nZS0+ZW5kLAorCQkJCSBQ
+QUdFX1NISUZUKTsKKwlpZiAocmV0KQorCQlyZXR1cm4gKGludClyZXQ7CisKKwlpZiAoIWhtbV9y
+YW5nZV93YWl0X3VudGlsX3ZhbGlkKHJhbmdlLCBOT1VWRUFVX1JBTkdFX0ZBVUxUX1RJTUVPVVQp
+KSB7CisJCS8qCisJCSAqIFRoZSBtbWFwX3NlbSB3YXMgdGFrZW4gYnkgZHJpdmVyIHdlIHJlbGVh
+c2UgaXQgaGVyZSBhbmQKKwkJICogcmV0dXJucyAtRUFHQUlOIHdoaWNoIGNvcnJlc3BvbmQgdG8g
+bW1hcF9zZW0gaGF2ZSBiZWVuCisJCSAqIGRyb3AgaW4gdGhlIG9sZCBBUEkuCisJCSAqLworCQl1
+cF9yZWFkKCZyYW5nZS0+dm1hLT52bV9tbS0+bW1hcF9zZW0pOworCQlyZXR1cm4gLUVBR0FJTjsK
+Kwl9CisKKwlyZXQgPSBobW1fcmFuZ2VfZmF1bHQocmFuZ2UsIGJsb2NrKTsKKwlpZiAocmV0IDw9
+IDApIHsKKwkJaWYgKHJldCA9PSAtRUJVU1kgfHwgIXJldCkgeworCQkJLyogU2FtZSBhcyBhYm92
+ZSwgZHJvcCBtbWFwX3NlbSB0byBtYXRjaCBvbGQgQVBJLiAqLworCQkJdXBfcmVhZCgmcmFuZ2Ut
+PnZtYS0+dm1fbW0tPm1tYXBfc2VtKTsKKwkJCXJldCA9IC1FQlVTWTsKKwkJfSBlbHNlIGlmIChy
+ZXQgPT0gLUVBR0FJTikKKwkJCXJldCA9IC1FQlVTWTsKKwkJaG1tX3JhbmdlX3VucmVnaXN0ZXIo
+cmFuZ2UpOworCQlyZXR1cm4gcmV0OworCX0KKwlyZXR1cm4gMDsKK30KKwogc3RhdGljIGludAog
+bm91dmVhdV9zdm1fZmF1bHQoc3RydWN0IG52aWZfbm90aWZ5ICpub3RpZnkpCiB7CkBAIC02NDks
+NyArNzAxLDcgQEAgbm91dmVhdV9zdm1fZmF1bHQoc3RydWN0IG52aWZfbm90aWZ5ICpub3RpZnkp
+CiAJCXJhbmdlLnZhbHVlcyA9IG5vdXZlYXVfc3ZtX3Bmbl92YWx1ZXM7CiAJCXJhbmdlLnBmbl9z
+aGlmdCA9IE5WSUZfVk1NX1BGTk1BUF9WMF9BRERSX1NISUZUOwogYWdhaW46Ci0JCXJldCA9IGht
+bV92bWFfZmF1bHQoJnN2bW0tPm1pcnJvciwgJnJhbmdlLCB0cnVlKTsKKwkJcmV0ID0gbm91dmVh
+dV9yYW5nZV9mYXVsdCgmc3ZtbS0+bWlycm9yLCAmcmFuZ2UsIHRydWUpOwogCQlpZiAocmV0ID09
+IDApIHsKIAkJCW11dGV4X2xvY2soJnN2bW0tPm11dGV4KTsKIAkJCWlmICghaG1tX3JhbmdlX3Vu
+cmVnaXN0ZXIoJnJhbmdlKSkgewpkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9obW0uaCBiL2lu
+Y2x1ZGUvbGludXgvaG1tLmgKaW5kZXggNGIxODVkMjg2YzNiLi4zNDU3Y2Y5MTgyZTUgMTAwNjQ0
+Ci0tLSBhL2luY2x1ZGUvbGludXgvaG1tLmgKKysrIGIvaW5jbHVkZS9saW51eC9obW0uaApAQCAt
+NDc4LDYwICs0NzgsNiBAQCBsb25nIGhtbV9yYW5nZV9kbWFfdW5tYXAoc3RydWN0IGhtbV9yYW5n
+ZSAqcmFuZ2UsCiAJCQkgZG1hX2FkZHJfdCAqZGFkZHJzLAogCQkJIGJvb2wgZGlydHkpOwogCi0v
+KgotICogSE1NX1JBTkdFX0RFRkFVTFRfVElNRU9VVCAtIGRlZmF1bHQgdGltZW91dCAobXMpIHdo
+ZW4gd2FpdGluZyBmb3IgYSByYW5nZQotICoKLSAqIFdoZW4gd2FpdGluZyBmb3IgbW11IG5vdGlm
+aWVycyB3ZSBuZWVkIHNvbWUga2luZCBvZiB0aW1lIG91dCBvdGhlcndpc2Ugd2UKLSAqIGNvdWxk
+IHBvdGVudGlhbHkgd2FpdCBmb3IgZXZlciwgMTAwMG1zIGllIDFzIHNvdW5kcyBsaWtlIGEgbG9u
+ZyB0aW1lIHRvCi0gKiB3YWl0IGFscmVhZHkuCi0gKi8KLSNkZWZpbmUgSE1NX1JBTkdFX0RFRkFV
+TFRfVElNRU9VVCAxMDAwCi0KLS8qIFRoaXMgaXMgYSB0ZW1wb3JhcnkgaGVscGVyIHRvIGF2b2lk
+IG1lcmdlIGNvbmZsaWN0IGJldHdlZW4gdHJlZXMuICovCi1zdGF0aWMgaW5saW5lIGludCBobW1f
+dm1hX2ZhdWx0KHN0cnVjdCBobW1fbWlycm9yICptaXJyb3IsCi0JCQkJc3RydWN0IGhtbV9yYW5n
+ZSAqcmFuZ2UsIGJvb2wgYmxvY2spCi17Ci0JbG9uZyByZXQ7Ci0KLQkvKgotCSAqIFdpdGggdGhl
+IG9sZCBBUEkgdGhlIGRyaXZlciBtdXN0IHNldCBlYWNoIGluZGl2aWR1YWwgZW50cmllcyB3aXRo
+Ci0JICogdGhlIHJlcXVlc3RlZCBmbGFncyAodmFsaWQsIHdyaXRlLCAuLi4pLiBTbyBoZXJlIHdl
+IHNldCB0aGUgbWFzayB0bwotCSAqIGtlZXAgaW50YWN0IHRoZSBlbnRyaWVzIHByb3ZpZGVkIGJ5
+IHRoZSBkcml2ZXIgYW5kIHplcm8gb3V0IHRoZQotCSAqIGRlZmF1bHRfZmxhZ3MuCi0JICovCi0J
+cmFuZ2UtPmRlZmF1bHRfZmxhZ3MgPSAwOwotCXJhbmdlLT5wZm5fZmxhZ3NfbWFzayA9IC0xVUw7
+Ci0KLQlyZXQgPSBobW1fcmFuZ2VfcmVnaXN0ZXIocmFuZ2UsIG1pcnJvciwKLQkJCQkgcmFuZ2Ut
+PnN0YXJ0LCByYW5nZS0+ZW5kLAotCQkJCSBQQUdFX1NISUZUKTsKLQlpZiAocmV0KQotCQlyZXR1
+cm4gKGludClyZXQ7Ci0KLQlpZiAoIWhtbV9yYW5nZV93YWl0X3VudGlsX3ZhbGlkKHJhbmdlLCBI
+TU1fUkFOR0VfREVGQVVMVF9USU1FT1VUKSkgewotCQkvKgotCQkgKiBUaGUgbW1hcF9zZW0gd2Fz
+IHRha2VuIGJ5IGRyaXZlciB3ZSByZWxlYXNlIGl0IGhlcmUgYW5kCi0JCSAqIHJldHVybnMgLUVB
+R0FJTiB3aGljaCBjb3JyZXNwb25kIHRvIG1tYXBfc2VtIGhhdmUgYmVlbgotCQkgKiBkcm9wIGlu
+IHRoZSBvbGQgQVBJLgotCQkgKi8KLQkJdXBfcmVhZCgmcmFuZ2UtPnZtYS0+dm1fbW0tPm1tYXBf
+c2VtKTsKLQkJcmV0dXJuIC1FQUdBSU47Ci0JfQotCi0JcmV0ID0gaG1tX3JhbmdlX2ZhdWx0KHJh
+bmdlLCBibG9jayk7Ci0JaWYgKHJldCA8PSAwKSB7Ci0JCWlmIChyZXQgPT0gLUVCVVNZIHx8ICFy
+ZXQpIHsKLQkJCS8qIFNhbWUgYXMgYWJvdmUsIGRyb3AgbW1hcF9zZW0gdG8gbWF0Y2ggb2xkIEFQ
+SS4gKi8KLQkJCXVwX3JlYWQoJnJhbmdlLT52bWEtPnZtX21tLT5tbWFwX3NlbSk7Ci0JCQlyZXQg
+PSAtRUJVU1k7Ci0JCX0gZWxzZSBpZiAocmV0ID09IC1FQUdBSU4pCi0JCQlyZXQgPSAtRUJVU1k7
+Ci0JCWhtbV9yYW5nZV91bnJlZ2lzdGVyKHJhbmdlKTsKLQkJcmV0dXJuIHJldDsKLQl9Ci0JcmV0
+dXJuIDA7Ci19Ci0KIC8qIEJlbG93IGFyZSBmb3IgSE1NIGludGVybmFsIHVzZSBvbmx5ISBOb3Qg
+dG8gYmUgdXNlZCBieSBkZXZpY2UgZHJpdmVyISAqLwogc3RhdGljIGlubGluZSB2b2lkIGhtbV9t
+bV9pbml0KHN0cnVjdCBtbV9zdHJ1Y3QgKm1tKQogewotLSAKMi4yMC4xCgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
+b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
