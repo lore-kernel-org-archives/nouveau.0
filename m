@@ -1,216 +1,62 @@
-From: Christoph Hellwig <hch@lst.de>
-Subject: [PATCH 17/22] mm/hmm: Fix error flows in hmm_invalidate_range_start
-Date: Mon,  1 Jul 2019 08:20:15 +0200
-Message-ID: <20190701062020.19239-18-hch@lst.de>
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Subject: [PATCH 19/22] mm: always return EBUSY for invalid ranges in
+ hmm_range_{fault, snapshot}
+Date: Mon,  1 Jul 2019 08:20:17 +0200
+Message-ID: <20190701062020.19239-20-hch@lst.de>
 References: <20190701062020.19239-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190701062020.19239-1-hch@lst.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Dan Williams <dan.j.williams@intel.com>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: Ira Weiny <ira.weiny@intel.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, Ralph Campbell <rcampbell@nvidia.com>, Philip Yang <Philip.Yang@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+In-Reply-To: <20190701062020.19239-1-hch-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
+List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
+Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-From: Jason Gunthorpe <jgg@mellanox.com>
+We should not have two different error codes for the same condition.  In
+addition this really complicates the code due to the special handling of
+EAGAIN that drops the mmap_sem due to the FAULT_FLAG_ALLOW_RETRY logic
+in the core vm.
 
-If the trylock on the hmm->mirrors_sem fails the function will return
-without decrementing the notifiers that were previously incremented. Since
-the caller will not call invalidate_range_end() on EAGAIN this will result
-in notifiers becoming permanently incremented and deadlock.
-
-If the sync_cpu_device_pagetables() required blocking the function will
-not return EAGAIN even though the device continues to touch the
-pages. This is a violation of the mmu notifier contract.
-
-Switch, and rename, the ranges_lock to a spin lock so we can reliably
-obtain it without blocking during error unwind.
-
-The error unwind is necessary since the notifiers count must be held
-incremented across the call to sync_cpu_device_pagetables() as we cannot
-allow the range to become marked valid by a parallel
-invalidate_start/end() pair while doing sync_cpu_device_pagetables().
-
-Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
-Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
-Reviewed-by: Christoph Hellwig <hch@lst.de>
-Tested-by: Philip Yang <Philip.Yang@amd.com>
+Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 ---
- include/linux/hmm.h |  2 +-
- mm/hmm.c            | 69 ++++++++++++++++++++++++++-------------------
- 2 files changed, 41 insertions(+), 30 deletions(-)
+ mm/hmm.c | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
 
-diff --git a/include/linux/hmm.h b/include/linux/hmm.h
-index bf013e965257..0fa8ea34ccef 100644
---- a/include/linux/hmm.h
-+++ b/include/linux/hmm.h
-@@ -86,7 +86,7 @@
- struct hmm {
- 	struct mm_struct	*mm;
- 	struct kref		kref;
--	struct mutex		lock;
-+	spinlock_t		ranges_lock;
- 	struct list_head	ranges;
- 	struct list_head	mirrors;
- 	struct mmu_notifier	mmu_notifier;
 diff --git a/mm/hmm.c b/mm/hmm.c
-index b224ea635a77..de35289df20d 100644
+index c85ed7d4e2ce..d125df698e2b 100644
 --- a/mm/hmm.c
 +++ b/mm/hmm.c
-@@ -64,7 +64,7 @@ static struct hmm *hmm_get_or_create(struct mm_struct *mm)
- 	init_rwsem(&hmm->mirrors_sem);
- 	hmm->mmu_notifier.ops = NULL;
- 	INIT_LIST_HEAD(&hmm->ranges);
--	mutex_init(&hmm->lock);
-+	spin_lock_init(&hmm->ranges_lock);
- 	kref_init(&hmm->kref);
- 	hmm->notifiers = 0;
- 	hmm->mm = mm;
-@@ -144,6 +144,25 @@ static void hmm_release(struct mmu_notifier *mn, struct mm_struct *mm)
- 	hmm_put(hmm);
- }
+@@ -974,7 +974,7 @@ long hmm_range_snapshot(struct hmm_range *range)
+ 	do {
+ 		/* If range is no longer valid force retry. */
+ 		if (!range->valid)
+-			return -EAGAIN;
++			return -EBUSY;
  
-+static void notifiers_decrement(struct hmm *hmm)
-+{
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&hmm->ranges_lock, flags);
-+	hmm->notifiers--;
-+	if (!hmm->notifiers) {
-+		struct hmm_range *range;
-+
-+		list_for_each_entry(range, &hmm->ranges, list) {
-+			if (range->valid)
-+				continue;
-+			range->valid = true;
-+		}
-+		wake_up_all(&hmm->wq);
-+	}
-+	spin_unlock_irqrestore(&hmm->ranges_lock, flags);
-+}
-+
- static int hmm_invalidate_range_start(struct mmu_notifier *mn,
- 			const struct mmu_notifier_range *nrange)
- {
-@@ -151,6 +170,7 @@ static int hmm_invalidate_range_start(struct mmu_notifier *mn,
- 	struct hmm_mirror *mirror;
- 	struct hmm_update update;
- 	struct hmm_range *range;
-+	unsigned long flags;
- 	int ret = 0;
+ 		vma = find_vma(hmm->mm, start);
+ 		if (vma == NULL || (vma->vm_flags & device_vma))
+@@ -1069,10 +1069,8 @@ long hmm_range_fault(struct hmm_range *range, bool block)
  
- 	if (!kref_get_unless_zero(&hmm->kref))
-@@ -161,12 +181,7 @@ static int hmm_invalidate_range_start(struct mmu_notifier *mn,
- 	update.event = HMM_UPDATE_INVALIDATE;
- 	update.blockable = mmu_notifier_range_blockable(nrange);
- 
--	if (mmu_notifier_range_blockable(nrange))
--		mutex_lock(&hmm->lock);
--	else if (!mutex_trylock(&hmm->lock)) {
--		ret = -EAGAIN;
--		goto out;
--	}
-+	spin_lock_irqsave(&hmm->ranges_lock, flags);
- 	hmm->notifiers++;
- 	list_for_each_entry(range, &hmm->ranges, list) {
- 		if (update.end < range->start || update.start >= range->end)
-@@ -174,7 +189,7 @@ static int hmm_invalidate_range_start(struct mmu_notifier *mn,
- 
- 		range->valid = false;
- 	}
--	mutex_unlock(&hmm->lock);
-+	spin_unlock_irqrestore(&hmm->ranges_lock, flags);
- 
- 	if (mmu_notifier_range_blockable(nrange))
- 		down_read(&hmm->mirrors_sem);
-@@ -182,16 +197,23 @@ static int hmm_invalidate_range_start(struct mmu_notifier *mn,
- 		ret = -EAGAIN;
- 		goto out;
- 	}
-+
- 	list_for_each_entry(mirror, &hmm->mirrors, list) {
--		int ret;
-+		int rc;
- 
--		ret = mirror->ops->sync_cpu_device_pagetables(mirror, &update);
--		if (!update.blockable && ret == -EAGAIN)
-+		rc = mirror->ops->sync_cpu_device_pagetables(mirror, &update);
-+		if (rc) {
-+			if (WARN_ON(update.blockable || rc != -EAGAIN))
-+				continue;
-+			ret = -EAGAIN;
- 			break;
-+		}
- 	}
- 	up_read(&hmm->mirrors_sem);
- 
- out:
-+	if (ret)
-+		notifiers_decrement(hmm);
- 	hmm_put(hmm);
- 	return ret;
- }
-@@ -204,20 +226,7 @@ static void hmm_invalidate_range_end(struct mmu_notifier *mn,
- 	if (!kref_get_unless_zero(&hmm->kref))
- 		return;
- 
--	mutex_lock(&hmm->lock);
--	hmm->notifiers--;
--	if (!hmm->notifiers) {
--		struct hmm_range *range;
--
--		list_for_each_entry(range, &hmm->ranges, list) {
--			if (range->valid)
--				continue;
--			range->valid = true;
+ 	do {
+ 		/* If range is no longer valid force retry. */
+-		if (!range->valid) {
+-			up_read(&hmm->mm->mmap_sem);
+-			return -EAGAIN;
 -		}
--		wake_up_all(&hmm->wq);
--	}
--	mutex_unlock(&hmm->lock);
--
-+	notifiers_decrement(hmm);
- 	hmm_put(hmm);
- }
++		if (!range->valid)
++			return -EBUSY;
  
-@@ -868,6 +877,7 @@ int hmm_range_register(struct hmm_range *range,
- {
- 	unsigned long mask = ((1UL << page_shift) - 1UL);
- 	struct hmm *hmm = mirror->hmm;
-+	unsigned long flags;
- 
- 	range->valid = false;
- 	range->hmm = NULL;
-@@ -886,7 +896,7 @@ int hmm_range_register(struct hmm_range *range,
- 		return -EFAULT;
- 
- 	/* Initialize range to track CPU page table updates. */
--	mutex_lock(&hmm->lock);
-+	spin_lock_irqsave(&hmm->ranges_lock, flags);
- 
- 	range->hmm = hmm;
- 	kref_get(&hmm->kref);
-@@ -898,7 +908,7 @@ int hmm_range_register(struct hmm_range *range,
- 	 */
- 	if (!hmm->notifiers)
- 		range->valid = true;
--	mutex_unlock(&hmm->lock);
-+	spin_unlock_irqrestore(&hmm->ranges_lock, flags);
- 
- 	return 0;
- }
-@@ -914,10 +924,11 @@ EXPORT_SYMBOL(hmm_range_register);
- void hmm_range_unregister(struct hmm_range *range)
- {
- 	struct hmm *hmm = range->hmm;
-+	unsigned long flags;
- 
--	mutex_lock(&hmm->lock);
-+	spin_lock_irqsave(&hmm->ranges_lock, flags);
- 	list_del_init(&range->list);
--	mutex_unlock(&hmm->lock);
-+	spin_unlock_irqrestore(&hmm->ranges_lock, flags);
- 
- 	/* Drop reference taken by hmm_range_register() */
- 	mmput(hmm->mm);
+ 		vma = find_vma(hmm->mm, start);
+ 		if (vma == NULL || (vma->vm_flags & device_vma))
 -- 
 2.20.1
