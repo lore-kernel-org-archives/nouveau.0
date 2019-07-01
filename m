@@ -1,80 +1,63 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Question on Conditional Rendering Maxwell/Pascal
-Date: Sun, 30 Jun 2019 20:56:30 -0400
-Message-ID: <CAKb7Uvg3=zMvZZ1tS0ry_mhtNBLu7omSvmhoYgqh3KjzUsxtdg@mail.gmail.com>
-References: <CA+MSTo_HoKD2vxF68oJm6OpVf76Uy9shmB2itBucYv4CJj8VEg@mail.gmail.com>
+From: Yongxin Liu <yongxin.liu@windriver.com>
+Subject: [PATCH] drm/nouveau: fix memory leak in nouveau_conn_reset()
+Date: Mon, 1 Jul 2019 09:46:22 +0800
+Message-ID: <20190701014622.13199-1-yongxin.liu@windriver.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CA+MSTo_HoKD2vxF68oJm6OpVf76Uy9shmB2itBucYv4CJj8VEg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: bskeggs@redhat.com, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-WWVhaCwgdGhpcyBpcyBhIGxpdHRsZSBjb25mdXNpbmcuIEl0J3MgaW1wb3J0YW50IHRvIHJlbWVt
-YmVyIGhvdwpxdWVyaWVzIHdvcmsgaW4gdGhlIGZpcnN0IHBsYWNlLCB3aGljaCBpbmZvcm1zIGhv
-dyBjb25kaXRpb25hbApyZW5kZXJpbmcgd29ya3MuCgpUaGVyZSBhcmUgdHdvIGtpbmQgb2YgcXVl
-cmllcyAoUVVFUllfQUREUkVTU19ISUdIICYgY28pIC0tICJzaG9ydCIgYW5kCiJsb25nIi4gQSAi
-c2hvcnQiIHF1ZXJ5IHZhbHVlIGlzIGEgc2luZ2xlIDMyLWJpdCB2YWx1ZSwgcHJlc3VtYWJseSB0
-aGUKdmFsdWUgb2YgdGhlIHRoaW5nIGJlaW5nIHF1ZXJpZWQuIE5vdCBhbGwgcXVlcmllcyBhcmUg
-YXZhaWxhYmxlIGluCnRoaXMgbW9kZSwgYnV0IHNvbWUgYXJlLiBUaGlzIG1vZGUgaXMgdXNlbGVz
-cyBmb3IgY29uZGl0aW9uYWwKcmVuZGVyaW5nLiBUaGUgbG9uZyBtb2RlIGlzIGEgYSB2YWx1ZSwg
-YW5kLCBpaXJjLCBhIHRpbWVzdGFtcCB2YWx1ZS4KVGhlIHZhbHVlIGl0c2VsZiBjYW4gYmUgMngg
-MzItYml0IHZhbHVlcyB0b28sIHdoaWxlIHRoZSB0aW1lc3RhbXAgaXMKYmFzaWNhbGx5IHVzZWxl
-c3MgKGV4Y2VwdCBmb3IgdGhlICJ0aW1lc3RhbXAiIHF1ZXJ5KS4KCk5vdywgY29uZGl0aW9uYWwg
-cmVuZGVyaW5nIGlzIGJhc2ljYWxseSBvbmx5IHVzZWQgd2l0aApHTF9TQU1QTEVTX1BBU1NFRCBh
-bmQgR0xfQU5ZX1NBTVBMRVNfUEFTU0VEIChhbmQKc3RyZWFtLW92ZXJmbG93LXByZWRpY2F0ZSku
-IEZvciBib3RoIG9mIHRoZXNlLCB5b3UgZG8gYSBsb25nLW1vZGUKcXVlcnksIHdoaWNoIGR1bXBz
-IHRoZSBmb2xsb3dpbmcgMzItYml0IHZhbHVlcyBpbnRvIHRoZSAxMjgtYml0CnJlY29yZDoKCnNl
-cW5vIChRVUVSWV9BRERSRVNTX1NFUVVFTkNFKSwgY291bnQsIHRzbG8sIHRzaGkKCkNvbmRpdGlv
-bmFsIHJlbmRlcmluZyBleHBlY3RzIGEgcGFpciBvZiBzdWNoIDEyOC1iaXQgcmVjb3JkcyB0byBm
-b2xsb3cKb25lIGFub3RoZXIsIGFuZCwgSSBiZWxpZXZlLCBwZXJmb3JtcyB0aGUgaW5kaWNhdGVk
-IG9wZXJhdGlvbiBvbiB0aGUKZmlyc3QgNjQtYml0IHZhbHVlLiBXZSBwcmUtaW5pdGlhbGl6ZSB0
-aGUgcGFpciBvZiBzdWNoIHZhbHVlcyBoZXJlOgoKaHR0cHM6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9y
-Zy9tZXNhL21lc2EvdHJlZS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3F1
-ZXJ5X2h3LmMjbjE1MQoKICAgICAgaHEtPmRhdGFbMF0gPSBocS0+c2VxdWVuY2U7IC8qIGluaXRp
-YWxpemUgc2VxdWVuY2UgKi8KICAgICAgaHEtPmRhdGFbMV0gPSAxOyAvKiBpbml0aWFsIHJlbmRl
-ciBjb25kaXRpb24gPSB0cnVlICovCiAgICAgIGhxLT5kYXRhWzRdID0gaHEtPnNlcXVlbmNlICsg
-MTsgLyogZm9yIGNvbXBhcmlzb24gQ09ORF9NT0RFICovCiAgICAgIGhxLT5kYXRhWzVdID0gMDsK
-CkFuZCB3ZSBtYWtlIHN1cmUgdGhhdCB0aGUgRW5kQ29uZGl0aW9uYWxSZW5kZXIgZGF0YSBxdWVy
-eSBlbmRzIHVwIGluCmRhdGFbMDozXSwgd2hpbGUgdGhlIEJlZ2luQ29uZGl0aW9uYWxSZW5kZXIg
-ZGF0YSBlbmRzIHVwIGluIGRhdGFbNDo3XS4KCkFuZCBzbyB0aGUgdmFsdWVzIFJFU19OT05fWkVS
-TyBtZWFucyAiZGF0YVswOjFdICE9IDAiLCBFUVVBTCBtZWFucwoiZGF0YVswOjFdID09IGRhdGFb
-NDo1XSIsIE5PVF9FUVVBTCAtLSBJJ2xsIGxldCB5b3UgZ3Vlc3MuIEFuZCBzbyB0aGUKcmVuZGVy
-IGNvbmRpdGlvbiBpbiB0aGUgY29tbW9uIGNhc2UgaXMgTk9UX0VRVUFMLCBzaW5jZSB3ZSBvbmx5
-IHdhbnQKdG8gcmVuZGVyIHdoZW4gdGhlcmUgaXMgYSBkaWZmZXJlbmNlIGluIHRoZSBjb3VudCBv
-ZiBzYW1wbGVzIHBhc3NlZC4KKFRoaXMgaXMgYSBjb250ZXh0LWxldmVsIGNvdW50ZXIsIHdob3Nl
-IGVuYWJsZW1lbnQgaXMgY29udHJvbGxlZCBieQpTQU1QTEVDTlRfRU5BQkxFIChhbmQgQ09VTlRF
-Ul9SRVNFVCB0byBjbGVhciBpdCkuCgpBcyBmb3Igd2hhdCBoYXBwZW5zIHdoZW4gdGhlcmUgaXMg
-bm8gZHJhdywgb25seSB0aGUgZHJhdyBpdHNlbGYgaXMKc2tpcHBlZC4gQWxsIHZhbHVlIHVwZGF0
-ZXMgc2hvdWxkIGhhcHBlbiBhcyBub3JtYWwuCgpIb3BlIHRoaXMgaGVscHMsCgogIC1pbGlhCgpP
-biBTdW4sIEp1biAzMCwgMjAxOSBhdCA2OjU1IFBNIEZlcm5hbmRvIFNhaG1rb3cgPGZzYWhta293
-MjdAZ21haWwuY29tPiB3cm90ZToKPgo+IFNvIHdlIGFyZSBjdXJyZW50bHkgZG9pbmcgdGVzdHMg
-YW5kIGNvbXBseWluZyB3aXRoIHRoZW0gaW4gb3VyIEVtdWxhdG9yLiBDdXJyZW50bHkgdGhlIGNv
-bmRpdGlvbmFsIHJlbmRlcmluZyB0ZXN0IGRvZXMgbm90IHBhc3MgKG5vIHdvbmRlciB3ZSBub3Qg
-ZXZlbiBpbXBsZW1lbnQgaXQpLiBJJ3ZlIGJlZW4gbG9va2luZyBhdCB0aGUgY3VycmVudCBkb2N1
-bWVudGF0aW9uIGh0dHBzOi8vZ2l0aHViLmNvbS9lbnZ5dG9vbHMvZW52eXRvb2xzL2Jsb2IvbWFz
-dGVyL3JubmRiL2dyYXBoL2dmMTAwXzNkLnhtbCNMNzk2IFNvIGZhciBJIGRvbid0IHVuZGVyc3Rh
-bmQgaG93IHRoZSBjb25kIGFkZHJlc3MgaXMgdXNlZCBhbmQgdG8gd2hhdCBpdCdzIGNvbXBhcmVk
-LiBodHRwczovL2dpdGh1Yi5jb20vZW52eXRvb2xzL2Vudnl0b29scy9ibG9iLzBkOTFiOGJjZWYz
-Y2ViNDdmZjBiMTE0MDI1ZDMwMWVkYjc5MGQ0NzIvcm5uZGIvZzgwX2RlZnMueG1sI0w2MQo+Cj4g
-SXQgc2F5cyBpdCB1c2VzIDIgcXVlcmllcywgaG93IGRvIEkga25vdyB3aGljaCBxdWVyeSBpdCdz
-IHRhbGtpbmcgb2ZmIGFuZCB3aGF0IGl0J3MgdGhlIGNvbXBhcmlzb24gdGhhdCBzaG91bGQgYmUg
-ZG9uZS4KPgo+IEFsc28sIGRvZXMgZmFpbGluZyBjb25kaXRpb25hbCByZW5kZXJpbmcgbWFrZXMg
-cmVnaXN0ZXJzIG5vdCB3cml0ZSBpbnRvIHRoZSBlbmdpbmUgb3IganVzdCBkcmF3Y2FsbHMvY2xh
-ZXJzIGFyZSBpZ25vcmVkPwo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+In nouveau_conn_reset(), if connector->state is true,
+__drm_atomic_helper_connector_destroy_state() will be called,
+but the memory pointed by asyc isn't freed. Memory leak happens
+in the following function __drm_atomic_helper_connector_reset(),
+where newly allocated asyc->state will be assigned to connector->state.
+
+So using nouveau_conn_atomic_destroy_state() instead of
+__drm_atomic_helper_connector_destroy_state to free the "old" asyc.
+
+Here the is the log showing memory leak.
+
+unreferenced object 0xffff8c5480483c80 (size 192):
+  comm "kworker/0:2", pid 188, jiffies 4294695279 (age 53.179s)
+  hex dump (first 32 bytes):
+    00 f0 ba 7b 54 8c ff ff 00 00 00 00 00 00 00 00  ...{T...........
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<000000005005c0d0>] kmem_cache_alloc_trace+0x195/0x2c0
+    [<00000000a122baed>] nouveau_conn_reset+0x25/0xc0 [nouveau]
+    [<000000004fd189a2>] nouveau_connector_create+0x3a7/0x610 [nouveau]
+    [<00000000c73343a8>] nv50_display_create+0x343/0x980 [nouveau]
+    [<000000002e2b03c3>] nouveau_display_create+0x51f/0x660 [nouveau]
+    [<00000000c924699b>] nouveau_drm_device_init+0x182/0x7f0 [nouveau]
+    [<00000000cc029436>] nouveau_drm_probe+0x20c/0x2c0 [nouveau]
+    [<000000007e961c3e>] local_pci_probe+0x47/0xa0
+    [<00000000da14d569>] work_for_cpu_fn+0x1a/0x30
+    [<0000000028da4805>] process_one_work+0x27c/0x660
+    [<000000001d415b04>] worker_thread+0x22b/0x3f0
+    [<0000000003b69f1f>] kthread+0x12f/0x150
+    [<00000000c94c29b7>] ret_from_fork+0x3a/0x50
+
+Signed-off-by: Yongxin Liu <yongxin.liu@windriver.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 4116ee62adaf..f69ff22beee0 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -252,7 +252,7 @@ nouveau_conn_reset(struct drm_connector *connector)
+ 		return;
+ 
+ 	if (connector->state)
+-		__drm_atomic_helper_connector_destroy_state(connector->state);
++		nouveau_conn_atomic_destroy_state(connector, connector->state);
+ 	__drm_atomic_helper_connector_reset(connector, &asyc->state);
+ 	asyc->dither.mode = DITHERING_MODE_AUTO;
+ 	asyc->dither.depth = DITHERING_DEPTH_AUTO;
+-- 
+2.14.4
