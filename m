@@ -1,24 +1,15 @@
-From: Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
-Subject: Re: [PATCH 16/25] device-dax: use the dev_pagemap internal refcount
-Date: Tue, 2 Jul 2019 15:35:35 -0700
-Message-ID: <20190702153535.228365fea7f0063cceec96cd@linux-foundation.org>
-References: <20190626122724.13313-17-hch@lst.de>
- <20190628153827.GA5373@mellanox.com>
- <CAPcyv4joSiFMeYq=D08C-QZSkHz0kRpvRfseNQWrN34Rrm+S7g@mail.gmail.com>
- <20190628170219.GA3608@mellanox.com>
- <CAPcyv4ja9DVL2zuxuSup8x3VOT_dKAOS8uBQweE9R81vnYRNWg@mail.gmail.com>
- <CAPcyv4iWTe=vOXUqkr_CguFrFRqgA7hJSt4J0B3RpuP-Okz0Vw@mail.gmail.com>
- <20190628182922.GA15242@mellanox.com>
- <CAPcyv4g+zk9pnLcj6Xvwh-svKM+w4hxfYGikcmuoBAFGCr-HAw@mail.gmail.com>
- <20190628185152.GA9117@lst.de>
- <CAPcyv4i+b6bKhSF2+z7Wcw4OUAvb1=m289u9QF8zPwLk402JVg@mail.gmail.com>
- <20190628190207.GA9317@lst.de>
- <CAPcyv4h90DAVHbZ4bgvJwpfB8wr2K28oEes6HcdQOpf02+NL=g@mail.gmail.com>
+From: "Weiny, Ira" <ira.weiny-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Subject: RE: dev_pagemap related cleanups v4
+Date: Tue, 2 Jul 2019 22:45:34 +0000
+Message-ID: <2807E5FD2F6FDA4886F6618EAC48510E79DEA747@CRSMSX101.amr.corp.intel.com>
+References: <20190701062020.19239-1-hch@lst.de>
+ <20190701082517.GA22461@lst.de> <20190702184201.GO31718@mellanox.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-In-Reply-To: <CAPcyv4h90DAVHbZ4bgvJwpfB8wr2K28oEes6HcdQOpf02+NL=g@mail.gmail.com>
+In-Reply-To: <20190702184201.GO31718-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
  <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
@@ -28,16 +19,55 @@ List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
  <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
 Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
 Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?ISO-8859-1?Q?J=E9r=F4me?= Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+To: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Cc: "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?iso-8859-1?Q?J=E9r=F4me_Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 28 Jun 2019 12:14:44 -0700 Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org> wrote:
+> 
+> On Mon, Jul 01, 2019 at 10:25:17AM +0200, Christoph Hellwig wrote:
+> > And I've demonstrated that I can't send patch series..  While this has
+> > all the right patches, it also has the extra patches already in the
+> > hmm tree, and four extra patches I wanted to send once this series is
+> > merged.  I'll give up for now, please use the git url for anything
+> > serious, as it contains the right thing.
+> 
+> Okay, I sorted it all out and temporarily put it here:
+> 
+> https://github.com/jgunthorpe/linux/commits/hmm
+> 
+> Bit involved job:
+> - Took Ira's v4 patch into hmm.git and confirmed it matches what
+>   Andrew has in linux-next after all the fixups
 
-> I believe -mm auto drops patches when they appear in the -next
-> baseline. So it should "just work" to pull it into the series and send
-> it along for -next inclusion.
+Looking at the final branch seems good.
 
-Yup.  Although it isn't very "auto" - I manually check that the patch
-which turned up in -next was identical to the version which I had.  If
-not, I go find out why...
+Ira
+
+> - Checked your github v4 and the v3 that hit the mailing list were
+>   substantially similar (I never did get a clean v4) and largely
+>   went with the github version
+> - Based CH's v4 series on -rc7 and put back the removal hunk in swap.c
+>   so it compiles
+> - Merge'd CH's series to hmm.git and fixed all the conflicts with Ira
+>   and Ralph's patches (such that swap.c remains unchanged)
+> - Added Dan's ack's and tested-by's
+> 
+> I think this fairly closely follows what was posted to the mailing list.
+> 
+> As it was more than a simple 'git am', I'll let it sit on github until I hear OK's
+> then I'll move it to kernel.org's hmm.git and it will hit linux-next. 0-day
+> should also run on this whole thing from my github.
+> 
+> What I know is outstanding:
+>  - The conflicting ARM patches, I understand Andrew will handle these
+>    post-linux-next
+>  - The conflict with AMD GPU in -next, I am waiting to hear from AMD
+> 
+> Otherwise I think we are done with hmm.git for this cycle.
+> 
+> Unfortunately this is still not enough to progress rdma's ODP, so we will need
+> to do this again next cycle :( I'll be working on patches once I get all the
+> merge window prep I have to do done.
+> 
+> Regards,
+> Jason
