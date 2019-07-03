@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111044] Resume up from suspend sometimes freezes
- system (Optimus/Nouveau)
-Date: Wed, 03 Jul 2019 00:41:49 +0000
-Message-ID: <bug-111044-8800-ygNXJV3wJT@http.bugs.freedesktop.org/>
-References: <bug-111044-8800@http.bugs.freedesktop.org/>
+From: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Subject: Re: dev_pagemap related cleanups v4
+Date: Wed, 3 Jul 2019 01:08:27 +0000
+Message-ID: <20190703010823.GB11833@mellanox.com>
+References: <20190701062020.19239-1-hch@lst.de>
+ <20190701082517.GA22461@lst.de> <20190702184201.GO31718@mellanox.com>
+ <CAPcyv4iWXJ-c7LahPD=Qt4RuDNTU7w_8HjsitDuj3cxngzb56g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1376667586=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111044-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAPcyv4iWXJ-c7LahPD=Qt4RuDNTU7w_8HjsitDuj3cxngzb56g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Language: en-US
+Content-ID: <9433B9982DD5FE40BE697C702241BE2B-wNKe6lTLrGecE4WynfumptQqCkab/8FMAL8bYrjMMd8@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,114 +21,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Cc: "linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org" <linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Ira Weiny <ira.weiny-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1376667586==
-Content-Type: multipart/alternative; boundary="15621145091.E814D02.13125"
-Content-Transfer-Encoding: 7bit
-
-
---15621145091.E814D02.13125
-Date: Wed, 3 Jul 2019 00:41:49 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111044
-
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to JM9 from comment #3)
-> It is possible. But typically, I disconnect my external monitors, close t=
-he
-> laptop and leave to a different location in the field with no external
-> monitors. So when I open the laptop and encounter the freeze, I'm not nea=
-r a
-> monitor. Closing and reopening the laptop does not help, but next time I
-> encounter this issue, I'll see if plugging the external monitors back when
-> in this state does anything.
-
-Oh. Is your primary screen driven by nouveau or by the intel chip? If it's =
-the
-intel chip, the issue is probably not (directly) related to nouveau.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15621145091.E814D02.13125
-Date: Wed, 3 Jul 2019 00:41:49 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Resume up from suspend sometimes freezes system (Optimus/=
-Nouveau)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Resume up from suspend sometimes freezes system (Optimus/=
-Nouveau)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044">bug 11104=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to JM9 from <a href=3D"show_bug.cgi?id=3D111044#c3">=
-comment #3</a>)
-<span class=3D"quote">&gt; It is possible. But typically, I disconnect my e=
-xternal monitors, close the
-&gt; laptop and leave to a different location in the field with no external
-&gt; monitors. So when I open the laptop and encounter the freeze, I'm not =
-near a
-&gt; monitor. Closing and reopening the laptop does not help, but next time=
- I
-&gt; encounter this issue, I'll see if plugging the external monitors back =
-when
-&gt; in this state does anything.</span >
-
-Oh. Is your primary screen driven by nouveau or by the intel chip? If it's =
-the
-intel chip, the issue is probably not (directly) related to nouveau.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15621145091.E814D02.13125--
-
---===============1376667586==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1376667586==--
+T24gVHVlLCBKdWwgMDIsIDIwMTkgYXQgMDQ6MTc6NDhQTSAtMDcwMCwgRGFuIFdpbGxpYW1zIHdy
+b3RlOgo+IE9uIFR1ZSwgSnVsIDIsIDIwMTkgYXQgMTE6NDIgQU0gSmFzb24gR3VudGhvcnBlIDxq
+Z2dAbWVsbGFub3guY29tPiB3cm90ZToKPiA+Cj4gPiBPbiBNb24sIEp1bCAwMSwgMjAxOSBhdCAx
+MDoyNToxN0FNICswMjAwLCBDaHJpc3RvcGggSGVsbHdpZyB3cm90ZToKPiA+ID4gQW5kIEkndmUg
+ZGVtb25zdHJhdGVkIHRoYXQgSSBjYW4ndCBzZW5kIHBhdGNoIHNlcmllcy4uICBXaGlsZSB0aGlz
+Cj4gPiA+IGhhcyBhbGwgdGhlIHJpZ2h0IHBhdGNoZXMsIGl0IGFsc28gaGFzIHRoZSBleHRyYSBw
+YXRjaGVzIGFscmVhZHkKPiA+ID4gaW4gdGhlIGhtbSB0cmVlLCBhbmQgZm91ciBleHRyYSBwYXRj
+aGVzIEkgd2FudGVkIHRvIHNlbmQgb25jZQo+ID4gPiB0aGlzIHNlcmllcyBpcyBtZXJnZWQuICBJ
+J2xsIGdpdmUgdXAgZm9yIG5vdywgcGxlYXNlIHVzZSB0aGUgZ2l0Cj4gPiA+IHVybCBmb3IgYW55
+dGhpbmcgc2VyaW91cywgYXMgaXQgY29udGFpbnMgdGhlIHJpZ2h0IHRoaW5nLgo+ID4KPiA+IE9r
+YXksIEkgc29ydGVkIGl0IGFsbCBvdXQgYW5kIHRlbXBvcmFyaWx5IHB1dCBpdCBoZXJlOgo+ID4K
+PiA+IGh0dHBzOi8vZ2l0aHViLmNvbS9qZ3VudGhvcnBlL2xpbnV4L2NvbW1pdHMvaG1tCj4gPgo+
+ID4gQml0IGludm9sdmVkIGpvYjoKPiA+IC0gVG9vayBJcmEncyB2NCBwYXRjaCBpbnRvIGhtbS5n
+aXQgYW5kIGNvbmZpcm1lZCBpdCBtYXRjaGVzIHdoYXQKPiA+ICAgQW5kcmV3IGhhcyBpbiBsaW51
+eC1uZXh0IGFmdGVyIGFsbCB0aGUgZml4dXBzCj4gPiAtIENoZWNrZWQgeW91ciBnaXRodWIgdjQg
+YW5kIHRoZSB2MyB0aGF0IGhpdCB0aGUgbWFpbGluZyBsaXN0IHdlcmUKPiA+ICAgc3Vic3RhbnRp
+YWxseSBzaW1pbGFyIChJIG5ldmVyIGRpZCBnZXQgYSBjbGVhbiB2NCkgYW5kIGxhcmdlbHkKPiA+
+ICAgd2VudCB3aXRoIHRoZSBnaXRodWIgdmVyc2lvbgo+ID4gLSBCYXNlZCBDSCdzIHY0IHNlcmll
+cyBvbiAtcmM3IGFuZCBwdXQgYmFjayB0aGUgcmVtb3ZhbCBodW5rIGluIHN3YXAuYwo+ID4gICBz
+byBpdCBjb21waWxlcwo+ID4gLSBNZXJnZSdkIENIJ3Mgc2VyaWVzIHRvIGhtbS5naXQgYW5kIGZp
+eGVkIGFsbCB0aGUgY29uZmxpY3RzIHdpdGggSXJhCj4gPiAgIGFuZCBSYWxwaCdzIHBhdGNoZXMg
+KHN1Y2ggdGhhdCBzd2FwLmMgcmVtYWlucyB1bmNoYW5nZWQpCj4gPiAtIEFkZGVkIERhbidzIGFj
+aydzIGFuZCB0ZXN0ZWQtYnkncwo+IAo+IExvb2tzIGdvb2QuIFRlc3QgbWVyZ2UgKHdpdGggc29t
+ZSBjb2xsaXNpb25zLCBzZWUgYmVsb3cpIGFsc28gcGFzc2VzCj4gbXkgdGVzdCBzdWl0ZS4KCk9r
+YXksIHB1Ymxpc2hlZCB0b3dhcmQgbGludXgtbmV4dCBub3cKCj4gPgo+ID4gSSB0aGluayB0aGlz
+IGZhaXJseSBjbG9zZWx5IGZvbGxvd3Mgd2hhdCB3YXMgcG9zdGVkIHRvIHRoZSBtYWlsaW5nCj4g
+PiBsaXN0Lgo+ID4KPiA+IEFzIGl0IHdhcyBtb3JlIHRoYW4gYSBzaW1wbGUgJ2dpdCBhbScsIEkn
+bGwgbGV0IGl0IHNpdCBvbiBnaXRodWIgdW50aWwKPiA+IEkgaGVhciBPSydzIHRoZW4gSSdsbCBt
+b3ZlIGl0IHRvIGtlcm5lbC5vcmcncyBobW0uZ2l0IGFuZCBpdCB3aWxsIGhpdAo+ID4gbGludXgt
+bmV4dC4gMC1kYXkgc2hvdWxkIGFsc28gcnVuIG9uIHRoaXMgd2hvbGUgdGhpbmcgZnJvbSBteSBn
+aXRodWIuCj4gPgo+ID4gV2hhdCBJIGtub3cgaXMgb3V0c3RhbmRpbmc6Cj4gPiAgLSBUaGUgY29u
+ZmxpY3RpbmcgQVJNIHBhdGNoZXMsIEkgdW5kZXJzdGFuZCBBbmRyZXcgd2lsbCBoYW5kbGUgdGhl
+c2UKPiA+ICAgIHBvc3QtbGludXgtbmV4dAo+ID4gIC0gVGhlIGNvbmZsaWN0IHdpdGggQU1EIEdQ
+VSBpbiAtbmV4dCwgSSBhbSB3YWl0aW5nIHRvIGhlYXIgZnJvbSBBTUQKPiAKPiBKdXN0IGEgaGVh
+ZHMgdXAgdGhhdCB0aGlzIGFsc28gY29sbGlkZXMgd2l0aCB0aGUgInN1Yi1zZWN0aW9uIiBwYXRj
+aGVzCj4gaW4gQW5kcmV3J3MgdHJlZS4gVGhlIHJlc29sdXRpb24gaXMgc3RyYWlnaHRmb3J3YXJk
+LCBtb3N0bHkganVzdAo+IGNvbGxpZGluZyB1cGRhdGVzIHRvIGFyY2hfe2FkZCxyZW1vdmV9X21l
+bW9yeSgpIGNhbGwgc2l0ZXMgaW4KPiBrZXJuZWwvbWVtcmVtYXAuYyBhbmQgY29sbGlzaW9ucyB3
+aXRoIHBnbWFwX2FsdG1hcCgpIHVzYWdlLgoKT2theSwgdGhhbmtzCgpKYXNvbgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
+dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
