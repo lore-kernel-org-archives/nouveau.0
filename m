@@ -1,41 +1,53 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: Re: [PATCH 1/5] mm: return valid info from
- hmm_range_unregister
-Date: Wed, 3 Jul 2019 22:28:57 +0200
-Message-ID: <20190703202857.GA15690@lst.de>
-References: <20190703184502.16234-1-hch@lst.de>
- <20190703184502.16234-2-hch@lst.de> <20190703190045.GN18688@mellanox.com>
+From: Christoph Hellwig <hch@lst.de>
+Subject: [PATCH] nouveau: remove bogus uses of DMA_ATTR_SKIP_CPU_SYNC
+Date: Wed,  3 Jul 2019 13:35:13 -0700
+Message-ID: <20190703203513.22692-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20190703190045.GN18688-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: bskeggs@redhat.com
+Cc: jglisse@redhat.com, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBKdWwgMDMsIDIwMTkgYXQgMDc6MDA6NTBQTSArMDAwMCwgSmFzb24gR3VudGhvcnBl
-IHdyb3RlOgo+IEkgZG9uJ3QgdGhpbmsgdGhlIEFQSSBzaG91bGQgYmUgZW5jb3VyYWdpbmcgc29t
-ZSBzaG9ydGN1dCBoZXJlLi4KPiAKPiBXZSBjYW4ndCBkbyB0aGUgYWJvdmUgcGF0dGVybiBiZWNh
-dXNlIHRoZSBvbGQgaG1tX3ZtYSBBUEkgZGlkbid0IGFsbG93Cj4gaXQsIHdoaWNoIGlzIHByZXN1
-bWFibHkgYSByZWFzb24gd2h5IGl0IGlzIG9ic29sZXRlLgo+IAo+IEknZCByYXRoZXIgc2VlIGRy
-aXZlcnMgbW92ZSB0byBhIGNvbnNpc3RlbnQgcGF0dGVybiBzbyB3ZSBjYW4gdGhlbgo+IGVhc2ls
-eSBob2lzdCB0aGUgc2VxY291bnQgbG9jayBzY2hlbWUgaW50byBzb21lIGNvbW1vbiBtbXUgbm90
-aWZpZXIKPiBjb2RlLCBhcyBkaXNjdXNzZWQuCgpTbyB5b3UgZG9uJ3QgbGlrZSB0aGUgdmVyc2lv
-biBpbiBhbWRncHVfdHRtX3R0X2dldF91c2VyX3BhZ2VzX2RvbmUgaW4KbGludXgtbmV4dCBlaXRo
-ZXI/CgpJIGNhbiByZW1vdmUgdGhpcyBhbmQganVzdCBtb3ZlIGhtbV92bWFfcmFuZ2VfZG9uZSB0
-byBub3V2ZWF1IGluc3RlYWQuCkxldCBtZSBrbm93IGlmIHlvdSBoYXZlIG90aGVyIGNvbW1lbnRz
-IGJlZm9yZSBJIHJlc2VuZC4gIE5vdGUgdGhhdApJJ2xsIHByb2JhYmx5IGJlIG9mZmxpbmUgVGh1
-LVN1biB0aGlzIHdlZWsuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+DMA_ATTR_SKIP_CPU_SYNC should only be used when the driver manually
+performs dma cache maintainance operations using the dma_sync_*
+calls.  Nouveau doesn't do that, and generally just assumes DMA
+is coherent.  Use plain dma_map_page which doesn't make this code
+correct but at least a little less wrong and simpler.
+
+Signed-off-by: Christoph Hellwig <hch@lst.de>
+---
+ drivers/gpu/drm/nouveau/nouveau_dmem.c | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+index b9ced2e61667..a5d9b537cbaf 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+@@ -186,9 +186,8 @@ nouveau_dmem_fault_alloc_and_copy(struct vm_area_struct *vma,
+ 		}
+ 
+ 		fault->dma[fault->npages] =
+-			dma_map_page_attrs(dev, dpage, 0, PAGE_SIZE,
+-					   PCI_DMA_BIDIRECTIONAL,
+-					   DMA_ATTR_SKIP_CPU_SYNC);
++			dma_map_page(dev, dpage, 0, PAGE_SIZE,
++				     PCI_DMA_BIDIRECTIONAL);
+ 		if (dma_mapping_error(dev, fault->dma[fault->npages])) {
+ 			dst_pfns[i] = MIGRATE_PFN_ERROR;
+ 			__free_page(dpage);
+@@ -706,9 +705,8 @@ nouveau_dmem_migrate_alloc_and_copy(struct vm_area_struct *vma,
+ 		}
+ 
+ 		migrate->dma[migrate->dma_nr] =
+-			dma_map_page_attrs(dev, spage, 0, PAGE_SIZE,
+-					   PCI_DMA_BIDIRECTIONAL,
+-					   DMA_ATTR_SKIP_CPU_SYNC);
++			dma_map_page(dev, spage, 0, PAGE_SIZE,
++				     PCI_DMA_BIDIRECTIONAL);
+ 		if (dma_mapping_error(dev, migrate->dma[migrate->dma_nr])) {
+ 			nouveau_dmem_page_free_locked(drm, dpage);
+ 			dst_pfns[i] = 0;
+-- 
+2.20.1
