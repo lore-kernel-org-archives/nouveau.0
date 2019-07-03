@@ -1,73 +1,81 @@
-From: Christoph Hellwig <hch@lst.de>
-Subject: [PATCH 4/5] nouveau: unlock mmap_sem on all errors from nouveau_range_fault
-Date: Wed,  3 Jul 2019 11:45:01 -0700
-Message-ID: <20190703184502.16234-5-hch@lst.de>
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Subject: [PATCH 1/5] mm: return valid info from
+ hmm_range_unregister
+Date: Wed,  3 Jul 2019 11:44:58 -0700
+Message-ID: <20190703184502.16234-2-hch@lst.de>
 References: <20190703184502.16234-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190703184502.16234-1-hch@lst.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190703184502.16234-1-hch-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Currently nouveau_svm_fault expects nouveau_range_fault to never unlock
-mmap_sem, but the latter unlocks it for a random selection of error
-codes. Fix this up by always unlocking mmap_sem for non-zero return
-values in nouveau_range_fault, and only unlocking it in the caller
-for successful returns.
-
-Signed-off-by: Christoph Hellwig <hch@lst.de>
----
- drivers/gpu/drm/nouveau/nouveau_svm.c | 15 ++++++++-------
- 1 file changed, 8 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-index e831f4184a17..c0cf7aeaefb3 100644
---- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-@@ -500,8 +500,10 @@ nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range,
- 	ret = hmm_range_register(range, mirror,
- 				 range->start, range->end,
- 				 PAGE_SHIFT);
--	if (ret)
-+	if (ret) {
-+		up_read(&range->vma->vm_mm->mmap_sem);
- 		return (int)ret;
-+	}
- 
- 	if (!hmm_range_wait_until_valid(range, NOUVEAU_RANGE_FAULT_TIMEOUT)) {
- 		/*
-@@ -515,15 +517,14 @@ nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range,
- 
- 	ret = hmm_range_fault(range, block);
- 	if (ret <= 0) {
--		if (ret == -EBUSY || !ret) {
--			/* Same as above, drop mmap_sem to match old API. */
--			up_read(&range->vma->vm_mm->mmap_sem);
--			ret = -EBUSY;
--		} else if (ret == -EAGAIN)
-+		if (ret == 0)
- 			ret = -EBUSY;
-+		if (ret != -EAGAIN)
-+			up_read(&range->vma->vm_mm->mmap_sem);
- 		hmm_range_unregister(range);
- 		return ret;
- 	}
-+
- 	return 0;
- }
- 
-@@ -718,8 +719,8 @@ nouveau_svm_fault(struct nvif_notify *notify)
- 						NULL);
- 			svmm->vmm->vmm.object.client->super = false;
- 			mutex_unlock(&svmm->mutex);
-+			up_read(&svmm->mm->mmap_sem);
- 		}
--		up_read(&svmm->mm->mmap_sem);
- 
- 		/* Cancel any faults in the window whose pages didn't manage
- 		 * to keep their valid bit, or stay writeable when required.
--- 
-2.20.1
+Q2hlY2tpbmcgcmFuZ2UtPnZhbGlkIGlzIHRyaXZpYWwgYW5kIGhhcyBubyBtZWFuaW5nZnVsIGNv
+c3QsIGJ1dApuaWNlbHkgc2ltcGxpZmllcyB0aGUgZmFzdHBhdGggaW4gdHlwaWNhbCBjYWxsZXJz
+LiAgQWxzbyByZW1vdmUgdGhlCmhtbV92bWFfcmFuZ2VfZG9uZSBmdW5jdGlvbiwgd2hpY2ggbm93
+IGlzIGEgdHJpdmlhbCB3cmFwcGVyIGFyb3VuZApobW1fcmFuZ2VfdW5yZWdpc3Rlci4KClNpZ25l
+ZC1vZmYtYnk6IENocmlzdG9waCBIZWxsd2lnIDxoY2hAbHN0LmRlPgpSZXZpZXdlZC1ieTogUmFs
+cGggQ2FtcGJlbGwgPHJjYW1wYmVsbEBudmlkaWEuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L25vdXZlYXVfc3ZtLmMgfCAgMiArLQogaW5jbHVkZS9saW51eC9obW0uaCAgICAgICAg
+ICAgICAgICAgICB8IDExICstLS0tLS0tLS0tCiBtbS9obW0uYyAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIHwgIDcgKysrKysrLQogMyBmaWxlcyBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyks
+IDEyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
+dXZlYXVfc3ZtLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N2bS5jCmluZGV4
+IDhjOTIzNzRhZmNmMi4uOWQ0MDExNGQ3OTQ5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X3N2bS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
+YXVfc3ZtLmMKQEAgLTY1Miw3ICs2NTIsNyBAQCBub3V2ZWF1X3N2bV9mYXVsdChzdHJ1Y3QgbnZp
+Zl9ub3RpZnkgKm5vdGlmeSkKIAkJcmV0ID0gaG1tX3ZtYV9mYXVsdCgmc3ZtbS0+bWlycm9yLCAm
+cmFuZ2UsIHRydWUpOwogCQlpZiAocmV0ID09IDApIHsKIAkJCW11dGV4X2xvY2soJnN2bW0tPm11
+dGV4KTsKLQkJCWlmICghaG1tX3ZtYV9yYW5nZV9kb25lKCZyYW5nZSkpIHsKKwkJCWlmICghaG1t
+X3JhbmdlX3VucmVnaXN0ZXIoJnJhbmdlKSkgewogCQkJCW11dGV4X3VubG9jaygmc3ZtbS0+bXV0
+ZXgpOwogCQkJCWdvdG8gYWdhaW47CiAJCQl9CmRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L2ht
+bS5oIGIvaW5jbHVkZS9saW51eC9obW0uaAppbmRleCBiOGEwOGIyYTEwY2EuLjZiNTVlNTlmZDhl
+MyAxMDA2NDQKLS0tIGEvaW5jbHVkZS9saW51eC9obW0uaAorKysgYi9pbmNsdWRlL2xpbnV4L2ht
+bS5oCkBAIC00NjIsNyArNDYyLDcgQEAgaW50IGhtbV9yYW5nZV9yZWdpc3RlcihzdHJ1Y3QgaG1t
+X3JhbmdlICpyYW5nZSwKIAkJICAgICAgIHVuc2lnbmVkIGxvbmcgc3RhcnQsCiAJCSAgICAgICB1
+bnNpZ25lZCBsb25nIGVuZCwKIAkJICAgICAgIHVuc2lnbmVkIHBhZ2Vfc2hpZnQpOwotdm9pZCBo
+bW1fcmFuZ2VfdW5yZWdpc3RlcihzdHJ1Y3QgaG1tX3JhbmdlICpyYW5nZSk7Citib29sIGhtbV9y
+YW5nZV91bnJlZ2lzdGVyKHN0cnVjdCBobW1fcmFuZ2UgKnJhbmdlKTsKIGxvbmcgaG1tX3Jhbmdl
+X3NuYXBzaG90KHN0cnVjdCBobW1fcmFuZ2UgKnJhbmdlKTsKIGxvbmcgaG1tX3JhbmdlX2ZhdWx0
+KHN0cnVjdCBobW1fcmFuZ2UgKnJhbmdlLCBib29sIGJsb2NrKTsKIGxvbmcgaG1tX3JhbmdlX2Rt
+YV9tYXAoc3RydWN0IGhtbV9yYW5nZSAqcmFuZ2UsCkBAIC00ODQsMTUgKzQ4NCw2IEBAIGxvbmcg
+aG1tX3JhbmdlX2RtYV91bm1hcChzdHJ1Y3QgaG1tX3JhbmdlICpyYW5nZSwKICAqLwogI2RlZmlu
+ZSBITU1fUkFOR0VfREVGQVVMVF9USU1FT1VUIDEwMDAKIAotLyogVGhpcyBpcyBhIHRlbXBvcmFy
+eSBoZWxwZXIgdG8gYXZvaWQgbWVyZ2UgY29uZmxpY3QgYmV0d2VlbiB0cmVlcy4gKi8KLXN0YXRp
+YyBpbmxpbmUgYm9vbCBobW1fdm1hX3JhbmdlX2RvbmUoc3RydWN0IGhtbV9yYW5nZSAqcmFuZ2Up
+Ci17Ci0JYm9vbCByZXQgPSBobW1fcmFuZ2VfdmFsaWQocmFuZ2UpOwotCi0JaG1tX3JhbmdlX3Vu
+cmVnaXN0ZXIocmFuZ2UpOwotCXJldHVybiByZXQ7Ci19Ci0KIC8qIFRoaXMgaXMgYSB0ZW1wb3Jh
+cnkgaGVscGVyIHRvIGF2b2lkIG1lcmdlIGNvbmZsaWN0IGJldHdlZW4gdHJlZXMuICovCiBzdGF0
+aWMgaW5saW5lIGludCBobW1fdm1hX2ZhdWx0KHN0cnVjdCBobW1fbWlycm9yICptaXJyb3IsCiAJ
+CQkJc3RydWN0IGhtbV9yYW5nZSAqcmFuZ2UsIGJvb2wgYmxvY2spCmRpZmYgLS1naXQgYS9tbS9o
+bW0uYyBiL21tL2htbS5jCmluZGV4IGQ0OGI5MjgzNzI1YS4uYWMyMzhkM2YxZjRlIDEwMDY0NAot
+LS0gYS9tbS9obW0uYworKysgYi9tbS9obW0uYwpAQCAtOTE3LDExICs5MTcsMTUgQEAgRVhQT1JU
+X1NZTUJPTChobW1fcmFuZ2VfcmVnaXN0ZXIpOwogICoKICAqIFJhbmdlIHN0cnVjdCBpcyB1c2Vk
+IHRvIHRyYWNrIHVwZGF0ZXMgdG8gdGhlIENQVSBwYWdlIHRhYmxlIGFmdGVyIGEgY2FsbCB0bwog
+ICogaG1tX3JhbmdlX3JlZ2lzdGVyKCkuIFNlZSBpbmNsdWRlL2xpbnV4L2htbS5oIGZvciBob3cg
+dG8gdXNlIGl0LgorICoKKyAqIFJldHVybjoJJXRydWUgaWYgdGhlIHJhbmdlIHdhcyBzdGlsbCB2
+YWxpZCBhdCB0aGUgdGltZSBvZiB1bnJlZ2lzdGVyaW5nLAorICoJCWVsc2UgJWZhbHNlLgogICov
+Ci12b2lkIGhtbV9yYW5nZV91bnJlZ2lzdGVyKHN0cnVjdCBobW1fcmFuZ2UgKnJhbmdlKQorYm9v
+bCBobW1fcmFuZ2VfdW5yZWdpc3RlcihzdHJ1Y3QgaG1tX3JhbmdlICpyYW5nZSkKIHsKIAlzdHJ1
+Y3QgaG1tICpobW0gPSByYW5nZS0+aG1tOwogCXVuc2lnbmVkIGxvbmcgZmxhZ3M7CisJYm9vbCBy
+ZXQgPSByYW5nZS0+dmFsaWQ7CiAKIAlzcGluX2xvY2tfaXJxc2F2ZSgmaG1tLT5yYW5nZXNfbG9j
+aywgZmxhZ3MpOwogCWxpc3RfZGVsX2luaXQoJnJhbmdlLT5saXN0KTsKQEAgLTkzOCw2ICs5NDIs
+NyBAQCB2b2lkIGhtbV9yYW5nZV91bnJlZ2lzdGVyKHN0cnVjdCBobW1fcmFuZ2UgKnJhbmdlKQog
+CSAqLwogCXJhbmdlLT52YWxpZCA9IGZhbHNlOwogCW1lbXNldCgmcmFuZ2UtPmhtbSwgUE9JU09O
+X0lOVVNFLCBzaXplb2YocmFuZ2UtPmhtbSkpOworCXJldHVybiByZXQ7CiB9CiBFWFBPUlRfU1lN
+Qk9MKGhtbV9yYW5nZV91bnJlZ2lzdGVyKTsKIAotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
+ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
