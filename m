@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111044] Resume up from suspend sometimes freezes
  system (Optimus/Nouveau)
-Date: Wed, 03 Jul 2019 00:11:34 +0000
-Message-ID: <bug-111044-8800-r2mdIxrjpv@http.bugs.freedesktop.org/>
+Date: Wed, 03 Jul 2019 00:29:36 +0000
+Message-ID: <bug-111044-8800-hUCjcaBFNw@http.bugs.freedesktop.org/>
 References: <bug-111044-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0967843847=="
+Content-Type: multipart/mixed; boundary="===============2114033053=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111044-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0967843847==
-Content-Type: multipart/alternative; boundary="15621126941.D66F4b4E.9561"
+--===============2114033053==
+Content-Type: multipart/alternative; boundary="15621137751.bF13.11868"
 Content-Transfer-Encoding: 7bit
 
 
---15621126941.D66F4b4E.9561
-Date: Wed, 3 Jul 2019 00:11:34 +0000
+--15621137751.bF13.11868
+Date: Wed, 3 Jul 2019 00:29:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,29 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111044
 
---- Comment #1 from JM9 <jhnmlkvch9-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Linux jonmhome 5.1.15-arch1-1-ARCH #1 SMP PREEMPT Tue Jun 25 04:49:39 UTC 2=
-019
-x86_64 GNU/Linux
+--- Comment #3 from JM9 <jhnmlkvch9-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+>Is the system actually frozen, or just the display is down?
+
+I'm guessing its frozen since I can't even switch consoles at this point.
+
+>I suspect disconnecting and reconnecting would "fix" the issue in such a >=
+situation. Unfortunately I can't help much more than that, but perhaps some=
+one >else can suggest something.
+
+It is possible. But typically, I disconnect my external monitors, close the
+laptop and leave to a different location in the field with no external
+monitors. So when I open the laptop and encounter the freeze, I'm not near a
+monitor. Closing and reopening the laptop does not help, but next time I
+encounter this issue, I'll see if plugging the external monitors back when =
+in
+this state does anything.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15621126941.D66F4b4E.9561
-Date: Wed, 3 Jul 2019 00:11:34 +0000
+--15621137751.bF13.11868
+Date: Wed, 3 Jul 2019 00:29:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +76,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Resume up from suspend sometimes freezes system (Optimus/=
 Nouveau)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Resume up from suspend sometimes freezes system (Optimus/=
@@ -76,9 +88,23 @@ Nouveau)"
 jhnmlkvch9&#64;gmail.com" title=3D"JM9 &lt;jhnmlkvch9&#64;gmail.com&gt;"> <=
 span class=3D"fn">JM9</span></a>
 </span></b>
-        <pre>Linux jonmhome 5.1.15-arch1-1-ARCH #1 SMP PREEMPT Tue Jun 25 0=
-4:49:39 UTC 2019
-x86_64 GNU/Linux</pre>
+        <pre><span class=3D"quote">&gt;Is the system actually frozen, or ju=
+st the display is down?</span >
+
+I'm guessing its frozen since I can't even switch consoles at this point.
+
+<span class=3D"quote">&gt;I suspect disconnecting and reconnecting would &q=
+uot;fix&quot; the issue in such a &gt;situation. Unfortunately I can't help=
+ much more than that, but perhaps someone &gt;else can suggest something.</=
+span >
+
+It is possible. But typically, I disconnect my external monitors, close the
+laptop and leave to a different location in the field with no external
+monitors. So when I open the laptop and encounter the freeze, I'm not near a
+monitor. Closing and reopening the laptop does not help, but next time I
+encounter this issue, I'll see if plugging the external monitors back when =
+in
+this state does anything.</pre>
         </div>
       </p>
 
@@ -92,9 +118,9 @@ x86_64 GNU/Linux</pre>
     </body>
 </html>=
 
---15621126941.D66F4b4E.9561--
+--15621137751.bF13.11868--
 
---===============0967843847==
+--===============2114033053==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +130,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0967843847==--
+--===============2114033053==--
