@@ -1,118 +1,63 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 18/22] mm: return valid info from hmm_range_unregister
-Date: Wed, 3 Jul 2019 10:22:23 -0700
-Message-ID: <0cc37cca-4f3a-40bb-0059-bf3880c171b8@nvidia.com>
+From: Ralph Campbell <rcampbell@nvidia.com>
+Subject: Re: [PATCH 19/22] mm: always return EBUSY for invalid ranges in
+ hmm_range_{fault,snapshot}
+Date: Wed, 3 Jul 2019 10:32:39 -0700
+Message-ID: <85c88d71-2c25-38ff-a4a3-bfd66fff72b7@nvidia.com>
 References: <20190701062020.19239-1-hch@lst.de>
- <20190701062020.19239-19-hch@lst.de>
+ <20190701062020.19239-20-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-In-Reply-To: <20190701062020.19239-19-hch-jcswGhMUV9g@public.gmane.org>
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190701062020.19239-20-hch@lst.de>
 Content-Language: en-US
-List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
-List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
- <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
-Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
-Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
-To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: linux-kernel-owner@vger.kernel.org
+To: Christoph Hellwig <hch@lst.de>, Dan Williams <dan.j.williams@intel.com>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: Ira Weiny <ira.weiny@intel.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
 
 On 6/30/19 11:20 PM, Christoph Hellwig wrote:
-> Checking range->valid is trivial and has no meaningful cost, but
-> nicely simplifies the fastpath in typical callers.  Also remove the
-> hmm_vma_range_done function, which now is a trivial wrapper around
-> hmm_range_unregister.
+> We should not have two different error codes for the same condition.  In
+> addition this really complicates the code due to the special handling of
+> EAGAIN that drops the mmap_sem due to the FAULT_FLAG_ALLOW_RETRY logic
+> in the core vm.
 > 
-> Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
 
-Reviewed-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
+
+Probably should update the "Return:" comment above
+hmm_range_snapshot() too.
 
 > ---
->   drivers/gpu/drm/nouveau/nouveau_svm.c |  2 +-
->   include/linux/hmm.h                   | 11 +----------
->   mm/hmm.c                              |  6 +++++-
->   3 files changed, 7 insertions(+), 12 deletions(-)
+>   mm/hmm.c | 8 +++-----
+>   1 file changed, 3 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-> index 8c92374afcf2..9d40114d7949 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-> @@ -652,7 +652,7 @@ nouveau_svm_fault(struct nvif_notify *notify)
->   		ret = hmm_vma_fault(&svmm->mirror, &range, true);
->   		if (ret == 0) {
->   			mutex_lock(&svmm->mutex);
-> -			if (!hmm_vma_range_done(&range)) {
-> +			if (!hmm_range_unregister(&range)) {
->   				mutex_unlock(&svmm->mutex);
->   				goto again;
->   			}
-> diff --git a/include/linux/hmm.h b/include/linux/hmm.h
-> index 0fa8ea34ccef..4b185d286c3b 100644
-> --- a/include/linux/hmm.h
-> +++ b/include/linux/hmm.h
-> @@ -465,7 +465,7 @@ int hmm_range_register(struct hmm_range *range,
->   		       unsigned long start,
->   		       unsigned long end,
->   		       unsigned page_shift);
-> -void hmm_range_unregister(struct hmm_range *range);
-> +bool hmm_range_unregister(struct hmm_range *range);
->   long hmm_range_snapshot(struct hmm_range *range);
->   long hmm_range_fault(struct hmm_range *range, bool block);
->   long hmm_range_dma_map(struct hmm_range *range,
-> @@ -487,15 +487,6 @@ long hmm_range_dma_unmap(struct hmm_range *range,
->    */
->   #define HMM_RANGE_DEFAULT_TIMEOUT 1000
->   
-> -/* This is a temporary helper to avoid merge conflict between trees. */
-> -static inline bool hmm_vma_range_done(struct hmm_range *range)
-> -{
-> -	bool ret = hmm_range_valid(range);
-> -
-> -	hmm_range_unregister(range);
-> -	return ret;
-> -}
-> -
->   /* This is a temporary helper to avoid merge conflict between trees. */
->   static inline int hmm_vma_fault(struct hmm_mirror *mirror,
->   				struct hmm_range *range, bool block)
 > diff --git a/mm/hmm.c b/mm/hmm.c
-> index de35289df20d..c85ed7d4e2ce 100644
+> index c85ed7d4e2ce..d125df698e2b 100644
 > --- a/mm/hmm.c
 > +++ b/mm/hmm.c
-> @@ -920,11 +920,14 @@ EXPORT_SYMBOL(hmm_range_register);
->    *
->    * Range struct is used to track updates to the CPU page table after a call to
->    * hmm_range_register(). See include/linux/hmm.h for how to use it.
-> + *
-> + * Returns if the range was still valid at the time of unregistering.
-
-Since this is an exported function, we should have kernel-doc comments.
-That is probably a separate patch but at least this line could be:
-Return: True if the range was still valid at the time of unregistering.
-
->    */
-> -void hmm_range_unregister(struct hmm_range *range)
-> +bool hmm_range_unregister(struct hmm_range *range)
->   {
->   	struct hmm *hmm = range->hmm;
->   	unsigned long flags;
-> +	bool ret = range->valid;
+> @@ -974,7 +974,7 @@ long hmm_range_snapshot(struct hmm_range *range)
+>   	do {
+>   		/* If range is no longer valid force retry. */
+>   		if (!range->valid)
+> -			return -EAGAIN;
+> +			return -EBUSY;
 >   
->   	spin_lock_irqsave(&hmm->ranges_lock, flags);
->   	list_del_init(&range->list);
-> @@ -941,6 +944,7 @@ void hmm_range_unregister(struct hmm_range *range)
->   	 */
->   	range->valid = false;
->   	memset(&range->hmm, POISON_INUSE, sizeof(range->hmm));
-> +	return ret;
->   }
->   EXPORT_SYMBOL(hmm_range_unregister);
+>   		vma = find_vma(hmm->mm, start);
+>   		if (vma == NULL || (vma->vm_flags & device_vma))
+> @@ -1069,10 +1069,8 @@ long hmm_range_fault(struct hmm_range *range, bool block)
 >   
+>   	do {
+>   		/* If range is no longer valid force retry. */
+> -		if (!range->valid) {
+> -			up_read(&hmm->mm->mmap_sem);
+> -			return -EAGAIN;
+> -		}
+> +		if (!range->valid)
+> +			return -EBUSY;
+>   
+>   		vma = find_vma(hmm->mm, start);
+>   		if (vma == NULL || (vma->vm_flags & device_vma))
 > 
