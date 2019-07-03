@@ -1,102 +1,214 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH] Revert "PCI: Enable NVIDIA HDA controllers"
-Date: Wed, 31 Jul 2019 17:35:11 -0400
-Message-ID: <b27614151184f29bb147786933cb424fddb82a23.camel@redhat.com>
-References: <20190731201927.22054-1-lyude@redhat.com>
-         <20190731211842.befvpoyudrm2subf@wunner.de>
-         <CACO55tu=9ZBzGkwdXPOwWARy1UTspFv+v=nrmLFoOKiSGU+E5Q@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110714] Xorg crashes randomly because of memory leak
+Date: Wed, 03 Jul 2019 06:37:55 +0000
+Message-ID: <bug-110714-8800-sqnmsBLWap@http.bugs.freedesktop.org/>
+References: <bug-110714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CACO55tu=9ZBzGkwdXPOwWARy1UTspFv+v=nrmLFoOKiSGU+E5Q@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Karol Herbst <kherbst@redhat.com>, Lukas Wunner <lukas@wunner.de>
-Cc: nouveau <nouveau@lists.freedesktop.org>, Linux PCI <linux-pci@vger.kernel.org>, Daniel Drake <drake@endlessm.com>, Bjorn Helgaas <bhelgaas@google.com>, Aaron Plattner <aplattner@nvidia.com>, Peter Wu <peter@lekensteyn.nl>, Ilia Mirkin <imirkin@alum.mit.edu>, Maik Freudenberg <hhfeuer@gmx.de>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0040434769=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-110714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, 2019-07-31 at 23:26 +0200, Karol Herbst wrote:
-> On Wed, Jul 31, 2019 at 11:18 PM Lukas Wunner <lukas@wunner.de> wrote:
-> > On Wed, Jul 31, 2019 at 04:19:27PM -0400, Lyude Paul wrote:
-> > > While this fixes audio for a number of users, this commit has the
-> > > sideaffect of breaking the BIOS workaround that's required to make the
-> > > GPU on the nvidia P50 work, by causing the GPU's PCI device function to
-> > > stop working after it's been set to multifunction mode.
-> > 
-> > This is missing a reference to the commit introducing the P50 quirk,
-> > which is e0547c81bfcf ("PCI: Reset Lenovo ThinkPad P50 nvgpu at boot
-> > if necessary").
-> > 
-> > Please describe in more detail how the GPU's PCI function stops working.
-> > Does it respond with "all ones" when accessing MMIO?
-> > Do MMIO accesses cause the system to hang?
-> > 
-> > Could you provide lspci -vvxx output for the GPU and its associated
-> > HDA controller with and without b516ea586d71?
-> > 
-> > Does this machine have external display connectors via which audio
-> > can be streamed?
-> > 
-> > 
-> > > I'm not really holding my breath on this patch to being accepted:
-> > > there's a good chance there's a better solution for this (and I'm going
-> > > to continue investigating for one after sending this patch), this is
-> > > more just to start a conversation on what the proper way to fix this is.
-> > 
-> > Posting as an RFC might have been more appropriate then.
-> > 
-> 
-> no, a revert is actually appropriate.  If a commit fixes something,
-> but breaks something else, it gets either reverted or fixed. If nobody
-> fixes it, then revert it is.
 
-To answer Lukas's question btw: most of the details on how things break are
-back in the original commit (sorry for forgetting the reference!), there's a
-_lot_ of explanation there that I'd rather not retype, so just refer back to
-the commit and bug @ https://bugs.freedesktop.org/show_bug.cgi?id=75985
+--===============0040434769==
+Content-Type: multipart/alternative; boundary="15621358751.2E4c23A.17259"
+Content-Transfer-Encoding: 7bit
 
-Additionally, there was some extra discussion providing some more detail in
-the email thread that I had with Bjorn:
 
-https://lkml.org/lkml/2019/2/12/1172
+--15621358751.2E4c23A.17259
+Date: Wed, 3 Jul 2019 06:37:55 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-As for how this commit breaks the workaround: it seems that when we enable the
-HDA controller and put the GPU into multifunction mode, the function-level
-reset stops working and thus we can't reset the GPU anymore. Currently I can
-see a couple of solutions (again, please feel free to suggest more!):
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110714
 
- * Just revert the commit. We should do this if necessary, but of course I'd
-   much rather try finding a fix first
- * Disable the HDA controller temporarily when a GPU reset is neded in
-   quirk_reset_lenovo_thinkpad_p50_nvgpu(), then call the function level
-   reset, then re-enable the HDA controller. I have no idea if this actually
-   works yet, but I'm about to try this on my system
- * Get quirk_reset_lenovo_thinkpad_p50_nvgpu() to run before
-   quirk_nvidia_hda(). This would probably be fine, but we would need to
-   rework some stuff in the PCI subsystem (maybe it already has a way to do
-   this? haven't checked yet) so that we could perform an flr probe early
-   enough to perform the quirk
-> 
-> > > So, I'm kind of confused about why exactly this was implemented as an
-> > > early boot quirk in the first place. If we're seeing the GPU's PCI
-> > > device, we already know the GPU is there. Shouldn't we be able to check
-> > > for the existence of the HDA device once we probe the GPU in nouveau?
-> > 
-> > I think a motivation to keep this generic was to make it work with
-> > other drivers besides nouveau, specifically Nvidia's proprietary driver.
-> > nouveau might not even be enabled.
-> > 
-> > 
-> > > that still doesn't explain why this was implemented as an early quirk
-> > 
-> > This isn't an early quirk.  Those live in arch/x86/kernel/early-quirks.c.
-> > This is just a PCI quirk executed on device enumeration and on resume.
-> > Devices aren't necessarily enumerated only on boot, e.g. think
-> > Thunderbolt.
-> > 
-> > Thanks,
-> > 
-> > Lukas
--- 
-Cheers,
-	Lyude Paul
+Peter Draganov <pdraganov-8RvTx9/d5SBBDgjK7y7TUQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|NOTOURBUG                   |---
+
+--- Comment #4 from Peter Draganov <pdraganov-8RvTx9/d5SBBDgjK7y7TUQ@public.gmane.org> ---
+The problem persists in xorg-x11-server-Xorg-1.20.5-3.fc30.x86_64:
+
+[113930.196] (EE) glamor0: GL error: GL_OUT_OF_MEMORY in glTexSubImage
+[113930.198] (WW) glamor: Failed to allocate 5x1 FBO due to GL_OUT_OF_MEMOR=
+Y.
+[113930.198] (WW) glamor: Expect reduced performance.
+[113930.198] (EE)=20
+[113930.198] (EE) Backtrace:
+[113930.235] (EE) 0: /usr/libexec/Xorg (OsLookupColor+0x13c) [0x5637893b8ad=
+c]
+[113930.238] (EE) unw_get_proc_name failed: no unwind info found [-10]
+[113930.238] (EE) 1: /lib64/libpthread.so.0 (?+0x0) [0x7f264909ee7f]
+[113930.239] (EE) 2: /usr/lib64/xorg/modules/libglamoregl.so
+(glamor_get_pixmap_texture+0xa1) [0x7f2648726181]
+[113930.240] (EE) 3: /usr/lib64/xorg/modules/libglamoregl.so
+(glamor_create_gc+0x7b84) [0x7f2648738814]
+[113930.241] (EE) 4: /usr/lib64/xorg/modules/libglamoregl.so
+(glamor_create_gc+0x7f64) [0x7f2648738f84]
+[113930.241] (EE) 5: /usr/lib64/xorg/modules/libglamoregl.so
+(glamor_create_gc+0x85bf) [0x7f264873975f]
+[113930.242] (EE) 6: /usr/lib64/xorg/modules/libglamoregl.so
+(glamor_create_gc+0xa57a) [0x7f264873d34a]
+[113930.242] (EE) 7: /usr/libexec/Xorg (DamageRegionAppend+0x6c0)
+[0x56378933a670]
+[113930.243] (EE) 8: /usr/lib64/xorg/modules/libglamoregl.so
+(glamor_create_gc+0x1150a) [0x7f264874b92a]
+[113930.243] (EE) 9: /usr/libexec/Xorg (AddTraps+0x4238) [0x563789332eb8]
+[113930.243] (EE) 10: /usr/libexec/Xorg (SendErrorToClient+0x354)
+[0x563789259d54]
+[113930.243] (EE) 11: /usr/libexec/Xorg (InitFonts+0x3b4) [0x56378925de14]
+[113930.244] (EE) unw_get_proc_name failed: no unwind info found [-10]
+[113930.244] (EE) 12: /lib/libc.so.6 (?+0x0) [0x7f2648ee9e40]
+[113930.244] (EE) 13: /usr/libexec/Xorg (_start+0x2e) [0x56378924786e]
+[113930.244] (EE)=20
+[113930.244] (EE) Segmentation fault at address 0x0
+[113930.244] (EE)=20
+Fatal server error:
+[113930.244] (EE) Caught signal 11 (Segmentation fault). Server aborting
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15621358751.2E4c23A.17259
+Date: Wed, 3 Jul 2019 06:37:55 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pdraganov=
+&#64;taxback.com" title=3D"Peter Draganov &lt;pdraganov&#64;taxback.com&gt;=
+"> <span class=3D"fn">Peter Draganov</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Xorg crashes randomly because of memory leak"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714">bug 11071=
+4</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>NOTOURBUG
+           </td>
+           <td>---
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Xorg crashes randomly because of memory leak"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714#c4">Commen=
+t # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Xorg crashes randomly because of memory leak"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714">bug 11071=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pdraganov&#64;taxback.com" title=3D"Peter Draganov &lt;pdraganov&#64;taxbac=
+k.com&gt;"> <span class=3D"fn">Peter Draganov</span></a>
+</span></b>
+        <pre>The problem persists in xorg-x11-server-Xorg-1.20.5-3.fc30.x86=
+_64:
+
+[113930.196] (EE) glamor0: GL error: GL_OUT_OF_MEMORY in glTexSubImage
+[113930.198] (WW) glamor: Failed to allocate 5x1 FBO due to GL_OUT_OF_MEMOR=
+Y.
+[113930.198] (WW) glamor: Expect reduced performance.
+[113930.198] (EE)=20
+[113930.198] (EE) Backtrace:
+[113930.235] (EE) 0: /usr/libexec/Xorg (OsLookupColor+0x13c) [0x5637893b8ad=
+c]
+[113930.238] (EE) unw_get_proc_name failed: no unwind info found [-10]
+[113930.238] (EE) 1: /lib64/libpthread.so.0 (?+0x0) [0x7f264909ee7f]
+[113930.239] (EE) 2: /usr/lib64/xorg/modules/libglamoregl.so
+(glamor_get_pixmap_texture+0xa1) [0x7f2648726181]
+[113930.240] (EE) 3: /usr/lib64/xorg/modules/libglamoregl.so
+(glamor_create_gc+0x7b84) [0x7f2648738814]
+[113930.241] (EE) 4: /usr/lib64/xorg/modules/libglamoregl.so
+(glamor_create_gc+0x7f64) [0x7f2648738f84]
+[113930.241] (EE) 5: /usr/lib64/xorg/modules/libglamoregl.so
+(glamor_create_gc+0x85bf) [0x7f264873975f]
+[113930.242] (EE) 6: /usr/lib64/xorg/modules/libglamoregl.so
+(glamor_create_gc+0xa57a) [0x7f264873d34a]
+[113930.242] (EE) 7: /usr/libexec/Xorg (DamageRegionAppend+0x6c0)
+[0x56378933a670]
+[113930.243] (EE) 8: /usr/lib64/xorg/modules/libglamoregl.so
+(glamor_create_gc+0x1150a) [0x7f264874b92a]
+[113930.243] (EE) 9: /usr/libexec/Xorg (AddTraps+0x4238) [0x563789332eb8]
+[113930.243] (EE) 10: /usr/libexec/Xorg (SendErrorToClient+0x354)
+[0x563789259d54]
+[113930.243] (EE) 11: /usr/libexec/Xorg (InitFonts+0x3b4) [0x56378925de14]
+[113930.244] (EE) unw_get_proc_name failed: no unwind info found [-10]
+[113930.244] (EE) 12: /lib/libc.so.6 (?+0x0) [0x7f2648ee9e40]
+[113930.244] (EE) 13: /usr/libexec/Xorg (_start+0x2e) [0x56378924786e]
+[113930.244] (EE)=20
+[113930.244] (EE) Segmentation fault at address 0x0
+[113930.244] (EE)=20
+Fatal server error:
+[113930.244] (EE) Caught signal 11 (Segmentation fault). Server aborting</p=
+re>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15621358751.2E4c23A.17259--
+
+--===============0040434769==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0040434769==--
