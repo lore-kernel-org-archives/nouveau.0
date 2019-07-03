@@ -1,91 +1,53 @@
-From: Christoph Hellwig <hch@lst.de>
-Subject: Re: [PATCH 4/5] nouveau: unlock mmap_sem on all errors from
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Subject: [PATCH 3/6] nouveau: remove the block parameter to
  nouveau_range_fault
-Date: Wed, 3 Jul 2019 23:51:26 +0200
-Message-ID: <20190703215126.GA17366@lst.de>
-References: <20190703184502.16234-1-hch@lst.de> <20190703184502.16234-5-hch@lst.de> <ec5e86a4-4a60-0dd5-797c-41b21e3a091a@nvidia.com>
+Date: Wed,  3 Jul 2019 15:02:11 -0700
+Message-ID: <20190703220214.28319-4-hch@lst.de>
+References: <20190703220214.28319-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <ec5e86a4-4a60-0dd5-797c-41b21e3a091a@nvidia.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ralph Campbell <rcampbell@nvidia.com>
-Cc: Christoph Hellwig <hch@lst.de>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190703220214.28319-1-hch-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jul 03, 2019 at 01:46:02PM -0700, Ralph Campbell wrote:
-> You can delete the comment "With the old API the driver must ..."
-> (not visible in the patch here).
-
-Sure.
-
-> I suggest moving the two assignments:
-> 	range->default_flags = 0;
-> 	range->pfn_flags_mask = -1UL;
-> to just above the "again:" where the other range.xxx fields are
-> initialized in nouveau_svm_fault().
-
-For now I really just want to move the code around.  As Jason pointed
-out the flow will need some major rework, and I'd rather not mess
-with little things like this for now.  Especially as I assume Jerome
-must have an update to the proper API ready given that he both
-wrote that new API and the nouveau code.
-
-> You can delete this comment (only the first line is visible here)
-> since it is about the "old API".
-
-Ok.
-
-> Also, it should return -EBUSY not -EAGAIN since it means there was a
-> range invalidation collision (similar to hmm_range_fault() if
-> !range->valid).
-
-Yes, probably.
-
-
->> @@ -515,15 +517,14 @@ nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range,
->>     	ret = hmm_range_fault(range, block);
->
-> nouveau_range_fault() is only called with "block = true" so
-> could eliminate the block parameter and pass true here.
-
-Indeed.
-
->
->>   	if (ret <= 0) {
->> -		if (ret == -EBUSY || !ret) {
->> -			/* Same as above, drop mmap_sem to match old API. */
->> -			up_read(&range->vma->vm_mm->mmap_sem);
->> -			ret = -EBUSY;
->> -		} else if (ret == -EAGAIN)
->> +		if (ret == 0)
->>   			ret = -EBUSY;
->> +		if (ret != -EAGAIN)
->> +			up_read(&range->vma->vm_mm->mmap_sem);
->
-> Can ret == -EAGAIN happen if "block = true"?
-
-I don't think so, we can remove that.
-
-> Generally, I prefer the read_down()/read_up() in the same function
-> (i.e., nouveau_svm_fault()) but I can see why it should be here
-> if hmm_range_fault() can return with mmap_sem unlocked.
-
-Yes, in the long run this all needs a major cleanup..
-
-
->>   @@ -718,8 +719,8 @@ nouveau_svm_fault(struct nvif_notify *notify)
->>   						NULL);
->>   			svmm->vmm->vmm.object.client->super = false;
->>   			mutex_unlock(&svmm->mutex);
->> +			up_read(&svmm->mm->mmap_sem);
->>   		}
->> -		up_read(&svmm->mm->mmap_sem);
->>   
->
-> The "else" case should check for -EBUSY and goto again.
-
-It should if I were trying to fix this.  But this is just code
-inspection and I don't even have the hardware, so I'll have to leave
-that for someone who can do real development on the driver.
+VGhlIHBhcmFtZXRlciBpcyBhbHdheXMgZmFsc2UsIHNvIHJlbW92ZSBpdCBhcyB3ZWxsIGFzIHRo
+ZSAtRUFHQUlOCmhhbmRsaW5nIHRoYXQgY2FuIG9ubHkgaGFwcGVuIGZvciB0aGUgbm9uLWJsb2Nr
+aW5nIGNhc2UuCgpTaWduZWQtb2ZmLWJ5OiBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGxzdC5kZT4K
+LS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N2bS5jIHwgNyArKystLS0tCiAx
+IGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfc3ZtLmMgYi9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9ub3V2ZWF1X3N2bS5jCmluZGV4IDAzM2E5MjQxYTE0YS4uOWE5ZjcxZTRiZTI5
+IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N2bS5jCisrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfc3ZtLmMKQEAgLTQ5MSw4ICs0OTEsNyBA
+QCBzdGF0aWMgaW5saW5lIGJvb2wgbm91dmVhdV9yYW5nZV9kb25lKHN0cnVjdCBobW1fcmFuZ2Ug
+KnJhbmdlKQogfQogCiBzdGF0aWMgaW50Ci1ub3V2ZWF1X3JhbmdlX2ZhdWx0KHN0cnVjdCBobW1f
+bWlycm9yICptaXJyb3IsIHN0cnVjdCBobW1fcmFuZ2UgKnJhbmdlLAotCQkgICAgYm9vbCBibG9j
+aykKK25vdXZlYXVfcmFuZ2VfZmF1bHQoc3RydWN0IGhtbV9taXJyb3IgKm1pcnJvciwgc3RydWN0
+IGhtbV9yYW5nZSAqcmFuZ2UpCiB7CiAJbG9uZyByZXQ7CiAKQEAgLTUxMCw3ICs1MDksNyBAQCBu
+b3V2ZWF1X3JhbmdlX2ZhdWx0KHN0cnVjdCBobW1fbWlycm9yICptaXJyb3IsIHN0cnVjdCBobW1f
+cmFuZ2UgKnJhbmdlLAogCQlyZXR1cm4gLUVBR0FJTjsKIAl9CiAKLQlyZXQgPSBobW1fcmFuZ2Vf
+ZmF1bHQocmFuZ2UsIGJsb2NrKTsKKwlyZXQgPSBobW1fcmFuZ2VfZmF1bHQocmFuZ2UsIHRydWUp
+OwogCWlmIChyZXQgPD0gMCkgewogCQlpZiAocmV0ID09IC1FQlVTWSB8fCAhcmV0KSB7CiAJCQl1
+cF9yZWFkKCZyYW5nZS0+dm1hLT52bV9tbS0+bW1hcF9zZW0pOwpAQCAtNjk3LDcgKzY5Niw3IEBA
+IG5vdXZlYXVfc3ZtX2ZhdWx0KHN0cnVjdCBudmlmX25vdGlmeSAqbm90aWZ5KQogCQlyYW5nZS52
+YWx1ZXMgPSBub3V2ZWF1X3N2bV9wZm5fdmFsdWVzOwogCQlyYW5nZS5wZm5fc2hpZnQgPSBOVklG
+X1ZNTV9QRk5NQVBfVjBfQUREUl9TSElGVDsKIGFnYWluOgotCQlyZXQgPSBub3V2ZWF1X3Jhbmdl
+X2ZhdWx0KCZzdm1tLT5taXJyb3IsICZyYW5nZSwgdHJ1ZSk7CisJCXJldCA9IG5vdXZlYXVfcmFu
+Z2VfZmF1bHQoJnN2bW0tPm1pcnJvciwgJnJhbmdlKTsKIAkJaWYgKHJldCA9PSAwKSB7CiAJCQlt
+dXRleF9sb2NrKCZzdm1tLT5tdXRleCk7CiAJCQlpZiAoIW5vdXZlYXVfcmFuZ2VfZG9uZSgmcmFu
+Z2UpKSB7Ci0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
+dQ==
