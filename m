@@ -1,136 +1,118 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111044] Resume up from suspend sometimes freezes
- system (Optimus/Nouveau)
-Date: Wed, 03 Jul 2019 16:05:30 +0000
-Message-ID: <bug-111044-8800-bQNlXmBstK@http.bugs.freedesktop.org/>
-References: <bug-111044-8800@http.bugs.freedesktop.org/>
+From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH 18/22] mm: return valid info from hmm_range_unregister
+Date: Wed, 3 Jul 2019 10:22:23 -0700
+Message-ID: <0cc37cca-4f3a-40bb-0059-bf3880c171b8@nvidia.com>
+References: <20190701062020.19239-1-hch@lst.de>
+ <20190701062020.19239-19-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0482949744=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111044-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+In-Reply-To: <20190701062020.19239-19-hch-jcswGhMUV9g@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.01.org/mailman/options/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.01.org/pipermail/linux-nvdimm/>
+List-Post: <mailto:linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+List-Help: <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.01.org/mailman/listinfo/linux-nvdimm>,
+ <mailto:linux-nvdimm-request-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org?subject=subscribe>
+Errors-To: linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org
+Sender: "Linux-nvdimm" <linux-nvdimm-bounces-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org>
+To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: linux-nvdimm-hn68Rpc1hR1g9hUCZPvPmw@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0482949744==
-Content-Type: multipart/alternative; boundary="15621699303.4f2581.19981"
-Content-Transfer-Encoding: 7bit
+On 6/30/19 11:20 PM, Christoph Hellwig wrote:
+> Checking range->valid is trivial and has no meaningful cost, but
+> nicely simplifies the fastpath in typical callers.  Also remove the
+> hmm_vma_range_done function, which now is a trivial wrapper around
+> hmm_range_unregister.
+> 
+> Signed-off-by: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 
+Reviewed-by: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 
---15621699303.4f2581.19981
-Date: Wed, 3 Jul 2019 16:05:30 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+> ---
+>   drivers/gpu/drm/nouveau/nouveau_svm.c |  2 +-
+>   include/linux/hmm.h                   | 11 +----------
+>   mm/hmm.c                              |  6 +++++-
+>   3 files changed, 7 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> index 8c92374afcf2..9d40114d7949 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> @@ -652,7 +652,7 @@ nouveau_svm_fault(struct nvif_notify *notify)
+>   		ret = hmm_vma_fault(&svmm->mirror, &range, true);
+>   		if (ret == 0) {
+>   			mutex_lock(&svmm->mutex);
+> -			if (!hmm_vma_range_done(&range)) {
+> +			if (!hmm_range_unregister(&range)) {
+>   				mutex_unlock(&svmm->mutex);
+>   				goto again;
+>   			}
+> diff --git a/include/linux/hmm.h b/include/linux/hmm.h
+> index 0fa8ea34ccef..4b185d286c3b 100644
+> --- a/include/linux/hmm.h
+> +++ b/include/linux/hmm.h
+> @@ -465,7 +465,7 @@ int hmm_range_register(struct hmm_range *range,
+>   		       unsigned long start,
+>   		       unsigned long end,
+>   		       unsigned page_shift);
+> -void hmm_range_unregister(struct hmm_range *range);
+> +bool hmm_range_unregister(struct hmm_range *range);
+>   long hmm_range_snapshot(struct hmm_range *range);
+>   long hmm_range_fault(struct hmm_range *range, bool block);
+>   long hmm_range_dma_map(struct hmm_range *range,
+> @@ -487,15 +487,6 @@ long hmm_range_dma_unmap(struct hmm_range *range,
+>    */
+>   #define HMM_RANGE_DEFAULT_TIMEOUT 1000
+>   
+> -/* This is a temporary helper to avoid merge conflict between trees. */
+> -static inline bool hmm_vma_range_done(struct hmm_range *range)
+> -{
+> -	bool ret = hmm_range_valid(range);
+> -
+> -	hmm_range_unregister(range);
+> -	return ret;
+> -}
+> -
+>   /* This is a temporary helper to avoid merge conflict between trees. */
+>   static inline int hmm_vma_fault(struct hmm_mirror *mirror,
+>   				struct hmm_range *range, bool block)
+> diff --git a/mm/hmm.c b/mm/hmm.c
+> index de35289df20d..c85ed7d4e2ce 100644
+> --- a/mm/hmm.c
+> +++ b/mm/hmm.c
+> @@ -920,11 +920,14 @@ EXPORT_SYMBOL(hmm_range_register);
+>    *
+>    * Range struct is used to track updates to the CPU page table after a call to
+>    * hmm_range_register(). See include/linux/hmm.h for how to use it.
+> + *
+> + * Returns if the range was still valid at the time of unregistering.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111044
+Since this is an exported function, we should have kernel-doc comments.
+That is probably a separate patch but at least this line could be:
+Return: True if the range was still valid at the time of unregistering.
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to JM9 from comment #5)
-> I believe all screens (Display Ports) are wired to intel. If you think th=
-is
-> is an intel issue, I can file a bug there, but the nouveau message threw =
-me.
-
-The error messages suggest that there's something attached to a DP port on =
-the
-nvidia chip. Perhaps it's a phantom connection though.
-
-You can easily check to see where things are connected by doing
-
-grep . /sys/class/drm/card*-*/status
-
-which should show you the current state of each port, as well as what card =
-it's
-on. (Then it's a matter of determining which card is which...)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15621699303.4f2581.19981
-Date: Wed, 3 Jul 2019 16:05:30 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Resume up from suspend sometimes freezes system (Optimus/=
-Nouveau)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044#c6">Commen=
-t # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Resume up from suspend sometimes freezes system (Optimus/=
-Nouveau)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044">bug 11104=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to JM9 from <a href=3D"show_bug.cgi?id=3D111044#c5">=
-comment #5</a>)
-<span class=3D"quote">&gt; I believe all screens (Display Ports) are wired =
-to intel. If you think this
-&gt; is an intel issue, I can file a bug there, but the nouveau message thr=
-ew me.</span >
-
-The error messages suggest that there's something attached to a DP port on =
-the
-nvidia chip. Perhaps it's a phantom connection though.
-
-You can easily check to see where things are connected by doing
-
-grep . /sys/class/drm/card*-*/status
-
-which should show you the current state of each port, as well as what card =
-it's
-on. (Then it's a matter of determining which card is which...)</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15621699303.4f2581.19981--
-
---===============0482949744==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0482949744==--
+>    */
+> -void hmm_range_unregister(struct hmm_range *range)
+> +bool hmm_range_unregister(struct hmm_range *range)
+>   {
+>   	struct hmm *hmm = range->hmm;
+>   	unsigned long flags;
+> +	bool ret = range->valid;
+>   
+>   	spin_lock_irqsave(&hmm->ranges_lock, flags);
+>   	list_del_init(&range->list);
+> @@ -941,6 +944,7 @@ void hmm_range_unregister(struct hmm_range *range)
+>   	 */
+>   	range->valid = false;
+>   	memset(&range->hmm, POISON_INUSE, sizeof(range->hmm));
+> +	return ret;
+>   }
+>   EXPORT_SYMBOL(hmm_range_unregister);
+>   
+> 
