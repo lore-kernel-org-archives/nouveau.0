@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111044] New: Resume up from suspend sometimes
- freezes system (Optimus/Nouveau)
-Date: Wed, 03 Jul 2019 00:00:38 +0000
-Message-ID: <bug-111044-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 111044] Resume up from suspend sometimes freezes
+ system (Optimus/Nouveau)
+Date: Wed, 03 Jul 2019 00:16:11 +0000
+Message-ID: <bug-111044-8800-qFee1XdYye@http.bugs.freedesktop.org/>
+References: <bug-111044-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1892290876=="
+Content-Type: multipart/mixed; boundary="===============1839446590=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-111044-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1892290876==
-Content-Type: multipart/alternative; boundary="15621120410.E3AB8aa4.7770"
+--===============1839446590==
+Content-Type: multipart/alternative; boundary="15621129711.c612E.9775"
 Content-Transfer-Encoding: 7bit
 
 
---15621120410.E3AB8aa4.7770
-Date: Wed, 3 Jul 2019 00:00:41 +0000
+--15621129711.c612E.9775
+Date: Wed, 3 Jul 2019 00:16:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,54 +36,38 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111044
 
-            Bug ID: 111044
-           Summary: Resume up from suspend sometimes freezes system
-                    (Optimus/Nouveau)
-           Product: xorg
-           Version: git
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: jhnmlkvch9-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to JM9 from comment #0)
+> I'm on an Optimus laptop. Every time, I resume from suspend, I get this
+> message and the resume succeeds.=20
+>=20
+> tmp tpm0: tpm_try_transmit: send(): error -5
 
-I'm on an Optimus laptop. Every time, I resume from suspend, I get this mes=
-sage
-and the resume succeeds.=20
+This is related to the TPM driver - Trusted Platform Module. No clue what i=
+t's
+for. Intel ME interactions perhaps?
 
-tmp tpm0: tpm_try_transmit: send(): error -5
+>=20
+> However, sometimes, I get this following messages and the system freezes:
+>=20
+> nouveau 0000:01: 00.0: disp: outp 03:0006:0f81: link rate unsupported by =
+sink
+> nouveau 0000:01: 00.0: disp: outp 03:0006:0f81: training failed
+>=20
+> Not sure if this is relevant, but I also have a external multi-monitor se=
+tup.
 
-However, sometimes, I get this following messages and the system freezes:
-
-nouveau 0000:01: 00.0: disp: outp 03:0006:0f81: link rate unsupported by si=
-nk
-nouveau 0000:01: 00.0: disp: outp 03:0006:0f81: training failed
-
-Not sure if this is relevant, but I also have a external multi-monitor setu=
-p.
-
-
-$lspci -v | grep VGA=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-
-00:02.0 VGA compatible controller: Intel Corporation 4th Gen Core Processor
-Integrated Graphics Controller (rev 06) (prog-if 00 [VGA controller])
-
-01:00.0 VGA compatible controller: NVIDIA Corporation GK104GLM [Quadro K310=
-0M]
-(rev a1) (prog-if 00 [VGA controller])
+Is the system actually frozen, or just the display is down? I suspect
+disconnecting and reconnecting would "fix" the issue in such a situation.
+Unfortunately I can't help much more than that, but perhaps someone else can
+suggest something.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15621120410.E3AB8aa4.7770
-Date: Wed, 3 Jul 2019 00:00:41 +0000
+--15621129711.c612E.9775
+Date: Wed, 3 Jul 2019 00:16:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -92,117 +78,53 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Resume up from suspend sometimes freezes system (Optimus/=
 Nouveau)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044">111044</a>
-          </td>
-        </tr>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Resume up from suspend sometimes freezes system (Optimus/=
+Nouveau)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044">bug 11104=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to JM9 from <a href=3D"show_bug.cgi?id=3D111044#c0">=
+comment #0</a>)
+<span class=3D"quote">&gt; I'm on an Optimus laptop. Every time, I resume f=
+rom suspend, I get this
+&gt; message and the resume succeeds.=20
+&gt;=20
+&gt; tmp tpm0: tpm_try_transmit: send(): error -5</span >
 
-        <tr>
-          <th>Summary</th>
-          <td>Resume up from suspend sometimes freezes system (Optimus/Nouv=
-eau)
-          </td>
-        </tr>
+This is related to the TPM driver - Trusted Platform Module. No clue what i=
+t's
+for. Intel ME interactions perhaps?
 
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
+<span class=3D"quote">&gt;=20
+&gt; However, sometimes, I get this following messages and the system freez=
+es:
+&gt;=20
+&gt; nouveau 0000:01: 00.0: disp: outp 03:0006:0f81: link rate unsupported =
+by sink
+&gt; nouveau 0000:01: 00.0: disp: outp 03:0006:0f81: training failed
+&gt;=20
+&gt; Not sure if this is relevant, but I also have a external multi-monitor=
+ setup.</span >
 
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>jhnmlkvch9&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>I'm on an Optimus laptop. Every time, I resume from suspend, I=
- get this message
-and the resume succeeds.=20
-
-tmp tpm0: tpm_try_transmit: send(): error -5
-
-However, sometimes, I get this following messages and the system freezes:
-
-nouveau 0000:01: 00.0: disp: outp 03:0006:0f81: link rate unsupported by si=
-nk
-nouveau 0000:01: 00.0: disp: outp 03:0006:0f81: training failed
-
-Not sure if this is relevant, but I also have a external multi-monitor setu=
-p.
-
-
-$lspci -v | grep VGA=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
-=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
-
-00:02.0 VGA compatible controller: Intel Corporation 4th Gen Core Processor
-Integrated Graphics Controller (rev 06) (prog-if 00 [VGA controller])
-
-01:00.0 VGA compatible controller: NVIDIA Corporation GK104GLM [Quadro K310=
-0M]
-(rev a1) (prog-if 00 [VGA controller])</pre>
+Is the system actually frozen, or just the display is down? I suspect
+disconnecting and reconnecting would &quot;fix&quot; the issue in such a si=
+tuation.
+Unfortunately I can't help much more than that, but perhaps someone else can
+suggest something.</pre>
         </div>
       </p>
 
@@ -216,9 +138,9 @@ Integrated Graphics Controller (rev 06) (prog-if 00 [VGA controller])
     </body>
 </html>=
 
---15621120410.E3AB8aa4.7770--
+--15621129711.c612E.9775--
 
---===============1892290876==
+--===============1839446590==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -228,4 +150,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1892290876==--
+--===============1839446590==--
