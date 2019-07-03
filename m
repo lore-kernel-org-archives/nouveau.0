@@ -1,56 +1,109 @@
-From: Jason Gunthorpe <jgg@mellanox.com>
-Subject: Re: [PATCH 1/5] mm: return valid info from hmm_range_unregister
-Date: Wed, 3 Jul 2019 20:40:08 +0000
-Message-ID: <20190703204002.GO18688@mellanox.com>
+From: Ralph Campbell <rcampbell@nvidia.com>
+Subject: Re: [PATCH 4/5] nouveau: unlock mmap_sem on all errors from
+ nouveau_range_fault
+Date: Wed, 3 Jul 2019 13:46:02 -0700
+Message-ID: <ec5e86a4-4a60-0dd5-797c-41b21e3a091a@nvidia.com>
 References: <20190703184502.16234-1-hch@lst.de>
- <20190703184502.16234-2-hch@lst.de> <20190703190045.GN18688@mellanox.com>
- <20190703202857.GA15690@lst.de>
+ <20190703184502.16234-5-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190703202857.GA15690@lst.de>
+In-Reply-To: <20190703184502.16234-5-hch@lst.de>
 Content-Language: en-US
-Content-ID: <06E102C96309A349A6DAB9BA508DF1DD@eurprd05.prod.outlook.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Christoph Hellwig <hch@lst.de>
-Cc: =?iso-8859-1?Q?J=E9r=F4me_Glisse?= <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Ralph Campbell <rcampbell@nvidia.com>
+To: Christoph Hellwig <hch@lst.de>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jul 03, 2019 at 10:28:57PM +0200, Christoph Hellwig wrote:
-> On Wed, Jul 03, 2019 at 07:00:50PM +0000, Jason Gunthorpe wrote:
-> > I don't think the API should be encouraging some shortcut here..
-> >=20
-> > We can't do the above pattern because the old hmm_vma API didn't allow
-> > it, which is presumably a reason why it is obsolete.
-> >=20
-> > I'd rather see drivers move to a consistent pattern so we can then
-> > easily hoist the seqcount lock scheme into some common mmu notifier
-> > code, as discussed.
->=20
-> So you don't like the version in amdgpu_ttm_tt_get_user_pages_done in
-> linux-next either?
 
-I looked at this for 5 mins, and I can't see the key elements of the
-collision retry lock:
+On 7/3/19 11:45 AM, Christoph Hellwig wrote:
+> Currently nouveau_svm_fault expects nouveau_range_fault to never unlock
+> mmap_sem, but the latter unlocks it for a random selection of error
+> codes. Fix this up by always unlocking mmap_sem for non-zero return
+> values in nouveau_range_fault, and only unlocking it in the caller
+> for successful returns.
+> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
 
-- Where is the retry loop?
-- Where is the lock around the final test to valid prior to using
-  the output of range?
+Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
 
-For instance looking at amdgpu_gem_userptr_ioctl()..
+> ---
+>   drivers/gpu/drm/nouveau/nouveau_svm.c | 15 ++++++++-------
+>   1 file changed, 8 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> index e831f4184a17..c0cf7aeaefb3 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+> @@ -500,8 +500,10 @@ nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range,
 
-We can't be holding a lock when we do hmm_range_wait_until_valid()
-(inside amdgpu_ttm_tt_get_user_pages), otherwise it deadlocks, and
-there are not other locks that would encompass the final is_valid check.
+You can delete the comment "With the old API the driver must ..."
+(not visible in the patch here).
+I suggest moving the two assignments:
+	range->default_flags = 0;
+	range->pfn_flags_mask = -1UL;
+to just above the "again:" where the other range.xxx fields are
+initialized in nouveau_svm_fault().
 
-And amdgpu_gem_userptr_ioctl() looks like a syscall entry point, so
-having it fail just because the lock collided (ie is_valid =3D=3D false)
-can't possibly be the right thing.
+>   	ret = hmm_range_register(range, mirror,
+>   				 range->start, range->end,
+>   				 PAGE_SHIFT);
+> -	if (ret)
+> +	if (ret) {
+> +		up_read(&range->vma->vm_mm->mmap_sem; >   		return (int)ret;
+> +	}
+>   
+>   	if (!hmm_range_wait_until_valid(range, NOUVEAU_RANGE_FAULT_TIMEOUT)) {
+>   		/*
 
-I'm also unclear when the device data is updated in that sequence..
+You can delete this comment (only the first line is visible here)
+since it is about the "old API".
+Also, it should return -EBUSY not -EAGAIN since it means there was a
+range invalidation collision (similar to hmm_range_fault() if
+!range->valid).
 
-So.. I think this locking is wrong. Maybe AMD team can explain how it
-should work?
+> @@ -515,15 +517,14 @@ nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range,
+>   
+>   	ret = hmm_range_fault(range, block);
 
-Jason
+nouveau_range_fault() is only called with "block = true" so
+could eliminate the block parameter and pass true here.
+
+>   	if (ret <= 0) {
+> -		if (ret == -EBUSY || !ret) {
+> -			/* Same as above, drop mmap_sem to match old API. */
+> -			up_read(&range->vma->vm_mm->mmap_sem);
+> -			ret = -EBUSY;
+> -		} else if (ret == -EAGAIN)
+> +		if (ret == 0)
+>   			ret = -EBUSY;
+> +		if (ret != -EAGAIN)
+> +			up_read(&range->vma->vm_mm->mmap_sem);
+
+Can ret == -EAGAIN happen if "block = true"?
+Generally, I prefer the read_down()/read_up() in the same function
+(i.e., nouveau_svm_fault()) but I can see why it should be here
+if hmm_range_fault() can return with mmap_sem unlocked.
+
+>   		hmm_range_unregister(range);
+>   		return ret;
+>   	}
+> +
+>   	return 0;
+>   }
+>   
+> @@ -718,8 +719,8 @@ nouveau_svm_fault(struct nvif_notify *notify)
+>   						NULL);
+>   			svmm->vmm->vmm.object.client->super = false;
+>   			mutex_unlock(&svmm->mutex);
+> +			up_read(&svmm->mm->mmap_sem);
+>   		}
+> -		up_read(&svmm->mm->mmap_sem);
+>   
+
+The "else" case should check for -EBUSY and goto again.
+
+>   		/* Cancel any faults in the window whose pages didn't manage
+>   		 * to keep their valid bit, or stay writeable when required.
+> 
