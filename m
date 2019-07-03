@@ -1,184 +1,24 @@
-From: Ralph Campbell <rcampbell@nvidia.com>
-Subject: Re: [PATCH 20/22] mm: move hmm_vma_fault to nouveau
-Date: Wed, 3 Jul 2019 10:48:56 -0700
-Message-ID: <a3108540-e431-2513-650e-3bb143f7f161@nvidia.com>
-References: <20190701062020.19239-1-hch@lst.de>
- <20190701062020.19239-21-hch@lst.de>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: Re: [Nouveau] [PATCH 20/22] mm: move hmm_vma_fault to nouveau
+Date: Wed, 3 Jul 2019 13:50:45 -0400
+Message-ID: <CAKb7Uvid7xfWNRxee4YoDSKu5-eizo-0Bqb3amFczEDXmSKLMA@mail.gmail.com>
+References: <20190701062020.19239-1-hch@lst.de> <20190701062020.19239-21-hch@lst.de>
+ <a3108540-e431-2513-650e-3bb143f7f161@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190701062020.19239-21-hch@lst.de>
-Content-Language: en-US
+In-Reply-To: <a3108540-e431-2513-650e-3bb143f7f161@nvidia.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Christoph Hellwig <hch@lst.de>, Dan Williams <dan.j.williams@intel.com>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: Ira Weiny <ira.weiny@intel.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
+To: Ralph Campbell <rcampbell@nvidia.com>
+Cc: Christoph Hellwig <hch@lst.de>, Dan Williams <dan.j.williams@intel.com>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, linux-nvdimm@lists.01.org, Linux PCI <linux-pci@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, linux-mm@kvack.org, nouveau <nouveau@lists.freedesktop.org>, Ira Weiny <ira.weiny@intel.com>
 List-Id: nouveau.vger.kernel.org
 
+On Wed, Jul 3, 2019 at 1:49 PM Ralph Campbell <rcampbell@nvidia.com> wrote:
+> On 6/30/19 11:20 PM, Christoph Hellwig wrote:
+> > hmm_vma_fault is marked as a legacy API to get rid of, but quite suites
+> > the current nouvea flow.  Move it to the only user in preparation for
+>
+> I didn't quite parse the phrase "quite suites the current nouvea flow."
+> s/nouvea/nouveau/
 
-On 6/30/19 11:20 PM, Christoph Hellwig wrote:
-> hmm_vma_fault is marked as a legacy API to get rid of, but quite suites
-> the current nouvea flow.  Move it to the only user in preparation for
-
-I didn't quite parse the phrase "quite suites the current nouvea flow."
-s/nouvea/nouveau/
-
-> fixing a locking bug involving caller and callee.
-> 
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
-
-I see where you are going with this and it
-looks like straightforward code movement so,
-
-Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
-
-> ---
->   drivers/gpu/drm/nouveau/nouveau_svm.c | 54 ++++++++++++++++++++++++++-
->   include/linux/hmm.h                   | 54 ---------------------------
->   2 files changed, 53 insertions(+), 55 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-> index 9d40114d7949..e831f4184a17 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-> @@ -36,6 +36,13 @@
->   #include <linux/sort.h>
->   #include <linux/hmm.h>
->   
-> +/*
-> + * When waiting for mmu notifiers we need some kind of time out otherwise we
-> + * could potentialy wait for ever, 1000ms ie 1s sounds like a long time to
-> + * wait already.
-> + */
-> +#define NOUVEAU_RANGE_FAULT_TIMEOUT 1000
-> +
->   struct nouveau_svm {
->   	struct nouveau_drm *drm;
->   	struct mutex mutex;
-> @@ -475,6 +482,51 @@ nouveau_svm_fault_cache(struct nouveau_svm *svm,
->   		fault->inst, fault->addr, fault->access);
->   }
->   
-> +static int
-> +nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range,
-> +		    bool block)
-> +{
-> +	long ret;
-> +
-> +	/*
-> +	 * With the old API the driver must set each individual entries with
-> +	 * the requested flags (valid, write, ...). So here we set the mask to
-> +	 * keep intact the entries provided by the driver and zero out the
-> +	 * default_flags.
-> +	 */
-> +	range->default_flags = 0;
-> +	range->pfn_flags_mask = -1UL;
-> +
-> +	ret = hmm_range_register(range, mirror,
-> +				 range->start, range->end,
-> +				 PAGE_SHIFT);
-> +	if (ret)
-> +		return (int)ret;
-> +
-> +	if (!hmm_range_wait_until_valid(range, NOUVEAU_RANGE_FAULT_TIMEOUT)) {
-> +		/*
-> +		 * The mmap_sem was taken by driver we release it here and
-> +		 * returns -EAGAIN which correspond to mmap_sem have been
-> +		 * drop in the old API.
-> +		 */
-> +		up_read(&range->vma->vm_mm->mmap_sem);
-> +		return -EAGAIN;
-> +	}
-> +
-> +	ret = hmm_range_fault(range, block);
-> +	if (ret <= 0) {
-> +		if (ret == -EBUSY || !ret) {
-> +			/* Same as above, drop mmap_sem to match old API. */
-> +			up_read(&range->vma->vm_mm->mmap_sem);
-> +			ret = -EBUSY;
-> +		} else if (ret == -EAGAIN)
-> +			ret = -EBUSY;
-> +		hmm_range_unregister(range);
-> +		return ret;
-> +	}
-> +	return 0;
-> +}
-> +
->   static int
->   nouveau_svm_fault(struct nvif_notify *notify)
->   {
-> @@ -649,7 +701,7 @@ nouveau_svm_fault(struct nvif_notify *notify)
->   		range.values = nouveau_svm_pfn_values;
->   		range.pfn_shift = NVIF_VMM_PFNMAP_V0_ADDR_SHIFT;
->   again:
-> -		ret = hmm_vma_fault(&svmm->mirror, &range, true);
-> +		ret = nouveau_range_fault(&svmm->mirror, &range, true);
->   		if (ret == 0) {
->   			mutex_lock(&svmm->mutex);
->   			if (!hmm_range_unregister(&range)) {
-> diff --git a/include/linux/hmm.h b/include/linux/hmm.h
-> index 4b185d286c3b..3457cf9182e5 100644
-> --- a/include/linux/hmm.h
-> +++ b/include/linux/hmm.h
-> @@ -478,60 +478,6 @@ long hmm_range_dma_unmap(struct hmm_range *range,
->   			 dma_addr_t *daddrs,
->   			 bool dirty);
->   
-> -/*
-> - * HMM_RANGE_DEFAULT_TIMEOUT - default timeout (ms) when waiting for a range
-> - *
-> - * When waiting for mmu notifiers we need some kind of time out otherwise we
-> - * could potentialy wait for ever, 1000ms ie 1s sounds like a long time to
-> - * wait already.
-> - */
-> -#define HMM_RANGE_DEFAULT_TIMEOUT 1000
-> -
-> -/* This is a temporary helper to avoid merge conflict between trees. */
-> -static inline int hmm_vma_fault(struct hmm_mirror *mirror,
-> -				struct hmm_range *range, bool block)
-> -{
-> -	long ret;
-> -
-> -	/*
-> -	 * With the old API the driver must set each individual entries with
-> -	 * the requested flags (valid, write, ...). So here we set the mask to
-> -	 * keep intact the entries provided by the driver and zero out the
-> -	 * default_flags.
-> -	 */
-> -	range->default_flags = 0;
-> -	range->pfn_flags_mask = -1UL;
-> -
-> -	ret = hmm_range_register(range, mirror,
-> -				 range->start, range->end,
-> -				 PAGE_SHIFT);
-> -	if (ret)
-> -		return (int)ret;
-> -
-> -	if (!hmm_range_wait_until_valid(range, HMM_RANGE_DEFAULT_TIMEOUT)) {
-> -		/*
-> -		 * The mmap_sem was taken by driver we release it here and
-> -		 * returns -EAGAIN which correspond to mmap_sem have been
-> -		 * drop in the old API.
-> -		 */
-> -		up_read(&range->vma->vm_mm->mmap_sem);
-> -		return -EAGAIN;
-> -	}
-> -
-> -	ret = hmm_range_fault(range, block);
-> -	if (ret <= 0) {
-> -		if (ret == -EBUSY || !ret) {
-> -			/* Same as above, drop mmap_sem to match old API. */
-> -			up_read(&range->vma->vm_mm->mmap_sem);
-> -			ret = -EBUSY;
-> -		} else if (ret == -EAGAIN)
-> -			ret = -EBUSY;
-> -		hmm_range_unregister(range);
-> -		return ret;
-> -	}
-> -	return 0;
-> -}
-> -
->   /* Below are for HMM internal use only! Not to be used by device driver! */
->   static inline void hmm_mm_init(struct mm_struct *mm)
->   {
-> 
+As long as you're fixing typos, suites -> suits.
