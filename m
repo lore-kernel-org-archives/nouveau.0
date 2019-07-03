@@ -1,109 +1,91 @@
-From: Ralph Campbell <rcampbell@nvidia.com>
+From: Christoph Hellwig <hch@lst.de>
 Subject: Re: [PATCH 4/5] nouveau: unlock mmap_sem on all errors from
  nouveau_range_fault
-Date: Wed, 3 Jul 2019 13:46:02 -0700
-Message-ID: <ec5e86a4-4a60-0dd5-797c-41b21e3a091a@nvidia.com>
-References: <20190703184502.16234-1-hch@lst.de>
- <20190703184502.16234-5-hch@lst.de>
+Date: Wed, 3 Jul 2019 23:51:26 +0200
+Message-ID: <20190703215126.GA17366@lst.de>
+References: <20190703184502.16234-1-hch@lst.de> <20190703184502.16234-5-hch@lst.de> <ec5e86a4-4a60-0dd5-797c-41b21e3a091a@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190703184502.16234-5-hch@lst.de>
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <ec5e86a4-4a60-0dd5-797c-41b21e3a091a@nvidia.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Christoph Hellwig <hch@lst.de>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+To: Ralph Campbell <rcampbell@nvidia.com>
+Cc: Christoph Hellwig <hch@lst.de>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
+On Wed, Jul 03, 2019 at 01:46:02PM -0700, Ralph Campbell wrote:
+> You can delete the comment "With the old API the driver must ..."
+> (not visible in the patch here).
 
-On 7/3/19 11:45 AM, Christoph Hellwig wrote:
-> Currently nouveau_svm_fault expects nouveau_range_fault to never unlock
-> mmap_sem, but the latter unlocks it for a random selection of error
-> codes. Fix this up by always unlocking mmap_sem for non-zero return
-> values in nouveau_range_fault, and only unlocking it in the caller
-> for successful returns.
-> 
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
+Sure.
 
-Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
+> I suggest moving the two assignments:
+> 	range->default_flags = 0;
+> 	range->pfn_flags_mask = -1UL;
+> to just above the "again:" where the other range.xxx fields are
+> initialized in nouveau_svm_fault().
 
-> ---
->   drivers/gpu/drm/nouveau/nouveau_svm.c | 15 ++++++++-------
->   1 file changed, 8 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-> index e831f4184a17..c0cf7aeaefb3 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-> @@ -500,8 +500,10 @@ nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range,
+For now I really just want to move the code around.  As Jason pointed
+out the flow will need some major rework, and I'd rather not mess
+with little things like this for now.  Especially as I assume Jerome
+must have an update to the proper API ready given that he both
+wrote that new API and the nouveau code.
 
-You can delete the comment "With the old API the driver must ..."
-(not visible in the patch here).
-I suggest moving the two assignments:
-	range->default_flags = 0;
-	range->pfn_flags_mask = -1UL;
-to just above the "again:" where the other range.xxx fields are
-initialized in nouveau_svm_fault().
+> You can delete this comment (only the first line is visible here)
+> since it is about the "old API".
 
->   	ret = hmm_range_register(range, mirror,
->   				 range->start, range->end,
->   				 PAGE_SHIFT);
-> -	if (ret)
-> +	if (ret) {
-> +		up_read(&range->vma->vm_mm->mmap_sem; >   		return (int)ret;
-> +	}
->   
->   	if (!hmm_range_wait_until_valid(range, NOUVEAU_RANGE_FAULT_TIMEOUT)) {
->   		/*
+Ok.
 
-You can delete this comment (only the first line is visible here)
-since it is about the "old API".
-Also, it should return -EBUSY not -EAGAIN since it means there was a
-range invalidation collision (similar to hmm_range_fault() if
-!range->valid).
+> Also, it should return -EBUSY not -EAGAIN since it means there was a
+> range invalidation collision (similar to hmm_range_fault() if
+> !range->valid).
 
-> @@ -515,15 +517,14 @@ nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range,
->   
->   	ret = hmm_range_fault(range, block);
+Yes, probably.
 
-nouveau_range_fault() is only called with "block = true" so
-could eliminate the block parameter and pass true here.
 
->   	if (ret <= 0) {
-> -		if (ret == -EBUSY || !ret) {
-> -			/* Same as above, drop mmap_sem to match old API. */
-> -			up_read(&range->vma->vm_mm->mmap_sem);
-> -			ret = -EBUSY;
-> -		} else if (ret == -EAGAIN)
-> +		if (ret == 0)
->   			ret = -EBUSY;
-> +		if (ret != -EAGAIN)
-> +			up_read(&range->vma->vm_mm->mmap_sem);
+>> @@ -515,15 +517,14 @@ nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range,
+>>     	ret = hmm_range_fault(range, block);
+>
+> nouveau_range_fault() is only called with "block = true" so
+> could eliminate the block parameter and pass true here.
 
-Can ret == -EAGAIN happen if "block = true"?
-Generally, I prefer the read_down()/read_up() in the same function
-(i.e., nouveau_svm_fault()) but I can see why it should be here
-if hmm_range_fault() can return with mmap_sem unlocked.
+Indeed.
 
->   		hmm_range_unregister(range);
->   		return ret;
->   	}
-> +
->   	return 0;
->   }
->   
-> @@ -718,8 +719,8 @@ nouveau_svm_fault(struct nvif_notify *notify)
->   						NULL);
->   			svmm->vmm->vmm.object.client->super = false;
->   			mutex_unlock(&svmm->mutex);
-> +			up_read(&svmm->mm->mmap_sem);
->   		}
-> -		up_read(&svmm->mm->mmap_sem);
->   
+>
+>>   	if (ret <= 0) {
+>> -		if (ret == -EBUSY || !ret) {
+>> -			/* Same as above, drop mmap_sem to match old API. */
+>> -			up_read(&range->vma->vm_mm->mmap_sem);
+>> -			ret = -EBUSY;
+>> -		} else if (ret == -EAGAIN)
+>> +		if (ret == 0)
+>>   			ret = -EBUSY;
+>> +		if (ret != -EAGAIN)
+>> +			up_read(&range->vma->vm_mm->mmap_sem);
+>
+> Can ret == -EAGAIN happen if "block = true"?
 
-The "else" case should check for -EBUSY and goto again.
+I don't think so, we can remove that.
 
->   		/* Cancel any faults in the window whose pages didn't manage
->   		 * to keep their valid bit, or stay writeable when required.
-> 
+> Generally, I prefer the read_down()/read_up() in the same function
+> (i.e., nouveau_svm_fault()) but I can see why it should be here
+> if hmm_range_fault() can return with mmap_sem unlocked.
+
+Yes, in the long run this all needs a major cleanup..
+
+
+>>   @@ -718,8 +719,8 @@ nouveau_svm_fault(struct nvif_notify *notify)
+>>   						NULL);
+>>   			svmm->vmm->vmm.object.client->super = false;
+>>   			mutex_unlock(&svmm->mutex);
+>> +			up_read(&svmm->mm->mmap_sem);
+>>   		}
+>> -		up_read(&svmm->mm->mmap_sem);
+>>   
+>
+> The "else" case should check for -EBUSY and goto again.
+
+It should if I were trying to fix this.  But this is just code
+inspection and I don't even have the hardware, so I'll have to leave
+that for someone who can do real development on the driver.
