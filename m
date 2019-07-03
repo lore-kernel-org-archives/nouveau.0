@@ -1,30 +1,39 @@
 From: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH 20/22] mm: move hmm_vma_fault to nouveau
-Date: Wed, 3 Jul 2019 15:13:28 -0300
-Message-ID: <20190703181328.GC18673@ziepe.ca>
-References: <20190701062020.19239-21-hch@lst.de>
- <20190703180356.GB18673@ziepe.ca>
- <20190703180525.GA13703@lst.de>
+Subject: Re: [PATCH 22/22] mm: remove the legacy hmm_pfn_* APIs
+Date: Wed, 3 Jul 2019 15:15:42 -0300
+Message-ID: <20190703181542.GD18673@ziepe.ca>
+References: <20190701062020.19239-1-hch@lst.de>
+ <20190701062020.19239-23-hch@lst.de>
+ <20190703180125.GA18673@ziepe.ca>
+ <20190703180308.GA13656@lst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20190703180525.GA13703@lst.de>
+In-Reply-To: <20190703180308.GA13656@lst.de>
 Sender: linux-kernel-owner@vger.kernel.org
 To: Christoph Hellwig <hch@lst.de>
-Cc: AlexDeucher <alexander.deucher@amd.com>, Dan Williams <dan.j.williams@intel.com>, =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Ira Weiny <ira.weiny@intel.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Dan Williams <dan.j.williams@intel.com>, =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Ira Weiny <ira.weiny@intel.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jul 03, 2019 at 08:05:25PM +0200, Christoph Hellwig wrote:
-> On Wed, Jul 03, 2019 at 03:03:56PM -0300, Jason Gunthorpe wrote:
-> > I was thinking about doing exactly this too, but amdgpu started using
-> > this already obsolete API in their latest driver :(
+On Wed, Jul 03, 2019 at 08:03:08PM +0200, Christoph Hellwig wrote:
+> On Wed, Jul 03, 2019 at 03:01:25PM -0300, Jason Gunthorpe wrote:
+> > Christoph, I guess you didn't mean to send this branch to the mailing
+> > list?
 > > 
-> > So, we now need to get both drivers to move to the modern API.
+> > In any event some of these, like this one, look obvious and I could
+> > still grab a few for hmm.git.
+> > 
+> > Let me know what you'd like please
+> > 
+> > Reviewed-by: Jason Gunthorpe <jgg@mellanox.com>
 > 
-> Actually the AMD folks fixed this up after we pointed it out to them,
-> so even in linux-next it just is nouveau that needs fixing.
+> Thanks.  I was going to send this series out as soon as you had
+> applied the previous one.  Now that it leaked I'm happy to collect
+> reviews.  But while I've got your attention:  the rdma.git hmm
+> branch is still at the -rc7 merge and doen't have my series, is that
+> intentional?
 
-Oh, I looked at an older -next, my mistake. Lets do it then.
+Sorry, I rushed it too late at night to do it right apparently. Fixed.
 
 Jason
