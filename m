@@ -1,28 +1,73 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: hmm_range_fault related fixes and legacy API removal
-Date: Wed,  3 Jul 2019 11:44:57 -0700
-Message-ID: <20190703184502.16234-1-hch@lst.de>
+From: Christoph Hellwig <hch@lst.de>
+Subject: [PATCH 4/5] nouveau: unlock mmap_sem on all errors from nouveau_range_fault
+Date: Wed,  3 Jul 2019 11:45:01 -0700
+Message-ID: <20190703184502.16234-5-hch@lst.de>
+References: <20190703184502.16234-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190703184502.16234-1-hch@lst.de>
+Sender: linux-kernel-owner@vger.kernel.org
+To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgSsOpcsO0bWUsIEJlbiBhbmQgSmFzb24sCgpiZWxvdyBpcyBhIHNlcmllcyBhZ2FpbnN0IHRo
-ZSBobW0gdHJlZSB3aGljaCBmaXhlcyB1cCB0aGUgbW1hcF9zZW0KbG9ja2luZyBpbiBub3V2ZWF1
-IGFuZCB3aGlsZSBhdCBpdCBhbHNvIHJlbW92ZXMgbGVmdG92ZXIgbGVnYWN5IEhNTSBBUElzCm9u
-bHkgdXNlZCBieSBub3V2ZWF1LgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXU=
+Currently nouveau_svm_fault expects nouveau_range_fault to never unlock
+mmap_sem, but the latter unlocks it for a random selection of error
+codes. Fix this up by always unlocking mmap_sem for non-zero return
+values in nouveau_range_fault, and only unlocking it in the caller
+for successful returns.
+
+Signed-off-by: Christoph Hellwig <hch@lst.de>
+---
+ drivers/gpu/drm/nouveau/nouveau_svm.c | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+index e831f4184a17..c0cf7aeaefb3 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_svm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+@@ -500,8 +500,10 @@ nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range,
+ 	ret = hmm_range_register(range, mirror,
+ 				 range->start, range->end,
+ 				 PAGE_SHIFT);
+-	if (ret)
++	if (ret) {
++		up_read(&range->vma->vm_mm->mmap_sem);
+ 		return (int)ret;
++	}
+ 
+ 	if (!hmm_range_wait_until_valid(range, NOUVEAU_RANGE_FAULT_TIMEOUT)) {
+ 		/*
+@@ -515,15 +517,14 @@ nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range,
+ 
+ 	ret = hmm_range_fault(range, block);
+ 	if (ret <= 0) {
+-		if (ret == -EBUSY || !ret) {
+-			/* Same as above, drop mmap_sem to match old API. */
+-			up_read(&range->vma->vm_mm->mmap_sem);
+-			ret = -EBUSY;
+-		} else if (ret == -EAGAIN)
++		if (ret == 0)
+ 			ret = -EBUSY;
++		if (ret != -EAGAIN)
++			up_read(&range->vma->vm_mm->mmap_sem);
+ 		hmm_range_unregister(range);
+ 		return ret;
+ 	}
++
+ 	return 0;
+ }
+ 
+@@ -718,8 +719,8 @@ nouveau_svm_fault(struct nvif_notify *notify)
+ 						NULL);
+ 			svmm->vmm->vmm.object.client->super = false;
+ 			mutex_unlock(&svmm->mutex);
++			up_read(&svmm->mm->mmap_sem);
+ 		}
+-		up_read(&svmm->mm->mmap_sem);
+ 
+ 		/* Cancel any faults in the window whose pages didn't manage
+ 		 * to keep their valid bit, or stay writeable when required.
+-- 
+2.20.1
