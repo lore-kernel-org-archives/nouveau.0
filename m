@@ -1,13 +1,13 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: [PATCH 5/5] mm: remove the legacy hmm_pfn_* APIs
-Date: Wed,  3 Jul 2019 11:45:02 -0700
-Message-ID: <20190703184502.16234-6-hch@lst.de>
-References: <20190703184502.16234-1-hch@lst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111044] Resume up from suspend sometimes freezes
+ system (Optimus/Nouveau)
+Date: Wed, 03 Jul 2019 18:56:38 +0000
+Message-ID: <bug-111044-8800-7hInpfumTM@http.bugs.freedesktop.org/>
+References: <bug-111044-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1081470658=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190703184502.16234-1-hch-jcswGhMUV9g@public.gmane.org>
+In-Reply-To: <bug-111044-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,47 +17,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U3dpdGNoIHRoZSBvbmUgcmVtYWluaW5nIHVzZXIgaW4gbm91dmVhdSBvdmVyIHRvIGl0cyByZXBs
-YWNlbWVudCwKYW5kIHJlbW92ZSBhbGwgdGhlIHdyYXBwZXJzLgoKU2lnbmVkLW9mZi1ieTogQ2hy
-aXN0b3BoIEhlbGx3aWcgPGhjaEBsc3QuZGU+ClJldmlld2VkLWJ5OiBKYXNvbiBHdW50aG9ycGUg
-PGpnZ0BtZWxsYW5veC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9k
-bWVtLmMgfCAgMiArLQogaW5jbHVkZS9saW51eC9obW0uaCAgICAgICAgICAgICAgICAgICAgfCAz
-NCAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogMiBmaWxlcyBjaGFuZ2VkLCAxIGluc2VydGlv
-bigrKSwgMzUgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9kbWVtLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RtZW0u
-YwppbmRleCA0MmMwMjYwMTA5MzguLmI5Y2VkMmU2MTY2NyAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV9kbWVtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9kbWVtLmMKQEAgLTg0NCw3ICs4NDQsNyBAQCBub3V2ZWF1X2RtZW1fY29udmVy
-dF9wZm4oc3RydWN0IG5vdXZlYXVfZHJtICpkcm0sCiAJCXN0cnVjdCBwYWdlICpwYWdlOwogCQl1
-aW50NjRfdCBhZGRyOwogCi0JCXBhZ2UgPSBobW1fcGZuX3RvX3BhZ2UocmFuZ2UsIHJhbmdlLT5w
-Zm5zW2ldKTsKKwkJcGFnZSA9IGhtbV9kZXZpY2VfZW50cnlfdG9fcGFnZShyYW5nZSwgcmFuZ2Ut
-PnBmbnNbaV0pOwogCQlpZiAocGFnZSA9PSBOVUxMKQogCQkJY29udGludWU7CiAKZGlmZiAtLWdp
-dCBhL2luY2x1ZGUvbGludXgvaG1tLmggYi9pbmNsdWRlL2xpbnV4L2htbS5oCmluZGV4IDY1NzYw
-NmY0ODc5Ni4uY2RjZDc4NjI3MzkzIDEwMDY0NAotLS0gYS9pbmNsdWRlL2xpbnV4L2htbS5oCisr
-KyBiL2luY2x1ZGUvbGludXgvaG1tLmgKQEAgLTI5MCw0MCArMjkwLDYgQEAgc3RhdGljIGlubGlu
-ZSB1aW50NjRfdCBobW1fZGV2aWNlX2VudHJ5X2Zyb21fcGZuKGNvbnN0IHN0cnVjdCBobW1fcmFu
-Z2UgKnJhbmdlLAogCQlyYW5nZS0+ZmxhZ3NbSE1NX1BGTl9WQUxJRF07CiB9CiAKLS8qCi0gKiBP
-bGQgQVBJOgotICogaG1tX3Bmbl90b19wYWdlKCkKLSAqIGhtbV9wZm5fdG9fcGZuKCkKLSAqIGht
-bV9wZm5fZnJvbV9wYWdlKCkKLSAqIGhtbV9wZm5fZnJvbV9wZm4oKQotICoKLSAqIFRoaXMgYXJl
-IHRoZSBPTEQgQVBJIHBsZWFzZSB1c2UgbmV3IEFQSSwgaXQgaXMgaGVyZSB0byBhdm9pZCBjcm9z
-cy10cmVlCi0gKiBtZXJnZSBwYWluZnVsbG5lc3MgaWUgd2UgY29udmVydCB0aGluZ3MgdG8gbmV3
-IEFQSSBpbiBzdGFnZXMuCi0gKi8KLXN0YXRpYyBpbmxpbmUgc3RydWN0IHBhZ2UgKmhtbV9wZm5f
-dG9fcGFnZShjb25zdCBzdHJ1Y3QgaG1tX3JhbmdlICpyYW5nZSwKLQkJCQkJICAgdWludDY0X3Qg
-cGZuKQotewotCXJldHVybiBobW1fZGV2aWNlX2VudHJ5X3RvX3BhZ2UocmFuZ2UsIHBmbik7Ci19
-Ci0KLXN0YXRpYyBpbmxpbmUgdW5zaWduZWQgbG9uZyBobW1fcGZuX3RvX3Bmbihjb25zdCBzdHJ1
-Y3QgaG1tX3JhbmdlICpyYW5nZSwKLQkJCQkJICAgdWludDY0X3QgcGZuKQotewotCXJldHVybiBo
-bW1fZGV2aWNlX2VudHJ5X3RvX3BmbihyYW5nZSwgcGZuKTsKLX0KLQotc3RhdGljIGlubGluZSB1
-aW50NjRfdCBobW1fcGZuX2Zyb21fcGFnZShjb25zdCBzdHJ1Y3QgaG1tX3JhbmdlICpyYW5nZSwK
-LQkJCQkJIHN0cnVjdCBwYWdlICpwYWdlKQotewotCXJldHVybiBobW1fZGV2aWNlX2VudHJ5X2Zy
-b21fcGFnZShyYW5nZSwgcGFnZSk7Ci19Ci0KLXN0YXRpYyBpbmxpbmUgdWludDY0X3QgaG1tX3Bm
-bl9mcm9tX3Bmbihjb25zdCBzdHJ1Y3QgaG1tX3JhbmdlICpyYW5nZSwKLQkJCQkJdW5zaWduZWQg
-bG9uZyBwZm4pCi17Ci0JcmV0dXJuIGhtbV9kZXZpY2VfZW50cnlfZnJvbV9wZm4ocmFuZ2UsIHBm
-bik7Ci19Ci0KIC8qCiAgKiBNaXJyb3Jpbmc6IGhvdyB0byBzeW5jaHJvbml6ZSBkZXZpY2UgcGFn
-ZSB0YWJsZSB3aXRoIENQVSBwYWdlIHRhYmxlLgogICoKLS0gCjIuMjAuMQoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1081470658==
+Content-Type: multipart/alternative; boundary="15621801982.7FCd8BF.31212"
+Content-Transfer-Encoding: 7bit
+
+
+--15621801982.7FCd8BF.31212
+Date: Wed, 3 Jul 2019 18:56:38 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111044
+
+--- Comment #7 from JM9 <jhnmlkvch9-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+ok, thanks. This is what it looks like with all the monitors connected:
+
+/sys/class/drm/card0-eDP-1/status:connected
+/sys/class/drm/card0-VGA-1/status:connected
+/sys/class/drm/card1-DP-1/status:connected
+/sys/class/drm/card1-DP-2/status:disconnected
+/sys/class/drm/card1-DP-3/status:connected
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15621801982.7FCd8BF.31212
+Date: Wed, 3 Jul 2019 18:56:38 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Resume up from suspend sometimes freezes system (Optimus/=
+Nouveau)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044#c7">Commen=
+t # 7</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Resume up from suspend sometimes freezes system (Optimus/=
+Nouveau)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044">bug 11104=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jhnmlkvch9&#64;gmail.com" title=3D"JM9 &lt;jhnmlkvch9&#64;gmail.com&gt;"> <=
+span class=3D"fn">JM9</span></a>
+</span></b>
+        <pre>ok, thanks. This is what it looks like with all the monitors c=
+onnected:
+
+/sys/class/drm/card0-eDP-1/status:connected
+/sys/class/drm/card0-VGA-1/status:connected
+/sys/class/drm/card1-DP-1/status:connected
+/sys/class/drm/card1-DP-2/status:disconnected
+/sys/class/drm/card1-DP-3/status:connected</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15621801982.7FCd8BF.31212--
+
+--===============1081470658==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1081470658==--
