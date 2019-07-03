@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111044] Resume up from suspend sometimes freezes
- system (Optimus/Nouveau)
-Date: Wed, 03 Jul 2019 18:56:38 +0000
-Message-ID: <bug-111044-8800-7hInpfumTM@http.bugs.freedesktop.org/>
-References: <bug-111044-8800@http.bugs.freedesktop.org/>
+From: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Subject: Re: [PATCH 1/5] mm: return valid info from
+ hmm_range_unregister
+Date: Wed, 3 Jul 2019 19:00:50 +0000
+Message-ID: <20190703190045.GN18688@mellanox.com>
+References: <20190703184502.16234-1-hch@lst.de>
+ <20190703184502.16234-2-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1081470658=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111044-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20190703184502.16234-2-hch-jcswGhMUV9g@public.gmane.org>
+Content-Language: en-US
+Content-ID: <9EED1B508716C14685B4671208A7B4A6-wNKe6lTLrGecE4WynfumptQqCkab/8FMAL8bYrjMMd8@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,100 +21,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1081470658==
-Content-Type: multipart/alternative; boundary="15621801982.7FCd8BF.31212"
-Content-Transfer-Encoding: 7bit
-
-
---15621801982.7FCd8BF.31212
-Date: Wed, 3 Jul 2019 18:56:38 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111044
-
---- Comment #7 from JM9 <jhnmlkvch9-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-ok, thanks. This is what it looks like with all the monitors connected:
-
-/sys/class/drm/card0-eDP-1/status:connected
-/sys/class/drm/card0-VGA-1/status:connected
-/sys/class/drm/card1-DP-1/status:connected
-/sys/class/drm/card1-DP-2/status:disconnected
-/sys/class/drm/card1-DP-3/status:connected
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15621801982.7FCd8BF.31212
-Date: Wed, 3 Jul 2019 18:56:38 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Resume up from suspend sometimes freezes system (Optimus/=
-Nouveau)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044#c7">Commen=
-t # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Resume up from suspend sometimes freezes system (Optimus/=
-Nouveau)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044">bug 11104=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jhnmlkvch9&#64;gmail.com" title=3D"JM9 &lt;jhnmlkvch9&#64;gmail.com&gt;"> <=
-span class=3D"fn">JM9</span></a>
-</span></b>
-        <pre>ok, thanks. This is what it looks like with all the monitors c=
-onnected:
-
-/sys/class/drm/card0-eDP-1/status:connected
-/sys/class/drm/card0-VGA-1/status:connected
-/sys/class/drm/card1-DP-1/status:connected
-/sys/class/drm/card1-DP-2/status:disconnected
-/sys/class/drm/card1-DP-3/status:connected</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15621801982.7FCd8BF.31212--
-
---===============1081470658==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
+T24gV2VkLCBKdWwgMDMsIDIwMTkgYXQgMTE6NDQ6NThBTSAtMDcwMCwgQ2hyaXN0b3BoIEhlbGx3
+aWcgd3JvdGU6Cj4gQ2hlY2tpbmcgcmFuZ2UtPnZhbGlkIGlzIHRyaXZpYWwgYW5kIGhhcyBubyBt
+ZWFuaW5nZnVsIGNvc3QsIGJ1dAo+IG5pY2VseSBzaW1wbGlmaWVzIHRoZSBmYXN0cGF0aCBpbiB0
+eXBpY2FsIGNhbGxlcnMuICAKCkl0IHNob3VsZCBub3QgYmUgdGhlIHR5cGljYWwgY2FsbGVyLi4K
+Cj4gaG1tX3ZtYV9yYW5nZV9kb25lIGZ1bmN0aW9uLCB3aGljaCBub3cgaXMgYSB0cml2aWFsIHdy
+YXBwZXIgYXJvdW5kCj4gaG1tX3JhbmdlX3VucmVnaXN0ZXIuCj4gCj4gU2lnbmVkLW9mZi1ieTog
+Q2hyaXN0b3BoIEhlbGx3aWcgPGhjaEBsc3QuZGU+Cj4gUmV2aWV3ZWQtYnk6IFJhbHBoIENhbXBi
+ZWxsIDxyY2FtcGJlbGxAbnZpZGlhLmNvbT4KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
+dmVhdV9zdm0uYyB8ICAyICstCj4gIGluY2x1ZGUvbGludXgvaG1tLmggICAgICAgICAgICAgICAg
+ICAgfCAxMSArLS0tLS0tLS0tLQo+ICBtbS9obW0uYyAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIHwgIDcgKysrKysrLQo+ICAzIGZpbGVzIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgMTIg
+ZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
+dXZlYXVfc3ZtLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3N2bS5jCj4gaW5k
+ZXggOGM5MjM3NGFmY2YyLi45ZDQwMTE0ZDc5NDkgMTAwNjQ0Cj4gKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbm91dmVhdV9zdm0uYwo+IEBAIC02NTIsNyArNjUyLDcgQEAgbm91dmVhdV9z
+dm1fZmF1bHQoc3RydWN0IG52aWZfbm90aWZ5ICpub3RpZnkpCj4gIAkJcmV0ID0gaG1tX3ZtYV9m
+YXVsdCgmc3ZtbS0+bWlycm9yLCAmcmFuZ2UsIHRydWUpOwo+ICAJCWlmIChyZXQgPT0gMCkgewo+
+ICAJCQltdXRleF9sb2NrKCZzdm1tLT5tdXRleCk7Cj4gLQkJCWlmICghaG1tX3ZtYV9yYW5nZV9k
+b25lKCZyYW5nZSkpIHsKPiArCQkJaWYgKCFobW1fcmFuZ2VfdW5yZWdpc3RlcigmcmFuZ2UpKSB7
+Cj4gIAkJCQltdXRleF91bmxvY2soJnN2bW0tPm11dGV4KTsKPiAgCQkJCWdvdG8gYWdhaW47Cj4g
+IAkJCX0KCkluIHRoaXMgY2FzZSBpZiB3ZSB0YWtlIHRoZSAnZ290byBhZ2FpbicgdGhlbiB3ZSBh
+cmUgcG9pbnRsZXNzbHkKcmVtb3ZpbmcgYW5kIHJlLWFkZGluZyB0aGUgcmFuZ2UuCgpUaGUgcGF0
+dGVybiBpcyBzdXBwb3NlZCB0byBiZToKCiAgICBobW1fcmFuZ2VfcmVnaXN0ZXIoKQphZ2FpbjoK
+ICAgIC4uIHJlYWQgcGFnZSB0YWJsZXMgLi4KICAgIGxvY2sKICAgIGlmICghaG1tX3JhbmdlX3Zh
+bGlkKCkpCiAgICAgICAgdW5sb2NrCiAgICAgICAgZ290byBhZ2FpbgogICAgLi4gc2V0dXAgZGV2
+aWNlIC4uCiAgICB1bmxvY2sKICAgIGhtbV9yYW5nZV91bnJlZ2lzdGVyKCkKCkkgZG9uJ3QgdGhp
+bmsgdGhlIEFQSSBzaG91bGQgYmUgZW5jb3VyYWdpbmcgc29tZSBzaG9ydGN1dCBoZXJlLi4KCldl
+IGNhbid0IGRvIHRoZSBhYm92ZSBwYXR0ZXJuIGJlY2F1c2UgdGhlIG9sZCBobW1fdm1hIEFQSSBk
+aWRuJ3QgYWxsb3cKaXQsIHdoaWNoIGlzIHByZXN1bWFibHkgYSByZWFzb24gd2h5IGl0IGlzIG9i
+c29sZXRlLgoKSSdkIHJhdGhlciBzZWUgZHJpdmVycyBtb3ZlIHRvIGEgY29uc2lzdGVudCBwYXR0
+ZXJuIHNvIHdlIGNhbiB0aGVuCmVhc2lseSBob2lzdCB0aGUgc2VxY291bnQgbG9jayBzY2hlbWUg
+aW50byBzb21lIGNvbW1vbiBtbXUgbm90aWZpZXIKY29kZSwgYXMgZGlzY3Vzc2VkLgoKSmFzb24K
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1081470658==--
