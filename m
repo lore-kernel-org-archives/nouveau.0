@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111044] Resume up from suspend sometimes freezes
  system (Optimus/Nouveau)
-Date: Wed, 03 Jul 2019 19:05:59 +0000
-Message-ID: <bug-111044-8800-4CVvONTqQn@http.bugs.freedesktop.org/>
+Date: Wed, 03 Jul 2019 19:09:39 +0000
+Message-ID: <bug-111044-8800-Zzn9NtceQK@http.bugs.freedesktop.org/>
 References: <bug-111044-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0194137637=="
+Content-Type: multipart/mixed; boundary="===============1373565588=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111044-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0194137637==
-Content-Type: multipart/alternative; boundary="15621807592.DD4Af71d.1584"
+--===============1373565588==
+Content-Type: multipart/alternative; boundary="15621809781.A85E.2391"
 Content-Transfer-Encoding: 7bit
 
 
---15621807592.DD4Af71d.1584
-Date: Wed, 3 Jul 2019 19:05:59 +0000
+--15621809781.A85E.2391
+Date: Wed, 3 Jul 2019 19:09:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,33 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111044
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to JM9 from comment #7)
-> ok, thanks. This is what it looks like with all the monitors connected:
->=20
-> /sys/class/drm/card0-eDP-1/status:connected
-> /sys/class/drm/card0-VGA-1/status:connected
-> /sys/class/drm/card1-DP-1/status:connected
-> /sys/class/drm/card1-DP-2/status:disconnected
-> /sys/class/drm/card1-DP-3/status:connected
+--- Comment #9 from JM9 <jhnmlkvch9-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Yes, on resume, I typically don't have the external monitors connected, so =
+it
+is the internal screen that displays the nouveau messages and appears to
+freeze.
 
-OK, so this looks like all the DP ports are on the nvidia chip, while the
-internal screen (eDP-1) is on the intel chip.
-
-On resume, is the internal screen messed up? If so, this is an intel issue =
-(or
-at least intel-involved).
-
-Also, what display system are you using? Xorg, or a wayland compositor (if =
-so,
-which one)?
+I'm using Wayland compositor (SwayWM: https://github.com/swaywm/sway)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15621807592.DD4Af71d.1584
-Date: Wed, 3 Jul 2019 19:05:59 +0000
+--15621809781.A85E.2391
+Date: Wed, 3 Jul 2019 19:09:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,8 +67,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Resume up from suspend sometimes freezes system (Optimus/=
 Nouveau)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044#c8">Commen=
-t # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Resume up from suspend sometimes freezes system (Optimus/=
@@ -89,30 +76,16 @@ Nouveau)"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111044">bug 11104=
 4</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+jhnmlkvch9&#64;gmail.com" title=3D"JM9 &lt;jhnmlkvch9&#64;gmail.com&gt;"> <=
+span class=3D"fn">JM9</span></a>
 </span></b>
-        <pre>(In reply to JM9 from <a href=3D"show_bug.cgi?id=3D111044#c7">=
-comment #7</a>)
-<span class=3D"quote">&gt; ok, thanks. This is what it looks like with all =
-the monitors connected:
-&gt;=20
-&gt; /sys/class/drm/card0-eDP-1/status:connected
-&gt; /sys/class/drm/card0-VGA-1/status:connected
-&gt; /sys/class/drm/card1-DP-1/status:connected
-&gt; /sys/class/drm/card1-DP-2/status:disconnected
-&gt; /sys/class/drm/card1-DP-3/status:connected</span >
+        <pre>Yes, on resume, I typically don't have the external monitors c=
+onnected, so it
+is the internal screen that displays the nouveau messages and appears to
+freeze.
 
-OK, so this looks like all the DP ports are on the nvidia chip, while the
-internal screen (eDP-1) is on the intel chip.
-
-On resume, is the internal screen messed up? If so, this is an intel issue =
-(or
-at least intel-involved).
-
-Also, what display system are you using? Xorg, or a wayland compositor (if =
-so,
-which one)?</pre>
+I'm using Wayland compositor (SwayWM: <a href=3D"https://github.com/swaywm/=
+sway">https://github.com/swaywm/sway</a>)</pre>
         </div>
       </p>
 
@@ -126,9 +99,9 @@ which one)?</pre>
     </body>
 </html>=
 
---15621807592.DD4Af71d.1584--
+--15621809781.A85E.2391--
 
---===============0194137637==
+--===============1373565588==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -138,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0194137637==--
+--===============1373565588==--
