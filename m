@@ -1,24 +1,37 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [Nouveau] [PATCH 20/22] mm: move hmm_vma_fault to nouveau
-Date: Wed, 3 Jul 2019 13:50:45 -0400
-Message-ID: <CAKb7Uvid7xfWNRxee4YoDSKu5-eizo-0Bqb3amFczEDXmSKLMA@mail.gmail.com>
-References: <20190701062020.19239-1-hch@lst.de> <20190701062020.19239-21-hch@lst.de>
- <a3108540-e431-2513-650e-3bb143f7f161@nvidia.com>
+From: Jason Gunthorpe <jgg@ziepe.ca>
+Subject: Re: [PATCH 22/22] mm: remove the legacy hmm_pfn_* APIs
+Date: Wed, 3 Jul 2019 15:01:25 -0300
+Message-ID: <20190703180125.GA18673@ziepe.ca>
+References: <20190701062020.19239-1-hch@lst.de>
+ <20190701062020.19239-23-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <a3108540-e431-2513-650e-3bb143f7f161@nvidia.com>
+Content-Disposition: inline
+In-Reply-To: <20190701062020.19239-23-hch@lst.de>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Ralph Campbell <rcampbell@nvidia.com>
-Cc: Christoph Hellwig <hch@lst.de>, Dan Williams <dan.j.williams@intel.com>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, linux-nvdimm@lists.01.org, Linux PCI <linux-pci@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, linux-mm@kvack.org, nouveau <nouveau@lists.freedesktop.org>, Ira Weiny <ira.weiny@intel.com>
+To: Christoph Hellwig <hch@lst.de>
+Cc: Dan Williams <dan.j.williams@intel.com>, =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Ira Weiny <ira.weiny@intel.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-nvdimm@lists.01.org, linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jul 3, 2019 at 1:49 PM Ralph Campbell <rcampbell@nvidia.com> wrote:
-> On 6/30/19 11:20 PM, Christoph Hellwig wrote:
-> > hmm_vma_fault is marked as a legacy API to get rid of, but quite suites
-> > the current nouvea flow.  Move it to the only user in preparation for
->
-> I didn't quite parse the phrase "quite suites the current nouvea flow."
-> s/nouvea/nouveau/
+On Mon, Jul 01, 2019 at 08:20:20AM +0200, Christoph Hellwig wrote:
+> Switch the one remaining user in nouveau over to its replacement,
+> and remove all the wrappers.
+> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+>  drivers/gpu/drm/nouveau/nouveau_dmem.c |  2 +-
+>  include/linux/hmm.h                    | 36 --------------------------
+>  2 files changed, 1 insertion(+), 37 deletions(-)
 
-As long as you're fixing typos, suites -> suits.
+Christoph, I guess you didn't mean to send this branch to the mailing
+list?
+
+In any event some of these, like this one, look obvious and I could
+still grab a few for hmm.git.
+
+Let me know what you'd like please
+
+Reviewed-by: Jason Gunthorpe <jgg@mellanox.com>
+
+Thanks,
+Jason
