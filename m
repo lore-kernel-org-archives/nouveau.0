@@ -1,76 +1,103 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [Nouveau] [PATCH] drm/nouveau: fix memory leak in
- nouveau_conn_reset()
-Date: Thu, 4 Jul 2019 15:50:10 +1000
-Message-ID: <CACAvsv5b2D4SSz0OTWS6gygs5+guc5cdWeBWCiJ2bqXu-RP=wA@mail.gmail.com>
-References: <20190701014622.13199-1-yongxin.liu@windriver.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110407] /sys/class/backlight/nv_backlight doesn't
+ work on Dell Precision 7530 GP107GLM [Quadro P1000 Mobile]
+Date: Thu, 04 Jul 2019 08:07:10 +0000
+Message-ID: <bug-110407-8800-D2ktmw6G7y@http.bugs.freedesktop.org/>
+References: <bug-110407-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20190701014622.13199-1-yongxin.liu@windriver.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Yongxin Liu <yongxin.liu@windriver.com>
-Cc: ML nouveau <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, ML dri-devel <dri-devel@lists.freedesktop.org>, linux-kernel@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============0072752162=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-110407-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCAxIEp1bCAyMDE5IGF0IDEyOjM3LCBZb25neGluIExpdSA8eW9uZ3hpbi5saXVAd2lu
-ZHJpdmVyLmNvbT4gd3JvdGU6Cj4KPiBJbiBub3V2ZWF1X2Nvbm5fcmVzZXQoKSwgaWYgY29ubmVj
-dG9yLT5zdGF0ZSBpcyB0cnVlLAo+IF9fZHJtX2F0b21pY19oZWxwZXJfY29ubmVjdG9yX2Rlc3Ry
-b3lfc3RhdGUoKSB3aWxsIGJlIGNhbGxlZCwKPiBidXQgdGhlIG1lbW9yeSBwb2ludGVkIGJ5IGFz
-eWMgaXNuJ3QgZnJlZWQuIE1lbW9yeSBsZWFrIGhhcHBlbnMKPiBpbiB0aGUgZm9sbG93aW5nIGZ1
-bmN0aW9uIF9fZHJtX2F0b21pY19oZWxwZXJfY29ubmVjdG9yX3Jlc2V0KCksCj4gd2hlcmUgbmV3
-bHkgYWxsb2NhdGVkIGFzeWMtPnN0YXRlIHdpbGwgYmUgYXNzaWduZWQgdG8gY29ubmVjdG9yLT5z
-dGF0ZS4KPgo+IFNvIHVzaW5nIG5vdXZlYXVfY29ubl9hdG9taWNfZGVzdHJveV9zdGF0ZSgpIGlu
-c3RlYWQgb2YKPiBfX2RybV9hdG9taWNfaGVscGVyX2Nvbm5lY3Rvcl9kZXN0cm95X3N0YXRlIHRv
-IGZyZWUgdGhlICJvbGQiIGFzeWMuCj4KPiBIZXJlIHRoZSBpcyB0aGUgbG9nIHNob3dpbmcgbWVt
-b3J5IGxlYWsuCj4KPiB1bnJlZmVyZW5jZWQgb2JqZWN0IDB4ZmZmZjhjNTQ4MDQ4M2M4MCAoc2l6
-ZSAxOTIpOgo+ICAgY29tbSAia3dvcmtlci8wOjIiLCBwaWQgMTg4LCBqaWZmaWVzIDQyOTQ2OTUy
-NzkgKGFnZSA1My4xNzlzKQo+ICAgaGV4IGR1bXAgKGZpcnN0IDMyIGJ5dGVzKToKPiAgICAgMDAg
-ZjAgYmEgN2IgNTQgOGMgZmYgZmYgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgIC4uLntULi4uLi4u
-Li4uLi4KPiAgICAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAg
-MDAgIC4uLi4uLi4uLi4uLi4uLi4KPiAgIGJhY2t0cmFjZToKPiAgICAgWzwwMDAwMDAwMDUwMDVj
-MGQwPl0ga21lbV9jYWNoZV9hbGxvY190cmFjZSsweDE5NS8weDJjMAo+ICAgICBbPDAwMDAwMDAw
-YTEyMmJhZWQ+XSBub3V2ZWF1X2Nvbm5fcmVzZXQrMHgyNS8weGMwIFtub3V2ZWF1XQo+ICAgICBb
-PDAwMDAwMDAwNGZkMTg5YTI+XSBub3V2ZWF1X2Nvbm5lY3Rvcl9jcmVhdGUrMHgzYTcvMHg2MTAg
-W25vdXZlYXVdCj4gICAgIFs8MDAwMDAwMDBjNzMzNDNhOD5dIG52NTBfZGlzcGxheV9jcmVhdGUr
-MHgzNDMvMHg5ODAgW25vdXZlYXVdCj4gICAgIFs8MDAwMDAwMDAyZTJiMDNjMz5dIG5vdXZlYXVf
-ZGlzcGxheV9jcmVhdGUrMHg1MWYvMHg2NjAgW25vdXZlYXVdCj4gICAgIFs8MDAwMDAwMDBjOTI0
-Njk5Yj5dIG5vdXZlYXVfZHJtX2RldmljZV9pbml0KzB4MTgyLzB4N2YwIFtub3V2ZWF1XQo+ICAg
-ICBbPDAwMDAwMDAwY2MwMjk0MzY+XSBub3V2ZWF1X2RybV9wcm9iZSsweDIwYy8weDJjMCBbbm91
-dmVhdV0KPiAgICAgWzwwMDAwMDAwMDdlOTYxYzNlPl0gbG9jYWxfcGNpX3Byb2JlKzB4NDcvMHhh
-MAo+ICAgICBbPDAwMDAwMDAwZGExNGQ1Njk+XSB3b3JrX2Zvcl9jcHVfZm4rMHgxYS8weDMwCj4g
-ICAgIFs8MDAwMDAwMDAyOGRhNDgwNT5dIHByb2Nlc3Nfb25lX3dvcmsrMHgyN2MvMHg2NjAKPiAg
-ICAgWzwwMDAwMDAwMDFkNDE1YjA0Pl0gd29ya2VyX3RocmVhZCsweDIyYi8weDNmMAo+ICAgICBb
-PDAwMDAwMDAwMDNiNjlmMWY+XSBrdGhyZWFkKzB4MTJmLzB4MTUwCj4gICAgIFs8MDAwMDAwMDBj
-OTRjMjliNz5dIHJldF9mcm9tX2ZvcmsrMHgzYS8weDUwCj4KPiBTaWduZWQtb2ZmLWJ5OiBZb25n
-eGluIExpdSA8eW9uZ3hpbi5saXVAd2luZHJpdmVyLmNvbT4KVGhhbmtzISAgR290IGl0LgoKPiAt
-LS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYyB8IDIgKy0K
-PiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCj4KPiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMKPiBpbmRleCA0MTE2ZWU2
-MmFkYWYuLmY2OWZmMjJiZWVlMCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X2Nvbm5lY3Rvci5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9jb25uZWN0b3IuYwo+IEBAIC0yNTIsNyArMjUyLDcgQEAgbm91dmVhdV9jb25uX3Jlc2V0
-KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpCj4gICAgICAgICAgICAgICAgIHJldHVy
-bjsKPgo+ICAgICAgICAgaWYgKGNvbm5lY3Rvci0+c3RhdGUpCj4gLSAgICAgICAgICAgICAgIF9f
-ZHJtX2F0b21pY19oZWxwZXJfY29ubmVjdG9yX2Rlc3Ryb3lfc3RhdGUoY29ubmVjdG9yLT5zdGF0
-ZSk7Cj4gKyAgICAgICAgICAgICAgIG5vdXZlYXVfY29ubl9hdG9taWNfZGVzdHJveV9zdGF0ZShj
-b25uZWN0b3IsIGNvbm5lY3Rvci0+c3RhdGUpOwo+ICAgICAgICAgX19kcm1fYXRvbWljX2hlbHBl
-cl9jb25uZWN0b3JfcmVzZXQoY29ubmVjdG9yLCAmYXN5Yy0+c3RhdGUpOwo+ICAgICAgICAgYXN5
-Yy0+ZGl0aGVyLm1vZGUgPSBESVRIRVJJTkdfTU9ERV9BVVRPOwo+ICAgICAgICAgYXN5Yy0+ZGl0
-aGVyLmRlcHRoID0gRElUSEVSSU5HX0RFUFRIX0FVVE87Cj4gLS0KPiAyLjE0LjQKPgo+IF9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWls
-aW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRy
-aS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWw=
+
+--===============0072752162==
+Content-Type: multipart/alternative; boundary="15622276290.42bAf1e.7316"
+Content-Transfer-Encoding: 7bit
+
+
+--15622276290.42bAf1e.7316
+Date: Thu, 4 Jul 2019 08:07:09 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110407
+
+--- Comment #3 from Kai-Heng Feng <kai.heng.feng-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> ---
+Any further ideas that I can try?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15622276290.42bAf1e.7316
+Date: Thu, 4 Jul 2019 08:07:09 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - /sys/class/backlight/nv_backlight doesn't work on Dell Pr=
+ecision 7530 GP107GLM [Quadro P1000 Mobile]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110407#c3">Commen=
+t # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - /sys/class/backlight/nv_backlight doesn't work on Dell Pr=
+ecision 7530 GP107GLM [Quadro P1000 Mobile]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110407">bug 11040=
+7</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+kai.heng.feng&#64;canonical.com" title=3D"Kai-Heng Feng &lt;kai.heng.feng&#=
+64;canonical.com&gt;"> <span class=3D"fn">Kai-Heng Feng</span></a>
+</span></b>
+        <pre>Any further ideas that I can try?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15622276290.42bAf1e.7316--
+
+--===============0072752162==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0072752162==--
