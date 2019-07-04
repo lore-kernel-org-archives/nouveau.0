@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110407] /sys/class/backlight/nv_backlight doesn't
- work on Dell Precision 7530 GP107GLM [Quadro P1000 Mobile]
-Date: Thu, 04 Jul 2019 08:07:10 +0000
-Message-ID: <bug-110407-8800-D2ktmw6G7y@http.bugs.freedesktop.org/>
-References: <bug-110407-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 110714] Xorg crashes randomly because of memory leak
+Date: Thu, 04 Jul 2019 10:06:02 +0000
+Message-ID: <bug-110714-8800-wdBiLfJA7H@http.bugs.freedesktop.org/>
+References: <bug-110714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0072752162=="
+Content-Type: multipart/mixed; boundary="===============1749904836=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110407-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-110714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0072752162==
-Content-Type: multipart/alternative; boundary="15622276290.42bAf1e.7316"
+--===============1749904836==
+Content-Type: multipart/alternative; boundary="15622347620.fda903C.6166"
 Content-Transfer-Encoding: 7bit
 
 
---15622276290.42bAf1e.7316
-Date: Thu, 4 Jul 2019 08:07:09 +0000
+--15622347620.fda903C.6166
+Date: Thu, 4 Jul 2019 10:06:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110407
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110714
 
---- Comment #3 from Kai-Heng Feng <kai.heng.feng-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> ---
-Any further ideas that I can try?
+--- Comment #8 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+Out of curiosity, any hint on how to reproduce the issue?
+
+ - What clients were running at the time the issue occurred
+ - Any special x11 client that can reproduce?
+ - Any particular action that triggers the issue?
+ - which desktop environment/window manager?
+
+Basically, anything that could help reproducing...
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15622276290.42bAf1e.7316
-Date: Thu, 4 Jul 2019 08:07:09 +0000
+--15622347620.fda903C.6166
+Date: Thu, 4 Jul 2019 10:06:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -59,22 +65,27 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - /sys/class/backlight/nv_backlight doesn't work on Dell Pr=
-ecision 7530 GP107GLM [Quadro P1000 Mobile]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110407#c3">Commen=
-t # 3</a>
+          bz_status_REOPENED "
+   title=3D"REOPENED - Xorg crashes randomly because of memory leak"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - /sys/class/backlight/nv_backlight doesn't work on Dell Pr=
-ecision 7530 GP107GLM [Quadro P1000 Mobile]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110407">bug 11040=
-7</a>
+          bz_status_REOPENED "
+   title=3D"REOPENED - Xorg crashes randomly because of memory leak"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714">bug 11071=
+4</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-kai.heng.feng&#64;canonical.com" title=3D"Kai-Heng Feng &lt;kai.heng.feng&#=
-64;canonical.com&gt;"> <span class=3D"fn">Kai-Heng Feng</span></a>
+fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
+"> <span class=3D"fn">Olivier Fourdan</span></a>
 </span></b>
-        <pre>Any further ideas that I can try?</pre>
+        <pre>Out of curiosity, any hint on how to reproduce the issue?
+
+ - What clients were running at the time the issue occurred
+ - Any special x11 client that can reproduce?
+ - Any particular action that triggers the issue?
+ - which desktop environment/window manager?
+
+Basically, anything that could help reproducing...</pre>
         </div>
       </p>
 
@@ -88,9 +99,9 @@ kai.heng.feng&#64;canonical.com" title=3D"Kai-Heng Feng &lt;kai.heng.feng&#=
     </body>
 </html>=
 
---15622276290.42bAf1e.7316--
+--15622347620.fda903C.6166--
 
---===============0072752162==
+--===============1749904836==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0072752162==--
+--===============1749904836==--
