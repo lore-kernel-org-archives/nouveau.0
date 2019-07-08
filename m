@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 106294] GM204/modesetting DDX: Odd corruption (red
  backgrounds) introduced by Mesa
-Date: Mon, 08 Jul 2019 16:38:25 +0000
-Message-ID: <bug-106294-8800-Yu4puDpyYX@http.bugs.freedesktop.org/>
+Date: Mon, 08 Jul 2019 16:43:36 +0000
+Message-ID: <bug-106294-8800-wEKZVaVUWh@http.bugs.freedesktop.org/>
 References: <bug-106294-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2095562642=="
+Content-Type: multipart/mixed; boundary="===============1657989592=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-106294-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2095562642==
-Content-Type: multipart/alternative; boundary="15626039050.eACDd.28113"
+--===============1657989592==
+Content-Type: multipart/alternative; boundary="15626042160.4eD40.28432"
 Content-Transfer-Encoding: 7bit
 
 
---15626039050.eACDd.28113
-Date: Mon, 8 Jul 2019 16:38:25 +0000
+--15626042160.4eD40.28432
+Date: Mon, 8 Jul 2019 16:43:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,23 +36,36 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D106294
 
---- Comment #1 from Sophie Hamilton <freedesktop-bugs-dADiZSo7rdJAfugRpC6u6w@public.gmane.org> ---
-I just realised I still have this bug open... since then I've switched grap=
-hics
-cards to an AMD card, so I can no longer test this bug or assist with
-debugging. I apologise for this.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-This bug may still be relevant, so I'll leave it up to you whether to close=
- it
-or not. I'm sorry for the inconvenience!
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         Resolution|---                         |FIXED
+             Status|NEW                         |RESOLVED
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Good choice with switching to AMD! Tell your friends, too.
+
+There's some likelihood that this issue was fixed by a change to dealing wi=
+th
+uniform buffer size changes on GM10x+, which could be consistent with the
+change you bisected to.
+
+Given that you can't repro anymore, and the likelihood of it being fixed, I=
+'m
+going to close it.
+
+[Also, in any case, I recommend using the nouveau ddx over modesetting. You=
+ get
+to use a small, well-tested driver vs ... the mess that is GL.]
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15626039050.eACDd.28113
-Date: Mon, 8 Jul 2019 16:38:25 +0000
+--15626042160.4eD40.28432
+Date: Mon, 8 Jul 2019 16:43:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,33 +76,71 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - GM204/modesetting DDX: Odd corruption (red bac=
+kgrounds) introduced by Mesa"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106294">bug 10629=
+4</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM204/modesetting DDX: Odd corruption (red backgrounds) i=
-ntroduced by Mesa"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106294#c1">Commen=
-t # 1</a>
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - GM204/modesetting DDX: Odd corruption (red bac=
+kgrounds) introduced by Mesa"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106294#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - GM204/modesetting DDX: Odd corruption (red backgrounds) i=
-ntroduced by Mesa"
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - GM204/modesetting DDX: Odd corruption (red bac=
+kgrounds) introduced by Mesa"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106294">bug 10629=
 4</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-freedesktop-bugs&#64;theblob.org" title=3D"Sophie Hamilton &lt;freedesktop-=
-bugs&#64;theblob.org&gt;"> <span class=3D"fn">Sophie Hamilton</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I just realised I still have this bug open... since then I've =
-switched graphics
-cards to an AMD card, so I can no longer test this bug or assist with
-debugging. I apologise for this.
+        <pre>Good choice with switching to AMD! Tell your friends, too.
 
-This bug may still be relevant, so I'll leave it up to you whether to close=
- it
-or not. I'm sorry for the inconvenience!</pre>
+There's some likelihood that this issue was fixed by a change to dealing wi=
+th
+uniform buffer size changes on GM10x+, which could be consistent with the
+change you bisected to.
+
+Given that you can't repro anymore, and the likelihood of it being fixed, I=
+'m
+going to close it.
+
+[Also, in any case, I recommend using the nouveau ddx over modesetting. You=
+ get
+to use a small, well-tested driver vs ... the mess that is GL.]</pre>
         </div>
       </p>
 
@@ -104,9 +155,9 @@ or not. I'm sorry for the inconvenience!</pre>
     </body>
 </html>=
 
---15626039050.eACDd.28113--
+--15626042160.4eD40.28432--
 
---===============2095562642==
+--===============1657989592==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -116,4 +167,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============2095562642==--
+--===============1657989592==--
