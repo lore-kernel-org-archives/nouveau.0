@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 106294] GM204/modesetting DDX: Odd corruption (red
- backgrounds) introduced by Mesa
-Date: Mon, 08 Jul 2019 16:43:36 +0000
-Message-ID: <bug-106294-8800-wEKZVaVUWh@http.bugs.freedesktop.org/>
-References: <bug-106294-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 97511] GM204/modesetting DDX: Using PageFlip causes
+ syncing issue/screen corruption
+Date: Mon, 08 Jul 2019 17:02:39 +0000
+Message-ID: <bug-97511-8800-oyt8UEhs1x@http.bugs.freedesktop.org/>
+References: <bug-97511-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1657989592=="
+Content-Type: multipart/mixed; boundary="===============1023143233=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-106294-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-97511-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,51 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1657989592==
-Content-Type: multipart/alternative; boundary="15626042160.4eD40.28432"
+--===============1023143233==
+Content-Type: multipart/alternative; boundary="15626053591.C4C9E.29864"
 Content-Transfer-Encoding: 7bit
 
 
---15626042160.4eD40.28432
-Date: Mon, 8 Jul 2019 16:43:36 +0000
+--15626053591.C4C9E.29864
+Date: Mon, 8 Jul 2019 17:02:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D106294
+https://bugs.freedesktop.org/show_bug.cgi?id=3D97511
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-             Status|NEW                         |RESOLVED
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Good choice with switching to AMD! Tell your friends, too.
-
-There's some likelihood that this issue was fixed by a change to dealing wi=
-th
-uniform buffer size changes on GM10x+, which could be consistent with the
-change you bisected to.
-
-Given that you can't repro anymore, and the likelihood of it being fixed, I=
-'m
-going to close it.
-
-[Also, in any case, I recommend using the nouveau ddx over modesetting. You=
- get
-to use a small, well-tested driver vs ... the mess that is GL.]
+--- Comment #4 from Sophie Hamilton <freedesktop-bugs-dADiZSo7rdJAfugRpC6u6w@public.gmane.org> ---
+I'm afraid I will no longer be able to help test or debug this issue due to=
+ no
+longer having the required hardware. I apologise for the inconvenience!
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the assignee for the bug.=
 
---15626042160.4eD40.28432
-Date: Mon, 8 Jul 2019 16:43:36 +0000
+--15626053591.C4C9E.29864
+Date: Mon, 8 Jul 2019 17:02:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,71 +57,29 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - GM204/modesetting DDX: Odd corruption (red bac=
-kgrounds) introduced by Mesa"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106294">bug 10629=
-4</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - GM204/modesetting DDX: Odd corruption (red bac=
-kgrounds) introduced by Mesa"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106294#c2">Commen=
-t # 2</a>
+          bz_status_NEW "
+   title=3D"NEW - GM204/modesetting DDX: Using PageFlip causes syncing issu=
+e/screen corruption"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97511#c4">Comment=
+ # 4</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - GM204/modesetting DDX: Odd corruption (red bac=
-kgrounds) introduced by Mesa"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D106294">bug 10629=
-4</a>
+          bz_status_NEW "
+   title=3D"NEW - GM204/modesetting DDX: Using PageFlip causes syncing issu=
+e/screen corruption"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D97511">bug 97511<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+freedesktop-bugs&#64;theblob.org" title=3D"Sophie Hamilton &lt;freedesktop-=
+bugs&#64;theblob.org&gt;"> <span class=3D"fn">Sophie Hamilton</span></a>
 </span></b>
-        <pre>Good choice with switching to AMD! Tell your friends, too.
-
-There's some likelihood that this issue was fixed by a change to dealing wi=
-th
-uniform buffer size changes on GM10x+, which could be consistent with the
-change you bisected to.
-
-Given that you can't repro anymore, and the likelihood of it being fixed, I=
-'m
-going to close it.
-
-[Also, in any case, I recommend using the nouveau ddx over modesetting. You=
- get
-to use a small, well-tested driver vs ... the mess that is GL.]</pre>
+        <pre>I'm afraid I will no longer be able to help test or debug this=
+ issue due to no
+longer having the required hardware. I apologise for the inconvenience!</pr=
+e>
         </div>
       </p>
 
@@ -150,14 +89,13 @@ to use a small, well-tested driver vs ... the mess that is GL.]</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15626042160.4eD40.28432--
+--15626053591.C4C9E.29864--
 
---===============1657989592==
+--===============1023143233==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -167,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1657989592==--
+--===============1023143233==--
