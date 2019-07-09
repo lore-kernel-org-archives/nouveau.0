@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111094] Cannot start Xorg on Nvidia GP108M
-Date: Tue, 09 Jul 2019 11:24:08 +0000
-Message-ID: <bug-111094-8800-G6ccsletsz@http.bugs.freedesktop.org/>
+Date: Tue, 09 Jul 2019 11:24:30 +0000
+Message-ID: <bug-111094-8800-sD9fKB6Vqe@http.bugs.freedesktop.org/>
 References: <bug-111094-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1982627867=="
+Content-Type: multipart/mixed; boundary="===============1976110630=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111094-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1982627867==
-Content-Type: multipart/alternative; boundary="15626714481.Cc9Ae8.17265"
+--===============1976110630==
+Content-Type: multipart/alternative; boundary="15626714701.dA440a66c.17318"
 Content-Transfer-Encoding: 7bit
 
 
---15626714481.Cc9Ae8.17265
-Date: Tue, 9 Jul 2019 11:24:08 +0000
+--15626714701.dA440a66c.17318
+Date: Tue, 9 Jul 2019 11:24:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111094
 
---- Comment #1 from guygma-97jfqw80gc5Wk0Htik3J/w@public.gmane.org ---
-Created attachment 144736
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144736&action=3Dedit
-xorg
+--- Comment #2 from guygma-97jfqw80gc5Wk0Htik3J/w@public.gmane.org ---
+Created attachment 144737
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144737&action=3Dedit
+dmesg
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15626714481.Cc9Ae8.17265
-Date: Tue, 9 Jul 2019 11:24:08 +0000
+--15626714701.dA440a66c.17318
+Date: Tue, 9 Jul 2019 11:24:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Cannot start Xorg on Nvidia GP108M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111094#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111094#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Cannot start Xorg on Nvidia GP108M"
@@ -73,11 +73,11 @@ t # 1</a>
 guygma&#64;fastmail.com" title=3D"guygma&#64;fastmail.com">guygma&#64;fastm=
 ail.com</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144736=
-" name=3D"attach_144736" title=3D"xorg">attachment 144736</a> <a href=3D"at=
-tachment.cgi?id=3D144736&amp;action=3Dedit" title=3D"xorg">[details]</a></s=
-pan>
-xorg</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144737=
+" name=3D"attach_144737" title=3D"dmesg">attachment 144737</a> <a href=3D"a=
+ttachment.cgi?id=3D144737&amp;action=3Dedit" title=3D"dmesg">[details]</a><=
+/span>
+dmesg</pre>
         </div>
       </p>
 
@@ -91,9 +91,9 @@ xorg</pre>
     </body>
 </html>=
 
---15626714481.Cc9Ae8.17265--
+--15626714701.dA440a66c.17318--
 
---===============1982627867==
+--===============1976110630==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1982627867==--
+--===============1976110630==--
