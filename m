@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110830] [nouveau] GeForce GTX 1660 Ti (mobile) not
  supported (NV168/TU116)
-Date: Tue, 09 Jul 2019 18:39:51 +0000
-Message-ID: <bug-110830-8800-mklHTDDqaR@http.bugs.freedesktop.org/>
+Date: Tue, 09 Jul 2019 18:42:43 +0000
+Message-ID: <bug-110830-8800-RIPwXw64fK@http.bugs.freedesktop.org/>
 References: <bug-110830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1656905743=="
+Content-Type: multipart/mixed; boundary="===============1417864147=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1656905743==
-Content-Type: multipart/alternative; boundary="15626975910.b0Ffb.19395"
+--===============1417864147==
+Content-Type: multipart/alternative; boundary="15626977632.61DecB5.19426"
 Content-Transfer-Encoding: 7bit
 
 
---15626975910.b0Ffb.19395
-Date: Tue, 9 Jul 2019 18:39:51 +0000
+--15626977632.61DecB5.19426
+Date: Tue, 9 Jul 2019 18:42:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,28 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110830
 
---- Comment #14 from Marcin Zajaczkowski <mszpak-5tc4TXWwyLM@public.gmane.org> ---
-To summarize the things. The offloading problem still needs to be examined =
-at
-the software level (it works only in Wayland). However, there is a workarou=
-nd.
-In the end, it turned out and in a model with GTX 1660 Ti, the mDP port is
-connected to the Intel card. The external monitor works fine with a mDP->HD=
-MI
-adapter (with the NVidia card reported as DynOff).
-
-@Ilia, thanks for your assistance!
-
-Btw, it's too late for 5.2, but maybe GTX 1660 Ti will be natively supported
-with nouveau (although "nouveau.config=3DNvChipset=3D0x167" works fine as a
-workaround - probably the same stable as with GTX 1650 :) ).
+--- Comment #15 from Marcin Zajaczkowski <mszpak-5tc4TXWwyLM@public.gmane.org> ---
+Btw, for people with the same laptop and similar issues landing in that iss=
+ue -
+I created a short summary how to solve some problems with Hyperbook NH5/Cle=
+vo
+NH55RCQ (including those with GeForce GTX 1660 Ti):
+https://gist.github.com/szpak/71081b40217fb27c7a565b8c7b972067
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15626975910.b0Ffb.19395
-Date: Tue, 9 Jul 2019 18:39:51 +0000
+--15626977632.61DecB5.19426
+Date: Tue, 9 Jul 2019 18:42:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,8 +67,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - [nouveau] GeForce GTX 1660 Ti (mobile) not supported (NV1=
 68/TU116)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110830#c14">Comme=
-nt # 14</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110830#c15">Comme=
+nt # 15</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [nouveau] GeForce GTX 1660 Ti (mobile) not supported (NV1=
@@ -87,21 +79,13 @@ nt # 14</a>
 mszpak&#64;wp.pl" title=3D"Marcin Zajaczkowski &lt;mszpak&#64;wp.pl&gt;"> <=
 span class=3D"fn">Marcin Zajaczkowski</span></a>
 </span></b>
-        <pre>To summarize the things. The offloading problem still needs to=
- be examined at
-the software level (it works only in Wayland). However, there is a workarou=
-nd.
-In the end, it turned out and in a model with GTX 1660 Ti, the mDP port is
-connected to the Intel card. The external monitor works fine with a mDP-&gt=
-;HDMI
-adapter (with the NVidia card reported as DynOff).
-
-&#64;Ilia, thanks for your assistance!
-
-Btw, it's too late for 5.2, but maybe GTX 1660 Ti will be natively supported
-with nouveau (although &quot;nouveau.config=3DNvChipset=3D0x167&quot; works=
- fine as a
-workaround - probably the same stable as with GTX 1650 :) ).</pre>
+        <pre>Btw, for people with the same laptop and similar issues landin=
+g in that issue -
+I created a short summary how to solve some problems with Hyperbook NH5/Cle=
+vo
+NH55RCQ (including those with GeForce GTX 1660 Ti):
+<a href=3D"https://gist.github.com/szpak/71081b40217fb27c7a565b8c7b972067">=
+https://gist.github.com/szpak/71081b40217fb27c7a565b8c7b972067</a></pre>
         </div>
       </p>
 
@@ -115,9 +99,9 @@ workaround - probably the same stable as with GTX 1650 :) ).</pre>
     </body>
 </html>=
 
---15626975910.b0Ffb.19395--
+--15626977632.61DecB5.19426--
 
---===============1656905743==
+--===============1417864147==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -127,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1656905743==--
+--===============1417864147==--
