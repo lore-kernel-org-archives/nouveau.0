@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110955] Mesa 18.2.8 implementation error: Invalid
  GLSL version in shading_language_version()
-Date: Wed, 10 Jul 2019 20:00:28 +0000
-Message-ID: <bug-110955-8800-t1D90sK3vr@http.bugs.freedesktop.org/>
+Date: Wed, 10 Jul 2019 20:04:09 +0000
+Message-ID: <bug-110955-8800-VvOqJQ3AvF@http.bugs.freedesktop.org/>
 References: <bug-110955-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0042538526=="
+Content-Type: multipart/mixed; boundary="===============0310586222=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110955-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0042538526==
-Content-Type: multipart/alternative; boundary="15627888270.340ba.14834"
+--===============0310586222==
+Content-Type: multipart/alternative; boundary="15627890490.FBbD2.14842"
 Content-Transfer-Encoding: 7bit
 
 
---15627888270.340ba.14834
-Date: Wed, 10 Jul 2019 20:00:27 +0000
+--15627890490.FBbD2.14842
+Date: Wed, 10 Jul 2019 20:04:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110955
 
---- Comment #9 from power.cyan-1Ww2luigxekKlTDg6p0iyA@public.gmane.org ---
-That is true my patching skills are horrible. I see I try the patching again
-let see if its builds, just because some practice can't hurt, if fails agai=
-n I
-go with the mainline that has already been patched.
+--- Comment #10 from power.cyan-1Ww2luigxekKlTDg6p0iyA@public.gmane.org ---
+Oh almost forget tank you for the quick response to my problem.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15627888270.340ba.14834
-Date: Wed, 10 Jul 2019 20:00:27 +0000
+--15627890490.FBbD2.14842
+Date: Wed, 10 Jul 2019 20:04:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,8 +63,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Mesa 18.2.8 implementation error: Invalid GLSL version in=
  shading_language_version()"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110955#c9">Commen=
-t # 9</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110955#c10">Comme=
+nt # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Mesa 18.2.8 implementation error: Invalid GLSL version in=
@@ -78,11 +75,8 @@ t # 9</a>
 power.cyan&#64;openmail.cc" title=3D"power.cyan&#64;openmail.cc">power.cyan=
 &#64;openmail.cc</a>
 </span></b>
-        <pre>That is true my patching skills are horrible. I see I try the =
-patching again
-let see if its builds, just because some practice can't hurt, if fails agai=
-n I
-go with the mainline that has already been patched.</pre>
+        <pre>Oh almost forget tank you for the quick response to my problem=
+.</pre>
         </div>
       </p>
 
@@ -97,9 +91,9 @@ go with the mainline that has already been patched.</pre>
     </body>
 </html>=
 
---15627888270.340ba.14834--
+--15627890490.FBbD2.14842--
 
---===============0042538526==
+--===============0310586222==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0042538526==--
+--===============0310586222==--
