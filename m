@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110955] Mesa 18.2.8 implementation error: Invalid
  GLSL version in shading_language_version()
-Date: Wed, 10 Jul 2019 14:50:45 +0000
-Message-ID: <bug-110955-8800-KEZ2JYMkZv@http.bugs.freedesktop.org/>
+Date: Wed, 10 Jul 2019 14:53:20 +0000
+Message-ID: <bug-110955-8800-fKPMseW84x@http.bugs.freedesktop.org/>
 References: <bug-110955-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1264100331=="
+Content-Type: multipart/mixed; boundary="===============1537189480=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110955-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1264100331==
-Content-Type: multipart/alternative; boundary="15627702450.71f2f.31884"
+--===============1537189480==
+Content-Type: multipart/alternative; boundary="15627703990.30c4b9FAA.31977"
 Content-Transfer-Encoding: 7bit
 
 
---15627702450.71f2f.31884
-Date: Wed, 10 Jul 2019 14:50:45 +0000
+--15627703990.30c4b9FAA.31977
+Date: Wed, 10 Jul 2019 14:53:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110955
 
---- Comment #4 from power.cyan-1Ww2luigxekKlTDg6p0iyA@public.gmane.org ---
-Created attachment 144753
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144753&action=3Dedit
-glxinfo
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+That patch is missing the actual version... given that this is a NV18, this
+should be fixed by
 
-Attached the output of glxinfo, tryed to build mesa from src it was
-successfull, but havem't patched yet.
+https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D0349bc3ce2b399082593ddc=
+f1d28782a4566bc08
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15627702450.71f2f.31884
-Date: Wed, 10 Jul 2019 14:50:45 +0000
+--15627703990.30c4b9FAA.31977
+Date: Wed, 10 Jul 2019 14:53:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +67,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Mesa 18.2.8 implementation error: Invalid GLSL version in=
  shading_language_version()"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110955#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110955#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Mesa 18.2.8 implementation error: Invalid GLSL version in=
@@ -77,17 +76,16 @@ t # 4</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110955">bug 11095=
 5</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-power.cyan&#64;openmail.cc" title=3D"power.cyan&#64;openmail.cc">power.cyan=
-&#64;openmail.cc</a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144753=
-" name=3D"attach_144753" title=3D"glxinfo">attachment 144753</a> <a href=3D=
-"attachment.cgi?id=3D144753&amp;action=3Dedit" title=3D"glxinfo">[details]<=
-/a></span>
-glxinfo
+        <pre>That patch is missing the actual version... given that this is=
+ a NV18, this
+should be fixed by
 
-Attached the output of glxinfo, tryed to build mesa from src it was
-successfull, but havem't patched yet.</pre>
+<a href=3D"https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D0349bc3ce2b3=
+99082593ddcf1d28782a4566bc08">https://cgit.freedesktop.org/mesa/mesa/commit=
+/?id=3D0349bc3ce2b399082593ddcf1d28782a4566bc08</a></pre>
         </div>
       </p>
 
@@ -96,15 +94,15 @@ successfull, but havem't patched yet.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15627702450.71f2f.31884--
+--15627703990.30c4b9FAA.31977--
 
---===============1264100331==
+--===============1537189480==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1264100331==--
+--===============1537189480==--
