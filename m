@@ -1,13 +1,11 @@
-From: Mark Menzynski <mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 2/4] gpio: checking if gpu power cable is connected
-Date: Thu, 11 Jul 2019 16:11:51 +0200
-Message-ID: <20190711141153.7723-3-mmenzyns@redhat.com>
-References: <20190711141153.7723-1-mmenzyns@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111110] New: Nvidia quadro + nouveau : second
+ terminal wake up but doesn't more display
+Date: Thu, 11 Jul 2019 14:49:30 +0000
+Message-ID: <bug-111110-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1521472813=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190711141153.7723-1-mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +18,293 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGVzdGVkIG9uIFRVMTA0LCBHUDEwNiBhbmQgR0YxMDAKClNpZ25lZC1vZmYtYnk6IE1hcmsgTWVu
-enluc2tpIDxtbWVuenluc0ByZWRoYXQuY29tPgotLS0KIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZr
-bS9zdWJkZXYvYmlvcy9ncGlvLmggfCAgMSArCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9ncGlv
-L2Jhc2UuYyAgICAgICAgIHwgMjMgKysrKysrKysrKysrKysrKysrKysrCiAyIGZpbGVzIGNoYW5n
-ZWQsIDI0IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9pbmNsdWRlL252
-a20vc3ViZGV2L2Jpb3MvZ3Bpby5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9i
-aW9zL2dwaW8uaAppbmRleCAyZjQwOTM1Zi4uYTcwZWM5ZTggMTAwNjQ0Ci0tLSBhL2RybS9ub3V2
-ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9ncGlvLmgKKysrIGIvZHJtL25vdXZlYXUvaW5j
-bHVkZS9udmttL3N1YmRldi9iaW9zL2dwaW8uaApAQCAtNyw2ICs3LDcgQEAgZW51bSBkY2JfZ3Bp
-b19mdW5jX25hbWUgewogCURDQl9HUElPX1RWREFDMCA9IDB4MGMsCiAJRENCX0dQSU9fVFZEQUMx
-ID0gMHgyZCwKIAlEQ0JfR1BJT19GQU5fU0VOU0UgPSAweDNkLAorCURDQl9HUElPX0VYVF9QT1dF
-Ul9MT1cgPSAweDc5LAogCURDQl9HUElPX0xPR09fTEVEX1BXTSA9IDB4ODQsCiAJRENCX0dQSU9f
-VU5VU0VEID0gMHhmZiwKIAlEQ0JfR1BJT19WSUQwID0gMHgwNCwKZGlmZiAtLWdpdCBhL2RybS9u
-b3V2ZWF1L252a20vc3ViZGV2L2dwaW8vYmFzZS5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
-Z3Bpby9iYXNlLmMKaW5kZXggMTM5OWQ5MjMuLmM0Njg1ODA3IDEwMDY0NAotLS0gYS9kcm0vbm91
-dmVhdS9udmttL3N1YmRldi9ncGlvL2Jhc2UuYworKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di9ncGlvL2Jhc2UuYwpAQCAtMTgyLDEyICsxODIsMzUgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBk
-bWlfc3lzdGVtX2lkIGdwaW9fcmVzZXRfaWRzW10gPSB7CiAJeyB9CiB9OwogCitzdGF0aWMgZW51
-bSBkY2JfZ3Bpb19mdW5jX25hbWUgcG93ZXJfY2hlY2tzW10gPSB7CisJRENCX0dQSU9fRVhUX1BP
-V0VSX0xPVywKK307CisKIHN0YXRpYyBpbnQKIG52a21fZ3Bpb19pbml0KHN0cnVjdCBudmttX3N1
-YmRldiAqc3ViZGV2KQogewogCXN0cnVjdCBudmttX2dwaW8gKmdwaW8gPSBudmttX2dwaW8oc3Vi
-ZGV2KTsKKwlzdHJ1Y3QgZGNiX2dwaW9fZnVuYyBmdW5jOworCWludCByZXQ7CisJaW50IGk7CisK
-IAlpZiAoZG1pX2NoZWNrX3N5c3RlbShncGlvX3Jlc2V0X2lkcykpCiAJCW52a21fZ3Bpb19yZXNl
-dChncGlvLCBEQ0JfR1BJT19VTlVTRUQpOworCisJZm9yIChpID0gMDsgaSA8IEFSUkFZX1NJWkUo
-cG93ZXJfY2hlY2tzKTsgKytpKSB7CisJCXJldCA9IG52a21fZ3Bpb19maW5kKGdwaW8sIDAsIHBv
-d2VyX2NoZWNrc1tpXSwgRENCX0dQSU9fVU5VU0VELAorCQkJCSAgICAgJmZ1bmMpOworCQlpZiAo
-cmV0KQorCQkJY29udGludWU7CisKKwkJcmV0ID0gbnZrbV9ncGlvX2dldChncGlvLCAwLCBmdW5j
-LmZ1bmMsIGZ1bmMubGluZSk7CisJCWlmIChyZXQpIHsKKwkJCW52a21fZXJyb3IoJmdwaW8tPnN1
-YmRldiwKKwkJCQkgICAibm90IGVub3VnaCBwb3dlciwgY2hlY2sgR1BVIHBvd2VyIGNhYmxlXG4i
-KTsKKwkJCXJldHVybiAtRUlOVkFMOworCQl9CisJfQorCiAJcmV0dXJuIDA7CiB9CiAKLS0gCjIu
-MjEuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1521472813==
+Content-Type: multipart/alternative; boundary="15628565700.08CEAE.22107"
+Content-Transfer-Encoding: 7bit
+
+
+--15628565700.08CEAE.22107
+Date: Thu, 11 Jul 2019 14:49:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111110
+
+            Bug ID: 111110
+           Summary: Nvidia quadro + nouveau : second terminal wake up but
+                    doesn't more display
+           Product: Mesa
+           Version: 19.1
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: conde.philippe-AgBVmzD5pcezQB+pC5nmwQ@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 144764
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144764&action=3Dedit
+output of dmesg
+
+I have a OpenSUSE tumbleweed system with a nvidia quadro K4200 on which 2
+screens are connected=20
+- one on the DVI port
+- the second on the display port 1 (DP1)
+the two screens use resolution 1920*1080 and are defined as a  virtual scre=
+en
+of 3480*1080.
+I use nouveau as driver; DE is KDE
+
+This worked form years without problem. After installation of snapshot 2019=
+0708
+I rebooted and the second screen doesn't more display anything.
+
+in journalctl I find this error
+Jul 11 08:30:04 hpprol2 kernel: nouveau 0000:0a:00.0: disp: outp 03:0006:0f=
+42:
+training failed
+
+The second screens wake up on some action (boot, starting xorg, login etc..=
+.)
+but after some seconds display " Display port: no signal"
+
+As requested by OpenSUSE support I installed the last kernel , Mesa et
+xf86-video-nouveau
+
+rpm -qa Mesa*
+Mesa-libGL1-19.1.2-977.1.x86_64
+Mesa-KHR-devel-19.1.2-977.1.x86_64
+Mesa-libGL-devel-19.1.2-977.1.x86_64
+Mesa-gallium-32bit-19.1.2-977.1.x86_64
+Mesa-libGL1-32bit-19.1.2-977.1.x86_64
+Mesa-libGLESv2-2-19.1.1-223.1.x86_64
+Mesa-libva-19.1.1-223.1.x86_64
+Mesa-19.1.2-977.1.x86_64
+Mesa-dri-19.1.2-977.1.x86_64
+Mesa-libglapi0-19.1.1-223.1.x86_64
+Mesa-libEGL1-19.1.2-977.1.x86_64
+Mesa-gallium-19.1.2-977.1.x86_64
+Mesa-demo-x-8.4.0-1.6.x86_64
+Mesa-dri-nouveau-19.1.2-977.1.x86_64
+Mesa-dri-32bit-19.1.2-977.1.x86_64
+Mesa-libEGL1-32bit-19.1.1-223.1.x86_64
+Mesa-32bit-19.1.2-977.1.x86_64
+Mesa-libEGL-devel-19.1.2-977.1.x86_64
+Mesa-libglapi0-32bit-19.1.1-223.1.x86_64
+
+uname -a
+Linux hpprol2 5.2.0-2.gfd43abf-default #1 SMP Thu Jul 11 05:19:05 UTC 2019
+(fd43abf) x86_64 x86_64 x86_64 GNU/Linux
+
+rpm -qa xf86-video-nouveau
+xf86-video-nouveau-1.0.15-40.11.x86_64
+
+The problem remains. I attach here the output of dmesg.
+
+See also https://bugzilla.opensuse.org/show_bug.cgi?id=3D1141041
+
+Regards
+Philippe Cond=C3=A9
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15628565700.08CEAE.22107
+Date: Thu, 11 Jul 2019 14:49:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Nvidia quadro + nouveau : second terminal wake up but doe=
+sn't more display"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111110">111110</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nvidia quadro + nouveau : second terminal wake up but doesn't=
+ more display
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>19.1
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>conde.philippe&#64;skynet.be
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144764=
+" name=3D"attach_144764" title=3D"output of dmesg">attachment 144764</a> <a=
+ href=3D"attachment.cgi?id=3D144764&amp;action=3Dedit" title=3D"output of d=
+mesg">[details]</a></span>
+output of dmesg
+
+I have a OpenSUSE tumbleweed system with a nvidia quadro K4200 on which 2
+screens are connected=20
+- one on the DVI port
+- the second on the display port 1 (DP1)
+the two screens use resolution 1920*1080 and are defined as a  virtual scre=
+en
+of 3480*1080.
+I use nouveau as driver; DE is KDE
+
+This worked form years without problem. After installation of snapshot 2019=
+0708
+I rebooted and the second screen doesn't more display anything.
+
+in journalctl I find this error
+Jul 11 08:30:04 hpprol2 kernel: nouveau 0000:0a:00.0: disp: outp 03:0006:0f=
+42:
+training failed
+
+The second screens wake up on some action (boot, starting xorg, login etc..=
+.)
+but after some seconds display &quot; Display port: no signal&quot;
+
+As requested by OpenSUSE support I installed the last kernel , Mesa et
+xf86-video-nouveau
+
+rpm -qa Mesa*
+Mesa-libGL1-19.1.2-977.1.x86_64
+Mesa-KHR-devel-19.1.2-977.1.x86_64
+Mesa-libGL-devel-19.1.2-977.1.x86_64
+Mesa-gallium-32bit-19.1.2-977.1.x86_64
+Mesa-libGL1-32bit-19.1.2-977.1.x86_64
+Mesa-libGLESv2-2-19.1.1-223.1.x86_64
+Mesa-libva-19.1.1-223.1.x86_64
+Mesa-19.1.2-977.1.x86_64
+Mesa-dri-19.1.2-977.1.x86_64
+Mesa-libglapi0-19.1.1-223.1.x86_64
+Mesa-libEGL1-19.1.2-977.1.x86_64
+Mesa-gallium-19.1.2-977.1.x86_64
+Mesa-demo-x-8.4.0-1.6.x86_64
+Mesa-dri-nouveau-19.1.2-977.1.x86_64
+Mesa-dri-32bit-19.1.2-977.1.x86_64
+Mesa-libEGL1-32bit-19.1.1-223.1.x86_64
+Mesa-32bit-19.1.2-977.1.x86_64
+Mesa-libEGL-devel-19.1.2-977.1.x86_64
+Mesa-libglapi0-32bit-19.1.1-223.1.x86_64
+
+uname -a
+Linux hpprol2 5.2.0-2.gfd43abf-default #1 SMP Thu Jul 11 05:19:05 UTC 2019
+(fd43abf) x86_64 x86_64 x86_64 GNU/Linux
+
+rpm -qa xf86-video-nouveau
+xf86-video-nouveau-1.0.15-40.11.x86_64
+
+The problem remains. I attach here the output of dmesg.
+
+See also <a href=3D"https://bugzilla.opensuse.org/show_bug.cgi?id=3D1141041=
+">https://bugzilla.opensuse.org/show_bug.cgi?id=3D1141041</a>
+
+Regards
+Philippe Cond=C3=A9</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15628565700.08CEAE.22107--
+
+--===============1521472813==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1521472813==--
