@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110714] Xorg crashes randomly because of memory leak
-Date: Fri, 12 Jul 2019 11:26:18 +0000
-Message-ID: <bug-110714-8800-i3jpqcx4zT@http.bugs.freedesktop.org/>
+Date: Fri, 12 Jul 2019 12:20:43 +0000
+Message-ID: <bug-110714-8800-FvpJAghHhr@http.bugs.freedesktop.org/>
 References: <bug-110714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0480253973=="
+Content-Type: multipart/mixed; boundary="===============0706652689=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0480253973==
-Content-Type: multipart/alternative; boundary="15629307780.6E2F8a.12831"
+--===============0706652689==
+Content-Type: multipart/alternative; boundary="15629340420.575AD2.23436"
 Content-Transfer-Encoding: 7bit
 
 
---15629307780.6E2F8a.12831
-Date: Fri, 12 Jul 2019 11:26:18 +0000
+--15629340420.575AD2.23436
+Date: Fri, 12 Jul 2019 12:20:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,42 +35,28 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110714
 
---- Comment #13 from Peter Draganov <pdraganov-8RvTx9/d5SBBDgjK7y7TUQ@public.gmane.org> ---
-After nearly 1 day and 3 hours:
-xrestop - Display: localhost:0
-          HMonitoring 51 clients. XErrors: 0
-          Pixmaps: 1180312K total, Other:     221K total, All: 1180534K tot=
-al
+--- Comment #14 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+(In reply to Peter Draganov from comment #13)
+> Probably LibreOffice is the problem? I have 18 documents opened at the
+> moment.
 
-res-base Wins  GCs Fnts Pxms Misc   Pxm mem  Other   Total   PID Identifier=
-=20=20=20=20
-6200000   227    4    1 1242 1801   800547K     48K 800596K  9592 Linux1.od=
-s -
-LibreOffice Calc
-0c00000    43    4    2   94 4175   204916K    100K 205017K  2275 marco
-3200000   106   74    1   86  325   117024K     12K 117037K  3072 phpPgAdmi=
-n -
-Mozilla Firefox
-5a00000    17    3    1    6   81    17307K      3K  17310K  3891
-pdraganov@bgva-f-00:~
-1000000     8    3    1   27   59    10417K      2K  10420K  2303
-x-caja-desktop
-4600000    30    2    1    3   93     9990K      3K   9993K  3008 7 [Runnin=
-g] -
-Oracle VM VirtualBox
-3e00000     2    1    0    3   28     9400K    744B   9401K   ?   <unknown>
-0000000     2    0    2    0  277     3413K      8K   3421K   ?   <unknown>
-6000000     0    0    0    1    0     3413K      0B   3413K   ?   <unknown>
+Not necessarily the problem, no, unless it increases over time and never
+decreases... The values do not seem out of proportions either, I mean, I can
+get higher pixmap usage opening a few documents in LibreOffice here as well=
+...
 
-Probably LibreOffice is the problem? I have 18 documents opened at the mome=
-nt.
+I'm just trying to figure if something is leaking, because maybe we look in=
+ the
+wrong place, fixing the root cause of GL_OUT_OF_MEMORY might be more effici=
+ent
+than trying to deal with the aftermaths.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15629307780.6E2F8a.12831
-Date: Fri, 12 Jul 2019 11:26:18 +0000
+--15629340420.575AD2.23436
+Date: Fri, 12 Jul 2019 12:20:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -87,48 +73,33 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_REOPENED "
    title=3D"REOPENED - Xorg crashes randomly because of memory leak"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714#c13">Comme=
-nt # 13</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714#c14">Comme=
+nt # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_REOPENED "
    title=3D"REOPENED - Xorg crashes randomly because of memory leak"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714">bug 11071=
 4</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pdraganov&#64;taxback.com" title=3D"Peter Draganov &lt;pdraganov&#64;taxbac=
-k.com&gt;"> <span class=3D"fn">Peter Draganov</span></a>
+fourdan&#64;xfce.org" title=3D"Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;=
+"> <span class=3D"fn">Olivier Fourdan</span></a>
 </span></b>
-        <pre>After nearly 1 day and 3 hours:
-xrestop - Display: localhost:0
-          HMonitoring 51 clients. XErrors: 0
-          Pixmaps: 1180312K total, Other:     221K total, All: 1180534K tot=
-al
+        <pre>(In reply to Peter Draganov from <a href=3D"show_bug.cgi?id=3D=
+110714#c13">comment #13</a>)
+<span class=3D"quote">&gt; Probably LibreOffice is the problem? I have 18 d=
+ocuments opened at the
+&gt; moment.</span >
 
-res-base Wins  GCs Fnts Pxms Misc   Pxm mem  Other   Total   PID Identifier=
-=20=20=20=20
-6200000   227    4    1 1242 1801   800547K     48K 800596K  9592 Linux1.od=
-s -
-LibreOffice Calc
-0c00000    43    4    2   94 4175   204916K    100K 205017K  2275 marco
-3200000   106   74    1   86  325   117024K     12K 117037K  3072 phpPgAdmi=
-n -
-Mozilla Firefox
-5a00000    17    3    1    6   81    17307K      3K  17310K  3891
-pdraganov&#64;bgva-f-00:~
-1000000     8    3    1   27   59    10417K      2K  10420K  2303
-x-caja-desktop
-4600000    30    2    1    3   93     9990K      3K   9993K  3008 7 [Runnin=
-g] -
-Oracle VM VirtualBox
-3e00000     2    1    0    3   28     9400K    744B   9401K   ?   &lt;unkno=
-wn&gt;
-0000000     2    0    2    0  277     3413K      8K   3421K   ?   &lt;unkno=
-wn&gt;
-6000000     0    0    0    1    0     3413K      0B   3413K   ?   &lt;unkno=
-wn&gt;
+Not necessarily the problem, no, unless it increases over time and never
+decreases... The values do not seem out of proportions either, I mean, I can
+get higher pixmap usage opening a few documents in LibreOffice here as well=
+...
 
-Probably LibreOffice is the problem? I have 18 documents opened at the mome=
-nt.</pre>
+I'm just trying to figure if something is leaking, because maybe we look in=
+ the
+wrong place, fixing the root cause of GL_OUT_OF_MEMORY might be more effici=
+ent
+than trying to deal with the aftermaths.</pre>
         </div>
       </p>
 
@@ -142,9 +113,9 @@ nt.</pre>
     </body>
 </html>=
 
---15629307780.6E2F8a.12831--
+--15629340420.575AD2.23436--
 
---===============0480253973==
+--===============0706652689==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -154,4 +125,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0480253973==--
+--===============0706652689==--
