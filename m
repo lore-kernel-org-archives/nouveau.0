@@ -1,15 +1,10 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH v2 2/4] gpio: fail if gpu external power is
- missing
-Date: Mon, 15 Jul 2019 08:26:02 -0400
-Message-ID: <CAKb7Uvi2x+8Ey8nQ=wF-tAgbQjqgypi3oA2S-4dhCYFyYcc+qw@mail.gmail.com>
-References: <20190715094247.8331-1-mmenzyns@redhat.com>
- <20190715094247.8331-3-mmenzyns@redhat.com>
+From: Fernando Sahmkow <fsahmkow27-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Questions on Maxwell 2nd Gen Compute Kernels/Shaders
+Date: Mon, 15 Jul 2019 14:34:23 -0400
+Message-ID: <CA+MSTo-nX8MeHiGHveJ0GPO3okSEbKgzmcu_Z0J5w015T+e5qQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1301323434=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190715094247.8331-3-mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,59 +14,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mark Menzynski <mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-UGxlYXNlIGFkZCBhIGNvbmZpZyBvdmVycmlkZSB0byBza2lwIHRoaXMsIHNpbmNlIHdlJ2xsIGlu
-dmFyaWFibHkgZ2V0Cml0IHdyb25nIGZvciBzb21lIHNldHVwLCBhbmQgc2hvdWxkIGJlIGFibGUg
-dG8gcHJvdmlkZSB1c2VycyB3aXRoCndvcmthcm91bmRzIHdoaWxlIHRoZSBpc3N1ZSBpcyBiZWlu
-ZyB3b3JrZWQgb3V0LgoKT24gTW9uLCBKdWwgMTUsIDIwMTkgYXQgNTo0MyBBTSBNYXJrIE1lbnp5
-bnNraSA8bW1lbnp5bnNAcmVkaGF0LmNvbT4gd3JvdGU6Cj4KPiBDdXJyZW50bHksIG5vdXZlYXUg
-ZG9lc24ndCBjaGVjayBpZiBHUFUgaXMgbWlzc2luZyBwb3dlci4gVGhpcwo+IHBhdGNoIG1ha2Vz
-IG5vdXZlYXUgZmFpbCB3aGVuIHRoaXMgaGFwcGVucyBvbiBsYXRlc3QgR1BVcy4KPgo+IEl0IGNo
-ZWNrcyBHUElPIGZ1bmN0aW9uIDEyMSAoRXh0ZXJuYWwgUG93ZXIgRW1lcmdlbmN5KSwgd2hpY2gK
-PiBzaG91bGQgZGV0ZWN0IHBvd2VyIHByb2JsZW1zIG9uIEdQVSBpbml0aWFsaXphdGlvbi4KPgo+
-IFRlc3RlZCBvbiBUVTEwNCwgR1AxMDYgYW5kIEdGMTAwLgo+Cj4gU2lnbmVkLW9mZi1ieTogTWFy
-ayBNZW56eW5za2kgPG1tZW56eW5zQHJlZGhhdC5jb20+Cj4gLS0tCj4gIGRybS9ub3V2ZWF1L2lu
-Y2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9ncGlvLmggfCAgMSArCj4gIGRybS9ub3V2ZWF1L252a20v
-c3ViZGV2L2dwaW8vYmFzZS5jICAgICAgICAgfCAyMyArKysrKysrKysrKysrKysrKysrKysKPiAg
-MiBmaWxlcyBjaGFuZ2VkLCAyNCBpbnNlcnRpb25zKCspCj4KPiBkaWZmIC0tZ2l0IGEvZHJtL25v
-dXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9zL2dwaW8uaCBiL2RybS9ub3V2ZWF1L2luY2x1
-ZGUvbnZrbS9zdWJkZXYvYmlvcy9ncGlvLmgKPiBpbmRleCAyZjQwOTM1Zi4uYTcwZWM5ZTggMTAw
-NjQ0Cj4gLS0tIGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9zL2dwaW8uaAo+
-ICsrKyBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9ncGlvLmgKPiBAQCAt
-Nyw2ICs3LDcgQEAgZW51bSBkY2JfZ3Bpb19mdW5jX25hbWUgewo+ICAgICAgICAgRENCX0dQSU9f
-VFZEQUMwID0gMHgwYywKPiAgICAgICAgIERDQl9HUElPX1RWREFDMSA9IDB4MmQsCj4gICAgICAg
-ICBEQ0JfR1BJT19GQU5fU0VOU0UgPSAweDNkLAo+ICsgICAgICAgRENCX0dQSU9fRVhUX1BPV0VS
-X0xPVyA9IDB4NzksCj4gICAgICAgICBEQ0JfR1BJT19MT0dPX0xFRF9QV00gPSAweDg0LAo+ICAg
-ICAgICAgRENCX0dQSU9fVU5VU0VEID0gMHhmZiwKPiAgICAgICAgIERDQl9HUElPX1ZJRDAgPSAw
-eDA0LAo+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9ncGlvL2Jhc2UuYyBi
-L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2dwaW8vYmFzZS5jCj4gaW5kZXggMTM5OWQ5MjMuLmM0
-Njg1ODA3IDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2dwaW8vYmFzZS5j
-Cj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZ3Bpby9iYXNlLmMKPiBAQCAtMTgyLDEy
-ICsxODIsMzUgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBkbWlfc3lzdGVtX2lkIGdwaW9fcmVzZXRf
-aWRzW10gPSB7Cj4gICAgICAgICB7IH0KPiAgfTsKPgo+ICtzdGF0aWMgZW51bSBkY2JfZ3Bpb19m
-dW5jX25hbWUgcG93ZXJfY2hlY2tzW10gPSB7Cj4gKyAgICAgICBEQ0JfR1BJT19FWFRfUE9XRVJf
-TE9XLAo+ICt9Owo+ICsKPiAgc3RhdGljIGludAo+ICBudmttX2dwaW9faW5pdChzdHJ1Y3QgbnZr
-bV9zdWJkZXYgKnN1YmRldikKPiAgewo+ICAgICAgICAgc3RydWN0IG52a21fZ3BpbyAqZ3BpbyA9
-IG52a21fZ3BpbyhzdWJkZXYpOwo+ICsgICAgICAgc3RydWN0IGRjYl9ncGlvX2Z1bmMgZnVuYzsK
-PiArICAgICAgIGludCByZXQ7Cj4gKyAgICAgICBpbnQgaTsKPiArCj4gICAgICAgICBpZiAoZG1p
-X2NoZWNrX3N5c3RlbShncGlvX3Jlc2V0X2lkcykpCj4gICAgICAgICAgICAgICAgIG52a21fZ3Bp
-b19yZXNldChncGlvLCBEQ0JfR1BJT19VTlVTRUQpOwo+ICsKPiArICAgICAgIGZvciAoaSA9IDA7
-IGkgPCBBUlJBWV9TSVpFKHBvd2VyX2NoZWNrcyk7ICsraSkgewo+ICsgICAgICAgICAgICAgICBy
-ZXQgPSBudmttX2dwaW9fZmluZChncGlvLCAwLCBwb3dlcl9jaGVja3NbaV0sIERDQl9HUElPX1VO
-VVNFRCwKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJmZ1bmMpOwo+ICsg
-ICAgICAgICAgICAgICBpZiAocmV0KQo+ICsgICAgICAgICAgICAgICAgICAgICAgIGNvbnRpbnVl
-Owo+ICsKPiArICAgICAgICAgICAgICAgcmV0ID0gbnZrbV9ncGlvX2dldChncGlvLCAwLCBmdW5j
-LmZ1bmMsIGZ1bmMubGluZSk7Cj4gKyAgICAgICAgICAgICAgIGlmIChyZXQpIHsKPiArICAgICAg
-ICAgICAgICAgICAgICAgICBudmttX2Vycm9yKCZncGlvLT5zdWJkZXYsCj4gKyAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAibm90IGVub3VnaCBwb3dlciwgY2hlY2sgR1BVIHBvd2Vy
-IGNhYmxlXG4iKTsKPiArICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gLUVJTlZBTDsKPiAr
-ICAgICAgICAgICAgICAgfQo+ICsgICAgICAgfQo+ICsKPiAgICAgICAgIHJldHVybiAwOwo+ICB9
-Cj4KPiAtLQo+IDIuMjEuMAo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+--===============1301323434==
+Content-Type: multipart/alternative; boundary="000000000000fc6311058dbc8276"
+
+--000000000000fc6311058dbc8276
+Content-Type: text/plain; charset="UTF-8"
+
+So we have been busy implementing the compute engine lately but we have
+discovered a few issues with Compute Shaders. I hope you guys can answer
+some questions.
+
+1st How do I determine the size of Compute Shaders/Kernel Local Memory ? In
+Pipeline shaders the size is included in the header but Compute Kernels
+don't have a header, so how do I determine how much local memory it uses?
+In case I can't is there a limit?
+
+2nd I backtrack directions for LDG from the constbuffer that stores them. I
+then use this directions then to compute the adress in my emulated SSBO.
+For fragment, geometry and vertex shaders I got no problems with this
+directions. For compute shaders the directions seem to be invalid, I
+imagine there's a base adress that's added to this directions. Where can I
+obtain that base adress?
+
+3rd SUATOM instraction CAS is similar to CompareAndSwap except it may add 1
+or 2 to the data register on store. How do I know when it adds 1 or 2?
+
+Thanks in advance.
+
+--000000000000fc6311058dbc8276
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">So we have been busy implementing the compute engine latel=
+y but we have discovered a few issues with Compute Shaders. I hope you guys=
+ can answer some questions.<div><br></div><div>1st How do I determine the s=
+ize of Compute Shaders/Kernel Local Memory ? In Pipeline shaders the size i=
+s included in the header but Compute Kernels don&#39;t have a header, so ho=
+w do I determine how much local memory it uses? In case I can&#39;t is ther=
+e a limit?</div><div><br></div><div>2nd I backtrack directions for LDG from=
+ the constbuffer that stores them. I then use this directions then to compu=
+te the adress in my emulated SSBO. For fragment, geometry and vertex shader=
+s I got no problems with this directions. For compute shaders the direction=
+s seem to be invalid, I imagine there&#39;s a base adress that&#39;s added =
+to this directions. Where can I obtain that base adress?</div><div><br></di=
+v><div>3rd SUATOM instraction CAS is similar to CompareAndSwap except it ma=
+y add 1 or 2 to the data register on store. How do I know when it adds 1 or=
+ 2?</div><div><br></div><div>Thanks in advance.</div></div>
+
+--000000000000fc6311058dbc8276--
+
+--===============1301323434==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1301323434==--
