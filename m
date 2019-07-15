@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111128] Impossible to change pstate on GT610M
-Date: Sun, 14 Jul 2019 19:34:19 +0000
-Message-ID: <bug-111128-8800-l9VtX04sQT@http.bugs.freedesktop.org/>
-References: <bug-111128-8800@http.bugs.freedesktop.org/>
+From: Mark Menzynski <mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v2 0/4] Refuse to load if power cables are not
+ connected
+Date: Mon, 15 Jul 2019 11:42:43 +0200
+Message-ID: <20190715094247.8331-1-mmenzyns@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1077235945=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111128-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,86 +19,16 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1077235945==
-Content-Type: multipart/alternative; boundary="15631328590.B7F3B12.31487"
-Content-Transfer-Encoding: 7bit
-
-
---15631328590.B7F3B12.31487
-Date: Sun, 14 Jul 2019 19:34:19 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111128
-
---- Comment #2 from Gaga <gzgagz-ig2FU/hGoaU@public.gmane.org> ---
-I am sorry, I was sure it was a Kepler GPU, I don't why.
-Thank you for your response and your work anyway !
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15631328590.B7F3B12.31487
-Date: Sun, 14 Jul 2019 19:34:19 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTABUG - Impossible to change pstate on GT610M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111128#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED NOTABUG - Impossible to change pstate on GT610M"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111128">bug 11112=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gzgagz&#64;zoho.eu" title=3D"Gaga &lt;gzgagz&#64;zoho.eu&gt;"> <span class=
-=3D"fn">Gaga</span></a>
-</span></b>
-        <pre>I am sorry, I was sure it was a Kepler GPU, I don't why.
-Thank you for your response and your work anyway !</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15631328590.B7F3B12.31487--
-
---===============1077235945==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1077235945==--
+VHJlbGxvOiAKaHR0cHM6Ly90cmVsbG8uY29tL2MvYWRtekRSdmQvNTAtcmVkdWNlLXBlcmZvcm1h
+bmNlLXJlZnVzZS10by1ib290LWlmLW5vdC1hbGwtdGhlLXBvd2VyLWNvbm5lY3RvcnMtYXJlLXBs
+dWdnZWQKCkZpeGVkIGNvbW1pdCBtZXNzYWdlcy4KCk1hcmsgTWVuenluc2tpICg0KToKICBiaW9z
+L2dwaW86IHNvcnQgZ3Bpb3MgYnkgdmFsdWVzCiAgZ3BpbzogZmFpbCBpZiBncHUgZXh0ZXJuYWwg
+cG93ZXIgaXMgbWlzc2luZwogIGdwaW86IGNoZWNrIHRoZSBncGlvIGZ1bmN0aW9uIDE2IGluIHRo
+ZSBwb3dlciBjaGVjayBhcyB3ZWxsCiAgZ3BpbzogY2hlY2sgZnVuY3Rpb24gNzYgaW4gdGhlIHBv
+d2VyIGNoZWNrIGFzIHdlbGwKCiBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Jpb3Mv
+Z3Bpby5oIHwgIDUgKysrKy0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2dwaW8vYmFzZS5jICAg
+ICAgICAgfCAyNSArKysrKysrKysrKysrKysrKysrKysKIDIgZmlsZXMgY2hhbmdlZCwgMjkgaW5z
+ZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQoKLS0gCjIuMjEuMAoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVh
+dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1
