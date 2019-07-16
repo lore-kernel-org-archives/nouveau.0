@@ -1,123 +1,356 @@
-From: Mark Menzynski <mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v2 2/4] gpio: fail if gpu external power is
- missing
-Date: Tue, 16 Jul 2019 15:24:04 +0200
-Message-ID: <CA+i2r=t_KwEaeGPhiQvdW0ps53xfXGtmhZtD-yrYTsK5ooSdow@mail.gmail.com>
-References: <20190715094247.8331-1-mmenzyns@redhat.com>
- <20190715094247.8331-3-mmenzyns@redhat.com>
- <CAKb7Uvi2x+8Ey8nQ=wF-tAgbQjqgypi3oA2S-4dhCYFyYcc+qw@mail.gmail.com>
- <CACAvsv62Hc92Fybh9mEHabhDhS8UY0QhWpNVcEiFmQ_8+b0utA@mail.gmail.com>
+From: Rob Clark <robdclark@gmail.com>
+Subject: [PATCH v2 2/3] drm: plumb attaching dev thru to prime_pin/unpin
+Date: Tue, 16 Jul 2019 10:43:22 -0700
+Message-ID: <20190716174331.7371-2-robdclark@gmail.com>
+References: <20190716174331.7371-1-robdclark@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACAvsv62Hc92Fybh9mEHabhDhS8UY0QhWpNVcEiFmQ_8+b0utA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190716174331.7371-1-robdclark@gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
+Cc: Chris Wilson <chris@chris-wilson.co.uk>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Rob Clark <robdclark@chromium.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <maxime.ripard@bootlin.com>, Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>, Russell King <linux+etnaviv@armlinux.org.uk>, Christian Gmeiner <christian.gmeiner@gmail.com>, Rob Clark <robdclark@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>, Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, Hans
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBpcyB3aGF0IE52aWRpYSBkaWQgYWZ0ZXIgdXNpbmcgbnZpZGlhLXNtaSwgd2hpY2ggaXMg
-bm90IHZlcnkgZmFyCmZyb20gd2hhdCBoYXBwZW5zIG5vdyB3aXRoIHRoZSBwYXRjaC4KCmtlcm5l
-bDogbnZpZGlhLW52bGluazogTnZsaW5rIENvcmUgaXMgYmVpbmcgaW5pdGlhbGl6ZWQsIG1ham9y
-IGRldmljZSBudW1iZXIgMjM1Cmtlcm5lbDogbnZpZGlhIDAwMDA6MDE6MDAuMDogdmdhYXJiOiBj
-aGFuZ2VkIFZHQSBkZWNvZGVzOgpvbGRkZWNvZGVzPWlvK21lbSxkZWNvZGVzPW5vbmU6b3ducz1u
-b25lCmtlcm5lbDogTlZSTTogbG9hZGluZyBOVklESUEgVU5JWCB4ODZfNjQgS2VybmVsIE1vZHVs
-ZSAgNDMwLjM0ICBXZWQKSnVuIDI2IDEyOjE5OjQ4IENEVCAyMDE5Cmtlcm5lbDogTlZSTTogR1BV
-IDAwMDA6MDE6MDAuMDogR1BVIGRvZXMgbm90IGhhdmUgdGhlIG5lY2Vzc2FyeSBwb3dlcgpjYWJs
-ZXMgY29ubmVjdGVkLgprZXJuZWw6IE5WUk06IEdQVSAwMDAwOjAxOjAwLjA6IFJtSW5pdEFkYXB0
-ZXIgZmFpbGVkISAoMHgyNToweDFjOjExMzMpCmtlcm5lbDogTlZSTTogR1BVIDAwMDA6MDE6MDAu
-MDogcm1faW5pdF9hZGFwdGVyIGZhaWxlZCwgZGV2aWNlIG1pbm9yIG51bWJlciAwCgpBbHNvLCB3
-aGVuIGJvb3RpbmcsIFBPU1QgcmVmdXNlcyB0byBib290IGlmIHBvd2VyIGNhYmxlcyBhcmUgbm90
-CmNvbm5lY3RlZCwgYnV0IHRoZXJlIGFyZSBzY2VuYXJpb3Mgd2hlcmUgeW91IGRvbid0IGJvb3Qg
-d2l0aCB0aGUKTnZpZGlhIEdQVS4KSSBhbSBub3Qgc3VyZSBhYm91dCBsaW1pdGluZyBpdCB0byB3
-YXJuaW5nLCBpdCBtYWtlcyBzZW5zZSBidXQgSSBhbHNvCnRoaW5rIGl0IHNob3VsZCBmYWlsLgoK
-QnV0IEkgd2FudGVkIHRvIGFzayBhYm91dCB0aGUgZXJyb3IgbWVzc2FnZXMuIEF0IHRoaXMgbW9t
-ZW50LCB0aGlzIGlzCmN1cnJlbnQgb3V0cHV0OgoKWzE3MzgzLjA0MjcyN10gbm91dmVhdSAwMDAw
-OjEyOjAwLjA6IGdwaW86IEdQVSBpcyBtaXNzaW5nIHBvd2VyLCBjaGVjawppdHMgcG93ZXIgY2Fi
-bGVzLiBCb290IHdpdGggbm91dmVhdS5jb25maWc9TnZQb3dlckNoZWNrcz0wIHRvIGRpc2FibGUu
-ClsxNzM4My4wNDI3MjhdIG5vdXZlYXUgMDAwMDoxMjowMC4wOiBncGlvOiBpbml0IGZhaWxlZCwg
-LTIyClsxNzM4My4wNDI5ODZdIG5vdXZlYXUgMDAwMDoxMjowMC4wOiBpbml0IGZhaWxlZCB3aXRo
-IC0yMgpbMTczODMuMDQyOTg3XSBub3V2ZWF1OiBEUk0tbWFzdGVyOjAwMDAwMDAwOjAwMDAwMDgw
-OiBpbml0IGZhaWxlZCB3aXRoIC0yMgpbMTczODMuMDQyOTkwXSBub3V2ZWF1IDAwMDA6MTI6MDAu
-MDogRFJNLW1hc3RlcjogRGV2aWNlIGFsbG9jYXRpb24gZmFpbGVkOiAtMjIKWzE3MzgzLjA0MzQ1
-OF0gbm91dmVhdTogcHJvYmUgb2YgMDAwMDoxMjowMC4wIGZhaWxlZCB3aXRoIGVycm9yIC0yMgoK
-SXNuJ3QgaXQgYSB3cm9uZyBwbGFjZSB0byBpbXBsZW1lbnQgdGhlIGNoZWNrcz8gTWF5YmUgSSBz
-aG91bGQgcHV0IGl0CnNvbWV3aGVyZSBlbHNlPwoKT24gVHVlLCBKdWwgMTYsIDIwMTkgYXQgNTo0
-NyBBTSBCZW4gU2tlZ2dzIDxza2VnZ3NiQGdtYWlsLmNvbT4gd3JvdGU6Cj4KPiBPbiBNb24sIDE1
-IEp1bCAyMDE5IGF0IDIyOjI2LCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdy
-b3RlOgo+ID4KPiA+IFBsZWFzZSBhZGQgYSBjb25maWcgb3ZlcnJpZGUgdG8gc2tpcCB0aGlzLCBz
-aW5jZSB3ZSdsbCBpbnZhcmlhYmx5IGdldAo+ID4gaXQgd3JvbmcgZm9yIHNvbWUgc2V0dXAsIGFu
-ZCBzaG91bGQgYmUgYWJsZSB0byBwcm92aWRlIHVzZXJzIHdpdGgKPiA+IHdvcmthcm91bmRzIHdo
-aWxlIHRoZSBpc3N1ZSBpcyBiZWluZyB3b3JrZWQgb3V0Lgo+IFllYWgsIHRoaXMgbWFrZXMgbWUg
-bmVydm91cyBhcyB3ZWxsLiAgSW4gdGhlIHZlcnkgbGVhc3QsIEknZCBsaWtlIGEKPiBjb25maWcg
-b3B0aW9uLCBidXQgSSdtIHN0aWxsIHdvbmRlcmluZyBpZiBwZXJoYXBzIHdlIHNob3VsZG4ndCBs
-aW1pdAo+IHRoaXMgdG8gYSB3YXJuaW5nICh3aGljaCBwZW9wbGUgdGVuZCB0byByZXBvcnQpIGZv
-ciBhIHdoaWxlIGZpcnN0IHRvby4KPgo+IEFsc28sIHdoYXQncyBOVidzIGJlaGF2aW91ciBoZXJl
-PyAgRG8gdGhleSByZWZ1c2UgdG8gbG9hZCwgb3IgZG8gdGhleQo+IGRvIHNvbWV0aGluZyBsaWtl
-IGZvcmNlIHRoZSBHUFUgaW50byBpdHMgbG93ZXN0IHBzdGF0ZT8KPgo+IEJlbi4KPgo+ID4KPiA+
-IE9uIE1vbiwgSnVsIDE1LCAyMDE5IGF0IDU6NDMgQU0gTWFyayBNZW56eW5za2kgPG1tZW56eW5z
-QHJlZGhhdC5jb20+IHdyb3RlOgo+ID4gPgo+ID4gPiBDdXJyZW50bHksIG5vdXZlYXUgZG9lc24n
-dCBjaGVjayBpZiBHUFUgaXMgbWlzc2luZyBwb3dlci4gVGhpcwo+ID4gPiBwYXRjaCBtYWtlcyBu
-b3V2ZWF1IGZhaWwgd2hlbiB0aGlzIGhhcHBlbnMgb24gbGF0ZXN0IEdQVXMuCj4gPiA+Cj4gPiA+
-IEl0IGNoZWNrcyBHUElPIGZ1bmN0aW9uIDEyMSAoRXh0ZXJuYWwgUG93ZXIgRW1lcmdlbmN5KSwg
-d2hpY2gKPiA+ID4gc2hvdWxkIGRldGVjdCBwb3dlciBwcm9ibGVtcyBvbiBHUFUgaW5pdGlhbGl6
-YXRpb24uCj4gPiA+Cj4gPiA+IFRlc3RlZCBvbiBUVTEwNCwgR1AxMDYgYW5kIEdGMTAwLgo+ID4g
-Pgo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBNYXJrIE1lbnp5bnNraSA8bW1lbnp5bnNAcmVkaGF0LmNv
-bT4KPiA+ID4gLS0tCj4gPiA+ICBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Jpb3Mv
-Z3Bpby5oIHwgIDEgKwo+ID4gPiAgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZ3Bpby9iYXNlLmMg
-ICAgICAgICB8IDIzICsrKysrKysrKysrKysrKysrKysrKwo+ID4gPiAgMiBmaWxlcyBjaGFuZ2Vk
-LCAyNCBpbnNlcnRpb25zKCspCj4gPiA+Cj4gPiA+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9p
-bmNsdWRlL252a20vc3ViZGV2L2Jpb3MvZ3Bpby5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmtt
-L3N1YmRldi9iaW9zL2dwaW8uaAo+ID4gPiBpbmRleCAyZjQwOTM1Zi4uYTcwZWM5ZTggMTAwNjQ0
-Cj4gPiA+IC0tLSBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9ncGlvLmgK
-PiA+ID4gKysrIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9zL2dwaW8uaAo+
-ID4gPiBAQCAtNyw2ICs3LDcgQEAgZW51bSBkY2JfZ3Bpb19mdW5jX25hbWUgewo+ID4gPiAgICAg
-ICAgIERDQl9HUElPX1RWREFDMCA9IDB4MGMsCj4gPiA+ICAgICAgICAgRENCX0dQSU9fVFZEQUMx
-ID0gMHgyZCwKPiA+ID4gICAgICAgICBEQ0JfR1BJT19GQU5fU0VOU0UgPSAweDNkLAo+ID4gPiAr
-ICAgICAgIERDQl9HUElPX0VYVF9QT1dFUl9MT1cgPSAweDc5LAo+ID4gPiAgICAgICAgIERDQl9H
-UElPX0xPR09fTEVEX1BXTSA9IDB4ODQsCj4gPiA+ICAgICAgICAgRENCX0dQSU9fVU5VU0VEID0g
-MHhmZiwKPiA+ID4gICAgICAgICBEQ0JfR1BJT19WSUQwID0gMHgwNCwKPiA+ID4gZGlmZiAtLWdp
-dCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2dwaW8vYmFzZS5jIGIvZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvZ3Bpby9iYXNlLmMKPiA+ID4gaW5kZXggMTM5OWQ5MjMuLmM0Njg1ODA3IDEwMDY0
-NAo+ID4gPiAtLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9ncGlvL2Jhc2UuYwo+ID4gPiAr
-KysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9ncGlvL2Jhc2UuYwo+ID4gPiBAQCAtMTgyLDEy
-ICsxODIsMzUgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBkbWlfc3lzdGVtX2lkIGdwaW9fcmVzZXRf
-aWRzW10gPSB7Cj4gPiA+ICAgICAgICAgeyB9Cj4gPiA+ICB9Owo+ID4gPgo+ID4gPiArc3RhdGlj
-IGVudW0gZGNiX2dwaW9fZnVuY19uYW1lIHBvd2VyX2NoZWNrc1tdID0gewo+ID4gPiArICAgICAg
-IERDQl9HUElPX0VYVF9QT1dFUl9MT1csCj4gPiA+ICt9Owo+ID4gPiArCj4gPiA+ICBzdGF0aWMg
-aW50Cj4gPiA+ICBudmttX2dwaW9faW5pdChzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldikKPiA+
-ID4gIHsKPiA+ID4gICAgICAgICBzdHJ1Y3QgbnZrbV9ncGlvICpncGlvID0gbnZrbV9ncGlvKHN1
-YmRldik7Cj4gPiA+ICsgICAgICAgc3RydWN0IGRjYl9ncGlvX2Z1bmMgZnVuYzsKPiA+ID4gKyAg
-ICAgICBpbnQgcmV0Owo+ID4gPiArICAgICAgIGludCBpOwo+ID4gPiArCj4gPiA+ICAgICAgICAg
-aWYgKGRtaV9jaGVja19zeXN0ZW0oZ3Bpb19yZXNldF9pZHMpKQo+ID4gPiAgICAgICAgICAgICAg
-ICAgbnZrbV9ncGlvX3Jlc2V0KGdwaW8sIERDQl9HUElPX1VOVVNFRCk7Cj4gPiA+ICsKPiA+ID4g
-KyAgICAgICBmb3IgKGkgPSAwOyBpIDwgQVJSQVlfU0laRShwb3dlcl9jaGVja3MpOyArK2kpIHsK
-PiA+ID4gKyAgICAgICAgICAgICAgIHJldCA9IG52a21fZ3Bpb19maW5kKGdwaW8sIDAsIHBvd2Vy
-X2NoZWNrc1tpXSwgRENCX0dQSU9fVU5VU0VELAo+ID4gPiArICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgJmZ1bmMpOwo+ID4gPiArICAgICAgICAgICAgICAgaWYgKHJldCkKPiA+
-ID4gKyAgICAgICAgICAgICAgICAgICAgICAgY29udGludWU7Cj4gPiA+ICsKPiA+ID4gKyAgICAg
-ICAgICAgICAgIHJldCA9IG52a21fZ3Bpb19nZXQoZ3BpbywgMCwgZnVuYy5mdW5jLCBmdW5jLmxp
-bmUpOwo+ID4gPiArICAgICAgICAgICAgICAgaWYgKHJldCkgewo+ID4gPiArICAgICAgICAgICAg
-ICAgICAgICAgICBudmttX2Vycm9yKCZncGlvLT5zdWJkZXYsCj4gPiA+ICsgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIm5vdCBlbm91Z2ggcG93ZXIsIGNoZWNrIEdQVSBwb3dlciBj
-YWJsZVxuIik7Cj4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOwo+
-ID4gPiArICAgICAgICAgICAgICAgfQo+ID4gPiArICAgICAgIH0KPiA+ID4gKwo+ID4gPiAgICAg
-ICAgIHJldHVybiAwOwo+ID4gPiAgfQo+ID4gPgo+ID4gPiAtLQo+ID4gPiAyLjIxLjAKPiA+ID4K
-PiA+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+
-ID4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiA+ID4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKPiA+ID4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xwo+ID4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiA+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCj4gPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+From: Rob Clark <robdclark@chromium.org>
+
+Needed in the following patch for cache operations.
+
+Signed-off-by: Rob Clark <robdclark@chromium.org>
+---
+ drivers/gpu/drm/drm_gem.c                   | 10 ++++++----
+ drivers/gpu/drm/drm_gem_vram_helper.c       |  6 ++++--
+ drivers/gpu/drm/drm_prime.c                 |  4 ++--
+ drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c |  4 ++--
+ drivers/gpu/drm/msm/msm_drv.h               |  4 ++--
+ drivers/gpu/drm/msm/msm_gem_prime.c         |  4 ++--
+ drivers/gpu/drm/nouveau/nouveau_gem.h       |  4 ++--
+ drivers/gpu/drm/nouveau/nouveau_prime.c     |  4 ++--
+ drivers/gpu/drm/qxl/qxl_prime.c             |  4 ++--
+ drivers/gpu/drm/radeon/radeon_prime.c       |  4 ++--
+ drivers/gpu/drm/vboxvideo/vbox_prime.c      |  4 ++--
+ drivers/gpu/drm/vgem/vgem_drv.c             |  4 ++--
+ include/drm/drm_drv.h                       |  4 ++--
+ include/drm/drm_gem.h                       |  4 ++--
+ include/drm/drm_gem_vram_helper.h           |  4 ++--
+ 15 files changed, 36 insertions(+), 32 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+index 7d6242cc69f2..0a2645769624 100644
+--- a/drivers/gpu/drm/drm_gem.c
++++ b/drivers/gpu/drm/drm_gem.c
+@@ -1219,18 +1219,19 @@ void drm_gem_print_info(struct drm_printer *p, unsigned int indent,
+ /**
+  * drm_gem_pin - Pin backing buffer in memory
+  * @obj: GEM object
++ * @dev: the device the buffer is being pinned for
+  *
+  * Make sure the backing buffer is pinned in memory.
+  *
+  * Returns:
+  * 0 on success or a negative error code on failure.
+  */
+-int drm_gem_pin(struct drm_gem_object *obj)
++int drm_gem_pin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	if (obj->funcs && obj->funcs->pin)
+ 		return obj->funcs->pin(obj);
+ 	else if (obj->dev->driver->gem_prime_pin)
+-		return obj->dev->driver->gem_prime_pin(obj);
++		return obj->dev->driver->gem_prime_pin(obj, dev);
+ 	else
+ 		return 0;
+ }
+@@ -1239,15 +1240,16 @@ EXPORT_SYMBOL(drm_gem_pin);
+ /**
+  * drm_gem_unpin - Unpin backing buffer from memory
+  * @obj: GEM object
++ * @dev: the device the buffer is being pinned for
+  *
+  * Relax the requirement that the backing buffer is pinned in memory.
+  */
+-void drm_gem_unpin(struct drm_gem_object *obj)
++void drm_gem_unpin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	if (obj->funcs && obj->funcs->unpin)
+ 		obj->funcs->unpin(obj);
+ 	else if (obj->dev->driver->gem_prime_unpin)
+-		obj->dev->driver->gem_prime_unpin(obj);
++		obj->dev->driver->gem_prime_unpin(obj, dev);
+ }
+ EXPORT_SYMBOL(drm_gem_unpin);
+ 
+diff --git a/drivers/gpu/drm/drm_gem_vram_helper.c b/drivers/gpu/drm/drm_gem_vram_helper.c
+index 4de782ca26b2..62fafec93948 100644
+--- a/drivers/gpu/drm/drm_gem_vram_helper.c
++++ b/drivers/gpu/drm/drm_gem_vram_helper.c
+@@ -548,7 +548,8 @@ EXPORT_SYMBOL(drm_gem_vram_driver_dumb_mmap_offset);
+  * 0 on success, or
+  * a negative errno code otherwise.
+  */
+-int drm_gem_vram_driver_gem_prime_pin(struct drm_gem_object *gem)
++int drm_gem_vram_driver_gem_prime_pin(struct drm_gem_object *gem,
++				      struct device *dev)
+ {
+ 	struct drm_gem_vram_object *gbo = drm_gem_vram_of_gem(gem);
+ 
+@@ -569,7 +570,8 @@ EXPORT_SYMBOL(drm_gem_vram_driver_gem_prime_pin);
+ 	Implements &struct drm_driver.gem_prime_unpin
+  * @gem:	The GEM object to unpin
+  */
+-void drm_gem_vram_driver_gem_prime_unpin(struct drm_gem_object *gem)
++void drm_gem_vram_driver_gem_prime_unpin(struct drm_gem_object *gem,
++					 struct device *dev)
+ {
+ 	struct drm_gem_vram_object *gbo = drm_gem_vram_of_gem(gem);
+ 
+diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prime.c
+index d0c01318076b..505893cfac8e 100644
+--- a/drivers/gpu/drm/drm_prime.c
++++ b/drivers/gpu/drm/drm_prime.c
+@@ -196,7 +196,7 @@ int drm_gem_map_attach(struct dma_buf *dma_buf,
+ {
+ 	struct drm_gem_object *obj = dma_buf->priv;
+ 
+-	return drm_gem_pin(obj);
++	return drm_gem_pin(obj, attach->dev);
+ }
+ EXPORT_SYMBOL(drm_gem_map_attach);
+ 
+@@ -213,7 +213,7 @@ void drm_gem_map_detach(struct dma_buf *dma_buf,
+ {
+ 	struct drm_gem_object *obj = dma_buf->priv;
+ 
+-	drm_gem_unpin(obj);
++	drm_gem_unpin(obj, attach->dev);
+ }
+ EXPORT_SYMBOL(drm_gem_map_detach);
+ 
+diff --git a/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c b/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c
+index 00e8b6a817e3..44385d590aa7 100644
+--- a/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c
++++ b/drivers/gpu/drm/etnaviv/etnaviv_gem_prime.c
+@@ -43,7 +43,7 @@ int etnaviv_gem_prime_mmap(struct drm_gem_object *obj,
+ 	return etnaviv_obj->ops->mmap(etnaviv_obj, vma);
+ }
+ 
+-int etnaviv_gem_prime_pin(struct drm_gem_object *obj)
++int etnaviv_gem_prime_pin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	if (!obj->import_attach) {
+ 		struct etnaviv_gem_object *etnaviv_obj = to_etnaviv_bo(obj);
+@@ -55,7 +55,7 @@ int etnaviv_gem_prime_pin(struct drm_gem_object *obj)
+ 	return 0;
+ }
+ 
+-void etnaviv_gem_prime_unpin(struct drm_gem_object *obj)
++void etnaviv_gem_prime_unpin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	if (!obj->import_attach) {
+ 		struct etnaviv_gem_object *etnaviv_obj = to_etnaviv_bo(obj);
+diff --git a/drivers/gpu/drm/msm/msm_drv.h b/drivers/gpu/drm/msm/msm_drv.h
+index 9ada948f6b01..6f8f6df9c289 100644
+--- a/drivers/gpu/drm/msm/msm_drv.h
++++ b/drivers/gpu/drm/msm/msm_drv.h
+@@ -298,8 +298,8 @@ void msm_gem_prime_vunmap(struct drm_gem_object *obj, void *vaddr);
+ int msm_gem_prime_mmap(struct drm_gem_object *obj, struct vm_area_struct *vma);
+ struct drm_gem_object *msm_gem_prime_import_sg_table(struct drm_device *dev,
+ 		struct dma_buf_attachment *attach, struct sg_table *sg);
+-int msm_gem_prime_pin(struct drm_gem_object *obj);
+-void msm_gem_prime_unpin(struct drm_gem_object *obj);
++int msm_gem_prime_pin(struct drm_gem_object *obj, struct device *dev);
++void msm_gem_prime_unpin(struct drm_gem_object *obj, struct device *dev);
+ void *msm_gem_get_vaddr(struct drm_gem_object *obj);
+ void *msm_gem_get_vaddr_active(struct drm_gem_object *obj);
+ void msm_gem_put_vaddr(struct drm_gem_object *obj);
+diff --git a/drivers/gpu/drm/msm/msm_gem_prime.c b/drivers/gpu/drm/msm/msm_gem_prime.c
+index 60bb290700ce..8e0ddf5c9460 100644
+--- a/drivers/gpu/drm/msm/msm_gem_prime.c
++++ b/drivers/gpu/drm/msm/msm_gem_prime.c
+@@ -58,14 +58,14 @@ struct drm_gem_object *msm_gem_prime_import_sg_table(struct drm_device *dev,
+ 	return msm_gem_import(dev, attach->dmabuf, sg);
+ }
+ 
+-int msm_gem_prime_pin(struct drm_gem_object *obj)
++int msm_gem_prime_pin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	if (!obj->import_attach)
+ 		msm_gem_get_pages(obj);
+ 	return 0;
+ }
+ 
+-void msm_gem_prime_unpin(struct drm_gem_object *obj)
++void msm_gem_prime_unpin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	if (!obj->import_attach)
+ 		msm_gem_put_pages(obj);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.h b/drivers/gpu/drm/nouveau/nouveau_gem.h
+index fe39998f65cc..91dcf89138f1 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.h
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.h
+@@ -32,9 +32,9 @@ extern int nouveau_gem_ioctl_cpu_fini(struct drm_device *, void *,
+ extern int nouveau_gem_ioctl_info(struct drm_device *, void *,
+ 				  struct drm_file *);
+ 
+-extern int nouveau_gem_prime_pin(struct drm_gem_object *);
++extern int nouveau_gem_prime_pin(struct drm_gem_object *, struct device *);
+ struct reservation_object *nouveau_gem_prime_res_obj(struct drm_gem_object *);
+-extern void nouveau_gem_prime_unpin(struct drm_gem_object *);
++extern void nouveau_gem_prime_unpin(struct drm_gem_object *, struct device *);
+ extern struct sg_table *nouveau_gem_prime_get_sg_table(struct drm_gem_object *);
+ extern struct drm_gem_object *nouveau_gem_prime_import_sg_table(
+ 	struct drm_device *, struct dma_buf_attachment *, struct sg_table *);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_prime.c b/drivers/gpu/drm/nouveau/nouveau_prime.c
+index 1fefc93af1d7..dec2d5e37b34 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_prime.c
++++ b/drivers/gpu/drm/nouveau/nouveau_prime.c
+@@ -88,7 +88,7 @@ struct drm_gem_object *nouveau_gem_prime_import_sg_table(struct drm_device *dev,
+ 	return &nvbo->gem;
+ }
+ 
+-int nouveau_gem_prime_pin(struct drm_gem_object *obj)
++int nouveau_gem_prime_pin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	struct nouveau_bo *nvbo = nouveau_gem_object(obj);
+ 	int ret;
+@@ -101,7 +101,7 @@ int nouveau_gem_prime_pin(struct drm_gem_object *obj)
+ 	return 0;
+ }
+ 
+-void nouveau_gem_prime_unpin(struct drm_gem_object *obj)
++void nouveau_gem_prime_unpin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	struct nouveau_bo *nvbo = nouveau_gem_object(obj);
+ 
+diff --git a/drivers/gpu/drm/qxl/qxl_prime.c b/drivers/gpu/drm/qxl/qxl_prime.c
+index 7d3816fca5a8..21e9b44eb2e4 100644
+--- a/drivers/gpu/drm/qxl/qxl_prime.c
++++ b/drivers/gpu/drm/qxl/qxl_prime.c
+@@ -28,14 +28,14 @@
+ /* Empty Implementations as there should not be any other driver for a virtual
+  * device that might share buffers with qxl */
+ 
+-int qxl_gem_prime_pin(struct drm_gem_object *obj)
++int qxl_gem_prime_pin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	struct qxl_bo *bo = gem_to_qxl_bo(obj);
+ 
+ 	return qxl_bo_pin(bo);
+ }
+ 
+-void qxl_gem_prime_unpin(struct drm_gem_object *obj)
++void qxl_gem_prime_unpin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	struct qxl_bo *bo = gem_to_qxl_bo(obj);
+ 
+diff --git a/drivers/gpu/drm/radeon/radeon_prime.c b/drivers/gpu/drm/radeon/radeon_prime.c
+index d3a5bea9a2c5..2d3eadcf0f2d 100644
+--- a/drivers/gpu/drm/radeon/radeon_prime.c
++++ b/drivers/gpu/drm/radeon/radeon_prime.c
+@@ -83,7 +83,7 @@ struct drm_gem_object *radeon_gem_prime_import_sg_table(struct drm_device *dev,
+ 	return &bo->gem_base;
+ }
+ 
+-int radeon_gem_prime_pin(struct drm_gem_object *obj)
++int radeon_gem_prime_pin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	struct radeon_bo *bo = gem_to_radeon_bo(obj);
+ 	int ret = 0;
+@@ -101,7 +101,7 @@ int radeon_gem_prime_pin(struct drm_gem_object *obj)
+ 	return ret;
+ }
+ 
+-void radeon_gem_prime_unpin(struct drm_gem_object *obj)
++void radeon_gem_prime_unpin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	struct radeon_bo *bo = gem_to_radeon_bo(obj);
+ 	int ret = 0;
+diff --git a/drivers/gpu/drm/vboxvideo/vbox_prime.c b/drivers/gpu/drm/vboxvideo/vbox_prime.c
+index 702b1aa53494..ad6de9a41950 100644
+--- a/drivers/gpu/drm/vboxvideo/vbox_prime.c
++++ b/drivers/gpu/drm/vboxvideo/vbox_prime.c
+@@ -13,13 +13,13 @@
+  * device that might share buffers with vboxvideo
+  */
+ 
+-int vbox_gem_prime_pin(struct drm_gem_object *obj)
++int vbox_gem_prime_pin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	WARN_ONCE(1, "not implemented");
+ 	return -ENODEV;
+ }
+ 
+-void vbox_gem_prime_unpin(struct drm_gem_object *obj)
++void vbox_gem_prime_unpin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	WARN_ONCE(1, "not implemented");
+ }
+diff --git a/drivers/gpu/drm/vgem/vgem_drv.c b/drivers/gpu/drm/vgem/vgem_drv.c
+index 11a8f99ba18c..a179e962b79e 100644
+--- a/drivers/gpu/drm/vgem/vgem_drv.c
++++ b/drivers/gpu/drm/vgem/vgem_drv.c
+@@ -307,7 +307,7 @@ static void vgem_unpin_pages(struct drm_vgem_gem_object *bo)
+ 	mutex_unlock(&bo->pages_lock);
+ }
+ 
+-static int vgem_prime_pin(struct drm_gem_object *obj)
++static int vgem_prime_pin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	struct drm_vgem_gem_object *bo = to_vgem_bo(obj);
+ 	long n_pages = obj->size >> PAGE_SHIFT;
+@@ -325,7 +325,7 @@ static int vgem_prime_pin(struct drm_gem_object *obj)
+ 	return 0;
+ }
+ 
+-static void vgem_prime_unpin(struct drm_gem_object *obj)
++static void vgem_prime_unpin(struct drm_gem_object *obj, struct device *dev)
+ {
+ 	struct drm_vgem_gem_object *bo = to_vgem_bo(obj);
+ 
+diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+index 68ca736c548d..6a9489b9532f 100644
+--- a/include/drm/drm_drv.h
++++ b/include/drm/drm_drv.h
+@@ -584,8 +584,8 @@ struct drm_driver {
+ 	 */
+ 	struct drm_gem_object * (*gem_prime_import)(struct drm_device *dev,
+ 				struct dma_buf *dma_buf);
+-	int (*gem_prime_pin)(struct drm_gem_object *obj);
+-	void (*gem_prime_unpin)(struct drm_gem_object *obj);
++	int (*gem_prime_pin)(struct drm_gem_object *obj, struct device *dev);
++	void (*gem_prime_unpin)(struct drm_gem_object *obj, struct device *dev);
+ 	struct reservation_object * (*gem_prime_res_obj)(
+ 				struct drm_gem_object *obj);
+ 	struct sg_table *(*gem_prime_get_sg_table)(struct drm_gem_object *obj);
+diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+index 5047c7ee25f5..ebd12be354d2 100644
+--- a/include/drm/drm_gem.h
++++ b/include/drm/drm_gem.h
+@@ -401,8 +401,8 @@ int drm_gem_dumb_destroy(struct drm_file *file,
+ 			 struct drm_device *dev,
+ 			 uint32_t handle);
+ 
+-int drm_gem_pin(struct drm_gem_object *obj);
+-void drm_gem_unpin(struct drm_gem_object *obj);
++int drm_gem_pin(struct drm_gem_object *obj, struct device *dev);
++void drm_gem_unpin(struct drm_gem_object *obj, struct device *dev);
+ void *drm_gem_vmap(struct drm_gem_object *obj);
+ void drm_gem_vunmap(struct drm_gem_object *obj, void *vaddr);
+ 
+diff --git a/include/drm/drm_gem_vram_helper.h b/include/drm/drm_gem_vram_helper.h
+index 9581ea0a4f7e..33556e157202 100644
+--- a/include/drm/drm_gem_vram_helper.h
++++ b/include/drm/drm_gem_vram_helper.h
+@@ -133,8 +133,8 @@ int drm_gem_vram_driver_dumb_mmap_offset(struct drm_file *file,
+  * PRIME helpers for struct drm_driver
+  */
+ 
+-int drm_gem_vram_driver_gem_prime_pin(struct drm_gem_object *obj);
+-void drm_gem_vram_driver_gem_prime_unpin(struct drm_gem_object *obj);
++int drm_gem_vram_driver_gem_prime_pin(struct drm_gem_object *obj, struct device *dev);
++void drm_gem_vram_driver_gem_prime_unpin(struct drm_gem_object *obj, struct device *dev);
+ void *drm_gem_vram_driver_gem_prime_vmap(struct drm_gem_object *obj);
+ void drm_gem_vram_driver_gem_prime_vunmap(struct drm_gem_object *obj,
+ 					  void *vaddr);
+-- 
+2.21.0
