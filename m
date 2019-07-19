@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111167] Dividing zero by a uniform in loop header
- causes segfault in nv50_ir::NVC0LegalizeSSA::handleDIV
-Date: Thu, 18 Jul 2019 15:49:27 +0000
-Message-ID: <bug-111167-8800-XGC0R2ab1C@http.bugs.freedesktop.org/>
-References: <bug-111167-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 111007] Blender crash when opening material tab GTX
+ 750Ti -- NV117 (GM107)
+Date: Fri, 19 Jul 2019 05:25:38 +0000
+Message-ID: <bug-111007-8800-32OaZ2Wwwt@http.bugs.freedesktop.org/>
+References: <bug-111007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2049321464=="
+Content-Type: multipart/mixed; boundary="===============0159032334=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111167-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-111007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,45 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2049321464==
-Content-Type: multipart/alternative; boundary="15634649660.fF5D.19013"
+--===============0159032334==
+Content-Type: multipart/alternative; boundary="15635139381.ba5AAdef.18979"
 Content-Transfer-Encoding: 7bit
 
 
---15634649660.fF5D.19013
-Date: Thu, 18 Jul 2019 15:49:26 +0000
+--15635139381.ba5AAdef.18979
+Date: Fri, 19 Jul 2019 05:25:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111167
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111007
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Right...
+--- Comment #7 from Karol Herbst <karolherbst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to joinlaw from comment #6)
+> Created attachment 144811 [details]
+> This is an apitrace file for blender 2.8 rc1
+>=20
+> This bug appear when using evee realtime rendering engine which is OpenGL
+> 3.0+
+> application and seems that is require a lot of GPU power or maybe some
+> OpenGL 3.0+
+> functionality in broken in Nouveau.
+>=20
+> any way here is the trace file.
 
-      Instruction *ld =3D i->getSrc(s)->getInsn();
-      assert(ld->getSrc(0) !=3D NULL);
-
-We must end up propagating the zero imm directly into DIV's args. This is
-generally legal even for ops that don't allow imms because of the RZ thing.
-However in this case ... it screws things up, since we have to move the val=
-ue
-to a fixed reg.
-
-It looks like the assert() is just misplaced there. It should go into the
-"else" clause below and all will be well... we handle the "!ld" / "ld is no=
-t a
-load/mov" cases already just fine.
+replaying this trace crashes glretrace. Can you verify that replaying the t=
+race
+works for you? And what version were you using to record it?
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15634649660.fF5D.19013
-Date: Thu, 18 Jul 2019 15:49:26 +0000
+--15635139381.ba5AAdef.18979
+Date: Fri, 19 Jul 2019 05:25:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,35 +75,41 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Dividing zero by a uniform in loop header causes segfault=
- in nv50_ir::NVC0LegalizeSSA::handleDIV"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111167#c1">Commen=
-t # 1</a>
+   title=3D"NEW - Blender crash when opening material tab GTX 750Ti -- NV11=
+7 (GM107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111007#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Dividing zero by a uniform in loop header causes segfault=
- in nv50_ir::NVC0LegalizeSSA::handleDIV"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111167">bug 11116=
+   title=3D"NEW - Blender crash when opening material tab GTX 750Ti -- NV11=
+7 (GM107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111007">bug 11100=
 7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+karolherbst&#64;gmail.com" title=3D"Karol Herbst &lt;karolherbst&#64;gmail.=
+com&gt;"> <span class=3D"fn">Karol Herbst</span></a>
 </span></b>
-        <pre>Right...
+        <pre>(In reply to joinlaw from <a href=3D"show_bug.cgi?id=3D111007#=
+c6">comment #6</a>)
+<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
+gi?id=3D144811" name=3D"attach_144811" title=3D"This is an apitrace file fo=
+r blender 2.8 rc1">attachment 144811</a> <a href=3D"attachment.cgi?id=3D144=
+811&amp;action=3Dedit" title=3D"This is an apitrace file for blender 2.8 rc=
+1">[details]</a></span>
+&gt; This is an apitrace file for blender 2.8 rc1
+&gt;=20
+&gt; This bug appear when using evee realtime rendering engine which is Ope=
+nGL
+&gt; 3.0+
+&gt; application and seems that is require a lot of GPU power or maybe some
+&gt; OpenGL 3.0+
+&gt; functionality in broken in Nouveau.
+&gt;=20
+&gt; any way here is the trace file.</span >
 
-      Instruction *ld =3D i-&gt;getSrc(s)-&gt;getInsn();
-      assert(ld-&gt;getSrc(0) !=3D NULL);
-
-We must end up propagating the zero imm directly into DIV's args. This is
-generally legal even for ops that don't allow imms because of the RZ thing.
-However in this case ... it screws things up, since we have to move the val=
-ue
-to a fixed reg.
-
-It looks like the assert() is just misplaced there. It should go into the
-&quot;else&quot; clause below and all will be well... we handle the &quot;!=
-ld&quot; / &quot;ld is not a
-load/mov&quot; cases already just fine.</pre>
+replaying this trace crashes glretrace. Can you verify that replaying the t=
+race
+works for you? And what version were you using to record it?</pre>
         </div>
       </p>
 
@@ -118,9 +124,9 @@ load/mov&quot; cases already just fine.</pre>
     </body>
 </html>=
 
---15634649660.fF5D.19013--
+--15635139381.ba5AAdef.18979--
 
---===============2049321464==
+--===============0159032334==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -130,4 +136,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============2049321464==--
+--===============0159032334==--
