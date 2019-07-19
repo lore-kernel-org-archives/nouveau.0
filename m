@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110714] Xorg crashes randomly because of memory leak
-Date: Wed, 03 Jul 2019 06:37:55 +0000
-Message-ID: <bug-110714-8800-sqnmsBLWap@http.bugs.freedesktop.org/>
-References: <bug-110714-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 111007] Blender crash when opening material tab GTX
+ 750Ti -- NV117 (GM107)
+Date: Fri, 19 Jul 2019 06:56:59 +0000
+Message-ID: <bug-111007-8800-I3rVFeHtLm@http.bugs.freedesktop.org/>
+References: <bug-111007-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0040434769=="
+Content-Type: multipart/mixed; boundary="===============1225339961=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-111007-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,74 +21,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0040434769==
-Content-Type: multipart/alternative; boundary="15621358751.2E4c23A.17259"
+--===============1225339961==
+Content-Type: multipart/alternative; boundary="15635194190.c7A72A667.2395"
 Content-Transfer-Encoding: 7bit
 
 
---15621358751.2E4c23A.17259
-Date: Wed, 3 Jul 2019 06:37:55 +0000
+--15635194190.c7A72A667.2395
+Date: Fri, 19 Jul 2019 06:56:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110714
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111007
 
-Peter Draganov <pdraganov-8RvTx9/d5SBBDgjK7y7TUQ@public.gmane.org> changed:
+--- Comment #9 from joinlaw <joinlaw-kcyQbWKpldg@public.gmane.org> ---
+(In reply to Karol Herbst from comment #7)
+>=20
+> replaying this trace crashes glretrace. Can you verify that replaying the
+> trace works for you? And what version were you using to record it?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|NOTOURBUG                   |---
+I use apitrace 8.0 and to replay the trace i use=20
 
---- Comment #4 from Peter Draganov <pdraganov-8RvTx9/d5SBBDgjK7y7TUQ@public.gmane.org> ---
-The problem persists in xorg-x11-server-Xorg-1.20.5-3.fc30.x86_64:
+glretrace -b --sb blender.2.trace=20
 
-[113930.196] (EE) glamor0: GL error: GL_OUT_OF_MEMORY in glTexSubImage
-[113930.198] (WW) glamor: Failed to allocate 5x1 FBO due to GL_OUT_OF_MEMOR=
-Y.
-[113930.198] (WW) glamor: Expect reduced performance.
-[113930.198] (EE)=20
-[113930.198] (EE) Backtrace:
-[113930.235] (EE) 0: /usr/libexec/Xorg (OsLookupColor+0x13c) [0x5637893b8ad=
-c]
-[113930.238] (EE) unw_get_proc_name failed: no unwind info found [-10]
-[113930.238] (EE) 1: /lib64/libpthread.so.0 (?+0x0) [0x7f264909ee7f]
-[113930.239] (EE) 2: /usr/lib64/xorg/modules/libglamoregl.so
-(glamor_get_pixmap_texture+0xa1) [0x7f2648726181]
-[113930.240] (EE) 3: /usr/lib64/xorg/modules/libglamoregl.so
-(glamor_create_gc+0x7b84) [0x7f2648738814]
-[113930.241] (EE) 4: /usr/lib64/xorg/modules/libglamoregl.so
-(glamor_create_gc+0x7f64) [0x7f2648738f84]
-[113930.241] (EE) 5: /usr/lib64/xorg/modules/libglamoregl.so
-(glamor_create_gc+0x85bf) [0x7f264873975f]
-[113930.242] (EE) 6: /usr/lib64/xorg/modules/libglamoregl.so
-(glamor_create_gc+0xa57a) [0x7f264873d34a]
-[113930.242] (EE) 7: /usr/libexec/Xorg (DamageRegionAppend+0x6c0)
-[0x56378933a670]
-[113930.243] (EE) 8: /usr/lib64/xorg/modules/libglamoregl.so
-(glamor_create_gc+0x1150a) [0x7f264874b92a]
-[113930.243] (EE) 9: /usr/libexec/Xorg (AddTraps+0x4238) [0x563789332eb8]
-[113930.243] (EE) 10: /usr/libexec/Xorg (SendErrorToClient+0x354)
-[0x563789259d54]
-[113930.243] (EE) 11: /usr/libexec/Xorg (InitFonts+0x3b4) [0x56378925de14]
-[113930.244] (EE) unw_get_proc_name failed: no unwind info found [-10]
-[113930.244] (EE) 12: /lib/libc.so.6 (?+0x0) [0x7f2648ee9e40]
-[113930.244] (EE) 13: /usr/libexec/Xorg (_start+0x2e) [0x56378924786e]
-[113930.244] (EE)=20
-[113930.244] (EE) Segmentation fault at address 0x0
-[113930.244] (EE)=20
-Fatal server error:
-[113930.244] (EE) Caught signal 11 (Segmentation fault). Server aborting
+or i use qapitrace and uncheck all the checkboxes in retrace configuration=
+=20
+in it to replay the trace.
+
+The trace is playing fine to me, but when i record it my whole system
+hang after opening material tab as described then i poweroff my computer
+and restart it and the trace file recorded.
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15621358751.2E4c23A.17259
-Date: Wed, 3 Jul 2019 06:37:55 +0000
+--15635194190.c7A72A667.2395
+Date: Fri, 19 Jul 2019 06:56:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -98,94 +71,44 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pdraganov=
-&#64;taxback.com" title=3D"Peter Draganov &lt;pdraganov&#64;taxback.com&gt;=
-"> <span class=3D"fn">Peter Draganov</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Xorg crashes randomly because of memory leak"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714">bug 11071=
-4</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
-           <td>REOPENED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>NOTOURBUG
-           </td>
-           <td>---
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Xorg crashes randomly because of memory leak"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714#c4">Commen=
-t # 4</a>
+          bz_status_NEW "
+   title=3D"NEW - Blender crash when opening material tab GTX 750Ti -- NV11=
+7 (GM107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111007#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Xorg crashes randomly because of memory leak"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714">bug 11071=
-4</a>
+          bz_status_NEW "
+   title=3D"NEW - Blender crash when opening material tab GTX 750Ti -- NV11=
+7 (GM107)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111007">bug 11100=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pdraganov&#64;taxback.com" title=3D"Peter Draganov &lt;pdraganov&#64;taxbac=
-k.com&gt;"> <span class=3D"fn">Peter Draganov</span></a>
+joinlaw&#64;cock.li" title=3D"joinlaw &lt;joinlaw&#64;cock.li&gt;"> <span c=
+lass=3D"fn">joinlaw</span></a>
 </span></b>
-        <pre>The problem persists in xorg-x11-server-Xorg-1.20.5-3.fc30.x86=
-_64:
+        <pre>(In reply to Karol Herbst from <a href=3D"show_bug.cgi?id=3D11=
+1007#c7">comment #7</a>)
+<span class=3D"quote">&gt;=20
+&gt; replaying this trace crashes glretrace. Can you verify that replaying =
+the
+&gt; trace works for you? And what version were you using to record it?</sp=
+an >
 
-[113930.196] (EE) glamor0: GL error: GL_OUT_OF_MEMORY in glTexSubImage
-[113930.198] (WW) glamor: Failed to allocate 5x1 FBO due to GL_OUT_OF_MEMOR=
-Y.
-[113930.198] (WW) glamor: Expect reduced performance.
-[113930.198] (EE)=20
-[113930.198] (EE) Backtrace:
-[113930.235] (EE) 0: /usr/libexec/Xorg (OsLookupColor+0x13c) [0x5637893b8ad=
-c]
-[113930.238] (EE) unw_get_proc_name failed: no unwind info found [-10]
-[113930.238] (EE) 1: /lib64/libpthread.so.0 (?+0x0) [0x7f264909ee7f]
-[113930.239] (EE) 2: /usr/lib64/xorg/modules/libglamoregl.so
-(glamor_get_pixmap_texture+0xa1) [0x7f2648726181]
-[113930.240] (EE) 3: /usr/lib64/xorg/modules/libglamoregl.so
-(glamor_create_gc+0x7b84) [0x7f2648738814]
-[113930.241] (EE) 4: /usr/lib64/xorg/modules/libglamoregl.so
-(glamor_create_gc+0x7f64) [0x7f2648738f84]
-[113930.241] (EE) 5: /usr/lib64/xorg/modules/libglamoregl.so
-(glamor_create_gc+0x85bf) [0x7f264873975f]
-[113930.242] (EE) 6: /usr/lib64/xorg/modules/libglamoregl.so
-(glamor_create_gc+0xa57a) [0x7f264873d34a]
-[113930.242] (EE) 7: /usr/libexec/Xorg (DamageRegionAppend+0x6c0)
-[0x56378933a670]
-[113930.243] (EE) 8: /usr/lib64/xorg/modules/libglamoregl.so
-(glamor_create_gc+0x1150a) [0x7f264874b92a]
-[113930.243] (EE) 9: /usr/libexec/Xorg (AddTraps+0x4238) [0x563789332eb8]
-[113930.243] (EE) 10: /usr/libexec/Xorg (SendErrorToClient+0x354)
-[0x563789259d54]
-[113930.243] (EE) 11: /usr/libexec/Xorg (InitFonts+0x3b4) [0x56378925de14]
-[113930.244] (EE) unw_get_proc_name failed: no unwind info found [-10]
-[113930.244] (EE) 12: /lib/libc.so.6 (?+0x0) [0x7f2648ee9e40]
-[113930.244] (EE) 13: /usr/libexec/Xorg (_start+0x2e) [0x56378924786e]
-[113930.244] (EE)=20
-[113930.244] (EE) Segmentation fault at address 0x0
-[113930.244] (EE)=20
-Fatal server error:
-[113930.244] (EE) Caught signal 11 (Segmentation fault). Server aborting</p=
-re>
+I use apitrace 8.0 and to replay the trace i use=20
+
+glretrace -b --sb blender.2.trace=20
+
+or i use qapitrace and uncheck all the checkboxes in retrace configuration=
+=20
+in it to replay the trace.
+
+The trace is playing fine to me, but when i record it my whole system
+hang after opening material tab as described then i poweroff my computer
+and restart it and the trace file recorded.</pre>
         </div>
       </p>
 
@@ -194,14 +117,15 @@ re>
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15621358751.2E4c23A.17259--
+--15635194190.c7A72A667.2395--
 
---===============0040434769==
+--===============1225339961==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -211,4 +135,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0040434769==--
+--===============1225339961==--
