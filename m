@@ -1,56 +1,68 @@
-From: Christoph Hellwig <hch@lst.de>
-Subject: [PATCH 3/6] nouveau: remove the block parameter to nouveau_range_fault
-Date: Mon, 22 Jul 2019 11:44:23 +0200
-Message-ID: <20190722094426.18563-4-hch@lst.de>
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Subject: [PATCH 1/6] mm: always return EBUSY for invalid ranges in
+ hmm_range_{fault, snapshot}
+Date: Mon, 22 Jul 2019 11:44:21 +0200
+Message-ID: <20190722094426.18563-2-hch@lst.de>
 References: <20190722094426.18563-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190722094426.18563-1-hch@lst.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: Ralph Campbell <rcampbell@nvidia.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190722094426.18563-1-hch-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Felix Kuehling <Felix.Kuehling-5C7GfCeVMHo@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-The parameter is always false, so remove it as well as the -EAGAIN
-handling that can only happen for the non-blocking case.
-
-Signed-off-by: Christoph Hellwig <hch@lst.de>
----
- drivers/gpu/drm/nouveau/nouveau_svm.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-index cde09003c06b..5dd83a46578f 100644
---- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-@@ -484,8 +484,7 @@ static inline bool nouveau_range_done(struct hmm_range *range)
- }
- 
- static int
--nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range,
--		    bool block)
-+nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range)
- {
- 	long ret;
- 
-@@ -503,7 +502,7 @@ nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range,
- 		return -EAGAIN;
- 	}
- 
--	ret = hmm_range_fault(range, block);
-+	ret = hmm_range_fault(range, true);
- 	if (ret <= 0) {
- 		if (ret == -EBUSY || !ret) {
- 			up_read(&range->vma->vm_mm->mmap_sem);
-@@ -690,7 +689,7 @@ nouveau_svm_fault(struct nvif_notify *notify)
- 		range.values = nouveau_svm_pfn_values;
- 		range.pfn_shift = NVIF_VMM_PFNMAP_V0_ADDR_SHIFT;
- again:
--		ret = nouveau_range_fault(&svmm->mirror, &range, true);
-+		ret = nouveau_range_fault(&svmm->mirror, &range);
- 		if (ret == 0) {
- 			mutex_lock(&svmm->mutex);
- 			if (!nouveau_range_done(&range)) {
--- 
-2.20.1
+V2Ugc2hvdWxkIG5vdCBoYXZlIHR3byBkaWZmZXJlbnQgZXJyb3IgY29kZXMgZm9yIHRoZSBzYW1l
+IGNvbmRpdGlvbi4gIEluCmFkZGl0aW9uIHRoaXMgcmVhbGx5IGNvbXBsaWNhdGVzIHRoZSBjb2Rl
+IGR1ZSB0byB0aGUgc3BlY2lhbCBoYW5kbGluZyBvZgpFQUdBSU4gdGhhdCBkcm9wcyB0aGUgbW1h
+cF9zZW0gZHVlIHRvIHRoZSBGQVVMVF9GTEFHX0FMTE9XX1JFVFJZIGxvZ2ljCmluIHRoZSBjb3Jl
+IHZtLgoKU2lnbmVkLW9mZi1ieTogQ2hyaXN0b3BoIEhlbGx3aWcgPGhjaEBsc3QuZGU+ClJldmll
+d2VkLWJ5OiBSYWxwaCBDYW1wYmVsbCA8cmNhbXBiZWxsQG52aWRpYS5jb20+ClJldmlld2VkLWJ5
+OiBGZWxpeCBLdWVobGluZyA8RmVsaXguS3VlaGxpbmdAYW1kLmNvbT4KLS0tCiBEb2N1bWVudGF0
+aW9uL3ZtL2htbS5yc3QgfCAgMiArLQogbW0vaG1tLmMgICAgICAgICAgICAgICAgIHwgMTAgKysr
+Ky0tLS0tLQogMiBmaWxlcyBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDcgZGVsZXRpb25zKC0p
+CgpkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi92bS9obW0ucnN0IGIvRG9jdW1lbnRhdGlvbi92
+bS9obW0ucnN0CmluZGV4IDdkOTA5NjRhYmJiMC4uNzEwY2UxYzcwMWJmIDEwMDY0NAotLS0gYS9E
+b2N1bWVudGF0aW9uL3ZtL2htbS5yc3QKKysrIGIvRG9jdW1lbnRhdGlvbi92bS9obW0ucnN0CkBA
+IC0yMzcsNyArMjM3LDcgQEAgVGhlIHVzYWdlIHBhdHRlcm4gaXM6OgogICAgICAgcmV0ID0gaG1t
+X3JhbmdlX3NuYXBzaG90KCZyYW5nZSk7CiAgICAgICBpZiAocmV0KSB7CiAgICAgICAgICAgdXBf
+cmVhZCgmbW0tPm1tYXBfc2VtKTsKLSAgICAgICAgICBpZiAocmV0ID09IC1FQUdBSU4pIHsKKyAg
+ICAgICAgICBpZiAocmV0ID09IC1FQlVTWSkgewogICAgICAgICAgICAgLyoKICAgICAgICAgICAg
+ICAqIE5vIG5lZWQgdG8gY2hlY2sgaG1tX3JhbmdlX3dhaXRfdW50aWxfdmFsaWQoKSByZXR1cm4g
+dmFsdWUKICAgICAgICAgICAgICAqIG9uIHJldHJ5IHdlIHdpbGwgZ2V0IHByb3BlciBlcnJvciB3
+aXRoIGhtbV9yYW5nZV9zbmFwc2hvdCgpCmRpZmYgLS1naXQgYS9tbS9obW0uYyBiL21tL2htbS5j
+CmluZGV4IGUxZWVkZWYxMjljZi4uMTZiNjczMWEzNGRiIDEwMDY0NAotLS0gYS9tbS9obW0uYwor
+KysgYi9tbS9obW0uYwpAQCAtOTQ2LDcgKzk0Niw3IEBAIEVYUE9SVF9TWU1CT0woaG1tX3Jhbmdl
+X3VucmVnaXN0ZXIpOwogICogQHJhbmdlOiByYW5nZQogICogUmV0dXJuOiAtRUlOVkFMIGlmIGlu
+dmFsaWQgYXJndW1lbnQsIC1FTk9NRU0gb3V0IG9mIG1lbW9yeSwgLUVQRVJNIGludmFsaWQKICAq
+ICAgICAgICAgIHBlcm1pc3Npb24gKGZvciBpbnN0YW5jZSBhc2tpbmcgZm9yIHdyaXRlIGFuZCBy
+YW5nZSBpcyByZWFkIG9ubHkpLAotICogICAgICAgICAgLUVBR0FJTiBpZiB5b3UgbmVlZCB0byBy
+ZXRyeSwgLUVGQVVMVCBpbnZhbGlkIChpZSBlaXRoZXIgbm8gdmFsaWQKKyAqICAgICAgICAgIC1F
+QlVTWSBpZiB5b3UgbmVlZCB0byByZXRyeSwgLUVGQVVMVCBpbnZhbGlkIChpZSBlaXRoZXIgbm8g
+dmFsaWQKICAqICAgICAgICAgIHZtYSBvciBpdCBpcyBpbGxlZ2FsIHRvIGFjY2VzcyB0aGF0IHJh
+bmdlKSwgbnVtYmVyIG9mIHZhbGlkIHBhZ2VzCiAgKiAgICAgICAgICBpbiByYW5nZS0+cGZuc1td
+IChmcm9tIHJhbmdlIHN0YXJ0IGFkZHJlc3MpLgogICoKQEAgLTk2Nyw3ICs5NjcsNyBAQCBsb25n
+IGhtbV9yYW5nZV9zbmFwc2hvdChzdHJ1Y3QgaG1tX3JhbmdlICpyYW5nZSkKIAlkbyB7CiAJCS8q
+IElmIHJhbmdlIGlzIG5vIGxvbmdlciB2YWxpZCBmb3JjZSByZXRyeS4gKi8KIAkJaWYgKCFyYW5n
+ZS0+dmFsaWQpCi0JCQlyZXR1cm4gLUVBR0FJTjsKKwkJCXJldHVybiAtRUJVU1k7CiAKIAkJdm1h
+ID0gZmluZF92bWEoaG1tLT5tbSwgc3RhcnQpOwogCQlpZiAodm1hID09IE5VTEwgfHwgKHZtYS0+
+dm1fZmxhZ3MgJiBkZXZpY2Vfdm1hKSkKQEAgLTEwNjIsMTAgKzEwNjIsOCBAQCBsb25nIGhtbV9y
+YW5nZV9mYXVsdChzdHJ1Y3QgaG1tX3JhbmdlICpyYW5nZSwgYm9vbCBibG9jaykKIAogCWRvIHsK
+IAkJLyogSWYgcmFuZ2UgaXMgbm8gbG9uZ2VyIHZhbGlkIGZvcmNlIHJldHJ5LiAqLwotCQlpZiAo
+IXJhbmdlLT52YWxpZCkgewotCQkJdXBfcmVhZCgmaG1tLT5tbS0+bW1hcF9zZW0pOwotCQkJcmV0
+dXJuIC1FQUdBSU47Ci0JCX0KKwkJaWYgKCFyYW5nZS0+dmFsaWQpCisJCQlyZXR1cm4gLUVCVVNZ
+OwogCiAJCXZtYSA9IGZpbmRfdm1hKGhtbS0+bW0sIHN0YXJ0KTsKIAkJaWYgKHZtYSA9PSBOVUxM
+IHx8ICh2bWEtPnZtX2ZsYWdzICYgZGV2aWNlX3ZtYSkpCi0tIAoyLjIwLjEKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
