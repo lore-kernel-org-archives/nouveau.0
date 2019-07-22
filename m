@@ -1,26 +1,56 @@
 From: Christoph Hellwig <hch@lst.de>
-Subject: hmm_range_fault related fixes and legacy API removal v2
-Date: Mon, 22 Jul 2019 11:44:20 +0200
-Message-ID: <20190722094426.18563-1-hch@lst.de>
+Subject: [PATCH 3/6] nouveau: remove the block parameter to nouveau_range_fault
+Date: Mon, 22 Jul 2019 11:44:23 +0200
+Message-ID: <20190722094426.18563-4-hch@lst.de>
+References: <20190722094426.18563-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190722094426.18563-1-hch@lst.de>
 Sender: linux-kernel-owner@vger.kernel.org
 To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
 Cc: Ralph Campbell <rcampbell@nvidia.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Hi Jérôme, Ben and Jason,
+The parameter is always false, so remove it as well as the -EAGAIN
+handling that can only happen for the non-blocking case.
 
-below is a series against the hmm tree which fixes up the mmap_sem
-locking in nouveau and while at it also removes leftover legacy HMM APIs
-only used by nouveau.
+Signed-off-by: Christoph Hellwig <hch@lst.de>
+---
+ drivers/gpu/drm/nouveau/nouveau_svm.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-The first 4 patches are a bug fix for nouveau, which I suspect should
-go into this merge window even if the code is marked as staging, just
-to avoid people copying the breakage.
-
-Changes since v1:
- - don't return the valid state from hmm_range_unregister
- - additional nouveau cleanups
+diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
+index cde09003c06b..5dd83a46578f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_svm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
+@@ -484,8 +484,7 @@ static inline bool nouveau_range_done(struct hmm_range *range)
+ }
+ 
+ static int
+-nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range,
+-		    bool block)
++nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range)
+ {
+ 	long ret;
+ 
+@@ -503,7 +502,7 @@ nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range,
+ 		return -EAGAIN;
+ 	}
+ 
+-	ret = hmm_range_fault(range, block);
++	ret = hmm_range_fault(range, true);
+ 	if (ret <= 0) {
+ 		if (ret == -EBUSY || !ret) {
+ 			up_read(&range->vma->vm_mm->mmap_sem);
+@@ -690,7 +689,7 @@ nouveau_svm_fault(struct nvif_notify *notify)
+ 		range.values = nouveau_svm_pfn_values;
+ 		range.pfn_shift = NVIF_VMM_PFNMAP_V0_ADDR_SHIFT;
+ again:
+-		ret = nouveau_range_fault(&svmm->mirror, &range, true);
++		ret = nouveau_range_fault(&svmm->mirror, &range);
+ 		if (ret == 0) {
+ 			mutex_lock(&svmm->mutex);
+ 			if (!nouveau_range_done(&range)) {
+-- 
+2.20.1
