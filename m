@@ -1,15 +1,12 @@
-From: Souptick Joarder <jrdr.linux-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/6] mm: always return EBUSY for invalid
- ranges in hmm_range_{fault, snapshot}
-Date: Mon, 22 Jul 2019 20:07:33 +0530
-Message-ID: <CAFqt6zY8zWAmc-VTrZ1KxQPBCdbTxmZy_tq2-OkUi3TVrfp7Og@mail.gmail.com>
-References: <20190722094426.18563-1-hch@lst.de>
- <20190722094426.18563-2-hch@lst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110714] Xorg crashes randomly because of memory leak
+Date: Mon, 22 Jul 2019 20:19:59 +0000
+Message-ID: <bug-110714-8800-48zIzWWJfD@http.bugs.freedesktop.org/>
+References: <bug-110714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0297175735=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190722094426.18563-2-hch-jcswGhMUV9g@public.gmane.org>
+In-Reply-To: <bug-110714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,60 +16,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Felix Kuehling <Felix.Kuehling-5C7GfCeVMHo@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Linux-MM <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBKdWwgMjIsIDIwMTkgYXQgMzoxNCBQTSBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGxz
-dC5kZT4gd3JvdGU6Cj4KPiBXZSBzaG91bGQgbm90IGhhdmUgdHdvIGRpZmZlcmVudCBlcnJvciBj
-b2RlcyBmb3IgdGhlIHNhbWUgY29uZGl0aW9uLiAgSW4KPiBhZGRpdGlvbiB0aGlzIHJlYWxseSBj
-b21wbGljYXRlcyB0aGUgY29kZSBkdWUgdG8gdGhlIHNwZWNpYWwgaGFuZGxpbmcgb2YKPiBFQUdB
-SU4gdGhhdCBkcm9wcyB0aGUgbW1hcF9zZW0gZHVlIHRvIHRoZSBGQVVMVF9GTEFHX0FMTE9XX1JF
-VFJZIGxvZ2ljCj4gaW4gdGhlIGNvcmUgdm0uCj4KPiBTaWduZWQtb2ZmLWJ5OiBDaHJpc3RvcGgg
-SGVsbHdpZyA8aGNoQGxzdC5kZT4KPiBSZXZpZXdlZC1ieTogUmFscGggQ2FtcGJlbGwgPHJjYW1w
-YmVsbEBudmlkaWEuY29tPgo+IFJldmlld2VkLWJ5OiBGZWxpeCBLdWVobGluZyA8RmVsaXguS3Vl
-aGxpbmdAYW1kLmNvbT4KPiAtLS0KPiAgRG9jdW1lbnRhdGlvbi92bS9obW0ucnN0IHwgIDIgKy0K
-PiAgbW0vaG1tLmMgICAgICAgICAgICAgICAgIHwgMTAgKysrKy0tLS0tLQo+ICAyIGZpbGVzIGNo
-YW5nZWQsIDUgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9E
-b2N1bWVudGF0aW9uL3ZtL2htbS5yc3QgYi9Eb2N1bWVudGF0aW9uL3ZtL2htbS5yc3QKPiBpbmRl
-eCA3ZDkwOTY0YWJiYjAuLjcxMGNlMWM3MDFiZiAxMDA2NDQKPiAtLS0gYS9Eb2N1bWVudGF0aW9u
-L3ZtL2htbS5yc3QKPiArKysgYi9Eb2N1bWVudGF0aW9uL3ZtL2htbS5yc3QKPiBAQCAtMjM3LDcg
-KzIzNyw3IEBAIFRoZSB1c2FnZSBwYXR0ZXJuIGlzOjoKPiAgICAgICAgcmV0ID0gaG1tX3Jhbmdl
-X3NuYXBzaG90KCZyYW5nZSk7Cj4gICAgICAgIGlmIChyZXQpIHsKPiAgICAgICAgICAgIHVwX3Jl
-YWQoJm1tLT5tbWFwX3NlbSk7Cj4gLSAgICAgICAgICBpZiAocmV0ID09IC1FQUdBSU4pIHsKPiAr
-ICAgICAgICAgIGlmIChyZXQgPT0gLUVCVVNZKSB7Cj4gICAgICAgICAgICAgIC8qCj4gICAgICAg
-ICAgICAgICAqIE5vIG5lZWQgdG8gY2hlY2sgaG1tX3JhbmdlX3dhaXRfdW50aWxfdmFsaWQoKSBy
-ZXR1cm4gdmFsdWUKPiAgICAgICAgICAgICAgICogb24gcmV0cnkgd2Ugd2lsbCBnZXQgcHJvcGVy
-IGVycm9yIHdpdGggaG1tX3JhbmdlX3NuYXBzaG90KCkKPiBkaWZmIC0tZ2l0IGEvbW0vaG1tLmMg
-Yi9tbS9obW0uYwo+IGluZGV4IGUxZWVkZWYxMjljZi4uMTZiNjczMWEzNGRiIDEwMDY0NAo+IC0t
-LSBhL21tL2htbS5jCj4gKysrIGIvbW0vaG1tLmMKPiBAQCAtOTQ2LDcgKzk0Niw3IEBAIEVYUE9S
-VF9TWU1CT0woaG1tX3JhbmdlX3VucmVnaXN0ZXIpOwo+ICAgKiBAcmFuZ2U6IHJhbmdlCj4gICAq
-IFJldHVybjogLUVJTlZBTCBpZiBpbnZhbGlkIGFyZ3VtZW50LCAtRU5PTUVNIG91dCBvZiBtZW1v
-cnksIC1FUEVSTSBpbnZhbGlkCj4gICAqICAgICAgICAgIHBlcm1pc3Npb24gKGZvciBpbnN0YW5j
-ZSBhc2tpbmcgZm9yIHdyaXRlIGFuZCByYW5nZSBpcyByZWFkIG9ubHkpLAo+IC0gKiAgICAgICAg
-ICAtRUFHQUlOIGlmIHlvdSBuZWVkIHRvIHJldHJ5LCAtRUZBVUxUIGludmFsaWQgKGllIGVpdGhl
-ciBubyB2YWxpZAo+ICsgKiAgICAgICAgICAtRUJVU1kgaWYgeW91IG5lZWQgdG8gcmV0cnksIC1F
-RkFVTFQgaW52YWxpZCAoaWUgZWl0aGVyIG5vIHZhbGlkCj4gICAqICAgICAgICAgIHZtYSBvciBp
-dCBpcyBpbGxlZ2FsIHRvIGFjY2VzcyB0aGF0IHJhbmdlKSwgbnVtYmVyIG9mIHZhbGlkIHBhZ2Vz
-Cj4gICAqICAgICAgICAgIGluIHJhbmdlLT5wZm5zW10gKGZyb20gcmFuZ2Ugc3RhcnQgYWRkcmVz
-cykuCj4gICAqCj4gQEAgLTk2Nyw3ICs5NjcsNyBAQCBsb25nIGhtbV9yYW5nZV9zbmFwc2hvdChz
-dHJ1Y3QgaG1tX3JhbmdlICpyYW5nZSkKPiAgICAgICAgIGRvIHsKPiAgICAgICAgICAgICAgICAg
-LyogSWYgcmFuZ2UgaXMgbm8gbG9uZ2VyIHZhbGlkIGZvcmNlIHJldHJ5LiAqLwo+ICAgICAgICAg
-ICAgICAgICBpZiAoIXJhbmdlLT52YWxpZCkKPiAtICAgICAgICAgICAgICAgICAgICAgICByZXR1
-cm4gLUVBR0FJTjsKPiArICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gLUVCVVNZOwo+Cj4g
-ICAgICAgICAgICAgICAgIHZtYSA9IGZpbmRfdm1hKGhtbS0+bW0sIHN0YXJ0KTsKPiAgICAgICAg
-ICAgICAgICAgaWYgKHZtYSA9PSBOVUxMIHx8ICh2bWEtPnZtX2ZsYWdzICYgZGV2aWNlX3ZtYSkp
-Cj4gQEAgLTEwNjIsMTAgKzEwNjIsOCBAQCBsb25nIGhtbV9yYW5nZV9mYXVsdChzdHJ1Y3QgaG1t
-X3JhbmdlICpyYW5nZSwgYm9vbCBibG9jaykKPgo+ICAgICAgICAgZG8gewo+ICAgICAgICAgICAg
-ICAgICAvKiBJZiByYW5nZSBpcyBubyBsb25nZXIgdmFsaWQgZm9yY2UgcmV0cnkuICovCj4gLSAg
-ICAgICAgICAgICAgIGlmICghcmFuZ2UtPnZhbGlkKSB7Cj4gLSAgICAgICAgICAgICAgICAgICAg
-ICAgdXBfcmVhZCgmaG1tLT5tbS0+bW1hcF9zZW0pOwo+IC0gICAgICAgICAgICAgICAgICAgICAg
-IHJldHVybiAtRUFHQUlOOwo+IC0gICAgICAgICAgICAgICB9Cj4gKyAgICAgICAgICAgICAgIGlm
-ICghcmFuZ2UtPnZhbGlkKQo+ICsgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiAtRUJVU1k7
-CgpJcyBpdCBmaW5lIHRvIHJlbW92ZSAgdXBfcmVhZCgmaG1tLT5tbS0+bW1hcF9zZW0pID8KCj4K
-PiAgICAgICAgICAgICAgICAgdm1hID0gZmluZF92bWEoaG1tLT5tbSwgc3RhcnQpOwo+ICAgICAg
-ICAgICAgICAgICBpZiAodm1hID09IE5VTEwgfHwgKHZtYS0+dm1fZmxhZ3MgJiBkZXZpY2Vfdm1h
-KSkKPiAtLQo+IDIuMjAuMQo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQ==
+
+--===============0297175735==
+Content-Type: multipart/alternative; boundary="15638267991.Ffa8AEdc5.28551"
+Content-Transfer-Encoding: 7bit
+
+
+--15638267991.Ffa8AEdc5.28551
+Date: Mon, 22 Jul 2019 20:19:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110714
+
+--- Comment #15 from Joel Polowin <jpolowin-rieW9WUcm8FFJ04o6PK0Fg@public.gmane.org> ---
+FWIW, I'm seeing the same symptoms -- I found this report while searching f=
+or
+info about what was going on.  The only notable apps running, so far as I'm
+aware, are VirtualBox and Firefox (along with various terminal and file
+windows).
+I use OpenOffice, but infrequently.  I definitely didn't have any documents
+open at the time of the most recent crash.
+
+I'm running 5.1.15-300.fc30.x86_64 .  I'm willing to send info if it will h=
+elp,
+but I must warn you that I'm anything but a power user -- I'd need some
+coaching
+to find files.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15638267991.Ffa8AEdc5.28551
+Date: Mon, 22 Jul 2019 20:19:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Xorg crashes randomly because of memory leak"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714#c15">Comme=
+nt # 15</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Xorg crashes randomly because of memory leak"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714">bug 11071=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jpolowin&#64;sympatico.ca" title=3D"Joel Polowin &lt;jpolowin&#64;sympatico=
+.ca&gt;"> <span class=3D"fn">Joel Polowin</span></a>
+</span></b>
+        <pre>FWIW, I'm seeing the same symptoms -- I found this report whil=
+e searching for
+info about what was going on.  The only notable apps running, so far as I'm
+aware, are VirtualBox and Firefox (along with various terminal and file
+windows).
+I use OpenOffice, but infrequently.  I definitely didn't have any documents
+open at the time of the most recent crash.
+
+I'm running 5.1.15-300.fc30.x86_64 .  I'm willing to send info if it will h=
+elp,
+but I must warn you that I'm anything but a power user -- I'd need some
+coaching
+to find files.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15638267991.Ffa8AEdc5.28551--
+
+--===============0297175735==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0297175735==--
