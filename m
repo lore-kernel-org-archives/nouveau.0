@@ -1,7 +1,7 @@
 From: Christoph Hellwig <hch@lst.de>
-Subject: [PATCH 4/6] nouveau: unlock mmap_sem on all errors from nouveau_range_fault
-Date: Mon, 22 Jul 2019 11:44:24 +0200
-Message-ID: <20190722094426.18563-5-hch@lst.de>
+Subject: [PATCH 6/6] mm: remove the legacy hmm_pfn_* APIs
+Date: Mon, 22 Jul 2019 11:44:26 +0200
+Message-ID: <20190722094426.18563-7-hch@lst.de>
 References: <20190722094426.18563-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -12,56 +12,74 @@ To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>, Jason Gunthorpe 
 Cc: Ralph Campbell <rcampbell@nvidia.com>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Currently nouveau_svm_fault expects nouveau_range_fault to never unlock
-mmap_sem, but the latter unlocks it for a random selection of error
-codes. Fix this up by always unlocking mmap_sem for non-zero return
-values in nouveau_range_fault, and only unlocking it in the caller
-for successful returns.
+Switch the one remaining user in nouveau over to its replacement,
+and remove all the wrappers.
 
 Signed-off-by: Christoph Hellwig <hch@lst.de>
+Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
+Reviewed-by: Jason Gunthorpe <jgg@mellanox.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_svm.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_dmem.c |  2 +-
+ include/linux/hmm.h                    | 34 --------------------------
+ 2 files changed, 1 insertion(+), 35 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-index 5dd83a46578f..5de2d54b9782 100644
---- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-@@ -494,8 +494,10 @@ nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range)
- 	ret = hmm_range_register(range, mirror,
- 				 range->start, range->end,
- 				 PAGE_SHIFT);
--	if (ret)
-+	if (ret) {
-+		up_read(&range->vma->vm_mm->mmap_sem);
- 		return (int)ret;
-+	}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+index 1333220787a1..345c63cb752a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+@@ -845,7 +845,7 @@ nouveau_dmem_convert_pfn(struct nouveau_drm *drm,
+ 		struct page *page;
+ 		uint64_t addr;
  
- 	if (!hmm_range_wait_until_valid(range, HMM_RANGE_DEFAULT_TIMEOUT)) {
- 		up_read(&range->vma->vm_mm->mmap_sem);
-@@ -504,11 +506,9 @@ nouveau_range_fault(struct hmm_mirror *mirror, struct hmm_range *range)
+-		page = hmm_pfn_to_page(range, range->pfns[i]);
++		page = hmm_device_entry_to_page(range, range->pfns[i]);
+ 		if (page == NULL)
+ 			continue;
  
- 	ret = hmm_range_fault(range, true);
- 	if (ret <= 0) {
--		if (ret == -EBUSY || !ret) {
--			up_read(&range->vma->vm_mm->mmap_sem);
--			ret = -EBUSY;
--		} else if (ret == -EAGAIN)
-+		if (ret == 0)
- 			ret = -EBUSY;
-+		up_read(&range->vma->vm_mm->mmap_sem);
- 		hmm_range_unregister(range);
- 		return ret;
- 	}
-@@ -706,8 +706,8 @@ nouveau_svm_fault(struct nvif_notify *notify)
- 						NULL);
- 			svmm->vmm->vmm.object.client->super = false;
- 			mutex_unlock(&svmm->mutex);
-+			up_read(&svmm->mm->mmap_sem);
- 		}
--		up_read(&svmm->mm->mmap_sem);
+diff --git a/include/linux/hmm.h b/include/linux/hmm.h
+index 7ef56dc18050..9f32586684c9 100644
+--- a/include/linux/hmm.h
++++ b/include/linux/hmm.h
+@@ -290,40 +290,6 @@ static inline uint64_t hmm_device_entry_from_pfn(const struct hmm_range *range,
+ 		range->flags[HMM_PFN_VALID];
+ }
  
- 		/* Cancel any faults in the window whose pages didn't manage
- 		 * to keep their valid bit, or stay writeable when required.
+-/*
+- * Old API:
+- * hmm_pfn_to_page()
+- * hmm_pfn_to_pfn()
+- * hmm_pfn_from_page()
+- * hmm_pfn_from_pfn()
+- *
+- * This are the OLD API please use new API, it is here to avoid cross-tree
+- * merge painfullness ie we convert things to new API in stages.
+- */
+-static inline struct page *hmm_pfn_to_page(const struct hmm_range *range,
+-					   uint64_t pfn)
+-{
+-	return hmm_device_entry_to_page(range, pfn);
+-}
+-
+-static inline unsigned long hmm_pfn_to_pfn(const struct hmm_range *range,
+-					   uint64_t pfn)
+-{
+-	return hmm_device_entry_to_pfn(range, pfn);
+-}
+-
+-static inline uint64_t hmm_pfn_from_page(const struct hmm_range *range,
+-					 struct page *page)
+-{
+-	return hmm_device_entry_from_page(range, page);
+-}
+-
+-static inline uint64_t hmm_pfn_from_pfn(const struct hmm_range *range,
+-					unsigned long pfn)
+-{
+-	return hmm_device_entry_from_pfn(range, pfn);
+-}
+-
+ /*
+  * Mirroring: how to synchronize device page table with CPU page table.
+  *
 -- 
 2.20.1
