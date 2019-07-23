@@ -1,125 +1,44 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111199] Bug in dither.depth property set: Value
- compared to dither.mode instead of dither.depth
-Date: Tue, 23 Jul 2019 10:22:24 +0000
-Message-ID: <bug-111199-8800-kBcgfc85pX@http.bugs.freedesktop.org/>
-References: <bug-111199-8800@http.bugs.freedesktop.org/>
+From: Chuhong Yuan <hslester96@gmail.com>
+Subject: [PATCH] drm/nouveau: Use dev_get_drvdata where possible
+Date: Tue, 23 Jul 2019 18:39:39 +0800
+Message-ID: <20190723103938.4021-1-hslester96@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0120542843=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111199-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, Chuhong Yuan <hslester96@gmail.com>
 List-Id: nouveau.vger.kernel.org
 
+Instead of using to_pci_dev + pci_get_drvdata,
+use dev_get_drvdata to make code simpler.
 
---===============0120542843==
-Content-Type: multipart/alternative; boundary="15638773431.73c7e3e0e.22334"
-Content-Transfer-Encoding: 7bit
+Signed-off-by: Chuhong Yuan <hslester96@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-
---15638773431.73c7e3e0e.22334
-Date: Tue, 23 Jul 2019 10:22:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111199
-
-Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Bug in dither.depth         |Bug in dither.depth
-                   |property set                |property set: Value
-                   |                            |compared to dither.mode
-                   |                            |instead of dither.depth
-           Keywords|                            |janitor
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15638773431.73c7e3e0e.22334
-Date: Tue, 23 Jul 2019 10:22:23 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:a9016009&=
-#64;gmx.de" title=3D"Andre Klapper &lt;a9016009&#64;gmx.de&gt;"> <span clas=
-s=3D"fn">Andre Klapper</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Bug in dither.depth property set: Value compared to dithe=
-r.mode instead of dither.depth"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111199">bug 11119=
-9</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>Bug in dither.depth property set
-           </td>
-           <td>Bug in dither.depth property set: Value compared to dither.m=
-ode instead of dither.depth
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Keywords</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>janitor
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15638773431.73c7e3e0e.22334--
-
---===============0120542843==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0120542843==--
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 7c2fcaba42d6..23203dae2137 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -883,16 +883,14 @@ nouveau_pmops_resume(struct device *dev)
+ static int
+ nouveau_pmops_freeze(struct device *dev)
+ {
+-	struct pci_dev *pdev = to_pci_dev(dev);
+-	struct drm_device *drm_dev = pci_get_drvdata(pdev);
++	struct drm_device *drm_dev = dev_get_drvdata(dev);
+ 	return nouveau_do_suspend(drm_dev, false);
+ }
+ 
+ static int
+ nouveau_pmops_thaw(struct device *dev)
+ {
+-	struct pci_dev *pdev = to_pci_dev(dev);
+-	struct drm_device *drm_dev = pci_get_drvdata(pdev);
++	struct drm_device *drm_dev = dev_get_drvdata(dev);
+ 	return nouveau_do_resume(drm_dev, false);
+ }
+ 
+-- 
+2.20.1
