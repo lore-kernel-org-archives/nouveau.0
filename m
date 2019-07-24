@@ -1,111 +1,144 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88801] Xorg segfaults while playing a video on
- kaffeine causing immediate logout
-Date: Wed, 24 Jul 2019 13:33:59 +0000
-Message-ID: <bug-88801-8800-teGHOYY8DQ@http.bugs.freedesktop.org/>
-References: <bug-88801-8800@http.bugs.freedesktop.org/>
+From: Jason Gunthorpe <jgg@ziepe.ca>
+Subject: Re: [PATCH] mm/hmm: replace hmm_update with mmu_notifier_range
+Date: Wed, 24 Jul 2019 12:28:58 -0300
+Message-ID: <20190724152858.GB28493@ziepe.ca>
+References: <20190723210506.25127-1-rcampbell@nvidia.com>
+ <20190724070553.GA2523@lst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0872558742=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88801-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20190724070553.GA2523@lst.de>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Christoph Hellwig <hch@lst.de>, Michal Hocko <mhocko@suse.com>
+Cc: Ralph Campbell <rcampbell@nvidia.com>, linux-mm@kvack.org, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
+On Wed, Jul 24, 2019 at 09:05:53AM +0200, Christoph Hellwig wrote:
+> Looks good:
+> 
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> 
+> One comment on a related cleanup:
+> 
+> >  	list_for_each_entry(mirror, &hmm->mirrors, list) {
+> >  		int rc;
+> >  
+> > -		rc = mirror->ops->sync_cpu_device_pagetables(mirror, &update);
+> > +		rc = mirror->ops->sync_cpu_device_pagetables(mirror, nrange);
+> >  		if (rc) {
+> > -			if (WARN_ON(update.blockable || rc != -EAGAIN))
+> > +			if (WARN_ON(mmu_notifier_range_blockable(nrange) ||
+> > +			    rc != -EAGAIN))
+> >  				continue;
+> >  			ret = -EAGAIN;
+> >  			break;
+> 
+> This magic handling of error seems odd.  I think we should merge rc and
+> ret into one variable and just break out if any error happens instead
+> or claiming in the comments -EAGAIN is the only valid error and then
+> ignoring all others here.
 
---===============0872558742==
-Content-Type: multipart/alternative; boundary="15639752380.CBccfD3Ec.11783"
-Content-Transfer-Encoding: 7bit
+The WARN_ON is enforcing the rules already commented near
+mmuu_notifier_ops.invalidate_start - we could break or continue, it
+doesn't much matter how to recover from a broken driver, but since we
+did the WARN_ON this should sanitize the ret to EAGAIN or 0
 
+Humm. Actually having looked this some more, I wonder if this is a
+problem:
 
---15639752380.CBccfD3Ec.11783
-Date: Wed, 24 Jul 2019 13:33:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+I see in __oom_reap_task_mm():
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D88801
+			if (mmu_notifier_invalidate_range_start_nonblock(&range)) {
+				tlb_finish_mmu(&tlb, range.start, range.end);
+				ret = false;
+				continue;
+			}
+			unmap_page_range(&tlb, vma, range.start, range.end, NULL);
+			mmu_notifier_invalidate_range_end(&range);
 
-Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> changed:
+Which looks like it creates an unbalanced start/end pairing if any
+start returns EAGAIN?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Hardware|Other                       |x86-64 (AMD64)
+This does not seem OK.. Many users require start/end to be paired to
+keep track of their internal locking. Ie for instance hmm breaks
+because the hmm->notifiers counter becomes unable to get to 0.
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+Below is the best idea I've had so far..
 
---15639752380.CBccfD3Ec.11783
-Date: Wed, 24 Jul 2019 13:33:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+Michal, what do you think?
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:a9016009&=
-#64;gmx.de" title=3D"Andre Klapper &lt;a9016009&#64;gmx.de&gt;"> <span clas=
-s=3D"fn">Andre Klapper</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg segfaults while playing a video on kaffeine causing =
-immediate logout"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D88801">bug 88801<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+From 53638cd1cb02e65e670c5d4edfd36d067bb48912 Mon Sep 17 00:00:00 2001
+From: Jason Gunthorpe <jgg@mellanox.com>
+Date: Wed, 24 Jul 2019 12:15:40 -0300
+Subject: [PATCH] mm/mmu_notifiers: ensure invalidate_start and invalidate_end
+ occur in pairs
 
-         <tr>
-           <td style=3D"text-align:right;">Hardware</td>
-           <td>Other
-           </td>
-           <td>x86-64 (AMD64)
-           </td>
-         </tr></table>
-      <p>
-      </p>
+Many callers of mmu_notifiers invalidate_range callbacks maintain
+locking/counters/etc on a paired basis and have long expected that
+invalidate_range start/end are always paired.
 
+The recent change to add non-blocking notifiers breaks this assumption as
+an EAGAIN return from any notifier causes all notifiers to get their
+invalidate_range_end() skipped.
 
-      <hr>
-      <span>You are receiving this mail because:</span>
+If there is only a single mmu notifier in the list, this may work OK as
+the single subscriber may assume that the end is not called when EAGAIN is
+returned, however if there are multiple subcribers then there is no way
+for a notifier that succeeds to recover if another in the list triggers
+EAGAIN and causes the expected end to be skipped.
 
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
+Due to the RCU locking we can't reliably generate a subset of the linked
+list representing the notifiers already called, so the best option is to
+call all notifiers in the start path (even if EAGAIN is detected), and
+again in the error path to ensure there is proper pairing.
 
---15639752380.CBccfD3Ec.11783--
+Users that care about start/end pairing must be (re)written so that an
+EAGAIN return from their start method expects the end method to be called.
 
---===============0872558742==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
+Since incorect return codes will now cause a functional problem, add a
+WARN_ON to detect buggy users.
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+RFC: Need to audit/fix callers to ensure they order their EAGAIN returns
+properly. hmm is OK, ODP is not.
 
---===============0872558742==--
+Fixes: 93065ac753e4 ("mm, oom: distinguish blockable mode for mmu notifiers")
+Signed-off-by: Jason Gunthorpe <jgg@mellanox.com>
+---
+ mm/mmu_notifier.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/mm/mmu_notifier.c b/mm/mmu_notifier.c
+index b5670620aea0fc..7d8eca35f1627a 100644
+--- a/mm/mmu_notifier.c
++++ b/mm/mmu_notifier.c
+@@ -176,6 +176,7 @@ int __mmu_notifier_invalidate_range_start(struct mmu_notifier_range *range)
+ 		if (mn->ops->invalidate_range_start) {
+ 			int _ret = mn->ops->invalidate_range_start(mn, range);
+ 			if (_ret) {
++				WARN_ON(mmu_notifier_range_blockable(range) || rc != -EAGAIN);
+ 				pr_info("%pS callback failed with %d in %sblockable context.\n",
+ 					mn->ops->invalidate_range_start, _ret,
+ 					!mmu_notifier_range_blockable(range) ? "non-" : "");
+@@ -183,6 +184,19 @@ int __mmu_notifier_invalidate_range_start(struct mmu_notifier_range *range)
+ 			}
+ 		}
+ 	}
++
++	if (unlikely(ret)) {
++		/*
++		 * If we hit an -EAGAIN then we have to create a paired
++		 * range_end for the above range_start. Callers must be
++		 * arranged so that they can handle the range_end even if the
++		 * range_start returns EAGAIN.
++		 */
++		hlist_for_each_entry_rcu(mn, &range->mm->mmu_notifier_mm->list, hlist)
++			if (mn->ops->invalidate_range_end)
++				mn->ops->invalidate_range_end(mn, range);
++	}
++
+ 	srcu_read_unlock(&srcu, id);
+ 
+ 	return ret;
+-- 
+2.22.0
