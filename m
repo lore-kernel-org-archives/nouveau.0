@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 101778] Kernel Error on Lenovo P51 when setting
- graphics to hybrid (Nvidia Optimus with intel+nvidia)
-Date: Wed, 24 Jul 2019 00:53:23 +0000
-Message-ID: <bug-101778-8800-R6BeZCi16Q@http.bugs.freedesktop.org/>
-References: <bug-101778-8800@http.bugs.freedesktop.org/>
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Subject: hmm_range_fault related fixes and legacy API removal v3
+Date: Wed, 24 Jul 2019 08:52:51 +0200
+Message-ID: <20190724065258.16603-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0240302540=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-101778-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,129 +15,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0240302540==
-Content-Type: multipart/alternative; boundary="15639296031.50e3d2.30475"
-Content-Transfer-Encoding: 7bit
-
-
---15639296031.50e3d2.30475
-Date: Wed, 24 Jul 2019 00:53:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D101778
-
-Josef Larsson <josef.lar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         Resolution|---                         |FIXED
-             Status|NEEDINFO                    |RESOLVED
-
---- Comment #11 from Josef Larsson <josef.lar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Yes, this is fixed now. Running Gnome on Wayland with an external monitor
-connected to the DP port on the docking station without instabilities.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15639296031.50e3d2.30475
-Date: Wed, 24 Jul 2019 00:53:23 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:josef.lar=
-&#64;gmail.com" title=3D"Josef Larsson &lt;josef.lar&#64;gmail.com&gt;"> <s=
-pan class=3D"fn">Josef Larsson</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Kernel Error on Lenovo P51 when setting graphi=
-cs to hybrid (Nvidia Optimus with intel+nvidia)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101778">bug 10177=
-8</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEEDINFO
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Kernel Error on Lenovo P51 when setting graphi=
-cs to hybrid (Nvidia Optimus with intel+nvidia)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101778#c11">Comme=
-nt # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Kernel Error on Lenovo P51 when setting graphi=
-cs to hybrid (Nvidia Optimus with intel+nvidia)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101778">bug 10177=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-josef.lar&#64;gmail.com" title=3D"Josef Larsson &lt;josef.lar&#64;gmail.com=
-&gt;"> <span class=3D"fn">Josef Larsson</span></a>
-</span></b>
-        <pre>Yes, this is fixed now. Running Gnome on Wayland with an exter=
-nal monitor
-connected to the DP port on the docking station without instabilities.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15639296031.50e3d2.30475--
-
---===============0240302540==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0240302540==--
+SGkgSsOpcsO0bWUsIEJlbiBhbmQgSmFzb24sCgpiZWxvdyBpcyBhIHNlcmllcyBhZ2FpbnN0IHRo
+ZSBobW0gdHJlZSB3aGljaCBmaXhlcyB1cCB0aGUgbW1hcF9zZW0KbG9ja2luZyBpbiBub3V2ZWF1
+IGFuZCB3aGlsZSBhdCBpdCBhbHNvIHJlbW92ZXMgbGVmdG92ZXIgbGVnYWN5IEhNTSBBUElzCm9u
+bHkgdXNlZCBieSBub3V2ZWF1LgoKVGhlIGZpcnN0IDQgcGF0Y2hlcyBhcmUgYSBidWcgZml4IGZv
+ciBub3V2ZWF1LCB3aGljaCBJIHN1c3BlY3Qgc2hvdWxkCmdvIGludG8gdGhpcyBtZXJnZSB3aW5k
+b3cgZXZlbiBpZiB0aGUgY29kZSBpcyBtYXJrZWQgYXMgc3RhZ2luZywganVzdAp0byBhdm9pZCBw
+ZW9wbGUgY29weWluZyB0aGUgYnJlYWthZ2UuCgpDaGFuZ2VzIHNpbmNlIHYyOgogLSBuZXcgcGF0
+Y2ggZnJvbSBKYXNvbiB0byBkb2N1bWVudCBGQVVMVF9GTEFHX0FMTE9XX1JFVFJZIHNlbWFudGlj
+cwogICBiZXR0ZXIKIC0gcmVtb3ZlIC1FQUdBSU4gaGFuZGxpbmcgaW4gbm91dmVhdSBlYXJsaWVy
+CgpDaGFuZ2VzIHNpbmNlIHYxOgogLSBkb24ndCByZXR1cm4gdGhlIHZhbGlkIHN0YXRlIGZyb20g
+aG1tX3JhbmdlX3VucmVnaXN0ZXIKIC0gYWRkaXRpb25hbCBub3V2ZWF1IGNsZWFudXBzCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
+ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
