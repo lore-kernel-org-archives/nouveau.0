@@ -1,59 +1,46 @@
-From: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH] mm/hmm: replace hmm_update with mmu_notifier_range
-Date: Wed, 24 Jul 2019 17:18:33 -0300
-Message-ID: <20190724201833.GI28493@ziepe.ca>
+From: Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>
+Subject: Re: [PATCH] mm/hmm: replace hmm_update with
+ mmu_notifier_range
+Date: Wed, 24 Jul 2019 22:14:24 -0300
+Message-ID: <20190725011424.GA377@ziepe.ca>
 References: <20190723210506.25127-1-rcampbell@nvidia.com>
- <20190724070553.GA2523@lst.de>
- <20190724152858.GB28493@ziepe.ca>
- <20190724175858.GC6410@dhcp22.suse.cz>
- <20190724180837.GF28493@ziepe.ca>
- <20190724185617.GE6410@dhcp22.suse.cz>
- <20190724185910.GF6410@dhcp22.suse.cz>
- <20190724192155.GG28493@ziepe.ca>
- <20190724194855.GA15029@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20190724194855.GA15029@lst.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Christoph Hellwig <hch@lst.de>
-Cc: Michal Hocko <mhocko@kernel.org>, Ralph Campbell <rcampbell@nvidia.com>, linux-mm@kvack.org, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
+In-Reply-To: <20190723210506.25127-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Jul 24, 2019 at 09:48:55PM +0200, Christoph Hellwig wrote:
-> On Wed, Jul 24, 2019 at 04:21:55PM -0300, Jason Gunthorpe wrote:
-> > If we change the register to keep the hlist sorted by address then we
-> > can do a targetted 'undo' of past starts terminated by address
-> > less-than comparison of the first failing struct mmu_notifier.
-> > 
-> > It relies on the fact that rcu is only used to remove items, the list
-> > adds are all protected by mm locks, and the number of mmu notifiers is
-> > very small.
-> > 
-> > This seems workable and does not need more driver review/update...
-> > 
-> > However, hmm's implementation still needs more fixing.
-> 
-> Can we take one step back, please?  The only reason why drivers
-> implement both ->invalidate_range_start and ->invalidate_range_end and
-> expect them to be called paired is to keep some form of counter of
-> active invalidation "sections".  So instead of doctoring around
-> undo schemes the only sane answer is to take such a counter into the
-> core VM code instead of having each driver struggle with it.
-
-This might work as a hybrid sort of idea, like what HMM tried to do
-with the counter and valid together.
-
-If we keep the counter global and then provide an 'all invalidates
-finished' callback then the driver could potentially still ignore
-invalidates that do not touch its ranges during its page fault path.
-
-I'd have to sketch it..
-
-I agree it would solve this problem as well and better advance the
-goal to make mmu notifiers simpler to use.. 
-
-But I didn't audit all the invalidate_end users to be sure :)
-
-Jason
+T24gVHVlLCBKdWwgMjMsIDIwMTkgYXQgMDI6MDU6MDZQTSAtMDcwMCwgUmFscGggQ2FtcGJlbGwg
+d3JvdGU6Cj4gVGhlIGhtbV9taXJyb3Jfb3BzIGNhbGxiYWNrIGZ1bmN0aW9uIHN5bmNfY3B1X2Rl
+dmljZV9wYWdldGFibGVzKCkgcGFzc2VzCj4gYSBzdHJ1Y3QgaG1tX3VwZGF0ZSB3aGljaCBpcyBh
+IHNpbXBsaWZpZWQgdmVyc2lvbiBvZiBzdHJ1Y3QKPiBtbXVfbm90aWZpZXJfcmFuZ2UuIFRoaXMg
+aXMgdW5uZWNlc3Nhcnkgc28gcmVwbGFjZSBobW1fdXBkYXRlIHdpdGgKPiBtbXVfbm90aWZpZXJf
+cmFuZ2UgZGlyZWN0bHkuCj4gCj4gU2lnbmVkLW9mZi1ieTogUmFscGggQ2FtcGJlbGwgPHJjYW1w
+YmVsbEBudmlkaWEuY29tPgo+IENjOiAiSsOpcsO0bWUgR2xpc3NlIiA8amdsaXNzZUByZWRoYXQu
+Y29tPgo+IENjOiBKYXNvbiBHdW50aG9ycGUgPGpnZ0BtZWxsYW5veC5jb20+Cj4gQ2M6IENocmlz
+dG9waCBIZWxsd2lnIDxoY2hAbHN0LmRlPgo+IENjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhh
+dC5jb20+Cj4gCj4gVGhpcyBpcyBiYXNlZCBvbiA1LjMuMC1yYzEgcGx1cyBDaHJpc3RvcGggSGVs
+bHdpZydzIDYgcGF0Y2hlcwo+ICgiaG1tX3JhbmdlX2ZhdWx0IHJlbGF0ZWQgZml4ZXMgYW5kIGxl
+Z2FjeSBBUEkgcmVtb3ZhbCB2MiIpLgo+IEphc29uLCBJIGJlbGlldmUgdGhpcyBpcyB0aGUgcGF0
+Y2ggeW91IHdlcmUgcmVxdWVzdGluZy4KCkRvZXNuJ3QgdGhpcyBuZWVkIHJldmlzaW9uIHRvIGlu
+Y2x1ZGUgYW1ncHU/Cgpkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfbW4uYzogICAg
+ICAgICAuc3luY19jcHVfZGV2aWNlX3BhZ2V0YWJsZXMgPSBhbWRncHVfbW5fc3luY19wYWdldGFi
+bGVzX2dmeCwKZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X21uLmM6ICAgICAgICAg
+LnN5bmNfY3B1X2RldmljZV9wYWdldGFibGVzID0gYW1kZ3B1X21uX3N5bmNfcGFnZXRhYmxlc19o
+c2EsCgpUaGFua3MsCkphc29uCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
+dQ==
