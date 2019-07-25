@@ -1,15 +1,10 @@
-From: Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>
-Subject: Re: [PATCH] mm/hmm: replace hmm_update with
- mmu_notifier_range
-Date: Wed, 24 Jul 2019 22:14:24 -0300
-Message-ID: <20190725011424.GA377@ziepe.ca>
-References: <20190723210506.25127-1-rcampbell@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111213] New: VA-API nouveau SIGSEGV and asserts
+Date: Thu, 25 Jul 2019 07:16:35 +0000
+Message-ID: <bug-111213-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1849684757=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20190723210506.25127-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,28 +14,232 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKdWwgMjMsIDIwMTkgYXQgMDI6MDU6MDZQTSAtMDcwMCwgUmFscGggQ2FtcGJlbGwg
-d3JvdGU6Cj4gVGhlIGhtbV9taXJyb3Jfb3BzIGNhbGxiYWNrIGZ1bmN0aW9uIHN5bmNfY3B1X2Rl
-dmljZV9wYWdldGFibGVzKCkgcGFzc2VzCj4gYSBzdHJ1Y3QgaG1tX3VwZGF0ZSB3aGljaCBpcyBh
-IHNpbXBsaWZpZWQgdmVyc2lvbiBvZiBzdHJ1Y3QKPiBtbXVfbm90aWZpZXJfcmFuZ2UuIFRoaXMg
-aXMgdW5uZWNlc3Nhcnkgc28gcmVwbGFjZSBobW1fdXBkYXRlIHdpdGgKPiBtbXVfbm90aWZpZXJf
-cmFuZ2UgZGlyZWN0bHkuCj4gCj4gU2lnbmVkLW9mZi1ieTogUmFscGggQ2FtcGJlbGwgPHJjYW1w
-YmVsbEBudmlkaWEuY29tPgo+IENjOiAiSsOpcsO0bWUgR2xpc3NlIiA8amdsaXNzZUByZWRoYXQu
-Y29tPgo+IENjOiBKYXNvbiBHdW50aG9ycGUgPGpnZ0BtZWxsYW5veC5jb20+Cj4gQ2M6IENocmlz
-dG9waCBIZWxsd2lnIDxoY2hAbHN0LmRlPgo+IENjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhh
-dC5jb20+Cj4gCj4gVGhpcyBpcyBiYXNlZCBvbiA1LjMuMC1yYzEgcGx1cyBDaHJpc3RvcGggSGVs
-bHdpZydzIDYgcGF0Y2hlcwo+ICgiaG1tX3JhbmdlX2ZhdWx0IHJlbGF0ZWQgZml4ZXMgYW5kIGxl
-Z2FjeSBBUEkgcmVtb3ZhbCB2MiIpLgo+IEphc29uLCBJIGJlbGlldmUgdGhpcyBpcyB0aGUgcGF0
-Y2ggeW91IHdlcmUgcmVxdWVzdGluZy4KCkRvZXNuJ3QgdGhpcyBuZWVkIHJldmlzaW9uIHRvIGlu
-Y2x1ZGUgYW1ncHU/Cgpkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfbW4uYzogICAg
-ICAgICAuc3luY19jcHVfZGV2aWNlX3BhZ2V0YWJsZXMgPSBhbWRncHVfbW5fc3luY19wYWdldGFi
-bGVzX2dmeCwKZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X21uLmM6ICAgICAgICAg
-LnN5bmNfY3B1X2RldmljZV9wYWdldGFibGVzID0gYW1kZ3B1X21uX3N5bmNfcGFnZXRhYmxlc19o
-c2EsCgpUaGFua3MsCkphc29uCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQ==
+
+--===============1849684757==
+Content-Type: multipart/alternative; boundary="15640389950.644edf.23820"
+Content-Transfer-Encoding: 7bit
+
+
+--15640389950.644edf.23820
+Date: Thu, 25 Jul 2019 07:16:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111213
+
+            Bug ID: 111213
+           Summary: VA-API nouveau SIGSEGV and asserts
+           Product: Mesa
+           Version: 19.0
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: liewkj-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Tested hardware: Geforce 9300 mGPU (NVAC), GT730-GK208B (NV106)
+VA-API apps: gstreamer-vaapi, Chromium-vaapi-bin(AUR)
+OS: ArchLinux x86_64 kernel 5.2.2-arch1-1-ARCH
+GUI: GNOME/Wayland using nouveau
+
+- vainfo & vdpauinfo SIGSEV due to NULL pointer
+ArchLinux discussion thread
+https://bbs.archlinux.org/viewtopic.php?id=3D247466
+
+- h264 video decode failed with assertion and tendency to crash GNOME/GUI
+Test h264 clip:
+$ youtube-dl -f mp4 https://www.youtube.com/watch?v=3DazvR__GRQic
+Gstreamer command line
+$ gst-launch-1.0 playbin uri=3Dfile:///path/to/MP4
+or
+$ gst-launch-1.0 filesrc location=3D/path/to/MP4 ! qtdemux ! vaapidecodebin=
+ !
+vaapisink
+
+Use enhanced-h264ify plugin on Chromium to playback the same h264 video clip
+from YouTube.com
+Geforce 9300 mGPU - video played as garbage, browser may crash
+GT730 - fallback to FFmpegVideoDecoder after asserts
+ve4_set_surface_info:969 - unsupported surface format, try
+is_format_supported() !
+romium/chromium --type=3Dgpu-process
+--field-trial-handle=3D7734813049068668419,17986421265460211344,131072
+--disable-breakpad
+--gpu-preferences=3DKAAAAAAAAAAgAACgAQAAAAAAAAAAAGAAAAAAAAAAAAAIAAAAAAAAAAg=
+AAAAAAAAA
+--service-request-channel-token=3D7551475798706255496:
+../mesa-19.1.3/src/gallium/drivers/nouveau/nvc0/nve4_compute.c:396:
+nve4_compute_validate_constbufs: Assertion `i > 0' failed.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15640389950.644edf.23820
+Date: Thu, 25 Jul 2019 07:16:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - VA-API nouveau SIGSEGV and asserts"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111213">111213</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>VA-API nouveau SIGSEGV and asserts
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>19.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>liewkj&#64;yahoo.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Tested hardware: Geforce 9300 mGPU (NVAC), GT730-GK208B (NV106)
+VA-API apps: gstreamer-vaapi, Chromium-vaapi-bin(AUR)
+OS: ArchLinux x86_64 kernel 5.2.2-arch1-1-ARCH
+GUI: GNOME/Wayland using nouveau
+
+- vainfo &amp; vdpauinfo SIGSEV due to NULL pointer
+ArchLinux discussion thread
+<a href=3D"https://bbs.archlinux.org/viewtopic.php?id=3D247466">https://bbs=
+.archlinux.org/viewtopic.php?id=3D247466</a>
+
+- h264 video decode failed with assertion and tendency to crash GNOME/GUI
+Test h264 clip:
+$ youtube-dl -f mp4 <a href=3D"https://www.youtube.com/watch?v=3DazvR__GRQi=
+c">https://www.youtube.com/watch?v=3DazvR__GRQic</a>
+Gstreamer command line
+$ gst-launch-1.0 playbin uri=3Dfile:///path/to/MP4
+or
+$ gst-launch-1.0 filesrc location=3D/path/to/MP4 ! qtdemux ! vaapidecodebin=
+ !
+vaapisink
+
+Use enhanced-h264ify plugin on Chromium to playback the same h264 video clip
+from YouTube.com
+Geforce 9300 mGPU - video played as garbage, browser may crash
+GT730 - fallback to FFmpegVideoDecoder after asserts
+ve4_set_surface_info:969 - unsupported surface format, try
+is_format_supported() !
+romium/chromium --type=3Dgpu-process
+--field-trial-handle=3D7734813049068668419,17986421265460211344,131072
+--disable-breakpad
+--gpu-preferences=3DKAAAAAAAAAAgAACgAQAAAAAAAAAAAGAAAAAAAAAAAAAIAAAAAAAAAAg=
+AAAAAAAAA
+--service-request-channel-token=3D7551475798706255496:
+../mesa-19.1.3/src/gallium/drivers/nouveau/nvc0/nve4_compute.c:396:
+nve4_compute_validate_constbufs: Assertion `i &gt; 0' failed.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15640389950.644edf.23820--
+
+--===============1849684757==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1849684757==--
