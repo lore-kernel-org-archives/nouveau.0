@@ -1,12 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111213] VA-API nouveau SIGSEGV and asserts
-Date: Thu, 25 Jul 2019 17:22:22 +0000
-Message-ID: <bug-111213-8800-nF8LTf3nmR@http.bugs.freedesktop.org/>
-References: <bug-111213-8800@http.bugs.freedesktop.org/>
+From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH] mm/hmm: replace hmm_update with
+ mmu_notifier_range
+Date: Thu, 25 Jul 2019 10:53:54 -0700
+Message-ID: <e101947a-da37-2a9f-c673-fe0a54965e18@nvidia.com>
+References: <20190723210506.25127-1-rcampbell@nvidia.com>
+ <20190725011424.GA377@ziepe.ca>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0104756998=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20190725011424.GA377-uk2M96/98Pc@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -16,169 +20,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Jason Gunthorpe <jgg-uk2M96/98Pc@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0104756998==
-Content-Type: multipart/alternative; boundary="15640753421.24c6.26365"
-Content-Transfer-Encoding: 7bit
-
-
---15640753421.24c6.26365
-Date: Thu, 25 Jul 2019 17:22:22 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111213
-
---- Comment #3 from KJ Liew <liewkj-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> ---
-(In reply to LoneVVolf from comment #1)
-> Problem started with mesa 19.1.x and is also present in git master
-
-I am not quite sure if this started with mesa 19.1.x. On GT730 I downgraded
-mesa=20
-back to 19.0.6 and gstreamer is still broken. The vainfo/vdpauinfo SIGSEGV
-started with mesa 19.1.x. But that was just the simplest VA-API sanity check
-and I found that h264 video decoding remains broken.
-
-$ pacman -Qs mesa | grep ^[a-z]
-local/glu 9.0.0-5
-local/libva-mesa-driver 19.0.6-1
-local/mesa 19.0.6-1
-local/mesa-demos 8.4.0-1
-local/mesa-vdpau 19.0.6-1
-
-$ gst-launch-1.0 playbin uri=3Dfile:///path/to/MP4=20
-Setting pipeline to PAUSED ...
-Pipeline is PREROLLING ...
-Got context from element 'vaapipostproc0': gst.gl.GLDisplay=3Dcontext,
-gst.gl.GLDisplay=3D(GstGLDisplay)"\(GstGLDisplayWayland\)\ gldisplaywayland=
-0";
-Got context from element 'vaapipostproc0': gst.vaapi.Display=3Dcontext,
-gst.vaapi.Display=3D(GstVaapiDisplay)"\(GstVaapiDisplayEGL\)\ vaapidisplaye=
-gl0";
-Caught SIGSEGV
-Spinning.  Please run 'gdb gst-launch-1.0 1280' to continue debugging, Ctrl=
--C
-to quit, or Ctrl-\ to dump core.
-
-# gdb gst-launch-1.0 1280
-(gdb) bt
-#0  0x00007fa2e8de1667 in poll () from /usr/lib/libc.so.6
-#1  0x00007fa2e8b1aa80 in ?? () from /usr/lib/libglib-2.0.so.0
-#2  0x00007fa2e8b1ba63 in g_main_loop_run () from /usr/lib/libglib-2.0.so.0
-#3  0x00007fa2e8c73f52 in gst_bus_poll () from /usr/lib/libgstreamer-1.0.so=
-.0
-#4  0x0000563693c9f974 in ?? ()
-#5  0x0000563693c9e85c in ?? ()
-#6  0x00007fa2e8d16ee3 in __libc_start_main () from /usr/lib/libc.so.6
-#7  0x0000563693c9ed0e in _start ()
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15640753421.24c6.26365
-Date: Thu, 25 Jul 2019 17:22:22 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - VA-API nouveau SIGSEGV and asserts"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111213#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - VA-API nouveau SIGSEGV and asserts"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111213">bug 11121=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-liewkj&#64;yahoo.com" title=3D"KJ Liew &lt;liewkj&#64;yahoo.com&gt;"> <span=
- class=3D"fn">KJ Liew</span></a>
-</span></b>
-        <pre>(In reply to LoneVVolf from <a href=3D"show_bug.cgi?id=3D11121=
-3#c1">comment #1</a>)
-<span class=3D"quote">&gt; Problem started with mesa 19.1.x and is also pre=
-sent in git master</span >
-
-I am not quite sure if this started with mesa 19.1.x. On GT730 I downgraded
-mesa=20
-back to 19.0.6 and gstreamer is still broken. The vainfo/vdpauinfo SIGSEGV
-started with mesa 19.1.x. But that was just the simplest VA-API sanity check
-and I found that h264 video decoding remains broken.
-
-$ pacman -Qs mesa | grep ^[a-z]
-local/glu 9.0.0-5
-local/libva-mesa-driver 19.0.6-1
-local/mesa 19.0.6-1
-local/mesa-demos 8.4.0-1
-local/mesa-vdpau 19.0.6-1
-
-$ gst-launch-1.0 playbin uri=3Dfile:///path/to/MP4=20
-Setting pipeline to PAUSED ...
-Pipeline is PREROLLING ...
-Got context from element 'vaapipostproc0': gst.gl.GLDisplay=3Dcontext,
-gst.gl.GLDisplay=3D(GstGLDisplay)&quot;\(GstGLDisplayWayland\)\ gldisplaywa=
-yland0&quot;;
-Got context from element 'vaapipostproc0': gst.vaapi.Display=3Dcontext,
-gst.vaapi.Display=3D(GstVaapiDisplay)&quot;\(GstVaapiDisplayEGL\)\ vaapidis=
-playegl0&quot;;
-Caught SIGSEGV
-Spinning.  Please run 'gdb gst-launch-1.0 1280' to continue debugging, Ctrl=
--C
-to quit, or Ctrl-\ to dump core.
-
-# gdb gst-launch-1.0 1280
-(gdb) bt
-#0  0x00007fa2e8de1667 in poll () from /usr/lib/libc.so.6
-#1  0x00007fa2e8b1aa80 in ?? () from /usr/lib/libglib-2.0.so.0
-#2  0x00007fa2e8b1ba63 in g_main_loop_run () from /usr/lib/libglib-2.0.so.0
-#3  0x00007fa2e8c73f52 in gst_bus_poll () from /usr/lib/libgstreamer-1.0.so=
-.0
-#4  0x0000563693c9f974 in ?? ()
-#5  0x0000563693c9e85c in ?? ()
-#6  0x00007fa2e8d16ee3 in __libc_start_main () from /usr/lib/libc.so.6
-#7  0x0000563693c9ed0e in _start ()</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15640753421.24c6.26365--
-
---===============0104756998==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0104756998==--
+Ck9uIDcvMjQvMTkgNjoxNCBQTSwgSmFzb24gR3VudGhvcnBlIHdyb3RlOgo+IE9uIFR1ZSwgSnVs
+IDIzLCAyMDE5IGF0IDAyOjA1OjA2UE0gLTA3MDAsIFJhbHBoIENhbXBiZWxsIHdyb3RlOgo+PiBU
+aGUgaG1tX21pcnJvcl9vcHMgY2FsbGJhY2sgZnVuY3Rpb24gc3luY19jcHVfZGV2aWNlX3BhZ2V0
+YWJsZXMoKSBwYXNzZXMKPj4gYSBzdHJ1Y3QgaG1tX3VwZGF0ZSB3aGljaCBpcyBhIHNpbXBsaWZp
+ZWQgdmVyc2lvbiBvZiBzdHJ1Y3QKPj4gbW11X25vdGlmaWVyX3JhbmdlLiBUaGlzIGlzIHVubmVj
+ZXNzYXJ5IHNvIHJlcGxhY2UgaG1tX3VwZGF0ZSB3aXRoCj4+IG1tdV9ub3RpZmllcl9yYW5nZSBk
+aXJlY3RseS4KPj4KPj4gU2lnbmVkLW9mZi1ieTogUmFscGggQ2FtcGJlbGwgPHJjYW1wYmVsbEBu
+dmlkaWEuY29tPgo+PiBDYzogIkrDqXLDtG1lIEdsaXNzZSIgPGpnbGlzc2VAcmVkaGF0LmNvbT4K
+Pj4gQ2M6IEphc29uIEd1bnRob3JwZSA8amdnQG1lbGxhbm94LmNvbT4KPj4gQ2M6IENocmlzdG9w
+aCBIZWxsd2lnIDxoY2hAbHN0LmRlPgo+PiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQu
+Y29tPgo+Pgo+PiBUaGlzIGlzIGJhc2VkIG9uIDUuMy4wLXJjMSBwbHVzIENocmlzdG9waCBIZWxs
+d2lnJ3MgNiBwYXRjaGVzCj4+ICgiaG1tX3JhbmdlX2ZhdWx0IHJlbGF0ZWQgZml4ZXMgYW5kIGxl
+Z2FjeSBBUEkgcmVtb3ZhbCB2MiIpLgo+PiBKYXNvbiwgSSBiZWxpZXZlIHRoaXMgaXMgdGhlIHBh
+dGNoIHlvdSB3ZXJlIHJlcXVlc3RpbmcuCj4gCj4gRG9lc24ndCB0aGlzIG5lZWQgcmV2aXNpb24g
+dG8gaW5jbHVkZSBhbWdwdT8KPiAKPiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVf
+bW4uYzogICAgICAgICAuc3luY19jcHVfZGV2aWNlX3BhZ2V0YWJsZXMgPSBhbWRncHVfbW5fc3lu
+Y19wYWdldGFibGVzX2dmeCwKPiBkcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfbW4u
+YzogICAgICAgICAuc3luY19jcHVfZGV2aWNlX3BhZ2V0YWJsZXMgPSBhbWRncHVfbW5fc3luY19w
+YWdldGFibGVzX2hzYSwKPiAKPiBUaGFua3MsCj4gSmFzb24KPiAKClllcy4gSSBoYXZlIGFkZGVk
+IHRoaXMgdG8gdjIgd2hpY2ggSSdsbCBzZW5kIG91dCB3aXRoIENocmlzdG9waCdzIDIgCnBhdGNo
+ZXMgYW5kIHRoZSBobW1fcmFuZ2Uudm1hIHJlbW92YWwgcGF0Y2ggeW91IHN1Z2dlc3RlZC4KX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
+aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
