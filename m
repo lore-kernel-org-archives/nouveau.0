@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111213] VA-API nouveau SIGSEGV and asserts
-Date: Thu, 25 Jul 2019 14:05:51 +0000
-Message-ID: <bug-111213-8800-oLrgcAh3vz@http.bugs.freedesktop.org/>
-References: <bug-111213-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 111217] New: compilation of vdpau shaders crashes in
+ handleCVT_CVT
+Date: Thu, 25 Jul 2019 14:24:09 +0000
+Message-ID: <bug-111217-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0367011083=="
+Content-Type: multipart/mixed; boundary="===============2016897442=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,43 +19,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0367011083==
-Content-Type: multipart/alternative; boundary="15640635511.55dF42F.24578"
+--===============2016897442==
+Content-Type: multipart/alternative; boundary="15640646490.F5A5c4.28131"
 Content-Transfer-Encoding: 7bit
 
 
---15640635511.55dF42F.24578
-Date: Thu, 25 Jul 2019 14:05:51 +0000
+--15640646490.F5A5c4.28131
+Date: Thu, 25 Jul 2019 14:24:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111213
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111217
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-There have been a lot of changes to st/va lately, without much effort to ma=
-king
-sure the changes work on more than the target hardware (which nouveau is no=
-t).
-As such, this is not surprising.
+            Bug ID: 111217
+           Summary: compilation of vdpau shaders crashes in handleCVT_CVT
+           Product: Mesa
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-I can't get gst-launch to work, probably missing something, I try to avoid
-having gstreamer installed (but seem to have failed, since gst-launch is
-there...). Can't seem to get ffplay to do it either. Someone who cares about
-va-api will have to investigate this.
+Thread 1 "mplayer" received signal SIGSEGV, Segmentation fault.
+nv50_ir::AlgebraicOpt::handleCVT_CVT(nv50_ir::Instruction*) ()
+    at ../src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp:2085
+2085       if (insn->saturate ||
 
-[In the meanwhile, looks like vdpau also got f'd, but I'll fix that... it's
-some kind of generic compiler optimization failure.]
+
+I don't have the shader because someone decided that DEBUG setting and
+optimization level must be linked. And to turn it off by default. Sigh.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15640635511.55dF42F.24578
-Date: Thu, 25 Jul 2019 14:05:51 +0000
+--15640646490.F5A5c4.28131
+Date: Thu, 25 Jul 2019 14:24:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,36 +74,99 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - compilation of vdpau shaders crashes in handleCVT_CVT"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111217">111217</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>compilation of vdpau shaders crashes in handleCVT_CVT
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>imirkin&#64;alum.mit.edu
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - VA-API nouveau SIGSEGV and asserts"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111213#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - VA-API nouveau SIGSEGV and asserts"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111213">bug 11121=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>There have been a lot of changes to st/va lately, without much=
- effort to making
-sure the changes work on more than the target hardware (which nouveau is no=
-t).
-As such, this is not surprising.
+        <pre>Thread 1 &quot;mplayer&quot; received signal SIGSEGV, Segmenta=
+tion fault.
+nv50_ir::AlgebraicOpt::handleCVT_CVT(nv50_ir::Instruction*) ()
+    at ../src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp:2085
+2085       if (insn-&gt;saturate ||
 
-I can't get gst-launch to work, probably missing something, I try to avoid
-having gstreamer installed (but seem to have failed, since gst-launch is
-there...). Can't seem to get ffplay to do it either. Someone who cares about
-va-api will have to investigate this.
 
-[In the meanwhile, looks like vdpau also got f'd, but I'll fix that... it's
-some kind of generic compiler optimization failure.]</pre>
+I don't have the shader because someone decided that DEBUG setting and
+optimization level must be linked. And to turn it off by default. Sigh.</pr=
+e>
         </div>
       </p>
 
@@ -111,9 +181,9 @@ some kind of generic compiler optimization failure.]</pre>
     </body>
 </html>=
 
---15640635511.55dF42F.24578--
+--15640646490.F5A5c4.28131--
 
---===============0367011083==
+--===============2016897442==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +193,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0367011083==--
+--===============2016897442==--
