@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111218] Segmentation fault in
  nv50_ir::NVC0LegalizeSSA::handleDIV when dividing result of textureSize
-Date: Thu, 25 Jul 2019 18:50:19 +0000
-Message-ID: <bug-111218-8800-52z1V8GeWi@http.bugs.freedesktop.org/>
+Date: Thu, 25 Jul 2019 19:00:27 +0000
+Message-ID: <bug-111218-8800-kd5vLLanxs@http.bugs.freedesktop.org/>
 References: <bug-111218-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0910278823=="
+Content-Type: multipart/mixed; boundary="===============1282564854=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111218-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0910278823==
-Content-Type: multipart/alternative; boundary="15640806181.5ba6E1c9B.8092"
+--===============1282564854==
+Content-Type: multipart/alternative; boundary="15640812260.ebE89Ab2e.9581"
 Content-Transfer-Encoding: 7bit
 
 
---15640806181.5ba6E1c9B.8092
-Date: Thu, 25 Jul 2019 18:50:18 +0000
+--15640812260.ebE89Ab2e.9581
+Date: Thu, 25 Jul 2019 19:00:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111218
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I suspect that the issue is that cell is 0 (perhaps it's in a loop that's
-unrolled). This is fixed by
-https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D7493fbf032f5bcbf4c48187=
-bc089c9a34f04a1d5
+--- Comment #2 from mmgrqnv-WjRXt+NQiJIEUmgCuDUIdw@public.gmane.org ---
+Hi! Thank you for the very quick response!
 
-Note that this will only happen in debug mesa builds.
+You are right! The value of cell was 0. Replacing that with 1 also avoids t=
+he
+crash.
+Do you know if there are any binary packages available that include that
+commit?
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15640806181.5ba6E1c9B.8092
-Date: Thu, 25 Jul 2019 18:50:18 +0000
+--15640812260.ebE89Ab2e.9581
+Date: Thu, 25 Jul 2019 19:00:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +69,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Segmentation fault in nv50_ir::NVC0LegalizeSSA::handleDIV=
  when dividing result of textureSize"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111218#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111218#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Segmentation fault in nv50_ir::NVC0LegalizeSSA::handleDIV=
@@ -77,17 +78,16 @@ t # 1</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111218">bug 11121=
 8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+mmgrqnv&#64;jadamspam.pl" title=3D"mmgrqnv&#64;jadamspam.pl">mmgrqnv&#64;ja=
+damspam.pl</a>
 </span></b>
-        <pre>I suspect that the issue is that cell is 0 (perhaps it's in a =
-loop that's
-unrolled). This is fixed by
-<a href=3D"https://cgit.freedesktop.org/mesa/mesa/commit/?id=3D7493fbf032f5=
-bcbf4c48187bc089c9a34f04a1d5">https://cgit.freedesktop.org/mesa/mesa/commit=
-/?id=3D7493fbf032f5bcbf4c48187bc089c9a34f04a1d5</a>
+        <pre>Hi! Thank you for the very quick response!
 
-Note that this will only happen in debug mesa builds.</pre>
+You are right! The value of cell was 0. Replacing that with 1 also avoids t=
+he
+crash.
+Do you know if there are any binary packages available that include that
+commit?</pre>
         </div>
       </p>
 
@@ -96,15 +96,15 @@ Note that this will only happen in debug mesa builds.</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15640806181.5ba6E1c9B.8092--
+--15640812260.ebE89Ab2e.9581--
 
---===============0910278823==
+--===============1282564854==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0910278823==--
+--===============1282564854==--
