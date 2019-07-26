@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111218] Segmentation fault in
- nv50_ir::NVC0LegalizeSSA::handleDIV when dividing result of textureSize
-Date: Fri, 26 Jul 2019 14:31:35 +0000
-Message-ID: <bug-111218-8800-8ZsbXBCpkP@http.bugs.freedesktop.org/>
-References: <bug-111218-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 111217] compilation of vdpau shaders crashes in
+ handleCVT_CVT
+Date: Fri, 26 Jul 2019 14:38:01 +0000
+Message-ID: <bug-111217-8800-apIp4VTZ97@http.bugs.freedesktop.org/>
+References: <bug-111217-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0087388580=="
+Content-Type: multipart/mixed; boundary="===============0980994058=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111218-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-111217-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0087388580==
-Content-Type: multipart/alternative; boundary="15641514950.5CDFa8a.27924"
+--===============0980994058==
+Content-Type: multipart/alternative; boundary="15641518800.4E8ab2.29438"
 Content-Transfer-Encoding: 7bit
 
 
---15641514950.5CDFa8a.27924
-Date: Fri, 26 Jul 2019 14:31:35 +0000
+--15641518800.4E8ab2.29438
+Date: Fri, 26 Jul 2019 14:38:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111218
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111217
 
---- Comment #8 from mmgrqnv-WjRXt+NQiJIEUmgCuDUIdw@public.gmane.org ---
-This was on Ubuntu 18.04.2 LTS.
-Specific package version: libgl1-mesa-dri: 19.0.2-1ubuntu1.1~18.04.2.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Nope, this is the same issue.
+
+Patch series at https://patchwork.freedesktop.org/series/64282/ should fix =
+you
+right up.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15641514950.5CDFa8a.27924
-Date: Fri, 26 Jul 2019 14:31:35 +0000
+--15641518800.4E8ab2.29438
+Date: Fri, 26 Jul 2019 14:38:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,23 +64,24 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Segmentation fault in nv50_ir::NVC0Legaliz=
-eSSA::handleDIV when dividing result of textureSize"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111218#c8">Commen=
-t # 8</a>
+          bz_status_NEW "
+   title=3D"NEW - compilation of vdpau shaders crashes in handleCVT_CVT"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111217#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Segmentation fault in nv50_ir::NVC0Legaliz=
-eSSA::handleDIV when dividing result of textureSize"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111218">bug 11121=
-8</a>
+          bz_status_NEW "
+   title=3D"NEW - compilation of vdpau shaders crashes in handleCVT_CVT"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111217">bug 11121=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mmgrqnv&#64;jadamspam.pl" title=3D"mmgrqnv&#64;jadamspam.pl">mmgrqnv&#64;ja=
-damspam.pl</a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>This was on Ubuntu 18.04.2 LTS.
-Specific package version: libgl1-mesa-dri: 19.0.2-1ubuntu1.1~18.04.2.</pre>
+        <pre>Nope, this is the same issue.
+
+Patch series at <a href=3D"https://patchwork.freedesktop.org/series/64282/"=
+>https://patchwork.freedesktop.org/series/64282/</a> should fix you
+right up.</pre>
         </div>
       </p>
 
@@ -92,9 +96,9 @@ Specific package version: libgl1-mesa-dri: 19.0.2-1ubuntu1.1~18.04.2.</pre>
     </body>
 </html>=
 
---15641514950.5CDFa8a.27924--
+--15641518800.4E8ab2.29438--
 
---===============0087388580==
+--===============0980994058==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0087388580==--
+--===============0980994058==--
