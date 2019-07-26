@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 5.2 83/85] drm/nouveau: fix memory leak in
+Subject: [PATCH AUTOSEL 4.19 47/47] drm/nouveau: fix memory leak in
  nouveau_conn_reset()
-Date: Fri, 26 Jul 2019 09:39:33 -0400
-Message-ID: <20190726133936.11177-83-sashal@kernel.org>
-References: <20190726133936.11177-1-sashal@kernel.org>
+Date: Fri, 26 Jul 2019 09:42:10 -0400
+Message-ID: <20190726134210.12156-47-sashal@kernel.org>
+References: <20190726134210.12156-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20190726133936.11177-1-sashal@kernel.org>
+In-Reply-To: <20190726134210.12156-1-sashal@kernel.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
@@ -57,10 +57,10 @@ bmVkLW9mZi1ieTogU2FzaGEgTGV2aW4gPHNhc2hhbEBrZXJuZWwub3JnPgotLS0KIGRyaXZlcnMv
 Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMgfCAyICstCiAxIGZpbGUgY2hhbmdl
 ZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
 dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9jb25uZWN0b3IuYwppbmRleCA0MTE2ZWU2MmFkYWYuLmY2OWZmMjJiZWVlMCAx
+YXUvbm91dmVhdV9jb25uZWN0b3IuYwppbmRleCAyNDdmNzJjYzRkMTAuLmZiMDA5NGZjNTU4MyAx
 MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwor
-KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jCkBAIC0yNTIs
-NyArMjUyLDcgQEAgbm91dmVhdV9jb25uX3Jlc2V0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25u
+KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jCkBAIC0yNTEs
+NyArMjUxLDcgQEAgbm91dmVhdV9jb25uX3Jlc2V0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25u
 ZWN0b3IpCiAJCXJldHVybjsKIAogCWlmIChjb25uZWN0b3ItPnN0YXRlKQotCQlfX2RybV9hdG9t
 aWNfaGVscGVyX2Nvbm5lY3Rvcl9kZXN0cm95X3N0YXRlKGNvbm5lY3Rvci0+c3RhdGUpOworCQlu
 b3V2ZWF1X2Nvbm5fYXRvbWljX2Rlc3Ryb3lfc3RhdGUoY29ubmVjdG9yLCBjb25uZWN0b3ItPnN0
