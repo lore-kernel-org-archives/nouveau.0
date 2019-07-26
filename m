@@ -1,14 +1,14 @@
 From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 4.19 47/47] drm/nouveau: fix memory leak in
+Subject: [PATCH AUTOSEL 4.14 37/37] drm/nouveau: fix memory leak in
  nouveau_conn_reset()
-Date: Fri, 26 Jul 2019 09:42:10 -0400
-Message-ID: <20190726134210.12156-47-sashal@kernel.org>
-References: <20190726134210.12156-1-sashal@kernel.org>
+Date: Fri, 26 Jul 2019 09:43:32 -0400
+Message-ID: <20190726134332.12626-37-sashal@kernel.org>
+References: <20190726134332.12626-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20190726134210.12156-1-sashal@kernel.org>
+In-Reply-To: <20190726134332.12626-1-sashal@kernel.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
@@ -57,7 +57,7 @@ bmVkLW9mZi1ieTogU2FzaGEgTGV2aW4gPHNhc2hhbEBrZXJuZWwub3JnPgotLS0KIGRyaXZlcnMv
 Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMgfCAyICstCiAxIGZpbGUgY2hhbmdl
 ZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
 dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9jb25uZWN0b3IuYwppbmRleCAyNDdmNzJjYzRkMTAuLmZiMDA5NGZjNTU4MyAx
+YXUvbm91dmVhdV9jb25uZWN0b3IuYwppbmRleCAyYzZkMTk2ODM2ODguLjRhN2Q1MGE5NmQzNiAx
 MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwor
 KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jCkBAIC0yNTEs
 NyArMjUxLDcgQEAgbm91dmVhdV9jb25uX3Jlc2V0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25u
