@@ -1,58 +1,29 @@
-From: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH v2 0/7] mm/hmm: more HMM clean up
-Date: Fri, 26 Jul 2019 12:45:32 -0300
-Message-ID: <20190726154532.GA29678@ziepe.ca>
+From: Ralph Campbell <rcampbell@nvidia.com>
+Subject: Re: [PATCH v2 2/7] mm/hmm: a few more C style and comment clean ups
+Date: Fri, 26 Jul 2019 10:11:48 -0700
+Message-ID: <6673dc71-f43e-849f-ca36-0b20805fc092@nvidia.com>
 References: <20190726005650.2566-1-rcampbell@nvidia.com>
+ <20190726005650.2566-3-rcampbell@nvidia.com> <20190726062320.GA22881@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20190726005650.2566-1-rcampbell@nvidia.com>
+In-Reply-To: <20190726062320.GA22881@lst.de>
+Content-Language: en-US
 Sender: linux-kernel-owner@vger.kernel.org
-To: Ralph Campbell <rcampbell@nvidia.com>
-Cc: linux-mm@kvack.org, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+To: Christoph Hellwig <hch@lst.de>
+Cc: linux-mm@kvack.org, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jul 25, 2019 at 05:56:43PM -0700, Ralph Campbell wrote:
-> Here are seven more patches for things I found to clean up.
-> This was based on top of Christoph's seven patches:
-> "hmm_range_fault related fixes and legacy API removal v3".
-> I assume this will go into Jason's tree since there will likely be
-> more HMM changes in this cycle.
->
-> Changes from v1 to v2:
+
+On 7/25/19 11:23 PM, Christoph Hellwig wrote:
+> Note: it seems like you've only CCed me on patches 2-7, but not on the
+> cover letter and patch 1.  I'll try to find them later, but to make Ccs
+> useful they should normally cover the whole series.
 > 
-> Added AMD GPU to hmm_update removal.
-> Added 2 patches from Christoph.
-> Added 2 patches as a result of Jason's suggestions.
+> Otherwise this looks fine to me:
 > 
-> Christoph Hellwig (2):
->   mm/hmm: replace the block argument to hmm_range_fault with a flags
->     value
->   mm: merge hmm_range_snapshot into hmm_range_fault
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
 > 
-> Ralph Campbell (5):
->   mm/hmm: replace hmm_update with mmu_notifier_range
->   mm/hmm: a few more C style and comment clean ups
->   mm/hmm: remove hugetlbfs check in hmm_vma_walk_pmd
->   mm/hmm: remove hmm_range vma
 
-For all of these:
-
-Reviewed-by: Jason Gunthorpe <jgg@mellanox.com>
-
-I've applied this to hmm.git, excluding:
-
->   mm/hmm: make full use of walk_page_range()
-
-Pending further discussion.
-
-Based on last cycle I've decided to move good patches into linux-next
-earlier and rely on some rebase if needed. This is to help Andrew's
-workflow.
-
-So, if there are more tags/etc please continue to send them, I will
-sort it..
-
-Thanks,
-Jason
+Thanks for the review and sorry about the oversight on CCs.
