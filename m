@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111218] Segmentation fault in
- nv50_ir::NVC0LegalizeSSA::handleDIV when dividing result of textureSize
+Subject: [Bug 111167] Dividing zero by a uniform in loop header
+ causes segfault in nv50_ir::NVC0LegalizeSSA::handleDIV
 Date: Fri, 26 Jul 2019 13:09:04 +0000
-Message-ID: <bug-111218-8800-FdlTo94KIZ@http.bugs.freedesktop.org/>
-References: <bug-111218-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-111167-8800-A6TYbyDUVp@http.bugs.freedesktop.org/>
+References: <bug-111167-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0823866498=="
+Content-Type: multipart/mixed; boundary="===============1514596257=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111218-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-111167-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,42 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0823866498==
-Content-Type: multipart/alternative; boundary="15641465430.fc5e19dc.13114"
+--===============1514596257==
+Content-Type: multipart/alternative; boundary="15641465440.cF5Bd.13114"
 Content-Transfer-Encoding: 7bit
 
 
---15641465430.fc5e19dc.13114
-Date: Fri, 26 Jul 2019 13:09:03 +0000
+--15641465440.cF5Bd.13114
+Date: Fri, 26 Jul 2019 13:09:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111218
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111167
 
 mmgrqnv-WjRXt+NQiJIEUmgCuDUIdw@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |DUPLICATE
-             Status|NEW                         |RESOLVED
+                 CC|                            |mmgrqnv-WjRXt+NQiJIEUmgCuDUIdw@public.gmane.org
 
---- Comment #6 from mmgrqnv-WjRXt+NQiJIEUmgCuDUIdw@public.gmane.org ---
-That was it. I can confirm that the commit you linked fixes my problem.
-I will mark this bug as a duplicate of 111167 and close.
-Thank you very much for your help!
-
-*** This bug has been marked as a duplicate of bug 111167 ***
+--- Comment #2 from mmgrqnv-WjRXt+NQiJIEUmgCuDUIdw@public.gmane.org ---
+*** Bug 111218 has been marked as a duplicate of this bug. ***
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15641465430.fc5e19dc.13114
-Date: Fri, 26 Jul 2019 13:09:03 +0000
+--15641465440.cF5Bd.13114
+Date: Fri, 26 Jul 2019 13:09:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,11 +67,11 @@ Auto-Submitted: auto-generated
 l</a>
 </span> changed
           <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Segmentation fault in nv50_ir::NVC0Legaliz=
-eSSA::handleDIV when dividing result of textureSize"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111218">bug 11121=
-8</a>
+          bz_status_NEW "
+   title=3D"NEW - Dividing zero by a uniform in loop header causes segfault=
+ in nv50_ir::NVC0LegalizeSSA::handleDIV"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111167">bug 11116=
+7</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -86,48 +81,37 @@ eSSA::handleDIV when dividing result of textureSize"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
            </td>
-           <td>DUPLICATE
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
+           <td>mmgrqnv&#64;jadamspam.pl
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Segmentation fault in nv50_ir::NVC0Legaliz=
-eSSA::handleDIV when dividing result of textureSize"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111218#c6">Commen=
-t # 6</a>
+          bz_status_NEW "
+   title=3D"NEW - Dividing zero by a uniform in loop header causes segfault=
+ in nv50_ir::NVC0LegalizeSSA::handleDIV"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111167#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Segmentation fault in nv50_ir::NVC0Legaliz=
-eSSA::handleDIV when dividing result of textureSize"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111218">bug 11121=
-8</a>
+          bz_status_NEW "
+   title=3D"NEW - Dividing zero by a uniform in loop header causes segfault=
+ in nv50_ir::NVC0LegalizeSSA::handleDIV"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111167">bug 11116=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 mmgrqnv&#64;jadamspam.pl" title=3D"mmgrqnv&#64;jadamspam.pl">mmgrqnv&#64;ja=
 damspam.pl</a>
 </span></b>
-        <pre>That was it. I can confirm that the commit you linked fixes my=
- problem.
-I will mark this bug as a duplicate of 111167 and close.
-Thank you very much for your help!
-
-*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Dividing zero by a uniform in loop header causes segfault=
- in nv50_ir::NVC0LegalizeSSA::handleDIV"
-   href=3D"show_bug.cgi?id=3D111167">bug 111167</a> ***</pre>
+        <pre>*** <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Segmentation fault in nv50_ir::NVC0Legaliz=
+eSSA::handleDIV when dividing result of textureSize"
+   href=3D"show_bug.cgi?id=3D111218">Bug 111218</a> has been marked as a du=
+plicate of this bug. ***</pre>
         </div>
       </p>
 
@@ -136,15 +120,15 @@ Thank you very much for your help!
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15641465430.fc5e19dc.13114--
+--15641465440.cF5Bd.13114--
 
---===============0823866498==
+--===============1514596257==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -154,4 +138,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0823866498==--
+--===============1514596257==--
