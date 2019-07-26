@@ -1,109 +1,44 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 2/2] drm/nouveau: Don't retry infinitely when receiving no data on i2c over AUX
-Date: Thu, 25 Jul 2019 15:40:01 -0400
-Message-ID: <20190725194005.16572-3-lyude@redhat.com>
-References: <20190725194005.16572-1-lyude@redhat.com>
+From: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Subject: Re: hmm_range_fault related fixes and legacy API removal
+ v3
+Date: Fri, 26 Jul 2019 00:16:30 +0000
+Message-ID: <20190726001622.GL7450@mellanox.com>
+References: <20190724065258.16603-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190725194005.16572-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190724065258.16603-1-hch-jcswGhMUV9g@public.gmane.org>
+Content-Language: en-US
+Content-ID: <86BBF3FDDFDEC14E88EE4CCBA4717F7E-wNKe6lTLrGecE4WynfumptQqCkab/8FMAL8bYrjMMd8@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-While I had thought I had fixed this issue in:
-
-commit 342406e4fbba ("drm/nouveau/i2c: Disable i2c bus access after
-->fini()")
-
-It turns out that while I did fix the error messages I was seeing on my
-P50 when trying to access i2c busses with the GPU in runtime suspend, I
-accidentally had missed one important detail that was mentioned on the
-bug report this commit was supposed to fix: that the CPU would only lock
-up when trying to access i2c busses _on connected devices_ _while the
-GPU is not in runtime suspend_. Whoops. That definitely explains why I
-was not able to get my machine to hang with i2c bus interactions until
-now, as plugging my P50 into it's dock with an HDMI monitor connected
-allowed me to finally reproduce this locally.
-
-Now that I have managed to reproduce this issue properly, it looks like
-the problem is much simpler then it looks. It turns out that some
-connected devices, such as MST laptop docks, will actually ACK i2c reads
-even if no data was actually read:
-
-[  275.063043] nouveau 0000:01:00.0: i2c: aux 000a: 1: 0000004c 1
-[  275.063447] nouveau 0000:01:00.0: i2c: aux 000a: 00 01101000 10040000
-[  275.063759] nouveau 0000:01:00.0: i2c: aux 000a: rd 00000001
-[  275.064024] nouveau 0000:01:00.0: i2c: aux 000a: rd 00000000
-[  275.064285] nouveau 0000:01:00.0: i2c: aux 000a: rd 00000000
-[  275.064594] nouveau 0000:01:00.0: i2c: aux 000a: rd 00000000
-
-Because we don't handle the situation of i2c ack without any data, we
-end up entering an infinite loop in nvkm_i2c_aux_i2c_xfer() since the
-value of cnt always remains at 0. This finally properly explains how
-this could result in a CPU hang like the ones observed in the
-aforementioned commit.
-
-So, fix this by retrying transactions if no data is written or received,
-and give up and fail the transaction if we continue to not write or
-receive any data after 32 retries.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c | 24 +++++++++++++------
- 1 file changed, 17 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
-index b4e7404fe660..a11637b0f6cc 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
-@@ -40,8 +40,7 @@ nvkm_i2c_aux_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
- 		u8 *ptr = msg->buf;
- 
- 		while (remaining) {
--			u8 cnt = (remaining > 16) ? 16 : remaining;
--			u8 cmd;
-+			u8 cnt, retries, cmd;
- 
- 			if (msg->flags & I2C_M_RD)
- 				cmd = 1;
-@@ -51,10 +50,19 @@ nvkm_i2c_aux_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
- 			if (mcnt || remaining > 16)
- 				cmd |= 4; /* MOT */
- 
--			ret = aux->func->xfer(aux, true, cmd, msg->addr, ptr, &cnt);
--			if (ret < 0) {
--				nvkm_i2c_aux_release(aux);
--				return ret;
-+			for (retries = 0, cnt = 0;
-+			     retries < 32 && !cnt;
-+			     retries++) {
-+				cnt = min_t(u8, remaining, 16);
-+				ret = aux->func->xfer(aux, true, cmd,
-+						      msg->addr, ptr, &cnt);
-+				if (ret < 0)
-+					goto out;
-+			}
-+			if (!cnt) {
-+				AUX_TRACE(aux, "no data after 32 retries");
-+				ret = -EIO;
-+				goto out;
- 			}
- 
- 			ptr += cnt;
-@@ -64,8 +72,10 @@ nvkm_i2c_aux_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
- 		msg++;
- 	}
- 
-+	ret = num;
-+out:
- 	nvkm_i2c_aux_release(aux);
--	return num;
-+	return ret;
- }
- 
- static u32
--- 
-2.21.0
+T24gV2VkLCBKdWwgMjQsIDIwMTkgYXQgMDg6NTI6NTFBTSArMDIwMCwgQ2hyaXN0b3BoIEhlbGx3
+aWcgd3JvdGU6DQo+IEhpIErDqXLDtG1lLCBCZW4gYW5kIEphc29uLA0KPiANCj4gYmVsb3cgaXMg
+YSBzZXJpZXMgYWdhaW5zdCB0aGUgaG1tIHRyZWUgd2hpY2ggZml4ZXMgdXAgdGhlIG1tYXBfc2Vt
+DQo+IGxvY2tpbmcgaW4gbm91dmVhdSBhbmQgd2hpbGUgYXQgaXQgYWxzbyByZW1vdmVzIGxlZnRv
+dmVyIGxlZ2FjeSBITU0gQVBJcw0KPiBvbmx5IHVzZWQgYnkgbm91dmVhdS4NCj4gDQo+IFRoZSBm
+aXJzdCA0IHBhdGNoZXMgYXJlIGEgYnVnIGZpeCBmb3Igbm91dmVhdSwgd2hpY2ggSSBzdXNwZWN0
+IHNob3VsZA0KPiBnbyBpbnRvIHRoaXMgbWVyZ2Ugd2luZG93IGV2ZW4gaWYgdGhlIGNvZGUgaXMg
+bWFya2VkIGFzIHN0YWdpbmcsIGp1c3QNCj4gdG8gYXZvaWQgcGVvcGxlIGNvcHlpbmcgdGhlIGJy
+ZWFrYWdlLg0KPiANCj4gQ2hhbmdlcyBzaW5jZSB2MjoNCj4gIC0gbmV3IHBhdGNoIGZyb20gSmFz
+b24gdG8gZG9jdW1lbnQgRkFVTFRfRkxBR19BTExPV19SRVRSWSBzZW1hbnRpY3MNCj4gICAgYmV0
+dGVyDQo+ICAtIHJlbW92ZSAtRUFHQUlOIGhhbmRsaW5nIGluIG5vdXZlYXUgZWFybGllcg0KDQpJ
+IGRvbid0IHNlZSBSYWxwaCdzIHRlc3RlZCBieSwgZG8geW91IHRoaW5rIGl0IGNoYW5nZWQgZW5v
+dWdoIHRvDQpyZXF1aXJlIHRlc3RpbmcgYWdhaW4/IElmIHNvLCBSYWxwaCB3b3VsZCB5b3UgYmUg
+c28ga2luZD8NCg0KSW4gYW55IGV2ZW50LCBJJ20gc2VuZGluZyB0aGlzIGludG8gbGludXgtbmV4
+dCBhbmQgaW50ZW5kIHRvIGZvcndhcmQNCnRoZSBmaXJzdCBmb3VyIG5leHQgd2Vlay4NCg0KVGhh
+bmtzLA0KSmFzb24NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
