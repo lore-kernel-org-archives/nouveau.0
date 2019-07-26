@@ -1,134 +1,119 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111218] Segmentation fault in
- nv50_ir::NVC0LegalizeSSA::handleDIV when dividing result of textureSize
-Date: Fri, 26 Jul 2019 13:13:41 +0000
-Message-ID: <bug-111218-8800-d3JhKD6ESY@http.bugs.freedesktop.org/>
-References: <bug-111218-8800@http.bugs.freedesktop.org/>
+From: Sasha Levin <sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.2 85/85] drm/nouveau/dmem: missing mutex_lock in error path
+Date: Fri, 26 Jul 2019 09:39:35 -0400
+Message-ID: <20190726133936.11177-85-sashal@kernel.org>
+References: <20190726133936.11177-1-sashal@kernel.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1118665854=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111218-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Transfer-Encoding: 8bit
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20190726133936.11177-1-sashal@kernel.org>
+Sender: stable-owner@vger.kernel.org
+To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc: Ralph Campbell <rcampbell@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>, Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+From: Ralph Campbell <rcampbell@nvidia.com>
 
---===============1118665854==
-Content-Type: multipart/alternative; boundary="15641468211.1af7Cc.13363"
-Content-Transfer-Encoding: 7bit
+[ Upstream commit d304654bd79332ace9ac46b9a3d8de60acb15da3 ]
 
+In nouveau_dmem_pages_alloc(), the drm->dmem->mutex is unlocked before
+calling nouveau_dmem_chunk_alloc() as shown when CONFIG_PROVE_LOCKING
+is enabled:
 
---15641468211.1af7Cc.13363
-Date: Fri, 26 Jul 2019 13:13:41 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+[ 1294.871933] =====================================
+[ 1294.876656] WARNING: bad unlock balance detected!
+[ 1294.881375] 5.2.0-rc3+ #5 Not tainted
+[ 1294.885048] -------------------------------------
+[ 1294.889773] test-malloc-vra/6299 is trying to release lock (&drm->dmem->mutex) at:
+[ 1294.897482] [<ffffffffa01a220f>] nouveau_dmem_migrate_alloc_and_copy+0x79f/0xbf0 [nouveau]
+[ 1294.905782] but there are no more locks to release!
+[ 1294.910690]
+[ 1294.910690] other info that might help us debug this:
+[ 1294.917249] 1 lock held by test-malloc-vra/6299:
+[ 1294.921881]  #0: 0000000016e10454 (&mm->mmap_sem#2){++++}, at: nouveau_svmm_bind+0x142/0x210 [nouveau]
+[ 1294.931313]
+[ 1294.931313] stack backtrace:
+[ 1294.935702] CPU: 4 PID: 6299 Comm: test-malloc-vra Not tainted 5.2.0-rc3+ #5
+[ 1294.942786] Hardware name: ASUS X299-A/PRIME X299-A, BIOS 1401 05/21/2018
+[ 1294.949590] Call Trace:
+[ 1294.952059]  dump_stack+0x7c/0xc0
+[ 1294.955469]  ? nouveau_dmem_migrate_alloc_and_copy+0x79f/0xbf0 [nouveau]
+[ 1294.962213]  print_unlock_imbalance_bug.cold.52+0xca/0xcf
+[ 1294.967641]  lock_release+0x306/0x380
+[ 1294.971383]  ? nouveau_dmem_migrate_alloc_and_copy+0x79f/0xbf0 [nouveau]
+[ 1294.978089]  ? lock_downgrade+0x2d0/0x2d0
+[ 1294.982121]  ? find_held_lock+0xac/0xd0
+[ 1294.985979]  __mutex_unlock_slowpath+0x8f/0x3f0
+[ 1294.990540]  ? wait_for_completion+0x230/0x230
+[ 1294.995002]  ? rwlock_bug.part.2+0x60/0x60
+[ 1294.999197]  nouveau_dmem_migrate_alloc_and_copy+0x79f/0xbf0 [nouveau]
+[ 1295.005751]  ? page_mapping+0x98/0x110
+[ 1295.009511]  migrate_vma+0xa74/0x1090
+[ 1295.013186]  ? move_to_new_page+0x480/0x480
+[ 1295.017400]  ? __kmalloc+0x153/0x300
+[ 1295.021052]  ? nouveau_dmem_migrate_vma+0xd8/0x1e0 [nouveau]
+[ 1295.026796]  nouveau_dmem_migrate_vma+0x157/0x1e0 [nouveau]
+[ 1295.032466]  ? nouveau_dmem_init+0x490/0x490 [nouveau]
+[ 1295.037612]  ? vmacache_find+0xc2/0x110
+[ 1295.041537]  nouveau_svmm_bind+0x1b4/0x210 [nouveau]
+[ 1295.046583]  ? nouveau_svm_fault+0x13e0/0x13e0 [nouveau]
+[ 1295.051912]  drm_ioctl_kernel+0x14d/0x1a0
+[ 1295.055930]  ? drm_setversion+0x330/0x330
+[ 1295.059971]  drm_ioctl+0x308/0x530
+[ 1295.063384]  ? drm_version+0x150/0x150
+[ 1295.067153]  ? find_held_lock+0xac/0xd0
+[ 1295.070996]  ? __pm_runtime_resume+0x3f/0xa0
+[ 1295.075285]  ? mark_held_locks+0x29/0xa0
+[ 1295.079230]  ? _raw_spin_unlock_irqrestore+0x3c/0x50
+[ 1295.084232]  ? lockdep_hardirqs_on+0x17d/0x250
+[ 1295.088768]  nouveau_drm_ioctl+0x9a/0x100 [nouveau]
+[ 1295.093661]  do_vfs_ioctl+0x137/0x9a0
+[ 1295.097341]  ? ioctl_preallocate+0x140/0x140
+[ 1295.101623]  ? match_held_lock+0x1b/0x230
+[ 1295.105646]  ? match_held_lock+0x1b/0x230
+[ 1295.109660]  ? find_held_lock+0xac/0xd0
+[ 1295.113512]  ? __do_page_fault+0x324/0x630
+[ 1295.117617]  ? lock_downgrade+0x2d0/0x2d0
+[ 1295.121648]  ? mark_held_locks+0x79/0xa0
+[ 1295.125583]  ? handle_mm_fault+0x352/0x430
+[ 1295.129687]  ksys_ioctl+0x60/0x90
+[ 1295.133020]  ? mark_held_locks+0x29/0xa0
+[ 1295.136964]  __x64_sys_ioctl+0x3d/0x50
+[ 1295.140726]  do_syscall_64+0x68/0x250
+[ 1295.144400]  entry_SYSCALL_64_after_hwframe+0x49/0xbe
+[ 1295.149465] RIP: 0033:0x7f1a3495809b
+[ 1295.153053] Code: 0f 1e fa 48 8b 05 ed bd 0c 00 64 c7 00 26 00 00 00 48 c7 c0 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa b8 10 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d bd bd 0c 00 f7 d8 64 89 01 48
+[ 1295.171850] RSP: 002b:00007ffef7ed1358 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[ 1295.179451] RAX: ffffffffffffffda RBX: 00007ffef7ed1628 RCX: 00007f1a3495809b
+[ 1295.186601] RDX: 00007ffef7ed13b0 RSI: 0000000040406449 RDI: 0000000000000004
+[ 1295.193759] RBP: 00007ffef7ed13b0 R08: 0000000000000000 R09: 000000000157e770
+[ 1295.200917] R10: 000000000151c010 R11: 0000000000000246 R12: 0000000040406449
+[ 1295.208083] R13: 0000000000000004 R14: 0000000000000000 R15: 0000000000000000
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111218
+Reacquire the lock before continuing to the next page.
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to mmgrqnv from comment #6)
-> That was it. I can confirm that the commit you linked fixes my problem.
-> I will mark this bug as a duplicate of 111167 and close.
-> Thank you very much for your help!
->=20
-> *** This bug has been marked as a duplicate of bug 111167 ***
+Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
+Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_dmem.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-By the way, what distro is shipping mesa built with asserts enabled? Our
-(mesa's) assumption has always been that distros would NOT have asserts ena=
-bled
-in the binaries they ship to users. [And this issue only pops up in an asse=
-rt.]
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15641468211.1af7Cc.13363
-Date: Fri, 26 Jul 2019 13:13:41 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Segmentation fault in nv50_ir::NVC0Legaliz=
-eSSA::handleDIV when dividing result of textureSize"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111218#c7">Commen=
-t # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Segmentation fault in nv50_ir::NVC0Legaliz=
-eSSA::handleDIV when dividing result of textureSize"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111218">bug 11121=
-8</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to mmgrqnv from <a href=3D"show_bug.cgi?id=3D111218#=
-c6">comment #6</a>)
-<span class=3D"quote">&gt; That was it. I can confirm that the commit you l=
-inked fixes my problem.
-&gt; I will mark this bug as a duplicate of 111167 and close.
-&gt; Thank you very much for your help!
-&gt;=20
-&gt; *** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=
-=20
-          bz_status_NEW "
-   title=3D"NEW - Dividing zero by a uniform in loop header causes segfault=
- in nv50_ir::NVC0LegalizeSSA::handleDIV"
-   href=3D"show_bug.cgi?id=3D111167">bug 111167</a> ***</span >
-
-By the way, what distro is shipping mesa built with asserts enabled? Our
-(mesa's) assumption has always been that distros would NOT have asserts ena=
-bled
-in the binaries they ship to users. [And this issue only pops up in an asse=
-rt.]</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15641468211.1af7Cc.13363--
-
---===============1118665854==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1118665854==--
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+index 40c47d6a7d78..745e197a4775 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+@@ -385,9 +385,10 @@ nouveau_dmem_pages_alloc(struct nouveau_drm *drm,
+ 			ret = nouveau_dmem_chunk_alloc(drm);
+ 			if (ret) {
+ 				if (c)
+-					break;
++					return 0;
+ 				return ret;
+ 			}
++			mutex_lock(&drm->dmem->mutex);
+ 			continue;
+ 		}
+ 
+-- 
+2.20.1
