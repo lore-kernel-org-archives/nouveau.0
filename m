@@ -1,61 +1,341 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH 2/2] drm/nouveau: Don't retry infinitely when receiving
- no data on i2c over AUX
-Date: Fri, 26 Jul 2019 15:08:55 -0400
-Message-ID: <f86af078c7024c2285641386e2b6f1d255d9dbca.camel@redhat.com>
-References: <20190725194005.16572-3-lyude@redhat.com>
-         <20190726141715.A6C48218D3@mail.kernel.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111213] VA-API nouveau SIGSEGV and asserts
+Date: Sat, 27 Jul 2019 01:34:54 +0000
+Message-ID: <bug-111213-8800-e7LdgIXkt2@http.bugs.freedesktop.org/>
+References: <bug-111213-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20190726141715.A6C48218D3@mail.kernel.org>
-Sender: stable-owner@vger.kernel.org
-To: Sasha Levin <sashal@kernel.org>, nouveau@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============0508735141=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-111213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, 2019-07-26 at 14:17 +0000, Sasha Levin wrote:
-> Hi,
-> 
-> [This is an automated email]
-> 
-> This commit has been processed because it contains a -stable tag.
-> The stable tag indicates that it's relevant for the following trees: all
-> 
-> The bot has tested the following trees: v5.2.2, v5.1.19, v4.19.60,
-> v4.14.134, v4.9.186, v4.4.186.
-> 
-> v5.2.2: Build OK!
-> v5.1.19: Build OK!
-> v4.19.60: Build OK!
-> v4.14.134: Build OK!
-> v4.9.186: Failed to apply! Possible dependencies:
->     1af5c410cc0c ("drm/nouveau/i2c: modify aux interface to return length
-> actually transferred")
 
-skip v4.9
-> 
-> v4.4.186: Failed to apply! Possible dependencies:
->     1af5c410cc0c ("drm/nouveau/i2c: modify aux interface to return length
-> actually transferred")
->     2ed95a4c65a3 ("drm/nouveau: recognise GM200 chipset")
->     7568b1067181 ("drm/nouveau/nvif: split out display interface
-> definitions")
->     7d2813c437a0 ("drm/nouveau/ltc/gm204: split implementation from gm107")
->     db1eb528462f ("drm/nouveau: s/gm204/gm200/ in a number of places")
->     e3d26d086092 ("drm/nouveau/ibus/gm204: split implementation from gk104")
-> 
-> 
-and skip v4.4
+--===============0508735141==
+Content-Type: multipart/alternative; boundary="15641912940.AaEce770A.11890"
+Content-Transfer-Encoding: 7bit
 
-> NOTE: The patch will not be queued to stable trees until it is upstream.
-> 
-> How should we proceed with this patch?
-> 
-> --
-> Thanks,
-> Sasha
--- 
-Cheers,
-	Lyude Paul
+
+--15641912940.AaEce770A.11890
+Date: Sat, 27 Jul 2019 01:34:54 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111213
+
+--- Comment #6 from KJ Liew <liewkj-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> ---
+I don't know how you had verified VDPAU to make sure it is working. Running
+vdpauinfo is not enough. I used the VA-API translation layer for VDPAU back=
+end
+since my goal is to get VA-API. I had also verified that the VA-API transla=
+tion
+layer worked with nvidia-390xx propriety blobs and Chromium-vaapi accelerat=
+ed
+H264 playback.
+
+The change *ONLY* fixed "vainfo & vdpauinfo SIGSEGV due to NULL pointer".
+
+$ LIBVA_DRIVER_NAME=3Dvdpau vainfo
+vainfo: VA-API version: 1.5 (libva 2.5.0)
+vainfo: Driver version: Splitted-Desktop Systems VDPAU backend for VA-API -
+0.7.4
+vainfo: Supported profile and entrypoints
+      VAProfileMPEG2Simple            : VAEntrypointVLD
+      VAProfileMPEG2Main              : VAEntrypointVLD
+      VAProfileMPEG4Simple            : VAEntrypointVLD
+      VAProfileMPEG4AdvancedSimple    : VAEntrypointVLD
+      VAProfileH264ConstrainedBaseline: VAEntrypointVLD
+      VAProfileH264Main               : VAEntrypointVLD
+      VAProfileH264High               : VAEntrypointVLD
+      VAProfileVC1Simple              : VAEntrypointVLD
+      VAProfileVC1Main                : VAEntrypointVLD
+      VAProfileVC1Advanced            : VAEntrypointVLD
+
+
+$ LIBVA_DRIVER_NAME=3Dvdpau VDPAU_DRIVER=3Dnouveau chromium
+[19735:19735:0726/182126.662312:ERROR:vaapi_wrapper.cc(455)]
+GetConfigAttributes failed for va_profile 13
+[19735:19735:0726/182126.662353:ERROR:vaapi_wrapper.cc(455)]
+GetConfigAttributes failed for va_profile 6
+[19735:19735:0726/182126.662359:ERROR:vaapi_wrapper.cc(455)]
+GetConfigAttributes failed for va_profile 7
+[19735:19735:0726/182126.764805:ERROR:sandbox_linux.cc(368)]
+InitializeSandbox() called with multiple threads in process gpu-process.
+[19735:19735:0726/182126.808082:ERROR:buffer_manager.cc(488)]
+[.DisplayCompositor]GL ERROR :GL_INVALID_OPERATION : glBufferData: <- error
+from previous GL command
+romium/chromium --type=3Dgpu-process
+--field-trial-handle=3D7302155616383548209,8433935369873353489,131072
+--disable-breakpad
+--gpu-preferences=3DKAAAAAAAAAAgAACgAQAAAAAAAAAAAGAAAAAAAAAAAAAIAAAAAAAAAAg=
+AAAAAAAAA
+--service-request-channel-token=3D6382519074401266972:
+../mesa-19.1.3/src/gallium/drivers/nouveau/nvc0/nvc0_video.c:43:
+nvc0_decoder_begin_frame: Assertion `ret =3D=3D 2' failed.
+
+There was a long pause, I think the GPU process crashed and then restarted =
+with
+more lengthy logs spit until Chromium was killed
+
+[20217:20217:0726/182241.032544:ERROR:vaapi_wrapper.cc(455)]
+GetConfigAttributes failed for va_profile 13
+[20217:20217:0726/182241.032617:ERROR:vaapi_wrapper.cc(455)]
+GetConfigAttributes failed for va_profile 6
+[20217:20217:0726/182241.032636:ERROR:vaapi_wrapper.cc(455)]
+GetConfigAttributes failed for va_profile 7
+[20217:20217:0726/182241.120438:ERROR:sandbox_linux.cc(368)]
+InitializeSandbox() called with multiple threads in process gpu-process.
+[20217:20217:0726/182241.149352:ERROR:buffer_manager.cc(488)]
+[.DisplayCompositor]GL ERROR :GL_INVALID_OPERATION : glBufferData: <- error
+from previous GL command
+[20217:20217:0726/182241.204625:ERROR:gles2_cmd_decoder.cc(18461)]
+[.DisplayCompositor]GL ERROR :GL_INVALID_OPERATION :
+glCreateAndConsumeTextureCHROMIUM: invalid mailbox name
+[20217:20217:0726/182241.208930:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182255.379961:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182255.400308:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.316376:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.344654:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.350918:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.363405:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.394713:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.396760:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.411122:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.442865:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.445224:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.503684:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.530002:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.547899:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.583440:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.589853:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15641912940.AaEce770A.11890
+Date: Sat, 27 Jul 2019 01:34:54 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - VA-API nouveau SIGSEGV and asserts"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111213#c6">Commen=
+t # 6</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - VA-API nouveau SIGSEGV and asserts"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111213">bug 11121=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+liewkj&#64;yahoo.com" title=3D"KJ Liew &lt;liewkj&#64;yahoo.com&gt;"> <span=
+ class=3D"fn">KJ Liew</span></a>
+</span></b>
+        <pre>I don't know how you had verified VDPAU to make sure it is wor=
+king. Running
+vdpauinfo is not enough. I used the VA-API translation layer for VDPAU back=
+end
+since my goal is to get VA-API. I had also verified that the VA-API transla=
+tion
+layer worked with nvidia-390xx propriety blobs and Chromium-vaapi accelerat=
+ed
+H264 playback.
+
+The change *ONLY* fixed &quot;vainfo &amp; vdpauinfo SIGSEGV due to NULL po=
+inter&quot;.
+
+$ LIBVA_DRIVER_NAME=3Dvdpau vainfo
+vainfo: VA-API version: 1.5 (libva 2.5.0)
+vainfo: Driver version: Splitted-Desktop Systems VDPAU backend for VA-API -
+0.7.4
+vainfo: Supported profile and entrypoints
+      VAProfileMPEG2Simple            : VAEntrypointVLD
+      VAProfileMPEG2Main              : VAEntrypointVLD
+      VAProfileMPEG4Simple            : VAEntrypointVLD
+      VAProfileMPEG4AdvancedSimple    : VAEntrypointVLD
+      VAProfileH264ConstrainedBaseline: VAEntrypointVLD
+      VAProfileH264Main               : VAEntrypointVLD
+      VAProfileH264High               : VAEntrypointVLD
+      VAProfileVC1Simple              : VAEntrypointVLD
+      VAProfileVC1Main                : VAEntrypointVLD
+      VAProfileVC1Advanced            : VAEntrypointVLD
+
+
+$ LIBVA_DRIVER_NAME=3Dvdpau VDPAU_DRIVER=3Dnouveau chromium
+[19735:19735:0726/182126.662312:ERROR:vaapi_wrapper.cc(455)]
+GetConfigAttributes failed for va_profile 13
+[19735:19735:0726/182126.662353:ERROR:vaapi_wrapper.cc(455)]
+GetConfigAttributes failed for va_profile 6
+[19735:19735:0726/182126.662359:ERROR:vaapi_wrapper.cc(455)]
+GetConfigAttributes failed for va_profile 7
+[19735:19735:0726/182126.764805:ERROR:sandbox_linux.cc(368)]
+InitializeSandbox() called with multiple threads in process gpu-process.
+[19735:19735:0726/182126.808082:ERROR:buffer_manager.cc(488)]
+[.DisplayCompositor]GL ERROR :GL_INVALID_OPERATION : glBufferData: &lt;- er=
+ror
+from previous GL command
+romium/chromium --type=3Dgpu-process
+--field-trial-handle=3D7302155616383548209,8433935369873353489,131072
+--disable-breakpad
+--gpu-preferences=3DKAAAAAAAAAAgAACgAQAAAAAAAAAAAGAAAAAAAAAAAAAIAAAAAAAAAAg=
+AAAAAAAAA
+--service-request-channel-token=3D6382519074401266972:
+../mesa-19.1.3/src/gallium/drivers/nouveau/nvc0/nvc0_video.c:43:
+nvc0_decoder_begin_frame: Assertion `ret =3D=3D 2' failed.
+
+There was a long pause, I think the GPU process crashed and then restarted =
+with
+more lengthy logs spit until Chromium was killed
+
+[20217:20217:0726/182241.032544:ERROR:vaapi_wrapper.cc(455)]
+GetConfigAttributes failed for va_profile 13
+[20217:20217:0726/182241.032617:ERROR:vaapi_wrapper.cc(455)]
+GetConfigAttributes failed for va_profile 6
+[20217:20217:0726/182241.032636:ERROR:vaapi_wrapper.cc(455)]
+GetConfigAttributes failed for va_profile 7
+[20217:20217:0726/182241.120438:ERROR:sandbox_linux.cc(368)]
+InitializeSandbox() called with multiple threads in process gpu-process.
+[20217:20217:0726/182241.149352:ERROR:buffer_manager.cc(488)]
+[.DisplayCompositor]GL ERROR :GL_INVALID_OPERATION : glBufferData: &lt;- er=
+ror
+from previous GL command
+[20217:20217:0726/182241.204625:ERROR:gles2_cmd_decoder.cc(18461)]
+[.DisplayCompositor]GL ERROR :GL_INVALID_OPERATION :
+glCreateAndConsumeTextureCHROMIUM: invalid mailbox name
+[20217:20217:0726/182241.208930:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182255.379961:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182255.400308:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.316376:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.344654:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.350918:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.363405:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.394713:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.396760:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.411122:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.442865:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.445224:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.503684:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.530002:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.547899:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.583440:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering.
+[20217:20217:0726/182256.589853:ERROR:gles2_cmd_decoder.cc(10734)]
+[.DisplayCompositor]RENDER WARNING: texture bound to texture unit 0 is not
+renderable. It maybe non-power-of-2 and have incompatible texture filtering=
+.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15641912940.AaEce770A.11890--
+
+--===============0508735141==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0508735141==--
