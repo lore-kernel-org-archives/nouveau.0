@@ -1,12 +1,12 @@
-From: Ralph Corderoy <ralph-LZ+9dIjwmAmSaWcfd5glvw@public.gmane.org>
-Subject: Video Hardware Decoding: Jittery Rectangles on Nvidia
- GT218 NVA8 VP4.
-Date: Sat, 27 Jul 2019 12:37:26 +0100
-Message-ID: <20190727113726.2EF4D21F78@orac.inputplus.co.uk>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111230] core dumped while using Rstudio
+Date: Sat, 27 Jul 2019 12:23:46 +0000
+Message-ID: <bug-111230-8800-gSEvV4n3Jj@http.bugs.freedesktop.org/>
+References: <bug-111230-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0837249426=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-111230-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,52 +19,86 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpJJ20gaGF2aW5nIHRyb3VibGUgd2l0aCBoYXJkd2FyZSBkZWNvZGluZyBvZiB2aWRlbyB3
-aXRoIG1wdigxKSBoYXZpbmcKc3dpdGNoZWQgZnJvbSBOdmlkaWEncyBwcm9wcmlldGFyeSBkcml2
-ZXIgdG8gbm91dmVhdSBkdWUgdG8gQXJjaCBMaW51eApyZW1vdmluZyBpdHMgbnZpZGlhLTM0MHh4
-IHBhY2thZ2UuCgpUaGUgbWFjaGluZSBpcyBhbiBBY2VyIFJldm8uCgogICAgJCBsc3BjaSAtbm4g
-fCBncmVwIFZHQQogICAgMDE6MDAuMCBWR0EgY29tcGF0aWJsZSBjb250cm9sbGVyIFswMzAwXTog
-TlZJRElBIENvcnBvcmF0aW9uIEdUMjE4IFtJT05dIFsxMGRlOjBhNjRdIChyZXYgYTIpCgpJIHRo
-aW5rIHRoaXMgaXMgY29kZW5hbWUgTlZBOCB3aXRoIHRoZSB2aWRlby1hY2NsZXJhdGlvbiBlbmdp
-bmUgVlA0LjAuCgpJJ3ZlIHRoZXNlIHBhY2thZ2VzIGluc3RhbGxlZCwgZm9sbG93aW5nCmh0dHBz
-Oi8vd2lraS5hcmNobGludXgub3JnL2luZGV4LnBocC9Ob3V2ZWF1IGFuZApodHRwczovL3dpa2ku
-YXJjaGxpbnV4Lm9yZy9pbmRleC5waHAvSGFyZHdhcmVfdmlkZW9fYWNjZWxlcmF0aW9uCgogICAg
-JCBwYWNtYW4gLVEgfCBlZ3JlcCAnbnZpZGlhfG5vdXZlYXV8bWVzYXx2ZHBhdXx2YWFwaXx4b3Jn
-LXNlcnZlcicKICAgIGxpYnZhLW1lc2EtZHJpdmVyIDE5LjEuMy0xCiAgICBsaWJ2YS12ZHBhdS1k
-cml2ZXIgMC43LjQtNAogICAgbGlidmRwYXUgMS4yLTEKICAgIGxpYnZkcGF1LXZhLWdsIDAuNC4y
-LTIKICAgIG1lc2EgMTkuMS4zLTEKICAgIG1lc2EtZGVtb3MgOC40LjAtMQogICAgbWVzYS12ZHBh
-dSAxOS4xLjMtMQogICAgbm91dmVhdS1mdyAzMjUuMTUtMQogICAgdmRwYXVpbmZvIDEuMC0zCiAg
-ICB4Zjg2LXZpZGVvLW5vdXZlYXUgMS4wLjE2LTEKICAgIHhvcmctc2VydmVyIDEuMjAuNS0yCiAg
-ICB4b3JnLXNlcnZlci1jb21tb24gMS4yMC41LTIKICAgICQKCkEgcGFzdGUgb2YgdmRwYXVpbmZv
-KDEpJ3Mgb3V0cHV0IGlzIGF0IGh0dHA6Ly9peC5pby8xUEhpLgoKSSd2ZSBtYW55IHNhbXBsZSB2
-aWRlb3MgdGhhdCBleGhpYml0IHRoZSBzYW1lIHByb2JsZW0sIGJ1dCBJJ2xsIHN0aWNrCndpdGgg
-b25lIGZyb20gQkJDJ3MgaVBsYXllciBvYnRhaW5lZCB3aXRoIGdldF9pcGxheWVyKDEpLgoKICAg
-ICQgZmZtcGVnIC1pICRmIHwmIGdyZXAgVmlkZW86CiAgICAgICAgU3RyZWFtICMwOjAodW5kKTog
-VmlkZW86IGgyNjQgKE1haW4pIChhdmMxIC8gMHgzMTYzNzY2MSksCiAgICAgICAgICAgIHl1djQy
-MHAodHYsIGJ0NzA5KSwgOTYweDU0MCBbU0FSIDE6MSBEQVIgMTY6OV0sIDE2MDIga2IvcywKICAg
-ICAgICAgICAgMjUgZnBzLCAyNSB0YnIsIDkwayB0Ym4sIDUwIHRiYyAoZGVmYXVsdCkKClBsYWlu
-IG9sZCBgbXB2ICRmJyBwbGF5cyBmaW5lLCB1c2luZyBzb2Z0d2FyZSBkZWNvZGluZy4KCiAgICBW
-TzogW2dwdV0gOTYweDU0MCB5dXY0MjBwCgpBZGRpbmcgYC0tdm89dmRwYXUnIGdpdmVzCgogICAg
-Vk86IFt2ZHBhdV0gOTYweDU0MCB5dXY0MjBwCiAgICBbdm8vdmRwYXVdIENvbXBvc2l0aW5nIHdp
-bmRvdyBtYW5hZ2VyIGRldGVjdGVkLiBBc3N1bWluZyB0aW1pbmcgaW5mbwogICAgICAgIGlzIGlu
-YWNjdXJhdGUuCgpQbGF5YmFjayBpcyBmaW5lLCBzdGlsbCBzb2Z0d2FyZSBkZWNvZGluZy4KCmAt
-LXZvPXZkcGF1IC0taHdkZWM9dmRwYXUnIHVzZXMgaGFyZHdhcmUgZGVjb2Rpbmc6CgogICAgVXNp
-bmcgaGFyZHdhcmUgZGVjb2RpbmcgKHZkcGF1KS4KICAgIFZPOiBbdmRwYXVdIDk2MHg1NDAgdmRw
-YXVbeXV2NDIwcF0KICAgIFt2by92ZHBhdV0gQ29tcG9zaXRpbmcgd2luZG93IG1hbmFnZXIgZGV0
-ZWN0ZWQuIEFzc3VtaW5nIHRpbWluZyBpbmZvCiAgICAgICAgaXMgaW5hY2N1cmF0ZS4KClRoZSB2
-aWRlbyBwbGF5cywgQ1BVIGxvYWQgaXMgbGVzcyAobXkgYWltKSwgYnV0IHRoZXJlJ3Mg4oCYdGVh
-cmluZ+KAmSBvZiB0aGUKcGljdHVyZSBhcyBpZiBzbWFsbCByZWN0YW5nbGVzIHRoYXQgYXJlIHVw
-ZGF0ZXMgYXJlIGFwcGVhcmluZyBpbiB0aGUKd3JvbmcgbG9jYXRpb24sIG9mZiBieSBhIGxpdHRs
-ZS4gIElmIEkgc3RlcCB0aHJvdWdoIHRoZSBmcmFtZXMgd2l0aAptcHYncyDigJgu4oCZIGFuZCDi
-gJgs4oCZIHRoZW4gSSd2ZSBmb3VuZCBhIHBhdHRlcm46IG9uZSBmcmFtZSdzIHBpY3R1cmUgaXMK
-Z29vZCwgZm9sbG93ZWQgYnkgTiBiYWQgb25lcyB3aGVyZSBOIGlzIDMgb3IgNywgaS5lLiBldmVy
-eSA0dGggb3IgOHRoCmZyYW1lIGlzIG9rYXkuICBEb24ndCBrbm93IGlmIHRoYXQncyBhIGNsdWUg
-b3IgaGVscHMgc29tZW9uZSBoZXJlCnJlY29nbmlzZSBhIGtub3duIHByb2JsZW0uCgpJIGtub3cg
-WCB3ZWxsLCBidXQgTWVzYSwgZXRjLiwgYmVsb3cgaXQgYXJlIHVua25vd24gdG8gbWUsIGV2ZW4g
-dG8gdGhlCmV4dGVudCBvZiBrbm93aW5nIHF1aXRlIGhvdyBhbGwgdGhlIGJpdHMgZml0IHRvZ2V0
-aGVyLiAgSSdkIGFwcHJlY2lhdGUgYQpwb2ludGVyIG9yIHR3byBhcyB0byBob3cgdG8gdGFja2xl
-IHRoZSBwcm9ibGVtLCBldmVuIGlmIGl0J3MgYSDigJhZb3UndmUKY29tZSB0byB0aGUgd3Jvbmcg
-cGxhY2UsIGdvIG92ZXIgdGhlcmXigJkuICA6LSkKCi0tIApDaGVlcnMsIFJhbHBoLgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+
+--===============0837249426==
+Content-Type: multipart/alternative; boundary="15642302262.7AfaD.22353"
+Content-Transfer-Encoding: 7bit
+
+
+--15642302262.7AfaD.22353
+Date: Sat, 27 Jul 2019 12:23:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111230
+
+--- Comment #1 from Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> ---
+Please include exact version information for the xorg nouveau driver that y=
+ou
+use, and *exact* distribution version information.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15642302262.7AfaD.22353
+Date: Sat, 27 Jul 2019 12:23:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - core dumped while using Rstudio"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111230#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - core dumped while using Rstudio"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111230">bug 11123=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+a9016009&#64;gmx.de" title=3D"Andre Klapper &lt;a9016009&#64;gmx.de&gt;"> <=
+span class=3D"fn">Andre Klapper</span></a>
+</span></b>
+        <pre>Please include exact version information for the xorg nouveau =
+driver that you
+use, and *exact* distribution version information.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15642302262.7AfaD.22353--
+
+--===============0837249426==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0837249426==--
