@@ -1,14 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Video Hardware Decoding: Jittery Rectangles on Nvidia
- GT218 NVA8 VP4.
-Date: Sat, 27 Jul 2019 13:46:51 -0400
-Message-ID: <CAKb7UvhqXGz7_t9EXJvu02J+f0STGB7wvwNcSM8F7YHCcJ3KbA@mail.gmail.com>
-References: <20190727113726.2EF4D21F78@orac.inputplus.co.uk>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111213] VA-API nouveau SIGSEGV and asserts
+Date: Sun, 28 Jul 2019 03:30:21 +0000
+Message-ID: <bug-111213-8800-1QN6f8Ys6R@http.bugs.freedesktop.org/>
+References: <bug-111213-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1405259735=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190727113726.2EF4D21F78-6N56AJAIt2NfdzSWQDR9cNBc4/FLrbF6@public.gmane.org>
+In-Reply-To: <bug-111213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,38 +16,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ralph Corderoy <ralph-LZ+9dIjwmAmSaWcfd5glvw@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBKdWwgMjcsIDIwMTkgYXQgNzozNyBBTSBSYWxwaCBDb3JkZXJveSA8cmFscGhAaW5w
-dXRwbHVzLmNvLnVrPiB3cm90ZToKPiBUaGUgdmlkZW8gcGxheXMsIENQVSBsb2FkIGlzIGxlc3Mg
-KG15IGFpbSksIGJ1dCB0aGVyZSdzIOKAmHRlYXJpbmfigJkgb2YgdGhlCj4gcGljdHVyZSBhcyBp
-ZiBzbWFsbCByZWN0YW5nbGVzIHRoYXQgYXJlIHVwZGF0ZXMgYXJlIGFwcGVhcmluZyBpbiB0aGUK
-PiB3cm9uZyBsb2NhdGlvbiwgb2ZmIGJ5IGEgbGl0dGxlLiAgSWYgSSBzdGVwIHRocm91Z2ggdGhl
-IGZyYW1lcyB3aXRoCj4gbXB2J3Mg4oCYLuKAmSBhbmQg4oCYLOKAmSB0aGVuIEkndmUgZm91bmQg
-YSBwYXR0ZXJuOiBvbmUgZnJhbWUncyBwaWN0dXJlIGlzCj4gZ29vZCwgZm9sbG93ZWQgYnkgTiBi
-YWQgb25lcyB3aGVyZSBOIGlzIDMgb3IgNywgaS5lLiBldmVyeSA0dGggb3IgOHRoCj4gZnJhbWUg
-aXMgb2theS4gIERvbid0IGtub3cgaWYgdGhhdCdzIGEgY2x1ZSBvciBoZWxwcyBzb21lb25lIGhl
-cmUKPiByZWNvZ25pc2UgYSBrbm93biBwcm9ibGVtLgo+Cj4gSSBrbm93IFggd2VsbCwgYnV0IE1l
-c2EsIGV0Yy4sIGJlbG93IGl0IGFyZSB1bmtub3duIHRvIG1lLCBldmVuIHRvIHRoZQo+IGV4dGVu
-dCBvZiBrbm93aW5nIHF1aXRlIGhvdyBhbGwgdGhlIGJpdHMgZml0IHRvZ2V0aGVyLiAgSSdkIGFw
-cHJlY2lhdGUgYQo+IHBvaW50ZXIgb3IgdHdvIGFzIHRvIGhvdyB0byB0YWNrbGUgdGhlIHByb2Js
-ZW0sIGV2ZW4gaWYgaXQncyBhIOKAmFlvdSd2ZQo+IGNvbWUgdG8gdGhlIHdyb25nIHBsYWNlLCBn
-byBvdmVyIHRoZXJl4oCZLiAgOi0pCgpVbmZvcnR1bmF0ZWx5IEkndmUgbmV2ZXIgdHJhY2tlZCBk
-b3duIHRoZSBjYXVzZSBmb3IgdGhpcy4KaHR0cHM6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93
-aWtpL1ZpZGVvQWNjZWxlcmF0aW9uLyAtIHNlZSBub3RlICM0LgoKSSBoYXZlLCBvdmVyIHRpbWUs
-IGNvbGxlY3RlZCBzb21lIHNhbXBsZSB2aWRlb3Mgd2hlcmUgdGhpcyBoYXBwZW5zIGluCnRoZSBm
-aXJzdCBmZXcgZnJhbWVzLiBUaGUgcGxhbiB3YXMgdG8gZG8gbW10IHRyYWNlcyBvZiB0aGUgYmxv
-Ygpkcml2ZXIsIGFuZCBmaWd1cmUgb3V0IHdoYXQgaXQgd2FzIGRvaW5nIGRpZmZlcmVudGx5LiBJ
-ZiB0aGlzIGlzCnNvbWV0aGluZyB5b3UncmUgaW50ZXJlc3RlZCBpbiwgSSdkIGJlIGhhcHB5IHRv
-IHByb3ZpZGUgc29tZSBndWlkYW5jZS4KSG93ZXZlciBteSBwYXN0IGVmZm9ydHMgdG8gd29yayB0
-aGlzIG91dCB3ZXJlIGZydWl0bGVzcy4gSG9wZWZ1bGx5Cml0J3MganVzdCBzb21ldGhpbmcgZHVt
-YiB3ZSdyZSBkb2luZyBpbiByZWZlcmVuY2UgZnJhbWUgbWFuYWdlbWVudCwgb3IKYSBtaXNzaW5n
-IGJpdCBpbiB0aGUgaW5mbyBzdHJ1Y3R1cmVzLCBvciBzb21ldGhpbmcgZWxzZSBlbnRpcmVseSBz
-aW5jZQpJJ3ZlIHNjb3VyZWQgcXVpdGUgaGVhdmlseSBmb3IgdGhvc2UgdHdvLgoKSWYgeW91J2Qg
-bGlrZSB0byBkZWRpY2F0ZSBzb21lIG9mIHlvdXIgdGltZSB0byB3b3JraW5nIHRoaXMgb3V0LCB5
-b3UKY2FuIGpvaW4gdXMgYXQgI25vdXZlYXUgb24gZnJlZW5vZGUuCgpDaGVlcnMsCgogIC1pbGlh
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
-bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+
+--===============1405259735==
+Content-Type: multipart/alternative; boundary="15642846210.2e010C.10152"
+Content-Transfer-Encoding: 7bit
+
+
+--15642846210.2e010C.10152
+Date: Sun, 28 Jul 2019 03:30:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111213
+
+--- Comment #9 from KJ Liew <liewkj-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> ---
+Created attachment 144895
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144895&action=3Dedit
+vdpau_dmesg
+
+$ LIBVA_DRIVER_NAME=3Dvdpau VDPAU_DRIVER=3Dnouveau chromium
+file:///path/to/h264.mp4
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15642846210.2e010C.10152
+Date: Sun, 28 Jul 2019 03:30:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - VA-API nouveau SIGSEGV and asserts"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111213#c9">Commen=
+t # 9</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - VA-API nouveau SIGSEGV and asserts"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111213">bug 11121=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+liewkj&#64;yahoo.com" title=3D"KJ Liew &lt;liewkj&#64;yahoo.com&gt;"> <span=
+ class=3D"fn">KJ Liew</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144895=
+" name=3D"attach_144895" title=3D"vdpau_dmesg">attachment 144895</a> <a hre=
+f=3D"attachment.cgi?id=3D144895&amp;action=3Dedit" title=3D"vdpau_dmesg">[d=
+etails]</a></span>
+vdpau_dmesg
+
+$ LIBVA_DRIVER_NAME=3Dvdpau VDPAU_DRIVER=3Dnouveau chromium
+file:///path/to/h264.mp4</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15642846210.2e010C.10152--
+
+--===============1405259735==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1405259735==--
