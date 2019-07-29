@@ -1,36 +1,93 @@
-From: Christoph Hellwig <hch@lst.de>
-Subject: [PATCH 2/9] nouveau: reset dma_nr in nouveau_dmem_migrate_alloc_and_copy
-Date: Mon, 29 Jul 2019 17:28:36 +0300
-Message-ID: <20190729142843.22320-3-hch@lst.de>
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Subject: [PATCH 3/9] nouveau: factor out device memory address
+ calculation
+Date: Mon, 29 Jul 2019 17:28:37 +0300
+Message-ID: <20190729142843.22320-4-hch@lst.de>
 References: <20190729142843.22320-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190729142843.22320-1-hch@lst.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: Ralph Campbell <rcampbell@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190729142843.22320-1-hch-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-When we start a new batch of dma_map operations we need to reset dma_nr,
-as we start filling a newly allocated array.
-
-Signed-off-by: Christoph Hellwig <hch@lst.de>
----
- drivers/gpu/drm/nouveau/nouveau_dmem.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-index 38416798abd4..e696157f771e 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -682,6 +682,7 @@ nouveau_dmem_migrate_alloc_and_copy(struct vm_area_struct *vma,
- 	migrate->dma = kmalloc(sizeof(*migrate->dma) * npages, GFP_KERNEL);
- 	if (!migrate->dma)
- 		goto error;
-+	migrate->dma_nr = 0;
- 
- 	/* Copy things over */
- 	copy = drm->dmem->migrate.copy_func;
--- 
-2.20.1
+RmFjdG9yIG91dCB0aGUgcmVwZWF0ZWQgZGV2aWNlIG1lbW9yeSBhZGRyZXNzIGNhbGN1bGF0aW9u
+IGludG8KYSBoZWxwZXIuCgpTaWduZWQtb2ZmLWJ5OiBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGxz
+dC5kZT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RtZW0uYyB8IDQyICsr
+KysrKysrKysrLS0tLS0tLS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMTcgaW5zZXJ0aW9ucygr
+KSwgMjUgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9kbWVtLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RtZW0uYwpp
+bmRleCBlNjk2MTU3Zjc3MWUuLmQ0NjliYzMzNDQzOCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbm91dmVhdV9kbWVtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9kbWVtLmMKQEAgLTEwMiw2ICsxMDIsMTQgQEAgc3RydWN0IG5vdXZlYXVfbWlncmF0
+ZSB7CiAJdW5zaWduZWQgbG9uZyBkbWFfbnI7CiB9OwogCitzdGF0aWMgdW5zaWduZWQgbG9uZyBu
+b3V2ZWF1X2RtZW1fcGFnZV9hZGRyKHN0cnVjdCBwYWdlICpwYWdlKQoreworCXN0cnVjdCBub3V2
+ZWF1X2RtZW1fY2h1bmsgKmNodW5rID0gcGFnZS0+em9uZV9kZXZpY2VfZGF0YTsKKwl1bnNpZ25l
+ZCBsb25nIGlkeCA9IHBhZ2VfdG9fcGZuKHBhZ2UpIC0gY2h1bmstPnBmbl9maXJzdDsKKworCXJl
+dHVybiAoaWR4IDw8IFBBR0VfU0hJRlQpICsgY2h1bmstPmJvLT5iby5vZmZzZXQ7Cit9CisKIHN0
+YXRpYyB2b2lkIG5vdXZlYXVfZG1lbV9wYWdlX2ZyZWUoc3RydWN0IHBhZ2UgKnBhZ2UpCiB7CiAJ
+c3RydWN0IG5vdXZlYXVfZG1lbV9jaHVuayAqY2h1bmsgPSBwYWdlLT56b25lX2RldmljZV9kYXRh
+OwpAQCAtMTY5LDkgKzE3Nyw3IEBAIG5vdXZlYXVfZG1lbV9mYXVsdF9hbGxvY19hbmRfY29weShz
+dHJ1Y3Qgdm1fYXJlYV9zdHJ1Y3QgKnZtYSwKIAkvKiBDb3B5IHRoaW5ncyBvdmVyICovCiAJY29w
+eSA9IGRybS0+ZG1lbS0+bWlncmF0ZS5jb3B5X2Z1bmM7CiAJZm9yIChhZGRyID0gc3RhcnQsIGkg
+PSAwOyBhZGRyIDwgZW5kOyBhZGRyICs9IFBBR0VfU0laRSwgaSsrKSB7Ci0JCXN0cnVjdCBub3V2
+ZWF1X2RtZW1fY2h1bmsgKmNodW5rOwogCQlzdHJ1Y3QgcGFnZSAqc3BhZ2UsICpkcGFnZTsKLQkJ
+dTY0IHNyY19hZGRyLCBkc3RfYWRkcjsKIAogCQlkcGFnZSA9IG1pZ3JhdGVfcGZuX3RvX3BhZ2Uo
+ZHN0X3BmbnNbaV0pOwogCQlpZiAoIWRwYWdlIHx8IGRzdF9wZm5zW2ldID09IE1JR1JBVEVfUEZO
+X0VSUk9SKQpAQCAtMTk0LDE0ICsyMDAsMTAgQEAgbm91dmVhdV9kbWVtX2ZhdWx0X2FsbG9jX2Fu
+ZF9jb3B5KHN0cnVjdCB2bV9hcmVhX3N0cnVjdCAqdm1hLAogCQkJY29udGludWU7CiAJCX0KIAot
+CQlkc3RfYWRkciA9IGZhdWx0LT5kbWFbZmF1bHQtPm5wYWdlcysrXTsKLQotCQljaHVuayA9IHNw
+YWdlLT56b25lX2RldmljZV9kYXRhOwotCQlzcmNfYWRkciA9IHBhZ2VfdG9fcGZuKHNwYWdlKSAt
+IGNodW5rLT5wZm5fZmlyc3Q7Ci0JCXNyY19hZGRyID0gKHNyY19hZGRyIDw8IFBBR0VfU0hJRlQp
+ICsgY2h1bmstPmJvLT5iby5vZmZzZXQ7Ci0KLQkJcmV0ID0gY29weShkcm0sIDEsIE5PVVZFQVVf
+QVBFUl9IT1NULCBkc3RfYWRkciwKLQkJCQkgICBOT1VWRUFVX0FQRVJfVlJBTSwgc3JjX2FkZHIp
+OworCQlyZXQgPSBjb3B5KGRybSwgMSwgTk9VVkVBVV9BUEVSX0hPU1QsCisJCQkJZmF1bHQtPmRt
+YVtmYXVsdC0+bnBhZ2VzKytdLAorCQkJCU5PVVZFQVVfQVBFUl9WUkFNLAorCQkJCW5vdXZlYXVf
+ZG1lbV9wYWdlX2FkZHIoc3BhZ2UpKTsKIAkJaWYgKHJldCkgewogCQkJZHN0X3BmbnNbaV0gPSBN
+SUdSQVRFX1BGTl9FUlJPUjsKIAkJCV9fZnJlZV9wYWdlKGRwYWdlKTsKQEAgLTY4NywxOCArNjg5
+LDEyIEBAIG5vdXZlYXVfZG1lbV9taWdyYXRlX2FsbG9jX2FuZF9jb3B5KHN0cnVjdCB2bV9hcmVh
+X3N0cnVjdCAqdm1hLAogCS8qIENvcHkgdGhpbmdzIG92ZXIgKi8KIAljb3B5ID0gZHJtLT5kbWVt
+LT5taWdyYXRlLmNvcHlfZnVuYzsKIAlmb3IgKGFkZHIgPSBzdGFydCwgaSA9IDA7IGFkZHIgPCBl
+bmQ7IGFkZHIgKz0gUEFHRV9TSVpFLCBpKyspIHsKLQkJc3RydWN0IG5vdXZlYXVfZG1lbV9jaHVu
+ayAqY2h1bms7CiAJCXN0cnVjdCBwYWdlICpzcGFnZSwgKmRwYWdlOwotCQl1NjQgc3JjX2FkZHIs
+IGRzdF9hZGRyOwogCiAJCWRwYWdlID0gbWlncmF0ZV9wZm5fdG9fcGFnZShkc3RfcGZuc1tpXSk7
+CiAJCWlmICghZHBhZ2UgfHwgZHN0X3BmbnNbaV0gPT0gTUlHUkFURV9QRk5fRVJST1IpCiAJCQlj
+b250aW51ZTsKIAotCQljaHVuayA9IGRwYWdlLT56b25lX2RldmljZV9kYXRhOwotCQlkc3RfYWRk
+ciA9IHBhZ2VfdG9fcGZuKGRwYWdlKSAtIGNodW5rLT5wZm5fZmlyc3Q7Ci0JCWRzdF9hZGRyID0g
+KGRzdF9hZGRyIDw8IFBBR0VfU0hJRlQpICsgY2h1bmstPmJvLT5iby5vZmZzZXQ7Ci0KIAkJc3Bh
+Z2UgPSBtaWdyYXRlX3Bmbl90b19wYWdlKHNyY19wZm5zW2ldKTsKIAkJaWYgKCFzcGFnZSB8fCAh
+KHNyY19wZm5zW2ldICYgTUlHUkFURV9QRk5fTUlHUkFURSkpIHsKIAkJCW5vdXZlYXVfZG1lbV9w
+YWdlX2ZyZWVfbG9ja2VkKGRybSwgZHBhZ2UpOwpAQCAtNzE2LDEwICs3MTIsMTAgQEAgbm91dmVh
+dV9kbWVtX21pZ3JhdGVfYWxsb2NfYW5kX2NvcHkoc3RydWN0IHZtX2FyZWFfc3RydWN0ICp2bWEs
+CiAJCQljb250aW51ZTsKIAkJfQogCi0JCXNyY19hZGRyID0gbWlncmF0ZS0+ZG1hW21pZ3JhdGUt
+PmRtYV9ucisrXTsKLQotCQlyZXQgPSBjb3B5KGRybSwgMSwgTk9VVkVBVV9BUEVSX1ZSQU0sIGRz
+dF9hZGRyLAotCQkJCSAgIE5PVVZFQVVfQVBFUl9IT1NULCBzcmNfYWRkcik7CisJCXJldCA9IGNv
+cHkoZHJtLCAxLCBOT1VWRUFVX0FQRVJfVlJBTSwKKwkJCQlub3V2ZWF1X2RtZW1fcGFnZV9hZGRy
+KGRwYWdlKSwKKwkJCQlOT1VWRUFVX0FQRVJfSE9TVCwKKwkJCQltaWdyYXRlLT5kbWFbbWlncmF0
+ZS0+ZG1hX25yKytdKTsKIAkJaWYgKHJldCkgewogCQkJbm91dmVhdV9kbWVtX3BhZ2VfZnJlZV9s
+b2NrZWQoZHJtLCBkcGFnZSk7CiAJCQlkc3RfcGZuc1tpXSA9IDA7CkBAIC04NDYsNyArODQyLDYg
+QEAgbm91dmVhdV9kbWVtX2NvbnZlcnRfcGZuKHN0cnVjdCBub3V2ZWF1X2RybSAqZHJtLAogCiAJ
+bnBhZ2VzID0gKHJhbmdlLT5lbmQgLSByYW5nZS0+c3RhcnQpID4+IFBBR0VfU0hJRlQ7CiAJZm9y
+IChpID0gMDsgaSA8IG5wYWdlczsgKytpKSB7Ci0JCXN0cnVjdCBub3V2ZWF1X2RtZW1fY2h1bmsg
+KmNodW5rOwogCQlzdHJ1Y3QgcGFnZSAqcGFnZTsKIAkJdWludDY0X3QgYWRkcjsKIApAQCAtODY0
+LDEwICs4NTksNyBAQCBub3V2ZWF1X2RtZW1fY29udmVydF9wZm4oc3RydWN0IG5vdXZlYXVfZHJt
+ICpkcm0sCiAJCQljb250aW51ZTsKIAkJfQogCi0JCWNodW5rID0gcGFnZS0+em9uZV9kZXZpY2Vf
+ZGF0YTsKLQkJYWRkciA9IHBhZ2VfdG9fcGZuKHBhZ2UpIC0gY2h1bmstPnBmbl9maXJzdDsKLQkJ
+YWRkciA9IChhZGRyICsgY2h1bmstPmJvLT5iby5tZW0uc3RhcnQpIDw8IFBBR0VfU0hJRlQ7Ci0K
+KwkJYWRkciA9IG5vdXZlYXVfZG1lbV9wYWdlX2FkZHIocGFnZSk7CiAJCXJhbmdlLT5wZm5zW2ld
+ICY9ICgoMVVMIDw8IHJhbmdlLT5wZm5fc2hpZnQpIC0gMSk7CiAJCXJhbmdlLT5wZm5zW2ldIHw9
+IChhZGRyID4+IFBBR0VfU0hJRlQpIDw8IHJhbmdlLT5wZm5fc2hpZnQ7CiAJfQotLSAKMi4yMC4x
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
+IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
