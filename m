@@ -1,245 +1,176 @@
-From: Ralph Campbell <rcampbell@nvidia.com>
-Subject: Re: [PATCH 5/9] nouveau: simplify nouveau_dmem_migrate_to_ram
-Date: Mon, 29 Jul 2019 16:26:22 -0700
-Message-ID: <0c07ed9b-96c3-ec06-c6c5-1676f5c91eda@nvidia.com>
+From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH 6/9] nouveau: simplify nouveau_dmem_migrate_vma
+Date: Mon, 29 Jul 2019 16:27:58 -0700
+Message-ID: <ceb593fb-840b-c915-be8e-77d056e26628@nvidia.com>
 References: <20190729142843.22320-1-hch@lst.de>
- <20190729142843.22320-6-hch@lst.de>
+ <20190729142843.22320-7-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190729142843.22320-6-hch@lst.de>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190729142843.22320-7-hch-jcswGhMUV9g@public.gmane.org>
 Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Christoph Hellwig <hch@lst.de>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: Bharata B Rao <bharata@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
-On 7/29/19 7:28 AM, Christoph Hellwig wrote:
-> Factor the main copy page to ram routine out into a helper that acts on
-> a single page and which doesn't require the nouveau_dmem_fault
-> structure for argument passing.  Also remove the loop over multiple
-> pages as we only handle one at the moment, although the structure of
-> the main worker function makes it relatively easy to add multi page
-> support back if needed in the future.  But at least for now this avoid
-> the needed to dynamically allocate memory for the dma addresses in
-> what is essentially the page fault path.
-> 
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
-
-Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
-
-> ---
->   drivers/gpu/drm/nouveau/nouveau_dmem.c | 158 ++++++-------------------
->   1 file changed, 39 insertions(+), 119 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> index 21052a4aaf69..036e6c07d489 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> @@ -86,13 +86,6 @@ static inline struct nouveau_dmem *page_to_dmem(struct page *page)
->   	return container_of(page->pgmap, struct nouveau_dmem, pagemap);
->   }
->   
-> -struct nouveau_dmem_fault {
-> -	struct nouveau_drm *drm;
-> -	struct nouveau_fence *fence;
-> -	dma_addr_t *dma;
-> -	unsigned long npages;
-> -};
-> -
->   struct nouveau_migrate {
->   	struct vm_area_struct *vma;
->   	struct nouveau_drm *drm;
-> @@ -146,130 +139,55 @@ static void nouveau_dmem_fence_done(struct nouveau_fence **fence)
->   	}
->   }
->   
-> -static void
-> -nouveau_dmem_fault_alloc_and_copy(struct vm_area_struct *vma,
-> -				  const unsigned long *src_pfns,
-> -				  unsigned long *dst_pfns,
-> -				  unsigned long start,
-> -				  unsigned long end,
-> -				  struct nouveau_dmem_fault *fault)
-> +static vm_fault_t nouveau_dmem_fault_copy_one(struct nouveau_drm *drm,
-> +		struct vm_area_struct *vma, unsigned long addr,
-> +		unsigned long src, unsigned long *dst, dma_addr_t *dma_addr)
->   {
-> -	struct nouveau_drm *drm = fault->drm;
->   	struct device *dev = drm->dev->dev;
-> -	unsigned long addr, i, npages = 0;
-> -	nouveau_migrate_copy_t copy;
-> -	int ret;
-> -
-> -
-> -	/* First allocate new memory */
-> -	for (addr = start, i = 0; addr < end; addr += PAGE_SIZE, i++) {
-> -		struct page *dpage, *spage;
-> -
-> -		dst_pfns[i] = 0;
-> -		spage = migrate_pfn_to_page(src_pfns[i]);
-> -		if (!spage || !(src_pfns[i] & MIGRATE_PFN_MIGRATE))
-> -			continue;
-> +	struct page *dpage, *spage;
->   
-> -		dpage = alloc_page_vma(GFP_HIGHUSER, vma, addr);
-> -		if (!dpage) {
-> -			dst_pfns[i] = MIGRATE_PFN_ERROR;
-> -			continue;
-> -		}
-> -		lock_page(dpage);
-> -
-> -		dst_pfns[i] = migrate_pfn(page_to_pfn(dpage)) |
-> -			      MIGRATE_PFN_LOCKED;
-> -		npages++;
-> -	}
-> +	spage = migrate_pfn_to_page(src);
-> +	if (!spage || !(src & MIGRATE_PFN_MIGRATE))
-> +		return 0;
->   
-> -	/* Allocate storage for DMA addresses, so we can unmap later. */
-> -	fault->dma = kmalloc(sizeof(*fault->dma) * npages, GFP_KERNEL);
-> -	if (!fault->dma)
-> +	dpage = alloc_page_vma(GFP_HIGHUSER, args->vma, addr);
-> +	if (!dpage)
->   		goto error;
-> +	lock_page(dpage);
->   
-> -	/* Copy things over */
-> -	copy = drm->dmem->migrate.copy_func;
-> -	for (addr = start, i = 0; addr < end; addr += PAGE_SIZE, i++) {
-> -		struct page *spage, *dpage;
-> -
-> -		dpage = migrate_pfn_to_page(dst_pfns[i]);
-> -		if (!dpage || dst_pfns[i] == MIGRATE_PFN_ERROR)
-> -			continue;
-> -
-> -		spage = migrate_pfn_to_page(src_pfns[i]);
-> -		if (!spage || !(src_pfns[i] & MIGRATE_PFN_MIGRATE)) {
-> -			dst_pfns[i] = MIGRATE_PFN_ERROR;
-> -			__free_page(dpage);
-> -			continue;
-> -		}
-> -
-> -		fault->dma[fault->npages] =
-> -			dma_map_page_attrs(dev, dpage, 0, PAGE_SIZE,
-> -					   PCI_DMA_BIDIRECTIONAL,
-> -					   DMA_ATTR_SKIP_CPU_SYNC);
-> -		if (dma_mapping_error(dev, fault->dma[fault->npages])) {
-> -			dst_pfns[i] = MIGRATE_PFN_ERROR;
-> -			__free_page(dpage);
-> -			continue;
-> -		}
-> -
-> -		ret = copy(drm, 1, NOUVEAU_APER_HOST,
-> -				fault->dma[fault->npages++],
-> -				NOUVEAU_APER_VRAM,
-> -				nouveau_dmem_page_addr(spage));
-> -		if (ret) {
-> -			dst_pfns[i] = MIGRATE_PFN_ERROR;
-> -			__free_page(dpage);
-> -			continue;
-> -		}
-> -	}
-> +	*dma_addr = dma_map_page(dev, dpage, 0, PAGE_SIZE, DMA_BIDIRECTIONAL);
-> +	if (dma_mapping_error(dev, *dma_addr))
-> +		goto error_free_page;
->   
-> -	nouveau_fence_new(drm->dmem->migrate.chan, false, &fault->fence);
-> +	if (drm->dmem->migrate.copy_func(drm, 1, NOUVEAU_APER_HOST, *dma_addr,
-> +			NOUVEAU_APER_VRAM, nouveau_dmem_page_addr(spage)))
-> +		goto error_dma_unmap;
->   
-> -	return;
-> +	*dst = migrate_pfn(page_to_pfn(dpage)) | MIGRATE_PFN_LOCKED;
-
-Need a "return 0;" here or you undo the work done.
-
->   
-> +error_dma_unmap:
-> +	dma_unmap_page(dev, *dma_addr, PAGE_SIZE, DMA_BIDIRECTIONAL);
-> +error_free_page:
-> +	__free_page(dpage);
->   error:
-> -	for (addr = start, i = 0; addr < end; addr += PAGE_SIZE, ++i) {
-> -		struct page *page;
-> -
-> -		if (!dst_pfns[i] || dst_pfns[i] == MIGRATE_PFN_ERROR)
-> -			continue;
-> -
-> -		page = migrate_pfn_to_page(dst_pfns[i]);
-> -		dst_pfns[i] = MIGRATE_PFN_ERROR;
-> -		if (page == NULL)
-> -			continue;
-> -
-> -		__free_page(page);
-> -	}
-> -}
-> -
-> -static void
-> -nouveau_dmem_fault_finalize_and_map(struct nouveau_dmem_fault *fault)
-> -{
-> -	struct nouveau_drm *drm = fault->drm;
-> -
-> -	nouveau_dmem_fence_done(&fault->fence);
-> -
-> -	while (fault->npages--) {
-> -		dma_unmap_page(drm->dev->dev, fault->dma[fault->npages],
-> -			       PAGE_SIZE, PCI_DMA_BIDIRECTIONAL);
-> -	}
-> -	kfree(fault->dma);
-> +	return VM_FAULT_SIGBUS;
->   }
->   
->   static vm_fault_t nouveau_dmem_migrate_to_ram(struct vm_fault *vmf)
->   {
->   	struct nouveau_dmem *dmem = page_to_dmem(vmf->page);
-> -	unsigned long src[1] = {0}, dst[1] = {0};
-> +	struct nouveau_drm *drm = dmem->drm;
-> +	struct nouveau_fence *fence;
-> +	unsigned long src = 0, dst = 0;
-> +	dma_addr_t dma_addr = 0;
-> +	vm_fault_t ret;
->   	struct migrate_vma args = {
->   		.vma		= vmf->vma,
->   		.start		= vmf->address,
->   		.end		= vmf->address + PAGE_SIZE,
-> -		.src		= src,
-> -		.dst		= dst,
-> +		.src		= &src,
-> +		.dst		= &dst,
->   	};
-> -	struct nouveau_dmem_fault fault = { .drm = dmem->drm };
->   
->   	/*
->   	 * FIXME what we really want is to find some heuristic to migrate more
-> @@ -281,16 +199,18 @@ static vm_fault_t nouveau_dmem_migrate_to_ram(struct vm_fault *vmf)
->   	if (!args.cpages)
->   		return 0;
->   
-> -	nouveau_dmem_fault_alloc_and_copy(args.vma, src, dst, args.start,
-> -			args.end, &fault);
-> -	migrate_vma_pages(&args);
-> -	nouveau_dmem_fault_finalize_and_map(&fault);
-> +	ret = nouveau_dmem_fault_copy_one(drm, vmf->vma, vmf->address, src,
-> +			&dst, &dma_addr);
-> +	if (ret || dst == 0)
-> +		goto done;
->   
-> +	nouveau_fence_new(dmem->migrate.chan, false, &fence);
-> +	migrate_vma_pages(&args);
-> +	nouveau_dmem_fence_done(&fence);
-> +	dma_unmap_page(drm->dev->dev, dma_addr, PAGE_SIZE, DMA_BIDIRECTIONAL);
-> +done:
->   	migrate_vma_finalize(&args);
-> -	if (dst[0] == MIGRATE_PFN_ERROR)
-> -		return VM_FAULT_SIGBUS;
-> -
-> -	return 0;
-> +	return ret;
->   }
->   
->   static const struct dev_pagemap_ops nouveau_dmem_pagemap_ops = {
-> 
+Ck9uIDcvMjkvMTkgNzoyOCBBTSwgQ2hyaXN0b3BoIEhlbGx3aWcgd3JvdGU6Cj4gRmFjdG9yIHRo
+ZSBtYWluIGNvcHkgcGFnZSB0byB2cmFtIHJvdXRpbmUgb3V0IGludG8gYSBoZWxwZXIgdGhhdCBh
+Y3RzCj4gb24gYSBzaW5nbGUgcGFnZSBhbmQgd2hpY2ggZG9lc24ndCByZXF1aXJlIHRoZSBub3V2
+ZWF1X2RtZW1fbWlncmF0ZQo+IHN0cnVjdHVyZSBmb3IgYXJndW1lbnQgcGFzc2luZy4gIEFzIGFu
+IGFkZGVkIGJlbmVmaXQgdGhlIG5ldyB2ZXJzaW9uCj4gb25seSBhbGxvY2F0ZXMgdGhlIGRtYSBh
+ZGRyZXNzIGFycmF5IG9uY2UgYW5kIHJldXNlcyBpdCBmb3IgZWFjaAo+IHN1YnNlcXVlbnQgY2h1
+bmsgb2Ygd29yay4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBDaHJpc3RvcGggSGVsbHdpZyA8aGNoQGxz
+dC5kZT4KClJldmlld2VkLWJ5OiBSYWxwaCBDYW1wYmVsbCA8cmNhbXBiZWxsQG52aWRpYS5jb20+
+Cgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kbWVtLmMgfCAxODUg
+KysrKysrKystLS0tLS0tLS0tLS0tLS0tLQo+ICAgMSBmaWxlIGNoYW5nZWQsIDU2IGluc2VydGlv
+bnMoKyksIDEyOSBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9kbWVtLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2RtZW0uYwo+IGluZGV4IDAzNmU2YzA3ZDQ4OS4uNmNiOTMwNzU1OTcwIDEwMDY0NAo+IC0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZG1lbS5jCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbm91dmVhdV9kbWVtLmMKPiBAQCAtNDQsOCArNDQsNiBAQAo+ICAgI2Rl
+ZmluZSBETUVNX0NIVU5LX1NJWkUgKDJVTCA8PCAyMCkKPiAgICNkZWZpbmUgRE1FTV9DSFVOS19O
+UEFHRVMgKERNRU1fQ0hVTktfU0laRSA+PiBQQUdFX1NISUZUKQo+ICAgCj4gLXN0cnVjdCBub3V2
+ZWF1X21pZ3JhdGU7Cj4gLQo+ICAgZW51bSBub3V2ZWF1X2FwZXIgewo+ICAgCU5PVVZFQVVfQVBF
+Ul9WSVJULAo+ICAgCU5PVVZFQVVfQVBFUl9WUkFNLAo+IEBAIC04NiwxNSArODQsNiBAQCBzdGF0
+aWMgaW5saW5lIHN0cnVjdCBub3V2ZWF1X2RtZW0gKnBhZ2VfdG9fZG1lbShzdHJ1Y3QgcGFnZSAq
+cGFnZSkKPiAgIAlyZXR1cm4gY29udGFpbmVyX29mKHBhZ2UtPnBnbWFwLCBzdHJ1Y3Qgbm91dmVh
+dV9kbWVtLCBwYWdlbWFwKTsKPiAgIH0KPiAgIAo+IC1zdHJ1Y3Qgbm91dmVhdV9taWdyYXRlIHsK
+PiAtCXN0cnVjdCB2bV9hcmVhX3N0cnVjdCAqdm1hOwo+IC0Jc3RydWN0IG5vdXZlYXVfZHJtICpk
+cm07Cj4gLQlzdHJ1Y3Qgbm91dmVhdV9mZW5jZSAqZmVuY2U7Cj4gLQl1bnNpZ25lZCBsb25nIG5w
+YWdlczsKPiAtCWRtYV9hZGRyX3QgKmRtYTsKPiAtCXVuc2lnbmVkIGxvbmcgZG1hX25yOwo+IC19
+Owo+IC0KPiAgIHN0YXRpYyB1bnNpZ25lZCBsb25nIG5vdXZlYXVfZG1lbV9wYWdlX2FkZHIoc3Ry
+dWN0IHBhZ2UgKnBhZ2UpCj4gICB7Cj4gICAJc3RydWN0IG5vdXZlYXVfZG1lbV9jaHVuayAqY2h1
+bmsgPSBwYWdlLT56b25lX2RldmljZV9kYXRhOwo+IEBAIC01NjksMTMxICs1NTgsNjcgQEAgbm91
+dmVhdV9kbWVtX2luaXQoc3RydWN0IG5vdXZlYXVfZHJtICpkcm0pCj4gICAJZHJtLT5kbWVtID0g
+TlVMTDsKPiAgIH0KPiAgIAo+IC1zdGF0aWMgdm9pZAo+IC1ub3V2ZWF1X2RtZW1fbWlncmF0ZV9h
+bGxvY19hbmRfY29weShzdHJ1Y3Qgdm1fYXJlYV9zdHJ1Y3QgKnZtYSwKPiAtCQkJCSAgICBjb25z
+dCB1bnNpZ25lZCBsb25nICpzcmNfcGZucywKPiAtCQkJCSAgICB1bnNpZ25lZCBsb25nICpkc3Rf
+cGZucywKPiAtCQkJCSAgICB1bnNpZ25lZCBsb25nIHN0YXJ0LAo+IC0JCQkJICAgIHVuc2lnbmVk
+IGxvbmcgZW5kLAo+IC0JCQkJICAgIHN0cnVjdCBub3V2ZWF1X21pZ3JhdGUgKm1pZ3JhdGUpCj4g
+K3N0YXRpYyB1bnNpZ25lZCBsb25nIG5vdXZlYXVfZG1lbV9taWdyYXRlX2NvcHlfb25lKHN0cnVj
+dCBub3V2ZWF1X2RybSAqZHJtLAo+ICsJCXN0cnVjdCB2bV9hcmVhX3N0cnVjdCAqdm1hLCB1bnNp
+Z25lZCBsb25nIGFkZHIsCj4gKwkJdW5zaWduZWQgbG9uZyBzcmMsIGRtYV9hZGRyX3QgKmRtYV9h
+ZGRyKQo+ICAgewo+IC0Jc3RydWN0IG5vdXZlYXVfZHJtICpkcm0gPSBtaWdyYXRlLT5kcm07Cj4g
+ICAJc3RydWN0IGRldmljZSAqZGV2ID0gZHJtLT5kZXYtPmRldjsKPiAtCXVuc2lnbmVkIGxvbmcg
+YWRkciwgaSwgbnBhZ2VzID0gMDsKPiAtCW5vdXZlYXVfbWlncmF0ZV9jb3B5X3QgY29weTsKPiAt
+CWludCByZXQ7Cj4gLQo+IC0JLyogRmlyc3QgYWxsb2NhdGUgbmV3IG1lbW9yeSAqLwo+IC0JZm9y
+IChhZGRyID0gc3RhcnQsIGkgPSAwOyBhZGRyIDwgZW5kOyBhZGRyICs9IFBBR0VfU0laRSwgaSsr
+KSB7Cj4gLQkJc3RydWN0IHBhZ2UgKmRwYWdlLCAqc3BhZ2U7Cj4gLQo+IC0JCWRzdF9wZm5zW2ld
+ID0gMDsKPiAtCQlzcGFnZSA9IG1pZ3JhdGVfcGZuX3RvX3BhZ2Uoc3JjX3BmbnNbaV0pOwo+IC0J
+CWlmICghc3BhZ2UgfHwgIShzcmNfcGZuc1tpXSAmIE1JR1JBVEVfUEZOX01JR1JBVEUpKQo+IC0J
+CQljb250aW51ZTsKPiAtCj4gLQkJZHBhZ2UgPSBub3V2ZWF1X2RtZW1fcGFnZV9hbGxvY19sb2Nr
+ZWQoZHJtKTsKPiAtCQlpZiAoIWRwYWdlKQo+IC0JCQljb250aW51ZTsKPiAtCj4gLQkJZHN0X3Bm
+bnNbaV0gPSBtaWdyYXRlX3BmbihwYWdlX3RvX3BmbihkcGFnZSkpIHwKPiAtCQkJICAgICAgTUlH
+UkFURV9QRk5fTE9DS0VEIHwKPiAtCQkJICAgICAgTUlHUkFURV9QRk5fREVWSUNFOwo+IC0JCW5w
+YWdlcysrOwo+IC0JfQo+IC0KPiAtCWlmICghbnBhZ2VzKQo+IC0JCXJldHVybjsKPiAtCj4gLQkv
+KiBBbGxvY2F0ZSBzdG9yYWdlIGZvciBETUEgYWRkcmVzc2VzLCBzbyB3ZSBjYW4gdW5tYXAgbGF0
+ZXIuICovCj4gLQltaWdyYXRlLT5kbWEgPSBrbWFsbG9jKHNpemVvZigqbWlncmF0ZS0+ZG1hKSAq
+IG5wYWdlcywgR0ZQX0tFUk5FTCk7Cj4gLQlpZiAoIW1pZ3JhdGUtPmRtYSkKPiAtCQlnb3RvIGVy
+cm9yOwo+IC0JbWlncmF0ZS0+ZG1hX25yID0gMDsKPiAtCj4gLQkvKiBDb3B5IHRoaW5ncyBvdmVy
+ICovCj4gLQljb3B5ID0gZHJtLT5kbWVtLT5taWdyYXRlLmNvcHlfZnVuYzsKPiAtCWZvciAoYWRk
+ciA9IHN0YXJ0LCBpID0gMDsgYWRkciA8IGVuZDsgYWRkciArPSBQQUdFX1NJWkUsIGkrKykgewo+
+IC0JCXN0cnVjdCBwYWdlICpzcGFnZSwgKmRwYWdlOwo+IC0KPiAtCQlkcGFnZSA9IG1pZ3JhdGVf
+cGZuX3RvX3BhZ2UoZHN0X3BmbnNbaV0pOwo+IC0JCWlmICghZHBhZ2UgfHwgZHN0X3BmbnNbaV0g
+PT0gTUlHUkFURV9QRk5fRVJST1IpCj4gLQkJCWNvbnRpbnVlOwo+IC0KPiAtCQlzcGFnZSA9IG1p
+Z3JhdGVfcGZuX3RvX3BhZ2Uoc3JjX3BmbnNbaV0pOwo+IC0JCWlmICghc3BhZ2UgfHwgIShzcmNf
+cGZuc1tpXSAmIE1JR1JBVEVfUEZOX01JR1JBVEUpKSB7Cj4gLQkJCW5vdXZlYXVfZG1lbV9wYWdl
+X2ZyZWVfbG9ja2VkKGRybSwgZHBhZ2UpOwo+IC0JCQlkc3RfcGZuc1tpXSA9IDA7Cj4gLQkJCWNv
+bnRpbnVlOwo+IC0JCX0KPiAtCj4gLQkJbWlncmF0ZS0+ZG1hW21pZ3JhdGUtPmRtYV9ucl0gPQo+
+IC0JCQlkbWFfbWFwX3BhZ2VfYXR0cnMoZGV2LCBzcGFnZSwgMCwgUEFHRV9TSVpFLAo+IC0JCQkJ
+CSAgIFBDSV9ETUFfQklESVJFQ1RJT05BTCwKPiAtCQkJCQkgICBETUFfQVRUUl9TS0lQX0NQVV9T
+WU5DKTsKPiAtCQlpZiAoZG1hX21hcHBpbmdfZXJyb3IoZGV2LCBtaWdyYXRlLT5kbWFbbWlncmF0
+ZS0+ZG1hX25yXSkpIHsKPiAtCQkJbm91dmVhdV9kbWVtX3BhZ2VfZnJlZV9sb2NrZWQoZHJtLCBk
+cGFnZSk7Cj4gLQkJCWRzdF9wZm5zW2ldID0gMDsKPiAtCQkJY29udGludWU7Cj4gLQkJfQo+IC0K
+PiAtCQlyZXQgPSBjb3B5KGRybSwgMSwgTk9VVkVBVV9BUEVSX1ZSQU0sCj4gLQkJCQlub3V2ZWF1
+X2RtZW1fcGFnZV9hZGRyKGRwYWdlKSwKPiAtCQkJCU5PVVZFQVVfQVBFUl9IT1NULAo+IC0JCQkJ
+bWlncmF0ZS0+ZG1hW21pZ3JhdGUtPmRtYV9ucisrXSk7Cj4gLQkJaWYgKHJldCkgewo+IC0JCQlu
+b3V2ZWF1X2RtZW1fcGFnZV9mcmVlX2xvY2tlZChkcm0sIGRwYWdlKTsKPiAtCQkJZHN0X3BmbnNb
+aV0gPSAwOwo+IC0JCQljb250aW51ZTsKPiAtCQl9Cj4gLQl9Cj4gKwlzdHJ1Y3QgcGFnZSAqZHBh
+Z2UsICpzcGFnZTsKPiAgIAo+IC0Jbm91dmVhdV9mZW5jZV9uZXcoZHJtLT5kbWVtLT5taWdyYXRl
+LmNoYW4sIGZhbHNlLCAmbWlncmF0ZS0+ZmVuY2UpOwo+ICsJc3BhZ2UgPSBtaWdyYXRlX3Bmbl90
+b19wYWdlKHNyYyk7Cj4gKwlpZiAoIXNwYWdlIHx8ICEoc3JjICYgTUlHUkFURV9QRk5fTUlHUkFU
+RSkpCj4gKwkJZ290byBvdXQ7Cj4gICAKPiAtCXJldHVybjsKPiArCWRwYWdlID0gbm91dmVhdV9k
+bWVtX3BhZ2VfYWxsb2NfbG9ja2VkKGRybSk7Cj4gKwlpZiAoIWRwYWdlKQo+ICsJCXJldHVybiAw
+Owo+ICAgCj4gLWVycm9yOgo+IC0JZm9yIChhZGRyID0gc3RhcnQsIGkgPSAwOyBhZGRyIDwgZW5k
+OyBhZGRyICs9IFBBR0VfU0laRSwgKytpKSB7Cj4gLQkJc3RydWN0IHBhZ2UgKnBhZ2U7Cj4gKwkq
+ZG1hX2FkZHIgPSBkbWFfbWFwX3BhZ2UoZGV2LCBzcGFnZSwgMCwgUEFHRV9TSVpFLCBETUFfQklE
+SVJFQ1RJT05BTCk7Cj4gKwlpZiAoZG1hX21hcHBpbmdfZXJyb3IoZGV2LCAqZG1hX2FkZHIpKQo+
+ICsJCWdvdG8gb3V0X2ZyZWVfcGFnZTsKPiAgIAo+IC0JCWlmICghZHN0X3BmbnNbaV0gfHwgZHN0
+X3BmbnNbaV0gPT0gTUlHUkFURV9QRk5fRVJST1IpCj4gLQkJCWNvbnRpbnVlOwo+ICsJaWYgKGRy
+bS0+ZG1lbS0+bWlncmF0ZS5jb3B5X2Z1bmMoZHJtLCAxLCBOT1VWRUFVX0FQRVJfVlJBTSwKPiAr
+CQkJbm91dmVhdV9kbWVtX3BhZ2VfYWRkcihkcGFnZSksIE5PVVZFQVVfQVBFUl9IT1NULAo+ICsJ
+CQkqZG1hX2FkZHIpKQo+ICsJCWdvdG8gb3V0X2RtYV91bm1hcDsKPiAgIAo+IC0JCXBhZ2UgPSBt
+aWdyYXRlX3Bmbl90b19wYWdlKGRzdF9wZm5zW2ldKTsKPiAtCQlkc3RfcGZuc1tpXSA9IE1JR1JB
+VEVfUEZOX0VSUk9SOwo+IC0JCWlmIChwYWdlID09IE5VTEwpCj4gLQkJCWNvbnRpbnVlOwo+ICsJ
+cmV0dXJuIG1pZ3JhdGVfcGZuKHBhZ2VfdG9fcGZuKGRwYWdlKSkgfAo+ICsJCU1JR1JBVEVfUEZO
+X0xPQ0tFRCB8IE1JR1JBVEVfUEZOX0RFVklDRTsKPiAgIAo+IC0JCV9fZnJlZV9wYWdlKHBhZ2Up
+Owo+IC0JfQo+ICtvdXRfZG1hX3VubWFwOgo+ICsJZG1hX3VubWFwX3BhZ2UoZGV2LCAqZG1hX2Fk
+ZHIsIFBBR0VfU0laRSwgRE1BX0JJRElSRUNUSU9OQUwpOwo+ICtvdXRfZnJlZV9wYWdlOgo+ICsJ
+bm91dmVhdV9kbWVtX3BhZ2VfZnJlZV9sb2NrZWQoZHJtLCBkcGFnZSk7Cj4gK291dDoKPiArCXJl
+dHVybiAwOwo+ICAgfQo+ICAgCj4gLXN0YXRpYyB2b2lkCj4gLW5vdXZlYXVfZG1lbV9taWdyYXRl
+X2ZpbmFsaXplX2FuZF9tYXAoc3RydWN0IG5vdXZlYXVfbWlncmF0ZSAqbWlncmF0ZSkKPiArc3Rh
+dGljIHZvaWQgbm91dmVhdV9kbWVtX21pZ3JhdGVfY2h1bmsoc3RydWN0IG1pZ3JhdGVfdm1hICph
+cmdzLAo+ICsJCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtLCBkbWFfYWRkcl90ICpkbWFfYWRkcnMp
+Cj4gICB7Cj4gLQlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG1pZ3JhdGUtPmRybTsKPiArCXN0
+cnVjdCBub3V2ZWF1X2ZlbmNlICpmZW5jZTsKPiArCXVuc2lnbmVkIGxvbmcgYWRkciA9IGFyZ3Mt
+PnN0YXJ0LCBucl9kbWEgPSAwLCBpOwo+ICsKPiArCWZvciAoaSA9IDA7IGFkZHIgPCBhcmdzLT5l
+bmQ7IGkrKykgewo+ICsJCWFyZ3MtPmRzdFtpXSA9IG5vdXZlYXVfZG1lbV9taWdyYXRlX2NvcHlf
+b25lKGRybSwgYXJncy0+dm1hLAo+ICsJCQkJYWRkciwgYXJncy0+c3JjW2ldLCAmZG1hX2FkZHJz
+W25yX2RtYV0pOwo+ICsJCWlmIChhcmdzLT5kc3RbaV0pCj4gKwkJCW5yX2RtYSsrOwo+ICsJCWFk
+ZHIgKz0gUEFHRV9TSVpFOwo+ICsJfQo+ICAgCj4gLQlub3V2ZWF1X2RtZW1fZmVuY2VfZG9uZSgm
+bWlncmF0ZS0+ZmVuY2UpOwo+ICsJbm91dmVhdV9mZW5jZV9uZXcoZHJtLT5kbWVtLT5taWdyYXRl
+LmNoYW4sIGZhbHNlLCAmZmVuY2UpOwo+ICsJbWlncmF0ZV92bWFfcGFnZXMoYXJncyk7Cj4gKwlu
+b3V2ZWF1X2RtZW1fZmVuY2VfZG9uZSgmZmVuY2UpOwo+ICAgCj4gLQl3aGlsZSAobWlncmF0ZS0+
+ZG1hX25yLS0pIHsKPiAtCQlkbWFfdW5tYXBfcGFnZShkcm0tPmRldi0+ZGV2LCBtaWdyYXRlLT5k
+bWFbbWlncmF0ZS0+ZG1hX25yXSwKPiAtCQkJICAgICAgIFBBR0VfU0laRSwgUENJX0RNQV9CSURJ
+UkVDVElPTkFMKTsKPiArCXdoaWxlIChucl9kbWEtLSkgewo+ICsJCWRtYV91bm1hcF9wYWdlKGRy
+bS0+ZGV2LT5kZXYsIGRtYV9hZGRyc1tucl9kbWFdLCBQQUdFX1NJWkUsCj4gKwkJCQlETUFfQklE
+SVJFQ1RJT05BTCk7Cj4gICAJfQo+IC0Ja2ZyZWUobWlncmF0ZS0+ZG1hKTsKPiAtCj4gICAJLyoK
+PiAtCSAqIEZJWE1FIG9wdGltaXphdGlvbjogdXBkYXRlIEdQVSBwYWdlIHRhYmxlIHRvIHBvaW50
+IHRvIG5ld2x5Cj4gLQkgKiBtaWdyYXRlZCBtZW1vcnkuCj4gKwkgKiBGSVhNRSBvcHRpbWl6YXRp
+b246IHVwZGF0ZSBHUFUgcGFnZSB0YWJsZSB0byBwb2ludCB0byBuZXdseSBtaWdyYXRlZAo+ICsJ
+ICogbWVtb3J5Lgo+ICAgCSAqLwo+IC19Cj4gLQo+IC1zdGF0aWMgdm9pZCBub3V2ZWF1X2RtZW1f
+bWlncmF0ZV9jaHVuayhzdHJ1Y3QgbWlncmF0ZV92bWEgKmFyZ3MsCj4gLQkJc3RydWN0IG5vdXZl
+YXVfbWlncmF0ZSAqbWlncmF0ZSkKPiAtewo+IC0Jbm91dmVhdV9kbWVtX21pZ3JhdGVfYWxsb2Nf
+YW5kX2NvcHkoYXJncy0+dm1hLCBhcmdzLT5zcmMsIGFyZ3MtPmRzdCwKPiAtCQkJYXJncy0+c3Rh
+cnQsIGFyZ3MtPmVuZCwgbWlncmF0ZSk7Cj4gLQltaWdyYXRlX3ZtYV9wYWdlcyhhcmdzKTsKPiAt
+CW5vdXZlYXVfZG1lbV9taWdyYXRlX2ZpbmFsaXplX2FuZF9tYXAobWlncmF0ZSk7Cj4gICAJbWln
+cmF0ZV92bWFfZmluYWxpemUoYXJncyk7Cj4gICB9Cj4gICAKPiBAQCAtNzA1LDM4ICs2MzAsNDAg
+QEAgbm91dmVhdV9kbWVtX21pZ3JhdGVfdm1hKHN0cnVjdCBub3V2ZWF1X2RybSAqZHJtLAo+ICAg
+ewo+ICAgCXVuc2lnbmVkIGxvbmcgbnBhZ2VzID0gKGVuZCAtIHN0YXJ0KSA+PiBQQUdFX1NISUZU
+Owo+ICAgCXVuc2lnbmVkIGxvbmcgbWF4ID0gbWluKFNHX01BWF9TSU5HTEVfQUxMT0MsIG5wYWdl
+cyk7Cj4gKwlkbWFfYWRkcl90ICpkbWFfYWRkcnM7Cj4gICAJc3RydWN0IG1pZ3JhdGVfdm1hIGFy
+Z3MgPSB7Cj4gICAJCS52bWEJCT0gdm1hLAo+ICAgCQkuc3RhcnQJCT0gc3RhcnQsCj4gICAJfTsK
+PiAtCXN0cnVjdCBub3V2ZWF1X21pZ3JhdGUgbWlncmF0ZSA9IHsKPiAtCQkuZHJtCQk9IGRybSwK
+PiAtCQkudm1hCQk9IHZtYSwKPiAtCQkubnBhZ2VzCQk9IG5wYWdlcywKPiAtCX07Cj4gICAJdW5z
+aWduZWQgbG9uZyBjLCBpOwo+ICAgCWludCByZXQgPSAtRU5PTUVNOwo+ICAgCj4gLQlhcmdzLnNy
+YyA9IGt6YWxsb2Moc2l6ZW9mKGxvbmcpICogbWF4LCBHRlBfS0VSTkVMKTsKPiArCWFyZ3Muc3Jj
+ID0ga2NhbGxvYyhtYXgsIHNpemVvZihhcmdzLnNyYyksIEdGUF9LRVJORUwpOwo+ICAgCWlmICgh
+YXJncy5zcmMpCj4gICAJCWdvdG8gb3V0Owo+IC0JYXJncy5kc3QgPSBremFsbG9jKHNpemVvZihs
+b25nKSAqIG1heCwgR0ZQX0tFUk5FTCk7Cj4gKwlhcmdzLmRzdCA9IGtjYWxsb2MobWF4LCBzaXpl
+b2YoYXJncy5kc3QpLCBHRlBfS0VSTkVMKTsKPiAgIAlpZiAoIWFyZ3MuZHN0KQo+ICAgCQlnb3Rv
+IG91dF9mcmVlX3NyYzsKPiAgIAo+ICsJZG1hX2FkZHJzID0ga21hbGxvY19hcnJheShtYXgsIHNp
+emVvZigqZG1hX2FkZHJzKSwgR0ZQX0tFUk5FTCk7Cj4gKwlpZiAoIWRtYV9hZGRycykKPiArCQln
+b3RvIG91dF9mcmVlX2RzdDsKPiArCj4gICAJZm9yIChpID0gMDsgaSA8IG5wYWdlczsgaSArPSBj
+KSB7Cj4gICAJCWMgPSBtaW4oU0dfTUFYX1NJTkdMRV9BTExPQywgbnBhZ2VzKTsKPiAgIAkJYXJn
+cy5lbmQgPSBzdGFydCArIChjIDw8IFBBR0VfU0hJRlQpOwo+ICAgCQlyZXQgPSBtaWdyYXRlX3Zt
+YV9zZXR1cCgmYXJncyk7Cj4gICAJCWlmIChyZXQpCj4gLQkJCWdvdG8gb3V0X2ZyZWVfZHN0Owo+
+ICsJCQlnb3RvIG91dF9mcmVlX2RtYTsKPiAgIAo+ICAgCQlpZiAoYXJncy5jcGFnZXMpCj4gLQkJ
+CW5vdXZlYXVfZG1lbV9taWdyYXRlX2NodW5rKCZhcmdzLCAmbWlncmF0ZSk7Cj4gKwkJCW5vdXZl
+YXVfZG1lbV9taWdyYXRlX2NodW5rKCZhcmdzLCBkcm0sIGRtYV9hZGRycyk7Cj4gICAJCWFyZ3Mu
+c3RhcnQgPSBhcmdzLmVuZDsKPiAgIAl9Cj4gICAKPiAgIAlyZXQgPSAwOwo+ICtvdXRfZnJlZV9k
+bWE6Cj4gKwlrZnJlZShkbWFfYWRkcnMpOwo+ICAgb3V0X2ZyZWVfZHN0Ogo+ICAgCWtmcmVlKGFy
+Z3MuZHN0KTsKPiAgIG91dF9mcmVlX3NyYzoKPiAKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1
