@@ -1,45 +1,97 @@
-From: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 7/9] mm: remove the unused MIGRATE_PFN_ERROR
- flag
-Date: Mon, 29 Jul 2019 16:29:55 -0700
-Message-ID: <32f08aa4-c9a3-9545-69aa-2cc3695e15df@nvidia.com>
+From: Jerome Glisse <jglisse@redhat.com>
+Subject: Re: [PATCH 9/9] mm: remove the MIGRATE_PFN_WRITE flag
+Date: Mon, 29 Jul 2019 19:30:44 -0400
+Message-ID: <20190729233044.GA7171@redhat.com>
 References: <20190729142843.22320-1-hch@lst.de>
- <20190729142843.22320-8-hch@lst.de>
+ <20190729142843.22320-10-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190729142843.22320-8-hch-jcswGhMUV9g@public.gmane.org>
-Content-Language: en-US
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20190729142843.22320-10-hch@lst.de>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Christoph Hellwig <hch@lst.de>
+Cc: Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Ralph Campbell <rcampbell@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Ck9uIDcvMjkvMTkgNzoyOCBBTSwgQ2hyaXN0b3BoIEhlbGx3aWcgd3JvdGU6Cj4gV2UgZG9uJ3Qg
-dXNlIHRoaXMgZmxhZyBhbnltb3JlLCBzbyByZW1vdmUgaXQuCj4gCj4gU2lnbmVkLW9mZi1ieTog
-Q2hyaXN0b3BoIEhlbGx3aWcgPGhjaEBsc3QuZGU+CgpSZXZpZXdlZC1ieTogUmFscGggQ2FtcGJl
-bGwgPHJjYW1wYmVsbEBudmlkaWEuY29tPgoKPiAtLS0KPiAgIGluY2x1ZGUvbGludXgvbWlncmF0
-ZS5oIHwgMSAtCj4gICAxIGZpbGUgY2hhbmdlZCwgMSBkZWxldGlvbigtKQo+IAo+IGRpZmYgLS1n
-aXQgYS9pbmNsdWRlL2xpbnV4L21pZ3JhdGUuaCBiL2luY2x1ZGUvbGludXgvbWlncmF0ZS5oCj4g
-aW5kZXggMDkzZDY3ZmNmNmRkLi4yMjkxNTNjMmM0OTYgMTAwNjQ0Cj4gLS0tIGEvaW5jbHVkZS9s
-aW51eC9taWdyYXRlLmgKPiArKysgYi9pbmNsdWRlL2xpbnV4L21pZ3JhdGUuaAo+IEBAIC0xNjcs
-NyArMTY3LDYgQEAgc3RhdGljIGlubGluZSBpbnQgbWlncmF0ZV9taXNwbGFjZWRfdHJhbnNodWdl
-X3BhZ2Uoc3RydWN0IG1tX3N0cnVjdCAqbW0sCj4gICAjZGVmaW5lIE1JR1JBVEVfUEZOX0xPQ0tF
-RAkoMVVMIDw8IDIpCj4gICAjZGVmaW5lIE1JR1JBVEVfUEZOX1dSSVRFCSgxVUwgPDwgMykKPiAg
-ICNkZWZpbmUgTUlHUkFURV9QRk5fREVWSUNFCSgxVUwgPDwgNCkKPiAtI2RlZmluZSBNSUdSQVRF
-X1BGTl9FUlJPUgkoMVVMIDw8IDUpCj4gICAjZGVmaW5lIE1JR1JBVEVfUEZOX1NISUZUCTYKClRo
-ZSBNSUdSQVRFX1BGTl9TSElGVCBjb3VsZCBiZSByZWR1Y2VkIHRvIDUgc2luY2UgaXQgaXMgb25s
-eSB1c2VkCnRvIG1ha2Ugcm9vbSBmb3IgdGhlIGZsYWdzLgoKPiAgIHN0YXRpYyBpbmxpbmUgc3Ry
-dWN0IHBhZ2UgKm1pZ3JhdGVfcGZuX3RvX3BhZ2UodW5zaWduZWQgbG9uZyBtcGZuKQo+IApfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
-bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+On Mon, Jul 29, 2019 at 05:28:43PM +0300, Christoph Hellwig wrote:
+> The MIGRATE_PFN_WRITE is only used locally in migrate_vma_collect_pmd,
+> where it can be replaced with a simple boolean local variable.
+> 
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+
+NAK that flag is useful, for instance a anonymous vma might have
+some of its page read only even if the vma has write permission.
+
+It seems that the code in nouveau is wrong (probably lost that
+in various rebase/rework) as this flag should be use to decide
+wether to map the device memory with write permission or not.
+
+I am traveling right now, i will investigate what happened to
+nouveau code.
+
+Cheers,
+Jérôme
+
+> ---
+>  include/linux/migrate.h | 1 -
+>  mm/migrate.c            | 9 +++++----
+>  2 files changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/include/linux/migrate.h b/include/linux/migrate.h
+> index 8b46cfdb1a0e..ba74ef5a7702 100644
+> --- a/include/linux/migrate.h
+> +++ b/include/linux/migrate.h
+> @@ -165,7 +165,6 @@ static inline int migrate_misplaced_transhuge_page(struct mm_struct *mm,
+>  #define MIGRATE_PFN_VALID	(1UL << 0)
+>  #define MIGRATE_PFN_MIGRATE	(1UL << 1)
+>  #define MIGRATE_PFN_LOCKED	(1UL << 2)
+> -#define MIGRATE_PFN_WRITE	(1UL << 3)
+>  #define MIGRATE_PFN_SHIFT	6
+>  
+>  static inline struct page *migrate_pfn_to_page(unsigned long mpfn)
+> diff --git a/mm/migrate.c b/mm/migrate.c
+> index 74735256e260..724f92dcc31b 100644
+> --- a/mm/migrate.c
+> +++ b/mm/migrate.c
+> @@ -2212,6 +2212,7 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+>  		unsigned long mpfn, pfn;
+>  		struct page *page;
+>  		swp_entry_t entry;
+> +		bool writable = false;
+>  		pte_t pte;
+>  
+>  		pte = *ptep;
+> @@ -2240,7 +2241,7 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+>  			mpfn = migrate_pfn(page_to_pfn(page)) |
+>  					MIGRATE_PFN_MIGRATE;
+>  			if (is_write_device_private_entry(entry))
+> -				mpfn |= MIGRATE_PFN_WRITE;
+> +				writable = true;
+>  		} else {
+>  			if (is_zero_pfn(pfn)) {
+>  				mpfn = MIGRATE_PFN_MIGRATE;
+> @@ -2250,7 +2251,8 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+>  			}
+>  			page = vm_normal_page(migrate->vma, addr, pte);
+>  			mpfn = migrate_pfn(pfn) | MIGRATE_PFN_MIGRATE;
+> -			mpfn |= pte_write(pte) ? MIGRATE_PFN_WRITE : 0;
+> +			if (pte_write(pte))
+> +				writable = true;
+>  		}
+>  
+>  		/* FIXME support THP */
+> @@ -2284,8 +2286,7 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+>  			ptep_get_and_clear(mm, addr, ptep);
+>  
+>  			/* Setup special migration page table entry */
+> -			entry = make_migration_entry(page, mpfn &
+> -						     MIGRATE_PFN_WRITE);
+> +			entry = make_migration_entry(page, writable);
+>  			swp_pte = swp_entry_to_pte(entry);
+>  			if (pte_soft_dirty(pte))
+>  				swp_pte = pte_swp_mksoft_dirty(swp_pte);
+> -- 
+> 2.20.1
+> 
