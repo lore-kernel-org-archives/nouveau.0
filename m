@@ -1,98 +1,44 @@
-From: Jerome Glisse <jglisse@redhat.com>
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 Subject: Re: [PATCH 9/9] mm: remove the MIGRATE_PFN_WRITE flag
-Date: Mon, 29 Jul 2019 19:46:11 -0400
-Message-ID: <20190729234611.GC7171@redhat.com>
+Date: Tue, 30 Jul 2019 07:46:33 +0200
+Message-ID: <20190730054633.GA28515@lst.de>
 References: <20190729142843.22320-1-hch@lst.de>
- <20190729142843.22320-10-hch@lst.de>
- <1f0ef337-6ca5-54fa-e627-41a46be73f2b@nvidia.com>
+ <20190729142843.22320-10-hch@lst.de> <20190729233044.GA7171@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <1f0ef337-6ca5-54fa-e627-41a46be73f2b@nvidia.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ralph Campbell <rcampbell@nvidia.com>
-Cc: Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Bharata B Rao <bharata@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20190729233044.GA7171-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Jerome Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jul 29, 2019 at 04:42:01PM -0700, Ralph Campbell wrote:
-> 
-> On 7/29/19 7:28 AM, Christoph Hellwig wrote:
-> > The MIGRATE_PFN_WRITE is only used locally in migrate_vma_collect_pmd,
-> > where it can be replaced with a simple boolean local variable.
-> > 
-> > Signed-off-by: Christoph Hellwig <hch@lst.de>
-> 
-> Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
-> 
-> > ---
-> >   include/linux/migrate.h | 1 -
-> >   mm/migrate.c            | 9 +++++----
-> >   2 files changed, 5 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/include/linux/migrate.h b/include/linux/migrate.h
-> > index 8b46cfdb1a0e..ba74ef5a7702 100644
-> > --- a/include/linux/migrate.h
-> > +++ b/include/linux/migrate.h
-> > @@ -165,7 +165,6 @@ static inline int migrate_misplaced_transhuge_page(struct mm_struct *mm,
-> >   #define MIGRATE_PFN_VALID	(1UL << 0)
-> >   #define MIGRATE_PFN_MIGRATE	(1UL << 1)
-> >   #define MIGRATE_PFN_LOCKED	(1UL << 2)
-> > -#define MIGRATE_PFN_WRITE	(1UL << 3)
-> >   #define MIGRATE_PFN_SHIFT	6
-> >   static inline struct page *migrate_pfn_to_page(unsigned long mpfn)
-> > diff --git a/mm/migrate.c b/mm/migrate.c
-> > index 74735256e260..724f92dcc31b 100644
-> > --- a/mm/migrate.c
-> > +++ b/mm/migrate.c
-> > @@ -2212,6 +2212,7 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
-> >   		unsigned long mpfn, pfn;
-> >   		struct page *page;
-> >   		swp_entry_t entry;
-> > +		bool writable = false;
-> >   		pte_t pte;
-> >   		pte = *ptep;
-> > @@ -2240,7 +2241,7 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
-> >   			mpfn = migrate_pfn(page_to_pfn(page)) |
-> >   					MIGRATE_PFN_MIGRATE;
-> >   			if (is_write_device_private_entry(entry))
-> > -				mpfn |= MIGRATE_PFN_WRITE;
-> > +				writable = true;
-> >   		} else {
-> >   			if (is_zero_pfn(pfn)) {
-> >   				mpfn = MIGRATE_PFN_MIGRATE;
-> > @@ -2250,7 +2251,8 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
-> >   			}
-> >   			page = vm_normal_page(migrate->vma, addr, pte);
-> >   			mpfn = migrate_pfn(pfn) | MIGRATE_PFN_MIGRATE;
-> > -			mpfn |= pte_write(pte) ? MIGRATE_PFN_WRITE : 0;
-> > +			if (pte_write(pte))
-> > +				writable = true;
-> >   		}
-> >   		/* FIXME support THP */
-> > @@ -2284,8 +2286,7 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
-> >   			ptep_get_and_clear(mm, addr, ptep);
-> >   			/* Setup special migration page table entry */
-> > -			entry = make_migration_entry(page, mpfn &
-> > -						     MIGRATE_PFN_WRITE);
-> > +			entry = make_migration_entry(page, writable);
-> >   			swp_pte = swp_entry_to_pte(entry);
-> >   			if (pte_soft_dirty(pte))
-> >   				swp_pte = pte_swp_mksoft_dirty(swp_pte);
-> > 
-> 
-> MIGRATE_PFN_WRITE may mot being used but that seems like a bug to me.
-> If a page is migrated to device memory, it could be mapped at the same
-> time to avoid a device page fault but it would need the flag to know
-> whether to map it RW or RO. But I suppose that could be inferred from
-> the vma->vm_flags.
-
-It is a bug that it is not being use right now. I will have to dig my
-git repo to see when that got kill. Will look into it once i get back.
-
-The vma->vm_flags is of no use here. A page can be write protected
-inside a writable vma for various reasons.
-
-Cheers,
-Jérôme
+T24gTW9uLCBKdWwgMjksIDIwMTkgYXQgMDc6MzA6NDRQTSAtMDQwMCwgSmVyb21lIEdsaXNzZSB3
+cm90ZToKPiBPbiBNb24sIEp1bCAyOSwgMjAxOSBhdCAwNToyODo0M1BNICswMzAwLCBDaHJpc3Rv
+cGggSGVsbHdpZyB3cm90ZToKPiA+IFRoZSBNSUdSQVRFX1BGTl9XUklURSBpcyBvbmx5IHVzZWQg
+bG9jYWxseSBpbiBtaWdyYXRlX3ZtYV9jb2xsZWN0X3BtZCwKPiA+IHdoZXJlIGl0IGNhbiBiZSBy
+ZXBsYWNlZCB3aXRoIGEgc2ltcGxlIGJvb2xlYW4gbG9jYWwgdmFyaWFibGUuCj4gPiAKPiA+IFNp
+Z25lZC1vZmYtYnk6IENocmlzdG9waCBIZWxsd2lnIDxoY2hAbHN0LmRlPgo+IAo+IE5BSyB0aGF0
+IGZsYWcgaXMgdXNlZnVsLCBmb3IgaW5zdGFuY2UgYSBhbm9ueW1vdXMgdm1hIG1pZ2h0IGhhdmUK
+PiBzb21lIG9mIGl0cyBwYWdlIHJlYWQgb25seSBldmVuIGlmIHRoZSB2bWEgaGFzIHdyaXRlIHBl
+cm1pc3Npb24uCj4gCj4gSXQgc2VlbXMgdGhhdCB0aGUgY29kZSBpbiBub3V2ZWF1IGlzIHdyb25n
+IChwcm9iYWJseSBsb3N0IHRoYXQKPiBpbiB2YXJpb3VzIHJlYmFzZS9yZXdvcmspIGFzIHRoaXMg
+ZmxhZyBzaG91bGQgYmUgdXNlIHRvIGRlY2lkZQo+IHdldGhlciB0byBtYXAgdGhlIGRldmljZSBt
+ZW1vcnkgd2l0aCB3cml0ZSBwZXJtaXNzaW9uIG9yIG5vdC4KPiAKPiBJIGFtIHRyYXZlbGluZyBy
+aWdodCBub3csIGkgd2lsbCBpbnZlc3RpZ2F0ZSB3aGF0IGhhcHBlbmVkIHRvCj4gbm91dmVhdSBj
+b2RlLgoKV2UgY2FuIGFkZCBpdCBiYWNrIHdoZW4gbmVlZGVkIHByZXR0eSBlYXNpbHkuICBNdWNo
+IG9mIHRoaXMgaGFzIGJpdHJvdHRlZAp3YXkgdG8gZmFzdCwgYW5kIHRoZSBwZW5kaW5nIHBwYyBr
+dm1obW0gY29kZSBkb2Vzbid0IG5lZWQgaXQgZWl0aGVyLgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXU=
