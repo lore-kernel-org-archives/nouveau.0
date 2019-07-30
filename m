@@ -1,44 +1,64 @@
-From: Jerome Glisse <jglisse@redhat.com>
-Subject: Re: [PATCH 9/9] mm: remove the MIGRATE_PFN_WRITE flag
-Date: Tue, 30 Jul 2019 11:51:34 -0400
-Message-ID: <20190730155134.GA10366@redhat.com>
-References: <20190729142843.22320-1-hch@lst.de>
- <20190729142843.22320-10-hch@lst.de>
- <20190729233044.GA7171@redhat.com>
- <20190730054633.GA28515@lst.de>
+From: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
+Subject: Re: [PATCH 08/13] mm: remove the mask variable in
+ hmm_vma_walk_hugetlb_entry
+Date: Tue, 30 Jul 2019 17:39:50 +0000
+Message-ID: <20190730173946.GK24038@mellanox.com>
+References: <20190730055203.28467-1-hch@lst.de>
+ <20190730055203.28467-9-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20190730054633.GA28515@lst.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Christoph Hellwig <hch@lst.de>
-Cc: Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Ralph Campbell <rcampbell@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190730055203.28467-9-hch-jcswGhMUV9g@public.gmane.org>
+Content-Language: en-US
+Content-ID: <DF80A643D5A9864FAC08223380C661B3-wNKe6lTLrGecE4WynfumptQqCkab/8FMAL8bYrjMMd8@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Felix Kuehling <Felix.Kuehling-5C7GfCeVMHo@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jul 30, 2019 at 07:46:33AM +0200, Christoph Hellwig wrote:
-> On Mon, Jul 29, 2019 at 07:30:44PM -0400, Jerome Glisse wrote:
-> > On Mon, Jul 29, 2019 at 05:28:43PM +0300, Christoph Hellwig wrote:
-> > > The MIGRATE_PFN_WRITE is only used locally in migrate_vma_collect_pmd,
-> > > where it can be replaced with a simple boolean local variable.
-> > > 
-> > > Signed-off-by: Christoph Hellwig <hch@lst.de>
-> > 
-> > NAK that flag is useful, for instance a anonymous vma might have
-> > some of its page read only even if the vma has write permission.
-> > 
-> > It seems that the code in nouveau is wrong (probably lost that
-> > in various rebase/rework) as this flag should be use to decide
-> > wether to map the device memory with write permission or not.
-> > 
-> > I am traveling right now, i will investigate what happened to
-> > nouveau code.
-> 
-> We can add it back when needed pretty easily.  Much of this has bitrotted
-> way to fast, and the pending ppc kvmhmm code doesn't need it either.
-
-Not using is a serious bug, i will investigate this friday.
-
-Cheers,
-Jérôme
+T24gVHVlLCBKdWwgMzAsIDIwMTkgYXQgMDg6NTE6NThBTSArMDMwMCwgQ2hyaXN0b3BoIEhlbGx3
+aWcgd3JvdGU6Cj4gVGhlIHBhZ2V3YWxrIGNvZGUgYWxyZWFkeSBwYXNzZXMgdGhlIHZhbHVlIGFz
+IHRoZSBobWFzayBwYXJhbWV0ZXIuCj4gCj4gU2lnbmVkLW9mZi1ieTogQ2hyaXN0b3BoIEhlbGx3
+aWcgPGhjaEBsc3QuZGU+Cj4gIG1tL2htbS5jIHwgNyArKy0tLS0tCj4gIDEgZmlsZSBjaGFuZ2Vk
+LCAyIGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL21tL2ht
+bS5jIGIvbW0vaG1tLmMKPiBpbmRleCBmMjZkNmFiYzRlZDIuLjg4Yjc3YTRhNmExZSAxMDA2NDQK
+PiArKysgYi9tbS9obW0uYwo+IEBAIC03NzEsMTkgKzc3MSwxNiBAQCBzdGF0aWMgaW50IGhtbV92
+bWFfd2Fsa19odWdldGxiX2VudHJ5KHB0ZV90ICpwdGUsIHVuc2lnbmVkIGxvbmcgaG1hc2ssCj4g
+IAkJCQkgICAgICBzdHJ1Y3QgbW1fd2FsayAqd2FsaykKPiAgewo+ICAjaWZkZWYgQ09ORklHX0hV
+R0VUTEJfUEFHRQo+IC0JdW5zaWduZWQgbG9uZyBhZGRyID0gc3RhcnQsIGksIHBmbiwgbWFzazsK
+PiArCXVuc2lnbmVkIGxvbmcgYWRkciA9IHN0YXJ0LCBpLCBwZm47Cj4gIAlzdHJ1Y3QgaG1tX3Zt
+YV93YWxrICpobW1fdm1hX3dhbGsgPSB3YWxrLT5wcml2YXRlOwo+ICAJc3RydWN0IGhtbV9yYW5n
+ZSAqcmFuZ2UgPSBobW1fdm1hX3dhbGstPnJhbmdlOwo+ICAJc3RydWN0IHZtX2FyZWFfc3RydWN0
+ICp2bWEgPSB3YWxrLT52bWE7Cj4gLQlzdHJ1Y3QgaHN0YXRlICpoID0gaHN0YXRlX3ZtYSh2bWEp
+Owo+ICAJdWludDY0X3Qgb3JpZ19wZm4sIGNwdV9mbGFnczsKPiAgCWJvb2wgZmF1bHQsIHdyaXRl
+X2ZhdWx0Owo+ICAJc3BpbmxvY2tfdCAqcHRsOwo+ICAJcHRlX3QgZW50cnk7Cj4gIAlpbnQgcmV0
+ID0gMDsKPiAgCj4gLQltYXNrID0gaHVnZV9wYWdlX3NpemUoaCkgLSAxOwo+IC0KPiAgCXB0bCA9
+IGh1Z2VfcHRlX2xvY2soaHN0YXRlX3ZtYSh2bWEpLCB3YWxrLT5tbSwgcHRlKTsKPiAgCWVudHJ5
+ID0gaHVnZV9wdGVwX2dldChwdGUpOwo+ICAKPiBAQCAtNzk5LDcgKzc5Niw3IEBAIHN0YXRpYyBp
+bnQgaG1tX3ZtYV93YWxrX2h1Z2V0bGJfZW50cnkocHRlX3QgKnB0ZSwgdW5zaWduZWQgbG9uZyBo
+bWFzaywKPiAgCQlnb3RvIHVubG9jazsKPiAgCX0KPiAgCj4gLQlwZm4gPSBwdGVfcGZuKGVudHJ5
+KSArICgoc3RhcnQgJiBtYXNrKSA+PiBQQUdFX1NISUZUKTsKPiArCXBmbiA9IHB0ZV9wZm4oZW50
+cnkpICsgKChzdGFydCAmIGhtYXNrKSA+PiBQQUdFX1NISUZUKTsKCkkgZG9uJ3Qga25vdyB0aGlz
+IGhzdGF0ZSBzdHVmZiwgYnV0IHRoaXMgZG9lc24ndCBsb29rIHRoZSBzYW1lPwoKc3RhdGljIGlu
+dCB3YWxrX2h1Z2V0bGJfcmFuZ2UodW5zaWduZWQgbG9uZyBhZGRyLCB1bnNpZ25lZCBsb25nIGVu
+ZCwgewogICAgICAgIHN0cnVjdCBoc3RhdGUgKmggPSBoc3RhdGVfdm1hKHZtYSk7CiAgICAgICAg
+dW5zaWduZWQgbG9uZyBobWFzayA9IGh1Z2VfcGFnZV9tYXNrKGgpOyAvLyBha2EgaC0+bWFzawoK
+ICAgICAgICAgICAgICAgICAgICAgICAgZXJyID0gd2Fsay0+aHVnZXRsYl9lbnRyeShwdGUsIGht
+YXNrLCBhZGRyLCBuZXh0LCB3YWxrKTsKCkFuZCB0aGUgZmlyc3QgcGxhY2UgSSBmb3VuZCBzZXR0
+aW5nIGgtPm1hc2sgaXM6Cgp2b2lkIF9faW5pdCBodWdldGxiX2FkZF9oc3RhdGUodW5zaWduZWQg
+aW50IG9yZGVyKSB7CgloLT5tYXNrID0gfigoMVVMTCA8PCAob3JkZXIgKyBQQUdFX1NISUZUKSkg
+LSAxKTsKCkNvbXBhcmVkIHdpdGgKICAgIG1hc2sgPSBodWdlX3BhZ2Vfc2l6ZShoKSAtIDE7CiAg
+ICAgICAgID0gKCh1bnNpZ25lZCBsb25nKVBBR0VfU0laRSA8PCBoLT5vcmRlcikgLSAxCgpMb29r
+cyBsaWtlIGhtYXNrID09IH5tYXNrCgo/CgpKYXNvbgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXU=
