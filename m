@@ -1,27 +1,29 @@
 From: Jason Gunthorpe <jgg@mellanox.com>
-Subject: Re: turn the hmm migrate_vma upside down
-Date: Tue, 30 Jul 2019 12:32:24 +0000
-Message-ID: <20190730123218.GA24038@mellanox.com>
-References: <20190729142843.22320-1-hch@lst.de>
+Subject: Re: [PATCH 01/13] amdgpu: remove -EAGAIN handling for hmm_range_fault
+Date: Tue, 30 Jul 2019 12:33:02 +0000
+Message-ID: <20190730123257.GB24038@mellanox.com>
+References: <20190730055203.28467-1-hch@lst.de>
+ <20190730055203.28467-2-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190729142843.22320-1-hch@lst.de>
+In-Reply-To: <20190730055203.28467-2-hch@lst.de>
 Content-Language: en-US
-Content-ID: <FE2AEDB2FC12424C805E7D754CCE4C1A@eurprd05.prod.outlook.com>
+Content-ID: <76FBA5B0F135514A885052AAEE17CDB6@eurprd05.prod.outlook.com>
 Sender: linux-kernel-owner@vger.kernel.org
 To: Christoph Hellwig <hch@lst.de>
-Cc: =?utf-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Ralph Campbell <rcampbell@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc: =?iso-8859-1?Q?J=E9r=F4me_Glisse?= <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Ralph Campbell <rcampbell@nvidia.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBKdWwgMjksIDIwMTkgYXQgMDU6Mjg6MzRQTSArMDMwMCwgQ2hyaXN0b3BoIEhlbGx3
-aWcgd3JvdGU6DQo+IEhpIErDqXLDtG1lLCBCZW4gYW5kIEphc29uLA0KPiANCj4gYmVsb3cgaXMg
-YSBzZXJpZXMgYWdhaW5zdCB0aGUgaG1tIHRyZWUgd2hpY2ggc3RhcnRzIHJldmFtcGluZyB0aGUN
-Cj4gbWlncmF0ZV92bWEgZnVuY3Rpb25hbGl0eS4gIFRoZSBwcmltZSBpZGVhIGlzIHRvIGV4cG9y
-dCB0aHJlZSBzbGlnaHRseQ0KPiBsb3dlciBsZXZlbCBmdW5jdGlvbnMgYW5kIHRodXMgYXZvaWQg
-dGhlIG5lZWQgZm9yIG1pZ3JhdGVfdm1hX29wcw0KPiBjYWxsYmFja3MuDQoNCkkgZG9uJ3QgZmVl
-bCBJIGNhbiBjb250cmlidXRlIGEgd29ydGh3aGlsZSByZXZpZXcgZm9yIHRoaXMgcGFydCBvZiB0
-aGUNCmNvZGUgcmlnaHQgbm93Lg0KDQpEb2VzIHRoaXMgb25seSBpbXBhY3QgaG1tIHVzZXJzLCBv
-ciBkb2VzIG1pZ3JhdGUuYyBoYXZlIGEgYnJvYWRlcg0KdXNhZ2U/DQoNCldobyBkbyB3ZSBuZWVk
-IG9uIHJldmlldyB0byBwcm9ncmVzcyBvbiB0aGlzPw0KDQpUaGFua3MsDQpKYXNvbg0K
+On Tue, Jul 30, 2019 at 08:51:51AM +0300, Christoph Hellwig wrote:
+> hmm_range_fault can only return -EAGAIN if called with the block
+> argument set to false, so remove the special handling for it.
+>=20
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 23 +++--------------------
+>  1 file changed, 3 insertions(+), 20 deletions(-)
+
+Reviewed-by: Jason Gunthorpe <jgg@mellanox.com>
+
+Jason
