@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111230] core dumped while using Rstudio
-Date: Wed, 31 Jul 2019 18:19:53 +0000
-Message-ID: <bug-111230-8800-tyx13Frqnw@http.bugs.freedesktop.org/>
+Date: Wed, 31 Jul 2019 20:07:28 +0000
+Message-ID: <bug-111230-8800-hbRTUyFBZB@http.bugs.freedesktop.org/>
 References: <bug-111230-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0368701062=="
+Content-Type: multipart/mixed; boundary="===============2056841988=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111230-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0368701062==
-Content-Type: multipart/alternative; boundary="15645971931.b001E9.15586"
+--===============2056841988==
+Content-Type: multipart/alternative; boundary="15646036482.93AC45dcB.1569"
 Content-Transfer-Encoding: 7bit
 
 
---15645971931.b001E9.15586
-Date: Wed, 31 Jul 2019 18:19:53 +0000
+--15646036482.93AC45dcB.1569
+Date: Wed, 31 Jul 2019 20:07:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,25 +35,15 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111230
 
---- Comment #2 from bdurette.pro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-(In reply to Andre Klapper from comment #1)
-> Please include exact version information for the xorg nouveau driver that
-> you use, and *exact* distribution version information.
-
-Here is for the distribution information. How could I get the exact driver
-version ?
-
-Distributor ID: Ubuntu
-Description:    Ubuntu 18.04.2 LTS
-Release:        18.04
-Codename:       bionic
+--- Comment #3 from Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> ---
+I guess it is something like "dpkg -l | grep nvidia-graphics-driver"
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15645971931.b001E9.15586
-Date: Wed, 31 Jul 2019 18:19:53 +0000
+--15646036482.93AC45dcB.1569
+Date: Wed, 31 Jul 2019 20:07:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,30 +60,19 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - core dumped while using Rstudio"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111230#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111230#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - core dumped while using Rstudio"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111230">bug 11123=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bdurette.pro&#64;gmail.com" title=3D"bdurette.pro&#64;gmail.com">bdurette.p=
-ro&#64;gmail.com</a>
+a9016009&#64;gmx.de" title=3D"Andre Klapper &lt;a9016009&#64;gmx.de&gt;"> <=
+span class=3D"fn">Andre Klapper</span></a>
 </span></b>
-        <pre>(In reply to Andre Klapper from <a href=3D"show_bug.cgi?id=3D1=
-11230#c1">comment #1</a>)
-<span class=3D"quote">&gt; Please include exact version information for the=
- xorg nouveau driver that
-&gt; you use, and *exact* distribution version information.</span >
-
-Here is for the distribution information. How could I get the exact driver
-version ?
-
-Distributor ID: Ubuntu
-Description:    Ubuntu 18.04.2 LTS
-Release:        18.04
-Codename:       bionic</pre>
+        <pre>I guess it is something like &quot;dpkg -l | grep nvidia-graph=
+ics-driver&quot;</pre>
         </div>
       </p>
 
@@ -107,9 +86,9 @@ Codename:       bionic</pre>
     </body>
 </html>=
 
---15645971931.b001E9.15586--
+--15646036482.93AC45dcB.1569--
 
---===============0368701062==
+--===============2056841988==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0368701062==--
+--===============2056841988==--
