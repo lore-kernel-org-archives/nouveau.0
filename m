@@ -1,192 +1,66 @@
-From: Bharata B Rao <bharata@linux.ibm.com>
-Subject: Re: [PATCH 5/9] nouveau: simplify nouveau_dmem_migrate_to_ram
-Date: Wed, 31 Jul 2019 15:27:35 +0530
-Message-ID: <20190731095735.GB18807@in.ibm.com>
-References: <20190729142843.22320-1-hch@lst.de>
- <20190729142843.22320-6-hch@lst.de>
-Reply-To: bharata@linux.ibm.com
+From: "Kuehling, Felix" <Felix.Kuehling@amd.com>
+Subject: Re: [PATCH 01/13] amdgpu: remove -EAGAIN handling for hmm_range_fault
+Date: Wed, 31 Jul 2019 13:13:41 +0000
+Message-ID: <c2f277a9-476d-a14c-d619-860508aa4ca0@amd.com>
+References: <20190730055203.28467-1-hch@lst.de>
+ <20190730055203.28467-2-hch@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20190729142843.22320-6-hch@lst.de>
+In-Reply-To: <20190730055203.28467-2-hch@lst.de>
+Content-Language: en-US
+Content-ID: <898170DF95EE3B4799287122532C589F@namprd12.prod.outlook.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Christoph Hellwig <hch@lst.de>
-Cc: =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Ralph Campbell <rcampbell@nvidia.com>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+To: Christoph Hellwig <hch@lst.de>, =?utf-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: Ralph Campbell <rcampbell@nvidia.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jul 29, 2019 at 05:28:39PM +0300, Christoph Hellwig wrote:
-> Factor the main copy page to ram routine out into a helper that acts on
-> a single page and which doesn't require the nouveau_dmem_fault
-> structure for argument passing.  Also remove the loop over multiple
-> pages as we only handle one at the moment, although the structure of
-> the main worker function makes it relatively easy to add multi page
-> support back if needed in the future.  But at least for now this avoid
-> the needed to dynamically allocate memory for the dma addresses in
-> what is essentially the page fault path.
-> 
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_dmem.c | 158 ++++++-------------------
->  1 file changed, 39 insertions(+), 119 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> index 21052a4aaf69..036e6c07d489 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> @@ -86,13 +86,6 @@ static inline struct nouveau_dmem *page_to_dmem(struct page *page)
->  	return container_of(page->pgmap, struct nouveau_dmem, pagemap);
->  }
->  
-> -struct nouveau_dmem_fault {
-> -	struct nouveau_drm *drm;
-> -	struct nouveau_fence *fence;
-> -	dma_addr_t *dma;
-> -	unsigned long npages;
-> -};
-> -
->  struct nouveau_migrate {
->  	struct vm_area_struct *vma;
->  	struct nouveau_drm *drm;
-> @@ -146,130 +139,55 @@ static void nouveau_dmem_fence_done(struct nouveau_fence **fence)
->  	}
->  }
->  
-> -static void
-> -nouveau_dmem_fault_alloc_and_copy(struct vm_area_struct *vma,
-> -				  const unsigned long *src_pfns,
-> -				  unsigned long *dst_pfns,
-> -				  unsigned long start,
-> -				  unsigned long end,
-> -				  struct nouveau_dmem_fault *fault)
-> +static vm_fault_t nouveau_dmem_fault_copy_one(struct nouveau_drm *drm,
-> +		struct vm_area_struct *vma, unsigned long addr,
-> +		unsigned long src, unsigned long *dst, dma_addr_t *dma_addr)
->  {
-> -	struct nouveau_drm *drm = fault->drm;
->  	struct device *dev = drm->dev->dev;
-> -	unsigned long addr, i, npages = 0;
-> -	nouveau_migrate_copy_t copy;
-> -	int ret;
-> -
-> -
-> -	/* First allocate new memory */
-> -	for (addr = start, i = 0; addr < end; addr += PAGE_SIZE, i++) {
-> -		struct page *dpage, *spage;
-> -
-> -		dst_pfns[i] = 0;
-> -		spage = migrate_pfn_to_page(src_pfns[i]);
-> -		if (!spage || !(src_pfns[i] & MIGRATE_PFN_MIGRATE))
-> -			continue;
-> +	struct page *dpage, *spage;
->  
-> -		dpage = alloc_page_vma(GFP_HIGHUSER, vma, addr);
-> -		if (!dpage) {
-> -			dst_pfns[i] = MIGRATE_PFN_ERROR;
-> -			continue;
-> -		}
-> -		lock_page(dpage);
-> -
-> -		dst_pfns[i] = migrate_pfn(page_to_pfn(dpage)) |
-> -			      MIGRATE_PFN_LOCKED;
-> -		npages++;
-> -	}
-> +	spage = migrate_pfn_to_page(src);
-> +	if (!spage || !(src & MIGRATE_PFN_MIGRATE))
-> +		return 0;
->  
-> -	/* Allocate storage for DMA addresses, so we can unmap later. */
-> -	fault->dma = kmalloc(sizeof(*fault->dma) * npages, GFP_KERNEL);
-> -	if (!fault->dma)
-> +	dpage = alloc_page_vma(GFP_HIGHUSER, args->vma, addr);
-> +	if (!dpage)
->  		goto error;
-> +	lock_page(dpage);
->  
-> -	/* Copy things over */
-> -	copy = drm->dmem->migrate.copy_func;
-> -	for (addr = start, i = 0; addr < end; addr += PAGE_SIZE, i++) {
-> -		struct page *spage, *dpage;
-> -
-> -		dpage = migrate_pfn_to_page(dst_pfns[i]);
-> -		if (!dpage || dst_pfns[i] == MIGRATE_PFN_ERROR)
-> -			continue;
-> -
-> -		spage = migrate_pfn_to_page(src_pfns[i]);
-> -		if (!spage || !(src_pfns[i] & MIGRATE_PFN_MIGRATE)) {
-> -			dst_pfns[i] = MIGRATE_PFN_ERROR;
-> -			__free_page(dpage);
-> -			continue;
-> -		}
-> -
-> -		fault->dma[fault->npages] =
-> -			dma_map_page_attrs(dev, dpage, 0, PAGE_SIZE,
-> -					   PCI_DMA_BIDIRECTIONAL,
-> -					   DMA_ATTR_SKIP_CPU_SYNC);
-> -		if (dma_mapping_error(dev, fault->dma[fault->npages])) {
-> -			dst_pfns[i] = MIGRATE_PFN_ERROR;
-> -			__free_page(dpage);
-> -			continue;
-> -		}
-> -
-> -		ret = copy(drm, 1, NOUVEAU_APER_HOST,
-> -				fault->dma[fault->npages++],
-> -				NOUVEAU_APER_VRAM,
-> -				nouveau_dmem_page_addr(spage));
-> -		if (ret) {
-> -			dst_pfns[i] = MIGRATE_PFN_ERROR;
-> -			__free_page(dpage);
-> -			continue;
-> -		}
-> -	}
-> +	*dma_addr = dma_map_page(dev, dpage, 0, PAGE_SIZE, DMA_BIDIRECTIONAL);
-> +	if (dma_mapping_error(dev, *dma_addr))
-> +		goto error_free_page;
->  
-> -	nouveau_fence_new(drm->dmem->migrate.chan, false, &fault->fence);
-> +	if (drm->dmem->migrate.copy_func(drm, 1, NOUVEAU_APER_HOST, *dma_addr,
-> +			NOUVEAU_APER_VRAM, nouveau_dmem_page_addr(spage)))
-> +		goto error_dma_unmap;
->  
-> -	return;
-> +	*dst = migrate_pfn(page_to_pfn(dpage)) | MIGRATE_PFN_LOCKED;
->  
-> +error_dma_unmap:
-> +	dma_unmap_page(dev, *dma_addr, PAGE_SIZE, DMA_BIDIRECTIONAL);
-> +error_free_page:
-> +	__free_page(dpage);
->  error:
-> -	for (addr = start, i = 0; addr < end; addr += PAGE_SIZE, ++i) {
-> -		struct page *page;
-> -
-> -		if (!dst_pfns[i] || dst_pfns[i] == MIGRATE_PFN_ERROR)
-> -			continue;
-> -
-> -		page = migrate_pfn_to_page(dst_pfns[i]);
-> -		dst_pfns[i] = MIGRATE_PFN_ERROR;
-> -		if (page == NULL)
-> -			continue;
-> -
-> -		__free_page(page);
-> -	}
-> -}
-> -
-> -static void
-> -nouveau_dmem_fault_finalize_and_map(struct nouveau_dmem_fault *fault)
-> -{
-> -	struct nouveau_drm *drm = fault->drm;
-> -
-> -	nouveau_dmem_fence_done(&fault->fence);
-> -
-> -	while (fault->npages--) {
-> -		dma_unmap_page(drm->dev->dev, fault->dma[fault->npages],
-> -			       PAGE_SIZE, PCI_DMA_BIDIRECTIONAL);
-> -	}
-> -	kfree(fault->dma);
-> +	return VM_FAULT_SIGBUS;
-
-Looks like nouveau_dmem_fault_copy_one() is now returning VM_FAULT_SIGBUS
-for success case. Is this expected?
-
-Regards,
-Bharata.
+T24gMjAxOS0wNy0zMCAxOjUxIGEubS4sIENocmlzdG9waCBIZWxsd2lnIHdyb3RlOg0KPiBobW1f
+cmFuZ2VfZmF1bHQgY2FuIG9ubHkgcmV0dXJuIC1FQUdBSU4gaWYgY2FsbGVkIHdpdGggdGhlIGJs
+b2NrDQo+IGFyZ3VtZW50IHNldCB0byBmYWxzZSwgc28gcmVtb3ZlIHRoZSBzcGVjaWFsIGhhbmRs
+aW5nIGZvciBpdC4NCg0KVGhlIGJsb2NrIGFyZ3VtZW50IG5vIGxvbmdlciBleGlzdHMuIFlvdSBy
+ZXBsYWNlZCB0aGF0IHdpdGggdGhlIA0KSE1NX0ZBVUxUX0FMTE9XX1JFVFJZIHdpdGggb3Bwb3Np
+dGUgbG9naWMuIFNvIHRoaXMgc2hvdWxkIHJlYWQgDQoiaG1tX3JhbmdlX2ZhdWx0IGNhbiBvbmx5
+IHJldHVybiAtRUFHQUlOIGlmIGNhbGxlZCB3aXRoIHRoZSANCkhNTV9GQVVMVF9BTExPV19SRVRS
+WSBmbGFnIHNldCwgc28gcmVtb3ZlIHRoZSBzcGVjaWFsIGhhbmRsaW5nIGZvciBpdC4NCg0KV2l0
+aCB0aGF0IGZpeGVkLCB0aGlzIGNvbW1pdCBpcyBSZXZpZXdlZC1ieTogRmVsaXggS3VlaGxpbmcg
+DQo8RmVsaXguS3VlaGxpbmdAYW1kLmNvbT4NCg0KPg0KPiBTaWduZWQtb2ZmLWJ5OiBDaHJpc3Rv
+cGggSGVsbHdpZyA8aGNoQGxzdC5kZT4NCj4gLS0tDQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvYW1kZ3B1X3R0bS5jIHwgMjMgKysrLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gICAxIGZp
+bGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAyMCBkZWxldGlvbnMoLSkNCj4NCj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYyBiL2RyaXZlcnMv
+Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYw0KPiBpbmRleCAxMmE1OWFjODNmNzIuLmYw
+ODIxNjM4YmJjNiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
+Z3B1X3R0bS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0u
+Yw0KPiBAQCAtNzc4LDcgKzc3OCw2IEBAIGludCBhbWRncHVfdHRtX3R0X2dldF91c2VyX3BhZ2Vz
+KHN0cnVjdCBhbWRncHVfYm8gKmJvLCBzdHJ1Y3QgcGFnZSAqKnBhZ2VzKQ0KPiAgIAlzdHJ1Y3Qg
+aG1tX3JhbmdlICpyYW5nZTsNCj4gICAJdW5zaWduZWQgbG9uZyBpOw0KPiAgIAl1aW50NjRfdCAq
+cGZuczsNCj4gLQlpbnQgcmV0cnkgPSAwOw0KPiAgIAlpbnQgciA9IDA7DQo+ICAgDQo+ICAgCWlm
+ICghbW0pIC8qIEhhcHBlbnMgZHVyaW5nIHByb2Nlc3Mgc2h1dGRvd24gKi8NCj4gQEAgLTgyMiw3
+ICs4MjEsNiBAQCBpbnQgYW1kZ3B1X3R0bV90dF9nZXRfdXNlcl9wYWdlcyhzdHJ1Y3QgYW1kZ3B1
+X2JvICpibywgc3RydWN0IHBhZ2UgKipwYWdlcykNCj4gICAJaG1tX3JhbmdlX3JlZ2lzdGVyKHJh
+bmdlLCBtaXJyb3IsIHN0YXJ0LA0KPiAgIAkJCSAgIHN0YXJ0ICsgdHRtLT5udW1fcGFnZXMgKiBQ
+QUdFX1NJWkUsIFBBR0VfU0hJRlQpOw0KPiAgIA0KPiAtcmV0cnk6DQo+ICAgCS8qDQo+ICAgCSAq
+IEp1c3Qgd2FpdCBmb3IgcmFuZ2UgdG8gYmUgdmFsaWQsIHNhZmUgdG8gaWdub3JlIHJldHVybiB2
+YWx1ZSBhcyB3ZQ0KPiAgIAkgKiB3aWxsIHVzZSB0aGUgcmV0dXJuIHZhbHVlIG9mIGhtbV9yYW5n
+ZV9mYXVsdCgpIGJlbG93IHVuZGVyIHRoZQ0KPiBAQCAtODMxLDI0ICs4MjksMTIgQEAgaW50IGFt
+ZGdwdV90dG1fdHRfZ2V0X3VzZXJfcGFnZXMoc3RydWN0IGFtZGdwdV9ibyAqYm8sIHN0cnVjdCBw
+YWdlICoqcGFnZXMpDQo+ICAgCWhtbV9yYW5nZV93YWl0X3VudGlsX3ZhbGlkKHJhbmdlLCBITU1f
+UkFOR0VfREVGQVVMVF9USU1FT1VUKTsNCj4gICANCj4gICAJZG93bl9yZWFkKCZtbS0+bW1hcF9z
+ZW0pOw0KPiAtDQo+ICAgCXIgPSBobW1fcmFuZ2VfZmF1bHQocmFuZ2UsIDApOw0KPiAtCWlmICh1
+bmxpa2VseShyIDwgMCkpIHsNCj4gLQkJaWYgKGxpa2VseShyID09IC1FQUdBSU4pKSB7DQo+IC0J
+CQkvKg0KPiAtCQkJICogcmV0dXJuIC1FQUdBSU4sIG1tYXBfc2VtIGlzIGRyb3BwZWQNCj4gLQkJ
+CSAqLw0KPiAtCQkJaWYgKHJldHJ5KysgPCBNQVhfUkVUUllfSE1NX1JBTkdFX0ZBVUxUKQ0KPiAt
+CQkJCWdvdG8gcmV0cnk7DQo+IC0JCQllbHNlDQo+IC0JCQkJcHJfZXJyKCJSZXRyeSBobW0gZmF1
+bHQgdG9vIG1hbnkgdGltZXNcbiIpOw0KPiAtCQl9DQo+IC0NCj4gLQkJZ290byBvdXRfdXBfcmVh
+ZDsNCj4gLQl9DQo+IC0NCj4gICAJdXBfcmVhZCgmbW0tPm1tYXBfc2VtKTsNCj4gICANCj4gKwlp
+ZiAodW5saWtlbHkociA8IDApKQ0KPiArCQlnb3RvIG91dF9mcmVlX3BmbnM7DQo+ICsNCj4gICAJ
+Zm9yIChpID0gMDsgaSA8IHR0bS0+bnVtX3BhZ2VzOyBpKyspIHsNCj4gICAJCXBhZ2VzW2ldID0g
+aG1tX2RldmljZV9lbnRyeV90b19wYWdlKHJhbmdlLCBwZm5zW2ldKTsNCj4gICAJCWlmICh1bmxp
+a2VseSghcGFnZXNbaV0pKSB7DQo+IEBAIC04NjQsOSArODUwLDYgQEAgaW50IGFtZGdwdV90dG1f
+dHRfZ2V0X3VzZXJfcGFnZXMoc3RydWN0IGFtZGdwdV9ibyAqYm8sIHN0cnVjdCBwYWdlICoqcGFn
+ZXMpDQo+ICAgDQo+ICAgCXJldHVybiAwOw0KPiAgIA0KPiAtb3V0X3VwX3JlYWQ6DQo+IC0JaWYg
+KGxpa2VseShyICE9IC1FQUdBSU4pKQ0KPiAtCQl1cF9yZWFkKCZtbS0+bW1hcF9zZW0pOw0KPiAg
+IG91dF9mcmVlX3BmbnM6DQo+ICAgCWhtbV9yYW5nZV91bnJlZ2lzdGVyKHJhbmdlKTsNCj4gICAJ
+a3ZmcmVlKHBmbnMpOw0K
