@@ -1,132 +1,63 @@
-From: Lyude Paul <lyude@redhat.com>
+From: Lukas Wunner <lukas@wunner.de>
 Subject: Re: [PATCH] Revert "PCI: Enable NVIDIA HDA controllers"
-Date: Wed, 31 Jul 2019 16:24:49 -0400
-Message-ID: <66cc7713b2d28551eee26f5dfcf8b009ace67c1a.camel@redhat.com>
+Date: Wed, 31 Jul 2019 23:18:42 +0200
+Message-ID: <20190731211842.befvpoyudrm2subf@wunner.de>
 References: <20190731201927.22054-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
 In-Reply-To: <20190731201927.22054-1-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org, linux-pci@vger.kernel.org
-Cc: Lukas Wunner <lukas@wunner.de>, Daniel Drake <drake@endlessm.com>, Bjorn Helgaas <bhelgaas@google.com>, Aaron Plattner <aplattner@nvidia.com>, Peter Wu <peter@lekensteyn.nl>, Ilia Mirkin <imirkin@alum.mit.edu>, Karol Herbst <kherbst@redhat.com>, Maik Freudenberg <hhfeuer@gmx.de>, linux-kernel@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>
+Cc: nouveau@lists.freedesktop.org, linux-pci@vger.kernel.org, Daniel Drake <drake@endlessm.com>, Bjorn Helgaas <bhelgaas@google.com>, Aaron Plattner <aplattner@nvidia.com>, Peter Wu <peter@lekensteyn.nl>, Ilia Mirkin <imirkin@alum.mit.edu>, Karol Herbst <kherbst@redhat.com>, Maik Freudenberg <hhfeuer@gmx.de>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Also, I realized after sending this that I should clarify something so there
-isn't any confusion.
-
-A bunch of people on the bug that was mentioned in b516ea586d71 ("PCI: Enable
-NVIDIA HDA controllers") said that this worked perfectly for their P50
-laptops. While I don't doubt that at all, it should be noted that the P50
-quirk there is only present on a _very specific_ subset of P50 SKUs, so it's
-quite likely that the people in that bug report just didn't have a P50 that
-hits this issue. The relevant model numbers of the P50 with the flakey bioses
-that require this quirk should be mentioned here:
-
-https://bugzilla.kernel.org/show_bug.cgi?id=203003
-
-
-
-On Wed, 2019-07-31 at 16:19 -0400, Lyude Paul wrote:
-> This reverts commit b516ea586d717472178e6ef1c152e85608b0ce32.
-> 
+On Wed, Jul 31, 2019 at 04:19:27PM -0400, Lyude Paul wrote:
 > While this fixes audio for a number of users, this commit has the
 > sideaffect of breaking the BIOS workaround that's required to make the
 > GPU on the nvidia P50 work, by causing the GPU's PCI device function to
 > stop working after it's been set to multifunction mode.
-> 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Fixes: b516ea586d71 ("PCI: Enable NVIDIA HDA controllers")
-> Cc: Lukas Wunner <lukas@wunner.de>
-> Cc: Daniel Drake <drake@endlessm.com>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Aaron Plattner <aplattner@nvidia.com>
-> Cc: Peter Wu <peter@lekensteyn.nl>
-> Cc: Ilia Mirkin <imirkin@alum.mit.edu>
-> Cc: Karol Herbst <kherbst@redhat.com>
-> Cc: Maik Freudenberg <hhfeuer@gmx.de>
-> Cc: linux-pci@vger.kernel.org
-> ---
-> 
+
+This is missing a reference to the commit introducing the P50 quirk,
+which is e0547c81bfcf ("PCI: Reset Lenovo ThinkPad P50 nvgpu at boot
+if necessary").
+
+Please describe in more detail how the GPU's PCI function stops working.
+Does it respond with "all ones" when accessing MMIO?
+Do MMIO accesses cause the system to hang?
+
+Could you provide lspci -vvxx output for the GPU and its associated
+HDA controller with and without b516ea586d71?
+
+Does this machine have external display connectors via which audio
+can be streamed?
+
+
 > I'm not really holding my breath on this patch to being accepted:
 > there's a good chance there's a better solution for this (and I'm going
 > to continue investigating for one after sending this patch), this is
 > more just to start a conversation on what the proper way to fix this is.
-> 
+
+Posting as an RFC might have been more appropriate then.
+
+
 > So, I'm kind of confused about why exactly this was implemented as an
 > early boot quirk in the first place. If we're seeing the GPU's PCI
 > device, we already know the GPU is there. Shouldn't we be able to check
 > for the existence of the HDA device once we probe the GPU in nouveau?
-> This would make a lot more sense and be a lot less troublesome. I can
-> see that in the discussion on
-> 
-> https://bugs.freedesktop.org/show_bug.cgi?id=75985
-> 
-> That people mentioned that unloading nouveau then trying to reprobe for
-> the audio device didn't work, but that still doesn't explain why this
-> was implemented as an early quirk and not as something we just do before
-> nouveau is setup. Can we maybe move this somewhere a little more
-> sensible?
-> 
->  drivers/pci/quirks.c    | 30 ------------------------------
->  include/linux/pci_ids.h |  1 -
->  2 files changed, 31 deletions(-)
-> 
-> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-> index 208aacf39329..c66c0ca446c4 100644
-> --- a/drivers/pci/quirks.c
-> +++ b/drivers/pci/quirks.c
-> @@ -5011,36 +5011,6 @@ DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_NVIDIA,
-> PCI_ANY_ID,
->  			      PCI_CLASS_SERIAL_UNKNOWN, 8,
->  			      quirk_gpu_usb_typec_ucsi);
->  
-> -/*
-> - * Enable the NVIDIA GPU integrated HDA controller if the BIOS left it
-> - * disabled.  https://devtalk.nvidia.com/default/topic/1024022
-> - */
-> -static void quirk_nvidia_hda(struct pci_dev *gpu)
-> -{
-> -	u8 hdr_type;
-> -	u32 val;
-> -
-> -	/* There was no integrated HDA controller before MCP89 */
-> -	if (gpu->device < PCI_DEVICE_ID_NVIDIA_GEFORCE_320M)
-> -		return;
-> -
-> -	/* Bit 25 at offset 0x488 enables the HDA controller */
-> -	pci_read_config_dword(gpu, 0x488, &val);
-> -	if (val & BIT(25))
-> -		return;
-> -
-> -	pci_info(gpu, "Enabling HDA controller\n");
-> -	pci_write_config_dword(gpu, 0x488, val | BIT(25));
-> -
-> -	/* The GPU becomes a multi-function device when the HDA is enabled */
-> -	pci_read_config_byte(gpu, PCI_HEADER_TYPE, &hdr_type);
-> -	gpu->multifunction = !!(hdr_type & 0x80);
-> -}
-> -DECLARE_PCI_FIXUP_CLASS_HEADER(PCI_VENDOR_ID_NVIDIA, PCI_ANY_ID,
-> -			       PCI_BASE_CLASS_DISPLAY, 16, quirk_nvidia_hda);
-> -DECLARE_PCI_FIXUP_CLASS_RESUME_EARLY(PCI_VENDOR_ID_NVIDIA, PCI_ANY_ID,
-> -			       PCI_BASE_CLASS_DISPLAY, 16, quirk_nvidia_hda);
-> -
->  /*
->   * Some IDT switches incorrectly flag an ACS Source Validation error on
->   * completions for config read requests even though PCIe r4.0, sec
-> diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
-> index c842735a4f45..f496fb619287 100644
-> --- a/include/linux/pci_ids.h
-> +++ b/include/linux/pci_ids.h
-> @@ -1336,7 +1336,6 @@
->  #define PCI_DEVICE_ID_NVIDIA_NFORCE_MCP78S_SMBUS    0x0752
->  #define PCI_DEVICE_ID_NVIDIA_NFORCE_MCP77_IDE       0x0759
->  #define PCI_DEVICE_ID_NVIDIA_NFORCE_MCP73_SMBUS     0x07D8
-> -#define PCI_DEVICE_ID_NVIDIA_GEFORCE_320M           0x08A0
->  #define PCI_DEVICE_ID_NVIDIA_NFORCE_MCP79_SMBUS     0x0AA2
->  #define PCI_DEVICE_ID_NVIDIA_NFORCE_MCP89_SATA	    0x0D85
->  
--- 
-Cheers,
-	Lyude Paul
+
+I think a motivation to keep this generic was to make it work with
+other drivers besides nouveau, specifically Nvidia's proprietary driver.
+nouveau might not even be enabled.
+
+
+> that still doesn't explain why this was implemented as an early quirk
+
+This isn't an early quirk.  Those live in arch/x86/kernel/early-quirks.c.
+This is just a PCI quirk executed on device enumeration and on resume.
+Devices aren't necessarily enumerated only on boot, e.g. think Thunderbolt.
+
+Thanks,
+
+Lukas
