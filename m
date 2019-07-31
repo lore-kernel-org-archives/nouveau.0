@@ -1,93 +1,132 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] Revert "PCI: Enable NVIDIA HDA controllers"
-Date: Wed, 31 Jul 2019 16:19:27 -0400
-Message-ID: <20190731201927.22054-1-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH] Revert "PCI: Enable NVIDIA HDA controllers"
+Date: Wed, 31 Jul 2019 16:24:49 -0400
+Message-ID: <66cc7713b2d28551eee26f5dfcf8b009ace67c1a.camel@redhat.com>
+References: <20190731201927.22054-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190731201927.22054-1-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org, linux-pci@vger.kernel.org
+Cc: Lukas Wunner <lukas@wunner.de>, Daniel Drake <drake@endlessm.com>, Bjorn Helgaas <bhelgaas@google.com>, Aaron Plattner <aplattner@nvidia.com>, Peter Wu <peter@lekensteyn.nl>, Ilia Mirkin <imirkin@alum.mit.edu>, Karol Herbst <kherbst@redhat.com>, Maik Freudenberg <hhfeuer@gmx.de>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyByZXZlcnRzIGNvbW1pdCBiNTE2ZWE1ODZkNzE3NDcyMTc4ZTZlZjFjMTUyZTg1NjA4YjBj
-ZTMyLgoKV2hpbGUgdGhpcyBmaXhlcyBhdWRpbyBmb3IgYSBudW1iZXIgb2YgdXNlcnMsIHRoaXMg
-Y29tbWl0IGhhcyB0aGUKc2lkZWFmZmVjdCBvZiBicmVha2luZyB0aGUgQklPUyB3b3JrYXJvdW5k
-IHRoYXQncyByZXF1aXJlZCB0byBtYWtlIHRoZQpHUFUgb24gdGhlIG52aWRpYSBQNTAgd29yaywg
-YnkgY2F1c2luZyB0aGUgR1BVJ3MgUENJIGRldmljZSBmdW5jdGlvbiB0bwpzdG9wIHdvcmtpbmcg
-YWZ0ZXIgaXQncyBiZWVuIHNldCB0byBtdWx0aWZ1bmN0aW9uIG1vZGUuCgpTaWduZWQtb2ZmLWJ5
-OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgpGaXhlczogYjUxNmVhNTg2ZDcxICgiUENJ
-OiBFbmFibGUgTlZJRElBIEhEQSBjb250cm9sbGVycyIpCkNjOiBMdWthcyBXdW5uZXIgPGx1a2Fz
-QHd1bm5lci5kZT4KQ2M6IERhbmllbCBEcmFrZSA8ZHJha2VAZW5kbGVzc20uY29tPgpDYzogQmpv
-cm4gSGVsZ2FhcyA8YmhlbGdhYXNAZ29vZ2xlLmNvbT4KQ2M6IEFhcm9uIFBsYXR0bmVyIDxhcGxh
-dHRuZXJAbnZpZGlhLmNvbT4KQ2M6IFBldGVyIFd1IDxwZXRlckBsZWtlbnN0ZXluLm5sPgpDYzog
-SWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgpDYzogS2Fyb2wgSGVyYnN0IDxraGVy
-YnN0QHJlZGhhdC5jb20+CkNjOiBNYWlrIEZyZXVkZW5iZXJnIDxoaGZldWVyQGdteC5kZT4KQ2M6
-IGxpbnV4LXBjaUB2Z2VyLmtlcm5lbC5vcmcKLS0tCgpJJ20gbm90IHJlYWxseSBob2xkaW5nIG15
-IGJyZWF0aCBvbiB0aGlzIHBhdGNoIHRvIGJlaW5nIGFjY2VwdGVkOgp0aGVyZSdzIGEgZ29vZCBj
-aGFuY2UgdGhlcmUncyBhIGJldHRlciBzb2x1dGlvbiBmb3IgdGhpcyAoYW5kIEknbSBnb2luZwp0
-byBjb250aW51ZSBpbnZlc3RpZ2F0aW5nIGZvciBvbmUgYWZ0ZXIgc2VuZGluZyB0aGlzIHBhdGNo
-KSwgdGhpcyBpcwptb3JlIGp1c3QgdG8gc3RhcnQgYSBjb252ZXJzYXRpb24gb24gd2hhdCB0aGUg
-cHJvcGVyIHdheSB0byBmaXggdGhpcyBpcy4KClNvLCBJJ20ga2luZCBvZiBjb25mdXNlZCBhYm91
-dCB3aHkgZXhhY3RseSB0aGlzIHdhcyBpbXBsZW1lbnRlZCBhcyBhbgplYXJseSBib290IHF1aXJr
-IGluIHRoZSBmaXJzdCBwbGFjZS4gSWYgd2UncmUgc2VlaW5nIHRoZSBHUFUncyBQQ0kKZGV2aWNl
-LCB3ZSBhbHJlYWR5IGtub3cgdGhlIEdQVSBpcyB0aGVyZS4gU2hvdWxkbid0IHdlIGJlIGFibGUg
-dG8gY2hlY2sKZm9yIHRoZSBleGlzdGVuY2Ugb2YgdGhlIEhEQSBkZXZpY2Ugb25jZSB3ZSBwcm9i
-ZSB0aGUgR1BVIGluIG5vdXZlYXU/ClRoaXMgd291bGQgbWFrZSBhIGxvdCBtb3JlIHNlbnNlIGFu
-ZCBiZSBhIGxvdCBsZXNzIHRyb3VibGVzb21lLiBJIGNhbgpzZWUgdGhhdCBpbiB0aGUgZGlzY3Vz
-c2lvbiBvbgoKaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NzU5
-ODUKClRoYXQgcGVvcGxlIG1lbnRpb25lZCB0aGF0IHVubG9hZGluZyBub3V2ZWF1IHRoZW4gdHJ5
-aW5nIHRvIHJlcHJvYmUgZm9yCnRoZSBhdWRpbyBkZXZpY2UgZGlkbid0IHdvcmssIGJ1dCB0aGF0
-IHN0aWxsIGRvZXNuJ3QgZXhwbGFpbiB3aHkgdGhpcwp3YXMgaW1wbGVtZW50ZWQgYXMgYW4gZWFy
-bHkgcXVpcmsgYW5kIG5vdCBhcyBzb21ldGhpbmcgd2UganVzdCBkbyBiZWZvcmUKbm91dmVhdSBp
-cyBzZXR1cC4gQ2FuIHdlIG1heWJlIG1vdmUgdGhpcyBzb21ld2hlcmUgYSBsaXR0bGUgbW9yZQpz
-ZW5zaWJsZT8KCiBkcml2ZXJzL3BjaS9xdWlya3MuYyAgICB8IDMwIC0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLQogaW5jbHVkZS9saW51eC9wY2lfaWRzLmggfCAgMSAtCiAyIGZpbGVzIGNo
-YW5nZWQsIDMxIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL3F1aXJrcy5j
-IGIvZHJpdmVycy9wY2kvcXVpcmtzLmMKaW5kZXggMjA4YWFjZjM5MzI5Li5jNjZjMGNhNDQ2YzQg
-MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvcGNpL3F1aXJrcy5jCisrKyBiL2RyaXZlcnMvcGNpL3F1aXJr
-cy5jCkBAIC01MDExLDM2ICs1MDExLDYgQEAgREVDTEFSRV9QQ0lfRklYVVBfQ0xBU1NfRklOQUwo
-UENJX1ZFTkRPUl9JRF9OVklESUEsIFBDSV9BTllfSUQsCiAJCQkgICAgICBQQ0lfQ0xBU1NfU0VS
-SUFMX1VOS05PV04sIDgsCiAJCQkgICAgICBxdWlya19ncHVfdXNiX3R5cGVjX3Vjc2kpOwogCi0v
-KgotICogRW5hYmxlIHRoZSBOVklESUEgR1BVIGludGVncmF0ZWQgSERBIGNvbnRyb2xsZXIgaWYg
-dGhlIEJJT1MgbGVmdCBpdAotICogZGlzYWJsZWQuICBodHRwczovL2RldnRhbGsubnZpZGlhLmNv
-bS9kZWZhdWx0L3RvcGljLzEwMjQwMjIKLSAqLwotc3RhdGljIHZvaWQgcXVpcmtfbnZpZGlhX2hk
-YShzdHJ1Y3QgcGNpX2RldiAqZ3B1KQotewotCXU4IGhkcl90eXBlOwotCXUzMiB2YWw7Ci0KLQkv
-KiBUaGVyZSB3YXMgbm8gaW50ZWdyYXRlZCBIREEgY29udHJvbGxlciBiZWZvcmUgTUNQODkgKi8K
-LQlpZiAoZ3B1LT5kZXZpY2UgPCBQQ0lfREVWSUNFX0lEX05WSURJQV9HRUZPUkNFXzMyME0pCi0J
-CXJldHVybjsKLQotCS8qIEJpdCAyNSBhdCBvZmZzZXQgMHg0ODggZW5hYmxlcyB0aGUgSERBIGNv
-bnRyb2xsZXIgKi8KLQlwY2lfcmVhZF9jb25maWdfZHdvcmQoZ3B1LCAweDQ4OCwgJnZhbCk7Ci0J
-aWYgKHZhbCAmIEJJVCgyNSkpCi0JCXJldHVybjsKLQotCXBjaV9pbmZvKGdwdSwgIkVuYWJsaW5n
-IEhEQSBjb250cm9sbGVyXG4iKTsKLQlwY2lfd3JpdGVfY29uZmlnX2R3b3JkKGdwdSwgMHg0ODgs
-IHZhbCB8IEJJVCgyNSkpOwotCi0JLyogVGhlIEdQVSBiZWNvbWVzIGEgbXVsdGktZnVuY3Rpb24g
-ZGV2aWNlIHdoZW4gdGhlIEhEQSBpcyBlbmFibGVkICovCi0JcGNpX3JlYWRfY29uZmlnX2J5dGUo
-Z3B1LCBQQ0lfSEVBREVSX1RZUEUsICZoZHJfdHlwZSk7Ci0JZ3B1LT5tdWx0aWZ1bmN0aW9uID0g
-ISEoaGRyX3R5cGUgJiAweDgwKTsKLX0KLURFQ0xBUkVfUENJX0ZJWFVQX0NMQVNTX0hFQURFUihQ
-Q0lfVkVORE9SX0lEX05WSURJQSwgUENJX0FOWV9JRCwKLQkJCSAgICAgICBQQ0lfQkFTRV9DTEFT
-U19ESVNQTEFZLCAxNiwgcXVpcmtfbnZpZGlhX2hkYSk7Ci1ERUNMQVJFX1BDSV9GSVhVUF9DTEFT
-U19SRVNVTUVfRUFSTFkoUENJX1ZFTkRPUl9JRF9OVklESUEsIFBDSV9BTllfSUQsCi0JCQkgICAg
-ICAgUENJX0JBU0VfQ0xBU1NfRElTUExBWSwgMTYsIHF1aXJrX252aWRpYV9oZGEpOwotCiAvKgog
-ICogU29tZSBJRFQgc3dpdGNoZXMgaW5jb3JyZWN0bHkgZmxhZyBhbiBBQ1MgU291cmNlIFZhbGlk
-YXRpb24gZXJyb3Igb24KICAqIGNvbXBsZXRpb25zIGZvciBjb25maWcgcmVhZCByZXF1ZXN0cyBl
-dmVuIHRob3VnaCBQQ0llIHI0LjAsIHNlYwpkaWZmIC0tZ2l0IGEvaW5jbHVkZS9saW51eC9wY2lf
-aWRzLmggYi9pbmNsdWRlL2xpbnV4L3BjaV9pZHMuaAppbmRleCBjODQyNzM1YTRmNDUuLmY0OTZm
-YjYxOTI4NyAxMDA2NDQKLS0tIGEvaW5jbHVkZS9saW51eC9wY2lfaWRzLmgKKysrIGIvaW5jbHVk
-ZS9saW51eC9wY2lfaWRzLmgKQEAgLTEzMzYsNyArMTMzNiw2IEBACiAjZGVmaW5lIFBDSV9ERVZJ
-Q0VfSURfTlZJRElBX05GT1JDRV9NQ1A3OFNfU01CVVMgICAgMHgwNzUyCiAjZGVmaW5lIFBDSV9E
-RVZJQ0VfSURfTlZJRElBX05GT1JDRV9NQ1A3N19JREUgICAgICAgMHgwNzU5CiAjZGVmaW5lIFBD
-SV9ERVZJQ0VfSURfTlZJRElBX05GT1JDRV9NQ1A3M19TTUJVUyAgICAgMHgwN0Q4Ci0jZGVmaW5l
-IFBDSV9ERVZJQ0VfSURfTlZJRElBX0dFRk9SQ0VfMzIwTSAgICAgICAgICAgMHgwOEEwCiAjZGVm
-aW5lIFBDSV9ERVZJQ0VfSURfTlZJRElBX05GT1JDRV9NQ1A3OV9TTUJVUyAgICAgMHgwQUEyCiAj
-ZGVmaW5lIFBDSV9ERVZJQ0VfSURfTlZJRElBX05GT1JDRV9NQ1A4OV9TQVRBCSAgICAweDBEODUK
-IAotLSAKMi4yMS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+Also, I realized after sending this that I should clarify something so there
+isn't any confusion.
+
+A bunch of people on the bug that was mentioned in b516ea586d71 ("PCI: Enable
+NVIDIA HDA controllers") said that this worked perfectly for their P50
+laptops. While I don't doubt that at all, it should be noted that the P50
+quirk there is only present on a _very specific_ subset of P50 SKUs, so it's
+quite likely that the people in that bug report just didn't have a P50 that
+hits this issue. The relevant model numbers of the P50 with the flakey bioses
+that require this quirk should be mentioned here:
+
+https://bugzilla.kernel.org/show_bug.cgi?id=203003
+
+
+
+On Wed, 2019-07-31 at 16:19 -0400, Lyude Paul wrote:
+> This reverts commit b516ea586d717472178e6ef1c152e85608b0ce32.
+> 
+> While this fixes audio for a number of users, this commit has the
+> sideaffect of breaking the BIOS workaround that's required to make the
+> GPU on the nvidia P50 work, by causing the GPU's PCI device function to
+> stop working after it's been set to multifunction mode.
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Fixes: b516ea586d71 ("PCI: Enable NVIDIA HDA controllers")
+> Cc: Lukas Wunner <lukas@wunner.de>
+> Cc: Daniel Drake <drake@endlessm.com>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Aaron Plattner <aplattner@nvidia.com>
+> Cc: Peter Wu <peter@lekensteyn.nl>
+> Cc: Ilia Mirkin <imirkin@alum.mit.edu>
+> Cc: Karol Herbst <kherbst@redhat.com>
+> Cc: Maik Freudenberg <hhfeuer@gmx.de>
+> Cc: linux-pci@vger.kernel.org
+> ---
+> 
+> I'm not really holding my breath on this patch to being accepted:
+> there's a good chance there's a better solution for this (and I'm going
+> to continue investigating for one after sending this patch), this is
+> more just to start a conversation on what the proper way to fix this is.
+> 
+> So, I'm kind of confused about why exactly this was implemented as an
+> early boot quirk in the first place. If we're seeing the GPU's PCI
+> device, we already know the GPU is there. Shouldn't we be able to check
+> for the existence of the HDA device once we probe the GPU in nouveau?
+> This would make a lot more sense and be a lot less troublesome. I can
+> see that in the discussion on
+> 
+> https://bugs.freedesktop.org/show_bug.cgi?id=75985
+> 
+> That people mentioned that unloading nouveau then trying to reprobe for
+> the audio device didn't work, but that still doesn't explain why this
+> was implemented as an early quirk and not as something we just do before
+> nouveau is setup. Can we maybe move this somewhere a little more
+> sensible?
+> 
+>  drivers/pci/quirks.c    | 30 ------------------------------
+>  include/linux/pci_ids.h |  1 -
+>  2 files changed, 31 deletions(-)
+> 
+> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
+> index 208aacf39329..c66c0ca446c4 100644
+> --- a/drivers/pci/quirks.c
+> +++ b/drivers/pci/quirks.c
+> @@ -5011,36 +5011,6 @@ DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_NVIDIA,
+> PCI_ANY_ID,
+>  			      PCI_CLASS_SERIAL_UNKNOWN, 8,
+>  			      quirk_gpu_usb_typec_ucsi);
+>  
+> -/*
+> - * Enable the NVIDIA GPU integrated HDA controller if the BIOS left it
+> - * disabled.  https://devtalk.nvidia.com/default/topic/1024022
+> - */
+> -static void quirk_nvidia_hda(struct pci_dev *gpu)
+> -{
+> -	u8 hdr_type;
+> -	u32 val;
+> -
+> -	/* There was no integrated HDA controller before MCP89 */
+> -	if (gpu->device < PCI_DEVICE_ID_NVIDIA_GEFORCE_320M)
+> -		return;
+> -
+> -	/* Bit 25 at offset 0x488 enables the HDA controller */
+> -	pci_read_config_dword(gpu, 0x488, &val);
+> -	if (val & BIT(25))
+> -		return;
+> -
+> -	pci_info(gpu, "Enabling HDA controller\n");
+> -	pci_write_config_dword(gpu, 0x488, val | BIT(25));
+> -
+> -	/* The GPU becomes a multi-function device when the HDA is enabled */
+> -	pci_read_config_byte(gpu, PCI_HEADER_TYPE, &hdr_type);
+> -	gpu->multifunction = !!(hdr_type & 0x80);
+> -}
+> -DECLARE_PCI_FIXUP_CLASS_HEADER(PCI_VENDOR_ID_NVIDIA, PCI_ANY_ID,
+> -			       PCI_BASE_CLASS_DISPLAY, 16, quirk_nvidia_hda);
+> -DECLARE_PCI_FIXUP_CLASS_RESUME_EARLY(PCI_VENDOR_ID_NVIDIA, PCI_ANY_ID,
+> -			       PCI_BASE_CLASS_DISPLAY, 16, quirk_nvidia_hda);
+> -
+>  /*
+>   * Some IDT switches incorrectly flag an ACS Source Validation error on
+>   * completions for config read requests even though PCIe r4.0, sec
+> diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
+> index c842735a4f45..f496fb619287 100644
+> --- a/include/linux/pci_ids.h
+> +++ b/include/linux/pci_ids.h
+> @@ -1336,7 +1336,6 @@
+>  #define PCI_DEVICE_ID_NVIDIA_NFORCE_MCP78S_SMBUS    0x0752
+>  #define PCI_DEVICE_ID_NVIDIA_NFORCE_MCP77_IDE       0x0759
+>  #define PCI_DEVICE_ID_NVIDIA_NFORCE_MCP73_SMBUS     0x07D8
+> -#define PCI_DEVICE_ID_NVIDIA_GEFORCE_320M           0x08A0
+>  #define PCI_DEVICE_ID_NVIDIA_NFORCE_MCP79_SMBUS     0x0AA2
+>  #define PCI_DEVICE_ID_NVIDIA_NFORCE_MCP89_SATA	    0x0D85
+>  
+-- 
+Cheers,
+	Lyude Paul
