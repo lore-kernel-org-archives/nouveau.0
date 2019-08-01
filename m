@@ -1,91 +1,208 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH] drm/nouveau: Only release VCPI slots on mode changes
-Date: Thu,  1 Aug 2019 18:02:15 -0400
-Message-ID: <20190801220216.15323-1-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111280] New: Playing a video on vlc causes
+ Segmentation Fault
+Date: Thu, 01 Aug 2019 22:25:02 +0000
+Message-ID: <bug-111280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <stable-owner@vger.kernel.org>
-Sender: stable-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, David Airlie <airlied@redhat.com>, Jerry Zuo <Jerry.Zuo@amd.com>, Harry Wentland <harry.wentland@amd.com>, Juston Li <juston.li@intel.com>, Karol Herbst <karolherbst@gmail.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Ilia Mirkin <imirkin@alum.mit.edu>, stable@vger.kernel.org, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============1711399425=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Looks like a regression got introduced into nv50_mstc_atomic_check()
-that somehow didn't get found until now. If userspace changes
-crtc_state->active to false but leaves the CRTC enabled, we end up
-calling drm_dp_atomic_find_vcpi_slots() using the PBN calculated in
-asyh->dp.pbn. However, if the display is inactive we end up calculating
-a PBN of 0, which inadvertently causes us to have an allocation of 0.
-From there, if userspace then disables the CRTC afterwards we end up
-accidentally attempting to free the VCPI twice:
 
-WARNING: CPU: 0 PID: 1484 at drivers/gpu/drm/drm_dp_mst_topology.c:3336
-drm_dp_atomic_release_vcpi_slots+0x87/0xb0 [drm_kms_helper]
-RIP: 0010:drm_dp_atomic_release_vcpi_slots+0x87/0xb0 [drm_kms_helper]
-Call Trace:
- drm_atomic_helper_check_modeset+0x3f3/0xa60 [drm_kms_helper]
- ? drm_atomic_check_only+0x43/0x780 [drm]
- drm_atomic_helper_check+0x15/0x90 [drm_kms_helper]
- nv50_disp_atomic_check+0x83/0x1d0 [nouveau]
- drm_atomic_check_only+0x54d/0x780 [drm]
- ? drm_atomic_set_crtc_for_connector+0xec/0x100 [drm]
- drm_atomic_commit+0x13/0x50 [drm]
- drm_atomic_helper_set_config+0x81/0x90 [drm_kms_helper]
- drm_mode_setcrtc+0x194/0x6a0 [drm]
- ? vprintk_emit+0x16a/0x230
- ? drm_ioctl+0x163/0x390 [drm]
- ? drm_mode_getcrtc+0x180/0x180 [drm]
- drm_ioctl_kernel+0xaa/0xf0 [drm]
- drm_ioctl+0x208/0x390 [drm]
- ? drm_mode_getcrtc+0x180/0x180 [drm]
- nouveau_drm_ioctl+0x63/0xb0 [nouveau]
- do_vfs_ioctl+0x405/0x660
- ? recalc_sigpending+0x17/0x50
- ? _copy_from_user+0x37/0x60
- ksys_ioctl+0x5e/0x90
- ? exit_to_usermode_loop+0x92/0xe0
- __x64_sys_ioctl+0x16/0x20
- do_syscall_64+0x59/0x190
- entry_SYSCALL_64_after_hwframe+0x44/0xa9
-WARNING: CPU: 0 PID: 1484 at drivers/gpu/drm/drm_dp_mst_topology.c:3336
-drm_dp_atomic_release_vcpi_slots+0x87/0xb0 [drm_kms_helper]
----[ end trace 4c395c0c51b1f88d ]---
-[drm:drm_dp_atomic_release_vcpi_slots [drm_kms_helper]] *ERROR* no VCPI for
-[MST PORT:00000000e288eb7d] found in mst state 000000008e642070
+--===============1711399425==
+Content-Type: multipart/alternative; boundary="15646983020.C0e8fDF.28546"
+Content-Transfer-Encoding: 7bit
 
-So, fix this by doing what we probably should have done from the start: only
-call drm_dp_atomic_find_vcpi_slots() when crtc_state->mode_changed is set, so
-that VCPI allocations remain for as long as the CRTC is enabled.
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Fixes: 232c9eec417a ("drm/nouveau: Use atomic VCPI helpers for MST")
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: David Airlie <airlied@redhat.com>
-Cc: Jerry Zuo <Jerry.Zuo@amd.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Juston Li <juston.li@intel.com>
-Cc: Karol Herbst <karolherbst@gmail.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: <stable@vger.kernel.org> # v5.1+
----
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--15646983020.C0e8fDF.28546
+Date: Thu, 1 Aug 2019 22:25:02 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 8497768f1b41..126703816794 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -780,7 +780,7 @@ nv50_msto_atomic_check(struct drm_encoder *encoder,
- 			drm_dp_calc_pbn_mode(crtc_state->adjusted_mode.clock,
- 					     connector->display_info.bpc * 3);
- 
--	if (drm_atomic_crtc_needs_modeset(crtc_state)) {
-+	if (crtc_state->mode_changed) {
- 		slots = drm_dp_atomic_find_vcpi_slots(state, &mstm->mgr,
- 						      mstc->port,
- 						      asyh->dp.pbn);
--- 
-2.21.0
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111280
+
+            Bug ID: 111280
+           Summary: Playing a video on vlc causes Segmentation Fault
+           Product: Mesa
+           Version: 19.1
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: madebr-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 144927
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144927&action=3Dedit
+gdb backtrace
+
+When playing a video using vlc on Fedora Linux, vlc segfaults.
+When running vlc under gdb, the following message prints:
+
+Thread 32 "vlc" received signal SIGSEGV, Segmentation fault.
+
+I've attached the complete backtrace
+
+Fedora Linux 30
+Mesa 19.1.3
+nvidea geforce GTX750M
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15646983020.C0e8fDF.28546
+Date: Thu, 1 Aug 2019 22:25:02 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Playing a video on vlc causes Segmentation Fault"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111280">111280</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Playing a video on vlc causes Segmentation Fault
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>19.1
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>madebr&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144927=
+" name=3D"attach_144927" title=3D"gdb backtrace">attachment 144927</a> <a h=
+ref=3D"attachment.cgi?id=3D144927&amp;action=3Dedit" title=3D"gdb backtrace=
+">[details]</a></span>
+gdb backtrace
+
+When playing a video using vlc on Fedora Linux, vlc segfaults.
+When running vlc under gdb, the following message prints:
+
+Thread 32 &quot;vlc&quot; received signal SIGSEGV, Segmentation fault.
+
+I've attached the complete backtrace
+
+Fedora Linux 30
+Mesa 19.1.3
+nvidea geforce GTX750M</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15646983020.C0e8fDF.28546--
+
+--===============1711399425==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1711399425==--
