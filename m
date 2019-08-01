@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111230] core dumped while using Rstudio
-Date: Thu, 01 Aug 2019 16:18:32 +0000
-Message-ID: <bug-111230-8800-gPx8e6oQKo@http.bugs.freedesktop.org/>
+Date: Thu, 01 Aug 2019 16:23:27 +0000
+Message-ID: <bug-111230-8800-U2YrWm3D8L@http.bugs.freedesktop.org/>
 References: <bug-111230-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0509886104=="
+Content-Type: multipart/mixed; boundary="===============0788887119=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111230-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0509886104==
-Content-Type: multipart/alternative; boundary="15646763120.F980C8636.822"
+--===============0788887119==
+Content-Type: multipart/alternative; boundary="15646766071.dbA9bF.1729"
 Content-Transfer-Encoding: 7bit
 
 
---15646763120.F980C8636.822
-Date: Thu, 1 Aug 2019 16:18:32 +0000
+--15646766071.dbA9bF.1729
+Date: Thu, 1 Aug 2019 16:23:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111230
 
---- Comment #4 from bdurette.pro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-NVIDIA binary driver - version 340.107
+--- Comment #5 from bdurette.pro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+ xserver-xorg-video-nouveau                                  1:1.0.15-2=20=
+=20=20=20=20=20=20=20
+                         amd64        X.Org X server -- Nouveau display dri=
+ver
 
-Is that what you were looking for ?
+Better, isn't it ?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15646763120.F980C8636.822
-Date: Thu, 1 Aug 2019 16:18:32 +0000
+--15646766071.dbA9bF.1729
+Date: Thu, 1 Aug 2019 16:23:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +65,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - core dumped while using Rstudio"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111230#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111230#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - core dumped while using Rstudio"
@@ -73,9 +76,12 @@ t # 4</a>
 bdurette.pro&#64;gmail.com" title=3D"bdurette.pro&#64;gmail.com">bdurette.p=
 ro&#64;gmail.com</a>
 </span></b>
-        <pre>NVIDIA binary driver - version 340.107
+        <pre> xserver-xorg-video-nouveau                                  1=
+:1.0.15-2=20=20=20=20=20=20=20=20
+                         amd64        X.Org X server -- Nouveau display dri=
+ver
 
-Is that what you were looking for ?</pre>
+Better, isn't it ?</pre>
         </div>
       </p>
 
@@ -89,9 +95,9 @@ Is that what you were looking for ?</pre>
     </body>
 </html>=
 
---15646763120.F980C8636.822--
+--15646766071.dbA9bF.1729--
 
---===============0509886104==
+--===============0788887119==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0509886104==--
+--===============0788887119==--
