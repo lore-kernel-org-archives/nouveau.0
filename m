@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111280] New: Playing a video on vlc causes
- Segmentation Fault
-Date: Thu, 01 Aug 2019 22:25:02 +0000
-Message-ID: <bug-111280-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 111280] Playing a video on vlc causes Segmentation
+ Fault
+Date: Thu, 01 Aug 2019 22:33:44 +0000
+Message-ID: <bug-111280-8800-60Q5T2xYdY@http.bugs.freedesktop.org/>
+References: <bug-111280-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1711399425=="
+Content-Type: multipart/mixed; boundary="===============0267222281=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-111280-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1711399425==
-Content-Type: multipart/alternative; boundary="15646983020.C0e8fDF.28546"
+--===============0267222281==
+Content-Type: multipart/alternative; boundary="15646988241.A9dCfeD.29997"
 Content-Transfer-Encoding: 7bit
 
 
---15646983020.C0e8fDF.28546
-Date: Thu, 1 Aug 2019 22:25:02 +0000
+--15646988241.A9dCfeD.29997
+Date: Thu, 1 Aug 2019 22:33:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -34,42 +36,28 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111280
 
-            Bug ID: 111280
-           Summary: Playing a video on vlc causes Segmentation Fault
-           Product: Mesa
-           Version: 19.1
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: madebr-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Created attachment 144927
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144927&action=3Dedit
-gdb backtrace
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
 
-When playing a video using vlc on Fedora Linux, vlc segfaults.
-When running vlc under gdb, the following message prints:
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please try this on the master branch. Not sure that vlc will work, but this
+issue is resolved.
 
-Thread 32 "vlc" received signal SIGSEGV, Segmentation fault.
+mplayer -vo vdpau worksforme.
 
-I've attached the complete backtrace
-
-Fedora Linux 30
-Mesa 19.1.3
-nvidea geforce GTX750M
+*** This bug has been marked as a duplicate of bug 111217 ***
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15646983020.C0e8fDF.28546
-Date: Thu, 1 Aug 2019 22:25:02 +0000
+--15646988241.A9dCfeD.29997
+Date: Thu, 1 Aug 2019 22:33:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,105 +68,68 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Playing a video on vlc causes Segmentation Fault"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111280">111280</a>
-          </td>
-        </tr>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
+64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
+pan class=3D"fn">Ilia Mirkin</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Playing a video on vlc causes Segmentation=
+ Fault"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111280">bug 11128=
+0</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>Playing a video on vlc causes Segmentation Fault
-          </td>
-        </tr>
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
 
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>19.1
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>madebr&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144927=
-" name=3D"attach_144927" title=3D"gdb backtrace">attachment 144927</a> <a h=
-ref=3D"attachment.cgi?id=3D144927&amp;action=3Dedit" title=3D"gdb backtrace=
-">[details]</a></span>
-gdb backtrace
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Playing a video on vlc causes Segmentation=
+ Fault"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111280#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Playing a video on vlc causes Segmentation=
+ Fault"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111280">bug 11128=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Please try this on the master branch. Not sure that vlc will w=
+ork, but this
+issue is resolved.
 
-When playing a video using vlc on Fedora Linux, vlc segfaults.
-When running vlc under gdb, the following message prints:
+mplayer -vo vdpau worksforme.
 
-Thread 32 &quot;vlc&quot; received signal SIGSEGV, Segmentation fault.
-
-I've attached the complete backtrace
-
-Fedora Linux 30
-Mesa 19.1.3
-nvidea geforce GTX750M</pre>
+*** This bug has been marked as a duplicate of <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - compilation of vdpau shaders crashes in handle=
+CVT_CVT"
+   href=3D"show_bug.cgi?id=3D111217">bug 111217</a> ***</pre>
         </div>
       </p>
 
@@ -193,9 +144,9 @@ nvidea geforce GTX750M</pre>
     </body>
 </html>=
 
---15646983020.C0e8fDF.28546--
+--15646988241.A9dCfeD.29997--
 
---===============1711399425==
+--===============0267222281==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -205,4 +156,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1711399425==--
+--===============0267222281==--
