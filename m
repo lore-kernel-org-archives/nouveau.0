@@ -1,34 +1,34 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: Re: [PATCH 13/13] mm: allow HMM_MIRROR on all
- architectures with MMU
-Date: Thu, 1 Aug 2019 09:04:38 +0200
-Message-ID: <20190801070438.GC15404@lst.de>
-References: <20190730055203.28467-1-hch@lst.de>
- <20190730055203.28467-14-hch@lst.de> <20190730180346.GR24038@mellanox.com>
- <20190730180452.GS24038@mellanox.com>
+From: Christoph Hellwig <hch@lst.de>
+Subject: Re: [PATCH 1/9] mm: turn migrate_vma upside down
+Date: Thu, 1 Aug 2019 09:42:20 +0200
+Message-ID: <20190801074220.GB16178@lst.de>
+References: <20190729142843.22320-1-hch@lst.de> <20190729142843.22320-2-hch@lst.de> <33b82c28-74be-8767-08fa-e41516d11c7e@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20190730180452.GS24038-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>
-Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Felix Kuehling <Felix.Kuehling-5C7GfCeVMHo@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+In-Reply-To: <33b82c28-74be-8767-08fa-e41516d11c7e@nvidia.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ralph Campbell <rcampbell@nvidia.com>
+Cc: Christoph Hellwig <hch@lst.de>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Bharata B Rao <bharata@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKdWwgMzAsIDIwMTkgYXQgMDY6MDQ6NTZQTSArMDAwMCwgSmFzb24gR3VudGhvcnBl
-IHdyb3RlOgo+IE9oLCBjYW4gd2UgbWFrZSB0aGlzIGludG8gYSBub24tdXNlciBzZWxlY3RhYmxl
-IG9wdGlvbiBub3c/IAo+IAo+IGllIGhhdmUgdGhlIGRyaXZlcnMgdGhhdCB1c2UgdGhlIEFQSSBz
-ZWxlY3QgaXQ/CgpTdXJlLCBJJ2xsIHRocm93IGluIGFub3RoZXIgcGF0Y2ggZm9yIHRoYXQuCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+On Tue, Jul 30, 2019 at 06:46:25PM -0700, Ralph Campbell wrote:
+>>   	for (i = 0; i < npages; i += c) {
+>> -		unsigned long next;
+>> -
+>>   		c = min(SG_MAX_SINGLE_ALLOC, npages);
+>> -		next = start + (c << PAGE_SHIFT);
+>> -		ret = migrate_vma(&nouveau_dmem_migrate_ops, vma, start,
+>> -				  next, src_pfns, dst_pfns, &migrate);
+>> +		args.end = start + (c << PAGE_SHIFT);
+>
+> Since migrate_vma_setup() is called in a loop, either args.cpages and
+> args.npages need to be cleared here or cleared in migrate_vma_setup().
+
+I think clearing everything that is not used for argument passing in
+migrate_vma_setup is a good idea.  I'll do that.
+
+Btw, it seems like this was a fullquote just for the little comment
+as far as I could tell from wading through it.  It would be very
+appreciated to properly quote the replies.
