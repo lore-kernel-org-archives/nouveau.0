@@ -1,109 +1,58 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] Revert "PCI: Enable NVIDIA HDA controllers"
-Date: Wed, 31 Jul 2019 20:50:20 -0400
-Message-ID: <97d4312d883f3c031c5a6144a2f5f5dd74dfe4df.camel@redhat.com>
-References: <20190731201927.22054-1-lyude@redhat.com>
- <20190731211842.befvpoyudrm2subf@wunner.de>
- <CACO55tu=9ZBzGkwdXPOwWARy1UTspFv+v=nrmLFoOKiSGU+E5Q@mail.gmail.com>
- <b27614151184f29bb147786933cb424fddb82a23.camel@redhat.com>
+From: Christoph Hellwig <hch@lst.de>
+Subject: Re: [PATCH 07/13] mm: remove the page_shift member from struct
+ hmm_range
+Date: Thu, 1 Aug 2019 08:49:14 +0200
+Message-ID: <20190801064914.GA15404@lst.de>
+References: <20190730055203.28467-1-hch@lst.de> <20190730055203.28467-8-hch@lst.de> <20190730125512.GF24038@mellanox.com> <20190730131430.GC4566@lst.de> <20190730175011.GL24038@mellanox.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <b27614151184f29bb147786933cb424fddb82a23.camel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Cc: Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20190730175011.GL24038@mellanox.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Jason Gunthorpe <jgg@mellanox.com>
+Cc: Christoph Hellwig <hch@lst.de>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Ralph Campbell <rcampbell@nvidia.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCAyMDE5LTA3LTMxIGF0IDE3OjM1IC0wNDAwLCBMeXVkZSBQYXVsIHdyb3RlOgo+IE9u
-IFdlZCwgMjAxOS0wNy0zMSBhdCAyMzoyNiArMDIwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+ID4g
-T24gV2VkLCBKdWwgMzEsIDIwMTkgYXQgMTE6MTggUE0gTHVrYXMgV3VubmVyIDxsdWthc0B3dW5u
-ZXIuZGU+IHdyb3RlOgo+ID4gPiBPbiBXZWQsIEp1bCAzMSwgMjAxOSBhdCAwNDoxOToyN1BNIC0w
-NDAwLCBMeXVkZSBQYXVsIHdyb3RlOgo+ID4gPiA+IFdoaWxlIHRoaXMgZml4ZXMgYXVkaW8gZm9y
-IGEgbnVtYmVyIG9mIHVzZXJzLCB0aGlzIGNvbW1pdCBoYXMgdGhlCj4gPiA+ID4gc2lkZWFmZmVj
-dCBvZiBicmVha2luZyB0aGUgQklPUyB3b3JrYXJvdW5kIHRoYXQncyByZXF1aXJlZCB0byBtYWtl
-IHRoZQo+ID4gPiA+IEdQVSBvbiB0aGUgbnZpZGlhIFA1MCB3b3JrLCBieSBjYXVzaW5nIHRoZSBH
-UFUncyBQQ0kgZGV2aWNlIGZ1bmN0aW9uCj4gPiA+ID4gdG8KPiA+ID4gPiBzdG9wIHdvcmtpbmcg
-YWZ0ZXIgaXQncyBiZWVuIHNldCB0byBtdWx0aWZ1bmN0aW9uIG1vZGUuCj4gPiA+IAo+ID4gPiBU
-aGlzIGlzIG1pc3NpbmcgYSByZWZlcmVuY2UgdG8gdGhlIGNvbW1pdCBpbnRyb2R1Y2luZyB0aGUg
-UDUwIHF1aXJrLAo+ID4gPiB3aGljaCBpcyBlMDU0N2M4MWJmY2YgKCJQQ0k6IFJlc2V0IExlbm92
-byBUaGlua1BhZCBQNTAgbnZncHUgYXQgYm9vdAo+ID4gPiBpZiBuZWNlc3NhcnkiKS4KPiA+ID4g
-Cj4gPiA+IFBsZWFzZSBkZXNjcmliZSBpbiBtb3JlIGRldGFpbCBob3cgdGhlIEdQVSdzIFBDSSBm
-dW5jdGlvbiBzdG9wcyB3b3JraW5nLgo+ID4gPiBEb2VzIGl0IHJlc3BvbmQgd2l0aCAiYWxsIG9u
-ZXMiIHdoZW4gYWNjZXNzaW5nIE1NSU8/Cj4gPiA+IERvIE1NSU8gYWNjZXNzZXMgY2F1c2UgdGhl
-IHN5c3RlbSB0byBoYW5nPwo+ID4gPiAKPiA+ID4gQ291bGQgeW91IHByb3ZpZGUgbHNwY2kgLXZ2
-eHggb3V0cHV0IGZvciB0aGUgR1BVIGFuZCBpdHMgYXNzb2NpYXRlZAo+ID4gPiBIREEgY29udHJv
-bGxlciB3aXRoIGFuZCB3aXRob3V0IGI1MTZlYTU4NmQ3MT8KPiA+ID4gCj4gPiA+IERvZXMgdGhp
-cyBtYWNoaW5lIGhhdmUgZXh0ZXJuYWwgZGlzcGxheSBjb25uZWN0b3JzIHZpYSB3aGljaCBhdWRp
-bwo+ID4gPiBjYW4gYmUgc3RyZWFtZWQ/Cj4gPiA+IAo+ID4gPiAKPiA+ID4gPiBJJ20gbm90IHJl
-YWxseSBob2xkaW5nIG15IGJyZWF0aCBvbiB0aGlzIHBhdGNoIHRvIGJlaW5nIGFjY2VwdGVkOgo+
-ID4gPiA+IHRoZXJlJ3MgYSBnb29kIGNoYW5jZSB0aGVyZSdzIGEgYmV0dGVyIHNvbHV0aW9uIGZv
-ciB0aGlzIChhbmQgSSdtCj4gPiA+ID4gZ29pbmcKPiA+ID4gPiB0byBjb250aW51ZSBpbnZlc3Rp
-Z2F0aW5nIGZvciBvbmUgYWZ0ZXIgc2VuZGluZyB0aGlzIHBhdGNoKSwgdGhpcyBpcwo+ID4gPiA+
-IG1vcmUganVzdCB0byBzdGFydCBhIGNvbnZlcnNhdGlvbiBvbiB3aGF0IHRoZSBwcm9wZXIgd2F5
-IHRvIGZpeCB0aGlzCj4gPiA+ID4gaXMuCj4gPiA+IAo+ID4gPiBQb3N0aW5nIGFzIGFuIFJGQyBt
-aWdodCBoYXZlIGJlZW4gbW9yZSBhcHByb3ByaWF0ZSB0aGVuLgo+ID4gPiAKPiA+IAo+ID4gbm8s
-IGEgcmV2ZXJ0IGlzIGFjdHVhbGx5IGFwcHJvcHJpYXRlLiAgSWYgYSBjb21taXQgZml4ZXMgc29t
-ZXRoaW5nLAo+ID4gYnV0IGJyZWFrcyBzb21ldGhpbmcgZWxzZSwgaXQgZ2V0cyBlaXRoZXIgcmV2
-ZXJ0ZWQgb3IgZml4ZWQuIElmIG5vYm9keQo+ID4gZml4ZXMgaXQsIHRoZW4gcmV2ZXJ0IGl0IGlz
-Lgo+IAo+IFRvIGFuc3dlciBMdWthcydzIHF1ZXN0aW9uIGJ0dzogbW9zdCBvZiB0aGUgZGV0YWls
-cyBvbiBob3cgdGhpbmdzIGJyZWFrIGFyZQo+IGJhY2sgaW4gdGhlIG9yaWdpbmFsIGNvbW1pdCAo
-c29ycnkgZm9yIGZvcmdldHRpbmcgdGhlIHJlZmVyZW5jZSEpLCB0aGVyZSdzIGEKPiBfbG90XyBv
-ZiBleHBsYW5hdGlvbiB0aGVyZSB0aGF0IEknZCByYXRoZXIgbm90IHJldHlwZSwgc28ganVzdCBy
-ZWZlciBiYWNrIHRvCj4gdGhlIGNvbW1pdCBhbmQgYnVnIEAgaHR0cHM6Ly9idWdzLmZyZWVkZXNr
-dG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NzU5ODUKPiAKPiBBZGRpdGlvbmFsbHksIHRoZXJlIHdh
-cyBzb21lIGV4dHJhIGRpc2N1c3Npb24gcHJvdmlkaW5nIHNvbWUgbW9yZSBkZXRhaWwgaW4KPiB0
-aGUgZW1haWwgdGhyZWFkIHRoYXQgSSBoYWQgd2l0aCBCam9ybjoKPiAKPiBodHRwczovL2xrbWwu
-b3JnL2xrbWwvMjAxOS8yLzEyLzExNzIKPiAKPiBBcyBmb3IgaG93IHRoaXMgY29tbWl0IGJyZWFr
-cyB0aGUgd29ya2Fyb3VuZDogaXQgc2VlbXMgdGhhdCB3aGVuIHdlIGVuYWJsZQo+IHRoZQo+IEhE
-QSBjb250cm9sbGVyIGFuZCBwdXQgdGhlIEdQVSBpbnRvIG11bHRpZnVuY3Rpb24gbW9kZSwgdGhl
-IGZ1bmN0aW9uLWxldmVsCj4gcmVzZXQgc3RvcHMgd29ya2luZyBhbmQgdGh1cyB3ZSBjYW4ndCBy
-ZXNldCB0aGUgR1BVIGFueW1vcmUuIEN1cnJlbnRseSBJIGNhbgo+IHNlZSBhIGNvdXBsZSBvZiBz
-b2x1dGlvbnMgKGFnYWluLCBwbGVhc2UgZmVlbCBmcmVlIHRvIHN1Z2dlc3QgbW9yZSEpOgo+IAo+
-ICAqIEp1c3QgcmV2ZXJ0IHRoZSBjb21taXQuIFdlIHNob3VsZCBkbyB0aGlzIGlmIG5lY2Vzc2Fy
-eSwgYnV0IG9mIGNvdXJzZSBJJ2QKPiAgICBtdWNoIHJhdGhlciB0cnkgZmluZGluZyBhIGZpeCBm
-aXJzdAo+ICAqIERpc2FibGUgdGhlIEhEQSBjb250cm9sbGVyIHRlbXBvcmFyaWx5IHdoZW4gYSBH
-UFUgcmVzZXQgaXMgbmVkZWQgaW4KPiAgICBxdWlya19yZXNldF9sZW5vdm9fdGhpbmtwYWRfcDUw
-X252Z3B1KCksIHRoZW4gY2FsbCB0aGUgZnVuY3Rpb24gbGV2ZWwKPiAgICByZXNldCwgdGhlbiBy
-ZS1lbmFibGUgdGhlIEhEQSBjb250cm9sbGVyLiBJIGhhdmUgbm8gaWRlYSBpZiB0aGlzIGFjdHVh
-bGx5Cj4gICAgd29ya3MgeWV0LCBidXQgSSdtIGFib3V0IHRvIHRyeSB0aGlzIG9uIG15IHN5c3Rl
-bQo+ICAqIEdldCBxdWlya19yZXNldF9sZW5vdm9fdGhpbmtwYWRfcDUwX252Z3B1KCkgdG8gcnVu
-IGJlZm9yZQo+ICAgIHF1aXJrX252aWRpYV9oZGEoKS4gVGhpcyB3b3VsZCBwcm9iYWJseSBiZSBm
-aW5lLCBidXQgd2Ugd291bGQgbmVlZCB0bwo+ICAgIHJld29yayBzb21lIHN0dWZmIGluIHRoZSBQ
-Q0kgc3Vic3lzdGVtIChtYXliZSBpdCBhbHJlYWR5IGhhcyBhIHdheSB0byBkbwo+ICAgIHRoaXM/
-IGhhdmVuJ3QgY2hlY2tlZCB5ZXQpIHNvIHRoYXQgd2UgY291bGQgcGVyZm9ybSBhbiBmbHIgcHJv
-YmUgZWFybHkKPiAgICBlbm91Z2ggdG8gcGVyZm9ybSB0aGUgcXVpcmsKCkdvb2QgbmV3cyEgQWZ0
-ZXIgc29tZSBpbnZlc3RpZ2F0aW9uIGxvb2tzIGxpa2UgdGhhdCBmdW5jdGlvbiBsZXZlbCByZXNl
-dAphY3R1YWxseSBkb2VzIHdvcmssIGp1c3QgdGhhdCBhZnRlciB3ZSBwdXQgaXQgaW4gbXVsdGlm
-dW5jdGlvbiBtb2RlCnBjaV9wYXJlbnRfYnVzX3Jlc2V0KCkgc2VlcyBtdWx0aXBsZSBkZXZpY2Vz
-IG9uIHRoZSBidXMgYW5kIHJldHVybnMgLUVOT1RUWSBhcwphIHJlc3VsdC4gU28gSSBzaG91bGQg
-ZGVmaW5pdGVseSBiZSBhYmxlIHRvIGNvbWUgdXAgd2l0aCBhIGZpeCBmb3IgdGhpcyBvdGhlcgp0
-aGVuIHJldmVydGluZyB0aGlzIDopLiBXaWxsIHNlbmQgb3V0IHBhdGNoZXMgc29vbgoKPiA+ID4g
-PiBTbywgSSdtIGtpbmQgb2YgY29uZnVzZWQgYWJvdXQgd2h5IGV4YWN0bHkgdGhpcyB3YXMgaW1w
-bGVtZW50ZWQgYXMgYW4KPiA+ID4gPiBlYXJseSBib290IHF1aXJrIGluIHRoZSBmaXJzdCBwbGFj
-ZS4gSWYgd2UncmUgc2VlaW5nIHRoZSBHUFUncyBQQ0kKPiA+ID4gPiBkZXZpY2UsIHdlIGFscmVh
-ZHkga25vdyB0aGUgR1BVIGlzIHRoZXJlLiBTaG91bGRuJ3Qgd2UgYmUgYWJsZSB0bwo+ID4gPiA+
-IGNoZWNrCj4gPiA+ID4gZm9yIHRoZSBleGlzdGVuY2Ugb2YgdGhlIEhEQSBkZXZpY2Ugb25jZSB3
-ZSBwcm9iZSB0aGUgR1BVIGluIG5vdXZlYXU/Cj4gPiA+IAo+ID4gPiBJIHRoaW5rIGEgbW90aXZh
-dGlvbiB0byBrZWVwIHRoaXMgZ2VuZXJpYyB3YXMgdG8gbWFrZSBpdCB3b3JrIHdpdGgKPiA+ID4g
-b3RoZXIgZHJpdmVycyBiZXNpZGVzIG5vdXZlYXUsIHNwZWNpZmljYWxseSBOdmlkaWEncyBwcm9w
-cmlldGFyeSBkcml2ZXIuCj4gPiA+IG5vdXZlYXUgbWlnaHQgbm90IGV2ZW4gYmUgZW5hYmxlZC4K
-PiA+ID4gCj4gPiA+IAo+ID4gPiA+IHRoYXQgc3RpbGwgZG9lc24ndCBleHBsYWluIHdoeSB0aGlz
-IHdhcyBpbXBsZW1lbnRlZCBhcyBhbiBlYXJseSBxdWlyawo+ID4gPiAKPiA+ID4gVGhpcyBpc24n
-dCBhbiBlYXJseSBxdWlyay4gIFRob3NlIGxpdmUgaW4gYXJjaC94ODYva2VybmVsL2Vhcmx5LQo+
-ID4gPiBxdWlya3MuYy4KPiA+ID4gVGhpcyBpcyBqdXN0IGEgUENJIHF1aXJrIGV4ZWN1dGVkIG9u
-IGRldmljZSBlbnVtZXJhdGlvbiBhbmQgb24gcmVzdW1lLgo+ID4gPiBEZXZpY2VzIGFyZW4ndCBu
-ZWNlc3NhcmlseSBlbnVtZXJhdGVkIG9ubHkgb24gYm9vdCwgZS5nLiB0aGluawo+ID4gPiBUaHVu
-ZGVyYm9sdC4KPiA+ID4gCj4gPiA+IFRoYW5rcywKPiA+ID4gCj4gPiA+IEx1a2FzCi0tIApDaGVl
-cnMsCglMeXVkZSBQYXVsCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+On Tue, Jul 30, 2019 at 05:50:16PM +0000, Jason Gunthorpe wrote:
+> The way ODP seems to work is once in hugetlb mode the dma addresses
+> must give huge pages or the page fault will be failed. I think that is
+> a terrible design, but this is how the driver is ..
+> 
+> So, from this HMM perspective if the caller asked for huge pages then
+> the results have to be all huge pages or a hard failure.
+
+Which isn't how the page_shift member works at moment.  It still
+allows non-hugetlb mappings even with the member.
+
+> It is not negotiated as an optimization like you are thinking.
+> 
+> [note, I haven't yet checked carefully how this works in ODP, every
+>  time I look at parts of it the thing seems crazy]
+
+This seems pretty crazy.  Especially as hugetlb use in applications
+seems to fade in favour of THP, for which this ODP scheme does not seem
+to work at all.
+
+> > The best API for mlx4 would of course be to pass a biovec-style
+> > variable length structure that hmm_fault could fill out, but that would
+> > be a major restructure.
+> 
+> It would work, but the driver has to expand that into a page list
+> right awayhow.
+> 
+> We can't even dma map the biovec with today's dma API as it needs the
+> ability to remap on a page granularity.
+
+We can do dma_map_page loops over each biovec entry pretty trivially,
+and that won't be any worse than the current loop over each page in
+the hmm dma helpers.  Once I get around the work to have a better
+API for iommu mappings for bio_vecs we could coalesce it similar to
+how we do it with scatterlist (but without all the mess of a new
+structure).  That work is going to take a little longer through, as
+it needs the amd and intell iommu drivers to be convered to dma-iommu
+which isn't making progress as far as I hoped.
+
+Let me know if you want to keep this code for now despite the issues,
+or if we'd rather reimplement it once you've made sense of the ODP
+code.
