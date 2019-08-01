@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111110] Nvidia quadro + nouveau : second terminal
- wake up but doesn't more display
-Date: Thu, 25 Jul 2019 06:36:08 +0000
-Message-ID: <bug-111110-8800-2JOzi4hAVu@http.bugs.freedesktop.org/>
-References: <bug-111110-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH] Revert "PCI: Enable NVIDIA HDA controllers"
+Date: Wed, 31 Jul 2019 20:50:20 -0400
+Message-ID: <97d4312d883f3c031c5a6144a2f5f5dd74dfe4df.camel@redhat.com>
+References: <20190731201927.22054-1-lyude@redhat.com>
+ <20190731211842.befvpoyudrm2subf@wunner.de>
+ <CACO55tu=9ZBzGkwdXPOwWARy1UTspFv+v=nrmLFoOKiSGU+E5Q@mail.gmail.com>
+ <b27614151184f29bb147786933cb424fddb82a23.camel@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1343218947=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111110-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <b27614151184f29bb147786933cb424fddb82a23.camel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,165 +20,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Cc: Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1343218947==
-Content-Type: multipart/alternative; boundary="15640365670.e3eB.17584"
-Content-Transfer-Encoding: 7bit
-
-
---15640365670.e3eB.17584
-Date: Thu, 25 Jul 2019 06:36:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111110
-
---- Comment #1 from Philippe Cond=C3=A9 <conde.philippe-AgBVmzD5pcezQB+pC5nmwQ@public.gmane.org> ---
-Hello,
-
-with the last Mesa from OpenSUSE factory this regression is still present
-# rpm -qa Mesa*
-Mesa-32bit-19.1.2-225.1.x86_64
-Mesa-dri-19.1.2-225.1.x86_64
-Mesa-libglapi0-19.1.2-225.1.x86_64
-Mesa-demo-x-8.4.0-1.7.x86_64
-Mesa-libGLESv2-2-19.1.2-225.1.x86_64
-Mesa-libEGL1-19.1.2-225.1.x86_64
-Mesa-dri-nouveau-19.1.2-225.1.x86_64
-Mesa-libGL1-19.1.2-225.1.x86_64
-Mesa-libva-19.1.2-225.1.x86_64
-Mesa-libGL1-32bit-19.1.2-225.1.x86_64
-Mesa-19.1.2-225.1.x86_64
-Mesa-libglapi0-32bit-19.1.2-225.1.x86_64
-Mesa-gallium-32bit-19.1.2-225.1.x86_64
-Mesa-dri-32bit-19.1.2-225.1.x86_64
-Mesa-gallium-19.1.2-225.1.x86_64
-Mesa-KHR-devel-19.1.2-225.1.x86_64
-Mesa-libEGL-devel-19.1.2-225.1.x86_64
-Mesa-libGL-devel-19.1.2-225.1.x86_64
-Mesa-libEGL1-32bit-19.1.2-225.1.x86_64
-
-# rpm -qa xf86-video-nouveau
-xf86-video-nouveau-1.0.15-40.12.x86_64
-
-# uname -a
-Linux hpprol2 5.2.1-1-default #1 SMP Mon Jul 15 05:32:47 UTC 2019 (bf5c01b)
-x86_64 x86_64 x86_64 GNU/Linux
-
-the same error is present in journalctl.
-Jul 25 08:29:02 hpprol2 kernel: nouveau 0000:0a:00.0: disp: outp 03:0006:0f=
-42:
-training failed
-
-Not sure if Mesa is involved or alone nouveau?
-
-Regards
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15640365670.e3eB.17584
-Date: Thu, 25 Jul 2019 06:36:07 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia quadro + nouveau : second terminal wake up but doe=
-sn't more display"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111110#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nvidia quadro + nouveau : second terminal wake up but doe=
-sn't more display"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111110">bug 11111=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-conde.philippe&#64;skynet.be" title=3D"Philippe Cond=C3=A9 &lt;conde.philip=
-pe&#64;skynet.be&gt;"> <span class=3D"fn">Philippe Cond=C3=A9</span></a>
-</span></b>
-        <pre>Hello,
-
-with the last Mesa from OpenSUSE factory this regression is still present
-# rpm -qa Mesa*
-Mesa-32bit-19.1.2-225.1.x86_64
-Mesa-dri-19.1.2-225.1.x86_64
-Mesa-libglapi0-19.1.2-225.1.x86_64
-Mesa-demo-x-8.4.0-1.7.x86_64
-Mesa-libGLESv2-2-19.1.2-225.1.x86_64
-Mesa-libEGL1-19.1.2-225.1.x86_64
-Mesa-dri-nouveau-19.1.2-225.1.x86_64
-Mesa-libGL1-19.1.2-225.1.x86_64
-Mesa-libva-19.1.2-225.1.x86_64
-Mesa-libGL1-32bit-19.1.2-225.1.x86_64
-Mesa-19.1.2-225.1.x86_64
-Mesa-libglapi0-32bit-19.1.2-225.1.x86_64
-Mesa-gallium-32bit-19.1.2-225.1.x86_64
-Mesa-dri-32bit-19.1.2-225.1.x86_64
-Mesa-gallium-19.1.2-225.1.x86_64
-Mesa-KHR-devel-19.1.2-225.1.x86_64
-Mesa-libEGL-devel-19.1.2-225.1.x86_64
-Mesa-libGL-devel-19.1.2-225.1.x86_64
-Mesa-libEGL1-32bit-19.1.2-225.1.x86_64
-
-# rpm -qa xf86-video-nouveau
-xf86-video-nouveau-1.0.15-40.12.x86_64
-
-# uname -a
-Linux hpprol2 5.2.1-1-default #1 SMP Mon Jul 15 05:32:47 UTC 2019 (bf5c01b)
-x86_64 x86_64 x86_64 GNU/Linux
-
-the same error is present in journalctl.
-Jul 25 08:29:02 hpprol2 kernel: nouveau 0000:0a:00.0: disp: outp 03:0006:0f=
-42:
-training failed
-
-Not sure if Mesa is involved or alone nouveau?
-
-Regards</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15640365670.e3eB.17584--
-
---===============1343218947==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1343218947==--
+T24gV2VkLCAyMDE5LTA3LTMxIGF0IDE3OjM1IC0wNDAwLCBMeXVkZSBQYXVsIHdyb3RlOgo+IE9u
+IFdlZCwgMjAxOS0wNy0zMSBhdCAyMzoyNiArMDIwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+ID4g
+T24gV2VkLCBKdWwgMzEsIDIwMTkgYXQgMTE6MTggUE0gTHVrYXMgV3VubmVyIDxsdWthc0B3dW5u
+ZXIuZGU+IHdyb3RlOgo+ID4gPiBPbiBXZWQsIEp1bCAzMSwgMjAxOSBhdCAwNDoxOToyN1BNIC0w
+NDAwLCBMeXVkZSBQYXVsIHdyb3RlOgo+ID4gPiA+IFdoaWxlIHRoaXMgZml4ZXMgYXVkaW8gZm9y
+IGEgbnVtYmVyIG9mIHVzZXJzLCB0aGlzIGNvbW1pdCBoYXMgdGhlCj4gPiA+ID4gc2lkZWFmZmVj
+dCBvZiBicmVha2luZyB0aGUgQklPUyB3b3JrYXJvdW5kIHRoYXQncyByZXF1aXJlZCB0byBtYWtl
+IHRoZQo+ID4gPiA+IEdQVSBvbiB0aGUgbnZpZGlhIFA1MCB3b3JrLCBieSBjYXVzaW5nIHRoZSBH
+UFUncyBQQ0kgZGV2aWNlIGZ1bmN0aW9uCj4gPiA+ID4gdG8KPiA+ID4gPiBzdG9wIHdvcmtpbmcg
+YWZ0ZXIgaXQncyBiZWVuIHNldCB0byBtdWx0aWZ1bmN0aW9uIG1vZGUuCj4gPiA+IAo+ID4gPiBU
+aGlzIGlzIG1pc3NpbmcgYSByZWZlcmVuY2UgdG8gdGhlIGNvbW1pdCBpbnRyb2R1Y2luZyB0aGUg
+UDUwIHF1aXJrLAo+ID4gPiB3aGljaCBpcyBlMDU0N2M4MWJmY2YgKCJQQ0k6IFJlc2V0IExlbm92
+byBUaGlua1BhZCBQNTAgbnZncHUgYXQgYm9vdAo+ID4gPiBpZiBuZWNlc3NhcnkiKS4KPiA+ID4g
+Cj4gPiA+IFBsZWFzZSBkZXNjcmliZSBpbiBtb3JlIGRldGFpbCBob3cgdGhlIEdQVSdzIFBDSSBm
+dW5jdGlvbiBzdG9wcyB3b3JraW5nLgo+ID4gPiBEb2VzIGl0IHJlc3BvbmQgd2l0aCAiYWxsIG9u
+ZXMiIHdoZW4gYWNjZXNzaW5nIE1NSU8/Cj4gPiA+IERvIE1NSU8gYWNjZXNzZXMgY2F1c2UgdGhl
+IHN5c3RlbSB0byBoYW5nPwo+ID4gPiAKPiA+ID4gQ291bGQgeW91IHByb3ZpZGUgbHNwY2kgLXZ2
+eHggb3V0cHV0IGZvciB0aGUgR1BVIGFuZCBpdHMgYXNzb2NpYXRlZAo+ID4gPiBIREEgY29udHJv
+bGxlciB3aXRoIGFuZCB3aXRob3V0IGI1MTZlYTU4NmQ3MT8KPiA+ID4gCj4gPiA+IERvZXMgdGhp
+cyBtYWNoaW5lIGhhdmUgZXh0ZXJuYWwgZGlzcGxheSBjb25uZWN0b3JzIHZpYSB3aGljaCBhdWRp
+bwo+ID4gPiBjYW4gYmUgc3RyZWFtZWQ/Cj4gPiA+IAo+ID4gPiAKPiA+ID4gPiBJJ20gbm90IHJl
+YWxseSBob2xkaW5nIG15IGJyZWF0aCBvbiB0aGlzIHBhdGNoIHRvIGJlaW5nIGFjY2VwdGVkOgo+
+ID4gPiA+IHRoZXJlJ3MgYSBnb29kIGNoYW5jZSB0aGVyZSdzIGEgYmV0dGVyIHNvbHV0aW9uIGZv
+ciB0aGlzIChhbmQgSSdtCj4gPiA+ID4gZ29pbmcKPiA+ID4gPiB0byBjb250aW51ZSBpbnZlc3Rp
+Z2F0aW5nIGZvciBvbmUgYWZ0ZXIgc2VuZGluZyB0aGlzIHBhdGNoKSwgdGhpcyBpcwo+ID4gPiA+
+IG1vcmUganVzdCB0byBzdGFydCBhIGNvbnZlcnNhdGlvbiBvbiB3aGF0IHRoZSBwcm9wZXIgd2F5
+IHRvIGZpeCB0aGlzCj4gPiA+ID4gaXMuCj4gPiA+IAo+ID4gPiBQb3N0aW5nIGFzIGFuIFJGQyBt
+aWdodCBoYXZlIGJlZW4gbW9yZSBhcHByb3ByaWF0ZSB0aGVuLgo+ID4gPiAKPiA+IAo+ID4gbm8s
+IGEgcmV2ZXJ0IGlzIGFjdHVhbGx5IGFwcHJvcHJpYXRlLiAgSWYgYSBjb21taXQgZml4ZXMgc29t
+ZXRoaW5nLAo+ID4gYnV0IGJyZWFrcyBzb21ldGhpbmcgZWxzZSwgaXQgZ2V0cyBlaXRoZXIgcmV2
+ZXJ0ZWQgb3IgZml4ZWQuIElmIG5vYm9keQo+ID4gZml4ZXMgaXQsIHRoZW4gcmV2ZXJ0IGl0IGlz
+Lgo+IAo+IFRvIGFuc3dlciBMdWthcydzIHF1ZXN0aW9uIGJ0dzogbW9zdCBvZiB0aGUgZGV0YWls
+cyBvbiBob3cgdGhpbmdzIGJyZWFrIGFyZQo+IGJhY2sgaW4gdGhlIG9yaWdpbmFsIGNvbW1pdCAo
+c29ycnkgZm9yIGZvcmdldHRpbmcgdGhlIHJlZmVyZW5jZSEpLCB0aGVyZSdzIGEKPiBfbG90XyBv
+ZiBleHBsYW5hdGlvbiB0aGVyZSB0aGF0IEknZCByYXRoZXIgbm90IHJldHlwZSwgc28ganVzdCBy
+ZWZlciBiYWNrIHRvCj4gdGhlIGNvbW1pdCBhbmQgYnVnIEAgaHR0cHM6Ly9idWdzLmZyZWVkZXNr
+dG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NzU5ODUKPiAKPiBBZGRpdGlvbmFsbHksIHRoZXJlIHdh
+cyBzb21lIGV4dHJhIGRpc2N1c3Npb24gcHJvdmlkaW5nIHNvbWUgbW9yZSBkZXRhaWwgaW4KPiB0
+aGUgZW1haWwgdGhyZWFkIHRoYXQgSSBoYWQgd2l0aCBCam9ybjoKPiAKPiBodHRwczovL2xrbWwu
+b3JnL2xrbWwvMjAxOS8yLzEyLzExNzIKPiAKPiBBcyBmb3IgaG93IHRoaXMgY29tbWl0IGJyZWFr
+cyB0aGUgd29ya2Fyb3VuZDogaXQgc2VlbXMgdGhhdCB3aGVuIHdlIGVuYWJsZQo+IHRoZQo+IEhE
+QSBjb250cm9sbGVyIGFuZCBwdXQgdGhlIEdQVSBpbnRvIG11bHRpZnVuY3Rpb24gbW9kZSwgdGhl
+IGZ1bmN0aW9uLWxldmVsCj4gcmVzZXQgc3RvcHMgd29ya2luZyBhbmQgdGh1cyB3ZSBjYW4ndCBy
+ZXNldCB0aGUgR1BVIGFueW1vcmUuIEN1cnJlbnRseSBJIGNhbgo+IHNlZSBhIGNvdXBsZSBvZiBz
+b2x1dGlvbnMgKGFnYWluLCBwbGVhc2UgZmVlbCBmcmVlIHRvIHN1Z2dlc3QgbW9yZSEpOgo+IAo+
+ICAqIEp1c3QgcmV2ZXJ0IHRoZSBjb21taXQuIFdlIHNob3VsZCBkbyB0aGlzIGlmIG5lY2Vzc2Fy
+eSwgYnV0IG9mIGNvdXJzZSBJJ2QKPiAgICBtdWNoIHJhdGhlciB0cnkgZmluZGluZyBhIGZpeCBm
+aXJzdAo+ICAqIERpc2FibGUgdGhlIEhEQSBjb250cm9sbGVyIHRlbXBvcmFyaWx5IHdoZW4gYSBH
+UFUgcmVzZXQgaXMgbmVkZWQgaW4KPiAgICBxdWlya19yZXNldF9sZW5vdm9fdGhpbmtwYWRfcDUw
+X252Z3B1KCksIHRoZW4gY2FsbCB0aGUgZnVuY3Rpb24gbGV2ZWwKPiAgICByZXNldCwgdGhlbiBy
+ZS1lbmFibGUgdGhlIEhEQSBjb250cm9sbGVyLiBJIGhhdmUgbm8gaWRlYSBpZiB0aGlzIGFjdHVh
+bGx5Cj4gICAgd29ya3MgeWV0LCBidXQgSSdtIGFib3V0IHRvIHRyeSB0aGlzIG9uIG15IHN5c3Rl
+bQo+ICAqIEdldCBxdWlya19yZXNldF9sZW5vdm9fdGhpbmtwYWRfcDUwX252Z3B1KCkgdG8gcnVu
+IGJlZm9yZQo+ICAgIHF1aXJrX252aWRpYV9oZGEoKS4gVGhpcyB3b3VsZCBwcm9iYWJseSBiZSBm
+aW5lLCBidXQgd2Ugd291bGQgbmVlZCB0bwo+ICAgIHJld29yayBzb21lIHN0dWZmIGluIHRoZSBQ
+Q0kgc3Vic3lzdGVtIChtYXliZSBpdCBhbHJlYWR5IGhhcyBhIHdheSB0byBkbwo+ICAgIHRoaXM/
+IGhhdmVuJ3QgY2hlY2tlZCB5ZXQpIHNvIHRoYXQgd2UgY291bGQgcGVyZm9ybSBhbiBmbHIgcHJv
+YmUgZWFybHkKPiAgICBlbm91Z2ggdG8gcGVyZm9ybSB0aGUgcXVpcmsKCkdvb2QgbmV3cyEgQWZ0
+ZXIgc29tZSBpbnZlc3RpZ2F0aW9uIGxvb2tzIGxpa2UgdGhhdCBmdW5jdGlvbiBsZXZlbCByZXNl
+dAphY3R1YWxseSBkb2VzIHdvcmssIGp1c3QgdGhhdCBhZnRlciB3ZSBwdXQgaXQgaW4gbXVsdGlm
+dW5jdGlvbiBtb2RlCnBjaV9wYXJlbnRfYnVzX3Jlc2V0KCkgc2VlcyBtdWx0aXBsZSBkZXZpY2Vz
+IG9uIHRoZSBidXMgYW5kIHJldHVybnMgLUVOT1RUWSBhcwphIHJlc3VsdC4gU28gSSBzaG91bGQg
+ZGVmaW5pdGVseSBiZSBhYmxlIHRvIGNvbWUgdXAgd2l0aCBhIGZpeCBmb3IgdGhpcyBvdGhlcgp0
+aGVuIHJldmVydGluZyB0aGlzIDopLiBXaWxsIHNlbmQgb3V0IHBhdGNoZXMgc29vbgoKPiA+ID4g
+PiBTbywgSSdtIGtpbmQgb2YgY29uZnVzZWQgYWJvdXQgd2h5IGV4YWN0bHkgdGhpcyB3YXMgaW1w
+bGVtZW50ZWQgYXMgYW4KPiA+ID4gPiBlYXJseSBib290IHF1aXJrIGluIHRoZSBmaXJzdCBwbGFj
+ZS4gSWYgd2UncmUgc2VlaW5nIHRoZSBHUFUncyBQQ0kKPiA+ID4gPiBkZXZpY2UsIHdlIGFscmVh
+ZHkga25vdyB0aGUgR1BVIGlzIHRoZXJlLiBTaG91bGRuJ3Qgd2UgYmUgYWJsZSB0bwo+ID4gPiA+
+IGNoZWNrCj4gPiA+ID4gZm9yIHRoZSBleGlzdGVuY2Ugb2YgdGhlIEhEQSBkZXZpY2Ugb25jZSB3
+ZSBwcm9iZSB0aGUgR1BVIGluIG5vdXZlYXU/Cj4gPiA+IAo+ID4gPiBJIHRoaW5rIGEgbW90aXZh
+dGlvbiB0byBrZWVwIHRoaXMgZ2VuZXJpYyB3YXMgdG8gbWFrZSBpdCB3b3JrIHdpdGgKPiA+ID4g
+b3RoZXIgZHJpdmVycyBiZXNpZGVzIG5vdXZlYXUsIHNwZWNpZmljYWxseSBOdmlkaWEncyBwcm9w
+cmlldGFyeSBkcml2ZXIuCj4gPiA+IG5vdXZlYXUgbWlnaHQgbm90IGV2ZW4gYmUgZW5hYmxlZC4K
+PiA+ID4gCj4gPiA+IAo+ID4gPiA+IHRoYXQgc3RpbGwgZG9lc24ndCBleHBsYWluIHdoeSB0aGlz
+IHdhcyBpbXBsZW1lbnRlZCBhcyBhbiBlYXJseSBxdWlyawo+ID4gPiAKPiA+ID4gVGhpcyBpc24n
+dCBhbiBlYXJseSBxdWlyay4gIFRob3NlIGxpdmUgaW4gYXJjaC94ODYva2VybmVsL2Vhcmx5LQo+
+ID4gPiBxdWlya3MuYy4KPiA+ID4gVGhpcyBpcyBqdXN0IGEgUENJIHF1aXJrIGV4ZWN1dGVkIG9u
+IGRldmljZSBlbnVtZXJhdGlvbiBhbmQgb24gcmVzdW1lLgo+ID4gPiBEZXZpY2VzIGFyZW4ndCBu
+ZWNlc3NhcmlseSBlbnVtZXJhdGVkIG9ubHkgb24gYm9vdCwgZS5nLiB0aGluawo+ID4gPiBUaHVu
+ZGVyYm9sdC4KPiA+ID4gCj4gPiA+IFRoYW5rcywKPiA+ID4gCj4gPiA+IEx1a2FzCi0tIApDaGVl
+cnMsCglMeXVkZSBQYXVsCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
