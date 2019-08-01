@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111217] compilation of vdpau shaders crashes in
- handleCVT_CVT
-Date: Thu, 01 Aug 2019 22:33:44 +0000
-Message-ID: <bug-111217-8800-mpSniFe9xh@http.bugs.freedesktop.org/>
-References: <bug-111217-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] PCI: Use pci_reset_bus() in
+ quirk_reset_lenovo_thinkpad_50_nvgpu()
+Date: Fri, 2 Aug 2019 09:45:36 +1000
+Message-ID: <CACAvsv4RUe7RpRFcOqigyKMdXm-z0VaiF7RqVHL1bGmRALU3kw@mail.gmail.com>
+References: <20190801220117.14952-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0011982845=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111217-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20190801220117.14952-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,125 +18,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maik Freudenberg <hhfeuer-Mmb7MZpHnFY@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Daniel Drake <drake-6IF/jdPJHihWk0Htik3J/w@public.gmane.org>, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0011982845==
-Content-Type: multipart/alternative; boundary="15646988243.C6b1Ff4F.29997"
-Content-Transfer-Encoding: 7bit
-
-
---15646988243.C6b1Ff4F.29997
-Date: Thu, 1 Aug 2019 22:33:44 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111217
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |madebr-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-*** Bug 111280 has been marked as a duplicate of this bug. ***
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
-
---15646988243.C6b1Ff4F.29997
-Date: Thu, 1 Aug 2019 22:33:44 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:imirkin&#=
-64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <s=
-pan class=3D"fn">Ilia Mirkin</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - compilation of vdpau shaders crashes in handle=
-CVT_CVT"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111217">bug 11121=
-7</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>madebr&#64;gmail.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - compilation of vdpau shaders crashes in handle=
-CVT_CVT"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111217#c5">Commen=
-t # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - compilation of vdpau shaders crashes in handle=
-CVT_CVT"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111217">bug 11121=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>*** <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Playing a video on vlc causes Segmentation=
- Fault"
-   href=3D"show_bug.cgi?id=3D111280">Bug 111280</a> has been marked as a du=
-plicate of this bug. ***</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-          <li>You are the QA Contact for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15646988243.C6b1Ff4F.29997--
-
---===============0011982845==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0011982845==--
+T24gRnJpLCAyIEF1ZyAyMDE5IGF0IDA4OjAxLCBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29t
+PiB3cm90ZToKPgo+IFNpbmNlIHF1aXJrX252aWRpYV9oZGEoKSB3YXMgYWRkZWQgdGhlcmUncyBu
+b3cgdHdvIG52aWRpYSBkZXZpY2UKPiBmdW5jdGlvbnMgb24gYW55IGxhcHRvcHMgd2l0aCBudmlk
+aWEgR1BVczogdGhlIEhEQSBjb250cm9sbGVyLCBhbmQgdGhlCj4gR1BVIGl0c2VsZi4gVW5mb3J0
+dW5hdGVseSB0aGlzIGhhcyB0aGUgc2lkZWFmZmVjdCBvZiBicmVha2luZwo+IHF1aXJrX3Jlc2V0
+X2xlbm92b190aGlua3BhZF81MF9udmdwdSgpIHNpbmNlIHBjaV9yZXNldF9mdW5jdGlvbigpIHdh
+cwo+IHVzaW5nIHBjaV9wYXJlbnRfYnVzX3Jlc2V0KCkgdG8gcmVzZXQgdGhlIEdQVSdzIHJlc3Bl
+Y3RpdmUgUENJIGJ1cywgYW5kCj4gcGNpX3BhcmVudF9idXNfcmVzZXQoKSBkb2VzIG5vdCB3b3Jr
+IG9uIGJ1c3NlcyB3aGljaCBoYXZlIG1vcmUgdGhlbiBhCj4gc2luZ2xlIGRldmljZSBmdW5jdGlv
+biBwcmVzZW50Lgo+Cj4gU28sIGZpeCB0aGlzIGJ5IHNpbXBseSBjYWxsaW5nIHBjaV9yZXNldF9i
+dXMoKSBpbnN0ZWFkIHdoaWNoIHByb3Blcmx5Cj4gcmVzZXRzIHRoZSBHUFUgYnVzIGFuZCBhbGwg
+ZGV2aWNlIGZ1bmN0aW9ucyB1bmRlciBpdCwgaW5jbHVkaW5nIGJvdGggdGhlCj4gR1BVIGFuZCB0
+aGUgSERBIGNvbnRyb2xsZXIuCj4KPiBGaXhlczogYjUxNmVhNTg2ZDcxICgiUENJOiBFbmFibGUg
+TlZJRElBIEhEQSBjb250cm9sbGVycyIpCj4gQ2M6IEx1a2FzIFd1bm5lciA8bHVrYXNAd3VubmVy
+LmRlPgo+IENjOiBEYW5pZWwgRHJha2UgPGRyYWtlQGVuZGxlc3NtLmNvbT4KPiBDYzogQmpvcm4g
+SGVsZ2FhcyA8YmhlbGdhYXNAZ29vZ2xlLmNvbT4KPiBDYzogQWFyb24gUGxhdHRuZXIgPGFwbGF0
+dG5lckBudmlkaWEuY29tPgo+IENjOiBQZXRlciBXdSA8cGV0ZXJAbGVrZW5zdGV5bi5ubD4KPiBD
+YzogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1Pgo+IENjOiBLYXJvbCBIZXJic3Qg
+PGtoZXJic3RAcmVkaGF0LmNvbT4KPiBDYzogTWFpayBGcmV1ZGVuYmVyZyA8aGhmZXVlckBnbXgu
+ZGU+Cj4gQ2M6IGxpbnV4LXBjaUB2Z2VyLmtlcm5lbC5vcmcKPiBTaWduZWQtb2ZmLWJ5OiBMeXVk
+ZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgpBY2tlZC1ieTogQmVuIFNrZWdncyA8YnNrZWdnc0By
+ZWRoYXQuY29tPgoKPiAtLS0KPiAgZHJpdmVycy9wY2kvcXVpcmtzLmMgfCAyICstCj4gIDEgZmls
+ZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+Cj4gZGlmZiAtLWdpdCBh
+L2RyaXZlcnMvcGNpL3F1aXJrcy5jIGIvZHJpdmVycy9wY2kvcXVpcmtzLmMKPiBpbmRleCAyMDhh
+YWNmMzkzMjkuLjQ0YzRhZTFhYmQwMCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL3BjaS9xdWlya3Mu
+Ywo+ICsrKyBiL2RyaXZlcnMvcGNpL3F1aXJrcy5jCj4gQEAgLTUyNTYsNyArNTI1Niw3IEBAIHN0
+YXRpYyB2b2lkIHF1aXJrX3Jlc2V0X2xlbm92b190aGlua3BhZF9wNTBfbnZncHUoc3RydWN0IHBj
+aV9kZXYgKnBkZXYpCj4gICAgICAgICAgKi8KPiAgICAgICAgIGlmIChpb3JlYWQzMihtYXAgKyAw
+eDIyNDBjKSAmIDB4Mikgewo+ICAgICAgICAgICAgICAgICBwY2lfaW5mbyhwZGV2LCBGV19CVUcg
+IkdQVSBsZWZ0IGluaXRpYWxpemVkIGJ5IEVGSSwgcmVzZXR0aW5nXG4iKTsKPiAtICAgICAgICAg
+ICAgICAgcmV0ID0gcGNpX3Jlc2V0X2Z1bmN0aW9uKHBkZXYpOwo+ICsgICAgICAgICAgICAgICBy
+ZXQgPSBwY2lfcmVzZXRfYnVzKHBkZXYpOwo+ICAgICAgICAgICAgICAgICBpZiAocmV0IDwgMCkK
+PiAgICAgICAgICAgICAgICAgICAgICAgICBwY2lfZXJyKHBkZXYsICJGYWlsZWQgdG8gcmVzZXQg
+R1BVOiAlZFxuIiwgcmV0KTsKPiAgICAgICAgIH0KPiAtLQo+IDIuMjEuMAo+Cj4gX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcg
+bGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQ==
