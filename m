@@ -1,10 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107964] [GTX970] system hang when using libreoffice
-Date: Sat, 03 Aug 2019 17:10:51 +0000
-Message-ID: <bug-107964-8800-gPqsSY8blo@http.bugs.freedesktop.org/>
+Subject: [Bug 107964] [GTX970] and [GT 710] Display freeze with
+ fifo: fault 01 engine 00 client 0f
+Date: Sat, 03 Aug 2019 17:12:15 +0000
+Message-ID: <bug-107964-8800-lqgXf2nZat@http.bugs.freedesktop.org/>
 References: <bug-107964-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0137448394=="
+Content-Type: multipart/mixed; boundary="===============0636161643=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-107964-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0137448394==
-Content-Type: multipart/alternative; boundary="15648522513.aD7b44.31704"
+--===============0636161643==
+Content-Type: multipart/alternative; boundary="15648523343.0D2dCaE7.31725"
 Content-Transfer-Encoding: 7bit
 
 
---15648522513.aD7b44.31704
-Date: Sat, 3 Aug 2019 17:10:51 +0000
+--15648523343.0D2dCaE7.31725
+Date: Sat, 3 Aug 2019 17:12:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +36,21 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D107964
 
---- Comment #2 from Karl Schendel <schendel-zf86OBlHRo2+XT7JhA+gdA@public.gmane.org> ---
-Created attachment 144943
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D144943&action=3Dedit
-Latest freeze on GT 710: xorg.0.log.old
+Karl Schendel <schendel-zf86OBlHRo2+XT7JhA+gdA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[GTX970] system hang when   |[GTX970] and [GT 710]
+                   |using libreoffice           |Display freeze with fifo:
+                   |                            |fault 01 engine 00 client
+                   |                            |0f
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15648522513.aD7b44.31704
-Date: Sat, 3 Aug 2019 17:10:51 +0000
+--15648523343.0D2dCaE7.31725
+Date: Sat, 3 Aug 2019 17:12:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -56,29 +61,33 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:schendel&=
+#64;kbcomputer.com" title=3D"Karl Schendel &lt;schendel&#64;kbcomputer.com&=
+gt;"> <span class=3D"fn">Karl Schendel</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [GTX970] system hang when using libreoffice"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107964#c2">Commen=
-t # 2</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GTX970] system hang when using libreoffice"
+   title=3D"NEW - [GTX970] and [GT 710] Display freeze with fifo: fault 01 =
+engine 00 client 0f"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107964">bug 10796=
 4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-schendel&#64;kbcomputer.com" title=3D"Karl Schendel &lt;schendel&#64;kbcomp=
-uter.com&gt;"> <span class=3D"fn">Karl Schendel</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D144943=
-" name=3D"attach_144943" title=3D"Latest freeze on GT 710: xorg.0.log.old">=
-attachment 144943</a> <a href=3D"attachment.cgi?id=3D144943&amp;action=3Ded=
-it" title=3D"Latest freeze on GT 710: xorg.0.log.old">[details]</a></span>
-Latest freeze on GT 710: xorg.0.log.old</pre>
-        </div>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Summary</td>
+           <td>[GTX970] system hang when using libreoffice
+           </td>
+           <td>[GTX970] and [GT 710] Display freeze with fifo: fault 01 eng=
+ine 00 client 0f
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -91,9 +100,9 @@ Latest freeze on GT 710: xorg.0.log.old</pre>
     </body>
 </html>=
 
---15648522513.aD7b44.31704--
+--15648523343.0D2dCaE7.31725--
 
---===============0137448394==
+--===============0636161643==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0137448394==--
+--===============0636161643==--
