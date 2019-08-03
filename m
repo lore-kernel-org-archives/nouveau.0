@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111292] Advanced Lighting option in Firestorm Viewer
  makes some objects black on nv92 card
-Date: Sat, 03 Aug 2019 16:10:08 +0000
-Message-ID: <bug-111292-8800-ZV6wvtjaeQ@http.bugs.freedesktop.org/>
+Date: Sat, 03 Aug 2019 16:56:03 +0000
+Message-ID: <bug-111292-8800-Akte0ZoACz@http.bugs.freedesktop.org/>
 References: <bug-111292-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1736757465=="
+Content-Type: multipart/mixed; boundary="===============1550644682=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111292-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1736757465==
-Content-Type: multipart/alternative; boundary="15648486081.C2fd.21910"
+--===============1550644682==
+Content-Type: multipart/alternative; boundary="15648513630.F2DAcdCb.29478"
 Content-Transfer-Encoding: 7bit
 
 
---15648486081.C2fd.21910
-Date: Sat, 3 Aug 2019 16:10:08 +0000
+--15648513630.F2DAcdCb.29478
+Date: Sat, 3 Aug 2019 16:56:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111292
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-An apitrace that demonstrates this would be the most expedient way to get t=
-his
-analyzed and ideally resolved.
+--- Comment #7 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #6)
+> An apitrace that demonstrates this would be the most expedient way to get
+> this analyzed and ideally resolved.
+
+https://yadi.sk/d/2MMPqKPSiIHxLA - 41791K
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15648486081.C2fd.21910
-Date: Sat, 3 Aug 2019 16:10:08 +0000
+--15648513630.F2DAcdCb.29478
+Date: Sat, 3 Aug 2019 16:56:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +67,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Advanced Lighting option in Firestorm Viewer makes some o=
 bjects black on nv92 card"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111292#c6">Commen=
-t # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111292#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Advanced Lighting option in Firestorm Viewer makes some o=
@@ -74,12 +76,17 @@ bjects black on nv92 card"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111292">bug 11129=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
+gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>An apitrace that demonstrates this would be the most expedient=
- way to get this
-analyzed and ideally resolved.</pre>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D111=
+292#c6">comment #6</a>)
+<span class=3D"quote">&gt; An apitrace that demonstrates this would be the =
+most expedient way to get
+&gt; this analyzed and ideally resolved.</span >
+
+<a href=3D"https://yadi.sk/d/2MMPqKPSiIHxLA">https://yadi.sk/d/2MMPqKPSiIHx=
+LA</a> - 41791K</pre>
         </div>
       </p>
 
@@ -94,9 +101,9 @@ analyzed and ideally resolved.</pre>
     </body>
 </html>=
 
---15648486081.C2fd.21910--
+--15648513630.F2DAcdCb.29478--
 
---===============1736757465==
+--===============1550644682==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1736757465==--
+--===============1550644682==--
