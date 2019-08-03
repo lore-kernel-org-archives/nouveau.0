@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107964] [GTX970] and [GT 710] Display freeze with
- fifo: fault 01 engine 00 client 0f
-Date: Sat, 03 Aug 2019 17:12:15 +0000
-Message-ID: <bug-107964-8800-lqgXf2nZat@http.bugs.freedesktop.org/>
-References: <bug-107964-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 111292] Advanced Lighting option in Firestorm Viewer
+ makes some objects black on nv92 card
+Date: Sat, 03 Aug 2019 17:26:52 +0000
+Message-ID: <bug-111292-8800-gLmUziYjMp@http.bugs.freedesktop.org/>
+References: <bug-111292-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0636161643=="
+Content-Type: multipart/mixed; boundary="===============1885252734=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107964-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-111292-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0636161643==
-Content-Type: multipart/alternative; boundary="15648523343.0D2dCaE7.31725"
+--===============1885252734==
+Content-Type: multipart/alternative; boundary="15648532120.816dB159a.2626"
 Content-Transfer-Encoding: 7bit
 
 
---15648523343.0D2dCaE7.31725
-Date: Sat, 3 Aug 2019 17:12:14 +0000
+--15648532120.816dB159a.2626
+Date: Sat, 3 Aug 2019 17:26:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107964
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111292
 
-Karl Schendel <schendel-zf86OBlHRo2+XT7JhA+gdA@public.gmane.org> changed:
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Note to anyone taking a look... due to either a bug in the shader or a bug =
+in
+mesa (depending on one's view), you have to run the trace with
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[GTX970] system hang when   |[GTX970] and [GT 710]
-                   |using libreoffice           |Display freeze with fifo:
-                   |                            |fault 01 engine 00 client
-                   |                            |0f
+MESA_EXTENSION_ENABLE=3D-GL_ARB_gpu_shader5
+
+on DX11+ GPUs. Clarifying the behavior now as to which is right (pretty sure
+mesa behavior is right), but either way it doesn't affect the OP's problem.=
+ The
+black floor does not reproduce on a GK208 though.
 
 --=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15648523343.0D2dCaE7.31725
-Date: Sat, 3 Aug 2019 17:12:14 +0000
+--15648532120.816dB159a.2626
+Date: Sat, 3 Aug 2019 17:26:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,33 +65,36 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:schendel&=
-#64;kbcomputer.com" title=3D"Karl Schendel &lt;schendel&#64;kbcomputer.com&=
-gt;"> <span class=3D"fn">Karl Schendel</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [GTX970] and [GT 710] Display freeze with fifo: fault 01 =
-engine 00 client 0f"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107964">bug 10796=
-4</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Summary</td>
-           <td>[GTX970] system hang when using libreoffice
-           </td>
-           <td>[GTX970] and [GT 710] Display freeze with fifo: fault 01 eng=
-ine 00 client 0f
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Advanced Lighting option in Firestorm Viewer makes some o=
+bjects black on nv92 card"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111292#c8">Commen=
+t # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Advanced Lighting option in Firestorm Viewer makes some o=
+bjects black on nv92 card"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111292">bug 11129=
+2</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Note to anyone taking a look... due to either a bug in the sha=
+der or a bug in
+mesa (depending on one's view), you have to run the trace with
+
+MESA_EXTENSION_ENABLE=3D-GL_ARB_gpu_shader5
+
+on DX11+ GPUs. Clarifying the behavior now as to which is right (pretty sure
+mesa behavior is right), but either way it doesn't affect the OP's problem.=
+ The
+black floor does not reproduce on a GK208 though.</pre>
+        </div>
       </p>
 
 
@@ -95,14 +102,15 @@ ine 00 client 0f
       <span>You are receiving this mail because:</span>
 
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15648523343.0D2dCaE7.31725--
+--15648532120.816dB159a.2626--
 
---===============0636161643==
+--===============1885252734==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0636161643==--
+--===============1885252734==--
