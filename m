@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111292] Advanced Lighting option in Firestorm Viewer
  makes some objects black on nv92 card
-Date: Sun, 04 Aug 2019 02:36:38 +0000
-Message-ID: <bug-111292-8800-WuydhjAJ0E@http.bugs.freedesktop.org/>
+Date: Sun, 04 Aug 2019 07:21:05 +0000
+Message-ID: <bug-111292-8800-QLTnzDPdqg@http.bugs.freedesktop.org/>
 References: <bug-111292-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0879377424=="
+Content-Type: multipart/mixed; boundary="===============1831877905=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111292-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0879377424==
-Content-Type: multipart/alternative; boundary="15648861971.cfE68.23436"
+--===============1831877905==
+Content-Type: multipart/alternative; boundary="15649032640.Aa4D62A.3053"
 Content-Transfer-Encoding: 7bit
 
 
---15648861971.cfE68.23436
-Date: Sun, 4 Aug 2019 02:36:37 +0000
+--15649032640.Aa4D62A.3053
+Date: Sun, 4 Aug 2019 07:21:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,32 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111292
 
---- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Andrew Randrianasulu from comment #10)
-> (In reply to Ilia Mirkin from comment #9)
-> > Andrew - do you see a bunch of "nv50cal_space: -16" errors in dmesg when
-> > this happens? I get a lot of submit errors right when the black backgro=
-und
-> > appears, so I think it may be related. But I also have a much lower-end=
- G84
-> > plugged in right now.
->=20
-> No, or at least they not in dmesg:  dmesg | grep nv50cal_space returns
-> nothing.
-
-OK, that seems like an artifact of glretrace. Running with MESA_DEBUG=3Dflu=
-sh and
-making _mesa_flush actually call Finish() as well makes the trace run ok. N=
-ow I
-can get to the actual figuring out of the misrender.
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The issue occurs in draw call 1306672 in the referenced trace. Not yet clear
+why... all the inputs are the same, and it's not a complex shader.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15648861971.cfE68.23436
-Date: Sun, 4 Aug 2019 02:36:37 +0000
+--15649032640.Aa4D62A.3053
+Date: Sun, 4 Aug 2019 07:21:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -79,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Advanced Lighting option in Firestorm Viewer makes some o=
 bjects black on nv92 card"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111292#c11">Comme=
-nt # 11</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111292#c12">Comme=
+nt # 12</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Advanced Lighting option in Firestorm Viewer makes some o=
@@ -91,26 +76,9 @@ bjects black on nv92 card"
 imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
 &gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Andrew Randrianasulu from <a href=3D"show_bug.cgi=
-?id=3D111292#c10">comment #10</a>)
-<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
-g.cgi?id=3D111292#c9">comment #9</a>)
-&gt; &gt; Andrew - do you see a bunch of &quot;nv50cal_space: -16&quot; err=
-ors in dmesg when
-&gt; &gt; this happens? I get a lot of submit errors right when the black b=
-ackground
-&gt; &gt; appears, so I think it may be related. But I also have a much low=
-er-end G84
-&gt; &gt; plugged in right now.
-&gt;=20
-&gt; No, or at least they not in dmesg:  dmesg | grep nv50cal_space returns
-&gt; nothing.</span >
-
-OK, that seems like an artifact of glretrace. Running with MESA_DEBUG=3Dflu=
-sh and
-making _mesa_flush actually call Finish() as well makes the trace run ok. N=
-ow I
-can get to the actual figuring out of the misrender.</pre>
+        <pre>The issue occurs in draw call 1306672 in the referenced trace.=
+ Not yet clear
+why... all the inputs are the same, and it's not a complex shader.</pre>
         </div>
       </p>
 
@@ -125,9 +93,9 @@ can get to the actual figuring out of the misrender.</pre>
     </body>
 </html>=
 
---15648861971.cfE68.23436--
+--15649032640.Aa4D62A.3053--
 
---===============0879377424==
+--===============1831877905==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -137,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0879377424==--
+--===============1831877905==--
