@@ -1,166 +1,228 @@
 From: Gerd Hoffmann <kraxel@redhat.com>
-Subject: [PATCH v5 06/18] drm/nouveau: use embedded gem object
-Date: Mon,  5 Aug 2019 14:42:58 +0200
-Message-ID: <20190805124310.3275-7-kraxel@redhat.com>
-References: <20190805124310.3275-1-kraxel@redhat.com>
+Subject: [PATCH v6 06/17] drm/nouveau: use embedded gem object
+Date: Mon,  5 Aug 2019 16:01:08 +0200
+Message-ID: <20190805140119.7337-7-kraxel@redhat.com>
+References: <20190805140119.7337-1-kraxel@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20190805124310.3275-1-kraxel@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190805140119.7337-1-kraxel@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
 To: dri-devel@lists.freedesktop.org
-Cc: thomas@shipmail.org, tzimmermann@suse.de, David Airlie <airlied@linux.ie>, ckoenig.leichtzumerken@gmail.com, intel-gfx@lists.freedesktop.org, open list <linux-kernel@vger.kernel.org>, bskeggs@redhat.com, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, Gerd Hoffmann <kraxel@redhat.com>
+Cc: daniel@ffwll.ch, intel-gfx@lists.freedesktop.org, thomas@shipmail.org, bskeggs@redhat.com, tzimmermann@suse.de, ckoenig.leichtzumerken@gmail.com, Gerd Hoffmann <kraxel@redhat.com>, David Airlie <airlied@linux.ie>, "open list:DRM DRIVER FOR NVIDIA
+        GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-RHJvcCBkcm1fZ2VtX29iamVjdCBmcm9tIG5vdXZlYXVfYm8sIHVzZSB0aGUKdHRtX2J1ZmZlcl9v
-YmplY3QuYmFzZSBpbnN0ZWFkLgoKQnVpbGQgdGVzdGVkIG9ubHkuCgpTaWduZWQtb2ZmLWJ5OiBH
-ZXJkIEhvZmZtYW5uIDxrcmF4ZWxAcmVkaGF0LmNvbT4KQWNrZWQtYnk6IENocmlzdGlhbiBLw7Zu
-aWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9ub3V2ZWF1X2JvLmggICAgICB8ICA1IC0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2dlbS5oICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
-X2FiaTE2LmMgICB8ICA0ICsrLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8u
-YyAgICAgIHwgIDYgKysrLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3Bs
-YXkuYyB8ICA4ICsrKystLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5j
-ICAgICB8IDE1ICsrKysrKysrLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9wcmltZS5jICAgfCAgNCArKy0tCiA3IGZpbGVzIGNoYW5nZWQsIDIwIGluc2VydGlvbnMoKyks
-IDI0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25v
-dXZlYXVfYm8uaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uaAppbmRleCAz
-ODNhYzM2ZDU4NjkuLmQ2NzVlZmU4ZTdmOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9iby5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
-Ym8uaApAQCAtMzUsMTEgKzM1LDYgQEAgc3RydWN0IG5vdXZlYXVfYm8gewogCiAJc3RydWN0IG5v
-dXZlYXVfZHJtX3RpbGUgKnRpbGU7CiAKLQkvKiBPbmx5IHZhbGlkIGlmIGFsbG9jYXRlZCB2aWEg
-bm91dmVhdV9nZW1fbmV3KCkgYW5kIGlmZiB5b3UgaG9sZCBhCi0JICogZ2VtIHJlZmVyZW5jZSB0
-byBpdCEgRm9yIGRlYnVnZ2luZywgdXNlIGdlbS5maWxwICE9IE5VTEwgdG8gdGVzdAotCSAqIHdo
-ZXRoZXIgaXQgaXMgdmFsaWQuICovCi0Jc3RydWN0IGRybV9nZW1fb2JqZWN0IGdlbTsKLQogCS8q
-IHByb3RlY3QgYnkgdGhlIHR0bSByZXNlcnZhdGlvbiBsb2NrICovCiAJaW50IHBpbl9yZWZjbnQ7
-CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZ2VtLmggYi9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5oCmluZGV4IGQ2N2UyZjllYzU5Yy4u
-NDBiYTBmMWJhNWFhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
-X2dlbS5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZ2VtLmgKQEAgLTEw
-LDcgKzEwLDcgQEAKIHN0YXRpYyBpbmxpbmUgc3RydWN0IG5vdXZlYXVfYm8gKgogbm91dmVhdV9n
-ZW1fb2JqZWN0KHN0cnVjdCBkcm1fZ2VtX29iamVjdCAqZ2VtKQogewotCXJldHVybiBnZW0gPyBj
-b250YWluZXJfb2YoZ2VtLCBzdHJ1Y3Qgbm91dmVhdV9ibywgZ2VtKSA6IE5VTEw7CisJcmV0dXJu
-IGdlbSA/IGNvbnRhaW5lcl9vZihnZW0sIHN0cnVjdCBub3V2ZWF1X2JvLCBiby5iYXNlKSA6IE5V
-TEw7CiB9CiAKIC8qIG5vdXZlYXVfZ2VtLmMgKi8KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L25vdXZlYXVfYWJpMTYuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfYWJpMTYuYwppbmRleCAwYzU4NWRjNWY1YzMuLmUyYmFlMTQyNDUwMiAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hYmkxNi5jCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfYWJpMTYuYwpAQCAtMTM5LDcgKzEzOSw3IEBAIG5vdXZlYXVf
-YWJpMTZfY2hhbl9maW5pKHN0cnVjdCBub3V2ZWF1X2FiaTE2ICphYmkxNiwKIAlpZiAoY2hhbi0+
-bnRmeSkgewogCQlub3V2ZWF1X3ZtYV9kZWwoJmNoYW4tPm50Znlfdm1hKTsKIAkJbm91dmVhdV9i
-b191bnBpbihjaGFuLT5udGZ5KTsKLQkJZHJtX2dlbV9vYmplY3RfcHV0X3VubG9ja2VkKCZjaGFu
-LT5udGZ5LT5nZW0pOworCQlkcm1fZ2VtX29iamVjdF9wdXRfdW5sb2NrZWQoJmNoYW4tPm50Znkt
-PmJvLmJhc2UpOwogCX0KIAogCWlmIChjaGFuLT5oZWFwLmJsb2NrX3NpemUpCkBAIC0zMzksNyAr
-MzM5LDcgQEAgbm91dmVhdV9hYmkxNl9pb2N0bF9jaGFubmVsX2FsbG9jKEFCSTE2X0lPQ1RMX0FS
-R1MpCiAJCQlnb3RvIGRvbmU7CiAJfQogCi0JcmV0ID0gZHJtX2dlbV9oYW5kbGVfY3JlYXRlKGZp
-bGVfcHJpdiwgJmNoYW4tPm50ZnktPmdlbSwKKwlyZXQgPSBkcm1fZ2VtX2hhbmRsZV9jcmVhdGUo
-ZmlsZV9wcml2LCAmY2hhbi0+bnRmeS0+Ym8uYmFzZSwKIAkJCQkgICAgJmluaXQtPm5vdGlmaWVy
-X2hhbmRsZSk7CiAJaWYgKHJldCkKIAkJZ290byBkb25lOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9iby5jCmluZGV4IDZmMTIxN2IzZTZiOS4uYWJiYmFiZDEyMjQxIDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9iby5jCkBAIC0xMzYsNyArMTM2LDcgQEAgbm91dmVhdV9ib19kZWxf
-dHRtKHN0cnVjdCB0dG1fYnVmZmVyX29iamVjdCAqYm8pCiAJc3RydWN0IGRybV9kZXZpY2UgKmRl
-diA9IGRybS0+ZGV2OwogCXN0cnVjdCBub3V2ZWF1X2JvICpudmJvID0gbm91dmVhdV9ibyhibyk7
-CiAKLQlpZiAodW5saWtlbHkobnZiby0+Z2VtLmZpbHApKQorCWlmICh1bmxpa2VseShudmJvLT5i
-by5iYXNlLmZpbHApKQogCQlEUk1fRVJST1IoImJvICVwIHN0aWxsIGF0dGFjaGVkIHRvIEdFTSBv
-YmplY3RcbiIsIGJvKTsKIAlXQVJOX09OKG52Ym8tPnBpbl9yZWZjbnQgPiAwKTsKIAludjEwX2Jv
-X3B1dF90aWxlX3JlZ2lvbihkZXYsIG52Ym8tPnRpbGUsIE5VTEwpOwpAQCAtMjk5LDcgKzI5OSw3
-IEBAIG5vdXZlYXVfYm9fbmV3KHN0cnVjdCBub3V2ZWF1X2NsaSAqY2xpLCB1NjQgc2l6ZSwgaW50
-IGFsaWduLAogCQkJICB0eXBlLCAmbnZiby0+cGxhY2VtZW50LAogCQkJICBhbGlnbiA+PiBQQUdF
-X1NISUZULCBmYWxzZSwgYWNjX3NpemUsIHNnLAogCQkJICByb2JqLCBub3V2ZWF1X2JvX2RlbF90
-dG0pOwotCW52Ym8tPmdlbS5yZXN2ID0gbnZiby0+Ym8ucmVzdjsKKwludmJvLT5iby5iYXNlLnJl
-c3YgPSBudmJvLT5iby5yZXN2OwogCiAJaWYgKHJldCkgewogCQkvKiB0dG0gd2lsbCBjYWxsIG5v
-dXZlYXVfYm9fZGVsX3R0bSBpZiBpdCBmYWlscy4uICovCkBAIC0xNDAyLDcgKzE0MDIsNyBAQCBu
-b3V2ZWF1X2JvX3ZlcmlmeV9hY2Nlc3Moc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpibywgc3Ry
-dWN0IGZpbGUgKmZpbHApCiB7CiAJc3RydWN0IG5vdXZlYXVfYm8gKm52Ym8gPSBub3V2ZWF1X2Jv
-KGJvKTsKIAotCXJldHVybiBkcm1fdm1hX25vZGVfdmVyaWZ5X2FjY2VzcygmbnZiby0+Z2VtLnZt
-YV9ub2RlLAorCXJldHVybiBkcm1fdm1hX25vZGVfdmVyaWZ5X2FjY2VzcygmbnZiby0+Ym8uYmFz
-ZS52bWFfbm9kZSwKIAkJCQkJICBmaWxwLT5wcml2YXRlX2RhdGEpOwogfQogCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCmluZGV4IDgzMmRhOGUwMDIwZC4uZmM4ZjVi
-YjczY2E4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3Bs
-YXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYwpAQCAt
-MjAxLDcgKzIwMSw3IEBAIG5vdXZlYXVfdXNlcl9mcmFtZWJ1ZmZlcl9kZXN0cm95KHN0cnVjdCBk
-cm1fZnJhbWVidWZmZXIgKmRybV9mYikKIAlzdHJ1Y3Qgbm91dmVhdV9mcmFtZWJ1ZmZlciAqZmIg
-PSBub3V2ZWF1X2ZyYW1lYnVmZmVyKGRybV9mYik7CiAKIAlpZiAoZmItPm52Ym8pCi0JCWRybV9n
-ZW1fb2JqZWN0X3B1dF91bmxvY2tlZCgmZmItPm52Ym8tPmdlbSk7CisJCWRybV9nZW1fb2JqZWN0
-X3B1dF91bmxvY2tlZCgmZmItPm52Ym8tPmJvLmJhc2UpOwogCiAJZHJtX2ZyYW1lYnVmZmVyX2Ns
-ZWFudXAoZHJtX2ZiKTsKIAlrZnJlZShmYik7CkBAIC0yMTQsNyArMjE0LDcgQEAgbm91dmVhdV91
-c2VyX2ZyYW1lYnVmZmVyX2NyZWF0ZV9oYW5kbGUoc3RydWN0IGRybV9mcmFtZWJ1ZmZlciAqZHJt
-X2ZiLAogewogCXN0cnVjdCBub3V2ZWF1X2ZyYW1lYnVmZmVyICpmYiA9IG5vdXZlYXVfZnJhbWVi
-dWZmZXIoZHJtX2ZiKTsKIAotCXJldHVybiBkcm1fZ2VtX2hhbmRsZV9jcmVhdGUoZmlsZV9wcml2
-LCAmZmItPm52Ym8tPmdlbSwgaGFuZGxlKTsKKwlyZXR1cm4gZHJtX2dlbV9oYW5kbGVfY3JlYXRl
-KGZpbGVfcHJpdiwgJmZiLT5udmJvLT5iby5iYXNlLCBoYW5kbGUpOwogfQogCiBzdGF0aWMgY29u
-c3Qgc3RydWN0IGRybV9mcmFtZWJ1ZmZlcl9mdW5jcyBub3V2ZWF1X2ZyYW1lYnVmZmVyX2Z1bmNz
-ID0gewpAQCAtNjYwLDggKzY2MCw4IEBAIG5vdXZlYXVfZGlzcGxheV9kdW1iX2NyZWF0ZShzdHJ1
-Y3QgZHJtX2ZpbGUgKmZpbGVfcHJpdiwgc3RydWN0IGRybV9kZXZpY2UgKmRldiwKIAlpZiAocmV0
-KQogCQlyZXR1cm4gcmV0OwogCi0JcmV0ID0gZHJtX2dlbV9oYW5kbGVfY3JlYXRlKGZpbGVfcHJp
-diwgJmJvLT5nZW0sICZhcmdzLT5oYW5kbGUpOwotCWRybV9nZW1fb2JqZWN0X3B1dF91bmxvY2tl
-ZCgmYm8tPmdlbSk7CisJcmV0ID0gZHJtX2dlbV9oYW5kbGVfY3JlYXRlKGZpbGVfcHJpdiwgJmJv
-LT5iby5iYXNlLCAmYXJncy0+aGFuZGxlKTsKKwlkcm1fZ2VtX29iamVjdF9wdXRfdW5sb2NrZWQo
-JmJvLT5iby5iYXNlKTsKIAlyZXR1cm4gcmV0OwogfQogCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91
-dmVhdV9nZW0uYwppbmRleCBiNGJkYTcxNjU2NGQuLjJmNDg0YWI3ZGJjYSAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9nZW0uYworKysgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5jCkBAIC0yMDUsMTMgKzIwNSwxMyBAQCBub3V2ZWF1X2dl
-bV9uZXcoc3RydWN0IG5vdXZlYXVfY2xpICpjbGksIHU2NCBzaXplLCBpbnQgYWxpZ24sIHVpbnQz
-Ml90IGRvbWFpbiwKIAogCS8qIEluaXRpYWxpemUgdGhlIGVtYmVkZGVkIGdlbS1vYmplY3QuIFdl
-IHJldHVybiBhIHNpbmdsZSBnZW0tcmVmZXJlbmNlCiAJICogdG8gdGhlIGNhbGxlciwgaW5zdGVh
-ZCBvZiBhIG5vcm1hbCBub3V2ZWF1X2JvIHR0bSByZWZlcmVuY2UuICovCi0JcmV0ID0gZHJtX2dl
-bV9vYmplY3RfaW5pdChkcm0tPmRldiwgJm52Ym8tPmdlbSwgbnZiby0+Ym8ubWVtLnNpemUpOwor
-CXJldCA9IGRybV9nZW1fb2JqZWN0X2luaXQoZHJtLT5kZXYsICZudmJvLT5iby5iYXNlLCBudmJv
-LT5iby5tZW0uc2l6ZSk7CiAJaWYgKHJldCkgewogCQlub3V2ZWF1X2JvX3JlZihOVUxMLCBwbnZi
-byk7CiAJCXJldHVybiAtRU5PTUVNOwogCX0KIAotCW52Ym8tPmJvLnBlcnNpc3RlbnRfc3dhcF9z
-dG9yYWdlID0gbnZiby0+Z2VtLmZpbHA7CisJbnZiby0+Ym8ucGVyc2lzdGVudF9zd2FwX3N0b3Jh
-Z2UgPSBudmJvLT5iby5iYXNlLmZpbHA7CiAJcmV0dXJuIDA7CiB9CiAKQEAgLTI2OCwxNSArMjY4
-LDE2IEBAIG5vdXZlYXVfZ2VtX2lvY3RsX25ldyhzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lk
-ICpkYXRhLAogCWlmIChyZXQpCiAJCXJldHVybiByZXQ7CiAKLQlyZXQgPSBkcm1fZ2VtX2hhbmRs
-ZV9jcmVhdGUoZmlsZV9wcml2LCAmbnZiby0+Z2VtLCAmcmVxLT5pbmZvLmhhbmRsZSk7CisJcmV0
-ID0gZHJtX2dlbV9oYW5kbGVfY3JlYXRlKGZpbGVfcHJpdiwgJm52Ym8tPmJvLmJhc2UsCisJCQkJ
-ICAgICZyZXEtPmluZm8uaGFuZGxlKTsKIAlpZiAocmV0ID09IDApIHsKLQkJcmV0ID0gbm91dmVh
-dV9nZW1faW5mbyhmaWxlX3ByaXYsICZudmJvLT5nZW0sICZyZXEtPmluZm8pOworCQlyZXQgPSBu
-b3V2ZWF1X2dlbV9pbmZvKGZpbGVfcHJpdiwgJm52Ym8tPmJvLmJhc2UsICZyZXEtPmluZm8pOwog
-CQlpZiAocmV0KQogCQkJZHJtX2dlbV9oYW5kbGVfZGVsZXRlKGZpbGVfcHJpdiwgcmVxLT5pbmZv
-LmhhbmRsZSk7CiAJfQogCiAJLyogZHJvcCByZWZlcmVuY2UgZnJvbSBhbGxvY2F0ZSAtIGhhbmRs
-ZSBob2xkcyBpdCBub3cgKi8KLQlkcm1fZ2VtX29iamVjdF9wdXRfdW5sb2NrZWQoJm52Ym8tPmdl
-bSk7CisJZHJtX2dlbV9vYmplY3RfcHV0X3VubG9ja2VkKCZudmJvLT5iby5iYXNlKTsKIAlyZXR1
-cm4gcmV0OwogfQogCkBAIC0zNTUsNyArMzU2LDcgQEAgdmFsaWRhdGVfZmluaV9ub190aWNrZXQo
-c3RydWN0IHZhbGlkYXRlX29wICpvcCwgc3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbiwKIAkJ
-bGlzdF9kZWwoJm52Ym8tPmVudHJ5KTsKIAkJbnZiby0+cmVzZXJ2ZWRfYnkgPSBOVUxMOwogCQl0
-dG1fYm9fdW5yZXNlcnZlKCZudmJvLT5ibyk7Ci0JCWRybV9nZW1fb2JqZWN0X3B1dF91bmxvY2tl
-ZCgmbnZiby0+Z2VtKTsKKwkJZHJtX2dlbV9vYmplY3RfcHV0X3VubG9ja2VkKCZudmJvLT5iby5i
-YXNlKTsKIAl9CiB9CiAKQEAgLTQ5Myw3ICs0OTQsNyBAQCB2YWxpZGF0ZV9saXN0KHN0cnVjdCBu
-b3V2ZWF1X2NoYW5uZWwgKmNoYW4sIHN0cnVjdCBub3V2ZWF1X2NsaSAqY2xpLAogCWxpc3RfZm9y
-X2VhY2hfZW50cnkobnZibywgbGlzdCwgZW50cnkpIHsKIAkJc3RydWN0IGRybV9ub3V2ZWF1X2dl
-bV9wdXNoYnVmX2JvICpiID0gJnBiYm9bbnZiby0+cGJib19pbmRleF07CiAKLQkJcmV0ID0gbm91
-dmVhdV9nZW1fc2V0X2RvbWFpbigmbnZiby0+Z2VtLCBiLT5yZWFkX2RvbWFpbnMsCisJCXJldCA9
-IG5vdXZlYXVfZ2VtX3NldF9kb21haW4oJm52Ym8tPmJvLmJhc2UsIGItPnJlYWRfZG9tYWlucywK
-IAkJCQkJICAgICBiLT53cml0ZV9kb21haW5zLAogCQkJCQkgICAgIGItPnZhbGlkX2RvbWFpbnMp
-OwogCQlpZiAodW5saWtlbHkocmV0KSkgewpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9wcmltZS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9w
-cmltZS5jCmluZGV4IDg0NzhjM2M5ZmZjZC4uZTg2YWQ3YWU2MjJiIDEwMDY0NAotLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3ByaW1lLmMKKysrIGIvZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9wcmltZS5jCkBAIC03OSwxMyArNzksMTMgQEAgc3RydWN0IGRybV9n
-ZW1fb2JqZWN0ICpub3V2ZWF1X2dlbV9wcmltZV9pbXBvcnRfc2dfdGFibGUoc3RydWN0IGRybV9k
-ZXZpY2UgKmRldiwKIAogCS8qIEluaXRpYWxpemUgdGhlIGVtYmVkZGVkIGdlbS1vYmplY3QuIFdl
-IHJldHVybiBhIHNpbmdsZSBnZW0tcmVmZXJlbmNlCiAJICogdG8gdGhlIGNhbGxlciwgaW5zdGVh
-ZCBvZiBhIG5vcm1hbCBub3V2ZWF1X2JvIHR0bSByZWZlcmVuY2UuICovCi0JcmV0ID0gZHJtX2dl
-bV9vYmplY3RfaW5pdChkZXYsICZudmJvLT5nZW0sIG52Ym8tPmJvLm1lbS5zaXplKTsKKwlyZXQg
-PSBkcm1fZ2VtX29iamVjdF9pbml0KGRldiwgJm52Ym8tPmJvLmJhc2UsIG52Ym8tPmJvLm1lbS5z
-aXplKTsKIAlpZiAocmV0KSB7CiAJCW5vdXZlYXVfYm9fcmVmKE5VTEwsICZudmJvKTsKIAkJcmV0
-dXJuIEVSUl9QVFIoLUVOT01FTSk7CiAJfQogCi0JcmV0dXJuICZudmJvLT5nZW07CisJcmV0dXJu
-ICZudmJvLT5iby5iYXNlOwogfQogCiBpbnQgbm91dmVhdV9nZW1fcHJpbWVfcGluKHN0cnVjdCBk
-cm1fZ2VtX29iamVjdCAqb2JqKQotLSAKMi4xOC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9kcmktZGV2ZWw=
+Drop drm_gem_object from nouveau_bo, use the
+ttm_buffer_object.base instead.
+
+Build tested only.
+
+Signed-off-by: Gerd Hoffmann <kraxel@redhat.com>
+Acked-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_bo.h      |  5 -----
+ drivers/gpu/drm/nouveau/nouveau_gem.h     |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_abi16.c   |  4 ++--
+ drivers/gpu/drm/nouveau/nouveau_bo.c      |  6 +++---
+ drivers/gpu/drm/nouveau/nouveau_display.c |  8 ++++----
+ drivers/gpu/drm/nouveau/nouveau_gem.c     | 15 ++++++++-------
+ drivers/gpu/drm/nouveau/nouveau_prime.c   |  4 ++--
+ 7 files changed, 20 insertions(+), 24 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.h b/drivers/gpu/drm/nouveau/nouveau_bo.h
+index 383ac36d5869..d675efe8e7f9 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.h
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.h
+@@ -35,11 +35,6 @@ struct nouveau_bo {
+ 
+ 	struct nouveau_drm_tile *tile;
+ 
+-	/* Only valid if allocated via nouveau_gem_new() and iff you hold a
+-	 * gem reference to it! For debugging, use gem.filp != NULL to test
+-	 * whether it is valid. */
+-	struct drm_gem_object gem;
+-
+ 	/* protect by the ttm reservation lock */
+ 	int pin_refcnt;
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.h b/drivers/gpu/drm/nouveau/nouveau_gem.h
+index d67e2f9ec59c..40ba0f1ba5aa 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.h
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.h
+@@ -10,7 +10,7 @@
+ static inline struct nouveau_bo *
+ nouveau_gem_object(struct drm_gem_object *gem)
+ {
+-	return gem ? container_of(gem, struct nouveau_bo, gem) : NULL;
++	return gem ? container_of(gem, struct nouveau_bo, bo.base) : NULL;
+ }
+ 
+ /* nouveau_gem.c */
+diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+index 0c585dc5f5c3..e2bae1424502 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
++++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+@@ -139,7 +139,7 @@ nouveau_abi16_chan_fini(struct nouveau_abi16 *abi16,
+ 	if (chan->ntfy) {
+ 		nouveau_vma_del(&chan->ntfy_vma);
+ 		nouveau_bo_unpin(chan->ntfy);
+-		drm_gem_object_put_unlocked(&chan->ntfy->gem);
++		drm_gem_object_put_unlocked(&chan->ntfy->bo.base);
+ 	}
+ 
+ 	if (chan->heap.block_size)
+@@ -339,7 +339,7 @@ nouveau_abi16_ioctl_channel_alloc(ABI16_IOCTL_ARGS)
+ 			goto done;
+ 	}
+ 
+-	ret = drm_gem_handle_create(file_priv, &chan->ntfy->gem,
++	ret = drm_gem_handle_create(file_priv, &chan->ntfy->bo.base,
+ 				    &init->notifier_handle);
+ 	if (ret)
+ 		goto done;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index 6f1217b3e6b9..abbbabd12241 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -136,7 +136,7 @@ nouveau_bo_del_ttm(struct ttm_buffer_object *bo)
+ 	struct drm_device *dev = drm->dev;
+ 	struct nouveau_bo *nvbo = nouveau_bo(bo);
+ 
+-	if (unlikely(nvbo->gem.filp))
++	if (unlikely(nvbo->bo.base.filp))
+ 		DRM_ERROR("bo %p still attached to GEM object\n", bo);
+ 	WARN_ON(nvbo->pin_refcnt > 0);
+ 	nv10_bo_put_tile_region(dev, nvbo->tile, NULL);
+@@ -299,7 +299,7 @@ nouveau_bo_new(struct nouveau_cli *cli, u64 size, int align,
+ 			  type, &nvbo->placement,
+ 			  align >> PAGE_SHIFT, false, acc_size, sg,
+ 			  robj, nouveau_bo_del_ttm);
+-	nvbo->gem.resv = nvbo->bo.resv;
++	nvbo->bo.base.resv = nvbo->bo.resv;
+ 
+ 	if (ret) {
+ 		/* ttm will call nouveau_bo_del_ttm if it fails.. */
+@@ -1402,7 +1402,7 @@ nouveau_bo_verify_access(struct ttm_buffer_object *bo, struct file *filp)
+ {
+ 	struct nouveau_bo *nvbo = nouveau_bo(bo);
+ 
+-	return drm_vma_node_verify_access(&nvbo->gem.vma_node,
++	return drm_vma_node_verify_access(&nvbo->bo.base.vma_node,
+ 					  filp->private_data);
+ }
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+index 832da8e0020d..fc8f5bb73ca8 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_display.c
++++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+@@ -201,7 +201,7 @@ nouveau_user_framebuffer_destroy(struct drm_framebuffer *drm_fb)
+ 	struct nouveau_framebuffer *fb = nouveau_framebuffer(drm_fb);
+ 
+ 	if (fb->nvbo)
+-		drm_gem_object_put_unlocked(&fb->nvbo->gem);
++		drm_gem_object_put_unlocked(&fb->nvbo->bo.base);
+ 
+ 	drm_framebuffer_cleanup(drm_fb);
+ 	kfree(fb);
+@@ -214,7 +214,7 @@ nouveau_user_framebuffer_create_handle(struct drm_framebuffer *drm_fb,
+ {
+ 	struct nouveau_framebuffer *fb = nouveau_framebuffer(drm_fb);
+ 
+-	return drm_gem_handle_create(file_priv, &fb->nvbo->gem, handle);
++	return drm_gem_handle_create(file_priv, &fb->nvbo->bo.base, handle);
+ }
+ 
+ static const struct drm_framebuffer_funcs nouveau_framebuffer_funcs = {
+@@ -660,8 +660,8 @@ nouveau_display_dumb_create(struct drm_file *file_priv, struct drm_device *dev,
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = drm_gem_handle_create(file_priv, &bo->gem, &args->handle);
+-	drm_gem_object_put_unlocked(&bo->gem);
++	ret = drm_gem_handle_create(file_priv, &bo->bo.base, &args->handle);
++	drm_gem_object_put_unlocked(&bo->bo.base);
+ 	return ret;
+ }
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index b4bda716564d..2f484ab7dbca 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -205,13 +205,13 @@ nouveau_gem_new(struct nouveau_cli *cli, u64 size, int align, uint32_t domain,
+ 
+ 	/* Initialize the embedded gem-object. We return a single gem-reference
+ 	 * to the caller, instead of a normal nouveau_bo ttm reference. */
+-	ret = drm_gem_object_init(drm->dev, &nvbo->gem, nvbo->bo.mem.size);
++	ret = drm_gem_object_init(drm->dev, &nvbo->bo.base, nvbo->bo.mem.size);
+ 	if (ret) {
+ 		nouveau_bo_ref(NULL, pnvbo);
+ 		return -ENOMEM;
+ 	}
+ 
+-	nvbo->bo.persistent_swap_storage = nvbo->gem.filp;
++	nvbo->bo.persistent_swap_storage = nvbo->bo.base.filp;
+ 	return 0;
+ }
+ 
+@@ -268,15 +268,16 @@ nouveau_gem_ioctl_new(struct drm_device *dev, void *data,
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = drm_gem_handle_create(file_priv, &nvbo->gem, &req->info.handle);
++	ret = drm_gem_handle_create(file_priv, &nvbo->bo.base,
++				    &req->info.handle);
+ 	if (ret == 0) {
+-		ret = nouveau_gem_info(file_priv, &nvbo->gem, &req->info);
++		ret = nouveau_gem_info(file_priv, &nvbo->bo.base, &req->info);
+ 		if (ret)
+ 			drm_gem_handle_delete(file_priv, req->info.handle);
+ 	}
+ 
+ 	/* drop reference from allocate - handle holds it now */
+-	drm_gem_object_put_unlocked(&nvbo->gem);
++	drm_gem_object_put_unlocked(&nvbo->bo.base);
+ 	return ret;
+ }
+ 
+@@ -355,7 +356,7 @@ validate_fini_no_ticket(struct validate_op *op, struct nouveau_channel *chan,
+ 		list_del(&nvbo->entry);
+ 		nvbo->reserved_by = NULL;
+ 		ttm_bo_unreserve(&nvbo->bo);
+-		drm_gem_object_put_unlocked(&nvbo->gem);
++		drm_gem_object_put_unlocked(&nvbo->bo.base);
+ 	}
+ }
+ 
+@@ -493,7 +494,7 @@ validate_list(struct nouveau_channel *chan, struct nouveau_cli *cli,
+ 	list_for_each_entry(nvbo, list, entry) {
+ 		struct drm_nouveau_gem_pushbuf_bo *b = &pbbo[nvbo->pbbo_index];
+ 
+-		ret = nouveau_gem_set_domain(&nvbo->gem, b->read_domains,
++		ret = nouveau_gem_set_domain(&nvbo->bo.base, b->read_domains,
+ 					     b->write_domains,
+ 					     b->valid_domains);
+ 		if (unlikely(ret)) {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_prime.c b/drivers/gpu/drm/nouveau/nouveau_prime.c
+index 8478c3c9ffcd..e86ad7ae622b 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_prime.c
++++ b/drivers/gpu/drm/nouveau/nouveau_prime.c
+@@ -79,13 +79,13 @@ struct drm_gem_object *nouveau_gem_prime_import_sg_table(struct drm_device *dev,
+ 
+ 	/* Initialize the embedded gem-object. We return a single gem-reference
+ 	 * to the caller, instead of a normal nouveau_bo ttm reference. */
+-	ret = drm_gem_object_init(dev, &nvbo->gem, nvbo->bo.mem.size);
++	ret = drm_gem_object_init(dev, &nvbo->bo.base, nvbo->bo.mem.size);
+ 	if (ret) {
+ 		nouveau_bo_ref(NULL, &nvbo);
+ 		return ERR_PTR(-ENOMEM);
+ 	}
+ 
+-	return &nvbo->gem;
++	return &nvbo->bo.base;
+ }
+ 
+ int nouveau_gem_prime_pin(struct drm_gem_object *obj)
+-- 
+2.18.1
