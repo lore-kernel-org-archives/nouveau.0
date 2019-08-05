@@ -1,30 +1,96 @@
-From: David Binderman <dcb314-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
-Subject: linux-5.3-rc3 bug report
-Date: Mon, 5 Aug 2019 08:30:42 +0000
-Message-ID: <DB7PR08MB38012829DA2C31A5F2DCC02F9CDA0@DB7PR08MB3801.eurprd08.prod.outlook.com>
+From: Gerd Hoffmann <kraxel@redhat.com>
+Subject: [PATCH v5 15/18] drm/nouveau: switch driver from bo->resv to bo->base.resv
+Date: Mon,  5 Aug 2019 14:43:07 +0200
+Message-ID: <20190805124310.3275-16-kraxel@redhat.com>
+References: <20190805124310.3275-1-kraxel@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-GB
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org" <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "airlied-cv59FeDIM0c@public.gmane.org" <airlied-cv59FeDIM0c@public.gmane.org>, "daniel-/w4YWyX8dFk@public.gmane.org" <daniel-/w4YWyX8dFk@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190805124310.3275-1-kraxel@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, thomas@shipmail.org, tzimmermann@suse.de, ckoenig.leichtzumerken@gmail.com, bskeggs@redhat.com, daniel@ffwll.ch, Gerd Hoffmann <kraxel@redhat.com>, David Airlie <airlied@linux.ie>, "open list:DRM DRIVER FOR NVIDIA
+        GEFORCE/QUADRO GPUS" <nouveau@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8gdGhlcmUsCgpsaW51eC01LjMtcmMzL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
-YXVfc3ZtLmM6NzYzXTogKHN0eWxlKSBBcnJheSBpbmRleCAnaScgaXMgdXNlZCBiZWZvcmUgbGlt
-aXRzIGNoZWNrLgoKU291cmNlIGNvZGUgaXMKCiAgICAgICAgZm9yIChpID0gMDsgYnVmZmVyLT5m
-YXVsdFtpXSAmJiBpIDwgYnVmZmVyLT5lbnRyaWVzOyBpKyspCgpNYXliZSBiZXR0ZXIgY29kZToK
-CiAgICAgICAgZm9yIChpID0gMDsgKGkgPCBidWZmZXItPmVudHJpZXMpICYmIGJ1ZmZlci0+ZmF1
-bHRbaV07IGkrKykKClJlZ2FyZHMKCkRhdmlkIEJpbmRlcm1hbgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXU=
+Signed-off-by: Gerd Hoffmann <kraxel@redhat.com>
+Reviewed-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/nouveau/dispnv50/wndw.c | 2 +-
+ drivers/gpu/drm/nouveau/nouveau_bo.c    | 5 ++---
+ drivers/gpu/drm/nouveau/nouveau_fence.c | 2 +-
+ drivers/gpu/drm/nouveau/nouveau_gem.c   | 2 +-
+ 4 files changed, 5 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+index 283ff690350e..89f8e76a2d7d 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+@@ -457,7 +457,7 @@ nv50_wndw_prepare_fb(struct drm_plane *plane, struct drm_plane_state *state)
+ 		asyw->image.handle[0] = ctxdma->object.handle;
+ 	}
+ 
+-	asyw->state.fence = reservation_object_get_excl_rcu(fb->nvbo->bo.resv);
++	asyw->state.fence = reservation_object_get_excl_rcu(fb->nvbo->bo.base.resv);
+ 	asyw->image.offset[0] = fb->nvbo->bo.offset;
+ 
+ 	if (wndw->func->prepare) {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index abbbabd12241..99e391be9370 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -299,7 +299,6 @@ nouveau_bo_new(struct nouveau_cli *cli, u64 size, int align,
+ 			  type, &nvbo->placement,
+ 			  align >> PAGE_SHIFT, false, acc_size, sg,
+ 			  robj, nouveau_bo_del_ttm);
+-	nvbo->bo.base.resv = nvbo->bo.resv;
+ 
+ 	if (ret) {
+ 		/* ttm will call nouveau_bo_del_ttm if it fails.. */
+@@ -1325,7 +1324,7 @@ nouveau_bo_vm_cleanup(struct ttm_buffer_object *bo,
+ {
+ 	struct nouveau_drm *drm = nouveau_bdev(bo->bdev);
+ 	struct drm_device *dev = drm->dev;
+-	struct dma_fence *fence = reservation_object_get_excl(bo->resv);
++	struct dma_fence *fence = reservation_object_get_excl(bo->base.resv);
+ 
+ 	nv10_bo_put_tile_region(dev, *old_tile, fence);
+ 	*old_tile = new_tile;
+@@ -1656,7 +1655,7 @@ nouveau_ttm_tt_unpopulate(struct ttm_tt *ttm)
+ void
+ nouveau_bo_fence(struct nouveau_bo *nvbo, struct nouveau_fence *fence, bool exclusive)
+ {
+-	struct reservation_object *resv = nvbo->bo.resv;
++	struct reservation_object *resv = nvbo->bo.base.resv;
+ 
+ 	if (exclusive)
+ 		reservation_object_add_excl_fence(resv, &fence->base);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
+index d4964f3397a1..e5f249ab216a 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fence.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+@@ -335,7 +335,7 @@ nouveau_fence_sync(struct nouveau_bo *nvbo, struct nouveau_channel *chan, bool e
+ {
+ 	struct nouveau_fence_chan *fctx = chan->fence;
+ 	struct dma_fence *fence;
+-	struct reservation_object *resv = nvbo->bo.resv;
++	struct reservation_object *resv = nvbo->bo.base.resv;
+ 	struct reservation_object_list *fobj;
+ 	struct nouveau_fence *f;
+ 	int ret = 0, i;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index b1e4852810ed..c7368aa0bdec 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -887,7 +887,7 @@ nouveau_gem_ioctl_cpu_prep(struct drm_device *dev, void *data,
+ 		return -ENOENT;
+ 	nvbo = nouveau_gem_object(gem);
+ 
+-	lret = reservation_object_wait_timeout_rcu(nvbo->bo.resv, write, true,
++	lret = reservation_object_wait_timeout_rcu(nvbo->bo.base.resv, write, true,
+ 						   no_wait ? 0 : 30 * HZ);
+ 	if (!lret)
+ 		ret = -EBUSY;
+-- 
+2.18.1
