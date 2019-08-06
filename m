@@ -1,58 +1,54 @@
-From: James Lockie <bjlockie-ozXLQgHQwDP3fQ9qLvQP4Q@public.gmane.org>
-Subject: Re: unstable refresh rate
-Date: Tue, 06 Aug 2019 19:26:03 +0000 (UTC)
-Message-ID: <16c68653940.279c.665a3322dda79c663fe860d9fff7dd5d@lockie.ca>
-References: <qic915$1j2$1@blaine.gmane.org>
- <CAKb7Uvg-7UVzYJXy3YBpV038yfsZx2hx-LZ7omR9HnCiZwYmXA@mail.gmail.com>
- <qicbpr$6q56$1@blaine.gmane.org> <qicci7$9ci$1@blaine.gmane.org>
- <CAKb7Uvgnegj15BMoUoH9UT1oP6e4+KHxUShwpMTnu1U5xOu9_A@mail.gmail.com>
+From: Jason Gunthorpe <jgg@ziepe.ca>
+Subject: Re: [PATCH 15/15] amdgpu: remove CONFIG_DRM_AMDGPU_USERPTR
+Date: Tue, 6 Aug 2019 17:03:56 -0300
+Message-ID: <20190806200356.GU11627@ziepe.ca>
+References: <20190806160554.14046-1-hch@lst.de>
+ <20190806160554.14046-16-hch@lst.de>
+ <20190806174437.GK11627@ziepe.ca>
+ <587b1c3c-83c4-7de9-242f-6516528049f4@amd.com>
+ <CADnq5_Puv-N=FVpNXhv7gOWZ8=tgBD2VjrKpVzEE0imWqJdD1A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvgnegj15BMoUoH9UT1oP6e4+KHxUShwpMTnu1U5xOu9_A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CADnq5_Puv-N=FVpNXhv7gOWZ8=tgBD2VjrKpVzEE0imWqJdD1A@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Alex Deucher <alexdeucher@gmail.com>
+Cc: "Kuehling, Felix" <Felix.Kuehling@amd.com>, Christoph Hellwig <hch@lst.de>, "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Koenig, Christian" <Christian.Koenig@amd.com>, Ralph Campbell <rcampbell@nvidia.com>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "linux-mm@kvack.org" <linux-mm@kvack.org>, =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gQXVndXN0IDYsIDIwMTkgMTozNjowOSBwLm0uIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0u
-bWl0LmVkdT4gd3JvdGU6Cgo+IENhbiB5b3UgdHJ5IHNvbWV0aGluZyB2ZXJ5IHNpbXBsZSAtIHVu
-cGx1ZyB0aGUgY2FibGUsIGFuZCBwbHVnIGl0IGJhY2sKPiBpbiwgd2hpbGUgdGhlIFRWIGlzIG9u
-LCBhbmQgc2V0IHRvIHRoZSBIRE1JIGlucHV0PwpJIHN0aWxsIG9ubHkgZ2V0IDMwSHouCkkgZGlk
-IGp1c3QgdXBkYXRlIHRoZSB0diBmaXJtd2FyZSBzOSBtYXliZSB0aGF0IGlzIHdoeSBJIGNhbid0
-IGdldCBpdCA2MEh6IAphbnltb3JlLgpJIHdpc2ggSSBrZXB0IGJldHRlciB0cmFjayBvZiB0aGUg
-dGltZWxpbmUuCgpXaXRoIHRoZSBuZXcgSERNSSAyIGNhYmxlIEkgZ2V0IDQwOTZ4MjE2MEAzMEh6
-ICh0aGVyZSBpcyBubyA2MEh6IG9wdGlvbikuCjM4NDB4MjE2MEA1OS45Njg1SHogZ2l2ZXMgbWUg
-bm8gc2lnbmFsLgoKCj4gVGhhdCBzaG91bGQgZW5zdXJlCj4gdGhhdCB0aGUgU0NEQyB3cml0ZSBj
-YW4gZ28gdGhyb3VnaCBhdCBtb2Rlc2V0IHRpbWUuCj4KPiBZb3UgY2FuIGFsc28gZm9yY2Ugbm91
-dmVhdSB0byBhdm9pZCBhbnkgbW9kZXMgdGhhdCByZXF1aXJlIHNjcmFtYmxpbmcKPiBieSBib290
-aW5nIHdpdGggbm91dmVhdS5oZG1pbWh6PTM0MC4KPgo+IENoZWVycywKPgo+ICAtaWxpYQo+Cj4g
-T24gVHVlLCBBdWcgNiwgMjAxOSBhdCAxOjE1IFBNIEphbWVzIDxiamxvY2tpZUBsb2NraWUuY2E+
-IHdyb3RlOgo+Pgo+PiBJIHdhcyBnb2luZyB0byBidXkgYSBuZXcgY2FibGUgYW5kIEkgY2FtZSBh
-Y3Jvc3MgdGhpcyBkZXNjcmlwdGlvbjoKPj4+IENhdGVnb3J5IDIgQ2VydGlmaWVkIEhETUkgd2ly
-ZSBzdXBwb3J0cyByZXNvbHV0aW9ucyB1cCB0byA0S3gySyAoVUhEKQo+PiBAMzAgSHoKPj4KPj4g
-aHR0cHM6Ly93d3cuY25ldC5jb20vaG93LXRvL3doYXQtaXMtaGRtaS0yLTBiLwo+Pj4gSERNSSB2
-ZXJzaW9ucyBjb21wYXJlZAo+Pj4gSERNSSBWZXJzaW9uICBNYXggUmVzb2x1dGlvbiAgTWF4IDRL
-IEZyYW1lIHJhdGUgICAgICAgSERDUCAyLjIgICAgICAgIEhEUiAgIAo+Pj4gICBXQ0cgICAgIEh5
-YnJpZCBMb2cgR2FtbWEgICAgICAgIER5bmFtaWMgTWV0YWRhdGEKPj4+IDEuNCAgIDRLICAgICAg
-MzBIeiAgICBObyAgICAgIE5vICAgICAgTm8gICAgICBObyAgICAgIE5vCj4+PiAyLjAgICA0SyAg
-ICAgIDYwSHogICAgWWVzICAgICBObyAgICAgIE5vICAgICAgTm8gICAgICBObwo+Pj4gMi4wYSAg
-NEsgICAgICA2MEh6ICAgIFllcyAgICAgWWVzICAgICBZZXMgICAgIE5vICAgICAgTm8KPj4+IDIu
-MGIgIDRLICAgICAgNjBIeiAgICBZZXMgICAgIFllcyAgICAgWWVzICAgICBZZXMgICAgIE5vCj4+
-PiAyLjEgICAxMEsgICAgIDEyMEh6ICAgWWVzICAgICBZZXMgICAgIFllcyAgICAgWWVzICAgICBZ
-ZXMKPj4KPj4gIkNhdGVnb3J5IDIiIGltcGxpZXMgSERNSSAyIGJ1dCB0aGUgIk1heCA0SyBGcmFt
-ZSByYXRlIiBvZiAzMEh6IHNheXMgaXQKPj4gaXMgSERNSS0xLjQuCj4+Cj4+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+IE5vdXZlYXUgbWFpbGluZyBs
-aXN0Cj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQoKCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+On Tue, Aug 06, 2019 at 02:58:58PM -0400, Alex Deucher wrote:
+> On Tue, Aug 6, 2019 at 1:51 PM Kuehling, Felix <Felix.Kuehling@amd.com> wrote:
+> >
+> > On 2019-08-06 13:44, Jason Gunthorpe wrote:
+> > > On Tue, Aug 06, 2019 at 07:05:53PM +0300, Christoph Hellwig wrote:
+> > >> The option is just used to select HMM mirror support and has a very
+> > >> confusing help text.  Just pull in the HMM mirror code by default
+> > >> instead.
+> > >>
+> > >> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> > >>   drivers/gpu/drm/Kconfig                 |  2 ++
+> > >>   drivers/gpu/drm/amd/amdgpu/Kconfig      | 10 ----------
+> > >>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |  6 ------
+> > >>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h | 12 ------------
+> > >>   4 files changed, 2 insertions(+), 28 deletions(-)
+> > > Felix, was this an effort to avoid the arch restriction on hmm or
+> > > something? Also can't see why this was like this.
+> >
+> > This option predates KFD's support of userptrs, which in turn predates
+> > HMM. Radeon has the same kind of option, though it doesn't affect HMM in
+> > that case.
+> >
+> > Alex, Christian, can you think of a good reason to maintain userptr
+> > support as an option in amdgpu? I suspect it was originally meant as a
+> > way to allow kernels with amdgpu without MMU notifiers. Now it would
+> > allow a kernel with amdgpu without HMM or MMU notifiers. I don't know if
+> > this is a useful thing to have.
+> 
+> Right.  There were people that didn't have MMU notifiers that wanted
+> support for the GPU.
+
+?? Is that even a real thing? mmu_notifier does not have much kconfig
+dependency.
+
+Jason
