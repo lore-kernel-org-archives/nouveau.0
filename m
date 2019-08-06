@@ -1,54 +1,34 @@
-From: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH 15/15] amdgpu: remove CONFIG_DRM_AMDGPU_USERPTR
-Date: Tue, 6 Aug 2019 17:03:56 -0300
-Message-ID: <20190806200356.GU11627@ziepe.ca>
-References: <20190806160554.14046-1-hch@lst.de>
- <20190806160554.14046-16-hch@lst.de>
- <20190806174437.GK11627@ziepe.ca>
- <587b1c3c-83c4-7de9-242f-6516528049f4@amd.com>
- <CADnq5_Puv-N=FVpNXhv7gOWZ8=tgBD2VjrKpVzEE0imWqJdD1A@mail.gmail.com>
+From: James <bjlockie-ozXLQgHQwDP3fQ9qLvQP4Q@public.gmane.org>
+Subject: Re: unstable refresh rate
+Date: Tue, 6 Aug 2019 17:25:38 -0400
+Message-ID: <qicr8j$aar$1@blaine.gmane.org>
+References: <qic915$1j2$1@blaine.gmane.org>
+ <CAKb7Uvg-7UVzYJXy3YBpV038yfsZx2hx-LZ7omR9HnCiZwYmXA@mail.gmail.com>
+ <qicbpr$6q56$1@blaine.gmane.org> <qicci7$9ci$1@blaine.gmane.org>
+ <CAKb7Uvgnegj15BMoUoH9UT1oP6e4+KHxUShwpMTnu1U5xOu9_A@mail.gmail.com>
+ <16c68653940.279c.665a3322dda79c663fe860d9fff7dd5d@lockie.ca>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <CADnq5_Puv-N=FVpNXhv7gOWZ8=tgBD2VjrKpVzEE0imWqJdD1A@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Alex Deucher <alexdeucher@gmail.com>
-Cc: "Kuehling, Felix" <Felix.Kuehling@amd.com>, Christoph Hellwig <hch@lst.de>, "Deucher, Alexander" <Alexander.Deucher@amd.com>, "Koenig, Christian" <Christian.Koenig@amd.com>, Ralph Campbell <rcampbell@nvidia.com>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "linux-mm@kvack.org" <linux-mm@kvack.org>, =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <16c68653940.279c.665a3322dda79c663fe860d9fff7dd5d-ozXLQgHQwDP3fQ9qLvQP4Q@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Aug 06, 2019 at 02:58:58PM -0400, Alex Deucher wrote:
-> On Tue, Aug 6, 2019 at 1:51 PM Kuehling, Felix <Felix.Kuehling@amd.com> wrote:
-> >
-> > On 2019-08-06 13:44, Jason Gunthorpe wrote:
-> > > On Tue, Aug 06, 2019 at 07:05:53PM +0300, Christoph Hellwig wrote:
-> > >> The option is just used to select HMM mirror support and has a very
-> > >> confusing help text.  Just pull in the HMM mirror code by default
-> > >> instead.
-> > >>
-> > >> Signed-off-by: Christoph Hellwig <hch@lst.de>
-> > >>   drivers/gpu/drm/Kconfig                 |  2 ++
-> > >>   drivers/gpu/drm/amd/amdgpu/Kconfig      | 10 ----------
-> > >>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c |  6 ------
-> > >>   drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h | 12 ------------
-> > >>   4 files changed, 2 insertions(+), 28 deletions(-)
-> > > Felix, was this an effort to avoid the arch restriction on hmm or
-> > > something? Also can't see why this was like this.
-> >
-> > This option predates KFD's support of userptrs, which in turn predates
-> > HMM. Radeon has the same kind of option, though it doesn't affect HMM in
-> > that case.
-> >
-> > Alex, Christian, can you think of a good reason to maintain userptr
-> > support as an option in amdgpu? I suspect it was originally meant as a
-> > way to allow kernels with amdgpu without MMU notifiers. Now it would
-> > allow a kernel with amdgpu without HMM or MMU notifiers. I don't know if
-> > this is a useful thing to have.
-> 
-> Right.  There were people that didn't have MMU notifiers that wanted
-> support for the GPU.
-
-?? Is that even a real thing? mmu_notifier does not have much kconfig
-dependency.
-
-Jason
+SSB0aGluayBJIG1heSBoYXZlIHVwZGF0ZWQgdGhlIHR2IGZpcm13YXJlIGJldHdlZW4gd2hlbiBp
+dCB3b3JrZWQgYW5kIAp3aGVuIGl0IGRpZG4ndC4KSSB3b25kZXIgaXQgaXQgaGFzIHRvIGRvIHdp
+dGggYml0IGRlcHRoLgpJIHVzZSBsdWJ1bnR1IGFuZCBpdCBkb2Vzbid0IGxldCBtZSBwaWNrIHRo
+ZSBiaXQgZGVwdGggc28gSSBkb24ndCBrbm93IAp3aGF0IGl0IHVzaW5nLgoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
