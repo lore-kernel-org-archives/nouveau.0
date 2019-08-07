@@ -1,87 +1,72 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [PATCH 1/2] drm/nouveau/dispnv04: Grab/put runtime PM
- refs on DPMS on/off
-Date: Wed, 7 Aug 2019 23:55:09 +0200
-Message-ID: <20190807215508.GK7444@phenom.ffwll.local>
-References: <20190807213304.9255-1-lyude@redhat.com>
- <20190807213304.9255-2-lyude@redhat.com>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: Re: [PATCH 1/2] drm/nouveau/dispnv04: Grab/put runtime PM refs on
+ DPMS on/off
+Date: Wed, 7 Aug 2019 19:06:46 -0400
+Message-ID: <CAKb7UviCg7jeEyWqsHxygfPuqTg4ybFgTH8cRdx2O==tTEUD9Q@mail.gmail.com>
+References: <20190807213304.9255-1-lyude@redhat.com> <20190807213304.9255-2-lyude@redhat.com>
+ <20190807215508.GK7444@phenom.ffwll.local>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20190807213304.9255-2-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190807215508.GK7444@phenom.ffwll.local>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>, nouveau <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, dri-devel <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
+Cc: Daniel Vetter <daniel@ffwll.ch>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBBdWcgMDcsIDIwMTkgYXQgMDU6MzM6MDBQTSAtMDQwMCwgTHl1ZGUgUGF1bCB3cm90
-ZToKPiBUaGUgY29kZSBjbGFpbXMgdG8gZ3JhYiBhIHJ1bnRpbWUgUE0gcmVmIHdoZW4gYXQgbGVh
-c3Qgb25lIENSVEMgaXMKPiBhY3RpdmUsIGJ1dCB0aGF0J3Mgbm90IGFjdHVhbGx5IHRoZSBjYXNl
-IGFzIHdlIGdyYWIgYSBydW50aW1lIFBNIHJlZgo+IHdoZW5ldmVyIGEgQ1JUQyBpcyBlbmFibGVk
-IHJlZ2FyZGxlc3Mgb2YgaXQncyBEUE1TIHN0YXRlLiBNZWFuaW5nIHRoYXQKPiB3ZSBjYW4gZW5k
-IHVwIGtlZXBpbmcgdGhlIEdQVSBhd2FrZSB3aGVuIHRoZXJlIGFyZSBubyBzY3JlZW5zIGVuYWJs
-ZWQsCj4gc29tZXRoaW5nIHdlIGRvbid0IHJlYWxseSB3YW50IHRvIGRvLgo+IAo+IE5vdGUgdGhh
-dCB3ZSBmaXhlZCB0aGlzIHNhbWUgaXNzdWUgZm9yIG52NTAgYSB3aGlsZSBhZ28gaW46Cj4gCj4g
-Y29tbWl0IGU1ZDU0ZjE5MzU3MiAoImRybS9ub3V2ZWF1L2RybS9ub3V2ZWF1OiBGaXggcnVudGlt
-ZSBQTSBsZWFrIGluCj4gbnY1MF9kaXNwX2F0b21pY19jb21taXQoKSIpCj4gCj4gU2luY2Ugd2Un
-cmUgYWJvdXQgdG8gcmVtb3ZlIG5vdXZlYXVfZHJtLT5oYXZlX2Rpc3BfcG93ZXJfcmVmIGluIHRo
-ZSBuZXh0Cj4gY29tbWl0LCBsZXQncyBhbHNvIHNpbXBsaWZ5IHRoZSBSUE0gY29kZSBoZXJlIHdo
-aWxlIHdlJ3JlIGF0IGl0OiBncmFiIGEKPiByZWYgZHVyaW5nIGEgbW9kZXNldCwgZ3JhYiBhZGRp
-dGlvbmFsIFJQTSByZWZzIGZvciBlYWNoIENSVEMgZW5hYmxlZCBieQo+IHNhaWQgbW9kZXNldCwg
-YW5kIGRyb3AgYW4gUlBNIHJlZiBmb3IgZWFjaCBDUlRDIGRpc2FibGVkIGJ5IHNhaWQKPiBtb2Rl
-c2V0LiBUaGlzIGFsbG93cyB1cyB0byBrZWVwIHRoZSBHUFUgYXdha2Ugd2hlbmV2ZXIgc2NyZWVu
-cyBhcmUKPiB0dXJuZWQgb24sIHdpdGhvdXQgbmVlZGluZyB0byB1c2Ugbm91dmVhdV9kcm0tPmhh
-dmVfZGlzcF9wb3dlcl9yZWYuCj4gCj4gU2lnbmVkLW9mZi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVA
-cmVkaGF0LmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvY3J0
-Yy5jIHwgMTggKysrKy0tLS0tLS0tLS0tLS0tCj4gIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlv
-bnMoKyksIDE0IGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9kaXNwbnYwNC9jcnRjLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYw
-NC9jcnRjLmMKPiBpbmRleCBmMjJmMDEwMjA2MjUuLjA4YWQ4ZTNiOWNkMiAxMDA2NDQKPiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9jcnRjLmMKPiArKysgYi9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9kaXNwbnYwNC9jcnRjLmMKPiBAQCAtMTgzLDYgKzE4MywxMCBAQCBu
-dl9jcnRjX2RwbXMoc3RydWN0IGRybV9jcnRjICpjcnRjLCBpbnQgbW9kZSkKPiAgCQlyZXR1cm47
-Cj4gIAo+ICAJbnZfY3J0Yy0+bGFzdF9kcG1zID0gbW9kZTsKPiArCWlmIChtb2RlID09IERSTV9N
-T0RFX0RQTVNfT04pCj4gKwkJcG1fcnVudGltZV9nZXRfbm9yZXN1bWUoZGV2LT5kZXYpOwo+ICsJ
-ZWxzZQo+ICsJCXBtX3J1bnRpbWVfcHV0X25vaWRsZShkZXYtPmRldik7CgppdCdzIGFmdGVyIHdl
-IGZpbHRlciBvdXQgZHVwbGljYXRlIG9wZXJhdGlvbnMsIHNvIHRoYXQgcGFydCBsb29rcyBnb29k
-LgpCdXQgbm90IGFsbCBvZiBub3V2ZWF1J3MgbGVnYWN5IGhlbHBlciBjcnRjIGNhbGxiYWNrcyBn
-byB0aHJvdWggLT5kcG1zIEkKdGhpbms6IG52X2NydGNfZGlzYWJsZSBkb2Vzbid0LCBhbmQgY3J0
-YyBoZWxwZXJzIHVzZSB0aGF0IGluIHByZWZlcmVuY2UKb3ZlciAtPmRwbXMgaW4gc29tZSBjYXNl
-cy4KCkkgdGhpbmsgdGhlIG9ubHkgd2F5IHRvIGFjdHVhbGx5IGhpdCB0aGF0IHBhdGggaXMgaWYg
-eW91IHN3aXRjaCBhbiBhY3RpdmUKY29ubmVjdG9yIGZyb20gYW4gYWN0aXZlIENSVEMgdG8gYW4g
-aW5hY3RpdmUgb25lLiBUaGlzIGltcGxpY2l0bHkgZGlzYWJsZXMKdGhlIGNydGMgKHdlbGwsIHNo
-b3VsZCwgbnZfY3J0Y19kaXNhYmxlIGRvZXNuJ3Qgc2VlbSB0byBzaHV0IGRvd24gaHcpLCBhbmQK
-SSB0aGluayB3b3VsZCBsZWFrIHlvdXIgcnVudGltZSBQTSByZWZlcmVuY2UgaGVyZS4gQXQgbGVh
-c3QgdGVtcG9yYXJpbHkuCgpObyBpZGVhIGhvdyB0byBiZXN0IGZpeCB0aGF0LiBBc2lkZSBmcm9t
-ICJ1c2UgYXRvbWljIiA6LSkKCkNoZWVycywgRGFuaWVsCgo+ICAKPiAgCWlmIChudl90d29faGVh
-ZHMoZGV2KSkKPiAgCQlOVlNldE93bmVyKGRldiwgbnZfY3J0Yy0+aW5kZXgpOwo+IEBAIC0xMDQ1
-LDcgKzEwNDksNiBAQCBub3V2ZWF1X2NydGNfc2V0X2NvbmZpZyhzdHJ1Y3QgZHJtX21vZGVfc2V0
-ICpzZXQsCj4gIAo+ICAJZGV2ID0gc2V0LT5jcnRjLT5kZXY7Cj4gIAo+IC0JLyogZ2V0IGEgcG0g
-cmVmZXJlbmNlIGhlcmUgKi8KPiAgCXJldCA9IHBtX3J1bnRpbWVfZ2V0X3N5bmMoZGV2LT5kZXYp
-Owo+ICAJaWYgKHJldCA8IDAgJiYgcmV0ICE9IC1FQUNDRVMpCj4gIAkJcmV0dXJuIHJldDsKPiBA
-QCAtMTA2MSwxOSArMTA2NCw2IEBAIG5vdXZlYXVfY3J0Y19zZXRfY29uZmlnKHN0cnVjdCBkcm1f
-bW9kZV9zZXQgKnNldCwKPiAgCX0KPiAgCj4gIAlwbV9ydW50aW1lX21hcmtfbGFzdF9idXN5KGRl
-di0+ZGV2KTsKPiAtCS8qIGlmIHdlIGhhdmUgYWN0aXZlIGNydGNzIGFuZCB3ZSBkb24ndCBoYXZl
-IGEgcG93ZXIgcmVmLAo+IC0JICAgdGFrZSB0aGUgY3VycmVudCBvbmUgKi8KPiAtCWlmIChhY3Rp
-dmUgJiYgIWRybS0+aGF2ZV9kaXNwX3Bvd2VyX3JlZikgewo+IC0JCWRybS0+aGF2ZV9kaXNwX3Bv
-d2VyX3JlZiA9IHRydWU7Cj4gLQkJcmV0dXJuIHJldDsKPiAtCX0KPiAtCS8qIGlmIHdlIGhhdmUg
-bm8gYWN0aXZlIGNydGNzLCB0aGVuIGRyb3AgdGhlIHBvd2VyIHJlZgo+IC0JICAgd2UgZ290IGJl
-Zm9yZSAqLwo+IC0JaWYgKCFhY3RpdmUgJiYgZHJtLT5oYXZlX2Rpc3BfcG93ZXJfcmVmKSB7Cj4g
-LQkJcG1fcnVudGltZV9wdXRfYXV0b3N1c3BlbmQoZGV2LT5kZXYpOwo+IC0JCWRybS0+aGF2ZV9k
-aXNwX3Bvd2VyX3JlZiA9IGZhbHNlOwo+IC0JfQo+IC0JLyogZHJvcCB0aGUgcG93ZXIgcmVmZXJl
-bmNlIHdlIGdvdCBjb21pbmcgaW4gaGVyZSAqLwo+ICAJcG1fcnVudGltZV9wdXRfYXV0b3N1c3Bl
-bmQoZGV2LT5kZXYpOwo+ICAJcmV0dXJuIHJldDsKPiAgfQo+IC0tIAo+IDIuMjEuMAo+IAoKLS0g
-CkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCmh0dHA6
-Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+On Wed, Aug 7, 2019 at 5:55 PM Daniel Vetter <daniel@ffwll.ch> wrote:
+>
+> On Wed, Aug 07, 2019 at 05:33:00PM -0400, Lyude Paul wrote:
+> > The code claims to grab a runtime PM ref when at least one CRTC is
+> > active, but that's not actually the case as we grab a runtime PM ref
+> > whenever a CRTC is enabled regardless of it's DPMS state. Meaning that
+> > we can end up keeping the GPU awake when there are no screens enabled,
+> > something we don't really want to do.
+> >
+> > Note that we fixed this same issue for nv50 a while ago in:
+> >
+> > commit e5d54f193572 ("drm/nouveau/drm/nouveau: Fix runtime PM leak in
+> > nv50_disp_atomic_commit()")
+> >
+> > Since we're about to remove nouveau_drm->have_disp_power_ref in the next
+> > commit, let's also simplify the RPM code here while we're at it: grab a
+> > ref during a modeset, grab additional RPM refs for each CRTC enabled by
+> > said modeset, and drop an RPM ref for each CRTC disabled by said
+> > modeset. This allows us to keep the GPU awake whenever screens are
+> > turned on, without needing to use nouveau_drm->have_disp_power_ref.
+> >
+> > Signed-off-by: Lyude Paul <lyude@redhat.com>
+> > ---
+> >  drivers/gpu/drm/nouveau/dispnv04/crtc.c | 18 ++++--------------
+> >  1 file changed, 4 insertions(+), 14 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+> > index f22f01020625..08ad8e3b9cd2 100644
+> > --- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+> > +++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+> > @@ -183,6 +183,10 @@ nv_crtc_dpms(struct drm_crtc *crtc, int mode)
+> >               return;
+> >
+> >       nv_crtc->last_dpms = mode;
+> > +     if (mode == DRM_MODE_DPMS_ON)
+> > +             pm_runtime_get_noresume(dev->dev);
+> > +     else
+> > +             pm_runtime_put_noidle(dev->dev);
+>
+> it's after we filter out duplicate operations, so that part looks good.
+> But not all of nouveau's legacy helper crtc callbacks go throuh ->dpms I
+> think: nv_crtc_disable doesn't, and crtc helpers use that in preference
+> over ->dpms in some cases.
+>
+> I think the only way to actually hit that path is if you switch an active
+> connector from an active CRTC to an inactive one. This implicitly disables
+> the crtc (well, should, nv_crtc_disable doesn't seem to shut down hw), and
+> I think would leak your runtime PM reference here. At least temporarily.
+>
+> No idea how to best fix that. Aside from "use atomic" :-)
+
+Not sure if this is relevant to the discussion at hand, but I'd like
+to point out that dispnv04 is for pre-nv50 things, which definitely
+didn't support any kind of ACPI-based runtime suspend.
+
+  -ilia
