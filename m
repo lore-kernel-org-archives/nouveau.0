@@ -1,37 +1,169 @@
-From: Jason Gunthorpe <jgg@mellanox.com>
-Subject: Re: hmm cleanups, v2
-Date: Wed, 7 Aug 2019 18:17:39 +0000
-Message-ID: <20190807181733.GL1571@mellanox.com>
-References: <20190806160554.14046-1-hch@lst.de>
+From: Dan Williams <dan.j.williams@intel.com>
+Subject: Re: [PATCH 04/15] mm: remove the pgmap field from struct hmm_vma_walk
+Date: Wed, 7 Aug 2019 11:47:22 -0700
+Message-ID: <CAPcyv4hPCuHBLhSJgZZEh0CbuuJNPLFDA3f-79FX5uVOO0yubA@mail.gmail.com>
+References: <20190806160554.14046-1-hch@lst.de> <20190806160554.14046-5-hch@lst.de>
+ <20190807174548.GJ1571@mellanox.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="UTF-8"
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190806160554.14046-1-hch@lst.de>
-Content-Language: en-US
-Content-ID: <B71F314D18668A44A07719FC1462D90A@eurprd05.prod.outlook.com>
+In-Reply-To: <20190807174548.GJ1571@mellanox.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Christoph Hellwig <hch@lst.de>, John Hubbard <jhubbard@nvidia.com>
-Cc: =?utf-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Ralph Campbell <rcampbell@nvidia.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+To: Jason Gunthorpe <jgg@mellanox.com>
+Cc: Christoph Hellwig <hch@lst.de>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Ralph Campbell <rcampbell@nvidia.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBBdWcgMDYsIDIwMTkgYXQgMDc6MDU6MzhQTSArMDMwMCwgQ2hyaXN0b3BoIEhlbGx3
-aWcgd3JvdGU6DQo+IA0KPiBIaSBKw6lyw7RtZSwgQmVuLCBGZWxpeCBhbmQgSmFzb24sDQo+IA0K
-PiBiZWxvdyBpcyBhIHNlcmllcyBhZ2FpbnN0IHRoZSBobW0gdHJlZSB3aGljaCBjbGVhbnMgdXAg
-dmFyaW91cyBtaW5vcg0KPiBiaXRzIGFuZCBhbGxvd3MgSE1NX01JUlJPUiB0byBiZSBidWlsdCBv
-biBhbGwgYXJjaGl0ZWN0dXJlcy4NCj4gDQo+IERpZmZzdGF0Og0KPiANCj4gICAgIDExIGZpbGVz
-IGNoYW5nZWQsIDk0IGluc2VydGlvbnMoKyksIDIxMCBkZWxldGlvbnMoLSkNCj4gDQo+IEEgZ2l0
-IHRyZWUgaXMgYWxzbyBhdmFpbGFibGUgYXQ6DQo+IA0KPiAgICAgZ2l0Oi8vZ2l0LmluZnJhZGVh
-ZC5vcmcvdXNlcnMvaGNoL21pc2MuZ2l0IGhtbS1jbGVhbnVwcy4yDQo+IA0KPiBHaXR3ZWI6DQo+
-IA0KPiAgICAgaHR0cDovL2dpdC5pbmZyYWRlYWQub3JnL3VzZXJzL2hjaC9taXNjLmdpdC9zaG9y
-dGxvZy9yZWZzL2hlYWRzL2htbS1jbGVhbnVwcy4yDQo+IA0KPiBDaGFuZ2VzIHNpbmNlIHYxOg0K
-PiAgLSBmaXggdGhlIGNvdmVyIGxldHRlciBzdWJqZWN0DQo+ICAtIGltcHJvdmUgdmFyaW91cyBw
-YXRjaCBkZXNjcmlwdGlvbnMNCj4gIC0gdXNlIHN2bW0tPm1tIGluIG5vdXZlYXVfcmFuZ2VfZmF1
-bHQNCj4gIC0gaW52ZXJzZSB0aGUgaG1hc2sgZmllbGQgd2hlbiB1c2luZyBpdA0KPiAgLSBzZWxl
-Y3QgSE1NX01JUlJPUiBpbnN0ZWFkIG9mIG1ha2luZyBpdCBhIHVzZXIgdmlzaWJsZSBvcHRpb24N
-CiANCkkgdGhpbmsgaXQgaXMgc3RyYWlnaHRmb3J3YXJkIGVub3VnaCB0byBtb3ZlIGludG8gLW5l
-eHQsIHNvIGFwcGxpZWQgdG8NCnRoZSBobW0uZ2l0IGxldHMgZ2V0IHNvbWUgbW9yZSByZXZpZXdl
-ZC1ieXMvdGVzdGVkLWJ5IHRob3VnaC4NCg0KRm9yIG5vdyBJIGRyb3BwZWQgJ3JlbW92ZSB0aGUg
-cGdtYXAgZmllbGQgZnJvbSBzdHJ1Y3QgaG1tX3ZtYV93YWxrJw0KanVzdCB0byBoZWFyIHRoZSBm
-b2xsb3d1cCBhbmQgJ2FtZGdwdTogcmVtb3ZlDQpDT05GSUdfRFJNX0FNREdQVV9VU0VSUFRSJyB1
-bnRpbCB0aGUgQU1EIHRlYW0gQWNrcw0KDQpUaGFua3MsDQpKYXNvbg0K
+On Wed, Aug 7, 2019 at 10:45 AM Jason Gunthorpe <jgg@mellanox.com> wrote:
+>
+> On Tue, Aug 06, 2019 at 07:05:42PM +0300, Christoph Hellwig wrote:
+> > There is only a single place where the pgmap is passed over a function
+> > call, so replace it with local variables in the places where we deal
+> > with the pgmap.
+> >
+> > Signed-off-by: Christoph Hellwig <hch@lst.de>
+> >  mm/hmm.c | 62 ++++++++++++++++++++++++--------------------------------
+> >  1 file changed, 27 insertions(+), 35 deletions(-)
+> >
+> > diff --git a/mm/hmm.c b/mm/hmm.c
+> > index 9a908902e4cc..d66fa29b42e0 100644
+> > +++ b/mm/hmm.c
+> > @@ -278,7 +278,6 @@ EXPORT_SYMBOL(hmm_mirror_unregister);
+> >
+> >  struct hmm_vma_walk {
+> >       struct hmm_range        *range;
+> > -     struct dev_pagemap      *pgmap;
+> >       unsigned long           last;
+> >       unsigned int            flags;
+> >  };
+> > @@ -475,6 +474,7 @@ static int hmm_vma_handle_pmd(struct mm_walk *walk,
+> >  #ifdef CONFIG_TRANSPARENT_HUGEPAGE
+> >       struct hmm_vma_walk *hmm_vma_walk = walk->private;
+> >       struct hmm_range *range = hmm_vma_walk->range;
+> > +     struct dev_pagemap *pgmap = NULL;
+> >       unsigned long pfn, npages, i;
+> >       bool fault, write_fault;
+> >       uint64_t cpu_flags;
+> > @@ -490,17 +490,14 @@ static int hmm_vma_handle_pmd(struct mm_walk *walk,
+> >       pfn = pmd_pfn(pmd) + pte_index(addr);
+> >       for (i = 0; addr < end; addr += PAGE_SIZE, i++, pfn++) {
+> >               if (pmd_devmap(pmd)) {
+> > -                     hmm_vma_walk->pgmap = get_dev_pagemap(pfn,
+> > -                                           hmm_vma_walk->pgmap);
+> > -                     if (unlikely(!hmm_vma_walk->pgmap))
+> > +                     pgmap = get_dev_pagemap(pfn, pgmap);
+> > +                     if (unlikely(!pgmap))
+> >                               return -EBUSY;
+>
+> Unrelated to this patch, but what is the point of getting checking
+> that the pgmap exists for the page and then immediately releasing it?
+> This code has this pattern in several places.
+>
+> It feels racy
+
+Agree, not sure what the intent is here. The only other reason call
+get_dev_pagemap() is to just check in general if the pfn is indeed
+owned by some ZONE_DEVICE instance, but if the intent is to make sure
+the device is still attached/enabled that check is invalidated at
+put_dev_pagemap().
+
+If it's the former case, validating ZONE_DEVICE pfns, I imagine we can
+do something cheaper with a helper that is on the order of the same
+cost as pfn_valid(). I.e. replace PTE_DEVMAP with a mem_section flag
+or something similar.
+
+>
+> >               }
+> >               pfns[i] = hmm_device_entry_from_pfn(range, pfn) | cpu_flags;
+> >       }
+> > -     if (hmm_vma_walk->pgmap) {
+> > -             put_dev_pagemap(hmm_vma_walk->pgmap);
+> > -             hmm_vma_walk->pgmap = NULL;
+>
+> Putting the value in the hmm_vma_walk would have made some sense to me
+> if the pgmap was not set to NULL all over the place. Then the most
+> xa_loads would be eliminated, as I would expect the pgmap tends to be
+> mostly uniform for these use cases.
+>
+> Is there some reason the pgmap ref can't be held across
+> faulting/sleeping? ie like below.
+
+No restriction on holding refs over faulting / sleeping.
+
+>
+> Anyhow, I looked over this pretty carefully and the change looks
+> functionally OK, I just don't know why the code is like this in the
+> first place.
+>
+> Reviewed-by: Jason Gunthorpe <jgg@mellanox.com>
+>
+> diff --git a/mm/hmm.c b/mm/hmm.c
+> index 9a908902e4cc38..4e30128c23a505 100644
+> --- a/mm/hmm.c
+> +++ b/mm/hmm.c
+> @@ -497,10 +497,6 @@ static int hmm_vma_handle_pmd(struct mm_walk *walk,
+>                 }
+>                 pfns[i] = hmm_device_entry_from_pfn(range, pfn) | cpu_flags;
+>         }
+> -       if (hmm_vma_walk->pgmap) {
+> -               put_dev_pagemap(hmm_vma_walk->pgmap);
+> -               hmm_vma_walk->pgmap = NULL;
+> -       }
+>         hmm_vma_walk->last = end;
+>         return 0;
+>  #else
+> @@ -604,10 +600,6 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
+>         return 0;
+>
+>  fault:
+> -       if (hmm_vma_walk->pgmap) {
+> -               put_dev_pagemap(hmm_vma_walk->pgmap);
+> -               hmm_vma_walk->pgmap = NULL;
+> -       }
+>         pte_unmap(ptep);
+>         /* Fault any virtual address we were asked to fault */
+>         return hmm_vma_walk_hole_(addr, end, fault, write_fault, walk);
+> @@ -690,16 +682,6 @@ static int hmm_vma_walk_pmd(pmd_t *pmdp,
+>                         return r;
+>                 }
+>         }
+> -       if (hmm_vma_walk->pgmap) {
+> -               /*
+> -                * We do put_dev_pagemap() here and not in hmm_vma_handle_pte()
+> -                * so that we can leverage get_dev_pagemap() optimization which
+> -                * will not re-take a reference on a pgmap if we already have
+> -                * one.
+> -                */
+> -               put_dev_pagemap(hmm_vma_walk->pgmap);
+> -               hmm_vma_walk->pgmap = NULL;
+> -       }
+>         pte_unmap(ptep - 1);
+>
+>         hmm_vma_walk->last = addr;
+> @@ -751,10 +733,6 @@ static int hmm_vma_walk_pud(pud_t *pudp,
+>                         pfns[i] = hmm_device_entry_from_pfn(range, pfn) |
+>                                   cpu_flags;
+>                 }
+> -               if (hmm_vma_walk->pgmap) {
+> -                       put_dev_pagemap(hmm_vma_walk->pgmap);
+> -                       hmm_vma_walk->pgmap = NULL;
+> -               }
+>                 hmm_vma_walk->last = end;
+>                 return 0;
+>         }
+> @@ -1026,6 +1004,14 @@ long hmm_range_fault(struct hmm_range *range, unsigned int flags)
+>                         /* Keep trying while the range is valid. */
+>                 } while (ret == -EBUSY && range->valid);
+>
+> +               /*
+> +                * We do put_dev_pagemap() here so that we can leverage
+> +                * get_dev_pagemap() optimization which will not re-take a
+> +                * reference on a pgmap if we already have one.
+> +                */
+> +               if (hmm_vma_walk->pgmap)
+> +                       put_dev_pagemap(hmm_vma_walk->pgmap);
+> +
+
+Seems ok, but only if the caller is guaranteeing that the range does
+not span outside of a single pagemap instance. If that guarantee is
+met why not just have the caller pass in a pinned pagemap? If that
+guarantee is not met, then I think we're back to your race concern.
