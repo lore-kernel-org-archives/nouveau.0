@@ -1,169 +1,120 @@
-From: Dan Williams <dan.j.williams@intel.com>
-Subject: Re: [PATCH 04/15] mm: remove the pgmap field from struct hmm_vma_walk
-Date: Wed, 7 Aug 2019 11:47:22 -0700
-Message-ID: <CAPcyv4hPCuHBLhSJgZZEh0CbuuJNPLFDA3f-79FX5uVOO0yubA@mail.gmail.com>
-References: <20190806160554.14046-1-hch@lst.de> <20190806160554.14046-5-hch@lst.de>
- <20190807174548.GJ1571@mellanox.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110500] X-Server crashes - GL error:
+ GL_OUT_OF_MEMORY in glTexSubImage
+Date: Wed, 07 Aug 2019 20:20:16 +0000
+Message-ID: <bug-110500-8800-P30T731xDt@http.bugs.freedesktop.org/>
+References: <bug-110500-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190807174548.GJ1571@mellanox.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Jason Gunthorpe <jgg@mellanox.com>
-Cc: Christoph Hellwig <hch@lst.de>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Ralph Campbell <rcampbell@nvidia.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0460982173=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-110500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Aug 7, 2019 at 10:45 AM Jason Gunthorpe <jgg@mellanox.com> wrote:
->
-> On Tue, Aug 06, 2019 at 07:05:42PM +0300, Christoph Hellwig wrote:
-> > There is only a single place where the pgmap is passed over a function
-> > call, so replace it with local variables in the places where we deal
-> > with the pgmap.
-> >
-> > Signed-off-by: Christoph Hellwig <hch@lst.de>
-> >  mm/hmm.c | 62 ++++++++++++++++++++++++--------------------------------
-> >  1 file changed, 27 insertions(+), 35 deletions(-)
-> >
-> > diff --git a/mm/hmm.c b/mm/hmm.c
-> > index 9a908902e4cc..d66fa29b42e0 100644
-> > +++ b/mm/hmm.c
-> > @@ -278,7 +278,6 @@ EXPORT_SYMBOL(hmm_mirror_unregister);
-> >
-> >  struct hmm_vma_walk {
-> >       struct hmm_range        *range;
-> > -     struct dev_pagemap      *pgmap;
-> >       unsigned long           last;
-> >       unsigned int            flags;
-> >  };
-> > @@ -475,6 +474,7 @@ static int hmm_vma_handle_pmd(struct mm_walk *walk,
-> >  #ifdef CONFIG_TRANSPARENT_HUGEPAGE
-> >       struct hmm_vma_walk *hmm_vma_walk = walk->private;
-> >       struct hmm_range *range = hmm_vma_walk->range;
-> > +     struct dev_pagemap *pgmap = NULL;
-> >       unsigned long pfn, npages, i;
-> >       bool fault, write_fault;
-> >       uint64_t cpu_flags;
-> > @@ -490,17 +490,14 @@ static int hmm_vma_handle_pmd(struct mm_walk *walk,
-> >       pfn = pmd_pfn(pmd) + pte_index(addr);
-> >       for (i = 0; addr < end; addr += PAGE_SIZE, i++, pfn++) {
-> >               if (pmd_devmap(pmd)) {
-> > -                     hmm_vma_walk->pgmap = get_dev_pagemap(pfn,
-> > -                                           hmm_vma_walk->pgmap);
-> > -                     if (unlikely(!hmm_vma_walk->pgmap))
-> > +                     pgmap = get_dev_pagemap(pfn, pgmap);
-> > +                     if (unlikely(!pgmap))
-> >                               return -EBUSY;
->
-> Unrelated to this patch, but what is the point of getting checking
-> that the pgmap exists for the page and then immediately releasing it?
-> This code has this pattern in several places.
->
-> It feels racy
 
-Agree, not sure what the intent is here. The only other reason call
-get_dev_pagemap() is to just check in general if the pfn is indeed
-owned by some ZONE_DEVICE instance, but if the intent is to make sure
-the device is still attached/enabled that check is invalidated at
-put_dev_pagemap().
+--===============0460982173==
+Content-Type: multipart/alternative; boundary="15652092161.eB21Ef.22589"
+Content-Transfer-Encoding: 7bit
 
-If it's the former case, validating ZONE_DEVICE pfns, I imagine we can
-do something cheaper with a helper that is on the order of the same
-cost as pfn_valid(). I.e. replace PTE_DEVMAP with a mem_section flag
-or something similar.
 
->
-> >               }
-> >               pfns[i] = hmm_device_entry_from_pfn(range, pfn) | cpu_flags;
-> >       }
-> > -     if (hmm_vma_walk->pgmap) {
-> > -             put_dev_pagemap(hmm_vma_walk->pgmap);
-> > -             hmm_vma_walk->pgmap = NULL;
->
-> Putting the value in the hmm_vma_walk would have made some sense to me
-> if the pgmap was not set to NULL all over the place. Then the most
-> xa_loads would be eliminated, as I would expect the pgmap tends to be
-> mostly uniform for these use cases.
->
-> Is there some reason the pgmap ref can't be held across
-> faulting/sleeping? ie like below.
+--15652092161.eB21Ef.22589
+Date: Wed, 7 Aug 2019 20:20:16 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-No restriction on holding refs over faulting / sleeping.
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110500
 
->
-> Anyhow, I looked over this pretty carefully and the change looks
-> functionally OK, I just don't know why the code is like this in the
-> first place.
->
-> Reviewed-by: Jason Gunthorpe <jgg@mellanox.com>
->
-> diff --git a/mm/hmm.c b/mm/hmm.c
-> index 9a908902e4cc38..4e30128c23a505 100644
-> --- a/mm/hmm.c
-> +++ b/mm/hmm.c
-> @@ -497,10 +497,6 @@ static int hmm_vma_handle_pmd(struct mm_walk *walk,
->                 }
->                 pfns[i] = hmm_device_entry_from_pfn(range, pfn) | cpu_flags;
->         }
-> -       if (hmm_vma_walk->pgmap) {
-> -               put_dev_pagemap(hmm_vma_walk->pgmap);
-> -               hmm_vma_walk->pgmap = NULL;
-> -       }
->         hmm_vma_walk->last = end;
->         return 0;
->  #else
-> @@ -604,10 +600,6 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, unsigned long addr,
->         return 0;
->
->  fault:
-> -       if (hmm_vma_walk->pgmap) {
-> -               put_dev_pagemap(hmm_vma_walk->pgmap);
-> -               hmm_vma_walk->pgmap = NULL;
-> -       }
->         pte_unmap(ptep);
->         /* Fault any virtual address we were asked to fault */
->         return hmm_vma_walk_hole_(addr, end, fault, write_fault, walk);
-> @@ -690,16 +682,6 @@ static int hmm_vma_walk_pmd(pmd_t *pmdp,
->                         return r;
->                 }
->         }
-> -       if (hmm_vma_walk->pgmap) {
-> -               /*
-> -                * We do put_dev_pagemap() here and not in hmm_vma_handle_pte()
-> -                * so that we can leverage get_dev_pagemap() optimization which
-> -                * will not re-take a reference on a pgmap if we already have
-> -                * one.
-> -                */
-> -               put_dev_pagemap(hmm_vma_walk->pgmap);
-> -               hmm_vma_walk->pgmap = NULL;
-> -       }
->         pte_unmap(ptep - 1);
->
->         hmm_vma_walk->last = addr;
-> @@ -751,10 +733,6 @@ static int hmm_vma_walk_pud(pud_t *pudp,
->                         pfns[i] = hmm_device_entry_from_pfn(range, pfn) |
->                                   cpu_flags;
->                 }
-> -               if (hmm_vma_walk->pgmap) {
-> -                       put_dev_pagemap(hmm_vma_walk->pgmap);
-> -                       hmm_vma_walk->pgmap = NULL;
-> -               }
->                 hmm_vma_walk->last = end;
->                 return 0;
->         }
-> @@ -1026,6 +1004,14 @@ long hmm_range_fault(struct hmm_range *range, unsigned int flags)
->                         /* Keep trying while the range is valid. */
->                 } while (ret == -EBUSY && range->valid);
->
-> +               /*
-> +                * We do put_dev_pagemap() here so that we can leverage
-> +                * get_dev_pagemap() optimization which will not re-take a
-> +                * reference on a pgmap if we already have one.
-> +                */
-> +               if (hmm_vma_walk->pgmap)
-> +                       put_dev_pagemap(hmm_vma_walk->pgmap);
-> +
+--- Comment #15 from Juddy Piterson <pitersonjuddy09-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+If you jot a note down on paper, save it and use the rest of the sheet for =
+your
+notes. American business waste 21 million tonnes of paper per annum! Ideall=
+y,
+try to have your business as paperless as possible
+https://essaywritingstore.com/writing-movie-critique . When it is absolutely
+necessary, print on both sides of the page. And don=E2=80=99t forget to rec=
+ycle it!
 
-Seems ok, but only if the caller is guaranteeing that the range does
-not span outside of a single pagemap instance. If that guarantee is
-met why not just have the caller pass in a pinned pagemap? If that
-guarantee is not met, then I think we're back to your race concern.
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15652092161.eB21Ef.22589
+Date: Wed, 7 Aug 2019 20:20:16 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTOURBUG - X-Server crashes - GL error: GL_OUT_OF_MEM=
+ORY in glTexSubImage"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110500#c15">Comme=
+nt # 15</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTOURBUG - X-Server crashes - GL error: GL_OUT_OF_MEM=
+ORY in glTexSubImage"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110500">bug 11050=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pitersonjuddy09&#64;gmail.com" title=3D"Juddy Piterson &lt;pitersonjuddy09&=
+#64;gmail.com&gt;"> <span class=3D"fn">Juddy Piterson</span></a>
+</span></b>
+        <pre>If you jot a note down on paper, save it and use the rest of t=
+he sheet for your
+notes. American business waste 21 million tonnes of paper per annum! Ideall=
+y,
+try to have your business as paperless as possible
+<a href=3D"https://essaywritingstore.com/writing-movie-critique">https://es=
+saywritingstore.com/writing-movie-critique</a> . When it is absolutely
+necessary, print on both sides of the page. And don=E2=80=99t forget to rec=
+ycle it!</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15652092161.eB21Ef.22589--
+
+--===============0460982173==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0460982173==--
