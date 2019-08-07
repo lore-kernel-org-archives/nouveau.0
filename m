@@ -1,56 +1,39 @@
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-Subject: [PATCH] drm/nouveau/nvif/mmu: Use struct_size() helper
-Date: Wed, 7 Aug 2019 10:50:02 -0500
-Message-ID: <20190807155002.GA25502@embeddedor>
+From: James <bjlockie-ozXLQgHQwDP3fQ9qLvQP4Q@public.gmane.org>
+Subject: EDID is invalid
+Date: Wed, 7 Aug 2019 11:54:28 -0400
+Message-ID: <qies7k$fj0$1@blaine.gmane.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-One of the more common cases of allocation size calculations is finding
-the size of a structure that has a zero-sized array at the end, along
-with memory for some number of elements for that array. For example:
-
-struct nvif_mmu_kind_v0 {
-	...
-        __u8  data[];
-};
-
-
-Make use of the struct_size() helper instead of an open-coded version
-in order to avoid any potential type mistakes.
-
-So, replace the following form:
-
-sizeof(*kind) + sizeof(*kind->data) * mmu->kind_nr
-
-with:
-
-struct_size(kind, data, mmu->kind_nr)
-
-This code was detected with the help of Coccinelle.
-
-Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
----
- drivers/gpu/drm/nouveau/nvif/mmu.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvif/mmu.c b/drivers/gpu/drm/nouveau/nvif/mmu.c
-index ae08a1ca8044..5641bda2046d 100644
---- a/drivers/gpu/drm/nouveau/nvif/mmu.c
-+++ b/drivers/gpu/drm/nouveau/nvif/mmu.c
-@@ -110,7 +110,7 @@ nvif_mmu_init(struct nvif_object *parent, s32 oclass, struct nvif_mmu *mmu)
- 
- 	if (mmu->kind_nr) {
- 		struct nvif_mmu_kind_v0 *kind;
--		u32 argc = sizeof(*kind) + sizeof(*kind->data) * mmu->kind_nr;
-+		size_t argc = struct_size(kind, data, mmu->kind_nr);
- 
- 		if (ret = -ENOMEM, !(kind = kmalloc(argc, GFP_KERNEL)))
- 			goto done;
--- 
-2.22.0
+SSBnb3QgdGhpcyBpbiBkbWVzZy4KSSByZWNvbm5lY3RlZCBpdCBhbmQgaXQgd29ya3MgZmluZS4K
+V2hhdCBjYXVzZWQgdGhhdD8KCj4gWyAgMjUzLjIwMzc5N10gbm91dmVhdSAwMDAwOjA3OjAwLjA6
+IEhETUktQS0xOiBFRElEIGlzIGludmFsaWQ6Cj4gWyAgMjUzLjIwMzgwMV0gIFswMF0gWkVSTyAw
+MCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMAo+IFsgIDI1My4y
+MDM4MDJdICBbMDBdIFpFUk8gMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAg
+MDAgMDAgMDAKPiBbICAyNTMuMjAzODAzXSAgWzAwXSBaRVJPIDAwIDAwIDAwIDAwIDAwIDAwIDAw
+IDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwCj4gWyAgMjUzLjIwMzgwM10gIFswMF0gWkVSTyAw
+MCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMAo+IFsgIDI1My4y
+MDM4MDRdICBbMDBdIFpFUk8gMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAg
+MDAgMDAgMDAKPiBbICAyNTMuMjAzODA1XSAgWzAwXSBaRVJPIDAwIDAwIDAwIDAwIDAwIDAwIDAw
+IDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwCj4gWyAgMjUzLjIwMzgwNl0gIFswMF0gWkVSTyAw
+MCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMAo+IFsgIDI1My4y
+MDM4MDZdICBbMDBdIFpFUk8gMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAg
+MDAgMDAgMDAKPiBbICAyNTMuMjAzODA5XSBub3V2ZWF1IDAwMDA6MDc6MDAuMDogRFJNOiBEREMg
+cmVzcG9uZGVkLCBidXQgbm8gRURJRCBmb3IgSERNSS1BLTEKCgoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVh
+dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1
