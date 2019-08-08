@@ -1,145 +1,80 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v2 2/2] drm/nouveau/dispnv50: Fix runtime PM ref tracking for non-blocking modesets
-Date: Wed,  7 Aug 2019 19:47:06 -0400
-Message-ID: <20190807234709.6076-3-lyude@redhat.com>
-References: <20190807234709.6076-1-lyude@redhat.com>
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Subject: Re: [PATCH] nouveau/hmm: map pages after migration
+Date: Thu, 8 Aug 2019 09:07:01 +0200
+Message-ID: <20190808070701.GC29382@lst.de>
+References: <20190807150214.3629-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190807234709.6076-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Karol Herbst <karolherbst@gmail.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Ilia Mirkin <imirkin@alum.mit.edu>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20190807150214.3629-1-rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is something that got noticed a while ago back when I was fixing a
-large number of runtime PM related issues in nouveau, but never got
-fixed:
-
-https://patchwork.freedesktop.org/series/46815/#rev7
-
-It's not safe to iterate the entire list of CRTCs in
-nv50_disp_atomic_commit(), as we could be doing a non-blocking modeset
-on one CRTC in parallel with one or more other CRTCs. Likewise, this
-means it's also not safe to do so in order to track runtime PM state.
-While this code is certainly wrong, so far the only issues I've seen
-this cause in the wild is the occasional PM ref unbalance after an
-atomic check failure + module reloading (since the PCI device will
-outlive nouveau in such scenarios).
-
-So, do this far more elegantly: grab a runtime PM ref across the modeset
-and commit tail, then grab/put references for each CRTC enable/disable.
-This also ends up being much simpler then the previous broken solution
-we had.
-
-Finally, since we've removed all it's users: get rid of
-nouveau_drm->have_disp_power_ref.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 38 +++++++++++--------------
- drivers/gpu/drm/nouveau/nouveau_drv.h   |  3 --
- 2 files changed, 17 insertions(+), 24 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 126703816794..659e6fa645cb 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -1826,8 +1826,11 @@ nv50_disp_atomic_commit_tail(struct drm_atomic_state *state)
- 
- 		NV_ATOMIC(drm, "%s: clr %04x (set %04x)\n", crtc->name,
- 			  asyh->clr.mask, asyh->set.mask);
--		if (old_crtc_state->active && !new_crtc_state->active)
-+
-+		if (old_crtc_state->active && !new_crtc_state->active) {
-+			pm_runtime_put_noidle(dev->dev);
- 			drm_crtc_vblank_off(crtc);
-+		}
- 
- 		if (asyh->clr.mask) {
- 			nv50_head_flush_clr(head, asyh, atom->flush_disable);
-@@ -1913,8 +1916,10 @@ nv50_disp_atomic_commit_tail(struct drm_atomic_state *state)
- 		}
- 
- 		if (new_crtc_state->active) {
--			if (!old_crtc_state->active)
-+			if (!old_crtc_state->active) {
- 				drm_crtc_vblank_on(crtc);
-+				pm_runtime_get_noresume(dev->dev);
-+			}
- 			if (new_crtc_state->event)
- 				drm_crtc_vblank_get(crtc);
- 		}
-@@ -1979,6 +1984,10 @@ nv50_disp_atomic_commit_tail(struct drm_atomic_state *state)
- 	drm_atomic_helper_cleanup_planes(dev, state);
- 	drm_atomic_helper_commit_cleanup_done(state);
- 	drm_atomic_state_put(state);
-+
-+	/* Drop the RPM ref we got from nv50_disp_atomic_commit() */
-+	pm_runtime_mark_last_busy(dev->dev);
-+	pm_runtime_put_autosuspend(dev->dev);
- }
- 
- static void
-@@ -1993,11 +2002,8 @@ static int
- nv50_disp_atomic_commit(struct drm_device *dev,
- 			struct drm_atomic_state *state, bool nonblock)
- {
--	struct nouveau_drm *drm = nouveau_drm(dev);
- 	struct drm_plane_state *new_plane_state;
- 	struct drm_plane *plane;
--	struct drm_crtc *crtc;
--	bool active = false;
- 	int ret, i;
- 
- 	ret = pm_runtime_get_sync(dev->dev);
-@@ -2034,27 +2040,17 @@ nv50_disp_atomic_commit(struct drm_device *dev,
- 
- 	drm_atomic_state_get(state);
- 
-+	/*
-+	 * Grab another RPM ref for the commit tail, which will release the
-+	 * ref when it's finished
-+	 */
-+	pm_runtime_get_noresume(dev->dev);
-+
- 	if (nonblock)
- 		queue_work(system_unbound_wq, &state->commit_work);
- 	else
- 		nv50_disp_atomic_commit_tail(state);
- 
--	drm_for_each_crtc(crtc, dev) {
--		if (crtc->state->active) {
--			if (!drm->have_disp_power_ref) {
--				drm->have_disp_power_ref = true;
--				return 0;
--			}
--			active = true;
--			break;
--		}
--	}
--
--	if (!active && drm->have_disp_power_ref) {
--		pm_runtime_put_autosuspend(dev->dev);
--		drm->have_disp_power_ref = false;
--	}
--
- err_cleanup:
- 	if (ret)
- 		drm_atomic_helper_cleanup_planes(dev, state);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index aae035816383..411352dd5390 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -204,9 +204,6 @@ struct nouveau_drm {
- 	/* led management */
- 	struct nouveau_led *led;
- 
--	/* display power reference */
--	bool have_disp_power_ref;
--
- 	struct dev_pm_domain vga_pm_domain;
- 
- 	struct nouveau_svm *svm;
--- 
-2.21.0
+T24gV2VkLCBBdWcgMDcsIDIwMTkgYXQgMDg6MDI6MTRBTSAtMDcwMCwgUmFscGggQ2FtcGJlbGwg
+d3JvdGU6Cj4gV2hlbiBtZW1vcnkgaXMgbWlncmF0ZWQgdG8gdGhlIEdQVSBpdCBpcyBsaWtlbHkg
+dG8gYmUgYWNjZXNzZWQgYnkgR1BVCj4gY29kZSBzb29uIGFmdGVyd2FyZHMuIEluc3RlYWQgb2Yg
+d2FpdGluZyBmb3IgYSBHUFUgZmF1bHQsIG1hcCB0aGUKPiBtaWdyYXRlZCBtZW1vcnkgaW50byB0
+aGUgR1BVIHBhZ2UgdGFibGVzIHdpdGggdGhlIHNhbWUgYWNjZXNzIHBlcm1pc3Npb25zCj4gYXMg
+dGhlIHNvdXJjZSBDUFUgcGFnZSB0YWJsZSBlbnRyaWVzLiBUaGlzIHByZXNlcnZlcyBjb3B5IG9u
+IHdyaXRlCj4gc2VtYW50aWNzLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFJhbHBoIENhbXBiZWxsIDxy
+Y2FtcGJlbGxAbnZpZGlhLmNvbT4KPiBDYzogQ2hyaXN0b3BoIEhlbGx3aWcgPGhjaEBsc3QuZGU+
+Cj4gQ2M6IEphc29uIEd1bnRob3JwZSA8amdnQG1lbGxhbm94LmNvbT4KPiBDYzogIkrDqXLDtG1l
+IEdsaXNzZSIgPGpnbGlzc2VAcmVkaGF0LmNvbT4KPiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0By
+ZWRoYXQuY29tPgo+IC0tLQo+IAo+IFRoaXMgcGF0Y2ggaXMgYmFzZWQgb24gdG9wIG9mIENocmlz
+dG9waCBIZWxsd2lnJ3MgOSBwYXRjaCBzZXJpZXMKPiBodHRwczovL2xvcmUua2VybmVsLm9yZy9s
+aW51eC1tbS8yMDE5MDcyOTIzNDYxMS5HQzcxNzFAcmVkaGF0LmNvbS9ULyN1Cj4gInR1cm4gdGhl
+IGhtbSBtaWdyYXRlX3ZtYSB1cHNpZGUgZG93biIgYnV0IHdpdGhvdXQgcGF0Y2ggOQo+ICJtbTog
+cmVtb3ZlIHRoZSB1bnVzZWQgTUlHUkFURV9QRk5fV1JJVEUiIGFuZCBhZGRzIGEgdXNlIGZvciB0
+aGUgZmxhZy4KClRoaXMgbG9va3MgdXNlZnVsLiAgSSd2ZSBhbHJlYWR5IGRyb3BwZWQgdGhhdCBw
+YXRjaCBmb3IgdGhlIHBlbmRpbmcKcmVzZW5kLgoKPiAgc3RhdGljIHVuc2lnbmVkIGxvbmcgbm91
+dmVhdV9kbWVtX21pZ3JhdGVfY29weV9vbmUoc3RydWN0IG5vdXZlYXVfZHJtICpkcm0sCj4gLQkJ
+c3RydWN0IHZtX2FyZWFfc3RydWN0ICp2bWEsIHVuc2lnbmVkIGxvbmcgYWRkciwKPiAtCQl1bnNp
+Z25lZCBsb25nIHNyYywgZG1hX2FkZHJfdCAqZG1hX2FkZHIpCj4gKwkJc3RydWN0IHZtX2FyZWFf
+c3RydWN0ICp2bWEsIHVuc2lnbmVkIGxvbmcgc3JjLAo+ICsJCWRtYV9hZGRyX3QgKmRtYV9hZGRy
+LCB1NjQgKnBmbikKCkknbGwgcGljayB1cCB0aGUgcmVtb3ZhbCBvZiB0aGUgbm90IG5lZWRlZCBh
+ZGRyIGFyZ3VtZW50IGZvciB0aGUgcGF0Y2gKaW50cm9kdWNpbmcgbm91dmVhdV9kbWVtX21pZ3Jh
+dGVfY29weV9vbmUsIHRoYW5rcywKCj4gIHN0YXRpYyB2b2lkIG5vdXZlYXVfZG1lbV9taWdyYXRl
+X2NodW5rKHN0cnVjdCBtaWdyYXRlX3ZtYSAqYXJncywKPiAtCQlzdHJ1Y3Qgbm91dmVhdV9kcm0g
+KmRybSwgZG1hX2FkZHJfdCAqZG1hX2FkZHJzKQo+ICsJCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJt
+LCBkbWFfYWRkcl90ICpkbWFfYWRkcnMsIHU2NCAqcGZucykKPiAgewo+ICAJc3RydWN0IG5vdXZl
+YXVfZmVuY2UgKmZlbmNlOwo+ICAJdW5zaWduZWQgbG9uZyBhZGRyID0gYXJncy0+c3RhcnQsIG5y
+X2RtYSA9IDAsIGk7Cj4gIAo+ICAJZm9yIChpID0gMDsgYWRkciA8IGFyZ3MtPmVuZDsgaSsrKSB7
+Cj4gIAkJYXJncy0+ZHN0W2ldID0gbm91dmVhdV9kbWVtX21pZ3JhdGVfY29weV9vbmUoZHJtLCBh
+cmdzLT52bWEsCj4gLQkJCQlhZGRyLCBhcmdzLT5zcmNbaV0sICZkbWFfYWRkcnNbbnJfZG1hXSk7
+Cj4gKwkJCQlhcmdzLT5zcmNbaV0sICZkbWFfYWRkcnNbbnJfZG1hXSwgJnBmbnNbaV0pOwoKTml0
+OiBJIGZpbmQgdGhlICZwZm5zW2ldIHdheSB0byBwYXNzIHRoZSBhcmd1bWVudCBhIGxpdHRsZSB3
+ZWlyZCB0byByZWFkLgpXaHkgbm90ICJwZm5zICsgaSI/Cgo+ICt1NjQgKgo+ICtub3V2ZWF1X3Bm
+bnNfYWxsb2ModW5zaWduZWQgbG9uZyBucGFnZXMpCj4gK3sKPiArCXN0cnVjdCBub3V2ZWF1X3Bm
+bm1hcF9hcmdzICphcmdzOwo+ICsKPiArCWFyZ3MgPSBremFsbG9jKHNpemVvZigqYXJncykgKyBu
+cGFnZXMgKiBzaXplb2YoYXJncy0+cC5waHlzWzBdKSwKCkNhbiB3ZSB1c2Ugc3RydWN0X3NpemUg
+aGVyZT8KCj4gKwlpbnQgcmV0Owo+ICsKPiArCWlmICghc3ZtKQo+ICsJCXJldHVybjsKPiArCj4g
+KwltdXRleF9sb2NrKCZzdm0tPm11dGV4KTsKPiArCXN2bW0gPSBub3V2ZWF1X2ZpbmRfc3ZtbShz
+dm0sIG1tKTsKPiArCWlmICghc3ZtbSkgewo+ICsJCW11dGV4X3VubG9jaygmc3ZtLT5tdXRleCk7
+Cj4gKwkJcmV0dXJuOwo+ICsJfQo+ICsJbXV0ZXhfdW5sb2NrKCZzdm0tPm11dGV4KTsKCkdpdmVu
+IHRoYXQgbm91dmVhdV9maW5kX3N2bW0gZG9lc24ndCB0YWtlIGFueSBraW5kIG9mIHJlZmVyZW5j
+ZSwgd2hhdApndXJhbnRlZXMgc3ZtbSBkb2Vzbid0IGdvIGF3YXkgYWZ0ZXIgZHJvcHBpbmcgdGhl
+IGxvY2s/Cgo+IEBAIC00NCw1ICs0OSwxOSBAQCBzdGF0aWMgaW5saW5lIGludCBub3V2ZWF1X3N2
+bW1fYmluZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2aWNlLCB2b2lkICpwLAo+ICB7Cj4gIAlyZXR1
+cm4gLUVOT1NZUzsKPiAgfQo+ICsKPiArdTY0ICpub3V2ZWF1X3BmbnNfYWxsb2ModW5zaWduZWQg
+bG9uZyBucGFnZXMpCj4gK3sKPiArCXJldHVybiBOVUxMOwo+ICt9Cj4gKwo+ICt2b2lkIG5vdXZl
+YXVfcGZuc19mcmVlKHU2NCAqcGZucykKPiArewo+ICt9Cj4gKwo+ICt2b2lkIG5vdXZlYXVfcGZu
+c19tYXAoc3RydWN0IG5vdXZlYXVfZHJtICpkcm0sIHN0cnVjdCBtbV9zdHJ1Y3QgKm1tLAo+ICsJ
+CSAgICAgIHVuc2lnbmVkIGxvbmcgYWRkciwgdTY0ICpwZm5zLCB1bnNpZ25lZCBsb25nIG5wYWdl
+cykKPiArewo+ICt9Cj4gICNlbmRpZiAvKiBJU19FTkFCTEVEKENPTkZJR19EUk1fTk9VVkVBVV9T
+Vk0pICovCgpub3V2ZWF1X2RtZW0uYyBhbmQgbm91dmVhdV9zdm0uYyBhcmUgYm90aCBidWlsdCBj
+b25kaXRpb25hbCBvbgpDT05GSUdfRFJNX05PVVZFQVVfU1ZNLCBzbyB0aGVyZSBpcyBubyBuZWVk
+IGZvciBzdHVicyBoZXJlLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
