@@ -1,7 +1,7 @@
 From: Christoph Hellwig <hch@lst.de>
-Subject: [PATCH 4/9] nouveau: factor out dmem fence completion
-Date: Thu,  8 Aug 2019 18:33:41 +0300
-Message-ID: <20190808153346.9061-5-hch@lst.de>
+Subject: [PATCH 5/9] nouveau: remove a few function stubs
+Date: Thu,  8 Aug 2019 18:33:42 +0300
+Message-ID: <20190808153346.9061-6-hch@lst.de>
 References: <20190808153346.9061-1-hch@lst.de>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -12,71 +12,35 @@ To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>, Jason Gunthorpe 
 Cc: Ralph Campbell <rcampbell@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-Factor out the end of fencing logic from the two migration routines.
+nouveau_dmem_migrate_vma and nouveau_dmem_convert_pfn are only called
+when CONFIG_DRM_NOUVEAU_SVM is enabled, so there is no need to provide
+!CONFIG_DRM_NOUVEAU_SVM stubs for them.
 
 Signed-off-by: Christoph Hellwig <hch@lst.de>
-Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_dmem.c | 33 ++++++++++++--------------
- 1 file changed, 15 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_dmem.h | 11 -----------
+ 1 file changed, 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-index d469bc334438..21052a4aaf69 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -133,6 +133,19 @@ static void nouveau_dmem_page_free(struct page *page)
- 	spin_unlock(&chunk->lock);
- }
- 
-+static void nouveau_dmem_fence_done(struct nouveau_fence **fence)
-+{
-+	if (fence) {
-+		nouveau_fence_wait(*fence, true, false);
-+		nouveau_fence_unref(fence);
-+	} else {
-+		/*
-+		 * FIXME wait for channel to be IDLE before calling finalizing
-+		 * the hmem object.
-+		 */
-+	}
-+}
-+
- static void
- nouveau_dmem_fault_alloc_and_copy(struct vm_area_struct *vma,
- 				  const unsigned long *src_pfns,
-@@ -236,15 +249,7 @@ nouveau_dmem_fault_finalize_and_map(struct nouveau_dmem_fault *fault)
- {
- 	struct nouveau_drm *drm = fault->drm;
- 
--	if (fault->fence) {
--		nouveau_fence_wait(fault->fence, true, false);
--		nouveau_fence_unref(&fault->fence);
--	} else {
--		/*
--		 * FIXME wait for channel to be IDLE before calling finalizing
--		 * the hmem object below (nouveau_migrate_hmem_fini()).
--		 */
--	}
-+	nouveau_dmem_fence_done(&fault->fence);
- 
- 	while (fault->npages--) {
- 		dma_unmap_page(drm->dev->dev, fault->dma[fault->npages],
-@@ -748,15 +753,7 @@ nouveau_dmem_migrate_finalize_and_map(struct nouveau_migrate *migrate)
- {
- 	struct nouveau_drm *drm = migrate->drm;
- 
--	if (migrate->fence) {
--		nouveau_fence_wait(migrate->fence, true, false);
--		nouveau_fence_unref(&migrate->fence);
--	} else {
--		/*
--		 * FIXME wait for channel to be IDLE before finalizing
--		 * the hmem object below (nouveau_migrate_hmem_fini()) ?
--		 */
--	}
-+	nouveau_dmem_fence_done(&migrate->fence);
- 
- 	while (migrate->dma_nr--) {
- 		dma_unmap_page(drm->dev->dev, migrate->dma[migrate->dma_nr],
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.h b/drivers/gpu/drm/nouveau/nouveau_dmem.h
+index 9d97d756fb7d..92394be5d649 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dmem.h
++++ b/drivers/gpu/drm/nouveau/nouveau_dmem.h
+@@ -45,16 +45,5 @@ static inline void nouveau_dmem_init(struct nouveau_drm *drm) {}
+ static inline void nouveau_dmem_fini(struct nouveau_drm *drm) {}
+ static inline void nouveau_dmem_suspend(struct nouveau_drm *drm) {}
+ static inline void nouveau_dmem_resume(struct nouveau_drm *drm) {}
+-
+-static inline int nouveau_dmem_migrate_vma(struct nouveau_drm *drm,
+-					   struct vm_area_struct *vma,
+-					   unsigned long start,
+-					   unsigned long end)
+-{
+-	return 0;
+-}
+-
+-static inline void nouveau_dmem_convert_pfn(struct nouveau_drm *drm,
+-					    struct hmm_range *range) {}
+ #endif /* IS_ENABLED(CONFIG_DRM_NOUVEAU_SVM) */
+ #endif
 -- 
 2.20.1
