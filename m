@@ -1,60 +1,109 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: Re: [PATCH 04/15] mm: remove the pgmap field from struct hmm_vma_walk
-Date: Thu, 8 Aug 2019 08:59:33 +0200
-Message-ID: <20190808065933.GA29382@lst.de>
-References: <20190806160554.14046-1-hch@lst.de>
- <20190806160554.14046-5-hch@lst.de> <20190807174548.GJ1571@mellanox.com>
- <CAPcyv4hPCuHBLhSJgZZEh0CbuuJNPLFDA3f-79FX5uVOO0yubA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111218] Segmentation fault in
+ nv50_ir::NVC0LegalizeSSA::handleDIV when dividing result of textureSize
+Date: Thu, 08 Aug 2019 09:19:47 +0000
+Message-ID: <bug-111218-8800-mDggFyO0HT@http.bugs.freedesktop.org/>
+References: <bug-111218-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CAPcyv4hPCuHBLhSJgZZEh0CbuuJNPLFDA3f-79FX5uVOO0yubA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dan Williams <dan.j.williams-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Felix Kuehling <Felix.Kuehling-5C7GfCeVMHo@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org" <linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1118130507=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-111218-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBBdWcgMDcsIDIwMTkgYXQgMTE6NDc6MjJBTSAtMDcwMCwgRGFuIFdpbGxpYW1zIHdy
-b3RlOgo+ID4gVW5yZWxhdGVkIHRvIHRoaXMgcGF0Y2gsIGJ1dCB3aGF0IGlzIHRoZSBwb2ludCBv
-ZiBnZXR0aW5nIGNoZWNraW5nCj4gPiB0aGF0IHRoZSBwZ21hcCBleGlzdHMgZm9yIHRoZSBwYWdl
-IGFuZCB0aGVuIGltbWVkaWF0ZWx5IHJlbGVhc2luZyBpdD8KPiA+IFRoaXMgY29kZSBoYXMgdGhp
-cyBwYXR0ZXJuIGluIHNldmVyYWwgcGxhY2VzLgo+ID4KPiA+IEl0IGZlZWxzIHJhY3kKPiAKPiBB
-Z3JlZSwgbm90IHN1cmUgd2hhdCB0aGUgaW50ZW50IGlzIGhlcmUuIFRoZSBvbmx5IG90aGVyIHJl
-YXNvbiBjYWxsCj4gZ2V0X2Rldl9wYWdlbWFwKCkgaXMgdG8ganVzdCBjaGVjayBpbiBnZW5lcmFs
-IGlmIHRoZSBwZm4gaXMgaW5kZWVkCj4gb3duZWQgYnkgc29tZSBaT05FX0RFVklDRSBpbnN0YW5j
-ZSwgYnV0IGlmIHRoZSBpbnRlbnQgaXMgdG8gbWFrZSBzdXJlCj4gdGhlIGRldmljZSBpcyBzdGls
-bCBhdHRhY2hlZC9lbmFibGVkIHRoYXQgY2hlY2sgaXMgaW52YWxpZGF0ZWQgYXQKPiBwdXRfZGV2
-X3BhZ2VtYXAoKS4KPiAKPiBJZiBpdCdzIHRoZSBmb3JtZXIgY2FzZSwgdmFsaWRhdGluZyBaT05F
-X0RFVklDRSBwZm5zLCBJIGltYWdpbmUgd2UgY2FuCj4gZG8gc29tZXRoaW5nIGNoZWFwZXIgd2l0
-aCBhIGhlbHBlciB0aGF0IGlzIG9uIHRoZSBvcmRlciBvZiB0aGUgc2FtZQo+IGNvc3QgYXMgcGZu
-X3ZhbGlkKCkuIEkuZS4gcmVwbGFjZSBQVEVfREVWTUFQIHdpdGggYSBtZW1fc2VjdGlvbiBmbGFn
-Cj4gb3Igc29tZXRoaW5nIHNpbWlsYXIuCgpUaGUgaG1tIGxpdGVyYWxseSBuZXZlciBkZXJlZmVy
-ZW5jZXMgdGhlIHBnbWFwLCBzbyB2YWxpZGl0eSBjaGVja2luZyBpcwp0aGUgb25seSBleHBsYW5h
-dGlvbiBmb3IgaXQuCgo+ID4gKyAgICAgICAgICAgICAgIC8qCj4gPiArICAgICAgICAgICAgICAg
-ICogV2UgZG8gcHV0X2Rldl9wYWdlbWFwKCkgaGVyZSBzbyB0aGF0IHdlIGNhbiBsZXZlcmFnZQo+
-ID4gKyAgICAgICAgICAgICAgICAqIGdldF9kZXZfcGFnZW1hcCgpIG9wdGltaXphdGlvbiB3aGlj
-aCB3aWxsIG5vdCByZS10YWtlIGEKPiA+ICsgICAgICAgICAgICAgICAgKiByZWZlcmVuY2Ugb24g
-YSBwZ21hcCBpZiB3ZSBhbHJlYWR5IGhhdmUgb25lLgo+ID4gKyAgICAgICAgICAgICAgICAqLwo+
-ID4gKyAgICAgICAgICAgICAgIGlmIChobW1fdm1hX3dhbGstPnBnbWFwKQo+ID4gKyAgICAgICAg
-ICAgICAgICAgICAgICAgcHV0X2Rldl9wYWdlbWFwKGhtbV92bWFfd2Fsay0+cGdtYXApOwo+ID4g
-Kwo+IAo+IFNlZW1zIG9rLCBidXQgb25seSBpZiB0aGUgY2FsbGVyIGlzIGd1YXJhbnRlZWluZyB0
-aGF0IHRoZSByYW5nZSBkb2VzCj4gbm90IHNwYW4gb3V0c2lkZSBvZiBhIHNpbmdsZSBwYWdlbWFw
-IGluc3RhbmNlLiBJZiB0aGF0IGd1YXJhbnRlZSBpcwo+IG1ldCB3aHkgbm90IGp1c3QgaGF2ZSB0
-aGUgY2FsbGVyIHBhc3MgaW4gYSBwaW5uZWQgcGFnZW1hcD8gSWYgdGhhdAo+IGd1YXJhbnRlZSBp
-cyBub3QgbWV0LCB0aGVuIEkgdGhpbmsgd2UncmUgYmFjayB0byB5b3VyIHJhY2UgY29uY2Vybi4K
-Ckl0IGl0ZXJhdGVzIG92ZXIgbXVsdGlwbGUgcHRlcyBpbiBhIG5vbi1odWdlIHBtZC4gIElzIHRo
-ZXJlIGFueSBraW5kIG9mCmxpbWl0YXRpb25zIG9uIGRpZmZlcmVudCBwZ21hcCBpbnN0YW5jZXMg
-aW5zaWRlIGEgcG1kPyAgSSBjYW4ndCB0aGluawpvZiBvbmUsIHNvIHRoaXMgbWlnaHQgYWN0dWFs
-bHkgYmUgYSBidWcuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCmFtZC1nZnggbWFpbGluZyBsaXN0CmFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vYW1kLWdmeA==
+
+--===============1118130507==
+Content-Type: multipart/alternative; boundary="15652559860.4DBc8b1b.32553"
+Content-Transfer-Encoding: 7bit
+
+
+--15652559860.4DBc8b1b.32553
+Date: Thu, 8 Aug 2019 09:19:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111218
+
+--- Comment #9 from Timo Aaltonen <tjaalton-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org> ---
+for the record, we already set '-Db_ndebug=3Dtrue' which was supposed to di=
+sable
+debug builds (and asserts) with meson
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
+
+--15652559860.4DBc8b1b.32553
+Date: Thu, 8 Aug 2019 09:19:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Segmentation fault in nv50_ir::NVC0Legaliz=
+eSSA::handleDIV when dividing result of textureSize"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111218#c9">Commen=
+t # 9</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - Segmentation fault in nv50_ir::NVC0Legaliz=
+eSSA::handleDIV when dividing result of textureSize"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111218">bug 11121=
+8</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tjaalton&#64;ubuntu.com" title=3D"Timo Aaltonen &lt;tjaalton&#64;ubuntu.com=
+&gt;"> <span class=3D"fn">Timo Aaltonen</span></a>
+</span></b>
+        <pre>for the record, we already set '-Db_ndebug=3Dtrue' which was s=
+upposed to disable
+debug builds (and asserts) with meson</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15652559860.4DBc8b1b.32553--
+
+--===============1118130507==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1118130507==--
