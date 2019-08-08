@@ -1,93 +1,93 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH] drm/nouveau: Only recalculate PBN/VCPI on mode/connector changes
-Date: Thu,  8 Aug 2019 14:04:37 -0400
-Message-ID: <20190808180439.19118-1-lyude@redhat.com>
+From: William Lewis <minutemaidpark-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Only recalculate PBN/VCPI on
+ mode/connector changes
+Date: Thu, 8 Aug 2019 18:17:28 +0000
+Message-ID: <DM6PR15MB231633F4AB3882F5B310518EC8D70@DM6PR15MB2316.namprd15.prod.outlook.com>
+References: <20190808180439.19118-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Return-path: <stable-owner@vger.kernel.org>
-Sender: stable-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: Bohdan Milar <bmilar@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, David Airlie <airlied@redhat.com>, Jerry Zuo <Jerry.Zuo@amd.com>, Harry Wentland <harry.wentland@amd.com>, Juston Li <juston.li@intel.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Karol Herbst <karolherbst@gmail.com>, Ilia Mirkin <imirkin@alum.mit.edu>, stable@vger.kernel.org, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190808180439.19118-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Language: en-US
+Content-ID: <4E5A932D0909574A90D6F16350E16FA6-JGF9Izt3QrScE4WynfumptQqCkab/8FMAL8bYrjMMd8@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-I -thought- I had fixed this entirely, but it looks like that I didn't
-test this thoroughly enough as we apparently still make one big mistake
-with nv50_msto_atomic_check() - we don't handle the following scenario:
-
-* CRTC #1 has n VCPI allocated to it, is attached to connector DP-4
-  which is attached to encoder #1. enabled=y active=n
-* CRTC #1 is changed from DP-4 to DP-5, causing:
-  * DP-4 crtc=#1→NULL (VCPI n→0)
-  * DP-5 crtc=NULL→#1
-  * CRTC #1 steals encoder #1 back from DP-4 and gives it to DP-5
-  * CRTC #1 maintains the same mode as before, just with a different
-    connector
-* mode_changed=n connectors_changed=y
-  (we _SHOULD_ do VCPI 0→n here, but don't)
-
-Once the above scenario is repeated once, we'll attempt freeing VCPI
-from the connector that we didn't allocate due to the connectors
-changing, but the mode staying the same. Sigh.
-
-Since nv50_msto_atomic_check() has broken a few times now, let's rethink
-things a bit to be more careful: limit both VCPI/PBN allocations to
-mode_changed || connectors_changed, since neither VCPI or PBN should
-ever need to change outside of routing and mode changes.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Reported-by: Bohdan Milar <bmilar@redhat.com>
-Tested-by: Bohdan Milar <bmilar@redhat.com>
-Fixes: 232c9eec417a ("drm/nouveau: Use atomic VCPI helpers for MST")
-References: 412e85b60531 ("drm/nouveau: Only release VCPI slots on mode changes")
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: David Airlie <airlied@redhat.com>
-Cc: Jerry Zuo <Jerry.Zuo@amd.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Juston Li <juston.li@intel.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Karol Herbst <karolherbst@gmail.com>
-Cc: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: <stable@vger.kernel.org> # v5.1+
----
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 22 +++++++++++++---------
- 1 file changed, 13 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 126703816794..5d23ab8e4917 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -771,16 +771,20 @@ nv50_msto_atomic_check(struct drm_encoder *encoder,
- 	struct nv50_head_atom *asyh = nv50_head_atom(crtc_state);
- 	int slots;
- 
--	/* When restoring duplicated states, we need to make sure that the
--	 * bw remains the same and avoid recalculating it, as the connector's
--	 * bpc may have changed after the state was duplicated
--	 */
--	if (!state->duplicated)
--		asyh->dp.pbn =
--			drm_dp_calc_pbn_mode(crtc_state->adjusted_mode.clock,
--					     connector->display_info.bpc * 3);
-+	if (crtc_state->mode_changed || crtc_state->connectors_changed) {
-+		/*
-+		 * When restoring duplicated states, we need to make sure that
-+		 * the bw remains the same and avoid recalculating it, as the
-+		 * connector's bpc may have changed after the state was
-+		 * duplicated
-+		 */
-+		if (!state->duplicated) {
-+			const int bpp = connector->display_info.bpc * 3;
-+			const int clock = crtc_state->adjusted_mode.clock;
-+
-+			asyh->dp.pbn = drm_dp_calc_pbn_mode(bpp, clock);
-+		}
- 
--	if (crtc_state->mode_changed) {
- 		slots = drm_dp_atomic_find_vcpi_slots(state, &mstm->mgr,
- 						      mstc->port,
- 						      asyh->dp.pbn);
--- 
-2.21.0
+DQpPbiA4LzgvMTkgMTowNCBQTSwgTHl1ZGUgUGF1bCB3cm90ZToNCj4gSSAtdGhvdWdodC0gSSBo
+YWQgZml4ZWQgdGhpcyBlbnRpcmVseSwgYnV0IGl0IGxvb2tzIGxpa2UgdGhhdCBJIGRpZG4ndA0K
+PiB0ZXN0IHRoaXMgdGhvcm91Z2hseSBlbm91Z2ggYXMgd2UgYXBwYXJlbnRseSBzdGlsbCBtYWtl
+IG9uZSBiaWcgbWlzdGFrZQ0KPiB3aXRoIG52NTBfbXN0b19hdG9taWNfY2hlY2soKSAtIHdlIGRv
+bid0IGhhbmRsZSB0aGUgZm9sbG93aW5nIHNjZW5hcmlvOg0KPg0KPiAqIENSVEMgIzEgaGFzIG4g
+VkNQSSBhbGxvY2F0ZWQgdG8gaXQsIGlzIGF0dGFjaGVkIHRvIGNvbm5lY3RvciBEUC00DQo+ICAg
+IHdoaWNoIGlzIGF0dGFjaGVkIHRvIGVuY29kZXIgIzEuIGVuYWJsZWQ9eSBhY3RpdmU9bg0KPiAq
+IENSVEMgIzEgaXMgY2hhbmdlZCBmcm9tIERQLTQgdG8gRFAtNSwgY2F1c2luZzoNCj4gICAgKiBE
+UC00IGNydGM9IzHihpJOVUxMIChWQ1BJIG7ihpIwKQ0KPiAgICAqIERQLTUgY3J0Yz1OVUxM4oaS
+IzENCj4gICAgKiBDUlRDICMxIHN0ZWFscyBlbmNvZGVyICMxIGJhY2sgZnJvbSBEUC00IGFuZCBn
+aXZlcyBpdCB0byBEUC01DQo+ICAgICogQ1JUQyAjMSBtYWludGFpbnMgdGhlIHNhbWUgbW9kZSBh
+cyBiZWZvcmUsIGp1c3Qgd2l0aCBhIGRpZmZlcmVudA0KPiAgICAgIGNvbm5lY3Rvcg0KPiAqIG1v
+ZGVfY2hhbmdlZD1uIGNvbm5lY3RvcnNfY2hhbmdlZD15DQo+ICAgICh3ZSBfU0hPVUxEXyBkbyBW
+Q1BJIDDihpJuIGhlcmUsIGJ1dCBkb24ndCkNCj4NCj4gT25jZSB0aGUgYWJvdmUgc2NlbmFyaW8g
+aXMgcmVwZWF0ZWQgb25jZSwgd2UnbGwgYXR0ZW1wdCBmcmVlaW5nIFZDUEkNCj4gZnJvbSB0aGUg
+Y29ubmVjdG9yIHRoYXQgd2UgZGlkbid0IGFsbG9jYXRlIGR1ZSB0byB0aGUgY29ubmVjdG9ycw0K
+PiBjaGFuZ2luZywgYnV0IHRoZSBtb2RlIHN0YXlpbmcgdGhlIHNhbWUuIFNpZ2guDQo+DQo+IFNp
+bmNlIG52NTBfbXN0b19hdG9taWNfY2hlY2soKSBoYXMgYnJva2VuIGEgZmV3IHRpbWVzIG5vdywg
+bGV0J3MgcmV0aGluaw0KPiB0aGluZ3MgYSBiaXQgdG8gYmUgbW9yZSBjYXJlZnVsOiBsaW1pdCBi
+b3RoIFZDUEkvUEJOIGFsbG9jYXRpb25zIHRvDQo+IG1vZGVfY2hhbmdlZCB8fCBjb25uZWN0b3Jz
+X2NoYW5nZWQsIHNpbmNlIG5laXRoZXIgVkNQSSBvciBQQk4gc2hvdWxkDQo+IGV2ZXIgbmVlZCB0
+byBjaGFuZ2Ugb3V0c2lkZSBvZiByb3V0aW5nIGFuZCBtb2RlIGNoYW5nZXMuDQo+DQo+IFNpZ25l
+ZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+DQo+IFJlcG9ydGVkLWJ5OiBC
+b2hkYW4gTWlsYXIgPGJtaWxhckByZWRoYXQuY29tPg0KPiBUZXN0ZWQtYnk6IEJvaGRhbiBNaWxh
+ciA8Ym1pbGFyQHJlZGhhdC5jb20+DQo+IEZpeGVzOiAyMzJjOWVlYzQxN2EgKCJkcm0vbm91dmVh
+dTogVXNlIGF0b21pYyBWQ1BJIGhlbHBlcnMgZm9yIE1TVCIpDQo+IFJlZmVyZW5jZXM6IDQxMmU4
+NWI2MDUzMSAoImRybS9ub3V2ZWF1OiBPbmx5IHJlbGVhc2UgVkNQSSBzbG90cyBvbiBtb2RlIGNo
+YW5nZXMiKQ0KPiBDYzogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4NCj4gQ2M6IEJlbiBT
+a2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4NCj4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52
+ZXR0ZXJAZmZ3bGwuY2g+DQo+IENjOiBEYXZpZCBBaXJsaWUgPGFpcmxpZWRAcmVkaGF0LmNvbT4N
+Cj4gQ2M6IEplcnJ5IFp1byA8SmVycnkuWnVvQGFtZC5jb20+DQo+IENjOiBIYXJyeSBXZW50bGFu
+ZCA8aGFycnkud2VudGxhbmRAYW1kLmNvbT4NCj4gQ2M6IEp1c3RvbiBMaSA8anVzdG9uLmxpQGlu
+dGVsLmNvbT4NCj4gQ2M6IExhdXJlbnQgUGluY2hhcnQgPGxhdXJlbnQucGluY2hhcnRAaWRlYXNv
+bmJvYXJkLmNvbT4NCj4gQ2M6IEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPg0K
+PiBDYzogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1Pg0KPiBDYzogPHN0YWJsZUB2
+Z2VyLmtlcm5lbC5vcmc+ICMgdjUuMSsNCj4gLS0tDQo+ICAgZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvZGlzcG52NTAvZGlzcC5jIHwgMjIgKysrKysrKysrKysrKy0tLS0tLS0tLQ0KPiAgIDEgZmls
+ZSBjaGFuZ2VkLCAxMyBpbnNlcnRpb25zKCspLCA5IGRlbGV0aW9ucygtKQ0KPg0KPiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jIGIvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jDQo+IGluZGV4IDEyNjcwMzgxNjc5NC4uNWQy
+M2FiOGU0OTE3IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1
+MC9kaXNwLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5j
+DQo+IEBAIC03NzEsMTYgKzc3MSwyMCBAQCBudjUwX21zdG9fYXRvbWljX2NoZWNrKHN0cnVjdCBk
+cm1fZW5jb2RlciAqZW5jb2RlciwNCj4gICAJc3RydWN0IG52NTBfaGVhZF9hdG9tICphc3loID0g
+bnY1MF9oZWFkX2F0b20oY3J0Y19zdGF0ZSk7DQo+ICAgCWludCBzbG90czsNCj4gICANCj4gLQkv
+KiBXaGVuIHJlc3RvcmluZyBkdXBsaWNhdGVkIHN0YXRlcywgd2UgbmVlZCB0byBtYWtlIHN1cmUg
+dGhhdCB0aGUNCj4gLQkgKiBidyByZW1haW5zIHRoZSBzYW1lIGFuZCBhdm9pZCByZWNhbGN1bGF0
+aW5nIGl0LCBhcyB0aGUgY29ubmVjdG9yJ3MNCj4gLQkgKiBicGMgbWF5IGhhdmUgY2hhbmdlZCBh
+ZnRlciB0aGUgc3RhdGUgd2FzIGR1cGxpY2F0ZWQNCj4gLQkgKi8NCj4gLQlpZiAoIXN0YXRlLT5k
+dXBsaWNhdGVkKQ0KPiAtCQlhc3loLT5kcC5wYm4gPQ0KPiAtCQkJZHJtX2RwX2NhbGNfcGJuX21v
+ZGUoY3J0Y19zdGF0ZS0+YWRqdXN0ZWRfbW9kZS5jbG9jaywNCj4gLQkJCQkJICAgICBjb25uZWN0
+b3ItPmRpc3BsYXlfaW5mby5icGMgKiAzKTsNCmRybV9kcF9jYWxjX3Bibl9tb2RlKGNsb2NrLCBi
+cHApDQo+ICsJaWYgKGNydGNfc3RhdGUtPm1vZGVfY2hhbmdlZCB8fCBjcnRjX3N0YXRlLT5jb25u
+ZWN0b3JzX2NoYW5nZWQpIHsNCj4gKwkJLyoNCj4gKwkJICogV2hlbiByZXN0b3JpbmcgZHVwbGlj
+YXRlZCBzdGF0ZXMsIHdlIG5lZWQgdG8gbWFrZSBzdXJlIHRoYXQNCj4gKwkJICogdGhlIGJ3IHJl
+bWFpbnMgdGhlIHNhbWUgYW5kIGF2b2lkIHJlY2FsY3VsYXRpbmcgaXQsIGFzIHRoZQ0KPiArCQkg
+KiBjb25uZWN0b3IncyBicGMgbWF5IGhhdmUgY2hhbmdlZCBhZnRlciB0aGUgc3RhdGUgd2FzDQo+
+ICsJCSAqIGR1cGxpY2F0ZWQNCj4gKwkJICovDQo+ICsJCWlmICghc3RhdGUtPmR1cGxpY2F0ZWQp
+IHsNCj4gKwkJCWNvbnN0IGludCBicHAgPSBjb25uZWN0b3ItPmRpc3BsYXlfaW5mby5icGMgKiAz
+Ow0KPiArCQkJY29uc3QgaW50IGNsb2NrID0gY3J0Y19zdGF0ZS0+YWRqdXN0ZWRfbW9kZS5jbG9j
+azsNCj4gKw0KPiArCQkJYXN5aC0+ZHAucGJuID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoYnBwLCBj
+bG9jayk7DQpkcm1fZHBfY2FsY19wYm5fbW9kZShicHAsIGNsb2NrKQ0KPiArCQl9DQo+ICAgDQo+
+IC0JaWYgKGNydGNfc3RhdGUtPm1vZGVfY2hhbmdlZCkgew0KPiAgIAkJc2xvdHMgPSBkcm1fZHBf
+YXRvbWljX2ZpbmRfdmNwaV9zbG90cyhzdGF0ZSwgJm1zdG0tPm1nciwNCj4gICAJCQkJCQkgICAg
+ICBtc3RjLT5wb3J0LA0KPiAgIAkJCQkJCSAgICAgIGFzeWgtPmRwLnBibik7DQpXaGljaCBpcyBj
+b3JyZWN0Pw0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
