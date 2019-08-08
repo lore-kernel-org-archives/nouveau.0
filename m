@@ -1,68 +1,93 @@
-From: Christoph Hellwig <hch@lst.de>
-Subject: [PATCH 9/9] mm: remove the unused MIGRATE_PFN_DEVICE flag
-Date: Thu,  8 Aug 2019 18:33:46 +0300
-Message-ID: <20190808153346.9061-10-hch@lst.de>
-References: <20190808153346.9061-1-hch@lst.de>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH] drm/nouveau: Only recalculate PBN/VCPI on mode/connector changes
+Date: Thu,  8 Aug 2019 14:04:37 -0400
+Message-ID: <20190808180439.19118-1-lyude@redhat.com>
 Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190808153346.9061-1-hch@lst.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: Ralph Campbell <rcampbell@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Return-path: <stable-owner@vger.kernel.org>
+Sender: stable-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: Bohdan Milar <bmilar@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, David Airlie <airlied@redhat.com>, Jerry Zuo <Jerry.Zuo@amd.com>, Harry Wentland <harry.wentland@amd.com>, Juston Li <juston.li@intel.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Karol Herbst <karolherbst@gmail.com>, Ilia Mirkin <imirkin@alum.mit.edu>, stable@vger.kernel.org, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-No one ever checks this flag, and we could easily get that information
-from the page if needed.
+I -thought- I had fixed this entirely, but it looks like that I didn't
+test this thoroughly enough as we apparently still make one big mistake
+with nv50_msto_atomic_check() - we don't handle the following scenario:
 
-Signed-off-by: Christoph Hellwig <hch@lst.de>
-Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
+* CRTC #1 has n VCPI allocated to it, is attached to connector DP-4
+  which is attached to encoder #1. enabled=y active=n
+* CRTC #1 is changed from DP-4 to DP-5, causing:
+  * DP-4 crtc=#1→NULL (VCPI n→0)
+  * DP-5 crtc=NULL→#1
+  * CRTC #1 steals encoder #1 back from DP-4 and gives it to DP-5
+  * CRTC #1 maintains the same mode as before, just with a different
+    connector
+* mode_changed=n connectors_changed=y
+  (we _SHOULD_ do VCPI 0→n here, but don't)
+
+Once the above scenario is repeated once, we'll attempt freeing VCPI
+from the connector that we didn't allocate due to the connectors
+changing, but the mode staying the same. Sigh.
+
+Since nv50_msto_atomic_check() has broken a few times now, let's rethink
+things a bit to be more careful: limit both VCPI/PBN allocations to
+mode_changed || connectors_changed, since neither VCPI or PBN should
+ever need to change outside of routing and mode changes.
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Reported-by: Bohdan Milar <bmilar@redhat.com>
+Tested-by: Bohdan Milar <bmilar@redhat.com>
+Fixes: 232c9eec417a ("drm/nouveau: Use atomic VCPI helpers for MST")
+References: 412e85b60531 ("drm/nouveau: Only release VCPI slots on mode changes")
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: David Airlie <airlied@redhat.com>
+Cc: Jerry Zuo <Jerry.Zuo@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Juston Li <juston.li@intel.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Karol Herbst <karolherbst@gmail.com>
+Cc: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: <stable@vger.kernel.org> # v5.1+
 ---
- drivers/gpu/drm/nouveau/nouveau_dmem.c | 3 +--
- include/linux/migrate.h                | 1 -
- mm/migrate.c                           | 4 ++--
- 3 files changed, 3 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 22 +++++++++++++---------
+ 1 file changed, 13 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-index e20432a58ddb..eca4160eb27b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -582,8 +582,7 @@ static unsigned long nouveau_dmem_migrate_copy_one(struct nouveau_drm *drm,
- 			*dma_addr))
- 		goto out_dma_unmap;
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index 126703816794..5d23ab8e4917 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -771,16 +771,20 @@ nv50_msto_atomic_check(struct drm_encoder *encoder,
+ 	struct nv50_head_atom *asyh = nv50_head_atom(crtc_state);
+ 	int slots;
  
--	return migrate_pfn(page_to_pfn(dpage)) |
--		MIGRATE_PFN_LOCKED | MIGRATE_PFN_DEVICE;
-+	return migrate_pfn(page_to_pfn(dpage)) | MIGRATE_PFN_LOCKED;
+-	/* When restoring duplicated states, we need to make sure that the
+-	 * bw remains the same and avoid recalculating it, as the connector's
+-	 * bpc may have changed after the state was duplicated
+-	 */
+-	if (!state->duplicated)
+-		asyh->dp.pbn =
+-			drm_dp_calc_pbn_mode(crtc_state->adjusted_mode.clock,
+-					     connector->display_info.bpc * 3);
++	if (crtc_state->mode_changed || crtc_state->connectors_changed) {
++		/*
++		 * When restoring duplicated states, we need to make sure that
++		 * the bw remains the same and avoid recalculating it, as the
++		 * connector's bpc may have changed after the state was
++		 * duplicated
++		 */
++		if (!state->duplicated) {
++			const int bpp = connector->display_info.bpc * 3;
++			const int clock = crtc_state->adjusted_mode.clock;
++
++			asyh->dp.pbn = drm_dp_calc_pbn_mode(bpp, clock);
++		}
  
- out_dma_unmap:
- 	dma_unmap_page(dev, *dma_addr, PAGE_SIZE, DMA_BIDIRECTIONAL);
-diff --git a/include/linux/migrate.h b/include/linux/migrate.h
-index 1e67dcfd318f..72120061b7d4 100644
---- a/include/linux/migrate.h
-+++ b/include/linux/migrate.h
-@@ -166,7 +166,6 @@ static inline int migrate_misplaced_transhuge_page(struct mm_struct *mm,
- #define MIGRATE_PFN_MIGRATE	(1UL << 1)
- #define MIGRATE_PFN_LOCKED	(1UL << 2)
- #define MIGRATE_PFN_WRITE	(1UL << 3)
--#define MIGRATE_PFN_DEVICE	(1UL << 4)
- #define MIGRATE_PFN_SHIFT	6
- 
- static inline struct page *migrate_pfn_to_page(unsigned long mpfn)
-diff --git a/mm/migrate.c b/mm/migrate.c
-index e2565374d330..33e063c28c1b 100644
---- a/mm/migrate.c
-+++ b/mm/migrate.c
-@@ -2237,8 +2237,8 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
- 				goto next;
- 
- 			page = device_private_entry_to_page(entry);
--			mpfn = migrate_pfn(page_to_pfn(page))|
--				MIGRATE_PFN_DEVICE | MIGRATE_PFN_MIGRATE;
-+			mpfn = migrate_pfn(page_to_pfn(page)) |
-+					MIGRATE_PFN_MIGRATE;
- 			if (is_write_device_private_entry(entry))
- 				mpfn |= MIGRATE_PFN_WRITE;
- 		} else {
+-	if (crtc_state->mode_changed) {
+ 		slots = drm_dp_atomic_find_vcpi_slots(state, &mstm->mgr,
+ 						      mstc->port,
+ 						      asyh->dp.pbn);
 -- 
-2.20.1
+2.21.0
