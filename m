@@ -1,104 +1,97 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Only recalculate PBN/VCPI on
- mode/connector changes
-Date: Thu, 08 Aug 2019 20:46:15 -0400
-Message-ID: <16af26715301362b2ac2ffb25f323547929870fd.camel@redhat.com>
-References: <20190808180439.19118-1-lyude@redhat.com>
- <DM6PR15MB231633F4AB3882F5B310518EC8D70@DM6PR15MB2316.namprd15.prod.outlook.com>
-Reply-To: lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v2] drm/nouveau: Only recalculate PBN/VCPI on mode/connector changes
+Date: Thu,  8 Aug 2019 20:53:05 -0400
+Message-ID: <20190809005307.18391-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <DM6PR15MB231633F4AB3882F5B310518EC8D70-W/oHEmsxt5LWpa7Mk93qiYd3EbNNOtPMvxpqHgZTriW3zl9H0oFU5g@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: William Lewis <minutemaidpark-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Return-path: <stable-owner@vger.kernel.org>
+Sender: stable-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org
+Cc: William Lewis <minutemaidpark@hotmail.com>, Bohdan Milar <bmilar@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, David Airlie <airlied@redhat.com>, Jerry Zuo <Jerry.Zuo@amd.com>, Harry Wentland <harry.wentland@amd.com>, Juston Li <juston.li@intel.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Karol Herbst <karolherbst@gmail.com>, Ilia Mirkin <imirkin@alum.mit.edu>, stable@vger.kernel.org, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCAyMDE5LTA4LTA4IGF0IDE4OjE3ICswMDAwLCBXaWxsaWFtIExld2lzIHdyb3RlOgo+
-IE9uIDgvOC8xOSAxOjA0IFBNLCBMeXVkZSBQYXVsIHdyb3RlOgo+ID4gSSAtdGhvdWdodC0gSSBo
-YWQgZml4ZWQgdGhpcyBlbnRpcmVseSwgYnV0IGl0IGxvb2tzIGxpa2UgdGhhdCBJIGRpZG4ndAo+
-ID4gdGVzdCB0aGlzIHRob3JvdWdobHkgZW5vdWdoIGFzIHdlIGFwcGFyZW50bHkgc3RpbGwgbWFr
-ZSBvbmUgYmlnIG1pc3Rha2UKPiA+IHdpdGggbnY1MF9tc3RvX2F0b21pY19jaGVjaygpIC0gd2Ug
-ZG9uJ3QgaGFuZGxlIHRoZSBmb2xsb3dpbmcgc2NlbmFyaW86Cj4gPiAKPiA+ICogQ1JUQyAjMSBo
-YXMgbiBWQ1BJIGFsbG9jYXRlZCB0byBpdCwgaXMgYXR0YWNoZWQgdG8gY29ubmVjdG9yIERQLTQK
-PiA+ICAgIHdoaWNoIGlzIGF0dGFjaGVkIHRvIGVuY29kZXIgIzEuIGVuYWJsZWQ9eSBhY3RpdmU9
-bgo+ID4gKiBDUlRDICMxIGlzIGNoYW5nZWQgZnJvbSBEUC00IHRvIERQLTUsIGNhdXNpbmc6Cj4g
-PiAgICAqIERQLTQgY3J0Yz0jMeKGkk5VTEwgKFZDUEkgbuKGkjApCj4gPiAgICAqIERQLTUgY3J0
-Yz1OVUxM4oaSIzEKPiA+ICAgICogQ1JUQyAjMSBzdGVhbHMgZW5jb2RlciAjMSBiYWNrIGZyb20g
-RFAtNCBhbmQgZ2l2ZXMgaXQgdG8gRFAtNQo+ID4gICAgKiBDUlRDICMxIG1haW50YWlucyB0aGUg
-c2FtZSBtb2RlIGFzIGJlZm9yZSwganVzdCB3aXRoIGEgZGlmZmVyZW50Cj4gPiAgICAgIGNvbm5l
-Y3Rvcgo+ID4gKiBtb2RlX2NoYW5nZWQ9biBjb25uZWN0b3JzX2NoYW5nZWQ9eQo+ID4gICAgKHdl
-IF9TSE9VTERfIGRvIFZDUEkgMOKGkm4gaGVyZSwgYnV0IGRvbid0KQo+ID4gCj4gPiBPbmNlIHRo
-ZSBhYm92ZSBzY2VuYXJpbyBpcyByZXBlYXRlZCBvbmNlLCB3ZSdsbCBhdHRlbXB0IGZyZWVpbmcg
-VkNQSQo+ID4gZnJvbSB0aGUgY29ubmVjdG9yIHRoYXQgd2UgZGlkbid0IGFsbG9jYXRlIGR1ZSB0
-byB0aGUgY29ubmVjdG9ycwo+ID4gY2hhbmdpbmcsIGJ1dCB0aGUgbW9kZSBzdGF5aW5nIHRoZSBz
-YW1lLiBTaWdoLgo+ID4gCj4gPiBTaW5jZSBudjUwX21zdG9fYXRvbWljX2NoZWNrKCkgaGFzIGJy
-b2tlbiBhIGZldyB0aW1lcyBub3csIGxldCdzIHJldGhpbmsKPiA+IHRoaW5ncyBhIGJpdCB0byBi
-ZSBtb3JlIGNhcmVmdWw6IGxpbWl0IGJvdGggVkNQSS9QQk4gYWxsb2NhdGlvbnMgdG8KPiA+IG1v
-ZGVfY2hhbmdlZCB8fCBjb25uZWN0b3JzX2NoYW5nZWQsIHNpbmNlIG5laXRoZXIgVkNQSSBvciBQ
-Qk4gc2hvdWxkCj4gPiBldmVyIG5lZWQgdG8gY2hhbmdlIG91dHNpZGUgb2Ygcm91dGluZyBhbmQg
-bW9kZSBjaGFuZ2VzLgo+ID4gCj4gPiBTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUBy
-ZWRoYXQuY29tPgo+ID4gUmVwb3J0ZWQtYnk6IEJvaGRhbiBNaWxhciA8Ym1pbGFyQHJlZGhhdC5j
-b20+Cj4gPiBUZXN0ZWQtYnk6IEJvaGRhbiBNaWxhciA8Ym1pbGFyQHJlZGhhdC5jb20+Cj4gPiBG
-aXhlczogMjMyYzllZWM0MTdhICgiZHJtL25vdXZlYXU6IFVzZSBhdG9taWMgVkNQSSBoZWxwZXJz
-IGZvciBNU1QiKQo+ID4gUmVmZXJlbmNlczogNDEyZTg1YjYwNTMxICgiZHJtL25vdXZlYXU6IE9u
-bHkgcmVsZWFzZSBWQ1BJIHNsb3RzIG9uIG1vZGUKPiA+IGNoYW5nZXMiKQo+ID4gQ2M6IEx5dWRl
-IFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+Cj4gPiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRo
-YXQuY29tPgo+ID4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+Cj4g
-PiBDYzogRGF2aWQgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+Cj4gPiBDYzogSmVycnkgWnVv
-IDxKZXJyeS5adW9AYW1kLmNvbT4KPiA+IENjOiBIYXJyeSBXZW50bGFuZCA8aGFycnkud2VudGxh
-bmRAYW1kLmNvbT4KPiA+IENjOiBKdXN0b24gTGkgPGp1c3Rvbi5saUBpbnRlbC5jb20+Cj4gPiBD
-YzogTGF1cmVudCBQaW5jaGFydCA8bGF1cmVudC5waW5jaGFydEBpZGVhc29uYm9hcmQuY29tPgo+
-ID4gQ2M6IEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJic3RAZ21haWwuY29tPgo+ID4gQ2M6IElsaWEg
-TWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KPiA+IENjOiA8c3RhYmxlQHZnZXIua2VybmVs
-Lm9yZz4gIyB2NS4xKwo+ID4gLS0tCj4gPiAgIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3Bu
-djUwL2Rpc3AuYyB8IDIyICsrKysrKysrKysrKystLS0tLS0tLS0KPiA+ICAgMSBmaWxlIGNoYW5n
-ZWQsIDEzIGluc2VydGlvbnMoKyksIDkgZGVsZXRpb25zKC0pCj4gPiAKPiA+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMKPiA+IGIvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCj4gPiBpbmRleCAxMjY3MDM4MTY3OTQuLjVk
-MjNhYjhlNDkxNyAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3Bu
-djUwL2Rpc3AuYwo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlz
-cC5jCj4gPiBAQCAtNzcxLDE2ICs3NzEsMjAgQEAgbnY1MF9tc3RvX2F0b21pY19jaGVjayhzdHJ1
-Y3QgZHJtX2VuY29kZXIgKmVuY29kZXIsCj4gPiAgIAlzdHJ1Y3QgbnY1MF9oZWFkX2F0b20gKmFz
-eWggPSBudjUwX2hlYWRfYXRvbShjcnRjX3N0YXRlKTsKPiA+ICAgCWludCBzbG90czsKPiA+ICAg
-Cj4gPiAtCS8qIFdoZW4gcmVzdG9yaW5nIGR1cGxpY2F0ZWQgc3RhdGVzLCB3ZSBuZWVkIHRvIG1h
-a2Ugc3VyZSB0aGF0IHRoZQo+ID4gLQkgKiBidyByZW1haW5zIHRoZSBzYW1lIGFuZCBhdm9pZCBy
-ZWNhbGN1bGF0aW5nIGl0LCBhcyB0aGUgY29ubmVjdG9yJ3MKPiA+IC0JICogYnBjIG1heSBoYXZl
-IGNoYW5nZWQgYWZ0ZXIgdGhlIHN0YXRlIHdhcyBkdXBsaWNhdGVkCj4gPiAtCSAqLwo+ID4gLQlp
-ZiAoIXN0YXRlLT5kdXBsaWNhdGVkKQo+ID4gLQkJYXN5aC0+ZHAucGJuID0KPiA+IC0JCQlkcm1f
-ZHBfY2FsY19wYm5fbW9kZShjcnRjX3N0YXRlLT5hZGp1c3RlZF9tb2RlLmNsb2NrLAo+ID4gLQkJ
-CQkJICAgICBjb25uZWN0b3ItPmRpc3BsYXlfaW5mby5icGMgKiAzKTsKPiBkcm1fZHBfY2FsY19w
-Ym5fbW9kZShjbG9jaywgYnBwKQo+ID4gKwlpZiAoY3J0Y19zdGF0ZS0+bW9kZV9jaGFuZ2VkIHx8
-IGNydGNfc3RhdGUtPmNvbm5lY3RvcnNfY2hhbmdlZCkgewo+ID4gKwkJLyoKPiA+ICsJCSAqIFdo
-ZW4gcmVzdG9yaW5nIGR1cGxpY2F0ZWQgc3RhdGVzLCB3ZSBuZWVkIHRvIG1ha2Ugc3VyZSB0aGF0
-Cj4gPiArCQkgKiB0aGUgYncgcmVtYWlucyB0aGUgc2FtZSBhbmQgYXZvaWQgcmVjYWxjdWxhdGlu
-ZyBpdCwgYXMgdGhlCj4gPiArCQkgKiBjb25uZWN0b3IncyBicGMgbWF5IGhhdmUgY2hhbmdlZCBh
-ZnRlciB0aGUgc3RhdGUgd2FzCj4gPiArCQkgKiBkdXBsaWNhdGVkCj4gPiArCQkgKi8KPiA+ICsJ
-CWlmICghc3RhdGUtPmR1cGxpY2F0ZWQpIHsKPiA+ICsJCQljb25zdCBpbnQgYnBwID0gY29ubmVj
-dG9yLT5kaXNwbGF5X2luZm8uYnBjICogMzsKPiA+ICsJCQljb25zdCBpbnQgY2xvY2sgPSBjcnRj
-X3N0YXRlLT5hZGp1c3RlZF9tb2RlLmNsb2NrOwo+ID4gKwo+ID4gKwkJCWFzeWgtPmRwLnBibiA9
-IGRybV9kcF9jYWxjX3Bibl9tb2RlKGJwcCwgY2xvY2spOwo+IGRybV9kcF9jYWxjX3Bibl9tb2Rl
-KGJwcCwgY2xvY2spCj4gPiArCQl9Cj4gPiAgIAo+ID4gLQlpZiAoY3J0Y19zdGF0ZS0+bW9kZV9j
-aGFuZ2VkKSB7Cj4gPiAgIAkJc2xvdHMgPSBkcm1fZHBfYXRvbWljX2ZpbmRfdmNwaV9zbG90cyhz
-dGF0ZSwgJm1zdG0tPm1nciwKPiA+ICAgCQkJCQkJICAgICAgbXN0Yy0+cG9ydCwKPiA+ICAgCQkJ
-CQkJICAgICAgYXN5aC0+ZHAucGJuKTsKPiBXaGljaCBpcyBjb3JyZWN0PwoKIT8hPyE/IT8hPyE/
-CkkgYW0gYWN0dWFsbHkgc2VyaW91c2x5IGNvbmZ1c2VkIGFzIHRvIGhvdyB0aGlzIGNvZGUgZGlk
-IG5vdCBicmVhayB3aGVuIEkgdGVzdGVkCml0LCBhcyBJIGNlcnRhaW5seSByZXZlcnNlZCB0aGUg
-dHdvIGFyZ3VtZW50cyBoZXJlIGJ5IGFjY2lkZW50LgpMb29rcyBsaWtlIHdlIG5lZWQgdG8gYWRk
-IG1vcmUgZXJyb3IgY2hlY2tpbmcgZm9yIGRybV9kcF9jYWxjX3Bibl9tb2RlLgpUaGFuayB5b3Ug
-Zm9yIGNhdGNoaW5nIHRoaXMsIEknbGwgcmVzcGluIHRoaXMgYW5kIHNlbmQgb3V0IGEgbmV3IHZl
-cnNpb24gaW4gYQpzZWNvbmQKCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9ub3V2ZWF1CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+I -thought- I had fixed this entirely, but it looks like that I didn't
+test this thoroughly enough as we apparently still make one big mistake
+with nv50_msto_atomic_check() - we don't handle the following scenario:
+
+* CRTC #1 has n VCPI allocated to it, is attached to connector DP-4
+  which is attached to encoder #1. enabled=y active=n
+* CRTC #1 is changed from DP-4 to DP-5, causing:
+  * DP-4 crtc=#1→NULL (VCPI n→0)
+  * DP-5 crtc=NULL→#1
+  * CRTC #1 steals encoder #1 back from DP-4 and gives it to DP-5
+  * CRTC #1 maintains the same mode as before, just with a different
+    connector
+* mode_changed=n connectors_changed=y
+  (we _SHOULD_ do VCPI 0→n here, but don't)
+
+Once the above scenario is repeated once, we'll attempt freeing VCPI
+from the connector that we didn't allocate due to the connectors
+changing, but the mode staying the same. Sigh.
+
+Since nv50_msto_atomic_check() has broken a few times now, let's rethink
+things a bit to be more careful: limit both VCPI/PBN allocations to
+mode_changed || connectors_changed, since neither VCPI or PBN should
+ever need to change outside of routing and mode changes.
+
+Changes since v1:
+* Fix accidental reversal of clock and bpp arguments in
+  drm_dp_calc_pbn_mode() - William Lewis
+
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Reported-by: Bohdan Milar <bmilar@redhat.com>
+Tested-by: Bohdan Milar <bmilar@redhat.com>
+Fixes: 232c9eec417a ("drm/nouveau: Use atomic VCPI helpers for MST")
+References: 412e85b60531 ("drm/nouveau: Only release VCPI slots on mode changes")
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: David Airlie <airlied@redhat.com>
+Cc: Jerry Zuo <Jerry.Zuo@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Juston Li <juston.li@intel.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Karol Herbst <karolherbst@gmail.com>
+Cc: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: <stable@vger.kernel.org> # v5.1+
+---
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 22 +++++++++++++---------
+ 1 file changed, 13 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index 126703816794..5c36c75232e6 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -771,16 +771,20 @@ nv50_msto_atomic_check(struct drm_encoder *encoder,
+ 	struct nv50_head_atom *asyh = nv50_head_atom(crtc_state);
+ 	int slots;
+ 
+-	/* When restoring duplicated states, we need to make sure that the
+-	 * bw remains the same and avoid recalculating it, as the connector's
+-	 * bpc may have changed after the state was duplicated
+-	 */
+-	if (!state->duplicated)
+-		asyh->dp.pbn =
+-			drm_dp_calc_pbn_mode(crtc_state->adjusted_mode.clock,
+-					     connector->display_info.bpc * 3);
++	if (crtc_state->mode_changed || crtc_state->connectors_changed) {
++		/*
++		 * When restoring duplicated states, we need to make sure that
++		 * the bw remains the same and avoid recalculating it, as the
++		 * connector's bpc may have changed after the state was
++		 * duplicated
++		 */
++		if (!state->duplicated) {
++			const int bpp = connector->display_info.bpc * 3;
++			const int clock = crtc_state->adjusted_mode.clock;
++
++			asyh->dp.pbn = drm_dp_calc_pbn_mode(clock, bpp);
++		}
+ 
+-	if (crtc_state->mode_changed) {
+ 		slots = drm_dp_atomic_find_vcpi_slots(state, &mstm->mgr,
+ 						      mstc->port,
+ 						      asyh->dp.pbn);
+-- 
+2.21.0
