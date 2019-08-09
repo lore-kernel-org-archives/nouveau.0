@@ -1,17 +1,13 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Only recalculate PBN/VCPI on
- mode/connector changes
-Date: Thu, 08 Aug 2019 21:20:18 -0400
-Message-ID: <4f82ab558ecc61784dd681c7c528e29e5c98bc0d.camel@redhat.com>
-References: <20190808180439.19118-1-lyude@redhat.com>
- <DM6PR15MB231633F4AB3882F5B310518EC8D70@DM6PR15MB2316.namprd15.prod.outlook.com>
- <16af26715301362b2ac2ffb25f323547929870fd.camel@redhat.com>
-Reply-To: lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111292] Advanced Lighting option in Firestorm Viewer
+ makes some objects black on nv92 card
+Date: Fri, 09 Aug 2019 06:29:27 +0000
+Message-ID: <bug-111292-8800-uR0NsTtHTD@http.bugs.freedesktop.org/>
+References: <bug-111292-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0817774205=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <16af26715301362b2ac2ffb25f323547929870fd.camel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-111292-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,94 +17,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: William Lewis <minutemaidpark-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCAyMDE5LTA4LTA4IGF0IDIwOjQ2IC0wNDAwLCBMeXVkZSBQYXVsIHdyb3RlOgo+IE9u
-IFRodSwgMjAxOS0wOC0wOCBhdCAxODoxNyArMDAwMCwgV2lsbGlhbSBMZXdpcyB3cm90ZToKPiA+
-IE9uIDgvOC8xOSAxOjA0IFBNLCBMeXVkZSBQYXVsIHdyb3RlOgo+ID4gPiBJIC10aG91Z2h0LSBJ
-IGhhZCBmaXhlZCB0aGlzIGVudGlyZWx5LCBidXQgaXQgbG9va3MgbGlrZSB0aGF0IEkgZGlkbid0
-Cj4gPiA+IHRlc3QgdGhpcyB0aG9yb3VnaGx5IGVub3VnaCBhcyB3ZSBhcHBhcmVudGx5IHN0aWxs
-IG1ha2Ugb25lIGJpZyBtaXN0YWtlCj4gPiA+IHdpdGggbnY1MF9tc3RvX2F0b21pY19jaGVjaygp
-IC0gd2UgZG9uJ3QgaGFuZGxlIHRoZSBmb2xsb3dpbmcgc2NlbmFyaW86Cj4gPiA+IAo+ID4gPiAq
-IENSVEMgIzEgaGFzIG4gVkNQSSBhbGxvY2F0ZWQgdG8gaXQsIGlzIGF0dGFjaGVkIHRvIGNvbm5l
-Y3RvciBEUC00Cj4gPiA+ICAgIHdoaWNoIGlzIGF0dGFjaGVkIHRvIGVuY29kZXIgIzEuIGVuYWJs
-ZWQ9eSBhY3RpdmU9bgo+ID4gPiAqIENSVEMgIzEgaXMgY2hhbmdlZCBmcm9tIERQLTQgdG8gRFAt
-NSwgY2F1c2luZzoKPiA+ID4gICAgKiBEUC00IGNydGM9IzHihpJOVUxMIChWQ1BJIG7ihpIwKQo+
-ID4gPiAgICAqIERQLTUgY3J0Yz1OVUxM4oaSIzEKPiA+ID4gICAgKiBDUlRDICMxIHN0ZWFscyBl
-bmNvZGVyICMxIGJhY2sgZnJvbSBEUC00IGFuZCBnaXZlcyBpdCB0byBEUC01Cj4gPiA+ICAgICog
-Q1JUQyAjMSBtYWludGFpbnMgdGhlIHNhbWUgbW9kZSBhcyBiZWZvcmUsIGp1c3Qgd2l0aCBhIGRp
-ZmZlcmVudAo+ID4gPiAgICAgIGNvbm5lY3Rvcgo+ID4gPiAqIG1vZGVfY2hhbmdlZD1uIGNvbm5l
-Y3RvcnNfY2hhbmdlZD15Cj4gPiA+ICAgICh3ZSBfU0hPVUxEXyBkbyBWQ1BJIDDihpJuIGhlcmUs
-IGJ1dCBkb24ndCkKPiA+ID4gCj4gPiA+IE9uY2UgdGhlIGFib3ZlIHNjZW5hcmlvIGlzIHJlcGVh
-dGVkIG9uY2UsIHdlJ2xsIGF0dGVtcHQgZnJlZWluZyBWQ1BJCj4gPiA+IGZyb20gdGhlIGNvbm5l
-Y3RvciB0aGF0IHdlIGRpZG4ndCBhbGxvY2F0ZSBkdWUgdG8gdGhlIGNvbm5lY3RvcnMKPiA+ID4g
-Y2hhbmdpbmcsIGJ1dCB0aGUgbW9kZSBzdGF5aW5nIHRoZSBzYW1lLiBTaWdoLgo+ID4gPiAKPiA+
-ID4gU2luY2UgbnY1MF9tc3RvX2F0b21pY19jaGVjaygpIGhhcyBicm9rZW4gYSBmZXcgdGltZXMg
-bm93LCBsZXQncyByZXRoaW5rCj4gPiA+IHRoaW5ncyBhIGJpdCB0byBiZSBtb3JlIGNhcmVmdWw6
-IGxpbWl0IGJvdGggVkNQSS9QQk4gYWxsb2NhdGlvbnMgdG8KPiA+ID4gbW9kZV9jaGFuZ2VkIHx8
-IGNvbm5lY3RvcnNfY2hhbmdlZCwgc2luY2UgbmVpdGhlciBWQ1BJIG9yIFBCTiBzaG91bGQKPiA+
-ID4gZXZlciBuZWVkIHRvIGNoYW5nZSBvdXRzaWRlIG9mIHJvdXRpbmcgYW5kIG1vZGUgY2hhbmdl
-cy4KPiA+ID4gCj4gPiA+IFNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5j
-b20+Cj4gPiA+IFJlcG9ydGVkLWJ5OiBCb2hkYW4gTWlsYXIgPGJtaWxhckByZWRoYXQuY29tPgo+
-ID4gPiBUZXN0ZWQtYnk6IEJvaGRhbiBNaWxhciA8Ym1pbGFyQHJlZGhhdC5jb20+Cj4gPiA+IEZp
-eGVzOiAyMzJjOWVlYzQxN2EgKCJkcm0vbm91dmVhdTogVXNlIGF0b21pYyBWQ1BJIGhlbHBlcnMg
-Zm9yIE1TVCIpCj4gPiA+IFJlZmVyZW5jZXM6IDQxMmU4NWI2MDUzMSAoImRybS9ub3V2ZWF1OiBP
-bmx5IHJlbGVhc2UgVkNQSSBzbG90cyBvbiBtb2RlCj4gPiA+IGNoYW5nZXMiKQo+ID4gPiBDYzog
-THl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KPiA+ID4gQ2M6IEJlbiBTa2VnZ3MgPGJza2Vn
-Z3NAcmVkaGF0LmNvbT4KPiA+ID4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3
-bGwuY2g+Cj4gPiA+IENjOiBEYXZpZCBBaXJsaWUgPGFpcmxpZWRAcmVkaGF0LmNvbT4KPiA+ID4g
-Q2M6IEplcnJ5IFp1byA8SmVycnkuWnVvQGFtZC5jb20+Cj4gPiA+IENjOiBIYXJyeSBXZW50bGFu
-ZCA8aGFycnkud2VudGxhbmRAYW1kLmNvbT4KPiA+ID4gQ2M6IEp1c3RvbiBMaSA8anVzdG9uLmxp
-QGludGVsLmNvbT4KPiA+ID4gQ2M6IExhdXJlbnQgUGluY2hhcnQgPGxhdXJlbnQucGluY2hhcnRA
-aWRlYXNvbmJvYXJkLmNvbT4KPiA+ID4gQ2M6IEthcm9sIEhlcmJzdCA8a2Fyb2xoZXJic3RAZ21h
-aWwuY29tPgo+ID4gPiBDYzogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1Pgo+ID4g
-PiBDYzogPHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmc+ICMgdjUuMSsKPiA+ID4gLS0tCj4gPiA+ICAg
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jIHwgMjIgKysrKysrKysrKysr
-Ky0tLS0tLS0tLQo+ID4gPiAgIDEgZmlsZSBjaGFuZ2VkLCAxMyBpbnNlcnRpb25zKCspLCA5IGRl
-bGV0aW9ucygtKQo+ID4gPiAKPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L2Rpc3BudjUwL2Rpc3AuYwo+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3Bu
-djUwL2Rpc3AuYwo+ID4gPiBpbmRleCAxMjY3MDM4MTY3OTQuLjVkMjNhYjhlNDkxNyAxMDA2NDQK
-PiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCj4gPiA+
-ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYwo+ID4gPiBAQCAt
-NzcxLDE2ICs3NzEsMjAgQEAgbnY1MF9tc3RvX2F0b21pY19jaGVjayhzdHJ1Y3QgZHJtX2VuY29k
-ZXIgKmVuY29kZXIsCj4gPiA+ICAgCXN0cnVjdCBudjUwX2hlYWRfYXRvbSAqYXN5aCA9IG52NTBf
-aGVhZF9hdG9tKGNydGNfc3RhdGUpOwo+ID4gPiAgIAlpbnQgc2xvdHM7Cj4gPiA+ICAgCj4gPiA+
-IC0JLyogV2hlbiByZXN0b3JpbmcgZHVwbGljYXRlZCBzdGF0ZXMsIHdlIG5lZWQgdG8gbWFrZSBz
-dXJlIHRoYXQgdGhlCj4gPiA+IC0JICogYncgcmVtYWlucyB0aGUgc2FtZSBhbmQgYXZvaWQgcmVj
-YWxjdWxhdGluZyBpdCwgYXMgdGhlIGNvbm5lY3RvcidzCj4gPiA+IC0JICogYnBjIG1heSBoYXZl
-IGNoYW5nZWQgYWZ0ZXIgdGhlIHN0YXRlIHdhcyBkdXBsaWNhdGVkCj4gPiA+IC0JICovCj4gPiA+
-IC0JaWYgKCFzdGF0ZS0+ZHVwbGljYXRlZCkKPiA+ID4gLQkJYXN5aC0+ZHAucGJuID0KPiA+ID4g
-LQkJCWRybV9kcF9jYWxjX3Bibl9tb2RlKGNydGNfc3RhdGUtPmFkanVzdGVkX21vZGUuY2xvY2ss
-Cj4gPiA+IC0JCQkJCSAgICAgY29ubmVjdG9yLT5kaXNwbGF5X2luZm8uYnBjICogMyk7Cj4gPiBk
-cm1fZHBfY2FsY19wYm5fbW9kZShjbG9jaywgYnBwKQo+ID4gPiArCWlmIChjcnRjX3N0YXRlLT5t
-b2RlX2NoYW5nZWQgfHwgY3J0Y19zdGF0ZS0+Y29ubmVjdG9yc19jaGFuZ2VkKSB7Cj4gPiA+ICsJ
-CS8qCj4gPiA+ICsJCSAqIFdoZW4gcmVzdG9yaW5nIGR1cGxpY2F0ZWQgc3RhdGVzLCB3ZSBuZWVk
-IHRvIG1ha2Ugc3VyZSB0aGF0Cj4gPiA+ICsJCSAqIHRoZSBidyByZW1haW5zIHRoZSBzYW1lIGFu
-ZCBhdm9pZCByZWNhbGN1bGF0aW5nIGl0LCBhcyB0aGUKPiA+ID4gKwkJICogY29ubmVjdG9yJ3Mg
-YnBjIG1heSBoYXZlIGNoYW5nZWQgYWZ0ZXIgdGhlIHN0YXRlIHdhcwo+ID4gPiArCQkgKiBkdXBs
-aWNhdGVkCj4gPiA+ICsJCSAqLwo+ID4gPiArCQlpZiAoIXN0YXRlLT5kdXBsaWNhdGVkKSB7Cj4g
-PiA+ICsJCQljb25zdCBpbnQgYnBwID0gY29ubmVjdG9yLT5kaXNwbGF5X2luZm8uYnBjICogMzsK
-PiA+ID4gKwkJCWNvbnN0IGludCBjbG9jayA9IGNydGNfc3RhdGUtPmFkanVzdGVkX21vZGUuY2xv
-Y2s7Cj4gPiA+ICsKPiA+ID4gKwkJCWFzeWgtPmRwLnBibiA9IGRybV9kcF9jYWxjX3Bibl9tb2Rl
-KGJwcCwgY2xvY2spOwo+ID4gZHJtX2RwX2NhbGNfcGJuX21vZGUoYnBwLCBjbG9jaykKPiA+ID4g
-KwkJfQo+ID4gPiAgIAo+ID4gPiAtCWlmIChjcnRjX3N0YXRlLT5tb2RlX2NoYW5nZWQpIHsKPiA+
-ID4gICAJCXNsb3RzID0gZHJtX2RwX2F0b21pY19maW5kX3ZjcGlfc2xvdHMoc3RhdGUsICZtc3Rt
-LT5tZ3IsCj4gPiA+ICAgCQkJCQkJICAgICAgbXN0Yy0+cG9ydCwKPiA+ID4gICAJCQkJCQkgICAg
-ICBhc3loLT5kcC5wYm4pOwo+ID4gV2hpY2ggaXMgY29ycmVjdD8KPiAKPiAhPyE/IT8hPyE/IT8K
-PiBJIGFtIGFjdHVhbGx5IHNlcmlvdXNseSBjb25mdXNlZCBhcyB0byBob3cgdGhpcyBjb2RlIGRp
-ZCBub3QgYnJlYWsgd2hlbiBJCj4gdGVzdGVkCj4gaXQsIGFzIEkgY2VydGFpbmx5IHJldmVyc2Vk
-IHRoZSB0d28gYXJndW1lbnRzIGhlcmUgYnkgYWNjaWRlbnQuCj4gTG9va3MgbGlrZSB3ZSBuZWVk
-IHRvIGFkZCBtb3JlIGVycm9yIGNoZWNraW5nIGZvciBkcm1fZHBfY2FsY19wYm5fbW9kZS4KPiBU
-aGFuayB5b3UgZm9yIGNhdGNoaW5nIHRoaXMsIEknbGwgcmVzcGluIHRoaXMgYW5kIHNlbmQgb3V0
-IGEgbmV3IHZlcnNpb24gaW4gYQo+IHNlY29uZAoKRldJVywgSSd2ZSBzZW50IG91dCBhIHJlc3Bp
-biB3aXRoIHRoaXMgZml4ZWQgYWxyZWFkeSwgYnV0IEkgc2VlIGhvdyB0aGlzIGRpZG4ndAptYW5h
-Z2UgdG8gYnJlYWsgYW55dGhpbmcgbm93LiBUaGUgb25seSB0aW1lIGJwcCBhbmQgY2xvY2sgYXJl
-IHVzZWQgaW4KZHJtX2RwX2NhbGNfcGJuX21vZGUoKSBpczoKCmticHMgPSBjbG9jayAqIGJwcDsK
-ClNvIEkgZ3Vlc3MgdGhhdCBleHBsYWlucyBpdCA6KQoKPiAKPiA+IF9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+
-ID4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+IGh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0817774205==
+Content-Type: multipart/alternative; boundary="15653321670.d6ADE.22267"
+Content-Transfer-Encoding: 7bit
+
+
+--15653321670.d6ADE.22267
+Date: Fri, 9 Aug 2019 06:29:27 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111292
+
+--- Comment #13 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+I also tried NV50_PROG_USE_NIR=3D1 (with Mesa 19.2.0-devel (git-5254e53deb)=
+) but
+it made no difference.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15653321670.d6ADE.22267
+Date: Fri, 9 Aug 2019 06:29:27 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Advanced Lighting option in Firestorm Viewer makes some o=
+bjects black on nv92 card"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111292#c13">Comme=
+nt # 13</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Advanced Lighting option in Firestorm Viewer makes some o=
+bjects black on nv92 card"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111292">bug 11129=
+2</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+randrik&#64;mail.ru" title=3D"Andrew Randrianasulu &lt;randrik&#64;mail.ru&=
+gt;"> <span class=3D"fn">Andrew Randrianasulu</span></a>
+</span></b>
+        <pre>I also tried NV50_PROG_USE_NIR=3D1 (with Mesa 19.2.0-devel (gi=
+t-5254e53deb)) but
+it made no difference.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15653321670.d6ADE.22267--
+
+--===============0817774205==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0817774205==--
