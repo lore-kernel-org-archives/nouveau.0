@@ -1,16 +1,13 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: Re: [PATCH] nouveau/hmm: map pages after migration
-Date: Sat, 10 Aug 2019 13:13:08 +0200
-Message-ID: <20190810111308.GB26349@lst.de>
-References: <20190807150214.3629-1-rcampbell@nvidia.com>
- <20190808070701.GC29382@lst.de>
- <0b96a8d8-86b5-3ce0-db95-669963c1f8a7@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 107016] Gpio error only from kernel higher as 4.x
+ (k2000m; 0x0e73b0a2; version 80.07.40.00.02)
+Date: Sat, 10 Aug 2019 13:23:21 +0000
+Message-ID: <bug-107016-8800-5Y4QmERiVC@http.bugs.freedesktop.org/>
+References: <bug-107016-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1583286546=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <0b96a8d8-86b5-3ce0-db95-669963c1f8a7-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-107016-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +17,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBBdWcgMDgsIDIwMTkgYXQgMDI6Mjk6MzRQTSAtMDcwMCwgUmFscGggQ2FtcGJlbGwg
-d3JvdGU6Cj4+PiAgIHsKPj4+ICAgCXN0cnVjdCBub3V2ZWF1X2ZlbmNlICpmZW5jZTsKPj4+ICAg
-CXVuc2lnbmVkIGxvbmcgYWRkciA9IGFyZ3MtPnN0YXJ0LCBucl9kbWEgPSAwLCBpOwo+Pj4gICAg
-IAlmb3IgKGkgPSAwOyBhZGRyIDwgYXJncy0+ZW5kOyBpKyspIHsKPj4+ICAgCQlhcmdzLT5kc3Rb
-aV0gPSBub3V2ZWF1X2RtZW1fbWlncmF0ZV9jb3B5X29uZShkcm0sIGFyZ3MtPnZtYSwKPj4+IC0J
-CQkJYWRkciwgYXJncy0+c3JjW2ldLCAmZG1hX2FkZHJzW25yX2RtYV0pOwo+Pj4gKwkJCQlhcmdz
-LT5zcmNbaV0sICZkbWFfYWRkcnNbbnJfZG1hXSwgJnBmbnNbaV0pOwo+Pgo+PiBOaXQ6IEkgZmlu
-ZCB0aGUgJnBmbnNbaV0gd2F5IHRvIHBhc3MgdGhlIGFyZ3VtZW50IGEgbGl0dGxlIHdlaXJkIHRv
-IHJlYWQuCj4+IFdoeSBub3QgInBmbnMgKyBpIj8KPgo+IE9LLCB3aWxsIGRvIGluIHYyLgo+IFNo
-b3VsZCBJIGNvbnZlcnQgdG8gImRtYV9hZGRycyArIG5yX2RtYSIgdG9vPwoKSSdsbCBmaXggaXQg
-dXAgZm9yIHYzIG9mIHRoZSBtaWdyYXRlX3ZtYSBzZXJpZXMuICBUaGlzIGlzIGEgbGVmdG92ZXIK
-ZnJvbSBwYXNzaW5nIGFuIGFyZ3Mgc3RydWN0dXJlLgoKT24gc29tZXRoaW5nIHZhZ3VlbHkgcmVs
-YXRlZCB0byB0aGlzIHBhdGNoOgoKWW91IHVzZSB0aGUgTlZJRl9WTU1fUEZOTUFQX1YwX1YqIGRl
-ZmluZXMgZnJvbSBudmlmL2lmMDAwYy5oLCB3aGljaCBhcmUKYSBsaXR0bGUgb2RkIGFzIHdlIG9u
-bHkgZXZlciBzZXQgdGhlc2UgYml0cywgYnV0IHRoZXkgYWxzbyBkb24ndCBzZWVtCnRvIGFwcGVh
-ciB0byBiZSBpbiB2YWx1ZXMgdGhhdCBhcmUgZGlyZWN0bHkgZmVkIHRvIHRoZSBoYXJkd2FyZS4K
-Ck9uIHRoZSBvdGhlciBoYW5kIG1tdS92bW0uaCBkZWZpbmVzIGEgc2V0IG9mIE5WSUZfVk1NX1BG
-Tk1BUF9WMF8qCmNvbnN0YW50cyB3aXRoIHNpbWlsYXIgbmFtZXMgYW5kIGlkZW50aWNhbCB2YWx1
-ZXMsIGFuZCB0aG9zZSBhcmUgdXNlZAppbiBtbXUvdm1tZ3AxMDAuYyBhbmQgd2hhdCBhcHBlYXJz
-IHRvIGZpbmFsbHkgZG8gdGhlIGxvdy1sZXZlbCBkbWEKbWFwcGluZyBhbmQgdGFsa2luZyB0byB0
-aGUgaGFyZHdhcmUuICBBcmUgdGhlc2UgdHdvIHNldHMgb2YgY29uc3RhbnRzCnN1cHBvc2VkIHRv
-IGJlIHRoZSBzYW1lPyAgQXJlIHRoZSBhY3R1YWwgaGFyZHdhcmUgdmFsdWVzIG9yIGp1c3QgYQpk
-cml2ZXIgaW50ZXJuYWwgaW50ZXJmYWNlPwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXU=
+
+--===============1583286546==
+Content-Type: multipart/alternative; boundary="15654434012.93A1bc.31229"
+Content-Transfer-Encoding: 7bit
+
+
+--15654434012.93A1bc.31229
+Date: Sat, 10 Aug 2019 13:23:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107016
+
+--- Comment #24 from atirage21 <tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+It is possible solve this issue with gk107 on base new publicated documenta=
+tion
+from nvidia for gk 104 ?=20
+
+Also i saw error in envytools in row for gk107:  NVE7 [GK107]: ?:?:2:1
+
+
+https://github.com/mharsch/envytools/commit/b70216fcf3d268995d7f9aa275db3a3=
+59c6a80bd
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15654434012.93A1bc.31229
+Date: Sat, 10 Aug 2019 13:23:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Gpio error only from kernel higher as 4.x (k2000m; 0=
+x0e73b0a2; version 80.07.40.00.02)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016#c24">Comme=
+nt # 24</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Gpio error only from kernel higher as 4.x (k2000m; 0=
+x0e73b0a2; version 80.07.40.00.02)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016">bug 10701=
+6</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tothsoft&#64;gmail.com" title=3D"atirage21 &lt;tothsoft&#64;gmail.com&gt;">=
+ <span class=3D"fn">atirage21</span></a>
+</span></b>
+        <pre>It is possible solve this issue with gk107 on base new publica=
+ted documentation
+from nvidia for gk 104 ?=20
+
+Also i saw error in envytools in row for gk107:  NVE7 [GK107]: ?:?:2:1
+
+
+<a href=3D"https://github.com/mharsch/envytools/commit/b70216fcf3d268995d7f=
+9aa275db3a359c6a80bd">https://github.com/mharsch/envytools/commit/b70216fcf=
+3d268995d7f9aa275db3a359c6a80bd</a></pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15654434012.93A1bc.31229--
+
+--===============1583286546==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1583286546==--
