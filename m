@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107016] Gpio error only from kernel higher as 4.x
- (k2000m; 0x0e73b0a2; version 80.07.40.00.02)
-Date: Sat, 10 Aug 2019 13:23:21 +0000
-Message-ID: <bug-107016-8800-5Y4QmERiVC@http.bugs.freedesktop.org/>
-References: <bug-107016-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 111213] VA-API nouveau SIGSEGV and asserts
+Date: Sat, 10 Aug 2019 17:55:33 +0000
+Message-ID: <bug-111213-8800-OrZGP4LQ3d@http.bugs.freedesktop.org/>
+References: <bug-111213-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1583286546=="
+Content-Type: multipart/mixed; boundary="===============0197041561=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107016-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-111213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +20,67 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1583286546==
-Content-Type: multipart/alternative; boundary="15654434012.93A1bc.31229"
+--===============0197041561==
+Content-Type: multipart/alternative; boundary="15654597320.09BC68.14257"
 Content-Transfer-Encoding: 7bit
 
 
---15654434012.93A1bc.31229
-Date: Sat, 10 Aug 2019 13:23:21 +0000
+--15654597320.09BC68.14257
+Date: Sat, 10 Aug 2019 17:55:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107016
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111213
 
---- Comment #24 from atirage21 <tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It is possible solve this issue with gk107 on base new publicated documenta=
-tion
-from nvidia for gk 104 ?=20
+--- Comment #13 from KJ Liew <liewkj-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> ---
+Both VA-API and VDPAU do not play video on GK208B using mpv. There was only
+sound and black screen.
 
-Also i saw error in envytools in row for gk107:  NVE7 [GK107]: ?:?:2:1
+Linux 5.2.7-arch1-1-ARCH
+local/libva-mesa-driver 19.1.4-1
+local/mesa 19.1.4-1
+local/mesa-demos 8.4.0-1
+local/mesa-vdpau 19.1.4-1
 
+$ LIBVA_DRIVER_NAME=3Dnouveau mpv --hwdec=3Dvaapi -vo=3Dvaapi /path/to/MP4
+Playing: /path/to/MP4
+ (+) Video --vid=3D1 (*) (h264 1280x720 23.976fps)
+ (+) Audio --aid=3D1 --alang=3Deng (*) (aac 2ch 44100Hz)
+Using hardware decoding (vaapi).
+AO: [pulse] 44100Hz stereo 2ch float
+VO: [vaapi] 1280x720 vaapi[nv12]
+nve4_set_surface_info:969 - unsupported surface format, try
+is_format_supported() !
+nve4_set_surface_info:969 - unsupported surface format, try
+is_format_supported() !
+nve4_set_surface_info:969 - unsupported surface format, try
+is_format_supported() !
+nve4_set_surface_info:969 - unsupported surface format, try
+is_format_supported() !
+nve4_set_surface_info:969 - unsupported surface format, try
+is_format_supported() !
 
-https://github.com/mharsch/envytools/commit/b70216fcf3d268995d7f9aa275db3a3=
-59c6a80bd
+$ VDPAU_DRIVER=3Dnouveau mpv --hwdec=3Dvdpau -vo=3Dopengl /path/to/MP4=20
+Driver 'opengl' has been replaced with 'gpu'!
+Playing: /path/to/MP4
+ (+) Video --vid=3D1 (*) (h264 1280x720 23.976fps)
+ (+) Audio --aid=3D1 --alang=3Deng (*) (aac 2ch 44100Hz)
+Cannot load libcuda.so.1
+Using hardware decoding (vdpau).
+VO: [gpu] 1280x720 vdpau[yuv420p]
+AO: [pulse] 44100Hz stereo 2ch float
+AV: 00:00:12 / 00:02:03 (10%) A-V:  0.000
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15654434012.93A1bc.31229
-Date: Sat, 10 Aug 2019 13:23:21 +0000
+--15654597320.09BC68.14257
+Date: Sat, 10 Aug 2019 17:55:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,31 +95,57 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Gpio error only from kernel higher as 4.x (k2000m; 0=
-x0e73b0a2; version 80.07.40.00.02)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016#c24">Comme=
-nt # 24</a>
+          bz_status_NEW "
+   title=3D"NEW - VA-API nouveau SIGSEGV and asserts"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111213#c13">Comme=
+nt # 13</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Gpio error only from kernel higher as 4.x (k2000m; 0=
-x0e73b0a2; version 80.07.40.00.02)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016">bug 10701=
-6</a>
+          bz_status_NEW "
+   title=3D"NEW - VA-API nouveau SIGSEGV and asserts"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111213">bug 11121=
+3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tothsoft&#64;gmail.com" title=3D"atirage21 &lt;tothsoft&#64;gmail.com&gt;">=
- <span class=3D"fn">atirage21</span></a>
+liewkj&#64;yahoo.com" title=3D"KJ Liew &lt;liewkj&#64;yahoo.com&gt;"> <span=
+ class=3D"fn">KJ Liew</span></a>
 </span></b>
-        <pre>It is possible solve this issue with gk107 on base new publica=
-ted documentation
-from nvidia for gk 104 ?=20
+        <pre>Both VA-API and VDPAU do not play video on GK208B using mpv. T=
+here was only
+sound and black screen.
 
-Also i saw error in envytools in row for gk107:  NVE7 [GK107]: ?:?:2:1
+Linux 5.2.7-arch1-1-ARCH
+local/libva-mesa-driver 19.1.4-1
+local/mesa 19.1.4-1
+local/mesa-demos 8.4.0-1
+local/mesa-vdpau 19.1.4-1
 
+$ LIBVA_DRIVER_NAME=3Dnouveau mpv --hwdec=3Dvaapi -vo=3Dvaapi /path/to/MP4
+Playing: /path/to/MP4
+ (+) Video --vid=3D1 (*) (h264 1280x720 23.976fps)
+ (+) Audio --aid=3D1 --alang=3Deng (*) (aac 2ch 44100Hz)
+Using hardware decoding (vaapi).
+AO: [pulse] 44100Hz stereo 2ch float
+VO: [vaapi] 1280x720 vaapi[nv12]
+nve4_set_surface_info:969 - unsupported surface format, try
+is_format_supported() !
+nve4_set_surface_info:969 - unsupported surface format, try
+is_format_supported() !
+nve4_set_surface_info:969 - unsupported surface format, try
+is_format_supported() !
+nve4_set_surface_info:969 - unsupported surface format, try
+is_format_supported() !
+nve4_set_surface_info:969 - unsupported surface format, try
+is_format_supported() !
 
-<a href=3D"https://github.com/mharsch/envytools/commit/b70216fcf3d268995d7f=
-9aa275db3a359c6a80bd">https://github.com/mharsch/envytools/commit/b70216fcf=
-3d268995d7f9aa275db3a359c6a80bd</a></pre>
+$ VDPAU_DRIVER=3Dnouveau mpv --hwdec=3Dvdpau -vo=3Dopengl /path/to/MP4=20
+Driver 'opengl' has been replaced with 'gpu'!
+Playing: /path/to/MP4
+ (+) Video --vid=3D1 (*) (h264 1280x720 23.976fps)
+ (+) Audio --aid=3D1 --alang=3Deng (*) (aac 2ch 44100Hz)
+Cannot load libcuda.so.1
+Using hardware decoding (vdpau).
+VO: [gpu] 1280x720 vdpau[yuv420p]
+AO: [pulse] 44100Hz stereo 2ch float
+AV: 00:00:12 / 00:02:03 (10%) A-V:  0.000</pre>
         </div>
       </p>
 
@@ -101,13 +155,14 @@ Also i saw error in envytools in row for gk107:  NVE7 [GK107]: ?:?:2:1
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15654434012.93A1bc.31229--
+--15654597320.09BC68.14257--
 
---===============1583286546==
+--===============0197041561==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +172,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1583286546==--
+--===============0197041561==--
