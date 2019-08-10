@@ -1,17 +1,16 @@
 From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: Re: [PATCH 6/9] nouveau: simplify
- nouveau_dmem_migrate_to_ram
-Date: Sat, 10 Aug 2019 13:08:01 +0200
-Message-ID: <20190810110801.GA26349@lst.de>
-References: <20190808153346.9061-1-hch@lst.de>
- <20190808153346.9061-7-hch@lst.de>
- <08112ecb-0984-9e32-a463-e731bc014747@nvidia.com>
+Subject: Re: [PATCH] nouveau/hmm: map pages after migration
+Date: Sat, 10 Aug 2019 13:13:08 +0200
+Message-ID: <20190810111308.GB26349@lst.de>
+References: <20190807150214.3629-1-rcampbell@nvidia.com>
+ <20190808070701.GC29382@lst.de>
+ <0b96a8d8-86b5-3ce0-db95-669963c1f8a7@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <08112ecb-0984-9e32-a463-e731bc014747-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <0b96a8d8-86b5-3ce0-db95-669963c1f8a7-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -22,10 +21,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-VGhhbmtzLCBJJ3ZlIGFkZGVkIHRoZSBmaXh1cHMgZm9yIHYzLgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXU=
+T24gVGh1LCBBdWcgMDgsIDIwMTkgYXQgMDI6Mjk6MzRQTSAtMDcwMCwgUmFscGggQ2FtcGJlbGwg
+d3JvdGU6Cj4+PiAgIHsKPj4+ICAgCXN0cnVjdCBub3V2ZWF1X2ZlbmNlICpmZW5jZTsKPj4+ICAg
+CXVuc2lnbmVkIGxvbmcgYWRkciA9IGFyZ3MtPnN0YXJ0LCBucl9kbWEgPSAwLCBpOwo+Pj4gICAg
+IAlmb3IgKGkgPSAwOyBhZGRyIDwgYXJncy0+ZW5kOyBpKyspIHsKPj4+ICAgCQlhcmdzLT5kc3Rb
+aV0gPSBub3V2ZWF1X2RtZW1fbWlncmF0ZV9jb3B5X29uZShkcm0sIGFyZ3MtPnZtYSwKPj4+IC0J
+CQkJYWRkciwgYXJncy0+c3JjW2ldLCAmZG1hX2FkZHJzW25yX2RtYV0pOwo+Pj4gKwkJCQlhcmdz
+LT5zcmNbaV0sICZkbWFfYWRkcnNbbnJfZG1hXSwgJnBmbnNbaV0pOwo+Pgo+PiBOaXQ6IEkgZmlu
+ZCB0aGUgJnBmbnNbaV0gd2F5IHRvIHBhc3MgdGhlIGFyZ3VtZW50IGEgbGl0dGxlIHdlaXJkIHRv
+IHJlYWQuCj4+IFdoeSBub3QgInBmbnMgKyBpIj8KPgo+IE9LLCB3aWxsIGRvIGluIHYyLgo+IFNo
+b3VsZCBJIGNvbnZlcnQgdG8gImRtYV9hZGRycyArIG5yX2RtYSIgdG9vPwoKSSdsbCBmaXggaXQg
+dXAgZm9yIHYzIG9mIHRoZSBtaWdyYXRlX3ZtYSBzZXJpZXMuICBUaGlzIGlzIGEgbGVmdG92ZXIK
+ZnJvbSBwYXNzaW5nIGFuIGFyZ3Mgc3RydWN0dXJlLgoKT24gc29tZXRoaW5nIHZhZ3VlbHkgcmVs
+YXRlZCB0byB0aGlzIHBhdGNoOgoKWW91IHVzZSB0aGUgTlZJRl9WTU1fUEZOTUFQX1YwX1YqIGRl
+ZmluZXMgZnJvbSBudmlmL2lmMDAwYy5oLCB3aGljaCBhcmUKYSBsaXR0bGUgb2RkIGFzIHdlIG9u
+bHkgZXZlciBzZXQgdGhlc2UgYml0cywgYnV0IHRoZXkgYWxzbyBkb24ndCBzZWVtCnRvIGFwcGVh
+ciB0byBiZSBpbiB2YWx1ZXMgdGhhdCBhcmUgZGlyZWN0bHkgZmVkIHRvIHRoZSBoYXJkd2FyZS4K
+Ck9uIHRoZSBvdGhlciBoYW5kIG1tdS92bW0uaCBkZWZpbmVzIGEgc2V0IG9mIE5WSUZfVk1NX1BG
+Tk1BUF9WMF8qCmNvbnN0YW50cyB3aXRoIHNpbWlsYXIgbmFtZXMgYW5kIGlkZW50aWNhbCB2YWx1
+ZXMsIGFuZCB0aG9zZSBhcmUgdXNlZAppbiBtbXUvdm1tZ3AxMDAuYyBhbmQgd2hhdCBhcHBlYXJz
+IHRvIGZpbmFsbHkgZG8gdGhlIGxvdy1sZXZlbCBkbWEKbWFwcGluZyBhbmQgdGFsa2luZyB0byB0
+aGUgaGFyZHdhcmUuICBBcmUgdGhlc2UgdHdvIHNldHMgb2YgY29uc3RhbnRzCnN1cHBvc2VkIHRv
+IGJlIHRoZSBzYW1lPyAgQXJlIHRoZSBhY3R1YWwgaGFyZHdhcmUgdmFsdWVzIG9yIGp1c3QgYQpk
+cml2ZXIgaW50ZXJuYWwgaW50ZXJmYWNlPwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXU=
