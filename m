@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111371] [NV04] bios OOB on kernel driver
  initialization
-Date: Sun, 11 Aug 2019 20:12:50 +0000
-Message-ID: <bug-111371-8800-8XMysoXMbF@http.bugs.freedesktop.org/>
+Date: Sun, 11 Aug 2019 20:53:55 +0000
+Message-ID: <bug-111371-8800-PJHQI95V68@http.bugs.freedesktop.org/>
 References: <bug-111371-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0733191806=="
+Content-Type: multipart/mixed; boundary="===============0245282209=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0733191806==
-Content-Type: multipart/alternative; boundary="15655543701.617Dc28C.15572"
+--===============0245282209==
+Content-Type: multipart/alternative; boundary="15655568341.1e2CEc.21938"
 Content-Transfer-Encoding: 7bit
 
 
---15655543701.617Dc28C.15572
-Date: Sun, 11 Aug 2019 20:12:50 +0000
+--15655568341.1e2CEc.21938
+Date: Sun, 11 Aug 2019 20:53:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,71 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111371
 
---- Comment #8 from Jorge Natz <jorgenatzdev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 145031
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145031&action=3Dedit
-PROM VBIOS dump
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Jorge Natz from comment #6)
+> When I try to use nvagetbios without arguments, it gives me this message:
+
+Congratulations on having such an old card. Esp one that still works, and a
+motherboard you can plug it into. From the PRAMIN data, we can see that it's
+
+16MB Diamond Viper TNT AGP Video Card
+
+(which you probably knew already). So nvbios is (mostly) OK with this:
+
+~/src/envytools/nvbios/nvbios pramin.bios=20
+warning: No strap specified
+BIOS size 0x8000 [orig: 0x10000], 1 valid parts:
+
+BIOS part 0 at 0x0 size 0x8000 [init: 0x8800]. Sig:
+PCIR [rev 0x00]:
+PCI device: 0x10de:0x0020, class 0x030000
+Code type 0x00, rev 0x0001
+PCIR indicator: 0x80
+
+BIOS type: NV04
+
+Subsystem id: 0x1092:0x5802
+
+BMP 0x00.01 at 0x2df2
+
+Bios version 0x30.2e.8e.7e
+
+(note the straps thing is unrelated to this).
+
+No tables at all decoded by nvbios though. I think that was semi-common tho=
+ugh
+in those days. And the PCIR signature really is at 0x3b6f.
+
+It's weird since the bytes "PCIR" are definitely there in the dumps at 0x3b=
+6f,
+however the driver clearly sees a 0 instead of 0x52494350. Oh, that's becau=
+se
+it thinks they're out-of-bounds... which in turn looks like it's because we
+only pre-fetch the first 4K. To make this work, we'd have to fetch the first
+16K. Annoying.
+
+OK, so a super-quick workaround is to change
+
+drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c:shadow_image
+
+                if (!shadow_fetch(bios, mthd, offset + 0x1000)) {
+
+to
+
+                if (!shadow_fetch(bios, mthd, offset + 0x4000)) {
+
+This isn't generally OK - I don't know that all VBIOS's are even that large,
+but it's OK for these methods.
+
+Ben - what do you think an appropriate workaround is for something like thi=
+s?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15655543701.617Dc28C.15572
-Date: Sun, 11 Aug 2019 20:12:50 +0000
+--15655568341.1e2CEc.21938
+Date: Sun, 11 Aug 2019 20:53:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,22 +117,76 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c8">Commen=
-t # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371">bug 11137=
 1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jorgenatzdev&#64;gmail.com" title=3D"Jorge Natz &lt;jorgenatzdev&#64;gmail.=
-com&gt;"> <span class=3D"fn">Jorge Natz</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145031=
-" name=3D"attach_145031" title=3D"PROM VBIOS dump">attachment 145031</a> <a=
- href=3D"attachment.cgi?id=3D145031&amp;action=3Dedit" title=3D"PROM VBIOS =
-dump">[details]</a></span>
-PROM VBIOS dump</pre>
+        <pre>(In reply to Jorge Natz from <a href=3D"show_bug.cgi?id=3D1113=
+71#c6">comment #6</a>)
+<span class=3D"quote">&gt; When I try to use nvagetbios without arguments, =
+it gives me this message:</span >
+
+Congratulations on having such an old card. Esp one that still works, and a
+motherboard you can plug it into. From the PRAMIN data, we can see that it's
+
+16MB Diamond Viper TNT AGP Video Card
+
+(which you probably knew already). So nvbios is (mostly) OK with this:
+
+~/src/envytools/nvbios/nvbios pramin.bios=20
+warning: No strap specified
+BIOS size 0x8000 [orig: 0x10000], 1 valid parts:
+
+BIOS part 0 at 0x0 size 0x8000 [init: 0x8800]. Sig:
+PCIR [rev 0x00]:
+PCI device: 0x10de:0x0020, class 0x030000
+Code type 0x00, rev 0x0001
+PCIR indicator: 0x80
+
+BIOS type: NV04
+
+Subsystem id: 0x1092:0x5802
+
+BMP 0x00.01 at 0x2df2
+
+Bios version 0x30.2e.8e.7e
+
+(note the straps thing is unrelated to this).
+
+No tables at all decoded by nvbios though. I think that was semi-common tho=
+ugh
+in those days. And the PCIR signature really is at 0x3b6f.
+
+It's weird since the bytes &quot;PCIR&quot; are definitely there in the dum=
+ps at 0x3b6f,
+however the driver clearly sees a 0 instead of 0x52494350. Oh, that's becau=
+se
+it thinks they're out-of-bounds... which in turn looks like it's because we
+only pre-fetch the first 4K. To make this work, we'd have to fetch the first
+16K. Annoying.
+
+OK, so a super-quick workaround is to change
+
+drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c:shadow_image
+
+                if (!shadow_fetch(bios, mthd, offset + 0x1000)) {
+
+to
+
+                if (!shadow_fetch(bios, mthd, offset + 0x4000)) {
+
+This isn't generally OK - I don't know that all VBIOS's are even that large,
+but it's OK for these methods.
+
+Ben - what do you think an appropriate workaround is for something like thi=
+s?</pre>
         </div>
       </p>
 
@@ -92,9 +200,9 @@ PROM VBIOS dump</pre>
     </body>
 </html>=
 
---15655543701.617Dc28C.15572--
+--15655568341.1e2CEc.21938--
 
---===============0733191806==
+--===============0245282209==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +212,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0733191806==--
+--===============0245282209==--
