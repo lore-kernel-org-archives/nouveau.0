@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111110] Nvidia quadro + nouveau : second terminal
  wake up but doesn't more display
-Date: Sun, 11 Aug 2019 19:55:21 +0000
-Message-ID: <bug-111110-8800-c5mBTLp280@http.bugs.freedesktop.org/>
+Date: Sun, 11 Aug 2019 19:56:23 +0000
+Message-ID: <bug-111110-8800-dgYI5iKkFo@http.bugs.freedesktop.org/>
 References: <bug-111110-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1308801962=="
+Content-Type: multipart/mixed; boundary="===============1778847096=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111110-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1308801962==
-Content-Type: multipart/alternative; boundary="15655533210.3bF9eeC0a.12240"
+--===============1778847096==
+Content-Type: multipart/alternative; boundary="15655533830.F4cE.12240"
 Content-Transfer-Encoding: 7bit
 
 
---15655533210.3bF9eeC0a.12240
-Date: Sun, 11 Aug 2019 19:55:21 +0000
+--15655533830.F4cE.12240
+Date: Sun, 11 Aug 2019 19:56:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,24 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111110
 
---- Comment #5 from Philippe Cond=C3=A9 <conde.philippe-AgBVmzD5pcezQB+pC5nmwQ@public.gmane.org> ---
-Created attachment 145028
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145028&action=3Dedit
-dmesg output with debug
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+What was a working kernel, and what's a non-working kernel?
 
-hello,
-
-I added the parameters "drm.debug=3D14  log_buf_len=3D16M" on the boot opti=
-on
-here the output of dmesg
+The most effective way to determine the problematic change is to do a git
+bisect between those two kernels.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15655533210.3bF9eeC0a.12240
-Date: Sun, 11 Aug 2019 19:55:21 +0000
+--15655533830.F4cE.12240
+Date: Sun, 11 Aug 2019 19:56:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,8 +66,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Nvidia quadro + nouveau : second terminal wake up but doe=
 sn't more display"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111110#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111110#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia quadro + nouveau : second terminal wake up but doe=
@@ -80,20 +75,13 @@ sn't more display"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111110">bug 11111=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-conde.philippe&#64;skynet.be" title=3D"Philippe Cond=C3=A9 &lt;conde.philip=
-pe&#64;skynet.be&gt;"> <span class=3D"fn">Philippe Cond=C3=A9</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145028=
-" name=3D"attach_145028" title=3D"dmesg output with debug">attachment 14502=
-8</a> <a href=3D"attachment.cgi?id=3D145028&amp;action=3Dedit" title=3D"dme=
-sg output with debug">[details]</a></span>
-dmesg output with debug
+        <pre>What was a working kernel, and what's a non-working kernel?
 
-hello,
-
-I added the parameters &quot;drm.debug=3D14  log_buf_len=3D16M&quot; on the=
- boot option
-here the output of dmesg</pre>
+The most effective way to determine the problematic change is to do a git
+bisect between those two kernels.</pre>
         </div>
       </p>
 
@@ -102,15 +90,15 @@ here the output of dmesg</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15655533210.3bF9eeC0a.12240--
+--15655533830.F4cE.12240--
 
---===============1308801962==
+--===============1778847096==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1308801962==--
+--===============1778847096==--
