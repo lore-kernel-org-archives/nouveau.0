@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111371] [NV04] bios OOB on kernel driver
  initialization
-Date: Sun, 11 Aug 2019 16:19:59 +0000
-Message-ID: <bug-111371-8800-is3tcVnzPa@http.bugs.freedesktop.org/>
+Date: Sun, 11 Aug 2019 16:35:37 +0000
+Message-ID: <bug-111371-8800-5x3M9qd7r3@http.bugs.freedesktop.org/>
 References: <bug-111371-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1087313248=="
+Content-Type: multipart/mixed; boundary="===============0602773524=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1087313248==
-Content-Type: multipart/alternative; boundary="15655403990.D982.9369"
+--===============0602773524==
+Content-Type: multipart/alternative; boundary="15655413362.DbA4D.12411"
 Content-Transfer-Encoding: 7bit
 
 
---15655403990.D982.9369
-Date: Sun, 11 Aug 2019 16:19:59 +0000
+--15655413362.DbA4D.12411
+Date: Sun, 11 Aug 2019 16:35:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,19 +36,23 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111371
 
---- Comment #4 from Jorge Natz <jorgenatzdev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 145025
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145025&action=3Dedit
-dmesg log for nouveau.debug=3Dbios=3Ddebug parameter, with nouveau as "tain=
-ted"
-external module
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Could you try retrieving the image using nvagetbios and uploading it? I'm
+curious what's in it, perhaps our "is this a valid image" logic needs fixin=
+g.
+Or perhaps it's bogus data -- not 100% surprising for a NV4. We definitely =
+do
+have some examples of NV4 vbios's though, and in the past people have
+successfully booted NV4 boards with nouveau (and filed bugs about things mu=
+ch
+later having issues, like the ddx or GL accel - you can search for them).
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15655403990.D982.9369
-Date: Sun, 11 Aug 2019 16:19:59 +0000
+--15655413362.DbA4D.12411
+Date: Sun, 11 Aug 2019 16:35:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,26 +69,28 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371">bug 11137=
 1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jorgenatzdev&#64;gmail.com" title=3D"Jorge Natz &lt;jorgenatzdev&#64;gmail.=
-com&gt;"> <span class=3D"fn">Jorge Natz</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145025=
-" name=3D"attach_145025" title=3D"dmesg log for nouveau.debug=3Dbios=3Ddebu=
-g parameter, with nouveau as &quot;tainted&quot; external module">attachmen=
-t 145025</a> <a href=3D"attachment.cgi?id=3D145025&amp;action=3Dedit" title=
-=3D"dmesg log for nouveau.debug=3Dbios=3Ddebug parameter, with nouveau as &=
-quot;tainted&quot; external module">[details]</a></span>
-dmesg log for nouveau.debug=3Dbios=3Ddebug parameter, with nouveau as &quot=
-;tainted&quot;
-external module</pre>
+        <pre>Could you try retrieving the image using nvagetbios and upload=
+ing it? I'm
+curious what's in it, perhaps our &quot;is this a valid image&quot; logic n=
+eeds fixing.
+Or perhaps it's bogus data -- not 100% surprising for a NV4. We definitely =
+do
+have some examples of NV4 vbios's though, and in the past people have
+successfully booted NV4 boards with nouveau (and filed bugs about things mu=
+ch
+later having issues, like the ddx or GL accel - you can search for them).</=
+pre>
         </div>
       </p>
 
@@ -98,9 +104,9 @@ external module</pre>
     </body>
 </html>=
 
---15655403990.D982.9369--
+--15655413362.DbA4D.12411--
 
---===============1087313248==
+--===============0602773524==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1087313248==--
+--===============0602773524==--
