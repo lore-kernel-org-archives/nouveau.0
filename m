@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111110] Nvidia quadro + nouveau : second terminal
- wake up but doesn't more display
-Date: Sun, 11 Aug 2019 19:57:01 +0000
-Message-ID: <bug-111110-8800-PWEvpaEVUu@http.bugs.freedesktop.org/>
-References: <bug-111110-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 111371] [NV04] bios OOB on kernel driver
+ initialization
+Date: Sun, 11 Aug 2019 20:11:58 +0000
+Message-ID: <bug-111371-8800-RhXWBmg0Cm@http.bugs.freedesktop.org/>
+References: <bug-111371-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1042571439=="
+Content-Type: multipart/mixed; boundary="===============1872170177=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111110-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-111371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +21,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1042571439==
-Content-Type: multipart/alternative; boundary="15655534210.23CA.13584"
+--===============1872170177==
+Content-Type: multipart/alternative; boundary="15655543181.C3BBE4.15515"
 Content-Transfer-Encoding: 7bit
 
 
---15655534210.23CA.13584
-Date: Sun, 11 Aug 2019 19:57:01 +0000
+--15655543181.C3BBE4.15515
+Date: Sun, 11 Aug 2019 20:11:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111110
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111371
 
---- Comment #7 from Philippe Cond=C3=A9 <conde.philippe-AgBVmzD5pcezQB+pC5nmwQ@public.gmane.org> ---
-Created attachment 145029
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145029&action=3Dedit
-Xorg.0.log with debug
+--- Comment #6 from Jorge Natz <jorgenatzdev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Sorry about the long wait time, compile takes a while on my machine.
 
-hello,
+When I try to use nvagetbios without arguments, it gives me this message:
 
-I added the parameters "drm.debug=3D14  log_buf_len=3D16M" on the boot opti=
-on
-here the Xorg.0.log
+No extraction method specified (using -s extraction_method). Autodetecting.
+Attempt to extract the vbios from card 0 (nv04) using PRAMIN.
+Invalid checksum. Broken vbios or broken retrieval method?
+Attempt to extract the vbios from card 0 (nv04) using PROM.
+Invalid checksum. Broken vbios or broken retrieval method?
+Autodetection failed, aborting.
+
+Therefore I did two runs, one which specified -s prom, the other which
+specified -s pramin.
+
+However, on both of these runs, it gave the message:
+
+Attempt to extract the vbios from card 0 (nv04) using <PROM/PRAMIN>.
+Invalid checksum. Broken vbios or broken retrieval method?
+0xff
+
+
+Thank you for spending you time in dealing with this issue.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15655534210.23CA.13584
-Date: Sun, 11 Aug 2019 19:57:01 +0000
+--15655543181.C3BBE4.15515
+Date: Sun, 11 Aug 2019 20:11:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,31 +81,41 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nvidia quadro + nouveau : second terminal wake up but doe=
-sn't more display"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111110#c7">Commen=
-t # 7</a>
+   title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - Nvidia quadro + nouveau : second terminal wake up but doe=
-sn't more display"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111110">bug 11111=
-0</a>
+   title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371">bug 11137=
+1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-conde.philippe&#64;skynet.be" title=3D"Philippe Cond=C3=A9 &lt;conde.philip=
-pe&#64;skynet.be&gt;"> <span class=3D"fn">Philippe Cond=C3=A9</span></a>
+jorgenatzdev&#64;gmail.com" title=3D"Jorge Natz &lt;jorgenatzdev&#64;gmail.=
+com&gt;"> <span class=3D"fn">Jorge Natz</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145029=
-" name=3D"attach_145029" title=3D"Xorg.0.log with debug">attachment 145029<=
-/a> <a href=3D"attachment.cgi?id=3D145029&amp;action=3Dedit" title=3D"Xorg.=
-0.log with debug">[details]</a></span>
-Xorg.0.log with debug
+        <pre>Sorry about the long wait time, compile takes a while on my ma=
+chine.
 
-hello,
+When I try to use nvagetbios without arguments, it gives me this message:
 
-I added the parameters &quot;drm.debug=3D14  log_buf_len=3D16M&quot; on the=
- boot option
-here the Xorg.0.log</pre>
+No extraction method specified (using -s extraction_method). Autodetecting.
+Attempt to extract the vbios from card 0 (nv04) using PRAMIN.
+Invalid checksum. Broken vbios or broken retrieval method?
+Attempt to extract the vbios from card 0 (nv04) using PROM.
+Invalid checksum. Broken vbios or broken retrieval method?
+Autodetection failed, aborting.
+
+Therefore I did two runs, one which specified -s prom, the other which
+specified -s pramin.
+
+However, on both of these runs, it gave the message:
+
+Attempt to extract the vbios from card 0 (nv04) using &lt;PROM/PRAMIN&gt;.
+Invalid checksum. Broken vbios or broken retrieval method?
+0xff
+
+
+Thank you for spending you time in dealing with this issue.</pre>
         </div>
       </p>
 
@@ -102,15 +124,14 @@ here the Xorg.0.log</pre>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15655534210.23CA.13584--
+--15655543181.C3BBE4.15515--
 
---===============1042571439==
+--===============1872170177==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +141,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1042571439==--
+--===============1872170177==--
