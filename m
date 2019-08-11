@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111110] Nvidia quadro + nouveau : second terminal
  wake up but doesn't more display
-Date: Sun, 11 Aug 2019 14:38:56 +0000
-Message-ID: <bug-111110-8800-TEKS6rwUeF@http.bugs.freedesktop.org/>
+Date: Sun, 11 Aug 2019 14:40:46 +0000
+Message-ID: <bug-111110-8800-qNKyHITh9L@http.bugs.freedesktop.org/>
 References: <bug-111110-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1370740736=="
+Content-Type: multipart/mixed; boundary="===============0210540324=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111110-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1370740736==
-Content-Type: multipart/alternative; boundary="15655343360.d4d86A.23581"
+--===============0210540324==
+Content-Type: multipart/alternative; boundary="15655344460.ADFEFdc4B.23775"
 Content-Transfer-Encoding: 7bit
 
 
---15655343360.d4d86A.23581
-Date: Sun, 11 Aug 2019 14:38:56 +0000
+--15655344460.ADFEFdc4B.23775
+Date: Sun, 11 Aug 2019 14:40:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,27 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111110
 
---- Comment #2 from Philippe Cond=C3=A9 <conde.philippe-AgBVmzD5pcezQB+pC5nmwQ@public.gmane.org> ---
-Created attachment 145022
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145022&action=3Dedit
-Xorg.0.log
+--- Comment #3 from Philippe Cond=C3=A9 <conde.philippe-AgBVmzD5pcezQB+pC5nmwQ@public.gmane.org> ---
+Hello I tested with the last available kernel
+"Linux hpprol2 5.3.0-rc3-4.g7de292a-default #1 SMP Fri Aug 9 16:17:27 UTC 2=
+019
+(7de292a) x86_64 x86_64 x86_64 GNU/Linux
+"
+
+This regression is still present.
+
+I have attached the Xorg.0.log. Do you need other information?
+
+Many thanks in advance
+Philippe
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15655343360.d4d86A.23581
-Date: Sun, 11 Aug 2019 14:38:56 +0000
+--15655344460.ADFEFdc4B.23775
+Date: Sun, 11 Aug 2019 14:40:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +74,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Nvidia quadro + nouveau : second terminal wake up but doe=
 sn't more display"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111110#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111110#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Nvidia quadro + nouveau : second terminal wake up but doe=
@@ -77,11 +86,18 @@ sn't more display"
 conde.philippe&#64;skynet.be" title=3D"Philippe Cond=C3=A9 &lt;conde.philip=
 pe&#64;skynet.be&gt;"> <span class=3D"fn">Philippe Cond=C3=A9</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145022=
-" name=3D"attach_145022" title=3D"Xorg.0.log">attachment 145022</a> <a href=
-=3D"attachment.cgi?id=3D145022&amp;action=3Dedit" title=3D"Xorg.0.log">[det=
-ails]</a></span>
-Xorg.0.log</pre>
+        <pre>Hello I tested with the last available kernel
+&quot;Linux hpprol2 5.3.0-rc3-4.g7de292a-default #1 SMP Fri Aug 9 16:17:27 =
+UTC 2019
+(7de292a) x86_64 x86_64 x86_64 GNU/Linux
+&quot;
+
+This regression is still present.
+
+I have attached the Xorg.0.log. Do you need other information?
+
+Many thanks in advance
+Philippe</pre>
         </div>
       </p>
 
@@ -96,9 +112,9 @@ Xorg.0.log</pre>
     </body>
 </html>=
 
---15655343360.d4d86A.23581--
+--15655344460.ADFEFdc4B.23775--
 
---===============1370740736==
+--===============0210540324==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +124,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1370740736==--
+--===============0210540324==--
