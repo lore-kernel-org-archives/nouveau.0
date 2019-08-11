@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111371] [NV04] bios OOB on kernel driver
  initialization
-Date: Sun, 11 Aug 2019 16:19:01 +0000
-Message-ID: <bug-111371-8800-oPGs4mhbm6@http.bugs.freedesktop.org/>
+Date: Sun, 11 Aug 2019 16:19:59 +0000
+Message-ID: <bug-111371-8800-is3tcVnzPa@http.bugs.freedesktop.org/>
 References: <bug-111371-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0838634436=="
+Content-Type: multipart/mixed; boundary="===============1087313248=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0838634436==
-Content-Type: multipart/alternative; boundary="15655403401.EB8B8cDe5.9500"
+--===============1087313248==
+Content-Type: multipart/alternative; boundary="15655403990.D982.9369"
 Content-Transfer-Encoding: 7bit
 
 
---15655403401.EB8B8cDe5.9500
-Date: Sun, 11 Aug 2019 16:19:00 +0000
+--15655403990.D982.9369
+Date: Sun, 11 Aug 2019 16:19:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,27 +36,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111371
 
---- Comment #3 from Jorge Natz <jorgenatzdev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-These are the only two kernels I have tried with this card, and it has never
-worked on my machine. I was able to get a graphical display with the xorg v=
-esa
-driver, though.
-
-I also tried reloading the kernel module after agpgart loading using "rmmod
-nouveau" and then "modprobe nouveau" after boot, but it made no difference.
-
-I will attach a dmesg log with nouveau.config=3Dbios=3Ddebug for the kernel=
- with
-nouveau compiled as an out-of-tree-module. It seems (to my limited knowledg=
-e)
-to have interesting information.
+--- Comment #4 from Jorge Natz <jorgenatzdev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 145025
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145025&action=3Dedit
+dmesg log for nouveau.debug=3Dbios=3Ddebug parameter, with nouveau as "tain=
+ted"
+external module
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15655403401.EB8B8cDe5.9500
-Date: Sun, 11 Aug 2019 16:19:00 +0000
+--15655403990.D982.9369
+Date: Sun, 11 Aug 2019 16:19:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,8 +65,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c3">Commen=
-t # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
@@ -84,22 +76,15 @@ t # 3</a>
 jorgenatzdev&#64;gmail.com" title=3D"Jorge Natz &lt;jorgenatzdev&#64;gmail.=
 com&gt;"> <span class=3D"fn">Jorge Natz</span></a>
 </span></b>
-        <pre>These are the only two kernels I have tried with this card, an=
-d it has never
-worked on my machine. I was able to get a graphical display with the xorg v=
-esa
-driver, though.
-
-I also tried reloading the kernel module after agpgart loading using &quot;=
-rmmod
-nouveau&quot; and then &quot;modprobe nouveau&quot; after boot, but it made=
- no difference.
-
-I will attach a dmesg log with nouveau.config=3Dbios=3Ddebug for the kernel=
- with
-nouveau compiled as an out-of-tree-module. It seems (to my limited knowledg=
-e)
-to have interesting information.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145025=
+" name=3D"attach_145025" title=3D"dmesg log for nouveau.debug=3Dbios=3Ddebu=
+g parameter, with nouveau as &quot;tainted&quot; external module">attachmen=
+t 145025</a> <a href=3D"attachment.cgi?id=3D145025&amp;action=3Dedit" title=
+=3D"dmesg log for nouveau.debug=3Dbios=3Ddebug parameter, with nouveau as &=
+quot;tainted&quot; external module">[details]</a></span>
+dmesg log for nouveau.debug=3Dbios=3Ddebug parameter, with nouveau as &quot=
+;tainted&quot;
+external module</pre>
         </div>
       </p>
 
@@ -113,9 +98,9 @@ to have interesting information.</pre>
     </body>
 </html>=
 
---15655403401.EB8B8cDe5.9500--
+--15655403990.D982.9369--
 
---===============0838634436==
+--===============1087313248==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -125,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0838634436==--
+--===============1087313248==--
