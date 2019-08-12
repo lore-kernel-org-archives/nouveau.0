@@ -1,120 +1,40 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111371] [NV04] bios OOB on kernel driver
- initialization
-Date: Mon, 12 Aug 2019 19:18:18 +0000
-Message-ID: <bug-111371-8800-MqliLl3xj3@http.bugs.freedesktop.org/>
-References: <bug-111371-8800@http.bugs.freedesktop.org/>
+From: Ralph Campbell <rcampbell@nvidia.com>
+Subject: Re: [PATCH] nouveau/hmm: map pages after migration
+Date: Mon, 12 Aug 2019 12:42:30 -0700
+Message-ID: <1a84e6b6-31e6-6955-509f-9883f4a7a322@nvidia.com>
+References: <20190807150214.3629-1-rcampbell@nvidia.com>
+ <20190808070701.GC29382@lst.de>
+ <0b96a8d8-86b5-3ce0-db95-669963c1f8a7@nvidia.com>
+ <20190810111308.GB26349@lst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0224761037=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190810111308.GB26349@lst.de>
+Content-Language: en-US
+Sender: linux-kernel-owner@vger.kernel.org
+To: Christoph Hellwig <hch@lst.de>
+Cc: linux-mm@kvack.org, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, Jason Gunthorpe <jgg@mellanox.com>, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
 
---===============0224761037==
-Content-Type: multipart/alternative; boundary="15656374980.53823E.15346"
-Content-Transfer-Encoding: 7bit
+On 8/10/19 4:13 AM, Christoph Hellwig wrote:
+> On something vaguely related to this patch:
+> 
+> You use the NVIF_VMM_PFNMAP_V0_V* defines from nvif/if000c.h, which are
+> a little odd as we only ever set these bits, but they also don't seem
+> to appear to be in values that are directly fed to the hardware.
+> 
+> On the other hand mmu/vmm.h defines a set of NVIF_VMM_PFNMAP_V0_*
 
+Yes, I see NVKM_VMM_PFN_*
 
---15656374980.53823E.15346
-Date: Mon, 12 Aug 2019 19:18:18 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+> constants with similar names and identical values, and those are used
+> in mmu/vmmgp100.c and what appears to finally do the low-level dma
+> mapping and talking to the hardware.  Are these two sets of constants
+> supposed to be the same?  Are the actual hardware values or just a
+> driver internal interface?
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111371
-
---- Comment #20 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Jorge Natz from comment #19)
-> Given that I know nearly nothing about DRM/VBIOS internals, I am most lik=
-ely
-> completely wrong, but would the function fabricate_dcb_encoder_table in
-> drivers/gpu/drm/nouveau/nouveau_bios.c be what you were mentioning earlie=
-r?
-
-Yes, that's exactly it. Of course, it's in our OTHER bios parser, not the o=
-ne
-in nvkm. Because you can't have too much of a good thing.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15656374980.53823E.15346
-Date: Mon, 12 Aug 2019 19:18:18 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c20">Comme=
-nt # 20</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371">bug 11137=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Jorge Natz from <a href=3D"show_bug.cgi?id=3D1113=
-71#c19">comment #19</a>)
-<span class=3D"quote">&gt; Given that I know nearly nothing about DRM/VBIOS=
- internals, I am most likely
-&gt; completely wrong, but would the function fabricate_dcb_encoder_table in
-&gt; drivers/gpu/drm/nouveau/nouveau_bios.c be what you were mentioning ear=
-lier?</span >
-
-Yes, that's exactly it. Of course, it's in our OTHER bios parser, not the o=
-ne
-in nvkm. Because you can't have too much of a good thing.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15656374980.53823E.15346--
-
---===============0224761037==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0224761037==--
+It looks a bit odd to me too.
+I don't really know the structure/history of nouveau.
+Perhaps Ben Skeggs can shed more light on your question.
