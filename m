@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111371] [NV04] bios OOB on kernel driver
  initialization
-Date: Mon, 12 Aug 2019 15:24:31 +0000
-Message-ID: <bug-111371-8800-UEhh18OlhV@http.bugs.freedesktop.org/>
+Date: Mon, 12 Aug 2019 15:51:21 +0000
+Message-ID: <bug-111371-8800-varuwUo8Qr@http.bugs.freedesktop.org/>
 References: <bug-111371-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0187986551=="
+Content-Type: multipart/mixed; boundary="===============1991264903=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0187986551==
-Content-Type: multipart/alternative; boundary="15656234700.AF1E965.10140"
+--===============1991264903==
+Content-Type: multipart/alternative; boundary="15656250800.bD5EDd95.14720"
 Content-Transfer-Encoding: 7bit
 
 
---15656234700.AF1E965.10140
-Date: Mon, 12 Aug 2019 15:24:30 +0000
+--15656250800.bD5EDd95.14720
+Date: Mon, 12 Aug 2019 15:51:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,26 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111371
 
---- Comment #16 from Jorge Natz <jorgenatzdev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 145039
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145039&action=3Dedit
+Jorge Natz <jorgenatzdev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #145039|0                           |1
+        is obsolete|                            |
+
+--- Comment #17 from Jorge Natz <jorgenatzdev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 145040
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145040&action=3Dedit
 Fetch workaround kernel log (new kernel)
+
+This log is more representative. Please disregard the previous log.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15656234700.AF1E965.10140
-Date: Mon, 12 Aug 2019 15:24:30 +0000
+--15656250800.bD5EDd95.14720
+Date: Mon, 12 Aug 2019 15:51:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -57,14 +66,39 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jorgenatz=
+dev&#64;gmail.com" title=3D"Jorge Natz &lt;jorgenatzdev&#64;gmail.com&gt;">=
+ <span class=3D"fn">Jorge Natz</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371">bug 11137=
+1</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #145039 is obsolete</=
+td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c16">Comme=
-nt # 16</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c17">Comme=
+nt # 17</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
@@ -74,11 +108,13 @@ nt # 16</a>
 jorgenatzdev&#64;gmail.com" title=3D"Jorge Natz &lt;jorgenatzdev&#64;gmail.=
 com&gt;"> <span class=3D"fn">Jorge Natz</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145039=
-" name=3D"attach_145039" title=3D"Fetch workaround kernel log (new kernel)"=
->attachment 145039</a> <a href=3D"attachment.cgi?id=3D145039&amp;action=3De=
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145040=
+" name=3D"attach_145040" title=3D"Fetch workaround kernel log (new kernel)"=
+>attachment 145040</a> <a href=3D"attachment.cgi?id=3D145040&amp;action=3De=
 dit" title=3D"Fetch workaround kernel log (new kernel)">[details]</a></span>
-Fetch workaround kernel log (new kernel)</pre>
+Fetch workaround kernel log (new kernel)
+
+This log is more representative. Please disregard the previous log.</pre>
         </div>
       </p>
 
@@ -92,9 +128,9 @@ Fetch workaround kernel log (new kernel)</pre>
     </body>
 </html>=
 
---15656234700.AF1E965.10140--
+--15656250800.bD5EDd95.14720--
 
---===============0187986551==
+--===============1991264903==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +140,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0187986551==--
+--===============1991264903==--
