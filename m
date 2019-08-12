@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111371] [NV04] bios OOB on kernel driver
  initialization
-Date: Mon, 12 Aug 2019 15:51:21 +0000
-Message-ID: <bug-111371-8800-varuwUo8Qr@http.bugs.freedesktop.org/>
+Date: Mon, 12 Aug 2019 15:59:59 +0000
+Message-ID: <bug-111371-8800-ExAK19XlzZ@http.bugs.freedesktop.org/>
 References: <bug-111371-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1991264903=="
+Content-Type: multipart/mixed; boundary="===============1232053294=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1991264903==
-Content-Type: multipart/alternative; boundary="15656250800.bD5EDd95.14720"
+--===============1232053294==
+Content-Type: multipart/alternative; boundary="15656255993.53255b3D.16455"
 Content-Transfer-Encoding: 7bit
 
 
---15656250800.bD5EDd95.14720
-Date: Mon, 12 Aug 2019 15:51:20 +0000
+--15656255993.53255b3D.16455
+Date: Mon, 12 Aug 2019 15:59:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,26 +36,37 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111371
 
-Jorge Natz <jorgenatzdev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Jorge Natz from comment #17)
+> Created attachment 145040 [details]
+> Fetch workaround kernel log (new kernel)
+>=20
+> This log is more representative. Please disregard the previous log.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #145039|0                           |1
-        is obsolete|                            |
+OK great! Looks like we do add the VGA connector somehow ... no clue how gi=
+ven
+that there's no DCB, but hey - don't mess with success.
 
---- Comment #17 from Jorge Natz <jorgenatzdev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 145040
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145040&action=3Dedit
-Fetch workaround kernel log (new kernel)
+I will investigate whether ILLEGAL_MTHD errors are something to worry about=
+. I
+know some are expected and harmless (if annoying), but not sure about the f=
+irst
+clump.
 
-This log is more representative. Please disregard the previous log.
+You should have GL 1.2 with nouveau_vieux_dri.so on this too... no HW T&L on
+this hardware though, only rast. And not extremely conformant (no 3d textur=
+es,
+no clip planes, probably other failings).
+
+So ... question is what to do about the bios load issue. Ben, opinions welc=
+ome.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15656250800.bD5EDd95.14720
-Date: Mon, 12 Aug 2019 15:51:20 +0000
+--15656255993.53255b3D.16455
+Date: Mon, 12 Aug 2019 15:59:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -66,55 +77,53 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jorgenatz=
-dev&#64;gmail.com" title=3D"Jorge Natz &lt;jorgenatzdev&#64;gmail.com&gt;">=
- <span class=3D"fn">Jorge Natz</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371">bug 11137=
-1</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #145039 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c17">Comme=
-nt # 17</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c18">Comme=
+nt # 18</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371">bug 11137=
 1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jorgenatzdev&#64;gmail.com" title=3D"Jorge Natz &lt;jorgenatzdev&#64;gmail.=
-com&gt;"> <span class=3D"fn">Jorge Natz</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145040=
-" name=3D"attach_145040" title=3D"Fetch workaround kernel log (new kernel)"=
->attachment 145040</a> <a href=3D"attachment.cgi?id=3D145040&amp;action=3De=
-dit" title=3D"Fetch workaround kernel log (new kernel)">[details]</a></span>
-Fetch workaround kernel log (new kernel)
+        <pre>(In reply to Jorge Natz from <a href=3D"show_bug.cgi?id=3D1113=
+71#c17">comment #17</a>)
+<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
+gi?id=3D145040" name=3D"attach_145040" title=3D"Fetch workaround kernel log=
+ (new kernel)">attachment 145040</a> <a href=3D"attachment.cgi?id=3D145040&=
+amp;action=3Dedit" title=3D"Fetch workaround kernel log (new kernel)">[deta=
+ils]</a></span>
+&gt; Fetch workaround kernel log (new kernel)
+&gt;=20
+&gt; This log is more representative. Please disregard the previous log.</s=
+pan >
 
-This log is more representative. Please disregard the previous log.</pre>
+OK great! Looks like we do add the VGA connector somehow ... no clue how gi=
+ven
+that there's no DCB, but hey - don't mess with success.
+
+I will investigate whether ILLEGAL_MTHD errors are something to worry about=
+. I
+know some are expected and harmless (if annoying), but not sure about the f=
+irst
+clump.
+
+You should have GL 1.2 with nouveau_vieux_dri.so on this too... no HW T&amp=
+;L on
+this hardware though, only rast. And not extremely conformant (no 3d textur=
+es,
+no clip planes, probably other failings).
+
+So ... question is what to do about the bios load issue. Ben, opinions welc=
+ome.</pre>
         </div>
       </p>
 
@@ -128,9 +137,9 @@ This log is more representative. Please disregard the previous log.</pre>
     </body>
 </html>=
 
---15656250800.bD5EDd95.14720--
+--15656255993.53255b3D.16455--
 
---===============1991264903==
+--===============1232053294==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -140,4 +149,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1991264903==--
+--===============1232053294==--
