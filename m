@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111371] [NV04] bios OOB on kernel driver
- initialization
-Date: Mon, 12 Aug 2019 03:41:54 +0000
-Message-ID: <bug-111371-8800-OTF8FFpZ9G@http.bugs.freedesktop.org/>
-References: <bug-111371-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 111110] Nvidia quadro + nouveau : second terminal
+ wake up but doesn't more display
+Date: Mon, 12 Aug 2019 08:39:24 +0000
+Message-ID: <bug-111110-8800-1fRSUcGRQl@http.bugs.freedesktop.org/>
+References: <bug-111110-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0350697862=="
+Content-Type: multipart/mixed; boundary="===============1440115224=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-111110-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,44 +21,53 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0350697862==
-Content-Type: multipart/alternative; boundary="15655813133.53043DB.23573"
+--===============1440115224==
+Content-Type: multipart/alternative; boundary="15655991640.3e04C4.9827"
 Content-Transfer-Encoding: 7bit
 
 
---15655813133.53043DB.23573
-Date: Mon, 12 Aug 2019 03:41:53 +0000
+--15655991640.3e04C4.9827
+Date: Mon, 12 Aug 2019 08:39:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111371
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111110
 
---- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Well that looks much happier. vbios loads fine now.
+--- Comment #8 from Philippe Cond=C3=A9 <conde.philippe-AgBVmzD5pcezQB+pC5nmwQ@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #6)
+> What was a working kernel, and what's a non-working kernel?
+>=20
+> The most effective way to determine the problematic change is to do a git
+> bisect between those two kernels.
 
-I wonder if without a DCB table, whether we generate the VGA connector anyw=
-ays
-(since I think all NV4's always had VGA - maybe there was some variant with
-composite/s-video, but we probably don't support that anyways). I seem to
-recall code existing where we would auto-generate a connector for that case,
-but ... I don't remember. Might have been ppc-only.
+I think that it is not the kernel because when I saw the problem I rebooted=
+ the
+preceding kernel and the problem was then also present.
+On july, 10 I installed.a snapshot with a lot of component. looking in the
+zypper log in see that the kernel:
+Old =3D 5.1.15-1.1
+New =3D 5.1.16-1.2
 
-Next, I'll have to investigate those illegal method errors. Perhaps we're d=
-oing
-something NV5-specific, or the logic has bitrotted. Used to work.
+libdrm-nouveau2=20
+Old: 2.4.98-1.3 (installed on 2019-06-17) =3D=3D> no probelm
+New: 2.4.99-1.1  =3D=3D> problem is present=20
 
-And finally, that null deref, we'll need symbols, otherwise it's hopeless to
-figure out what happened.
+I never did a bisect. I'll try to find some info about this but no sure if I
+can do it.
+
+Regards
+Philippe
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15655813133.53043DB.23573
-Date: Mon, 12 Aug 2019 03:41:53 +0000
+--15655991640.3e04C4.9827
+Date: Mon, 12 Aug 2019 08:39:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -74,33 +83,46 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c13">Comme=
-nt # 13</a>
+   title=3D"NEW - Nvidia quadro + nouveau : second terminal wake up but doe=
+sn't more display"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111110#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371">bug 11137=
-1</a>
+   title=3D"NEW - Nvidia quadro + nouveau : second terminal wake up but doe=
+sn't more display"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111110">bug 11111=
+0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+conde.philippe&#64;skynet.be" title=3D"Philippe Cond=C3=A9 &lt;conde.philip=
+pe&#64;skynet.be&gt;"> <span class=3D"fn">Philippe Cond=C3=A9</span></a>
 </span></b>
-        <pre>Well that looks much happier. vbios loads fine now.
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D111=
+110#c6">comment #6</a>)
+<span class=3D"quote">&gt; What was a working kernel, and what's a non-work=
+ing kernel?
+&gt;=20
+&gt; The most effective way to determine the problematic change is to do a =
+git
+&gt; bisect between those two kernels.</span >
 
-I wonder if without a DCB table, whether we generate the VGA connector anyw=
-ays
-(since I think all NV4's always had VGA - maybe there was some variant with
-composite/s-video, but we probably don't support that anyways). I seem to
-recall code existing where we would auto-generate a connector for that case,
-but ... I don't remember. Might have been ppc-only.
+I think that it is not the kernel because when I saw the problem I rebooted=
+ the
+preceding kernel and the problem was then also present.
+On july, 10 I installed.a snapshot with a lot of component. looking in the
+zypper log in see that the kernel:
+Old =3D 5.1.15-1.1
+New =3D 5.1.16-1.2
 
-Next, I'll have to investigate those illegal method errors. Perhaps we're d=
-oing
-something NV5-specific, or the logic has bitrotted. Used to work.
+libdrm-nouveau2=20
+Old: 2.4.98-1.3 (installed on 2019-06-17) =3D=3D&gt; no probelm
+New: 2.4.99-1.1  =3D=3D&gt; problem is present=20
 
-And finally, that null deref, we'll need symbols, otherwise it's hopeless to
-figure out what happened.</pre>
+I never did a bisect. I'll try to find some info about this but no sure if I
+can do it.
+
+Regards
+Philippe</pre>
         </div>
       </p>
 
@@ -110,13 +132,14 @@ figure out what happened.</pre>
 
       <ul>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15655813133.53043DB.23573--
+--15655991640.3e04C4.9827--
 
---===============0350697862==
+--===============1440115224==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -126,4 +149,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0350697862==--
+--===============1440115224==--
