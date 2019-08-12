@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111371] [NV04] bios OOB on kernel driver
  initialization
-Date: Mon, 12 Aug 2019 03:25:45 +0000
-Message-ID: <bug-111371-8800-CgsJaZleZe@http.bugs.freedesktop.org/>
+Date: Mon, 12 Aug 2019 03:26:39 +0000
+Message-ID: <bug-111371-8800-sUqtAjGRie@http.bugs.freedesktop.org/>
 References: <bug-111371-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1861724089=="
+Content-Type: multipart/mixed; boundary="===============1254957904=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1861724089==
-Content-Type: multipart/alternative; boundary="15655803452.fFE0999da.20478"
+--===============1254957904==
+Content-Type: multipart/alternative; boundary="15655803991.b62ecb3b3.21795"
 Content-Transfer-Encoding: 7bit
 
 
---15655803452.fFE0999da.20478
-Date: Mon, 12 Aug 2019 03:25:45 +0000
+--15655803991.b62ecb3b3.21795
+Date: Mon, 12 Aug 2019 03:26:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,16 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111371
 
---- Comment #10 from Jorge Natz <jorgenatzdev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I applied the workaround you described and recompiled the nouveau module. I
-will attach the dmesg as well as a VBIOS dump with PRAMIN.
+--- Comment #11 from Jorge Natz <jorgenatzdev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 145034
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145034&action=3Dedit
+Fetch workaround kernel log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15655803452.fFE0999da.20478
-Date: Mon, 12 Aug 2019 03:25:45 +0000
+--15655803991.b62ecb3b3.21795
+Date: Mon, 12 Aug 2019 03:26:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c10">Comme=
-nt # 10</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c11">Comme=
+nt # 11</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
@@ -73,9 +74,11 @@ nt # 10</a>
 jorgenatzdev&#64;gmail.com" title=3D"Jorge Natz &lt;jorgenatzdev&#64;gmail.=
 com&gt;"> <span class=3D"fn">Jorge Natz</span></a>
 </span></b>
-        <pre>I applied the workaround you described and recompiled the nouv=
-eau module. I
-will attach the dmesg as well as a VBIOS dump with PRAMIN.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145034=
+" name=3D"attach_145034" title=3D"Fetch workaround kernel log">attachment 1=
+45034</a> <a href=3D"attachment.cgi?id=3D145034&amp;action=3Dedit" title=3D=
+"Fetch workaround kernel log">[details]</a></span>
+Fetch workaround kernel log</pre>
         </div>
       </p>
 
@@ -89,9 +92,9 @@ will attach the dmesg as well as a VBIOS dump with PRAMIN.</pre>
     </body>
 </html>=
 
---15655803452.fFE0999da.20478--
+--15655803991.b62ecb3b3.21795--
 
---===============1861724089==
+--===============1254957904==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1861724089==--
+--===============1254957904==--
