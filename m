@@ -1,43 +1,72 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH v2 0/2] drm/nouveau: CRTC Runtime PM ref tracking fixes
-Date: Tue, 13 Aug 2019 14:42:17 +1000
-Message-ID: <CACAvsv760Jtzubm2faimEY1z1tfNPBcsOJg6Ns0wL8W-9fxRXw@mail.gmail.com>
-References: <20190807234709.6076-1-lyude@redhat.com>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 1/4] pci: enable pcie link changes for pascal
+Date: Tue, 13 Aug 2019 11:19:54 +0200
+Message-ID: <20190813091957.4812-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190807234709.6076-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: ML nouveau <nouveau@lists.freedesktop.org>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, ML dri-devel <dri-devel@lists.freedesktop.org>, Karol Herbst <karolherbst@gmail.com>, Ben Skeggs <bskeggs@redhat.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 8 Aug 2019 at 09:47, Lyude Paul <lyude@redhat.com> wrote:
->
-> Just some runtime PM fixes for some much less noticeable runtime PM ref
-> tracking issues that I got reminded of when fixing some unrelated issues
-> with nouveau.
->
-> Changes since v1:
-> * Don't fix CRTC RPM code in dispnv04, because it's not actually doing
->   anything in the first place. Just get rid of it. - imirkin
->
-> Lyude Paul (2):
->   drm/nouveau/dispnv04: Remove runtime PM
->   drm/nouveau/dispnv50: Fix runtime PM ref tracking for non-blocking
->     modesets
->
->  drivers/gpu/drm/nouveau/dispnv04/crtc.c | 51 +------------------------
->  drivers/gpu/drm/nouveau/dispnv50/disp.c | 38 +++++++++---------
->  drivers/gpu/drm/nouveau/nouveau_drv.h   |  3 --
->  3 files changed, 18 insertions(+), 74 deletions(-)
-For the series:  Acked-by: Ben Skeggs <bskeggs@redhat.com>
-
->
-> --
-> 2.21.0
->
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+U2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+ClJldmlld2Vk
+LWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgotLS0KIGRybS9ub3V2ZWF1L252a20v
+c3ViZGV2L3BjaS9nazEwNC5jIHwgIDggKysrKy0tLS0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2
+L3BjaS9ncDEwMC5jIHwgMTAgKysrKysrKysrKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNp
+L3ByaXYuaCAgfCAgNSArKysrKwogMyBmaWxlcyBjaGFuZ2VkLCAxOSBpbnNlcnRpb25zKCspLCA0
+IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9n
+azEwNC5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2drMTA0LmMKaW5kZXggZTY4MDMw
+NTA3Li42NjQ4OTAxODUgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9n
+azEwNC5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9nazEwNC5jCkBAIC0yMyw3
+ICsyMyw3IEBACiAgKi8KICNpbmNsdWRlICJwcml2LmgiCiAKLXN0YXRpYyBpbnQKK2ludAogZ2sx
+MDRfcGNpZV92ZXJzaW9uX3N1cHBvcnRlZChzdHJ1Y3QgbnZrbV9wY2kgKnBjaSkKIHsKIAlyZXR1
+cm4gKG52a21fcmQzMihwY2ktPnN1YmRldi5kZXZpY2UsIDB4OGMxYzApICYgMHg0KSA9PSAweDQg
+PyAyIDogMTsKQEAgLTEwOCw3ICsxMDgsNyBAQCBnazEwNF9wY2llX2xua2N0bF9zcGVlZChzdHJ1
+Y3QgbnZrbV9wY2kgKnBjaSkKIAlyZXR1cm4gLTE7CiB9CiAKLXN0YXRpYyBlbnVtIG52a21fcGNp
+ZV9zcGVlZAorZW51bSBudmttX3BjaWVfc3BlZWQKIGdrMTA0X3BjaWVfbWF4X3NwZWVkKHN0cnVj
+dCBudmttX3BjaSAqcGNpKQogewogCXUzMiBtYXhfc3BlZWQgPSBudmttX3JkMzIocGNpLT5zdWJk
+ZXYuZGV2aWNlLCAweDhjMWMwKSAmIDB4MzAwMDAwOwpAQCAtMTQ2LDcgKzE0Niw3IEBAIGdrMTA0
+X3BjaWVfc2V0X2xpbmtfc3BlZWQoc3RydWN0IG52a21fcGNpICpwY2ksIGVudW0gbnZrbV9wY2ll
+X3NwZWVkIHNwZWVkKQogCW52a21fbWFzayhkZXZpY2UsIDB4OGMwNDAsIDB4MSwgMHgxKTsKIH0K
+IAotc3RhdGljIGludAoraW50CiBnazEwNF9wY2llX2luaXQoc3RydWN0IG52a21fcGNpICogcGNp
+KQogewogCWVudW0gbnZrbV9wY2llX3NwZWVkIGxua2N0bF9zcGVlZCwgbWF4X3NwZWVkLCBjYXBf
+c3BlZWQ7CkBAIC0xNzgsNyArMTc4LDcgQEAgZ2sxMDRfcGNpZV9pbml0KHN0cnVjdCBudmttX3Bj
+aSAqIHBjaSkKIAlyZXR1cm4gMDsKIH0KIAotc3RhdGljIGludAoraW50CiBnazEwNF9wY2llX3Nl
+dF9saW5rKHN0cnVjdCBudmttX3BjaSAqcGNpLCBlbnVtIG52a21fcGNpZV9zcGVlZCBzcGVlZCwg
+dTggd2lkdGgpCiB7CiAJc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYgPSAmcGNpLT5zdWJkZXY7
+CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvZ3AxMDAuYyBiL2RybS9u
+b3V2ZWF1L252a20vc3ViZGV2L3BjaS9ncDEwMC5jCmluZGV4IDgyYzUyMzRhMC4uZWIxOWM3YTQ0
+IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvZ3AxMDAuYworKysgYi9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvZ3AxMDAuYwpAQCAtMzUsNiArMzUsMTYgQEAgZ3Ax
+MDBfcGNpX2Z1bmMgPSB7CiAJLndyMDggPSBudjQwX3BjaV93cjA4LAogCS53cjMyID0gbnY0MF9w
+Y2lfd3IzMiwKIAkubXNpX3JlYXJtID0gZ3AxMDBfcGNpX21zaV9yZWFybSwKKworCS5wY2llLmlu
+aXQgPSBnazEwNF9wY2llX2luaXQsCisJLnBjaWUuc2V0X2xpbmsgPSBnazEwNF9wY2llX3NldF9s
+aW5rLAorCisJLnBjaWUubWF4X3NwZWVkID0gZ2sxMDRfcGNpZV9tYXhfc3BlZWQsCisJLnBjaWUu
+Y3VyX3NwZWVkID0gZzg0X3BjaWVfY3VyX3NwZWVkLAorCisJLnBjaWUuc2V0X3ZlcnNpb24gPSBn
+ZjEwMF9wY2llX3NldF92ZXJzaW9uLAorCS5wY2llLnZlcnNpb24gPSBnZjEwMF9wY2llX3ZlcnNp
+b24sCisJLnBjaWUudmVyc2lvbl9zdXBwb3J0ZWQgPSBnazEwNF9wY2llX3ZlcnNpb25fc3VwcG9y
+dGVkLAogfTsKIAogaW50CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kv
+cHJpdi5oIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL3ByaXYuaAppbmRleCA3MDA5YWFk
+ODYuLjE2MmVkNWRjNiAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL3By
+aXYuaAorKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvcHJpdi5oCkBAIC01NCw2ICs1
+NCwxMSBAQCBpbnQgZ2YxMDBfcGNpZV9jYXBfc3BlZWQoc3RydWN0IG52a21fcGNpICopOwogaW50
+IGdmMTAwX3BjaWVfaW5pdChzdHJ1Y3QgbnZrbV9wY2kgKik7CiBpbnQgZ2YxMDBfcGNpZV9zZXRf
+bGluayhzdHJ1Y3QgbnZrbV9wY2kgKiwgZW51bSBudmttX3BjaWVfc3BlZWQsIHU4KTsKIAoraW50
+IGdrMTA0X3BjaWVfaW5pdChzdHJ1Y3QgbnZrbV9wY2kgKik7CitpbnQgZ2sxMDRfcGNpZV9zZXRf
+bGluayhzdHJ1Y3QgbnZrbV9wY2kgKiwgZW51bSBudmttX3BjaWVfc3BlZWQsIHU4IHdpZHRoKTsK
+K2VudW0gbnZrbV9wY2llX3NwZWVkIGdrMTA0X3BjaWVfbWF4X3NwZWVkKHN0cnVjdCBudmttX3Bj
+aSAqKTsKK2ludCBnazEwNF9wY2llX3ZlcnNpb25fc3VwcG9ydGVkKHN0cnVjdCBudmttX3BjaSAq
+KTsKKwogaW50IG52a21fcGNpZV9vbmVpbml0KHN0cnVjdCBudmttX3BjaSAqKTsKIGludCBudmtt
+X3BjaWVfaW5pdChzdHJ1Y3QgbnZrbV9wY2kgKik7CiAjZW5kaWYKLS0gCjIuMjEuMAoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
+IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
