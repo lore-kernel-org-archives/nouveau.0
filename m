@@ -1,47 +1,69 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 7/7] drm/nouveau: abort runtime suspend if we hit
- an error
-Date: Wed, 14 Aug 2019 23:31:18 +0200
-Message-ID: <20190814213118.28473-8-kherbst@redhat.com>
-References: <20190814213118.28473-1-kherbst@redhat.com>
+From: Alex Hung <alex.hung@canonical.com>
+Subject: Re: [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to enable
+ dGPU direct output"
+Date: Wed, 14 Aug 2019 15:49:32 -0600
+Message-ID: <CAJ=jquaoA+_WmTJtcGq4b0A_Sb=Aw_3_TsUR-8nxJ+rJTdoFPA@mail.gmail.com>
+References: <20190814213118.28473-1-kherbst@redhat.com> <20190814213118.28473-2-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190814213118.28473-1-kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: "Rafael J . Wysocki" <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Alex Hung <alex.hung-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190814213118.28473-2-kherbst@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Karol Herbst <kherbst@redhat.com>
+Cc: LKML <linux-kernel@vger.kernel.org>, Linux ACPI Mailing List <linux-acpi@vger.kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Dave Airlie <airlied@redhat.com>, Lyude Paul <lyude@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+CkNDOiBBbGV4
-IEh1bmcgPGFsZXguaHVuZ0BjYW5vbmljYWwuY29tPgpDQzogUmFmYWVsIEouIFd5c29ja2kgPHJh
-ZmFlbC5qLnd5c29ja2lAaW50ZWwuY29tPgpDQzogRGF2ZSBBaXJsaWUgPGFpcmxpZWRAcmVkaGF0
-LmNvbT4KQ0M6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5jb20+CkNDOiBCZW4gU2tlZ2dzIDxi
-c2tlZ2dzQHJlZGhhdC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9k
-cm0uYyB8IDUgKysrKysKIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKykKCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIGIvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwppbmRleCAxNjQ0MWM1YmYyOWMuLmIxNjE1N2E5Yzcz
-NiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYworKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCkBAIC05MTAsNiArOTEwLDcg
-QEAgbm91dmVhdV9wbW9wc19ydW50aW1lX3N1c3BlbmQoc3RydWN0IGRldmljZSAqZGV2KQogewog
-CXN0cnVjdCBwY2lfZGV2ICpwZGV2ID0gdG9fcGNpX2RldihkZXYpOwogCXN0cnVjdCBkcm1fZGV2
-aWNlICpkcm1fZGV2ID0gcGNpX2dldF9kcnZkYXRhKHBkZXYpOworCXN0cnVjdCBub3V2ZWF1X2Ry
-bSAqZHJtID0gbm91dmVhdV9kcm0oZHJtX2Rldik7CiAJaW50IHJldDsKIAogCWlmICghbm91dmVh
-dV9wbW9wc19ydW50aW1lKCkpIHsKQEAgLTkxOSw2ICs5MjAsMTAgQEAgbm91dmVhdV9wbW9wc19y
-dW50aW1lX3N1c3BlbmQoc3RydWN0IGRldmljZSAqZGV2KQogCiAJbm91dmVhdV9zd2l0Y2hlcm9v
-X29wdGltdXNfZHNtKCk7CiAJcmV0ID0gbm91dmVhdV9kb19zdXNwZW5kKGRybV9kZXYsIHRydWUp
-OworCWlmIChyZXQpIHsKKwkJTlZfRVJST1IoZHJtLCAic3VzcGVuZCBmYWlsZWQgd2l0aDogJWRc
-biIsIHJldCk7CisJCXJldHVybiByZXQ7CisJfQogCXBjaV9zYXZlX3N0YXRlKHBkZXYpOwogCXBj
-aV9kaXNhYmxlX2RldmljZShwZGV2KTsKIAlwY2lfaWdub3JlX2hvdHBsdWcocGRldik7Ci0tIAoy
-LjIxLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
-dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+Thanks for the series of fixes. I will check whether these fixes work
+on the original intended systems.
+
+On Wed, Aug 14, 2019 at 3:31 PM Karol Herbst <kherbst@redhat.com> wrote:
+>
+> This reverts commit 28586a51eea666d5531bcaef2f68e4abbd87242c.
+>
+> The original commit message didn't even make sense. AMD _does_ support it and
+> it works with Nouveau as well.
+>
+> Also what was the issue being solved here? No references to any bugs and not
+> even explaining any issue at all isn't the way we do things.
+>
+> And even if it means a muxed design, then the fix is to make it work inside the
+> driver, not adding some hacky workaround through ACPI tricks.
+>
+> And what out of tree drivers do or do not support we don't care one bit anyway.
+>
+> Signed-off-by: Karol Herbst <kherbst@redhat.com>
+> CC: Alex Hung <alex.hung@canonical.com>
+> CC: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+> CC: Dave Airlie <airlied@redhat.com>
+> CC: Lyude Paul <lyude@redhat.com>
+> CC: Ben Skeggs <bskeggs@redhat.com>
+> ---
+>  drivers/acpi/osi.c | 7 -------
+>  1 file changed, 7 deletions(-)
+>
+> diff --git a/drivers/acpi/osi.c b/drivers/acpi/osi.c
+> index bec0bebc7f52..9b20ac4d79a0 100644
+> --- a/drivers/acpi/osi.c
+> +++ b/drivers/acpi/osi.c
+> @@ -61,13 +61,6 @@ osi_setup_entries[OSI_STRING_ENTRIES_MAX] __initdata = {
+>          * a BIOS workaround.
+>          */
+>         {"Linux-Lenovo-NV-HDMI-Audio", true},
+> -       /*
+> -        * Linux-HPI-Hybrid-Graphics is used by BIOS to enable dGPU to
+> -        * output video directly to external monitors on HP Inc. mobile
+> -        * workstations as Nvidia and AMD VGA drivers provide limited
+> -        * hybrid graphics supports.
+> -        */
+> -       {"Linux-HPI-Hybrid-Graphics", true},
+>  };
+>
+>  static u32 acpi_osi_handler(acpi_string interface, u32 supported)
+> --
+> 2.21.0
+>
+
+
+-- 
+Cheers,
+Alex Hung
