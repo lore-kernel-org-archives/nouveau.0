@@ -1,204 +1,62 @@
-From: Dariusz Marcinkiewicz <darekm@google.com>
-Subject: [PATCH v7 1/9] drm_dp_cec: add connector info support.
-Date: Wed, 14 Aug 2019 12:44:59 +0200
-Message-ID: <20190814104520.6001-2-darekm@google.com>
-References: <20190814104520.6001-1-darekm@google.com>
+From: Ralph Corderoy <ralph-LZ+9dIjwmAmSaWcfd5glvw@public.gmane.org>
+Subject: Re: Video Hardware Decoding: Jittery Rectangles on Nvidia
+ GT218 NVA8 VP4.
+Date: Wed, 14 Aug 2019 12:37:51 +0100
+Message-ID: <20190814113751.31EE721EEB@orac.inputplus.co.uk>
+References: <20190727113726.2EF4D21F78@orac.inputplus.co.uk>
+ <CAKb7UvhqXGz7_t9EXJvu02J+f0STGB7wvwNcSM8F7YHCcJ3KbA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190814104520.6001-1-darekm@google.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, hverkuil-cisco@xs4all.nl
-Cc: Dariusz Marcinkiewicz <darekm@google.com>, Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>, "David (ChunMing) Zhou" <David1.Zhou@amd.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Sean Paul <sean@poorly.run>, Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Ben Skeggs <bskeggs@redhat.com>, Lyude Paul <lyude@redhat.com>, "Jerry (Fangzhi) Zuo" <Jerry.Zuo@amd.com>, Anthony Koo <Anthony.Koo@amd.com>, Thomas Lim <Thomas.Lim@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-reply-to: <CAKb7UvhqXGz7_t9EXJvu02J+f0STGB7wvwNcSM8F7YHCcJ3KbA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Pass the connector info to the CEC adapter. This makes it possible
-to associate the CEC adapter with the corresponding drm connector.
-
-Signed-off-by: Dariusz Marcinkiewicz <darekm@google.com>
-Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Tested-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
----
- .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  2 +-
- drivers/gpu/drm/drm_dp_cec.c                  | 25 ++++++++++++-------
- drivers/gpu/drm/i915/display/intel_dp.c       |  4 +--
- drivers/gpu/drm/nouveau/nouveau_connector.c   |  3 +--
- include/drm/drm_dp_helper.h                   | 17 ++++++-------
- 5 files changed, 27 insertions(+), 24 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-index 16218a202b591..5ec14efd4d8cb 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-@@ -416,7 +416,7 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
- 
- 	drm_dp_aux_register(&aconnector->dm_dp_aux.aux);
- 	drm_dp_cec_register_connector(&aconnector->dm_dp_aux.aux,
--				      aconnector->base.name, dm->adev->dev);
-+				      &aconnector->base);
- 	aconnector->mst_mgr.cbs = &dm_mst_cbs;
- 	drm_dp_mst_topology_mgr_init(
- 		&aconnector->mst_mgr,
-diff --git a/drivers/gpu/drm/drm_dp_cec.c b/drivers/gpu/drm/drm_dp_cec.c
-index b15cee85b702b..b457c16c3a8bb 100644
---- a/drivers/gpu/drm/drm_dp_cec.c
-+++ b/drivers/gpu/drm/drm_dp_cec.c
-@@ -8,7 +8,9 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/slab.h>
-+#include <drm/drm_connector.h>
- #include <drm/drm_dp_helper.h>
-+#include <drm/drmP.h>
- #include <media/cec.h>
- 
- /*
-@@ -295,7 +297,10 @@ static void drm_dp_cec_unregister_work(struct work_struct *work)
-  */
- void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
- {
--	u32 cec_caps = CEC_CAP_DEFAULTS | CEC_CAP_NEEDS_HPD;
-+	struct drm_connector *connector = aux->cec.connector;
-+	u32 cec_caps = CEC_CAP_DEFAULTS | CEC_CAP_NEEDS_HPD |
-+		       CEC_CAP_CONNECTOR_INFO;
-+	struct cec_connector_info conn_info;
- 	unsigned int num_las = 1;
- 	u8 cap;
- 
-@@ -344,13 +349,17 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
- 
- 	/* Create a new adapter */
- 	aux->cec.adap = cec_allocate_adapter(&drm_dp_cec_adap_ops,
--					     aux, aux->cec.name, cec_caps,
-+					     aux, connector->name, cec_caps,
- 					     num_las);
- 	if (IS_ERR(aux->cec.adap)) {
- 		aux->cec.adap = NULL;
- 		goto unlock;
- 	}
--	if (cec_register_adapter(aux->cec.adap, aux->cec.parent)) {
-+
-+	cec_fill_conn_info_from_drm(&conn_info, connector);
-+	cec_s_conn_info(aux->cec.adap, &conn_info);
-+
-+	if (cec_register_adapter(aux->cec.adap, connector->dev->dev)) {
- 		cec_delete_adapter(aux->cec.adap);
- 		aux->cec.adap = NULL;
- 	} else {
-@@ -406,22 +415,20 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);
- /**
-  * drm_dp_cec_register_connector() - register a new connector
-  * @aux: DisplayPort AUX channel
-- * @name: name of the CEC device
-- * @parent: parent device
-+ * @connector: drm connector
-  *
-  * A new connector was registered with associated CEC adapter name and
-  * CEC adapter parent device. After registering the name and parent
-  * drm_dp_cec_set_edid() is called to check if the connector supports
-  * CEC and to register a CEC adapter if that is the case.
-  */
--void drm_dp_cec_register_connector(struct drm_dp_aux *aux, const char *name,
--				   struct device *parent)
-+void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-+				   struct drm_connector *connector)
- {
- 	WARN_ON(aux->cec.adap);
- 	if (WARN_ON(!aux->transfer))
- 		return;
--	aux->cec.name = name;
--	aux->cec.parent = parent;
-+	aux->cec.connector = connector;
- 	INIT_DELAYED_WORK(&aux->cec.unregister_work,
- 			  drm_dp_cec_unregister_work);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 1092499115760..de2486fe7bf2d 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5497,7 +5497,6 @@ static int
- intel_dp_connector_register(struct drm_connector *connector)
- {
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
--	struct drm_device *dev = connector->dev;
- 	int ret;
- 
- 	ret = intel_connector_register(connector);
-@@ -5512,8 +5511,7 @@ intel_dp_connector_register(struct drm_connector *connector)
- 	intel_dp->aux.dev = connector->kdev;
- 	ret = drm_dp_aux_register(&intel_dp->aux);
- 	if (!ret)
--		drm_dp_cec_register_connector(&intel_dp->aux,
--					      connector->name, dev->dev);
-+		drm_dp_cec_register_connector(&intel_dp->aux, connector);
- 	return ret;
- }
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 330d7d29a6e34..8aa703347eb54 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -1416,8 +1416,7 @@ nouveau_connector_create(struct drm_device *dev,
- 	switch (type) {
- 	case DRM_MODE_CONNECTOR_DisplayPort:
- 	case DRM_MODE_CONNECTOR_eDP:
--		drm_dp_cec_register_connector(&nv_connector->aux,
--					      connector->name, dev->dev);
-+		drm_dp_cec_register_connector(&nv_connector->aux, connector);
- 		break;
- 	}
- 
-diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-index 8364502f92cfe..7972b925a952b 100644
---- a/include/drm/drm_dp_helper.h
-+++ b/include/drm/drm_dp_helper.h
-@@ -1230,20 +1230,19 @@ struct drm_dp_aux_msg {
- 
- struct cec_adapter;
- struct edid;
-+struct drm_connector;
- 
- /**
-  * struct drm_dp_aux_cec - DisplayPort CEC-Tunneling-over-AUX
-  * @lock: mutex protecting this struct
-  * @adap: the CEC adapter for CEC-Tunneling-over-AUX support.
-- * @name: name of the CEC adapter
-- * @parent: parent device of the CEC adapter
-+ * @connector: the connector this CEC adapter is associated with
-  * @unregister_work: unregister the CEC adapter
-  */
- struct drm_dp_aux_cec {
- 	struct mutex lock;
- 	struct cec_adapter *adap;
--	const char *name;
--	struct device *parent;
-+	struct drm_connector *connector;
- 	struct delayed_work unregister_work;
- };
- 
-@@ -1451,8 +1450,8 @@ drm_dp_has_quirk(const struct drm_dp_desc *desc, enum drm_dp_quirk quirk)
- 
- #ifdef CONFIG_DRM_DP_CEC
- void drm_dp_cec_irq(struct drm_dp_aux *aux);
--void drm_dp_cec_register_connector(struct drm_dp_aux *aux, const char *name,
--				   struct device *parent);
-+void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-+				   struct drm_connector *connector);
- void drm_dp_cec_unregister_connector(struct drm_dp_aux *aux);
- void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid);
- void drm_dp_cec_unset_edid(struct drm_dp_aux *aux);
-@@ -1461,9 +1460,9 @@ static inline void drm_dp_cec_irq(struct drm_dp_aux *aux)
- {
- }
- 
--static inline void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
--						 const char *name,
--						 struct device *parent)
-+static inline void
-+drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-+			      struct drm_connector *connector)
- {
- }
- 
--- 
-2.23.0.rc1.153.gdeed80330f-goog
+SGkgSWxpYSwKCkEgZm9ydG5pZ2h0IGFnbywgeW91IHdyb3RlOgo+ID4gVGhlIHZpZGVvIHBsYXlz
+LCBDUFUgbG9hZCBpcyBsZXNzIChteSBhaW0pLCBidXQgdGhlcmUncyDigJh0ZWFyaW5n4oCZIG9m
+Cj4gPiB0aGUgcGljdHVyZSBhcyBpZiBzbWFsbCByZWN0YW5nbGVzIHRoYXQgYXJlIHVwZGF0ZXMg
+YXJlIGFwcGVhcmluZyBpbgo+ID4gdGhlIHdyb25nIGxvY2F0aW9uLCBvZmYgYnkgYSBsaXR0bGUu
+ICBJZiBJIHN0ZXAgdGhyb3VnaCB0aGUgZnJhbWVzCj4gPiB3aXRoIG1wdidzIOKAmC7igJkgYW5k
+IOKAmCzigJkgdGhlbiBJJ3ZlIGZvdW5kIGEgcGF0dGVybjogb25lIGZyYW1lJ3MKPiA+IHBpY3R1
+cmUgaXMgZ29vZCwgZm9sbG93ZWQgYnkgTiBiYWQgb25lcyB3aGVyZSBOIGlzIDMgb3IgNywgaS5l
+Lgo+ID4gZXZlcnkgNHRoIG9yIDh0aCBmcmFtZSBpcyBva2F5LiAgRG9uJ3Qga25vdyBpZiB0aGF0
+J3MgYSBjbHVlIG9yCj4gPiBoZWxwcyBzb21lb25lIGhlcmUgcmVjb2duaXNlIGEga25vd24gcHJv
+YmxlbS4KPgo+IFVuZm9ydHVuYXRlbHkgSSd2ZSBuZXZlciB0cmFja2VkIGRvd24gdGhlIGNhdXNl
+IGZvciB0aGlzLgo+IGh0dHBzOi8vbm91dmVhdS5mcmVlZGVza3RvcC5vcmcvd2lraS9WaWRlb0Fj
+Y2VsZXJhdGlvbi8gLSBzZWUgbm90ZSAjNC4KClRoYXQgc291bmRzIGxpa2UgdGhlIHByb2JsZW0s
+IGJ1dCBpdCBpcyBhbGwgdGhlIHdheSB0aHJvdWdoIFRWIHByb2dyYW1tZQpmcm9tIHRoZSBCQkMg
+aVBsYXllcidzIHNlcnZpY2UuCgo+IEkgaGF2ZSwgb3ZlciB0aW1lLCBjb2xsZWN0ZWQgc29tZSBz
+YW1wbGUgdmlkZW9zIHdoZXJlIHRoaXMgaGFwcGVucyBpbgo+IHRoZSBmaXJzdCBmZXcgZnJhbWVz
+LiBUaGUgcGxhbiB3YXMgdG8gZG8gbW10IHRyYWNlcyBvZiB0aGUgYmxvYgo+IGRyaXZlciwgYW5k
+IGZpZ3VyZSBvdXQgd2hhdCBpdCB3YXMgZG9pbmcgZGlmZmVyZW50bHkuIElmIHRoaXMgaXMKPiBz
+b21ldGhpbmcgeW91J3JlIGludGVyZXN0ZWQgaW4sIEknZCBiZSBoYXBweSB0byBwcm92aWRlIHNv
+bWUgZ3VpZGFuY2UuCgpJJ3ZlIHR3byBtbWlvIHRyYWNlcywgbm91dmVhdSBhbmQgbnZpZGlhLCBl
+YWNoIHVzaW5nIG1wdigxKSB0byBwbGF5IHRoZQpzYW1lIHRlbi1zZWNvbmQgZXh0cmFjdCBvZiBh
+biBpUGxheWVyIE1QNCwgd2l0aCBhbmQgd2l0aG91dCDigJgtLXZvPXZkcGF1Ci0taHdkZWM9dmRw
+YXXigJkuCgogICAgJCBncmVwIC1uIF5NQVJLIG52aWRpYS00Lm1taW90cmFjZQogICAgMjA6TUFS
+SyA2NTY0NS4zMDI5MzkgYnVmZmVyX3NpemVfa2I6IDUyNDI4OAogICAgMjE6TUFSSyA2NTY0NS4z
+ODU3NzYgc3RhcnRpbmcgeAogICAgMTQ0NzU1NDpNQVJLIDY1NjgxLjk3OTg5MiB4IHN0YXJ0ZWQK
+ICAgIDE0NDg1NjA6TUFSSyA2NTY4Mi40NDY3NDcgbXB2IG5vbmUgc3RhcnQKICAgIDE4NjgxOTc6
+TUFSSyA2NTcwMS4xNTM3NzAgbXB2IG5vbmUgZG9uZQogICAgMTg2OTQ2MjpNQVJLIDY1NzAyLjc0
+ODAwNSBtcHYgdm8gc3RhcnQKICAgIDI2MzM3Mjk6TUFSSyA2NTcyNC40NjUxNTQgbXB2IHZvIGRv
+bmUKICAgIDI2MzQ5NTY6TUFSSyA2NTcyNi4yNTk4MjkgbXB2IHZvIGh3ZGVjIHN0YXJ0CiAgICA1
+MzQ3NTIwOk1BUksgNjU3NTkuODQxNDMyIG1wdiB2byBod2RlYyBkb25lCiAgICA1MzQ5MDE5Ok1B
+UksgNjU3NjIuNDMxMTM3IGtpbGxpbmcgY2F0CiAgICAkCgpod2RlYyBvbiBudmlkaWEgZWFzaWx5
+IG92ZXJmbG93ZWQgdGhlIGRlZmF1bHQgMSw0MDjCoEtpQiB0cmFjZSBidWZmZXIsCndoZXJlYXMg
+bm91dmVhdSBkaWRuJ3QuCgpBcmUgdGhlc2UgaGVscGZ1bD8gIFNoYWxsIEkgc3VibWl0IHRoZW0g
+dG8gdGhlIEdtYWlsIGFkZHJlc3MgZ2l2ZW4gaW4KaHR0cHM6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9w
+Lm9yZy93aWtpL01taW9UcmFjZS8KCi0tIApDaGVlcnMsIFJhbHBoLgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
+ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
