@@ -1,38 +1,50 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: DMA-API: cacheline tracking ENOMEM, dma-debug disabled due to
- nouveau ?
-Date: Wed, 14 Aug 2019 19:49:27 +0200
-Message-ID: <20190814174927.GT7444@phenom.ffwll.local>
-References: <20190814145033.GA11190@Red>
+From: Karol Herbst <kherbst@redhat.com>
+Subject: [PATCH 0/7] Adding a proper workaround for fixing RTD3 issues with
+ Nouveau
+Date: Wed, 14 Aug 2019 23:31:11 +0200
+Message-ID: <20190814213118.28473-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20190814145033.GA11190@Red>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Corentin Labbe <clabbe.montjoie@gmail.com>
-Cc: bskeggs@redhat.com, airlied@linux.ie, daniel@ffwll.ch, hch@lst.de, m.szyprowski@samsung.com, robin.murphy@arm.com, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, iommu@lists.linux-foundation.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: Karol Herbst <kherbst@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Aug 14, 2019 at 04:50:33PM +0200, Corentin Labbe wrote:
-> Hello
-> 
-> Since lot of release (at least since 4.19), I hit the following error message:
-> DMA-API: cacheline tracking ENOMEM, dma-debug disabled
-> 
-> After hitting that, I try to check who is creating so many DMA mapping and see:
-> cat /sys/kernel/debug/dma-api/dump | cut -d' ' -f2 | sort | uniq -c
->       6 ahci
->     257 e1000e
->       6 ehci-pci
->    5891 nouveau
->      24 uhci_hcd
-> 
-> Does nouveau having this high number of DMA mapping is normal ?
-
-Yeah seems perfectly fine for a gpu.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Rmlyc3QgdGhyZWUgcGF0Y2hlcyBhcmUgcmVtb3ZpbmcgQUNQSSB3b3JrYXJvdW5kcyB3aGljaCBz
+aG91bGQgaGF2ZSBuZXZlcgpsYW5kZWQuCgpUaGUgbGFzdCBmb3VyIGFyZSBhZGRpbmcgYSB3b3Jr
+YXJvdW5kIHRvIG5vdXZlYXUgd2hpY2ggc2VlbSB0byBoZWxwIHF1aXRlCmEgbG90IHdpdGggdGhl
+IFJURDMgaXNzdWVzIHdpdGggTm91dmVhdSwgc28gbGV0J3MgZGlzY3VzcyBhbmQgZ2V0IHdpZGVy
+CnRlc3Rpbmcgb2YgdGhvc2UgYW5kIHNlZSBpZiB0aGVyZSBpcyBhbnkgZmFsbG91dCBvciBsYXB0
+b3BzIHdoZXJlIHRoZQppc3N1ZXMgZG9uJ3QgZ2V0IGZpeGVkLgoKS2Fyb2wgSGVyYnN0ICg3KToK
+ICBSZXZlcnQgIkFDUEkgLyBPU0k6IEFkZCBPRU0gX09TSSBzdHJpbmcgdG8gZW5hYmxlIGRHUFUg
+ZGlyZWN0IG91dHB1dCIKICBSZXZlcnQgIkFDUEkgLyBPU0k6IEFkZCBPRU0gX09TSSBzdHJpbmcg
+dG8gZW5hYmxlIE5WaWRpYSBIRE1JIGF1ZGlvIgogIFJldmVydCAiQUNQSSAvIE9TSTogQWRkIE9F
+TSBfT1NJIHN0cmluZ3MgdG8gZGlzYWJsZSBOVmlkaWEgUlREMyIKICBkcm0vbm91dmVhdS9wY2k6
+IGVuYWJsZSBwY2llIGxpbmsgY2hhbmdlcyBmb3IgcGFzY2FsCiAgZHJtL25vdXZlYXUvcGNpOiBh
+ZGQgbnZrbV9wY2llX2dldF9zcGVlZAogIGRybS9ub3V2ZWF1L3BjaTogc2F2ZSB0aGUgYm9vdCBw
+Y2llIGxpbmsgc3BlZWQgYW5kIHJlc3RvcmUgaXQgb24gZmluaQogIGRybS9ub3V2ZWF1OiBhYm9y
+dCBydW50aW1lIHN1c3BlbmQgaWYgd2UgaGl0IGFuIGVycm9yCgogZHJpdmVycy9hY3BpL29zaS5j
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgMjQgLS0tLS0tLS0tLQogLi4uL2RybS9ub3V2
+ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL2RldmljZS5oICAgIHwgIDIgKwogLi4uL2dwdS9kcm0vbm91
+dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3BjaS5oIHwgIDkgKystLQogZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvbm91dmVhdV9kcm0uYyAgICAgICAgIHwgIDYgKysrCiAuLi4vZ3B1L2RybS9ub3V2
+ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgICAgfCAgMiArLQogLi4uL2dwdS9kcm0vbm91dmVh
+dS9udmttL3N1YmRldi9wY2kvYmFzZS5jICAgIHwgIDkgKysrLQogLi4uL2dwdS9kcm0vbm91dmVh
+dS9udmttL3N1YmRldi9wY2kvZ2sxMDQuYyAgIHwgIDggKystLQogLi4uL2dwdS9kcm0vbm91dmVh
+dS9udmttL3N1YmRldi9wY2kvZ3AxMDAuYyAgIHwgMTAgKysrKwogLi4uL2dwdS9kcm0vbm91dmVh
+dS9udmttL3N1YmRldi9wY2kvcGNpZS5jICAgIHwgNDYgKysrKysrKysrKysrKysrKystLQogLi4u
+L2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvcHJpdi5oICAgIHwgIDcgKysrCiAxMCBm
+aWxlcyBjaGFuZ2VkLCA4NCBpbnNlcnRpb25zKCspLCAzOSBkZWxldGlvbnMoLSkKCi0tIAoyLjIx
+LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1k
+ZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbA==
