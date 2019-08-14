@@ -1,69 +1,113 @@
-From: Alex Hung <alex.hung@canonical.com>
-Subject: Re: [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to enable
- dGPU direct output"
-Date: Wed, 14 Aug 2019 15:49:32 -0600
-Message-ID: <CAJ=jquaoA+_WmTJtcGq4b0A_Sb=Aw_3_TsUR-8nxJ+rJTdoFPA@mail.gmail.com>
-References: <20190814213118.28473-1-kherbst@redhat.com> <20190814213118.28473-2-kherbst@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111392] [NV117] bus: MMIO read of 00000000 FAULT at
+ 619444 [ IBUS ]
+Date: Wed, 14 Aug 2019 22:43:09 +0000
+Message-ID: <bug-111392-8800-k45uwEUVxA@http.bugs.freedesktop.org/>
+References: <bug-111392-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190814213118.28473-2-kherbst@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Karol Herbst <kherbst@redhat.com>
-Cc: LKML <linux-kernel@vger.kernel.org>, Linux ACPI Mailing List <linux-acpi@vger.kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Dave Airlie <airlied@redhat.com>, Lyude Paul <lyude@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1311043550=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-111392-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Thanks for the series of fixes. I will check whether these fixes work
-on the original intended systems.
 
-On Wed, Aug 14, 2019 at 3:31 PM Karol Herbst <kherbst@redhat.com> wrote:
->
-> This reverts commit 28586a51eea666d5531bcaef2f68e4abbd87242c.
->
-> The original commit message didn't even make sense. AMD _does_ support it and
-> it works with Nouveau as well.
->
-> Also what was the issue being solved here? No references to any bugs and not
-> even explaining any issue at all isn't the way we do things.
->
-> And even if it means a muxed design, then the fix is to make it work inside the
-> driver, not adding some hacky workaround through ACPI tricks.
->
-> And what out of tree drivers do or do not support we don't care one bit anyway.
->
-> Signed-off-by: Karol Herbst <kherbst@redhat.com>
-> CC: Alex Hung <alex.hung@canonical.com>
-> CC: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
-> CC: Dave Airlie <airlied@redhat.com>
-> CC: Lyude Paul <lyude@redhat.com>
-> CC: Ben Skeggs <bskeggs@redhat.com>
-> ---
->  drivers/acpi/osi.c | 7 -------
->  1 file changed, 7 deletions(-)
->
-> diff --git a/drivers/acpi/osi.c b/drivers/acpi/osi.c
-> index bec0bebc7f52..9b20ac4d79a0 100644
-> --- a/drivers/acpi/osi.c
-> +++ b/drivers/acpi/osi.c
-> @@ -61,13 +61,6 @@ osi_setup_entries[OSI_STRING_ENTRIES_MAX] __initdata = {
->          * a BIOS workaround.
->          */
->         {"Linux-Lenovo-NV-HDMI-Audio", true},
-> -       /*
-> -        * Linux-HPI-Hybrid-Graphics is used by BIOS to enable dGPU to
-> -        * output video directly to external monitors on HP Inc. mobile
-> -        * workstations as Nvidia and AMD VGA drivers provide limited
-> -        * hybrid graphics supports.
-> -        */
-> -       {"Linux-HPI-Hybrid-Graphics", true},
->  };
->
->  static u32 acpi_osi_handler(acpi_string interface, u32 supported)
-> --
-> 2.21.0
->
+--===============1311043550==
+Content-Type: multipart/alternative; boundary="15658225891.eC8a.16231"
+Content-Transfer-Encoding: 7bit
 
 
--- 
-Cheers,
-Alex Hung
+--15658225891.eC8a.16231
+Date: Wed, 14 Aug 2019 22:43:09 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111392
+
+Giuseppe Lumia <gius-italy-oA6aJsjdrIk@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NV110] bus: MMIO read of   |[NV117] bus: MMIO read of
+                   |00000000 FAULT at 619444 [  |00000000 FAULT at 619444 [
+                   |IBUS ]                      |IBUS ]
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15658225891.eC8a.16231
+Date: Wed, 14 Aug 2019 22:43:09 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:gius-ital=
+y&#64;live.it" title=3D"Giuseppe Lumia &lt;gius-italy&#64;live.it&gt;"> <sp=
+an class=3D"fn">Giuseppe Lumia</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV117] bus: MMIO read of 00000000 FAULT at 619444 [ IBUS=
+ ]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111392">bug 11139=
+2</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Summary</td>
+           <td>[NV110] bus: MMIO read of 00000000 FAULT at 619444 [ IBUS ]
+           </td>
+           <td>[NV117] bus: MMIO read of 00000000 FAULT at 619444 [ IBUS ]
+           </td>
+         </tr></table>
+      <p>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15658225891.eC8a.16231--
+
+--===============1311043550==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1311043550==--
