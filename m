@@ -1,50 +1,57 @@
 From: Karol Herbst <kherbst@redhat.com>
-Subject: [PATCH 0/7] Adding a proper workaround for fixing RTD3 issues with
- Nouveau
-Date: Wed, 14 Aug 2019 23:31:11 +0200
-Message-ID: <20190814213118.28473-1-kherbst@redhat.com>
+Subject: [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to enable dGPU direct output"
+Date: Wed, 14 Aug 2019 23:31:12 +0200
+Message-ID: <20190814213118.28473-2-kherbst@redhat.com>
+References: <20190814213118.28473-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190814213118.28473-1-kherbst@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
 To: linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Karol Herbst <kherbst@redhat.com>
+Cc: Karol Herbst <kherbst@redhat.com>, Alex Hung <alex.hung@canonical.com>, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Dave Airlie <airlied@redhat.com>, Lyude Paul <lyude@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-Rmlyc3QgdGhyZWUgcGF0Y2hlcyBhcmUgcmVtb3ZpbmcgQUNQSSB3b3JrYXJvdW5kcyB3aGljaCBz
-aG91bGQgaGF2ZSBuZXZlcgpsYW5kZWQuCgpUaGUgbGFzdCBmb3VyIGFyZSBhZGRpbmcgYSB3b3Jr
-YXJvdW5kIHRvIG5vdXZlYXUgd2hpY2ggc2VlbSB0byBoZWxwIHF1aXRlCmEgbG90IHdpdGggdGhl
-IFJURDMgaXNzdWVzIHdpdGggTm91dmVhdSwgc28gbGV0J3MgZGlzY3VzcyBhbmQgZ2V0IHdpZGVy
-CnRlc3Rpbmcgb2YgdGhvc2UgYW5kIHNlZSBpZiB0aGVyZSBpcyBhbnkgZmFsbG91dCBvciBsYXB0
-b3BzIHdoZXJlIHRoZQppc3N1ZXMgZG9uJ3QgZ2V0IGZpeGVkLgoKS2Fyb2wgSGVyYnN0ICg3KToK
-ICBSZXZlcnQgIkFDUEkgLyBPU0k6IEFkZCBPRU0gX09TSSBzdHJpbmcgdG8gZW5hYmxlIGRHUFUg
-ZGlyZWN0IG91dHB1dCIKICBSZXZlcnQgIkFDUEkgLyBPU0k6IEFkZCBPRU0gX09TSSBzdHJpbmcg
-dG8gZW5hYmxlIE5WaWRpYSBIRE1JIGF1ZGlvIgogIFJldmVydCAiQUNQSSAvIE9TSTogQWRkIE9F
-TSBfT1NJIHN0cmluZ3MgdG8gZGlzYWJsZSBOVmlkaWEgUlREMyIKICBkcm0vbm91dmVhdS9wY2k6
-IGVuYWJsZSBwY2llIGxpbmsgY2hhbmdlcyBmb3IgcGFzY2FsCiAgZHJtL25vdXZlYXUvcGNpOiBh
-ZGQgbnZrbV9wY2llX2dldF9zcGVlZAogIGRybS9ub3V2ZWF1L3BjaTogc2F2ZSB0aGUgYm9vdCBw
-Y2llIGxpbmsgc3BlZWQgYW5kIHJlc3RvcmUgaXQgb24gZmluaQogIGRybS9ub3V2ZWF1OiBhYm9y
-dCBydW50aW1lIHN1c3BlbmQgaWYgd2UgaGl0IGFuIGVycm9yCgogZHJpdmVycy9hY3BpL29zaS5j
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgMjQgLS0tLS0tLS0tLQogLi4uL2RybS9ub3V2
-ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL2RldmljZS5oICAgIHwgIDIgKwogLi4uL2dwdS9kcm0vbm91
-dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3BjaS5oIHwgIDkgKystLQogZHJpdmVycy9ncHUvZHJt
-L25vdXZlYXUvbm91dmVhdV9kcm0uYyAgICAgICAgIHwgIDYgKysrCiAuLi4vZ3B1L2RybS9ub3V2
-ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMgICAgfCAgMiArLQogLi4uL2dwdS9kcm0vbm91dmVh
-dS9udmttL3N1YmRldi9wY2kvYmFzZS5jICAgIHwgIDkgKysrLQogLi4uL2dwdS9kcm0vbm91dmVh
-dS9udmttL3N1YmRldi9wY2kvZ2sxMDQuYyAgIHwgIDggKystLQogLi4uL2dwdS9kcm0vbm91dmVh
-dS9udmttL3N1YmRldi9wY2kvZ3AxMDAuYyAgIHwgMTAgKysrKwogLi4uL2dwdS9kcm0vbm91dmVh
-dS9udmttL3N1YmRldi9wY2kvcGNpZS5jICAgIHwgNDYgKysrKysrKysrKysrKysrKystLQogLi4u
-L2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvcHJpdi5oICAgIHwgIDcgKysrCiAxMCBm
-aWxlcyBjaGFuZ2VkLCA4NCBpbnNlcnRpb25zKCspLCAzOSBkZWxldGlvbnMoLSkKCi0tIAoyLjIx
-LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1k
-ZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbA==
+This reverts commit 28586a51eea666d5531bcaef2f68e4abbd87242c.
+
+The original commit message didn't even make sense. AMD _does_ support it and
+it works with Nouveau as well.
+
+Also what was the issue being solved here? No references to any bugs and not
+even explaining any issue at all isn't the way we do things.
+
+And even if it means a muxed design, then the fix is to make it work inside the
+driver, not adding some hacky workaround through ACPI tricks.
+
+And what out of tree drivers do or do not support we don't care one bit anyway.
+
+Signed-off-by: Karol Herbst <kherbst@redhat.com>
+CC: Alex Hung <alex.hung@canonical.com>
+CC: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+CC: Dave Airlie <airlied@redhat.com>
+CC: Lyude Paul <lyude@redhat.com>
+CC: Ben Skeggs <bskeggs@redhat.com>
+---
+ drivers/acpi/osi.c | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git a/drivers/acpi/osi.c b/drivers/acpi/osi.c
+index bec0bebc7f52..9b20ac4d79a0 100644
+--- a/drivers/acpi/osi.c
++++ b/drivers/acpi/osi.c
+@@ -61,13 +61,6 @@ osi_setup_entries[OSI_STRING_ENTRIES_MAX] __initdata = {
+ 	 * a BIOS workaround.
+ 	 */
+ 	{"Linux-Lenovo-NV-HDMI-Audio", true},
+-	/*
+-	 * Linux-HPI-Hybrid-Graphics is used by BIOS to enable dGPU to
+-	 * output video directly to external monitors on HP Inc. mobile
+-	 * workstations as Nvidia and AMD VGA drivers provide limited
+-	 * hybrid graphics supports.
+-	 */
+-	{"Linux-HPI-Hybrid-Graphics", true},
+ };
+ 
+ static u32 acpi_osi_handler(acpi_string interface, u32 supported)
+-- 
+2.21.0
