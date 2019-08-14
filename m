@@ -1,57 +1,60 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to enable dGPU direct output"
-Date: Wed, 14 Aug 2019 23:31:12 +0200
-Message-ID: <20190814213118.28473-2-kherbst@redhat.com>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 3/7] Revert "ACPI / OSI: Add OEM _OSI strings to
+ disable NVidia RTD3"
+Date: Wed, 14 Aug 2019 23:31:14 +0200
+Message-ID: <20190814213118.28473-4-kherbst@redhat.com>
 References: <20190814213118.28473-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190814213118.28473-1-kherbst@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Karol Herbst <kherbst@redhat.com>, Alex Hung <alex.hung@canonical.com>, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Dave Airlie <airlied@redhat.com>, Lyude Paul <lyude@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190814213118.28473-1-kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "Rafael J . Wysocki" <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Alex Hung <alex.hung-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This reverts commit 28586a51eea666d5531bcaef2f68e4abbd87242c.
-
-The original commit message didn't even make sense. AMD _does_ support it and
-it works with Nouveau as well.
-
-Also what was the issue being solved here? No references to any bugs and not
-even explaining any issue at all isn't the way we do things.
-
-And even if it means a muxed design, then the fix is to make it work inside the
-driver, not adding some hacky workaround through ACPI tricks.
-
-And what out of tree drivers do or do not support we don't care one bit anyway.
-
-Signed-off-by: Karol Herbst <kherbst@redhat.com>
-CC: Alex Hung <alex.hung@canonical.com>
-CC: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
-CC: Dave Airlie <airlied@redhat.com>
-CC: Lyude Paul <lyude@redhat.com>
-CC: Ben Skeggs <bskeggs@redhat.com>
----
- drivers/acpi/osi.c | 7 -------
- 1 file changed, 7 deletions(-)
-
-diff --git a/drivers/acpi/osi.c b/drivers/acpi/osi.c
-index bec0bebc7f52..9b20ac4d79a0 100644
---- a/drivers/acpi/osi.c
-+++ b/drivers/acpi/osi.c
-@@ -61,13 +61,6 @@ osi_setup_entries[OSI_STRING_ENTRIES_MAX] __initdata = {
- 	 * a BIOS workaround.
- 	 */
- 	{"Linux-Lenovo-NV-HDMI-Audio", true},
--	/*
--	 * Linux-HPI-Hybrid-Graphics is used by BIOS to enable dGPU to
--	 * output video directly to external monitors on HP Inc. mobile
--	 * workstations as Nvidia and AMD VGA drivers provide limited
--	 * hybrid graphics supports.
--	 */
--	{"Linux-HPI-Hybrid-Graphics", true},
- };
- 
- static u32 acpi_osi_handler(acpi_string interface, u32 supported)
--- 
-2.21.0
+VGhpcyByZXZlcnRzIGNvbW1pdCA5MjUxYTcxZGI2MmNhOWNjN2U3Y2YzNjQyMTg2MTBiMGYwMThj
+MjkxLgoKVGhpcyB3YXMgbmV2ZXIgZGlzY3Vzc2VkIHdpdGggYW55Ym9keSBOb3V2ZWF1IHJlbGF0
+ZWQgYW5kIHdlIHdvdWxkIGhhdmUgTkFDS2VkCnRoaXMgY2hhbmdlIGltbWVkaWF0ZWx5LgoKV2Ug
+aGF2ZSBhIGJldHRlciB3b3JrYXJvdW5kLCB3aGljaCBtYWtlcyBpdCBhY3R1YWxseSB3b3JrIHdp
+dGggTm91dmVhdS4gTm8gaWRlYQp3aHkgdGhlIGNvbW1lbnQgbWVudGlvbnMgdGhlIE52aWRpYSBk
+cml2ZXIgYW5kIGFzc3VtZXMgaXQgZ2l2ZXMgYW55IHdlaWdodCB0bwp0aGUgcmVhc29uaW5nLi4u
+LiB3ZSBkb24ndCBjYXJlIGFib3V0IG91dCBvZiB0cmVlIGRyaXZlcnMuCgpOb3V2ZWF1IGRvZXMg
+c3VwcG9ydCBSVEQzLCBidXQgd2UgaGFkIHNvbWUgaXNzdWVzIHdpdGggdGhhdC4gQW5kIHdlIGV2
+ZW4gaGF2ZQphIGJldHRlciBmaXggZm9yIHRoaXMgaXNzdWUuIEFsc28sIGNhbiB3ZSBfcGxlYXNl
+XyBkbyBpdCBpbiBhIHdheSB3b3J0aHkgb2YgYW4KdXBzdHJlYW0gY29tbXVuaXR5IHRoZSBuZXh0
+IHRpbWU/CgpJZiBzb21lIGRpc3RyaWJ1dGlvbiBmZWVscyBsaWtlIHRoZXkgaGF2ZSB0byBwbGVh
+c2UgY29tcGFuaWVzIG5vdCB3YW50aW5nIHRvCmJlIHBhcnQgb2YgdGhlIGxpbnV4IGNvbW11bml0
+eSwgcGxlYXNlIGRvIHNvIGRvd25zdHJlYW0gYW5kIGRvbid0IHRyeSB0byBwdXNoCnNvbWV0aGlu
+ZyBsaWtlIHRoaXMgdXBzdHJlYW0uCgpTaWduZWQtb2ZmLWJ5OiBLYXJvbCBIZXJic3QgPGtoZXJi
+c3RAcmVkaGF0LmNvbT4KQ0M6IEFsZXggSHVuZyA8YWxleC5odW5nQGNhbm9uaWNhbC5jb20+CkND
+OiBSYWZhZWwgSi4gV3lzb2NraSA8cmFmYWVsLmoud3lzb2NraUBpbnRlbC5jb20+CkNDOiBEYXZl
+IEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29tPgpDQzogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0
+LmNvbT4KQ0M6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KLS0tCiBkcml2ZXJzL2Fj
+cGkvb3NpLmMgfCA5IC0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDkgZGVsZXRpb25zKC0pCgpk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9hY3BpL29zaS5jIGIvZHJpdmVycy9hY3BpL29zaS5jCmluZGV4
+IDU2Y2M5NWI2YjcyNC4uZjVkNTU5YTJmZjE0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2FjcGkvb3Np
+LmMKKysrIGIvZHJpdmVycy9hY3BpL29zaS5jCkBAIC00NCwxNSArNDQsNiBAQCBvc2lfc2V0dXBf
+ZW50cmllc1tPU0lfU1RSSU5HX0VOVFJJRVNfTUFYXSBfX2luaXRkYXRhID0gewogCXsiUHJvY2Vz
+c29yIERldmljZSIsIHRydWV9LAogCXsiMy4wIF9TQ1AgRXh0ZW5zaW9ucyIsIHRydWV9LAogCXsi
+UHJvY2Vzc29yIEFnZ3JlZ2F0b3IgRGV2aWNlIiwgdHJ1ZX0sCi0JLyoKLQkgKiBMaW51eC1EZWxs
+LVZpZGVvIGlzIHVzZWQgYnkgQklPUyB0byBkaXNhYmxlIFJURDMgZm9yIE5WaWRpYSBncmFwaGlj
+cwotCSAqIGNhcmRzIGFzIFJURDMgaXMgbm90IHN1cHBvcnRlZCBieSBkcml2ZXJzIG5vdy4gIFN5
+c3RlbXMgd2l0aCBOVmlkaWEKLQkgKiBjYXJkcyB3aWxsIGhhbmcgd2l0aG91dCBSVEQzIGRpc2Fi
+bGVkLgotCSAqCi0JICogT25jZSBOVmlkaWEgZHJpdmVycyBvZmZpY2lhbGx5IHN1cHBvcnQgUlRE
+MywgdGhpcyBfT1NJIHN0cmluZ3MgY2FuCi0JICogYmUgcmVtb3ZlZCBpZiBib3RoIG5ldyBhbmQg
+b2xkIGdyYXBoaWNzIGNhcmRzIGFyZSBzdXBwb3J0ZWQuCi0JICovCi0JeyJMaW51eC1EZWxsLVZp
+ZGVvIiwgdHJ1ZX0sCiB9OwogCiBzdGF0aWMgdTMyIGFjcGlfb3NpX2hhbmRsZXIoYWNwaV9zdHJp
+bmcgaW50ZXJmYWNlLCB1MzIgc3VwcG9ydGVkKQotLSAKMi4yMS4wCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
+ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
