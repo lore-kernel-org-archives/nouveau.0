@@ -1,127 +1,63 @@
-From: Christoph Hellwig <hch@lst.de>
-Subject: [PATCH 03/10] nouveau: factor out device memory address calculation
-Date: Wed, 14 Aug 2019 09:59:21 +0200
-Message-ID: <20190814075928.23766-4-hch@lst.de>
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Subject: [PATCH 04/10] nouveau: factor out dmem fence completion
+Date: Wed, 14 Aug 2019 09:59:22 +0200
+Message-ID: <20190814075928.23766-5-hch@lst.de>
 References: <20190814075928.23766-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190814075928.23766-1-hch@lst.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: Ralph Campbell <rcampbell@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190814075928.23766-1-hch-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Factor out the repeated device memory address calculation into
-a helper.
-
-Signed-off-by: Christoph Hellwig <hch@lst.de>
-Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
----
- drivers/gpu/drm/nouveau/nouveau_dmem.c | 42 +++++++++++---------------
- 1 file changed, 17 insertions(+), 25 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-index e696157f771e..d469bc334438 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -102,6 +102,14 @@ struct nouveau_migrate {
- 	unsigned long dma_nr;
- };
- 
-+static unsigned long nouveau_dmem_page_addr(struct page *page)
-+{
-+	struct nouveau_dmem_chunk *chunk = page->zone_device_data;
-+	unsigned long idx = page_to_pfn(page) - chunk->pfn_first;
-+
-+	return (idx << PAGE_SHIFT) + chunk->bo->bo.offset;
-+}
-+
- static void nouveau_dmem_page_free(struct page *page)
- {
- 	struct nouveau_dmem_chunk *chunk = page->zone_device_data;
-@@ -169,9 +177,7 @@ nouveau_dmem_fault_alloc_and_copy(struct vm_area_struct *vma,
- 	/* Copy things over */
- 	copy = drm->dmem->migrate.copy_func;
- 	for (addr = start, i = 0; addr < end; addr += PAGE_SIZE, i++) {
--		struct nouveau_dmem_chunk *chunk;
- 		struct page *spage, *dpage;
--		u64 src_addr, dst_addr;
- 
- 		dpage = migrate_pfn_to_page(dst_pfns[i]);
- 		if (!dpage || dst_pfns[i] == MIGRATE_PFN_ERROR)
-@@ -194,14 +200,10 @@ nouveau_dmem_fault_alloc_and_copy(struct vm_area_struct *vma,
- 			continue;
- 		}
- 
--		dst_addr = fault->dma[fault->npages++];
--
--		chunk = spage->zone_device_data;
--		src_addr = page_to_pfn(spage) - chunk->pfn_first;
--		src_addr = (src_addr << PAGE_SHIFT) + chunk->bo->bo.offset;
--
--		ret = copy(drm, 1, NOUVEAU_APER_HOST, dst_addr,
--				   NOUVEAU_APER_VRAM, src_addr);
-+		ret = copy(drm, 1, NOUVEAU_APER_HOST,
-+				fault->dma[fault->npages++],
-+				NOUVEAU_APER_VRAM,
-+				nouveau_dmem_page_addr(spage));
- 		if (ret) {
- 			dst_pfns[i] = MIGRATE_PFN_ERROR;
- 			__free_page(dpage);
-@@ -687,18 +689,12 @@ nouveau_dmem_migrate_alloc_and_copy(struct vm_area_struct *vma,
- 	/* Copy things over */
- 	copy = drm->dmem->migrate.copy_func;
- 	for (addr = start, i = 0; addr < end; addr += PAGE_SIZE, i++) {
--		struct nouveau_dmem_chunk *chunk;
- 		struct page *spage, *dpage;
--		u64 src_addr, dst_addr;
- 
- 		dpage = migrate_pfn_to_page(dst_pfns[i]);
- 		if (!dpage || dst_pfns[i] == MIGRATE_PFN_ERROR)
- 			continue;
- 
--		chunk = dpage->zone_device_data;
--		dst_addr = page_to_pfn(dpage) - chunk->pfn_first;
--		dst_addr = (dst_addr << PAGE_SHIFT) + chunk->bo->bo.offset;
--
- 		spage = migrate_pfn_to_page(src_pfns[i]);
- 		if (!spage || !(src_pfns[i] & MIGRATE_PFN_MIGRATE)) {
- 			nouveau_dmem_page_free_locked(drm, dpage);
-@@ -716,10 +712,10 @@ nouveau_dmem_migrate_alloc_and_copy(struct vm_area_struct *vma,
- 			continue;
- 		}
- 
--		src_addr = migrate->dma[migrate->dma_nr++];
--
--		ret = copy(drm, 1, NOUVEAU_APER_VRAM, dst_addr,
--				   NOUVEAU_APER_HOST, src_addr);
-+		ret = copy(drm, 1, NOUVEAU_APER_VRAM,
-+				nouveau_dmem_page_addr(dpage),
-+				NOUVEAU_APER_HOST,
-+				migrate->dma[migrate->dma_nr++]);
- 		if (ret) {
- 			nouveau_dmem_page_free_locked(drm, dpage);
- 			dst_pfns[i] = 0;
-@@ -846,7 +842,6 @@ nouveau_dmem_convert_pfn(struct nouveau_drm *drm,
- 
- 	npages = (range->end - range->start) >> PAGE_SHIFT;
- 	for (i = 0; i < npages; ++i) {
--		struct nouveau_dmem_chunk *chunk;
- 		struct page *page;
- 		uint64_t addr;
- 
-@@ -864,10 +859,7 @@ nouveau_dmem_convert_pfn(struct nouveau_drm *drm,
- 			continue;
- 		}
- 
--		chunk = page->zone_device_data;
--		addr = page_to_pfn(page) - chunk->pfn_first;
--		addr = (addr + chunk->bo->bo.mem.start) << PAGE_SHIFT;
--
-+		addr = nouveau_dmem_page_addr(page);
- 		range->pfns[i] &= ((1UL << range->pfn_shift) - 1);
- 		range->pfns[i] |= (addr >> PAGE_SHIFT) << range->pfn_shift;
- 	}
--- 
-2.20.1
+RmFjdG9yIG91dCB0aGUgZW5kIG9mIGZlbmNpbmcgbG9naWMgZnJvbSB0aGUgdHdvIG1pZ3JhdGlv
+biByb3V0aW5lcy4KClNpZ25lZC1vZmYtYnk6IENocmlzdG9waCBIZWxsd2lnIDxoY2hAbHN0LmRl
+PgpSZXZpZXdlZC1ieTogUmFscGggQ2FtcGJlbGwgPHJjYW1wYmVsbEBudmlkaWEuY29tPgotLS0K
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZG1lbS5jIHwgMzMgKysrKysrKysrKysr
+LS0tLS0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxNSBpbnNlcnRpb25zKCspLCAxOCBkZWxl
+dGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rt
+ZW0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZG1lbS5jCmluZGV4IGQ0Njli
+YzMzNDQzOC4uMjEwNTJhNGFhZjY5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9ub3V2ZWF1X2RtZW0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rt
+ZW0uYwpAQCAtMTMzLDYgKzEzMywxOSBAQCBzdGF0aWMgdm9pZCBub3V2ZWF1X2RtZW1fcGFnZV9m
+cmVlKHN0cnVjdCBwYWdlICpwYWdlKQogCXNwaW5fdW5sb2NrKCZjaHVuay0+bG9jayk7CiB9CiAK
+K3N0YXRpYyB2b2lkIG5vdXZlYXVfZG1lbV9mZW5jZV9kb25lKHN0cnVjdCBub3V2ZWF1X2ZlbmNl
+ICoqZmVuY2UpCit7CisJaWYgKGZlbmNlKSB7CisJCW5vdXZlYXVfZmVuY2Vfd2FpdCgqZmVuY2Us
+IHRydWUsIGZhbHNlKTsKKwkJbm91dmVhdV9mZW5jZV91bnJlZihmZW5jZSk7CisJfSBlbHNlIHsK
+KwkJLyoKKwkJICogRklYTUUgd2FpdCBmb3IgY2hhbm5lbCB0byBiZSBJRExFIGJlZm9yZSBjYWxs
+aW5nIGZpbmFsaXppbmcKKwkJICogdGhlIGhtZW0gb2JqZWN0LgorCQkgKi8KKwl9Cit9CisKIHN0
+YXRpYyB2b2lkCiBub3V2ZWF1X2RtZW1fZmF1bHRfYWxsb2NfYW5kX2NvcHkoc3RydWN0IHZtX2Fy
+ZWFfc3RydWN0ICp2bWEsCiAJCQkJICBjb25zdCB1bnNpZ25lZCBsb25nICpzcmNfcGZucywKQEAg
+LTIzNiwxNSArMjQ5LDcgQEAgbm91dmVhdV9kbWVtX2ZhdWx0X2ZpbmFsaXplX2FuZF9tYXAoc3Ry
+dWN0IG5vdXZlYXVfZG1lbV9mYXVsdCAqZmF1bHQpCiB7CiAJc3RydWN0IG5vdXZlYXVfZHJtICpk
+cm0gPSBmYXVsdC0+ZHJtOwogCi0JaWYgKGZhdWx0LT5mZW5jZSkgewotCQlub3V2ZWF1X2ZlbmNl
+X3dhaXQoZmF1bHQtPmZlbmNlLCB0cnVlLCBmYWxzZSk7Ci0JCW5vdXZlYXVfZmVuY2VfdW5yZWYo
+JmZhdWx0LT5mZW5jZSk7Ci0JfSBlbHNlIHsKLQkJLyoKLQkJICogRklYTUUgd2FpdCBmb3IgY2hh
+bm5lbCB0byBiZSBJRExFIGJlZm9yZSBjYWxsaW5nIGZpbmFsaXppbmcKLQkJICogdGhlIGhtZW0g
+b2JqZWN0IGJlbG93IChub3V2ZWF1X21pZ3JhdGVfaG1lbV9maW5pKCkpLgotCQkgKi8KLQl9CisJ
+bm91dmVhdV9kbWVtX2ZlbmNlX2RvbmUoJmZhdWx0LT5mZW5jZSk7CiAKIAl3aGlsZSAoZmF1bHQt
+Pm5wYWdlcy0tKSB7CiAJCWRtYV91bm1hcF9wYWdlKGRybS0+ZGV2LT5kZXYsIGZhdWx0LT5kbWFb
+ZmF1bHQtPm5wYWdlc10sCkBAIC03NDgsMTUgKzc1Myw3IEBAIG5vdXZlYXVfZG1lbV9taWdyYXRl
+X2ZpbmFsaXplX2FuZF9tYXAoc3RydWN0IG5vdXZlYXVfbWlncmF0ZSAqbWlncmF0ZSkKIHsKIAlz
+dHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG1pZ3JhdGUtPmRybTsKIAotCWlmIChtaWdyYXRlLT5m
+ZW5jZSkgewotCQlub3V2ZWF1X2ZlbmNlX3dhaXQobWlncmF0ZS0+ZmVuY2UsIHRydWUsIGZhbHNl
+KTsKLQkJbm91dmVhdV9mZW5jZV91bnJlZigmbWlncmF0ZS0+ZmVuY2UpOwotCX0gZWxzZSB7Ci0J
+CS8qCi0JCSAqIEZJWE1FIHdhaXQgZm9yIGNoYW5uZWwgdG8gYmUgSURMRSBiZWZvcmUgZmluYWxp
+emluZwotCQkgKiB0aGUgaG1lbSBvYmplY3QgYmVsb3cgKG5vdXZlYXVfbWlncmF0ZV9obWVtX2Zp
+bmkoKSkgPwotCQkgKi8KLQl9CisJbm91dmVhdV9kbWVtX2ZlbmNlX2RvbmUoJm1pZ3JhdGUtPmZl
+bmNlKTsKIAogCXdoaWxlIChtaWdyYXRlLT5kbWFfbnItLSkgewogCQlkbWFfdW5tYXBfcGFnZShk
+cm0tPmRldi0+ZGV2LCBtaWdyYXRlLT5kbWFbbWlncmF0ZS0+ZG1hX25yXSwKLS0gCjIuMjAuMQoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
