@@ -1,37 +1,62 @@
-From: Christoph Hellwig <hch@lst.de>
-Subject: [PATCH 08/10] mm: remove the unused MIGRATE_PFN_ERROR flag
-Date: Wed, 14 Aug 2019 09:59:26 +0200
-Message-ID: <20190814075928.23766-9-hch@lst.de>
+From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
+Subject: [PATCH 09/10] mm: remove the unused MIGRATE_PFN_DEVICE
+ flag
+Date: Wed, 14 Aug 2019 09:59:27 +0200
+Message-ID: <20190814075928.23766-10-hch@lst.de>
 References: <20190814075928.23766-1-hch@lst.de>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190814075928.23766-1-hch@lst.de>
-Sender: linux-kernel-owner@vger.kernel.org
-To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>
-Cc: Ralph Campbell <rcampbell@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190814075928.23766-1-hch-jcswGhMUV9g@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Jason Gunthorpe <jgg-VPRAkNaXOzVWk0Htik3J/w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Ralph Campbell <rcampbell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bharata B Rao <bharata-tEXmvtCZX7AybS5Ee8rs3A@public.gmane.org>, linux-mm-Bw31MaZKKs3YtjvyW6yDsg@public.gmane.org, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Now that we can rely errors in the normal control flow there is no
-need for this flag, remove it.
-
-Signed-off-by: Christoph Hellwig <hch@lst.de>
-Reviewed-by: Ralph Campbell <rcampbell@nvidia.com>
----
- include/linux/migrate.h | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/include/linux/migrate.h b/include/linux/migrate.h
-index 18156d379ebf..1e67dcfd318f 100644
---- a/include/linux/migrate.h
-+++ b/include/linux/migrate.h
-@@ -167,7 +167,6 @@ static inline int migrate_misplaced_transhuge_page(struct mm_struct *mm,
- #define MIGRATE_PFN_LOCKED	(1UL << 2)
- #define MIGRATE_PFN_WRITE	(1UL << 3)
- #define MIGRATE_PFN_DEVICE	(1UL << 4)
--#define MIGRATE_PFN_ERROR	(1UL << 5)
- #define MIGRATE_PFN_SHIFT	6
- 
- static inline struct page *migrate_pfn_to_page(unsigned long mpfn)
--- 
-2.20.1
+Tm8gb25lIGV2ZXIgY2hlY2tzIHRoaXMgZmxhZywgYW5kIHdlIGNvdWxkIGVhc2lseSBnZXQgdGhh
+dCBpbmZvcm1hdGlvbgpmcm9tIHRoZSBwYWdlIGlmIG5lZWRlZC4KClNpZ25lZC1vZmYtYnk6IENo
+cmlzdG9waCBIZWxsd2lnIDxoY2hAbHN0LmRlPgpSZXZpZXdlZC1ieTogUmFscGggQ2FtcGJlbGwg
+PHJjYW1wYmVsbEBudmlkaWEuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
+YXVfZG1lbS5jIHwgMyArLS0KIGluY2x1ZGUvbGludXgvbWlncmF0ZS5oICAgICAgICAgICAgICAg
+IHwgMSAtCiBtbS9taWdyYXRlLmMgICAgICAgICAgICAgICAgICAgICAgICAgICB8IDQgKystLQog
+MyBmaWxlcyBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pCgpkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kbWVtLmMgYi9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RtZW0uYwppbmRleCBkOTZiOTg3Yjk5ODIuLmZhMTQzOTk0
+MTU5NiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kbWVtLmMK
+KysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kbWVtLmMKQEAgLTU4MCw4ICs1
+ODAsNyBAQCBzdGF0aWMgdW5zaWduZWQgbG9uZyBub3V2ZWF1X2RtZW1fbWlncmF0ZV9jb3B5X29u
+ZShzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSwKIAkJCSpkbWFfYWRkcikpCiAJCWdvdG8gb3V0X2Rt
+YV91bm1hcDsKIAotCXJldHVybiBtaWdyYXRlX3BmbihwYWdlX3RvX3BmbihkcGFnZSkpIHwKLQkJ
+TUlHUkFURV9QRk5fTE9DS0VEIHwgTUlHUkFURV9QRk5fREVWSUNFOworCXJldHVybiBtaWdyYXRl
+X3BmbihwYWdlX3RvX3BmbihkcGFnZSkpIHwgTUlHUkFURV9QRk5fTE9DS0VEOwogCiBvdXRfZG1h
+X3VubWFwOgogCWRtYV91bm1hcF9wYWdlKGRldiwgKmRtYV9hZGRyLCBQQUdFX1NJWkUsIERNQV9C
+SURJUkVDVElPTkFMKTsKZGlmZiAtLWdpdCBhL2luY2x1ZGUvbGludXgvbWlncmF0ZS5oIGIvaW5j
+bHVkZS9saW51eC9taWdyYXRlLmgKaW5kZXggMWU2N2RjZmQzMThmLi43MjEyMDA2MWI3ZDQgMTAw
+NjQ0Ci0tLSBhL2luY2x1ZGUvbGludXgvbWlncmF0ZS5oCisrKyBiL2luY2x1ZGUvbGludXgvbWln
+cmF0ZS5oCkBAIC0xNjYsNyArMTY2LDYgQEAgc3RhdGljIGlubGluZSBpbnQgbWlncmF0ZV9taXNw
+bGFjZWRfdHJhbnNodWdlX3BhZ2Uoc3RydWN0IG1tX3N0cnVjdCAqbW0sCiAjZGVmaW5lIE1JR1JB
+VEVfUEZOX01JR1JBVEUJKDFVTCA8PCAxKQogI2RlZmluZSBNSUdSQVRFX1BGTl9MT0NLRUQJKDFV
+TCA8PCAyKQogI2RlZmluZSBNSUdSQVRFX1BGTl9XUklURQkoMVVMIDw8IDMpCi0jZGVmaW5lIE1J
+R1JBVEVfUEZOX0RFVklDRQkoMVVMIDw8IDQpCiAjZGVmaW5lIE1JR1JBVEVfUEZOX1NISUZUCTYK
+IAogc3RhdGljIGlubGluZSBzdHJ1Y3QgcGFnZSAqbWlncmF0ZV9wZm5fdG9fcGFnZSh1bnNpZ25l
+ZCBsb25nIG1wZm4pCmRpZmYgLS1naXQgYS9tbS9taWdyYXRlLmMgYi9tbS9taWdyYXRlLmMKaW5k
+ZXggZTI1NjUzNzRkMzMwLi4zM2UwNjNjMjhjMWIgMTAwNjQ0Ci0tLSBhL21tL21pZ3JhdGUuYwor
+KysgYi9tbS9taWdyYXRlLmMKQEAgLTIyMzcsOCArMjIzNyw4IEBAIHN0YXRpYyBpbnQgbWlncmF0
+ZV92bWFfY29sbGVjdF9wbWQocG1kX3QgKnBtZHAsCiAJCQkJZ290byBuZXh0OwogCiAJCQlwYWdl
+ID0gZGV2aWNlX3ByaXZhdGVfZW50cnlfdG9fcGFnZShlbnRyeSk7Ci0JCQltcGZuID0gbWlncmF0
+ZV9wZm4ocGFnZV90b19wZm4ocGFnZSkpfAotCQkJCU1JR1JBVEVfUEZOX0RFVklDRSB8IE1JR1JB
+VEVfUEZOX01JR1JBVEU7CisJCQltcGZuID0gbWlncmF0ZV9wZm4ocGFnZV90b19wZm4ocGFnZSkp
+IHwKKwkJCQkJTUlHUkFURV9QRk5fTUlHUkFURTsKIAkJCWlmIChpc193cml0ZV9kZXZpY2VfcHJp
+dmF0ZV9lbnRyeShlbnRyeSkpCiAJCQkJbXBmbiB8PSBNSUdSQVRFX1BGTl9XUklURTsKIAkJfSBl
+bHNlIHsKLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
