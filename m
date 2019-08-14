@@ -1,111 +1,113 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Video Hardware Decoding: Jittery Rectangles on Nvidia
- GT218 NVA8 VP4.
-Date: Wed, 14 Aug 2019 09:23:17 -0400
-Message-ID: <CAKb7UvgWBVHQkV46-Wzs2zKEN5txtBDhpAM9jSQTW3LMB51qOQ@mail.gmail.com>
-References: <20190727113726.2EF4D21F78@orac.inputplus.co.uk>
- <CAKb7UvhqXGz7_t9EXJvu02J+f0STGB7wvwNcSM8F7YHCcJ3KbA@mail.gmail.com>
- <20190814113751.31EE721EEB@orac.inputplus.co.uk>
+From: Jason Gunthorpe <jgg@mellanox.com>
+Subject: Re: [PATCH 04/15] mm: remove the pgmap field from struct hmm_vma_walk
+Date: Wed, 14 Aug 2019 13:27:50 +0000
+Message-ID: <20190814132746.GE13756@mellanox.com>
+References: <20190806160554.14046-1-hch@lst.de>
+ <20190806160554.14046-5-hch@lst.de> <20190807174548.GJ1571@mellanox.com>
+ <CAPcyv4hPCuHBLhSJgZZEh0CbuuJNPLFDA3f-79FX5uVOO0yubA@mail.gmail.com>
+ <20190808065933.GA29382@lst.de>
+ <CAPcyv4hMUzw8vyXFRPe2pdwef0npbMm9tx9wiZ9MWkHGhH1V6w@mail.gmail.com>
+ <20190814073854.GA27249@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190814113751.31EE721EEB-6N56AJAIt2NfdzSWQDR9cNBc4/FLrbF6@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ralph Corderoy <ralph-LZ+9dIjwmAmSaWcfd5glvw@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190814073854.GA27249@lst.de>
+Content-Language: en-US
+Content-ID: <EF42566A523CE142A2EFF155B9958285@eurprd05.prod.outlook.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Christoph Hellwig <hch@lst.de>
+Cc: Dan Williams <dan.j.williams@intel.com>, =?iso-8859-1?Q?J=E9r=F4me_Glisse?= <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Ralph Campbell <rcampbell@nvidia.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBBdWcgMTQsIDIwMTkgYXQgNzozNyBBTSBSYWxwaCBDb3JkZXJveSA8cmFscGhAaW5w
-dXRwbHVzLmNvLnVrPiB3cm90ZToKPgo+IEhpIElsaWEsCj4KPiBBIGZvcnRuaWdodCBhZ28sIHlv
-dSB3cm90ZToKPiA+ID4gVGhlIHZpZGVvIHBsYXlzLCBDUFUgbG9hZCBpcyBsZXNzIChteSBhaW0p
-LCBidXQgdGhlcmUncyDigJh0ZWFyaW5n4oCZIG9mCj4gPiA+IHRoZSBwaWN0dXJlIGFzIGlmIHNt
-YWxsIHJlY3RhbmdsZXMgdGhhdCBhcmUgdXBkYXRlcyBhcmUgYXBwZWFyaW5nIGluCj4gPiA+IHRo
-ZSB3cm9uZyBsb2NhdGlvbiwgb2ZmIGJ5IGEgbGl0dGxlLiAgSWYgSSBzdGVwIHRocm91Z2ggdGhl
-IGZyYW1lcwo+ID4gPiB3aXRoIG1wdidzIOKAmC7igJkgYW5kIOKAmCzigJkgdGhlbiBJJ3ZlIGZv
-dW5kIGEgcGF0dGVybjogb25lIGZyYW1lJ3MKPiA+ID4gcGljdHVyZSBpcyBnb29kLCBmb2xsb3dl
-ZCBieSBOIGJhZCBvbmVzIHdoZXJlIE4gaXMgMyBvciA3LCBpLmUuCj4gPiA+IGV2ZXJ5IDR0aCBv
-ciA4dGggZnJhbWUgaXMgb2theS4gIERvbid0IGtub3cgaWYgdGhhdCdzIGEgY2x1ZSBvcgo+ID4g
-PiBoZWxwcyBzb21lb25lIGhlcmUgcmVjb2duaXNlIGEga25vd24gcHJvYmxlbS4KPiA+Cj4gPiBV
-bmZvcnR1bmF0ZWx5IEkndmUgbmV2ZXIgdHJhY2tlZCBkb3duIHRoZSBjYXVzZSBmb3IgdGhpcy4K
-PiA+IGh0dHBzOi8vbm91dmVhdS5mcmVlZGVza3RvcC5vcmcvd2lraS9WaWRlb0FjY2VsZXJhdGlv
-bi8gLSBzZWUgbm90ZSAjNC4KPgo+IFRoYXQgc291bmRzIGxpa2UgdGhlIHByb2JsZW0sIGJ1dCBp
-dCBpcyBhbGwgdGhlIHdheSB0aHJvdWdoIFRWIHByb2dyYW1tZQo+IGZyb20gdGhlIEJCQyBpUGxh
-eWVyJ3Mgc2VydmljZS4KClllYWggLi4uIHRoZXJlJ3Mgbm90aGluZyBfaW50cmluc2ljYWxseV8g
-bGlua2VkIHRvIHRob3NlIHRyYWlsZXJzLCBhbmQKSSd2ZSBkZWZpbml0ZWx5IHNlZW4gaXQgb24g
-ZnVsbCBmaWxlcyBhcyB3ZWxsLiBBdCB0aGUgdGltZSBJIHdyb3RlCnRoYXQgbm90ZSwgSSBoYWQg
-cHJpbWFyaWx5IHNlZW4gdGhlIGlzc3VlIGluIG1vdmllIHRyYWlsZXJzIEkKZG93bmxvYWRlZCBm
-cm9tIHNvbWUgaDI2NCBkZW1vIHNpdGUuCgo+Cj4gPiBJIGhhdmUsIG92ZXIgdGltZSwgY29sbGVj
-dGVkIHNvbWUgc2FtcGxlIHZpZGVvcyB3aGVyZSB0aGlzIGhhcHBlbnMgaW4KPiA+IHRoZSBmaXJz
-dCBmZXcgZnJhbWVzLiBUaGUgcGxhbiB3YXMgdG8gZG8gbW10IHRyYWNlcyBvZiB0aGUgYmxvYgo+
-ID4gZHJpdmVyLCBhbmQgZmlndXJlIG91dCB3aGF0IGl0IHdhcyBkb2luZyBkaWZmZXJlbnRseS4g
-SWYgdGhpcyBpcwo+ID4gc29tZXRoaW5nIHlvdSdyZSBpbnRlcmVzdGVkIGluLCBJJ2QgYmUgaGFw
-cHkgdG8gcHJvdmlkZSBzb21lIGd1aWRhbmNlLgo+Cj4gSSd2ZSB0d28gbW1pbyB0cmFjZXMsIG5v
-dXZlYXUgYW5kIG52aWRpYSwgZWFjaCB1c2luZyBtcHYoMSkgdG8gcGxheSB0aGUKPiBzYW1lIHRl
-bi1zZWNvbmQgZXh0cmFjdCBvZiBhbiBpUGxheWVyIE1QNCwgd2l0aCBhbmQgd2l0aG91dCDigJgt
-LXZvPXZkcGF1Cj4gLS1od2RlYz12ZHBhdeKAmS4KPgo+ICAgICAkIGdyZXAgLW4gXk1BUksgbnZp
-ZGlhLTQubW1pb3RyYWNlCj4gICAgIDIwOk1BUksgNjU2NDUuMzAyOTM5IGJ1ZmZlcl9zaXplX2ti
-OiA1MjQyODgKPiAgICAgMjE6TUFSSyA2NTY0NS4zODU3NzYgc3RhcnRpbmcgeAo+ICAgICAxNDQ3
-NTU0Ok1BUksgNjU2ODEuOTc5ODkyIHggc3RhcnRlZAo+ICAgICAxNDQ4NTYwOk1BUksgNjU2ODIu
-NDQ2NzQ3IG1wdiBub25lIHN0YXJ0Cj4gICAgIDE4NjgxOTc6TUFSSyA2NTcwMS4xNTM3NzAgbXB2
-IG5vbmUgZG9uZQo+ICAgICAxODY5NDYyOk1BUksgNjU3MDIuNzQ4MDA1IG1wdiB2byBzdGFydAo+
-ICAgICAyNjMzNzI5Ok1BUksgNjU3MjQuNDY1MTU0IG1wdiB2byBkb25lCj4gICAgIDI2MzQ5NTY6
-TUFSSyA2NTcyNi4yNTk4MjkgbXB2IHZvIGh3ZGVjIHN0YXJ0Cj4gICAgIDUzNDc1MjA6TUFSSyA2
-NTc1OS44NDE0MzIgbXB2IHZvIGh3ZGVjIGRvbmUKPiAgICAgNTM0OTAxOTpNQVJLIDY1NzYyLjQz
-MTEzNyBraWxsaW5nIGNhdAo+ICAgICAkCj4KPiBod2RlYyBvbiBudmlkaWEgZWFzaWx5IG92ZXJm
-bG93ZWQgdGhlIGRlZmF1bHQgMSw0MDggS2lCIHRyYWNlIGJ1ZmZlciwKPiB3aGVyZWFzIG5vdXZl
-YXUgZGlkbid0Lgo+Cj4gQXJlIHRoZXNlIGhlbHBmdWw/ICBTaGFsbCBJIHN1Ym1pdCB0aGVtIHRv
-IHRoZSBHbWFpbCBhZGRyZXNzIGdpdmVuIGluCj4gaHR0cHM6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9w
-Lm9yZy93aWtpL01taW9UcmFjZS8KCldlbGwsIHRoaXMgbWlnaHQgYmUgcHJlc3VtcHR1b3VzIChn
-aXZlbiB0aGF0IEkgbmV2ZXIgZmlndXJlZCBvdXQgd2hhdAp0aGUgaXNzdWUgd2FzKSwgYnV0IGhl
-cmUgd2FzIG15IHBsYW4gb2YgYXR0YWNrICh3aGljaCwgSSByZW1pbmQgeW91LCBJCndhc24ndCBh
-YmxlIHRvIHVzZSB0byBmaWd1cmUgb3V0IHRoZSB1bmRlcmx5aW5nIHByb2JsZW0pOgoKMS4gRmlu
-ZCBhbiBvZmZlbmRpbmcgZmlsZSB3aGVyZSB0aGUgcHJvYmxlbSBvY2N1cnMgX2Vhcmx5XywgcHJl
-ZmVyYWJseQpmaXJzdCBmZXcgZnJhbWVzLCBzaW5jZSBzbGlnaHQgZGlmZmVyZW5jZXMgaW4gc3Vi
-bWlzc2lvbnMgZXZlbnR1YWxseQpjcmVlcCBpbiwgZXNwIGFyb3VuZCByZWZlcmVuY2UgZnJhbWUg
-bWFuYWdlbWVudC4KMi4gVXNpbmcgaDI2NF9wbGF5ZXIgKGF2YWlsYWJsZSBhdCBodHRwczovL2dp
-dGh1Yi5jb20vaW1pcmtpbi9yZS12cDIKLS0gbm90ZSB0aGF0IGl0IGhhcyB0byBoYXZlIGEgZmV3
-IHBhcmFtZXRlcnMgaGFyZGNvZGVkIHRvIGEgc3BlY2lmaWMKZmlsZSwgYW5kIHJlcXVpcmVzIGV4
-dHJhY3Rpb24gb2YgdGhlIGgyNjQgc3RyZWFtIGZpcnN0IC0tIHNlZSByZWFkbWUpLApkbyBhIG1t
-dCAobm90IG1taW8pIHRyYWNlIG9mIG52aWRpYSBibG9iIGFuZCBvZiBub3V2ZWF1IChsb29rIGZv
-cgp2YWxncmluZC1tbXQpCjMuIENvbXBhcmUgYW5kIGNvbnRyYXN0CgpUaGUgdGhlb3J5IGhlcmUg
-aXMgdGhhdCB3ZSdyZSBzZXR0aW5nIHVwIHRoZSBlbmdpbmVzIGNvcnJlY3RseSwganVzdApmZWVk
-aW5nIHRoZW0gaW5jb3JyZWN0IGRhdGEuIElmIHdlJ3JlIHNldHRpbmcgdXAgdGhlIGVuZ2luZXMK
-aW5jb3JyZWN0bHksIHRoZW4gdGhlIG1taW8gdHJhY2Ugd291bGQgY29tZSBpbiBoYW5keS4KClRo
-ZSByZWFzb24gdG8gdXNlIGgyNjRfcGxheWVyIGFuZCBub3QgYSBmdWxsLWZlYXR1cmVkIHBsYXll
-ciBpcyB0aGF0IEkKZG9uJ3QgZG8gYW55IGZ1bm55IGJ1c2luZXNzIHdpdGggZnJhbWUgdGltaW5n
-LCByZW9yZGVyaW5nLCBvciBhbnl0aGluZwplbHNlIGV4dHJhbmVvdXMuIFlvdSBjYW4ndCBhY3R1
-YWxseSB3YXRjaCBhIG1vdmllIHdpdGggdGhpcyB0aGluZwooZnJhbWUgb3JkZXIgd2lsbCBnaXZl
-IHlvdSBhIGhlYWRhY2hlKSwgYnV0IGl0IGNhbiBiZSBoZWxwZnVsIGZvcgp0cmFjaW5nLgoKT2Yg
-Y291cnNlIGEgZmV3IHRoaW5ncyBoYXZlIGhhcHBlbmVkIGluIHRoZSBpbnRlcnZlbmluZyA2IHll
-YXJzIHNpbmNlCkkgd3JvdGUgdGhhdCB0b29sLi4uIChoYXMgaXQgcmVhbGx5IGJlZW4gdGhhdCBs
-b25nPykgVGhlIG1haW4gb25lCmJlaW5nIHRoYXQgbW10IHRyYWNlcyBvZiBub3V2ZWF1IG5vIGxv
-bmdlciB3b3JrIG91dCBvZiB0aGUgYm94LiBZb3UKaGF2ZSB0byBlZGl0IG1lc2EncyB3aW5zeXMv
-bm91dmVhdS9kcm0vbm91dmVhdV9kcm1fd2luc3lzLmMgdG8gc2V0CmRybS0+bnZpZiA9IGZhbHNl
-IGFmdGVyIHRoZSBub3V2ZWF1X2RybV9uZXcgY2FsbC4gVGhhdCBzaG91bGQgYWxsb3cKdGhlIG1t
-dCB0cmFjaW5nIHRvIGJlIGRlY29kZWQgYnkgdGhlIGRlbW10IHRvb2wuCgpBbHNvIHRoZSBkZW1t
-dCB0b29sIGhhcyBiaXRyb3R0ZWQgYSBmYWlyIGFtb3VudC4gQXQgdGhlIHRpbWUgdGhhdCBJCndh
-cyBkb2luZyBpdCwgSSB3YXMgdXNpbmcgImRlZG1hIiwgd2hpY2ggd2FzIG11Y2ggbW9yZSBwcmlt
-aXRpdmUsIGJ1dAphbHNvIG1vcmUgcmVzaWxpZW50IHRvIGNoYW5nZXMuIFRoZXJlJ3MgYSBiaW4y
-ZGVkbWEgaGVscGVyIHNvbWV3aGVyZQp0byBjb252ZXJ0IHRoZSAibmV3IiBtbXQgdHJhY2UgZm9y
-bWF0IHRvIHdoYXQgZGVkbWEgY2FuIGNvbnN1bWUuCgpGV0lXIEkgd2FzIGdpdmVuIGEgZmlsZSB3
-aGVyZSB0aGUgaXNzdWUgb2NjdXJzIHZlcnkgZWFybHkgb24sIGJ1dCBieQp0aGVuLCBJIHdhcyBh
-bHJlYWR5IHF1aXRlIHRpcmVkIG9mIGRvaW5nIHRoaXMuIEkgbWF5IGJlIGFibGUgdG8gdHJhY2sK
-aXQgZG93biwgYnV0IHJpZ2h0IG5vdywgSSdtIG5vdCBzdXJlIHdoZXJlIGl0IGlzLgoKQSBmaW5h
-bCB0aG91Z2h0IGlzIHRoYXQgdGhpcyBoYXBwZW5zIG9uIFZQMiBhbmQgVlAzKyBlbmdpbmVzLCB3
-aGljaAphcmUgZmFpcmx5IGRpZmZlcmVudCBmcm9tIGVhY2ggb3RoZXIuIFRoaXMgbGVhZHMgbWUg
-dG8gYmVsaWV2ZSB0aGF0CndlJ3JlIG1pc3NpbmcgYSBzaW1pbGFyIHNvcnQgb2YgdGhpbmcgb24g
-dGhlIHR3by4gSSd2ZSBhbHdheXMgYmVsaWV2ZWQKaXQgd2FzIHJlZmVyZW5jZSBmcmFtZSBtYW5h
-Z2VtZW50LXJlbGF0ZWQsIGJ1dCBjb3VsZCBuZXZlciBxdWl0ZQpmaWd1cmUgaXQgb3V0LiBIMjY0
-IHN0cmVhbXMgbWF5IGhhdmUgdXAgdG8gMTYgcmVmZXJlbmNlIGZyYW1lcy4gRnVuCnN0dWZmLgoK
-Q2hlZXJzLAoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+On Wed, Aug 14, 2019 at 09:38:54AM +0200, Christoph Hellwig wrote:
+> On Tue, Aug 13, 2019 at 06:36:33PM -0700, Dan Williams wrote:
+> > Section alignment constraints somewhat save us here. The only example
+> > I can think of a PMD not containing a uniform pgmap association for
+> > each pte is the case when the pgmap overlaps normal dram, i.e. shares
+> > the same 'struct memory_section' for a given span. Otherwise, distinct
+> > pgmaps arrange to manage their own exclusive sections (and now
+> > subsections as of v5.3). Otherwise the implementation could not
+> > guarantee different mapping lifetimes.
+> >=20
+> > That said, this seems to want a better mechanism to determine "pfn is
+> > ZONE_DEVICE".
+>=20
+> So I guess this patch is fine for now, and once you provide a better
+> mechanism we can switch over to it?
+
+What about the version I sent to just get rid of all the strange
+put_dev_pagemaps while scanning? Odds are good we will work with only
+a single pagemap, so it makes some sense to cache it once we find it?
+
+diff --git a/mm/hmm.c b/mm/hmm.c
+index 9a908902e4cc38..4e30128c23a505 100644
+--- a/mm/hmm.c
++++ b/mm/hmm.c
+@@ -497,10 +497,6 @@ static int hmm_vma_handle_pmd(struct mm_walk *walk,
+ 		}
+ 		pfns[i] =3D hmm_device_entry_from_pfn(range, pfn) | cpu_flags;
+ 	}
+-	if (hmm_vma_walk->pgmap) {
+-		put_dev_pagemap(hmm_vma_walk->pgmap);
+-		hmm_vma_walk->pgmap =3D NULL;
+-	}
+ 	hmm_vma_walk->last =3D end;
+ 	return 0;
+ #else
+@@ -604,10 +600,6 @@ static int hmm_vma_handle_pte(struct mm_walk *walk, un=
+signed long addr,
+ 	return 0;
+=20
+ fault:
+-	if (hmm_vma_walk->pgmap) {
+-		put_dev_pagemap(hmm_vma_walk->pgmap);
+-		hmm_vma_walk->pgmap =3D NULL;
+-	}
+ 	pte_unmap(ptep);
+ 	/* Fault any virtual address we were asked to fault */
+ 	return hmm_vma_walk_hole_(addr, end, fault, write_fault, walk);
+@@ -690,16 +682,6 @@ static int hmm_vma_walk_pmd(pmd_t *pmdp,
+ 			return r;
+ 		}
+ 	}
+-	if (hmm_vma_walk->pgmap) {
+-		/*
+-		 * We do put_dev_pagemap() here and not in hmm_vma_handle_pte()
+-		 * so that we can leverage get_dev_pagemap() optimization which
+-		 * will not re-take a reference on a pgmap if we already have
+-		 * one.
+-		 */
+-		put_dev_pagemap(hmm_vma_walk->pgmap);
+-		hmm_vma_walk->pgmap =3D NULL;
+-	}
+ 	pte_unmap(ptep - 1);
+=20
+ 	hmm_vma_walk->last =3D addr;
+@@ -751,10 +733,6 @@ static int hmm_vma_walk_pud(pud_t *pudp,
+ 			pfns[i] =3D hmm_device_entry_from_pfn(range, pfn) |
+ 				  cpu_flags;
+ 		}
+-		if (hmm_vma_walk->pgmap) {
+-			put_dev_pagemap(hmm_vma_walk->pgmap);
+-			hmm_vma_walk->pgmap =3D NULL;
+-		}
+ 		hmm_vma_walk->last =3D end;
+ 		return 0;
+ 	}
+@@ -1026,6 +1004,14 @@ long hmm_range_fault(struct hmm_range *range, unsign=
+ed int flags)
+ 			/* Keep trying while the range is valid. */
+ 		} while (ret =3D=3D -EBUSY && range->valid);
+=20
++		/*
++		 * We do put_dev_pagemap() here so that we can leverage
++		 * get_dev_pagemap() optimization which will not re-take a
++		 * reference on a pgmap if we already have one.
++		 */
++		if (hmm_vma_walk->pgmap)
++			put_dev_pagemap(hmm_vma_walk->pgmap);
++
+ 		if (ret) {
+ 			unsigned long i;
+=20
