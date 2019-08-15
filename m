@@ -1,108 +1,108 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string
- to enable dGPU direct output"
-Date: Thu, 15 Aug 2019 16:35:22 +0200
-Message-ID: <CACO55ttUKCGJq66czgsgWSR5VE6VmQFs6Syr0R2CenXomU2O-w@mail.gmail.com>
-References: <20190814213118.28473-1-kherbst@redhat.com>
- <20190814213118.28473-2-kherbst@redhat.com>
+From: Karol Herbst <kherbst@redhat.com>
+Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to
+ enable dGPU direct output"
+Date: Thu, 15 Aug 2019 16:36:54 +0200
+Message-ID: <CACO55tthEUVKJN_yCuGU95e8Zc+q-sJEsxML+ZYz7rpU9zDGCg@mail.gmail.com>
+References: <20190814213118.28473-1-kherbst@redhat.com> <20190814213118.28473-2-kherbst@redhat.com>
  <CAPM=9ty7yEUqKrcixV1tTuWCpyh6UikA3rxX8BF1E3fDb6WLQQ@mail.gmail.com>
  <5e05532328324d01bc554c573f6298f8@AUSX13MPC101.AMER.DELL.COM>
  <CACO55tsDA1WpMGtAPqUJpWt0AmPDnv9LuC09g2KB5GXB-VSCew@mail.gmail.com>
- <CADnq5_NUox3vvg6Mt3i9erA+AL2MfotpNBZQnWWknn4j+j-F=Q@mail.gmail.com>
- <CACO55tty6TqEo4UBkX5YckLuP-XhHXKVs0ew+Q8__sKMi1BCbA@mail.gmail.com>
- <CADnq5_PWuLU0pcG549-xThMHy3W0P2+fAO_Ledk6FP2TVG3+gQ@mail.gmail.com>
- <6ed1c393ffeb4c24ab5875927d6a37ac@AUSX13MPC101.AMER.DELL.COM>
+ <3fc22fe8bcaf4304bb07534b61c4de90@AUSX13MPC101.AMER.DELL.COM>
+ <CACO55tvDfxYMZr0BGv2ROSNEVB4GvXZnBnWBy=RDPOG5hnk7OA@mail.gmail.com> <54add026bb6f45fd94a2dc2bae4adf9f@AUSX13MPC101.AMER.DELL.COM>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <6ed1c393ffeb4c24ab5875927d6a37ac-LfVFoyzMKQjPsEK5VrLsSwVY21JRvFwKV6yJEvX+wlw@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mario.Limonciello-8PEkshWhKlo@public.gmane.org
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "Rafael J . Wysocki" <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux ACPI Mailing List <linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Alex Hung <alex.hung-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, David Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <54add026bb6f45fd94a2dc2bae4adf9f@AUSX13MPC101.AMER.DELL.COM>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Mario.Limonciello@dell.com
+Cc: Dave Airlie <airlied@gmail.com>, LKML <linux-kernel@vger.kernel.org>, Linux ACPI Mailing List <linux-acpi@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Alex Hung <alex.hung@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBBdWcgMTUsIDIwMTkgYXQgNDozMCBQTSA8TWFyaW8uTGltb25jaWVsbG9AZGVsbC5j
-b20+IHdyb3RlOgo+Cj4gPiBPbiBUaHUsIEF1ZyAxNSwgMjAxOSBhdCAxMDoxNSBBTSBLYXJvbCBI
-ZXJic3QgPGtoZXJic3RAcmVkaGF0LmNvbT4gd3JvdGU6Cj4gPiA+Cj4gPiA+IE9uIFRodSwgQXVn
-IDE1LCAyMDE5IGF0IDQ6MTMgUE0gQWxleCBEZXVjaGVyIDxhbGV4ZGV1Y2hlckBnbWFpbC5jb20+
-Cj4gPiB3cm90ZToKPiA+ID4gPgo+ID4gPiA+IE9uIFRodSwgQXVnIDE1LCAyMDE5IGF0IDEwOjA0
-IEFNIEthcm9sIEhlcmJzdCA8a2hlcmJzdEByZWRoYXQuY29tPiB3cm90ZToKPiA+ID4gPiA+Cj4g
-PiA+ID4gPiBPbiBUaHUsIEF1ZyAxNSwgMjAxOSBhdCAzOjU2IFBNIDxNYXJpby5MaW1vbmNpZWxs
-b0BkZWxsLmNvbT4gd3JvdGU6Cj4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+ID4gLS0tLS1PcmlnaW5h
-bCBNZXNzYWdlLS0tLS0KPiA+ID4gPiA+ID4gPiBGcm9tOiBsaW51eC1hY3BpLW93bmVyQHZnZXIu
-a2VybmVsLm9yZyA8bGludXgtYWNwaS0KPiA+IG93bmVyQHZnZXIua2VybmVsLm9yZz4gT24KPiA+
-ID4gPiA+ID4gPiBCZWhhbGYgT2YgRGF2ZSBBaXJsaWUKPiA+ID4gPiA+ID4gPiBTZW50OiBXZWRu
-ZXNkYXksIEF1Z3VzdCAxNCwgMjAxOSA1OjQ4IFBNCj4gPiA+ID4gPiA+ID4gVG86IEthcm9sIEhl
-cmJzdAo+ID4gPiA+ID4gPiA+IENjOiBMS01MOyBMaW51eCBBQ1BJOyBkcmktZGV2ZWw7IG5vdXZl
-YXU7IFJhZmFlbCBKIC4gV3lzb2NraTsgQWxleCBIdW5nOwo+ID4gQmVuCj4gPiA+ID4gPiA+ID4g
-U2tlZ2dzOyBEYXZlIEFpcmxpZQo+ID4gPiA+ID4gPiA+IFN1YmplY3Q6IFJlOiBbTm91dmVhdV0g
-W1BBVENIIDEvN10gUmV2ZXJ0ICJBQ1BJIC8gT1NJOiBBZGQgT0VNIF9PU0kKPiA+IHN0cmluZyB0
-bwo+ID4gPiA+ID4gPiA+IGVuYWJsZSBkR1BVIGRpcmVjdCBvdXRwdXQiCj4gPiA+ID4gPiA+ID4K
-PiA+ID4gPiA+ID4gPiBPbiBUaHUsIDE1IEF1ZyAyMDE5IGF0IDA3OjMxLCBLYXJvbCBIZXJic3Qg
-PGtoZXJic3RAcmVkaGF0LmNvbT4KPiA+IHdyb3RlOgo+ID4gPiA+ID4gPiA+ID4KPiA+ID4gPiA+
-ID4gPiA+IFRoaXMgcmV2ZXJ0cyBjb21taXQgMjg1ODZhNTFlZWE2NjZkNTUzMWJjYWVmMmY2OGU0
-YWJiZDg3MjQyYy4KPiA+ID4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+ID4gPiBUaGUgb3JpZ2luYWwg
-Y29tbWl0IG1lc3NhZ2UgZGlkbid0IGV2ZW4gbWFrZSBzZW5zZS4gQU1EIF9kb2VzXwo+ID4gc3Vw
-cG9ydCBpdCBhbmQKPiA+ID4gPiA+ID4gPiA+IGl0IHdvcmtzIHdpdGggTm91dmVhdSBhcyB3ZWxs
-Lgo+ID4gPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gPiA+IEFsc28gd2hhdCB3YXMgdGhlIGlzc3Vl
-IGJlaW5nIHNvbHZlZCBoZXJlPyBObyByZWZlcmVuY2VzIHRvIGFueSBidWdzCj4gPiBhbmQgbm90
-Cj4gPiA+ID4gPiA+ID4gPiBldmVuIGV4cGxhaW5pbmcgYW55IGlzc3VlIGF0IGFsbCBpc24ndCB0
-aGUgd2F5IHdlIGRvIHRoaW5ncy4KPiA+ID4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+ID4gPiBBbmQg
-ZXZlbiBpZiBpdCBtZWFucyBhIG11eGVkIGRlc2lnbiwgdGhlbiB0aGUgZml4IGlzIHRvIG1ha2Ug
-aXQgd29yawo+ID4gaW5zaWRlIHRoZQo+ID4gPiA+ID4gPiA+ID4gZHJpdmVyLCBub3QgYWRkaW5n
-IHNvbWUgaGFja3kgd29ya2Fyb3VuZCB0aHJvdWdoIEFDUEkgdHJpY2tzLgo+ID4gPiA+ID4gPiA+
-ID4KPiA+ID4gPiA+ID4gPiA+IEFuZCB3aGF0IG91dCBvZiB0cmVlIGRyaXZlcnMgZG8gb3IgZG8g
-bm90IHN1cHBvcnQgd2UgZG9uJ3QgY2FyZSBvbmUKPiA+IGJpdCBhbnl3YXkuCj4gPiA+ID4gPiA+
-ID4gPgo+ID4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+ID4gSSB0aGluayB0aGUgcmV2ZXJ0cyBzaG91
-bGQgYmUgbWVyZ2VkIHZpYSBSYWZhZWwncyB0cmVlIGFzIHRoZSBvcmlnaW5hbAo+ID4gPiA+ID4g
-PiA+IHBhdGNoZXMgd2VudCBpbiB2aWEgdGhlcmUsIGFuZCB3ZSBzaG91bGQgZ2V0IHRoZW0gaW4g
-YXNhcC4KPiA+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiA+IEFja2VkLWJ5OiBEYXZlIEFpcmxpZSA8
-YWlybGllZEByZWRoYXQuY29tPgo+ID4gPiA+ID4gPiA+IERhdmUuCj4gPiA+ID4gPiA+Cj4gPiA+
-ID4gPiA+IFRoZXJlIGFyZSBkZWZpbml0ZWx5IGdvaW5nIHRvIGJlIHJlZ3Jlc3Npb25zIG9uIG1h
-Y2hpbmVzIGluIHRoZSBmaWVsZCB3aXRoCj4gPiB0aGUKPiA+ID4gPiA+ID4gaW4gdHJlZSBkcml2
-ZXJzIGJ5IHJldmVydGluZyB0aGlzLiAgSSB0aGluayB3ZSBzaG91bGQgaGF2ZSBhbiBhbnN3ZXIg
-Zm9yIGFsbAo+ID4gb2YgdGhvc2UKPiA+ID4gPiA+ID4gYmVmb3JlIHRoaXMgcmV2ZXJ0IGlzIGFj
-Y2VwdGVkLgo+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiBSZWdhcmRpbmcgc3lzdGVtcyB3aXRoIElu
-dGVsK05WSURJQSwgd2UnbGwgaGF2ZSB0byB3b3JrIHdpdGggcGFydG5lcnMgdG8KPiA+IGNvbGxl
-Y3QKPiA+ID4gPiA+ID4gc29tZSBpbmZvcm1hdGlvbiBvbiB0aGUgaW1wYWN0IG9mIHJldmVydGlu
-ZyB0aGlzLgo+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiBXaGVuIHRoaXMgaXMgdXNlZCBvbiBhIHN5
-c3RlbSB3aXRoIEludGVsK0FNRCB0aGUgQVNMIGNvbmZpZ3VyZXMgQU1ECj4gPiBHUFUgdG8gdXNl
-Cj4gPiA+ID4gPiA+ICJIeWJyaWQgR3JhcGhpY3MiIHdoZW4gb24gV2luZG93cyBhbmQgIlBvd2Vy
-IEV4cHJlc3MiIGFuZAo+ID4gIlN3aXRjaGFibGUgR3JhcGhpY3MiCj4gPiA+ID4gPiA+IHdoZW4g
-b24gTGludXguCj4gPiA+ID4gPgo+ID4gPiA+ID4gYW5kIHdoYXQncyBleGFjdGx5IHRoZSBkaWZm
-ZXJlbmNlIGJldHdlZW4gdGhvc2U/IEFuZCB3aGF0J3MgdGhlIGFjdHVhbAo+ID4gPiA+ID4gaXNz
-dWUgaGVyZT8KPiA+ID4gPgo+ID4gPiA+IEh5YnJpZCBHcmFwaGljcyBpcyB0aGUgbmV3ICJzdGFu
-ZGFyZCIgd2F5IG9mIGhhbmRsaW5nIHRoZXNlIGxhcHRvcHMuCj4gPiA+ID4gSXQgdXNlcyB0aGUg
-c3RhbmRhcmQgX1BSMyBBUENJIG1ldGhvZCB0byBoYW5kbGUgZEdQVSBwb3dlci4gIFN1cHBvcnQK
-PiA+ID4gPiBmb3IgdGhpcyB3YXMgYWRkZWQgdG8gTGludXggcmVsYXRpdmVseSBsYXRlciBjb21w
-YXJlZCB0byB3aGVuIHRoZQo+ID4gPiA+IGxhcHRvcHMgd2VyZSBsYXVuY2hlZC4gICJQb3dlciBF
-eHByZXNzIiB1c2VkIHRoZSBvdGhlciBBTUQgc3BlY2lmaWMKPiA+ID4gPiBBVFBYIEFDUEkgbWV0
-aG9kIHRvIGhhbmRsZSBkR1BVIHBvd2VyLiAgVGhlIGRyaXZlciBzdXBwb3J0cyBib3RoIHNvCj4g
-PiA+ID4gZWl0aGVyIG1ldGhvZCB3aWxsIHdvcmsuCj4gPiA+ID4KPiA+ID4gPiBBbGV4Cj4gPiA+
-ID4KPiA+ID4KPiA+ID4gdGhhbmtzIGZvciBjbGFyaWZ5aW5nLiBCdXQgdGhhdCBzdGlsbCBtZWFu
-cyB0aGF0IHdlIHdvbid0IG5lZWQgc3VjaAo+ID4gPiB3b3JrYXJvdW5kcyBmb3IgQU1EIHVzZXJz
-LCByaWdodD8gYW1kZ3B1IGhhbmRsZXMgaHlicmlkIGdyYXBoaWNzIGp1c3QKPiA+ID4gZmluZSwg
-cmlnaHQ/Cj4gPgo+ID4gWWVhaCBpdCBzaG91bGQsIGFzc3VtaW5nIHlvdSBoYXZlIGEgbmV3IGVu
-b3VnaCBrZXJuZWwgd2hpY2ggc3VwcG9ydHMKPiA+IEhHLCB3aGljaCBoYXMgYmVlbiBzZXZlcmFs
-IHllYXJzIGF0IHRoaXMgcG9pbnQgSUlSQy4KPiA+Cj4gPiBBbGV4Cj4gPgo+Cj4gQ2FuIHlvdSBk
-ZWZpbmUgaG93IG5ldyBvZiBhIGtlcm5lbCBpcyBhIG5ldyBlbm91Z2gga2VybmVsPwo+Cj4gTG9v
-a2luZyBvbiBteSBzaWRlIHRoZXNlIHByb2JsZW1zIHdlcmUgb24gbmV3IGhhcmR3YXJlIChQcmVj
-aXNpb24gNzc0MCkgYW5kCj4gYXJlIGNoZWNrZWQgYXMgcmVjZW50bHkgYXMgc3RhcnQgb2YgdGhp
-cyBzdW1tZXIsIHcvIGtlcm5lbCA0LjE1LgoKVGhhdCdzIG5vdCBldmVuIGEgbG9uZyB0ZXJtIG9u
-ZS4gQW5kIGl0IHNob3VsZG4ndCBnZXQgYW55IGZpeGVzLiBJCmp1c3QgY2hlY2tlZCwgbGFzdCB1
-cGRhdGUgd2FzIDE2IG1vbnRocyBhZ28uCgo+Cj4gV2UgY2FuIGFycmFuZ2UgdG8gaGF2ZSBpdCBj
-aGVja2VkIGFnYWluIG9uIDUuM3JjWCB3LyB0aGUgT1NJIGRpc2FibGVkLgoKeWVhaCwgcGxlYXNl
-IGRvLiBJZiB0aGVyZSBhcmUgYW55IGlzc3Vlcywgd2UgKGFzIGluIGRybSBkZXZlbG9wZXJzKQph
-cmUgaGFwcHkgdG8gZml4IHRoZSBpc3N1ZXMgaW5zaWRlIHRoZSBkcml2ZXJzLgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
-dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+On Thu, Aug 15, 2019 at 4:34 PM <Mario.Limonciello@dell.com> wrote:
+>
+> > -----Original Message-----
+> > From: Karol Herbst <kherbst@redhat.com>
+> > Sent: Thursday, August 15, 2019 9:25 AM
+> > To: Limonciello, Mario
+> > Cc: Dave Airlie; LKML; Linux ACPI Mailing List; dri-devel; nouveau; Rafael J .
+> > Wysocki; Alex Hung; Ben Skeggs; David Airlie
+> > Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to
+> > enable dGPU direct output"
+> >
+> >
+> > [EXTERNAL EMAIL]
+> >
+> > On Thu, Aug 15, 2019 at 4:20 PM <Mario.Limonciello@dell.com> wrote:
+> > >
+> > > > > There are definitely going to be regressions on machines in the field with
+> > the
+> > > > > in tree drivers by reverting this.  I think we should have an answer for all of
+> > > > those
+> > > > > before this revert is accepted.
+> > > > >
+> > > > > Regarding systems with Intel+NVIDIA, we'll have to work with partners to
+> > > > collect
+> > > > > some information on the impact of reverting this.
+> > > > >
+> > > > > When this is used on a system with Intel+AMD the ASL configures AMD
+> > GPU to
+> > > > use
+> > > > > "Hybrid Graphics" when on Windows and "Power Express" and "Switchable
+> > > > Graphics"
+> > > > > when on Linux.
+> > > >
+> > > > and what's exactly the difference between those? And what's the actual
+> > > > issue here?
+> > >
+> > > DP/HDMI is not detected unless plugged in at bootup.  It's due to missing HPD
+> > > events.
+> > >
+> >
+> > afaik Lyude was working on fixing all that, at least for some drivers.
+> > If there is something wrong, we still should fix the drivers, not
+> > adding ACPI workarounds.
+>
+> I don't disagree, but timing is frequently a limitation if you want the hardware to
+> work when you put it on the market.
+>
+> The whole idea behind the OSI string was that it could be reverted when the time
+> was right.  From this discussion it very well may be for systems with AMD GPU, but
+> it needs to be checked again.
+>
+> >
+> > Alex: do you know if there are remaining issues regarding that with amdgpu?
+> >
+> > > >
+> > > > We already have the PRIME offloading in place and if that's not
+> > > > enough, we should work on extending it, not adding some ACPI based
+> > > > workarounds, because that's exactly how that looks like.
+> > > >
+> > > > Also, was this discussed with anybody involved in the drm subsystem?
+> > > >
+> > > > >
+> > > > > I feel we need a knob and/or DMI detection to affect the changes that the
+> > ASL
+> > > > > normally performs.
+> > > >
+> > > > Why do we have to do that on a firmware level at all?
+> > >
+> > > Folks from AMD Graphics team recommended this approach.
+>
+> I should clarify this is from the folks on AMD graphics team that interact to OEMs
+> like Dell which are not necessarily the same folks who work on the drivers directly.
+>
+
+yeah, I understand the pressure, and it might have been fine if we
+would have this discussion upstream, if it's about pushing things
+upstream. The commits itself didn't even make the impression that
+anybody with the drm drivers involved even looked at those patches and
+this is the worst part of those commits.
+
+> > From their perspective
+> > > it's not a workaround.  They view this as a different architecture for AMD
+> > graphics driver on
+> > > Windows and AMD graphics w/ amdgpu driver.  They have different ASL paths
+> > used for
+> > > each.
+> >
+> > @alex: is this true?
