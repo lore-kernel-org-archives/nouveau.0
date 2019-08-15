@@ -1,91 +1,113 @@
-From: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to
+From: <Mario.Limonciello@dell.com>
+Subject: RE: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to
  enable dGPU direct output"
-Date: Thu, 15 Aug 2019 10:59:09 -0400
-Message-ID: <CADnq5_Oo4CMSx3Bi-41xXDCYKB9RRX33Gke9UyvAGZq1i+VOLA@mail.gmail.com>
+Date: Thu, 15 Aug 2019 16:19:52 +0000
+Message-ID: <8724585e50004bc8b6f310587555f4a1@AUSX13MPC101.AMER.DELL.COM>
 References: <20190814213118.28473-1-kherbst@redhat.com>
- <20190814213118.28473-2-kherbst@redhat.com>
- <CAPM=9ty7yEUqKrcixV1tTuWCpyh6UikA3rxX8BF1E3fDb6WLQQ@mail.gmail.com>
- <5e05532328324d01bc554c573f6298f8@AUSX13MPC101.AMER.DELL.COM>
- <CACO55tsDA1WpMGtAPqUJpWt0AmPDnv9LuC09g2KB5GXB-VSCew@mail.gmail.com>
- <3fc22fe8bcaf4304bb07534b61c4de90@AUSX13MPC101.AMER.DELL.COM>
- <CACO55tvDfxYMZr0BGv2ROSNEVB4GvXZnBnWBy=RDPOG5hnk7OA@mail.gmail.com>
- <CADnq5_Nv6tsW0J20td5rQSLq048HtTcw1b4c25jP6ZR6XWZ-eA@mail.gmail.com>
+        <20190814213118.28473-2-kherbst@redhat.com>
+        <CAPM=9ty7yEUqKrcixV1tTuWCpyh6UikA3rxX8BF1E3fDb6WLQQ@mail.gmail.com>
+        <5e05532328324d01bc554c573f6298f8@AUSX13MPC101.AMER.DELL.COM>
+        <CACO55tsDA1WpMGtAPqUJpWt0AmPDnv9LuC09g2KB5GXB-VSCew@mail.gmail.com>
+        <3fc22fe8bcaf4304bb07534b61c4de90@AUSX13MPC101.AMER.DELL.COM>
+        <CACO55tvDfxYMZr0BGv2ROSNEVB4GvXZnBnWBy=RDPOG5hnk7OA@mail.gmail.com>
+        <CADnq5_Nv6tsW0J20td5rQSLq048HtTcw1b4c25jP6ZR6XWZ-eA@mail.gmail.com>
+ <s5ho90qa34m.wl-tiwai@suse.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CADnq5_Nv6tsW0J20td5rQSLq048HtTcw1b4c25jP6ZR6XWZ-eA@mail.gmail.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Karol Herbst <kherbst@redhat.com>
-Cc: Mario.Limonciello@dell.com, nouveau <nouveau@lists.freedesktop.org>, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Linux ACPI Mailing List <linux-acpi@vger.kernel.org>, Alex Hung <alex.hung@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <s5ho90qa34m.wl-tiwai@suse.de>
+Content-Language: en-US
+Sender: linux-kernel-owner@vger.kernel.org
+To: tiwai@suse.de, alexdeucher@gmail.com
+Cc: kherbst@redhat.com, nouveau@lists.freedesktop.org, rafael.j.wysocki@intel.com, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org, alex.hung@canonical.com, bskeggs@redhat.com, airlied@redhat.com
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBBdWcgMTUsIDIwMTkgYXQgMTA6MzcgQU0gQWxleCBEZXVjaGVyIDxhbGV4ZGV1Y2hl
-ckBnbWFpbC5jb20+IHdyb3RlOgo+Cj4gT24gVGh1LCBBdWcgMTUsIDIwMTkgYXQgMTA6MjUgQU0g
-S2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+IHdyb3RlOgo+ID4KPiA+IE9uIFRodSwg
-QXVnIDE1LCAyMDE5IGF0IDQ6MjAgUE0gPE1hcmlvLkxpbW9uY2llbGxvQGRlbGwuY29tPiB3cm90
-ZToKPiA+ID4KPiA+ID4gPiA+IFRoZXJlIGFyZSBkZWZpbml0ZWx5IGdvaW5nIHRvIGJlIHJlZ3Jl
-c3Npb25zIG9uIG1hY2hpbmVzIGluIHRoZSBmaWVsZCB3aXRoIHRoZQo+ID4gPiA+ID4gaW4gdHJl
-ZSBkcml2ZXJzIGJ5IHJldmVydGluZyB0aGlzLiAgSSB0aGluayB3ZSBzaG91bGQgaGF2ZSBhbiBh
-bnN3ZXIgZm9yIGFsbCBvZgo+ID4gPiA+IHRob3NlCj4gPiA+ID4gPiBiZWZvcmUgdGhpcyByZXZl
-cnQgaXMgYWNjZXB0ZWQuCj4gPiA+ID4gPgo+ID4gPiA+ID4gUmVnYXJkaW5nIHN5c3RlbXMgd2l0
-aCBJbnRlbCtOVklESUEsIHdlJ2xsIGhhdmUgdG8gd29yayB3aXRoIHBhcnRuZXJzIHRvCj4gPiA+
-ID4gY29sbGVjdAo+ID4gPiA+ID4gc29tZSBpbmZvcm1hdGlvbiBvbiB0aGUgaW1wYWN0IG9mIHJl
-dmVydGluZyB0aGlzLgo+ID4gPiA+ID4KPiA+ID4gPiA+IFdoZW4gdGhpcyBpcyB1c2VkIG9uIGEg
-c3lzdGVtIHdpdGggSW50ZWwrQU1EIHRoZSBBU0wgY29uZmlndXJlcyBBTUQgR1BVIHRvCj4gPiA+
-ID4gdXNlCj4gPiA+ID4gPiAiSHlicmlkIEdyYXBoaWNzIiB3aGVuIG9uIFdpbmRvd3MgYW5kICJQ
-b3dlciBFeHByZXNzIiBhbmQgIlN3aXRjaGFibGUKPiA+ID4gPiBHcmFwaGljcyIKPiA+ID4gPiA+
-IHdoZW4gb24gTGludXguCj4gPiA+ID4KPiA+ID4gPiBhbmQgd2hhdCdzIGV4YWN0bHkgdGhlIGRp
-ZmZlcmVuY2UgYmV0d2VlbiB0aG9zZT8gQW5kIHdoYXQncyB0aGUgYWN0dWFsCj4gPiA+ID4gaXNz
-dWUgaGVyZT8KPiA+ID4KPiA+ID4gRFAvSERNSSBpcyBub3QgZGV0ZWN0ZWQgdW5sZXNzIHBsdWdn
-ZWQgaW4gYXQgYm9vdHVwLiAgSXQncyBkdWUgdG8gbWlzc2luZyBIUEQKPiA+ID4gZXZlbnRzLgo+
-ID4gPgo+ID4KPiA+IGFmYWlrIEx5dWRlIHdhcyB3b3JraW5nIG9uIGZpeGluZyBhbGwgdGhhdCwg
-YXQgbGVhc3QgZm9yIHNvbWUgZHJpdmVycy4KPiA+IElmIHRoZXJlIGlzIHNvbWV0aGluZyB3cm9u
-Zywgd2Ugc3RpbGwgc2hvdWxkIGZpeCB0aGUgZHJpdmVycywgbm90Cj4gPiBhZGRpbmcgQUNQSSB3
-b3JrYXJvdW5kcy4KPiA+Cj4gPiBBbGV4OiBkbyB5b3Uga25vdyBpZiB0aGVyZSBhcmUgcmVtYWlu
-aW5nIGlzc3VlcyByZWdhcmRpbmcgdGhhdCB3aXRoIGFtZGdwdT8KPgo+IFRoZXJlIHdhcyBhbiBp
-c3N1ZSB3aXRoIGhwZCBldmVudHMgbm90IG1ha2luZyBpdCB0byB0aGUgYXVkaW8gc2lkZQo+IHdo
-ZW4gdGhpbmdzIHdlcmUgcG93ZXJlZCBkb3duIHRoYXQgd2FzIGZpeGVkIHdpdGggdGhpcyBwYXRj
-aCBzZXQ6Cj4gaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3BhdGNoLzMxNjc5My8K
-PiBUaG9zZSBwYXRjaGVzIGRlcGVuZGVkIG9uIGEgYnVuY2ggb2YgYWxzYSBjaGFuZ2VzIGFzIHdl
-bGwgd2hpY2ggbWF5Cj4gaGF2ZSBub3QgYmVlbiBhdmFpbGFibGUgaW4gdGhlIGRpc3RybyB1c2Vk
-IGZvciBhIHBhcnRpY3VsYXIgT0VNCj4gcHJvZ3JhbS4KPgo+ID4KPiA+ID4gPgo+ID4gPiA+IFdl
-IGFscmVhZHkgaGF2ZSB0aGUgUFJJTUUgb2ZmbG9hZGluZyBpbiBwbGFjZSBhbmQgaWYgdGhhdCdz
-IG5vdAo+ID4gPiA+IGVub3VnaCwgd2Ugc2hvdWxkIHdvcmsgb24gZXh0ZW5kaW5nIGl0LCBub3Qg
-YWRkaW5nIHNvbWUgQUNQSSBiYXNlZAo+ID4gPiA+IHdvcmthcm91bmRzLCBiZWNhdXNlIHRoYXQn
-cyBleGFjdGx5IGhvdyB0aGF0IGxvb2tzIGxpa2UuCj4gPiA+ID4KPiA+ID4gPiBBbHNvLCB3YXMg
-dGhpcyBkaXNjdXNzZWQgd2l0aCBhbnlib2R5IGludm9sdmVkIGluIHRoZSBkcm0gc3Vic3lzdGVt
-Pwo+ID4gPiA+Cj4gPiA+ID4gPgo+ID4gPiA+ID4gSSBmZWVsIHdlIG5lZWQgYSBrbm9iIGFuZC9v
-ciBETUkgZGV0ZWN0aW9uIHRvIGFmZmVjdCB0aGUgY2hhbmdlcyB0aGF0IHRoZSBBU0wKPiA+ID4g
-PiA+IG5vcm1hbGx5IHBlcmZvcm1zLgo+ID4gPiA+Cj4gPiA+ID4gV2h5IGRvIHdlIGhhdmUgdG8g
-ZG8gdGhhdCBvbiBhIGZpcm13YXJlIGxldmVsIGF0IGFsbD8KPiA+ID4KPiA+ID4gRm9sa3MgZnJv
-bSBBTUQgR3JhcGhpY3MgdGVhbSByZWNvbW1lbmRlZCB0aGlzIGFwcHJvYWNoLiAgRnJvbSB0aGVp
-ciBwZXJzcGVjdGl2ZQo+ID4gPiBpdCdzIG5vdCBhIHdvcmthcm91bmQuICBUaGV5IHZpZXcgdGhp
-cyBhcyBhIGRpZmZlcmVudCBhcmNoaXRlY3R1cmUgZm9yIEFNRCBncmFwaGljcyBkcml2ZXIgb24K
-PiA+ID4gV2luZG93cyBhbmQgQU1EIGdyYXBoaWNzIHcvIGFtZGdwdSBkcml2ZXIuICBUaGV5IGhh
-dmUgZGlmZmVyZW50IEFTTCBwYXRocyB1c2VkIGZvcgo+ID4gPiBlYWNoLgo+ID4KPiA+IEBhbGV4
-OiBpcyB0aGlzIHRydWU/Cj4KPiBJJ20gbm90IGZhbWlsaWFyIHdpdGggdGhpcyBwYXRjaGVzIGlu
-IHBhcnRpY3VsYXIsIGJ1dCBJIGtub3cgd2UndmUKPiBkb25lIHRoaW5ncyB3aXRoIE9FTSBwcm9n
-cmFtcyB0byBzdXBwb3J0IExpbnV4IG9uIHBsYXRmb3JtcyB3aGVyZQo+IExpbnV4IHN1cHBvcnQg
-aXMgbGFja2luZyBmb3IgaW4gbmV3IGZlYXR1cmVzIGZvciB0aGUgdGFyZ2V0IGRpc3Ryb3MuCj4g
-RS5nLiwgd2hlbiB0aGUgZmlyc3QgaHlicmlkIGdyYXBoaWNzIGxhcHRvcHMgd2VyZSBjb21pbmcg
-b3V0LCBMaW51eAo+IGRpZG4ndCBzdXBwb3J0IGl0IHRvbyB3ZWxsIG9yIGF0IGFsbCBkZXBlbmRp
-bmcgb24gdGhlIHRpbWluZywgc28gdGhlCj4gYmlvcyBleHBvc2VkIHBvd2VyIGV4cHJlc3Mgd2hp
-Y2ggd2FzIHdvcmtpbmcgd2VsbCBhdCB0aGUgdGltZSBpZiB0aGUKPiBPUyB0b2xkIEFDUEkgaXQg
-d2FzIExpbnV4LgoKRldJVywgd2luZG93cyBkb2VzIHNvbWV0aGluZyBzaW1pbGFyLiAgSSBkb24n
-dCB0aGluayB3aW5kb3dzIDcKc3VwcG9ydHMgaHlicmlkIGdyYXBoaWNzIGVpdGhlciBzbyBpZiB0
-aGUgT1MgdGVsbHMgQUNQSSBpdCdzIHdpbmRvd3MKNywgaXQgZ2V0cyBwb3dlciBleHByZXNzIGlu
-c3RlYWQgb2YgaHlicmlkIGdyYXBoaWNzIGFzIHdlbGwuICBBdCBsZWFzdApvbiBsYXB0b3BzIHRo
-YXQgc3VwcG9ydCB3aW5kb3dzIDcgaW4gdGhlIGZpcnN0IHBsYWNlLgoKQWxleAoKPgo+IEFsZXgK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
-IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
+> -----Original Message-----
+> From: Takashi Iwai <tiwai@suse.de>
+> Sent: Thursday, August 15, 2019 9:57 AM
+> To: Alex Deucher
+> Cc: Karol Herbst; Limonciello, Mario; nouveau; Rafael J . Wysocki; LKML; =
+dri-devel;
+> Linux ACPI Mailing List; Alex Hung; Ben Skeggs; David Airlie
+> Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI strin=
+g to
+> enable dGPU direct output"
+>=20
+>=20
+> [EXTERNAL EMAIL]
+>=20
+> On Thu, 15 Aug 2019 16:37:05 +0200,
+> Alex Deucher wrote:
+> >
+> > On Thu, Aug 15, 2019 at 10:25 AM Karol Herbst <kherbst@redhat.com> wrot=
+e:
+> > >
+> > > On Thu, Aug 15, 2019 at 4:20 PM <Mario.Limonciello@dell.com> wrote:
+> > > >
+> > > > > > There are definitely going to be regressions on machines in the=
+ field
+> with the
+> > > > > > in tree drivers by reverting this.  I think we should have an a=
+nswer for all
+> of
+> > > > > those
+> > > > > > before this revert is accepted.
+> > > > > >
+> > > > > > Regarding systems with Intel+NVIDIA, we'll have to work with pa=
+rtners
+> to
+> > > > > collect
+> > > > > > some information on the impact of reverting this.
+> > > > > >
+> > > > > > When this is used on a system with Intel+AMD the ASL configures=
+ AMD
+> GPU to
+> > > > > use
+> > > > > > "Hybrid Graphics" when on Windows and "Power Express" and
+> "Switchable
+> > > > > Graphics"
+> > > > > > when on Linux.
+> > > > >
+> > > > > and what's exactly the difference between those? And what's the a=
+ctual
+> > > > > issue here?
+> > > >
+> > > > DP/HDMI is not detected unless plugged in at bootup.  It's due to m=
+issing
+> HPD
+> > > > events.
+> > > >
+> > >
+> > > afaik Lyude was working on fixing all that, at least for some drivers=
+.
+> > > If there is something wrong, we still should fix the drivers, not
+> > > adding ACPI workarounds.
+> > >
+> > > Alex: do you know if there are remaining issues regarding that with a=
+mdgpu?
+> >
+> > There was an issue with hpd events not making it to the audio side
+> > when things were powered down that was fixed with this patch set:
+> > https://patchwork.freedesktop.org/patch/316793/
+> > Those patches depended on a bunch of alsa changes as well which may
+> > have not been available in the distro used for a particular OEM
+> > program.
+>=20
+> FYI, the corresponding commit for ALSA part is destined for 5.4
+> kernel:
+>=20
+> https://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound.git/commit/?i=
+d=3Dade
+> 49db337a9d44ac5835cfce1ee873549011b27
+>=20
+> BTW, Nouveau should suffer from the same problem.  The patch to add
+> the audio component support is found at:
+>   https://patchwork.freedesktop.org/patch/319131/
+>=20
+>=20
+
+It sounds like 5.3rcX won't be a useful check then.
+
+So am I correct to understand that everything related to the AMD failures
+described in this thread should be in linux-next at this point?
