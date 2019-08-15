@@ -1,148 +1,105 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [RFC] drm: Bump encoder limit from 32 to 64
-Date: Thu, 15 Aug 2019 20:26:11 +0200
-Message-ID: <CAKMK7uENUtrcAhZ=4xzkN-ri7sNzfwzQL=-Vic1rxr=Y38+DhQ@mail.gmail.com>
-References: <20190815180322.25600-1-lyude@redhat.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to
+ enable dGPU direct output"
+Date: Thu, 15 Aug 2019 14:34:08 -0400
+Message-ID: <CADnq5_NKyK7=C+j+yvxME4u1eN3XEB7n2QnVPEn2QqvwAhquDA@mail.gmail.com>
+References: <20190814213118.28473-1-kherbst@redhat.com> <20190814213118.28473-2-kherbst@redhat.com>
+ <CAPM=9ty7yEUqKrcixV1tTuWCpyh6UikA3rxX8BF1E3fDb6WLQQ@mail.gmail.com>
+ <5e05532328324d01bc554c573f6298f8@AUSX13MPC101.AMER.DELL.COM>
+ <CACO55tsDA1WpMGtAPqUJpWt0AmPDnv9LuC09g2KB5GXB-VSCew@mail.gmail.com>
+ <3fc22fe8bcaf4304bb07534b61c4de90@AUSX13MPC101.AMER.DELL.COM>
+ <CACO55tvDfxYMZr0BGv2ROSNEVB4GvXZnBnWBy=RDPOG5hnk7OA@mail.gmail.com>
+ <CADnq5_Nv6tsW0J20td5rQSLq048HtTcw1b4c25jP6ZR6XWZ-eA@mail.gmail.com>
+ <s5ho90qa34m.wl-tiwai@suse.de> <8724585e50004bc8b6f310587555f4a1@AUSX13MPC101.AMER.DELL.COM>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190815180322.25600-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: Maxime Ripard <maxime.ripard-LDxbnhwyfcJBDgjK7y7TUQ@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Sean Paul <sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <8724585e50004bc8b6f310587555f4a1@AUSX13MPC101.AMER.DELL.COM>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Mario.Limonciello@dell.com
+Cc: Takashi Iwai <tiwai@suse.de>, Karol Herbst <kherbst@redhat.com>, nouveau <nouveau@lists.freedesktop.org>, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, LKML <linux-kernel@vger.kernel.org>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, Linux ACPI <linux-acpi@vger.kernel.org>, Alex Hung <alex.hung@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBBdWcgMTUsIDIwMTkgYXQgODowMyBQTSBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQu
-Y29tPiB3cm90ZToKPgo+IEFzc3VtaW5nIHRoYXQgR1BVcyB3b3VsZCBuZXZlciBoYXZlIGV2ZW4g
-Y2xvc2UgdG8gMzIgc2VwYXJhdGUgdmlkZW8KPiBlbmNvZGVycyBpcyBxdWl0ZSBob25lc3RseSBh
-IHByZXR0eSByZWFzb25hYmxlIGFzc3VtcHRpb24uIFVuZm9ydHVuYXRlbHkKPiB3ZSBkbyBub3Qg
-bGl2ZSBpbiBhIHJlYXNvbmFibGUgd29ybGQsIGFzIGl0IGxvb2tzIGxpa2UgaXQgaXMgYWN0dWFs
-bHkKPiBwb3NzaWJsZSB0byBmaW5kIGRldmljZXMgdGhhdCB3aWxsIGNyZWF0ZSBtb3JlIGRybV9l
-bmNvZGVyIG9iamVjdHMgdGhlbgo+IHRoaXMuIENhc2UgaW4gcG9pbnQ6IHRoZSBUaGlua1BhZCBQ
-NzEncyBkaXNjcmV0ZSBHUFUsIHdoaWNoIGV4cG9zZXMgMQo+IGVEUCBwb3J0IGFuZCA1IERQIHBv
-cnRzLiBPbiB0aGUgUDcxLCBub3V2ZWF1IGF0dGVtcHRzIHRvIGNyZWF0ZSBvbmUKPiBlbmNvZGVy
-IGZvciB0aGUgZURQIHBvcnQsIGFuZCB0d28gZW5jb2RlcnMgZm9yIGVhY2ggRFArKy9VU0ItQyBw
-b3J0Cj4gYWxvbmcgd2l0aCA0IE1TVCBlbmNvZGVycyBmb3IgZWFjaCBEUCBwb3J0LiBUaGlzIGNv
-bWVzIG91dCB0byAzNQo+IGRpZmZlcmVudCBlbmNvZGVycy4gVW5mb3J0dW5hdGVseSwgdGhpcyBj
-YW4ndCByZWFsbHkgYmUgb3B0aW1pemVkIHRvCj4gbWFrZSBsZXNzIGVuY29kZXJzIGVpdGhlci4K
-Pgo+IFNvLCB3aGF0IGlmIHdlIGJ1bXBlZCB0aGUgbGltaXQgdG8gNjQ/IFVuZm9ydHVuYXRlbHkg
-dGhpcyBoYXMgb25lIHZlcnkKPiBhd2t3YXJkIGRyYXdiYWNrOiB3ZSBhbHJlYWR5IGV4cG9zZSAz
-Mi1iaXQgYml0bWFza3MgZm9yIGVuY29kZXJzIHRvCj4gdXNlcnNwYWNlIGluIGRybV9lbmNvZGVy
-LT5wb3NzaWJsZV9jbG9uZXMuIFlpa2VzLiBMdWNraWx5IGZvciB1cwo+IGhvd2V2ZXIsIHRoZSB5
-ZWFyIGlzIDIwMTkgYW5kIG1vZGVybiBoYXJkd2FyZSB0aGF0IHN1cHBvcnRzIGNsb25pbmcgaXMK
-PiBiYXNpY2FsbHkgbm9uLWV4aXN0ZW50Lgo+Cj4gU28sIGxldCdzIHRyeSB0byBjb21wcm9taXNl
-IGhlcmU6IGFsbG93IGVuY29kZXJzIHdpdGggaW5kZXhlcyA8MzIgdG8KPiBoYXZlIG5vbi16ZXJv
-IHZhbHVlcyBpbiBkcm1fZW5jb2Rlci0+cG9zc2libGVfY2xvbmVzLCBhbmQgZG9uJ3QgYWxsb3cK
-PiBlbmNvZGVycyB3aXRoIGhpZ2hlciBpbmRleGVzIHRvIHNldCBkcm1fZW5jb2Rlci0+cG9zc2li
-bGVfY2xvbmVzIHRvIGEKPiBub24temVybyB2YWx1ZS4gVGhpcyBhbGxvd3MgdXMgdG8gYXZvaWQg
-YnJlYWtpbmcgVUFQSSwgd2hpbGUgc3RpbGwgYmVpbmcKPiBhYmxlIHRvIGJ1bXAgdXAgdGhlIGVu
-Y29kZXIgbGltaXQuCj4KPiBUaGlzIGFsc28gZml4ZXMgZHJpdmVyIHByb2JpbmcgZm9yIG5vdXZl
-YXUgb24gdGhlIFRoaW5rUGFkIFA3MS4KPgo+IFNpZ25lZC1vZmYtYnk6IEx5dWRlIFBhdWwgPGx5
-dWRlQHJlZGhhdC5jb20+Cj4gQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCgpXZSBz
-aG91bGQgbmV2ZXIgaGF2ZSBleHBvc2VkIGVuY29kZXJzLCB0aGF0IHdhcyBzdWNoIGEgbWlzdGFr
-ZSAuLi4KCkRvZXMgbm91dmVhdSByZWFsbHkgc3RpbGwgdXNlIGVuY29kZXJzIGFzIGRhdGFzdHJ1
-Y3R1cmVzIGludGVybmFsbHkKZm9yIG1vZGVzZXQ/IE90aGVyd2lzZSBjb3VsZCB3ZSBwZXJoYXBz
-IGp1c3QgZXhwb3NlIGEgc2V0IG9mIGZha2UKZW5jb2RlcnMgKG9uZSBwZXIgY29ubmVjdG9yKSBh
-bmQgZ2l2ZSB1cCBvbiBhbGwgdGhlc2UgdHJpY2tzPwoKTWF5YmUgZXZlbiBhcyBhIGRybSBsZXZl
-bCBnZW5lcmljIHRoaW5nLCBpLmUuIGF0IGRybV9yZWdpc3Rlcl90aW1lIHdlCmNoZWNrIHdoZXRo
-ZXIgdGhlcmUncyBhbnkgZW5jb2RlcnMgd2l0aCAtPnBvc3NpYmxlX2Nsb25lcyBzZXQgKHRoZQpv
-bmx5IHJlYWwgaW5mb3JtYXRpb24gaW4gYW4gZW5jb2RlciwgYW5kIGZhaXJseSB1c2VsZXNzIG9u
-IG1vZGVybiBodwpsaWtlIHlvdSBwb2ludCBvdXQpLiBBbmQgaWYgdGhhdCdzIHRoZSBjYXNlIHdl
-IGhpZGUgYWxsIHRoZSAicmVhbCIKZW5jb2RlcnMgZnJvbSB1c2Vyc3BhY2UgYW5kIHB1dCB1cCBh
-IHBpbGUgb2YgZmFrZSBvbmVzLiBXaGljaCBkbwpub3RoaW5nIGVsc2UgdGhhbiBrZWVwIHVzZXJz
-cGFjZSBoYXBweS4gVGhvdWdodHM/Cgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21p
-Yy5jICB8ICAyICstCj4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fZW5jb2Rlci5jIHwgMTAgKysrKysr
-KystLQo+ICBpbmNsdWRlL2RybS9kcm1fY3J0Yy5oICAgICAgICB8ICAyICstCj4gIGluY2x1ZGUv
-ZHJtL2RybV9lbmNvZGVyLmggICAgIHwgMjAgKysrKysrKysrKysrKysrLS0tLS0KPiAgNCBmaWxl
-cyBjaGFuZ2VkLCAyNSBpbnNlcnRpb25zKCspLCA5IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2F0
-b21pYy5jCj4gaW5kZXggNDE5MzgxYWJiZGQxLi4yN2NlOTg4ZWYwY2MgMTAwNjQ0Cj4gLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2RybV9hdG9taWMuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1f
-YXRvbWljLmMKPiBAQCAtMzkyLDcgKzM5Miw3IEBAIHN0YXRpYyB2b2lkIGRybV9hdG9taWNfY3J0
-Y19wcmludF9zdGF0ZShzdHJ1Y3QgZHJtX3ByaW50ZXIgKnAsCj4gICAgICAgICBkcm1fcHJpbnRm
-KHAsICJcdGNvbG9yX21nbXRfY2hhbmdlZD0lZFxuIiwgc3RhdGUtPmNvbG9yX21nbXRfY2hhbmdl
-ZCk7Cj4gICAgICAgICBkcm1fcHJpbnRmKHAsICJcdHBsYW5lX21hc2s9JXhcbiIsIHN0YXRlLT5w
-bGFuZV9tYXNrKTsKPiAgICAgICAgIGRybV9wcmludGYocCwgIlx0Y29ubmVjdG9yX21hc2s9JXhc
-biIsIHN0YXRlLT5jb25uZWN0b3JfbWFzayk7Cj4gLSAgICAgICBkcm1fcHJpbnRmKHAsICJcdGVu
-Y29kZXJfbWFzaz0leFxuIiwgc3RhdGUtPmVuY29kZXJfbWFzayk7Cj4gKyAgICAgICBkcm1fcHJp
-bnRmKHAsICJcdGVuY29kZXJfbWFzaz0lbGx4XG4iLCBzdGF0ZS0+ZW5jb2Rlcl9tYXNrKTsKPiAg
-ICAgICAgIGRybV9wcmludGYocCwgIlx0bW9kZTogIiBEUk1fTU9ERV9GTVQgIlxuIiwgRFJNX01P
-REVfQVJHKCZzdGF0ZS0+bW9kZSkpOwo+Cj4gICAgICAgICBpZiAoY3J0Yy0+ZnVuY3MtPmF0b21p
-Y19wcmludF9zdGF0ZSkKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9lbmNvZGVy
-LmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2VuY29kZXIuYwo+IGluZGV4IDdmYjQ3YjdiOGI0NC4u
-ZTRiOGY2NzVhYTgxIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZW5jb2Rlci5j
-Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9lbmNvZGVyLmMKPiBAQCAtMTEyLDggKzExMiwx
-NCBAQCBpbnQgZHJtX2VuY29kZXJfaW5pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+ICB7Cj4g
-ICAgICAgICBpbnQgcmV0Owo+Cj4gLSAgICAgICAvKiBlbmNvZGVyIGluZGV4IGlzIHVzZWQgd2l0
-aCAzMmJpdCBiaXRtYXNrcyAqLwo+IC0gICAgICAgaWYgKFdBUk5fT04oZGV2LT5tb2RlX2NvbmZp
-Zy5udW1fZW5jb2RlciA+PSAzMikpCj4gKyAgICAgICAvKgo+ICsgICAgICAgICogU2luY2UgcG9z
-c2libGVfY2xvbmVzIGhhcyBiZWVuIGV4cG9zZWQgdG8gdXNlcnNwYWNlIGFzIGEgMzJiaXQKPiAr
-ICAgICAgICAqIGJpdG1hc2ssIHdlIGRvbid0IGFsbG93IGNyZWF0aW5nIGVuY29kZXJzIHdpdGgg
-YW4gaW5kZXggPj0zMiB3aGljaAo+ICsgICAgICAgICogYXJlIGNhcGFibGUgb2YgY2xvbmluZy4K
-PiArICAgICAgICAqLwo+ICsgICAgICAgaWYgKFdBUk5fT04oZGV2LT5tb2RlX2NvbmZpZy5udW1f
-ZW5jb2RlciA+PSA2NCkgfHwKPiArICAgICAgICAgICBXQVJOX09OKGRldi0+bW9kZV9jb25maWcu
-bnVtX2VuY29kZXIgPj0gMzIgJiYKPiArICAgICAgICAgICAgICAgICAgIGVuY29kZXItPnBvc3Np
-YmxlX2Nsb25lcykpCgpUaGlzIGlzIHRvbyBlYXJseSwgZHJpdmVycyBhcmUgZnJlZSB0byBjaGFu
-Z2UgLT5wb3NzaWJsZV9jbG9uZXMgbGF0ZXIKb24uIFdlJ3ZlIGhhdmUgdG8gcmVjaGVjayB0aGF0
-IGF0IGRybV9kZXZfcmVnaXN0ZXIoKSB0aW1lIEkgdGhpbmsuCi1EYW5pZWwKCj4gICAgICAgICAg
-ICAgICAgIHJldHVybiAtRUlOVkFMOwo+Cj4gICAgICAgICByZXQgPSBkcm1fbW9kZV9vYmplY3Rf
-YWRkKGRldiwgJmVuY29kZXItPmJhc2UsIERSTV9NT0RFX09CSkVDVF9FTkNPREVSKTsKPiBkaWZm
-IC0tZ2l0IGEvaW5jbHVkZS9kcm0vZHJtX2NydGMuaCBiL2luY2x1ZGUvZHJtL2RybV9jcnRjLmgK
-PiBpbmRleCA3ZDE0YzExYmRjMGEuLmZkMGIyNDM4YzNkNSAxMDA2NDQKPiAtLS0gYS9pbmNsdWRl
-L2RybS9kcm1fY3J0Yy5oCj4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX2NydGMuaAo+IEBAIC0yMTAs
-NyArMjEwLDcgQEAgc3RydWN0IGRybV9jcnRjX3N0YXRlIHsKPiAgICAgICAgICAqIEBlbmNvZGVy
-X21hc2s6IEJpdG1hc2sgb2YgZHJtX2VuY29kZXJfbWFzayhlbmNvZGVyKSBvZiBlbmNvZGVycwo+
-ICAgICAgICAgICogYXR0YWNoZWQgdG8gdGhpcyBDUlRDLgo+ICAgICAgICAgICovCj4gLSAgICAg
-ICB1MzIgZW5jb2Rlcl9tYXNrOwo+ICsgICAgICAgdTY0IGVuY29kZXJfbWFzazsKPgo+ICAgICAg
-ICAgLyoqCj4gICAgICAgICAgKiBAYWRqdXN0ZWRfbW9kZToKPiBkaWZmIC0tZ2l0IGEvaW5jbHVk
-ZS9kcm0vZHJtX2VuY29kZXIuaCBiL2luY2x1ZGUvZHJtL2RybV9lbmNvZGVyLmgKPiBpbmRleCA3
-MGNmY2EwM2Q4MTIuLjNmOWNiNjU2OTRlMSAxMDA2NDQKPiAtLS0gYS9pbmNsdWRlL2RybS9kcm1f
-ZW5jb2Rlci5oCj4gKysrIGIvaW5jbHVkZS9kcm0vZHJtX2VuY29kZXIuaAo+IEBAIC0xNTksNyAr
-MTU5LDE1IEBAIHN0cnVjdCBkcm1fZW5jb2RlciB7Cj4gICAgICAgICAgKiBlbmNvZGVycyBjYW4g
-YmUgdXNlZCBpbiBhIGNsb25lZCBjb25maWd1cmF0aW9uLCB0aGV5IGJvdGggc2hvdWxkIGhhdmUK
-PiAgICAgICAgICAqIGVhY2ggYW5vdGhlciBiaXRzIHNldC4KPiAgICAgICAgICAqCj4gLSAgICAg
-ICAgKiBJbiByZWFsaXR5IGFsbW9zdCBldmVyeSBkcml2ZXIgZ2V0cyB0aGlzIHdyb25nLgo+ICsg
-ICAgICAgICogSW4gcmVhbGl0eSBhbG1vc3QgZXZlcnkgZHJpdmVyIGdldHMgdGhpcyB3cm9uZywg
-YW5kIG1vc3QgbW9kZXJuCj4gKyAgICAgICAgKiBkaXNwbGF5IGhhcmR3YXJlIGRvZXMgbm90IGhh
-dmUgc3VwcG9ydCBmb3IgY2xvbmluZy4gQXMgd2VsbCwgd2hpbGUgd2UKPiArICAgICAgICAqIGV4
-cG9zZSB0aGlzIG1hc2sgdG8gdXNlcnNwYWNlIGFzIDMyYml0cyBsb25nLCB3ZSBkbyBzdXJlIHB1
-cmVseSB0bwo+ICsgICAgICAgICogYXZvaWQgYnJlYWtpbmcgcHJlLWV4aXN0aW5nIFVBUEkgc2lu
-Y2UgdGhlIGxpbWl0YXRpb24gb24gdGhlIG51bWJlcgo+ICsgICAgICAgICogb2YgZW5jb2RlcnMg
-aGFzIGJlZW4gaW5jcmVhc2VkIGZyb20gMzIgYml0cyB0byA2NCBiaXRzLiBJbiBvcmRlciB0bwo+
-ICsgICAgICAgICogbWFpbnRhaW4gZnVuY3Rpb25hbGl0eSBmb3IgZHJpdmVycyB3aGljaCBkbyBh
-Y3R1YWxseSBzdXBwb3J0IGNsb25pbmcsCj4gKyAgICAgICAgKiB3ZSBvbmx5IGFsbG93IGNsb25p
-bmcgd2l0aCBlbmNvZGVycyB0aGF0IGhhdmUgYW4gaW5kZXggPDMyLiBFbmNvZGVycwo+ICsgICAg
-ICAgICogd2l0aCBpbmRleGVzIGhpZ2hlciB0aGFuIDMyIGFyZSBub3QgYWxsb3dlZCB0byBzcGVj
-aWZ5IGEgbm9uLXplcm8KPiArICAgICAgICAqIHZhbHVlIGhlcmUuCj4gICAgICAgICAgKgo+ICAg
-ICAgICAgICogTm90ZSB0aGF0IHNpbmNlIGVuY29kZXIgb2JqZWN0cyBjYW4ndCBiZSBob3RwbHVn
-Z2VkIHRoZSBhc3NpZ25lZCBpbmRpY2VzCj4gICAgICAgICAgKiBhcmUgc3RhYmxlIGFuZCBoZW5j
-ZSBrbm93biBiZWZvcmUgcmVnaXN0ZXJpbmcgYWxsIG9iamVjdHMuCj4gQEAgLTE5OCwxMyArMjA2
-LDE1IEBAIHN0YXRpYyBpbmxpbmUgdW5zaWduZWQgaW50IGRybV9lbmNvZGVyX2luZGV4KGNvbnN0
-IHN0cnVjdCBkcm1fZW5jb2RlciAqZW5jb2RlcikKPiAgfQo+Cj4gIC8qKgo+IC0gKiBkcm1fZW5j
-b2Rlcl9tYXNrIC0gZmluZCB0aGUgbWFzayBvZiBhIHJlZ2lzdGVyZWQgRU5DT0RFUgo+ICsgKiBk
-cm1fZW5jb2Rlcl9tYXNrIC0gZmluZCB0aGUgbWFzayBvZiBhIHJlZ2lzdGVyZWQgZW5jb2Rlcgo+
-ICAgKiBAZW5jb2RlcjogZW5jb2RlciB0byBmaW5kIG1hc2sgZm9yCj4gICAqCj4gLSAqIEdpdmVu
-IGEgcmVnaXN0ZXJlZCBlbmNvZGVyLCByZXR1cm4gdGhlIG1hc2sgYml0IG9mIHRoYXQgZW5jb2Rl
-ciBmb3IgYW4KPiAtICogZW5jb2RlcidzIHBvc3NpYmxlX2Nsb25lcyBmaWVsZC4KPiArICogUmV0
-dXJuczoKPiArICogQSBiaXQgbWFzayB3aXRoIHRoZSBudGggYml0IHNldCwgd2hlcmUgbiBpcyB0
-aGUgaW5kZXggb2YgdGhlIGVuY29kZXIuIFRha2UKPiArICogY2FyZSB3aGVuIHVzaW5nIHRoaXMs
-IGFzIHRoZSBEUk0gVUFQSSBvbmx5IGFsbG93cyBmb3IgMzIgYml0IGVuY29kZXIgbWFza3MKPiAr
-ICogd2hpbGUgaW50ZXJuYWxseSBlbmNvZGVyIG1hc2tzIGFyZSA2NCBiaXRzLgo+ICAgKi8KPiAt
-c3RhdGljIGlubGluZSB1MzIgZHJtX2VuY29kZXJfbWFzayhjb25zdCBzdHJ1Y3QgZHJtX2VuY29k
-ZXIgKmVuY29kZXIpCj4gK3N0YXRpYyBpbmxpbmUgdTY0IGRybV9lbmNvZGVyX21hc2soY29uc3Qg
-c3RydWN0IGRybV9lbmNvZGVyICplbmNvZGVyKQo+ICB7Cj4gICAgICAgICByZXR1cm4gMSA8PCBk
-cm1fZW5jb2Rlcl9pbmRleChlbmNvZGVyKTsKPiAgfQo+IC0tCj4gMi4yMS4wCj4KCgotLSAKRGFu
-aWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KKzQxICgwKSA3
-OSAzNjUgNTcgNDggLSBodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXU=
+On Thu, Aug 15, 2019 at 12:19 PM <Mario.Limonciello@dell.com> wrote:
+>
+> > -----Original Message-----
+> > From: Takashi Iwai <tiwai@suse.de>
+> > Sent: Thursday, August 15, 2019 9:57 AM
+> > To: Alex Deucher
+> > Cc: Karol Herbst; Limonciello, Mario; nouveau; Rafael J . Wysocki; LKML; dri-devel;
+> > Linux ACPI Mailing List; Alex Hung; Ben Skeggs; David Airlie
+> > Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to
+> > enable dGPU direct output"
+> >
+> >
+> > [EXTERNAL EMAIL]
+> >
+> > On Thu, 15 Aug 2019 16:37:05 +0200,
+> > Alex Deucher wrote:
+> > >
+> > > On Thu, Aug 15, 2019 at 10:25 AM Karol Herbst <kherbst@redhat.com> wrote:
+> > > >
+> > > > On Thu, Aug 15, 2019 at 4:20 PM <Mario.Limonciello@dell.com> wrote:
+> > > > >
+> > > > > > > There are definitely going to be regressions on machines in the field
+> > with the
+> > > > > > > in tree drivers by reverting this.  I think we should have an answer for all
+> > of
+> > > > > > those
+> > > > > > > before this revert is accepted.
+> > > > > > >
+> > > > > > > Regarding systems with Intel+NVIDIA, we'll have to work with partners
+> > to
+> > > > > > collect
+> > > > > > > some information on the impact of reverting this.
+> > > > > > >
+> > > > > > > When this is used on a system with Intel+AMD the ASL configures AMD
+> > GPU to
+> > > > > > use
+> > > > > > > "Hybrid Graphics" when on Windows and "Power Express" and
+> > "Switchable
+> > > > > > Graphics"
+> > > > > > > when on Linux.
+> > > > > >
+> > > > > > and what's exactly the difference between those? And what's the actual
+> > > > > > issue here?
+> > > > >
+> > > > > DP/HDMI is not detected unless plugged in at bootup.  It's due to missing
+> > HPD
+> > > > > events.
+> > > > >
+> > > >
+> > > > afaik Lyude was working on fixing all that, at least for some drivers.
+> > > > If there is something wrong, we still should fix the drivers, not
+> > > > adding ACPI workarounds.
+> > > >
+> > > > Alex: do you know if there are remaining issues regarding that with amdgpu?
+> > >
+> > > There was an issue with hpd events not making it to the audio side
+> > > when things were powered down that was fixed with this patch set:
+> > > https://patchwork.freedesktop.org/patch/316793/
+> > > Those patches depended on a bunch of alsa changes as well which may
+> > > have not been available in the distro used for a particular OEM
+> > > program.
+> >
+> > FYI, the corresponding commit for ALSA part is destined for 5.4
+> > kernel:
+> >
+> > https://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound.git/commit/?id=ade
+> > 49db337a9d44ac5835cfce1ee873549011b27
+> >
+> > BTW, Nouveau should suffer from the same problem.  The patch to add
+> > the audio component support is found at:
+> >   https://patchwork.freedesktop.org/patch/319131/
+> >
+> >
+>
+> It sounds like 5.3rcX won't be a useful check then.
+>
+> So am I correct to understand that everything related to the AMD failures
+> described in this thread should be in linux-next at this point?
+>
+
+Assuming you mean the missing audio hotplug events, then yes.
+
+Alex
