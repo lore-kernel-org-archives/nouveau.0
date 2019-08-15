@@ -1,108 +1,58 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [PATCH 3/7] Revert "ACPI / OSI: Add OEM _OSI strings to disable
- NVidia RTD3"
-Date: Thu, 15 Aug 2019 06:44:06 +0200
-Message-ID: <CACO55ttcXhod940t_G1ty74tU7vT2K1tShwqAwhcy0Eu2TYGqA@mail.gmail.com>
-References: <20190814213118.28473-1-kherbst@redhat.com> <20190814213118.28473-4-kherbst@redhat.com>
- <CAJ=jquaVcWisQ3Qw-_GMktcOq4zqFmeYXztfwNAVKZJO=_+yLA@mail.gmail.com>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH] volt: Fix for some cards having 0 maximum
+ voltage
+Date: Thu, 15 Aug 2019 10:50:55 +0200
+Message-ID: <CACO55ttfUd7XBH+vttVE0S_We3iEFRLheCTjHX0mBq95+i3xqg@mail.gmail.com>
+References: <20190802092100.5897-1-mmenzyns@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAJ=jquaVcWisQ3Qw-_GMktcOq4zqFmeYXztfwNAVKZJO=_+yLA@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Alex Hung <alex.hung@canonical.com>
-Cc: LKML <linux-kernel@vger.kernel.org>, Linux ACPI Mailing List <linux-acpi@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Dave Airlie <airlied@redhat.com>, Lyude Paul <lyude@redhat.com>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190802092100.5897-1-mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Mark Menzynski <mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Aug 15, 2019 at 1:35 AM Alex Hung <alex.hung@canonical.com> wrote:
->
-> On Wed, Aug 14, 2019 at 3:31 PM Karol Herbst <kherbst@redhat.com> wrote:
-> >
-> > This reverts commit 9251a71db62ca9cc7e7cf364218610b0f018c291.
-> >
-> > This was never discussed with anybody Nouveau related and we would have NACKed
-> > this change immediately.
-> >
-> > We have a better workaround, which makes it actually work with Nouveau. No idea
-> > why the comment mentions the Nvidia driver and assumes it gives any weight to
-> > the reasoning.... we don't care about out of tree drivers.
-> >
-> > Nouveau does support RTD3, but we had some issues with that. And we even have
-> > a better fix for this issue. Also, can we _please_ do it in a way worthy of an
-> > upstream community the next time?
-> >
-> > If some distribution feels like they have to please companies not wanting to
-> > be part of the linux community, please do so downstream and don't try to push
-> > something like this upstream.
->
-> Hi Karol,
->
-> A lot of appreciation for your hard-work on this issue, but unfriendly
-> comments aren't necessary. At the time this was discussed with
-> hardware vendors and platform vendors and it worked for many systems
-> and benefit for many people buying these platforms. Last but not
-> least, I do appreciate better fixes and want to retire the hacks too.
->
-
-sorry if that sounded too harsh, but the issue is not that it helped,
-the issue is, that nobody talked with us about that. And those three
-commits also sounded like they were mainly targeted against the Nvidia
-driver (and please correct me if I am wrong here).
-
-The situation would be completely different if we would have talked
-about all this earlier (and I wouldn't get annoyed by all of this in
-the first place).
-
-I am well aware this is a super painful issue for a lot of users, but
-even then disabling RTD3 (for a limited amount of hardware) inside
-nouveau would be the only acceptable way to disable it.
-
-I don't see how pushing vendors to add some firmware code to disable
-certain features  helps in any way, when there is a fast and easy way
-to disable it and wouldn't draw resources away from actually fixing
-it.
-
-> I am going to notify hardware owners to test these patches on the
-> original intended systems, and will report whether there are
-> regressions.
->
->
-> >
-> > Signed-off-by: Karol Herbst <kherbst@redhat.com>
-> > CC: Alex Hung <alex.hung@canonical.com>
-> > CC: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
-> > CC: Dave Airlie <airlied@redhat.com>
-> > CC: Lyude Paul <lyude@redhat.com>
-> > CC: Ben Skeggs <bskeggs@redhat.com>
-> > ---
-> >  drivers/acpi/osi.c | 9 ---------
-> >  1 file changed, 9 deletions(-)
-> >
-> > diff --git a/drivers/acpi/osi.c b/drivers/acpi/osi.c
-> > index 56cc95b6b724..f5d559a2ff14 100644
-> > --- a/drivers/acpi/osi.c
-> > +++ b/drivers/acpi/osi.c
-> > @@ -44,15 +44,6 @@ osi_setup_entries[OSI_STRING_ENTRIES_MAX] __initdata = {
-> >         {"Processor Device", true},
-> >         {"3.0 _SCP Extensions", true},
-> >         {"Processor Aggregator Device", true},
-> > -       /*
-> > -        * Linux-Dell-Video is used by BIOS to disable RTD3 for NVidia graphics
-> > -        * cards as RTD3 is not supported by drivers now.  Systems with NVidia
-> > -        * cards will hang without RTD3 disabled.
-> > -        *
-> > -        * Once NVidia drivers officially support RTD3, this _OSI strings can
-> > -        * be removed if both new and old graphics cards are supported.
-> > -        */
-> > -       {"Linux-Dell-Video", true},
-> >  };
-> >
-> >  static u32 acpi_osi_handler(acpi_string interface, u32 supported)
-> > --
-> > 2.21.0
-> >
->
->
-> --
-> Cheers,
-> Alex Hung
+YWx0aG91Z2ggSSdkIGxpa2UgdG8gaGF2ZSBhIGRlZXBlciB1bmRlcnN0YW5kaW5nIG9mIHRoaXMg
+dGFibGUsIEkKdGhpbmsgaXQncyBmaW5lIGFzIGl0IGlzIHJpZ2h0IG5vdyBhbmQgdGhpcyBhY3R1
+YWxseSBkb2VzIGZpeApzb21ldGhpbmcgd2l0aG91dCBjYXVzaW5nIGFueSBpc3N1ZXMgKGFzIGZh
+ciBhcyB3ZSBrbm93IG9mKQoKUmV2aWV3ZWQtYnk6IEthcm9sIEhlcmJzdCA8a2hlcmJzdEByZWRo
+YXQuY29tPgoKT24gRnJpLCBBdWcgMiwgMjAxOSBhdCAxMToyMSBBTSBNYXJrIE1lbnp5bnNraSA8
+bW1lbnp5bnNAcmVkaGF0LmNvbT4gd3JvdGU6Cj4KPiBTb21lLCBtb3N0bHkgRmVybWksIHZiaW9z
+ZXMgYXBwZWFyIHRvIGhhdmUgemVybyBtYXggdm9sdGFnZS4gVGhhdCBjYXVzZXMgTm91dmVhdSB0
+byBub3QgcGFyc2Ugdm9sdGFnZSBlbnRyaWVzLCB0aHVzIHVzZXJzIG5vdCBiZWluZyBhYmxlIHRv
+IHNldCBoaWdoZXIgY2xvY2tzLgo+Cj4gV2hlbiBjaGFuZ2luZyB0aGlzIHZhbHVlIE52aWRpYSBk
+cml2ZXIgc3RpbGwgYXBwZWFyZWQgdG8gaWdub3JlIGl0LCBhbmQgSSB3YXNuJ3QgYWJsZSB0byBm
+aW5kIG91dCB3aHksIHRodXMgdGhlIGNvZGUgaXMgaWdub3JpbmcgdGhlIHZhbHVlIGlmIGl0IGlz
+IHplcm8uCj4KPiBDQzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4
+LmludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBNYXJrIE1lbnp5bnNraSA8bW1lbnp5bnNAcmVk
+aGF0LmNvbT4KPiAtLS0KPiAgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy92b2x0LmMgfCAy
+ICsrCj4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKykKPgo+IGRpZmYgLS1naXQgYS9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3ZvbHQuYyBiL2RybS9ub3V2ZWF1L252a20vc3Vi
+ZGV2L2Jpb3Mvdm9sdC5jCj4gaW5kZXggNzE0M2VhNDYuLjMzYTlmYjVhIDEwMDY0NAo+IC0tLSBh
+L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mvdm9sdC5jCj4gKysrIGIvZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvYmlvcy92b2x0LmMKPiBAQCAtOTYsNiArOTYsOCBAQCBudmJpb3Nfdm9sdF9w
+YXJzZShzdHJ1Y3QgbnZrbV9iaW9zICpiaW9zLCB1OCAqdmVyLCB1OCAqaGRyLCB1OCAqY250LCB1
+OCAqbGVuLAo+ICAgICAgICAgICAgICAgICBpbmZvLT5taW4gICAgID0gbWluKGluZm8tPmJhc2Us
+Cj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaW5mby0+YmFzZSArIGluZm8t
+PnN0ZXAgKiBpbmZvLT52aWRtYXNrKTsKPiAgICAgICAgICAgICAgICAgaW5mby0+bWF4ICAgICA9
+IG52Ymlvc19yZDMyKGJpb3MsIHZvbHQgKyAweDBlKTsKPiArICAgICAgICAgICAgICAgaWYgKCFp
+bmZvLT5tYXgpCj4gKyAgICAgICAgICAgICAgICAgICAgICAgaW5mby0+bWF4ID0gbWF4KGluZm8t
+PmJhc2UsIGluZm8tPmJhc2UgKyBpbmZvLT5zdGVwICogaW5mby0+dmlkbWFzayk7Cj4gICAgICAg
+ICAgICAgICAgIGJyZWFrOwo+ICAgICAgICAgY2FzZSAweDUwOgo+ICAgICAgICAgICAgICAgICBp
+bmZvLT5taW4gICAgID0gbnZiaW9zX3JkMzIoYmlvcywgdm9sdCArIDB4MGEpOwo+IC0tCj4gMi4y
+MS4wCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+
+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
+aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
