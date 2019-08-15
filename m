@@ -1,67 +1,90 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to
+From: <Mario.Limonciello@dell.com>
+Subject: RE: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to
  enable dGPU direct output"
-Date: Thu, 15 Aug 2019 16:25:06 +0200
-Message-ID: <CACO55tvDfxYMZr0BGv2ROSNEVB4GvXZnBnWBy=RDPOG5hnk7OA@mail.gmail.com>
-References: <20190814213118.28473-1-kherbst@redhat.com> <20190814213118.28473-2-kherbst@redhat.com>
+Date: Thu, 15 Aug 2019 14:23:58 +0000
+Message-ID: <6ed1c393ffeb4c24ab5875927d6a37ac@AUSX13MPC101.AMER.DELL.COM>
+References: <20190814213118.28473-1-kherbst@redhat.com>
+ <20190814213118.28473-2-kherbst@redhat.com>
  <CAPM=9ty7yEUqKrcixV1tTuWCpyh6UikA3rxX8BF1E3fDb6WLQQ@mail.gmail.com>
  <5e05532328324d01bc554c573f6298f8@AUSX13MPC101.AMER.DELL.COM>
- <CACO55tsDA1WpMGtAPqUJpWt0AmPDnv9LuC09g2KB5GXB-VSCew@mail.gmail.com> <3fc22fe8bcaf4304bb07534b61c4de90@AUSX13MPC101.AMER.DELL.COM>
+ <CACO55tsDA1WpMGtAPqUJpWt0AmPDnv9LuC09g2KB5GXB-VSCew@mail.gmail.com>
+ <CADnq5_NUox3vvg6Mt3i9erA+AL2MfotpNBZQnWWknn4j+j-F=Q@mail.gmail.com>
+ <CACO55tty6TqEo4UBkX5YckLuP-XhHXKVs0ew+Q8__sKMi1BCbA@mail.gmail.com>
+ <CADnq5_PWuLU0pcG549-xThMHy3W0P2+fAO_Ledk6FP2TVG3+gQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <3fc22fe8bcaf4304bb07534b61c4de90@AUSX13MPC101.AMER.DELL.COM>
+In-Reply-To: <CADnq5_PWuLU0pcG549-xThMHy3W0P2+fAO_Ledk6FP2TVG3+gQ@mail.gmail.com>
+Content-Language: en-US
 Sender: linux-kernel-owner@vger.kernel.org
-To: Mario.Limonciello@dell.com
-Cc: Dave Airlie <airlied@gmail.com>, LKML <linux-kernel@vger.kernel.org>, Linux ACPI Mailing List <linux-acpi@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Alex Hung <alex.hung@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@redhat.com>
+To: alexdeucher@gmail.com, kherbst@redhat.com
+Cc: nouveau@lists.freedesktop.org, rafael.j.wysocki@intel.com, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-acpi@vger.kernel.org, alex.hung@canonical.com, bskeggs@redhat.com, airlied@redhat.com
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Aug 15, 2019 at 4:20 PM <Mario.Limonciello@dell.com> wrote:
->
-> > > There are definitely going to be regressions on machines in the field with the
-> > > in tree drivers by reverting this.  I think we should have an answer for all of
-> > those
-> > > before this revert is accepted.
-> > >
-> > > Regarding systems with Intel+NVIDIA, we'll have to work with partners to
-> > collect
-> > > some information on the impact of reverting this.
-> > >
-> > > When this is used on a system with Intel+AMD the ASL configures AMD GPU to
-> > use
-> > > "Hybrid Graphics" when on Windows and "Power Express" and "Switchable
-> > Graphics"
-> > > when on Linux.
-> >
-> > and what's exactly the difference between those? And what's the actual
-> > issue here?
->
-> DP/HDMI is not detected unless plugged in at bootup.  It's due to missing HPD
-> events.
->
-
-afaik Lyude was working on fixing all that, at least for some drivers.
-If there is something wrong, we still should fix the drivers, not
-adding ACPI workarounds.
-
-Alex: do you know if there are remaining issues regarding that with amdgpu?
-
-> >
-> > We already have the PRIME offloading in place and if that's not
-> > enough, we should work on extending it, not adding some ACPI based
-> > workarounds, because that's exactly how that looks like.
-> >
-> > Also, was this discussed with anybody involved in the drm subsystem?
-> >
-> > >
-> > > I feel we need a knob and/or DMI detection to affect the changes that the ASL
-> > > normally performs.
-> >
-> > Why do we have to do that on a firmware level at all?
->
-> Folks from AMD Graphics team recommended this approach.  From their perspective
-> it's not a workaround.  They view this as a different architecture for AMD graphics driver on
-> Windows and AMD graphics w/ amdgpu driver.  They have different ASL paths used for
-> each.
-
-@alex: is this true?
+PiBPbiBUaHUsIEF1ZyAxNSwgMjAxOSBhdCAxMDoxNSBBTSBLYXJvbCBIZXJic3QgPGtoZXJic3RA
+cmVkaGF0LmNvbT4gd3JvdGU6DQo+ID4NCj4gPiBPbiBUaHUsIEF1ZyAxNSwgMjAxOSBhdCA0OjEz
+IFBNIEFsZXggRGV1Y2hlciA8YWxleGRldWNoZXJAZ21haWwuY29tPg0KPiB3cm90ZToNCj4gPiA+
+DQo+ID4gPiBPbiBUaHUsIEF1ZyAxNSwgMjAxOSBhdCAxMDowNCBBTSBLYXJvbCBIZXJic3QgPGto
+ZXJic3RAcmVkaGF0LmNvbT4gd3JvdGU6DQo+ID4gPiA+DQo+ID4gPiA+IE9uIFRodSwgQXVnIDE1
+LCAyMDE5IGF0IDM6NTYgUE0gPE1hcmlvLkxpbW9uY2llbGxvQGRlbGwuY29tPiB3cm90ZToNCj4g
+PiA+ID4gPg0KPiA+ID4gPiA+ID4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gPiA+ID4g
+PiA+IEZyb206IGxpbnV4LWFjcGktb3duZXJAdmdlci5rZXJuZWwub3JnIDxsaW51eC1hY3BpLQ0K
+PiBvd25lckB2Z2VyLmtlcm5lbC5vcmc+IE9uDQo+ID4gPiA+ID4gPiBCZWhhbGYgT2YgRGF2ZSBB
+aXJsaWUNCj4gPiA+ID4gPiA+IFNlbnQ6IFdlZG5lc2RheSwgQXVndXN0IDE0LCAyMDE5IDU6NDgg
+UE0NCj4gPiA+ID4gPiA+IFRvOiBLYXJvbCBIZXJic3QNCj4gPiA+ID4gPiA+IENjOiBMS01MOyBM
+aW51eCBBQ1BJOyBkcmktZGV2ZWw7IG5vdXZlYXU7IFJhZmFlbCBKIC4gV3lzb2NraTsgQWxleCBI
+dW5nOw0KPiBCZW4NCj4gPiA+ID4gPiA+IFNrZWdnczsgRGF2ZSBBaXJsaWUNCj4gPiA+ID4gPiA+
+IFN1YmplY3Q6IFJlOiBbTm91dmVhdV0gW1BBVENIIDEvN10gUmV2ZXJ0ICJBQ1BJIC8gT1NJOiBB
+ZGQgT0VNIF9PU0kNCj4gc3RyaW5nIHRvDQo+ID4gPiA+ID4gPiBlbmFibGUgZEdQVSBkaXJlY3Qg
+b3V0cHV0Ig0KPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+IE9uIFRodSwgMTUgQXVnIDIwMTkgYXQg
+MDc6MzEsIEthcm9sIEhlcmJzdCA8a2hlcmJzdEByZWRoYXQuY29tPg0KPiB3cm90ZToNCj4gPiA+
+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gVGhpcyByZXZlcnRzIGNvbW1pdCAyODU4NmE1MWVlYTY2
+NmQ1NTMxYmNhZWYyZjY4ZTRhYmJkODcyNDJjLg0KPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4g
+PiBUaGUgb3JpZ2luYWwgY29tbWl0IG1lc3NhZ2UgZGlkbid0IGV2ZW4gbWFrZSBzZW5zZS4gQU1E
+IF9kb2VzXw0KPiBzdXBwb3J0IGl0IGFuZA0KPiA+ID4gPiA+ID4gPiBpdCB3b3JrcyB3aXRoIE5v
+dXZlYXUgYXMgd2VsbC4NCj4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gQWxzbyB3aGF0IHdh
+cyB0aGUgaXNzdWUgYmVpbmcgc29sdmVkIGhlcmU/IE5vIHJlZmVyZW5jZXMgdG8gYW55IGJ1Z3MN
+Cj4gYW5kIG5vdA0KPiA+ID4gPiA+ID4gPiBldmVuIGV4cGxhaW5pbmcgYW55IGlzc3VlIGF0IGFs
+bCBpc24ndCB0aGUgd2F5IHdlIGRvIHRoaW5ncy4NCj4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+
+ID4gQW5kIGV2ZW4gaWYgaXQgbWVhbnMgYSBtdXhlZCBkZXNpZ24sIHRoZW4gdGhlIGZpeCBpcyB0
+byBtYWtlIGl0IHdvcmsNCj4gaW5zaWRlIHRoZQ0KPiA+ID4gPiA+ID4gPiBkcml2ZXIsIG5vdCBh
+ZGRpbmcgc29tZSBoYWNreSB3b3JrYXJvdW5kIHRocm91Z2ggQUNQSSB0cmlja3MuDQo+ID4gPiA+
+ID4gPiA+DQo+ID4gPiA+ID4gPiA+IEFuZCB3aGF0IG91dCBvZiB0cmVlIGRyaXZlcnMgZG8gb3Ig
+ZG8gbm90IHN1cHBvcnQgd2UgZG9uJ3QgY2FyZSBvbmUNCj4gYml0IGFueXdheS4NCj4gPiA+ID4g
+PiA+ID4NCj4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiBJIHRoaW5rIHRoZSByZXZlcnRzIHNob3Vs
+ZCBiZSBtZXJnZWQgdmlhIFJhZmFlbCdzIHRyZWUgYXMgdGhlIG9yaWdpbmFsDQo+ID4gPiA+ID4g
+PiBwYXRjaGVzIHdlbnQgaW4gdmlhIHRoZXJlLCBhbmQgd2Ugc2hvdWxkIGdldCB0aGVtIGluIGFz
+YXAuDQo+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gQWNrZWQtYnk6IERhdmUgQWlybGllIDxhaXJs
+aWVkQHJlZGhhdC5jb20+DQo+ID4gPiA+ID4gPiBEYXZlLg0KPiA+ID4gPiA+DQo+ID4gPiA+ID4g
+VGhlcmUgYXJlIGRlZmluaXRlbHkgZ29pbmcgdG8gYmUgcmVncmVzc2lvbnMgb24gbWFjaGluZXMg
+aW4gdGhlIGZpZWxkIHdpdGgNCj4gdGhlDQo+ID4gPiA+ID4gaW4gdHJlZSBkcml2ZXJzIGJ5IHJl
+dmVydGluZyB0aGlzLiAgSSB0aGluayB3ZSBzaG91bGQgaGF2ZSBhbiBhbnN3ZXIgZm9yIGFsbA0K
+PiBvZiB0aG9zZQ0KPiA+ID4gPiA+IGJlZm9yZSB0aGlzIHJldmVydCBpcyBhY2NlcHRlZC4NCj4g
+PiA+ID4gPg0KPiA+ID4gPiA+IFJlZ2FyZGluZyBzeXN0ZW1zIHdpdGggSW50ZWwrTlZJRElBLCB3
+ZSdsbCBoYXZlIHRvIHdvcmsgd2l0aCBwYXJ0bmVycyB0bw0KPiBjb2xsZWN0DQo+ID4gPiA+ID4g
+c29tZSBpbmZvcm1hdGlvbiBvbiB0aGUgaW1wYWN0IG9mIHJldmVydGluZyB0aGlzLg0KPiA+ID4g
+PiA+DQo+ID4gPiA+ID4gV2hlbiB0aGlzIGlzIHVzZWQgb24gYSBzeXN0ZW0gd2l0aCBJbnRlbCtB
+TUQgdGhlIEFTTCBjb25maWd1cmVzIEFNRA0KPiBHUFUgdG8gdXNlDQo+ID4gPiA+ID4gIkh5YnJp
+ZCBHcmFwaGljcyIgd2hlbiBvbiBXaW5kb3dzIGFuZCAiUG93ZXIgRXhwcmVzcyIgYW5kDQo+ICJT
+d2l0Y2hhYmxlIEdyYXBoaWNzIg0KPiA+ID4gPiA+IHdoZW4gb24gTGludXguDQo+ID4gPiA+DQo+
+ID4gPiA+IGFuZCB3aGF0J3MgZXhhY3RseSB0aGUgZGlmZmVyZW5jZSBiZXR3ZWVuIHRob3NlPyBB
+bmQgd2hhdCdzIHRoZSBhY3R1YWwNCj4gPiA+ID4gaXNzdWUgaGVyZT8NCj4gPiA+DQo+ID4gPiBI
+eWJyaWQgR3JhcGhpY3MgaXMgdGhlIG5ldyAic3RhbmRhcmQiIHdheSBvZiBoYW5kbGluZyB0aGVz
+ZSBsYXB0b3BzLg0KPiA+ID4gSXQgdXNlcyB0aGUgc3RhbmRhcmQgX1BSMyBBUENJIG1ldGhvZCB0
+byBoYW5kbGUgZEdQVSBwb3dlci4gIFN1cHBvcnQNCj4gPiA+IGZvciB0aGlzIHdhcyBhZGRlZCB0
+byBMaW51eCByZWxhdGl2ZWx5IGxhdGVyIGNvbXBhcmVkIHRvIHdoZW4gdGhlDQo+ID4gPiBsYXB0
+b3BzIHdlcmUgbGF1bmNoZWQuICAiUG93ZXIgRXhwcmVzcyIgdXNlZCB0aGUgb3RoZXIgQU1EIHNw
+ZWNpZmljDQo+ID4gPiBBVFBYIEFDUEkgbWV0aG9kIHRvIGhhbmRsZSBkR1BVIHBvd2VyLiAgVGhl
+IGRyaXZlciBzdXBwb3J0cyBib3RoIHNvDQo+ID4gPiBlaXRoZXIgbWV0aG9kIHdpbGwgd29yay4N
+Cj4gPiA+DQo+ID4gPiBBbGV4DQo+ID4gPg0KPiA+DQo+ID4gdGhhbmtzIGZvciBjbGFyaWZ5aW5n
+LiBCdXQgdGhhdCBzdGlsbCBtZWFucyB0aGF0IHdlIHdvbid0IG5lZWQgc3VjaA0KPiA+IHdvcmth
+cm91bmRzIGZvciBBTUQgdXNlcnMsIHJpZ2h0PyBhbWRncHUgaGFuZGxlcyBoeWJyaWQgZ3JhcGhp
+Y3MganVzdA0KPiA+IGZpbmUsIHJpZ2h0Pw0KPiANCj4gWWVhaCBpdCBzaG91bGQsIGFzc3VtaW5n
+IHlvdSBoYXZlIGEgbmV3IGVub3VnaCBrZXJuZWwgd2hpY2ggc3VwcG9ydHMNCj4gSEcsIHdoaWNo
+IGhhcyBiZWVuIHNldmVyYWwgeWVhcnMgYXQgdGhpcyBwb2ludCBJSVJDLg0KPiANCj4gQWxleA0K
+PiANCg0KQ2FuIHlvdSBkZWZpbmUgaG93IG5ldyBvZiBhIGtlcm5lbCBpcyBhIG5ldyBlbm91Z2gg
+a2VybmVsPw0KDQpMb29raW5nIG9uIG15IHNpZGUgdGhlc2UgcHJvYmxlbXMgd2VyZSBvbiBuZXcg
+aGFyZHdhcmUgKFByZWNpc2lvbiA3NzQwKSBhbmQNCmFyZSBjaGVja2VkIGFzIHJlY2VudGx5IGFz
+IHN0YXJ0IG9mIHRoaXMgc3VtbWVyLCB3LyBrZXJuZWwgNC4xNS4NCg0KV2UgY2FuIGFycmFuZ2Ug
+dG8gaGF2ZSBpdCBjaGVja2VkIGFnYWluIG9uIDUuM3JjWCB3LyB0aGUgT1NJIGRpc2FibGVkLg0K
