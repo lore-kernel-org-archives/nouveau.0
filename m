@@ -1,64 +1,64 @@
-From: Jerome Glisse <jglisse@redhat.com>
-Subject: Re: [PATCH 04/15] mm: remove the pgmap field from struct hmm_vma_walk
-Date: Thu, 15 Aug 2019 16:51:33 -0400
-Message-ID: <20190815205132.GC25517@redhat.com>
-References: <CAPcyv4hMUzw8vyXFRPe2pdwef0npbMm9tx9wiZ9MWkHGhH1V6w@mail.gmail.com>
- <20190814073854.GA27249@lst.de>
- <20190814132746.GE13756@mellanox.com>
- <CAPcyv4g8usp8prJ+1bMtyV1xuedp5FKErBp-N8+KzR=rJ-v0QQ@mail.gmail.com>
- <20190815180325.GA4920@redhat.com>
- <CAPcyv4g4hzcEA=TPYVTiqpbtOoS30ahogRUttCvQAvXQbQjfnw@mail.gmail.com>
- <20190815194339.GC9253@redhat.com>
- <CAPcyv4jid8_=-8hBpn_Qm=c4S8BapL9B9RGT7e9uu303yH=Yqw@mail.gmail.com>
- <20190815203306.GB25517@redhat.com>
- <20190815204128.GI22970@mellanox.com>
+From: Bjorn Helgaas <helgaas@kernel.org>
+Subject: Re: [PATCH] PCI: Use pci_reset_bus() in
+ quirk_reset_lenovo_thinkpad_50_nvgpu()
+Date: Thu, 15 Aug 2019 17:15:22 -0500
+Message-ID: <20190815221522.GH253360@google.com>
+References: <20190801220117.14952-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <20190815204128.GI22970@mellanox.com>
+In-Reply-To: <20190801220117.14952-1-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Jason Gunthorpe <jgg@mellanox.com>
-Cc: Dan Williams <dan.j.williams@intel.com>, Christoph Hellwig <hch@lst.de>, Ben Skeggs <bskeggs@redhat.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Ralph Campbell <rcampbell@nvidia.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+To: Lyude Paul <lyude@redhat.com>
+Cc: nouveau@lists.freedesktop.org, linux-pci@vger.kernel.org, Lukas Wunner <lukas@wunner.de>, Daniel Drake <drake@endlessm.com>, Aaron Plattner <aplattner@nvidia.com>, Peter Wu <peter@lekensteyn.nl>, Ilia Mirkin <imirkin@alum.mit.edu>, Karol Herbst <kherbst@redhat.com>, Maik Freudenberg <hhfeuer@gmx.de>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Aug 15, 2019 at 08:41:33PM +0000, Jason Gunthorpe wrote:
-> On Thu, Aug 15, 2019 at 04:33:06PM -0400, Jerome Glisse wrote:
+On Thu, Aug 01, 2019 at 06:01:17PM -0400, Lyude Paul wrote:
+> Since quirk_nvidia_hda() was added there's now two nvidia device
+> functions on any laptops with nvidia GPUs: the HDA controller, and the
+> GPU itself. Unfortunately this has the sideaffect of breaking
+> quirk_reset_lenovo_thinkpad_50_nvgpu() since pci_reset_function() was
+> using pci_parent_bus_reset() to reset the GPU's respective PCI bus, and
+> pci_parent_bus_reset() does not work on busses which have more then a
+> single device function present.
 > 
-> > So nor HMM nor driver should dereference the struct page (i do not
-> > think any iommu driver would either),
+> So, fix this by simply calling pci_reset_bus() instead which properly
+> resets the GPU bus and all device functions under it, including both the
+> GPU and the HDA controller.
 > 
-> Er, they do technically deref the struct page:
-> 
-> nouveau_dmem_convert_pfn(struct nouveau_drm *drm,
-> 			 struct hmm_range *range)
-> 		struct page *page;
-> 		page = hmm_pfn_to_page(range, range->pfns[i]);
-> 		if (!nouveau_dmem_page(drm, page)) {
-> 
-> 
-> nouveau_dmem_page(struct nouveau_drm *drm, struct page *page)
-> {
-> 	return is_device_private_page(page) && drm->dmem == page_to_dmem(page)
-> 
-> 
-> Which does touch 'page->pgmap'
-> 
-> Is this OK without having a get_dev_pagemap() ?
->
-> Noting that the collision-retry scheme doesn't protect anything here
-> as we can have a concurrent invalidation while doing the above deref.
+> Fixes: b516ea586d71 ("PCI: Enable NVIDIA HDA controllers")
+> Cc: Lukas Wunner <lukas@wunner.de>
+> Cc: Daniel Drake <drake@endlessm.com>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Aaron Plattner <aplattner@nvidia.com>
+> Cc: Peter Wu <peter@lekensteyn.nl>
+> Cc: Ilia Mirkin <imirkin@alum.mit.edu>
+> Cc: Karol Herbst <kherbst@redhat.com>
+> Cc: Maik Freudenberg <hhfeuer@gmx.de>
+> Cc: linux-pci@vger.kernel.org
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
 
-Uh ? How so ? We are not reading the same code i think.
+We merged b516ea586d71 for v5.3, so I applied this with Ben's ack to
+for-linus for v5.3, thanks!
 
-My read is that function is call when holding the device
-lock which exclude any racing mmu notifier from making
-forward progress and it is also protected by the range so
-at the time this happens it is safe to dereference the
-struct page. In this case any way we can update the
-nouveau_dmem_page() to check that page page->pgmap == the
-expected pgmap.
-
-Cheers,
-Jérôme
+> ---
+>  drivers/pci/quirks.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
+> index 208aacf39329..44c4ae1abd00 100644
+> --- a/drivers/pci/quirks.c
+> +++ b/drivers/pci/quirks.c
+> @@ -5256,7 +5256,7 @@ static void quirk_reset_lenovo_thinkpad_p50_nvgpu(struct pci_dev *pdev)
+>  	 */
+>  	if (ioread32(map + 0x2240c) & 0x2) {
+>  		pci_info(pdev, FW_BUG "GPU left initialized by EFI, resetting\n");
+> -		ret = pci_reset_function(pdev);
+> +		ret = pci_reset_bus(pdev);
+>  		if (ret < 0)
+>  			pci_err(pdev, "Failed to reset GPU: %d\n", ret);
+>  	}
+> -- 
+> 2.21.0
+> 
