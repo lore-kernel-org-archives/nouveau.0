@@ -1,53 +1,75 @@
-From: <Mario.Limonciello@dell.com>
-Subject: RE: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to
+From: Karol Herbst <kherbst@redhat.com>
+Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to
  enable dGPU direct output"
-Date: Thu, 15 Aug 2019 13:55:39 +0000
-Message-ID: <5e05532328324d01bc554c573f6298f8@AUSX13MPC101.AMER.DELL.COM>
-References: <20190814213118.28473-1-kherbst@redhat.com>
- <20190814213118.28473-2-kherbst@redhat.com>
- <CAPM=9ty7yEUqKrcixV1tTuWCpyh6UikA3rxX8BF1E3fDb6WLQQ@mail.gmail.com>
+Date: Thu, 15 Aug 2019 16:04:27 +0200
+Message-ID: <CACO55tsDA1WpMGtAPqUJpWt0AmPDnv9LuC09g2KB5GXB-VSCew@mail.gmail.com>
+References: <20190814213118.28473-1-kherbst@redhat.com> <20190814213118.28473-2-kherbst@redhat.com>
+ <CAPM=9ty7yEUqKrcixV1tTuWCpyh6UikA3rxX8BF1E3fDb6WLQQ@mail.gmail.com> <5e05532328324d01bc554c573f6298f8@AUSX13MPC101.AMER.DELL.COM>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="UTF-8"
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAPM=9ty7yEUqKrcixV1tTuWCpyh6UikA3rxX8BF1E3fDb6WLQQ@mail.gmail.com>
-Content-Language: en-US
+In-Reply-To: <5e05532328324d01bc554c573f6298f8@AUSX13MPC101.AMER.DELL.COM>
 Sender: linux-kernel-owner@vger.kernel.org
-To: airlied@gmail.com, kherbst@redhat.com
-Cc: linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, rafael.j.wysocki@intel.com, alex.hung@canonical.com, bskeggs@redhat.com, airlied@redhat.com
+To: Mario.Limonciello@dell.com
+Cc: Dave Airlie <airlied@gmail.com>, LKML <linux-kernel@vger.kernel.org>, Linux ACPI Mailing List <linux-acpi@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Alex Hung <alex.hung@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBsaW51eC1hY3BpLW93bmVyQHZn
-ZXIua2VybmVsLm9yZyA8bGludXgtYWNwaS1vd25lckB2Z2VyLmtlcm5lbC5vcmc+IE9uDQo+IEJl
-aGFsZiBPZiBEYXZlIEFpcmxpZQ0KPiBTZW50OiBXZWRuZXNkYXksIEF1Z3VzdCAxNCwgMjAxOSA1
-OjQ4IFBNDQo+IFRvOiBLYXJvbCBIZXJic3QNCj4gQ2M6IExLTUw7IExpbnV4IEFDUEk7IGRyaS1k
-ZXZlbDsgbm91dmVhdTsgUmFmYWVsIEogLiBXeXNvY2tpOyBBbGV4IEh1bmc7IEJlbg0KPiBTa2Vn
-Z3M7IERhdmUgQWlybGllDQo+IFN1YmplY3Q6IFJlOiBbTm91dmVhdV0gW1BBVENIIDEvN10gUmV2
-ZXJ0ICJBQ1BJIC8gT1NJOiBBZGQgT0VNIF9PU0kgc3RyaW5nIHRvDQo+IGVuYWJsZSBkR1BVIGRp
-cmVjdCBvdXRwdXQiDQo+IA0KPiBPbiBUaHUsIDE1IEF1ZyAyMDE5IGF0IDA3OjMxLCBLYXJvbCBI
-ZXJic3QgPGtoZXJic3RAcmVkaGF0LmNvbT4gd3JvdGU6DQo+ID4NCj4gPiBUaGlzIHJldmVydHMg
-Y29tbWl0IDI4NTg2YTUxZWVhNjY2ZDU1MzFiY2FlZjJmNjhlNGFiYmQ4NzI0MmMuDQo+ID4NCj4g
-PiBUaGUgb3JpZ2luYWwgY29tbWl0IG1lc3NhZ2UgZGlkbid0IGV2ZW4gbWFrZSBzZW5zZS4gQU1E
-IF9kb2VzXyBzdXBwb3J0IGl0IGFuZA0KPiA+IGl0IHdvcmtzIHdpdGggTm91dmVhdSBhcyB3ZWxs
-Lg0KPiA+DQo+ID4gQWxzbyB3aGF0IHdhcyB0aGUgaXNzdWUgYmVpbmcgc29sdmVkIGhlcmU/IE5v
-IHJlZmVyZW5jZXMgdG8gYW55IGJ1Z3MgYW5kIG5vdA0KPiA+IGV2ZW4gZXhwbGFpbmluZyBhbnkg
-aXNzdWUgYXQgYWxsIGlzbid0IHRoZSB3YXkgd2UgZG8gdGhpbmdzLg0KPiA+DQo+ID4gQW5kIGV2
-ZW4gaWYgaXQgbWVhbnMgYSBtdXhlZCBkZXNpZ24sIHRoZW4gdGhlIGZpeCBpcyB0byBtYWtlIGl0
-IHdvcmsgaW5zaWRlIHRoZQ0KPiA+IGRyaXZlciwgbm90IGFkZGluZyBzb21lIGhhY2t5IHdvcmth
-cm91bmQgdGhyb3VnaCBBQ1BJIHRyaWNrcy4NCj4gPg0KPiA+IEFuZCB3aGF0IG91dCBvZiB0cmVl
-IGRyaXZlcnMgZG8gb3IgZG8gbm90IHN1cHBvcnQgd2UgZG9uJ3QgY2FyZSBvbmUgYml0IGFueXdh
-eS4NCj4gPg0KPiANCj4gSSB0aGluayB0aGUgcmV2ZXJ0cyBzaG91bGQgYmUgbWVyZ2VkIHZpYSBS
-YWZhZWwncyB0cmVlIGFzIHRoZSBvcmlnaW5hbA0KPiBwYXRjaGVzIHdlbnQgaW4gdmlhIHRoZXJl
-LCBhbmQgd2Ugc2hvdWxkIGdldCB0aGVtIGluIGFzYXAuDQo+IA0KPiBBY2tlZC1ieTogRGF2ZSBB
-aXJsaWUgPGFpcmxpZWRAcmVkaGF0LmNvbT4NCj4gRGF2ZS4NCg0KVGhlcmUgYXJlIGRlZmluaXRl
-bHkgZ29pbmcgdG8gYmUgcmVncmVzc2lvbnMgb24gbWFjaGluZXMgaW4gdGhlIGZpZWxkIHdpdGgg
-dGhlDQppbiB0cmVlIGRyaXZlcnMgYnkgcmV2ZXJ0aW5nIHRoaXMuICBJIHRoaW5rIHdlIHNob3Vs
-ZCBoYXZlIGFuIGFuc3dlciBmb3IgYWxsIG9mIHRob3NlDQpiZWZvcmUgdGhpcyByZXZlcnQgaXMg
-YWNjZXB0ZWQuDQoNClJlZ2FyZGluZyBzeXN0ZW1zIHdpdGggSW50ZWwrTlZJRElBLCB3ZSdsbCBo
-YXZlIHRvIHdvcmsgd2l0aCBwYXJ0bmVycyB0byBjb2xsZWN0DQpzb21lIGluZm9ybWF0aW9uIG9u
-IHRoZSBpbXBhY3Qgb2YgcmV2ZXJ0aW5nIHRoaXMuDQoNCldoZW4gdGhpcyBpcyB1c2VkIG9uIGEg
-c3lzdGVtIHdpdGggSW50ZWwrQU1EIHRoZSBBU0wgY29uZmlndXJlcyBBTUQgR1BVIHRvIHVzZQ0K
-Ikh5YnJpZCBHcmFwaGljcyIgd2hlbiBvbiBXaW5kb3dzIGFuZCAiUG93ZXIgRXhwcmVzcyIgYW5k
-ICJTd2l0Y2hhYmxlIEdyYXBoaWNzIg0Kd2hlbiBvbiBMaW51eC4NCg0KSSBmZWVsIHdlIG5lZWQg
-YSBrbm9iIGFuZC9vciBETUkgZGV0ZWN0aW9uIHRvIGFmZmVjdCB0aGUgY2hhbmdlcyB0aGF0IHRo
-ZSBBU0wNCm5vcm1hbGx5IHBlcmZvcm1zLg0K
+On Thu, Aug 15, 2019 at 3:56 PM <Mario.Limonciello@dell.com> wrote:
+>
+> > -----Original Message-----
+> > From: linux-acpi-owner@vger.kernel.org <linux-acpi-owner@vger.kernel.org> On
+> > Behalf Of Dave Airlie
+> > Sent: Wednesday, August 14, 2019 5:48 PM
+> > To: Karol Herbst
+> > Cc: LKML; Linux ACPI; dri-devel; nouveau; Rafael J . Wysocki; Alex Hung; Ben
+> > Skeggs; Dave Airlie
+> > Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to
+> > enable dGPU direct output"
+> >
+> > On Thu, 15 Aug 2019 at 07:31, Karol Herbst <kherbst@redhat.com> wrote:
+> > >
+> > > This reverts commit 28586a51eea666d5531bcaef2f68e4abbd87242c.
+> > >
+> > > The original commit message didn't even make sense. AMD _does_ support it and
+> > > it works with Nouveau as well.
+> > >
+> > > Also what was the issue being solved here? No references to any bugs and not
+> > > even explaining any issue at all isn't the way we do things.
+> > >
+> > > And even if it means a muxed design, then the fix is to make it work inside the
+> > > driver, not adding some hacky workaround through ACPI tricks.
+> > >
+> > > And what out of tree drivers do or do not support we don't care one bit anyway.
+> > >
+> >
+> > I think the reverts should be merged via Rafael's tree as the original
+> > patches went in via there, and we should get them in asap.
+> >
+> > Acked-by: Dave Airlie <airlied@redhat.com>
+> > Dave.
+>
+> There are definitely going to be regressions on machines in the field with the
+> in tree drivers by reverting this.  I think we should have an answer for all of those
+> before this revert is accepted.
+>
+> Regarding systems with Intel+NVIDIA, we'll have to work with partners to collect
+> some information on the impact of reverting this.
+>
+> When this is used on a system with Intel+AMD the ASL configures AMD GPU to use
+> "Hybrid Graphics" when on Windows and "Power Express" and "Switchable Graphics"
+> when on Linux.
+
+and what's exactly the difference between those? And what's the actual
+issue here?
+
+We already have the PRIME offloading in place and if that's not
+enough, we should work on extending it, not adding some ACPI based
+workarounds, because that's exactly how that looks like.
+
+Also, was this discussed with anybody involved in the drm subsystem?
+
+>
+> I feel we need a knob and/or DMI detection to affect the changes that the ASL
+> normally performs.
+
+Why do we have to do that on a firmware level at all?
