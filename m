@@ -1,88 +1,107 @@
-From: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to
- enable dGPU direct output"
-Date: Thu, 15 Aug 2019 10:37:05 -0400
-Message-ID: <CADnq5_Nv6tsW0J20td5rQSLq048HtTcw1b4c25jP6ZR6XWZ-eA@mail.gmail.com>
-References: <20190814213118.28473-1-kherbst@redhat.com> <20190814213118.28473-2-kherbst@redhat.com>
+From: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string
+ to enable dGPU direct output"
+Date: Thu, 15 Aug 2019 10:41:13 -0400
+Message-ID: <CADnq5_NoCR3f7VhKnqkvvVAF+=R0aN69WRCDxwcVLHTPpfHyTQ@mail.gmail.com>
+References: <20190814213118.28473-1-kherbst@redhat.com>
+ <20190814213118.28473-2-kherbst@redhat.com>
  <CAPM=9ty7yEUqKrcixV1tTuWCpyh6UikA3rxX8BF1E3fDb6WLQQ@mail.gmail.com>
  <5e05532328324d01bc554c573f6298f8@AUSX13MPC101.AMER.DELL.COM>
  <CACO55tsDA1WpMGtAPqUJpWt0AmPDnv9LuC09g2KB5GXB-VSCew@mail.gmail.com>
- <3fc22fe8bcaf4304bb07534b61c4de90@AUSX13MPC101.AMER.DELL.COM> <CACO55tvDfxYMZr0BGv2ROSNEVB4GvXZnBnWBy=RDPOG5hnk7OA@mail.gmail.com>
+ <CADnq5_NUox3vvg6Mt3i9erA+AL2MfotpNBZQnWWknn4j+j-F=Q@mail.gmail.com>
+ <CACO55tty6TqEo4UBkX5YckLuP-XhHXKVs0ew+Q8__sKMi1BCbA@mail.gmail.com>
+ <CADnq5_PWuLU0pcG549-xThMHy3W0P2+fAO_Ledk6FP2TVG3+gQ@mail.gmail.com>
+ <6ed1c393ffeb4c24ab5875927d6a37ac@AUSX13MPC101.AMER.DELL.COM>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CACO55tvDfxYMZr0BGv2ROSNEVB4GvXZnBnWBy=RDPOG5hnk7OA@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Karol Herbst <kherbst@redhat.com>
-Cc: Mario.Limonciello@dell.com, nouveau <nouveau@lists.freedesktop.org>, "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Linux ACPI Mailing List <linux-acpi@vger.kernel.org>, Alex Hung <alex.hung@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <6ed1c393ffeb4c24ab5875927d6a37ac-LfVFoyzMKQjPsEK5VrLsSwVY21JRvFwKV6yJEvX+wlw@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Mario.Limonciello-8PEkshWhKlo@public.gmane.org
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "Rafael J . Wysocki" <rafael.j.wysocki-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Maling list - DRI developers <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux ACPI <linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Alex Hung <alex.hung-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Aug 15, 2019 at 10:25 AM Karol Herbst <kherbst@redhat.com> wrote:
->
-> On Thu, Aug 15, 2019 at 4:20 PM <Mario.Limonciello@dell.com> wrote:
-> >
-> > > > There are definitely going to be regressions on machines in the field with the
-> > > > in tree drivers by reverting this.  I think we should have an answer for all of
-> > > those
-> > > > before this revert is accepted.
-> > > >
-> > > > Regarding systems with Intel+NVIDIA, we'll have to work with partners to
-> > > collect
-> > > > some information on the impact of reverting this.
-> > > >
-> > > > When this is used on a system with Intel+AMD the ASL configures AMD GPU to
-> > > use
-> > > > "Hybrid Graphics" when on Windows and "Power Express" and "Switchable
-> > > Graphics"
-> > > > when on Linux.
-> > >
-> > > and what's exactly the difference between those? And what's the actual
-> > > issue here?
-> >
-> > DP/HDMI is not detected unless plugged in at bootup.  It's due to missing HPD
-> > events.
-> >
->
-> afaik Lyude was working on fixing all that, at least for some drivers.
-> If there is something wrong, we still should fix the drivers, not
-> adding ACPI workarounds.
->
-> Alex: do you know if there are remaining issues regarding that with amdgpu?
-
-There was an issue with hpd events not making it to the audio side
-when things were powered down that was fixed with this patch set:
-https://patchwork.freedesktop.org/patch/316793/
-Those patches depended on a bunch of alsa changes as well which may
-have not been available in the distro used for a particular OEM
-program.
-
->
-> > >
-> > > We already have the PRIME offloading in place and if that's not
-> > > enough, we should work on extending it, not adding some ACPI based
-> > > workarounds, because that's exactly how that looks like.
-> > >
-> > > Also, was this discussed with anybody involved in the drm subsystem?
-> > >
-> > > >
-> > > > I feel we need a knob and/or DMI detection to affect the changes that the ASL
-> > > > normally performs.
-> > >
-> > > Why do we have to do that on a firmware level at all?
-> >
-> > Folks from AMD Graphics team recommended this approach.  From their perspective
-> > it's not a workaround.  They view this as a different architecture for AMD graphics driver on
-> > Windows and AMD graphics w/ amdgpu driver.  They have different ASL paths used for
-> > each.
->
-> @alex: is this true?
-
-I'm not familiar with this patches in particular, but I know we've
-done things with OEM programs to support Linux on platforms where
-Linux support is lacking for in new features for the target distros.
-E.g., when the first hybrid graphics laptops were coming out, Linux
-didn't support it too well or at all depending on the timing, so the
-bios exposed power express which was working well at the time if the
-OS told ACPI it was Linux.
-
-Alex
+T24gVGh1LCBBdWcgMTUsIDIwMTkgYXQgMTA6MzAgQU0gPE1hcmlvLkxpbW9uY2llbGxvQGRlbGwu
+Y29tPiB3cm90ZToKPgo+ID4gT24gVGh1LCBBdWcgMTUsIDIwMTkgYXQgMTA6MTUgQU0gS2Fyb2wg
+SGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+IHdyb3RlOgo+ID4gPgo+ID4gPiBPbiBUaHUsIEF1
+ZyAxNSwgMjAxOSBhdCA0OjEzIFBNIEFsZXggRGV1Y2hlciA8YWxleGRldWNoZXJAZ21haWwuY29t
+Pgo+ID4gd3JvdGU6Cj4gPiA+ID4KPiA+ID4gPiBPbiBUaHUsIEF1ZyAxNSwgMjAxOSBhdCAxMDow
+NCBBTSBLYXJvbCBIZXJic3QgPGtoZXJic3RAcmVkaGF0LmNvbT4gd3JvdGU6Cj4gPiA+ID4gPgo+
+ID4gPiA+ID4gT24gVGh1LCBBdWcgMTUsIDIwMTkgYXQgMzo1NiBQTSA8TWFyaW8uTGltb25jaWVs
+bG9AZGVsbC5jb20+IHdyb3RlOgo+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiA+IC0tLS0tT3JpZ2lu
+YWwgTWVzc2FnZS0tLS0tCj4gPiA+ID4gPiA+ID4gRnJvbTogbGludXgtYWNwaS1vd25lckB2Z2Vy
+Lmtlcm5lbC5vcmcgPGxpbnV4LWFjcGktCj4gPiBvd25lckB2Z2VyLmtlcm5lbC5vcmc+IE9uCj4g
+PiA+ID4gPiA+ID4gQmVoYWxmIE9mIERhdmUgQWlybGllCj4gPiA+ID4gPiA+ID4gU2VudDogV2Vk
+bmVzZGF5LCBBdWd1c3QgMTQsIDIwMTkgNTo0OCBQTQo+ID4gPiA+ID4gPiA+IFRvOiBLYXJvbCBI
+ZXJic3QKPiA+ID4gPiA+ID4gPiBDYzogTEtNTDsgTGludXggQUNQSTsgZHJpLWRldmVsOyBub3V2
+ZWF1OyBSYWZhZWwgSiAuIFd5c29ja2k7IEFsZXggSHVuZzsKPiA+IEJlbgo+ID4gPiA+ID4gPiA+
+IFNrZWdnczsgRGF2ZSBBaXJsaWUKPiA+ID4gPiA+ID4gPiBTdWJqZWN0OiBSZTogW05vdXZlYXVd
+IFtQQVRDSCAxLzddIFJldmVydCAiQUNQSSAvIE9TSTogQWRkIE9FTSBfT1NJCj4gPiBzdHJpbmcg
+dG8KPiA+ID4gPiA+ID4gPiBlbmFibGUgZEdQVSBkaXJlY3Qgb3V0cHV0Igo+ID4gPiA+ID4gPiA+
+Cj4gPiA+ID4gPiA+ID4gT24gVGh1LCAxNSBBdWcgMjAxOSBhdCAwNzozMSwgS2Fyb2wgSGVyYnN0
+IDxraGVyYnN0QHJlZGhhdC5jb20+Cj4gPiB3cm90ZToKPiA+ID4gPiA+ID4gPiA+Cj4gPiA+ID4g
+PiA+ID4gPiBUaGlzIHJldmVydHMgY29tbWl0IDI4NTg2YTUxZWVhNjY2ZDU1MzFiY2FlZjJmNjhl
+NGFiYmQ4NzI0MmMuCj4gPiA+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiA+ID4gVGhlIG9yaWdpbmFs
+IGNvbW1pdCBtZXNzYWdlIGRpZG4ndCBldmVuIG1ha2Ugc2Vuc2UuIEFNRCBfZG9lc18KPiA+IHN1
+cHBvcnQgaXQgYW5kCj4gPiA+ID4gPiA+ID4gPiBpdCB3b3JrcyB3aXRoIE5vdXZlYXUgYXMgd2Vs
+bC4KPiA+ID4gPiA+ID4gPiA+Cj4gPiA+ID4gPiA+ID4gPiBBbHNvIHdoYXQgd2FzIHRoZSBpc3N1
+ZSBiZWluZyBzb2x2ZWQgaGVyZT8gTm8gcmVmZXJlbmNlcyB0byBhbnkgYnVncwo+ID4gYW5kIG5v
+dAo+ID4gPiA+ID4gPiA+ID4gZXZlbiBleHBsYWluaW5nIGFueSBpc3N1ZSBhdCBhbGwgaXNuJ3Qg
+dGhlIHdheSB3ZSBkbyB0aGluZ3MuCj4gPiA+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiA+ID4gQW5k
+IGV2ZW4gaWYgaXQgbWVhbnMgYSBtdXhlZCBkZXNpZ24sIHRoZW4gdGhlIGZpeCBpcyB0byBtYWtl
+IGl0IHdvcmsKPiA+IGluc2lkZSB0aGUKPiA+ID4gPiA+ID4gPiA+IGRyaXZlciwgbm90IGFkZGlu
+ZyBzb21lIGhhY2t5IHdvcmthcm91bmQgdGhyb3VnaCBBQ1BJIHRyaWNrcy4KPiA+ID4gPiA+ID4g
+PiA+Cj4gPiA+ID4gPiA+ID4gPiBBbmQgd2hhdCBvdXQgb2YgdHJlZSBkcml2ZXJzIGRvIG9yIGRv
+IG5vdCBzdXBwb3J0IHdlIGRvbid0IGNhcmUgb25lCj4gPiBiaXQgYW55d2F5Lgo+ID4gPiA+ID4g
+PiA+ID4KPiA+ID4gPiA+ID4gPgo+ID4gPiA+ID4gPiA+IEkgdGhpbmsgdGhlIHJldmVydHMgc2hv
+dWxkIGJlIG1lcmdlZCB2aWEgUmFmYWVsJ3MgdHJlZSBhcyB0aGUgb3JpZ2luYWwKPiA+ID4gPiA+
+ID4gPiBwYXRjaGVzIHdlbnQgaW4gdmlhIHRoZXJlLCBhbmQgd2Ugc2hvdWxkIGdldCB0aGVtIGlu
+IGFzYXAuCj4gPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gPiBBY2tlZC1ieTogRGF2ZSBBaXJsaWUg
+PGFpcmxpZWRAcmVkaGF0LmNvbT4KPiA+ID4gPiA+ID4gPiBEYXZlLgo+ID4gPiA+ID4gPgo+ID4g
+PiA+ID4gPiBUaGVyZSBhcmUgZGVmaW5pdGVseSBnb2luZyB0byBiZSByZWdyZXNzaW9ucyBvbiBt
+YWNoaW5lcyBpbiB0aGUgZmllbGQgd2l0aAo+ID4gdGhlCj4gPiA+ID4gPiA+IGluIHRyZWUgZHJp
+dmVycyBieSByZXZlcnRpbmcgdGhpcy4gIEkgdGhpbmsgd2Ugc2hvdWxkIGhhdmUgYW4gYW5zd2Vy
+IGZvciBhbGwKPiA+IG9mIHRob3NlCj4gPiA+ID4gPiA+IGJlZm9yZSB0aGlzIHJldmVydCBpcyBh
+Y2NlcHRlZC4KPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gUmVnYXJkaW5nIHN5c3RlbXMgd2l0aCBJ
+bnRlbCtOVklESUEsIHdlJ2xsIGhhdmUgdG8gd29yayB3aXRoIHBhcnRuZXJzIHRvCj4gPiBjb2xs
+ZWN0Cj4gPiA+ID4gPiA+IHNvbWUgaW5mb3JtYXRpb24gb24gdGhlIGltcGFjdCBvZiByZXZlcnRp
+bmcgdGhpcy4KPiA+ID4gPiA+ID4KPiA+ID4gPiA+ID4gV2hlbiB0aGlzIGlzIHVzZWQgb24gYSBz
+eXN0ZW0gd2l0aCBJbnRlbCtBTUQgdGhlIEFTTCBjb25maWd1cmVzIEFNRAo+ID4gR1BVIHRvIHVz
+ZQo+ID4gPiA+ID4gPiAiSHlicmlkIEdyYXBoaWNzIiB3aGVuIG9uIFdpbmRvd3MgYW5kICJQb3dl
+ciBFeHByZXNzIiBhbmQKPiA+ICJTd2l0Y2hhYmxlIEdyYXBoaWNzIgo+ID4gPiA+ID4gPiB3aGVu
+IG9uIExpbnV4Lgo+ID4gPiA+ID4KPiA+ID4gPiA+IGFuZCB3aGF0J3MgZXhhY3RseSB0aGUgZGlm
+ZmVyZW5jZSBiZXR3ZWVuIHRob3NlPyBBbmQgd2hhdCdzIHRoZSBhY3R1YWwKPiA+ID4gPiA+IGlz
+c3VlIGhlcmU/Cj4gPiA+ID4KPiA+ID4gPiBIeWJyaWQgR3JhcGhpY3MgaXMgdGhlIG5ldyAic3Rh
+bmRhcmQiIHdheSBvZiBoYW5kbGluZyB0aGVzZSBsYXB0b3BzLgo+ID4gPiA+IEl0IHVzZXMgdGhl
+IHN0YW5kYXJkIF9QUjMgQVBDSSBtZXRob2QgdG8gaGFuZGxlIGRHUFUgcG93ZXIuICBTdXBwb3J0
+Cj4gPiA+ID4gZm9yIHRoaXMgd2FzIGFkZGVkIHRvIExpbnV4IHJlbGF0aXZlbHkgbGF0ZXIgY29t
+cGFyZWQgdG8gd2hlbiB0aGUKPiA+ID4gPiBsYXB0b3BzIHdlcmUgbGF1bmNoZWQuICAiUG93ZXIg
+RXhwcmVzcyIgdXNlZCB0aGUgb3RoZXIgQU1EIHNwZWNpZmljCj4gPiA+ID4gQVRQWCBBQ1BJIG1l
+dGhvZCB0byBoYW5kbGUgZEdQVSBwb3dlci4gIFRoZSBkcml2ZXIgc3VwcG9ydHMgYm90aCBzbwo+
+ID4gPiA+IGVpdGhlciBtZXRob2Qgd2lsbCB3b3JrLgo+ID4gPiA+Cj4gPiA+ID4gQWxleAo+ID4g
+PiA+Cj4gPiA+Cj4gPiA+IHRoYW5rcyBmb3IgY2xhcmlmeWluZy4gQnV0IHRoYXQgc3RpbGwgbWVh
+bnMgdGhhdCB3ZSB3b24ndCBuZWVkIHN1Y2gKPiA+ID4gd29ya2Fyb3VuZHMgZm9yIEFNRCB1c2Vy
+cywgcmlnaHQ/IGFtZGdwdSBoYW5kbGVzIGh5YnJpZCBncmFwaGljcyBqdXN0Cj4gPiA+IGZpbmUs
+IHJpZ2h0Pwo+ID4KPiA+IFllYWggaXQgc2hvdWxkLCBhc3N1bWluZyB5b3UgaGF2ZSBhIG5ldyBl
+bm91Z2gga2VybmVsIHdoaWNoIHN1cHBvcnRzCj4gPiBIRywgd2hpY2ggaGFzIGJlZW4gc2V2ZXJh
+bCB5ZWFycyBhdCB0aGlzIHBvaW50IElJUkMuCj4gPgo+ID4gQWxleAo+ID4KPgo+IENhbiB5b3Ug
+ZGVmaW5lIGhvdyBuZXcgb2YgYSBrZXJuZWwgaXMgYSBuZXcgZW5vdWdoIGtlcm5lbD8KPgo+IExv
+b2tpbmcgb24gbXkgc2lkZSB0aGVzZSBwcm9ibGVtcyB3ZXJlIG9uIG5ldyBoYXJkd2FyZSAoUHJl
+Y2lzaW9uIDc3NDApIGFuZAo+IGFyZSBjaGVja2VkIGFzIHJlY2VudGx5IGFzIHN0YXJ0IG9mIHRo
+aXMgc3VtbWVyLCB3LyBrZXJuZWwgNC4xNS4KCkkgZG9uJ3QgcmVtZW1iZXIgb2ZmIGhhbmQuICBJ
+dCB3YXMgYmVmb3JlIHRoZSBfUFIzIHN1cHBvcnQgaW4gdGhlIHBjaQpzdWJzeXN0ZW0gd2FzIHVw
+c3RyZWFtLiAgV2hhdCB3YXMgdGhlIHByb2JsZW0geW91IHdlcmUgc2VlaW5nIHdpdGgKdGhpcyBz
+eXN0ZW0/CgpBbGV4Cgo+Cj4gV2UgY2FuIGFycmFuZ2UgdG8gaGF2ZSBpdCBjaGVja2VkIGFnYWlu
+IG9uIDUuM3JjWCB3LyB0aGUgT1NJIGRpc2FibGVkLgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXU=
