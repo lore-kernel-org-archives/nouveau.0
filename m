@@ -1,58 +1,30 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] volt: Fix for some cards having 0 maximum
- voltage
-Date: Thu, 15 Aug 2019 10:50:55 +0200
-Message-ID: <CACO55ttfUd7XBH+vttVE0S_We3iEFRLheCTjHX0mBq95+i3xqg@mail.gmail.com>
-References: <20190802092100.5897-1-mmenzyns@redhat.com>
+From: Christoph Hellwig <hch@lst.de>
+Subject: Re: turn hmm migrate_vma upside down v3
+Date: Thu, 15 Aug 2019 15:28:45 +0200
+Message-ID: <20190815132845.GC12036@lst.de>
+References: <20190814075928.23766-1-hch@lst.de> <8e3b17ef-0b9e-6866-128f-403c8ba3a322@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190802092100.5897-1-mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mark Menzynski <mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <8e3b17ef-0b9e-6866-128f-403c8ba3a322@nvidia.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ralph Campbell <rcampbell@nvidia.com>
+Cc: Christoph Hellwig <hch@lst.de>, =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Ben Skeggs <bskeggs@redhat.com>, Bharata B Rao <bharata@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-YWx0aG91Z2ggSSdkIGxpa2UgdG8gaGF2ZSBhIGRlZXBlciB1bmRlcnN0YW5kaW5nIG9mIHRoaXMg
-dGFibGUsIEkKdGhpbmsgaXQncyBmaW5lIGFzIGl0IGlzIHJpZ2h0IG5vdyBhbmQgdGhpcyBhY3R1
-YWxseSBkb2VzIGZpeApzb21ldGhpbmcgd2l0aG91dCBjYXVzaW5nIGFueSBpc3N1ZXMgKGFzIGZh
-ciBhcyB3ZSBrbm93IG9mKQoKUmV2aWV3ZWQtYnk6IEthcm9sIEhlcmJzdCA8a2hlcmJzdEByZWRo
-YXQuY29tPgoKT24gRnJpLCBBdWcgMiwgMjAxOSBhdCAxMToyMSBBTSBNYXJrIE1lbnp5bnNraSA8
-bW1lbnp5bnNAcmVkaGF0LmNvbT4gd3JvdGU6Cj4KPiBTb21lLCBtb3N0bHkgRmVybWksIHZiaW9z
-ZXMgYXBwZWFyIHRvIGhhdmUgemVybyBtYXggdm9sdGFnZS4gVGhhdCBjYXVzZXMgTm91dmVhdSB0
-byBub3QgcGFyc2Ugdm9sdGFnZSBlbnRyaWVzLCB0aHVzIHVzZXJzIG5vdCBiZWluZyBhYmxlIHRv
-IHNldCBoaWdoZXIgY2xvY2tzLgo+Cj4gV2hlbiBjaGFuZ2luZyB0aGlzIHZhbHVlIE52aWRpYSBk
-cml2ZXIgc3RpbGwgYXBwZWFyZWQgdG8gaWdub3JlIGl0LCBhbmQgSSB3YXNuJ3QgYWJsZSB0byBm
-aW5kIG91dCB3aHksIHRodXMgdGhlIGNvZGUgaXMgaWdub3JpbmcgdGhlIHZhbHVlIGlmIGl0IGlz
-IHplcm8uCj4KPiBDQzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4
-LmludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBNYXJrIE1lbnp5bnNraSA8bW1lbnp5bnNAcmVk
-aGF0LmNvbT4KPiAtLS0KPiAgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy92b2x0LmMgfCAy
-ICsrCj4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKykKPgo+IGRpZmYgLS1naXQgYS9k
-cm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3ZvbHQuYyBiL2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L2Jpb3Mvdm9sdC5jCj4gaW5kZXggNzE0M2VhNDYuLjMzYTlmYjVhIDEwMDY0NAo+IC0tLSBh
-L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mvdm9sdC5jCj4gKysrIGIvZHJtL25vdXZlYXUv
-bnZrbS9zdWJkZXYvYmlvcy92b2x0LmMKPiBAQCAtOTYsNiArOTYsOCBAQCBudmJpb3Nfdm9sdF9w
-YXJzZShzdHJ1Y3QgbnZrbV9iaW9zICpiaW9zLCB1OCAqdmVyLCB1OCAqaGRyLCB1OCAqY250LCB1
-OCAqbGVuLAo+ICAgICAgICAgICAgICAgICBpbmZvLT5taW4gICAgID0gbWluKGluZm8tPmJhc2Us
-Cj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaW5mby0+YmFzZSArIGluZm8t
-PnN0ZXAgKiBpbmZvLT52aWRtYXNrKTsKPiAgICAgICAgICAgICAgICAgaW5mby0+bWF4ICAgICA9
-IG52Ymlvc19yZDMyKGJpb3MsIHZvbHQgKyAweDBlKTsKPiArICAgICAgICAgICAgICAgaWYgKCFp
-bmZvLT5tYXgpCj4gKyAgICAgICAgICAgICAgICAgICAgICAgaW5mby0+bWF4ID0gbWF4KGluZm8t
-PmJhc2UsIGluZm8tPmJhc2UgKyBpbmZvLT5zdGVwICogaW5mby0+dmlkbWFzayk7Cj4gICAgICAg
-ICAgICAgICAgIGJyZWFrOwo+ICAgICAgICAgY2FzZSAweDUwOgo+ICAgICAgICAgICAgICAgICBp
-bmZvLT5taW4gICAgID0gbnZiaW9zX3JkMzIoYmlvcywgdm9sdCArIDB4MGEpOwo+IC0tCj4gMi4y
-MS4wCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+
-IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+On Wed, Aug 14, 2019 at 05:09:54PM -0700, Ralph Campbell wrote:
+> Some of the patches seem to have been mangled in the mail.
+
+Weird, I never had such a an issue with git-send-email.
+
+But to be covered for such weird cases I also posted a git url
+for exactly the tree I've been working on.
+
+> I was able to edit them and apply to Jason's tree
+> https://github.com/jgunthorpe/linux.git mmu_notifier branch.
+> So for the series you can add:
+>
+> Tested-by: Ralph Campbell <rcampbell@nvidia.com>
+
+Thanks!
