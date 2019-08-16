@@ -1,49 +1,34 @@
-From: Christoph Hellwig <hch-jcswGhMUV9g@public.gmane.org>
-Subject: Re: [PATCH] nouveau/hmm: map pages after migration
-Date: Fri, 16 Aug 2019 09:11:32 +0200
-Message-ID: <20190816071132.GA7513@lst.de>
-References: <20190807150214.3629-1-rcampbell@nvidia.com>
- <20190808070701.GC29382@lst.de>
- <0b96a8d8-86b5-3ce0-db95-669963c1f8a7@nvidia.com>
- <20190810111308.GB26349@lst.de>
- <1a84e6b6-31e6-6955-509f-9883f4a7a322@nvidia.com>
+From: Jason Gunthorpe <jgg@mellanox.com>
+Subject: Re: turn hmm migrate_vma upside down v3
+Date: Fri, 16 Aug 2019 11:45:02 +0000
+Message-ID: <20190816114456.GA5412@mellanox.com>
+References: <20190814075928.23766-1-hch@lst.de> <20190816065141.GA6996@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1a84e6b6-31e6-6955-509f-9883f4a7a322-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190816065141.GA6996@lst.de>
+Content-Language: en-US
+Content-ID: <81AC2B318B8E8841A42EB8D34486FD1F@eurprd05.prod.outlook.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Christoph Hellwig <hch@lst.de>
+Cc: =?iso-8859-1?Q?J=E9r=F4me_Glisse?= <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Ralph Campbell <rcampbell@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBBdWcgMTIsIDIwMTkgYXQgMTI6NDI6MzBQTSAtMDcwMCwgUmFscGggQ2FtcGJlbGwg
-d3JvdGU6Cj4KPiBPbiA4LzEwLzE5IDQ6MTMgQU0sIENocmlzdG9waCBIZWxsd2lnIHdyb3RlOgo+
-PiBPbiBzb21ldGhpbmcgdmFndWVseSByZWxhdGVkIHRvIHRoaXMgcGF0Y2g6Cj4+Cj4+IFlvdSB1
-c2UgdGhlIE5WSUZfVk1NX1BGTk1BUF9WMF9WKiBkZWZpbmVzIGZyb20gbnZpZi9pZjAwMGMuaCwg
-d2hpY2ggYXJlCj4+IGEgbGl0dGxlIG9kZCBhcyB3ZSBvbmx5IGV2ZXIgc2V0IHRoZXNlIGJpdHMs
-IGJ1dCB0aGV5IGFsc28gZG9uJ3Qgc2VlbQo+PiB0byBhcHBlYXIgdG8gYmUgaW4gdmFsdWVzIHRo
-YXQgYXJlIGRpcmVjdGx5IGZlZCB0byB0aGUgaGFyZHdhcmUuCj4+Cj4+IE9uIHRoZSBvdGhlciBo
-YW5kIG1tdS92bW0uaCBkZWZpbmVzIGEgc2V0IG9mIE5WSUZfVk1NX1BGTk1BUF9WMF8qCj4KPiBZ
-ZXMsIEkgc2VlIE5WS01fVk1NX1BGTl8qCj4KPj4gY29uc3RhbnRzIHdpdGggc2ltaWxhciBuYW1l
-cyBhbmQgaWRlbnRpY2FsIHZhbHVlcywgYW5kIHRob3NlIGFyZSB1c2VkCj4+IGluIG1tdS92bW1n
-cDEwMC5jIGFuZCB3aGF0IGFwcGVhcnMgdG8gZmluYWxseSBkbyB0aGUgbG93LWxldmVsIGRtYQo+
-PiBtYXBwaW5nIGFuZCB0YWxraW5nIHRvIHRoZSBoYXJkd2FyZS4gIEFyZSB0aGVzZSB0d28gc2V0
-cyBvZiBjb25zdGFudHMKPj4gc3VwcG9zZWQgdG8gYmUgdGhlIHNhbWU/ICBBcmUgdGhlIGFjdHVh
-bCBoYXJkd2FyZSB2YWx1ZXMgb3IganVzdCBhCj4+IGRyaXZlciBpbnRlcm5hbCBpbnRlcmZhY2U/
-Cj4KPiBJdCBsb29rcyBhIGJpdCBvZGQgdG8gbWUgdG9vLgo+IEkgZG9uJ3QgcmVhbGx5IGtub3cg
-dGhlIHN0cnVjdHVyZS9oaXN0b3J5IG9mIG5vdXZlYXUuCj4gUGVyaGFwcyBCZW4gU2tlZ2dzIGNh
-biBzaGVkIG1vcmUgbGlnaHQgb24geW91ciBxdWVzdGlvbi4KCkJlbiwgZG8geW91IGhhdmUgYW55
-IGluc2lnaHRzIG9uIHRoZXNlIGNvbnN0YW50cz8KX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9ub3V2ZWF1
+On Fri, Aug 16, 2019 at 08:51:41AM +0200, Christoph Hellwig wrote:
+> Jason,
+>=20
+> are you going to look into picking this up?  Unfortunately there is
+> a hole pile in this area still pending, including the kvmppc secure
+> memory driver from Bharata that depends on the work.
+>=20
+> mm folks:  migrate.c is mostly a classic MM file except for the hmm
+> additions.  Do you want to also look over this or just let it pass?
+
+Yes, after you explained the functions were hmm ones, it seems OK to
+go to hmm.git.
+
+I was waiting for the dust to settle, I see Ralph tested-by, are we
+good now?
+
+Jason
