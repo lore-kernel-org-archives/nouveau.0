@@ -1,47 +1,35 @@
-From: Dan Williams <dan.j.williams@intel.com>
-Subject: Re: [PATCH 04/15] mm: remove the pgmap field from struct hmm_vma_walk
-Date: Fri, 16 Aug 2019 10:21:41 -0700
-Message-ID: <CAPcyv4jgHF05gdRoOFZORqeOBE9Z7PhagsSD+LVnjH2dc3mrFg@mail.gmail.com>
-References: <CAPcyv4g8usp8prJ+1bMtyV1xuedp5FKErBp-N8+KzR=rJ-v0QQ@mail.gmail.com>
- <20190815180325.GA4920@redhat.com> <CAPcyv4g4hzcEA=TPYVTiqpbtOoS30ahogRUttCvQAvXQbQjfnw@mail.gmail.com>
- <20190815194339.GC9253@redhat.com> <CAPcyv4jid8_=-8hBpn_Qm=c4S8BapL9B9RGT7e9uu303yH=Yqw@mail.gmail.com>
- <20190815203306.GB25517@redhat.com> <20190815204128.GI22970@mellanox.com>
- <CAPcyv4j_Mxbw+T+yXTMdkrMoS_uxg+TXXgTM_EPBJ8XfXKxytA@mail.gmail.com>
- <20190816004053.GB9929@mellanox.com> <CAPcyv4gMPVmY59aQAT64jQf9qXrACKOuV=DfVs4sNySCXJhkdA@mail.gmail.com>
- <20190816122414.GC5412@mellanox.com>
+From: Jason Gunthorpe <jgg@ziepe.ca>
+Subject: Re: turn hmm migrate_vma upside down v3
+Date: Fri, 16 Aug 2019 14:23:26 -0300
+Message-ID: <20190816172326.GI5398@ziepe.ca>
+References: <20190814075928.23766-1-hch@lst.de>
+ <20190816065141.GA6996@lst.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190816122414.GC5412@mellanox.com>
+Content-Disposition: inline
+In-Reply-To: <20190816065141.GA6996@lst.de>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Jason Gunthorpe <jgg@mellanox.com>
-Cc: Jerome Glisse <jglisse@redhat.com>, Christoph Hellwig <hch@lst.de>, Ben Skeggs <bskeggs@redhat.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Ralph Campbell <rcampbell@nvidia.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+To: Christoph Hellwig <hch@lst.de>
+Cc: =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Ralph Campbell <rcampbell@nvidia.com>, Bharata B Rao <bharata@linux.ibm.com>, Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Aug 16, 2019 at 5:24 AM Jason Gunthorpe <jgg@mellanox.com> wrote:
->
-> On Thu, Aug 15, 2019 at 08:54:46PM -0700, Dan Williams wrote:
->
-> > > However, this means we cannot do any processing of ZONE_DEVICE pages
-> > > outside the driver lock, so eg, doing any DMA map that might rely on
-> > > MEMORY_DEVICE_PCI_P2PDMA has to be done in the driver lock, which is
-> > > a bit unfortunate.
-> >
-> > Wouldn't P2PDMA use page pins? Not needing to hold a lock over
-> > ZONE_DEVICE page operations was one of the motivations for plumbing
-> > get_dev_pagemap() with a percpu-ref.
->
-> hmm_range_fault() doesn't use page pins at all, so if a ZONE_DEVICE
-> page comes out of it then it needs to use another locking pattern.
->
-> If I follow it all right:
->
-> We can do a get_dev_pagemap inside the page_walk and touch the pgmap,
-> or we can do the 'device mutex && retry' pattern and touch the pgmap
-> in the driver, under that lock.
->
-> However in all cases the current get_dev_pagemap()'s in the page walk
-> are not necessary, and we can delete them.
+On Fri, Aug 16, 2019 at 08:51:41AM +0200, Christoph Hellwig wrote:
+> Jason,
+> 
+> are you going to look into picking this up?  Unfortunately there is
+> a hole pile in this area still pending, including the kvmppc secure
+> memory driver from Bharata that depends on the work.
 
-Yes, as long as 'struct page' instances resulting from that lookup are
-not passed outside of that lock.
+Done,
+
+Lets see if Dan will comment on the pagemap part (looks
+straightforward to me), and then after we grab that I will declare
+hmm.git non-rebasing and Bharata can build his series upon it.
+
+As a reminder, please do not send hmm.git inside another pull request
+to Linus without making it very clear in that cover letter and Cc'ing
+me. Thanks.
+
+Regards,
+Jason
