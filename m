@@ -1,51 +1,52 @@
-From: Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH 04/15] mm: remove the pgmap field from struct hmm_vma_walk
-Date: Fri, 16 Aug 2019 14:28:46 -0300
-Message-ID: <20190816172846.GJ5398@ziepe.ca>
-References: <CAPcyv4g4hzcEA=TPYVTiqpbtOoS30ahogRUttCvQAvXQbQjfnw@mail.gmail.com>
- <20190815194339.GC9253@redhat.com>
- <CAPcyv4jid8_=-8hBpn_Qm=c4S8BapL9B9RGT7e9uu303yH=Yqw@mail.gmail.com>
- <20190815203306.GB25517@redhat.com>
- <20190815204128.GI22970@mellanox.com>
- <CAPcyv4j_Mxbw+T+yXTMdkrMoS_uxg+TXXgTM_EPBJ8XfXKxytA@mail.gmail.com>
- <20190816004053.GB9929@mellanox.com>
- <CAPcyv4gMPVmY59aQAT64jQf9qXrACKOuV=DfVs4sNySCXJhkdA@mail.gmail.com>
- <20190816122414.GC5412@mellanox.com>
- <CAPcyv4jgHF05gdRoOFZORqeOBE9Z7PhagsSD+LVnjH2dc3mrFg@mail.gmail.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: DMA-API: cacheline tracking ENOMEM, dma-debug disabled due to
+ nouveau ?
+Date: Fri, 16 Aug 2019 20:45:11 +0200
+Message-ID: <CAKMK7uGb0twmXUXS5GVN0mmGW-csWH524psJFfdFYuou9YXFDw@mail.gmail.com>
+References: <20190814145033.GA11190@Red> <20190814174927.GT7444@phenom.ffwll.local>
+ <20190816143146.GB30445@Red>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="UTF-8"
 Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <CAPcyv4jgHF05gdRoOFZORqeOBE9Z7PhagsSD+LVnjH2dc3mrFg@mail.gmail.com>
+In-Reply-To: <20190816143146.GB30445@Red>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Dan Williams <dan.j.williams@intel.com>
-Cc: Jerome Glisse <jglisse@redhat.com>, Christoph Hellwig <hch@lst.de>, Ben Skeggs <bskeggs@redhat.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Ralph Campbell <rcampbell@nvidia.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+To: Corentin Labbe <clabbe.montjoie@gmail.com>
+Cc: Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@linux.ie>, Christoph Hellwig <hch@lst.de>, Marek Szyprowski <m.szyprowski@samsung.com>, Robin Murphy <robin.murphy@arm.com>, dri-devel <dri-devel@lists.freedesktop.org>, Nouveau Dev <nouveau@lists.freedesktop.org>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Aug 16, 2019 at 10:21:41AM -0700, Dan Williams wrote:
-
-> > We can do a get_dev_pagemap inside the page_walk and touch the pgmap,
-> > or we can do the 'device mutex && retry' pattern and touch the pgmap
-> > in the driver, under that lock.
+On Fri, Aug 16, 2019 at 4:31 PM Corentin Labbe
+<clabbe.montjoie@gmail.com> wrote:
+> On Wed, Aug 14, 2019 at 07:49:27PM +0200, Daniel Vetter wrote:
+> > On Wed, Aug 14, 2019 at 04:50:33PM +0200, Corentin Labbe wrote:
+> > > Hello
+> > >
+> > > Since lot of release (at least since 4.19), I hit the following error message:
+> > > DMA-API: cacheline tracking ENOMEM, dma-debug disabled
+> > >
+> > > After hitting that, I try to check who is creating so many DMA mapping and see:
+> > > cat /sys/kernel/debug/dma-api/dump | cut -d' ' -f2 | sort | uniq -c
+> > >       6 ahci
+> > >     257 e1000e
+> > >       6 ehci-pci
+> > >    5891 nouveau
+> > >      24 uhci_hcd
+> > >
+> > > Does nouveau having this high number of DMA mapping is normal ?
 > >
-> > However in all cases the current get_dev_pagemap()'s in the page walk
-> > are not necessary, and we can delete them.
-> 
-> Yes, as long as 'struct page' instances resulting from that lookup are
-> not passed outside of that lock.
+> > Yeah seems perfectly fine for a gpu.
+>
+> Note that it never go down and when I terminate my X session, it stays the same.
+> So without any "real" GPU work, does it is still normal to have so many active mapping ?
 
-Indeed.
+Might just be the dma_alloc cache. It should go down under memory
+pressure I think. Otherwise might also be a leak.
 
-Also, I was reflecting over lunch that the hmm_range_fault should only
-return DEVICE_PRIVATE pages for the caller's device (see other thread
-with HCH), and in this case, the caller should also be responsible to
-ensure that the driver is not calling hmm_range_fault at the same time
-it is deleting it's own DEVICE_PRIVATE mapping - ie by fencing its
-page fault handler.
+> For example, when doing some transfer, the ahci mapping number changes and then always go down to 6.
 
-This does not apply to PCI_P2PDMA, but, lets see how that looks when
-we get there.
-
-So the whole thing seems pretty safe.
-
-Jason
+gpu drivers tend to cache everything, all the time ...
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
