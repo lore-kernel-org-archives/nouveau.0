@@ -1,50 +1,54 @@
-From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Subject: Re: [PATCH v7 0/9] drm: cec: convert DRM drivers to the new notifier
- API
-Date: Mon, 19 Aug 2019 14:00:54 +0200
-Message-ID: <04c7dcb9-d5b1-804f-959e-d953dec9f937@xs4all.nl>
-References: <20190814104520.6001-1-darekm@google.com>
- <42c7ef3c-b7e5-8c63-c7c2-bfc6c56100c6@xs4all.nl>
- <CALFZZQHu1C_8idxkwjBdxpW=y9gKmDnLOeTHZ9iAkNo7YubZHg@mail.gmail.com>
+From: James <bjlockie-ozXLQgHQwDP3fQ9qLvQP4Q@public.gmane.org>
+Subject: Re: nouveau: System crashes with NVIDIA GeForce 8600 GT
+Date: Mon, 19 Aug 2019 09:55:20 -0400
+Message-ID: <03ec19b7-0a54-39cc-5bb2-1b09bb8fccc6@lockie.ca>
+References: <20190817125033.p3vdkq3xzz45aidz@alex-chromebook>
+ <201908181727.04076.linux@zary.sk>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CALFZZQHu1C_8idxkwjBdxpW=y9gKmDnLOeTHZ9iAkNo7YubZHg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <201908181727.04076.linux-82g5Cmo2vi4@public.gmane.org>
 Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Dariusz Marcinkiewicz <darekm@google.com>
-Cc: dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, Kate Stewart <kstewart@linuxfoundation.org>, Neil Armstrong <narmstrong@baylibre.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Hans Verkuil <hverkuil@xs4all.nl>, Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>, Sam Ravnborg <sam@ravnborg.org>, linux-samsung-soc@vger.kernel.org, David Francis <David.Francis@amd.com>, amd-gfx@lists.freedesktop.org, Leo Li <sunpeng.li@amd.com>, "Jerry (Fangzhi) Zuo" <Jerry.Zuo@amd.com>, linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org, Jonas Karlman <jonas@kwiboo.se>, Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org, Russell King <rmk+kernel@armlinux.org.uk>, Sean Paul <seanpaul@chromium.org>, Rodrigo Vivi <rodrigo.v>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 8/19/19 1:28 PM, Dariusz Marcinkiewicz wrote:
-> On Mon, Aug 19, 2019 at 11:38 AM Hans Verkuil <hverkuil-cisco@xs4all.nl> wrote:
->>
->> Hi all,
->>
-> Hi Hans.
->> The patches in this series can be applied independently from each other.
->>
->> If you maintain one of these drivers and you want to merge it for v5.4
->> yourself, then please do so and let me know. If you prefer I commit it
->> to drm-misc, then please review and (hopefully) Ack the patch.
->>
->> I would really like to get this in for v5.4 so I can get the userspace
->> bits in for v5.4 as well through the media subsystem.
->>
->> Dariusz, can you post a v7.1 for patch 5/9 fixing the typo?
->>
-> Done.
-> 
-> I think it would be good to test v7 changes to dw-hdmi and tda998x on
-> a real hardware. Hans, do you think you would be able to test those?
-> 
-> Thank you.
-> 
-
-I'll try to do this for dw-hdmi today, but the tda998x testing will have to wait
-until next week.
-
-Regards,
-
-	Hans
+T24gMjAxOS0wOC0xOCAxMToyNyBhLm0uLCBPbmRyZWogWmFyeSB3cm90ZToKPiBPbiBTYXR1cmRh
+eSAxNyBBdWd1c3QgMjAxOSAxNDo1MDozMyBBbGV4IERld2FyIHdyb3RlOgo+PiBIaSBhbGwsCj4+
+Cj4+IEknbSBnZXR0aW5nIGZyZXF1ZW50IHN5c3RlbSBjcmFzaGVzIChldmVyeSBmZXcgaG91cnMg
+b3Igc28pIGFuZCBpdCBzZWVtcwo+PiB0aGF0IHRoZSBub3V2ZWF1IGRyaXZlciBpcyBjYXVzaW5n
+IHRoZSBpc3N1ZSAoZG1lc2cgb3V0cHV0IGJlbG93KS4gSSBzZWUgaXQKPj4gd2l0aCBib3RoIHY1
+LjIuOCBhbmQgdGhlIHY0LjE5IExUUyBrZXJuZWwuIFNvbWV0aW1lcyB0aGUgc3lzdGVtCj4+IGNv
+bXBsZXRlbHkgZnJlZXplcyBhbmQgc29tZXRpbWVzIHNlZW1pbmdseSBqdXN0IHRoZSBub3V2ZWF1
+IGRyaXZlciBnb2VzCj4+IGRvd24uIFRoZSBzY3JlZW4gZnJlZXplcyBhbmQgY29sb3VycyBzdHJl
+YW0gYWNyb3NzIGl0LiBPZnRlbiBhZnRlciBJCj4+IHJlYm9vdCB0aGUgQklPUyBsb2dvIGlzIG1h
+bmdsZWQgdG9vIHVudGlsIHRoZSBmaXJzdCBtb2Rlc2V0LiBUaGUgY3Jhc2gKPj4gc2VlbXMgdG8g
+YmUgaGFwcGVuaW5nIGluIG52NTBfZmJfaW50cigpIGluIG52NTAuYy4KPj4KPj4gSSdtIG5vdCBz
+dXJlIGlmIHRoaXMgaXMgcmVsYXRlZCwgYnV0IHRoZSBzeXN0ZW0gbm93IG9mdGVuIGZyZWV6ZXMg
+b24KPj4gc3VzcGVuZCBvciByZXN1bWUgc2luY2UgSSBzd2l0Y2hlZCBmcm9tIHVzaW5nIHRoZSBv
+bGQgKHJlY2VudGx5Cj4+IGFiYW5kb25lZCkgcHJvcHJpZXRyeSBOVklESUEgZHJpdmVycywgYWdh
+aW4gYm90aCB3aXRoIDUuMiBhbmQgNC4xOQo+PiBrZXJuZWxzLiBCbGFja2xpc3RpbmcgdGhlIG5v
+dXZlYXUgZHJpdmVyIGRvZXNuJ3Qgc2VlbSB0byBmaXggaXQgaG93ZXZlciwKPj4gdGhvdWdoIEkg
+Z3Vlc3MgdGhlIGdyYXBoaWNzIGNhcmQgY291bGQgc3RpbGwgYmUgY2F1c2luZyBpc3N1ZXMgaW4g
+c29tZQo+PiBvdGhlciB3YXk/IEkgbmV2ZXIgaGFkIHByb2JsZW1zIHdpdGggc3VzcGVuZCBhbmQg
+cmVzdW1lIGJlZm9yZS4KPj4KPj4gQW55IHN1Z2dlc3Rpb25zIGFib3V0IGhvdyBJIGNvdWxkIGRl
+YnVnIHRoaXMgZnVydGhlcj8KPiAKPiBJcyBpdCByZWFsbHkgYSBzb2Z0d2FyZSBwcm9ibGVtIChk
+b2VzIGl0IHN0aWxsIHdvcmsgZmluZSB3aXRoIHByb3ByaWV0YXJ5Cj4gZHJpdmVyKT8KPiBUaGVz
+ZSBuVmlkaWEgY2hpcHMgYXJlIGtub3duIHRvIGZhaWwgYW5kIGNvcnJ1cHQgQklPUyBsb2dvIHN1
+Z2dlc3RzIHRoYXQuCj4gCgpJdCdzIGludGVyZXN0aW5nIHRoZSBwcm9wcmlldGFyeSBkcml2ZXIg
+c3RpbGwgc2VlbXMgdG8gaGF2ZSBzdXBwb3J0IGZvciAKc2VyaWVzIDYgYW5kIHNlcmllcyA3IChq
+dXN0IHNlcmllcyA4IGJlY2FtZSB1bnN1cHBvcnRlZCkuCgpJIHdvdWxkIHRyeSBhIGxpdmUgaXNv
+IHdpdGggYSByZWNlbnQga2VybmVsLgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQ==
