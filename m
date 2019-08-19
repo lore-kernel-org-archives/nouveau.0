@@ -1,89 +1,45 @@
-From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Subject: Re: [PATCH v7 0/9] drm: cec: convert DRM drivers to the new notifier
- API
-Date: Mon, 19 Aug 2019 11:38:44 +0200
-Message-ID: <42c7ef3c-b7e5-8c63-c7c2-bfc6c56100c6@xs4all.nl>
-References: <20190814104520.6001-1-darekm@google.com>
+From: "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to enable dGPU direct output"
+Date: Mon, 19 Aug 2019 11:52:09 +0200
+Message-ID: <2215840.qs0dBhReda@kreacher>
+References: <20190814213118.28473-1-kherbst@redhat.com> <20190814213118.28473-2-kherbst@redhat.com> <CAPM=9ty7yEUqKrcixV1tTuWCpyh6UikA3rxX8BF1E3fDb6WLQQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7Bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190814104520.6001-1-darekm@google.com>
-Content-Language: en-US
+In-Reply-To: <CAPM=9ty7yEUqKrcixV1tTuWCpyh6UikA3rxX8BF1E3fDb6WLQQ@mail.gmail.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Dariusz Marcinkiewicz <darekm@google.com>, dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org
-Cc: Kate Stewart <kstewart@linuxfoundation.org>, Neil Armstrong <narmstrong@baylibre.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Hans Verkuil <hverkuil@xs4all.nl>, Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>, Sam Ravnborg <sam@ravnborg.org>, linux-samsung-soc@vger.kernel.org, David Francis <David.Francis@amd.com>, amd-gfx@lists.freedesktop.org, Leo Li <sunpeng.li@amd.com>, "Jerry (Fangzhi) Zuo" <Jerry.Zuo@amd.com>, linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org, Jonas Karlman <jonas@kwiboo.se>, Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org, Russell King <rmk+kernel@armlinux.org.uk>, Sean Paul <seanpaul@chromium.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-tegra@vger.kernel.org
+To: Dave Airlie <airlied@gmail.com>
+Cc: Karol Herbst <kherbst@redhat.com>, LKML <linux-kernel@vger.kernel.org>, Linux ACPI <linux-acpi@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Mario Limonciello <mario.limonciello@dell.com>, Alex Hung <alex.hung@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-Hi all,
-
-The patches in this series can be applied independently from each other.
-
-If you maintain one of these drivers and you want to merge it for v5.4
-yourself, then please do so and let me know. If you prefer I commit it
-to drm-misc, then please review and (hopefully) Ack the patch.
-
-I would really like to get this in for v5.4 so I can get the userspace
-bits in for v5.4 as well through the media subsystem.
-
-Dariusz, can you post a v7.1 for patch 5/9 fixing the typo?
-
-Thanks!
-
-	Hans
-
-On 8/14/19 12:44 PM, Dariusz Marcinkiewicz wrote:
-> This series updates DRM drivers to use new CEC notifier API.
+On Thursday, August 15, 2019 12:47:35 AM CEST Dave Airlie wrote:
+> On Thu, 15 Aug 2019 at 07:31, Karol Herbst <kherbst@redhat.com> wrote:
+> >
+> > This reverts commit 28586a51eea666d5531bcaef2f68e4abbd87242c.
+> >
+> > The original commit message didn't even make sense. AMD _does_ support it and
+> > it works with Nouveau as well.
+> >
+> > Also what was the issue being solved here? No references to any bugs and not
+> > even explaining any issue at all isn't the way we do things.
+> >
+> > And even if it means a muxed design, then the fix is to make it work inside the
+> > driver, not adding some hacky workaround through ACPI tricks.
+> >
+> > And what out of tree drivers do or do not support we don't care one bit anyway.
+> >
 > 
-> Changes since v6:
-> 	Made CEC notifiers' registration and de-registration symmetric
-> 	in tda998x and dw-hdmi drivers. Also, accidentally dropped one
-> 	patch in v6 (change to drm_dp_cec), brought it back now.
-> Changes since v5:
->         Fixed a warning about a missing comment for a new member of
-> 	drm_dp_aux_cec struct. Sending to a wider audience,
-> 	including maintainers of respective drivers.
-> Changes since v4:
-> 	Addressing review comments.
-> Changes since v3:
->         Updated adapter flags in dw-hdmi-cec.
-> Changes since v2:
-> 	Include all DRM patches from "cec: improve notifier support,
-> 	add connector info connector info" series.
-> Changes since v1:
-> 	Those patches delay creation of notifiers until respective
-> 	connectors are constructed. It seems that those patches, for a
-> 	couple of drivers, by adding the delay, introduce a race between
-> 	notifiers' creation and the IRQs handling threads - at least I
-> 	don't see anything obvious in there that would explicitly forbid
-> 	such races to occur. v2 adds a write barrier to make sure IRQ
-> 	threads see the notifier once it is created (replacing the
-> 	WRITE_ONCE I put in v1). The best thing to do here, I believe,
-> 	would be not to have any synchronization and make sure that an IRQ
-> 	only gets enabled after the notifier is created.
-> Dariusz Marcinkiewicz (9):
->   drm_dp_cec: add connector info support.
->   drm/i915/intel_hdmi: use cec_notifier_conn_(un)register
->   dw-hdmi-cec: use cec_notifier_cec_adap_(un)register
->   tda9950: use cec_notifier_cec_adap_(un)register
->   drm: tda998x: use cec_notifier_conn_(un)register
->   drm: sti: use cec_notifier_conn_(un)register
->   drm: tegra: use cec_notifier_conn_(un)register
->   drm: dw-hdmi: use cec_notifier_conn_(un)register
->   drm: exynos: exynos_hdmi: use cec_notifier_conn_(un)register
+> I think the reverts should be merged via Rafael's tree as the original
+> patches went in via there, and we should get them in asap.
 > 
->  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  2 +-
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c | 13 +++---
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     | 46 +++++++++++++------
->  drivers/gpu/drm/drm_dp_cec.c                  | 25 ++++++----
->  drivers/gpu/drm/exynos/exynos_hdmi.c          | 31 +++++++------
->  drivers/gpu/drm/i2c/tda9950.c                 | 12 ++---
->  drivers/gpu/drm/i2c/tda998x_drv.c             | 36 ++++++++++-----
->  drivers/gpu/drm/i915/display/intel_dp.c       |  4 +-
->  drivers/gpu/drm/i915/display/intel_hdmi.c     | 13 ++++--
->  drivers/gpu/drm/nouveau/nouveau_connector.c   |  3 +-
->  drivers/gpu/drm/sti/sti_hdmi.c                | 19 +++++---
->  drivers/gpu/drm/tegra/output.c                | 28 ++++++++---
->  include/drm/drm_dp_helper.h                   | 17 ++++---
->  13 files changed, 155 insertions(+), 94 deletions(-)
-> 
+> Acked-by: Dave Airlie <airlied@redhat.com>
+
+The _OSI strings are to be dropped when all of the needed support is there in
+drivers, so they should go away along with the requisite driver changes.
+
+I'm all for dropping then when that's the case, so please feel free to add ACKs
+from me to the patches in question at that point.
+
+Cheers,
+Rafael
