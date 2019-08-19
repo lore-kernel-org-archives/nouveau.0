@@ -1,45 +1,36 @@
-From: "Rafael J. Wysocki" <rjw@rjwysocki.net>
-Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to enable dGPU direct output"
-Date: Mon, 19 Aug 2019 11:52:09 +0200
-Message-ID: <2215840.qs0dBhReda@kreacher>
-References: <20190814213118.28473-1-kherbst@redhat.com> <20190814213118.28473-2-kherbst@redhat.com> <CAPM=9ty7yEUqKrcixV1tTuWCpyh6UikA3rxX8BF1E3fDb6WLQQ@mail.gmail.com>
+From: Dariusz Marcinkiewicz <darekm@google.com>
+Subject: Re: [PATCH v7 0/9] drm: cec: convert DRM drivers to the new notifier API
+Date: Mon, 19 Aug 2019 13:28:29 +0200
+Message-ID: <CALFZZQHu1C_8idxkwjBdxpW=y9gKmDnLOeTHZ9iAkNo7YubZHg@mail.gmail.com>
+References: <20190814104520.6001-1-darekm@google.com> <42c7ef3c-b7e5-8c63-c7c2-bfc6c56100c6@xs4all.nl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="UTF-8"
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CAPM=9ty7yEUqKrcixV1tTuWCpyh6UikA3rxX8BF1E3fDb6WLQQ@mail.gmail.com>
+In-Reply-To: <42c7ef3c-b7e5-8c63-c7c2-bfc6c56100c6@xs4all.nl>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Dave Airlie <airlied@gmail.com>
-Cc: Karol Herbst <kherbst@redhat.com>, LKML <linux-kernel@vger.kernel.org>, Linux ACPI <linux-acpi@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Mario Limonciello <mario.limonciello@dell.com>, Alex Hung <alex.hung@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>
+To: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc: dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, Kate Stewart <kstewart@linuxfoundation.org>, Neil Armstrong <narmstrong@baylibre.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Hans Verkuil <hverkuil@xs4all.nl>, Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>, Sam Ravnborg <sam@ravnborg.org>, linux-samsung-soc@vger.kernel.org, David Francis <David.Francis@amd.com>, amd-gfx@lists.freedesktop.org, Leo Li <sunpeng.li@amd.com>, "Jerry (Fangzhi) Zuo" <Jerry.Zuo@amd.com>, linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org, Jonas Karlman <jonas@kwiboo.se>, Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org, Russell King <rmk+kernel@armlinux.org.uk>, Sean Paul <seanpaul@chromium.org>, Rodrigo Vivi <rodrigo.v>
 List-Id: nouveau.vger.kernel.org
 
-On Thursday, August 15, 2019 12:47:35 AM CEST Dave Airlie wrote:
-> On Thu, 15 Aug 2019 at 07:31, Karol Herbst <kherbst@redhat.com> wrote:
-> >
-> > This reverts commit 28586a51eea666d5531bcaef2f68e4abbd87242c.
-> >
-> > The original commit message didn't even make sense. AMD _does_ support it and
-> > it works with Nouveau as well.
-> >
-> > Also what was the issue being solved here? No references to any bugs and not
-> > even explaining any issue at all isn't the way we do things.
-> >
-> > And even if it means a muxed design, then the fix is to make it work inside the
-> > driver, not adding some hacky workaround through ACPI tricks.
-> >
-> > And what out of tree drivers do or do not support we don't care one bit anyway.
-> >
-> 
-> I think the reverts should be merged via Rafael's tree as the original
-> patches went in via there, and we should get them in asap.
-> 
-> Acked-by: Dave Airlie <airlied@redhat.com>
+On Mon, Aug 19, 2019 at 11:38 AM Hans Verkuil <hverkuil-cisco@xs4all.nl> wrote:
+>
+> Hi all,
+>
+Hi Hans.
+> The patches in this series can be applied independently from each other.
+>
+> If you maintain one of these drivers and you want to merge it for v5.4
+> yourself, then please do so and let me know. If you prefer I commit it
+> to drm-misc, then please review and (hopefully) Ack the patch.
+>
+> I would really like to get this in for v5.4 so I can get the userspace
+> bits in for v5.4 as well through the media subsystem.
+>
+> Dariusz, can you post a v7.1 for patch 5/9 fixing the typo?
+>
+Done.
 
-The _OSI strings are to be dropped when all of the needed support is there in
-drivers, so they should go away along with the requisite driver changes.
+I think it would be good to test v7 changes to dw-hdmi and tda998x on
+a real hardware. Hans, do you think you would be able to test those?
 
-I'm all for dropping then when that's the case, so please feel free to add ACKs
-from me to the patches in question at that point.
-
-Cheers,
-Rafael
+Thank you.
