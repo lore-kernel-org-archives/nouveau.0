@@ -1,108 +1,116 @@
-From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Subject: Re: [PATCH v7 0/9] drm: cec: convert DRM drivers to the new notifier
- API
-Date: Mon, 19 Aug 2019 16:55:28 +0200
-Message-ID: <6ef361f6-2f56-32ea-c7da-52799990cac7@xs4all.nl>
-References: <20190814104520.6001-1-darekm@google.com>
- <42c7ef3c-b7e5-8c63-c7c2-bfc6c56100c6@xs4all.nl>
- <ad2a4af0-aeff-a81e-7885-7e9fc3c5cf90@baylibre.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: [PATCH 2/3] drm/nouveau: slowpath for pushbuf ioctl
+Date: Tue, 20 Aug 2019 16:53:35 +0200
+Message-ID: <20190820145336.15649-3-daniel.vetter@ffwll.ch>
+References: <20190820145336.15649-1-daniel.vetter@ffwll.ch>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <ad2a4af0-aeff-a81e-7885-7e9fc3c5cf90@baylibre.com>
-Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Neil Armstrong <narmstrong@baylibre.com>, Dariusz Marcinkiewicz <darekm@google.com>, dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org
-Cc: Kate Stewart <kstewart@linuxfoundation.org>, Daniel Vetter <daniel.vetter@ffwll.ch>, Hans Verkuil <hverkuil@xs4all.nl>, Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>, Sam Ravnborg <sam@ravnborg.org>, linux-samsung-soc@vger.kernel.org, David Francis <David.Francis@amd.com>, amd-gfx@lists.freedesktop.org, Leo Li <sunpeng.li@amd.com>, "Jerry (Fangzhi) Zuo" <Jerry.Zuo@amd.com>, linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org, Jonas Karlman <jonas@kwiboo.se>, Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org, Russell King <rmk+kernel@armlinux.org.uk>, Sean Paul <seanpaul@chromium.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-tegra@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>, Allison Randal <allis>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <20190820145336.15649-1-daniel.vetter@ffwll.ch>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Cc: nouveau@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>
 List-Id: nouveau.vger.kernel.org
 
-On 8/19/19 4:48 PM, Neil Armstrong wrote:
-> Hi Dariusz, Hans,
-> 
-> I can apply the dw-hdmi patches if necessary.
-
-I'd appreciate it if you can do that.
-
-Thanks,
-
-	Hans
-
-> 
-> Neil
-> 
-> On 19/08/2019 11:38, Hans Verkuil wrote:
->> Hi all,
->>
->> The patches in this series can be applied independently from each other.
->>
->> If you maintain one of these drivers and you want to merge it for v5.4
->> yourself, then please do so and let me know. If you prefer I commit it
->> to drm-misc, then please review and (hopefully) Ack the patch.
->>
->> I would really like to get this in for v5.4 so I can get the userspace
->> bits in for v5.4 as well through the media subsystem.
->>
->> Dariusz, can you post a v7.1 for patch 5/9 fixing the typo?
->>
->> Thanks!
->>
->> 	Hans
->>
->> On 8/14/19 12:44 PM, Dariusz Marcinkiewicz wrote:
->>> This series updates DRM drivers to use new CEC notifier API.
->>>
->>> Changes since v6:
->>> 	Made CEC notifiers' registration and de-registration symmetric
->>> 	in tda998x and dw-hdmi drivers. Also, accidentally dropped one
->>> 	patch in v6 (change to drm_dp_cec), brought it back now.
->>> Changes since v5:
->>>         Fixed a warning about a missing comment for a new member of
->>> 	drm_dp_aux_cec struct. Sending to a wider audience,
->>> 	including maintainers of respective drivers.
->>> Changes since v4:
->>> 	Addressing review comments.
->>> Changes since v3:
->>>         Updated adapter flags in dw-hdmi-cec.
->>> Changes since v2:
->>> 	Include all DRM patches from "cec: improve notifier support,
->>> 	add connector info connector info" series.
->>> Changes since v1:
->>> 	Those patches delay creation of notifiers until respective
->>> 	connectors are constructed. It seems that those patches, for a
->>> 	couple of drivers, by adding the delay, introduce a race between
->>> 	notifiers' creation and the IRQs handling threads - at least I
->>> 	don't see anything obvious in there that would explicitly forbid
->>> 	such races to occur. v2 adds a write barrier to make sure IRQ
->>> 	threads see the notifier once it is created (replacing the
->>> 	WRITE_ONCE I put in v1). The best thing to do here, I believe,
->>> 	would be not to have any synchronization and make sure that an IRQ
->>> 	only gets enabled after the notifier is created.
->>> Dariusz Marcinkiewicz (9):
->>>   drm_dp_cec: add connector info support.
->>>   drm/i915/intel_hdmi: use cec_notifier_conn_(un)register
->>>   dw-hdmi-cec: use cec_notifier_cec_adap_(un)register
->>>   tda9950: use cec_notifier_cec_adap_(un)register
->>>   drm: tda998x: use cec_notifier_conn_(un)register
->>>   drm: sti: use cec_notifier_conn_(un)register
->>>   drm: tegra: use cec_notifier_conn_(un)register
->>>   drm: dw-hdmi: use cec_notifier_conn_(un)register
->>>   drm: exynos: exynos_hdmi: use cec_notifier_conn_(un)register
->>>
->>>  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  2 +-
->>>  drivers/gpu/drm/bridge/synopsys/dw-hdmi-cec.c | 13 +++---
->>>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     | 46 +++++++++++++------
->>>  drivers/gpu/drm/drm_dp_cec.c                  | 25 ++++++----
->>>  drivers/gpu/drm/exynos/exynos_hdmi.c          | 31 +++++++------
->>>  drivers/gpu/drm/i2c/tda9950.c                 | 12 ++---
->>>  drivers/gpu/drm/i2c/tda998x_drv.c             | 36 ++++++++++-----
->>>  drivers/gpu/drm/i915/display/intel_dp.c       |  4 +-
->>>  drivers/gpu/drm/i915/display/intel_hdmi.c     | 13 ++++--
->>>  drivers/gpu/drm/nouveau/nouveau_connector.c   |  3 +-
->>>  drivers/gpu/drm/sti/sti_hdmi.c                | 19 +++++---
->>>  drivers/gpu/drm/tegra/output.c                | 28 ++++++++---
->>>  include/drm/drm_dp_helper.h                   | 17 ++++---
->>>  13 files changed, 155 insertions(+), 94 deletions(-)
->>>
->>
-> 
+V2UgY2FuJ3QgY29weV8qX3VzZXIgd2hpbGUgaG9sZGluZyByZXNlcnZhdGlvbnMsIHRoYXQgd2ls
+bCAoc29vbiBldmVuCmZvciBub3V2ZWF1KSBsZWFkIHRvIGRlYWRsb2Nrcy4gQW5kIGl0IGJyZWFr
+cyB0aGUgY3Jvc3MtZHJpdmVyCmNvbnRyYWN0IGFyb3VuZCBkbWFfcmVzdi4KCkZpeCB0aGlzIGJ5
+IGFkZGluZyBhIHNsb3dwYXRoIGZvciB3aGVuIHdlIG5lZWQgcmVsb2NhdGlvbnMsIGFuZCBieQpw
+dXNoaW5nIHRoZSB3cml0ZWJhY2sgb2YgdGhlIG5ldyBwcmVzdW1lZCBvZmZzZXRzIHRvIHRoZSB2
+ZXJ5IGVuZC4KCkFzaWRlIGZyb20gIml0IGNvbXBpbGVzIiBlbnRpcmVseSB1bnRlc3RlZCB1bmZv
+cnR1bmF0ZWx5LgoKU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBp
+bnRlbC5jb20+CkNjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+CkNjOiBub3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZl
+YXVfZ2VtLmMgfCA1NyArKysrKysrKysrKysrKysrKystLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2Vk
+LCAzOCBpbnNlcnRpb25zKCspLCAxOSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bm91dmVhdV9nZW0uYwppbmRleCBjNzczMDJmOTY5ZTguLjYwMzA5Yjk5Nzk1MSAxMDA2NDQKLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9nZW0uYworKysgYi9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5jCkBAIC00ODIsMTIgKzQ4Miw5IEBAIHZhbGlkYXRl
+X2luaXQoc3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbiwgc3RydWN0IGRybV9maWxlICpmaWxl
+X3ByaXYsCiAKIHN0YXRpYyBpbnQKIHZhbGlkYXRlX2xpc3Qoc3RydWN0IG5vdXZlYXVfY2hhbm5l
+bCAqY2hhbiwgc3RydWN0IG5vdXZlYXVfY2xpICpjbGksCi0JICAgICAgc3RydWN0IGxpc3RfaGVh
+ZCAqbGlzdCwgc3RydWN0IGRybV9ub3V2ZWF1X2dlbV9wdXNoYnVmX2JvICpwYmJvLAotCSAgICAg
+IHVpbnQ2NF90IHVzZXJfcGJib19wdHIpCisJICAgICAgc3RydWN0IGxpc3RfaGVhZCAqbGlzdCwg
+c3RydWN0IGRybV9ub3V2ZWF1X2dlbV9wdXNoYnVmX2JvICpwYmJvKQogewogCXN0cnVjdCBub3V2
+ZWF1X2RybSAqZHJtID0gY2hhbi0+ZHJtOwotCXN0cnVjdCBkcm1fbm91dmVhdV9nZW1fcHVzaGJ1
+Zl9ibyBfX3VzZXIgKnVwYmJvID0KLQkJCQkodm9pZCBfX2ZvcmNlIF9fdXNlciAqKSh1aW50cHRy
+X3QpdXNlcl9wYmJvX3B0cjsKIAlzdHJ1Y3Qgbm91dmVhdV9ibyAqbnZibzsKIAlpbnQgcmV0LCBy
+ZWxvY3MgPSAwOwogCkBAIC01MzEsMTAgKzUyOCw2IEBAIHZhbGlkYXRlX2xpc3Qoc3RydWN0IG5v
+dXZlYXVfY2hhbm5lbCAqY2hhbiwgc3RydWN0IG5vdXZlYXVfY2xpICpjbGksCiAJCQliLT5wcmVz
+dW1lZC5vZmZzZXQgPSBudmJvLT5iby5vZmZzZXQ7CiAJCQliLT5wcmVzdW1lZC52YWxpZCA9IDA7
+CiAJCQlyZWxvY3MrKzsKLQotCQkJaWYgKGNvcHlfdG9fdXNlcigmdXBiYm9bbnZiby0+cGJib19p
+bmRleF0ucHJlc3VtZWQsCi0JCQkJCSAgICAgJmItPnByZXN1bWVkLCBzaXplb2YoYi0+cHJlc3Vt
+ZWQpKSkKLQkJCQlyZXR1cm4gLUVGQVVMVDsKIAkJfQogCX0KIApAQCAtNTQ1LDggKzUzOCw4IEBA
+IHN0YXRpYyBpbnQKIG5vdXZlYXVfZ2VtX3B1c2hidWZfdmFsaWRhdGUoc3RydWN0IG5vdXZlYXVf
+Y2hhbm5lbCAqY2hhbiwKIAkJCSAgICAgc3RydWN0IGRybV9maWxlICpmaWxlX3ByaXYsCiAJCQkg
+ICAgIHN0cnVjdCBkcm1fbm91dmVhdV9nZW1fcHVzaGJ1Zl9ibyAqcGJibywKLQkJCSAgICAgdWlu
+dDY0X3QgdXNlcl9idWZmZXJzLCBpbnQgbnJfYnVmZmVycywKLQkJCSAgICAgc3RydWN0IHZhbGlk
+YXRlX29wICpvcCwgaW50ICphcHBseV9yZWxvY3MpCisJCQkgICAgIGludCBucl9idWZmZXJzLAor
+CQkJICAgICBzdHJ1Y3QgdmFsaWRhdGVfb3AgKm9wLCBib29sICphcHBseV9yZWxvY3MpCiB7CiAJ
+c3RydWN0IG5vdXZlYXVfY2xpICpjbGkgPSBub3V2ZWF1X2NsaShmaWxlX3ByaXYpOwogCWludCBy
+ZXQ7CkBAIC01NjMsNyArNTU2LDcgQEAgbm91dmVhdV9nZW1fcHVzaGJ1Zl92YWxpZGF0ZShzdHJ1
+Y3Qgbm91dmVhdV9jaGFubmVsICpjaGFuLAogCQlyZXR1cm4gcmV0OwogCX0KIAotCXJldCA9IHZh
+bGlkYXRlX2xpc3QoY2hhbiwgY2xpLCAmb3AtPmxpc3QsIHBiYm8sIHVzZXJfYnVmZmVycyk7CisJ
+cmV0ID0gdmFsaWRhdGVfbGlzdChjaGFuLCBjbGksICZvcC0+bGlzdCwgcGJibyk7CiAJaWYgKHVu
+bGlrZWx5KHJldCA8IDApKSB7CiAJCWlmIChyZXQgIT0gLUVSRVNUQVJUU1lTKQogCQkJTlZfUFJJ
+TlRLKGVyciwgY2xpLCAidmFsaWRhdGluZyBibyBsaXN0XG4iKTsKQEAgLTYwMywxNiArNTk2LDEy
+IEBAIHVfbWVtY3B5YSh1aW50NjRfdCB1c2VyLCB1bnNpZ25lZCBubWVtYiwgdW5zaWduZWQgc2l6
+ZSkKIHN0YXRpYyBpbnQKIG5vdXZlYXVfZ2VtX3B1c2hidWZfcmVsb2NfYXBwbHkoc3RydWN0IG5v
+dXZlYXVfY2xpICpjbGksCiAJCQkJc3RydWN0IGRybV9ub3V2ZWF1X2dlbV9wdXNoYnVmICpyZXEs
+CisJCQkJc3RydWN0IGRybV9ub3V2ZWF1X2dlbV9wdXNoYnVmX3JlbG9jICpyZWxvYywKIAkJCQlz
+dHJ1Y3QgZHJtX25vdXZlYXVfZ2VtX3B1c2hidWZfYm8gKmJvKQogewotCXN0cnVjdCBkcm1fbm91
+dmVhdV9nZW1fcHVzaGJ1Zl9yZWxvYyAqcmVsb2MgPSBOVUxMOwogCWludCByZXQgPSAwOwogCXVu
+c2lnbmVkIGk7CiAKLQlyZWxvYyA9IHVfbWVtY3B5YShyZXEtPnJlbG9jcywgcmVxLT5ucl9yZWxv
+Y3MsIHNpemVvZigqcmVsb2MpKTsKLQlpZiAoSVNfRVJSKHJlbG9jKSkKLQkJcmV0dXJuIFBUUl9F
+UlIocmVsb2MpOwotCiAJZm9yIChpID0gMDsgaSA8IHJlcS0+bnJfcmVsb2NzOyBpKyspIHsKIAkJ
+c3RydWN0IGRybV9ub3V2ZWF1X2dlbV9wdXNoYnVmX3JlbG9jICpyID0gJnJlbG9jW2ldOwogCQlz
+dHJ1Y3QgZHJtX25vdXZlYXVfZ2VtX3B1c2hidWZfYm8gKmI7CkBAIC02OTEsMTEgKzY4MCwxMyBA
+QCBub3V2ZWF1X2dlbV9pb2N0bF9wdXNoYnVmKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHZvaWQg
+KmRhdGEsCiAJc3RydWN0IG5vdXZlYXVfZHJtICpkcm0gPSBub3V2ZWF1X2RybShkZXYpOwogCXN0
+cnVjdCBkcm1fbm91dmVhdV9nZW1fcHVzaGJ1ZiAqcmVxID0gZGF0YTsKIAlzdHJ1Y3QgZHJtX25v
+dXZlYXVfZ2VtX3B1c2hidWZfcHVzaCAqcHVzaDsKKwlzdHJ1Y3QgZHJtX25vdXZlYXVfZ2VtX3B1
+c2hidWZfcmVsb2MgKnJlbG9jID0gTlVMTDsKIAlzdHJ1Y3QgZHJtX25vdXZlYXVfZ2VtX3B1c2hi
+dWZfYm8gKmJvOwogCXN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKmNoYW4gPSBOVUxMOwogCXN0cnVj
+dCB2YWxpZGF0ZV9vcCBvcDsKIAlzdHJ1Y3Qgbm91dmVhdV9mZW5jZSAqZmVuY2UgPSBOVUxMOwot
+CWludCBpLCBqLCByZXQgPSAwLCBkb19yZWxvYyA9IDA7CisJaW50IGksIGosIHJldCA9IDA7CisJ
+Ym9vbCBkb19yZWxvYyA9IGZhbHNlOwogCiAJaWYgKHVubGlrZWx5KCFhYmkxNikpCiAJCXJldHVy
+biAtRU5PTUVNOwpAQCAtNzUzLDcgKzc0NCw4IEBAIG5vdXZlYXVfZ2VtX2lvY3RsX3B1c2hidWYo
+c3RydWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwKIAl9CiAKIAkvKiBWYWxpZGF0ZSBi
+dWZmZXIgbGlzdCAqLwotCXJldCA9IG5vdXZlYXVfZ2VtX3B1c2hidWZfdmFsaWRhdGUoY2hhbiwg
+ZmlsZV9wcml2LCBibywgcmVxLT5idWZmZXJzLAorcmV2YWxpZGF0ZToKKwlyZXQgPSBub3V2ZWF1
+X2dlbV9wdXNoYnVmX3ZhbGlkYXRlKGNoYW4sIGZpbGVfcHJpdiwgYm8sCiAJCQkJCSAgIHJlcS0+
+bnJfYnVmZmVycywgJm9wLCAmZG9fcmVsb2MpOwogCWlmIChyZXQpIHsKIAkJaWYgKHJldCAhPSAt
+RVJFU1RBUlRTWVMpCkBAIC03NjMsNyArNzU1LDE4IEBAIG5vdXZlYXVfZ2VtX2lvY3RsX3B1c2hi
+dWYoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwKIAogCS8qIEFwcGx5IGFueSBy
+ZWxvY2F0aW9ucyB0aGF0IGFyZSByZXF1aXJlZCAqLwogCWlmIChkb19yZWxvYykgewotCQlyZXQg
+PSBub3V2ZWF1X2dlbV9wdXNoYnVmX3JlbG9jX2FwcGx5KGNsaSwgcmVxLCBibyk7CisJCWlmICgh
+cmVsb2MpIHsKKwkJCXZhbGlkYXRlX2ZpbmkoJm9wLCBjaGFuLCBOVUxMLCBibyk7CisJCQlyZWxv
+YyA9IHVfbWVtY3B5YShyZXEtPnJlbG9jcywgcmVxLT5ucl9yZWxvY3MsIHNpemVvZigqcmVsb2Mp
+KTsKKwkJCWlmIChJU19FUlIocmVsb2MpKSB7CisJCQkJcmV0ID0gUFRSX0VSUihyZWxvYyk7CisJ
+CQkJZ290byBvdXRfcHJldmFsaWQ7CisJCQl9CisKKwkJCWdvdG8gcmV2YWxpZGF0ZTsKKwkJfQor
+CisJCXJldCA9IG5vdXZlYXVfZ2VtX3B1c2hidWZfcmVsb2NfYXBwbHkoY2xpLCByZXEsIHJlbG9j
+LCBibyk7CiAJCWlmIChyZXQpIHsKIAkJCU5WX1BSSU5USyhlcnIsIGNsaSwgInJlbG9jIGFwcGx5
+OiAlZFxuIiwgcmV0KTsKIAkJCWdvdG8gb3V0OwpAQCAtODQ5LDYgKzg1MiwyMiBAQCBub3V2ZWF1
+X2dlbV9pb2N0bF9wdXNoYnVmKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHZvaWQgKmRhdGEsCiAJ
+dmFsaWRhdGVfZmluaSgmb3AsIGNoYW4sIGZlbmNlLCBibyk7CiAJbm91dmVhdV9mZW5jZV91bnJl
+ZigmZmVuY2UpOwogCisJaWYgKGRvX3JlbG9jKSB7CisJCXN0cnVjdCBkcm1fbm91dmVhdV9nZW1f
+cHVzaGJ1Zl9ibyBfX3VzZXIgKnVwYmJvID0KKwkJCXU2NF90b191c2VyX3B0cihyZXEtPmJ1ZmZl
+cnMpOworCisJCWZvciAoaSA9IDA7IGkgPCByZXEtPm5yX2J1ZmZlcnM7IGkrKykgeworCQkJaWYg
+KGJvW2ldLnByZXN1bWVkLnZhbGlkKQorCQkJCWNvbnRpbnVlOworCisJCQlpZiAoY29weV90b191
+c2VyKCZ1cGJib1tpXS5wcmVzdW1lZCwgJmJvW2ldLnByZXN1bWVkLAorCQkJCQkgc2l6ZW9mKGJv
+W2ldLnByZXN1bWVkKSkpIHsKKwkJCQlyZXQgPSAtRUZBVUxUOworCQkJCWJyZWFrOworCQkJfQor
+CQl9CisJCXVfZnJlZShyZWxvYyk7CisJfQogb3V0X3ByZXZhbGlkOgogCXVfZnJlZShibyk7CiAJ
+dV9mcmVlKHB1c2gpOwotLSAKMi4yMy4wLnJjMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vaW50ZWwtZ2Z4
