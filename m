@@ -1,177 +1,94 @@
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH v2] drm: Bump encoder limit from 32 to 64
-Date: Wed, 21 Aug 2019 14:53:55 +0300
-Message-ID: <20190821115355.GH5942@intel.com>
-References: <20190821001656.32577-1-lyude@redhat.com>
+From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Nouveau] [Intel-gfx] [PATCH v6 08/17] drm/ttm: use gem vma_node
+Date: Wed, 21 Aug 2019 13:55:23 +0200
+Message-ID: <20190821115523.GA21839@ulmo>
+References: <20190805140119.7337-1-kraxel@redhat.com>
+ <20190805140119.7337-9-kraxel@redhat.com>
+ <20190813151115.GA29955@ulmo>
+ <20190814055827.6hrxj6daovxxnnvw@sirius.home.kraxel.org>
+ <20190814093524.GA31345@ulmo>
+ <20190814101411.lj3p6zjzbjvnnjf4@sirius.home.kraxel.org>
+ <CACAvsv5Rar9F=Wf-9HBpndY4QaQZcGCx05j0esvV9pitM=JoGg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20190821001656.32577-1-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, Maxime Ripard <maxime.ripard@bootlin.com>, linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>, Sean Paul <sean@poorly.run>
+Content-Type: multipart/mixed; boundary="===============0753479191=="
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CACAvsv5Rar9F=Wf-9HBpndY4QaQZcGCx05j0esvV9pitM=JoGg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: ML dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, intel-gfx <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Aug 20, 2019 at 08:16:55PM -0400, Lyude Paul wrote:
-> Assuming that GPUs would never have even close to 32 separate video
-> encoders is quite honestly a pretty reasonable assumption. Unfortunately
-> we do not live in a reasonable world, as it looks like it is actually
-> possible to find devices that will create more drm_encoder objects then
-> this. Case in point: the ThinkPad P71's discrete GPU, which exposes 1
-> eDP port and 5 DP ports. On the P71, nouveau attempts to create one
-> encoder for the eDP port, and two encoders for each DP++/USB-C port
-> along with 4 MST encoders for each DP port. This comes out to 35
-> different encoders. Unfortunately, this can't really be optimized to
-> make less encoders either.
-> 
-> So, what if we bumped the limit to 64? Unfortunately this has one very
-> awkward drawback: we already expose 32-bit bitmasks for encoders to
-> userspace in drm_encoder->possible_clones. Yikes. While cloning is still
-> (rarely) used in certain modern video hardware, it's mostly used in
-> situations where memory bandwidth is so limited that it's not possible
-> to scan out from 2 CRTCs at once.
-> 
-> So, let's try to compromise here: allow encoders with indexes <32 to
-> have non-zero values in drm_encoder->possible_clones, and don't allow
-> encoders with higher indexes to set drm_encoder->possible_clones to a
-> non-zero value. This allows us to avoid breaking UAPI and keep things
-> working sanely for hardware which still uses cloning, while still being
-> able to bump up the encoder limit.
-> 
-> This also fixes driver probing for nouveau on the ThinkPad P71.
-> 
-> Changes since v1:
-> * Move index+possible_clones check out of drm_encoder_init() and into
->   drm_encoder_register_all(), since encoder->possible_clones can get
->   changed any time before registration - Daniel Vetter
-> * Update the commit message a bit to accurately reflect modern day usage
->   of hardware cloning, which as Daniel Stone pointed out is apparently a
->   thing
-> 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Cc: nouveau@lists.freedesktop.org
-> ---
->  drivers/gpu/drm/drm_atomic.c  |  2 +-
->  drivers/gpu/drm/drm_encoder.c | 12 ++++++++++--
->  include/drm/drm_crtc.h        |  2 +-
->  include/drm/drm_encoder.h     | 20 +++++++++++++++-----
->  4 files changed, 27 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> index 419381abbdd1..27ce988ef0cc 100644
-> --- a/drivers/gpu/drm/drm_atomic.c
-> +++ b/drivers/gpu/drm/drm_atomic.c
-> @@ -392,7 +392,7 @@ static void drm_atomic_crtc_print_state(struct drm_printer *p,
->  	drm_printf(p, "\tcolor_mgmt_changed=%d\n", state->color_mgmt_changed);
->  	drm_printf(p, "\tplane_mask=%x\n", state->plane_mask);
->  	drm_printf(p, "\tconnector_mask=%x\n", state->connector_mask);
-> -	drm_printf(p, "\tencoder_mask=%x\n", state->encoder_mask);
-> +	drm_printf(p, "\tencoder_mask=%llx\n", state->encoder_mask);
->  	drm_printf(p, "\tmode: " DRM_MODE_FMT "\n", DRM_MODE_ARG(&state->mode));
->  
->  	if (crtc->funcs->atomic_print_state)
-> diff --git a/drivers/gpu/drm/drm_encoder.c b/drivers/gpu/drm/drm_encoder.c
-> index 7fb47b7b8b44..9d443b45ebba 100644
-> --- a/drivers/gpu/drm/drm_encoder.c
-> +++ b/drivers/gpu/drm/drm_encoder.c
-> @@ -71,6 +71,14 @@ int drm_encoder_register_all(struct drm_device *dev)
->  	int ret = 0;
->  
->  	drm_for_each_encoder(encoder, dev) {
-> +		/*
-> +		 * Since possible_clones has been exposed to userspace as a
-> +		 * 32bit bitmask, we don't allow creating encoders with an
-> +		 * index >=32 which are capable of cloning
-> +		 */
-> +		if (WARN_ON(encoder->index >= 32 && encoder->possible_clones))
-> +			return -EINVAL;
 
-I believe possible_clones was supposed to include the encoder itself. Not
-really sure why though. I guess we've now decided that it's OK not to do 
-that?
+--===============0753479191==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="lrZ03NoBR/3+SXJZ"
+Content-Disposition: inline
 
-git grep tells me drm_atomic_helper.c has some uses of drm_encoder_mask()
-that need to be looked at.
 
-> +
->  		if (encoder->funcs->late_register)
->  			ret = encoder->funcs->late_register(encoder);
->  		if (ret)
-> @@ -112,8 +120,8 @@ int drm_encoder_init(struct drm_device *dev,
->  {
->  	int ret;
->  
-> -	/* encoder index is used with 32bit bitmasks */
-> -	if (WARN_ON(dev->mode_config.num_encoder >= 32))
-> +	/* encoder index is used with 64bit bitmasks */
-> +	if (WARN_ON(dev->mode_config.num_encoder >= 64))
->  		return -EINVAL;
->  
->  	ret = drm_mode_object_add(dev, &encoder->base, DRM_MODE_OBJECT_ENCODER);
-> diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-> index 7d14c11bdc0a..fd0b2438c3d5 100644
-> --- a/include/drm/drm_crtc.h
-> +++ b/include/drm/drm_crtc.h
-> @@ -210,7 +210,7 @@ struct drm_crtc_state {
->  	 * @encoder_mask: Bitmask of drm_encoder_mask(encoder) of encoders
->  	 * attached to this CRTC.
->  	 */
-> -	u32 encoder_mask;
-> +	u64 encoder_mask;
->  
->  	/**
->  	 * @adjusted_mode:
-> diff --git a/include/drm/drm_encoder.h b/include/drm/drm_encoder.h
-> index 70cfca03d812..3f9cb65694e1 100644
-> --- a/include/drm/drm_encoder.h
-> +++ b/include/drm/drm_encoder.h
-> @@ -159,7 +159,15 @@ struct drm_encoder {
->  	 * encoders can be used in a cloned configuration, they both should have
->  	 * each another bits set.
->  	 *
-> -	 * In reality almost every driver gets this wrong.
-> +	 * In reality almost every driver gets this wrong, and most modern
-> +	 * display hardware does not have support for cloning. As well, while we
-> +	 * expose this mask to userspace as 32bits long, we do sure purely to
-> +	 * avoid breaking pre-existing UAPI since the limitation on the number
-> +	 * of encoders has been increased from 32 bits to 64 bits. In order to
-> +	 * maintain functionality for drivers which do actually support cloning,
-> +	 * we only allow cloning with encoders that have an index <32. Encoders
-> +	 * with indexes higher than 32 are not allowed to specify a non-zero
-> +	 * value here.
->  	 *
->  	 * Note that since encoder objects can't be hotplugged the assigned indices
->  	 * are stable and hence known before registering all objects.
-> @@ -198,13 +206,15 @@ static inline unsigned int drm_encoder_index(const struct drm_encoder *encoder)
->  }
->  
->  /**
-> - * drm_encoder_mask - find the mask of a registered ENCODER
-> + * drm_encoder_mask - find the mask of a registered encoder
->   * @encoder: encoder to find mask for
->   *
-> - * Given a registered encoder, return the mask bit of that encoder for an
-> - * encoder's possible_clones field.
-> + * Returns:
-> + * A bit mask with the nth bit set, where n is the index of the encoder. Take
-> + * care when using this, as the DRM UAPI only allows for 32 bit encoder masks
-> + * while internally encoder masks are 64 bits.
->   */
-> -static inline u32 drm_encoder_mask(const struct drm_encoder *encoder)
-> +static inline u64 drm_encoder_mask(const struct drm_encoder *encoder)
->  {
->  	return 1 << drm_encoder_index(encoder);
->  }
-> -- 
-> 2.21.0
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+--lrZ03NoBR/3+SXJZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
--- 
-Ville Syrjälä
-Intel
+On Wed, Aug 21, 2019 at 04:33:58PM +1000, Ben Skeggs wrote:
+> On Wed, 14 Aug 2019 at 20:14, Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
+> >
+> >   Hi,
+> >
+> > > > Changing the order doesn't look hard.  Patch attached (untested, have no
+> > > > test hardware).  But maybe I missed some detail ...
+> > >
+> > > I came up with something very similar by splitting up nouveau_bo_new()
+> > > into allocation and initialization steps, so that when necessary the GEM
+> > > object can be initialized in between. I think that's slightly more
+> > > flexible and easier to understand than a boolean flag.
+> >
+> > Yes, that should work too.
+> >
+> > Acked-by: Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+> Acked-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+
+Thanks guys, applied to drm-misc-next.
+
+Thierry
+
+--lrZ03NoBR/3+SXJZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl1dMSYACgkQ3SOs138+
+s6H8fQ/9F4UBF0EhVBpcsMNo5HI1kJ8KEkbiNqUWwZEh/kPLyWXoFWSWvA5FG+rP
+521CfufMmyezTHxOkPww6VEUsgaV9yEl00jqIhclgA43sBeDziR4XGzGmA/hpdpc
+ky8L49+C8mfoICLHeBjOSbSHoPhv7EqS1w8CtZkCZkf1nApk/R71bbYk6iz8zCCY
+dhZo6PGTJMpOoEQtryLjL2NJxvJe57zzsltRKxl9uEnjeDF0LRzqHYZ1Lt/mvRMn
+hXMXC1H+jOtP4p7OtP8zE6oM7desaJ2h4jXF1v1/AZHNUxQYtRohHNrYXBDqfQF5
+stLLdOjynZ8rcjhObmi3GeLbVeD2wEQJ7Qp7OgTwqbHnE4wXmAYD4KuKboJrQI8t
+0Hd25epBD/CHDgn7Kqoj8DRy5NArmeCGRDHVuFYF45utaectO7IzaxRD5zLRs6Q5
+vAA0fiy8JVs6ppQ6B9GtlQcXEKbmywLhBAzHb/Q7hukhppOhS+BxZO0FASdPmPnH
+0kjoVG0oz9oH8X/ciqubGIAUkrq+SP+OnPVvg1zGfAkxLSUTDKMZ4ZmP2vlrRzaf
+KFbFX02Gu+VDe/o7Pcf9F8pDlWS+jQL6KN+PFo2tkGP8HvouRsIagyzY/AJD0xuP
+Bb3DKPgm8W5/ggiLoiTbXz+CUWR25Hm2vBU/CZ9Uv9KBPgv95bA=
+=lGaC
+-----END PGP SIGNATURE-----
+
+--lrZ03NoBR/3+SXJZ--
+
+--===============0753479191==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KYW1kLWdmeCBt
+YWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============0753479191==--
