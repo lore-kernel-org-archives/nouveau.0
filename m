@@ -1,215 +1,245 @@
-From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Subject: Re: [PATCH v7 1/9] drm_dp_cec: add connector info support.
-Date: Thu, 22 Aug 2019 10:08:35 +0200
-Message-ID: <38cda4f5-3299-2bd4-65f5-9a0f948902c6@xs4all.nl>
-References: <20190814104520.6001-1-darekm@google.com>
- <20190814104520.6001-2-darekm@google.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111463] New: [NV49] MMIO write FAULT at 00c200
+Date: Thu, 22 Aug 2019 09:29:35 +0000
+Message-ID: <bug-111463-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190814104520.6001-2-darekm@google.com>
-Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Dariusz Marcinkiewicz <darekm@google.com>, dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org
-Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>, Anthony Koo <Anthony.Koo@amd.com>, David Francis <David.Francis@amd.com>, amd-gfx@lists.freedesktop.org, "Jerry (Fangzhi) Zuo" <Jerry.Zuo@amd.com>, Ben Skeggs <bskeggs@redhat.com>, Leo Li <sunpeng.li@amd.com>, intel-gfx@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>, Thomas Lim <Thomas.Lim@amd.com>, linux-kernel@vger.kernel.org, Manasi Navare <manasi.d.navare@intel.com>, Alex Deucher <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>, =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Content-Type: multipart/mixed; boundary="===============1907561302=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Alex, Ville/Rodrigo, Ben,
 
-Can you (hopefully) Ack this patch so that I can merge it?
+--===============1907561302==
+Content-Type: multipart/alternative; boundary="15664661751.aaFC7075.30451"
+Content-Transfer-Encoding: 7bit
 
-Thank you!
 
-	Hans
+--15664661751.aaFC7075.30451
+Date: Thu, 22 Aug 2019 09:29:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-On 8/14/19 12:44 PM, Dariusz Marcinkiewicz wrote:
-> Pass the connector info to the CEC adapter. This makes it possible
-> to associate the CEC adapter with the corresponding drm connector.
-> 
-> Signed-off-by: Dariusz Marcinkiewicz <darekm@google.com>
-> Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-> Tested-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-> ---
->  .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  2 +-
->  drivers/gpu/drm/drm_dp_cec.c                  | 25 ++++++++++++-------
->  drivers/gpu/drm/i915/display/intel_dp.c       |  4 +--
->  drivers/gpu/drm/nouveau/nouveau_connector.c   |  3 +--
->  include/drm/drm_dp_helper.h                   | 17 ++++++-------
->  5 files changed, 27 insertions(+), 24 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> index 16218a202b591..5ec14efd4d8cb 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> @@ -416,7 +416,7 @@ void amdgpu_dm_initialize_dp_connector(struct amdgpu_display_manager *dm,
->  
->  	drm_dp_aux_register(&aconnector->dm_dp_aux.aux);
->  	drm_dp_cec_register_connector(&aconnector->dm_dp_aux.aux,
-> -				      aconnector->base.name, dm->adev->dev);
-> +				      &aconnector->base);
->  	aconnector->mst_mgr.cbs = &dm_mst_cbs;
->  	drm_dp_mst_topology_mgr_init(
->  		&aconnector->mst_mgr,
-> diff --git a/drivers/gpu/drm/drm_dp_cec.c b/drivers/gpu/drm/drm_dp_cec.c
-> index b15cee85b702b..b457c16c3a8bb 100644
-> --- a/drivers/gpu/drm/drm_dp_cec.c
-> +++ b/drivers/gpu/drm/drm_dp_cec.c
-> @@ -8,7 +8,9 @@
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  #include <linux/slab.h>
-> +#include <drm/drm_connector.h>
->  #include <drm/drm_dp_helper.h>
-> +#include <drm/drmP.h>
->  #include <media/cec.h>
->  
->  /*
-> @@ -295,7 +297,10 @@ static void drm_dp_cec_unregister_work(struct work_struct *work)
->   */
->  void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
->  {
-> -	u32 cec_caps = CEC_CAP_DEFAULTS | CEC_CAP_NEEDS_HPD;
-> +	struct drm_connector *connector = aux->cec.connector;
-> +	u32 cec_caps = CEC_CAP_DEFAULTS | CEC_CAP_NEEDS_HPD |
-> +		       CEC_CAP_CONNECTOR_INFO;
-> +	struct cec_connector_info conn_info;
->  	unsigned int num_las = 1;
->  	u8 cap;
->  
-> @@ -344,13 +349,17 @@ void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid)
->  
->  	/* Create a new adapter */
->  	aux->cec.adap = cec_allocate_adapter(&drm_dp_cec_adap_ops,
-> -					     aux, aux->cec.name, cec_caps,
-> +					     aux, connector->name, cec_caps,
->  					     num_las);
->  	if (IS_ERR(aux->cec.adap)) {
->  		aux->cec.adap = NULL;
->  		goto unlock;
->  	}
-> -	if (cec_register_adapter(aux->cec.adap, aux->cec.parent)) {
-> +
-> +	cec_fill_conn_info_from_drm(&conn_info, connector);
-> +	cec_s_conn_info(aux->cec.adap, &conn_info);
-> +
-> +	if (cec_register_adapter(aux->cec.adap, connector->dev->dev)) {
->  		cec_delete_adapter(aux->cec.adap);
->  		aux->cec.adap = NULL;
->  	} else {
-> @@ -406,22 +415,20 @@ EXPORT_SYMBOL(drm_dp_cec_unset_edid);
->  /**
->   * drm_dp_cec_register_connector() - register a new connector
->   * @aux: DisplayPort AUX channel
-> - * @name: name of the CEC device
-> - * @parent: parent device
-> + * @connector: drm connector
->   *
->   * A new connector was registered with associated CEC adapter name and
->   * CEC adapter parent device. After registering the name and parent
->   * drm_dp_cec_set_edid() is called to check if the connector supports
->   * CEC and to register a CEC adapter if that is the case.
->   */
-> -void drm_dp_cec_register_connector(struct drm_dp_aux *aux, const char *name,
-> -				   struct device *parent)
-> +void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> +				   struct drm_connector *connector)
->  {
->  	WARN_ON(aux->cec.adap);
->  	if (WARN_ON(!aux->transfer))
->  		return;
-> -	aux->cec.name = name;
-> -	aux->cec.parent = parent;
-> +	aux->cec.connector = connector;
->  	INIT_DELAYED_WORK(&aux->cec.unregister_work,
->  			  drm_dp_cec_unregister_work);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 1092499115760..de2486fe7bf2d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5497,7 +5497,6 @@ static int
->  intel_dp_connector_register(struct drm_connector *connector)
->  {
->  	struct intel_dp *intel_dp = intel_attached_dp(connector);
-> -	struct drm_device *dev = connector->dev;
->  	int ret;
->  
->  	ret = intel_connector_register(connector);
-> @@ -5512,8 +5511,7 @@ intel_dp_connector_register(struct drm_connector *connector)
->  	intel_dp->aux.dev = connector->kdev;
->  	ret = drm_dp_aux_register(&intel_dp->aux);
->  	if (!ret)
-> -		drm_dp_cec_register_connector(&intel_dp->aux,
-> -					      connector->name, dev->dev);
-> +		drm_dp_cec_register_connector(&intel_dp->aux, connector);
->  	return ret;
->  }
->  
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> index 330d7d29a6e34..8aa703347eb54 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-> @@ -1416,8 +1416,7 @@ nouveau_connector_create(struct drm_device *dev,
->  	switch (type) {
->  	case DRM_MODE_CONNECTOR_DisplayPort:
->  	case DRM_MODE_CONNECTOR_eDP:
-> -		drm_dp_cec_register_connector(&nv_connector->aux,
-> -					      connector->name, dev->dev);
-> +		drm_dp_cec_register_connector(&nv_connector->aux, connector);
->  		break;
->  	}
->  
-> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> index 8364502f92cfe..7972b925a952b 100644
-> --- a/include/drm/drm_dp_helper.h
-> +++ b/include/drm/drm_dp_helper.h
-> @@ -1230,20 +1230,19 @@ struct drm_dp_aux_msg {
->  
->  struct cec_adapter;
->  struct edid;
-> +struct drm_connector;
->  
->  /**
->   * struct drm_dp_aux_cec - DisplayPort CEC-Tunneling-over-AUX
->   * @lock: mutex protecting this struct
->   * @adap: the CEC adapter for CEC-Tunneling-over-AUX support.
-> - * @name: name of the CEC adapter
-> - * @parent: parent device of the CEC adapter
-> + * @connector: the connector this CEC adapter is associated with
->   * @unregister_work: unregister the CEC adapter
->   */
->  struct drm_dp_aux_cec {
->  	struct mutex lock;
->  	struct cec_adapter *adap;
-> -	const char *name;
-> -	struct device *parent;
-> +	struct drm_connector *connector;
->  	struct delayed_work unregister_work;
->  };
->  
-> @@ -1451,8 +1450,8 @@ drm_dp_has_quirk(const struct drm_dp_desc *desc, enum drm_dp_quirk quirk)
->  
->  #ifdef CONFIG_DRM_DP_CEC
->  void drm_dp_cec_irq(struct drm_dp_aux *aux);
-> -void drm_dp_cec_register_connector(struct drm_dp_aux *aux, const char *name,
-> -				   struct device *parent);
-> +void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> +				   struct drm_connector *connector);
->  void drm_dp_cec_unregister_connector(struct drm_dp_aux *aux);
->  void drm_dp_cec_set_edid(struct drm_dp_aux *aux, const struct edid *edid);
->  void drm_dp_cec_unset_edid(struct drm_dp_aux *aux);
-> @@ -1461,9 +1460,9 @@ static inline void drm_dp_cec_irq(struct drm_dp_aux *aux)
->  {
->  }
->  
-> -static inline void drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> -						 const char *name,
-> -						 struct device *parent)
-> +static inline void
-> +drm_dp_cec_register_connector(struct drm_dp_aux *aux,
-> +			      struct drm_connector *connector)
->  {
->  }
->  
-> 
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111463
+
+            Bug ID: 111463
+           Summary: [NV49] MMIO write FAULT at 00c200
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: not set
+          Priority: not set
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: morpheus2051-S0/GAf8tV78@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 145128
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145128&action=3Dedit
+dmesg with write fault
+
+Hello,
+
+on my HP NW9440 Laptop with the following GPU:
+01:00.0 VGA compatible controller: NVIDIA Corporation G71GLM [Quadro FX 150=
+0M]
+(rev a1)
+I am getting MMIO write faults always at the same address. I think these wr=
+ite
+faults lock up my machine sometimes. I use plasma desktop environment. To
+trigger the MMIO write faults I have to just use the machine. I have not fo=
+und
+a pattern to provoke a hard lockup.=20
+
+Known good kernel version: none
+Known bad kernel versions: 4.19, 5.0, 5.1, 5.2
+
+Relevant software versions:
+
+media-libs/mesa 19.0.8
+sys-kernel/gentoo-sources 5.2.9
+x11-base/xorg-server 1.20.5
+x11-libs/libdrm 2.4.97
+x11-drivers/xf86-video-nouveau 1.0.16
+kde-plasma 5.15.5
+kde-frameworks 5.60.0
+qt 5.12.3
+
+Distribution is gentoo.
+
+Greetings
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15664661751.aaFC7075.30451
+Date: Thu, 22 Aug 2019 09:29:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV49] MMIO write FAULT at 00c200"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111463">111463</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NV49] MMIO write FAULT at 00c200
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>not set
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>not set
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>morpheus2051&#64;web.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145128=
+" name=3D"attach_145128" title=3D"dmesg with write fault">attachment 145128=
+</a> <a href=3D"attachment.cgi?id=3D145128&amp;action=3Dedit" title=3D"dmes=
+g with write fault">[details]</a></span>
+dmesg with write fault
+
+Hello,
+
+on my HP NW9440 Laptop with the following GPU:
+01:00.0 VGA compatible controller: NVIDIA Corporation G71GLM [Quadro FX 150=
+0M]
+(rev a1)
+I am getting MMIO write faults always at the same address. I think these wr=
+ite
+faults lock up my machine sometimes. I use plasma desktop environment. To
+trigger the MMIO write faults I have to just use the machine. I have not fo=
+und
+a pattern to provoke a hard lockup.=20
+
+Known good kernel version: none
+Known bad kernel versions: 4.19, 5.0, 5.1, 5.2
+
+Relevant software versions:
+
+media-libs/mesa 19.0.8
+sys-kernel/gentoo-sources 5.2.9
+x11-base/xorg-server 1.20.5
+x11-libs/libdrm 2.4.97
+x11-drivers/xf86-video-nouveau 1.0.16
+kde-plasma 5.15.5
+kde-frameworks 5.60.0
+qt 5.12.3
+
+Distribution is gentoo.
+
+Greetings</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15664661751.aaFC7075.30451--
+
+--===============1907561302==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1907561302==--
