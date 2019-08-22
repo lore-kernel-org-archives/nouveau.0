@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111463] [NV49] MMIO write FAULT at 00c200
-Date: Thu, 22 Aug 2019 09:33:22 +0000
-Message-ID: <bug-111463-8800-WHBlUCtECk@http.bugs.freedesktop.org/>
+Date: Thu, 22 Aug 2019 09:34:06 +0000
+Message-ID: <bug-111463-8800-xtm18Sgy7R@http.bugs.freedesktop.org/>
 References: <bug-111463-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0291784598=="
+Content-Type: multipart/mixed; boundary="===============1762652042=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111463-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0291784598==
-Content-Type: multipart/alternative; boundary="15664664020.39Ccaff.30594"
+--===============1762652042==
+Content-Type: multipart/alternative; boundary="15664664460.b3b8.30977"
 Content-Transfer-Encoding: 7bit
 
 
---15664664020.39Ccaff.30594
-Date: Thu, 22 Aug 2019 09:33:22 +0000
+--15664664460.b3b8.30977
+Date: Thu, 22 Aug 2019 09:34:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,20 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111463
 
---- Comment #3 from Matthias <morpheus2051-S0/GAf8tV78@public.gmane.org> ---
-Created attachment 145131
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145131&action=3Dedit
-plasma font corruption
-
-I do not know if the font corruption occurring in plasma is related to the
-write faults.
+--- Comment #4 from Matthias <morpheus2051-S0/GAf8tV78@public.gmane.org> ---
+Created attachment 145132
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145132&action=3Dedit
+Video BIOS of the GPU
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15664664020.39Ccaff.30594
-Date: Thu, 22 Aug 2019 09:33:22 +0000
+--15664664460.b3b8.30977
+Date: Thu, 22 Aug 2019 09:34:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV49] MMIO write FAULT at 00c200"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111463#c3">Commen=
-t # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111463#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV49] MMIO write FAULT at 00c200"
@@ -76,14 +73,11 @@ t # 3</a>
 morpheus2051&#64;web.de" title=3D"Matthias &lt;morpheus2051&#64;web.de&gt;"=
 > <span class=3D"fn">Matthias</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145131=
-" name=3D"attach_145131" title=3D"plasma font corruption">attachment 145131=
-</a> <a href=3D"attachment.cgi?id=3D145131&amp;action=3Dedit" title=3D"plas=
-ma font corruption">[details]</a></span>
-plasma font corruption
-
-I do not know if the font corruption occurring in plasma is related to the
-write faults.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145132=
+" name=3D"attach_145132" title=3D"Video BIOS of the GPU">attachment 145132<=
+/a> <a href=3D"attachment.cgi?id=3D145132&amp;action=3Dedit" title=3D"Video=
+ BIOS of the GPU">[details]</a></span>
+Video BIOS of the GPU</pre>
         </div>
       </p>
 
@@ -97,9 +91,9 @@ write faults.</pre>
     </body>
 </html>=
 
---15664664020.39Ccaff.30594--
+--15664664460.b3b8.30977--
 
---===============0291784598==
+--===============1762652042==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0291784598==--
+--===============1762652042==--
