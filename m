@@ -1,63 +1,73 @@
-From: Yongxin Liu <yongxin.liu-CWA4WttNNZF54TAoqtyWWQ@public.gmane.org>
-Subject: [PATCH] drm/nouveau: Fix memory leak in nvkm_ram_get()
-Date: Fri, 23 Aug 2019 16:50:42 +0800
-Message-ID: <20190823085042.37349-1-yongxin.liu@windriver.com>
+From: Ralph Campbell <rcampbell@nvidia.com>
+Subject: [PATCH 1/2] mm/hmm: hmm_range_fault() NULL pointer bug
+Date: Fri, 23 Aug 2019 15:17:52 -0700
+Message-ID: <20190823221753.2514-2-rcampbell@nvidia.com>
+References: <20190823221753.2514-1-rcampbell@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Yunguo.Wei-CWA4WttNNZF54TAoqtyWWQ@public.gmane.org, Paul.Gortmaker-CWA4WttNNZF54TAoqtyWWQ@public.gmane.org
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190823221753.2514-1-rcampbell@nvidia.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: linux-mm@kvack.org
+Cc: linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, =?UTF-8?q?J=C3=A9r=C3=B4me=20Glisse?= <jglisse@redhat.com>, Jason Gunthorpe <jgg@mellanox.com>, Andrew Morton <akpm@linux-foundation.org>, Christoph Hellwig <hch@lst.de>, Ralph Campbell <rcampbell@nvidia.com>
 List-Id: nouveau.vger.kernel.org
 
-V2hlbiByZXN1bWluZyBmcm9tIEFDUEkgUzMsIG1lbW9yeSBsZWFrIGhhcHBlbnMgaW4gbnZrbV9y
-YW1fZ2V0KCkuClRoaXMgaXMgYmVjYXVzZSAqcG1lbW9yeSBwb2ludHMgdG8gbmV3bHkgYWxsb2Nh
-dGVkIG1lbW9yeSB3aXRob3V0CmNoZWNraW5nIGFuZCBmcmVlaW5nIHRoZSBvbGQgbWVtb3J5LgoK
-SGVyZSBpcyB0aGUgbG9nIHNob3dpbmcgdGhpcyBpc3N1ZS4KCnVucmVmZXJlbmNlZCBvYmplY3Qg
-MHhmZmZmYTNiNjA4YzZkNWMwIChzaXplIDY0KToKICBjb21tICJrd29ya2VyL3UzMjozMCIsIHBp
-ZCA5MzQsIGppZmZpZXMgNDI5NDgyMzUyMCAoYWdlIDUwMDAuMjE3cykKICBoZXggZHVtcCAoZmly
-c3QgMzIgYnl0ZXMpOgogICAgMDAgZmMgNGEgYzAgZmYgZmYgZmYgZmYgMDAgMDAgMDAgMDAgMDAg
-MDAgMDAgMDAgIC4uSi4uLi4uLi4uLi4uLi4KICAgIDAxIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAw
-IDAwIDAwIDAwIDAwIDAwIDAwIDAwICAuLi4uLi4uLi4uLi4uLi4uCiAgYmFja3RyYWNlOgogICAg
-WzwwMDAwMDAwMGU5MjNiZjgxPl0ga21lbV9jYWNoZV9hbGxvY190cmFjZSsweDE4MS8weDI1MAog
-ICAgWzwwMDAwMDAwMGVkYjdiZWFhPl0gbnZrbV9yYW1fZ2V0KzB4YjAvMHgxZDAgW25vdXZlYXVd
-CiAgICBbPDAwMDAwMDAwNGVjYWE5MTg+XSBndDIxNV9yYW1faW5pdCsweGM1LzB4MmYwIFtub3V2
-ZWF1XQogICAgWzwwMDAwMDAwMDAwN2JhMWEwPl0gbnZrbV9yYW1faW5pdCsweDFhLzB4MjAgW25v
-dXZlYXVdCiAgICBbPDAwMDAwMDAwNTBhYmY4NGI+XSBudmttX2ZiX2luaXQrMHgyNy8weGUwIFtu
-b3V2ZWF1XQogICAgWzwwMDAwMDAwMGZhZTdmZWRjPl0gbnZrbV9zdWJkZXZfaW5pdCsweGJjLzB4
-MjEwIFtub3V2ZWF1XQogICAgWzwwMDAwMDAwMGE2N2I4NmU0Pl0gbnZrbV9kZXZpY2VfaW5pdCsw
-eDEyYS8weDI4MCBbbm91dmVhdV0KICAgIFs8MDAwMDAwMDBjMDJhYzAzZT5dIG52a21fdWRldmlj
-ZV9pbml0KzB4NDgvMHg2MCBbbm91dmVhdV0KICAgIFs8MDAwMDAwMDA0OGYzNTY0MT5dIG52a21f
-b2JqZWN0X2luaXQrMHg0My8weDExMCBbbm91dmVhdV0KICAgIFs8MDAwMDAwMDBjNmY5MmRjMD5d
-IG52a21fb2JqZWN0X2luaXQrMHg3NC8weDExMCBbbm91dmVhdV0KICAgIFs8MDAwMDAwMDBjNmY5
-MmRjMD5dIG52a21fb2JqZWN0X2luaXQrMHg3NC8weDExMCBbbm91dmVhdV0KICAgIFs8MDAwMDAw
-MDA3NDE2OTUxYz5dIG52a21fY2xpZW50X3Jlc3VtZSsweGUvMHgxMCBbbm91dmVhdV0KICAgIFs8
-MDAwMDAwMDBjNWQzMWRmZD5dIG52aWZfY2xpZW50X3Jlc3VtZSsweDFkLzB4MjAgW25vdXZlYXVd
-CiAgICBbPDAwMDAwMDAwOGYzYTYzOGY+XSBub3V2ZWF1X2RvX3Jlc3VtZSsweDJkLzB4MTUwIFtu
-b3V2ZWF1XQogICAgWzwwMDAwMDAwMGRmMmMyYjg1Pl0gbm91dmVhdV9wbW9wc19yZXN1bWUrMHg2
-Yi8weGEwIFtub3V2ZWF1XQogICAgWzwwMDAwMDAwMGY0NGM2NDlkPl0gcGNpX3BtX3Jlc3VtZSsw
-eDcxLzB4YjAKClNpZ25lZC1vZmYtYnk6IFlvbmd4aW4gTGl1IDx5b25neGluLmxpdUB3aW5kcml2
-ZXIuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3JhbS5j
-IHwgMyArKysKIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9yYW0uYyBiL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3JhbS5jCmluZGV4IGIxMTg2N2Y2ODJjYi4uNjBi
-ZTRkODExMTg3IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di9mYi9yYW0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9y
-YW0uYwpAQCAtMTI0LDYgKzEyNCw5IEBAIG52a21fcmFtX2dldChzdHJ1Y3QgbnZrbV9kZXZpY2Ug
-KmRldmljZSwgdTggaGVhcCwgdTggdHlwZSwgdTggcnBhZ2UsIHU2NCBzaXplLAogCW52a21fbWVt
-b3J5X2N0b3IoJm52a21fdnJhbSwgJnZyYW0tPm1lbW9yeSk7CiAJdnJhbS0+cmFtID0gcmFtOwog
-CXZyYW0tPnBhZ2UgPSBwYWdlOworCisJaWYgKCpwbWVtb3J5KQorCQludmttX21lbW9yeV91bnJl
-ZihwbWVtb3J5KTsKIAkqcG1lbW9yeSA9ICZ2cmFtLT5tZW1vcnk7CiAKIAltdXRleF9sb2NrKCZy
-YW0tPmZiLT5zdWJkZXYubXV0ZXgpOwotLSAKMi4xNC40CgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXU=
+Although hmm_range_fault() calls find_vma() to make sure that a vma exists
+before calling walk_page_range(), hmm_vma_walk_hole() can still be called
+with walk->vma =3D=3D NULL if the start and end address are not contained
+within the vma range.
+
+ hmm_range_fault() /* calls find_vma() but no range check */
+  walk_page_range() /* calls find_vma(), sets walk->vma =3D NULL */
+   __walk_page_range()
+    walk_pgd_range()
+     walk_p4d_range()
+      walk_pud_range()
+       hmm_vma_walk_hole()
+        hmm_vma_walk_hole_()
+         hmm_vma_do_fault()
+          handle_mm_fault(vma=3D0)
+
+Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
+---
+ mm/hmm.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/mm/hmm.c b/mm/hmm.c
+index fc05c8fe78b4..29371485fe94 100644
+--- a/mm/hmm.c
++++ b/mm/hmm.c
+@@ -229,6 +229,9 @@ static int hmm_vma_do_fault(struct mm_walk *walk, unsig=
+ned long addr,
+ 	struct vm_area_struct *vma =3D walk->vma;
+ 	vm_fault_t ret;
+=20
++	if (!vma)
++		goto err;
++
+ 	if (hmm_vma_walk->flags & HMM_FAULT_ALLOW_RETRY)
+ 		flags |=3D FAULT_FLAG_ALLOW_RETRY;
+ 	if (write_fault)
+@@ -239,12 +242,14 @@ static int hmm_vma_do_fault(struct mm_walk *walk, uns=
+igned long addr,
+ 		/* Note, handle_mm_fault did up_read(&mm->mmap_sem)) */
+ 		return -EAGAIN;
+ 	}
+-	if (ret & VM_FAULT_ERROR) {
+-		*pfn =3D range->values[HMM_PFN_ERROR];
+-		return -EFAULT;
+-	}
++	if (ret & VM_FAULT_ERROR)
++		goto err;
+=20
+ 	return -EBUSY;
++
++err:
++	*pfn =3D range->values[HMM_PFN_ERROR];
++	return -EFAULT;
+ }
+=20
+ static int hmm_pfns_bad(unsigned long addr,
+--=20
+2.20.1
