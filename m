@@ -1,13 +1,13 @@
 From: David Francis <David.Francis-5C7GfCeVMHo@public.gmane.org>
-Subject: [PATCH v6 1/6] drm/dp_mst: Add PBN calculation for DSC modes
-Date: Mon, 26 Aug 2019 10:08:58 -0400
-Message-ID: <20190826140903.12580-2-David.Francis@amd.com>
-References: <20190826140903.12580-1-David.Francis@amd.com>
+Subject: [PATCH v7 1/6] drm/dp_mst: Add PBN calculation for DSC modes
+Date: Mon, 26 Aug 2019 11:17:23 -0400
+Message-ID: <20190826151728.19567-2-David.Francis@amd.com>
+References: <20190826151728.19567-1-David.Francis@amd.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190826140903.12580-1-David.Francis-5C7GfCeVMHo@public.gmane.org>
+In-Reply-To: <20190826151728.19567-1-David.Francis-5C7GfCeVMHo@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
  <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
