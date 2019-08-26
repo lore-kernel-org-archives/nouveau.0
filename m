@@ -1,135 +1,150 @@
-From: David Francis <David.Francis-5C7GfCeVMHo@public.gmane.org>
-Subject: [PATCH v7 1/6] drm/dp_mst: Add PBN calculation for DSC modes
-Date: Mon, 26 Aug 2019 11:17:23 -0400
-Message-ID: <20190826151728.19567-2-David.Francis@amd.com>
-References: <20190826151728.19567-1-David.Francis@amd.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110660] GeForce GT 750M Mac Edition fullscreen issues
+Date: Mon, 26 Aug 2019 16:25:48 +0000
+Message-ID: <bug-110660-8800-AjAVQCa2Ts@http.bugs.freedesktop.org/>
+References: <bug-110660-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190826151728.19567-1-David.Francis-5C7GfCeVMHo@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, David Francis <David.Francis-5C7GfCeVMHo@public.gmane.org>, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============1615101868=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-110660-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2l0aCBEU0MsIGJwcCBjYW4gYmUgZnJhY3Rpb25hbCBpbiBtdWx0aXBsZXMgb2YgMS8xNi4KCkNo
-YW5nZSBkcm1fZHBfY2FsY19wYm5fbW9kZSB0byByZWZsZWN0IHRoaXMsIGFkZGluZyBhIG5ldwpw
-YXJhbWV0ZXIgYm9vbCBkc2MuIFdoZW4gdGhpcyBwYXJhbWV0ZXIgaXMgdHJ1ZSwgdHJlYXQgdGhl
-CmJwcCBwYXJhbWV0ZXIgYXMgaGF2aW5nIHVuaXRzIG5vdCBvZiBiaXRzIHBlciBwaXhlbCwgYnV0
-CjEvMTYgb2YgYSBiaXQgcGVyIHBpeGVsCgp2MjogRG9uJ3QgYWRkIHNlcGFyYXRlIGZ1bmN0aW9u
-IGZvciB0aGlzCgpDYzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKQ2M6IG5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCkNjOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-ClJldmlld2VkLWJ5OiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29tPgpS
-ZXZpZXdlZC1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KU2lnbmVkLW9mZi1ieTog
-RGF2aWQgRnJhbmNpcyA8RGF2aWQuRnJhbmNpc0BhbWQuY29tPgotLS0KIC4uLi9hbWQvZGlzcGxh
-eS9hbWRncHVfZG0vYW1kZ3B1X2RtX2hlbHBlcnMuYyAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9k
-cm0vZHJtX2RwX21zdF90b3BvbG9neS5jICAgICAgICAgICAgfCAxNiArKysrKysrKysrKystLS0t
-CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jICAgICAgfCAgMiAr
-LQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jICAgICAgICAgIHwgIDIg
-Ky0KIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2RwX21zdC5jICAgICAgICAgICB8ICAy
-ICstCiBpbmNsdWRlL2RybS9kcm1fZHBfbXN0X2hlbHBlci5oICAgICAgICAgICAgICAgICAgfCAg
-MyArLS0KIDYgZmlsZXMgY2hhbmdlZCwgMTcgaW5zZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25zKC0p
-CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRn
-cHVfZG1faGVscGVycy5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9h
-bWRncHVfZG1faGVscGVycy5jCmluZGV4IGEwZWQwMTU0YTlmMC4uYWJhZmI1MjIxYjQ0IDEwMDY0
-NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbV9o
-ZWxwZXJzLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRn
-cHVfZG1faGVscGVycy5jCkBAIC0yMzUsNyArMjM1LDcgQEAgYm9vbCBkbV9oZWxwZXJzX2RwX21z
-dF93cml0ZV9wYXlsb2FkX2FsbG9jYXRpb25fdGFibGUoCiAKIAkJLyogVE9ETyBuZWVkIHRvIGtu
-b3cgbGluayByYXRlICovCiAKLQkJcGJuID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoY2xvY2ssIGJw
-cCk7CisJCXBibiA9IGRybV9kcF9jYWxjX3Bibl9tb2RlKGNsb2NrLCBicHAsIGZhbHNlKTsKIAog
-CQlzbG90cyA9IGRybV9kcF9maW5kX3ZjcGlfc2xvdHMobXN0X21nciwgcGJuKTsKIAkJcmV0ID0g
-ZHJtX2RwX21zdF9hbGxvY2F0ZV92Y3BpKG1zdF9tZ3IsIG1zdF9wb3J0LCBwYm4sIHNsb3RzKTsK
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMgYi9kcml2
-ZXJzL2dwdS9kcm0vZHJtX2RwX21zdF90b3BvbG9neS5jCmluZGV4IDgyYWRkNzM2ZTE3ZC4uM2U3
-Yjc1NTNjZjRkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2RwX21zdF90b3BvbG9n
-eS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMKQEAgLTM1MzQs
-MTAgKzM1MzQsMTEgQEAgRVhQT1JUX1NZTUJPTChkcm1fZHBfY2hlY2tfYWN0X3N0YXR1cyk7CiAg
-KiBkcm1fZHBfY2FsY19wYm5fbW9kZSgpIC0gQ2FsY3VsYXRlIHRoZSBQQk4gZm9yIGEgbW9kZS4K
-ICAqIEBjbG9jazogZG90IGNsb2NrIGZvciB0aGUgbW9kZQogICogQGJwcDogYnBwIGZvciB0aGUg
-bW9kZS4KKyAqIEBkc2M6IERTQyBtb2RlLiBJZiB0cnVlLCBicHAgaGFzIHVuaXRzIG9mIDEvMTYg
-b2YgYSBiaXQgcGVyIHBpeGVsCiAgKgogICogVGhpcyB1c2VzIHRoZSBmb3JtdWxhIGluIHRoZSBz
-cGVjIHRvIGNhbGN1bGF0ZSB0aGUgUEJOIHZhbHVlIGZvciBhIG1vZGUuCiAgKi8KLWludCBkcm1f
-ZHBfY2FsY19wYm5fbW9kZShpbnQgY2xvY2ssIGludCBicHApCitpbnQgZHJtX2RwX2NhbGNfcGJu
-X21vZGUoaW50IGNsb2NrLCBpbnQgYnBwLCBib29sIGRzYykKIHsKIAl1NjQga2JwczsKIAlzNjQg
-cGVha19rYnBzOwpAQCAtMzU1NSwxMSArMzU1NiwxOCBAQCBpbnQgZHJtX2RwX2NhbGNfcGJuX21v
-ZGUoaW50IGNsb2NrLCBpbnQgYnBwKQogCSAqIHBlYWtfa2JwcyAqPSAoMTAwNi8xMDAwKQogCSAq
-IHBlYWtfa2JwcyAqPSAoNjQvNTQpCiAJICogcGVha19rYnBzICo9IDggICAgY29udmVydCB0byBi
-eXRlcworCSAqCisJICogSWYgdGhlIGJwcCBpcyBpbiB1bml0cyBvZiAxLzE2LCBmdXJ0aGVyIGRp
-dmlkZSBieSAxNi4gUHV0IHRoaXMKKwkgKiBmYWN0b3IgaW4gdGhlIG51bWVyYXRvciByYXRoZXIg
-dGhhbiB0aGUgZGVub21pbmF0b3IgdG8gYXZvaWQKKwkgKiBpbnRlZ2VyIG92ZXJmbG93CiAJICov
-CiAKIAludW1lcmF0b3IgPSA2NCAqIDEwMDY7CiAJZGVub21pbmF0b3IgPSA1NCAqIDggKiAxMDAw
-ICogMTAwMDsKIAorCWlmIChkc2MpCisJCW51bWVyYXRvciAvPSAxNjsKKwogCWticHMgKj0gbnVt
-ZXJhdG9yOwogCXBlYWtfa2JwcyA9IGRybV9maXhwX2Zyb21fZnJhY3Rpb24oa2JwcywgZGVub21p
-bmF0b3IpOwogCkBAIC0zNTcwLDE5ICszNTc4LDE5IEBAIEVYUE9SVF9TWU1CT0woZHJtX2RwX2Nh
-bGNfcGJuX21vZGUpOwogc3RhdGljIGludCB0ZXN0X2NhbGNfcGJuX21vZGUodm9pZCkKIHsKIAlp
-bnQgcmV0OwotCXJldCA9IGRybV9kcF9jYWxjX3Bibl9tb2RlKDE1NDAwMCwgMzApOworCXJldCA9
-IGRybV9kcF9jYWxjX3Bibl9tb2RlKDE1NDAwMCwgMzAsIGZhbHNlKTsKIAlpZiAocmV0ICE9IDY4
-OSkgewogCQlEUk1fRVJST1IoIlBCTiBjYWxjdWxhdGlvbiB0ZXN0IGZhaWxlZCAtIGNsb2NrICVk
-LCBicHAgJWQsIGV4cGVjdGVkIFBCTiAlZCwgYWN0dWFsIFBCTiAlZC5cbiIsCiAJCQkJMTU0MDAw
-LCAzMCwgNjg5LCByZXQpOwogCQlyZXR1cm4gLUVJTlZBTDsKIAl9Ci0JcmV0ID0gZHJtX2RwX2Nh
-bGNfcGJuX21vZGUoMjM0MDAwLCAzMCk7CisJcmV0ID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoMjM0
-MDAwLCAzMCwgZmFsc2UpOwogCWlmIChyZXQgIT0gMTA0NykgewogCQlEUk1fRVJST1IoIlBCTiBj
-YWxjdWxhdGlvbiB0ZXN0IGZhaWxlZCAtIGNsb2NrICVkLCBicHAgJWQsIGV4cGVjdGVkIFBCTiAl
-ZCwgYWN0dWFsIFBCTiAlZC5cbiIsCiAJCQkJMjM0MDAwLCAzMCwgMTA0NywgcmV0KTsKIAkJcmV0
-dXJuIC1FSU5WQUw7CiAJfQotCXJldCA9IGRybV9kcF9jYWxjX3Bibl9tb2RlKDI5NzAwMCwgMjQp
-OworCXJldCA9IGRybV9kcF9jYWxjX3Bibl9tb2RlKDI5NzAwMCwgMjQsIGZhbHNlKTsKIAlpZiAo
-cmV0ICE9IDEwNjMpIHsKIAkJRFJNX0VSUk9SKCJQQk4gY2FsY3VsYXRpb24gdGVzdCBmYWlsZWQg
-LSBjbG9jayAlZCwgYnBwICVkLCBleHBlY3RlZCBQQk4gJWQsIGFjdHVhbCBQQk4gJWQuXG4iLAog
-CQkJCTI5NzAwMCwgMjQsIDEwNjMsIHJldCk7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kcF9tc3QuYwppbmRleCAyYzVhYzNkZDY0N2YuLjRmMTdmNjFmNDQ1MyAxMDA2NDQK
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYworKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jCkBAIC02MSw3ICs2MSw3
-IEBAIHN0YXRpYyBpbnQgaW50ZWxfZHBfbXN0X2NvbXB1dGVfbGlua19jb25maWcoc3RydWN0IGlu
-dGVsX2VuY29kZXIgKmVuY29kZXIsCiAJCWNydGNfc3RhdGUtPnBpcGVfYnBwID0gYnBwOwogCiAJ
-CWNydGNfc3RhdGUtPnBibiA9IGRybV9kcF9jYWxjX3Bibl9tb2RlKGFkanVzdGVkX21vZGUtPmNy
-dGNfY2xvY2ssCi0JCQkJCQkgICAgICAgY3J0Y19zdGF0ZS0+cGlwZV9icHApOworCQkJCQkJICAg
-ICAgIGNydGNfc3RhdGUtPnBpcGVfYnBwLCBmYWxzZSk7CiAKIAkJc2xvdHMgPSBkcm1fZHBfYXRv
-bWljX2ZpbmRfdmNwaV9zbG90cyhzdGF0ZSwgJmludGVsX2RwLT5tc3RfbWdyLAogCQkJCQkJICAg
-ICAgcG9ydCwgY3J0Y19zdGF0ZS0+cGJuKTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUw
-L2Rpc3AuYwppbmRleCA1YzM2Yzc1MjMyZTYuLmM2ODc4M2MxZjNmYSAxMDA2NDQKLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuYwpAQCAtNzgyLDcgKzc4Miw3IEBAIG52NTBfbXN0b19h
-dG9taWNfY2hlY2soc3RydWN0IGRybV9lbmNvZGVyICplbmNvZGVyLAogCQkJY29uc3QgaW50IGJw
-cCA9IGNvbm5lY3Rvci0+ZGlzcGxheV9pbmZvLmJwYyAqIDM7CiAJCQljb25zdCBpbnQgY2xvY2sg
-PSBjcnRjX3N0YXRlLT5hZGp1c3RlZF9tb2RlLmNsb2NrOwogCi0JCQlhc3loLT5kcC5wYm4gPSBk
-cm1fZHBfY2FsY19wYm5fbW9kZShjbG9jaywgYnBwKTsKKwkJCWFzeWgtPmRwLnBibiA9IGRybV9k
-cF9jYWxjX3Bibl9tb2RlKGNsb2NrLCBicHAsIGZhbHNlKTsKIAkJfQogCiAJCXNsb3RzID0gZHJt
-X2RwX2F0b21pY19maW5kX3ZjcGlfc2xvdHMoc3RhdGUsICZtc3RtLT5tZ3IsCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9kcF9tc3QuYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9yYWRlb24vcmFkZW9uX2RwX21zdC5jCmluZGV4IDI5OTRmMDdmYmFkOS4uYzk5N2Y4ODIxOGYy
-IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9kcF9tc3QuYworKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9kcF9tc3QuYwpAQCAtNTE0LDcgKzUxNCw3
-IEBAIHN0YXRpYyBib29sIHJhZGVvbl9tc3RfbW9kZV9maXh1cChzdHJ1Y3QgZHJtX2VuY29kZXIg
-KmVuY29kZXIsCiAKIAltc3RfZW5jID0gcmFkZW9uX2VuY29kZXItPmVuY19wcml2OwogCi0JbXN0
-X2VuYy0+cGJuID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoYWRqdXN0ZWRfbW9kZS0+Y2xvY2ssIGJw
-cCk7CisJbXN0X2VuYy0+cGJuID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoYWRqdXN0ZWRfbW9kZS0+
-Y2xvY2ssIGJwcCwgZmFsc2UpOwogCiAJbXN0X2VuYy0+cHJpbWFyeS0+YWN0aXZlX2RldmljZSA9
-IG1zdF9lbmMtPnByaW1hcnktPmRldmljZXMgJiBtc3RfZW5jLT5jb25uZWN0b3ItPmRldmljZXM7
-CiAJRFJNX0RFQlVHX0tNUygic2V0dGluZyBhY3RpdmUgZGV2aWNlIHRvICUwOHggZnJvbSAlMDh4
-ICUwOHggZm9yIGVuY29kZXIgJWRcbiIsCmRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9kcm1fZHBf
-bXN0X2hlbHBlci5oIGIvaW5jbHVkZS9kcm0vZHJtX2RwX21zdF9oZWxwZXIuaAppbmRleCAyYmE2
-MjUzZWE2ZDMuLjkxMTZiMmM5NTIzOSAxMDA2NDQKLS0tIGEvaW5jbHVkZS9kcm0vZHJtX2RwX21z
-dF9oZWxwZXIuaAorKysgYi9pbmNsdWRlL2RybS9kcm1fZHBfbXN0X2hlbHBlci5oCkBAIC02MTAs
-OCArNjEwLDcgQEAgYm9vbCBkcm1fZHBfbXN0X3BvcnRfaGFzX2F1ZGlvKHN0cnVjdCBkcm1fZHBf
-bXN0X3RvcG9sb2d5X21nciAqbWdyLAogc3RydWN0IGVkaWQgKmRybV9kcF9tc3RfZ2V0X2VkaWQo
-c3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3Rvciwgc3RydWN0IGRybV9kcF9tc3RfdG9wb2xv
-Z3lfbWdyICptZ3IsIHN0cnVjdCBkcm1fZHBfbXN0X3BvcnQgKnBvcnQpOwogCiAKLWludCBkcm1f
-ZHBfY2FsY19wYm5fbW9kZShpbnQgY2xvY2ssIGludCBicHApOwotCitpbnQgZHJtX2RwX2NhbGNf
-cGJuX21vZGUoaW50IGNsb2NrLCBpbnQgYnBwLCBib29sIGRzYyk7CiAKIGJvb2wgZHJtX2RwX21z
-dF9hbGxvY2F0ZV92Y3BpKHN0cnVjdCBkcm1fZHBfbXN0X3RvcG9sb2d5X21nciAqbWdyLAogCQkJ
-ICAgICAgc3RydWN0IGRybV9kcF9tc3RfcG9ydCAqcG9ydCwgaW50IHBibiwgaW50IHNsb3RzKTsK
-LS0gCjIuMTcuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9hbWQtZ2Z4
+
+--===============1615101868==
+Content-Type: multipart/alternative; boundary="15668367470.9A2Ce.14347"
+Content-Transfer-Encoding: 7bit
+
+
+--15668367470.9A2Ce.14347
+Date: Mon, 26 Aug 2019 16:25:47 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110660
+
+--- Comment #42 from Alexey Kuznetsov <ak-b7SOpcJQXxU@public.gmane.org> ---
+@Ilia Mirkin this "blank screen" still happens time to time. Some time it is
+not just black screen, but previous screen buffer from another app (can be
+Login screen, or game). And now I found how to reanimate X11 and allow to s=
+ee
+desktop, just run "killall -3 gnome-shell" from Alt+F3 console. Seems like
+gnome shell some how interfering with mode switching and crashing. It may g=
+ive
+you a better understanding what is going on, since you know what is under h=
+ood.
+
+Just a little reminder, "blank screen" appears after I start and exit game,=
+ I
+have mouse cursor which react for underlying windows (change cursor to edit
+text or resize window) but I can't click anything, and most of the time I s=
+ee
+just blank screen. Using ubuntu 19.10 when "black screen" occures I can swi=
+tch
+to login screen, type my password (X11 works on login screen!) and get back=
+ to
+current running account under "black screen" strike, this time screen appea=
+rs
+as login screen, mouse cursor still reacts to my original windows (so nothi=
+ng
+killed, music playing, and windows alive) but I can't click anyting as usua=
+l.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15668367470.9A2Ce.14347
+Date: Mon, 26 Aug 2019 16:25:47 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660#c42">Comme=
+nt # 42</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - GeForce GT 750M Mac Edition fullscreen issues"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110660">bug 11066=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+ak&#64;axet.ru" title=3D"Alexey Kuznetsov &lt;ak&#64;axet.ru&gt;"> <span cl=
+ass=3D"fn">Alexey Kuznetsov</span></a>
+</span></b>
+        <pre>&#64;Ilia Mirkin this &quot;blank screen&quot; still happens t=
+ime to time. Some time it is
+not just black screen, but previous screen buffer from another app (can be
+Login screen, or game). And now I found how to reanimate X11 and allow to s=
+ee
+desktop, just run &quot;killall -3 gnome-shell&quot; from Alt+F3 console. S=
+eems like
+gnome shell some how interfering with mode switching and crashing. It may g=
+ive
+you a better understanding what is going on, since you know what is under h=
+ood.
+
+Just a little reminder, &quot;blank screen&quot; appears after I start and =
+exit game, I
+have mouse cursor which react for underlying windows (change cursor to edit
+text or resize window) but I can't click anything, and most of the time I s=
+ee
+just blank screen. Using ubuntu 19.10 when &quot;black screen&quot; occures=
+ I can switch
+to login screen, type my password (X11 works on login screen!) and get back=
+ to
+current running account under &quot;black screen&quot; strike, this time sc=
+reen appears
+as login screen, mouse cursor still reacts to my original windows (so nothi=
+ng
+killed, music playing, and windows alive) but I can't click anyting as usua=
+l.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15668367470.9A2Ce.14347--
+
+--===============1615101868==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1615101868==--
