@@ -1,105 +1,36 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111503] [NVAA] Impossible to adjust brightness
-Date: Tue, 27 Aug 2019 18:02:51 +0000
-Message-ID: <bug-111503-8800-tyIb6ckS4G@http.bugs.freedesktop.org/>
-References: <bug-111503-8800@http.bugs.freedesktop.org/>
+From: Jason Gunthorpe <jgg@ziepe.ca>
+Subject: Re: [PATCH 2/2] mm/hmm: hmm_range_fault() infinite loop
+Date: Tue, 27 Aug 2019 15:41:57 -0300
+Message-ID: <20190827184157.GA24929@ziepe.ca>
+References: <20190823221753.2514-1-rcampbell@nvidia.com>
+ <20190823221753.2514-3-rcampbell@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2126726495=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111503-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20190823221753.2514-3-rcampbell@nvidia.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Ralph Campbell <rcampbell@nvidia.com>
+Cc: linux-mm@kvack.org, linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, =?utf-8?B?SsOpcsO0bWU=?= Glisse <jglisse@redhat.com>, Andrew Morton <akpm@linux-foundation.org>, Christoph Hellwig <hch@lst.de>
 List-Id: nouveau.vger.kernel.org
 
+On Fri, Aug 23, 2019 at 03:17:53PM -0700, Ralph Campbell wrote:
 
---===============2126726495==
-Content-Type: multipart/alternative; boundary="15669289710.ceB00A.26996"
-Content-Transfer-Encoding: 7bit
+> Signed-off-by: Ralph Campbell <rcampbell@nvidia.com>
+>  mm/hmm.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/mm/hmm.c b/mm/hmm.c
+> index 29371485fe94..4882b83aeccb 100644
+> +++ b/mm/hmm.c
+> @@ -292,6 +292,9 @@ static int hmm_vma_walk_hole_(unsigned long addr, unsigned long end,
+>  	hmm_vma_walk->last = addr;
+>  	i = (addr - range->start) >> PAGE_SHIFT;
+>  
+> +	if (write_fault && walk->vma && !(walk->vma->vm_flags & VM_WRITE))
+> +		return -EPERM;
 
+Can walk->vma be NULL here? hmm_vma_do_fault() touches it
+unconditionally.
 
---15669289710.ceB00A.26996
-Date: Tue, 27 Aug 2019 18:02:51 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111503
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you manually echo values into both and see which, if any, works? (There
-should be a pretty obvious file in there, like "brightness", or something..=
-.)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15669289710.ceB00A.26996
-Date: Tue, 27 Aug 2019 18:02:51 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVAA] Impossible to adjust brightness"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111503#c3">Commen=
-t # 3</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVAA] Impossible to adjust brightness"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111503">bug 11150=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Can you manually echo values into both and see which, if any, =
-works? (There
-should be a pretty obvious file in there, like &quot;brightness&quot;, or s=
-omething...)</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15669289710.ceB00A.26996--
-
---===============2126726495==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============2126726495==--
+Jason
