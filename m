@@ -1,136 +1,195 @@
-From: David Francis <David.Francis@amd.com>
-Subject: [PATCH v9 1/6] drm/dp_mst: Add PBN calculation for DSC modes
-Date: Tue, 27 Aug 2019 10:13:24 -0400
-Message-ID: <20190827141329.30767-2-David.Francis@amd.com>
-References: <20190827141329.30767-1-David.Francis@amd.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111503] New: [NVAA] Impossible to adjust brightness
+Date: Tue, 27 Aug 2019 17:17:02 +0000
+Message-ID: <bug-111503-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20190827141329.30767-1-David.Francis@amd.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org, David Francis <David.Francis@amd.com>, intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0349855597=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2l0aCBEU0MsIGJwcCBjYW4gYmUgZnJhY3Rpb25hbCBpbiBtdWx0aXBsZXMgb2YgMS8xNi4KCkNo
-YW5nZSBkcm1fZHBfY2FsY19wYm5fbW9kZSB0byByZWZsZWN0IHRoaXMsIGFkZGluZyBhIG5ldwpw
-YXJhbWV0ZXIgYm9vbCBkc2MuIFdoZW4gdGhpcyBwYXJhbWV0ZXIgaXMgdHJ1ZSwgdHJlYXQgdGhl
-CmJwcCBwYXJhbWV0ZXIgYXMgaGF2aW5nIHVuaXRzIG5vdCBvZiBiaXRzIHBlciBwaXhlbCwgYnV0
-CjEvMTYgb2YgYSBiaXQgcGVyIHBpeGVsCgp2MjogRG9uJ3QgYWRkIHNlcGFyYXRlIGZ1bmN0aW9u
-IGZvciB0aGlzCgpDYzogYW1kLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKQ2M6IG5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCkNjOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-ClJldmlld2VkLWJ5OiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29tPgpS
-ZXZpZXdlZC1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KUmV2aWV3ZWQtYnk6IEhh
-cnJ5IFdlbnRsYW5kIDxoYXJyeS53ZW50bGFuZEBhbWQuY29tPgpTaWduZWQtb2ZmLWJ5OiBEYXZp
-ZCBGcmFuY2lzIDxEYXZpZC5GcmFuY2lzQGFtZC5jb20+Ci0tLQogLi4uL2FtZC9kaXNwbGF5L2Ft
-ZGdwdV9kbS9hbWRncHVfZG1faGVscGVycy5jICAgIHwgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9k
-cm1fZHBfbXN0X3RvcG9sb2d5LmMgICAgICAgICAgICB8IDE2ICsrKysrKysrKysrKy0tLS0KIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMgICAgICB8ICAyICstCiBk
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMgICAgICAgICAgfCAgMiArLQog
-ZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZHBfbXN0LmMgICAgICAgICAgIHwgIDIgKy0K
-IGluY2x1ZGUvZHJtL2RybV9kcF9tc3RfaGVscGVyLmggICAgICAgICAgICAgICAgICB8ICAzICst
-LQogNiBmaWxlcyBjaGFuZ2VkLCAxNyBpbnNlcnRpb25zKCspLCAxMCBkZWxldGlvbnMoLSkKCmRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9k
-bV9oZWxwZXJzLmMgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdw
-dV9kbV9oZWxwZXJzLmMKaW5kZXggYTBlZDAxNTRhOWYwLi5hYmFmYjUyMjFiNDQgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtX2hlbHBl
-cnMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9k
-bV9oZWxwZXJzLmMKQEAgLTIzNSw3ICsyMzUsNyBAQCBib29sIGRtX2hlbHBlcnNfZHBfbXN0X3dy
-aXRlX3BheWxvYWRfYWxsb2NhdGlvbl90YWJsZSgKIAogCQkvKiBUT0RPIG5lZWQgdG8ga25vdyBs
-aW5rIHJhdGUgKi8KIAotCQlwYm4gPSBkcm1fZHBfY2FsY19wYm5fbW9kZShjbG9jaywgYnBwKTsK
-KwkJcGJuID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoY2xvY2ssIGJwcCwgZmFsc2UpOwogCiAJCXNs
-b3RzID0gZHJtX2RwX2ZpbmRfdmNwaV9zbG90cyhtc3RfbWdyLCBwYm4pOwogCQlyZXQgPSBkcm1f
-ZHBfbXN0X2FsbG9jYXRlX3ZjcGkobXN0X21nciwgbXN0X3BvcnQsIHBibiwgc2xvdHMpOwpkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9kcF9tc3RfdG9wb2xvZ3kuYyBiL2RyaXZlcnMv
-Z3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMKaW5kZXggODJhZGQ3MzZlMTdkLi4zZTdiNzU1
-M2NmNGQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMK
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9kcF9tc3RfdG9wb2xvZ3kuYwpAQCAtMzUzNCwxMCAr
-MzUzNCwxMSBAQCBFWFBPUlRfU1lNQk9MKGRybV9kcF9jaGVja19hY3Rfc3RhdHVzKTsKICAqIGRy
-bV9kcF9jYWxjX3Bibl9tb2RlKCkgLSBDYWxjdWxhdGUgdGhlIFBCTiBmb3IgYSBtb2RlLgogICog
-QGNsb2NrOiBkb3QgY2xvY2sgZm9yIHRoZSBtb2RlCiAgKiBAYnBwOiBicHAgZm9yIHRoZSBtb2Rl
-LgorICogQGRzYzogRFNDIG1vZGUuIElmIHRydWUsIGJwcCBoYXMgdW5pdHMgb2YgMS8xNiBvZiBh
-IGJpdCBwZXIgcGl4ZWwKICAqCiAgKiBUaGlzIHVzZXMgdGhlIGZvcm11bGEgaW4gdGhlIHNwZWMg
-dG8gY2FsY3VsYXRlIHRoZSBQQk4gdmFsdWUgZm9yIGEgbW9kZS4KICAqLwotaW50IGRybV9kcF9j
-YWxjX3Bibl9tb2RlKGludCBjbG9jaywgaW50IGJwcCkKK2ludCBkcm1fZHBfY2FsY19wYm5fbW9k
-ZShpbnQgY2xvY2ssIGludCBicHAsIGJvb2wgZHNjKQogewogCXU2NCBrYnBzOwogCXM2NCBwZWFr
-X2ticHM7CkBAIC0zNTU1LDExICszNTU2LDE4IEBAIGludCBkcm1fZHBfY2FsY19wYm5fbW9kZShp
-bnQgY2xvY2ssIGludCBicHApCiAJICogcGVha19rYnBzICo9ICgxMDA2LzEwMDApCiAJICogcGVh
-a19rYnBzICo9ICg2NC81NCkKIAkgKiBwZWFrX2ticHMgKj0gOCAgICBjb252ZXJ0IHRvIGJ5dGVz
-CisJICoKKwkgKiBJZiB0aGUgYnBwIGlzIGluIHVuaXRzIG9mIDEvMTYsIGZ1cnRoZXIgZGl2aWRl
-IGJ5IDE2LiBQdXQgdGhpcworCSAqIGZhY3RvciBpbiB0aGUgbnVtZXJhdG9yIHJhdGhlciB0aGFu
-IHRoZSBkZW5vbWluYXRvciB0byBhdm9pZAorCSAqIGludGVnZXIgb3ZlcmZsb3cKIAkgKi8KIAog
-CW51bWVyYXRvciA9IDY0ICogMTAwNjsKIAlkZW5vbWluYXRvciA9IDU0ICogOCAqIDEwMDAgKiAx
-MDAwOwogCisJaWYgKGRzYykKKwkJbnVtZXJhdG9yIC89IDE2OworCiAJa2JwcyAqPSBudW1lcmF0
-b3I7CiAJcGVha19rYnBzID0gZHJtX2ZpeHBfZnJvbV9mcmFjdGlvbihrYnBzLCBkZW5vbWluYXRv
-cik7CiAKQEAgLTM1NzAsMTkgKzM1NzgsMTkgQEAgRVhQT1JUX1NZTUJPTChkcm1fZHBfY2FsY19w
-Ym5fbW9kZSk7CiBzdGF0aWMgaW50IHRlc3RfY2FsY19wYm5fbW9kZSh2b2lkKQogewogCWludCBy
-ZXQ7Ci0JcmV0ID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoMTU0MDAwLCAzMCk7CisJcmV0ID0gZHJt
-X2RwX2NhbGNfcGJuX21vZGUoMTU0MDAwLCAzMCwgZmFsc2UpOwogCWlmIChyZXQgIT0gNjg5KSB7
-CiAJCURSTV9FUlJPUigiUEJOIGNhbGN1bGF0aW9uIHRlc3QgZmFpbGVkIC0gY2xvY2sgJWQsIGJw
-cCAlZCwgZXhwZWN0ZWQgUEJOICVkLCBhY3R1YWwgUEJOICVkLlxuIiwKIAkJCQkxNTQwMDAsIDMw
-LCA2ODksIHJldCk7CiAJCXJldHVybiAtRUlOVkFMOwogCX0KLQlyZXQgPSBkcm1fZHBfY2FsY19w
-Ym5fbW9kZSgyMzQwMDAsIDMwKTsKKwlyZXQgPSBkcm1fZHBfY2FsY19wYm5fbW9kZSgyMzQwMDAs
-IDMwLCBmYWxzZSk7CiAJaWYgKHJldCAhPSAxMDQ3KSB7CiAJCURSTV9FUlJPUigiUEJOIGNhbGN1
-bGF0aW9uIHRlc3QgZmFpbGVkIC0gY2xvY2sgJWQsIGJwcCAlZCwgZXhwZWN0ZWQgUEJOICVkLCBh
-Y3R1YWwgUEJOICVkLlxuIiwKIAkJCQkyMzQwMDAsIDMwLCAxMDQ3LCByZXQpOwogCQlyZXR1cm4g
-LUVJTlZBTDsKIAl9Ci0JcmV0ID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoMjk3MDAwLCAyNCk7CisJ
-cmV0ID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoMjk3MDAwLCAyNCwgZmFsc2UpOwogCWlmIChyZXQg
-IT0gMTA2MykgewogCQlEUk1fRVJST1IoIlBCTiBjYWxjdWxhdGlvbiB0ZXN0IGZhaWxlZCAtIGNs
-b2NrICVkLCBicHAgJWQsIGV4cGVjdGVkIFBCTiAlZCwgYWN0dWFsIFBCTiAlZC5cbiIsCiAJCQkJ
-Mjk3MDAwLCAyNCwgMTA2MywgcmV0KTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RwX21zdC5jCmluZGV4IDJjNWFjM2RkNjQ3Zi4uNGYxN2Y2MWY0NDUzIDEwMDY0NAotLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jCisrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMKQEAgLTYxLDcgKzYxLDcgQEAg
-c3RhdGljIGludCBpbnRlbF9kcF9tc3RfY29tcHV0ZV9saW5rX2NvbmZpZyhzdHJ1Y3QgaW50ZWxf
-ZW5jb2RlciAqZW5jb2RlciwKIAkJY3J0Y19zdGF0ZS0+cGlwZV9icHAgPSBicHA7CiAKIAkJY3J0
-Y19zdGF0ZS0+cGJuID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoYWRqdXN0ZWRfbW9kZS0+Y3J0Y19j
-bG9jaywKLQkJCQkJCSAgICAgICBjcnRjX3N0YXRlLT5waXBlX2JwcCk7CisJCQkJCQkgICAgICAg
-Y3J0Y19zdGF0ZS0+cGlwZV9icHAsIGZhbHNlKTsKIAogCQlzbG90cyA9IGRybV9kcF9hdG9taWNf
-ZmluZF92Y3BpX3Nsb3RzKHN0YXRlLCAmaW50ZWxfZHAtPm1zdF9tZ3IsCiAJCQkJCQkgICAgICBw
-b3J0LCBjcnRjX3N0YXRlLT5wYm4pOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvZGlzcG52NTAvZGlzcC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlz
-cC5jCmluZGV4IDVjMzZjNzUyMzJlNi4uYzY4NzgzYzFmM2ZhIDEwMDY0NAotLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvZGlzcG52NTAvZGlzcC5jCkBAIC03ODIsNyArNzgyLDcgQEAgbnY1MF9tc3RvX2F0b21p
-Y19jaGVjayhzdHJ1Y3QgZHJtX2VuY29kZXIgKmVuY29kZXIsCiAJCQljb25zdCBpbnQgYnBwID0g
-Y29ubmVjdG9yLT5kaXNwbGF5X2luZm8uYnBjICogMzsKIAkJCWNvbnN0IGludCBjbG9jayA9IGNy
-dGNfc3RhdGUtPmFkanVzdGVkX21vZGUuY2xvY2s7CiAKLQkJCWFzeWgtPmRwLnBibiA9IGRybV9k
-cF9jYWxjX3Bibl9tb2RlKGNsb2NrLCBicHApOworCQkJYXN5aC0+ZHAucGJuID0gZHJtX2RwX2Nh
-bGNfcGJuX21vZGUoY2xvY2ssIGJwcCwgZmFsc2UpOwogCQl9CiAKIAkJc2xvdHMgPSBkcm1fZHBf
-YXRvbWljX2ZpbmRfdmNwaV9zbG90cyhzdGF0ZSwgJm1zdG0tPm1nciwKZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2RwX21zdC5jIGIvZHJpdmVycy9ncHUvZHJtL3Jh
-ZGVvbi9yYWRlb25fZHBfbXN0LmMKaW5kZXggMjk5NGYwN2ZiYWQ5Li5jOTk3Zjg4MjE4ZjIgMTAw
-NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2RwX21zdC5jCisrKyBiL2Ry
-aXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2RwX21zdC5jCkBAIC01MTQsNyArNTE0LDcgQEAg
-c3RhdGljIGJvb2wgcmFkZW9uX21zdF9tb2RlX2ZpeHVwKHN0cnVjdCBkcm1fZW5jb2RlciAqZW5j
-b2RlciwKIAogCW1zdF9lbmMgPSByYWRlb25fZW5jb2Rlci0+ZW5jX3ByaXY7CiAKLQltc3RfZW5j
-LT5wYm4gPSBkcm1fZHBfY2FsY19wYm5fbW9kZShhZGp1c3RlZF9tb2RlLT5jbG9jaywgYnBwKTsK
-Kwltc3RfZW5jLT5wYm4gPSBkcm1fZHBfY2FsY19wYm5fbW9kZShhZGp1c3RlZF9tb2RlLT5jbG9j
-aywgYnBwLCBmYWxzZSk7CiAKIAltc3RfZW5jLT5wcmltYXJ5LT5hY3RpdmVfZGV2aWNlID0gbXN0
-X2VuYy0+cHJpbWFyeS0+ZGV2aWNlcyAmIG1zdF9lbmMtPmNvbm5lY3Rvci0+ZGV2aWNlczsKIAlE
-Uk1fREVCVUdfS01TKCJzZXR0aW5nIGFjdGl2ZSBkZXZpY2UgdG8gJTA4eCBmcm9tICUwOHggJTA4
-eCBmb3IgZW5jb2RlciAlZFxuIiwKZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2RybV9kcF9tc3Rf
-aGVscGVyLmggYi9pbmNsdWRlL2RybS9kcm1fZHBfbXN0X2hlbHBlci5oCmluZGV4IDJiYTYyNTNl
-YTZkMy4uOTExNmIyYzk1MjM5IDEwMDY0NAotLS0gYS9pbmNsdWRlL2RybS9kcm1fZHBfbXN0X2hl
-bHBlci5oCisrKyBiL2luY2x1ZGUvZHJtL2RybV9kcF9tc3RfaGVscGVyLmgKQEAgLTYxMCw4ICs2
-MTAsNyBAQCBib29sIGRybV9kcF9tc3RfcG9ydF9oYXNfYXVkaW8oc3RydWN0IGRybV9kcF9tc3Rf
-dG9wb2xvZ3lfbWdyICptZ3IsCiBzdHJ1Y3QgZWRpZCAqZHJtX2RwX21zdF9nZXRfZWRpZChzdHJ1
-Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLCBzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9neV9t
-Z3IgKm1nciwgc3RydWN0IGRybV9kcF9tc3RfcG9ydCAqcG9ydCk7CiAKIAotaW50IGRybV9kcF9j
-YWxjX3Bibl9tb2RlKGludCBjbG9jaywgaW50IGJwcCk7Ci0KK2ludCBkcm1fZHBfY2FsY19wYm5f
-bW9kZShpbnQgY2xvY2ssIGludCBicHAsIGJvb2wgZHNjKTsKIAogYm9vbCBkcm1fZHBfbXN0X2Fs
-bG9jYXRlX3ZjcGkoc3RydWN0IGRybV9kcF9tc3RfdG9wb2xvZ3lfbWdyICptZ3IsCiAJCQkgICAg
-ICBzdHJ1Y3QgZHJtX2RwX21zdF9wb3J0ICpwb3J0LCBpbnQgcGJuLCBpbnQgc2xvdHMpOwotLSAK
-Mi4xNy4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpk
-cmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWw=
+
+--===============0349855597==
+Content-Type: multipart/alternative; boundary="15669262232.2BCe5.19681"
+Content-Transfer-Encoding: 7bit
+
+
+--15669262232.2BCe5.19681
+Date: Tue, 27 Aug 2019 17:17:03 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111503
+
+            Bug ID: 111503
+           Summary: [NVAA] Impossible to adjust brightness
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: minor
+          Priority: not set
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: giallorosso84-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 145179
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145179&action=3Dedit
+Attached my kernel log
+
+In a laptop with Amd processor (Turion 64x2) and nvidia GeForce 8200M G
+graphics [NVAA] i can't adjust the screen brightness with the fn keys. The
+driver currently in use is xorg-nouveau 1.0.16. The kernel currently in use=
+ is
+5.2.9
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15669262232.2BCe5.19681
+Date: Tue, 27 Aug 2019 17:17:03 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVAA] Impossible to adjust brightness"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111503">111503</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NVAA] Impossible to adjust brightness
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>minor
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>not set
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>giallorosso84&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145179=
+" name=3D"attach_145179" title=3D"Attached my kernel log">attachment 145179=
+</a> <a href=3D"attachment.cgi?id=3D145179&amp;action=3Dedit" title=3D"Atta=
+ched my kernel log">[details]</a></span>
+Attached my kernel log
+
+In a laptop with Amd processor (Turion 64x2) and nvidia GeForce 8200M G
+graphics [NVAA] i can't adjust the screen brightness with the fn keys. The
+driver currently in use is xorg-nouveau 1.0.16. The kernel currently in use=
+ is
+5.2.9</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15669262232.2BCe5.19681--
+
+--===============0349855597==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0349855597==--
