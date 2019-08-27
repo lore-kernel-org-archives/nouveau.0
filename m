@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111503] [NVAA] Impossible to adjust brightness
-Date: Tue, 27 Aug 2019 17:39:19 +0000
-Message-ID: <bug-111503-8800-aiVyZhk7fi@http.bugs.freedesktop.org/>
+Date: Tue, 27 Aug 2019 18:02:51 +0000
+Message-ID: <bug-111503-8800-tyIb6ckS4G@http.bugs.freedesktop.org/>
 References: <bug-111503-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0734481196=="
+Content-Type: multipart/mixed; boundary="===============2126726495=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111503-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0734481196==
-Content-Type: multipart/alternative; boundary="15669275590.5ab3.23562"
+--===============2126726495==
+Content-Type: multipart/alternative; boundary="15669289710.ceB00A.26996"
 Content-Transfer-Encoding: 7bit
 
 
---15669275590.5ab3.23562
-Date: Tue, 27 Aug 2019 17:39:19 +0000
+--15669289710.ceB00A.26996
+Date: Tue, 27 Aug 2019 18:02:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111503
 
---- Comment #2 from Claudio Pantaleo <giallorosso84-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-On /sys/class/backlight there are two backlights, acpi_video0 and nv_backli=
-ght.
-My distro in use is Solus, but the brightness never worked with any distro.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can you manually echo values into both and see which, if any, works? (There
+should be a pretty obvious file in there, like "brightness", or something..=
+.)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15669275590.5ab3.23562
-Date: Tue, 27 Aug 2019 17:39:19 +0000
+--15669289710.ceB00A.26996
+Date: Tue, 27 Aug 2019 18:02:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,21 +62,21 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVAA] Impossible to adjust brightness"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111503#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111503#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVAA] Impossible to adjust brightness"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111503">bug 11150=
 3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-giallorosso84&#64;gmail.com" title=3D"Claudio Pantaleo &lt;giallorosso84&#6=
-4;gmail.com&gt;"> <span class=3D"fn">Claudio Pantaleo</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>On /sys/class/backlight there are two backlights, acpi_video0 =
-and nv_backlight.
-My distro in use is Solus, but the brightness never worked with any distro.=
-</pre>
+        <pre>Can you manually echo values into both and see which, if any, =
+works? (There
+should be a pretty obvious file in there, like &quot;brightness&quot;, or s=
+omething...)</pre>
         </div>
       </p>
 
@@ -90,9 +90,9 @@ My distro in use is Solus, but the brightness never worked with any distro.=
     </body>
 </html>=
 
---15669275590.5ab3.23562--
+--15669289710.ceB00A.26996--
 
---===============0734481196==
+--===============2126726495==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0734481196==--
+--===============2126726495==--
