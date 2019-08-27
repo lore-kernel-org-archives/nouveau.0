@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111503] [NVAA] Impossible to adjust brightness
-Date: Tue, 27 Aug 2019 17:23:36 +0000
-Message-ID: <bug-111503-8800-XF9RQn4xCP@http.bugs.freedesktop.org/>
+Date: Tue, 27 Aug 2019 17:39:19 +0000
+Message-ID: <bug-111503-8800-aiVyZhk7fi@http.bugs.freedesktop.org/>
 References: <bug-111503-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0255831000=="
+Content-Type: multipart/mixed; boundary="===============0734481196=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111503-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0255831000==
-Content-Type: multipart/alternative; boundary="15669266150.2FcD.20206"
+--===============0734481196==
+Content-Type: multipart/alternative; boundary="15669275590.5ab3.23562"
 Content-Transfer-Encoding: 7bit
 
 
---15669266150.2FcD.20206
-Date: Tue, 27 Aug 2019 17:23:35 +0000
+--15669275590.5ab3.23562
+Date: Tue, 27 Aug 2019 17:39:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,15 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111503
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Which backlights do you have available? (ls /sys/class/backlight)
+--- Comment #2 from Claudio Pantaleo <giallorosso84-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+On /sys/class/backlight there are two backlights, acpi_video0 and nv_backli=
+ght.
+My distro in use is Solus, but the brightness never worked with any distro.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15669266150.2FcD.20206
-Date: Tue, 27 Aug 2019 17:23:35 +0000
+--15669275590.5ab3.23562
+Date: Tue, 27 Aug 2019 17:39:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,19 +62,21 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVAA] Impossible to adjust brightness"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111503#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111503#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVAA] Impossible to adjust brightness"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111503">bug 11150=
 3</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+giallorosso84&#64;gmail.com" title=3D"Claudio Pantaleo &lt;giallorosso84&#6=
+4;gmail.com&gt;"> <span class=3D"fn">Claudio Pantaleo</span></a>
 </span></b>
-        <pre>Which backlights do you have available? (ls /sys/class/backlig=
-ht)</pre>
+        <pre>On /sys/class/backlight there are two backlights, acpi_video0 =
+and nv_backlight.
+My distro in use is Solus, but the brightness never worked with any distro.=
+</pre>
         </div>
       </p>
 
@@ -86,9 +90,9 @@ ht)</pre>
     </body>
 </html>=
 
---15669266150.2FcD.20206--
+--15669275590.5ab3.23562--
 
---===============0255831000==
+--===============0734481196==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0255831000==--
+--===============0734481196==--
