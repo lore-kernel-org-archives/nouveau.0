@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103217] Recent noveau causes errors with scilab
- 5.5.2 on NVIDIA G84GL [Quadro FX 570]
-Date: Fri, 30 Aug 2019 09:35:01 +0000
-Message-ID: <bug-103217-8800-xNtof8bi9Y@http.bugs.freedesktop.org/>
-References: <bug-103217-8800@http.bugs.freedesktop.org/>
+From: Turritopsis Dohrnii Teo En Ming <tdteoenming-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Singaporean Mr. Teo En Ming's Refugee Seeking Attempts,
+ In Search of a Substantially Better Life
+Date: Sat, 31 Aug 2019 08:24:40 +0800
+Message-ID: <CANnei0F_yU4DoSK9C40_zt7-Uav90RT=g2RkQweffercGe4QKw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0753659481=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103217-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,114 +19,48 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0753659481==
-Content-Type: multipart/alternative; boundary="15671577012.87D8097.29331"
-Content-Transfer-Encoding: 7bit
-
-
---15671577012.87D8097.29331
-Date: Fri, 30 Aug 2019 09:35:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103217
-
-Michel D=C3=A4nzer <michel-otUistvHUpPR7s880joybQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |.org                        |rg
-         QA Contact|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |.org                        |rg
-          Component|Drivers/DRI/i915            |Drivers/DRI/nouveau
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15671577012.87D8097.29331
-Date: Fri, 30 Aug 2019 09:35:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:michel&#6=
-4;daenzer.net" title=3D"Michel D=C3=A4nzer &lt;michel&#64;daenzer.net&gt;">=
- <span class=3D"fn">Michel D=C3=A4nzer</span></a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Recent noveau causes errors with scilab 5.=
-5.2 on NVIDIA G84GL [Quadro FX 570]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103217">bug 10321=
-7</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>dri-devel&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">QA Contact</td>
-           <td>dri-devel&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>Drivers/DRI/i915
-           </td>
-           <td>Drivers/DRI/nouveau
-           </td>
-         </tr></table>
-      <p>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15671577012.87D8097.29331--
-
---===============0753659481==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0753659481==--
+U3ViamVjdDogU2luZ2Fwb3JlYW4gTXIuIFRlbyBFbiBNaW5nJ3MgUmVmdWdlZSBTZWVraW5nIEF0
+dGVtcHRzLCBJbgpTZWFyY2ggb2YgYSBTdWJzdGFudGlhbGx5IEJldHRlciBMaWZlCgpJbiByZXZl
+cnNlIGNocm9ub2xvZ2ljYWwgb3JkZXI6CgpbMV0gUGV0aXRpb24gdG8gdGhlIEdvdmVybm1lbnQg
+b2YgVGFpd2FuIGZvciBSZWZ1Z2VlIFN0YXR1cywgNXRoCkF1Z3VzdCAyMDE5IE1vbmRheQoKUGhv
+dG8gIzE6IEF0IHRoZSBidWlsZGluZyBvZiB0aGUgTmF0aW9uYWwgSW1taWdyYXRpb24gQWdlbmN5
+LCBNaW5pc3RyeQpvZiB0aGUgSW50ZXJpb3IsIFRhaXBlaSwgVGFpd2FuLCA1dGggQXVndXN0IDIw
+MTkKClBob3RvICMyOiBRdWV1ZSB0aWNrZXQgbm8uIDUxNSBhdCB0aGUgTmF0aW9uYWwgSW1taWdy
+YXRpb24gQWdlbmN5LApNaW5pc3RyeSBvZiB0aGUgSW50ZXJpb3IsIFRhaXBlaSwgVGFpd2FuLCA1
+dGggQXVndXN0IDIwMTkKClBob3RvICMzOiBTdWJtaXNzaW9uIG9mIGRvY3VtZW50cy9wZXRpdGlv
+biB0byB0aGUgTmF0aW9uYWwgSW1taWdyYXRpb24KQWdlbmN5LCBNaW5pc3RyeSBvZiB0aGUgSW50
+ZXJpb3IsIFRhaXBlaSwgVGFpd2FuLCA1dGggQXVndXN0IDIwMTkKClBob3RvcyAjNCBhbmQgIzU6
+IEFja25vd2xlZGdlbWVudCBvZiBSZWNlaXB0IChuby4gMDMxNDIpIGZvciB0aGUKc3VibWlzc2lv
+biBvZiBkb2N1bWVudHMvcGV0aXRpb24gZnJvbSB0aGUgTmF0aW9uYWwgSW1taWdyYXRpb24gQWdl
+bmN5LApNaW5pc3RyeSBvZiB0aGUgSW50ZXJpb3IsIFRhaXBlaSwgVGFpd2FuLCA1dGggQXVndXN0
+IDIwMTksIDEwOjAwIEFNCgpSZWZlcmVuY2VzOgoKKGEpIFBldGl0aW9uIHRvIHRoZSBHb3Zlcm5t
+ZW50IG9mIFRhaXdhbiBmb3IgUmVmdWdlZSBTdGF0dXMsIDV0aApBdWd1c3QgMjAxOSBNb25kYXkg
+KEJsb2dzcG90IGJsb2cpCgpMaW5rOiBodHRwczovL3RkdGVtY2VydHMuYmxvZ3Nwb3Quc2cvMjAx
+OS8wOC9wZXRpdGlvbi10by1nb3Zlcm5tZW50LW9mLXRhaXdhbi1mb3IuaHRtbAoKKGIpIFBldGl0
+aW9uIHRvIHRoZSBHb3Zlcm5tZW50IG9mIFRhaXdhbiBmb3IgUmVmdWdlZSBTdGF0dXMsIDV0aApB
+dWd1c3QgMjAxOSBNb25kYXkgKFdvcmRwcmVzcyBibG9nKQoKTGluazogaHR0cHM6Ly90ZHRlbWNl
+cnRzLndvcmRwcmVzcy5jb20vMjAxOS8wOC8yMy9wZXRpdGlvbi10by10aGUtZ292ZXJubWVudC1v
+Zi10YWl3YW4tZm9yLXJlZnVnZWUtc3RhdHVzLwoKWzJdIEFwcGxpY2F0aW9uIGZvciBSZWZ1Z2Vl
+IFN0YXR1cyBhdCB0aGUgVW5pdGVkIE5hdGlvbnMgUmVmdWdlZQpBZ2VuY3ksIEJhbmdrb2ssIFRo
+YWlsYW5kLCAyMXN0IE1hcmNoIDIwMTcgVHVlc2RheQoKUmVmZXJlbmNlczoKCihhKSBbWU9VVFVC
+RV0gVmxvZzogVGhlIFJvYWQgdG8gQXBwbGljYXRpb24gZm9yIFJlZnVnZWUgU3RhdHVzIGF0IHRo
+ZQpVbml0ZWQgTmF0aW9ucyBIaWdoIENvbW1pc3Npb25lciBmb3IgUmVmdWdlZXMsIEJhbmdrb2sK
+Ckxpbms6IGh0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9dXRwdUFhMWVVTkkKCllvdVR1
+YmUgdmlkZW8gUHVibGlzaGVkIG9uIE1hcmNoIDIybmQsIDIwMTcKClZpZXdzIGFzIGF0IDMxc3Qg
+QXVndXN0IDIwMTk6IDU5MwoKWW91VHViZSBDaGFubmVsOiBUdXJyaXRvcHNpcyBEb2hybmlpIFRl
+byBFbiBNaW5nClN1YnNjcmliZXJzIGFzIGF0IDMxc3QgQXVndXN0IDIwMTk6IDI4MTUKTGluazog
+aHR0cHM6Ly93d3cueW91dHViZS5jb20vY2hhbm5lbC9VQ19fRjJoemxxTkVFR3gtSVh4UWkzaEEK
+CgoKCgotLS0tLUJFR0lOIEVNQUlMIFNJR05BVFVSRS0tLS0tCgpUaGUgR29zcGVsIGZvciBhbGwg
+VGFyZ2V0ZWQgSW5kaXZpZHVhbHMgKFRJcyk6CgpbVGhlIE5ldyBZb3JrIFRpbWVzXSBNaWNyb3dh
+dmUgV2VhcG9ucyBBcmUgUHJpbWUgU3VzcGVjdCBpbiBJbGxzIG9mClUuUy4gRW1iYXNzeSBXb3Jr
+ZXJzCgpMaW5rOiBodHRwczovL3d3dy5ueXRpbWVzLmNvbS8yMDE4LzA5LzAxL3NjaWVuY2Uvc29u
+aWMtYXR0YWNrLWN1YmEtbWljcm93YXZlLmh0bWwKCioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioqKioqKioqCgpTaW5nYXBvcmVhbiBNci4gVHVycml0b3BzaXMgRG9ocm5paSBUZW8gRW4gTWlu
+ZydzIEFjYWRlbWljClF1YWxpZmljYXRpb25zIGFzIGF0IDE0IEZlYiAyMDE5CgpbMV0gaHR0cHM6
+Ly90ZHRlbWNlcnRzLndvcmRwcmVzcy5jb20vCgpbMl0gaHR0cHM6Ly90ZHRlbWNlcnRzLmJsb2dz
+cG90LnNnLwoKWzNdIGh0dHBzOi8vd3d3LnNjcmliZC5jb20vdXNlci8yNzAxMjUwNDkvVGVvLUVu
+LU1pbmcKCi0tLS0tRU5EIEVNQUlMIFNJR05BVFVSRS0tLS0tCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQ==
