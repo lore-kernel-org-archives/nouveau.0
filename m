@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111371] [NV04] bios OOB on kernel driver
- initialization
-Date: Mon, 12 Aug 2019 06:48:34 +0000
-Message-ID: <bug-111371-8800-6vYyziouTh@http.bugs.freedesktop.org/>
-References: <bug-111371-8800@http.bugs.freedesktop.org/>
+From: Denis Fateyev <denis-3qcFKRLn+ydBDgjK7y7TUQ@public.gmane.org>
+Subject: nvkm_pmu_reset issue with Optimus card
+Date: Mon, 2 Sep 2019 00:22:45 +0600
+Message-ID: <CADsrgyYsLqC9-D6GjAjK5HAmoEY7QnAM5rXqjBetyTPzGEAd0A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0707760007=="
+Content-Type: multipart/mixed; boundary="===============0936542221=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,84 +17,70 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============0936542221==
+Content-Type: multipart/alternative; boundary="000000000000cb3e96059181f188"
 
---===============0707760007==
-Content-Type: multipart/alternative; boundary="15655925130.c63a.24427"
-Content-Transfer-Encoding: 7bit
-
-
---15655925130.c63a.24427
-Date: Mon, 12 Aug 2019 06:48:33 +0000
-MIME-Version: 1.0
+--000000000000cb3e96059181f188
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111371
+Hello there,
 
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Additionally a log with drm.debug=3D0x1e would be helpful (with the bios fi=
-x) --
-I really don't see the code that adds the connectors in when there is no DC=
-B.
-So either I'm blind (popular option), or that got dropped at some point.
+I have got an Asus notebook with Optimus technology support on board:
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+$ lspci -vnn | grep '\''[030[02]\]'
+00:02.0 VGA compatible controller [0300]: Intel Corporation HD Graphics 530
+[8086:191b] (rev 06) (prog-if 00 [VGA controller])
+01:00.0 3D controller [0302]: NVIDIA Corporation GM107M [GeForce GTX 960M]
+[10de:139b] (rev ff) (prog-if ff)
 
---15655925130.c63a.24427
-Date: Mon, 12 Aug 2019 06:48:33 +0000
-MIME-Version: 1.0
+My system is a fully updated Fedora 30 with the kernel version 5.2.9.
+The problem is that every time when "nouveau" is activated the system hangs
+shortly with multiple dumps in dmesg.
+I have already reported the issue to RHBZ [1], as I have understood this is
+a known issue.
+
+Practically, I can bring it up with Bumblebee + Intel + proprietary drivers
++ acpi_osi='Windows 2009', but instead I would like to get the Intel +
+Nouveau solution working.
+Are there any fixes or ideas on how I could achieve that?
+I could help with more testing the issue if needed.
+
+Thanks,
+
+[1] https://bugzilla.redhat.com/show_bug.cgi?id=1699677
+
+-- 
+wbr, Denis.
+
+--000000000000cb3e96059181f188
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371#c14">Comme=
-nt # 14</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV04] bios OOB on kernel driver initialization"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111371">bug 11137=
-1</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Additionally a log with drm.debug=3D0x1e would be helpful (wit=
-h the bios fix) --
-I really don't see the code that adds the connectors in when there is no DC=
-B.
-So either I'm blind (popular option), or that got dropped at some point.</p=
-re>
-        </div>
-      </p>
+<div dir=3D"ltr"><div>Hello there,</div><div><br></div><div>I have got an A=
+sus notebook with Optimus technology support on board:</div><div><br></div>=
+<div>$ lspci -vnn | grep &#39;\&#39;&#39;[030[02]\]&#39;<br>00:02.0 VGA com=
+patible controller [0300]: Intel Corporation HD Graphics 530 [8086:191b] (r=
+ev 06) (prog-if 00 [VGA controller])<br>01:00.0 3D controller [0302]: NVIDI=
+A Corporation GM107M [GeForce GTX 960M] [10de:139b] (rev ff) (prog-if ff)</=
+div><div><br></div><div>My system is a fully updated Fedora 30 with the ker=
+nel version 5.2.9.<br></div><div>The problem is that every time when &quot;=
+nouveau&quot; is activated the system hangs shortly with multiple dumps in =
+dmesg.</div><div>I have already reported the issue to RHBZ [1], as I have u=
+nderstood this is a known issue.</div><div><br></div><div>Practically, I ca=
+n bring it up with Bumblebee + Intel + proprietary drivers + acpi_osi=3D&#3=
+9;Windows 2009&#39;, but instead I would like to get the Intel=C2=A0+ Nouve=
+au solution working.</div><div>Are there any fixes or ideas on how I could =
+achieve that?</div><div>I could help with more testing the issue if needed.=
+</div><div><br></div><div>Thanks,<br></div><div></div><div><br></div><div>[=
+1] <a href=3D"https://bugzilla.redhat.com/show_bug.cgi?id=3D1699677">https:=
+//bugzilla.redhat.com/show_bug.cgi?id=3D1699677</a></div><div><br>-- <br><d=
+iv dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"=
+><div dir=3D"ltr">wbr, Denis.<font size=3D"2"><br></font></div></div></div>=
+</div>
 
+--000000000000cb3e96059181f188--
 
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15655925130.c63a.24427--
-
---===============0707760007==
+--===============0936542221==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0707760007==--
+--===============0936542221==--
