@@ -1,13 +1,11 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [RFC PATCH v2] clk: Remove BYPASS_PLL_CHECK from PLLs
-Date: Wed, 4 Sep 2019 11:27:36 -0400
-Message-ID: <CAKb7UvgeDSVCE1+YrvZFCW7PyJ-dkvBsN66mhpGC48fDe8os6w@mail.gmail.com>
-References: <20190904142837.8768-1-mmenzyns@redhat.com>
+From: Christoph Franzen <christoph-/9wGyXiHbEU6nuUZC0pLa4QuADTiUCJX@public.gmane.org>
+Subject: hardware donation offer
+Date: Wed, 4 Sep 2019 17:48:41 +0200
+Message-ID: <20190904174841.0904b6d0.christoph@alte-pflasterei.de>
+Reply-To: christoph-/9wGyXiHbEU6nuUZC0pLa4QuADTiUCJX@public.gmane.org
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0126656878=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190904142837.8768-1-mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,57 +15,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mark Menzynski <mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Q2FuIHlvdSBjaGVjayB0byBzZWUgaWYgdGhhdCBiaXQgd2FzIHNldCBwcmlvciB0byBlbnRlcmlu
-ZyB0aGUgY29kZT8gSQp3b25kZXIgaWYgeW91IGNhbiBqdXN0IHJlc3RvcmUgaXQgaWYgaXQgd2Fz
-IHRoZXJlLCBhbmQgbGVhdmUgaXQgaWYKaXQncyBub3Q/CgpPbiBXZWQsIFNlcCA0LCAyMDE5IGF0
-IDEwOjI4IEFNIE1hcmsgTWVuenluc2tpIDxtbWVuenluc0ByZWRoYXQuY29tPiB3cm90ZToKPgo+
-IEkgaGF2ZSBsb29rZWQgYXQgcHJvYmxlbSB3aXRoIEZlcm1pIEdQVXMgd2hlcmUgY2hhbmdpbmcg
-dG8gaGlnaGVyIGNsb2NrCj4gbGVkIHRvIHJlYWxseSBiYWQgcGVyZm9tYW5jZSAod2l0aCBHcHVU
-ZXN0IDIweCB3b3JzZSBwZXJmb21hbmNlKSBhbmQgbGF0ZXIgYWxzbyBjcmFzaGVzIG9mIHRoZSBu
-b3V2ZWF1LiBJdCBzZWVtZWQKPiB0byBiZSBhZmZlY3RlZCBieSBTaGFkZXIgQ2xvY2sgaW4gVm9s
-dGFnZSBFbnRyaWVzIGluIHRoZSB2aWRlbyBCSU9TLiBEaXNhYmxpbmcKPiBCWVBBU1NfUExMX0NI
-RUNLIGluIENMSzBfQ1RSTCBzZWVtcyB0byBjb21wbGV0ZWx5IGZpeCB0aGUgaXNzdWUuIEkgaGF2
-ZQo+IHRyaWVkIHRvIHNlYXJjaCB0aGlzIEJZUEFTU19QTExfQ0hFQ0sgaW4gTnZpZGlhIHRyYWNl
-cyBidXQgc2VlbWVkIGl0Cj4gd2Fzbid0IHVzZWQgbm93aGVyZSBmb3IgQ0xLIHNldHRpbmdzLgo+
-Cj4gUmVtb3ZpbmcgdGhpcyB3b3JrcyBmaW5lLCBidXQgSSBkb24ndCBrbm93IHdoYXQgaXQncyBy
-ZWFsbHkgZm9yLgo+IEFjdHVhbCBiaXQgc2V0dGluZyB0aGlzIEJZUEFTU19QTExfQ0hFQ0sgaXMg
-b24gMHgxMDoKPiAgICAgICAgIGxvb2t1cCAtYWMwIDB4MTM3MDAwIDB4MTAKPiAgICAgICAgIFBD
-TE9DSy5DTEswX0NUUkwgPT4geyBCWVBBU1NfUExMX0NIRUNLIHwgVU5LMTIgPSAwIH0KPiBBbHNv
-LCBkaXNhYmxpbmcgdGhpcyBiaXQgb24gb3RoZXIgQ0xLcyBkb2Vzbid0IHNlZW0gdG8gYnJlYWsg
-YW55dGhpbmcuCj4KPiB2MjogQWRkIGJhY2sgUExMIGxvY2sgdGVzdAo+Cj4gU2lnbmVkLW9mZi1i
-eTogTWFyayBNZW56eW5za2kgPG1tZW56eW5zQHJlZGhhdC5jb20+Cj4gLS0tCj4gIGRybS9ub3V2
-ZWF1L252a20vc3ViZGV2L2Nsay9nZjEwMC5jIHwgMSAtCj4gIGRybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L2Nsay9nazEwNC5jIHwgMSAtCj4gIDIgZmlsZXMgY2hhbmdlZCwgMiBkZWxldGlvbnMoLSkK
-Pgo+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ2YxMDAuYyBiL2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9nZjEwMC5jCj4gaW5kZXggN2Y2N2Y5ZjUuLmZlNTY4
-MTdiIDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9nZjEwMC5jCj4g
-KysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2dmMTAwLmMKPiBAQCAtMzgxLDcgKzM4
-MSw2IEBAIGdmMTAwX2Nsa19wcm9nXzIoc3RydWN0IGdmMTAwX2NsayAqY2xrLCBpbnQgaWR4KQo+
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaWYgKG52a21fcmQzMihkZXZpY2UsIGFk
-ZHIgKyAweDAwKSAmIDB4MDAwMjAwMDApCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIGJyZWFrOwo+ICAgICAgICAgICAgICAgICAgICAgICAgICk7Cj4gLSAgICAgICAg
-ICAgICAgICAgICAgICAgbnZrbV9tYXNrKGRldmljZSwgYWRkciArIDB4MDAsIDB4MDAwMDAwMTAs
-IDB4MDAwMDAwMTApOwo+Cj4gICAgICAgICAgICAgICAgICAgICAgICAgLyogRW5hYmxlIHN5bmMg
-bW9kZSAqLwo+ICAgICAgICAgICAgICAgICAgICAgICAgIG52a21fbWFzayhkZXZpY2UsIGFkZHIg
-KyAweDAwLCAweDAwMDAwMDA0LCAweDAwMDAwMDA0KTsKPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvY2xrL2drMTA0LmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsv
-Z2sxMDQuYwo+IGluZGV4IDBiMzdlM2RhLi4yMmNhYzMwNCAxMDA2NDQKPiAtLS0gYS9kcm0vbm91
-dmVhdS9udmttL3N1YmRldi9jbGsvZ2sxMDQuYwo+ICsrKyBiL2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L2Nsay9nazEwNC5jCj4gQEAgLTQwMCw3ICs0MDAsNiBAQCBnazEwNF9jbGtfcHJvZ18yKHN0
-cnVjdCBnazEwNF9jbGsgKmNsaywgaW50IGlkeCkKPiAgICAgICAgICAgICAgICAgICAgICAgICBp
-ZiAobnZrbV9yZDMyKGRldmljZSwgYWRkciArIDB4MDApICYgMHgwMDAyMDAwMCkKPiAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIGJyZWFrOwo+ICAgICAgICAgICAgICAgICApOwo+IC0g
-ICAgICAgICAgICAgICBudmttX21hc2soZGV2aWNlLCBhZGRyICsgMHgwMCwgMHgwMDAwMDAxMCwg
-MHgwMDAwMDAxMCk7Cj4KPiAgICAgICAgICAgICAgICAgLyogRW5hYmxlIHN5bmMgbW9kZSAqLwo+
-ICAgICAgICAgICAgICAgICBudmttX21hc2soZGV2aWNlLCBhZGRyICsgMHgwMCwgMHgwMDAwMDAw
-NCwgMHgwMDAwMDAwNCk7Cj4gLS0KPiAyLjIxLjAKPgo+IF9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXU=
+--===============0126656878==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/kbdYghcNu2qIE=OmQRu=jxn"; protocol="application/pgp-signature"
+
+--Sig_/kbdYghcNu2qIE=OmQRu=jxn
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+I'm willing to donate hardware, see the IRC log below for a few details.
+If you are interested, reply to "christoph-/9wGyXiHbEU6nuUZC0pLa4QuADTiUCJX@public.gmane.org", I'll
+send an Open Document Spreadsheet then with the complete card list
+containing all details I know.
+
+-8<---- IRC chat log ---------------------------------
+(2019-09-04 16:50:54) chf: Hi, is any of the developers interested in hardw=
+are donations? I've got at least 15 (mostly older) unused Nvidia cards, and=
+ I'm willing to send those for free, as long as postage isn't too expensive.
+(2019-09-04 16:51:22) RSpliet: chf: what do you consider "older"?
+(2019-09-04 16:53:45) karolherbst hat den Raum verlassen (quit: Ping timeou=
+t: 245 seconds).
+(2019-09-04 16:54:08) mmenzyns_ hat den Raum verlassen (quit: Ping timeout:=
+ 245 seconds).
+(2019-09-04 16:54:09) chf: NV5, 10, 11, 17, 20, 34, 44A (AGP); 42GL, 92, 96=
+, 98 (PCIe), RSpliet
+(2019-09-04 17:01:31) RSpliet: That's an impressive collection, tempting to=
+ try and take some of them off your hands, but... I've been on nouveau-sabb=
+atical recently.
+(2019-09-04 17:02:03) RSpliet: Some people here mentioned a desire to get s=
+ome of those NV3x and NV4x devices up and running to fix some long standing=
+ issues.
+(2019-09-04 17:03:37) RSpliet: and there used to be someone here working on=
+ building an NV5 emulator I think, as part of a bigger emulation project. S=
+he's not here at the moment... wonder if she's interested
+(2019-09-04 17:05:02) chf: Most of them are attracting dust since a few yea=
+rs. Currently in use are 3 PCIe cards, the NV96 and NV98 from the list abov=
+e (I can switch to the 92 or 42), and a GF119.
+(2019-09-04 17:06:35) mmenzyns [quassel@nat/redhat/x-nhtehejgrfvqiyof] hat =
+den Raum betreten.
+(2019-09-04 17:06:45) chf: I've got 3 NV5: 1 x Vanta, 2 x Riva TNT2, the la=
+tter differ in RAM size and ROM version.
+(2019-09-04 17:09:31) chf: 2 x NV34: 10de:0322 GeForce FX 5200 128M, quite =
+common, I think.
+(2019-09-04 17:09:37) chf: The 4x:
+(2019-09-04 17:10:34) chf: 10de:0221 GeForce 6200 256M DDR2
+(2019-09-04 17:11:50) chf: 10de:00cd:10de:029b NV42GL Quadro FX 3450 256M G=
+DDR3
+(2019-09-04 17:14:34) RSpliet: chf: perhaps it might be good to pop this in=
+fo onto the mailinglist. I suspect some people might want to sleep over suc=
+h a decision a night or two, and the ML is more useful for finding back suc=
+h information than (potential) IRC chat logs :-)
+-8<---- IRC chat log ---------------------------------
+
+Regards, Christoph
+
+--=20
+Christoph Franzen
+Schleckheimer Stra=C3=9Fe 100 =C2=B7 52076 Aachen
+Telefon: +49-2408-9379808 =C2=B7 Fax: +49-2408-9379806
+
+--Sig_/kbdYghcNu2qIE=OmQRu=jxn
+Content-Type: application/pgp-signature
+Content-Description: Digitale Signatur von OpenPGP
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBCAAGBQJdb9zeAAoJEP0O2oBXmANfuVMP/2sh4pXHPG1D+K/JO6k56Pcq
+NHiC6XDyQdtINBr7UI1LozSpqzJ07lUWvAotNE1H/C2i/+rWW3bK+fCvVTqNLRrL
+0a7lTVY5tB1GcRnZtSQY+A0q8KMWc/MY09zgOKqNciRUbGhkYn2ZgCTEmZ5RveFP
+W/dMEo1zTum8iEccBHs8SDfIawsgCRgeJ7CzKu7ntKCAlvR9X2adZBxcuabp2dOd
+n7ActDBAc5ipkZ9OJmySY2QA0WgDipDmrt3pogeJUPTpfIn+ccNBtWmkvwx1JSx7
+hwDp2DDFqnefo9NazAQE9kby9wn12HvnuCF5gzMdEyy1N0lXvNkQVrHR99XMr7K/
+PKjGM0NiSzcaoGpE3SLTOtVXHYp1cqpdutjB3JvVOy51eOtNoDSngyNw4cE9ntTP
+b/5PZ2linCJ46qutYhMFt+/3sCXtVAfN6eu0ucAKExjau/K8jrcyNrrqZSAhHS4w
+yuzQl8Yhevc35UWbCz9hj/x1iEomVi+P/jj9C7lRr1rE2aq/v4J15iN3TmDrbOu4
+opycpPxfVhr55XlG9prije+o1Qu3j++4lwd2AQxmhWBxxNUCBfZ2CLYXOozb+LrG
+BeNFva91jBCEmnQruPzw3oQAB8R0z+BoX2T4QKVL7sOft8UBsbJd/fjbmhY9IMp3
+mD7MtaqAV32/vheeMuLq
+=jjkQ
+-----END PGP SIGNATURE-----
+
+--Sig_/kbdYghcNu2qIE=OmQRu=jxn--
+
+--===============0126656878==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0126656878==--
