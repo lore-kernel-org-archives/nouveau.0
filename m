@@ -1,72 +1,75 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to
- enable dGPU direct output"
-Date: Thu, 5 Sep 2019 17:51:23 +0200
-Message-ID: <CACO55ttC-o9bKU7nHNcfjm2YnffiupQ7UHUt7BYL3fu+yEyTbw@mail.gmail.com>
-References: <20190814213118.28473-1-kherbst@redhat.com>
- <20190814213118.28473-2-kherbst@redhat.com>
- <CAPM=9ty7yEUqKrcixV1tTuWCpyh6UikA3rxX8BF1E3fDb6WLQQ@mail.gmail.com>
- <2215840.qs0dBhReda@kreacher>
+From: "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to enable dGPU direct output"
+Date: Thu, 05 Sep 2019 18:26:06 +0200
+Message-ID: <5228680.jBuKzensJx@kreacher>
+References: <20190814213118.28473-1-kherbst@redhat.com> <2215840.qs0dBhReda@kreacher> <CACO55ttC-o9bKU7nHNcfjm2YnffiupQ7UHUt7BYL3fu+yEyTbw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <2215840.qs0dBhReda@kreacher>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: "Rafael J. Wysocki" <rjw@rjwysocki.net>
-Cc: Mario Limonciello <mario.limonciello@dell.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Linux ACPI <linux-acpi@vger.kernel.org>, Alex Hung <alex.hung@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7Bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <CACO55ttC-o9bKU7nHNcfjm2YnffiupQ7UHUt7BYL3fu+yEyTbw@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Karol Herbst <kherbst@redhat.com>
+Cc: Dave Airlie <airlied@gmail.com>, LKML <linux-kernel@vger.kernel.org>, Linux ACPI <linux-acpi@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Mario Limonciello <mario.limonciello@dell.com>, Alex Hung <alex.hung@canonical.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-aXMgdGhlcmUgYW55IHVwZGF0ZSBvbiB0aGUgdGVzdGluZyB3aXRoIG15IHBhdGNoZXM/IE9uIHRo
-ZSBoYXJkd2FyZSBJCmhhZCBhY2Nlc3MgdG8gdGhvc2UgcGF0Y2hlcyBoZWxwZWQsIGJ1dCBJIGNh
-bid0IGtub3cgaWYgaXQgYWxzbyBoZWxwZWQKb24gdGhlIGhhcmR3YXJlIGZvciB3aGljaCB0aG9z
-ZSB3b3JrYXJvdW5kcyB3aGVyZSBhY3R1YWxseSBhZGRlZC4KCk9uIE1vbiwgQXVnIDE5LCAyMDE5
-IGF0IDExOjUyIEFNIFJhZmFlbCBKLiBXeXNvY2tpIDxyandAcmp3eXNvY2tpLm5ldD4gd3JvdGU6
-Cj4KPiBPbiBUaHVyc2RheSwgQXVndXN0IDE1LCAyMDE5IDEyOjQ3OjM1IEFNIENFU1QgRGF2ZSBB
-aXJsaWUgd3JvdGU6Cj4gPiBPbiBUaHUsIDE1IEF1ZyAyMDE5IGF0IDA3OjMxLCBLYXJvbCBIZXJi
-c3QgPGtoZXJic3RAcmVkaGF0LmNvbT4gd3JvdGU6Cj4gPiA+Cj4gPiA+IFRoaXMgcmV2ZXJ0cyBj
-b21taXQgMjg1ODZhNTFlZWE2NjZkNTUzMWJjYWVmMmY2OGU0YWJiZDg3MjQyYy4KPiA+ID4KPiA+
-ID4gVGhlIG9yaWdpbmFsIGNvbW1pdCBtZXNzYWdlIGRpZG4ndCBldmVuIG1ha2Ugc2Vuc2UuIEFN
-RCBfZG9lc18gc3VwcG9ydCBpdCBhbmQKPiA+ID4gaXQgd29ya3Mgd2l0aCBOb3V2ZWF1IGFzIHdl
-bGwuCj4gPiA+Cj4gPiA+IEFsc28gd2hhdCB3YXMgdGhlIGlzc3VlIGJlaW5nIHNvbHZlZCBoZXJl
-PyBObyByZWZlcmVuY2VzIHRvIGFueSBidWdzIGFuZCBub3QKPiA+ID4gZXZlbiBleHBsYWluaW5n
-IGFueSBpc3N1ZSBhdCBhbGwgaXNuJ3QgdGhlIHdheSB3ZSBkbyB0aGluZ3MuCj4gPiA+Cj4gPiA+
-IEFuZCBldmVuIGlmIGl0IG1lYW5zIGEgbXV4ZWQgZGVzaWduLCB0aGVuIHRoZSBmaXggaXMgdG8g
-bWFrZSBpdCB3b3JrIGluc2lkZSB0aGUKPiA+ID4gZHJpdmVyLCBub3QgYWRkaW5nIHNvbWUgaGFj
-a3kgd29ya2Fyb3VuZCB0aHJvdWdoIEFDUEkgdHJpY2tzLgo+ID4gPgo+ID4gPiBBbmQgd2hhdCBv
-dXQgb2YgdHJlZSBkcml2ZXJzIGRvIG9yIGRvIG5vdCBzdXBwb3J0IHdlIGRvbid0IGNhcmUgb25l
-IGJpdCBhbnl3YXkuCj4gPiA+Cj4gPgo+ID4gSSB0aGluayB0aGUgcmV2ZXJ0cyBzaG91bGQgYmUg
-bWVyZ2VkIHZpYSBSYWZhZWwncyB0cmVlIGFzIHRoZSBvcmlnaW5hbAo+ID4gcGF0Y2hlcyB3ZW50
-IGluIHZpYSB0aGVyZSwgYW5kIHdlIHNob3VsZCBnZXQgdGhlbSBpbiBhc2FwLgo+ID4KPiA+IEFj
-a2VkLWJ5OiBEYXZlIEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29tPgo+Cj4gVGhlIF9PU0kgc3Ry
-aW5ncyBhcmUgdG8gYmUgZHJvcHBlZCB3aGVuIGFsbCBvZiB0aGUgbmVlZGVkIHN1cHBvcnQgaXMg
-dGhlcmUgaW4KPiBkcml2ZXJzLCBzbyB0aGV5IHNob3VsZCBnbyBhd2F5IGFsb25nIHdpdGggdGhl
-IHJlcXVpc2l0ZSBkcml2ZXIgY2hhbmdlcy4KPgoKdGhhdCBnb2VzIGJlc2lkZSB0aGUgcG9pbnQu
-IGZpcm13YXJlIGxldmVsIHdvcmthcm91bmRzIGZvciBHUFUgZHJpdmVyCmlzc3VlcyB3ZXJlIHB1
-c2hlZCB3aXRob3V0IGNvbnN1bHRpbmcgd2l0aCB1cHN0cmVhbSBHUFUgZGV2ZWxvcGVycy4KVGhh
-dCdzIHNvbWV0aGluZyB3aGljaCBzaG91bGRuJ3QgaGF2ZSBoYXBwZW5lZCBpbiB0aGUgZmlyc3Qg
-cGxhY2UuIEFuZAp5ZXMsIEkgYW0gcGVyc29uYWxseSBhbm5veWVkIGJ5IHRoZSBmYWN0LCB0aGF0
-IHBlb3BsZSBrbm93IGFib3V0Cmlzc3VlcywgYnV0IGluc3RlYWQgb2YgY29udGFjdGluZyB0aGUg
-cHJvcGVyIHBlcnNvbnMgYW5kIHdvcmtpbmcgb24gYQpwcm9wZXIgZml4LCB3ZSBlbmQgdXAgd2l0
-aCBzdHVwaWQgZmlybXdhcmUgbGV2ZWwgd29ya2Fyb3VuZHMuIEkgY2FuJ3QKc2VlIHdoeSB3ZSBl
-dmVyIHdvdWxkIGhhdmUgd2FudGVkIHN1Y2ggd29ya2Fyb3VuZHMgaW4gdGhlIGZpcnN0IHBsYWNl
-LgoKQW5kIEkgd291bGQgYmUgbXVjaCBoYXBwaWVyIGlmIHRoZSBuZXh0IHRpbWUgc29tZXRoaW5n
-IGxpa2UgdGhhdCBjb21lcwp1cCwgdGhhdCB0aGUgZHJtIG1haWxpbmcgbGlzdCB3aWxsIGJlIGNv
-bnRhY3RlZCBhcyB3ZWxsIG9yIHNvbWVib2R5Cmludm9sdmVkLgoKV2UgY291bGQgaGF2ZSBhbHNv
-IGp1c3QgZGlzYWJsZSB0aGUgZmVhdHVyZSBpbnNpZGUgdGhlIGRyaXZlciAoYW5kCnByb2JhYmx5
-IHdlIHNob3VsZCBoYXZlIGRvbmUgdGhhdCBhIGxvbmcgdGltZSBhZ28sIHNvIHRoYXQgaXMKZXNz
-ZW50aWFsbHkgb3VyIGZhdWx0LCBidXQgc3RpbGwuLi4uKQoKPiBJJ20gYWxsIGZvciBkcm9wcGlu
-ZyB0aGVuIHdoZW4gdGhhdCdzIHRoZSBjYXNlLCBzbyBwbGVhc2UgZmVlbCBmcmVlIHRvIGFkZCBB
-Q0tzCj4gZnJvbSBtZSB0byB0aGUgcGF0Y2hlcyBpbiBxdWVzdGlvbiBhdCB0aGF0IHBvaW50Lgo+
-Cj4gQ2hlZXJzLAo+IFJhZmFlbAo+Cj4KPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9kcmktZGV2ZWw=
+On Thursday, September 5, 2019 5:51:23 PM CEST Karol Herbst wrote:
+> is there any update on the testing with my patches? On the hardware I
+> had access to those patches helped, but I can't know if it also helped
+> on the hardware for which those workarounds where actually added.
+
+Alex Hung and Mario need to answer this question I think.
+
+> On Mon, Aug 19, 2019 at 11:52 AM Rafael J. Wysocki <rjw@rjwysocki.net> wrote:
+> >
+> > On Thursday, August 15, 2019 12:47:35 AM CEST Dave Airlie wrote:
+> > > On Thu, 15 Aug 2019 at 07:31, Karol Herbst <kherbst@redhat.com> wrote:
+> > > >
+> > > > This reverts commit 28586a51eea666d5531bcaef2f68e4abbd87242c.
+> > > >
+> > > > The original commit message didn't even make sense. AMD _does_ support it and
+> > > > it works with Nouveau as well.
+> > > >
+> > > > Also what was the issue being solved here? No references to any bugs and not
+> > > > even explaining any issue at all isn't the way we do things.
+> > > >
+> > > > And even if it means a muxed design, then the fix is to make it work inside the
+> > > > driver, not adding some hacky workaround through ACPI tricks.
+> > > >
+> > > > And what out of tree drivers do or do not support we don't care one bit anyway.
+> > > >
+> > >
+> > > I think the reverts should be merged via Rafael's tree as the original
+> > > patches went in via there, and we should get them in asap.
+> > >
+> > > Acked-by: Dave Airlie <airlied@redhat.com>
+> >
+> > The _OSI strings are to be dropped when all of the needed support is there in
+> > drivers, so they should go away along with the requisite driver changes.
+> >
+> 
+> that goes beside the point. firmware level workarounds for GPU driver
+> issues were pushed without consulting with upstream GPU developers.
+> That's something which shouldn't have happened in the first place. And
+> yes, I am personally annoyed by the fact, that people know about
+> issues, but instead of contacting the proper persons and working on a
+> proper fix, we end up with stupid firmware level workarounds. I can't
+> see why we ever would have wanted such workarounds in the first place.
+> 
+> And I would be much happier if the next time something like that comes
+> up, that the drm mailing list will be contacted as well or somebody
+> involved.
+> 
+> We could have also just disable the feature inside the driver (and
+> probably we should have done that a long time ago, so that is
+> essentially our fault, but still....)
+> 
+> > I'm all for dropping then when that's the case, so please feel free to add ACKs
+> > from me to the patches in question at that point.
+> >
+> > Cheers,
+> > Rafael
+> >
+> >
+> >
+> 
