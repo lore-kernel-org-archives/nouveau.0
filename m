@@ -1,124 +1,118 @@
-From: Roy Spliet <nouveau-NQbd8FSOZ1kdnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH v3] clk: Restore BYPASS_PLL_CHECK from PLLs
-Date: Fri, 6 Sep 2019 17:24:22 +0100
-Message-ID: <daef8480-17a0-2205-56e3-6e1f7d1170da@spliet.org>
-References: <20190906114303.7559-1-mmenzyns@redhat.com>
+From: syzbot <syzbot+aaedc50d99a03250fe1f@syzkaller.appspotmail.com>
+Subject: possible deadlock in __mmu_notifier_invalidate_range_end
+Date: Fri, 06 Sep 2019 10:08:10 -0700
+Message-ID: <0000000000009611470591e57be6@google.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190906114303.7559-1-mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Content-Language: en-GB
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Sender: linux-kernel-owner@vger.kernel.org
+To: airlied@linux.ie, akpm@linux-foundation.org, bhelgaas@google.com, bskeggs@redhat.com, dan.j.williams@intel.com, daniel.vetter@ffwll.ch, daniel@ffwll.ch, dri-devel@lists.freedesktop.org, jean-philippe@linaro.org, jgg@ziepe.ca, jglisse@redhat.com, linux-kernel@vger.kernel.org, linux-mm@kvack.org, logang@deltatee.com, mhocko@suse.com, nouveau@lists.freedesktop.org, rcampbell@nvidia.com, sfr@canb.auug.org.au, syzkaller-bugs@googlegroups.com, tglx@linutronix.de
 List-Id: nouveau.vger.kernel.org
 
-KEFjY2lkZW50YWxseSByZXBsaWVkIGluIHBlcnNvbiBpbnN0ZWFkIG9mIHRvIHRoZSBsaXN0LiBI
-ZXJlIGEgfnZlcmJhdGltIApjb3B5IG9mIG15IGUtbWFpbCBlYXJsaWVyKQoKQnJpZWZseSwgdGhl
-IEJZUEFTU19QTExfQ0hFQ0sgYml0IGRpc2FibGVzIHRoZSBQTEwgbG9ja2luZyB0ZXN0IHdoZW4g
-c2V0IAp0byAxLiBQTExzIHNob3VsZCBzdGlsbCBsb2NrIChvciBub3QsIGlmIHRoZSBwYXJhbXMg
-YXJlIHdpbGRseSAKb3V0LW9mLWJvdW5kcyksIGJ1dCB0aGUgdGVzdCBpcyBieXBhc3NlZCBhbmQg
-ZGlzYWJsZWQgd2hlbiB0aGUgYml0IGlzIHNldC4KVGhpcyBiaXQgd2FzIGRlZmluaXRlbHkgdXNl
-ZCBvbiBOVkEzLzUvOCBieSB0aGUgYmxvYiBhcyBJIGNvbmZpcm1lZCAKcGxvdWdoaW5nIHRocm91
-Z2ggdHJhY2VzLiBJIHJlY2FsbCBzZWVpbmcgdGhlIHNhbWUgYmVoYXZpb3VyIChkaXNhYmxpbmcp
-IApvbiBlYXJseSBGZXJtaSdzLCBidXQgSSdkIGhhdmUgdG8gZGlnIGEgd2hvbGUgbG90IGRlZXBl
-ciB0aHJvdWdoIG9sZCAKdHJhY2UgdG8gY29uZmlybS4gQXMgZm9yIHdoeSBOVklESUEgZGlzYWJs
-ZXMgdGhpcyB0ZXN0IGFmdGVyIHZlcmlmeWluZyAKdGhlIFBMTCBsb2NrZWQsIG15IGhpZ2hseSBz
-cGVjdWxhdGl2ZSBndWVzcyBiYWNrIHRoZW4gd2FzIGp1c3QgcG93ZXIgCnNhdmluZ3MuIEFzIHRv
-IHdoeSBub3V2ZWF1IGRvZXMgaXQ6IHdoZW4gaW4gUm9tZS4uLgpUaGUgZmFjdCB0aGF0IHRoaXMg
-bWFrZXMgYSBkaWZmZXJlbmNlIGluIHN0YWJpbGl0eSBvbiBHRjExOSBtYWtlcyBtZSAKd29uZGVy
-IHdoZXRoZXIgdGhlIFBMTCBjb250cm9sIHJlZ2lzdGVyIGhhcyBhIGRpZmZlcmVudCBsYXlvdXQg
-b24gdGhlc2UgCkdQVXMuIFRoZSBCWVBBU1NfUExMX0NIRUNLIGJpdCBtaWdodCBubyBsb25nZXIg
-YmUgYSBCWVBBU1NfUExMX0NIRUNLIApiaXQsIGJ1dCBoYXZlIGEgY29tcGxldGVseSBkaWZmZXJl
-bnQgbWVhbmluZy4gQXMgdGhpcyBnZW4gd2FzIApjZW50aW1ldHJpbmcgdG93YXJkcyBLZXBsZXIs
-IHlvdSBtaWdodCB3YW50IHRvOgoxKSBpbnZlc3RpZ2F0ZSBiZWhhdmlvdXIgb2YgdGhpcyBiaXQg
-YW5kIHRoZSByZXN0IG9mIHRoZSBjb250cm9sIGJpdHMgb24gCmFuIGlkbGUgR0YxMTkuIEdvdCBh
-IG1hY2hpbmUgd2l0aCBhbiBJbnRlbC9BTUQgSUdQPyBHb29kLCBzdGljayB0aGUgCkdGMTE5IGlu
-IGFzIGEgc2Vjb25kYXJ5IEdQVSBhbmQgeW91IGNhbiB0cmFjZSB3aGlsZSBtZXNzaW5nIHdpdGgg
-dGhlIApWREVDIFBMTCBvciBzb21lIG90aGVyIGluc2lnbmlmaWNhbnQgZG9tYWluJ3MgUExMIG1h
-bnVhbGx5IHdpdGhvdXQgCmhhbmdpbmcgdGhlIGNhcmQgb3IgeW91ciBtYWNoaW5lLAoyKSBMb29r
-IGF0IEtlcGxlciBjb2RlIGVpdGhlciBpbiBub3V2ZWF1IG9yIG52Z3B1IHRvIHNlZSBpZiB0aGVp
-ciBQTEwgCnJlY29uZmlndXJhdGlvbiBjb2RlIG1hdGNoZXMgeW91ciB0cmFjZXMgY2xvc2VyLAoz
-KSBCZSBjaGVla3kgYW5kIGFzayBOVklESUEuCgpEZXBlbmRpbmcgb24gZnVydGhlciBpbnZlc3Rp
-Z2F0aW9uIHlvdSBtYXkgaGF2ZSB0byBjcmVhdGUgYSBuZXcgCmNsay9nZjExOS5jIHN1YmRldiB0
-byBmYWNpbGl0YXRlIHBvdGVudGlhbCBkaWZmZXJlbmNlcyBiZXR3ZWVuIGVhcmxpZXIgCkZlcm1p
-cyBhbmQgdGhpcyBvbmUuCgpSb3kKCgpPbiAwNi8wOS8yMDE5IDEyOjQzLCBNYXJrIE1lbnp5bnNr
-aSB3cm90ZToKPiBJIGhhdmUgbG9va2VkIGF0IHByb2JsZW0gd2l0aCBGZXJtaSBHUFVzIHdoZXJl
-IGNoYW5naW5nIHRvIGhpZ2hlciBjbG9jawo+IGxlZCB0byByZWFsbHkgYmFkIHBlcmZvbWFuY2Ug
-KHdpdGggR3B1VGVzdCAyMHggd29yc2UgcGVyZm9tYW5jZSkgYW5kIGxhdGVyIGFsc28gY3Jhc2hl
-cyBvZiB0aGUgbm91dmVhdS4gSXQgc2VlbWVkCj4gdG8gYmUgYWZmZWN0ZWQgYnkgU2hhZGVyIENs
-b2NrIGluIFZvbHRhZ2UgRW50cmllcyBpbiB0aGUgdmlkZW8gQklPUy4gRGlzYWJsaW5nCj4gQllQ
-QVNTX1BMTF9DSEVDSyBpbiBDTEswX0NUUkwgc2VlbXMgdG8gY29tcGxldGVseSBmaXggdGhlIGlz
-c3VlLiBJIGhhdmUKPiB0cmllZCB0byBzZWFyY2ggdGhpcyBCWVBBU1NfUExMX0NIRUNLIGluIE52
-aWRpYSB0cmFjZXMgYnV0IHNlZW1lZCBpdAo+IHdhc24ndCB1c2VkIG5vd2hlcmUgZm9yIENMSyBz
-ZXR0aW5ncy4KPiAKPiBSZW1vdmluZyB0aGlzIHdvcmtzIGZpbmUsIGJ1dCBJIGRvbid0IGtub3cg
-d2hhdCBpdCdzIHJlYWxseSBmb3IuCj4gQWN0dWFsIGJpdCBzZXR0aW5nIHRoaXMgQllQQVNTX1BM
-TF9DSEVDSyBpcyBvbiAweDEwOgo+IAlsb29rdXAgLWFjMCAweDEzNzAwMCAweDEwCj4gCVBDTE9D
-Sy5DTEswX0NUUkwgPT4geyBCWVBBU1NfUExMX0NIRUNLIHwgVU5LMTIgPSAwIH0KPiBBbHNvLCBk
-aXNhYmxpbmcgdGhpcyBiaXQgb24gb3RoZXIgQ0xLcyBkb2Vzbid0IHNlZW0gdG8gYnJlYWsgYW55
-dGhpbmcuCj4gCj4gdjI6IGFkZCBiYWNrIFBMTCBsb2NrIHRlc3QKPiB2MzogYWRkIHJlc3Rvcmlu
-ZyBvcmlnaW5hbCB2YWx1ZSBhZnRlciBQTEwgbG9jayB0ZXN0Cj4gCj4gU2lnbmVkLW9mZi1ieTog
-TWFyayBNZW56eW5za2kgPG1tZW56eW5zQHJlZGhhdC5jb20+Cj4gLS0tCj4gICBkcm0vbm91dmVh
-dS9udmttL3N1YmRldi9jbGsvZ2YxMDAuYyB8IDcgKysrKystLQo+ICAgZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvY2xrL2drMTA0LmMgfCA1ICsrKystCj4gICAyIGZpbGVzIGNoYW5nZWQsIDkgaW5z
-ZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUv
-bnZrbS9zdWJkZXYvY2xrL2dmMTAwLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ2Yx
-MDAuYwo+IGluZGV4IDdmNjdmOWY1Li5hOTdhZjBlOSAxMDA2NDQKPiAtLS0gYS9kcm0vbm91dmVh
-dS9udmttL3N1YmRldi9jbGsvZ2YxMDAuYwo+ICsrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2
-L2Nsay9nZjEwMC5jCj4gQEAgLTM2OCw2ICszNjgsNyBAQCBnZjEwMF9jbGtfcHJvZ18yKHN0cnVj
-dCBnZjEwMF9jbGsgKmNsaywgaW50IGlkeCkKPiAgIAlzdHJ1Y3QgZ2YxMDBfY2xrX2luZm8gKmlu
-Zm8gPSAmY2xrLT5lbmdbaWR4XTsKPiAgIAlzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSA9IGNs
-ay0+YmFzZS5zdWJkZXYuZGV2aWNlOwo+ICAgCWNvbnN0IHUzMiBhZGRyID0gMHgxMzcwMDAgKyAo
-aWR4ICogMHgyMCk7Cj4gKwlib29sIGJ5cGFzc19zdGF0ZSA9IGZhbHNlOwo+ICAgCWlmIChpZHgg
-PD0gNykgewo+ICAgCQludmttX21hc2soZGV2aWNlLCBhZGRyICsgMHgwMCwgMHgwMDAwMDAwNCwg
-MHgwMDAwMDAwMCk7Cj4gICAJCW52a21fbWFzayhkZXZpY2UsIGFkZHIgKyAweDAwLCAweDAwMDAw
-MDAxLCAweDAwMDAwMDAwKTsKPiBAQCAtMzc2LDEyICszNzcsMTQgQEAgZ2YxMDBfY2xrX3Byb2df
-MihzdHJ1Y3QgZ2YxMDBfY2xrICpjbGssIGludCBpZHgpCj4gICAJCQludmttX21hc2soZGV2aWNl
-LCBhZGRyICsgMHgwMCwgMHgwMDAwMDAwMSwgMHgwMDAwMDAwMSk7Cj4gICAKPiAgIAkJCS8qIFRl
-c3QgUExMIGxvY2sgKi8KPiArCQkJYnlwYXNzX3N0YXRlID0gbnZrbV9yZDMyKGRldmljZSwgYWRk
-ciArIDB4MDApICYgMHgwMDAwMDAxMDsKPiAgIAkJCW52a21fbWFzayhkZXZpY2UsIGFkZHIgKyAw
-eDAwLCAweDAwMDAwMDEwLCAweDAwMDAwMDAwKTsKPiAgIAkJCW52a21fbXNlYyhkZXZpY2UsIDIw
-MDAsCj4gICAJCQkJaWYgKG52a21fcmQzMihkZXZpY2UsIGFkZHIgKyAweDAwKSAmIDB4MDAwMjAw
-MDApCj4gICAJCQkJCWJyZWFrOwo+ICAgCQkJKTsKPiAtCQkJbnZrbV9tYXNrKGRldmljZSwgYWRk
-ciArIDB4MDAsIDB4MDAwMDAwMTAsIDB4MDAwMDAwMTApOwo+ICsJCQlpZiAoYnlwYXNzX3N0YXRl
-KQo+ICsJCQkJbnZrbV9tYXNrKGRldmljZSwgYWRkciArIDB4MDAsIDB4MDAwMDAwMTAsIDB4MDAw
-MDAwMTApOwo+ICAgCj4gICAJCQkvKiBFbmFibGUgc3luYyBtb2RlICovCj4gICAJCQludmttX21h
-c2soZGV2aWNlLCBhZGRyICsgMHgwMCwgMHgwMDAwMDAwNCwgMHgwMDAwMDAwNCk7Cj4gQEAgLTQ3
-Niw1ICs0NzksNSBAQCBnZjEwMF9jbGtfbmV3KHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlLCBp
-bnQgaW5kZXgsIHN0cnVjdCBudmttX2NsayAqKnBjbGspCj4gICAJCXJldHVybiAtRU5PTUVNOwo+
-ICAgCSpwY2xrID0gJmNsay0+YmFzZTsKPiAgIAo+IC0JcmV0dXJuIG52a21fY2xrX2N0b3IoJmdm
-MTAwX2NsaywgZGV2aWNlLCBpbmRleCwgZmFsc2UsICZjbGstPmJhc2UpOwo+ICsJcmV0dXJuIG52
-a21fY2xrX2N0b3IoJmdmMTAwX2NsaywgZGV2aWNlLCBpbmRleCwgdHJ1ZSwgJmNsay0+YmFzZSk7
-Cj4gICB9Cj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9nazEwNC5j
-IGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2drMTA0LmMKPiBpbmRleCAwYjM3ZTNkYS4u
-YzllZGU0MDQgMTAwNjQ0Cj4gLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2drMTA0
-LmMKPiArKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ2sxMDQuYwo+IEBAIC0zODgs
-NiArMzg4LDcgQEAgZ2sxMDRfY2xrX3Byb2dfMihzdHJ1Y3QgZ2sxMDRfY2xrICpjbGssIGludCBp
-ZHgpCj4gICAJc3RydWN0IGdrMTA0X2Nsa19pbmZvICppbmZvID0gJmNsay0+ZW5nW2lkeF07Cj4g
-ICAJc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBjbGstPmJhc2Uuc3ViZGV2LmRldmljZTsK
-PiAgIAljb25zdCB1MzIgYWRkciA9IDB4MTM3MDAwICsgKGlkeCAqIDB4MjApOwo+ICsJYm9vbCBi
-eXBhc3Nfc3RhdGUgPSBmYWxzZTsKPiAgIAludmttX21hc2soZGV2aWNlLCBhZGRyICsgMHgwMCwg
-MHgwMDAwMDAwNCwgMHgwMDAwMDAwMCk7Cj4gICAJbnZrbV9tYXNrKGRldmljZSwgYWRkciArIDB4
-MDAsIDB4MDAwMDAwMDEsIDB4MDAwMDAwMDApOwo+ICAgCWlmIChpbmZvLT5jb2VmKSB7Cj4gQEAg
-LTM5NSwxMiArMzk2LDE0IEBAIGdrMTA0X2Nsa19wcm9nXzIoc3RydWN0IGdrMTA0X2NsayAqY2xr
-LCBpbnQgaWR4KQo+ICAgCQludmttX21hc2soZGV2aWNlLCBhZGRyICsgMHgwMCwgMHgwMDAwMDAw
-MSwgMHgwMDAwMDAwMSk7Cj4gICAKPiAgIAkJLyogVGVzdCBQTEwgbG9jayAqLwo+ICsJCWJ5cGFz
-c19zdGF0ZSA9IG52a21fcmQzMihkZXZpY2UsIGFkZHIgKyAweDAwKTsKPiAgIAkJbnZrbV9tYXNr
-KGRldmljZSwgYWRkciArIDB4MDAsIDB4MDAwMDAwMTAsIDB4MDAwMDAwMDApOwo+ICAgCQludmtt
-X21zZWMoZGV2aWNlLCAyMDAwLAo+ICAgCQkJaWYgKG52a21fcmQzMihkZXZpY2UsIGFkZHIgKyAw
-eDAwKSAmIDB4MDAwMjAwMDApCj4gICAJCQkJYnJlYWs7Cj4gICAJCSk7Cj4gLQkJbnZrbV9tYXNr
-KGRldmljZSwgYWRkciArIDB4MDAsIDB4MDAwMDAwMTAsIDB4MDAwMDAwMTApOwo+ICsJCWlmIChi
-eXBhc3Nfc3RhdGUpCj4gKwkJCW52a21fbWFzayhkZXZpY2UsIGFkZHIgKyAweDAwLCAweDAwMDAw
-MDEwLCAweDAwMDAwMDEwKTsKPiAgIAo+ICAgCQkvKiBFbmFibGUgc3luYyBtb2RlICovCj4gICAJ
-CW52a21fbWFzayhkZXZpY2UsIGFkZHIgKyAweDAwLCAweDAwMDAwMDA0LCAweDAwMDAwMDA0KTsK
-PiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
-dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+Hello,
+
+syzbot found the following crash on:
+
+HEAD commit:    6d028043 Add linux-next specific files for 20190830
+git tree:       linux-next
+console output: https://syzkaller.appspot.com/x/log.txt?x=16cbf22a600000
+kernel config:  https://syzkaller.appspot.com/x/.config?x=82a6bec43ab0cb69
+dashboard link: https://syzkaller.appspot.com/bug?extid=aaedc50d99a03250fe1f
+compiler:       gcc (GCC) 9.0.0 20181231 (experimental)
+syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=15269876600000
+C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=12685092600000
+
+The bug was bisected to:
+
+commit e58b341134ca751d9c12bacded12a8b4dd51368d
+Author: Stephen Rothwell <sfr@canb.auug.org.au>
+Date:   Fri Aug 30 09:42:14 2019 +0000
+
+     Merge remote-tracking branch 'hmm/hmm'
+
+bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=11ea65ea600000
+final crash:    https://syzkaller.appspot.com/x/report.txt?x=13ea65ea600000
+console output: https://syzkaller.appspot.com/x/log.txt?x=15ea65ea600000
+
+IMPORTANT: if you fix the bug, please add the following tag to the commit:
+Reported-by: syzbot+aaedc50d99a03250fe1f@syzkaller.appspotmail.com
+Fixes: e58b341134ca ("Merge remote-tracking branch 'hmm/hmm'")
+
+============================================
+WARNING: possible recursive locking detected
+5.3.0-rc6-next-20190830 #75 Not tainted
+--------------------------------------------
+oom_reaper/1065 is trying to acquire lock:
+ffffffff8904ff60 (mmu_notifier_invalidate_range_start){+.+.}, at:  
+__mmu_notifier_invalidate_range_end+0x0/0x360 mm/mmu_notifier.c:169
+
+but task is already holding lock:
+ffffffff8904ff60 (mmu_notifier_invalidate_range_start){+.+.}, at:  
+__oom_reap_task_mm+0x196/0x490 mm/oom_kill.c:542
+
+other info that might help us debug this:
+  Possible unsafe locking scenario:
+
+        CPU0
+        ----
+   lock(mmu_notifier_invalidate_range_start);
+   lock(mmu_notifier_invalidate_range_start);
+
+  *** DEADLOCK ***
+
+  May be due to missing lock nesting notation
+
+2 locks held by oom_reaper/1065:
+  #0: ffff888094ad3990 (&mm->mmap_sem#2){++++}, at: oom_reap_task_mm  
+mm/oom_kill.c:570 [inline]
+  #0: ffff888094ad3990 (&mm->mmap_sem#2){++++}, at: oom_reap_task  
+mm/oom_kill.c:613 [inline]
+  #0: ffff888094ad3990 (&mm->mmap_sem#2){++++}, at: oom_reaper+0x3a7/0x1320  
+mm/oom_kill.c:651
+  #1: ffffffff8904ff60 (mmu_notifier_invalidate_range_start){+.+.}, at:  
+__oom_reap_task_mm+0x196/0x490 mm/oom_kill.c:542
+
+stack backtrace:
+CPU: 1 PID: 1065 Comm: oom_reaper Not tainted 5.3.0-rc6-next-20190830 #75
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS  
+Google 01/01/2011
+Call Trace:
+  __dump_stack lib/dump_stack.c:77 [inline]
+  dump_stack+0x172/0x1f0 lib/dump_stack.c:113
+  print_deadlock_bug kernel/locking/lockdep.c:2371 [inline]
+  check_deadlock kernel/locking/lockdep.c:2412 [inline]
+  validate_chain kernel/locking/lockdep.c:2955 [inline]
+  __lock_acquire.cold+0x15d/0x385 kernel/locking/lockdep.c:3955
+  lock_acquire+0x190/0x410 kernel/locking/lockdep.c:4487
+  __mmu_notifier_invalidate_range_end+0x3c/0x360 mm/mmu_notifier.c:193
+  mmu_notifier_invalidate_range_end include/linux/mmu_notifier.h:375 [inline]
+  __oom_reap_task_mm+0x3fa/0x490 mm/oom_kill.c:552
+  oom_reap_task_mm mm/oom_kill.c:589 [inline]
+  oom_reap_task mm/oom_kill.c:613 [inline]
+  oom_reaper+0x2b2/0x1320 mm/oom_kill.c:651
+  kthread+0x361/0x430 kernel/kthread.c:255
+  ret_from_fork+0x24/0x30 arch/x86/entry/entry_64.S:352
+oom_reaper: reaped process 10145 (syz-executor282), now anon-rss:16480kB,  
+file-rss:872kB, shmem-rss:0kB
+oom_reaper: reaped process 10144 (syz-executor282), now anon-rss:0kB,  
+file-rss:0kB, shmem-rss:0kB
+oom_reaper: reaped process 10158 (syz-executor282), now anon-rss:16824kB,  
+file-rss:872kB, shmem-rss:0kB
+oom_reaper: reaped process 10187 (syz-executor282), now anon-rss:0kB,  
+file-rss:0kB, shmem-rss:0kB
+oom_reaper: reaped process 10173 (syz-executor282), now anon-rss:0kB,  
+file-rss:0kB, shmem-rss:0kB
+oom_reaper: reaped process 10139 (syz-executor282), now anon-rss:0kB,  
+file-rss:0kB, shmem-rss:0kB
+
+
+---
+This bug is generated by a bot. It may contain errors.
+See https://goo.gl/tpsmEJ for more information about syzbot.
+syzbot engineers can be reached at syzkaller@googlegroups.com.
+
+syzbot will keep track of this bug report. See:
+https://goo.gl/tpsmEJ#status for how to communicate with syzbot.
+For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+syzbot can test patches for this bug, for details see:
+https://goo.gl/tpsmEJ#testing-patches
