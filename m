@@ -1,11 +1,12 @@
-From: Mark Menzynski <mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v3] clk: Restore BYPASS_PLL_CHECK from PLLs
-Date: Fri,  6 Sep 2019 13:43:03 +0200
-Message-ID: <20190906114303.7559-1-mmenzyns@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110714] Xorg crashes randomly because of memory leak
+Date: Fri, 06 Sep 2019 16:17:42 +0000
+Message-ID: <bug-110714-8800-OkiPNK8Tpi@http.bugs.freedesktop.org/>
+References: <bug-110714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1274407736=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-110714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,71 +19,109 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SSBoYXZlIGxvb2tlZCBhdCBwcm9ibGVtIHdpdGggRmVybWkgR1BVcyB3aGVyZSBjaGFuZ2luZyB0
-byBoaWdoZXIgY2xvY2sKbGVkIHRvIHJlYWxseSBiYWQgcGVyZm9tYW5jZSAod2l0aCBHcHVUZXN0
-IDIweCB3b3JzZSBwZXJmb21hbmNlKSBhbmQgbGF0ZXIgYWxzbyBjcmFzaGVzIG9mIHRoZSBub3V2
-ZWF1LiBJdCBzZWVtZWQKdG8gYmUgYWZmZWN0ZWQgYnkgU2hhZGVyIENsb2NrIGluIFZvbHRhZ2Ug
-RW50cmllcyBpbiB0aGUgdmlkZW8gQklPUy4gRGlzYWJsaW5nCkJZUEFTU19QTExfQ0hFQ0sgaW4g
-Q0xLMF9DVFJMIHNlZW1zIHRvIGNvbXBsZXRlbHkgZml4IHRoZSBpc3N1ZS4gSSBoYXZlCnRyaWVk
-IHRvIHNlYXJjaCB0aGlzIEJZUEFTU19QTExfQ0hFQ0sgaW4gTnZpZGlhIHRyYWNlcyBidXQgc2Vl
-bWVkIGl0Cndhc24ndCB1c2VkIG5vd2hlcmUgZm9yIENMSyBzZXR0aW5ncy4KClJlbW92aW5nIHRo
-aXMgd29ya3MgZmluZSwgYnV0IEkgZG9uJ3Qga25vdyB3aGF0IGl0J3MgcmVhbGx5IGZvci4KQWN0
-dWFsIGJpdCBzZXR0aW5nIHRoaXMgQllQQVNTX1BMTF9DSEVDSyBpcyBvbiAweDEwOgoJbG9va3Vw
-IC1hYzAgMHgxMzcwMDAgMHgxMAoJUENMT0NLLkNMSzBfQ1RSTCA9PiB7IEJZUEFTU19QTExfQ0hF
-Q0sgfCBVTksxMiA9IDAgfQpBbHNvLCBkaXNhYmxpbmcgdGhpcyBiaXQgb24gb3RoZXIgQ0xLcyBk
-b2Vzbid0IHNlZW0gdG8gYnJlYWsgYW55dGhpbmcuCgp2MjogYWRkIGJhY2sgUExMIGxvY2sgdGVz
-dAp2MzogYWRkIHJlc3RvcmluZyBvcmlnaW5hbCB2YWx1ZSBhZnRlciBQTEwgbG9jayB0ZXN0CgpT
-aWduZWQtb2ZmLWJ5OiBNYXJrIE1lbnp5bnNraSA8bW1lbnp5bnNAcmVkaGF0LmNvbT4KLS0tCiBk
-cm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvZ2YxMDAuYyB8IDcgKysrKystLQogZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvY2xrL2drMTA0LmMgfCA1ICsrKystCiAyIGZpbGVzIGNoYW5nZWQsIDkg
-aW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9jbGsvZ2YxMDAuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9nZjEw
-MC5jCmluZGV4IDdmNjdmOWY1Li5hOTdhZjBlOSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvY2xrL2dmMTAwLmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2dm
-MTAwLmMKQEAgLTM2OCw2ICszNjgsNyBAQCBnZjEwMF9jbGtfcHJvZ18yKHN0cnVjdCBnZjEwMF9j
-bGsgKmNsaywgaW50IGlkeCkKIAlzdHJ1Y3QgZ2YxMDBfY2xrX2luZm8gKmluZm8gPSAmY2xrLT5l
-bmdbaWR4XTsKIAlzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSA9IGNsay0+YmFzZS5zdWJkZXYu
-ZGV2aWNlOwogCWNvbnN0IHUzMiBhZGRyID0gMHgxMzcwMDAgKyAoaWR4ICogMHgyMCk7CisJYm9v
-bCBieXBhc3Nfc3RhdGUgPSBmYWxzZTsKIAlpZiAoaWR4IDw9IDcpIHsKIAkJbnZrbV9tYXNrKGRl
-dmljZSwgYWRkciArIDB4MDAsIDB4MDAwMDAwMDQsIDB4MDAwMDAwMDApOwogCQludmttX21hc2so
-ZGV2aWNlLCBhZGRyICsgMHgwMCwgMHgwMDAwMDAwMSwgMHgwMDAwMDAwMCk7CkBAIC0zNzYsMTIg
-KzM3NywxNCBAQCBnZjEwMF9jbGtfcHJvZ18yKHN0cnVjdCBnZjEwMF9jbGsgKmNsaywgaW50IGlk
-eCkKIAkJCW52a21fbWFzayhkZXZpY2UsIGFkZHIgKyAweDAwLCAweDAwMDAwMDAxLCAweDAwMDAw
-MDAxKTsKIAogCQkJLyogVGVzdCBQTEwgbG9jayAqLworCQkJYnlwYXNzX3N0YXRlID0gbnZrbV9y
-ZDMyKGRldmljZSwgYWRkciArIDB4MDApICYgMHgwMDAwMDAxMDsKIAkJCW52a21fbWFzayhkZXZp
-Y2UsIGFkZHIgKyAweDAwLCAweDAwMDAwMDEwLCAweDAwMDAwMDAwKTsKIAkJCW52a21fbXNlYyhk
-ZXZpY2UsIDIwMDAsCiAJCQkJaWYgKG52a21fcmQzMihkZXZpY2UsIGFkZHIgKyAweDAwKSAmIDB4
-MDAwMjAwMDApCiAJCQkJCWJyZWFrOwogCQkJKTsKLQkJCW52a21fbWFzayhkZXZpY2UsIGFkZHIg
-KyAweDAwLCAweDAwMDAwMDEwLCAweDAwMDAwMDEwKTsKKwkJCWlmIChieXBhc3Nfc3RhdGUpCisJ
-CQkJbnZrbV9tYXNrKGRldmljZSwgYWRkciArIDB4MDAsIDB4MDAwMDAwMTAsIDB4MDAwMDAwMTAp
-OwogCiAJCQkvKiBFbmFibGUgc3luYyBtb2RlICovCiAJCQludmttX21hc2soZGV2aWNlLCBhZGRy
-ICsgMHgwMCwgMHgwMDAwMDAwNCwgMHgwMDAwMDAwNCk7CkBAIC00NzYsNSArNDc5LDUgQEAgZ2Yx
-MDBfY2xrX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSwgaW50IGluZGV4LCBzdHJ1Y3Qg
-bnZrbV9jbGsgKipwY2xrKQogCQlyZXR1cm4gLUVOT01FTTsKIAkqcGNsayA9ICZjbGstPmJhc2U7
-CiAKLQlyZXR1cm4gbnZrbV9jbGtfY3RvcigmZ2YxMDBfY2xrLCBkZXZpY2UsIGluZGV4LCBmYWxz
-ZSwgJmNsay0+YmFzZSk7CisJcmV0dXJuIG52a21fY2xrX2N0b3IoJmdmMTAwX2NsaywgZGV2aWNl
-LCBpbmRleCwgdHJ1ZSwgJmNsay0+YmFzZSk7CiB9CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9jbGsvZ2sxMDQuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9nazEw
-NC5jCmluZGV4IDBiMzdlM2RhLi5jOWVkZTQwNCAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvY2xrL2drMTA0LmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2dr
-MTA0LmMKQEAgLTM4OCw2ICszODgsNyBAQCBnazEwNF9jbGtfcHJvZ18yKHN0cnVjdCBnazEwNF9j
-bGsgKmNsaywgaW50IGlkeCkKIAlzdHJ1Y3QgZ2sxMDRfY2xrX2luZm8gKmluZm8gPSAmY2xrLT5l
-bmdbaWR4XTsKIAlzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSA9IGNsay0+YmFzZS5zdWJkZXYu
-ZGV2aWNlOwogCWNvbnN0IHUzMiBhZGRyID0gMHgxMzcwMDAgKyAoaWR4ICogMHgyMCk7CisJYm9v
-bCBieXBhc3Nfc3RhdGUgPSBmYWxzZTsKIAludmttX21hc2soZGV2aWNlLCBhZGRyICsgMHgwMCwg
-MHgwMDAwMDAwNCwgMHgwMDAwMDAwMCk7CiAJbnZrbV9tYXNrKGRldmljZSwgYWRkciArIDB4MDAs
-IDB4MDAwMDAwMDEsIDB4MDAwMDAwMDApOwogCWlmIChpbmZvLT5jb2VmKSB7CkBAIC0zOTUsMTIg
-KzM5NiwxNCBAQCBnazEwNF9jbGtfcHJvZ18yKHN0cnVjdCBnazEwNF9jbGsgKmNsaywgaW50IGlk
-eCkKIAkJbnZrbV9tYXNrKGRldmljZSwgYWRkciArIDB4MDAsIDB4MDAwMDAwMDEsIDB4MDAwMDAw
-MDEpOwogCiAJCS8qIFRlc3QgUExMIGxvY2sgKi8KKwkJYnlwYXNzX3N0YXRlID0gbnZrbV9yZDMy
-KGRldmljZSwgYWRkciArIDB4MDApOwogCQludmttX21hc2soZGV2aWNlLCBhZGRyICsgMHgwMCwg
-MHgwMDAwMDAxMCwgMHgwMDAwMDAwMCk7CiAJCW52a21fbXNlYyhkZXZpY2UsIDIwMDAsCiAJCQlp
-ZiAobnZrbV9yZDMyKGRldmljZSwgYWRkciArIDB4MDApICYgMHgwMDAyMDAwMCkKIAkJCQlicmVh
-azsKIAkJKTsKLQkJbnZrbV9tYXNrKGRldmljZSwgYWRkciArIDB4MDAsIDB4MDAwMDAwMTAsIDB4
-MDAwMDAwMTApOworCQlpZiAoYnlwYXNzX3N0YXRlKQorCQkJbnZrbV9tYXNrKGRldmljZSwgYWRk
-ciArIDB4MDAsIDB4MDAwMDAwMTAsIDB4MDAwMDAwMTApOwogCiAJCS8qIEVuYWJsZSBzeW5jIG1v
-ZGUgKi8KIAkJbnZrbV9tYXNrKGRldmljZSwgYWRkciArIDB4MDAsIDB4MDAwMDAwMDQsIDB4MDAw
-MDAwMDQpOwotLSAKMi4yMS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXU=
+
+--===============1274407736==
+Content-Type: multipart/alternative; boundary="15677866612.271BdD6D.26747"
+Content-Transfer-Encoding: 7bit
+
+
+--15677866612.271BdD6D.26747
+Date: Fri, 6 Sep 2019 16:17:41 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110714
+
+--- Comment #19 from John Lindgren <john-ytntcHzVV1kcWVvVuXF20w@public.gmane.org> ---
+I just saw this same crash (Xorg 1.20.4 here still though).  I also had
+Firefox, VirtualBox, Evolution, and a few smaller applications running.  The
+computer had been running for most of the week already, so maybe a memory l=
+eak
+somewhere?
+
+My card is:
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GM107GLM [Quadro M200=
+0M]
+(rev a2)
+
+I am using xf86-video-modesetting.  Should I be using xf86-video-nouveau
+instead?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15677866612.271BdD6D.26747
+Date: Fri, 6 Sep 2019 16:17:41 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Xorg crashes randomly because of memory leak"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714#c19">Comme=
+nt # 19</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_REOPENED "
+   title=3D"REOPENED - Xorg crashes randomly because of memory leak"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714">bug 11071=
+4</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+john&#64;jlindgren.net" title=3D"John Lindgren &lt;john&#64;jlindgren.net&g=
+t;"> <span class=3D"fn">John Lindgren</span></a>
+</span></b>
+        <pre>I just saw this same crash (Xorg 1.20.4 here still though).  I=
+ also had
+Firefox, VirtualBox, Evolution, and a few smaller applications running.  The
+computer had been running for most of the week already, so maybe a memory l=
+eak
+somewhere?
+
+My card is:
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GM107GLM [Quadro M200=
+0M]
+(rev a2)
+
+I am using xf86-video-modesetting.  Should I be using xf86-video-nouveau
+instead?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15677866612.271BdD6D.26747--
+
+--===============1274407736==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1274407736==--
