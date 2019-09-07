@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111642] NV43 GeForce 6600 Nouveau is not stable on
- legacy hardware
-Date: Sat, 14 Sep 2019 03:48:48 +0000
-Message-ID: <bug-111642-8800-Fwtkp8FQYt@http.bugs.freedesktop.org/>
-References: <bug-111642-8800@http.bugs.freedesktop.org/>
+From: Ayush Goyal <goyalayush782-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: X.Org Endless Vacation of Code programs
+Date: Sat, 7 Sep 2019 10:25:59 +0530
+Message-ID: <CAPO76zLhufoOpn2qPnaMqb4JGG+EJsOYcp4-ZOBNzh6VM79ceA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0185053193=="
+Content-Type: multipart/mixed; boundary="===============0254056635=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111642-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,80 +17,52 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============0254056635==
+Content-Type: multipart/alternative; boundary="00000000000087c2720591ef5f6a"
 
---===============0185053193==
-Content-Type: multipart/alternative; boundary="15684329280.F80c.7596"
-Content-Transfer-Encoding: 7bit
-
-
---15684329280.F80c.7596
-Date: Sat, 14 Sep 2019 03:48:48 +0000
-MIME-Version: 1.0
+--00000000000087c2720591ef5f6a
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111642
+Hi
+I am Ayush Goyal from India currently doing B.E. in my final year.
 
---- Comment #16 from Vasili Pupkin <diggest-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I am using gnome 3.28.2 on xorg 1.20.4, wayland disappeared from the list on
-gdm login screen after recent upgrades
+I would like to know that whether project
+Instruction Scheduler
+is open to contribute and what are the steps to be taken to contribute in
+it.
+I would like to build it and also if you can brief me about it as there is
+very less info about it on the website
+https://www.x.org/wiki/SummerOfCodeIdeas/
+Also if this project has already started then can you share me the link of
+its open source code.
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
+Feel free to reply anytime soon.
+You can reach me out on this email only and my contact no is +919780421078
 
---15684329280.F80c.7596
-Date: Sat, 14 Sep 2019 03:48:48 +0000
-MIME-Version: 1.0
+Ayush Goyal
+
+--00000000000087c2720591ef5f6a
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
-e"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642#c16">Comme=
-nt # 16</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
-e"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642">bug 11164=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-diggest&#64;gmail.com" title=3D"Vasili Pupkin &lt;diggest&#64;gmail.com&gt;=
-"> <span class=3D"fn">Vasili Pupkin</span></a>
-</span></b>
-        <pre>I am using gnome 3.28.2 on xorg 1.20.4, wayland disappeared fr=
-om the list on
-gdm login screen after recent upgrades</pre>
-        </div>
-      </p>
+<div dir=3D"ltr">Hi<div>I am Ayush Goyal from India currently doing B.E. in=
+ my final year.=C2=A0</div><div><br></div><div>I would like to know that wh=
+ether project=C2=A0</div><h4 id=3D"gmail-instructionscheduler" style=3D"col=
+or:rgb(43,94,130);font-size:17.776px;font-family:&quot;Times New Roman&quot=
+;">Instruction Scheduler</h4><div>is open to contribute and what are the st=
+eps to be=C2=A0taken to contribute=C2=A0in it.=C2=A0</div><div>I would like=
+ to build it and also if you can brief=C2=A0me about it as there is very le=
+ss info about it on the=C2=A0website=C2=A0<a href=3D"https://www.x.org/wiki=
+/SummerOfCodeIdeas/">https://www.x.org/wiki/SummerOfCodeIdeas/</a>=C2=A0</d=
+iv><div>Also if this project has already started then can you share me the =
+link of its open source code.</div><div><br></div><div>Feel free to reply a=
+nytime soon.</div><div>You can reach me out on this email only and my conta=
+ct no is=C2=A0+919780421078</div><div><br></div><div>Ayush Goyal</div></div=
+>
 
+--00000000000087c2720591ef5f6a--
 
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15684329280.F80c.7596--
-
---===============0185053193==
+--===============0254056635==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +72,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0185053193==--
+--===============0254056635==--
