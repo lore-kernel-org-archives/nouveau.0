@@ -1,264 +1,194 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100423] MMIO read of 00000000 FAULT at 022554 [ IBUS
- ]
-Date: Sun, 08 Sep 2019 08:46:24 +0000
-Message-ID: <bug-100423-8800-SgucPZEIhU@http.bugs.freedesktop.org/>
-References: <bug-100423-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/8] drm/ttm: turn ttm_bo_device.vma_manager into a pointer
+Date: Mon, 9 Sep 2019 08:59:11 +0200
+Message-ID: <851d89ec-968f-2209-91d2-29ec0b083e0b@gmail.com>
+References: <20190905070509.22407-1-kraxel@redhat.com>
+ <20190905070509.22407-2-kraxel@redhat.com>
+Reply-To: christian.koenig-5C7GfCeVMHo@public.gmane.org
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2134659734=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20190905070509.22407-2-kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Language: en-US
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
+List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
+ <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Gerd Hoffmann <kraxel-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "David (ChunMing) Zhou" <David1.Zhou-5C7GfCeVMHo@public.gmane.org>, Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, open list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "open list:DRM DRIVER FOR QXL VIRTUAL GPU" <virtualization-cunTk1MwBs9QetFLy7KEm3xJsTq8ys+cHZ5vskTnxNA@public.gmane.org>, Maxime Ripard <maxime.ripard-LDxbnhwyfcJBDgjK7y7TUQ@public.gmane.org>, Huang Rui <ray.huang-5C7GfCeVMHo@public.gmane.org>, VMware Graphics <linux-graphics-maintainer-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, "open list:DRM DRIVER FOR QXL VIRTUAL GPU" <spice-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Sean Paul <sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org>, =?UTF-8?Q?Christian_K=c3=b6ni
 List-Id: nouveau.vger.kernel.org
 
-
---===============2134659734==
-Content-Type: multipart/alternative; boundary="15679323853.8ca88aAe.6418"
-Content-Transfer-Encoding: 7bit
-
-
---15679323853.8ca88aAe.6418
-Date: Sun, 8 Sep 2019 08:46:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100423
-
---- Comment #30 from michal.dybczak-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-This is concerning that after all this time (2,5 year) this issue is still
-here.
-
-I have the same issue shown in journalctl. I believe it wasn't there from t=
-he
-start but showed a while ago. I don't see any problems on the frontend site,
-however.
-I have a hybrid GPUs and currently use optimus-manager to switch between GP=
-Us.
-Nouevau is making the switch (successfully).
-
-Here is the bug:
-
-nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 022554 [ IBUS ]
-
-My laptop is:
-
-System:    Host: alienware-PC Kernel: 5.2.13-1-MANJARO x86_64 bits: 64
-compiler: gcc v: 9.1.0 Desktop: KDE Plasma 5.16.5=20
-           tk: Qt 5.13.0 wm: kwin_x11 dm: SDDM Distro: Manjaro Linux=20
-Machine:   Type: Laptop System: Alienware product: Alienware 17 R3 v: 1.7.0
-serial: <filter> Chassis: type: 10=20
-           serial: <filter>=20
-           Mobo: Alienware model: 0GH72M v: A00 serial: <filter> UEFI:
-Alienware v: 1.7.0 date: 01/18/2019=20
-Battery:   ID-1: BAT1 charge: 95.8 Wh condition: 95.8/96.0 Wh (100%) volts:
-17.3/15.0 model: COMPAL PABAS0241231=20
-           serial: <filter> status: Full=20
-CPU:       Topology: Quad Core model: Intel Core i7-6700HQ bits: 64 type: MT
-MCP arch: Skylake-S rev: 3 L2 cache: 6144 KiB=20
-           flags: avx avx2 lm nx pae sse sse2 sse3 sse4_1 sse4_2 ssse3 vmx
-bogomips: 41488=20
-           Speed: 933 MHz min/max: 800/3500 MHz Core speeds (MHz): 1: 900 2:
-900 3: 900 4: 900 5: 900 6: 900 7: 900 8: 900=20
-Graphics:  Device-1: Intel HD Graphics 530 vendor: Dell driver: i915 v: ker=
-nel
-bus ID: 00:02.0 chip ID: 8086:191b=20
-           Device-2: NVIDIA GM204M [GeForce GTX 970M] vendor: Dell driver:
-nouveau v: kernel bus ID: 01:00.0=20
-           chip ID: 10de:13d8=20
-           Display: x11 server: X.Org 1.20.5 driver: modesetting compositor:
-kwin_x11 tty: N/A=20
-           OpenGL: renderer: Mesa DRI Intel HD Graphics 530 (Skylake GT2) v:
-4.5 Mesa 19.1.6 compat-v: 3.0 direct render: Yes=20
-Audio:     Device-1: Intel 100 Series/C230 Series Family HD Audio vendor: D=
-ell
-driver: snd_hda_intel v: kernel bus ID: 00:1f.3=20
-           chip ID: 8086:a170=20
-           Sound Server: ALSA v: k5.2.13-1-MANJARO=20
-Network:   Device-1: Qualcomm Atheros Killer E2400 Gigabit Ethernet driver:=
- alx
-v: kernel port: d000 bus ID: 3b:00.0=20
-           chip ID: 1969:e0a1=20
-           IF: enp59s0 state: down mac: <filter>=20
-           Device-2: Qualcomm Atheros QCA6174 802.11ac Wireless Network Ada=
-pter
-vendor: Bigfoot Networks driver: ath10k_pci=20
-           v: kernel port: d000 bus ID: 3c:00.0 chip ID: 168c:003e=20
-           IF: wlp60s0 state: up mac: <filter>=20
-           Device-3: Qualcomm Atheros type: USB driver: btusb bus ID: 1-5:4
-chip ID: 0cf3:e300=20
-Drives:    Local Storage: total: 1.02 TiB used: 730.08 GiB (70.0%)=20
-           ID-1: /dev/sda vendor: Kingston model: SM2280S3G2120G size: 111.=
-79
-GiB speed: 6.0 Gb/s serial: <filter>=20
-           ID-2: /dev/sdb vendor: HGST (Hitachi) model: HTS721010A9E630 siz=
-e:
-931.51 GiB speed: 6.0 Gb/s serial: <filter>=20
-RAID:      Hardware-1: Intel 82801 Mobile SATA Controller [RAID mode] drive=
-r:
-ahci v: 3.0 bus ID: 00:17.0 chip ID: 8086.282a=20
-Partition: ID-1: / size: 38.32 GiB used: 30.85 GiB (80.5%) fs: ext4 dev:
-/dev/sda4=20
-           ID-2: /home size: 71.26 GiB used: 57.85 GiB (81.2%) fs: ext4 dev:
-/dev/sda2=20
-Sensors:   System Temperatures: cpu: 54.5 C mobo: N/A gpu: nouveau temp: 54=
- C=20
-           Fan Speeds (RPM): N/A=20
-Info:      Processes: 262 Uptime: 5m Memory: 7.66 GiB used: 2.53 GiB (33.0%)
-Init: systemd v: 243 Compilers: gcc: 9.1.0=20
-           clang: 8.0.1 Shell: bash v: 5.0.11 running in: konsole inxi: 3.0=
-.36
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15679323853.8ca88aAe.6418
-Date: Sun, 8 Sep 2019 08:46:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423#c30">Comme=
-nt # 30</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - MMIO read of 00000000 FAULT at 022554 [ IBUS ]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100423">bug 10042=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-michal.dybczak&#64;gmail.com" title=3D"michal.dybczak&#64;gmail.com">michal=
-.dybczak&#64;gmail.com</a>
-</span></b>
-        <pre>This is concerning that after all this time (2,5 year) this is=
-sue is still
-here.
-
-I have the same issue shown in journalctl. I believe it wasn't there from t=
-he
-start but showed a while ago. I don't see any problems on the frontend site,
-however.
-I have a hybrid GPUs and currently use optimus-manager to switch between GP=
-Us.
-Nouevau is making the switch (successfully).
-
-Here is the bug:
-
-nouveau 0000:01:00.0: bus: MMIO read of 00000000 FAULT at 022554 [ IBUS ]
-
-My laptop is:
-
-System:    Host: alienware-PC Kernel: 5.2.13-1-MANJARO x86_64 bits: 64
-compiler: gcc v: 9.1.0 Desktop: KDE Plasma 5.16.5=20
-           tk: Qt 5.13.0 wm: kwin_x11 dm: SDDM Distro: Manjaro Linux=20
-Machine:   Type: Laptop System: Alienware product: Alienware 17 R3 v: 1.7.0
-serial: &lt;filter&gt; Chassis: type: 10=20
-           serial: &lt;filter&gt;=20
-           Mobo: Alienware model: 0GH72M v: A00 serial: &lt;filter&gt; UEFI:
-Alienware v: 1.7.0 date: 01/18/2019=20
-Battery:   ID-1: BAT1 charge: 95.8 Wh condition: 95.8/96.0 Wh (100%) volts:
-17.3/15.0 model: COMPAL PABAS0241231=20
-           serial: &lt;filter&gt; status: Full=20
-CPU:       Topology: Quad Core model: Intel Core i7-6700HQ bits: 64 type: MT
-MCP arch: Skylake-S rev: 3 L2 cache: 6144 KiB=20
-           flags: avx avx2 lm nx pae sse sse2 sse3 sse4_1 sse4_2 ssse3 vmx
-bogomips: 41488=20
-           Speed: 933 MHz min/max: 800/3500 MHz Core speeds (MHz): 1: 900 2:
-900 3: 900 4: 900 5: 900 6: 900 7: 900 8: 900=20
-Graphics:  Device-1: Intel HD Graphics 530 vendor: Dell driver: i915 v: ker=
-nel
-bus ID: 00:02.0 chip ID: 8086:191b=20
-           Device-2: NVIDIA GM204M [GeForce GTX 970M] vendor: Dell driver:
-nouveau v: kernel bus ID: 01:00.0=20
-           chip ID: 10de:13d8=20
-           Display: x11 server: X.Org 1.20.5 driver: modesetting compositor:
-kwin_x11 tty: N/A=20
-           OpenGL: renderer: Mesa DRI Intel HD Graphics 530 (Skylake GT2) v:
-4.5 Mesa 19.1.6 compat-v: 3.0 direct render: Yes=20
-Audio:     Device-1: Intel 100 Series/C230 Series Family HD Audio vendor: D=
-ell
-driver: snd_hda_intel v: kernel bus ID: 00:1f.3=20
-           chip ID: 8086:a170=20
-           Sound Server: ALSA v: k5.2.13-1-MANJARO=20
-Network:   Device-1: Qualcomm Atheros Killer E2400 Gigabit Ethernet driver:=
- alx
-v: kernel port: d000 bus ID: 3b:00.0=20
-           chip ID: 1969:e0a1=20
-           IF: enp59s0 state: down mac: &lt;filter&gt;=20
-           Device-2: Qualcomm Atheros QCA6174 802.11ac Wireless Network Ada=
-pter
-vendor: Bigfoot Networks driver: ath10k_pci=20
-           v: kernel port: d000 bus ID: 3c:00.0 chip ID: 168c:003e=20
-           IF: wlp60s0 state: up mac: &lt;filter&gt;=20
-           Device-3: Qualcomm Atheros type: USB driver: btusb bus ID: 1-5:4
-chip ID: 0cf3:e300=20
-Drives:    Local Storage: total: 1.02 TiB used: 730.08 GiB (70.0%)=20
-           ID-1: /dev/sda vendor: Kingston model: SM2280S3G2120G size: 111.=
-79
-GiB speed: 6.0 Gb/s serial: &lt;filter&gt;=20
-           ID-2: /dev/sdb vendor: HGST (Hitachi) model: HTS721010A9E630 siz=
-e:
-931.51 GiB speed: 6.0 Gb/s serial: &lt;filter&gt;=20
-RAID:      Hardware-1: Intel 82801 Mobile SATA Controller [RAID mode] drive=
-r:
-ahci v: 3.0 bus ID: 00:17.0 chip ID: 8086.282a=20
-Partition: ID-1: / size: 38.32 GiB used: 30.85 GiB (80.5%) fs: ext4 dev:
-/dev/sda4=20
-           ID-2: /home size: 71.26 GiB used: 57.85 GiB (81.2%) fs: ext4 dev:
-/dev/sda2=20
-Sensors:   System Temperatures: cpu: 54.5 C mobo: N/A gpu: nouveau temp: 54=
- C=20
-           Fan Speeds (RPM): N/A=20
-Info:      Processes: 262 Uptime: 5m Memory: 7.66 GiB used: 2.53 GiB (33.0%)
-Init: systemd v: 243 Compilers: gcc: 9.1.0=20
-           clang: 8.0.1 Shell: bash v: 5.0.11 running in: konsole inxi: 3.0=
-.36</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15679323853.8ca88aAe.6418--
-
---===============2134659734==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============2134659734==--
+QW0gMDUuMDkuMTkgdW0gMDk6MDUgc2NocmllYiBHZXJkIEhvZmZtYW5uOgo+IFJlbmFtZSB0aGUg
+ZW1iZWRkZWQgc3RydWN0IHZtYV9vZmZzZXRfbWFuYWdlciwgbmV3IG5hbWUgaXMgX3ZtYV9tYW5h
+Z2VyLgo+IHR0bV9ib19kZXZpY2Uudm1hX21hbmFnZXIgY2hhbmdlZCB0byBhIHBvaW50ZXIuCj4K
+PiBUaGUgdHRtX2JvX2RldmljZV9pbml0KCkgZnVuY3Rpb24gZ2V0cyBhbiBhZGRpdGlvbmFsIHZt
+YV9tYW5hZ2VyCj4gYXJndW1lbnQgd2hpY2ggYWxsb3dzIHRvIGluaXRpYWxpemUgdHRtIHdpdGgg
+YSBkaWZmZXJlbnQgdm1hIG1hbmFnZXIuCj4gV2hlbiBwYXNzaW5nIE5VTEwgdGhlIGVtYmVkZGVk
+IF92bWFfbWFuYWdlciBpcyB1c2VkLgo+Cj4gQWxsIGNhbGxlcnMgYXJlIHVwZGF0ZWQgdG8gcGFz
+cyBOVUxMLCBzbyB0aGUgYmVoYXZpb3IgZG9lc24ndCBjaGFuZ2UuCj4KPiBTaWduZWQtb2ZmLWJ5
+OiBHZXJkIEhvZmZtYW5uIDxrcmF4ZWxAcmVkaGF0LmNvbT4KClJldmlld2VkLWJ5OiBDaHJpc3Rp
+YW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+Cgo+IC0tLQo+ICAgaW5jbHVkZS9k
+cm0vdHRtL3R0bV9ib19kcml2ZXIuaCAgICAgICAgIHwgIDggKysrKysrLS0KPiAgIGRyaXZlcnMv
+Z3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uYyB8ICAxICsKPiAgIGRyaXZlcnMvZ3B1L2Ry
+bS9kcm1fdnJhbV9tbV9oZWxwZXIuYyAgICB8ICAxICsKPiAgIGRyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L25vdXZlYXVfdHRtLmMgICB8ICAxICsKPiAgIGRyaXZlcnMvZ3B1L2RybS9xeGwvcXhsX3R0
+bS5jICAgICAgICAgICB8ICAxICsKPiAgIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX3R0
+bS5jICAgICB8ICAxICsKPiAgIGRyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvLmMgICAgICAgICAg
+ICB8IDEzICsrKysrKysrKy0tLS0KPiAgIGRyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvX3ZtLmMg
+ICAgICAgICB8ICA2ICsrKy0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL3Ztd2dmeC92bXdnZnhfZHJ2
+LmMgICAgIHwgIDEgKwo+ICAgOSBmaWxlcyBjaGFuZ2VkLCAyNCBpbnNlcnRpb25zKCspLCA5IGRl
+bGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL3R0bS90dG1fYm9fZHJpdmVy
+LmggYi9pbmNsdWRlL2RybS90dG0vdHRtX2JvX2RyaXZlci5oCj4gaW5kZXggZTg4ZTAwYzZjYmYy
+Li5lMzY1NDM0ZjkyYjMgMTAwNjQ0Cj4gLS0tIGEvaW5jbHVkZS9kcm0vdHRtL3R0bV9ib19kcml2
+ZXIuaAo+ICsrKyBiL2luY2x1ZGUvZHJtL3R0bS90dG1fYm9fZHJpdmVyLmgKPiBAQCAtNDQxLDcg
+KzQ0MSw4IEBAIGV4dGVybiBzdHJ1Y3QgdHRtX2JvX2dsb2JhbCB7Cj4gICAgKgo+ICAgICogQGRy
+aXZlcjogUG9pbnRlciB0byBhIHN0cnVjdCB0dG1fYm9fZHJpdmVyIHN0cnVjdCBzZXR1cCBieSB0
+aGUgZHJpdmVyLgo+ICAgICogQG1hbjogQW4gYXJyYXkgb2YgbWVtX3R5cGVfbWFuYWdlcnMuCj4g
+LSAqIEB2bWFfbWFuYWdlcjogQWRkcmVzcyBzcGFjZSBtYW5hZ2VyCj4gKyAqIEB2bWFfbWFuYWdl
+cjogQWRkcmVzcyBzcGFjZSBtYW5hZ2VyIChwb2ludGVyKQo+ICsgKiBAX3ZtYV9tYW5hZ2VyOiBB
+ZGRyZXNzIHNwYWNlIG1hbmFnZXIgKGVuYmVkZGVkKQo+ICAgICogbHJ1X2xvY2s6IFNwaW5sb2Nr
+IHRoYXQgcHJvdGVjdHMgdGhlIGJ1ZmZlcitkZXZpY2UgbHJ1IGxpc3RzIGFuZAo+ICAgICogZGRl
+c3Ryb3kgbGlzdHMuCj4gICAgKiBAZGV2X21hcHBpbmc6IEEgcG9pbnRlciB0byB0aGUgc3RydWN0
+IGFkZHJlc3Nfc3BhY2UgcmVwcmVzZW50aW5nIHRoZQo+IEBAIC00NjQsNyArNDY1LDggQEAgc3Ry
+dWN0IHR0bV9ib19kZXZpY2Ugewo+ICAgCS8qCj4gICAJICogUHJvdGVjdGVkIGJ5IGludGVybmFs
+IGxvY2tzLgo+ICAgCSAqLwo+IC0Jc3RydWN0IGRybV92bWFfb2Zmc2V0X21hbmFnZXIgdm1hX21h
+bmFnZXI7Cj4gKwlzdHJ1Y3QgZHJtX3ZtYV9vZmZzZXRfbWFuYWdlciAqdm1hX21hbmFnZXI7Cj4g
+KwlzdHJ1Y3QgZHJtX3ZtYV9vZmZzZXRfbWFuYWdlciBfdm1hX21hbmFnZXI7Cj4gICAKPiAgIAkv
+Kgo+ICAgCSAqIFByb3RlY3RlZCBieSB0aGUgZ2xvYmFsOmxydSBsb2NrLgo+IEBAIC01ODUsNiAr
+NTg3LDcgQEAgaW50IHR0bV9ib19kZXZpY2VfcmVsZWFzZShzdHJ1Y3QgdHRtX2JvX2RldmljZSAq
+YmRldik7Cj4gICAgKiBAZ2xvYjogQSBwb2ludGVyIHRvIGFuIGluaXRpYWxpemVkIHN0cnVjdCB0
+dG1fYm9fZ2xvYmFsLgo+ICAgICogQGRyaXZlcjogQSBwb2ludGVyIHRvIGEgc3RydWN0IHR0bV9i
+b19kcml2ZXIgc2V0IHVwIGJ5IHRoZSBjYWxsZXIuCj4gICAgKiBAbWFwcGluZzogVGhlIGFkZHJl
+c3Mgc3BhY2UgdG8gdXNlIGZvciB0aGlzIGJvLgo+ICsgKiBAdm1hX21hbmFnZXI6IEEgcG9pbnRl
+ciB0byBhIHZtYSBtYW5hZ2VyIG9yIE5VTEwuCj4gICAgKiBAZmlsZV9wYWdlX29mZnNldDogT2Zm
+c2V0IGludG8gdGhlIGRldmljZSBhZGRyZXNzIHNwYWNlIHRoYXQgaXMgYXZhaWxhYmxlCj4gICAg
+KiBmb3IgYnVmZmVyIGRhdGEuIFRoaXMgZW5zdXJlcyBjb21wYXRpYmlsaXR5IHdpdGggb3RoZXIg
+dXNlcnMgb2YgdGhlCj4gICAgKiBhZGRyZXNzIHNwYWNlLgo+IEBAIC01OTYsNiArNTk5LDcgQEAg
+aW50IHR0bV9ib19kZXZpY2VfcmVsZWFzZShzdHJ1Y3QgdHRtX2JvX2RldmljZSAqYmRldik7Cj4g
+ICBpbnQgdHRtX2JvX2RldmljZV9pbml0KHN0cnVjdCB0dG1fYm9fZGV2aWNlICpiZGV2LAo+ICAg
+CQkgICAgICAgc3RydWN0IHR0bV9ib19kcml2ZXIgKmRyaXZlciwKPiAgIAkJICAgICAgIHN0cnVj
+dCBhZGRyZXNzX3NwYWNlICptYXBwaW5nLAo+ICsJCSAgICAgICBzdHJ1Y3QgZHJtX3ZtYV9vZmZz
+ZXRfbWFuYWdlciAqdm1hX21hbmFnZXIsCj4gICAJCSAgICAgICBib29sIG5lZWRfZG1hMzIpOwo+
+ICAgCj4gICAvKioKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1k
+Z3B1X3R0bS5jIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3R0bS5jCj4gaW5k
+ZXggZmIwOTMxNGJjZmQ0Li4zNGVlNWQ3MjVmYWYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3R0bS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9h
+bWRncHUvYW1kZ3B1X3R0bS5jCj4gQEAgLTE3MjgsNiArMTcyOCw3IEBAIGludCBhbWRncHVfdHRt
+X2luaXQoc3RydWN0IGFtZGdwdV9kZXZpY2UgKmFkZXYpCj4gICAJciA9IHR0bV9ib19kZXZpY2Vf
+aW5pdCgmYWRldi0+bW1hbi5iZGV2LAo+ICAgCQkJICAgICAgICZhbWRncHVfYm9fZHJpdmVyLAo+
+ICAgCQkJICAgICAgIGFkZXYtPmRkZXYtPmFub25faW5vZGUtPmlfbWFwcGluZywKPiArCQkJICAg
+ICAgIE5VTEwsCj4gICAJCQkgICAgICAgYWRldi0+bmVlZF9kbWEzMik7Cj4gICAJaWYgKHIpIHsK
+PiAgIAkJRFJNX0VSUk9SKCJmYWlsZWQgaW5pdGlhbGl6aW5nIGJ1ZmZlciBvYmplY3QgZHJpdmVy
+KCVkKS5cbiIsIHIpOwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX3ZyYW1fbW1f
+aGVscGVyLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX3ZyYW1fbW1faGVscGVyLmMKPiBpbmRleCBj
+OTExNzgxZDY3MjguLjU2ZmQxNTE5ZWIzNSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+ZHJtX3ZyYW1fbW1faGVscGVyLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX3ZyYW1fbW1f
+aGVscGVyLmMKPiBAQCAtMTcyLDYgKzE3Miw3IEBAIGludCBkcm1fdnJhbV9tbV9pbml0KHN0cnVj
+dCBkcm1fdnJhbV9tbSAqdm1tLCBzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+ICAgCj4gICAJcmV0
+ID0gdHRtX2JvX2RldmljZV9pbml0KCZ2bW0tPmJkZXYsICZib19kcml2ZXIsCj4gICAJCQkJIGRl
+di0+YW5vbl9pbm9kZS0+aV9tYXBwaW5nLAo+ICsJCQkJIE5VTEwsCj4gICAJCQkJIHRydWUpOwo+
+ICAgCWlmIChyZXQpCj4gICAJCXJldHVybiByZXQ7Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L25vdXZlYXVfdHRtLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
+ZWF1X3R0bS5jCj4gaW5kZXggZjBkYWY5NThlMDNhLi5lNjdlYjEwODQzZDEgMTAwNjQ0Cj4gLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV90dG0uYwo+ICsrKyBiL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfdHRtLmMKPiBAQCAtMjM2LDYgKzIzNiw3IEBAIG5vdXZl
+YXVfdHRtX2luaXQoc3RydWN0IG5vdXZlYXVfZHJtICpkcm0pCj4gICAJcmV0ID0gdHRtX2JvX2Rl
+dmljZV9pbml0KCZkcm0tPnR0bS5iZGV2LAo+ICAgCQkJCSAgJm5vdXZlYXVfYm9fZHJpdmVyLAo+
+ICAgCQkJCSAgZGV2LT5hbm9uX2lub2RlLT5pX21hcHBpbmcsCj4gKwkJCQkgTlVMTCwKPiAgIAkJ
+CQkgIGRybS0+Y2xpZW50Lm1tdS5kbWFiaXRzIDw9IDMyID8gdHJ1ZSA6IGZhbHNlKTsKPiAgIAlp
+ZiAocmV0KSB7Cj4gICAJCU5WX0VSUk9SKGRybSwgImVycm9yIGluaXRpYWxpc2luZyBibyBkcml2
+ZXIsICVkXG4iLCByZXQpOwo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcXhsL3F4bF90
+dG0uYyBiL2RyaXZlcnMvZ3B1L2RybS9xeGwvcXhsX3R0bS5jCj4gaW5kZXggOWIyNDUxNGM3NWFh
+Li42OWRhMGVlYTZlNGMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3F4bC9xeGxfdHRt
+LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vcXhsL3F4bF90dG0uYwo+IEBAIC0zMjUsNiArMzI1
+LDcgQEAgaW50IHF4bF90dG1faW5pdChzdHJ1Y3QgcXhsX2RldmljZSAqcWRldikKPiAgIAlyID0g
+dHRtX2JvX2RldmljZV9pbml0KCZxZGV2LT5tbWFuLmJkZXYsCj4gICAJCQkgICAgICAgJnF4bF9i
+b19kcml2ZXIsCj4gICAJCQkgICAgICAgcWRldi0+ZGRldi5hbm9uX2lub2RlLT5pX21hcHBpbmcs
+Cj4gKwkJCSAgICAgICBOVUxMLAo+ICAgCQkJICAgICAgIGZhbHNlKTsKPiAgIAlpZiAocikgewo+
+ICAgCQlEUk1fRVJST1IoImZhaWxlZCBpbml0aWFsaXppbmcgYnVmZmVyIG9iamVjdCBkcml2ZXIo
+JWQpLlxuIiwgcik7Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9u
+X3R0bS5jIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fdHRtLmMKPiBpbmRleCAzNWFj
+NzVhMTFkMzguLmUyYzEyZTU5NzA0ZCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFk
+ZW9uL3JhZGVvbl90dG0uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX3R0
+bS5jCj4gQEAgLTc5NCw2ICs3OTQsNyBAQCBpbnQgcmFkZW9uX3R0bV9pbml0KHN0cnVjdCByYWRl
+b25fZGV2aWNlICpyZGV2KQo+ICAgCXIgPSB0dG1fYm9fZGV2aWNlX2luaXQoJnJkZXYtPm1tYW4u
+YmRldiwKPiAgIAkJCSAgICAgICAmcmFkZW9uX2JvX2RyaXZlciwKPiAgIAkJCSAgICAgICByZGV2
+LT5kZGV2LT5hbm9uX2lub2RlLT5pX21hcHBpbmcsCj4gKwkJCSAgICAgICBOVUxMLAo+ICAgCQkJ
+ICAgICAgIHJkZXYtPm5lZWRfZG1hMzIpOwo+ICAgCWlmIChyKSB7Cj4gICAJCURSTV9FUlJPUigi
+ZmFpbGVkIGluaXRpYWxpemluZyBidWZmZXIgb2JqZWN0IGRyaXZlciglZCkuXG4iLCByKTsKPiBk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3R0bS90dG1fYm8uYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS90dG0vdHRtX2JvLmMKPiBpbmRleCA1OGQxZjJiMjgxMzIuLjhkYzI2YmFiYzVjYiAxMDA2NDQK
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jCj4gKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL3R0bS90dG1fYm8uYwo+IEBAIC02NzIsNyArNjcyLDcgQEAgc3RhdGljIHZvaWQgdHRtX2Jv
+X3JlbGVhc2Uoc3RydWN0IGtyZWYgKmtyZWYpCj4gICAJc3RydWN0IHR0bV9ib19kZXZpY2UgKmJk
+ZXYgPSBiby0+YmRldjsKPiAgIAlzdHJ1Y3QgdHRtX21lbV90eXBlX21hbmFnZXIgKm1hbiA9ICZi
+ZGV2LT5tYW5bYm8tPm1lbS5tZW1fdHlwZV07Cj4gICAKPiAtCWRybV92bWFfb2Zmc2V0X3JlbW92
+ZSgmYmRldi0+dm1hX21hbmFnZXIsICZiby0+YmFzZS52bWFfbm9kZSk7Cj4gKwlkcm1fdm1hX29m
+ZnNldF9yZW1vdmUoYmRldi0+dm1hX21hbmFnZXIsICZiby0+YmFzZS52bWFfbm9kZSk7Cj4gICAJ
+dHRtX21lbV9pb19sb2NrKG1hbiwgZmFsc2UpOwo+ICAgCXR0bV9tZW1faW9fZnJlZV92bShibyk7
+Cj4gICAJdHRtX21lbV9pb191bmxvY2sobWFuKTsKPiBAQCAtMTM1Myw3ICsxMzUzLDcgQEAgaW50
+IHR0bV9ib19pbml0X3Jlc2VydmVkKHN0cnVjdCB0dG1fYm9fZGV2aWNlICpiZGV2LAo+ICAgCSAq
+Lwo+ICAgCWlmIChiby0+dHlwZSA9PSB0dG1fYm9fdHlwZV9kZXZpY2UgfHwKPiAgIAkgICAgYm8t
+PnR5cGUgPT0gdHRtX2JvX3R5cGVfc2cpCj4gLQkJcmV0ID0gZHJtX3ZtYV9vZmZzZXRfYWRkKCZi
+ZGV2LT52bWFfbWFuYWdlciwgJmJvLT5iYXNlLnZtYV9ub2RlLAo+ICsJCXJldCA9IGRybV92bWFf
+b2Zmc2V0X2FkZChiZGV2LT52bWFfbWFuYWdlciwgJmJvLT5iYXNlLnZtYV9ub2RlLAo+ICAgCQkJ
+CQkgYm8tPm1lbS5udW1fcGFnZXMpOwo+ICAgCj4gICAJLyogcGFzc2VkIHJlc2VydmF0aW9uIG9i
+amVjdHMgc2hvdWxkIGFscmVhZHkgYmUgbG9ja2VkLAo+IEBAIC0xNzA0LDcgKzE3MDQsNyBAQCBp
+bnQgdHRtX2JvX2RldmljZV9yZWxlYXNlKHN0cnVjdCB0dG1fYm9fZGV2aWNlICpiZGV2KQo+ICAg
+CQkJcHJfZGVidWcoIlN3YXAgbGlzdCAlZCB3YXMgY2xlYW5cbiIsIGkpOwo+ICAgCXNwaW5fdW5s
+b2NrKCZnbG9iLT5scnVfbG9jayk7Cj4gICAKPiAtCWRybV92bWFfb2Zmc2V0X21hbmFnZXJfZGVz
+dHJveSgmYmRldi0+dm1hX21hbmFnZXIpOwo+ICsJZHJtX3ZtYV9vZmZzZXRfbWFuYWdlcl9kZXN0
+cm95KCZiZGV2LT5fdm1hX21hbmFnZXIpOwo+ICAgCj4gICAJaWYgKCFyZXQpCj4gICAJCXR0bV9i
+b19nbG9iYWxfcmVsZWFzZSgpOwo+IEBAIC0xNzE2LDExICsxNzE2LDE1IEBAIEVYUE9SVF9TWU1C
+T0wodHRtX2JvX2RldmljZV9yZWxlYXNlKTsKPiAgIGludCB0dG1fYm9fZGV2aWNlX2luaXQoc3Ry
+dWN0IHR0bV9ib19kZXZpY2UgKmJkZXYsCj4gICAJCSAgICAgICBzdHJ1Y3QgdHRtX2JvX2RyaXZl
+ciAqZHJpdmVyLAo+ICAgCQkgICAgICAgc3RydWN0IGFkZHJlc3Nfc3BhY2UgKm1hcHBpbmcsCj4g
+KwkJICAgICAgIHN0cnVjdCBkcm1fdm1hX29mZnNldF9tYW5hZ2VyICp2bWFfbWFuYWdlciwKPiAg
+IAkJICAgICAgIGJvb2wgbmVlZF9kbWEzMikKPiAgIHsKPiAgIAlzdHJ1Y3QgdHRtX2JvX2dsb2Jh
+bCAqZ2xvYiA9ICZ0dG1fYm9fZ2xvYjsKPiAgIAlpbnQgcmV0Owo+ICAgCj4gKwlpZiAoIXZtYV9t
+YW5hZ2VyKQo+ICsJCXZtYV9tYW5hZ2VyID0gJmJkZXYtPl92bWFfbWFuYWdlcjsKPiArCj4gICAJ
+cmV0ID0gdHRtX2JvX2dsb2JhbF9pbml0KCk7Cj4gICAJaWYgKHJldCkKPiAgIAkJcmV0dXJuIHJl
+dDsKPiBAQCAtMTczNyw3ICsxNzQxLDggQEAgaW50IHR0bV9ib19kZXZpY2VfaW5pdChzdHJ1Y3Qg
+dHRtX2JvX2RldmljZSAqYmRldiwKPiAgIAlpZiAodW5saWtlbHkocmV0ICE9IDApKQo+ICAgCQln
+b3RvIG91dF9ub19zeXM7Cj4gICAKPiAtCWRybV92bWFfb2Zmc2V0X21hbmFnZXJfaW5pdCgmYmRl
+di0+dm1hX21hbmFnZXIsCj4gKwliZGV2LT52bWFfbWFuYWdlciA9IHZtYV9tYW5hZ2VyOwo+ICsJ
+ZHJtX3ZtYV9vZmZzZXRfbWFuYWdlcl9pbml0KCZiZGV2LT5fdm1hX21hbmFnZXIsCj4gICAJCQkJ
+ICAgIERSTV9GSUxFX1BBR0VfT0ZGU0VUX1NUQVJULAo+ICAgCQkJCSAgICBEUk1fRklMRV9QQUdF
+X09GRlNFVF9TSVpFKTsKPiAgIAlJTklUX0RFTEFZRURfV09SSygmYmRldi0+d3EsIHR0bV9ib19k
+ZWxheWVkX3dvcmtxdWV1ZSk7Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRt
+X2JvX3ZtLmMgYi9kcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9ib192bS5jCj4gaW5kZXggNzZlZWRi
+OTYzNjkzLi40YWEwMDdlZGZmYjAgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3R0bS90
+dG1fYm9fdm0uYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS90dG0vdHRtX2JvX3ZtLmMKPiBAQCAt
+NDA5LDE2ICs0MDksMTYgQEAgc3RhdGljIHN0cnVjdCB0dG1fYnVmZmVyX29iamVjdCAqdHRtX2Jv
+X3ZtX2xvb2t1cChzdHJ1Y3QgdHRtX2JvX2RldmljZSAqYmRldiwKPiAgIAlzdHJ1Y3QgZHJtX3Zt
+YV9vZmZzZXRfbm9kZSAqbm9kZTsKPiAgIAlzdHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QgKmJvID0g
+TlVMTDsKPiAgIAo+IC0JZHJtX3ZtYV9vZmZzZXRfbG9ja19sb29rdXAoJmJkZXYtPnZtYV9tYW5h
+Z2VyKTsKPiArCWRybV92bWFfb2Zmc2V0X2xvY2tfbG9va3VwKGJkZXYtPnZtYV9tYW5hZ2VyKTsK
+PiAgIAo+IC0Jbm9kZSA9IGRybV92bWFfb2Zmc2V0X2xvb2t1cF9sb2NrZWQoJmJkZXYtPnZtYV9t
+YW5hZ2VyLCBvZmZzZXQsIHBhZ2VzKTsKPiArCW5vZGUgPSBkcm1fdm1hX29mZnNldF9sb29rdXBf
+bG9ja2VkKGJkZXYtPnZtYV9tYW5hZ2VyLCBvZmZzZXQsIHBhZ2VzKTsKPiAgIAlpZiAobGlrZWx5
+KG5vZGUpKSB7Cj4gICAJCWJvID0gY29udGFpbmVyX29mKG5vZGUsIHN0cnVjdCB0dG1fYnVmZmVy
+X29iamVjdCwKPiAgIAkJCQkgIGJhc2Uudm1hX25vZGUpOwo+ICAgCQlibyA9IHR0bV9ib19nZXRf
+dW5sZXNzX3plcm8oYm8pOwo+ICAgCX0KPiAgIAo+IC0JZHJtX3ZtYV9vZmZzZXRfdW5sb2NrX2xv
+b2t1cCgmYmRldi0+dm1hX21hbmFnZXIpOwo+ICsJZHJtX3ZtYV9vZmZzZXRfdW5sb2NrX2xvb2t1
+cChiZGV2LT52bWFfbWFuYWdlcik7Cj4gICAKPiAgIAlpZiAoIWJvKQo+ICAgCQlwcl9lcnIoIkNv
+dWxkIG5vdCBmaW5kIGJ1ZmZlciBvYmplY3QgdG8gbWFwXG4iKTsKPiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL3Ztd2dmeC92bXdnZnhfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vdm13Z2Z4
+L3Ztd2dmeF9kcnYuYwo+IGluZGV4IGNkMGQ0OWQ4YThkYS4uMjBiYzkxMjE0ZTc1IDEwMDY0NAo+
+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS92bXdnZngvdm13Z2Z4X2Rydi5jCj4gKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL3Ztd2dmeC92bXdnZnhfZHJ2LmMKPiBAQCAtODMwLDYgKzgzMCw3IEBAIHN0YXRp
+YyBpbnQgdm13X2RyaXZlcl9sb2FkKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHVuc2lnbmVkIGxv
+bmcgY2hpcHNldCkKPiAgIAlyZXQgPSB0dG1fYm9fZGV2aWNlX2luaXQoJmRldl9wcml2LT5iZGV2
+LAo+ICAgCQkJCSAmdm13X2JvX2RyaXZlciwKPiAgIAkJCQkgZGV2LT5hbm9uX2lub2RlLT5pX21h
+cHBpbmcsCj4gKwkJCQkgTlVMTCwKPiAgIAkJCQkgZmFsc2UpOwo+ICAgCWlmICh1bmxpa2VseShy
+ZXQgIT0gMCkpIHsKPiAgIAkJRFJNX0VSUk9SKCJGYWlsZWQgaW5pdGlhbGl6aW5nIFRUTSBidWZm
+ZXIgb2JqZWN0IGRyaXZlci5cbiIpOwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KYW1kLWdmeCBtYWlsaW5nIGxpc3QKYW1kLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9h
+bWQtZ2Z4
