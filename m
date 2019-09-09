@@ -1,216 +1,84 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH v2] drm: Bump encoder limit from 32 to 64
-Date: Mon, 09 Sep 2019 15:51:09 -0400
-Message-ID: <a81059f8e09b317b479f17aa0a578107d19726b7.camel@redhat.com>
-References: <20190821001656.32577-1-lyude@redhat.com>
-         <20190821115355.GH5942@intel.com>
+From: Alex Hung <alex.hung-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: Re: [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string
+ to enable dGPU direct output"
+Date: Mon, 9 Sep 2019 22:07:42 +0100
+Message-ID: <CAJ=jquaLthK556Lqk-zc3GCOus90HoGs66tA=d9a1aju7iNpPw@mail.gmail.com>
+References: <20190814213118.28473-1-kherbst@redhat.com>
+ <2215840.qs0dBhReda@kreacher>
+ <CACO55ttC-o9bKU7nHNcfjm2YnffiupQ7UHUt7BYL3fu+yEyTbw@mail.gmail.com>
+ <5228680.jBuKzensJx@kreacher>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190821115355.GH5942@intel.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, Maxime Ripard <maxime.ripard@bootlin.com>, linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>, Sean Paul <sean@poorly.run>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <5228680.jBuKzensJx@kreacher>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: "Rafael J. Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>
+Cc: Mario Limonciello <mario.limonciello-8PEkshWhKlo@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux ACPI <linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Finally got a chance to look at this again, some notes below
-
-On Wed, 2019-08-21 at 14:53 +0300, Ville Syrjälä wrote:
-> On Tue, Aug 20, 2019 at 08:16:55PM -0400, Lyude Paul wrote:
-> > Assuming that GPUs would never have even close to 32 separate video
-> > encoders is quite honestly a pretty reasonable assumption. Unfortunately
-> > we do not live in a reasonable world, as it looks like it is actually
-> > possible to find devices that will create more drm_encoder objects then
-> > this. Case in point: the ThinkPad P71's discrete GPU, which exposes 1
-> > eDP port and 5 DP ports. On the P71, nouveau attempts to create one
-> > encoder for the eDP port, and two encoders for each DP++/USB-C port
-> > along with 4 MST encoders for each DP port. This comes out to 35
-> > different encoders. Unfortunately, this can't really be optimized to
-> > make less encoders either.
-> > 
-> > So, what if we bumped the limit to 64? Unfortunately this has one very
-> > awkward drawback: we already expose 32-bit bitmasks for encoders to
-> > userspace in drm_encoder->possible_clones. Yikes. While cloning is still
-> > (rarely) used in certain modern video hardware, it's mostly used in
-> > situations where memory bandwidth is so limited that it's not possible
-> > to scan out from 2 CRTCs at once.
-> > 
-> > So, let's try to compromise here: allow encoders with indexes <32 to
-> > have non-zero values in drm_encoder->possible_clones, and don't allow
-> > encoders with higher indexes to set drm_encoder->possible_clones to a
-> > non-zero value. This allows us to avoid breaking UAPI and keep things
-> > working sanely for hardware which still uses cloning, while still being
-> > able to bump up the encoder limit.
-> > 
-> > This also fixes driver probing for nouveau on the ThinkPad P71.
-> > 
-> > Changes since v1:
-> > * Move index+possible_clones check out of drm_encoder_init() and into
-> >   drm_encoder_register_all(), since encoder->possible_clones can get
-> >   changed any time before registration - Daniel Vetter
-> > * Update the commit message a bit to accurately reflect modern day usage
-> >   of hardware cloning, which as Daniel Stone pointed out is apparently a
-> >   thing
-> > 
-> > Signed-off-by: Lyude Paul <lyude@redhat.com>
-> > Cc: nouveau@lists.freedesktop.org
-> > ---
-> >  drivers/gpu/drm/drm_atomic.c  |  2 +-
-> >  drivers/gpu/drm/drm_encoder.c | 12 ++++++++++--
-> >  include/drm/drm_crtc.h        |  2 +-
-> >  include/drm/drm_encoder.h     | 20 +++++++++++++++-----
-> >  4 files changed, 27 insertions(+), 9 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> > index 419381abbdd1..27ce988ef0cc 100644
-> > --- a/drivers/gpu/drm/drm_atomic.c
-> > +++ b/drivers/gpu/drm/drm_atomic.c
-> > @@ -392,7 +392,7 @@ static void drm_atomic_crtc_print_state(struct
-> > drm_printer *p,
-> >  	drm_printf(p, "\tcolor_mgmt_changed=%d\n", state->color_mgmt_changed);
-> >  	drm_printf(p, "\tplane_mask=%x\n", state->plane_mask);
-> >  	drm_printf(p, "\tconnector_mask=%x\n", state->connector_mask);
-> > -	drm_printf(p, "\tencoder_mask=%x\n", state->encoder_mask);
-> > +	drm_printf(p, "\tencoder_mask=%llx\n", state->encoder_mask);
-> >  	drm_printf(p, "\tmode: " DRM_MODE_FMT "\n", DRM_MODE_ARG(&state-
-> > >mode));
-> >  
-> >  	if (crtc->funcs->atomic_print_state)
-> > diff --git a/drivers/gpu/drm/drm_encoder.c b/drivers/gpu/drm/drm_encoder.c
-> > index 7fb47b7b8b44..9d443b45ebba 100644
-> > --- a/drivers/gpu/drm/drm_encoder.c
-> > +++ b/drivers/gpu/drm/drm_encoder.c
-> > @@ -71,6 +71,14 @@ int drm_encoder_register_all(struct drm_device *dev)
-> >  	int ret = 0;
-> >  
-> >  	drm_for_each_encoder(encoder, dev) {
-> > +		/*
-> > +		 * Since possible_clones has been exposed to userspace as a
-> > +		 * 32bit bitmask, we don't allow creating encoders with an
-> > +		 * index >=32 which are capable of cloning
-> > +		 */
-> > +		if (WARN_ON(encoder->index >= 32 && encoder->possible_clones))
-> > +			return -EINVAL;
-> 
-> I believe possible_clones was supposed to include the encoder itself. Not
-> really sure why though. I guess we've now decided that it's OK not to do 
-> that?
-> 
-> git grep tells me drm_atomic_helper.c has some uses of drm_encoder_mask()
-> that need to be looked at.
-
-ughhhhhhhhhh
-you're completely right :(, it seems that there are some legacy drivers that
-do this. An excerpt from sti_tvout.c:
-
-static void sti_tvout_create_encoders(struct drm_device *dev,
-		struct sti_tvout *tvout)
-{
-	tvout->hdmi = sti_tvout_create_hdmi_encoder(dev, tvout);
-	tvout->hda = sti_tvout_create_hda_encoder(dev, tvout);
-	tvout->dvo = sti_tvout_create_dvo_encoder(dev, tvout);
-
-	tvout->hdmi->possible_clones = drm_encoder_mask(tvout->hdmi) |
-		drm_encoder_mask(tvout->hda) | drm_encoder_mask(tvout->dvo);
-	tvout->hda->possible_clones = drm_encoder_mask(tvout->hdmi) |
-		drm_encoder_mask(tvout->hda) | drm_encoder_mask(tvout->dvo);
-	tvout->dvo->possible_clones = drm_encoder_mask(tvout->hdmi) |
-		drm_encoder_mask(tvout->hda) | drm_encoder_mask(tvout->dvo);
-}
-
-So yeah, I'm not really sure what we can do about this then, other then maybe
-try and make nouveau use less encoders again (which I might have a better idea
-on how to do now...). Either that, or danvet's idea with fake encoders
-(although I'd really like to avoid something this complicated, but it might
-not be able to be helped)
-
-> 
-> > +
-> >  		if (encoder->funcs->late_register)
-> >  			ret = encoder->funcs->late_register(encoder);
-> >  		if (ret)
-> > @@ -112,8 +120,8 @@ int drm_encoder_init(struct drm_device *dev,
-> >  {
-> >  	int ret;
-> >  
-> > -	/* encoder index is used with 32bit bitmasks */
-> > -	if (WARN_ON(dev->mode_config.num_encoder >= 32))
-> > +	/* encoder index is used with 64bit bitmasks */
-> > +	if (WARN_ON(dev->mode_config.num_encoder >= 64))
-> >  		return -EINVAL;
-> >  
-> >  	ret = drm_mode_object_add(dev, &encoder->base,
-> > DRM_MODE_OBJECT_ENCODER);
-> > diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-> > index 7d14c11bdc0a..fd0b2438c3d5 100644
-> > --- a/include/drm/drm_crtc.h
-> > +++ b/include/drm/drm_crtc.h
-> > @@ -210,7 +210,7 @@ struct drm_crtc_state {
-> >  	 * @encoder_mask: Bitmask of drm_encoder_mask(encoder) of encoders
-> >  	 * attached to this CRTC.
-> >  	 */
-> > -	u32 encoder_mask;
-> > +	u64 encoder_mask;
-> >  
-> >  	/**
-> >  	 * @adjusted_mode:
-> > diff --git a/include/drm/drm_encoder.h b/include/drm/drm_encoder.h
-> > index 70cfca03d812..3f9cb65694e1 100644
-> > --- a/include/drm/drm_encoder.h
-> > +++ b/include/drm/drm_encoder.h
-> > @@ -159,7 +159,15 @@ struct drm_encoder {
-> >  	 * encoders can be used in a cloned configuration, they both should
-> > have
-> >  	 * each another bits set.
-> >  	 *
-> > -	 * In reality almost every driver gets this wrong.
-> > +	 * In reality almost every driver gets this wrong, and most modern
-> > +	 * display hardware does not have support for cloning. As well, while
-> > we
-> > +	 * expose this mask to userspace as 32bits long, we do sure purely to
-> > +	 * avoid breaking pre-existing UAPI since the limitation on the number
-> > +	 * of encoders has been increased from 32 bits to 64 bits. In order to
-> > +	 * maintain functionality for drivers which do actually support
-> > cloning,
-> > +	 * we only allow cloning with encoders that have an index <32.
-> > Encoders
-> > +	 * with indexes higher than 32 are not allowed to specify a non-zero
-> > +	 * value here.
-> >  	 *
-> >  	 * Note that since encoder objects can't be hotplugged the assigned
-> > indices
-> >  	 * are stable and hence known before registering all objects.
-> > @@ -198,13 +206,15 @@ static inline unsigned int drm_encoder_index(const
-> > struct drm_encoder *encoder)
-> >  }
-> >  
-> >  /**
-> > - * drm_encoder_mask - find the mask of a registered ENCODER
-> > + * drm_encoder_mask - find the mask of a registered encoder
-> >   * @encoder: encoder to find mask for
-> >   *
-> > - * Given a registered encoder, return the mask bit of that encoder for an
-> > - * encoder's possible_clones field.
-> > + * Returns:
-> > + * A bit mask with the nth bit set, where n is the index of the encoder.
-> > Take
-> > + * care when using this, as the DRM UAPI only allows for 32 bit encoder
-> > masks
-> > + * while internally encoder masks are 64 bits.
-> >   */
-> > -static inline u32 drm_encoder_mask(const struct drm_encoder *encoder)
-> > +static inline u64 drm_encoder_mask(const struct drm_encoder *encoder)
-> >  {
-> >  	return 1 << drm_encoder_index(encoder);
-> >  }
-> > -- 
-> > 2.21.0
-> > 
-> > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
--- 
-Cheers,
-	Lyude Paul
+T24gVGh1LCBTZXAgNSwgMjAxOSBhdCA1OjI2IFBNIFJhZmFlbCBKLiBXeXNvY2tpIDxyandAcmp3
+eXNvY2tpLm5ldD4gd3JvdGU6Cj4KPiBPbiBUaHVyc2RheSwgU2VwdGVtYmVyIDUsIDIwMTkgNTo1
+MToyMyBQTSBDRVNUIEthcm9sIEhlcmJzdCB3cm90ZToKPiA+IGlzIHRoZXJlIGFueSB1cGRhdGUg
+b24gdGhlIHRlc3Rpbmcgd2l0aCBteSBwYXRjaGVzPyBPbiB0aGUgaGFyZHdhcmUgSQo+ID4gaGFk
+IGFjY2VzcyB0byB0aG9zZSBwYXRjaGVzIGhlbHBlZCwgYnV0IEkgY2FuJ3Qga25vdyBpZiBpdCBh
+bHNvIGhlbHBlZAo+ID4gb24gdGhlIGhhcmR3YXJlIGZvciB3aGljaCB0aG9zZSB3b3JrYXJvdW5k
+cyB3aGVyZSBhY3R1YWxseSBhZGRlZC4KPgo+IEFsZXggSHVuZyBhbmQgTWFyaW8gbmVlZCB0byBh
+bnN3ZXIgdGhpcyBxdWVzdGlvbiBJIHRoaW5rLgoKU29ycnkgZm9yIHRha2luZyBhIGxvbmcgdGlt
+ZS4gSSBkb24ndCBoYXZlIGZ1bGwgdGVzdGluZyByZXN1bHRzIHlldApidXQgd2UgZm91bmQgYXQg
+bGVhc3QgYSByZWdyZXNzaW9uIG9jY3VycmVkIHdpdGggX09TSSBzdHJpbmcgcmVtb3ZlZCAtCml0
+IGlzIG5vdCBvbiBuVmlkaWEgaGFyZHdhcmUgYnV0IG9uIEFNRCBQWCBvbmUuCgpJIHdpbGwgdHJ5
+IHRvIGNvbGxlY3QgYW5kIHNoYXJlIG1vcmUgZGV0YWlscy4KCj4KPiA+IE9uIE1vbiwgQXVnIDE5
+LCAyMDE5IGF0IDExOjUyIEFNIFJhZmFlbCBKLiBXeXNvY2tpIDxyandAcmp3eXNvY2tpLm5ldD4g
+d3JvdGU6Cj4gPiA+Cj4gPiA+IE9uIFRodXJzZGF5LCBBdWd1c3QgMTUsIDIwMTkgMTI6NDc6MzUg
+QU0gQ0VTVCBEYXZlIEFpcmxpZSB3cm90ZToKPiA+ID4gPiBPbiBUaHUsIDE1IEF1ZyAyMDE5IGF0
+IDA3OjMxLCBLYXJvbCBIZXJic3QgPGtoZXJic3RAcmVkaGF0LmNvbT4gd3JvdGU6Cj4gPiA+ID4g
+Pgo+ID4gPiA+ID4gVGhpcyByZXZlcnRzIGNvbW1pdCAyODU4NmE1MWVlYTY2NmQ1NTMxYmNhZWYy
+ZjY4ZTRhYmJkODcyNDJjLgo+ID4gPiA+ID4KPiA+ID4gPiA+IFRoZSBvcmlnaW5hbCBjb21taXQg
+bWVzc2FnZSBkaWRuJ3QgZXZlbiBtYWtlIHNlbnNlLiBBTUQgX2RvZXNfIHN1cHBvcnQgaXQgYW5k
+Cj4gPiA+ID4gPiBpdCB3b3JrcyB3aXRoIE5vdXZlYXUgYXMgd2VsbC4KPiA+ID4gPiA+Cj4gPiA+
+ID4gPiBBbHNvIHdoYXQgd2FzIHRoZSBpc3N1ZSBiZWluZyBzb2x2ZWQgaGVyZT8gTm8gcmVmZXJl
+bmNlcyB0byBhbnkgYnVncyBhbmQgbm90Cj4gPiA+ID4gPiBldmVuIGV4cGxhaW5pbmcgYW55IGlz
+c3VlIGF0IGFsbCBpc24ndCB0aGUgd2F5IHdlIGRvIHRoaW5ncy4KPiA+ID4gPiA+Cj4gPiA+ID4g
+PiBBbmQgZXZlbiBpZiBpdCBtZWFucyBhIG11eGVkIGRlc2lnbiwgdGhlbiB0aGUgZml4IGlzIHRv
+IG1ha2UgaXQgd29yayBpbnNpZGUgdGhlCj4gPiA+ID4gPiBkcml2ZXIsIG5vdCBhZGRpbmcgc29t
+ZSBoYWNreSB3b3JrYXJvdW5kIHRocm91Z2ggQUNQSSB0cmlja3MuCj4gPiA+ID4gPgo+ID4gPiA+
+ID4gQW5kIHdoYXQgb3V0IG9mIHRyZWUgZHJpdmVycyBkbyBvciBkbyBub3Qgc3VwcG9ydCB3ZSBk
+b24ndCBjYXJlIG9uZSBiaXQgYW55d2F5Lgo+ID4gPiA+ID4KPiA+ID4gPgo+ID4gPiA+IEkgdGhp
+bmsgdGhlIHJldmVydHMgc2hvdWxkIGJlIG1lcmdlZCB2aWEgUmFmYWVsJ3MgdHJlZSBhcyB0aGUg
+b3JpZ2luYWwKPiA+ID4gPiBwYXRjaGVzIHdlbnQgaW4gdmlhIHRoZXJlLCBhbmQgd2Ugc2hvdWxk
+IGdldCB0aGVtIGluIGFzYXAuCj4gPiA+ID4KPiA+ID4gPiBBY2tlZC1ieTogRGF2ZSBBaXJsaWUg
+PGFpcmxpZWRAcmVkaGF0LmNvbT4KPiA+ID4KPiA+ID4gVGhlIF9PU0kgc3RyaW5ncyBhcmUgdG8g
+YmUgZHJvcHBlZCB3aGVuIGFsbCBvZiB0aGUgbmVlZGVkIHN1cHBvcnQgaXMgdGhlcmUgaW4KPiA+
+ID4gZHJpdmVycywgc28gdGhleSBzaG91bGQgZ28gYXdheSBhbG9uZyB3aXRoIHRoZSByZXF1aXNp
+dGUgZHJpdmVyIGNoYW5nZXMuCj4gPiA+Cj4gPgo+ID4gdGhhdCBnb2VzIGJlc2lkZSB0aGUgcG9p
+bnQuIGZpcm13YXJlIGxldmVsIHdvcmthcm91bmRzIGZvciBHUFUgZHJpdmVyCj4gPiBpc3N1ZXMg
+d2VyZSBwdXNoZWQgd2l0aG91dCBjb25zdWx0aW5nIHdpdGggdXBzdHJlYW0gR1BVIGRldmVsb3Bl
+cnMuCj4gPiBUaGF0J3Mgc29tZXRoaW5nIHdoaWNoIHNob3VsZG4ndCBoYXZlIGhhcHBlbmVkIGlu
+IHRoZSBmaXJzdCBwbGFjZS4gQW5kCj4gPiB5ZXMsIEkgYW0gcGVyc29uYWxseSBhbm5veWVkIGJ5
+IHRoZSBmYWN0LCB0aGF0IHBlb3BsZSBrbm93IGFib3V0Cj4gPiBpc3N1ZXMsIGJ1dCBpbnN0ZWFk
+IG9mIGNvbnRhY3RpbmcgdGhlIHByb3BlciBwZXJzb25zIGFuZCB3b3JraW5nIG9uIGEKPiA+IHBy
+b3BlciBmaXgsIHdlIGVuZCB1cCB3aXRoIHN0dXBpZCBmaXJtd2FyZSBsZXZlbCB3b3JrYXJvdW5k
+cy4gSSBjYW4ndAo+ID4gc2VlIHdoeSB3ZSBldmVyIHdvdWxkIGhhdmUgd2FudGVkIHN1Y2ggd29y
+a2Fyb3VuZHMgaW4gdGhlIGZpcnN0IHBsYWNlLgo+ID4KPiA+IEFuZCBJIHdvdWxkIGJlIG11Y2gg
+aGFwcGllciBpZiB0aGUgbmV4dCB0aW1lIHNvbWV0aGluZyBsaWtlIHRoYXQgY29tZXMKPiA+IHVw
+LCB0aGF0IHRoZSBkcm0gbWFpbGluZyBsaXN0IHdpbGwgYmUgY29udGFjdGVkIGFzIHdlbGwgb3Ig
+c29tZWJvZHkKPiA+IGludm9sdmVkLgo+ID4KPiA+IFdlIGNvdWxkIGhhdmUgYWxzbyBqdXN0IGRp
+c2FibGUgdGhlIGZlYXR1cmUgaW5zaWRlIHRoZSBkcml2ZXIgKGFuZAo+ID4gcHJvYmFibHkgd2Ug
+c2hvdWxkIGhhdmUgZG9uZSB0aGF0IGEgbG9uZyB0aW1lIGFnbywgc28gdGhhdCBpcwo+ID4gZXNz
+ZW50aWFsbHkgb3VyIGZhdWx0LCBidXQgc3RpbGwuLi4uKQo+ID4KPiA+ID4gSSdtIGFsbCBmb3Ig
+ZHJvcHBpbmcgdGhlbiB3aGVuIHRoYXQncyB0aGUgY2FzZSwgc28gcGxlYXNlIGZlZWwgZnJlZSB0
+byBhZGQgQUNLcwo+ID4gPiBmcm9tIG1lIHRvIHRoZSBwYXRjaGVzIGluIHF1ZXN0aW9uIGF0IHRo
+YXQgcG9pbnQuCj4gPiA+Cj4gPiA+IENoZWVycywKPiA+ID4gUmFmYWVsCj4gPiA+Cj4gPiA+Cj4g
+PiA+Cj4gPgo+Cj4KPgo+CgoKLS0gCkNoZWVycywKQWxleCBIdW5nCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
