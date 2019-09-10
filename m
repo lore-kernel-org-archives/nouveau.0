@@ -1,725 +1,277 @@
-From: Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [PATCH v2 07/27] drm/dp_mst: Add sideband down request tracing + selftests
-Date: Tue, 10 Sep 2019 12:01:14 +0300
-Message-ID: <87woeg1q5h.fsf@intel.com>
-References: <20190903204645.25487-1-lyude@redhat.com> <20190903204645.25487-8-lyude@redhat.com>
+From: Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [Nouveau] [Intel-gfx] [PATCH v6 08/17] drm/ttm: use gem vma_node
+Date: Tue, 10 Sep 2019 23:52:59 +0200
+Message-ID: <20190910215259.GA7525@ulmo>
+References: <20190805140119.7337-1-kraxel@redhat.com>
+ <20190805140119.7337-9-kraxel@redhat.com>
+ <20190813151115.GA29955@ulmo>
+ <20190814055827.6hrxj6daovxxnnvw@sirius.home.kraxel.org>
+ <20190814093524.GA31345@ulmo>
+ <20190814101411.lj3p6zjzbjvnnjf4@sirius.home.kraxel.org>
+ <CACAvsv5Rar9F=Wf-9HBpndY4QaQZcGCx05j0esvV9pitM=JoGg@mail.gmail.com>
+ <20190821115523.GA21839@ulmo>
+ <CAKb7UvjXq0ptiPYu5EGH6sJAbbRjN3X4f_knrxyOHD1Zi7P1BA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190903204645.25487-8-lyude@redhat.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Cc: Sean Paul <sean@poorly.run>, Thomas Hellstrom <thellstrom@vmware.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>, Alexandru Gheorghe <alexandru-cosmin.gheorghe@arm.com>, linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>, Juston Li <juston.li@intel.com>, Deepak Rawat <drawat@vmware.com>, Harry Wentland <hwentlan@amd.com>
+Content-Type: multipart/mixed; boundary="===============0272918578=="
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CAKb7UvjXq0ptiPYu5EGH6sJAbbRjN3X4f_knrxyOHD1Zi7P1BA@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: Ben Skeggs <skeggsb@gmail.com>, ML nouveau <nouveau@lists.freedesktop.org>, intel-gfx <intel-gfx@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, amd-gfx mailing list <amd-gfx@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, linux-graphics-maintainer@vmware.com, ML dri-devel <dri-devel@lists.freedesktop.org>, spice-devel@lists.freedesktop.org, Gerd Hoffmann <kraxel@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, 03 Sep 2019, Lyude Paul <lyude@redhat.com> wrote:
-> Unfortunately the DP MST helpers do not have much in the way of
-> debugging utilities. So, let's add some!
->
-> This adds basic debugging output for down sideband requests that we send
-> from the driver, so that we can actually discern what's happening when
-> sideband requests timeout.
->
-> Since there wasn't really a good way of testing that any of this worked,
-> I ended up writing simple selftests that lightly test sideband message
-> encoding and decoding as well. Enjoy!
->
-> Changes since v1:
-> * Clean up DO_TEST() and sideband_msg_req_encode_decode() - danvet
-> * Get rid of pr_fmt(), just define a prefix string instead and use
->   drm_printf()
-> * Check highest bit of VCPI in drm_dp_decode_sideband_req() - danvet
-> * Make the switch case order between drm_dp_decode_sideband_req() and
->   drm_dp_encode_sideband_req() the same - danvet
-> * Only check DRM_UT_DP - danvet
-> * Clean up sideband_msg_req_equal() from selftests a bit, and add
->   comments explaining why we can't just use memcmp - danvet
->
-> Cc: Juston Li <juston.li@intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Harry Wentland <hwentlan@amd.com>
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> ---
->  drivers/gpu/drm/drm_dp_mst_topology.c         | 309 +++++++++++++++++-
->  .../gpu/drm/drm_dp_mst_topology_internal.h    |  24 ++
->  .../gpu/drm/selftests/drm_modeset_selftests.h |   1 +
->  .../drm/selftests/test-drm_dp_mst_helper.c    | 204 ++++++++++++
->  .../drm/selftests/test-drm_modeset_common.h   |   1 +
->  include/drm/drm_dp_mst_helper.h               |   2 +-
->  6 files changed, 536 insertions(+), 5 deletions(-)
->  create mode 100644 drivers/gpu/drm/drm_dp_mst_topology_internal.h
->
-> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-> index 1c862749cb63..f5f1d8b50fb6 100644
-> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> @@ -37,6 +37,7 @@
->  #include <drm/drm_probe_helper.h>
->  
->  #include "drm_crtc_helper_internal.h"
-> +#include "drm_dp_mst_topology_internal.h"
->  
->  /**
->   * DOC: dp mst helper
-> @@ -73,6 +74,8 @@ static int drm_dp_mst_register_i2c_bus(struct drm_dp_aux *aux);
->  static void drm_dp_mst_unregister_i2c_bus(struct drm_dp_aux *aux);
->  static void drm_dp_mst_kick_tx(struct drm_dp_mst_topology_mgr *mgr);
->  
-> +#define DBG_PREFIX "[dp_mst]"
-> +
->  #define DP_STR(x) [DP_ ## x] = #x
->  
->  static const char *drm_dp_mst_req_type_str(u8 req_type)
-> @@ -129,6 +132,43 @@ static const char *drm_dp_mst_nak_reason_str(u8 nak_reason)
->  }
->  
->  #undef DP_STR
-> +#define DP_STR(x) [DRM_DP_SIDEBAND_TX_ ## x] = #x
-> +
-> +static const char *drm_dp_mst_sideband_tx_state_str(int state)
-> +{
-> +	static const char * const sideband_reason_str[] = {
-> +		DP_STR(QUEUED),
-> +		DP_STR(START_SEND),
-> +		DP_STR(SENT),
-> +		DP_STR(RX),
-> +		DP_STR(TIMEOUT),
-> +	};
-> +
-> +	if (state >= ARRAY_SIZE(sideband_reason_str) ||
-> +	    !sideband_reason_str[state])
-> +		return "unknown";
-> +
-> +	return sideband_reason_str[state];
-> +}
-> +
-> +static int
-> +drm_dp_mst_rad_to_str(const u8 rad[8], u8 lct, char *out, size_t len)
-> +{
-> +	int i;
-> +	u8 unpacked_rad[16];
-> +
-> +	for (i = 0; i < lct; i++) {
-> +		if (i % 2)
-> +			unpacked_rad[i] = rad[i / 2] >> 4;
-> +		else
-> +			unpacked_rad[i] = rad[i / 2] & BIT_MASK(4);
-> +	}
-> +
-> +	/* TODO: Eventually add something to printk so we can format the rad
-> +	 * like this: 1.2.3
-> +	 */
-> +	return snprintf(out, len, "%*phC", lct, unpacked_rad);
-> +}
->  
->  /* sideband msg handling */
->  static u8 drm_dp_msg_header_crc4(const uint8_t *data, size_t num_nibbles)
-> @@ -261,8 +301,9 @@ static bool drm_dp_decode_sideband_msg_hdr(struct drm_dp_sideband_msg_hdr *hdr,
->  	return true;
->  }
->  
-> -static void drm_dp_encode_sideband_req(struct drm_dp_sideband_msg_req_body *req,
-> -				       struct drm_dp_sideband_msg_tx *raw)
-> +void
-> +drm_dp_encode_sideband_req(const struct drm_dp_sideband_msg_req_body *req,
-> +			   struct drm_dp_sideband_msg_tx *raw)
->  {
->  	int idx = 0;
->  	int i;
-> @@ -363,6 +404,251 @@ static void drm_dp_encode_sideband_req(struct drm_dp_sideband_msg_req_body *req,
->  	}
->  	raw->cur_len = idx;
->  }
-> +EXPORT_SYMBOL_FOR_TESTS_ONLY(drm_dp_encode_sideband_req);
-> +
-> +/* Decode a sideband request we've encoded, mainly used for debugging */
-> +int
-> +drm_dp_decode_sideband_req(const struct drm_dp_sideband_msg_tx *raw,
-> +			   struct drm_dp_sideband_msg_req_body *req)
-> +{
-> +	const u8 *buf = raw->msg;
-> +	int i, idx = 0;
-> +
-> +	req->req_type = buf[idx++] & 0x7f;
-> +	switch (req->req_type) {
-> +	case DP_ENUM_PATH_RESOURCES:
-> +	case DP_POWER_DOWN_PHY:
-> +	case DP_POWER_UP_PHY:
-> +		req->u.port_num.port_number = (buf[idx] >> 4) & 0xf;
-> +		break;
-> +	case DP_ALLOCATE_PAYLOAD:
-> +		{
-> +			struct drm_dp_allocate_payload *a =
-> +				&req->u.allocate_payload;
-> +
-> +			a->number_sdp_streams = buf[idx] & 0xf;
-> +			a->port_number = (buf[idx] >> 4) & 0xf;
-> +
-> +			WARN_ON(buf[++idx] & 0x80);
-> +			a->vcpi = buf[idx] & 0x7f;
-> +
-> +			a->pbn = buf[++idx] << 8;
-> +			a->pbn |= buf[++idx];
-> +
-> +			idx++;
-> +			for (i = 0; i < a->number_sdp_streams; i++) {
-> +				a->sdp_stream_sink[i] =
-> +					(buf[idx + (i / 2)] >> ((i % 2) ? 0 : 4)) & 0xf;
-> +			}
-> +		}
-> +		break;
-> +	case DP_QUERY_PAYLOAD:
-> +		req->u.query_payload.port_number = (buf[idx] >> 4) & 0xf;
-> +		WARN_ON(buf[++idx] & 0x80);
-> +		req->u.query_payload.vcpi = buf[idx] & 0x7f;
-> +		break;
-> +	case DP_REMOTE_DPCD_READ:
-> +		{
-> +			struct drm_dp_remote_dpcd_read *r = &req->u.dpcd_read;
-> +
-> +			r->port_number = (buf[idx] >> 4) & 0xf;
-> +
-> +			r->dpcd_address = (buf[idx] << 16) & 0xf0000;
-> +			r->dpcd_address |= (buf[++idx] << 8) & 0xff00;
-> +			r->dpcd_address |= buf[++idx] & 0xff;
-> +
-> +			r->num_bytes = buf[++idx];
-> +		}
-> +		break;
-> +	case DP_REMOTE_DPCD_WRITE:
-> +		{
-> +			struct drm_dp_remote_dpcd_write *w =
-> +				&req->u.dpcd_write;
-> +
-> +			w->port_number = (buf[idx] >> 4) & 0xf;
-> +
-> +			w->dpcd_address = (buf[idx] << 16) & 0xf0000;
-> +			w->dpcd_address |= (buf[++idx] << 8) & 0xff00;
-> +			w->dpcd_address |= buf[++idx] & 0xff;
-> +
-> +			w->num_bytes = buf[++idx];
-> +
-> +			w->bytes = kmemdup(&buf[++idx], w->num_bytes,
-> +					   GFP_KERNEL);
-> +			if (!w->bytes)
-> +				return -ENOMEM;
-> +		}
-> +		break;
-> +	case DP_REMOTE_I2C_READ:
-> +		{
-> +			struct drm_dp_remote_i2c_read *r = &req->u.i2c_read;
-> +			struct drm_dp_remote_i2c_read_tx *tx;
-> +			bool failed = false;
-> +
-> +			r->num_transactions = buf[idx] & 0x3;
-> +			r->port_number = (buf[idx] >> 4) & 0xf;
-> +			for (i = 0; i < r->num_transactions; i++) {
-> +				tx = &r->transactions[i];
-> +
-> +				tx->i2c_dev_id = buf[++idx] & 0x7f;
-> +				tx->num_bytes = buf[++idx];
-> +				tx->bytes = kmemdup(&buf[++idx],
-> +						    tx->num_bytes,
-> +						    GFP_KERNEL);
-> +				if (!tx->bytes) {
-> +					failed = true;
-> +					break;
-> +				}
-> +				idx += tx->num_bytes;
-> +				tx->no_stop_bit = (buf[idx] >> 5) & 0x1;
-> +				tx->i2c_transaction_delay = buf[idx] & 0xf;
-> +			}
-> +
-> +			if (failed) {
-> +				for (i = 0; i < r->num_transactions; i++)
-> +					kfree(tx->bytes);
-> +				return -ENOMEM;
-> +			}
-> +
-> +			r->read_i2c_device_id = buf[++idx] & 0x7f;
-> +			r->num_bytes_read = buf[++idx];
-> +		}
-> +		break;
-> +	case DP_REMOTE_I2C_WRITE:
-> +		{
-> +			struct drm_dp_remote_i2c_write *w = &req->u.i2c_write;
-> +
-> +			w->port_number = (buf[idx] >> 4) & 0xf;
-> +			w->write_i2c_device_id = buf[++idx] & 0x7f;
-> +			w->num_bytes = buf[++idx];
-> +			w->bytes = kmemdup(&buf[++idx], w->num_bytes,
-> +					   GFP_KERNEL);
-> +			if (!w->bytes)
-> +				return -ENOMEM;
-> +		}
-> +		break;
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_FOR_TESTS_ONLY(drm_dp_decode_sideband_req);
-> +
-> +void
-> +drm_dp_dump_sideband_msg_req_body(const struct drm_dp_sideband_msg_req_body *req,
-> +				  int indent, struct drm_printer *printer)
-> +{
-> +	int i;
-> +
-> +#define P(f, ...) drm_printf_indent(printer, indent, f, ##__VA_ARGS__)
-> +	if (req->req_type == DP_LINK_ADDRESS) {
-> +		/* No contents to print */
-> +		P("type=%s\n", drm_dp_mst_req_type_str(req->req_type));
-> +		return;
-> +	}
-> +
-> +	P("type=%s contents:\n", drm_dp_mst_req_type_str(req->req_type));
-> +	indent++;
-> +
-> +	switch (req->req_type) {
-> +	case DP_ENUM_PATH_RESOURCES:
-> +	case DP_POWER_DOWN_PHY:
-> +	case DP_POWER_UP_PHY:
-> +		P("port=%d\n", req->u.port_num.port_number);
-> +		break;
-> +	case DP_ALLOCATE_PAYLOAD:
-> +		P("port=%d vcpi=%d pbn=%d sdp_streams=%d %*ph\n",
-> +		  req->u.allocate_payload.port_number,
-> +		  req->u.allocate_payload.vcpi, req->u.allocate_payload.pbn,
-> +		  req->u.allocate_payload.number_sdp_streams,
-> +		  req->u.allocate_payload.number_sdp_streams,
-> +		  req->u.allocate_payload.sdp_stream_sink);
-> +		break;
-> +	case DP_QUERY_PAYLOAD:
-> +		P("port=%d vcpi=%d\n",
-> +		  req->u.query_payload.port_number,
-> +		  req->u.query_payload.vcpi);
-> +		break;
-> +	case DP_REMOTE_DPCD_READ:
-> +		P("port=%d dpcd_addr=%05x len=%d\n",
-> +		  req->u.dpcd_read.port_number, req->u.dpcd_read.dpcd_address,
-> +		  req->u.dpcd_read.num_bytes);
-> +		break;
-> +	case DP_REMOTE_DPCD_WRITE:
-> +		P("port=%d addr=%05x len=%d: %*ph\n",
-> +		  req->u.dpcd_write.port_number,
-> +		  req->u.dpcd_write.dpcd_address,
-> +		  req->u.dpcd_write.num_bytes, req->u.dpcd_write.num_bytes,
-> +		  req->u.dpcd_write.bytes);
-> +		break;
-> +	case DP_REMOTE_I2C_READ:
-> +		P("port=%d num_tx=%d id=%d size=%d:\n",
-> +		  req->u.i2c_read.port_number,
-> +		  req->u.i2c_read.num_transactions,
-> +		  req->u.i2c_read.read_i2c_device_id,
-> +		  req->u.i2c_read.num_bytes_read);
-> +
-> +		indent++;
-> +		for (i = 0; i < req->u.i2c_read.num_transactions; i++) {
-> +			const struct drm_dp_remote_i2c_read_tx *rtx =
-> +				&req->u.i2c_read.transactions[i];
-> +
-> +			P("%d: id=%03d size=%03d no_stop_bit=%d tx_delay=%03d: %*ph\n",
-> +			  i, rtx->i2c_dev_id, rtx->num_bytes,
-> +			  rtx->no_stop_bit, rtx->i2c_transaction_delay,
-> +			  rtx->num_bytes, rtx->bytes);
-> +		}
-> +		break;
-> +	case DP_REMOTE_I2C_WRITE:
-> +		P("port=%d id=%d size=%d: %*ph\n",
-> +		  req->u.i2c_write.port_number,
-> +		  req->u.i2c_write.write_i2c_device_id,
-> +		  req->u.i2c_write.num_bytes, req->u.i2c_write.num_bytes,
-> +		  req->u.i2c_write.bytes);
-> +		break;
-> +	default:
-> +		P("???\n");
-> +		break;
-> +	}
-> +#undef P
-> +}
-> +EXPORT_SYMBOL_FOR_TESTS_ONLY(drm_dp_dump_sideband_msg_req_body);
-> +
-> +static inline void
-> +drm_dp_mst_dump_sideband_msg_tx(struct drm_printer *p,
-> +				const struct drm_dp_sideband_msg_tx *txmsg)
-> +{
-> +	struct drm_dp_sideband_msg_req_body req;
-> +	char buf[64];
-> +	int ret;
-> +	int i;
-> +
-> +	drm_dp_mst_rad_to_str(txmsg->dst->rad, txmsg->dst->lct, buf,
-> +			      sizeof(buf));
-> +	drm_printf(p, "txmsg cur_offset=%x cur_len=%x seqno=%x state=%s path_msg=%d dst=%s\n",
-> +		   txmsg->cur_offset, txmsg->cur_len, txmsg->seqno,
-> +		   drm_dp_mst_sideband_tx_state_str(txmsg->state),
-> +		   txmsg->path_msg, buf);
-> +
-> +	ret = drm_dp_decode_sideband_req(txmsg, &req);
-> +	if (ret) {
-> +		drm_printf(p, "<failed to decode sideband req: %d>\n", ret);
-> +		return;
-> +	}
-> +	drm_dp_dump_sideband_msg_req_body(&req, 1, p);
-> +
-> +	switch (req.req_type) {
-> +	case DP_REMOTE_DPCD_WRITE:
-> +		kfree(req.u.dpcd_write.bytes);
-> +		break;
-> +	case DP_REMOTE_I2C_READ:
-> +		for (i = 0; i < req.u.i2c_read.num_transactions; i++)
-> +			kfree(req.u.i2c_read.transactions[i].bytes);
-> +		break;
-> +	case DP_REMOTE_I2C_WRITE:
-> +		kfree(req.u.i2c_write.bytes);
-> +		break;
-> +	}
-> +}
->  
->  static void drm_dp_crc_sideband_chunk_req(u8 *msg, u8 len)
->  {
-> @@ -894,6 +1180,11 @@ static int drm_dp_mst_wait_tx_reply(struct drm_dp_mst_branch *mstb,
->  		}
->  	}
->  out:
-> +	if (unlikely(ret == -EIO && drm_debug & DRM_UT_DP)) {
-> +		struct drm_printer p = drm_debug_printer(DBG_PREFIX);
-> +
-> +		drm_dp_mst_dump_sideband_msg_tx(&p, txmsg);
-> +	}
->  	mutex_unlock(&mgr->qlock);
->  
->  	return ret;
-> @@ -2013,8 +2304,11 @@ static int process_single_tx_qlock(struct drm_dp_mst_topology_mgr *mgr,
->  	idx += tosend + 1;
->  
->  	ret = drm_dp_send_sideband_msg(mgr, up, chunk, idx);
-> -	if (ret) {
-> -		DRM_DEBUG_KMS("sideband msg failed to send\n");
-> +	if (unlikely(ret && drm_debug & DRM_UT_DP)) {
-> +		struct drm_printer p = drm_debug_printer(DBG_PREFIX);
-> +
-> +		drm_printf(&p, "sideband msg failed to send\n");
-> +		drm_dp_mst_dump_sideband_msg_tx(&p, txmsg);
->  		return ret;
->  	}
->  
-> @@ -2076,6 +2370,13 @@ static void drm_dp_queue_down_tx(struct drm_dp_mst_topology_mgr *mgr,
->  {
->  	mutex_lock(&mgr->qlock);
->  	list_add_tail(&txmsg->next, &mgr->tx_msg_downq);
-> +
-> +	if (unlikely(drm_debug & DRM_UT_DP)) {
-> +		struct drm_printer p = drm_debug_printer(DBG_PREFIX);
-> +
-> +		drm_dp_mst_dump_sideband_msg_tx(&p, txmsg);
-> +	}
-> +
->  	if (list_is_singular(&mgr->tx_msg_downq))
->  		process_single_down_tx_qlock(mgr);
->  	mutex_unlock(&mgr->qlock);
-> diff --git a/drivers/gpu/drm/drm_dp_mst_topology_internal.h b/drivers/gpu/drm/drm_dp_mst_topology_internal.h
-> new file mode 100644
-> index 000000000000..eeda9a61c657
-> --- /dev/null
-> +++ b/drivers/gpu/drm/drm_dp_mst_topology_internal.h
-> @@ -0,0 +1,24 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only
-> + *
-> + * Declarations for DP MST related functions which are only used in selftests
-> + *
-> + * Copyright © 2018 Red Hat
-> + * Authors:
-> + *     Lyude Paul <lyude@redhat.com>
-> + */
-> +
-> +#ifndef _DRM_DP_MST_HELPER_INTERNAL_H_
-> +#define _DRM_DP_MST_HELPER_INTERNAL_H_
-> +
-> +#include <drm/drm_dp_mst_helper.h>
-> +
-> +void
-> +drm_dp_encode_sideband_req(const struct drm_dp_sideband_msg_req_body *req,
-> +			   struct drm_dp_sideband_msg_tx *raw);
-> +int drm_dp_decode_sideband_req(const struct drm_dp_sideband_msg_tx *raw,
-> +			       struct drm_dp_sideband_msg_req_body *req);
-> +void
-> +drm_dp_dump_sideband_msg_req_body(const struct drm_dp_sideband_msg_req_body *req,
-> +				  int indent, struct drm_printer *printer);
-> +
-> +#endif /* !_DRM_DP_MST_HELPER_INTERNAL_H_ */
-> diff --git a/drivers/gpu/drm/selftests/drm_modeset_selftests.h b/drivers/gpu/drm/selftests/drm_modeset_selftests.h
-> index dec3ee3ec96f..1898de0b4a4d 100644
-> --- a/drivers/gpu/drm/selftests/drm_modeset_selftests.h
-> +++ b/drivers/gpu/drm/selftests/drm_modeset_selftests.h
-> @@ -33,3 +33,4 @@ selftest(damage_iter_damage_one_outside, igt_damage_iter_damage_one_outside)
->  selftest(damage_iter_damage_src_moved, igt_damage_iter_damage_src_moved)
->  selftest(damage_iter_damage_not_visible, igt_damage_iter_damage_not_visible)
->  selftest(dp_mst_calc_pbn_mode, igt_dp_mst_calc_pbn_mode)
-> +selftest(dp_mst_sideband_msg_req_decode, igt_dp_mst_sideband_msg_req_decode)
-> diff --git a/drivers/gpu/drm/selftests/test-drm_dp_mst_helper.c b/drivers/gpu/drm/selftests/test-drm_dp_mst_helper.c
-> index 9baa5171988d..af2b2de65316 100644
-> --- a/drivers/gpu/drm/selftests/test-drm_dp_mst_helper.c
-> +++ b/drivers/gpu/drm/selftests/test-drm_dp_mst_helper.c
-> @@ -3,9 +3,12 @@
->   * Test cases for for the DRM DP MST helpers
->   */
->  
-> +#define PREFIX_STR "[drm_dp_mst_helper]"
-> +
->  #include <drm/drm_dp_mst_helper.h>
->  #include <drm/drm_print.h>
->  
-> +#include "../drm_dp_mst_topology_internal.h"
->  #include "test-drm_modeset_common.h"
->  
->  int igt_dp_mst_calc_pbn_mode(void *ignored)
-> @@ -32,3 +35,204 @@ int igt_dp_mst_calc_pbn_mode(void *ignored)
->  
->  	return 0;
->  }
-> +
-> +static bool
-> +sideband_msg_req_equal(const struct drm_dp_sideband_msg_req_body *in,
-> +		       const struct drm_dp_sideband_msg_req_body *out)
-> +{
-> +	const struct drm_dp_remote_i2c_read_tx *txin, *txout;
-> +	int i;
-> +
-> +	if (in->req_type != out->req_type)
-> +		return false;
-> +
-> +	switch (in->req_type) {
-> +	/*
-> +	 * Compare struct members manually for request types which can't be
-> +	 * compared simply using memcmp(). This is because said request types
-> +	 * contain pointers to other allocated structs
-> +	 */
-> +	case DP_REMOTE_I2C_READ:
-> +#define IN in->u.i2c_read
-> +#define OUT out->u.i2c_read
-> +		if (IN.num_bytes_read != OUT.num_bytes_read ||
-> +		    IN.num_transactions != OUT.num_transactions ||
-> +		    IN.port_number != OUT.port_number ||
-> +		    IN.read_i2c_device_id != OUT.read_i2c_device_id)
-> +			return false;
-> +
-> +		for (i = 0; i < IN.num_transactions; i++) {
-> +			txin = &IN.transactions[i];
-> +			txout = &OUT.transactions[i];
-> +
-> +			if (txin->i2c_dev_id != txout->i2c_dev_id ||
-> +			    txin->no_stop_bit != txout->no_stop_bit ||
-> +			    txin->num_bytes != txout->num_bytes ||
-> +			    txin->i2c_transaction_delay !=
-> +			    txout->i2c_transaction_delay)
-> +				return false;
-> +
-> +			if (memcmp(txin->bytes, txout->bytes,
-> +				   txin->num_bytes) != 0)
-> +				return false;
-> +		}
-> +		break;
-> +#undef IN
-> +#undef OUT
-> +
-> +	case DP_REMOTE_DPCD_WRITE:
-> +#define IN in->u.dpcd_write
-> +#define OUT out->u.dpcd_write
-> +		if (IN.dpcd_address != OUT.dpcd_address ||
-> +		    IN.num_bytes != OUT.num_bytes ||
-> +		    IN.port_number != OUT.port_number)
-> +			return false;
-> +
-> +		return memcmp(IN.bytes, OUT.bytes, IN.num_bytes) == 0;
-> +#undef IN
-> +#undef OUT
-> +
-> +	case DP_REMOTE_I2C_WRITE:
-> +#define IN in->u.i2c_write
-> +#define OUT out->u.i2c_write
-> +		if (IN.port_number != OUT.port_number ||
-> +		    IN.write_i2c_device_id != OUT.write_i2c_device_id ||
-> +		    IN.num_bytes != OUT.num_bytes)
-> +			return false;
-> +
-> +		return memcmp(IN.bytes, OUT.bytes, IN.num_bytes) == 0;
-> +#undef IN
-> +#undef OUT
-> +
-> +	default:
-> +		return memcmp(in, out, sizeof(*in)) == 0;
-> +	}
-> +
-> +	return true;
-> +}
-> +
-> +static bool
-> +sideband_msg_req_encode_decode(struct drm_dp_sideband_msg_req_body *in)
-> +{
-> +	struct drm_dp_sideband_msg_req_body out = {0};
-> +	struct drm_printer p = drm_err_printer(PREFIX_STR);
-> +	struct drm_dp_sideband_msg_tx txmsg;
-> +	int i, ret;
-> +
-> +	drm_dp_encode_sideband_req(in, &txmsg);
-> +	ret = drm_dp_decode_sideband_req(&txmsg, &out);
-> +	if (ret < 0) {
-> +		drm_printf(&p, "Failed to decode sideband request: %d\n",
-> +			   ret);
 
-Is this the sole reason of adding drm_err_printer()? Where do you intend
-to take error printing next, in general? Why isn't DRM_ERROR() the right
-thing to do here?
-
-It's just that I think debug and error printing from drm is a mess, and
-instead of cleaning it up, we seem to be piling on new stuff without
-direction.
-
-BR,
-Jani.
+--===============0272918578==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="J/dobhs11T7y2rNN"
+Content-Disposition: inline
 
 
+--J/dobhs11T7y2rNN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +		return false;
-> +	}
-> +
-> +	if (!sideband_msg_req_equal(in, &out)) {
-> +		drm_printf(&p, "Encode/decode failed, expected:\n");
-> +		drm_dp_dump_sideband_msg_req_body(in, 1, &p);
-> +		drm_printf(&p, "Got:\n");
-> +		drm_dp_dump_sideband_msg_req_body(&out, 1, &p);
-> +		return false;
-> +	}
-> +
-> +	switch (in->req_type) {
-> +	case DP_REMOTE_DPCD_WRITE:
-> +		kfree(out.u.dpcd_write.bytes);
-> +		break;
-> +	case DP_REMOTE_I2C_READ:
-> +		for (i = 0; i < out.u.i2c_read.num_transactions; i++)
-> +			kfree(out.u.i2c_read.transactions[i].bytes);
-> +		break;
-> +	case DP_REMOTE_I2C_WRITE:
-> +		kfree(out.u.i2c_write.bytes);
-> +		break;
-> +	}
-> +
-> +	/* Clear everything but the req_type for the input */
-> +	memset(&in->u, 0, sizeof(in->u));
-> +
-> +	return true;
-> +}
-> +
-> +int igt_dp_mst_sideband_msg_req_decode(void *unused)
-> +{
-> +	struct drm_dp_sideband_msg_req_body in = { 0 };
-> +	u8 data[] = { 0xff, 0x0, 0xdd };
-> +	int i;
-> +
-> +#define DO_TEST() FAIL_ON(!sideband_msg_req_encode_decode(&in))
-> +
-> +	in.req_type = DP_ENUM_PATH_RESOURCES;
-> +	in.u.port_num.port_number = 5;
-> +	DO_TEST();
-> +
-> +	in.req_type = DP_POWER_UP_PHY;
-> +	in.u.port_num.port_number = 5;
-> +	DO_TEST();
-> +
-> +	in.req_type = DP_POWER_DOWN_PHY;
-> +	in.u.port_num.port_number = 5;
-> +	DO_TEST();
-> +
-> +	in.req_type = DP_ALLOCATE_PAYLOAD;
-> +	in.u.allocate_payload.number_sdp_streams = 3;
-> +	for (i = 0; i < in.u.allocate_payload.number_sdp_streams; i++)
-> +		in.u.allocate_payload.sdp_stream_sink[i] = i + 1;
-> +	DO_TEST();
-> +	in.u.allocate_payload.port_number = 0xf;
-> +	DO_TEST();
-> +	in.u.allocate_payload.vcpi = 0x7f;
-> +	DO_TEST();
-> +	in.u.allocate_payload.pbn = U16_MAX;
-> +	DO_TEST();
-> +
-> +	in.req_type = DP_QUERY_PAYLOAD;
-> +	in.u.query_payload.port_number = 0xf;
-> +	DO_TEST();
-> +	in.u.query_payload.vcpi = 0x7f;
-> +	DO_TEST();
-> +
-> +	in.req_type = DP_REMOTE_DPCD_READ;
-> +	in.u.dpcd_read.port_number = 0xf;
-> +	DO_TEST();
-> +	in.u.dpcd_read.dpcd_address = 0xfedcb;
-> +	DO_TEST();
-> +	in.u.dpcd_read.num_bytes = U8_MAX;
-> +	DO_TEST();
-> +
-> +	in.req_type = DP_REMOTE_DPCD_WRITE;
-> +	in.u.dpcd_write.port_number = 0xf;
-> +	DO_TEST();
-> +	in.u.dpcd_write.dpcd_address = 0xfedcb;
-> +	DO_TEST();
-> +	in.u.dpcd_write.num_bytes = ARRAY_SIZE(data);
-> +	in.u.dpcd_write.bytes = data;
-> +	DO_TEST();
-> +
-> +	in.req_type = DP_REMOTE_I2C_READ;
-> +	in.u.i2c_read.port_number = 0xf;
-> +	DO_TEST();
-> +	in.u.i2c_read.read_i2c_device_id = 0x7f;
-> +	DO_TEST();
-> +	in.u.i2c_read.num_transactions = 3;
-> +	in.u.i2c_read.num_bytes_read = ARRAY_SIZE(data) * 3;
-> +	for (i = 0; i < in.u.i2c_read.num_transactions; i++) {
-> +		in.u.i2c_read.transactions[i].bytes = data;
-> +		in.u.i2c_read.transactions[i].num_bytes = ARRAY_SIZE(data);
-> +		in.u.i2c_read.transactions[i].i2c_dev_id = 0x7f & ~i;
-> +		in.u.i2c_read.transactions[i].i2c_transaction_delay = 0xf & ~i;
-> +	}
-> +	DO_TEST();
-> +
-> +	in.req_type = DP_REMOTE_I2C_WRITE;
-> +	in.u.i2c_write.port_number = 0xf;
-> +	DO_TEST();
-> +	in.u.i2c_write.write_i2c_device_id = 0x7f;
-> +	DO_TEST();
-> +	in.u.i2c_write.num_bytes = ARRAY_SIZE(data);
-> +	in.u.i2c_write.bytes = data;
-> +	DO_TEST();
-> +
-> +#undef DO_TEST
-> +	return 0;
-> +}
-> diff --git a/drivers/gpu/drm/selftests/test-drm_modeset_common.h b/drivers/gpu/drm/selftests/test-drm_modeset_common.h
-> index 590bda35a683..0fcb8bbc6a1b 100644
-> --- a/drivers/gpu/drm/selftests/test-drm_modeset_common.h
-> +++ b/drivers/gpu/drm/selftests/test-drm_modeset_common.h
-> @@ -40,5 +40,6 @@ int igt_damage_iter_damage_one_outside(void *ignored);
->  int igt_damage_iter_damage_src_moved(void *ignored);
->  int igt_damage_iter_damage_not_visible(void *ignored);
->  int igt_dp_mst_calc_pbn_mode(void *ignored);
-> +int igt_dp_mst_sideband_msg_req_decode(void *ignored);
->  
->  #endif
-> diff --git a/include/drm/drm_dp_mst_helper.h b/include/drm/drm_dp_mst_helper.h
-> index 4a4507fe928d..5423a8adda78 100644
-> --- a/include/drm/drm_dp_mst_helper.h
-> +++ b/include/drm/drm_dp_mst_helper.h
-> @@ -293,7 +293,7 @@ struct drm_dp_remote_dpcd_write {
->  struct drm_dp_remote_i2c_read {
->  	u8 num_transactions;
->  	u8 port_number;
-> -	struct {
-> +	struct drm_dp_remote_i2c_read_tx {
->  		u8 i2c_dev_id;
->  		u8 num_bytes;
->  		u8 *bytes;
+On Sat, Sep 07, 2019 at 09:58:46PM -0400, Ilia Mirkin wrote:
+> On Wed, Aug 21, 2019 at 7:55 AM Thierry Reding <thierry.reding@gmail.com>=
+ wrote:
+> >
+> > On Wed, Aug 21, 2019 at 04:33:58PM +1000, Ben Skeggs wrote:
+> > > On Wed, 14 Aug 2019 at 20:14, Gerd Hoffmann <kraxel@redhat.com> wrote:
+> > > >
+> > > >   Hi,
+> > > >
+> > > > > > Changing the order doesn't look hard.  Patch attached (untested=
+, have no
+> > > > > > test hardware).  But maybe I missed some detail ...
+> > > > >
+> > > > > I came up with something very similar by splitting up nouveau_bo_=
+new()
+> > > > > into allocation and initialization steps, so that when necessary =
+the GEM
+> > > > > object can be initialized in between. I think that's slightly more
+> > > > > flexible and easier to understand than a boolean flag.
+> > > >
+> > > > Yes, that should work too.
+> > > >
+> > > > Acked-by: Gerd Hoffmann <kraxel@redhat.com>
+> > > Acked-by: Ben Skeggs <bskeggs@redhat.com>
+> >
+> > Thanks guys, applied to drm-misc-next.
+>=20
+> Hi Thierry,
+>=20
+> Initial investigations suggest that this commit currently in drm-next
+>=20
+> commit 019cbd4a4feb3aa3a917d78e7110e3011bbff6d5
+> Author: Thierry Reding <treding@nvidia.com>
+> Date:   Wed Aug 14 11:00:48 2019 +0200
+>=20
+>     drm/nouveau: Initialize GEM object before TTM object
+>=20
+> breaks nouveau userspace which tries to allocate GEM objects with a
+> non-page-aligned size. Previously nouveau_gem_new would just call
+> nouveau_bo_init which would call nouveau_bo_fixup_align before
+> initializing the GEM object. With this change, it is done after. What
+> do you think -- OK to just move that bit of logic into the new
+> nouveau_bo_alloc() (and make size/align be pointers so that they can
+> be fixed up?)
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Hi Ilia,
+
+sorry, got side-tracked earlier and forgot to send this out. I'll turn
+this into a proper patch, but if you manage to find the time to test
+this while I work out the userspace issues that are preventing me from
+testing this more thoroughly, that'd be great.
+
+Thierry
+
+--- >8 ---
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau=
+/nouveau_bo.c
+index e918b437af17..7d5ede756711 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -186,8 +186,8 @@ nouveau_bo_fixup_align(struct nouveau_bo *nvbo, u32 fla=
+gs,
+ }
+=20
+ struct nouveau_bo *
+-nouveau_bo_alloc(struct nouveau_cli *cli, u64 size, u32 flags, u32 tile_mo=
+de,
+-		 u32 tile_flags)
++nouveau_bo_alloc(struct nouveau_cli *cli, u64 *size, int *align, u32 flags,
++		 u32 tile_mode, u32 tile_flags)
+ {
+ 	struct nouveau_drm *drm =3D cli->drm;
+ 	struct nouveau_bo *nvbo;
+@@ -195,8 +195,8 @@ nouveau_bo_alloc(struct nouveau_cli *cli, u64 size, u32=
+ flags, u32 tile_mode,
+ 	struct nvif_vmm *vmm =3D cli->svm.cli ? &cli->svm.vmm : &cli->vmm.vmm;
+ 	int i, pi =3D -1;
+=20
+-	if (!size) {
+-		NV_WARN(drm, "skipped size %016llx\n", size);
++	if (!*size) {
++		NV_WARN(drm, "skipped size %016llx\n", *size);
+ 		return ERR_PTR(-EINVAL);
+ 	}
+=20
+@@ -266,7 +266,7 @@ nouveau_bo_alloc(struct nouveau_cli *cli, u64 size, u32=
+ flags, u32 tile_mode,
+ 			pi =3D i;
+=20
+ 		/* Stop once the buffer is larger than the current page size. */
+-		if (size >=3D 1ULL << vmm->page[i].shift)
++		if (*size >=3D 1ULL << vmm->page[i].shift)
+ 			break;
+ 	}
+=20
+@@ -281,6 +281,8 @@ nouveau_bo_alloc(struct nouveau_cli *cli, u64 size, u32=
+ flags, u32 tile_mode,
+ 	}
+ 	nvbo->page =3D vmm->page[pi].shift;
+=20
++	nouveau_bo_fixup_align(nvbo, flags, align, size);
++
+ 	return nvbo;
+ }
+=20
+@@ -292,12 +294,11 @@ nouveau_bo_init(struct nouveau_bo *nvbo, u64 size, in=
+t align, u32 flags,
+ 	size_t acc_size;
+ 	int ret;
+=20
+-	acc_size =3D ttm_bo_dma_acc_size(nvbo->bo.bdev, size, sizeof(*nvbo));
+-
+-	nouveau_bo_fixup_align(nvbo, flags, &align, &size);
+ 	nvbo->bo.mem.num_pages =3D size >> PAGE_SHIFT;
+ 	nouveau_bo_placement_set(nvbo, flags, 0);
+=20
++	acc_size =3D ttm_bo_dma_acc_size(nvbo->bo.bdev, size, sizeof(*nvbo));
++
+ 	ret =3D ttm_bo_init(nvbo->bo.bdev, &nvbo->bo, size, type,
+ 			  &nvbo->placement, align >> PAGE_SHIFT, false,
+ 			  acc_size, sg, robj, nouveau_bo_del_ttm);
+@@ -318,7 +319,8 @@ nouveau_bo_new(struct nouveau_cli *cli, u64 size, int a=
+lign,
+ 	struct nouveau_bo *nvbo;
+ 	int ret;
+=20
+-	nvbo =3D nouveau_bo_alloc(cli, size, flags, tile_mode, tile_flags);
++	nvbo =3D nouveau_bo_alloc(cli, &size, &align, flags, tile_mode,
++				tile_flags);
+ 	if (IS_ERR(nvbo))
+ 		return PTR_ERR(nvbo);
+=20
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.h b/drivers/gpu/drm/nouveau=
+/nouveau_bo.h
+index 62930d834fba..38f9d8350963 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.h
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.h
+@@ -71,8 +71,8 @@ nouveau_bo_ref(struct nouveau_bo *ref, struct nouveau_bo =
+**pnvbo)
+ extern struct ttm_bo_driver nouveau_bo_driver;
+=20
+ void nouveau_bo_move_init(struct nouveau_drm *);
+-struct nouveau_bo *nouveau_bo_alloc(struct nouveau_cli *, u64 size, u32 fl=
+ags,
+-				    u32 tile_mode, u32 tile_flags);
++struct nouveau_bo *nouveau_bo_alloc(struct nouveau_cli *, u64 *size, int *=
+align,
++				    u32 flags, u32 tile_mode, u32 tile_flags);
+ int  nouveau_bo_init(struct nouveau_bo *, u64 size, int align, u32 flags,
+ 		     struct sg_table *sg, struct dma_resv *robj);
+ int  nouveau_bo_new(struct nouveau_cli *, u64 size, int align, u32 flags,
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouvea=
+u/nouveau_gem.c
+index c2bfc0591909..1bdffd714456 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -188,7 +188,8 @@ nouveau_gem_new(struct nouveau_cli *cli, u64 size, int =
+align, uint32_t domain,
+ 	if (domain & NOUVEAU_GEM_DOMAIN_COHERENT)
+ 		flags |=3D TTM_PL_FLAG_UNCACHED;
+=20
+-	nvbo =3D nouveau_bo_alloc(cli, size, flags, tile_mode, tile_flags);
++	nvbo =3D nouveau_bo_alloc(cli, &size, &align, flags, tile_mode,
++				tile_flags);
+ 	if (IS_ERR(nvbo))
+ 		return PTR_ERR(nvbo);
+=20
+diff --git a/drivers/gpu/drm/nouveau/nouveau_prime.c b/drivers/gpu/drm/nouv=
+eau/nouveau_prime.c
+index 84658d434225..656c334ee7d9 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_prime.c
++++ b/drivers/gpu/drm/nouveau/nouveau_prime.c
+@@ -62,14 +62,15 @@ struct drm_gem_object *nouveau_gem_prime_import_sg_tabl=
+e(struct drm_device *dev,
+ 	struct nouveau_drm *drm =3D nouveau_drm(dev);
+ 	struct nouveau_bo *nvbo;
+ 	struct dma_resv *robj =3D attach->dmabuf->resv;
+-	size_t size =3D attach->dmabuf->size;
++	u64 size =3D attach->dmabuf->size;
+ 	u32 flags =3D 0;
++	int align =3D 0;
+ 	int ret;
+=20
+ 	flags =3D TTM_PL_FLAG_TT;
+=20
+ 	dma_resv_lock(robj, NULL);
+-	nvbo =3D nouveau_bo_alloc(&drm->client, size, flags, 0, 0);
++	nvbo =3D nouveau_bo_alloc(&drm->client, &size, &align, flags, 0, 0);
+ 	dma_resv_unlock(robj);
+ 	if (IS_ERR(nvbo))
+ 		return ERR_CAST(nvbo);
+@@ -84,7 +85,7 @@ struct drm_gem_object *nouveau_gem_prime_import_sg_table(=
+struct drm_device *dev,
+ 		return ERR_PTR(-ENOMEM);
+ 	}
+=20
+-	ret =3D nouveau_bo_init(nvbo, size, 0, flags, sg, robj);
++	ret =3D nouveau_bo_init(nvbo, size, align, flags, sg, robj);
+ 	if (ret) {
+ 		nouveau_bo_ref(NULL, &nvbo);
+ 		return ERR_PTR(ret);
+
+--J/dobhs11T7y2rNN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl14GzgACgkQ3SOs138+
+s6GnHA/+I0E/b1ne3feG2PlDXK9oEYO+3hCx/6F/K5oyCkKbKo+Ouy8MOcRFMRIc
+QljEQ7c9FJDfJOBUa6Emjbe0oBZ0DmAPJITJjeUN3M8A3MOqoF9hsUHU0j9AHHy4
+ZULuvei7oEKv+TxeLNOmS1h5TVqsDJ3+J0SvNrGbG0c3giWewZYFQYi1jYwxSmap
+FR4agswIPivk/92ngcYOdrBNiOM4ElVHPPCzHtValO8Zo3Nh3ISwH8CLnxo4mmsB
+Yh9OE9MT7BHqnqbppHvwPCq/1VpIhshYRZZT7XSbe0kzIdKb6BEmkuzAZa7dVLo6
+4SedYtPuod9q6U9yeqEJDJ7w2E62PHy/Zs8Sv0uh3Gz0oaWEbL7rM+ZWXQ8kdnoL
+TKsgjIiPpfuQ0z7+d+lGt0683HysZc3zh0jLKfHovg6GaHZ2I4LBPaW6zHIdJJ8n
+7b8JARU2wTf9bnjYZxaO36sECRzdDbEUY7wD83+DrQH+2OBD7wsoboTjnDdvj6g0
+Np7XQ8Qjwg3YBJ2x4h+sCx2TR1keN1njmyzSw5UqyiSXm1VG7ivPJwVjo1cco9OR
+mB32SfJ1zskJrd20re5vkV8PwcRGKb8q2qTMYt9IJaQ5XhDE2Zo0gDVM/J7Y+IEr
+5wFQ0PhMdr0uMNat3btNpJKU4CaDrm/Bzou8Y2fkTlar+/zdAVs=
+=NYiz
+-----END PGP SIGNATURE-----
+
+--J/dobhs11T7y2rNN--
+
+--===============0272918578==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
+
+--===============0272918578==--
