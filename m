@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111642] NV43 GeForce 6600 Nouveau is not stable on
  legacy hardware
-Date: Wed, 11 Sep 2019 12:16:38 +0000
-Message-ID: <bug-111642-8800-rvvze4J7Ch@http.bugs.freedesktop.org/>
+Date: Wed, 11 Sep 2019 12:18:04 +0000
+Message-ID: <bug-111642-8800-rZH18drqnK@http.bugs.freedesktop.org/>
 References: <bug-111642-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0381754948=="
+Content-Type: multipart/mixed; boundary="===============1594138676=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111642-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0381754948==
-Content-Type: multipart/alternative; boundary="15682041981.eEeD.31216"
+--===============1594138676==
+Content-Type: multipart/alternative; boundary="15682042833.6Cfcfcb0.31376"
 Content-Transfer-Encoding: 7bit
 
 
---15682041981.eEeD.31216
-Date: Wed, 11 Sep 2019 12:16:38 +0000
+--15682042833.6Cfcfcb0.31376
+Date: Wed, 11 Sep 2019 12:18:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,20 +36,24 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111642
 
---- Comment #4 from Vasili Pupkin <diggest-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This diagnostics is only make sense for developers of nouveau.=20
-nvidia-304 drivers are dropped and nouveau seams like the only out of the b=
-ox
-option for Ubuntu 18.04. But why is nvidia drivers don't experience this la=
-ck
-of vram problem?
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Vasili Pupkin from comment #4)
+> This diagnostics is only make sense for developers of nouveau.=20
+> nvidia-304 drivers are dropped and nouveau seams like the only out of the
+> box option for Ubuntu 18.04. But why is nvidia drivers don't experience t=
+his
+> lack of vram problem?
+
+Because they've had man-decades invested into their development to ensure t=
+hat
+they handle these types of situations well. Nouveau GL drivers have not.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15682041981.eEeD.31216
-Date: Wed, 11 Sep 2019 12:16:38 +0000
+--15682042833.6Cfcfcb0.31376
+Date: Wed, 11 Sep 2019 12:18:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,8 +71,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
 e"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
@@ -76,16 +80,23 @@ e"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642">bug 11164=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-diggest&#64;gmail.com" title=3D"Vasili Pupkin &lt;diggest&#64;gmail.com&gt;=
-"> <span class=3D"fn">Vasili Pupkin</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>This diagnostics is only make sense for developers of nouveau.=
-=20
-nvidia-304 drivers are dropped and nouveau seams like the only out of the b=
-ox
-option for Ubuntu 18.04. But why is nvidia drivers don't experience this la=
-ck
-of vram problem?</pre>
+        <pre>(In reply to Vasili Pupkin from <a href=3D"show_bug.cgi?id=3D1=
+11642#c4">comment #4</a>)
+<span class=3D"quote">&gt; This diagnostics is only make sense for develope=
+rs of nouveau.=20
+&gt; nvidia-304 drivers are dropped and nouveau seams like the only out of =
+the
+&gt; box option for Ubuntu 18.04. But why is nvidia drivers don't experienc=
+e this
+&gt; lack of vram problem?</span >
+
+Because they've had man-decades invested into their development to ensure t=
+hat
+they handle these types of situations well. Nouveau GL drivers have not.</p=
+re>
         </div>
       </p>
 
@@ -99,9 +110,9 @@ of vram problem?</pre>
     </body>
 </html>=
 
---15682041981.eEeD.31216--
+--15682042833.6Cfcfcb0.31376--
 
---===============0381754948==
+--===============1594138676==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0381754948==--
+--===============1594138676==--
