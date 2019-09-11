@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111642] NV43 GeForce 6600 Nouveau is not stable on
  legacy hardware
-Date: Wed, 11 Sep 2019 12:29:33 +0000
-Message-ID: <bug-111642-8800-yr5A35K8i2@http.bugs.freedesktop.org/>
+Date: Wed, 11 Sep 2019 13:23:10 +0000
+Message-ID: <bug-111642-8800-CtpLPkGVeL@http.bugs.freedesktop.org/>
 References: <bug-111642-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1129095288=="
+Content-Type: multipart/mixed; boundary="===============2070898761=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111642-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1129095288==
-Content-Type: multipart/alternative; boundary="15682049721.98BdAcD.32205"
+--===============2070898761==
+Content-Type: multipart/alternative; boundary="15682081901.1f35C0A.9699"
 Content-Transfer-Encoding: 7bit
 
 
---15682049721.98BdAcD.32205
-Date: Wed, 11 Sep 2019 12:29:32 +0000
+--15682081901.1f35C0A.9699
+Date: Wed, 11 Sep 2019 13:23:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,22 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111642
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-In the meanwhile, I suspect if you add LIBGL_ALWAYS_SOFTWARE=3D1 into your
-/etc/environment, you will be much happier.
-
-You can then still enable GL for certain programs that you actually want to=
- use
-it for, but not for random GTK/Qt programs that want to draw a button and t=
-hink
-it's a great idea to start using GL for that.
+--- Comment #8 from Vasili Pupkin <diggest-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+LIBGL_ALWAYS_SOFTWARE=3D1 didn't help at all, same messages in dmesg and sy=
+slog
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15682049721.98BdAcD.32205
-Date: Wed, 11 Sep 2019 12:29:32 +0000
+--15682081901.1f35C0A.9699
+Date: Wed, 11 Sep 2019 13:23:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,8 +63,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
 e"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642#c7">Commen=
-t # 7</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
@@ -78,18 +72,11 @@ e"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642">bug 11164=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+diggest&#64;gmail.com" title=3D"Vasili Pupkin &lt;diggest&#64;gmail.com&gt;=
+"> <span class=3D"fn">Vasili Pupkin</span></a>
 </span></b>
-        <pre>In the meanwhile, I suspect if you add LIBGL_ALWAYS_SOFTWARE=
-=3D1 into your
-/etc/environment, you will be much happier.
-
-You can then still enable GL for certain programs that you actually want to=
- use
-it for, but not for random GTK/Qt programs that want to draw a button and t=
-hink
-it's a great idea to start using GL for that.</pre>
+        <pre>LIBGL_ALWAYS_SOFTWARE=3D1 didn't help at all, same messages in=
+ dmesg and syslog</pre>
         </div>
       </p>
 
@@ -103,9 +90,9 @@ it's a great idea to start using GL for that.</pre>
     </body>
 </html>=
 
---15682049721.98BdAcD.32205--
+--15682081901.1f35C0A.9699--
 
---===============1129095288==
+--===============2070898761==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1129095288==--
+--===============2070898761==--
