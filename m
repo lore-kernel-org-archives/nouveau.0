@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111642] NV43 GeForce 6600 Nouveau is not stable on
  legacy hardware
-Date: Wed, 11 Sep 2019 12:06:26 +0000
-Message-ID: <bug-111642-8800-I9WByNQpOU@http.bugs.freedesktop.org/>
+Date: Wed, 11 Sep 2019 12:16:38 +0000
+Message-ID: <bug-111642-8800-rvvze4J7Ch@http.bugs.freedesktop.org/>
 References: <bug-111642-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0992701614=="
+Content-Type: multipart/mixed; boundary="===============0381754948=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111642-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0992701614==
-Content-Type: multipart/alternative; boundary="15682035861.E86cfbbd0.28208"
+--===============0381754948==
+Content-Type: multipart/alternative; boundary="15682041981.eEeD.31216"
 Content-Transfer-Encoding: 7bit
 
 
---15682035861.E86cfbbd0.28208
-Date: Wed, 11 Sep 2019 12:06:26 +0000
+--15682041981.eEeD.31216
+Date: Wed, 11 Sep 2019 12:16:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,33 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111642
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Vasili Pupkin from comment #2)
-> Ubuntu 16.04 works just fine with nvidia-304 drivers. If the lack of ram =
-is
-> the problem it would be helpful to have better diagnostic messages.
-
-We have them.
-
-[  199.658774] nouveau 0000:04:00.0: systemd-logind[1352]: validate: -22
-[  199.658902] nouveau 0000:04:00.0: systemd-logind[1352]: fail set_domain
-[  199.658905] nouveau 0000:04:00.0: systemd-logind[1352]: validating bo li=
-st
-
-This indicates a lack of ability to place all the buffers needed into vram/=
-gart
-as requested by the submitter.
-
-The NVIDIA drivers will work much better for you if you're trying to make h=
-eavy
-use of GL, like modern systems like to do.
+--- Comment #4 from Vasili Pupkin <diggest-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This diagnostics is only make sense for developers of nouveau.=20
+nvidia-304 drivers are dropped and nouveau seams like the only out of the b=
+ox
+option for Ubuntu 18.04. But why is nvidia drivers don't experience this la=
+ck
+of vram problem?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15682035861.E86cfbbd0.28208
-Date: Wed, 11 Sep 2019 12:06:26 +0000
+--15682041981.eEeD.31216
+Date: Wed, 11 Sep 2019 12:16:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,8 +67,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
 e"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642#c3">Commen=
-t # 3</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
@@ -89,30 +76,16 @@ e"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642">bug 11164=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+diggest&#64;gmail.com" title=3D"Vasili Pupkin &lt;diggest&#64;gmail.com&gt;=
+"> <span class=3D"fn">Vasili Pupkin</span></a>
 </span></b>
-        <pre>(In reply to Vasili Pupkin from <a href=3D"show_bug.cgi?id=3D1=
-11642#c2">comment #2</a>)
-<span class=3D"quote">&gt; Ubuntu 16.04 works just fine with nvidia-304 dri=
-vers. If the lack of ram is
-&gt; the problem it would be helpful to have better diagnostic messages.</s=
-pan >
-
-We have them.
-
-[  199.658774] nouveau 0000:04:00.0: systemd-logind[1352]: validate: -22
-[  199.658902] nouveau 0000:04:00.0: systemd-logind[1352]: fail set_domain
-[  199.658905] nouveau 0000:04:00.0: systemd-logind[1352]: validating bo li=
-st
-
-This indicates a lack of ability to place all the buffers needed into vram/=
-gart
-as requested by the submitter.
-
-The NVIDIA drivers will work much better for you if you're trying to make h=
-eavy
-use of GL, like modern systems like to do.</pre>
+        <pre>This diagnostics is only make sense for developers of nouveau.=
+=20
+nvidia-304 drivers are dropped and nouveau seams like the only out of the b=
+ox
+option for Ubuntu 18.04. But why is nvidia drivers don't experience this la=
+ck
+of vram problem?</pre>
         </div>
       </p>
 
@@ -126,9 +99,9 @@ use of GL, like modern systems like to do.</pre>
     </body>
 </html>=
 
---15682035861.E86cfbbd0.28208--
+--15682041981.eEeD.31216--
 
---===============0992701614==
+--===============0381754948==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -138,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0992701614==--
+--===============0381754948==--
