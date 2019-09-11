@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111642] NV43 GeForce 6600 Nouveau is not stable on
  legacy hardware
-Date: Wed, 11 Sep 2019 11:50:38 +0000
-Message-ID: <bug-111642-8800-GM7vCKr2kr@http.bugs.freedesktop.org/>
+Date: Wed, 11 Sep 2019 12:00:41 +0000
+Message-ID: <bug-111642-8800-hkR9pztNuA@http.bugs.freedesktop.org/>
 References: <bug-111642-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0874338626=="
+Content-Type: multipart/mixed; boundary="===============1318740223=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111642-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0874338626==
-Content-Type: multipart/alternative; boundary="15682026383.FcC1a.25999"
+--===============1318740223==
+Content-Type: multipart/alternative; boundary="15682032410.90baCC66.28206"
 Content-Transfer-Encoding: 7bit
 
 
---15682026383.FcC1a.25999
-Date: Wed, 11 Sep 2019 11:50:38 +0000
+--15682032410.90baCC66.28206
+Date: Wed, 11 Sep 2019 12:00:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111642
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Those messages imply you've run out of vram. Are you using something like g=
-nome
-or kde? Those won't work well on this hardware.
+--- Comment #2 from Vasili Pupkin <diggest-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Ubuntu 16.04 works just fine with nvidia-304 drivers. If the lack of ram is=
+ the
+problem it would be helpful to have better diagnostic messages.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15682026383.FcC1a.25999
-Date: Wed, 11 Sep 2019 11:50:38 +0000
+--15682032410.90baCC66.28206
+Date: Wed, 11 Sep 2019 12:00:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
 e"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
@@ -73,12 +73,12 @@ e"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642">bug 11164=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+diggest&#64;gmail.com" title=3D"Vasili Pupkin &lt;diggest&#64;gmail.com&gt;=
+"> <span class=3D"fn">Vasili Pupkin</span></a>
 </span></b>
-        <pre>Those messages imply you've run out of vram. Are you using som=
-ething like gnome
-or kde? Those won't work well on this hardware.</pre>
+        <pre>Ubuntu 16.04 works just fine with nvidia-304 drivers. If the l=
+ack of ram is the
+problem it would be helpful to have better diagnostic messages.</pre>
         </div>
       </p>
 
@@ -92,9 +92,9 @@ or kde? Those won't work well on this hardware.</pre>
     </body>
 </html>=
 
---15682026383.FcC1a.25999--
+--15682032410.90baCC66.28206--
 
---===============0874338626==
+--===============1318740223==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0874338626==--
+--===============1318740223==--
