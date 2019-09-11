@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111642] NV43 GeForce 6600 Nouveau is not stable on
  legacy hardware
-Date: Wed, 11 Sep 2019 12:23:41 +0000
-Message-ID: <bug-111642-8800-ayFBV0pIWI@http.bugs.freedesktop.org/>
+Date: Wed, 11 Sep 2019 12:29:33 +0000
+Message-ID: <bug-111642-8800-yr5A35K8i2@http.bugs.freedesktop.org/>
 References: <bug-111642-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0039524477=="
+Content-Type: multipart/mixed; boundary="===============1129095288=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111642-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0039524477==
-Content-Type: multipart/alternative; boundary="15682046200.f4ad7CF.31587"
+--===============1129095288==
+Content-Type: multipart/alternative; boundary="15682049721.98BdAcD.32205"
 Content-Transfer-Encoding: 7bit
 
 
---15682046200.f4ad7CF.31587
-Date: Wed, 11 Sep 2019 12:23:40 +0000
+--15682049721.98BdAcD.32205
+Date: Wed, 11 Sep 2019 12:29:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111642
 
---- Comment #6 from Vasili Pupkin <diggest-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The lack of human resources is sad but it is still a bug. Mark it as wontfi=
-x if
-the support of this legacy hardware is outside of the project goal.=20
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+In the meanwhile, I suspect if you add LIBGL_ALWAYS_SOFTWARE=3D1 into your
+/etc/environment, you will be much happier.
 
-I am happy to test a patch if it is not architectural impossible in nouveau=
- to
-fix it and back vram in main memory.
+You can then still enable GL for certain programs that you actually want to=
+ use
+it for, but not for random GTK/Qt programs that want to draw a button and t=
+hink
+it's a great idea to start using GL for that.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15682046200.f4ad7CF.31587
-Date: Wed, 11 Sep 2019 12:23:40 +0000
+--15682049721.98BdAcD.32205
+Date: Wed, 11 Sep 2019 12:29:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +69,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
 e"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642#c6">Commen=
-t # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
@@ -77,16 +78,18 @@ e"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642">bug 11164=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-diggest&#64;gmail.com" title=3D"Vasili Pupkin &lt;diggest&#64;gmail.com&gt;=
-"> <span class=3D"fn">Vasili Pupkin</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>The lack of human resources is sad but it is still a bug. Mark=
- it as wontfix if
-the support of this legacy hardware is outside of the project goal.=20
+        <pre>In the meanwhile, I suspect if you add LIBGL_ALWAYS_SOFTWARE=
+=3D1 into your
+/etc/environment, you will be much happier.
 
-I am happy to test a patch if it is not architectural impossible in nouveau=
- to
-fix it and back vram in main memory.</pre>
+You can then still enable GL for certain programs that you actually want to=
+ use
+it for, but not for random GTK/Qt programs that want to draw a button and t=
+hink
+it's a great idea to start using GL for that.</pre>
         </div>
       </p>
 
@@ -100,9 +103,9 @@ fix it and back vram in main memory.</pre>
     </body>
 </html>=
 
---15682046200.f4ad7CF.31587--
+--15682049721.98BdAcD.32205--
 
---===============0039524477==
+--===============1129095288==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0039524477==--
+--===============1129095288==--
