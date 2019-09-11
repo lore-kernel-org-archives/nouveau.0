@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111642] NV43 GeForce 6600 Nouveau is not stable on
  legacy hardware
-Date: Wed, 11 Sep 2019 13:23:10 +0000
-Message-ID: <bug-111642-8800-CtpLPkGVeL@http.bugs.freedesktop.org/>
+Date: Wed, 11 Sep 2019 13:25:20 +0000
+Message-ID: <bug-111642-8800-9Czmxo9pia@http.bugs.freedesktop.org/>
 References: <bug-111642-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2070898761=="
+Content-Type: multipart/mixed; boundary="===============1003049179=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111642-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2070898761==
-Content-Type: multipart/alternative; boundary="15682081901.1f35C0A.9699"
+--===============1003049179==
+Content-Type: multipart/alternative; boundary="15682083200.aD1da94b0.9762"
 Content-Transfer-Encoding: 7bit
 
 
---15682081901.1f35C0A.9699
-Date: Wed, 11 Sep 2019 13:23:10 +0000
+--15682083200.aD1da94b0.9762
+Date: Wed, 11 Sep 2019 13:25:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,16 +36,22 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111642
 
---- Comment #8 from Vasili Pupkin <diggest-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-LIBGL_ALWAYS_SOFTWARE=3D1 didn't help at all, same messages in dmesg and sy=
-slog
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Vasili Pupkin from comment #8)
+> LIBGL_ALWAYS_SOFTWARE=3D1 didn't help at all, same messages in dmesg and =
+syslog
+
+Must not have gotten picked up =3D/
+
+Just remove nouveau_dri.so from ... /usr/lib/dri/ or something along those
+lines.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15682081901.1f35C0A.9699
-Date: Wed, 11 Sep 2019 13:23:10 +0000
+--15682083200.aD1da94b0.9762
+Date: Wed, 11 Sep 2019 13:25:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +69,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
 e"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642#c8">Commen=
-t # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
@@ -72,11 +78,18 @@ e"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642">bug 11164=
 2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-diggest&#64;gmail.com" title=3D"Vasili Pupkin &lt;diggest&#64;gmail.com&gt;=
-"> <span class=3D"fn">Vasili Pupkin</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>LIBGL_ALWAYS_SOFTWARE=3D1 didn't help at all, same messages in=
- dmesg and syslog</pre>
+        <pre>(In reply to Vasili Pupkin from <a href=3D"show_bug.cgi?id=3D1=
+11642#c8">comment #8</a>)
+<span class=3D"quote">&gt; LIBGL_ALWAYS_SOFTWARE=3D1 didn't help at all, sa=
+me messages in dmesg and syslog</span >
+
+Must not have gotten picked up =3D/
+
+Just remove nouveau_dri.so from ... /usr/lib/dri/ or something along those
+lines.</pre>
         </div>
       </p>
 
@@ -90,9 +103,9 @@ diggest&#64;gmail.com" title=3D"Vasili Pupkin &lt;diggest&#64;gmail.com&gt;=
     </body>
 </html>=
 
---15682081901.1f35C0A.9699--
+--15682083200.aD1da94b0.9762--
 
---===============2070898761==
+--===============1003049179==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============2070898761==--
+--===============1003049179==--
