@@ -1,53 +1,63 @@
-From: Lyude Paul <lyude@redhat.com>
-Subject: [PATCH 4/4] drm/nouveau: dispnv50: Report possible_crtcs incorrectly
- on mstos, for now
-Date: Fri, 13 Sep 2019 18:03:53 -0400
-Message-ID: <20190913220355.6883-4-lyude@redhat.com>
-References: <20190913220355.6883-1-lyude@redhat.com>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: Re: [PATCH 2/4] drm/nouveau: dispnv50: Remove nv50_mstc_best_encoder()
+Date: Fri, 13 Sep 2019 18:20:24 -0400
+Message-ID: <CAKb7UvgQE0UDTvvhbq4FgtgOWjvXDDKSZs8RSLA-ECa2YZiFLA@mail.gmail.com>
+References: <20190913220355.6883-1-lyude@redhat.com> <20190913220355.6883-2-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20190913220355.6883-1-lyude@redhat.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: nouveau@lists.freedesktop.org
-Cc: David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Sam Ravnborg <sam@ravnborg.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190913220355.6883-2-lyude@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Lyude Paul <lyude@redhat.com>
+Cc: nouveau <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, dri-devel <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBjb21taXQgaXMgc2VwZXJhdGUgZnJvbSB0aGUgcHJldmlvdXMgb25lIHRvIG1ha2UgaXQg
-ZWFzaWVyIHRvCnJldmVydCBpbiB0aGUgZnV0dXJlLiBCYXNpY2FsbHksIHdoaWxlIHdvcmtpbmcg
-b24gbWFraW5nIE1TVE9zIHBlci1oZWFkCmFzIG9wcG9zZWQgdG8gcGVyLWhlYWQtcGVyLWNvbm5l
-Y3RvciBJIGRpc2NvdmVyZWQgdGhlc2UgbG92ZWx5IGlzc3VlczoKCmh0dHBzOi8vZ2l0bGFiLmZy
-ZWVkZXNrdG9wLm9yZy94b3JnL3hzZXJ2ZXIvbWVyZ2VfcmVxdWVzdHMvMjc3Cmh0dHBzOi8vZ2l0
-bGFiLmdub21lLm9yZy9HTk9NRS9tdXR0ZXIvaXNzdWVzLzc1OQoKTm90ZSBhcyB3ZWxsIHRoYXQg
-SW50ZWwgYWxyZWFkeSBoYXMgYSB0ZW1wb3Jhcnkgd29ya2Fyb3VuZCBmb3IgdGhpcyBpbgp0aGVp
-ciBrZXJuZWwgZHJpdmVyLiBTbywgdW5mb3J0dW5hdGVseSB3ZSBuZWVkIHRvIGZvbGxvdyBzdWl0
-IHRvIGF2b2lkCmNhdXNpbmcgYSByZWdyZXNzaW9uIGluIHVzZXJzcGFjZS4gT25jZSB0aGVzZSBp
-c3N1ZXMgZ2V0IGZpeGVkLCB0aGlzCmNvbW1pdCBzaG91bGQgYmUgcmV2ZXJ0ZWQuCgpTaWduZWQt
-b2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgpDYzogVmlsbGUgU3lyasOkbMOk
-IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9kaXNwbnY1MC9kaXNwLmMgfCAxMiArKysrKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCAx
-MiBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlz
-cG52NTAvZGlzcC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCmlu
-ZGV4IGQyM2FjMTM3NjNiNS4uZjVhZDIwYWYwZGQ1IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-ZGlzcG52NTAvZGlzcC5jCkBAIC0yMzY2LDYgKzIzNjYsMTggQEAgbnY1MF9kaXNwbGF5X2NyZWF0
-ZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQogCQkJCWhlYWQtPm1zdG8gPSBOVUxMOwogCQkJCWdv
-dG8gb3V0OwogCQkJfQorCisJCQkvKgorCQkJICogRklYTUU6IFRoaXMgaXMgYSBoYWNrIHRvIHdv
-cmthcm91bmQgdGhlIGZvbGxvd2luZworCQkJICogaXNzdWVzOgorCQkJICoKKwkJCSAqIGh0dHBz
-Oi8vZ2l0bGFiLmdub21lLm9yZy9HTk9NRS9tdXR0ZXIvaXNzdWVzLzc1OQorCQkJICogaHR0cHM6
-Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL3hvcmcveHNlcnZlci9tZXJnZV9yZXF1ZXN0cy8yNzcK
-KwkJCSAqCisJCQkgKiBPbmNlIHRoZXNlIGlzc3VlcyBhcmUgY2xvc2VkLCB0aGlzIHNob3VsZCBi
-ZQorCQkJICogcmVtb3ZlZAorCQkJICovCisJCQloZWFkLT5tc3RvLT5lbmNvZGVyLnBvc3NpYmxl
-X2NydGNzID0gY3J0Y3M7CiAJCX0KIAl9CiAKLS0gCjIuMjEuMAoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmkt
-ZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
+On Fri, Sep 13, 2019 at 6:05 PM Lyude Paul <lyude@redhat.com> wrote:
+>
+> When drm_connector_helper_funcs->atomic_best_encoder is defined,
+> ->best_encoder is ignored both by the atomic modesetting helpers. That
+
+By both the atomic modesetting helpers and ... (usually "both" implies 2 things)
+
+> being said, this hook is completely broken anyway - it always returns
+> the first msto for a given mstc, despite the fact it might already be in
+> use.
+>
+> So, just get rid of it. We'll need this in a moment anyway, when we make
+> mstos per-head as opposed to per-connector.
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> ---
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c | 9 ---------
+>  1 file changed, 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> index b46be8a091e9..a3f350fdfa8c 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> @@ -920,14 +920,6 @@ nv50_mstc_atomic_best_encoder(struct drm_connector *connector,
+>         return &mstc->mstm->msto[head->base.index]->encoder;
+>  }
+>
+> -static struct drm_encoder *
+> -nv50_mstc_best_encoder(struct drm_connector *connector)
+> -{
+> -       struct nv50_mstc *mstc = nv50_mstc(connector);
+> -
+> -       return &mstc->mstm->msto[0]->encoder;
+> -}
+> -
+>  static enum drm_mode_status
+>  nv50_mstc_mode_valid(struct drm_connector *connector,
+>                      struct drm_display_mode *mode)
+> @@ -990,7 +982,6 @@ static const struct drm_connector_helper_funcs
+>  nv50_mstc_help = {
+>         .get_modes = nv50_mstc_get_modes,
+>         .mode_valid = nv50_mstc_mode_valid,
+> -       .best_encoder = nv50_mstc_best_encoder,
+>         .atomic_best_encoder = nv50_mstc_atomic_best_encoder,
+>         .atomic_check = nv50_mstc_atomic_check,
+>  };
+> --
+> 2.21.0
+>
