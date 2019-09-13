@@ -1,85 +1,154 @@
-From: Sasha Levin <sashal@kernel.org>
-Subject: Re: [PATCH 4.19 092/190] drm/nouveau: Dont WARN_ON VCPI allocation
- failures
-Date: Fri, 13 Sep 2019 11:26:35 -0400
-Message-ID: <20190913152635.GK1546@sasha-vm>
-References: <20190913130559.669563815@linuxfoundation.org>
- <20190913130606.981926197@linuxfoundation.org>
- <CAKb7UviY0sjFUc6QqjU4eKxm2b-osKoJNO2CSP9HmQ5AdORgkw@mail.gmail.com>
- <20190913144627.GH1546@sasha-vm>
- <20190913145456.GA456842@kroah.com>
- <20190913150111.GI1546@sasha-vm>
- <CAKb7Uvj31ZuxB6S4EH8WBRsa2mDScpZN=dRjHScZmN94ajD0EA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 110500] X-Server crashes - GL error:
+ GL_OUT_OF_MEMORY in glTexSubImage
+Date: Fri, 13 Sep 2019 15:46:41 +0000
+Message-ID: <bug-110500-8800-Ajo6dvWiBu@http.bugs.freedesktop.org/>
+References: <bug-110500-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <CAKb7Uvj31ZuxB6S4EH8WBRsa2mDScpZN=dRjHScZmN94ajD0EA@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, nouveau <nouveau@lists.freedesktop.org>, "# 3.9+" <stable@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0681414885=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-110500-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Sep 13, 2019 at 11:09:22AM -0400, Ilia Mirkin wrote:
->On Fri, Sep 13, 2019 at 11:01 AM Sasha Levin <sashal@kernel.org> wrote:
->>
->> On Fri, Sep 13, 2019 at 03:54:56PM +0100, Greg Kroah-Hartman wrote:
->> >On Fri, Sep 13, 2019 at 10:46:27AM -0400, Sasha Levin wrote:
->> >> On Fri, Sep 13, 2019 at 09:33:36AM -0400, Ilia Mirkin wrote:
->> >> > Hi Greg,
->> >> >
->> >> > This feels like it's missing a From: line.
->> >> >
->> >> > commit b513a18cf1d705bd04efd91c417e79e4938be093
->> >> > Author: Lyude Paul <lyude@redhat.com>
->> >> > Date:   Mon Jan 28 16:03:50 2019 -0500
->> >> >
->> >> >    drm/nouveau: Don't WARN_ON VCPI allocation failures
->> >> >
->> >> > Is this an artifact of your notification-of-patches process and I
->> >> > never noticed before, or was the patch ingested incorrectly?
->> >>
->> >> It was always like this for patches that came through me. Greg's script
->> >> generates an explicit "From:" line in the patch, but I never saw the
->> >> value in that since git does the right thing by looking at the "From:"
->> >> line in the mail header.
->> >>
->> >> The right thing is being done in stable-rc and for the releases. For
->> >> your example here, this is how it looks like in the stable-rc tree:
->> >>
->> >> commit bdcc885be68289a37d0d063cd94390da81fd8178
->> >> Author:     Lyude Paul <lyude@redhat.com>
->> >> AuthorDate: Mon Jan 28 16:03:50 2019 -0500
->> >> Commit:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->> >> CommitDate: Fri Sep 13 14:05:29 2019 +0100
->> >>
->> >>    drm/nouveau: Don't WARN_ON VCPI allocation failures
->> >
->> >Yeah, we should fix your scripts to put the explicit From: line in here
->> >as we are dealing with patches in this format and it causes confusion at
->> >times (like now.)  It's not the first time and that's why I added those
->> >lines to the patches.
->>
->> Heh, didn't think anyone cared about this scenario for the stable-rc
->> patches.
->>
->> I'll go add it.
->>
->> But... why do you actually care?
->
->Just a hygiene thing. Everyone else sends patches the normal way, with
->accurate attribution. Why should stable be different?
 
-It shouldn't.
+--===============0681414885==
+Content-Type: multipart/alternative; boundary="15683896013.c15d6.9428"
+Content-Transfer-Encoding: 7bit
 
-It's just a mismatch between our two somewhat seperate workflow.
 
-Technically it's Greg who needs to be adding that line since the patches
-I have in stable-queue correctly state the author, and it only goes
-wrong when they're being formatted into mails sent for the -rc cycles.
+--15683896013.c15d6.9428
+Date: Fri, 13 Sep 2019 15:46:41 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-But yes, thanks for pointing it out, I'll go add it in the scripts.
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110500
 
---
-Thanks,
-Sasha
+Amy Jones <jonesamy411-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Version|git                         |11.1
+                URL|                            |http://essays-writers.net/w
+                   |                            |rite-my-book-review.html
+          Component|Drivers/DRI/nouveau         |Drivers/DRI/v3d
+           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |eric-WhKQ6XTQaPysTnJN9+BGXg@public.gmane.org
+                   |rg                          |
+         QA Contact|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |
+                   |rg                          |
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15683896013.c15d6.9428
+Date: Fri, 13 Sep 2019 15:46:41 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jonesamy4=
+11&#64;gmail.com" title=3D"Amy Jones &lt;jonesamy411&#64;gmail.com&gt;"> <s=
+pan class=3D"fn">Amy Jones</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED NOTOURBUG - X-Server crashes - GL error: GL_OUT_OF_MEM=
+ORY in glTexSubImage"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110500">bug 11050=
+0</a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Version</td>
+           <td>git
+           </td>
+           <td>11.1
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">URL</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>http://essays-writers.net/write-my-book-review.html
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Component</td>
+           <td>Drivers/DRI/nouveau
+           </td>
+           <td>Drivers/DRI/v3d
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Assignee</td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+           <td>eric&#64;anholt.net
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">QA Contact</td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+           <td>
+               &nbsp;
+           </td>
+         </tr></table>
+      <p>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15683896013.c15d6.9428--
+
+--===============0681414885==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0681414885==--
