@@ -1,134 +1,76 @@
-From: Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
-Subject: [PATCH 4.19 125/190] PCI: Reset Lenovo ThinkPad P50 nvgpu
- at boot if necessary
-Date: Fri, 13 Sep 2019 14:06:20 +0100
-Message-ID: <20190913130609.861471420@linuxfoundation.org>
-References: <20190913130559.669563815@linuxfoundation.org>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: Re: [PATCH 4.19 092/190] drm/nouveau: Dont WARN_ON VCPI allocation failures
+Date: Fri, 13 Sep 2019 09:33:36 -0400
+Message-ID: <CAKb7UviY0sjFUc6QqjU4eKxm2b-osKoJNO2CSP9HmQ5AdORgkw@mail.gmail.com>
+References: <20190913130559.669563815@linuxfoundation.org> <20190913130606.981926197@linuxfoundation.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190913130559.669563815-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-Cc: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Greg Kroah-Hartman <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20190913130606.981926197@linuxfoundation.org>
+Sender: stable-owner@vger.kernel.org
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, Sasha Levin <sashal@kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, nouveau <nouveau@lists.freedesktop.org>, "# 3.9+" <stable@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-WyBVcHN0cmVhbSBjb21taXQgZTA1NDdjODFiZmNmYWQwMWNiYmZhOTNhNWU2NmJiOThhYjkzMmY4
-MCBdCgpPbiBUaGlua1BhZCBQNTAgU0tVcyB3aXRoIGFuIE52aWRpYSBRdWFkcm8gTTEwMDBNIGlu
-c3RlYWQgb2YgdGhlIE0yMDAwTQp2YXJpYW50LCB0aGUgQklPUyBkb2VzIG5vdCBhbHdheXMgcmVz
-ZXQgdGhlIHNlY29uZGFyeSBOdmlkaWEgR1BVIGR1cmluZwpyZWJvb3QgaWYgdGhlIGxhcHRvcCBp
-cyBjb25maWd1cmVkIGluIEh5YnJpZCBHcmFwaGljcyBtb2RlLiAgVGhlIHJlYXNvbiBpcwp1bmtu
-b3duLCBidXQgdGhlIGZvbGxvd2luZyBzdGVwcyBhbmQgcG9zc2libHkgYSBnb29kIGJpdCBvZiBw
-YXRpZW5jZSB3aWxsCnJlcHJvZHVjZSB0aGUgaXNzdWU6CgogIDEuIEJvb3QgdXAgdGhlIGxhcHRv
-cCBub3JtYWxseSBpbiBIeWJyaWQgR3JhcGhpY3MgbW9kZQogIDIuIE1ha2Ugc3VyZSBub3V2ZWF1
-IGlzIGxvYWRlZCBhbmQgdGhhdCB0aGUgR1BVIGlzIGF3YWtlCiAgMy4gQWxsb3cgdGhlIE52aWRp
-YSBHUFUgdG8gcnVudGltZSBzdXNwZW5kIGl0c2VsZiBhZnRlciBiZWluZyBpZGxlCiAgNC4gUmVi
-b290IHRoZSBtYWNoaW5lLCB0aGUgbW9yZSBzdWRkZW4gdGhlIGJldHRlciAoZS5nLiBzeXNycS1i
-IG1heSBoZWxwKQogIDUuIElmIG5vdXZlYXUgbG9hZHMgdXAgcHJvcGVybHksIHJlYm9vdCB0aGUg
-bWFjaGluZSBhZ2FpbiBhbmQgZ28gYmFjayB0bwogICAgIHN0ZXAgMiB1bnRpbCB5b3UgcmVwcm9k
-dWNlIHRoZSBpc3N1ZQoKVGhpcyByZXN1bHRzIGluIHNvbWUgdmVyeSBzdHJhbmdlIGJlaGF2aW9y
-OiB0aGUgR1BVIHdpbGwgYmUgbGVmdCBpbiBleGFjdGx5CnRoZSBzYW1lIHN0YXRlIGl0IHdhcyBp
-biB3aGVuIHRoZSBwcmV2aW91c2x5IGJvb3RlZCBrZXJuZWwgc3RhcnRlZCB0aGUKcmVib290LiAg
-VGhpcyBoYXMgYWxsIHNvcnRzIG9mIGJhZCBzaWRlIGVmZmVjdHM6IGZvciBzdGFydGVycywgdGhp
-cwpjb21wbGV0ZWx5IGJyZWFrcyBub3V2ZWF1IHN0YXJ0aW5nIHdpdGggYSBteXN0ZXJpb3VzIEVW
-TyBjaGFubmVsIGZhaWx1cmUKdGhhdCBoYXBwZW5zIHdlbGwgYmVmb3JlIHdlJ3ZlIGFjdHVhbGx5
-IHVzZWQgdGhlIEVWTyBjaGFubmVsIGZvciBhbnl0aGluZzoKCiAgbm91dmVhdSAwMDAwOjAxOjAw
-LjA6IGRpc3A6IGNoaWQgMCBtdGhkIDAwMDAgZGF0YSAwMDAwMDQwMCAwMDAwMTAwMCAwMDAwMDAw
-MgoKVGhpcyBjYXVzZXMgYSB0aW1lb3V0IHRyeWluZyB0byBicmluZyB1cCB0aGUgR1IgY3R4OgoK
-ICBub3V2ZWF1IDAwMDA6MDE6MDAuMDogdGltZW91dAogIFdBUk5JTkc6IENQVTogMCBQSUQ6IDEy
-IGF0IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2N0eGdmMTAwLmM6MTU0
-NyBnZjEwMF9ncmN0eF9nZW5lcmF0ZSsweDdiMi8weDg1MCBbbm91dmVhdV0KICBIYXJkd2FyZSBu
-YW1lOiBMRU5PVk8gMjBFUVM2NE4wQi8yMEVRUzY0TjBCLCBCSU9TIE4xRUVUODJXICgxLjU1ICkg
-MTIvMTgvMjAxOAogIFdvcmtxdWV1ZTogZXZlbnRzX2xvbmcgZHJtX2RwX21zdF9saW5rX3Byb2Jl
-X3dvcmsgW2RybV9rbXNfaGVscGVyXQogIC4uLgogIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjog
-d2FpdCBmb3IgaWRsZSB0aW1lb3V0IChlbjogMSwgY3R4c3c6IDAsIGJ1c3k6IDEpCiAgbm91dmVh
-dSAwMDAwOjAxOjAwLjA6IGdyOiB3YWl0IGZvciBpZGxlIHRpbWVvdXQgKGVuOiAxLCBjdHhzdzog
-MCwgYnVzeTogMSkKICBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmlmbzogZmF1bHQgMDEgW1dSSVRF
-XSBhdCAwMDAwMDAwMDAwMDA4MDAwIGVuZ2luZSAwMCBbR1JdIGNsaWVudCAxNSBbSFVCL1NDQ19O
-Ql0gcmVhc29uIGM0IFtdIG9uIGNoYW5uZWwgLTEgWzAwMDAwMDAwMDAgdW5rbm93bl0KClRoZSBH
-UFUgbmV2ZXIgbWFuYWdlcyB0byByZWNvdmVyLiAgQm9vdGluZyB3aXRob3V0IGxvYWRpbmcgbm91
-dmVhdSBjYXVzZXMKaXNzdWVzIGFzIHdlbGwsIHNpbmNlIHRoZSBHUFUgc3RhcnRzIHNlbmRpbmcg
-c3B1cmlvdXMgaW50ZXJydXB0cyB0aGF0IGNhdXNlCm90aGVyIGRldmljZSdzIElSUXMgdG8gZ2V0
-IGRpc2FibGVkIGJ5IHRoZSBrZXJuZWw6CgogIGlycSAxNjogbm9ib2R5IGNhcmVkICh0cnkgYm9v
-dGluZyB3aXRoIHRoZSAiaXJxcG9sbCIgb3B0aW9uKQogIC4uLgogIGhhbmRsZXJzOgogIFs8MDAw
-MDAwMDA3ZmFhOWU5OT5dIGk4MDFfaXNyIFtpMmNfaTgwMV0KICBEaXNhYmxpbmcgSVJRICMxNgog
-IC4uLgogIHNlcmlvOiBSTUk0IFBTLzIgcGFzcy10aHJvdWdoIHBvcnQgYXQgcm1pNC0wMC5mbjAz
-CiAgaTgwMV9zbWJ1cyAwMDAwOjAwOjFmLjQ6IFRpbWVvdXQgd2FpdGluZyBmb3IgaW50ZXJydXB0
-IQogIGk4MDFfc21idXMgMDAwMDowMDoxZi40OiBUcmFuc2FjdGlvbiB0aW1lb3V0CiAgcm1pNF9m
-MDMgcm1pNC0wMC5mbjAzOiBybWlfZjAzX3B0X3dyaXRlOiBGYWlsZWQgdG8gd3JpdGUgdG8gRjAz
-IFRYIHJlZ2lzdGVyICgtMTEwKS4KICBpODAxX3NtYnVzIDAwMDA6MDA6MWYuNDogVGltZW91dCB3
-YWl0aW5nIGZvciBpbnRlcnJ1cHQhCiAgaTgwMV9zbWJ1cyAwMDAwOjAwOjFmLjQ6IFRyYW5zYWN0
-aW9uIHRpbWVvdXQKICBybWk0X3BoeXNpY2FsIHJtaTQtMDA6IHJtaV9kcml2ZXJfc2V0X2lycV9i
-aXRzOiBGYWlsZWQgdG8gY2hhbmdlIGVuYWJsZWQgaW50ZXJydXB0cyEKClRoaXMgY2F1c2VzIHRo
-ZSB0b3VjaHBhZCBhbmQgc29tZXRpbWVzIG90aGVyIHRoaW5ncyB0byBnZXQgZGlzYWJsZWQuCgpT
-aW5jZSB0aGlzIGhhcHBlbnMgd2l0aG91dCBub3V2ZWF1LCB3ZSBjYW4ndCBmaXggdGhpcyBwcm9i
-bGVtIGZyb20gbm91dmVhdQppdHNlbGYuCgpBZGQgYSBQQ0kgcXVpcmsgZm9yIHRoZSBzcGVjaWZp
-YyBQNTAgdmFyaWFudCBvZiB0aGlzIEdQVS4gIE1ha2Ugc3VyZSB0aGUKR1BVIGlzIGFkdmVydGlz
-aW5nIE5vUmVzZXQtIHNvIHdlIGRvbid0IHJlc2V0IHRoZSBHUFUgd2hlbiB0aGUgbWFjaGluZSBp
-cwppbiBEZWRpY2F0ZWQgZ3JhcGhpY3MgbW9kZSAod2hlcmUgdGhlIEdQVSBiZWluZyBpbml0aWFs
-aXplZCBieSB0aGUgQklPUyBpcwpub3JtYWwgYW5kIGV4cGVjdGVkKS4gIE1hcCB0aGUgR1BVIE1N
-SU8gc3BhY2UgYW5kIHJlYWQgdGhlIG1hZ2ljIDB4MjI0MGMKcmVnaXN0ZXIsIHdoaWNoIHdpbGwg
-aGF2ZSBiaXQgMSBzZXQgaWYgdGhlIGRldmljZSB3YXMgUE9TVGVkIGR1cmluZyBhCnByZXZpb3Vz
-IGJvb3QuICBPbmNlIHdlJ3ZlIGNvbmZpcm1lZCBhbGwgb2YgdGhpcywgcmVzZXQgdGhlIEdQVSBh
-bmQKcmUtZGlzYWJsZSBpdCAtIGJyaW5naW5nIGl0IGJhY2sgdG8gYSBoZWFsdGh5IHN0YXRlLgoK
-TGluazogaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwub3JnL3Nob3dfYnVnLmNnaT9pZD0yMDMwMDMK
-TGluazogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGttbC8yMDE5MDIxMjIyMDIzMC4xNTY4LTEt
-bHl1ZGVAcmVkaGF0LmNvbQpTaWduZWQtb2ZmLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUByZWRoYXQu
-Y29tPgpTaWduZWQtb2ZmLWJ5OiBCam9ybiBIZWxnYWFzIDxiaGVsZ2Fhc0Bnb29nbGUuY29tPgpD
-Yzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKQ2M6IGRyaS1kZXZlbEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKQ2M6IEthcm9sIEhlcmJzdCA8a2hlcmJzdEByZWRoYXQuY29tPgpDYzogQmVu
-IFNrZWdncyA8c2tlZ2dzYkBnbWFpbC5jb20+CkNjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnClNp
-Z25lZC1vZmYtYnk6IFNhc2hhIExldmluIDxzYXNoYWxAa2VybmVsLm9yZz4KLS0tCiBkcml2ZXJz
-L3BjaS9xdWlya3MuYyB8IDU4ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrCiAxIGZpbGUgY2hhbmdlZCwgNTggaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvcGNpL3F1aXJrcy5jIGIvZHJpdmVycy9wY2kvcXVpcmtzLmMKaW5kZXggNmNkYThiN2Vj
-YzgyMS4uMzExZjhhMzNlNjJmZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9wY2kvcXVpcmtzLmMKKysr
-IGIvZHJpdmVycy9wY2kvcXVpcmtzLmMKQEAgLTUxMTYsMyArNTExNiw2MSBAQCBTV0lUQ0hURUNf
-UVVJUksoMHg4NTczKTsgIC8qIFBGWEkgNDhYRzMgKi8KIFNXSVRDSFRFQ19RVUlSSygweDg1NzQp
-OyAgLyogUEZYSSA2NFhHMyAqLwogU1dJVENIVEVDX1FVSVJLKDB4ODU3NSk7ICAvKiBQRlhJIDgw
-WEczICovCiBTV0lUQ0hURUNfUVVJUksoMHg4NTc2KTsgIC8qIFBGWEkgOTZYRzMgKi8KKworLyoK
-KyAqIE9uIExlbm92byBUaGlua3BhZCBQNTAgU0tVcyB3aXRoIGEgTnZpZGlhIFF1YWRybyBNMTAw
-ME0sIHRoZSBCSU9TIGRvZXMKKyAqIG5vdCBhbHdheXMgcmVzZXQgdGhlIHNlY29uZGFyeSBOdmlk
-aWEgR1BVIGJldHdlZW4gcmVib290cyBpZiB0aGUgc3lzdGVtCisgKiBpcyBjb25maWd1cmVkIHRv
-IHVzZSBIeWJyaWQgR3JhcGhpY3MgbW9kZS4gIFRoaXMgcmVzdWx0cyBpbiB0aGUgR1BVCisgKiBi
-ZWluZyBsZWZ0IGluIHdoYXRldmVyIHN0YXRlIGl0IHdhcyBpbiBkdXJpbmcgdGhlICpwcmV2aW91
-cyogYm9vdCwgd2hpY2gKKyAqIGNhdXNlcyBzcHVyaW91cyBpbnRlcnJ1cHRzIGZyb20gdGhlIEdQ
-VSwgd2hpY2ggaW4gdHVybiBjYXVzZXMgdXMgdG8KKyAqIGRpc2FibGUgdGhlIHdyb25nIElSUSBh
-bmQgZW5kIHVwIGJyZWFraW5nIHRoZSB0b3VjaHBhZC4gIFVuc3VycHJpc2luZ2x5LAorICogdGhp
-cyBhbHNvIGNvbXBsZXRlbHkgYnJlYWtzIG5vdXZlYXUuCisgKgorICogTHVja2lseSwgaXQgc2Vl
-bXMgYSBzaW1wbGUgcmVzZXQgb2YgdGhlIE52aWRpYSBHUFUgYnJpbmdzIGl0IGJhY2sgdG8gYQor
-ICogY2xlYW4gc3RhdGUgYW5kIGZpeGVzIGFsbCB0aGVzZSBpc3N1ZXMuCisgKgorICogV2hlbiB0
-aGUgbWFjaGluZSBpcyBjb25maWd1cmVkIGluIERlZGljYXRlZCBkaXNwbGF5IG1vZGUsIHRoZSBp
-c3N1ZQorICogZG9lc24ndCBvY2N1ci4gIEZvcnR1bmF0ZWx5IHRoZSBHUFUgYWR2ZXJ0aXNlcyBO
-b1Jlc2V0KyB3aGVuIGluIHRoaXMKKyAqIG1vZGUsIHNvIHdlIGNhbiBkZXRlY3QgdGhhdCBhbmQg
-YXZvaWQgcmVzZXR0aW5nIGl0LgorICovCitzdGF0aWMgdm9pZCBxdWlya19yZXNldF9sZW5vdm9f
-dGhpbmtwYWRfcDUwX252Z3B1KHN0cnVjdCBwY2lfZGV2ICpwZGV2KQoreworCXZvaWQgX19pb21l
-bSAqbWFwOworCWludCByZXQ7CisKKwlpZiAocGRldi0+c3Vic3lzdGVtX3ZlbmRvciAhPSBQQ0lf
-VkVORE9SX0lEX0xFTk9WTyB8fAorCSAgICBwZGV2LT5zdWJzeXN0ZW1fZGV2aWNlICE9IDB4MjIy
-ZSB8fAorCSAgICAhcGRldi0+cmVzZXRfZm4pCisJCXJldHVybjsKKworCWlmIChwY2lfZW5hYmxl
-X2RldmljZV9tZW0ocGRldikpCisJCXJldHVybjsKKworCS8qCisJICogQmFzZWQgb24gbnZrbV9k
-ZXZpY2VfY3RvcigpIGluCisJICogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUv
-ZGV2aWNlL2Jhc2UuYworCSAqLworCW1hcCA9IHBjaV9pb21hcChwZGV2LCAwLCAweDIzMDAwKTsK
-KwlpZiAoIW1hcCkgeworCQlwY2lfZXJyKHBkZXYsICJDYW4ndCBtYXAgTU1JTyBzcGFjZVxuIik7
-CisJCWdvdG8gb3V0X2Rpc2FibGU7CisJfQorCisJLyoKKwkgKiBNYWtlIHN1cmUgdGhlIEdQVSBs
-b29rcyBsaWtlIGl0J3MgYmVlbiBQT1NUZWQgYmVmb3JlIHJlc2V0dGluZworCSAqIGl0LgorCSAq
-LworCWlmIChpb3JlYWQzMihtYXAgKyAweDIyNDBjKSAmIDB4MikgeworCQlwY2lfaW5mbyhwZGV2
-LCBGV19CVUcgIkdQVSBsZWZ0IGluaXRpYWxpemVkIGJ5IEVGSSwgcmVzZXR0aW5nXG4iKTsKKwkJ
-cmV0ID0gcGNpX3Jlc2V0X2Z1bmN0aW9uKHBkZXYpOworCQlpZiAocmV0IDwgMCkKKwkJCXBjaV9l
-cnIocGRldiwgIkZhaWxlZCB0byByZXNldCBHUFU6ICVkXG4iLCByZXQpOworCX0KKworCWlvdW5t
-YXAobWFwKTsKK291dF9kaXNhYmxlOgorCXBjaV9kaXNhYmxlX2RldmljZShwZGV2KTsKK30KK0RF
-Q0xBUkVfUENJX0ZJWFVQX0NMQVNTX0ZJTkFMKFBDSV9WRU5ET1JfSURfTlZJRElBLCAweDEzYjEs
-CisJCQkgICAgICBQQ0lfQ0xBU1NfRElTUExBWV9WR0EsIDgsCisJCQkgICAgICBxdWlya19yZXNl
-dF9sZW5vdm9fdGhpbmtwYWRfcDUwX252Z3B1KTsKLS0gCjIuMjAuMQoKCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
+Hi Greg,
+
+This feels like it's missing a From: line.
+
+commit b513a18cf1d705bd04efd91c417e79e4938be093
+Author: Lyude Paul <lyude@redhat.com>
+Date:   Mon Jan 28 16:03:50 2019 -0500
+
+    drm/nouveau: Don't WARN_ON VCPI allocation failures
+
+Is this an artifact of your notification-of-patches process and I
+never noticed before, or was the patch ingested incorrectly?
+
+Cheers,
+
+  -ilia
+
+On Fri, Sep 13, 2019 at 9:16 AM Greg Kroah-Hartman
+<gregkh@linuxfoundation.org> wrote:
+>
+> [ Upstream commit b513a18cf1d705bd04efd91c417e79e4938be093 ]
+>
+> This is much louder then we want. VCPI allocation failures are quite
+> normal, since they will happen if any part of the modesetting process is
+> interrupted by removing the DP MST topology in question. So just print a
+> debugging message on VCPI failures instead.
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Fixes: f479c0ba4a17 ("drm/nouveau/kms/nv50: initial support for DP 1.2 multi-stream")
+> Cc: Ben Skeggs <bskeggs@redhat.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: nouveau@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v4.10+
+> Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
+> Signed-off-by: Sasha Levin <sashal@kernel.org>
+> ---
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> index f889d41a281fa..5e01bfb69d7a3 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> @@ -759,7 +759,8 @@ nv50_msto_enable(struct drm_encoder *encoder)
+>
+>         slots = drm_dp_find_vcpi_slots(&mstm->mgr, mstc->pbn);
+>         r = drm_dp_mst_allocate_vcpi(&mstm->mgr, mstc->port, mstc->pbn, slots);
+> -       WARN_ON(!r);
+> +       if (!r)
+> +               DRM_DEBUG_KMS("Failed to allocate VCPI\n");
+>
+>         if (!mstm->links++)
+>                 nv50_outp_acquire(mstm->outp);
+> --
+> 2.20.1
+>
+>
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
