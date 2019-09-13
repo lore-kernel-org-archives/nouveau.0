@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111642] NV43 GeForce 6600 Nouveau is not stable on
- legacy hardware
-Date: Thu, 12 Sep 2019 22:57:50 +0000
-Message-ID: <bug-111642-8800-jzIGIy3xfo@http.bugs.freedesktop.org/>
-References: <bug-111642-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH v4 0/4] add PCIe workaround to fix runpm on laptops
+Date: Fri, 13 Sep 2019 13:33:02 +0200
+Message-ID: <20190913113306.20972-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1908225037=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111642-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,108 +18,26 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1908225037==
-Content-Type: multipart/alternative; boundary="15683290701.d6CcB.26884"
-Content-Transfer-Encoding: 7bit
-
-
---15683290701.d6CcB.26884
-Date: Thu, 12 Sep 2019 22:57:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111642
-
---- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Your desktop environment could be trying to add the second GPU's outputs an=
-d/or
-trying to use it for render offload. Neither will work well with nv4x
-generation GPUs. I can believe that the set_domain stuff is failing because=
- of
-that. I hadn't considered that option.
-
-The timeout is bad - that means something hung. Probably the messages before
-that would be more interesting than after. The first error tends to be the =
-most
-useful one.
-
-What desktop environment are you using, if any?
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15683290701.d6CcB.26884
-Date: Thu, 12 Sep 2019 22:57:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
-e"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642#c15">Comme=
-nt # 15</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
-e"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642">bug 11164=
-2</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Your desktop environment could be trying to add the second GPU=
-'s outputs and/or
-trying to use it for render offload. Neither will work well with nv4x
-generation GPUs. I can believe that the set_domain stuff is failing because=
- of
-that. I hadn't considered that option.
-
-The timeout is bad - that means something hung. Probably the messages before
-that would be more interesting than after. The first error tends to be the =
-most
-useful one.
-
-What desktop environment are you using, if any?</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15683290701.d6CcB.26884--
-
---===============1908225037==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1908225037==--
+bm90IG11Y2ggY2hhbmdlZCBzaW5jZSB0aGUgbGFzdCB0aW1lIEkgc2VudCB0aG9zZSBwYXRjaGVz
+IG91dCwgYnV0IHRoZXJlCmFyZSBhIGNvdXBsZSBvZiBhbm5veWluZyBidWcgZml4ZXMsIHdoaWNo
+IHVzZXJzIHdvdWxkIHByb2JhYmx5IG5ldmVyIGhpdAp1bmxlc3MgdGhleSBkbyBybW1vZC9tb2Rw
+cm9iZSBub3V2ZWF1IGN5Y2xlcy4KCkJpZ2dlc3QgY2hhbmdlIGlzIHRoYXQgSSBmb3JjZSB0aGUg
+bGluayB0byBhIDguMCBzcGVlZCByYXRoZXIgdGhhbiB0aGUKc3BlZWQgdGhlIEdQVSBjYW1lIHVw
+IHdpdGguCgpBbHNvIHRoaXMgc2VyaWVzIGRlcGVuZHMgb24gdGhlIFBDSWUgaW1wcm92ZW1lbnQg
+cGF0Y2hlcyBJIHNlbnQgb3V0CnJlY2VudGx5LgoKS2Fyb2wgSGVyYnN0ICg0KToKICBwY2k6IGVu
+YWJsZSBwY2llIGxpbmsgY2hhbmdlcyBmb3IgcGFzY2FsCiAgcGNpOiBhZGQgbnZrbV9wY2llX2dl
+dF9zcGVlZAogIHBjaTogc2V0IHRoZSBwY2llIGxpbmsgc3BlZWQgdG8gOC4wIHdoZW4gc3VzcGVu
+ZGluZwogIGRybTogYWJvcnQgcnVudGltZSBzdXNwZW5kIGlmIHdlIGhpdCBhbiBlcnJvcgoKIGRy
+bS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL2RldmljZS5oIHwgIDIgKysKIGRybS9ub3V2ZWF1
+L2luY2x1ZGUvbnZrbS9zdWJkZXYvcGNpLmggIHwgIDQgKystCiBkcm0vbm91dmVhdS9ub3V2ZWF1
+X2RybS5jICAgICAgICAgICAgICB8ICA2ICsrKysrCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9j
+bGsvYmFzZS5jICAgICB8ICAyICstCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvYmFzZS5j
+ICAgICB8ICAyICsrCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvZ2sxMDQuYyAgICB8ICA4
+ICsrKy0tLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2dwMTAwLmMgICAgfCAxMSArKysr
+KysrKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL3BjaWUuYyAgICAgfCAzNSArKysrKysr
+KysrKysrKysrKysrKysrKy0tLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL3ByaXYuaCAg
+ICAgfCAgNiArKysrKwogOSBmaWxlcyBjaGFuZ2VkLCA2NiBpbnNlcnRpb25zKCspLCAxMCBkZWxl
+dGlvbnMoLSkKCi0tIAoyLjIxLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQ==
