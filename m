@@ -1,70 +1,57 @@
-From: Alex Deucher <alexdeucher@gmail.com>
-Subject: Re: [PATCH v2 24/27] drm/amdgpu/dm: Resume short HPD IRQs before
- resuming MST topology
-Date: Fri, 13 Sep 2019 16:46:12 -0400
-Message-ID: <CADnq5_NNdGxtpF477Lu3nTMmHJ+EtYJ1bU2vEzaeQLfJjzQjmg@mail.gmail.com>
-References: <20190903204645.25487-1-lyude@redhat.com> <20190903204645.25487-25-lyude@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+Subject: [PATCH 2/4] drm/nouveau: dispnv50: Remove nv50_mstc_best_encoder()
+Date: Fri, 13 Sep 2019 18:03:51 -0400
+Message-ID: <20190913220355.6883-2-lyude@redhat.com>
+References: <20190913220355.6883-1-lyude@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190903204645.25487-25-lyude@redhat.com>
+In-Reply-To: <20190913220355.6883-1-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: Maling list - DRI developers <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, amd-gfx list <amd-gfx@lists.freedesktop.org>, Leo Li <sunpeng.li@amd.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, LKML <linux-kernel@vger.kernel.org>, Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>, Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>, David Airlie <airlied@linux.ie>, Juston Li <juston.li@intel.com>, Alex Deucher <alexander.deucher@amd.com>, David Francis <David.Francis@amd.com>, Harry Wentland <hwentlan@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+To: nouveau@lists.freedesktop.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Ilia Mirkin <imirkin@alum.mit.edu>, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Sep 3, 2019 at 4:49 PM Lyude Paul <lyude@redhat.com> wrote:
->
-> Since we're going to be reprobing the entire topology state on resume
-> now using sideband transactions, we need to ensure that we actually have
-> short HPD irqs enabled before calling drm_dp_mst_topology_mgr_resume().
-> So, do that.
->
-> Cc: Juston Li <juston.li@intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Cc: Harry Wentland <hwentlan@amd.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
+When drm_connector_helper_funcs->atomic_best_encoder is defined,
+->best_encoder is ignored both by the atomic modesetting helpers. That
+being said, this hook is completely broken anyway - it always returns
+the first msto for a given mstc, despite the fact it might already be in
+use.
 
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+So, just get rid of it. We'll need this in a moment anyway, when we make
+mstos per-head as opposed to per-connector.
 
-> ---
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
-gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 73630e2940d4..4d3c8bff77da 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -1185,15 +1185,15 @@ static int dm_resume(void *handle)
->         /* program HPD filter */
->         dc_resume(dm->dc);
->
-> -       /* On resume we need to  rewrite the MSTM control bits to enamble=
- MST*/
-> -       s3_handle_mst(ddev, false);
-> -
->         /*
->          * early enable HPD Rx IRQ, should be done before set mode as sho=
-rt
->          * pulse interrupts are used for MST
->          */
->         amdgpu_dm_irq_resume_early(adev);
->
-> +       /* On resume we need to  rewrite the MSTM control bits to enamble=
- MST*/
-> +       s3_handle_mst(ddev, false);
-> +
->         /* Do detection*/
->         drm_connector_list_iter_begin(ddev, &iter);
->         drm_for_each_connector_iter(connector, &iter) {
-> --
-> 2.21.0
->
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+---
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 9 ---------
+ 1 file changed, 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index b46be8a091e9..a3f350fdfa8c 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -920,14 +920,6 @@ nv50_mstc_atomic_best_encoder(struct drm_connector *connector,
+ 	return &mstc->mstm->msto[head->base.index]->encoder;
+ }
+ 
+-static struct drm_encoder *
+-nv50_mstc_best_encoder(struct drm_connector *connector)
+-{
+-	struct nv50_mstc *mstc = nv50_mstc(connector);
+-
+-	return &mstc->mstm->msto[0]->encoder;
+-}
+-
+ static enum drm_mode_status
+ nv50_mstc_mode_valid(struct drm_connector *connector,
+ 		     struct drm_display_mode *mode)
+@@ -990,7 +982,6 @@ static const struct drm_connector_helper_funcs
+ nv50_mstc_help = {
+ 	.get_modes = nv50_mstc_get_modes,
+ 	.mode_valid = nv50_mstc_mode_valid,
+-	.best_encoder = nv50_mstc_best_encoder,
+ 	.atomic_best_encoder = nv50_mstc_atomic_best_encoder,
+ 	.atomic_check = nv50_mstc_atomic_check,
+ };
+-- 
+2.21.0
