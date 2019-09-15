@@ -1,14 +1,13 @@
-From: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: [PATCH 1/4] drm/nouveau: dispnv50: Don't create MSTMs
- for eDP connectors
-Date: Sat, 14 Sep 2019 19:47:19 +0000
-Message-ID: <20190914194720.7399F2084F@mail.kernel.org>
-References: <20190913220355.6883-1-lyude@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111642] NV43 GeForce 6600 Nouveau is not stable on
+ legacy hardware
+Date: Sun, 15 Sep 2019 20:29:24 +0000
+Message-ID: <bug-111642-8800-229H62aCad@http.bugs.freedesktop.org/>
+References: <bug-111642-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0184335559=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190913220355.6883-1-lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-111642-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -18,77 +17,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Sasha Levin <sashal-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpbVGhpcyBpcyBhbiBhdXRvbWF0ZWQgZW1haWxdCgpUaGlzIGNvbW1pdCBoYXMgYmVlbiBw
-cm9jZXNzZWQgYmVjYXVzZSBpdCBjb250YWlucyBhIC1zdGFibGUgdGFnLgpUaGUgc3RhYmxlIHRh
-ZyBpbmRpY2F0ZXMgdGhhdCBpdCdzIHJlbGV2YW50IGZvciB0aGUgZm9sbG93aW5nIHRyZWVzOiBh
-bGwKClRoZSBib3QgaGFzIHRlc3RlZCB0aGUgZm9sbG93aW5nIHRyZWVzOiB2NS4yLjE0LCB2NC4x
-OS43MiwgdjQuMTQuMTQzLCB2NC45LjE5MiwgdjQuNC4xOTIuCgp2NS4yLjE0OiBCdWlsZCBPSyEK
-djQuMTkuNzI6IEJ1aWxkIE9LIQp2NC4xNC4xNDM6IEZhaWxlZCB0byBhcHBseSEgUG9zc2libGUg
-ZGVwZW5kZW5jaWVzOgogICAgMDdiYmMxYzVmNDliICgiZHJtL25vdXZlYXUvY29yZS9tZW1vcnk6
-IHNwbGl0IGluZm8gcG9pbnRlcnMgZnJvbSBhY2Nlc3NvciBwb2ludGVycyIpCiAgICAwYjExYjMw
-ZGU5ZDIgKCJkcm0vbm91dmVhdS9tbXUvbnYwNC1udjR4OiBtb3ZlIGdsb2JhbCB2bW0gdG8gbnZr
-bV9tbXUiKQogICAgMTFmYzAxN2RmYjFlICgiZHJtL25vdXZlYXUva21zL252NTA6IHByZXBhcmUg
-Zm9yIGRvdWJsZS1idWZmZXJlZCBMVVRzIikKICAgIDE1OTA3MDBkOTRhYyAoImRybS9ub3V2ZWF1
-L2ttcy9udjUwLTogc3BsaXQgZWFjaCByZXNvdXJjZSB0eXBlIGludG8gdGhlaXIgb3duIHNvdXJj
-ZSBmaWxlcyIpCiAgICAyNjlmZTMyZDMzNDMgKCJkcm0vbm91dmVhdS9iYXI6IHN3YXAgb25laW5p
-dC9pbml0IG9yZGVyaW5nLCBhbmQgcmVuYW1lIGJhcjMgdG8gYmFyMiIpCiAgICAzMGVkNDliNTVi
-NmUgKCJkcm0vbm91dmVhdS9rbXMvbnY1MC06IG1vdmUgY29kZSB1bmRlcm5lYXRoIGRpc3BudjUw
-LyIpCiAgICAzNDUwOGY5ZDI2MGMgKCJkcm0vbm91dmVhdS9rbXMvbnY1MC06IGRldGVybWluZSBN
-U1Qgc3VwcG9ydCBmcm9tIERQIEluZm8gVGFibGUiKQogICAgNWIxN2YzNjI0ZWZhICgiZHJtL25v
-dXZlYXUvbW11L252MDQ6IGltcGxlbWVudCB2bW0gb24gdG9wIG9mIG5ldyBiYXNlIikKICAgIDVl
-MDc1ZmRlYjE2NiAoImRybS9ub3V2ZWF1L21tdTogYXV0b21hdGljYWxseSBoYW5kbGUgInVuLWJv
-b3RzdHJhcHBpbmciIG9mIHZtbSIpCiAgICA2MzU5Yzk4MjI0M2UgKCJkcm0vbm91dmVhdS9tbXUv
-Z3AxMGI6IGZvcmsgZnJvbSBnZjEwMCIpCiAgICA3ZjUzZDZkYzlhNzIgKCJkcm0vbm91dmVhdS9j
-b3JlL21lbW9yeTogY29tcHRhZyBhbGxvY2F0aW9uIikKICAgIDgwNmE3MzM1NjUzNyAoImRybS9u
-b3V2ZWF1L21tdTogaW1wbGVtZW50IGJhc2UgZm9yIG5ldyB2bSBtYW5hZ2VtZW50IikKICAgIDkw
-ZGY1MjI5MTJhYyAoImRybS9ub3V2ZWF1L2ttcy9udjUwOiB1c2UgSU5URVJQT0xBVEVfMjU3X1VO
-SVRZX1JBTkdFIExVVCBvbiBuZXdlciBjaGlwc2V0cyIpCiAgICA5OTdhODkwMDNjMmQgKCJkcm0v
-bm91dmVhdS9jb3JlL21lbW9yeTogYWRkIHJlZmVyZW5jZSBjb3VudGluZyIpCiAgICBiODZhNDU4
-NzdlYWQgKCJkcm0vbm91dmVhdS9tbXUvZ3AxMDA6IGZvcmsgZnJvbSBnZjEwMCIpCiAgICBjODNj
-NDA5N2ViYTggKCJkcm0vbm91dmVhdS9tbXU6IGRlZmluZSB1c2VyIGludGVyZmFjZXMgdG8gbW11
-IG1lbW9yeSBhbGxvY2F0aW9uIikKICAgIGNlZGM0ZDU3ZGYyNiAoImRybS9ub3V2ZWF1L21tdS9n
-bTIwYjogZm9yayBmcm9tIGdmMTAwIikKICAgIGQxZjZjOGQyZTlkZiAoImRybS9ub3V2ZWF1L21t
-dS9nazIwYTogZm9yayBmcm9tIGdmMTAwIikKICAgIGRiMDE4NTg1YTUxYSAoImRybS9ub3V2ZWF1
-L21tdS9nazEwNDogZm9yayBmcm9tIGdmMTAwIikKICAgIGUxZTMzYzc5MWEyMyAoImRybS9ub3V2
-ZWF1L21tdS9nbTIwMDogZm9yayBmcm9tIGdmMTAwIikKICAgIGU2OWRhZTg1YzkwYiAoImRybS9u
-b3V2ZWF1L2Jhci9udjUwLGc4NDogZHJvcCBtbXUgaW52YWxpZGF0ZSIpCiAgICBlNzUxODJmNjhi
-N2IgKCJkcm0vbm91dmVhdS9rbXMvbnY1MDogdXNlICJsb3cgcmVzIiBsdXQgZm9yIGluZGV4ZWQg
-bW9kZSIpCiAgICBlYWYxYTY5MTEwZjQgKCJkcm0vbm91dmVhdS9tbXU6IGFkZCBiYXNlIGZvciB0
-eXBlLWJhc2VkIG1lbW9yeSBhbGxvY2F0aW9uIikKICAgIGY0Nzc4ZjA4YTAzOCAoImRybS9ub3V2
-ZWF1L2ttcy9udjUwOiBmaXggaGFuZGxpbmcgb2YgZ2FtbWEgc2luY2UgYXRvbWljIGNvbnZlcnNp
-b24iKQogICAgZjU2NTA0NzhhYjA3ICgiZHJtL25vdXZlYXUvZGlzcC9udjUwLTogcGFzcyBudmtt
-X21lbW9yeSBvYmplY3RzIGZvciBjaGFubmVsIHB1c2ggYnVmZmVycyIpCgp2NC45LjE5MjogRmFp
-bGVkIHRvIGFwcGx5ISBQb3NzaWJsZSBkZXBlbmRlbmNpZXM6CiAgICAxMWZjMDE3ZGZiMWUgKCJk
-cm0vbm91dmVhdS9rbXMvbnY1MDogcHJlcGFyZSBmb3IgZG91YmxlLWJ1ZmZlcmVkIExVVHMiKQog
-ICAgMzQ1MDhmOWQyNjBjICgiZHJtL25vdXZlYXUva21zL252NTAtOiBkZXRlcm1pbmUgTVNUIHN1
-cHBvcnQgZnJvbSBEUCBJbmZvIFRhYmxlIikKICAgIDNkYmQwMzZiODQxOSAoImRybS9ub3V2ZWF1
-L2ttcy9udjUwOiBzZXBhcmF0ZSBvdXQgbW9kZSBjb21taXQiKQogICAgNTJhYTMwZjI1MjRkICgi
-ZHJtL25vdXZlYXUva21zL252NTA6IHN3aXRjaCBtc3Qgc2luayBiYWNrIGludG8gc3N0IG1vZGUi
-KQogICAgNmJiYWIzYjZiNjU2ICgiZHJtL25vdXZlYXUva21zL252NTA6IHNlcGFyYXRlIG91dCBi
-YXNlL292bHkgY2hhbm5lbCB1c2FnZSBib3VuZHMgY29tbWl0IikKICAgIGE3YWUxNTYxOTA5ZCAo
-ImRybS9ub3V2ZWF1L2ttcy9udjUwOiBzZXBhcmF0ZSBvdXQgbHV0IGNvbW1pdCIpCiAgICBhZDYz
-MzYxOTUzOTMgKCJkcm0vbm91dmVhdS9rbXMvbnY1MDogc2VwYXJhdGUgb3V0IGNvcmUgc3VyZmFj
-ZSBjb21taXQiKQogICAgZWE4ZWUzOTAwMmExICgiZHJtL25vdXZlYXUva21zL252NTA6IHNlcGFy
-YXRlIG91dCBjdXJzb3Igc3VyZmFjZSBjb21taXQiKQogICAgZjQ3NzhmMDhhMDM4ICgiZHJtL25v
-dXZlYXUva21zL252NTA6IGZpeCBoYW5kbGluZyBvZiBnYW1tYSBzaW5jZSBhdG9taWMgY29udmVy
-c2lvbiIpCgp2NC40LjE5MjogRmFpbGVkIHRvIGFwcGx5ISBQb3NzaWJsZSBkZXBlbmRlbmNpZXM6
-CiAgICAxM2EzZDkxZjE3YTUgKCJkcm06IFBhc3MgJ25hbWUnIHRvIGRybV9lbmNvZGVyX2luaXQo
-KSIpCiAgICAzNDUwOGY5ZDI2MGMgKCJkcm0vbm91dmVhdS9rbXMvbnY1MC06IGRldGVybWluZSBN
-U1Qgc3VwcG9ydCBmcm9tIERQIEluZm8gVGFibGUiKQogICAgM2RiZDAzNmI4NDE5ICgiZHJtL25v
-dXZlYXUva21zL252NTA6IHNlcGFyYXRlIG91dCBtb2RlIGNvbW1pdCIpCiAgICA1MmFhMzBmMjUy
-NGQgKCJkcm0vbm91dmVhdS9rbXMvbnY1MDogc3dpdGNoIG1zdCBzaW5rIGJhY2sgaW50byBzc3Qg
-bW9kZSIpCiAgICBhN2FlMTU2MTkwOWQgKCJkcm0vbm91dmVhdS9rbXMvbnY1MDogc2VwYXJhdGUg
-b3V0IGx1dCBjb21taXQiKQogICAgYWQ2MzM2MTk1MzkzICgiZHJtL25vdXZlYXUva21zL252NTA6
-IHNlcGFyYXRlIG91dCBjb3JlIHN1cmZhY2UgY29tbWl0IikKICAgIGI1MTZhOWVmYjdhZiAoImRy
-bTogTW92ZSBMRUFWRS9FTlRFUl9BVE9NSUNfTU9ERVNFVCB0byBmYmRldiBoZWxwZXJzIikKICAg
-IGY0Nzc4ZjA4YTAzOCAoImRybS9ub3V2ZWF1L2ttcy9udjUwOiBmaXggaGFuZGxpbmcgb2YgZ2Ft
-bWEgc2luY2UgYXRvbWljIGNvbnZlcnNpb24iKQoKCk5PVEU6IFRoZSBwYXRjaCB3aWxsIG5vdCBi
-ZSBxdWV1ZWQgdG8gc3RhYmxlIHRyZWVzIHVudGlsIGl0IGlzIHVwc3RyZWFtLgoKSG93IHNob3Vs
-ZCB3ZSBwcm9jZWVkIHdpdGggdGhpcyBwYXRjaD8KCi0tClRoYW5rcywKU2FzaGEKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
-c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0184335559==
+Content-Type: multipart/alternative; boundary="15685793640.eFB5.13821"
+Content-Transfer-Encoding: 7bit
+
+
+--15685793640.eFB5.13821
+Date: Sun, 15 Sep 2019 20:29:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111642
+
+--- Comment #17 from Vasili Pupkin <diggest-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+It seems that this timeout error in nv41_vmm_flush may not be the cause of =
+the
+problem but a consequence of the bug. nouveau starts issuing this timeout
+exception log after a freeze and there can be quite a few such timeouts unt=
+il I
+restart the system.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15685793640.eFB5.13821
+Date: Sun, 15 Sep 2019 20:29:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
+e"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642#c17">Comme=
+nt # 17</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
+e"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111642">bug 11164=
+2</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+diggest&#64;gmail.com" title=3D"Vasili Pupkin &lt;diggest&#64;gmail.com&gt;=
+"> <span class=3D"fn">Vasili Pupkin</span></a>
+</span></b>
+        <pre>It seems that this timeout error in nv41_vmm_flush may not be =
+the cause of the
+problem but a consequence of the bug. nouveau starts issuing this timeout
+exception log after a freeze and there can be quite a few such timeouts unt=
+il I
+restart the system.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15685793640.eFB5.13821--
+
+--===============0184335559==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0184335559==--
