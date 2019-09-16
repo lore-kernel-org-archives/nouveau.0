@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107016] Gpio error only from kernel higher as 4.x
- (k2000m; 0x0e73b0a2; version 80.07.40.00.02)
-Date: Mon, 16 Sep 2019 08:26:06 +0000
-Message-ID: <bug-107016-8800-rFpFEBtjK2@http.bugs.freedesktop.org/>
-References: <bug-107016-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 108857] display becomes unresponsive and keyboard
+ input fails
+Date: Mon, 16 Sep 2019 10:39:03 +0000
+Message-ID: <bug-108857-8800-rV0gYlz7jP@http.bugs.freedesktop.org/>
+References: <bug-108857-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2011356039=="
+Content-Type: multipart/mixed; boundary="===============0838736945=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107016-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-108857-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2011356039==
-Content-Type: multipart/alternative; boundary="15686223901.9Ec6.25352"
+--===============0838736945==
+Content-Type: multipart/alternative; boundary="15686303442.3b6BADdaa.15625"
 Content-Transfer-Encoding: 7bit
 
 
---15686223901.9Ec6.25352
-Date: Mon, 16 Sep 2019 08:26:30 +0000
+--15686303442.3b6BADdaa.15625
+Date: Mon, 16 Sep 2019 10:39:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107016
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108857
 
---- Comment #25 from atirage21 <tothsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 145371
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145371&action=3Dedit
-Valgrind-mmt log from glxgears with driver nvidia 390.116ubuntu0.18.04.1
+--- Comment #10 from Vasili Pupkin <diggest-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I am experiencing a similar behaviour and a crash with a similar callstack =
+on a
+much older hardware, see bug 111642
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15686223901.9Ec6.25352
-Date: Mon, 16 Sep 2019 08:26:30 +0000
+--15686303442.3b6BADdaa.15625
+Date: Mon, 16 Sep 2019 10:39:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,28 +61,26 @@ Auto-Submitted: auto-generated
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Gpio error only from kernel higher as 4.x (k2000m; 0=
-x0e73b0a2; version 80.07.40.00.02)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016#c25">Comme=
-nt # 25</a>
+          bz_status_NEW "
+   title=3D"NEW - display becomes unresponsive and keyboard input fails"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108857#c10">Comme=
+nt # 10</a>
               on <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Gpio error only from kernel higher as 4.x (k2000m; 0=
-x0e73b0a2; version 80.07.40.00.02)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107016">bug 10701=
-6</a>
+          bz_status_NEW "
+   title=3D"NEW - display becomes unresponsive and keyboard input fails"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108857">bug 10885=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-tothsoft&#64;gmail.com" title=3D"atirage21 &lt;tothsoft&#64;gmail.com&gt;">=
- <span class=3D"fn">atirage21</span></a>
+diggest&#64;gmail.com" title=3D"Vasili Pupkin &lt;diggest&#64;gmail.com&gt;=
+"> <span class=3D"fn">Vasili Pupkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145371=
-" name=3D"attach_145371" title=3D"Valgrind-mmt log from glxgears with drive=
-r nvidia 390.116ubuntu0.18.04.1">attachment 145371</a> <a href=3D"attachmen=
-t.cgi?id=3D145371&amp;action=3Dedit" title=3D"Valgrind-mmt log from glxgear=
-s with driver nvidia 390.116ubuntu0.18.04.1">[details]</a></span>
-Valgrind-mmt log from glxgears with driver nvidia 390.116ubuntu0.18.04.1</p=
-re>
+        <pre>I am experiencing a similar behaviour and a crash with a simil=
+ar callstack on a
+much older hardware, see <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - NV43 GeForce 6600 Nouveau is not stable on legacy hardwar=
+e"
+   href=3D"show_bug.cgi?id=3D111642">bug 111642</a></pre>
         </div>
       </p>
 
@@ -96,9 +94,9 @@ re>
     </body>
 </html>=
 
---15686223901.9Ec6.25352--
+--15686303442.3b6BADdaa.15625--
 
---===============2011356039==
+--===============0838736945==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============2011356039==--
+--===============0838736945==--
