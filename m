@@ -1,126 +1,60 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103217] Recent noveau causes errors with scilab
- 5.5.2 on NVIDIA G84GL [Quadro FX 570]
-Date: Mon, 16 Sep 2019 13:04:09 +0000
-Message-ID: <bug-103217-8800-WiBhwm97ia@http.bugs.freedesktop.org/>
-References: <bug-103217-8800@http.bugs.freedesktop.org/>
+From: Thierry Reding <thierry.reding@gmail.com>
+Subject: [PATCH 0/4] drm/nouveau: Miscellaneous fixes
+Date: Mon, 16 Sep 2019 16:19:22 +0200
+Message-ID: <20190916141926.8594-1-thierry.reding@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1999864401=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103217-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1999864401==
-Content-Type: multipart/alternative; boundary="15686390480.1f9B.3923"
-Content-Transfer-Encoding: 7bit
-
-
---15686390480.1f9B.3923
-Date: Mon, 16 Sep 2019 13:04:08 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103217
-
---- Comment #10 from sarataylor <st2648729-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-After years of not sleeping well and not finding the right guide for natural
-products online, she decided to do the research so others don=E2=80=99t suf=
-fer when
-buying a new mattress as she did. For the past 3 years, she studied everyth=
-ing
-about sleep and natural product to put the best natural mattress buying gui=
-de
-online.
-
-https://topnaturalmattresses.com/best-mattress-for-stomach-sleepers/#
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
-
---15686390480.1f9B.3923
-Date: Mon, 16 Sep 2019 13:04:08 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Recent noveau causes errors with scilab 5.=
-5.2 on NVIDIA G84GL [Quadro FX 570]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103217#c10">Comme=
-nt # 10</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Recent noveau causes errors with scilab 5.=
-5.2 on NVIDIA G84GL [Quadro FX 570]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103217">bug 10321=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-st2648729&#64;gmail.com" title=3D"sarataylor &lt;st2648729&#64;gmail.com&gt=
-;"> <span class=3D"fn">sarataylor</span></a>
-</span></b>
-        <pre>After years of not sleeping well and not finding the right gui=
-de for natural
-products online, she decided to do the research so others don=E2=80=99t suf=
-fer when
-buying a new mattress as she did. For the past 3 years, she studied everyth=
-ing
-about sleep and natural product to put the best natural mattress buying gui=
-de
-online.
-
-<a href=3D"https://topnaturalmattresses.com/best-mattress-for-stomach-sleep=
-ers/">https://topnaturalmattresses.com/best-mattress-for-stomach-sleepers/<=
-/a>#</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15686390480.1f9B.3923--
-
---===============1999864401==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1999864401==--
+RnJvbTogVGhpZXJyeSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4KCkhpIEJlbiwKCnRoZXNl
+IGFyZSBmaXhlcyBmb3IgYSBjb3VwbGUgb2YgaXNzdWVzIHRoYXQgSSd2ZSBiZWVuIHJ1bm5pbmcg
+aW50byB3aGVuCnRlc3Rpbmcgb24gdmFyaW91cyBUZWdyYSBib2FyZHMuIFRoZSBmaXJzdCB0d28g
+cGF0Y2hlcyBmaXggdXAgaXNzdWVzIGluCnRoZSBmaXggdGhhdCBJIGhhZCBzZW50IG91dCBlYXJs
+aWVyIHRvIGZpeCB0aGUgcmVncmVzc2lvbiBpbnRyb2R1Y2VkIGluCmRybS1taXNjLW5leHQuIFRo
+ZSBmaXJzdCBvbmUgaXMgY3JpdGljYWwgYmVjYXVzZSBpdCBhdm9pZHMgYSBCVUdfT04gYXMKcmVw
+b3J0ZWQgYnkgSWxpYSwgd2hpbGUgdGhlIHNlY29uZCBpcyBsZXNzIGNyaXRpY2FsLCBidXQgcmVz
+dG9yZXMgdGhlCmxvY2tpbmcgY29ycmVjdG5lc3MgKGF0IGxlYXN0IHRvIHRoZSBiZXN0IG9mIG15
+IGtub3dsZWRnZSkuCgpQYXRjaCAzIGlzIHNvbWV0aGluZyB0aGF0IEkgdGhpbmsgd2FzIGFsc28g
+Y2F1c2VkIGJ5IHRoZSByZXNlcnZhdGlvbgpvYmplY3QgcmV3b3JrIGFuZCBpcyBraW5kIG9mIGEg
+Y29udGludWF0aW9uIG9mIG15IGVhcmxpZXIgYXR0ZW1wdCB0byBmaXgKdGhlIFZNQSBub2RlIHNo
+YXJpbmcgYnJlYWthZ2UuIFRoZSBjdXJyZW50IG9yZGVyaW5nIGJldHdlZW4gVFRNIGFuZCBHRU0K
+dGVhcmRvd24gaXMgY2F1c2luZyBhIERFQlVHX0xPQ0tTX1dBUk5fT04oKSBiZWNhdXNlIEdFTSBj
+bGVhbnVwIGFscmVhZHkKZnJlZWQgYSBtdXRleCB0aGF0IFRUTSB0ZWFyZG93biB3aWxsIHN0aWxs
+IHdhbnQgdG8gdXNlLgoKTGFzdGx5LCBwYXRjaCA0IGlzIHF1aXRlIHVuY3JpdGljYWwsIGJ1dCBp
+dCdzIGEgb25lLWxpbmUgY2hhbmdlIHRoYXQgaXMKY2F1c2luZyBhbiB1Z2x5IChidXQgaGFybWxl
+c3MpIGV4dGVybmFsIG1lbW9yeSBhZGRyZXNzIGRlY29kZSBlcnJvciBvbgpUZWdyYTIxMCBhbmQg
+bGF0ZXIuIEl0IHNlZW1zIHRoYXQgZm9yIHNvbWUgcmVhc29uIGNsZWFyaW5nIHRoaXMgcmVnaXN0
+ZXIKd2lsbCBjYXVzZSBhIERNQSBvcGVyYXRpb24gdG8gYmUgc3RhcnRlZCBieSB0aGUgR1BVLiBJ
+J3ZlIHZlcmlmaWVkIHRoYXQKaXQncyB0aWVkIHRvIGV4YWN0bHkgdGhhdCByZWdpc3RlciB3cml0
+ZSBieSBtb2RpZnlpbmcgdGhlIHZhbHVlIHdyaXR0ZW4KdG8gdGhlIHJlZ2lzdGVyLCBhbmQgc3Rh
+bGxpbmcgZm9yIGEgY291cGxlIG9mIHNlY29uZHMgYWZ0ZXIgdGhlIHJlZ2lzdGVyCndyaXRlLiBU
+aGUgYWRkcmVzcyBkZWNvZGUgZXJyb3IgcmVmbGVjdHMgdGhlIHZhbHVlIHdyaXR0ZW4gaW50byB0
+aGlzCnJlZ2lzdGVyIGV4YWN0bHkgYW5kIGl0IGFsd2F5cyBoYXBwZW5zIGEgY291cGxlIG9mIG1p
+bGxpc2Vjb25kcyBhZnRlcgp0aGlzIHdyaXRlLgoKVGhpZXJyeQoKVGhpZXJyeSBSZWRpbmcgKDQp
+OgogIGRybS9ub3V2ZWF1OiBGaXggZmFsbG91dCBmcm9tIHJlc2VydmF0aW9uIG9iamVjdCByZXdv
+cmsKICBkcm0vbm91dmVhdTogcHJpbWU6IEV4dGVuZCBETUEgcmVzZXJ2YXRpb24gb2JqZWN0IGxv
+Y2sKICBkcm0vbm91dmVhdTogRml4IG9yZGVyaW5nIGJldHdlZW4gVFRNIGFuZCBHRU0gcmVsZWFz
+ZQogIGRybS9ub3V2ZWF1OiBnbTIwYjogQXZvaWQgQkFSMSB0ZWFyZG93biBkdXJpbmcgaW5pdAoK
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uYyAgICAgICAgICB8IDI2ICsrKysr
+KysrKysrLS0tLS0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9iby5oICAgICAg
+ICAgIHwgIDQgKy0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5jICAgICAg
+ICAgfCAgNyArKy0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9wcmltZS5jICAg
+ICAgIHwgMjcgKysrKysrKysrKysrLS0tLS0tLQogLi4uL2dwdS9kcm0vbm91dmVhdS9udmttL3N1
+YmRldi9iYXIvZ20yMGIuYyAgIHwgIDEgLQogNSBmaWxlcyBjaGFuZ2VkLCAzOSBpbnNlcnRpb25z
+KCspLCAyNiBkZWxldGlvbnMoLSkKCi0tIAoyLjIzLjAKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVs
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2RyaS1kZXZlbA==
