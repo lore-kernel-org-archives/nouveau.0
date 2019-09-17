@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111724] NVE6 (GK106) memory re-clocking breaks
  GpuTest plot3d benchmark
-Date: Tue, 17 Sep 2019 14:35:58 +0000
-Message-ID: <bug-111724-8800-gMEoC7P1M3@http.bugs.freedesktop.org/>
+Date: Tue, 17 Sep 2019 14:36:52 +0000
+Message-ID: <bug-111724-8800-SVqeLKpRf7@http.bugs.freedesktop.org/>
 References: <bug-111724-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0914283362=="
+Content-Type: multipart/mixed; boundary="===============1578443071=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111724-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0914283362==
-Content-Type: multipart/alternative; boundary="15687309581.EEB8.10190"
+--===============1578443071==
+Content-Type: multipart/alternative; boundary="15687310121.b23Dbef.10498"
 Content-Transfer-Encoding: 7bit
 
 
---15687309581.EEB8.10190
-Date: Tue, 17 Sep 2019 14:35:58 +0000
+--15687310121.b23Dbef.10498
+Date: Tue, 17 Sep 2019 14:36:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,18 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111724
 
---- Comment #5 from Mark Menzynski <mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
-Created attachment 145399
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145399&action=3Dedit
-pmu log from dmesg when changin from 0x7 to 0xa and then to 0xf, benchmark
-working
+--- Comment #6 from Mark Menzynski <mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
+Created attachment 145400
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145400&action=3Dedit
+mmiotrace log from nvidia driver
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15687309581.EEB8.10190
-Date: Tue, 17 Sep 2019 14:35:58 +0000
+--15687310121.b23Dbef.10498
+Date: Tue, 17 Sep 2019 14:36:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -65,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - NVE6 (GK106) memory re-clocking breaks GpuTest plot3d ben=
 chmark"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111724#c5">Commen=
-t # 5</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111724#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NVE6 (GK106) memory re-clocking breaks GpuTest plot3d ben=
@@ -77,14 +76,11 @@ chmark"
 mmenzyns&#64;redhat.com" title=3D"Mark Menzynski &lt;mmenzyns&#64;redhat.co=
 m&gt;"> <span class=3D"fn">Mark Menzynski</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145399=
-" name=3D"attach_145399" title=3D"pmu log from dmesg when changin from 0x7 =
-to 0xa and then to 0xf, benchmark working">attachment 145399</a> <a href=3D=
-"attachment.cgi?id=3D145399&amp;action=3Dedit" title=3D"pmu log from dmesg =
-when changin from 0x7 to 0xa and then to 0xf, benchmark working">[details]<=
-/a></span>
-pmu log from dmesg when changin from 0x7 to 0xa and then to 0xf, benchmark
-working</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145400=
+" name=3D"attach_145400" title=3D"mmiotrace log from nvidia driver">attachm=
+ent 145400</a> <a href=3D"attachment.cgi?id=3D145400&amp;action=3Dedit" tit=
+le=3D"mmiotrace log from nvidia driver">[details]</a></span>
+mmiotrace log from nvidia driver</pre>
         </div>
       </p>
 
@@ -98,9 +94,9 @@ working</pre>
     </body>
 </html>=
 
---15687309581.EEB8.10190--
+--15687310121.b23Dbef.10498--
 
---===============0914283362==
+--===============1578443071==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0914283362==--
+--===============1578443071==--
