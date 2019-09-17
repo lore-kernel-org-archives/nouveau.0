@@ -1,117 +1,56 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111724] NVE6 (GK106) memory re-clocking breaks
- GpuTest plot3d benchmark
-Date: Tue, 17 Sep 2019 15:29:55 +0000
-Message-ID: <bug-111724-8800-0FeO8wvz1K@http.bugs.freedesktop.org/>
-References: <bug-111724-8800@http.bugs.freedesktop.org/>
+From: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH 2/2] drm/nouveau: tegra: Do not try to disable PCI device
+Date: Tue, 17 Sep 2019 14:11:02 -0400
+Message-ID: <feaad2fac13cc3cf1a5db6577380ea784e9227cf.camel@redhat.com>
+References: <20190916143606.9272-1-thierry.reding@gmail.com>
+ <20190916143606.9272-3-thierry.reding@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0085275544=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111724-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20190916143606.9272-3-thierry.reding@gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Thierry Reding <thierry.reding@gmail.com>, Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Karol Herbst <kherbst@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0085275544==
-Content-Type: multipart/alternative; boundary="15687341952.6Fd2EECE.27035"
-Content-Transfer-Encoding: 7bit
-
-
---15687341952.6Fd2EECE.27035
-Date: Tue, 17 Sep 2019 15:29:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111724
-
---- Comment #12 from Mark Menzynski <mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #9)
-> Mark - try using blob ctxsw firmware. Perhaps ours misses something. There
-> are some GK106's which just die immediately with out firmware... (See
-> VideoAcceleration wiki page for how to extract firmware from blob drivers=
-.)
-
-Doesn't work. Same problem.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15687341952.6Fd2EECE.27035
-Date: Tue, 17 Sep 2019 15:29:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NVE6 (GK106) memory re-clocking breaks GpuTest plot3d ben=
-chmark"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111724#c12">Comme=
-nt # 12</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NVE6 (GK106) memory re-clocking breaks GpuTest plot3d ben=
-chmark"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111724">bug 11172=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mmenzyns&#64;redhat.com" title=3D"Mark Menzynski &lt;mmenzyns&#64;redhat.co=
-m&gt;"> <span class=3D"fn">Mark Menzynski</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D111=
-724#c9">comment #9</a>)
-<span class=3D"quote">&gt; Mark - try using blob ctxsw firmware. Perhaps ou=
-rs misses something. There
-&gt; are some GK106's which just die immediately with out firmware... (See
-&gt; VideoAcceleration wiki page for how to extract firmware from blob driv=
-ers.)</span >
-
-Doesn't work. Same problem.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15687341952.6Fd2EECE.27035--
-
---===============0085275544==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0085275544==--
+SSBkb24ndCBzZWUgYW55IHByb2JsZW1zIHdpdGggdGhpcywgc2luY2UgbnZrbV9kZXZpY2VfZGVs
+KCkgaXMgbWFpbmx5IGluCmNoYXJnZSBvZiBqdXN0IHJlbGVhc2luZyBtZW1vcnkgYWxsb2NhdGlv
+bnMgYXMgaXMgZHJtX2Rldl9wdXQoKS4KClJldmlld2VkLWJ5OiBMeXVkZSBQYXVsIDxseXVkZUBy
+ZWRoYXQuY29tPgoKT24gTW9uLCAyMDE5LTA5LTE2IGF0IDE2OjM2ICswMjAwLCBUaGllcnJ5IFJl
+ZGluZyB3cm90ZToKPiBGcm9tOiBUaGllcnJ5IFJlZGluZyA8dHJlZGluZ0BudmlkaWEuY29tPgo+
+IAo+IFdoZW4gTm91dmVhdSBpcyBpbnN0YW50aWF0ZWQgb24gdG9wIG9mIGEgcGxhdGZvcm0gZGV2
+aWNlLCB0aGUgZGV2LT5wZGV2Cj4gZmllbGQgd2lsbCBiZSBOVUxMIGFuZCBjYWxsaW5nIHBjaV9k
+aXNhYmxlX2RldmljZSgpIHdpbGwgY3Jhc2guIE1vdmUgdGhlCj4gUENJIGRpc2FibGluZyBjb2Rl
+IHRvIHRoZSBQQ0kgc3BlY2lmaWMgZHJpdmVyIHJlbW92YWwgY29kZS4KPiAKPiBTaWduZWQtb2Zm
+LWJ5OiBUaGllcnJ5IFJlZGluZyA8dHJlZGluZ0BudmlkaWEuY29tPgo+IC0tLQo+ICBkcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIHwgMyArLS0KPiAgMSBmaWxlIGNoYW5nZWQs
+IDEgaW5zZXJ0aW9uKCspLCAyIGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCj4gYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9ub3V2ZWF1X2RybS5jCj4gaW5kZXggMmNkODM4NDk2MDBmLi5iNjVhZTgxN2VhYmYgMTAwNjQ0
+Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+ICsrKyBiL2Ry
+aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPiBAQCAtNzE1LDcgKzcxNSw2IEBA
+IHN0YXRpYyBpbnQgbm91dmVhdV9kcm1fcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYsCj4gIHZv
+aWQKPiAgbm91dmVhdV9kcm1fZGV2aWNlX3JlbW92ZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+
+ICB7Cj4gLQlzdHJ1Y3QgcGNpX2RldiAqcGRldiA9IGRldi0+cGRldjsKPiAgCXN0cnVjdCBub3V2
+ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oZGV2KTsKPiAgCXN0cnVjdCBudmttX2NsaWVudCAq
+Y2xpZW50Owo+ICAJc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2U7Cj4gQEAgLTcyNyw3ICs3MjYs
+NiBAQCBub3V2ZWF1X2RybV9kZXZpY2VfcmVtb3ZlKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCj4g
+IAlkZXZpY2UgPSBudmttX2RldmljZV9maW5kKGNsaWVudC0+ZGV2aWNlKTsKPiAgCj4gIAlub3V2
+ZWF1X2RybV9kZXZpY2VfZmluaShkZXYpOwo+IC0JcGNpX2Rpc2FibGVfZGV2aWNlKHBkZXYpOwo+
+ICAJZHJtX2Rldl9wdXQoZGV2KTsKPiAgCW52a21fZGV2aWNlX2RlbCgmZGV2aWNlKTsKPiAgfQo+
+IEBAIC03MzgsNiArNzM2LDcgQEAgbm91dmVhdV9kcm1fcmVtb3ZlKHN0cnVjdCBwY2lfZGV2ICpw
+ZGV2KQo+ICAJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9IHBjaV9nZXRfZHJ2ZGF0YShwZGV2KTsK
+PiAgCj4gIAlub3V2ZWF1X2RybV9kZXZpY2VfcmVtb3ZlKGRldik7Cj4gKwlwY2lfZGlzYWJsZV9k
+ZXZpY2UocGRldik7Cj4gIH0KPiAgCj4gIHN0YXRpYyBpbnQKLS0gCkNoZWVycywKCUx5dWRlIFBh
+dWwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1k
+ZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbA==
