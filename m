@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111724] NVE6 (GK106) memory re-clocking breaks
  GpuTest plot3d benchmark
-Date: Tue, 17 Sep 2019 14:37:15 +0000
-Message-ID: <bug-111724-8800-psIk6eoAJa@http.bugs.freedesktop.org/>
+Date: Tue, 17 Sep 2019 14:37:28 +0000
+Message-ID: <bug-111724-8800-ObVEWiEtkC@http.bugs.freedesktop.org/>
 References: <bug-111724-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0286580985=="
+Content-Type: multipart/mixed; boundary="===============0726830295=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111724-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0286580985==
-Content-Type: multipart/alternative; boundary="15687310350.47CB.10626"
+--===============0726830295==
+Content-Type: multipart/alternative; boundary="15687310480.56b1331.10626"
 Content-Transfer-Encoding: 7bit
 
 
---15687310350.47CB.10626
-Date: Tue, 17 Sep 2019 14:37:15 +0000
+--15687310480.56b1331.10626
+Date: Tue, 17 Sep 2019 14:37:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111724
 
---- Comment #7 from Mark Menzynski <mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
-Created attachment 145401
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145401&action=3Dedit
-strap_peek
+--- Comment #8 from Mark Menzynski <mmenzyns-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
+Created attachment 145402
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145402&action=3Dedit
+vbios.rom
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15687310350.47CB.10626
-Date: Tue, 17 Sep 2019 14:37:15 +0000
+--15687310480.56b1331.10626
+Date: Tue, 17 Sep 2019 14:37:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - NVE6 (GK106) memory re-clocking breaks GpuTest plot3d ben=
 chmark"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111724#c7">Commen=
-t # 7</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111724#c8">Commen=
+t # 8</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - NVE6 (GK106) memory re-clocking breaks GpuTest plot3d ben=
@@ -76,11 +76,11 @@ chmark"
 mmenzyns&#64;redhat.com" title=3D"Mark Menzynski &lt;mmenzyns&#64;redhat.co=
 m&gt;"> <span class=3D"fn">Mark Menzynski</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145401=
-" name=3D"attach_145401" title=3D"strap_peek">attachment 145401</a> <a href=
-=3D"attachment.cgi?id=3D145401&amp;action=3Dedit" title=3D"strap_peek">[det=
-ails]</a></span>
-strap_peek</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145402=
+" name=3D"attach_145402" title=3D"vbios.rom">attachment 145402</a> <a href=
+=3D"attachment.cgi?id=3D145402&amp;action=3Dedit" title=3D"vbios.rom">[deta=
+ils]</a></span>
+vbios.rom</pre>
         </div>
       </p>
 
@@ -94,9 +94,9 @@ strap_peek</pre>
     </body>
 </html>=
 
---15687310350.47CB.10626--
+--15687310480.56b1331.10626--
 
---===============0286580985==
+--===============0726830295==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0286580985==--
+--===============0726830295==--
