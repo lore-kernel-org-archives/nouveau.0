@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93197] Warsow 2.0 crashes in
- nouveau_fence_trigger_work
-Date: Wed, 18 Sep 2019 20:41:51 +0000
-Message-ID: <bug-93197-8800-sn916vzTj2@http.bugs.freedesktop.org/>
-References: <bug-93197-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92968] OpenScad has lousy performance
+Date: Wed, 18 Sep 2019 20:41:49 +0000
+Message-ID: <bug-92968-8800-AgiSbTr5hh@http.bugs.freedesktop.org/>
+References: <bug-92968-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1944277590=="
+Content-Type: multipart/mixed; boundary="===============1472293916=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93197-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92968-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1944277590==
-Content-Type: multipart/alternative; boundary="15688393110.aF0D0.25589"
+--===============1472293916==
+Content-Type: multipart/alternative; boundary="15688393091.8c8b916c8.25589"
 Content-Transfer-Encoding: 7bit
 
 
---15688393110.aF0D0.25589
-Date: Wed, 18 Sep 2019 20:41:51 +0000
+--15688393091.8c8b916c8.25589
+Date: Wed, 18 Sep 2019 20:41:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D93197
+https://bugs.freedesktop.org/show_bug.cgi?id=3D92968
 
 GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
+         Resolution|---                         |MOVED
 
---- Comment #3 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
+--- Comment #1 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,15 +51,15 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/109=
-2.
+1.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15688393110.aF0D0.25589
-Date: Wed, 18 Sep 2019 20:41:51 +0000
+--15688393091.8c8b916c8.25589
+Date: Wed, 18 Sep 2019 20:41:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,9 +76,8 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Warsow 2.0 crashes in nouveau_fence_trigger_wo=
-rk"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93197">bug 93197<=
+   title=3D"RESOLVED MOVED - OpenScad has lousy performance"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92968">bug 92968<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -90,33 +88,31 @@ rk"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>MOVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Status</td>
            <td>NEW
            </td>
            <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>MOVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Warsow 2.0 crashes in nouveau_fence_trigger_wo=
-rk"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93197#c3">Comment=
- # 3</a>
+   title=3D"RESOLVED MOVED - OpenScad has lousy performance"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92968#c1">Comment=
+ # 1</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Warsow 2.0 crashes in nouveau_fence_trigger_wo=
-rk"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93197">bug 93197<=
+   title=3D"RESOLVED MOVED - OpenScad has lousy performance"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92968">bug 92968<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
@@ -131,7 +127,7 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
-/issues/1092">https://gitlab.freedesktop.org/mesa/mesa/issues/1092</a>.</pr=
+/issues/1091">https://gitlab.freedesktop.org/mesa/mesa/issues/1091</a>.</pr=
 e>
         </div>
       </p>
@@ -141,15 +137,15 @@ e>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15688393110.aF0D0.25589--
+--15688393091.8c8b916c8.25589--
 
---===============1944277590==
+--===============1472293916==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -159,4 +155,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1944277590==--
+--===============1472293916==--
