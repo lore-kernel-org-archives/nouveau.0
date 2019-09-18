@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103351] Nouveau fails when booting with a screen
- connected to displayport since 13a86519202c5d119d83640d6f781f3181205d2c
-Date: Wed, 18 Sep 2019 20:45:54 +0000
-Message-ID: <bug-103351-8800-CgitwVulca@http.bugs.freedesktop.org/>
-References: <bug-103351-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 103357] Nouveau - GTX 1060 - Screen doesn't go on
+ again after power saving settings set blank screen
+Date: Wed, 18 Sep 2019 20:45:57 +0000
+Message-ID: <bug-103357-8800-29xnecEz7s@http.bugs.freedesktop.org/>
+References: <bug-103357-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1974501998=="
+Content-Type: multipart/mixed; boundary="===============1275592944=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-103357-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1974501998==
-Content-Type: multipart/alternative; boundary="15688395542.16A6A54d.25514"
+--===============1275592944==
+Content-Type: multipart/alternative; boundary="15688395561.D5c30a8.25514"
 Content-Transfer-Encoding: 7bit
 
 
---15688395542.16A6A54d.25514
-Date: Wed, 18 Sep 2019 20:45:54 +0000
+--15688395561.D5c30a8.25514
+Date: Wed, 18 Sep 2019 20:45:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103351
+https://bugs.freedesktop.org/show_bug.cgi?id=3D103357
 
 GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
 
@@ -43,7 +43,7 @@ GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org>
          Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
 
---- Comment #9 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
+--- Comment #2 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,15 +52,15 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/114=
-1.
+2.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15688395542.16A6A54d.25514
-Date: Wed, 18 Sep 2019 20:45:54 +0000
+--15688395561.D5c30a8.25514
+Date: Wed, 18 Sep 2019 20:45:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,10 +77,10 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Nouveau fails when booting with a screen conne=
-cted to displayport since 13a86519202c5d119d83640d6f781f3181205d2c"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103351">bug 10335=
-1</a>
+   title=3D"RESOLVED MOVED - Nouveau - GTX 1060 - Screen doesn't go on agai=
+n after power saving settings set blank screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103357">bug 10335=
+7</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -108,16 +108,16 @@ cted to displayport since 13a86519202c5d119d83640d6f781f3181205d2c"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Nouveau fails when booting with a screen conne=
-cted to displayport since 13a86519202c5d119d83640d6f781f3181205d2c"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103351#c9">Commen=
-t # 9</a>
+   title=3D"RESOLVED MOVED - Nouveau - GTX 1060 - Screen doesn't go on agai=
+n after power saving settings set blank screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103357#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Nouveau fails when booting with a screen conne=
-cted to displayport since 13a86519202c5d119d83640d6f781f3181205d2c"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103351">bug 10335=
-1</a>
+   title=3D"RESOLVED MOVED - Nouveau - GTX 1060 - Screen doesn't go on agai=
+n after power saving settings set blank screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103357">bug 10335=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
 -migration&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</=
@@ -131,7 +131,7 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
-/issues/1141">https://gitlab.freedesktop.org/mesa/mesa/issues/1141</a>.</pr=
+/issues/1142">https://gitlab.freedesktop.org/mesa/mesa/issues/1142</a>.</pr=
 e>
         </div>
       </p>
@@ -141,15 +141,15 @@ e>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15688395542.16A6A54d.25514--
+--15688395561.D5c30a8.25514--
 
---===============1974501998==
+--===============1275592944==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -159,4 +159,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1974501998==--
+--===============1275592944==--
