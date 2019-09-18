@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91986] Artifacts in models rendering with GeForce
- 6150 (NV4x chipsets)
-Date: Wed, 18 Sep 2019 20:41:04 +0000
-Message-ID: <bug-91986-8800-SmKii2Tw3B@http.bugs.freedesktop.org/>
-References: <bug-91986-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92438] Segfault in pushbuf_kref on nv50 when
+ rendering from multiple threads
+Date: Wed, 18 Sep 2019 20:41:15 +0000
+Message-ID: <bug-92438-8800-xfJQ4bKh3X@http.bugs.freedesktop.org/>
+References: <bug-92438-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0727673723=="
+Content-Type: multipart/mixed; boundary="===============1136461895=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91986-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,46 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0727673723==
-Content-Type: multipart/alternative; boundary="15688392630.37FfB3fE.25389"
+--===============1136461895==
+Content-Type: multipart/alternative; boundary="156883927412.1Fe04.25589"
 Content-Transfer-Encoding: 7bit
 
 
---15688392630.37FfB3fE.25389
-Date: Wed, 18 Sep 2019 20:41:03 +0000
+--156883927412.1Fe04.25589
+Date: Wed, 18 Sep 2019 20:41:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91986
+https://bugs.freedesktop.org/show_bug.cgi?id=3D92438
+Bug 92438 depends on bug 92077, which changed state.
 
-GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
+Bug 92077 Summary: nouveau graphics freeze when using KDE Plasma 5; PGR eng=
+ine fault
+https://bugs.freedesktop.org/show_bug.cgi?id=3D92077
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
-
---- Comment #7 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
--- GitLab Migration Automatic Message --
-
-This bug has been migrated to freedesktop.org's GitLab instance and has been
-closed from further activity.
-
-You can subscribe and participate further through the new bug through this =
-link
-to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/108=
-3.
+         Resolution|---                         |MOVED
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15688392630.37FfB3fE.25389
-Date: Wed, 18 Sep 2019 20:41:03 +0000
+--156883927412.1Fe04.25589
+Date: Wed, 18 Sep 2019 20:41:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,16 +63,20 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:gitlab-mi=
-gration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab-migratio=
-n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
-</span> changed
+    <body><a class=3D"bz_bug_link=20
+          bz_status_ASSIGNED "
+   title=3D"ASSIGNED - Segfault in pushbuf_kref on nv50 when rendering from=
+ multiple threads"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92438">Bug 92438<=
+/a>
+          depends on
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Artifacts in models rendering with GeForce 615=
-0 (NV4x chipsets)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91986">bug 91986<=
-/a>
+   title=3D"RESOLVED MOVED - nouveau graphics freeze when using KDE Plasma =
+5; PGR engine fault"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92077">bug 92077<=
+/a>,
+          which changed state.
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -90,50 +86,21 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>MOVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Status</td>
            <td>NEW
            </td>
            <td>RESOLVED
            </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>MOVED
+           </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Artifacts in models rendering with GeForce 615=
-0 (NV4x chipsets)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91986#c7">Comment=
- # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Artifacts in models rendering with GeForce 615=
-0 (NV4x chipsets)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91986">bug 91986<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
--migration&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</=
-span></a>
-</span></b>
-        <pre>-- GitLab Migration Automatic Message --
-
-This bug has been migrated to freedesktop.org's GitLab instance and has been
-closed from further activity.
-
-You can subscribe and participate further through the new bug through this =
-link
-to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
-/issues/1083">https://gitlab.freedesktop.org/mesa/mesa/issues/1083</a>.</pr=
-e>
-        </div>
       </p>
 
 
@@ -141,15 +108,15 @@ e>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15688392630.37FfB3fE.25389--
+--156883927412.1Fe04.25589--
 
---===============0727673723==
+--===============1136461895==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -159,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0727673723==--
+--===============1136461895==--
