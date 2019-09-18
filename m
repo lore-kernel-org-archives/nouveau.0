@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98656] [NVE6] Nouveau hangs after opening Chromium
- on GNOME 3
-Date: Wed, 18 Sep 2019 20:43:54 +0000
-Message-ID: <bug-98656-8800-4j3oyEkJbJ@http.bugs.freedesktop.org/>
-References: <bug-98656-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98709] [NV84] fifo intr 00c00000,
+ subchan mapping messed up
+Date: Wed, 18 Sep 2019 20:43:56 +0000
+Message-ID: <bug-98709-8800-idZLZ27lZH@http.bugs.freedesktop.org/>
+References: <bug-98709-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0146674142=="
+Content-Type: multipart/mixed; boundary="===============1175139778=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98656-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98709-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0146674142==
-Content-Type: multipart/alternative; boundary="15688394330.b4D6.25588"
+--===============1175139778==
+Content-Type: multipart/alternative; boundary="15688394350.30D1.25588"
 Content-Transfer-Encoding: 7bit
 
 
---15688394330.b4D6.25588
-Date: Wed, 18 Sep 2019 20:43:53 +0000
+--15688394350.30D1.25588
+Date: Wed, 18 Sep 2019 20:43:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98656
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98709
 
 GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
 
@@ -43,7 +43,7 @@ GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org>
          Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
 
---- Comment #1 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
+--- Comment #3 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,15 +52,15 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/111=
-7.
+8.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15688394330.b4D6.25588
-Date: Wed, 18 Sep 2019 20:43:53 +0000
+--15688394350.30D1.25588
+Date: Wed, 18 Sep 2019 20:43:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,9 +77,9 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVE6] Nouveau hangs after opening Chromium on=
- GNOME 3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98656">bug 98656<=
+   title=3D"RESOLVED MOVED - [NV84] fifo intr 00c00000, subchan mapping mes=
+sed up"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98709">bug 98709<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -108,15 +108,15 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVE6] Nouveau hangs after opening Chromium on=
- GNOME 3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98656#c1">Comment=
- # 1</a>
+   title=3D"RESOLVED MOVED - [NV84] fifo intr 00c00000, subchan mapping mes=
+sed up"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98709#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVE6] Nouveau hangs after opening Chromium on=
- GNOME 3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98656">bug 98656<=
+   title=3D"RESOLVED MOVED - [NV84] fifo intr 00c00000, subchan mapping mes=
+sed up"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98709">bug 98709<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
@@ -131,7 +131,7 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
-/issues/1117">https://gitlab.freedesktop.org/mesa/mesa/issues/1117</a>.</pr=
+/issues/1118">https://gitlab.freedesktop.org/mesa/mesa/issues/1118</a>.</pr=
 e>
         </div>
       </p>
@@ -141,15 +141,15 @@ e>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15688394330.b4D6.25588--
+--15688394350.30D1.25588--
 
---===============0146674142==
+--===============1175139778==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -159,4 +159,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0146674142==--
+--===============1175139778==--
