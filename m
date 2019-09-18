@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91632] Assert in nouveau_pushbuf_data
-Date: Wed, 18 Sep 2019 20:40:29 +0000
-Message-ID: <bug-91632-8800-k6QoB0jeMD@http.bugs.freedesktop.org/>
-References: <bug-91632-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91722] [NVE4] PGRAPH - grctx template channel unload
+ timeout, failed to construct context, init failed, -16
+Date: Wed, 18 Sep 2019 20:40:44 +0000
+Message-ID: <bug-91722-8800-z92wWl3lXa@http.bugs.freedesktop.org/>
+References: <bug-91722-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1702174652=="
+Content-Type: multipart/mixed; boundary="===============0209944626=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91632-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1702174652==
-Content-Type: multipart/alternative; boundary="15688392292.Cce4.25389"
+--===============0209944626==
+Content-Type: multipart/alternative; boundary="15688392431.0CeB99C.25389"
 Content-Transfer-Encoding: 7bit
 
 
---15688392292.Cce4.25389
-Date: Wed, 18 Sep 2019 20:40:29 +0000
+--15688392431.0CeB99C.25389
+Date: Wed, 18 Sep 2019 20:40:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91632
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91722
 
 GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
 
@@ -42,7 +43,7 @@ GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org>
              Status|NEW                         |RESOLVED
          Resolution|---                         |MOVED
 
---- Comment #13 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> -=
+--- Comment #22 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> -=
 --
 -- GitLab Migration Automatic Message --
 
@@ -52,15 +53,15 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/108=
-0.
+1.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15688392292.Cce4.25389
-Date: Wed, 18 Sep 2019 20:40:29 +0000
+--15688392431.0CeB99C.25389
+Date: Wed, 18 Sep 2019 20:40:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,8 +78,9 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Assert in nouveau_pushbuf_data"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632">bug 91632<=
+   title=3D"RESOLVED MOVED - [NVE4] PGRAPH - grctx template channel unload =
+timeout, failed to construct context, init failed, -16"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91722">bug 91722<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -107,13 +109,15 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Assert in nouveau_pushbuf_data"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632#c13">Commen=
-t # 13</a>
+   title=3D"RESOLVED MOVED - [NVE4] PGRAPH - grctx template channel unload =
+timeout, failed to construct context, init failed, -16"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91722#c22">Commen=
+t # 22</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Assert in nouveau_pushbuf_data"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91632">bug 91632<=
+   title=3D"RESOLVED MOVED - [NVE4] PGRAPH - grctx template channel unload =
+timeout, failed to construct context, init failed, -16"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91722">bug 91722<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
@@ -128,7 +132,7 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
-/issues/1080">https://gitlab.freedesktop.org/mesa/mesa/issues/1080</a>.</pr=
+/issues/1081">https://gitlab.freedesktop.org/mesa/mesa/issues/1081</a>.</pr=
 e>
         </div>
       </p>
@@ -144,9 +148,9 @@ e>
     </body>
 </html>=
 
---15688392292.Cce4.25389--
+--15688392431.0CeB99C.25389--
 
---===============1702174652==
+--===============0209944626==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -156,4 +160,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1702174652==--
+--===============0209944626==--
