@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 105014] Freeze every 5 seconds on any action. Long
- time bug
-Date: Wed, 18 Sep 2019 20:46:18 +0000
-Message-ID: <bug-105014-8800-b29IhQPELJ@http.bugs.freedesktop.org/>
-References: <bug-105014-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 105382] segfault in nouveau_scratch_data
+Date: Wed, 18 Sep 2019 20:46:26 +0000
+Message-ID: <bug-105382-8800-uvsvNrMckL@http.bugs.freedesktop.org/>
+References: <bug-105382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0518972624=="
+Content-Type: multipart/mixed; boundary="===============0703549673=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-105014-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-105382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +20,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0518972624==
-Content-Type: multipart/alternative; boundary="15688395770.B1ae.25514"
+--===============0703549673==
+Content-Type: multipart/alternative; boundary="15688395851.A6529cE.25514"
 Content-Transfer-Encoding: 7bit
 
 
---15688395770.B1ae.25514
-Date: Wed, 18 Sep 2019 20:46:17 +0000
+--15688395851.A6529cE.25514
+Date: Wed, 18 Sep 2019 20:46:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105014
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105382
 
 GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
 
@@ -43,7 +42,7 @@ GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org>
          Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
 
---- Comment #1 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
+--- Comment #2 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -51,16 +50,16 @@ closed from further activity.
 
 You can subscribe and participate further through the new bug through this =
 link
-to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/114=
-8.
+to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/115=
+1.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15688395770.B1ae.25514
-Date: Wed, 18 Sep 2019 20:46:17 +0000
+--15688395851.A6529cE.25514
+Date: Wed, 18 Sep 2019 20:46:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,10 +76,9 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Freeze every 5 seconds on any action. Long tim=
-e bug"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105014">bug 10501=
-4</a>
+   title=3D"RESOLVED MOVED - segfault in nouveau_scratch_data"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105382">bug 10538=
+2</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -108,16 +106,14 @@ e bug"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Freeze every 5 seconds on any action. Long tim=
-e bug"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105014#c1">Commen=
-t # 1</a>
+   title=3D"RESOLVED MOVED - segfault in nouveau_scratch_data"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105382#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Freeze every 5 seconds on any action. Long tim=
-e bug"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105014">bug 10501=
-4</a>
+   title=3D"RESOLVED MOVED - segfault in nouveau_scratch_data"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105382">bug 10538=
+2</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
 -migration&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</=
@@ -131,7 +127,7 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
-/issues/1148">https://gitlab.freedesktop.org/mesa/mesa/issues/1148</a>.</pr=
+/issues/1151">https://gitlab.freedesktop.org/mesa/mesa/issues/1151</a>.</pr=
 e>
         </div>
       </p>
@@ -147,9 +143,9 @@ e>
     </body>
 </html>=
 
---15688395770.B1ae.25514--
+--15688395851.A6529cE.25514--
 
---===============0518972624==
+--===============0703549673==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -159,4 +155,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0518972624==--
+--===============0703549673==--
