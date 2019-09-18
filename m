@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98609] Firefox right click corrupted with DRI3
-Date: Wed, 18 Sep 2019 20:43:36 +0000
-Message-ID: <bug-98609-8800-gSsa1OB6vd@http.bugs.freedesktop.org/>
-References: <bug-98609-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98630] Bad color and glitches on PPC64
+Date: Wed, 18 Sep 2019 20:43:52 +0000
+Message-ID: <bug-98630-8800-CfoJdMPJ0Z@http.bugs.freedesktop.org/>
+References: <bug-98630-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1400439644=="
+Content-Type: multipart/mixed; boundary="===============1343813218=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98609-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98630-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1400439644==
-Content-Type: multipart/alternative; boundary="15688394160.a9E4.25588"
+--===============1343813218==
+Content-Type: multipart/alternative; boundary="15688394321.a903A978.25588"
 Content-Transfer-Encoding: 7bit
 
 
---15688394160.a9E4.25588
-Date: Wed, 18 Sep 2019 20:43:36 +0000
+--15688394321.a903A978.25588
+Date: Wed, 18 Sep 2019 20:43:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98609
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98630
 
 GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
+         Resolution|---                         |MOVED
 
---- Comment #9 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
+--- Comment #21 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> -=
+--
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -51,15 +52,15 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/111=
-5.
+6.
 
 --=20
 You are receiving this mail because:
-You are the assignee for the bug.
-You are the QA Contact for the bug.=
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
 
---15688394160.a9E4.25588
-Date: Wed, 18 Sep 2019 20:43:36 +0000
+--15688394321.a903A978.25588
+Date: Wed, 18 Sep 2019 20:43:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,8 +77,8 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Firefox right click corrupted with DRI3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98609">bug 98609<=
+   title=3D"RESOLVED MOVED - Bad color and glitches on PPC64"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630">bug 98630<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -88,31 +89,31 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>MOVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Status</td>
            <td>NEW
            </td>
            <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>MOVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Firefox right click corrupted with DRI3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98609#c9">Comment=
- # 9</a>
+   title=3D"RESOLVED MOVED - Bad color and glitches on PPC64"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630#c21">Commen=
+t # 21</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Firefox right click corrupted with DRI3"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98609">bug 98609<=
+   title=3D"RESOLVED MOVED - Bad color and glitches on PPC64"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98630">bug 98630<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
@@ -127,7 +128,7 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
-/issues/1115">https://gitlab.freedesktop.org/mesa/mesa/issues/1115</a>.</pr=
+/issues/1116">https://gitlab.freedesktop.org/mesa/mesa/issues/1116</a>.</pr=
 e>
         </div>
       </p>
@@ -137,15 +138,15 @@ e>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the assignee for the bug.</li>
           <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15688394160.a9E4.25588--
+--15688394321.a903A978.25588--
 
---===============1400439644==
+--===============1343813218==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -155,4 +156,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1400439644==--
+--===============1343813218==--
