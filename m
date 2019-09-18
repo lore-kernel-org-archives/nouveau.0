@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 98457] [NVD9] GPU lockup after resume from
- hibernation with Nouveau driver and firmware-nonfree
-Date: Wed, 18 Sep 2019 20:43:14 +0000
-Message-ID: <bug-98457-8800-T25tq4Z5VO@http.bugs.freedesktop.org/>
-References: <bug-98457-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 98577] Graphical issues with the game SOMA
+Date: Wed, 18 Sep 2019 20:43:27 +0000
+Message-ID: <bug-98577-8800-BteVNzzHAp@http.bugs.freedesktop.org/>
+References: <bug-98577-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2144871070=="
+Content-Type: multipart/mixed; boundary="===============0570776003=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-98457-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-98577-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2144871070==
-Content-Type: multipart/alternative; boundary="15688393930.dAfE7FFF.25589"
+--===============0570776003==
+Content-Type: multipart/alternative; boundary="15688394060.f547FD3A.25589"
 Content-Transfer-Encoding: 7bit
 
 
---15688393930.dAfE7FFF.25589
-Date: Wed, 18 Sep 2019 20:43:13 +0000
+--15688394060.f547FD3A.25589
+Date: Wed, 18 Sep 2019 20:43:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D98457
+https://bugs.freedesktop.org/show_bug.cgi?id=3D98577
 
 GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
          Resolution|---                         |MOVED
-             Status|NEEDINFO                    |RESOLVED
+             Status|NEW                         |RESOLVED
 
---- Comment #7 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
+--- Comment #2 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,15 +51,15 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/111=
-3.
+4.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15688393930.dAfE7FFF.25589
-Date: Wed, 18 Sep 2019 20:43:13 +0000
+--15688394060.f547FD3A.25589
+Date: Wed, 18 Sep 2019 20:43:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,9 +76,8 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVD9] GPU lockup after resume from hibernatio=
-n with Nouveau driver and firmware-nonfree"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457">bug 98457<=
+   title=3D"RESOLVED MOVED - Graphical issues with the game SOMA"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98577">bug 98577<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -99,7 +97,7 @@ n with Nouveau driver and firmware-nonfree"
 
          <tr>
            <td style=3D"text-align:right;">Status</td>
-           <td>NEEDINFO
+           <td>NEW
            </td>
            <td>RESOLVED
            </td>
@@ -108,15 +106,13 @@ n with Nouveau driver and firmware-nonfree"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVD9] GPU lockup after resume from hibernatio=
-n with Nouveau driver and firmware-nonfree"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457#c7">Comment=
- # 7</a>
+   title=3D"RESOLVED MOVED - Graphical issues with the game SOMA"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98577#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NVD9] GPU lockup after resume from hibernatio=
-n with Nouveau driver and firmware-nonfree"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98457">bug 98457<=
+   title=3D"RESOLVED MOVED - Graphical issues with the game SOMA"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D98577">bug 98577<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
@@ -131,7 +127,7 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
-/issues/1113">https://gitlab.freedesktop.org/mesa/mesa/issues/1113</a>.</pr=
+/issues/1114">https://gitlab.freedesktop.org/mesa/mesa/issues/1114</a>.</pr=
 e>
         </div>
       </p>
@@ -141,15 +137,15 @@ e>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15688393930.dAfE7FFF.25589--
+--15688394060.f547FD3A.25589--
 
---===============2144871070==
+--===============0570776003==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -159,4 +155,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============2144871070==--
+--===============0570776003==--
