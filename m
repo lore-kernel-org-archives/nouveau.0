@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 99396] Crash in nouveau_dri.so when switching apps
- with alt-tab in Gnome
-Date: Wed, 18 Sep 2019 20:44:34 +0000
-Message-ID: <bug-99396-8800-OlDoXHYk82@http.bugs.freedesktop.org/>
-References: <bug-99396-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 99400] [nouveau] garbled rendering with glamor on G71
+Date: Wed, 18 Sep 2019 20:44:43 +0000
+Message-ID: <bug-99400-8800-RwSbYktzOP@http.bugs.freedesktop.org/>
+References: <bug-99400-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0146503711=="
+Content-Type: multipart/mixed; boundary="===============1368915101=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-99396-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-99400-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0146503711==
-Content-Type: multipart/alternative; boundary="15688394743.58fe.25588"
+--===============1368915101==
+Content-Type: multipart/alternative; boundary="15688394821.cB7deb.25588"
 Content-Transfer-Encoding: 7bit
 
 
---15688394743.58fe.25588
-Date: Wed, 18 Sep 2019 20:44:34 +0000
+--15688394821.cB7deb.25588
+Date: Wed, 18 Sep 2019 20:44:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D99396
+https://bugs.freedesktop.org/show_bug.cgi?id=3D99400
 
 GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
+         Resolution|---                         |MOVED
 
---- Comment #11 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> -=
+--- Comment #31 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> -=
 --
 -- GitLab Migration Automatic Message --
 
@@ -53,15 +52,15 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/112=
-3.
+4.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15688394743.58fe.25588
-Date: Wed, 18 Sep 2019 20:44:34 +0000
+--15688394821.cB7deb.25588
+Date: Wed, 18 Sep 2019 20:44:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,9 +77,8 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Crash in nouveau_dri.so when switching apps wi=
-th alt-tab in Gnome"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396">bug 99396<=
+   title=3D"RESOLVED MOVED - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -91,33 +89,31 @@ th alt-tab in Gnome"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>MOVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Status</td>
            <td>NEW
            </td>
            <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>MOVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Crash in nouveau_dri.so when switching apps wi=
-th alt-tab in Gnome"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396#c11">Commen=
-t # 11</a>
+   title=3D"RESOLVED MOVED - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400#c31">Commen=
+t # 31</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Crash in nouveau_dri.so when switching apps wi=
-th alt-tab in Gnome"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99396">bug 99396<=
+   title=3D"RESOLVED MOVED - [nouveau] garbled rendering with glamor on G71"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D99400">bug 99400<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
@@ -132,7 +128,7 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
-/issues/1123">https://gitlab.freedesktop.org/mesa/mesa/issues/1123</a>.</pr=
+/issues/1124">https://gitlab.freedesktop.org/mesa/mesa/issues/1124</a>.</pr=
 e>
         </div>
       </p>
@@ -148,9 +144,9 @@ e>
     </body>
 </html>=
 
---15688394743.58fe.25588--
+--15688394821.cB7deb.25588--
 
---===============0146503711==
+--===============1368915101==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -160,4 +156,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0146503711==--
+--===============1368915101==--
