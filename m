@@ -1,154 +1,160 @@
-From: <mikita.lipski-5C7GfCeVMHo@public.gmane.org>
-Subject: [PATCH 04/15] drm/dp_mst: Add PBN calculation for DSC modes
-Date: Wed, 18 Sep 2019 16:26:41 -0400
-Message-ID: <5f2d4764a4fee659d69e625618eded34a7dbe312.1568833906.git.mikita.lipski@amd.com>
-References: <cover.1568833906.git.mikita.lipski@amd.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 37768] [NVA8] UT2003: Splash-screen is transparent
+ with gnome-shell enabled
+Date: Wed, 18 Sep 2019 20:38:03 +0000
+Message-ID: <bug-37768-8800-39XcpcumdH@http.bugs.freedesktop.org/>
+References: <bug-37768-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <cover.1568833906.git.mikita.lipski-5C7GfCeVMHo@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/amd-gfx>
-List-Post: <mailto:amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/amd-gfx>,
- <mailto:amd-gfx-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "amd-gfx" <amd-gfx-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, David Francis <David.Francis-5C7GfCeVMHo@public.gmane.org>, Mikita Lipski <mikita.lipski-5C7GfCeVMHo@public.gmane.org>, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============0665651851=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-37768-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogRGF2aWQgRnJhbmNpcyA8RGF2aWQuRnJhbmNpc0BhbWQuY29tPgoKV2l0aCBEU0MsIGJw
-cCBjYW4gYmUgZnJhY3Rpb25hbCBpbiBtdWx0aXBsZXMgb2YgMS8xNi4KCkNoYW5nZSBkcm1fZHBf
-Y2FsY19wYm5fbW9kZSB0byByZWZsZWN0IHRoaXMsIGFkZGluZyBhIG5ldwpwYXJhbWV0ZXIgYm9v
-bCBkc2MuIFdoZW4gdGhpcyBwYXJhbWV0ZXIgaXMgdHJ1ZSwgdHJlYXQgdGhlCmJwcCBwYXJhbWV0
-ZXIgYXMgaGF2aW5nIHVuaXRzIG5vdCBvZiBiaXRzIHBlciBwaXhlbCwgYnV0CjEvMTYgb2YgYSBi
-aXQgcGVyIHBpeGVsCgp2MjogRG9uJ3QgYWRkIHNlcGFyYXRlIGZ1bmN0aW9uIGZvciB0aGlzCgpD
-aGFuZ2UtSWQ6IEkzM2VmNmY1M2M0NGRjMzJhYTg2OWFhOTc0MWJhMDMzOWFhZjVlNTRmCkNjOiBh
-bWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpDYzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKQ2M6IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKUmV2aWV3ZWQtYnk6IE1h
-bmFzaSBOYXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBpbnRlbC5jb20+ClJldmlld2VkLWJ5OiBMeXVk
-ZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgpSZXZpZXdlZC1ieTogSGFycnkgV2VudGxhbmQgPGhh
-cnJ5LndlbnRsYW5kQGFtZC5jb20+ClNpZ25lZC1vZmYtYnk6IERhdmlkIEZyYW5jaXMgPERhdmlk
-LkZyYW5jaXNAYW1kLmNvbT4KU2lnbmVkLW9mZi1ieTogTWlraXRhIExpcHNraSA8bWlraXRhLmxp
-cHNraUBhbWQuY29tPgotLS0KIC4uLi9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRn
-cHVfZG0uYyAgICB8ICA4ICsrKysrKystCiAuLi4vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdw
-dV9kbV9oZWxwZXJzLmMgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL2RybV9kcF9tc3RfdG9w
-b2xvZ3kuYyAgICAgICAgICAgIHwgMTYgKysrKysrKysrKysrLS0tLQogZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaW50ZWxfZHBfbXN0LmMgICAgICAgICAgICAgIHwgIDMgKystCiBkcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMgICAgICAgICAgfCAgMyArKy0KIGRyaXZlcnMvZ3B1
-L2RybS9yYWRlb24vcmFkZW9uX2RwX21zdC5jICAgICAgICAgICB8ICAyICstCiBpbmNsdWRlL2Ry
-bS9kcm1fZHBfbXN0X2hlbHBlci5oICAgICAgICAgICAgICAgICAgfCAgMyArLS0KIDcgZmlsZXMg
-Y2hhbmdlZCwgMjYgaW5zZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNwbGF5L2FtZGdwdV9kbS9hbWRncHVfZG0uYyBiL2RyaXZl
-cnMvZ3B1L2RybS9hbWQvZGlzcGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmMKaW5kZXggMzljMjM5
-YTA4NjMzLi4xMTMwMjk4YzY5MzAgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlz
-cGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9kaXNw
-bGF5L2FtZGdwdV9kbS9hbWRncHVfZG0uYwpAQCAtNDQ4Miw3ICs0NDgyLDEzIEBAIHN0YXRpYyBp
-bnQgZG1fZW5jb2Rlcl9oZWxwZXJfYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1fZW5jb2RlciAqZW5j
-b2RlciwKIAogCWJwcCAqPSAzOwogCWNsb2NrID0gYWRqdXN0ZWRfbW9kZS0+Y2xvY2s7Ci0JcGJu
-ID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoY2xvY2ssIGJwcCk7CisjaWZkZWYgQ09ORklHX0RSTV9B
-TURfRENfRFNDX1NVUFBPUlQKKwlpZiAoYWNvbm5lY3Rvci0+ZGNfc2luayAmJgorCSAgICBhY29u
-bmVjdG9yLT5kY19zaW5rLT5zaW5rX2RzY19jYXBzLmRzY19kZWNfY2Fwcy5pc19kc2Nfc3VwcG9y
-dGVkKQorCQlwYm4gPSBkcm1fZHBfY2FsY19wYm5fbW9kZShjbG9jaywgYnBwLCB0cnVlKTsKKwll
-bHNlCisjZW5kaWYKKwkJcGJuID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoY2xvY2ssIGJwcCwgZmFs
-c2UpOwogCXNsb3RzID0gZHJtX2RwX2F0b21pY19maW5kX3ZjcGlfc2xvdHMoc3RhdGUsCiAJCQkJ
-CQltc3RfbWdyLAogCQkJCQkJbXN0X3BvcnQsCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbV9oZWxwZXJzLmMgYi9kcml2ZXJzL2dwdS9k
-cm0vYW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbV9oZWxwZXJzLmMKaW5kZXggNTU1YWY0
-YThjMGVmLi5iMTUxYTVhNTFhOTQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvZGlz
-cGxheS9hbWRncHVfZG0vYW1kZ3B1X2RtX2hlbHBlcnMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
-YW1kL2Rpc3BsYXkvYW1kZ3B1X2RtL2FtZGdwdV9kbV9oZWxwZXJzLmMKQEAgLTIzNSw3ICsyMzUs
-NyBAQCBib29sIGRtX2hlbHBlcnNfZHBfbXN0X3dyaXRlX3BheWxvYWRfYWxsb2NhdGlvbl90YWJs
-ZSgKIAogCQkvKiBUT0RPIG5lZWQgdG8ga25vdyBsaW5rIHJhdGUgKi8KIAotCQlwYm4gPSBkcm1f
-ZHBfY2FsY19wYm5fbW9kZShjbG9jaywgYnBwKTsKKwkJcGJuID0gZHJtX2RwX2NhbGNfcGJuX21v
-ZGUoY2xvY2ssIGJwcCwgZmFsc2UpOwogCiAJCXNsb3RzID0gZHJtX2RwX2ZpbmRfdmNwaV9zbG90
-cyhtc3RfbWdyLCBwYm4pOwogCQlyZXQgPSBkcm1fZHBfbXN0X2FsbG9jYXRlX3ZjcGkobXN0X21n
-ciwgbXN0X3BvcnQsIHBibiwgc2xvdHMpOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2Ry
-bV9kcF9tc3RfdG9wb2xvZ3kuYyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5
-LmMKaW5kZXggMzk4ZTczMTRlYThiLi42NTkwOTkzNjZmOGIgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9k
-cF9tc3RfdG9wb2xvZ3kuYwpAQCAtMzUzMSwxMCArMzUzMSwxMSBAQCBFWFBPUlRfU1lNQk9MKGRy
-bV9kcF9jaGVja19hY3Rfc3RhdHVzKTsKICAqIGRybV9kcF9jYWxjX3Bibl9tb2RlKCkgLSBDYWxj
-dWxhdGUgdGhlIFBCTiBmb3IgYSBtb2RlLgogICogQGNsb2NrOiBkb3QgY2xvY2sgZm9yIHRoZSBt
-b2RlCiAgKiBAYnBwOiBicHAgZm9yIHRoZSBtb2RlLgorICogQGRzYzogRFNDIG1vZGUuIElmIHRy
-dWUsIGJwcCBoYXMgdW5pdHMgb2YgMS8xNiBvZiBhIGJpdCBwZXIgcGl4ZWwKICAqCiAgKiBUaGlz
-IHVzZXMgdGhlIGZvcm11bGEgaW4gdGhlIHNwZWMgdG8gY2FsY3VsYXRlIHRoZSBQQk4gdmFsdWUg
-Zm9yIGEgbW9kZS4KICAqLwotaW50IGRybV9kcF9jYWxjX3Bibl9tb2RlKGludCBjbG9jaywgaW50
-IGJwcCkKK2ludCBkcm1fZHBfY2FsY19wYm5fbW9kZShpbnQgY2xvY2ssIGludCBicHAsIGJvb2wg
-ZHNjKQogewogCXU2NCBrYnBzOwogCXM2NCBwZWFrX2ticHM7CkBAIC0zNTUyLDExICszNTUzLDE4
-IEBAIGludCBkcm1fZHBfY2FsY19wYm5fbW9kZShpbnQgY2xvY2ssIGludCBicHApCiAJICogcGVh
-a19rYnBzICo9ICgxMDA2LzEwMDApCiAJICogcGVha19rYnBzICo9ICg2NC81NCkKIAkgKiBwZWFr
-X2ticHMgKj0gOCAgICBjb252ZXJ0IHRvIGJ5dGVzCisJICoKKwkgKiBJZiB0aGUgYnBwIGlzIGlu
-IHVuaXRzIG9mIDEvMTYsIGZ1cnRoZXIgZGl2aWRlIGJ5IDE2LiBQdXQgdGhpcworCSAqIGZhY3Rv
-ciBpbiB0aGUgbnVtZXJhdG9yIHJhdGhlciB0aGFuIHRoZSBkZW5vbWluYXRvciB0byBhdm9pZAor
-CSAqIGludGVnZXIgb3ZlcmZsb3cKIAkgKi8KIAogCW51bWVyYXRvciA9IDY0ICogMTAwNjsKIAlk
-ZW5vbWluYXRvciA9IDU0ICogOCAqIDEwMDAgKiAxMDAwOwogCisJaWYgKGRzYykKKwkJbnVtZXJh
-dG9yIC89IDE2OworCiAJa2JwcyAqPSBudW1lcmF0b3I7CiAJcGVha19rYnBzID0gZHJtX2ZpeHBf
-ZnJvbV9mcmFjdGlvbihrYnBzLCBkZW5vbWluYXRvcik7CiAKQEAgLTM1NjcsMTkgKzM1NzUsMTkg
-QEAgRVhQT1JUX1NZTUJPTChkcm1fZHBfY2FsY19wYm5fbW9kZSk7CiBzdGF0aWMgaW50IHRlc3Rf
-Y2FsY19wYm5fbW9kZSh2b2lkKQogewogCWludCByZXQ7Ci0JcmV0ID0gZHJtX2RwX2NhbGNfcGJu
-X21vZGUoMTU0MDAwLCAzMCk7CisJcmV0ID0gZHJtX2RwX2NhbGNfcGJuX21vZGUoMTU0MDAwLCAz
-MCwgZmFsc2UpOwogCWlmIChyZXQgIT0gNjg5KSB7CiAJCURSTV9FUlJPUigiUEJOIGNhbGN1bGF0
-aW9uIHRlc3QgZmFpbGVkIC0gY2xvY2sgJWQsIGJwcCAlZCwgZXhwZWN0ZWQgUEJOICVkLCBhY3R1
-YWwgUEJOICVkLlxuIiwKIAkJCQkxNTQwMDAsIDMwLCA2ODksIHJldCk7CiAJCXJldHVybiAtRUlO
-VkFMOwogCX0KLQlyZXQgPSBkcm1fZHBfY2FsY19wYm5fbW9kZSgyMzQwMDAsIDMwKTsKKwlyZXQg
-PSBkcm1fZHBfY2FsY19wYm5fbW9kZSgyMzQwMDAsIDMwLCBmYWxzZSk7CiAJaWYgKHJldCAhPSAx
-MDQ3KSB7CiAJCURSTV9FUlJPUigiUEJOIGNhbGN1bGF0aW9uIHRlc3QgZmFpbGVkIC0gY2xvY2sg
-JWQsIGJwcCAlZCwgZXhwZWN0ZWQgUEJOICVkLCBhY3R1YWwgUEJOICVkLlxuIiwKIAkJCQkyMzQw
-MDAsIDMwLCAxMDQ3LCByZXQpOwogCQlyZXR1cm4gLUVJTlZBTDsKIAl9Ci0JcmV0ID0gZHJtX2Rw
-X2NhbGNfcGJuX21vZGUoMjk3MDAwLCAyNCk7CisJcmV0ID0gZHJtX2RwX2NhbGNfcGJuX21vZGUo
-Mjk3MDAwLCAyNCwgZmFsc2UpOwogCWlmIChyZXQgIT0gMTA2MykgewogCQlEUk1fRVJST1IoIlBC
-TiBjYWxjdWxhdGlvbiB0ZXN0IGZhaWxlZCAtIGNsb2NrICVkLCBicHAgJWQsIGV4cGVjdGVkIFBC
-TiAlZCwgYWN0dWFsIFBCTiAlZC5cbiIsCiAJCQkJMjk3MDAwLCAyNCwgMTA2MywgcmV0KTsKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21zdC5jIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaW50ZWxfZHBfbXN0LmMKaW5kZXggODgzOWVhZWE4MzcxLi4yYTY5MmMyMTQx
-YmYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21zdC5jCisrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2RwX21zdC5jCkBAIC01OCw3ICs1OCw4IEBAIHN0
-YXRpYyBpbnQgaW50ZWxfZHBfbXN0X2NvbXB1dGVfbGlua19jb25maWcoc3RydWN0IGludGVsX2Vu
-Y29kZXIgKmVuY29kZXIsCiAJCWNydGNfc3RhdGUtPnBpcGVfYnBwID0gYnBwOwogCiAJCWNydGNf
-c3RhdGUtPnBibiA9IGRybV9kcF9jYWxjX3Bibl9tb2RlKGFkanVzdGVkX21vZGUtPmNydGNfY2xv
-Y2ssCi0JCQkJCQkgICAgICAgY3J0Y19zdGF0ZS0+cGlwZV9icHApOworCQkJCQkJICAgICAgIGNy
-dGNfc3RhdGUtPnBpcGVfYnBwLAorCQkJCQkJICAgICAgIGZhbHNlKTsKIAogCQlzbG90cyA9IGRy
-bV9kcF9hdG9taWNfZmluZF92Y3BpX3Nsb3RzKHN0YXRlLCAmaW50ZWxfZHAtPm1zdF9tZ3IsCiAJ
-CQkJCQkgICAgICBwb3J0LCBjcnRjX3N0YXRlLT5wYm4pOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-ZGlzcG52NTAvZGlzcC5jCmluZGV4IDRiMTY1MGY1MTk1NS4uZWM4YmI0OTFlNTc2IDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9kaXNwLmMKKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5jCkBAIC03NzMsNyArNzczLDggQEAgbnY1
-MF9tc3RvX2F0b21pY19jaGVjayhzdHJ1Y3QgZHJtX2VuY29kZXIgKmVuY29kZXIsCiAJaWYgKCFz
-dGF0ZS0+ZHVwbGljYXRlZCkKIAkJYXN5aC0+ZHAucGJuID0KIAkJCWRybV9kcF9jYWxjX3Bibl9t
-b2RlKGNydGNfc3RhdGUtPmFkanVzdGVkX21vZGUuY2xvY2ssCi0JCQkJCSAgICAgY29ubmVjdG9y
-LT5kaXNwbGF5X2luZm8uYnBjICogMyk7CisJCQkJCSAgICAgY29ubmVjdG9yLT5kaXNwbGF5X2lu
-Zm8uYnBjICogMywKKwkJCQkJICAgICBmYWxzZSk7CiAKIAlpZiAoZHJtX2F0b21pY19jcnRjX25l
-ZWRzX21vZGVzZXQoY3J0Y19zdGF0ZSkpIHsKIAkJc2xvdHMgPSBkcm1fZHBfYXRvbWljX2ZpbmRf
-dmNwaV9zbG90cyhzdGF0ZSwgJm1zdG0tPm1nciwKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9yYWRlb24vcmFkZW9uX2RwX21zdC5jIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25f
-ZHBfbXN0LmMKaW5kZXggOGQ4NTU0MGJiYjQzLi4zODRkMGM5MzczYzQgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2RwX21zdC5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9yYWRlb24vcmFkZW9uX2RwX21zdC5jCkBAIC01MTMsNyArNTEzLDcgQEAgc3RhdGljIGJvb2wg
-cmFkZW9uX21zdF9tb2RlX2ZpeHVwKHN0cnVjdCBkcm1fZW5jb2RlciAqZW5jb2RlciwKIAogCW1z
-dF9lbmMgPSByYWRlb25fZW5jb2Rlci0+ZW5jX3ByaXY7CiAKLQltc3RfZW5jLT5wYm4gPSBkcm1f
-ZHBfY2FsY19wYm5fbW9kZShhZGp1c3RlZF9tb2RlLT5jbG9jaywgYnBwKTsKKwltc3RfZW5jLT5w
-Ym4gPSBkcm1fZHBfY2FsY19wYm5fbW9kZShhZGp1c3RlZF9tb2RlLT5jbG9jaywgYnBwLCBmYWxz
-ZSk7CiAKIAltc3RfZW5jLT5wcmltYXJ5LT5hY3RpdmVfZGV2aWNlID0gbXN0X2VuYy0+cHJpbWFy
-eS0+ZGV2aWNlcyAmIG1zdF9lbmMtPmNvbm5lY3Rvci0+ZGV2aWNlczsKIAlEUk1fREVCVUdfS01T
-KCJzZXR0aW5nIGFjdGl2ZSBkZXZpY2UgdG8gJTA4eCBmcm9tICUwOHggJTA4eCBmb3IgZW5jb2Rl
-ciAlZFxuIiwKZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2RybV9kcF9tc3RfaGVscGVyLmggYi9p
-bmNsdWRlL2RybS9kcm1fZHBfbXN0X2hlbHBlci5oCmluZGV4IDJiYTYyNTNlYTZkMy4uOTExNmIy
-Yzk1MjM5IDEwMDY0NAotLS0gYS9pbmNsdWRlL2RybS9kcm1fZHBfbXN0X2hlbHBlci5oCisrKyBi
-L2luY2x1ZGUvZHJtL2RybV9kcF9tc3RfaGVscGVyLmgKQEAgLTYxMCw4ICs2MTAsNyBAQCBib29s
-IGRybV9kcF9tc3RfcG9ydF9oYXNfYXVkaW8oc3RydWN0IGRybV9kcF9tc3RfdG9wb2xvZ3lfbWdy
-ICptZ3IsCiBzdHJ1Y3QgZWRpZCAqZHJtX2RwX21zdF9nZXRfZWRpZChzdHJ1Y3QgZHJtX2Nvbm5l
-Y3RvciAqY29ubmVjdG9yLCBzdHJ1Y3QgZHJtX2RwX21zdF90b3BvbG9neV9tZ3IgKm1nciwgc3Ry
-dWN0IGRybV9kcF9tc3RfcG9ydCAqcG9ydCk7CiAKIAotaW50IGRybV9kcF9jYWxjX3Bibl9tb2Rl
-KGludCBjbG9jaywgaW50IGJwcCk7Ci0KK2ludCBkcm1fZHBfY2FsY19wYm5fbW9kZShpbnQgY2xv
-Y2ssIGludCBicHAsIGJvb2wgZHNjKTsKIAogYm9vbCBkcm1fZHBfbXN0X2FsbG9jYXRlX3ZjcGko
-c3RydWN0IGRybV9kcF9tc3RfdG9wb2xvZ3lfbWdyICptZ3IsCiAJCQkgICAgICBzdHJ1Y3QgZHJt
-X2RwX21zdF9wb3J0ICpwb3J0LCBpbnQgcGJuLCBpbnQgc2xvdHMpOwotLSAKMi4xNy4xCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwphbWQtZ2Z4IG1haWxp
-bmcgbGlzdAphbWQtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2FtZC1nZng=
+
+--===============0665651851==
+Content-Type: multipart/alternative; boundary="15688390831.627F.24927"
+Content-Transfer-Encoding: 7bit
+
+
+--15688390831.627F.24927
+Date: Wed, 18 Sep 2019 20:38:03 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D37768
+
+GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |MOVED
+
+--- Comment #5 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
+-- GitLab Migration Automatic Message --
+
+This bug has been migrated to freedesktop.org's GitLab instance and has been
+closed from further activity.
+
+You can subscribe and participate further through the new bug through this =
+link
+to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/104=
+8.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15688390831.627F.24927
+Date: Wed, 18 Sep 2019 20:38:03 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:gitlab-mi=
+gration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab-migratio=
+n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED MOVED - [NVA8] UT2003: Splash-screen is transparent wi=
+th gnome-shell enabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D37768">bug 37768<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>MOVED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED MOVED - [NVA8] UT2003: Splash-screen is transparent wi=
+th gnome-shell enabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D37768#c5">Comment=
+ # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED MOVED - [NVA8] UT2003: Splash-screen is transparent wi=
+th gnome-shell enabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D37768">bug 37768<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
+-migration&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</=
+span></a>
+</span></b>
+        <pre>-- GitLab Migration Automatic Message --
+
+This bug has been migrated to freedesktop.org's GitLab instance and has been
+closed from further activity.
+
+You can subscribe and participate further through the new bug through this =
+link
+to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
+/issues/1048">https://gitlab.freedesktop.org/mesa/mesa/issues/1048</a>.</pr=
+e>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15688390831.627F.24927--
+
+--===============0665651851==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0665651851==--
