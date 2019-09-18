@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110955] Mesa 18.2.8 implementation error: Invalid
- GLSL version in shading_language_version()
-Date: Wed, 18 Sep 2019 20:48:02 +0000
-Message-ID: <bug-110955-8800-pqbmLTcidt@http.bugs.freedesktop.org/>
-References: <bug-110955-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 110679] va-api scaling with nv50-class cards
+ incomplete?
+Date: Wed, 18 Sep 2019 20:47:57 +0000
+Message-ID: <bug-110679-8800-JmTbiTNy5U@http.bugs.freedesktop.org/>
+References: <bug-110679-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1473057190=="
+Content-Type: multipart/mixed; boundary="===============1895181262=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110955-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-110679-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1473057190==
-Content-Type: multipart/alternative; boundary="15688396821.C7DE1CF43.25514"
+--===============1895181262==
+Content-Type: multipart/alternative; boundary="15688396760.76Dad8dB.25514"
 Content-Transfer-Encoding: 7bit
 
 
---15688396821.C7DE1CF43.25514
-Date: Wed, 18 Sep 2019 20:48:02 +0000
+--15688396760.76Dad8dB.25514
+Date: Wed, 18 Sep 2019 20:47:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110955
+https://bugs.freedesktop.org/show_bug.cgi?id=3D110679
 
 GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
          Resolution|---                         |MOVED
+             Status|NEW                         |RESOLVED
 
---- Comment #12 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> -=
---
+--- Comment #6 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,16 +51,16 @@ closed from further activity.
 
 You can subscribe and participate further through the new bug through this =
 link
-to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/118=
-0.
+to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/117=
+9.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15688396821.C7DE1CF43.25514
-Date: Wed, 18 Sep 2019 20:48:02 +0000
+--15688396760.76Dad8dB.25514
+Date: Wed, 18 Sep 2019 20:47:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,10 +77,10 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Mesa 18.2.8 implementation error: Invalid GLSL=
- version in shading_language_version()"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110955">bug 11095=
-5</a>
+   title=3D"RESOLVED MOVED - va-api scaling with nv50-class cards incomplet=
+e?"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110679">bug 11067=
+9</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -91,34 +90,34 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Resolution</td>
            <td>---
            </td>
            <td>MOVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Mesa 18.2.8 implementation error: Invalid GLSL=
- version in shading_language_version()"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110955#c12">Comme=
-nt # 12</a>
+   title=3D"RESOLVED MOVED - va-api scaling with nv50-class cards incomplet=
+e?"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110679#c6">Commen=
+t # 6</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Mesa 18.2.8 implementation error: Invalid GLSL=
- version in shading_language_version()"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110955">bug 11095=
-5</a>
+   title=3D"RESOLVED MOVED - va-api scaling with nv50-class cards incomplet=
+e?"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110679">bug 11067=
+9</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
 -migration&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</=
@@ -132,7 +131,7 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
-/issues/1180">https://gitlab.freedesktop.org/mesa/mesa/issues/1180</a>.</pr=
+/issues/1179">https://gitlab.freedesktop.org/mesa/mesa/issues/1179</a>.</pr=
 e>
         </div>
       </p>
@@ -142,15 +141,15 @@ e>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15688396821.C7DE1CF43.25514--
+--15688396760.76Dad8dB.25514--
 
---===============1473057190==
+--===============1895181262==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -160,4 +159,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1473057190==--
+--===============1895181262==--
