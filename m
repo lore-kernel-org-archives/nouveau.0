@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 107447] regression in thermal management of Quadro
- FX 1500
-Date: Wed, 18 Sep 2019 20:47:00 +0000
-Message-ID: <bug-107447-8800-zzK6hQKkA6@http.bugs.freedesktop.org/>
-References: <bug-107447-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 107501] System hangs on attempt to login to Plasma
+ (Wayland)
+Date: Wed, 18 Sep 2019 20:47:02 +0000
+Message-ID: <bug-107501-8800-6dqXjvV4ZL@http.bugs.freedesktop.org/>
+References: <bug-107501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1993308413=="
+Content-Type: multipart/mixed; boundary="===============1030107030=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-107447-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-107501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1993308413==
-Content-Type: multipart/alternative; boundary="15688396202.5E5eCdB7.28023"
+--===============1030107030==
+Content-Type: multipart/alternative; boundary="15688396221.8bB3f05.28023"
 Content-Transfer-Encoding: 7bit
 
 
---15688396202.5E5eCdB7.28023
-Date: Wed, 18 Sep 2019 20:47:00 +0000
+--15688396221.8bB3f05.28023
+Date: Wed, 18 Sep 2019 20:47:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D107447
+https://bugs.freedesktop.org/show_bug.cgi?id=3D107501
 
 GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
+         Resolution|---                         |MOVED
 
---- Comment #7 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
+--- Comment #1 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,15 +52,15 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/116=
-1.
+2.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15688396202.5E5eCdB7.28023
-Date: Wed, 18 Sep 2019 20:47:00 +0000
+--15688396221.8bB3f05.28023
+Date: Wed, 18 Sep 2019 20:47:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,10 +77,10 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - regression in thermal management of Quadro FX =
-1500"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107447">bug 10744=
-7</a>
+   title=3D"RESOLVED MOVED - System hangs on attempt to login to Plasma (Wa=
+yland)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107501">bug 10750=
+1</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -90,34 +90,34 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>MOVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Status</td>
            <td>NEW
            </td>
            <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>MOVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - regression in thermal management of Quadro FX =
-1500"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107447#c7">Commen=
-t # 7</a>
+   title=3D"RESOLVED MOVED - System hangs on attempt to login to Plasma (Wa=
+yland)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107501#c1">Commen=
+t # 1</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - regression in thermal management of Quadro FX =
-1500"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107447">bug 10744=
-7</a>
+   title=3D"RESOLVED MOVED - System hangs on attempt to login to Plasma (Wa=
+yland)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D107501">bug 10750=
+1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
 -migration&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</=
@@ -131,7 +131,7 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
-/issues/1161">https://gitlab.freedesktop.org/mesa/mesa/issues/1161</a>.</pr=
+/issues/1162">https://gitlab.freedesktop.org/mesa/mesa/issues/1162</a>.</pr=
 e>
         </div>
       </p>
@@ -147,9 +147,9 @@ e>
     </body>
 </html>=
 
---15688396202.5E5eCdB7.28023--
+--15688396221.8bB3f05.28023--
 
---===============1993308413==
+--===============1030107030==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -159,4 +159,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1993308413==--
+--===============1030107030==--
