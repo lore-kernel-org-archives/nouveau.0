@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109341] Plasma Wayland locks up immediately on sign
- in
-Date: Wed, 18 Sep 2019 20:47:16 +0000
-Message-ID: <bug-109341-8800-1MOA34ZKEg@http.bugs.freedesktop.org/>
-References: <bug-109341-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 109371] Textures seem to be byteswapped on big
+ endian architectures
+Date: Wed, 18 Sep 2019 20:47:20 +0000
+Message-ID: <bug-109371-8800-uJSTadA9Ar@http.bugs.freedesktop.org/>
+References: <bug-109371-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1467349336=="
+Content-Type: multipart/mixed; boundary="===============2008015641=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109341-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-109371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1467349336==
-Content-Type: multipart/alternative; boundary="15688396360.aDDBfE42d.28023"
+--===============2008015641==
+Content-Type: multipart/alternative; boundary="15688396400.89AB.28023"
 Content-Transfer-Encoding: 7bit
 
 
---15688396360.aDDBfE42d.28023
-Date: Wed, 18 Sep 2019 20:47:16 +0000
+--15688396400.89AB.28023
+Date: Wed, 18 Sep 2019 20:47:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109341
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109371
 
 GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
          Resolution|---                         |MOVED
+             Status|NEW                         |RESOLVED
 
---- Comment #8 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
+--- Comment #4 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,15 +52,15 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/116=
-6.
+7.
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15688396360.aDDBfE42d.28023
-Date: Wed, 18 Sep 2019 20:47:16 +0000
+--15688396400.89AB.28023
+Date: Wed, 18 Sep 2019 20:47:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,8 +77,9 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Plasma Wayland locks up immediately on sign in"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109341">bug 10934=
+   title=3D"RESOLVED MOVED - Textures seem to be byteswapped on big endian =
+architectures"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109371">bug 10937=
 1</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -89,31 +90,33 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Resolution</td>
            <td>---
            </td>
            <td>MOVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Plasma Wayland locks up immediately on sign in"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109341#c8">Commen=
-t # 8</a>
+   title=3D"RESOLVED MOVED - Textures seem to be byteswapped on big endian =
+architectures"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109371#c4">Commen=
+t # 4</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Plasma Wayland locks up immediately on sign in"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109341">bug 10934=
+   title=3D"RESOLVED MOVED - Textures seem to be byteswapped on big endian =
+architectures"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109371">bug 10937=
 1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
@@ -128,7 +131,7 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
-/issues/1166">https://gitlab.freedesktop.org/mesa/mesa/issues/1166</a>.</pr=
+/issues/1167">https://gitlab.freedesktop.org/mesa/mesa/issues/1167</a>.</pr=
 e>
         </div>
       </p>
@@ -144,9 +147,9 @@ e>
     </body>
 </html>=
 
---15688396360.aDDBfE42d.28023--
+--15688396400.89AB.28023--
 
---===============1467349336==
+--===============2008015641==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -156,4 +159,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1467349336==--
+--===============2008015641==--
