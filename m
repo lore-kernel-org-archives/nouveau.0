@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 109371] Textures seem to be byteswapped on big
- endian architectures
-Date: Wed, 18 Sep 2019 20:47:20 +0000
-Message-ID: <bug-109371-8800-uJSTadA9Ar@http.bugs.freedesktop.org/>
-References: <bug-109371-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 109397] PGRAPH TLB flush idle timeout fail: X hangs,
+ ssh login possible
+Date: Wed, 18 Sep 2019 20:47:23 +0000
+Message-ID: <bug-109397-8800-WnRgdTgCOo@http.bugs.freedesktop.org/>
+References: <bug-109397-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2008015641=="
+Content-Type: multipart/mixed; boundary="===============1418224831=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-109371-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-109397-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +21,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2008015641==
-Content-Type: multipart/alternative; boundary="15688396400.89AB.28023"
+--===============1418224831==
+Content-Type: multipart/alternative; boundary="15688396420.dA6E37bE7.28023"
 Content-Transfer-Encoding: 7bit
 
 
---15688396400.89AB.28023
-Date: Wed, 18 Sep 2019 20:47:20 +0000
+--15688396420.dA6E37bE7.28023
+Date: Wed, 18 Sep 2019 20:47:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D109371
+https://bugs.freedesktop.org/show_bug.cgi?id=3D109397
 
 GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
 
@@ -43,7 +43,7 @@ GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org>
          Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
 
---- Comment #4 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
+--- Comment #1 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,15 +52,15 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/116=
-7.
+8.
 
 --=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+You are the assignee for the bug.
+You are the QA Contact for the bug.=
 
---15688396400.89AB.28023
-Date: Wed, 18 Sep 2019 20:47:20 +0000
+--15688396420.dA6E37bE7.28023
+Date: Wed, 18 Sep 2019 20:47:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,10 +77,10 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Textures seem to be byteswapped on big endian =
-architectures"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109371">bug 10937=
-1</a>
+   title=3D"RESOLVED MOVED - PGRAPH TLB flush idle timeout fail: X hangs, s=
+sh login possible"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109397">bug 10939=
+7</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -108,16 +108,16 @@ architectures"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Textures seem to be byteswapped on big endian =
-architectures"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109371#c4">Commen=
-t # 4</a>
+   title=3D"RESOLVED MOVED - PGRAPH TLB flush idle timeout fail: X hangs, s=
+sh login possible"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109397#c1">Commen=
+t # 1</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - Textures seem to be byteswapped on big endian =
-architectures"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109371">bug 10937=
-1</a>
+   title=3D"RESOLVED MOVED - PGRAPH TLB flush idle timeout fail: X hangs, s=
+sh login possible"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D109397">bug 10939=
+7</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
 -migration&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</=
@@ -131,7 +131,7 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
-/issues/1167">https://gitlab.freedesktop.org/mesa/mesa/issues/1167</a>.</pr=
+/issues/1168">https://gitlab.freedesktop.org/mesa/mesa/issues/1168</a>.</pr=
 e>
         </div>
       </p>
@@ -141,15 +141,15 @@ e>
       <span>You are receiving this mail because:</span>
 
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
+          <li>You are the QA Contact for the bug.</li>
       </ul>
     </body>
 </html>=
 
---15688396400.89AB.28023--
+--15688396420.dA6E37bE7.28023--
 
---===============2008015641==
+--===============1418224831==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -159,4 +159,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============2008015641==--
+--===============1418224831==--
