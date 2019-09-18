@@ -1,16 +1,13 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [PATCH 2/3] drm/nouveau: slowpath for pushbuf ioctl
-Date: Wed, 18 Sep 2019 11:29:47 +0200
-Message-ID: <20190918092947.GE3958@phenom.ffwll.local>
-References: <20190821215030.31660-1-daniel.vetter@ffwll.ch>
- <20190821215030.31660-2-daniel.vetter@ffwll.ch>
- <20190903081714.GO2112@phenom.ffwll.local>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 108651] Screen flickering when using compositor with
+ OpenGL backend
+Date: Wed, 18 Sep 2019 17:45:46 +0000
+Message-ID: <bug-108651-8800-CNd0Uvz6K7@http.bugs.freedesktop.org/>
+References: <bug-108651-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0106278027=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20190903081714.GO2112-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
+In-Reply-To: <bug-108651-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,122 +17,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Intel Graphics Development <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBTZXAgMDMsIDIwMTkgYXQgMTA6MTc6MTRBTSArMDIwMCwgRGFuaWVsIFZldHRlciB3
-cm90ZToKPiBPbiBXZWQsIEF1ZyAyMSwgMjAxOSBhdCAxMTo1MDoyOVBNICswMjAwLCBEYW5pZWwg
-VmV0dGVyIHdyb3RlOgo+ID4gV2UgY2FuJ3QgY29weV8qX3VzZXIgd2hpbGUgaG9sZGluZyByZXNl
-cnZhdGlvbnMsIHRoYXQgd2lsbCAoc29vbiBldmVuCj4gPiBmb3Igbm91dmVhdSkgbGVhZCB0byBk
-ZWFkbG9ja3MuIEFuZCBpdCBicmVha3MgdGhlIGNyb3NzLWRyaXZlcgo+ID4gY29udHJhY3QgYXJv
-dW5kIGRtYV9yZXN2Lgo+ID4gCj4gPiBGaXggdGhpcyBieSBhZGRpbmcgYSBzbG93cGF0aCBmb3Ig
-d2hlbiB3ZSBuZWVkIHJlbG9jYXRpb25zLCBhbmQgYnkKPiA+IHB1c2hpbmcgdGhlIHdyaXRlYmFj
-ayBvZiB0aGUgbmV3IHByZXN1bWVkIG9mZnNldHMgdG8gdGhlIHZlcnkgZW5kLgo+ID4gCj4gPiBB
-c2lkZSBmcm9tICJpdCBjb21waWxlcyIgZW50aXJlbHkgdW50ZXN0ZWQgdW5mb3J0dW5hdGVseS4K
-PiA+IAo+ID4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRl
-bC5jb20+Cj4gPiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgo+ID4gQ2M6IG5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gCj4gUGluZyBmb3Igc29tZSByZXZpZXcvdGVz
-dGluZyAoYXBwYXJlbnRseSBuZWVkcyBwcmUtbnY1MCkuIEknZCByZWFsbHkgbGlrZQo+IHRvIGxh
-bmQgdGhpcyBzZXJpZXMgaGVyZSwgaXQgc2hvdWxkIGhlbHAgYSBsb3QgaW4gbWFraW5nIHN1cmUg
-ZXZlcnlvbmUKPiB1c2VzIGRtYV9yZXN2IGluIGEgY29tcGF0aWJsZSB3YXkgYWNyb3NzIGRyaXZl
-cnMuCgpOb3cgdGhhdCB0aGUgZ2VtL3R0bSBmYWxsb3V0IGlzIGZpeGVkLCBwaW5nIGZvciB0ZXN0
-aW5nIG9uIHRoaXMgb25lIGhlcmUKLi4uIEFsc28gbmVlZCBzb21lIHItYiB0byBnZXQgdGhpcyBs
-YW5kZWQuCgpUaGFua3MsIERhbmllbAoKPiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfZ2VtLmMgfCA1NyArKysrKysrKysrKysrKysrKystLS0tLS0tLS0KPiA+ICAx
-IGZpbGUgY2hhbmdlZCwgMzggaW5zZXJ0aW9ucygrKSwgMTkgZGVsZXRpb25zKC0pCj4gPiAKPiA+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5jIGIvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9nZW0uYwo+ID4gaW5kZXggYzc3MzAyZjk2OWU4
-Li42MDMwOWI5OTc5NTEgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2dlbS5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dl
-bS5jCj4gPiBAQCAtNDgyLDEyICs0ODIsOSBAQCB2YWxpZGF0ZV9pbml0KHN0cnVjdCBub3V2ZWF1
-X2NoYW5uZWwgKmNoYW4sIHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2LAo+ID4gIAo+ID4gIHN0
-YXRpYyBpbnQKPiA+ICB2YWxpZGF0ZV9saXN0KHN0cnVjdCBub3V2ZWF1X2NoYW5uZWwgKmNoYW4s
-IHN0cnVjdCBub3V2ZWF1X2NsaSAqY2xpLAo+ID4gLQkgICAgICBzdHJ1Y3QgbGlzdF9oZWFkICps
-aXN0LCBzdHJ1Y3QgZHJtX25vdXZlYXVfZ2VtX3B1c2hidWZfYm8gKnBiYm8sCj4gPiAtCSAgICAg
-IHVpbnQ2NF90IHVzZXJfcGJib19wdHIpCj4gPiArCSAgICAgIHN0cnVjdCBsaXN0X2hlYWQgKmxp
-c3QsIHN0cnVjdCBkcm1fbm91dmVhdV9nZW1fcHVzaGJ1Zl9ibyAqcGJibykKPiA+ICB7Cj4gPiAg
-CXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gY2hhbi0+ZHJtOwo+ID4gLQlzdHJ1Y3QgZHJtX25v
-dXZlYXVfZ2VtX3B1c2hidWZfYm8gX191c2VyICp1cGJibyA9Cj4gPiAtCQkJCSh2b2lkIF9fZm9y
-Y2UgX191c2VyICopKHVpbnRwdHJfdCl1c2VyX3BiYm9fcHRyOwo+ID4gIAlzdHJ1Y3Qgbm91dmVh
-dV9ibyAqbnZibzsKPiA+ICAJaW50IHJldCwgcmVsb2NzID0gMDsKPiA+ICAKPiA+IEBAIC01MzEs
-MTAgKzUyOCw2IEBAIHZhbGlkYXRlX2xpc3Qoc3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbiwg
-c3RydWN0IG5vdXZlYXVfY2xpICpjbGksCj4gPiAgCQkJYi0+cHJlc3VtZWQub2Zmc2V0ID0gbnZi
-by0+Ym8ub2Zmc2V0Owo+ID4gIAkJCWItPnByZXN1bWVkLnZhbGlkID0gMDsKPiA+ICAJCQlyZWxv
-Y3MrKzsKPiA+IC0KPiA+IC0JCQlpZiAoY29weV90b191c2VyKCZ1cGJib1tudmJvLT5wYmJvX2lu
-ZGV4XS5wcmVzdW1lZCwKPiA+IC0JCQkJCSAgICAgJmItPnByZXN1bWVkLCBzaXplb2YoYi0+cHJl
-c3VtZWQpKSkKPiA+IC0JCQkJcmV0dXJuIC1FRkFVTFQ7Cj4gPiAgCQl9Cj4gPiAgCX0KPiA+ICAK
-PiA+IEBAIC01NDUsOCArNTM4LDggQEAgc3RhdGljIGludAo+ID4gIG5vdXZlYXVfZ2VtX3B1c2hi
-dWZfdmFsaWRhdGUoc3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbiwKPiA+ICAJCQkgICAgIHN0
-cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2LAo+ID4gIAkJCSAgICAgc3RydWN0IGRybV9ub3V2ZWF1
-X2dlbV9wdXNoYnVmX2JvICpwYmJvLAo+ID4gLQkJCSAgICAgdWludDY0X3QgdXNlcl9idWZmZXJz
-LCBpbnQgbnJfYnVmZmVycywKPiA+IC0JCQkgICAgIHN0cnVjdCB2YWxpZGF0ZV9vcCAqb3AsIGlu
-dCAqYXBwbHlfcmVsb2NzKQo+ID4gKwkJCSAgICAgaW50IG5yX2J1ZmZlcnMsCj4gPiArCQkJICAg
-ICBzdHJ1Y3QgdmFsaWRhdGVfb3AgKm9wLCBib29sICphcHBseV9yZWxvY3MpCj4gPiAgewo+ID4g
-IAlzdHJ1Y3Qgbm91dmVhdV9jbGkgKmNsaSA9IG5vdXZlYXVfY2xpKGZpbGVfcHJpdik7Cj4gPiAg
-CWludCByZXQ7Cj4gPiBAQCAtNTYzLDcgKzU1Niw3IEBAIG5vdXZlYXVfZ2VtX3B1c2hidWZfdmFs
-aWRhdGUoc3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbiwKPiA+ICAJCXJldHVybiByZXQ7Cj4g
-PiAgCX0KPiA+ICAKPiA+IC0JcmV0ID0gdmFsaWRhdGVfbGlzdChjaGFuLCBjbGksICZvcC0+bGlz
-dCwgcGJibywgdXNlcl9idWZmZXJzKTsKPiA+ICsJcmV0ID0gdmFsaWRhdGVfbGlzdChjaGFuLCBj
-bGksICZvcC0+bGlzdCwgcGJibyk7Cj4gPiAgCWlmICh1bmxpa2VseShyZXQgPCAwKSkgewo+ID4g
-IAkJaWYgKHJldCAhPSAtRVJFU1RBUlRTWVMpCj4gPiAgCQkJTlZfUFJJTlRLKGVyciwgY2xpLCAi
-dmFsaWRhdGluZyBibyBsaXN0XG4iKTsKPiA+IEBAIC02MDMsMTYgKzU5NiwxMiBAQCB1X21lbWNw
-eWEodWludDY0X3QgdXNlciwgdW5zaWduZWQgbm1lbWIsIHVuc2lnbmVkIHNpemUpCj4gPiAgc3Rh
-dGljIGludAo+ID4gIG5vdXZlYXVfZ2VtX3B1c2hidWZfcmVsb2NfYXBwbHkoc3RydWN0IG5vdXZl
-YXVfY2xpICpjbGksCj4gPiAgCQkJCXN0cnVjdCBkcm1fbm91dmVhdV9nZW1fcHVzaGJ1ZiAqcmVx
-LAo+ID4gKwkJCQlzdHJ1Y3QgZHJtX25vdXZlYXVfZ2VtX3B1c2hidWZfcmVsb2MgKnJlbG9jLAo+
-ID4gIAkJCQlzdHJ1Y3QgZHJtX25vdXZlYXVfZ2VtX3B1c2hidWZfYm8gKmJvKQo+ID4gIHsKPiA+
-IC0Jc3RydWN0IGRybV9ub3V2ZWF1X2dlbV9wdXNoYnVmX3JlbG9jICpyZWxvYyA9IE5VTEw7Cj4g
-PiAgCWludCByZXQgPSAwOwo+ID4gIAl1bnNpZ25lZCBpOwo+ID4gIAo+ID4gLQlyZWxvYyA9IHVf
-bWVtY3B5YShyZXEtPnJlbG9jcywgcmVxLT5ucl9yZWxvY3MsIHNpemVvZigqcmVsb2MpKTsKPiA+
-IC0JaWYgKElTX0VSUihyZWxvYykpCj4gPiAtCQlyZXR1cm4gUFRSX0VSUihyZWxvYyk7Cj4gPiAt
-Cj4gPiAgCWZvciAoaSA9IDA7IGkgPCByZXEtPm5yX3JlbG9jczsgaSsrKSB7Cj4gPiAgCQlzdHJ1
-Y3QgZHJtX25vdXZlYXVfZ2VtX3B1c2hidWZfcmVsb2MgKnIgPSAmcmVsb2NbaV07Cj4gPiAgCQlz
-dHJ1Y3QgZHJtX25vdXZlYXVfZ2VtX3B1c2hidWZfYm8gKmI7Cj4gPiBAQCAtNjkxLDExICs2ODAs
-MTMgQEAgbm91dmVhdV9nZW1faW9jdGxfcHVzaGJ1ZihzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2
-b2lkICpkYXRhLAo+ID4gIAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKGRl
-dik7Cj4gPiAgCXN0cnVjdCBkcm1fbm91dmVhdV9nZW1fcHVzaGJ1ZiAqcmVxID0gZGF0YTsKPiA+
-ICAJc3RydWN0IGRybV9ub3V2ZWF1X2dlbV9wdXNoYnVmX3B1c2ggKnB1c2g7Cj4gPiArCXN0cnVj
-dCBkcm1fbm91dmVhdV9nZW1fcHVzaGJ1Zl9yZWxvYyAqcmVsb2MgPSBOVUxMOwo+ID4gIAlzdHJ1
-Y3QgZHJtX25vdXZlYXVfZ2VtX3B1c2hidWZfYm8gKmJvOwo+ID4gIAlzdHJ1Y3Qgbm91dmVhdV9j
-aGFubmVsICpjaGFuID0gTlVMTDsKPiA+ICAJc3RydWN0IHZhbGlkYXRlX29wIG9wOwo+ID4gIAlz
-dHJ1Y3Qgbm91dmVhdV9mZW5jZSAqZmVuY2UgPSBOVUxMOwo+ID4gLQlpbnQgaSwgaiwgcmV0ID0g
-MCwgZG9fcmVsb2MgPSAwOwo+ID4gKwlpbnQgaSwgaiwgcmV0ID0gMDsKPiA+ICsJYm9vbCBkb19y
-ZWxvYyA9IGZhbHNlOwo+ID4gIAo+ID4gIAlpZiAodW5saWtlbHkoIWFiaTE2KSkKPiA+ICAJCXJl
-dHVybiAtRU5PTUVNOwo+ID4gQEAgLTc1Myw3ICs3NDQsOCBAQCBub3V2ZWF1X2dlbV9pb2N0bF9w
-dXNoYnVmKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHZvaWQgKmRhdGEsCj4gPiAgCX0KPiA+ICAK
-PiA+ICAJLyogVmFsaWRhdGUgYnVmZmVyIGxpc3QgKi8KPiA+IC0JcmV0ID0gbm91dmVhdV9nZW1f
-cHVzaGJ1Zl92YWxpZGF0ZShjaGFuLCBmaWxlX3ByaXYsIGJvLCByZXEtPmJ1ZmZlcnMsCj4gPiAr
-cmV2YWxpZGF0ZToKPiA+ICsJcmV0ID0gbm91dmVhdV9nZW1fcHVzaGJ1Zl92YWxpZGF0ZShjaGFu
-LCBmaWxlX3ByaXYsIGJvLAo+ID4gIAkJCQkJICAgcmVxLT5ucl9idWZmZXJzLCAmb3AsICZkb19y
-ZWxvYyk7Cj4gPiAgCWlmIChyZXQpIHsKPiA+ICAJCWlmIChyZXQgIT0gLUVSRVNUQVJUU1lTKQo+
-ID4gQEAgLTc2Myw3ICs3NTUsMTggQEAgbm91dmVhdV9nZW1faW9jdGxfcHVzaGJ1ZihzdHJ1Y3Qg
-ZHJtX2RldmljZSAqZGV2LCB2b2lkICpkYXRhLAo+ID4gIAo+ID4gIAkvKiBBcHBseSBhbnkgcmVs
-b2NhdGlvbnMgdGhhdCBhcmUgcmVxdWlyZWQgKi8KPiA+ICAJaWYgKGRvX3JlbG9jKSB7Cj4gPiAt
-CQlyZXQgPSBub3V2ZWF1X2dlbV9wdXNoYnVmX3JlbG9jX2FwcGx5KGNsaSwgcmVxLCBibyk7Cj4g
-PiArCQlpZiAoIXJlbG9jKSB7Cj4gPiArCQkJdmFsaWRhdGVfZmluaSgmb3AsIGNoYW4sIE5VTEws
-IGJvKTsKPiA+ICsJCQlyZWxvYyA9IHVfbWVtY3B5YShyZXEtPnJlbG9jcywgcmVxLT5ucl9yZWxv
-Y3MsIHNpemVvZigqcmVsb2MpKTsKPiA+ICsJCQlpZiAoSVNfRVJSKHJlbG9jKSkgewo+ID4gKwkJ
-CQlyZXQgPSBQVFJfRVJSKHJlbG9jKTsKPiA+ICsJCQkJZ290byBvdXRfcHJldmFsaWQ7Cj4gPiAr
-CQkJfQo+ID4gKwo+ID4gKwkJCWdvdG8gcmV2YWxpZGF0ZTsKPiA+ICsJCX0KPiA+ICsKPiA+ICsJ
-CXJldCA9IG5vdXZlYXVfZ2VtX3B1c2hidWZfcmVsb2NfYXBwbHkoY2xpLCByZXEsIHJlbG9jLCBi
-byk7Cj4gPiAgCQlpZiAocmV0KSB7Cj4gPiAgCQkJTlZfUFJJTlRLKGVyciwgY2xpLCAicmVsb2Mg
-YXBwbHk6ICVkXG4iLCByZXQpOwo+ID4gIAkJCWdvdG8gb3V0Owo+ID4gQEAgLTg0OSw2ICs4NTIs
-MjIgQEAgbm91dmVhdV9nZW1faW9jdGxfcHVzaGJ1ZihzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB2
-b2lkICpkYXRhLAo+ID4gIAl2YWxpZGF0ZV9maW5pKCZvcCwgY2hhbiwgZmVuY2UsIGJvKTsKPiA+
-ICAJbm91dmVhdV9mZW5jZV91bnJlZigmZmVuY2UpOwo+ID4gIAo+ID4gKwlpZiAoZG9fcmVsb2Mp
-IHsKPiA+ICsJCXN0cnVjdCBkcm1fbm91dmVhdV9nZW1fcHVzaGJ1Zl9ibyBfX3VzZXIgKnVwYmJv
-ID0KPiA+ICsJCQl1NjRfdG9fdXNlcl9wdHIocmVxLT5idWZmZXJzKTsKPiA+ICsKPiA+ICsJCWZv
-ciAoaSA9IDA7IGkgPCByZXEtPm5yX2J1ZmZlcnM7IGkrKykgewo+ID4gKwkJCWlmIChib1tpXS5w
-cmVzdW1lZC52YWxpZCkKPiA+ICsJCQkJY29udGludWU7Cj4gPiArCj4gPiArCQkJaWYgKGNvcHlf
-dG9fdXNlcigmdXBiYm9baV0ucHJlc3VtZWQsICZib1tpXS5wcmVzdW1lZCwKPiA+ICsJCQkJCSBz
-aXplb2YoYm9baV0ucHJlc3VtZWQpKSkgewo+ID4gKwkJCQlyZXQgPSAtRUZBVUxUOwo+ID4gKwkJ
-CQlicmVhazsKPiA+ICsJCQl9Cj4gPiArCQl9Cj4gPiArCQl1X2ZyZWUocmVsb2MpOwo+ID4gKwl9
-Cj4gPiAgb3V0X3ByZXZhbGlkOgo+ID4gIAl1X2ZyZWUoYm8pOwo+ID4gIAl1X2ZyZWUocHVzaCk7
-Cj4gPiAtLSAKPiA+IDIuMjMuMC5yYzEKPiA+IAo+IAo+IC0tIAo+IERhbmllbCBWZXR0ZXIKPiBT
-b2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KPiBodHRwOi8vYmxvZy5mZndsbC5j
-aAoKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9u
-Cmh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
-dmVhdQ==
+
+--===============0106278027==
+Content-Type: multipart/alternative; boundary="15688287454.6536a07f.28238"
+Content-Transfer-Encoding: 7bit
+
+
+--15688287454.6536a07f.28238
+Date: Wed, 18 Sep 2019 17:45:45 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108651
+Bug 108651 depends on bug 105132, which changed state.
+
+Bug 105132 Summary: glxSwapBuffers has no effect
+https://bugs.freedesktop.org/show_bug.cgi?id=3D105132
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |MOVED
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.=
+
+--15688287454.6536a07f.28238
+Date: Wed, 18 Sep 2019 17:45:45 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Screen flickering when using compositor with OpenGL backe=
+nd"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108651">Bug 10865=
+1</a>
+          depends on
+          <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED MOVED - glxSwapBuffers has no effect"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105132">bug 10513=
+2</a>,
+          which changed state.
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>MOVED
+           </td>
+         </tr></table>
+      <p>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15688287454.6536a07f.28238--
+
+--===============0106278027==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0106278027==--
