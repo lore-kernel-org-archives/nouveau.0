@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108651] Screen flickering when using compositor with
  OpenGL backend
-Date: Wed, 18 Sep 2019 17:45:46 +0000
-Message-ID: <bug-108651-8800-CNd0Uvz6K7@http.bugs.freedesktop.org/>
+Date: Wed, 18 Sep 2019 17:46:03 +0000
+Message-ID: <bug-108651-8800-SBXLsfnrjl@http.bugs.freedesktop.org/>
 References: <bug-108651-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0106278027=="
+Content-Type: multipart/mixed; boundary="===============1340882163=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108651-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0106278027==
-Content-Type: multipart/alternative; boundary="15688287454.6536a07f.28238"
+--===============1340882163==
+Content-Type: multipart/alternative; boundary="15688287623.EC699560.28238"
 Content-Transfer-Encoding: 7bit
 
 
---15688287454.6536a07f.28238
-Date: Wed, 18 Sep 2019 17:45:45 +0000
+--15688287623.EC699560.28238
+Date: Wed, 18 Sep 2019 17:46:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,10 +35,11 @@ X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D108651
-Bug 108651 depends on bug 105132, which changed state.
+Bug 108651 depends on bug 108705, which changed state.
 
-Bug 105132 Summary: glxSwapBuffers has no effect
-https://bugs.freedesktop.org/show_bug.cgi?id=3D105132
+Bug 108705 Summary: GLX with DRI2 doesn't work properly when xcb is owning =
+the event queue
+https://bugs.freedesktop.org/show_bug.cgi?id=3D108705
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
@@ -50,8 +51,8 @@ You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.=
 
---15688287454.6536a07f.28238
-Date: Wed, 18 Sep 2019 17:45:45 +0000
+--15688287623.EC699560.28238
+Date: Wed, 18 Sep 2019 17:46:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,9 +72,10 @@ nd"
           depends on
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - glxSwapBuffers has no effect"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D105132">bug 10513=
-2</a>,
+   title=3D"RESOLVED MOVED - GLX with DRI2 doesn't work properly when xcb i=
+s owning the event queue"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108705">bug 10870=
+5</a>,
           which changed state.
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -112,9 +114,9 @@ nd"
     </body>
 </html>=
 
---15688287454.6536a07f.28238--
+--15688287623.EC699560.28238--
 
---===============0106278027==
+--===============1340882163==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0106278027==--
+--===============1340882163==--
