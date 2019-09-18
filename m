@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61489] [NV40/Gallium] Mesa-demos test subtexrate
- causes some error in dmesg
-Date: Wed, 18 Sep 2019 20:38:30 +0000
-Message-ID: <bug-61489-8800-WAmm2nMX5f@http.bugs.freedesktop.org/>
-References: <bug-61489-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 64493] X server crashes when launch Savage XR
+Date: Wed, 18 Sep 2019 20:38:33 +0000
+Message-ID: <bug-64493-8800-fXBLPgTNQr@http.bugs.freedesktop.org/>
+References: <bug-64493-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0182202979=="
+Content-Type: multipart/mixed; boundary="===============0307228180=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61489-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-64493-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,20 +20,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0182202979==
-Content-Type: multipart/alternative; boundary="15688391090.369Ab.24927"
+--===============0307228180==
+Content-Type: multipart/alternative; boundary="15688391130.4924FD.24927"
 Content-Transfer-Encoding: 7bit
 
 
---15688391090.369Ab.24927
-Date: Wed, 18 Sep 2019 20:38:29 +0000
+--15688391130.4924FD.24927
+Date: Wed, 18 Sep 2019 20:38:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D61489
+https://bugs.freedesktop.org/show_bug.cgi?id=3D64493
 
 GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
 
@@ -52,14 +51,14 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/105=
-2.
+3.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15688391090.369Ab.24927
-Date: Wed, 18 Sep 2019 20:38:29 +0000
+--15688391130.4924FD.24927
+Date: Wed, 18 Sep 2019 20:38:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,9 +75,8 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NV40/Gallium] Mesa-demos test subtexrate caus=
-es some error in dmesg"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D61489">bug 61489<=
+   title=3D"RESOLVED MOVED - X server crashes when launch Savage XR"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64493">bug 64493<=
 /a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
@@ -107,15 +105,13 @@ es some error in dmesg"
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NV40/Gallium] Mesa-demos test subtexrate caus=
-es some error in dmesg"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D61489#c5">Comment=
+   title=3D"RESOLVED MOVED - X server crashes when launch Savage XR"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64493#c5">Comment=
  # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - [NV40/Gallium] Mesa-demos test subtexrate caus=
-es some error in dmesg"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D61489">bug 61489<=
+   title=3D"RESOLVED MOVED - X server crashes when launch Savage XR"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D64493">bug 64493<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
@@ -130,7 +126,7 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
-/issues/1052">https://gitlab.freedesktop.org/mesa/mesa/issues/1052</a>.</pr=
+/issues/1053">https://gitlab.freedesktop.org/mesa/mesa/issues/1053</a>.</pr=
 e>
         </div>
       </p>
@@ -145,9 +141,9 @@ e>
     </body>
 </html>=
 
---15688391090.369Ab.24927--
+--15688391130.4924FD.24927--
 
---===============0182202979==
+--===============0307228180==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +153,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0182202979==--
+--===============0307228180==--
