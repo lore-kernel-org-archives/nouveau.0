@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111098] xf16-video-nouveau 1.0.16-1 arch fails to
- resume from blank
-Date: Wed, 18 Sep 2019 20:48:59 +0000
-Message-ID: <bug-111098-8800-NHWxL0OIuQ@http.bugs.freedesktop.org/>
-References: <bug-111098-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 111110] Nvidia quadro + nouveau : second terminal
+ wake up but doesn't more display
+Date: Wed, 18 Sep 2019 20:49:09 +0000
+Message-ID: <bug-111110-8800-aTq4njpozZ@http.bugs.freedesktop.org/>
+References: <bug-111110-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2005186385=="
+Content-Type: multipart/mixed; boundary="===============1083531939=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111098-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-111110-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2005186385==
-Content-Type: multipart/alternative; boundary="15688397390.d4B0bbfae.28711"
+--===============1083531939==
+Content-Type: multipart/alternative; boundary="15688397480.43Cf573a3.28711"
 Content-Transfer-Encoding: 7bit
 
 
---15688397390.d4B0bbfae.28711
-Date: Wed, 18 Sep 2019 20:48:59 +0000
+--15688397480.43Cf573a3.28711
+Date: Wed, 18 Sep 2019 20:49:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111098
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111110
 
 GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|---                         |MOVED
              Status|NEW                         |RESOLVED
+         Resolution|---                         |MOVED
 
---- Comment #1 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> ---
+--- Comment #10 from GitLab Migration User <gitlab-migration-wf5LKTHn7b+es5Oj371l6A@public.gmane.org> -=
+--
 -- GitLab Migration Automatic Message --
 
 This bug has been migrated to freedesktop.org's GitLab instance and has been
@@ -52,15 +53,15 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: https://gitlab.freedesktop.org/mesa/mesa/issues/118=
-5.
+6.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 You are the QA Contact for the bug.=
 
---15688397390.d4B0bbfae.28711
-Date: Wed, 18 Sep 2019 20:48:59 +0000
+--15688397480.43Cf573a3.28711
+Date: Wed, 18 Sep 2019 20:49:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -77,10 +78,10 @@ n&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</span></a>
 </span> changed
           <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - xf16-video-nouveau 1.0.16-1 arch fails to resu=
-me from blank"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111098">bug 11109=
-8</a>
+   title=3D"RESOLVED MOVED - Nvidia quadro + nouveau : second terminal wake=
+ up but doesn't more display"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111110">bug 11111=
+0</a>
           <br>
              <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
           <tr>
@@ -90,34 +91,34 @@ me from blank"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>MOVED
-           </td>
-         </tr>
-
-         <tr>
            <td style=3D"text-align:right;">Status</td>
            <td>NEW
            </td>
            <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>MOVED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - xf16-video-nouveau 1.0.16-1 arch fails to resu=
-me from blank"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111098#c1">Commen=
-t # 1</a>
+   title=3D"RESOLVED MOVED - Nvidia quadro + nouveau : second terminal wake=
+ up but doesn't more display"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111110#c10">Comme=
+nt # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED MOVED - xf16-video-nouveau 1.0.16-1 arch fails to resu=
-me from blank"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111098">bug 11109=
-8</a>
+   title=3D"RESOLVED MOVED - Nvidia quadro + nouveau : second terminal wake=
+ up but doesn't more display"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111110">bug 11111=
+0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
 gitlab-migration&#64;fdo.invalid" title=3D"GitLab Migration User &lt;gitlab=
 -migration&#64;fdo.invalid&gt;"> <span class=3D"fn">GitLab Migration User</=
@@ -131,7 +132,7 @@ closed from further activity.
 You can subscribe and participate further through the new bug through this =
 link
 to our GitLab instance: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa=
-/issues/1185">https://gitlab.freedesktop.org/mesa/mesa/issues/1185</a>.</pr=
+/issues/1186">https://gitlab.freedesktop.org/mesa/mesa/issues/1186</a>.</pr=
 e>
         </div>
       </p>
@@ -147,9 +148,9 @@ e>
     </body>
 </html>=
 
---15688397390.d4B0bbfae.28711--
+--15688397480.43Cf573a3.28711--
 
---===============2005186385==
+--===============1083531939==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -159,4 +160,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============2005186385==--
+--===============1083531939==--
