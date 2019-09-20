@@ -1,168 +1,225 @@
-From: Ben Hutchings <ben@decadent.org.uk>
-Subject: [PATCH 3.16 053/132] PCI: Reset Lenovo ThinkPad P50 nvgpu at boot
- if necessary
-Date: Fri, 20 Sep 2019 15:23:35 +0100
-Message-ID: <lsq.1568989415.980827164@decadent.org.uk>
-References: <lsq.1568989414.954567518@decadent.org.uk>
+From: Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [Nouveau] [PATCH 3/6] drm/nouveau: Remove bogus gk20a aperture
+ callback
+Date: Fri, 20 Sep 2019 17:55:19 +0200
+Message-ID: <20190920155519.GD10973@ulmo>
+References: <20190916151757.10953-1-thierry.reding@gmail.com>
+ <20190916151757.10953-4-thierry.reding@gmail.com>
+ <CACAvsv6AzWvpPLaOKahpJErTAMCJet4_4mBvRC8Z+e4+bwaD4w@mail.gmail.com>
+ <20190917090254.GC17854@ulmo>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-Return-path: <stable-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <lsq.1568989414.954567518@decadent.org.uk>
-Sender: stable-owner@vger.kernel.org
-To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc: akpm@linux-foundation.org, Denis Kirjanov <kda@linux-powerpc.org>, Ben Skeggs <skeggsb@gmail.com>, nouveau@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>, Karol Herbst <kherbst@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1703601409=="
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20190917090254.GC17854@ulmo>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <skeggsb@gmail.com>
+Cc: ML nouveau <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, ML dri-devel <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-3.16.74-rc1 review patch.  If anyone has any objections, please let me know.
 
-------------------
+--===============1703601409==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="JwB53PgKC5A7+0Ej"
+Content-Disposition: inline
 
-From: Lyude Paul <lyude@redhat.com>
 
-commit e0547c81bfcfad01cbbfa93a5e66bb98ab932f80 upstream.
+--JwB53PgKC5A7+0Ej
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On ThinkPad P50 SKUs with an Nvidia Quadro M1000M instead of the M2000M
-variant, the BIOS does not always reset the secondary Nvidia GPU during
-reboot if the laptop is configured in Hybrid Graphics mode.  The reason is
-unknown, but the following steps and possibly a good bit of patience will
-reproduce the issue:
+On Tue, Sep 17, 2019 at 11:02:54AM +0200, Thierry Reding wrote:
+> On Tue, Sep 17, 2019 at 01:43:13PM +1000, Ben Skeggs wrote:
+> > On Tue, 17 Sep 2019 at 01:18, Thierry Reding <thierry.reding@gmail.com>=
+ wrote:
+> > >
+> > > From: Thierry Reding <treding@nvidia.com>
+> > >
+> > > The gk20a (as well as all subsequent Tegra instantiations of the GPU)=
+ do
+> > > in fact use the same apertures as regular GPUs. Prior to gv11b there =
+are
+> > > no checks in hardware for the aperture, so we get away with setting V=
+RAM
+> > > as the aperture for buffers that are actually in system memory.
+> > Can GK20A take comptags with aperture set to system memory?  For some
+> > reason I can recall, I was under the impression PTEs needed to be
+> > pointed at "vidmem" (despite them actually accessing system memory
+> > anyway) on Tegra parts for compression to work?  I could be mistaken
+> > though.
+>=20
+> I don't think GK20A supports comptags at all. I think this wasn't
+> introduced until GM20B. nvgpu has some "gk20a" code to flush comptags,
+> but that's only used on GM20B and later.
+>=20
+> Anyway, my understanding is that on all of GK20A, GM20B and GP10B the
+> aperture field is completely ignored. I think that also goes for
+> comptags. nvgpu in particular never requests comptags to be allocated
+> from vidmem. See:
+>=20
+> 	https://nv-tegra.nvidia.com/gitweb/?p=3Dlinux-nvgpu.git;a=3Dblob;f=3Ddri=
+vers/gpu/nvgpu/os/linux/ltc.c;h=3Dbaeb20b2e539cc6cb70667ce168603546678dc73;=
+hb=3D2081ce686bfd4deb461b4130df424d592000ff88#l30
+>=20
+> There are two callers of that, both passing "false" for the vidmem_alloc
+> parameter, so comptags always do end up in system memory for Tegra.
+>=20
+> That said, I'll go confirm that with one of our experts and get back to
+> you.
 
-  1. Boot up the laptop normally in Hybrid Graphics mode
-  2. Make sure nouveau is loaded and that the GPU is awake
-  3. Allow the Nvidia GPU to runtime suspend itself after being idle
-  4. Reboot the machine, the more sudden the better (e.g. sysrq-b may help)
-  5. If nouveau loads up properly, reboot the machine again and go back to
-     step 2 until you reproduce the issue
+So it looks like you're right and indeed GK20A and later (up to, but not
+including, GV11B that is) comptags do indeed need to be mapped as vidmem
+even if they reside in sysmem.
 
-This results in some very strange behavior: the GPU will be left in exactly
-the same state it was in when the previously booted kernel started the
-reboot.  This has all sorts of bad side effects: for starters, this
-completely breaks nouveau starting with a mysterious EVO channel failure
-that happens well before we've actually used the EVO channel for anything:
+Conceptually I think what we want to do is decide about the aperture at
+allocation time. So if we allocate comptags we would need to force the
+aperture to be VRAM on the iGPUs where necessary, even if they are
+really allocated in system memory. Ultimately the end result is the same
+of course, but I think this way around is a better representation of
+this particular hardware quirk and allows us to keep the unification
+that this patch series achieves.
 
-  nouveau 0000:01:00.0: disp: chid 0 mthd 0000 data 00000400 00001000 00000002
+But I'll have to look into this and see what I can come up with.
 
-This causes a timeout trying to bring up the GR ctx:
+Thierry
 
-  nouveau 0000:01:00.0: timeout
-  WARNING: CPU: 0 PID: 12 at drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgf100.c:1547 gf100_grctx_generate+0x7b2/0x850 [nouveau]
-  Hardware name: LENOVO 20EQS64N0B/20EQS64N0B, BIOS N1EET82W (1.55 ) 12/18/2018
-  Workqueue: events_long drm_dp_mst_link_probe_work [drm_kms_helper]
-  ...
-  nouveau 0000:01:00.0: gr: wait for idle timeout (en: 1, ctxsw: 0, busy: 1)
-  nouveau 0000:01:00.0: gr: wait for idle timeout (en: 1, ctxsw: 0, busy: 1)
-  nouveau 0000:01:00.0: fifo: fault 01 [WRITE] at 0000000000008000 engine 00 [GR] client 15 [HUB/SCC_NB] reason c4 [] on channel -1 [0000000000 unknown]
+>=20
+> Thierry
+>=20
+> >=20
+> > Ben.
+> >=20
+> > >
+> > > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > > ---
+> > >  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h      |  1 -
+> > >  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgk20a.c | 10 ----------
+> > >  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgm20b.c |  4 ++--
+> > >  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.c |  2 +-
+> > >  4 files changed, 3 insertions(+), 14 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h b/drivers/=
+gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+> > > index fb3a9e8bb9cd..9862f44ac8b5 100644
+> > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+> > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+> > > @@ -212,7 +212,6 @@ void gf100_vmm_flush(struct nvkm_vmm *, int);
+> > >  void gf100_vmm_invalidate(struct nvkm_vmm *, u32 type);
+> > >  void gf100_vmm_invalidate_pdb(struct nvkm_vmm *, u64 addr);
+> > >
+> > > -int gk20a_vmm_aper(enum nvkm_memory_target);
+> > >  int gk20a_vmm_valid(struct nvkm_vmm *, void *, u32, struct nvkm_vmm_=
+map *);
+> > >
+> > >  int gm200_vmm_new_(const struct nvkm_vmm_func *, const struct nvkm_v=
+mm_func *,
+> > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgk20a.c b/dri=
+vers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgk20a.c
+> > > index 16d7bf727292..999b953505b3 100644
+> > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgk20a.c
+> > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgk20a.c
+> > > @@ -25,16 +25,6 @@
+> > >
+> > >  #include <core/memory.h>
+> > >
+> > > -int
+> > > -gk20a_vmm_aper(enum nvkm_memory_target target)
+> > > -{
+> > > -       switch (target) {
+> > > -       case NVKM_MEM_TARGET_NCOH: return 0;
+> > > -       default:
+> > > -               return -EINVAL;
+> > > -       }
+> > > -}
+> > > -
+> > >  int
+> > >  gk20a_vmm_valid(struct nvkm_vmm *vmm, void *argv, u32 argc,
+> > >                 struct nvkm_vmm_map *map)
+> > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgm20b.c b/dri=
+vers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgm20b.c
+> > > index 7a6066d886cd..f5d7819c4a40 100644
+> > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgm20b.c
+> > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgm20b.c
+> > > @@ -25,7 +25,7 @@ static const struct nvkm_vmm_func
+> > >  gm20b_vmm_17 =3D {
+> > >         .join =3D gm200_vmm_join,
+> > >         .part =3D gf100_vmm_part,
+> > > -       .aper =3D gk20a_vmm_aper,
+> > > +       .aper =3D gf100_vmm_aper,
+> > >         .valid =3D gk20a_vmm_valid,
+> > >         .flush =3D gf100_vmm_flush,
+> > >         .invalidate_pdb =3D gf100_vmm_invalidate_pdb,
+> > > @@ -41,7 +41,7 @@ static const struct nvkm_vmm_func
+> > >  gm20b_vmm_16 =3D {
+> > >         .join =3D gm200_vmm_join,
+> > >         .part =3D gf100_vmm_part,
+> > > -       .aper =3D gk20a_vmm_aper,
+> > > +       .aper =3D gf100_vmm_aper,
+> > >         .valid =3D gk20a_vmm_valid,
+> > >         .flush =3D gf100_vmm_flush,
+> > >         .invalidate_pdb =3D gf100_vmm_invalidate_pdb,
+> > > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.c b/dri=
+vers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.c
+> > > index 180c8f006e32..ffe84ea2f7d9 100644
+> > > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.c
+> > > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.c
+> > > @@ -43,7 +43,7 @@ static const struct nvkm_vmm_func
+> > >  gp10b_vmm =3D {
+> > >         .join =3D gp100_vmm_join,
+> > >         .part =3D gf100_vmm_part,
+> > > -       .aper =3D gk20a_vmm_aper,
+> > > +       .aper =3D gf100_vmm_aper,
+> > >         .valid =3D gp10b_vmm_valid,
+> > >         .flush =3D gp100_vmm_flush,
+> > >         .mthd =3D gp100_vmm_mthd,
+> > > --
+> > > 2.23.0
+> > >
+> > > _______________________________________________
+> > > Nouveau mailing list
+> > > Nouveau@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/nouveau
 
-The GPU never manages to recover.  Booting without loading nouveau causes
-issues as well, since the GPU starts sending spurious interrupts that cause
-other device's IRQs to get disabled by the kernel:
 
-  irq 16: nobody cared (try booting with the "irqpoll" option)
-  ...
-  handlers:
-  [<000000007faa9e99>] i801_isr [i2c_i801]
-  Disabling IRQ #16
-  ...
-  serio: RMI4 PS/2 pass-through port at rmi4-00.fn03
-  i801_smbus 0000:00:1f.4: Timeout waiting for interrupt!
-  i801_smbus 0000:00:1f.4: Transaction timeout
-  rmi4_f03 rmi4-00.fn03: rmi_f03_pt_write: Failed to write to F03 TX register (-110).
-  i801_smbus 0000:00:1f.4: Timeout waiting for interrupt!
-  i801_smbus 0000:00:1f.4: Transaction timeout
-  rmi4_physical rmi4-00: rmi_driver_set_irq_bits: Failed to change enabled interrupts!
 
-This causes the touchpad and sometimes other things to get disabled.
+--JwB53PgKC5A7+0Ej
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Since this happens without nouveau, we can't fix this problem from nouveau
-itself.
+-----BEGIN PGP SIGNATURE-----
 
-Add a PCI quirk for the specific P50 variant of this GPU.  Make sure the
-GPU is advertising NoReset- so we don't reset the GPU when the machine is
-in Dedicated graphics mode (where the GPU being initialized by the BIOS is
-normal and expected).  Map the GPU MMIO space and read the magic 0x2240c
-register, which will have bit 1 set if the device was POSTed during a
-previous boot.  Once we've confirmed all of this, reset the GPU and
-re-disable it - bringing it back to a healthy state.
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl2E9mQACgkQ3SOs138+
+s6HlYQ//RELopkoqCJGkP6tFmWZ7oW1oNOp6W0B026rMEkz6GYHDAEcWieqEPI7R
+U0Zmk/BaT5RwC8zvifj/eBEP/5wRxhL9E8jxa1lNJcPWwBkPr9YOYtlYaIo3tnk3
+FzSL74HOalUSNGrwRkmANxWDxRGvZJ+QXH/V2y0PgRDrrZCS2Y7hVC4WQP+F1Pg1
+eFFPiDliC3DHevfd1s9W36g1pgl4VPk5NyCl8jz6Pk3pga16s3ZVWt9ACe+9iR5K
++6gx4NzOnsBXHi5GUx73mlequUZeDqs6F0DKoBRReDBMIZEnFqn0RMEp0I45Q43M
+onQfLnIO3lZIdelefjx678/LfPcO+cggyeUKHrPPB6Z8I/OhYnSsKnu/f9I8/yFo
+0PxYfx1PDlI+EBuKGV5wpG5ZWRJS4e/m5594brk6E+CEAtKUAyuMDykXWRdVNZzl
+A7P2WnOYdBZj6rLUR/xDwcDtdGj524iwAMm98YdLjQU4ACvupYSuz2KdBg7C3Hgu
+yQpcCSlfp2wq/lur8W4iKCToiFUqhnXmMvk4zgAnWhM7EcU4QugntXHZFdXWN2PC
+KspY5v5QLS2EZiBb4prSefCFjovaCNs0npuuH/M+D6SCvFvJhYKu6W0wFjsfZYcO
+3iXpSlOdEHnOlZ+VrhL/WLJLpvuXCB7ek4Ip54WtndzzE7IHs1M=
+=QhNz
+-----END PGP SIGNATURE-----
 
-Link: https://bugzilla.kernel.org/show_bug.cgi?id=203003
-Link: https://lore.kernel.org/lkml/20190212220230.1568-1-lyude@redhat.com
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
-Cc: nouveau@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: Ben Skeggs <skeggsb@gmail.com>
-[bwh: Backported to 3.16:
- - Use dev_{err,info}() instead of pci_{err,info}()
- - Adjust context]
-Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
----
- drivers/pci/quirks.c | 58 ++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
+--JwB53PgKC5A7+0Ej--
 
---- a/drivers/pci/quirks.c
-+++ b/drivers/pci/quirks.c
-@@ -3900,3 +3900,61 @@ void pci_dev_specific_enable_acs(struct
- 		}
- 	}
- }
-+
-+/*
-+ * On Lenovo Thinkpad P50 SKUs with a Nvidia Quadro M1000M, the BIOS does
-+ * not always reset the secondary Nvidia GPU between reboots if the system
-+ * is configured to use Hybrid Graphics mode.  This results in the GPU
-+ * being left in whatever state it was in during the *previous* boot, which
-+ * causes spurious interrupts from the GPU, which in turn causes us to
-+ * disable the wrong IRQ and end up breaking the touchpad.  Unsurprisingly,
-+ * this also completely breaks nouveau.
-+ *
-+ * Luckily, it seems a simple reset of the Nvidia GPU brings it back to a
-+ * clean state and fixes all these issues.
-+ *
-+ * When the machine is configured in Dedicated display mode, the issue
-+ * doesn't occur.  Fortunately the GPU advertises NoReset+ when in this
-+ * mode, so we can detect that and avoid resetting it.
-+ */
-+static void quirk_reset_lenovo_thinkpad_p50_nvgpu(struct pci_dev *pdev)
-+{
-+	void __iomem *map;
-+	int ret;
-+
-+	if (pdev->subsystem_vendor != PCI_VENDOR_ID_LENOVO ||
-+	    pdev->subsystem_device != 0x222e ||
-+	    !pdev->reset_fn)
-+		return;
-+
-+	if (pci_enable_device_mem(pdev))
-+		return;
-+
-+	/*
-+	 * Based on nvkm_device_ctor() in
-+	 * drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
-+	 */
-+	map = pci_iomap(pdev, 0, 0x23000);
-+	if (!map) {
-+		dev_err(&pdev->dev, "Can't map MMIO space\n");
-+		goto out_disable;
-+	}
-+
-+	/*
-+	 * Make sure the GPU looks like it's been POSTed before resetting
-+	 * it.
-+	 */
-+	if (ioread32(map + 0x2240c) & 0x2) {
-+		dev_info(&pdev->dev, FW_BUG "GPU left initialized by EFI, resetting\n");
-+		ret = pci_reset_function(pdev);
-+		if (ret < 0)
-+			dev_err(&pdev->dev, "Failed to reset GPU: %d\n", ret);
-+	}
-+
-+	iounmap(map);
-+out_disable:
-+	pci_disable_device(pdev);
-+}
-+DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_NVIDIA, 0x13b1,
-+			      PCI_CLASS_DISPLAY_VGA, 8,
-+			      quirk_reset_lenovo_thinkpad_p50_nvgpu);
+--===============1703601409==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
+
+--===============1703601409==--
