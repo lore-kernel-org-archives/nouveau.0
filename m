@@ -1,118 +1,168 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 103217] Recent noveau causes errors with scilab
- 5.5.2 on NVIDIA G84GL [Quadro FX 570]
-Date: Thu, 19 Sep 2019 09:22:45 +0000
-Message-ID: <bug-103217-8800-HZoqmRXC3J@http.bugs.freedesktop.org/>
-References: <bug-103217-8800@http.bugs.freedesktop.org/>
+From: Ben Hutchings <ben@decadent.org.uk>
+Subject: [PATCH 3.16 053/132] PCI: Reset Lenovo ThinkPad P50 nvgpu at boot
+ if necessary
+Date: Fri, 20 Sep 2019 15:23:35 +0100
+Message-ID: <lsq.1568989415.980827164@decadent.org.uk>
+References: <lsq.1568989414.954567518@decadent.org.uk>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0185899110=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-103217-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Return-path: <stable-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <lsq.1568989414.954567518@decadent.org.uk>
+Sender: stable-owner@vger.kernel.org
+To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc: akpm@linux-foundation.org, Denis Kirjanov <kda@linux-powerpc.org>, Ben Skeggs <skeggsb@gmail.com>, nouveau@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>, Karol Herbst <kherbst@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+3.16.74-rc1 review patch.  If anyone has any objections, please let me know.
 
---===============0185899110==
-Content-Type: multipart/alternative; boundary="15688849650.fcc63d.8731"
-Content-Transfer-Encoding: 7bit
+------------------
 
+From: Lyude Paul <lyude@redhat.com>
 
---15688849650.fcc63d.8731
-Date: Thu, 19 Sep 2019 09:22:45 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+commit e0547c81bfcfad01cbbfa93a5e66bb98ab932f80 upstream.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D103217
+On ThinkPad P50 SKUs with an Nvidia Quadro M1000M instead of the M2000M
+variant, the BIOS does not always reset the secondary Nvidia GPU during
+reboot if the laptop is configured in Hybrid Graphics mode.  The reason is
+unknown, but the following steps and possibly a good bit of patience will
+reproduce the issue:
 
---- Comment #11 from sarataylor <st2648729-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-To complement your foam mattress checkoff list, we even added a few things =
-that
-you might want to get with it.We hope you find this the most comprehensive
-guide about memory foam mattresses and that it helps you acquire the best
-memory foam mattress.
+  1. Boot up the laptop normally in Hybrid Graphics mode
+  2. Make sure nouveau is loaded and that the GPU is awake
+  3. Allow the Nvidia GPU to runtime suspend itself after being idle
+  4. Reboot the machine, the more sudden the better (e.g. sysrq-b may help)
+  5. If nouveau loads up properly, reboot the machine again and go back to
+     step 2 until you reproduce the issue
 
-https://topnaturalmattresses.com/best-memory-foam-mattress/
+This results in some very strange behavior: the GPU will be left in exactly
+the same state it was in when the previously booted kernel started the
+reboot.  This has all sorts of bad side effects: for starters, this
+completely breaks nouveau starting with a mysterious EVO channel failure
+that happens well before we've actually used the EVO channel for anything:
 
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.=
+  nouveau 0000:01:00.0: disp: chid 0 mthd 0000 data 00000400 00001000 00000002
 
---15688849650.fcc63d.8731
-Date: Thu, 19 Sep 2019 09:22:45 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
+This causes a timeout trying to bring up the GR ctx:
 
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Recent noveau causes errors with scilab 5.=
-5.2 on NVIDIA G84GL [Quadro FX 570]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103217#c11">Comme=
-nt # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - Recent noveau causes errors with scilab 5.=
-5.2 on NVIDIA G84GL [Quadro FX 570]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D103217">bug 10321=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-st2648729&#64;gmail.com" title=3D"sarataylor &lt;st2648729&#64;gmail.com&gt=
-;"> <span class=3D"fn">sarataylor</span></a>
-</span></b>
-        <pre>To complement your foam mattress checkoff list, we even added =
-a few things that
-you might want to get with it.We hope you find this the most comprehensive
-guide about memory foam mattresses and that it helps you acquire the best
-memory foam mattress.
+  nouveau 0000:01:00.0: timeout
+  WARNING: CPU: 0 PID: 12 at drivers/gpu/drm/nouveau/nvkm/engine/gr/ctxgf100.c:1547 gf100_grctx_generate+0x7b2/0x850 [nouveau]
+  Hardware name: LENOVO 20EQS64N0B/20EQS64N0B, BIOS N1EET82W (1.55 ) 12/18/2018
+  Workqueue: events_long drm_dp_mst_link_probe_work [drm_kms_helper]
+  ...
+  nouveau 0000:01:00.0: gr: wait for idle timeout (en: 1, ctxsw: 0, busy: 1)
+  nouveau 0000:01:00.0: gr: wait for idle timeout (en: 1, ctxsw: 0, busy: 1)
+  nouveau 0000:01:00.0: fifo: fault 01 [WRITE] at 0000000000008000 engine 00 [GR] client 15 [HUB/SCC_NB] reason c4 [] on channel -1 [0000000000 unknown]
 
-<a href=3D"https://topnaturalmattresses.com/best-memory-foam-mattress/">htt=
-ps://topnaturalmattresses.com/best-memory-foam-mattress/</a></pre>
-        </div>
-      </p>
+The GPU never manages to recover.  Booting without loading nouveau causes
+issues as well, since the GPU starts sending spurious interrupts that cause
+other device's IRQs to get disabled by the kernel:
 
+  irq 16: nobody cared (try booting with the "irqpoll" option)
+  ...
+  handlers:
+  [<000000007faa9e99>] i801_isr [i2c_i801]
+  Disabling IRQ #16
+  ...
+  serio: RMI4 PS/2 pass-through port at rmi4-00.fn03
+  i801_smbus 0000:00:1f.4: Timeout waiting for interrupt!
+  i801_smbus 0000:00:1f.4: Transaction timeout
+  rmi4_f03 rmi4-00.fn03: rmi_f03_pt_write: Failed to write to F03 TX register (-110).
+  i801_smbus 0000:00:1f.4: Timeout waiting for interrupt!
+  i801_smbus 0000:00:1f.4: Transaction timeout
+  rmi4_physical rmi4-00: rmi_driver_set_irq_bits: Failed to change enabled interrupts!
 
-      <hr>
-      <span>You are receiving this mail because:</span>
+This causes the touchpad and sometimes other things to get disabled.
 
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
+Since this happens without nouveau, we can't fix this problem from nouveau
+itself.
 
---15688849650.fcc63d.8731--
+Add a PCI quirk for the specific P50 variant of this GPU.  Make sure the
+GPU is advertising NoReset- so we don't reset the GPU when the machine is
+in Dedicated graphics mode (where the GPU being initialized by the BIOS is
+normal and expected).  Map the GPU MMIO space and read the magic 0x2240c
+register, which will have bit 1 set if the device was POSTed during a
+previous boot.  Once we've confirmed all of this, reset the GPU and
+re-disable it - bringing it back to a healthy state.
 
---===============0185899110==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
+Link: https://bugzilla.kernel.org/show_bug.cgi?id=203003
+Link: https://lore.kernel.org/lkml/20190212220230.1568-1-lyude@redhat.com
+Signed-off-by: Lyude Paul <lyude@redhat.com>
+Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
+Cc: nouveau@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: Karol Herbst <kherbst@redhat.com>
+Cc: Ben Skeggs <skeggsb@gmail.com>
+[bwh: Backported to 3.16:
+ - Use dev_{err,info}() instead of pci_{err,info}()
+ - Adjust context]
+Signed-off-by: Ben Hutchings <ben@decadent.org.uk>
+---
+ drivers/pci/quirks.c | 58 ++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0185899110==--
+--- a/drivers/pci/quirks.c
++++ b/drivers/pci/quirks.c
+@@ -3900,3 +3900,61 @@ void pci_dev_specific_enable_acs(struct
+ 		}
+ 	}
+ }
++
++/*
++ * On Lenovo Thinkpad P50 SKUs with a Nvidia Quadro M1000M, the BIOS does
++ * not always reset the secondary Nvidia GPU between reboots if the system
++ * is configured to use Hybrid Graphics mode.  This results in the GPU
++ * being left in whatever state it was in during the *previous* boot, which
++ * causes spurious interrupts from the GPU, which in turn causes us to
++ * disable the wrong IRQ and end up breaking the touchpad.  Unsurprisingly,
++ * this also completely breaks nouveau.
++ *
++ * Luckily, it seems a simple reset of the Nvidia GPU brings it back to a
++ * clean state and fixes all these issues.
++ *
++ * When the machine is configured in Dedicated display mode, the issue
++ * doesn't occur.  Fortunately the GPU advertises NoReset+ when in this
++ * mode, so we can detect that and avoid resetting it.
++ */
++static void quirk_reset_lenovo_thinkpad_p50_nvgpu(struct pci_dev *pdev)
++{
++	void __iomem *map;
++	int ret;
++
++	if (pdev->subsystem_vendor != PCI_VENDOR_ID_LENOVO ||
++	    pdev->subsystem_device != 0x222e ||
++	    !pdev->reset_fn)
++		return;
++
++	if (pci_enable_device_mem(pdev))
++		return;
++
++	/*
++	 * Based on nvkm_device_ctor() in
++	 * drivers/gpu/drm/nouveau/nvkm/engine/device/base.c
++	 */
++	map = pci_iomap(pdev, 0, 0x23000);
++	if (!map) {
++		dev_err(&pdev->dev, "Can't map MMIO space\n");
++		goto out_disable;
++	}
++
++	/*
++	 * Make sure the GPU looks like it's been POSTed before resetting
++	 * it.
++	 */
++	if (ioread32(map + 0x2240c) & 0x2) {
++		dev_info(&pdev->dev, FW_BUG "GPU left initialized by EFI, resetting\n");
++		ret = pci_reset_function(pdev);
++		if (ret < 0)
++			dev_err(&pdev->dev, "Failed to reset GPU: %d\n", ret);
++	}
++
++	iounmap(map);
++out_disable:
++	pci_disable_device(pdev);
++}
++DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_NVIDIA, 0x13b1,
++			      PCI_CLASS_DISPLAY_VGA, 8,
++			      quirk_reset_lenovo_thinkpad_p50_nvgpu);
