@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 108615] [NVE7] changing resolution causes blank
  screen
-Date: Sat, 21 Sep 2019 20:52:34 +0000
-Message-ID: <bug-108615-8800-b7oC1rPJ9D@http.bugs.freedesktop.org/>
+Date: Sat, 21 Sep 2019 20:51:12 +0000
+Message-ID: <bug-108615-8800-CxsFtCW3Ee@http.bugs.freedesktop.org/>
 References: <bug-108615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1311605390=="
+Content-Type: multipart/mixed; boundary="===============0455113300=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-108615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1311605390==
-Content-Type: multipart/alternative; boundary="15690991531.9DC7F36b.7706"
+--===============0455113300==
+Content-Type: multipart/alternative; boundary="15690990721.aDCAa6328.7800"
 Content-Transfer-Encoding: 7bit
 
 
---15690991531.9DC7F36b.7706
-Date: Sat, 21 Sep 2019 20:52:33 +0000
+--15690990721.aDCAa6328.7800
+Date: Sat, 21 Sep 2019 20:51:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -40,14 +40,16 @@ jbytecoder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Keywords|                            |regression
+           Priority|medium                      |high
+            Version|unspecified                 |7.7 (2012.06)
+           Severity|normal                      |major
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15690991531.9DC7F36b.7706
-Date: Sat, 21 Sep 2019 20:52:33 +0000
+--15690990721.aDCAa6328.7800
+Date: Sat, 21 Sep 2019 20:51:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -76,11 +78,26 @@ m</a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Keywords</td>
-           <td>
-               &nbsp;
+           <td style=3D"text-align:right;">Priority</td>
+           <td>medium
            </td>
-           <td>regression
+           <td>high
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Version</td>
+           <td>unspecified
+           </td>
+           <td>7.7 (2012.06)
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Severity</td>
+           <td>normal
+           </td>
+           <td>major
            </td>
          </tr></table>
       <p>
@@ -96,9 +113,9 @@ m</a>
     </body>
 </html>=
 
---15690991531.9DC7F36b.7706--
+--15690990721.aDCAa6328.7800--
 
---===============1311605390==
+--===============0455113300==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +125,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1311605390==--
+--===============0455113300==--
