@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
- [CTXSW_TIMEOUT]
-Date: Mon, 23 Sep 2019 21:07:12 +0000
-Message-ID: <bug-100567-8800-ct11mnlQYj@http.bugs.freedesktop.org/>
-References: <bug-100567-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 111793] New: double free or corruption (fasttop) in
+ nouveau_bo_del
+Date: Mon, 23 Sep 2019 23:55:07 +0000
+Message-ID: <bug-111793-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1299728163=="
+Content-Type: multipart/mixed; boundary="===============1964656850=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,42 +19,52 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1299728163==
-Content-Type: multipart/alternative; boundary="15692728320.c1C6a0fFa.4179"
+--===============1964656850==
+Content-Type: multipart/alternative; boundary="15692829070.eBA09.1445"
 Content-Transfer-Encoding: 7bit
 
 
---15692728320.c1C6a0fFa.4179
-Date: Mon, 23 Sep 2019 21:07:12 +0000
+--15692829070.eBA09.1445
+Date: Mon, 23 Sep 2019 23:55:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111793
 
---- Comment #39 from Lucas Ribeiro <lucasout-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I've been using this 660Ti (NVE4) card with nouveau and tested several kern=
-els:
-4.14, 4.19 and 5.3, all with the same problem. During different usage or ga=
-mes,
-the system freezes. It is recoverable with SysRq + RE, though. It might be
-possible to SSH into the system and kill this process manually, but I'm not
-sure.
+            Bug ID: 111793
+           Summary: double free or corruption (fasttop) in nouveau_bo_del
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: not set
+          Priority: not set
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: yurys-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-This freezes happens with multi-monitor and single-monitor setups. The mach=
-ine
-has two videocards.
+Created attachment 145484
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145484&action=3Dedit
+double free or corruption (fasttop)
 
-I also would love to help with traces, if anyone has ideas.
+This happens all the time when I'm trying to load cnn.com in WebKit
+minibrowser. More details about the scenario can be found at
+https://bugs.webkit.org/show_bug.cgi?id=3D200437
+
+There is either segfault or assertion failure everytime I load the site.
+Attaching a couple of core dumps to the bug.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15692728320.c1C6a0fFa.4179
-Date: Mon, 23 Sep 2019 21:07:12 +0000
+--15692829070.eBA09.1445
+Date: Mon, 23 Sep 2019 23:55:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -67,38 +75,102 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - double free or corruption (fasttop) in nouveau_bo_del"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111793">111793</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>double free or corruption (fasttop) in nouveau_bo_del
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>not set
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>not set
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>yurys&#64;chromium.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c39">Comme=
-nt # 39</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lucasout&#64;gmail.com" title=3D"Lucas Ribeiro &lt;lucasout&#64;gmail.com&g=
-t;"> <span class=3D"fn">Lucas Ribeiro</span></a>
-</span></b>
-        <pre>I've been using this 660Ti (NVE4) card with nouveau and tested=
- several kernels:
-4.14, 4.19 and 5.3, all with the same problem. During different usage or ga=
-mes,
-the system freezes. It is recoverable with SysRq + RE, though. It might be
-possible to SSH into the system and kill this process manually, but I'm not
-sure.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145484=
+" name=3D"attach_145484" title=3D"double free or corruption (fasttop)">atta=
+chment 145484</a> <a href=3D"attachment.cgi?id=3D145484&amp;action=3Dedit" =
+title=3D"double free or corruption (fasttop)">[details]</a></span>
+double free or corruption (fasttop)
 
-This freezes happens with multi-monitor and single-monitor setups. The mach=
-ine
-has two videocards.
+This happens all the time when I'm trying to load cnn.com in WebKit
+minibrowser. More details about the scenario can be found at
+<a href=3D"https://bugs.webkit.org/show_bug.cgi?id=3D200437">https://bugs.w=
+ebkit.org/show_bug.cgi?id=3D200437</a>
 
-I also would love to help with traces, if anyone has ideas.</pre>
+There is either segfault or assertion failure everytime I load the site.
+Attaching a couple of core dumps to the bug.</pre>
         </div>
       </p>
 
@@ -112,9 +184,9 @@ I also would love to help with traces, if anyone has ideas.</pre>
     </body>
 </html>=
 
---15692728320.c1C6a0fFa.4179--
+--15692829070.eBA09.1445--
 
---===============1299728163==
+--===============1964656850==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +196,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1299728163==--
+--===============1964656850==--
