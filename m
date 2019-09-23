@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111793] double free or corruption (fasttop) in
  nouveau_bo_del
-Date: Mon, 23 Sep 2019 23:55:33 +0000
-Message-ID: <bug-111793-8800-VFLkjAs1bR@http.bugs.freedesktop.org/>
+Date: Mon, 23 Sep 2019 23:58:05 +0000
+Message-ID: <bug-111793-8800-vxRhwuUgub@http.bugs.freedesktop.org/>
 References: <bug-111793-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1757907978=="
+Content-Type: multipart/mixed; boundary="===============0558753925=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111793-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1757907978==
-Content-Type: multipart/alternative; boundary="15692829331.c36d.1515"
+--===============0558753925==
+Content-Type: multipart/alternative; boundary="15692830851.36CaBB0d.1659"
 Content-Transfer-Encoding: 7bit
 
 
---15692829331.c36d.1515
-Date: Mon, 23 Sep 2019 23:55:33 +0000
+--15692830851.36CaBB0d.1659
+Date: Mon, 23 Sep 2019 23:58:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111793
 
---- Comment #1 from Yury Semikhatsky <yurys-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org> ---
-Created attachment 145485
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145485&action=3Dedit
-dmesg output
+Yury Semikhatsky <yurys-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #145484|double free or corruption   |assertion in
+        description|(fasttop)                   |nouveau_pushbuf_data at
+                   |                            |../nouveau/pushbuf.c:723
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15692829331.c36d.1515
-Date: Mon, 23 Sep 2019 23:55:33 +0000
+--15692830851.36CaBB0d.1659
+Date: Mon, 23 Sep 2019 23:58:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -57,29 +60,32 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - double free or corruption (fasttop) in nouveau_bo_del"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111793#c1">Commen=
-t # 1</a>
-              on <a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:yurys&#64=
+;chromium.org" title=3D"Yury Semikhatsky &lt;yurys&#64;chromium.org&gt;"> <=
+span class=3D"fn">Yury Semikhatsky</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - double free or corruption (fasttop) in nouveau_bo_del"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111793">bug 11179=
 3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-yurys&#64;chromium.org" title=3D"Yury Semikhatsky &lt;yurys&#64;chromium.or=
-g&gt;"> <span class=3D"fn">Yury Semikhatsky</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145485=
-" name=3D"attach_145485" title=3D"dmesg output">attachment 145485</a> <a hr=
-ef=3D"attachment.cgi?id=3D145485&amp;action=3Dedit" title=3D"dmesg output">=
-[details]</a></span>
-dmesg output</pre>
-        </div>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #145484 description</=
+td>
+           <td>double free or corruption (fasttop)
+           </td>
+           <td>assertion in nouveau_pushbuf_data at ../nouveau/pushbuf.c:723
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -92,9 +98,9 @@ dmesg output</pre>
     </body>
 </html>=
 
---15692829331.c36d.1515--
+--15692830851.36CaBB0d.1659--
 
---===============1757907978==
+--===============0558753925==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1757907978==--
+--===============0558753925==--
