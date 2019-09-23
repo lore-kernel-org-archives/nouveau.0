@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 108615] [NVE7] changing resolution causes blank
- screen
-Date: Sat, 21 Sep 2019 20:49:48 +0000
-Message-ID: <bug-108615-8800-ABLjuP5FeA@http.bugs.freedesktop.org/>
-References: <bug-108615-8800@http.bugs.freedesktop.org/>
+From: "Liu, Yongxin" <Yongxin.Liu-CWA4WttNNZF54TAoqtyWWQ@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Fix memory leak in nvkm_ram_get()
+Date: Mon, 23 Sep 2019 08:01:38 +0000
+Message-ID: <597B109EC20B76429F71A8A97770610D19E1085A@ALA-MBD.corp.ad.wrs.com>
+References: <20190823085042.37349-1-yongxin.liu@windriver.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0040712006=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-108615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20190823085042.37349-1-yongxin.liu-CWA4WttNNZF54TAoqtyWWQ@public.gmane.org>
+Content-Language: en-US
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,118 +18,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org" <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "Gortmaker,
+ Paul" <Paul.Gortmaker-CWA4WttNNZF54TAoqtyWWQ@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "Wei,
+ Yunguo (Bryan)" <Yunguo.Wei-CWA4WttNNZF54TAoqtyWWQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0040712006==
-Content-Type: multipart/alternative; boundary="15690989880.09885D0.7726"
-Content-Transfer-Encoding: 7bit
-
-
---15690989880.09885D0.7726
-Date: Sat, 21 Sep 2019 20:49:48 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D108615
-
---- Comment #7 from jbytecoder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-I have tested the issue against linux-5.3 and it stil persists. I also
-attempted to narrow down the commit that did introduce the problem.=20
-
-Using kernel sources at https://github.com/torvalds/linux.git i detected th=
-at
-between tags v4.9 and v4.10  The kernel breaks @ 9439b3710df6 - this is a b=
-ig
-change commit that intorduces drm changes planned for linux-4.10.=20
-
-I guess the issue has to do with "atomic modesseting" it would appear that =
-for
-nv50 the atomic modesseting works only for default resolution, but not for =
-any
-other
-
-Can someone suggest any way to further narrow down the culprit ?
-logging has no effect ( no errors appear in log )
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15690989880.09885D0.7726
-Date: Sat, 21 Sep 2019 20:49:48 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE7] changing resolution causes blank screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108615#c7">Commen=
-t # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE7] changing resolution causes blank screen"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D108615">bug 10861=
-5</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jbytecoder&#64;gmail.com" title=3D"jbytecoder&#64;gmail.com">jbytecoder&#64=
-;gmail.com</a>
-</span></b>
-        <pre>I have tested the issue against linux-5.3 and it stil persists=
-. I also
-attempted to narrow down the commit that did introduce the problem.=20
-
-Using kernel sources at <a href=3D"https://github.com/torvalds/linux.git">h=
-ttps://github.com/torvalds/linux.git</a> i detected that
-between tags v4.9 and v4.10  The kernel breaks &#64; 9439b3710df6 - this is=
- a big
-change commit that intorduces drm changes planned for linux-4.10.=20
-
-I guess the issue has to do with &quot;atomic modesseting&quot; it would ap=
-pear that for
-nv50 the atomic modesseting works only for default resolution, but not for =
-any
-other
-
-Can someone suggest any way to further narrow down the culprit ?
-logging has no effect ( no errors appear in log )</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15690989880.09885D0.7726--
-
---===============0040712006==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0040712006==--
+SGkgQmVuLA0KDQpBbnkgY29tbWVudHMgb24gdGhpcyBwYXRjaD8NCg0KDQpUaGFua3MsDQpZb25n
+eGluDQoNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBOb3V2ZWF1IFtt
+YWlsdG86bm91dmVhdS1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZ10gT24gQmVoYWxmIE9m
+DQo+IFlvbmd4aW4gTGl1DQo+IFNlbnQ6IEZyaWRheSwgQXVndXN0IDIzLCAyMDE5IDE2OjUxDQo+
+IFRvOiBic2tlZ2dzQHJlZGhhdC5jb207IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcN
+Cj4gQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBXZWksIFl1bmd1byAoQnJ5YW4p
+OyBHb3J0bWFrZXIsIFBhdWwNCj4gU3ViamVjdDogW05vdXZlYXVdIFtQQVRDSF0gZHJtL25vdXZl
+YXU6IEZpeCBtZW1vcnkgbGVhayBpbiBudmttX3JhbV9nZXQoKQ0KPiANCj4gV2hlbiByZXN1bWlu
+ZyBmcm9tIEFDUEkgUzMsIG1lbW9yeSBsZWFrIGhhcHBlbnMgaW4gbnZrbV9yYW1fZ2V0KCkuDQo+
+IFRoaXMgaXMgYmVjYXVzZSAqcG1lbW9yeSBwb2ludHMgdG8gbmV3bHkgYWxsb2NhdGVkIG1lbW9y
+eSB3aXRob3V0DQo+IGNoZWNraW5nIGFuZCBmcmVlaW5nIHRoZSBvbGQgbWVtb3J5Lg0KPiANCj4g
+SGVyZSBpcyB0aGUgbG9nIHNob3dpbmcgdGhpcyBpc3N1ZS4NCj4gDQo+IHVucmVmZXJlbmNlZCBv
+YmplY3QgMHhmZmZmYTNiNjA4YzZkNWMwIChzaXplIDY0KToNCj4gICBjb21tICJrd29ya2VyL3Uz
+MjozMCIsIHBpZCA5MzQsIGppZmZpZXMgNDI5NDgyMzUyMCAoYWdlIDUwMDAuMjE3cykNCj4gICBo
+ZXggZHVtcCAoZmlyc3QgMzIgYnl0ZXMpOg0KPiAgICAgMDAgZmMgNGEgYzAgZmYgZmYgZmYgZmYg
+MDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgIC4uSi4uLi4uLi4uLi4uLi4NCj4gICAgIDAxIDAwIDAw
+IDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwICAuLi4uLi4uLi4uLi4uLi4u
+DQo+ICAgYmFja3RyYWNlOg0KPiAgICAgWzwwMDAwMDAwMGU5MjNiZjgxPl0ga21lbV9jYWNoZV9h
+bGxvY190cmFjZSsweDE4MS8weDI1MA0KPiAgICAgWzwwMDAwMDAwMGVkYjdiZWFhPl0gbnZrbV9y
+YW1fZ2V0KzB4YjAvMHgxZDAgW25vdXZlYXVdDQo+ICAgICBbPDAwMDAwMDAwNGVjYWE5MTg+XSBn
+dDIxNV9yYW1faW5pdCsweGM1LzB4MmYwIFtub3V2ZWF1XQ0KPiAgICAgWzwwMDAwMDAwMDAwN2Jh
+MWEwPl0gbnZrbV9yYW1faW5pdCsweDFhLzB4MjAgW25vdXZlYXVdDQo+ICAgICBbPDAwMDAwMDAw
+NTBhYmY4NGI+XSBudmttX2ZiX2luaXQrMHgyNy8weGUwIFtub3V2ZWF1XQ0KPiAgICAgWzwwMDAw
+MDAwMGZhZTdmZWRjPl0gbnZrbV9zdWJkZXZfaW5pdCsweGJjLzB4MjEwIFtub3V2ZWF1XQ0KPiAg
+ICAgWzwwMDAwMDAwMGE2N2I4NmU0Pl0gbnZrbV9kZXZpY2VfaW5pdCsweDEyYS8weDI4MCBbbm91
+dmVhdV0NCj4gICAgIFs8MDAwMDAwMDBjMDJhYzAzZT5dIG52a21fdWRldmljZV9pbml0KzB4NDgv
+MHg2MCBbbm91dmVhdV0NCj4gICAgIFs8MDAwMDAwMDA0OGYzNTY0MT5dIG52a21fb2JqZWN0X2lu
+aXQrMHg0My8weDExMCBbbm91dmVhdV0NCj4gICAgIFs8MDAwMDAwMDBjNmY5MmRjMD5dIG52a21f
+b2JqZWN0X2luaXQrMHg3NC8weDExMCBbbm91dmVhdV0NCj4gICAgIFs8MDAwMDAwMDBjNmY5MmRj
+MD5dIG52a21fb2JqZWN0X2luaXQrMHg3NC8weDExMCBbbm91dmVhdV0NCj4gICAgIFs8MDAwMDAw
+MDA3NDE2OTUxYz5dIG52a21fY2xpZW50X3Jlc3VtZSsweGUvMHgxMCBbbm91dmVhdV0NCj4gICAg
+IFs8MDAwMDAwMDBjNWQzMWRmZD5dIG52aWZfY2xpZW50X3Jlc3VtZSsweDFkLzB4MjAgW25vdXZl
+YXVdDQo+ICAgICBbPDAwMDAwMDAwOGYzYTYzOGY+XSBub3V2ZWF1X2RvX3Jlc3VtZSsweDJkLzB4
+MTUwIFtub3V2ZWF1XQ0KPiAgICAgWzwwMDAwMDAwMGRmMmMyYjg1Pl0gbm91dmVhdV9wbW9wc19y
+ZXN1bWUrMHg2Yi8weGEwIFtub3V2ZWF1XQ0KPiAgICAgWzwwMDAwMDAwMGY0NGM2NDlkPl0gcGNp
+X3BtX3Jlc3VtZSsweDcxLzB4YjANCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFlvbmd4aW4gTGl1IDx5
+b25neGluLmxpdUB3aW5kcml2ZXIuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252a20vc3ViZGV2L2ZiL3JhbS5jIHwgMyArKysNCj4gIDEgZmlsZSBjaGFuZ2VkLCAzIGlu
+c2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+dmttL3N1YmRldi9mYi9yYW0uYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3Vi
+ZGV2L2ZiL3JhbS5jDQo+IGluZGV4IGIxMTg2N2Y2ODJjYi4uNjBiZTRkODExMTg3IDEwMDY0NA0K
+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9yYW0uYw0KPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9yYW0uYw0KPiBAQCAt
+MTI0LDYgKzEyNCw5IEBAIG52a21fcmFtX2dldChzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSwg
+dTggaGVhcCwgdTgNCj4gdHlwZSwgdTggcnBhZ2UsIHU2NCBzaXplLA0KPiAgCW52a21fbWVtb3J5
+X2N0b3IoJm52a21fdnJhbSwgJnZyYW0tPm1lbW9yeSk7DQo+ICAJdnJhbS0+cmFtID0gcmFtOw0K
+PiAgCXZyYW0tPnBhZ2UgPSBwYWdlOw0KPiArDQo+ICsJaWYgKCpwbWVtb3J5KQ0KPiArCQludmtt
+X21lbW9yeV91bnJlZihwbWVtb3J5KTsNCj4gIAkqcG1lbW9yeSA9ICZ2cmFtLT5tZW1vcnk7DQo+
+IA0KPiAgCW11dGV4X2xvY2soJnJhbS0+ZmItPnN1YmRldi5tdXRleCk7DQo+IC0tDQo+IDIuMTQu
+NA0KPiANCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18N
+Cj4gTm91dmVhdSBtYWlsaW5nIGxpc3QNCj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcN
+Cj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
+IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXU=
