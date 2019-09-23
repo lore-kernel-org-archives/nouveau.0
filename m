@@ -1,76 +1,185 @@
-From: Sandy Huang <hjc@rock-chips.com>
-Subject: [PATCH 13/36] drm/nouveau: use bpp instead of cpp for drm_format_info
-Date: Mon, 23 Sep 2019 20:47:37 +0800
-Message-ID: <1569242880-182878-3-git-send-email-hjc@rock-chips.com>
-References: <1569242880-182878-1-git-send-email-hjc@rock-chips.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111787] New: reverse engineered nvidia 3d driver not
+ working
+Date: Mon, 23 Sep 2019 14:48:56 +0000
+Message-ID: <bug-111787-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1569242880-182878-1-git-send-email-hjc@rock-chips.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Sandy Huang <hjc@rock-chips.com>
-Cc: nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============1380724427=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Y3BwW0J5dGVQZXJQbGFuZV0gY2FuJ3QgZGVzY3JpYmUgdGhlIDEwYml0IGRhdGEgZm9ybWF0IGNv
-cnJlY3RseSwKU28gd2UgdXNlIGJwcFtCaXRQZXJQbGFuZV0gdG8gaW5zdGVhZCBjcHAuCgpTaWdu
-ZWQtb2ZmLWJ5OiBTYW5keSBIdWFuZyA8aGpjQHJvY2stY2hpcHMuY29tPgotLS0KIGRyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L2Rpc3BudjA0L2NydGMuYyAgICAgfCA3ICsrKystLS0KIGRyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Jhc2U1MDdjLmMgfCA0ICsrLS0KIGRyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L2Rpc3BudjUwL292bHk1MDdlLmMgfCAyICstCiAzIGZpbGVzIGNoYW5nZWQs
-IDcgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9kaXNwbnYwNC9jcnRjLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9k
-aXNwbnYwNC9jcnRjLmMKaW5kZXggZjIyZjAxMC4uNTlkMmYwNyAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvZGlzcG52MDQvY3J0Yy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L2Rpc3BudjA0L2NydGMuYwpAQCAtODc0LDExICs4NzQsMTIgQEAgbnYwNF9jcnRjX2Rv
-X21vZGVfc2V0X2Jhc2Uoc3RydWN0IGRybV9jcnRjICpjcnRjLAogCiAJLyogVXBkYXRlIHRoZSBm
-cmFtZWJ1ZmZlciBsb2NhdGlvbi4gKi8KIAlyZWdwLT5mYl9zdGFydCA9IG52X2NydGMtPmZiLm9m
-ZnNldCAmIH4zOwotCXJlZ3AtPmZiX3N0YXJ0ICs9ICh5ICogZHJtX2ZiLT5waXRjaGVzWzBdKSAr
-ICh4ICogZHJtX2ZiLT5mb3JtYXQtPmNwcFswXSk7CisJcmVncC0+ZmJfc3RhcnQgKz0gKHkgKiBk
-cm1fZmItPnBpdGNoZXNbMF0pICsKKwkJCQkoeCAqIGRybV9mYi0+Zm9ybWF0LT5icHBbMF0gLyA4
-KTsKIAludl9zZXRfY3J0Y19iYXNlKGRldiwgbnZfY3J0Yy0+aW5kZXgsIHJlZ3AtPmZiX3N0YXJ0
-KTsKIAogCS8qIFVwZGF0ZSB0aGUgYXJiaXRyYXRpb24gcGFyYW1ldGVycy4gKi8KLQlub3V2ZWF1
-X2NhbGNfYXJiKGRldiwgY3J0Yy0+bW9kZS5jbG9jaywgZHJtX2ZiLT5mb3JtYXQtPmNwcFswXSAq
-IDgsCisJbm91dmVhdV9jYWxjX2FyYihkZXYsIGNydGMtPm1vZGUuY2xvY2ssIGRybV9mYi0+Zm9y
-bWF0LT5icHBbMF0sCiAJCQkgJmFyYl9idXJzdCwgJmFyYl9sd20pOwogCiAJcmVncC0+Q1JUQ1tO
-Vl9DSU9fQ1JFX0ZGX0lOREVYXSA9IGFyYl9idXJzdDsKQEAgLTEyMzgsNyArMTIzOSw3IEBAIG52
-MDRfY3J0Y19wYWdlX2ZsaXAoc3RydWN0IGRybV9jcnRjICpjcnRjLCBzdHJ1Y3QgZHJtX2ZyYW1l
-YnVmZmVyICpmYiwKIAogCS8qIEluaXRpYWxpemUgYSBwYWdlIGZsaXAgc3RydWN0ICovCiAJKnMg
-PSAoc3RydWN0IG52MDRfcGFnZV9mbGlwX3N0YXRlKQotCQl7IHsgfSwgZXZlbnQsIGNydGMsIGZi
-LT5mb3JtYXQtPmNwcFswXSAqIDgsIGZiLT5waXRjaGVzWzBdLAorCQl7IHsgfSwgZXZlbnQsIGNy
-dGMsIGZiLT5mb3JtYXQtPmJwcFswXSwgZmItPnBpdGNoZXNbMF0sCiAJCSAgbmV3X2JvLT5iby5v
-ZmZzZXQgfTsKIAogCS8qIEtlZXAgdmJsYW5rcyBvbiBkdXJpbmcgZmxpcCwgZm9yIHRoZSB0YXJn
-ZXQgY3J0YyBvZiB0aGlzIGZsaXAgKi8KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L2Rpc3BudjUwL2Jhc2U1MDdjLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1
-MC9iYXNlNTA3Yy5jCmluZGV4IGQ1ZTI5NWMuLjU5ODgzYmQwIDEwMDY0NAotLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9iYXNlNTA3Yy5jCisrKyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L2Rpc3BudjUwL2Jhc2U1MDdjLmMKQEAgLTE5MCwxMiArMTkwLDEyIEBAIGJhc2U1
-MDdjX2FjcXVpcmUoc3RydWN0IG52NTBfd25kdyAqd25kdywgc3RydWN0IG52NTBfd25kd19hdG9t
-ICphc3l3LAogCQlyZXR1cm4gcmV0OwogCiAJaWYgKCF3bmR3LT5mdW5jLT5pbHV0KSB7Ci0JCWlm
-ICgoYXN5aC0+YmFzZS5jcHAgIT0gMSkgXiAoZmItPmZvcm1hdC0+Y3BwWzBdICE9IDEpKQorCQlp
-ZiAoYXN5aC0+YmFzZS5jcHAgIT0gMSBeIGZiLT5mb3JtYXQtPmJwcFswXSAhPSA4KQogCQkJYXN5
-aC0+c3RhdGUuY29sb3JfbWdtdF9jaGFuZ2VkID0gdHJ1ZTsKIAl9CiAKIAlhc3loLT5iYXNlLmRl
-cHRoID0gZmItPmZvcm1hdC0+ZGVwdGg7Ci0JYXN5aC0+YmFzZS5jcHAgPSBmYi0+Zm9ybWF0LT5j
-cHBbMF07CisJYXN5aC0+YmFzZS5jcHAgPSBmYi0+Zm9ybWF0LT5icHBbMF0gLyA4OwogCWFzeWgt
-PmJhc2UueCA9IGFzeXctPnN0YXRlLnNyYy54MSA+PiAxNjsKIAlhc3loLT5iYXNlLnkgPSBhc3l3
-LT5zdGF0ZS5zcmMueTEgPj4gMTY7CiAJYXN5aC0+YmFzZS53ID0gYXN5dy0+c3RhdGUuZmItPndp
-ZHRoOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlzcG52NTAvb3ZseTUw
-N2UuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL292bHk1MDdlLmMKaW5kZXgg
-Y2M0MTc2Ni4uYzZjMmUwYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvZGlz
-cG52NTAvb3ZseTUwN2UuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9kaXNwbnY1MC9v
-dmx5NTA3ZS5jCkBAIC0xMzUsNyArMTM1LDcgQEAgb3ZseTUwN2VfYWNxdWlyZShzdHJ1Y3QgbnY1
-MF93bmR3ICp3bmR3LCBzdHJ1Y3QgbnY1MF93bmR3X2F0b20gKmFzeXcsCiAJaWYgKHJldCkKIAkJ
-cmV0dXJuIHJldDsKIAotCWFzeWgtPm92bHkuY3BwID0gZmItPmZvcm1hdC0+Y3BwWzBdOworCWFz
-eWgtPm92bHkuY3BwID0gZmItPmZvcm1hdC0+YnBwWzBdIC8gODsKIAlyZXR1cm4gMDsKIH0KIAot
-LSAKMi43LjQKCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
+
+--===============1380724427==
+Content-Type: multipart/alternative; boundary="15692501360.E1CCC14C.22213"
+Content-Transfer-Encoding: 7bit
+
+
+--15692501360.E1CCC14C.22213
+Date: Mon, 23 Sep 2019 14:48:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111787
+
+            Bug ID: 111787
+           Summary: reverse engineered nvidia 3d driver not working
+           Product: Mesa
+           Version: 19.0
+          Hardware: Other
+               URL: http://localhost:5600
+                OS: Windows (All)
+            Status: NEW
+          Severity: major
+          Priority: not set
+         Component: Drivers/DRI/nouveau
+          Assignee: rameshpondugala-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Reporter: venkatasaichowdary3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+reverse engineered nvidia 3d driver not working
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.=
+
+--15692501360.E1CCC14C.22213
+Date: Mon, 23 Sep 2019 14:48:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - reverse engineered nvidia 3d driver not working"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111787">111787</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>reverse engineered nvidia 3d driver not working
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>19.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>URL</th>
+          <td>http://localhost:5600
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Windows (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>not set
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>rameshpondugala&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>venkatasaichowdary3&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>reverse engineered nvidia 3d driver not working</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15692501360.E1CCC14C.22213--
+
+--===============1380724427==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1380724427==--
