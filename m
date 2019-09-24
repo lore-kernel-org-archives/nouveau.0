@@ -1,66 +1,48 @@
-From: Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 7/9] drm/nouveau: use drm_debug_enabled() to
- check for debug categories
-Date: Tue, 24 Sep 2019 15:59:03 +0300
-Message-ID: <996684fc622c927220e59cdd38532e5338707ea0.1569329774.git.jani.nikula@intel.com>
-References: <cover.1569329774.git.jani.nikula@intel.com>
+From: Sasha Levin <sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.3 54/87] drm/nouveau/kms/tu102-: disable input lut when input is already FP16
+Date: Tue, 24 Sep 2019 12:41:10 -0400
+Message-ID: <20190924164144.25591-54-sashal@kernel.org>
+References: <20190924164144.25591-1-sashal@kernel.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-In-Reply-To: <cover.1569329774.git.jani.nikula@intel.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: dri-devel@lists.freedesktop.org
-Cc: jani.nikula@intel.com, nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
+Content-Transfer-Encoding: 8bit
+Return-path: <stable-owner@vger.kernel.org>
+In-Reply-To: <20190924164144.25591-1-sashal@kernel.org>
+Sender: stable-owner@vger.kernel.org
+To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc: Ben Skeggs <bskeggs@redhat.com>, Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-QWxsb3cgYmV0dGVyIGFic3RyYWN0aW9uIG9mIHRoZSBkcm1fZGVidWcgZ2xvYmFsIHZhcmlhYmxl
-IGluIHRoZQpmdXR1cmUuIE5vIGZ1bmN0aW9uYWwgY2hhbmdlcy4KCnYyOiBtb3ZlIHVubGlrZWx5
-KCkgdG8gZHJtX2RlYnVnX2VuYWJsZWQoKQoKQ2M6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0
-LmNvbT4KQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnClNpZ25lZC1vZmYtYnk6IEph
-bmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvZGlzcG52NTAvZGlzcC5oIHwgNCArKy0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2Rydi5oICAgfCA0ICsrLS0KIDIgZmlsZXMgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCsp
-LCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rp
-c3BudjUwL2Rpc3AuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuaApp
-bmRleCA3YzQxYjA1OTlkMWEuLmMwYTc5NTMxYjA4NyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L2Rpc3BudjUwL2Rpc3AuaApAQCAtNzgsMTQgKzc4LDE0IEBAIHZvaWQgZXZvX2tpY2sodTMyICos
-IHN0cnVjdCBudjUwX2RtYWMgKik7CiAKICNkZWZpbmUgZXZvX210aGQocCwgbSwgcykgZG8gewkJ
-CQkJCVwKIAljb25zdCB1MzIgX20gPSAobSksIF9zID0gKHMpOwkJCQkJXAotCWlmIChkcm1fZGVi
-dWcgJiBEUk1fVVRfS01TKQkJCQkJXAorCWlmIChkcm1fZGVidWdfZW5hYmxlZChEUk1fVVRfS01T
-KSkJCQkJXAogCQlwcl9lcnIoIiUwNHggJWQgJXNcbiIsIF9tLCBfcywgX19mdW5jX18pOwkJXAog
-CSooKHApKyspID0gKChfcyA8PCAxOCkgfCBfbSk7CQkJCQlcCiB9IHdoaWxlKDApCiAKICNkZWZp
-bmUgZXZvX2RhdGEocCwgZCkgZG8gewkJCQkJCVwKIAljb25zdCB1MzIgX2QgPSAoZCk7CQkJCQkJ
-XAotCWlmIChkcm1fZGVidWcgJiBEUk1fVVRfS01TKQkJCQkJXAorCWlmIChkcm1fZGVidWdfZW5h
-YmxlZChEUk1fVVRfS01TKSkJCQkJXAogCQlwcl9lcnIoIlx0JTA4eFxuIiwgX2QpOwkJCQkJXAog
-CSooKHApKyspID0gX2Q7CQkJCQkJCVwKIH0gd2hpbGUoMCkKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X2Rydi5oCmluZGV4IDcwZjM0Y2FjYzU1Mi4uZGE4YzQ2ZTA5OTQzIDEwMDY0NAotLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmgKQEAgLTI0OCwxMSArMjQ4LDExIEBAIHZvaWQgbm91
-dmVhdV9kcm1fZGV2aWNlX3JlbW92ZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KTsKICNkZWZpbmUg
-TlZfSU5GTyhkcm0sZixhLi4uKSBOVl9QUklOVEsoaW5mbywgJihkcm0pLT5jbGllbnQsIGYsICMj
-YSkKIAogI2RlZmluZSBOVl9ERUJVRyhkcm0sZixhLi4uKSBkbyB7ICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKLQlpZiAodW5saWtlbHkoZHJtX2RlYnVnICYg
-RFJNX1VUX0RSSVZFUikpICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKKwlpZiAoZHJt
-X2RlYnVnX2VuYWJsZWQoRFJNX1VUX0RSSVZFUikpICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIFwKIAkJTlZfUFJJTlRLKGluZm8sICYoZHJtKS0+Y2xpZW50LCBmLCAjI2EpOyAgICAg
-ICAgICAgICAgICAgICAgICAgXAogfSB3aGlsZSgwKQogI2RlZmluZSBOVl9BVE9NSUMoZHJtLGYs
-YS4uLikgZG8geyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwK
-LQlpZiAodW5saWtlbHkoZHJtX2RlYnVnICYgRFJNX1VUX0FUT01JQykpICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgIFwKKwlpZiAoZHJtX2RlYnVnX2VuYWJsZWQoRFJNX1VUX0FUT01JQykp
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKIAkJTlZfUFJJTlRLKGluZm8sICYo
-ZHJtKS0+Y2xpZW50LCBmLCAjI2EpOyAgICAgICAgICAgICAgICAgICAgICAgXAogfSB3aGlsZSgw
-KQogCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeA==
+From: Ben Skeggs <bskeggs@redhat.com>
+
+[ Upstream commit 1e339ab2ac3c769c1b06b9fb7d532f8495ebc56d ]
+
+On Turing, an input LUT is required to transform inputs in fixed-point
+formats to FP16 for the internal display pipe.  We provide an identity
+mapping whenever a window is enabled for this reason.
+
+HW has error checks to ensure when the input is already FP16, that the
+input LUT is also disabled.
+
+Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/nouveau/dispnv50/wndw.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+index 283ff690350ea..50303ec194bbc 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+@@ -320,7 +320,9 @@ nv50_wndw_atomic_check_lut(struct nv50_wndw *wndw,
+ 		asyh->wndw.olut &= ~BIT(wndw->id);
+ 	}
+ 
+-	if (!ilut && wndw->func->ilut_identity) {
++	if (!ilut && wndw->func->ilut_identity &&
++	    asyw->state.fb->format->format != DRM_FORMAT_XBGR16161616F &&
++	    asyw->state.fb->format->format != DRM_FORMAT_ABGR16161616F) {
+ 		static struct drm_property_blob dummy = {};
+ 		ilut = &dummy;
+ 	}
+-- 
+2.20.1
