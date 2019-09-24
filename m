@@ -1,12 +1,12 @@
 From: Sasha Levin <sashal@kernel.org>
-Subject: [PATCH AUTOSEL 4.19 31/50] drm/nouveau/volt: Fix for some cards having 0 maximum voltage
-Date: Tue, 24 Sep 2019 12:48:28 -0400
-Message-ID: <20190924164847.27780-31-sashal@kernel.org>
-References: <20190924164847.27780-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 21/28] drm/nouveau/volt: Fix for some cards having 0 maximum voltage
+Date: Tue, 24 Sep 2019 12:50:24 -0400
+Message-ID: <20190924165031.28292-21-sashal@kernel.org>
+References: <20190924165031.28292-1-sashal@kernel.org>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Return-path: <stable-owner@vger.kernel.org>
-In-Reply-To: <20190924164847.27780-1-sashal@kernel.org>
+In-Reply-To: <20190924165031.28292-1-sashal@kernel.org>
 Sender: stable-owner@vger.kernel.org
 To: linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc: Mark Menzynski <mmenzyns@redhat.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Karol Herbst <kherbst@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, Sasha Levin <sashal@kernel.org>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
