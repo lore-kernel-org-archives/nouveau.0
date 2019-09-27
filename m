@@ -1,11 +1,13 @@
-From: "Koenig, Christian" <Christian.Koenig-5C7GfCeVMHo@public.gmane.org>
-Subject: Re: Is Nouveau really using the io_reserve_lru?
-Date: Fri, 27 Sep 2019 18:08:57 +0000
-Message-ID: <8c6a9a06-73f1-41ef-878e-ebbc39282bc8@email.android.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111843] Resume fails after suspend with nouveau and
+ Gtx 1050 ti
+Date: Fri, 27 Sep 2019 18:18:31 +0000
+Message-ID: <bug-111843-8800-yglYgpJlpG@http.bugs.freedesktop.org/>
+References: <bug-111843-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1613833029=="
+Content-Type: multipart/mixed; boundary="===============0630000047=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: de-DE
+In-Reply-To: <bug-111843-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -15,88 +17,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1613833029==
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_8c6a9a0673f141ef878eebbc39282bc8emailandroidcom_"
 
---_000_8c6a9a0673f141ef878eebbc39282bc8emailandroidcom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--===============0630000047==
+Content-Type: multipart/alternative; boundary="15696083111.f7beDaa.32547"
+Content-Transfer-Encoding: 7bit
 
-DQoNCkFtIDI3LjA5LjIwMTkgMjA6MDcgc2NocmllYiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVt
-Lm1pdC5lZHU+Og0KT24gVGh1LCBTZXAgMjYsIDIwMTkgYXQgNTo0NCBQTSBCZW4gU2tlZ2dzIDxz
-a2VnZ3NiQGdtYWlsLmNvbT4gd3JvdGU6DQo+DQo+IE9uIFR1ZSwgMjQgU2VwIDIwMTkgYXQgMjI6
-MTksIENocmlzdGlhbiBLw7ZuaWcNCj4gPGNrb2VuaWcubGVpY2h0enVtZXJrZW5AZ21haWwuY29t
-PiB3cm90ZToNCj4gPg0KPiA+IEhpIGd1eXMsDQo+ID4NCj4gPiB3aGlsZSB3b3JraW5nIHRocm91
-Z2ggbW9yZSBvbGQgVFRNIGZ1bmN0aW9uYWxpdHkgSSBzdHVtYmxlZCBvdmVyIHRoZQ0KPiA+IGlv
-X3Jlc2VydmVfbHJ1Lg0KPiA+DQo+ID4gQmFzaWMgaWRlYSBpcyB0aGF0IHdoZW4gdGhpcyBmbGFn
-IGlzIHNldCB0aGUgZHJpdmVyLT5pb19tZW1fcmVzZXJ2ZSgpDQo+ID4gY2FsbGJhY2sgY2FuIHJl
-dHVybiAtRUFHQUlOIHJlc3VsdGluZyBpbiB1bm1hcHBpbmcgb2Ygb3RoZXIgQk9zLg0KPiA+DQo+
-ID4gQnV0IE5vdXZlYXUgZG9lc24ndCBzZWVtIHRvIHJldHVybiAtRUFHQUlOIGluIHRoZSBjYWxs
-IHBhdGggb2YNCj4gPiBpb19tZW1fcmVzZXJ2ZSBhbnl3aGVyZS4NCj4gSSBiZWxpZXZlIHRoaXMg
-aXMgYSBidWcgaW4gTm91dmVhdS4gIFdlICpzaG91bGQqIGJlIHJldHVybmluZyAtRUFHQUlODQo+
-IGlmIHdlIGZhaWwgdG8gZmluZCBzcGFjZSBpbiBCQVIxIHRvIG1hcCB0aGUgQk8gaW50by4NCg0K
-Q291bGQgdGhpcyBsZWFkIHRvIFNJR0JVUyBpbiB1c2Vyc3BhY2UsIGVzcCByZWxhdGVkIHRvIHJl
-c3VtZSBhbmQNCnNpbWlsYXIgc2l0dWF0aW9ucz8NCg0KWWVzLCBJIHdvdWxkIHNheSB0aGF0J3Mg
-ZXhhY3RseSB3aGF0IHdvdWxkIGhhcHBlbi4NCg0KQ2hyaXN0aWFuLg0KDQpBIHVzZXIgaGFzIGJl
-ZW4gZXhwZXJpZW5jaW5nIHRoaXMgaW4gYQ0KdHJpY2t5LXRvLXJlcHJvZHVjZSBzY2VuYXJpbyB3
-aXRoIGEgdG9uIG9mIHZyYW0gZGVkaWNhdGVkIHRvDQpmcmFtZWJ1ZmZlcnMgYW5kIHNvIG9uICgz
-eCA0SyksIGFuZCB0aGUgbm91dmVhdSBkZHggZmFsbHMgYmFjayB0bw0KbWVtY3B5IGluIGNlcnRh
-aW4gY2FzZXMuDQoNCiAgLWlsaWENCg0K
 
---_000_8c6a9a0673f141ef878eebbc39282bc8emailandroidcom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <D0D4A30C1B42F546A91BC7BCFFD8C316-t0aD9ArCiwdO0n7uQEQMm4CZgX+1HZI1@public.gmane.org>
-Content-Transfer-Encoding: base64
+--15696083111.f7beDaa.32547
+Date: Fri, 27 Sep 2019 18:18:31 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPGRpdiBkaXI9ImF1
-dG8iPg0KPGRpdj48YnI+DQo8ZGl2IGNsYXNzPSJnbWFpbF9leHRyYSI+PGJyPg0KPGRpdiBjbGFz
-cz0iZ21haWxfcXVvdGUiPkFtIDI3LjA5LjIwMTkgMjA6MDcgc2NocmllYiBJbGlhIE1pcmtpbiAm
-bHQ7aW1pcmtpbkBhbHVtLm1pdC5lZHUmZ3Q7OjxiciB0eXBlPSJhdHRyaWJ1dGlvbiI+DQo8Ymxv
-Y2txdW90ZSBjbGFzcz0icXVvdGUiIHN0eWxlPSJtYXJnaW46MCAwIDAgLjhleDtib3JkZXItbGVm
-dDoxcHggI2NjYyBzb2xpZDtwYWRkaW5nLWxlZnQ6MWV4Ij4NCjxkaXY+PGZvbnQgc2l6ZT0iMiI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMXB0Ij4NCjxkaXY+T24gVGh1LCBTZXAgMjYsIDIwMTkg
-YXQgNTo0NCBQTSBCZW4gU2tlZ2dzICZsdDtza2VnZ3NiQGdtYWlsLmNvbSZndDsgd3JvdGU6PGJy
-Pg0KJmd0Ozxicj4NCiZndDsgT24gVHVlLCAyNCBTZXAgMjAxOSBhdCAyMjoxOSwgQ2hyaXN0aWFu
-IEvDtm5pZzxicj4NCiZndDsgJmx0O2Nrb2VuaWcubGVpY2h0enVtZXJrZW5AZ21haWwuY29tJmd0
-OyB3cm90ZTo8YnI+DQomZ3Q7ICZndDs8YnI+DQomZ3Q7ICZndDsgSGkgZ3V5cyw8YnI+DQomZ3Q7
-ICZndDs8YnI+DQomZ3Q7ICZndDsgd2hpbGUgd29ya2luZyB0aHJvdWdoIG1vcmUgb2xkIFRUTSBm
-dW5jdGlvbmFsaXR5IEkgc3R1bWJsZWQgb3ZlciB0aGU8YnI+DQomZ3Q7ICZndDsgaW9fcmVzZXJ2
-ZV9scnUuPGJyPg0KJmd0OyAmZ3Q7PGJyPg0KJmd0OyAmZ3Q7IEJhc2ljIGlkZWEgaXMgdGhhdCB3
-aGVuIHRoaXMgZmxhZyBpcyBzZXQgdGhlIGRyaXZlci0mZ3Q7aW9fbWVtX3Jlc2VydmUoKTxicj4N
-CiZndDsgJmd0OyBjYWxsYmFjayBjYW4gcmV0dXJuIC1FQUdBSU4gcmVzdWx0aW5nIGluIHVubWFw
-cGluZyBvZiBvdGhlciBCT3MuPGJyPg0KJmd0OyAmZ3Q7PGJyPg0KJmd0OyAmZ3Q7IEJ1dCBOb3V2
-ZWF1IGRvZXNuJ3Qgc2VlbSB0byByZXR1cm4gLUVBR0FJTiBpbiB0aGUgY2FsbCBwYXRoIG9mPGJy
-Pg0KJmd0OyAmZ3Q7IGlvX21lbV9yZXNlcnZlIGFueXdoZXJlLjxicj4NCiZndDsgSSBiZWxpZXZl
-IHRoaXMgaXMgYSBidWcgaW4gTm91dmVhdS4mbmJzcDsgV2UgKnNob3VsZCogYmUgcmV0dXJuaW5n
-IC1FQUdBSU48YnI+DQomZ3Q7IGlmIHdlIGZhaWwgdG8gZmluZCBzcGFjZSBpbiBCQVIxIHRvIG1h
-cCB0aGUgQk8gaW50by48YnI+DQo8YnI+DQpDb3VsZCB0aGlzIGxlYWQgdG8gU0lHQlVTIGluIHVz
-ZXJzcGFjZSwgZXNwIHJlbGF0ZWQgdG8gcmVzdW1lIGFuZDxicj4NCnNpbWlsYXIgc2l0dWF0aW9u
-cz8gPC9kaXY+DQo8L3NwYW4+PC9mb250PjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8
-L2Rpdj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPjxicj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1
-dG8iPlllcywgSSB3b3VsZCBzYXkgdGhhdCdzIGV4YWN0bHkgd2hhdCB3b3VsZCBoYXBwZW4uPC9k
-aXY+DQo8ZGl2IGRpcj0iYXV0byI+PGJyPg0KPC9kaXY+DQo8ZGl2IGRpcj0iYXV0byI+Q2hyaXN0
-aWFuLjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPjxicj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8i
-Pg0KPGRpdiBjbGFzcz0iZ21haWxfZXh0cmEiPg0KPGRpdiBjbGFzcz0iZ21haWxfcXVvdGUiPg0K
-PGJsb2NrcXVvdGUgY2xhc3M9InF1b3RlIiBzdHlsZT0ibWFyZ2luOjAgMCAwIC44ZXg7Ym9yZGVy
-LWxlZnQ6MXB4ICNjY2Mgc29saWQ7cGFkZGluZy1sZWZ0OjFleCI+DQo8ZGl2Pjxmb250IHNpemU9
-IjIiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTFwdCI+DQo8ZGl2PkEgdXNlciBoYXMgYmVlbiBl
-eHBlcmllbmNpbmcgdGhpcyBpbiBhPGJyPg0KdHJpY2t5LXRvLXJlcHJvZHVjZSBzY2VuYXJpbyB3
-aXRoIGEgdG9uIG9mIHZyYW0gZGVkaWNhdGVkIHRvPGJyPg0KZnJhbWVidWZmZXJzIGFuZCBzbyBv
-biAoM3ggNEspLCBhbmQgdGhlIG5vdXZlYXUgZGR4IGZhbGxzIGJhY2sgdG88YnI+DQptZW1jcHkg
-aW4gY2VydGFpbiBjYXNlcy48YnI+DQo8YnI+DQombmJzcDsgLWlsaWE8YnI+DQo8L2Rpdj4NCjwv
-c3Bhbj48L2ZvbnQ+PC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxicj4NCjwvZGl2Pg0K
-PC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111843
 
---_000_8c6a9a0673f141ef878eebbc39282bc8emailandroidcom_--
+--- Comment #2 from txuxifel <jesaenh-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 145558
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145558&action=3Dedit
+Dmesg with nouveau
 
---===============1613833029==
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15696083111.f7beDaa.32547
+Date: Fri, 27 Sep 2019 18:18:31 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Resume fails after suspend with nouveau and Gtx 1050 ti"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111843#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Resume fails after suspend with nouveau and Gtx 1050 ti"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111843">bug 11184=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jesaenh&#64;gmail.com" title=3D"txuxifel &lt;jesaenh&#64;gmail.com&gt;"> <s=
+pan class=3D"fn">txuxifel</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145558=
+" name=3D"attach_145558" title=3D"Dmesg with nouveau">attachment 145558</a>=
+ <a href=3D"attachment.cgi?id=3D145558&amp;action=3Dedit" title=3D"Dmesg wi=
+th nouveau">[details]</a></span>
+Dmesg with nouveau</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15696083111.f7beDaa.32547--
+
+--===============0630000047==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1613833029==--
+--===============0630000047==--
