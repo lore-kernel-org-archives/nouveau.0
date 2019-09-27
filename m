@@ -1,16 +1,13 @@
-From: "Koenig, Christian" <Christian.Koenig-5C7GfCeVMHo@public.gmane.org>
-Subject: Re: Is Nouveau really using the io_reserve_lru?
-Date: Fri, 27 Sep 2019 12:19:56 +0000
-Message-ID: <5a7cdfa3-7c0c-c84e-6811-4ab6e9e69f57@amd.com>
-References: <ec6739a5-af3a-0aeb-fdae-dd11d6b2ec1f@gmail.com>
- <CACAvsv7jwLeY04SyaGjPcRN-ZPaGdVUUY6tC5q33kSsdwJumdg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111841] Setting gamma or color temperature on GK104
+ causes horizontal artifacts / flickering
+Date: Fri, 27 Sep 2019 12:49:58 +0000
+Message-ID: <bug-111841-8800-dpwKjwhzk3@http.bugs.freedesktop.org/>
+References: <bug-111841-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0936327532=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACAvsv7jwLeY04SyaGjPcRN-ZPaGdVUUY6tC5q33kSsdwJumdg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Content-Language: en-US
-Content-ID: <4AA03121F6426A4A9EB2E29CFF3B7526-asWib9pRmPqcE4WynfumptQqCkab/8FMAL8bYrjMMd8@public.gmane.org>
+In-Reply-To: <bug-111841-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +17,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QW0gMjYuMDkuMTkgdW0gMjM6NDQgc2NocmllYiBCZW4gU2tlZ2dzOg0KPiBPbiBUdWUsIDI0IFNl
-cCAyMDE5IGF0IDIyOjE5LCBDaHJpc3RpYW4gS8O2bmlnDQo+IDxja29lbmlnLmxlaWNodHp1bWVy
-a2VuQGdtYWlsLmNvbT4gd3JvdGU6DQo+PiBIaSBndXlzLA0KPj4NCj4+IHdoaWxlIHdvcmtpbmcg
-dGhyb3VnaCBtb3JlIG9sZCBUVE0gZnVuY3Rpb25hbGl0eSBJIHN0dW1ibGVkIG92ZXIgdGhlDQo+
-PiBpb19yZXNlcnZlX2xydS4NCj4+DQo+PiBCYXNpYyBpZGVhIGlzIHRoYXQgd2hlbiB0aGlzIGZs
-YWcgaXMgc2V0IHRoZSBkcml2ZXItPmlvX21lbV9yZXNlcnZlKCkNCj4+IGNhbGxiYWNrIGNhbiBy
-ZXR1cm4gLUVBR0FJTiByZXN1bHRpbmcgaW4gdW5tYXBwaW5nIG9mIG90aGVyIEJPcy4NCj4+DQo+
-PiBCdXQgTm91dmVhdSBkb2Vzbid0IHNlZW0gdG8gcmV0dXJuIC1FQUdBSU4gaW4gdGhlIGNhbGwg
-cGF0aCBvZg0KPj4gaW9fbWVtX3Jlc2VydmUgYW55d2hlcmUuDQo+IEkgYmVsaWV2ZSB0aGlzIGlz
-IGEgYnVnIGluIE5vdXZlYXUuICBXZSAqc2hvdWxkKiBiZSByZXR1cm5pbmcgLUVBR0FJTg0KPiBp
-ZiB3ZSBmYWlsIHRvIGZpbmQgc3BhY2UgaW4gQkFSMSB0byBtYXAgdGhlIEJPIGludG8uDQoNClll
-YWgsIHRob3VnaHQgdGhhdCB0aGlzIGlzIHJhdGhlciBvZGQuIEJ1dCBJIGNhbid0IGZpeCBpdCBz
-aW5jZSBJIGRvbid0IA0KcmVhbGx5IGtub3cgdGhlIGNvZGUuDQoNCk9uIHRoZSBvdGhlciBoYW5k
-IGRvIHlvdSBoYXZlIGFueSBvYmplY3Rpb25zIHRoYXQgSSBtb3ZlIHRoZSByZW1haW5pbmcgDQpp
-b19yZXNlcnZlX2xydSBmdW5jdGlvbmFsaXR5IGludG8gTm91dmVhdSB0aGVuPw0KDQpJdCdzIG9u
-bHkgdXNlZCBieSB0aGlzIGRyaXZlciBhbmQgc2luY2UgVGhvbWFzIGNsZWFuZWQgdXAgdGhlIFZN
-IA0KaGFuZGxpbmcgdGhhdCBzaG91bGRuJ3QgYmUgYSBwcm9ibGVtIGFueSBtb3JlLg0KDQpUaGFu
-a3MsDQpDaHJpc3RpYW4uDQoNCj4NCj4gQmVuLg0KPj4gU28gaXMgdGhpcyB1bnVzZWQgb3IgYW0g
-SSBtaXNzaW5nIHNvbWV0aGluZz8NCj4+DQo+PiBSZWdhcmRzLA0KPj4gQ2hyaXN0aWFuLg0KPj4g
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+IE5vdXZl
-YXUgbWFpbGluZyBsaXN0DQo+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPj4gaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1DQoNCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+
+--===============0936327532==
+Content-Type: multipart/alternative; boundary="15695885972.C8FaF08.20624"
+Content-Transfer-Encoding: 7bit
+
+
+--15695885972.C8FaF08.20624
+Date: Fri, 27 Sep 2019 12:49:57 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111841
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+We've recently started to implement more advanced color management handling,
+however I think that's only bound for v5.4. I'm not sure if anything was re=
+ally
+fixed in those, but it may be worth testing on latest if possible (e.g.
+drm-next).
+
+Can you also play with dithering mode? e.g. set it to "static 2x2"?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15695885972.C8FaF08.20624
+Date: Fri, 27 Sep 2019 12:49:57 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Setting gamma or color temperature on GK104 causes horizo=
+ntal artifacts / flickering"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111841#c2">Commen=
+t # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Setting gamma or color temperature on GK104 causes horizo=
+ntal artifacts / flickering"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111841">bug 11184=
+1</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>We've recently started to implement more advanced color manage=
+ment handling,
+however I think that's only bound for v5.4. I'm not sure if anything was re=
+ally
+fixed in those, but it may be worth testing on latest if possible (e.g.
+drm-next).
+
+Can you also play with dithering mode? e.g. set it to &quot;static 2x2&quot=
+;?</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15695885972.C8FaF08.20624--
+
+--===============0936327532==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0936327532==--
