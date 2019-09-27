@@ -1,165 +1,103 @@
-From: Sean Paul <sean@poorly.run>
-Subject: Re: [PATCH v2 26/27] drm/dp_mst: Also print unhashed pointers for
- malloc/topology references
-Date: Fri, 27 Sep 2019 10:25:10 -0400
-Message-ID: <20190927142510.GS218215@art_vandelay>
-References: <20190903204645.25487-1-lyude@redhat.com>
- <20190903204645.25487-27-lyude@redhat.com>
+From: Karol Herbst <kherbst@redhat.com>
+Subject: [RFC PATCH] pci: prevent putting pcie devices into lower device states on certain intel bridges
+Date: Fri, 27 Sep 2019 16:44:21 +0200
+Message-ID: <20190927144421.22608-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: 8bit
 Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <20190903204645.25487-27-lyude@redhat.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Lyude Paul <lyude@redhat.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, Juston Li <juston.li@intel.com>, Imre Deak <imre.deak@intel.com>, Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, Harry Wentland <hwentlan@amd.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org
+To: linux-kernel@vger.kernel.org
+Cc: Karol Herbst <kherbst@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>, Lyude Paul <lyude@redhat.com>, linux-pci@vger.kernel.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Sep 03, 2019 at 04:46:04PM -0400, Lyude Paul wrote:
-> Currently we only print mstb/port pointer addresses in our malloc and
-> topology refcount functions using the hashed-by-default %p, but
-> unfortunately if you're trying to debug a use-after-free error caused by
-> a refcounting error then this really isn't terribly useful. On the other
-> hand though, everything in the rest of the DP MST helpers uses hashed
-> pointer values as well and probably isn't useful to convert to unhashed.
-> So, let's just get the best of both worlds and print both the hashed and
-> unhashed pointer in our malloc/topology refcount debugging output. This
-> will hopefully make it a lot easier to figure out which port/mstb is
-> causing KASAN to get upset.
-> 
-> Cc: Juston Li <juston.li@intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Harry Wentland <hwentlan@amd.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
+Fixes runpm breakage mainly on Nvidia GPUs as they are not able to resume.
 
-It's really too bad there isn't a CONFIG_DEBUG_SHOW_PK_ADDRESSES or even a value
-of kptr_restrict value that bypasses pointer hashing. I'm sure we're not the
-only ones to feel this pain. Maybe everyone just hacks vsnprintf...
+Works perfectly with this workaround applied.
 
-As it is, I'm not totally sold on exposing the actual addresses unconditionally.
-What do you think about pulling the print out into a function and only printing
-px if a debug kconfig is set?
+RFC comment:
+We are quite sure that there is a higher amount of bridges affected by this,
+but I was only testing it on my own machine for now.
 
-Sean
+I've stresstested runpm by doing 5000 runpm cycles with that patch applied
+and never saw it fail.
 
-> ---
->  drivers/gpu/drm/drm_dp_mst_topology.c | 34 ++++++++++++++++-----------
->  1 file changed, 20 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/drm_dp_mst_topology.c
-> index 2fe24e366925..5b5c0b3b3c0e 100644
-> --- a/drivers/gpu/drm/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
-> @@ -1327,7 +1327,8 @@ static void
->  drm_dp_mst_get_mstb_malloc(struct drm_dp_mst_branch *mstb)
->  {
->  	kref_get(&mstb->malloc_kref);
-> -	DRM_DEBUG("mstb %p (%d)\n", mstb, kref_read(&mstb->malloc_kref));
-> +	DRM_DEBUG("mstb %p/%px (%d)\n",
-> +		  mstb, mstb, kref_read(&mstb->malloc_kref));
->  }
->  
->  /**
-> @@ -1344,7 +1345,8 @@ drm_dp_mst_get_mstb_malloc(struct drm_dp_mst_branch *mstb)
->  static void
->  drm_dp_mst_put_mstb_malloc(struct drm_dp_mst_branch *mstb)
->  {
-> -	DRM_DEBUG("mstb %p (%d)\n", mstb, kref_read(&mstb->malloc_kref) - 1);
-> +	DRM_DEBUG("mstb %p/%px (%d)\n",
-> +		  mstb, mstb, kref_read(&mstb->malloc_kref) - 1);
->  	kref_put(&mstb->malloc_kref, drm_dp_free_mst_branch_device);
->  }
->  
-> @@ -1379,7 +1381,8 @@ void
->  drm_dp_mst_get_port_malloc(struct drm_dp_mst_port *port)
->  {
->  	kref_get(&port->malloc_kref);
-> -	DRM_DEBUG("port %p (%d)\n", port, kref_read(&port->malloc_kref));
-> +	DRM_DEBUG("port %p/%px (%d)\n",
-> +		  port, port, kref_read(&port->malloc_kref));
->  }
->  EXPORT_SYMBOL(drm_dp_mst_get_port_malloc);
->  
-> @@ -1396,7 +1399,8 @@ EXPORT_SYMBOL(drm_dp_mst_get_port_malloc);
->  void
->  drm_dp_mst_put_port_malloc(struct drm_dp_mst_port *port)
->  {
-> -	DRM_DEBUG("port %p (%d)\n", port, kref_read(&port->malloc_kref) - 1);
-> +	DRM_DEBUG("port %p/%px (%d)\n",
-> +		  port, port, kref_read(&port->malloc_kref) - 1);
->  	kref_put(&port->malloc_kref, drm_dp_free_mst_port);
->  }
->  EXPORT_SYMBOL(drm_dp_mst_put_port_malloc);
-> @@ -1447,8 +1451,8 @@ drm_dp_mst_topology_try_get_mstb(struct drm_dp_mst_branch *mstb)
->  	int ret = kref_get_unless_zero(&mstb->topology_kref);
->  
->  	if (ret)
-> -		DRM_DEBUG("mstb %p (%d)\n", mstb,
-> -			  kref_read(&mstb->topology_kref));
-> +		DRM_DEBUG("mstb %p/%px (%d)\n",
-> +			  mstb, mstb, kref_read(&mstb->topology_kref));
->  
->  	return ret;
->  }
-> @@ -1471,7 +1475,8 @@ static void drm_dp_mst_topology_get_mstb(struct drm_dp_mst_branch *mstb)
->  {
->  	WARN_ON(kref_read(&mstb->topology_kref) == 0);
->  	kref_get(&mstb->topology_kref);
-> -	DRM_DEBUG("mstb %p (%d)\n", mstb, kref_read(&mstb->topology_kref));
-> +	DRM_DEBUG("mstb %p/%px (%d)\n",
-> +		  mstb, mstb, kref_read(&mstb->topology_kref));
->  }
->  
->  /**
-> @@ -1489,8 +1494,8 @@ static void drm_dp_mst_topology_get_mstb(struct drm_dp_mst_branch *mstb)
->  static void
->  drm_dp_mst_topology_put_mstb(struct drm_dp_mst_branch *mstb)
->  {
-> -	DRM_DEBUG("mstb %p (%d)\n",
-> -		  mstb, kref_read(&mstb->topology_kref) - 1);
-> +	DRM_DEBUG("mstb %p/%px (%d)\n",
-> +		  mstb, mstb, kref_read(&mstb->topology_kref) - 1);
->  	kref_put(&mstb->topology_kref, drm_dp_destroy_mst_branch_device);
->  }
->  
-> @@ -1546,8 +1551,8 @@ drm_dp_mst_topology_try_get_port(struct drm_dp_mst_port *port)
->  	int ret = kref_get_unless_zero(&port->topology_kref);
->  
->  	if (ret)
-> -		DRM_DEBUG("port %p (%d)\n", port,
-> -			  kref_read(&port->topology_kref));
-> +		DRM_DEBUG("port %p/%px (%d)\n",
-> +			  port, port, kref_read(&port->topology_kref));
->  
->  	return ret;
->  }
-> @@ -1569,7 +1574,8 @@ static void drm_dp_mst_topology_get_port(struct drm_dp_mst_port *port)
->  {
->  	WARN_ON(kref_read(&port->topology_kref) == 0);
->  	kref_get(&port->topology_kref);
-> -	DRM_DEBUG("port %p (%d)\n", port, kref_read(&port->topology_kref));
-> +	DRM_DEBUG("port %p/%px (%d)\n",
-> +		  port, port, kref_read(&port->topology_kref));
->  }
->  
->  /**
-> @@ -1585,8 +1591,8 @@ static void drm_dp_mst_topology_get_port(struct drm_dp_mst_port *port)
->   */
->  static void drm_dp_mst_topology_put_port(struct drm_dp_mst_port *port)
->  {
-> -	DRM_DEBUG("port %p (%d)\n",
-> -		  port, kref_read(&port->topology_kref) - 1);
-> +	DRM_DEBUG("port %p/%px (%d)\n",
-> +		  port, port, kref_read(&port->topology_kref) - 1);
->  	kref_put(&port->topology_kref, drm_dp_destroy_port);
->  }
->  
-> -- 
-> 2.21.0
-> 
+I mainly wanted to get a discussion going on if that's a feasable workaround
+indeed or if we need something better.
 
+I am also sure, that the nouveau driver itself isn't at fault as I am able
+to reproduce the same issue by poking into some PCI registers on the PCIe
+bridge to put the GPU into D3cold as it's done in ACPI code.
+
+I've written a little python script to reproduce this issue without the need
+of loading nouveau:
+https://raw.githubusercontent.com/karolherbst/pci-stub-runpm/master/nv_runpm_bug_test.py
+
+Signed-off-by: Karol Herbst <kherbst@redhat.com>
+Cc: Bjorn Helgaas <bhelgaas@google.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: linux-pci@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+---
+ drivers/pci/pci.c | 39 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
+
+diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+index 088fcdc8d2b4..9dbd29ced1ac 100644
+--- a/drivers/pci/pci.c
++++ b/drivers/pci/pci.c
+@@ -799,6 +799,42 @@ static inline bool platform_pci_bridge_d3(struct pci_dev *dev)
+ 	return pci_platform_pm ? pci_platform_pm->bridge_d3(dev) : false;
+ }
+ 
++/*
++ * some intel bridges cause serious issues with runpm if the client device
++ * is put into D1/D2/D3hot before putting the client into D3cold via
++ * platform means (generally ACPI).
++ *
++ * skipping this makes runpm work perfectly fine on such devices.
++ *
++ * As far as we know only skylake and kaby lake SoCs are affected.
++ */
++static unsigned short intel_broken_d3_bridges[] = {
++	/* kbl */
++	0x1901,
++};
++
++static inline bool intel_broken_pci_pm(struct pci_bus *bus)
++{
++	struct pci_dev *bridge;
++	int i;
++
++	if (!bus || !bus->self)
++		return false;
++
++	bridge = bus->self;
++	if (bridge->vendor != PCI_VENDOR_ID_INTEL)
++		return false;
++
++	for (i = 0; i < ARRAY_SIZE(intel_broken_d3_bridges); i++) {
++		if (bridge->device == intel_broken_d3_bridges[i]) {
++			pci_err(bridge, "found broken intel bridge\n");
++			return true;
++		}
++	}
++
++	return false;
++}
++
+ /**
+  * pci_raw_set_power_state - Use PCI PM registers to set the power state of
+  *			     given PCI device
+@@ -827,6 +863,9 @@ static int pci_raw_set_power_state(struct pci_dev *dev, pci_power_t state)
+ 	if (state < PCI_D0 || state > PCI_D3hot)
+ 		return -EINVAL;
+ 
++	if (state != PCI_D0 && intel_broken_pci_pm(dev->bus))
++		return 0;
++
+ 	/*
+ 	 * Validate current state:
+ 	 * Can enter D0 from any state, but if we can only go deeper
 -- 
-Sean Paul, Software Engineer, Google / Chromium OS
+2.21.0
