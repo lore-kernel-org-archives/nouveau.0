@@ -1,111 +1,193 @@
-From: Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: [RFC PATCH] pci: prevent putting pcie devices into
- lower device states on certain intel bridges
-Date: Fri, 27 Sep 2019 16:42:53 -0500
-Message-ID: <20190927214252.GA65801@google.com>
-References: <20190927144421.22608-1-kherbst@redhat.com>
+From: Karol Herbst <kherbst@redhat.com>
+Subject: Re: [RFC PATCH] pci: prevent putting pcie devices into lower device
+ states on certain intel bridges
+Date: Fri, 27 Sep 2019 23:53:48 +0200
+Message-ID: <CACO55tuaY1jFXpJPeC9M4PoWEDyy547_tE8MpLaTDb+C+ffsbg@mail.gmail.com>
+References: <20190927144421.22608-1-kherbst@redhat.com> <20190927214252.GA65801@google.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20190927144421.22608-1-kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Mika Westerberg <mika.westerberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, "Rafael J. Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20190927214252.GA65801@google.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, Linux PCI <linux-pci@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, "Rafael J. Wysocki" <rjw@rjwysocki.net>, Linux PM <linux-pm@vger.kernel.org>, Mika Westerberg <mika.westerberg@intel.com>
 List-Id: nouveau.vger.kernel.org
 
-WytjYyBSYWZhZWwsIE1pa2EsIGxpbnV4LXBtXQoKT24gRnJpLCBTZXAgMjcsIDIwMTkgYXQgMDQ6
-NDQ6MjFQTSArMDIwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+IEZpeGVzIHJ1bnBtIGJyZWFrYWdl
-IG1haW5seSBvbiBOdmlkaWEgR1BVcyBhcyB0aGV5IGFyZSBub3QgYWJsZSB0byByZXN1bWUuCgpJ
-IGRvbid0IGtub3cgd2hhdCBydW5wbSBpcy4gIFNvbWUgdXNlcnNwYWNlIHV0aWxpdHk/ICBNb2R1
-bGUKcGFyYW1ldGVyPwoKPiBXb3JrcyBwZXJmZWN0bHkgd2l0aCB0aGlzIHdvcmthcm91bmQgYXBw
-bGllZC4KPiAKPiBSRkMgY29tbWVudDoKPiBXZSBhcmUgcXVpdGUgc3VyZSB0aGF0IHRoZXJlIGlz
-IGEgaGlnaGVyIGFtb3VudCBvZiBicmlkZ2VzIGFmZmVjdGVkIGJ5IHRoaXMsCj4gYnV0IEkgd2Fz
-IG9ubHkgdGVzdGluZyBpdCBvbiBteSBvd24gbWFjaGluZSBmb3Igbm93Lgo+IAo+IEkndmUgc3Ry
-ZXNzdGVzdGVkIHJ1bnBtIGJ5IGRvaW5nIDUwMDAgcnVucG0gY3ljbGVzIHdpdGggdGhhdCBwYXRj
-aCBhcHBsaWVkCj4gYW5kIG5ldmVyIHNhdyBpdCBmYWlsLgo+IAo+IEkgbWFpbmx5IHdhbnRlZCB0
-byBnZXQgYSBkaXNjdXNzaW9uIGdvaW5nIG9uIGlmIHRoYXQncyBhIGZlYXNhYmxlIHdvcmthcm91
-bmQKPiBpbmRlZWQgb3IgaWYgd2UgbmVlZCBzb21ldGhpbmcgYmV0dGVyLgo+IAo+IEkgYW0gYWxz
-byBzdXJlLCB0aGF0IHRoZSBub3V2ZWF1IGRyaXZlciBpdHNlbGYgaXNuJ3QgYXQgZmF1bHQgYXMg
-SSBhbSBhYmxlCj4gdG8gcmVwcm9kdWNlIHRoZSBzYW1lIGlzc3VlIGJ5IHBva2luZyBpbnRvIHNv
-bWUgUENJIHJlZ2lzdGVycyBvbiB0aGUgUENJZQo+IGJyaWRnZSB0byBwdXQgdGhlIEdQVSBpbnRv
-IEQzY29sZCBhcyBpdCdzIGRvbmUgaW4gQUNQSSBjb2RlLgo+IAo+IEkndmUgd3JpdHRlbiBhIGxp
-dHRsZSBweXRob24gc2NyaXB0IHRvIHJlcHJvZHVjZSB0aGlzIGlzc3VlIHdpdGhvdXQgdGhlIG5l
-ZWQKPiBvZiBsb2FkaW5nIG5vdXZlYXU6Cj4gaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQu
-Y29tL2thcm9saGVyYnN0L3BjaS1zdHViLXJ1bnBtL21hc3Rlci9udl9ydW5wbV9idWdfdGVzdC5w
-eQoKTmljZSBzY3JpcHQsIHRoYW5rcyBmb3Igc2hhcmluZyBpdCA6KSAgSSBjb3VsZCBsZWFybiBh
-IGxvdCBvZiB1c2VmdWwKcHl0aG9uIGJ5IHN0dWR5aW5nIGl0LgoKPiBTaWduZWQtb2ZmLWJ5OiBL
-YXJvbCBIZXJic3QgPGtoZXJic3RAcmVkaGF0LmNvbT4KPiBDYzogQmpvcm4gSGVsZ2FhcyA8Ymhl
-bGdhYXNAZ29vZ2xlLmNvbT4KPiBDYzogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KPiBD
-YzogbGludXgtcGNpQHZnZXIua2VybmVsLm9yZwo+IENjOiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCj4gQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gLS0tCj4gIGRy
-aXZlcnMvcGNpL3BjaS5jIHwgMzkgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrCj4gIDEgZmlsZSBjaGFuZ2VkLCAzOSBpbnNlcnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvcGNpL3BjaS5jIGIvZHJpdmVycy9wY2kvcGNpLmMKPiBpbmRleCAwODhmY2RjOGQy
-YjQuLjlkYmQyOWNlZDFhYyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL3BjaS9wY2kuYwo+ICsrKyBi
-L2RyaXZlcnMvcGNpL3BjaS5jCj4gQEAgLTc5OSw2ICs3OTksNDIgQEAgc3RhdGljIGlubGluZSBi
-b29sIHBsYXRmb3JtX3BjaV9icmlkZ2VfZDMoc3RydWN0IHBjaV9kZXYgKmRldikKPiAgCXJldHVy
-biBwY2lfcGxhdGZvcm1fcG0gPyBwY2lfcGxhdGZvcm1fcG0tPmJyaWRnZV9kMyhkZXYpIDogZmFs
-c2U7Cj4gIH0KPiAgCj4gKy8qCj4gKyAqIHNvbWUgaW50ZWwgYnJpZGdlcyBjYXVzZSBzZXJpb3Vz
-IGlzc3VlcyB3aXRoIHJ1bnBtIGlmIHRoZSBjbGllbnQgZGV2aWNlCj4gKyAqIGlzIHB1dCBpbnRv
-IEQxL0QyL0QzaG90IGJlZm9yZSBwdXR0aW5nIHRoZSBjbGllbnQgaW50byBEM2NvbGQgdmlhCj4g
-KyAqIHBsYXRmb3JtIG1lYW5zIChnZW5lcmFsbHkgQUNQSSkuCgpZb3UgbWVudGlvbiBOdmlkaWEg
-R1BVcyBhYm92ZSwgYnV0IEkgZ3Vlc3MgdGhlIHNhbWUgaXNzdWUgbWF5IGFmZmVjdApvdGhlciBk
-ZXZpY2VzPyAgSSB3b3VsZCByZWFsbHkgbGlrZSB0byBjaGFzZSB0aGlzIGRvd24gdG8gYSBtb3Jl
-CnNwZWNpZmljIGlzc3VlLCBlLmcuLCBhIGhhcmR3YXJlIGRlZmVjdCB3aXRoIGVycmF0dW0sIGFu
-IEFDUEkgZGVmZWN0LApvciBhIExpbnV4IGRlZmVjdC4gIFdpdGhvdXQgdGhlIHNwZWNpZmljcywg
-dGhpcyBpcyBqdXN0IGEgYmFuZC1haWQuCgpJIGRvbid0IHNlZSBhbnkgcmVsZXZhbnQgcmVxdWly
-ZW1lbnRzIGluIHRoZSBfT0ZGIGRlc2NyaXB0aW9uLCBidXQgSQpkb24ndCBrbm93IG11Y2ggYWJv
-dXQgQUNQSSBwb3dlciBjb250cm9sLgoKWW91ciBzY3JpcHQgYWxsb3dzIHNldmVyYWwgc2NlbmFy
-aW9zOyBJICpndWVzcyogdGhlIG9uZSB0aGF0IGNhdXNlcwp0aGUgcHJvYmxlbSBpczoKCiAgLSB3
-cml0ZSAzIChEM2hvdCkgdG8gR1BVIFBvd2VyU3RhdGUgKFBDSUVfUE1fUkVHID09IDB4NjQsIEkg
-YXNzdW1lCiAgICBQTSBDYXBhYmlsaXR5IENvbnRyb2wgUmVnaXN0ZXIpCiAgLSB3cml0ZSAzIChE
-M2hvdCkgdG8gYnJpZGdlIFBvd2VyU3RhdGUgKDB4ODQsIEkgYXNzdW1lIFBNIENhcGFiaWxpdHkK
-ICAgIENvbnRyb2wgUmVnaXN0ZXIpCiAgLSBydW4gX09GRiBvbiB0aGUgcG93ZXIgcmVzb3VyY2Ug
-Zm9yIHRoZSBicmlkZ2UKCkZyb20geW91ciBzY3JpcHQgSSBhc3N1bWUgeW91IGRvOgoKICAtIHJ1
-biBfT04gb24gdGhlIHBvd2VyIHJlc291cmNlIGZvciB0aGUgYnJpZGdlCiAgLSB3cml0ZSAwIChE
-MCkgdG8gdGhlIGJyaWRnZSBQb3dlclN0YXRlCgpZb3UgZG8gKm5vdCogd3JpdGUgdGhlIEdQVSBQ
-b3dlclN0YXRlICh3aGljaCB3ZSBjYW4ndCBkbyBpZiB0aGUgR1BVIGlzCmluIEQzY29sZCkuICBJ
-cyB0aGVyZSBzb21lIGFzc3VtcHRpb24gdGhhdCBpdCBjb21lcyBvdXQgb2YgRDNjb2xkIHZpYQpz
-b21lIG90aGVyIG1lY2hhbmlzbSwgZS5nLiwgaXMgdGhlIF9PTiBzdXBwb3NlZCB0byB3YWtlIHVw
-IHRoZSBHUFU/CgpXaGF0IGV4YWN0bHkgaXMgdGhlIHNlcmlvdXMgaXNzdWU/ICBJIGd1ZXNzIGl0
-J3MgdGhhdCB0aGUgcmVzY2FuCmRvZXNuJ3QgZGV0ZWN0IHRoZSBHUFUsIHdoaWNoIG1lYW5zIGl0
-J3Mgbm90IHJlc3BvbmRpbmcgdG8gY29uZmlnCmFjY2Vzc2VzPyAgSXMgdGhlcmUgYW55IHRpbWlu
-ZyBjb21wb25lbnQgaGVyZSwgZS5nLiwgbWF5YmUgd2UncmUKbWlzc2luZyBzb21lIGRlbGF5IGxp
-a2UgdGhlIG9uZXMgTWlrYSBpcyBhZGRpbmcgdG8gdGhlIHJlc2V0IHBhdGhzPwoKPiArICoKPiAr
-ICogc2tpcHBpbmcgdGhpcyBtYWtlcyBydW5wbSB3b3JrIHBlcmZlY3RseSBmaW5lIG9uIHN1Y2gg
-ZGV2aWNlcy4KPiArICoKPiArICogQXMgZmFyIGFzIHdlIGtub3cgb25seSBza3lsYWtlIGFuZCBr
-YWJ5IGxha2UgU29DcyBhcmUgYWZmZWN0ZWQuCj4gKyAqLwo+ICtzdGF0aWMgdW5zaWduZWQgc2hv
-cnQgaW50ZWxfYnJva2VuX2QzX2JyaWRnZXNbXSA9IHsKPiArCS8qIGtibCAqLwo+ICsJMHgxOTAx
-LAo+ICt9Owo+ICsKPiArc3RhdGljIGlubGluZSBib29sIGludGVsX2Jyb2tlbl9wY2lfcG0oc3Ry
-dWN0IHBjaV9idXMgKmJ1cykKPiArewo+ICsJc3RydWN0IHBjaV9kZXYgKmJyaWRnZTsKPiArCWlu
-dCBpOwo+ICsKPiArCWlmICghYnVzIHx8ICFidXMtPnNlbGYpCj4gKwkJcmV0dXJuIGZhbHNlOwo+
-ICsKPiArCWJyaWRnZSA9IGJ1cy0+c2VsZjsKPiArCWlmIChicmlkZ2UtPnZlbmRvciAhPSBQQ0lf
-VkVORE9SX0lEX0lOVEVMKQo+ICsJCXJldHVybiBmYWxzZTsKPiArCj4gKwlmb3IgKGkgPSAwOyBp
-IDwgQVJSQVlfU0laRShpbnRlbF9icm9rZW5fZDNfYnJpZGdlcyk7IGkrKykgewo+ICsJCWlmIChi
-cmlkZ2UtPmRldmljZSA9PSBpbnRlbF9icm9rZW5fZDNfYnJpZGdlc1tpXSkgewo+ICsJCQlwY2lf
-ZXJyKGJyaWRnZSwgImZvdW5kIGJyb2tlbiBpbnRlbCBicmlkZ2VcbiIpOwoKSWYgdGhpcyBlbmRz
-IHVwIGJlaW5nIGEgaGFyZHdhcmUgZGVmZWN0LCB3ZSBzaG91bGQgdXNlIGEgcXVpcmsgdG8gc2V0
-CmEgYml0IGluIHRoZSBwY2lfZGV2IG9uY2UsIGFzIHdlIGRvIGZvciBicm9rZW5faW50eF9tYXNr
-aW5nIGFuZApzaW1pbGFyIGJpdHMuCgo+ICsJCQlyZXR1cm4gdHJ1ZTsKPiArCQl9Cj4gKwl9Cj4g
-Kwo+ICsJcmV0dXJuIGZhbHNlOwo+ICt9Cj4gKwo+ICAvKioKPiAgICogcGNpX3Jhd19zZXRfcG93
-ZXJfc3RhdGUgLSBVc2UgUENJIFBNIHJlZ2lzdGVycyB0byBzZXQgdGhlIHBvd2VyIHN0YXRlIG9m
-Cj4gICAqCQkJICAgICBnaXZlbiBQQ0kgZGV2aWNlCj4gQEAgLTgyNyw2ICs4NjMsOSBAQCBzdGF0
-aWMgaW50IHBjaV9yYXdfc2V0X3Bvd2VyX3N0YXRlKHN0cnVjdCBwY2lfZGV2ICpkZXYsIHBjaV9w
-b3dlcl90IHN0YXRlKQo+ICAJaWYgKHN0YXRlIDwgUENJX0QwIHx8IHN0YXRlID4gUENJX0QzaG90
-KQo+ICAJCXJldHVybiAtRUlOVkFMOwo+ICAKPiArCWlmIChzdGF0ZSAhPSBQQ0lfRDAgJiYgaW50
-ZWxfYnJva2VuX3BjaV9wbShkZXYtPmJ1cykpCj4gKwkJcmV0dXJuIDA7Cj4gKwo+ICAJLyoKPiAg
-CSAqIFZhbGlkYXRlIGN1cnJlbnQgc3RhdGU6Cj4gIAkgKiBDYW4gZW50ZXIgRDAgZnJvbSBhbnkg
-c3RhdGUsIGJ1dCBpZiB3ZSBjYW4gb25seSBnbyBkZWVwZXIKPiAtLSAKPiAyLjIxLjAKPiAKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+On Fri, Sep 27, 2019 at 11:42 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+>
+> [+cc Rafael, Mika, linux-pm]
+>
+> On Fri, Sep 27, 2019 at 04:44:21PM +0200, Karol Herbst wrote:
+> > Fixes runpm breakage mainly on Nvidia GPUs as they are not able to resume.
+>
+> I don't know what runpm is.  Some userspace utility?  Module
+> parameter?
+>
+
+runpm aka runtime powermanagement aka runtime_resume and runtime_suspend
+
+> > Works perfectly with this workaround applied.
+> >
+> > RFC comment:
+> > We are quite sure that there is a higher amount of bridges affected by this,
+> > but I was only testing it on my own machine for now.
+> >
+> > I've stresstested runpm by doing 5000 runpm cycles with that patch applied
+> > and never saw it fail.
+> >
+> > I mainly wanted to get a discussion going on if that's a feasable workaround
+> > indeed or if we need something better.
+> >
+> > I am also sure, that the nouveau driver itself isn't at fault as I am able
+> > to reproduce the same issue by poking into some PCI registers on the PCIe
+> > bridge to put the GPU into D3cold as it's done in ACPI code.
+> >
+> > I've written a little python script to reproduce this issue without the need
+> > of loading nouveau:
+> > https://raw.githubusercontent.com/karolherbst/pci-stub-runpm/master/nv_runpm_bug_test.py
+>
+> Nice script, thanks for sharing it :)  I could learn a lot of useful
+> python by studying it.
+>
+> > Signed-off-by: Karol Herbst <kherbst@redhat.com>
+> > Cc: Bjorn Helgaas <bhelgaas@google.com>
+> > Cc: Lyude Paul <lyude@redhat.com>
+> > Cc: linux-pci@vger.kernel.org
+> > Cc: dri-devel@lists.freedesktop.org
+> > Cc: nouveau@lists.freedesktop.org
+> > ---
+> >  drivers/pci/pci.c | 39 +++++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 39 insertions(+)
+> >
+> > diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> > index 088fcdc8d2b4..9dbd29ced1ac 100644
+> > --- a/drivers/pci/pci.c
+> > +++ b/drivers/pci/pci.c
+> > @@ -799,6 +799,42 @@ static inline bool platform_pci_bridge_d3(struct pci_dev *dev)
+> >       return pci_platform_pm ? pci_platform_pm->bridge_d3(dev) : false;
+> >  }
+> >
+> > +/*
+> > + * some intel bridges cause serious issues with runpm if the client device
+> > + * is put into D1/D2/D3hot before putting the client into D3cold via
+> > + * platform means (generally ACPI).
+>
+> You mention Nvidia GPUs above, but I guess the same issue may affect
+> other devices?  I would really like to chase this down to a more
+> specific issue, e.g., a hardware defect with erratum, an ACPI defect,
+> or a Linux defect.  Without the specifics, this is just a band-aid.
+>
+
+yep.. but we were trying to talk to Nvidia and Intel about it and had
+no luck getting anything out of them so far. We gave up on Nvidia,
+Intel is still pending.
+
+> I don't see any relevant requirements in the _OFF description, but I
+> don't know much about ACPI power control.
+>
+> Your script allows several scenarios; I *guess* the one that causes
+> the problem is:
+>
+>   - write 3 (D3hot) to GPU PowerState (PCIE_PM_REG == 0x64, I assume
+>     PM Capability Control Register)
+
+correct
+
+>   - write 3 (D3hot) to bridge PowerState (0x84, I assume PM Capability
+>     Control Register)
+
+correct, but this seems to be fine and doesn't fix the issue if that
+part is skipped
+
+>   - run _OFF on the power resource for the bridge
+>
+> From your script I assume you do:
+>
+>   - run _ON on the power resource for the bridge
+>   - write 0 (D0) to the bridge PowerState
+>
+> You do *not* write the GPU PowerState (which we can't do if the GPU is
+> in D3cold).  Is there some assumption that it comes out of D3cold via
+> some other mechanism, e.g., is the _ON supposed to wake up the GPU?
+
+if the "link" is powered up again (via 0x248, 0xbc or 0xb0 on the GPU
+bridge or the ACPI _ON method) the GPU comes up in the D0 state and is
+fully operational, well besides the little issue we've got with the D3
+write. It can also be worked around by putting the PCIe link into 5.0
+and 8.0 mode, but that's not reliable enough as it fails it around 10%
+of all tries.
+
+>
+> What exactly is the serious issue?  I guess it's that the rescan
+> doesn't detect the GPU, which means it's not responding to config
+> accesses?  Is there any timing component here, e.g., maybe we're
+> missing some delay like the ones Mika is adding to the reset paths?
+>
+
+When I was checking up on some of the PCI registers of the bridge
+controller, the slot detection told me that there is no device
+recognized anymore. I don't know which register it was anymore, though
+I guess one could read it up in the SoC spec document by Intel.
+
+My guess is, that the bridge controller fails to detect the GPU being
+here or actively threw it of the bus or something. But a normal system
+suspend/resume cycle brings the GPU back online (doing a rescan via
+sysfs gets the device detected again)
+
+> > + *
+> > + * skipping this makes runpm work perfectly fine on such devices.
+> > + *
+> > + * As far as we know only skylake and kaby lake SoCs are affected.
+> > + */
+> > +static unsigned short intel_broken_d3_bridges[] = {
+> > +     /* kbl */
+> > +     0x1901,
+> > +};
+> > +
+> > +static inline bool intel_broken_pci_pm(struct pci_bus *bus)
+> > +{
+> > +     struct pci_dev *bridge;
+> > +     int i;
+> > +
+> > +     if (!bus || !bus->self)
+> > +             return false;
+> > +
+> > +     bridge = bus->self;
+> > +     if (bridge->vendor != PCI_VENDOR_ID_INTEL)
+> > +             return false;
+> > +
+> > +     for (i = 0; i < ARRAY_SIZE(intel_broken_d3_bridges); i++) {
+> > +             if (bridge->device == intel_broken_d3_bridges[i]) {
+> > +                     pci_err(bridge, "found broken intel bridge\n");
+>
+> If this ends up being a hardware defect, we should use a quirk to set
+> a bit in the pci_dev once, as we do for broken_intx_masking and
+> similar bits.
+
+okay, if you think this is the preferred way then I can change the
+patch accordingly.
+
+>
+> > +                     return true;
+> > +             }
+> > +     }
+> > +
+> > +     return false;
+> > +}
+> > +
+> >  /**
+> >   * pci_raw_set_power_state - Use PCI PM registers to set the power state of
+> >   *                        given PCI device
+> > @@ -827,6 +863,9 @@ static int pci_raw_set_power_state(struct pci_dev *dev, pci_power_t state)
+> >       if (state < PCI_D0 || state > PCI_D3hot)
+> >               return -EINVAL;
+> >
+> > +     if (state != PCI_D0 && intel_broken_pci_pm(dev->bus))
+> > +             return 0;
+> > +
+> >       /*
+> >        * Validate current state:
+> >        * Can enter D0 from any state, but if we can only go deeper
+> > --
+> > 2.21.0
+> >
