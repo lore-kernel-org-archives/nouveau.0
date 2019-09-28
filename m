@@ -1,193 +1,129 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [RFC PATCH] pci: prevent putting pcie devices into lower device
- states on certain intel bridges
-Date: Fri, 27 Sep 2019 23:53:48 +0200
-Message-ID: <CACO55tuaY1jFXpJPeC9M4PoWEDyy547_tE8MpLaTDb+C+ffsbg@mail.gmail.com>
-References: <20190927144421.22608-1-kherbst@redhat.com> <20190927214252.GA65801@google.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+ rescan
+Date: Sat, 28 Sep 2019 08:28:25 +0000
+Message-ID: <bug-75985-8800-p5qSKcAV5I@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190927214252.GA65801@google.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, Linux PCI <linux-pci@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, "Rafael J. Wysocki" <rjw@rjwysocki.net>, Linux PM <linux-pm@vger.kernel.org>, Mika Westerberg <mika.westerberg@intel.com>
+Content-Type: multipart/mixed; boundary="===============1854095538=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Sep 27, 2019 at 11:42 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
->
-> [+cc Rafael, Mika, linux-pm]
->
-> On Fri, Sep 27, 2019 at 04:44:21PM +0200, Karol Herbst wrote:
-> > Fixes runpm breakage mainly on Nvidia GPUs as they are not able to resume.
->
-> I don't know what runpm is.  Some userspace utility?  Module
-> parameter?
->
 
-runpm aka runtime powermanagement aka runtime_resume and runtime_suspend
+--===============1854095538==
+Content-Type: multipart/alternative; boundary="15696593050.F19785.19732"
+Content-Transfer-Encoding: 7bit
 
-> > Works perfectly with this workaround applied.
-> >
-> > RFC comment:
-> > We are quite sure that there is a higher amount of bridges affected by this,
-> > but I was only testing it on my own machine for now.
-> >
-> > I've stresstested runpm by doing 5000 runpm cycles with that patch applied
-> > and never saw it fail.
-> >
-> > I mainly wanted to get a discussion going on if that's a feasable workaround
-> > indeed or if we need something better.
-> >
-> > I am also sure, that the nouveau driver itself isn't at fault as I am able
-> > to reproduce the same issue by poking into some PCI registers on the PCIe
-> > bridge to put the GPU into D3cold as it's done in ACPI code.
-> >
-> > I've written a little python script to reproduce this issue without the need
-> > of loading nouveau:
-> > https://raw.githubusercontent.com/karolherbst/pci-stub-runpm/master/nv_runpm_bug_test.py
->
-> Nice script, thanks for sharing it :)  I could learn a lot of useful
-> python by studying it.
->
-> > Signed-off-by: Karol Herbst <kherbst@redhat.com>
-> > Cc: Bjorn Helgaas <bhelgaas@google.com>
-> > Cc: Lyude Paul <lyude@redhat.com>
-> > Cc: linux-pci@vger.kernel.org
-> > Cc: dri-devel@lists.freedesktop.org
-> > Cc: nouveau@lists.freedesktop.org
-> > ---
-> >  drivers/pci/pci.c | 39 +++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 39 insertions(+)
-> >
-> > diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-> > index 088fcdc8d2b4..9dbd29ced1ac 100644
-> > --- a/drivers/pci/pci.c
-> > +++ b/drivers/pci/pci.c
-> > @@ -799,6 +799,42 @@ static inline bool platform_pci_bridge_d3(struct pci_dev *dev)
-> >       return pci_platform_pm ? pci_platform_pm->bridge_d3(dev) : false;
-> >  }
-> >
-> > +/*
-> > + * some intel bridges cause serious issues with runpm if the client device
-> > + * is put into D1/D2/D3hot before putting the client into D3cold via
-> > + * platform means (generally ACPI).
->
-> You mention Nvidia GPUs above, but I guess the same issue may affect
-> other devices?  I would really like to chase this down to a more
-> specific issue, e.g., a hardware defect with erratum, an ACPI defect,
-> or a Linux defect.  Without the specifics, this is just a band-aid.
->
 
-yep.. but we were trying to talk to Nvidia and Intel about it and had
-no luck getting anything out of them so far. We gave up on Nvidia,
-Intel is still pending.
+--15696593050.F19785.19732
+Date: Sat, 28 Sep 2019 08:28:25 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-> I don't see any relevant requirements in the _OFF description, but I
-> don't know much about ACPI power control.
->
-> Your script allows several scenarios; I *guess* the one that causes
-> the problem is:
->
->   - write 3 (D3hot) to GPU PowerState (PCIE_PM_REG == 0x64, I assume
->     PM Capability Control Register)
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
-correct
+--- Comment #81 from Przemys=C5=82aw Kopa <prymoo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Daniel Drake from comment #80)
+> A patch titled "PCI: Enable NVIDIA HDA controllers" (effecively attachment
+> #137939 [details] [review]) is headed into linux-next and potentially Lin=
+ux
+> 5.3. Testing appreciated!
 
->   - write 3 (D3hot) to bridge PowerState (0x84, I assume PM Capability
->     Control Register)
+Hello there! This commit prevents vga_switcheroo from turning off dGPU (Gef=
+orce
+540m) on my optimus machine as described here:
+https://bbs.archlinux.org/viewtopic.php?pid=3D1865512#p1865512. I never had
+problems with HDMI audio on this system - I think all connectors are connec=
+ted
+to the Intel GPU, yet NVIDIA HDA is still enabled by this patch.
 
-correct, but this seems to be fine and doesn't fix the issue if that
-part is skipped
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
 
->   - run _OFF on the power resource for the bridge
->
-> From your script I assume you do:
->
->   - run _ON on the power resource for the bridge
->   - write 0 (D0) to the bridge PowerState
->
-> You do *not* write the GPU PowerState (which we can't do if the GPU is
-> in D3cold).  Is there some assumption that it comes out of D3cold via
-> some other mechanism, e.g., is the _ON supposed to wake up the GPU?
+--15696593050.F19785.19732
+Date: Sat, 28 Sep 2019 08:28:25 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-if the "link" is powered up again (via 0x248, 0xbc or 0xb0 on the GPU
-bridge or the ACPI _ON method) the GPU comes up in the D0 state and is
-fully operational, well besides the little issue we've got with the D3
-write. It can also be worked around by putting the PCIe link into 5.0
-and 8.0 mode, but that's not reliable enough as it fails it around 10%
-of all tries.
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c81">Commen=
+t # 81</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+prymoo&#64;gmail.com" title=3D"Przemys=C5=82aw Kopa &lt;prymoo&#64;gmail.co=
+m&gt;"> <span class=3D"fn">Przemys=C5=82aw Kopa</span></a>
+</span></b>
+        <pre>(In reply to Daniel Drake from <a href=3D"show_bug.cgi?id=3D75=
+985#c80">comment #80</a>)
+<span class=3D"quote">&gt; A patch titled &quot;PCI: Enable NVIDIA HDA cont=
+rollers&quot; (effecively attachment
+&gt; #137939 [details] [review]) is headed into linux-next and potentially =
+Linux
+&gt; 5.3. Testing appreciated!</span >
 
->
-> What exactly is the serious issue?  I guess it's that the rescan
-> doesn't detect the GPU, which means it's not responding to config
-> accesses?  Is there any timing component here, e.g., maybe we're
-> missing some delay like the ones Mika is adding to the reset paths?
->
+Hello there! This commit prevents vga_switcheroo from turning off dGPU (Gef=
+orce
+540m) on my optimus machine as described here:
+<a href=3D"https://bbs.archlinux.org/viewtopic.php?pid=3D1865512#p1865512">=
+https://bbs.archlinux.org/viewtopic.php?pid=3D1865512#p1865512</a>. I never=
+ had
+problems with HDMI audio on this system - I think all connectors are connec=
+ted
+to the Intel GPU, yet NVIDIA HDA is still enabled by this patch.</pre>
+        </div>
+      </p>
 
-When I was checking up on some of the PCI registers of the bridge
-controller, the slot detection told me that there is no device
-recognized anymore. I don't know which register it was anymore, though
-I guess one could read it up in the SoC spec document by Intel.
 
-My guess is, that the bridge controller fails to detect the GPU being
-here or actively threw it of the bus or something. But a normal system
-suspend/resume cycle brings the GPU back online (doing a rescan via
-sysfs gets the device detected again)
+      <hr>
+      <span>You are receiving this mail because:</span>
 
-> > + *
-> > + * skipping this makes runpm work perfectly fine on such devices.
-> > + *
-> > + * As far as we know only skylake and kaby lake SoCs are affected.
-> > + */
-> > +static unsigned short intel_broken_d3_bridges[] = {
-> > +     /* kbl */
-> > +     0x1901,
-> > +};
-> > +
-> > +static inline bool intel_broken_pci_pm(struct pci_bus *bus)
-> > +{
-> > +     struct pci_dev *bridge;
-> > +     int i;
-> > +
-> > +     if (!bus || !bus->self)
-> > +             return false;
-> > +
-> > +     bridge = bus->self;
-> > +     if (bridge->vendor != PCI_VENDOR_ID_INTEL)
-> > +             return false;
-> > +
-> > +     for (i = 0; i < ARRAY_SIZE(intel_broken_d3_bridges); i++) {
-> > +             if (bridge->device == intel_broken_d3_bridges[i]) {
-> > +                     pci_err(bridge, "found broken intel bridge\n");
->
-> If this ends up being a hardware defect, we should use a quirk to set
-> a bit in the pci_dev once, as we do for broken_intx_masking and
-> similar bits.
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
 
-okay, if you think this is the preferred way then I can change the
-patch accordingly.
+--15696593050.F19785.19732--
 
->
-> > +                     return true;
-> > +             }
-> > +     }
-> > +
-> > +     return false;
-> > +}
-> > +
-> >  /**
-> >   * pci_raw_set_power_state - Use PCI PM registers to set the power state of
-> >   *                        given PCI device
-> > @@ -827,6 +863,9 @@ static int pci_raw_set_power_state(struct pci_dev *dev, pci_power_t state)
-> >       if (state < PCI_D0 || state > PCI_D3hot)
-> >               return -EINVAL;
-> >
-> > +     if (state != PCI_D0 && intel_broken_pci_pm(dev->bus))
-> > +             return 0;
-> > +
-> >       /*
-> >        * Validate current state:
-> >        * Can enter D0 from any state, but if we can only go deeper
-> > --
-> > 2.21.0
-> >
+--===============1854095538==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1854095538==--
