@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: nouveau locking machine solid
-Date: Sun, 29 Sep 2019 10:32:45 -0400
-Message-ID: <CAKb7Uvgws_-M+usTAVDD4Y6B8XZGF-CT9nfNVG4xP8kstBrJeg@mail.gmail.com>
-References: <20190929094544.5e0b9040@ds9>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111853] nouveau kernel module won't load (not
+ available) on Sony laptop with NVIDIA G86M [GeForce 8400M GT] ID: 10de:0426
+Date: Sun, 29 Sep 2019 14:36:56 +0000
+Message-ID: <bug-111853-8800-mFLmxBAqgN@http.bugs.freedesktop.org/>
+References: <bug-111853-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0405342359=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190929094544.5e0b9040@ds9>
+In-Reply-To: <bug-111853-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,21 +17,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: pete <pg.nikolic1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBTZXAgMjksIDIwMTkgYXQgNDo0NiBBTSBwZXRlIDxwZy5uaWtvbGljMUBnbWFpbC5j
-b20+IHdyb3RlOgo+Cj4KPiBIaSAuCj4KPiBJIGFtIGhhdmluZyBhIHZlcnkgYW5ub3lpbmcgcHJv
-YmxlbSBub3Qgc3VyZSB3aGVyZSB0aGUgcm9vdCBvZiBpdCBsaWVzCj4KPiBXaGVuIHJ1bm5pbmcg
-RkxkaWdpIGl0IHJ1bnMgZmluZSBmb3IgYWJvdXQgMTAgbWluZXV0cyB0aGVuIGkgc3RhcnQKPiBn
-ZXR0aW5nIGVycm9ycyAgbGVhZGluZyB0byBhIGNvbXBsZXRlIGxvY2sgdXAgdGhhdCBuZWVkcyBh
-IHBvd2VyIGJ1dHRvbgo+IHRvIGZyZWUgaXQgdXAgaSBnZXQgdGhlIGZvbGxvd2luZwo+Cj4gWyAg
-NjUzLjA4MDQ5N10gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGZpZm86IERNQV9QVVNIRVIgLSBjaCAz
-CgpUaGlzIGlzIHZlcnkgbXVjaCBhIG5vdXZlYXUgcHJvYmxlbS4gV2UgZG8gc29tZXRoaW5nIHdy
-b25nIHdoZW4Kc3dpdGNoaW5nIGNoYW5uZWxzIGFuZCB0aGUgcHVzaGVyIGdldHMgdXBzZXQuIFRo
-aXMgYWZmZWN0cyBUZXNsYQpmYW1pbHkgR1BVcyAoRzh4LCBHOXgsIEdUMnh4KS4KCk5vIGtub3du
-IHNvbHV0aW9uLgoKQ2hlZXJzLAoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL25vdXZlYXU=
+
+--===============0405342359==
+Content-Type: multipart/alternative; boundary="15697678151.f52d4.4083"
+Content-Transfer-Encoding: 7bit
+
+
+--15697678151.f52d4.4083
+Date: Sun, 29 Sep 2019 14:36:55 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111853
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I see no record of nouveau loading in the kernel logs. This most likely mea=
+ns
+that it's blacklisted somehow.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15697678151.f52d4.4083
+Date: Sun, 29 Sep 2019 14:36:55 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau kernel module won't load (not available) on Sony =
+laptop with NVIDIA G86M [GeForce 8400M GT] ID: 10de:0426"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111853#c1">Commen=
+t # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau kernel module won't load (not available) on Sony =
+laptop with NVIDIA G86M [GeForce 8400M GT] ID: 10de:0426"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111853">bug 11185=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>I see no record of nouveau loading in the kernel logs. This mo=
+st likely means
+that it's blacklisted somehow.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15697678151.f52d4.4083--
+
+--===============0405342359==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0405342359==--
