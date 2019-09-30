@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111868] xorg with nouveau crash when starting
  mate-session in debian 10
-Date: Mon, 30 Sep 2019 12:06:01 +0000
-Message-ID: <bug-111868-8800-HQtZuoUoka@http.bugs.freedesktop.org/>
+Date: Mon, 30 Sep 2019 12:54:01 +0000
+Message-ID: <bug-111868-8800-jKXKZFtITN@http.bugs.freedesktop.org/>
 References: <bug-111868-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0327598909=="
+Content-Type: multipart/mixed; boundary="===============1890163620=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111868-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0327598909==
-Content-Type: multipart/alternative; boundary="15698451611.7aa6d.10971"
+--===============1890163620==
+Content-Type: multipart/alternative; boundary="15698480410.9C4dfa1.19707"
 Content-Transfer-Encoding: 7bit
 
 
---15698451611.7aa6d.10971
-Date: Mon, 30 Sep 2019 12:06:01 +0000
+--15698480410.9C4dfa1.19707
+Date: Mon, 30 Sep 2019 12:54:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,23 +36,27 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111868
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-You have a bigger problem ... your GeForce2 is reporting as a Riva TNT2!
+--- Comment #2 from alain.prignet-oQvnLCQn66E@public.gmane.org ---
+Thanks for your answer.
 
-That's a weird stack trace -- looks like it got corrupted. The "nouveau"
-address doesn't map to a function at all, and the
-present_register_complete_notify frames appear questionable to me.
+Sorry, I give you this "pastebin" since I'm away from my computer.
+This log has a Riva TNT2, but mine a Geforce 2. But they gives the
+"same" backtrace.
 
-How much debugging are you able to do? Do you have a second computer and kn=
-ow
-how to work gdb?
+I will give you the two log files (mate-session and xfce4-session)
+from my computer in few days.
+
+gdb is difficult for me, I will need help. I'm not sure if I need two
+computers since I can still use the computer in console mode after the
+crash. The crash does not freeze the computer : with lightdm, I get
+the infinite connect loop.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15698451611.7aa6d.10971
-Date: Mon, 30 Sep 2019 12:06:01 +0000
+--15698480410.9C4dfa1.19707
+Date: Mon, 30 Sep 2019 12:54:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,8 +74,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - xorg with nouveau crash when starting mate-session in deb=
 ian 10"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111868#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111868#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg with nouveau crash when starting mate-session in deb=
@@ -79,20 +83,22 @@ ian 10"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111868">bug 11186=
 8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+alain.prignet&#64;u-pem.fr" title=3D"alain.prignet&#64;u-pem.fr">alain.prig=
+net&#64;u-pem.fr</a>
 </span></b>
-        <pre>You have a bigger problem ... your GeForce2 is reporting as a =
-Riva TNT2!
+        <pre>Thanks for your answer.
 
-That's a weird stack trace -- looks like it got corrupted. The &quot;nouvea=
-u&quot;
-address doesn't map to a function at all, and the
-present_register_complete_notify frames appear questionable to me.
+Sorry, I give you this &quot;pastebin&quot; since I'm away from my computer.
+This log has a Riva TNT2, but mine a Geforce 2. But they gives the
+&quot;same&quot; backtrace.
 
-How much debugging are you able to do? Do you have a second computer and kn=
-ow
-how to work gdb?</pre>
+I will give you the two log files (mate-session and xfce4-session)
+from my computer in few days.
+
+gdb is difficult for me, I will need help. I'm not sure if I need two
+computers since I can still use the computer in console mode after the
+crash. The crash does not freeze the computer : with lightdm, I get
+the infinite connect loop.</pre>
         </div>
       </p>
 
@@ -106,9 +112,9 @@ how to work gdb?</pre>
     </body>
 </html>=
 
---15698451611.7aa6d.10971--
+--15698480410.9C4dfa1.19707--
 
---===============0327598909==
+--===============1890163620==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -118,4 +124,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0327598909==--
+--===============1890163620==--
