@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111868] xorg with nouveau crash when starting
  mate-session in debian 10
-Date: Mon, 30 Sep 2019 13:16:09 +0000
-Message-ID: <bug-111868-8800-jXjfwgp2nJ@http.bugs.freedesktop.org/>
+Date: Mon, 30 Sep 2019 13:31:19 +0000
+Message-ID: <bug-111868-8800-XSYPjoucdj@http.bugs.freedesktop.org/>
 References: <bug-111868-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1646586676=="
+Content-Type: multipart/mixed; boundary="===============0984845548=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111868-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1646586676==
-Content-Type: multipart/alternative; boundary="15698493680.Efa585c3f.23593"
+--===============0984845548==
+Content-Type: multipart/alternative; boundary="15698502790.2200a7e.27394"
 Content-Transfer-Encoding: 7bit
 
 
---15698493680.Efa585c3f.23593
-Date: Mon, 30 Sep 2019 13:16:08 +0000
+--15698502790.2200a7e.27394
+Date: Mon, 30 Sep 2019 13:31:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,24 +36,25 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111868
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OK, alternatively do you have a fool-proof sequence of steps to reproduce t=
-his?
-You originally made it sound like mate-session was the thing, but but then =
-in
-later comments you say that it's actually fine.
+--- Comment #5 from alain.prignet-oQvnLCQn66E@public.gmane.org ---
+Yes I have a fool-proof sequence to reproduce it, even not using gdm3 or
+lightdm.
 
-Like let's say I run xinit and then run mate-session from within the termin=
-al
--- is that enough? (I'd like to avoid dealing with gdm3 as much as possible=
-.)
+I can reproduce it using "startx" and an .xinitrc containing only
+"exec mate-session". Since the computer does not freeze, I can reproducing =
+at
+demand.
+
+(The bug is not show when having in .xinitrc "exec xfce4-session", or when
+using gdm3 or lightdm with xfce, even if launching mate-session during the
+xfce4 session)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15698493680.Efa585c3f.23593
-Date: Mon, 30 Sep 2019 13:16:08 +0000
+--15698502790.2200a7e.27394
+Date: Mon, 30 Sep 2019 13:31:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,8 +72,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - xorg with nouveau crash when starting mate-session in deb=
 ian 10"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111868#c4">Commen=
-t # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111868#c5">Commen=
+t # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg with nouveau crash when starting mate-session in deb=
@@ -80,19 +81,22 @@ ian 10"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111868">bug 11186=
 8</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+alain.prignet&#64;u-pem.fr" title=3D"alain.prignet&#64;u-pem.fr">alain.prig=
+net&#64;u-pem.fr</a>
 </span></b>
-        <pre>OK, alternatively do you have a fool-proof sequence of steps t=
-o reproduce this?
-You originally made it sound like mate-session was the thing, but but then =
-in
-later comments you say that it's actually fine.
+        <pre>Yes I have a fool-proof sequence to reproduce it, even not usi=
+ng gdm3 or
+lightdm.
 
-Like let's say I run xinit and then run mate-session from within the termin=
-al
--- is that enough? (I'd like to avoid dealing with gdm3 as much as possible=
-.)</pre>
+I can reproduce it using &quot;startx&quot; and an .xinitrc containing only
+&quot;exec mate-session&quot;. Since the computer does not freeze, I can re=
+producing at
+demand.
+
+(The bug is not show when having in .xinitrc &quot;exec xfce4-session&quot;=
+, or when
+using gdm3 or lightdm with xfce, even if launching mate-session during the
+xfce4 session)</pre>
         </div>
       </p>
 
@@ -106,9 +110,9 @@ al
     </body>
 </html>=
 
---15698493680.Efa585c3f.23593--
+--15698502790.2200a7e.27394--
 
---===============1646586676==
+--===============0984845548==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -118,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1646586676==--
+--===============0984845548==--
