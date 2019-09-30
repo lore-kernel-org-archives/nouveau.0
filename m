@@ -1,69 +1,75 @@
-From: Karol Herbst <kherbst@redhat.com>
+From: Mika Westerberg <mika.westerberg@linux.intel.com>
 Subject: Re: [RFC PATCH] pci: prevent putting pcie devices into lower device
  states on certain intel bridges
-Date: Mon, 30 Sep 2019 11:15:48 +0200
-Message-ID: <CACO55tuMo1aAA7meGtEey6J6sOS-ZA0ebZeL52i2zfkWtPqe_g@mail.gmail.com>
+Date: Mon, 30 Sep 2019 12:29:34 +0300
+Message-ID: <20190930092934.GT2714@lahna.fi.intel.com>
 References: <20190927144421.22608-1-kherbst@redhat.com>
  <20190927214252.GA65801@google.com>
  <CACO55tuaY1jFXpJPeC9M4PoWEDyy547_tE8MpLaTDb+C+ffsbg@mail.gmail.com>
  <20190930080534.GS2714@lahna.fi.intel.com>
+ <CACO55tuMo1aAA7meGtEey6J6sOS-ZA0ebZeL52i2zfkWtPqe_g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20190930080534.GS2714@lahna.fi.intel.com>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Mika Westerberg <mika.westerberg@linux.intel.com>
-Cc: Linux PM <linux-pm@vger.kernel.org>, nouveau <nouveau@lists.freedesktop.org>, "Rafael J. Wysocki" <rjw@rjwysocki.net>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Bjorn Helgaas <helgaas@kernel.org>, Linux PCI <linux-pci@vger.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CACO55tuMo1aAA7meGtEey6J6sOS-ZA0ebZeL52i2zfkWtPqe_g@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Karol Herbst <kherbst@redhat.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, Linux PCI <linux-pci@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, "Rafael J. Wysocki" <rjw@rjwysocki.net>, Linux PM <linux-pm@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBTZXAgMzAsIDIwMTkgYXQgMTA6MDUgQU0gTWlrYSBXZXN0ZXJiZXJnCjxtaWthLndl
-c3RlcmJlcmdAbGludXguaW50ZWwuY29tPiB3cm90ZToKPgo+IEhpIEthcm9sLAo+Cj4gT24gRnJp
-LCBTZXAgMjcsIDIwMTkgYXQgMTE6NTM6NDhQTSArMDIwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+
-ID4gPiBXaGF0IGV4YWN0bHkgaXMgdGhlIHNlcmlvdXMgaXNzdWU/ICBJIGd1ZXNzIGl0J3MgdGhh
-dCB0aGUgcmVzY2FuCj4gPiA+IGRvZXNuJ3QgZGV0ZWN0IHRoZSBHUFUsIHdoaWNoIG1lYW5zIGl0
-J3Mgbm90IHJlc3BvbmRpbmcgdG8gY29uZmlnCj4gPiA+IGFjY2Vzc2VzPyAgSXMgdGhlcmUgYW55
-IHRpbWluZyBjb21wb25lbnQgaGVyZSwgZS5nLiwgbWF5YmUgd2UncmUKPiA+ID4gbWlzc2luZyBz
-b21lIGRlbGF5IGxpa2UgdGhlIG9uZXMgTWlrYSBpcyBhZGRpbmcgdG8gdGhlIHJlc2V0IHBhdGhz
-Pwo+ID4KPiA+IFdoZW4gSSB3YXMgY2hlY2tpbmcgdXAgb24gc29tZSBvZiB0aGUgUENJIHJlZ2lz
-dGVycyBvZiB0aGUgYnJpZGdlCj4gPiBjb250cm9sbGVyLCB0aGUgc2xvdCBkZXRlY3Rpb24gdG9s
-ZCBtZSB0aGF0IHRoZXJlIGlzIG5vIGRldmljZQo+ID4gcmVjb2duaXplZCBhbnltb3JlLiBJIGRv
-bid0IGtub3cgd2hpY2ggcmVnaXN0ZXIgaXQgd2FzIGFueW1vcmUsIHRob3VnaAo+ID4gSSBndWVz
-cyBvbmUgY291bGQgcmVhZCBpdCB1cCBpbiB0aGUgU29DIHNwZWMgZG9jdW1lbnQgYnkgSW50ZWwu
-Cj4gPgo+ID4gTXkgZ3Vlc3MgaXMsIHRoYXQgdGhlIGJyaWRnZSBjb250cm9sbGVyIGZhaWxzIHRv
-IGRldGVjdCB0aGUgR1BVIGJlaW5nCj4gPiBoZXJlIG9yIGFjdGl2ZWx5IHRocmV3IGl0IG9mIHRo
-ZSBidXMgb3Igc29tZXRoaW5nLiBCdXQgYSBub3JtYWwgc3lzdGVtCj4gPiBzdXNwZW5kL3Jlc3Vt
-ZSBjeWNsZSBicmluZ3MgdGhlIEdQVSBiYWNrIG9ubGluZSAoZG9pbmcgYSByZXNjYW4gdmlhCj4g
-PiBzeXNmcyBnZXRzIHRoZSBkZXZpY2UgZGV0ZWN0ZWQgYWdhaW4pCj4KPiBDYW4geW91IGVsYWJv
-cmF0ZSBhIGJpdCB3aGF0IGtpbmQgb2Ygc2NlbmFyaW8gdGhlIGlzc3VlIGhhcHBlbnMgKGUuZwo+
-IHN0ZXBzIGhvdyBpdCByZXByb2R1Y2VzKT8gSXQgd2FzIG5vdCAxMDAlIGNsZWFyIGZyb20gdGhl
-IGNoYW5nZWxvZy4gQWxzbwo+IHdoYXQgdGhlIHJlc3VsdCB3aGVuIHRoZSBmYWlsdXJlIGhhcHBl
-bnM/Cj4KCnllYWgsIEkgYWxyZWFkeSBoYXZlIGFuIHVwZGF0ZWQgcGF0Y2ggaW4gdGhlIHdvcmtz
-IHdoaWNoIGFsc28gZG9lcyB0aGUKcmV3b3JrIEJqb3JuIHN1Z2dlc3RlZC4gSGFkIG5vIHRpbWUg
-eWV0IHRvIHRlc3QgaWYgSSBkaWRuJ3QgbWVzcyBpdAp1cC4KCkkgYW0gYWxzbyB0aGlua2luZyBv
-ZiBhZGRpbmcgYSBrZXJuZWwgcGFyYW1ldGVyIHRvIGVuYWJsZSB0aGlzCndvcmthcm91bmQgb24g
-ZGVtYW5kLCBidXQgbm90IHF1aXRlIHN1cmUgb24gdGhhdCBvbmUgeWV0LgoKPiBJIHNlZSB0aGVy
-ZSBpcyBhIHNjcmlwdCB0aGF0IGRvZXMgc29tZXRoaW5nIGJ1dCB1bmZvcnR1bmF0ZWx5IEknbSBu
-b3QKPiBmbHVlbnQgaW4gUHl0aG9uIHNvIGNhbid0IGV4dHJhY3QgdGhlIHN0ZXBzIGhvdyB0aGUg
-aXNzdWUgY2FuIGJlCj4gcmVwcm9kdWNlZCA7LSkKPgo+IE9uZSB0aGluZyB0aGF0IEknbSB3b3Jr
-aW5nIG9uIGlzIHRoYXQgTGludXggUENJIHN1YnN5c3RlbSBtaXNzZXMgY2VydGFpbgo+IGRlbGF5
-cyB0aGF0IGFyZSBuZWVkZWQgYWZ0ZXIgRDNjb2xkIC0+IEQwIHRyYW5zaXRpb24sIG90aGVyd2lz
-ZSB0aGUKPiBkZXZpY2UgYW5kL29yIGxpbmsgbWF5IG5vdCBiZSByZWFkeSBiZWZvcmUgd2UgYWNj
-ZXNzIGl0LiBXaGF0IHlvdSBhcmUKPiBleHBlcmllbmNpbmcgc291bmRzIHNpbWlsYXIuIEkgd29u
-ZGVyIGlmIHlvdSBjb3VsZCB0cnkgdGhlIGZvbGxvd2luZwo+IHBhdGNoIGFuZCBzZWUgaWYgaXQg
-bWFrZXMgYW55IGRpZmZlcmVuY2U/Cj4KPiBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Bh
-dGNoLzExMTA2NjExLwoKSSB0aGluayBJIGFscmVhZHkgdHJpZWQgdGhpcyBwYXRoLiBUaGUgcHJv
-YmxlbSBpc24ndCB0aGF0IHRoZSBkZXZpY2UKaXNuJ3QgYWNjZXNzaWJsZSB0b28gbGF0ZSwgYnV0
-IHRoYXQgaXQgc2VlbXMgdGhhdCB0aGUgZGV2aWNlCmNvbXBsZXRlbHkgZmFsbHMgb2ZmIHRoZSBi
-dXMuIEJ1dCBJIGNhbiByZXRlc3QgYWdhaW4ganVzdCB0byBiZSBzdXJlLgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0
-CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWw=
+On Mon, Sep 30, 2019 at 11:15:48AM +0200, Karol Herbst wrote:
+> On Mon, Sep 30, 2019 at 10:05 AM Mika Westerberg
+> <mika.westerberg@linux.intel.com> wrote:
+> >
+> > Hi Karol,
+> >
+> > On Fri, Sep 27, 2019 at 11:53:48PM +0200, Karol Herbst wrote:
+> > > > What exactly is the serious issue?  I guess it's that the rescan
+> > > > doesn't detect the GPU, which means it's not responding to config
+> > > > accesses?  Is there any timing component here, e.g., maybe we're
+> > > > missing some delay like the ones Mika is adding to the reset paths?
+> > >
+> > > When I was checking up on some of the PCI registers of the bridge
+> > > controller, the slot detection told me that there is no device
+> > > recognized anymore. I don't know which register it was anymore, though
+> > > I guess one could read it up in the SoC spec document by Intel.
+> > >
+> > > My guess is, that the bridge controller fails to detect the GPU being
+> > > here or actively threw it of the bus or something. But a normal system
+> > > suspend/resume cycle brings the GPU back online (doing a rescan via
+> > > sysfs gets the device detected again)
+> >
+> > Can you elaborate a bit what kind of scenario the issue happens (e.g
+> > steps how it reproduces)? It was not 100% clear from the changelog. Also
+> > what the result when the failure happens?
+> >
+> 
+> yeah, I already have an updated patch in the works which also does the
+> rework Bjorn suggested. Had no time yet to test if I didn't mess it
+> up.
+> 
+> I am also thinking of adding a kernel parameter to enable this
+> workaround on demand, but not quite sure on that one yet.
+
+Right, I think it would be good to figure out the root cause before
+adding any workarounds ;-) It might very well be that we are just
+missing something the PCIe spec requires but not implemented in Linux.
+
+> > I see there is a script that does something but unfortunately I'm not
+> > fluent in Python so can't extract the steps how the issue can be
+> > reproduced ;-)
+> >
+> > One thing that I'm working on is that Linux PCI subsystem misses certain
+> > delays that are needed after D3cold -> D0 transition, otherwise the
+> > device and/or link may not be ready before we access it. What you are
+> > experiencing sounds similar. I wonder if you could try the following
+> > patch and see if it makes any difference?
+> >
+> > https://patchwork.kernel.org/patch/11106611/
+> 
+> I think I already tried this path. The problem isn't that the device
+> isn't accessible too late, but that it seems that the device
+> completely falls off the bus. But I can retest again just to be sure.
+
+Yes, please try it and share full dmesg if/when the failure still happens.
