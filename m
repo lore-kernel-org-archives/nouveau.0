@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111868] xorg with nouveau crash when starting
  mate-session in debian 10
-Date: Mon, 30 Sep 2019 12:54:01 +0000
-Message-ID: <bug-111868-8800-jKXKZFtITN@http.bugs.freedesktop.org/>
+Date: Mon, 30 Sep 2019 12:56:23 +0000
+Message-ID: <bug-111868-8800-clBxA88m7Z@http.bugs.freedesktop.org/>
 References: <bug-111868-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1890163620=="
+Content-Type: multipart/mixed; boundary="===============0663390045=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111868-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1890163620==
-Content-Type: multipart/alternative; boundary="15698480410.9C4dfa1.19707"
+--===============0663390045==
+Content-Type: multipart/alternative; boundary="15698481830.ADe863cF.19997"
 Content-Transfer-Encoding: 7bit
 
 
---15698480410.9C4dfa1.19707
-Date: Mon, 30 Sep 2019 12:54:01 +0000
+--15698481830.ADe863cF.19997
+Date: Mon, 30 Sep 2019 12:56:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,27 +36,45 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111868
 
---- Comment #2 from alain.prignet-oQvnLCQn66E@public.gmane.org ---
-Thanks for your answer.
+--- Comment #3 from alain.prignet-oQvnLCQn66E@public.gmane.org ---
+Le 30/09/2019 a 12:06:01 +0000, bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org a ecrit :
+> https://bugs.freedesktop.org/show_bug.cgi?id=3D111868
+>=20
+> --- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+> You have a bigger problem ... your GeForce2 is reporting as a Riva TNT2!
 
 Sorry, I give you this "pastebin" since I'm away from my computer.
 This log has a Riva TNT2, but mine a Geforce 2. But they gives the
 "same" backtrace.
 
-I will give you the two log files (mate-session and xfce4-session)
-from my computer in few days.
+>=20
+> That's a weird stack trace -- looks like it got corrupted. The "nouveau"
+> address doesn't map to a function at all, and the
+> present_register_complete_notify frames appear questionable to me.
 
-gdb is difficult for me, I will need help. I'm not sure if I need two
-computers since I can still use the computer in console mode after the
+So I will give you the two log file from my computer in few days.
+
+>=20
+> How much debugging are you able to do? Do you have a second computer and =
+know
+> how to work gdb?
+>=20
+
+gdb is difficult for me, I will need help. I'm not sure I need two
+computer since I can still use the computer in console mode after the
 crash. The crash does not freeze the computer : with lightdm, I get
 the infinite connect loop.
+
+Thanks,
+
+alain prignet
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15698480410.9C4dfa1.19707
-Date: Mon, 30 Sep 2019 12:54:01 +0000
+--15698481830.ADe863cF.19997
+Date: Mon, 30 Sep 2019 12:56:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -74,8 +92,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - xorg with nouveau crash when starting mate-session in deb=
 ian 10"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111868#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111868#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg with nouveau crash when starting mate-session in deb=
@@ -86,19 +104,48 @@ ian 10"
 alain.prignet&#64;u-pem.fr" title=3D"alain.prignet&#64;u-pem.fr">alain.prig=
 net&#64;u-pem.fr</a>
 </span></b>
-        <pre>Thanks for your answer.
+        <pre>Le 30/09/2019 a 12:06:01 +0000, <a href=3D"mailto:bugzilla-dae=
+mon&#64;freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a> a ecrit :
+<span class=3D"quote">&gt; <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - xorg with nouveau crash when starting mate-session in deb=
+ian 10"
+   href=3D"show_bug.cgi?id=3D111868">https://bugs.freedesktop.org/show_bug.=
+cgi?id=3D111868</a>
+&gt;=20
+&gt; --- <a href=3D"show_bug.cgi?id=3D111868#c1">Comment #1</a> from Ilia M=
+irkin &lt;<a href=3D"mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.=
+edu</a>&gt; ---
+&gt; You have a bigger problem ... your GeForce2 is reporting as a Riva TNT=
+2!</span >
 
 Sorry, I give you this &quot;pastebin&quot; since I'm away from my computer.
 This log has a Riva TNT2, but mine a Geforce 2. But they gives the
 &quot;same&quot; backtrace.
 
-I will give you the two log files (mate-session and xfce4-session)
-from my computer in few days.
+<span class=3D"quote">&gt;=20
+&gt; That's a weird stack trace -- looks like it got corrupted. The &quot;n=
+ouveau&quot;
+&gt; address doesn't map to a function at all, and the
+&gt; present_register_complete_notify frames appear questionable to me.</sp=
+an >
 
-gdb is difficult for me, I will need help. I'm not sure if I need two
-computers since I can still use the computer in console mode after the
+So I will give you the two log file from my computer in few days.
+
+<span class=3D"quote">&gt;=20
+&gt; How much debugging are you able to do? Do you have a second computer a=
+nd know
+&gt; how to work gdb?
+&gt; </span >
+
+gdb is difficult for me, I will need help. I'm not sure I need two
+computer since I can still use the computer in console mode after the
 crash. The crash does not freeze the computer : with lightdm, I get
-the infinite connect loop.</pre>
+the infinite connect loop.
+
+Thanks,
+
+alain prignet</pre>
         </div>
       </p>
 
@@ -112,9 +159,9 @@ the infinite connect loop.</pre>
     </body>
 </html>=
 
---15698480410.9C4dfa1.19707--
+--15698481830.ADe863cF.19997--
 
---===============1890163620==
+--===============0663390045==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +171,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1890163620==--
+--===============0663390045==--
