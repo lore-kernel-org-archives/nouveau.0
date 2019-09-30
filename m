@@ -1,83 +1,58 @@
-From: Karol Herbst <kherbst@redhat.com>
-Subject: Re: [RFC PATCH] pci: prevent putting pcie devices into lower device
- states on certain intel bridges
-Date: Mon, 30 Sep 2019 18:05:14 +0200
-Message-ID: <CACO55tu9M8_TWu2MxNe_NROit+d+rHJP5_Tb+t73q5vr19sd1w@mail.gmail.com>
-References: <20190927144421.22608-1-kherbst@redhat.com> <20190927214252.GA65801@google.com>
+From: Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Subject: Re: [RFC PATCH] pci: prevent putting pcie devices into
+ lower device states on certain intel bridges
+Date: Mon, 30 Sep 2019 19:30:01 +0300
+Message-ID: <20190930163001.GX2714@lahna.fi.intel.com>
+References: <20190927144421.22608-1-kherbst@redhat.com>
+ <20190927214252.GA65801@google.com>
  <CACO55tuaY1jFXpJPeC9M4PoWEDyy547_tE8MpLaTDb+C+ffsbg@mail.gmail.com>
- <20190930080534.GS2714@lahna.fi.intel.com> <CACO55tuMo1aAA7meGtEey6J6sOS-ZA0ebZeL52i2zfkWtPqe_g@mail.gmail.com>
+ <20190930080534.GS2714@lahna.fi.intel.com>
+ <CACO55tuMo1aAA7meGtEey6J6sOS-ZA0ebZeL52i2zfkWtPqe_g@mail.gmail.com>
  <20190930092934.GT2714@lahna.fi.intel.com>
+ <CACO55tu9M8_TWu2MxNe_NROit+d+rHJP5_Tb+t73q5vr19sd1w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20190930092934.GT2714@lahna.fi.intel.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Mika Westerberg <mika.westerberg@linux.intel.com>
-Cc: Bjorn Helgaas <helgaas@kernel.org>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, Linux PCI <linux-pci@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, "Rafael J. Wysocki" <rjw@rjwysocki.net>, Linux PM <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <CACO55tu9M8_TWu2MxNe_NROit+d+rHJP5_Tb+t73q5vr19sd1w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "Rafael J. Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-still happens with your patch applied. The machine simply gets shut down.
-
-dmesg can be found here:
-https://gist.githubusercontent.com/karolherbst/40eb091c7b7b33ef993525de660f1a3b/raw/2380e31f566e93e5ba7c87ef545420965d4c492c/gistfile1.txt
-
-If there are no other things to try out, I will post the updated patch shortly.
-
-On Mon, Sep 30, 2019 at 11:29 AM Mika Westerberg
-<mika.westerberg@linux.intel.com> wrote:
->
-> On Mon, Sep 30, 2019 at 11:15:48AM +0200, Karol Herbst wrote:
-> > On Mon, Sep 30, 2019 at 10:05 AM Mika Westerberg
-> > <mika.westerberg@linux.intel.com> wrote:
-> > >
-> > > Hi Karol,
-> > >
-> > > On Fri, Sep 27, 2019 at 11:53:48PM +0200, Karol Herbst wrote:
-> > > > > What exactly is the serious issue?  I guess it's that the rescan
-> > > > > doesn't detect the GPU, which means it's not responding to config
-> > > > > accesses?  Is there any timing component here, e.g., maybe we're
-> > > > > missing some delay like the ones Mika is adding to the reset paths?
-> > > >
-> > > > When I was checking up on some of the PCI registers of the bridge
-> > > > controller, the slot detection told me that there is no device
-> > > > recognized anymore. I don't know which register it was anymore, though
-> > > > I guess one could read it up in the SoC spec document by Intel.
-> > > >
-> > > > My guess is, that the bridge controller fails to detect the GPU being
-> > > > here or actively threw it of the bus or something. But a normal system
-> > > > suspend/resume cycle brings the GPU back online (doing a rescan via
-> > > > sysfs gets the device detected again)
-> > >
-> > > Can you elaborate a bit what kind of scenario the issue happens (e.g
-> > > steps how it reproduces)? It was not 100% clear from the changelog. Also
-> > > what the result when the failure happens?
-> > >
-> >
-> > yeah, I already have an updated patch in the works which also does the
-> > rework Bjorn suggested. Had no time yet to test if I didn't mess it
-> > up.
-> >
-> > I am also thinking of adding a kernel parameter to enable this
-> > workaround on demand, but not quite sure on that one yet.
->
-> Right, I think it would be good to figure out the root cause before
-> adding any workarounds ;-) It might very well be that we are just
-> missing something the PCIe spec requires but not implemented in Linux.
->
-> > > I see there is a script that does something but unfortunately I'm not
-> > > fluent in Python so can't extract the steps how the issue can be
-> > > reproduced ;-)
-> > >
-> > > One thing that I'm working on is that Linux PCI subsystem misses certain
-> > > delays that are needed after D3cold -> D0 transition, otherwise the
-> > > device and/or link may not be ready before we access it. What you are
-> > > experiencing sounds similar. I wonder if you could try the following
-> > > patch and see if it makes any difference?
-> > >
-> > > https://patchwork.kernel.org/patch/11106611/
-> >
-> > I think I already tried this path. The problem isn't that the device
-> > isn't accessible too late, but that it seems that the device
-> > completely falls off the bus. But I can retest again just to be sure.
->
-> Yes, please try it and share full dmesg if/when the failure still happens.
+T24gTW9uLCBTZXAgMzAsIDIwMTkgYXQgMDY6MDU6MTRQTSArMDIwMCwgS2Fyb2wgSGVyYnN0IHdy
+b3RlOgo+IHN0aWxsIGhhcHBlbnMgd2l0aCB5b3VyIHBhdGNoIGFwcGxpZWQuIFRoZSBtYWNoaW5l
+IHNpbXBseSBnZXRzIHNodXQgZG93bi4KPiAKPiBkbWVzZyBjYW4gYmUgZm91bmQgaGVyZToKPiBo
+dHRwczovL2dpc3QuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2thcm9saGVyYnN0LzQwZWIwOTFjN2I3
+YjMzZWY5OTM1MjVkZTY2MGYxYTNiL3Jhdy8yMzgwZTMxZjU2NmU5M2U1YmE3Yzg3ZWY1NDU0MjA5
+NjVkNGM0OTJjL2dpc3RmaWxlMS50eHQKCkxvb2tpbmcgeW91ciBkbWVzZzoKClNlcCAzMCAxNzoy
+NDoyNyBrZXJuZWw6IG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiB2ZXJzaW9uIDQuMQpT
+ZXAgMzAgMTc6MjQ6Mjcga2VybmVsOiBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBNTTogdXNp
+bmcgQ09QWSBmb3IgYnVmZmVyIGNvcGllcwpTZXAgMzAgMTc6MjQ6Mjcga2VybmVsOiBbZHJtXSBJ
+bml0aWFsaXplZCBub3V2ZWF1IDEuMy4xIDIwMTIwODAxIGZvciAwMDAwOjAxOjAwLjAgb24gbWlu
+b3IgMQoKSSB3b3VsZCBhc3N1bWUgaXQgcnVudGltZSBzdXNwZW5kcyBoZXJlLiBUaGVuIGl0IHdh
+a2VzIHVwIGJlY2F1c2Ugb2YgUENJCmFjY2VzcyBmcm9tIHVzZXJzcGFjZToKClNlcCAzMCAxNzoy
+NDo0MiBrZXJuZWw6IHBjaV9yYXdfc2V0X3Bvd2VyX3N0YXRlOiA1NiBjYWxsYmFja3Mgc3VwcHJl
+c3NlZAogCmFuZCBmb3Igc29tZSByZWFzb24gaXQgZG9lcyBub3QgZ2V0IHJlc3VtZWQgcHJvcGVy
+bHkuIFRoZXJlIGFyZSBhbHNvIGZldwp3YXJuaW5ncyBmcm9tIEFDUEkgdGhhdCBtaWdodCBiZSBy
+ZWxldmFudDoKClNlcCAzMCAxNzoyNDoyNyBrZXJuZWw6IEFDUEkgV2FybmluZzogXF9TQi5QQ0kw
+LkdGWDAuX0RTTTogQXJndW1lbnQgIzQgdHlwZSBtaXNtYXRjaCAtIEZvdW5kIFtCdWZmZXJdLCBB
+Q1BJIHJlcXVpcmVzIFtQYWNrYWdlXSAoMjAxOTA1MDkvbnNhcmd1bWVudHMtNTkpClNlcCAzMCAx
+NzoyNDoyNyBrZXJuZWw6IEFDUEkgV2FybmluZzogXF9TQi5QQ0kwLlBFRzAuUEVHUC5fRFNNOiBB
+cmd1bWVudCAjNCB0eXBlIG1pc21hdGNoIC0gRm91bmQgW0J1ZmZlcl0sIEFDUEkgcmVxdWlyZXMg
+W1BhY2thZ2VdICgyMDE5MDUwOS9uc2FyZ3VtZW50cy01OSkKClRoaXMgc2VlbXMgdG8gYmUgRGVs
+bCBYUFMgOTU2MCB3aGljaCBJIHRoaW5rIGhhcyBiZWVuIGFyb3VuZCBzb21lIHRpbWUKYWxyZWFk
+eSBzbyBJIHdvbmRlciB3aHkgd2Ugb25seSBzZWUgaXNzdWVzIG5vdy4gSGFzIGl0IGV2ZXIgd29y
+a2VkIGZvcgp5b3Ugb3IgbWF5YmUgdGhlcmUgaXMgYSByZWdyZXNzaW9uIHRoYXQgY2F1c2VzIGl0
+IHRvIGhhcHBlbiBub3c/Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
