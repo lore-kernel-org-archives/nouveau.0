@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111853] nouveau kernel module won't load (not
- available) on Sony laptop with NVIDIA G86M [GeForce 8400M GT] ID: 10de:0426
-Date: Mon, 30 Sep 2019 08:02:48 +0000
-Message-ID: <bug-111853-8800-1qJFp4boRI@http.bugs.freedesktop.org/>
-References: <bug-111853-8800@http.bugs.freedesktop.org/>
+From: Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+Subject: Re: [RFC PATCH] pci: prevent putting pcie devices into
+ lower device states on certain intel bridges
+Date: Mon, 30 Sep 2019 11:05:34 +0300
+Message-ID: <20190930080534.GS2714@lahna.fi.intel.com>
+References: <20190927144421.22608-1-kherbst@redhat.com>
+ <20190927214252.GA65801@google.com>
+ <CACO55tuaY1jFXpJPeC9M4PoWEDyy547_tE8MpLaTDb+C+ffsbg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0355045067=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111853-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CACO55tuaY1jFXpJPeC9M4PoWEDyy547_tE8MpLaTDb+C+ffsbg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,94 +21,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "Rafael J. Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0355045067==
-Content-Type: multipart/alternative; boundary="15698305670.D16E46c.871"
-Content-Transfer-Encoding: 7bit
-
-
---15698305670.D16E46c.871
-Date: Mon, 30 Sep 2019 08:02:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111853
-
---- Comment #7 from Felix Miata <mrmazda-ihVZJaRskl1bRRN4PJnoQQ@public.gmane.org> ---
-Created attachment 145591
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145591&action=3Dedit
-dmesg without vga=3D & with nouveau.debug=3Dtrace
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15698305670.D16E46c.871
-Date: Mon, 30 Sep 2019 08:02:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau kernel module won't load (not available) on Sony =
-laptop with NVIDIA G86M [GeForce 8400M GT] ID: 10de:0426"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111853#c7">Commen=
-t # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau kernel module won't load (not available) on Sony =
-laptop with NVIDIA G86M [GeForce 8400M GT] ID: 10de:0426"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111853">bug 11185=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-mrmazda&#64;earthlink.net" title=3D"Felix Miata &lt;mrmazda&#64;earthlink.n=
-et&gt;"> <span class=3D"fn">Felix Miata</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145591=
-" name=3D"attach_145591" title=3D"dmesg without vga=3D &amp; with nouveau.d=
-ebug=3Dtrace">attachment 145591</a> <a href=3D"attachment.cgi?id=3D145591&a=
-mp;action=3Dedit" title=3D"dmesg without vga=3D &amp; with nouveau.debug=3D=
-trace">[details]</a></span>
-dmesg without vga=3D &amp; with nouveau.debug=3Dtrace</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15698305670.D16E46c.871--
-
---===============0355045067==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0355045067==--
+SGkgS2Fyb2wsCgpPbiBGcmksIFNlcCAyNywgMjAxOSBhdCAxMTo1Mzo0OFBNICswMjAwLCBLYXJv
+bCBIZXJic3Qgd3JvdGU6Cj4gPiBXaGF0IGV4YWN0bHkgaXMgdGhlIHNlcmlvdXMgaXNzdWU/ICBJ
+IGd1ZXNzIGl0J3MgdGhhdCB0aGUgcmVzY2FuCj4gPiBkb2Vzbid0IGRldGVjdCB0aGUgR1BVLCB3
+aGljaCBtZWFucyBpdCdzIG5vdCByZXNwb25kaW5nIHRvIGNvbmZpZwo+ID4gYWNjZXNzZXM/ICBJ
+cyB0aGVyZSBhbnkgdGltaW5nIGNvbXBvbmVudCBoZXJlLCBlLmcuLCBtYXliZSB3ZSdyZQo+ID4g
+bWlzc2luZyBzb21lIGRlbGF5IGxpa2UgdGhlIG9uZXMgTWlrYSBpcyBhZGRpbmcgdG8gdGhlIHJl
+c2V0IHBhdGhzPwo+IAo+IFdoZW4gSSB3YXMgY2hlY2tpbmcgdXAgb24gc29tZSBvZiB0aGUgUENJ
+IHJlZ2lzdGVycyBvZiB0aGUgYnJpZGdlCj4gY29udHJvbGxlciwgdGhlIHNsb3QgZGV0ZWN0aW9u
+IHRvbGQgbWUgdGhhdCB0aGVyZSBpcyBubyBkZXZpY2UKPiByZWNvZ25pemVkIGFueW1vcmUuIEkg
+ZG9uJ3Qga25vdyB3aGljaCByZWdpc3RlciBpdCB3YXMgYW55bW9yZSwgdGhvdWdoCj4gSSBndWVz
+cyBvbmUgY291bGQgcmVhZCBpdCB1cCBpbiB0aGUgU29DIHNwZWMgZG9jdW1lbnQgYnkgSW50ZWwu
+Cj4gCj4gTXkgZ3Vlc3MgaXMsIHRoYXQgdGhlIGJyaWRnZSBjb250cm9sbGVyIGZhaWxzIHRvIGRl
+dGVjdCB0aGUgR1BVIGJlaW5nCj4gaGVyZSBvciBhY3RpdmVseSB0aHJldyBpdCBvZiB0aGUgYnVz
+IG9yIHNvbWV0aGluZy4gQnV0IGEgbm9ybWFsIHN5c3RlbQo+IHN1c3BlbmQvcmVzdW1lIGN5Y2xl
+IGJyaW5ncyB0aGUgR1BVIGJhY2sgb25saW5lIChkb2luZyBhIHJlc2NhbiB2aWEKPiBzeXNmcyBn
+ZXRzIHRoZSBkZXZpY2UgZGV0ZWN0ZWQgYWdhaW4pCgpDYW4geW91IGVsYWJvcmF0ZSBhIGJpdCB3
+aGF0IGtpbmQgb2Ygc2NlbmFyaW8gdGhlIGlzc3VlIGhhcHBlbnMgKGUuZwpzdGVwcyBob3cgaXQg
+cmVwcm9kdWNlcyk/IEl0IHdhcyBub3QgMTAwJSBjbGVhciBmcm9tIHRoZSBjaGFuZ2Vsb2cuIEFs
+c28Kd2hhdCB0aGUgcmVzdWx0IHdoZW4gdGhlIGZhaWx1cmUgaGFwcGVucz8KCkkgc2VlIHRoZXJl
+IGlzIGEgc2NyaXB0IHRoYXQgZG9lcyBzb21ldGhpbmcgYnV0IHVuZm9ydHVuYXRlbHkgSSdtIG5v
+dApmbHVlbnQgaW4gUHl0aG9uIHNvIGNhbid0IGV4dHJhY3QgdGhlIHN0ZXBzIGhvdyB0aGUgaXNz
+dWUgY2FuIGJlCnJlcHJvZHVjZWQgOy0pCgpPbmUgdGhpbmcgdGhhdCBJJ20gd29ya2luZyBvbiBp
+cyB0aGF0IExpbnV4IFBDSSBzdWJzeXN0ZW0gbWlzc2VzIGNlcnRhaW4KZGVsYXlzIHRoYXQgYXJl
+IG5lZWRlZCBhZnRlciBEM2NvbGQgLT4gRDAgdHJhbnNpdGlvbiwgb3RoZXJ3aXNlIHRoZQpkZXZp
+Y2UgYW5kL29yIGxpbmsgbWF5IG5vdCBiZSByZWFkeSBiZWZvcmUgd2UgYWNjZXNzIGl0LiBXaGF0
+IHlvdSBhcmUKZXhwZXJpZW5jaW5nIHNvdW5kcyBzaW1pbGFyLiBJIHdvbmRlciBpZiB5b3UgY291
+bGQgdHJ5IHRoZSBmb2xsb3dpbmcKcGF0Y2ggYW5kIHNlZSBpZiBpdCBtYWtlcyBhbnkgZGlmZmVy
+ZW5jZT8KCmh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTExMDY2MTEvCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
+ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
