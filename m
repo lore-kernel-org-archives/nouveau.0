@@ -1,70 +1,83 @@
-From: Karol Herbst <kherbst@redhat.com>
+From: Bjorn Helgaas <helgaas@kernel.org>
 Subject: Re: [RFC PATCH] pci: prevent putting pcie devices into lower device
  states on certain intel bridges
-Date: Tue, 1 Oct 2019 18:21:28 +0200
-Message-ID: <CACO55tvjFPAMgz6DMGmJQ3adtJBX6yYnFRO9gVBEpMVTEBu0og@mail.gmail.com>
-References: <CACO55tuk4SA6-xUtJ-oRePy8MPXYAp2cfmSPxwW3J5nQuX3y2g@mail.gmail.com>
- <20191001132721.GA46491@google.com>
+Date: Tue, 1 Oct 2019 14:34:27 -0500
+Message-ID: <20191001193427.GA59137@google.com>
+References: <CACO55tvjFPAMgz6DMGmJQ3adtJBX6yYnFRO9gVBEpMVTEBu0og@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20191001132721.GA46491@google.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Mika Westerberg <mika.westerberg@linux.intel.com>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, Linux PCI <linux-pci@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, "Rafael J. Wysocki" <rjw@rjwysocki.net>, Linux PM <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <CACO55tvjFPAMgz6DMGmJQ3adtJBX6yYnFRO9gVBEpMVTEBu0og@mail.gmail.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Karol Herbst <kherbst@redhat.com>
+Cc: Linux PM <linux-pm@vger.kernel.org>, nouveau <nouveau@lists.freedesktop.org>, "Rafael J. Wysocki" <rjw@rjwysocki.net>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Linux PCI <linux-pci@vger.kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Oct 1, 2019 at 3:27 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
->
-> On Mon, Sep 30, 2019 at 06:36:12PM +0200, Karol Herbst wrote:
-> > On Mon, Sep 30, 2019 at 6:30 PM Mika Westerberg
-> > <mika.westerberg@linux.intel.com> wrote:
-> > >
-> > > On Mon, Sep 30, 2019 at 06:05:14PM +0200, Karol Herbst wrote:
-> > > > still happens with your patch applied. The machine simply gets shut down.
-> > > >
-> > > > dmesg can be found here:
-> > > > https://gist.githubusercontent.com/karolherbst/40eb091c7b7b33ef993525de660f1a3b/raw/2380e31f566e93e5ba7c87ef545420965d4c492c/gistfile1.txt
-> > >
-> > > Looking your dmesg:
-> > >
-> > > Sep 30 17:24:27 kernel: nouveau 0000:01:00.0: DRM: DCB version 4.1
-> > > Sep 30 17:24:27 kernel: nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
-> > > Sep 30 17:24:27 kernel: [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on minor 1
-> > >
-> > > I would assume it runtime suspends here. Then it wakes up because of PCI
-> > > access from userspace:
-> > >
-> > > Sep 30 17:24:42 kernel: pci_raw_set_power_state: 56 callbacks suppressed
-> > >
-> > > and for some reason it does not get resumed properly. There are also few
-> > > warnings from ACPI that might be relevant:
-> > >
-> > > Sep 30 17:24:27 kernel: ACPI Warning: \_SB.PCI0.GFX0._DSM: Argument #4 type mismatch - Found [Buffer], ACPI requires [Package] (20190509/nsarguments-59)
-> > > Sep 30 17:24:27 kernel: ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type mismatch - Found [Buffer], ACPI requires [Package] (20190509/nsarguments-59)
-> >
-> > afaik this is the case for essentially every laptop out there.
->
-> I think we should look into this a little bit.
-> acpi_ns_check_argument_types() checks the argument type and prints
-> this message, but AFAICT it doesn't actually fix anything or prevent
-> execution of the method, so I have no idea what happens when we
-> actually execute the _DSM.
->
-
-I can assure you that this warning happens on every single laptop out
-there with dual Nvidia graphics and it's essentially just a firmware
-bug. And it never caused any issues on any of the older laptops (or
-newest one for that matter).
-
-> If we execute this _DSM as part of power management, and the _DSM
-> doesn't work right, it would be no surprise that we have problems.
->
-> Maybe we could learn something by turning on ACPI_DB_PARSE output (see
-> Documentation/firmware-guide/acpi/debug.rst).
->
-> You must have an acpidump already from all your investigation.  Can
-> you put it somewhere, e.g., bugzilla.kernel.org, and include a URL?
-
-Will do so later, right now I am traveling to XDC and will have more
-time for that then.
+T24gVHVlLCBPY3QgMDEsIDIwMTkgYXQgMDY6MjE6MjhQTSArMDIwMCwgS2Fyb2wgSGVyYnN0IHdy
+b3RlOgo+IE9uIFR1ZSwgT2N0IDEsIDIwMTkgYXQgMzoyNyBQTSBCam9ybiBIZWxnYWFzIDxoZWxn
+YWFzQGtlcm5lbC5vcmc+IHdyb3RlOgo+ID4gT24gTW9uLCBTZXAgMzAsIDIwMTkgYXQgMDY6MzY6
+MTJQTSArMDIwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+ID4gPiBPbiBNb24sIFNlcCAzMCwgMjAx
+OSBhdCA2OjMwIFBNIE1pa2EgV2VzdGVyYmVyZwo+ID4gPiA8bWlrYS53ZXN0ZXJiZXJnQGxpbnV4
+LmludGVsLmNvbT4gd3JvdGU6Cj4gPiA+ID4KPiA+ID4gPiBPbiBNb24sIFNlcCAzMCwgMjAxOSBh
+dCAwNjowNToxNFBNICswMjAwLCBLYXJvbCBIZXJic3Qgd3JvdGU6Cj4gPiA+ID4gPiBzdGlsbCBo
+YXBwZW5zIHdpdGggeW91ciBwYXRjaCBhcHBsaWVkLiBUaGUgbWFjaGluZSBzaW1wbHkgZ2V0cyBz
+aHV0IGRvd24uCj4gPiA+ID4gPgo+ID4gPiA+ID4gZG1lc2cgY2FuIGJlIGZvdW5kIGhlcmU6Cj4g
+PiA+ID4gPiBodHRwczovL2dpc3QuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2thcm9saGVyYnN0LzQw
+ZWIwOTFjN2I3YjMzZWY5OTM1MjVkZTY2MGYxYTNiL3Jhdy8yMzgwZTMxZjU2NmU5M2U1YmE3Yzg3
+ZWY1NDU0MjA5NjVkNGM0OTJjL2dpc3RmaWxlMS50eHQKPiA+ID4gPgo+ID4gPiA+IExvb2tpbmcg
+eW91ciBkbWVzZzoKPiA+ID4gPgo+ID4gPiA+IFNlcCAzMCAxNzoyNDoyNyBrZXJuZWw6IG5vdXZl
+YXUgMDAwMDowMTowMC4wOiBEUk06IERDQiB2ZXJzaW9uIDQuMQo+ID4gPiA+IFNlcCAzMCAxNzoy
+NDoyNyBrZXJuZWw6IG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IE1NOiB1c2luZyBDT1BZIGZv
+ciBidWZmZXIgY29waWVzCj4gPiA+ID4gU2VwIDMwIDE3OjI0OjI3IGtlcm5lbDogW2RybV0gSW5p
+dGlhbGl6ZWQgbm91dmVhdSAxLjMuMSAyMDEyMDgwMSBmb3IgMDAwMDowMTowMC4wIG9uIG1pbm9y
+IDEKPiA+ID4gPgo+ID4gPiA+IEkgd291bGQgYXNzdW1lIGl0IHJ1bnRpbWUgc3VzcGVuZHMgaGVy
+ZS4gVGhlbiBpdCB3YWtlcyB1cCBiZWNhdXNlIG9mIFBDSQo+ID4gPiA+IGFjY2VzcyBmcm9tIHVz
+ZXJzcGFjZToKPiA+ID4gPgo+ID4gPiA+IFNlcCAzMCAxNzoyNDo0MiBrZXJuZWw6IHBjaV9yYXdf
+c2V0X3Bvd2VyX3N0YXRlOiA1NiBjYWxsYmFja3Mgc3VwcHJlc3NlZAo+ID4gPiA+Cj4gPiA+ID4g
+YW5kIGZvciBzb21lIHJlYXNvbiBpdCBkb2VzIG5vdCBnZXQgcmVzdW1lZCBwcm9wZXJseS4gVGhl
+cmUgYXJlIGFsc28gZmV3Cj4gPiA+ID4gd2FybmluZ3MgZnJvbSBBQ1BJIHRoYXQgbWlnaHQgYmUg
+cmVsZXZhbnQ6Cj4gPiA+ID4KPiA+ID4gPiBTZXAgMzAgMTc6MjQ6Mjcga2VybmVsOiBBQ1BJIFdh
+cm5pbmc6IFxfU0IuUENJMC5HRlgwLl9EU006IEFyZ3VtZW50ICM0IHR5cGUgbWlzbWF0Y2ggLSBG
+b3VuZCBbQnVmZmVyXSwgQUNQSSByZXF1aXJlcyBbUGFja2FnZV0gKDIwMTkwNTA5L25zYXJndW1l
+bnRzLTU5KQo+ID4gPiA+IFNlcCAzMCAxNzoyNDoyNyBrZXJuZWw6IEFDUEkgV2FybmluZzogXF9T
+Qi5QQ0kwLlBFRzAuUEVHUC5fRFNNOiBBcmd1bWVudCAjNCB0eXBlIG1pc21hdGNoIC0gRm91bmQg
+W0J1ZmZlcl0sIEFDUEkgcmVxdWlyZXMgW1BhY2thZ2VdICgyMDE5MDUwOS9uc2FyZ3VtZW50cy01
+OSkKPiA+ID4KPiA+ID4gYWZhaWsgdGhpcyBpcyB0aGUgY2FzZSBmb3IgZXNzZW50aWFsbHkgZXZl
+cnkgbGFwdG9wIG91dCB0aGVyZS4KPiA+Cj4gPiBJIHRoaW5rIHdlIHNob3VsZCBsb29rIGludG8g
+dGhpcyBhIGxpdHRsZSBiaXQuCj4gPiBhY3BpX25zX2NoZWNrX2FyZ3VtZW50X3R5cGVzKCkgY2hl
+Y2tzIHRoZSBhcmd1bWVudCB0eXBlIGFuZCBwcmludHMKPiA+IHRoaXMgbWVzc2FnZSwgYnV0IEFG
+QUlDVCBpdCBkb2Vzbid0IGFjdHVhbGx5IGZpeCBhbnl0aGluZyBvciBwcmV2ZW50Cj4gPiBleGVj
+dXRpb24gb2YgdGhlIG1ldGhvZCwgc28gSSBoYXZlIG5vIGlkZWEgd2hhdCBoYXBwZW5zIHdoZW4g
+d2UKPiA+IGFjdHVhbGx5IGV4ZWN1dGUgdGhlIF9EU00uCj4gCj4gSSBjYW4gYXNzdXJlIHlvdSB0
+aGF0IHRoaXMgd2FybmluZyBoYXBwZW5zIG9uIGV2ZXJ5IHNpbmdsZSBsYXB0b3Agb3V0Cj4gdGhl
+cmUgd2l0aCBkdWFsIE52aWRpYSBncmFwaGljcyBhbmQgaXQncyBlc3NlbnRpYWxseSBqdXN0IGEg
+ZmlybXdhcmUKPiBidWcuIEFuZCBpdCBuZXZlciBjYXVzZWQgYW55IGlzc3VlcyBvbiBhbnkgb2Yg
+dGhlIG9sZGVyIGxhcHRvcHMgKG9yCj4gbmV3ZXN0IG9uZSBmb3IgdGhhdCBtYXR0ZXIpLgoKUmFm
+YWVsLCBkbyB5b3Uga25vdyBhbnl0aGluZyBhYm91dCB0aGlzPyAgSWYgQUNQSSBoYXMgc29tZSBz
+b3J0IG9mCndvcmthcm91bmQgc28gaXQgY2FuIGV4ZWN1dGUgdGhlIG1ldGhvZCBjb3JyZWN0bHkg
+YW55d2F5LCBtYXliZSB3ZQpzaG91bGQgcmVtb3ZlIG9yIHJld29yZCB0aGUgd2FybmluZz8KCk9y
+IGlmIHRoaXMgZG9lcyBwcmV2ZW50IGV4ZWN1dGlvbiBvZiB0aGUgbWV0aG9kLCBtYXliZSB3ZSBu
+ZWVkIHRvIGFkZAphIHdvcmthcm91bmQgc2luY2UgdGhlIHByb2JsZW0gaXMgc28gcHJldmFsZW50
+IGluIHRoZSBmaWVsZD8KCj4gPiBJZiB3ZSBleGVjdXRlIHRoaXMgX0RTTSBhcyBwYXJ0IG9mIHBv
+d2VyIG1hbmFnZW1lbnQsIGFuZCB0aGUgX0RTTQo+ID4gZG9lc24ndCB3b3JrIHJpZ2h0LCBpdCB3
+b3VsZCBiZSBubyBzdXJwcmlzZSB0aGF0IHdlIGhhdmUgcHJvYmxlbXMuCj4gPgo+ID4gTWF5YmUg
+d2UgY291bGQgbGVhcm4gc29tZXRoaW5nIGJ5IHR1cm5pbmcgb24gQUNQSV9EQl9QQVJTRSBvdXRw
+dXQgKHNlZQo+ID4gRG9jdW1lbnRhdGlvbi9maXJtd2FyZS1ndWlkZS9hY3BpL2RlYnVnLnJzdCku
+Cj4gPgo+ID4gWW91IG11c3QgaGF2ZSBhbiBhY3BpZHVtcCBhbHJlYWR5IGZyb20gYWxsIHlvdXIg
+aW52ZXN0aWdhdGlvbi4gIENhbgo+ID4geW91IHB1dCBpdCBzb21ld2hlcmUsIGUuZy4sIGJ1Z3pp
+bGxhLmtlcm5lbC5vcmcsIGFuZCBpbmNsdWRlIGEgVVJMPwo+IAo+IFdpbGwgZG8gc28gbGF0ZXIs
+IHJpZ2h0IG5vdyBJIGFtIHRyYXZlbGluZyB0byBYREMgYW5kIHdpbGwgaGF2ZSBtb3JlCj4gdGlt
+ZSBmb3IgdGhhdCB0aGVuLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmkt
+ZGV2ZWw=
