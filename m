@@ -1,59 +1,92 @@
-From: Bjorn Helgaas <helgaas@kernel.org>
-Subject: Re: [RFC PATCH] pci: prevent putting pcie devices into lower device
- states on certain intel bridges
-Date: Tue, 1 Oct 2019 08:27:21 -0500
-Message-ID: <20191001132721.GA46491@google.com>
-References: <CACO55tuk4SA6-xUtJ-oRePy8MPXYAp2cfmSPxwW3J5nQuX3y2g@mail.gmail.com>
+From: Jani Nikula <jani.nikula-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v2 0/9] drm/print: add and use
+ drm_debug_enabled()
+Date: Tue, 01 Oct 2019 17:08:04 +0300
+Message-ID: <8736gcd0e3.fsf@intel.com>
+References: <20190926074814.rdzxjmut6izqf4d5@engestrom.ch>
+ <875zl8d8x0.fsf@intel.com> <20191001123444.xtp7wpickwjus4m2@engestrom.ch>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <CACO55tuk4SA6-xUtJ-oRePy8MPXYAp2cfmSPxwW3J5nQuX3y2g@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Karol Herbst <kherbst@redhat.com>
-Cc: Mika Westerberg <mika.westerberg@linux.intel.com>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, Linux PCI <linux-pci@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, "Rafael J. Wysocki" <rjw@rjwysocki.net>, Linux PM <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <20191001123444.xtp7wpickwjus4m2-op+oiCINJLTt9jDmeYuA0g@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/freedreno>,
+ <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/freedreno>
+List-Post: <mailto:freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/freedreno>,
+ <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Freedreno" <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Eric Engestrom <eric-op+oiCINJLTt9jDmeYuA0g@public.gmane.org>
+Cc: David Zhou <David1.Zhou-5C7GfCeVMHo@public.gmane.org>, Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Russell King <linux+etnaviv-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>, Christian Gmeiner <christian.gmeiner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Rob Clark <robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Sean Paul <sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org>, Christian =?utf-8?Q?K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Sep 30, 2019 at 06:36:12PM +0200, Karol Herbst wrote:
-> On Mon, Sep 30, 2019 at 6:30 PM Mika Westerberg
-> <mika.westerberg@linux.intel.com> wrote:
-> >
-> > On Mon, Sep 30, 2019 at 06:05:14PM +0200, Karol Herbst wrote:
-> > > still happens with your patch applied. The machine simply gets shut down.
-> > >
-> > > dmesg can be found here:
-> > > https://gist.githubusercontent.com/karolherbst/40eb091c7b7b33ef993525de660f1a3b/raw/2380e31f566e93e5ba7c87ef545420965d4c492c/gistfile1.txt
-> >
-> > Looking your dmesg:
-> >
-> > Sep 30 17:24:27 kernel: nouveau 0000:01:00.0: DRM: DCB version 4.1
-> > Sep 30 17:24:27 kernel: nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
-> > Sep 30 17:24:27 kernel: [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on minor 1
-> >
-> > I would assume it runtime suspends here. Then it wakes up because of PCI
-> > access from userspace:
-> >
-> > Sep 30 17:24:42 kernel: pci_raw_set_power_state: 56 callbacks suppressed
-> >
-> > and for some reason it does not get resumed properly. There are also few
-> > warnings from ACPI that might be relevant:
-> >
-> > Sep 30 17:24:27 kernel: ACPI Warning: \_SB.PCI0.GFX0._DSM: Argument #4 type mismatch - Found [Buffer], ACPI requires [Package] (20190509/nsarguments-59)
-> > Sep 30 17:24:27 kernel: ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type mismatch - Found [Buffer], ACPI requires [Package] (20190509/nsarguments-59)
-> 
-> afaik this is the case for essentially every laptop out there.
-
-I think we should look into this a little bit.
-acpi_ns_check_argument_types() checks the argument type and prints
-this message, but AFAICT it doesn't actually fix anything or prevent
-execution of the method, so I have no idea what happens when we
-actually execute the _DSM.
-
-If we execute this _DSM as part of power management, and the _DSM
-doesn't work right, it would be no surprise that we have problems.
-
-Maybe we could learn something by turning on ACPI_DB_PARSE output (see
-Documentation/firmware-guide/acpi/debug.rst).
-
-You must have an acpidump already from all your investigation.  Can
-you put it somewhere, e.g., bugzilla.kernel.org, and include a URL?
+T24gVHVlLCAwMSBPY3QgMjAxOSwgRXJpYyBFbmdlc3Ryb20gPGVyaWNAZW5nZXN0cm9tLmNoPiB3
+cm90ZToKPiBPbiBUdWVzZGF5LCAyMDE5LTEwLTAxIDE0OjAzOjU1ICswMzAwLCBKYW5pIE5pa3Vs
+YSB3cm90ZToKPj4gT24gVGh1LCAyNiBTZXAgMjAxOSwgRXJpYyBFbmdlc3Ryb20gPGVyaWNAZW5n
+ZXN0cm9tLmNoPiB3cm90ZToKPj4gPiBPbiBUdWVzZGF5LCAyMDE5LTA5LTI0IDE1OjU4OjU2ICsw
+MzAwLCBKYW5pIE5pa3VsYSB3cm90ZToKPj4gPj4gSGkgYWxsLCB2MiBvZiBbMV0sIGEgbGl0dGxl
+IHJlZmFjdG9yaW5nIGFyb3VuZCBkcm1fZGVidWcgYWNjZXNzIHRvCj4+ID4+IGFic3RyYWN0IGl0
+IGJldHRlci4gVGhlcmUgc2hvdWxkbid0IGJlIGFueSBmdW5jdGlvbmFsIGNoYW5nZXMuCj4+ID4+
+IAo+PiA+PiBJJ2QgYXBwcmVjaWF0ZSBhY2tzIGZvciBtZXJnaW5nIHRoZSBsb3QgdmlhIGRybS1t
+aXNjLiBJZiB0aGVyZSBhcmUgYW55Cj4+ID4+IG9iamVjdGlvbnMgdG8gdGhhdCwgd2UnbGwgbmVl
+ZCB0byBwb3N0cG9uZSB0aGUgbGFzdCBwYXRjaCB1bnRpbAo+PiA+PiBldmVyeXRoaW5nIGhhcyBi
+ZWVuIG1lcmdlZCBhbmQgY29udmVydGVkIGluIGRybS1uZXh0Lgo+PiA+PiAKPj4gPj4gQlIsCj4+
+ID4+IEphbmkuCj4+ID4+IAo+PiA+PiBDYzogRXJpYyBFbmdlc3Ryb20gPGVyaWMuZW5nZXN0cm9t
+QGludGVsLmNvbT4KPj4gPj4gQ2M6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRldWNoZXJAYW1k
+LmNvbT4KPj4gPj4gQ2M6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNv
+bT4KPj4gPj4gQ2M6IERhdmlkIChDaHVuTWluZykgWmhvdSA8RGF2aWQxLlpob3VAYW1kLmNvbT4K
+Pj4gPj4gQ2M6IGFtZC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+ID4+IENjOiBCZW4gU2tl
+Z2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+Cj4+ID4+IENjOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwo+PiA+PiBDYzogUm9iIENsYXJrIDxyb2JkY2xhcmtAZ21haWwuY29tPgo+PiA+PiBD
+YzogU2VhbiBQYXVsIDxzZWFuQHBvb3JseS5ydW4+Cj4+ID4+IENjOiBsaW51eC1hcm0tbXNtQHZn
+ZXIua2VybmVsLm9yZwo+PiA+PiBDYzogZnJlZWRyZW5vQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+
+PiA+PiBDYzogRnJhbmNpc2NvIEplcmV6IDxjdXJyb2plcmV6QHJpc2V1cC5uZXQ+Cj4+ID4+IENj
+OiBMdWNhcyBTdGFjaCA8bC5zdGFjaEBwZW5ndXRyb25peC5kZT4KPj4gPj4gQ2M6IFJ1c3NlbGwg
+S2luZyA8bGludXgrZXRuYXZpdkBhcm1saW51eC5vcmcudWs+Cj4+ID4+IENjOiBDaHJpc3RpYW4g
+R21laW5lciA8Y2hyaXN0aWFuLmdtZWluZXJAZ21haWwuY29tPgo+PiA+PiBDYzogZXRuYXZpdkBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKPj4gPj4gCj4+ID4+IAo+PiA+PiBbMV0gaHR0cDovL21pZC5t
+YWlsLWFyY2hpdmUuY29tL2NvdmVyLjE1NjgzNzUxODkuZ2l0LmphbmkubmlrdWxhQGludGVsLmNv
+bQo+PiA+PiAKPj4gPj4gSmFuaSBOaWt1bGEgKDkpOgo+PiA+PiAgIGRybS9wcmludDogbW92ZSBk
+cm1fZGVidWcgdmFyaWFibGUgdG8gZHJtX3ByaW50LltjaF0KPj4gPj4gICBkcm0vcHJpbnQ6IGFk
+ZCBkcm1fZGVidWdfZW5hYmxlZCgpCj4+ID4+ICAgZHJtL2k5MTU6IHVzZSBkcm1fZGVidWdfZW5h
+YmxlZCgpIHRvIGNoZWNrIGZvciBkZWJ1ZyBjYXRlZ29yaWVzCj4+ID4+ICAgZHJtL3ByaW50OiBy
+ZW5hbWUgZHJtX2RlYnVnIHRvIF9fZHJtX2RlYnVnIHRvIGRpc2NvdXJhZ2UgdXNlCj4+ID4KPj4g
+PiBUaGUgYWJvdmUgZm91ciBwYXRjaGVzIGFyZToKPj4gPiBSZXZpZXdlZC1ieTogRXJpYyBFbmdl
+c3Ryb20gPGVyaWNAZW5nZXN0cm9tLmNoPgo+PiA+Cj4+ID4gRGlkIHlvdSBjaGVjayB0byBtYWtl
+IHN1cmUgdGhlIGB1bmxpa2VseSgpYCBpcyBwcm9wYWdhdGVkIGNvcnJlY3RseQo+PiA+IG91dHNp
+ZGUgdGhlIGBkcm1fZGVidWdfZW5hYmxlZCgpYCBjYWxsPwo+PiAKPj4gSSBkaWQgbm93Lgo+PiAK
+Pj4gSGF2aW5nIGRybV9kZWJ1Z19lbmFibGVkKCkgYXMgYSBtYWNybyB2cy4gYXMgYW4gaW5saW5l
+IGZ1bmN0aW9uIGRvZXMgbm90Cj4+IHNlZW0gdG8gbWFrZSBhIGRpZmZlcmVuY2UsIHNvIEkgdGhp
+bmsgdGhlIGlubGluZSBpcyBjbGVhcmx5IHByZWZlcnJhYmxlLgo+Cj4gQWdyZWVkIDopCj4KPj4g
+Cj4+IEhvd2V2ZXIsIGZvciBleGFtcGxlCj4+IAo+PiAJdW5saWtlbHkoZm9vICYmIGRybV9kZWJ1
+ZyAmIERSTV9VVF9EUCkKPj4gCj4+IGRvZXMgcHJvZHVjZSBjb2RlIGRpZmZlcmVudCBmcm9tCj4+
+IAo+PiAJKGZvbyAmJiBkcm1fZGVidWdfZW5hYmxlZChEUk1fVVRfRFApKQo+PiAKPj4gaW5kaWNh
+dGluZyB0aGF0IHRoZSB1bmxpa2VseSgpIHdpdGhpbiBkcm1fZGVidWdfZW5hYmxlZCgpIGRvZXMg
+bm90Cj4+IHByb3BhZ2F0ZSB0byB0aGUgd2hvbGUgY29uZGl0aW9uLiBJdCdzIHBvc3NpYmxlIHRv
+IHJldGFpbiB0aGUgc2FtZQo+PiBhc3NlbWJseSBvdXRwdXQgd2l0aAo+PiAKPj4gCSh1bmxpa2Vs
+eShmb28pICYmIGRybV9kZWJ1Z19lbmFibGVkKERSTV9VVF9EUCkpCj4+IAo+PiBidXQgaXQncyB1
+bmNsZWFyIHRvIG1lIHdoZXRoZXIgdGhpcyBpcyByZWFsbHkgd29ydGggaXQsIGVpdGhlcgo+PiBy
+ZWFkYWJpbGl0eSBvciBwZXJmb3JtYW5jZSB3aXNlLgo+PiAKPj4gVGhvdWdodHM/Cj4KPiBUaGF0
+IGtpbmQgb2YgY29kZSBvbmx5IGhhcHBlbnMgMiB0aW1lcywgYm90aCBpbgo+IGRyaXZlcnMvZ3B1
+L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMgKGluIHBhdGNoIDIvOSksIHJpZ2h0Pwo+Cj4gSSB0
+aGluayB5b3VyIHN1Z2dlc3Rpb24gaXMgdGhlIHJpZ2h0IHRoaW5nIHRvIGRvIGhlcmU6Cj4KPiAt
+ICAgaWYgKHVubGlrZWx5KHJldCAmJiBkcm1fZGVidWcgJiBEUk1fVVRfRFApKSB7Cj4gKyAgIGlm
+ICh1bmxpa2VseShyZXQpICYmIGRybV9kZWJ1Z19lbmFibGVkKERSTV9VVF9EUCkpIHsKPgo+IEl0
+IGRvZXNuJ3QgcmVhbGx5IGNvc3QgbXVjaCBpbiByZWFkYWJpbGl0eSAoZXNwZWNpYWxseSBjb21w
+YXJlZCB0byB3aGF0Cj4gaXQgd2FzIGJlZm9yZSksIGFuZCB3aGV0aGVyIGl0J3MgaW1wb3J0YW50
+IHBlcmZvcm1hbmNlIHdpc2UgSSBjb3VsZG4ndAo+IHRlbGwsIGJ1dCBJIHRoaW5rIGl0J3MgYmVz
+dCB0byBrZWVwIHRoZSBjb2RlIG9wdGltaXNlZCBhcyBpdCB3YXMgYmVmb3JlCj4gdW5sZXNzIHRo
+ZXJlJ3MgYSByZWFzb24gdG8gZHJvcCBpdC4KPgo+IEx5dWRlIG1pZ2h0IGtub3cgbW9yZSBzaW5j
+ZSBzaGUgd3JvdGUgMmYwMTVlYzZlYWI2OTMwMWZkY2Y1LCBpZiB5b3Ugd2FudAo+IHRvIHBpbmcg
+aGVyPwoKSnVzdCBlbmRlZCB1cCBzZW5kaW5nIHRoZSB1cGRhdGVkIHZlcnNpb24gd2l0aCB3aGF0
+IHlvdSBzdWdnZXN0IGFuZCBJCmFncmVlIHdpdGg7IHBlZGFudGljYWxseSB0aGUgY2hhbmdlIHNo
+b3VsZCBiZSBhIHNlcGFyYXRlIHBhdGNoIGFueXdheS4KClRoYW5rcyBmb3IgeW91ciBpbnB1dHMu
+CgpCUiwKSmFuaS4KCgo+Cj4+IAo+PiBCUiwKPj4gSmFuaS4KPj4gCj4+IAo+PiAtLSAKPj4gSmFu
+aSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgoKLS0gCkphbmkgTmlr
+dWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KRnJlZWRyZW5vIG1haWxpbmcgbGlzdApGcmVl
+ZHJlbm9AbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vZnJlZWRyZW5v
