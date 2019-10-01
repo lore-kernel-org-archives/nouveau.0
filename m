@@ -1,86 +1,59 @@
-From: Eric Engestrom <eric-op+oiCINJLTt9jDmeYuA0g@public.gmane.org>
-Subject: Re: [PATCH v2 0/9] drm/print: add and use
- drm_debug_enabled()
-Date: Tue, 1 Oct 2019 13:34:44 +0100
-Message-ID: <20191001123444.xtp7wpickwjus4m2@engestrom.ch>
-References: <20190926074814.rdzxjmut6izqf4d5@engestrom.ch>
- <875zl8d8x0.fsf@intel.com>
+From: Bjorn Helgaas <helgaas@kernel.org>
+Subject: Re: [RFC PATCH] pci: prevent putting pcie devices into lower device
+ states on certain intel bridges
+Date: Tue, 1 Oct 2019 08:27:21 -0500
+Message-ID: <20191001132721.GA46491@google.com>
+References: <CACO55tuk4SA6-xUtJ-oRePy8MPXYAp2cfmSPxwW3J5nQuX3y2g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
 Content-Disposition: inline
-In-Reply-To: <875zl8d8x0.fsf-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/freedreno>,
- <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/freedreno>
-List-Post: <mailto:freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/freedreno>,
- <mailto:freedreno-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Freedreno" <freedreno-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Jani Nikula <jani.nikula-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: David Zhou <David1.Zhou-5C7GfCeVMHo@public.gmane.org>, Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Russell King <linux+etnaviv-I+IVW8TIWO2tmTQ+vhA3Yw@public.gmane.org>, Christian Gmeiner <christian.gmeiner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, etnaviv-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Rob Clark <robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-arm-msm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, freedreno-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Sean Paul <sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org>, Christian =?utf-8?B?S8O2bmln?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <CACO55tuk4SA6-xUtJ-oRePy8MPXYAp2cfmSPxwW3J5nQuX3y2g@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Karol Herbst <kherbst@redhat.com>
+Cc: Mika Westerberg <mika.westerberg@linux.intel.com>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, Linux PCI <linux-pci@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, "Rafael J. Wysocki" <rjw@rjwysocki.net>, Linux PM <linux-pm@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlc2RheSwgMjAxOS0xMC0wMSAxNDowMzo1NSArMDMwMCwgSmFuaSBOaWt1bGEgd3JvdGU6
-Cj4gT24gVGh1LCAyNiBTZXAgMjAxOSwgRXJpYyBFbmdlc3Ryb20gPGVyaWNAZW5nZXN0cm9tLmNo
-PiB3cm90ZToKPiA+IE9uIFR1ZXNkYXksIDIwMTktMDktMjQgMTU6NTg6NTYgKzAzMDAsIEphbmkg
-TmlrdWxhIHdyb3RlOgo+ID4+IEhpIGFsbCwgdjIgb2YgWzFdLCBhIGxpdHRsZSByZWZhY3Rvcmlu
-ZyBhcm91bmQgZHJtX2RlYnVnIGFjY2VzcyB0bwo+ID4+IGFic3RyYWN0IGl0IGJldHRlci4gVGhl
-cmUgc2hvdWxkbid0IGJlIGFueSBmdW5jdGlvbmFsIGNoYW5nZXMuCj4gPj4gCj4gPj4gSSdkIGFw
-cHJlY2lhdGUgYWNrcyBmb3IgbWVyZ2luZyB0aGUgbG90IHZpYSBkcm0tbWlzYy4gSWYgdGhlcmUg
-YXJlIGFueQo+ID4+IG9iamVjdGlvbnMgdG8gdGhhdCwgd2UnbGwgbmVlZCB0byBwb3N0cG9uZSB0
-aGUgbGFzdCBwYXRjaCB1bnRpbAo+ID4+IGV2ZXJ5dGhpbmcgaGFzIGJlZW4gbWVyZ2VkIGFuZCBj
-b252ZXJ0ZWQgaW4gZHJtLW5leHQuCj4gPj4gCj4gPj4gQlIsCj4gPj4gSmFuaS4KPiA+PiAKPiA+
-PiBDYzogRXJpYyBFbmdlc3Ryb20gPGVyaWMuZW5nZXN0cm9tQGludGVsLmNvbT4KPiA+PiBDYzog
-QWxleCBEZXVjaGVyIDxhbGV4YW5kZXIuZGV1Y2hlckBhbWQuY29tPgo+ID4+IENjOiBDaHJpc3Rp
-YW4gS8O2bmlnIDxjaHJpc3RpYW4ua29lbmlnQGFtZC5jb20+Cj4gPj4gQ2M6IERhdmlkIChDaHVu
-TWluZykgWmhvdSA8RGF2aWQxLlpob3VAYW1kLmNvbT4KPiA+PiBDYzogYW1kLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKPiA+PiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgo+
-ID4+IENjOiBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4+IENjOiBSb2IgQ2xhcmsg
-PHJvYmRjbGFya0BnbWFpbC5jb20+Cj4gPj4gQ2M6IFNlYW4gUGF1bCA8c2VhbkBwb29ybHkucnVu
-Pgo+ID4+IENjOiBsaW51eC1hcm0tbXNtQHZnZXIua2VybmVsLm9yZwo+ID4+IENjOiBmcmVlZHJl
-bm9AbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPj4gQ2M6IEZyYW5jaXNjbyBKZXJleiA8Y3Vycm9q
-ZXJlekByaXNldXAubmV0Pgo+ID4+IENjOiBMdWNhcyBTdGFjaCA8bC5zdGFjaEBwZW5ndXRyb25p
-eC5kZT4KPiA+PiBDYzogUnVzc2VsbCBLaW5nIDxsaW51eCtldG5hdml2QGFybWxpbnV4Lm9yZy51
-az4KPiA+PiBDYzogQ2hyaXN0aWFuIEdtZWluZXIgPGNocmlzdGlhbi5nbWVpbmVyQGdtYWlsLmNv
-bT4KPiA+PiBDYzogZXRuYXZpdkBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+PiAKPiA+PiAKPiA+
-PiBbMV0gaHR0cDovL21pZC5tYWlsLWFyY2hpdmUuY29tL2NvdmVyLjE1NjgzNzUxODkuZ2l0Lmph
-bmkubmlrdWxhQGludGVsLmNvbQo+ID4+IAo+ID4+IEphbmkgTmlrdWxhICg5KToKPiA+PiAgIGRy
-bS9wcmludDogbW92ZSBkcm1fZGVidWcgdmFyaWFibGUgdG8gZHJtX3ByaW50LltjaF0KPiA+PiAg
-IGRybS9wcmludDogYWRkIGRybV9kZWJ1Z19lbmFibGVkKCkKPiA+PiAgIGRybS9pOTE1OiB1c2Ug
-ZHJtX2RlYnVnX2VuYWJsZWQoKSB0byBjaGVjayBmb3IgZGVidWcgY2F0ZWdvcmllcwo+ID4+ICAg
-ZHJtL3ByaW50OiByZW5hbWUgZHJtX2RlYnVnIHRvIF9fZHJtX2RlYnVnIHRvIGRpc2NvdXJhZ2Ug
-dXNlCj4gPgo+ID4gVGhlIGFib3ZlIGZvdXIgcGF0Y2hlcyBhcmU6Cj4gPiBSZXZpZXdlZC1ieTog
-RXJpYyBFbmdlc3Ryb20gPGVyaWNAZW5nZXN0cm9tLmNoPgo+ID4KPiA+IERpZCB5b3UgY2hlY2sg
-dG8gbWFrZSBzdXJlIHRoZSBgdW5saWtlbHkoKWAgaXMgcHJvcGFnYXRlZCBjb3JyZWN0bHkKPiA+
-IG91dHNpZGUgdGhlIGBkcm1fZGVidWdfZW5hYmxlZCgpYCBjYWxsPwo+IAo+IEkgZGlkIG5vdy4K
-PiAKPiBIYXZpbmcgZHJtX2RlYnVnX2VuYWJsZWQoKSBhcyBhIG1hY3JvIHZzLiBhcyBhbiBpbmxp
-bmUgZnVuY3Rpb24gZG9lcyBub3QKPiBzZWVtIHRvIG1ha2UgYSBkaWZmZXJlbmNlLCBzbyBJIHRo
-aW5rIHRoZSBpbmxpbmUgaXMgY2xlYXJseSBwcmVmZXJyYWJsZS4KCkFncmVlZCA6KQoKPiAKPiBI
-b3dldmVyLCBmb3IgZXhhbXBsZQo+IAo+IAl1bmxpa2VseShmb28gJiYgZHJtX2RlYnVnICYgRFJN
-X1VUX0RQKQo+IAo+IGRvZXMgcHJvZHVjZSBjb2RlIGRpZmZlcmVudCBmcm9tCj4gCj4gCShmb28g
-JiYgZHJtX2RlYnVnX2VuYWJsZWQoRFJNX1VUX0RQKSkKPiAKPiBpbmRpY2F0aW5nIHRoYXQgdGhl
-IHVubGlrZWx5KCkgd2l0aGluIGRybV9kZWJ1Z19lbmFibGVkKCkgZG9lcyBub3QKPiBwcm9wYWdh
-dGUgdG8gdGhlIHdob2xlIGNvbmRpdGlvbi4gSXQncyBwb3NzaWJsZSB0byByZXRhaW4gdGhlIHNh
-bWUKPiBhc3NlbWJseSBvdXRwdXQgd2l0aAo+IAo+IAkodW5saWtlbHkoZm9vKSAmJiBkcm1fZGVi
-dWdfZW5hYmxlZChEUk1fVVRfRFApKQo+IAo+IGJ1dCBpdCdzIHVuY2xlYXIgdG8gbWUgd2hldGhl
-ciB0aGlzIGlzIHJlYWxseSB3b3J0aCBpdCwgZWl0aGVyCj4gcmVhZGFiaWxpdHkgb3IgcGVyZm9y
-bWFuY2Ugd2lzZS4KPiAKPiBUaG91Z2h0cz8KClRoYXQga2luZCBvZiBjb2RlIG9ubHkgaGFwcGVu
-cyAyIHRpbWVzLCBib3RoIGluCmRyaXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMg
-KGluIHBhdGNoIDIvOSksIHJpZ2h0PwoKSSB0aGluayB5b3VyIHN1Z2dlc3Rpb24gaXMgdGhlIHJp
-Z2h0IHRoaW5nIHRvIGRvIGhlcmU6CgotICAgaWYgKHVubGlrZWx5KHJldCAmJiBkcm1fZGVidWcg
-JiBEUk1fVVRfRFApKSB7CisgICBpZiAodW5saWtlbHkocmV0KSAmJiBkcm1fZGVidWdfZW5hYmxl
-ZChEUk1fVVRfRFApKSB7CgpJdCBkb2Vzbid0IHJlYWxseSBjb3N0IG11Y2ggaW4gcmVhZGFiaWxp
-dHkgKGVzcGVjaWFsbHkgY29tcGFyZWQgdG8gd2hhdAppdCB3YXMgYmVmb3JlKSwgYW5kIHdoZXRo
-ZXIgaXQncyBpbXBvcnRhbnQgcGVyZm9ybWFuY2Ugd2lzZSBJIGNvdWxkbid0CnRlbGwsIGJ1dCBJ
-IHRoaW5rIGl0J3MgYmVzdCB0byBrZWVwIHRoZSBjb2RlIG9wdGltaXNlZCBhcyBpdCB3YXMgYmVm
-b3JlCnVubGVzcyB0aGVyZSdzIGEgcmVhc29uIHRvIGRyb3AgaXQuCgpMeXVkZSBtaWdodCBrbm93
-IG1vcmUgc2luY2Ugc2hlIHdyb3RlIDJmMDE1ZWM2ZWFiNjkzMDFmZGNmNSwgaWYgeW91IHdhbnQK
-dG8gcGluZyBoZXI/Cgo+IAo+IEJSLAo+IEphbmkuCj4gCj4gCj4gLS0gCj4gSmFuaSBOaWt1bGEs
-IEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpGcmVlZHJlbm8gbWFpbGluZyBsaXN0CkZyZWVkcmVu
-b0BsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9mcmVlZHJlbm8=
+On Mon, Sep 30, 2019 at 06:36:12PM +0200, Karol Herbst wrote:
+> On Mon, Sep 30, 2019 at 6:30 PM Mika Westerberg
+> <mika.westerberg@linux.intel.com> wrote:
+> >
+> > On Mon, Sep 30, 2019 at 06:05:14PM +0200, Karol Herbst wrote:
+> > > still happens with your patch applied. The machine simply gets shut down.
+> > >
+> > > dmesg can be found here:
+> > > https://gist.githubusercontent.com/karolherbst/40eb091c7b7b33ef993525de660f1a3b/raw/2380e31f566e93e5ba7c87ef545420965d4c492c/gistfile1.txt
+> >
+> > Looking your dmesg:
+> >
+> > Sep 30 17:24:27 kernel: nouveau 0000:01:00.0: DRM: DCB version 4.1
+> > Sep 30 17:24:27 kernel: nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
+> > Sep 30 17:24:27 kernel: [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on minor 1
+> >
+> > I would assume it runtime suspends here. Then it wakes up because of PCI
+> > access from userspace:
+> >
+> > Sep 30 17:24:42 kernel: pci_raw_set_power_state: 56 callbacks suppressed
+> >
+> > and for some reason it does not get resumed properly. There are also few
+> > warnings from ACPI that might be relevant:
+> >
+> > Sep 30 17:24:27 kernel: ACPI Warning: \_SB.PCI0.GFX0._DSM: Argument #4 type mismatch - Found [Buffer], ACPI requires [Package] (20190509/nsarguments-59)
+> > Sep 30 17:24:27 kernel: ACPI Warning: \_SB.PCI0.PEG0.PEGP._DSM: Argument #4 type mismatch - Found [Buffer], ACPI requires [Package] (20190509/nsarguments-59)
+> 
+> afaik this is the case for essentially every laptop out there.
+
+I think we should look into this a little bit.
+acpi_ns_check_argument_types() checks the argument type and prints
+this message, but AFAICT it doesn't actually fix anything or prevent
+execution of the method, so I have no idea what happens when we
+actually execute the _DSM.
+
+If we execute this _DSM as part of power management, and the _DSM
+doesn't work right, it would be no surprise that we have problems.
+
+Maybe we could learn something by turning on ACPI_DB_PARSE output (see
+Documentation/firmware-guide/acpi/debug.rst).
+
+You must have an acpidump already from all your investigation.  Can
+you put it somewhere, e.g., bugzilla.kernel.org, and include a URL?
