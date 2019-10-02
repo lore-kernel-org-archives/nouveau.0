@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
  rescan
-Date: Wed, 02 Oct 2019 09:58:38 +0000
-Message-ID: <bug-75985-8800-39nTQi9dG3@http.bugs.freedesktop.org/>
+Date: Wed, 02 Oct 2019 10:14:41 +0000
+Message-ID: <bug-75985-8800-YcYlGPgXzh@http.bugs.freedesktop.org/>
 References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0385526689=="
+Content-Type: multipart/mixed; boundary="===============1247113446=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0385526689==
-Content-Type: multipart/alternative; boundary="15700103193.51b88.22852"
+--===============1247113446==
+Content-Type: multipart/alternative; boundary="15700112817.D56eaC.26705"
 Content-Transfer-Encoding: 7bit
 
 
---15700103193.51b88.22852
-Date: Wed, 2 Oct 2019 09:58:39 +0000
+--15700112817.D56eaC.26705
+Date: Wed, 2 Oct 2019 10:14:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,23 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #92 from Przemys=C5=82aw Kopa <prymoo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Daniel Drake from comment #91)
+--- Comment #93 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
+Yes, that looks like history.
 
-> That looks promising! Since you are the bug reporter, could you please te=
-st
-> it?
-> Or have you already confirmed that it fixes the issue reported here?
-
-Am I wrong, or was this patch already pulled in linux 4.20? In that case, it
-obviously didn't solve my problem. ;)
+Lukas, do you have any further context on that link? Is it a historical rem=
+nant
+or something still relevant? Which upstream kernel changes are being done to
+fix it?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15700103193.51b88.22852
-Date: Wed, 2 Oct 2019 09:58:39 +0000
+--15700112817.D56eaC.26705
+Date: Wed, 2 Oct 2019 10:14:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,28 +66,23 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c92">Commen=
-t # 92</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c93">Commen=
+t # 93</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-prymoo&#64;gmail.com" title=3D"Przemys=C5=82aw Kopa &lt;prymoo&#64;gmail.co=
-m&gt;"> <span class=3D"fn">Przemys=C5=82aw Kopa</span></a>
+dan&#64;reactivated.net" title=3D"Daniel Drake &lt;dan&#64;reactivated.net&=
+gt;"> <span class=3D"fn">Daniel Drake</span></a>
 </span></b>
-        <pre>(In reply to Daniel Drake from <a href=3D"show_bug.cgi?id=3D75=
-985#c91">comment #91</a>)
+        <pre>Yes, that looks like history.
 
-<span class=3D"quote">&gt; That looks promising! Since you are the bug repo=
-rter, could you please test
-&gt; it?
-&gt; Or have you already confirmed that it fixes the issue reported here?</=
-span >
-
-Am I wrong, or was this patch already pulled in linux 4.20? In that case, it
-obviously didn't solve my problem. ;)</pre>
+Lukas, do you have any further context on that link? Is it a historical rem=
+nant
+or something still relevant? Which upstream kernel changes are being done to
+fix it?</pre>
         </div>
       </p>
 
@@ -104,9 +96,9 @@ obviously didn't solve my problem. ;)</pre>
     </body>
 </html>=
 
---15700103193.51b88.22852--
+--15700112817.D56eaC.26705--
 
---===============0385526689==
+--===============1247113446==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -116,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0385526689==--
+--===============1247113446==--
