@@ -1,15 +1,13 @@
-From: "Rafael J. Wysocki" <rafael-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Subject: Re: [RFC PATCH] pci: prevent putting pcie devices into
- lower device states on certain intel bridges
-Date: Wed, 2 Oct 2019 09:51:10 +0200
-Message-ID: <CAJZ5v0gUddEhOPqNvTboO9mL6vcxu5HeCEC+-pJMzippTiAy9Q@mail.gmail.com>
-References: <CACO55tvjFPAMgz6DMGmJQ3adtJBX6yYnFRO9gVBEpMVTEBu0og@mail.gmail.com>
- <20191001193427.GA59137@google.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+ rescan
+Date: Wed, 02 Oct 2019 08:13:05 +0000
+Message-ID: <bug-75985-8800-1DmGwZL7cw@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0436618032=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20191001193427.GA59137-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,74 +17,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Cc: Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "Rafael J. Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Robert Moore <robert.moore-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, "Schmauss,
- Erik" <erik.schmauss-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, ACPI Devel Maling List <linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Mika Westerberg <mika.westerberg-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBPY3QgMSwgMjAxOSBhdCA5OjM0IFBNIEJqb3JuIEhlbGdhYXMgPGhlbGdhYXNAa2Vy
-bmVsLm9yZz4gd3JvdGU6Cj4KPiBPbiBUdWUsIE9jdCAwMSwgMjAxOSBhdCAwNjoyMToyOFBNICsw
-MjAwLCBLYXJvbCBIZXJic3Qgd3JvdGU6Cj4gPiBPbiBUdWUsIE9jdCAxLCAyMDE5IGF0IDM6Mjcg
-UE0gQmpvcm4gSGVsZ2FhcyA8aGVsZ2Fhc0BrZXJuZWwub3JnPiB3cm90ZToKPiA+ID4gT24gTW9u
-LCBTZXAgMzAsIDIwMTkgYXQgMDY6MzY6MTJQTSArMDIwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+
-ID4gPiA+IE9uIE1vbiwgU2VwIDMwLCAyMDE5IGF0IDY6MzAgUE0gTWlrYSBXZXN0ZXJiZXJnCj4g
-PiA+ID4gPG1pa2Eud2VzdGVyYmVyZ0BsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+ID4gPiA+ID4K
-PiA+ID4gPiA+IE9uIE1vbiwgU2VwIDMwLCAyMDE5IGF0IDA2OjA1OjE0UE0gKzAyMDAsIEthcm9s
-IEhlcmJzdCB3cm90ZToKPiA+ID4gPiA+ID4gc3RpbGwgaGFwcGVucyB3aXRoIHlvdXIgcGF0Y2gg
-YXBwbGllZC4gVGhlIG1hY2hpbmUgc2ltcGx5IGdldHMgc2h1dCBkb3duLgo+ID4gPiA+ID4gPgo+
-ID4gPiA+ID4gPiBkbWVzZyBjYW4gYmUgZm91bmQgaGVyZToKPiA+ID4gPiA+ID4gaHR0cHM6Ly9n
-aXN0LmdpdGh1YnVzZXJjb250ZW50LmNvbS9rYXJvbGhlcmJzdC80MGViMDkxYzdiN2IzM2VmOTkz
-NTI1ZGU2NjBmMWEzYi9yYXcvMjM4MGUzMWY1NjZlOTNlNWJhN2M4N2VmNTQ1NDIwOTY1ZDRjNDky
-Yy9naXN0ZmlsZTEudHh0Cj4gPiA+ID4gPgo+ID4gPiA+ID4gTG9va2luZyB5b3VyIGRtZXNnOgo+
-ID4gPiA+ID4KPiA+ID4gPiA+IFNlcCAzMCAxNzoyNDoyNyBrZXJuZWw6IG5vdXZlYXUgMDAwMDow
-MTowMC4wOiBEUk06IERDQiB2ZXJzaW9uIDQuMQo+ID4gPiA+ID4gU2VwIDMwIDE3OjI0OjI3IGtl
-cm5lbDogbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogTU06IHVzaW5nIENPUFkgZm9yIGJ1ZmZl
-ciBjb3BpZXMKPiA+ID4gPiA+IFNlcCAzMCAxNzoyNDoyNyBrZXJuZWw6IFtkcm1dIEluaXRpYWxp
-emVkIG5vdXZlYXUgMS4zLjEgMjAxMjA4MDEgZm9yIDAwMDA6MDE6MDAuMCBvbiBtaW5vciAxCj4g
-PiA+ID4gPgo+ID4gPiA+ID4gSSB3b3VsZCBhc3N1bWUgaXQgcnVudGltZSBzdXNwZW5kcyBoZXJl
-LiBUaGVuIGl0IHdha2VzIHVwIGJlY2F1c2Ugb2YgUENJCj4gPiA+ID4gPiBhY2Nlc3MgZnJvbSB1
-c2Vyc3BhY2U6Cj4gPiA+ID4gPgo+ID4gPiA+ID4gU2VwIDMwIDE3OjI0OjQyIGtlcm5lbDogcGNp
-X3Jhd19zZXRfcG93ZXJfc3RhdGU6IDU2IGNhbGxiYWNrcyBzdXBwcmVzc2VkCj4gPiA+ID4gPgo+
-ID4gPiA+ID4gYW5kIGZvciBzb21lIHJlYXNvbiBpdCBkb2VzIG5vdCBnZXQgcmVzdW1lZCBwcm9w
-ZXJseS4gVGhlcmUgYXJlIGFsc28gZmV3Cj4gPiA+ID4gPiB3YXJuaW5ncyBmcm9tIEFDUEkgdGhh
-dCBtaWdodCBiZSByZWxldmFudDoKPiA+ID4gPiA+Cj4gPiA+ID4gPiBTZXAgMzAgMTc6MjQ6Mjcg
-a2VybmVsOiBBQ1BJIFdhcm5pbmc6IFxfU0IuUENJMC5HRlgwLl9EU006IEFyZ3VtZW50ICM0IHR5
-cGUgbWlzbWF0Y2ggLSBGb3VuZCBbQnVmZmVyXSwgQUNQSSByZXF1aXJlcyBbUGFja2FnZV0gKDIw
-MTkwNTA5L25zYXJndW1lbnRzLTU5KQo+ID4gPiA+ID4gU2VwIDMwIDE3OjI0OjI3IGtlcm5lbDog
-QUNQSSBXYXJuaW5nOiBcX1NCLlBDSTAuUEVHMC5QRUdQLl9EU006IEFyZ3VtZW50ICM0IHR5cGUg
-bWlzbWF0Y2ggLSBGb3VuZCBbQnVmZmVyXSwgQUNQSSByZXF1aXJlcyBbUGFja2FnZV0gKDIwMTkw
-NTA5L25zYXJndW1lbnRzLTU5KQo+ID4gPiA+Cj4gPiA+ID4gYWZhaWsgdGhpcyBpcyB0aGUgY2Fz
-ZSBmb3IgZXNzZW50aWFsbHkgZXZlcnkgbGFwdG9wIG91dCB0aGVyZS4KPiA+ID4KPiA+ID4gSSB0
-aGluayB3ZSBzaG91bGQgbG9vayBpbnRvIHRoaXMgYSBsaXR0bGUgYml0Lgo+ID4gPiBhY3BpX25z
-X2NoZWNrX2FyZ3VtZW50X3R5cGVzKCkgY2hlY2tzIHRoZSBhcmd1bWVudCB0eXBlIGFuZCBwcmlu
-dHMKPiA+ID4gdGhpcyBtZXNzYWdlLCBidXQgQUZBSUNUIGl0IGRvZXNuJ3QgYWN0dWFsbHkgZml4
-IGFueXRoaW5nIG9yIHByZXZlbnQKPiA+ID4gZXhlY3V0aW9uIG9mIHRoZSBtZXRob2QsIHNvIEkg
-aGF2ZSBubyBpZGVhIHdoYXQgaGFwcGVucyB3aGVuIHdlCj4gPiA+IGFjdHVhbGx5IGV4ZWN1dGUg
-dGhlIF9EU00uCj4gPgo+ID4gSSBjYW4gYXNzdXJlIHlvdSB0aGF0IHRoaXMgd2FybmluZyBoYXBw
-ZW5zIG9uIGV2ZXJ5IHNpbmdsZSBsYXB0b3Agb3V0Cj4gPiB0aGVyZSB3aXRoIGR1YWwgTnZpZGlh
-IGdyYXBoaWNzIGFuZCBpdCdzIGVzc2VudGlhbGx5IGp1c3QgYSBmaXJtd2FyZQo+ID4gYnVnLiBB
-bmQgaXQgbmV2ZXIgY2F1c2VkIGFueSBpc3N1ZXMgb24gYW55IG9mIHRoZSBvbGRlciBsYXB0b3Bz
-IChvcgo+ID4gbmV3ZXN0IG9uZSBmb3IgdGhhdCBtYXR0ZXIpLgo+Cj4gUmFmYWVsLCBkbyB5b3Ug
-a25vdyBhbnl0aGluZyBhYm91dCB0aGlzPwoKSUlSQyBBQ1BJQ0Egd2lsbCBzaW1wbHkgcnVuIHRo
-ZSBtZXRob2Qgd2l0aCB0aGUgYXNzdW1wdGlvbiB0aGF0IHRoZQpBTUwgaW4gdGhlcmUgd2lsbCBk
-ZWFsIHdpdGggdGhlIGFyZ3VtZW50cyBwcm9wZXJseSBhbnl3YXkuCgo+IElmIEFDUEkgaGFzIHNv
-bWUgc29ydCBvZiB3b3JrYXJvdW5kIHNvIGl0IGNhbiBleGVjdXRlIHRoZSBtZXRob2QgY29ycmVj
-dGx5Cj4gYW55d2F5LCBtYXliZSB3ZSBzaG91bGQgcmVtb3ZlIG9yIHJld29yZCB0aGUgd2Fybmlu
-Zz8KCkkgY2FuIGFncmVlIHRoYXQgcHJpbnRpbmcgdGhlc2Ugd2FybmluZ3Mgb24gYSB1c2VyIHN5
-c3RlbSBieSBkZWZhdWx0CmlzIG5vdCB2ZXJ5IHVzZWZ1bCwgYXQgbGVhc3QgYXMgbG9uZyBhcyBu
-byB2aXNpYmxlIGZ1bmN0aW9uYWwgaXNzdWVzCmFyZSBwcmVzZW50LCBidXQgaWYgdGhlcmUgYXJl
-IHN1Y2ggaXNzdWVzLCBpdCBpcyBnb29kIHRvIGtub3cgdGhhdApzb21ldGhpbmcgZmlzaHkgaXMg
-Z29pbmcgb24uICBGb3IgaW5zdGFuY2UsIHdoaWxlIHRoZSBtZXRob2QgbWF5CmV4ZWN1dGUgc3Vj
-Y2Vzc2Z1bGx5LCB0aGUgcmVzdWx0IG9mIHRoYXQgbWF5IG5vdCBiZSBhcyBleHBlY3RlZC4KClNv
-IG1heWJlIHRoZXkgc2hvdWxkIGJlIGRlYnVnIGxldmVsIG9yIHNpbWlsYXIuCgo+IE9yIGlmIHRo
-aXMgZG9lcyBwcmV2ZW50IGV4ZWN1dGlvbiBvZiB0aGUgbWV0aG9kLCBtYXliZSB3ZSBuZWVkIHRv
-IGFkZAo+IGEgd29ya2Fyb3VuZCBzaW5jZSB0aGUgcHJvYmxlbSBpcyBzbyBwcmV2YWxlbnQgaW4g
-dGhlIGZpZWxkPwoKQXMgcGFyIHRoZSBhYm92ZSwgbm8gd29ya2Fyb3VuZHMgc2hvdWxkIGJlIG5l
-ZWRlZCwgYnV0IEknbGwgbGV0IEJvYgphbmQgRXJpayAoQ0NlZCBub3cpIGNvbmZpcm0gb3IgZGVu
-eSB0aGlzLgoKQSBzaWRlIG5vdGU6IHBsZWFzZSBDQyBhbGwgZGlzY3Vzc2lvbnMgcmVnYXJkaW5n
-IGdlbmVyYWwgQUNQSSBpc3N1ZXMKdG8gbGludXgtYWNwaSwgc28gdGhleSBjYW4gZ2V0IHRoZSBh
-dHRlbnRpb24gb2YgYWxsIG9mIHRoZSByaWdodApwZW9wbGUgKHdobyBtYXkgbm90IHN1YnNjcmli
-ZSBsaW51eC1wY2ksIGZvciBleGFtcGxlKS4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9ub3V2ZWF1
+
+--===============0436618032==
+Content-Type: multipart/alternative; boundary="15700039950.B034e.3537"
+Content-Transfer-Encoding: 7bit
+
+
+--15700039950.B034e.3537
+Date: Wed, 2 Oct 2019 08:13:15 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
+
+--- Comment #88 from Daniel Drake <dan-LrsmPHowOvpd3aXB8m+yKQ@public.gmane.org> ---
+So we don't have clear insight as to why the device is not being runtime
+suspended. I'll try to reproduce in our lab.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15700039950.B034e.3537
+Date: Wed, 2 Oct 2019 08:13:15 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c88">Commen=
+t # 88</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+dan&#64;reactivated.net" title=3D"Daniel Drake &lt;dan&#64;reactivated.net&=
+gt;"> <span class=3D"fn">Daniel Drake</span></a>
+</span></b>
+        <pre>So we don't have clear insight as to why the device is not bei=
+ng runtime
+suspended. I'll try to reproduce in our lab.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15700039950.B034e.3537--
+
+--===============0436618032==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0436618032==--
