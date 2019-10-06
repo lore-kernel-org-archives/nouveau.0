@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111868] xorg with nouveau crash when starting
  mate-session in debian 10
-Date: Sun, 06 Oct 2019 07:58:49 +0000
-Message-ID: <bug-111868-8800-8voglf94b2@http.bugs.freedesktop.org/>
+Date: Sun, 06 Oct 2019 08:01:55 +0000
+Message-ID: <bug-111868-8800-dHpIFJrcQR@http.bugs.freedesktop.org/>
 References: <bug-111868-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1665079655=="
+Content-Type: multipart/mixed; boundary="===============0484482070=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111868-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1665079655==
-Content-Type: multipart/alternative; boundary="15703487290.5a0b9.4331"
+--===============0484482070==
+Content-Type: multipart/alternative; boundary="15703489150.7Eed5.4715"
 Content-Transfer-Encoding: 7bit
 
 
---15703487290.5a0b9.4331
-Date: Sun, 6 Oct 2019 07:58:49 +0000
+--15703489150.7Eed5.4715
+Date: Sun, 6 Oct 2019 08:01:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111868
 
---- Comment #9 from alain.prignet-oQvnLCQn66E@public.gmane.org ---
-Created attachment 145665
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145665&action=3Dedit
-startx with .xinitrc "exec xfce4-session". it works.
+--- Comment #10 from alain.prignet-oQvnLCQn66E@public.gmane.org ---
+Above the 2 "real" log files.
+
+In console mode, (real user, not root), I launch startx with .xinitrc as
+describe.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15703487290.5a0b9.4331
-Date: Sun, 6 Oct 2019 07:58:49 +0000
+--15703489150.7Eed5.4715
+Date: Sun, 6 Oct 2019 08:01:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +65,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - xorg with nouveau crash when starting mate-session in deb=
 ian 10"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111868#c9">Commen=
-t # 9</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111868#c10">Comme=
+nt # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - xorg with nouveau crash when starting mate-session in deb=
@@ -76,12 +77,10 @@ ian 10"
 alain.prignet&#64;u-pem.fr" title=3D"alain.prignet&#64;u-pem.fr">alain.prig=
 net&#64;u-pem.fr</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145665=
-" name=3D"attach_145665" title=3D"startx with .xinitrc &quot;exec xfce4-ses=
-sion&quot;. it works.">attachment 145665</a> <a href=3D"attachment.cgi?id=
-=3D145665&amp;action=3Dedit" title=3D"startx with .xinitrc &quot;exec xfce4=
--session&quot;. it works.">[details]</a></span>
-startx with .xinitrc &quot;exec xfce4-session&quot;. it works.</pre>
+        <pre>Above the 2 &quot;real&quot; log files.
+
+In console mode, (real user, not root), I launch startx with .xinitrc as
+describe.</pre>
         </div>
       </p>
 
@@ -95,9 +94,9 @@ startx with .xinitrc &quot;exec xfce4-session&quot;. it works.</pre>
     </body>
 </html>=
 
---15703487290.5a0b9.4331--
+--15703489150.7Eed5.4715--
 
---===============1665079655==
+--===============0484482070==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1665079655==--
+--===============0484482070==--
