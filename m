@@ -1,139 +1,40 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 110714] Xorg crashes randomly because of memory leak
-Date: Mon, 07 Oct 2019 14:32:28 +0000
-Message-ID: <bug-110714-8800-w0UbpGqcOB@http.bugs.freedesktop.org/>
-References: <bug-110714-8800@http.bugs.freedesktop.org/>
+From: Alex Deucher <alexdeucher@gmail.com>
+Subject: Re: [PATCH TRIVIAL v2] gpu: Fix Kconfig indentation
+Date: Mon, 7 Oct 2019 12:09:40 -0400
+Message-ID: <CADnq5_MqGehpWwOAxYg0T2x3qXisqmae2uGG5dijQX+Aa4NsoQ@mail.gmail.com>
+References: <20191004144549.3567-1-krzk@kernel.org> <87sgo4hjii.fsf@intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0935344803=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-110714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <87sgo4hjii.fsf@intel.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>, Jiri Kosina <trivial@kernel.org>, lima@lists.freedesktop.org, David Airlie <airlied@linux.ie>, nouveau <nouveau@lists.freedesktop.org>, Maling list - DRI developers <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, Maxime Ripard <mripard@kernel.org>, linux-rockchip@lists.infradead.org, Krzysztof Kozlowski <krzk@kernel.org>, Intel Graphics Development <intel-gfx@lists.freedesktop.org>, linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0935344803==
-Content-Type: multipart/alternative; boundary="15704587481.1819F5C5.928"
-Content-Transfer-Encoding: 7bit
-
-
---15704587481.1819F5C5.928
-Date: Mon, 7 Oct 2019 14:32:28 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D110714
-
---- Comment #23 from Andrey Sychev <developer-5URONGGNgjI@public.gmane.org> ---
-I can confirm that bug still persists.
-
-My OS: Debian (Buster)
-Desktop: Xfce
-Apps on which crash happens: Meld (frequently, but not every time). Libre
-office (rare)
-
-In attepmt to fix crush
-I have downloaded and installed
-
-https://launchpad.net/ubuntu/+source/xorg-server/2:1.20.5+git20190820-0ubun=
-tu3
-
-but this does not help.
-
-I can say that in my case crash does not happens after first message:
-
-glamor0: GL error: GL_OUT_OF_MEMORY in glTexSubImage
-
-Crash happens only after several similar messages.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15704587481.1819F5C5.928
-Date: Mon, 7 Oct 2019 14:32:28 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Xorg crashes randomly because of memory leak"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714#c23">Comme=
-nt # 23</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - Xorg crashes randomly because of memory leak"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714">bug 11071=
-4</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-developer&#64;bk.ru" title=3D"Andrey Sychev &lt;developer&#64;bk.ru&gt;"> <=
-span class=3D"fn">Andrey Sychev</span></a>
-</span></b>
-        <pre>I can confirm that bug still persists.
-
-My OS: Debian (Buster)
-Desktop: Xfce
-Apps on which crash happens: Meld (frequently, but not every time). Libre
-office (rare)
-
-In attepmt to fix crush
-I have downloaded and installed
-
-<a href=3D"https://launchpad.net/ubuntu/+source/xorg-server/2:1.20.5+git201=
-90820-0ubuntu3">https://launchpad.net/ubuntu/+source/xorg-server/2:1.20.5+g=
-it20190820-0ubuntu3</a>
-
-but this does not help.
-
-I can say that in my case crash does not happens after first message:
-
-glamor0: GL error: GL_OUT_OF_MEMORY in glTexSubImage
-
-Crash happens only after several similar messages.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15704587481.1819F5C5.928--
-
---===============0935344803==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0935344803==--
+T24gTW9uLCBPY3QgNywgMjAxOSBhdCA3OjM5IEFNIEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBs
+aW51eC5pbnRlbC5jb20+IHdyb3RlOgo+Cj4gT24gRnJpLCAwNCBPY3QgMjAxOSwgS3J6eXN6dG9m
+IEtvemxvd3NraSA8a3J6a0BrZXJuZWwub3JnPiB3cm90ZToKPiA+ICBkcml2ZXJzL2dwdS9kcm0v
+aTkxNS9LY29uZmlnICAgICAgICAgICAgIHwgIDEyICstCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5
+MTUvS2NvbmZpZy5kZWJ1ZyAgICAgICB8IDE0NCArKysrKysrKysrKy0tLS0tLS0tLS0tLQo+Cj4g
+UGxlYXNlIHNwbGl0IHRoZXNlIG91dCB0byBhIHNlcGFyYXRlIHBhdGNoLiBDYW4ndCBzcGVhayBm
+b3Igb3RoZXJzLCBidXQKPiB0aGUgcGF0Y2ggbG9va3MgbGlrZSBpdCdsbCBiZSBjb25mbGljdHMg
+Z2Fsb3JlIGFuZCBhIHByb2JsZW0gdG8gbWFuYWdlCj4gaWYgbWVyZ2VkIGluIG9uZSBiaWcgbHVt
+cC4KClllcywgaXQgd291bGQgYmUgbmljZSB0byBoYXZlIHRoZSBhbWQgcGF0Y2ggc2VwYXJhdGUg
+YXMgd2VsbC4KCkFsZXgKCj4KPiBCUiwKPiBKYW5pLgo+Cj4KPiAtLQo+IEphbmkgTmlrdWxhLCBJ
+bnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKPiBfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwo+IGFtZC1nZnggbWFpbGluZyBsaXN0Cj4gYW1kLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2FtZC1nZngKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vaW50ZWwtZ2Z4
