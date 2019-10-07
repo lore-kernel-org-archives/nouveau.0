@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 110714] Xorg crashes randomly because of memory leak
-Date: Mon, 07 Oct 2019 14:31:26 +0000
-Message-ID: <bug-110714-8800-g3AlwUuN1T@http.bugs.freedesktop.org/>
+Date: Mon, 07 Oct 2019 14:32:28 +0000
+Message-ID: <bug-110714-8800-w0UbpGqcOB@http.bugs.freedesktop.org/>
 References: <bug-110714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0278836109=="
+Content-Type: multipart/mixed; boundary="===============0935344803=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-110714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0278836109==
-Content-Type: multipart/alternative; boundary="15704586862.879e45.664"
+--===============0935344803==
+Content-Type: multipart/alternative; boundary="15704587481.1819F5C5.928"
 Content-Transfer-Encoding: 7bit
 
 
---15704586862.879e45.664
-Date: Mon, 7 Oct 2019 14:31:26 +0000
+--15704587481.1819F5C5.928
+Date: Mon, 7 Oct 2019 14:32:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,34 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D110714
 
---- Comment #22 from Andrey Sychev <developer-5URONGGNgjI@public.gmane.org> ---
-Created attachment 145675
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145675&action=3Dedit
-My Xorg.0.log.old
+--- Comment #23 from Andrey Sychev <developer-5URONGGNgjI@public.gmane.org> ---
+I can confirm that bug still persists.
+
+My OS: Debian (Buster)
+Desktop: Xfce
+Apps on which crash happens: Meld (frequently, but not every time). Libre
+office (rare)
+
+In attepmt to fix crush
+I have downloaded and installed
+
+https://launchpad.net/ubuntu/+source/xorg-server/2:1.20.5+git20190820-0ubun=
+tu3
+
+but this does not help.
+
+I can say that in my case crash does not happens after first message:
+
+glamor0: GL error: GL_OUT_OF_MEMORY in glTexSubImage
+
+Crash happens only after several similar messages.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15704586862.879e45.664
-Date: Mon, 7 Oct 2019 14:31:26 +0000
+--15704587481.1819F5C5.928
+Date: Mon, 7 Oct 2019 14:32:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +79,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_REOPENED "
    title=3D"REOPENED - Xorg crashes randomly because of memory leak"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714#c22">Comme=
-nt # 22</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D110714#c23">Comme=
+nt # 23</a>
               on <a class=3D"bz_bug_link=20
           bz_status_REOPENED "
    title=3D"REOPENED - Xorg crashes randomly because of memory leak"
@@ -73,11 +90,27 @@ nt # 22</a>
 developer&#64;bk.ru" title=3D"Andrey Sychev &lt;developer&#64;bk.ru&gt;"> <=
 span class=3D"fn">Andrey Sychev</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145675=
-" name=3D"attach_145675" title=3D"My Xorg.0.log.old">attachment 145675</a> =
-<a href=3D"attachment.cgi?id=3D145675&amp;action=3Dedit" title=3D"My Xorg.0=
-.log.old">[details]</a></span>
-My Xorg.0.log.old</pre>
+        <pre>I can confirm that bug still persists.
+
+My OS: Debian (Buster)
+Desktop: Xfce
+Apps on which crash happens: Meld (frequently, but not every time). Libre
+office (rare)
+
+In attepmt to fix crush
+I have downloaded and installed
+
+<a href=3D"https://launchpad.net/ubuntu/+source/xorg-server/2:1.20.5+git201=
+90820-0ubuntu3">https://launchpad.net/ubuntu/+source/xorg-server/2:1.20.5+g=
+it20190820-0ubuntu3</a>
+
+but this does not help.
+
+I can say that in my case crash does not happens after first message:
+
+glamor0: GL error: GL_OUT_OF_MEMORY in glTexSubImage
+
+Crash happens only after several similar messages.</pre>
         </div>
       </p>
 
@@ -91,9 +124,9 @@ My Xorg.0.log.old</pre>
     </body>
 </html>=
 
---15704586862.879e45.664--
+--15704587481.1819F5C5.928--
 
---===============0278836109==
+--===============0935344803==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +136,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0278836109==--
+--===============0935344803==--
