@@ -1,241 +1,396 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 100567] Nouveau system freeze fifo: SCHED_ERROR 0a
- [CTXSW_TIMEOUT]
-Date: Tue, 08 Oct 2019 07:00:37 +0000
-Message-ID: <bug-100567-8800-3GBqDSC65g@http.bugs.freedesktop.org/>
-References: <bug-100567-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH v2 03/27] drm/dp_mst: Destroy MSTBs asynchronously
+Date: Tue, 8 Oct 2019 11:45:44 +0200
+Message-ID: <20191008094544.GI16989@phenom.ffwll.local>
+References: <20190903204645.25487-1-lyude@redhat.com>
+ <20190903204645.25487-4-lyude@redhat.com>
+ <20190925181644.GD218215@art_vandelay>
+ <e9a2638663549d86779002e3616fc2e89f9c7028.camel@redhat.com>
+ <20190927133107.GQ218215@art_vandelay>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0477707060=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-100567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20190927133107.GQ218215@art_vandelay>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Sean Paul <sean@poorly.run>
+Cc: Lyude Paul <lyude@redhat.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, Juston Li <juston.li@intel.com>, Imre Deak <imre.deak@intel.com>, Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, Harry Wentland <hwentlan@amd.com>, Daniel Vetter <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@linux.ie>, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
+On Fri, Sep 27, 2019 at 09:31:07AM -0400, Sean Paul wrote:
+> On Wed, Sep 25, 2019 at 04:08:22PM -0400, Lyude Paul wrote:
+> > On Wed, 2019-09-25 at 14:16 -0400, Sean Paul wrote:
+> > > On Tue, Sep 03, 2019 at 04:45:41PM -0400, Lyude Paul wrote:
+> > > > When reprobing an MST topology during resume, we have to account for the
+> > > > fact that while we were suspended it's possible that mstbs may have been
+> > > > removed from any ports in the topology. Since iterating downwards in the
+> > > > topology requires that we hold &mgr->lock, destroying MSTBs from this
+> > > > context would result in attempting to lock &mgr->lock a second time and
+> > > > deadlocking.
+> > > > 
+> > > > So, fix this by first moving destruction of MSTBs into
+> > > > destroy_connector_work, then rename destroy_connector_work and friends
+> > > > to reflect that they now destroy both ports and mstbs.
+> > > > 
+> > > > Changes since v1:
+> > > > * s/destroy_connector_list/destroy_port_list/
+> > > >   s/connector_destroy_lock/delayed_destroy_lock/
+> > > >   s/connector_destroy_work/delayed_destroy_work/
+> > > >   s/drm_dp_finish_destroy_branch_device/drm_dp_delayed_destroy_mstb/
+> > > >   s/drm_dp_finish_destroy_port/drm_dp_delayed_destroy_port/
+> > > >   - danvet
+> > > > * Use two loops in drm_dp_delayed_destroy_work() - danvet
+> > > > * Better explain why we need to do this - danvet
+> > > > * Use cancel_work_sync() instead of flush_work() - flush_work() doesn't
+> > > >   account for work requeing
+> > > > 
+> > > > Cc: Juston Li <juston.li@intel.com>
+> > > > Cc: Imre Deak <imre.deak@intel.com>
+> > > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > Cc: Harry Wentland <hwentlan@amd.com>
+> > > > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > > > Signed-off-by: Lyude Paul <lyude@redhat.com>
+> > > 
+> > > Took me a while to grok this, and I'm still not 100% confident my mental
+> > > model
+> > > is correct, so please bear with me while I ask silly questions :)
+> > > 
+> > > Now that the destroy is delayed, and the port remains in the topology, is it
+> > > possible we will underflow the topology kref by calling put_mstb multiple
+> > > times?
+> > > It looks like that would result in a WARN from refcount.c, and wouldn't call
+> > > the
+> > > destroy function multiple times, so that's nice :)
+> > > 
+> > > Similarly, is there any defense against calling get_mstb() between destroy()
+> > > and
+> > > the delayed destroy worker running?
+> > > 
+> > Good question! There's only one instance where we unconditionally grab an MSTB
+> > ref, drm_dp_mst_topology_mgr_set_mst(), and in that location we're guaranteed
+> > to be the only one with access to that mstb until we drop &mgr->lock.
+> > Everywhere else we use drm_dp_mst_topology_try_get_mstb(), which uses
+> > kref_get_unless_zero() to protect against that kind of situation (and forces
+> > the caller to check with __must_check)
 
---===============0477707060==
-Content-Type: multipart/alternative; boundary="15705180393.8CcC53C5.20291"
-Content-Transfer-Encoding: 7bit
+Imo would be good to add this to the commit message when merging as a Q&A,
+just for the record. At least I like to do that with the
+silly-but-no-so-silly questions that come up in review.
+-Daniel
 
+> 
+> Awesome, thanks for the breakdown!
+> 
+> 
+> Reviewed-by: Sean Paul <sean@poorly.run>
+> 
+> 
+> > 
+> > > Sean
+> > > 
+> > > > ---
+> > > >  drivers/gpu/drm/drm_dp_mst_topology.c | 162 +++++++++++++++++---------
+> > > >  include/drm/drm_dp_mst_helper.h       |  26 +++--
+> > > >  2 files changed, 127 insertions(+), 61 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c
+> > > > b/drivers/gpu/drm/drm_dp_mst_topology.c
+> > > > index 3054ec622506..738f260d4b15 100644
+> > > > --- a/drivers/gpu/drm/drm_dp_mst_topology.c
+> > > > +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+> > > > @@ -1113,34 +1113,17 @@ static void
+> > > > drm_dp_destroy_mst_branch_device(struct kref *kref)
+> > > >  	struct drm_dp_mst_branch *mstb =
+> > > >  		container_of(kref, struct drm_dp_mst_branch, topology_kref);
+> > > >  	struct drm_dp_mst_topology_mgr *mgr = mstb->mgr;
+> > > > -	struct drm_dp_mst_port *port, *tmp;
+> > > > -	bool wake_tx = false;
+> > > >  
+> > > > -	mutex_lock(&mgr->lock);
+> > > > -	list_for_each_entry_safe(port, tmp, &mstb->ports, next) {
+> > > > -		list_del(&port->next);
+> > > > -		drm_dp_mst_topology_put_port(port);
+> > > > -	}
+> > > > -	mutex_unlock(&mgr->lock);
+> > > > -
+> > > > -	/* drop any tx slots msg */
+> > > > -	mutex_lock(&mstb->mgr->qlock);
+> > > > -	if (mstb->tx_slots[0]) {
+> > > > -		mstb->tx_slots[0]->state = DRM_DP_SIDEBAND_TX_TIMEOUT;
+> > > > -		mstb->tx_slots[0] = NULL;
+> > > > -		wake_tx = true;
+> > > > -	}
+> > > > -	if (mstb->tx_slots[1]) {
+> > > > -		mstb->tx_slots[1]->state = DRM_DP_SIDEBAND_TX_TIMEOUT;
+> > > > -		mstb->tx_slots[1] = NULL;
+> > > > -		wake_tx = true;
+> > > > -	}
+> > > > -	mutex_unlock(&mstb->mgr->qlock);
+> > > > +	INIT_LIST_HEAD(&mstb->destroy_next);
+> > > >  
+> > > > -	if (wake_tx)
+> > > > -		wake_up_all(&mstb->mgr->tx_waitq);
+> > > > -
+> > > > -	drm_dp_mst_put_mstb_malloc(mstb);
+> > > > +	/*
+> > > > +	 * This can get called under mgr->mutex, so we need to perform the
+> > > > +	 * actual destruction of the mstb in another worker
+> > > > +	 */
+> > > > +	mutex_lock(&mgr->delayed_destroy_lock);
+> > > > +	list_add(&mstb->destroy_next, &mgr->destroy_branch_device_list);
+> > > > +	mutex_unlock(&mgr->delayed_destroy_lock);
+> > > > +	schedule_work(&mgr->delayed_destroy_work);
+> > > >  }
+> > > >  
+> > > >  /**
+> > > > @@ -1255,10 +1238,10 @@ static void drm_dp_destroy_port(struct kref *kref)
+> > > >  			 * we might be holding the mode_config.mutex
+> > > >  			 * from an EDID retrieval */
+> > > >  
+> > > > -			mutex_lock(&mgr->destroy_connector_lock);
+> > > > -			list_add(&port->next, &mgr->destroy_connector_list);
+> > > > -			mutex_unlock(&mgr->destroy_connector_lock);
+> > > > -			schedule_work(&mgr->destroy_connector_work);
+> > > > +			mutex_lock(&mgr->delayed_destroy_lock);
+> > > > +			list_add(&port->next, &mgr->destroy_port_list);
+> > > > +			mutex_unlock(&mgr->delayed_destroy_lock);
+> > > > +			schedule_work(&mgr->delayed_destroy_work);
+> > > >  			return;
+> > > >  		}
+> > > >  		/* no need to clean up vcpi
+> > > > @@ -2792,7 +2775,7 @@ void drm_dp_mst_topology_mgr_suspend(struct
+> > > > drm_dp_mst_topology_mgr *mgr)
+> > > >  			   DP_MST_EN | DP_UPSTREAM_IS_SRC);
+> > > >  	mutex_unlock(&mgr->lock);
+> > > >  	flush_work(&mgr->work);
+> > > > -	flush_work(&mgr->destroy_connector_work);
+> > > > +	flush_work(&mgr->delayed_destroy_work);
+> > > >  }
+> > > >  EXPORT_SYMBOL(drm_dp_mst_topology_mgr_suspend);
+> > > >  
+> > > > @@ -3740,34 +3723,104 @@ static void drm_dp_tx_work(struct work_struct
+> > > > *work)
+> > > >  	mutex_unlock(&mgr->qlock);
+> > > >  }
+> > > >  
+> > > > -static void drm_dp_destroy_connector_work(struct work_struct *work)
+> > > > +static inline void
+> > > > +drm_dp_delayed_destroy_port(struct drm_dp_mst_port *port)
+> > > >  {
+> > > > -	struct drm_dp_mst_topology_mgr *mgr = container_of(work, struct
+> > > > drm_dp_mst_topology_mgr, destroy_connector_work);
+> > > > -	struct drm_dp_mst_port *port;
+> > > > -	bool send_hotplug = false;
+> > > > +	port->mgr->cbs->destroy_connector(port->mgr, port->connector);
+> > > > +
+> > > > +	drm_dp_port_teardown_pdt(port, port->pdt);
+> > > > +	port->pdt = DP_PEER_DEVICE_NONE;
+> > > > +
+> > > > +	drm_dp_mst_put_port_malloc(port);
+> > > > +}
+> > > > +
+> > > > +static inline void
+> > > > +drm_dp_delayed_destroy_mstb(struct drm_dp_mst_branch *mstb)
+> > > > +{
+> > > > +	struct drm_dp_mst_topology_mgr *mgr = mstb->mgr;
+> > > > +	struct drm_dp_mst_port *port, *tmp;
+> > > > +	bool wake_tx = false;
+> > > > +
+> > > > +	mutex_lock(&mgr->lock);
+> > > > +	list_for_each_entry_safe(port, tmp, &mstb->ports, next) {
+> > > > +		list_del(&port->next);
+> > > > +		drm_dp_mst_topology_put_port(port);
+> > > > +	}
+> > > > +	mutex_unlock(&mgr->lock);
+> > > > +
+> > > > +	/* drop any tx slots msg */
+> > > > +	mutex_lock(&mstb->mgr->qlock);
+> > > > +	if (mstb->tx_slots[0]) {
+> > > > +		mstb->tx_slots[0]->state = DRM_DP_SIDEBAND_TX_TIMEOUT;
+> > > > +		mstb->tx_slots[0] = NULL;
+> > > > +		wake_tx = true;
+> > > > +	}
+> > > > +	if (mstb->tx_slots[1]) {
+> > > > +		mstb->tx_slots[1]->state = DRM_DP_SIDEBAND_TX_TIMEOUT;
+> > > > +		mstb->tx_slots[1] = NULL;
+> > > > +		wake_tx = true;
+> > > > +	}
+> > > > +	mutex_unlock(&mstb->mgr->qlock);
+> > > > +
+> > > > +	if (wake_tx)
+> > > > +		wake_up_all(&mstb->mgr->tx_waitq);
+> > > > +
+> > > > +	drm_dp_mst_put_mstb_malloc(mstb);
+> > > > +}
+> > > > +
+> > > > +static void drm_dp_delayed_destroy_work(struct work_struct *work)
+> > > > +{
+> > > > +	struct drm_dp_mst_topology_mgr *mgr =
+> > > > +		container_of(work, struct drm_dp_mst_topology_mgr,
+> > > > +			     delayed_destroy_work);
+> > > > +	bool send_hotplug = false, go_again;
+> > > > +
+> > > >  	/*
+> > > >  	 * Not a regular list traverse as we have to drop the destroy
+> > > > -	 * connector lock before destroying the connector, to avoid AB->BA
+> > > > +	 * connector lock before destroying the mstb/port, to avoid AB->BA
+> > > >  	 * ordering between this lock and the config mutex.
+> > > >  	 */
+> > > > -	for (;;) {
+> > > > -		mutex_lock(&mgr->destroy_connector_lock);
+> > > > -		port = list_first_entry_or_null(&mgr->destroy_connector_list,
+> > > > struct drm_dp_mst_port, next);
+> > > > -		if (!port) {
+> > > > -			mutex_unlock(&mgr->destroy_connector_lock);
+> > > > -			break;
+> > > > +	do {
+> > > > +		go_again = false;
+> > > > +
+> > > > +		for (;;) {
+> > > > +			struct drm_dp_mst_branch *mstb;
+> > > > +
+> > > > +			mutex_lock(&mgr->delayed_destroy_lock);
+> > > > +			mstb = list_first_entry_or_null(&mgr-
+> > > > >destroy_branch_device_list,
+> > > > +							struct
+> > > > drm_dp_mst_branch,
+> > > > +							destroy_next);
+> > > > +			if (mstb)
+> > > > +				list_del(&mstb->destroy_next);
+> > > > +			mutex_unlock(&mgr->delayed_destroy_lock);
+> > > > +
+> > > > +			if (!mstb)
+> > > > +				break;
+> > > > +
+> > > > +			drm_dp_delayed_destroy_mstb(mstb);
+> > > > +			go_again = true;
+> > > >  		}
+> > > > -		list_del(&port->next);
+> > > > -		mutex_unlock(&mgr->destroy_connector_lock);
+> > > >  
+> > > > -		mgr->cbs->destroy_connector(mgr, port->connector);
+> > > > +		for (;;) {
+> > > > +			struct drm_dp_mst_port *port;
+> > > >  
+> > > > -		drm_dp_port_teardown_pdt(port, port->pdt);
+> > > > -		port->pdt = DP_PEER_DEVICE_NONE;
+> > > > +			mutex_lock(&mgr->delayed_destroy_lock);
+> > > > +			port = list_first_entry_or_null(&mgr-
+> > > > >destroy_port_list,
+> > > > +							struct
+> > > > drm_dp_mst_port,
+> > > > +							next);
+> > > > +			if (port)
+> > > > +				list_del(&port->next);
+> > > > +			mutex_unlock(&mgr->delayed_destroy_lock);
+> > > > +
+> > > > +			if (!port)
+> > > > +				break;
+> > > > +
+> > > > +			drm_dp_delayed_destroy_port(port);
+> > > > +			send_hotplug = true;
+> > > > +			go_again = true;
+> > > > +		}
+> > > > +	} while (go_again);
+> > > >  
+> > > > -		drm_dp_mst_put_port_malloc(port);
+> > > > -		send_hotplug = true;
+> > > > -	}
+> > > >  	if (send_hotplug)
+> > > >  		drm_kms_helper_hotplug_event(mgr->dev);
+> > > >  }
+> > > > @@ -3957,12 +4010,13 @@ int drm_dp_mst_topology_mgr_init(struct
+> > > > drm_dp_mst_topology_mgr *mgr,
+> > > >  	mutex_init(&mgr->lock);
+> > > >  	mutex_init(&mgr->qlock);
+> > > >  	mutex_init(&mgr->payload_lock);
+> > > > -	mutex_init(&mgr->destroy_connector_lock);
+> > > > +	mutex_init(&mgr->delayed_destroy_lock);
+> > > >  	INIT_LIST_HEAD(&mgr->tx_msg_downq);
+> > > > -	INIT_LIST_HEAD(&mgr->destroy_connector_list);
+> > > > +	INIT_LIST_HEAD(&mgr->destroy_port_list);
+> > > > +	INIT_LIST_HEAD(&mgr->destroy_branch_device_list);
+> > > >  	INIT_WORK(&mgr->work, drm_dp_mst_link_probe_work);
+> > > >  	INIT_WORK(&mgr->tx_work, drm_dp_tx_work);
+> > > > -	INIT_WORK(&mgr->destroy_connector_work,
+> > > > drm_dp_destroy_connector_work);
+> > > > +	INIT_WORK(&mgr->delayed_destroy_work, drm_dp_delayed_destroy_work);
+> > > >  	init_waitqueue_head(&mgr->tx_waitq);
+> > > >  	mgr->dev = dev;
+> > > >  	mgr->aux = aux;
+> > > > @@ -4005,7 +4059,7 @@ void drm_dp_mst_topology_mgr_destroy(struct
+> > > > drm_dp_mst_topology_mgr *mgr)
+> > > >  {
+> > > >  	drm_dp_mst_topology_mgr_set_mst(mgr, false);
+> > > >  	flush_work(&mgr->work);
+> > > > -	flush_work(&mgr->destroy_connector_work);
+> > > > +	cancel_work_sync(&mgr->delayed_destroy_work);
+> > > >  	mutex_lock(&mgr->payload_lock);
+> > > >  	kfree(mgr->payloads);
+> > > >  	mgr->payloads = NULL;
+> > > > diff --git a/include/drm/drm_dp_mst_helper.h
+> > > > b/include/drm/drm_dp_mst_helper.h
+> > > > index fc349204a71b..4a4507fe928d 100644
+> > > > --- a/include/drm/drm_dp_mst_helper.h
+> > > > +++ b/include/drm/drm_dp_mst_helper.h
+> > > > @@ -143,6 +143,12 @@ struct drm_dp_mst_branch {
+> > > >  	 */
+> > > >  	struct kref malloc_kref;
+> > > >  
+> > > > +	/**
+> > > > +	 * @destroy_next: linked-list entry used by
+> > > > +	 * drm_dp_delayed_destroy_work()
+> > > > +	 */
+> > > > +	struct list_head destroy_next;
+> > > > +
+> > > >  	u8 rad[8];
+> > > >  	u8 lct;
+> > > >  	int num_ports;
+> > > > @@ -575,18 +581,24 @@ struct drm_dp_mst_topology_mgr {
+> > > >  	struct work_struct tx_work;
+> > > >  
+> > > >  	/**
+> > > > -	 * @destroy_connector_list: List of to be destroyed connectors.
+> > > > +	 * @destroy_port_list: List of to be destroyed connectors.
+> > > > +	 */
+> > > > +	struct list_head destroy_port_list;
+> > > > +	/**
+> > > > +	 * @destroy_branch_device_list: List of to be destroyed branch
+> > > > +	 * devices.
+> > > >  	 */
+> > > > -	struct list_head destroy_connector_list;
+> > > > +	struct list_head destroy_branch_device_list;
+> > > >  	/**
+> > > > -	 * @destroy_connector_lock: Protects @connector_list.
+> > > > +	 * @delayed_destroy_lock: Protects @destroy_port_list and
+> > > > +	 * @destroy_branch_device_list.
+> > > >  	 */
+> > > > -	struct mutex destroy_connector_lock;
+> > > > +	struct mutex delayed_destroy_lock;
+> > > >  	/**
+> > > > -	 * @destroy_connector_work: Work item to destroy connectors. Needed to
+> > > > -	 * avoid locking inversion.
+> > > > +	 * @delayed_destroy_work: Work item to destroy MST port and branch
+> > > > +	 * devices, needed to avoid locking inversion.
+> > > >  	 */
+> > > > -	struct work_struct destroy_connector_work;
+> > > > +	struct work_struct delayed_destroy_work;
+> > > >  };
+> > > >  
+> > > >  int drm_dp_mst_topology_mgr_init(struct drm_dp_mst_topology_mgr *mgr,
+> > > > -- 
+> > > > 2.21.0
+> > > > 
+> > -- 
+> > Cheers,
+> > 	Lyude Paul
+> > 
+> 
+> -- 
+> Sean Paul, Software Engineer, Google / Chromium OS
 
---15705180393.8CcC53C5.20291
-Date: Tue, 8 Oct 2019 07:00:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D100567
-
-acs82-Mmb7MZpHnFY@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |acs82-Mmb7MZpHnFY@public.gmane.org
-
---- Comment #40 from acs82-Mmb7MZpHnFY@public.gmane.org ---
-Same bug here. Seems to happen often with firefox, when opening a link, or =
-when
-usintg alt+tab to switch to it. So I changed to chromium, which seems to
-trigger it at least not that often.
-
-The bug as well recently happend when I switched to eclipse via alt+tab. He=
-re a
-log:
-
-schwinn@schwinn-desktop:~$ sudo lspci | grep VGA
-06:00.0 VGA compatible controller: NVIDIA Corporation GK208B [GeForce GT 71=
-0]
-(rev a1)
-
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080132] nouveau 0000:06:00.0:
-gr: TRAP ch 4 [003fb96000 Xorg[645]]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080146] nouveau 0000:06:00.0:
-gr: GPC0/TPC0/MP trap: global 00000004 [MULTIPLE_WARP_ERRORS] warp 3f000
-9 [ILLEGAL_INSTR_ENCODING]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080259] nouveau 0000:06:00.0:
-gr: TRAP ch 2 [003fbec000 Xorg[645]]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080268] nouveau 0000:06:00.0:
-gr: GPC0/TPC0/MP trap: global 00000004 [MULTIPLE_WARP_ERRORS] warp 7000e
-[OOR_ADDR]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080277] nouveau 0000:06:00.0:
-gr: TRAP ch 2 [003fbec000 Xorg[645]]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080284] nouveau 0000:06:00.0:
-gr: GPC0/TPC0/MP trap: global 00000004 [MULTIPLE_WARP_ERRORS] warp 7000e
-[OOR_ADDR]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080292] nouveau 0000:06:00.0:
-gr: TRAP ch 2 [003fbec000 Xorg[645]]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080299] nouveau 0000:06:00.0:
-gr: GPC0/TPC0/MP trap: global 00000004 [MULTIPLE_WARP_ERRORS] warp 10000e
-[OOR_ADDR]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080309] nouveau 0000:06:00.0:
-gr: TRAP ch 2 [003fbec000 Xorg[645]]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080316] nouveau 0000:06:00.0:
-gr: GPC0/TPC0/MP trap: global 00000004 [MULTIPLE_WARP_ERRORS] warp 26000e
-[OOR_ADDR]
-Oct  7 23:13:28 schwinn-desktop kernel: [ 2730.413036] nouveau 0000:06:00.0:
-fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
-Oct  7 23:13:28 schwinn-desktop kernel: [ 2730.413057] nouveau 0000:06:00.0:
-fifo: runlist 0: scheduled for recovery
-Oct  7 23:13:28 schwinn-desktop kernel: [ 2730.413077] nouveau 0000:06:00.0:
-fifo: channel 2: killed
-Oct  7 23:13:28 schwinn-desktop kernel: [ 2730.413086] nouveau 0000:06:00.0:
-fifo: engine 6: scheduled for recovery
-Oct  7 23:13:28 schwinn-desktop kernel: [ 2730.413091] nouveau 0000:06:00.0:
-fifo: engine 0: scheduled for recovery
-Oct  7 23:13:28 schwinn-desktop kernel: [ 2730.413160] nouveau 0000:06:00.0:
-Xorg[645]: channel 2 killed!
-<reboot>
-Oct  7 23:14:37 schwinn-desktop kernel: [    0.000000] Linux version
-5.2.0-2-amd64 (debian-kernel-0aAXYlwwYIJuHlm7Suoebg@public.gmane.org) (gcc version 8.3.0 (Debian
-8.3.0-21)) #1 SMP Debian 5.2.9-2 (2019-08-21)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15705180393.8CcC53C5.20291
-Date: Tue, 8 Oct 2019 07:00:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:acs82&#64=
-;gmx.de" title=3D"acs82&#64;gmx.de">acs82&#64;gmx.de</a>
-</span> changed
-          <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
-7</a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>acs82&#64;gmx.de
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567#c40">Comme=
-nt # 40</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Nouveau system freeze fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT=
-]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D100567">bug 10056=
-7</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-acs82&#64;gmx.de" title=3D"acs82&#64;gmx.de">acs82&#64;gmx.de</a>
-</span></b>
-        <pre>Same bug here. Seems to happen often with firefox, when openin=
-g a link, or when
-usintg alt+tab to switch to it. So I changed to chromium, which seems to
-trigger it at least not that often.
-
-The bug as well recently happend when I switched to eclipse via alt+tab. He=
-re a
-log:
-
-schwinn&#64;schwinn-desktop:~$ sudo lspci | grep VGA
-06:00.0 VGA compatible controller: NVIDIA Corporation GK208B [GeForce GT 71=
-0]
-(rev a1)
-
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080132] nouveau 0000:06:00.0:
-gr: TRAP ch 4 [003fb96000 Xorg[645]]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080146] nouveau 0000:06:00.0:
-gr: GPC0/TPC0/MP trap: global 00000004 [MULTIPLE_WARP_ERRORS] warp 3f000
-9 [ILLEGAL_INSTR_ENCODING]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080259] nouveau 0000:06:00.0:
-gr: TRAP ch 2 [003fbec000 Xorg[645]]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080268] nouveau 0000:06:00.0:
-gr: GPC0/TPC0/MP trap: global 00000004 [MULTIPLE_WARP_ERRORS] warp 7000e
-[OOR_ADDR]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080277] nouveau 0000:06:00.0:
-gr: TRAP ch 2 [003fbec000 Xorg[645]]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080284] nouveau 0000:06:00.0:
-gr: GPC0/TPC0/MP trap: global 00000004 [MULTIPLE_WARP_ERRORS] warp 7000e
-[OOR_ADDR]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080292] nouveau 0000:06:00.0:
-gr: TRAP ch 2 [003fbec000 Xorg[645]]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080299] nouveau 0000:06:00.0:
-gr: GPC0/TPC0/MP trap: global 00000004 [MULTIPLE_WARP_ERRORS] warp 10000e
-[OOR_ADDR]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080309] nouveau 0000:06:00.0:
-gr: TRAP ch 2 [003fbec000 Xorg[645]]
-Oct  7 23:13:23 schwinn-desktop kernel: [ 2726.080316] nouveau 0000:06:00.0:
-gr: GPC0/TPC0/MP trap: global 00000004 [MULTIPLE_WARP_ERRORS] warp 26000e
-[OOR_ADDR]
-Oct  7 23:13:28 schwinn-desktop kernel: [ 2730.413036] nouveau 0000:06:00.0:
-fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
-Oct  7 23:13:28 schwinn-desktop kernel: [ 2730.413057] nouveau 0000:06:00.0:
-fifo: runlist 0: scheduled for recovery
-Oct  7 23:13:28 schwinn-desktop kernel: [ 2730.413077] nouveau 0000:06:00.0:
-fifo: channel 2: killed
-Oct  7 23:13:28 schwinn-desktop kernel: [ 2730.413086] nouveau 0000:06:00.0:
-fifo: engine 6: scheduled for recovery
-Oct  7 23:13:28 schwinn-desktop kernel: [ 2730.413091] nouveau 0000:06:00.0:
-fifo: engine 0: scheduled for recovery
-Oct  7 23:13:28 schwinn-desktop kernel: [ 2730.413160] nouveau 0000:06:00.0:
-Xorg[645]: channel 2 killed!
-&lt;reboot&gt;
-Oct  7 23:14:37 schwinn-desktop kernel: [    0.000000] Linux version
-5.2.0-2-amd64 (<a href=3D"mailto:debian-kernel&#64;lists.debian.org">debian=
--kernel&#64;lists.debian.org</a>) (gcc version 8.3.0 (Debian
-8.3.0-21)) #1 SMP Debian 5.2.9-2 (2019-08-21)</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15705180393.8CcC53C5.20291--
-
---===============0477707060==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0477707060==--
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
