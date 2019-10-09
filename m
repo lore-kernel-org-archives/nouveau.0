@@ -1,54 +1,66 @@
-From: Ben Dooks <ben.dooks@codethink.co.uk>
-Subject: [PATCH] drm/nouveau/falcon: make unexported objects static
-Date: Wed,  9 Oct 2019 14:15:25 +0100
-Message-ID: <20191009131525.4352-1-ben.dooks@codethink.co.uk>
+From: Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH 2/8] drm/nouveau: use drm_debug_enabled() to
+ check for debug categories
+Date: Wed,  9 Oct 2019 18:37:29 +0300
+Message-ID: <a78935faaaa73e9302c4dc21b01913c819a08ff5.1570635293.git.jani.nikula@intel.com>
+References: <cover.1570635293.git.jani.nikula@intel.com>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Sender: linux-kernel-owner@vger.kernel.org
-To: linux-kernel@lists.codethink.co.uk
-Cc: Ben Dooks <ben.dooks@codethink.co.uk>, Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+In-Reply-To: <cover.1570635293.git.jani.nikula@intel.com>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: jani.nikula@intel.com, nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-Make the msgqueue_0148cdec_acr_func and msgqueue_0148cdec_func
-static to avoid the following sparse warnings:
-
-drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue_0148cdec.c:230:1: warning: symbol 'msgqueue_0148cdec_acr_func' was not declared. Should it be static?
-drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue_0148cdec.c:241:1: warning: symbol 'msgqueue_0148cdec_func' was not declared. Should it be static?
-
-Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
----
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: David Airlie <airlied@linux.ie>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
----
- drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue_0148cdec.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue_0148cdec.c b/drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue_0148cdec.c
-index 9424803b9ef4..dfc0d50f080b 100644
---- a/drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue_0148cdec.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/falcon/msgqueue_0148cdec.c
-@@ -226,7 +226,7 @@ acr_boot_falcon(struct nvkm_msgqueue *priv, enum nvkm_secboot_falcon falcon)
- 	return 0;
- }
- 
--const struct nvkm_msgqueue_acr_func
-+static const struct nvkm_msgqueue_acr_func
- msgqueue_0148cdec_acr_func = {
- 	.boot_falcon = acr_boot_falcon,
- };
-@@ -237,7 +237,7 @@ msgqueue_0148cdec_dtor(struct nvkm_msgqueue *queue)
- 	kfree(msgqueue_0148cdec(queue));
- }
- 
--const struct nvkm_msgqueue_func
-+static const struct nvkm_msgqueue_func
- msgqueue_0148cdec_func = {
- 	.init_func = &msgqueue_0148cdec_init_func,
- 	.acr_func = &msgqueue_0148cdec_acr_func,
--- 
-2.23.0
+QWxsb3cgYmV0dGVyIGFic3RyYWN0aW9uIG9mIHRoZSBkcm1fZGVidWcgZ2xvYmFsIHZhcmlhYmxl
+IGluIHRoZQpmdXR1cmUuIE5vIGZ1bmN0aW9uYWwgY2hhbmdlcy4KCnYyOiBtb3ZlIHVubGlrZWx5
+KCkgdG8gZHJtX2RlYnVnX2VuYWJsZWQoKQoKQ2M6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0
+LmNvbT4KQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnClNpZ25lZC1vZmYtYnk6IEph
+bmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvZGlzcG52NTAvZGlzcC5oIHwgNCArKy0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2Rydi5oICAgfCA0ICsrLS0KIDIgZmlsZXMgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCsp
+LCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rp
+c3BudjUwL2Rpc3AuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuaApp
+bmRleCA3YzQxYjA1OTlkMWEuLmMwYTc5NTMxYjA4NyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L2Rpc3BudjUwL2Rpc3AuaApAQCAtNzgsMTQgKzc4LDE0IEBAIHZvaWQgZXZvX2tpY2sodTMyICos
+IHN0cnVjdCBudjUwX2RtYWMgKik7CiAKICNkZWZpbmUgZXZvX210aGQocCwgbSwgcykgZG8gewkJ
+CQkJCVwKIAljb25zdCB1MzIgX20gPSAobSksIF9zID0gKHMpOwkJCQkJXAotCWlmIChkcm1fZGVi
+dWcgJiBEUk1fVVRfS01TKQkJCQkJXAorCWlmIChkcm1fZGVidWdfZW5hYmxlZChEUk1fVVRfS01T
+KSkJCQkJXAogCQlwcl9lcnIoIiUwNHggJWQgJXNcbiIsIF9tLCBfcywgX19mdW5jX18pOwkJXAog
+CSooKHApKyspID0gKChfcyA8PCAxOCkgfCBfbSk7CQkJCQlcCiB9IHdoaWxlKDApCiAKICNkZWZp
+bmUgZXZvX2RhdGEocCwgZCkgZG8gewkJCQkJCVwKIAljb25zdCB1MzIgX2QgPSAoZCk7CQkJCQkJ
+XAotCWlmIChkcm1fZGVidWcgJiBEUk1fVVRfS01TKQkJCQkJXAorCWlmIChkcm1fZGVidWdfZW5h
+YmxlZChEUk1fVVRfS01TKSkJCQkJXAogCQlwcl9lcnIoIlx0JTA4eFxuIiwgX2QpOwkJCQkJXAog
+CSooKHApKyspID0gX2Q7CQkJCQkJCVwKIH0gd2hpbGUoMCkKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2Rydi5oCmluZGV4IDcwZjM0Y2FjYzU1Mi4uZGE4YzQ2ZTA5OTQzIDEwMDY0NAotLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oCisrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmgKQEAgLTI0OCwxMSArMjQ4LDExIEBAIHZvaWQgbm91
+dmVhdV9kcm1fZGV2aWNlX3JlbW92ZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KTsKICNkZWZpbmUg
+TlZfSU5GTyhkcm0sZixhLi4uKSBOVl9QUklOVEsoaW5mbywgJihkcm0pLT5jbGllbnQsIGYsICMj
+YSkKIAogI2RlZmluZSBOVl9ERUJVRyhkcm0sZixhLi4uKSBkbyB7ICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKLQlpZiAodW5saWtlbHkoZHJtX2RlYnVnICYg
+RFJNX1VUX0RSSVZFUikpICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKKwlpZiAoZHJt
+X2RlYnVnX2VuYWJsZWQoRFJNX1VUX0RSSVZFUikpICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIFwKIAkJTlZfUFJJTlRLKGluZm8sICYoZHJtKS0+Y2xpZW50LCBmLCAjI2EpOyAgICAg
+ICAgICAgICAgICAgICAgICAgXAogfSB3aGlsZSgwKQogI2RlZmluZSBOVl9BVE9NSUMoZHJtLGYs
+YS4uLikgZG8geyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwK
+LQlpZiAodW5saWtlbHkoZHJtX2RlYnVnICYgRFJNX1VUX0FUT01JQykpICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIFwKKwlpZiAoZHJtX2RlYnVnX2VuYWJsZWQoRFJNX1VUX0FUT01JQykp
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKIAkJTlZfUFJJTlRLKGluZm8sICYo
+ZHJtKS0+Y2xpZW50LCBmLCAjI2EpOyAgICAgICAgICAgICAgICAgICAgICAgXAogfSB3aGlsZSgw
+KQogCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
+LWdmeA==
