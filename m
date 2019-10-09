@@ -1,119 +1,43 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 111853] nouveau kernel module won't load (not
- available) on Sony laptop with NVIDIA G86M [GeForce 8400M GT] ID: 10de:0426
-Date: Thu, 10 Oct 2019 05:27:17 +0000
-Message-ID: <bug-111853-8800-Dessr1sZkj@http.bugs.freedesktop.org/>
-References: <bug-111853-8800@http.bugs.freedesktop.org/>
+From: Ben Dooks <ben.dooks@codethink.co.uk>
+Subject: [PATCH] drm/nouveau/core/client: make nvkm_uclient_sclass static
+Date: Wed,  9 Oct 2019 12:58:32 +0100
+Message-ID: <20191009115832.16130-1-ben.dooks@codethink.co.uk>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1735315979=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-111853-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: linux-kernel@lists.codethink.co.uk
+Cc: David Airlie <airlied@linux.ie>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Ben Dooks <ben.dooks@codethink.co.uk>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1735315979==
-Content-Type: multipart/alternative; boundary="15706852372.FACdC.25988"
-Content-Transfer-Encoding: 7bit
-
-
---15706852372.FACdC.25988
-Date: Thu, 10 Oct 2019 05:27:17 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D111853
-
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This is weird:
-
-[    0.519104] pci 0000:01:00.0: BAR 6: no space for [mem size 0x00020000 p=
-ref]
-[    0.519109] pci 0000:01:00.0: BAR 6: failed to assign [mem size 0x000200=
-00
-pref]
-
-Not sure if it's related.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15706852372.FACdC.25988
-Date: Thu, 10 Oct 2019 05:27:17 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau kernel module won't load (not available) on Sony =
-laptop with NVIDIA G86M [GeForce 8400M GT] ID: 10de:0426"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111853#c9">Commen=
-t # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - nouveau kernel module won't load (not available) on Sony =
-laptop with NVIDIA G86M [GeForce 8400M GT] ID: 10de:0426"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111853">bug 11185=
-3</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>This is weird:
-
-[    0.519104] pci 0000:01:00.0: BAR 6: no space for [mem size 0x00020000 p=
-ref]
-[    0.519109] pci 0000:01:00.0: BAR 6: failed to assign [mem size 0x000200=
-00
-pref]
-
-Not sure if it's related.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15706852372.FACdC.25988--
-
---===============1735315979==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1735315979==--
+VGhlIG52a21fdWNsaWVudF9zY2xhc3Mgb2JqZWN0IGlzIG5vdCB1c2VkIG91dHNpZGUgdGhlIGZp
+bGUKaXQgaXMgZGVmaW5lZCBpbiwgc28gbWFrZSBpdCBzdGF0aWMgdG8gYXZvaWQgdGhlIGZvbGxv
+d2luZwpzcGFyc2Ugd2FybmluZzoKCmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29yZS9j
+bGllbnQuYzo2NDoxOiB3YXJuaW5nOiBzeW1ib2wgJ252a21fdWNsaWVudF9zY2xhc3MnIHdhcyBu
+b3QgZGVjbGFyZWQuIFNob3VsZCBpdCBiZSBzdGF0aWM/CgpTaWduZWQtb2ZmLWJ5OiBCZW4gRG9v
+a3MgPGJlbi5kb29rc0Bjb2RldGhpbmsuY28udWs+Ci0tLQpDYzogQmVuIFNrZWdncyA8YnNrZWdn
+c0ByZWRoYXQuY29tPgpDYzogRGF2aWQgQWlybGllIDxhaXJsaWVkQGxpbnV4LmllPgpDYzogRGFu
+aWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNoPgpDYzogZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpDYzogbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKLS0tCiBkcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9udmttL2NvcmUvY2xpZW50LmMgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwg
+MSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9udmttL2NvcmUvY2xpZW50LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+dmttL2NvcmUvY2xpZW50LmMKaW5kZXggYWM2NzEyMDI5MTllLi4wYzhjNTVjNzNiMTIgMTAwNjQ0
+Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29yZS9jbGllbnQuYworKysgYi9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2NvcmUvY2xpZW50LmMKQEAgLTYwLDcgKzYwLDcg
+QEAgbnZrbV91Y2xpZW50X25ldyhjb25zdCBzdHJ1Y3QgbnZrbV9vY2xhc3MgKm9jbGFzcywgdm9p
+ZCAqYXJndiwgdTMyIGFyZ2MsCiAJcmV0dXJuIDA7CiB9CiAKLWNvbnN0IHN0cnVjdCBudmttX3Nj
+bGFzcworc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX3NjbGFzcwogbnZrbV91Y2xpZW50X3NjbGFz
+cyA9IHsKIAkub2NsYXNzID0gTlZJRl9DTEFTU19DTElFTlQsCiAJLm1pbnZlciA9IDAsCi0tIAoy
+LjIzLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRy
+aS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbA==
