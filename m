@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 111940] frequent timeout warnings during normal
  operation
-Date: Wed, 09 Oct 2019 16:52:49 +0000
-Message-ID: <bug-111940-8800-dV4BpCTpEj@http.bugs.freedesktop.org/>
+Date: Wed, 09 Oct 2019 16:53:14 +0000
+Message-ID: <bug-111940-8800-wguNLwiy7i@http.bugs.freedesktop.org/>
 References: <bug-111940-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2133841222=="
+Content-Type: multipart/mixed; boundary="===============0187415428=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-111940-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2133841222==
-Content-Type: multipart/alternative; boundary="15706399680.DAc1b.26119"
+--===============0187415428==
+Content-Type: multipart/alternative; boundary="15706399930.448F5.27263"
 Content-Transfer-Encoding: 7bit
 
 
---15706399680.DAc1b.26119
-Date: Wed, 9 Oct 2019 16:52:48 +0000
+--15706399930.448F5.27263
+Date: Wed, 9 Oct 2019 16:53:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D111940
 
---- Comment #1 from Ravi Chandra Padmala <neenaoffline-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 145687
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145687&action=3Dedit
-lsmod output
+--- Comment #2 from Ravi Chandra Padmala <neenaoffline-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 145688
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145688&action=3Dedit
+lspci output
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15706399680.DAc1b.26119
-Date: Wed, 9 Oct 2019 16:52:48 +0000
+--15706399930.448F5.27263
+Date: Wed, 9 Oct 2019 16:53:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - frequent timeout warnings during normal operation"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111940#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111940#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - frequent timeout warnings during normal operation"
@@ -74,11 +74,11 @@ t # 1</a>
 neenaoffline&#64;gmail.com" title=3D"Ravi Chandra Padmala &lt;neenaoffline&=
 #64;gmail.com&gt;"> <span class=3D"fn">Ravi Chandra Padmala</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145687=
-" name=3D"attach_145687" title=3D"lsmod output">attachment 145687</a> <a hr=
-ef=3D"attachment.cgi?id=3D145687&amp;action=3Dedit" title=3D"lsmod output">=
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145688=
+" name=3D"attach_145688" title=3D"lspci output">attachment 145688</a> <a hr=
+ef=3D"attachment.cgi?id=3D145688&amp;action=3Dedit" title=3D"lspci output">=
 [details]</a></span>
-lsmod output</pre>
+lspci output</pre>
         </div>
       </p>
 
@@ -92,9 +92,9 @@ lsmod output</pre>
     </body>
 </html>=
 
---15706399680.DAc1b.26119--
+--15706399930.448F5.27263--
 
---===============2133841222==
+--===============0187415428==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============2133841222==--
+--===============0187415428==--
