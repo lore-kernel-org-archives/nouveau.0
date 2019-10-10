@@ -1,16 +1,13 @@
-From: Lyude Paul <lyude-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v2 26/27] drm/dp_mst: Also print unhashed
- pointers for malloc/topology references
-Date: Wed, 09 Oct 2019 15:40:29 -0400
-Message-ID: <308f0fe3bf2705a975d4b1f9dfd16dc07724d454.camel@redhat.com>
-References: <20190903204645.25487-1-lyude@redhat.com>
- <20190903204645.25487-27-lyude@redhat.com>
- <20190927142510.GS218215@art_vandelay>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111853] nouveau kernel module won't load (not
+ available) on Sony laptop with NVIDIA G86M [GeForce 8400M GT] ID: 10de:0426
+Date: Thu, 10 Oct 2019 05:18:45 +0000
+Message-ID: <bug-111853-8800-Xnx8luTkFm@http.bugs.freedesktop.org/>
+References: <bug-111853-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1473408584=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20190927142510.GS218215@art_vandelay>
+In-Reply-To: <bug-111853-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -20,119 +17,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Sean Paul <sean-p7yTbzM4H96eqtR555YLDQ@public.gmane.org>
-Cc: Maxime Ripard <mripard-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Imre Deak <imre.deak-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, amd-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Juston Li <juston.li-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, Harry Wentland <hwentlan-5C7GfCeVMHo@public.gmane.org>, Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGV5ISBSZTogb3VyIGRpc2N1c3Npb24gYWJvdXQgdGhpcyBhdCBYREMsIEkgdGhpbmsgSSdtIGdv
-aW5nIHRvIGRyb3AgdGhpcwpwYXRjaCBhbmQganVzdCBmaXggS0FTQU4gc28gaXQgcHJpbnRzIHRo
-ZSBoYXNoZWQgcG9pbnRlciBhcyB3ZWxsLCBJJ2xsIGNjIHlvdQpvbiB0aGUgcGF0Y2hlcyBmb3Ig
-dGhhdCBhcyB3ZWxsCgpPbiBGcmksIDIwMTktMDktMjcgYXQgMTA6MjUgLTA0MDAsIFNlYW4gUGF1
-bCB3cm90ZToKPiBPbiBUdWUsIFNlcCAwMywgMjAxOSBhdCAwNDo0NjowNFBNIC0wNDAwLCBMeXVk
-ZSBQYXVsIHdyb3RlOgo+ID4gQ3VycmVudGx5IHdlIG9ubHkgcHJpbnQgbXN0Yi9wb3J0IHBvaW50
-ZXIgYWRkcmVzc2VzIGluIG91ciBtYWxsb2MgYW5kCj4gPiB0b3BvbG9neSByZWZjb3VudCBmdW5j
-dGlvbnMgdXNpbmcgdGhlIGhhc2hlZC1ieS1kZWZhdWx0ICVwLCBidXQKPiA+IHVuZm9ydHVuYXRl
-bHkgaWYgeW91J3JlIHRyeWluZyB0byBkZWJ1ZyBhIHVzZS1hZnRlci1mcmVlIGVycm9yIGNhdXNl
-ZCBieQo+ID4gYSByZWZjb3VudGluZyBlcnJvciB0aGVuIHRoaXMgcmVhbGx5IGlzbid0IHRlcnJp
-Ymx5IHVzZWZ1bC4gT24gdGhlIG90aGVyCj4gPiBoYW5kIHRob3VnaCwgZXZlcnl0aGluZyBpbiB0
-aGUgcmVzdCBvZiB0aGUgRFAgTVNUIGhlbHBlcnMgdXNlcyBoYXNoZWQKPiA+IHBvaW50ZXIgdmFs
-dWVzIGFzIHdlbGwgYW5kIHByb2JhYmx5IGlzbid0IHVzZWZ1bCB0byBjb252ZXJ0IHRvIHVuaGFz
-aGVkLgo+ID4gU28sIGxldCdzIGp1c3QgZ2V0IHRoZSBiZXN0IG9mIGJvdGggd29ybGRzIGFuZCBw
-cmludCBib3RoIHRoZSBoYXNoZWQgYW5kCj4gPiB1bmhhc2hlZCBwb2ludGVyIGluIG91ciBtYWxs
-b2MvdG9wb2xvZ3kgcmVmY291bnQgZGVidWdnaW5nIG91dHB1dC4gVGhpcwo+ID4gd2lsbCBob3Bl
-ZnVsbHkgbWFrZSBpdCBhIGxvdCBlYXNpZXIgdG8gZmlndXJlIG91dCB3aGljaCBwb3J0L21zdGIg
-aXMKPiA+IGNhdXNpbmcgS0FTQU4gdG8gZ2V0IHVwc2V0Lgo+ID4gCj4gPiBDYzogSnVzdG9uIExp
-IDxqdXN0b24ubGlAaW50ZWwuY29tPgo+ID4gQ2M6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVs
-LmNvbT4KPiA+IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwu
-Y29tPgo+ID4gQ2M6IEhhcnJ5IFdlbnRsYW5kIDxod2VudGxhbkBhbWQuY29tPgo+ID4gQ2M6IERh
-bmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAZmZ3bGwuY2g+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBM
-eXVkZSBQYXVsIDxseXVkZUByZWRoYXQuY29tPgo+IAo+IEl0J3MgcmVhbGx5IHRvbyBiYWQgdGhl
-cmUgaXNuJ3QgYSBDT05GSUdfREVCVUdfU0hPV19QS19BRERSRVNTRVMgb3IgZXZlbiBhCj4gdmFs
-dWUKPiBvZiBrcHRyX3Jlc3RyaWN0IHZhbHVlIHRoYXQgYnlwYXNzZXMgcG9pbnRlciBoYXNoaW5n
-LiBJJ20gc3VyZSB3ZSdyZSBub3QgdGhlCj4gb25seSBvbmVzIHRvIGZlZWwgdGhpcyBwYWluLiBN
-YXliZSBldmVyeW9uZSBqdXN0IGhhY2tzIHZzbnByaW50Zi4uLgo+IAo+IEFzIGl0IGlzLCBJJ20g
-bm90IHRvdGFsbHkgc29sZCBvbiBleHBvc2luZyB0aGUgYWN0dWFsIGFkZHJlc3Nlcwo+IHVuY29u
-ZGl0aW9uYWxseS4KPiBXaGF0IGRvIHlvdSB0aGluayBhYm91dCBwdWxsaW5nIHRoZSBwcmludCBv
-dXQgaW50byBhIGZ1bmN0aW9uIGFuZCBvbmx5Cj4gcHJpbnRpbmcKPiBweCBpZiBhIGRlYnVnIGtj
-b25maWcgaXMgc2V0Pwo+IAo+IFNlYW4KPiAKPiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9k
-cm1fZHBfbXN0X3RvcG9sb2d5LmMgfCAzNCArKysrKysrKysrKysrKysrLS0tLS0tLS0tLS0KPiA+
-ICAxIGZpbGUgY2hhbmdlZCwgMjAgaW5zZXJ0aW9ucygrKSwgMTQgZGVsZXRpb25zKC0pCj4gPiAK
-PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2RwX21zdF90b3BvbG9neS5jCj4g
-PiBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfbXN0X3RvcG9sb2d5LmMKPiA+IGluZGV4IDJmZTI0
-ZTM2NjkyNS4uNWI1YzBiM2IzYzBlIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2Ry
-bV9kcF9tc3RfdG9wb2xvZ3kuYwo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9kcF9tc3Rf
-dG9wb2xvZ3kuYwo+ID4gQEAgLTEzMjcsNyArMTMyNyw4IEBAIHN0YXRpYyB2b2lkCj4gPiAgZHJt
-X2RwX21zdF9nZXRfbXN0Yl9tYWxsb2Moc3RydWN0IGRybV9kcF9tc3RfYnJhbmNoICptc3RiKQo+
-ID4gIHsKPiA+ICAJa3JlZl9nZXQoJm1zdGItPm1hbGxvY19rcmVmKTsKPiA+IC0JRFJNX0RFQlVH
-KCJtc3RiICVwICglZClcbiIsIG1zdGIsIGtyZWZfcmVhZCgmbXN0Yi0+bWFsbG9jX2tyZWYpKTsK
-PiA+ICsJRFJNX0RFQlVHKCJtc3RiICVwLyVweCAoJWQpXG4iLAo+ID4gKwkJICBtc3RiLCBtc3Ri
-LCBrcmVmX3JlYWQoJm1zdGItPm1hbGxvY19rcmVmKSk7Cj4gPiAgfQo+ID4gIAo+ID4gIC8qKgo+
-ID4gQEAgLTEzNDQsNyArMTM0NSw4IEBAIGRybV9kcF9tc3RfZ2V0X21zdGJfbWFsbG9jKHN0cnVj
-dCBkcm1fZHBfbXN0X2JyYW5jaAo+ID4gKm1zdGIpCj4gPiAgc3RhdGljIHZvaWQKPiA+ICBkcm1f
-ZHBfbXN0X3B1dF9tc3RiX21hbGxvYyhzdHJ1Y3QgZHJtX2RwX21zdF9icmFuY2ggKm1zdGIpCj4g
-PiAgewo+ID4gLQlEUk1fREVCVUcoIm1zdGIgJXAgKCVkKVxuIiwgbXN0Yiwga3JlZl9yZWFkKCZt
-c3RiLT5tYWxsb2Nfa3JlZikgLSAxKTsKPiA+ICsJRFJNX0RFQlVHKCJtc3RiICVwLyVweCAoJWQp
-XG4iLAo+ID4gKwkJICBtc3RiLCBtc3RiLCBrcmVmX3JlYWQoJm1zdGItPm1hbGxvY19rcmVmKSAt
-IDEpOwo+ID4gIAlrcmVmX3B1dCgmbXN0Yi0+bWFsbG9jX2tyZWYsIGRybV9kcF9mcmVlX21zdF9i
-cmFuY2hfZGV2aWNlKTsKPiA+ICB9Cj4gPiAgCj4gPiBAQCAtMTM3OSw3ICsxMzgxLDggQEAgdm9p
-ZAo+ID4gIGRybV9kcF9tc3RfZ2V0X3BvcnRfbWFsbG9jKHN0cnVjdCBkcm1fZHBfbXN0X3BvcnQg
-KnBvcnQpCj4gPiAgewo+ID4gIAlrcmVmX2dldCgmcG9ydC0+bWFsbG9jX2tyZWYpOwo+ID4gLQlE
-Uk1fREVCVUcoInBvcnQgJXAgKCVkKVxuIiwgcG9ydCwga3JlZl9yZWFkKCZwb3J0LT5tYWxsb2Nf
-a3JlZikpOwo+ID4gKwlEUk1fREVCVUcoInBvcnQgJXAvJXB4ICglZClcbiIsCj4gPiArCQkgIHBv
-cnQsIHBvcnQsIGtyZWZfcmVhZCgmcG9ydC0+bWFsbG9jX2tyZWYpKTsKPiA+ICB9Cj4gPiAgRVhQ
-T1JUX1NZTUJPTChkcm1fZHBfbXN0X2dldF9wb3J0X21hbGxvYyk7Cj4gPiAgCj4gPiBAQCAtMTM5
-Niw3ICsxMzk5LDggQEAgRVhQT1JUX1NZTUJPTChkcm1fZHBfbXN0X2dldF9wb3J0X21hbGxvYyk7
-Cj4gPiAgdm9pZAo+ID4gIGRybV9kcF9tc3RfcHV0X3BvcnRfbWFsbG9jKHN0cnVjdCBkcm1fZHBf
-bXN0X3BvcnQgKnBvcnQpCj4gPiAgewo+ID4gLQlEUk1fREVCVUcoInBvcnQgJXAgKCVkKVxuIiwg
-cG9ydCwga3JlZl9yZWFkKCZwb3J0LT5tYWxsb2Nfa3JlZikgLSAxKTsKPiA+ICsJRFJNX0RFQlVH
-KCJwb3J0ICVwLyVweCAoJWQpXG4iLAo+ID4gKwkJICBwb3J0LCBwb3J0LCBrcmVmX3JlYWQoJnBv
-cnQtPm1hbGxvY19rcmVmKSAtIDEpOwo+ID4gIAlrcmVmX3B1dCgmcG9ydC0+bWFsbG9jX2tyZWYs
-IGRybV9kcF9mcmVlX21zdF9wb3J0KTsKPiA+ICB9Cj4gPiAgRVhQT1JUX1NZTUJPTChkcm1fZHBf
-bXN0X3B1dF9wb3J0X21hbGxvYyk7Cj4gPiBAQCAtMTQ0Nyw4ICsxNDUxLDggQEAgZHJtX2RwX21z
-dF90b3BvbG9neV90cnlfZ2V0X21zdGIoc3RydWN0Cj4gPiBkcm1fZHBfbXN0X2JyYW5jaCAqbXN0
-YikKPiA+ICAJaW50IHJldCA9IGtyZWZfZ2V0X3VubGVzc196ZXJvKCZtc3RiLT50b3BvbG9neV9r
-cmVmKTsKPiA+ICAKPiA+ICAJaWYgKHJldCkKPiA+IC0JCURSTV9ERUJVRygibXN0YiAlcCAoJWQp
-XG4iLCBtc3RiLAo+ID4gLQkJCSAga3JlZl9yZWFkKCZtc3RiLT50b3BvbG9neV9rcmVmKSk7Cj4g
-PiArCQlEUk1fREVCVUcoIm1zdGIgJXAvJXB4ICglZClcbiIsCj4gPiArCQkJICBtc3RiLCBtc3Ri
-LCBrcmVmX3JlYWQoJm1zdGItPnRvcG9sb2d5X2tyZWYpKTsKPiA+ICAKPiA+ICAJcmV0dXJuIHJl
-dDsKPiA+ICB9Cj4gPiBAQCAtMTQ3MSw3ICsxNDc1LDggQEAgc3RhdGljIHZvaWQgZHJtX2RwX21z
-dF90b3BvbG9neV9nZXRfbXN0YihzdHJ1Y3QKPiA+IGRybV9kcF9tc3RfYnJhbmNoICptc3RiKQo+
-ID4gIHsKPiA+ICAJV0FSTl9PTihrcmVmX3JlYWQoJm1zdGItPnRvcG9sb2d5X2tyZWYpID09IDAp
-Owo+ID4gIAlrcmVmX2dldCgmbXN0Yi0+dG9wb2xvZ3lfa3JlZik7Cj4gPiAtCURSTV9ERUJVRygi
-bXN0YiAlcCAoJWQpXG4iLCBtc3RiLCBrcmVmX3JlYWQoJm1zdGItPnRvcG9sb2d5X2tyZWYpKTsK
-PiA+ICsJRFJNX0RFQlVHKCJtc3RiICVwLyVweCAoJWQpXG4iLAo+ID4gKwkJICBtc3RiLCBtc3Ri
-LCBrcmVmX3JlYWQoJm1zdGItPnRvcG9sb2d5X2tyZWYpKTsKPiA+ICB9Cj4gPiAgCj4gPiAgLyoq
-Cj4gPiBAQCAtMTQ4OSw4ICsxNDk0LDggQEAgc3RhdGljIHZvaWQgZHJtX2RwX21zdF90b3BvbG9n
-eV9nZXRfbXN0YihzdHJ1Y3QKPiA+IGRybV9kcF9tc3RfYnJhbmNoICptc3RiKQo+ID4gIHN0YXRp
-YyB2b2lkCj4gPiAgZHJtX2RwX21zdF90b3BvbG9neV9wdXRfbXN0YihzdHJ1Y3QgZHJtX2RwX21z
-dF9icmFuY2ggKm1zdGIpCj4gPiAgewo+ID4gLQlEUk1fREVCVUcoIm1zdGIgJXAgKCVkKVxuIiwK
-PiA+IC0JCSAgbXN0Yiwga3JlZl9yZWFkKCZtc3RiLT50b3BvbG9neV9rcmVmKSAtIDEpOwo+ID4g
-KwlEUk1fREVCVUcoIm1zdGIgJXAvJXB4ICglZClcbiIsCj4gPiArCQkgIG1zdGIsIG1zdGIsIGty
-ZWZfcmVhZCgmbXN0Yi0+dG9wb2xvZ3lfa3JlZikgLSAxKTsKPiA+ICAJa3JlZl9wdXQoJm1zdGIt
-PnRvcG9sb2d5X2tyZWYsIGRybV9kcF9kZXN0cm95X21zdF9icmFuY2hfZGV2aWNlKTsKPiA+ICB9
-Cj4gPiAgCj4gPiBAQCAtMTU0Niw4ICsxNTUxLDggQEAgZHJtX2RwX21zdF90b3BvbG9neV90cnlf
-Z2V0X3BvcnQoc3RydWN0Cj4gPiBkcm1fZHBfbXN0X3BvcnQgKnBvcnQpCj4gPiAgCWludCByZXQg
-PSBrcmVmX2dldF91bmxlc3NfemVybygmcG9ydC0+dG9wb2xvZ3lfa3JlZik7Cj4gPiAgCj4gPiAg
-CWlmIChyZXQpCj4gPiAtCQlEUk1fREVCVUcoInBvcnQgJXAgKCVkKVxuIiwgcG9ydCwKPiA+IC0J
-CQkgIGtyZWZfcmVhZCgmcG9ydC0+dG9wb2xvZ3lfa3JlZikpOwo+ID4gKwkJRFJNX0RFQlVHKCJw
-b3J0ICVwLyVweCAoJWQpXG4iLAo+ID4gKwkJCSAgcG9ydCwgcG9ydCwga3JlZl9yZWFkKCZwb3J0
-LT50b3BvbG9neV9rcmVmKSk7Cj4gPiAgCj4gPiAgCXJldHVybiByZXQ7Cj4gPiAgfQo+ID4gQEAg
-LTE1NjksNyArMTU3NCw4IEBAIHN0YXRpYyB2b2lkIGRybV9kcF9tc3RfdG9wb2xvZ3lfZ2V0X3Bv
-cnQoc3RydWN0Cj4gPiBkcm1fZHBfbXN0X3BvcnQgKnBvcnQpCj4gPiAgewo+ID4gIAlXQVJOX09O
-KGtyZWZfcmVhZCgmcG9ydC0+dG9wb2xvZ3lfa3JlZikgPT0gMCk7Cj4gPiAgCWtyZWZfZ2V0KCZw
-b3J0LT50b3BvbG9neV9rcmVmKTsKPiA+IC0JRFJNX0RFQlVHKCJwb3J0ICVwICglZClcbiIsIHBv
-cnQsIGtyZWZfcmVhZCgmcG9ydC0+dG9wb2xvZ3lfa3JlZikpOwo+ID4gKwlEUk1fREVCVUcoInBv
-cnQgJXAvJXB4ICglZClcbiIsCj4gPiArCQkgIHBvcnQsIHBvcnQsIGtyZWZfcmVhZCgmcG9ydC0+
-dG9wb2xvZ3lfa3JlZikpOwo+ID4gIH0KPiA+ICAKPiA+ICAvKioKPiA+IEBAIC0xNTg1LDggKzE1
-OTEsOCBAQCBzdGF0aWMgdm9pZCBkcm1fZHBfbXN0X3RvcG9sb2d5X2dldF9wb3J0KHN0cnVjdAo+
-ID4gZHJtX2RwX21zdF9wb3J0ICpwb3J0KQo+ID4gICAqLwo+ID4gIHN0YXRpYyB2b2lkIGRybV9k
-cF9tc3RfdG9wb2xvZ3lfcHV0X3BvcnQoc3RydWN0IGRybV9kcF9tc3RfcG9ydCAqcG9ydCkKPiA+
-ICB7Cj4gPiAtCURSTV9ERUJVRygicG9ydCAlcCAoJWQpXG4iLAo+ID4gLQkJICBwb3J0LCBrcmVm
-X3JlYWQoJnBvcnQtPnRvcG9sb2d5X2tyZWYpIC0gMSk7Cj4gPiArCURSTV9ERUJVRygicG9ydCAl
-cC8lcHggKCVkKVxuIiwKPiA+ICsJCSAgcG9ydCwgcG9ydCwga3JlZl9yZWFkKCZwb3J0LT50b3Bv
-bG9neV9rcmVmKSAtIDEpOwo+ID4gIAlrcmVmX3B1dCgmcG9ydC0+dG9wb2xvZ3lfa3JlZiwgZHJt
-X2RwX2Rlc3Ryb3lfcG9ydCk7Cj4gPiAgfQo+ID4gIAo+ID4gLS0gCj4gPiAyLjIxLjAKPiA+IAot
-LSAKQ2hlZXJzLAoJTHl1ZGUgUGF1bAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1
+
+--===============1473408584==
+Content-Type: multipart/alternative; boundary="15706847251.9A419AA8c.25819"
+Content-Transfer-Encoding: 7bit
+
+
+--15706847251.9A419AA8c.25819
+Date: Thu, 10 Oct 2019 05:18:45 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111853
+
+--- Comment #8 from Felix Miata <mrmazda-ihVZJaRskl1bRRN4PJnoQQ@public.gmane.org> ---
+A fresh installation of Windows 7 uses the panel's native 1440x900 mode via=
+ its
+"VGA" driver, though the HDMI port sends nothing to a display more than wha=
+t's
+necessary to make it complain mode not supported.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15706847251.9A419AA8c.25819
+Date: Thu, 10 Oct 2019 05:18:45 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau kernel module won't load (not available) on Sony =
+laptop with NVIDIA G86M [GeForce 8400M GT] ID: 10de:0426"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111853#c8">Commen=
+t # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - nouveau kernel module won't load (not available) on Sony =
+laptop with NVIDIA G86M [GeForce 8400M GT] ID: 10de:0426"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111853">bug 11185=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+mrmazda&#64;earthlink.net" title=3D"Felix Miata &lt;mrmazda&#64;earthlink.n=
+et&gt;"> <span class=3D"fn">Felix Miata</span></a>
+</span></b>
+        <pre>A fresh installation of Windows 7 uses the panel's native 1440=
+x900 mode via its
+&quot;VGA&quot; driver, though the HDMI port sends nothing to a display mor=
+e than what's
+necessary to make it complain mode not supported.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15706847251.9A419AA8c.25819--
+
+--===============1473408584==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1473408584==--
