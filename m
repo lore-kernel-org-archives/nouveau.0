@@ -1,73 +1,32 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [PATCH 1/2] drm/nouveau: move io_reserve_lru handling
- into the driver
-Date: Thu, 10 Oct 2019 11:50:17 +0200
-Message-ID: <CAKMK7uFKJAnd0ztRheP0fXD1GKQuRYPc7dpXeHtO0qjCPciT8g@mail.gmail.com>
-References: <20190930131254.31071-1-christian.koenig@amd.com>
- <20191009153934.GJ16989@phenom.ffwll.local>
- <0c20edc1-f336-c194-f4a5-bc0ce9d67fd8@gmail.com>
+From: Markus Elfring <Markus.Elfring@web.de>
+Subject: drm/nouveau: Checking a kmemdup() call in
+ nouveau_connector_of_detect()
+Date: Sat, 12 Oct 2019 18:04:15 +0200
+Message-ID: <5ff56ca3-0e20-2820-f981-d2d37dded133@web.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <0c20edc1-f336-c194-f4a5-bc0ce9d67fd8-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
-Cc: Dave Airlie <airlied-cv59FeDIM0c@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Language: en-US
+Sender: linux-kernel-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>
+Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org, Aditya Pakki <pakki001@umn.edu>, Kangjie Lu <kjlu@umn.edu>, Navid Emamdoost <emamd001@umn.edu>, Stephen McCamant <smccaman@umn.edu>
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBPY3QgMTAsIDIwMTkgYXQgOTo1NCBBTSBDaHJpc3RpYW4gS8O2bmlnCjxja29lbmln
-LmxlaWNodHp1bWVya2VuQGdtYWlsLmNvbT4gd3JvdGU6Cj4KPiBBbSAwOS4xMC4xOSB1bSAxNzoz
-OSBzY2hyaWViIERhbmllbCBWZXR0ZXI6Cj4gPiBPbiBNb24sIFNlcCAzMCwgMjAxOSBhdCAwMzox
-Mjo1M1BNICswMjAwLCBDaHJpc3RpYW4gS8O2bmlnIHdyb3RlOgo+ID4gW1NOSVBdCj4gPj4gK3N0
-YXRpYyB2bV9mYXVsdF90IG5vdXZlYXVfdHRtX2ZhdWx0KHN0cnVjdCB2bV9mYXVsdCAqdm1mKQo+
-ID4+ICt7Cj4gPj4gKyAgICBzdHJ1Y3Qgdm1fYXJlYV9zdHJ1Y3QgKnZtYSA9IHZtZi0+dm1hOwo+
-ID4+ICsgICAgc3RydWN0IHR0bV9idWZmZXJfb2JqZWN0ICpibyA9IHZtYS0+dm1fcHJpdmF0ZV9k
-YXRhOwo+ID4+ICsgICAgcGdwcm90X3QgcHJvdDsKPiA+PiArICAgIHZtX2ZhdWx0X3QgcmV0Owo+
-ID4+ICsKPiA+PiArICAgIHJldCA9IHR0bV9ib192bV9yZXNlcnZlKGJvLCB2bWYpOwo+ID4+ICsg
-ICAgaWYgKHJldCkKPiA+PiArICAgICAgICAgICAgcmV0dXJuIHJldDsKPiA+PiArCj4gPj4gKyAg
-ICBub3V2ZWF1X2JvX2RlbF9pb19yZXNlcnZlX2xydShibyk7Cj4gPiBJc24ndCB0aGlzIG9wZW5p
-bmcgdXAgYSBjYW4gb2Ygd29ybXMgKGluIHRoZW9yeSkgd2hlcmUgYSBsb3Qgb2YgY29uY3VycmVu
-dAo+ID4gZmF1bHRzIHdpbGwgYWxsIGZhaWwgYmVjYXVzZSB0aGV5J3JlIGFsbCByZW1vdmVkIHRo
-ZW1zZWx2ZXMgZnJvbSB0aGUgbHJ1LAo+ID4gc28gY2FuJ3Qgc2VlIGFueW9uZSBlbHNlIHRvIHRo
-cm93IG91dD8KPiA+Cj4gPiBTYW1lIHByb2JsZW0gcmVhbGx5IHRoYXQgdHRtIGhhZCAod2VsbCBz
-dGlsbCBoYXMgSSB0aGluayBmb3IgIWFtZGdwdSkgd2l0aAo+ID4gaXRzIG90aGVyIGxydSAuLi4K
-PiA+Cj4gPiBPciBhbSBJIGdldHRpbmcgdG90YWxseSBsb3N0IGFnYWluIGhlcmU/Cj4KPiBObywg
-eW91ciBhcmUgcHJldHR5IG11Y2ggY29ycmVjdC4gQnV0IHdlIGFyZSBub3Qgb3BlbmluZyB1cCB0
-aGF0IGNhbiBvZgo+IHdvcm1zLCBpdCBoYXMgYmVlbiBoZXJlIGZvciBsaWtlIGFsd2F5cy4KCkFo
-LCBJIGRpZG4ndCBjaGVjayB0aGUgdHRtLWJhc2VkIHZlcnNpb24gY2xvc2VseSBlbm91Z2ggdG8g
-Y29udmluY2UKbXlzZWxmIGl0IGhhcyB0aGUgc2FtZSBwcm9ibGVtLgoKPiBZb3UganVzdCBuZWVk
-IHRvIGltYWdpbmUgdGhhdCB5b3UgaGF2ZSB0d28gcHJvY2Vzc2VzIGtpY2tpbmcgb3V0IHRoZQo+
-IHBhZ2UgdGFibGVzIG9mIGVhY2ggb3RoZXIgYmVmb3JlIHNvbWVib2R5IGhhZCBhIGNoYW5jZSB0
-byBtYWtlIHByb2dyZXNzLgo+IFRoaXMgd2lsbCBqdXN0IGxvb3AgZm9yZXZlciA6KQo+Cj4gVGhl
-IGNvcnJlY3Qgc29sdXRpb24gaXMgdG8gbm90IHVzZSBhIEJPIGJhc2VkIGFwcHJvYWNoIGF0IGFs
-bCwgYnV0Cj4gcmF0aGVyIGEgd2luZG93IGJhc2VkIGFwcHJvYWNoIHdoZXJlIHlvdSBoYXZlIGFu
-IExSVSBvZiB0aGUgd2luZG93IHlvdQo+IGdhdmUgb3V0IGxhc3QgdG8gYWNjZXNzIHNvbWV0aGlu
-Zy4gVGhpcyB3YXkgeW91IGhhdmUgYSBtdWNoIGxhcmdlcgo+IG51bWJlciBvZiB3aW5kb3dzIHlv
-dSBjYW4gdXNlICg0ayBpZiB5b3UgdXNlIDY0a0Igd2luZG93IHNpemUgb24gYSAyNTZNQgo+IEJB
-UikuCj4KPiBUaGlzIHdheSB5b3UgY2FuIHNhZmVseSBhc3N1bWUgdGhhdCB0aGUgbnVtYmVyIG9m
-IHdpbmRvd3MgeW91IGhhdmUKPiBhdmFpbGFibGUgaXMgYWx3YXlzIGxhcmdlciB0aGFuIHRoZSBu
-dW1iZXIgb2YgZmF1bHRzIHlvdSBjYW4gcHJvY2VzcyBhdAo+IHRoZSBzYW1lIHRpbWUuIEJ1dCB0
-aGF0IHdvdWxkIHJlcXVpcmUgcXVpdGUgYSBidW5jaCBvZiBjaGFuZ2VzIGZvciBUVE0KPiBhcyB3
-ZWxsIGFzIG5vdXZlYXUuCgpZZWFoIHdlIGRvIHRoYXQgb24gaTkxNSBzaW5jZSBhIHdoaWxlLCBi
-dWZmZXJzIGJlY2FtZSB3YXkgdG9vIGJpZy4KU29tZXdoYXQgdHJpY2t5IG9uIG9sZGVyIGh3IHdo
-ZXJlIHdlIGFsc28gZGV0aWxlLCB0aGVyZSB0aGUgd2luZG93IHdlCnBpY2sgbmVlZHMgdG8gYmUg
-YXQgbGVhc3QgYSBmdWxsIHRpbGUgcm93LgoKPiBCVFc6IFRoaXMgaXMgb25lIG9mIHRoZSByZWFz
-b25zIChhZGRpdGlvbmFsIHRvIHRoYXQgaXQgaXMgaG9ycmlibGUgc2xvdykKPiB3aHkgd2UgbmV2
-ZXIgdXNlZCB0aGUgcmVtYXBwaW5nIGZlYXR1cmUgb24gQU1EIGhhcmR3YXJlIGZvciBMaW51eC4K
-Ck5vdCBmZWVsaW5nIGxpa2UgYSBmdWxsIHItYiwgYW5kIHlvdSBkZWZpbml0ZWx5IHdhbnQgc29t
-ZW9uZSB0byB0ZXN0CnRoaXMgb24gbm91dmVhdSwgYnV0IGF0IGxlYXQKCkFja2VkLWJ5OiBEYW5p
-ZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgoKZm9yIHRoZSBzZXJpZXMuCi1EYW5p
-ZWwKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9u
-Cis0MSAoMCkgNzkgMzY1IDU3IDQ4IC0gaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+Hello,
+
+I tried another script for the semantic patch language out.
+This source code analysis approach points out that the implementation
+of the function =E2=80=9Cnouveau_connector_of_detect=E2=80=9D contains sti=
+ll
+an unchecked call of the function =E2=80=9Ckmemdup=E2=80=9D.
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/dr=
+ivers/gpu/drm/nouveau/nouveau_connector.c?id=3D1c0cc5f1ae5ee5a6913704c0d75=
+a6e99604ee30a#n476
+https://elixir.bootlin.com/linux/v5.4-rc2/source/drivers/gpu/drm/nouveau/n=
+ouveau_connector.c#L476
+
+How do you think about to improve it?
+
+Regards,
+Markus
