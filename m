@@ -1,32 +1,54 @@
-From: Markus Elfring <Markus.Elfring@web.de>
-Subject: drm/nouveau: Checking a kmemdup() call in
- nouveau_connector_of_detect()
-Date: Sat, 12 Oct 2019 18:04:15 +0200
-Message-ID: <5ff56ca3-0e20-2820-f981-d2d37dded133@web.de>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH xf86-video-nouveau] nv4/exa: tiling is unsupported
+ pre-nv10, reduce alignment requirements
+Date: Sat, 12 Oct 2019 16:17:55 -0400
+Message-ID: <20191012201755.10940-1-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>
-Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org, Aditya Pakki <pakki001@umn.edu>, Kangjie Lu <kjlu@umn.edu>, Navid Emamdoost <emamd001@umn.edu>, Stephen McCamant <smccaman@umn.edu>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: =?UTF-8?q?Marcin=20Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hello,
-
-I tried another script for the semantic patch language out.
-This source code analysis approach points out that the implementation
-of the function =E2=80=9Cnouveau_connector_of_detect=E2=80=9D contains sti=
-ll
-an unchecked call of the function =E2=80=9Ckmemdup=E2=80=9D.
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/dr=
-ivers/gpu/drm/nouveau/nouveau_connector.c?id=3D1c0cc5f1ae5ee5a6913704c0d75=
-a6e99604ee30a#n476
-https://elixir.bootlin.com/linux/v5.4-rc2/source/drivers/gpu/drm/nouveau/n=
-ouveau_connector.c#L476
-
-How do you think about to improve it?
-
-Regards,
-Markus
+Q29tbWl0IDhjOGYxNWM5ZDMgYWRkZWQgaW5jcmVhc2VkIHBpdGNoIGFsaWdubWVudCByZXF1aXJl
+bWVudHMgdG8gaGFuZGxlCm52MTAtbnY0MCB0aWxpbmcgKHdoaWNoIG11c3QgaGF2ZSBhIHNtYWxs
+IG51bWJlciAqIFBvVCBwaXRjaCkuIFdoaWxlCk5WNC9OVjUgZG8gaGF2ZSB0aWxpbmcsIHRoaXMg
+d2FzIG5ldmVyIHN1cHBvcnRlZCBpbiBub3V2ZWF1LgoKVGhpcyBjaGFuZ2UgZW5hYmxlcyAxOTIw
+eDEyMDAgcmVzb2x1dGlvbnMgc2luY2UgdGhlIG1heGltdW0gc3VyZmFjZQpwaXRjaCBoYXMgdG8g
+YmUgc3RyaWN0bHkgbGVzcyB0aGFuIDgxOTIuIFRoZSBjdXJyZW50IGxvZ2ljIHdpbGwgYWxpZ24K
+MTkyMCo0IHVwIHRvIDgxOTIgdW5uZWNlc3NhcmlseS4KClNpZ25lZC1vZmYtYnk6IElsaWEgTWly
+a2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KQ2M6IE1hcmNpbiBLb8WbY2llbG5pY2tpIDxrb3Jp
+YWtpbkAweDA0Lm5ldD4KQ2M6IEZyYW5jaXNjbyBKZXJleiA8Y3Vycm9qZXJlekByaXNldXAubmV0
+PgotLS0KIHNyYy9ub3V2ZWF1X2RyaTIuYyB8IDUgKysrKy0KIHNyYy9udl9kcml2ZXIuYyAgICB8
+IDMgKystCiAyIGZpbGVzIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkK
+CmRpZmYgLS1naXQgYS9zcmMvbm91dmVhdV9kcmkyLmMgYi9zcmMvbm91dmVhdV9kcmkyLmMKaW5k
+ZXggM2Q1Mzc4NS4uY2UwYTU3MyAxMDA2NDQKLS0tIGEvc3JjL25vdXZlYXVfZHJpMi5jCisrKyBi
+L3NyYy9ub3V2ZWF1X2RyaTIuYwpAQCAtNjIsNyArNjIsMTAgQEAgbm91dmVhdV9kcmkyX2NyZWF0
+ZV9idWZmZXIyKFNjcmVlblB0ciBwU2NyZWVuLCBEcmF3YWJsZVB0ciBwRHJhdywgdW5zaWduZWQg
+aW50IGEKIAkJCXBwaXgtPnJlZmNudCsrOwogCX0gZWxzZSB7CiAJCWludCBicHA7Ci0JCXVuc2ln
+bmVkIGludCB1c2FnZV9oaW50ID0gTk9VVkVBVV9DUkVBVEVfUElYTUFQX1RJTEVEOworCQl1bnNp
+Z25lZCBpbnQgdXNhZ2VfaGludCA9IDA7CisKKwkJaWYgKHBOdi0+QXJjaGl0ZWN0dXJlID49IE5W
+X0FSQ0hfMTApCisJCQl1c2FnZV9oaW50IHw9IE5PVVZFQVVfQ1JFQVRFX1BJWE1BUF9USUxFRDsK
+IAogCQkvKiAnZm9ybWF0JyBpcyBqdXN0IGRlcHRoIChvciAwLCBvciBtYXliZSBpdCBkZXBlbmRz
+IG9uIHRoZSBjYWxsZXIpICovCiAJCWJwcCA9IHJvdW5kX3VwX3BvdzIoZm9ybWF0ID8gZm9ybWF0
+IDogcERyYXctPmRlcHRoKTsKZGlmZiAtLWdpdCBhL3NyYy9udl9kcml2ZXIuYyBiL3NyYy9udl9k
+cml2ZXIuYwppbmRleCA0MmViOWRiLi5hNjM2NzRjIDEwMDY0NAotLS0gYS9zcmMvbnZfZHJpdmVy
+LmMKKysrIGIvc3JjL252X2RyaXZlci5jCkBAIC0xMDgyLDcgKzEwODIsOCBAQCBOVlByZUluaXQo
+U2NybkluZm9QdHIgcFNjcm4sIGludCBmbGFncykKIAkJCXBOdi0+d2ZiX2VuYWJsZWQgPSB4Zjg2
+UmV0dXJuT3B0VmFsQm9vbCgKIAkJCQlwTnYtPk9wdGlvbnMsIE9QVElPTl9XRkIsIEZBTFNFKTsK
+IAotCQlwTnYtPnRpbGVkX3NjYW5vdXQgPSBUUlVFOworCQlpZiAocE52LT5BcmNoaXRlY3R1cmUg
+Pj0gTlZfQVJDSF8xMCkKKwkJCXBOdi0+dGlsZWRfc2Nhbm91dCA9IFRSVUU7CiAJfQogCiAJcE52
+LT5jZV9lbmFibGVkID0KLS0gCjIuMjEuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1
