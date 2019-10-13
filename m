@@ -1,12 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH xf86-video-nouveau] dri2,
- present: move in pixmap before getting addresses
-Date: Sat, 12 Oct 2019 20:27:17 -0400
-Message-ID: <20191013002717.3678-1-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 111868] xorg with nouveau crash when starting
+ mate-session in debian 10
+Date: Sun, 13 Oct 2019 16:02:08 +0000
+Message-ID: <bug-111868-8800-koX8HHbKHp@http.bugs.freedesktop.org/>
+References: <bug-111868-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0820870094=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-111868-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -19,53 +20,95 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Rmlyc3Qgb2YgYWxsLCB3ZSB3ZXJlIG5vdCBmb3JjaW5nIHRoZSBwaXhtYXAgdG8gYmUgbW92ZWQg
-aW4gYmVmb3JlCmF0dGVtcHRpbmcgdG8gcHJlc2VudCBpdC4gU2Vjb25kbHksIGluIGNlcnRhaW4g
-Y29uZmlndXJhdGlvbnMsIHdlIGF2b2lkCmV2ZXIgYmFja2luZyBwaXhtYXBzIHdpdGggdnJhbSAo
-aW4gR1BVcyB3aXRoIDMyTUIgb2YgVlJBTSBvciBsZXNzKS4KClRoaXMgZml4ZXMgdGhlIG9ic2Vy
-dmVkIGNhc2VzIHdoZXJlIHdlIGVuZGVkIHVwIGFzc3VtaW5nIHRoYXQgYSBibyB3YXMKYmFja2lu
-ZyBhIHBpeG1hcCB3aXRob3V0IGRvaW5nIHRoZSBleHBsaWNpdCBtb3ZlLWluLgoKU2lnbmVkLW9m
-Zi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KClRoaXMgZml4ZXMg
-c29tZSBjcmFzaGVzIG9uIGEgTlY1IHdpdGggMzJNQiBWUkFNICsgeGZ3bTQgLS12Ymxhbms9cHJl
-c2VudCwKaG93ZXZlciB0aGUgZmFpbHVyZSBtb2RlcyAoZS5nLiBwaXhtYXAgZG9lc24ndCBoYXZl
-IGJhY2tpbmcpIGNhbiBoYXBwZW4KYW55d2hlcmUgSSBiZWxpZXZlLCBqdXN0IG11Y2ggbGVzcyBs
-aWtlbHkuCgogc3JjL25vdXZlYXVfZHJpMi5jICAgIHwgMTggKysrKysrKysrKysrKysrLS0tCiBz
-cmMvbm91dmVhdV9wcmVzZW50LmMgfCAxNSArKysrKysrKysrKysrKy0KIDIgZmlsZXMgY2hhbmdl
-ZCwgMjkgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvbm91
-dmVhdV9kcmkyLmMgYi9zcmMvbm91dmVhdV9kcmkyLmMKaW5kZXggY2UwYTU3My4uOGMyOWVjYSAx
-MDA2NDQKLS0tIGEvc3JjL25vdXZlYXVfZHJpMi5jCisrKyBiL3NyYy9ub3V2ZWF1X2RyaTIuYwpA
-QCAtMjQ4LDkgKzI0OCwxMyBAQCBzdGF0aWMgdWludDY0X3QgZHJpMl9zZXF1ZW5jZTsKIHN0YXRp
-YyBCb29sCiB1cGRhdGVfZnJvbnQoRHJhd2FibGVQdHIgZHJhdywgRFJJMkJ1ZmZlclB0ciBmcm9u
-dCkKIHsKLQlpbnQgcjsKLQlQaXhtYXBQdHIgcGl4bWFwOworCVNjcm5JbmZvUHRyIHNjcm4gPSB4
-Zjg2U2NyZWVuVG9TY3JuKGRyYXctPnBTY3JlZW4pOworCU5WUHRyIHBOdiA9IE5WUFRSKHNjcm4p
-OwogCXN0cnVjdCBub3V2ZWF1X2RyaTJfYnVmZmVyICpudmJ1ZiA9IG5vdXZlYXVfZHJpMl9idWZm
-ZXIoZnJvbnQpOworCXN0cnVjdCBub3V2ZWF1X2JvICpwaXhtYXBfYm87CisKKwlQaXhtYXBQdHIg
-cGl4bWFwOworCWludCByOwogCiAJaWYgKGRyYXctPnR5cGUgPT0gRFJBV0FCTEVfUElYTUFQKQog
-CQlwaXhtYXAgPSAoUGl4bWFwUHRyKWRyYXc7CkBAIC0yNTksOCArMjYzLDE2IEBAIHVwZGF0ZV9m
-cm9udChEcmF3YWJsZVB0ciBkcmF3LCBEUkkyQnVmZmVyUHRyIGZyb250KQogCiAJcGl4bWFwLT5y
-ZWZjbnQrKzsKIAorCXBOdi0+ZXhhX2ZvcmNlX2NwID0gVFJVRTsKIAlleGFNb3ZlSW5QaXhtYXAo
-cGl4bWFwKTsKLQlyID0gbm91dmVhdV9ib19uYW1lX2dldChub3V2ZWF1X3BpeG1hcF9ibyhwaXht
-YXApLCAmZnJvbnQtPm5hbWUpOworCXBOdi0+ZXhhX2ZvcmNlX2NwID0gRkFMU0U7CisJcGl4bWFw
-X2JvID0gbm91dmVhdV9waXhtYXBfYm8ocGl4bWFwKTsKKworCWlmICghcGl4bWFwX2JvKQorCQly
-ID0gLTE7CisJZWxzZQorCQlyID0gbm91dmVhdV9ib19uYW1lX2dldChwaXhtYXBfYm8sICZmcm9u
-dC0+bmFtZSk7CisKIAlpZiAocikgewogCQkoKmRyYXctPnBTY3JlZW4tPkRlc3Ryb3lQaXhtYXAp
-KHBpeG1hcCk7CiAJCXJldHVybiBGQUxTRTsKZGlmZiAtLWdpdCBhL3NyYy9ub3V2ZWF1X3ByZXNl
-bnQuYyBiL3NyYy9ub3V2ZWF1X3ByZXNlbnQuYwppbmRleCA5MzY0NzVlLi44MTY3ZmQ4IDEwMDY0
-NAotLS0gYS9zcmMvbm91dmVhdV9wcmVzZW50LmMKKysrIGIvc3JjL25vdXZlYXVfcHJlc2VudC5j
-CkBAIC0xNDcsMTIgKzE0NywyNSBAQCBub3V2ZWF1X3ByZXNlbnRfZmxpcF9jaGVjayhSUkNydGNQ
-dHIgcnJjcnRjLCBXaW5kb3dQdHIgd2luZG93LAogCQkJICAgUGl4bWFwUHRyIHBpeG1hcCwgQm9v
-bCBzeW5jX2ZsaXApCiB7CiAJU2NybkluZm9QdHIgc2NybiA9IHhmODZTY3JlZW5Ub1Njcm4od2lu
-ZG93LT5kcmF3YWJsZS5wU2NyZWVuKTsKKwlOVlB0ciBwTnYgPSBOVlBUUihzY3JuKTsKIAl4Zjg2
-Q3J0Y1B0ciBjcnRjID0gcnJjcnRjLT5kZXZQcml2YXRlOworCXN0cnVjdCBub3V2ZWF1X3BpeG1h
-cCAqcHJpdiA9IG5vdXZlYXVfcGl4bWFwKHBpeG1hcCk7CiAKIAlpZiAoIXNjcm4tPnZ0U2VtYSB8
-fCAhZHJtbW9kZV9jcnRjX29uKGNydGMpIHx8IGNydGMtPnJvdGF0ZWREYXRhKQogCQlyZXR1cm4g
-RkFMU0U7CiAKLQlyZXR1cm4gVFJVRTsKKwlpZiAoIXByaXYpIHsKKwkJLyogVGhlIHBpeG1hcCBt
-YXkgbm90IGhhdmUgaGFkIGJhY2tpbmcgZm9yIGxvdy1tZW1vcnkgR1BVcywgb3IKKwkJICogaWYg
-d2UgcmFuIG91dCBvZiBWUkFNLiBNYWtlIHN1cmUgaXQncyBwcm9wZXJseSBiYWNrZWQgZm9yCisJ
-CSAqIGZsaXBwaW5nLgorCQkgKi8KKwkJcE52LT5leGFfZm9yY2VfY3AgPSBUUlVFOworCQlleGFN
-b3ZlSW5QaXhtYXAocGl4bWFwKTsKKwkJcE52LT5leGFfZm9yY2VfY3AgPSBGQUxTRTsKKwkJcHJp
-diA9IG5vdXZlYXVfcGl4bWFwKHBpeG1hcCk7CisJfQorCisJcmV0dXJuIHByaXYgPyBUUlVFIDog
-RkFMU0U7CiB9CiAKIHN0YXRpYyB2b2lkCi0tIAoyLjIxLjAKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQ==
+
+--===============0820870094==
+Content-Type: multipart/alternative; boundary="15709825272.D8d83DEe.5861"
+Content-Transfer-Encoding: 7bit
+
+
+--15709825272.D8d83DEe.5861
+Date: Sun, 13 Oct 2019 16:02:07 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D111868
+
+--- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+This patch may help:
+
+https://patchwork.freedesktop.org/patch/335616/
+
+I believe that primarily GPUs with 32MB of VRAM (or less) would be affected.
+However it may also have a rarer effect on larger-VRAM devices.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15709825272.D8d83DEe.5861
+Date: Sun, 13 Oct 2019 16:02:07 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - xorg with nouveau crash when starting mate-session in deb=
+ian 10"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111868#c11">Comme=
+nt # 11</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - xorg with nouveau crash when starting mate-session in deb=
+ian 10"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D111868">bug 11186=
+8</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>This patch may help:
+
+<a href=3D"https://patchwork.freedesktop.org/patch/335616/">https://patchwo=
+rk.freedesktop.org/patch/335616/</a>
+
+I believe that primarily GPUs with 32MB of VRAM (or less) would be affected.
+However it may also have a rarer effect on larger-VRAM devices.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15709825272.D8d83DEe.5861--
+
+--===============0820870094==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============0820870094==--
