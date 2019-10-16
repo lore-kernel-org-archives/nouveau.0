@@ -1,190 +1,76 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v3] pci: prevent putting nvidia GPUs into
- lower device states on certain intel bridges
-Date: Wed, 16 Oct 2019 23:48:22 +0200
-Message-ID: <CACO55tuXck7vqGVLmMBGFg6A2pr3h8koRuvvWHLNDH8XvBVxew@mail.gmail.com>
-References: <CACO55ttOJaXKWmKQQbMAQRJHLXF-VtNn58n4BZhFKYmAdfiJjA@mail.gmail.com>
- <20191016213722.GA72810@google.com>
+From: Bjorn Helgaas <helgaas@kernel.org>
+Subject: Re: [PATCH v3] pci: prevent putting nvidia GPUs into lower device
+ states on certain intel bridges
+Date: Wed, 16 Oct 2019 17:03:33 -0500
+Message-ID: <20191016220333.GA88523@google.com>
+References: <CACO55tuXck7vqGVLmMBGFg6A2pr3h8koRuvvWHLNDH8XvBVxew@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20191016213722.GA72810-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Bjorn Helgaas <helgaas-DgEjT+Ai2ygdnm+yROfE0A@public.gmane.org>
-Cc: Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Mika Westerberg <mika.westerberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, "Rafael J . Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux ACPI Mailing List <linux-acpi-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CACO55tuXck7vqGVLmMBGFg6A2pr3h8koRuvvWHLNDH8XvBVxew@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Karol Herbst <kherbst@redhat.com>
+Cc: "Rafael J . Wysocki" <rjw@rjwysocki.net>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, Mika Westerberg <mika.westerberg@intel.com>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Linux ACPI Mailing List <linux-acpi@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBPY3QgMTYsIDIwMTkgYXQgMTE6MzcgUE0gQmpvcm4gSGVsZ2FhcyA8aGVsZ2Fhc0Br
-ZXJuZWwub3JnPiB3cm90ZToKPgo+IFsrY2MgbGludXgtYWNwaV0KPgo+IE9uIFdlZCwgT2N0IDE2
-LCAyMDE5IGF0IDA5OjE4OjMyUE0gKzAyMDAsIEthcm9sIEhlcmJzdCB3cm90ZToKPiA+IGJ1dCBz
-ZXR0aW5nIHRoZSBQQ0lfREVWX0ZMQUdTX05PX0QzIGZsYWcgZG9lcyBwcmV2ZW50IHVzaW5nIHRo
-ZQo+ID4gcGxhdGZvcm0gbWVhbnMgb2YgcHV0dGluZyB0aGUgZGV2aWNlIGludG8gRDNjb2xkLCBy
-aWdodD8gVGhhdCdzCj4gPiBhY3R1YWxseSB3aGF0IHNob3VsZCBzdGlsbCBoYXBwZW4sIGp1c3Qg
-dGhlIEQzaG90IHN0ZXAgc2hvdWxkIGJlCj4gPiBza2lwcGVkLgo+Cj4gSWYgSSB1bmRlcnN0YW5k
-IGNvcnJlY3RseSwgd2hlbiB3ZSBwdXQgYSBkZXZpY2UgaW4gRDNjb2xkIG9uIGFuIEFDUEkKPiBz
-eXN0ZW0sIHdlIGRvIHNvbWV0aGluZyBsaWtlIHRoaXM6Cj4KPiAgIHBjaV9zZXRfcG93ZXJfc3Rh
-dGUoRDNjb2xkKQo+ICAgICBpZiAoUENJX0RFVl9GTEFHU19OT19EMykKPiAgICAgICByZXR1cm4g
-MCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC0tIG5vdGhpbmcgYXQgYWxsIGlm
-IHF1aXJrZWQKPiAgICAgcGNpX3Jhd19zZXRfcG93ZXJfc3RhdGUKPiAgICAgICBwY2lfd3JpdGVf
-Y29uZmlnX3dvcmQoUENJX1BNX0NUUkwsIEQzaG90KSAgPC0tIHNldCB0byBEM2hvdAo+ICAgICBf
-X3BjaV9jb21wbGV0ZV9wb3dlcl90cmFuc2l0aW9uKEQzY29sZCkKPiAgICAgICBwY2lfcGxhdGZv
-cm1fcG93ZXJfdHJhbnNpdGlvbihEM2NvbGQpCj4gICAgICAgICBwbGF0Zm9ybV9wY2lfc2V0X3Bv
-d2VyX3N0YXRlKEQzY29sZCkKPiAgICAgICAgICAgYWNwaV9wY2lfc2V0X3Bvd2VyX3N0YXRlKEQz
-Y29sZCkKPiAgICAgICAgICAgICBhY3BpX2RldmljZV9zZXRfcG93ZXIoQUNQSV9TVEFURV9EM19D
-T0xEKQo+ICAgICAgICAgICAgICAgLi4uCj4gICAgICAgICAgICAgICAgIGFjcGlfZXZhbHVhdGVf
-b2JqZWN0KCJfT0ZGIikgICAgIDwtLSBzZXQgdG8gRDNjb2xkCj4KPiBJIGRpZCBub3QgdW5kZXJz
-dGFuZCB0aGUgY29ubmVjdGlvbiB3aXRoIHBsYXRmb3JtIChBQ1BJKSBwb3dlcgo+IG1hbmFnZW1l
-bnQgZnJvbSB5b3VyIHBhdGNoLiAgSXQgc291bmRzIGxpa2UgeW91IHdhbnQgdGhpcyBlbnRpcmUg
-cGF0aAo+IGV4Y2VwdCB0aGF0IHlvdSB3YW50IHRvIHNraXAgdGhlIFBDSV9QTV9DVFJMIHdyaXRl
-Pwo+CgpleGFjdGx5LiBJIGFtIHJ1bm5pbmcgd2l0aCB0aGlzIHdvcmthcm91bmQgZm9yIGEgd2hp
-bGUgbm93IGFuZCBuZXZlcgpoYWQgYW55IGZhaWxzIHdpdGggaXQgYW55bW9yZS4gVGhlIEdQVSBn
-ZXRzIHR1cm5lZCBvZmYgY29ycmVjdGx5IGFuZCBJCnNlZSB0aGUgc2FtZSBwb3dlciBzYXZpbmdz
-LCBqdXN0IHRoYXQgdGhlIEdQVSBjYW4gYmUgcG93ZXJlZCBvbiBhZ2Fpbi4KCj4gVGhhdCBzZWVt
-cyBsaWtlIHNvbWV0aGluZyBSYWZhZWwgc2hvdWxkIHdlaWdoIGluIG9uLiAgSSBkb24ndCBrbm93
-Cj4gd2h5IHdlIHNldCB0aGUgZGV2aWNlIHRvIEQzaG90IHdpdGggUENJX1BNX0NUUkwgYmVmb3Jl
-IHVzaW5nIHRoZSBBQ1BJCj4gbWV0aG9kcywgYW5kIEkgZG9uJ3Qga25vdyB3aGF0IHRoZSBlZmZl
-Y3Qgb2Ygc2tpcHBpbmcgdGhhdCBpcy4gIEl0Cj4gc2VlbXMgYSBsaXR0bGUgbWVzc3kgdG8gc2xp
-Y2Ugb3V0IHRoaXMgdGlueSBwaWVjZSBmcm9tIHRoZSBtaWRkbGUsIGJ1dAo+IG1heWJlIGl0IG1h
-a2VzIHNlbnNlLgo+CgphZmFpayB3aGVuIEkgd2FzIHRhbGtpbmcgd2l0aCBvdGhlcnMgaW4gdGhl
-IHBhc3QgYWJvdXQgaXQsIFdpbmRvd3MgaXMKZG9pbmcgdGhhdCBiZWZvcmUgdXNpbmcgQUNQSSBj
-YWxscywgYnV0IG1heWJlIHRoZXkgaGF2ZSBzb21lIHNpbWlsYXIKd29ya2Fyb3VuZHMgZm9yIGNl
-cnRhaW4gaW50ZWwgYnJpZGdlcyBhcyB3ZWxsPyBJIGFtIHN1cmUgaXQgYWZmZWN0cwptb3JlIHRo
-YW4gdGhlIG9uZSBJIGFtIGJsYWNrbGlzdGluZyBoZXJlLCBidXQgSSByYXRoZXIgd2FudCB0byBj
-aGVjawplYWNoIGRldmljZSBiZWZvcmUgYmxhY2tsaXN0aW5nIGFsbCBrYWJ5bGFrZSBhbmQgc2t5
-IGxha2UgYnJpZGdlcyAoYXMKdGhvc2UgYXJlIHRoZSBvbmVzIHdlcmUgdGhpcyBpc3N1ZSBjYW4g
-YmUgb2JzZXJ2ZWQpLgoKU2FkbHkgd2UgaGFkIG5vIGx1Y2sgZ2V0dGluZyBhbnkgaW5mb3JtYXRp
-b24gYWJvdXQgc3VjaCB3b3JrYXJvdW5kIG91dApvZiBOdmlkaWEgb3IgSW50ZWwuCgo+ID4gT24g
-V2VkLCBPY3QgMTYsIDIwMTkgYXQgOToxNCBQTSBCam9ybiBIZWxnYWFzIDxoZWxnYWFzQGtlcm5l
-bC5vcmc+IHdyb3RlOgo+ID4gPgo+ID4gPiBPbiBXZWQsIE9jdCAxNiwgMjAxOSBhdCAwNDo0NDo0
-OVBNICswMjAwLCBLYXJvbCBIZXJic3Qgd3JvdGU6Cj4gPiA+ID4gRml4ZXMgc3RhdGUgdHJhbnNp
-dGlvbnMgb2YgTnZpZGlhIFBhc2NhbCBHUFVzIGZyb20gRDNjb2xkIGludG8gaGlnaGVyIGRldmlj
-ZQo+ID4gPiA+IHN0YXRlcy4KPiA+ID4gPgo+ID4gPiA+IHYyOiBjb252ZXJ0IHRvIHBjaV9kZXYg
-cXVpcmsKPiA+ID4gPiAgICAgcHV0IGEgcHJvcGVyIHRlY2huaWNhbCBleHBsYW5hdGlvbiBvZiB0
-aGUgaXNzdWUgYXMgYSBpbi1jb2RlIGNvbW1lbnQKPiA+ID4gPiB2MzogZGlzYWJsZSBpdCBvbmx5
-IGZvciBjZXJ0YWluIGNvbWJpbmF0aW9ucyBvZiBpbnRlbCBhbmQgbnZpZGlhIGhhcmR3YXJlCj4g
-PiA+ID4KPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBLYXJvbCBIZXJic3QgPGtoZXJic3RAcmVkaGF0
-LmNvbT4KPiA+ID4gPiBDYzogQmpvcm4gSGVsZ2FhcyA8YmhlbGdhYXNAZ29vZ2xlLmNvbT4KPiA+
-ID4gPiBDYzogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KPiA+ID4gPiBDYzogUmFmYWVs
-IEouIFd5c29ja2kgPHJqd0Byand5c29ja2kubmV0Pgo+ID4gPiA+IENjOiBNaWthIFdlc3RlcmJl
-cmcgPG1pa2Eud2VzdGVyYmVyZ0BpbnRlbC5jb20+Cj4gPiA+ID4gQ2M6IGxpbnV4LXBjaUB2Z2Vy
-Lmtlcm5lbC5vcmcKPiA+ID4gPiBDYzogbGludXgtcG1Admdlci5rZXJuZWwub3JnCj4gPiA+ID4g
-Q2M6IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+ID4gPiBDYzogbm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+ID4gPiAtLS0KPiA+ID4gPiAgZHJpdmVycy9wY2kvcGNp
-LmMgICAgfCAxMSArKysrKysrKysrCj4gPiA+ID4gIGRyaXZlcnMvcGNpL3F1aXJrcy5jIHwgNTIg
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysKPiA+ID4gPiAgaW5j
-bHVkZS9saW51eC9wY2kuaCAgfCAgMSArCj4gPiA+ID4gIDMgZmlsZXMgY2hhbmdlZCwgNjQgaW5z
-ZXJ0aW9ucygrKQo+ID4gPiA+Cj4gPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL3BjaS5j
-IGIvZHJpdmVycy9wY2kvcGNpLmMKPiA+ID4gPiBpbmRleCBiOTdkOWUxMGM5Y2MuLjhlMDU2ZWI3
-ZTZmZiAxMDA2NDQKPiA+ID4gPiAtLS0gYS9kcml2ZXJzL3BjaS9wY2kuYwo+ID4gPiA+ICsrKyBi
-L2RyaXZlcnMvcGNpL3BjaS5jCj4gPiA+ID4gQEAgLTgwNSw2ICs4MDUsMTMgQEAgc3RhdGljIGlu
-bGluZSBib29sIHBsYXRmb3JtX3BjaV9icmlkZ2VfZDMoc3RydWN0IHBjaV9kZXYgKmRldikKPiA+
-ID4gPiAgICAgICByZXR1cm4gcGNpX3BsYXRmb3JtX3BtID8gcGNpX3BsYXRmb3JtX3BtLT5icmlk
-Z2VfZDMoZGV2KSA6IGZhbHNlOwo+ID4gPiA+ICB9Cj4gPiA+ID4KPiA+ID4gPiArc3RhdGljIGlu
-bGluZSBib29sIHBhcmVudF9icm9rZW5fY2hpbGRfcG0oc3RydWN0IHBjaV9kZXYgKmRldikKPiA+
-ID4gPiArewo+ID4gPiA+ICsgICAgIGlmICghZGV2LT5idXMgfHwgIWRldi0+YnVzLT5zZWxmKQo+
-ID4gPiA+ICsgICAgICAgICAgICAgcmV0dXJuIGZhbHNlOwo+ID4gPiA+ICsgICAgIHJldHVybiBk
-ZXYtPmJ1cy0+c2VsZi0+YnJva2VuX252X3J1bnBtICYmIGRldi0+YnJva2VuX252X3J1bnBtOwo+
-ID4gPiA+ICt9Cj4gPiA+ID4gKwo+ID4gPiA+ICAvKioKPiA+ID4gPiAgICogcGNpX3Jhd19zZXRf
-cG93ZXJfc3RhdGUgLSBVc2UgUENJIFBNIHJlZ2lzdGVycyB0byBzZXQgdGhlIHBvd2VyIHN0YXRl
-IG9mCj4gPiA+ID4gICAqICAgICAgICAgICAgICAgICAgICAgICAgZ2l2ZW4gUENJIGRldmljZQo+
-ID4gPiA+IEBAIC04NTAsNiArODU3LDEwIEBAIHN0YXRpYyBpbnQgcGNpX3Jhd19zZXRfcG93ZXJf
-c3RhdGUoc3RydWN0IHBjaV9kZXYgKmRldiwgcGNpX3Bvd2VyX3Qgc3RhdGUpCj4gPiA+ID4gICAg
-ICAgICAgfHwgKHN0YXRlID09IFBDSV9EMiAmJiAhZGV2LT5kMl9zdXBwb3J0KSkKPiA+ID4gPiAg
-ICAgICAgICAgICAgIHJldHVybiAtRUlPOwo+ID4gPiA+Cj4gPiA+ID4gKyAgICAgLyogY2hlY2sg
-aWYgdGhlIGJ1cyBjb250cm9sbGVyIGNhdXNlcyBpc3N1ZXMgKi8KPiA+ID4gPiArICAgICBpZiAo
-c3RhdGUgIT0gUENJX0QwICYmIHBhcmVudF9icm9rZW5fY2hpbGRfcG0oZGV2KSkKPiA+ID4gPiAr
-ICAgICAgICAgICAgIHJldHVybiAwOwo+ID4gPiA+ICsKPiA+ID4gPiAgICAgICBwY2lfcmVhZF9j
-b25maWdfd29yZChkZXYsIGRldi0+cG1fY2FwICsgUENJX1BNX0NUUkwsICZwbWNzcik7Cj4gPiA+
-ID4KPiA+ID4gPiAgICAgICAvKgo+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9xdWly
-a3MuYyBiL2RyaXZlcnMvcGNpL3F1aXJrcy5jCj4gPiA+ID4gaW5kZXggNDRjNGFlMWFiZDAwLi5j
-MmYyMGI3NDVkZDQgMTAwNjQ0Cj4gPiA+ID4gLS0tIGEvZHJpdmVycy9wY2kvcXVpcmtzLmMKPiA+
-ID4gPiArKysgYi9kcml2ZXJzL3BjaS9xdWlya3MuYwo+ID4gPiA+IEBAIC01MjY4LDMgKzUyNjgs
-NTUgQEAgc3RhdGljIHZvaWQgcXVpcmtfcmVzZXRfbGVub3ZvX3RoaW5rcGFkX3A1MF9udmdwdShz
-dHJ1Y3QgcGNpX2RldiAqcGRldikKPiA+ID4gPiAgREVDTEFSRV9QQ0lfRklYVVBfQ0xBU1NfRklO
-QUwoUENJX1ZFTkRPUl9JRF9OVklESUEsIDB4MTNiMSwKPiA+ID4gPiAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgUENJX0NMQVNTX0RJU1BMQVlfVkdBLCA4LAo+ID4gPiA+ICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICBxdWlya19yZXNldF9sZW5vdm9fdGhpbmtwYWRfcDUwX252Z3B1KTsK
-PiA+ID4gPiArCj4gPiA+ID4gKy8qCj4gPiA+ID4gKyAqIFNvbWUgSW50ZWwgUENJZSBicmlkZ2Vz
-IGNhdXNlIGRldmljZXMgdG8gZGlzYXBwZWFyIGZyb20gdGhlIFBDSWUgYnVzIGFmdGVyCj4gPiA+
-ID4gKyAqIHRob3NlIHdlcmUgcHV0IGludG8gRDNjb2xkIHN0YXRlIGlmIHRoZXkgd2VyZSBwdXQg
-aW50byBhIG5vbiBEMCBQQ0kgUE0KPiA+ID4gPiArICogZGV2aWNlIHN0YXRlIGJlZm9yZSBkb2lu
-ZyBzby4KPiA+ID4gPiArICoKPiA+ID4gPiArICogVGhpcyBsZWFkcyB0byB2YXJpb3VzIGlzc3Vl
-IGRpZmZlcmVudCBpc3N1ZXMgd2hpY2ggYWxsIG1hbmlmZXN0IGRpZmZlcmVudGx5LAo+ID4gPiA+
-ICsgKiBidXQgaGF2ZSB0aGUgc2FtZSByb290IGNhdXNlOgo+ID4gPiA+ICsgKiAgLSBBSU1MIGNv
-ZGUgZXhlY3V0aW9uIGhpdHMgYW4gaW5maW5pdGUgbG9vcCAoYXMgdGhlIGNvZSB3YWl0cyBvbiBk
-ZXZpY2UKPiA+ID4gPiArICogICAgbWVtb3J5IHRvIGNoYW5nZSkuCj4gPiA+ID4gKyAqICAtIGtl
-cm5lbCBjcmFzaGVzLCBhcyBhbGwgcGNpIHJlYWRzIHJldHVybiAtMSwgd2hpY2ggbW9zdCBjb2Rl
-IGlzbid0IGFibGUKPiA+ID4gPiArICogICAgdG8gaGFuZGxlIHdlbGwgZW5vdWdoLgo+ID4gPiA+
-ICsgKiAgLSBzdWRkZW4gc2h1dGRvd25zLCBhcyB0aGUga2VybmVsIGlkZW50aWZpZWQgYW4gdW5y
-ZWNvdmVyYWJsZSBlcnJvciBhZnRlcgo+ID4gPiA+ICsgKiAgICB1c2Vyc3BhY2UgdHJpZXMgdG8g
-YWNjZXNzIHRoZSBHUFUuCj4gPiA+ID4gKyAqCj4gPiA+ID4gKyAqIEluIGFsbCBjYXNlcyBkbWVz
-ZyB3aWxsIGNvbnRhaW4gYXQgbGVhc3Qgb25lIGxpbmUgbGlrZSB0aGlzOgo+ID4gPiA+ICsgKiAn
-bm91dmVhdSAwMDAwOjAxOjAwLjA6IFJlZnVzZWQgdG8gY2hhbmdlIHBvd2VyIHN0YXRlLCBjdXJy
-ZW50bHkgaW4gRDMnCj4gPiA+ID4gKyAqIGZvbGxvd2VkIGJ5IGEgbG90IG9mIG5vdXZlYXUgdGlt
-ZW91dHMuCj4gPiA+ID4gKyAqCj4gPiA+ID4gKyAqIEFDUEkgY29kZSB3cml0ZXMgYml0IDB4ODAg
-dG8gdGhlIG5vdCBkb2N1bWVudGVkIFBDSSByZWdpc3RlciAweDI0OCBvZiB0aGUKPiA+ID4gPiAr
-ICogUENJZSBicmlkZ2UgY29udHJvbGxlciBpbiBvcmRlciB0byBwb3dlciBkb3duIHRoZSBHUFUu
-Cj4gPiA+ID4gKyAqIE5vbmV0aGVsZXNzLCB0aGVyZSBhcmUgb3RoZXIgY29kZSBwYXRocyBpbnNp
-ZGUgdGhlIEFDUEkgZmlybXdhcmUgd2hpY2ggdXNlCj4gPiA+ID4gKyAqIG90aGVyIHJlZ2lzdGVy
-cywgd2hpY2ggc2VlbSB0byB3b3JrIGZpbmU6Cj4gPiA+ID4gKyAqICAtIDB4YmMgYml0IDB4MjAg
-KHB1YmxpY2x5IGF2YWlsYWJsZSBkb2N1bWVudGF0aW9uIGNsYWltcyAncmVzZXJ2ZWQnKQo+ID4g
-PiA+ICsgKiAgLSAweGIwIGJpdCAweDEwIChsaW5rIGRpc2FibGUpCj4gPiA+ID4gKyAqIENoYW5n
-aW5nIHRoZSBjb25kaXRpb25zIGluc2lkZSB0aGUgZmlybXdhcmUgYnkgcG9raW5nIGludG8gdGhl
-IHJlbGV2YW50Cj4gPiA+ID4gKyAqIGFkZHJlc3NlcyBkb2VzIHJlc29sdmUgdGhlIGlzc3VlLCBi
-dXQgaXQgc2VlbWVkIHRvIGJlIEFDUEkgcHJpdmF0ZSBtZW1vcnkKPiA+ID4gPiArICogYW5kIG5v
-dCBhbnkgZGV2aWNlIGFjY2Vzc2libGUgbWVtb3J5IGF0IGFsbCwgc28gdGhlcmUgaXMgbm8gcG9y
-dGFibGUgd2F5IG9mCj4gPiA+ID4gKyAqIGNoYW5naW5nIHRoZSBjb25kaXRpb25zLgo+ID4gPiA+
-ICsgKgo+ID4gPiA+ICsgKiBUaGUgb25seSBzeXN0ZW1zIHdoZXJlIHRoaXMgYmVoYXZpb3IgY2Fu
-IGJlIHNlZW4gYXJlIGh5YnJpZCBncmFwaGljcyBsYXB0b3BzCj4gPiA+ID4gKyAqIHdpdGggYSBz
-ZWNvbmRhcnkgTnZpZGlhIFBhc2NhbCBHUFUuIEl0IGNhbm5vdCBiZSBydWxlZCBvdXQgdGhhdCB0
-aGlzIGlzc3VlCj4gPiA+ID4gKyAqIG9ubHkgb2NjdXJzIGluIGNvbWJpbmF0aW9uIHdpdGggbGlz
-dGVkIEludGVsIFBDSWUgYnJpZGdlIGNvbnRyb2xsZXJzIGFuZAo+ID4gPiA+ICsgKiB0aGUgbWVu
-dGlvbmVkIEdQVXMgb3IgaWYgaXQncyBvbmx5IGEgaHcgYnVnIGluIHRoZSBicmlkZ2UgY29udHJv
-bGxlci4KPiA+ID4gPiArICoKPiA+ID4gPiArICogQnV0IGJlY2F1c2UgdGhpcyBpc3N1ZSB3YXMg
-Tk9UIHNlZW4gb24gbGFwdG9wcyB3aXRoIGFuIE52aWRpYSBQYXNjYWwgR1BVCj4gPiA+ID4gKyAq
-IGFuZCBhbiBJbnRlbCBDb2ZmZWUgTGFrZSBTb0MsIHRoZXJlIGlzIGEgaGlnaGVyIGNoYW5jZSBv
-ZiB0aGVyZSBiZWluZyBhIGJ1Zwo+ID4gPiA+ICsgKiBpbiB0aGUgYnJpZGdlIGNvbnRyb2xsZXIg
-cmF0aGVyIHRoYW4gaW4gdGhlIEdQVS4KPiA+ID4gPiArICoKPiA+ID4gPiArICogVGhpcyBpc3N1
-ZSB3YXMgbm90IGFibGUgdG8gYmUgcmVwcm9kdWNlZCBvbiBub24gbGFwdG9wIHN5c3RlbXMuCj4g
-PiA+ID4gKyAqLwo+ID4gPiA+ICsKPiA+ID4gPiArc3RhdGljIHZvaWQgcXVpcmtfYnJva2VuX252
-X3J1bnBtKHN0cnVjdCBwY2lfZGV2ICpkZXYpCj4gPiA+ID4gK3sKPiA+ID4gPiArICAgICBkZXYt
-PmJyb2tlbl9udl9ydW5wbSA9IDE7Cj4gPiA+Cj4gPiA+IENhbiB5b3UgdXNlIHRoZSBleGlzdGlu
-ZyBQQ0lfREVWX0ZMQUdTX05PX0QzIGZsYWcgZm9yIHRoaXMgaW5zdGVhZCBvZgo+ID4gPiBhZGRp
-bmcgYSBuZXcgZmxhZz8KPiA+ID4KPiA+ID4gSSB3b3VsZCBwdXQgdGhlIHBhcmVudF9icm9rZW5f
-Y2hpbGRfcG0oKSBsb2dpYyBoZXJlLCBpZiBwb3NzaWJsZSwKPiA+ID4gZS5nLiwgc29tZXRoaW5n
-IGxpa2U6Cj4gPiA+Cj4gPiA+ICAgc3RydWN0IHBjaV9kZXYgKmJyaWRnZSA9IHBjaV91cHN0cmVh
-bV9icmlkZ2UoZGV2KTsKPiA+ID4KPiA+ID4gICBpZiAoYnJpZGdlICYmCj4gPiA+ICAgICAgIGJy
-aWRnZS0+dmVuZG9yID09IFBDSV9WRU5ET1JfSURfSU5URUwgJiYgYnJpZGdlLT5kZXZpY2UgPT0g
-MHgxOTAxKQo+ID4gPiAgICAgICAgIGRldi0+ZGV2X2ZsYWdzIHw9IFBDSV9ERVZfRkxBR1NfTk9f
-RDM7Cj4gPiA+Cj4gPiA+ID4gK30KPiA+ID4gPiArREVDTEFSRV9QQ0lfRklYVVBfQ0xBU1NfRklO
-QUwoUENJX1ZFTkRPUl9JRF9OVklESUEsIFBDSV9BTllfSUQsCj4gPiA+ID4gKyAgICAgICAgICAg
-ICAgICAgICAgICAgICAgIFBDSV9CQVNFX0NMQVNTX0RJU1BMQVksIDE2LAo+ID4gPiA+ICsgICAg
-ICAgICAgICAgICAgICAgICAgICAgICBxdWlya19icm9rZW5fbnZfcnVucG0pOwo+ID4gPiA+ICsv
-KiBrYWJ5IGxha2UgKi8KPiA+ID4gPiArREVDTEFSRV9QQ0lfRklYVVBfRklOQUwoUENJX1ZFTkRP
-Ul9JRF9JTlRFTCwgMHgxOTAxLAo+ID4gPiA+ICsgICAgICAgICAgICAgICAgICAgICBxdWlya19i
-cm9rZW5fbnZfcnVucG0pOwo+ID4gPiA+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L3BjaS5o
-IGIvaW5jbHVkZS9saW51eC9wY2kuaAo+ID4gPiA+IGluZGV4IGFjOGE2YzRlMTc5Mi4uOTAzYTBi
-M2EzOWVjIDEwMDY0NAo+ID4gPiA+IC0tLSBhL2luY2x1ZGUvbGludXgvcGNpLmgKPiA+ID4gPiAr
-KysgYi9pbmNsdWRlL2xpbnV4L3BjaS5oCj4gPiA+ID4gQEAgLTQxNiw2ICs0MTYsNyBAQCBzdHJ1
-Y3QgcGNpX2RldiB7Cj4gPiA+ID4gICAgICAgdW5zaWduZWQgaW50ICAgIF9fYWVyX2Zpcm13YXJl
-X2ZpcnN0X3ZhbGlkOjE7Cj4gPiA+ID4gICAgICAgdW5zaWduZWQgaW50ICAgIF9fYWVyX2Zpcm13
-YXJlX2ZpcnN0OjE7Cj4gPiA+ID4gICAgICAgdW5zaWduZWQgaW50ICAgIGJyb2tlbl9pbnR4X21h
-c2tpbmc6MTsgIC8qIElOVHggbWFza2luZyBjYW4ndCBiZSB1c2VkICovCj4gPiA+ID4gKyAgICAg
-dW5zaWduZWQgaW50ICAgIGJyb2tlbl9udl9ydW5wbToxOyAgICAgIC8qIHNvbWUgY29tYmluYXRp
-b25zIG9mIGludGVsIGJyaWRnZSBjb250cm9sbGVyIGFuZCBudmlkaWEgR1BVcyBicmVhayBydGQz
-ICovCj4gPiA+ID4gICAgICAgdW5zaWduZWQgaW50ICAgIGlvX3dpbmRvd18xazoxOyAgICAgICAg
-IC8qIEludGVsIGJyaWRnZSAxSyBJL08gd2luZG93cyAqLwo+ID4gPiA+ICAgICAgIHVuc2lnbmVk
-IGludCAgICBpcnFfbWFuYWdlZDoxOwo+ID4gPiA+ICAgICAgIHVuc2lnbmVkIGludCAgICBoYXNf
-c2Vjb25kYXJ5X2xpbms6MTsKPiA+ID4gPiAtLQo+ID4gPiA+IDIuMjEuMAo+ID4gPiA+Cl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
+On Wed, Oct 16, 2019 at 11:48:22PM +0200, Karol Herbst wrote:
+> On Wed, Oct 16, 2019 at 11:37 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+> > On Wed, Oct 16, 2019 at 09:18:32PM +0200, Karol Herbst wrote:
+> > > but setting the PCI_DEV_FLAGS_NO_D3 flag does prevent using the
+> > > platform means of putting the device into D3cold, right? That's
+> > > actually what should still happen, just the D3hot step should be
+> > > skipped.
+> >
+> > If I understand correctly, when we put a device in D3cold on an ACPI
+> > system, we do something like this:
+> >
+> >   pci_set_power_state(D3cold)
+> >     if (PCI_DEV_FLAGS_NO_D3)
+> >       return 0                                   <-- nothing at all if quirked
+> >     pci_raw_set_power_state
+> >       pci_write_config_word(PCI_PM_CTRL, D3hot)  <-- set to D3hot
+> >     __pci_complete_power_transition(D3cold)
+> >       pci_platform_power_transition(D3cold)
+> >         platform_pci_set_power_state(D3cold)
+> >           acpi_pci_set_power_state(D3cold)
+> >             acpi_device_set_power(ACPI_STATE_D3_COLD)
+> >               ...
+> >                 acpi_evaluate_object("_OFF")     <-- set to D3cold
+> >
+> > I did not understand the connection with platform (ACPI) power
+> > management from your patch.  It sounds like you want this entire path
+> > except that you want to skip the PCI_PM_CTRL write?
+> >
+> 
+> exactly. I am running with this workaround for a while now and never
+> had any fails with it anymore. The GPU gets turned off correctly and I
+> see the same power savings, just that the GPU can be powered on again.
+> 
+> > That seems like something Rafael should weigh in on.  I don't know
+> > why we set the device to D3hot with PCI_PM_CTRL before using the ACPI
+> > methods, and I don't know what the effect of skipping that is.  It
+> > seems a little messy to slice out this tiny piece from the middle, but
+> > maybe it makes sense.
+> >
+> 
+> afaik when I was talking with others in the past about it, Windows is
+> doing that before using ACPI calls, but maybe they have some similar
+> workarounds for certain intel bridges as well? I am sure it affects
+> more than the one I am blacklisting here, but I rather want to check
+> each device before blacklisting all kabylake and sky lake bridges (as
+> those are the ones were this issue can be observed).
+
+From a quick look at the ACPI spec, I didn't see conditions like "OSPM
+must put PCI devices in D3hot before executing _OFF".  But obviously
+there's *some* reason and I probably just missed it.
+
+> Sadly we had no luck getting any information about such workaround out
+> of Nvidia or Intel.
+
+I'm not surprised; it doesn't seem like we really have the details
+needed to get to a root cause yet.  I think what we really need is a
+PCIe analyzer trace to see what happens when the device "falls off the
+bus".
+
+Bjorn
