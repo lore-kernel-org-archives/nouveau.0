@@ -1,124 +1,61 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
- rescan
-Date: Thu, 17 Oct 2019 13:15:52 +0000
-Message-ID: <bug-75985-8800-Nrt46iNIdH@http.bugs.freedesktop.org/>
-References: <bug-75985-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas@wunner.de>
+Subject: [PATCH] ALSA: hda - Force runtime PM on Nvidia HDMI
+	codecs
+Date: Thu, 17 Oct 2019 17:04:11 +0200
+Message-ID: <3086bc75135c1e3567c5bc4f3cc4ff5cbf7a56c2.1571324194.git.lukas@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1488310211=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <alsa-devel-bounces@alsa-project.org>
+List-Unsubscribe: <https://mailman.alsa-project.org/mailman/options/alsa-devel>,
+ <mailto:alsa-devel-request@alsa-project.org?subject=unsubscribe>
+List-Archive: <http://mailman.alsa-project.org/pipermail/alsa-devel/>
+List-Post: <mailto:alsa-devel@alsa-project.org>
+List-Help: <mailto:alsa-devel-request@alsa-project.org?subject=help>
+List-Subscribe: <https://mailman.alsa-project.org/mailman/listinfo/alsa-devel>,
+ <mailto:alsa-devel-request@alsa-project.org?subject=subscribe>
+Errors-To: alsa-devel-bounces@alsa-project.org
+Sender: "Alsa-devel" <alsa-devel-bounces@alsa-project.org>
+To: Takashi Iwai <tiwai@suse.com>
+Cc: Rivera Valdez <riveravaldez@ysinembargo.com>, alsa-devel@alsa-project.org, Przemyslaw Kopa <prymoo@gmail.com>, Daniel Drake <dan@reactivated.net>, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1488310211==
-Content-Type: multipart/alternative; boundary="15713181520.D51FC3A7b.16309"
-Content-Transfer-Encoding: 7bit
-
-
---15713181520.D51FC3A7b.16309
-Date: Thu, 17 Oct 2019 13:15:52 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
-
---- Comment #115 from Przemys=C5=82aw Kopa <prymoo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Lukas Wunner from comment #114)
-> HDA_CODEC_ENTRY() needs to match for the 32-bit HD audio vendor ID. Just =
-to
-> double-check, could you execute "cat
-> /sys/bus/pci/devices/0000:01:00.1/hdaudioC1D0/vendor_id" and post the res=
-ult
-> here? Is it really 0x10de0403? Thanks!
-
-cat /sys/bus/pci/devices/0000:01:00.1/hdaudioC1D0/vendor_id
-0x10de0014
-
-You're right, I didn't fully understand what to put there. ;)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15713181520.D51FC3A7b.16309
-Date: Thu, 17 Oct 2019 13:15:52 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c115">Comme=
-nt # 115</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-prymoo&#64;gmail.com" title=3D"Przemys=C5=82aw Kopa &lt;prymoo&#64;gmail.co=
-m&gt;"> <span class=3D"fn">Przemys=C5=82aw Kopa</span></a>
-</span></b>
-        <pre>(In reply to Lukas Wunner from <a href=3D"show_bug.cgi?id=3D75=
-985#c114">comment #114</a>)
-<span class=3D"quote">&gt; HDA_CODEC_ENTRY() needs to match for the 32-bit =
-HD audio vendor ID. Just to
-&gt; double-check, could you execute &quot;cat
-&gt; /sys/bus/pci/devices/0000:01:00.1/hdaudioC1D0/vendor_id&quot; and post=
- the result
-&gt; here? Is it really 0x10de0403? Thanks!</span >
-
-cat /sys/bus/pci/devices/0000:01:00.1/hdaudioC1D0/vendor_id
-0x10de0014
-
-You're right, I didn't fully understand what to put there. ;)</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15713181520.D51FC3A7b.16309--
-
---===============1488310211==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1488310211==--
+UHJ6ZW15c8WCYXcgS29wYSByZXBvcnRzIHRoYXQgc2luY2UgY29tbWl0IGI1MTZlYTU4NmQ3MSAo
+IlBDSTogRW5hYmxlCk5WSURJQSBIREEgY29udHJvbGxlcnMiKSwgdGhlIGRpc2NyZXRlIEdQVSBO
+dmlkaWEgR2VGb3JjZSBHVCA1NDBNIG9uIGhpcwoyMDExIFNhbXN1bmcgbGFwdG9wIHJlZnVzZXMg
+dG8gcnVudGltZSBzdXNwZW5kLCByZXN1bHRpbmcgaW4gYSBwb3dlcgpyZWdyZXNzaW9uIGFuZCBl
+eGNlc3NpdmUgaGVhdC4KClJpdmVyYSBWYWxkZXogd2l0bmVzc2VzIHRoZSBzYW1lIGlzc3VlIHdp
+dGggYSBHZUZvcmNlIEdUIDUyNU0gKEdGMTA4TSkKb2YgdGhlIHNhbWUgZXJhLCBhcyBkb2VzIGFu
+b3RoZXIgQXJjaCBMaW51eCB1c2VyIG5hbWVkICJSMEFSIiB3aXRoIGEKbW9yZSByZWNlbnQgR2VG
+b3JjZSBHVFggMTA1MCBUaSAoR1AxMDdNKS4KClRoZSBjb21taXQgZXhwb3NlcyB0aGUgZGlzY3Jl
+dGUgR1BVJ3MgSERBIGNvbnRyb2xsZXIgYW5kIGFsbCBmb3VyIGNvZGVjcwpvbiB0aGUgY29udHJv
+bGxlciBkbyBub3Qgc2V0IHRoZSBDTEtTVE9QIGFuZCBFUFNTIGJpdHMgaW4gdGhlIFN1cHBvcnRl
+ZApQb3dlciBTdGF0ZXMgUmVzcG9uc2UuICBUaGV5IGFsc28gZG8gbm90IHNldCB0aGUgUFMtQ2xr
+U3RvcE9rIGJpdCBpbiB0aGUKR2V0IFBvd2VyIFN0YXRlIFJlc3BvbnNlLiAgaGRhX2NvZGVjX3J1
+bnRpbWVfc3VzcGVuZCgpIHRoZXJlZm9yZSBkb2VzCm5vdCBjYWxsIHNuZF9oZGFjX2NvZGVjX2xp
+bmtfZG93bigpLCB3aGljaCBwcmV2ZW50cyBlYWNoIGNvZGVjIGFuZCB0aGUKUENJIGRldmljZSBm
+cm9tIHJ1bnRpbWUgc3VzcGVuZGluZy4KClRoZSBzYW1lIGlzc3VlIGlzIHByZXNlbnQgb24gc29t
+ZSBBTUQgZGlzY3JldGUgR1BVcyBhbmQgd2UgYWRkcmVzc2VkIGl0CmJ5IGZvcmNpbmcgcnVudGlt
+ZSBQTSBkZXNwaXRlIHRoZSBiaXRzIG5vdCBiZWluZyBzZXQsIHNlZSBjb21taXQKNTdjYjU0ZTUz
+YmRkICgiQUxTQTogaGRhIC0gRm9yY2UgdG8gbGluayBkb3duIGF0IHJ1bnRpbWUgc3VzcGVuZCBv
+bgpBVEkvQU1EIEhETUkiKS4KCkRvIHRoZSBzYW1lIGZvciBOdmlkaWEgSERNSSBjb2RlY3MuCgpG
+aXhlczogYjUxNmVhNTg2ZDcxICgiUENJOiBFbmFibGUgTlZJRElBIEhEQSBjb250cm9sbGVycyIp
+Ckxpbms6IGh0dHBzOi8vYmJzLmFyY2hsaW51eC5vcmcvdmlld3RvcGljLnBocD9waWQ9MTg2NTUx
+MgpMaW5rOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD03NTk4
+NSNjODEKUmVwb3J0ZWQtYnk6IFByemVteXPFgmF3IEtvcGEgPHByeW1vb0BnbWFpbC5jb20+ClJl
+cG9ydGVkLWJ5OiBSaXZlcmEgVmFsZGV6IDxyaXZlcmF2YWxkZXpAeXNpbmVtYmFyZ28uY29tPgpT
+aWduZWQtb2ZmLWJ5OiBMdWthcyBXdW5uZXIgPGx1a2FzQHd1bm5lci5kZT4KQ2M6IERhbmllbCBE
+cmFrZSA8ZGFuQHJlYWN0aXZhdGVkLm5ldD4KQ2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcgIyB2
+NS4zKwotLS0KIHNvdW5kL3BjaS9oZGEvcGF0Y2hfaGRtaS5jIHwgMiArKwogMSBmaWxlIGNoYW5n
+ZWQsIDIgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL3NvdW5kL3BjaS9oZGEvcGF0Y2hfaGRt
+aS5jIGIvc291bmQvcGNpL2hkYS9wYXRjaF9oZG1pLmMKaW5kZXggYmNhNWRlNy4uNzk1Y2JkYSAx
+MDA2NDQKLS0tIGEvc291bmQvcGNpL2hkYS9wYXRjaF9oZG1pLmMKKysrIGIvc291bmQvcGNpL2hk
+YS9wYXRjaF9oZG1pLmMKQEAgLTM0NzQsNiArMzQ3NCw4IEBAIHN0YXRpYyBpbnQgcGF0Y2hfbnZo
+ZG1pKHN0cnVjdCBoZGFfY29kZWMgKmNvZGVjKQogCQludmhkbWlfY2htYXBfY2VhX2FsbG9jX3Zh
+bGlkYXRlX2dldF90eXBlOwogCXNwZWMtPmNobWFwLm9wcy5jaG1hcF92YWxpZGF0ZSA9IG52aGRt
+aV9jaG1hcF92YWxpZGF0ZTsKIAorCWNvZGVjLT5saW5rX2Rvd25fYXRfc3VzcGVuZCA9IDE7CisK
+IAlnZW5lcmljX2Fjb21wX2luaXQoY29kZWMsICZudmhkbWlfYXVkaW9fb3BzLCBudmhkbWlfcG9y
+dDJwaW4pOwogCiAJcmV0dXJuIDA7Ci0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCkFsc2EtZGV2ZWwgbWFpbGluZyBsaXN0CkFsc2EtZGV2
+ZWxAYWxzYS1wcm9qZWN0Lm9yZwpodHRwczovL21haWxtYW4uYWxzYS1wcm9qZWN0Lm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2Fsc2EtZGV2ZWwK
