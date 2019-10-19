@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
  Debian to hard lock machine GeForce 7600 GO
-Date: Sat, 19 Oct 2019 17:42:02 +0000
-Message-ID: <bug-112070-8800-KVrYCgaqfG@http.bugs.freedesktop.org/>
+Date: Sat, 19 Oct 2019 17:46:07 +0000
+Message-ID: <bug-112070-8800-4TkK3jM9yU@http.bugs.freedesktop.org/>
 References: <bug-112070-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0478963562=="
+Content-Type: multipart/mixed; boundary="===============0675948753=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0478963562==
-Content-Type: multipart/alternative; boundary="15715069222.5cB8F9.1154"
+--===============0675948753==
+Content-Type: multipart/alternative; boundary="15715071672.7beAA.1399"
 Content-Transfer-Encoding: 7bit
 
 
---15715069222.5cB8F9.1154
-Date: Sat, 19 Oct 2019 17:42:02 +0000
+--15715071672.7beAA.1399
+Date: Sat, 19 Oct 2019 17:46:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,24 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-You say lots of things here... what's the actual problem? That there are
-non-descript bugs in nouveau that can lead to hangs? That's not news.
-
-Is there a specific thing you're trying to make work but doesn't? You menti=
-on
-that xfce works fine - use that. KDE / Gnome will never work with this hard=
-ware
-using nouveau without nuking GL (which you can do by sticking "export
-LIBGL_ALWAYS_SOFTWARE=3D1" into your /etc/profile and/or uninstalling
-nouveau_dri.so).
+--- Comment #2 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
+Created attachment 145775
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145775&action=3Dedit
+Xorg.0.log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15715069222.5cB8F9.1154
-Date: Sat, 19 Oct 2019 17:42:02 +0000
+--15715071672.7beAA.1399
+Date: Sat, 19 Oct 2019 17:46:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
 k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
@@ -80,20 +73,14 @@ k machine GeForce 7600 GO"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070">bug 11207=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+dooby.dave&#64;virgin.net" title=3D"Doobz &lt;dooby.dave&#64;virgin.net&gt;=
+"> <span class=3D"fn">Doobz</span></a>
 </span></b>
-        <pre>You say lots of things here... what's the actual problem? That=
- there are
-non-descript bugs in nouveau that can lead to hangs? That's not news.
-
-Is there a specific thing you're trying to make work but doesn't? You menti=
-on
-that xfce works fine - use that. KDE / Gnome will never work with this hard=
-ware
-using nouveau without nuking GL (which you can do by sticking &quot;export
-LIBGL_ALWAYS_SOFTWARE=3D1&quot; into your /etc/profile and/or uninstalling
-nouveau_dri.so).</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145775=
+" name=3D"attach_145775" title=3D"Xorg.0.log">attachment 145775</a> <a href=
+=3D"attachment.cgi?id=3D145775&amp;action=3Dedit" title=3D"Xorg.0.log">[det=
+ails]</a></span>
+Xorg.0.log</pre>
         </div>
       </p>
 
@@ -107,9 +94,9 @@ nouveau_dri.so).</pre>
     </body>
 </html>=
 
---15715069222.5cB8F9.1154--
+--15715071672.7beAA.1399--
 
---===============0478963562==
+--===============0675948753==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0478963562==--
+--===============0675948753==--
