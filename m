@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
  Debian to hard lock machine GeForce 7600 GO
-Date: Sat, 19 Oct 2019 17:46:07 +0000
-Message-ID: <bug-112070-8800-4TkK3jM9yU@http.bugs.freedesktop.org/>
+Date: Sat, 19 Oct 2019 17:53:49 +0000
+Message-ID: <bug-112070-8800-F1pU6CQOQs@http.bugs.freedesktop.org/>
 References: <bug-112070-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0675948753=="
+Content-Type: multipart/mixed; boundary="===============0306531025=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0675948753==
-Content-Type: multipart/alternative; boundary="15715071672.7beAA.1399"
+--===============0306531025==
+Content-Type: multipart/alternative; boundary="15715076291.E8F5Dbd1.3325"
 Content-Transfer-Encoding: 7bit
 
 
---15715071672.7beAA.1399
-Date: Sat, 19 Oct 2019 17:46:07 +0000
+--15715076291.E8F5Dbd1.3325
+Date: Sat, 19 Oct 2019 17:53:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,27 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
 
---- Comment #2 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
-Created attachment 145775
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145775&action=3Dedit
-Xorg.0.log
+--- Comment #3 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #1)
+> You say lots of things here... what's the actual problem? That there are
+> non-descript bugs in nouveau that can lead to hangs? That's not news.
+>=20
+> Is there a specific thing you're trying to make work but doesn't? You
+> mention that xfce works fine - use that. KDE / Gnome will never work with
+> this hardware using nouveau without nuking GL (which you can do by sticki=
+ng
+> "export LIBGL_ALWAYS_SOFTWARE=3D1" into your /etc/profile and/or uninstal=
+ling
+> nouveau_dri.so).
+
+I'd very much like to watch 360 degree videos.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15715071672.7beAA.1399
-Date: Sat, 19 Oct 2019 17:46:07 +0000
+--15715076291.E8F5Dbd1.3325
+Date: Sat, 19 Oct 2019 17:53:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +74,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
 k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c2">Commen=
-t # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c3">Commen=
+t # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
@@ -76,11 +86,22 @@ k machine GeForce 7600 GO"
 dooby.dave&#64;virgin.net" title=3D"Doobz &lt;dooby.dave&#64;virgin.net&gt;=
 "> <span class=3D"fn">Doobz</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145775=
-" name=3D"attach_145775" title=3D"Xorg.0.log">attachment 145775</a> <a href=
-=3D"attachment.cgi?id=3D145775&amp;action=3Dedit" title=3D"Xorg.0.log">[det=
-ails]</a></span>
-Xorg.0.log</pre>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D112=
+070#c1">comment #1</a>)
+<span class=3D"quote">&gt; You say lots of things here... what's the actual=
+ problem? That there are
+&gt; non-descript bugs in nouveau that can lead to hangs? That's not news.
+&gt;=20
+&gt; Is there a specific thing you're trying to make work but doesn't? You
+&gt; mention that xfce works fine - use that. KDE / Gnome will never work w=
+ith
+&gt; this hardware using nouveau without nuking GL (which you can do by sti=
+cking
+&gt; &quot;export LIBGL_ALWAYS_SOFTWARE=3D1&quot; into your /etc/profile an=
+d/or uninstalling
+&gt; nouveau_dri.so).</span >
+
+I'd very much like to watch 360 degree videos.</pre>
         </div>
       </p>
 
@@ -94,9 +115,9 @@ Xorg.0.log</pre>
     </body>
 </html>=
 
---15715071672.7beAA.1399--
+--15715076291.E8F5Dbd1.3325--
 
---===============0675948753==
+--===============0306531025==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +127,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0675948753==--
+--===============0306531025==--
