@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
  rescan
-Date: Sun, 20 Oct 2019 07:41:06 +0000
-Message-ID: <bug-75985-8800-WYcHh6XEKg@http.bugs.freedesktop.org/>
+Date: Sun, 20 Oct 2019 07:43:43 +0000
+Message-ID: <bug-75985-8800-JJreBkK4WX@http.bugs.freedesktop.org/>
 References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0530833099=="
+Content-Type: multipart/mixed; boundary="===============0336171795=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0530833099==
-Content-Type: multipart/alternative; boundary="15715572668.C5dc9E23c.4343"
+--===============0336171795==
+Content-Type: multipart/alternative; boundary="15715574232.721D6.4430"
 Content-Transfer-Encoding: 7bit
 
 
---15715572668.C5dc9E23c.4343
-Date: Sun, 20 Oct 2019 07:41:06 +0000
+--15715574232.721D6.4430
+Date: Sun, 20 Oct 2019 07:43:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,33 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #116 from Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> ---
-@Przemys=C5=82aw Kopa:
-
-The fix was applied by Takashi Iwai on Thursday Oct 17 with commit
-94989e318b2f, it was merged to Linus' tree on Friday Oct 18 and will thus be
-part of v5.4-rc4 due out later today. It should appear in v5.3-stable withi=
-n 1
-or 2 weeks. You may want to double-check that the issue is gone with this f=
-ix.
-
-There's one problem remaining, you shouldn't have to manually echo "auto" to
-the HDA's control file because we call pm_runtime_allow() on the HDA device=
- in
-drivers/pci/quirks.c:quirk_gpu_hda() -> pci_create_device_link(). Something
-must be calling pm_runtime_forbid() afterwards, perhaps this is triggered f=
-rom
-user space on Arch Linux. I'm attaching a little debug patch which logs a
-stacktrace to dmesg whenever pm_runtime_allow() / _forbid() is called for a
-device. Feel free to attach dmesg output with this patch applied and I'll be
-happy to take a look at it.
+--- Comment #117 from Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org> ---
+Created attachment 145778
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145778&action=3Dedit
+Debug patch to log invocations of pm_runtime_forbid()
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15715572668.C5dc9E23c.4343
-Date: Sun, 20 Oct 2019 07:41:06 +0000
+--15715574232.721D6.4430
+Date: Sun, 20 Oct 2019 07:43:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -79,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c116">Comme=
-nt # 116</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c117">Comme=
+nt # 117</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
@@ -90,27 +74,13 @@ nt # 116</a>
 lukas&#64;wunner.de" title=3D"Lukas Wunner &lt;lukas&#64;wunner.de&gt;"> <s=
 pan class=3D"fn">Lukas Wunner</span></a>
 </span></b>
-        <pre>&#64;Przemys=C5=82aw Kopa:
-
-The fix was applied by Takashi Iwai on Thursday Oct 17 with commit
-94989e318b2f, it was merged to Linus' tree on Friday Oct 18 and will thus be
-part of v5.4-rc4 due out later today. It should appear in v5.3-stable withi=
-n 1
-or 2 weeks. You may want to double-check that the issue is gone with this f=
-ix.
-
-There's one problem remaining, you shouldn't have to manually echo &quot;au=
-to&quot; to
-the HDA's control file because we call pm_runtime_allow() on the HDA device=
- in
-drivers/pci/quirks.c:quirk_gpu_hda() -&gt; pci_create_device_link(). Someth=
-ing
-must be calling pm_runtime_forbid() afterwards, perhaps this is triggered f=
-rom
-user space on Arch Linux. I'm attaching a little debug patch which logs a
-stacktrace to dmesg whenever pm_runtime_allow() / _forbid() is called for a
-device. Feel free to attach dmesg output with this patch applied and I'll be
-happy to take a look at it.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145778=
+" name=3D"attach_145778" title=3D"Debug patch to log invocations of pm_runt=
+ime_forbid()">attachment 145778</a> <a href=3D"attachment.cgi?id=3D145778&a=
+mp;action=3Dedit" title=3D"Debug patch to log invocations of pm_runtime_for=
+bid()">[details]</a></span> <a href=3D'page.cgi?id=3Dsplinter.html&amp;bug=
+=3D75985&amp;attachment=3D145778'>[review]</a>
+Debug patch to log invocations of pm_runtime_forbid()</pre>
         </div>
       </p>
 
@@ -124,9 +94,9 @@ happy to take a look at it.</pre>
     </body>
 </html>=
 
---15715572668.C5dc9E23c.4343--
+--15715574232.721D6.4430--
 
---===============0530833099==
+--===============0336171795==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -136,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0530833099==--
+--===============0336171795==--
