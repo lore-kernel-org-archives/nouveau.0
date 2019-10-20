@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
  Debian to hard lock machine GeForce 7600 GO
-Date: Sun, 20 Oct 2019 13:33:32 +0000
-Message-ID: <bug-112070-8800-BrosJJL5zX@http.bugs.freedesktop.org/>
+Date: Sun, 20 Oct 2019 16:02:47 +0000
+Message-ID: <bug-112070-8800-lLxxfYPwFD@http.bugs.freedesktop.org/>
 References: <bug-112070-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1386150866=="
+Content-Type: multipart/mixed; boundary="===============0553005363=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1386150866==
-Content-Type: multipart/alternative; boundary="15715784112.11ADCaB0.22086"
+--===============0553005363==
+Content-Type: multipart/alternative; boundary="15715873672.A946F3BD.10901"
 Content-Transfer-Encoding: 7bit
 
 
---15715784112.11ADCaB0.22086
-Date: Sun, 20 Oct 2019 13:33:31 +0000
+--15715873672.A946F3BD.10901
+Date: Sun, 20 Oct 2019 16:02:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,25 +36,29 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
 
---- Comment #9 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
-So I went ahead and installed Sabayon. Same behaviour - garbled 360 degree
-videos in Firefox.
+--- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Doobz from comment #9)
+> Does nouveau need any firmware for my card? I thought it didn't, but look=
+ing
+> here it appears it might.
+> https://nouveau.freedesktop.org/wiki/VideoAcceleration/
 
-I did try flipping layers.acceleration.disabled =3D true in about:config bu=
-t it
-made no difference.
+It would need it for hypothetical VP1 support. However there is no software
+support for the VP1 decoding engine, and according to all reports, it didn't
+make anything actually faster (on Windows). The MPEG decoding engine should
+work fine (via XvMC ... IIRC VDPAU didn't quite work, and XvMC is a better
+match anyways).
 
-
-Does nouveau need any firmware for my card? I thought it didn't, but looking
-here it appears it might.
-https://nouveau.freedesktop.org/wiki/VideoAcceleration/
+This is all for accelerated video decoding, which is not in play for the vi=
+deos
+you're talking about.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15715784112.11ADCaB0.22086
-Date: Sun, 20 Oct 2019 13:33:31 +0000
+--15715873672.A946F3BD.10901
+Date: Sun, 20 Oct 2019 16:02:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -72,8 +76,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
 k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c9">Commen=
-t # 9</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c10">Comme=
+nt # 10</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
@@ -81,22 +85,26 @@ k machine GeForce 7600 GO"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070">bug 11207=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dooby.dave&#64;virgin.net" title=3D"Doobz &lt;dooby.dave&#64;virgin.net&gt;=
-"> <span class=3D"fn">Doobz</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>So I went ahead and installed Sabayon. Same behaviour - garble=
-d 360 degree
-videos in Firefox.
+        <pre>(In reply to Doobz from <a href=3D"show_bug.cgi?id=3D112070#c9=
+">comment #9</a>)
+<span class=3D"quote">&gt; Does nouveau need any firmware for my card? I th=
+ought it didn't, but looking
+&gt; here it appears it might.
+&gt; <a href=3D"https://nouveau.freedesktop.org/wiki/VideoAcceleration/">ht=
+tps://nouveau.freedesktop.org/wiki/VideoAcceleration/</a></span >
 
-I did try flipping layers.acceleration.disabled =3D true in about:config bu=
-t it
-made no difference.
+It would need it for hypothetical VP1 support. However there is no software
+support for the VP1 decoding engine, and according to all reports, it didn't
+make anything actually faster (on Windows). The MPEG decoding engine should
+work fine (via XvMC ... IIRC VDPAU didn't quite work, and XvMC is a better
+match anyways).
 
-
-Does nouveau need any firmware for my card? I thought it didn't, but looking
-here it appears it might.
-<a href=3D"https://nouveau.freedesktop.org/wiki/VideoAcceleration/">https:/=
-/nouveau.freedesktop.org/wiki/VideoAcceleration/</a></pre>
+This is all for accelerated video decoding, which is not in play for the vi=
+deos
+you're talking about.</pre>
         </div>
       </p>
 
@@ -110,9 +118,9 @@ here it appears it might.
     </body>
 </html>=
 
---15715784112.11ADCaB0.22086--
+--15715873672.A946F3BD.10901--
 
---===============1386150866==
+--===============0553005363==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -122,4 +130,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1386150866==--
+--===============0553005363==--
