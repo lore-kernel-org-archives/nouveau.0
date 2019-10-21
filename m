@@ -1,59 +1,116 @@
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to
- enable dGPU direct output"
-Date: Mon, 21 Oct 2019 10:54:48 +0200
-Message-ID: <CAJZ5v0hedXR13mw2FANuMNNOx0XmXiUUTus5C14Y-ADGteM4hA@mail.gmail.com>
-References: <20190814213118.28473-1-kherbst@redhat.com> <2215840.qs0dBhReda@kreacher>
- <CACO55ttC-o9bKU7nHNcfjm2YnffiupQ7UHUt7BYL3fu+yEyTbw@mail.gmail.com>
- <5228680.jBuKzensJx@kreacher> <CAJ=jquZLU2=yxayGCs=XGghxdMMre6qAWRY0Q4VErjBGqeWdjQ@mail.gmail.com>
- <CAJZ5v0hogSM3OgfJ0GFn7+BYwxR05Hb5ZMLo=NiB2wmpu=qeug@mail.gmail.com> <CACO55tvAyE1t2Bm8J=Yb_Gi5PDAgof=mRsJAKHFxOvEZpV-qGg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
+ Debian to hard lock machine GeForce 7600 GO
+Date: Mon, 21 Oct 2019 10:05:44 +0000
+Message-ID: <bug-112070-8800-DvrmeltbO4@http.bugs.freedesktop.org/>
+References: <bug-112070-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <CACO55tvAyE1t2Bm8J=Yb_Gi5PDAgof=mRsJAKHFxOvEZpV-qGg@mail.gmail.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Karol Herbst <kherbst@redhat.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Alex Hung <alex.hung@canonical.com>, "Rafael J. Wysocki" <rjw@rjwysocki.net>, Dave Airlie <airlied@gmail.com>, LKML <linux-kernel@vger.kernel.org>, Linux ACPI <linux-acpi@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Mario Limonciello <mario.limonciello@dell.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>
+Content-Type: multipart/mixed; boundary="===============2115702938=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Oct 21, 2019 at 10:48 AM Karol Herbst <kherbst@redhat.com> wrote:
->
-> fyi: I decided to go for a different workaround to fix the runpm
-> issues observed with nvidia gpus with nouveau in the "pci: prevent
-> putting nvidia GPUs into lower device states on certain intel bridges"
-> thread
 
-OK, I've seen that.
+--===============2115702938==
+Content-Type: multipart/alternative; boundary="15716523440.ACebEBE3E.4312"
+Content-Transfer-Encoding: 7bit
 
-> that's on the pci and pm mailing list. Maybe it makes sense to wait
-> for that to land before actually removing the ACPI workarounds here?
 
-Sounds reasonable.
+--15716523440.ACebEBE3E.4312
+Date: Mon, 21 Oct 2019 10:05:44 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
 
-> The workaround I had in this series didn't seem to be reliable enough,
-> so I ditched that approached.
+https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
 
-OK, please let me know when the _OSI string in question can be dropped.
+--- Comment #11 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
+I don't know if you were able to deduce anything tangible from the valgrind
+log. It crossed my mind that glmark2 might by default not run on such old
+hardware.
 
-> On Mon, Oct 21, 2019 at 10:14 AM Rafael J. Wysocki <rafael@kernel.org> wrote:
-> >
-> > On Mon, Oct 21, 2019 at 4:14 AM Alex Hung <alex.hung@canonical.com> wrote:
-> > >
-> > > We have done some tests on three of Intel + nVidia configuration
-> > > systems with OEM _OSI strings removed - while some bugs are still
-> > > observed, ex. one out of three has suspend/resume issues, no system
-> > > crashes were observed - the biggest issue that worries us.
-> > >
-> > > The positive results give us confident to ack the removal of the OEM
-> > > _OSI strings. While our tests were not able to cover all possible I+N
-> > > systems, we are sure we can fix issues along the way. If there aren't
-> > > systems that cannot be fixed without these OEM _OSI strings, these
-> > > strings should probably enable with DMI quirks (possible future
-> > > patches) so they won't affect others.
-> > >
-> > > Acked-by: Alex Hung <alex.hung@canonical.com>
-> >
-> > OK, thanks!
-> >
-> > I can queue this up or if it's better to route it through the DRM
-> > tree, please do that (and let me know).
+Also, the 360 degree video could be a bug in Firefox, like you mentioned. I=
+ can
+download the garbled videos and watch successfully in vlc.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15716523440.ACebEBE3E.4312
+Date: Mon, 21 Oct 2019 10:05:44 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
+k machine GeForce 7600 GO"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c11">Comme=
+nt # 11</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
+k machine GeForce 7600 GO"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070">bug 11207=
+0</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+dooby.dave&#64;virgin.net" title=3D"Doobz &lt;dooby.dave&#64;virgin.net&gt;=
+"> <span class=3D"fn">Doobz</span></a>
+</span></b>
+        <pre>I don't know if you were able to deduce anything tangible from=
+ the valgrind
+log. It crossed my mind that glmark2 might by default not run on such old
+hardware.
+
+Also, the 360 degree video could be a bug in Firefox, like you mentioned. I=
+ can
+download the garbled videos and watch successfully in vlc.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15716523440.ACebEBE3E.4312--
+
+--===============2115702938==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============2115702938==--
