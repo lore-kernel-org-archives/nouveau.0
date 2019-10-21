@@ -1,133 +1,104 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
- Debian to hard lock machine GeForce 7600 GO
-Date: Sun, 20 Oct 2019 16:02:47 +0000
-Message-ID: <bug-112070-8800-lLxxfYPwFD@http.bugs.freedesktop.org/>
-References: <bug-112070-8800@http.bugs.freedesktop.org/>
+From: Alex Hung <alex.hung@canonical.com>
+Subject: Re: [Nouveau] [PATCH 1/7] Revert "ACPI / OSI: Add OEM _OSI string to
+ enable dGPU direct output"
+Date: Sun, 20 Oct 2019 20:14:23 -0600
+Message-ID: <CAJ=jquZLU2=yxayGCs=XGghxdMMre6qAWRY0Q4VErjBGqeWdjQ@mail.gmail.com>
+References: <20190814213118.28473-1-kherbst@redhat.com> <2215840.qs0dBhReda@kreacher>
+ <CACO55ttC-o9bKU7nHNcfjm2YnffiupQ7UHUt7BYL3fu+yEyTbw@mail.gmail.com> <5228680.jBuKzensJx@kreacher>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0553005363=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <5228680.jBuKzensJx@kreacher>
+Sender: linux-kernel-owner@vger.kernel.org
+To: "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Cc: Karol Herbst <kherbst@redhat.com>, Dave Airlie <airlied@gmail.com>, LKML <linux-kernel@vger.kernel.org>, Linux ACPI <linux-acpi@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Mario Limonciello <mario.limonciello@dell.com>, Ben Skeggs <bskeggs@redhat.com>, Dave Airlie <airlied@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
+We have done some tests on three of Intel + nVidia configuration
+systems with OEM _OSI strings removed - while some bugs are still
+observed, ex. one out of three has suspend/resume issues, no system
+crashes were observed - the biggest issue that worries us.
 
---===============0553005363==
-Content-Type: multipart/alternative; boundary="15715873672.A946F3BD.10901"
-Content-Transfer-Encoding: 7bit
+The positive results give us confident to ack the removal of the OEM
+_OSI strings. While our tests were not able to cover all possible I+N
+systems, we are sure we can fix issues along the way. If there aren't
+systems that cannot be fixed without these OEM _OSI strings, these
+strings should probably enable with DMI quirks (possible future
+patches) so they won't affect others.
 
-
---15715873672.A946F3BD.10901
-Date: Sun, 20 Oct 2019 16:02:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
-
---- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Doobz from comment #9)
-> Does nouveau need any firmware for my card? I thought it didn't, but look=
-ing
-> here it appears it might.
-> https://nouveau.freedesktop.org/wiki/VideoAcceleration/
-
-It would need it for hypothetical VP1 support. However there is no software
-support for the VP1 decoding engine, and according to all reports, it didn't
-make anything actually faster (on Windows). The MPEG decoding engine should
-work fine (via XvMC ... IIRC VDPAU didn't quite work, and XvMC is a better
-match anyways).
-
-This is all for accelerated video decoding, which is not in play for the vi=
-deos
-you're talking about.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15715873672.A946F3BD.10901
-Date: Sun, 20 Oct 2019 16:02:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
-k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c10">Comme=
-nt # 10</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
-k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070">bug 11207=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Doobz from <a href=3D"show_bug.cgi?id=3D112070#c9=
-">comment #9</a>)
-<span class=3D"quote">&gt; Does nouveau need any firmware for my card? I th=
-ought it didn't, but looking
-&gt; here it appears it might.
-&gt; <a href=3D"https://nouveau.freedesktop.org/wiki/VideoAcceleration/">ht=
-tps://nouveau.freedesktop.org/wiki/VideoAcceleration/</a></span >
-
-It would need it for hypothetical VP1 support. However there is no software
-support for the VP1 decoding engine, and according to all reports, it didn't
-make anything actually faster (on Windows). The MPEG decoding engine should
-work fine (via XvMC ... IIRC VDPAU didn't quite work, and XvMC is a better
-match anyways).
-
-This is all for accelerated video decoding, which is not in play for the vi=
-deos
-you're talking about.</pre>
-        </div>
-      </p>
+Acked-by: Alex Hung <alex.hung@canonical.com>
 
 
-      <hr>
-      <span>You are receiving this mail because:</span>
 
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
 
---15715873672.A946F3BD.10901--
+On Thu, Sep 5, 2019 at 10:26 AM Rafael J. Wysocki <rjw@rjwysocki.net> wrote:
+>
+> On Thursday, September 5, 2019 5:51:23 PM CEST Karol Herbst wrote:
+> > is there any update on the testing with my patches? On the hardware I
+> > had access to those patches helped, but I can't know if it also helped
+> > on the hardware for which those workarounds where actually added.
+>
+> Alex Hung and Mario need to answer this question I think.
+>
+> > On Mon, Aug 19, 2019 at 11:52 AM Rafael J. Wysocki <rjw@rjwysocki.net> wrote:
+> > >
+> > > On Thursday, August 15, 2019 12:47:35 AM CEST Dave Airlie wrote:
+> > > > On Thu, 15 Aug 2019 at 07:31, Karol Herbst <kherbst@redhat.com> wrote:
+> > > > >
+> > > > > This reverts commit 28586a51eea666d5531bcaef2f68e4abbd87242c.
+> > > > >
+> > > > > The original commit message didn't even make sense. AMD _does_ support it and
+> > > > > it works with Nouveau as well.
+> > > > >
+> > > > > Also what was the issue being solved here? No references to any bugs and not
+> > > > > even explaining any issue at all isn't the way we do things.
+> > > > >
+> > > > > And even if it means a muxed design, then the fix is to make it work inside the
+> > > > > driver, not adding some hacky workaround through ACPI tricks.
+> > > > >
+> > > > > And what out of tree drivers do or do not support we don't care one bit anyway.
+> > > > >
+> > > >
+> > > > I think the reverts should be merged via Rafael's tree as the original
+> > > > patches went in via there, and we should get them in asap.
+> > > >
+> > > > Acked-by: Dave Airlie <airlied@redhat.com>
+> > >
+> > > The _OSI strings are to be dropped when all of the needed support is there in
+> > > drivers, so they should go away along with the requisite driver changes.
+> > >
+> >
+> > that goes beside the point. firmware level workarounds for GPU driver
+> > issues were pushed without consulting with upstream GPU developers.
+> > That's something which shouldn't have happened in the first place. And
+> > yes, I am personally annoyed by the fact, that people know about
+> > issues, but instead of contacting the proper persons and working on a
+> > proper fix, we end up with stupid firmware level workarounds. I can't
+> > see why we ever would have wanted such workarounds in the first place.
+> >
+> > And I would be much happier if the next time something like that comes
+> > up, that the drm mailing list will be contacted as well or somebody
+> > involved.
+> >
+> > We could have also just disable the feature inside the driver (and
+> > probably we should have done that a long time ago, so that is
+> > essentially our fault, but still....)
+> >
+> > > I'm all for dropping then when that's the case, so please feel free to add ACKs
+> > > from me to the patches in question at that point.
+> > >
+> > > Cheers,
+> > > Rafael
+> > >
+> > >
+> > >
+> >
+>
+>
+>
+>
 
---===============0553005363==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0553005363==--
+-- 
+Cheers,
+Alex Hung
