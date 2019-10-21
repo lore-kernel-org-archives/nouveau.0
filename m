@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
  Debian to hard lock machine GeForce 7600 GO
-Date: Mon, 21 Oct 2019 10:05:44 +0000
-Message-ID: <bug-112070-8800-DvrmeltbO4@http.bugs.freedesktop.org/>
+Date: Mon, 21 Oct 2019 10:13:06 +0000
+Message-ID: <bug-112070-8800-xedb7fwt8m@http.bugs.freedesktop.org/>
 References: <bug-112070-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2115702938=="
+Content-Type: multipart/mixed; boundary="===============1766244284=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2115702938==
-Content-Type: multipart/alternative; boundary="15716523440.ACebEBE3E.4312"
+--===============1766244284==
+Content-Type: multipart/alternative; boundary="15716527851.Bd54111a.4983"
 Content-Transfer-Encoding: 7bit
 
 
---15716523440.ACebEBE3E.4312
-Date: Mon, 21 Oct 2019 10:05:44 +0000
+--15716527851.Bd54111a.4983
+Date: Mon, 21 Oct 2019 10:13:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,21 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
 
---- Comment #11 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
-I don't know if you were able to deduce anything tangible from the valgrind
-log. It crossed my mind that glmark2 might by default not run on such old
-hardware.
-
-Also, the 360 degree video could be a bug in Firefox, like you mentioned. I=
- can
-download the garbled videos and watch successfully in vlc.
+--- Comment #12 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
+Though I struggle to imagine a bug in FF can manifest itself differently on
+different gpu architectures.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15716523440.ACebEBE3E.4312
-Date: Mon, 21 Oct 2019 10:05:44 +0000
+--15716527851.Bd54111a.4983
+Date: Mon, 21 Oct 2019 10:13:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -68,8 +63,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
 k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c11">Comme=
-nt # 11</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c12">Comme=
+nt # 12</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
@@ -80,14 +75,9 @@ k machine GeForce 7600 GO"
 dooby.dave&#64;virgin.net" title=3D"Doobz &lt;dooby.dave&#64;virgin.net&gt;=
 "> <span class=3D"fn">Doobz</span></a>
 </span></b>
-        <pre>I don't know if you were able to deduce anything tangible from=
- the valgrind
-log. It crossed my mind that glmark2 might by default not run on such old
-hardware.
-
-Also, the 360 degree video could be a bug in Firefox, like you mentioned. I=
- can
-download the garbled videos and watch successfully in vlc.</pre>
+        <pre>Though I struggle to imagine a bug in FF can manifest itself d=
+ifferently on
+different gpu architectures.</pre>
         </div>
       </p>
 
@@ -101,9 +91,9 @@ download the garbled videos and watch successfully in vlc.</pre>
     </body>
 </html>=
 
---15716523440.ACebEBE3E.4312--
+--15716527851.Bd54111a.4983--
 
---===============2115702938==
+--===============1766244284==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============2115702938==--
+--===============1766244284==--
