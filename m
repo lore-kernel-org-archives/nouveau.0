@@ -1,106 +1,43 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
- Debian to hard lock machine GeForce 7600 GO
-Date: Mon, 21 Oct 2019 10:13:06 +0000
-Message-ID: <bug-112070-8800-xedb7fwt8m@http.bugs.freedesktop.org/>
-References: <bug-112070-8800@http.bugs.freedesktop.org/>
+From: Mika Westerberg <mika.westerberg@intel.com>
+Subject: Re: [PATCH v3] pci: prevent putting nvidia GPUs into lower device
+ states on certain intel bridges
+Date: Mon, 21 Oct 2019 14:40:17 +0300
+Message-ID: <20191021114017.GY2819@lahna.fi.intel.com>
+References: <20191016144449.24646-1-kherbst@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1766244284=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20191016144449.24646-1-kherbst@redhat.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Karol Herbst <kherbst@redhat.com>
+Cc: linux-kernel@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-pci@vger.kernel.org, linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+Hi Karol,
 
---===============1766244284==
-Content-Type: multipart/alternative; boundary="15716527851.Bd54111a.4983"
-Content-Transfer-Encoding: 7bit
+Sorry for commenting late, I just came back from vacation.
 
+On Wed, Oct 16, 2019 at 04:44:49PM +0200, Karol Herbst wrote:
+> Fixes state transitions of Nvidia Pascal GPUs from D3cold into higher device
+> states.
+> 
+> v2: convert to pci_dev quirk
+>     put a proper technical explanation of the issue as a in-code comment
+> v3: disable it only for certain combinations of intel and nvidia hardware
+> 
+> Signed-off-by: Karol Herbst <kherbst@redhat.com>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Rafael J. Wysocki <rjw@rjwysocki.net>
+> Cc: Mika Westerberg <mika.westerberg@intel.com>
+> Cc: linux-pci@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: nouveau@lists.freedesktop.org
+> ---
+>  drivers/pci/pci.c    | 11 ++++++++++
+>  drivers/pci/quirks.c | 52 ++++++++++++++++++++++++++++++++++++++++++++
 
---15716527851.Bd54111a.4983
-Date: Mon, 21 Oct 2019 10:13:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
-
---- Comment #12 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
-Though I struggle to imagine a bug in FF can manifest itself differently on
-different gpu architectures.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15716527851.Bd54111a.4983
-Date: Mon, 21 Oct 2019 10:13:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
-k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c12">Comme=
-nt # 12</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
-k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070">bug 11207=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dooby.dave&#64;virgin.net" title=3D"Doobz &lt;dooby.dave&#64;virgin.net&gt;=
-"> <span class=3D"fn">Doobz</span></a>
-</span></b>
-        <pre>Though I struggle to imagine a bug in FF can manifest itself d=
-ifferently on
-different gpu architectures.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15716527851.Bd54111a.4983--
-
---===============1766244284==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1766244284==--
+I may be missing something but why you can't do this in the nouveau
+driver itself?
