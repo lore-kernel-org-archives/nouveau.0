@@ -1,60 +1,31 @@
-From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH v3] pci: prevent putting nvidia GPUs into
- lower device states on certain intel bridges
-Date: Mon, 21 Oct 2019 15:02:23 +0200
-Message-ID: <CACO55tvYEvPHwFLDmLOQ_BCiNw7ZRA7dun9P=KdLb4bvYTtrcg@mail.gmail.com>
+From: Mika Westerberg <mika.westerberg@intel.com>
+Subject: Re: [PATCH v3] pci: prevent putting nvidia GPUs into lower device
+ states on certain intel bridges
+Date: Mon, 21 Oct 2019 16:21:12 +0300
+Message-ID: <20191021132112.GH2819@lahna.fi.intel.com>
 References: <20191016144449.24646-1-kherbst@redhat.com>
  <20191021114017.GY2819@lahna.fi.intel.com>
  <CACO55tt2iGcySugTAb1khEYpiGoq6Os3upG5fGq+0PbE2gyyeQ@mail.gmail.com>
  <20191021120611.GB2819@lahna.fi.intel.com>
+ <CACO55tvYEvPHwFLDmLOQ_BCiNw7ZRA7dun9P=KdLb4bvYTtrcg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20191021120611.GB2819-3PARRvDOhMZrdx17CPfAsdBPR1lH4CV8@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mika Westerberg <mika.westerberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-Cc: Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "Rafael J . Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <CACO55tvYEvPHwFLDmLOQ_BCiNw7ZRA7dun9P=KdLb4bvYTtrcg@mail.gmail.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Karol Herbst <kherbst@redhat.com>
+Cc: LKML <linux-kernel@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Lyude Paul <lyude@redhat.com>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBPY3QgMjEsIDIwMTkgYXQgMjowNiBQTSBNaWthIFdlc3RlcmJlcmcKPG1pa2Eud2Vz
-dGVyYmVyZ0BpbnRlbC5jb20+IHdyb3RlOgo+Cj4gT24gTW9uLCBPY3QgMjEsIDIwMTkgYXQgMDI6
-MDA6NDZQTSArMDIwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+ID4gT24gTW9uLCBPY3QgMjEsIDIw
-MTkgYXQgMTo0MCBQTSBNaWthIFdlc3RlcmJlcmcKPiA+IDxtaWthLndlc3RlcmJlcmdAaW50ZWwu
-Y29tPiB3cm90ZToKPiA+ID4KPiA+ID4gSGkgS2Fyb2wsCj4gPiA+Cj4gPiA+IFNvcnJ5IGZvciBj
-b21tZW50aW5nIGxhdGUsIEkganVzdCBjYW1lIGJhY2sgZnJvbSB2YWNhdGlvbi4KPiA+ID4KPiA+
-ID4gT24gV2VkLCBPY3QgMTYsIDIwMTkgYXQgMDQ6NDQ6NDlQTSArMDIwMCwgS2Fyb2wgSGVyYnN0
-IHdyb3RlOgo+ID4gPiA+IEZpeGVzIHN0YXRlIHRyYW5zaXRpb25zIG9mIE52aWRpYSBQYXNjYWwg
-R1BVcyBmcm9tIEQzY29sZCBpbnRvIGhpZ2hlciBkZXZpY2UKPiA+ID4gPiBzdGF0ZXMuCj4gPiA+
-ID4KPiA+ID4gPiB2MjogY29udmVydCB0byBwY2lfZGV2IHF1aXJrCj4gPiA+ID4gICAgIHB1dCBh
-IHByb3BlciB0ZWNobmljYWwgZXhwbGFuYXRpb24gb2YgdGhlIGlzc3VlIGFzIGEgaW4tY29kZSBj
-b21tZW50Cj4gPiA+ID4gdjM6IGRpc2FibGUgaXQgb25seSBmb3IgY2VydGFpbiBjb21iaW5hdGlv
-bnMgb2YgaW50ZWwgYW5kIG52aWRpYSBoYXJkd2FyZQo+ID4gPiA+Cj4gPiA+ID4gU2lnbmVkLW9m
-Zi1ieTogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+Cj4gPiA+ID4gQ2M6IEJqb3Ju
-IEhlbGdhYXMgPGJoZWxnYWFzQGdvb2dsZS5jb20+Cj4gPiA+ID4gQ2M6IEx5dWRlIFBhdWwgPGx5
-dWRlQHJlZGhhdC5jb20+Cj4gPiA+ID4gQ2M6IFJhZmFlbCBKLiBXeXNvY2tpIDxyandAcmp3eXNv
-Y2tpLm5ldD4KPiA+ID4gPiBDYzogTWlrYSBXZXN0ZXJiZXJnIDxtaWthLndlc3RlcmJlcmdAaW50
-ZWwuY29tPgo+ID4gPiA+IENjOiBsaW51eC1wY2lAdmdlci5rZXJuZWwub3JnCj4gPiA+ID4gQ2M6
-IGxpbnV4LXBtQHZnZXIua2VybmVsLm9yZwo+ID4gPiA+IENjOiBkcmktZGV2ZWxAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCj4gPiA+ID4gQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4g
-PiA+ID4gLS0tCj4gPiA+ID4gIGRyaXZlcnMvcGNpL3BjaS5jICAgIHwgMTEgKysrKysrKysrKwo+
-ID4gPiA+ICBkcml2ZXJzL3BjaS9xdWlya3MuYyB8IDUyICsrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrCj4gPiA+Cj4gPiA+IEkgbWF5IGJlIG1pc3Npbmcgc29tZXRo
-aW5nIGJ1dCB3aHkgeW91IGNhbid0IGRvIHRoaXMgaW4gdGhlIG5vdXZlYXUKPiA+ID4gZHJpdmVy
-IGl0c2VsZj8KPiA+Cj4gPiBXaGF0IGRvIHlvdSBtZWFuIHByZWNpc2VseT8gTW92ZSB0aGUgcXVp
-cmsgaW50byBub3V2ZWF1LCBidXQga2VlcCB0aGUKPiA+IGNoYW5nZXMgdG8gcGNpIGNvcmU/Cj4K
-PiBObywganVzdCBibG9jayBydW50aW1lIFBNIGZyb20gdGhlIGRldmljZSBpbiBub3V2ZWF1IGRy
-aXZlci4KCmJ1dCB0aGF0J3Mgbm90IHdoYXQgdGhlIHBhdGNoIGRvZXMuIEl0IG9ubHkgc2tpcHMg
-dGhlIFBDSSBQTSByZWcKd3JpdGUsIGJ1dCBzdGlsbCBsZXQgdGhlIEFDUEkgbWV0aG9kIGJlIGlu
-dm9rZWQgdG8gcHV0IHRoZSBkZXZpY2UgaW50bwpEM2NvbGQKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1
+On Mon, Oct 21, 2019 at 03:02:23PM +0200, Karol Herbst wrote:
+> > No, just block runtime PM from the device in nouveau driver.
+> 
+> but that's not what the patch does. It only skips the PCI PM reg
+> write, but still let the ACPI method be invoked to put the device into
+> D3cold
+
+Oh, indeed it does. I did not realize that.
+
+Which makes me wonder whether ACPI _OFF() expects the device to be in D0
+for some reason.
