@@ -1,114 +1,89 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
- Debian to hard lock machine GeForce 7600 GO
-Date: Mon, 21 Oct 2019 13:39:47 +0000
-Message-ID: <bug-112070-8800-1nJRgfMAVd@http.bugs.freedesktop.org/>
-References: <bug-112070-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <kherbst@redhat.com>
+Subject: Re: [PATCH v3] pci: prevent putting nvidia GPUs into lower device
+ states on certain intel bridges
+Date: Mon, 21 Oct 2019 15:54:09 +0200
+Message-ID: <CACO55tujUZr+rKkyrkfN+wkNOJWdNEVhVc-eZ3RCXJD+G1z=7A@mail.gmail.com>
+References: <CACO55ttOJaXKWmKQQbMAQRJHLXF-VtNn58n4BZhFKYmAdfiJjA@mail.gmail.com>
+ <20191016213722.GA72810@google.com> <CACO55tuXck7vqGVLmMBGFg6A2pr3h8koRuvvWHLNDH8XvBVxew@mail.gmail.com>
+ <20191021133328.GI2819@lahna.fi.intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0152277503=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="UTF-8"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <20191021133328.GI2819@lahna.fi.intel.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Mika Westerberg <mika.westerberg@intel.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Linux ACPI Mailing List <linux-acpi@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
+On Mon, Oct 21, 2019 at 3:33 PM Mika Westerberg
+<mika.westerberg@intel.com> wrote:
+>
+> On Wed, Oct 16, 2019 at 11:48:22PM +0200, Karol Herbst wrote:
+> > On Wed, Oct 16, 2019 at 11:37 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+> > >
+> > > [+cc linux-acpi]
+> > >
+> > > On Wed, Oct 16, 2019 at 09:18:32PM +0200, Karol Herbst wrote:
+> > > > but setting the PCI_DEV_FLAGS_NO_D3 flag does prevent using the
+> > > > platform means of putting the device into D3cold, right? That's
+> > > > actually what should still happen, just the D3hot step should be
+> > > > skipped.
+> > >
+> > > If I understand correctly, when we put a device in D3cold on an ACPI
+> > > system, we do something like this:
+> > >
+> > >   pci_set_power_state(D3cold)
+> > >     if (PCI_DEV_FLAGS_NO_D3)
+> > >       return 0                                   <-- nothing at all if quirked
+> > >     pci_raw_set_power_state
+> > >       pci_write_config_word(PCI_PM_CTRL, D3hot)  <-- set to D3hot
+> > >     __pci_complete_power_transition(D3cold)
+> > >       pci_platform_power_transition(D3cold)
+> > >         platform_pci_set_power_state(D3cold)
+> > >           acpi_pci_set_power_state(D3cold)
+> > >             acpi_device_set_power(ACPI_STATE_D3_COLD)
+> > >               ...
+> > >                 acpi_evaluate_object("_OFF")     <-- set to D3cold
+> > >
+> > > I did not understand the connection with platform (ACPI) power
+> > > management from your patch.  It sounds like you want this entire path
+> > > except that you want to skip the PCI_PM_CTRL write?
+> > >
+> >
+> > exactly. I am running with this workaround for a while now and never
+> > had any fails with it anymore. The GPU gets turned off correctly and I
+> > see the same power savings, just that the GPU can be powered on again.
+> >
+> > > That seems like something Rafael should weigh in on.  I don't know
+> > > why we set the device to D3hot with PCI_PM_CTRL before using the ACPI
+> > > methods, and I don't know what the effect of skipping that is.  It
+> > > seems a little messy to slice out this tiny piece from the middle, but
+> > > maybe it makes sense.
+> > >
+> >
+> > afaik when I was talking with others in the past about it, Windows is
+> > doing that before using ACPI calls, but maybe they have some similar
+> > workarounds for certain intel bridges as well? I am sure it affects
+> > more than the one I am blacklisting here, but I rather want to check
+> > each device before blacklisting all kabylake and sky lake bridges (as
+> > those are the ones were this issue can be observed).
+> >
+> > Sadly we had no luck getting any information about such workaround out
+> > of Nvidia or Intel.
+>
+> I really would like to provide you more information about such
+> workaround but I'm not aware of any ;-) I have not seen any issues like
+> this when D3cold is properly implemented in the platform.  That's why
+> I'm bit skeptical that this has anything to do with specific Intel PCIe
+> ports. More likely it is some power sequence in the _ON/_OFF() methods
+> that is run differently on Windows.
 
---===============0152277503==
-Content-Type: multipart/alternative; boundary="15716651870.76AB73.12684"
-Content-Transfer-Encoding: 7bit
+yeah.. maybe. I really don't know what's the actual root cause. I just
+know that with this workaround it works perfectly fine on my and some
+other systems it was tested on. Do you know who would be best to
+approach to get proper documentation about those methods and what are
+the actual prerequisites of those methods?
 
-
---15716651870.76AB73.12684
-Date: Mon, 21 Oct 2019 13:39:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
-
---- Comment #14 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
-Ok, so there's this.
-https://www.linuxquestions.org/questions/linux-kernel-70/kernel-fails-to-as=
-sign-memory-to-pcie-device-4175487043/
-
-I don't know if you can tell, but I'm a little out of my depth here. ;)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15716651870.76AB73.12684
-Date: Mon, 21 Oct 2019 13:39:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
-k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c14">Comme=
-nt # 14</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
-k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070">bug 11207=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dooby.dave&#64;virgin.net" title=3D"Doobz &lt;dooby.dave&#64;virgin.net&gt;=
-"> <span class=3D"fn">Doobz</span></a>
-</span></b>
-        <pre>Ok, so there's this.
-<a href=3D"https://www.linuxquestions.org/questions/linux-kernel-70/kernel-=
-fails-to-assign-memory-to-pcie-device-4175487043/">https://www.linuxquestio=
-ns.org/questions/linux-kernel-70/kernel-fails-to-assign-memory-to-pcie-devi=
-ce-4175487043/</a>
-
-I don't know if you can tell, but I'm a little out of my depth here. ;)</pr=
-e>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15716651870.76AB73.12684--
-
---===============0152277503==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0152277503==--
+We kind of tried with Nvidia, but maybe having a more specific
+question would help here... I will try to bring that issue up the next
+time with them.
