@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
  Debian to hard lock machine GeForce 7600 GO
-Date: Mon, 21 Oct 2019 19:16:01 +0000
-Message-ID: <bug-112070-8800-pHe1Htj5n0@http.bugs.freedesktop.org/>
+Date: Mon, 21 Oct 2019 19:32:40 +0000
+Message-ID: <bug-112070-8800-1hB9xlMQj3@http.bugs.freedesktop.org/>
 References: <bug-112070-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0547513342=="
+Content-Type: multipart/mixed; boundary="===============0926069449=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0547513342==
-Content-Type: multipart/alternative; boundary="15716853610.15ADc.20321"
+--===============0926069449==
+Content-Type: multipart/alternative; boundary="15716863600.A4eFA53a9.24076"
 Content-Transfer-Encoding: 7bit
 
 
---15716853610.15ADc.20321
-Date: Mon, 21 Oct 2019 19:16:01 +0000
+--15716863600.A4eFA53a9.24076
+Date: Mon, 21 Oct 2019 19:32:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,41 +36,16 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
 
---- Comment #17 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #16)
-> (In reply to Doobz from comment #15)
-> > Quick update:-
-> >=20
-> > glmark2 runs fine on geforce 8200 laptop
->=20
-> G80+ support for nouveau is markedly better than pre-G80 (aka GeForce 8000
-> is the cutoff). The hardware changed substantially for DX10, and has litt=
-le
-> in common with its DX9 predecessors.
->=20
-> >=20
-> > But on the geforce 7100 (NV63) desktop it produces segmentation fault at
-> > same point as on my 7600GO laptop.
-> >=20
-> > I can try to upgrade from mesa 18.3.6 to 19.2.1-1 if you think it's wor=
-th
-> > doing.
->=20
-> Depending on the issue, it may or may not be worth it. Is there a backtra=
-ce
-> from the crash?
-
-Are backtraces (only) produced if "core dumped" is reported? If so then
-probably not..
-
-Can look into getting one if it's possible.
+--- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I mean like run glmark in gdb, and when it crashes, do a "bt". Make sure you
+have symbols available.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15716853610.15ADc.20321
-Date: Mon, 21 Oct 2019 19:16:01 +0000
+--15716863600.A4eFA53a9.24076
+Date: Mon, 21 Oct 2019 19:32:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -88,8 +63,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
 k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c17">Comme=
-nt # 17</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c18">Comme=
+nt # 18</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
@@ -97,41 +72,12 @@ k machine GeForce 7600 GO"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070">bug 11207=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dooby.dave&#64;virgin.net" title=3D"Doobz &lt;dooby.dave&#64;virgin.net&gt;=
-"> <span class=3D"fn">Doobz</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D112=
-070#c16">comment #16</a>)
-<span class=3D"quote">&gt; (In reply to Doobz from <a href=3D"show_bug.cgi?=
-id=3D112070#c15">comment #15</a>)
-&gt; &gt; Quick update:-
-&gt; &gt;=20
-&gt; &gt; glmark2 runs fine on geforce 8200 laptop
-&gt;=20
-&gt; G80+ support for nouveau is markedly better than pre-G80 (aka GeForce =
-8000
-&gt; is the cutoff). The hardware changed substantially for DX10, and has l=
-ittle
-&gt; in common with its DX9 predecessors.
-&gt;=20
-&gt; &gt;=20
-&gt; &gt; But on the geforce 7100 (NV63) desktop it produces segmentation f=
-ault at
-&gt; &gt; same point as on my 7600GO laptop.
-&gt; &gt;=20
-&gt; &gt; I can try to upgrade from mesa 18.3.6 to 19.2.1-1 if you think it=
-'s worth
-&gt; &gt; doing.
-&gt;=20
-&gt; Depending on the issue, it may or may not be worth it. Is there a back=
-trace
-&gt; from the crash?</span >
-
-Are backtraces (only) produced if &quot;core dumped&quot; is reported? If s=
-o then
-probably not..
-
-Can look into getting one if it's possible.</pre>
+        <pre>I mean like run glmark in gdb, and when it crashes, do a &quot=
+;bt&quot;. Make sure you
+have symbols available.</pre>
         </div>
       </p>
 
@@ -145,9 +91,9 @@ Can look into getting one if it's possible.</pre>
     </body>
 </html>=
 
---15716853610.15ADc.20321--
+--15716863600.A4eFA53a9.24076--
 
---===============0547513342==
+--===============0926069449==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -157,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0547513342==--
+--===============0926069449==--
