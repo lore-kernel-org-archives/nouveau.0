@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
- Debian to hard lock machine GeForce 7600 GO
-Date: Mon, 21 Oct 2019 12:14:43 +0000
-Message-ID: <bug-112070-8800-x8vhQykHU9@http.bugs.freedesktop.org/>
-References: <bug-112070-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <kherbst-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH v3] pci: prevent putting nvidia GPUs into
+ lower device states on certain intel bridges
+Date: Mon, 21 Oct 2019 15:02:23 +0200
+Message-ID: <CACO55tvYEvPHwFLDmLOQ_BCiNw7ZRA7dun9P=KdLb4bvYTtrcg@mail.gmail.com>
+References: <20191016144449.24646-1-kherbst@redhat.com>
+ <20191021114017.GY2819@lahna.fi.intel.com>
+ <CACO55tt2iGcySugTAb1khEYpiGoq6Os3upG5fGq+0PbE2gyyeQ@mail.gmail.com>
+ <20191021120611.GB2819@lahna.fi.intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1504042798=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20191021120611.GB2819-3PARRvDOhMZrdx17CPfAsdBPR1lH4CV8@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,111 +21,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Mika Westerberg <mika.westerberg-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Cc: Linux PM <linux-pm-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Linux PCI <linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "Rafael J . Wysocki" <rjw-LthD3rsA81gm4RdzfppkhA@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Bjorn Helgaas <bhelgaas-hpIqsD4AKlfQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1504042798==
-Content-Type: multipart/alternative; boundary="15716600830.2f6E24bf.27559"
-Content-Transfer-Encoding: 7bit
-
-
---15716600830.2f6E24bf.27559
-Date: Mon, 21 Oct 2019 12:14:43 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
-
---- Comment #13 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
-I didn't notice these in dmesg before
-
-:~# dmesg | grep fail
-[    0.701087] acpi PNP0A08:00: _OSC failed (AE_NOT_FOUND); disabling ASPM
-[    0.836978] pci 0000:01:00.0: BAR 6: failed to assign [mem size 0x000200=
-00
-pref]
-
-And checking the desktop ( integrated GeForce 7100 ) I get
-
-[ ..] acpi PNP0A08:00: _OSC failed (AE_SUPPORT); disabling ASPM
-
-Same, but slightly different.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15716600830.2f6E24bf.27559
-Date: Mon, 21 Oct 2019 12:14:43 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
-k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c13">Comme=
-nt # 13</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
-k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070">bug 11207=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dooby.dave&#64;virgin.net" title=3D"Doobz &lt;dooby.dave&#64;virgin.net&gt;=
-"> <span class=3D"fn">Doobz</span></a>
-</span></b>
-        <pre>I didn't notice these in dmesg before
-
-:~# dmesg | grep fail
-[    0.701087] acpi PNP0A08:00: _OSC failed (AE_NOT_FOUND); disabling ASPM
-[    0.836978] pci 0000:01:00.0: BAR 6: failed to assign [mem size 0x000200=
-00
-pref]
-
-And checking the desktop ( integrated GeForce 7100 ) I get
-
-[ ..] acpi PNP0A08:00: _OSC failed (AE_SUPPORT); disabling ASPM
-
-Same, but slightly different.</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15716600830.2f6E24bf.27559--
-
---===============1504042798==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1504042798==--
+T24gTW9uLCBPY3QgMjEsIDIwMTkgYXQgMjowNiBQTSBNaWthIFdlc3RlcmJlcmcKPG1pa2Eud2Vz
+dGVyYmVyZ0BpbnRlbC5jb20+IHdyb3RlOgo+Cj4gT24gTW9uLCBPY3QgMjEsIDIwMTkgYXQgMDI6
+MDA6NDZQTSArMDIwMCwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+ID4gT24gTW9uLCBPY3QgMjEsIDIw
+MTkgYXQgMTo0MCBQTSBNaWthIFdlc3RlcmJlcmcKPiA+IDxtaWthLndlc3RlcmJlcmdAaW50ZWwu
+Y29tPiB3cm90ZToKPiA+ID4KPiA+ID4gSGkgS2Fyb2wsCj4gPiA+Cj4gPiA+IFNvcnJ5IGZvciBj
+b21tZW50aW5nIGxhdGUsIEkganVzdCBjYW1lIGJhY2sgZnJvbSB2YWNhdGlvbi4KPiA+ID4KPiA+
+ID4gT24gV2VkLCBPY3QgMTYsIDIwMTkgYXQgMDQ6NDQ6NDlQTSArMDIwMCwgS2Fyb2wgSGVyYnN0
+IHdyb3RlOgo+ID4gPiA+IEZpeGVzIHN0YXRlIHRyYW5zaXRpb25zIG9mIE52aWRpYSBQYXNjYWwg
+R1BVcyBmcm9tIEQzY29sZCBpbnRvIGhpZ2hlciBkZXZpY2UKPiA+ID4gPiBzdGF0ZXMuCj4gPiA+
+ID4KPiA+ID4gPiB2MjogY29udmVydCB0byBwY2lfZGV2IHF1aXJrCj4gPiA+ID4gICAgIHB1dCBh
+IHByb3BlciB0ZWNobmljYWwgZXhwbGFuYXRpb24gb2YgdGhlIGlzc3VlIGFzIGEgaW4tY29kZSBj
+b21tZW50Cj4gPiA+ID4gdjM6IGRpc2FibGUgaXQgb25seSBmb3IgY2VydGFpbiBjb21iaW5hdGlv
+bnMgb2YgaW50ZWwgYW5kIG52aWRpYSBoYXJkd2FyZQo+ID4gPiA+Cj4gPiA+ID4gU2lnbmVkLW9m
+Zi1ieTogS2Fyb2wgSGVyYnN0IDxraGVyYnN0QHJlZGhhdC5jb20+Cj4gPiA+ID4gQ2M6IEJqb3Ju
+IEhlbGdhYXMgPGJoZWxnYWFzQGdvb2dsZS5jb20+Cj4gPiA+ID4gQ2M6IEx5dWRlIFBhdWwgPGx5
+dWRlQHJlZGhhdC5jb20+Cj4gPiA+ID4gQ2M6IFJhZmFlbCBKLiBXeXNvY2tpIDxyandAcmp3eXNv
+Y2tpLm5ldD4KPiA+ID4gPiBDYzogTWlrYSBXZXN0ZXJiZXJnIDxtaWthLndlc3RlcmJlcmdAaW50
+ZWwuY29tPgo+ID4gPiA+IENjOiBsaW51eC1wY2lAdmdlci5rZXJuZWwub3JnCj4gPiA+ID4gQ2M6
+IGxpbnV4LXBtQHZnZXIua2VybmVsLm9yZwo+ID4gPiA+IENjOiBkcmktZGV2ZWxAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCj4gPiA+ID4gQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4g
+PiA+ID4gLS0tCj4gPiA+ID4gIGRyaXZlcnMvcGNpL3BjaS5jICAgIHwgMTEgKysrKysrKysrKwo+
+ID4gPiA+ICBkcml2ZXJzL3BjaS9xdWlya3MuYyB8IDUyICsrKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrCj4gPiA+Cj4gPiA+IEkgbWF5IGJlIG1pc3Npbmcgc29tZXRo
+aW5nIGJ1dCB3aHkgeW91IGNhbid0IGRvIHRoaXMgaW4gdGhlIG5vdXZlYXUKPiA+ID4gZHJpdmVy
+IGl0c2VsZj8KPiA+Cj4gPiBXaGF0IGRvIHlvdSBtZWFuIHByZWNpc2VseT8gTW92ZSB0aGUgcXVp
+cmsgaW50byBub3V2ZWF1LCBidXQga2VlcCB0aGUKPiA+IGNoYW5nZXMgdG8gcGNpIGNvcmU/Cj4K
+PiBObywganVzdCBibG9jayBydW50aW1lIFBNIGZyb20gdGhlIGRldmljZSBpbiBub3V2ZWF1IGRy
+aXZlci4KCmJ1dCB0aGF0J3Mgbm90IHdoYXQgdGhlIHBhdGNoIGRvZXMuIEl0IG9ubHkgc2tpcHMg
+dGhlIFBDSSBQTSByZWcKd3JpdGUsIGJ1dCBzdGlsbCBsZXQgdGhlIEFDUEkgbWV0aG9kIGJlIGlu
+dm9rZWQgdG8gcHV0IHRoZSBkZXZpY2UgaW50bwpEM2NvbGQKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1
