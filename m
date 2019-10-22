@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
  Debian to hard lock machine GeForce 7600 GO
-Date: Tue, 22 Oct 2019 16:07:18 +0000
-Message-ID: <bug-112070-8800-fJe8GcWBhn@http.bugs.freedesktop.org/>
+Date: Tue, 22 Oct 2019 19:41:04 +0000
+Message-ID: <bug-112070-8800-AXc4luwCzs@http.bugs.freedesktop.org/>
 References: <bug-112070-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0843672032=="
+Content-Type: multipart/mixed; boundary="===============0584950520=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0843672032==
-Content-Type: multipart/alternative; boundary="15717604380.a11B10.1150"
+--===============0584950520==
+Content-Type: multipart/alternative; boundary="15717732632.D5Cf547d.13672"
 Content-Transfer-Encoding: 7bit
 
 
---15717604380.a11B10.1150
-Date: Tue, 22 Oct 2019 16:07:18 +0000
+--15717732632.D5Cf547d.13672
+Date: Tue, 22 Oct 2019 19:41:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
 
---- Comment #21 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-b000 range is the media range. Just remove dri/libvdpau_nouveau.so -- I'm s=
-ure
-that's not helping. And any similar va-api thing.
+--- Comment #22 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
+Created attachment 145795
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145795&action=3Dedit
+Backtrace glmark2 segfault nv4b mesa1836
+
+Let me know if I messed up. And thanks for taking the time to look into thi=
+s.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15717604380.a11B10.1150
-Date: Tue, 22 Oct 2019 16:07:18 +0000
+--15717732632.D5Cf547d.13672
+Date: Tue, 22 Oct 2019 19:41:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +67,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
 k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c21">Comme=
-nt # 21</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c22">Comme=
+nt # 22</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
@@ -73,12 +76,17 @@ k machine GeForce 7600 GO"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070">bug 11207=
 0</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+dooby.dave&#64;virgin.net" title=3D"Doobz &lt;dooby.dave&#64;virgin.net&gt;=
+"> <span class=3D"fn">Doobz</span></a>
 </span></b>
-        <pre>b000 range is the media range. Just remove dri/libvdpau_nouvea=
-u.so -- I'm sure
-that's not helping. And any similar va-api thing.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145795=
+" name=3D"attach_145795" title=3D"Backtrace glmark2 segfault nv4b mesa1836"=
+>attachment 145795</a> <a href=3D"attachment.cgi?id=3D145795&amp;action=3De=
+dit" title=3D"Backtrace glmark2 segfault nv4b mesa1836">[details]</a></span>
+Backtrace glmark2 segfault nv4b mesa1836
+
+Let me know if I messed up. And thanks for taking the time to look into thi=
+s.</pre>
         </div>
       </p>
 
@@ -92,9 +100,9 @@ that's not helping. And any similar va-api thing.</pre>
     </body>
 </html>=
 
---15717604380.a11B10.1150--
+--15717732632.D5Cf547d.13672--
 
---===============0843672032==
+--===============0584950520==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0843672032==--
+--===============0584950520==--
