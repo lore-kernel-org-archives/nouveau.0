@@ -1,41 +1,60 @@
-From: Markus Elfring <Markus.Elfring@web.de>
-Subject: Re: [PATCH] drm/nouveau: Fix memory leak in nouveau_bo_alloc
-Date: Tue, 22 Oct 2019 11:40:38 +0200
-Message-ID: <b523c3a1-75a7-d94a-6cc6-58e8a1ad73cd@web.de>
-References: <20191021211449.9104-1-navid.emamdoost@gmail.com>
+From: Mika Westerberg <mika.westerberg@intel.com>
+Subject: Re: [PATCH v3] pci: prevent putting nvidia GPUs into lower device
+ states on certain intel bridges
+Date: Tue, 22 Oct 2019 15:44:53 +0300
+Message-ID: <20191022124453.GK2819@lahna.fi.intel.com>
+References: <CACO55ttOJaXKWmKQQbMAQRJHLXF-VtNn58n4BZhFKYmAdfiJjA@mail.gmail.com>
+ <20191016213722.GA72810@google.com>
+ <CACO55tuXck7vqGVLmMBGFg6A2pr3h8koRuvvWHLNDH8XvBVxew@mail.gmail.com>
+ <20191021133328.GI2819@lahna.fi.intel.com>
+ <CACO55tujUZr+rKkyrkfN+wkNOJWdNEVhVc-eZ3RCXJD+G1z=7A@mail.gmail.com>
+ <20191021140852.GM2819@lahna.fi.intel.com>
+ <CACO55tvp6n2ahizwhc70xRJ1uTohs2ep962vwtHGQK-MkcLmsw@mail.gmail.com>
+ <20191021154606.GT2819@lahna.fi.intel.com>
+ <CACO55tsGhvG1qapRkdu_j7R534cFa5o=Gv2s4VZDrWUrxjBFwA@mail.gmail.com>
+ <CACO55ts7hivYgN7=3bcAjWx2h8FfbR5UiKiOOExYY9m-TGRNfw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
 Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20191021211449.9104-1-navid.emamdoost@gmail.com>
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <CACO55ts7hivYgN7=3bcAjWx2h8FfbR5UiKiOOExYY9m-TGRNfw@mail.gmail.com>
 Sender: linux-kernel-owner@vger.kernel.org
-To: Navid Emamdoost <navid.emamdoost@gmail.com>, Thierry Reding <treding@nvidia.com>, Gerd Hoffmann <kraxel@redhat.com>, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org, Navid Emamdoost <emamd001@umn.edu>, Kangjie Lu <kjlu@umn.edu>, Stephen McCamant <smccaman@umn.edu>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>
+To: Karol Herbst <kherbst@redhat.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, "Rafael J . Wysocki" <rjw@rjwysocki.net>, LKML <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, Linux PCI <linux-pci@vger.kernel.org>, Linux PM <linux-pm@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, nouveau <nouveau@lists.freedesktop.org>, Linux ACPI Mailing List <linux-acpi@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-> +++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-> @@ -276,8 +276,10 @@ nouveau_bo_alloc(struct nouveau_cli *cli, u64 *size=
-, int *align, u32 flags,
->  			break;
->  	}
->
-> -	if (WARN_ON(pi < 0))
-> +	if (WARN_ON(pi < 0)) {
-> +		kfree(nvbo);
->  		return ERR_PTR(-EINVAL);
-> +	}
->
->  	/* Disable compression if suitable settings couldn't be found. */
->  	if (nvbo->comp && !vmm->page[pi].comp) {
+On Tue, Oct 22, 2019 at 11:16:14AM +0200, Karol Herbst wrote:
+> I think there is something I totally forgot about:
+> 
+> When there was never a driver bound to the GPU, and if runtime power
+> management gets enabled on that device, runtime suspend/resume works
+> as expected (I am not 100% sure on if that always works, but I will
+> recheck that).
 
-This addition looks correct.
-But I would prefer to move such exception handling code to the end of
-this function implementation so that duplicate source code will be reduced=
-.
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Do=
-cumentation/process/coding-style.rst?id=3D7d194c2100ad2a6dded545887d027549=
-48ca5241#n450
+AFAIK, if there is no driver bound to the PCI device it is left to D0
+regardless of the runtime PM state which could explain why it works in
+that case (it is never put into D3hot).
 
-Regards,
-Markus
+I looked at the acpidump you sent and there is one thing that may
+explain the differences between Windows and Linux. Not sure if you were
+aware of this already, though. The power resource PGOF() method has
+this:
+
+   If (((OSYS <= 0x07D9) || ((OSYS == 0x07DF) && (_REV == 0x05)))) {
+      ...
+   }  
+
+If I read it right, the later condition tries to detect Linux which
+fails nowadays but if you have acpi_rev_override in the command line (or
+the machine is listed in acpi_rev_dmi_table) this check passes and does
+some magic which is not clear to me. There is similar in PGON() side
+which is used to turn the device back on.
+
+You can check what actually happens when _ON()/_OFF() is called by
+passing something like below to the kernel command line:
+
+  acpi.trace_debug_layer=0x80 acpi.trace_debug_level=0x10 acpi.trace_method_name=\_SB.PCI0.PEG0.PG00._ON acpi.trace_state=method
+
+(See also Documentation/firmware-guide/acpi/method-tracing.rst).
+
+Trace goes to system dmesg.
