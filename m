@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
  Debian to hard lock machine GeForce 7600 GO
-Date: Sat, 26 Oct 2019 14:12:18 +0000
-Message-ID: <bug-112070-8800-J4XZgbpLRY@http.bugs.freedesktop.org/>
+Date: Sat, 26 Oct 2019 14:31:35 +0000
+Message-ID: <bug-112070-8800-1OCQhiuWVb@http.bugs.freedesktop.org/>
 References: <bug-112070-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0360979065=="
+Content-Type: multipart/mixed; boundary="===============1368646318=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0360979065==
-Content-Type: multipart/alternative; boundary="15720991382.6d83D.12241"
+--===============1368646318==
+Content-Type: multipart/alternative; boundary="15721002952.B0b7C.15394"
 Content-Transfer-Encoding: 7bit
 
 
---15720991382.6d83D.12241
-Date: Sat, 26 Oct 2019 14:12:18 +0000
+--15721002952.B0b7C.15394
+Date: Sat, 26 Oct 2019 14:31:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
 
---- Comment #25 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
-Created attachment 145823
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145823&action=3Dedit
-dmesg from Acer5685 GeForce 7600GO, opensuse Mesa 19.1.7
+--- Comment #26 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
+Created attachment 145824
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145824&action=3Dedit
+dmesg from HP nvidia7100 opensuse mesa19.1.7
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15720991382.6d83D.12241
-Date: Sat, 26 Oct 2019 14:12:18 +0000
+--15721002952.B0b7C.15394
+Date: Sat, 26 Oct 2019 14:31:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
 k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c25">Comme=
-nt # 25</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c26">Comme=
+nt # 26</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
@@ -76,12 +76,12 @@ k machine GeForce 7600 GO"
 dooby.dave&#64;virgin.net" title=3D"Doobz &lt;dooby.dave&#64;virgin.net&gt;=
 "> <span class=3D"fn">Doobz</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145823=
-" name=3D"attach_145823" title=3D"dmesg from Acer5685 GeForce 7600GO, opens=
-use Mesa 19.1.7">attachment 145823</a> <a href=3D"attachment.cgi?id=3D14582=
-3&amp;action=3Dedit" title=3D"dmesg from Acer5685 GeForce 7600GO, opensuse =
-Mesa 19.1.7">[details]</a></span>
-dmesg from Acer5685 GeForce 7600GO, opensuse Mesa 19.1.7</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145824=
+" name=3D"attach_145824" title=3D"dmesg from HP nvidia7100 opensuse mesa19.=
+1.7">attachment 145824</a> <a href=3D"attachment.cgi?id=3D145824&amp;action=
+=3Dedit" title=3D"dmesg from HP nvidia7100 opensuse mesa19.1.7">[details]</=
+a></span>
+dmesg from HP nvidia7100 opensuse mesa19.1.7</pre>
         </div>
       </p>
 
@@ -95,9 +95,9 @@ dmesg from Acer5685 GeForce 7600GO, opensuse Mesa 19.1.7</pre>
     </body>
 </html>=
 
---15720991382.6d83D.12241--
+--15721002952.B0b7C.15394--
 
---===============0360979065==
+--===============1368646318==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0360979065==--
+--===============1368646318==--
