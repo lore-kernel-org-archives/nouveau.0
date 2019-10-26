@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
  Debian to hard lock machine GeForce 7600 GO
-Date: Sat, 26 Oct 2019 14:06:28 +0000
-Message-ID: <bug-112070-8800-tWLg5A7xTp@http.bugs.freedesktop.org/>
+Date: Sat, 26 Oct 2019 14:12:18 +0000
+Message-ID: <bug-112070-8800-J4XZgbpLRY@http.bugs.freedesktop.org/>
 References: <bug-112070-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0966772922=="
+Content-Type: multipart/mixed; boundary="===============0360979065=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0966772922==
-Content-Type: multipart/alternative; boundary="15720987880.4eD0bb6.10690"
+--===============0360979065==
+Content-Type: multipart/alternative; boundary="15720991382.6d83D.12241"
 Content-Transfer-Encoding: 7bit
 
 
---15720987880.4eD0bb6.10690
-Date: Sat, 26 Oct 2019 14:06:28 +0000
+--15720991382.6d83D.12241
+Date: Sat, 26 Oct 2019 14:12:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,32 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
 
---- Comment #24 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
-Turns out opensuse tumbleweed has mesa 19.1.7 and a packaged glmark2
-
-Framerate much slower than on previous kernel/mesa. Only getting ~130 vs >2=
-00
-previously.
-
-Identical graphical glitch on laptop and desktop with Suse Welcome window.
-
-The only shared dmesg oddities are
-[    0.202564] acpi PNP0A08:00: _OSC failed (AE_NOT_FOUND); disabling ASPM
-
-[            ] acpi PNP0A08:00: _OSC failed (AE_SUPPORT); disabling ASPM
-
-..and the hpet warnings on both of them
-
-[ 1670.140263] CE: hpet increased min_delta_ns to 30172 nsec
-
-I will attach both suse dmesg logs.
+--- Comment #25 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
+Created attachment 145823
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145823&action=3Dedit
+dmesg from Acer5685 GeForce 7600GO, opensuse Mesa 19.1.7
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15720987880.4eD0bb6.10690
-Date: Sat, 26 Oct 2019 14:06:28 +0000
+--15720991382.6d83D.12241
+Date: Sat, 26 Oct 2019 14:12:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -79,8 +64,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
 k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c24">Comme=
-nt # 24</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c25">Comme=
+nt # 25</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
@@ -91,25 +76,12 @@ k machine GeForce 7600 GO"
 dooby.dave&#64;virgin.net" title=3D"Doobz &lt;dooby.dave&#64;virgin.net&gt;=
 "> <span class=3D"fn">Doobz</span></a>
 </span></b>
-        <pre>Turns out opensuse tumbleweed has mesa 19.1.7 and a packaged g=
-lmark2
-
-Framerate much slower than on previous kernel/mesa. Only getting ~130 vs &g=
-t;200
-previously.
-
-Identical graphical glitch on laptop and desktop with Suse Welcome window.
-
-The only shared dmesg oddities are
-[    0.202564] acpi PNP0A08:00: _OSC failed (AE_NOT_FOUND); disabling ASPM
-
-[            ] acpi PNP0A08:00: _OSC failed (AE_SUPPORT); disabling ASPM
-
-..and the hpet warnings on both of them
-
-[ 1670.140263] CE: hpet increased min_delta_ns to 30172 nsec
-
-I will attach both suse dmesg logs.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145823=
+" name=3D"attach_145823" title=3D"dmesg from Acer5685 GeForce 7600GO, opens=
+use Mesa 19.1.7">attachment 145823</a> <a href=3D"attachment.cgi?id=3D14582=
+3&amp;action=3Dedit" title=3D"dmesg from Acer5685 GeForce 7600GO, opensuse =
+Mesa 19.1.7">[details]</a></span>
+dmesg from Acer5685 GeForce 7600GO, opensuse Mesa 19.1.7</pre>
         </div>
       </p>
 
@@ -123,9 +95,9 @@ I will attach both suse dmesg logs.</pre>
     </body>
 </html>=
 
---15720987880.4eD0bb6.10690--
+--15720991382.6d83D.12241--
 
---===============0966772922==
+--===============0360979065==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0966772922==--
+--===============0360979065==--
