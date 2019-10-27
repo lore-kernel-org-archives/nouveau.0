@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
- Debian to hard lock machine GeForce 7600 GO
-Date: Sun, 27 Oct 2019 13:27:11 +0000
-Message-ID: <bug-112070-8800-9exu7aN2Cb@http.bugs.freedesktop.org/>
-References: <bug-112070-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
+ rescan
+Date: Sun, 27 Oct 2019 17:58:40 +0000
+Message-ID: <bug-75985-8800-L6kc2It4g6@http.bugs.freedesktop.org/>
+References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0260522373=="
+Content-Type: multipart/mixed; boundary="===============0883400207=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +21,58 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0260522373==
-Content-Type: multipart/alternative; boundary="15721828301.F966F5.18099"
+--===============0883400207==
+Content-Type: multipart/alternative; boundary="15721991200.8a24AAa.16429"
 Content-Transfer-Encoding: 7bit
 
 
---15721828301.F966F5.18099
-Date: Sun, 27 Oct 2019 13:27:10 +0000
+--15721991200.8a24AAa.16429
+Date: Sun, 27 Oct 2019 17:58:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Bugzilla-URL: http://bugs.freedesktop.org/
 Auto-Submitted: auto-generated
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
+https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #31 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
-Some good news - irq 0 timer interrupts fixed by booting with processor.noc=
-st=3D1
+--- Comment #118 from Przemys=C5=82aw Kopa <prymoo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Lukas Wunner from comment #116)
+> @Przemys=C5=82aw Kopa:
+>=20
+> The fix was applied by Takashi Iwai on Thursday Oct 17 with commit
+> 94989e318b2f, it was merged to Linus' tree on Friday Oct 18 and will thus=
+ be
+> part of v5.4-rc4 due out later today. It should appear in v5.3-stable wit=
+hin
+> 1 or 2 weeks. You may want to double-check that the issue is gone with th=
+is
+> fix.
+
+Thanks, I can happily confirm that the issue is fixed in v5.4-rc4. :)
+
+> There's one problem remaining, you shouldn't have to manually echo "auto"=
+ to
+> the HDA's control file because we call pm_runtime_allow() on the HDA devi=
+ce
+> in drivers/pci/quirks.c:quirk_gpu_hda() -> pci_create_device_link().
+> Something must be calling pm_runtime_forbid() afterwards, perhaps this is
+> triggered from user space on Arch Linux. I'm attaching a little debug pat=
+ch
+> which logs a stacktrace to dmesg whenever pm_runtime_allow() / _forbid() =
+is
+> called for a device. Feel free to attach dmesg output with this patch
+> applied and I'll be happy to take a look at it.
+
+I'm attaching dmesg dump - last stack trace is generated after me echoing
+"auto" to HDA control file.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15721828301.F966F5.18099
-Date: Sun, 27 Oct 2019 13:27:10 +0000
+--15721991200.8a24AAa.16429
+Date: Sun, 27 Oct 2019 17:58:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,22 +88,49 @@ Auto-Submitted: auto-generated
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
-k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c31">Comme=
-nt # 31</a>
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c118">Comme=
+nt # 118</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
-k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070">bug 11207=
-0</a>
+   title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985">bug 75985<=
+/a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dooby.dave&#64;virgin.net" title=3D"Doobz &lt;dooby.dave&#64;virgin.net&gt;=
-"> <span class=3D"fn">Doobz</span></a>
+prymoo&#64;gmail.com" title=3D"Przemys=C5=82aw Kopa &lt;prymoo&#64;gmail.co=
+m&gt;"> <span class=3D"fn">Przemys=C5=82aw Kopa</span></a>
 </span></b>
-        <pre>Some good news - irq 0 timer interrupts fixed by booting with =
-processor.nocst=3D1</pre>
+        <pre>(In reply to Lukas Wunner from <a href=3D"show_bug.cgi?id=3D75=
+985#c116">comment #116</a>)
+<span class=3D"quote">&gt; &#64;Przemys=C5=82aw Kopa:
+&gt;=20
+&gt; The fix was applied by Takashi Iwai on Thursday Oct 17 with commit
+&gt; 94989e318b2f, it was merged to Linus' tree on Friday Oct 18 and will t=
+hus be
+&gt; part of v5.4-rc4 due out later today. It should appear in v5.3-stable =
+within
+&gt; 1 or 2 weeks. You may want to double-check that the issue is gone with=
+ this
+&gt; fix.</span >
+
+Thanks, I can happily confirm that the issue is fixed in v5.4-rc4. :)
+
+<span class=3D"quote">&gt; There's one problem remaining, you shouldn't hav=
+e to manually echo &quot;auto&quot; to
+&gt; the HDA's control file because we call pm_runtime_allow() on the HDA d=
+evice
+&gt; in drivers/pci/quirks.c:quirk_gpu_hda() -&gt; pci_create_device_link().
+&gt; Something must be calling pm_runtime_forbid() afterwards, perhaps this=
+ is
+&gt; triggered from user space on Arch Linux. I'm attaching a little debug =
+patch
+&gt; which logs a stacktrace to dmesg whenever pm_runtime_allow() / _forbid=
+() is
+&gt; called for a device. Feel free to attach dmesg output with this patch
+&gt; applied and I'll be happy to take a look at it.</span >
+
+I'm attaching dmesg dump - last stack trace is generated after me echoing
+&quot;auto&quot; to HDA control file.</pre>
         </div>
       </p>
 
@@ -90,9 +144,9 @@ processor.nocst=3D1</pre>
     </body>
 </html>=
 
---15721828301.F966F5.18099--
+--15721991200.8a24AAa.16429--
 
---===============0260522373==
+--===============0883400207==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +156,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0260522373==--
+--===============0883400207==--
