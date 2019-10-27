@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75985] [NVC1] HDMI audio device only visible after
  rescan
-Date: Sun, 27 Oct 2019 17:58:40 +0000
-Message-ID: <bug-75985-8800-L6kc2It4g6@http.bugs.freedesktop.org/>
+Date: Sun, 27 Oct 2019 18:00:31 +0000
+Message-ID: <bug-75985-8800-bgBaxnWY8Q@http.bugs.freedesktop.org/>
 References: <bug-75985-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0883400207=="
+Content-Type: multipart/mixed; boundary="===============1460236247=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0883400207==
-Content-Type: multipart/alternative; boundary="15721991200.8a24AAa.16429"
+--===============1460236247==
+Content-Type: multipart/alternative; boundary="157219923211.AeBD779C.16601"
 Content-Transfer-Encoding: 7bit
 
 
---15721991200.8a24AAa.16429
-Date: Sun, 27 Oct 2019 17:58:40 +0000
+--157219923211.AeBD779C.16601
+Date: Sun, 27 Oct 2019 18:00:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,43 +36,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D75985
 
---- Comment #118 from Przemys=C5=82aw Kopa <prymoo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Lukas Wunner from comment #116)
-> @Przemys=C5=82aw Kopa:
->=20
-> The fix was applied by Takashi Iwai on Thursday Oct 17 with commit
-> 94989e318b2f, it was merged to Linus' tree on Friday Oct 18 and will thus=
- be
-> part of v5.4-rc4 due out later today. It should appear in v5.3-stable wit=
-hin
-> 1 or 2 weeks. You may want to double-check that the issue is gone with th=
-is
-> fix.
-
-Thanks, I can happily confirm that the issue is fixed in v5.4-rc4. :)
-
-> There's one problem remaining, you shouldn't have to manually echo "auto"=
- to
-> the HDA's control file because we call pm_runtime_allow() on the HDA devi=
-ce
-> in drivers/pci/quirks.c:quirk_gpu_hda() -> pci_create_device_link().
-> Something must be calling pm_runtime_forbid() afterwards, perhaps this is
-> triggered from user space on Arch Linux. I'm attaching a little debug pat=
-ch
-> which logs a stacktrace to dmesg whenever pm_runtime_allow() / _forbid() =
-is
-> called for a device. Feel free to attach dmesg output with this patch
-> applied and I'll be happy to take a look at it.
-
-I'm attaching dmesg dump - last stack trace is generated after me echoing
-"auto" to HDA control file.
+--- Comment #119 from Przemys=C5=82aw Kopa <prymoo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 145830
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145830&action=3Dedit
+Dmesg dump
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15721991200.8a24AAa.16429
-Date: Sun, 27 Oct 2019 17:58:40 +0000
+--157219923211.AeBD779C.16601
+Date: Sun, 27 Oct 2019 18:00:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -89,8 +63,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c118">Comme=
-nt # 118</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D75985#c119">Comme=
+nt # 119</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] HDMI audio device only visible after rescan"
@@ -100,37 +74,11 @@ nt # 118</a>
 prymoo&#64;gmail.com" title=3D"Przemys=C5=82aw Kopa &lt;prymoo&#64;gmail.co=
 m&gt;"> <span class=3D"fn">Przemys=C5=82aw Kopa</span></a>
 </span></b>
-        <pre>(In reply to Lukas Wunner from <a href=3D"show_bug.cgi?id=3D75=
-985#c116">comment #116</a>)
-<span class=3D"quote">&gt; &#64;Przemys=C5=82aw Kopa:
-&gt;=20
-&gt; The fix was applied by Takashi Iwai on Thursday Oct 17 with commit
-&gt; 94989e318b2f, it was merged to Linus' tree on Friday Oct 18 and will t=
-hus be
-&gt; part of v5.4-rc4 due out later today. It should appear in v5.3-stable =
-within
-&gt; 1 or 2 weeks. You may want to double-check that the issue is gone with=
- this
-&gt; fix.</span >
-
-Thanks, I can happily confirm that the issue is fixed in v5.4-rc4. :)
-
-<span class=3D"quote">&gt; There's one problem remaining, you shouldn't hav=
-e to manually echo &quot;auto&quot; to
-&gt; the HDA's control file because we call pm_runtime_allow() on the HDA d=
-evice
-&gt; in drivers/pci/quirks.c:quirk_gpu_hda() -&gt; pci_create_device_link().
-&gt; Something must be calling pm_runtime_forbid() afterwards, perhaps this=
- is
-&gt; triggered from user space on Arch Linux. I'm attaching a little debug =
-patch
-&gt; which logs a stacktrace to dmesg whenever pm_runtime_allow() / _forbid=
-() is
-&gt; called for a device. Feel free to attach dmesg output with this patch
-&gt; applied and I'll be happy to take a look at it.</span >
-
-I'm attaching dmesg dump - last stack trace is generated after me echoing
-&quot;auto&quot; to HDA control file.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145830=
+" name=3D"attach_145830" title=3D"Dmesg dump">attachment 145830</a> <a href=
+=3D"attachment.cgi?id=3D145830&amp;action=3Dedit" title=3D"Dmesg dump">[det=
+ails]</a></span>
+Dmesg dump</pre>
         </div>
       </p>
 
@@ -144,9 +92,9 @@ I'm attaching dmesg dump - last stack trace is generated after me echoing
     </body>
 </html>=
 
---15721991200.8a24AAa.16429--
+--157219923211.AeBD779C.16601--
 
---===============0883400207==
+--===============1460236247==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -156,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0883400207==--
+--===============1460236247==--
