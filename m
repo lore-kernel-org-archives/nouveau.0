@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
  Debian to hard lock machine GeForce 7600 GO
-Date: Sun, 27 Oct 2019 12:04:22 +0000
-Message-ID: <bug-112070-8800-HoPiYJKRtS@http.bugs.freedesktop.org/>
+Date: Sun, 27 Oct 2019 12:37:08 +0000
+Message-ID: <bug-112070-8800-bEiKL5Y57z@http.bugs.freedesktop.org/>
 References: <bug-112070-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1836565673=="
+Content-Type: multipart/mixed; boundary="===============1435442611=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1836565673==
-Content-Type: multipart/alternative; boundary="15721778622.BCAd0D8.32641"
+--===============1435442611==
+Content-Type: multipart/alternative; boundary="15721798271.3CcC.7096"
 Content-Transfer-Encoding: 7bit
 
 
---15721778622.BCAd0D8.32641
-Date: Sun, 27 Oct 2019 12:04:22 +0000
+--15721798271.3CcC.7096
+Date: Sun, 27 Oct 2019 12:37:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,42 +36,18 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
 
---- Comment #29 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
-So..
-
-My laptop's interrupt issues disappear when booting with acpi=3Doff. So did
-nouveau however. Have tried a few other boot parameters, including
-acpi_apic_instance=3D2 as suggested in dmesg, but no joy.
-
-Could these ACPI warnings be hinting at something?=20
-
-[   20.414011] i801_smbus 0000:00:1f.3: SMBus using PCI interrupt
-[   20.416862] ACPI Warning: SystemIO range
-0x0000000000001028-0x000000000000102F conflicts with OpRegion
-0x0000000000001000-0x000000000000107F (\PMIO) (20190703/utaddress-204)
-[   20.416870] ACPI: If an ACPI driver is available for this device, you sh=
-ould
-use it instead of the native driver
-[   20.416873] ACPI Warning: SystemIO range
-0x00000000000011B0-0x00000000000011BF conflicts with OpRegion
-0x0000000000001180-0x00000000000011BB (\GPIO) (20190703/utaddress-204)
-[   20.416878] ACPI: If an ACPI driver is available for this device, you sh=
-ould
-use it instead of the native driver
-[   20.416879] ACPI Warning: SystemIO range
-0x0000000000001180-0x00000000000011AF conflicts with OpRegion
-0x0000000000001180-0x00000000000011BB (\GPIO) (20190703/utaddress-204)
-[   20.416883] ACPI: If an ACPI driver is available for this device, you sh=
-ould
-use it instead of the native driver
-[   20.416884] lpc_ich: Resource conflict(s) found affecting gpio_ich
+--- Comment #30 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
+Sorry to spam, but I did notice partially visible text in the garbled stuff=
+ FF
+was displaying instead of video. Like there is some memory overlap/confusion
+somewhere.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15721778622.BCAd0D8.32641
-Date: Sun, 27 Oct 2019 12:04:22 +0000
+--15721798271.3CcC.7096
+Date: Sun, 27 Oct 2019 12:37:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -89,8 +65,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
 k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c29">Comme=
-nt # 29</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c30">Comme=
+nt # 30</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
@@ -101,34 +77,10 @@ k machine GeForce 7600 GO"
 dooby.dave&#64;virgin.net" title=3D"Doobz &lt;dooby.dave&#64;virgin.net&gt;=
 "> <span class=3D"fn">Doobz</span></a>
 </span></b>
-        <pre>So..
-
-My laptop's interrupt issues disappear when booting with acpi=3Doff. So did
-nouveau however. Have tried a few other boot parameters, including
-acpi_apic_instance=3D2 as suggested in dmesg, but no joy.
-
-Could these ACPI warnings be hinting at something?=20
-
-[   20.414011] i801_smbus 0000:00:1f.3: SMBus using PCI interrupt
-[   20.416862] ACPI Warning: SystemIO range
-0x0000000000001028-0x000000000000102F conflicts with OpRegion
-0x0000000000001000-0x000000000000107F (\PMIO) (20190703/utaddress-204)
-[   20.416870] ACPI: If an ACPI driver is available for this device, you sh=
-ould
-use it instead of the native driver
-[   20.416873] ACPI Warning: SystemIO range
-0x00000000000011B0-0x00000000000011BF conflicts with OpRegion
-0x0000000000001180-0x00000000000011BB (\GPIO) (20190703/utaddress-204)
-[   20.416878] ACPI: If an ACPI driver is available for this device, you sh=
-ould
-use it instead of the native driver
-[   20.416879] ACPI Warning: SystemIO range
-0x0000000000001180-0x00000000000011AF conflicts with OpRegion
-0x0000000000001180-0x00000000000011BB (\GPIO) (20190703/utaddress-204)
-[   20.416883] ACPI: If an ACPI driver is available for this device, you sh=
-ould
-use it instead of the native driver
-[   20.416884] lpc_ich: Resource conflict(s) found affecting gpio_ich</pre>
+        <pre>Sorry to spam, but I did notice partially visible text in the =
+garbled stuff FF
+was displaying instead of video. Like there is some memory overlap/confusion
+somewhere.</pre>
         </div>
       </p>
 
@@ -142,9 +94,9 @@ use it instead of the native driver
     </body>
 </html>=
 
---15721778622.BCAd0D8.32641--
+--15721798271.3CcC.7096--
 
---===============1836565673==
+--===============1435442611==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -154,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1836565673==--
+--===============1435442611==--
