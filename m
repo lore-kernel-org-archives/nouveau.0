@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 112070] H/W Acceleration sufficiently buggy on
- Debian to hard lock machine GeForce 7600 GO
-Date: Mon, 28 Oct 2019 10:31:35 +0000
-Message-ID: <bug-112070-8800-Y5fWNT593P@http.bugs.freedesktop.org/>
-References: <bug-112070-8800@http.bugs.freedesktop.org/>
+From: Jani Nikula <jani.nikula-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH RESEND 2/8] drm/nouveau: use drm_debug_enabled()
+ to check for debug categories
+Date: Mon, 28 Oct 2019 12:38:16 +0200
+Message-ID: <34a1e7db6eab6467c6607d9a57581d1de75d87da.1572258936.git.jani.nikula@intel.com>
+References: <cover.1572258935.git.jani.nikula@intel.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0599436063=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-112070-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <cover.1572258935.git.jani.nikula-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <https://lists.freedesktop.org/archives/nouveau>
@@ -17,294 +18,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: jani.nikula-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0599436063==
-Content-Type: multipart/alternative; boundary="15722586950.Cc1f5c.933"
-Content-Transfer-Encoding: 7bit
-
-
---15722586950.Cc1f5c.933
-Date: Mon, 28 Oct 2019 10:31:35 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D112070
-
---- Comment #32 from Doobz <dooby.dave-J1btbF6uMEmsTnJN9+BGXg@public.gmane.org> ---
-..and the acpi ones with acpi_mask_gre=3D0x19. There's a bunch of other one=
-'s to
-try when I'm bored.. :)
-
-Back to the 360 degree vid thing, On a fresh boot into debian, the mess com=
-ing
-out of Firefox included the bottom half of what appeared to be a suse
-filebrowser window I had open the day before!
-
-I only just remembered to look in .xsession.errors. It is indeed logged the=
-re
-along with some others.
-
-Cleaned up .xsessions from fresh suse tumbleweed on NV63 :-
-
-/usr/bin/iceauth:  creating new authority file /run/user/1000/ICEauthority
-
-(xfce4-session:1436): xfce4-session-WARNING **: 09:47:57.705:
-xfsm_manager_load_session: Something wrong with
-/home/doobz/.cache/sessions/xfce4-session-debian:0, Does it exist? Permissi=
-ons
-issue?
-gnome-keyring-daemon: insufficient process capabilities, insecure memory mi=
-ght
-get used
-** Message: 09:47:57.797: couldn't access control socket:
-/run/user/1000/keyring/control: No such file or directory
-
-(xfsettingsd:1522): xfsettingsd-WARNING **: 09:48:05.059: Property
-"/Gdk/WindowScalingFactor" has an unsupported type "guint".
-
-** (wrapper-2.0:1545): WARNING **: 09:48:06.348: No outputs have backlight
-property
-
-(wrapper-2.0:1550): GLib-GIO-CRITICAL **: 09:48:06.704: g_file_new_for_path:
-assertion 'path !=3D NULL' failed
-
-(wrapper-2.0:1550): GLib-GIO-CRITICAL **: 09:48:06.704: g_file_monitor_file:
-assertion 'G_IS_FILE (file)' failed
-
-(wrapper-2.0:1550): GLib-GObject-WARNING **: 09:48:06.704: invalid (NULL)
-pointer instance
-
-(wrapper-2.0:1550): GLib-GObject-CRITICAL **: 09:48:06.705:
-g_signal_connect_data: assertion 'G_TYPE_CHECK_INSTANCE (instance)' failed
-
-(wrapper-2.0:1550): Gtk-WARNING **: 09:48:06.705: Attempting to add a widget
-with type GtkToggleButton to a container of type XfcePanelPlugin, but the
-widget is already inside a container of type XfcePanelPlugin, please remove=
- the
-widget from its existing container first.
-gnome-keyring-daemon: insufficient process capabilities, insecure memory mi=
-ght
-get used
-
-(wrapper-2.0:1543): Gtk-WARNING **: 09:48:16.508: Negative content width -3
-(allocation 1, extents 2x2) while allocating gadget (node button, owner
-GtkToggleButton)
-
-(wrapper-2.0:1545): Gtk-WARNING **: 09:48:16.801: Negative content width -3
-(allocation 1, extents 2x2) while allocating gadget (node button, owner
-PowerManagerButton)
-
-(wrapper-2.0:1544): Gtk-WARNING **: 09:48:16.810: Negative content width -3
-(allocation 1, extents 2x2) while allocating gadget (node button, owner
-PulseaudioButton)
-
-(wrapper-2.0:1550): Gtk-WARNING **: 09:48:16.822: Negative content width -3
-(allocation 1, extents 2x2) while allocating gadget (node button, owner
-GtkToggleButton)
-gnome-keyring-daemon: insufficient process capabilities, insecure memory mi=
-ght
-get used
-[Child 2152, MediaDecoderStateMachine #1] WARNING: Decoder=3D7f3103930800 D=
-ecode
-error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) -
-RefPtr<mozilla::MozPromise<RefPtr<mozilla::MediaTrackDemuxer::SamplesHolder=
->,
-mozilla::MediaResult, true> >
-mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detache=
-d.:
-file
-/home/abuild/rpmbuild/BUILD/firefox-69.0.3/dom/media/MediaDecoderStateMachi=
-ne.cpp,
-line 3309
-[Child 2152, MediaDecoderStateMachine #1] WARNING: Decoder=3D7f310IA_FATAL_=
-ERR
-(0x806e0005) -
-RefPtr<mozilla::MozPromise<RefPtr<mozilla::MediaTrackDemuxer::SamplesHolder=
->,
-mozilla::MediaResult, true> >
-mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detache=
-d.:
-file
-/home/abuild/rpmbuild/BUILD/firefox-69.0.3/dom/media/MediaDecoderStateMachi=
-ne.cpp,
-line 3309
-
-[Parent 1979, Gecko_IOThread] WARNING: pipe error (61): Connection reset by
-peer: file
-/home/abuild/rpmbuild/BUILD/firefox-69.0.3/ipc/chromium/src/chrome/common/i=
-pc_channel_posix.cc,
-line 358
-Invalid MIT-MAGIC-COOKIE-1 keyInvalid MIT-MAGIC-COOKIE-1 key
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15722586950.Cc1f5c.933
-Date: Mon, 28 Oct 2019 10:31:35 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
-k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070#c32">Comme=
-nt # 32</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - H/W Acceleration sufficiently buggy on Debian to hard loc=
-k machine GeForce 7600 GO"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112070">bug 11207=
-0</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-dooby.dave&#64;virgin.net" title=3D"Doobz &lt;dooby.dave&#64;virgin.net&gt;=
-"> <span class=3D"fn">Doobz</span></a>
-</span></b>
-        <pre>..and the acpi ones with acpi_mask_gre=3D0x19. There's a bunch=
- of other one's to
-try when I'm bored.. :)
-
-Back to the 360 degree vid thing, On a fresh boot into debian, the mess com=
-ing
-out of Firefox included the bottom half of what appeared to be a suse
-filebrowser window I had open the day before!
-
-I only just remembered to look in .xsession.errors. It is indeed logged the=
-re
-along with some others.
-
-Cleaned up .xsessions from fresh suse tumbleweed on NV63 :-
-
-/usr/bin/iceauth:  creating new authority file /run/user/1000/ICEauthority
-
-(xfce4-session:1436): xfce4-session-WARNING **: 09:47:57.705:
-xfsm_manager_load_session: Something wrong with
-/home/doobz/.cache/sessions/xfce4-session-debian:0, Does it exist? Permissi=
-ons
-issue?
-gnome-keyring-daemon: insufficient process capabilities, insecure memory mi=
-ght
-get used
-** Message: 09:47:57.797: couldn't access control socket:
-/run/user/1000/keyring/control: No such file or directory
-
-(xfsettingsd:1522): xfsettingsd-WARNING **: 09:48:05.059: Property
-&quot;/Gdk/WindowScalingFactor&quot; has an unsupported type &quot;guint&qu=
-ot;.
-
-** (wrapper-2.0:1545): WARNING **: 09:48:06.348: No outputs have backlight
-property
-
-(wrapper-2.0:1550): GLib-GIO-CRITICAL **: 09:48:06.704: g_file_new_for_path:
-assertion 'path !=3D NULL' failed
-
-(wrapper-2.0:1550): GLib-GIO-CRITICAL **: 09:48:06.704: g_file_monitor_file:
-assertion 'G_IS_FILE (file)' failed
-
-(wrapper-2.0:1550): GLib-GObject-WARNING **: 09:48:06.704: invalid (NULL)
-pointer instance
-
-(wrapper-2.0:1550): GLib-GObject-CRITICAL **: 09:48:06.705:
-g_signal_connect_data: assertion 'G_TYPE_CHECK_INSTANCE (instance)' failed
-
-(wrapper-2.0:1550): Gtk-WARNING **: 09:48:06.705: Attempting to add a widget
-with type GtkToggleButton to a container of type XfcePanelPlugin, but the
-widget is already inside a container of type XfcePanelPlugin, please remove=
- the
-widget from its existing container first.
-gnome-keyring-daemon: insufficient process capabilities, insecure memory mi=
-ght
-get used
-
-(wrapper-2.0:1543): Gtk-WARNING **: 09:48:16.508: Negative content width -3
-(allocation 1, extents 2x2) while allocating gadget (node button, owner
-GtkToggleButton)
-
-(wrapper-2.0:1545): Gtk-WARNING **: 09:48:16.801: Negative content width -3
-(allocation 1, extents 2x2) while allocating gadget (node button, owner
-PowerManagerButton)
-
-(wrapper-2.0:1544): Gtk-WARNING **: 09:48:16.810: Negative content width -3
-(allocation 1, extents 2x2) while allocating gadget (node button, owner
-PulseaudioButton)
-
-(wrapper-2.0:1550): Gtk-WARNING **: 09:48:16.822: Negative content width -3
-(allocation 1, extents 2x2) while allocating gadget (node button, owner
-GtkToggleButton)
-gnome-keyring-daemon: insufficient process capabilities, insecure memory mi=
-ght
-get used
-[Child 2152, MediaDecoderStateMachine #1] WARNING: Decoder=3D7f3103930800 D=
-ecode
-error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) -
-RefPtr&lt;mozilla::MozPromise&lt;RefPtr&lt;mozilla::MediaTrackDemuxer::Samp=
-lesHolder&gt;,
-mozilla::MediaResult, true&gt; &gt;
-mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detache=
-d.:
-file
-/home/abuild/rpmbuild/BUILD/firefox-69.0.3/dom/media/MediaDecoderStateMachi=
-ne.cpp,
-line 3309
-[Child 2152, MediaDecoderStateMachine #1] WARNING: Decoder=3D7f310IA_FATAL_=
-ERR
-(0x806e0005) -
-RefPtr&lt;mozilla::MozPromise&lt;RefPtr&lt;mozilla::MediaTrackDemuxer::Samp=
-lesHolder&gt;,
-mozilla::MediaResult, true&gt; &gt;
-mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detache=
-d.:
-file
-/home/abuild/rpmbuild/BUILD/firefox-69.0.3/dom/media/MediaDecoderStateMachi=
-ne.cpp,
-line 3309
-
-[Parent 1979, Gecko_IOThread] WARNING: pipe error (61): Connection reset by
-peer: file
-/home/abuild/rpmbuild/BUILD/firefox-69.0.3/ipc/chromium/src/chrome/common/i=
-pc_channel_posix.cc,
-line 358
-Invalid MIT-MAGIC-COOKIE-1 keyInvalid MIT-MAGIC-COOKIE-1 key</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15722586950.Cc1f5c.933--
-
---===============0599436063==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============0599436063==--
+QWxsb3cgYmV0dGVyIGFic3RyYWN0aW9uIG9mIHRoZSBkcm1fZGVidWcgZ2xvYmFsIHZhcmlhYmxl
+IGluIHRoZQpmdXR1cmUuIE5vIGZ1bmN0aW9uYWwgY2hhbmdlcy4KCnYyOiBtb3ZlIHVubGlrZWx5
+KCkgdG8gZHJtX2RlYnVnX2VuYWJsZWQoKQoKQ2M6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0
+LmNvbT4KQ2M6IG5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnClNpZ25lZC1vZmYtYnk6IEph
+bmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvZGlzcG52NTAvZGlzcC5oIHwgNCArKy0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2Rydi5oICAgfCA0ICsrLS0KIDIgZmlsZXMgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCsp
+LCA0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rp
+c3BudjUwL2Rpc3AuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2Rpc3BudjUwL2Rpc3AuaApp
+bmRleCA3YzQxYjA1OTlkMWEuLmMwYTc5NTMxYjA4NyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvZGlzcG52NTAvZGlzcC5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L2Rpc3BudjUwL2Rpc3AuaApAQCAtNzgsMTQgKzc4LDE0IEBAIHZvaWQgZXZvX2tpY2sodTMyICos
+IHN0cnVjdCBudjUwX2RtYWMgKik7CiAKICNkZWZpbmUgZXZvX210aGQocCwgbSwgcykgZG8gewkJ
+CQkJCVwKIAljb25zdCB1MzIgX20gPSAobSksIF9zID0gKHMpOwkJCQkJXAotCWlmIChkcm1fZGVi
+dWcgJiBEUk1fVVRfS01TKQkJCQkJXAorCWlmIChkcm1fZGVidWdfZW5hYmxlZChEUk1fVVRfS01T
+KSkJCQkJXAogCQlwcl9lcnIoIiUwNHggJWQgJXNcbiIsIF9tLCBfcywgX19mdW5jX18pOwkJXAog
+CSooKHApKyspID0gKChfcyA8PCAxOCkgfCBfbSk7CQkJCQlcCiB9IHdoaWxlKDApCiAKICNkZWZp
+bmUgZXZvX2RhdGEocCwgZCkgZG8gewkJCQkJCVwKIAljb25zdCB1MzIgX2QgPSAoZCk7CQkJCQkJ
+XAotCWlmIChkcm1fZGVidWcgJiBEUk1fVVRfS01TKQkJCQkJXAorCWlmIChkcm1fZGVidWdfZW5h
+YmxlZChEUk1fVVRfS01TKSkJCQkJXAogCQlwcl9lcnIoIlx0JTA4eFxuIiwgX2QpOwkJCQkJXAog
+CSooKHApKyspID0gX2Q7CQkJCQkJCVwKIH0gd2hpbGUoMCkKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X2Rydi5oCmluZGV4IDcwZjM0Y2FjYzU1Mi4uZGE4YzQ2ZTA5OTQzIDEwMDY0NAotLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rydi5oCisrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJ2LmgKQEAgLTI0OCwxMSArMjQ4LDExIEBAIHZvaWQgbm91
+dmVhdV9kcm1fZGV2aWNlX3JlbW92ZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KTsKICNkZWZpbmUg
+TlZfSU5GTyhkcm0sZixhLi4uKSBOVl9QUklOVEsoaW5mbywgJihkcm0pLT5jbGllbnQsIGYsICMj
+YSkKIAogI2RlZmluZSBOVl9ERUJVRyhkcm0sZixhLi4uKSBkbyB7ICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKLQlpZiAodW5saWtlbHkoZHJtX2RlYnVnICYg
+RFJNX1VUX0RSSVZFUikpICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKKwlpZiAoZHJt
+X2RlYnVnX2VuYWJsZWQoRFJNX1VUX0RSSVZFUikpICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIFwKIAkJTlZfUFJJTlRLKGluZm8sICYoZHJtKS0+Y2xpZW50LCBmLCAjI2EpOyAgICAg
+ICAgICAgICAgICAgICAgICAgXAogfSB3aGlsZSgwKQogI2RlZmluZSBOVl9BVE9NSUMoZHJtLGYs
+YS4uLikgZG8geyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwK
+LQlpZiAodW5saWtlbHkoZHJtX2RlYnVnICYgRFJNX1VUX0FUT01JQykpICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIFwKKwlpZiAoZHJtX2RlYnVnX2VuYWJsZWQoRFJNX1VUX0FUT01JQykp
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKIAkJTlZfUFJJTlRLKGluZm8sICYo
+ZHJtKS0+Y2xpZW50LCBmLCAjI2EpOyAgICAgICAgICAgICAgICAgICAgICAgXAogfSB3aGlsZSgw
+KQogCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQ==
