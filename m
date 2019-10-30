@@ -1,67 +1,115 @@
-From: Jason Gunthorpe <jgg@mellanox.com>
-Subject: Re: [PATCH v2 13/15] drm/amdgpu: Use mmu_range_insert
- instead of hmm_mirror
-Date: Tue, 29 Oct 2019 23:09:46 +0000
-Message-ID: <20191029230942.GW22766@mellanox.com>
-References: <20191028201032.6352-1-jgg@ziepe.ca>
- <20191028201032.6352-14-jgg@ziepe.ca>
- <6c511ee9-4cbf-bd33-e720-f2d2b5c3c28b@amd.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 101553] [GP107] failed to create kernel channel, -22
+Date: Wed, 30 Oct 2019 05:14:31 +0000
+Message-ID: <bug-101553-8800-8p29tniWYz@http.bugs.freedesktop.org/>
+References: <bug-101553-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <xen-devel-bounces@lists.xenproject.org>
-In-Reply-To: <6c511ee9-4cbf-bd33-e720-f2d2b5c3c28b@amd.com>
-Content-Language: en-US
-Content-ID: <D37E357C3EB6BE4CBBDAB15F1A671056@eurprd05.prod.outlook.com>
-List-Unsubscribe: <https://lists.xenproject.org/mailman/options/xen-devel>,
- <mailto:xen-devel-request@lists.xenproject.org?subject=unsubscribe>
-List-Post: <mailto:xen-devel@lists.xenproject.org>
-List-Help: <mailto:xen-devel-request@lists.xenproject.org?subject=help>
-List-Subscribe: <https://lists.xenproject.org/mailman/listinfo/xen-devel>,
- <mailto:xen-devel-request@lists.xenproject.org?subject=subscribe>
-Errors-To: xen-devel-bounces@lists.xenproject.org
-Sender: "Xen-devel" <xen-devel-bounces@lists.xenproject.org>
-To: "Kuehling, Felix" <Felix.Kuehling@amd.com>
-Cc: Juergen Gross <jgross@suse.com>, "Zhou,
- David(ChunMing)" <David1.Zhou@amd.com>, Ralph Campbell <rcampbell@nvidia.com>, Stefano Stabellini <sstabellini@kernel.org>, Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, "linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>, John Hubbard <jhubbard@nvidia.com>, Dennis Dalessandro <dennis.dalessandro@intel.com>, Mike Marciniszyn <mike.marciniszyn@intel.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Christoph Hellwig <hch@infradead.org>, "linux-mm@kvack.org" <linux-mm@kvack.org>, Jerome Glisse <jglisse@redhat.com>, "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "Deucher,
- Alexander" <Alexander.Deucher@amd.com>, "xen-devel@lists.xenproject.org" <xen-devel@lists.xenproject.org>, Boris Ostrovsky <boris.ostr>
+Content-Type: multipart/mixed; boundary="===============1587291317=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-101553-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBPY3QgMjksIDIwMTkgYXQgMTA6MTQ6MjlQTSArMDAwMCwgS3VlaGxpbmcsIEZlbGl4
-IHdyb3RlOgoKPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IG1tdV9yYW5nZV9ub3RpZmllcl9vcHMg
-YW1kZ3B1X21uX2hzYV9vcHMgPSB7Cj4gPiArCS5pbnZhbGlkYXRlID0gYW1kZ3B1X21uX2ludmFs
-aWRhdGVfaHNhLAo+ID4gK307Cj4gPiArCj4gPiArc3RhdGljIGludCBhbWRncHVfbW5fc3luY19w
-YWdldGFibGVzKHN0cnVjdCBobW1fbWlycm9yICptaXJyb3IsCj4gPiArCQkJCSAgICAgY29uc3Qg
-c3RydWN0IG1tdV9ub3RpZmllcl9yYW5nZSAqdXBkYXRlKQo+ID4gICB7Cj4gPiAgIAlzdHJ1Y3Qg
-YW1kZ3B1X21uICphbW4gPSBjb250YWluZXJfb2YobWlycm9yLCBzdHJ1Y3QgYW1kZ3B1X21uLCBt
-aXJyb3IpOwo+ID4gLQl1bnNpZ25lZCBsb25nIHN0YXJ0ID0gdXBkYXRlLT5zdGFydDsKPiA+IC0J
-dW5zaWduZWQgbG9uZyBlbmQgPSB1cGRhdGUtPmVuZDsKPiA+IC0JYm9vbCBibG9ja2FibGUgPSBt
-bXVfbm90aWZpZXJfcmFuZ2VfYmxvY2thYmxlKHVwZGF0ZSk7Cj4gPiAtCXN0cnVjdCBpbnRlcnZh
-bF90cmVlX25vZGUgKml0Owo+ID4gICAKPiA+IC0JLyogbm90aWZpY2F0aW9uIGlzIGV4Y2x1c2l2
-ZSwgYnV0IGludGVydmFsIGlzIGluY2x1c2l2ZSAqLwo+ID4gLQllbmQgLT0gMTsKPiA+IC0KPiA+
-IC0JaWYgKGFtZGdwdV9tbl9yZWFkX2xvY2soYW1uLCBibG9ja2FibGUpKQo+ID4gLQkJcmV0dXJu
-IC1FQUdBSU47Cj4gPiAtCj4gPiAtCWl0ID0gaW50ZXJ2YWxfdHJlZV9pdGVyX2ZpcnN0KCZhbW4t
-Pm9iamVjdHMsIHN0YXJ0LCBlbmQpOwo+ID4gLQl3aGlsZSAoaXQpIHsKPiA+IC0JCXN0cnVjdCBh
-bWRncHVfbW5fbm9kZSAqbm9kZTsKPiA+IC0JCXN0cnVjdCBhbWRncHVfYm8gKmJvOwo+ID4gLQo+
-ID4gLQkJaWYgKCFibG9ja2FibGUpIHsKPiA+IC0JCQlhbWRncHVfbW5fcmVhZF91bmxvY2soYW1u
-KTsKPiA+IC0JCQlyZXR1cm4gLUVBR0FJTjsKPiA+IC0JCX0KPiA+IC0KPiA+IC0JCW5vZGUgPSBj
-b250YWluZXJfb2YoaXQsIHN0cnVjdCBhbWRncHVfbW5fbm9kZSwgaXQpOwo+ID4gLQkJaXQgPSBp
-bnRlcnZhbF90cmVlX2l0ZXJfbmV4dChpdCwgc3RhcnQsIGVuZCk7Cj4gPiAtCj4gPiAtCQlsaXN0
-X2Zvcl9lYWNoX2VudHJ5KGJvLCAmbm9kZS0+Ym9zLCBtbl9saXN0KSB7Cj4gPiAtCQkJc3RydWN0
-IGtnZF9tZW0gKm1lbSA9IGJvLT5rZmRfYm87Cj4gPiAtCj4gPiAtCQkJaWYgKGFtZGdwdV90dG1f
-dHRfYWZmZWN0X3VzZXJwdHIoYm8tPnRiby50dG0sCj4gPiAtCQkJCQkJCSBzdGFydCwgZW5kKSkK
-PiA+IC0JCQkJYW1kZ3B1X2FtZGtmZF9ldmljdF91c2VycHRyKG1lbSwgYW1uLT5tbSk7Cj4gPiAt
-CQl9Cj4gPiAtCX0KPiA+IC0KPiA+IC0JYW1kZ3B1X21uX3JlYWRfdW5sb2NrKGFtbik7Cj4gPiAr
-CWlmICghbW11X25vdGlmaWVyX3JhbmdlX2Jsb2NrYWJsZSh1cGRhdGUpKQo+ID4gKwkJcmV0dXJu
-IGZhbHNlOwo+IAo+IFRoaXMgc2hvdWxkIHJldHVybiAtRUFHQUlOLiBOb3Qgc3VyZSBpdCBtYXR0
-ZXJzIG11Y2gsIGJlY2F1c2UgdGhpcyB3aG9sZSAKPiBmdW5jdGlvbiBkaXNhcHBlYXJzIGluIHRo
-ZSBuZXh0IGNvbW1pdCBpbiB0aGUgc2VyaWVzLiBJdCBzZWVtcyB0byBiZSAKPiBvbmx5IHZlc3Rp
-Z2lhbCBhdCB0aGlzIHBvaW50LgoKUmlnaHQsIHRoZSBvbmx5IHJlYXNvbiBpdCBpcyBzdGlsbCBo
-ZXJlIGlzIHRoYXQgSSBjb3VsZG4ndCByZWFsbHkgdGVsbAppZiB0aGlzOgoKPiA+ICsJZG93bl9y
-ZWFkKCZhbW4tPmxvY2spOwo+ID4gKwl1cF9yZWFkKCZhbW4tPmxvY2spOwo+ID4gICAJcmV0dXJu
-IDA7Cj4gPiAgIH0KCldhcyBzZXJ2aW5nIGFzIHRoZSAnZHJpdmVyIGxvY2snIGluIHRoZSBobW0g
-c2NoZW1lLi4uIElmIG5vdCB0aGVuIHRoZQp3aG9sZSB0aGluZyBzaG91bGQganVzdCBiZSBkZWxl
-dGVkIGF0IHRoaXMgcG9pbnQuCgpJIGZpeGVkIHRoZSBFQUdBSU4gdGhvdWdoCgpKYXNvbgoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KWGVuLWRldmVsIG1h
-aWxpbmcgbGlzdApYZW4tZGV2ZWxAbGlzdHMueGVucHJvamVjdC5vcmcKaHR0cHM6Ly9saXN0cy54
-ZW5wcm9qZWN0Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL3hlbi1kZXZlbA==
+
+--===============1587291317==
+Content-Type: multipart/alternative; boundary="15724124703.31bFe3.7568"
+Content-Transfer-Encoding: 7bit
+
+
+--15724124703.31bFe3.7568
+Date: Wed, 30 Oct 2019 05:14:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D101553
+
+--- Comment #4 from Robert P <woxako3969-S2GgM2hZyxvk1uMJSBkQmQ@public.gmane.org> ---
+Dell is one of the renown and the best companies I am using their laptops f=
+or
+years. You don't believe that I never faced any hardware issues in my devic=
+e.
+Absolutely stunning devices you can grab from
+https://best-essay-writing.services/essay-shark-com-review/ best material
+about.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.=
+
+--15724124703.31bFe3.7568
+Date: Wed, 30 Oct 2019 05:14:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Bugzilla-URL: http://bugs.freedesktop.org/
+Auto-Submitted: auto-generated
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/">
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - [GP107] failed to create kernel channel, -=
+22"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101553#c4">Commen=
+t # 4</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - [GP107] failed to create kernel channel, -=
+22"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D101553">bug 10155=
+3</a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+woxako3969&#64;dmailpro.net" title=3D"Robert P &lt;woxako3969&#64;dmailpro.=
+net&gt;"> <span class=3D"fn">Robert P</span></a>
+</span></b>
+        <pre>Dell is one of the renown and the best companies I am using th=
+eir laptops for
+years. You don't believe that I never faced any hardware issues in my devic=
+e.
+Absolutely stunning devices you can grab from
+<a href=3D"https://best-essay-writing.services/essay-shark-com-review/">htt=
+ps://best-essay-writing.services/essay-shark-com-review/</a> best material
+about.</pre>
+        </div>
+      </p>
+
+
+      <hr>
+      <span>You are receiving this mail because:</span>
+
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>=
+
+--15724124703.31bFe3.7568--
+
+--===============1587291317==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+
+--===============1587291317==--
