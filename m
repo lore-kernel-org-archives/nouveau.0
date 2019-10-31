@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 112185] Xorg hangs from time to time
-Date: Thu, 31 Oct 2019 16:25:19 +0000
-Message-ID: <bug-112185-8800-ImJtFclSSp@http.bugs.freedesktop.org/>
+Date: Thu, 31 Oct 2019 16:25:41 +0000
+Message-ID: <bug-112185-8800-borjtek5q4@http.bugs.freedesktop.org/>
 References: <bug-112185-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0931542285=="
+Content-Type: multipart/mixed; boundary="===============1375391057=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-112185-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0931542285==
-Content-Type: multipart/alternative; boundary="15725391190.852d.6859"
+--===============1375391057==
+Content-Type: multipart/alternative; boundary="15725391411.FF84E370.7065"
 Content-Transfer-Encoding: 7bit
 
 
---15725391190.852d.6859
-Date: Thu, 31 Oct 2019 16:25:19 +0000
+--15725391411.FF84E370.7065
+Date: Thu, 31 Oct 2019 16:25:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D112185
 
---- Comment #8 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 145861
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145861&action=3Dedit
-Xorg.0.log, hang #1
+--- Comment #9 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 145862
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145862&action=3Dedit
+journal.dmesg hang #2
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15725391190.852d.6859
-Date: Thu, 31 Oct 2019 16:25:19 +0000
+--15725391411.FF84E370.7065
+Date: Thu, 31 Oct 2019 16:25:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg hangs from time to time"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112185#c8">Commen=
-t # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112185#c9">Commen=
+t # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg hangs from time to time"
@@ -73,11 +73,11 @@ t # 8</a>
 estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
 l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145861=
-" name=3D"attach_145861" title=3D"Xorg.0.log, hang #1">attachment 145861</a=
-> <a href=3D"attachment.cgi?id=3D145861&amp;action=3Dedit" title=3D"Xorg.0.=
-log, hang #1">[details]</a></span>
-Xorg.0.log, hang #1</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145862=
+" name=3D"attach_145862" title=3D"journal.dmesg hang #2">attachment 145862<=
+/a> <a href=3D"attachment.cgi?id=3D145862&amp;action=3Dedit" title=3D"journ=
+al.dmesg hang #2">[details]</a></span>
+journal.dmesg hang #2</pre>
         </div>
       </p>
 
@@ -91,9 +91,9 @@ Xorg.0.log, hang #1</pre>
     </body>
 </html>=
 
---15725391190.852d.6859--
+--15725391411.FF84E370.7065--
 
---===============0931542285==
+--===============1375391057==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0931542285==--
+--===============1375391057==--
