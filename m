@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 112185] Xorg hangs from time to time
-Date: Thu, 31 Oct 2019 13:13:33 +0000
-Message-ID: <bug-112185-8800-KmXY32HTs7@http.bugs.freedesktop.org/>
+Date: Thu, 31 Oct 2019 13:13:58 +0000
+Message-ID: <bug-112185-8800-C1in8FBxbR@http.bugs.freedesktop.org/>
 References: <bug-112185-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0079646255=="
+Content-Type: multipart/mixed; boundary="===============0160252944=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-112185-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0079646255==
-Content-Type: multipart/alternative; boundary="15725276131.05b7.28380"
+--===============0160252944==
+Content-Type: multipart/alternative; boundary="15725276381.0069B0c9E.28667"
 Content-Transfer-Encoding: 7bit
 
 
---15725276131.05b7.28380
-Date: Thu, 31 Oct 2019 13:13:33 +0000
+--15725276381.0069B0c9E.28667
+Date: Thu, 31 Oct 2019 13:13:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,19 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D112185
 
---- Comment #4 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 145851
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145851&action=3Dedit
-system journal (dmesgs)
+Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #145848|hang1                       |hang1: Xorg.0.log
+        description|                            |
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15725276131.05b7.28380
-Date: Thu, 31 Oct 2019 13:13:33 +0000
+--15725276381.0069B0c9E.28667
+Date: Thu, 31 Oct 2019 13:13:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -56,29 +58,32 @@ Auto-Submitted: auto-generated
     <head>
       <base href=3D"https://bugs.freedesktop.org/">
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg hangs from time to time"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112185#c4">Commen=
-t # 4</a>
-              on <a class=3D"bz_bug_link=20
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:estellnb&=
+#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;=
+"> <span class=3D"fn">Elmar Stellnberger</span></a>
+</span> changed
+          <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg hangs from time to time"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112185">bug 11218=
 5</a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
-l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145851=
-" name=3D"attach_145851" title=3D"system journal (dmesgs)">attachment 14585=
-1</a> <a href=3D"attachment.cgi?id=3D145851&amp;action=3Dedit" title=3D"sys=
-tem journal (dmesgs)">[details]</a></span>
-system journal (dmesgs)</pre>
-        </div>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #145848 description</=
+td>
+           <td>hang1
+           </td>
+           <td>hang1: Xorg.0.log
+           </td>
+         </tr></table>
+      <p>
       </p>
 
 
@@ -91,9 +96,9 @@ system journal (dmesgs)</pre>
     </body>
 </html>=
 
---15725276131.05b7.28380--
+--15725276381.0069B0c9E.28667--
 
---===============0079646255==
+--===============0160252944==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============0079646255==--
+--===============0160252944==--
