@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 112185] Xorg hangs from time to time
-Date: Thu, 31 Oct 2019 16:21:01 +0000
-Message-ID: <bug-112185-8800-8mGaPx6hpR@http.bugs.freedesktop.org/>
+Date: Thu, 31 Oct 2019 16:24:55 +0000
+Message-ID: <bug-112185-8800-bxYmHsRcY2@http.bugs.freedesktop.org/>
 References: <bug-112185-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2084770709=="
+Content-Type: multipart/mixed; boundary="===============1657089765=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-112185-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,13 +20,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2084770709==
-Content-Type: multipart/alternative; boundary="15725388601.AfcD.5193"
+--===============1657089765==
+Content-Type: multipart/alternative; boundary="15725390951.7cD31.6764"
 Content-Transfer-Encoding: 7bit
 
 
---15725388601.AfcD.5193
-Date: Thu, 31 Oct 2019 16:21:00 +0000
+--15725390951.7cD31.6764
+Date: Thu, 31 Oct 2019 16:24:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -35,17 +35,17 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D112185
 
---- Comment #6 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Seems to be a kernel related issue since I have booted Debian 9 where it us=
-ed
-to work with the Mageia kernel and no mouse pointer appeared.
+--- Comment #7 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 145860
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145860&action=3Dedit
+journal.dmesg hang #1
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15725388601.AfcD.5193
-Date: Thu, 31 Oct 2019 16:21:00 +0000
+--15725390951.7cD31.6764
+Date: Thu, 31 Oct 2019 16:24:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -62,8 +62,8 @@ Auto-Submitted: auto-generated
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg hangs from time to time"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112185#c6">Commen=
-t # 6</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112185#c7">Commen=
+t # 7</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Xorg hangs from time to time"
@@ -73,9 +73,11 @@ t # 6</a>
 estellnb&#64;elstel.org" title=3D"Elmar Stellnberger &lt;estellnb&#64;elste=
 l.org&gt;"> <span class=3D"fn">Elmar Stellnberger</span></a>
 </span></b>
-        <pre>Seems to be a kernel related issue since I have booted Debian =
-9 where it used
-to work with the Mageia kernel and no mouse pointer appeared.</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145860=
+" name=3D"attach_145860" title=3D"journal.dmesg hang #1">attachment 145860<=
+/a> <a href=3D"attachment.cgi?id=3D145860&amp;action=3Dedit" title=3D"journ=
+al.dmesg hang #1">[details]</a></span>
+journal.dmesg hang #1</pre>
         </div>
       </p>
 
@@ -89,9 +91,9 @@ to work with the Mageia kernel and no mouse pointer appeared.</pre>
     </body>
 </html>=
 
---15725388601.AfcD.5193--
+--15725390951.7cD31.6764--
 
---===============2084770709==
+--===============1657089765==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============2084770709==--
+--===============1657089765==--
