@@ -1,206 +1,49 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 112197] New: Black screen after resume
-Date: Sat, 02 Nov 2019 09:02:10 +0000
-Message-ID: <bug-112197-8800@http.bugs.freedesktop.org/>
+From: Colin King <colin.king@canonical.com>
+Subject: [PATCH] drm/nouveau/bios/init: make const arrays probe_order static,
+ makes object smaller
+Date: Sat,  2 Nov 2019 11:39:54 +0000
+Message-ID: <20191102113954.25555-1-colin.king@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1536048370=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <https://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1536048370==
-Content-Type: multipart/alternative; boundary="15726853302.ACD2bF4FA.31396"
-Content-Transfer-Encoding: 7bit
-
-
---15726853302.ACD2bF4FA.31396
-Date: Sat, 2 Nov 2019 09:02:10 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D112197
-
-            Bug ID: 112197
-           Summary: Black screen after resume
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: critical
-          Priority: not set
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: lucien-4EObY+GxDn0SMel7J9AZxQ@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 145875
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D145875&action=3Dedit
-dmesg dump after suspend/resume
-
-My Lenovo X1 extreme with Nvidia GeForce GTX 1050 Ti Mobile graphic card wo=
-rks
-fine with nouveau driver. But if system is suspended to RAM or goes in
-hibernation, graphic card fails leaving screen blank. But I still able to l=
-ogin
-into machine with ssh.
-
-With OEM Nvidia driver everything work fine, but this is not an option for =
-my,
-as a have a USB docking station with DisplayLink not supporting OEM driver.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.=
-
---15726853302.ACD2bF4FA.31396
-Date: Sat, 2 Nov 2019 09:02:10 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Bugzilla-URL: http://bugs.freedesktop.org/
-Auto-Submitted: auto-generated
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/">
-    </head>
-    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Black screen after resume"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112197">112197</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Black screen after resume
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>critical
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>not set
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>lucien&#64;wellernet.ch
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D145875=
-" name=3D"attach_145875" title=3D"dmesg dump after suspend/resume">attachme=
-nt 145875</a> <a href=3D"attachment.cgi?id=3D145875&amp;action=3Dedit" titl=
-e=3D"dmesg dump after suspend/resume">[details]</a></span>
-dmesg dump after suspend/resume
-
-My Lenovo X1 extreme with Nvidia GeForce GTX 1050 Ti Mobile graphic card wo=
-rks
-fine with nouveau driver. But if system is suspended to RAM or goes in
-hibernation, graphic card fails leaving screen blank. But I still able to l=
-ogin
-into machine with ssh.
-
-With OEM Nvidia driver everything work fine, but this is not an option for =
-my,
-as a have a USB docking station with DisplayLink not supporting OEM driver.=
-</pre>
-        </div>
-      </p>
-
-
-      <hr>
-      <span>You are receiving this mail because:</span>
-
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>=
-
---15726853302.ACD2bF4FA.31396--
-
---===============1536048370==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-
---===============1536048370==--
+RnJvbTogQ29saW4gSWFuIEtpbmcgPGNvbGluLmtpbmdAY2Fub25pY2FsLmNvbT4KCkRvbid0IHBv
+cHVsYXRlIGNvbnN0IGFycmF5cyBvbiB0aGUgc3RhY2sgYnV0IGluc3RlYWQgbWFrZSB0aGVtCnN0
+YXRpYy4gTWFrZXMgdGhlIG9iamVjdCBjb2RlIHNtYWxsZXIgYnkgNiBieXRlcy4KCkJlZm9yZToK
+ICAgdGV4dAkgICBkYXRhCSAgICBic3MJICAgIGRlYwkgICAgaGV4CWZpbGVuYW1lCiAxMDMwNzUJ
+ICAgOTY5MgkgICAgICAwCSAxMTI3NjcJICAxYjg3ZgludmttL3N1YmRldi9iaW9zL2luaXQubwoK
+QWZ0ZXI6CiAgIHRleHQJICAgZGF0YQkgICAgYnNzCSAgICBkZWMJICAgIGhleAlmaWxlbmFtZQog
+MTAyOTA5CSAgIDk4NTIJICAgICAgMAkgMTEyNzYxCSAgMWI4NzkJbnZrbS9zdWJkZXYvYmlvcy9p
+bml0Lm8KCihnY2MgdmVyc2lvbiA5LjIuMSwgYW1kNjQpCgpTaWduZWQtb2ZmLWJ5OiBDb2xpbiBJ
+YW4gS2luZyA8Y29saW4ua2luZ0BjYW5vbmljYWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvaW5pdC5jIHwgNCArKy0tCiAxIGZpbGUgY2hhbmdlZCwg
+MiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvaW5pdC5jIGIvZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9pbml0LmMKaW5kZXggOWRlNzRmNDFkY2QyLi5kYzg2MjVl
+ZmYyMGEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jp
+b3MvaW5pdC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mv
+aW5pdC5jCkBAIC01NDYsOSArNTQ2LDkgQEAgaW5pdF90bWRzX3JlZyhzdHJ1Y3QgbnZiaW9zX2lu
+aXQgKmluaXQsIHU4IHRtZHMpCiAJICogQ1I1OCBmb3IgQ1I1NyA9IDAgdG8gaW5kZXggYSB0YWJs
+ZSBvZiBvZmZzZXRzIHRvIHRoZSBiYXNpYwogCSAqIDB4NjgwOGIwIGFkZHJlc3MsIGFuZCB0aGVu
+IGZsaXAgdGhlIG9mZnNldCBieSA4LgogCSAqLwotCWNvbnN0IGludCBwcmFtZGFjX29mZnNldFsx
+M10gPSB7CisJc3RhdGljIGNvbnN0IGludCBwcmFtZGFjX29mZnNldFsxM10gPSB7CiAJCTAsIDAs
+IDB4OCwgMCwgMHgyMDAwLCAwLCAwLCAwLCAweDIwMDgsIDAsIDAsIDAsIDB4MjAwMCB9OwotCWNv
+bnN0IHUzMiBwcmFtZGFjX3RhYmxlWzRdID0geworCXN0YXRpYyBjb25zdCB1MzIgcHJhbWRhY190
+YWJsZVs0XSA9IHsKIAkJMHg2ODA4YjAsIDB4NjgwOGI4LCAweDY4MjhiMCwgMHg2ODI4YjggfTsK
+IAogCWlmICh0bWRzID49IDB4ODApIHsKLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2
+ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vZHJpLWRldmVs
