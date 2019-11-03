@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 112201] Syscall param ioctl(generic) points to
  uninitialised byte(s)
-Date: Sun, 03 Nov 2019 02:57:17 +0000
-Message-ID: <bug-112201-8800-pBJjRSI9hJ@http.bugs.freedesktop.org/>
+Date: Sun, 03 Nov 2019 03:24:55 +0000
+Message-ID: <bug-112201-8800-nMCLUElqYe@http.bugs.freedesktop.org/>
 References: <bug-112201-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1461836550=="
+Content-Type: multipart/mixed; boundary="===============0797414822=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-112201-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,13 +21,13 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1461836550==
-Content-Type: multipart/alternative; boundary="15727498370.2dAbadF.5000"
+--===============0797414822==
+Content-Type: multipart/alternative; boundary="15727514951.Aa7fF6fB3.10119"
 Content-Transfer-Encoding: 7bit
 
 
---15727498370.2dAbadF.5000
-Date: Sun, 3 Nov 2019 02:57:17 +0000
+--15727514951.Aa7fF6fB3.10119
+Date: Sun, 3 Nov 2019 03:24:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -36,17 +36,20 @@ Auto-Submitted: auto-generated
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D112201
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This is expected. valgrind does not understand how the ioctl works, so it
-thinks that uninitialized memory is being read. But that's not an actual is=
-sue.
+--- Comment #2 from stratus-FGqvDjY7+Vo@public.gmane.org ---
+So this is not causing any problems, I suppose it's controlling the hardwar=
+e by
+reading/writing to memory addresses provided by the kernel, and valgrind is
+giving a false positive, thank you for your rapid answer explaining things.=
+ I
+can look at some other things instead then.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.=
 
---15727498370.2dAbadF.5000
-Date: Sun, 3 Nov 2019 02:57:17 +0000
+--15727514951.Aa7fF6fB3.10119
+Date: Sun, 3 Nov 2019 03:24:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -64,8 +67,8 @@ Auto-Submitted: auto-generated
           bz_status_NEW "
    title=3D"NEW - Syscall param ioctl(generic) points to uninitialised byte=
 (s)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112201#c1">Commen=
-t # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112201#c2">Commen=
+t # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Syscall param ioctl(generic) points to uninitialised byte=
@@ -73,13 +76,14 @@ t # 1</a>
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D112201">bug 11220=
 1</a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+stratus&#64;tuta.io" title=3D"stratus&#64;tuta.io">stratus&#64;tuta.io</a>
 </span></b>
-        <pre>This is expected. valgrind does not understand how the ioctl w=
-orks, so it
-thinks that uninitialized memory is being read. But that's not an actual is=
-sue.</pre>
+        <pre>So this is not causing any problems, I suppose it's controllin=
+g the hardware by
+reading/writing to memory addresses provided by the kernel, and valgrind is
+giving a false positive, thank you for your rapid answer explaining things.=
+ I
+can look at some other things instead then.</pre>
         </div>
       </p>
 
@@ -93,9 +97,9 @@ sue.</pre>
     </body>
 </html>=
 
---15727498370.2dAbadF.5000--
+--15727514951.Aa7fF6fB3.10119--
 
---===============1461836550==
+--===============0797414822==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
 cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
 
---===============1461836550==--
+--===============0797414822==--
